@@ -1,10 +1,12 @@
 // "Erreurs" (#errors[/<id>]): the error correction collection. The page builds the markup, bindErrors makes it live.
 // The mathematics (counterexamples, checks of a repair, the faulty step) is in errors-model.js and is computed, not stored.
 // Each activity: the claim a learner might write, a test bench with sliders, a diagnosis, then a repair to choose.
-import { ERRORS, DERIVATIONS, ROUTE, FAMILIES, find, counterexample, checkRepair, coincidences, evaluateDerivation, show } from './errors-model.js';
+import { ERRORS, DERIVATIONS, ROUTE, FAMILIES, find, grid, relOf, claimAt, checkRepair, coincidences, evaluateDerivation, show } from './errors-model.js';
+import { assetHref } from './data-loader.js';
 import { describe } from './reading.js';
 
 const P = (fr, en) => [fr, en];
+const txt = (v, t) => (Array.isArray(v) ? t(v) : v);   // a claim or repair is a plain string, or a pair when it holds words
 const esc = (x) => String(x).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const KEY = 'maths-explorer-errors-v1';   // device-local list of finished activities; never leaves the browser
 const done = () => { try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch { return new Set(); } };
@@ -17,7 +19,7 @@ export function errorsPage(id, t) {
 
 function indexPage(t) {
   const finished = done();
-  const card = (e) => `<li><a class="error-card" href="#errors/${e.id}"><span class="error-card-claim">${esc(e.claim || t(e.title))}</span><span class="error-card-title">${esc(t(e.title))}${finished.has(e.id) ? ` <span class="error-done">✓<span class="sr-only"> ${t(P('terminé sur cet appareil', 'finished on this device'))}</span></span>` : ''}</span><span class="muted">${esc(t(FAMILIES[e.family]))} · ${esc(t(e.level))}</span></a></li>`;
+  const card = (e) => `<li><a class="error-card" href="#errors/${e.id}"><span class="error-card-claim">${esc(e.claim ? txt(e.claim, t) : t(e.title))}</span><span class="error-card-title">${esc(t(e.title))}${finished.has(e.id) ? ` <span class="error-done">✓<span class="sr-only"> ${t(P('terminé sur cet appareil', 'finished on this device'))}</span></span>` : ''}</span><span class="muted">${esc(t(FAMILIES[e.family]))} · ${esc(t(e.level))}</span></a></li>`;
   const route = ROUTE.map(find).filter(Boolean);
   return `<main id="main" tabindex="-1" class="page errors-page"><h1>${t(P('Corriger les erreurs classiques', 'Correct common errors'))}</h1>
 <p class="page-intro">${t(P('Chaque activité part d’une affirmation fausse qu’un élève pourrait écrire. Teste-la, trouve un contre-exemple, comprends pourquoi elle échoue, puis choisis la bonne version. La collection est en construction : de nouvelles erreurs s’y ajouteront.', 'Each activity starts from a false statement a student might write. Test it, find a counterexample, understand why it fails, then choose the correct version. The collection is under construction: more errors will be added.'))}</p>
@@ -28,7 +30,8 @@ function indexPage(t) {
 const back = (t) => `<a class="back-library" href="#errors">${t(P('Toutes les erreurs', 'All errors'))}</a>`;
 function related(e, t) {
   const items = (e.links || []).map((h) => [h, describe(h)]).filter(([, d]) => d);
-  return items.length ? `<section class="error-related" aria-labelledby="err-rel"><h2 id="err-rel">${t(P('Dans le cours', 'In the course'))}</h2><ul>${items.map(([h, d]) => `<li><a href="${h}">${esc(t(d.kind))} · ${esc(t(d.title))}</a></li>`).join('')}</ul></section>` : '';
+  const slide = (h) => /^#chapter\//.test(h) ? `<li><a href="${esc(assetHref('./slides/player.html'))}&amp;deck=${esc(h.split('/')[1])}">${t(P('Diaporama', 'Slides'))} · ${esc(t(describe(h).title))} ↗</a></li>` : '';
+  return items.length ? `<section class="error-related" aria-labelledby="err-rel"><h2 id="err-rel">${t(P('Dans le cours', 'In the course'))}</h2><ul>${items.map(([h, d]) => `<li><a href="${h}">${esc(t(d.kind))} · ${esc(t(d.title))}</a></li>${slide(h)}`).join('')}</ul></section>` : '';
 }
 
 function detailPage(e, t) {
@@ -39,13 +42,13 @@ function detailPage(e, t) {
 const order = (n, id) => { const k = [...id].reduce((a, c) => a + c.charCodeAt(0), 0) % n; return Array.from({ length: n }, (_, i) => (i + k) % n); };
 
 function claimPage(e, t) {
-  const sliders = e.vars.map((v) => { const [lo, hi] = e.range[v]; return `<label class="error-var">${v} = <output id="err-${v}-out">${lo}</output><input type="range" id="err-${v}" min="${lo}" max="${hi}" step="1" value="${lo}" aria-label="${v}"></label>`; }).join('');
-  const options = order(e.repairs.length, e.id).map((i) => `<label class="error-option"><input type="radio" name="repair" value="${i}"> <span>${esc(e.repairs[i].text)}</span></label>`).join('');
+  const sliders = e.vars.map((v) => { const [lo, hi] = e.range[v]; return `<label class="error-var">${v} = <output id="err-${v}-out">${lo}${e.unit || ''}</output><input type="range" id="err-${v}" min="${lo}" max="${hi}" step="1" value="${lo}" aria-label="${v}"></label>`; }).join('');
+  const options = order(e.repairs.length, e.id).map((i) => `<label class="error-option"><input type="radio" name="repair" value="${i}"> <span>${esc(txt(e.repairs[i].text, t))}</span></label>`).join('');
   return `<main id="main" tabindex="-1" class="page errors-page" data-error="${e.id}">${back(t)}<h1>${esc(t(e.title))}</h1><p class="muted">${esc(t(FAMILIES[e.family]))} · ${esc(t(e.level))}</p>
-<section aria-labelledby="err-claim"><h2 id="err-claim">${t(P('Un élève écrit', 'A student writes'))}</h2><p class="error-claim">${esc(e.claim)}</p><p>${t(P('Cette égalité est-elle vraie quelles que soient les valeurs ? Teste-la.', 'Is this equality true whatever the values? Test it.'))}</p></section>
+<section aria-labelledby="err-claim"><h2 id="err-claim">${t(P('Un élève écrit', 'A student writes'))}</h2><p class="error-claim">${esc(txt(e.claim, t))}</p><p>${relOf(e) === '=' ? t(P('Cette égalité est-elle vraie quelles que soient les valeurs ? Teste-la.', 'Is this equality true whatever the values? Test it.')) : t(P('Cette affirmation est-elle vraie quelles que soient les valeurs ? Teste-la.', 'Is this statement true whatever the values? Test it.'))}</p>${e.hypothesis ? `<p class="muted">${esc(t(e.hypothesis))}</p>` : ''}</section>
 <section aria-labelledby="err-test"><h2 id="err-test">${t(P('1. Tester', '1. Test it'))}</h2><div class="error-bench"><div class="error-vars">${sliders}<button type="button" class="btn btn-secondary" id="err-random">${t(P('Valeurs au hasard', 'Random values'))}</button></div>${e.diagram ? `<div class="error-diagram" id="err-diagram"></div>` : ''}<table class="error-readout"><tbody><tr><th scope="row">${t(P('Côté gauche', 'Left side'))}</th><td id="err-left"></td></tr><tr><th scope="row">${t(P('Côté droit', 'Right side'))}</th><td id="err-right"></td></tr></tbody></table><p id="err-verdict" role="status" aria-live="polite" class="error-verdict"></p></div>
 <p class="muted" id="err-found-count"></p></section>
-<section aria-labelledby="err-diag"><h2 id="err-diag">${t(P('2. Comprendre', '2. Understand'))}</h2><details id="err-why"><summary>${t(P('Voir le diagnostic', 'Show the diagnosis'))}</summary><p>${esc(t(e.why))}</p>${coincidences(e).length ? `<p class="sequence-note">${t(P('Un exemple ne prouve rien : cette égalité est vraie pour certaines valeurs, par exemple ', 'One example proves nothing: this equality does hold for some values, for example '))}${coincidences(e).slice(0, 1).map(([x, y]) => e.vars.length > 1 ? `x = ${x}, y = ${y}` : `x = ${x}`).join('')}${t(P(', mais elle échoue presque partout.', ', but it fails almost everywhere.'))}</p>` : ''}</details></section>
+<section aria-labelledby="err-diag"><h2 id="err-diag">${t(P('2. Comprendre', '2. Understand'))}</h2><details id="err-why"><summary>${t(P('Voir le diagnostic', 'Show the diagnosis'))}</summary><p>${esc(t(e.why))}</p>${coincidences(e).length ? `<p class="sequence-note">${relOf(e) === '=' ? t(P('Un exemple ne prouve rien : cette égalité est vraie pour certaines valeurs, par exemple ', 'One example proves nothing: this equality does hold for some values, for example ')) : t(P('Un exemple ne prouve rien : cette affirmation est vraie pour certaines valeurs, par exemple ', 'One example proves nothing: this statement does hold for some values, for example '))}${coincidences(e).slice(0, 1).map(([x, y]) => e.vars.length > 1 ? `x = ${x}, y = ${y}` : `x = ${x}`).join('')}${coincidences(e).length > grid(e).length / 2 ? t(P(', mais elle échoue pour d’autres, qui suffisent à la réfuter.', ', but it fails for others, which is enough to refute it.')) : t(P(', mais elle échoue presque partout.', ', but it fails almost everywhere.'))}</p>` : ''}</details></section>
 <section aria-labelledby="err-fix"><h2 id="err-fix">${t(P('3. Réparer', '3. Repair it'))}</h2><fieldset class="error-options"><legend>${t(P('Quelle est la bonne version ?', 'Which version is correct?'))}</legend>${options}</fieldset><button type="button" class="btn btn-primary" id="err-check">${t(P('Vérifier', 'Check'))}</button><p id="err-feedback" role="status" aria-live="polite"></p></section>${related(e, t)}</main>`;
 }
 
@@ -76,40 +79,45 @@ function diagram(kind, x, y, t) {
 }
 
 function bindClaim(root, e, t) {
-  const lang = t(P('fr', 'en'));
+  const lang = t(P('fr', 'en')), eq = relOf(e) === '=';
   const val = (v) => +root.querySelector('#err-' + v).value;
   const found = new Set();
+  const setPoint = (x, y) => { root.querySelector('#err-x').value = x; if (e.vars.includes('y')) root.querySelector('#err-y').value = y; };
   const refresh = () => {
     const x = val('x'), y = e.vars.includes('y') ? val('y') : 0;
-    e.vars.forEach((v) => { root.querySelector('#err-' + v + '-out').textContent = val(v); });
-    const l = e.L(x, y), r = e.R(x, y), same = Math.abs(l - r) <= 1e-9 * Math.max(1, Math.abs(l), Math.abs(r));
+    e.vars.forEach((v) => { root.querySelector('#err-' + v + '-out').textContent = val(v) + (e.unit || ''); });
+    const l = e.L(x, y), r = e.R(x, y), ok = claimAt(e, x, y);
     root.querySelector('#err-left').textContent = show(l, lang);
     root.querySelector('#err-right').textContent = show(r, lang);
-    if (!same) found.add(x + ',' + y);
-    root.querySelector('#err-verdict').textContent = same
-      ? t(P('Égaux pour ces valeurs. Un exemple ne prouve rien : essaie d’autres valeurs.', 'Equal for these values. One example proves nothing: try other values.'))
-      : t(P('Différents : ces valeurs sont un contre-exemple. L’égalité n’est pas vraie en général.', 'Different: these values are a counterexample. The equality is not true in general.'));
+    if (ok === false) found.add(x + ',' + y);
+    root.querySelector('#err-verdict').textContent = ok === null
+      ? t(e.hypothesis)
+      : ok
+        ? (eq ? t(P('Égaux pour ces valeurs. Un exemple ne prouve rien : essaie d’autres valeurs.', 'Equal for these values. One example proves nothing: try other values.'))
+              : t(P('Vrai pour ces valeurs. Un exemple ne prouve rien : essaie d’autres valeurs.', 'True for these values. One example proves nothing: try other values.')))
+        : (eq ? t(P('Différents : ces valeurs sont un contre-exemple. L’égalité n’est pas vraie en général.', 'Different: these values are a counterexample. The equality is not true in general.'))
+              : t(P('Faux pour ces valeurs : c’est un contre-exemple. L’affirmation n’est pas vraie en général.', 'False for these values: a counterexample. The statement is not true in general.')));
     root.querySelector('#err-found-count').textContent = found.size ? t(P(`Contre-exemples trouvés : ${found.size}`, `Counterexamples found: ${found.size}`)) : '';
     const dg = root.querySelector('#err-diagram'); if (dg) dg.innerHTML = diagram(e.diagram, x, y, t);
   };
-  const onInput = () => refresh();
-  e.vars.forEach((v) => root.querySelector('#err-' + v).addEventListener('input', onInput));
+  e.vars.forEach((v) => root.querySelector('#err-' + v).addEventListener('input', refresh));
   root.querySelector('#err-random').addEventListener('click', () => {
-    e.vars.forEach((v) => { const [lo, hi] = e.range[v]; root.querySelector('#err-' + v).value = lo + Math.floor(Math.random() * (hi - lo + 1)); });
-    refresh();
+    const points = grid(e), [x, y] = points[Math.floor(Math.random() * points.length)];
+    setPoint(x, y); refresh();
   });
   root.querySelector('#err-check').addEventListener('click', () => {
     const chosen = root.querySelector('input[name="repair"]:checked'), out = root.querySelector('#err-feedback');
     if (!chosen) { out.textContent = t(P('Choisis une version avant de vérifier.', 'Choose a version before checking.')); return; }
     const res = checkRepair(e, e.repairs[+chosen.value]);
     if (res.ok) {
-      out.textContent = t(P(`Correct : cette égalité est vérifiée pour les ${res.points} valeurs possibles du curseur. Ce contrôle numérique ne remplace pas la démonstration, qui est donnée dans le diagnostic.`, `Correct: this equality holds for all ${res.points} slider values. This numerical check is not a proof; the reason is in the diagnosis.`));
+      out.textContent = t(P(`Correct : cette relation est vérifiée pour les ${res.points} valeurs possibles du curseur. Ce contrôle numérique ne remplace pas la démonstration, qui est donnée dans le diagnostic.`, `Correct: this relation holds for all ${res.points} slider values. This numerical check is not a proof; the reason is in the diagnosis.`));
       root.querySelector('#err-why').open = true; markDone(e.id);
     } else {
-      const c = res.counterexample, at = e.vars.length > 1 ? `x = ${c.x}, y = ${c.y}` : `x = ${c.x}`;
+      const c = res.counterexample, at = e.vars.map((v) => `${v} = ${c[v]}${e.unit || ''}`).join(', ');
       out.textContent = t(P(`Pas encore : pour ${at}, le côté gauche vaut ${show(c.left, lang)} et le côté droit ${show(c.right, lang)}.`, `Not yet: for ${at}, the left side is ${show(c.left, lang)} and the right side ${show(c.right, lang)}.`));
     }
   });
+  if (e.when) { const [x, y] = grid(e)[0]; setPoint(x, y); }
   refresh();
   return () => {};
 }

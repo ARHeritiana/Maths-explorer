@@ -5,6 +5,7 @@ Read one only when the task router in `MAP.md` sends you here.
 | Document | Read it for |
 |---|---|
 | `ARCHITECTURE.md` | data flow, commands, linked-content policy, container setup (TeX packages) |
+| `ERROR_COVERAGE.md` | generated matrix of the error correction collection by misconception and curriculum, with the planned misconceptions (`node scripts/error-coverage.mjs`) |
 | `TEX_STYLE_GUIDE.md` | TeX class, packages, environments |
 | `ADR-0001-tex-i18n.md` | how English units are generated from French ones |
 | `TEX_INVENTORY.md` | generated inventory of environments and macros (`make inventory`) |

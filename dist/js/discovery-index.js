@@ -1,9 +1,9 @@
 // Pure assembly and queries: rebuilding from the current registries removes stale routes and counts.
 import {TOPICS, membershipsFor} from './topic-registry.js';
-export const FORMAT_LABELS = {lab:['Laboratoire','Laboratory'], gallery:['Curiosité','Curiosity'], challenge:['Défi','Challenge'], biography:['Biographie','Biography'], story:['Histoire','Story'], timeline:['Chronologie','Timeline'], chapter:['Chapitre','Chapter'], lesson:['Leçon','Lesson'], workshop:['Atelier','Workshop'], pdf:['PDF','PDF'], html:['HTML','HTML']};
+export const FORMAT_LABELS = {lab:['Laboratoire','Laboratory'], gallery:['Curiosité','Curiosity'], challenge:['Défi','Challenge'], error:['Erreur à corriger','Error to correct'], biography:['Biographie','Biography'], story:['Histoire','Story'], timeline:['Chronologie','Timeline'], chapter:['Chapitre','Chapter'], lesson:['Leçon','Lesson'], workshop:['Atelier','Workshop'], pdf:['PDF','PDF'], html:['HTML','HTML']};
 const pair = value => Array.isArray(value)?value:[String(value || ''),String(value || '')];
 export const normalize = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryChapters=[],biographies=[],stories=[],people=[],advances=[],university={sections:[]},enrichment=[],courses=[]}={}) {
+export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryChapters=[],biographies=[],stories=[],people=[],advances=[],university={sections:[]},enrichment=[],courses=[],errors=[]}={}) {
   const records = new Map();
   function add(record, kind, route, extra={}) {
     const title=pair(record.title || record.name), memberships=membershipsFor(record,kind);
@@ -16,6 +16,7 @@ export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryCh
   }
   labs.forEach(x=>add(x,x.custom?'gallery':'lab',`#${x.custom?'gallery':'lab'}/${x.id}`));
   challenges.forEach(x=>add(x,'challenge',`#challenges/${x.id}`));
+  errors.forEach(x=>add({...x,summary:x.why,concepts:[x.family]},'error',`#errors/${x.id}`));
   chapters.forEach(x=>add(x,'chapter',`#chapter/${x.id}`,{level:pair(courses.find(c=>c.id===x.course)?.title || x.course),links:(x.labs || []).map(ref=>'#lab/'+ref.split('/')[0])}));
   const chapterIds=new Set(chapters.map(x=>x.id));
   libraryChapters.filter(x=>!chapterIds.has(x.id)).forEach(x=>add(x,'chapter',`#library/${x.id}`,{level:pair(courses.find(c=>c.id===x.course)?.title || x.course),links:(x.labs || []).map(ref=>'#lab/'+ref.split('/')[0])}));

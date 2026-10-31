@@ -2,6 +2,7 @@ import { courses, university } from './catalogue-data.js';
 import { assetHref, fetchJSON } from './data-loader.js';
 import { universitySlideLinks } from './university-model.js';
 import { icon } from './icons.js';
+import { errorsFor } from './errors-model.js';
 // Slides index: classroom decks (French and English) opened in the standalone player.
 const P = (fr, en) => [fr, en];
 const E = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -43,7 +44,7 @@ export async function bindSlides(t) {
             `<a class="deck-download" href="${pdf}" download>${icon('download-simple', 16)}PDF</a><a class="deck-source" href="${E(assetHref('./slides/lectures/' + edition.source))}" download>${P('Source', 'Source')[L]}</a>`);
         }
         return row(`<a class="deck-title" href="${E(assetHref("./slides/player.html"))}&amp;deck=${E(d.id)}&amp;lang=${E(lang)}">${E(title)}</a>`, `${htmlEdition.slides} ${P('diapositives', 'slides')[L]}`,
-          `<a class="deck-download" href="${E(assetHref('./slides/export/' + d.id + '.html'))}" download="${E(d.id)}.html" aria-label="${P('Télécharger en HTML : ', 'Download as HTML: ')[L]}${E(title)}">${icon('download-simple', 16)}HTML</a>`);
+          `<a class="deck-download" href="${E(assetHref('./slides/export/' + d.id + '.html'))}" download="${E(d.id)}.html" aria-label="${P('Télécharger en HTML : ', 'Download as HTML: ')[L]}${E(title)}">${icon('download-simple', 16)}HTML</a>${errorsFor('#chapter/' + d.id).length ? `<a class="deck-source" href="#chapter/${E(d.id)}/cours/errors">${P('Erreurs fréquentes', 'Common errors')[L]} (${errorsFor('#chapter/' + d.id).length})</a>` : ''}`);
       }).join('')}</ul></details>`;
     }).join('');
     };

@@ -6,8 +6,9 @@ import {university,courses,discoveryChapters} from './catalogue-data.js';
 import {challengeIcon} from './challenges/registry.js';
 import {PEOPLE,ADVANCES} from './history-data.js';
 import {previewKind,modelPreview} from './discovery-previews.js';
+import {all as ERROR_RECORDS} from './errors-model.js';
 const E=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-export const discoveryIndex = data => buildDiscoveryIndex({...data,libraryChapters:discoveryChapters,biographies:BIOGRAPHIES,stories:STORIES,people:PEOPLE,advances:ADVANCES,university,courses});
+export const discoveryIndex = data => buildDiscoveryIndex({...data,libraryChapters:discoveryChapters,biographies:BIOGRAPHIES,stories:STORIES,people:PEOPLE,advances:ADVANCES,university,courses,errors:ERROR_RECORDS()});
 export function previewSVG(item,t) {
   const kind=previewKind(item);
   if(kind==='challenge')return `<figure class="discovery-preview discovery-emblem" data-preview="challenge">${challengeIcon(item.route.split('/')[1])}<figcaption>${E(t(item.title))}</figcaption></figure>`;

@@ -12,6 +12,7 @@ Builders called by `build/mxbuild` (see `pipeline.py` `COURSES`) or by `make`. E
 | `build-lecture-slides.py` | Beamer lecture PDFs | `make lectures` |
 | `extract-terminale-slides.py` | one-off: Terminale French drafts from LaTeX | by hand |
 | `build-university.py`, `build-module-maths.py` | university foundations; applied mathematics module | `make university`, `make site` |
+| `error-coverage.mjs` | `docs/ERROR_COVERAGE.md` (error correction coverage matrix by curriculum and misconception); `--check` compares | `node scripts/error-coverage.mjs`; `tests/errors.test.mjs` fails if stale |
 | `build-study-guides.mjs` | study guide HTML pages from `site/js/study-guides.js` | by hand |
 | `publish-sources.py` | publish `.tex` sources to `dist/sources/` (refuses identifying content) | `make tex` |
 | `finalize-resources.py` | PDF hygiene, then catalogue | by hand |

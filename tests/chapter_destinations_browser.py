@@ -35,6 +35,17 @@ with sync_playwright() as p:
         page.goto(f'{BASE}/#chapter/{CHAPTER}/{old}'); loaded(page)
         assert page.locator('.chapter-tabs [aria-current="page"]').get_attribute('href').endswith('/' + new), (old, new)
 
+    # common errors of the chapter (reverse of the error links) in Cours and in Exercices, reachable from the slides index
+    for tab in ['cours', 'exercices']:
+        page.goto(f'{BASE}/#chapter/{CHAPTER}/{tab}'); loaded(page)
+        assert page.locator('.chapter-errors a[href^="#errors/"]').count() >= 2, tab
+    page.goto(f'{BASE}/#chapter/{CHAPTER}/cours/errors'); loaded(page)
+    page.wait_for_function("document.querySelector('#chapter-errors-title').getBoundingClientRect().top < 300")
+    page.goto(f'{BASE}/#slides'); page.locator('details[data-course="seconde"] summary').click()
+    page.wait_for_selector('details[data-course="seconde"] .deck-source[href$="/cours/errors"]')
+    page.goto(f'{BASE}/#errors/square-inequality'); page.wait_for_selector('.error-bench')
+    assert 'x < y' in page.locator('#err-verdict').inner_text() or page.locator('#err-verdict').inner_text(), 'hypothesis message or verdict'
+    page.goto(f'{BASE}/#chapter/{CHAPTER}/cours'); loaded(page)
     # a direct link to an idea and to an exercise scrolls to it
     page.goto(f'{BASE}/#chapter/{CHAPTER}/cours/2'); loaded(page)
     page.wait_for_function("document.querySelector('#notion-2').getBoundingClientRect().top < 200")

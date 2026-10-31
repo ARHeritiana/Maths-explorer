@@ -38,7 +38,8 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 
 | File | Holds |
 |---|---|
-| `js/errors-model.js` | pure: `ERRORS` (false claims with repairs), `DERIVATIONS` (flawed step lists), `ROUTE`, `FAMILIES`; counterexamples, repair checks and the faulty step are computed, never stored |
+| `js/errors-data.js` | the records: `ERRORS` (false claims with repairs, 27 with the derivation), `DERIVATIONS`, `ROUTE`, `FAMILIES`; each has `topics` (discovery) and `links` (chapters) |
+| `js/errors-model.js` | pure: relations, grid with hypotheses, counterexamples, repair checks, faulty step of a derivation, `errorsFor(hash)` (reverse links); nothing is stored |
 | `js/errors.js` | the page `#errors[/<id>]`: index with suggested route, test bench with sliders, diagnosis, repair choice; finished ids kept on the device only |
 
 ## Laboratory and gallery
