@@ -4,16 +4,16 @@ import { samplingStream } from "./stream.js";
 import { panelView, drawAxes, drawScene, drawHandles, drawBadge, buildHandles } from "../plot.js";
 
 export function mount(env) {
-  const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
+  const { exp, stage, fmt, getState, getShown = getState, setState, ghost, isUnlocked } = env;
   const spec = exp.views.figure, ctx = { fmt, lang: fmt.lang, stage, unlocked: isUnlocked };
   const stream = exp.stream ? samplingStream(env) : null;
   let view = null;
   const layout = () => { view = panelView(stage, "figure", { x: 0, y: 0, w: stage.W, h: stage.H }, spec); return view; };
   layout();
-  const handles = buildHandles({ exp, fmt, getState, setState, views: () => ({ figure: layout() }), panels: ["figure"] });
+  const handles = buildHandles({ exp, fmt, getState, getShown, setState, views: () => ({ figure: layout() }), panels: ["figure"] });
 
   function draw(g) {
-    const v = layout(), s = getState(), other = ghost();
+    const v = layout(), s = getShown(), other = ghost();
     ctx.progress = stream?.progress ?? null;
     if (spec.axes !== false) drawAxes(g, v, spec, stage, fmt);   // a figure that draws its own frame (tiles, a circle, a number grid)
     if (other) drawScene(g, v, spec.scene(other, { ...ctx, progress: null }), stage, { ghost: true });

@@ -33,9 +33,10 @@ export default {
   prereq: ["Fonctions, pente d’une droite", "Functions, slope of a line"],
   model: D,
   state: { x: 1, h: 1 },
+  ease: ['x', 'h'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     nearby: {
-      kind: "handle", color: "obj2", axis: "x", grid: [0.05, 0], label: ["Point B", "Point B"],
+      kind: "handle", soft: true, color: "obj2", axis: "x", grid: [0.05, 0], label: ["Point B", "Point B"],
       at: (s) => [s.x + s.h, f(s.x + s.h)],
       drag: (s, wx) => {
         let h = Math.round((wx - s.x) / 0.05) * 0.05;
@@ -46,7 +47,7 @@ export default {
       valuetext: (s, f2) => `h = ${f2.num(s.h, 3)}`,
     },
     base: {
-      kind: "handle", color: "accent", axis: "x", grid: [0.25, 0], label: ["Point A", "Point A"],
+      kind: "handle", soft: true, color: "accent", axis: "x", grid: [0.25, 0], label: ["Point A", "Point A"],
       at: (s) => [s.x, f(s.x)],
       drag: (s, wx) => ({ x: clamp(wx, -3, 3) }),
       valuetext: (s, f2) => `x = ${f2.num(s.x)}`,

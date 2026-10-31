@@ -25,21 +25,22 @@ export default {
   prereq: ["Fonctions affines, suites", "Affine functions, sequences"],
   model: W,
   state: { a: 0.5, b: 2, u0: 8, n: 6 },
+  ease: ['a', 'b', 'u0'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     start: {
-      kind: "handle", color: "accent", axis: "x", grid: [0.5, 1], label: ["Point u₀ sur l’axe des abscisses", "Point u₀ on the x-axis"],
+      kind: "handle", soft: true, color: "accent", axis: "x", grid: [0.5, 1], label: ["Point u₀ sur l’axe des abscisses", "Point u₀ on the x-axis"],
       at: (s) => [s.u0, 0],
       drag: (s, x) => ({ u0: clamp(x, U0MAX[0], U0MAX[1]) }),
       valuetext: (s, f) => `u₀ = ${f.num(s.u0)}`,
     },
     intercept: {
-      kind: "handle", color: "obj3", axis: "y", grid: [1, 0.5], label: ["Point (0 ; b) de la droite de f", "Point (0, b) of the line of f"],
+      kind: "handle", soft: true, color: "obj3", axis: "y", grid: [1, 0.5], label: ["Point (0 ; b) de la droite de f", "Point (0, b) of the line of f"],
       at: (s) => [0, s.b],
       drag: (s, x, y) => ({ b: clamp(y, BMAX[0], BMAX[1]) }),
       valuetext: (s, f) => `b = ${f.num(s.b)}`,
     },
     slope: {
-      kind: "handle", color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (2 ; f(2)) qui règle a", "Point (2, f(2)) that sets a"],
+      kind: "handle", soft: true, color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (2 ; f(2)) qui règle a", "Point (2, f(2)) that sets a"],
       at: (s) => [2, 2 * s.a + s.b],
       drag: (s, x, y) => ({ a: clamp(Math.round((y - s.b) / 2 / 0.25) * 0.25, AMAX[0], AMAX[1]) }),
       nudge: (s, dx, dy) => ({ a: clamp(s.a + 0.25 * (dx || dy), AMAX[0], AMAX[1]) }),

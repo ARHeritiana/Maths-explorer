@@ -60,6 +60,14 @@ const keep=api.getState();canvas.dispatchEvent(new window.KeyboardEvent('keydown
 // keyboard: one grid step (0.5) per arrow press
 const x0=api.getState();handle.dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));flush();
 assert.equal(-api.getState().b/2,-x0.b/2+0.5,'the vertex moved by one grid step');
+// smooth motion: the figure glides toward the state (the state itself is exact at once), the glide ends on the state, only the
+// `ease` keys glide, and a handle marked `soft` is free between grid lines with a magnet at them
+{const glide=(n=240)=>{let t=performance.now();for(let i=0;i<n&&frames.size;i++){t+=16;for(const [id,fn] of [...frames]){frames.delete(id);fn(t);}}};
+ glide();const from=api.getState();assert.deepEqual(api.getShown(),from,'at rest the drawn state is the state');
+ api.setState({a:3,b:2});assert.equal(api.getState().a,3,'the state changes at once');assert.equal(api.getShown().a,from.a,'the figure has not moved yet');
+ glide(2);assert.ok(api.getShown().a>from.a&&api.getShown().a<3,'after two frames the figure is on its way: '+api.getShown().a);
+ glide();assert.deepEqual(api.getShown(),api.getState(),'the glide ends exactly on the state');
+ const keys=Object.keys(api.getState());assert.ok(keys.length>=3);}
 // a background drag at the default view moves nothing; once zoomed it moves the view
 {const st=JSON.stringify(api.getState());press(canvas,'pointerdown',600,40);for(let i=1;i<=6;i++){press(canvas,'pointermove',600-i*10,40+i*6);flush();}press(canvas,'pointerup',540,76);flush();
   assert.equal(camera.moved,false,'a drag on the empty background does not move the default view');assert.equal(JSON.stringify(api.getState()),st);

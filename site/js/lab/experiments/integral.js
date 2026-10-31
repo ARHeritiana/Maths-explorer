@@ -22,15 +22,16 @@ export default {
   prereq: ["Aire d’un rectangle, fonctions, sommes", "Rectangle area, functions, sums"],
   model: I,
   state: { a: 0, b: 1, n: 4, method: "left" },
+  ease: ['a', 'b'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     upper: {
-      kind: "handle", color: "accent", axis: "x", grid: [0.25, 0], label: ["Borne b", "Bound b"],
+      kind: "handle", soft: true, color: "accent", axis: "x", grid: [0.25, 0], label: ["Borne b", "Bound b"],
       at: (s) => [s.b, 0],
       drag: (s, wx) => ({ b: clamp(wx, s.a + 0.25, 2.5) }),
       valuetext: (s, fm) => `b = ${fm.num(s.b)}`,
     },
     lower: {
-      kind: "handle", color: "obj3", axis: "x", grid: [0.25, 0], label: ["Borne a", "Bound a"],
+      kind: "handle", soft: true, color: "obj3", axis: "x", grid: [0.25, 0], label: ["Borne a", "Bound a"],
       at: (s) => [s.a, 0],
       drag: (s, wx) => ({ a: clamp(wx, -1, s.b - 0.25) }),
       valuetext: (s, fm) => `a = ${fm.num(s.a)}`,

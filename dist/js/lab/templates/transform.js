@@ -4,7 +4,7 @@
 import { layoutPanels, panelView, drawAxes, drawScene, drawHandles, buildHandles } from "../plot.js";
 
 export function mount(env) {
-  const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
+  const { exp, stage, fmt, getState, getShown = getState, setState, ghost, isUnlocked } = env;
   const ids = ["before", "after"], specs = ids.map((id) => exp.views[id]), ctx = { fmt, lang: fmt.lang, stage, unlocked: isUnlocked };
   let views = {};
   function layout() {
@@ -13,11 +13,11 @@ export function mount(env) {
     return views;
   }
   layout();
-  const handles = buildHandles({ exp, fmt, getState, setState, views: () => layout(), panels: ids });
+  const handles = buildHandles({ exp, fmt, getState, getShown, setState, views: () => layout(), panels: ids });
 
   function draw(g) {
     layout();
-    const s = getState(), other = ghost();
+    const s = getShown(), other = ghost();
     ids.forEach((id, i) => {
       const v = views[id];
       drawAxes(g, v, specs[i], stage, fmt);

@@ -37,6 +37,7 @@ export default {
   prereq: ["Coordonnées, carrés, équations", "Coordinates, squares, equations"],
   model: Q,
   state: { a: 1, b: 0, c: -2 },
+  ease: ['a', 'b', 'c'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   presentationControls: ["a", "form", "coordinate1", "coordinate2", "orientation", "rootCase"],
   controls: {
     form: {
@@ -65,19 +66,19 @@ export default {
       set:Q.rootCase,
     },
     vertex: {
-      kind: "handle", color: "accent", label: ["Sommet S", "Vertex S"], grid: 0.5,
+      kind: "handle", soft: true, color: "accent", label: ["Sommet S", "Vertex S"], grid: 0.5,
       at: (s) => { const m = model(s); return [m.alpha, m.beta]; },
       drag: (s, x, y) => fromVertex(s.a, clamp(x, -6, 6), clamp(y, -6, 8)),
       valuetext: (s, f) => { const m = model(s); return f.pt(m.alpha, m.beta); },
     },
     opening: {
-      kind: "handle", color: "obj2", axis: "y", grid: [1, 0.25], label: ["Point P (à une unité du sommet)", "Point P (one unit from the vertex)"],
+      kind: "handle", soft: true, color: "obj2", axis: "y", grid: [1, 0.25], label: ["Point P (à une unité du sommet)", "Point P (one unit from the vertex)"],
       at: (s) => { const m = model(s); return [m.alpha + 1, m.beta + s.a]; },
       drag: (s, x, y) => setA(s, y - model(s).beta),
       valuetext: (s, f) => `a = ${f.num(s.a)}`,
     },
     yint: {
-      kind: "handle", color: "obj3", axis: "y", grid: [1, 0.5], label: ["Point C (ordonnée à l’origine)", "Point C (y-intercept)"],
+      kind: "handle", soft: true, color: "obj3", axis: "y", grid: [1, 0.5], label: ["Point C (ordonnée à l’origine)", "Point C (y-intercept)"],
       at: (s) => [0, s.c],
       drag: (s, x, y) => ({ c: clamp(y, -6, 8) }),
       valuetext: (s, f) => `c = ${f.num(s.c)}`,
@@ -109,10 +110,11 @@ export default {
       },
     },
     formula(s, { fmt }) {
-      const m = model(s), num = (v) => fmt.num(v, 6);
+      // Two decimals, marked ≈ whenever a coefficient was rounded: a point placed freely gives long decimals that nobody reads.
+      const m = model(s), num = (v) => fmt.num(v, 2);
       const first = expanded(s, num), second = canonical(m, num);
-      const exactFirst = [s.a,s.b,s.c].every(v=>fmt.isExact(v,6));
-      const exactSecond = [m.a,m.alpha,m.beta].every(v=>fmt.isExact(v,6));
+      const exactFirst = [s.a,s.b,s.c].every(v=>fmt.isExact(v,2));
+      const exactSecond = [m.a,m.alpha,m.beta].every(v=>fmt.isExact(v,2));
       return `f(x) ${exactFirst ? "=" : "≈"} ${first}${first === second ? "" : ` ${exactSecond ? "=" : "≈"} ${second}`}`;
     },
     readout(s, { fmt }) {

@@ -21,15 +21,16 @@ export default {
   prereq: ["Puissances, suites géométriques", "Powers, geometric sequences"],
   model: E,
   state: { k: 1, a: 2 },
+  ease: ['k', 'a'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     start: {
-      kind: "handle", color: "accent", axis: "y", grid: [1, 0.5], label: ["Point (0 ; k)", "Point (0, k)"],
+      kind: "handle", soft: true, color: "accent", axis: "y", grid: [1, 0.5], label: ["Point (0 ; k)", "Point (0, k)"],
       at: (s) => [0, s.k],
       drag: (s, x, y) => ({ k: clamp(y, 0.5, KMAX) }),
       valuetext: (s, f) => `k = ${f.num(s.k)}`,
     },
     unit: {
-      kind: "handle", color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (1 ; k × a)", "Point (1, k × a)"],
+      kind: "handle", soft: true, color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (1 ; k × a)", "Point (1, k × a)"],
       nudge: (s, dx, dy) => ({ a: clamp(s.a + 0.25 * (dx || dy), 0.25, 3) }),
       at: (s) => [1, s.k * s.a],
       drag: (s, x, y) => ({ a: clamp(Math.round(y / s.k / 0.25) * 0.25, 0.25, 3) }),

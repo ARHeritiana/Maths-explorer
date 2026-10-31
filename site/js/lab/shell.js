@@ -90,12 +90,32 @@ export function createShell(host, exp, tpl, opts = {}) {
   const done = {}, predictions = {};
   let unlocked = new Set(), ghostSet = null, attempts = 0, variantSeen = new Set(), completeSent = false;
   const getState = () => state;
+  // What the figure draws. The continuous keys named by `exp.ease` glide toward the state with an exponential spring (quick while a
+  // handle is dragged, gentler for a mission change or a key press); everything else, and every number the learner reads, is the
+  // state itself. Nothing glides under reduced motion. The state stays the single truth: tests, links and answers use `getState`.
+  const easeKeys = exp.ease || [];
+  let shown = state, easing = null, easeLast = 0;
+  const getShown = () => shown;
+  function chase() {
+    if (!easeKeys.length || stage.reduced()) { shown = state; return; }
+    if (easing) return;
+    easeLast = performance.now();
+    easing = stage.animate((now) => {
+      const dt = Math.min(0.05, (now - easeLast) / 1000 || 0.016); easeLast = now;
+      const k = 1 - Math.exp(-dt * (stage.dragging ? 40 : 14)); let moving = false; const next = { ...state };
+      for (const key of easeKeys) { const d = state[key] - shown[key]; if (Math.abs(d) > 1e-4 * (1 + Math.abs(state[key]))) { next[key] = shown[key] + d * k; moving = true; } }
+      shown = moving ? next : state;
+      if (!moving) { easing = null; return false; }
+      return true;
+    });
+  }
   const apply = (partial) => {
     if (!partial) return;
     let next = null;
     for (const k of Object.keys(partial)) if (state[k] !== partial[k]) { next ??= { ...state }; next[k] = partial[k]; }
     if (!next) return;
     state = next; version++;
+    chase();
     stage.invalidate();
   };
   const userApply = (partial) => { stopPlay(); apply(partial); };
@@ -159,7 +179,7 @@ export function createShell(host, exp, tpl, opts = {}) {
   }
 
   // ---- template
-  const env = { exp, stage, fmt, getState, setState: userApply, advance: apply, isUnlocked: (id) => unlocked.has(id), ghost: () => (ghostSet ? { ...state, ...ghostSet } : null) };
+  const env = { exp, stage, fmt, getState, getShown, setState: userApply, advance: apply, isUnlocked: (id) => unlocked.has(id), ghost: () => (ghostSet ? { ...state, ...ghostSet } : null) };
   view = tpl.mount(env);
   const allHandles = view.handles;
   const players = new Map();
@@ -540,7 +560,7 @@ export function createShell(host, exp, tpl, opts = {}) {
     stopPlay();
     index = i;
     const m = mission();
-    state = startState(m); version++;
+    state = startState(m); version++; chase();
     ghostSet = null; variantSeen = new Set(); currentVariant = null; attempts = 0;
     lockControls(m);
     setClass(card, "is-done", !!done[m.id]);
@@ -619,6 +639,7 @@ export function createShell(host, exp, tpl, opts = {}) {
     get view() { return view; },   // the template's view (tests read its panels)
     get mission() { return mission(); },
     getState: () => state,
+    getShown,   // what the figure draws now (the state, with the `ease` keys still gliding)
     setState: (partial) => userApply(partial),
     setMission(idOrIndex) {
       const i = typeof idOrIndex === "number" ? idOrIndex : missions.findIndex((m) => m.id === idOrIndex);

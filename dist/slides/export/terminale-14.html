@@ -2788,21 +2788,22 @@ __e.default = {
   prereq: ["Fonctions affines, suites", "Affine functions, sequences"],
   model: W,
   state: { a: 0.5, b: 2, u0: 8, n: 6 },
+  ease: ['a', 'b', 'u0'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     start: {
-      kind: "handle", color: "accent", axis: "x", grid: [0.5, 1], label: ["Point u₀ sur l’axe des abscisses", "Point u₀ on the x-axis"],
+      kind: "handle", soft: true, color: "accent", axis: "x", grid: [0.5, 1], label: ["Point u₀ sur l’axe des abscisses", "Point u₀ on the x-axis"],
       at: (s) => [s.u0, 0],
       drag: (s, x) => ({ u0: clamp(x, U0MAX[0], U0MAX[1]) }),
       valuetext: (s, f) => `u₀ = ${f.num(s.u0)}`,
     },
     intercept: {
-      kind: "handle", color: "obj3", axis: "y", grid: [1, 0.5], label: ["Point (0 ; b) de la droite de f", "Point (0, b) of the line of f"],
+      kind: "handle", soft: true, color: "obj3", axis: "y", grid: [1, 0.5], label: ["Point (0 ; b) de la droite de f", "Point (0, b) of the line of f"],
       at: (s) => [0, s.b],
       drag: (s, x, y) => ({ b: clamp(y, BMAX[0], BMAX[1]) }),
       valuetext: (s, f) => `b = ${f.num(s.b)}`,
     },
     slope: {
-      kind: "handle", color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (2 ; f(2)) qui règle a", "Point (2, f(2)) that sets a"],
+      kind: "handle", soft: true, color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (2 ; f(2)) qui règle a", "Point (2, f(2)) that sets a"],
       at: (s) => [2, 2 * s.a + s.b],
       drag: (s, x, y) => ({ a: clamp(Math.round((y - s.b) / 2 / 0.25) * 0.25, AMAX[0], AMAX[1]) }),
       nudge: (s, dx, dy) => ({ a: clamp(s.a + 0.25 * (dx || dy), AMAX[0], AMAX[1]) }),
@@ -3214,9 +3215,10 @@ __e.default = {
   prereq: ["Fonctions, pente d’une droite", "Functions, slope of a line"],
   model: D,
   state: { x: 1, h: 1 },
+  ease: ['x', 'h'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     nearby: {
-      kind: "handle", color: "obj2", axis: "x", grid: [0.05, 0], label: ["Point B", "Point B"],
+      kind: "handle", soft: true, color: "obj2", axis: "x", grid: [0.05, 0], label: ["Point B", "Point B"],
       at: (s) => [s.x + s.h, f(s.x + s.h)],
       drag: (s, wx) => {
         let h = Math.round((wx - s.x) / 0.05) * 0.05;
@@ -3227,7 +3229,7 @@ __e.default = {
       valuetext: (s, f2) => `h = ${f2.num(s.h, 3)}`,
     },
     base: {
-      kind: "handle", color: "accent", axis: "x", grid: [0.25, 0], label: ["Point A", "Point A"],
+      kind: "handle", soft: true, color: "accent", axis: "x", grid: [0.25, 0], label: ["Point A", "Point A"],
       at: (s) => [s.x, f(s.x)],
       drag: (s, wx) => ({ x: clamp(wx, -3, 3) }),
       valuetext: (s, f2) => `x = ${f2.num(s.x)}`,
@@ -3585,15 +3587,16 @@ __e.default = {
   prereq: ["Puissances, suites géométriques", "Powers, geometric sequences"],
   model: E,
   state: { k: 1, a: 2 },
+  ease: ['k', 'a'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     start: {
-      kind: "handle", color: "accent", axis: "y", grid: [1, 0.5], label: ["Point (0 ; k)", "Point (0, k)"],
+      kind: "handle", soft: true, color: "accent", axis: "y", grid: [1, 0.5], label: ["Point (0 ; k)", "Point (0, k)"],
       at: (s) => [0, s.k],
       drag: (s, x, y) => ({ k: clamp(y, 0.5, KMAX) }),
       valuetext: (s, f) => `k = ${f.num(s.k)}`,
     },
     unit: {
-      kind: "handle", color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (1 ; k × a)", "Point (1, k × a)"],
+      kind: "handle", soft: true, color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (1 ; k × a)", "Point (1, k × a)"],
       nudge: (s, dx, dy) => ({ a: clamp(s.a + 0.25 * (dx || dy), 0.25, 3) }),
       at: (s) => [1, s.k * s.a],
       drag: (s, x, y) => ({ a: clamp(Math.round(y / s.k / 0.25) * 0.25, 0.25, 3) }),
@@ -4097,15 +4100,16 @@ __e.default = {
   prereq: ["Aire d’un rectangle, fonctions, sommes", "Rectangle area, functions, sums"],
   model: I,
   state: { a: 0, b: 1, n: 4, method: "left" },
+  ease: ['a', 'b'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     upper: {
-      kind: "handle", color: "accent", axis: "x", grid: [0.25, 0], label: ["Borne b", "Bound b"],
+      kind: "handle", soft: true, color: "accent", axis: "x", grid: [0.25, 0], label: ["Borne b", "Bound b"],
       at: (s) => [s.b, 0],
       drag: (s, wx) => ({ b: clamp(wx, s.a + 0.25, 2.5) }),
       valuetext: (s, fm) => `b = ${fm.num(s.b)}`,
     },
     lower: {
-      kind: "handle", color: "obj3", axis: "x", grid: [0.25, 0], label: ["Borne a", "Bound a"],
+      kind: "handle", soft: true, color: "obj3", axis: "x", grid: [0.25, 0], label: ["Borne a", "Bound a"],
       at: (s) => [s.a, 0],
       drag: (s, wx) => ({ a: clamp(wx, -1, s.b - 0.25) }),
       valuetext: (s, fm) => `a = ${fm.num(s.a)}`,
@@ -4497,15 +4501,16 @@ __e.default = {
   prereq: ["Coordonnées, aire d’un parallélogramme, déterminant de deux vecteurs", "Coordinates, area of a parallelogram, determinant of two vectors"],
   model: X,
   state: { a: 2, b: 1, c: 0, d: 2 },
+  ease: ['a', 'b', 'c', 'd'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     i: {
-      kind: "handle", panel: "after", color: "accent", grid: 0.5, label: ["Image de i (première colonne de M)", "Image of i (first column of M)"],
+      kind: "handle", soft: true, panel: "after", color: "accent", grid: 0.5, label: ["Image de i (première colonne de M)", "Image of i (first column of M)"],
       at: (s) => [s.a, s.c],
       drag: (s, x, y) => ({ a: clamp(x, -LIM, LIM), c: clamp(y, -LIM, LIM) }),
       valuetext: (s, f) => f.pt(s.a, s.c),
     },
     j: {
-      kind: "handle", panel: "after", color: "obj2", grid: 0.5, label: ["Image de j (deuxième colonne de M)", "Image of j (second column of M)"],
+      kind: "handle", soft: true, panel: "after", color: "obj2", grid: 0.5, label: ["Image de j (deuxième colonne de M)", "Image of j (second column of M)"],
       at: (s) => [s.b, s.d],
       drag: (s, x, y) => ({ b: clamp(x, -LIM, LIM), d: clamp(y, -LIM, LIM) }),
       valuetext: (s, f) => f.pt(s.b, s.d),
@@ -4891,6 +4896,7 @@ __e.default = {
   prereq: ["Coordonnées, carrés, équations", "Coordinates, squares, equations"],
   model: Q,
   state: { a: 1, b: 0, c: -2 },
+  ease: ['a', 'b', 'c'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   presentationControls: ["a", "form", "coordinate1", "coordinate2", "orientation", "rootCase"],
   controls: {
     form: {
@@ -4919,19 +4925,19 @@ __e.default = {
       set:Q.rootCase,
     },
     vertex: {
-      kind: "handle", color: "accent", label: ["Sommet S", "Vertex S"], grid: 0.5,
+      kind: "handle", soft: true, color: "accent", label: ["Sommet S", "Vertex S"], grid: 0.5,
       at: (s) => { const m = model(s); return [m.alpha, m.beta]; },
       drag: (s, x, y) => fromVertex(s.a, clamp(x, -6, 6), clamp(y, -6, 8)),
       valuetext: (s, f) => { const m = model(s); return f.pt(m.alpha, m.beta); },
     },
     opening: {
-      kind: "handle", color: "obj2", axis: "y", grid: [1, 0.25], label: ["Point P (à une unité du sommet)", "Point P (one unit from the vertex)"],
+      kind: "handle", soft: true, color: "obj2", axis: "y", grid: [1, 0.25], label: ["Point P (à une unité du sommet)", "Point P (one unit from the vertex)"],
       at: (s) => { const m = model(s); return [m.alpha + 1, m.beta + s.a]; },
       drag: (s, x, y) => setA(s, y - model(s).beta),
       valuetext: (s, f) => `a = ${f.num(s.a)}`,
     },
     yint: {
-      kind: "handle", color: "obj3", axis: "y", grid: [1, 0.5], label: ["Point C (ordonnée à l’origine)", "Point C (y-intercept)"],
+      kind: "handle", soft: true, color: "obj3", axis: "y", grid: [1, 0.5], label: ["Point C (ordonnée à l’origine)", "Point C (y-intercept)"],
       at: (s) => [0, s.c],
       drag: (s, x, y) => ({ c: clamp(y, -6, 8) }),
       valuetext: (s, f) => `c = ${f.num(s.c)}`,
@@ -4963,10 +4969,11 @@ __e.default = {
       },
     },
     formula(s, { fmt }) {
-      const m = model(s), num = (v) => fmt.num(v, 6);
+      // Two decimals, marked ≈ whenever a coefficient was rounded: a point placed freely gives long decimals that nobody reads.
+      const m = model(s), num = (v) => fmt.num(v, 2);
       const first = expanded(s, num), second = canonical(m, num);
-      const exactFirst = [s.a,s.b,s.c].every(v=>fmt.isExact(v,6));
-      const exactSecond = [m.a,m.alpha,m.beta].every(v=>fmt.isExact(v,6));
+      const exactFirst = [s.a,s.b,s.c].every(v=>fmt.isExact(v,2));
+      const exactSecond = [m.a,m.alpha,m.beta].every(v=>fmt.isExact(v,2));
       return `f(x) ${exactFirst ? "=" : "≈"} ${first}${first === second ? "" : ` ${exactSecond ? "=" : "≈"} ${second}`}`;
     },
     readout(s, { fmt }) {
@@ -6300,15 +6307,16 @@ __e.default = {
   prereq: ["Coordonnées d’un vecteur, aire d’un parallélogramme", "Vector coordinates, area of a parallelogram"],
   model: V,
   state: { ux: 3, uy: 1, vx: -1, vy: 3 },
+  ease: ['ux', 'uy', 'vx', 'vy'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     u: {
-      kind: "handle", color: "accent", grid: 0.5, label: ["Extrémité du vecteur u", "Tip of vector u"],
+      kind: "handle", soft: true, color: "accent", grid: 0.5, label: ["Extrémité du vecteur u", "Tip of vector u"],
       at: (s) => [s.ux, s.uy],
       drag: (s, x, y) => ({ ux: clamp(x, -LIMIT, LIMIT), uy: clamp(y, -LIMIT, LIMIT) }),
       valuetext: (s, f) => f.pt(s.ux, s.uy),
     },
     v: {
-      kind: "handle", color: "obj2", grid: 0.5, label: ["Extrémité du vecteur v", "Tip of vector v"],
+      kind: "handle", soft: true, color: "obj2", grid: 0.5, label: ["Extrémité du vecteur v", "Tip of vector v"],
       at: (s) => [s.vx, s.vy],
       drag: (s, x, y) => ({ vx: clamp(x, -LIMIT, LIMIT), vy: clamp(y, -LIMIT, LIMIT) }),
       valuetext: (s, f) => f.pt(s.vx, s.vy),
@@ -8375,7 +8383,10 @@ function drawBadge(g, st, m) {
 
 // The engine handles of a template: one per `handle` control of the experiment, locked or not (locked ones are only drawn).
 // `views` maps a panel id to its current view; a control names its panel (default: the first one).
-function buildHandles({ exp, fmt, getState, setState, views, panels }) {
+const MAGNET = 8;   // px: a `soft` handle is continuous, but a grid line within this distance pulls it onto the line,
+const MAGNET_SHARE = 0.3;   // and never more than 30% of the gap between two lines, so a dense grid leaves most positions free
+const soft = (v, step, pxPerUnit) => { if (!step) return v; const q = snap(v, step); return Math.abs(v - q) * pxPerUnit < Math.min(MAGNET, MAGNET_SHARE * step * pxPerUnit) ? q : v; };
+function buildHandles({ exp, fmt, getState, getShown = getState, setState, views, panels }) {
   const handles = [];
   for (const [id, c] of Object.entries(exp.controls)) {
     if (c.kind !== "handle") continue;
@@ -8386,25 +8397,30 @@ function buildHandles({ exp, fmt, getState, setState, views, panels }) {
       id, control: c, panel,
       label: fmt.t(c.label), color: c.color || "accent", absolute: !!c.absolute,
       pos() {
-        const v = view(), [wx, wy] = c.at(getState());
+        const v = view(), [wx, wy] = c.at(getShown());
         return [clamp(v.X(wx), v.left + 6, v.left + v.width - 6), clamp(v.Y(wy), v.top + 6, v.top + v.height - 6)];
       },
       // At the default view a handle just outside its panel is kept on the edge (reachable); once the learner has zoomed or
       // moved the view, a handle out of sight is out of sight: not drawn, not grabbed.
       hidden() {
-        const v = view(), cam = v.cam, [wx, wy] = c.at(getState()), X = v.X(wx), Y = v.Y(wy);
+        const v = view(), cam = v.cam, [wx, wy] = c.at(getShown()), X = v.X(wx), Y = v.Y(wy);
         if (!cam || (cam.kx === 1 && cam.ky === 1 && !cam.ox && !cam.oy)) return false;
         return X < v.left - 2 || X > v.left + v.width + 2 || Y < v.top - 2 || Y > v.top + v.height + 2;
       },
       drag(sx, sy) {
-        const v = view(), next = c.drag(getState(), snap(v.iX(sx), gx), snap(v.iY(sy), gy));
+        const v = view();
+        // A `soft` handle moves freely and is pulled onto a grid line only when it is close to one; any other handle snaps to its grid.
+        const x = c.soft ? soft(v.iX(sx), gx, Math.abs(v.X(1) - v.X(0))) : snap(v.iX(sx), gx), y = c.soft ? soft(v.iY(sy), gy, Math.abs(v.Y(1) - v.Y(0))) : snap(v.iY(sy), gy);
+        const next = c.drag(getState(), x, y);
         if (next) setState(next);
       },
       nudge(dx, dy) {
         const s = getState();
         if (c.nudge) { const next = c.nudge(s, dx, dy); if (next) setState(next); return; }
         if (axis === "x") { dx = dx || dy; dy = 0; } else if (axis === "y") { dy = dy || dx; dx = 0; }
-        const [wx, wy] = c.at(s), next = c.drag(s, snap(wx + dx * gx, gx), snap(wy + dy * gy, gy));
+        // one grid step per key press; a `soft` handle that was placed off the grid moves exactly one step (it stays off the grid)
+        const [wx, wy] = c.at(s), step = (cur, v, g) => (c.soft && Math.abs(snap(cur, g) - cur) > 1e-9 ? v : snap(v, g));
+        const next = c.drag(s, step(wx, wx + dx * gx, gx), step(wy, wy + dy * gy, gy));
         if (next) setState(next);
       },
       valuetext: () => c.valuetext?.(getState(), fmt) || "",
@@ -8643,12 +8659,32 @@ function createShell(host, exp, tpl, opts = {}) {
   const done = {}, predictions = {};
   let unlocked = new Set(), ghostSet = null, attempts = 0, variantSeen = new Set(), completeSent = false;
   const getState = () => state;
+  // What the figure draws. The continuous keys named by `exp.ease` glide toward the state with an exponential spring (quick while a
+  // handle is dragged, gentler for a mission change or a key press); everything else, and every number the learner reads, is the
+  // state itself. Nothing glides under reduced motion. The state stays the single truth: tests, links and answers use `getState`.
+  const easeKeys = exp.ease || [];
+  let shown = state, easing = null, easeLast = 0;
+  const getShown = () => shown;
+  function chase() {
+    if (!easeKeys.length || stage.reduced()) { shown = state; return; }
+    if (easing) return;
+    easeLast = performance.now();
+    easing = stage.animate((now) => {
+      const dt = Math.min(0.05, (now - easeLast) / 1000 || 0.016); easeLast = now;
+      const k = 1 - Math.exp(-dt * (stage.dragging ? 40 : 14)); let moving = false; const next = { ...state };
+      for (const key of easeKeys) { const d = state[key] - shown[key]; if (Math.abs(d) > 1e-4 * (1 + Math.abs(state[key]))) { next[key] = shown[key] + d * k; moving = true; } }
+      shown = moving ? next : state;
+      if (!moving) { easing = null; return false; }
+      return true;
+    });
+  }
   const apply = (partial) => {
     if (!partial) return;
     let next = null;
     for (const k of Object.keys(partial)) if (state[k] !== partial[k]) { next ??= { ...state }; next[k] = partial[k]; }
     if (!next) return;
     state = next; version++;
+    chase();
     stage.invalidate();
   };
   const userApply = (partial) => { stopPlay(); apply(partial); };
@@ -8712,7 +8748,7 @@ function createShell(host, exp, tpl, opts = {}) {
   }
 
   // ---- template
-  const env = { exp, stage, fmt, getState, setState: userApply, advance: apply, isUnlocked: (id) => unlocked.has(id), ghost: () => (ghostSet ? { ...state, ...ghostSet } : null) };
+  const env = { exp, stage, fmt, getState, getShown, setState: userApply, advance: apply, isUnlocked: (id) => unlocked.has(id), ghost: () => (ghostSet ? { ...state, ...ghostSet } : null) };
   view = tpl.mount(env);
   const allHandles = view.handles;
   const players = new Map();
@@ -9093,7 +9129,7 @@ function createShell(host, exp, tpl, opts = {}) {
     stopPlay();
     index = i;
     const m = mission();
-    state = startState(m); version++;
+    state = startState(m); version++; chase();
     ghostSet = null; variantSeen = new Set(); currentVariant = null; attempts = 0;
     lockControls(m);
     setClass(card, "is-done", !!done[m.id]);
@@ -9172,6 +9208,7 @@ function createShell(host, exp, tpl, opts = {}) {
     get view() { return view; },   // the template's view (tests read its panels)
     get mission() { return mission(); },
     getState: () => state,
+    getShown,   // what the figure draws now (the state, with the `ease` keys still gliding)
     setState: (partial) => userApply(partial),
     setMission(idOrIndex) {
       const i = typeof idOrIndex === "number" ? idOrIndex : missions.findIndex((m) => m.id === idOrIndex);
@@ -9378,7 +9415,7 @@ __d("lab/templates/family.js", function (__e, __r) {
 const { layoutPanels, panelView, drawAxes, drawScene, drawHandles, buildHandles } = __r("lab/plot.js");
 
 function mount(env) {
-  const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
+  const { exp, stage, fmt, getState, getShown = getState, setState, ghost, isUnlocked } = env;
   const ids = exp.views.panels || ["graph"];
   const specs = ids.map((id) => exp.views[id]);
   let views = {};
@@ -9404,11 +9441,11 @@ function mount(env) {
   }
   layout();
 
-  const handles = buildHandles({ exp, fmt, getState, setState, views: () => views, panels: ids });
+  const handles = buildHandles({ exp, fmt, getState, getShown, setState, views: () => views, panels: ids });
 
   function draw(g) {
     layout();
-    const s = getState(), other = ghost();
+    const s = getShown(), other = ghost();
     ids.forEach((id, i) => {
       const v = views[id], spec = specs[i];
       drawAxes(g, v, spec, stage, fmt);
@@ -9436,16 +9473,16 @@ const { samplingStream } = __r("lab/templates/stream.js");
 const { panelView, drawAxes, drawScene, drawHandles, drawBadge, buildHandles } = __r("lab/plot.js");
 
 function mount(env) {
-  const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
+  const { exp, stage, fmt, getState, getShown = getState, setState, ghost, isUnlocked } = env;
   const spec = exp.views.figure, ctx = { fmt, lang: fmt.lang, stage, unlocked: isUnlocked };
   const stream = exp.stream ? samplingStream(env) : null;
   let view = null;
   const layout = () => { view = panelView(stage, "figure", { x: 0, y: 0, w: stage.W, h: stage.H }, spec); return view; };
   layout();
-  const handles = buildHandles({ exp, fmt, getState, setState, views: () => ({ figure: layout() }), panels: ["figure"] });
+  const handles = buildHandles({ exp, fmt, getState, getShown, setState, views: () => ({ figure: layout() }), panels: ["figure"] });
 
   function draw(g) {
-    const v = layout(), s = getState(), other = ghost();
+    const v = layout(), s = getShown(), other = ghost();
     ctx.progress = stream?.progress ?? null;
     if (spec.axes !== false) drawAxes(g, v, spec, stage, fmt);   // a figure that draws its own frame (tiles, a circle, a number grid)
     if (other) drawScene(g, v, spec.scene(other, { ...ctx, progress: null }), stage, { ghost: true });
@@ -9998,7 +10035,7 @@ __d("lab/templates/transform.js", function (__e, __r) {
 const { layoutPanels, panelView, drawAxes, drawScene, drawHandles, buildHandles } = __r("lab/plot.js");
 
 function mount(env) {
-  const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
+  const { exp, stage, fmt, getState, getShown = getState, setState, ghost, isUnlocked } = env;
   const ids = ["before", "after"], specs = ids.map((id) => exp.views[id]), ctx = { fmt, lang: fmt.lang, stage, unlocked: isUnlocked };
   let views = {};
   function layout() {
@@ -10007,11 +10044,11 @@ function mount(env) {
     return views;
   }
   layout();
-  const handles = buildHandles({ exp, fmt, getState, setState, views: () => layout(), panels: ids });
+  const handles = buildHandles({ exp, fmt, getState, getShown, setState, views: () => layout(), panels: ids });
 
   function draw(g) {
     layout();
-    const s = getState(), other = ghost();
+    const s = getShown(), other = ghost();
     ids.forEach((id, i) => {
       const v = views[id];
       drawAxes(g, v, specs[i], stage, fmt);

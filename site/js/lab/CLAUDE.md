@@ -36,6 +36,11 @@ The contract is `docs/LAB_DESIGN.md` (read sections 3 to 7 before changing anyth
   `lattice(s)` for a handle on a polar grid), `slider` / `scrubber` (`key` or `get`/`set`, optional `format`, scrubbers may `play`),
   `choice` (`key` or `get`/`set`, `options`), `action` (`options` of buttons, `act(state, value)` returns a partial state: the run
   buttons of `chance`; it counts as the mission's one choice).
+- smooth motion (design v6, both opt-in). A handle with `soft: true` is free: it moves continuously and a grid line pulls it only when it is close
+  (within 8 px and never more than 30% of the gap between two lines); without `soft` it snaps to its `grid` as before. Use it where the parameter is
+  continuous in the mathematics (not for counts, probabilities on a fixed step or lattice points). A keyboard step is still one grid step. An experiment
+  with `ease: ['a', 'b']` (keys of its state) has the figure glide toward the state with an exponential spring: `shell.js` `getShown` is what templates
+  draw (`family`, `figure`), `getState` stays exact for readouts, answers, links and drags. Nothing glides under reduced motion.
 - state may hold arrays (statistics `data`) and flags that make a figure depend on the mission (`theory` shows the probabilities,
   `hide` keeps one number out of the readout of a `check`): always replace an array, never mutate it. The ctx given to
   `formula`/`readout`/`scene` has `fmt`, `lang` and `unlocked(id)`.
