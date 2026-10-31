@@ -15,9 +15,11 @@ for(const language of [0,1])test(`home search and entrances, language ${language
  const query=value=>{input.value=value;input.dispatchEvent(new dom.window.Event('input'));return [...root.querySelectorAll('.home-result')];};
  assert.equal(root.querySelector('.home-resume'),null);
  assert.equal(root.querySelectorAll('.tool-card').length,6);
- assert.equal(root.querySelector('.home-figure-link').getAttribute('href'),'#gallery/fourier');
- assert.equal(root.querySelector('[data-art-pause]').getAttribute('aria-pressed'),'true');
- assert.equal(root.querySelectorAll('canvas[data-art="fourier-home"]').length,1);
+ // The hero figure is the animated plate of five live figures (home-slides.js); the Fourier island is an idea card.
+ assert.equal(root.querySelectorAll('[data-home-slides]').length,1);
+ assert.equal(root.querySelectorAll('.figure-tab').length,5);
+ assert.ok(root.querySelector('[data-pause]'),'a pause control for the slideshow');
+ assert.equal(root.querySelector('.idea-card[href="#gallery/fourier"]')!==null,true);
  assert.equal(root.querySelectorAll('.home-reading a').length,2);
  assert.equal(root.querySelector('.entrance-actions a:last-child').getAttribute('href'),'#lab');
  for(const a of root.querySelectorAll('.tool-card'))assert.ok(index.some(x=>x.route===a.getAttribute('href')));

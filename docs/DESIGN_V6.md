@@ -30,9 +30,12 @@ Tokens, fonts, header, buttons, cards and tiles, previews (ink on light grey), f
 - Topics are a filter of the laboratory (`bindLabIndex`, `tests/lab-filter.test.mjs`). The `#topics` pages remain for the full resource listing and are linked from the filter.
 - No route was removed or renamed, so existing links and bookmarks keep working. Merging `#topics`, `#slides` and `#pathways` into the three doors as pages is not done and would need route changes.
 
+## Home (done, 31 October 2026)
+
+The hero figure is an animated plate of five live figures shown one after the other (9 s each, progress rule on the tabs): parabola, unit circle, secant to tangent, left Riemann sum, logistic cobweb. Each is draggable and eased, in French and English, with its numbers under it and the same colour for the same quantity (red, ink, grey). It pauses while a figure is touched and on request, and does not advance under reduced motion. A plain wheel scrolls the page (Ctrl + wheel or a pinch zooms the figure). Code: `site/js/home-slides.js`, `figure-engine.js`, `figure-scenes.js`; tests: `tests/figure-scenes.test.mjs` (independent checks of each scene's mathematics, including the logistic period thresholds found numerically). The Madagascar Fourier figure left the hero; it remains an idea card and its own page.
+
 ## Still to do (in this order)
 
-1. Home: the animated slideshow of live figures from the prototype.
-2. Canvas engine of the prototype (free handles, easing, pan and zoom, soft magnet) in the laboratory, replacing the current engine experiment by experiment.
-3. Slides (`site/slides/player.css`) and PDFs (`content/tex/core/mx-layout.sty`) still use the old palette.
-4. The pages "Lire" and the per-class pages of the prototype.
+1. Canvas engine of the prototype (free handles, easing, pan and zoom, soft magnet) in the laboratory, replacing the current engine experiment by experiment.
+2. Slides (`site/slides/player.css`) and PDFs (`content/tex/core/mx-layout.sty`) still use the old palette.
+3. The pages "Lire" and the per-class pages of the prototype.

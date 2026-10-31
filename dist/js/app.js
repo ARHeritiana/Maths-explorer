@@ -12,6 +12,7 @@ import { mountObject } from "./lab-objects.js";
 import { homePage, bindHome, galleryPage as galleryIndex } from "./welcome.js";
 import { isReading, readingPage, readAlso } from "./reading.js";
 import { mountArt } from "./home-art.js";
+import { mountHomeSlides } from "./home-slides.js";
 import { mountLibrary } from "./library.js";
 import { icon } from "./icons.js";
 import { VARIANTS, HINT_ACTIONS, hasVariants, defaults as variantDefaults, randomParams, normalise as normaliseVariant, mountActivity, hasActivity, challengeIcon, originalOf, mountSolution, hasSolution } from "./challenges/registry.js";
@@ -60,6 +61,7 @@ let currentLab = "quadratic";
 let stopChapter = () => {};
 let stopObject = () => {};
 let stopArt = [];
+let homeSlides = null;
 let stopLab = () => {};
 let stopViews = [];
 const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
@@ -140,6 +142,7 @@ function render() {
   stopObject();
   stopArt.forEach((f) => f());
   stopArt = [];
+  homeSlides?.destroy(); homeSlides = null;
   stopObject = () => {};
   let r = route();
   lang=routeLanguage(r,resourceCatalog.chapters,preferredLang);
@@ -193,6 +196,7 @@ function render() {
       onComplete: (id) => { completed.add(id); save(); },
     }).destroy;
   }
+  if (page === "home") homeSlides = mountHomeSlides($("#main"), { lang, reduced: reducedMotion() });
   if (page === "home" || (page === "gallery" && !r.id)) stopArt = [...document.querySelectorAll("canvas[data-art]")].map((cv) => mountArt(cv, cv.dataset.art, { reduced: reducedMotion }));
   if (page === "gallery" && $("#object-stage")) stopObject = mountObject($("#object-stage").dataset.object, $("#object-stage"), { lang, reduced: reducedMotion, initialValues: state(labs.find(x=>x.id===currentLab)).values, onChange: values => { state(labs.find(x=>x.id===currentLab)).values = values; } });
   $(".skip").textContent = pair("Aller au contenu", "Skip to content");
@@ -230,6 +234,7 @@ function bindCommon() {
 
   $("[data-theme-toggle]")?.addEventListener("click", () => {
     toggleTheme();
+    homeSlides?.retheme();
     const dark = currentTheme() === "nuit";
     const label = dark ? pair("Passer au thème clair", "Switch to light theme") : pair("Passer au thème sombre", "Switch to dark theme");
     const button = $("[data-theme-toggle]");
