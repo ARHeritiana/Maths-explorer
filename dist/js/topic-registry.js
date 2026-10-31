@@ -45,14 +45,6 @@ export const membershipByKey = key => {
   const t = topicById(topic), s = t?.subtopics.find(x=>x.id===subtopic);
   return s ? {topic:t, subtopic:s} : null;
 };
-// The field of a card or chip (its hue): a field whose subtopic names the record's own id or topic as a concept wins;
-// otherwise the first membership. Memberships also come from word matches and are ordered like TOPICS, so the first
-// one alone would colour "derivative" as arithmetic.
-export function topicOf(record, kind='') {
-  const own = [record.id, typeof record.topic==='string'?record.topic:''].filter(Boolean);
-  const hit = TOPICS.find(topic => topic.subtopics.some(s => s.concepts.some(c => own.includes(c))));
-  return record.topics?.length || !hit ? membershipsFor(record, kind)[0].split('/')[0] : hit.id;
-}
 export function membershipsFor(record, kind='') {
   if (record.topics?.length) {
     for(const key of record.topics) if(!membershipByKey(key)) throw new Error(`Unknown discovery membership: ${key}`);
