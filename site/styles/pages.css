@@ -931,6 +931,9 @@ details.source-course[open] { padding-bottom: 16px; }
 .exhibit-controls .act-check { display:flex;align-items:center;gap:8px;min-height:44px; }
 .exhibit-controls input[type=checkbox] { width:20px;height:20px;flex:none; }
 .exhibit-controls .exhibit-select { flex-basis:100%; }
+.exhibit-controls .eq-vertices input, .exhibit-controls #eq-t { width:100%; min-height:44px; box-sizing:border-box; }
+.eq-draw { display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px; }
+.eq-draw[hidden] { display:none; }
 .exhibit-presets [aria-pressed=true] { background:var(--accent);color:var(--surface); }
 .gallery-context { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;padding-block:24px;border-top:1px solid var(--line); }
 .gallery-context h2 { font-size:1.2rem;margin:0 0 12px; }

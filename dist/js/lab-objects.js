@@ -105,6 +105,7 @@ import { squarePacking } from './gallery-squares.js';
 import { movingSofa } from './gallery-sofa.js';
 import { inscribedSquare } from './gallery-inscribed.js';
 import { opaqueSquare } from './gallery-opaque.js';
+import { equidecomposition } from './gallery-equidecomposition.js';
 import { inferenceGallery } from './gallery-inference.js';
 import { fairGallery } from './gallery-fair-division.js';
 import { topologyGallery } from './gallery-topology.js';
@@ -353,7 +354,7 @@ function chaos(root, { t, reduced, lang }) {
   return () => { stop(); o.navigation?.destroy(); };
 }
 
-export const OBJECTS = { ...Object.fromEntries(["double-pendulum", "three-body", "logistic"].map(id => [id + "-gallery", dynamicsGallery(id)])), "mirrored-rooms":illuminationGallery, gomboc, ...Object.fromEntries(["secretary", "tank", "benford", "baker", "birthdays", "monty"].map(id => [id + "-gallery", inferenceGallery(id)])), galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles, 'four-colours':fourColours, life:gameOfLife, 'square-packing':squarePacking, 'moving-sofa':movingSofa, 'inscribed-square':inscribedSquare, 'opaque-square':opaqueSquare };
+export const OBJECTS = { ...Object.fromEntries(["double-pendulum", "three-body", "logistic"].map(id => [id + "-gallery", dynamicsGallery(id)])), "mirrored-rooms":illuminationGallery, gomboc, ...Object.fromEntries(["secretary", "tank", "benford", "baker", "birthdays", "monty"].map(id => [id + "-gallery", inferenceGallery(id)])), galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles, 'four-colours':fourColours, life:gameOfLife, 'square-packing':squarePacking, 'moving-sofa':movingSofa, 'inscribed-square':inscribedSquare, 'opaque-square':opaqueSquare, equidecomposition };
 Object.assign(OBJECTS, {'fair-division-gallery':fairGallery('fair-division'),'fair-goods-gallery':fairGallery('fair-goods'),'hairy-ball-gallery':topologyGallery('hairy-ball'),'nonorientable-surfaces-gallery':topologyGallery('nonorientable-surfaces'),'banach-tarski-gallery':topologyGallery('banach-tarski-model')});
 export const isObject = (id) => Object.hasOwn(OBJECTS, id);
 export function mountObject(id, root, { lang, reduced, ...options }) {

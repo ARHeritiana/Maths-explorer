@@ -14,7 +14,7 @@ export const TOPICS = [
     sub('limits','Suites et limites','Sequences and limits','sequences sequence-limits function-limits induction telescoping differential','suite|sequence|limit|récurrence'),
     sub('integration','Intégration et Fourier','Integration and Fourier','integral fourier fourier-series fourier-drawing trig-functions trigonometry','intégr|integr|fourier|trigonom')]},
   {id:'geometry', title:P('Géométrie','Geometry'), preview:'geometry', subtopics:[
-    sub('plane','Figures du plan','Plane figures','geometry circle reuleaux voronoi tiles artgallery reflect lunes star squares inscribed-square opaque-square moving-sofa hat','géom|geom|cercle|circle|triangle|polygon|square|carré|pavage|tiling|sofa|canapé'),
+    sub('plane','Figures du plan','Plane figures','geometry circle reuleaux voronoi tiles artgallery reflect lunes star squares inscribed-square opaque-square moving-sofa equidecomposition hat','géom|geom|cercle|circle|triangle|polygon|square|carré|pavage|tiling|sofa|canapé'),
     sub('space','Espace et solides','Space and solids','space space-lines platonic box cake gomboc gömböc','solide|solid|espace|spatial|polyèdre|polyhed'),
     sub('optics','Réflexion et illumination','Reflection and illumination','illumination penrose tokarsky reflection','illumin|réflexion|reflection|tokarsky|penrose')]},
   {id:'topology', title:P('Topologie','Topology'), preview:'loop', subtopics:[
