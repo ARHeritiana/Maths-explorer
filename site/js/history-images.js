@@ -140,20 +140,6 @@ export const HISTORY_IMAGES = {
     "retrieved": "2026-10-26",
     "type": "portrait"
   },
-  "buffon": {
-    "src": "./data/history/buffon.webp",
-    "width": 387,
-    "height": 600,
-    "title": "François_Hubert_Drouais_-_Portrait_of_Buffon.jpg",
-    "creator": "François-Hubert Drouais",
-    "credit": "Musée Buffon à Montbard",
-    "license": "Public domain",
-    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Fran%C3%A7ois_Hubert_Drouais_-_Portrait_of_Buffon.jpg",
-    "original": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Fran%C3%A7ois_Hubert_Drouais_-_Portrait_of_Buffon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-    "retrieved": "2026-10-26",
-    "type": "portrait"
-  },
   "lagrange": {
     "src": "./data/history/lagrange.webp",
     "width": 480,
@@ -252,20 +238,6 @@ export const HISTORY_IMAGES = {
     "retrieved": "2026-10-26",
     "type": "portrait"
   },
-  "plateau": {
-    "src": "./data/history/plateau.webp",
-    "width": 460,
-    "height": 600,
-    "title": "Joseph_Plateau_-_clean.jpg",
-    "creator": "Albert Callisto",
-    "credit": "Own work",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Joseph_Plateau_-_clean.jpg",
-    "original": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Joseph_Plateau_-_clean.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-    "retrieved": "2026-10-26",
-    "type": "portrait"
-  },
   "bertrand": {
     "src": "./data/history/bertrand.webp",
     "width": 480,
@@ -280,20 +252,6 @@ export const HISTORY_IMAGES = {
     "retrieved": "2026-10-26",
     "type": "portrait"
   },
-  "reuleaux": {
-    "src": "./data/history/reuleaux.webp",
-    "width": 382,
-    "height": 600,
-    "title": "Franz_Reuleaux.jpg",
-    "creator": "Unknown authorUnknown author",
-    "credit": "Cropped from uncropped version",
-    "license": "Public domain",
-    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Franz_Reuleaux.jpg",
-    "original": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Franz_Reuleaux.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-    "retrieved": "2026-10-26",
-    "type": "portrait"
-  },
   "galton": {
     "src": "./data/history/galton.webp",
     "width": 420,
@@ -305,20 +263,6 @@ export const HISTORY_IMAGES = {
     "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
     "source": "https://commons.wikimedia.org/wiki/File:Francis_Galton_1850s.jpg",
     "original": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Francis_Galton_1850s.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-    "retrieved": "2026-10-26",
-    "type": "portrait"
-  },
-  "newcomb": {
-    "src": "./data/history/newcomb.webp",
-    "width": 468,
-    "height": 600,
-    "title": "Simon_Newcomb_01.jpg",
-    "creator": "Harris & Ewing",
-    "credit": "This image  is available from the United States Library of Congress's Prints and Photographs division under the digital ID hec.16238.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
-    "license": "Public domain",
-    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Simon_Newcomb_01.jpg",
-    "original": "https://upload.wikimedia.org/wikipedia/commons/9/92/Simon_Newcomb_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
     "retrieved": "2026-10-26",
     "type": "portrait"
   },

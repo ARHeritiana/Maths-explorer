@@ -12,7 +12,7 @@ const name=(item,t)=>item.name||t(item.title);
 const year=(n,t)=>n<0?t([`${-n} av. n. è.`,`${-n} BCE`]):String(n);
 export function isHistoryRoute(kind,id){return !kind&&!id || ['people','advances'].includes(kind)&&(!id||!!historyRecord(kind,id));}
 const title=(kind,t)=>t(kind==='people'?['Personnes et traditions','People and traditions']:['Idées, découvertes et preuves','Ideas, discoveries and proofs']);
-const imageFor=(kind,item)=>HISTORY_IMAGES[item.id]||(kind==='people'&&item.id==='ahmes'?HISTORY_IMAGES.rhind:null)||(kind==='people'&&item.id==='euclid'?HISTORY_IMAGES.elements:null);
+const imageFor=(kind,item)=>HISTORY_IMAGES[item.id]||(kind==='people'&&item.id==='euclid'?HISTORY_IMAGES.elements:null);
 function picture(kind,item,t,large=false){
  const img=imageFor(kind,item);
  if(!img)return `<span class="history-monogram" aria-hidden="true">${E((item.name||t(item.title)).split(/\s+/).slice(0,2).map(w=>w[0]).join(''))}</span>`;
@@ -34,9 +34,11 @@ function links(kind,item,t,index){
    return `<a href="${E(route)}">${E(label)}</a>`;
  }).join('')}</nav>`;
 }
+// Authors without an entry in the people timeline stay credited as plain text.
+const credited=(item,t)=>item.credits?.length?`<p class="history-credited">${t(['Crédit : ','Credit: '])}${E(item.credits.join(', '))}</p>`:'';
 const date=(kind,item,t)=>E(dateLabel(item,language(t)))+(kind==='advances'?` · ${E(t(DATE_KINDS[item.kind]))}`:item.dateType==='documentary'?` · ${t(['Repère documentaire','Documentary milestone'])}`:'');
 export function historyCards(kind,items,t,index){
- return items.length?`<ol class="history-list">${items.map(item=>`<li><article><a class="history-card-picture" href="${historyRoute(kind,item.id)}" tabindex="-1" aria-hidden="true">${picture(kind,item,t)}</a><div class="history-card-text"><p class="history-date">${date(kind,item,t)}</p><h2><a href="${historyRoute(kind,item.id)}">${E(name(item,t))}</a></h2>${item.context?`<p class="history-context">${E(t(item.context))}</p>`:''}<p>${E(t(item.summary))}</p>${links(kind,item,t,index)}<p class="history-source"><a href="${E(item.source)}" target="_blank" rel="noopener noreferrer">${t(['Source documentaire','Documentary source'])}<span class="sr-only"> ${t(['(nouvel onglet)','(new tab)'])}</span></a></p>${credit(kind,item,t)}</div></article></li>`).join('')}</ol>`:`<div class="history-empty"><h2>${t(['Aucun repère trouvé','No milestones found'])}</h2><p>${t(['Essaie un autre nom, un autre domaine ou une période plus large.','Try another name, another field or a wider date range.'])}</p><button type="button" class="secondary" data-history-reset>${t(['Effacer les filtres','Clear filters'])}</button></div>`;
+ return items.length?`<ol class="history-list">${items.map(item=>`<li><article><a class="history-card-picture" href="${historyRoute(kind,item.id)}" tabindex="-1" aria-hidden="true">${picture(kind,item,t)}</a><div class="history-card-text"><p class="history-date">${date(kind,item,t)}</p><h2><a href="${historyRoute(kind,item.id)}">${E(name(item,t))}</a></h2>${item.context?`<p class="history-context">${E(t(item.context))}</p>`:''}<p>${E(t(item.summary))}</p>${credited(item,t)}${links(kind,item,t,index)}<p class="history-source"><a href="${E(item.source)}" target="_blank" rel="noopener noreferrer">${t(['Source documentaire','Documentary source'])}<span class="sr-only"> ${t(['(nouvel onglet)','(new tab)'])}</span></a></p>${credit(kind,item,t)}</div></article></li>`).join('')}</ol>`:`<div class="history-empty"><h2>${t(['Aucun repère trouvé','No milestones found'])}</h2><p>${t(['Essaie un autre nom, un autre domaine ou une période plus large.','Try another name, another field or a wider date range.'])}</p><button type="button" class="secondary" data-history-reset>${t(['Effacer les filtres','Clear filters'])}</button></div>`;
 }
 function atlas(kind,items,t,zoom,textScale=1){
  const layout=timelineLayout(items,zoom,184*textScale,16*textScale),rowHeight=148*textScale;
@@ -49,7 +51,7 @@ function atlas(kind,items,t,zoom,textScale=1){
 }
 function detail(kind,item,t,index){
  const related=kind==='people'?ADVANCES.filter(a=>a.people.includes(item.id)):PEOPLE.filter(p=>item.people.includes(p.id));
- return `<article class="history-detail"><header><figure>${picture(kind,item,t,true)}${credit(kind,item,t)}</figure><div><p class="history-date">${date(kind,item,t)}</p><h1>${E(name(item,t))}</h1>${item.context?`<p class="history-context">${E(t(item.context))}</p>`:''}<p class="history-dek">${E(t(item.summary))}</p><a class="history-source" href="${E(item.source)}" target="_blank" rel="noopener noreferrer">${t(['Consulter la source documentaire','Read the documentary source'])}</a></div></header>${links(kind,item,t,index)}${related.length?`<section class="history-related"><h2>${t(kind==='people'?['Suivre les idées','Follow the ideas']:['Les personnes liées','Related people'])}</h2>${historyCards(kind==='people'?'advances':'people',related,t,index)}</section>`:''}</article>`;
+ return `<article class="history-detail"><header><figure>${picture(kind,item,t,true)}${credit(kind,item,t)}</figure><div><p class="history-date">${date(kind,item,t)}</p><h1>${E(name(item,t))}</h1>${item.context?`<p class="history-context">${E(t(item.context))}</p>`:''}<p class="history-dek">${E(t(item.summary))}</p>${credited(item,t)}<a class="history-source" href="${E(item.source)}" target="_blank" rel="noopener noreferrer">${t(['Consulter la source documentaire','Read the documentary source'])}</a></div></header>${links(kind,item,t,index)}${related.length?`<section class="history-related"><h2>${t(kind==='people'?['Suivre les idées','Follow the ideas']:['Les personnes liées','Related people'])}</h2>${historyCards(kind==='people'?'advances':'people',related,t,index)}</section>`:''}</article>`;
 }
 export function historyPage(kind='people',id,t,index){
  kind=kind||'people';const item=id?historyRecord(kind,id):null;

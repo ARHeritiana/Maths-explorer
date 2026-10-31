@@ -9,7 +9,7 @@ import {buildDiscoveryIndex,topicCounts} from '../site/js/discovery-index.js';
 import {GALOIS_BIOGRAPHY} from '../site/js/reading-history-content.js';
 const t=p=>p[0];
 test('historical records have typed dates, sources, context and resolving people',()=>{
- assert.ok(PEOPLE.length>=75&&ADVANCES.length>=50);
+ assert.ok(PEOPLE.length===56&&ADVANCES.length>=50);
  for(const list of [PEOPLE,ADVANCES])assert.equal(list.length,new Set(list.map(x=>x.id)).size);
  for(const item of [...PEOPLE,...ADVANCES]){
   assert.ok(Number.isInteger(item.start));assert.ok(item.end===null||Number.isInteger(item.end)&&item.end>=item.start);
@@ -17,9 +17,14 @@ test('historical records have typed dates, sources, context and resolving people
   for(const topic of item.topics)assert.ok(membershipByKey(topic),topic);
  }
  for(const person of PEOPLE){assert.ok(person.context.every(Boolean));assert.ok(['lifetime','documentary'].includes(person.dateType));}
- for(const event of ADVANCES){assert.ok(DATE_KINDS[event.kind]);for(const id of event.people)assert.ok(PEOPLE.some(p=>p.id===id),id);}
+ for(const event of ADVANCES){assert.ok(DATE_KINDS[event.kind]);for(const id of event.people)assert.ok(PEOPLE.some(p=>p.id===id),id);for(const name of event.credits)assert.match(name,/^\p{Lu}/u,'plain-text credit, not a mistyped id: '+name);}
+ // People not shown in the people timeline stay credited by name in the advances timeline.
+ for(const id of ['ahmes','buffon','gerver','smith','schettini-gherardini','plato'])assert.ok(!PEOPLE.some(p=>p.id===id),id);
+ assert.deepEqual(ADVANCES.find(e=>e.id==='hat').credits,['David Smith','Joseph Samuel Myers','Craig S. Kaplan','Chaim Goodman-Strauss']);
+ assert.deepEqual(ADVANCES.find(e=>e.id==='gerver-sofa').credits,['Joseph Gerver','John Hammersley']);
+ assert.deepEqual(ADVANCES.find(e=>e.id==='illumination-rational').people,['mirzakhani']);
  assert.equal(historyRecord('unknown','galois'),null);
- assert.equal(dateLabel(PEOPLE.find(p=>p.id==='wolecki'),'en'),'Documents: 2019 / 2024');
+ assert.equal(dateLabel(PEOPLE.find(p=>p.id==='may'),'en'),'Documents: 1976');
  assert.match(dateLabel(PEOPLE.find(p=>p.id==='euclid'),'en'),/^c\. .*BCE/);
 });
 test('Galois drafts, letter and publication are distinct dates and myth claims remain qualified',()=>{
@@ -28,7 +33,7 @@ test('Galois drafts, letter and publication are distinct dates and myth claims r
  assert.match(JSON.stringify(GALOIS_BIOGRAPHY),/ne prouve pas|does not show/);assert.match(JSON.stringify(GALOIS_BIOGRAPHY),/restent discutés|remain disputed/);
 });
 test('new resource timelines use documented publication or version dates rather than invented lifespans',()=>{
- const dated={ferguson:1989,ruggles:1947,brodie:1947,selvin:1975,hatcher:2002,siegrist:2022,'schettini-gherardini':2026,benford:1938,may:1976,gerver:1992,domokos:2006,varkonyi:2006,'goodman-strauss':2023};
+ const dated={may:1976};
  for(const [id,date]of Object.entries(dated)){const p=PEOPLE.find(p=>p.id===id);assert.ok(p,id);assert.equal(p.start,date);assert.equal(p.end,date);assert.equal(p.dateType,'documentary');}
  for(const [event,route]of [['tank-statistical-study','#lab/tank'],['monty-letters','#lab/monty'],['secretary-survey','#lab/secretary'],['degree-topology-textbook','#lab/hairy-ball'],['birthday-online-exposition','#lab/birthdays'],['certified-polyhedral-gomboc','#gallery/gomboc']]){const e=ADVANCES.find(e=>e.id===event);assert.ok(e&&e.links.includes(route));assert.ok(['publication','document','preprint'].includes(e.kind));}
  assert.equal(ADVANCES.find(e=>e.id==='birthday-online-exposition').kind,'document');
@@ -88,7 +93,7 @@ test('atlas lanes keep both cards and complete lifetime bars disjoint at every s
   }
  }
  // Documentary spans must not be visually treated as lifetimes.
- const a=PEOPLE.find(p=>p.id==='wolecki');
+ const a=PEOPLE.find(p=>p.id==='may');
  assert.equal(a.dateType,'documentary');
 });
 test('image register uses local, bounded assets with explicit reusable licences and full attribution',async()=>{
@@ -120,8 +125,8 @@ test('atlas view, era jumps, scale, empty recovery and documentary markers work 
  const event=name=>new dom.window.Event(name,{bubbles:true});
  const viewport=root.querySelector('#history-viewport');
  assert.equal(root.querySelectorAll('.history-node').length,PEOPLE.length);
- assert.equal(root.querySelector('[data-history-id="wolecki"] .history-lifetime'),null);
- assert.ok(root.querySelector('[data-history-id="wolecki"] .history-document-marker'));
+ assert.equal(root.querySelector('[data-history-id="may"] .history-lifetime'),null);
+ assert.ok(root.querySelector('[data-history-id="may"] .history-document-marker'));
  root.querySelector('button[data-history-view="list"]').click();assert.equal(root.dataset.historyView,'list');
  root.querySelector('button[data-history-view="atlas"]').click();assert.equal(root.dataset.historyView,'atlas');
  root.querySelector('[data-history-era="today"]').click();assert.ok(viewport.scrollLeft>4000);
