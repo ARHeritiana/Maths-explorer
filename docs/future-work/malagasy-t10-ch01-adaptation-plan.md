@@ -94,6 +94,42 @@ of 9 in 1..100, sums of two squares ≤20: 1,2,4,5,8,9,10,13,16,17,18,20, NAND c
 - Flowchart advises trying the contrapositive before the direct proof, which contradicts the `\horsprogramme` note ("ne doivent pas masquer les raisonnements directs").
 - "Énoncé" is listed as an objective but never defined (only proposition and predicate appear, predicate only in `ex`).
 
+### 2.4 Corrections applied to `solutions/01-logique.tex` (31 October 2026)
+
+Only the solutions file was edited (chapter statements untouched); every value or claim was re-checked by brute force in
+Python (scratchpad `v.py`) before writing. Not compiled: `pdflatex` is not installed here (brace and environment balance checked only).
+
+| # | Status | Correction |
+|---|---|---|
+| E1 | fixed | `10110` has three 1s: odd, error detected |
+| E2 | fixed | `10100` has two 1s: even, no error detected (it is `10111` with two flipped bits, link to item 4) |
+| E3 | fixed | Step 2 rewritten: column 4 forces (3,4)=1, row 3 gives (3,1)=2; step 4 gives (4,2)=1, (4,3)=2; final grid unchanged |
+| E4 | fixed | 8 implications, one per empty cell, in 4 steps of 2 cells |
+| E5 | fixed | Contrapositives, proof of "not parallelogram => not square", negation of the square claim (false) written; old false claim removed; P<=>(Q and R) kept as a remark |
+| E6 | fixed | Item 3: impossible values are 3, 6, 7 (0 allowed); 6 handled by the finite list, not by mod 4 |
+| E7 | fixed | Tests n=10 (55) and n=100 (5050) and item 4 (sum of odd numbers = n^2, table and proof) added |
+| E8 | fixed | Computes (P and not Q) => R = T |
+| E9 | fixed | "Cette phrase est vraie": not a tautology, consistent with both values; Russell item 4 added |
+| E10 | fixed | not((P=>not Q)=>not(not P=>Q)), derived and checked equal to XOR |
+| E11 | fixed | Items 4 and 5 answered; false "XOR universal" replaced by: {xor, constants} gives only affine functions (closure has 8 functions, P and Q is not among them), add AND for completeness |
+| E12 | fixed | Item 2: C knight, D knave, E undetermined (2 models); item 3 new unique puzzle (checked on 8 cases); item 4 truth table (A knave, B knight) |
+| E13 | fixed | f(2k)=-k, f(2k+1)=k+1 (bijection checked); item 3 evens n->2n; item 4 Cantor diagonal on [0,1]; N x N kept as a remark |
+| E14 | fixed | Item 3 is now sqrt(5) (squares mod 5 in {0,1,4}); item 4 midpoint c=(a+b)/2 |
+| E15 | fixed | Aligned with the statement (6 => 2 example, chain, syllogism, invented chain of 3 implications); modus tollens and cases moved to an "Extension" |
+| E16 | fixed | Rigorous proof via a prime of odd exponent; warning with k=12, p=2 |
+| E17 | fixed | Relabelled "moyen terme non distribue (faux syllogisme)" |
+| E18 | fixed | State vector decoded, 6 forbidden states listed, alternative = swap wolf and cabbage at steps 3 and 5, BFS: 7 crossings, exactly 2 shortest solutions |
+| E19 | fixed (open) | Solution now says X and Y have opposite types and Z is a knave; statement still says "determine" (see open questions) |
+| E20 | fixed | Meaningless "6x3-9" sentence removed; added check 5x3+1x2=17=9+6+1+1 |
+
+Open questions:
+- E19: the statement asks to determine X, Y, Z but only Z is determined (two models). Statement wording (chapter) to be changed by the author, or Y's sentence altered.
+- E11/E10: statement hint for Défi 2 item 3 starts from a formula using the conjunction; the solution derives it with the identity A and B = not(A => not B). Check this is acceptable for "uniquement => et not".
+- E13: Défi 4 item 4 statement asks for an explanation only; the diagonal argument given may exceed T10 level [VERIFY].
+- E7: item 4 proof uses the Gauss formula; the statement only asks for a conjecture and checks.
+- E5 item 3 relies on "a rectangle's opposite sides are parallel (perpendicular to a common side)"; confirm it is the accepted level of rigour.
+- Not compiled (no pdflatex): the file needs a build check.
+
 ## 3. Programme alignment (nothing confirmed; no programme reference invented)
 
 I did not find, in the repository, the official Malagasy T10 syllabus text, its edition or its logic requirements. Everything

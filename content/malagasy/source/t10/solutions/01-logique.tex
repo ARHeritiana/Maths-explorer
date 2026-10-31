@@ -224,7 +224,7 @@ $P=\vrai$, $Q=\faux$, $R=\vrai$.
   \item $(P\lor Q)\Rightarrow R = \vrai\Rightarrow\vrai = \vrai$
   \item $\lnot P\lor(Q\land R)=\faux\lor(\faux\land\vrai)=\faux\lor\faux=\faux$
   \item $P\Leftrightarrow R = \vrai\Leftrightarrow\vrai = \vrai$
-  \item $\lnot(P\land Q)\lor R = \vrai\lor\vrai = \vrai$
+  \item $(P\land\lnot Q)\Rightarrow R = (\vrai\land\vrai)\Rightarrow\vrai = \vrai\Rightarrow\vrai = \vrai$
 \end{enumerate}
 \end{multicols}
 
@@ -401,7 +401,7 @@ $P$~: \og$ABC$ isoc\`ele en $A$\fg~; $Q$~: \og$\hat B=\hat C$\fg.
 \solutiontitle{Erreurs classiques de raisonnement}
 
 \begin{enumerate}
-  \item \textbf{Erreur~: affirmation du cons\'equent.}
+  \item \textbf{Erreur~: moyen terme non distribu\'e (faux syllogisme).}
         Les chats et les chiens sont des animaux, mais cela ne les rend pas identiques.
         La forme correcte serait~: si $P\Rightarrow R$ et $Q\Rightarrow R$, on ne peut pas
         conclure $P\Rightarrow Q$.
@@ -486,8 +486,18 @@ Alors $p^2=2q^2$, donc $2\mid p^2$, et par l'exercice~\ref{exo:1.21}(2)~: $2\mid
 Posons $p=2m$. Alors $4m^2=2q^2$, d'o\`u $q^2=2m^2$, donc $2\mid q$.
 Mais $2\mid\pgcd(p,q)$~: contradiction.\hfill$\square$
 
-\textit{G\'en\'eralisation.} Si $k$ n'est pas un carr\'e parfait,
-l'argument analogue (avec tout diviseur premier de $k$) m\`ene \`a la m\^eme contradiction.
+\textit{G\'en\'eralisation.} Soit $k\geq2$ un entier qui n'est pas un carr\'e parfait.
+Dans la d\'ecomposition de $k$ en facteurs premiers, les exposants ne sont pas tous pairs
+(sinon $k$ serait un carr\'e)~: il existe un nombre premier $p$ dont l'exposant dans $k$ est \emph{impair}.
+Supposons $\sqrt{k}=a/b$ avec $a,b\in\N^*$. Alors $a^2=kb^2$.
+L'exposant de $p$ dans $a^2$ est pair (le double de celui de $a$).
+Dans $kb^2$, c'est (exposant impair dans $k$) $+$ (exposant pair dans $b^2$), donc impair.
+Par unicit\'e de la d\'ecomposition en facteurs premiers, c'est une contradiction~:
+$\sqrt{k}\notin\Q$.\hfill$\square$
+
+\textit{Attention.} Il ne suffit pas de prendre n'importe quel diviseur premier de $k$~:
+pour $k=12=2^2\cdot3$ et $p=2$ (exposant pair), il n'y a pas de contradiction
+(d'ailleurs $\sqrt{12}=2\sqrt{3}$). Il faut un premier d'exposant impair, ici $p=3$.
 
 %────────────────────────────────────────────────────────────────
 \solutiontitle{Irrationnalit\'e de $\sqrt{3}$}
@@ -634,32 +644,12 @@ $Y$ d\'eclare \og$X$ et $Z$ sont du m\^eme type\fg~: $(P\Leftrightarrow Z)$ o\`u
         $X$ et $Z$ sont du m\^eme type, et $P=\faux$, donc $Z=\faux$.
 \end{itemize}
 \textbf{Conclusion.}
-Dans les deux cas $Z=\faux$ (coquin). $X$ peut \^etre chevalier ou coquin~:
-les deux sc\'enarios sont logiquement coh\'erents (l'\'enigme est ind\'etermin\'ee
-pour $X$, mais $Z$ est toujours coquin).
-
-\psolutiontitle{Portes logiques universelles}
-
-Une porte NAND calcule $\lnot(P\land Q)$.
-
-\begin{enumerate}
-  \item $\lnot P = \lnot(P\land P) = \text{NAND}(P,P)$.\hfill$\square$
-  \item \begin{align*}
-        P\land Q
-        &= \lnot\bigl(\lnot(P\land Q)\bigr)\\
-        &= \text{NAND}\bigl(\text{NAND}(P,Q),\text{NAND}(P,Q)\bigr).
-        \end{align*}
-  \item \begin{align*}
-        P\lor Q
-        &= \lnot(\lnot P\land\lnot Q)\\
-        &= \text{NAND}\bigl(\text{NAND}(P,P),\text{NAND}(Q,Q)\bigr).
-        \end{align*}
-  \item Puisqu'on peut exprimer $\lnot$, $\land$ et $\lor$ uniquement avec NAND,
-        et que tout connecteur logique s'exprime avec ces trois-l\`a,
-        les portes NAND sont \textbf{universelles}.\hfill$\square$
-        (Idem pour NOR~: $\lnot P=\text{NOR}(P,P)$, $P\lor Q=\lnot(\text{NOR}(P,Q))$,
-        etc.)
-\end{enumerate}
+Dans les deux cas $Z=\faux$ (coquin). $X$ et $Y$ sont de natures \emph{oppos\'ees}
+(si $X$ est chevalier, $Y$ est coquin~; si $X$ est coquin, $Y$ est chevalier),
+mais les deux sc\'enarios $(X,Y,Z)=(\text{chevalier},\text{coquin},\text{coquin})$ et
+$(\text{coquin},\text{chevalier},\text{coquin})$ sont logiquement coh\'erents.
+On peut donc affirmer avec certitude que $Z$ est un coquin et que $X$ et $Y$ sont de natures diff\'erentes~;
+l'\'enonc\'e ne permet pas de d\'eterminer lequel des deux est le chevalier.
 
 \psolutiontitle{\'Enigme logique~: qui a fait quoi~?}
 
@@ -682,11 +672,17 @@ Deux d\'eclarations vraies~: \textbf{impossible.}
 
 \psolutiontitle{Le berger, le loup, la ch\`evre et le chou}
 
-\'Etat~: $(B,L,C,X)$ o\`u $\vrai$ = c\^ot\'e d'arriv\'ee.
+\'Etat~: $(B,L,C,X)$ o\`u $B$~: \og le berger\fg, $L$~: \og le loup\fg,
+$C$~: \og la ch\`evre\fg, $X$~: \og le chou\fg, et $\vrai$ = c\^ot\'e d'arriv\'ee.
 \'Etat initial~: $(\faux,\faux,\faux,\faux)$.
 \'Etat final~: $(\vrai,\vrai,\vrai,\vrai)$.
 Contraintes~: ne jamais avoir $L=C\ne B$ (loup mange ch\`evre)
 ni $C=X\ne B$ (ch\`evre mange chou).
+
+\textbf{\'Etats interdits.} Ce sont les $6$ \'etats~:
+$(\faux,\faux,\vrai,\vrai)$, $(\faux,\vrai,\vrai,\faux)$, $(\faux,\vrai,\vrai,\vrai)$,
+$(\vrai,\faux,\faux,\faux)$, $(\vrai,\faux,\faux,\vrai)$, $(\vrai,\vrai,\faux,\faux)$
+(le berger est de l'autre c\^ot\'e et laisse ensemble loup et ch\`evre, ou ch\`evre et chou).
 
 \textbf{Solution~:}
 \begin{enumerate}
@@ -698,8 +694,11 @@ ni $C=X\ne B$ (ch\`evre mange chou).
   \item Revenir seul~: $(\faux,\vrai,\faux,\vrai)$.
   \item Traverser avec la ch\`evre~: $(\vrai,\vrai,\vrai,\vrai)$.
 \end{enumerate}
-Solution alternative~: remplacer \og loup\fg\ par \og chou\fg\ aux \'etapes~3 et~4.
-Il y a exactement deux solutions.
+Solution alternative~: \'echanger \og loup\fg\ et \og chou\fg\ aux \'etapes~3 et~5
+(l'\'etape~4 ram\`ene la ch\`evre dans les deux cas).
+Un parcours en largeur sur les \'etats autoris\'es montre qu'il n'existe pas de solution en moins de $7$ travers\'ees
+et que ces deux solutions sont les seules en $7$ travers\'ees~; il y en a d'autres, plus longues,
+si l'on accepte de refaire des allers-retours inutiles.
 
 \psolutiontitle{Parit\'e des puissances}
 
@@ -726,9 +725,13 @@ Il y a exactement deux solutions.
         Donc $a^2+b^2$ n'est jamais de la forme $4k+3$.
         Les entiers de cette forme sont~: $3,7,11,15,\ldots$~:
         aucun d'eux ne s'\'ecrit comme somme de deux carr\'es.\hfill$\square$
-  \item $7=4\cdot1+3$~: de la forme $4k+3$, donc impossible comme somme de deux carr\'es.
-        $10=9+1=3^2+1^2$~: possible. $13=4+9=2^2+3^2$~: possible.
-        $15=4\cdot3+3$~: de la forme $4k+3$, impossible.
+  \item Les carr\'es inf\'erieurs ou \'egaux \`a $8$ sont $0,1,4$ (on autorise $0$).
+        Leurs sommes de deux~: $0,1,2,4,5,8$. Donc
+        $1=1+0$, $2=1+1$, $4=4+0$, $5=4+1$, $8=4+4$ sont possibles,
+        et les valeurs \textbf{impossibles} sont $3$, $6$ et $7$.
+        Les entiers $3$ et $7$ sont de la forme $4k+3$ (question~2).
+        En revanche $6=4\cdot1+2$ n'est pas de cette forme~: la question~2 ne l'exclut pas,
+        et on le constate par la liste finie ci-dessus ($6$ n'est pas dans la liste des sommes).
   \item Sommes de deux carr\'es dans $\{1,\ldots,20\}$~:
         $1,2,4,5,8,9,10,13,16,17,18,20$. Les impossibles~: $3,6,7,11,12,14,15,19$.
 \end{enumerate}
@@ -741,12 +744,24 @@ Il y a exactement deux solutions.
         R\'eciproquement~: $Q\not\Rightarrow P$ (un rectangle non carr\'e)~;
         $R\not\Rightarrow P$ (un losange non carr\'e).
         Donc $P\Rightarrow Q$ et $P\Rightarrow R$ mais $Q\not\Leftrightarrow P$.
-  \item $\lnot P\lor(\lnot Q\lor\lnot R)$~: \og si $ABCD$ n'est pas un carr\'e,
-        il n'est ni un rectangle, ni un losange\fg~: \textbf{fausse}
-        (un rectangle qui n'est pas un carr\'e est un contre-exemple).
-  \item $P\Leftrightarrow (Q\land R)$~:
-        un carr\'e est un rectangle ET un losange, et r\'eciproquement
-        un rectangle qui est aussi un losange est un carr\'e. \textbf{Vraie.}\hfill$\square$
+  \item Contrapos\'ee de $P\Rightarrow Q$~: $\lnot Q\Rightarrow\lnot P$, c'est-\`a-dire
+        \og si $ABCD$ n'est pas un rectangle, alors ce n'est pas un carr\'e\fg.
+        Contrapos\'ee de $Q\Rightarrow S$~: $\lnot S\Rightarrow\lnot Q$, c'est-\`a-dire
+        \og si $ABCD$ n'est pas un parall\'elogramme, alors ce n'est pas un rectangle\fg.
+  \item On veut d\'emontrer $\lnot S\Rightarrow\lnot P$, qui est la contrapos\'ee de $P\Rightarrow S$.
+        Il suffit donc de d\'emontrer $P\Rightarrow S$~: un carr\'e a quatre angles droits.
+        Deux c\^ot\'es oppos\'es sont perpendiculaires \`a un m\^eme c\^ot\'e, donc parall\`eles~;
+        les deux paires de c\^ot\'es oppos\'es sont parall\`eles, donc $ABCD$ est un parall\'elogramme.
+        Par contrapos\'ee, si $ABCD$ n'est pas un parall\'elogramme, ce n'est pas un carr\'e.\hfill$\square$
+  \item N\'egation de $\forall\,ABCD\text{ carr\'e},\ (Q\land R)$~:
+        $\exists\,ABCD\text{ carr\'e},\ \lnot(Q\land R)$, soit
+        \og il existe un carr\'e qui n'est pas un rectangle ou qui n'est pas un losange\fg
+        ($\lnot Q\lor\lnot R$, De Morgan).
+        Cette n\'egation est \textbf{fausse}~: un carr\'e a quatre angles droits
+        (c'est un rectangle) et quatre c\^ot\'es \'egaux (c'est un losange),
+        donc aucun carr\'e n'est un contre-exemple. La proposition de d\'epart est vraie.\hfill$\square$
+  \item[] \textit{Remarque.} La r\'eciproque est aussi vraie~: un rectangle qui est un losange
+        est un carr\'e, donc $P\Leftrightarrow(Q\land R)$.
 \end{enumerate}
 
 \psolutiontitle{Sudoku $4\times4$ par d\'eduction logique}
@@ -769,18 +784,18 @@ Ligne~1 contient $\{2,3\}$~: manquent $1$ et $4$.
 $(1,1)$ doit \^etre dans $\{1,2\}\cap\{1,4\}=\{1\}$~: \textbf{$(1,1)=1$}.
 Ligne~1 compl\`ete~: $(1,4)=4$.
 
-\textbf{\'Etape~2.} Ligne~4 contient $\{4,3\}$~: manquent $1$ et $2$.
-Colonne~4 contient $\{4,2,3\}$~: manque $1$.
-$(4,4)\in\{1,2\}\cap\{1\}=\{1\}$~: \textbf{$(4,4)=1$}. Donc $(4,3)=2$.
+\textbf{\'Etape~2.} Colonne~4 contient $\{4,2,3\}$~: il manque $1$, et la seule case vide
+de la colonne~4 est $(3,4)$~: \textbf{$(3,4)=1$}.
+Ligne~3 contient alors $\{3,4,1\}$~: il manque $2$, donc \textbf{$(3,1)=2$}.
 
 \textbf{\'Etape~3.} Colonne~2 contient $\{2,3\}$~: manquent $1$ et $4$.
 Ligne~2 contient $\{3,2\}$~: manquent $1$ et $4$.
 Bloc haut-gauche contient $\{1,2,3\}$~: manque $4$.
 $(2,2)\in\{1,4\}\cap\{1,4\}\cap\{4\}=\{4\}$~: \textbf{$(2,2)=4$}. Donc $(2,3)=1$.
 
-\textbf{\'Etape~4.} Ligne~3 contient $\{3,4\}$~: manquent $1$ et $2$.
-Colonne~1 contient $\{1,3,4\}$~: manque $2$.
-$(3,1)=2$, $(3,4)=1$.
+\textbf{\'Etape~4.} Colonne~2 contient maintenant $\{2,4,3\}$~: il manque $1$,
+donc \textbf{$(4,2)=1$}.
+Ligne~4 contient $\{4,1,3\}$~: il manque $2$, donc \textbf{$(4,3)=2$}.
 
 \textbf{Solution unique~:}
 \[
@@ -799,7 +814,8 @@ $(3,1)=2$, $(3,4)=1$.
   \item Chaque \'etape utilise une implication du type~:
         \og La case $(i,j)$ ne peut pas contenir $k$ car $k$ est
         d\'ej\`a pr\'esent dans la ligne/colonne/bloc~: donc elle contient~$\ell$.\fg
-  \item $4$ implications principales ont \'et\'e utilis\'ees (une par case inconnue).
+  \item $8$ implications ont \'et\'e utilis\'ees, une par case vide
+        (la grille de d\'epart a $8$ cases vides), regroup\'ees en $4$ \'etapes de $2$ cases.
   \item La solution est unique~: chaque \'etape \'etait forc\'ee.
 \end{enumerate}
 
@@ -818,6 +834,12 @@ $S \leftarrow 0$\;
 \Si{$S = n\times(n+1)/2$}{\Afficher \og Formule v\'erifi\'ee\fg\;}
 \Sinon{\Afficher \og Erreur\fg\;}
 \end{algorithm}
+        Pour $n=10$~: $S=55=10\times11/2$. Pour $n=100$~: $S=5050=100\times101/2$.
+        Dans les deux cas l'algorithme affiche \og Formule v\'erifi\'ee\fg.
+  \item Tableau~: $n=1,2,3,4,5$ donne $1,\ 1+3=4,\ 1+3+5=9,\ 16,\ 25$.
+        On conjecture $1+3+5+\cdots+(2n-1)=n^2$, et on le v\'erifie pour $n=1,\ldots,5$
+        (valeurs ci-dessus). On peut aussi le justifier avec la formule de Gauss~:
+        $\sum_{k=1}^{n}(2k-1)=2\cdot\dfrac{n(n+1)}{2}-n=n^2$.
 \end{enumerate}
 
 \psolutiontitle{Codage et logique~: parit\'e}
@@ -826,8 +848,10 @@ $S \leftarrow 0$\;
   \item \texttt{1011}~: trois $1$~: nombre impair. Bit de parit\'e $= 1$
         (pour que le total soit pair~: $3+1=4$, pair).
         Message envoy\'e~: \texttt{10111}.
-  \item \texttt{10110}~: quatre $1$~: pair. Pas d'erreur d\'etect\'ee.
-  \item \texttt{10100}~: trois $1$~: impair. \textbf{Erreur d\'etect\'ee.}
+  \item \texttt{10110}~: trois $1$~: nombre impair. \textbf{Erreur d\'etect\'ee.}
+  \item \texttt{10100}~: deux $1$~: nombre pair. Aucune erreur d\'etect\'ee
+        (alors que ce mot diff\`ere de \texttt{10111} en deux positions~:
+        c'est le cas de la question~4).
   \item Si deux erreurs se produisent, la parit\'e reste inchang\'ee~:
         le syst\`eme \textbf{ne peut pas} d\'etecter deux erreurs simultan\'ees.
         La parit\'e ne d\'etecte que les erreurs en nombre \emph{impair}.
@@ -836,13 +860,12 @@ $S \leftarrow 0$\;
 \psolutiontitle{D\'eduction logique~: tournoi de foot}
 
 6 matchs au total (6 paires parmi 4 \'equipes). $A$ gagne 3 matchs~: 9 points.
-Points restants distribu\'es~: $6\times3-9=9$ points pour $\{B,C,D\}$
-mais avec les nuls possibles.
 
 $B$ a 6 points. Comme $B$ a perdu contre $A$, elle a gagn\'e ses deux autres
 matchs. Ainsi $B$ bat $C$ et $D$. Les points de $C$ et $D$ proviennent alors
 uniquement de leur confrontation directe. Pour qu'ils soient \`a \`egalit\'e,
 ce match est nul.
+(V\'erification~: $5$ matchs d\'ecisifs $\times3+1$ nul $\times2=17=9+6+1+1$.)
 
 \textbf{Classement final~:} $A=9$, $B=6$, $C=D=1$.\hfill$\square$
 
@@ -894,8 +917,15 @@ ce match est nul.
         v\'erit\'e bien d\'efinie.
   \item Autres exemples~: \og Cette phrase contient cinq mots.\fg\
         (Non paradoxale~: vraie.) \og Cette phrase est vraie.\fg\
-        (Non paradoxale~: tautologie.)
+        (Non paradoxale, mais elle n'est pas une proposition au sens du cours~:
+        on peut lui donner la valeur \og vrai\fg\ ou la valeur \og faux\fg\ sans contradiction,
+        donc rien ne fixe sa valeur de v\'erit\'e. Ce n'est pas une tautologie.)
         \og Cette phrase est fausse\fg\ est la version paradoxale.
+  \item Soit $R=\{x\mid x\notin x\}$. Si $R\in R$, alors $R$ v\'erifie la condition de
+        d\'efinition, donc $R\notin R$. Si $R\notin R$, alors $R$ v\'erifie la condition,
+        donc $R\in R$. Dans les deux cas on obtient une contradiction~:
+        $R\in R\Leftrightarrow R\notin R$. C'est la m\^eme structure que le menteur
+        (\og elle est vraie $\Leftrightarrow$ elle est fausse\fg), avec l'appartenance \`a la place de la v\'erit\'e.
 \end{enumerate}
 
 \noindent\phantomsection
@@ -915,13 +945,23 @@ ce match est nul.
         \end{center}
   \item $P\oplus Q\equiv(P\lor Q)\land\lnot(P\land Q)$~:
         v\'erifier ligne par ligne~: vrai seulement quand exactement un des deux est vrai.\checkmark
-  \item $P\oplus Q\equiv(P\Rightarrow\lnot Q)\land(\lnot P\Rightarrow Q)$.
-        V\'erification~:
-        $(P\Rightarrow\lnot Q)$ est fausse seulement si $P=Q=\vrai$~;
-        $(\lnot P\Rightarrow Q)$ est fausse seulement si $P=Q=\faux$.
-        La conjonction est vraie exactement pour les deux lignes centrales.\checkmark
-  \item XOR est aussi \textbf{universel}~:
-        $\lnot P=P\oplus\vrai$~; $P\land Q=(P\oplus Q\oplus(P\lor Q))$, etc.
+  \item On utilise $P\lor Q\equiv(\lnot P\Rightarrow Q)$ et $P\land Q\equiv\lnot(P\Rightarrow\lnot Q)$.
+        Alors $(P\lor Q)\land\lnot(P\land Q)\equiv(\lnot P\Rightarrow Q)\land(P\Rightarrow\lnot Q)$.
+        Reste \`a \'eliminer le $\land$~: $A\land B\equiv\lnot(A\Rightarrow\lnot B)$. D'o\`u
+        \[P\oplus Q\ \equiv\ \lnot\bigl((P\Rightarrow\lnot Q)\Rightarrow\lnot(\lnot P\Rightarrow Q)\bigr),\]
+        qui n'utilise que $\Rightarrow$ et $\lnot$.
+        V\'erification~: $(P\Rightarrow\lnot Q)$ est fausse seulement si $P=Q=\vrai$~;
+        $(\lnot P\Rightarrow Q)$ est fausse seulement si $P=Q=\faux$~;
+        la formule est donc vraie exactement pour les deux lignes centrales de la table
+        ($P\ne Q$).\checkmark
+  \item $P\oplus P$ vaut $\faux$ (les deux valeurs sont toujours \'egales, donc jamais exactement une vraie)
+        et $P\oplus\lnot P$ vaut $\vrai$ (exactement une des deux est vraie), pour toute valeur de $P$.\checkmark
+        \emph{Remarque.} Avec seulement $\oplus$ et les constantes $\vrai$, $\faux$, on ne peut obtenir que
+        des fonctions de la forme $c\oplus aP\oplus bQ$ (affines) : $P\land Q$ n'en fait pas partie.
+        Pour obtenir toutes les fonctions il faut ajouter $\land$~:
+        $\lnot P=P\oplus\vrai$ et $P\lor Q=P\oplus Q\oplus(P\land Q)$.
+  \item Chiffrement~: $C\oplus K=(M\oplus K)\oplus K=M\oplus(K\oplus K)=M\oplus\faux=M$
+        (associativit\'e de $\oplus$ et $K\oplus K=\faux$). Le d\'echiffrement est donc la m\^eme op\'eration.\checkmark
 \end{enumerate}
 
 \noindent\phantomsection
@@ -933,15 +973,32 @@ ce match est nul.
         Si $A$ est chevalier~: la phrase est vraie, donc $A$ est coquin~: contradiction.
         Donc \textbf{$A$ est coquin} (il ment). La phrase est fausse, donc
         ils ne sont \emph{pas} tous les deux coquins~: \textbf{$B$ est chevalier}.
-  \item $C$ dit \og Au moins l'un de nous est un coquin.\fg
-        Si $C$ est chevalier~: vrai, donc il y a au moins un coquin. Possible.
-        Si $C$ est coquin~: la phrase est fausse, donc tous les deux sont chevaliers~:
-        contradiction ($C$ serait chevalier).
-        Donc \textbf{$C$ est chevalier}, et il y a bien un coquin~: \textbf{$D$ est coquin}.
-  \item $E$ dit \og je suis un coquin\fg.
-        Si $E$ est chevalier~: vrai, donc $E$ est coquin~: contradiction.
-        Si $E$ est coquin~: il ment, donc $E$ n'est pas coquin~: contradiction.
-        \textbf{Impossible}~: aucun logicien ne peut faire cette d\'eclaration coh\'eremment.
+  \item $C$ dit \og Au moins l'un d'entre nous est un coquin.\fg\ ; $D$ dit \og $C$ est un coquin.\fg
+        Si $C$ est coquin~: sa phrase est fausse, donc aucun des trois n'est coquin~:
+        contradiction. Donc \textbf{$C$ est chevalier}, sa phrase est vraie, et il y a un coquin.
+        Alors $D$ dit \og $C$ est un coquin\fg, ce qui est faux~: \textbf{$D$ est coquin}.
+        $E$ ne dit rien~: sa nature n'est pas d\'etermin\'ee.
+        Il y a donc exactement \textbf{deux} possibilit\'es~:
+        $(C,D,E)=(\text{chevalier},\text{coquin},\text{chevalier})$ ou
+        $(\text{chevalier},\text{coquin},\text{coquin})$.
+  \item Exemple~: $F$ dit \og $G$ est un coquin\fg, $G$ dit \og $F$ et $H$ sont du m\^eme type\fg,
+        $H$ dit \og $F$ est un coquin\fg.
+        Si $F$ est coquin, $G$ est chevalier, $H$ dit vrai donc est chevalier, et $G$ affirme que $F$, $H$
+        sont du m\^eme type~: faux, contradiction. Donc $F$ est chevalier, $G$ est coquin~;
+        $H$ dit \og $F$ est un coquin\fg, faux, donc $H$ est coquin~;
+        et $G$ (coquin) dit \og $F$, $H$ m\^eme type\fg, ce qui est bien faux.
+        Solution unique~: $F$ chevalier, $G$ et $H$ coquins (v\'erifi\'e sur les $8$ cas).
+  \item $A$ est chevalier $\Leftrightarrow$ sa phrase est vraie~: $P\Leftrightarrow(\lnot P\land\lnot Q)$.
+        \begin{center}\renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{|cc|c|c|}
+        \hline\rowcolor{BN!10}$P$&$Q$&$\lnot P\land\lnot Q$&$P\Leftrightarrow(\lnot P\land\lnot Q)$\\\hline
+        \vrai&\vrai&\faux&\faux\\
+        \vrai&\faux&\faux&\faux\\
+        \faux&\vrai&\faux&\vrai\\
+        \faux&\faux&\vrai&\faux\\\hline
+        \end{tabular}
+        \end{center}
+        Seule la ligne $P=\faux$, $Q=\vrai$ rend la formule vraie~: $A$ est coquin et $B$ est chevalier.
 \end{enumerate}
 
 \noindent\phantomsection
@@ -951,13 +1008,21 @@ ce match est nul.
 \begin{enumerate}
   \item $\{1,2,3\}\to\{a,b,c\}$~: bijection $1\mapsto a$, $2\mapsto b$, $3\mapsto c$. \textbf{Oui.}
   \item Bijection $\N\to\Z$~: $0\mapsto0$, $1\mapsto1$, $2\mapsto-1$, $3\mapsto2$, $4\mapsto-2$, \ldots
-        En g\'en\'eral~: $2k\mapsto k$ et $2k+1\mapsto-k$.
-        Donc $|\N|=|\Z|$~: \textbf{\'equipotents.}
-  \item Bijection $\N\to\N\times\N$~: parcourir les diagonales~:
-        $(0,0),(1,0),(0,1),(2,0),(1,1),(0,2),\ldots$ (argument de Cantor).
-        Donc $|\N|=|\N\times\N|$.
-  \item L'ensemble $\{0,1\}^\N$ (suites infinies de~0 et~1) est non d\'enombrable
-        (preuve diagonale de Cantor)~: il est \textbf{strictement plus grand} que $\N$.
+        En g\'en\'eral~: $f(2k)=-k$ et $f(2k+1)=k+1$ (pour $k\in\N$).
+        Les entiers pairs donnent les entiers n\'egatifs ou nuls, les impairs les entiers strictement positifs,
+        chaque entier de $\Z$ est atteint exactement une fois~: $f$ est bijective.
+        Donc $\N$ et $\Z$ ont \og autant\fg\ d'\'el\'ements~: \textbf{\'equipotents.}
+  \item $n\mapsto2n$ est une bijection de $\N$ sur l'ensemble des entiers pairs
+        (injective, et tout entier pair $2m$ a pour ant\'ec\'edent $m$).
+        Oui~: il y en a autant, bien que les pairs forment une partie stricte de $\N$ (Galil\'ee).
+        \emph{Remarque.} De m\^eme $\N\times\N$ est en bijection avec $\N$ en parcourant les diagonales~:
+        $(0,0),(1,0),(0,1),(2,0),(1,1),(0,2),\ldots$
+  \item Supposons qu'on puisse lister tous les r\'eels de $[0,1]$ : $r_1,r_2,r_3,\ldots$
+        \'ecrits en d\'ecimaux. Construisons $d$ dont la $n$-i\`eme d\'ecimale est $5$ si celle de $r_n$
+        est diff\'erente de $5$, et $4$ sinon. Alors $d\in[0,1]$ diff\`ere de chaque $r_n$ par sa
+        $n$-i\`eme d\'ecimale (et n'a pas de d\'eveloppement ambigu, car il ne contient ni $9$ ni $0$ final),
+        donc $d$ n'est dans aucune liste~: aucune liste ne contient tous les r\'eels
+        (argument diagonal de Cantor). De m\^eme $\{0,1\}^\N$ est non d\'enombrable.
 \end{enumerate}
 
 \noindent\phantomsection
@@ -970,8 +1035,13 @@ ce match est nul.
         Donc il y a une infinit\'e de multiples de $7$.\hfill$\square$
   \item Supposition~: il existe un plus grand entier $N$.
         Alors $N+1$ est un entier et $N+1>N$~: contradiction.\hfill$\square$
-  \item Supposition~: $\log_2 3=p/q$ avec $p,q\in\N^*$.
-        Alors $2^p=3^q$. Mais $2^p$ est pair et $3^q$ est impair~: impossible.\hfill$\square$
+  \item Supposons $\sqrt{5}=p/q$ avec $\pgcd(p,q)=1$. Alors $p^2=5q^2$, donc $5\mid p^2$.
+        Si $5\nmid p$, alors $p\equiv1,2,3$ ou $4\pmod5$ et $p^2\equiv1,4,4$ ou $1\pmod5$, jamais $0$~;
+        donc $5\mid p$. Posons $p=5m$~: $25m^2=5q^2$, d'o\`u $q^2=5m^2$ et $5\mid q^2$, donc $5\mid q$.
+        Alors $5\mid\pgcd(p,q)=1$~: contradiction. Donc $\sqrt{5}\notin\Q$.\hfill$\square$
+  \item Soient $a<b$ r\'eels et $c=\dfrac{a+b}{2}$. Alors $c-a=\dfrac{b-a}{2}>0$ et
+        $b-c=\dfrac{b-a}{2}>0$, donc $a<c<b$. Il n'existe donc pas deux r\'eels cons\'ecutifs
+        (par l'absurde, deux r\'eels cons\'ecutifs $a<b$ admettraient $c$ strictement entre eux).\hfill$\square$
 \end{enumerate}
 
 \noindent\phantomsection
@@ -983,20 +1053,23 @@ ce match est nul.
         \begin{itemize}
           \item \og Il pleut\fg\ + \og S'il pleut, le sol est mouill\'e\fg\ $\Rightarrow$
                 \og Le sol est mouill\'e.\fg
-          \item \og $n$ est pair\fg\ + \og Si $n$ est pair, $n^2$ est pair\fg\ $\Rightarrow$
-                \og $n^2$ est pair.\fg
+          \item \og $n$ est divisible par $6$\fg\ + \og Si $n$ est divisible par $6$, il est
+                divisible par $2$\fg\ $\Rightarrow$ \og $n$ est divisible par $2$.\fg
         \end{itemize}
-  \item Le modus tollens dit~: de $P\Rightarrow Q$ et $\lnot Q$, conclure $\lnot P$.
-        Cela correspond \`a la contrapos\'ee~: c'est la m\^eme r\`egle vue diff\'eremment.
-        \textbf{Exemple~:} \og S'il a plu, le sol est mouill\'e.\fg\ \og Le sol est sec.\fg\
-        $\Rightarrow$ \og Il n'a pas plu.\fg
-  \item \textbf{D\'eduction en cha\^ine~:}
-        $P\Rightarrow Q$, $Q\Rightarrow R$, $P$ est vrai $\Rightarrow$ $R$ est vrai.
-        Par transitivit\'e (exercice~\ref{exo:1.17}), $P\Rightarrow R$, puis modus ponens.\hfill$\square$
-  \item Le \textbf{raisonnement par cas} est la r\`egle~:
-        de $(P\Rightarrow R)\land(Q\Rightarrow R)\land(P\lor Q)$, conclure $R$.
-        Il est valide~: si $P\lor Q$ est vraie, l'un des deux cas s'applique,
-        et dans les deux cas $R$ est vrai.
+  \item On a (1)~$P$, (2)~$P\Rightarrow Q$, (3)~$Q\Rightarrow R$.
+        Modus ponens sur (1) et (2)~: $Q$. Modus ponens sur $Q$ et (3)~: $R$.\hfill$\square$
+  \item Soit $x$ un \'el\'ement quelconque. Les hypoth\`eses \og tous les $A$ sont des $B$\fg\ et
+        \og tous les $B$ sont des $C$\fg\ donnent $A(x)\Rightarrow B(x)$ et $B(x)\Rightarrow C(x)$.
+        Si $A(x)$ est vrai, le modus ponens donne $B(x)$, puis $C(x)$.
+        Comme $x$ est quelconque, tous les $A$ sont des $C$.\hfill$\square$
+  \item Exemple~: $ABCD$ est un carr\'e $\Rightarrow$ $ABCD$ est un rectangle
+        $\Rightarrow$ $ABCD$ est un parall\'elogramme $\Rightarrow$ les diagonales de $ABCD$
+        se coupent en leur milieu. Si $ABCD$ est un carr\'e, on conclut par trois modus ponens.
+  \item[] \textit{Extension.} Le \textbf{modus tollens} (de $P\Rightarrow Q$ et $\lnot Q$, conclure $\lnot P$)
+        est la contrapos\'ee~: \og S'il a plu, le sol est mouill\'e.\fg\ \og Le sol est sec.\fg\
+        $\Rightarrow$ \og Il n'a pas plu.\fg\ Le \textbf{raisonnement par cas}
+        (de $(P\Rightarrow R)\land(Q\Rightarrow R)\land(P\lor Q)$, conclure $R$) est aussi valide~:
+        si $P\lor Q$ est vraie, l'un des deux cas s'applique, et dans les deux $R$ est vrai.
 \end{enumerate}
 
 
