@@ -1,5 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Equidecomposability of Polygons</title>
 <style>
+[hidden]{display:none!important}
 :root{--bg:#fafaf7;--fg:#1d1d1b;--mut:#6b6a63;--card:#fff;--bd:#d9d7cf;--ac:#b4442b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17171a;--fg:#ecebe6;--mut:#a09f98;--card:#222226;--bd:#3a3a40;--ac:#f08a6c;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#17171a;--fg:#ecebe6;--mut:#a09f98;--card:#222226;--bd:#3a3a40;--ac:#f08a6c;color-scheme:dark}
@@ -23,7 +24,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.88em}
 <div class="card">
 <div class="row"><label>P <select id="sp"></select></label><label>Q <select id="sq"></select></label>
 <button id="dp">✏️ Draw P</button><button id="dq">✏️ Draw Q</button></div>
-<div class="row" id="dr" hidden><span id="dh">Click the canvas to add vertices.</span><button id="cl" class="pri">Close polygon</button><button id="un">Undo</button><button id="ca">Cancel</button></div>
+<div class="row" id="dr" hidden><span id="dh">Click the canvas to add vertices.</span><button id="cl" class="pri">Close polygon</button><button id="un">Undo</button><button id="ca">Cancel</button><label>Type vertices (keyboard alternative) <input id="vi" placeholder="0,0; 10,0; 10,6; 0,6" size="30"></label><button id="va">Add vertices</button></div>
 <canvas id="cv" role="img" aria-label="Animated dissection of polygon P into rectangle R and then into polygon Q; the current step is described below the canvas"></canvas>
 <div class="row"><button id="pr" aria-label="Previous step">◀</button><button id="pl" class="pri">▶ Play</button><button id="nx" aria-label="Next step">▶|</button><input id="sl" aria-label="Animation progress, steps 1 to 8" type="range" min="0" max="8" step="0.001" value="0"></div>
 <div id="lab" aria-live="polite"></div><div id="inf"></div></div>
@@ -99,6 +100,9 @@ $('#pr').onclick=()=>{play=false;T=Math.max(0,Math.ceil(T)-1);render()};$('#nx')
 function endDraw(){draw=null;pts=[];$('#dr').hidden=true;$('#dp').classList.remove('on');$('#dq').classList.remove('on')}
 function startDraw(w){play=false;draw=w;pts=[];$('#dr').hidden=false;$('#dh').textContent=`Drawing ${w}: click to add vertices (≥3, no self-crossing), then close.`;$('#dp').classList.toggle('on',w=='P');$('#dq').classList.toggle('on',w=='Q');render()}
 $('#dp').onclick=()=>startDraw('P');$('#dq').onclick=()=>startDraw('Q');$('#ca').onclick=()=>{endDraw();render()};$('#un').onclick=()=>{pts.pop();render()};
+$('#va').onclick=()=>{if(!draw)return;const v=$('#vi').value.split(';').map(t=>t.trim()).filter(Boolean).map(t=>t.split(/[\s,]+/).map(Number));
+if(!v.length||v.some(q=>q.length!=2||q.some(n=>!isFinite(n)))){$('#dh').textContent='Type vertices as x,y pairs separated by semicolons, for example 0,0; 10,0; 10,6; 0,6.';return}
+v.forEach(q=>pts.push(q));$('#vi').value='';$('#dh').textContent=`${pts.length} vertices so far. Close the polygon when done (the same checks apply as for clicks).`;render()};
 $('#cv').onclick=e=>{if(!draw)return;const r=e.target.getBoundingClientRect(),px=(e.clientX-r.left)*(e.target.width/r.width),py=(e.clientY-r.top)*(e.target.height/r.height);pts.push([(px-V.ox)/V.s+V.x,(py-V.oy)/V.s+V.y]);render()};
 // closed-segment intersection (touching and collinear overlap count), so pinched/touching polygons are rejected
 const onSeg=(p,q,r)=>Math.min(p[0],q[0])-1e-9<=r[0]&&r[0]<=Math.max(p[0],q[0])+1e-9&&Math.min(p[1],q[1])-1e-9<=r[1]&&r[1]<=Math.max(p[1],q[1])+1e-9;
@@ -107,7 +111,8 @@ if(o1*o2<0&&o3*o4<0)return true;return(o1==0&&onSeg(a,b,c))||(o2==0&&onSeg(a,b,d
 function simple(A){const n=A.length;for(let i=0;i<n;i++){const a=A[i],b=A[(i+1)%n],c=A[(i+2)%n];if(Math.abs(cr(a,b,c))<1e-9&&dot(sub(b,a),sub(c,b))<0)return false;
 for(let j=i+2;j<n;j++){if(i==0&&j==n-1)continue;if(inter(a,b,A[j],A[(j+1)%n]))return false}}return true}
 const dedupe=A=>A.filter((p,i)=>dist(p,A[(i+A.length-1)%A.length])>1e-9);
-$('#cl').onclick=()=>{const dd=dedupe(pts);if(dd.length<3||Math.abs(area(dd))<1e-3*V.s||!simple(dd)||tri(norm(dd,0,0)).length!=dd.length-2){$('#dh').textContent='Invalid: need ≥3 vertices forming a simple (non-self-intersecting) polygon. Undo or cancel.';return}
+$('#cl').onclick=()=>{const dd=dedupe(pts);const xs=dd.map(p=>p[0]),ys=dd.map(p=>p[1]),bw=Math.max(...xs)-Math.min(...xs),bh=Math.max(...ys)-Math.min(...ys);if(dd.length>=3&&Math.max(bw,bh)>40*Math.max(Math.min(bw,bh),1e-12)){$('#dh').textContent='Too thin: the bounding box is more than 40 times longer than wide, which makes the pieces unreadable. Undo or cancel.';return}
+if(dd.length<3||Math.abs(area(dd))<1e-3*V.s||!simple(dd)||tri(norm(dd,0,0)).length!=dd.length-2){$('#dh').textContent='Invalid: need ≥3 vertices forming a simple (non-self-intersecting) polygon. Undo or cancel.';return}
 const w=draw,A=dd.map(p=>[...p]);if(w=='P'){P=A;cus.P=A;sps.value='Custom'}else{Q=A;cus.Q=A;sqs.value='Custom'}endDraw();build();T=0;play=!RM;$('#pl').textContent=RM?'▶ Play':'❚❚ Pause';render()};
 addEventListener('resize',()=>{if(CH){setView();render()}});
 build();setPair('Hexagon','Square');requestAnimationFrame(loop);

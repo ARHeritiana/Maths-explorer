@@ -35,6 +35,8 @@ try:
         result = subprocess.run([sys.executable, 'tests/slides_lab_browser.py'], cwd=root)
     if result.returncode == 0:   # the four chapter destinations and the legacy stage links
         result = subprocess.run([sys.executable, 'tests/chapter_destinations_browser.py'], cwd=root)
+    if result.returncode == 0:   # the unpublished references of docs/future-work (workstream G), opened from files
+        result = subprocess.run([sys.executable, 'tests/future_work_browser.py'], cwd=root)
     if result.returncode == 0:
         result = subprocess.run([sys.executable, 'tests/history_browser.py'], cwd=root)
 finally:

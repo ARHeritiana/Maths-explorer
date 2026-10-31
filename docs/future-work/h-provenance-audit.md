@@ -22,3 +22,15 @@ No text, code or asset in the searched files is marked as copied from either sit
 | Visual models (26 parameterised models) | Described as inspired by JavaLab simulations; the old doc said no code or assets were imported. | Compare model by model with JavaLab; replace any close reproduction with an original construction. |
 
 No line-level evidence of copying was found, so nothing was left unstripped for that reason. This file records the open verification step.
+
+## Second round (31 October 2026)
+
+- Re-run of the search over `site/`, `content/`, `scripts/`, `build/`, README, licences and the built `dist/`: no hit, so the
+  public credit and links stay removed. `tests/attribution.test.mjs` now fails if either name reappears there.
+- Copy check against the live pages was **not possible**: `mathoutils.com` and `javalab.org` are not reachable from this
+  environment (no HTTP response through the proxy). No claim of originality can therefore be made by comparison. What can be
+  said: the 26 visual models and the lesson, experiment, exercise tabs are standard constructions (parabola, secant and
+  tangent, Riemann sums, unit circle and so on) with French text written for this site; no line of text or code is marked or
+  was found to be copied. The structure of the chapter page has since been replaced (four destinations, 31 October).
+- Still open for the owner: if any companion guide or exercise wording was taken from either site, name it so that it can be
+  rewritten from the course PDFs, the provenance kept in the private repository, and the mathematics verified.
