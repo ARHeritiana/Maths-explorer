@@ -262,21 +262,21 @@ Fin~: $S=10=1+2+3+4$.\checkmark
 %────────────────────────────────────────────────────────────────
 \solutiontitle{Lecture de trace~: algorithme d'Euclide}
 
-Trace pour $A=48$, $B=18$~:
+Trace pour $A=4$, $B=6$~:
 \begin{center}
 \renewcommand{\arraystretch}{1.25}
 \begin{tabular}{ccc}
 \toprule
 $A$ & $B$ & $R = A\bmod B$ \\
 \midrule
-48 & 18 & 12 \\
-18 & 12 & 6 \\
-12 & 6 & 0 \\
-6 & 0 & — \\
+4 & 6 & 4 \\
+6 & 4 & 2 \\
+4 & 2 & 0 \\
+2 & 0 & — \\
 \bottomrule
 \end{tabular}
 \end{center}
-L'algorithme calcule le \textbf{PGCD}. Valeur finale de $A=6=\pgcd(48,18)$.
+L'algorithme calcule le \textbf{PGCD}. Valeur finale de $A=2=\pgcd(4,6)$.
 
 %────────────────────────────────────────────────────────────────
 \solutiontitle{Suite arithm\'etique}
@@ -327,7 +327,7 @@ $F \leftarrow 1$\;
 \begin{enumerate}
   \item Version it\'erative~: voir ci-dessus.
   \item Si $n<0$, on affiche un message et on arr\^ete.
-  \item Nombre de multiplications~: $n-1$ (pour $n\geq1$~; $0$ pour $n=0$).
+  \item Nombre de multiplications~: $n$ (la boucle \texttt{Pour} $k$ de $1$ \`a $n$ en fait une par tour, la premi\`ere $F\times1$ \'etant triviale)~; $n-1$ si l'on d\'emarre la boucle \`a $k=2$~; $0$ pour $n=0$.
 \end{enumerate}
 
 Exemples~: $5!=120$~; $0!=1$~; $10!=3628800$.
@@ -507,8 +507,8 @@ $d \leftarrow (x_B-x_A)\times(y_C-y_A) - (x_C-x_A)\times(y_B-y_A)$\;
 Test $A(0,0)$, $B(1,2)$, $C(2,4)$~:
 $d=(1)(4)-(2)(2)=4-4=0$~: align\'es.\checkmark
 
-Test $A(0,0)$, $B(1,2)$, $C(3,5)$~:
-$d=(1)(5)-(3)(2)=5-6=-1\ne0$~: non align\'es.\checkmark
+Test $A(0,0)$, $B(1,2)$, $C(2,5)$~:
+$d=(1)(5)-(2)(2)=5-4=1\ne0$~: non align\'es.\checkmark
 
 %────────────────────────────────────────────────────────────────
 \solutiontitle{Calcul de $\pi$ par s\'erie de Leibniz}
@@ -537,7 +537,7 @@ $N$ & $4S$ & Erreur\\
 \end{center}
 
 La convergence est lente : multiplier le nombre de termes par $10$ ne gagne
-qu'environ une décimale. La série de Machin converge beaucoup plus vite.
+qu'environ une décimale~: l'erreur est de l'ordre de $1/N$, donc il faut de l'ordre de $10^5$ termes pour une erreur inférieure à $10^{-5}$ (environ $2\times10^5$ pour $5$ décimales exactes). La série de Machin converge beaucoup plus vite.
 
 %────────────────────────────────────────────────────────────────
 \solutiontitle{Sch\'ema de H\"orner}
@@ -582,7 +582,7 @@ $u \leftarrow 0$~;\quad $v \leftarrow 1$\;
         remplacer la limite $N$ par une boucle qui calcule $(u+v)/v$ et
         s'arr\^ete quand $\bigl|(u+v)/v-\varphi\bigr|<10^{-6}$.
         La mise \`a jour $(u,v)\leftarrow(v,u+v)$ n'est faite que si
-        le seuil n'est pas encore atteint.
+        le seuil n'est pas encore atteint. Le seuil est franchi pour $F_{17}/F_{16}=1597/987\approx1{,}618034$.
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────
@@ -751,6 +751,8 @@ $\mathit{bits} \leftarrow$ cha\^ine vide\;
 
 Pour $n=42$~: $42=32+8+2=101010_2$.
 V\'erification~: $1\cdot32+0\cdot16+1\cdot8+0\cdot4+1\cdot2+0\cdot1=42$.\checkmark
+Les restes successifs de $42$ par $2$ sont $0,1,0,1,0,1$ (bit de poids faible d'abord)~; l'algorithme les place \`a gauche, d'o\`u l'affichage $101010$.
+Nombre de bits~: $\lfloor\log_2n\rfloor+1$ pour $n\ge1$ (ici $\lfloor\log_2 42\rfloor+1=6$).
 
 %────────────────────────────────────────────────────────────────
 \subsection*{Probl\`emes}
@@ -798,8 +800,8 @@ $1,2,3,4,5,6,5,4,3,2,1$ pour les sommes de $2$ \`a $12$.
 \Afficher $t$\;
 \end{algorithm}
   \item Exemples~: $n=6\to$ temps $8$~; $n=27\to$ temps $111$.
-  \item Pour trouver le maximum sur $1..N$, on boucle sur toutes les valeurs.
-        L'entier $n=27$ a un temps de vol de $111$ pour des $n$ jusqu'\`a $100$.
+  \item Pour trouver le maximum sur $1..1000$, on boucle sur toutes les valeurs et on garde la plus grande.
+        On trouve $n=871$, avec un temps de vol de $178$ (sur $1..100$ le maximum est $118$, pour $n=97$~; $n=27$ n'est le record que sur $1..53$).
   \item La conjecture est non d\'emontr\'ee~: on ne sait pas si \emph{tous} les entiers
         atteignent $1$ en temps fini.
 \end{enumerate}
@@ -816,10 +818,11 @@ $1,2,3,4,5,6,5,4,3,2,1$ pour les sommes de $2$ \`a $12$.
 }
 \Afficher $u$\;
 \end{algorithm}
-  \item Trace pour $a=2$, $\varepsilon=10^{-4}$~: $u_0=2$, $u_1=1{,}5$, $u_2=1{,}4167$,
-        $u_3=1{,}4142\ldots\approx\sqrt{2}$. Convergence en $4$ it\'erations.
-  \item La convergence est \textbf{quadratique}~: le nombre de d\'ecimales correctes
+  \item Trace pour $a=2$~: $u_0=2$, $u_1=1{,}5$, $u_2\approx1{,}41667$,
+        $u_3\approx1{,}414216$, $u_4\approx1{,}41421356\approx\sqrt{2}$ (d\'ej\`a $9$ d\'ecimales exactes).
+  \item Avec l'algorithme de l'\'enonc\'e et $\varepsilon=10^{-6}$, la boucle s'arr\^ete apr\`es $5$ it\'erations ($|u_5-u_4|\approx1{,}4\times10^{-12}<\varepsilon$). La convergence est \textbf{quadratique}~: le nombre de d\'ecimales correctes
         double \`a chaque it\'eration. C'est bien plus rapide que la dichotomie.
+  \item Pour $x>0$ et $a>0$, $\dfrac{x+a/x}{2}\ge\sqrt{x\cdot\dfrac ax}=\sqrt a$ (in\'egalit\'e donn\'ee en indication). Donc $u_{n+1}\ge\sqrt a$ d\`es que $u_n>0$~; de plus tous les $u_n$ restent $>0$ par r\'ecurrence. Variante sans l'indication~: $u_{n+1}-\sqrt a=\dfrac{(u_n-\sqrt a)^2}{2u_n}\ge0$.
 \end{enumerate}
 
 \psolutiontitle{Algorithme de H\"orner et \'evaluation de polyn\^omes}
@@ -833,8 +836,10 @@ $P(x)=3x^4-7x^3+2x^2+x-5$.
         =(((-1)\times2+2)\times2+1)\times2-5
         =((0)\times2+1)\times2-5=1\times2-5=-3$.\checkmark
         Nombre de multiplications~: $4$~: un par degr\'e.
-  \item H\"orner utilise une multiplication par degré, ce qui évite de recalculer
+  \item L'algorithme avec $\mathit{val}\leftarrow a_4=3$ puis $\mathit{val}\leftarrow\mathit{val}\times2+a_k$ donne successivement $-1$, $0$, $1$, $-3$~: on retrouve $P(2)=-3$.
+        H\"orner utilise une multiplication par degré, ce qui évite de recalculer
         séparément toutes les puissances de $x$.
+  \item Pour $P(x)=x^3-6x^2+11x-6=(x-1)(x-2)(x-3)$~: le programme donne $P(1)=P(2)=P(3)=0$.
 \end{enumerate}
 
 \psolutiontitle{Cryptographie par d\'ecalage~: attaque}
@@ -851,7 +856,7 @@ $P(x)=3x^4-7x^3+2x^2+x-5$.
   \item Identification automatique~: une approche consiste \`a calculer la
         fr\'equence des lettres du texte d\'echiffr\'e et de la comparer
         aux fr\'equences du fran\c cais (la lettre la plus fr\'equente est \og E\fg~:
-        $17\%$). La cl\'e correcte maximise la correspondance.
+        environ $15\,\%$ en fran\c cais). La cl\'e correcte maximise la correspondance.
   \item Le chiffrement de C\'esar a une s\'ecurit\'e nulle~: une machine peut essayer
         les $26$ possibilit\'es en microsecondes.
 \end{enumerate}
@@ -895,11 +900,11 @@ Afficher tous les $i$ tels que $\mathit{est\_premier}[i]$\;
 
 \begin{enumerate}
   \item Pseudo-code~: voir ci-dessus.
-  \item Justification de $p^2$~: si $p$ est premier et $k<p^2$, alors
-        $k$ a d\'ej\`a \'et\'e barr\'e par un premier $q<p$.
-  \item Le crible évite de tester séparément tous les diviseurs possibles de
-        chaque entier.
-  \item Nombre de premiers $\leq 100$~: $25$.
+  \item Trace pour $N=30$~: $p=2$ barre $4,6,8,\ldots,30$~; $p=3$ barre $9,12,15,18,21,24,27,30$~; $p=4$ est d\'ej\`a barr\'e~; $p=5$ barre $25,30$~; $p=6$ donne $36>30$, arr\^et.
+        Restent les premiers $2,3,5,7,11,13,17,19,23,29$.
+  \item Pour $N=100$ (premiers $p=2,3,5,7$)~: $49+30+16+9=104$ marquages (dont des cases d\'ej\`a barr\'ees~; $74$ cases distinctes), soit environ une op\'eration par nombre~: algorithme rapide. Il reste $25$ nombres premiers $\leq100$.
+  \item Justification de $p^2$~: si $p$ est premier et $k<p^2$ est un multiple de $p$, alors $k=pm$ avec $m<p$,
+        donc $k$ a d\'ej\`a \'et\'e barr\'e par un premier $q\le m<p$.
 \end{enumerate}
 
 \psolutiontitle{Tri fusion~: principe}
@@ -929,6 +934,9 @@ Copier les \'el\'ements restants de $A$ ou $B$ dans $C$\;
 \end{algorithm}
 
 Le tri fusion partage d'abord la liste, puis fusionne les sous-listes déjà triées.
+Sur $[5,3,8,1,9,2,4,7]$~: d\'ecoupage en $[5,3,8,1]$ et $[9,2,4,7]$, puis en paires~; tri des paires $[3,5]$, $[1,8]$, $[2,9]$, $[4,7]$~;
+fusions $[1,3,5,8]$ ($3$ comparaisons) et $[2,4,7,9]$ ($3$ comparaisons)~; fusion finale $[1,2,3,4,5,7,8,9]$ ($7$ comparaisons).
+Total~: $4$ (paires) $+\,6+7=17$ comparaisons, contre $8\cdot7/2=28$ pour le tri \`a bulles non optimis\'e~: oui, plus rapide ici.
 
 \psolutiontitle{Chiffrement de Vigen\`ere}
 
@@ -942,12 +950,16 @@ Le tri fusion partage d'abord la liste, puis fusionne les sous-listes déjà tri
 }
 \end{algorithm}
 
-Exemple~: cl\'e \og CLE\fg\ (rangs 2,11,4).
-\og BONJOUR\fg\ $\to$ \og DZRJYAS\fg~:
-$B(1)+C(2)=D(3)$~; $O(14)+L(11)=Z(25)$~; $N(13)+E(4)=R(17)$~; etc.
+Exemple de l'\'enonc\'e~: cl\'e \og MATHS\fg\ (rangs $12,0,19,7,18$).
+\og BONJOUR\fg\ $\to$ \og NOGQGGR\fg~:
+$B(1)+M(12)=N(13)$~; $O(14)+A(0)=O(14)$~; $N(13)+T(19)=32\equiv6=G$~;
+$J(9)+H(7)=Q(16)$~; $O(14)+S(18)=32\equiv6=G$~; $U(20)+M(12)=32\equiv6=G$~; $R(17)+A(0)=R(17)$.
+(Avec la cl\'e \og CL\'E\fg\ de l'introduction, \og BONJOUR\fg\ donnerait \og DZRLZYT\fg.)
+D\'echiffrement~: remplacer $+k$ par $-k$ modulo $26$.
 
 Le chiffrement de Vigen\`ere est plus s\^ur que C\'esar car il d\'epend d'une cl\'e~:
-$26^L$ cl\'es possibles pour une cl\'e de longueur $L$.
+$26^L$ cl\'es possibles pour une cl\'e de longueur $L$, soit $26^5=11\,881\,376$ pour $L=5$,
+et une m\^eme lettre du message n'est pas toujours chiffr\'ee de la m\^eme fa\c con.
 
 \psolutiontitle{Compression RLE}
 
@@ -965,7 +977,7 @@ $i \leftarrow 1$\;
 }
 \end{algorithm}
 
-Exemple~: \texttt{AAABBBBA}~:
+Exemple~: \texttt{AAAAAABBBCCCCCD} $\to$ \texttt{6A3B5C1D}~; \texttt{AAABBBBA}~:
 \texttt{3A4B1A}.
 
 La d\'ecompression lit un chiffre $n$ suivi d'un caract\`ere $c$ et \'ecrit $c$ $n$ fois.
@@ -1006,9 +1018,10 @@ mais peut \emph{augmenter} la taille pour des s\'equences vari\'ees.
 \toprule
 $N$ & Approximation typique & Erreur \\
 \midrule
-100 & $3{,}1$ & $\pm0{,}1$ \\
-1\,000 & $3{,}14$ & $\pm0{,}03$ \\
-100\,000 & $3{,}141$ & $\pm0{,}003$ \\
+100 & $3{,}1$ & $\pm0{,}2$ \\
+1\,000 & $3{,}14$ & $\pm0{,}05$ \\
+10\,000 & $3{,}14$ & $\pm0{,}02$ \\
+1\,000\,000 & $3{,}141$ & $\pm0{,}002$ \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -1040,7 +1053,7 @@ def statistiques():
 \end{lstlisting}
 
 Pour le tracé de l'histogramme, on peut utiliser \texttt{matplotlib}~:
-\texttt{plt.hist(notes, bins=5)} produit un histogramme en $5$ classes.
+\texttt{plt.hist(notes, bins=[0,5,10,15,20])} produit un histogramme en $4$ classes $[0,5[$, $[5,10[$, $[10,15[$, $[15,20]$ (la derni\`ere est ferm\'ee).
 
 %────────────────────────────────────────────────────────────────
 \subsection*{D\'efis}
@@ -1063,12 +1076,14 @@ Pour le tracé de l'histogramme, on peut utiliser \texttt{matplotlib}~:
 }
 \end{algorithm}
 
-Trace pour $[5,3,1,4,2]$~:
-$i=1$~: min en pos.~$3$ (val.~$1$), \'echanger~: $[1,3,5,4,2]$.
-$i=2$~: min en pos.~$5$ (val.~$2$)~: $[1,2,5,4,3]$.
-$i=3$~: min en pos.~$5$ (val.~$3$)~: $[1,2,3,4,5]$. Termin\'e.
+Trace pour $[5,3,8,1,9,2]$~:
+$i=1$~: min $1$ en pos.~$4$, \'echanger~: $[1,3,8,5,9,2]$~;
+$i=2$~: min $2$ en pos.~$6$~: $[1,2,8,5,9,3]$~;
+$i=3$~: min $3$ en pos.~$6$~: $[1,2,3,5,9,8]$~;
+$i=4$~: min $5$ d\'ej\`a en place, pas d'\'echange~;
+$i=5$~: min $8$ en pos.~$6$~: $[1,2,3,5,8,9]$. Termin\'e~: $15$ comparaisons, $4$ \'echanges.
 
-Nombre de comparaisons~: $(n-1)+(n-2)+\cdots+1=n(n-1)/2$.
+Nombre de comparaisons~: $(n-1)+(n-2)+\cdots+1=n(n-1)/2$, \'egalement pour une liste d\'ej\`a tri\'ee (ici $15$ pour $n=6$)~; le tri \`a bulles non optimis\'e fait aussi $15$ comparaisons (exercice~\ref{exo:2.34}), mais bien plus d'\'echanges en g\'en\'eral.
 Le tri effectue au plus $n-1$ échanges, puisqu'un élément est placé définitivement
 à chaque passage.
 
@@ -1092,7 +1107,10 @@ $\mathit{nombre\_segments} \leftarrow 3$~;\quad $\mathit{longueur} \leftarrow 1$
 
 Apr\`es $k$ it\'erations~: $3\times4^k$ segments de longueur $(1/3)^k$.
 P\'erim\`etre~: $3\times(4/3)^k\to+\infty$ (le p\'erim\`etre est infini~!).
-Aire~: $\dfrac{2\sqrt{3}}{5}$ (finie).
+Aire~: $\dfrac{2\sqrt{3}}{5}\approx0{,}69$ pour un triangle de c\^ot\'e $1$ (finie, r\'esultat admis).
+Pour un seul segment de longueur $L$ (tableau de l'\'enonc\'e)~: $n=2$~: $16$ segments, longueur totale $16L/9$~;
+$n=3$~: $64$ segments, $64L/27$~; $n$ quelconque~: $4^n$ segments, longueur totale $(4/3)^nL\to+\infty$ (non born\'ee).
+Sans condition d'arr\^et la r\'ecursion ne se termine jamais (d\'ebordement de pile).
 C'est un exemple de \textbf{fractale} : courbe de longueur infinie enfermant une aire finie.
 
 \noindent\phantomsection
@@ -1123,9 +1141,20 @@ Solutions pour $4\times4$~: $\{2,4,1,3\}$ et $\{3,1,4,2\}$ (exactement $2$ solut
 Pour $8\times8$, il y a $92$ solutions~: la force brute serait lente~;
 on utilise le retour sur trace (backtracking).
 
+\textbf{(1)} Sur $2\times2$, deux cases quelconques partagent une ligne, une colonne ou une diagonale. Sur $3\times3$, il faudrait une reine par ligne et par colonne~: si celle de la colonne $2$ est sur la ligne $2$, elle attaque toutes les autres cases~; sinon, par sym\'etrie elle est en ligne $1$, et les reines des colonnes $1$ et $3$ sont sur les lignes $\{2,3\}$, ce qui met toujours l'une d'elles sur une diagonale de la reine de la colonne $2$ (les $6$ configurations sont \`a v\'erifier, aucune ne convient). Deux reines non menaçantes existent pourtant sur $3\times3$ (positions du cavalier).
+\textbf{(2)} Reine en colonne $1$, ligne $a$~; lignes libres en colonne $2$~: $a=1$~: $\{3,4\}$~; $a=2$~: $\{4\}$~; $a=3$~: $\{1\}$~; $a=4$~: $\{1,2\}$.
+\textbf{(4)} Une ligne par colonne~: au plus $4^4=256$ essais ($4!=24$ si l'on impose des lignes distinctes).
+
 \noindent\phantomsection
-{\color{BO}\bfseries\small D\'efi~5~\textendash\ \textit{Automate distributeur}}
+{\color{BO}\bfseries\small D\'efi~4~\textendash\ \textit{Automate distributeur}}
 \par\smallskip
+
+\textbf{Distributeur \`a seuil $3$\,\euro{} (\'enonc\'e).} Algorithme~: $\mathit{somme}\leftarrow0$~; \texttt{Tant que} $\mathit{somme}<3$~: lire une pi\`ece $p$ (si $p\ne1$ et $p\ne2$, afficher \og Pi\`ece invalide\fg\ et ne pas l'ajouter), $\mathit{somme}\leftarrow\mathit{somme}+p$~; puis afficher \og Boisson distribu\'ee~!\fg\ et rendre $\mathit{somme}-3$.
+Trace $1,1,2$~: somme $1$, $2$, $4$ $\to$ distribution, monnaie rendue $1$\,\euro. Trace $2,2$~: somme $2$, $4$ $\to$ distribution, monnaie $1$\,\euro.
+S\'equences se terminant \`a exactement $3$\,\euro{} (sans exc\'edent)~: $(1,1,1)$, $(1,2)$, $(2,1)$, soit $3$ s\'equences.
+\'Etats~: $0,1,2$ (montant cumul\'e) et \'etat final \og distribu\'e\fg~: $0\xrightarrow{1}1$, $0\xrightarrow{2}2$, $1\xrightarrow{1}2$, $1\xrightarrow{2}$ distribu\'e (sans reste), $2\xrightarrow{1}$ distribu\'e (sans reste), $2\xrightarrow{2}$ distribu\'e (monnaie $1$).
+
+\textbf{Extension~: automate g\'en\'eral avec prix variable.}
 
 \begin{algorithm}[H]
 \caption{Automate distributeur}
@@ -1138,7 +1167,7 @@ $\mathit{solde} \leftarrow 0$\;
   }\SinonSi{$\mathit{action}=$ \og choisir\fg}{
     \Lire $\mathit{prix}$\;
     \Si{$\mathit{solde} \geq \mathit{prix}$}{
-      \Afficher \og Distribuition\fg\;
+      \Afficher \og Distribution\fg\;
       $\mathit{solde}\leftarrow\mathit{solde}-\mathit{prix}$\;
       \Si{$\mathit{solde} > 0$}{\Afficher \og Monnaie~: \fg, $\mathit{solde}$\;}
       $\mathit{solde}\leftarrow0$\;
@@ -1154,12 +1183,12 @@ $\mathit{solde}\geq0$ toujours~;
 un article n'est distribu\'e que si le solde le permet.
 
 \noindent\phantomsection
-{\color{BO}\bfseries\small D\'efi~6~\textendash\ \textit{Rendu de monnaie optimal}}
+{\color{BO}\bfseries\small D\'efi~5~\textendash\ \textit{Rendu de monnaie optimal}}
 \par\smallskip
 
 \begin{algorithm}[H]
 \caption{Rendu de monnaie glouton}
-\KwIn{Montant \`a rendre $R$, pi\`eces disponibles $[200,100,50,20,10,5,2,1]$}
+\KwIn{Montant \`a rendre $R$, pi\`eces disponibles $[50,20,10,5,2,1]$ (centimes)}
 \Pour{chaque valeur $v$ des pi\`eces (par ordre d\'ecroissant)}{
   \TantQue{$R \geq v$}{
     \Afficher $v$~;\quad $R\leftarrow R-v$\;
@@ -1167,8 +1196,9 @@ un article n'est distribu\'e que si le solde le permet.
 }
 \end{algorithm}
 
-Pour $R=63$ ct~: $50+10+2+1=63$. L'algorithme glouton donne toujours l'optimal
-pour le syst\`eme de pi\`eces europ\'een (propri\'et\'e de la structure canonique).
+Pour $R=87$ ct~: $50+20+10+5+2=87$, soit $5$ pi\`eces. Pour $n=6$~: $5+1$ ($2$ pi\`eces)~; $n=30$~: $20+10$ ($2$)~; $n=41$~: $20+20+1$ ($3$).
+Pour le syst\`eme $\{1,2,5,10,20,50\}$ le glouton est optimal (v\'erifi\'e par programmation dynamique pour tout $n<500$, syst\`eme dit \og canonique\fg).
+Exhaustif pour $n\le10$ avec $\{1,2,5\}$~: on essaie tous les $(a,b,c)$ avec $a+2b+5c=n$ et on garde $a+b+c$ minimal.
 
 Pour un syst\`eme arbitraire de pi\`eces, le glouton peut \^etre sous-optimal.
 Exemple~: pi\`eces $\{1,3,4\}$, montant $6$~:

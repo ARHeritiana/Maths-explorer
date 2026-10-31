@@ -903,9 +903,9 @@ et r\'esoudre aussi $x^4 - 5x^2 + 4 \leq 0$.
 Soit $P(x) = x^2 - 3$.
 \begin{enumerate}
   \item Montrer que les racines de $P$ sont $\pm\sqrt{3}$.
-  \item En utilisant Vi\`ete, montrer que si $r = p/q$ (rationnel irr\'eductible)
-        \'etait racine, on aurait $q^2 \mid 1$ et $p^2 \mid 3$.
-        Conclure que $\sqrt{3}$ est irrationnel.
+  \item Montrer que si $r = p/q$ (fraction irr\'eductible) \'etait racine,
+        on aurait $p^2 = 3q^2$~; en d\'eduire que $3$ divise $p$, puis $q$,
+        et conclure que $\sqrt{3}$ est irrationnel.
   \item G\'en\'eraliser~: si $P(x) = x^2 - n$ avec $n$ entier non carr\'e parfait,
         $\sqrt{n}$ est irrationnel.
 \end{enumerate}
@@ -917,8 +917,8 @@ On param\`etre~: $a = m^2-n^2$, $b = 2mn$, $c = m^2+n^2$ avec $m > n > 0$.
 \begin{enumerate}
   \item V\'erifier que $a^2+b^2=c^2$.
   \item Trouver les triplets pour $(m,n)=(2,1)$, $(3,2)$, $(4,1)$, $(4,3)$.
-  \item D\'emontrer que $c^2 = (m^2+n^2)^2$ est le carr\'e d'un entier~: est-ce
-        que tout carr\'e parfait peut \^etre l'hypot\'enuse d'un triangle rectangle~?
+  \item D\'emontrer que $c = m^2+n^2$ est un entier~: est-ce
+        que tout entier peut \^etre l'hypot\'enuse d'un triplet pythagoricien~?
   \item Chercher si $(5,12,13)$ et $(8,15,17)$ sont pythagoriciens.
 \end{enumerate}
 \end{challenge}
@@ -978,6 +978,7 @@ d'un polyn\^ome est major\'e par le nombre de changements de signe de ses coeffi
         Simplifier en factorisant. Tableau de signe~: produit des signes.
   \item \textbf{Syst\`eme $2\times2$}~: substitution ou combinaison lin\'eaire.
 \end{itemize}
+\end{bilan}
 
 %─────────────────────────────────────────────────────────────────
 \subsection*{Logique \& Algorithmes}
@@ -1181,4 +1182,3 @@ La m\'ethode de Newton approche une racine de $f(x)=x^2-a$ par $u_{n+1}=u_n-f(u_
 \end{enumerate}
 \end{challenge}
 
-\end{bilan}

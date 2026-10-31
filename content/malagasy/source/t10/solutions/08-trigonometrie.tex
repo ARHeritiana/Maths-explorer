@@ -154,11 +154,7 @@ Q4 & $+$ & $-$ & $-$ \\\hline
 Triangle rectangle en $A$~; $\theta=\widehat{ABC}$.
 \begin{enumerate}
   \item $\cos\theta=AB/BC$~; $\sin\theta=AC/BC$~; $\tan\theta=AC/AB$.
-  \item Triangle $(3,4,5)$, $\theta$ oppos\'e \`a $5$ (i.e. $\theta=90^{\circ}$~?)~:
-        Hypot\'enuse $=5$~; c\^ot\'e adjacent \`a $\theta$~? 
-        Angle $\theta=\widehat{ABC}$ oppos\'e au c\^ot\'e $AC=?$~.
-        Avec $BC=5$ hypot\'enuse~; $AB=4$, $AC=3$~:
-        $\cos\theta=4/5$~; $\sin\theta=3/5$~; $\tan\theta=3/4$.
+  \item $AB=4$, $AC=3$, $BC=5$ (hypot\'enuse)~: $\cos\theta=AB/BC=4/5$~; $\sin\theta=AC/BC=3/5$~; $\tan\theta=AC/AB=3/4$.
   \item $\cos^2\theta+\sin^2\theta=16/25+9/25=1$.\checkmark
 \end{enumerate}
 
@@ -344,8 +340,10 @@ $\widehat{A}=\frac{\pi}{3}$, $\widehat{B}=\frac{\pi}{4}$, $AB=6$.
   \item $\widehat{C}=\pi-\frac{\pi}{3}-\frac{\pi}{4}=\pi-7\pi/12=5\pi/12=75^{\circ}$.
   \item $\widehat{A}+\widehat{B}+\widehat{C}=\frac{\pi}{3}+\frac{\pi}{4}+5\pi/12=4\pi/12+3\pi/12+5\pi/12=12\pi/12=\pi$.\checkmark
         Non rectangle (pas d'angle $\frac{\pi}{2}$).
-  \item Si rectangle en $C$ (hypothétiquement)~: $\widehat{C}=\frac{\pi}{2}\Rightarrow\widehat{A}+\widehat{B}=\frac{\pi}{2}$~;
-        mais $\frac{\pi}{3}+\frac{\pi}{4}=7\pi/12\ne\frac{\pi}{2}$~: incompatible avec les angles donn\'es.
+  \item Hauteur $CH$ issue de $C$ ($H\in[AB]$, car $\widehat A$ et $\widehat B$ sont aigus)~: $CH=AH\tan\frac{\pi}{3}=HB\tan\frac{\pi}{4}$, donc $HB=\sqrt3\,AH$ et $AH+HB=6$~;
+        $AH=\dfrac{6}{1+\sqrt3}=3(\sqrt3-1)$. Alors $AC=\dfrac{AH}{\cos(\pi/3)}=2AH=6(\sqrt3-1)\approx4{,}39$ et
+        $BC=\dfrac{HB}{\cos(\pi/4)}=\sqrt2\cdot\sqrt3\,AH=3\sqrt2(3-\sqrt3)\approx5{,}38$ (v\'erifi\'e par la loi des sinus).
+        Le triangle n'est pas rectangle en $C$ (voir (2))~: $\widehat A+\widehat B=\frac{7\pi}{12}\ne\frac{\pi}{2}$.
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────
@@ -364,9 +362,8 @@ $\widehat{A}=\frac{\pi}{3}$, $\widehat{B}=\frac{\pi}{4}$, $AB=6$.
 \solutiontitle{Calculer une expression}
 
 \begin{enumerate}
-  \item $\sin^2\theta+\cos^2\theta+\tan^2\theta\cos^2\theta=1+\sin^2\theta=1+\sin^2\theta$.
-        Plus pr\'ecis\'ement~: $\tan^2\theta\cos^2\theta=\sin^2\theta$, donc total~$=1+\sin^2\theta$.
-        Hmm~: $\sin^2\theta+\cos^2\theta+\tan^2\theta\cos^2\theta=1+\frac{\sin^2\theta}{\cos^2\theta}\cdot\cos^2\theta=1+\sin^2\theta$.
+  \item $\sin^2\theta+\cos^2\theta=1$ et, pour $\cos\theta\ne0$, $\tan^2\theta\cos^2\theta=\dfrac{\sin^2\theta}{\cos^2\theta}\cos^2\theta=\sin^2\theta$~;
+        l'expression vaut donc $1+\sin^2\theta$.
   \item $(\sin\theta-1)(\sin\theta+1)=\sin^2\theta-1=-\cos^2\theta$.
   \item $\frac{\sin^2\theta-1}{\cos\theta}=\frac{-\cos^2\theta}{\cos\theta}=-\cos\theta$.
   \item $(\cos+\sin)^2+(\cos-\sin)^2=2\cos^2\theta+2\sin^2\theta=2$.
@@ -494,10 +491,10 @@ def solve_cos(a):
 \begin{enumerate}
   \item $\cos x=a$ a des solutions ssi $|a|\leq1$.
         Formuler~: $\exists x\in\R,\;\cos x=a\Leftrightarrow a\in[-1,1]$.
-  \item Solution unique dans $[0,2\pi]$~: $a=1$ ($x=0\equiv2\pi$) ou $a=-1$ ($x=\pi$).
-        Condition~: $a=1$ ou $a=-1$.
+  \item Solution unique dans $[0,2\pi]$~: $a=-1$ ($x=\pi$). Pour $a=1$ il y a deux r\'eels distincts, $0$ et $2\pi$
+        (m\^eme s'ils d\'esignent le m\^eme point du cercle). Condition~: $a=-1$.
   \item N\'egation de \og deux solutions\fg~:
-        l'\'equation a $0$ ou $1$ solution, i.e. $|a|>1$ ou $a=\pm1$.
+        l'\'equation a $0$ ou $1$ solution, i.e. $|a|>1$ ou $a=-1$.
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────
@@ -510,8 +507,8 @@ def solve_cos(a):
         par rapport \`a $Oy$~: m\^eme ordonn\'ee, donc $\sin(\pi-\theta)=\sin\theta$.\hfill$\square$
   \item Implication~: \og Pour tout $\theta$, $\cos(\pi+\theta)=-\cos\theta$.\fg
         R\'eciproque~: \og Si $\cos(\pi+\theta)=-\cos\theta$, alors \ldots\fg~: toujours vraie (identit\'e pour tout $\theta$).
-  \item $(\cos\theta+\sin\theta)^2=1+2\sin\theta\cos\theta\leq1+2\cdot\frac{1}{2}=2$
-        (car $2\sin\theta\cos\theta=\sin(2\theta)\in[-1,1]$).\hfill$\square$
+  \item $(\cos\theta+\sin\theta)^2=1+2\sin\theta\cos\theta$ et $2\sin\theta\cos\theta\leq\sin^2\theta+\cos^2\theta=1$
+        (car $(\sin\theta-\cos\theta)^2\geq0$)~; donc $(\cos\theta+\sin\theta)^2\leq2$.\hfill$\square$
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────
@@ -528,9 +525,8 @@ def solve_cos(a):
 \solutiontitle{\logiq\ N\'ecessaire et suffisant en trigonom\'etrie}
 
 \begin{enumerate}
-  \item $\sin\theta=0$ est \textbf{CN} pour $\theta=0$ (car $\sin 0=0$, OK~; mais $\sin\pi=0\ne$ implique $\theta=0$).
-        CNS pour $\theta\in\{0,\pi,2\pi\}$~? Non, $\sin(\theta)=0\Leftrightarrow\theta\in\{0,\pi,2\pi,\ldots\}$.
-        CNS pour $\theta=k\pi$~: oui.
+  \item $\theta=0\Rightarrow\sin\theta=0$~: \og $\sin\theta=0$\fg\ est une condition \textbf{n\'ecessaire} pour $\theta=0$, mais pas suffisante ($\sin\pi=0$).
+        Pour \og $\theta\in\{0,\pi,2\pi\}$\fg\ (sur $[0,2\pi]$)~: CNS. Pour \og $\theta=k\pi$, $k\in\Z$\fg\ (sur $\R$)~: CNS.
   \item $\sin\theta=\frac{\sqrt{3}}{2}$ est \textbf{CS} (pas CNS) pour $\theta=\frac{\pi}{3}$~:
         l'implication $\theta=\frac{\pi}{3}\Rightarrow\sin\theta=\frac{\sqrt{3}}{2}$ est vraie~;
         mais $\sin(\frac{2\pi}{3})=\frac{\sqrt{3}}{2}$ aussi, donc la CNS est $\theta=\frac{\pi}{3}$ ou $\theta=\frac{2\pi}{3}$.
@@ -655,7 +651,7 @@ import math
 for n in [4, 6, 8, 12, 24, 96, 1000]:
     Pn = 2 * n * math.sin(math.pi / n)
     print(f"n={n:5d}: P_n = {Pn:.8f}, pi = {math.pi:.8f}")
-# Pour n=96: P_96 ~ 3.14103... (approx d'Archimede)
+# Pour n=96: P_96 ~ 6.28206 (donc P_96/2 ~ 3.14103, approximation d'Archimede de pi par defaut)
 \end{lstlisting}
 
 %────────────────────────────────────────────────────────────────
@@ -784,8 +780,9 @@ $18=16+10-2\cdot4\cdot\sqrt{10}\cdot\frac{1}{\sqrt{10}}=26-8=18$.\checkmark
 
 $x(\theta)=3\cos\theta+4\sin\theta$.
 \textbf{(1)} $\sqrt{9+16}=5$.
-\textbf{(2)} $|x(\theta)|=|3\cos\theta+4\sin\theta|\leq|3\cos\theta|+|4\sin\theta|\leq3+4=7$... mieux~:
-par Cauchy-Schwarz, $|3\cos\theta+4\sin\theta|\leq\sqrt{9+16}\sqrt{\cos^2\theta+\sin^2\theta}=5$.\checkmark
+\textbf{(2)} $x(0)=3$~; $x(\frac\pi6)=\frac{3\sqrt3}{2}+2\approx4{,}60$~; $x(\frac\pi4)=\frac{7\sqrt2}{2}\approx4{,}95$~;
+$x(\frac\pi3)=\frac32+2\sqrt3\approx4{,}96$~; $x(\frac\pi2)=4$~: toutes ces valeurs sont $\leq5$.\checkmark
+(Pour tout $\theta$~: $|3\cos\theta+4\sin\theta|\leq\sqrt{9+16}\sqrt{\cos^2\theta+\sin^2\theta}=5$ par l'in\'egalit\'e de Cauchy--Schwarz, hors programme.)
 \textbf{(3)} $x(\frac{\pi}{3})=3/2+4\cdot\frac{\sqrt{3}}{2}=3/2+2\sqrt{3}$.
 \textbf{(4)} $3\cos\theta=-4\sin\theta\Rightarrow\tan\theta=-3/4$.
 $\theta=\arctan(-3/4)$~; sur $[0,2\pi]$~: $\theta=\pi-\arctan(3/4)\approx2{,}50$ et $\theta=2\pi-\arctan(3/4)\approx5{,}64$.
@@ -845,11 +842,12 @@ import math
 
 print(f"pi = {math.pi:.10f}")
 for n in [6, 12, 24, 48, 96]:
-    Pn = 2 * n * math.sin(math.pi / n)   # inscrit
-    Pn_circ = 2 * n * math.tan(math.pi / n)  # circonscrit
-    print(f"n={n:3d}: {Pn:.8f} < pi < {Pn_circ:.8f}")
+    Pn = 2 * n * math.sin(math.pi / n)       # perimetre inscrit
+    Pn_circ = 2 * n * math.tan(math.pi / n)  # perimetre circonscrit
+    print(f"n={n:3d}: {Pn/2:.8f} < pi < {Pn_circ/2:.8f}")
 \end{lstlisting}
-Pour $n=96$~: $3{,}14103\ldots<\pi<3{,}14271\ldots$~: l'encadrement d'Archim\`ede.
+Les p\'erim\`etres encadrent $2\pi$~; il faut donc diviser par $2$ pour encadrer $\pi$.
+Pour $n=96$~: $P_{96}\approx6{,}28206$ et $P'_{96}\approx6{,}28543$, soit $3{,}14103<\pi<3{,}14271$~: l'encadrement d'Archim\`ede.
 
 %────────────────────────────────────────────────────────────────
 \psolutiontitle{\algo\ D\'eterminer le quadrant \computer}
@@ -907,8 +905,9 @@ $x=0,\pi,2\pi$ ou $x=\frac{\pi}{2},\frac{3\pi}{2}$.
 $x=0$~: $1+0=1$.\checkmark\quad
 $x=\frac{\pi}{2}$~: $0+1=1$.\checkmark\quad
 $x=\pi$~: $-1+0=-1\ne1$~: parasite.\quad
-$x=\frac{3\pi}{2}$~: $0+(-1)=-1\ne1$~: parasite.
-Solutions~: $x=0$ et $x=\frac{\pi}{2}$.
+$x=\frac{3\pi}{2}$~: $0+(-1)=-1\ne1$~: parasite.\quad
+$x=2\pi$~: $1+0=1$.\checkmark
+Solutions~: $x=0$, $x=\frac{\pi}{2}$ et $x=2\pi$.
 
 %────────────────────────────────────────────────────────────────
 \noindent\phantomsection

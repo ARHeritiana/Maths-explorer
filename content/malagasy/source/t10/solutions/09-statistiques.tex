@@ -422,7 +422,8 @@ $f(t)=\overline{x^2}-2t\bar{x}+t^2$.
         ... $\overline{x^2}=8274/5=1654{,}8$~; $V=1654{,}8-538{,}24=1116{,}56$~; $\sigma\approx33{,}4$.
         La moyenne et l'\'ecart-type ont massivement augment\'e.
   \item M\'ediane de $\{5,6,7,8,9\}=7$~; remplacer la m\'ediane ($7$) par $90$~:
-        $\{5,6,90,8,9\}$ tri\'e~: $\{5,6,8,9,90\}$~; m\'ediane $=8$. Faible impact.
+        $\{5,6,90,8,9\}$ tri\'e~: $\{5,6,8,9,90\}$~; m\'ediane $=8$ (elle passe de $7$ \`a $8$~: faible impact)~;
+        en revanche $\bar{x}=23{,}6$ et $\sigma\approx33{,}2$ (au lieu de $7$ et $1{,}41$).
   \item La m\'ediane est robuste aux valeurs extr\^emes~; la moyenne et l'\'ecart-type y sont tr\`es sensibles.
 \end{enumerate}
 
@@ -860,7 +861,7 @@ Cette condition n'est pas n\'ecessaire.
 
 \textbf{(1)} $\bar{y}=\frac{1}{n}\sum(ax_i+b)=a\cdot\frac{1}{n}\sum x_i+b=a\bar{x}+b$.
 Propri\'et\'e utilis\'ee~: \textbf{lin\'earit\'e de la somme}.\hfill$\square$
-\textbf{(2)} Voir exo 33 ci-dessus.\hfill$\square$
+\textbf{(2)} $V_y=a^2V_x$ : voir le probl\`eme \og Transformation affine et statistiques\fg\ (ou l'exercice \og Variance~: propri\'et\'es\fg).\hfill$\square$
 \textbf{(3)} Non. Prendre $a=1$, $b=0$, $(x_1,x_2,x_3)=(0,1,2)$
 et $(y_1,y_2,y_3)=(0,2,1)$. Les deux s\'eries ont la m\^eme moyenne $1$
 et la m\^me variance $2/3$, mais $y_2\ne x_2$.
@@ -932,14 +933,12 @@ plt.legend(); plt.title('Distribution des sommes'); plt.show()
 {\color{BO}\bfseries\small D\'efi~1~\textendash\ \textit{Paradoxe de Simpson}}
 \par\smallskip
 
-Traitements A et B~:
-\textbf{(1)} Femmes~: A $=200/250=80\%$~; B $=180/200=90\%$.
-\textbf{(2)} Hommes~: A $=45/50=90\%$~; B $=150/300=50\%$.
-\textbf{(3)} Global~: A $=245/300\approx81{,}7\%$~; B $=330/500=66\%$.
-\textbf{(4)} B est meilleure chez les femmes, A est meilleure chez les hommes et globalement.
-Cause~: le groupe des femmes (o\`u B semble meilleur) est $250+200=450$ vs les hommes $50+300=350$~;
-mais A trait\`e beaucoup plus d'hommes (groupe o\`u A excelle~: $90\%$)~:
-les pond\'erations d\'es\'equilibr\'ees font que A domine globalement m\^eme si B domine chez les femmes.
+Traitements A et B (donn\'ees corrig\'ees)~:
+\textbf{(1)} Femmes~: A $=150/250=60\%$~; B $=25/50=50\%$.
+\textbf{(2)} Hommes~: A $=45/50=90\%$~; B $=240/300=80\%$.
+\textbf{(3)} Global~: A $=195/300=65\%$~; B $=265/350\approx75{,}7\%$.
+\textbf{(4)} A est meilleur chez les femmes et chez les hommes, mais B est meilleur globalement~: c'est le paradoxe de Simpson.
+Cause~: les groupes n'ont pas la m\^eme taille selon le traitement. A soigne surtout des femmes ($250$ sur $300$), groupe o\`u les taux de gu\'erison sont bas pour les deux traitements~; B soigne surtout des hommes ($300$ sur $350$), groupe o\`u les taux sont \'elev\'es. La moyenne globale d'un traitement est une moyenne des taux des groupes pond\'er\'ee par ses propres effectifs.
 
 %────────────────────────────────────────────────────────────────
 \noindent\phantomsection
@@ -958,15 +957,10 @@ r\'ealise $\overline{x^2}=\bar{x}^2$, donc $V=0$, minimum.\hfill$\square$
 {\color{BO}\bfseries\small D\'efi~3~\textendash\ \textit{G\'en\'eration de distributions}}
 \par\smallskip
 
-\textbf{(1)} $\bar{x}=10$, $\sigma=3$, m\'ediane $=10$, bo\^ite sym\'etrique~:
-$\{4,8,10,10,10,12,16,10\}$~: $\bar{x}=80/8=10$, m\'ediane $=10$, sym\'etrique...
-En fait~: $\{4,7,9,10,10,11,13,16\}$~: $\bar{x}=80/8=10$~;
-$V=(36+9+1+0+0+1+9+36)/8=92/8=11{,}5$~; $\sigma\approx3{,}39\ne3$.
-Ajustement~: $\{5,8,9,10,10,11,12,15\}$~: $\bar{x}=10$~;
-$V=(25+4+1+0+0+1+4+25)/8=60/8=7{,}5$~; $\sigma\approx2{,}74$.
-Avec $\{4,7,10,10,10,10,13,16\}$~: $\bar{x}=10$~;
-$V=(36+9+0+0+0+0+9+36)/8=90/8\approx11{,}25$~; $\sigma\approx3{,}35$.
-\textbf{(2)} $\{1,2,3,10,15,16,17,16\}$~: $\bar{x}=80/8=10$, bo\^ite asym\'etrique.
+\textbf{(1)} $\{5,7,8,10,10,13,13,14\}$~: $\bar{x}=80/8=10$~; m\'ediane $=(10+10)/2=10$~;
+$V=(25+9+4+0+0+9+9+16)/8=72/8=9$, donc $\sigma=3$~; $Q_1=7$, $Q_2=10$, $Q_3=13$ (rangs $2$ et $6$)~: la bo\^ite est sym\'etrique ($Q_2-Q_1=Q_3-Q_2=3$).
+(Autre exemple~: $\{4,8,9,9,11,12,13,14\}$.)
+\textbf{(2)} $\{1,2,3,10,15,16,16,17\}$~: $\bar{x}=80/8=10$~; $Q_1=2$, $Q_2=12{,}5$, $Q_3=16$~: $Q_2-Q_1=10{,}5\ne3{,}5=Q_3-Q_2$, bo\^ite fortement asym\'etrique.
 \textbf{(3)} Oui~: $\{5,5,5,5,5\}$~: $Q_1=Q_2=Q_3=5$.
 \textbf{(4)} Oui~: $\{1,1,1,1,9,9,9,9\}$~: $Q_1=1$, $Q_3=9$, IQR$=8$~;
 $\bar{x}=5$~; $\sigma=4=IQR/2$~: ici $\sigma<IQR$.
@@ -978,11 +972,10 @@ $\{0,10,10,10,10,20\}$~: IQR$=0$, $\sigma>0$~: $\sigma>IQR$ est possible.
 \par\smallskip
 
 \textbf{(1)} Chaque $x_i\in[m,M]$~: $nm\leq\sum x_i\leq nM$~; diviser par $n$~: $m\leq\bar{x}\leq M$.\hfill$\square$
-\textbf{(2)} Non~: $\{1,1,3,100\}$~: $Q_2=(1+3)/2=2$~; $\bar{x}=105/4=26{,}25>Q_2$.
-Pourtant $50\%$ des valeurs sont $\leq2$ et $50\%$ sont $\geq2$~: la moyenne est tir\'ee par $100$.
+\textbf{(2)} Non~: $\{1,10,10,10,10\}$ a pour m\'ediane $Q_2=10$ (au moins la moiti\'e des valeurs sont $\geq10$) et pour moyenne $41/5=8{,}2<Q_2$~: la moyenne est tir\'ee vers le bas par la valeur $1$.
 \textbf{(3)} Non~: $Q_2=\bar{x}$ n'implique pas $Q_2-Q_1=Q_3-Q_2$.
-Exemple~: $\{1,3,5,7,9\}$~: $\bar{x}=5=Q_2$, sym\'etrique donc OK ici~;
-mais $\{1,4,5,8,12\}$~: $\bar{x}=6\ne Q_2=5$.
+Contre-exemple~: $\{0,1,5,6,13\}$~: $\bar{x}=25/5=5=Q_2$, mais $Q_1=1$ (rang $2$) et $Q_3=6$ (rang $4$)~:
+$Q_2-Q_1=4\ne1=Q_3-Q_2$.
 
 %────────────────────────────────────────────────────────────────
 \noindent\phantomsection
@@ -1032,9 +1025,8 @@ Pour $x=13$~: $y\approx0{,}681\times13+4{,}42\approx13{,}27$.
 
 \textbf{(1)} $V=\frac{1}{n}\sum(x_i-\bar{x})^2\geq0$ car somme de carr\'es.\hfill$\square$
 \textbf{(2)} $V=0\Leftrightarrow\sum(x_i-\bar{x})^2=0\Leftrightarrow\forall i,\;x_i=\bar{x}$.\hfill$\square$
-\textbf{(3)} Si $\sum x_i=S$ fix\'e, $\bar{x}=S/n$ fix\'e. $V=\overline{x^2}-\bar{x}^2$~;
-minimiser $V$ = minimiser $\overline{x^2}$. Par Cauchy-Schwarz~: $\overline{x^2}\geq\bar{x}^2$,
-avec \'egalit\'e ssi tous \'egaux. La s\'erie constante r\'ealise ce minimum.\hfill$\square$
+\textbf{(3)} Si $\sum x_i=S$ est fix\'e, $\bar{x}=S/n$ est fix\'e. $V=\overline{x^2}-\bar{x}^2\geq0$ d'apr\`es (1), donc $\overline{x^2}\geq\bar{x}^2$,
+avec \'egalit\'e ssi $V=0$ ssi toutes les valeurs sont \'egales (2). La s\'erie constante $x_i=S/n$ r\'ealise ce minimum.\hfill$\square$
 \textbf{(4)} Implications~: $V\geq0$ (toujours)~; $V=0\Rightarrow$ valeurs \'egales~;
 valeurs \'egales $\Rightarrow V=0$~; donc $V=0\Leftrightarrow$ valeurs \'egales.
 

@@ -692,7 +692,7 @@ D\'emontrer que $\sqrt{3}\notin\Q$ par l'absurde.
 \end{exo}
 
 \begin{exo}[In\'egalit\'e des moyennes \corrige]{3}
-Pour tous r\'eels $a, b \geq 0$, on admet que~:
+Pour tous r\'eels $a, b \geq 0$, on veut montrer que~:
 $$\text{Moyenne arithm\'etique} \geq \text{Moyenne g\'eom\'etrique}~:
 \quad\frac{a+b}{2} \geq \sqrt{ab}.$$
 \begin{enumerate}
@@ -828,7 +828,7 @@ $T_n$ a des c\^ot\'es $1$, $\sqrt{n}$, $\sqrt{n+1}$.
   \item Les longueurs $\sqrt{2},\sqrt{3},\sqrt{4},\ldots,\sqrt{n}$
         sont-elles toujours irrationnelles~?
   \item Calculer le p\'erim\`etre $P_n$ du triangle $T_n$.
-        Montrer que $2 < P_n < 1 + \sqrt{n+1}$.
+        Montrer que $1+2\sqrt{n} < P_n < 1+2\sqrt{n+1}$.
 \end{enumerate}
 \end{probleme}
 
@@ -889,7 +889,8 @@ $S(c) = \abs{c-x_1} + \abs{c-x_2} + \cdots + \abs{c-x_n}$.
   \item Distance Terre-Lune~: $3{,}84\times10^8$ m.
         Combien de fois le tour de la Terre ($4\times10^7$ m) cela repr\'esente-t-il~?
   \item Nombre d'atomes dans $1$ g d'hydrog\`ene~: $6{,}02\times10^{23}$.
-        Combien d'atomes dans $18$ g d'eau ($\text{H}_2\text{O}$)~?
+        Combien d'atomes d'hydrog\`ene dans $18$ g d'eau ($\text{H}_2\text{O}$), sachant
+        que ces $18$ g contiennent $2$ g d'hydrog\`ene~?
   \item Un an-lumi\`ere vaut $9{,}46\times10^{15}$ m.
         L'\'etoile la plus proche (Proxima Centauri) est \`a $4{,}24$
         ann\'ees-lumi\`ere. Calculer cette distance en m\`etres.
@@ -937,11 +938,11 @@ $$a_{n+1} = a_n + 2b_n, \qquad b_{n+1} = a_n + b_n.$$
   \item Calculer $(a_0,b_0),\,(a_1,b_1),\,(a_2,b_2),\,(a_3,b_3)$.
   \item Calculer les rapports $a_n/b_n$ pour $n=0,1,2,3$.
         Ils semblent s'approcher de~?
-  \item V\'erifier que $a_n^2 - 2b_n^2 = (-1)^n$ pour $n=0,1,2,3$.
+  \item V\'erifier que $a_n^2 - 2b_n^2 = (-1)^{n+1}$ pour $n=0,1,2,3$.
         Admettre que cette propri\'et\'e est vraie pour tout $n$.
         \emph{(On peut le v\'erifier~: si $a^2-2b^2=\pm1$, calculer
         $(a+2b)^2 - 2(a+b)^2$ et montrer que c'est $-(a^2-2b^2)$.)}
-  \item En d\'eduire que $\bigl(\dfrac{a_n}{b_n}\bigr)^2 = 2 + \dfrac{(-1)^n}{b_n^2}$.
+  \item En d\'eduire que $\bigl(\dfrac{a_n}{b_n}\bigr)^2 = 2 + \dfrac{(-1)^{n+1}}{b_n^2}$.
         Que dit cela sur la pr\'ecision de l'approximation $a_n/b_n$ de $\sqrt{2}$~?
         Plus $b_n$ est grand, l'approximation est-elle meilleure ou moins bonne~?
 \end{enumerate}
@@ -985,7 +986,7 @@ Tout rationnel $p/q$ a un d\'eveloppement d\'ecimal \emph{p\'eriodique}.
 \begin{enumerate}
   \item Calculer $1/7$, $2/7$, \ldots, $6/7$ en d\'ecimaux.
         Quelle est la p\'eriode~?
-  \item Montrer que la p\'eriode de $1/q$ divise toujours $q-1$
+  \item Montrer que, pour $q$ premier diff\'erent de $2$ et de $5$, la p\'eriode de $1/q$ divise $q-1$
         (admis pour l'instant).
         V\'erifier sur $q = 3, 7, 11$.
   \item $0{,}\overline{142857} = 1/7$~: v\'erifier en multipliant par $7$.
@@ -1016,13 +1017,13 @@ La diagonale d'un carr\'e de c\^ot\'e $1$ mesure $\sqrt{2}$.
         $$\bigl(\sqrt{3}+\sqrt{2}\bigr)^4 - \bigl(\sqrt{3}-\sqrt{2}\bigr)^4.$$
         \emph{(Indication~: poser $u=\sqrt{3}+\sqrt{2}$ et $v=\sqrt{3}-\sqrt{2}$,
         remarquer que $uv=1$.)}
-  \item Montrer que $\dfrac{1}{\sqrt{n+1}-\sqrt{n}} = \sqrt{n+1}+\sqrt{n}$
+  \item Montrer que $\dfrac{1}{\sqrt{n+1}+\sqrt{n}} = \sqrt{n+1}-\sqrt{n}$
         pour tout entier $n \geq 0$.
   \item En utilisant ce r\'esultat, calculer la somme t\'elescopique~:
-        $$S = \frac{1}{\sqrt{2}-1} + \frac{1}{\sqrt{3}-\sqrt{2}}
-             + \frac{1}{\sqrt{4}-\sqrt{3}} + \cdots + \frac{1}{\sqrt{9}-\sqrt{8}}.$$
+        $$S = \frac{1}{\sqrt{2}+1} + \frac{1}{\sqrt{3}+\sqrt{2}}
+             + \frac{1}{\sqrt{4}+\sqrt{3}} + \cdots + \frac{1}{\sqrt{9}+\sqrt{8}}.$$
   \item G\'en\'eraliser~: calculer
-        $\displaystyle\sum_{k=1}^{n} \frac{1}{\sqrt{k+1}-\sqrt{k}}$.
+        $\displaystyle\sum_{k=1}^{n} \frac{1}{\sqrt{k+1}+\sqrt{k}}$.
 \end{enumerate}
 \end{challenge}
 
@@ -1046,10 +1047,7 @@ La diagonale d'un carr\'e de c\^ot\'e $1$ mesure $\sqrt{2}$.
         multiplier par l'expression conjugu\'ee pour \'eliminer $\sqrt{}$
         au d\'enominateur.
 \end{itemize}
-
-%─────────────────────────────────────────────────────────────────
-\subsection*{Logique \& Algorithmes}
-%─────────────────────────────────────────────────────────────────
+\end{bilan}
 
 %─────────────────────────────────────────────────────────────────
 \subsection*{Logique \& Algorithmes}
@@ -1267,7 +1265,6 @@ La m\'ethode de Newton approche $\sqrt[k]{a}$ en posant $u_{n+1}=\frac{(k-1)u_n+
 \end{enumerate}
 \end{challenge}
 
-\end{bilan}
 
 
 %% ════════════════════════════════════════════════════════════════

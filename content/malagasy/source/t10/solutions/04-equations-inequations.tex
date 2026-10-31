@@ -319,7 +319,7 @@ Carr\'e $6\times6$, rectangle $4\times9$ (m\^eme aire $36$).\checkmark
 
 \textbf{(1)} $P(1)=1-2+1-1=-1$. Division~: $x^3-2x^2+x-1=(x-1)(x^2-x)-1$.
 
-\textbf{(2)} $P(-2)=2(-8)+4+6+2=0$. Division~: $(x+2)(2x^2-3x+1)=(x+2)(2x-1)(x-1)$.
+\textbf{(2)} $P(-2)=2(-8)+4+6+2=-4$. Division~: $2x^3+x^2-3x+2=(x+2)(2x^2-3x+3)-4$ (quotient $2x^2-3x+3$, reste $-4=P(-2)$, $\Delta(2x^2-3x+3)=-15<0$).
 
 \textbf{(3)} $P(1)=0$. Division~: $(x-1)(x^2+x+2)$.
 V\'erif.~: $\Delta(x^2+x+2)=-7<0$~: pas de factorisation r\'eelle suppl\'ementaire.\hfill$\square$
@@ -581,6 +581,7 @@ for x in range(-10, 11):
     if a*x**2 + b*x + c < 0:
         print(x)
 \end{lstlisting}
+Pour $x^2-5x+6=(x-2)(x-3)<0\Leftrightarrow2<x<3$ aucun entier ne convient~: le programme n'affiche rien.
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────
@@ -612,11 +613,11 @@ a, b, c = 1, -5, 6
 x, prev = -100.0, None
 while x <= 100.0:
     curr = a*x**2 + b*x + c
-    if prev is not None and prev * curr < 0:
+    if prev is not None and prev != 0 and prev * curr <= 0:
         print(f"Racine ~ {x:.2f}")
     prev, x = curr, round(x + 0.01, 10)
 \end{lstlisting}
-Ce balayage localise deux racines proches de $x=2{,}00$ et $x=3{,}00$.
+Ce balayage localise les racines $x=2{,}00$ et $x=3{,}00$. Attention~: avec le test strict \texttt{prev * curr < 0}, ces deux racines (exactement sur la grille de pas $0{,}01$, o\`u le trin\^ome vaut $0$) ne seraient \emph{pas} d\'etect\'ees~; il faut accepter le produit nul, sauf si la valeur pr\'ec\'edente est elle-m\^eme nulle.
 
 %────────────────────────────────────────────────────────────────
 \solutiontitle{\algo\ Algorithme~: sch\'ema de H\"orner appliqu\'e}
@@ -740,8 +741,8 @@ L'aire vaut $\frac12\left|(-4)\times1-(-8)\times(-1)\right|=\mathbf{6}$.
 \psolutiontitle{D\'enombrement de racines positives}
 
 \textbf{(1)} Tester $x=2$~: $4-2(m+2)+2m=0$. Donc $2$ est toujours racine.
-Autre racine~: $x_2=m$ (par Vi\`ete).
-Deux racines $>0$~: $m>0$.
+Autre racine~: $x_2=m$ (par Vi\`ete), donc les racines ne sont pas toujours positives (non pour $m\le0$).
+Deux racines strictement positives~: $m>0$ (racine double $2$ si $m=2$).
 
 \textbf{(2)} $P(x)=x(x-1)(x-2)$~: racines $0$, $1$, $2$.
 Racines strictement positives~: $1$ et $2$.
@@ -906,9 +907,10 @@ $x^4-5x^2+4\leq0\Leftrightarrow(u-1)(u-4)\leq0\Leftrightarrow1\leq u\leq4\Leftri
 $p^2=3q^2\Rightarrow3\mid p\Rightarrow p=3k\Rightarrow9k^2=3q^2\Rightarrow3\mid q$.
 Contradiction avec $\pgcd(p,q)=1$.\hfill$\square$
 
-\textbf{(3)} Pour $P(x)=x^2-n$, $n$ non carr\'e parfait~:
-si $\sqrt{n}=p/q$, alors $p^2=nq^2$. Par un argument identique de divisibilit\'e,
-tout facteur premier de $n$ divise \`a la fois $p$ et $q$, contredisant l'irr\'eductibilit\'e.\hfill$\square$
+\textbf{(3)} Pour $P(x)=x^2-n$, $n$ entier non carr\'e parfait~:
+si $\sqrt{n}=p/q$ avec $\pgcd(p,q)=1$, alors $p^2=nq^2$, donc $q^2\mid p^2$.
+Or $\pgcd(p^2,q^2)=1$, d'o\`u $q^2=1$, $q=1$ et $n=p^2$~: $n$ serait un carr\'e parfait, contradiction.
+(L'affirmation \og tout facteur premier de $n$ divise $p$ et $q$\fg\ serait fausse, par exemple pour $n=12$.)\hfill$\square$
 
 %────────────────────────────────────────────────────────────────
 \noindent\phantomsection
@@ -922,7 +924,7 @@ $(2,1)\to(3,4,5)$~; $(3,2)\to(5,12,13)$~;
 $(4,1)\to(15,8,17)$~; $(4,3)\to(7,24,25)$.
 
 \textbf{(3)} $c=m^2+n^2$ est toujours un entier. Mais tout entier n'est pas hypot\'enuse~:
-par exemple $3$ n'est hypot\'enuse d'aucun triplet primitif.
+par exemple $3$ (ou $4$, $6$, $7$) n'est hypot\'enuse d'aucun triplet d'entiers non nuls, alors que $5$ et $13$ le sont.
 
 \textbf{(4)} $5^2+12^2=25+144=169=13^2$.\checkmark\quad
 $8^2+15^2=64+225=289=17^2$.\checkmark

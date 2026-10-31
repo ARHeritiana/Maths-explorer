@@ -24,12 +24,9 @@ $\vec{u}=(2,-1)$, $\vec{v}=(-1,3)$.
         $2\vec{u}+3\vec{v}=(1,7)$~; $\vec{u}-2\vec{v}=(4,-7)$.
   \item $\norme{\vec{u}}=\sqrt{5}$~; $\norme{\vec{v}}=\sqrt{10}$~;
         $\norme{\vec{u}+\vec{v}}=\sqrt{5}$.
-  \item $\sqrt{5}\leq\sqrt{5}+\sqrt{10}$.\checkmark\quad
-        (L'in\'egalit\'e est ici une \'egalit\'e, ce qui signifie que
-        $\vec{u}+\vec{v}=(1,2)$ est colin\'eaire \`a $\vec{u}$ et $\vec{v}$~:
-        en fait $\vec{u}+\vec{v}=(1,2)$ a la m\^eme direction que $\vec{v}=(-1,3)$~?
-        Non, simplement $\norme{\vec{u}+\vec{v}}\leq\norme{\vec{u}}+\norme{\vec{v}}$
-        avec $\sqrt{5}\leq\sqrt{5}+\sqrt{10}\approx5{,}39$.\checkmark)
+  \item $\norme{\vec{u}+\vec{v}}=\sqrt{5}\approx2{,}24\leq\sqrt{5}+\sqrt{10}\approx5{,}40=\norme{\vec{u}}+\norme{\vec{v}}$.\checkmark\quad
+        L'in\'egalit\'e est stricte car $\vec{u}$ et $\vec{v}$ ne sont pas colin\'eaires
+        ($2\times3-(-1)(-1)=5\ne0$).
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────
@@ -51,10 +48,10 @@ $\vec{u}=(2,-1)$, $\vec{v}=(-1,3)$.
 \solutiontitle{Parall\'elogramme}
 
 \textbf{(1)} $\vv{AB}=(3,2)$, $\vv{DC}=(3,2)$.\checkmark\quad $ABCD$ est un parall\'elogramme.
-$AB=DC=\sqrt{13}$~; $AD=BC=\sqrt{10}$~; $AC=\sqrt{8}$, $BD=\sqrt{20}=2\sqrt{5}$.
+$AB=DC=\sqrt{13}$~; $AD=BC=\sqrt{10}$~; $AC=\sqrt{5}$ (avec $\vv{AC}=(2,-1)$), $BD=\sqrt{41}$ (avec $\vv{BD}=(-4,-5)$).
 
 \textbf{(2)} $\vv{AB}=(4,2)$, $\vv{DC}=(4,2)$.\checkmark\quad $ABCD$ est un parall\'elogramme.
-$AB=DC=2\sqrt{5}$~; $AD=BC=\sqrt{8}=2\sqrt{2}$~; $AC=\sqrt{36+4}=\sqrt{40}$, $BD=\sqrt{16+16}=4\sqrt{2}$.
+$AB=DC=2\sqrt{5}$~; $AD=BC=\sqrt{13}$ (avec $\vv{AD}=(2,-3)$)~; $AC=\sqrt{37}$ (avec $\vv{AC}=(6,-1)$), $BD=\sqrt{29}$ (avec $\vv{BD}=(-2,-5)$).
 
 %────────────────────────────────────────────────────────────────
 \solutiontitle{Orthogonalit\'e}
@@ -100,8 +97,8 @@ $A(-2,3)$, $B(4,-1)$, $C(1,5)$.
   \item $AB=\sqrt{36+16}=\sqrt{52}=2\sqrt{13}$~;
         $BC=\sqrt{9+36}=\sqrt{45}=3\sqrt{5}$~;
         $CA=\sqrt{9+4}=\sqrt{13}$.
-  \item $CA=\sqrt{13}$, $AB=2\sqrt{13}=2\cdot CA$~: isoc\`ele ($BC\ne CA\ne AB$, mais
-        $AB=2CA$, v\'erifier d'abord~: non \'equilat\'eral). Non isoc\`ele (trois c\^ot\'es distincts).
+  \item $CA=\sqrt{13}\approx3{,}61$, $BC=\sqrt{45}\approx6{,}71$, $AB=\sqrt{52}\approx7{,}21$~: les trois c\^ot\'es sont distincts,
+        le triangle n'est ni \'equilat\'eral ni isoc\`ele.
   \item P\'erim\`etre~: $2\sqrt{13}+3\sqrt{5}+\sqrt{13}=3\sqrt{13}+3\sqrt{5}$.
   \item Milieu de $[AB]$~: $(1,1)$~; milieu de $[BC]$~: $(\frac{5}{2},2)$~;
         milieu de $[CA]$~: $(-\frac{1}{2},4)$.
@@ -154,7 +151,7 @@ $A(0,0)$, $B(4,0)$, $C(2,3)$.
 \begin{enumerate}
   \item $\vv{AB}=(4,0)$~; $\vv{BC}=(-2,3)$~; $\vv{CA}=(-2,-3)$.
   \item $\vv{AB}\cdot\vv{BC}=-8+0=-8\ne0$~: pas rectangle en $B$.
-  \item $ABDC$ parall\'elogramme~: $\vv{AB}=\vv{CD}\Rightarrow D=C+\vv{BA}=(2,3)+(-4,0)=(-2,3)$.
+  \item $ABCD$ parall\'elogramme~: $\vv{AB}=\vv{DC}\Rightarrow D=C-\vv{AB}=(2,3)-(4,0)=(-2,3)$.
   \item Milieu de $[BD]$~: $(\frac{4-2}{2},\frac{0+3}{2})=(1,\frac{3}{2})$.
         Milieu de $[AC]$~: $(1,\frac{3}{2})$.\checkmark
 \end{enumerate}
@@ -179,9 +176,7 @@ $\vec{t}=(2,-3)$.
   \item $M(1,4)\to M'(3,1)$.
   \item $M'(5,1)=M+(2,-3)\Rightarrow M(3,4)$.
   \item Image de $[AB]$ avec $A(0,0)$, $B(3,2)$~: segment $[A'B']$, $A'(2,-3)$, $B'(5,-1)$.
-  \item Image du triangle $OAB$~: triangle $O'A'B'$ avec $O'(2,-3)$, $A'(2,-3)$... m\^eme r\'esultat.
-        \emph{(Le triangle se translate~; $O'=(2,-3)$, $A'=(2,-3)$... non~: $O=(0,0)\to O'=(2,-3)$,
-        $A=(4,0)\to A'=(6,-3)$, $B=(3,2)\to B'=(5,-1)$.)}
+  \item Image du triangle $OAB$ ($O(0,0)$, $A(4,0)$, $B(3,2)$)~: triangle $O'A'B'$ avec $O'(2,-3)$, $A'(6,-3)$, $B'(5,-1)$.
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────
@@ -204,7 +199,7 @@ $A(2,3)$, $B(5,1)$, $C(4,6)$.
         $\vv{AB}\cdot\vv{AC}=6-6=0$.\checkmark\quad Le triangle est rectangle en $A$.
   \item Rectangle en $A$ (prouv\'e). V\'erif. en $B$~: $\vv{BA}=(-3,2)$, $\vv{BC}=(-1,5)$~;
         $(-3)(-1)+(2)(5)=13\ne0$. En $C$~: $\vv{CA}=(-2,-3)$, $\vv{CB}=(1,-5)$~;
-        $-2-15=-17\ne0$. Rectangle \textbf{uniquement en} $A$.
+        $-2+15=13\ne0$. Rectangle \textbf{uniquement en} $A$.
   \item $\hat{A}=90^{\circ}$.
   \item Aire~: $\frac{1}{2}\norme{\vv{AB}}\norme{\vv{AC}}=\frac{1}{2}\sqrt{13}\sqrt{13}=\frac{13}{2}$.
 \end{enumerate}
@@ -238,11 +233,7 @@ $\vv{AB}\cdot\vv{AC}=\frac{1}{2}(25+10-65)=\frac{1}{2}(-30)=-15$.
 V\'erif. directe~: $\vv{AB}=(3,4)$, $\vv{AC}=(-1,-3)$~; $-3-12=-15$.\checkmark
 
 \textbf{(3)} $\cos\hat{A}=\frac{-15}{5\sqrt{10}}=\frac{-3}{\sqrt{10}}$~;
-$\hat{A}=\arccos(-3/\sqrt{10})\approx161{,}6^{\circ}$.
-\emph{Remarque~: l'angle interne du triangle est $180^{\circ}-161{,}6^{\circ}=18{,}4^{\circ}$ --- non,
-$\arccos(-3/\sqrt{10})\approx108{,}4^{\circ}$, ce qui est l'angle entre les vecteurs
-$\vv{AB}$ et $\vv{AC}$ orient\'es depuis $A$. C'est bien l'angle interne
-$\hat{A}\approx108{,}4^{\circ}$.}
+$\hat{A}=\arccos(-3/\sqrt{10})\approx161{,}6^{\circ}$ (angle obtus).
 
 %────────────────────────────────────────────────────────────────
 \solutiontitle{Formule du parall\'elogramme}
@@ -294,14 +285,9 @@ $A(0,0)$, $B(6,0)$, $C(2,4)$.
 
 $(d)$~: $2x+y-5=0$, $A(3,1)$.
 \begin{enumerate}
-  \item Vecteur directeur de $(d)$~: $(1,-2)$. $H=(3+t,1-2t)$ sur $(d)$~:
-        $2(3+t)+(1-2t)-5=0\Rightarrow2=0$~!
-        \emph{Correction~: $2(3+t)+(1-2t)=5\Rightarrow7=5$~; incoh\'erent.
-        Reprenons~: $H\in(d)\Rightarrow2(3+t)+(1-2t)-5=0\Rightarrow6+2t+1-2t-5=2\ne0$.
-        Donc le vecteur directeur de $(d)$ est $(1,-2)$ mais $A(3,1)$ n'est pas sur $(d)$
-        ($2\cdot3+1-5=2\ne0$). $H=A+t\vec{n}=(3+2t,1+t)$ o\`u $\vec{n}=(2,1)$ est le vecteur normal.
-        $H\in(d)$~: $2(3+2t)+(1+t)-5=0\Rightarrow6+4t+1+t-5=2+5t=0\Rightarrow t=-2/5$.
-        $H=(3-4/5,1-2/5)=(11/5,3/5)$.}
+  \item Le vecteur normal de $(d)$ est $\vec{n}=(2,1)$ et $A\notin(d)$ ($2\cdot3+1-5=2\ne0$).
+        $\vv{AH}\perp(d)$ donne $H=A+t\vec{n}=(3+2t,1+t)$, et $H\in(d)$~: $2(3+2t)+(1+t)-5=2+5t=0$, $t=-\tfrac25$.
+        $H=\bigl(\tfrac{11}{5},\tfrac35\bigr)$.
   \item $AH=\sqrt{(3-11/5)^2+(1-3/5)^2}=\sqrt{(4/5)^2+(2/5)^2}=\frac{2\sqrt{5}}{5}$.
         Formule~: $d=\frac{|2\cdot3+1\cdot1-5|}{\sqrt{4+1}}=\frac{2}{\sqrt{5}}=\frac{2\sqrt{5}}{5}$.\checkmark
   \item G\'en\'eralisation~: $H=A-t\vec{n}$, $t=\frac{ax_A+by_A+c}{a^2+b^2}$.
@@ -332,11 +318,11 @@ $A(2,0)$, $B(6,2)$, $C(4,6)$.
         $3(x-2)+4(y+1)=0\Rightarrow3x+4y-2=0$.
   \item $\vv{AB}=(2,-3)$~: vecteur normal $(3,2)$.
         $3(x-1)+2(y-2)=0\Rightarrow3x+2y-7=0$.
-  \item Milieu de $[AB]$~: $I(5,4)$. Vecteur $\vv{AB}=(6,-4)$, normal $(4,6)$ (ou $(2,3)$).
-        M\'ediatrice~: $2(x-5)+3(y-4)=0\Rightarrow2x+3y-22=0$.
-  \item Le circocentre est \'egal\`a l'intersection de deux m\'ediatrices.
-        En calculant les m\'ediatrices des deux autres c\^ot\'es, on obtient le m\^eme point~:
-        c'est une propri\'et\'e classique.\hfill$\square$
+  \item Milieu de $[AB]$~: $I(5,4)$. Le vecteur $\vv{AB}=(6,-4)$ est normal \`a la m\'ediatrice.
+        M\'ediatrice~: $6(x-5)-4(y-4)=0$, soit $3x-2y-7=0$.
+        (V\'erification~: $(7,7)$ est sur la droite et $\sqrt{(7-2)^2+(7-6)^2}=\sqrt{(7-8)^2+(7-2)^2}=\sqrt{26}$.)
+  \item Soit $O$ le point commun aux m\'ediatrices de $[AB]$ et de $[BC]$~: $OA=OB$ et $OB=OC$, donc $OA=OC$,
+        c'est-\`a-dire $O$ est aussi sur la m\'ediatrice de $[AC]$ et $OA=OB=OC$~: $O$ est le centre du cercle circonscrit.\hfill$\square$
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────
@@ -375,9 +361,8 @@ $A(2,0)$, $B(8,4)$, $C(4,10)$.
 \textbf{(3)} $\vv{CM'}=-\vv{CM}$ signifie $M'=2C-M$, i.e.\ $C=\frac{M+M'}{2}$~:
 $C$ est le milieu de $[MM']$.\hfill$\square$
 
-\textbf{(4)} $M'N'=(M+\vec{t})(N+\vec{t})$... la sym\'etrie centrale n'est pas une translation.
-$M\to M'=2C-M$, $N\to N'=2C-N$.
-$M'N'=|N'-M'|=|(2C-N)-(2C-M)|=|M-N|=MN$.\checkmark\quad Les distances sont conserv\'ees.
+\textbf{(4)} $M\mapsto M'=2C-M$ et $N\mapsto N'=2C-N$, donc
+$M'N'=\norme{N'-M'}=\norme{(2C-N)-(2C-M)}=\norme{M-N}=MN$.\checkmark\quad Les distances sont conserv\'ees.
 
 %────────────────────────────────────────────────────────────────
 \solutiontitle{Produit scalaire et angle dans un triangle}
@@ -403,7 +388,8 @@ $A(1,0)$, $B(4,0)$, $C(2,3)$.
   \item $\vv{AB}=(2,3)$, $\vv{AC}=(6,9)=3\vv{AB}$~: $\det=0$. Align\'es.
   \item $\vv{AB}=(3,-3)$, $\vv{AC}=(6,-7)$~: $\det=3(-7)-(-3)6=-21+18=-3\ne0$. Non align\'es.
   \item $\vv{AB}=(4,-2)$, $\vv{AC}=(8,-3)$~: $\det=4(-3)-(-2)8=-12+16=4\ne0$. Non align\'es.
-        Pour (d)~: $\det(\vv{AB},\vv{AC})=(4)(k-3)-(-2)(8)=4k-12+16=4k+4=0\Rightarrow k=-1$.
+        Pour (d) avec $B(4,k)$~: $\vv{AB}=(4,k-3)$, $\vv{AC}=(8,-3)$, $\det=4(-3)-8(k-3)=12-8k=0\Rightarrow k=\tfrac32$
+        ($B$ est alors le milieu de $[AC]$).
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────
@@ -545,10 +531,9 @@ $A(0,4)$, $B(-2,0)$, $C(3,0)$.
 \begin{enumerate}
   \item La condition $\det(\vec{u},\vec{v})=0$ est une \textbf{CNS} pour $\vec{u}\parallel\vec{v}$.
   \item $\vec{u}\parallel\vec{v}\Leftrightarrow\det(\vec{u},\vec{v})=x_1y_2-x_2y_1=0$.
-  \item $\vec{u}\parallel\vec{v}$ et $\vec{v}\parallel\vec{w}$~:
-        $\vec{v}=\lambda\vec{u}$ et $\vec{w}=\mu\vec{v}=\mu\lambda\vec{u}$~;
-        donc $\vec{w}=(\mu\lambda)\vec{u}$~: $\vec{u}\parallel\vec{w}$.
-        C'est un raisonnement \textbf{transitif direct}.\hfill$\square$
+  \item Si $\vec{v}\ne\vec{0}$ et $\det(\vec{u},\vec{v})=\det(\vec{v},\vec{w})=0$, alors $\vec{u}=\lambda\vec{v}$ et $\vec{w}=\mu\vec{v}$ (deux vecteurs colin\'eaires dont l'un est non nul), donc $\det(\vec{u},\vec{w})=\lambda\mu\det(\vec{v},\vec{v})=0$~: $\vec{u}\parallel\vec{w}$.
+        C'est un raisonnement par \textbf{d\'eduction directe} (transitivit\'e).
+        L'hypoth\`ese $\vec{v}\ne\vec{0}$ est n\'ecessaire~: $\vec{0}$ est colin\'eaire \`a tout vecteur, donc avec $\vec{v}=\vec{0}$, $\vec{u}=(1,0)$ et $\vec{w}=(0,1)$, les deux hypoth\`eses sont vraies et la conclusion est fausse.\hfill$\square$
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────
@@ -560,8 +545,7 @@ $A(0,4)$, $B(-2,0)$, $C(3,0)$.
         Contradiction avec l'hypoth\`ese.\hfill$\square$
   \item Suppos. que les diagonales $[AC]$ et $[BD]$ se coupent en leur milieu $I$,
         mais que $ABCD$ n'est pas un parall\'elogramme.
-        Or $I$ milieu de $[AC]$ et de $[BD]$~: $\vv{IA}=\vv{IC'}$... 
-        En fait~: $\vv{OI}=\frac{\vv{OA}+\vv{OC}}{2}=\frac{\vv{OB}+\vv{OD}}{2}$
+        Pour un point $O$ quelconque~: $\vv{OI}=\frac{\vv{OA}+\vv{OC}}{2}=\frac{\vv{OB}+\vv{OD}}{2}$
         $\Rightarrow\vv{OA}+\vv{OC}=\vv{OB}+\vv{OD}$
         $\Rightarrow\vv{AB}=\vv{DC}$~: $ABCD$ est un parall\'elogramme.
         Contradiction avec l'hypoth\`ese.\hfill$\square$
@@ -576,7 +560,7 @@ $A(0,4)$, $B(-2,0)$, $C(3,0)$.
   \item \'Equivalence~: $\vec{u}\cdot\vec{v}=0\Leftrightarrow\vec{u}\perp\vec{v}$.
         C'est une d\'efinition~; vraie dans les deux sens.
   \item \'Equivalence~: $\vv{AB}=\vv{DC}\Leftrightarrow ABCD$ est un parall\'elogramme.
-        Les deux sens sont vrais.\hfill$\square$
+        Les deux sens sont vrais (en admettant, dans le sens direct, le cas \og aplati\fg\ o\`u les quatre points sont align\'es comme parall\'elogramme d\'eg\'en\'er\'e).\hfill$\square$
   \item \'Equivalence~: $M$ milieu de $[AB]\Leftrightarrow\vv{MA}+\vv{MB}=\vec{0}$.
         Vraie dans les deux sens (d\'efinition).\hfill$\square$
 \end{enumerate}
@@ -780,7 +764,7 @@ $A(1,-1)$, $B(5,3)$.
 \textbf{(2)} $(x-3)^2+(y-1)^2=8$.
 \textbf{(3)} $\vv{MA}=(1-x,-1-y)$, $\vv{MB}=(5-x,3-y)$.
 $\vv{MA}\cdot\vv{MB}=(1-x)(5-x)+(-1-y)(3-y)
-=5-6x+x^2-3+2y+y^2-3+x^2+y^2=(x-3)^2+(y-1)^2-8$.
+=(x^2-6x+5)+(y^2-2y-3)=(x-3)^2+(y-1)^2-8$.
 Donc $M$ sur le cercle $\Leftrightarrow(x-3)^2+(y-1)^2=8\Leftrightarrow\vv{MA}\cdot\vv{MB}=0$.\hfill$\square$
 \textbf{(4)} $M(1,3)$~: $(1-3)^2+(3-1)^2=4+4=8$.\checkmark\quad
 $M(5,-1)$~: $(5-3)^2+(-1-1)^2=4+4=8$.\checkmark
@@ -802,7 +786,7 @@ $\vv{O'G}=(0,\frac{1}{3})$, $\vv{GH}=(0,\frac{2}{3})=2\vv{O'G}$~:
 $O'G=\dfrac{GH}{2}$.\checkmark
 
 \textbf{(3)} $AB=AC=2\sqrt{13}$~: triangle isoc\`ele. Non \'equilat\'eral. Non rectangle
-($\vv{AB}\cdot\vv{AC}=(-4)(4)+(0-6)(0-6)... = -16+36=20\ne0$).
+($\vv{AB}=(-4,-6)$, $\vv{AC}=(4,-6)$, $\vv{AB}\cdot\vv{AC}=-16+36=20\ne0$~; en $B$~: $\vv{BA}\cdot\vv{BC}=(4,6)\cdot(8,0)=32\ne0$).
 
 %────────────────────────────────────────────────────────────────
 \psolutiontitle{Vecteurs et d\'eplacement}
@@ -810,9 +794,8 @@ $O'G=\dfrac{GH}{2}$.\checkmark
 S\'equence depuis $A(0,0)$~: Nord $(0,2)$, Est $(2,0)$, Nord $(0,2)$, Sud-Est $(1,-1)$, Est $(2,0)$.
 \textbf{(1)} $B=(0,0)+(0,2)+(2,0)+(0,2)+(1,-1)+(2,0)=(5,3)$.
 \textbf{(2)} $\vv{AB}=(5,3)$.
-\textbf{(3)} Trois mouvements~: par exemple Est $(2,0)$, Nord $(0,2)$, puis $(3,1)$ (en un seul vecteur)~;
-ou Est $(5,0)$ + Nord $(0,2)$ + Sud-Est $(0,1)$... Une solution simple~:
-$\vec{t_1}=(2,0)$, $\vec{t_2}=(2,0)$, $\vec{t_3}=(1,3)$ (somme $=(5,3)$).\checkmark
+\textbf{(3)} Non. Avec $a$ Nord, $b$ Est et $c$ Sud-Est on veut $2b+c=5$ et $2a-c=3$, d'o\`u $a+b=4$ et $a+b+c=4+c$ avec $c$ impair ($c\ge1$)~:
+au moins $5$ mouvements, et $5$ est atteint pour $(a,b,c)=(2,2,1)$ (la s\'equence de l'\'enonc\'e). Donc $3$ mouvements sont impossibles.
 
 \textbf{(4)}
 \begin{lstlisting}[language=Python]
@@ -855,7 +838,7 @@ Aire totale~: $6\sqrt{3}$.
 \psolutiontitle{Construction d'un point par vecteur}
 
 $A(2,1)$, $B(5,4)$, $C(1,6)$.
-\textbf{(1)} $ABDC$ parall\'elogramme~: $\vv{AB}=\vv{CD}\Rightarrow D=C+\vv{BA}=C-(B-A)=(1,6)-(3,3)=(-2,3)$.
+\textbf{(1)} $ABDC$ parall\'elogramme~: $\vv{AB}=\vv{CD}\Rightarrow D=C+\vv{AB}=(1,6)+(3,3)=(4,9)$.
 \textbf{(2)} $\vv{AE}=2\vv{AB}+\vv{AC}=2(3,3)+(-1,5)=(5,11)$~; $E=(7,12)$.
 \textbf{(3)} $F$ milieu de $[BE]$~: $F=\bigl(\frac{5+7}{2},\frac{4+12}{2}\bigr)=(6,8)$.
 \textbf{(4)} $G=\frac{A+B+C}{3}=\bigl(\frac{8}{3},\frac{11}{3}\bigr)$.
@@ -887,9 +870,9 @@ Relation~: $y'=x'+1$, soit $y=x+1$.\hfill$\square$
 %────────────────────────────────────────────────────────────────
 \psolutiontitle{\logiq\ Logique et preuves g\'eom\'etriques}
 
-\textbf{(1)} D\'emonstration du losange~: voir exo~32 (ci-dessus).
-\'Equivalence (second membre admis)~:
-$ABCD$ losange $\Leftrightarrow AB=BC\wedge\vv{AC}\perp\vv{BD}$.
+\textbf{(1)} Soit $ABCD$ un parall\'elogramme, $\vec u=\vv{AB}$, $\vec v=\vv{AD}$ (donc $\vv{AC}=\vec u+\vec v$, $\vv{BD}=\vec v-\vec u$).
+$\vv{AC}\cdot\vv{BD}=\norme{\vec v}^2-\norme{\vec u}^2$, donc $\vv{AC}\perp\vv{BD}\Leftrightarrow AD=AB\Leftrightarrow AB=BC$ (car $BC=AD$)~; et $AB=BC$ avec $AB=CD$, $BC=DA$ donne les quatre c\^ot\'es \'egaux, c'est-\`a-dire un losange (voir aussi exo~32).
+Sans l'hypoth\`ese \og parall\'elogramme\fg\ l'\'equivalence est fausse~: un cerf-volant $ABCD$ avec $AB=BC$, $CD=DA$ a des diagonales perpendiculaires sans \^etre un losange.
 
 \textbf{(2)} $M$ est sur la m\'ediatrice de $[AB]$
 $\Leftrightarrow MA=MB\Leftrightarrow MA^2=MB^2$
@@ -1043,9 +1026,7 @@ C'est la translation de vecteur $\vec{t_1}+\vec{t_2}$.\hfill$\square$
 
 \textbf{(1)} $\vec{w}=\lambda(1,2)+\mu(-2,1)=(\lambda-2\mu,2\lambda+\mu)$.
 Syst\`eme~: $\lambda-2\mu=a$, $2\lambda+\mu=b$.
-Solution~: $\lambda=\frac{a+2b}{5}$, $\mu=\frac{2b-a}{5}\cdot\frac{1}{2}$...
-\emph{Calcul~:} $5\lambda=a+2b$ et $5\mu=2b-2a$~?
-Vrai~: $\lambda=\frac{a+2b}{5}$, $\mu=\frac{-2a+b}{5}$.
+Solution~: $\lambda=\frac{a+2b}{5}$, $\mu=\frac{-2a+b}{5}$.
 \textbf{V\'erif.~:} $\lambda(1,2)+\mu(-2,1)=\bigl(\frac{a+2b}{5}-\frac{-4a+2b}{5},\frac{2a+4b}{5}+\frac{-2a+b}{5}\bigr)=(a,b)$.\checkmark
 
 \textbf{(2)} G\'en\'eralisation~: $\lambda=\frac{\vec{u}\cdot\vec{w}}{\norme{\vec{u}}^2}$,

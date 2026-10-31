@@ -369,7 +369,7 @@ On donne $A(0,0)$, $B(4,0)$, $C(2,3)$.
   \item Calculer $\vv{AB}$, $\vv{BC}$, $\vv{CA}$.
   \item Calculer $\vv{AB}\cdot\vv{BC}$.
         Le triangle est-il rectangle en $B$~?
-  \item Trouver le point $D$ tel que $ABDC$ soit un parall\'elogramme.
+  \item Trouver le point $D$ tel que $ABCD$ soit un parall\'elogramme.
   \item Trouver le point $M$ milieu de $[BD]$.
         V\'erifier qu'il co\"incide avec le milieu de $[AC]$.
 \end{enumerate}
@@ -392,7 +392,7 @@ Une translation de vecteur $\vec{t}=(2,-3)$ transforme $M$ en $M'$.
   \item Si $M(1,4)$, calculer les coordonn\'ees de $M'$.
   \item Si $M'(5,1)$, calculer les coordonn\'ees de $M$.
   \item Quel est l'image du segment $[AB]$ avec $A(0,0)$, $B(3,2)$~?
-  \item Quel est l'image du triangle $OAB$ ($O$ origine)~?
+  \item Quelle est l'image du triangle $OAB$ avec $O(0,0)$, $A(4,0)$, $B(3,2)$~?
 \end{enumerate}
 \end{exo}
 
@@ -762,7 +762,8 @@ S\'equence~: Nord, Est, Nord, Sud-Est, Est.
 \begin{enumerate}
   \item Calculer la position finale $B$.
   \item Quel est le vecteur $\vv{AB}$~?
-  \item Quelle s\'equence d'exactement $3$ mouvements m\`enerait de $A$ \`a $B$~?
+  \item Peut-on aller de $A$ \`a $B$ en exactement $3$ mouvements avec ces trois instructions~?
+        Quel est le nombre minimal de mouvements~?
   \item \'Ecrire un algorithme Python \computer\ simulant cette trajectoire
         et affichant chaque position interm\'ediaire.
 \end{enumerate}
@@ -941,6 +942,7 @@ avec $g = 10$ m/s$^2$.
         centre de gravité~: $G\!\left(\frac{x_A+x_B+x_C}{3},\frac{y_A+y_B+y_C}{3}\right)$.
   \item \textbf{Chasles~:} $\vv{AB}+\vv{BC}=\vv{AC}$.
 \end{itemize}
+\end{bilan}
 
 %─────────────────────────────────────────────────────────────────
 \subsection*{Logique \& Algorithmes}
@@ -960,8 +962,8 @@ Pour chacune, dire si vraie ou fausse et \'enoncer la n\'egation~:
 \begin{enumerate}
   \item La condition $\det(\vec{u},\vec{v})=0$ est-elle~: CN, CS, ou CNS pour $\vec{u}\parallel\vec{v}$~?
   \item \'Enoncer l'\'equivalence compl\`ete.
-  \item Montrer que $\vec{u}\parallel\vec{v}$ et $\vec{v}\parallel\vec{w}\Rightarrow\vec{u}\parallel\vec{w}$
-        (transitivit\'e). C'est quel type de raisonnement~?
+  \item Montrer que, si $\vec{v}\ne\vec{0}$, $\vec{u}\parallel\vec{v}$ et $\vec{v}\parallel\vec{w}\Rightarrow\vec{u}\parallel\vec{w}$
+        (transitivit\'e). Pourquoi faut-il supposer $\vec{v}\ne\vec{0}$~? C'est quel type de raisonnement~?
 \end{enumerate}
 \end{exo}
 
@@ -1068,8 +1070,8 @@ Tester pour $A(3,4)$ et la droite $3x+4y-25=0$.
 D\'emontrer rigoureusement~:
 \begin{enumerate}
   \item Les diagonales d'un losange sont perpendiculaires.
-        \'Enoncer l'\'equivalence~: \og $ABCD$ est un losange $\Leftrightarrow$
-        $AB=BC$ et $\vv{AC}\perp\vv{BD}$\fg\ (admettre le second membre).
+        \'Enoncer l'\'equivalence~: \og un parall\'elogramme $ABCD$ est un losange $\Leftrightarrow$
+        $AB=BC$ $\Leftrightarrow$ $\vv{AC}\perp\vv{BD}$\fg\ et la d\'emontrer.
   \item La m\'ediatrice d'un segment est l'ensemble des points \'equidistants
         des deux extr\'emit\'es.
         Formuler cela avec des quantificateurs et d\'emontrer.
@@ -1139,7 +1141,6 @@ le circocentre $O'$, le centre de gravité $G$ et l'orthocentre $H$ sont align\'
 \end{enumerate}
 \end{challenge}
 
-\end{bilan}
 
 
 %% ════════════════════════════════════════════════════════════════
