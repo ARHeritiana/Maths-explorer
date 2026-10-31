@@ -295,7 +295,10 @@ export function drawBadge(g, st, m) {
 
 // The engine handles of a template: one per `handle` control of the experiment, locked or not (locked ones are only drawn).
 // `views` maps a panel id to its current view; a control names its panel (default: the first one).
-export function buildHandles({ exp, fmt, getState, setState, views, panels }) {
+const MAGNET = 8;   // px: a `soft` handle is continuous, but a grid line within this distance pulls it onto the line,
+const MAGNET_SHARE = 0.3;   // and never more than 30% of the gap between two lines, so a dense grid leaves most positions free
+const soft = (v, step, pxPerUnit) => { if (!step) return v; const q = snap(v, step); return Math.abs(v - q) * pxPerUnit < Math.min(MAGNET, MAGNET_SHARE * step * pxPerUnit) ? q : v; };
+export function buildHandles({ exp, fmt, getState, getShown = getState, setState, views, panels }) {
   const handles = [];
   for (const [id, c] of Object.entries(exp.controls)) {
     if (c.kind !== "handle") continue;
@@ -306,25 +309,30 @@ export function buildHandles({ exp, fmt, getState, setState, views, panels }) {
       id, control: c, panel,
       label: fmt.t(c.label), color: c.color || "accent", absolute: !!c.absolute,
       pos() {
-        const v = view(), [wx, wy] = c.at(getState());
+        const v = view(), [wx, wy] = c.at(getShown());
         return [clamp(v.X(wx), v.left + 6, v.left + v.width - 6), clamp(v.Y(wy), v.top + 6, v.top + v.height - 6)];
       },
       // At the default view a handle just outside its panel is kept on the edge (reachable); once the learner has zoomed or
       // moved the view, a handle out of sight is out of sight: not drawn, not grabbed.
       hidden() {
-        const v = view(), cam = v.cam, [wx, wy] = c.at(getState()), X = v.X(wx), Y = v.Y(wy);
+        const v = view(), cam = v.cam, [wx, wy] = c.at(getShown()), X = v.X(wx), Y = v.Y(wy);
         if (!cam || (cam.kx === 1 && cam.ky === 1 && !cam.ox && !cam.oy)) return false;
         return X < v.left - 2 || X > v.left + v.width + 2 || Y < v.top - 2 || Y > v.top + v.height + 2;
       },
       drag(sx, sy) {
-        const v = view(), next = c.drag(getState(), snap(v.iX(sx), gx), snap(v.iY(sy), gy));
+        const v = view();
+        // A `soft` handle moves freely and is pulled onto a grid line only when it is close to one; any other handle snaps to its grid.
+        const x = c.soft ? soft(v.iX(sx), gx, Math.abs(v.X(1) - v.X(0))) : snap(v.iX(sx), gx), y = c.soft ? soft(v.iY(sy), gy, Math.abs(v.Y(1) - v.Y(0))) : snap(v.iY(sy), gy);
+        const next = c.drag(getState(), x, y);
         if (next) setState(next);
       },
       nudge(dx, dy) {
         const s = getState();
         if (c.nudge) { const next = c.nudge(s, dx, dy); if (next) setState(next); return; }
         if (axis === "x") { dx = dx || dy; dy = 0; } else if (axis === "y") { dy = dy || dx; dx = 0; }
-        const [wx, wy] = c.at(s), next = c.drag(s, snap(wx + dx * gx, gx), snap(wy + dy * gy, gy));
+        // one grid step per key press; a `soft` handle that was placed off the grid moves exactly one step (it stays off the grid)
+        const [wx, wy] = c.at(s), step = (cur, v, g) => (c.soft && Math.abs(snap(cur, g) - cur) > 1e-9 ? v : snap(v, g));
+        const next = c.drag(s, step(wx, wx + dx * gx, gx), step(wy, wy + dy * gy, gy));
         if (next) setState(next);
       },
       valuetext: () => c.valuetext?.(getState(), fmt) || "",

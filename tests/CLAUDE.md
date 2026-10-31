@@ -35,6 +35,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `quadratic-workshop.test.mjs` | `quadratic-workshop.js` |
 | `lab-filter.test.mjs` | laboratory index domain filter: every experiment under at least one field, a field shows exactly its experiments, empty groups hidden, All restores |
 | `figure-scenes.test.mjs` | the five home figures (`figure-scenes.js`): independent checks of the parabola handles (a root drag keeps the other root and a), left Riemann sum against direct summation and b³/3, secant slope tends to cos x₀, circle angle unwrapping and special-angle magnet, logistic orbits and the period thresholds found numerically, both languages |
+| `lab-soft.test.mjs` | `soft` laboratory handles: free between grid lines, 8 px magnet at them, non-soft handles still snap, one keyboard step from an off-grid position |
 | `map.test.mjs` | `MAP.md` and the folder `CLAUDE.md` indexes stay complete and correct |
 | `dom-smoke.mjs` | DOM integration under jsdom (`npm run test:dom`): Platonic folds, every experiment mounted (no element added during a drag or a run, fixed camera, plain wheel never zooms, background drag pans only once zoomed, free missions and the `gated` mode, keyboard), the old guided page gone, gallery routes |
 | `accessibility_browser.py` | home and every pilot chapter step at 320, 390, 768 and 1440 px with normal and doubled text, both theme contrast, keyboard/skip navigation, inline lab handles, asynchronous load announcements and semantic MathML (`browser.py` calls it; also runnable alone) |

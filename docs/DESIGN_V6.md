@@ -34,8 +34,13 @@ Tokens, fonts, header, buttons, cards and tiles, previews (ink on light grey), f
 
 The hero figure is an animated plate of five live figures shown one after the other (9 s each, progress rule on the tabs): parabola, unit circle, secant to tangent, left Riemann sum, logistic cobweb. Each is draggable and eased, in French and English, with its numbers under it and the same colour for the same quantity (red, ink, grey). It pauses while a figure is touched and on request, and does not advance under reduced motion. A plain wheel scrolls the page (Ctrl + wheel or a pinch zooms the figure). Code: `site/js/home-slides.js`, `figure-engine.js`, `figure-scenes.js`; tests: `tests/figure-scenes.test.mjs` (independent checks of each scene's mathematics, including the logistic period thresholds found numerically). The Madagascar Fourier figure left the hero; it remains an idea card and its own page.
 
+## Laboratory (first step done, 31 October 2026)
+
+The laboratory keeps its own engine, which already had pan, zoom and keyboard; it gained the two things the prototype showed to matter: **free handles with a soft magnet** (`soft: true` on a handle: continuous, a grid line pulls only within 8 px and at most 30% of the gap) and **eased motion** (`ease: [...]` on an experiment: the figure glides toward the state, quick while dragging, gentler for a mission change or a key press; the state, readouts and answers stay exact). Both are opt-in per handle or experiment, because many parameters are discrete. Applied to the parabola workshop, the tangent, the integral and the vectors; the quadratic formula now shows two decimals marked ≈ instead of six. Code: `plot.js` `buildHandles`, `shell.js` `getShown`; tests: `tests/lab-soft.test.mjs`, the easing block of `tests/dom-smoke.mjs`; contract: `site/js/lab/CLAUDE.md`.
+
+Still to do for the laboratory: opt the other experiments in where the mathematics is continuous (exponential, trig graph point, matrix, cobweb, complex test point), check each mission's goal against free placement, and the 3D `space` template.
+
 ## Still to do (in this order)
 
-1. Canvas engine of the prototype (free handles, easing, pan and zoom, soft magnet) in the laboratory, replacing the current engine experiment by experiment.
-2. Slides (`site/slides/player.css`) and PDFs (`content/tex/core/mx-layout.sty`) still use the old palette.
+1. Slides (`site/slides/player.css`) and PDFs (`content/tex/core/mx-layout.sty`) still use the old palette.
 3. The pages "Lire" and the per-class pages of the prototype.

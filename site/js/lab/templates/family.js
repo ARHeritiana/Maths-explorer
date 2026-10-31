@@ -3,7 +3,7 @@
 import { layoutPanels, panelView, drawAxes, drawScene, drawHandles, buildHandles } from "../plot.js";
 
 export function mount(env) {
-  const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
+  const { exp, stage, fmt, getState, getShown = getState, setState, ghost, isUnlocked } = env;
   const ids = exp.views.panels || ["graph"];
   const specs = ids.map((id) => exp.views[id]);
   let views = {};
@@ -29,11 +29,11 @@ export function mount(env) {
   }
   layout();
 
-  const handles = buildHandles({ exp, fmt, getState, setState, views: () => views, panels: ids });
+  const handles = buildHandles({ exp, fmt, getState, getShown, setState, views: () => views, panels: ids });
 
   function draw(g) {
     layout();
-    const s = getState(), other = ghost();
+    const s = getShown(), other = ghost();
     ids.forEach((id, i) => {
       const v = views[id], spec = specs[i];
       drawAxes(g, v, spec, stage, fmt);

@@ -22,15 +22,16 @@ export default {
   prereq: ["Coordonnées d’un vecteur, aire d’un parallélogramme", "Vector coordinates, area of a parallelogram"],
   model: V,
   state: { ux: 3, uy: 1, vx: -1, vy: 3 },
+  ease: ['ux', 'uy', 'vx', 'vy'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     u: {
-      kind: "handle", color: "accent", grid: 0.5, label: ["Extrémité du vecteur u", "Tip of vector u"],
+      kind: "handle", soft: true, color: "accent", grid: 0.5, label: ["Extrémité du vecteur u", "Tip of vector u"],
       at: (s) => [s.ux, s.uy],
       drag: (s, x, y) => ({ ux: clamp(x, -LIMIT, LIMIT), uy: clamp(y, -LIMIT, LIMIT) }),
       valuetext: (s, f) => f.pt(s.ux, s.uy),
     },
     v: {
-      kind: "handle", color: "obj2", grid: 0.5, label: ["Extrémité du vecteur v", "Tip of vector v"],
+      kind: "handle", soft: true, color: "obj2", grid: 0.5, label: ["Extrémité du vecteur v", "Tip of vector v"],
       at: (s) => [s.vx, s.vy],
       drag: (s, x, y) => ({ vx: clamp(x, -LIMIT, LIMIT), vy: clamp(y, -LIMIT, LIMIT) }),
       valuetext: (s, f) => f.pt(s.vx, s.vy),
