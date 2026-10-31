@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Semi+Condensed:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;600;800&family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
 /* Layout: a printed book. Running head with a double rule, left-aligned text column, figures set as numbered plates,
    a contents list with dot leaders. Square corners, hairlines, no shadow, no blur, no gradient, no glow.
@@ -13,23 +13,25 @@
   --paper: #fbfaf7; --ink: #15161a; --ink-2: #3c3f48; --muted: #62656f; --line: #cfcdc6; --grid: #e9e7e1; --grid-2: #d6d3cb;
   --red: #d2281a; --blue: #1c4fa6; --yellow: #f4bb00; --on-yellow: #15161a;
   --serif: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+  --head: var(--serif); --prose: var(--serif);
   --ui: "Source Sans 3", "Source Sans Pro", system-ui, sans-serif;
   --math: "STIX Two Text", "Times New Roman", serif;
   --gl: max(16px, env(safe-area-inset-left, 0px)); --gr: max(16px, env(safe-area-inset-right, 0px));
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+@media (prefers-color-scheme: dark) { :root[data-style="a"]:not([data-theme="light"]) {
   color-scheme: dark;
   --paper: #14161c; --ink: #f1eee6; --ink-2: #cfcbc0; --muted: #9a9a9a; --line: #3a3d46; --grid: #1f222a; --grid-2: #2c303a;
   --red: #ff6a55; --blue: #7ea6ff; --yellow: #ffd23f; --on-yellow: #15161a; } }
-:root[data-theme="dark"] {
+:root[data-style="a"][data-theme="dark"] {
   color-scheme: dark;
   --paper: #14161c; --ink: #f1eee6; --ink-2: #cfcbc0; --muted: #9a9a9a; --line: #3a3d46; --grid: #1f222a; --grid-2: #2c303a;
   --red: #ff6a55; --blue: #7ea6ff; --yellow: #ffd23f; --on-yellow: #15161a; }
 
 * { box-sizing: border-box; }
-body { background: var(--paper); color: var(--ink); font: 1.0625rem/1.6 var(--ui); font-variant-numeric: tabular-nums; }
+body { background: var(--paper); color: var(--ink); font: 1.0625rem/1.6 var(--ui); }
+.bar, .toc .m, .legend, .pg b, .steps b { font-variant-numeric: tabular-nums; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--paper); z-index: 30; }
-h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 600; text-wrap: balance; }
+h1, h2, h3 { margin: 0; font-family: var(--head); font-weight: 600; text-wrap: balance; }
 h1 { font-size: clamp(2rem, 4.3vw, 3.4rem); line-height: 1.1; letter-spacing: -.012em; }
 h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.15; letter-spacing: -.008em; }
 h3 { font-size: 1.2rem; line-height: 1.3; }
@@ -47,7 +49,7 @@ a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: 1px;
 /* running head */
 .top { border-bottom: 3px double var(--ink); }
 .top .wrap { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 36px; padding-top: 14px; }
-.brand { text-decoration: none; font: 700 1.3rem var(--serif); letter-spacing: -.01em; padding-bottom: 10px; }
+.brand { text-decoration: none; font: 700 1.3rem var(--head); letter-spacing: -.01em; padding-bottom: 10px; }
 .doors { display: flex; gap: 22px; order: 3; width: 100%; }
 .doors a { text-decoration: none; padding: 10px 0 9px; min-height: 44px; font: 600 1rem var(--ui); color: var(--ink-2); border-bottom: 3px solid transparent; margin-bottom: -3px; }
 .doors a:hover { border-bottom-color: var(--line); } .doors a[aria-current] { color: var(--ink); border-bottom-color: var(--red); }
@@ -63,7 +65,7 @@ a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: 1px;
 /* a plate: a framed figure with a caption line and its numbers underneath */
 .plate { margin: 0; border: 1.5px solid var(--ink); background: var(--paper); min-width: 0; }
 .plate-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 20px; padding: 8px 14px; border-bottom: 1px solid var(--ink); font-size: .95rem; }
-.plate-top b { font-family: var(--serif); font-weight: 600; }
+.plate-top b { font-family: var(--head); font-weight: 600; }
 .legend { color: var(--ink-2); }
 .stage { position: relative; height: clamp(340px, 54vh, 540px); width: 100%; overflow: hidden; touch-action: none; background: var(--paper); }
 .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; outline: none; touch-action: none; transition: opacity .25s; }
@@ -80,8 +82,9 @@ a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: 1px;
 .bar span.val { font: 400 1.05rem var(--math); overflow-wrap: anywhere; }
 
 /* home: text left, plate right */
-.open { display: grid; gap: 28px; padding-block: 36px 0; align-items: start; }
-@media (min-width: 960px) { .open { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; padding-top: 48px; } }
+.open { display: grid; gap: 28px; padding-block: 36px 0; align-items: start; grid-template-areas: "t" "p" "l"; }
+.otext { grid-area: t; } .otocs { grid-area: l; } .open .plate { grid-area: p; }
+@media (min-width: 960px) { .open { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 56px; padding-top: 48px; grid-template-areas: "t p" "l p"; grid-template-rows: auto 1fr; } }
 .slides { display: grid; }
 .slide { grid-area: 1 / 1; display: grid; gap: 16px; align-content: start; opacity: 0; visibility: hidden; transition: opacity .4s, visibility 0s .4s; }
 .slide.on { opacity: 1; visibility: visible; transition-delay: .15s, 0s; }
@@ -90,7 +93,7 @@ a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: 1px;
 .tocs { list-style: none; margin: 0; padding: 0; }
 .pg { position: relative; display: grid; grid-template-columns: 2.2ch minmax(0, 1fr); gap: 10px; align-items: baseline; width: 100%; padding: 10px 0 8px; background: none; border: 0; border-top: 1px solid var(--line); color: var(--muted); text-align: left; cursor: pointer; font: 600 1rem var(--ui); min-height: 44px; }
 .pg:hover { color: var(--ink); } .pg[aria-current] { color: var(--ink); }
-.pg b { font: 600 .95rem var(--serif); }
+.pg b { font: 600 .95rem var(--head); }
 .pgb { position: absolute; left: 0; right: 0; top: -1px; height: 3px; pointer-events: none; }
 .pgb i { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--ink); }
 .pg.done .pgb i { width: 0; }
@@ -108,7 +111,7 @@ main > section + section { margin-top: clamp(56px, 8vw, 96px); }
 .toc li { border-bottom: 1px solid var(--line); }
 .toc a { display: grid; grid-template-columns: auto 1fr auto; column-gap: 10px; align-items: baseline; padding: 15px 0 14px; text-decoration: none; }
 .toc a:hover .t { text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--red); text-underline-offset: .22em; }
-.toc .t { font: 600 clamp(1.25rem, 2.2vw, 1.6rem)/1.2 var(--serif); }
+.toc .t { font: 600 clamp(1.25rem, 2.2vw, 1.6rem)/1.2 var(--head); }
 .toc .lead { border-bottom: 1.5px dotted var(--muted); transform: translateY(-.3em); min-width: 24px; }
 .toc .m { font: 400 .98rem var(--ui); color: var(--ink-2); white-space: nowrap; }
 .toc .d { grid-column: 1 / -1; color: var(--ink-2); font-size: .98rem; max-width: 66ch; }
@@ -123,7 +126,7 @@ main > section + section { margin-top: clamp(56px, 8vw, 96px); }
 .head h1 { max-width: 20ch; }
 .steps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(130px, 1fr); list-style: none; margin: 8px 0 0; padding: 0; overflow-x: auto; border-bottom: 1px solid var(--ink); }
 .steps a { display: grid; padding: 10px 12px 9px 0; text-decoration: none; color: var(--muted); font: 600 .98rem var(--ui); min-height: 52px; border-bottom: 3px solid transparent; margin-bottom: -1px; }
-.steps a b { font: 600 .8rem var(--serif); }
+.steps a b { font: 600 .8rem var(--head); }
 .steps a:hover { color: var(--ink); } .steps a[aria-current] { color: var(--ink); border-bottom-color: var(--red); }
 .chap { display: grid; gap: 28px; align-items: start; } @media (min-width: 980px) { .chap { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: 40px; } }
 .chap .stage { height: clamp(380px, 62vh, 600px); }
@@ -137,7 +140,7 @@ main > section + section { margin-top: clamp(56px, 8vw, 96px); }
 .verdict { padding: 10px 12px; border-left: 5px solid var(--blue); background: color-mix(in srgb, var(--blue) 9%, var(--paper)); font-size: .98rem; }
 .verdict.no { border-left-color: var(--red); background: color-mix(in srgb, var(--red) 9%, var(--paper)); }
 .two { display: grid; gap: 36px; } @media (min-width: 900px) { .two { grid-template-columns: 7fr 5fr; gap: 72px; } }
-.prose { display: grid; gap: 14px; max-width: 62ch; font: 400 1.12rem/1.65 var(--serif); } .prose h2 { margin-bottom: 4px; }
+.prose { display: grid; gap: 14px; max-width: 62ch; font: 400 1.12rem/1.65 var(--prose); } .prose h2 { margin-bottom: 4px; }
 .proof { border-top: 3px solid var(--ink); padding-top: 12px; align-self: start; display: grid; gap: 8px; }
 .filter { display: flex; flex-wrap: wrap; gap: 4px 22px; border-bottom: 1px solid var(--ink); }
 .filter button { min-height: 44px; padding: 8px 0 7px; background: none; border: 0; border-bottom: 3px solid transparent; margin-bottom: -1px; color: var(--ink-2); font: 600 1rem var(--ui); cursor: pointer; }
@@ -145,8 +148,94 @@ main > section + section { margin-top: clamp(56px, 8vw, 96px); }
 footer { margin-top: clamp(56px, 8vw, 96px); border-top: 3px double var(--ink); } footer .wrap { padding-block: 20px 36px; display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: space-between; color: var(--muted); font-size: .95rem; }
 [hidden] { display: none !important; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ===== three directions, switched by data-style on the root. A = Planches (above), B = Grille, C = Calque ===== */
+.pick { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 6px var(--gr) 6px var(--gl); background: #111; color: #fff; font: 600 .85rem system-ui, sans-serif; }
+.pick span { margin-right: 6px; opacity: .8; }
+.pick button { min-height: 36px; padding: 0 12px; border: 1px solid #777; background: transparent; color: #fff; font: inherit; cursor: pointer; }
+.pick button[aria-pressed="true"] { background: #fff; color: #111; border-color: #fff; }
+
+/* B · Grille: Swiss modernist. White, black, one red. Huge grotesque, asymmetric grid, quantities told apart by tone and weight. */
+:root[data-style="b"] { color-scheme: light; --paper: #fff; --ink: #000; --ink-2: #1c1c1c; --muted: #595959; --line: #cdcdcd; --grid: #f0f0f0; --grid-2: #dadada;
+  --red: #e30613; --blue: #000; --yellow: #c4c4c4; --on-yellow: #000; --head: "Schibsted Grotesk", system-ui, sans-serif; --ui: "Schibsted Grotesk", system-ui, sans-serif; --prose: "Schibsted Grotesk", system-ui, sans-serif; }
+[data-style="b"] #theme, [data-style="c"] #theme { display: none; }
+[data-style="b"] h1, [data-style="b"] h2 { font-weight: 800; letter-spacing: -.03em; line-height: 1.02; font-kerning: normal; }
+[data-style="b"] h1 em, [data-style="b"] h2 em, [data-style="b"] .toc .t em { font-style: normal; font-weight: 800; color: var(--red); }
+[data-style="b"] h1 { font-size: clamp(2.2rem, 5.4vw, 4.4rem); }
+[data-style="b"] .top { border-top: 12px solid var(--ink); border-bottom: 1px solid var(--ink); }
+[data-style="b"] .brand { font-weight: 800; letter-spacing: -.03em; }
+[data-style="b"] .doors a[aria-current] { border-bottom-color: var(--red); border-bottom-width: 4px; }
+[data-style="b"] .sc { font: 600 .82rem var(--ui); font-variant-caps: normal; text-transform: uppercase; letter-spacing: .1em; color: var(--ink); }
+[data-style="b"] .plate { border: 0; border-top: 6px solid var(--ink); }
+[data-style="b"] .plate-top { padding-inline: 0; border-bottom: 1px solid var(--ink); }
+[data-style="b"] .plate-top b { font-family: var(--head); font-weight: 800; }
+[data-style="b"] .bar { border-top: 1px solid var(--ink); }
+[data-style="b"] .bar b { font-weight: 600; } [data-style="b"] .bar span.val { font: 600 1.15rem var(--ui); }
+[data-style="b"] .pg { grid-template-columns: 3.4ch minmax(0, 1fr); align-items: center; min-height: 56px; font-weight: 600; }
+[data-style="b"] .pg b { font: 800 1.7rem var(--head); letter-spacing: -.04em; }
+[data-style="b"] .pgb i { background: var(--red); height: 100%; }
+[data-style="b"] .pgb { height: 4px; }
+[data-style="b"] .toc .t { font: 800 clamp(1.3rem, 2.4vw, 1.8rem)/1.1 var(--head); letter-spacing: -.03em; }
+[data-style="b"] .toc a:hover .t { text-decoration: none; color: var(--red); }
+[data-style="b"] .toc .lead { border-bottom: 0; } [data-style="b"] .sec-head { border-bottom-width: 2px; }
+[data-style="b"] .steps a b { font-family: var(--head); font-weight: 800; }
+[data-style="b"] footer { border-top: 1px solid var(--ink); }
+[data-style="b"] .prose { font-size: 1.06rem; line-height: 1.6; }
+[data-style="b"] .cb { color: var(--ink); font-weight: 800; } [data-style="b"] .cy { background: #d9d9d9; }
+[data-style="b"] .btn { border-width: 2px; } [data-style="b"] .task, [data-style="b"] .proof { border-color: var(--ink); }
+@media (min-width: 960px) {
+  [data-style="b"] .open { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); grid-template-areas: "t t" "p l"; column-gap: 40px; row-gap: 36px; padding-top: 40px; grid-template-rows: auto; }
+  [data-style="b"] .slide h1 { font-size: clamp(2.8rem, 5.6vw, 5rem); max-width: 16ch; letter-spacing: -.035em; }
+  [data-style="b"] .slide .lede { max-width: 46ch; font-size: 1.2rem; }
+    [data-style="b"] .stage { height: clamp(380px, 52vh, 560px); }
+}
+
+/* C · Calque: blueprint. Flat Prussian blue, white line work, drafting title block under each figure. */
+:root[data-style="c"] { color-scheme: dark; --paper: #123f8c; --ink: #f4f8ff; --ink-2: #d3e1fb; --muted: #a9c2ee; --line: #6088d0; --grid: #1a4a9e; --grid-2: #2a60b6;
+  --red: #ff9b85; --blue: #a9d6ff; --yellow: #ffe14d; --on-yellow: #0d2e66; --head: "Barlow Semi Condensed", system-ui, sans-serif; --ui: "Barlow", system-ui, sans-serif; --prose: "Barlow", system-ui, sans-serif; }
+.sheet { min-width: 0; }
+[data-style="c"] .sheet { margin: 12px; border: 2px solid var(--ink); outline: 1px solid var(--ink); outline-offset: -9px; }
+[data-style="c"] body { background: var(--paper); }
+[data-style="c"] h1, [data-style="c"] h2 { font-weight: 600; letter-spacing: 0; line-height: 1.02; }
+[data-style="c"] h1 { font-size: clamp(2.3rem, 5vw, 4rem); }
+[data-style="c"] h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+[data-style="c"] h1 em, [data-style="c"] h2 em { font-style: italic; font-weight: 500; }
+[data-style="c"] .top { border-bottom: 2px solid var(--ink); }
+[data-style="c"] .brand { font-weight: 700; letter-spacing: .05em; text-transform: uppercase; font-size: 1.15rem; }
+[data-style="c"] .doors a { text-transform: uppercase; letter-spacing: .08em; font-size: .9rem; }
+[data-style="c"] .doors a[aria-current] { border-bottom-color: var(--yellow); }
+[data-style="c"] .sc { font: 600 .82rem var(--ui); font-variant-caps: normal; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+[data-style="c"] .btn { border-width: 2px; }
+[data-style="c"] .btn.solid { background: var(--ink); color: var(--paper); } [data-style="c"] .btn.solid:hover { background: var(--yellow); border-color: var(--yellow); color: var(--on-yellow); }
+[data-style="c"] .btn:hover { background: var(--ink); color: var(--paper); }
+[data-style="c"] .plate { display: flex; flex-direction: column; border: 2px solid var(--ink); }
+[data-style="c"] .stage { order: 1; } [data-style="c"] .bar { order: 2; border-top: 2px solid var(--ink); }
+[data-style="c"] .plate-top { order: 3; display: grid; grid-template-columns: auto minmax(0, 1fr); padding: 0; border-top: 2px solid var(--ink); border-bottom: 0; gap: 0; }
+[data-style="c"] .plate-top > span { padding: 9px 14px; } [data-style="c"] .plate-top > span:first-child { border-right: 2px solid var(--ink); }
+[data-style="c"] .plate-top b { font: 600 1.05rem var(--head); letter-spacing: .04em; text-transform: uppercase; }
+[data-style="c"] .bar span.val { font: 400 .98rem "IBM Plex Mono", ui-monospace, monospace; }
+[data-style="c"] .bar b { text-transform: uppercase; letter-spacing: .08em; font-size: .74rem; }
+[data-style="c"] .pg b { font: 500 .95rem "IBM Plex Mono", monospace; } [data-style="c"] .pgb i { background: var(--yellow); }
+[data-style="c"] .toc .t { font: 600 clamp(1.3rem, 2.3vw, 1.7rem)/1.15 var(--head); } [data-style="c"] .toc a:hover .t { text-decoration-color: var(--yellow); }
+[data-style="c"] .toc .m { font-family: "IBM Plex Mono", monospace; font-size: .88rem; }
+[data-style="c"] .toc .lead { border-bottom-style: dashed; }
+[data-style="c"] .steps a b { font-family: "IBM Plex Mono", monospace; } [data-style="c"] .steps a[aria-current] { border-bottom-color: var(--yellow); }
+[data-style="c"] .filter button[aria-pressed="true"], [data-style="c"] .doors a[aria-current] { border-bottom-color: var(--yellow); }
+[data-style="c"] footer { border-top: 2px solid var(--ink); } [data-style="c"] .top .wrap, [data-style="c"] footer .wrap { padding-inline: calc(var(--gl) + 6px) calc(var(--gr) + 6px); }
+[data-style="c"] .task { border-color: var(--ink); } [data-style="c"] .proof { border-top-color: var(--yellow); }
+[data-style="c"] .prose { font-size: 1.08rem; line-height: 1.6; }
+[data-style="c"] .verdict { color: var(--ink); }
+@media (min-width: 960px) {
+  [data-style="c"] .open { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-areas: "p p" "t l"; column-gap: 56px; row-gap: 32px; padding-top: 32px; grid-template-rows: auto; }
+  [data-style="c"] .open .stage { height: clamp(380px, 54vh, 560px); }
+}
+@media (max-width: 959px) { [data-style="c"] .open { grid-template-areas: "p" "t" "l"; } }
+@media (max-width: 640px) { [data-style="c"] .plate-top { grid-template-columns: minmax(0, 1fr); } [data-style="c"] .plate-top > span:first-child { border-right: 0; border-bottom: 2px solid var(--ink); } }
+[data-style="b"] .open .bar, [data-style="c"] .open .bar { min-height: 0; }
 </style>
 
+<div class="pick" role="group" aria-label="Proposition de design"><span>Proposition</span><button type="button" data-s="a">A · Planches</button><button type="button" data-s="b">B · Grille</button><button type="button" data-s="c">C · Calque</button></div>
+<div class="sheet">
 <header class="top"><div class="wrap">
   <a class="brand" href="#accueil" aria-label="Maths Explorer, accueil">Maths Explorer</a>
   <nav class="doors" aria-label="Sections"><a href="#cours" data-door="cours">Cours</a><a href="#labo" data-door="labo">Laboratoire</a><a href="#lire" data-door="lire">Lire</a></nav>
@@ -154,6 +243,7 @@ footer { margin-top: clamp(56px, 8vw, 96px); border-top: 3px double var(--ink); 
 </div></header>
 <main id="view"></main>
 <footer><div class="wrap"><span>Une expérience donne des indices, pas une preuve.</span><a href="#notes">Notes de conception</a></div></footer>
+</div>
 <p class="sr" id="status" aria-live="polite"></p>
 
 <script>
@@ -326,7 +416,7 @@ function makeCobweb() {
 /* ============ the canvas engine ============ */
 let COL = null;
 const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-const colors = () => COL || (COL = { paper: css('--paper'), ink: css('--ink'), ink2: css('--ink-2'), muted: css('--muted'), grid: css('--grid'), grid2: css('--grid-2'), red: css('--red'), blue: css('--blue'), yellow: css('--yellow'), line: css('--line') });
+const colors = () => COL || (COL = { paper: css('--paper'), ink: css('--ink'), ink2: css('--ink-2'), muted: css('--muted'), grid: css('--grid'), grid2: css('--grid-2'), red: css('--red'), blue: css('--blue'), yellow: css('--yellow'), line: css('--line'), ui: css('--ui') });
 
 function Plot(stage, first, o = {}) {
   const cv = document.createElement('canvas'); cv.tabIndex = 0; cv.setAttribute('role', 'application');
@@ -372,7 +462,7 @@ function Plot(stage, first, o = {}) {
     if (sc.axes) {
       const ax = clamp(V.Y(0), 0, H), ay = clamp(V.X(0), 0, W);
       g.strokeStyle = C.ink; g.lineWidth = 1.2; g.beginPath(); g.moveTo(0, Math.round(ax) + 0.5); g.lineTo(W, Math.round(ax) + 0.5); g.moveTo(Math.round(ay) + 0.5, 0); g.lineTo(Math.round(ay) + 0.5, H); g.stroke();
-      g.font = '13px "Source Sans 3", sans-serif'; g.fillStyle = C.muted; g.textAlign = 'center'; g.textBaseline = 'top'; const ty = clamp(ax + 6, 4, H - 18);
+      g.font = '13px ' + C.ui; g.fillStyle = C.muted; g.textAlign = 'center'; g.textBaseline = 'top'; const ty = clamp(ax + 6, 4, H - 18);
       for (let x = Math.ceil(left / step) * step; x <= right; x += step) { if (Math.abs(x) < step / 1e3) continue; g.fillText(lab(x), V.X(x), ty); }
       g.textAlign = ay < 40 ? 'left' : 'right'; g.textBaseline = 'middle'; const tx = ay < 40 ? ay + 7 : ay - 7;
       for (let y = Math.ceil(bot / step) * step; y <= top; y += step) { if (Math.abs(y) < step / 1e3) continue; g.fillText(lab(y), clamp(tx, 6, W - 6), V.Y(y)); }
@@ -463,7 +553,7 @@ const SLIDES = [
   { tab: 'Le cercle trigonométrique', kicker: 'Trigonométrie', h: 'Un cercle, deux <em>coordonnées</em>', p: 'Fais tourner le point P : cosinus et sinus se dessinent, et ne dépassent jamais le rayon.', make: makeCircle },
   { tab: 'La tangente', kicker: 'Dérivation', h: 'Une sécante devient <em>tangente</em>', p: 'Rapproche les deux points : la pente de la sécante tend vers la dérivée.', make: makeTangent },
   { tab: 'L’aire sous une courbe', kicker: 'Intégration', h: 'L’aire, un rectangle <em>à la fois</em>', p: 'Plus il y a de rectangles, plus la somme se rapproche de l’aire exacte. Ce qui reste en rouge est l’erreur.', make: makeRiemann },
-  { tab: 'La suite logistique', kicker: 'Suites', h: 'Une règle simple, <em>un comportement chaotique</em>', p: 'Fais varier r : la suite se stabilise, oscille, puis ne se répète plus.', make: makeCobweb },
+  { tab: 'La suite logistique', kicker: 'Suites', h: 'Une règle simple, <em>le chaos</em>', p: 'Fais varier r : la suite se stabilise, oscille, puis ne se répète plus.', make: makeCobweb },
 ];
 const DUR = 9;
 
@@ -471,9 +561,9 @@ const plate = (n) => `<figure class="plate"><figcaption class="plate-top"><span>
 
 const VIEWS = {
   accueil() {
-    return `<section class="wrap open" style="--dur:${DUR}s"><div><div class="slides" aria-live="off">${SLIDES.map((s, i) => `<div class="slide" data-i="${i}" ${i ? 'aria-hidden="true"' : ''}><p class="sc">${s.kicker}</p><h1>${s.h}</h1><p class="lede">${s.p}</p></div>`).join('')}</div>
-      <p class="links" style="margin-top:22px"><a class="btn solid" href="#labo">Essayer une expérience</a><a class="btn" href="#cours">Choisir ma classe</a></p>
-      <ol class="tocs" style="margin-top:28px" aria-label="Diapositives">${SLIDES.map((s, i) => `<li><button type="button" class="pg" data-i="${i}" aria-label="Diapositive ${i + 1} sur ${SLIDES.length} : ${s.tab}"><span class="pgb"><i></i></span><b>${i + 1}</b><span>${s.tab}</span></button></li>`).join('')}</ol>
+    return `<section class="wrap open" style="--dur:${DUR}s"><div class="otext"><div class="slides" aria-live="off">${SLIDES.map((s, i) => `<div class="slide" data-i="${i}" ${i ? 'aria-hidden="true"' : ''}><p class="sc">${s.kicker}</p><h1>${s.h}</h1><p class="lede">${s.p}</p></div>`).join('')}</div>
+      <p class="links" style="margin-top:22px"><a class="btn solid" href="#labo">Essayer une expérience</a><a class="btn" href="#cours">Choisir ma classe</a></p></div>
+      <div class="otocs"><ol class="tocs" aria-label="Diapositives">${SLIDES.map((s, i) => `<li><button type="button" class="pg" data-i="${i}" aria-label="Diapositive ${i + 1} sur ${SLIDES.length} : ${s.tab}"><span class="pgb"><i></i></span><b>${i + 1}</b><span>${s.tab}</span></button></li>`).join('')}</ol>
       <div class="auto"><button type="button" class="text-btn" id="pp"></button><span>Les figures avancent seules ; touche-en une pour les arrêter.</span></div></div>
       ${plate(1)}</section>
     <section class="wrap"><div class="sec-head"><h2>Ta <em>classe</em></h2><a href="#cours">Tous les cours</a></div>${toc(CLASSES)}</section>
@@ -499,17 +589,18 @@ const VIEWS = {
   },
   lire() { return `<section class="wrap head"><p class="sc">Lire</p><h1>Histoires et <em>personnes</em></h1><p style="color:var(--ink-2);max-width:48ch">Chronologies, biographies, histoires et curiosités. Cette page n’est pas dessinée dans la maquette.</p></section>`; },
   notes() {
-    return `<section class="wrap head"><p class="sc">Notes de conception · version 4</p><h1>Ce qui <em>change</em></h1></section>
-    <section class="wrap prose" style="max-width:68ch"><h2>Pourquoi un nouveau départ</h2>
-      <p>La version 3 reprenait les réflexes des sites générés automatiquement : fond sombre avec lueurs, titres dégradés ou en demi-teinte colorée, boutons en pilule, panneaux flous, grand titre sur figure plein écran. Des recherches sur ces signes distinctifs (dégradés, halos, héros centré, trois cartes, rayons par défaut, polices répandues) ont servi de liste de contrôle. Aucun de ces effets ne reste.</p>
-      <h2>Le parti pris</h2>
-      <p><strong>La couleur est une notation.</strong> Comme dans les <em>Éléments</em> d’Euclide d’Oliver Byrne (1847), une couleur plate désigne une grandeur, et la même couleur la désigne partout : ${R('a')}, ${B('α')} et ${Y('β')} dans la parabole ; ${B('cos θ')}, ${R('sin θ')} et ${Y('θ')} dans le cercle ; la sécante en rouge et la tangente en bleu ; l’aire non couverte en rouge. Rouge, bleu, jaune, sur du papier et de l’encre. Rien d’autre.</p>
-      <p><strong>Un livre imprimé.</strong> Filet double sous l’en-tête, texte aligné à gauche, figures numérotées en planches, table des matières avec points de conduite, coins carrés, filets fins, pas d’ombre. Typographie : Source Serif 4 pour les titres et le texte, Source Sans 3 pour l’interface, STIX Two pour les formules.</p>
-      <p><strong>Clair par défaut</strong> (projecteur, plein soleil) ; le sombre est un tableau noir.</p>
-      <h2>Ce qui reste</h2>
-      <p>Le canevas libre et amorti (sommet, point de la courbe, racines, aimant doux aux entiers, déplacement, zoom, clavier), l’accueil en cinq figures qui défilent, la structure en trois portes.</p>
+    return `<section class="wrap head"><p class="sc">Notes de conception · trois propositions</p><h1>Trois façons de <em>choisir</em></h1></section>
+    <section class="wrap prose" style="max-width:68ch"><p>Mêmes contenus, mêmes figures, même moteur : seul le parti pris change. Bascule avec les boutons en haut de la page et regarde l’accueil, le chapitre et le laboratoire dans chacune.</p>
+      <h2>A · Planches</h2>
+      <p>Un livre imprimé. Papier clair, filet double sous l’en-tête, texte aligné à gauche, figures numérotées, table des matières avec points de conduite. Rouge, bleu et jaune servent de notation, comme dans l’Euclide d’Oliver Byrne (1847). Sombre : tableau noir. <strong>Pour qui l’aime :</strong> un ton chaleureux, patrimonial, très lisible. <strong>Risque :</strong> un air un peu scolaire.</p>
+      <h2>B · Grille</h2>
+      <p>Modernisme suisse. Blanc, noir, un seul rouge. Titres énormes, grille asymétrique, grands numéros, aucun ornement. Les trois grandeurs d’une figure se distinguent par le rouge, le noir et le gris plutôt que par trois teintes. <strong>Pour qui l’aime :</strong> net, tranchant, intemporel. <strong>Risque :</strong> plus froid ; les figures à trois grandeurs sont moins parlantes sans couleur.</p>
+      <h2>C · Calque</h2>
+      <p>Un plan de dessinateur. Bleu de Prusse uni, traits blancs, double cadre, cartouche sous chaque figure avec numéro et légende. <strong>Pour qui l’aime :</strong> l’idée de construire et de mesurer, très reconnaissable. <strong>Risque :</strong> fond saturé pour de longues lectures et à l’impression ; à tester en salle de classe.</p>
+      <h2>Ce qui est commun</h2>
+      <p>Le canevas libre et amorti (sommet, point de la courbe, racines, aimant doux aux entiers, déplacement, zoom, clavier), l’accueil en cinq figures qui défilent, la structure en trois portes (Cours, Laboratoire, Lire). Aucun dégradé, halo, flou, ombre ni bouton en pilule.</p>
       <h2>Limites</h2>
-      <p>Je n’ai pas pu consulter les sites de référence (accès réseau limité) : le parti pris vient de la recherche textuelle et des tests, pas d’une comparaison visuelle. Seule la parabole existe sur la page chapitre. Lire et le détail par classe ne sont pas dessinés. Le clavier du canevas n’a pas été testé avec un lecteur d’écran. Les chiffres viennent du site actuel. Le français seul est utilisé : l’anglais reste en attente. Seuils de la suite logistique : 3, 1 + √6, 3,5441, 3,5699 [VERIFY avant publication].</p></section>`;
+      <p>Je n’ai pas pu consulter les sites de référence (accès réseau limité). Le thème clair et sombre n’est défini que pour A ; B et C ont une seule apparence ici. Seule la parabole existe sur la page chapitre. Lire et le détail par classe ne sont pas dessinés. Le clavier du canevas n’a pas été testé avec un lecteur d’écran. Les chiffres viennent du site actuel. Le français seul est utilisé : l’anglais reste en attente. Seuils de la suite logistique : 3, 1 + √6, 3,5441, 3,5699 [VERIFY avant publication].</p></section>`;
   },
 };
 
@@ -565,5 +656,8 @@ const isDark = () => root.dataset.theme === 'dark' || (!root.dataset.theme && ma
 const paintTheme = () => { themeBtn.textContent = isDark() ? 'Papier' : 'Tableau noir'; COL = null; plot && plot.wake(); };
 themeBtn.addEventListener('click', () => { root.dataset.theme = isDark() ? 'light' : 'dark'; paintTheme(); });
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', paintTheme);
+const setStyle = (st) => { root.dataset.style = st; document.querySelectorAll('.pick button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.s === st)); COL = null; plot && plot.wake(); try { localStorage.setItem('style', st); } catch (e) {} };
+document.querySelectorAll('.pick button').forEach((b) => b.addEventListener('click', () => setStyle(b.dataset.s)));
+let st0 = 'a'; try { st0 = localStorage.getItem('style') || 'a'; } catch (e) {} setStyle(['a', 'b', 'c'].includes(st0) ? st0 : 'a');
 paintTheme(); route();
 </script>
