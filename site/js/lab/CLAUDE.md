@@ -74,4 +74,6 @@ Optional `presentationControls` adds an experiment's parameter controls to the s
 `models/topology.js`: tangent fields on S²/S¹, Möbius and figure-eight Klein parametrizations, quotient-cell computations of components, boundaries, Euler characteristic and orientability, and finite free-word reduction.
 `experiments/topology.js`: `hairy-ball`, `nonorientable-surfaces` and the explicitly finite `banach-tarski-model`, using the shared space/figure templates.
 
+`models/ferris-wheel.js`, `experiments/ferris-wheel.js` (template `process`, group "modelling" in `SECTION_INFO`): idealised observation wheel and height-time graph sharing one time `t`; pure h, h', seat, thresholds; placed in the International pathway (`content.js`), not in a French chapter.
+
 `models/dynamics.js`, `experiments/dynamics.js`, `templates/dynamics.js`: adaptive step-doubling RK4, pendulum and Newtonian three-body experiments, directly draggable positions and velocities, fixed-camera trajectories, nearby comparisons, physical settings and energy/angular diagnostics. `experiments/logistic.js`, `templates/logistic.js` extend the shared `models/cobweb.js` recurrence model to synchronized cobweb/time/bifurcation views and numerical Lyapunov estimates.

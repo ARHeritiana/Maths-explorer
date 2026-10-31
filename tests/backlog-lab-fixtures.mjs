@@ -17,6 +17,10 @@ export const BACKLOG_CHECKS={
  'logistic/fixed':({r,u0})=>{let x=u0;for(let i=0;i<1000;i++)x=r*x*(1-x);return x;},
  'hairy-ball/tangent':()=>[1,0,0].reduce((sum,x,i)=>sum+x*[0,0,1][i],0),
  'nonorientable-surfaces/boundaries':()=>[0,2*Math.PI].length,
+ // height after 5 minutes from the seat's position on the wheel (a sine of the turned angle, not the cosine formula)
+ 'ferris-wheel/height':({t})=>75+60*Math.sin(2*Math.PI*t/30-Math.PI/2),
+ // time at or above 120 m by bisection on each side of the top, not by the arccos closed form
+ 'ferris-wheel/above':()=>{const h=t=>75+60*Math.sin(2*Math.PI*t/30-Math.PI/2);const root=(lo,hi,up)=>{for(let i=0;i<80;i++){const mid=(lo+hi)/2;((h(mid)<120)===up?lo=mid:hi=mid);}return (lo+hi)/2;};return root(15,30,false)-root(0,15,true);},
  'banach-tarski-model/total':s=>s.owners.filter(x=>x===0).length+s.owners.filter(x=>x===1).length,
 };
 export const BACKLOG_WITNESSES={
@@ -30,6 +34,7 @@ export const BACKLOG_WITNESSES={
  'hairy-ball/zeros':{ax:.8},
  'nonorientable-surfaces/orientation':{u:2*Math.PI},
  'nonorientable-surfaces/cut':{cut:'thirds'},
+ 'ferris-wheel/model':{t:15},'ferris-wheel/first':{t:11.55},
  'banach-tarski-model/move':{owners:[1,1,0,0,0,0,0,0,0,0,0,0]},
 };
 export const BACKLOG_PREDICTIONS={
@@ -49,5 +54,7 @@ export const BACKLOG_PREDICTIONS={
  logistic:{truth:()=>{let x=.4;for(let i=0;i<100;i++)x=3.2*x*(1-x);return Math.abs(3.2*x*(1-x)-x)>.01;},expected:true,words:/dépend de r/},
  'hairy-ball':{truth:()=>1!==(-1)**3,expected:true,words:/au moins un zéro/},
  'nonorientable-surfaces':{truth:()=>{const next=side=>1-side;let side=0;const seen=new Set();do{seen.add(side);side=next(side);}while(!seen.has(side));return seen.size===2?1:2;},expected:1,words:/^Une$/},
+ // the climb is steepest where a fine central difference of the height is largest: level with the hub (75 m)
+ 'ferris-wheel':{truth:()=>{const h=t=>75-60*Math.cos(Math.PI*t/15);let best=0,top=-Infinity;for(let t=0.001;t<15;t+=0.001){const d=(h(t+1e-4)-h(t-1e-4))/2e-4;if(d>top){top=d;best=t;}}return Math.abs(h(best)-75)<0.5?'hub':'other';},expected:'hub',words:/moyeu/},
  'banach-tarski-model':{truth:()=>12<12+12,expected:true,words:/^Non$/},
 };

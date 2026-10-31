@@ -13,9 +13,9 @@ BASE = os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173')
 # One mission per experiment that unlocks a handle, and the text the formula must stop showing once the handle moved.
 DRAGS = ['quadratic/vertex', 'trig/quadrants', 'sequences/difference', 'derivative/where', 'integral/bound',
          'probability/mean', 'vectors/collinear', 'statistics/box', 'complex/angles', 'line/slope', 'exponential/base', 'cobweb/slope',
-         'matrix/columns', 'space-lines/parallel', 'space-lines/normal']
+         'matrix/columns', 'space-lines/parallel', 'space-lines/normal', 'ferris-wheel/first']
 EXPERIMENTS = ['quadratic', 'trig', 'sequences', 'derivative', 'integral', 'probability', 'vectors', 'statistics', 'complex',
-               'line', 'exponential', 'cobweb', 'matrix', 'space-lines', 'tiles', 'euler-primes', 'fermat', 'circle-regions', 'buffon', 'bertrand']
+               'line', 'exponential', 'cobweb', 'matrix', 'space-lines', 'tiles', 'euler-primes', 'fermat', 'circle-regions', 'buffon', 'bertrand', 'ferris-wheel']
 
 # index of the first handle the current mission suggests (every handle is free, the mission's one is the meaningful drag)
 MISSION_HANDLE = "() => { const l = document.querySelector('.lab2').__lab, u = l.mission.unlock || []; return Math.max(0, l.stage.handles.findIndex(h => u.includes(h.id))); }"

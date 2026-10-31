@@ -33,6 +33,7 @@ really need them.
 | a route (add or rename a page) | `site/js/app.js` `route()`, `render()` (validity list and dispatch) | section 3 |
 | any text of a laboratory experiment (missions, prompts, arguments) | `site/js/lab/experiments/<id>.js` (index in `site/js/lab/CLAUDE.md`) | gallery entries only: `site/js/content.js` `labs` (`custom: true`) |
 | any text of a pathway | `site/js/content.js` (`pathways`) | challenge text: `site/js/challenges/<id>/index.js` |
+| the observation-wheel experiment (`#lab/ferris-wheel`, International pathway stage "Modèles sinusoïdaux") | `site/js/lab/experiments/ferris-wheel.js`, `site/js/lab/models/ferris-wheel.js` (pure maths); stage in `site/js/content.js` `pathways` (`int`, `ib`); `tests/ferris-wheel.test.mjs` | prototype kept in `docs/future-work/london-eye-interactive-exercise.html`; no French chapter text (English-only exercise) |
 | the laboratory rebuild (templates, missions, lab references) | `docs/LAB_DESIGN.md` (the contract) | |
 | a laboratory experiment (new one, new mission, handles, drawing) | `site/js/lab/CLAUDE.md`, then `site/js/lab/experiments/<id>.js`, `models/<id>.js`; contract `docs/LAB_DESIGN.md`; recipe `lab` | `site/js/lab/templates/` only for a template change |
 | the laboratory engine (drag, camera, readouts, rAF), the mission card or the lab page | `site/js/lab/engine.js`, `shell.js`, `page.js` (and `plot.js` for drawing) | |

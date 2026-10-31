@@ -28,11 +28,12 @@ import buffon from "./experiments/buffon.js";
 import bertrand from "./experiments/bertrand.js";
 import { inferenceExperiments } from "./experiments/inference.js";
 import illumination from "./experiments/illumination.js";
+import ferrisWheel from "./experiments/ferris-wheel.js";
 
 // Order of the catalogue. The experiments are plain data and small; the heavy part (templates) is imported on demand.
 export const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines, fourier, drawingExperiment, tiles, eulerPrimes, fermat, circleRegions, buffon, bertrand, fairDivision, fairGoods, ...inferenceExperiments, doublePendulum, threeBody, logistic, illumination];
 
-EXPERIMENTS.push(hairyExperiment, surfacesExperiment, banachExperiment);
+EXPERIMENTS.push(hairyExperiment, surfacesExperiment, banachExperiment, ferrisWheel);
 
 export const TEMPLATES = {
   illumination: () => import("./templates/illumination.js"),
@@ -70,13 +71,14 @@ export const TEMPLATE_INFO = {
 // Groups of the #lab index that are about an idea rather than a template: an experiment with `section` is listed there (with its
 // `sub` title as a subsection) instead of under its template. The index shows the groups in this order.
 export const SECTION_INFO = {
+  modelling: { title: ["Modéliser une situation", "Model a situation"], blurb: ["Une situation réelle idéalisée, une fonction, puis des questions de valeur, de seuil et de vitesse.", "An idealised real situation, a function, then questions of value, threshold and rate."] },
   dynamics: {title:["Systèmes dynamiques","Dynamical systems"],blurb:["Comparer les futurs d’un même modèle et contrôler le calcul.","Compare futures of the same model and monitor computation."]},
   inference: { title: ["Inférer et décider", "Infer and decide"], blurb: ["Du tirage au hasard à une décision : hypothèses, incertitude et preuves.", "From random sampling to decisions: assumptions, uncertainty and proof."] },
   tiles: { title: ["Une figure n’est pas une preuve", "A figure is not a proof"], blurb: ["Des pièces qui semblent changer d’aire : la démonstration dit où est l’erreur.", "Pieces that seem to change their area: the proof says where the error is."] },
   patterns: { title: ["Une régularité n’est pas une preuve", "A pattern is not a proof"], blurb: ["Des observations vraies pendant 5 ou 40 cas, puis fausses.", "Observations true for 5 or 40 cases, then false."] },
   geochance: { title: ["Probabilités géométriques", "Geometric probability"], blurb: ["Le hasard dans le plan : une aiguille, une corde.", "Chance in the plane: a needle, a chord."] },
 };
-export const INDEX_ORDER = ["family", "process", "dynamics", "logistic", "chance", "inference", "geochance", "illumination", "figure", "tiles", "patterns", "data", "transform", "space", "fourier"];
+export const INDEX_ORDER = ["family", "process", "modelling", "dynamics", "logistic", "chance", "inference", "geochance", "illumination", "figure", "tiles", "patterns", "data", "transform", "space", "fourier"];
 export const groupOf = (e) => e.section || e.template;
 
 export const experimentById = (id) => EXPERIMENTS.find((e) => e.id === id) || null;

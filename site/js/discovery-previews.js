@@ -32,7 +32,7 @@ const aliases={'mirrored-rooms':'illumination','banach-tarski':'banach-tarski-mo
  'waiting-time':'random-variable','lattice-paths':'counting','euler-trails':'graphs','pigeonhole':'counting',
  'inequalities':'algebra','invariants':'logic','calculs-algebriques':'algebra','logique':'logic','ensembles':'sets',
  'applications':'sets','module-semaine-5':'space-lines','module-semaine-6':'matrix'};
-const known=new Set(['quadratic','probability','trig','benford','secretary','tank','birthdays','monty','baker',
+const known=new Set(['quadratic','probability','trig','ferris-wheel','benford','secretary','tank','birthdays','monty','baker',
  'double-pendulum','three-body','logistic','illumination','fair-division','fair-goods','hairy-ball',
  'nonorientable-surfaces','banach-tarski-model','gomboc','derivative','integral','vectors','statistics','complex',
  'line','exponential','cobweb','matrix','space-lines','sequences','fourier','circle-regions','buffon','bertrand',
@@ -67,6 +67,10 @@ export function modelPreview(kind) {
  } else if(kind==='trig') {
   drawing='<path class="preview-axis" d="M10 50H150M80 8V90"/>'+plot(x=>50-28*Math.sin(x),-Math.PI,Math.PI);
   caption=P('Exemple : y = sin(x)','Example: y = sin(x)');
+ } else if(kind==='ferris-wheel') {
+  // h(t) = 75 - 60 cos(pi t / 15) over one revolution with the 120 m level, beside a schematic wheel
+  drawing='<path class="preview-axis" d="M62 84H150M62 10V88"/><circle class="preview-axis" cx="32" cy="46" r="20" fill="none"/>'+dot(32,66,3)+path(Array.from({length:61},(_,i)=>[62+88*i/60,84-0.55*(75-60*Math.cos(Math.PI*(i/2)/15))]))+'<path class="preview-axis" stroke-dasharray="3 3" d="M62 18H150"/>';
+  caption=P('Hauteur h(t) = 75 − 60 cos(πt/15)','Height h(t) = 75 − 60 cos(πt/15)');
  } else if(kind==='benford') {
   drawing=Array.from({length:9},(_,i)=>{const p=benfordProbability(i+1);return `<rect class="preview-fill" x="${18+i*14}" y="${80-p*200}" width="10" height="${p*200}"/><text x="${23+i*14}" y="95" text-anchor="middle">${i+1}</text>`;}).join('');
   caption=P('Modèle : log₁₀(1 + 1/d)','Model: log₁₀(1 + 1/d)');

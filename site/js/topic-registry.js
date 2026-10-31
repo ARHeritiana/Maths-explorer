@@ -10,7 +10,7 @@ export const TOPICS = [
     sub('linear','Vecteurs et algèbre linéaire','Vectors and linear algebra','vectors scalar matrices matrix orthogonality space-equations','vect|matri|linéaire|linear'),
     sub('complex','Nombres complexes','Complex numbers','complex complex-algebra complex-plane complex-exponential complex-rotations roots-of-unity','complex|racines de l.unité|roots of unity')]},
   {id:'analysis', title:P('Analyse','Analysis'), preview:'curve', subtopics:[
-    sub('functions','Fonctions et variations','Functions and variation','functions quadratic derivative convexity exponential logarithm log10 reciprocal bisection optimisation line lines','fonction|function|dériv|deriv|exponent|logarith|convex|optimis'),
+    sub('functions','Fonctions et variations','Functions and variation','functions quadratic derivative convexity exponential logarithm log10 reciprocal bisection optimisation line lines ferris-wheel','fonction|function|dériv|deriv|exponent|logarith|convex|optimis'),
     sub('limits','Suites et limites','Sequences and limits','sequences sequence-limits function-limits induction telescoping differential','suite|sequence|limit|récurrence'),
     sub('integration','Intégration et Fourier','Integration and Fourier','integral fourier fourier-series fourier-drawing trig-functions trigonometry','intégr|integr|fourier|trigonom')]},
   {id:'geometry', title:P('Géométrie','Geometry'), preview:'geometry', subtopics:[
