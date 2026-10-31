@@ -105,7 +105,7 @@ with sync_playwright() as p:
 
     # ---- a chapter page: the first lab reference is mounted inline, lazily, and destroyed on navigation
     page = new_page(1280, 300)
-    page.goto(f'{BASE}/#chapter/seconde-02/experiment')
+    page.goto(f'{BASE}/#chapter/seconde-02/manipuler')
     page.locator('.chapter-lab-host').wait_for(state='attached')
     page.wait_for_timeout(500)
     assert page.locator('.chapter-lab-host .lab2-canvas').count() == 0, 'not mounted before it scrolls into view'
@@ -125,15 +125,15 @@ with sync_playwright() as p:
     page.mouse.up(); page.wait_for_timeout(300)
     assert page.locator('.chapter-lab-host .lab2-formula').inner_text() != before, 'a drag works in the inline mount'
     # navigating destroys it: another tab, then the home page
-    page.goto(f'{BASE}/#chapter/seconde-02/understand')
+    page.goto(f'{BASE}/#chapter/seconde-02/cours')
     page.wait_for_function("() => !document.querySelector('.chapter-lab-host')")
     assert page.locator('.lab2-canvas').count() == 0, 'destroyed with its tab'
-    page.goto(f'{BASE}/#chapter/seconde-02/experiment'); page.locator('.chapter-lab-host').scroll_into_view_if_needed(); page.wait_for_selector('.chapter-lab-host .lab2-canvas')
+    page.goto(f'{BASE}/#chapter/seconde-02/manipuler'); page.locator('.chapter-lab-host').scroll_into_view_if_needed(); page.wait_for_selector('.chapter-lab-host .lab2-canvas')
     page.goto(f'{BASE}/#home')
     page.wait_for_timeout(300)
     assert page.locator('.lab2-canvas').count() == 0 and page.locator('.lab2').count() == 0, 'destroyed on navigation'
     # a chapter with two references lists both links, mounting only the first
-    page.goto(f'{BASE}/#chapter/expertes-03/experiment')
+    page.goto(f'{BASE}/#chapter/expertes-03/manipuler')
     page.locator('.chapter-lab-links').wait_for()
     assert page.locator('.chapter-lab-links a').count() == 2
     page.goto(f'{BASE}/#home')

@@ -61,7 +61,7 @@ export function sequenceModel(deck) {
       if (current && current.title[0] === slide.t[0]) current.statements.push(slide);
       else { current = { title: slide.t, statements: [slide], examples: [], warnings: [], tasks: [], index }; lessons.push(current); }
     } else if (slide.k === 'try') {
-      const task = { ...slide, index, lesson: current?.title || slide.t };
+      const task = { ...slide, index, lesson: current?.title || slide.t, lessonIndex: Math.max(0, lessons.indexOf(current)) };
       tasks.push(task); current?.tasks.push(task);
     } else if (slide.k === 'example') {
       if (!current) { current = { title: slide.t, statements: [], examples: [], warnings: [], tasks: [], index }; lessons.push(current); }
@@ -73,7 +73,7 @@ export function sequenceModel(deck) {
       current.statements.push(slide);
     }
   }
-  if (!tasks.length) for (const lesson of lessons) for (const slide of lesson.examples) if (slide.a && slide.practiceReady) tasks.push({ ...slide, lesson:lesson.title, reused:true });
+  if (!tasks.length) for (const lesson of lessons) for (const slide of lesson.examples) if (slide.a && slide.practiceReady) tasks.push({ ...slide, lesson:lesson.title, lessonIndex:lessons.indexOf(lesson), reused:true });
   return { goals, lessons, tasks, activities, diagnostics, checks };
 }
 

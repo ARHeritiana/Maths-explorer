@@ -6,7 +6,7 @@ and palette contrast. Real device screen-reader acceptance remains manual.
 import os
 from pathlib import Path
 
-STEPS = ['prepare', 'experiment', 'understand', 'practice', 'review', 'documents']
+STEPS = ['cours', 'manipuler', 'exercices', 'documents']
 ROUTES = ['home'] + ['chapter/premiere-02/' + step for step in STEPS]
 
 
@@ -61,7 +61,7 @@ def check_home_chapter(page, base, screenshot_dir=None):
                         assert enlarged_font >= normal_font * 1.99, ('text actually doubled', route)
                     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), (theme, width, route, enlarged)
                     assert page.locator('h1').is_visible(), route
-                    if screenshot_dir and width in [390, 1440] and enlarged and route in ['home', 'chapter/premiere-02/prepare']:
+                    if screenshot_dir and width in [390, 1440] and enlarged and route in ['home', 'chapter/premiere-02/cours']:
                         Path(screenshot_dir).mkdir(parents=True, exist_ok=True)
                         page.screenshot(path=str(Path(screenshot_dir) / ('a11y-' + theme + '-' + str(width) + '-' + route.replace('/', '-') + '.png')), full_page=True)
                     cases += 1
@@ -84,17 +84,18 @@ def check_home_chapter(page, base, screenshot_dir=None):
     page.wait_for_url('**/#resources')
     page.wait_for_function("document.activeElement.id === 'main'")
 
-    _open(page, base, 'chapter/premiere-02/prepare')
+    _open(page, base, 'chapter/premiere-02/cours')
     page.locator('.skip').focus()
     page.keyboard.press('Enter')
     assert page.evaluate('document.activeElement.id') == 'main'
-    next_step = page.locator('.sequence-nav a[href$="/experiment"]')
+    next_step = page.locator('.chapter-tabs a[href$="/manipuler"]')
     next_step.focus()
     page.keyboard.press('Enter')
-    page.wait_for_url('**/#chapter/premiere-02/experiment')
-    page.wait_for_function("document.querySelector('#chapter-sequence')?.getAttribute('aria-busy') === 'false'")
-    assert page.evaluate('document.activeElement.id') == 'main'
-    assert page.locator('.sequence-nav [aria-current="step"]').get_attribute('href').endswith('/experiment')
+    page.wait_for_url('**/#chapter/premiere-02/manipuler')
+    # wait for the re-rendered destination, not the previous one's content, before judging focus
+    page.wait_for_function("document.querySelector('.chapter-tabs [aria-current=page]')?.getAttribute('href').endsWith('/manipuler') && document.querySelector('#chapter-sequence')?.getAttribute('aria-busy') === 'false'")
+    page.wait_for_function("document.activeElement.id === 'main'")
+    assert page.locator('.chapter-tabs [aria-current="page"]').get_attribute('href').endswith('/manipuler')
     assert page.locator('#chapter-sequence > [role="status"]').inner_text().strip(), 'async content has a load announcement'
     host = page.locator('.chapter-lab-host')
     host.scroll_into_view_if_needed()
@@ -105,7 +106,7 @@ def check_home_chapter(page, base, screenshot_dir=None):
     page.keyboard.press('ArrowRight')
     page.wait_for_function("before => document.querySelector('.chapter-lab-host .lab2-readout').innerText !== before", arg=before)
 
-    _open(page, base, 'chapter/premiere-02/understand')
+    _open(page, base, 'chapter/premiere-02/cours')
     page.locator('mjx-assistive-mml math').first.wait_for(state='attached')
     assert page.locator('mjx-assistive-mml').first.evaluate("el => getComputedStyle(el).display !== 'none'"), 'semantic mathematics is available to assistive technology'
     for table in page.locator('.sequence-maths table').all():

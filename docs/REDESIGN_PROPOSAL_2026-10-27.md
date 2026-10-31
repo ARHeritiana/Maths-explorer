@@ -1,6 +1,6 @@
 # Maths Explorer: redesign proposal
 Date: 27 October 2026
-Status: revised implementation proposal informed by supplied reference screenshots. No UI implementation is claimed.
+Status: revised implementation proposal informed by supplied reference screenshots. Milestones 1 and 2 are implemented (see `HANDOFF.md`, 31 October 2026); milestones 3 and 4 and all human acceptance are not.
 
 ## Decision
 Replace the welcome splash and the six-step chapter interface with a useful mathematics workspace. Make it easy to find a topic, understand it, manipulate an object, practise, and obtain classroom materials. Completeness and mathematical quality take priority over adding more features.
