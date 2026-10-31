@@ -2,9 +2,10 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=IBM+Plex+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@300;500;700;800&family=Sora:wght@300;600;800&family=STIX+Two+Text:ital,wght@0,400;0,700;1,400;1,600&display=swap">
 <style>
 /* Layout: the figure is the page. A full-bleed canvas carries the text; everything else is hairline and type.
+   The home page is a slideshow of live figures, one after the other.
    Colour: one cool curve (ice for the falling branch, ultramarine for the rising one), one warm colour for whatever
    you can move. No other hue. Dark first, like a night sky for mathematics; the light theme is clean white paper. */
 :root {
@@ -13,12 +14,14 @@
   --ink: #eef1fb; --ink-2: #c3c9de; --muted: #8e97b5; --line: #232d4d;
   --grid: rgba(160, 185, 255, .06); --grid-2: rgba(160, 185, 255, .15);
   --down: #6fe3ff; --up: #8aa0ff; --hand: #ffc247; --acc: #9db0ff; --acc-ink: #070b16;
-  --display: "Bodoni Moda", "Bodoni 72", Didot, "Times New Roman", serif;
+  --display: "Manrope", system-ui, sans-serif;
   --body: "Atkinson Hyperlegible", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
   --math: "STIX Two Text", "Times New Roman", serif;
   --gl: max(16px, env(safe-area-inset-left, 0px)); --gr: max(16px, env(safe-area-inset-right, 0px));
 }
+:root[data-face="b"] { --display: "Sora", system-ui, sans-serif; }
+:root[data-face="c"] { --display: "STIX Two Text", "Times New Roman", serif; }
 @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) {
   color-scheme: light;
   --bg: #fbfbfe; --bg-2: #f0f1f8; --panel: rgba(251, 251, 254, .82);
@@ -36,16 +39,17 @@
 body { background: var(--bg); color: var(--ink); font: 1.0625rem/1.65 var(--body); -webkit-font-smoothing: antialiased; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 30; }
 h1, h2, h3 { margin: 0; text-wrap: balance; }
-h1, h2 { font-family: var(--display); font-weight: 700; line-height: 1.04; letter-spacing: -.02em; font-optical-sizing: auto; }
-h1 { font-size: clamp(2.5rem, 6.4vw, 5.2rem); }
-h2 { font-size: clamp(1.8rem, 3.6vw, 2.7rem); }
+h1, h2 { font-family: var(--display); font-weight: 800; line-height: 1.05; letter-spacing: -.035em; }
+:root[data-face="c"] h1, :root[data-face="c"] h2 { font-weight: 700; letter-spacing: -.02em; }
+h1 { font-size: clamp(2.3rem, 5.4vw, 4.4rem); }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); }
 h3 { font: 700 1.1rem/1.3 var(--body); }
-h1 em, h2 em { font-style: italic; font-weight: 500; }
+h1 em, h2 em { font-style: normal; font-weight: 300; color: var(--down); }
+:root[data-face="c"] h1 em, :root[data-face="c"] h2 em { font-style: italic; font-weight: 400; }
 p { margin: 0; text-wrap: pretty; }
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--hand); outline-offset: 3px; }
 .v { font-family: var(--math); font-style: italic; }
-.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 .kicker { font: 500 .78rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .wrap { max-width: 1240px; margin-inline: auto; padding-inline: var(--gl) var(--gr); }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -53,7 +57,7 @@ a { color: inherit; }
 /* header */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent); }
 .top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 0 36px; }
-.brand { display: flex; align-items: center; gap: 12px; padding-block: 14px; text-decoration: none; font: 700 1.25rem var(--display); letter-spacing: -.01em; }
+.brand { display: flex; align-items: center; gap: 12px; padding-block: 14px; text-decoration: none; font: 800 1.15rem var(--display); letter-spacing: -.03em; }
 .brand svg { width: 28px; height: 28px; overflow: visible; }
 .doors { display: flex; gap: 6px; order: 3; width: 100%; margin-inline: -10px; }
 .doors a { position: relative; text-decoration: none; padding: 10px 10px 12px; min-height: 44px; font-weight: 700; font-size: .98rem; color: var(--muted); transition: color .2s; }
@@ -70,27 +74,46 @@ a { color: inherit; }
 
 /* the stage: a full-bleed canvas that carries the page */
 .hero { position: relative; display: grid; }
-.stage { position: relative; height: 66vh; min-height: 420px; width: 100%; background: radial-gradient(120% 90% at 70% 40%, var(--bg-2), var(--bg) 70%); overflow: hidden; touch-action: none; }
-.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; outline: none; touch-action: none; }
+.stage { position: relative; height: 62vh; min-height: 400px; width: 100%; background: radial-gradient(120% 90% at 70% 40%, var(--bg-2), var(--bg) 70%); overflow: hidden; touch-action: none; }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; outline: none; touch-action: none; transition: opacity .32s ease; }
+.stage.swap canvas { opacity: 0; }
 .stage.kbd canvas:focus { outline: 2px solid var(--hand); outline-offset: -3px; }
 .hint { position: absolute; left: 16px; bottom: 14px; z-index: 2; font: 500 .75rem var(--mono); letter-spacing: .06em; color: var(--muted); transition: opacity .6s; pointer-events: none; }
-.touched .hint { opacity: 0; }
-.bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0; border-top: 1px solid var(--line); background: var(--bg); }
+.touched .hint, .swap .hint { opacity: 0; }
+.bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); border-top: 1px solid var(--line); background: var(--bg); }
 .bar > div { padding: 12px 20px 14px; border-right: 1px solid var(--line); min-width: 0; }
 .bar > div:last-child { border-right: 0; }
-.bar b { display: block; font: 500 .7rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.bar b { display: block; font: 500 .74rem var(--mono); letter-spacing: .04em; color: var(--muted); font-weight: 500; }
 .bar span { font: 500 .96rem var(--mono); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .bar .dn { color: var(--down); } .bar .upc { color: var(--up); }
 
-.copy { padding: 36px var(--gr) 32px var(--gl); display: grid; gap: 22px; max-width: 640px; }
-.copy .lede { font-size: 1.15rem; color: var(--ink-2); max-width: 36ch; }
+/* home slideshow */
+.copy { padding: 32px var(--gr) 28px var(--gl); display: grid; gap: 24px; max-width: 660px; }
+.slides { display: grid; }
+.slide { grid-area: 1 / 1; display: grid; gap: 20px; align-content: start; opacity: 0; transform: translateY(16px); visibility: hidden; transition: opacity .55s, transform .55s cubic-bezier(.2, .8, .2, 1), visibility 0s .55s; }
+.slide.on { opacity: 1; transform: none; visibility: visible; transition-delay: .2s, .2s, 0s; }
+.slide .lede { font-size: 1.15rem; color: var(--ink-2); max-width: 38ch; }
 .acts { display: flex; flex-wrap: wrap; gap: 12px; }
+.pager { display: flex; align-items: end; gap: 10px; }
+.pg { flex: 1 1 0; min-width: 0; display: grid; gap: 8px; padding: 10px 0 0; background: none; border: 0; color: var(--muted); text-align: left; cursor: pointer; min-height: 44px; font: 700 .82rem var(--body); }
+.pg:hover { color: var(--ink); } .pg[aria-current] { color: var(--ink); }
+.pgt { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pgb { position: relative; height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.pgb i { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--hand); }
+.pg.done .pgb i { width: 100%; }
+.pg[aria-current] .pgb i { animation: fill var(--dur, 9s) linear forwards; }
+.hero.paused .pg[aria-current] .pgb i { animation-play-state: paused; }
+.hero.static .pg[aria-current] .pgb i { animation: none; width: 100%; }
+@media (max-width: 600px) { .pgt { display: none; } .pg { padding-top: 18px; } }
+@keyframes fill { to { width: 100%; } }
+.pp { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; display: grid; place-items: center; }
+.pp:hover { border-color: var(--ink-2); color: var(--ink); }
 @media (min-width: 900px) {
   .hero--home .stage { position: absolute; inset: 0; height: auto; min-height: 0; }
-  .hero--home { min-height: min(86vh, 820px); align-content: space-between; }
+  .hero--home { min-height: min(88vh, 840px); align-content: space-between; }
   .hero--home::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, var(--bg) 4%, color-mix(in srgb, var(--bg) 78%, transparent) 30%, transparent 58%); }
-  .hero--home .copy { position: relative; z-index: 2; pointer-events: none; padding: 9vh 0 4vh max(var(--gl), calc((100vw - 1240px) / 2 + var(--gl))); margin-top: auto; margin-bottom: auto; }
-  .hero--home .copy .acts a, .hero--home .copy .acts button { pointer-events: auto; }
+  .hero--home .copy { position: relative; z-index: 2; pointer-events: none; padding: 7vh 0 3vh max(var(--gl), calc((100vw - 1240px) / 2 + var(--gl))); margin-block: auto; }
+  .hero--home .copy a, .hero--home .copy button { pointer-events: auto; }
   .hero--home .bar { position: relative; z-index: 2; background: var(--panel); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 }
 
@@ -102,7 +125,9 @@ main > section + section { margin-top: clamp(64px, 9vw, 120px); }
 .index li { border-bottom: 1px solid var(--line); }
 .index a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 24px; align-items: baseline; padding: 22px 0; text-decoration: none; transition: padding-left .35s cubic-bezier(.2, .8, .2, 1); }
 .index a:hover { padding-left: 14px; }
-.index .t { font: 700 clamp(1.5rem, 3vw, 2.2rem)/1.1 var(--display); letter-spacing: -.01em; transition: color .2s; }
+.index .t { font: 700 clamp(1.35rem, 2.6vw, 1.9rem)/1.15 var(--display); letter-spacing: -.025em; transition: color .2s; }
+.index .t em { font-style: normal; font-weight: 300; }
+:root[data-face="c"] .index .t em { font-style: italic; font-weight: 400; }
 .index a:hover .t { color: var(--hand); }
 .index .d { grid-column: 1; color: var(--ink-2); max-width: 62ch; }
 .index .m { grid-row: 1; grid-column: 2; font: 500 .85rem var(--mono); color: var(--muted); white-space: nowrap; }
@@ -114,7 +139,7 @@ main > section + section { margin-top: clamp(64px, 9vw, 120px); }
 /* chapter */
 .crumb { color: var(--muted); font-size: .95rem; } .crumb a { color: var(--acc); }
 .head { display: grid; gap: 18px; padding-block: 40px 28px; }
-.head h1 { max-width: 14ch; }
+.head h1 { max-width: 16ch; }
 .steps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(130px, 1fr); list-style: none; margin: 0; padding: 0; overflow-x: auto; }
 .steps a { display: grid; gap: 2px; padding: 12px 12px 12px 0; border-top: 2px solid var(--line); text-decoration: none; color: var(--muted); font-weight: 700; font-size: .95rem; min-height: 56px; }
 .steps a b { font: 500 .72rem var(--mono); letter-spacing: .12em; }
@@ -122,7 +147,7 @@ main > section + section { margin-top: clamp(64px, 9vw, 120px); }
 .hero--chap { position: relative; margin-top: clamp(16px, 3vw, 40px); }
 .mission { padding: 24px var(--gr) 28px var(--gl); display: grid; gap: 14px; background: var(--bg); border-top: 1px solid var(--line); }
 .mission .tag { font: 500 .74rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--hand); }
-.mission h3 { font: 700 1.3rem/1.3 var(--display); letter-spacing: -.01em; }
+.mission h3 { font: 700 1.2rem/1.35 var(--display); letter-spacing: -.02em; }
 .choices { display: flex; gap: 8px; }
 .choices button { width: 58px; height: 50px; font: 500 1.15rem var(--mono); border-radius: 12px; border: 1.5px solid var(--ink-2); background: transparent; color: var(--ink); cursor: pointer; transition: background .2s, transform .15s; }
 .choices button:hover { transform: translateY(-2px); } .choices button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
@@ -139,7 +164,10 @@ main > section + section { margin-top: clamp(64px, 9vw, 120px); }
 .filter { display: flex; flex-wrap: wrap; gap: 8px; }
 .filter button { min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid var(--line); background: transparent; color: var(--ink-2); font: 700 .95rem var(--body); cursor: pointer; transition: border-color .2s; }
 .filter button:hover { border-color: var(--ink-2); } .filter button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-footer { margin-top: clamp(64px, 9vw, 120px); border-top: 1px solid var(--line); } footer .wrap { padding-block: 28px 40px; display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: space-between; color: var(--muted); font-size: .92rem; }
+footer { margin-top: clamp(64px, 9vw, 120px); border-top: 1px solid var(--line); } footer .wrap { padding-block: 24px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; justify-content: space-between; color: var(--muted); font-size: .92rem; }
+.face { display: flex; align-items: center; gap: 6px; } .face span { margin-right: 6px; }
+.face button { min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1.5px solid var(--line); background: transparent; color: var(--ink-2); font: 700 .85rem var(--body); cursor: pointer; }
+.face button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 [hidden] { display: none !important; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -153,17 +181,26 @@ footer { margin-top: clamp(64px, 9vw, 120px); border-top: 1px solid var(--line);
   <div class="tools"><button class="icon-btn" id="theme" type="button" aria-label="Changer de thème"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button></div>
 </div></header>
 <main id="view"></main>
-<footer><div class="wrap"><span>Une expérience donne des indices, pas une preuve.</span><a href="#notes">Notes de conception</a></div></footer>
+<footer><div class="wrap"><span>Une expérience donne des indices, pas une preuve.</span>
+  <div class="face" role="group" aria-label="Typographie des titres"><span>Titres</span><button type="button" data-face="a" aria-pressed="true">Manrope</button><button type="button" data-face="b" aria-pressed="false">Sora</button><button type="button" data-face="c" aria-pressed="false">STIX Two</button></div>
+  <a href="#notes">Notes de conception</a></div></footer>
 <p class="sr" id="status" aria-live="polite"></p>
 
 <script>
-/* ============ shared state: the same parabola on every page. f(x) = a(x − α)² + β ============ */
-const S = { al: 0, be: -2, a: 1, dx: 1.5 };
-const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const fmt = (n) => { const v = Math.round(n * 100) / 100; return String(Object.is(v, -0) ? 0 : v).replace('.', ',').replace('-', '−'); };
+const TAU = Math.PI * 2, reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const fmt = (n, d = 2) => { const q = 10 ** d, v = Math.round(n * q) / q; return String(Object.is(v, -0) ? 0 : v).replace('.', ',').replace('-', '−'); };
 const approx = (n) => (Math.abs(Math.round(n * 100) / 100 - n) < 1e-9 ? '=' : '≈');
 const sgn = (n) => (n < 0 ? ' − ' : ' + ') + fmt(Math.abs(n));
-function forms() {
+const lab = (v) => String(+v.toFixed(8)).replace('.', ',').replace('-', '−');
+
+/* ============ scenes ============
+   A scene owns its state and describes itself to the engine:
+   view (world box to fit), axes, hint, animating(), tick(dt,t), settle(k), draw(V), handles(), grab(k), drag(k,wx,wy,ctx,snap,V), nudge(k,dx,dy), fields(), touch() */
+
+/* --- parabola, shared by home and chapter: f(x) = a(x − α)² + β --- */
+const S = { al: 0, be: -2, a: 1, dx: 1.5 };
+function parabolaForms() {
   const { al, be, a } = S, b = -2 * a * al, c = a * al * al + be, d = b * b - 4 * a * c;
   const lead = Math.abs(a - 1) < 5e-3 ? '' : Math.abs(a + 1) < 5e-3 ? '−' : fmt(a);
   const sq = Math.abs(al) < 5e-3 ? 'x²' : '(x ' + (al > 0 ? '−' : '+') + ' ' + fmt(Math.abs(al)) + ')²';
@@ -173,133 +210,230 @@ function forms() {
   const roots = count === 0 ? 'aucune racine réelle' : count === 1 ? 'x = ' + fmt(al) : `x₁ ${approx(al - r)} ${fmt(al - r)} · x₂ ${approx(al + r)} ${fmt(al + r)}`;
   return { canon, dev, delta: fmt(d), roots, count, a };
 }
+function makeParabola(o = {}) {
+  const sh = { ...S }; let touched = !o.drift;
+  const magnet = (v, V, on) => { if (!on) return v; const r = Math.round(v); return Math.abs(v - r) * V.s() < 7 ? r : v; };
+  const f = (x) => sh.a * (x - sh.al) ** 2 + sh.be;
+  return {
+    view: { x0: -6.5, x1: 6.5, y0: -4.6, y1: 5 }, axes: true,
+    hint: o.hint || 'glisse les points chauds · cercles blancs = racines · molette pour zoomer',
+    touch() { touched = true; }, animating: () => !touched && !reduced,
+    tick(dt, t) { S.al = 0.9 * Math.sin(t * 0.33); S.be = -2 + 0.7 * Math.sin(t * 0.27 + 1); S.a = 1 + 0.4 * Math.sin(t * 0.21); },
+    settle(k, dragging) { let m = false; for (const key of ['al', 'be', 'a', 'dx']) { const d = S[key] - sh[key]; if (Math.abs(d) > 1e-5) { sh[key] += d * k(dragging ? 42 : 14); m = true; } else sh[key] = S[key]; } return m; },
+    handles() { const r2 = -sh.be / sh.a, out = [{ k: 'V', x: sh.al, y: sh.be }, { k: 'P', x: sh.al + sh.dx, y: f(sh.al + sh.dx) }];
+      if (r2 >= 0) { const r = Math.sqrt(r2); out.push({ k: 'R1', x: sh.al - r, y: 0, root: true, t: fmt(sh.al - r) }, { k: 'R2', x: sh.al + r, y: 0, root: true, t: fmt(sh.al + r) }); } return out; },
+    grab(k) { const r = Math.sqrt(Math.max(0, -S.be / S.a)); return k === 'R1' ? S.al + r : S.al - r; },
+    drag(k, wx, wy, other, snap, V) {
+      if (k === 'V') { S.al = clamp(magnet(wx, V, snap), -40, 40); S.be = clamp(magnet(wy, V, snap), -40, 40); }
+      else if (k === 'P') { let dx = wx - S.al; if (Math.abs(dx) < 0.3) dx = (S.dx < 0 ? -1 : 1) * 0.3;
+        let a = (wy - S.be) / (dx * dx); if (Math.abs(a) < 0.05) a = (S.a < 0 ? -1 : 1) * 0.05; a = clamp(a, -8, 8);
+        const q = Math.round(a * 2) / 2; if (snap && Math.abs(a - q) < 0.035 && q !== 0) a = q; S.dx = dx; S.a = a; }
+      else { const nx = magnet(wx, V, snap), half = (other - nx) / 2; S.al = (nx + other) / 2; S.be = -S.a * half * half; }
+    },
+    nudge(k, dx, dy, V) { const r = Math.sqrt(Math.max(0, -S.be / S.a)), p = k === 'V' ? [S.al, S.be] : k === 'P' ? [S.al + S.dx, S.a * S.dx * S.dx + S.be] : [k === 'R1' ? S.al - r : S.al + r, 0]; this.drag(k, p[0] + dx, p[1] + dy, this.grab(k), false, V); },
+    say(k) { return k === 'V' ? `Sommet en ${fmt(S.al)} ; ${fmt(S.be)}` : k === 'P' ? `a = ${fmt(S.a)}` : `Racine en ${fmt(S.al)}`; },
+    names: ['Sommet', 'Point sur la courbe', 'Première racine', 'Seconde racine'],
+    fields() { const f = parabolaForms(); return [['Forme canonique', f.canon], ['Forme développée', f.dev], ['Discriminant Δ', f.delta], ['Racines', f.roots],
+      ['Variations', f.a > 0 ? '<span class="dn">↘ décroît</span> puis <span class="upc">↗ croît</span>' : '<span class="upc">↗ croît</span> puis <span class="dn">↘ décroît</span>']]; },
+    draw(V) {
+      const { g, C } = V;
+      g.setLineDash([4, 6]); g.lineWidth = 1; g.strokeStyle = C.down; g.globalAlpha = 0.45; g.beginPath(); g.moveTo(Math.round(V.X(sh.al)) + 0.5, 0); g.lineTo(Math.round(V.X(sh.al)) + 0.5, V.H); g.stroke();
+      g.strokeStyle = C.hand; g.globalAlpha = 0.4; g.beginPath(); g.moveTo(Math.round(V.X(0)) + 0.5, Math.round(V.Y(sh.be)) + 0.5); g.lineTo(Math.round(V.X(sh.al)) + 0.5, Math.round(V.Y(sh.be)) + 0.5); g.stroke(); g.setLineDash([]); g.globalAlpha = 1;
+      const lc = sh.a > 0 ? C.down : C.up, rc = sh.a > 0 ? C.up : C.down;
+      V.curve(f, V.left - 1, sh.al, lc); V.curve(f, sh.al, V.right + 1, rc);
+      if (V.ptr && !V.drag && !V.hov && !V.ptr.touch) { const x = V.ux(V.ptr.x), y = f(x), m = 2 * sh.a * (x - sh.al), px = V.X(x), py = V.Y(y);
+        if (py > -50 && py < V.H + 50) { V.tangent(px, py, m); V.tip(px, py, `x = ${fmt(x)}   f(x) = ${fmt(y)}   f′(x) = ${fmt(m)}`); } }
+    },
+    labelV: () => `S(${fmt(sh.al)} ; ${fmt(sh.be)})`, below: () => sh.a > 0,
+  };
+}
 
-/* ============ the canvas engine ============
-   Eased everywhere (parameters and camera follow their targets with an exponential spring), pointer-direct while
-   dragging, free in every degree of freedom, soft magnet to integers instead of a hard grid, pan and zoom. */
+/* --- unit circle: cosine and sine traced --- */
+function makeCircle() {
+  const r = 1.5, cx = -3.0, x0 = -0.9, kx = 0.82; let th = 0.9, ths = th, touched = false;
+  const PI = Math.PI;
+  return {
+    view: { x0: -4.7, x1: 5.5, y0: -2.1, y1: 2.1 }, axes: false, hint: 'fais tourner le point · les angles remarquables attirent',
+    touch() { touched = true; }, animating: () => !touched && !reduced, tick(dt) { th += dt * 0.55; },
+    settle(k) { const d = th - ths; if (Math.abs(d) > 1e-4) { ths += d * k(16); return true; } ths = th; return false; },
+    handles: () => [{ k: 'P', x: cx + r * Math.cos(ths), y: r * Math.sin(ths) }], grab: () => 0,
+    drag(k, wx, wy, _o, snap) { let a = Math.atan2(wy, wx - cx); a += TAU * Math.round((th - a) / TAU); if (snap) { const q = Math.round(a / (PI / 6)) * PI / 6; if (Math.abs(a - q) < 0.05) a = q; } th = a; },
+    nudge(k, dx, dy) { th += dy - dx; }, say: () => `Angle ${fmt(((th % TAU) + TAU) % TAU * 180 / PI, 0)} degrés`, names: ['Point P'],
+    fields() { const a = ((ths % TAU) + TAU) % TAU; return [['Angle θ', fmt(a * 180 / PI, 0) + '° = ' + fmt(a) + ' rad'], ['cos θ', fmt(Math.cos(a), 3)], ['sin θ', fmt(Math.sin(a), 3)], ['cos² θ + sin² θ', fmt(Math.cos(a) ** 2 + Math.sin(a) ** 2, 3)]]; },
+    draw(V) {
+      const { g, C } = V, a = ((ths % TAU) + TAU) % TAU, px = cx + r * Math.cos(a), py = r * Math.sin(a), wx = x0 + a * kx;
+      const line = (x1, y1, x2, y2, col, w = 1, al = 1, dash) => { g.setLineDash(dash || []); g.strokeStyle = col; g.lineWidth = w; g.globalAlpha = al; g.beginPath(); g.moveTo(V.X(x1), V.Y(y1)); g.lineTo(V.X(x2), V.Y(y2)); g.stroke(); g.setLineDash([]); g.globalAlpha = 1; };
+      g.strokeStyle = C.ink2; g.globalAlpha = 0.7; g.lineWidth = 1.4; g.beginPath(); g.arc(V.X(cx), V.Y(0), r * V.s(), 0, TAU); g.stroke(); g.globalAlpha = 1;
+      line(cx - r - 0.4, 0, cx + r + 0.4, 0, C.ink2, 1, .5); line(cx, -r - 0.4, cx, r + 0.4, C.ink2, 1, .5);
+      line(x0, 0, x0 + TAU * kx + 0.3, 0, C.ink2, 1, .6);
+      g.font = '12px "IBM Plex Mono", monospace'; g.fillStyle = C.muted; g.textAlign = 'center'; g.textBaseline = 'top';
+      [[PI / 2, 'π/2'], [PI, 'π'], [3 * PI / 2, '3π/2'], [TAU, '2π']].forEach(([v, t]) => { line(x0 + v * kx, -0.06, x0 + v * kx, 0.06, C.ink2, 1, .7); g.fillText(t, V.X(x0 + v * kx), V.Y(0) + 8); });
+      V.curve((x) => r * Math.sin((x - x0) / kx), x0, x0 + TAU * kx, C.up, 1.2, false, .3);
+      V.curve((x) => r * Math.sin((x - x0) / kx), x0, x0 + a * kx, C.up);
+      line(cx, 0, px, py, C.ink, 1.6);
+      line(cx, 0, px, 0, C.down, 3.2); line(px, 0, px, py, C.up, 3.2);
+      line(px, py, wx, py, C.hand, 1, .7, [4, 5]);
+      g.fillStyle = C.up; g.beginPath(); g.arc(V.X(wx), V.Y(py), 4.5, 0, TAU); g.fill();
+      g.strokeStyle = C.hand; g.lineWidth = 1.4; g.beginPath(); g.arc(V.X(cx), V.Y(0), 0.45 * V.s(), 0, -a, true); g.stroke();
+      g.fillStyle = C.hand; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText('θ', V.X(cx) + 0.55 * V.s() * Math.cos(a / 2), V.Y(0) - 0.55 * V.s() * Math.sin(a / 2));
+    },
+  };
+}
+
+/* --- secant becoming tangent on sin --- */
+function makeTangent() {
+  const f = Math.sin, df = Math.cos; let x0 = 0.7, h = 2, touched = false, x0s = x0, hs = h;
+  return {
+    view: { x0: -6.6, x1: 6.6, y0: -2.2, y1: 2.2 }, axes: true, hint: 'déplace A ou B · la sécante devient tangente quand h tend vers 0',
+    touch() { touched = true; }, animating: () => !touched && !reduced, tick(dt, t) { h = 0.04 + 2.4 * (0.5 + 0.5 * Math.cos(t * 0.7)) ** 2; },
+    settle(k) { let m = false; const a = x0 - x0s, b = h - hs; if (Math.abs(a) > 1e-5 || Math.abs(b) > 1e-5) { x0s += a * k(16); hs += b * k(16); m = true; } else { x0s = x0; hs = h; } return m; },
+    handles: () => [{ k: 'A', x: x0s, y: f(x0s) }, { k: 'B', x: x0s + hs, y: f(x0s + hs) }], grab: () => 0,
+    drag(k, wx) { if (k === 'A') x0 = clamp(wx, -5.5, 5.5); else { let d = clamp(wx - x0, -4, 4); if (Math.abs(d) < 0.02) d = (h < 0 ? -1 : 1) * 0.02; h = d; } },
+    nudge(k, dx) { this.drag(k, (k === 'A' ? x0 : x0 + h) + dx); }, say: () => `x₀ = ${fmt(x0)} ; h = ${fmt(h)}`, names: ['Point A', 'Point B'],
+    fields() { const m = (f(x0s + hs) - f(x0s)) / hs; return [['Point A : x₀', fmt(x0s)], ['Écart h', fmt(hs, 3)], ['Pente de la sécante', fmt(m, 4)], ['f′(x₀) = cos x₀', fmt(df(x0s), 4)], ['Différence', fmt(m - df(x0s), 4)]]; },
+    draw(V) {
+      const { g, C } = V, ax = x0s, bx = x0s + hs, ay = f(ax), by = f(bx), m = (by - ay) / hs;
+      V.curve(f, V.left - 1, V.right + 1, C.up);
+      const ext = (x, y, slope) => [[V.left - 1, y + slope * (V.left - 1 - x)], [V.right + 1, y + slope * (V.right + 1 - x)]];
+      const L = (pts, col, w, al, dash) => { g.setLineDash(dash || []); g.strokeStyle = col; g.lineWidth = w; g.globalAlpha = al; g.beginPath(); g.moveTo(V.X(pts[0][0]), V.Y(pts[0][1])); g.lineTo(V.X(pts[1][0]), V.Y(pts[1][1])); g.stroke(); g.setLineDash([]); g.globalAlpha = 1; };
+      L(ext(ax, ay, df(ax)), C.down, 1.4, .6, [6, 6]);
+      L(ext(ax, ay, m), C.ink, 1.8, .95);
+      g.setLineDash([3, 4]); g.strokeStyle = C.hand; g.globalAlpha = .7; g.lineWidth = 1.2; g.beginPath(); g.moveTo(V.X(ax), V.Y(ay)); g.lineTo(V.X(bx), V.Y(ay)); g.lineTo(V.X(bx), V.Y(by)); g.stroke(); g.setLineDash([]); g.globalAlpha = 1;
+      g.font = '12px "IBM Plex Mono", monospace'; g.fillStyle = C.hand; g.textAlign = 'center'; g.textBaseline = 'top'; g.fillText('h', V.X((ax + bx) / 2), V.Y(ay) + 6);
+      g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText('Δy', V.X(bx) + 8, V.Y((ay + by) / 2));
+    },
+    labels: { A: 'A', B: 'B' },
+  };
+}
+
+/* --- left Riemann sum of x² on [0, b] --- */
+function makeRiemann() {
+  let b = 2, n = 1, touched = false, bs = b, ns = n; const f = (x) => x * x;
+  return {
+    view: { x0: -0.9, x1: 4.0, y0: -0.9, y1: 9.6 }, axes: true, hint: 'déplace la borne ou la largeur d’un rectangle',
+    touch() { touched = true; }, animating: () => !touched && !reduced, tick(dt, t) { n = 1 + Math.round(39 * (0.5 - 0.5 * Math.cos(t * 0.45))); },
+    settle(k) { const d = b - bs; let m = false; if (Math.abs(d) > 1e-5) { bs += d * k(16); m = true; } else bs = b; ns = n; return m; },
+    handles: () => [{ k: 'B', x: bs, y: f(bs) }, { k: 'W', x: bs / ns, y: 0 }], grab: () => 0,
+    drag(k, wx) { if (k === 'B') b = clamp(wx, 0.5, 3.2); else { const w = clamp(wx, b / 80, b); n = clamp(Math.round(b / w), 1, 80); } },
+    nudge(k, dx) { this.drag(k, k === 'B' ? b + dx : b / n + dx * 0.2); }, say: () => `b = ${fmt(b)} ; n = ${n}`, names: ['Borne b', 'Largeur'],
+    fields() { const w = bs / ns; let s = 0; for (let i = 0; i < ns; i++) s += f(i * w) * w; const ex = bs ** 3 / 3; return [['Rectangles n', String(ns)], ['Largeur b / n', fmt(w, 3)], ['Somme gauche', fmt(s, 3)], ['Aire exacte b³ / 3', fmt(ex, 3)], ['Écart', fmt(ex - s, 3)]]; },
+    draw(V) {
+      const { g, C } = V, w = bs / ns;
+      g.fillStyle = C.up; g.globalAlpha = .08; g.beginPath(); g.moveTo(V.X(0), V.Y(0)); for (let px = V.X(0); px <= V.X(bs); px += 2) g.lineTo(px, V.Y(f(V.ux(px)))); g.lineTo(V.X(bs), V.Y(0)); g.closePath(); g.fill(); g.globalAlpha = 1;
+      for (let i = 0; i < ns; i++) { const x = i * w, hgt = f(x); if (hgt <= 0) continue; g.fillStyle = C.down; g.globalAlpha = .26; g.fillRect(V.X(x), V.Y(hgt), w * V.s(), hgt * V.s()); g.globalAlpha = .75; g.strokeStyle = C.down; g.lineWidth = 1; g.strokeRect(V.X(x) + .5, V.Y(hgt) + .5, w * V.s(), hgt * V.s()); g.globalAlpha = 1; }
+      V.curve(f, V.left - 1, V.right + 1, C.up);
+    },
+  };
+}
+
+/* --- logistic cobweb: u(n+1) = r u(n) (1 − u(n)) --- */
+function makeCobweb() {
+  let r = 3.0, u0 = 0.2, touched = false, rs = r, us = u0;
+  return {
+    view: { x0: -0.35, x1: 1.35, y0: -0.2, y1: 1.1 }, axes: true, hint: 'tire le sommet de la courbe vers le haut · déplace u₀',
+    touch() { touched = true; }, animating: () => !touched && !reduced, tick(dt, t) { r = 3.0 + 0.9 * (0.5 - 0.5 * Math.cos(t * 0.22)); },
+    settle(k) { let m = false; const a = r - rs, b = u0 - us; if (Math.abs(a) > 1e-5 || Math.abs(b) > 1e-5) { rs += a * k(14); us += b * k(14); m = true; } else { rs = r; us = u0; } return m; },
+    handles: () => [{ k: 'R', x: 0.5, y: rs / 4 }, { k: 'U', x: us, y: 0 }], grab: () => 0,
+    drag(k, wx, wy) { if (k === 'R') r = clamp(wy * 4, 2.5, 4); else u0 = clamp(wx, 0.02, 0.98); },
+    nudge(k, dx, dy) { if (k === 'R') r = clamp(r + dy, 2.5, 4); else u0 = clamp(u0 + dx, 0.02, 0.98); }, say: () => `r = ${fmt(r, 3)}`, names: ['Paramètre r', 'Valeur u₀'],
+    orbit(N) { const o = [us]; for (let i = 0; i < N; i++) o.push(rs * o[i] * (1 - o[i])); return o; },
+    fields() { const o = this.orbit(60), beh = rs < 3 ? 'converge vers un point fixe' : rs < 1 + Math.sqrt(6) ? 'cycle de période 2' : rs < 3.5441 ? 'cycle de période 4' : rs < 3.5699 ? 'période 8 ou plus' : 'chaos, ou fenêtre périodique';
+      return [['Paramètre r', fmt(rs, 3)], ['Valeur de départ u₀', fmt(us, 3)], ['u₅₈ · u₅₉ · u₆₀', o.slice(58).map((v) => fmt(v, 3)).join(' · ')], ['Comportement', beh]]; },
+    draw(V) {
+      const { g, C } = V, f = (x) => rs * x * (1 - x), o = this.orbit(60);
+      g.strokeStyle = C.ink2; g.globalAlpha = .6; g.lineWidth = 1; g.setLineDash([5, 6]); g.beginPath(); g.moveTo(V.X(-0.2), V.Y(-0.2)); g.lineTo(V.X(1.2), V.Y(1.2)); g.stroke(); g.setLineDash([]); g.globalAlpha = 1;
+      V.curve(f, 0, 1, C.up);
+      let x = o[0], y = 0; const N = o.length;
+      for (let i = 0; i < N - 1; i++) { const nx = o[i], ny = o[i + 1]; g.strokeStyle = C.hand; g.globalAlpha = .06 + .5 * (i / N); g.lineWidth = 1;
+        g.beginPath(); g.moveTo(V.X(x), V.Y(y)); g.lineTo(V.X(nx), V.Y(ny)); g.lineTo(V.X(ny), V.Y(ny)); g.stroke(); x = ny; y = ny; }
+      g.globalAlpha = 1; g.fillStyle = C.hand; g.beginPath(); g.arc(V.X(x), V.Y(y), 4, 0, TAU); g.fill();
+    },
+  };
+}
+
+/* ============ the canvas engine ============ */
 let COL = null;
 const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const colors = () => COL || (COL = { bg: css('--bg'), ink: css('--ink'), ink2: css('--ink-2'), muted: css('--muted'), grid: css('--grid'), grid2: css('--grid-2'), down: css('--down'), up: css('--up'), hand: css('--hand'), panel: css('--panel'), line: css('--line') });
-const lab = (v) => String(+v.toFixed(8)).replace('.', ',').replace('-', '−');
 
-function Plot(stage, o = {}) {
+function Plot(stage, first, o = {}) {
   const cv = document.createElement('canvas'); cv.tabIndex = 0; cv.setAttribute('role', 'application');
-  cv.setAttribute('aria-label', 'Parabole. H change de point, les flèches le déplacent, plus et moins zooment, zéro recentre.');
+  cv.setAttribute('aria-label', 'Figure interactive. H change de point, les flèches le déplacent, plus et moins zooment, zéro recentre.');
   stage.append(cv); const g = cv.getContext('2d');
-  const sh = { ...S }, cam = { x: 0, y: 0, s: 60 }, camT = { ...cam };
-  let W = 0, H = 0, dpr = 1, raf = 0, last = 0, t0 = performance.now(), drag = null, ptr = null, sel = 0, userCam = false, touched = !o.drift, destroyed = false;
-  const pts = new Map(), KINDS = ['V', 'P', 'R1', 'R2'];
-  const X = (x) => W / 2 + (x - cam.x) * cam.s, Y = (y) => H / 2 - (y - cam.y) * cam.s;
-  const ux = (px, c = cam) => (px - W / 2) / c.s + c.x, uy = (py, c = cam) => c.y - (py - H / 2) / c.s;
-  const f = (x) => sh.a * (x - sh.al) ** 2 + sh.be;
-  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  let sc = first, cam = { x: 0, y: 0, s: 60 }, camT = { ...cam };
+  let W = 0, H = 0, dpr = 1, raf = 0, last = 0, t0 = performance.now(), drag = null, ptr = null, sel = 0, userCam = false, destroyed = false, hintEl = stage.querySelector('.hint');
+  const pts = new Map();
+  const V = { g, X: (x) => W / 2 + (x - cam.x) * cam.s, Y: (y) => H / 2 - (y - cam.y) * cam.s, ux: (px, c = cam) => (px - W / 2) / c.s + c.x, uy: (py, c = cam) => c.y - (py - H / 2) / c.s, s: () => cam.s };
+  Object.defineProperties(V, { W: { get: () => W }, H: { get: () => H }, ptr: { get: () => ptr }, drag: { get: () => drag }, left: { get: () => V.ux(0) }, right: { get: () => V.ux(W) } });
+  /* a curve with a soft glow, sampled per 1.5 px */
+  V.curve = (fn, x0, x1, col, w = 2.6, glow = true, alpha = 1) => { if (x1 <= x0) return; const a = Math.max(x0, V.left - 2 / cam.s), b = Math.min(x1, V.right + 2 / cam.s); if (b <= a) return;
+    g.beginPath(); for (let px = V.X(a); px <= V.X(b) + 1.5; px += 1.5) { const x = clamp(V.ux(px), a, b), py = clamp(V.Y(fn(x)), -6000, H + 6000); if (px === V.X(a)) g.moveTo(px, py); else g.lineTo(px, py); }
+    g.lineCap = 'round'; g.lineJoin = 'round'; g.strokeStyle = col; if (glow) { g.globalAlpha = 0.16 * alpha; g.lineWidth = w * 3.4; g.stroke(); } g.globalAlpha = alpha; g.lineWidth = w; g.stroke(); g.globalAlpha = 1; };
+  V.tangent = (px, py, m) => { const len = 110, nx = 1 / Math.hypot(1, m); g.strokeStyle = V.C.ink; g.globalAlpha = .65; g.lineWidth = 1; g.beginPath(); g.moveTo(px - len * nx, py + m * len * nx); g.lineTo(px + len * nx, py - m * len * nx); g.stroke(); g.globalAlpha = 1; g.fillStyle = V.C.ink; g.beginPath(); g.arc(px, py, 3.5, 0, TAU); g.fill(); };
+  V.tip = (px, py, txt) => { g.font = '12px "IBM Plex Mono", monospace'; const tw = g.measureText(txt).width + 20, bx = clamp(px + 14, 8, W - tw - 8), by = clamp(py - 40, 8, H - 40);
+    g.fillStyle = V.C.panel; g.strokeStyle = V.C.line; g.lineWidth = 1; g.beginPath(); g.roundRect(bx, by, tw, 26, 13); g.fill(); g.stroke(); g.fillStyle = V.C.ink; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText(txt, bx + 10, by + 13.5); };
 
-  function home() { camT.s = clamp(Math.min(W, H) / 9.5, 34, 96); camT.y = 0.4; camT.x = -((o.origin ?? 0.5) - 0.5) * W / camT.s; }
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2.5); W = stage.clientWidth; H = stage.clientHeight; if (!W || !H) return;
-    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-    if (!userCam) { home(); Object.assign(cam, camT); } wake();
-  }
-  const ro = new ResizeObserver(resize); ro.observe(stage); resize();
+  function home() { const v = sc.view, bw = v.x1 - v.x0, bh = v.y1 - v.y0, frac = o.origin ?? 0.5, avail = frac > 0.55 ? W * 0.6 : W * 0.94;
+    camT.s = clamp(Math.min(avail / bw, (H * 0.8) / bh), 18, 420); camT.y = (v.y0 + v.y1) / 2; camT.x = (v.x0 + v.x1) / 2 - (frac - 0.5) * W / camT.s; }
+  function resize() { dpr = Math.min(window.devicePixelRatio || 1, 2.5); W = stage.clientWidth; H = stage.clientHeight; if (!W || !H) return; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); if (!userCam) { home(); Object.assign(cam, camT); } wake(); }
+  const ro = new ResizeObserver(resize); ro.observe(stage);
 
-  function handles() {
-    const r2 = -sh.be / sh.a, out = [{ k: 'V', x: sh.al, y: sh.be }, { k: 'P', x: sh.al + sh.dx, y: f(sh.al + sh.dx) }];
-    if (r2 >= 0) { const r = Math.sqrt(r2); out.push({ k: 'R1', x: sh.al - r, y: 0 }, { k: 'R2', x: sh.al + r, y: 0 }); }
-    return out;
-  }
-  function hit(px, py, touch) { let best = null, bd = (touch ? 30 : 20) ** 2; for (const h of handles()) { const d = (X(h.x) - px) ** 2 + (Y(h.y) - py) ** 2; if (d < bd) { bd = d; best = h; } } return best; }
-  const magnet = (v, on = true) => { if (!on) return v; const r = Math.round(v); return Math.abs(v - r) * camT.s < 7 ? r : v; };
-
-  function setFromHandle(k, wx, wy, other, snap = true) {
-    if (k === 'V') { S.al = clamp(magnet(wx, snap), -40, 40); S.be = clamp(magnet(wy, snap), -40, 40); }
-    else if (k === 'P') {
-      let dx = wx - S.al; if (Math.abs(dx) < 0.3) dx = (S.dx < 0 ? -1 : 1) * 0.3;
-      let a = (wy - S.be) / (dx * dx); if (Math.abs(a) < 0.05) a = (S.a < 0 ? -1 : 1) * 0.05; a = clamp(a, -8, 8);
-      const q = Math.round(a * 2) / 2; if (snap && Math.abs(a - q) < 0.035 && q !== 0) a = q;
-      S.dx = dx; S.a = a;
-    } else { const nx = magnet(wx, snap), half = (other - nx) / 2; S.al = (nx + other) / 2; S.be = -S.a * half * half; }
-  }
-  const ctxFor = (k) => { const r = Math.sqrt(Math.max(0, -S.be / S.a)); return k === 'R1' ? S.al + r : S.al - r; };
-
+  const hit = (px, py, touch) => { let best = null, bd = (touch ? 30 : 20) ** 2; for (const h of sc.handles()) { const d = (V.X(h.x) - px) ** 2 + (V.Y(h.y) - py) ** 2; if (d < bd) { bd = d; best = h; } } return best; };
   function wake() { if (!raf && !destroyed) { last = performance.now(); raf = requestAnimationFrame(frame); } }
   function frame(now) {
     raf = 0; if (destroyed) return;
     const dt = Math.min(0.05, (now - last) / 1000 || 0.016); last = now;
-    if (o.drift && !touched && !reduced) { const t = (now - t0) / 1000; S.al = 0.9 * Math.sin(t * 0.33); S.be = -2 + 0.7 * Math.sin(t * 0.27 + 1); S.a = 1 + 0.4 * Math.sin(t * 0.21); }
-    const k = (rate) => (reduced ? 1 : 1 - Math.exp(-dt * rate)), dragging = drag && drag.k !== 'pan';
-    let moving = false;
-    for (const key of ['al', 'be', 'a', 'dx']) { const d = S[key] - sh[key]; if (Math.abs(d) > 1e-5) { sh[key] += d * k(dragging ? 42 : 14); moving = true; } else sh[key] = S[key]; }
+    const k = (rate) => (reduced ? 1 : 1 - Math.exp(-dt * rate)), dragging = drag && drag.k !== 'pan', anim = sc.animating();
+    if (anim) sc.tick(dt, (now - t0) / 1000);
+    let moving = sc.settle(k, dragging);
     for (const key of ['x', 'y', 's']) { const d = camT[key] - cam[key]; if (Math.abs(d) > (key === 's' ? 1e-3 : 1e-5)) { cam[key] += d * k(13); moving = true; } else cam[key] = camT[key]; }
     draw(); o.onFrame && o.onFrame();
-    if (moving || (o.drift && !touched && !reduced) || ptr) raf = requestAnimationFrame(frame);
+    if (moving || anim || ptr) raf = requestAnimationFrame(frame);
   }
-
   function draw() {
-    const C = colors(); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, H);
-    const left = ux(0), right = ux(W), top = uy(0), bot = uy(H);
-    /* grid with adaptive step: minor and major hairlines */
+    const C = V.C = colors(); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, H);
+    const left = V.left, right = V.right, top = V.uy(0), bot = V.uy(H);
     const raw = 88 / cam.s, p10 = 10 ** Math.floor(Math.log10(raw)); let step = p10; for (const m of [1, 2, 5, 10]) { step = m * p10; if (step >= raw) break; }
-    const mant = Math.round(step / p10), sub = mant === 2 ? 4 : 5, minor = step / sub;
-    const lines = (st, col) => { g.strokeStyle = col; g.lineWidth = 1; g.beginPath();
-      for (let x = Math.floor(left / st) * st; x <= right; x += st) { const px = Math.round(X(x)) + 0.5; g.moveTo(px, 0); g.lineTo(px, H); }
-      for (let y = Math.floor(bot / st) * st; y <= top; y += st) { const py = Math.round(Y(y)) + 0.5; g.moveTo(0, py); g.lineTo(W, py); } g.stroke(); };
+    const sub = Math.round(step / p10) === 2 ? 4 : 5, minor = step / sub;
+    const lines = (st, col) => { g.strokeStyle = col; g.lineWidth = 1; g.beginPath(); for (let x = Math.floor(left / st) * st; x <= right; x += st) { const px = Math.round(V.X(x)) + 0.5; g.moveTo(px, 0); g.lineTo(px, H); }
+      for (let y = Math.floor(bot / st) * st; y <= top; y += st) { const py = Math.round(V.Y(y)) + 0.5; g.moveTo(0, py); g.lineTo(W, py); } g.stroke(); };
     lines(minor, C.grid); lines(step, C.grid2);
-    const ax = clamp(Y(0), 0, H), ay = clamp(X(0), 0, W);
-    g.strokeStyle = C.ink2; g.globalAlpha = 0.7; g.lineWidth = 1.2; g.beginPath(); g.moveTo(0, Math.round(ax) + 0.5); g.lineTo(W, Math.round(ax) + 0.5); g.moveTo(Math.round(ay) + 0.5, 0); g.lineTo(Math.round(ay) + 0.5, H); g.stroke(); g.globalAlpha = 1;
-    g.font = '11px "IBM Plex Mono", monospace'; g.fillStyle = C.muted;
-    g.textAlign = 'center'; g.textBaseline = 'top'; const ty = clamp(ax + 7, 4, H - 16);
-    for (let x = Math.ceil(left / step) * step; x <= right; x += step) { if (Math.abs(x) < step / 1e3) continue; g.fillText(lab(x), X(x), ty); }
-    g.textAlign = ay < 40 ? 'left' : 'right'; g.textBaseline = 'middle'; const tx = ay < 40 ? ay + 8 : ay - 8;
-    for (let y = Math.ceil(bot / step) * step; y <= top; y += step) { if (Math.abs(y) < step / 1e3) continue; g.fillText(lab(y), clamp(tx, 6, W - 6), Y(y)); }
-    /* guides */
-    g.setLineDash([4, 6]); g.lineWidth = 1; g.strokeStyle = C.down; g.globalAlpha = 0.45; g.beginPath(); g.moveTo(Math.round(X(sh.al)) + 0.5, 0); g.lineTo(Math.round(X(sh.al)) + 0.5, H); g.stroke();
-    g.strokeStyle = C.hand; g.globalAlpha = 0.4; g.beginPath(); g.moveTo(Math.round(X(0)) + 0.5, Math.round(Y(sh.be)) + 0.5); g.lineTo(Math.round(X(sh.al)) + 0.5, Math.round(Y(sh.be)) + 0.5); g.stroke(); g.setLineDash([]); g.globalAlpha = 1;
-    /* the curve: falling branch and rising branch in two tones, with a soft glow */
-    const clipY = (py) => clamp(py, -6000, H + 6000);
-    const branch = (x0, x1, col) => { if (x1 <= x0) return; g.beginPath(); const a = Math.max(x0, left - 2 / cam.s), b = Math.min(x1, right + 2 / cam.s); if (b <= a) return;
-      for (let px = X(a); px <= X(b) + 1.5; px += 1.5) { const x = clamp(ux(px), a, b); const py = clipY(Y(f(x))); if (px === X(a)) g.moveTo(px, py); else g.lineTo(px, py); }
-      g.lineCap = 'round'; g.lineJoin = 'round'; g.strokeStyle = col; g.globalAlpha = 0.16; g.lineWidth = 9; g.stroke(); g.globalAlpha = 1; g.lineWidth = 2.6; g.stroke(); };
-    const lc = sh.a > 0 ? C.down : C.up, rc = sh.a > 0 ? C.up : C.down;
-    branch(left - 1, sh.al, lc); branch(sh.al, right + 1, rc);
-    /* tangent that follows the pointer */
-    const hov = ptr && !drag ? hit(ptr.x, ptr.y, ptr.touch) : null;
-    if (ptr && !drag && !hov && !ptr.touch) {
-      const x = ux(ptr.x), y = f(x), m = 2 * sh.a * (x - sh.al), px = X(x), py = Y(y);
-      if (py > -50 && py < H + 50) {
-        const len = 110, nx = 1 / Math.hypot(1, m), ex = len * nx, ey = -m * len * nx;
-        g.strokeStyle = C.ink; g.globalAlpha = 0.65; g.lineWidth = 1; g.beginPath(); g.moveTo(px - ex, py - ey); g.lineTo(px + ex, py + ey); g.stroke(); g.globalAlpha = 1;
-        g.fillStyle = C.ink; g.beginPath(); g.arc(px, py, 3.5, 0, 6.2832); g.fill();
-        const txt = `x = ${fmt(x)}   f(x) = ${fmt(y)}   f′(x) = ${fmt(m)}`; g.font = '12px "IBM Plex Mono", monospace'; const tw = g.measureText(txt).width + 20;
-        const bx = clamp(px + 14, 8, W - tw - 8), by = clamp(py - 40, 8, H - 40);
-        g.fillStyle = C.panel; g.strokeStyle = C.line; g.lineWidth = 1; g.beginPath(); g.roundRect(bx, by, tw, 26, 13); g.fill(); g.stroke();
-        g.fillStyle = C.ink; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText(txt, bx + 10, by + 13.5);
-      }
+    if (sc.axes) {
+      const ax = clamp(V.Y(0), 0, H), ay = clamp(V.X(0), 0, W);
+      g.strokeStyle = C.ink2; g.globalAlpha = 0.7; g.lineWidth = 1.2; g.beginPath(); g.moveTo(0, Math.round(ax) + 0.5); g.lineTo(W, Math.round(ax) + 0.5); g.moveTo(Math.round(ay) + 0.5, 0); g.lineTo(Math.round(ay) + 0.5, H); g.stroke(); g.globalAlpha = 1;
+      g.font = '11px "IBM Plex Mono", monospace'; g.fillStyle = C.muted; g.textAlign = 'center'; g.textBaseline = 'top'; const ty = clamp(ax + 7, 4, H - 16);
+      for (let x = Math.ceil(left / step) * step; x <= right; x += step) { if (Math.abs(x) < step / 1e3) continue; g.fillText(lab(x), V.X(x), ty); }
+      g.textAlign = ay < 40 ? 'left' : 'right'; g.textBaseline = 'middle'; const tx = ay < 40 ? ay + 8 : ay - 8;
+      for (let y = Math.ceil(bot / step) * step; y <= top; y += step) { if (Math.abs(y) < step / 1e3) continue; g.fillText(lab(y), clamp(tx, 6, W - 6), V.Y(y)); }
     }
-    /* handles: warm = movable, white ring = roots */
+    V.hov = ptr && !drag ? hit(ptr.x, ptr.y, ptr.touch) : null;
+    sc.draw(V);
     g.font = '12px "IBM Plex Mono", monospace';
-    for (const h of handles()) {
-      const px = X(h.x), py = Y(h.y), isRoot = h.k[0] === 'R', active = (drag && drag.k === h.k) || (hov && hov.k === h.k), focus = document.activeElement === cv && KINDS[sel] === h.k;
-      if (px < -30 || px > W + 30 || py < -30 || py > H + 30) continue;
-      if (active || focus) { g.fillStyle = isRoot ? C.ink : C.hand; g.globalAlpha = 0.18; g.beginPath(); g.arc(px, py, 20, 0, 6.2832); g.fill(); g.globalAlpha = 1; }
-      if (focus) { g.strokeStyle = C.hand; g.lineWidth = 1.5; g.beginPath(); g.arc(px, py, 14, 0, 6.2832); g.stroke(); }
-      g.beginPath(); g.arc(px, py, isRoot ? 6 : 8.5, 0, 6.2832);
-      if (isRoot) { g.fillStyle = C.bg; g.fill(); g.strokeStyle = C.ink; g.lineWidth = 2.2; g.stroke(); g.fillStyle = C.ink; g.textAlign = 'center'; g.textBaseline = 'bottom'; g.fillText(fmt(h.x), px, py - 12); }
+    const hs = sc.handles();
+    hs.forEach((h, i) => {
+      const px = V.X(h.x), py = V.Y(h.y), active = (drag && drag.k === h.k) || (V.hov && V.hov.k === h.k), focus = document.activeElement === cv && i === sel;
+      if (px < -30 || px > W + 30 || py < -30 || py > H + 30) return;
+      if (active || focus) { g.fillStyle = h.root ? C.ink : C.hand; g.globalAlpha = 0.18; g.beginPath(); g.arc(px, py, 20, 0, TAU); g.fill(); g.globalAlpha = 1; }
+      if (focus) { g.strokeStyle = C.hand; g.lineWidth = 1.5; g.beginPath(); g.arc(px, py, 14, 0, TAU); g.stroke(); }
+      g.beginPath(); g.arc(px, py, h.root ? 6 : 8.5, 0, TAU);
+      if (h.root) { g.fillStyle = C.bg; g.fill(); g.strokeStyle = C.ink; g.lineWidth = 2.2; g.stroke(); g.fillStyle = C.ink; g.textAlign = 'center'; g.textBaseline = 'bottom'; g.fillText(h.t, px, py - 12); }
       else { g.fillStyle = C.hand; g.fill(); g.strokeStyle = C.bg; g.lineWidth = 2.5; g.stroke(); }
-      if (h.k === 'V') { g.fillStyle = C.hand; g.textAlign = 'left'; g.textBaseline = 'top'; g.fillText(`S(${fmt(h.x)} ; ${fmt(h.y)})`, px + 14, py + (sh.a > 0 ? 12 : -26)); }
-    }
-    cv.style.cursor = drag ? 'grabbing' : hov ? 'grab' : 'crosshair';
+      if (sc.labelV && h.k === 'V') { g.fillStyle = C.hand; g.textAlign = 'left'; g.textBaseline = 'top'; g.fillText(sc.labelV(), px + 14, py + (sc.below() ? 12 : -26)); }
+      if (sc.labels && sc.labels[h.k]) { g.fillStyle = C.hand; g.textAlign = 'center'; g.textBaseline = 'bottom'; g.fillText(sc.labels[h.k], px, py - 14); }
+    });
+    cv.style.cursor = drag ? 'grabbing' : V.hov ? 'grab' : 'crosshair';
   }
 
   /* ---- input ---- */
   const pos = (e) => { const r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top, touch: e.pointerType === 'touch' }; };
   let pinch = null;
+  const touch = () => { sc.touch(); stage.classList.add('touched'); o.onUser && o.onUser(); };
   cv.addEventListener('keydown', () => stage.classList.add('kbd'), true); cv.addEventListener('pointerdown', () => stage.classList.remove('kbd'), true);
-  const touch = () => { touched = true; stage.classList.add('touched'); };
   cv.addEventListener('pointerdown', (e) => {
-    cv.setPointerCapture(e.pointerId); const q = pos(e); pts.set(e.pointerId, q); cv.focus({ preventScroll: true });
-    if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), s: camT.s, wx: ux((a.x + b.x) / 2, camT), wy: uy((a.y + b.y) / 2, camT) }; drag = null; return; }
-    const h = hit(q.x, q.y, q.touch); touch();
-    if (h) { sel = KINDS.indexOf(h.k); drag = { k: h.k, ox: h.x - ux(q.x), oy: h.y - uy(q.y), other: ctxFor(h.k) }; }
+    cv.setPointerCapture(e.pointerId); const q = pos(e); pts.set(e.pointerId, q); cv.focus({ preventScroll: true }); o.onUser && o.onUser();
+    if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), s: camT.s, wx: V.ux((a.x + b.x) / 2, camT), wy: V.uy((a.y + b.y) / 2, camT) }; drag = null; return; }
+    const h = hit(q.x, q.y, q.touch);
+    if (h) { touch(); sel = sc.handles().findIndex((x) => x.k === h.k); drag = { k: h.k, ox: h.x - V.ux(q.x), oy: h.y - V.uy(q.y), other: sc.grab(h.k) }; }
     else { drag = { k: 'pan', sx: q.x, sy: q.y, cx: camT.x, cy: camT.y }; userCam = true; }
     wake();
   });
@@ -308,39 +442,36 @@ function Plot(stage, o = {}) {
     if (pinch && pts.size === 2) { const [a, b] = [...pts.values()], d = Math.hypot(a.x - b.x, a.y - b.y), s = clamp(pinch.s * d / pinch.d, 12, 400), cx = (a.x + b.x) / 2, cy = (a.y + b.y) / 2;
       camT.s = s; camT.x = pinch.wx - (cx - W / 2) / s; camT.y = pinch.wy + (cy - H / 2) / s; Object.assign(cam, camT); userCam = true; }
     else if (drag && drag.k === 'pan') { camT.x = drag.cx - (q.x - drag.sx) / camT.s; camT.y = drag.cy + (q.y - drag.sy) / camT.s; cam.x = camT.x; cam.y = camT.y; }
-    else if (drag) setFromHandle(drag.k, ux(q.x) + drag.ox, uy(q.y) + drag.oy, drag.other, !e.altKey);
+    else if (drag) { sc.drag(drag.k, V.ux(q.x) + drag.ox, V.uy(q.y) + drag.oy, drag.other, !e.altKey, V); o.onUser && o.onUser(); }
     wake();
   });
   const up = (e) => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; drag = null; if (e.pointerType === 'touch') ptr = null; wake(); };
   cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
   cv.addEventListener('pointerleave', () => { if (!drag) { ptr = null; wake(); } });
-  cv.addEventListener('wheel', (e) => { e.preventDefault(); const q = pos(e), s = clamp(camT.s * Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0015)), 12, 400), wx = ux(q.x, camT), wy = uy(q.y, camT);
-    camT.s = s; camT.x = wx - (q.x - W / 2) / s; camT.y = wy + (q.y - H / 2) / s; userCam = true; touch(); wake(); }, { passive: false });
+  cv.addEventListener('wheel', (e) => { e.preventDefault(); const q = pos(e), s = clamp(camT.s * Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0015)), 12, 400), wx = V.ux(q.x, camT), wy = V.uy(q.y, camT);
+    camT.s = s; camT.x = wx - (q.x - W / 2) / s; camT.y = wy + (q.y - H / 2) / s; userCam = true; o.onUser && o.onUser(); wake(); }, { passive: false });
   cv.addEventListener('dblclick', () => { userCam = false; home(); wake(); });
   cv.addEventListener('focus', wake); cv.addEventListener('blur', wake);
   cv.addEventListener('keydown', (e) => {
-    const say = (m) => { document.getElementById('status').textContent = m; };
-    if (e.key === 'h' || e.key === 'H') { sel = (sel + 1) % handles().length; say(['Sommet', 'Point sur la courbe', 'Première racine', 'Seconde racine'][sel]); wake(); e.preventDefault(); return; }
+    const say = (m) => { document.getElementById('status').textContent = m; }; o.onUser && o.onUser();
+    if (e.key === 'h' || e.key === 'H') { sel = (sel + 1) % sc.handles().length; say(sc.names[sel]); wake(); e.preventDefault(); return; }
     if (e.key === '+' || e.key === '=') { camT.s = clamp(camT.s * 1.2, 12, 400); userCam = true; wake(); e.preventDefault(); return; }
     if (e.key === '-') { camT.s = clamp(camT.s / 1.2, 12, 400); userCam = true; wake(); e.preventDefault(); return; }
     if (e.key === '0') { userCam = false; home(); wake(); e.preventDefault(); return; }
     const d = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] }[e.key]; if (!d) return; e.preventDefault(); touch();
-    const stp = e.shiftKey ? 1 : 0.1, hs = handles(), k = (hs[sel] || hs[0]).k, r = Math.sqrt(Math.max(0, -S.be / S.a));
-    const [hx, hy] = k === 'V' ? [S.al, S.be] : k === 'P' ? [S.al + S.dx, S.a * S.dx * S.dx + S.be] : [k === 'R1' ? S.al - r : S.al + r, 0];
-    setFromHandle(k, hx + d[0] * stp, hy + d[1] * stp, ctxFor(k), false);
-    say(k === 'V' ? `Sommet en ${fmt(S.al)} ; ${fmt(S.be)}` : `a = ${fmt(S.a)}`); wake();
+    const stp = e.shiftKey ? 1 : 0.1, hs = sc.handles(), k = (hs[sel] || hs[0]).k; sc.nudge(k, d[0] * stp, d[1] * stp, V); say(sc.say(k)); wake();
   });
-  wake();
-  return { destroy() { destroyed = true; cancelAnimationFrame(raf); ro.disconnect(); }, wake, home };
+  function setScene(next) { sc = next; sel = 0; userCam = false; t0 = performance.now(); stage.classList.remove('touched'); if (hintEl) hintEl.textContent = sc.hint; home(); Object.assign(cam, camT); o.onScene && o.onScene(sc); wake(); }
+  resize(); if (hintEl) hintEl.textContent = sc.hint; o.onScene && o.onScene(sc); wake();
+  return { destroy() { destroyed = true; cancelAnimationFrame(raf); ro.disconnect(); }, wake, setScene, get scene() { return sc; } };
 }
 
 /* ============ readouts ============ */
-function bar(host) {
-  host.innerHTML = '<div><b>Forme canonique</b><span data-k="canon"></span></div><div><b>Forme développée</b><span data-k="dev"></span></div><div><b>Discriminant Δ</b><span data-k="delta"></span></div><div><b>Racines</b><span data-k="roots"></span></div><div><b>Variations</b><span data-k="var"></span></div>';
-  const els = Object.fromEntries([...host.querySelectorAll('[data-k]')].map((e) => [e.dataset.k, e]));
-  return () => { const f = forms();
-    for (const k of ['canon', 'dev', 'delta', 'roots']) if (els[k].textContent !== f[k]) els[k].textContent = f[k];
-    if (els.var.dataset.v !== String(f.a > 0)) { els.var.dataset.v = String(f.a > 0); els.var.innerHTML = f.a > 0 ? '<span class="dn">↘ décroît</span> puis <span class="upc">↗ croît</span>' : '<span class="upc">↗ croît</span> puis <span class="dn">↘ décroît</span>'; } };
+function barFor(host) {
+  let built = null, els = [];
+  return (sc) => { const f = sc.fields(); const key = f.map((x) => x[0]).join('|');
+    if (key !== built) { built = key; host.innerHTML = f.map(([l]) => `<div><b>${l}</b><span></span></div>`).join(''); els = [...host.querySelectorAll('span')]; }
+    f.forEach(([, v], i) => { if (els[i].dataset.v !== v) { els[i].dataset.v = v; els[i].innerHTML = v; } }); };
 }
 
 /* ============ views ============ */
@@ -359,11 +490,22 @@ const idx = (items, g) => `<ul class="index${g ? ' g' : ''}">${items.map(([href,
 const expRow = (e) => ['#chapitre', glyph(G[e[1]]), e[2], e[3], e[4] + ' · ' + e[5] + ' min'];
 const CLASSES = [['#chapitre', '', 'Seconde', 'Programme 2026–2027 · fonctions, vecteurs, statistiques, probabilités', '15 chapitres'], ['#chapitre', '', 'Première <em>spécialité</em>', 'Second degré, dérivation, suites, trigonométrie, probabilités', '10 chapitres'], ['#chapitre', '', 'Terminale <em>spécialité</em>', 'Programme 2019, encore en vigueur en 2026–2027 · limites, intégrales, espace', '14 chapitres'], ['#chapitre', '', 'Maths <em>expertes</em>', 'Complexes, arithmétique, matrices', '11 chapitres'], ['#chapitre', '', 'Terminale <em>STMG</em>', 'Suites, fonctions, statistiques', '8 chapitres']];
 
+const SLIDES = [
+  { tab: 'Second degré', kicker: 'Lycée · Seconde à Terminale', h: 'On bouge d’abord.<br><em>On démontre ensuite.</em>', p: 'Chaque chapitre commence par une figure que tu déplaces. La règle vient après, avec les nombres sous les yeux.', make: () => makeParabola({ drift: true }) },
+  { tab: 'Trigonométrie', kicker: 'Trigonométrie', h: 'Un cercle, deux <em>coordonnées</em>', p: 'Fais tourner le point P : cosinus et sinus se dessinent sous tes yeux, et ne dépassent jamais le rayon.', make: makeCircle },
+  { tab: 'Dérivation', kicker: 'Dérivation', h: 'Une sécante devient <em>tangente</em>', p: 'Rapproche les deux points : la pente de la sécante tend vers la dérivée.', make: makeTangent },
+  { tab: 'Intégrales', kicker: 'Intégration', h: 'L’aire, un rectangle <em>à la fois</em>', p: 'Plus il y a de rectangles, plus la somme se rapproche de l’aire exacte.', make: makeRiemann },
+  { tab: 'Suites', kicker: 'Suites et chaos', h: 'Une règle simple, <em>un comportement chaotique</em>', p: 'Fais varier r : la suite se stabilise, oscille, puis ne se répète plus.', make: makeCobweb },
+];
+const DUR = 9;
+
 const VIEWS = {
   accueil() {
-    return `<section class="hero hero--home"><div class="stage" id="stage"><span class="hint">glisse un point · molette pour zoomer · double-clic pour recentrer</span></div>
-      <div class="copy"><p class="kicker">Lycée · Seconde à Terminale</p><h1>On bouge d’abord.<br><em>On démontre ensuite.</em></h1><p class="lede">Chaque chapitre commence par une figure que tu déplaces. La règle vient après, avec les nombres sous les yeux.</p>
-      <div class="acts"><a class="btn solid" href="#labo">Essayer une expérience</a><a class="btn" href="#cours">Choisir ma classe</a></div></div><div class="bar" id="bar"></div></section>
+    return `<section class="hero hero--home" style="--dur:${DUR}s"><div class="stage" id="stage"><span class="hint"></span></div>
+      <div class="copy"><div class="slides" aria-live="off">${SLIDES.map((s, i) => `<div class="slide" data-i="${i}" ${i ? 'aria-hidden="true"' : ''}><p class="kicker">${s.kicker}</p><h1>${s.h}</h1><p class="lede">${s.p}</p></div>`).join('')}</div>
+      <div class="acts"><a class="btn solid" href="#labo">Essayer une expérience</a><a class="btn" href="#cours">Choisir ma classe</a></div>
+      <div class="pager" role="group" aria-label="Diapositives">${SLIDES.map((s, i) => `<button type="button" class="pg" data-i="${i}" aria-label="Diapositive ${i + 1} sur ${SLIDES.length} : ${s.tab}"><span class="pgt">${s.tab}</span><span class="pgb"><i></i></span></button>`).join('')}<button type="button" class="pp" id="pp" aria-label="Mettre le défilement en pause"></button></div></div>
+      <div class="bar" id="bar"></div></section>
     <section class="wrap"><div class="sec-head"><h2>Ta <em>classe</em></h2><a href="#cours">Tous les cours</a></div>${idx(CLASSES)}</section>
     <section class="wrap"><div class="sec-head"><h2>Au <em>laboratoire</em></h2><a href="#labo">27 expériences · 38 défis</a></div>${idx(EXPS.slice(0, 3).map(expRow), true)}</section>`;
   },
@@ -371,14 +513,14 @@ const VIEWS = {
   chapitre() {
     return `<section class="wrap head"><p class="crumb"><a href="#cours">Cours</a> / Première spécialité / Chapitre 2</p><h1>Second degré : <em>formes et choix de méthode</em></h1>
       <ol class="steps" aria-label="Étapes du chapitre"><li><a href="#chapitre"><b>1</b>Se préparer</a></li><li><a href="#chapitre" aria-current="step"><b>2</b>Chercher</a></li><li><a href="#chapitre"><b>3</b>Construire le cours</a></li><li><a href="#chapitre"><b>4</b>S’entraîner</a></li><li><a href="#chapitre"><b>5</b>Bilan</a></li><li><a href="#chapitre"><b>6</b>Diaporama</a></li></ol></section>
-    <section class="hero hero--chap"><div class="stage" id="stage"><span class="hint">glisse les points chauds · les cercles blancs sont les racines · molette pour zoomer</span></div>
+    <section class="hero hero--chap"><div class="stage" id="stage"><span class="hint"></span></div>
       <aside class="mission" aria-labelledby="m1"><p class="tag">Mission 1 sur 3 · Prédire</p><h3 id="m1">Le sommet est en <span class="v">S</span>(0 ; −2) et <span class="v">a</span> = 1. Combien de racines ?</h3>
         <div class="choices" role="group" aria-label="Ta prédiction"><button type="button" data-p="0">0</button><button type="button" data-p="1">1</button><button type="button" data-p="2">2</button></div><div id="verdict" aria-live="polite"></div></aside><div class="bar" id="bar"></div></section>
     <section class="wrap two"><div class="prose"><h2 style="margin-bottom:8px">Ce que l’expérience <em>suggère</em></h2>
         <p><strong>Le signe de <span class="v">a</span></strong> fixe l’orientation : vers le haut pour <span class="v">a</span> &gt; 0, vers le bas pour <span class="v">a</span> &lt; 0. Sur la figure, la branche qui descend est en cyan, celle qui monte en bleu.</p>
         <p><strong>Le sommet</strong> <span class="v">S</span>(<span class="v">α</span> ; <span class="v">β</span>) donne le minimum ou le maximum, et l’axe de symétrie <span class="v">x</span> = <span class="v">α</span>.</p>
         <p><strong>Les racines</strong> sont les points où la courbe coupe l’axe des abscisses. Attrape un cercle blanc et déplace-le : le sommet suit.</p></div>
-      <div class="proof"><p class="kicker">À démontrer</p><h3 style="font:700 1.6rem/1.15 var(--display)">Pourquoi <span class="v">Δ</span> compte les racines</h3><p style="color:var(--ink-2)">Sur la figure, Δ &gt; 0 donne deux racines, Δ = 0 une seule, Δ &lt; 0 aucune. C’est une observation. La démonstration passe par la forme canonique, à l’étape 3.</p></div></section>`;
+      <div class="proof"><p class="kicker">À démontrer</p><h3 style="font:700 1.5rem/1.2 var(--display);letter-spacing:-.02em">Pourquoi <span class="v">Δ</span> compte les racines</h3><p style="color:var(--ink-2)">Sur la figure, Δ &gt; 0 donne deux racines, Δ = 0 une seule, Δ &lt; 0 aucune. C’est une observation. La démonstration passe par la forme canonique, à l’étape 3.</p></div></section>`;
   },
   labo() {
     return `<section class="wrap head"><p class="kicker">Laboratoire</p><h1>Manipuler pour <em>comprendre</em></h1><p style="color:var(--ink-2);max-width:46ch;font-size:1.15rem">Expériences, curiosités et défis au même endroit. Filtre par domaine.</p></section>
@@ -387,48 +529,74 @@ const VIEWS = {
   },
   lire() { return `<section class="wrap head"><p class="kicker">Lire</p><h1>Histoires et <em>personnes</em></h1><p style="color:var(--ink-2);max-width:48ch">Chronologies, biographies, histoires et curiosités. Cette page n’est pas dessinée dans la maquette.</p></section>`; },
   notes() {
-    return `<section class="wrap head"><p class="kicker">Notes de conception · version 2</p><h1>Ce qui <em>change</em></h1></section>
-    <section class="wrap prose" style="max-width:72ch"><h2>Le canevas</h2>
-      <p><strong>Libre dans tous ses degrés de liberté.</strong> Le sommet (2), le point sur la courbe (l’ouverture, sans pas imposé) et les deux racines se déplacent librement. Déplacer une racine garde l’autre et l’ouverture, et le sommet suit. Un aimant doux ramène à l’entier le plus proche quand on passe à moins de 7 pixels ; Alt le désactive.</p>
-      <p><strong>Fluide.</strong> Dessin sur canvas, à la résolution de l’écran. Les paramètres et la caméra suivent leur cible par un ressort exponentiel : tout glisse, rien ne saute. Pendant un glisser, le point suit le doigt de très près. Le bouton de prédiction du chapitre anime la courbe vers le cas demandé au lieu de la téléporter.</p>
-      <p><strong>Caméra.</strong> Glisser le fond déplace le plan, la molette ou le pincement zooment vers le curseur, le double-clic recentre. La grille choisit toute seule un pas en 1, 2 ou 5 × 10ⁿ.</p>
-      <p><strong>Lecture.</strong> La tangente suit le pointeur avec x, f(x) et f′(x). La branche qui descend et celle qui monte ont deux teintes : les variations se voient avant de s’écrire.</p>
-      <p><strong>Clavier.</strong> H choisit un point, les flèches le déplacent de 0,1 (Maj : 1), + et − zooment, 0 recentre.</p>
-      <h2>Le dessin</h2>
-      <p>La figure occupe la page entière et porte le texte. Cyan et bleu pour la courbe, une seule couleur chaude pour tout ce qui se déplace. Un Didone à fort contraste pour les titres, des chiffres à chasse fixe pour les nombres. Sombre par défaut, clair en option.</p>
+    return `<section class="wrap head"><p class="kicker">Notes de conception · version 3</p><h1>Ce qui <em>change</em></h1></section>
+    <section class="wrap prose" style="max-width:72ch"><h2>Accueil animé</h2>
+      <p>L’accueil est un défilement de cinq figures vivantes, chacune avec sa phrase : le second degré, le cercle trigonométrique, la sécante qui devient tangente, les rectangles de Riemann et le chaos de la suite logistique. Chaque diapositive dure ${DUR} secondes, avec une barre de progression. Toucher la figure met le défilement en pause pendant 5 secondes ; un bouton le met en pause pour de bon, et la barre de progression permet de choisir une diapositive. Avec « réduire les animations » activé dans le système, rien ne défile.</p>
+      <p>Chaque figure est interactive : le point du cercle (qui s’accroche aux angles remarquables), les points A et B de la sécante, la borne et la largeur des rectangles, le sommet de la courbe logistique et la valeur de départ u₀.</p>
+      <h2>Le canevas</h2>
+      <p>Le sommet, le point de la courbe et les deux racines se déplacent librement ; un aimant doux ramène aux entiers (Alt le désactive). Tout est amorti par un ressort exponentiel. Glisser le fond déplace le plan, la molette et le pincement zooment. Clavier : H choisit un point, les flèches le déplacent, + − 0 pour le zoom.</p>
+      <h2>Typographie</h2>
+      <p>Le Didone est remplacé par une sans-serif géométrique. Trois choix à comparer dans le pied de page : Manrope, Sora et STIX Two (la police des formules).</p>
       <h2>Limites</h2>
-      <p>Seule la parabole est dessinée. Les autres expériences devront être reprises sur ce moteur. Lire et le détail par classe ne sont pas dessinés. La navigation au clavier du canevas est basique et n’a pas été testée avec un lecteur d’écran. Les chiffres viennent du site actuel. Le français seul est utilisé : l’anglais reste en attente.</p></section>`;
+      <p>Seule la parabole existe sur la page chapitre. Les autres expériences devront être reprises sur ce moteur. Lire et le détail par classe ne sont pas dessinés. Le clavier du canevas n’a pas été testé avec un lecteur d’écran. Les chiffres viennent du site actuel. Le français seul est utilisé : l’anglais reste en attente. La suite logistique : seuils de période 3, 1 + √6, 3,5441, 3,5699 [VERIFY avant publication].</p></section>`;
   },
 };
 
-/* ============ router, theme ============ */
-const view = document.getElementById('view'); let plot = null;
+/* ============ home slideshow controller ============ */
+function slideshow(hero, stage, plot) {
+  const slides = [...hero.querySelectorAll('.slide')], pgs = [...hero.querySelectorAll('.pg')], pp = document.getElementById('pp'), N = slides.length;
+  let i = 0, userPaused = reduced, busy = false, bt = 0, token = 0;
+  const icon = () => { pp.innerHTML = userPaused ? '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9-5.5z"/></svg>' : '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 2h3v12h-3zM9.5 2h3v12h-3z"/></svg>'; pp.setAttribute('aria-label', userPaused ? 'Reprendre le défilement' : 'Mettre le défilement en pause'); };
+  const apply = () => { hero.classList.toggle('paused', userPaused || busy); hero.classList.toggle('static', reduced); };
+  function show(n, instant) {
+    i = (n + N) % N; const mine = ++token;
+    slides.forEach((s, j) => { s.classList.toggle('on', j === i); s.setAttribute('aria-hidden', j === i ? 'false' : 'true'); });
+    pgs.forEach((p, j) => { p.classList.toggle('done', j < i); if (j === i) { p.setAttribute('aria-current', 'true'); const bi = p.querySelector('i'); bi.style.animation = 'none'; void bi.offsetWidth; bi.style.animation = ''; } else p.removeAttribute('aria-current'); });
+    if (instant) return;
+    stage.classList.add('swap'); setTimeout(() => { if (mine !== token) return; plot.setScene(SLIDES[i].make()); stage.classList.remove('swap'); }, reduced ? 0 : 330);
+  }
+  hero.querySelector('.pager').addEventListener('animationend', (e) => { if (e.animationName === 'fill' && !userPaused && !busy) show(i + 1); });
+  pgs.forEach((p) => p.addEventListener('click', () => show(+p.dataset.i)));
+  pp.addEventListener('click', () => { userPaused = !userPaused; icon(); apply(); });
+  plot.bump = () => { busy = true; apply(); clearTimeout(bt); bt = setTimeout(() => { busy = false; apply(); }, 5000); };
+  icon(); apply(); show(0, true);
+  return { destroy() { token++; clearTimeout(bt); } };
+}
+
+/* ============ router, theme, face ============ */
+const view = document.getElementById('view'); let plot = null, show = null;
 function route() {
   const name = (location.hash || '#accueil').slice(1), key = VIEWS[name] ? name : 'accueil';
-  plot && plot.destroy(); plot = null;
+  show && show.destroy(); show = null; plot && plot.destroy(); plot = null;
   view.innerHTML = VIEWS[key]();
   document.querySelectorAll('.doors a').forEach((a) => { const on = (key === 'chapitre' ? 'cours' : key) === a.dataset.door; if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
   const stage = document.getElementById('stage');
   if (stage) {
-    const update = bar(document.getElementById('bar'));
-    const wide = matchMedia('(min-width: 900px)').matches;
-    plot = Plot(stage, { drift: key === 'accueil', origin: key === 'accueil' && wide ? 0.7 : 0.5, onFrame: update }); update();
+    let update = () => {}; const wide = matchMedia('(min-width: 900px)').matches, update0 = barFor(document.getElementById('bar'));
+    const first = key === 'accueil' ? SLIDES[0].make() : makeParabola({});
+    plot = Plot(stage, first, { origin: key === 'accueil' && wide ? 0.7 : 0.5, onFrame: () => update0(plot.scene), onScene: (sc) => update0(sc), onUser: () => plot && plot.bump && plot.bump() });
+    if (key === 'accueil') show = slideshow(stage.closest('.hero'), stage, plot);
     const v = document.getElementById('verdict');
     document.querySelectorAll('.choices button').forEach((b) => b.addEventListener('click', () => {
       document.querySelectorAll('.choices button').forEach((x) => x.setAttribute('aria-pressed', x === b));
-      Object.assign(S, { al: 0, be: -2, a: 1, dx: 1.5 }); plot.wake(); const f = forms(), ok = +b.dataset.p === f.count;
+      Object.assign(S, { al: 0, be: -2, a: 1, dx: 1.5 }); plot.wake(); const f = parabolaForms(), ok = +b.dataset.p === f.count;
       v.innerHTML = `<p class="verdict ${ok ? 'ok' : 'no'}">${ok ? 'Exact.' : 'Pas tout à fait.'} Sur la figure : Δ = ${f.delta} &gt; 0, donc ${f.count} racines (${f.roots}).</p>`;
     }));
   }
   const list = document.getElementById('list');
-  if (list) { const show = (f) => { list.innerHTML = idx(EXPS.filter((e) => f === 'Tous' || e[4] === f).map(expRow), true); }; show('Tous');
-    document.querySelectorAll('#filter button').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('#filter button').forEach((x) => x.setAttribute('aria-pressed', x === b)); show(b.dataset.f); })); }
+  if (list) { const show2 = (f) => { list.innerHTML = idx(EXPS.filter((e) => f === 'Tous' || e[4] === f).map(expRow), true); }; show2('Tous');
+    document.querySelectorAll('#filter button').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('#filter button').forEach((x) => x.setAttribute('aria-pressed', x === b)); show2(b.dataset.f); })); }
   window.scrollTo(0, 0);
 }
-window.addEventListener('hashchange', route); route();
+window.addEventListener('hashchange', route);
 const root = document.documentElement;
+const faces = { a: null, b: 'b', c: 'c' };
+const setFace = (f) => { if (faces[f]) root.dataset.face = faces[f]; else delete root.dataset.face; document.querySelectorAll('.face button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.face === f)); try { localStorage.setItem('face', f); } catch (e) {} };
+document.querySelectorAll('.face button').forEach((b) => b.addEventListener('click', () => setFace(b.dataset.face)));
+try { const f = localStorage.getItem('face'); if (f && f in faces) setFace(f); } catch (e) {}
 const isLight = () => root.dataset.theme === 'light' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: light)').matches);
 const retheme = () => { COL = null; plot && plot.wake(); };
 document.getElementById('theme').addEventListener('click', () => { root.dataset.theme = isLight() ? 'dark' : 'light'; retheme(); });
 matchMedia('(prefers-color-scheme: light)').addEventListener('change', retheme);
+route();
 </script>
