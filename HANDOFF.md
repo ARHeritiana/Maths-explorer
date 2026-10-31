@@ -1,5 +1,9 @@
 # Handoff
 
+## Malagasy T10 / T11 S sources imported (31 October 2026)
+
+At the owner's request the original T10 (9 chapters plus activities and solutions) and T11 S (20 chapters plus assessments) maths sources have been committed under `content/malagasy/source/`. The chapter-to-source mapping is in `content/malagasy/chapters.json`; source transfer is **not** Maths-explorer chapter publication or course adaptation completion. Start with T10 logic, then T11 S functions, retaining the official programme, computational proof, dual independent AI audits, full PDF/slides build, browser and accessibility gates. See `docs/future-work/malagasy-t10-t11-source-adaptation.md` and active workstream D. The owner has confirmed sole authorship of T10 and T11. Other active workstreams and the English lesson standby are unchanged.
+
 ## Cross-workstream register and revised timeline direction, 31 October 2026
 
 **Read [the active workstreams register](docs/ACTIVE_WORKSTREAMS.md) before accepting a task-specific handoff.** The private Première C01-C03 handoff tracks only that audit; it is **not** a replacement for the project's other pending work. A single-chunk agent must preserve unrelated pending tasks in its next handoff rather than silently dropping them.

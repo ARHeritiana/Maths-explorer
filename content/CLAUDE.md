@@ -4,6 +4,7 @@ Sources of everything the build publishes. Generated files sit beside some sourc
 
 | Path | Holds | Edit? |
 |---|---|---|
+| `malagasy/` | Owner-authored T10 and T11 S source intake and chapter mapping (prepublication only), see `malagasy/README.md`; not built by `make site` | yes, but keep unpublished until review |
 | `data/manifest.json` | catalogue source of truth: keys `catalog` (courses, chapters), `books` (course mains), `companion`, `university`, `texConverted` | yes, then `make site` |
 | `data/enrichment.json` | enrichment workshops, both languages, maths as `$...$` | yes, then `make site` |
 | `data/glossary.json` | FR/EN terminology | yes |
