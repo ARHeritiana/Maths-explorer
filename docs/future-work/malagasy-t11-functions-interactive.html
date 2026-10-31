@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>T11 S | Images et antécédents - prototype</title>
+<style>
+:root{color-scheme:light dark;--fg:light-dark(#1b2b38,#e8eff7);--bg:light-dark(#f6f8fc,#10202d);--panel:light-dark(#fff,#1b3041);--line:light-dark(#cbd8e1,#4d687b)}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Arial,sans-serif;line-height:1.5;background:var(--bg);color:var(--fg)}
+main{max-width:1020px;margin:auto;padding:clamp(12px,3vw,30px)}h1{font-size:clamp(1.5rem,4vw,2.6rem);line-height:1.15}
+section{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:clamp(12px,3vw,24px);margin:16px 0}
+.small{font-size:.9rem;opacity:.8}.panel{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px,1fr);gap:22px}
+svg{width:100%;height:auto;background:light-dark(#f9fcff,#152636);border:1px solid var(--line);border-radius:14px;touch-action:pan-y}
+#point{cursor:grab;touch-action:none}#point:focus-visible{stroke:#f5a623;stroke-width:5}
+label{display:block;margin-top:14px}input,button{font:inherit;color:var(--fg);background:var(--panel);accent-color:#13886e}
+input[type=range]{display:block;width:100%;min-height:42px}input[type=number]{width:110px;max-width:100%;padding:9px;border:1px solid var(--line);border-radius:8px}
+button{border:1px solid var(--line);border-radius:10px;min-height:44px;padding:8px 12px;cursor:pointer}
+[data-result]{font-variant-numeric:tabular-nums;font-weight:650}.tip{border-left:4px solid #ca8c37;padding:8px 12px;margin-top:14px}
+@media(max-width:720px){.panel{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style></head>
+<body><main><header><p class="small">Maths-explorer · Programme malgache · T11 S · adaptation expérimentale, non publiée</p>
+<h1>Fonctions : lire une image et retrouver des antécédents</h1>
+<p>Une même courbe répond à deux questions différentes : « Quelle est l'image de x ? » et « Quels x ont pour image y ? » Manipule la courbe avant de calculer.</p></header>
+<section><h2>1. Explorer une fonction</h2><div class="panel">
+<div><svg id="plot" viewBox="0 0 720 420" aria-label="Courbe interactive de f(x)=x²−3x. Déplace le point horizontalement, ou utilise le curseur clavier." role="img">
+<g id="grid"></g><path id="curve" fill="none" stroke="#ca8726" stroke-width="4" stroke-linecap="round"></path>
+<line id="lineX" stroke="#35a893" stroke-width="2" stroke-dasharray="6 6"></line>
+<line id="lineY" stroke="#35a893" stroke-width="2" stroke-dasharray="6 6"></line>
+<line id="targetLine" stroke="#af70cb" stroke-width="2" stroke-dasharray="8 5"></line>
+<g id="roots"></g><circle id="point" tabindex="0" r="12" fill="#d58b31" stroke="#1b3041" stroke-width="2" role="slider" aria-label="Choisir x sur la courbe" aria-valuemin="-1" aria-valuemax="4" aria-valuenow="1"></circle>
+</svg><p class="small">Fais glisser le point orange. Le repère conserve une échelle fixe pour distinguer un déplacement de point d'un zoom.</p></div>
+<div><p><strong>f(x) = x² − 3x</strong>, définie sur ℝ.</p>
+<label for="x">Abscisse x : <output data-result id="xValue"></output></label><input id="x" type="range" min="-1" max="4" step="0.05" value="1">
+<p>Image lue : <output data-result id="fx"></output></p>
+<hr><label for="target">Ordonnée y à retrouver :</label>
+<input id="target" type="number" min="-2.5" max="6" step="0.25" value="-2">
+<p id="antecedents" aria-live="polite"></p>
+<p class="tip">Un antécédent n'est pas une image. Pour trouver les antécédents de y, on résout l'équation f(x) = y.</p>
+</div></div>
+</section>
+<section><h2>2. Passer du dessin au raisonnement</h2>
+<p>Les intersections avec la droite horizontale d'ordonnée y sont les antécédents de y. L'équation x² − 3x = y devient x² − 3x − y = 0 ; son discriminant est Δ = 9 + 4y.</p>
+<p><strong>Question :</strong> calcule f(4), puis saisis la réponse.</p>
+<label for="answer">f(4) = <input id="answer" type="number" step="any" autocomplete="off"></label>
+<button id="check" type="button">Vérifier</button><p id="feedback" aria-live="polite"></p>
+<details><summary>Formaliser l'existence des antécédents</summary>
+<p>Si Δ est négatif, il n'existe aucun antécédent réel. Si Δ est nul, il y en a un : x = 3/2. Si Δ est positif, il y en a deux : x = (3 ± √Δ)/2. Ce calcul explique toutes les intersections observées.</p></details>
+</section>
+</main><script>
+"use strict";
+const $=id=>document.getElementById(id), svg=$("plot");
+const f=x=>x*x-3*x, SX=x=>90+(x+1.4)*106, SY=y=>328-(y+3)*31;
+const make=(tag,attrs,parent)=>{const e=document.createElementNS("http://www.w3.org/2000/svg",tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));parent.append(e);return e};
+for(let x=-1;x<=4;x++){make("line",{x1:SX(x),x2:SX(x),y1:20,y2:385,stroke:"#6f8899","stroke-opacity":".35"},$("grid"));make("text",{x:SX(x),y:401,fill:"#888", "text-anchor":"middle","font-size":15},$("grid")).textContent=String(x)}
+for(let y=-2;y<=7;y+=2){make("line",{x1:24,x2:705,y1:SY(y),y2:SY(y),stroke:"#6f8899","stroke-opacity":".35"},$("grid"));make("text",{x:38,y:SY(y)-5,fill:"#888","font-size":15},$("grid")).textContent=String(y)}
+const commands=[];for(let i=0;i<=250;i++){let x=-1.4+i*5.9/250;commands.push((i?"L":"M")+SX(x).toFixed(2)+","+SY(f(x)).toFixed(2))}$("curve").setAttribute("d",commands.join(" "));
+const fmt=x=>Math.abs(x)<.000001?"0":Number(x.toFixed(3)).toLocaleString("fr-FR",{maximumFractionDigits:3});
+function setLine(e,attrs){for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v)}
+function redraw(){
+const x=Number($("x").value),y=f(x);
+$("xValue").textContent=fmt(x);$("fx").textContent=fmt(y);
+$("point").setAttribute("cx",SX(x));$("point").setAttribute("cy",SY(y));$("point").setAttribute("aria-valuenow",String(x));$("point").setAttribute("aria-valuetext",fmt(x));
+setLine($("lineX"),{x1:SX(x),x2:SX(x),y1:SY(0),y2:SY(y)});
+setLine($("lineY"),{x1:SX(0),x2:SX(x),y1:SY(y),y2:SY(y)});
+const target=Number($("target").value),delta=9+4*target,valid=$("target").value.trim()!==""&&Number.isFinite(target);
+$("roots").replaceChildren();
+$("targetLine").setAttribute("visibility",valid?"visible":"hidden");
+if(!valid){$("antecedents").textContent="Saisis une valeur réelle de y.";return}
+setLine($("targetLine"),{x1:25,x2:703,y1:SY(target),y2:SY(target)});
+if(delta < -1e-9){$("antecedents").textContent="Aucun antécédent réel : Δ = "+fmt(delta)+" est négatif.";return}
+const sol=delta<1e-9?[1.5]:[(3-Math.sqrt(delta))/2,(3+Math.sqrt(delta))/2];
+$("antecedents").textContent=(sol.length===1?"Un antécédent : ":"Deux antécédents : ")+sol.map(fmt).join(" et ")+" (Δ = "+fmt(delta)+").";
+for(const root of sol){if(root>=-1.4&&root<=4.5){make("circle",{cx:SX(root),cy:SY(target),r:7,fill:"#af70cb",stroke:"#fff","stroke-width":2},$("roots"))}}
+}
+$("x").addEventListener("input",redraw);$("target").addEventListener("input",redraw);
+function pointerX(e){const r=svg.getBoundingClientRect();const svgPx=(e.clientX-r.left)*720/r.width;return Math.round(Math.max(-1,Math.min(4,(svgPx-90)/106-1.4))*20)/20}
+let grabbing=false;
+$("point").addEventListener("pointerdown",e=>{grabbing=true;$("point").setPointerCapture(e.pointerId);e.preventDefault()});
+$("point").addEventListener("pointermove",e=>{if(grabbing){$("x").value=String(pointerX(e));redraw()}});
+$("point").addEventListener("pointerup",()=>grabbing=false);
+$("point").addEventListener("pointercancel",()=>grabbing=false);
+$("point").addEventListener("keydown",e=>{if(e.key==="ArrowLeft"||e.key==="ArrowRight"){e.preventDefault();$("x").value=String(Math.max(-1,Math.min(4,Number($("x").value)+(e.key==="ArrowRight"?.05:-.05))));redraw()}});
+$("check").addEventListener("click",()=>{$("feedback").textContent=Number($("answer").value)===4&&$("answer").value.trim()!==""?"Exact : 4² − 3×4 = 4.":"Recalcule 4×4 − 3×4."});
+redraw();
+</script></body></html>

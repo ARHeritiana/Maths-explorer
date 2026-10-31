@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T10 | Logique et raisonnement - prototype</title>
+<style>
+:root{font-family:system-ui,Arial,sans-serif;color-scheme:light dark;--ink:light-dark(#19293a,#ecf2fb);--bg:light-dark(#f8fafc,#101b2a);--panel:light-dark(white,#182b3e);--edge:light-dark(#b8c8d5,#567084);--hi:light-dark(#e2f4ea,#234b43)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);line-height:1.55}main{max-width:980px;margin:auto;padding:clamp(12px,3vw,30px)}
+header{margin:0 0 22px}h1{line-height:1.15;font-size:clamp(1.6rem,4vw,2.6rem)}h2{font-size:1.25rem}section{background:var(--panel);border:1px solid var(--edge);border-radius:16px;padding:clamp(14px,3vw,24px);margin:16px 0}
+.note{font-size:.9rem;opacity:.8}.switches,.readouts,.group{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+label{display:inline-flex;align-items:center;gap:8px}button,input{font:inherit;accent-color:#368572}button{border:1px solid var(--edge);border-radius:10px;background:var(--panel);color:var(--ink);min-height:44px;padding:8px 12px;cursor:pointer}
+input[type=checkbox]{height:22px;width:22px}input[type=number]{width:88px;border:1px solid var(--edge);border-radius:8px;background:var(--panel);color:var(--ink);padding:9px}
+table{border-collapse:separate;border-spacing:0;width:100%;font-variant-numeric:tabular-nums}th,td{border-bottom:1px solid var(--edge);text-align:center;padding:9px 4px}
+th{font-size:.85rem}tbody tr{cursor:pointer}tbody tr[aria-selected=true]{background:var(--hi)}tbody tr:focus-visible{outline:3px solid #f5b042;outline-offset:-3px}
+.readouts strong{border:1px solid var(--edge);border-radius:10px;padding:8px 14px;min-width:90px;text-align:center}
+.good{color:light-dark(#126948,#82e0b6)}.bad{color:light-dark(#a83131,#ff9898)}
+@media(max-width:450px){table{font-size:.76rem}th,td{padding:9px 1px}.readouts strong{flex:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body><main>
+<header><p class="note">Maths-explorer · Programme malgache · T10 · adaptation expérimentale, non publiée</p>
+<h1>Logique : une affirmation résiste-t-elle à tous les cas ?</h1>
+<p>Avant de retenir une règle, change les valeurs de vérité et cherche le cas qui la rend fausse. C'est l'idée centrale d'une table de vérité.</p></header>
+<section aria-labelledby="expl"><h2 id="expl">1. Expérimenter avec deux propositions</h2>
+<div class="switches"><label><input id="p" type="checkbox" checked>P est vraie</label><label><input id="q" type="checkbox">Q est vraie</label></div>
+<p>Choisis aussi une ligne de la table (souris, doigt, Tab et Entrée). Le <strong>ou</strong> mathématique est inclusif.</p>
+<div style="overflow-x:auto"><table><thead><tr><th>P</th><th>Q</th><th>P ∧ Q</th><th>P ∨ Q</th><th>P ⇒ Q</th><th>¬Q ⇒ ¬P</th><th>P ⇔ Q</th></tr></thead><tbody id="truth"></tbody></table></div>
+<p class="readouts" id="summary" aria-live="polite"></p>
+<p id="explain" aria-live="polite"></p>
+</section>
+<section><h2>2. Distinguer une implication de sa réciproque</h2>
+<p>Soit <strong>P</strong> : « n est divisible par 4 » et <strong>Q</strong> : « n est pair ». Le fait que P implique Q n'autorise pas à conclure que Q implique P.</p>
+<div class="group"><label for="n">Choisis un entier n de 0 à 40 :</label><input id="n" type="number" min="0" max="40" step="1" value="6"></div>
+<p id="integer" aria-live="polite"></p>
+<p>Déplace la valeur jusqu'à trouver un <strong>contre-exemple</strong> à la réciproque Q ⇒ P. Un seul suffit à réfuter l'énoncé universel.</p>
+</section>
+<section><h2>3. Vérifier ce que tu as découvert</h2>
+<p>Une implication P ⇒ Q est fausse dans exactement une situation. Laquelle ?</p>
+<div class="group"><button type="button" data-answer="vv">P vraie, Q vraie</button><button type="button" data-answer="vf">P vraie, Q fausse</button><button type="button" data-answer="fv">P fausse, Q vraie</button><button type="button" data-answer="ff">P fausse, Q fausse</button></div>
+<p id="feedback" aria-live="polite"></p>
+<details><summary>Formaliser</summary>
+<p>P ⇒ Q signifie ¬P ∨ Q. Sa contraposée ¬Q ⇒ ¬P a exactement les mêmes valeurs de vérité. La réciproque Q ⇒ P est une autre proposition, qui n'est pas automatiquement vraie.</p>
+<p>L'expérimentation vérifie les quatre cas possibles ; c'est la table complète qui justifie la propriété logique.</p>
+</details>
+</section>
+</main>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const V=b=>b?"V":"F";
+const rows=[[true,true],[true,false],[false,true],[false,false]];
+const outcome=(p,q)=>[p&&q,p||q,!p||q,q||!p,p===q];
+const tbody=$("truth");
+for(const [i,[p,q]] of rows.entries()){
+ const tr=document.createElement("tr");tr.tabIndex=0;tr.setAttribute("role","button");
+ tr.setAttribute("aria-label","Choisir P "+V(p)+" et Q "+V(q));tr.dataset.idx=i;
+ const cells=[p,q,...outcome(p,q)];
+ for(const cell of cells){const td=document.createElement("td");td.textContent=V(cell);tr.append(td)}
+ tr.addEventListener("click",()=>select(i));tr.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(i)}});
+ tbody.append(tr);
+}
+function render(){
+ const p=$("p").checked,q=$("q").checked;
+ [...tbody.rows].forEach((tr,i)=>tr.setAttribute("aria-selected",String(rows[i][0]===p&&rows[i][1]===q)));
+ const o=outcome(p,q);
+ $("summary").replaceChildren();
+ [["P ∧ Q",o[0]],["P ∨ Q",o[1]],["P ⇒ Q",o[2]],["Contraposée",o[3]]].forEach(([label,val])=>{const strong=document.createElement("strong");strong.textContent=label+" : "+V(val);strong.className=val?"good":"bad";$("summary").append(strong)});
+ $("explain").textContent=o[2]?"L'implication est vraie dans ce cas.": "Voici le seul cas où P ⇒ Q est fausse : P vraie et Q fausse.";
+}
+function select(i){$("p").checked=rows[i][0];$("q").checked=rows[i][1];render()}
+$("p").addEventListener("change",render);$("q").addEventListener("change",render);
+function integer(){const n=Number($("n").value);if(!Number.isInteger(n)||n<0||n>40){$("integer").textContent="Entre un entier entre 0 et 40.";return}const p=n%4===0,q=n%2===0;
+$("integer").textContent="Pour n = "+n+" : P est "+(p?"vraie":"fausse")+", Q est "+(q?"vraie":"fausse")+". P ⇒ Q est "+(!p||q?"vraie":"fausse")+" ; Q ⇒ P est "+(!q||p?"vraie":"fausse")+(q&&!p?". Tu as trouvé un contre-exemple à la réciproque.":".");}
+$("n").addEventListener("input",integer);
+document.querySelectorAll("button[data-answer]").forEach(b=>b.addEventListener("click",()=>{$("feedback").textContent=b.dataset.answer==="vf"?"Exact : une hypothèse vraie et une conclusion fausse.":"Essaie encore en examinant la ligne P vraie, Q fausse."}));
+render();integer();
+</script>
+</body></html>
