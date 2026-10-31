@@ -23,9 +23,10 @@ export const diagram = {
   draw(c, step, p, q) {
     const edges = edgesFor(q), doors = q.layout === "closed-door" ? DOORS.slice(1) : DOORS, crit = eulerCriteria(edges), svg = c.svg;
     const show = step === 0 ? easeInOut(seg(p, 0.15, 0.85)) : 1;
-    // the plan, still readable underneath
-    ROOM_RECTS.forEach((r, i) => { const [x, y] = S([r.x, r.y]); el("rect", { x, y, width: r.w * K, height: r.h * K, fill: colour(i), "fill-opacity": 0.2, stroke: "var(--ink)", "stroke-width": 3.5, "stroke-linejoin": "round" }, svg); });
-    doors.forEach((d) => { const h = d.n[0] === 0, [x, y] = S([d.x, d.y]), w = (h ? 30 : 10) * K, ht = (h ? 10 : 30) * K; el("rect", { x: x - w / 2, y: y - ht / 2, width: w, height: ht, rx: 2, fill: "var(--surface)", stroke: "var(--accent)", "stroke-width": 2 }, svg); });
+    // the plan fades away as the graph appears, leaving only a trace of the rooms under it
+    const planOp = 1 - 0.88 * show;
+    ROOM_RECTS.forEach((r, i) => { const [x, y] = S([r.x, r.y]); el("rect", { x, y, width: r.w * K, height: r.h * K, fill: colour(i), "fill-opacity": 0.2, stroke: "var(--ink)", "stroke-width": 3.5, "stroke-linejoin": "round", opacity: planOp }, svg); });
+    doors.forEach((d) => { const h = d.n[0] === 0, [x, y] = S([d.x, d.y]), w = (h ? 30 : 10) * K, ht = (h ? 10 : 30) * K; el("rect", { x: x - w / 2, y: y - ht / 2, width: w, height: ht, rx: 2, fill: "var(--surface)", stroke: "var(--accent)", "stroke-width": 2, opacity: planOp }, svg); });
     // the ring: the vertex O
     const [rx, ry] = S([-RING, -RING]);
     el("rect", { x: rx, y: ry, width: (HOUSE.w + 2 * RING) * K, height: (HOUSE.h + 2 * RING) * K, rx: 14, fill: "none", stroke: "var(--ink)", "stroke-width": 3, "stroke-dasharray": "2 0", opacity: show }, svg);
