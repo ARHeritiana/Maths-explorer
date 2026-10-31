@@ -251,6 +251,8 @@ export const pathways = [
     stages:[
       {name:["AA & AI · SL/HL · Idées communes","AA & AI · SL/HL · Shared ideas"],ids:["quadratic","sequences","statistics","probability","derivative","integral"]},
       {name:["AA SL/HL & AI HL · Cercle unité","AA SL/HL & AI HL · Unit circle"],ids:["trig"],note:["AI SL : trigonométrie des triangles ; cette activité sur les radians et les angles orientés est un prolongement.","AI SL: triangle trigonometry; this activity on radians and directed angles is an extension."]},
+      // [VERIFY] which IB course(s) and level(s) treat sinusoidal modelling is not established here: the stage names no course on purpose.
+      {name:["Modèles sinusoïdaux","Sinusoidal models"],ids:["ferris-wheel"],note:["Placement indicatif : une situation réelle idéalisée, modélisée par un cosinus, avec un seuil et une vitesse de variation. Ce n’est pas une affirmation sur le contenu d’un cours précis.","Indicative placement: an idealised real situation modelled by a cosine, with a threshold and a rate of change. This is not a claim about the content of a particular course."]},
       {name:["AA & AI · HL · Vecteurs","AA & AI · HL · Vectors"],ids:["vectors"]},
       {name:["AA HL · Complexes","AA HL · Complex numbers"],ids:["complex"]},
       {name:["AI HL · Complexes : programme actuel seulement","AI HL · Complex numbers: current syllabus only"],ids:["complex"],note:["Retirés pour les élèves commençant en août 2027 (première évaluation en mai 2029). Ils restent une exploration facultative.","Removed for students starting in August 2027 (first assessment May 2029). They remain optional enrichment."]}
