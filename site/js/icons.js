@@ -12,6 +12,8 @@ paths["scroll"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke
 paths["graduation-cap"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M16 96L128 40L240 96L128 152Z"/><path d="M64 120V184C64 184 88 212 128 212C168 212 192 184 192 184V120M240 96V168"/></g>';
 paths["stack"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M24 88L128 32L232 88L128 144Z"/><path d="M24 136L128 192L232 136M24 184L128 240L232 184"/></g>';
 paths["caret-left"] = '<path fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" d="M160 48L80 128L160 208"/>';
+// Triangle with an exclamation mark, for the error correction collection.
+paths["warning"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M128 40L232 208H24Z"/><path d="M128 100V148"/></g><circle cx="128" cy="180" r="10"/>';
 export function icon(name, size = 20) {
   return `<svg class="icon" viewBox="0 0 256 256" width="${size}" height="${size}" fill="currentColor" aria-hidden="true" focusable="false">${paths[name] || ""}</svg>`;
 }

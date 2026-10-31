@@ -2,6 +2,8 @@ import {galleryContext} from './gallery-context.js';
 import {installControlPolicy} from "./control-policy.js";
 import {preferredLanguage,routeLanguage} from "./content-language.js";
 import {workshopMarkup,bindWorkshop} from './quadratic-workshop.js';
+import { errorsPage, bindErrors } from "./errors.js";
+import { isErrorRoute } from "./errors-model.js";
 import { libraryPage, bindLibrary, chapterPage, bindChapter, relatedChapters, resourceCatalog } from "./resource-library.js";
 import { packPage, bindPack, sourcesPage, bindSources } from "./pack-builder.js";
 import { slidesPage, bindSlides } from "./slides-page.js";
@@ -109,6 +111,7 @@ const SECTIONS = [
     ["topics", "Domaines", "Topics", "magnifying-glass"],
     ["lab", "Laboratoire", "Laboratory", "flask"],
     ["challenges", "Défis", "Challenges", "puzzle-piece"],
+    ["errors", "Erreurs", "Errors", "warning"],
   ]],
   ["read", "Lire", "Read", "book-open", [
     ["history", "Chronologies", "Timelines", "scroll"],
@@ -158,6 +161,7 @@ function render() {
   const valid = (r.page === "lab" && (!r.id || !!experiment)) || (r.page === "gallery" && (!r.id || labs.some(l => l.id === r.id && l.custom))) ||
     (r.page === 'history' && isHistoryRoute(r.id,r.tab)) ||
     (r.page === 'topics' && isTopicRoute(r.id,r.tab)) ||
+    (r.page === "errors" && isErrorRoute(r.id)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
     (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction" || r.id === "multiplication" || r.id === "division")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
     r.page === "university" || (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
@@ -170,6 +174,7 @@ function render() {
       : page === "topics" ? discoveryPage(discovery,r.id,r.tab,t)
       : page === "history" ? historyPage(r.id,r.tab,t,discovery)
       : page === "chapter" ? chapterPage(r.id, r.tab, t, labs)
+      : page === "errors" ? errorsPage(r.id, t)
       : page === "lab"
       ? (experiment ? experimentPage(experiment, { t, pair, link, completed, mission: r.tab || "" }) : labIndexPage({ t, pair, link, completed }))
       : page === "gallery"
@@ -204,6 +209,7 @@ function render() {
   if (page === "gallery" && r.id) bindGallery();
   if (page === "lab" && !experiment) bindLabIndex($("#main"), pair);
   if (page === "challenges") stopChapter = bindChallenges();
+  if (page === "errors") stopChapter = bindErrors($("#main"), t, r.id);
   if (page === "home") stopChapter = bindHome($("#main"),discovery,t);
   if (page === "basics" && r.id) stopChapter = bindBasics();
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });

@@ -34,6 +34,13 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/learning-content.js` | companion lessons on chapter pages (`guides`) |
 | `js/study-guides.js` | short starting sheets (built into HTML by `scripts/build-study-guides.mjs`) |
 
+## Error correction
+
+| File | Holds |
+|---|---|
+| `js/errors-model.js` | pure: `ERRORS` (false claims with repairs), `DERIVATIONS` (flawed step lists), `ROUTE`, `FAMILIES`; counterexamples, repair checks and the faulty step are computed, never stored |
+| `js/errors.js` | the page `#errors[/<id>]`: index with suggested route, test bench with sliders, diagnosis, repair choice; finished ids kept on the device only |
+
 ## Laboratory and gallery
 
 | File | Holds |

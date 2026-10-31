@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 
 STEPS = ['cours', 'manipuler', 'exercices', 'documents']
-ROUTES = ['home'] + ['chapter/premiere-02/' + step for step in STEPS]
+ROUTES = ['home', 'errors', 'errors/square-of-sum', 'errors/division-by-zero'] + ['chapter/premiere-02/' + step for step in STEPS]
 
 
 def _open(page, base, route):
