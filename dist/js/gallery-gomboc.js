@@ -3,10 +3,12 @@ import { exhibit, button, field, palette, path, dot as drawDot } from './gallery
 import { CAM3_DEFAULT, cam3Project, cam3Turn } from './camera3d.js';
 import * as G from './gallery-gomboc-model.js';
 import {assetHref} from './data-loader.js';
+import {buildSmoothMesh} from './gomboc-mesh.js';
+import {createGombocGL} from './gomboc-gl.js';
 
 export function gomboc(root,opts){
   const {t,lang}=opts,reduced=typeof opts.reduced==='function'?opts.reduced:()=>!!opts.reduced;
-  let alive=true,body=null,s=null,playing=false,dirty=true,drag=null,accumulator=0,error='',check=null,baseline=0,keyboardBody=false;
+  let alive=true,body=null,glr=null,s=null,playing=false,dirty=true,drag=null,accumulator=0,error='',check=null,baseline=0,keyboardBody=false;
   const cam={...CAM3_DEFAULT},scale=132,num=(v,d=3)=>Number(v).toLocaleString(lang,{maximumFractionDigits:d});
   const o=exhibit(root,{...opts,reduced},t(
     'Glisse le corps pour le pencher, le pousser ou le lancer. Glisse le fond pour tourner la caméra. Au clavier : H sélectionne le corps ; les flèches le penchent. Échap rend les flèches à la caméra ; Maj + flèches déplace la vue ; P pousse ; Espace lance la lecture.',
@@ -22,7 +24,7 @@ export function gomboc(root,opts){
     `<label class="act-field"><span class="act-label">${t('Pas de calcul','Time step')}</span><select id="go-dt"><option value="240">1/240 s</option><option value="480">1/480 s</option><option value="960">1/960 s</option></select></label>`+
     button('go-check',t('Comparer avec un pas deux fois plus petit','Compare with half the time step'))+`</details>`,
     `<p>${t('Le corps homogène de cette expérience est le polyèdre à 56 946 faces de Schettini Gherardini, présenté dans une prépublication de 2026. Ce n’est pas la forme lisse originale de Domokos et Várkonyi (2006). Son certificat en arithmétique exacte donne un équilibre stable, aucun équilibre selle et un équilibre instable, relativement à son propre centre de masse.','This homogeneous body is Schettini Gherardini’s 56,946-face polyhedron, presented in a 2026 preprint. It is distinct from the original smooth shape of Domokos and Várkonyi (2006). Its exact-arithmetic certificate gives one stable equilibrium, no saddle and one unstable equilibrium relative to its own centre of mass.')}</p>`+
-    `<p>${t('Le dessin utilise une enveloppe allégée. Les contacts numériques utilisent les 113 888 sommets du corps certifié, arrondis en double précision, et son tenseur d’inertie intégré sur le volume complet. La preuve du nombre d’équilibres appartient aux demi-espaces rationnels originaux, pas au dessin ni à cette simulation.','The drawing uses a lighter hull. Numerical contacts use all 113,888 vertices of the certified body, rounded to double precision, and its inertia tensor integrated over the complete volume. The equilibrium proof concerns the original rational halfspaces, not the drawing or this simulation.')}</p>`+
+    `<p>${t('L’image est celle du corps complet à 56 946 faces, ombré en douceur (une normale par sommet : aucune facette ne se voit) ; une enveloppe allégée ne sert qu’à saisir le corps avec le pointeur et de repli sans WebGL. Les contacts numériques utilisent les 113 888 sommets du corps certifié, arrondis en double précision, et son tenseur d’inertie intégré sur le volume complet. La preuve du nombre d’équilibres appartient aux demi-espaces rationnels originaux, pas au dessin ni à cette simulation.','The picture is the full 56 946-face body, smoothly shaded (one normal per vertex, so no facets show); a lighter hull is kept only for picking the body with the pointer and as a fallback without WebGL. Numerical contacts use all 113,888 vertices of the certified body, rounded to double precision, and its inertia tensor integrated over the complete volume. The equilibrium proof concerns the original rational halfspaces, not the drawing or this simulation.')}</p>`+
     `<p>${t('Le modèle applique la pesanteur, des impulsions de contact avec le sol, un frottement de Coulomb et une résistance au roulement visqueuse : pendant le contact, un couple −cNω s’oppose à la rotation (N force normale, ω vitesse angulaire). Ce couple dissipe l’énergie tant que le corps tourne en touchant le sol, et ne peut pas, à lui seul, le retenir hors d’un équilibre ; avec c = 0, le mouvement peut ne jamais s’amortir. Le modèle ignore la déformation et le bruit réel du contact. Pour certaines orientations, le centre de masse passe presque à la verticale du contact : le couple de pesanteur est alors minuscule ; freiné aussi par la résistance au roulement, le corps peut ramper longtemps avant de rejoindre la face stable. Accélère la lecture pour le voir. Un calcul à pas fini garde un léger tremblement au repos, et le retour à la face stable n’est pas garanti pour tout lancer numérique. Le sommet instable exactement posé peut rester immobile : penche-le légèrement.','The model applies gravity, ground-contact impulses, Coulomb friction and viscous rolling resistance: during contact a couple −cNω opposes the rotation (N the normal force, ω the angular velocity). This couple dissipates energy while the body turns in contact with the floor, and cannot by itself hold it away from an equilibrium; with c = 0 the motion may never die down. The model omits deformation and real contact noise. For some orientations the centre of mass is almost vertically above the contact: the gravity torque is then tiny; slowed as well by rolling resistance, the body can creep for a long time before it reaches the stable face. Raise the playback speed to see it. A finite-step calculation keeps a slight jitter at rest, and return to the stable face is not guaranteed for every numerical throw. The exactly balanced unstable vertex may remain still: tip it slightly.')}</p>`+
     `<p><a href="https://arxiv.org/abs/2609.07827" target="_blank" rel="noopener">${t('Construction et certificat (prépublication 2026)','Construction and certificate (2026 preprint)')}</a> · <a href="data/gomboc/polytope.npz" download>${t('Demi-espaces originaux (1,8 Mo)','Original halfspaces (1.8 MB)')}</a> · <a href="data/gomboc/LICENSE.txt">${t('Licence MIT des données','Data MIT licence')}</a></p>`);
   const play=root.querySelector('#go-play'),inputs=Object.fromEntries(['mode','preset','speed','friction','rolling','dt'].map(k=>[k,root.querySelector('#go-'+k)]));
@@ -67,15 +69,29 @@ export function gomboc(root,opts){
     const offset=displayOffset(),P=p=>{const q=project(p);return [q[0]+offset[0],q[1]+offset[1],q[2]];};
     // The optional follow mode changes only translation. Camera scale and orientation stay independent of physics.
     const floor=[[-3,-3,0],[3,-3,0],[3,3,0],[-3,3,0]].map(p=>P([p[0]+s.p[0],p[1]+s.p[1],0]));path(g,floor,{close:true,fill:C.surface,stroke:C.line,width:1});
-    const R=G.rotation(s.q),world=Array.from(body.drawingIds,i=>G.matvec(R,G.vertex(body,i))),points=world.map(w=>P(G.add(w,s.p))),faces=[];
+    const R=G.rotation(s.q),facing=n=>cam3Project(cam.yaw,cam.pitch,...n).d<0;
+    // soft contact shadow on the floor, darker and tighter the closer the body is to it
+    {const hit=G.support(body,G.matvec(G.transpose(R),[0,0,-1]),s.support),clear=Math.max(0,s.p[2]-hit.value),c0=P([s.p[0],s.p[1],0]),ex=P([s.p[0]+1,s.p[1],0]),ey=P([s.p[0],s.p[1]+1,0]),rad=1.1+.35*clear,grad=g.createRadialGradient(0,0,0,0,0,rad);
+      grad.addColorStop(0,`rgba(0,0,0,${(.42/(1+2.5*clear)).toFixed(3)})`);grad.addColorStop(.55,`rgba(0,0,0,${(.2/(1+2.5*clear)).toFixed(3)})`);grad.addColorStop(1,'rgba(0,0,0,0)');
+      g.save();g.transform(ex[0]-c0[0],ex[1]-c0[1],ey[0]-c0[0],ey[1]-c0[1],c0[0],c0[1]);g.fillStyle=grad;g.beginPath();g.arc(0,0,rad,0,2*Math.PI);g.fill();g.restore();}
+    if(glr&&!glr.lost){
+      // smooth GPU rendering of the full body; the view matrix is cam3Project's, and the light follows the camera's azimuth
+      const cy=Math.cos(cam.yaw),sy=Math.sin(cam.yaw),cp=Math.cos(cam.pitch),sp=Math.sin(cam.pitch),toViewer=[-sy*cp,-cy*cp,sp],right=[cy,-sy,0];
+      const key=[.55*toViewer[0]-.5*right[0],.55*toViewer[1]-.5*right[1],.55*toViewer[2]-.5*right[2]+.8];
+      const img=glr.render({width:o.cv.width,height:o.cv.height,size:[o.W,o.H],R,p:s.p,view:[cy,-sy,0,sy*sp,cy*sp,cp,sy*cp,cy*cp,-sp],centre:[320,340],scale,offset,camera:o.navigation?.camera,toViewer,key});
+      if(img){g.save();g.setTransform(1,0,0,1,0,0);g.drawImage(img,0,0,o.cv.width,o.cv.height);g.restore();}else glr=null;
+    }
+    if(!glr){
+    const world=Array.from(body.drawingIds,i=>G.matvec(R,G.vertex(body,i))),points=world.map(w=>P(G.add(w,s.p))),faces=[];
     // Opaque faces shaded by their angle to a fixed light, so the relief of the body is readable; light only, no claim.
     // Direction towards the light, in view coordinates (u right, v up, d away from the viewer): upper left, viewer side.
-    const light=[-.45,.55,-.7],facing=n=>cam3Project(cam.yaw,cam.pitch,...n).d<0;
+    const light=[-.45,.55,-.7];
     for(let i=0;i<body.triangles.length;i+=3){const ids=[body.triangles[i],body.triangles[i+1],body.triangles[i+2]],p=ids.map(j=>points[j]);
       // Cull by the outward normal (screen y points down, so a screen-area sign test would keep the far side).
       const w=ids.map(j=>world[j]),n=G.cross(G.add(w[1],G.scale(w[0],-1)),G.add(w[2],G.scale(w[0],-1))),m=cam3Project(cam.yaw,cam.pitch,...n);
       if(m.d<0){const lit=Math.max(0,G.dot([m.u,m.v,m.d],light))/(G.norm(n)*G.norm(light)||1);faces.push({p,lit,depth:p.reduce((sum,q)=>sum+q[2],0)/3});}}
     faces.sort((a,b)=>b.depth-a.depth);for(const f of faces){path(g,f.p,{close:true,fill:C.accent,stroke:C.accent,width:.6});path(g,f.p,{close:true,fill:'#000',stroke:'#000',width:.6,alpha:.5*(1-f.lit)});path(g,f.p,{close:true,fill:'#fff',alpha:.3*f.lit*f.lit});}
+    }
     const stableNormal=G.matvec(R,body.meta.stableNormal),unstable=G.matvec(R,G.vertex(body,body.meta.unstableVertex));
     if(facing(stableNormal))drawDot(g,P(G.add(s.p,G.scale(stableNormal,body.meta.stableOffset))),C.pos,6,t('face stable','stable face'));
     if(facing(unstable))drawDot(g,P(G.add(s.p,unstable)),C.obj2,6,t('sommet instable','unstable vertex'));
@@ -88,7 +104,7 @@ export function gomboc(root,opts){
   }
   o.animate(dt=>{if(reduced()&&playing){playing=false;updatePlay();}if(playing&&dt&&body){accumulator+=dt*+inputs.speed.value;const h=1/+inputs.dt.value;let n=0;while(accumulator>=h&&n++<240){s=G.advance(body,s,h,options());accumulator-=h;}dirty=true;}if(dirty||playing){dirty=false;draw();}});
   const dataURL=name=>new URL(assetHref('data/gomboc/'+name),new URL('../',import.meta.url));
-  Promise.all([fetch(dataURL('body.json'),{signal:abort.signal}).then(r=>{if(!r.ok)throw new Error();return r.json();}),fetch(dataURL('body.bin'),{signal:abort.signal}).then(r=>{if(!r.ok)throw new Error();return r.arrayBuffer();})]).then(([meta,buffer])=>{if(!alive)return;body=G.decodeGeometry(buffer,meta);reset();o.redraw();}).catch(e=>{if(e.name==='AbortError'||!alive)return;error=t('Géométrie indisponible. Recharge la page pour réessayer.','Geometry unavailable. Reload the page to retry.');dirty=true;o.redraw();});
+  Promise.all([fetch(dataURL('body.json'),{signal:abort.signal}).then(r=>{if(!r.ok)throw new Error();return r.json();}),fetch(dataURL('body.bin'),{signal:abort.signal}).then(r=>{if(!r.ok)throw new Error();return r.arrayBuffer();})]).then(([meta,buffer])=>{if(!alive)return;body=G.decodeGeometry(buffer,meta);try{glr=createGombocGL(buildSmoothMesh(body));}catch{glr=null;}reset();o.redraw();}).catch(e=>{if(e.name==='AbortError'||!alive)return;error=t('Géométrie indisponible. Recharge la page pour réessayer.','Geometry unavailable. Reload the page to retry.');dirty=true;o.redraw();});
   root.__gomboc={getState:()=>s,getBody:()=>body,setPreset:value=>{inputs.preset.value=value;reset();},step:tick};
-  return ()=>{alive=false;abort.abort();o.stop();delete root.__gomboc;};
+  return ()=>{alive=false;abort.abort();o.stop();glr?.destroy();delete root.__gomboc;};
 }

@@ -3,10 +3,12 @@
 // laboratory objects; the mathematics lives in gallery-math.js.
 import { navigationButtons } from "./canvas-navigation.js";
 import { canvasIn, palette, loopFor } from "./object-kit.js";
+import { createFractalGL } from "./fractal-gl.js";
 import { escape, MADAGASCAR, resample, fourier, arms, heart, star, COUNT_SCHEDULE, REVOLUTION } from "./gallery-math.js";
 
 const TAU = Math.PI * 2;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const DEFAULT_MADAGASCAR = 24;   // number of circles Madagascar starts with
 const SHAPES = {
   madagascar: () => MADAGASCAR,
   heart: () => heart(160),
@@ -38,8 +40,9 @@ function fourierLab(root, { t, reduced, lang }) {
     pts = r0.map((p) => [p[0] - mx, p[1] - my]); co = fourier(pts);   // centred: the constant term vanishes and every circle turns
     const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]), w = Math.max(...xs) - Math.min(...xs), h = Math.max(...ys) - Math.min(...ys);
     scale = Math.min((o.W - 120) / w, (o.H - 80) / h); centre = [(Math.max(...xs) + Math.min(...xs)) / 2, (Math.max(...ys) + Math.min(...ys)) / 2];
-    trail = []; clock = 0; auto = shape !== "mine" || !!raw;
-    if (name !== "mine" || raw) { count = 1; slider.value = 1; }
+    trail = []; clock = 0; auto = (shape !== "mine" || !!raw) && name !== "madagascar";
+    // Madagascar opens on 24 circles (recognisable outline, still visibly approximate); "Build up again" restarts from 1
+    if (name !== "mine" || raw) { count = name === "madagascar" ? DEFAULT_MADAGASCAR : 1; slider.value = count; }
     update();
   };
   const toScreen = (x, y) => [o.W / 2 + (x - centre[0]) * scale, o.H / 2 - (y - centre[1]) * scale];
@@ -117,7 +120,7 @@ function fourierLab(root, { t, reduced, lang }) {
   o.cv.addEventListener("pointerup", finish); o.cv.addEventListener("pointercancel", () => (drawing = null));
 
   setShape("madagascar");
-  if (reduced()) { count = 80; auto = false; update(); }
+  if (reduced()) { count = DEFAULT_MADAGASCAR; auto = false; update(); }
   return () => { stop(); o.navigation?.destroy(); o.stopTouch?.(); };
 }
 
@@ -143,7 +146,20 @@ function mandelbrotLab(root, { t, reduced, lang }) {
     return (255 << 24) | ((b * 235 + 12) << 16) | ((gg * 220 + 12) << 8) | (r * 215 + 20);
   };
   const off = document.createElement("canvas"), oj = document.createElement("canvas");
+  // GPU path: every device pixel is computed with a smooth escape time (fractal-gl.js); the CPU path below is the fallback
+  let glMain = createFractalGL(), glJulia = createFractalGL();
+  const glSize = (p, k) => { const d = Math.min(p.cv.width / p.W, 2.5), s = Math.min(1, 1800 / (p.W * d)); return [Math.round(p.W * d * s * k), Math.round(p.H * d * s * k)]; };
+  const marker = () => {
+    const h = (w * o.H) / o.W, [sx, sy] = [(0.5 + (cSel[0] - cx) / w) * o.W, (0.5 - (cSel[1] - cy) / h) * o.H];
+    o.g.strokeStyle = "#fff"; o.g.lineWidth = 2; o.g.beginPath(); o.g.arc(sx, sy, 8, 0, TAU); o.g.moveTo(sx - 13, sy); o.g.lineTo(sx + 13, sy); o.g.moveTo(sx, sy - 13); o.g.lineTo(sx, sy + 13); o.g.stroke();
+  };
+  const maxJulia = () => clamp(Math.round(120 + 30 * Math.log2(3.2 / jw)), 120, 1500);
   function renderMain(res) {
+    if (glMain && !glMain.lost) {
+      const [pw, ph] = glSize(o, hq ? 1 : 0.5), h = (w * o.H) / o.W, img = glMain.render({ width: pw, height: ph, kind: "mandelbrot", cx, cy, w, h, max: maxIt(), samples: hq ? 2 : 1 });
+      if (img) { o.g.imageSmoothingEnabled = true; o.g.imageSmoothingQuality = "high"; o.g.drawImage(img, 0, 0, o.W, o.H); marker(); return; }
+    }
+    glMain = null;
     const pw = Math.round(o.W / res), ph = Math.round(o.H / res); off.width = pw; off.height = ph;
     const c2 = off.getContext("2d"), img = c2.createImageData(pw, ph), px = new Uint32Array(img.data.buffer), max = maxIt(), h = (w * o.H) / o.W;
     for (let y = 0; y < ph; y++) for (let x = 0; x < pw; x++) {
@@ -151,10 +167,14 @@ function mandelbrotLab(root, { t, reduced, lang }) {
       px[y * pw + x] = colour(escape(0, 0, cr, ci, max, true), max);
     }
     c2.putImageData(img, 0, 0); o.g.imageSmoothingEnabled = true; o.g.drawImage(off, 0, 0, o.W, o.H);
-    const [sx, sy] = [(0.5 + (cSel[0] - cx) / w) * o.W, (0.5 - (cSel[1] - cy) / h) * o.H];
-    o.g.strokeStyle = "#fff"; o.g.lineWidth = 2; o.g.beginPath(); o.g.arc(sx, sy, 8, 0, TAU); o.g.moveTo(sx - 13, sy); o.g.lineTo(sx + 13, sy); o.g.moveTo(sx, sy - 13); o.g.lineTo(sx, sy + 13); o.g.stroke();
+    marker();
   }
   function renderJulia() {
+    if (glJulia && !glJulia.lost) {
+      const [pw, ph] = glSize(j, hq ? 1 : 0.75), h = (jw * j.H) / j.W, img = glJulia.render({ width: pw, height: ph, kind: "julia", cx: jx, cy: jy, w: jw, h, c: cSel, max: maxJulia(), samples: hq ? 2 : 1 });
+      if (img) { j.g.imageSmoothingEnabled = true; j.g.imageSmoothingQuality = "high"; j.g.drawImage(img, 0, 0, j.W, j.H); return; }
+    }
+    glJulia = null;
     const res = 2, pw = Math.round(j.W / res), ph = Math.round(j.H / res); oj.width = pw; oj.height = ph;
     const c2 = oj.getContext("2d"), img = c2.createImageData(pw, ph), px = new Uint32Array(img.data.buffer), W = jw, h = (W * j.H) / j.W;
     for (let y = 0; y < ph; y++) for (let x = 0; x < pw; x++) px[y * pw + x] = colour(escape(jx+((x + 0.5) / pw - 0.5) * W, jy-((y + 0.5) / ph - 0.5) * h, cSel[0], cSel[1], 160, true), 110);
@@ -205,7 +225,7 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   j.cv.addEventListener('pointermove',e=>{if(!jdrag)return;const r=j.cv.getBoundingClientRect();jx=jdrag.jx-(e.clientX-jdrag.x)/r.width*jw;jy=jdrag.jy+(e.clientY-jdrag.y)/r.height*jw*j.H/j.W;dirty=true;});
   for(const ev of ['pointerup','pointercancel','view-gesture'])j.cv.addEventListener(ev,()=>jdrag=null);
   j.cv.addEventListener('wheel',e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();const [px,py]=j.point(e),at=[jx+(px/j.W-.5)*jw,jy-(py/j.H-.5)*jw*j.H/j.W],old=jw;jw=clamp(jw*Math.exp(e.deltaY*.005),2e-13,6);const k=jw/old;jx=at[0]+(jx-at[0])*k;jy=at[1]+(jy-at[1])*k;dirty=true;},{passive:false});
-  return () => { stop(); o.stopTouch?.(); j.stopTouch?.(); };
+  return () => { stop(); o.stopTouch?.(); j.stopTouch?.(); glMain?.destroy(); glJulia?.destroy(); };
 }
 
 export const GALLERY_OBJECTS = { fourier: fourierLab, mandelbrot: mandelbrotLab };

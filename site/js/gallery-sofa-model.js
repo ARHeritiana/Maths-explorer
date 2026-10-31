@@ -38,11 +38,24 @@ export function boundary(poly, step = 0.02) {
   for (let i = 0; i < poly.length; i++) { const [x1, y1] = poly[i], [x2, y2] = poly[(i + 1) % poly.length], n = Math.max(1, Math.ceil(Math.hypot(x2 - x1, y2 - y1) / step)); for (let k = 0; k < n; k++) out.push([x1 + ((x2 - x1) * k) / n, y1 + ((y2 - y1) * k) / n]); }
   return out;
 }
+// Boundary samples of a sofa outline in its own coordinates, computed once per outline (a pose only moves them rigidly).
+const samples = new WeakMap();
+function samplesOf(poly, step) {
+  let m = samples.get(poly); if (!m) samples.set(poly, (m = new Map()));
+  let b = m.get(step); if (!b) m.set(step, (b = boundary(poly, step)));
+  return b;
+}
+// Does the sofa-coordinates point q (the wall corner seen from the sofa) lie inside the outline, and how far from it?
+function cornerInSofa(poly, pose) {
+  const c = Math.cos(pose.a), s = Math.sin(pose.a), x = -pose.x, y = -pose.y;   // world (0, 0) in sofa coordinates
+  return [c * x + s * y, -s * x + c * y];
+}
 // The sofa fits when its whole outline is in the hallway and the inner corner is not inside it (the only part of the
 // walls that can poke into a sofa whose outline stays in the hallway). Touching a wall is allowed.
 export function fits(poly, pose, eps = 1e-9) {
-  const placed = place(poly, pose);
-  return boundary(placed).every((p) => inHallway(p, eps)) && !containsStrictly(placed, [0, 0], eps);
+  const c = Math.cos(pose.a), s = Math.sin(pose.a);
+  for (const [u, v] of samplesOf(poly, 0.02)) if (!inHallway([pose.x + c * u - s * v, pose.y + s * u + c * v], eps)) return false;
+  return !containsStrictly(poly, cornerInSofa(poly, pose), eps);
 }
 function containsStrictly(poly, p, eps) {
   if (!contains(poly, p)) return false;
@@ -95,14 +108,16 @@ export function turnAbout(pose, c, a) {
 // How far a placed sofa is into the walls: the sum of the squared distances from its boundary points to the hallway,
 // plus the squared depth of the inner corner inside it. Zero exactly when the sofa fits (up to the sampling).
 export function penetration(poly, pose, step = 0.03) {
-  const placed = place(poly, pose);
+  const co = Math.cos(pose.a), si = Math.sin(pose.a);
   let f = 0;
-  for (const [x, y] of boundary(placed, step)) {
+  for (const [su, sv] of samplesOf(poly, step)) {
+    const x = pose.x + co * su - si * sv, y = pose.y + si * su + co * sv;
     if (inHallway([x, y], 0)) continue;
     const h = Math.hypot(Math.max(0, x - 1), y < 0 ? -y : Math.max(0, y - 1)), v = Math.hypot(x < 0 ? -x : Math.max(0, x - 1), Math.max(0, y - 1));
     f += Math.min(h, v) ** 2;
   }
-  if (contains(placed, [0, 0])) { let bd = Infinity; for (let i = 0; i < placed.length; i++) bd = Math.min(bd, segmentDistance([0, 0], placed[i], placed[(i + 1) % placed.length])); f += bd * bd; }
+  const q = cornerInSofa(poly, pose);
+  if (contains(poly, q)) { let bd = Infinity; for (let i = 0; i < poly.length; i++) bd = Math.min(bd, segmentDistance(q, poly[i], poly[(i + 1) % poly.length])); f += bd * bd; }
   return f;
 }
 // The walls push a sofa out: keep the angle of the pose and look for the nearby shift that brings the penetration to

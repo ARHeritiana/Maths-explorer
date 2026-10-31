@@ -50,6 +50,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `count_claims.py` | counts written in prose match the content |
 | `verify-arithmetic.py`, `verify-quadratic.py` | independent maths checks of two courses |
 
+| `gallery-render.test.mjs` | GPU Mandelbrot reference orbit, Gömböc display mesh (56,946 faces recovered from adjacency, closed, outward), soap frame handles, sofa contact test with cached samples |
 | `gallery-discovery.test.mjs` | independent Voronoi, cycloid, film-area, hat and knot-invariant checks |
 | `gallery-discovery-dom.test.mjs` | five exhibits, live inputs, bilingual readouts and lifecycle cleanup |
 

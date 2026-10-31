@@ -74,7 +74,7 @@
 .history-list h2 a:hover{text-decoration:underline;text-underline-offset:4px}
 .history-list p{margin:.4rem 0;line-height:1.6}
 .history-date{font-weight:700;color:var(--accent);font-size:.85rem;font-variant-numeric:tabular-nums}
-.history-context,.history-source{font-size:.9rem;color:var(--ink-2)}
+.history-context,.history-source,.history-credited{font-size:.9rem;color:var(--ink-2)}
 .history-links{margin:.7rem 0}
 .history-links a,.history-source a,a.history-source{min-height:44px;display:inline-flex;align-items:center;text-decoration:underline;text-underline-offset:3px}
 .history-links a{padding:.25rem .65rem;background:var(--sunken);border-radius:var(--r-sm);font-size:.9rem}

@@ -78,3 +78,36 @@ export function relaxTetraNetwork(mesh){
   for(let trial=0;trial<18;trial++,step/=2){mesh.pts[4]=old.map((x,d)=>x-step*grad[4][d]);const next=meshArea3D(mesh);if(next<=area)return {area:next,residual:Math.hypot(...grad[4]),drop:area-next};}
   mesh.pts[4]=old;return {area,residual:Math.hypot(...grad[4]),drop:0};
 }
+
+// Movable frame. The handles are evenly spaced vertices of each wire (8 per loop, 6 per ring of a two-ring frame, and the four
+// corners of the tetrahedron). Moving one displaces the wire smoothly around it (the displacement is spread along the wire by a
+// periodic Catmull-Rom spline through the handles, so the handle itself ends exactly where it was put); the free vertices of
+// the film follow by inverse-distance weighting of the wire displacement, and the relaxation then takes over.
+export function frameHandleIds(mesh){
+  if(mesh.topology==='Plateau T network')return [0,1,2,3].map(id=>({id,wire:-1,pos:0}));
+  const per=mesh.topology==='annulus'?6:8,out=[];
+  mesh.wires.forEach((wire,w)=>{const n=wire.length,m=Math.min(per,n);for(let k=0;k<m;k++){const pos=Math.round(k*n/m);out.push({id:wire[pos],wire:w,pos});}});
+  return out;
+}
+const crWeights=u=>[(-(u**3)+2*u*u-u)/2,(3*u**3-5*u*u+2)/2,(-3*u**3+4*u*u+u)/2,(u**3-u*u)/2];
+export const FRAME_LIMIT=[2.4,2.4,1.8];
+export function moveFrameHandle(mesh,handles,k,target){
+  const h=handles[k],to=target.map((x,d)=>Math.max(-FRAME_LIMIT[d],Math.min(FRAME_LIMIT[d],x)));
+  if(h.wire<0){mesh.pts[h.id]=to;return;}
+  const delta=sub(to,mesh.pts[h.id]),wire=mesh.wires[h.wire],n=wire.length,hs=handles.filter(q=>q.wire===h.wire),m=hs.length,kk=hs.indexOf(h),shift=new Map();
+  for(let q=0;q<n;q++){
+    let j=0;while(j+1<m&&hs[j+1].pos<=q)j++;
+    const next=j+1<m?hs[j+1].pos:n,u=(q-hs[j].pos)/Math.max(1,next-hs[j].pos),w=crWeights(u);let weight=0;
+    for(let i=0;i<4;i++)if(((j-1+i)%m+m)%m===kk)weight+=w[i];
+    if(weight)shift.set(wire[q],delta.map(x=>x*weight));
+  }
+  const fixedIds=[];mesh.fixed.forEach((f,i)=>{if(f)fixedIds.push(i);});
+  const zero=[0,0,0],moves=mesh.pts.map((p,i)=>mesh.fixed[i]?(shift.get(i)||zero):null);
+  for(let i=0;i<mesh.pts.length;i++){
+    if(mesh.fixed[i])continue;
+    let sw=0;const acc=[0,0,0];
+    for(const b of fixedIds){const dx=mesh.pts[i][0]-mesh.pts[b][0],dy=mesh.pts[i][1]-mesh.pts[b][1],dz=mesh.pts[i][2]-mesh.pts[b][2],w=1/(dx*dx+dy*dy+dz*dz+1e-6),sh=moves[b];sw+=w;acc[0]+=w*sh[0];acc[1]+=w*sh[1];acc[2]+=w*sh[2];}
+    moves[i]=[acc[0]/sw,acc[1]/sw,acc[2]/sw];
+  }
+  mesh.pts=mesh.pts.map((p,i)=>[p[0]+moves[i][0],p[1]+moves[i][1],p[2]+moves[i][2]]);
+}

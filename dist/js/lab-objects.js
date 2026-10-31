@@ -288,7 +288,7 @@ function platonicLab(root, options) {
 
 /* ------------------------------------------------------------ Chaos game */
 function chaos(root, { t, reduced, lang }) {
-  let k = 3, ratio = 0.5, mode = "game", level = 3, pts = [], cur = [0.3, 0.3], playing = !reduced(), verts = [];
+  let k = 3, ratio = 0.5, mode = "game", level = 3, pts = [], cur = [0.3, 0.3], playing = !reduced(), verts = [], blank = false;
   root.innerHTML = `
     <p class="act-help">${t("Jeu du chaos : on part d’un point, puis on avance à chaque fois d’une fraction r du chemin vers un sommet choisi au hasard. Les points dessinent une figure qui ne dépend pas du départ. Fais glisser les sommets.", "Chaos game: start from a point, then each time move a fraction r of the way towards a randomly chosen vertex. The points draw a figure that does not depend on the start. Drag the vertices.")}</p>
     <div class="obj-stage" id="ch-stage"></div>
@@ -314,7 +314,9 @@ function chaos(root, { t, reduced, lang }) {
   function draw() {
     const C = palette(); g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
     if (mode === "game") {
-      if (playing && !reduced()) step(900); if (reduced() && !pts.length) step(12000);
+      // A move of a vertex (or of r, or of the number of vertices) empties the layer: refill it at once with a burst of
+      // points, whether or not the animation is playing, so that the figure never vanishes while the vertex is dragged.
+      if (!pts.length && !blank) step(20000); else if (playing && !reduced()) { blank = false; step(900); }
       if (layer) g.drawImage(layer, 0, 0);
       verts.forEach((v, i) => { g.fillStyle = C.obj2; g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.arc(v[0], v[1], 9, 0, TAU); g.fill(); g.stroke(); g.fillStyle = C.ink; g.font = "700 13px system-ui"; g.textAlign = "center"; g.fillText("ABCDEF"[i], v[0], v[1] - 15); });
       read.innerHTML = `${pts.length.toLocaleString(lang === "fr" ? "fr-FR" : "en-US")} ${t("points", "points")} · r = <strong>${f(ratio)}</strong> · ${t("pour", "for")} ${k} ${t("sommets, la valeur", "vertices, the value")} <strong>${f(1 - gonContraction(k))}</strong> ${t("donne une figure de type fractal (r = 1/2 pour le triangle)", "gives a fractal figure (r = 1/2 for the triangle)")}.`;
@@ -323,21 +325,21 @@ function chaos(root, { t, reduced, lang }) {
       read.innerHTML = `${t("Niveau", "Level")} <strong>${level}</strong> : ${t("triangles pleins", "filled triangles")} 3<sup>${level}</sup> = <strong>${sierpinskiCount(level)}</strong> · ${t("aire restante", "remaining area")} (3/4)<sup>${level}</sup> ≈ <strong>${f(sierpinskiArea(level) * 100)} %</strong> ${t("de l’aire du grand triangle", "of the big triangle’s area")}.`;
     }
   }
-  const restart = () => { layer = null; layout(); };
+  const restart = () => { layer = null; blank = false; layout(); };
   root.querySelectorAll("[name=ch-mode]").forEach((r) => r.addEventListener("change", () => { mode = r.value; root.querySelector("#ch-game").hidden = mode !== "game"; root.querySelector("#ch-lvl").hidden = mode === "game"; root.querySelector("#ch-k").hidden = mode !== "game"; }));
   root.querySelectorAll("[name=ch-k]").forEach((r) => r.addEventListener("change", () => { k = Number(r.value); ratio = k === 3 ? 0.5 : Math.round((1 - gonContraction(k)) * 100) / 100; root.querySelector("#ch-r").value = ratio; root.querySelector("#ch-r-out").textContent = ratio; restart(); }));
   bind(root, "ch-r", (v) => { ratio = v; restart(); }, (v) => (lang === "fr" ? String(v).replace(".", ",") : String(v)));
   bind(root, "ch-level", (v) => { level = v; });
   root.querySelector("#ch-best").addEventListener("click", () => { ratio = Math.round((1 - gonContraction(k)) * 100) / 100; root.querySelector("#ch-r").value = ratio; root.querySelector("#ch-r-out").textContent = ratio; restart(); });
   root.querySelector("#ch-play").addEventListener("click", (e) => { playing = !playing; e.currentTarget.textContent = playing ? t("Pause", "Pause") : t("Lecture", "Play"); e.currentTarget.setAttribute("aria-pressed", String(playing)); if (reduced()) { restart(); } });
-  root.querySelector("#ch-clear").addEventListener("click", restart);
+  root.querySelector("#ch-clear").addEventListener("click", () => { restart(); blank = true; });
   let grab = -1, selectedVertex = 0;
   const vertexAt = (p,r) => verts.findIndex(v=>Math.hypot(v[0]-p[0],v[1]-p[1])<r);
   o.touchHit(p=>mode==="game"&&vertexAt(p,40)>=0);
-  o.cv.addEventListener("pointerdown", (e) => { if (mode !== "game") return; const [x, y] = o.point(e); grab = vertexAt([x,y],e.pointerType==="touch"?40:24); if (grab >= 0) { selectedVertex=grab;playing=false;root.querySelector("#ch-play").setAttribute("aria-pressed","false");root.querySelector("#ch-play").textContent=t("Lecture","Play");o.cv.setPointerCapture(e.pointerId); } });
-  o.cv.addEventListener("pointermove", (e) => { if (grab < 0) return; const [x, y] = o.point(e); verts[grab] = [clampN(x, 10, o.W - 10), clampN(y, 10, o.H - 10)]; layer = null; pts = []; cur = [o.W / 2, o.H / 2]; });
+  o.cv.addEventListener("pointerdown", (e) => { if (mode !== "game") return; const [x, y] = o.point(e); grab = vertexAt([x,y],e.pointerType==="touch"?40:24); if (grab >= 0) { selectedVertex=grab;o.cv.setPointerCapture(e.pointerId); } });
+  o.cv.addEventListener("pointermove", (e) => { if (grab < 0) return; const [x, y] = o.point(e); verts[grab] = [clampN(x, 10, o.W - 10), clampN(y, 10, o.H - 10)]; layer = null; blank = false; pts = []; cur = [o.W / 2, o.H / 2]; });
   const up = () => { grab = -1; }; o.cv.addEventListener("pointerup", up); o.cv.addEventListener("pointercancel", up); o.cv.addEventListener("lostpointercapture", up); o.cv.addEventListener("view-gesture", up);
-  o.cv.addEventListener("keydown",e=>{if(e.shiftKey||mode!=="game")return;if(e.key==='['||e.key===']'){selectedVertex=(selectedVertex+(e.key===']'?1:k-1))%k;e.preventDefault();return;}const d={ArrowLeft:[-5,0],ArrowRight:[5,0],ArrowUp:[0,-5],ArrowDown:[0,5]}[e.key];if(!d)return;e.preventDefault();selectedVertex%=k;verts[selectedVertex]=[clampN(verts[selectedVertex][0]+d[0],10,o.W-10),clampN(verts[selectedVertex][1]+d[1],10,o.H-10)];layer=null;pts=[];cur=[o.W/2,o.H/2];draw();});
+  o.cv.addEventListener("keydown",e=>{if(e.shiftKey||mode!=="game")return;if(e.key==='['||e.key===']'){selectedVertex=(selectedVertex+(e.key===']'?1:k-1))%k;e.preventDefault();return;}const d={ArrowLeft:[-5,0],ArrowRight:[5,0],ArrowUp:[0,-5],ArrowDown:[0,5]}[e.key];if(!d)return;e.preventDefault();selectedVertex%=k;verts[selectedVertex]=[clampN(verts[selectedVertex][0]+d[0],10,o.W-10),clampN(verts[selectedVertex][1]+d[1],10,o.H-10)];layer=null;blank=false;pts=[];cur=[o.W/2,o.H/2];draw();});
   o.cv.setAttribute('aria-label',t('Sommets : [ et ] pour choisir, flèches pour déplacer.','Vertices: [ and ] select, arrow keys move.'));
   layout(); o.redraw = () => draw();
   const stop = loopFor(() => draw(), reduced);

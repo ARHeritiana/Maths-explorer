@@ -24,7 +24,7 @@ export function dragOrbit(o,state,hit=()=>null,moveHandle=()=>{}){
   let drag=null;
   o.touchHit(p=>hit(p)!==null);
   o.on(o.cv,'pointerdown',e=>{const p=o.point(e);drag={p,handle:hit(p)};o.cv.setPointerCapture?.(e.pointerId);e.preventDefault();});
-  o.on(o.cv,'pointermove',e=>{if(!drag)return;const p=o.point(e),d=[p[0]-drag.p[0],p[1]-drag.p[1]];if(drag.handle!==null)moveHandle(drag.handle,d,p);else{state.yaw+=d[0]*.008;state.pitch=Math.max(-1.3,Math.min(1.3,state.pitch+d[1]*.008));}drag.p=p;o.redraw();});
+  o.on(o.cv,'pointermove',e=>{if(!drag)return;const p=o.point(e),d=[p[0]-drag.p[0],p[1]-drag.p[1]];if(drag.handle!==null)moveHandle(drag.handle,d,p);else{state.yaw-=d[0]*.008;state.pitch=Math.max(-1.45,Math.min(1.45,state.pitch+d[1]*.008));}drag.p=p;o.redraw();});
   o.on(o.cv,'pointerup',()=>drag=null);o.cancelDrag=()=>drag=null;
-  o.on(o.cv,'keydown',e=>{if(e.shiftKey)return;if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();state.yaw+=(e.key==='ArrowLeft'?-.12:e.key==='ArrowRight'?.12:0);state.pitch=Math.max(-1.3,Math.min(1.3,state.pitch+(e.key==='ArrowUp'?-.1:e.key==='ArrowDown'?.1:0)));o.redraw();}});
+  o.on(o.cv,'keydown',e=>{if(e.shiftKey)return;if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();state.yaw+=(e.key==='ArrowLeft'?.12:e.key==='ArrowRight'?-.12:0);state.pitch=Math.max(-1.45,Math.min(1.45,state.pitch+(e.key==='ArrowUp'?-.1:e.key==='ArrowDown'?.1:0)));o.redraw();}});
 }
