@@ -15,6 +15,7 @@ button.on,button.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
 input[type=range]{flex:1;min-width:140px;accent-color:var(--ac)}
 #lab{font-weight:bold}#inf{color:var(--mut);font-size:.88rem}
 .g{display:flex;flex-wrap:wrap;gap:6px}.g button{font-size:.82rem}
+@media (prefers-reduced-motion:reduce){canvas{scroll-behavior:auto}}
 code{font-family:ui-monospace,Menlo,monospace;font-size:.88em}
 </style></head><body><main>
 <h1>Equidecomposability of Polygons</h1>
@@ -23,9 +24,9 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.88em}
 <div class="row"><label>P <select id="sp"></select></label><label>Q <select id="sq"></select></label>
 <button id="dp">✏️ Draw P</button><button id="dq">✏️ Draw Q</button></div>
 <div class="row" id="dr" hidden><span id="dh">Click the canvas to add vertices.</span><button id="cl" class="pri">Close polygon</button><button id="un">Undo</button><button id="ca">Cancel</button></div>
-<canvas id="cv"></canvas>
-<div class="row"><button id="pr">◀</button><button id="pl" class="pri">▶ Play</button><button id="nx">▶|</button><input id="sl" type="range" min="0" max="8" step="0.001" value="0"></div>
-<div id="lab"></div><div id="inf"></div></div>
+<canvas id="cv" role="img" aria-label="Animated dissection of polygon P into rectangle R and then into polygon Q; the current step is described below the canvas"></canvas>
+<div class="row"><button id="pr" aria-label="Previous step">◀</button><button id="pl" class="pri">▶ Play</button><button id="nx" aria-label="Next step">▶|</button><input id="sl" aria-label="Animation progress, steps 1 to 8" type="range" min="0" max="8" step="0.001" value="0"></div>
+<div id="lab" aria-live="polite"></div><div id="inf"></div></div>
 <h2>Gallery</h2><div class="g" id="gal"></div>
 <h2>Method</h2>
 <div class="card">
@@ -44,6 +45,7 @@ const $=s=>document.querySelector(s),TAU=Math.PI*2,sub=(a,b)=>[a[0]-b[0],a[1]-b[
 const reg=(n,o=0)=>[...Array(n)].map((_,i)=>[Math.cos(o+TAU*i/n),Math.sin(o+TAU*i/n)]);
 const star=()=>[...Array(10)].map((_,i)=>{const r=i%2?.45:1,a=Math.PI*i/5;return[r*Math.cos(a),r*Math.sin(a)]});
 const PRE={'Square':[[0,0],[1,0],[1,1],[0,1]],'Rectangle 4×1':[[0,0],[4,0],[4,1],[0,1]],'Triangle':[[0,0],[4,0],[1,3]],'Right triangle':[[0,0],[3,0],[0,4]],'Parallelogram':[[0,0],[3,0],[4,1.5],[1,1.5]],'Trapezoid':[[0,0],[4,0],[3,2],[1,2]],'Hexagon':reg(6),'Pentagon':reg(5,-Math.PI/2),'L-shape':[[0,0],[3,0],[3,1],[1,1],[1,3],[0,3]],'Cross':[[1,0],[2,0],[2,1],[3,1],[3,2],[2,2],[2,3],[1,3],[1,2],[0,2],[0,1],[1,1]],'Star (concave)':star(),'Arrow':[[0,1],[3,1],[3,0],[5,1.5],[3,3],[3,2],[0,2]],'House':[[0,0],[3,0],[3,2],[1.5,3.2],[0,2]],'Zigzag':[[0,0],[1,0],[1.5,1],[2,0],[3,0],[3,1],[2.5,2],[2,1],[1.5,2],[1,1],[0,1]]};
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const GAL=[['Square','Triangle'],['Hexagon','Square'],['L-shape','Star (concave)'],['Cross','Arrow'],['Rectangle 4×1','Pentagon'],['Star (concave)','Hexagon'],['House','Zigzag'],['Parallelogram','Right triangle'],['Trapezoid','Cross']];
 let P=PRE.Square,Q=PRE.Triangle,CH,T=0,play=false,V,dpr=1,draw=null,pts=[],last=0;
 const area=A=>A.reduce((s,p,i)=>{const q=A[(i+1)%A.length];return s+(p[0]*q[1]-q[0]*p[1])/2},0);
@@ -86,7 +88,7 @@ const i=Math.min(7,Math.floor(T)),e=ease(T-i),st=i<4?CH.P[i]:CH.Q[7-i],tt=i<4?e:
 st.forEach(pc=>{path(pc.p,q=>X(tp(pc,q,tt)));x.fillStyle=`hsl(${(pc.col+pc.l*14)%360} 62% 58% / .88)`;x.fill();x.strokeStyle=fg;x.lineWidth=1*dpr;x.stroke()});
 $('#lab').textContent=LAB[i];$('#inf').textContent=`Common area A = 500 u² · W = ${CH.W.toFixed(1)} · triangles: P ${CH.nP}, Q ${CH.nQ} · pieces in this stage: ${st.length}`;$('#sl').value=T}
 function loop(ts){if(play){const d=Math.min(.05,(ts-last)/1000);T=Math.min(8,T+d/3.2);if(T>=8){play=false;$('#pl').textContent='↺ Replay'}render()}last=ts;requestAnimationFrame(loop)}
-function setPair(a,b){P=PRE[a];Q=PRE[b];$('#sp').value=a;$('#sq').value=b;build();T=0;play=true;$('#pl').textContent='❚❚ Pause';endDraw();render()}
+function setPair(a,b){P=PRE[a];Q=PRE[b];$('#sp').value=a;$('#sq').value=b;build();T=0;play=!RM;$('#pl').textContent=RM?'▶ Play':'❚❚ Pause';endDraw();render()}
 const sps=$('#sp'),sqs=$('#sq');Object.keys(PRE).forEach(k=>{sps.add(new Option(k,k));sqs.add(new Option(k,k))});sps.add(new Option('Custom','Custom'));sqs.add(new Option('Custom','Custom'));
 let cus={P:null,Q:null};
 sps.onchange=()=>{P=sps.value=='Custom'?cus.P||P:PRE[sps.value];build();T=0;render()};sqs.onchange=()=>{Q=sqs.value=='Custom'?cus.Q||Q:PRE[sqs.value];build();T=0;render()};
@@ -98,10 +100,15 @@ function endDraw(){draw=null;pts=[];$('#dr').hidden=true;$('#dp').classList.remo
 function startDraw(w){play=false;draw=w;pts=[];$('#dr').hidden=false;$('#dh').textContent=`Drawing ${w}: click to add vertices (≥3, no self-crossing), then close.`;$('#dp').classList.toggle('on',w=='P');$('#dq').classList.toggle('on',w=='Q');render()}
 $('#dp').onclick=()=>startDraw('P');$('#dq').onclick=()=>startDraw('Q');$('#ca').onclick=()=>{endDraw();render()};$('#un').onclick=()=>{pts.pop();render()};
 $('#cv').onclick=e=>{if(!draw)return;const r=e.target.getBoundingClientRect(),px=(e.clientX-r.left)*(e.target.width/r.width),py=(e.clientY-r.top)*(e.target.height/r.height);pts.push([(px-V.ox)/V.s+V.x,(py-V.oy)/V.s+V.y]);render()};
-const inter=(a,b,c,d)=>{const o=(p,q,r)=>Math.sign(cr(p,q,r));return o(a,b,c)*o(a,b,d)<0&&o(c,d,a)*o(c,d,b)<0};
-function simple(A){const n=A.length;for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){if(j==i+1||(i==0&&j==n-1))continue;if(inter(A[i],A[(i+1)%n],A[j],A[(j+1)%n]))return false}return true}
-$('#cl').onclick=()=>{if(pts.length<3||Math.abs(area(pts))<1e-3*V.s||!simple(pts)){$('#dh').textContent='Invalid: need ≥3 vertices forming a simple (non-self-intersecting) polygon. Undo or cancel.';return}
-const w=draw,A=pts.map(p=>[...p]);if(w=='P'){P=A;cus.P=A;sps.value='Custom'}else{Q=A;cus.Q=A;sqs.value='Custom'}endDraw();build();T=0;play=true;$('#pl').textContent='❚❚ Pause';render()};
+// closed-segment intersection (touching and collinear overlap count), so pinched/touching polygons are rejected
+const onSeg=(p,q,r)=>Math.min(p[0],q[0])-1e-9<=r[0]&&r[0]<=Math.max(p[0],q[0])+1e-9&&Math.min(p[1],q[1])-1e-9<=r[1]&&r[1]<=Math.max(p[1],q[1])+1e-9;
+const inter=(a,b,c,d)=>{const o=(p,q,r)=>{const v=cr(p,q,r);return Math.abs(v)<1e-9?0:Math.sign(v)},o1=o(a,b,c),o2=o(a,b,d),o3=o(c,d,a),o4=o(c,d,b);
+if(o1*o2<0&&o3*o4<0)return true;return(o1==0&&onSeg(a,b,c))||(o2==0&&onSeg(a,b,d))||(o3==0&&onSeg(c,d,a))||(o4==0&&onSeg(c,d,b))};
+function simple(A){const n=A.length;for(let i=0;i<n;i++){const a=A[i],b=A[(i+1)%n],c=A[(i+2)%n];if(Math.abs(cr(a,b,c))<1e-9&&dot(sub(b,a),sub(c,b))<0)return false;
+for(let j=i+2;j<n;j++){if(i==0&&j==n-1)continue;if(inter(a,b,A[j],A[(j+1)%n]))return false}}return true}
+const dedupe=A=>A.filter((p,i)=>dist(p,A[(i+A.length-1)%A.length])>1e-9);
+$('#cl').onclick=()=>{const dd=dedupe(pts);if(dd.length<3||Math.abs(area(dd))<1e-3*V.s||!simple(dd)||tri(norm(dd,0,0)).length!=dd.length-2){$('#dh').textContent='Invalid: need ≥3 vertices forming a simple (non-self-intersecting) polygon. Undo or cancel.';return}
+const w=draw,A=dd.map(p=>[...p]);if(w=='P'){P=A;cus.P=A;sps.value='Custom'}else{Q=A;cus.Q=A;sqs.value='Custom'}endDraw();build();T=0;play=!RM;$('#pl').textContent=RM?'▶ Play':'❚❚ Pause';render()};
 addEventListener('resize',()=>{if(CH){setView();render()}});
 build();setPair('Hexagon','Square');requestAnimationFrame(loop);
 </script></body></html>
