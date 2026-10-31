@@ -11,7 +11,11 @@ const K = 0.88, OX = 84, OY = 30, RING = 26;
 const S = ([x, y]) => [OX + K * x, OY + K * y];
 const ringPt = (d) => [d.x + d.n[0] * RING, d.y + d.n[1] * RING];
 // the polyline of door i, from place `from` to place `to` (5 is the outside ring)
-const wayOf = (d, from, to) => { const a = from === 5 ? ringPt(d) : STAND[from], b = to === 5 ? ringPt(d) : STAND[to]; return from === d.a ? [a, [d.x, d.y], b] : [a, [d.x, d.y], b]; };
+// each edge is a smooth curve (a quadratic Bezier bent so that it passes exactly through the middle of its door), sampled into points
+const wayOf = (d, from, to) => {
+  const a = from === 5 ? ringPt(d) : STAND[from], b = to === 5 ? ringPt(d) : STAND[to], c = [2 * d.x - (a[0] + b[0]) / 2, 2 * d.y - (a[1] + b[1]) / 2];
+  return Array.from({ length: 25 }, (_, k) => { const u = k / 24, v = 1 - u; return [v * v * a[0] + 2 * u * v * c[0] + u * u * b[0], v * v * a[1] + 2 * u * v * c[1] + u * u * b[1]]; });
+};
 const pathD = (pts) => "M" + pts.map((p) => S(p).map((v) => v.toFixed(1)).join(" ")).join("L");
 const lenOf = (pts) => pts.slice(1).reduce((s, p, k) => s + Math.hypot(p[0] - pts[k][0], p[1] - pts[k][1]), 0);
 const at = (pts, d) => { let k = 0; const L = pts.slice(1).map((p, i) => Math.hypot(p[0] - pts[i][0], p[1] - pts[i][1])); while (k < L.length - 1 && d > L[k]) { d -= L[k]; k++; } const f = L[k] ? Math.min(1, d / L[k]) : 1; return { p: [pts[k][0] + (pts[k + 1][0] - pts[k][0]) * f, pts[k][1] + (pts[k + 1][1] - pts[k][1]) * f], dir: pts[k + 1][0] >= pts[k][0] ? 1 : -1 }; };
@@ -33,6 +37,8 @@ export const diagram = {
     el("circle", { cx: rx + 4, cy: ry + 4, r: 12, fill: "var(--surface)", stroke: "var(--ink)", "stroke-width": 2.5, opacity: show }, svg); el("text", { x: rx + 4, y: ry + 10, "text-anchor": "middle", "font-size": 17, "font-weight": 700, fill: "var(--ink)", opacity: show }, svg).textContent = "O";
     // edges
     edges.forEach((e, i) => { el("path", { d: pathD(wayOf(doors[i], e[0], e[1])), fill: "none", stroke: "var(--ink-2)", "stroke-width": 3, "stroke-linecap": "round", "stroke-linejoin": "round", opacity: show }, svg); });
+    // where an edge reaches the outside vertex O it ends on the ring at a dot: those dots are not vertices of their own, they are O
+    edges.forEach((e, i) => { if (e[1] === 5) { const [x, y] = S(ringPt(doors[i])); el("circle", { cx: x, cy: y, r: 4.5, fill: "var(--ink)", opacity: show }, svg); } });
     // degrees: the doors of the chosen vertex light up two by two (arrival + departure)
     if (step === 1) {
       const v = 3, mine = edges.map((e, i) => [e, i]).filter(([e]) => e[0] === v || e[1] === v).map(([, i]) => i), lit = Math.ceil(seg(p, 0.05, 0.9) * mine.length);
