@@ -242,7 +242,7 @@ $P=\vrai$, $Q=\faux$, $R=\vrai$.
 %────────────────────────────────────────────────────────────────
 \solutiontitle{Priorit\'e des connecteurs}
 
-Les priorit\'es~: $\lnot$ puis $\land$ puis $\lor$ puis $\Rightarrow$.
+Les priorit\'es~: $\lnot$ puis $\land$ puis $\lor$ puis $\Rightarrow$ puis $\Leftrightarrow$.
 
 \begin{enumerate}
   \item $\lnot P\land Q\lor R=((\lnot P)\land Q)\lor R$.
@@ -253,6 +253,26 @@ Les priorit\'es~: $\lnot$ puis $\land$ puis $\lor$ puis $\Rightarrow$.
         Elle est fausse seulement quand $P$ est fausse et que $Q\land\lnot R$ est fausse.
 \end{enumerate}
 
+\renewcommand{\arraystretch}{1.2}
+\begin{center}
+\small
+\begin{tabular}{|ccc|c|c|c|}
+\hline
+\rowcolor{BN!12}
+$P$&$Q$&$R$ & $((\lnot P)\land Q)\lor R$ & $(P\land Q)\Rightarrow R$ & $P\lor(Q\land\lnot R)$ \\
+\hline
+\vrai&\vrai&\vrai & \vrai & \vrai & \vrai \\
+\vrai&\vrai&\faux & \faux & \faux & \vrai \\
+\vrai&\faux&\vrai & \vrai & \vrai & \vrai \\
+\vrai&\faux&\faux & \faux & \vrai & \vrai \\
+\faux&\vrai&\vrai & \vrai & \vrai & \faux \\
+\faux&\vrai&\faux & \vrai & \vrai & \vrai \\
+\faux&\faux&\vrai & \vrai & \vrai & \faux \\
+\faux&\faux&\faux & \faux & \vrai & \faux \\
+\hline
+\end{tabular}
+\end{center}
+
 %────────────────────────────────────────────────────────────────
 \solutiontitle{De Morgan~: simplifications}
 
@@ -262,6 +282,12 @@ Les priorit\'es~: $\lnot$ puis $\land$ puis $\lor$ puis $\Rightarrow$.
   \item $\lnot\bigl((P\Rightarrow Q)\land P\bigr)
         \equiv\lnot(P\Rightarrow Q)\lor\lnot P
         \equiv(P\land\lnot Q)\lor\lnot P$.
+        On simplifie par cas~: si $P$ est fausse, les deux formules
+        $(P\land\lnot Q)\lor\lnot P$ et $\lnot P\lor\lnot Q$ sont vraies~;
+        si $P$ est vraie, elles valent toutes les deux $\lnot Q$. Donc
+        $\lnot\bigl((P\Rightarrow Q)\land P\bigr)\equiv\lnot P\lor\lnot Q$.
+        (Autre lecture~: $(P\Rightarrow Q)\land P\equiv P\land Q$, dont la n\'egation est
+        $\lnot P\lor\lnot Q$ par De~Morgan.)
   \item $\lnot(\lnot P\lor\lnot Q)\equiv P\land Q$.
   \item $\lnot\bigl(\lnot(P\land Q)\bigr)\equiv P\land Q$.
   \item $\lnot(P\Leftrightarrow Q)
@@ -352,8 +378,9 @@ $n=2k\Rightarrow n^2=4k^2=2(2k^2)$.\hfill$\square$
 \textbf{(2)} Contrapos\'ee~: si $n$ est impair, alors $n^2$ est impair.
 $n=2k+1\Rightarrow n^2=4k^2+4k+1=2(2k^2+2k)+1$.\hfill$\square$
 
-\textbf{(3)} $n^2+n=n(n+1)$. Si $n$ est impair, alors $n+1$ est pair, donc $n(n+1)$ est pair.
-La contrapos\'ee de \og$n^2+n$ impair $\Rightarrow n$ pair\fg\ est \og$n$ impair $\Rightarrow n^2+n$ pair\fg, qui est vraie.\hfill$\square$
+\textbf{(3)} Contrapos\'ee~: si $n$ est pair, alors $n^2+2n$ est pair.
+$n=2k\Rightarrow n^2+2n=4k^2+4k=2(2k^2+2k)$~: pair.\hfill$\square$
+(L'hypoth\`ese peut \^etre vraie~: pour $n=1$, $n^2+2n=3$ est impair.)
 
 \textbf{(4)} Contrapos\'ee de $ab\ne0\Rightarrow(a\ne0$ et $b\ne0)$~:
 si $a=0$ ou $b=0$, alors $ab=0$. Trivial.\hfill$\square$
@@ -366,9 +393,13 @@ $P$~: \og$ABC$ isoc\`ele en $A$\fg~; $Q$~: \og$\hat B=\hat C$\fg.
 \begin{enumerate}
   \item $P\Rightarrow Q$~: si $AB=AC$, alors $\hat B=\hat C$ (propri\'et\'e du triangle isoc\`ele).
         \textbf{Vraie.}
-  \item $Q\Rightarrow P$~: si $\hat B=\hat C$, alors par la r\'eciproque du th\'eor\`eme
-        de l'isosc\`ele (d\'emontr\'e par la somme des angles et la loi des sinus),
-        $AB=AC$. \textbf{Vraie.}
+  \item $Q\Rightarrow P$~: \og si $\hat B=\hat C$, alors $ABC$ est isoc\`ele en $A$\fg.
+        \textbf{Vraie.} Preuve~: la somme des angles vaut $180^\circ$, donc deux angles
+        \'egaux $\hat B=\hat C$ sont aigus~; le pied $H$ de la hauteur issue de $A$
+        est alors sur le segment $[BC]$. Dans les triangles $ABH$ et $ACH$, rectangles en $H$~:
+        $AH=AB\sin\hat B$ et $AH=AC\sin\hat C$. Comme $\sin\hat B=\sin\hat C$, on obtient
+        $AB=AC$. (On peut aussi dire que $ABH$ et $ACH$ ont un c\^ot\'e commun $AH$ et les
+        m\^emes angles, donc sont \'egaux.)
         Donc $P\Leftrightarrow Q$.
   \item \textbf{Contrapos\'ee de $P\Rightarrow Q$~:}
         $\lnot Q\Rightarrow\lnot P$, soit~:
@@ -388,8 +419,9 @@ $P$~: \og$ABC$ isoc\`ele en $A$\fg~; $Q$~: \og$\hat B=\hat C$\fg.
         ni divisible par $6$.\fg
         En symboles~: $\exists n\in\Z,\ (2\mid n)\ \land\ (4\nmid n)\ \land\ (6\nmid n)$.
         (Vraie~: $n=2$ est pair, non divisible par $4$ et non divisible par $6$.)
-  \item N\'egation~: \og Pour tout entier $n$, $n^2\geq n$ ou $n\geq n^3$.\fg
+  \item N\'egation~: \og Pour tout entier relatif $n$, $n^2\geq n$ ou $n\geq n^3$.\fg
         En symboles~: $\forall n\in\Z,\ n^2\geq n\ \lor\ n\geq n^3$.
+        (Vraie~: $n^2-n=n(n-1)\geq0$ pour tout entier $n$, donc $n^2\geq n$.)
   \item N\'egation~: \og Il existe un r\'eel $x>0$ tel que, pour tout $y>0$, $y\geq x$.\fg
         En symboles~: $\exists x>0,\ \forall y>0,\ y\geq x$.
   \item N\'egation~: \og Il existe un nombre premier qui n'est ni impair ni
@@ -464,6 +496,9 @@ Les deux sens \'etant d\'emontr\'es~: $n$ pair $\Leftrightarrow$ $n^2$ pair.
         Or $n=0$ est un entier~: $0^2=0\geq0$ est vrai,
         mais l'\'etape \og diviser par $n$\fg\ est interdite pour $n=0$
         et ne prouve rien pour les autres valeurs.
+        De plus, diviser par un entier $n<0$ \emph{renverse} l'in\'egalit\'e
+        ($n^2\geq n$ donne alors $n\leq1$), et la conclusion \og $n\geq1$\fg\ est fausse
+        pour tout $n\leq0$~: la \og preuve\fg\ aboutit \`a une affirmation fausse.
         Correction~: $n^2\geq n\Leftrightarrow n^2-n\geq0\Leftrightarrow n(n-1)\geq0$.
         Vrai si $n\leq0$ ou $n\geq1$, donc vrai pour tout entier.
         Mais faux pour les r\'eels~: $n=1/2$ donne $1/4<1/2$.
@@ -504,8 +539,9 @@ pour $k=12=2^2\cdot3$ et $p=2$ (exposant pair), il n'y a pas de contradiction
 
 \textbf{Lemme.} $3\mid n^2\Rightarrow3\mid n$.
 \emph{Preuve.} Par contrapos\'ee~: si $3\nmid n$, alors $n=3k+1$ ou $n=3k+2$.
-Dans les deux cas, $n^2=9k^2+6k+1$ ou $n^2=9k^2+12k+4$, soit $n^2=3(\ldots)+1$ ou $3(\ldots)+4$~:
-dans les deux cas $3\nmid n^2$.\hfill$\square$
+Si $n=3k+1$~: $n^2=9k^2+6k+1=3(3k^2+2k)+1$.
+Si $n=3k+2$~: $n^2=9k^2+12k+4=3(3k^2+4k+1)+1$.
+Dans les deux cas le reste de la division de $n^2$ par $3$ est $1$~: $3\nmid n^2$.\hfill$\square$
 
 \textbf{Th\'eor\`eme.} Supposons $\sqrt{3}=p/q$ avec $\pgcd(p,q)=1$.
 Alors $p^2=3q^2$, donc $3\mid p^2$, et par le lemme $3\mid p$~: $p=3m$.
@@ -518,7 +554,7 @@ Alors $9m^2=3q^2$, d'o\`u $3\mid q$~: contradiction.\hfill$\square$
   \item $n=0$~: $0$~; $n=1$~: $0$~; $n=2$~: $2$~; $n=3$~: $6$~; $n=4$~: $12$~: tous pairs.\checkmark
   \item $n^2-n=n(n-1)$. Deux entiers cons\'ecutifs sont toujours l'un pair et l'autre impair,
         donc leur produit est pair.\hfill$\square$
-  \item Si $n=2k$~: $n^2=4k^2=4k^2$, soit la forme $4k'$ avec $k'=k^2$.
+  \item Si $n=2k$~: $n^2=4k^2$, soit la forme $4k'$ avec $k'=k^2$.
         Si $n=2k+1$~: $n^2=4k^2+4k+1=4k(k+1)+1$, soit la forme $4k''+1$ avec $k''=k(k+1)$.
         Donc $n^2$ est de la forme $4k$ ou $4k+1$ pour tout $n\in\Z$.\hfill$\square$
 \end{enumerate}
@@ -538,24 +574,44 @@ Contradiction.\hfill$\square$
 \solutiontitle{Combinaisons logiques}
 
 \begin{enumerate}
-  \item \textbf{Exportation~:} $P\Rightarrow(Q\Rightarrow R)$~:
-        si $P$ est vrai, il reste \`a montrer $Q\Rightarrow R$.
-        $(P\land Q)\Rightarrow R$~: si $P$ et $Q$ sont vrais, montrer $R$.
-        Les deux \'enonc\'es exigent la m\^eme chose~: v\'erifiable par table de v\'erit\'e (8 lignes).\hfill$\square$
-  \item $(P\Rightarrow Q)\land(P\Rightarrow R)\equiv P\Rightarrow(Q\land R)$~:
-        les deux affirment que si $P$ est vrai alors $Q$ et $R$ le sont tous les deux.
-        Table de v\'erit\'e~: les deux formules co\"incident sur toutes les lignes.\hfill$\square$
+  \item \textbf{Exportation.} Table de v\'erit\'e~:
+        \begin{center}\renewcommand{\arraystretch}{1.15}\small
+        \begin{tabular}{|ccc|c|c|c|c|}
+        \hline\rowcolor{BN!12}
+        $P$&$Q$&$R$ & $Q\Rightarrow R$ & $P\Rightarrow(Q\Rightarrow R)$ & $P\land Q$ & $(P\land Q)\Rightarrow R$\\\hline
+        \vrai&\vrai&\vrai & \vrai & \vrai & \vrai & \vrai\\
+        \vrai&\vrai&\faux & \faux & \faux & \vrai & \faux\\
+        \vrai&\faux&\vrai & \vrai & \vrai & \faux & \vrai\\
+        \vrai&\faux&\faux & \vrai & \vrai & \faux & \vrai\\
+        \faux&\vrai&\vrai & \vrai & \vrai & \faux & \vrai\\
+        \faux&\vrai&\faux & \faux & \vrai & \faux & \vrai\\
+        \faux&\faux&\vrai & \vrai & \vrai & \faux & \vrai\\
+        \faux&\faux&\faux & \vrai & \vrai & \faux & \vrai\\\hline
+        \end{tabular}
+        \end{center}
+        Les colonnes 5 et 7 co\"incident~: les deux formules ne sont fausses que pour
+        $P=Q=\vrai$, $R=\faux$.\hfill$\square$
+  \item $(P\Rightarrow Q)\land(P\Rightarrow R)\equiv P\Rightarrow(Q\land R)$.
+        Directement~: le membre de gauche est faux exactement quand $P\Rightarrow Q$ ou
+        $P\Rightarrow R$ est fausse, c'est-\`a-dire quand $P$ est vraie et ($Q$ fausse ou $R$ fausse).
+        Le membre de droite est faux exactement quand $P$ est vraie et $Q\land R$ fausse,
+        c'est-\`a-dire quand $P$ est vraie et ($Q$ fausse ou $R$ fausse).
+        Les deux formules sont fausses sur les m\^emes lignes, donc \'equivalentes.\hfill$\square$
   \item $P\lor(Q\land R)\equiv(P\lor Q)\land(P\lor R)$~:
-        distribution de $\lor$ sur $\land$.
-        V\'erifier par table~: si $P=\vrai$, les deux c\^ot\'es sont vrais.
-        Si $P=\faux$~: gauche $=Q\land R$, droite $=Q\land R$.\hfill$\square$
+        distribution de $\lor$ sur $\land$. Par cas~:
+        si $P=\vrai$, les deux c\^ot\'es sont vrais~;
+        si $P=\faux$, gauche $=Q\land R$ et droite $=Q\land R$.
+        Les deux cas couvrent les $8$ lignes de la table.\hfill$\square$
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────
 \solutiontitle{Raisonner sur les r\'eels}
 
 \begin{enumerate}
-  \item $x^2=(x-0)^2\geq0$ car un carr\'e est toujours $\geq0$.
+  \item On raisonne par cas, avec la r\`egle des signes d'un produit.
+        Si $x\geq0$, alors $x^2=x\times x$ est un produit de deux nombres positifs, donc $x^2\geq0$.
+        Si $x<0$, alors $x^2=x\times x$ est un produit de deux nombres n\'egatifs, donc $x^2>0$.
+        Dans tous les cas $x^2\geq0$.
         Donc $x^2+1\geq0+1=1>0$.\hfill$\square$
   \item Par l'absurde~: supposons qu'il existe un plus petit r\'eel $\varepsilon>0$.
         Alors $\varepsilon/2>0$ et $\varepsilon/2<\varepsilon$~: contradiction.\hfill$\square$
@@ -570,12 +626,16 @@ Contradiction.\hfill$\square$
   \item $2^n$ est pair (car $2\mid2^n$) et $3^m$ est impair (car $3$ est impair,
         et une puissance d'impair est impaire). Un nombre ne peut \^etre
         \`a la fois pair et impair~: $2^n\ne3^m$.\hfill$\square$
-  \item Si $(2/3)^n=2^n/3^n$ \'etait entier, cela signifierait $3^n\mid2^n$~:
-        impossible car $\pgcd(2,3)=1$ (ils n'ont aucun facteur premier commun).\hfill$\square$
-  \item $(2/3)^n=2^n/3^n$. On a $2^n<3^n$ pour $n\geq1$ (car $2<3$, et la
-        comparaison se conserve par puissance). Donc $0<(2/3)^n<1$, et
-        $(2/3)^n$ est de plus en plus petit~: pour tout $\varepsilon>0$,
-        choisir $n>\log\varepsilon/\log(2/3)$ convient.
+  \item Pour $n\geq1$, $2^n$ et $3^n$ sont des produits de $n$ facteurs positifs,
+        chaque facteur $2$ \'etant inf\'erieur au facteur $3$ correspondant~: $0<2^n<3^n$.
+        Donc $0<2^n/3^n<1$. Aucun entier n'est strictement compris entre $0$ et $1$~:
+        $2^n/3^n$ n'est jamais un entier.\hfill$\square$
+  \item Valeurs approch\'ees~: $(2/3)^1\approx0{,}667$~; $(2/3)^5=32/243\approx0{,}132$~;
+        $(2/3)^{10}\approx0{,}0173$~; $(2/3)^{20}\approx0{,}000\,301$.
+        Passer de $n$ \`a $n+1$ revient \`a multiplier par $2/3<1$~: les valeurs diminuent,
+        et elles semblent se rapprocher de $0$ (la notion de limite sera \'etudi\'ee plus tard).
+        Mais $(2/3)^n$ n'est \textbf{jamais nulle}~: c'est un quotient de deux nombres
+        strictement positifs, $2^n>0$ et $3^n>0$.
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────
@@ -585,12 +645,14 @@ Contradiction.\hfill$\square$
   \item \textbf{Contrapos\'ee~:} si $AB^2\ne AC^2+BC^2$, alors le triangle n'est pas
         rectangle en $C$.
   \item \textbf{R\'eciproque~:} si $AB^2=AC^2+BC^2$, alors le triangle est rectangle en $C$.
-        Cette r\'eciproque est \textbf{vraie} (c'est le th\'eor\`eme de Pythagore r\'eciproque).
-  \item $5^2+12^2=25+144=169=13^2$~: le triangle de c\^ot\'es $5$, $12$, $13$
-        est rectangle. De m\^eme, $6^2+8^2=36+64=100=10^2$~: celui de c\^ot\'es
-        $6$, $8$, $10$ est rectangle.
-  \item \textbf{Vraie.}\enspace Contrapos\'ee de la r\'eciproque~: si le triangle
-        n'est pas rectangle en $C$, alors $AB^2\ne AC^2+BC^2$.
+        Cette r\'eciproque est \textbf{vraie}~: c'est la r\'eciproque du th\'eor\`eme de Pythagore,
+        un th\'eor\`eme du cours (admis ici, comme le demande la question~3).
+  \item Le plus grand c\^ot\'e est $AB$. $5^2+12^2=25+144=169=13^2$~: par la r\'eciproque,
+        le triangle de c\^ot\'es $5$, $12$, $13$ est rectangle (en $C$, sommet oppos\'e au c\^ot\'e $13$).
+        De m\^eme, $6^2+8^2=36+64=100=10^2$~: celui de c\^ot\'es $6$, $8$, $10$ est rectangle.
+  \item Contrapos\'ee de la r\'eciproque~: si le triangle n'est pas rectangle en $C$,
+        alors $AB^2\ne AC^2+BC^2$. \textbf{Vraie}~: une implication et sa contrapos\'ee
+        ont toujours la m\^eme valeur de v\'erit\'e, et la r\'eciproque est vraie.
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────
@@ -628,28 +690,28 @@ c'est la \textbf{fonction majorit\'e}.\hfill$\square$
 
 \psolutiontitle{Chevaliers et coquins}
 
-$P$~: \og$X$ est chevalier\fg~; $Q$~: \og$Y$ est chevalier\fg.
+$P$~: \og$X$ est chevalier\fg~; $Q$~: \og$Y$ est chevalier\fg~; $R$~: \og$Z$ est chevalier\fg.
 
-$X$ d\'eclare \og$Y$ est un coquin\fg, soit $\lnot Q$.
+\textbf{1. Traduction.} Un habitant est chevalier exactement quand sa d\'eclaration est vraie.
+$X$ d\'eclare \og$Y$ est un coquin\fg, soit $\lnot Q$~: on a donc $P\Leftrightarrow\lnot Q$.
+$Y$ d\'eclare \og$Z$ et moi sommes tous les deux des coquins\fg, soit $\lnot Q\land\lnot R$~:
+on a donc $Q\Leftrightarrow(\lnot Q\land\lnot R)$.
+
+\textbf{2. Les quatre cas.}
 \begin{itemize}
-  \item Si $P$~: la d\'eclaration de $X$ est vraie, donc $\lnot Q$~: $Y$ est coquin.
-  \item Si $\lnot P$~: $X$ ment, donc $Q$~: $Y$ est chevalier.
+  \item $P=\vrai$, $Q=\vrai$~: $X$ dit vrai, donc $Y$ est coquin~: contradiction avec $Q=\vrai$.
+  \item $P=\faux$, $Q=\faux$~: $X$ ment, donc $Y$ n'est pas coquin~: contradiction avec $Q=\faux$.
+  \item $P=\faux$, $Q=\vrai$~: $Y$ est chevalier, donc sa phrase est vraie, donc $Y$ est un coquin~:
+        contradiction.
+  \item $P=\vrai$, $Q=\faux$~: $X$ dit vrai ($Y$ est bien coquin), coh\'erent.
+        $Y$ ment, donc \og $Z$ et $Y$ sont tous les deux coquins\fg\ est faux~;
+        comme $Y$ est coquin, c'est que $Z$ n'est pas coquin~: $R=\vrai$.
 \end{itemize}
-$Y$ d\'eclare \og$X$ et $Z$ sont du m\^eme type\fg~: $(P\Leftrightarrow Z)$ o\`u $Z$~: \og$Z$ est chevalier\fg.
-\begin{itemize}
-  \item \textbf{Cas $P$~:} $Q=\faux$, donc $Y$ ment~: la d\'eclaration de $Y$ est fausse,
-        i.e., $X$ et $Z$ sont de types diff\'erents~: $\lnot(P\Leftrightarrow Z)$,
-        donc $Z=\faux$ (puisque $P=\vrai$).
-  \item \textbf{Cas $\lnot P$~:} $Q=\vrai$, donc $Y$ dit vrai~:
-        $X$ et $Z$ sont du m\^eme type, et $P=\faux$, donc $Z=\faux$.
-\end{itemize}
-\textbf{Conclusion.}
-Dans les deux cas $Z=\faux$ (coquin). $X$ et $Y$ sont de natures \emph{oppos\'ees}
-(si $X$ est chevalier, $Y$ est coquin~; si $X$ est coquin, $Y$ est chevalier),
-mais les deux sc\'enarios $(X,Y,Z)=(\text{chevalier},\text{coquin},\text{coquin})$ et
-$(\text{coquin},\text{chevalier},\text{coquin})$ sont logiquement coh\'erents.
-On peut donc affirmer avec certitude que $Z$ est un coquin et que $X$ et $Y$ sont de natures diff\'erentes~;
-l'\'enonc\'e ne permet pas de d\'eterminer lequel des deux est le chevalier.
+
+\textbf{3. Conclusion.} Une seule possibilit\'e~: \textbf{$X$ est chevalier, $Y$ est coquin,
+$Z$ est chevalier} (v\'erifi\'e sur les $8$ cas $(P,Q,R)$).
+Remarque~: un chevalier ne peut jamais dire \og je suis un coquin\fg\ (ni \og moi et un autre
+sommes coquins\fg)~; c'est ce qui \'elimine le troisi\`eme cas.
 
 \psolutiontitle{\'Enigme logique~: qui a fait quoi~?}
 
@@ -749,10 +811,20 @@ si l'on accepte de refaire des allers-retours inutiles.
         Contrapos\'ee de $Q\Rightarrow S$~: $\lnot S\Rightarrow\lnot Q$, c'est-\`a-dire
         \og si $ABCD$ n'est pas un parall\'elogramme, alors ce n'est pas un rectangle\fg.
   \item On veut d\'emontrer $\lnot S\Rightarrow\lnot P$, qui est la contrapos\'ee de $P\Rightarrow S$.
-        Il suffit donc de d\'emontrer $P\Rightarrow S$~: un carr\'e a quatre angles droits.
-        Deux c\^ot\'es oppos\'es sont perpendiculaires \`a un m\^eme c\^ot\'e, donc parall\`eles~;
-        les deux paires de c\^ot\'es oppos\'es sont parall\`eles, donc $ABCD$ est un parall\'elogramme.
+        Il suffit donc de d\'emontrer $P\Rightarrow S$.
+        Supposons que $ABCD$ est un carr\'e~; ses quatre angles sont droits.
+        On utilise le th\'eor\`eme (du plan)~: \emph{si deux droites sont perpendiculaires \`a une
+        m\^eme droite, alors elles sont parall\`eles entre elles.}
+        Les angles en $B$ et en $C$ sont droits, donc $(AB)\perp(BC)$ et $(DC)\perp(BC)$~:
+        $(AB)\parallel(DC)$.
+        Les angles en $A$ et en $B$ sont droits, donc $(AD)\perp(AB)$ et $(BC)\perp(AB)$~:
+        $(AD)\parallel(BC)$.
+        Les c\^ot\'es oppos\'es de $ABCD$ sont parall\`eles deux \`a deux~:
+        par d\'efinition, $ABCD$ est un parall\'elogramme.
         Par contrapos\'ee, si $ABCD$ n'est pas un parall\'elogramme, ce n'est pas un carr\'e.\hfill$\square$
+        (Autre voie~: d'apr\`es la question~1, $P\Rightarrow Q$ et $Q\Rightarrow S$, donc
+        $P\Rightarrow S$ par transitivit\'e~; la preuve ci-dessus d\'emontre en fait
+        $Q\Rightarrow S$, car elle n'utilise que les angles droits.)
   \item N\'egation de $\forall\,ABCD\text{ carr\'e},\ (Q\land R)$~:
         $\exists\,ABCD\text{ carr\'e},\ \lnot(Q\land R)$, soit
         \og il existe un carr\'e qui n'est pas un rectangle ou qui n'est pas un losange\fg
@@ -838,8 +910,17 @@ $S \leftarrow 0$\;
         Dans les deux cas l'algorithme affiche \og Formule v\'erifi\'ee\fg.
   \item Tableau~: $n=1,2,3,4,5$ donne $1,\ 1+3=4,\ 1+3+5=9,\ 16,\ 25$.
         On conjecture $1+3+5+\cdots+(2n-1)=n^2$, et on le v\'erifie pour $n=1,\ldots,5$
-        (valeurs ci-dessus). On peut aussi le justifier avec la formule de Gauss~:
-        $\sum_{k=1}^{n}(2k-1)=2\cdot\dfrac{n(n+1)}{2}-n=n^2$.
+        (valeurs ci-dessus).
+        \emph{Pour aller plus loin (sans calcul).} Disposer des points en carr\'e~:
+        un carr\'e de $1\times1$ point, puis on l'entoure d'une \og \'equerre\fg\ de $3$ points
+        pour obtenir un carr\'e $2\times2$, puis d'une \'equerre de $5$ points pour un carr\'e
+        $3\times3$, et ainsi de suite~: chaque nouveau nombre impair compl\`ete le carr\'e suivant,
+        donc $1+3+\cdots+(2n-1)$ points forment un carr\'e $n\times n$.
+        \emph{Preuve directe.} \'Ecrivons la somme $S$ dans les deux sens~:
+        $S=1+3+\cdots+(2n-1)$ et $S=(2n-1)+(2n-3)+\cdots+1$.
+        En additionnant terme \`a terme, chaque colonne vaut $2n$
+        (le $k$-i\`eme terme $2k-1$ et le $k$-i\`eme terme $2n-2k+1$ ont pour somme $2n$),
+        et il y a $n$ colonnes~: $2S=n\times2n$, donc $S=n^2$.
 \end{enumerate}
 
 \psolutiontitle{Codage et logique~: parit\'e}
@@ -945,15 +1026,48 @@ ce match est nul.
         \end{center}
   \item $P\oplus Q\equiv(P\lor Q)\land\lnot(P\land Q)$~:
         v\'erifier ligne par ligne~: vrai seulement quand exactement un des deux est vrai.\checkmark
-  \item On utilise $P\lor Q\equiv(\lnot P\Rightarrow Q)$ et $P\land Q\equiv\lnot(P\Rightarrow\lnot Q)$.
-        Alors $(P\lor Q)\land\lnot(P\land Q)\equiv(\lnot P\Rightarrow Q)\land(P\Rightarrow\lnot Q)$.
-        Reste \`a \'eliminer le $\land$~: $A\land B\equiv\lnot(A\Rightarrow\lnot B)$. D'o\`u
-        \[P\oplus Q\ \equiv\ \lnot\bigl((P\Rightarrow\lnot Q)\Rightarrow\lnot(\lnot P\Rightarrow Q)\bigr),\]
+  \item \textbf{\'Etape~a~: le \og ou\fg\ avec $\Rightarrow$.}
+        $\lnot P\Rightarrow Q$ est fausse seulement quand $\lnot P$ est vraie et $Q$ fausse,
+        c'est-\`a-dire quand $P$ et $Q$ sont fausses~: exactement comme $P\lor Q$.
+        \begin{center}\renewcommand{\arraystretch}{1.15}
+        \begin{tabular}{|cc|c|c||c|c|c|}
+        \hline\rowcolor{BN!10}
+        $P$&$Q$&$P\lor Q$&$\lnot P\Rightarrow Q$&$\lnot Q$&$P\Rightarrow\lnot Q$&$\lnot(P\Rightarrow\lnot Q)$\\\hline
+        \vrai&\vrai&\vrai&\vrai&\faux&\faux&\vrai\\
+        \vrai&\faux&\vrai&\vrai&\vrai&\vrai&\faux\\
+        \faux&\vrai&\vrai&\vrai&\faux&\vrai&\faux\\
+        \faux&\faux&\faux&\faux&\vrai&\vrai&\faux\\\hline
+        \end{tabular}
+        \end{center}
+        \textbf{\'Etape~b~: le \og et\fg\ avec $\Rightarrow$.}
+        $P\Rightarrow\lnot Q$ est fausse seulement quand $P$ et $Q$ sont vraies~;
+        sa n\'egation $\lnot(P\Rightarrow\lnot Q)$ est donc vraie seulement quand $P$ et $Q$
+        sont vraies~: c'est $P\land Q$ (derni\`ere colonne de la table).
+        Cette \'equivalence vaut pour deux propositions quelconques $A$ et $B$~:
+        $A\land B\equiv\lnot(A\Rightarrow\lnot B)$.
+
+        \textbf{\'Etape~c~: assemblage.} On part de $P\oplus Q\equiv(P\lor Q)\land\lnot(P\land Q)$
+        (question~2) et on remplace \`a l'aide des \'etapes~a et~b~:
+        \begin{itemize}
+          \item $P\lor Q$ devient $\lnot P\Rightarrow Q$~;
+          \item $\lnot(P\land Q)$ devient $\lnot\lnot(P\Rightarrow\lnot Q)$, c'est-\`a-dire $P\Rightarrow\lnot Q$~;
+          \item le $\land$ central, appliqu\'e \`a $A=(\lnot P\Rightarrow Q)$ et $B=(P\Rightarrow\lnot Q)$,
+                devient $\lnot(A\Rightarrow\lnot B)$ (\'etape~b).
+        \end{itemize}
+        D'o\`u
+        \[P\oplus Q\ \equiv\ \lnot\bigl((\lnot P\Rightarrow Q)\Rightarrow\lnot(P\Rightarrow\lnot Q)\bigr),\]
         qui n'utilise que $\Rightarrow$ et $\lnot$.
-        V\'erification~: $(P\Rightarrow\lnot Q)$ est fausse seulement si $P=Q=\vrai$~;
-        $(\lnot P\Rightarrow Q)$ est fausse seulement si $P=Q=\faux$~;
-        la formule est donc vraie exactement pour les deux lignes centrales de la table
-        ($P\ne Q$).\checkmark
+
+        \textbf{V\'erification.} $\lnot P\Rightarrow Q$ est fausse seulement si $P=Q=\faux$~;
+        $P\Rightarrow\lnot Q$ est fausse seulement si $P=Q=\vrai$.
+        Pour $P\ne Q$, $A=B=\vrai$, donc $A\Rightarrow\lnot B$ est fausse et la formule est vraie~;
+        pour $P=Q$, l'une des deux est fausse, $A\Rightarrow\lnot B$ est vraie et la formule est fausse.
+        On retrouve la table de $P\oplus Q$.\checkmark
+
+        \emph{Remarque.} Une formule plus courte existe~: $P\oplus Q\equiv\lnot(P\Leftrightarrow Q)$,
+        et $\lnot\bigl((P\Rightarrow Q)\land(Q\Rightarrow P)\bigr)\equiv(P\Rightarrow Q)\Rightarrow\lnot(Q\Rightarrow P)$
+        (\'etape~b), d'o\`u $P\oplus Q\equiv(P\Rightarrow Q)\Rightarrow\lnot(Q\Rightarrow P)$
+        (v\'erifi\'e sur les $4$ lignes).
   \item $P\oplus P$ vaut $\faux$ (les deux valeurs sont toujours \'egales, donc jamais exactement une vraie)
         et $P\oplus\lnot P$ vaut $\vrai$ (exactement une des deux est vraie), pour toute valeur de $P$.\checkmark
         \emph{Remarque.} Avec seulement $\oplus$ et les constantes $\vrai$, $\faux$, on ne peut obtenir que
@@ -1017,12 +1131,17 @@ ce match est nul.
         Oui~: il y en a autant, bien que les pairs forment une partie stricte de $\N$ (Galil\'ee).
         \emph{Remarque.} De m\^eme $\N\times\N$ est en bijection avec $\N$ en parcourant les diagonales~:
         $(0,0),(1,0),(0,1),(2,0),(1,1),(0,2),\ldots$
-  \item Supposons qu'on puisse lister tous les r\'eels de $[0,1]$ : $r_1,r_2,r_3,\ldots$
-        \'ecrits en d\'ecimaux. Construisons $d$ dont la $n$-i\`eme d\'ecimale est $5$ si celle de $r_n$
-        est diff\'erente de $5$, et $4$ sinon. Alors $d\in[0,1]$ diff\`ere de chaque $r_n$ par sa
-        $n$-i\`eme d\'ecimale (et n'a pas de d\'eveloppement ambigu, car il ne contient ni $9$ ni $0$ final),
-        donc $d$ n'est dans aucune liste~: aucune liste ne contient tous les r\'eels
-        (argument diagonal de Cantor). De m\^eme $\{0,1\}^\N$ est non d\'enombrable.
+  \item Raisonnons par l'absurde~: supposons qu'on puisse lister tous les r\'eels de $[0,1]$
+        dans l'ordre croissant, $r_1<r_2<r_3<\cdots$, sans en oublier aucun, chacun \'etant
+        suivi du \og suivant\fg.
+        Le r\'eel $c=\dfrac{r_1+r_2}{2}$ est dans $[0,1]$ et v\'erifie $r_1<c<r_2$
+        (car $c-r_1=\dfrac{r_2-r_1}{2}>0$ et $r_2-c=\dfrac{r_2-r_1}{2}>0$).
+        Il devrait figurer dans la liste, mais il n'y a aucune place entre $r_1$ et $r_2$~:
+        contradiction. Un r\'eel n'a donc pas de \og suivant\fg, contrairement \`a un entier
+        ($n$ est suivi de $n+1$).
+        \emph{Attention~:} cela montre seulement qu'on ne peut pas lister les r\'eels de $[0,1]$
+        \emph{dans l'ordre}. Le r\'esultat de Cantor (aucune liste, dans aucun ordre, ne les
+        contient tous) est plus fort et reste admis \`a ce niveau.
 \end{enumerate}
 
 \noindent\phantomsection

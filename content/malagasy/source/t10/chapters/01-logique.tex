@@ -26,10 +26,17 @@ math\'ematique.
 
 \section{\'Enonc\'es et propositions}
 
+Un \textbf{\'enonc\'e} est une phrase (math\'ematique ou du langage courant)~;
+certains \'enonc\'es sont des propositions, d'autres non.
+
 \begin{defn}[Proposition]
 Une \textbf{proposition} est un \'enonc\'e pouvant \^etre \textbf{vrai}~(\vrai)
 ou \textbf{faux}~(\faux), mais pas les deux simultan\'ement.
 \end{defn}
+
+Un \textbf{pr\'edicat} est un \'enonc\'e qui contient une variable, comme
+\og $x>3$\fg~: il devient une proposition quand on donne une valeur \`a la variable
+(ou quand on la quantifie, voir la section~3).
 
 \begin{ex}
 \begin{itemize}
@@ -93,24 +100,25 @@ $P \Rightarrow Q$, il suffit de d\'emontrer $\lnot Q \Rightarrow \lnot P$.
   arr/.style={-Stealth,BN!70,thick}]
 
   \node[action,fill=BN,text=white] (start) {D\'emontrer $P\Rightarrow Q$};
-  \node[decision,below=of start] (q1) {$\lnot Q\Rightarrow\lnot P$\\facile~?};
-  \node[result,below right=0.8cm and 1.6cm of q1] (contra)
-    {Contrapos\'ee\\$\lnot Q\Rightarrow\lnot P$};
-  \node[decision,below=1.6cm of q1] (q2) {Supposer $P\land\lnot Q$\\m\`ene \`a une\\contradiction~?};
-  \node[result,below right=0.8cm and 1.6cm of q2] (absurde)
-    {Absurde~:\\supposer $P\land\lnot Q$,\\trouver $\bot$};
-  \node[result,below=1.6cm of q2] (direct)
+  \node[decision,below=of start] (q1) {Partir de $P$\\m\`ene \`a $Q$~?};
+  \node[result,below right=0.8cm and 1.6cm of q1] (direct)
     {Direct~:\\supposer $P$,\\d\'eduire $Q$};
+  \node[decision,below=1.6cm of q1] (q2) {$\lnot Q\Rightarrow\lnot P$\\plus simple~?};
+  \node[result,below right=0.8cm and 1.6cm of q2] (contra)
+    {Contrapos\'ee\\$\lnot Q\Rightarrow\lnot P$};
+  \node[result,below=1.6cm of q2] (absurde)
+    {Absurde~:\\supposer $P\land\lnot Q$,\\trouver $\bot$};
 
   \draw[arr] (start)--(q1);
-  \draw[arr] (q1) -- node[above right,font=\scriptsize]{Oui} (contra);
+  \draw[arr] (q1) -- node[above right,font=\scriptsize]{Oui} (direct);
   \draw[arr] (q1) -- node[left,font=\scriptsize]{Non} (q2);
-  \draw[arr] (q2) -- node[above right,font=\scriptsize]{Oui} (absurde);
-  \draw[arr] (q2) -- node[left,font=\scriptsize]{Non} (direct);
+  \draw[arr] (q2) -- node[above right,font=\scriptsize]{Oui} (contra);
+  \draw[arr] (q2) -- node[left,font=\scriptsize]{Non} (absurde);
 \end{tikzpicture}
 \caption{Choisir sa m\'ethode de d\'emonstration.
-Commencer par chercher si la contrapos\'ee est plus simple~;
-si non, tenter l'absurde~; sinon, partir directement de $P$.}
+Commencer par le raisonnement direct (supposer $P$, d\'eduire $Q$)~;
+si l'on bloque, chercher si la contrapos\'ee est plus simple~;
+sinon, tenter l'absurde.}
 \end{figure}
 
 \begin{attention}
@@ -151,9 +159,12 @@ $$\lnot\bigl(\exists x \in E,\ P(x)\bigr) \;\equiv\; \forall x \in E,\ \lnot P(x
   \node[font=\bfseries,text=TQ] at (-2,0) {$P$};
   \node[font=\bfseries,text=OR] at (2,0) {$Q$};
   \node[font=\small,text=BN] at (0,0) {$P \land Q$};
-  \node[font=\footnotesize,text=GM!70!black,align=center] at (0,-2.7)
-    {L'union des deux cercles est $P \lor Q$.\quad
-     L'intersection est $P \land Q$.};
+  \node[font=\footnotesize,text=GM!70!black,align=center,text width=7.4cm,below]
+    at (0,-2.2)
+    {Disque $P$~: ensemble des $x$ pour lesquels $P(x)$ est vraie~;
+     de m\^eme pour $Q$.
+     La r\'eunion des disques est l'ensemble des $x$ pour lesquels $P(x)\lor Q(x)$ est vraie,
+     l'intersection celui des $x$ pour lesquels $P(x)\land Q(x)$ est vraie.};
 \end{tikzpicture}
 \caption{Diagramme de Venn : conjonction et disjonction.}
 \end{figure}
@@ -486,7 +497,7 @@ D\'emontrer par contrapos\'ee\index{raisonnement par contraposée}.
 \begin{enumerate}
   \item Si $n^2$ est impair, alors $n$ est impair.
   \item Si $n^2$ est pair, alors $n$ est pair.
-  \item Si $n$ est tel que $n^2 + n$ soit impair, alors $n$ est pair.
+  \item Si $n^2 + 2n$ est impair, alors $n$ est impair.
   \item Si $ab \ne 0$, alors $a \ne 0$ et $b \ne 0$.
 \end{enumerate}
 \end{exo}
@@ -507,7 +518,7 @@ $Q$ : \og les angles $\hat B$ et $\hat C$ sont \'egaux\fg.
 \emph{et} avec des symboles.
 \begin{enumerate}
   \item \og Tout entier pair est divisible par $4$ ou par $6$.\fg
-  \item \og Il existe un entier $n$ tel que $n^2 < n < n^3$.\fg
+  \item \og Il existe un entier relatif $n$ tel que $n^2 < n < n^3$.\fg
   \item \og Pour tout r\'eel $x > 0$, il existe $y > 0$ tel que $y < x$.\fg
   \item \og Tout nombre premier est impair ou \'egal \`a $2$.\fg
 \end{enumerate}
@@ -592,7 +603,8 @@ Soit $P(n)$ : \og $n^2 - n$ est pair.\fg
 \begin{enumerate}
   \item V\'erifier $P(n)$ pour $n = 0, 1, 2, 3, 4$.
   \item D\'emontrer $\forall n \in \N,\ P(n)$ en \'ecrivant $n^2-n = n(n-1)$.
-  \item En d\'eduire : $\forall n \in \Z$, le carr\'e de $n$ est de la forme
+  \item En distinguant les cas $n$ pair et $n$ impair, d\'emontrer~:
+        $\forall n \in \Z$, le carr\'e de $n$ est de la forme
         $4k$ ou $4k+1$ pour un certain entier $k$.
 \end{enumerate}
 \end{exo}
@@ -632,10 +644,11 @@ D\'emontrer (par table de v\'erit\'e ou directement) :
 \begin{enumerate}
   \item Montrer que $2^n \ne 3^m$ pour tous entiers $n, m \geq 1$.
         \emph{(Indication~: $2^n$ est pair, $3^m$ est impair.)}
-  \item En d\'eduire que la suite $(2^n/3^n)_{n\geq1}$ ne contient
-        jamais un entier.
-  \item Montrer que $(2/3)^n \to 0$ en v\'erifiant num\'eriquement
-        pour $n = 1, 5, 10, 20$.
+  \item Montrer que, pour tout entier $n\geq1$, le nombre $2^n/3^n$
+        n'est jamais un entier.
+        \emph{(Indication~: comparer $2^n$ et $3^n$.)}
+  \item Calculer une valeur approch\'ee de $(2/3)^n$ pour $n = 1, 5, 10, 20$.
+        Que semble devenir $(2/3)^n$ quand $n$ devient grand~?
         L'expression $(2/3)^n$ peut-elle \^etre nulle~?
 \end{enumerate}
 \end{exo}
@@ -648,7 +661,8 @@ alors $AB^2 = AC^2 + BC^2$.
   \item \'Enoncer la contrapos\'ee du th\'eor\`eme de Pythagore.
   \item \'Enoncer la r\'eciproque : si $AB^2 = AC^2 + BC^2$, alors le
         triangle est rectangle en $C$.
-  \item En admettant la r\'eciproque, d\'eterminer si le triangle de c\^ot\'es
+  \item En admettant la r\'eciproque (et en nommant $C$ le sommet oppos\'e au
+        plus grand c\^ot\'e), d\'eterminer si le triangle de c\^ot\'es
         $5$, $12$, $13$ est rectangle, puis celui de c\^ot\'es $6$, $8$, $10$.
   \item La contrapos\'ee de la r\'eciproque est-elle vraie~? La formuler.
 \end{enumerate}
@@ -676,10 +690,11 @@ Sur l'\^ile des logiciens, les chevaliers disent toujours vrai
 et les coquins mentent toujours. Vous rencontrez $X$, $Y$, $Z$.
 \begin{itemize}
   \item $X$ d\'eclare : \og $Y$ est un coquin.\fg
-  \item $Y$ d\'eclare : \og $X$ et $Z$ sont du m\^eme type.\fg
+  \item $Y$ d\'eclare : \og $Z$ et moi sommes tous les deux des coquins.\fg
 \end{itemize}
 \begin{enumerate}
-  \item Poser $P$ : \og $X$ est chevalier\fg\ et $Q$ : \og $Y$ est chevalier\fg.
+  \item Poser $P$ : \og $X$ est chevalier\fg, $Q$ : \og $Y$ est chevalier\fg\
+        et $R$ : \og $Z$ est chevalier\fg.
         Traduire les d\'eclarations en propositions logiques.
   \item Analyser les quatre cas $(P,Q)\in\{\vrai,\faux\}^2$.
   \item En d\'eduire la nature de $X$, $Y$, $Z$.
@@ -872,8 +887,11 @@ l'une des deux propositions est vraie (mais pas les deux).
   \item Dresser la table de v\'erit\'e de $P \oplus Q$.
   \item V\'erifier que $P \oplus Q \equiv (P \lor Q) \land \lnot(P \land Q)$.
   \item Exprimer $P \oplus Q$ uniquement avec $\Rightarrow$ et $\lnot$.
-        \emph{(Indication~: partir de $(P\lor Q)\land\lnot(P\land Q)$
-        et utiliser $(P\Rightarrow Q)\equiv(\lnot P\lor Q)$.)}
+        \emph{(Indication~: v\'erifier d'abord par deux tables de v\'erit\'e que
+        $P\lor Q\equiv(\lnot P\Rightarrow Q)$ et que
+        $P\land Q\equiv\lnot(P\Rightarrow\lnot Q)$~;
+        puis partir de $(P\lor Q)\land\lnot(P\land Q)$ et remplacer
+        chaque $\lor$ et chaque $\land$ \`a l'aide de ces deux \'equivalences.)}
   \item V\'erifier que $P \oplus P \equiv \faux$ et $P \oplus \lnot P \equiv \vrai$
         pour toutes valeurs de $P$.
   \item Application~: le chiffrement XOR. Si un message est cod\'e
@@ -923,9 +941,10 @@ Deux ensembles ont \og autant\fg\ d'\'el\'ements si l'on peut associer
         C'est le \emph{paradoxe de Galileo}~: une partie peut \^etre
         en bijection avec le tout~!
   \item Cantor ($1845$--$1918$) a montr\'e que $\R$ est \og plus grand\fg\ que $\N$~:
-        il n'existe aucune bijection $\N\to\R$.
-        Sans d\'emontrer cela, expliquer pourquoi il est impossible de
-        \og lister\fg\ tous les r\'eels de $[0,1]$.
+        il n'existe aucune bijection $\N\to\R$ (r\'esultat admis).
+        Expliquer pourquoi il est impossible de \og lister\fg\ tous les r\'eels
+        de $[0,1]$ \emph{dans l'ordre croissant}, comme on liste $0,1,2,3,\ldots$
+        \emph{(Indication~: entre deux r\'eels $a<b$ se trouve le r\'eel $(a+b)/2$.)}
 \end{enumerate}
 \end{challenge}
 

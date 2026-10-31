@@ -1,7 +1,8 @@
 # Malagasy T10, chapter 1 (Logique): adaptation plan and independent verification
 
 Status: planning note, 31 October 2026, workstream D (`docs/ACTIVE_WORKSTREAMS.md`). Nothing here is published; no file of
-`site/`, `content/`, `manifest.json` or `dist/` was touched. Sources read: `content/malagasy/chapters.json` (unit
+`site/`, `manifest.json` or `dist/` was touched; only the T10 chapter 1 intake sources under `content/malagasy/` were
+corrected (sections 2.4 and 2.5). Sources read: `content/malagasy/chapters.json` (unit
 `mada-t10-01`, state `source-imported-unreviewed`, `visible: false`), `content/malagasy/source/t10/chapters/01-logique.tex`
 (1041 lines), `activities/01-logique.tex`, `solutions/00-introduction.tex`, `solutions/01-logique.tex` (1004 lines), and the
 draft `docs/future-work/malagasy-t10-logic-interactive.html` (commit 87a2fdc). Language rule: Malagasy curriculum, French only.
@@ -107,28 +108,63 @@ Python (scratchpad `v.py`) before writing. Not compiled: `pdflatex` is not insta
 | E4 | fixed | 8 implications, one per empty cell, in 4 steps of 2 cells |
 | E5 | fixed | Contrapositives, proof of "not parallelogram => not square", negation of the square claim (false) written; old false claim removed; P<=>(Q and R) kept as a remark |
 | E6 | fixed | Item 3: impossible values are 3, 6, 7 (0 allowed); 6 handled by the finite list, not by mod 4 |
-| E7 | fixed | Tests n=10 (55) and n=100 (5050) and item 4 (sum of odd numbers = n^2, table and proof) added |
+| E7 | fixed | Tests n=10 (55) and n=100 (5050) and item 4 (sum of odd numbers = n^2, table and proof) added (Gauss-formula proof superseded in 2.5) |
 | E8 | fixed | Computes (P and not Q) => R = T |
 | E9 | fixed | "Cette phrase est vraie": not a tautology, consistent with both values; Russell item 4 added |
 | E10 | fixed | not((P=>not Q)=>not(not P=>Q)), derived and checked equal to XOR |
 | E11 | fixed | Items 4 and 5 answered; false "XOR universal" replaced by: {xor, constants} gives only affine functions (closure has 8 functions, P and Q is not among them), add AND for completeness |
 | E12 | fixed | Item 2: C knight, D knave, E undetermined (2 models); item 3 new unique puzzle (checked on 8 cases); item 4 truth table (A knave, B knight) |
-| E13 | fixed | f(2k)=-k, f(2k+1)=k+1 (bijection checked); item 3 evens n->2n; item 4 Cantor diagonal on [0,1]; N x N kept as a remark |
+| E13 | fixed | f(2k)=-k, f(2k+1)=k+1 (bijection checked); item 3 evens n->2n; item 4 Cantor diagonal on [0,1] (superseded in 2.5: replaced, relocated to section 5); N x N kept as a remark |
 | E14 | fixed | Item 3 is now sqrt(5) (squares mod 5 in {0,1,4}); item 4 midpoint c=(a+b)/2 |
 | E15 | fixed | Aligned with the statement (6 => 2 example, chain, syllogism, invented chain of 3 implications); modus tollens and cases moved to an "Extension" |
 | E16 | fixed | Rigorous proof via a prime of odd exponent; warning with k=12, p=2 |
 | E17 | fixed | Relabelled "moyen terme non distribue (faux syllogisme)" |
 | E18 | fixed | State vector decoded, 6 forbidden states listed, alternative = swap wolf and cabbage at steps 3 and 5, BFS: 7 crossings, exactly 2 shortest solutions |
-| E19 | fixed (open) | Solution now says X and Y have opposite types and Z is a knave; statement still says "determine" (see open questions) |
+| E19 | fixed | Second pass: Y's sentence changed in the chapter (see 2.5); unique model X knight, Y knave, Z knight; solution rewritten |
 | E20 | fixed | Meaningless "6x3-9" sentence removed; added check 5x3+1x2=17=9+6+1+1 |
 
-Open questions:
-- E19: the statement asks to determine X, Y, Z but only Z is determined (two models). Statement wording (chapter) to be changed by the author, or Y's sentence altered.
-- E11/E10: statement hint for Défi 2 item 3 starts from a formula using the conjunction; the solution derives it with the identity A and B = not(A => not B). Check this is acceptable for "uniquement => et not".
-- E13: Défi 4 item 4 statement asks for an explanation only; the diagonal argument given may exceed T10 level [VERIFY].
-- E7: item 4 proof uses the Gauss formula; the statement only asks for a conjecture and checks.
-- E5 item 3 relies on "a rectangle's opposite sides are parallel (perpendicular to a common side)"; confirm it is the accepted level of rigour.
-- Not compiled (no pdflatex): the file needs a build check.
+The open questions of the first pass are all settled in the second pass (2.5), except the build check.
+
+### 2.5 Second pass, owner-authorised (31 October 2026): statements and level
+
+The owner authorised edits to the chapter statements and the activity as well. Every new value, identity, model and
+truth table was checked by brute force in Python (scratchpad `v2.py`) before writing. Not compiled (no `pdflatex`):
+brace balance, `\begin`/`\end` nesting and `$` parity checked on all three files (balanced).
+
+| Item | Status | Decision |
+|---|---|---|
+| E19 Chevaliers (problème) | fixed | Y now says "Z et moi sommes tous les deux des coquins"; question 1 introduces R ("Z est chevalier"). Unique model (8 cases): X knight, Y knave, Z knight. Each of the 3 rejected (P,Q) cases fails for a different reason (good exercise). Solution rewritten: translation, 4 cases, conclusion |
+| E10/E11 Défi 2 (3) | fixed | Hint now asks to check first, by two truth tables, P∨Q ≡ ¬P⇒Q and P∧Q ≡ ¬(P⇒¬Q), then substitute in (P∨Q)∧¬(P∧Q). Solution: step a (table for ∨), step b (same table, ∧, valid for any A, B), step c (assembly, ¬¬ removed) giving ¬((¬P⇒Q)⇒¬(P⇒¬Q)), then a 4-row check; shorter (P⇒Q)⇒¬(Q⇒P) as a remark |
+| E13 Défi 4 (4) | fixed | Cantor diagonal removed. Statement now asks why the reals of [0,1] cannot be listed *in increasing order* (hint (a+b)/2); solution: midpoint of r₁, r₂ contradicts "next element"; warns this is weaker than Cantor's theorem, which stays admitted. {0,1}^N removed. Diagonal argument relocated (2.6) |
+| E7 Sommes (4) | fixed | Gauss-formula/Σ proof removed; replaced by a dot-square ("équerre") picture argument and a direct proof writing the sum twice (each column 2n, n columns). No induction (the chapter does not use it) |
+| E5 Preuves géométriques (3) | fixed | Rigour check: "two lines perpendicular to the same line are parallel" is a theorem of plane Euclidean geometry (collège level), false in space; correct here since ABCD is a plane quadrilateral. Proof rewritten: names the theorem, applies it twice ((AB)∥(DC) via (BC); (AD)∥(BC) via (AB)), concludes by the definition of a parallelogram (opposite sides parallel in pairs). Notes the proof only uses right angles (it proves Q⇒S), and the transitivity route P⇒Q⇒S |
+| Raisonner sur les réels (1) | fixed | Circular x²≥0 replaced by cases x≥0 / x<0 with the sign rule |
+| Combinaisons logiques (1)-(3) | fixed | (1) full 8-row table; (2) direct proof "false on the same rows"; (3) case split on P, stated to cover the 8 rows |
+| Priorité des connecteurs | fixed | ⇔ added to the priority list; one 8-row table for the three formulas |
+| Géométrie et logique (2) | fixed | "loi des sinus" removed; proof via the altitude AH: equal base angles are acute, H on [BC], AH = AB sin B = AC sin C, so AB = AC (congruence alternative mentioned) |
+| √3 lemma | fixed | (3k+1)² = 3(3k²+2k)+1, (3k+2)² = 3(3k²+4k+1)+1: remainder 1 |
+| Nombres rationnels (2), (3) | fixed | Statement (2): "En déduire" replaced by "Montrer" with hint "comparer 2ⁿ et 3ⁿ"; solution 0 < 2ⁿ/3ⁿ < 1. Statement (3): "Montrer que → 0" replaced by compute / conjecture; solution gives 0.667, 0.132, 0.0173, 0.000301, decreasing (×2/3), never zero; ε-log argument removed |
+| De Morgan (3) | fixed | Simplified to ¬P∨¬Q (case split on P; also (P⇒Q)∧P ≡ P∧Q) |
+| Trouver l'erreur (1) | fixed | Added: dividing by n<0 reverses the inequality, and "n≥1" is false for n≤0 |
+| Pythagore réciproque | fixed | Statement (3): "en nommant C le sommet opposé au plus grand côté"; solution states the converse is a course theorem (admitted), names the longest side, and justifies (4) by "an implication and its contrapositive have the same truth value" |
+| Contraposée (3) (2.3) | fixed | Vacuous "n²+n impair ⇒ n pair" replaced by "n²+2n impair ⇒ n impair" (hypothesis true for n=1; checked n in −100..99); solution: contrapositive n even ⇒ n²+2n even |
+| Suite et logique (3) (2.3) | fixed | "En déduire" replaced by "En distinguant les cas n pair et n impair, démontrer" (on Z); duplicate "4k²=4k²" removed |
+| Négation complexes (2) (2.3) | fixed | "entier relatif" stated; solution adds the truth value of the negation (true, n²−n = n(n−1) ≥ 0) |
+| Automatismes (2.3) | fixed | "tout carré est positif" replaced by "le carré de tout nombre réel est positif" |
+| Venn figure (2.3) | fixed | Caption now speaks of "ensemble des x pour lesquels P(x) est vraie"; text width set so it wraps inside the frame (layout to check at compile) |
+| Flowchart (2.3) | fixed | Order now direct → contraposée → absurde, caption aligned with the `\horsprogramme` note |
+| "Énoncé" objective (2.3) | fixed | One sentence defines énoncé before the Proposition definition, one defines prédicat after it |
+
+Still open (author):
+- Build check: compile chapter + solutions (Venn caption width, the new truth tables, flowchart).
+- Programme level [VERIFY]: sine in a right triangle and "deux droites perpendiculaires à une même droite" are assumed known from collège in Madagascar.
+- Défi 4 (3) keeps the N×N diagonal enumeration as a remark; drop it if judged above level.
+- The `\horsprogramme` labelling of contraposée/absurde (section 3) is unchanged.
+
+Changed files and locations (second pass; line numbers after the edit):
+- `content/malagasy/source/t10/chapters/01-logique.tex`: §1 énoncé and prédicat sentences (l. 29, 37); flowchart nodes and caption (l. 100-122); Venn caption (l. 162-168); exo "Raisonnement par contraposée" item 3 (l. 500); "Négation de propositions complexes" item 2 (l. 521); "Suite et logique" item 3 (l. 606); "Nombres rationnels et puissances" items 2-3 (l. 646-652); "Réciproque de Pythagore" item 3 (l. 664); problème "Chevaliers et coquins" (l. 693-697); Défi "Construire sa propre table" hint (l. 890-894); Défi "Bijections" item 4 (l. 943-947).
+- `content/malagasy/source/t10/activities/01-logique.tex`: automatismes sentence (l. 7-8).
+- `content/malagasy/source/t10/solutions/01-logique.tex`: Priorité (l. 243), De Morgan (3) (l. 277), Raisonnement par contraposée (3) (l. 373), Géométrie et logique (2) (l. 389), Négation complexes (2) (l. 415), Trouver l'erreur (1) (l. 491), √3 (l. 538), Suite et logique (3) (l. 551), Combinaisons logiques (l. 574), Raisonner sur les réels (1) (l. 608), Nombres rationnels (2)-(3) (l. 623), Pythagore (l. 642), Chevaliers et coquins (l. 691), Logique dans les preuves géométriques (3) (l. 801), Sommes (4) (l. 894), Défi 2 (3) (l. 1013), Défi 4 (4) (l. 1119).
 
 ## 3. Programme alignment (nothing confirmed; no programme reference invented)
 
@@ -178,3 +214,14 @@ placed with `WIDGETS` in `scripts/build-slides.py`; experiments in `site/js/lab/
 4. Two independent audits (different agents, evidence kept private), the second after fixes from the first. Queue: `course-quality/queue/` of the private repository.
 5. Browser, phone and keyboard checks, accessibility (row selection by Tab/Enter, contrast in both themes, `prefers-reduced-motion`, 44 px targets: the draft is a good start), screen-reader labels on truth-table cells.
 6. Publication gate of `PROJECT_BRIEF.md`; owner approval. Not before: no manifest entry, no `dist/` change.
+
+## 5. Relocated candidates (removed from chapter 1 for level; not published anywhere)
+
+Kept here only as material for a later chapter or an enrichment workshop (`content/data/enrichment.json`), after review.
+- **Cantor's diagonal argument** (was Défi 4 (4)). Suppose the reals of [0,1] listed as r₁, r₂, … in decimal form; build d
+  whose n-th decimal is 5 if that of rₙ is not 5, and 4 otherwise. Then d ∈ [0,1] differs from every rₙ at its n-th decimal
+  (and has no ambiguous expansion, having no 0 or 9), so no list contains every real; similarly {0,1}^N is uncountable.
+  Suggested place: an enrichment on infinite sets (with N×N via diagonals and Q countable), or a university foundations unit.
+- **Sum of the first n odd numbers via the Gauss formula** (was Sommes (4)). Σ_{k=1}^{n}(2k−1) = 2·n(n+1)/2 − n = n².
+  Suggested place: the sums/sequences chapter (T11), where Σ notation and 1+…+n = n(n+1)/2 are taught, or alongside a
+  proof by induction if that chapter introduces it.
