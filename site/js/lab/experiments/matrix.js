@@ -22,15 +22,16 @@ export default {
   prereq: ["Coordonnées, aire d’un parallélogramme, déterminant de deux vecteurs", "Coordinates, area of a parallelogram, determinant of two vectors"],
   model: X,
   state: { a: 2, b: 1, c: 0, d: 2 },
+  ease: ['a', 'b', 'c', 'd'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     i: {
-      kind: "handle", panel: "after", color: "accent", grid: 0.5, label: ["Image de i (première colonne de M)", "Image of i (first column of M)"],
+      kind: "handle", soft: true, panel: "after", color: "accent", grid: 0.5, label: ["Image de i (première colonne de M)", "Image of i (first column of M)"],
       at: (s) => [s.a, s.c],
       drag: (s, x, y) => ({ a: clamp(x, -LIM, LIM), c: clamp(y, -LIM, LIM) }),
       valuetext: (s, f) => f.pt(s.a, s.c),
     },
     j: {
-      kind: "handle", panel: "after", color: "obj2", grid: 0.5, label: ["Image de j (deuxième colonne de M)", "Image of j (second column of M)"],
+      kind: "handle", soft: true, panel: "after", color: "obj2", grid: 0.5, label: ["Image de j (deuxième colonne de M)", "Image of j (second column of M)"],
       at: (s) => [s.b, s.d],
       drag: (s, x, y) => ({ b: clamp(x, -LIM, LIM), d: clamp(y, -LIM, LIM) }),
       valuetext: (s, f) => f.pt(s.b, s.d),

@@ -2788,21 +2788,22 @@ __e.default = {
   prereq: ["Fonctions affines, suites", "Affine functions, sequences"],
   model: W,
   state: { a: 0.5, b: 2, u0: 8, n: 6 },
+  ease: ['a', 'b', 'u0'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     start: {
-      kind: "handle", color: "accent", axis: "x", grid: [0.5, 1], label: ["Point u₀ sur l’axe des abscisses", "Point u₀ on the x-axis"],
+      kind: "handle", soft: true, color: "accent", axis: "x", grid: [0.5, 1], label: ["Point u₀ sur l’axe des abscisses", "Point u₀ on the x-axis"],
       at: (s) => [s.u0, 0],
       drag: (s, x) => ({ u0: clamp(x, U0MAX[0], U0MAX[1]) }),
       valuetext: (s, f) => `u₀ = ${f.num(s.u0)}`,
     },
     intercept: {
-      kind: "handle", color: "obj3", axis: "y", grid: [1, 0.5], label: ["Point (0 ; b) de la droite de f", "Point (0, b) of the line of f"],
+      kind: "handle", soft: true, color: "obj3", axis: "y", grid: [1, 0.5], label: ["Point (0 ; b) de la droite de f", "Point (0, b) of the line of f"],
       at: (s) => [0, s.b],
       drag: (s, x, y) => ({ b: clamp(y, BMAX[0], BMAX[1]) }),
       valuetext: (s, f) => `b = ${f.num(s.b)}`,
     },
     slope: {
-      kind: "handle", color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (2 ; f(2)) qui règle a", "Point (2, f(2)) that sets a"],
+      kind: "handle", soft: true, color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (2 ; f(2)) qui règle a", "Point (2, f(2)) that sets a"],
       at: (s) => [2, 2 * s.a + s.b],
       drag: (s, x, y) => ({ a: clamp(Math.round((y - s.b) / 2 / 0.25) * 0.25, AMAX[0], AMAX[1]) }),
       nudge: (s, dx, dy) => ({ a: clamp(s.a + 0.25 * (dx || dy), AMAX[0], AMAX[1]) }),
@@ -3586,15 +3587,16 @@ __e.default = {
   prereq: ["Puissances, suites géométriques", "Powers, geometric sequences"],
   model: E,
   state: { k: 1, a: 2 },
+  ease: ['k', 'a'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     start: {
-      kind: "handle", color: "accent", axis: "y", grid: [1, 0.5], label: ["Point (0 ; k)", "Point (0, k)"],
+      kind: "handle", soft: true, color: "accent", axis: "y", grid: [1, 0.5], label: ["Point (0 ; k)", "Point (0, k)"],
       at: (s) => [0, s.k],
       drag: (s, x, y) => ({ k: clamp(y, 0.5, KMAX) }),
       valuetext: (s, f) => `k = ${f.num(s.k)}`,
     },
     unit: {
-      kind: "handle", color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (1 ; k × a)", "Point (1, k × a)"],
+      kind: "handle", soft: true, color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (1 ; k × a)", "Point (1, k × a)"],
       nudge: (s, dx, dy) => ({ a: clamp(s.a + 0.25 * (dx || dy), 0.25, 3) }),
       at: (s) => [1, s.k * s.a],
       drag: (s, x, y) => ({ a: clamp(Math.round(y / s.k / 0.25) * 0.25, 0.25, 3) }),
@@ -4499,15 +4501,16 @@ __e.default = {
   prereq: ["Coordonnées, aire d’un parallélogramme, déterminant de deux vecteurs", "Coordinates, area of a parallelogram, determinant of two vectors"],
   model: X,
   state: { a: 2, b: 1, c: 0, d: 2 },
+  ease: ['a', 'b', 'c', 'd'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     i: {
-      kind: "handle", panel: "after", color: "accent", grid: 0.5, label: ["Image de i (première colonne de M)", "Image of i (first column of M)"],
+      kind: "handle", soft: true, panel: "after", color: "accent", grid: 0.5, label: ["Image de i (première colonne de M)", "Image of i (first column of M)"],
       at: (s) => [s.a, s.c],
       drag: (s, x, y) => ({ a: clamp(x, -LIM, LIM), c: clamp(y, -LIM, LIM) }),
       valuetext: (s, f) => f.pt(s.a, s.c),
     },
     j: {
-      kind: "handle", panel: "after", color: "obj2", grid: 0.5, label: ["Image de j (deuxième colonne de M)", "Image of j (second column of M)"],
+      kind: "handle", soft: true, panel: "after", color: "obj2", grid: 0.5, label: ["Image de j (deuxième colonne de M)", "Image of j (second column of M)"],
       at: (s) => [s.b, s.d],
       drag: (s, x, y) => ({ b: clamp(x, -LIM, LIM), d: clamp(y, -LIM, LIM) }),
       valuetext: (s, f) => f.pt(s.b, s.d),
@@ -10032,7 +10035,7 @@ __d("lab/templates/transform.js", function (__e, __r) {
 const { layoutPanels, panelView, drawAxes, drawScene, drawHandles, buildHandles } = __r("lab/plot.js");
 
 function mount(env) {
-  const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
+  const { exp, stage, fmt, getState, getShown = getState, setState, ghost, isUnlocked } = env;
   const ids = ["before", "after"], specs = ids.map((id) => exp.views[id]), ctx = { fmt, lang: fmt.lang, stage, unlocked: isUnlocked };
   let views = {};
   function layout() {
@@ -10041,11 +10044,11 @@ function mount(env) {
     return views;
   }
   layout();
-  const handles = buildHandles({ exp, fmt, getState, setState, views: () => layout(), panels: ids });
+  const handles = buildHandles({ exp, fmt, getState, getShown, setState, views: () => layout(), panels: ids });
 
   function draw(g) {
     layout();
-    const s = getState(), other = ghost();
+    const s = getShown(), other = ghost();
     ids.forEach((id, i) => {
       const v = views[id];
       drawAxes(g, v, specs[i], stage, fmt);
