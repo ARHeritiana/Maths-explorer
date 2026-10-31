@@ -1,6 +1,6 @@
 // A bead race powered by conservation of energy, not by a decorative speed tween.
 import {cycloid,bezierTrack,descentTrack,pointAtTime,clamp} from './gallery-models.js';
-import {exhibit,background,path,dot,button,field,bind} from './gallery-kit.js';
+import {exhibit,background,path,dot,button,field,bind,idleGuard} from './gallery-kit.js';
 export function fastestSlide(root,opts){
   const {t}=opts;const end=[4,2],cy=cycloid(end);let handles=[[.9,2.6],[2.8,2.9]],tracks=[],time=0,playing=false,drag=null,dirty=true,selected=0,visible=[true,true,true];
   const o=exhibit(root,opts,t('Dessine une descente avec les deux poignées. Sur la figure, [ et ] choisissent une poignée et les flèches la déplacent. Avant la course, prédis la gagnante. Coche les pistes à comparer. Les billes partent ensemble, sans vitesse initiale, et glissent sans frottement.','Shape a descent with the two handles. On the canvas, [ and ] select a handle and arrow keys move it. Predict the winner before racing. Check the tracks to compare. The beads start together, from rest, and slide without friction.'),button('bs-race',t('Lancer la course','Race the beads'),true)+field('bs-time',t('Temps de la course (s)','Race time (s)'),0,2,.005,0)+`<fieldset class="exhibit-choices"><legend>${t('Afficher les pistes','Show tracks')}</legend>${[t('Ta courbe','Your curve'),t('Droite','Straight line'),t('Cycloïde','Cycloid')].map((name,i)=>`<label class="act-check"><input type="checkbox" id="bs-show-${i}" checked>${name}</label>`).join('')}</fieldset>`,
@@ -18,7 +18,8 @@ export function fastestSlide(root,opts){
   o.on(o.cv,'pointerup',()=>drag=null);o.cancelDrag=()=>drag=null;
   o.on(o.cv,'keydown',e=>{if(e.shiftKey)return;if(e.key==='['||e.key===']'){selected=1-selected;return;}const d={ArrowLeft:[-.04,0],ArrowRight:[.04,0],ArrowUp:[0,-.04],ArrowDown:[0,.04]}[e.key];if(d){e.preventDefault();handles[selected]=[clamp(handles[selected][0]+d[0],selected===0?.03:handles[0][0]+.05,selected===0?handles[1][0]-.05:3.97),clamp(handles[selected][1]+d[1],.05,3.6)];changed();}});
   let frame=0;
-  o.animate(dt=>{if(dirty)rebuild();if(playing){time+=dt;const finish=Math.max(0,...tracks.filter((_,i)=>visible[i]).map(x=>x.total));if(time>=finish){time=finish;playing=false;}}const C=background(o),colors=[C.accent,C.obj2,C.pos];
+  const idle=idleGuard(o);
+  o.animate(dt=>{if(idle(playing||dirty,JSON.stringify([handles,time,selected,visible])))return;if(dirty)rebuild();if(playing){time+=dt;const finish=Math.max(0,...tracks.filter((_,i)=>visible[i]).map(x=>x.total));if(time>=finish){time=finish;playing=false;}}const C=background(o),colors=[C.accent,C.obj2,C.pos];
     g.font='14px system-ui';g.textAlign='left';g.fillStyle=C.muted;g.fillText(t('Départ : y = 0','Start: y = 0'),55,30);g.fillText(t('1 m vers le bas','1 m down'),65,430);
     for(let y=0;y<=3;y++)path(g,[X([0,y]),X([4,y])],{stroke:C.line,width:.6});
     tracks.forEach((tr,i)=>{if(!visible[i])return;path(g,tr.points.map(X),{stroke:colors[i],width:3});const tau=Math.min(time,tr.total),theta=tau/Math.sqrt(cy.a/9.81),pos=i===2?[cy.a*(theta-Math.sin(theta)),cy.a*(1-Math.cos(theta))]:pointAtTime(tr,tau);dot(g,X(pos),colors[i],8);g.fillStyle=colors[i];g.fillText(`${labels[i]}: ${fmt(tr.total)} s`,325,345+i*26);});

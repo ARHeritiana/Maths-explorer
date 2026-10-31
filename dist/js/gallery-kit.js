@@ -1,6 +1,6 @@
 // Shared accessible exhibit surface, input cleanup, theme-aware drawing and camera-independent 3D projection.
-import {canvasIn,palette,field,bind} from './object-kit.js';
-export {palette,field,bind};
+import {canvasIn,palette,field,bind,idleGuard} from './object-kit.js';
+export {palette,field,bind,idleGuard};
 export const TAU=2*Math.PI;
 export function exhibit(root,{t,reduced},help,controls='',notes=''){
   root.innerHTML=`<p class="act-help">${help}</p><div class="obj-stage exhibit-stage"></div><div class="act-controls exhibit-controls">${controls}</div><p class="act-readout exhibit-readout" role="status" aria-live="polite"></p>${notes?`<details class="exhibit-notes"><summary>${t('Observer, puis comprendre','Observe, then understand')}</summary>${notes}</details>`:''}`;

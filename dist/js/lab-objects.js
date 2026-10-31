@@ -90,7 +90,7 @@ export const sierpinskiCount = (level) => 3 ** level;
 export const sierpinskiArea = (level) => 0.75 ** level;
 
 /* ================================================================= UI */
-import { NS, css, palette, canvasIn, field, bind, loopFor } from "./object-kit.js";
+import { NS, css, palette, canvasIn, field, bind, loopFor, idleGuard } from "./object-kit.js";
 import { mountPlatonic } from "./platonic-explorer.js";
 import { GALLERY_OBJECTS } from "./gallery-objects.js";
 import { dynamicsGallery } from './gallery-dynamics.js';
@@ -232,8 +232,11 @@ function reuleauxLab(root, { t, reduced, lang }) {
     g.beginPath(); shape.pts.forEach(([x, y], i) => { const X = cx + S * (x * Math.cos(rot) - y * Math.sin(rot)), Y = cy - S * (x * Math.sin(rot) + y * Math.cos(rot)); i ? g.lineTo(X, Y) : g.moveTo(X, Y); }); g.closePath(); fill(C);
     g.fillStyle = C.ink; shape.verts.forEach(([x, y]) => { g.beginPath(); g.arc(cx + S * (x * Math.cos(rot) - y * Math.sin(rot)), cy - S * (x * Math.sin(rot) + y * Math.cos(rot)), 4, 0, TAU); g.fill(); });
   }
+  const idle = idleGuard(o);
+  let lastDeg = -1;
   function draw(dt) {
-    const C = palette(); if (playing) { psi = (psi + dt * speed * 60 * (Math.PI / 180)) % TAU; root.querySelector("#rl-psi").value = Math.round((psi * 180) / Math.PI) % 360; root.querySelector("#rl-psi-out").textContent = Math.round((psi * 180) / Math.PI) % 360; }
+    if (idle(playing, `${n}|${w}|${mode}|${psi}`)) return;
+    const C = palette(); if (playing) { psi = (psi + dt * speed * 60 * (Math.PI / 180)) % TAU; const deg = Math.round((psi * 180) / Math.PI) % 360; if (deg !== lastDeg) { lastDeg = deg; root.querySelector("#rl-psi").value = deg; root.querySelector("#rl-psi-out").textContent = deg; } }
     g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
     const S = 250;
     if (mode === "square") {
@@ -311,7 +314,11 @@ function chaos(root, { t, reduced, lang }) {
   const ensureLayer = () => { if (!layer) { layer = document.createElement("canvas"); layer.width = o.W; layer.height = o.H; } return layer; };
   function step(count) { const lg = ensureLayer().getContext("2d"), C = palette(); lg.fillStyle = C.accent; for (let i = 0; i < count; i++) { const v = verts[Math.floor(Math.random() * k)]; cur = [cur[0] + (v[0] - cur[0]) * ratio, cur[1] + (v[1] - cur[1]) * ratio]; if (pts.length++ > 12) lg.fillRect(cur[0], cur[1], 1.6, 1.6); } }
   function triangle(lg, a, b, c, lv) { if (lv === 0) { lg.beginPath(); lg.moveTo(...a); lg.lineTo(...b); lg.lineTo(...c); lg.closePath(); lg.fill(); return; } const mid = (u, v) => [(u[0] + v[0]) / 2, (u[1] + v[1]) / 2]; const ab = mid(a, b), bc = mid(b, c), ca = mid(c, a); triangle(lg, a, ab, ca, lv - 1); triangle(lg, ab, b, bc, lv - 1); triangle(lg, ca, bc, c, lv - 1); }
+  const idle = idleGuard(o);
+  let lastRead = "";
+  const setRead = (h) => { if (h !== lastRead) { lastRead = h; read.innerHTML = h; } };
   function draw() {
+    if (idle(playing && mode === "game" && !reduced(), `${mode}|${level}|${k}|${ratio}|${pts.length}|${blank}|${verts.join()}`)) return;
     const C = palette(); g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
     if (mode === "game") {
       // A move of a vertex (or of r, or of the number of vertices) empties the layer: refill it at once with a burst of
@@ -319,10 +326,10 @@ function chaos(root, { t, reduced, lang }) {
       if (!pts.length && !blank) step(20000); else if (playing && !reduced()) { blank = false; step(900); }
       if (layer) g.drawImage(layer, 0, 0);
       verts.forEach((v, i) => { g.fillStyle = C.obj2; g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.arc(v[0], v[1], 9, 0, TAU); g.fill(); g.stroke(); g.fillStyle = C.ink; g.font = "700 13px system-ui"; g.textAlign = "center"; g.fillText("ABCDEF"[i], v[0], v[1] - 15); });
-      read.innerHTML = `${pts.length.toLocaleString(lang === "fr" ? "fr-FR" : "en-US")} ${t("points", "points")} · r = <strong>${f(ratio)}</strong> · ${t("pour", "for")} ${k} ${t("sommets, la valeur", "vertices, the value")} <strong>${f(1 - gonContraction(k))}</strong> ${t("donne une figure de type fractal (r = 1/2 pour le triangle)", "gives a fractal figure (r = 1/2 for the triangle)")}.`;
+      setRead(`${pts.length.toLocaleString(lang === "fr" ? "fr-FR" : "en-US")} ${t("points", "points")} · r = <strong>${f(ratio)}</strong> · ${t("pour", "for")} ${k} ${t("sommets, la valeur", "vertices, the value")} <strong>${f(1 - gonContraction(k))}</strong> ${t("donne une figure de type fractal (r = 1/2 pour le triangle)", "gives a fractal figure (r = 1/2 for the triangle)")}.`);
     } else {
       g.fillStyle = C.accent; const R = 200, cx = o.W / 2, cy = o.H / 2 + 20; triangle(g, [cx, cy - R * 0.95], [cx - R * 1.05, cy + R * 0.7], [cx + R * 1.05, cy + R * 0.7], level);
-      read.innerHTML = `${t("Niveau", "Level")} <strong>${level}</strong> : ${t("triangles pleins", "filled triangles")} 3<sup>${level}</sup> = <strong>${sierpinskiCount(level)}</strong> · ${t("aire restante", "remaining area")} (3/4)<sup>${level}</sup> ≈ <strong>${f(sierpinskiArea(level) * 100)} %</strong> ${t("de l’aire du grand triangle", "of the big triangle’s area")}.`;
+      setRead(`${t("Niveau", "Level")} <strong>${level}</strong> : ${t("triangles pleins", "filled triangles")} 3<sup>${level}</sup> = <strong>${sierpinskiCount(level)}</strong> · ${t("aire restante", "remaining area")} (3/4)<sup>${level}</sup> ≈ <strong>${f(sierpinskiArea(level) * 100)} %</strong> ${t("de l’aire du grand triangle", "of the big triangle’s area")}.`);
     }
   }
   const restart = () => { layer = null; blank = false; layout(); };

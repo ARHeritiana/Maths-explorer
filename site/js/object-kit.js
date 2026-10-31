@@ -1,7 +1,12 @@
 // Small helpers shared by the laboratory objects and the gallery: canvas sized for the screen, theme colours, sliders, loop.
 export const NS = "http://www.w3.org/2000/svg";
 export const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim() || "#888";
-export const palette = () => ({ ink: css("--ink"), muted: css("--muted"), line: css("--line-strong"), surface: css("--surface"), sunken: css("--sunken"), accent: css("--accent"), obj2: css("--obj2"), obj3: css("--obj3"), pos: css("--pos"), neg: css("--neg"), grid: css("--grid"), c: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => css(`--c${i}`)) });
+// The palette is read from the CSS tokens once per theme (getComputedStyle on a dozen custom properties every frame forces a style
+// recalculation); it is rebuilt when the theme attribute or the system colour scheme changes.
+let paletteKey = "", paletteValue = null;
+const themeKey = () => `${document.documentElement.dataset.theme || ""}|${globalThis.matchMedia?.("(prefers-color-scheme: dark)").matches ? 1 : 0}|${document.documentElement.dataset.contrast || ""}`;
+export const palette = () => { const k = themeKey(); if (paletteValue && k === paletteKey) return paletteValue; paletteKey = k; return (paletteValue = buildPalette()); };
+const buildPalette = () => ({ ink: css("--ink"), muted: css("--muted"), line: css("--line-strong"), surface: css("--surface"), sunken: css("--sunken"), accent: css("--accent"), obj2: css("--obj2"), obj3: css("--obj3"), pos: css("--pos"), neg: css("--neg"), grid: css("--grid"), c: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => css(`--c${i}`)) });
 import { canvasNavigation, canvasTouch } from './canvas-navigation.js';
 export function canvasIn(host, aspect, options = {}) {
   host.classList.add("obj-viewport");
@@ -20,3 +25,14 @@ export const field = (id, label, min, max, step, value) => `<label class="act-fi
 export const bind = (root, id, fn, fmt = (v) => v) => { const el = root.querySelector(`#${id}`), out = root.querySelector(`#${id}-out`); const run = () => { out.textContent = fmt(Number(el.value)); fn(Number(el.value)); }; el.addEventListener("input", run); out.textContent = fmt(Number(el.value)); return el; };
 export const loopFor = (draw, reduced) => { let raf = 0, last = 0, alive = true; const tick = (now) => { if (!alive) return; const dt = Math.min(0.05, (now - last) / 1000 || 0); last = now; draw(dt, now / 1000); raf = requestAnimationFrame(tick); }; raf = requestAnimationFrame(tick); void reduced; return () => { alive = false; cancelAnimationFrame(raf); }; };
 
+
+// Idle guard for canvases that redraw on a timer: `idle(busy, key)` is true when nothing is moving (busy false) and the picture would be
+// the same as the last one drawn (same key, canvas size, theme and zoom/pan), so the frame can be skipped. Idle exhibits then cost nothing.
+export const idleGuard = (o) => {
+  let last = "";
+  return (busy, key = "") => {
+    const c = o.navigation?.camera, k = `${key}|${o.cv.width}|${document.documentElement.dataset.theme}|${c ? `${c.scale},${c.x},${c.y}` : ""}`;
+    if (busy || k !== last) { last = k; return false; }
+    return true;
+  };
+};
