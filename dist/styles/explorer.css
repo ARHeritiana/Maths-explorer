@@ -379,3 +379,14 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1.5px va
 footer { position: relative; }
 footer::before { top: -1px; }
 @media (forced-colors: active) { .topbar::after, footer::before { background: CanvasText; } }
+
+/* Field hue on cards and chips (set by data-topic): previews take the field hue instead of a per-picture colour. */
+[data-topic] .discovery-preview[data-preview] { --topic-ink: var(--hue); color: var(--hue); background: color-mix(in srgb, var(--hue) 13%, var(--surface)); }
+.chapter-tile[data-topic], .challenge-card[data-topic] { border-top: 4px solid var(--hue); }
+.chapter-tile[data-topic]:hover, .challenge-card[data-topic]:hover { border-color: var(--hue); }
+.challenge-card[data-topic]:hover { background: color-mix(in srgb, var(--hue) 9%, var(--surface)); }
+.challenge-card[data-topic] .challenge-motif { color: var(--hue); }
+.discovery-card[data-topic] > .discovery-preview { border-left: 5px solid var(--hue); }
+.lab2-card-link[data-topic]:hover { border-color: var(--hue); }
+.lab2-card-link[data-topic] .lab2-card-symbol { background: color-mix(in srgb, var(--hue) 16%, var(--surface)); color: var(--ink); border: 2px solid var(--hue); }
+.lab2-steps a[data-topic] { border-left: 4px solid var(--hue); }

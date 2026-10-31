@@ -26,3 +26,12 @@ for (const [name, surface] of [[':root, :root[data-theme="jour"]', '#ffffff'], [
     }
   });
 }
+
+test('topicOf: a record is coloured by the field that names it, not by a word match', async () => {
+  const { topicOf } = await import('../site/js/topic-registry.js');
+  assert.equal(topicOf({ id: 'derivative', title: ['Tangente', 'Tangent'] }, 'lab'), 'analysis');
+  assert.equal(topicOf({ id: 'quadratic' }, 'lab'), 'algebra');
+  assert.equal(topicOf({ id: 'probability' }, 'lab'), 'probability');
+  assert.equal(topicOf({ id: 'x', topics: ['topology/knots'] }, 'lab'), 'topology');
+  assert.ok(TOPICS.some((t) => t.id === topicOf({ id: 'unknown-thing' }, 'lab')));
+});

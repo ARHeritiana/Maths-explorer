@@ -11,7 +11,7 @@ A parabola through two points on a night-blue tile, and a **spectrum of eleven f
 | Element | Rule | Where |
 |---|---|---|
 | Mark | the blue tile with a curve and two points (the roots); the favicon is the same drawing | header, favicon; planned: slide title card, PDF cover |
-| Field hue | one hue per field, `[data-topic="<id>"] { --hue }`, from `--c1…--c11` | topic menu and subtopics now; to extend: discovery cards, chapter cards, lab chips |
+| Field hue | one hue per field, `[data-topic="<id>"] { --hue }`, from `--c1…--c11` | topic menus, discovery result cards, chapter tiles, challenge cards, laboratory cards and the experiment chips (`topicOf` in `topic-registry.js` gives a record's field; its first membership decides) |
 | Spectrum rule | 3 px gradient of the eleven hues under the header and above the footer; plain `CanvasText` in forced-colours mode | every page |
 | Accent | blue `--accent` stays the colour of actions and the studied object | unchanged |
 | Type | Atkinson Hyperlegible for interface, STIX Two Text for mathematics | unchanged |
@@ -33,7 +33,7 @@ Rules: a hue marks or tints (bar, dot, 9–12 % tint); text stays `--ink`. Never
 
 | Surface | State | Next step |
 |---|---|---|
-| Site chrome and topic menus | done in this change | extend `data-topic` to discovery result cards, chapter cards (`resource-library.js`), lab experiment chips |
+| Site chrome and topic menus | done in this change | gallery and reading cards, history records (the `history` hue) |
 | Laboratory and challenge canvases | read `palette()` (`object-kit.js`) from the same tokens | none |
 | Slides | own dark palette (`player.css`), amber = focus by the brief section 5; same fonts | add the mark and the spectrum rule to the title slide; keep amber semantics |
 | PDFs | green/mint and navy band in `content/tex/core/mx-layout.sty` | not aligned. Decide whether to move the PDF ink to the site blue; needs a TeX Live rebuild of every PDF, so not done here |

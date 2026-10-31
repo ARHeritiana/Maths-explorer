@@ -2,6 +2,7 @@
 // experiment page (heading, the host that mount.js fills, previous / next experiment, related lessons, history). No drawing and
 // no state here.
 import { EXPERIMENTS, TEMPLATE_INFO, SECTION_INFO, INDEX_ORDER, groupOf, labRef } from "./registry.js";
+import { topicOf } from "../topic-registry.js";
 import { relatedChapters } from "../resource-library.js";
 import { fourierLinks } from "../fourier-links.js";
 
@@ -11,7 +12,7 @@ const infoOf = (id) => SECTION_INFO[id] || TEMPLATE_INFO[id];
 // Experiments in the order of the index (group by group), so that "next" follows what the learner saw on the index.
 export const ordered = () => INDEX_ORDER.flatMap((g) => EXPERIMENTS.filter((e) => groupOf(e) === g));
 
-const card = (e, { t, pair, link, completed }) => `<a class="lab2-card-link" href="${link("lab", e.id)}"><span class="lab2-card-symbol" aria-hidden="true">${esc(e.symbol)}</span><span class="lab2-card-body"><strong>${esc(t(e.title))}</strong><span>${esc(t(e.short))}</span><span class="lab2-card-meta">${esc(t(e.level))} · ${e.duration} min</span></span>${completed.has(e.id) ? `<span class="check" aria-label="${pair("Expérience terminée", "Experiment completed")}">✓</span>` : ""}</a>`;
+const card = (e, { t, pair, link, completed }) => `<a class="lab2-card-link" data-topic="${topicOf(e, "lab")}" href="${link("lab", e.id)}"><span class="lab2-card-symbol" aria-hidden="true">${esc(e.symbol)}</span><span class="lab2-card-body"><strong>${esc(t(e.title))}</strong><span>${esc(t(e.short))}</span><span class="lab2-card-meta">${esc(t(e.level))} · ${e.duration} min</span></span>${completed.has(e.id) ? `<span class="check" aria-label="${pair("Expérience terminée", "Experiment completed")}">✓</span>` : ""}</a>`;
 
 export function indexPage(ctx) {
   const { t, pair } = ctx;
@@ -28,7 +29,7 @@ export function indexPage(ctx) {
 export function experimentPage(exp, { t, pair, link, completed, mission = "" }) {
   const list = ordered(), i = list.indexOf(exp), prev = list[(i - 1 + list.length) % list.length], next = list[(i + 1) % list.length];
   const step = (e, dir) => `<a class="lab2-step-link" href="${link("lab", e.id)}" rel="${dir}"><span class="lab2-step-dir">${dir === "prev" ? pair("← Précédente", "← Previous") : pair("Suivante →", "Next →")}</span><span>${esc(t(e.title))}</span></a>`;
-  const others = list.map((e) => `<a href="${link("lab", e.id)}" ${e === exp ? 'aria-current="page"' : ""}><span aria-hidden="true">${esc(e.symbol)}</span> ${esc(t(e.short))}${completed.has(e.id) ? ' <span class="check" aria-hidden="true">✓</span>' : ""}</a>`).join("");
+  const others = list.map((e) => `<a data-topic="${topicOf(e, "lab")}" href="${link("lab", e.id)}" ${e === exp ? 'aria-current="page"' : ""}><span aria-hidden="true">${esc(e.symbol)}</span> ${esc(t(e.short))}${completed.has(e.id) ? ' <span class="check" aria-hidden="true">✓</span>' : ""}</a>`).join("");
   const workshop = exp.id === "quadratic" ? `<a href="#workshop/quadratic">${pair("Présenter et explorer · 5 étapes", "Present and explore · 5 stages")}</a>` : "";
   const info = infoOf(groupOf(exp));
   return `<main id="main" class="page lab2-page" tabindex="-1" data-experiment="${exp.id}">

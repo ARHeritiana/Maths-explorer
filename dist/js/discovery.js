@@ -30,7 +30,7 @@ export function discoveryPage(index,id,subtopic,t) {
   <p id="discovery-count" role="status" aria-live="polite" aria-atomic="true"></p><div id="discovery-results" class="discovery-results"></div></main>`;
 }
 export function discoveryCards(items,t) {
-  return items.length?items.map(x=>`<article class="discovery-card">${previewSVG(x,t)}<div><p class="section-kicker">${E(t(FORMAT_LABELS[x.format]))} · ${E(t(x.level))}</p><h2><a href="${E(x.route)}">${E(t(x.title))}</a></h2>${t(x.summary)?`<p>${E(t(x.summary))}</p>`:''}<div class="discovery-tags">${[...new Set(x.memberships.map(m=>m.split('/')[0]))].map(id=>topicLink(id,t(topicById(id).title))).join('')}</div></div></article>`).join(''):`<p>${t(['Aucune ressource ne correspond à ces critères.','No resources match these filters.'])}</p>`;
+  return items.length?items.map(x=>`<article class="discovery-card" data-topic="${x.memberships[0].split('/')[0]}">${previewSVG(x,t)}<div><p class="section-kicker">${E(t(FORMAT_LABELS[x.format]))} · ${E(t(x.level))}</p><h2><a href="${E(x.route)}">${E(t(x.title))}</a></h2>${t(x.summary)?`<p>${E(t(x.summary))}</p>`:''}<div class="discovery-tags">${[...new Set(x.memberships.map(m=>m.split('/')[0]))].map(id=>topicLink(id,t(topicById(id).title))).join('')}</div></div></article>`).join(''):`<p>${t(['Aucune ressource ne correspond à ces critères.','No resources match these filters.'])}</p>`;
 }
 export function bindDiscovery(root,index,id,subtopic,t) {
   const form=root.querySelector('#discovery-filters');
