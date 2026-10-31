@@ -1,3 +1,4 @@
+import { mountMonteCarlo } from './monte-carlo.js';
 // DOM-native chance surface: keyboard/touch cards, stable histogram rows and seeded trials.
 // It uses the shared shell lifecycle and dirty-frame scheduler, as the calculation surface does.
 export function createStage(host,{onFrame,label}){
@@ -9,7 +10,8 @@ export function createStage(host,{onFrame,label}){
 }
 const el=(tag,cls,text='')=>{const n=document.createElement(tag);n.className=cls;n.textContent=text;return n;};
 const write=(n,text)=>{if(n.textContent!==text)n.textContent=text;};
-export function mount({exp,stage,fmt,getState,setState}){
+export function mount({exp,stage,fmt,getState,setState,advance}){
+ if(exp.monteCarlo)return mountMonteCarlo({exp,stage,fmt,getState,setState,advance});
  const d=exp.inference,t=fmt.t,root=stage.wrap,abort=new stage.wrap.ownerDocument.defaultView.AbortController();
  const on=(n,event,fn)=>n.addEventListener(event,fn,{signal:abort.signal});
  const premise=el('p','inference-assumption',t(d.assumption)),surface=el('div','inference-surface'),status=el('p','inference-status'),formula=el('p','inference-formula',d.formula),stats=el('dl','inference-stats'),chart=el('div','inference-chart'),caution=el('p','inference-caution',t(d.caution));

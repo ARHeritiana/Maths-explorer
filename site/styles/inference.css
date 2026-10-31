@@ -31,3 +31,19 @@
 .lab2:has(.inference-stage) .lab2-ctl-label { flex-wrap: wrap; overflow-wrap: anywhere; }
 .lab2:has(.inference-stage) .lab2-segment { min-width: 0; max-width: 100%; overflow-wrap: anywhere; white-space: normal; }
 .lab2:has(.inference-stage) .lab2-choice select { width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box; }
+
+/* Monte Carlo surface: one canvas of trials, a run bar, the convergence chart and a table of checkpoints. */
+.mc-figure { min-width: 0; margin: .5rem 0; }
+.mc-canvas, .mc-chart { display: block; width: 100%; max-width: 100%; box-sizing: border-box; border: 1px solid var(--line); background: var(--surface); }
+.mc-canvas.is-draw { touch-action: none; cursor: crosshair; }
+.mc-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: .5rem 0; }
+.mc-bar .btn { min-height: 44px; min-width: 44px; margin: 0; }
+.mc-speed { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .4rem; font-size: .9rem; min-width: 0; }
+.mc-speed select { min-height: 44px; max-width: 100%; font: inherit; color: var(--ink); background: var(--surface); }
+.mc-chart-title { margin: .8rem 0 .3rem; font-weight: 700; }
+.mc-table { width: 100%; border-collapse: collapse; font-size: .88rem; font-variant-numeric: tabular-nums; margin: .6rem 0; }
+.mc-table caption { text-align: left; font-size: .85rem; color: var(--muted); padding-bottom: .2rem; }
+.mc-table th, .mc-table td { border: 1px solid var(--line); padding: .25rem .4rem; text-align: left; overflow-wrap: anywhere; }
+.mc-pseudo { margin: .6rem 0; }
+.mc-pseudo summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }
+.mc-pseudo pre { overflow-x: auto; max-width: 100%; margin: 0; padding: .6rem; background: var(--sunken); font-size: .85rem; }

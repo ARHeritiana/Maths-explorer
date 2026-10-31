@@ -236,7 +236,7 @@ export const pathways = [
     stages:[
       {name:["Seconde · Explorer","Seconde · Explore"],ids:["statistics","vectors","quadratic"],note:["Vecteurs : coordonnées, déterminant et colinéarité dans le laboratoire. Le discriminant général : prolongement, pas un attendu de seconde.","Vectors: coordinates, determinant and collinearity in the lab. The general discriminant is an extension, not a seconde requirement."]},
       {name:["Première · Spécialité","Première · Specialty"],ids:["quadratic","trig","sequences","derivative","vectors","probability"],note:["Probabilités (BO n° 14 du 2 avril 2026) : indépendance, probabilités totales, arbre de n ⩽ 4 épreuves de Bernoulli, espérance et variance. Le labo de probabilités s’utilise avec n ⩽ 4 et un arbre ; la loi binomiale B(n, p) relève de la terminale.","Probability (BO no. 14, 2 April 2026): independence, total probability, trees for n ⩽ 4 Bernoulli trials, expectation and variance. Use the probability lab with n ⩽ 4 and a tree; the binomial distribution B(n, p) belongs to terminale."]},
-      {name:["Terminale · Spécialité (2026–2027)","Terminale · Specialty (2026–2027)"],ids:["probability","integral"]},
+      {name:["Terminale · Spécialité (2026–2027)","Terminale · Specialty (2026–2027)"],ids:["probability","integral","monte-carlo-pi","monte-carlo-walk","monte-carlo-integral","monte-carlo-lake"]},
       {name:["Terminale · Option maths expertes","Terminale · Maths expertes option"],ids:["complex"]}
     ],
     source:"https://eduscol.education.gouv.fr/5817/programmes-et-ressources-en-mathematiques-voie-gt",
