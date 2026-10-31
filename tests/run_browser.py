@@ -39,6 +39,8 @@ try:
         result = subprocess.run([sys.executable, 'tests/future_work_browser.py'], cwd=root)
     if result.returncode == 0:
         result = subprocess.run([sys.executable, 'tests/history_browser.py'], cwd=root)
+    if result.returncode == 0:   # the sets foundation lesson, both languages and themes
+        result = subprocess.run([sys.executable, 'tests/sets_browser.py'], cwd=root)
 finally:
     if server:
         server.terminate()

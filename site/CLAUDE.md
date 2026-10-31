@@ -114,6 +114,8 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `resources/basics/addition.en.html` | English interactive foundation edition, with local typography and iframe resizing |
 | `resources/basics/subtraction.html` | Third foundation: subtraction with borrowing across empty columns, written subtraction, bases 2 to 16; embedded by `js/app.js` |
 | `resources/basics/subtraction.en.html` | English interactive foundation edition, with local typography and iframe resizing |
+| `resources/basics/sets.html` | Sixth foundation, French: sets and operations (Venn diagrams, 18 concepts, quizzes, shading practice, 15 laws); inclusion is written ⊂; embedded by `js/app.js` |
+| `resources/basics/sets.en.html` | English edition of the sets lesson. The two files share all code; only the `TEXT-BEGIN`/`TEXT-END` table, the title and `lang` differ (`tests/sets-language.test.mjs` enforces it): edit the logic in both |
 
 ## Slide player (`slides/`; any change here rebuilds every deck export)
 

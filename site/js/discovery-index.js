@@ -3,7 +3,7 @@ import {TOPICS, membershipsFor} from './topic-registry.js';
 export const FORMAT_LABELS = {lab:['Laboratoire','Laboratory'], gallery:['Curiosité','Curiosity'], challenge:['Défi','Challenge'], error:['Erreur à corriger','Error to correct'], biography:['Biographie','Biography'], story:['Histoire','Story'], timeline:['Chronologie','Timeline'], chapter:['Chapitre','Chapter'], lesson:['Leçon','Lesson'], workshop:['Atelier','Workshop'], pdf:['PDF','PDF'], html:['HTML','HTML']};
 const pair = value => Array.isArray(value)?value:[String(value || ''),String(value || '')];
 export const normalize = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryChapters=[],biographies=[],stories=[],people=[],advances=[],university={sections:[]},enrichment=[],courses=[],errors=[]}={}) {
+export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryChapters=[],biographies=[],stories=[],people=[],advances=[],university={sections:[]},enrichment=[],courses=[],errors=[],lessons=[]}={}) {
   const records = new Map();
   function add(record, kind, route, extra={}) {
     const title=pair(record.title || record.name), memberships=membershipsFor(record,kind);
@@ -26,6 +26,7 @@ export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryCh
   advances.forEach(x=>add(x,'timeline',`#history/advances/${x.id}`,{links:x.people.map(id=>`#history/people/${id}`)}));
   for(const section of university.sections || []) for(const x of section.sequences || []) add(x,'lesson',`#university/${x.id}`,{level:['Université','University']});
   enrichment.forEach(x=>add(x,'workshop',`#library/explore-${x.id}`));
+  lessons.forEach(x=>add(x,'lesson',`#basics/${x.id}`));
   // Declare a relationship once; both ends resolve to canonical records. Unknown/deleted targets are discarded.
   for(const item of records.values()) for(const target of item.links) {
     const canonical=target.startsWith('#lab/')?target.split('/').slice(0,2).join('/'):target;
