@@ -14,6 +14,7 @@ import {ten,vertices} from './gallery-squares-model.js';
 import {hammersley,hammersleyPose,HAMMERSLEY_R,place} from './gallery-sofa-model.js';
 import {curve,PRESETS as CURVES,inscribed} from './gallery-inscribed-model.js';
 import {BARRIERS,lineAt} from './gallery-opaque-model.js';
+import {preset as eqPreset,buildChain as eqChain,frame as eqFrame} from './gallery-equidecomposition-model.js';
 
 const TAU = Math.PI * 2;
 const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || "#888";
@@ -251,8 +252,16 @@ function opaqueArt(cv, opts) {
     g.strokeStyle = C.accent; g.lineWidth = 4; g.lineCap = 'round'; segs.forEach(([a, b]) => { g.beginPath(); g.moveTo(...X(a)); g.lineTo(...X(b)); g.stroke(); });
   }, { reduced: opts.reduced, still: 1 });
 }
+// Hexagon cut into pieces that slide into a square and back (computed once).
+function equidecompositionArt(cv, opts) {
+  const CH = eqChain(eqPreset('hexagon').pts, eqPreset('square').pts), xs = CH.bbox.map((p) => p[0]), ys = CH.bbox.map((p) => p[1]), x0 = Math.min(...xs), y0 = Math.min(...ys), bw = Math.max(...xs) - x0, bh = Math.max(...ys) - y0;
+  return runner(cv, (g, W, H, t, C) => {
+    const u = Math.min(W / (bw * 1.08), H / (bh * 1.08)), X = ([x, y]) => [(W - bw * u) / 2 + (x - x0) * u, (H - bh * u) / 2 + (y - y0) * u], T = 4 + 4 * Math.sin(t * 0.5 - Math.PI / 2) * 0.999;
+    eqFrame(CH, T).pieces.forEach((pc) => { g.beginPath(); pc.poly.map(X).forEach((p, i) => i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1])); g.closePath(); g.globalAlpha = 0.75; g.fillStyle = C.c[pc.colour]; g.fill(); g.globalAlpha = 1; g.strokeStyle = C.ink; g.lineWidth = 1; g.stroke(); });
+  }, { reduced: opts.reduced, still: 1.2 });
+}
 function gombocArt(cv,opts){const mesh=gombocMesh(1500);return runner(cv,(g,W,H,time,C)=>{const k=Math.min(W,H)*.36,points=mesh.vertices.map(p=>{const q=cam3Project(-.7+time*.15,.55,...p);return [W/2+q.u*k,H/2-q.v*k,q.d];});const faces=mesh.quads.map(ids=>ids.map(i=>points[i])).sort((a,b)=>b.reduce((s,p)=>s+p[2],0)-a.reduce((s,p)=>s+p[2],0));for(const p of faces){g.beginPath();p.forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.closePath();g.globalAlpha=.65;g.fillStyle=C.accent;g.fill();g.strokeStyle=C.line;g.lineWidth=.6;g.stroke();}g.globalAlpha=1;},{reduced:opts.reduced,still:0});}
 export const ART = { gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
-  life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt,
+  life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt, equidecomposition: equidecompositionArt,
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
 export function mountArt(cv, kind, opts = {}) { const f = ART[kind]; return f ? f(cv, opts) : () => {}; }

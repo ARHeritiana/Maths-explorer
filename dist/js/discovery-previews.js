@@ -13,6 +13,7 @@ import {tileOutline} from './gallery-hat-model.js';
 import {spaceKnot} from './gallery-knot-model.js';
 import {hammersley,HAMMERSLEY_R} from './gallery-sofa-model.js';
 import {BARRIERS} from './gallery-opaque-model.js';
+import {preset as eqPreset,triangulate as eqTriangulate} from './gallery-equidecomposition-model.js';
 import {mandelbrot} from './gallery-math.js';
 const P=(fr,en)=>[fr,en], round=x=>Number(x.toFixed(3));
 const path=(pts,closed=false)=>`<path d="${pts.map(([x,y],i)=>`${i?'L':'M'}${round(x)},${round(y)}`).join(' ')}${closed?'Z':''}"/>`;
@@ -38,7 +39,7 @@ const known=new Set(['quadratic','probability','trig','benford','secretary','tan
  'line','exponential','cobweb','matrix','space-lines','sequences','fourier','circle-regions','buffon','bertrand',
  'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','life',
  'voronoi','fastest-slide','einstein','square-packing','inscribed-square','soap-films','knots','moving-sofa',
- 'opaque-square','four-colours','mandelbrot','arithmetic','reals','algebra','percentages','conditioning',
+ 'opaque-square','equidecomposition','four-colours','mandelbrot','arithmetic','reals','algebra','percentages','conditioning',
  'random-variable','counting','polynomials','modular','bezout','primes','graphs','markov','logic','sets']);
 // Topic names identify a chapter's mathematical model; broad field memberships do not.
 export function previewKind(item) {
@@ -220,6 +221,10 @@ export function modelPreview(kind) {
   const Q=([x,y])=>[45+70*x,85-70*y];
   drawing=path([[0,0],[1,0],[1,1],[0,1]].map(Q),true)+BARRIERS.best.segs.map(s=>path(s.map(Q))).join('');
   caption=P('Une barrière du carré, dessinée à l’échelle','A square barrier, drawn to scale');
+ } else if(kind==='equidecomposition') {
+  const hex=eqPreset('hexagon').pts,H=([x,y])=>[40+30*x,50+30*y],w=62,h=2.598*900/w;
+  drawing=eqTriangulate(hex).map(t=>path(t.map(H),true)).join('')+path([[90,50-h/2],[90+w,50-h/2],[90+w,50+h/2],[90,50+h/2]],true);
+  caption=P('Un hexagone découpé en triangles, puis un rectangle de même aire','A hexagon cut into triangles, then a rectangle of the same area');
  } else if(kind==='four-colours') {
   drawing=[[[20,15],[80,15],[80,50],[20,50]],[[80,15],[140,15],[140,50],[80,50]],[[20,50],[80,50],[80,85],[20,85]],[[80,50],[140,50],[140,85],[80,85]]].map((p,i)=>path(p,true).replace('<path ',`<path style="fill:var(--c${i+1});fill-opacity:.5" `)).join('');
   caption=P('Une carte, des frontières partagées','A map with shared boundaries');
