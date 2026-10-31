@@ -17,6 +17,7 @@ Read one only when the task router in `MAP.md` sends you here.
 | `LAB_DESIGN.md` | laboratory v2: research basis, templates, mission model, lab references for lessons and slides |
 | `CURRICULUM.md` | programme references (verify before citing) |
 | `RESOURCE_LIBRARY.md` | history and provenance of the resource library |
+| `ACTIVE_WORKSTREAMS.md` | current parallel-task register and corrected mathematicians' timeline scope; preserve it when writing a narrower handoff |
 | `HANDOFF.md` | TeX pipeline hand-off: open owner questions, TeX status (older than root `HANDOFF.md`) |
 | `LOG.md` | dated log of past sessions (append one line per finished task) |
 | `history/` | superseded plans and reports; do not read unless asked |
