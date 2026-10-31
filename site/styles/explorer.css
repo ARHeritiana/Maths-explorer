@@ -22,7 +22,7 @@
   --obj2: #b45309; --obj3: #6d3fc0;
   --pos: #136c46; --pos-soft: #e1f3ea; --neg: #b42318; --neg-soft: #fbe7e5;
   --mark: #fde68a;
-  --c1: #2563eb; --c2: #e8710a; --c3: #0f9d58; --c4: #c2185b; --c5: #7b1fa2; --c6: #00838f; --c7: #b8860b; --c8: #d84315; --c9: #3949ab; --c10: #795548; --c11: #546e7a;   /* categorical colours for groups; c1..c11 = the topic hues of the identity (docs/DESIGN_V5.md) */
+  --c1: #2563eb; --c2: #e8710a; --c3: #0f9d58; --c4: #c2185b; --c5: #7b1fa2; --c6: #00838f; --c7: #b8860b; --c8: #d84315;   /* categorical colours for groups */
 }
 :root[data-theme="nuit"] {
   color-scheme: dark;
@@ -33,7 +33,7 @@
   --obj2: #f0b04d; --obj3: #b9a6ff;
   --pos: #5fd0a0; --pos-soft: #12301f; --neg: #ff8a80; --neg-soft: #3a1714;
   --mark: #4d4210;
-  --c1: #7aa2ff; --c2: #ffa94d; --c3: #5fd0a0; --c4: #ff7eb6; --c5: #c9a6ff; --c6: #4dd0e1; --c7: #ffd54f; --c8: #ff8a65; --c9: #9fa8ff; --c10: #d7b59a; --c11: #a8bcc7;
+  --c1: #7aa2ff; --c2: #ffa94d; --c3: #5fd0a0; --c4: #ff7eb6; --c5: #c9a6ff; --c6: #4dd0e1; --c7: #ffd54f; --c8: #ff8a65;
 }
 :root {
   --display: "Atkinson Hyperlegible", system-ui, sans-serif;
@@ -353,29 +353,3 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1.5px va
  body { padding-bottom:0; }
  .subnav { position:static; }
 }
-
-/* ---------------------------------------------------------- identity (docs/DESIGN_V5.md)
-   One hue per mathematical field, stable everywhere (--hue). Hue marks and tints only; text stays ink. */
-[data-topic="algebra"] { --hue: var(--c1); }
-[data-topic="analysis"] { --hue: var(--c2); }
-[data-topic="geometry"] { --hue: var(--c3); }
-[data-topic="arithmetic"] { --hue: var(--c4); }
-[data-topic="probability"] { --hue: var(--c5); }
-[data-topic="statistics"] { --hue: var(--c6); }
-[data-topic="discrete"] { --hue: var(--c7); }
-[data-topic="dynamics"] { --hue: var(--c8); }
-[data-topic="topology"] { --hue: var(--c9); }
-[data-topic="foundations"] { --hue: var(--c10); }
-[data-topic="history"] { --hue: var(--c11); }
-.topic-menu a[data-topic], .topic-subtopics a[data-topic] { border-left: 6px solid var(--hue); }
-.topic-menu a span:last-child { flex: none; white-space: nowrap; }
-.topic-menu a[data-topic][aria-current], .topic-subtopics a[data-topic][aria-current] { background: color-mix(in srgb, var(--hue) 12%, var(--surface)); border-color: var(--hue); }
-/* The signature: a thin spectrum of the eleven field hues under the header, and the same rule above the footer. */
-.topbar::after, footer::before {
-  content: ""; position: absolute; left: 0; right: 0; height: 3px; pointer-events: none;
-  background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c5), var(--c6), var(--c7), var(--c8), var(--c9), var(--c10), var(--c11));
-}
-.topbar::after { bottom: -1px; }
-footer { position: relative; }
-footer::before { top: -1px; }
-@media (forced-colors: active) { .topbar::after, footer::before { background: CanvasText; } }
