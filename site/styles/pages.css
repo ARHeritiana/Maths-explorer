@@ -1290,3 +1290,21 @@ input[type="range"]::-moz-range-thumb { background: var(--accent); border-color:
 .lab2-kind, .tag, .pill, .level { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
 .challenge-motif, .card-bottom { color: var(--ink); }
 .card-bottom span:first-child { color: var(--ink); }
+
+/* Structure: the page links of a section are quiet text under the running head, not a second sticky bar. */
+:root:has(.subnav) { --chrome: var(--header); }
+.subnav { position: static; background: transparent; border-bottom: 0; }
+.subnav a { min-height: 44px; font-size: 0.95rem; font-weight: 600; color: var(--muted); }
+.subnav a .icon { display: none; }
+.subnav a:hover { color: var(--ink); } .subnav a[aria-current] { color: var(--ink); }
+.subnav a[aria-current]::after { height: 3px; }
+.subnav-inner { border-bottom: 1px solid var(--line); }
+
+/* laboratory: filter by field */
+.domain-filter { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; margin: 8px 0 4px; border-bottom: 1px solid var(--ink); }
+.domain-filter button { min-height: 44px; padding: 8px 0 7px; background: none; border: 0; border-bottom: 3px solid transparent; margin-bottom: -1px; color: var(--ink-2); font: 600 1rem var(--ui); cursor: pointer; }
+.domain-filter button:hover { border-bottom-color: var(--line); }
+.domain-filter button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.domain-filter .domain-all { margin-left: auto; font-weight: 600; font-size: 0.95rem; text-decoration: underline; text-underline-offset: 4px; align-self: center; }
+.domain-count { margin: 6px 0 0; min-height: 1.4em; color: var(--muted); font-size: 0.95rem; }
+.lab2-group[hidden], .lab2-cards [hidden], .lab2-sub[hidden] { display: none !important; }

@@ -23,10 +23,16 @@ The earlier look (blue accent, pastel tinted cards per topic, soft shadows and l
 
 Tokens, fonts, header, buttons, cards and tiles, previews (ink on light grey), forms, focus, pills and tags, motion. Minimum contrast checked by `tests/accessibility_browser.py` (the active-step red was darkened from `#e30613` to `#d90012` after it failed 4.5:1).
 
+## Structure (done, 31 October 2026)
+
+- The header holds the three doors only. The page links of a section (Bases, Slides, Pathways; Topics, Challenges; Timelines, Biographies, Stories, Curiosities) are no longer a second sticky bar: they are quiet text links under the running head that scroll away.
+- Slides were already reachable from each chapter ("Présenter et manipuler", opens the deck of the chapter), so they stay a page of the chapter, not a section of their own.
+- Topics are a filter of the laboratory (`bindLabIndex`, `tests/lab-filter.test.mjs`). The `#topics` pages remain for the full resource listing and are linked from the filter.
+- No route was removed or renamed, so existing links and bookmarks keep working. Merging `#topics`, `#slides` and `#pathways` into the three doors as pages is not done and would need route changes.
+
 ## Still to do (in this order)
 
-1. Structure: three doors (Cours, Laboratoire, Lire) with no second row of tabs; slides become the last step of each chapter; Topics become a filter of the laboratory. Needs route and test changes.
-2. Home: the animated slideshow of live figures from the prototype.
-3. Canvas engine of the prototype (free handles, easing, pan and zoom, soft magnet) in the laboratory, replacing the current engine experiment by experiment.
-4. Slides (`site/slides/player.css`) and PDFs (`content/tex/core/mx-layout.sty`) still use the old palette.
-5. The pages "Lire" and the per-class pages of the prototype.
+1. Home: the animated slideshow of live figures from the prototype.
+2. Canvas engine of the prototype (free handles, easing, pan and zoom, soft magnet) in the laboratory, replacing the current engine experiment by experiment.
+3. Slides (`site/slides/player.css`) and PDFs (`content/tex/core/mx-layout.sty`) still use the old palette.
+4. The pages "Lire" and the per-class pages of the prototype.

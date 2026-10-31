@@ -4,6 +4,7 @@
 import { EXPERIMENTS, TEMPLATE_INFO, SECTION_INFO, INDEX_ORDER, groupOf, labRef } from "./registry.js";
 import { relatedChapters } from "../resource-library.js";
 import { fourierLinks } from "../fourier-links.js";
+import { TOPICS, membershipsFor } from "../topic-registry.js";
 
 const esc = (x) => String(x).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const infoOf = (id) => SECTION_INFO[id] || TEMPLATE_INFO[id];
@@ -11,7 +12,10 @@ const infoOf = (id) => SECTION_INFO[id] || TEMPLATE_INFO[id];
 // Experiments in the order of the index (group by group), so that "next" follows what the learner saw on the index.
 export const ordered = () => INDEX_ORDER.flatMap((g) => EXPERIMENTS.filter((e) => groupOf(e) === g));
 
-const card = (e, { t, pair, link, completed }) => `<a class="lab2-card-link" href="${link("lab", e.id)}"><span class="lab2-card-symbol" aria-hidden="true">${esc(e.symbol)}</span><span class="lab2-card-body"><strong>${esc(t(e.title))}</strong><span>${esc(t(e.short))}</span><span class="lab2-card-meta">${esc(t(e.level))} · ${e.duration} min</span></span>${completed.has(e.id) ? `<span class="check" aria-label="${pair("Expérience terminée", "Experiment completed")}">✓</span>` : ""}</a>`;
+// The fields (domains of mathematics) an experiment belongs to, from the shared discovery taxonomy.
+const fieldsOf = (e) => [...new Set(membershipsFor(e, "lab").map((m) => m.split("/")[0]))];
+
+const card = (e, { t, pair, link, completed }) => `<a class="lab2-card-link" data-fields="${fieldsOf(e).join(" ")}" href="${link("lab", e.id)}"><span class="lab2-card-symbol" aria-hidden="true">${esc(e.symbol)}</span><span class="lab2-card-body"><strong>${esc(t(e.title))}</strong><span>${esc(t(e.short))}</span><span class="lab2-card-meta">${esc(t(e.level))} · ${e.duration} min</span></span>${completed.has(e.id) ? `<span class="check" aria-label="${pair("Expérience terminée", "Experiment completed")}">✓</span>` : ""}</a>`;
 
 export function indexPage(ctx) {
   const { t, pair } = ctx;
@@ -22,7 +26,30 @@ export function indexPage(ctx) {
     const items = list.map((e) => (e.sub ? `<div class="lab2-sub"><h3>${esc(t(e.sub))}</h3>${card(e, ctx)}</div>` : card(e, ctx))).join("");
     return `<section class="lab2-group" id="lab-${id}"><div class="lab2-group-head"><h2>${esc(t(info.title))}</h2><p>${esc(t(info.blurb))}</p></div><div class="lab2-cards">${items}</div></section>`;
   }).join("");
-  return `<main id="main" class="page lab2-index" tabindex="-1"><h1>${pair("Le laboratoire", "The laboratory")}</h1><p class="page-intro">${pair("Prédire, explorer, vérifier, puis démontrer : chaque expérience tient en quelques missions courtes.", "Predict, explore, check, then prove: each experiment fits in a few short missions.")}</p>${groups}</main>`;
+  return `<main id="main" class="page lab2-index" tabindex="-1"><h1>${pair("Le laboratoire", "The laboratory")}</h1><p class="page-intro">${pair("Prédire, explorer, vérifier, puis démontrer : chaque expérience tient en quelques missions courtes.", "Predict, explore, check, then prove: each experiment fits in a few short missions.")}</p>${filter(ctx)}${groups}</main>`;
+}
+
+// Domain filter: topics are a way to look at the laboratory, not a separate place to go.
+function filter({ t, pair }) {
+  const used = new Set(EXPERIMENTS.flatMap(fieldsOf));
+  const chips = TOPICS.filter((x) => used.has(x.id)).map((x) => `<button type="button" aria-pressed="false" data-field="${x.id}">${esc(t(x.title))}</button>`).join("");
+  return `<div class="domain-filter" role="group" aria-label="${pair("Filtrer par domaine", "Filter by field")}"><button type="button" aria-pressed="true" data-field="">${pair("Tous", "All")}</button>${chips}<a class="domain-all" href="#topics">${pair("Tous les domaines et ressources", "All fields and resources")}</a></div><p class="domain-count" id="domain-count" role="status"></p>`;
+}
+
+export function bindLabIndex(root, pair) {
+  const bar = root.querySelector(".domain-filter"), status = root.querySelector("#domain-count");
+  if (!bar) return;
+  const apply = (field) => {
+    bar.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.field === field)));
+    let shown = 0;
+    root.querySelectorAll(".lab2-card-link").forEach((a) => {
+      const on = !field || a.dataset.fields.split(" ").includes(field);
+      const wrap = a.closest(".lab2-sub") || a; wrap.hidden = !on; if (on) shown++;
+    });
+    root.querySelectorAll(".lab2-group").forEach((g) => { g.hidden = ![...g.querySelectorAll(".lab2-card-link")].some((a) => !(a.closest(".lab2-sub") || a).hidden); });
+    status.textContent = field ? pair(`${shown} expérience${shown > 1 ? "s" : ""}`, `${shown} experiment${shown > 1 ? "s" : ""}`) : "";
+  };
+  bar.addEventListener("click", (e) => { const b = e.target.closest("button[data-field]"); if (b) apply(b.dataset.field); });
 }
 
 export function experimentPage(exp, { t, pair, link, completed, mission = "" }) {

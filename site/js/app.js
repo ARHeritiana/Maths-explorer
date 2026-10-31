@@ -21,7 +21,7 @@ import { assetHref } from "./data-loader.js";
 import { illuminateFeedback } from "./motion.js";
 import { mountExperiment } from "./lab/mount.js";
 import { resolveRef, labRef } from "./lab/registry.js";
-import { indexPage as labIndexPage, experimentPage } from "./lab/page.js";
+import { indexPage as labIndexPage, experimentPage, bindLabIndex } from "./lab/page.js";
 import { isAnswer, formatNumber } from "./math.js";
 import {discoveryIndex,discoveryPage,bindDiscovery,discoveryContext,isTopicRoute} from './discovery.js';
 import {historyPage,bindHistory,isHistoryRoute} from './history.js';
@@ -198,6 +198,7 @@ function render() {
   $(".skip").textContent = pair("Aller au contenu", "Skip to content");
   bindCommon();
   if (page === "gallery" && r.id) bindGallery();
+  if (page === "lab" && !experiment) bindLabIndex($("#main"), pair);
   if (page === "challenges") stopChapter = bindChallenges();
   if (page === "home") stopChapter = bindHome($("#main"),discovery,t);
   if (page === "basics" && r.id) stopChapter = bindBasics();
