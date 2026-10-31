@@ -8,7 +8,9 @@ import {PEOPLE,ADVANCES} from './history-data.js';
 import {previewKind,modelPreview} from './discovery-previews.js';
 import {all as ERROR_RECORDS} from './errors-model.js';
 const E=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-export const discoveryIndex = data => buildDiscoveryIndex({...data,libraryChapters:discoveryChapters,biographies:BIOGRAPHIES,stories:STORIES,people:PEOPLE,advances:ADVANCES,university,courses,errors:ERROR_RECORDS()});
+// Foundations lessons that appear in the topic browser (the arithmetic lessons of #basics are not indexed).
+const FOUNDATION_LESSONS=[{id:'sets',title:['Ensembles','Sets and operations'],summary:['Diagrammes de Venn, réunion, intersection, différence, complémentaire, questions et lois sur les ensembles.','Venn diagrams, union, intersection, difference, complement, questions and the laws of sets.'],topics:['foundations/sets'],concepts:['sets','venn']}];
+export const discoveryIndex = data => buildDiscoveryIndex({...data,lessons:FOUNDATION_LESSONS,libraryChapters:discoveryChapters,biographies:BIOGRAPHIES,stories:STORIES,people:PEOPLE,advances:ADVANCES,university,courses,errors:ERROR_RECORDS()});
 export function previewSVG(item,t) {
   const kind=previewKind(item);
   if(kind==='challenge')return `<figure class="discovery-preview discovery-emblem" data-preview="challenge">${challengeIcon(item.route.split('/')[1])}<figcaption>${E(t(item.title))}</figcaption></figure>`;

@@ -163,7 +163,7 @@ function render() {
     (r.page === 'topics' && isTopicRoute(r.id,r.tab)) ||
     (r.page === "errors" && isErrorRoute(r.id)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction" || r.id === "multiplication" || r.id === "division")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
+    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction" || r.id === "multiplication" || r.id === "division" || r.id === "sets")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
     r.page === "university" || (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
@@ -452,13 +452,18 @@ const basicsLessons = [
   {id: "division", number: "05", title: ["Division par partage", "Division as sharing"],
    description: ["Partager les jetons équitablement, échanger les restes et découvrir le quotient et le reste.", "Share counters equally, trade leftovers, and discover the quotient and remainder."],
    frameTitle: ["Activité interactive sur le partage et la division", "Interactive division and sharing activity"]},
+  {id: "sets", number: "06", kind: ["Ensembles", "Sets"], title: ["Ensembles", "Sets and operations"],
+   description: ["Manipuler des ensembles avec des diagrammes de Venn, découvrir réunion, intersection, différence et complémentaire, puis s’exercer.", "Explore sets with Venn diagrams: union, intersection, difference and complement, then practise."],
+   frameTitle: ["Activité interactive sur les ensembles et leurs opérations", "Interactive sets and operations activity"]},
 ];
 function basicsPage(id) {
-  if (!id) return '<main id="main" class="page" tabindex="-1"><div class="section-kicker">'+pair("Apprendre", "Learn")+'</div><h1>'+pair("Les bases des mathématiques", "Mathematical foundations")+'</h1><p class="page-intro">'+pair("Pour comprendre les idées de départ en manipulant, avant de mémoriser les règles.", "Explore starting ideas with your hands before memorising rules.")+'</p><div class="pathway-grid" style="margin-top:24px">'+basicsLessons.map(l=>'<article class="pathway-card"><div class="section-kicker">'+l.number+' · '+pair("Nombres", "Numbers")+'</div><h2><a href="#basics/'+l.id+'">'+t(l.title)+'</a></h2><p>'+t(l.description)+'</p><a class="btn btn-primary" href="#basics/'+l.id+'">'+pair("Explorer la leçon", "Open the lesson")+'</a></article>').join("")+'</div></main>';
+  if (!id) return '<main id="main" class="page" tabindex="-1"><div class="section-kicker">'+pair("Apprendre", "Learn")+'</div><h1>'+pair("Les bases des mathématiques", "Mathematical foundations")+'</h1><p class="page-intro">'+pair("Pour comprendre les idées de départ en manipulant, avant de mémoriser les règles.", "Explore starting ideas with your hands before memorising rules.")+'</p><div class="pathway-grid" style="margin-top:24px">'+basicsLessons.map(l=>'<article class="pathway-card"><div class="section-kicker">'+l.number+' · '+t(l.kind||["Nombres", "Numbers"])+'</div><h2><a href="#basics/'+l.id+'">'+t(l.title)+'</a></h2><p>'+t(l.description)+'</p><a class="btn btn-primary" href="#basics/'+l.id+'">'+pair("Explorer la leçon", "Open the lesson")+'</a></article>').join("")+'</div></main>';
   const lesson = basicsLessons.find(l=>l.id===id);
   if (!lesson) return "";
-  const related = id === "division"
-    ? '<p class="muted"><a href="#basics/multiplication">'+pair("Leçon précédente : multiplication", "Previous lesson: multiplication")+'</a></p>'
+  const related = id === "sets"
+    ? '<p class="muted"><a href="#basics/division">'+pair("Leçon précédente : division", "Previous lesson: division")+'</a></p>'
+    : id === "division"
+    ? '<p class="muted"><a href="#basics/multiplication">'+pair("Leçon précédente : multiplication", "Previous lesson: multiplication")+'</a> · <a href="#basics/sets">'+pair("Leçon suivante : ensembles", "Next lesson: sets and operations")+'</a></p>'
     : id === "multiplication"
     ? '<p class="muted"><a href="#basics/subtraction">'+pair("Leçon précédente : soustraction", "Previous lesson: subtraction")+'</a> · <a href="#basics/division">'+pair("Leçon suivante : division", "Next lesson: division")+'</a></p>'
     : id === "subtraction"

@@ -8,7 +8,8 @@ const lessons={
  addition:['Addition as grouping','Addition et retenues'],
  subtraction:['Subtraction as ungrouping','Soustraction et emprunts'],
  multiplication:['Multiplication as grouping','Multiplication par regroupements'],
- division:['Division as sharing','Division par partage']
+ division:['Division as sharing','Division par partage'],
+ sets:['Sets and operations','Ensembles']
 };
 test('Foundations iframe follows website language',async()=>{
  const app=await read('../dist/js/app.js');
@@ -74,4 +75,13 @@ test('multiplication explains regrouping hundreds into thousands',async()=>{
  const fr=await read('../dist/resources/basics/multiplication.html');
  assert.ok(en.includes("['units','tens','hundreds','thousands']"));
  assert.ok(fr.includes("['unités','dizaines','centaines','milliers']"));
+});
+
+test('the sets lesson is reachable: route, card, neighbours and discovery topic',async()=>{
+ const app=await read('../dist/js/app.js');
+ assert.ok(app.includes('r.id === "sets"'));
+ assert.ok(app.includes('id: "sets", number: "06"'));
+ assert.ok(app.includes('#basics/sets'));
+ const discovery=await read('../dist/js/discovery.js');
+ assert.ok(discovery.includes("topics:['foundations/sets']"));
 });

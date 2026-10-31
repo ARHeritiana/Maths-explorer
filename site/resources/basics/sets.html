@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ensembles</title>
+
+<style>
+:root{--paper:#F4F7FA;--ink:#13303B;--mute:#566B75;--line:#CDD8DF;--surf:#FFFFFF;--b:#2D6CB5;--c0:#E9A416;--c1:#2D6CB5;--c2:#2A9D8F;--c3:#C0507A;--va:#2D6CB5;--vb:#B8456F;--vc:#1F8579;--vs:#6255B7;--ok:#1F7A55;--bad:#B83A2E;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0F1B21;--ink:#E6EEF1;--mute:#9DB0B8;--line:#2B4049;--surf:#162830;--b:#5B9BE0;--c0:#F2B73D;--c1:#5B9BE0;--c2:#4CC2B3;--c3:#E07AA0;--va:#5B9BE0;--vb:#E07AA0;--vc:#4CC2B3;--vs:#A79BF2;--ok:#4CC38F;--bad:#F0877B;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0F1B21;--ink:#E6EEF1;--mute:#9DB0B8;--line:#2B4049;--surf:#162830;--b:#5B9BE0;--c0:#F2B73D;--c1:#5B9BE0;--c2:#4CC2B3;--c3:#E07AA0;--va:#5B9BE0;--vb:#E07AA0;--vc:#4CC2B3;--vs:#A79BF2;--ok:#4CC38F;--bad:#F0877B;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink);font:1.0625rem/1.5 "Atkinson Hyperlegible",system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:28px 14px 48px;overflow-wrap:anywhere}
+h1{font:600 clamp(1.75rem,7vw,2.5rem)/1.1 "STIX Two Text",Georgia,serif;margin:0 0 10px}
+h2{font:600 1.5rem/1.2 "STIX Two Text",Georgia,serif;margin:0 0 6px}
+h3{font:600 1.2rem/1.3 "STIX Two Text",Georgia,serif;margin:0 0 6px}
+h4{font:700 .85rem/1.3 "Atkinson Hyperlegible",system-ui,sans-serif;margin:0 0 4px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute)}
+p{margin:0 0 10px}
+.lead{color:var(--mute);margin:0 0 16px;max-width:60ch}
+.muted{color:var(--mute);font-size:.9rem}
+.motif{display:flex;align-items:flex-end;gap:6px;margin-bottom:12px}.motif i{display:block;border-radius:50%}
+.motif i:nth-child(1){width:12px;height:12px;background:var(--c0)}.motif i:nth-child(2){width:17px;height:17px;background:var(--c1)}.motif i:nth-child(3){width:22px;height:22px;background:var(--c2)}.motif i:nth-child(4){width:28px;height:28px;background:var(--c3)}
+button:focus-visible,[tabindex]:focus-visible,a:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+button{font:inherit;color:var(--ink);cursor:pointer}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.tab,.btn,.seg button,.op,.answer,.num,.cbtn,.law-btn{min-height:44px;min-width:44px;border-radius:10px;border:2px solid var(--line);background:var(--surf);padding:6px 12px;font-weight:700;text-align:left}
+.tab{flex:1 1 auto;text-align:center}
+.tab[aria-selected="true"],.seg button[aria-pressed="true"],.op[aria-pressed="true"],.cbtn[aria-pressed="true"],.law-btn[aria-current="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn{background:var(--ink);color:var(--paper);border-color:var(--ink);text-align:center}
+.btn.alt{background:var(--surf);color:var(--ink)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}
+.card{background:var(--surf);border:2px solid var(--line);border-radius:18px;padding:14px;margin-top:12px;box-shadow:0 6px 18px -12px rgba(19,48,59,.35);min-width:0}
+.play,.practice,.reference,.concepts{display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.stagetop{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:flex-start}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{text-align:center}
+.svg-holder{overflow-x:auto;margin-top:8px}
+.svg-holder svg{display:block;width:100%;min-width:400px;height:auto}
+.vframe{fill:var(--surf);stroke:var(--mute);stroke-width:1.5;stroke-dasharray:5 6}
+.vu{fill:var(--mute);font:italic 16px "STIX Two Text",Georgia,serif}
+.vlab{font:italic 600 27px "STIX Two Text",Georgia,serif}
+.vel{fill:var(--ink);font:700 17px ui-monospace,SFMono-Regular,Menlo,monospace}
+.vtxt{fill:var(--ink);font:600 24px "STIX Two Text",Georgia,serif}
+.vsmall{fill:var(--mute);font:16px "Atkinson Hyperlegible",system-ui,sans-serif}
+g[data-region]{cursor:pointer}
+g[data-region]:focus{outline:none}
+g[data-region]:focus-visible .rg{opacity:.25;fill:var(--ink)}
+g[data-region]:focus-visible .rg.on{opacity:.8}
+.pills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:6px;margin-top:8px}
+.pill{border:2px solid var(--line);border-radius:10px;padding:6px 8px;font-size:.85rem}
+.pill.picked{border-color:var(--vs)}
+.pill b{display:block;font-size:.8rem;color:var(--mute)}
+.opgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:6px}
+.op{display:flex;flex-direction:column;gap:2px}
+.op .sym{font:600 1rem "STIX Two Text",Georgia,serif}
+.op .nm{font-size:.8rem;font-weight:400}
+.math{font:600 1.5rem/1.3 "STIX Two Text",Georgia,serif;margin:6px 0 2px}
+.setrow{margin:8px 0}
+.setrow code{display:block;font:700 .9rem ui-monospace,monospace;margin:2px 0 6px}
+.nums{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:4px}
+.num{text-align:center;padding:4px;font-family:ui-monospace,monospace}
+.num[aria-pressed="true"]{color:#fff;border-color:transparent}
+.num.A[aria-pressed="true"]{background:var(--va)}.num.B[aria-pressed="true"]{background:var(--vb)}.num.C[aria-pressed="true"]{background:var(--vc)}
+.cA{color:var(--va)}.cB{color:var(--vb)}.cC{color:var(--vc)}
+.note{border-left:4px solid var(--vs);padding:6px 12px;margin:14px 0;background:var(--surf);border-radius:0 10px 10px 0}
+.cbtn{display:flex;justify-content:space-between;gap:8px;width:100%;margin:2px 0}
+.cbtn .gl{font-family:"STIX Two Text",Georgia,serif;white-space:nowrap;flex:none}
+.cgroup{font-weight:700;font-size:.8rem;color:var(--mute);margin:10px 0 2px;text-transform:uppercase;letter-spacing:.04em}
+.defn{font-size:1.05rem}
+.panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px;margin:10px 0}
+.panels>div{border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.formula{font:600 1.3rem/1.4 "STIX Two Text",Georgia,serif;margin:14px 0;overflow-x:auto}
+.answers{display:grid;gap:8px;margin:12px 0}
+.answer{display:flex;gap:10px;align-items:center;font-weight:400;width:100%}
+.answer .ltr{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:50%;background:var(--paper);border:2px solid var(--line);font-weight:700;font-size:.85rem}
+.answer.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--surf))}
+.answer.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--surf))}
+.answer:disabled{color:var(--ink);cursor:default}
+.ctx{font:600 1rem ui-monospace,monospace;background:var(--paper);border-radius:10px;padding:8px 10px;margin:8px 0;overflow-x:auto}
+.fb{border:2px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0}
+.fb.good{border-color:var(--ok)}.fb.bad{border-color:var(--bad)}
+.score{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin-top:6px}
+.score b{display:block;font:600 1.6rem "STIX Two Text",Georgia,serif}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.laws{display:grid;gap:4px}
+.law-btn{width:100%;font-weight:400;text-align:left}
+.halves{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.halves svg{min-width:0!important}
+.halves .svg-holder{overflow:visible}
+.tt{border-collapse:collapse;margin:8px 0;min-width:280px}
+.tt th,.tt td{border:1px solid var(--line);padding:6px 10px;text-align:center}
+.tt .y{color:var(--ok);font-weight:700}.tt .n{color:var(--mute)}
+.scroll{overflow-x:auto}
+.mini{border-collapse:collapse;width:100%}
+.mini td{border-top:1px solid var(--line);padding:6px 8px;vertical-align:top}
+.mini td:first-child{font-family:"STIX Two Text",Georgia,serif;font-weight:600;white-space:nowrap}
+@media (min-width:700px){.play{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}.concepts,.reference{grid-template-columns:minmax(0,1fr) minmax(0,2.2fr)}.practice{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;src:url("../../fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:700;src:url("../../fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"STIX Two Text";font-weight:600;src:url("../../fonts/stix-two-text-latin-600-normal.woff2") format("woff2");font-display:swap}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main>
+<div class="motif" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<h1 data-i="title"></h1>
+<p class="lead" data-i="lead"></p>
+<div class="tabs" role="tablist" data-ia="tabsLabel">
+<button class="tab" role="tab" id="tab-explore" data-tab="explore" aria-controls="panel-explore" data-i="tab.explore"></button>
+<button class="tab" role="tab" id="tab-learn" data-tab="learn" aria-controls="panel-learn" data-i="tab.learn"></button>
+<button class="tab" role="tab" id="tab-practice" data-tab="practice" aria-controls="panel-practice" data-i="tab.practice"></button>
+<button class="tab" role="tab" id="tab-reference" data-tab="reference" aria-controls="panel-reference" data-i="tab.reference"></button>
+</div>
+
+<section id="panel-explore" role="tabpanel" aria-labelledby="tab-explore" tabindex="0">
+<h2 data-i="explore.title"></h2><p class="muted" data-i="explore.caption"></p>
+<div class="play">
+<div class="card">
+<div class="stagetop"><div><h3 data-i="live.title"></h3><p class="muted" data-i="live.hint"></p></div>
+<div class="seg" role="group" data-ia="countLabel"><button data-count="2" aria-pressed="true" data-i="count2"></button><button data-count="3" aria-pressed="false" data-i="count3"></button></div></div>
+<div class="svg-holder" id="explore-svg"></div>
+<div class="pills" id="region-readout"></div>
+</div>
+<div>
+<div class="card"><h3 data-i="ops.title"></h3><p class="muted" data-i="ops.sub"></p><div class="opgrid" id="operation-grid"></div><div id="explore-result" aria-live="polite"></div></div>
+<div class="card"><h3 data-i="build.title"></h3><p class="muted" data-i="build.sub"></p><div id="set-builders"></div><div class="row"><button class="btn alt" id="sample-sets" data-i="build.sample"></button><button class="btn alt" id="clear-sets" data-i="build.clear"></button></div></div>
+</div>
+</div>
+<p class="note" data-i="explore.note"></p>
+</section>
+
+<section id="panel-learn" role="tabpanel" aria-labelledby="tab-learn" tabindex="0" hidden>
+<h2 data-i="learn.title"></h2><p class="muted" data-i="learn.caption"></p>
+<div class="concepts"><nav class="card" id="concept-list" data-ia="conceptsLabel"></nav><article class="card" id="lesson"></article></div>
+</section>
+
+<section id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" tabindex="0" hidden>
+<h2 data-i="practice.title"></h2><p class="muted" data-i="practice.caption"></p>
+<div class="seg" role="group" data-ia="practiceLabel"><button data-practice="quiz" aria-pressed="true" data-i="practice.quiz"></button><button data-practice="shade" aria-pressed="false" data-i="practice.shade"></button></div>
+<div id="quiz-mode" class="practice">
+<div class="card" id="quiz-area"></div>
+<aside>
+<div class="card"><h4 data-i="score.title"></h4><div class="score"><div><b id="score-correct">0</b><span data-i="score.correct"></span></div><div><b id="score-attempts">0</b><span data-i="score.answered"></span></div><div><b id="score-streak">0</b><span data-i="score.streak"></span></div><div><b id="score-rate">0</b><span data-i="score.rate"></span></div></div></div>
+<div class="card"><h4 data-i="tip.title"></h4><p data-i="tip.body"></p></div>
+</aside>
+</div>
+<div id="shade-mode" hidden><div class="card">
+<div class="stagetop"><h3 data-i="shade.title"></h3><span class="muted" data-i="shade.regions"></span></div>
+<h3 id="shade-prompt"></h3><p data-i="shade.instructions"></p>
+<div class="svg-holder" id="shade-svg"></div>
+<div class="row"><button class="btn" id="shade-check" data-i="shade.check"></button><button class="btn alt" id="shade-reset" data-i="shade.clear"></button><button class="btn alt" id="shade-reveal" data-i="shade.reveal"></button><button class="btn alt" id="shade-next" data-i="shade.next"></button></div>
+<div id="shade-feedback" aria-live="polite"></div>
+</div></div>
+</section>
+
+<section id="panel-reference" role="tabpanel" aria-labelledby="tab-reference" tabindex="0" hidden>
+<h2 data-i="ref.title"></h2><p class="muted" data-i="ref.caption"></p>
+<div class="reference"><nav class="card laws" id="law-list" data-ia="lawsLabel"></nav><article class="card" id="law-article"></article></div>
+<div class="card"><h3 data-i="ref.notation"></h3><table class="mini"><tbody id="notation-rows"></tbody></table></div>
+<div class="card"><h3 data-i="ref.ideas"></h3><div id="ideas"></div></div>
+</section>
+</main>
+<script>
+/* TEXT-BEGIN: every sentence of this edition. The code below this block is identical in both editions. */
+const T={
+sep:' ; ',incl:'⊂',
+list:a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' et '+a[a.length-1],
+pair:(a,b)=>'('+a+' ; '+b+')',
+pct:n=>n+' %',
+ui:{
+'title':'Ensembles',
+'lead':'Explorez ce qui appartient, ce qui se recoupe et ce qui reste à l’extérieur. Passez de simples collections au langage commun à toutes les mathématiques, avec des diagrammes que vous pouvez modifier et des questions à résoudre.',
+'tab.explore':'Explorer','tab.learn':'Apprendre','tab.practice':'S’exercer','tab.reference':'Référence',
+'explore.title':'Un terrain de jeu pour les ensembles',
+'explore.caption':'Modifiez les éléments de vos ensembles, choisissez une opération et regardez la zone colorée et le résultat se mettre à jour ensemble.',
+'explore.note':'<strong>Comment lire la figure :</strong> le rectangle représente l’ensemble de référence <strong>U</strong> = {1 ; 2 ; … ; 12}. Chaque cercle est un ensemble. Une zone de recouvrement correspond à l’appartenance aux deux cercles. Une partie colorée signifie que cette région fait partie du résultat choisi.',
+'live.title':'Diagramme de Venn dynamique','live.hint':'Sélectionnez une région pour mettre en évidence ses éléments plus bas.',
+'count2':'2 ensembles','count3':'3 ensembles',
+'ops.title':'1. Choisir une opération','ops.sub':'La zone violette montre son résultat.',
+'build.title':'2. Construire vos ensembles','build.sub':'Appuyez sur un nombre pour l’ajouter à un ensemble ou l’en retirer. L’univers reste fixe : U = {1 ; 2 ; … ; 12}.',
+'build.sample':'Nouvel exemple','build.clear':'Vider tous les ensembles',
+'learn.title':'Des collections aux opérations','learn.caption':'Choisissez une notion pour voir sa définition, un diagramme, un exemple détaillé et une distinction importante.',
+'practice.title':'S’exercer et expérimenter','practice.caption':'Répondez à des questions tirées au hasard, ou coloriez vous-même un diagramme de Venn à trois ensembles. Les retours expliquent le raisonnement, pas seulement la réponse.',
+'practice.quiz':'Questions rapides','practice.shade':'Colorier le diagramme',
+'score.title':'Votre séance','score.correct':'Correctes','score.answered':'Réponses données','score.streak':'Série en cours','score.rate':'Réussite',
+'tip.title':'Une bonne habitude','tip.body':'Avant de calculer une expression compliquée, posez-vous une question : pour un élément <em>x</em> quelconque, que faut-il pour qu’il appartienne au résultat ?',
+'shade.title':'Défi : diagramme à trois ensembles','shade.regions':'8 régions distinctes',
+'shade.instructions':'Sélectionnez chaque région qui appartient à cette expression ensembliste. Sélectionnez-la à nouveau pour retirer la couleur.',
+'shade.check':'Vérifier le coloriage','shade.clear':'Effacer le coloriage','shade.reveal':'Voir la solution','shade.next':'Nouveau défi',
+'ref.title':'Les lois sur les ensembles','ref.caption':'Une preuve visuelle : chaque identité colore exactement les mêmes régions des deux côtés. Le tableau d’appartenance vérifie tous les cas possibles.',
+'ref.notation':'Notations en un coup d’œil','ref.ideas':'Trois idées à retenir'
+},
+ia:{tabsLabel:'Sections',countLabel:'Nombre d’ensembles',conceptsLabel:'Notions sur les ensembles',practiceLabel:'Type d’exercice',lawsLabel:'Identités sur les ensembles'},
+notation:[['∈ / ∉','est / n’est pas un élément de'],['⊂ / ⊊','inclusion / inclusion stricte (selon les manuels, ⊆ note l’inclusion au sens large ; cette page utilise ⊂ pour l’inclusion au sens large)'],['∪ / ∩','réunion / intersection'],['∖ / Δ','différence / différence symétrique'],['Aᶜ','complémentaire relativement à U (noté aussi Ā)'],['∅ / U','ensemble vide / ensemble de référence'],['𝒫(A)','ensemble des parties : l’ensemble de toutes les parties de A'],['A × B','produit cartésien : couples (a ; b)'],['Card(A)','cardinal : nombre d’éléments de A (noté aussi |A|)']],
+ideas:'<p><strong>Un élément n’est pas une partie.</strong> Les affirmations 2 ∈ A et {2} ⊂ A n’ont pas le même sens.</p><p><strong>L’ordre et les répétitions ne changent pas un ensemble.</strong> {1 ; 2 ; 2} = {2 ; 1}.</p><p><strong>Précisez toujours l’univers pour les complémentaires.</strong> Aᶜ contient tout ce qui est dans U sans être dans A.</p><p>Pour des ensembles finis : <strong>Card(A ∪ B) = Card(A) + Card(B) − Card(A ∩ B)</strong>.</p>',
+ops:{
+union:{name:'Réunion',desc:'Un élément est retenu s’il appartient à A ou à B (ou aux deux).'},
+intersection:{name:'Intersection',desc:'Seuls les éléments appartenant aux deux ensembles sont retenus.'},
+diff:{name:'Différence',desc:'Éléments de A qui n’appartiennent pas à B.'},
+reverseDiff:{name:'Différence inversée',desc:'Éléments de B qui n’appartiennent pas à A.'},
+sym:{name:'Différence symétrique',desc:'Éléments appartenant à exactement un des deux ensembles A et B.'},
+complement:{name:'Complémentaire',desc:'Éléments de U qui n’appartiennent pas à A.'},
+notUnion:{name:'Hors des deux',desc:'Éléments qui ne sont ni dans A ni dans B.'},
+notIntersection:{name:'Pas dans les deux',desc:'Tout sauf la partie commune à A et à B.'},
+tripleUnion:{name:'Réunion de trois',desc:'Tout élément appartenant à au moins un des ensembles A, B et C.'},
+tripleIntersection:{name:'Commun aux trois',desc:'Seuls les éléments appartenant aux trois ensembles.'},
+pairWithC:{name:'Réunion puis intersection',desc:'Éléments de C qui appartiennent aussi à A ou à B.'},
+interWithPair:{name:'Intersection avec une réunion',desc:'Éléments de A qui appartiennent aussi à B ou à C.'},
+diffUnion:{name:'Retirer C',desc:'Éléments de A ou de B, mais hors de C.'},
+onlyA:{name:'A seulement',desc:'Éléments de A qui ne sont ni dans B ni dans C.'},
+outsideAll:{name:'Hors des trois',desc:'Éléments qui n’appartiennent à aucun des trois ensembles.'},
+tripleSym:{name:'Différence symétrique',desc:'Éléments appartenant à un nombre impair d’ensembles (un ou trois).'}
+},
+region:{'00':'Hors de A et de B','10':'A seulement','01':'B seulement','11':'A et B','000':'Hors des trois','100':'A seulement','010':'B seulement','001':'C seulement','110':'A ∩ B seulement','101':'A ∩ C seulement','011':'B ∩ C seulement','111':'Dans les trois'},
+regionWords:(inn,out)=>inn.length?'dans '+T.list(inn)+(out.length?' seulement':''):'dans aucun des ensembles A, B, C',
+vennLabel:(count,n)=>'Diagramme de Venn à '+(count===3?'trois':'deux')+' ensembles, '+n+(n<=1?' région colorée':' régions colorées'),
+resultHead:n=>'Résultat · '+n+(n<=1?' élément':' éléments'),
+setLabel:l=>'Ensemble '+l,
+numLabel:(v,l)=>v+', ensemble '+l,
+cats:{foundations:'Bases',relations:'Relations',operations:'Opérations',counting:'Dénombrer et construire'},
+lessonCount:(i,n)=>i+' sur '+n,
+lessonUi:{worked:'Exemple détaillé',watch:'Attention',note:'Les diagrammes sont schématiques : c’est l’appartenance qui compte, pas la taille des cercles.',next:'Notion suivante →'},
+lessons:{
+set:{name:'Qu’est-ce qu’un ensemble ?',glyph:'{ }',title:'Une collection d’objets distincts',definition:'Un ensemble est une collection bien définie d’objets, appelés ses éléments. Un ensemble ne tient compte ni de l’ordre ni des répétitions.',formula:'A = {1 ; 2 ; 3}',example:'{1 ; 2 ; 2 ; 3} = {3 ; 2 ; 1} = {1 ; 2 ; 3}. Les mêmes éléments définissent le même ensemble.',caution:'Les accolades servent à écrire un ensemble. Les parenthèses, comme dans (1 ; 2), désignent en général un couple.'},
+membership:{name:'Appartenance',glyph:'∈',title:'Appartient, ou n’appartient pas',definition:'Le symbole x ∈ A signifie que x est un élément de A ; x ∉ A signifie qu’il n’en est pas un. L’appartenance relie un objet à un ensemble.',formula:'2 ∈ A,  4 ∉ A',example:'Pour A = {1 ; 2 ; 3}, l’affirmation 2 ∈ A est vraie, mais 4 ∈ A est fausse.',caution:'2 ∈ A n’a pas le même sens que {2} ⊂ A. L’une concerne un élément, l’autre un ensemble.'},
+empty:{name:'Ensemble vide',glyph:'∅',title:'Un ensemble sans élément',definition:'L’ensemble vide, noté ∅ ou {}, n’a aucun élément. Il est inclus dans tout ensemble, y compris dans lui-même.',formula:'Card(∅) = 0',example:'{x ∈ ℕ | x < 0} = ∅, où ℕ désigne l’ensemble des entiers naturels (0 compris).',caution:'∅ et {∅} sont différents : le second ensemble a exactement un élément, à savoir ∅.'},
+universal:{name:'Ensemble de référence',glyph:'U',title:'Choisir l’univers dans lequel on travaille',definition:'L’ensemble de référence U (ou univers) contient tous les objets considérés. Les complémentaires sont toujours pris relativement à U.',formula:'U = {1 ; 2 ; 3 ; 4 ; 5 ; 6}',example:'Si U = {1 ; 2 ; 3 ; 4 ; 5 ; 6} et A = {1 ; 2 ; 3 ; 5}, alors 4 et 6 sont hors de A mais dans U.',caution:'Changer d’univers peut changer le complémentaire, même si A reste le même.'},
+subset:{name:'Inclusion',glyph:'⊂',title:'Tous les éléments sont inclus',definition:'A ⊂ B signifie que tout élément de A est aussi un élément de B (on dit que A est une partie de B, ou un sous-ensemble de B). L’égalité est permise.',formula:'A ⊂ B ⇔ ∀x (x ∈ A ⇒ x ∈ B)',example:'{3 ; 5} ⊂ {1 ; 2 ; 3 ; 5}. De plus, A ⊂ A pour tout ensemble A.',caution:'A ⊂ B ne veut pas dire que A est plus petit. Pour exiger des ensembles différents, on utilise l’inclusion stricte. Selon les manuels, ⊂ désigne l’inclusion au sens large (convention du lycée français, suivie sur cette page) ou l’inclusion stricte ; le symbole ⊆ est aussi employé pour l’inclusion au sens large.'},
+proper:{name:'Inclusion stricte',glyph:'⊊',title:'Inclus, mais pas égal',definition:'A ⊊ B signifie que tout élément de A appartient à B et que B contient au moins un élément qui n’est pas dans A.',formula:'A ⊊ B ⇔ A ⊂ B et A ≠ B',example:'{3 ; 5} ⊊ {1 ; 2 ; 3 ; 5}. Mais {3 ; 5} n’est pas strictement inclus dans lui-même.',caution:'Certains manuels écrivent ⊂ pour l’inclusion stricte, d’autres pour l’inclusion au sens large. Ici, ⊂ est large et ⊊ est strict : il n’y a pas d’ambiguïté.'},
+equality:{name:'Égalité d’ensembles',glyph:'=',title:'Deux noms, les mêmes éléments',definition:'A = B exactement lorsque A ⊂ B et B ⊂ A. L’ordre d’écriture et les répétitions n’ont pas d’importance.',formula:'A = B ⇔ (A ⊂ B) et (B ⊂ A)',example:'{1 ; 3 ; 5} = {5 ; 1 ; 3 ; 3}.',caution:'Avoir le même cardinal ne suffit pas pour que deux ensembles soient égaux.'},
+disjoint:{name:'Ensembles disjoints',glyph:'∩',title:'Aucun élément commun',definition:'A et B sont disjoints si leur intersection est vide : aucun objet n’appartient aux deux ensembles.',formula:'A ∩ B = ∅',example:'L’ensemble des entiers pairs et celui des entiers impairs sont disjoints.',caution:'Des ensembles disjoints peuvent être non vides. Deux ensembles disjoints peuvent recouvrir tout l’univers, mais ce n’est pas obligatoire.'},
+union:{name:'Réunion',glyph:'∪',title:'Dans A ou dans B, ou dans les deux',definition:'La réunion rassemble tous les éléments qui appartiennent à au moins un des ensembles. Le « ou » mathématique est inclusif : il admet le cas où les deux propriétés sont vraies.',formula:'A ∪ B = {x | x ∈ A ou x ∈ B}',example:'{1 ; 2 ; 3 ; 5} ∪ {3 ; 4 ; 5} = {1 ; 2 ; 3 ; 4 ; 5}.',caution:'Les éléments communs aux deux ensembles ne figurent qu’une seule fois dans la réunion.'},
+intersection:{name:'Intersection',glyph:'∩',title:'La partie commune',definition:'L’intersection contient exactement les éléments qui appartiennent aux deux ensembles à la fois.',formula:'A ∩ B = {x | x ∈ A et x ∈ B}',example:'{1 ; 2 ; 3 ; 5} ∩ {3 ; 4 ; 5} = {3 ; 5}.',caution:'Pour trouver l’intersection, il ne suffit pas de réunir les deux listes : on ne garde que les éléments communs.'},
+difference:{name:'Différence',glyph:'∖',title:'On garde A, on retire B',definition:'La différence A ∖ B contient les éléments de A qui ne sont pas dans B. La différence dépend de l’ordre.',formula:'A ∖ B = {x | x ∈ A et x ∉ B}',example:'{1 ; 2 ; 3 ; 5} ∖ {3 ; 4 ; 5} = {1 ; 2}. En revanche, {3 ; 4 ; 5} ∖ {1 ; 2 ; 3 ; 5} = {4}.',caution:'Contrairement à la réunion et à l’intersection, A ∖ B est en général différent de B ∖ A.'},
+complement:{name:'Complémentaire',glyph:'ᶜ',title:'Tout ce qui est hors de A',definition:'Le complémentaire Aᶜ de A (noté aussi Ā, ou U ∖ A) est formé de tous les éléments de U qui ne sont pas dans A.',formula:'Aᶜ = U ∖ A',example:'Si U = {1 ; 2 ; 3 ; 4 ; 5 ; 6} et A = {1 ; 2 ; 3 ; 5}, alors Aᶜ = {4 ; 6}.',caution:'On ne peut pas déterminer un complémentaire sans savoir ce que contient l’univers.'},
+sym:{name:'Différence symétrique',glyph:'Δ',title:'Exactement un des deux, pas les deux',definition:'La différence symétrique est formée des éléments qui appartiennent à exactement un des deux ensembles. C’est leur réunion privée de leur intersection.',formula:'A Δ B = (A ∖ B) ∪ (B ∖ A)',example:'{1 ; 2 ; 3 ; 5} Δ {3 ; 4 ; 5} = {1 ; 2 ; 4}.',caution:'Elle exclut la partie commune, que la réunion ordinaire contient.'},
+cardinality:{name:'Cardinal',glyph:'Card',title:'Combien d’éléments ?',definition:'Pour un ensemble fini, Card(A) (noté aussi |A|) est le nombre de ses éléments distincts. Pour compter une réunion, on retire une fois les éléments communs pour ne pas les compter deux fois.',formula:'Card(A ∪ B) = Card(A) + Card(B) − Card(A ∩ B)',example:'Si Card(A) = 4, Card(B) = 3 et Card(A ∩ B) = 2, alors Card(A ∪ B) = 4 + 3 − 2 = 5.',caution:'Compter les répétitions d’une liste écrite donne un cardinal faux.'},
+power:{name:'Ensemble des parties',glyph:'𝒫',title:'L’ensemble de toutes les parties',definition:'L’ensemble des parties 𝒫(A) contient toutes les parties de A, y compris ∅ et A lui-même. Un ensemble fini à n éléments a 2<sup>n</sup> parties.',formula:'Card(𝒫(A)) = 2<sup>Card(A)</sup>',example:'𝒫({a ; b}) = {∅ ; {a} ; {b} ; {a ; b}} ; il a 4 éléments.',caution:'Les éléments de 𝒫(A) sont eux-mêmes des ensembles, et non les éléments a et b pris isolément.'},
+cartesian:{name:'Produit cartésien',glyph:'×',title:'Former des couples',definition:'A × B est l’ensemble de tous les couples (a ; b) avec a dans A et b dans B. En général, (a ; b) est différent de (b ; a).',formula:'A × B = {(a ; b) | a ∈ A, b ∈ B}',example:'{1 ; 2} × {x ; y} = {(1 ; x) ; (1 ; y) ; (2 ; x) ; (2 ; y)}.',caution:'A × B et B × A ne sont pas toujours égaux : l’ordre dans un couple compte.'},
+partition:{name:'Partition',glyph:'⋃',title:'Découper un ensemble sans recouvrement',definition:'Une partition d’un ensemble S est une famille de parties non vides, deux à deux disjointes, dont la réunion est S. Chaque élément appartient à exactement une partie.',formula:'S = S₁ ∪ S₂ ∪ ⋯,   Sᵢ ∩ Sⱼ = ∅ (i ≠ j)',example:'Pour S = {1 ; 2 ; 3 ; 4 ; 5 ; 6}, les ensembles {1 ; 3 ; 5} et {2 ; 4 ; 6} forment une partition.',caution:'Des groupes qui se chevauchent ou qui oublient des éléments ne forment pas une partition.'},
+predicates:{name:'Notation en compréhension',glyph:'|',title:'Décrire les éléments par une règle',definition:'La notation en compréhension précise les éléments qui vérifient une propriété. L’écriture {x ∈ S | P(x)} désigne l’ensemble des x de S pour lesquels P(x) est vraie (la barre se lit « tel que »).',formula:'{x ∈ ℤ | x est pair}',example:'{x ∈ {1 ; 2 ; 3 ; 4 ; 5 ; 6} | x est pair} = {2 ; 4 ; 6}.',caution:'La propriété doit rendre l’appartenance sans ambiguïté.'}
+},
+diag:{empty:'aucun élément à l’intérieur',odd:'impairs',even:'pairs',label:{basic:'Un ensemble A contenant les éléments 1, 2 et 3, avec 4 à l’extérieur',nested:'Un cercle A dessiné à l’intérieur d’un cercle B plus grand',disjoint:'Deux cercles séparés A et B qui ne se recouvrent pas',equal:'Un seul cercle pour A = B',empty:'Un cercle A sans rien à l’intérieur',universe:'Un cercle A dans l’univers U, avec son complémentaire à l’extérieur',power:'Les quatre parties de {a ; b} : l’ensemble vide, {a}, {b} et {a ; b}',cartesian:'Les quatre couples de {1 ; 2} × {x ; y}',partition:'Les nombres de 1 à 6 répartis en impairs et pairs, deux parties sans recouvrement',union:'Diagramme de Venn de A ∪ B : les deux cercles sont colorés',intersection:'Diagramme de Venn de A ∩ B : seule la partie commune est colorée',diff:'Diagramme de Venn de A ∖ B : la partie de A hors de B est colorée',complement:'Diagramme de Venn du complémentaire de A : tout ce qui est hors de A est coloré',sym:'Diagramme de Venn de A Δ B : les deux cercles sont colorés sauf la partie commune'}},
+q:{
+opPrompt:s=>'Que vaut '+s+' ?',
+opExplain:(d,s,r)=>d+' Donc '+s+' = '+r+'.',
+opHint:'Examinez chaque nombre de U à l’aide de la définition de l’opération.',
+subset:{prompt:'A est-il une partie de B ?',yes:'Oui : A ⊂ B',no:'Non : A ⊄ B',o1:'Seulement si Card(A) = Card(B)',o2:'Seulement si A ∩ B = ∅',exYes:'Oui. Tout élément de A est dans B. L’égalité est permise.',exNo:l=>l.length===1?l[0]+' appartient à A mais pas à B.':T.list(l)+' appartiennent à A mais pas à B.',hint:'Existe-t-il un élément de A qui n’appartient pas à B ?'},
+proper:{prompt:'A est-il strictement inclus dans B ?',yes:'Oui : A ⊊ B',no:'Non : A ⊊ B est faux',o1:'Tout ensemble est strictement inclus dans lui-même',o2:'Seulement si A = ∅',exYes:'Oui. Tout élément de A est dans B, et B possède au moins un élément de plus.',exNo:'Non. Une inclusion stricte demande que A soit inclus dans B et différent de B.',hint:'Vérifiez d’abord l’inclusion, puis que les deux ensembles ne sont pas égaux.'},
+card:{prompt:'Combien d’éléments contient A ∪ B ?',explain:(a,b,i,n)=>'Card(A ∪ B) = Card(A) + Card(B) − Card(A ∩ B) = '+a+' + '+b+' − '+i+' = '+n+'.',hint:'Comptez chaque ensemble, puis retirez une fois la partie commune.'},
+powerCount:{prompt:n=>'Combien de parties possède un ensemble de '+n+(n<=1?' élément':' éléments')+' ?',context:n=>'Card(A) = '+n+'. Déterminer Card(𝒫(A)).',explain:(n,v)=>'Chacun des '+n+' éléments a deux possibilités : être dans la partie ou non. Donc Card(𝒫(A)) = 2^'+n+' = '+v+'.',hint:'Chaque élément appartient à la partie, ou n’y appartient pas.'},
+powerExample:{prompt:ab=>'Quel est l’ensemble des parties de '+ab+' ?',context:'Toutes les parties doivent figurer, y compris l’ensemble vide.',explain:ps=>'Les quatre parties sont ∅, {a}, {b} et {a ; b}, donc 𝒫({a ; b}) = '+ps+'. Les éléments d’un ensemble des parties sont des ensembles.',hint:'Listez les parties à zéro, un, puis deux éléments.'},
+cartCount:{prompt:'Combien de couples contient A × B ?',context:(m,n)=>'Card(A) = '+m+'    Card(B) = '+n,explain:(m,n,r)=>'Chacun des '+m+' premiers éléments forme un couple avec chacun des '+n+' seconds éléments : Card(A × B) = '+m+' × '+n+' = '+r+'.',hint:'Chaque élément de A peut être associé à tous les éléments de B.'},
+cartExample:{prompt:(a,b)=>'Quel est le produit '+a+' × '+b+' ?',context:'Écrivez tous les couples (nombre ; lettre).',explain:'On choisit un nombre pour la première coordonnée et une lettre pour la seconde ; les 2 × 2 combinaisons apparaissent.',hint:'La première coordonnée vient du premier ensemble.'},
+triplePrompt:s=>'Déterminer '+s+'.',
+tripleExplain:(d,r)=>d+' Le résultat est '+r+'.',
+tripleHint:'Travaillez des parenthèses vers l’extérieur et examinez l’appartenance nombre par nombre.',
+empty:{prompt:'Quelle affirmation sur l’ensemble vide est vraie ?',context:'Soit A un ensemble quelconque.',yes:'∅ ⊂ A',o1:'∅ ∈ A pour tout A',o2:'Card({∅}) = 0',o3:'A ∩ ∅ = A',explain:'∅ est inclus dans tout ensemble. En revanche, {∅} contient un élément, et A ∩ ∅ = ∅.',hint:'L’inclusion demande que tout élément de ∅ soit dans A. Existe-t-il un contre-exemple ?'},
+disjoint:{prompt:'A et B sont-ils disjoints ?',yes:'Oui, A ∩ B = ∅',no:'Non, ils ont un élément commun',o1:'Seulement si Card(A) = Card(B)',o2:'Seulement si A ∪ B = ∅',exYes:'Oui. Aucun élément n’appartient aux deux ensembles.',exNo:s=>'Non. Leur intersection est '+s+'.',hint:'Déterminez A ∩ B. Est-elle vide ?'},
+membership:{prompt:'Quelle affirmation est correcte ?',exYes:x=>x+' est un élément de A, donc '+x+' ∈ A.',exNo:x=>x+' n’est pas dans A, donc '+x+' ∉ A.',hint:'L’appartenance (∈), et non l’inclusion (⊂), relie un élément à un ensemble.'}
+},
+quizUi:{question:'Question : choisissez une réponse',review:'Vérifiez votre réponse',completed:n=>n+(n<=1?' terminée':' terminées'),hint:'Voir un indice',next:'Question suivante →',reset:'Remettre le score à zéro',right:'Correct, bien raisonné.',wrong:'Pas tout à fait. Voici pourquoi.',markRight:'(bonne réponse)',markWrong:'(votre réponse)'},
+shadeDesc:{notAAndB:'Dans B, mais pas dans A.',ABCexcept:'Dans A et dans B, mais pas dans C.',diff3:'Dans A, sauf les points communs à B et à C.',atLeastTwo:'Dans au moins deux des trois ensembles.'},
+shadeUi:{prompt:s=>'Colorier '+s,svgLabel:n=>'Diagramme de Venn à trois ensembles à colorier, '+n+(n<=1?' région sélectionnée':' régions sélectionnées'),good:'Excellent, toutes les régions correspondent.',bad:'Certaines régions ne correspondent pas encore.',revealed:'Solution affichée.',revealedNote:'Le diagramme montre maintenant la solution.',tryAgain:'Comparez la condition d’appartenance avec chaque région ; vous pouvez modifier votre coloriage et vérifier à nouveau.',wrongList:l=>'Coloriées à tort : '+l.join(' ; ')+'.',missedList:l=>'Oubliées (à colorier) : '+l.join(' ; ')+'.'},
+laws:{
+demorgan1:{name:'De Morgan, réunion',explain:'Être hors d’une réunion, c’est être hors des deux ensembles.'},
+demorgan2:{name:'De Morgan, intersection',explain:'Ne pas être dans les deux, c’est être hors d’au moins un des ensembles.'},
+commUnion:{name:'Commutativité de la réunion',explain:'Échanger l’ordre des ensembles ne change pas les éléments qui appartiennent à l’un ou à l’autre.'},
+commInter:{name:'Commutativité de l’intersection',explain:'L’appartenance aux deux ensembles ne dépend pas de l’ordre.'},
+assocUnion:{name:'Associativité de la réunion',explain:'La façon de regrouper les réunions n’a pas d’importance.'},
+assocInter:{name:'Associativité de l’intersection',explain:'L’appartenance aux trois ensembles ne dépend pas des parenthèses.'},
+distribute1:{name:'Distributivité de ∩ sur ∪',explain:'Être dans A et dans au moins un des ensembles B ou C, c’est être dans A ∩ B ou dans A ∩ C.'},
+distribute2:{name:'Distributivité de ∪ sur ∩',explain:'La réunion se distribue aussi sur l’intersection.'},
+absorb1:{name:'Absorption, réunion',explain:'Ajouter une partie de A à A tout entier ne change rien.'},
+absorb2:{name:'Absorption, intersection',explain:'Intersecter A avec un ensemble qui contient déjà A ne change rien.'},
+difference:{name:'Différence et intersection',explain:'On garde les éléments de A et on exclut tous ceux de B.'},
+symDiff:{name:'Différence symétrique',explain:'Appartenir à exactement un des deux ensembles, c’est appartenir à l’une des deux différences.'},
+doubleComplement:{name:'Complémentaire du complémentaire',explain:'Sortir de A puis sortir de l’extérieur de A ramène dans A.'},
+excludedMiddle:{name:'Complémentaire, univers entier',explain:'Tout élément est dans A ou hors de A.'},
+contradiction:{name:'Complémentaire, intersection vide',explain:'Aucun élément ne peut à la fois appartenir à A et ne pas appartenir à A.'}
+},
+lawUi:{kicker:'Identité visualisée',bothAgree:'Les deux diagrammes et chaque ligne du tableau concordent.',left:'Membre de gauche :',right:'Membre de droite :',check:'Vérification de l’appartenance, région par région',thLeft:'Gauche',thRight:'Droite',thEqual:'Égal ?',svgLabel:(side,e,n)=>(side==='left'?'Membre de gauche ':'Membre de droite ')+e+', diagramme de Venn à '+(n===3?'trois':'deux')+' ensembles',foot:'1 signifie « l’élément appartient à l’ensemble » ; 0 signifie « il n’y appartient pas ». La vérification est complète, car un élément ne peut se trouver que dans l’une de ces régions.'}
+};
+/* TEXT-END */
+'use strict';
+const $=id=>document.getElementById(id);
+const U=[1,2,3,4,5,6,7,8,9,10,11,12];
+let sets={A:new Set([1,2,3,5,8,10]),B:new Set([2,4,5,7,8,11]),C:new Set([1,5,6,8,9,11])};
+let setCount=2,operation='union',inspected=null,activeTab='explore';
+// Language-free definitions; names, descriptions and every sentence come from T.
+const ops2=[
+{id:'union',symbol:'A ∪ B',test:(a,b)=>a||b},
+{id:'intersection',symbol:'A ∩ B',test:(a,b)=>a&&b},
+{id:'diff',symbol:'A ∖ B',test:(a,b)=>a&&!b},
+{id:'reverseDiff',symbol:'B ∖ A',test:(a,b)=>b&&!a},
+{id:'sym',symbol:'A Δ B',test:(a,b)=>(a&&!b)||(!a&&b)},
+{id:'complement',symbol:'Aᶜ',test:a=>!a},
+{id:'notUnion',symbol:'(A ∪ B)ᶜ',test:(a,b)=>!a&&!b},
+{id:'notIntersection',symbol:'(A ∩ B)ᶜ',test:(a,b)=>!(a&&b)}
+];
+const ops3=[
+{id:'tripleUnion',symbol:'A ∪ B ∪ C',test:(a,b,c)=>a||b||c},
+{id:'tripleIntersection',symbol:'A ∩ B ∩ C',test:(a,b,c)=>a&&b&&c},
+{id:'pairWithC',symbol:'(A ∪ B) ∩ C',test:(a,b,c)=>(a||b)&&c},
+{id:'interWithPair',symbol:'A ∩ (B ∪ C)',test:(a,b,c)=>a&&(b||c)},
+{id:'diffUnion',symbol:'(A ∪ B) ∖ C',test:(a,b,c)=>(a||b)&&!c},
+{id:'onlyA',symbol:'A ∖ (B ∪ C)',test:(a,b,c)=>a&&!b&&!c},
+{id:'outsideAll',symbol:'(A ∪ B ∪ C)ᶜ',test:(a,b,c)=>!a&&!b&&!c},
+{id:'tripleSym',symbol:'(A Δ B) Δ C',test:(a,b,c)=>(Number(a)+Number(b)+Number(c))%2===1}
+];
+const describe=id=>T.ops[id].desc;
+const txtSet=arr=>'{'+arr.join(T.sep)+'}';
+const roster=iter=>txtSet([...iter].sort((a,b)=>a-b));
+const membership=(x,count)=>[sets.A.has(x),sets.B.has(x),count===3&&sets.C.has(x)];
+const opById=()=>[...ops2,...ops3].find(o=>o.id===operation);
+const bitsFor=(x,count)=>membership(x,count).slice(0,count).map(Number).join('');
+const bitsCoords2={'00':[82,312],'10':[231,227],'01':[494,227],'11':[360,227]};
+const bitsCoords3={'000':[96,337],'100':[213,163],'010':[497,163],'001':[355,350],'110':[355,103],'101':[270,264],'011':[440,264],'111':[355,217]};
+const regionName=bits=>T.region[bits];
+const allBits=n=>Array.from({length:2**n},(_,i)=>i.toString(2).padStart(n,'0'));
+const COL=['var(--va)','var(--vb)','var(--vc)'];
+// Keep keyboard focus on the "same" control after a part of the page is redrawn.
+function keepFocus(fn){
+ const a=document.activeElement;let sel=null,root=null;
+ if(a&&a!==document.body){root=a.closest('[id]');const attrs=[...a.attributes].filter(x=>x.name.startsWith('data-')).map(x=>`[${x.name}="${x.value}"]`).join('');if(root&&attrs)sel=attrs;else if(a.id)sel='#'+a.id;}
+ fn();
+ if(sel&&root){const r=root.id?document.getElementById(root.id):null;const t=sel[0]==='#'?document.querySelector(sel):(r||document).querySelector(sel);if(t&&!t.disabled)t.focus({preventScroll:true});}
+}
+let svgCounter=0;
+function vennSvg(count,pred,opts={}){
+ const prefix='v'+(++svgCounter),is3=count===3;
+ const circles=is3?[[285,170,130],[425,170,130],[355,266,130]]:[[290,211,147],[425,211,147]];
+ const names=['A','B','C'];
+ const all=allBits(count);
+ const regionMasks=all.map(bits=>`<mask id="${prefix}-m${bits}" maskUnits="userSpaceOnUse" x="0" y="0" width="710" height="438"><rect width="710" height="438" fill="white"/>${bits.split('').map((v,i)=>v==='0'?`<circle cx="${circles[i][0]}" cy="${circles[i][1]}" r="${circles[i][2]}" fill="black"/>`:'').join('')}</mask>`).join('');
+ const clips=circles.map(([cx,cy,r],i)=>`<clipPath id="${prefix}-c${i}"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>`).join('');
+ const selected=all.filter(bits=>pred(...bits.split('').map(x=>x==='1'))),highlightedSet=new Set(selected);
+ const pressed=opts.pressed||highlightedSet;
+ const regionShape=(bits,fill,opacity,clickable,on)=>{
+  const clipOpen=bits.split('').map((v,i)=>v==='1'?`<g clip-path="url(#${prefix}-c${i})">`:'').join('');
+  const clipClose='</g>'.repeat([...bits].filter(b=>b==='1').length);
+  const r=`<rect class="rg${on?' on':''}" x="47" y="28" width="616" height="381" style="fill:${fill}" opacity="${opacity}" mask="url(#${prefix}-m${bits})"${clickable?' pointer-events="visiblePainted"':''}/>`;
+  return `<g${clickable?` data-region="${bits}" aria-label="${regionName(bits)}" role="button" tabindex="0" aria-pressed="${pressed.has(bits)}"`:''}>${clipOpen}${r}${clipClose}</g>`;
+ };
+ const backgrounds=circles.map(([cx,cy,r],i)=>`<circle cx="${cx}" cy="${cy}" r="${r}" style="fill:${COL[i]}" opacity="0.06"/>`).join('');
+ const main=all.map(bits=>{
+  const highlighted=selected.includes(bits);
+  const expected=opts.expected,checked=!!(opts.shadeMode&&opts.checked&&expected);
+  const wrong=checked&&highlighted&&!expected.has(bits),missed=checked&&!highlighted&&expected.has(bits);
+  const colour=wrong?'var(--bad)':missed?'var(--ok)':'var(--vs)';
+  const opacity=highlighted?'.5':missed?'.4':'0';
+  return regionShape(bits,colour,opacity,!!opts.clickable,highlighted);
+ }).join('');
+ const outlines=circles.map(([cx,cy,r],i)=>`<circle cx="${cx}" cy="${cy}" r="${r}" style="stroke:${COL[i]};fill:none;stroke-width:2.8"/>`).join('');
+ const labelPositions=is3?[[208,77],[500,77],[355,390]]:[[204,83],[517,83]];
+ const labels=labelPositions.map(([x,y],i)=>`<text class="vlab" x="${x}" y="${y}" text-anchor="middle" style="fill:${COL[i]}">${names[i]}</text>`).join('');
+ let contents='';
+ if(opts.showElements){
+  const places=is3?bitsCoords3:bitsCoords2;
+  contents=all.map(bits=>{
+   const values=U.filter(x=>bitsFor(x,count)===bits);
+   if(!values.length)return '';
+   const [cx,cy]=places[bits],s=values.join(', ');
+   const split=s.length>13&&values.length>3?Math.ceil(values.length/2):values.length;
+   const lines=split===values.length?[s]:[values.slice(0,split).join(', '),values.slice(split).join(', ')];
+   return `<text class="vel" x="${cx}" y="${cy-(lines.length-1)*8}" pointer-events="none" text-anchor="middle" style="font-size:${is3?15:17}px">${lines.map((line,i)=>`<tspan x="${cx}" dy="${i?18:0}">${line}</tspan>`).join('')}</text>`;
+  }).join('');
+ }
+ const label=opts.label||T.vennLabel(count,selected.length);
+ return `<svg viewBox="0 0 710 438" xmlns="http://www.w3.org/2000/svg" role="${opts.clickable?'group':'img'}" aria-label="${label}"><defs>${clips}${regionMasks}</defs><rect class="vframe" x="47" y="28" width="616" height="381" rx="12"/><text class="vu" x="60" y="54">U</text>${backgrounds}${main}${outlines}${labels}${contents}</svg>`;
+}
+// Tabs (tablist pattern: arrows, Home, End).
+const TABS=['explore','learn','practice','reference'];
+function switchTab(id,focus){
+ activeTab=id;
+ TABS.forEach(t=>{const b=$('tab-'+t),on=t===id;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;$('panel-'+t).hidden=!on;});
+ if(focus)$('tab-'+id).focus();
+}
+document.querySelectorAll('.tab').forEach(b=>{
+ b.addEventListener('click',()=>switchTab(b.dataset.tab,false));
+ b.addEventListener('keydown',e=>{
+  const i=TABS.indexOf(b.dataset.tab);let j=null;
+  if(e.key==='ArrowRight')j=(i+1)%TABS.length;else if(e.key==='ArrowLeft')j=(i+TABS.length-1)%TABS.length;else if(e.key==='Home')j=0;else if(e.key==='End')j=TABS.length-1;
+  if(j===null)return;e.preventDefault();switchTab(TABS[j],true);
+ });
+});
+// Fill the static texts of this edition.
+document.querySelectorAll('[data-i]').forEach(e=>{e.innerHTML=T.ui[e.dataset.i];});
+document.querySelectorAll('[data-ia]').forEach(e=>{e.setAttribute('aria-label',T.ia[e.dataset.ia]);});
+$('notation-rows').innerHTML=T.notation.map(([s,m])=>`<tr><td>${s}</td><td>${m}</td></tr>`).join('');
+$('ideas').innerHTML=T.ideas;
+// Explore.
+function renderOperationGrid(){const ops=setCount===2?ops2:ops3;$('operation-grid').innerHTML=ops.map(o=>`<button class="op" data-op="${o.id}" aria-pressed="${operation===o.id}"><span class="sym">${o.symbol}</span><span class="nm">${T.ops[o.id].name}</span></button>`).join('');}
+function renderBuilders(){$('set-builders').innerHTML=['A','B',...(setCount===3?['C']:[])].map(label=>`<div class="setrow"><span class="c${label}"><strong>${T.setLabel(label)}</strong></span><code>${label} = ${roster(sets[label])}</code><div class="nums">${U.map(v=>`<button class="num ${label}" data-set="${label}" data-value="${v}" aria-pressed="${sets[label].has(v)}" aria-label="${T.numLabel(v,label)}">${v}</button>`).join('')}</div></div>`).join('');}
+function renderExplore(){
+ const op=opById(),chosen=U.filter(n=>op.test(...membership(n,setCount))),regions=allBits(setCount);
+ const byRegion={};regions.forEach(b=>byRegion[b]=U.filter(x=>bitsFor(x,setCount)===b));
+ $('explore-svg').innerHTML=vennSvg(setCount,op.test,{clickable:true,showElements:true,pressed:new Set(inspected?[inspected]:[])});
+ $('region-readout').innerHTML=regions.map(bits=>`<div class="pill${bits===inspected?' picked':''}"><b>${regionName(bits)}</b>${roster(byRegion[bits])}</div>`).join('');
+ $('explore-result').innerHTML=`<h4>${T.resultHead(chosen.length)}</h4><div class="math">${op.symbol}</div><div>= ${txtSet(chosen)}</div><p class="muted">${describe(op.id)}</p>`;
+ renderOperationGrid();renderBuilders();
+}
+const explore=()=>keepFocus(renderExplore);
+$('operation-grid').addEventListener('click',e=>{const b=e.target.closest('[data-op]');if(!b)return;operation=b.dataset.op;explore();});
+$('set-builders').addEventListener('click',e=>{const b=e.target.closest('[data-set]');if(!b)return;const set=sets[b.dataset.set],n=+b.dataset.value;set.has(n)?set.delete(n):set.add(n);explore();});
+const inspect=e=>{const t=e.target.closest('[data-region]');if(!t)return false;inspected=inspected===t.dataset.region?null:t.dataset.region;explore();return true;};
+$('explore-svg').addEventListener('click',inspect);
+$('explore-svg').addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;if(inspect(e))e.preventDefault();});
+document.querySelectorAll('[data-count]').forEach(b=>b.addEventListener('click',()=>{setCount=+b.dataset.count;operation=setCount===2?'union':'tripleUnion';inspected=null;document.querySelectorAll('[data-count]').forEach(c=>c.setAttribute('aria-pressed',String(c===b)));renderExplore();}));
+$('sample-sets').addEventListener('click',()=>{['A','B','C'].forEach(k=>{sets[k]=new Set(U.filter(()=>Math.random()<.43))});renderExplore();});
+$('clear-sets').addEventListener('click',()=>{sets={A:new Set(),B:new Set(),C:new Set()};renderExplore();});
+// Learn: the concepts (text in T.lessons).
+const lessons=[
+{id:'set',cat:'foundations',viz:'basic'},{id:'membership',cat:'foundations',viz:'basic'},{id:'empty',cat:'foundations',viz:'empty'},{id:'universal',cat:'foundations',viz:'universe'},
+{id:'subset',cat:'relations',viz:'nested'},{id:'proper',cat:'relations',viz:'nested'},{id:'equality',cat:'relations',viz:'equal'},{id:'disjoint',cat:'relations',viz:'disjoint'},
+{id:'union',cat:'operations',viz:'union'},{id:'intersection',cat:'operations',viz:'intersection'},{id:'difference',cat:'operations',viz:'diff'},{id:'complement',cat:'operations',viz:'complement'},{id:'sym',cat:'operations',viz:'sym'},
+{id:'cardinality',cat:'counting',viz:'union'},{id:'power',cat:'counting',viz:'power'},{id:'cartesian',cat:'counting',viz:'cartesian'},{id:'partition',cat:'counting',viz:'partition'},{id:'predicates',cat:'counting',viz:'partition'}
+];
+let activeLesson='set';
+function specialSvg(kind){
+ const D=T.diag;let content='';
+ const tint=c=>`fill:color-mix(in srgb,${c} 20%,var(--surf));stroke:${c};stroke-width:3`;
+ if(kind==='nested')content=`<circle cx="360" cy="221" r="150" style="${tint('var(--va)')}"/><circle cx="346" cy="220" r="79" style="${tint('var(--vb)')}"/><text class="vtxt" x="345" y="228" text-anchor="middle">A</text><text class="vtxt" x="455" y="225">B</text>`;
+ if(kind==='disjoint')content=`<circle cx="232" cy="220" r="104" style="${tint('var(--va)')}"/><circle cx="479" cy="220" r="104" style="${tint('var(--vb)')}"/><text class="vtxt" x="232" y="226" text-anchor="middle">A</text><text class="vtxt" x="479" y="226" text-anchor="middle">B</text>`;
+ if(kind==='equal')content=`<circle cx="355" cy="220" r="135" style="${tint('var(--vs)')}"/><text class="vtxt" x="355" y="225" text-anchor="middle">A = B</text>`;
+ if(kind==='empty')content=`<circle cx="355" cy="220" r="135" style="fill:var(--surf);stroke:var(--va);stroke-width:3"/><text class="vtxt" x="355" y="216" text-anchor="middle">A = ∅</text><text class="vsmall" x="355" y="251" text-anchor="middle">${D.empty}</text>`;
+ if(kind==='universe')content=`<circle cx="340" cy="220" r="128" style="${tint('var(--va)')}"/><text class="vtxt" x="340" y="222" text-anchor="middle">A</text><text class="vtxt" x="535" y="303">Aᶜ</text>`;
+ if(kind==='basic')content=`<circle cx="351" cy="220" r="140" style="${tint('var(--va)')}"/><text class="vtxt" x="351" y="113" text-anchor="middle">A</text>`+[[260,206,'1'],[348,191,'2'],[404,259,'3']].map(([x,y,t])=>`<circle cx="${x}" cy="${y-5}" r="22" style="fill:var(--surf);stroke:var(--mute)"/><text class="vel" x="${x}" y="${y+1}" text-anchor="middle">${t}</text>`).join('')+'<text class="vel" x="541" y="334">4</text>';
+ if(kind==='power'){content=`<text class="vtxt" x="142" y="125">A = ${txtSet(['a','b'])}</text>`+[['∅',355,110],[txtSet(['a']),240,225],[txtSet(['b']),465,225],[txtSet(['a','b']),355,345]].map(([s,x,y])=>`<rect x="${x-62}" y="${y-27}" width="124" height="54" rx="14" style="${tint('var(--vs)')};stroke-width:1.5"/><text class="vtxt" x="${x}" y="${y+7}" text-anchor="middle">${s}</text>`).join('')+'<text class="vtxt" x="555" y="356">𝒫(A)</text>';}
+ if(kind==='cartesian'){content=`<text class="vtxt" x="157" y="89" style="fill:var(--va)">A = ${txtSet([1,2])}</text><text class="vtxt" x="406" y="89" style="fill:var(--vb)">B = ${txtSet(['x','y'])}</text>`+[[1,'x'],[1,'y'],[2,'x'],[2,'y']].map(([a,b],i)=>`<rect x="${182+(i%2)*185}" y="${136+Math.floor(i/2)*104}" width="150" height="74" rx="14" style="${tint('var(--vs)')};stroke-width:1.5"/><text class="vtxt" x="${257+(i%2)*185}" y="${184+Math.floor(i/2)*104}" text-anchor="middle">${T.pair(a,b)}</text>`).join('');}
+ if(kind==='partition'){content=`<rect x="145" y="99" width="420" height="250" rx="18" style="fill:var(--paper);stroke:var(--mute);stroke-width:2"/><rect x="160" y="114" width="190" height="220" rx="12" style="fill:color-mix(in srgb,var(--va) 20%,var(--surf))"/><rect x="360" y="114" width="190" height="220" rx="12" style="fill:color-mix(in srgb,var(--vc) 20%,var(--surf))"/>`+[[200,177,'1'],[250,230,'3'],[295,279,'5'],[405,177,'2'],[460,230,'4'],[509,279,'6']].map(([x,y,n])=>`<text class="vtxt" x="${x}" y="${y}" text-anchor="middle">${n}</text>`).join('')+`<text class="vsmall" x="255" y="129" text-anchor="middle">${D.odd}</text><text class="vsmall" x="455" y="129" text-anchor="middle">${D.even}</text>`;}
+ return `<svg viewBox="0 0 710 438" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${D.label[kind]}"><rect class="vframe" x="47" y="28" width="616" height="381" rx="12"/><text class="vu" x="61" y="54">U</text>${content}</svg>`;
+}
+function renderConceptList(){let last='';$('concept-list').innerHTML=lessons.map(c=>{let group='';if(c.cat!==last){last=c.cat;group=`<div class="cgroup">${T.cats[c.cat]}</div>`;}const x=T.lessons[c.id];return group+`<button class="cbtn" data-lesson="${c.id}" aria-pressed="${activeLesson===c.id}"><span>${x.name}</span><span class="gl" aria-hidden="true">${x.glyph}</span></button>`;}).join('');}
+function renderLesson(){
+ const idx=lessons.findIndex(x=>x.id===activeLesson),c=lessons[idx],x=T.lessons[c.id],matched=ops2.find(o=>o.id===c.viz);
+ const diagram=matched?vennSvg(2,matched.test,{label:T.diag.label[c.viz]||T.vennLabel(2,2)}):specialSvg(c.viz);
+ $('lesson').innerHTML=`<div class="muted">${T.cats[c.cat]} · ${T.lessonCount(idx+1,lessons.length)}</div><h3>${x.title}</h3><p class="defn">${x.definition}</p><div class="svg-holder">${diagram}</div><div class="panels"><div><h4>${T.lessonUi.worked}</h4><p>${x.example}</p></div><div><h4>${T.lessonUi.watch}</h4><p>${x.caution}</p></div></div><div class="formula">${x.formula}</div><p class="muted">${T.lessonUi.note}</p><button class="btn" id="lesson-next">${T.lessonUi.next}</button>`;
+ renderConceptList();
+}
+$('concept-list').addEventListener('click',e=>{const t=e.target.closest('[data-lesson]');if(!t)return;activeLesson=t.dataset.lesson;keepFocus(renderLesson);});
+$('lesson').addEventListener('click',e=>{if(!e.target.closest('#lesson-next'))return;activeLesson=lessons[(lessons.findIndex(x=>x.id===activeLesson)+1)%lessons.length].id;keepFocus(renderLesson);});
+// Quiz: random questions and distractors that are tempting but wrong.
+let quizState={current:null,selected:null,hint:false,total:0,correct:0,streak:0,previous:''};
+const shuffle=arr=>{const out=[...arr];for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;};
+const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const rndSet=(domain,p=.5)=>domain.filter(()=>Math.random()<p);
+const calc=(domain,as,bs,fn,cs=[])=>domain.filter(x=>fn(as.includes(x),bs.includes(x),cs.includes(x)));
+const setText=arr=>txtSet([...new Set(arr)].sort((a,b)=>a-b));
+const distractorSets=(correct,domain,otherSets=[])=>{
+ // Deduplicate by membership, not by object identity: different operations
+ // can legitimately produce the same set, but a quiz must have one answer.
+ const target=setText(correct),options=[correct],seen=new Set([target]);
+ const add=arr=>{const key=setText(arr);if(!seen.has(key)){seen.add(key);options.push(arr);}};
+ for(const candidate of otherSets)add(candidate);
+ for(let attempt=0;options.length<4&&attempt<200;attempt++)add(rndSet(domain,.42));
+ if(options.length<4){for(const x of domain){add([x]);if(options.length>=4)break;}}
+ return shuffle(options.slice(0,4).map(arr=>({text:setText(arr),correct:setText(arr)===target})));
+};
+const Q=T.q;
+const quizGenerators=[
+ ...ops2.map(op=>({id:'op-'+op.id,make(){const domain=[1,2,3,4,5,6,7,8],a=rndSet(domain,.55),b=rndSet(domain,.55),correct=calc(domain,a,b,op.test);const candidates=ops2.filter(z=>z.id!==op.id).map(o=>calc(domain,a,b,o.test));return {data:{kind:'op',op:op.id,domain,a,b},prompt:Q.opPrompt(op.symbol),context:`U = ${setText(domain)}   ·   A = ${setText(a)}   ·   B = ${setText(b)}`,choices:distractorSets(correct,domain,shuffle(candidates)),explanation:Q.opExplain(describe(op.id),op.symbol,setText(correct)),hint:Q.opHint};}})),
+{id:'subset',make(){const d=[1,2,3,4,5,6],b=rndSet(d,.7),a=Math.random()<.55?b.filter(()=>Math.random()<.8):rndSet(d,.48);const answer=a.every(x=>b.includes(x));return {data:{kind:'subset',a,b},prompt:Q.subset.prompt,context:`A = ${setText(a)}    B = ${setText(b)}`,choices:shuffle([{text:Q.subset.yes,correct:answer},{text:Q.subset.no,correct:!answer},{text:Q.subset.o1,correct:false},{text:Q.subset.o2,correct:false}]),explanation:answer?Q.subset.exYes:Q.subset.exNo(a.filter(x=>!b.includes(x))),hint:Q.subset.hint};}},
+{id:'proper',make(){const d=[1,2,3,4,5,6],b=rndSet(d,.7),mode=rand(0,2),a=mode===0?b.filter(()=>Math.random()<.55):mode===1?[...b]:rndSet(d,.6);const ok=a.every(x=>b.includes(x))&&a.length<b.length;return {data:{kind:'proper',a,b},prompt:Q.proper.prompt,context:`A = ${setText(a)}    B = ${setText(b)}`,choices:shuffle([{text:Q.proper.yes,correct:ok},{text:Q.proper.no,correct:!ok},{text:Q.proper.o1,correct:false},{text:Q.proper.o2,correct:false}]),explanation:ok?Q.proper.exYes:Q.proper.exNo,hint:Q.proper.hint};}},
+{id:'cardinality',make(){const d=[1,2,3,4,5,6,7,8],a=rndSet(d,.6),b=rndSet(d,.6),inter=calc(d,a,b,(x,y)=>x&&y).length,n=new Set([...a,...b]).size;const wrong=shuffle([a.length+b.length,a.length+b.length+inter,Math.max(a.length,b.length),inter,a.length+b.length-2*inter,...[0,1,2,3,4,5,6,7,8].filter(x=>x!==n)]).filter(x=>x!==n);return {data:{kind:'cardinality',a,b},prompt:Q.card.prompt,context:`A = ${setText(a)}    B = ${setText(b)}`,choices:shuffle([n,...new Set(wrong)].slice(0,4).map(x=>({text:String(x),correct:x===n}))),explanation:Q.card.explain(a.length,b.length,inter,n),hint:Q.card.hint};}},
+{id:'powerCount',make(){const n=rand(0,5),v=2**n;return {data:{kind:'powerCount',n},prompt:Q.powerCount.prompt(n),context:Q.powerCount.context(n),choices:shuffle([...new Set([v,n*n,n+1,2*n,v+2,Math.max(0,v-1),v+1])].slice(0,4).map(x=>({text:String(x),correct:x===v}))),explanation:Q.powerCount.explain(n,v),hint:Q.powerCount.hint};}},
+{id:'powerExample',make(){const a=txtSet(['a']),b=txtSet(['b']),ab=txtSet(['a','b']);const choices=[{text:txtSet(['∅',a,b,ab]),correct:true},{text:ab,correct:false},{text:txtSet([a,b,ab]),correct:false},{text:txtSet(['∅','a','b',ab]),correct:false}];return {data:{kind:'powerExample'},prompt:Q.powerExample.prompt(ab),context:Q.powerExample.context,choices:shuffle(choices),explanation:Q.powerExample.explain(txtSet(['∅',a,b,ab])),hint:Q.powerExample.hint};}},
+{id:'cartCount',make(){const m=rand(1,5),n=rand(1,5),right=m*n;const others=[m+n,m+n-1,m*n+1,m*n-1,m**n,n**m,0,1,2,3,4,5,6].filter(x=>x>=0&&x!==right);return {data:{kind:'cartCount',m,n},prompt:Q.cartCount.prompt,context:Q.cartCount.context(m,n),choices:shuffle([right,...new Set(others)].slice(0,4).map(x=>({text:String(x),correct:x===right}))),explanation:Q.cartCount.explain(m,n,right),hint:Q.cartCount.hint};}},
+{id:'cartExample',make(){const P=T.pair,pairs=(l)=>txtSet(l.map(([a,b])=>P(a,b)));return {data:{kind:'cartExample'},prompt:Q.cartExample.prompt(txtSet([1,2]),txtSet(['x','y'])),context:Q.cartExample.context,choices:shuffle([{text:pairs([[1,'x'],[1,'y'],[2,'x'],[2,'y']]),correct:true},{text:pairs([['x',1],['y',1],['x',2],['y',2]]),correct:false},{text:txtSet([1,2,'x','y']),correct:false},{text:pairs([[1,'x'],[2,'y']]),correct:false}]),explanation:Q.cartExample.explain,hint:Q.cartExample.hint};}},
+{id:'triple',make(){const d=[1,2,3,4,5,6,7,8],a=rndSet(d,.5),b=rndSet(d,.5),c=rndSet(d,.5),op=ops3[rand(0,ops3.length-1)],right=calc(d,a,b,op.test,c);return {data:{kind:'triple',op:op.id,domain:d,a,b,c},prompt:Q.triplePrompt(op.symbol),context:`U = ${setText(d)}    A = ${setText(a)}    B = ${setText(b)}    C = ${setText(c)}`,choices:distractorSets(right,d,shuffle(ops3.filter(x=>x.id!==op.id).map(x=>calc(d,a,b,x.test,c)))),explanation:Q.tripleExplain(describe(op.id),setText(right)),hint:Q.tripleHint};}},
+{id:'empty',make(){return {data:{kind:'empty'},prompt:Q.empty.prompt,context:Q.empty.context,choices:shuffle([{text:Q.empty.yes,correct:true},{text:Q.empty.o1,correct:false},{text:Q.empty.o2,correct:false},{text:Q.empty.o3,correct:false}]),explanation:Q.empty.explain,hint:Q.empty.hint};}},
+{id:'disjoint',make(){const d=[1,2,3,4,5,6],a=rndSet(d,.45),b=rndSet(d,.45),yes=!a.some(x=>b.includes(x));return {data:{kind:'disjoint',a,b},prompt:Q.disjoint.prompt,context:`A = ${setText(a)}    B = ${setText(b)}`,choices:shuffle([{text:Q.disjoint.yes,correct:yes},{text:Q.disjoint.no,correct:!yes},{text:Q.disjoint.o1,correct:false},{text:Q.disjoint.o2,correct:false}]),explanation:yes?Q.disjoint.exYes:Q.disjoint.exNo(setText(a.filter(x=>b.includes(x)))),hint:Q.disjoint.hint};}},
+{id:'membership',make(){const a=rndSet([1,2,3,4,5,6],.5),x=rand(1,6),yes=a.includes(x);return {data:{kind:'membership',a,x},prompt:Q.membership.prompt,context:`A = ${setText(a)}    x = ${x}`,choices:shuffle([{text:`${x} ∈ A`,correct:yes},{text:`${x} ∉ A`,correct:!yes},{text:`${x} ${T.incl} A`,correct:false},{text:`A ∈ ${x}`,correct:false}]),explanation:yes?Q.membership.exYes(x):Q.membership.exNo(x),hint:Q.membership.hint};}}
+];
+function nextQuestion(focus){const choices=quizGenerators.filter(x=>x.id!==quizState.previous),chosen=choices[rand(0,choices.length-1)];quizState.previous=chosen.id;let q=chosen.make();if(q.choices.filter(c=>c.correct).length!==1){q=quizGenerators.find(x=>x.id==='powerExample').make();}quizState.current=q;quizState.selected=null;quizState.hint=false;renderQuiz();if(focus)$('quiz-title').focus({preventScroll:true});}
+function renderScore(){$('score-correct').textContent=quizState.correct;$('score-attempts').textContent=quizState.total;$('score-streak').textContent=quizState.streak;$('score-rate').textContent=quizState.total?T.pct(Math.round(100*quizState.correct/quizState.total)):T.pct(0);}
+function renderQuiz(){
+ const q=quizState.current,selected=quizState.selected,done=selected!==null,U2=T.quizUi;
+ $('quiz-area').innerHTML=`<div class="muted">${done?U2.review:U2.question} · ${U2.completed(quizState.total)}</div><h3 id="quiz-title" tabindex="-1">${q.prompt}</h3><div class="ctx">${q.context}</div><div class="answers">${q.choices.map((c,i)=>`<button class="answer ${done?(c.correct?'correct':selected===i?'wrong':''):''}" data-answer="${i}" ${done?'disabled':''}><span class="ltr">${'ABCD'[i]}</span><span>${c.text}${done&&c.correct?` <strong>✓<span class="sr"> ${U2.markRight}</span></strong>`:done&&selected===i?` <strong>✗<span class="sr"> ${U2.markWrong}</span></strong>`:''}</span></button>`).join('')}</div><div aria-live="polite">${done?`<div class="fb ${q.choices[selected].correct?'good':'bad'}"><strong>${q.choices[selected].correct?U2.right:U2.wrong}</strong> ${q.explanation}</div>`:quizState.hint?`<div class="fb">${q.hint}</div>`:''}</div><div class="row">${done?`<button id="quiz-next" class="btn">${U2.next}</button>`:`<button id="quiz-hint" class="btn alt" aria-expanded="${quizState.hint}">${U2.hint}</button>`}<button id="quiz-reset" class="btn alt">${U2.reset}</button></div>`;
+ renderScore();
+}
+$('quiz-area').addEventListener('click',e=>{
+ const answer=e.target.closest('[data-answer]');
+ if(answer&&quizState.selected===null){quizState.selected=+answer.dataset.answer;quizState.total++;if(quizState.current.choices[quizState.selected].correct){quizState.correct++;quizState.streak++;}else quizState.streak=0;renderQuiz();$('quiz-next').focus({preventScroll:true});return;}
+ if(e.target.closest('#quiz-hint')){quizState.hint=!quizState.hint;renderQuiz();$('quiz-hint').focus({preventScroll:true});return;}
+ if(e.target.closest('#quiz-next')){nextQuestion(true);return;}
+ if(e.target.closest('#quiz-reset')){quizState.total=quizState.correct=quizState.streak=0;nextQuestion(true);}
+});
+// Shade the diagram.
+let shadeQuestion=null,shadeSelection=new Set(),shadeChecked=false,shadeRevealed=false;
+const shadePrompts=[...ops3,{id:'notAAndB',symbol:'Aᶜ ∩ B',test:(a,b,c)=>!a&&b},{id:'ABCexcept',symbol:'(A ∩ B) ∖ C',test:(a,b,c)=>a&&b&&!c},{id:'diff3',symbol:'A ∖ (B ∩ C)',test:(a,b,c)=>a&&!(b&&c)},{id:'atLeastTwo',symbol:'(A ∩ B) ∪ (A ∩ C) ∪ (B ∩ C)',test:(a,b,c)=>Number(a)+Number(b)+Number(c)>=2}];
+const shadeDescribe=p=>T.shadeDesc[p.id]||describe(p.id);
+function expectedRegions(){return new Set(allBits(3).filter(bits=>shadeQuestion.test(...bits.split('').map(v=>v==='1'))));}
+function newShade(){shadeQuestion=shadePrompts[rand(0,shadePrompts.length-1)];shadeSelection=new Set();shadeChecked=false;shadeRevealed=false;renderShade();}
+// Colour is not the only cue: name the wrongly shaded and the missed regions in words.
+function regionWords(bits){const inn=[...bits].map((v,i)=>v==='1'?'ABC'[i]:'').filter(Boolean),out=[...bits].map((v,i)=>v==='0'?'ABC'[i]:'').filter(Boolean);return T.regionWords(inn,out);}
+function regionReport(expected){const wrong=[...shadeSelection].filter(r=>!expected.has(r)).map(regionWords),missed=[...expected].filter(r=>!shadeSelection.has(r)).map(regionWords);if(!wrong.length&&!missed.length)return '';return `<br><span>${wrong.length?T.shadeUi.wrongList(wrong):''}${wrong.length&&missed.length?' ':''}${missed.length?T.shadeUi.missedList(missed):''}</span>`;}
+function shadeMatches(expected){return [...new Set([...expected,...shadeSelection])].every(r=>expected.has(r)===shadeSelection.has(r));}
+function renderShade(){
+ const expected=expectedRegions(),S2=T.shadeUi;
+ $('shade-prompt').textContent=S2.prompt(shadeQuestion.symbol);
+ $('shade-svg').innerHTML=vennSvg(3,(a,b,c)=>shadeSelection.has([a,b,c].map(Number).join('')),{clickable:true,shadeMode:true,expected,checked:shadeChecked,label:S2.svgLabel(shadeSelection.size)});
+ const ok=shadeMatches(expected);
+ $('shade-feedback').innerHTML=shadeChecked?`<div class="fb ${ok?'good':'bad'}"><strong>${shadeRevealed?S2.revealed:(ok?S2.good:S2.bad)}</strong> ${shadeDescribe(shadeQuestion)} ${shadeRevealed?S2.revealedNote:S2.tryAgain}${shadeRevealed?'':regionReport(expected)}</div>`:'';
+}
+const toggleRegion=e=>{const r=e.target.closest('[data-region]');if(!r)return false;const bits=r.dataset.region;shadeSelection.has(bits)?shadeSelection.delete(bits):shadeSelection.add(bits);shadeChecked=false;shadeRevealed=false;keepFocus(renderShade);return true;};
+$('shade-svg').addEventListener('click',toggleRegion);
+$('shade-svg').addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;if(toggleRegion(e))e.preventDefault();});
+$('shade-check').addEventListener('click',()=>{shadeChecked=true;renderShade();});
+$('shade-reset').addEventListener('click',()=>{shadeSelection=new Set();shadeChecked=shadeRevealed=false;renderShade();});
+$('shade-reveal').addEventListener('click',()=>{shadeSelection=expectedRegions();shadeChecked=shadeRevealed=true;renderShade();});
+$('shade-next').addEventListener('click',newShade);
+document.querySelectorAll('[data-practice]').forEach(b=>b.addEventListener('click',()=>{const mode=b.dataset.practice;document.querySelectorAll('[data-practice]').forEach(t=>t.setAttribute('aria-pressed',String(t===b)));$('quiz-mode').hidden=mode!=='quiz';$('shade-mode').hidden=mode!=='shade';}));
+// Reference: fifteen identities, each checked by a membership table.
+const laws=[
+{id:'demorgan1',formula:'(A ∪ B)ᶜ = Aᶜ ∩ Bᶜ',left:'(A ∪ B)ᶜ',right:'Aᶜ ∩ Bᶜ',l:(a,b)=>!(a||b),r:(a,b)=>!a&&!b,n:2},
+{id:'demorgan2',formula:'(A ∩ B)ᶜ = Aᶜ ∪ Bᶜ',left:'(A ∩ B)ᶜ',right:'Aᶜ ∪ Bᶜ',l:(a,b)=>!(a&&b),r:(a,b)=>!a||!b,n:2},
+{id:'commUnion',formula:'A ∪ B = B ∪ A',left:'A ∪ B',right:'B ∪ A',l:(a,b)=>a||b,r:(a,b)=>b||a,n:2},
+{id:'commInter',formula:'A ∩ B = B ∩ A',left:'A ∩ B',right:'B ∩ A',l:(a,b)=>a&&b,r:(a,b)=>b&&a,n:2},
+{id:'assocUnion',formula:'(A ∪ B) ∪ C = A ∪ (B ∪ C)',left:'(A ∪ B) ∪ C',right:'A ∪ (B ∪ C)',l:(a,b,c)=>(a||b)||c,r:(a,b,c)=>a||(b||c),n:3},
+{id:'assocInter',formula:'(A ∩ B) ∩ C = A ∩ (B ∩ C)',left:'(A ∩ B) ∩ C',right:'A ∩ (B ∩ C)',l:(a,b,c)=>(a&&b)&&c,r:(a,b,c)=>a&&(b&&c),n:3},
+{id:'distribute1',formula:'A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)',left:'A ∩ (B ∪ C)',right:'(A ∩ B) ∪ (A ∩ C)',l:(a,b,c)=>a&&(b||c),r:(a,b,c)=>(a&&b)||(a&&c),n:3},
+{id:'distribute2',formula:'A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)',left:'A ∪ (B ∩ C)',right:'(A ∪ B) ∩ (A ∪ C)',l:(a,b,c)=>a||(b&&c),r:(a,b,c)=>(a||b)&&(a||c),n:3},
+{id:'absorb1',formula:'A ∪ (A ∩ B) = A',left:'A ∪ (A ∩ B)',right:'A',l:(a,b)=>a||(a&&b),r:(a,b)=>a,n:2},
+{id:'absorb2',formula:'A ∩ (A ∪ B) = A',left:'A ∩ (A ∪ B)',right:'A',l:(a,b)=>a&&(a||b),r:(a,b)=>a,n:2},
+{id:'difference',formula:'A ∖ B = A ∩ Bᶜ',left:'A ∖ B',right:'A ∩ Bᶜ',l:(a,b)=>a&&!b,r:(a,b)=>a&&!b,n:2},
+{id:'symDiff',formula:'A Δ B = (A ∖ B) ∪ (B ∖ A)',left:'A Δ B',right:'(A ∖ B) ∪ (B ∖ A)',l:(a,b)=>a!==b,r:(a,b)=>(a&&!b)||(!a&&b),n:2},
+{id:'doubleComplement',formula:'(Aᶜ)ᶜ = A',left:'(Aᶜ)ᶜ',right:'A',l:a=>!!a,r:a=>a,n:2},
+{id:'excludedMiddle',formula:'A ∪ Aᶜ = U',left:'A ∪ Aᶜ',right:'U',l:a=>a||!a,r:()=>true,n:2},
+{id:'contradiction',formula:'A ∩ Aᶜ = ∅',left:'A ∩ Aᶜ',right:'∅',l:a=>a&&!a,r:()=>false,n:2}
+];
+let activeLaw=laws[0].id;
+function renderLaws(){
+ const L=T.lawUi;
+ $('law-list').innerHTML=laws.map(l=>`<button class="law-btn" data-law="${l.id}" aria-current="${l.id===activeLaw}">${T.laws[l.id].name}</button>`).join('');
+ const l=laws.find(z=>z.id===activeLaw),tx=T.laws[l.id],rows=allBits(l.n);
+ $('law-article').innerHTML=`<div class="muted">${L.kicker}</div><h3>${tx.name}</h3><div class="math">${l.formula}</div><p>${tx.explain} ${L.bothAgree}</p><div class="halves"><div><h4>${L.left} ${l.left}</h4>${vennSvg(l.n,l.l,{label:L.svgLabel('left',l.left,l.n)})}</div><div><h4>${L.right} ${l.right}</h4>${vennSvg(l.n,l.r,{label:L.svgLabel('right',l.right,l.n)})}</div></div><h4>${L.check}</h4><div class="scroll"><table class="tt"><thead><tr>${'ABC'.slice(0,l.n).split('').map(s=>`<th scope="col">${s}</th>`).join('')}<th scope="col">${L.thLeft}</th><th scope="col">${L.thRight}</th><th scope="col">${L.thEqual}</th></tr></thead><tbody>${rows.map(bits=>{const b=bits.split('').map(x=>x==='1'),left=!!l.l(...b),right=!!l.r(...b);return `<tr>${b.map(z=>`<td>${z?'1':'0'}</td>`).join('')}<td class="${left?'y':'n'}">${left?'1':'0'}</td><td class="${right?'y':'n'}">${right?'1':'0'}</td><td class="y">${left===right?'✓':'✗'}</td></tr>`;}).join('')}</tbody></table></div><p class="muted">${L.foot}</p>`;
+}
+$('law-list').addEventListener('click',e=>{const b=e.target.closest('[data-law]');if(!b)return;activeLaw=b.dataset.law;keepFocus(renderLaws);});
+switchTab('explore',false);renderExplore();renderLesson();nextQuestion(false);newShade();renderLaws();
+function notifySize(){try{parent.postMessage({type:'mx-basics-size',height:document.documentElement.scrollHeight},location.origin)}catch{}}
+if(typeof ResizeObserver!=='undefined')new ResizeObserver(notifySize).observe(document.body);
+window.addEventListener('load',notifySize);
+document.fonts?.ready.then(notifySize);
+notifySize();
+</script>
+</body>
+</html>
