@@ -1,0 +1,357 @@
+<title>Maths Explorer Cahier</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,700;1,6..72,500&display=swap">
+<style>
+/* Layout: one sheet of Seyès paper. A red margin rule runs down the left, content hangs from it.
+   Three doors only (Cours, Laboratoire, Lire). The figure is the first thing on every page.
+   Colour: blue ink for what is studied, red pen for what you can move, green for what checks out. Nothing else. */
+:root {
+  --paper: #f6f7fb; --sheet: #ffffff; --rule: #d9deea; --grid: #e4e8f1; --grid-major: #c9d0e0;
+  --ink: #141a26; --ink-2: #3b4559; --muted: #5a657b;
+  --blue: #1b3fa0; --blue-soft: #e6ebfa;
+  --red: #c4281c; --red-soft: #fbe9e6; --margin: #e0867d;
+  --green: #14764c; --green-soft: #e0f2e9;
+  --display: "Newsreader", "Times New Roman", serif;
+  --body: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #101a17; --sheet: #16241f; --rule: #2a3d36; --grid: #20322b;
+  --grid-major: #355046; --ink: #ecf0e6; --ink-2: #cdd6c8; --muted: #9fb0a5;
+  --blue: #9fc0ff; --blue-soft: #1d2f4f; --red: #ff9d88; --red-soft: #3a2420; --margin: #b4564b;
+  --green: #86e0ab; --green-soft: #173a29; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #101a17; --sheet: #16241f; --rule: #2a3d36; --grid: #20322b; --grid-major: #355046;
+  --ink: #ecf0e6; --ink-2: #cdd6c8; --muted: #9fb0a5;
+  --blue: #9fc0ff; --blue-soft: #1d2f4f; --red: #ff9d88; --red-soft: #3a2420; --margin: #b4564b;
+  --green: #86e0ab; --green-soft: #173a29; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 1.0625rem/1.6 var(--body); }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.12; letter-spacing: -.01em; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.1rem, 5.2vw, 3.6rem); }
+h2 { font-size: clamp(1.45rem, 3vw, 1.9rem); }
+h3 { font-size: 1.2rem; }
+p { margin: 0; text-wrap: pretty; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 3px; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.i { font-family: var(--display); font-style: italic; font-weight: 500; }
+
+.sheet { position: relative; max-width: 1180px; margin: 0 auto; padding-inline: var(--gutter) var(--gutter-r); }
+@media (min-width: 900px) {
+  .sheet { padding-left: 56px; }
+  .sheet::before { content: ""; position: absolute; left: 32px; top: 0; bottom: 0; width: 1.5px; background: var(--margin); opacity: .8; }
+}
+
+/* header */
+.top { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 28px; padding-block: 18px 0; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 700 1.35rem var(--display); }
+.brand svg { width: 30px; height: 30px; }
+.doors { display: flex; gap: 4px; margin-right: auto; order: 3; width: 100%; border-bottom: 1.5px solid var(--rule); }
+.doors a { text-decoration: none; padding: 12px 14px 10px; font-weight: 700; color: var(--muted); border-bottom: 3px solid transparent; margin-bottom: -1.5px; min-height: 44px; }
+.doors a:hover { color: var(--ink); }
+.doors a[aria-current] { color: var(--ink); border-bottom-color: var(--red); }
+.tools { display: flex; gap: 8px; margin-left: auto; }
+.btn { font: 700 .95rem var(--body); min-height: 44px; padding: 0 16px; border-radius: 6px; border: 1.5px solid var(--ink-2); background: transparent; color: var(--ink); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn.primary { background: var(--blue); border-color: var(--blue); color: var(--paper); }
+.btn.primary:hover { filter: brightness(1.12); background: var(--blue); color: var(--paper); }
+@media (min-width: 760px) { .doors { order: 0; width: auto; border: 0; } .doors a { border-bottom-width: 3px; } }
+
+main { padding-block: 40px 24px; display: grid; gap: 64px; }
+.kicker { font: 500 .8rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* home opening */
+.open { display: grid; gap: 32px; align-items: start; }
+@media (min-width: 900px) { .open { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 48px; } }
+.open h1 em { font-style: italic; color: var(--blue); }
+.open .lede { margin-top: 20px; color: var(--ink-2); max-width: 34ch; font-size: 1.15rem; }
+.open .acts { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+/* the figure */
+.fig { background: var(--sheet); border: 1.5px solid var(--ink); border-radius: 4px; min-width: 0; }
+.fig svg { display: block; width: 100%; height: auto; touch-action: none; }
+.fig .cap { display: flex; justify-content: space-between; gap: 12px; padding: 8px 14px; border-bottom: 1.5px solid var(--rule); font-size: .9rem; color: var(--muted); }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); border-top: 1.5px solid var(--rule); }
+.read > div { padding: 10px 14px; border-right: 1px solid var(--rule); min-width: 0; }
+.read > div:last-child { border-right: 0; grid-column: 1 / -1; border-top: 1px solid var(--rule); }
+.read b { display: block; font: 500 .75rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.read span { font-family: var(--mono); font-size: .98rem; overflow-wrap: anywhere; }
+.note { padding: 10px 14px; border-top: 1.5px solid var(--rule); font-size: .92rem; color: var(--ink-2); }
+.g-minor { stroke: var(--grid); stroke-width: 1; } .g-major { stroke: var(--grid-major); stroke-width: 1; }
+.axis { stroke: var(--ink-2); stroke-width: 1.5; }
+.tick { fill: var(--muted); font: 11px var(--mono); }
+.curve { fill: none; stroke: var(--blue); stroke-width: 3; stroke-linecap: round; }
+.sym { stroke: var(--blue); stroke-width: 1.2; stroke-dasharray: 5 5; opacity: .6; }
+.root { fill: var(--green); stroke: var(--sheet); stroke-width: 2; }
+.rootlbl { fill: var(--green); font: 500 12px var(--mono); }
+.handle .dot { fill: var(--red); stroke: var(--sheet); stroke-width: 2.5; }
+.handle .ring { fill: var(--red); opacity: 0; }
+.handle:hover .ring, .handle:focus-visible .ring { opacity: .18; }
+.handle { cursor: grab; outline: none; } .handle:active { cursor: grabbing; }
+.handle .hit { fill: transparent; }
+.hlbl { fill: var(--red); font: 500 12px var(--mono); }
+
+/* rows: lists, not cards */
+.rows { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--ink); }
+.rows li { border-bottom: 1px solid var(--rule); }
+.rows a { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 4px 18px; align-items: center; padding: 16px 4px; min-height: 64px; text-decoration: none; }
+.rows a:hover { background: var(--blue-soft); }
+.rows a.nog { grid-template-columns: minmax(0, 1fr) auto; } .rows a.nog .d { grid-column: 1; }
+.rows .t { font: 700 1.2rem var(--display); }
+.rows .d { color: var(--ink-2); font-size: .98rem; grid-column: 2; }
+.rows .m { font: 500 .85rem var(--mono); color: var(--muted); text-align: right; white-space: nowrap; }
+.rows svg.g { width: 56px; height: 36px; stroke: var(--blue); fill: none; stroke-width: 2.4; stroke-linecap: round; }
+.rows .arrow { color: var(--red); font-weight: 700; }
+.sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; margin-bottom: 16px; }
+.sec-head a { font-weight: 700; }
+
+/* chapter */
+.crumb { font-size: .95rem; color: var(--muted); } .crumb a { color: var(--blue); }
+.steps { display: flex; flex-wrap: wrap; gap: 6px 4px; list-style: none; padding: 0; margin: 20px 0 0; }
+.steps a { display: inline-flex; gap: 8px; align-items: center; min-height: 44px; padding: 0 14px; border: 1.5px solid var(--rule); border-radius: 22px; text-decoration: none; font-weight: 700; font-size: .95rem; color: var(--ink-2); }
+.steps a b { font: 500 .8rem var(--mono); color: var(--muted); }
+.steps a[aria-current] { background: var(--ink); border-color: var(--ink); color: var(--paper); } .steps a[aria-current] b { color: var(--paper); }
+.work { display: grid; gap: 32px; }
+@media (min-width: 980px) { .work { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 40px; align-items: start; } }
+.mission { background: var(--sheet); border: 1.5px solid var(--rule); border-radius: 4px; padding: 20px; display: grid; gap: 16px; align-self: start; }
+.mission .tag { font: 500 .78rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--red); }
+.choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.choices button { min-width: 56px; min-height: 48px; font: 700 1.1rem var(--mono); border: 1.5px solid var(--ink-2); background: transparent; color: var(--ink); border-radius: 6px; cursor: pointer; }
+.choices button:hover { background: var(--blue-soft); }
+.choices button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.verdict { padding: 12px 14px; border-radius: 4px; font-size: .98rem; }
+.verdict.ok { background: var(--green-soft); border-left: 4px solid var(--green); }
+.verdict.no { background: var(--red-soft); border-left: 4px solid var(--red); }
+.prose { max-width: 62ch; display: grid; gap: 14px; color: var(--ink-2); }
+.prose strong { color: var(--ink); }
+.proof { border-left: 4px solid var(--red); padding: 4px 0 4px 16px; max-width: 62ch; }
+.proof .kicker { color: var(--red); }
+
+/* laboratory filter */
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { min-height: 44px; padding: 0 16px; border-radius: 22px; border: 1.5px solid var(--rule); background: transparent; color: var(--ink-2); font: 700 .95rem var(--body); cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.two { display: grid; gap: 40px; } @media (min-width: 900px) { .two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; } }
+table { border-collapse: collapse; width: 100%; font-size: .98rem; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font: 500 .78rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.scroll { overflow-x: auto; }
+footer { padding-block: 32px 40px; color: var(--muted); font-size: .92rem; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; border-top: 1.5px solid var(--rule); margin-top: 24px; }
+footer a { color: var(--ink); }
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (max-width: 600px) { .rows a { grid-template-columns: auto minmax(0, 1fr); } .rows .m { grid-column: 2; text-align: left; } .rows .d { grid-column: 1 / -1; } .rows a.nog { grid-template-columns: minmax(0, 1fr); } .rows a.nog .m { grid-column: 1; } }
+</style>
+
+<div class="sheet">
+  <header class="top">
+    <a class="brand" href="#accueil" aria-label="Maths Explorer, accueil">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="8" fill="var(--blue)"/><path d="M9 11Q20 43 31 11" fill="none" stroke="var(--paper)" stroke-width="3.4" stroke-linecap="round"/><circle cx="10" cy="20" r="3.2" fill="var(--red)" stroke="var(--paper)" stroke-width="1.5"/><circle cx="30" cy="20" r="3.2" fill="var(--red)" stroke="var(--paper)" stroke-width="1.5"/></svg>
+      Maths Explorer
+    </a>
+    <nav class="doors" aria-label="Sections">
+      <a href="#cours" data-door="cours">Cours</a>
+      <a href="#labo" data-door="labo">Laboratoire</a>
+      <a href="#lire" data-door="lire">Lire</a>
+    </nav>
+    <div class="tools">
+      <button class="btn" id="theme" type="button" aria-pressed="false">Tableau noir</button>
+    </div>
+  </header>
+  <main id="view"></main>
+  <footer>
+    <span>Une expérience donne des indices, pas une preuve.</span>
+    <span><a href="#notes">Notes de conception</a></span>
+  </footer>
+</div>
+
+<script>
+/* ---------- shared maths state: the same parabola on every page ---------- */
+const S = { al: 0, be: -2, a: 1 };
+const fmt = (n) => { const v = Math.round(n * 100) / 100; return String(v).replace('.', ',').replace('-', '−'); };
+const approx = (n) => (Math.abs(Math.round(n * 100) / 100 - n) < 1e-9 ? '=' : '≈');
+const sgn = (n, first) => first ? fmt(n) : (n < 0 ? ' − ' : ' + ') + fmt(Math.abs(n));
+function forms() {
+  const { al, be, a } = S, b = -2 * a * al, c = a * al * al + be, d = b * b - 4 * a * c;
+  const lead = a === 1 ? '' : a === -1 ? '−' : fmt(a);
+  const sq = al === 0 ? 'x²' : '(x ' + (al > 0 ? '−' : '+') + ' ' + fmt(Math.abs(al)) + ')²';
+  const canon = 'f(x) = ' + lead + sq + (be === 0 ? '' : sgn(be, false));
+  const bx = b === 0 ? '' : (b === 1 ? ' + x' : b === -1 ? ' − x' : sgn(b, false) + 'x'), cx = c === 0 ? '' : sgn(c, false);
+  const dev = 'f(x) = ' + lead + 'x²' + bx + cx;
+  let roots;
+  if (d < -1e-9) roots = 'aucune racine réelle';
+  else if (Math.abs(d) < 1e-9) roots = 'x = ' + fmt(al);
+  else { const r = Math.sqrt(d) / (2 * Math.abs(a)); roots = 'x₁ ' + approx(al - r) + ' ' + fmt(al - r) + '  ·  x₂ ' + approx(al + r) + ' ' + fmt(al + r); }
+  return { canon, dev, d, roots, count: d < -1e-9 ? 0 : Math.abs(d) < 1e-9 ? 1 : 2 };
+}
+
+/* ---------- the draggable parabola ---------- */
+function mountParabola(host, opts = {}) {
+  const U = 40, W = 600, H = 440, ox = 300, oy = 220, NS = 'http://www.w3.org/2000/svg';
+  const X = (x) => ox + x * U, Y = (y) => oy - y * U;
+  let grid = '', ticks = '';
+  for (let i = -7; i <= 7; i++) grid += `<line class="${i % 5 === 0 ? 'g-major' : 'g-minor'}" x1="${X(i)}" y1="0" x2="${X(i)}" y2="${H}"/>`;
+  for (let j = -5; j <= 5; j++) grid += `<line class="${j % 5 === 0 ? 'g-major' : 'g-minor'}" x1="0" y1="${Y(j)}" x2="${W}" y2="${Y(j)}"/>`;
+  for (let i = -6; i <= 6; i += 2) if (i) ticks += `<text class="tick" x="${X(i)}" y="${oy + 16}" text-anchor="middle">${String(i).replace("-", "−")}</text>`;
+  for (let j = -4; j <= 4; j += 2) if (j) ticks += `<text class="tick" x="${ox - 8}" y="${Y(j) + 4}" text-anchor="end">${String(j).replace("-", "−")}</text>`;
+  host.innerHTML = `
+    <div class="cap"><span>f(x) = a(x − <span class="i">α</span>)² + <span class="i">β</span></span><span>glisse les points rouges</span></div>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Parabole que l'on déplace par son sommet et son ouverture">
+      <defs><clipPath id="clip${opts.id || 0}"><rect width="${W}" height="${H}"/></clipPath></defs>
+      ${grid}<line class="axis" x1="0" y1="${oy}" x2="${W}" y2="${oy}"/><line class="axis" x1="${ox}" y1="0" x2="${ox}" y2="${H}"/>${ticks}
+      <g clip-path="url(#clip${opts.id || 0})"><line class="sym"/><path class="curve"/></g>
+      <g class="roots"></g>
+      <g class="handle" data-h="v" tabindex="0" role="slider" aria-label="Sommet"><circle class="ring" r="22"/><circle class="dot" r="9"/><circle class="hit" r="24"/></g>
+      <g class="handle" data-h="a" tabindex="0" role="slider" aria-label="Ouverture"><circle class="ring" r="22"/><circle class="dot" r="9"/><circle class="hit" r="24"/></g>
+      <text class="hlbl" data-l="v"></text>
+    </svg>
+    <div class="read"><div><b>Forme canonique</b><span data-r="canon"></span></div><div><b>Forme développée</b><span data-r="dev"></span></div><div><b>Δ</b><span data-r="d"></span></div><div><b>Racines</b><span data-r="roots"></span></div></div>
+    <div class="note">Flèches du clavier : déplacer le point sélectionné de 0,5.</div>`;
+  const svg = host.querySelector('svg'), path = svg.querySelector('.curve'), sym = svg.querySelector('.sym');
+  const hv = svg.querySelector('[data-h=v]'), ha = svg.querySelector('[data-h=a]'), roots = svg.querySelector('.roots'), lbl = svg.querySelector('[data-l=v]');
+  const out = (k) => host.querySelector(`[data-r=${k}]`);
+  const snap = (v) => Math.round(v * 2) / 2;
+  function draw() {
+    let p = '';
+    for (let x = -7.5; x <= 7.5; x += 0.1) { const y = S.a * (x - S.al) ** 2 + S.be; p += (p ? 'L' : 'M') + X(x).toFixed(1) + ' ' + Y(y).toFixed(1); }
+    path.setAttribute('d', p);
+    sym.setAttribute('x1', X(S.al)); sym.setAttribute('x2', X(S.al)); sym.setAttribute('y1', 0); sym.setAttribute('y2', H);
+    hv.setAttribute('transform', `translate(${X(S.al)} ${Y(S.be)})`);
+    ha.setAttribute('transform', `translate(${X(S.al + 1)} ${Y(S.be + S.a)})`);
+    lbl.setAttribute('x', X(S.al) + 14); lbl.setAttribute('y', Y(S.be) + (S.a > 0 ? 24 : -14)); lbl.textContent = `S(${fmt(S.al)} ; ${fmt(S.be)})`;
+    const f = forms(); roots.innerHTML = '';
+    if (f.count) { const r = Math.sqrt(f.d) / (2 * Math.abs(S.a)); [S.al - r, S.al + r].slice(0, f.count === 1 ? 1 : 2).forEach((x) => { roots.insertAdjacentHTML('beforeend', `<circle class="root" cx="${X(x)}" cy="${oy}" r="7"/><text class="rootlbl" x="${X(x)}" y="${oy - 12}" text-anchor="middle">${fmt(x)}</text>`); }); }
+    out('canon').textContent = f.canon; out('dev').textContent = f.dev; out('d').textContent = fmt(f.d); out('roots').textContent = f.roots;
+    ha.setAttribute('aria-valuetext', 'a = ' + fmt(S.a)); hv.setAttribute('aria-valuetext', `sommet (${fmt(S.al)} ; ${fmt(S.be)})`);
+    host.dispatchEvent(new CustomEvent('change'));
+  }
+  const toUnits = (e) => { const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY; const q = pt.matrixTransform(svg.getScreenCTM().inverse()); return [(q.x - ox) / U, (oy - q.y) / U]; };
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  const setA = (a) => { a = clamp(snap(a), -4, 4); if (a === 0) a = S.a > 0 ? -0.5 : 0.5; S.a = a; };
+  function move(which, ux, uy) { if (which === 'v') { S.al = clamp(snap(ux), -6, 6); S.be = clamp(snap(uy), -4.5, 4.5); } else setA(uy - S.be); draw(); }
+  [hv, ha].forEach((h) => {
+    const which = h.dataset.h;
+    h.addEventListener('pointerdown', (e) => { h.setPointerCapture(e.pointerId); h.dataset.drag = 1; h.focus(); e.preventDefault(); });
+    h.addEventListener('pointermove', (e) => { if (!h.dataset.drag) return; const [ux, uy] = toUnits(e); move(which, ux, uy); });
+    h.addEventListener('pointerup', () => { delete h.dataset.drag; });
+    h.addEventListener('keydown', (e) => {
+      const d = { ArrowLeft: [-.5, 0], ArrowRight: [.5, 0], ArrowUp: [0, .5], ArrowDown: [0, -.5] }[e.key]; if (!d) return; e.preventDefault();
+      if (which === 'v') move('v', S.al + d[0], S.be + d[1]); else move('a', 0, S.a + d[1] + S.be);
+    });
+  });
+  draw();
+}
+
+/* ---------- views ---------- */
+const glyph = (d) => `<svg class="g" viewBox="0 0 56 36" aria-hidden="true"><path d="${d}"/></svg>`;
+const G = { par: 'M6 4 Q28 56 50 4', cos: 'M4 18 Q14 2 28 18 T52 18', exp: 'M4 32 Q30 30 52 4', tan: 'M4 30 Q28 34 52 6 M30 32 L52 14', area: 'M4 32 L4 24 L16 24 L16 18 L28 18 L28 10 L40 10 L40 6 L52 6 L52 32 Z', pend: 'M10 4 L24 30 M34 4 L40 32 M24 30 m-3 0 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0', pop: 'M4 28 L12 10 L20 26 L28 8 L36 24 L44 12 L52 20', gauss: 'M4 32 L4 26 L14 26 L14 20 L24 20 L24 14 L34 14 L34 8 L44 8 L44 4', door: 'M12 4 H44 V32 H12 Z M28 4 V32' };
+const EXPS = [
+  ['alg', 'par', 'L’atelier de la parabole', 'Que change chaque coefficient ? Déplace le sommet et l’ouverture, regarde les formules suivre.', 'Algèbre', 8],
+  ['geo', 'cos', 'Un cercle, deux coordonnées', 'Fais tourner le point P : ses coordonnées dessinent cosinus et sinus.', 'Géométrie', 8],
+  ['ana', 'exp', 'Multiplier à chaque pas', 'Fonctions k × aˣ et suites géométriques.', 'Analyse', 8],
+  ['ana', 'tan', 'Approcher une tangente', 'Rapproche deux points et regarde la sécante devenir tangente.', 'Analyse', 8],
+  ['ana', 'area', 'L’aire, un rectangle à la fois', 'Intégrales et approximation par des rectangles.', 'Analyse', 8],
+  ['dyn', 'pend', 'Deux pendules, deux futurs proches', 'Le double pendule : une petite différence au départ, un écart énorme ensuite.', 'Dynamique', 18],
+  ['dyn', 'pop', 'Une population, des cycles, le chaos', 'La suite logistique et ses fenêtres périodiques.', 'Dynamique', 20],
+];
+const rows = (items) => `<ul class="rows">${items.map(([href, g, t, d, m]) => `<li><a href="${href}"${g ? '' : ' class="nog"'}>${g}<span><span class="t">${t}</span></span><span class="m">${m} <span class="arrow" aria-hidden="true">→</span></span><span class="d">${d}</span></a></li>`).join('')}</ul>`;
+const expRow = (e) => ['#chapitre', glyph(G[e[1]]), e[2], e[3], e[4] + ' · ' + e[5] + ' min'];
+
+const VIEWS = {
+  accueil() {
+    return `<section class="open"><div><p class="kicker">Lycée · Seconde à Terminale</p><h1 style="margin-top:14px">On bouge d’abord. <em>On démontre ensuite.</em></h1>
+      <p class="lede">Chaque chapitre commence par une figure que tu déplaces. La règle vient après, avec les nombres sous les yeux.</p>
+      <div class="acts"><a class="btn primary" href="#labo">Essayer une expérience</a><a class="btn" href="#cours">Choisir ma classe</a></div></div>
+      <div class="fig" id="fig1"></div></section>
+    <section><div class="sec-head"><h2>Ta classe</h2><a href="#cours">Tous les cours</a></div>
+      ${rows([['#chapitre', '', 'Seconde', 'Programme 2026–2027 · fonctions, vecteurs, statistiques, probabilités', '15 chapitres'], ['#chapitre', '', 'Première spécialité', 'Second degré, dérivation, suites, trigonométrie, probabilités', '10 chapitres'], ['#chapitre', '', 'Terminale spécialité', 'Programme 2019 · limites, intégrales, géométrie dans l’espace', '14 chapitres'], ['#chapitre', '', 'Maths expertes', 'Complexes, arithmétique, matrices', '11 chapitres'], ['#chapitre', '', 'Terminale STMG', 'Suites, fonctions, statistiques', '8 chapitres']])}
+    </section>
+    <section><div class="sec-head"><h2>Au laboratoire</h2><a href="#labo">27 expériences · 38 défis</a></div>${rows(EXPS.slice(0, 3).map(expRow))}</section>`;
+  },
+  cours() {
+    return `<section><p class="kicker">Cours</p><h1 style="margin-top:12px">Choisis ta classe</h1></section>
+    <section>${rows([['#chapitre', '', 'Seconde', 'Programme 2026–2027', '15 chapitres'], ['#chapitre', '', 'Première spécialité', 'Programme 2026–2027 · ouvre le chapitre 2, Second degré', '10 chapitres'], ['#chapitre', '', 'Terminale spécialité', 'Programme 2019, encore en vigueur en 2026–2027', '14 chapitres'], ['#chapitre', '', 'Maths expertes', 'Option de Terminale', '11 chapitres'], ['#chapitre', '', 'Terminale STMG', '', '8 chapitres']])}</section>`;
+  },
+  chapitre() {
+    return `<section><p class="crumb"><a href="#cours">Cours</a> / Première spécialité / Chapitre 2</p>
+      <h1 style="margin-top:12px;max-width:18ch">Second degré : formes et choix de méthode</h1>
+      <ol class="steps" aria-label="Étapes du chapitre"><li><a href="#chapitre"><b>1</b> Se préparer</a></li><li><a href="#chapitre" aria-current="step"><b>2</b> Chercher</a></li><li><a href="#chapitre"><b>3</b> Construire le cours</a></li><li><a href="#chapitre"><b>4</b> S’entraîner</a></li><li><a href="#chapitre"><b>5</b> Bilan</a></li><li><a href="#chapitre"><b>6</b> Diaporama</a></li></ol></section>
+    <section class="work"><div class="fig" id="fig2"></div>
+      <aside class="mission" aria-labelledby="m1"><p class="tag">Mission 1 sur 3 · Prédire</p><h3 id="m1">Le sommet est en <span class="i">S</span>(0 ; −2), avec <span class="i">a</span> = 1. Combien de racines ?</h3>
+        <div class="choices" role="group" aria-label="Ta prédiction"><button type="button" data-p="0">0</button><button type="button" data-p="1">1</button><button type="button" data-p="2">2</button></div>
+        <div id="verdict" aria-live="polite"></div>
+        <p style="color:var(--muted);font-size:.92rem">Tu peux ensuite déplacer le sommet pour tester d’autres cas.</p></aside></section>
+    <section class="two"><div class="prose"><h2>Ce que l’expérience suggère</h2>
+        <p><strong>Le signe de <span class="i">a</span></strong> fixe l’orientation : vers le haut pour <span class="i">a</span> &gt; 0, vers le bas pour <span class="i">a</span> &lt; 0.</p>
+        <p><strong>Le sommet</strong> <span class="i">S</span>(<span class="i">α</span> ; <span class="i">β</span>) donne le minimum ou le maximum, et l’axe de symétrie <span class="i">x</span> = <span class="i">α</span>.</p>
+        <p><strong>Les racines</strong> sont les points où la courbe coupe l’axe des abscisses : leur nombre dépend de la position du sommet par rapport à cet axe.</p></div>
+      <div class="proof"><p class="kicker">À démontrer</p><h3 style="margin:8px 0 10px">Pourquoi <span class="i">Δ</span> compte les racines</h3><p style="color:var(--ink-2)">Sur la figure, Δ &gt; 0 donne deux racines, Δ = 0 une seule, Δ &lt; 0 aucune. C’est une observation. La démonstration passe par la forme canonique, à l’étape 3.</p></div></section>`;
+  },
+  labo() {
+    return `<section><p class="kicker">Laboratoire</p><h1 style="margin-top:12px;max-width:16ch">Manipuler pour comprendre</h1>
+      <p class="lede" style="margin-top:16px;color:var(--ink-2);max-width:48ch">Expériences, curiosités et défis au même endroit. Filtre par domaine.</p></section>
+    <section><div class="filter" role="group" aria-label="Domaine" id="filter">${['Tous', 'Algèbre', 'Analyse', 'Géométrie', 'Dynamique'].map((f, i) => `<button type="button" aria-pressed="${i === 0}" data-f="${f}">${f}</button>`).join('')}</div>
+      <div id="list" style="margin-top:24px"></div></section>
+    <section><div class="sec-head"><h2>Défis</h2><span class="kicker">38 problèmes à chercher</span></div>${rows([['#labo', glyph(G.gauss), 'La somme du jeune Gauss', 'Additionner de 1 à 100 sans tout écrire.', 'Récréatif · 8 min'], ['#labo', glyph(G.door), 'Les 100 portes', 'Quelles portes restent ouvertes ?', 'Récréatif · 10 min']])}</section>`;
+  },
+  lire() { return `<section><p class="kicker">Lire</p><h1 style="margin-top:12px">Histoires et personnes</h1><p class="lede" style="margin-top:16px;color:var(--ink-2);max-width:48ch">Chronologies, biographies, histoires et curiosités. Cette page n’est pas dessinée dans la maquette.</p></section>`; },
+  notes() {
+    return `<section><p class="kicker">Notes de conception</p><h1 style="margin-top:12px;max-width:18ch">Ce qui change, et pourquoi</h1></section>
+    <section class="prose" style="max-width:70ch"><h2>Ce qui n’allait pas</h2>
+      <p><strong>Accueil.</strong> Un gabarit d’accueil banal : titre, recherche, deux boutons, six tuiles pastel de couleurs différentes. Rien n’indique qu’il s’agit de mathématiques de lycée.</p>
+      <p><strong>Chapitre.</strong> La première vue est une liste de liens bleus soulignés. La philosophie du site est « la figure d’abord », mais le chapitre n’en montre aucune.</p>
+      <p><strong>Structure.</strong> Dix onglets sur deux rangées, et le même contenu accessible par quatre chemins (Domaines, Cours, Laboratoire, Défis).</p></section>
+    <section><h2 style="margin-bottom:16px">Structure proposée</h2><div class="scroll"><table><thead><tr><th>Aujourd’hui</th><th>Proposé</th></tr></thead><tbody>
+      <tr><td>Apprendre : Bases, Cours, Diaporamas, Parcours</td><td><strong>Cours</strong>, par classe. Les diaporamas sont l’étape 6 de chaque chapitre. Les parcours deviennent la carte de la classe.</td></tr>
+      <tr><td>Explorer : Domaines, Laboratoire, Défis</td><td><strong>Laboratoire</strong> : expériences, curiosités et défis, filtrés par domaine. « Domaines » devient un filtre.</td></tr>
+      <tr><td>Lire : Chronologies, Biographies, Histoires, Curiosités</td><td><strong>Lire</strong> : inchangé dans son contenu.</td></tr>
+      <tr><td>Deux rangées de navigation, dix onglets</td><td>Une rangée, trois portes. La recherche reste accessible partout.</td></tr></tbody></table></div></section>
+    <section class="prose" style="max-width:70ch"><h2>Identité</h2>
+      <p>La feuille de Seyès et le papier millimétré que tous les élèves francophones connaissent. <strong>Encre bleue</strong> pour ce qu’on étudie, <strong>stylo rouge</strong> pour ce qu’on peut déplacer, <strong>vert</strong> pour ce qui se vérifie. Pas d’autre couleur. La marge rouge de la copie sert d’axe à la page. Le mode sombre est un tableau noir.</p>
+      <p>Les cartes, les ombres et les aplats pastel disparaissent : des listes, des filets, et la figure.</p>
+      <h2>Limites de cette maquette</h2>
+      <p>Les pages Lire et Cours par classe ne sont pas dessinées. Les chiffres (15, 10, 14, 11, 8 chapitres ; 27 expériences ; 38 défis) viennent du site actuel. Le français seul est utilisé : l’anglais reste en attente.</p></section>`;
+  },
+};
+
+/* ---------- router ---------- */
+const view = document.getElementById('view');
+function route() {
+  const name = (location.hash || '#accueil').slice(1); const key = VIEWS[name] ? name : 'accueil';
+  view.innerHTML = VIEWS[key]();
+  document.querySelectorAll('.doors a').forEach((a) => { const on = (key === 'chapitre' ? 'cours' : key) === a.dataset.door; if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  const f1 = document.getElementById('fig1'), f2 = document.getElementById('fig2');
+  if (f1) mountParabola(f1, { id: 1 });
+  if (f2) {
+    mountParabola(f2, { id: 2 });
+    const v = document.getElementById('verdict');
+    document.querySelectorAll('.choices button').forEach((b) => b.addEventListener('click', () => {
+      document.querySelectorAll('.choices button').forEach((x) => x.setAttribute('aria-pressed', x === b));
+      S.al = 0; S.be = -2; S.a = 1; mountParabola(f2, { id: 2 });
+      const f = forms(), ok = +b.dataset.p === f.count;
+      v.innerHTML = `<p class="verdict ${ok ? 'ok' : 'no'}">${ok ? 'Exact.' : 'Pas tout à fait.'} Sur la figure : Δ = ${fmt(f.d)} &gt; 0, donc ${f.count} racines (${f.roots}).</p>`;
+    }));
+  }
+  const list = document.getElementById('list');
+  if (list) {
+    const show = (f) => { list.innerHTML = rows(EXPS.filter((e) => f === 'Tous' || e[4] === f).map(expRow)); };
+    show('Tous');
+    document.querySelectorAll('#filter button').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('#filter button').forEach((x) => x.setAttribute('aria-pressed', x === b)); show(b.dataset.f); }));
+  }
+  window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route); route();
+
+/* ---------- theme ---------- */
+const btn = document.getElementById('theme'), root = document.documentElement;
+const dark = () => root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+const paint = () => { btn.setAttribute('aria-pressed', dark()); btn.textContent = dark() ? 'Papier' : 'Tableau noir'; };
+btn.addEventListener('click', () => { root.dataset.theme = dark() ? 'light' : 'dark'; paint(); });
+paint();
+</script>
