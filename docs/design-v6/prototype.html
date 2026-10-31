@@ -1,256 +1,351 @@
-<title>Maths Explorer Cahier</title>
+<title>Maths Explorer Nocturne</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,700;1,6..72,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=IBM+Plex+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
 <style>
-/* Layout: one sheet of Seyès paper. A red margin rule runs down the left, content hangs from it.
-   Three doors only (Cours, Laboratoire, Lire). The figure is the first thing on every page.
-   Colour: blue ink for what is studied, red pen for what you can move, green for what checks out. Nothing else. */
+/* Layout: the figure is the page. A full-bleed canvas carries the text; everything else is hairline and type.
+   Colour: one cool curve (ice for the falling branch, ultramarine for the rising one), one warm colour for whatever
+   you can move. No other hue. Dark first, like a night sky for mathematics; the light theme is clean white paper. */
 :root {
-  --paper: #f6f7fb; --sheet: #ffffff; --rule: #d9deea; --grid: #e4e8f1; --grid-major: #c9d0e0;
-  --ink: #141a26; --ink-2: #3b4559; --muted: #5a657b;
-  --blue: #1b3fa0; --blue-soft: #e6ebfa;
-  --red: #c4281c; --red-soft: #fbe9e6; --margin: #e0867d;
-  --green: #14764c; --green-soft: #e0f2e9;
-  --display: "Newsreader", "Times New Roman", serif;
+  color-scheme: dark;
+  --bg: #070b16; --bg-2: #0d1325; --panel: rgba(13, 19, 37, .78);
+  --ink: #eef1fb; --ink-2: #c3c9de; --muted: #8e97b5; --line: #232d4d;
+  --grid: rgba(160, 185, 255, .06); --grid-2: rgba(160, 185, 255, .15);
+  --down: #6fe3ff; --up: #8aa0ff; --hand: #ffc247; --acc: #9db0ff; --acc-ink: #070b16;
+  --display: "Bodoni Moda", "Bodoni 72", Didot, "Times New Roman", serif;
   --body: "Atkinson Hyperlegible", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
-  --gutter: max(16px, env(safe-area-inset-left, 0px));
-  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --math: "STIX Two Text", "Times New Roman", serif;
+  --gl: max(16px, env(safe-area-inset-left, 0px)); --gr: max(16px, env(safe-area-inset-right, 0px));
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --paper: #101a17; --sheet: #16241f; --rule: #2a3d36; --grid: #20322b;
-  --grid-major: #355046; --ink: #ecf0e6; --ink-2: #cdd6c8; --muted: #9fb0a5;
-  --blue: #9fc0ff; --blue-soft: #1d2f4f; --red: #ff9d88; --red-soft: #3a2420; --margin: #b4564b;
-  --green: #86e0ab; --green-soft: #173a29; color-scheme: dark; } }
-:root[data-theme="dark"] {
-  --paper: #101a17; --sheet: #16241f; --rule: #2a3d36; --grid: #20322b; --grid-major: #355046;
-  --ink: #ecf0e6; --ink-2: #cdd6c8; --muted: #9fb0a5;
-  --blue: #9fc0ff; --blue-soft: #1d2f4f; --red: #ff9d88; --red-soft: #3a2420; --margin: #b4564b;
-  --green: #86e0ab; --green-soft: #173a29; color-scheme: dark; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) {
+  color-scheme: light;
+  --bg: #fbfbfe; --bg-2: #f0f1f8; --panel: rgba(251, 251, 254, .82);
+  --ink: #0a0f1f; --ink-2: #363e5c; --muted: #5e6786; --line: #d6d9ea;
+  --grid: rgba(20, 30, 90, .07); --grid-2: rgba(20, 30, 90, .17);
+  --down: #0a86ab; --up: #2a3fe0; --hand: #d96f00; --acc: #2a3fe0; --acc-ink: #fbfbfe; } }
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #fbfbfe; --bg-2: #f0f1f8; --panel: rgba(251, 251, 254, .82);
+  --ink: #0a0f1f; --ink-2: #363e5c; --muted: #5e6786; --line: #d6d9ea;
+  --grid: rgba(20, 30, 90, .07); --grid-2: rgba(20, 30, 90, .17);
+  --down: #0a86ab; --up: #2a3fe0; --hand: #d96f00; --acc: #2a3fe0; --acc-ink: #fbfbfe; }
 
 * { box-sizing: border-box; }
-body { background: var(--paper); color: var(--ink); font: 1.0625rem/1.6 var(--body); }
-h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.12; letter-spacing: -.01em; text-wrap: balance; margin: 0; }
-h1 { font-size: clamp(2.1rem, 5.2vw, 3.6rem); }
-h2 { font-size: clamp(1.45rem, 3vw, 1.9rem); }
-h3 { font-size: 1.2rem; }
+body { background: var(--bg); color: var(--ink); font: 1.0625rem/1.65 var(--body); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 30; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+h1, h2 { font-family: var(--display); font-weight: 700; line-height: 1.04; letter-spacing: -.02em; font-optical-sizing: auto; }
+h1 { font-size: clamp(2.5rem, 6.4vw, 5.2rem); }
+h2 { font-size: clamp(1.8rem, 3.6vw, 2.7rem); }
+h3 { font: 700 1.1rem/1.3 var(--body); }
+h1 em, h2 em { font-style: italic; font-weight: 500; }
 p { margin: 0; text-wrap: pretty; }
 a { color: inherit; }
-:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 3px; }
-.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
-.i { font-family: var(--display); font-style: italic; font-weight: 500; }
-
-.sheet { position: relative; max-width: 1180px; margin: 0 auto; padding-inline: var(--gutter) var(--gutter-r); }
-@media (min-width: 900px) {
-  .sheet { padding-left: 56px; }
-  .sheet::before { content: ""; position: absolute; left: 32px; top: 0; bottom: 0; width: 1.5px; background: var(--margin); opacity: .8; }
-}
+:focus-visible { outline: 2px solid var(--hand); outline-offset: 3px; }
+.v { font-family: var(--math); font-style: italic; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.kicker { font: 500 .78rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.wrap { max-width: 1240px; margin-inline: auto; padding-inline: var(--gl) var(--gr); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* header */
-.top { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 28px; padding-block: 18px 0; }
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 700 1.35rem var(--display); }
-.brand svg { width: 30px; height: 30px; }
-.doors { display: flex; gap: 4px; margin-right: auto; order: 3; width: 100%; border-bottom: 1.5px solid var(--rule); }
-.doors a { text-decoration: none; padding: 12px 14px 10px; font-weight: 700; color: var(--muted); border-bottom: 3px solid transparent; margin-bottom: -1.5px; min-height: 44px; }
-.doors a:hover { color: var(--ink); }
-.doors a[aria-current] { color: var(--ink); border-bottom-color: var(--red); }
-.tools { display: flex; gap: 8px; margin-left: auto; }
-.btn { font: 700 .95rem var(--body); min-height: 44px; padding: 0 16px; border-radius: 6px; border: 1.5px solid var(--ink-2); background: transparent; color: var(--ink); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-.btn:hover { background: var(--ink); color: var(--paper); }
-.btn.primary { background: var(--blue); border-color: var(--blue); color: var(--paper); }
-.btn.primary:hover { filter: brightness(1.12); background: var(--blue); color: var(--paper); }
-@media (min-width: 760px) { .doors { order: 0; width: auto; border: 0; } .doors a { border-bottom-width: 3px; } }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 0 36px; }
+.brand { display: flex; align-items: center; gap: 12px; padding-block: 14px; text-decoration: none; font: 700 1.25rem var(--display); letter-spacing: -.01em; }
+.brand svg { width: 28px; height: 28px; overflow: visible; }
+.doors { display: flex; gap: 6px; order: 3; width: 100%; margin-inline: -10px; }
+.doors a { position: relative; text-decoration: none; padding: 10px 10px 12px; min-height: 44px; font-weight: 700; font-size: .98rem; color: var(--muted); transition: color .2s; }
+.doors a::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 0; height: 2px; background: var(--hand); transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.2, .8, .2, 1); }
+.doors a:hover { color: var(--ink); } .doors a[aria-current] { color: var(--ink); } .doors a[aria-current]::after, .doors a:hover::after { transform: scaleX(1); }
+.tools { margin-left: auto; display: flex; gap: 4px; }
+.icon-btn { width: 44px; height: 44px; display: grid; place-items: center; background: none; border: 0; color: var(--ink-2); cursor: pointer; border-radius: 50%; }
+.icon-btn:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 8%, transparent); }
+@media (min-width: 720px) { .doors { order: 0; width: auto; margin: 0 auto 0 0; } }
 
-main { padding-block: 40px 24px; display: grid; gap: 64px; }
-.kicker { font: 500 .8rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 24px; border-radius: 999px; font: 700 .98rem var(--body); text-decoration: none; border: 1.5px solid var(--ink-2); background: transparent; color: var(--ink); cursor: pointer; transition: transform .2s, background .2s, color .2s; }
+.btn:hover { background: var(--ink); color: var(--bg); }
+.btn.solid { background: var(--acc); border-color: var(--acc); color: var(--acc-ink); } .btn.solid:hover { transform: translateY(-2px); background: var(--acc); color: var(--acc-ink); }
 
-/* home opening */
-.open { display: grid; gap: 32px; align-items: start; }
-@media (min-width: 900px) { .open { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 48px; } }
-.open h1 em { font-style: italic; color: var(--blue); }
-.open .lede { margin-top: 20px; color: var(--ink-2); max-width: 34ch; font-size: 1.15rem; }
-.open .acts { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+/* the stage: a full-bleed canvas that carries the page */
+.hero { position: relative; display: grid; }
+.stage { position: relative; height: 66vh; min-height: 420px; width: 100%; background: radial-gradient(120% 90% at 70% 40%, var(--bg-2), var(--bg) 70%); overflow: hidden; touch-action: none; }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; outline: none; touch-action: none; }
+.stage.kbd canvas:focus { outline: 2px solid var(--hand); outline-offset: -3px; }
+.hint { position: absolute; left: 16px; bottom: 14px; z-index: 2; font: 500 .75rem var(--mono); letter-spacing: .06em; color: var(--muted); transition: opacity .6s; pointer-events: none; }
+.touched .hint { opacity: 0; }
+.bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0; border-top: 1px solid var(--line); background: var(--bg); }
+.bar > div { padding: 12px 20px 14px; border-right: 1px solid var(--line); min-width: 0; }
+.bar > div:last-child { border-right: 0; }
+.bar b { display: block; font: 500 .7rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.bar span { font: 500 .96rem var(--mono); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.bar .dn { color: var(--down); } .bar .upc { color: var(--up); }
 
-/* the figure */
-.fig { background: var(--sheet); border: 1.5px solid var(--ink); border-radius: 4px; min-width: 0; }
-.fig svg { display: block; width: 100%; height: auto; touch-action: none; }
-.fig .cap { display: flex; justify-content: space-between; gap: 12px; padding: 8px 14px; border-bottom: 1.5px solid var(--rule); font-size: .9rem; color: var(--muted); }
-.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); border-top: 1.5px solid var(--rule); }
-.read > div { padding: 10px 14px; border-right: 1px solid var(--rule); min-width: 0; }
-.read > div:last-child { border-right: 0; grid-column: 1 / -1; border-top: 1px solid var(--rule); }
-.read b { display: block; font: 500 .75rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
-.read span { font-family: var(--mono); font-size: .98rem; overflow-wrap: anywhere; }
-.note { padding: 10px 14px; border-top: 1.5px solid var(--rule); font-size: .92rem; color: var(--ink-2); }
-.g-minor { stroke: var(--grid); stroke-width: 1; } .g-major { stroke: var(--grid-major); stroke-width: 1; }
-.axis { stroke: var(--ink-2); stroke-width: 1.5; }
-.tick { fill: var(--muted); font: 11px var(--mono); }
-.curve { fill: none; stroke: var(--blue); stroke-width: 3; stroke-linecap: round; }
-.sym { stroke: var(--blue); stroke-width: 1.2; stroke-dasharray: 5 5; opacity: .6; }
-.root { fill: var(--green); stroke: var(--sheet); stroke-width: 2; }
-.rootlbl { fill: var(--green); font: 500 12px var(--mono); }
-.handle .dot { fill: var(--red); stroke: var(--sheet); stroke-width: 2.5; }
-.handle .ring { fill: var(--red); opacity: 0; }
-.handle:hover .ring, .handle:focus-visible .ring { opacity: .18; }
-.handle { cursor: grab; outline: none; } .handle:active { cursor: grabbing; }
-.handle .hit { fill: transparent; }
-.hlbl { fill: var(--red); font: 500 12px var(--mono); }
+.copy { padding: 36px var(--gr) 32px var(--gl); display: grid; gap: 22px; max-width: 640px; }
+.copy .lede { font-size: 1.15rem; color: var(--ink-2); max-width: 36ch; }
+.acts { display: flex; flex-wrap: wrap; gap: 12px; }
+@media (min-width: 900px) {
+  .hero--home .stage { position: absolute; inset: 0; height: auto; min-height: 0; }
+  .hero--home { min-height: min(86vh, 820px); align-content: space-between; }
+  .hero--home::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, var(--bg) 4%, color-mix(in srgb, var(--bg) 78%, transparent) 30%, transparent 58%); }
+  .hero--home .copy { position: relative; z-index: 2; pointer-events: none; padding: 9vh 0 4vh max(var(--gl), calc((100vw - 1240px) / 2 + var(--gl))); margin-top: auto; margin-bottom: auto; }
+  .hero--home .copy .acts a, .hero--home .copy .acts button { pointer-events: auto; }
+  .hero--home .bar { position: relative; z-index: 2; background: var(--panel); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+}
 
-/* rows: lists, not cards */
-.rows { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--ink); }
-.rows li { border-bottom: 1px solid var(--rule); }
-.rows a { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 4px 18px; align-items: center; padding: 16px 4px; min-height: 64px; text-decoration: none; }
-.rows a:hover { background: var(--blue-soft); }
-.rows a.nog { grid-template-columns: minmax(0, 1fr) auto; } .rows a.nog .d { grid-column: 1; }
-.rows .t { font: 700 1.2rem var(--display); }
-.rows .d { color: var(--ink-2); font-size: .98rem; grid-column: 2; }
-.rows .m { font: 500 .85rem var(--mono); color: var(--muted); text-align: right; white-space: nowrap; }
-.rows svg.g { width: 56px; height: 36px; stroke: var(--blue); fill: none; stroke-width: 2.4; stroke-linecap: round; }
-.rows .arrow { color: var(--red); font-weight: 700; }
-.sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; margin-bottom: 16px; }
-.sec-head a { font-weight: 700; }
+/* sections */
+main > section + section { margin-top: clamp(64px, 9vw, 120px); }
+.sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 8px 24px; padding-bottom: 20px; }
+.sec-head a { font-weight: 700; color: var(--acc); text-underline-offset: 5px; }
+.index { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink-2); }
+.index li { border-bottom: 1px solid var(--line); }
+.index a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 24px; align-items: baseline; padding: 22px 0; text-decoration: none; transition: padding-left .35s cubic-bezier(.2, .8, .2, 1); }
+.index a:hover { padding-left: 14px; }
+.index .t { font: 700 clamp(1.5rem, 3vw, 2.2rem)/1.1 var(--display); letter-spacing: -.01em; transition: color .2s; }
+.index a:hover .t { color: var(--hand); }
+.index .d { grid-column: 1; color: var(--ink-2); max-width: 62ch; }
+.index .m { grid-row: 1; grid-column: 2; font: 500 .85rem var(--mono); color: var(--muted); white-space: nowrap; }
+.index .m i { font-style: normal; color: var(--hand); margin-left: 8px; display: inline-block; transition: transform .3s; } .index a:hover .m i { transform: translateX(6px); }
+.index.g a { grid-template-columns: 64px minmax(0, 1fr) auto; gap: 2px 24px; align-items: center; }
+.index.g .d { grid-column: 2; } .index.g .m { grid-column: 3; } .index.g svg { grid-row: 1 / span 2; width: 64px; height: 40px; fill: none; stroke: var(--down); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 600px) { .index.g a { grid-template-columns: 52px minmax(0, 1fr); } .index.g .m { grid-column: 2; grid-row: auto; } .index a:not(.gl) { grid-template-columns: minmax(0, 1fr); } .index a:not(.gl) .m { grid-column: 1; grid-row: auto; } }
 
 /* chapter */
-.crumb { font-size: .95rem; color: var(--muted); } .crumb a { color: var(--blue); }
-.steps { display: flex; flex-wrap: wrap; gap: 6px 4px; list-style: none; padding: 0; margin: 20px 0 0; }
-.steps a { display: inline-flex; gap: 8px; align-items: center; min-height: 44px; padding: 0 14px; border: 1.5px solid var(--rule); border-radius: 22px; text-decoration: none; font-weight: 700; font-size: .95rem; color: var(--ink-2); }
-.steps a b { font: 500 .8rem var(--mono); color: var(--muted); }
-.steps a[aria-current] { background: var(--ink); border-color: var(--ink); color: var(--paper); } .steps a[aria-current] b { color: var(--paper); }
-.work { display: grid; gap: 32px; }
-@media (min-width: 980px) { .work { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 40px; align-items: start; } }
-.mission { background: var(--sheet); border: 1.5px solid var(--rule); border-radius: 4px; padding: 20px; display: grid; gap: 16px; align-self: start; }
-.mission .tag { font: 500 .78rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--red); }
-.choices { display: flex; flex-wrap: wrap; gap: 8px; }
-.choices button { min-width: 56px; min-height: 48px; font: 700 1.1rem var(--mono); border: 1.5px solid var(--ink-2); background: transparent; color: var(--ink); border-radius: 6px; cursor: pointer; }
-.choices button:hover { background: var(--blue-soft); }
-.choices button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
-.verdict { padding: 12px 14px; border-radius: 4px; font-size: .98rem; }
-.verdict.ok { background: var(--green-soft); border-left: 4px solid var(--green); }
-.verdict.no { background: var(--red-soft); border-left: 4px solid var(--red); }
-.prose { max-width: 62ch; display: grid; gap: 14px; color: var(--ink-2); }
-.prose strong { color: var(--ink); }
-.proof { border-left: 4px solid var(--red); padding: 4px 0 4px 16px; max-width: 62ch; }
-.proof .kicker { color: var(--red); }
-
-/* laboratory filter */
-.filter { display: flex; flex-wrap: wrap; gap: 6px; }
-.filter button { min-height: 44px; padding: 0 16px; border-radius: 22px; border: 1.5px solid var(--rule); background: transparent; color: var(--ink-2); font: 700 .95rem var(--body); cursor: pointer; }
-.filter button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.two { display: grid; gap: 40px; } @media (min-width: 900px) { .two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; } }
-table { border-collapse: collapse; width: 100%; font-size: .98rem; }
-th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
-th { font: 500 .78rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-.scroll { overflow-x: auto; }
-footer { padding-block: 32px 40px; color: var(--muted); font-size: .92rem; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; border-top: 1.5px solid var(--rule); margin-top: 24px; }
-footer a { color: var(--ink); }
+.crumb { color: var(--muted); font-size: .95rem; } .crumb a { color: var(--acc); }
+.head { display: grid; gap: 18px; padding-block: 40px 28px; }
+.head h1 { max-width: 14ch; }
+.steps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(130px, 1fr); list-style: none; margin: 0; padding: 0; overflow-x: auto; }
+.steps a { display: grid; gap: 2px; padding: 12px 12px 12px 0; border-top: 2px solid var(--line); text-decoration: none; color: var(--muted); font-weight: 700; font-size: .95rem; min-height: 56px; }
+.steps a b { font: 500 .72rem var(--mono); letter-spacing: .12em; }
+.steps a:hover { color: var(--ink); } .steps a[aria-current] { color: var(--ink); border-top-color: var(--hand); }
+.hero--chap { position: relative; margin-top: clamp(16px, 3vw, 40px); }
+.mission { padding: 24px var(--gr) 28px var(--gl); display: grid; gap: 14px; background: var(--bg); border-top: 1px solid var(--line); }
+.mission .tag { font: 500 .74rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--hand); }
+.mission h3 { font: 700 1.3rem/1.3 var(--display); letter-spacing: -.01em; }
+.choices { display: flex; gap: 8px; }
+.choices button { width: 58px; height: 50px; font: 500 1.15rem var(--mono); border-radius: 12px; border: 1.5px solid var(--ink-2); background: transparent; color: var(--ink); cursor: pointer; transition: background .2s, transform .15s; }
+.choices button:hover { transform: translateY(-2px); } .choices button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.verdict { padding: 12px 14px; border-radius: 10px; font-size: .96rem; border: 1px solid var(--line); }
+.verdict.ok { border-color: var(--down); } .verdict.no { border-color: var(--hand); }
+@media (min-width: 980px) {
+  .hero--chap .stage { height: clamp(500px, 72vh, 720px); }
+  .hero--chap .mission { position: absolute; z-index: 3; top: 24px; right: max(var(--gr), calc((100vw - 1240px) / 2 + var(--gr))); width: 340px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); padding: 22px; }
+}
+.two { display: grid; gap: 40px; } @media (min-width: 900px) { .two { grid-template-columns: 7fr 5fr; gap: 80px; } }
+.prose { display: grid; gap: 16px; color: var(--ink-2); max-width: 60ch; } .prose strong { color: var(--ink); }
+.proof { border-left: 2px solid var(--hand); padding-left: 22px; align-self: start; display: grid; gap: 10px; }
+.proof .kicker { color: var(--hand); }
+.filter { display: flex; flex-wrap: wrap; gap: 8px; }
+.filter button { min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid var(--line); background: transparent; color: var(--ink-2); font: 700 .95rem var(--body); cursor: pointer; transition: border-color .2s; }
+.filter button:hover { border-color: var(--ink-2); } .filter button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+footer { margin-top: clamp(64px, 9vw, 120px); border-top: 1px solid var(--line); } footer .wrap { padding-block: 28px 40px; display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: space-between; color: var(--muted); font-size: .92rem; }
 [hidden] { display: none !important; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-@media (max-width: 600px) { .rows a { grid-template-columns: auto minmax(0, 1fr); } .rows .m { grid-column: 2; text-align: left; } .rows .d { grid-column: 1 / -1; } .rows a.nog { grid-template-columns: minmax(0, 1fr); } .rows a.nog .m { grid-column: 1; } }
 </style>
 
-<div class="sheet">
-  <header class="top">
-    <a class="brand" href="#accueil" aria-label="Maths Explorer, accueil">
-      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="8" fill="var(--blue)"/><path d="M9 11Q20 43 31 11" fill="none" stroke="var(--paper)" stroke-width="3.4" stroke-linecap="round"/><circle cx="10" cy="20" r="3.2" fill="var(--red)" stroke="var(--paper)" stroke-width="1.5"/><circle cx="30" cy="20" r="3.2" fill="var(--red)" stroke="var(--paper)" stroke-width="1.5"/></svg>
-      Maths Explorer
-    </a>
-    <nav class="doors" aria-label="Sections">
-      <a href="#cours" data-door="cours">Cours</a>
-      <a href="#labo" data-door="labo">Laboratoire</a>
-      <a href="#lire" data-door="lire">Lire</a>
-    </nav>
-    <div class="tools">
-      <button class="btn" id="theme" type="button" aria-pressed="false">Tableau noir</button>
-    </div>
-  </header>
-  <main id="view"></main>
-  <footer>
-    <span>Une expérience donne des indices, pas une preuve.</span>
-    <span><a href="#notes">Notes de conception</a></span>
-  </footer>
-</div>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#accueil" aria-label="Maths Explorer, accueil">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 6Q20 50 35 6" fill="none" stroke="var(--down)" stroke-width="2.6" stroke-linecap="round"/><circle cx="20" cy="26.5" r="3.6" fill="var(--hand)"/></svg>
+    Maths Explorer
+  </a>
+  <nav class="doors" aria-label="Sections"><a href="#cours" data-door="cours">Cours</a><a href="#labo" data-door="labo">Laboratoire</a><a href="#lire" data-door="lire">Lire</a></nav>
+  <div class="tools"><button class="icon-btn" id="theme" type="button" aria-label="Changer de thème"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button></div>
+</div></header>
+<main id="view"></main>
+<footer><div class="wrap"><span>Une expérience donne des indices, pas une preuve.</span><a href="#notes">Notes de conception</a></div></footer>
+<p class="sr" id="status" aria-live="polite"></p>
 
 <script>
-/* ---------- shared maths state: the same parabola on every page ---------- */
-const S = { al: 0, be: -2, a: 1 };
-const fmt = (n) => { const v = Math.round(n * 100) / 100; return String(v).replace('.', ',').replace('-', '−'); };
+/* ============ shared state: the same parabola on every page. f(x) = a(x − α)² + β ============ */
+const S = { al: 0, be: -2, a: 1, dx: 1.5 };
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fmt = (n) => { const v = Math.round(n * 100) / 100; return String(Object.is(v, -0) ? 0 : v).replace('.', ',').replace('-', '−'); };
 const approx = (n) => (Math.abs(Math.round(n * 100) / 100 - n) < 1e-9 ? '=' : '≈');
-const sgn = (n, first) => first ? fmt(n) : (n < 0 ? ' − ' : ' + ') + fmt(Math.abs(n));
+const sgn = (n) => (n < 0 ? ' − ' : ' + ') + fmt(Math.abs(n));
 function forms() {
   const { al, be, a } = S, b = -2 * a * al, c = a * al * al + be, d = b * b - 4 * a * c;
-  const lead = a === 1 ? '' : a === -1 ? '−' : fmt(a);
-  const sq = al === 0 ? 'x²' : '(x ' + (al > 0 ? '−' : '+') + ' ' + fmt(Math.abs(al)) + ')²';
-  const canon = 'f(x) = ' + lead + sq + (be === 0 ? '' : sgn(be, false));
-  const bx = b === 0 ? '' : (b === 1 ? ' + x' : b === -1 ? ' − x' : sgn(b, false) + 'x'), cx = c === 0 ? '' : sgn(c, false);
-  const dev = 'f(x) = ' + lead + 'x²' + bx + cx;
-  let roots;
-  if (d < -1e-9) roots = 'aucune racine réelle';
-  else if (Math.abs(d) < 1e-9) roots = 'x = ' + fmt(al);
-  else { const r = Math.sqrt(d) / (2 * Math.abs(a)); roots = 'x₁ ' + approx(al - r) + ' ' + fmt(al - r) + '  ·  x₂ ' + approx(al + r) + ' ' + fmt(al + r); }
-  return { canon, dev, d, roots, count: d < -1e-9 ? 0 : Math.abs(d) < 1e-9 ? 1 : 2 };
+  const lead = Math.abs(a - 1) < 5e-3 ? '' : Math.abs(a + 1) < 5e-3 ? '−' : fmt(a);
+  const sq = Math.abs(al) < 5e-3 ? 'x²' : '(x ' + (al > 0 ? '−' : '+') + ' ' + fmt(Math.abs(al)) + ')²';
+  const canon = 'f(x) = ' + lead + sq + (Math.abs(be) < 5e-3 ? '' : sgn(be));
+  const dev = 'f(x) = ' + lead + 'x²' + (Math.abs(b) < 5e-3 ? '' : sgn(b) + 'x') + (Math.abs(c) < 5e-3 ? '' : sgn(c));
+  const real = -be / a >= -1e-9, r = real ? Math.sqrt(Math.max(0, -be / a)) : 0, count = !real ? 0 : r < 1e-4 ? 1 : 2;
+  const roots = count === 0 ? 'aucune racine réelle' : count === 1 ? 'x = ' + fmt(al) : `x₁ ${approx(al - r)} ${fmt(al - r)} · x₂ ${approx(al + r)} ${fmt(al + r)}`;
+  return { canon, dev, delta: fmt(d), roots, count, a };
 }
 
-/* ---------- the draggable parabola ---------- */
-function mountParabola(host, opts = {}) {
-  const U = 40, W = 600, H = 440, ox = 300, oy = 220, NS = 'http://www.w3.org/2000/svg';
-  const X = (x) => ox + x * U, Y = (y) => oy - y * U;
-  let grid = '', ticks = '';
-  for (let i = -7; i <= 7; i++) grid += `<line class="${i % 5 === 0 ? 'g-major' : 'g-minor'}" x1="${X(i)}" y1="0" x2="${X(i)}" y2="${H}"/>`;
-  for (let j = -5; j <= 5; j++) grid += `<line class="${j % 5 === 0 ? 'g-major' : 'g-minor'}" x1="0" y1="${Y(j)}" x2="${W}" y2="${Y(j)}"/>`;
-  for (let i = -6; i <= 6; i += 2) if (i) ticks += `<text class="tick" x="${X(i)}" y="${oy + 16}" text-anchor="middle">${String(i).replace("-", "−")}</text>`;
-  for (let j = -4; j <= 4; j += 2) if (j) ticks += `<text class="tick" x="${ox - 8}" y="${Y(j) + 4}" text-anchor="end">${String(j).replace("-", "−")}</text>`;
-  host.innerHTML = `
-    <div class="cap"><span>f(x) = a(x − <span class="i">α</span>)² + <span class="i">β</span></span><span>glisse les points rouges</span></div>
-    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Parabole que l'on déplace par son sommet et son ouverture">
-      <defs><clipPath id="clip${opts.id || 0}"><rect width="${W}" height="${H}"/></clipPath></defs>
-      ${grid}<line class="axis" x1="0" y1="${oy}" x2="${W}" y2="${oy}"/><line class="axis" x1="${ox}" y1="0" x2="${ox}" y2="${H}"/>${ticks}
-      <g clip-path="url(#clip${opts.id || 0})"><line class="sym"/><path class="curve"/></g>
-      <g class="roots"></g>
-      <g class="handle" data-h="v" tabindex="0" role="slider" aria-label="Sommet"><circle class="ring" r="22"/><circle class="dot" r="9"/><circle class="hit" r="24"/></g>
-      <g class="handle" data-h="a" tabindex="0" role="slider" aria-label="Ouverture"><circle class="ring" r="22"/><circle class="dot" r="9"/><circle class="hit" r="24"/></g>
-      <text class="hlbl" data-l="v"></text>
-    </svg>
-    <div class="read"><div><b>Forme canonique</b><span data-r="canon"></span></div><div><b>Forme développée</b><span data-r="dev"></span></div><div><b>Δ</b><span data-r="d"></span></div><div><b>Racines</b><span data-r="roots"></span></div></div>
-    <div class="note">Flèches du clavier : déplacer le point sélectionné de 0,5.</div>`;
-  const svg = host.querySelector('svg'), path = svg.querySelector('.curve'), sym = svg.querySelector('.sym');
-  const hv = svg.querySelector('[data-h=v]'), ha = svg.querySelector('[data-h=a]'), roots = svg.querySelector('.roots'), lbl = svg.querySelector('[data-l=v]');
-  const out = (k) => host.querySelector(`[data-r=${k}]`);
-  const snap = (v) => Math.round(v * 2) / 2;
-  function draw() {
-    let p = '';
-    for (let x = -7.5; x <= 7.5; x += 0.1) { const y = S.a * (x - S.al) ** 2 + S.be; p += (p ? 'L' : 'M') + X(x).toFixed(1) + ' ' + Y(y).toFixed(1); }
-    path.setAttribute('d', p);
-    sym.setAttribute('x1', X(S.al)); sym.setAttribute('x2', X(S.al)); sym.setAttribute('y1', 0); sym.setAttribute('y2', H);
-    hv.setAttribute('transform', `translate(${X(S.al)} ${Y(S.be)})`);
-    ha.setAttribute('transform', `translate(${X(S.al + 1)} ${Y(S.be + S.a)})`);
-    lbl.setAttribute('x', X(S.al) + 14); lbl.setAttribute('y', Y(S.be) + (S.a > 0 ? 24 : -14)); lbl.textContent = `S(${fmt(S.al)} ; ${fmt(S.be)})`;
-    const f = forms(); roots.innerHTML = '';
-    if (f.count) { const r = Math.sqrt(f.d) / (2 * Math.abs(S.a)); [S.al - r, S.al + r].slice(0, f.count === 1 ? 1 : 2).forEach((x) => { roots.insertAdjacentHTML('beforeend', `<circle class="root" cx="${X(x)}" cy="${oy}" r="7"/><text class="rootlbl" x="${X(x)}" y="${oy - 12}" text-anchor="middle">${fmt(x)}</text>`); }); }
-    out('canon').textContent = f.canon; out('dev').textContent = f.dev; out('d').textContent = fmt(f.d); out('roots').textContent = f.roots;
-    ha.setAttribute('aria-valuetext', 'a = ' + fmt(S.a)); hv.setAttribute('aria-valuetext', `sommet (${fmt(S.al)} ; ${fmt(S.be)})`);
-    host.dispatchEvent(new CustomEvent('change'));
-  }
-  const toUnits = (e) => { const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY; const q = pt.matrixTransform(svg.getScreenCTM().inverse()); return [(q.x - ox) / U, (oy - q.y) / U]; };
+/* ============ the canvas engine ============
+   Eased everywhere (parameters and camera follow their targets with an exponential spring), pointer-direct while
+   dragging, free in every degree of freedom, soft magnet to integers instead of a hard grid, pan and zoom. */
+let COL = null;
+const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const colors = () => COL || (COL = { bg: css('--bg'), ink: css('--ink'), ink2: css('--ink-2'), muted: css('--muted'), grid: css('--grid'), grid2: css('--grid-2'), down: css('--down'), up: css('--up'), hand: css('--hand'), panel: css('--panel'), line: css('--line') });
+const lab = (v) => String(+v.toFixed(8)).replace('.', ',').replace('-', '−');
+
+function Plot(stage, o = {}) {
+  const cv = document.createElement('canvas'); cv.tabIndex = 0; cv.setAttribute('role', 'application');
+  cv.setAttribute('aria-label', 'Parabole. H change de point, les flèches le déplacent, plus et moins zooment, zéro recentre.');
+  stage.append(cv); const g = cv.getContext('2d');
+  const sh = { ...S }, cam = { x: 0, y: 0, s: 60 }, camT = { ...cam };
+  let W = 0, H = 0, dpr = 1, raf = 0, last = 0, t0 = performance.now(), drag = null, ptr = null, sel = 0, userCam = false, touched = !o.drift, destroyed = false;
+  const pts = new Map(), KINDS = ['V', 'P', 'R1', 'R2'];
+  const X = (x) => W / 2 + (x - cam.x) * cam.s, Y = (y) => H / 2 - (y - cam.y) * cam.s;
+  const ux = (px, c = cam) => (px - W / 2) / c.s + c.x, uy = (py, c = cam) => c.y - (py - H / 2) / c.s;
+  const f = (x) => sh.a * (x - sh.al) ** 2 + sh.be;
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
-  const setA = (a) => { a = clamp(snap(a), -4, 4); if (a === 0) a = S.a > 0 ? -0.5 : 0.5; S.a = a; };
-  function move(which, ux, uy) { if (which === 'v') { S.al = clamp(snap(ux), -6, 6); S.be = clamp(snap(uy), -4.5, 4.5); } else setA(uy - S.be); draw(); }
-  [hv, ha].forEach((h) => {
-    const which = h.dataset.h;
-    h.addEventListener('pointerdown', (e) => { h.setPointerCapture(e.pointerId); h.dataset.drag = 1; h.focus(); e.preventDefault(); });
-    h.addEventListener('pointermove', (e) => { if (!h.dataset.drag) return; const [ux, uy] = toUnits(e); move(which, ux, uy); });
-    h.addEventListener('pointerup', () => { delete h.dataset.drag; });
-    h.addEventListener('keydown', (e) => {
-      const d = { ArrowLeft: [-.5, 0], ArrowRight: [.5, 0], ArrowUp: [0, .5], ArrowDown: [0, -.5] }[e.key]; if (!d) return; e.preventDefault();
-      if (which === 'v') move('v', S.al + d[0], S.be + d[1]); else move('a', 0, S.a + d[1] + S.be);
-    });
+
+  function home() { camT.s = clamp(Math.min(W, H) / 9.5, 34, 96); camT.y = 0.4; camT.x = -((o.origin ?? 0.5) - 0.5) * W / camT.s; }
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2.5); W = stage.clientWidth; H = stage.clientHeight; if (!W || !H) return;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    if (!userCam) { home(); Object.assign(cam, camT); } wake();
+  }
+  const ro = new ResizeObserver(resize); ro.observe(stage); resize();
+
+  function handles() {
+    const r2 = -sh.be / sh.a, out = [{ k: 'V', x: sh.al, y: sh.be }, { k: 'P', x: sh.al + sh.dx, y: f(sh.al + sh.dx) }];
+    if (r2 >= 0) { const r = Math.sqrt(r2); out.push({ k: 'R1', x: sh.al - r, y: 0 }, { k: 'R2', x: sh.al + r, y: 0 }); }
+    return out;
+  }
+  function hit(px, py, touch) { let best = null, bd = (touch ? 30 : 20) ** 2; for (const h of handles()) { const d = (X(h.x) - px) ** 2 + (Y(h.y) - py) ** 2; if (d < bd) { bd = d; best = h; } } return best; }
+  const magnet = (v, on = true) => { if (!on) return v; const r = Math.round(v); return Math.abs(v - r) * camT.s < 7 ? r : v; };
+
+  function setFromHandle(k, wx, wy, other, snap = true) {
+    if (k === 'V') { S.al = clamp(magnet(wx, snap), -40, 40); S.be = clamp(magnet(wy, snap), -40, 40); }
+    else if (k === 'P') {
+      let dx = wx - S.al; if (Math.abs(dx) < 0.3) dx = (S.dx < 0 ? -1 : 1) * 0.3;
+      let a = (wy - S.be) / (dx * dx); if (Math.abs(a) < 0.05) a = (S.a < 0 ? -1 : 1) * 0.05; a = clamp(a, -8, 8);
+      const q = Math.round(a * 2) / 2; if (snap && Math.abs(a - q) < 0.035 && q !== 0) a = q;
+      S.dx = dx; S.a = a;
+    } else { const nx = magnet(wx, snap), half = (other - nx) / 2; S.al = (nx + other) / 2; S.be = -S.a * half * half; }
+  }
+  const ctxFor = (k) => { const r = Math.sqrt(Math.max(0, -S.be / S.a)); return k === 'R1' ? S.al + r : S.al - r; };
+
+  function wake() { if (!raf && !destroyed) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+  function frame(now) {
+    raf = 0; if (destroyed) return;
+    const dt = Math.min(0.05, (now - last) / 1000 || 0.016); last = now;
+    if (o.drift && !touched && !reduced) { const t = (now - t0) / 1000; S.al = 0.9 * Math.sin(t * 0.33); S.be = -2 + 0.7 * Math.sin(t * 0.27 + 1); S.a = 1 + 0.4 * Math.sin(t * 0.21); }
+    const k = (rate) => (reduced ? 1 : 1 - Math.exp(-dt * rate)), dragging = drag && drag.k !== 'pan';
+    let moving = false;
+    for (const key of ['al', 'be', 'a', 'dx']) { const d = S[key] - sh[key]; if (Math.abs(d) > 1e-5) { sh[key] += d * k(dragging ? 42 : 14); moving = true; } else sh[key] = S[key]; }
+    for (const key of ['x', 'y', 's']) { const d = camT[key] - cam[key]; if (Math.abs(d) > (key === 's' ? 1e-3 : 1e-5)) { cam[key] += d * k(13); moving = true; } else cam[key] = camT[key]; }
+    draw(); o.onFrame && o.onFrame();
+    if (moving || (o.drift && !touched && !reduced) || ptr) raf = requestAnimationFrame(frame);
+  }
+
+  function draw() {
+    const C = colors(); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, H);
+    const left = ux(0), right = ux(W), top = uy(0), bot = uy(H);
+    /* grid with adaptive step: minor and major hairlines */
+    const raw = 88 / cam.s, p10 = 10 ** Math.floor(Math.log10(raw)); let step = p10; for (const m of [1, 2, 5, 10]) { step = m * p10; if (step >= raw) break; }
+    const mant = Math.round(step / p10), sub = mant === 2 ? 4 : 5, minor = step / sub;
+    const lines = (st, col) => { g.strokeStyle = col; g.lineWidth = 1; g.beginPath();
+      for (let x = Math.floor(left / st) * st; x <= right; x += st) { const px = Math.round(X(x)) + 0.5; g.moveTo(px, 0); g.lineTo(px, H); }
+      for (let y = Math.floor(bot / st) * st; y <= top; y += st) { const py = Math.round(Y(y)) + 0.5; g.moveTo(0, py); g.lineTo(W, py); } g.stroke(); };
+    lines(minor, C.grid); lines(step, C.grid2);
+    const ax = clamp(Y(0), 0, H), ay = clamp(X(0), 0, W);
+    g.strokeStyle = C.ink2; g.globalAlpha = 0.7; g.lineWidth = 1.2; g.beginPath(); g.moveTo(0, Math.round(ax) + 0.5); g.lineTo(W, Math.round(ax) + 0.5); g.moveTo(Math.round(ay) + 0.5, 0); g.lineTo(Math.round(ay) + 0.5, H); g.stroke(); g.globalAlpha = 1;
+    g.font = '11px "IBM Plex Mono", monospace'; g.fillStyle = C.muted;
+    g.textAlign = 'center'; g.textBaseline = 'top'; const ty = clamp(ax + 7, 4, H - 16);
+    for (let x = Math.ceil(left / step) * step; x <= right; x += step) { if (Math.abs(x) < step / 1e3) continue; g.fillText(lab(x), X(x), ty); }
+    g.textAlign = ay < 40 ? 'left' : 'right'; g.textBaseline = 'middle'; const tx = ay < 40 ? ay + 8 : ay - 8;
+    for (let y = Math.ceil(bot / step) * step; y <= top; y += step) { if (Math.abs(y) < step / 1e3) continue; g.fillText(lab(y), clamp(tx, 6, W - 6), Y(y)); }
+    /* guides */
+    g.setLineDash([4, 6]); g.lineWidth = 1; g.strokeStyle = C.down; g.globalAlpha = 0.45; g.beginPath(); g.moveTo(Math.round(X(sh.al)) + 0.5, 0); g.lineTo(Math.round(X(sh.al)) + 0.5, H); g.stroke();
+    g.strokeStyle = C.hand; g.globalAlpha = 0.4; g.beginPath(); g.moveTo(Math.round(X(0)) + 0.5, Math.round(Y(sh.be)) + 0.5); g.lineTo(Math.round(X(sh.al)) + 0.5, Math.round(Y(sh.be)) + 0.5); g.stroke(); g.setLineDash([]); g.globalAlpha = 1;
+    /* the curve: falling branch and rising branch in two tones, with a soft glow */
+    const clipY = (py) => clamp(py, -6000, H + 6000);
+    const branch = (x0, x1, col) => { if (x1 <= x0) return; g.beginPath(); const a = Math.max(x0, left - 2 / cam.s), b = Math.min(x1, right + 2 / cam.s); if (b <= a) return;
+      for (let px = X(a); px <= X(b) + 1.5; px += 1.5) { const x = clamp(ux(px), a, b); const py = clipY(Y(f(x))); if (px === X(a)) g.moveTo(px, py); else g.lineTo(px, py); }
+      g.lineCap = 'round'; g.lineJoin = 'round'; g.strokeStyle = col; g.globalAlpha = 0.16; g.lineWidth = 9; g.stroke(); g.globalAlpha = 1; g.lineWidth = 2.6; g.stroke(); };
+    const lc = sh.a > 0 ? C.down : C.up, rc = sh.a > 0 ? C.up : C.down;
+    branch(left - 1, sh.al, lc); branch(sh.al, right + 1, rc);
+    /* tangent that follows the pointer */
+    const hov = ptr && !drag ? hit(ptr.x, ptr.y, ptr.touch) : null;
+    if (ptr && !drag && !hov && !ptr.touch) {
+      const x = ux(ptr.x), y = f(x), m = 2 * sh.a * (x - sh.al), px = X(x), py = Y(y);
+      if (py > -50 && py < H + 50) {
+        const len = 110, nx = 1 / Math.hypot(1, m), ex = len * nx, ey = -m * len * nx;
+        g.strokeStyle = C.ink; g.globalAlpha = 0.65; g.lineWidth = 1; g.beginPath(); g.moveTo(px - ex, py - ey); g.lineTo(px + ex, py + ey); g.stroke(); g.globalAlpha = 1;
+        g.fillStyle = C.ink; g.beginPath(); g.arc(px, py, 3.5, 0, 6.2832); g.fill();
+        const txt = `x = ${fmt(x)}   f(x) = ${fmt(y)}   f′(x) = ${fmt(m)}`; g.font = '12px "IBM Plex Mono", monospace'; const tw = g.measureText(txt).width + 20;
+        const bx = clamp(px + 14, 8, W - tw - 8), by = clamp(py - 40, 8, H - 40);
+        g.fillStyle = C.panel; g.strokeStyle = C.line; g.lineWidth = 1; g.beginPath(); g.roundRect(bx, by, tw, 26, 13); g.fill(); g.stroke();
+        g.fillStyle = C.ink; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText(txt, bx + 10, by + 13.5);
+      }
+    }
+    /* handles: warm = movable, white ring = roots */
+    g.font = '12px "IBM Plex Mono", monospace';
+    for (const h of handles()) {
+      const px = X(h.x), py = Y(h.y), isRoot = h.k[0] === 'R', active = (drag && drag.k === h.k) || (hov && hov.k === h.k), focus = document.activeElement === cv && KINDS[sel] === h.k;
+      if (px < -30 || px > W + 30 || py < -30 || py > H + 30) continue;
+      if (active || focus) { g.fillStyle = isRoot ? C.ink : C.hand; g.globalAlpha = 0.18; g.beginPath(); g.arc(px, py, 20, 0, 6.2832); g.fill(); g.globalAlpha = 1; }
+      if (focus) { g.strokeStyle = C.hand; g.lineWidth = 1.5; g.beginPath(); g.arc(px, py, 14, 0, 6.2832); g.stroke(); }
+      g.beginPath(); g.arc(px, py, isRoot ? 6 : 8.5, 0, 6.2832);
+      if (isRoot) { g.fillStyle = C.bg; g.fill(); g.strokeStyle = C.ink; g.lineWidth = 2.2; g.stroke(); g.fillStyle = C.ink; g.textAlign = 'center'; g.textBaseline = 'bottom'; g.fillText(fmt(h.x), px, py - 12); }
+      else { g.fillStyle = C.hand; g.fill(); g.strokeStyle = C.bg; g.lineWidth = 2.5; g.stroke(); }
+      if (h.k === 'V') { g.fillStyle = C.hand; g.textAlign = 'left'; g.textBaseline = 'top'; g.fillText(`S(${fmt(h.x)} ; ${fmt(h.y)})`, px + 14, py + (sh.a > 0 ? 12 : -26)); }
+    }
+    cv.style.cursor = drag ? 'grabbing' : hov ? 'grab' : 'crosshair';
+  }
+
+  /* ---- input ---- */
+  const pos = (e) => { const r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top, touch: e.pointerType === 'touch' }; };
+  let pinch = null;
+  cv.addEventListener('keydown', () => stage.classList.add('kbd'), true); cv.addEventListener('pointerdown', () => stage.classList.remove('kbd'), true);
+  const touch = () => { touched = true; stage.classList.add('touched'); };
+  cv.addEventListener('pointerdown', (e) => {
+    cv.setPointerCapture(e.pointerId); const q = pos(e); pts.set(e.pointerId, q); cv.focus({ preventScroll: true });
+    if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), s: camT.s, wx: ux((a.x + b.x) / 2, camT), wy: uy((a.y + b.y) / 2, camT) }; drag = null; return; }
+    const h = hit(q.x, q.y, q.touch); touch();
+    if (h) { sel = KINDS.indexOf(h.k); drag = { k: h.k, ox: h.x - ux(q.x), oy: h.y - uy(q.y), other: ctxFor(h.k) }; }
+    else { drag = { k: 'pan', sx: q.x, sy: q.y, cx: camT.x, cy: camT.y }; userCam = true; }
+    wake();
   });
-  draw();
+  cv.addEventListener('pointermove', (e) => {
+    const q = pos(e); ptr = q; if (pts.has(e.pointerId)) pts.set(e.pointerId, q);
+    if (pinch && pts.size === 2) { const [a, b] = [...pts.values()], d = Math.hypot(a.x - b.x, a.y - b.y), s = clamp(pinch.s * d / pinch.d, 12, 400), cx = (a.x + b.x) / 2, cy = (a.y + b.y) / 2;
+      camT.s = s; camT.x = pinch.wx - (cx - W / 2) / s; camT.y = pinch.wy + (cy - H / 2) / s; Object.assign(cam, camT); userCam = true; }
+    else if (drag && drag.k === 'pan') { camT.x = drag.cx - (q.x - drag.sx) / camT.s; camT.y = drag.cy + (q.y - drag.sy) / camT.s; cam.x = camT.x; cam.y = camT.y; }
+    else if (drag) setFromHandle(drag.k, ux(q.x) + drag.ox, uy(q.y) + drag.oy, drag.other, !e.altKey);
+    wake();
+  });
+  const up = (e) => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; drag = null; if (e.pointerType === 'touch') ptr = null; wake(); };
+  cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+  cv.addEventListener('pointerleave', () => { if (!drag) { ptr = null; wake(); } });
+  cv.addEventListener('wheel', (e) => { e.preventDefault(); const q = pos(e), s = clamp(camT.s * Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0015)), 12, 400), wx = ux(q.x, camT), wy = uy(q.y, camT);
+    camT.s = s; camT.x = wx - (q.x - W / 2) / s; camT.y = wy + (q.y - H / 2) / s; userCam = true; touch(); wake(); }, { passive: false });
+  cv.addEventListener('dblclick', () => { userCam = false; home(); wake(); });
+  cv.addEventListener('focus', wake); cv.addEventListener('blur', wake);
+  cv.addEventListener('keydown', (e) => {
+    const say = (m) => { document.getElementById('status').textContent = m; };
+    if (e.key === 'h' || e.key === 'H') { sel = (sel + 1) % handles().length; say(['Sommet', 'Point sur la courbe', 'Première racine', 'Seconde racine'][sel]); wake(); e.preventDefault(); return; }
+    if (e.key === '+' || e.key === '=') { camT.s = clamp(camT.s * 1.2, 12, 400); userCam = true; wake(); e.preventDefault(); return; }
+    if (e.key === '-') { camT.s = clamp(camT.s / 1.2, 12, 400); userCam = true; wake(); e.preventDefault(); return; }
+    if (e.key === '0') { userCam = false; home(); wake(); e.preventDefault(); return; }
+    const d = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] }[e.key]; if (!d) return; e.preventDefault(); touch();
+    const stp = e.shiftKey ? 1 : 0.1, hs = handles(), k = (hs[sel] || hs[0]).k, r = Math.sqrt(Math.max(0, -S.be / S.a));
+    const [hx, hy] = k === 'V' ? [S.al, S.be] : k === 'P' ? [S.al + S.dx, S.a * S.dx * S.dx + S.be] : [k === 'R1' ? S.al - r : S.al + r, 0];
+    setFromHandle(k, hx + d[0] * stp, hy + d[1] * stp, ctxFor(k), false);
+    say(k === 'V' ? `Sommet en ${fmt(S.al)} ; ${fmt(S.be)}` : `a = ${fmt(S.a)}`); wake();
+  });
+  wake();
+  return { destroy() { destroyed = true; cancelAnimationFrame(raf); ro.disconnect(); }, wake, home };
 }
 
-/* ---------- views ---------- */
-const glyph = (d) => `<svg class="g" viewBox="0 0 56 36" aria-hidden="true"><path d="${d}"/></svg>`;
-const G = { par: 'M6 4 Q28 56 50 4', cos: 'M4 18 Q14 2 28 18 T52 18', exp: 'M4 32 Q30 30 52 4', tan: 'M4 30 Q28 34 52 6 M30 32 L52 14', area: 'M4 32 L4 24 L16 24 L16 18 L28 18 L28 10 L40 10 L40 6 L52 6 L52 32 Z', pend: 'M10 4 L24 30 M34 4 L40 32 M24 30 m-3 0 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0', pop: 'M4 28 L12 10 L20 26 L28 8 L36 24 L44 12 L52 20', gauss: 'M4 32 L4 26 L14 26 L14 20 L24 20 L24 14 L34 14 L34 8 L44 8 L44 4', door: 'M12 4 H44 V32 H12 Z M28 4 V32' };
+/* ============ readouts ============ */
+function bar(host) {
+  host.innerHTML = '<div><b>Forme canonique</b><span data-k="canon"></span></div><div><b>Forme développée</b><span data-k="dev"></span></div><div><b>Discriminant Δ</b><span data-k="delta"></span></div><div><b>Racines</b><span data-k="roots"></span></div><div><b>Variations</b><span data-k="var"></span></div>';
+  const els = Object.fromEntries([...host.querySelectorAll('[data-k]')].map((e) => [e.dataset.k, e]));
+  return () => { const f = forms();
+    for (const k of ['canon', 'dev', 'delta', 'roots']) if (els[k].textContent !== f[k]) els[k].textContent = f[k];
+    if (els.var.dataset.v !== String(f.a > 0)) { els.var.dataset.v = String(f.a > 0); els.var.innerHTML = f.a > 0 ? '<span class="dn">↘ décroît</span> puis <span class="upc">↗ croît</span>' : '<span class="upc">↗ croît</span> puis <span class="dn">↘ décroît</span>'; } };
+}
+
+/* ============ views ============ */
+const glyph = (d) => `<svg viewBox="0 0 64 40" aria-hidden="true"><path d="${d}"/></svg>`;
+const G = { par: 'M10 4 Q32 62 54 4', cos: 'M4 20 Q16 2 32 20 T60 20', exp: 'M4 36 Q40 34 60 4', tan: 'M4 34 Q32 38 60 6 M32 36 L60 16', area: 'M6 36 V28 H18 V22 H30 V14 H42 V8 H54 V36 Z', pend: 'M14 4 L26 34 M40 4 L48 36', pop: 'M4 32 L14 8 L24 30 L34 6 L44 28 L54 12 L60 20', gauss: 'M6 36 V30 H16 V24 H26 V18 H36 V12 H46 V6', door: 'M16 4 H48 V36 H16 Z M32 4 V36' };
 const EXPS = [
   ['alg', 'par', 'L’atelier de la parabole', 'Que change chaque coefficient ? Déplace le sommet et l’ouverture, regarde les formules suivre.', 'Algèbre', 8],
   ['geo', 'cos', 'Un cercle, deux coordonnées', 'Fais tourner le point P : ses coordonnées dessinent cosinus et sinus.', 'Géométrie', 8],
@@ -260,98 +355,80 @@ const EXPS = [
   ['dyn', 'pend', 'Deux pendules, deux futurs proches', 'Le double pendule : une petite différence au départ, un écart énorme ensuite.', 'Dynamique', 18],
   ['dyn', 'pop', 'Une population, des cycles, le chaos', 'La suite logistique et ses fenêtres périodiques.', 'Dynamique', 20],
 ];
-const rows = (items) => `<ul class="rows">${items.map(([href, g, t, d, m]) => `<li><a href="${href}"${g ? '' : ' class="nog"'}>${g}<span><span class="t">${t}</span></span><span class="m">${m} <span class="arrow" aria-hidden="true">→</span></span><span class="d">${d}</span></a></li>`).join('')}</ul>`;
+const idx = (items, g) => `<ul class="index${g ? ' g' : ''}">${items.map(([href, gl, t, d, m]) => `<li><a href="${href}"${g ? ' class="gl"' : ''}>${gl || ''}<span class="t">${t}</span><span class="d">${d}</span><span class="m">${m}<i aria-hidden="true">→</i></span></a></li>`).join('')}</ul>`;
 const expRow = (e) => ['#chapitre', glyph(G[e[1]]), e[2], e[3], e[4] + ' · ' + e[5] + ' min'];
+const CLASSES = [['#chapitre', '', 'Seconde', 'Programme 2026–2027 · fonctions, vecteurs, statistiques, probabilités', '15 chapitres'], ['#chapitre', '', 'Première <em>spécialité</em>', 'Second degré, dérivation, suites, trigonométrie, probabilités', '10 chapitres'], ['#chapitre', '', 'Terminale <em>spécialité</em>', 'Programme 2019, encore en vigueur en 2026–2027 · limites, intégrales, espace', '14 chapitres'], ['#chapitre', '', 'Maths <em>expertes</em>', 'Complexes, arithmétique, matrices', '11 chapitres'], ['#chapitre', '', 'Terminale <em>STMG</em>', 'Suites, fonctions, statistiques', '8 chapitres']];
 
 const VIEWS = {
   accueil() {
-    return `<section class="open"><div><p class="kicker">Lycée · Seconde à Terminale</p><h1 style="margin-top:14px">On bouge d’abord. <em>On démontre ensuite.</em></h1>
-      <p class="lede">Chaque chapitre commence par une figure que tu déplaces. La règle vient après, avec les nombres sous les yeux.</p>
-      <div class="acts"><a class="btn primary" href="#labo">Essayer une expérience</a><a class="btn" href="#cours">Choisir ma classe</a></div></div>
-      <div class="fig" id="fig1"></div></section>
-    <section><div class="sec-head"><h2>Ta classe</h2><a href="#cours">Tous les cours</a></div>
-      ${rows([['#chapitre', '', 'Seconde', 'Programme 2026–2027 · fonctions, vecteurs, statistiques, probabilités', '15 chapitres'], ['#chapitre', '', 'Première spécialité', 'Second degré, dérivation, suites, trigonométrie, probabilités', '10 chapitres'], ['#chapitre', '', 'Terminale spécialité', 'Programme 2019 · limites, intégrales, géométrie dans l’espace', '14 chapitres'], ['#chapitre', '', 'Maths expertes', 'Complexes, arithmétique, matrices', '11 chapitres'], ['#chapitre', '', 'Terminale STMG', 'Suites, fonctions, statistiques', '8 chapitres']])}
-    </section>
-    <section><div class="sec-head"><h2>Au laboratoire</h2><a href="#labo">27 expériences · 38 défis</a></div>${rows(EXPS.slice(0, 3).map(expRow))}</section>`;
+    return `<section class="hero hero--home"><div class="stage" id="stage"><span class="hint">glisse un point · molette pour zoomer · double-clic pour recentrer</span></div>
+      <div class="copy"><p class="kicker">Lycée · Seconde à Terminale</p><h1>On bouge d’abord.<br><em>On démontre ensuite.</em></h1><p class="lede">Chaque chapitre commence par une figure que tu déplaces. La règle vient après, avec les nombres sous les yeux.</p>
+      <div class="acts"><a class="btn solid" href="#labo">Essayer une expérience</a><a class="btn" href="#cours">Choisir ma classe</a></div></div><div class="bar" id="bar"></div></section>
+    <section class="wrap"><div class="sec-head"><h2>Ta <em>classe</em></h2><a href="#cours">Tous les cours</a></div>${idx(CLASSES)}</section>
+    <section class="wrap"><div class="sec-head"><h2>Au <em>laboratoire</em></h2><a href="#labo">27 expériences · 38 défis</a></div>${idx(EXPS.slice(0, 3).map(expRow), true)}</section>`;
   },
-  cours() {
-    return `<section><p class="kicker">Cours</p><h1 style="margin-top:12px">Choisis ta classe</h1></section>
-    <section>${rows([['#chapitre', '', 'Seconde', 'Programme 2026–2027', '15 chapitres'], ['#chapitre', '', 'Première spécialité', 'Programme 2026–2027 · ouvre le chapitre 2, Second degré', '10 chapitres'], ['#chapitre', '', 'Terminale spécialité', 'Programme 2019, encore en vigueur en 2026–2027', '14 chapitres'], ['#chapitre', '', 'Maths expertes', 'Option de Terminale', '11 chapitres'], ['#chapitre', '', 'Terminale STMG', '', '8 chapitres']])}</section>`;
-  },
+  cours() { return `<section class="wrap head"><p class="kicker">Cours</p><h1>Choisis ta <em>classe</em></h1></section><section class="wrap">${idx(CLASSES)}</section>`; },
   chapitre() {
-    return `<section><p class="crumb"><a href="#cours">Cours</a> / Première spécialité / Chapitre 2</p>
-      <h1 style="margin-top:12px;max-width:18ch">Second degré : formes et choix de méthode</h1>
-      <ol class="steps" aria-label="Étapes du chapitre"><li><a href="#chapitre"><b>1</b> Se préparer</a></li><li><a href="#chapitre" aria-current="step"><b>2</b> Chercher</a></li><li><a href="#chapitre"><b>3</b> Construire le cours</a></li><li><a href="#chapitre"><b>4</b> S’entraîner</a></li><li><a href="#chapitre"><b>5</b> Bilan</a></li><li><a href="#chapitre"><b>6</b> Diaporama</a></li></ol></section>
-    <section class="work"><div class="fig" id="fig2"></div>
-      <aside class="mission" aria-labelledby="m1"><p class="tag">Mission 1 sur 3 · Prédire</p><h3 id="m1">Le sommet est en <span class="i">S</span>(0 ; −2), avec <span class="i">a</span> = 1. Combien de racines ?</h3>
-        <div class="choices" role="group" aria-label="Ta prédiction"><button type="button" data-p="0">0</button><button type="button" data-p="1">1</button><button type="button" data-p="2">2</button></div>
-        <div id="verdict" aria-live="polite"></div>
-        <p style="color:var(--muted);font-size:.92rem">Tu peux ensuite déplacer le sommet pour tester d’autres cas.</p></aside></section>
-    <section class="two"><div class="prose"><h2>Ce que l’expérience suggère</h2>
-        <p><strong>Le signe de <span class="i">a</span></strong> fixe l’orientation : vers le haut pour <span class="i">a</span> &gt; 0, vers le bas pour <span class="i">a</span> &lt; 0.</p>
-        <p><strong>Le sommet</strong> <span class="i">S</span>(<span class="i">α</span> ; <span class="i">β</span>) donne le minimum ou le maximum, et l’axe de symétrie <span class="i">x</span> = <span class="i">α</span>.</p>
-        <p><strong>Les racines</strong> sont les points où la courbe coupe l’axe des abscisses : leur nombre dépend de la position du sommet par rapport à cet axe.</p></div>
-      <div class="proof"><p class="kicker">À démontrer</p><h3 style="margin:8px 0 10px">Pourquoi <span class="i">Δ</span> compte les racines</h3><p style="color:var(--ink-2)">Sur la figure, Δ &gt; 0 donne deux racines, Δ = 0 une seule, Δ &lt; 0 aucune. C’est une observation. La démonstration passe par la forme canonique, à l’étape 3.</p></div></section>`;
+    return `<section class="wrap head"><p class="crumb"><a href="#cours">Cours</a> / Première spécialité / Chapitre 2</p><h1>Second degré : <em>formes et choix de méthode</em></h1>
+      <ol class="steps" aria-label="Étapes du chapitre"><li><a href="#chapitre"><b>1</b>Se préparer</a></li><li><a href="#chapitre" aria-current="step"><b>2</b>Chercher</a></li><li><a href="#chapitre"><b>3</b>Construire le cours</a></li><li><a href="#chapitre"><b>4</b>S’entraîner</a></li><li><a href="#chapitre"><b>5</b>Bilan</a></li><li><a href="#chapitre"><b>6</b>Diaporama</a></li></ol></section>
+    <section class="hero hero--chap"><div class="stage" id="stage"><span class="hint">glisse les points chauds · les cercles blancs sont les racines · molette pour zoomer</span></div>
+      <aside class="mission" aria-labelledby="m1"><p class="tag">Mission 1 sur 3 · Prédire</p><h3 id="m1">Le sommet est en <span class="v">S</span>(0 ; −2) et <span class="v">a</span> = 1. Combien de racines ?</h3>
+        <div class="choices" role="group" aria-label="Ta prédiction"><button type="button" data-p="0">0</button><button type="button" data-p="1">1</button><button type="button" data-p="2">2</button></div><div id="verdict" aria-live="polite"></div></aside><div class="bar" id="bar"></div></section>
+    <section class="wrap two"><div class="prose"><h2 style="margin-bottom:8px">Ce que l’expérience <em>suggère</em></h2>
+        <p><strong>Le signe de <span class="v">a</span></strong> fixe l’orientation : vers le haut pour <span class="v">a</span> &gt; 0, vers le bas pour <span class="v">a</span> &lt; 0. Sur la figure, la branche qui descend est en cyan, celle qui monte en bleu.</p>
+        <p><strong>Le sommet</strong> <span class="v">S</span>(<span class="v">α</span> ; <span class="v">β</span>) donne le minimum ou le maximum, et l’axe de symétrie <span class="v">x</span> = <span class="v">α</span>.</p>
+        <p><strong>Les racines</strong> sont les points où la courbe coupe l’axe des abscisses. Attrape un cercle blanc et déplace-le : le sommet suit.</p></div>
+      <div class="proof"><p class="kicker">À démontrer</p><h3 style="font:700 1.6rem/1.15 var(--display)">Pourquoi <span class="v">Δ</span> compte les racines</h3><p style="color:var(--ink-2)">Sur la figure, Δ &gt; 0 donne deux racines, Δ = 0 une seule, Δ &lt; 0 aucune. C’est une observation. La démonstration passe par la forme canonique, à l’étape 3.</p></div></section>`;
   },
   labo() {
-    return `<section><p class="kicker">Laboratoire</p><h1 style="margin-top:12px;max-width:16ch">Manipuler pour comprendre</h1>
-      <p class="lede" style="margin-top:16px;color:var(--ink-2);max-width:48ch">Expériences, curiosités et défis au même endroit. Filtre par domaine.</p></section>
-    <section><div class="filter" role="group" aria-label="Domaine" id="filter">${['Tous', 'Algèbre', 'Analyse', 'Géométrie', 'Dynamique'].map((f, i) => `<button type="button" aria-pressed="${i === 0}" data-f="${f}">${f}</button>`).join('')}</div>
-      <div id="list" style="margin-top:24px"></div></section>
-    <section><div class="sec-head"><h2>Défis</h2><span class="kicker">38 problèmes à chercher</span></div>${rows([['#labo', glyph(G.gauss), 'La somme du jeune Gauss', 'Additionner de 1 à 100 sans tout écrire.', 'Récréatif · 8 min'], ['#labo', glyph(G.door), 'Les 100 portes', 'Quelles portes restent ouvertes ?', 'Récréatif · 10 min']])}</section>`;
+    return `<section class="wrap head"><p class="kicker">Laboratoire</p><h1>Manipuler pour <em>comprendre</em></h1><p style="color:var(--ink-2);max-width:46ch;font-size:1.15rem">Expériences, curiosités et défis au même endroit. Filtre par domaine.</p></section>
+    <section class="wrap"><div class="filter" role="group" aria-label="Domaine" id="filter">${['Tous', 'Algèbre', 'Analyse', 'Géométrie', 'Dynamique'].map((f, i) => `<button type="button" aria-pressed="${i === 0}" data-f="${f}">${f}</button>`).join('')}</div><div id="list" style="margin-top:28px"></div></section>
+    <section class="wrap"><div class="sec-head"><h2><em>Défis</em></h2><span class="kicker">38 problèmes à chercher</span></div>${idx([['#labo', glyph(G.gauss), 'La somme du jeune Gauss', 'Additionner de 1 à 100 sans tout écrire.', 'Récréatif · 8 min'], ['#labo', glyph(G.door), 'Les 100 portes', 'Quelles portes restent ouvertes ?', 'Récréatif · 10 min']], true)}</section>`;
   },
-  lire() { return `<section><p class="kicker">Lire</p><h1 style="margin-top:12px">Histoires et personnes</h1><p class="lede" style="margin-top:16px;color:var(--ink-2);max-width:48ch">Chronologies, biographies, histoires et curiosités. Cette page n’est pas dessinée dans la maquette.</p></section>`; },
+  lire() { return `<section class="wrap head"><p class="kicker">Lire</p><h1>Histoires et <em>personnes</em></h1><p style="color:var(--ink-2);max-width:48ch">Chronologies, biographies, histoires et curiosités. Cette page n’est pas dessinée dans la maquette.</p></section>`; },
   notes() {
-    return `<section><p class="kicker">Notes de conception</p><h1 style="margin-top:12px;max-width:18ch">Ce qui change, et pourquoi</h1></section>
-    <section class="prose" style="max-width:70ch"><h2>Ce qui n’allait pas</h2>
-      <p><strong>Accueil.</strong> Un gabarit d’accueil banal : titre, recherche, deux boutons, six tuiles pastel de couleurs différentes. Rien n’indique qu’il s’agit de mathématiques de lycée.</p>
-      <p><strong>Chapitre.</strong> La première vue est une liste de liens bleus soulignés. La philosophie du site est « la figure d’abord », mais le chapitre n’en montre aucune.</p>
-      <p><strong>Structure.</strong> Dix onglets sur deux rangées, et le même contenu accessible par quatre chemins (Domaines, Cours, Laboratoire, Défis).</p></section>
-    <section><h2 style="margin-bottom:16px">Structure proposée</h2><div class="scroll"><table><thead><tr><th>Aujourd’hui</th><th>Proposé</th></tr></thead><tbody>
-      <tr><td>Apprendre : Bases, Cours, Diaporamas, Parcours</td><td><strong>Cours</strong>, par classe. Les diaporamas sont l’étape 6 de chaque chapitre. Les parcours deviennent la carte de la classe.</td></tr>
-      <tr><td>Explorer : Domaines, Laboratoire, Défis</td><td><strong>Laboratoire</strong> : expériences, curiosités et défis, filtrés par domaine. « Domaines » devient un filtre.</td></tr>
-      <tr><td>Lire : Chronologies, Biographies, Histoires, Curiosités</td><td><strong>Lire</strong> : inchangé dans son contenu.</td></tr>
-      <tr><td>Deux rangées de navigation, dix onglets</td><td>Une rangée, trois portes. La recherche reste accessible partout.</td></tr></tbody></table></div></section>
-    <section class="prose" style="max-width:70ch"><h2>Identité</h2>
-      <p>La feuille de Seyès et le papier millimétré que tous les élèves francophones connaissent. <strong>Encre bleue</strong> pour ce qu’on étudie, <strong>stylo rouge</strong> pour ce qu’on peut déplacer, <strong>vert</strong> pour ce qui se vérifie. Pas d’autre couleur. La marge rouge de la copie sert d’axe à la page. Le mode sombre est un tableau noir.</p>
-      <p>Les cartes, les ombres et les aplats pastel disparaissent : des listes, des filets, et la figure.</p>
-      <h2>Limites de cette maquette</h2>
-      <p>Les pages Lire et Cours par classe ne sont pas dessinées. Les chiffres (15, 10, 14, 11, 8 chapitres ; 27 expériences ; 38 défis) viennent du site actuel. Le français seul est utilisé : l’anglais reste en attente.</p></section>`;
+    return `<section class="wrap head"><p class="kicker">Notes de conception · version 2</p><h1>Ce qui <em>change</em></h1></section>
+    <section class="wrap prose" style="max-width:72ch"><h2>Le canevas</h2>
+      <p><strong>Libre dans tous ses degrés de liberté.</strong> Le sommet (2), le point sur la courbe (l’ouverture, sans pas imposé) et les deux racines se déplacent librement. Déplacer une racine garde l’autre et l’ouverture, et le sommet suit. Un aimant doux ramène à l’entier le plus proche quand on passe à moins de 7 pixels ; Alt le désactive.</p>
+      <p><strong>Fluide.</strong> Dessin sur canvas, à la résolution de l’écran. Les paramètres et la caméra suivent leur cible par un ressort exponentiel : tout glisse, rien ne saute. Pendant un glisser, le point suit le doigt de très près. Le bouton de prédiction du chapitre anime la courbe vers le cas demandé au lieu de la téléporter.</p>
+      <p><strong>Caméra.</strong> Glisser le fond déplace le plan, la molette ou le pincement zooment vers le curseur, le double-clic recentre. La grille choisit toute seule un pas en 1, 2 ou 5 × 10ⁿ.</p>
+      <p><strong>Lecture.</strong> La tangente suit le pointeur avec x, f(x) et f′(x). La branche qui descend et celle qui monte ont deux teintes : les variations se voient avant de s’écrire.</p>
+      <p><strong>Clavier.</strong> H choisit un point, les flèches le déplacent de 0,1 (Maj : 1), + et − zooment, 0 recentre.</p>
+      <h2>Le dessin</h2>
+      <p>La figure occupe la page entière et porte le texte. Cyan et bleu pour la courbe, une seule couleur chaude pour tout ce qui se déplace. Un Didone à fort contraste pour les titres, des chiffres à chasse fixe pour les nombres. Sombre par défaut, clair en option.</p>
+      <h2>Limites</h2>
+      <p>Seule la parabole est dessinée. Les autres expériences devront être reprises sur ce moteur. Lire et le détail par classe ne sont pas dessinés. La navigation au clavier du canevas est basique et n’a pas été testée avec un lecteur d’écran. Les chiffres viennent du site actuel. Le français seul est utilisé : l’anglais reste en attente.</p></section>`;
   },
 };
 
-/* ---------- router ---------- */
-const view = document.getElementById('view');
+/* ============ router, theme ============ */
+const view = document.getElementById('view'); let plot = null;
 function route() {
-  const name = (location.hash || '#accueil').slice(1); const key = VIEWS[name] ? name : 'accueil';
+  const name = (location.hash || '#accueil').slice(1), key = VIEWS[name] ? name : 'accueil';
+  plot && plot.destroy(); plot = null;
   view.innerHTML = VIEWS[key]();
   document.querySelectorAll('.doors a').forEach((a) => { const on = (key === 'chapitre' ? 'cours' : key) === a.dataset.door; if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
-  const f1 = document.getElementById('fig1'), f2 = document.getElementById('fig2');
-  if (f1) mountParabola(f1, { id: 1 });
-  if (f2) {
-    mountParabola(f2, { id: 2 });
+  const stage = document.getElementById('stage');
+  if (stage) {
+    const update = bar(document.getElementById('bar'));
+    const wide = matchMedia('(min-width: 900px)').matches;
+    plot = Plot(stage, { drift: key === 'accueil', origin: key === 'accueil' && wide ? 0.7 : 0.5, onFrame: update }); update();
     const v = document.getElementById('verdict');
     document.querySelectorAll('.choices button').forEach((b) => b.addEventListener('click', () => {
       document.querySelectorAll('.choices button').forEach((x) => x.setAttribute('aria-pressed', x === b));
-      S.al = 0; S.be = -2; S.a = 1; mountParabola(f2, { id: 2 });
-      const f = forms(), ok = +b.dataset.p === f.count;
-      v.innerHTML = `<p class="verdict ${ok ? 'ok' : 'no'}">${ok ? 'Exact.' : 'Pas tout à fait.'} Sur la figure : Δ = ${fmt(f.d)} &gt; 0, donc ${f.count} racines (${f.roots}).</p>`;
+      Object.assign(S, { al: 0, be: -2, a: 1, dx: 1.5 }); plot.wake(); const f = forms(), ok = +b.dataset.p === f.count;
+      v.innerHTML = `<p class="verdict ${ok ? 'ok' : 'no'}">${ok ? 'Exact.' : 'Pas tout à fait.'} Sur la figure : Δ = ${f.delta} &gt; 0, donc ${f.count} racines (${f.roots}).</p>`;
     }));
   }
   const list = document.getElementById('list');
-  if (list) {
-    const show = (f) => { list.innerHTML = rows(EXPS.filter((e) => f === 'Tous' || e[4] === f).map(expRow)); };
-    show('Tous');
-    document.querySelectorAll('#filter button').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('#filter button').forEach((x) => x.setAttribute('aria-pressed', x === b)); show(b.dataset.f); }));
-  }
+  if (list) { const show = (f) => { list.innerHTML = idx(EXPS.filter((e) => f === 'Tous' || e[4] === f).map(expRow), true); }; show('Tous');
+    document.querySelectorAll('#filter button').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('#filter button').forEach((x) => x.setAttribute('aria-pressed', x === b)); show(b.dataset.f); })); }
   window.scrollTo(0, 0);
 }
 window.addEventListener('hashchange', route); route();
-
-/* ---------- theme ---------- */
-const btn = document.getElementById('theme'), root = document.documentElement;
-const dark = () => root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
-const paint = () => { btn.setAttribute('aria-pressed', dark()); btn.textContent = dark() ? 'Papier' : 'Tableau noir'; };
-btn.addEventListener('click', () => { root.dataset.theme = dark() ? 'light' : 'dark'; paint(); });
-paint();
+const root = document.documentElement;
+const isLight = () => root.dataset.theme === 'light' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: light)').matches);
+const retheme = () => { COL = null; plot && plot.wake(); };
+document.getElementById('theme').addEventListener('click', () => { root.dataset.theme = isLight() ? 'dark' : 'light'; retheme(); });
+matchMedia('(prefers-color-scheme: light)').addEventListener('change', retheme);
 </script>
