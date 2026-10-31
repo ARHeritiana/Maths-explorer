@@ -43,4 +43,4 @@ Still to do for the laboratory: opt the other experiments in where the mathemati
 ## Still to do (in this order)
 
 1. Slides (`site/slides/player.css`) and PDFs (`content/tex/core/mx-layout.sty`) still use the old palette.
-3. The pages "Lire" and the per-class pages of the prototype.
+2. The pages "Lire" and the per-class pages of the prototype.
