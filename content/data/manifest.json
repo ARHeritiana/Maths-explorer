@@ -623,7 +623,8 @@
         "topic": "integral",
         "labs": [
           "integral/bound",
-          "buffon"
+          "buffon",
+          "monte-carlo-integral"
         ],
         "guide": "shared-integral"
       },
@@ -638,7 +639,9 @@
         "topic": "concentration",
         "labs": [
           "probability/few",
-          "buffon/drop"
+          "buffon/drop",
+          "monte-carlo-pi",
+          "monte-carlo-walk"
         ],
         "guide": "shared-concentration"
       },
@@ -1503,7 +1506,10 @@
         "topic": "concentration",
         "labs": [
           "probability/few",
-          "buffon"
+          "buffon",
+          "monte-carlo-pi",
+          "monte-carlo-walk",
+          "monte-carlo-lake"
         ],
         "relatedChapters": [
           "terminale-12"

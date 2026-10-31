@@ -20,7 +20,7 @@ const dot=(x,y,r=3)=>`<circle class="preview-fill" cx="${round(x)}" cy="${round(
 const axis='<path class="preview-axis" d="M12 84H150M18 10V88"/>';
 const plot=(f,a,b,n=60)=>path(Array.from({length:n+1},(_,i)=>{const x=a+(b-a)*i/n;return [16+128*i/n,f(x)];}));
 const project=([x,y,z])=>[80+24*(.8*x-.6*y),51+18*(.3*x+.4*y-.86*z)];
-const aliases={'mirrored-rooms':'illumination','banach-tarski':'banach-tarski-model','galton':'probability',
+const aliases={'monte-carlo-pi':'monte-carlo','monte-carlo-lake':'monte-carlo','monte-carlo-integral':'monte-carlo','monte-carlo-walk':'monte-carlo','mirrored-rooms':'illumination','banach-tarski':'banach-tarski-model','galton':'probability',
  'premiere-02':'quadratic','scalar':'vectors','matrices':'matrix','trigonometry':'trig','trig-functions':'trig',
  'complex-algebra':'complex','complex-plane':'complex','complex-exponential':'complex','complex-rotations':'complex',
  'sequence-limits':'sequences','function-limits':'limits','differential':'exponential','exponential-function':'exponential',
@@ -32,7 +32,7 @@ const aliases={'mirrored-rooms':'illumination','banach-tarski':'banach-tarski-mo
  'waiting-time':'random-variable','lattice-paths':'counting','euler-trails':'graphs','pigeonhole':'counting',
  'inequalities':'algebra','invariants':'logic','calculs-algebriques':'algebra','logique':'logic','ensembles':'sets',
  'applications':'sets','module-semaine-5':'space-lines','module-semaine-6':'matrix'};
-const known=new Set(['quadratic','probability','trig','benford','secretary','tank','birthdays','monty','baker',
+const known=new Set(['monte-carlo','quadratic','probability','trig','benford','secretary','tank','birthdays','monty','baker',
  'double-pendulum','three-body','logistic','illumination','fair-division','fair-goods','hairy-ball',
  'nonorientable-surfaces','banach-tarski-model','gomboc','derivative','integral','vectors','statistics','complex',
  'line','exponential','cobweb','matrix','space-lines','sequences','fourier','circle-regions','buffon','bertrand',
@@ -162,6 +162,9 @@ export function modelPreview(kind) {
   const pts=Array.from({length:5},(_,i)=>[80+37*Math.cos(i*2*Math.PI/5),50+37*Math.sin(i*2*Math.PI/5)]);
   drawing='<circle cx="80" cy="50" r="37"/>'+pts.flatMap((p,i)=>pts.slice(i+1).map(q=>path([p,q]))).join('');
   caption=P('Un cercle et ses cordes','A circle and its chords');
+ } else if(kind==='monte-carlo') {
+  drawing='<rect x="36" y="8" width="84" height="84"/><circle cx="78" cy="50" r="42"/>'+[[60,30],[90,24],[70,52],[100,60],[52,66],[84,76],[48,44],[108,40]].map(([x,y])=>dot(x,y,2.6)).join('');
+  caption=P('Points au hasard dans un carré','Random points in a square');
  } else if(kind==='buffon') {
   drawing=[20,50,80].map(y=>path([[12,y],[148,y]])).join('')+[[25,30,55,15],[60,40,90,65],[105,20,130,45]].map(([x,y,u,v])=>path([[x,y],[u,v]])).join('');
   caption=P('Aiguilles et droites parallèles','Needles and parallel lines');

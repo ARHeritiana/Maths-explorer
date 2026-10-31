@@ -106,3 +106,5 @@ honest rounding, shared-slide control visibility, root-mode fallback, slider ran
 `solution-player.test.mjs`: repeated parameter remounts keep playback events on the current solution and never repaint discarded diagrams.
 
 `canvas-touch.test.mjs`: source gesture policy, actual handle drags and keyboard movement, independent cameras, selective background scrolling, legacy gallery state updates and teardown.
+
+`monte-carlo.test.mjs`: Monte Carlo experiments with fixed seeds: closed-form references (pi, three integrals, gambler's ruin by value iteration), exact lake preset areas (36, 33), unbiasedness and 95% interval coverage over repeated runs (tolerances stated in the file), the spike's too narrow interval, resumable samplers, bilingual strings, and the time-based run at 30, 60 and 144 Hz under jsdom.

@@ -2,6 +2,10 @@
 // These computations do not call the production models.
 const permutations=a=>a.length<2?[a]:a.flatMap((x,i)=>permutations(a.filter((_,j)=>i!==j)).map(p=>[x,...p]));
 const choose=(n,k)=>{let c=1;for(let j=1;j<=k;j++)c=c*(n-k+j)/j;return c;};
+// Monte Carlo experiments: references recomputed by other routes than the production model.
+const midpoint=(f,a,b,n=400000)=>{let t=0;const h=(b-a)/n;for(let i=0;i<n;i++)t+=f(a+(i+.5)*h)*h;return t;};
+const discFraction=()=>midpoint(x=>Math.sqrt(1-x*x),0,1)/1;   // area of a quarter disc = pi/4, fraction of the square [0,1]^2
+const ruin=(U,L)=>{const h=new Map();for(let i=-L;i<=U;i++)h.set(i,i===U?1:0);for(let k=0;k<20000;k++)for(let i=-L+1;i<U;i++)h.set(i,(h.get(i-1)+h.get(i+1))/2);return h.get(0);};
 export const BACKLOG_CHECKS={
  'fair-division/read':s=>s.values[0][0]/s.values[0].reduce((a,b)=>a+b,0),
  'fair-goods/read':s=>s.values[0].reduce((sum,v,i)=>sum+(s.owners[i]===0?v:0),0),
@@ -18,8 +22,14 @@ export const BACKLOG_CHECKS={
  'hairy-ball/tangent':()=>[1,0,0].reduce((sum,x,i)=>sum+x*[0,0,1][i],0),
  'nonorientable-surfaces/boundaries':()=>[0,2*Math.PI].length,
  'banach-tarski-model/total':s=>s.owners.filter(x=>x===0).length+s.owners.filter(x=>x===1).length,
+ 'monte-carlo-pi/spread':({runs})=>{const p=discFraction();return 4*Math.sqrt(p*(1-p)/runs);},
+ 'monte-carlo-lake/spread':({runs})=>{const p=(.8-.2)*(.8-.2);return 100*Math.sqrt(p*(1-p)/runs);},
+ 'monte-carlo-integral/read':()=>midpoint(x=>Math.exp(-x*x),0,2),
+ 'monte-carlo-walk/read':({upper,lower})=>ruin(upper,lower),
 };
 export const BACKLOG_WITNESSES={
+ 'monte-carlo-pi/run':{runs:1000},'monte-carlo-lake/run':{runs:1000},'monte-carlo-lake/shape':{shape:'ell',runs:200},
+ 'monte-carlo-integral/run':{runs:1000},'monte-carlo-integral/spike':{runs:100},'monte-carlo-walk/run':{runs:1000},'monte-carlo-walk/rare':{upper:8},
  'fair-division/cuts':{cut1:1/3,cut2:2/3},
  'fair-division/preferences':{values:[[1,3,1],[1,1,1],[1,1,1]]},
  'fair-goods/allocate':{owners:[0,0,1]},
@@ -33,6 +43,10 @@ export const BACKLOG_WITNESSES={
  'banach-tarski-model/move':{owners:[1,1,0,0,0,0,0,0,0,0,0,0]},
 };
 export const BACKLOG_PREDICTIONS={
+ 'monte-carlo-pi':{truth:()=>Math.abs(discFraction()-.785)<.005,expected:true,words:/π\/4/},
+ 'monte-carlo-lake':{truth:()=>100*36/100===36,expected:true,words:/36 km²/},
+ 'monte-carlo-integral':{truth:()=>Math.abs(midpoint(x=>Math.sin(Math.PI*x)**2,0,1)-.5)<1e-6,expected:true,words:/^0,5$/},
+ 'monte-carlo-walk':{truth:()=>Math.abs(ruin(5,3)-.375)<1e-6,expected:true,words:/3\/8/},
  'fair-division':{truth:()=>2/6<3/6,expected:true,words:/goûts peuvent différer/},
  'fair-goods':{truth:()=>[0,1].every(owner=>[0,1].some(i=>i!==owner)),expected:true,words:/une personne reste/},
  secretary:{truth:()=>permutations([1,2]).some(p=>p[0]!==2),expected:true,words:/Non, une probabilité/},

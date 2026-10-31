@@ -3865,7 +3865,8 @@ export const resourceCatalog = {
       ],
       "labs": [
         "integral/bound",
-        "buffon"
+        "buffon",
+        "monte-carlo-integral"
       ]
     },
     {
@@ -3946,7 +3947,9 @@ export const resourceCatalog = {
       ],
       "labs": [
         "probability/few",
-        "buffon/drop"
+        "buffon/drop",
+        "monte-carlo-pi",
+        "monte-carlo-walk"
       ]
     },
     {
