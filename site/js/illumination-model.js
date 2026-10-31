@@ -56,7 +56,7 @@ export function onBoundary(p,e,tolerance=EPS){
   const A=add(sub(e.a,mul(e.c,2)),e.b),B=mul(sub(e.c,e.a),2),C=sub(e.a,p),axis=Math.abs(A[0])+Math.abs(B[0])>=Math.abs(A[1])+Math.abs(B[1])?0:1;
   return [0,1,...roots(A[axis],B[axis],C[axis])].some(t=>t>=0&&t<=1&&norm(sub(pointAt(e,t),p))<tolerance);
 }
-export function trace(edges,source,direction,bounces=30){
+export function traceReference(edges,source,direction,bounces=30){
   if(!Number.isInteger(bounces)||bounces<0||bounces>300)throw new RangeError('bounces');
   let p=[...source],d=unit(direction),length=0;const points=[p],hits=[];
   for(let bounce=0;bounce<=bounces;bounce++){
@@ -71,6 +71,62 @@ export function trace(edges,source,direction,bounces=30){
     if(Math.abs(dot(d,h.normal))<1e-7)return {points,hits,length,reason:'tangent'};
     if(bounce===bounces)return {points,hits,length,reason:'limit'};
     hits.push(h.edge);p=h.p;d=unit(reflect(d,h.normal));
+  }
+  return {points,hits,length,reason:'limit'};
+}
+// Fast tracer, same results as traceReference (checked against it in tests/illumination.test.mjs). The edges are prepared once
+// (line data and unit normals in typed arrays, cached per edge list) and every bounce is a tight loop with no allocation except
+// the points it returns; curved edges still use the exact `intersections`. A 96-ray, 100-bounce room costs about a millisecond.
+const prepared=new WeakMap();
+function prepare(edges){
+  let P=prepared.get(edges);if(P)return P;
+  const n=edges.length,acx=new Float64Array(n),acy=new Float64Array(n),arx=new Float64Array(n),ary=new Float64Array(n),ast=new Float64Array(n),asw=new Float64Array(n),ax=new Float64Array(n),ay=new Float64Array(n),vx=new Float64Array(n),vy=new Float64Array(n),nx=new Float64Array(n),ny=new Float64Array(n),line=new Uint8Array(n);
+  edges.forEach((e,i)=>{if(e.type==='arc'){line[i]=3;acx[i]=e.c[0];acy[i]=e.c[1];arx[i]=e.rx;ary[i]=e.ry;ast[i]=e.start;asw[i]=e.sweep;return;}if(e.type!=='line')return;line[i]=1;ax[i]=e.a[0];ay[i]=e.a[1];vx[i]=e.b[0]-e.a[0];vy[i]=e.b[1]-e.a[1];const L=Math.hypot(vx[i],vy[i]);if(L>EPS){nx[i]=-vy[i]/L;ny[i]=vx[i]/L;}else line[i]=2;});   // 2: degenerate, never hit
+  const cap=2*n+4;P={n,acx,acy,arx,ary,ast,asw,ax,ay,vx,vy,nx,ny,line,cap,ct:new Float64Array(cap),cu:new Float64Array(cap),cnx:new Float64Array(cap),cny:new Float64Array(cap),cpx:new Float64Array(cap),cpy:new Float64Array(cap),ce:new Int32Array(cap)};
+  prepared.set(edges,P);return P;
+}
+export function trace(edges,source,direction,bounces=30){
+  if(!Number.isInteger(bounces)||bounces<0||bounces>300)throw new RangeError('bounces');
+  const P=prepared.get(edges)||prepare(edges),{n,acx,acy,arx,ary,ast,asw,ax,ay,vx,vy,nx,ny,line,ct,cu,cnx,cny,cpx,cpy,ce}=P;
+  const u0=unit(direction);let ox=source[0],oy=source[1],dx=u0[0],dy=u0[1],length=0;const points=[[ox,oy]],hits=[];
+  for(let bounce=0;bounce<=bounces;bounce++){
+    let count=0;
+    for(let i=0;i<n;i++){
+      if(line[i]===1){
+        const den=dx*vy[i]-dy*vx[i];if(Math.abs(den)<1e-12)continue;
+        const wx=ax[i]-ox,wy=ay[i]-oy,t=(wx*vy[i]-wy*vx[i])/den,u=(wx*dy-wy*dx)/den;
+        if(t>EPS&&u>=-EPS&&u<=1+EPS){ct[count]=t;cu[count]=u;cnx[count]=nx[i];cny[count]=ny[i];cpx[count]=ox+dx*t;cpy[count]=oy+dy*t;ce[count]=i;count++;}
+      }else if(line[i]===3){   // elliptical arc, inline (same algebra as intersections)
+        const rx=arx[i],ry=ary[i],ex=ox-acx[i],ey=oy-acy[i],A=(dx/rx)**2+(dy/ry)**2,B=2*(ex*dx/(rx*rx)+ey*dy/(ry*ry)),C=(ex/rx)**2+(ey/ry)**2-1;
+        let r0=0,r1=0,nr=0;
+        if(Math.abs(A)<1e-14){if(Math.abs(B)>=1e-14){r0=-C/B;nr=1;}}
+        else{let D=B*B-4*A*C;if(!(D< -1e-12*(B*B+Math.abs(4*A*C)+1))){D=Math.sqrt(Math.max(0,D));const q=-.5*(B+(B>=0?D:-D));if(q===0){r0=-B/(2*A);nr=1;}else{r0=q/A;r1=C/q;nr=2;}}}
+        if(nr===2&&r1<r0){const x=r0;r0=r1;r1=x;}
+        let prev=-Infinity;
+        for(let k=0;k<nr;k++){
+          const root=k?r1:r0;if(root<=EPS)continue;
+          const px=ox+dx*root,py=oy+dy*root,theta=Math.atan2((py-acy[i])/ry,(px-acx[i])/rx),sw=asw[i],angle=sw>0?mod(theta-ast[i]):mod(ast[i]-theta);
+          if(angle>Math.abs(sw)+EPS)continue;
+          const u=angle/Math.abs(sw),t=(px-ox)*dx+(py-oy)*dy;
+          if(!(t>EPS&&u>=-EPS&&u<=1+EPS))continue;
+          const a=ast[i]+sw*u,tx=-rx*Math.sin(a)*sw,ty=ry*Math.cos(a)*sw,tl=Math.hypot(tx,ty);if(!(tl>EPS))continue;
+          if(count&&ce[count-1]===i&&Math.abs(t-prev)<=EPS)continue;
+          prev=t;ct[count]=t;cu[count]=u;cnx[count]=-ty/tl;cny[count]=tx/tl;cpx[count]=px;cpy[count]=py;ce[count]=i;count++;
+        }
+      }else if(line[i]===0){
+        for(const h of intersections([ox,oy],[dx,dy],edges[i])){ct[count]=h.t;cu[count]=h.u;cnx[count]=h.normal[0];cny[count]=h.normal[1];cpx[count]=h.p[0];cpy[count]=h.p[1];ce[count]=i;count++;}
+      }
+    }
+    if(!count)return {points,hits,length,reason:'escaped'};
+    let best=0;for(let k=1;k<count;k++)if(ct[k]<ct[best])best=k;
+    const t=ct[best];length+=t;points.push([cpx[best],cpy[best]]);
+    let near=0,smooth=true;for(let k=0;k<count;k++)if(Math.abs(ct[k]-t)<EPS*20){near++;if(!(Math.abs(cnx[k]*cnx[best]+cny[k]*cny[best])>1-1e-9))smooth=false;}
+    const endpoint=cu[best]<EPS||cu[best]>1-EPS,singular=(near>1||endpoint)&&!(near>1&&smooth);
+    if(singular)return {points,hits,length,reason:'corner'};
+    if(Math.abs(dx*cnx[best]+dy*cny[best])<1e-7)return {points,hits,length,reason:'tangent'};
+    if(bounce===bounces)return {points,hits,length,reason:'limit'};
+    hits.push(ce[best]);ox=cpx[best];oy=cpy[best];
+    const k=2*(dx*cnx[best]+dy*cny[best]);dx-=k*cnx[best];dy-=k*cny[best];const L=Math.hypot(dx,dy);if(!L)throw new RangeError('zero direction');dx/=L;dy/=L;
   }
   return {points,hits,length,reason:'limit'};
 }

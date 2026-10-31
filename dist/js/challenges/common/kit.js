@@ -1,5 +1,6 @@
 // Shared helpers for the challenge activities and the animated solutions.
 
+import { knightInner } from "./knight-piece.js";
 export const NS = "http://www.w3.org/2000/svg";
 
 export const MINUS = "−";
@@ -39,7 +40,9 @@ export function makeCtx(svg, lang) {
   const path = (d, attrs = {}) => svgEl("path", { d, ...attrs }, svg);
   // greedy word wrap into several <text> lines of at most `max` characters
   const wrap = (x, y, str, max, attrs = {}, dy = 17) => { const words = String(str).split(" "); let ln = "", k = 0; for (const w of words) { if ((ln + " " + w).trim().length > max) { text(x, y + k++ * dy, ln, attrs); ln = w; } else ln = (ln + " " + w).trim(); } if (ln) text(x, y + k * dy, ln, attrs); };
-  return { svg, t, line, circ, rect, text, path, wrap };
+  // a drawn chess knight in a size x size square at (x, y)
+  const knight = (x, y, size, fill = "var(--accent)") => { const g = svgEl("g", { transform: `translate(${x} ${y}) scale(${size / 64})`, fill, stroke: "var(--ink)", "stroke-width": Math.max(1.6, 90 / size), "stroke-linejoin": "round", "stroke-linecap": "round" }, svg); g.innerHTML = knightInner; return g; };
+  return { svg, t, line, circ, rect, text, path, wrap, knight };
 }
 
 // Hints can act on the canvas: the hint panel dispatches "challenge-action" ({ id, act }); an activity registers its handlers

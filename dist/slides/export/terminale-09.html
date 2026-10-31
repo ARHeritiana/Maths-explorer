@@ -1475,9 +1475,9 @@ function dragOrbit(o,state,hit=()=>null,moveHandle=()=>{}){
   let drag=null;
   o.touchHit(p=>hit(p)!==null);
   o.on(o.cv,'pointerdown',e=>{const p=o.point(e);drag={p,handle:hit(p)};o.cv.setPointerCapture?.(e.pointerId);e.preventDefault();});
-  o.on(o.cv,'pointermove',e=>{if(!drag)return;const p=o.point(e),d=[p[0]-drag.p[0],p[1]-drag.p[1]];if(drag.handle!==null)moveHandle(drag.handle,d,p);else{state.yaw+=d[0]*.008;state.pitch=Math.max(-1.3,Math.min(1.3,state.pitch+d[1]*.008));}drag.p=p;o.redraw();});
+  o.on(o.cv,'pointermove',e=>{if(!drag)return;const p=o.point(e),d=[p[0]-drag.p[0],p[1]-drag.p[1]];if(drag.handle!==null)moveHandle(drag.handle,d,p);else{state.yaw-=d[0]*.008;state.pitch=Math.max(-1.45,Math.min(1.45,state.pitch+d[1]*.008));}drag.p=p;o.redraw();});
   o.on(o.cv,'pointerup',()=>drag=null);o.cancelDrag=()=>drag=null;
-  o.on(o.cv,'keydown',e=>{if(e.shiftKey)return;if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();state.yaw+=(e.key==='ArrowLeft'?-.12:e.key==='ArrowRight'?.12:0);state.pitch=Math.max(-1.3,Math.min(1.3,state.pitch+(e.key==='ArrowUp'?-.1:e.key==='ArrowDown'?.1:0)));o.redraw();}});
+  o.on(o.cv,'keydown',e=>{if(e.shiftKey)return;if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();state.yaw+=(e.key==='ArrowLeft'?.12:e.key==='ArrowRight'?-.12:0);state.pitch=Math.max(-1.45,Math.min(1.45,state.pitch+(e.key==='ArrowUp'?-.1:e.key==='ArrowDown'?.1:0)));o.redraw();}});
 }
 
 __e.palette = palette;
@@ -1610,6 +1610,59 @@ __e.star = star;
 __e.COUNT_SCHEDULE = COUNT_SCHEDULE;
 __e.REVOLUTION = REVOLUTION;
 });
+__d("illumination-gl.js", function (__e, __r) {
+// GPU "light map" of the mirrored rooms: every traced segment is drawn as a thin line with additive blending, so the brightness of a
+// pixel is the number of rays that crossed it (a coverage map). With hundreds or thousands of rays this shows where light does and
+// does not go, which 100 stroked canvas paths cannot do at interactive speed. The tracing itself is in illumination-model.js.
+// createLightMap returns null without WebGL2 (the page then draws a thinned set of rays with the 2D canvas).
+const VERTEX = `#version 300 es
+in vec2 aPos;
+uniform vec2 uSize;     // logical canvas size
+uniform vec3 uCamera;   // page camera: x, y, scale
+void main() { vec2 s = uCamera.xy + uCamera.z * aPos; gl_Position = vec4(s.x / uSize.x * 2.0 - 1.0, 1.0 - s.y / uSize.y * 2.0, 0.0, 1.0); }`;
+const FRAGMENT = `#version 300 es
+precision highp float;
+uniform vec4 uColor;    // premultiplied colour added by each segment
+out vec4 fragColor;
+void main() { fragColor = uColor; }`;
+
+function createLightMap(makeCanvas = () => document.createElement('canvas')) {
+  let canvas, gl;
+  try { canvas = makeCanvas(); canvas.width = 2; canvas.height = 2; gl = canvas.getContext('webgl2', { antialias: true, alpha: true, premultipliedAlpha: true, depth: false, preserveDrawingBuffer: false }); } catch { gl = null; }
+  if (!gl || typeof gl.createShader !== 'function') return null;
+  const compile = (type, src) => { const sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh); return gl.getShaderParameter(sh, gl.COMPILE_STATUS) ? sh : null; };
+  const vs = compile(gl.VERTEX_SHADER, VERTEX), fs = compile(gl.FRAGMENT_SHADER, FRAGMENT);
+  if (!vs || !fs) return null;
+  const program = gl.createProgram(); gl.attachShader(program, vs); gl.attachShader(program, fs); gl.linkProgram(program);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return null;
+  gl.useProgram(program);
+  const vao = gl.createVertexArray(), buffer = gl.createBuffer(); gl.bindVertexArray(vao); gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  const at = gl.getAttribLocation(program, 'aPos'); gl.enableVertexAttribArray(at); gl.vertexAttribPointer(at, 2, gl.FLOAT, false, 0, 0);
+  const U = { size: gl.getUniformLocation(program, 'uSize'), camera: gl.getUniformLocation(program, 'uCamera'), color: gl.getUniformLocation(program, 'uColor') };
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE);
+  let lost = false;
+  canvas.addEventListener?.('webglcontextlost', (e) => { lost = true; e.preventDefault?.(); });
+  const api = {
+    canvas,
+    get lost() { return lost || gl.isContextLost?.() === true; },
+    // segments: Float32Array of x1, y1, x2, y2 in logical px; count: number of segments; strength 0..1 added per crossing.
+    render({ width, height, size, segments, count, color, strength, camera = { x: 0, y: 0, scale: 1 } }) {
+      if (api.lost) return null;
+      if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; }
+      gl.viewport(0, 0, width, height); gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.bufferData(gl.ARRAY_BUFFER, segments.subarray(0, count * 4), gl.DYNAMIC_DRAW);
+      gl.uniform2f(U.size, size[0], size[1]); gl.uniform3f(U.camera, camera.x, camera.y, camera.scale);
+      gl.uniform4f(U.color, color[0] * strength, color[1] * strength, color[2] * strength, strength);
+      gl.drawArrays(gl.LINES, 0, count * 2);
+      return canvas;
+    },
+    destroy() { try { gl.getExtension('WEBGL_lose_context')?.loseContext(); } catch { /* already gone */ } lost = true; },
+  };
+  return api;
+}
+
+__e.createLightMap = createLightMap;
+});
 __d("illumination-model.js", function (__e, __r) {
 // Specular billiards: analytic segments, elliptical arcs and quadratic Bezier boundaries.
 // Geometry is independent of display, cameras and the number of sampled rays.
@@ -1669,7 +1722,7 @@ function onBoundary(p,e,tolerance=EPS){
   const A=add(sub(e.a,mul(e.c,2)),e.b),B=mul(sub(e.c,e.a),2),C=sub(e.a,p),axis=Math.abs(A[0])+Math.abs(B[0])>=Math.abs(A[1])+Math.abs(B[1])?0:1;
   return [0,1,...roots(A[axis],B[axis],C[axis])].some(t=>t>=0&&t<=1&&norm(sub(pointAt(e,t),p))<tolerance);
 }
-function trace(edges,source,direction,bounces=30){
+function traceReference(edges,source,direction,bounces=30){
   if(!Number.isInteger(bounces)||bounces<0||bounces>300)throw new RangeError('bounces');
   let p=[...source],d=unit(direction),length=0;const points=[p],hits=[];
   for(let bounce=0;bounce<=bounces;bounce++){
@@ -1684,6 +1737,62 @@ function trace(edges,source,direction,bounces=30){
     if(Math.abs(dot(d,h.normal))<1e-7)return {points,hits,length,reason:'tangent'};
     if(bounce===bounces)return {points,hits,length,reason:'limit'};
     hits.push(h.edge);p=h.p;d=unit(reflect(d,h.normal));
+  }
+  return {points,hits,length,reason:'limit'};
+}
+// Fast tracer, same results as traceReference (checked against it in tests/illumination.test.mjs). The edges are prepared once
+// (line data and unit normals in typed arrays, cached per edge list) and every bounce is a tight loop with no allocation except
+// the points it returns; curved edges still use the exact `intersections`. A 96-ray, 100-bounce room costs about a millisecond.
+const prepared=new WeakMap();
+function prepare(edges){
+  let P=prepared.get(edges);if(P)return P;
+  const n=edges.length,acx=new Float64Array(n),acy=new Float64Array(n),arx=new Float64Array(n),ary=new Float64Array(n),ast=new Float64Array(n),asw=new Float64Array(n),ax=new Float64Array(n),ay=new Float64Array(n),vx=new Float64Array(n),vy=new Float64Array(n),nx=new Float64Array(n),ny=new Float64Array(n),line=new Uint8Array(n);
+  edges.forEach((e,i)=>{if(e.type==='arc'){line[i]=3;acx[i]=e.c[0];acy[i]=e.c[1];arx[i]=e.rx;ary[i]=e.ry;ast[i]=e.start;asw[i]=e.sweep;return;}if(e.type!=='line')return;line[i]=1;ax[i]=e.a[0];ay[i]=e.a[1];vx[i]=e.b[0]-e.a[0];vy[i]=e.b[1]-e.a[1];const L=Math.hypot(vx[i],vy[i]);if(L>EPS){nx[i]=-vy[i]/L;ny[i]=vx[i]/L;}else line[i]=2;});   // 2: degenerate, never hit
+  const cap=2*n+4;P={n,acx,acy,arx,ary,ast,asw,ax,ay,vx,vy,nx,ny,line,cap,ct:new Float64Array(cap),cu:new Float64Array(cap),cnx:new Float64Array(cap),cny:new Float64Array(cap),cpx:new Float64Array(cap),cpy:new Float64Array(cap),ce:new Int32Array(cap)};
+  prepared.set(edges,P);return P;
+}
+function trace(edges,source,direction,bounces=30){
+  if(!Number.isInteger(bounces)||bounces<0||bounces>300)throw new RangeError('bounces');
+  const P=prepared.get(edges)||prepare(edges),{n,acx,acy,arx,ary,ast,asw,ax,ay,vx,vy,nx,ny,line,ct,cu,cnx,cny,cpx,cpy,ce}=P;
+  const u0=unit(direction);let ox=source[0],oy=source[1],dx=u0[0],dy=u0[1],length=0;const points=[[ox,oy]],hits=[];
+  for(let bounce=0;bounce<=bounces;bounce++){
+    let count=0;
+    for(let i=0;i<n;i++){
+      if(line[i]===1){
+        const den=dx*vy[i]-dy*vx[i];if(Math.abs(den)<1e-12)continue;
+        const wx=ax[i]-ox,wy=ay[i]-oy,t=(wx*vy[i]-wy*vx[i])/den,u=(wx*dy-wy*dx)/den;
+        if(t>EPS&&u>=-EPS&&u<=1+EPS){ct[count]=t;cu[count]=u;cnx[count]=nx[i];cny[count]=ny[i];cpx[count]=ox+dx*t;cpy[count]=oy+dy*t;ce[count]=i;count++;}
+      }else if(line[i]===3){   // elliptical arc, inline (same algebra as intersections)
+        const rx=arx[i],ry=ary[i],ex=ox-acx[i],ey=oy-acy[i],A=(dx/rx)**2+(dy/ry)**2,B=2*(ex*dx/(rx*rx)+ey*dy/(ry*ry)),C=(ex/rx)**2+(ey/ry)**2-1;
+        let r0=0,r1=0,nr=0;
+        if(Math.abs(A)<1e-14){if(Math.abs(B)>=1e-14){r0=-C/B;nr=1;}}
+        else{let D=B*B-4*A*C;if(!(D< -1e-12*(B*B+Math.abs(4*A*C)+1))){D=Math.sqrt(Math.max(0,D));const q=-.5*(B+(B>=0?D:-D));if(q===0){r0=-B/(2*A);nr=1;}else{r0=q/A;r1=C/q;nr=2;}}}
+        if(nr===2&&r1<r0){const x=r0;r0=r1;r1=x;}
+        let prev=-Infinity;
+        for(let k=0;k<nr;k++){
+          const root=k?r1:r0;if(root<=EPS)continue;
+          const px=ox+dx*root,py=oy+dy*root,theta=Math.atan2((py-acy[i])/ry,(px-acx[i])/rx),sw=asw[i],angle=sw>0?mod(theta-ast[i]):mod(ast[i]-theta);
+          if(angle>Math.abs(sw)+EPS)continue;
+          const u=angle/Math.abs(sw),t=(px-ox)*dx+(py-oy)*dy;
+          if(!(t>EPS&&u>=-EPS&&u<=1+EPS))continue;
+          const a=ast[i]+sw*u,tx=-rx*Math.sin(a)*sw,ty=ry*Math.cos(a)*sw,tl=Math.hypot(tx,ty);if(!(tl>EPS))continue;
+          if(count&&ce[count-1]===i&&Math.abs(t-prev)<=EPS)continue;
+          prev=t;ct[count]=t;cu[count]=u;cnx[count]=-ty/tl;cny[count]=tx/tl;cpx[count]=px;cpy[count]=py;ce[count]=i;count++;
+        }
+      }else if(line[i]===0){
+        for(const h of intersections([ox,oy],[dx,dy],edges[i])){ct[count]=h.t;cu[count]=h.u;cnx[count]=h.normal[0];cny[count]=h.normal[1];cpx[count]=h.p[0];cpy[count]=h.p[1];ce[count]=i;count++;}
+      }
+    }
+    if(!count)return {points,hits,length,reason:'escaped'};
+    let best=0;for(let k=1;k<count;k++)if(ct[k]<ct[best])best=k;
+    const t=ct[best];length+=t;points.push([cpx[best],cpy[best]]);
+    let near=0,smooth=true;for(let k=0;k<count;k++)if(Math.abs(ct[k]-t)<EPS*20){near++;if(!(Math.abs(cnx[k]*cnx[best]+cny[k]*cny[best])>1-1e-9))smooth=false;}
+    const endpoint=cu[best]<EPS||cu[best]>1-EPS,singular=(near>1||endpoint)&&!(near>1&&smooth);
+    if(singular)return {points,hits,length,reason:'corner'};
+    if(Math.abs(dx*cnx[best]+dy*cny[best])<1e-7)return {points,hits,length,reason:'tangent'};
+    if(bounce===bounces)return {points,hits,length,reason:'limit'};
+    hits.push(ce[best]);ox=cpx[best];oy=cpy[best];
+    const k=2*(dx*cnx[best]+dy*cny[best]);dx-=k*cnx[best];dy-=k*cny[best];const L=Math.hypot(dx,dy);if(!L)throw new RangeError('zero direction');dx/=L;dy/=L;
   }
   return {points,hits,length,reason:'limit'};
 }
@@ -1739,6 +1848,7 @@ __e.pointAt = pointAt;
 __e.derivativeAt = derivativeAt;
 __e.intersections = intersections;
 __e.onBoundary = onBoundary;
+__e.traceReference = traceReference;
 __e.trace = trace;
 __e.polygonEdges = polygonEdges;
 __e.flatten = flatten;
@@ -4017,7 +4127,7 @@ __e.default = {
  controls:{
   room:{kind:'choice',key:'room',label:P('Pièce','Room'),options:[['penrose','Penrose : arcs elliptiques','Penrose: elliptical arcs'],['tokarsky','Tokarsky : 26 côtés','Tokarsky: 26 sides'],['wolecki','Wolecki : 22 côtés','Wolecki: 22 sides'],['polygon','Mon polygone','My polygon'],['curved','Mes murs courbes','My curved walls']].map(([value,fr,en])=>({value,label:P(fr,en)})),set:(s,room)=>({room,sx:PRESETS[room].source[0],sy:PRESETS[room].source[1],playing:false,progress:1,unfolding:false})},
   bounces:{kind:'slider',key:'bounces',min:0,max:100,step:1,label:P('Réflexions maximales','Maximum reflections')},
-  rays:{kind:'choice',key:'rays',label:P('Rayons échantillonnés','Sampled rays'),options:[1,24,48,96].map(value=>({value,label:P(String(value),String(value))}))},
+  rays:{kind:'choice',key:'rays',label:P('Rayons échantillonnés','Sampled rays'),options:[1,24,48,96,360,1440].map(value=>({value,label:P(String(value),String(value))}))},
   angle:{kind:'slider',key:'angle',min:0,max:6.28,step:.01,label:P('Direction initiale (rad)','Initial direction (rad)')},
   speed:{kind:'slider',key:'speed',min:.2,max:10,step:.2,label:P('Vitesse de parcours','Travel speed')},
  },
@@ -9584,6 +9694,7 @@ __e.createStage = __r("lab/templates/inference.js").createStage;
 const { exhibit, button, background, path, dot } = __r("gallery-kit.js");
 const M = __r("illumination-model.js");
 const { PRESETS } = __r("illumination-presets.js");
+const { createLightMap } = __r("illumination-gl.js");
 const { model, boundary } = __r("lab/experiments/illumination.js");
 function mount({stage,fmt,getState,setState}){
  const t=(fr,en)=>fmt.t([fr,en]),root=stage.wrap;
@@ -9618,7 +9729,10 @@ function mount({stage,fmt,getState,setState}){
  });
  o.on(o.cv,'pointermove',e=>{if(drag)move(drag,world(o.point(e)));});o.on(o.cv,'pointerup',()=>{drag=null;});o.cancelDrag=()=>{drag=null;};
  o.on(o.cv,'keydown',e=>{if(e.shiftKey||e.ctrlKey||e.metaKey)return;const hs=handles();if(e.key.toLowerCase()==='h'){selected=(selected+1)%hs.length;e.preventDefault();dirty=true;return;}if(e.key==='Insert'){addVertex();e.preventDefault();return;}if(['Delete','Backspace'].includes(e.key)){removeVertex();e.preventDefault();return;}const delta={ArrowLeft:[-.1,0],ArrowRight:[.1,0],ArrowUp:[0,-.1],ArrowDown:[0,.1]}[e.key];if(delta){const h=hs[selected]||hs[0];move(h,h.p.map((x,k)=>x+delta[k]));e.preventDefault();}});
- function drawRay(points,C,distance){let budget=distance;for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i],L=M.norm(a.map((x,k)=>x-b[k]));if(budget<=0)break;const t=Math.min(1,budget/L),end=a.map((x,k)=>x+t*(b[k]-x));path(g,[screen(a),screen(end)],{stroke:C.accent,width:1.2,alpha:.5});budget-=L;}}
+ let light=null,lightTried=false,buf=new Float32Array(4096);
+ const rgb=c=>{const m=/^#?([0-9a-f]{6})$/i.exec(c.trim());if(m){const v=parseInt(m[1],16);return [(v>>16)/255,(v>>8&255)/255,(v&255)/255];}const n=(c.match(/[\d.]+/g)||[]).slice(0,3).map(Number);return n.length===3?n.map(x=>x/255):[.9,.2,.2];};
+ // One path per ray (a single stroke instead of one per segment); more than 96 rays are drawn as a GPU light map
+ function drawRay(points,C,distance){let budget=distance,begun=false;g.beginPath();for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i],L=Math.hypot(a[0]-b[0],a[1]-b[1]);if(budget<=0)break;const t=Math.min(1,budget/L),sa=screen(a),sb=screen([a[0]+t*(b[0]-a[0]),a[1]+t*(b[1]-a[1])]);if(!begun||i===1){g.moveTo(sa[0],sa[1]);begun=true;}g.lineTo(sb[0],sb[1]);budget-=L;}g.globalAlpha=.5;g.strokeStyle=C.accent;g.lineWidth=1.2;g.stroke();g.globalAlpha=1;}
  o.animate(dt=>{
   const s=getState(),next=JSON.stringify(s);if(next!==key){key=next;dirty=true;}
   if(s.playing&&!stage.reduced()){elapsed+=dt*s.speed;dirty=true;}else if(s.playing&&stage.reduced()){setState({playing:false});elapsed=Infinity;dirty=true;}
@@ -9626,6 +9740,15 @@ function mount({stage,fmt,getState,setState}){
   edit.closest('label').hidden=!customRoom;close.hidden=!customRoom||s.closed;root.querySelector('#light-empty').hidden=!customRoom;unfoldButton.disabled=m.edges.some(e=>e.type!=='line');unfoldButton.setAttribute('aria-pressed',String(s.unfolding));play.setAttribute('aria-pressed',String(s.playing));play.textContent=s.playing?t('Pause','Pause'):t('Parcourir les rayons','Play rays');
   const poly=M.flatten(m.edges);path(g,poly.map(screen),{close:s.closed,fill:s.closed?C.surface:null,stroke:C.ink,width:2});
   if(s.unfolding&&m.paths[0]){const u=M.unfold(m.edges,m.paths[0]);if(u){u.copies.slice(1,9).forEach((p,i)=>path(g,p.map(screen),{close:true,stroke:C.muted,alpha:.5/(1+i*.1),width:1}));drawRay(u.points,C,elapsed);}}
+  else if(m.paths.length>96){
+   // thousands of rays: a coverage map drawn by the GPU (additive lines), or a thinned set of rays without WebGL
+   if(!lightTried){lightTried=true;light=createLightMap();}
+   let count=0;const need=m.segments*4;if(buf.length<need)buf=new Float32Array(Math.max(need,buf.length*2));
+   for(const p of m.paths){let budget=elapsed;for(let i=1;i<p.points.length&&budget>0;i++){const a=p.points[i-1],b=p.points[i],L=Math.hypot(a[0]-b[0],a[1]-b[1]),k=Math.min(1,budget/L),sa=screen(a),sb=screen([a[0]+k*(b[0]-a[0]),a[1]+k*(b[1]-a[1])]);buf[count*4]=sa[0];buf[count*4+1]=sa[1];buf[count*4+2]=sb[0];buf[count*4+3]=sb[1];count++;budget-=L;}}
+   const img=light&&!light.lost?light.render({width:o.cv.width,height:o.cv.height,size:[o.W,o.H],segments:buf,count,color:rgb(C.accent),strength:Math.min(.3,Math.max(.008,3/m.paths.length)),camera:o.navigation?.camera}):null;
+   if(img){g.save();g.setTransform(1,0,0,1,0,0);g.drawImage(img,0,0,o.cv.width,o.cv.height);g.restore();}
+   else{light=null;const stride=Math.ceil(m.paths.length/96);m.paths.forEach((p,i)=>{if(i%stride===0)drawRay(p.points,C,elapsed);});}
+  }
   else m.paths.forEach(p=>drawRay(p.points,C,elapsed));
   const target=PRESETS[s.room].target;if(target)dot(g,screen(target),C.neg,6,'T');
   if(s.room==='penrose')for(const p of [[-4,-1],[4,-1],[-4,1],[4,1]])dot(g,screen(p),C.muted,3,'F');
@@ -9634,7 +9757,7 @@ function mount({stage,fmt,getState,setState}){
   const chosen=hs[selected]||hs[0],name=chosen.type==='lamp'?t('Lampe S','Lamp S'):chosen.type==='vertex'?t('Sommet','Vertex'):t('Courbure','Curvature');
   o.read(warning+' '+name+' '+fmt.pt(...chosen.p)+'. '+(target?t('T est le point non éclairé depuis la position initiale S selon la construction publiée ; déplacer S retire cette garantie.','T is unilluminated from the initial S according to the published construction; moving S removes that guarantee.'):t('Les traces montrent seulement les directions échantillonnées.','Traces show only sampled directions.')));
  });
- return {handles:[],draw(){dirty=true;o.redraw();},destroy(){o.stop();}};
+ return {handles:[],draw(){dirty=true;o.redraw();},destroy(){o.stop();light?.destroy();}};
 }
 
 __e.mount = mount;

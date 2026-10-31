@@ -34,6 +34,7 @@ scene-level tap/drag actions have keyboard equivalents, and camera gestures canc
 | `helpers.js` | bilingual pair `P`, easing (`clamp01`, `ez`, `seg`, `lerp`), SVG text styles, parameter builders `int`, `choice` |
 | `icon.js` | emblem frame `svg`, `soft`, `dot` |
 | `player.js` | `playSolution(def, root, options)`: the solution player (steps, play, captions, `seek`) |
+| `knight-piece.js` | the chess knight silhouette (activity, solution `ctx.knight`, emblem) |
 | `scene-kit.js`, `scene-props.js` | cartoon characters and props used by several challenges (soldier, day scene, egg, balance) |
 | `scene-3d.js`, `view-3d.js` | helpers of the 3D solutions; the small orthographic 3D renderer (cake, box) |
 
@@ -43,3 +44,5 @@ scene-level tap/drag actions have keyboard equivalents, and camera gestures canc
 2. Add one import line and one entry in `CHALLENGES` (card order) in `registry.js`.
 3. Tests: maths in `tests/challenge-puzzles2.test.mjs` (or a new test), `tests/challenges-variants.test.mjs` checks
    every layer, `tests/browser.py` (`CHALLENGES` list).
+
+Update of 31 October 2026: the activities are played on the scenes of their solutions. `rooms/art.js` is the floor plan (rooms, 16 doors, the walker's way through a door and round the house); `konigsberg/activity.js` reuses the river map and walker of `solution.js`; `bridge/activity.js` is played on the night bridge with the lantern; `horses/activity.js` runs its races on a track with the solution's horses; the Gauss solution writes the algebra line by line beside the staircase.

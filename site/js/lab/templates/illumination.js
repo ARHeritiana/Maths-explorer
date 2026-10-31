@@ -3,6 +3,7 @@ export {createStage} from './inference.js';
 import {exhibit,button,background,path,dot} from '../../gallery-kit.js';
 import * as M from '../../illumination-model.js';
 import {PRESETS} from '../../illumination-presets.js';
+import {createLightMap} from '../../illumination-gl.js';
 import {model,boundary} from '../experiments/illumination.js';
 export function mount({stage,fmt,getState,setState}){
  const t=(fr,en)=>fmt.t([fr,en]),root=stage.wrap;
@@ -37,7 +38,10 @@ export function mount({stage,fmt,getState,setState}){
  });
  o.on(o.cv,'pointermove',e=>{if(drag)move(drag,world(o.point(e)));});o.on(o.cv,'pointerup',()=>{drag=null;});o.cancelDrag=()=>{drag=null;};
  o.on(o.cv,'keydown',e=>{if(e.shiftKey||e.ctrlKey||e.metaKey)return;const hs=handles();if(e.key.toLowerCase()==='h'){selected=(selected+1)%hs.length;e.preventDefault();dirty=true;return;}if(e.key==='Insert'){addVertex();e.preventDefault();return;}if(['Delete','Backspace'].includes(e.key)){removeVertex();e.preventDefault();return;}const delta={ArrowLeft:[-.1,0],ArrowRight:[.1,0],ArrowUp:[0,-.1],ArrowDown:[0,.1]}[e.key];if(delta){const h=hs[selected]||hs[0];move(h,h.p.map((x,k)=>x+delta[k]));e.preventDefault();}});
- function drawRay(points,C,distance){let budget=distance;for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i],L=M.norm(a.map((x,k)=>x-b[k]));if(budget<=0)break;const t=Math.min(1,budget/L),end=a.map((x,k)=>x+t*(b[k]-x));path(g,[screen(a),screen(end)],{stroke:C.accent,width:1.2,alpha:.5});budget-=L;}}
+ let light=null,lightTried=false,buf=new Float32Array(4096);
+ const rgb=c=>{const m=/^#?([0-9a-f]{6})$/i.exec(c.trim());if(m){const v=parseInt(m[1],16);return [(v>>16)/255,(v>>8&255)/255,(v&255)/255];}const n=(c.match(/[\d.]+/g)||[]).slice(0,3).map(Number);return n.length===3?n.map(x=>x/255):[.9,.2,.2];};
+ // One path per ray (a single stroke instead of one per segment); more than 96 rays are drawn as a GPU light map
+ function drawRay(points,C,distance){let budget=distance,begun=false;g.beginPath();for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i],L=Math.hypot(a[0]-b[0],a[1]-b[1]);if(budget<=0)break;const t=Math.min(1,budget/L),sa=screen(a),sb=screen([a[0]+t*(b[0]-a[0]),a[1]+t*(b[1]-a[1])]);if(!begun||i===1){g.moveTo(sa[0],sa[1]);begun=true;}g.lineTo(sb[0],sb[1]);budget-=L;}g.globalAlpha=.5;g.strokeStyle=C.accent;g.lineWidth=1.2;g.stroke();g.globalAlpha=1;}
  o.animate(dt=>{
   const s=getState(),next=JSON.stringify(s);if(next!==key){key=next;dirty=true;}
   if(s.playing&&!stage.reduced()){elapsed+=dt*s.speed;dirty=true;}else if(s.playing&&stage.reduced()){setState({playing:false});elapsed=Infinity;dirty=true;}
@@ -45,6 +49,15 @@ export function mount({stage,fmt,getState,setState}){
   edit.closest('label').hidden=!customRoom;close.hidden=!customRoom||s.closed;root.querySelector('#light-empty').hidden=!customRoom;unfoldButton.disabled=m.edges.some(e=>e.type!=='line');unfoldButton.setAttribute('aria-pressed',String(s.unfolding));play.setAttribute('aria-pressed',String(s.playing));play.textContent=s.playing?t('Pause','Pause'):t('Parcourir les rayons','Play rays');
   const poly=M.flatten(m.edges);path(g,poly.map(screen),{close:s.closed,fill:s.closed?C.surface:null,stroke:C.ink,width:2});
   if(s.unfolding&&m.paths[0]){const u=M.unfold(m.edges,m.paths[0]);if(u){u.copies.slice(1,9).forEach((p,i)=>path(g,p.map(screen),{close:true,stroke:C.muted,alpha:.5/(1+i*.1),width:1}));drawRay(u.points,C,elapsed);}}
+  else if(m.paths.length>96){
+   // thousands of rays: a coverage map drawn by the GPU (additive lines), or a thinned set of rays without WebGL
+   if(!lightTried){lightTried=true;light=createLightMap();}
+   let count=0;const need=m.segments*4;if(buf.length<need)buf=new Float32Array(Math.max(need,buf.length*2));
+   for(const p of m.paths){let budget=elapsed;for(let i=1;i<p.points.length&&budget>0;i++){const a=p.points[i-1],b=p.points[i],L=Math.hypot(a[0]-b[0],a[1]-b[1]),k=Math.min(1,budget/L),sa=screen(a),sb=screen([a[0]+k*(b[0]-a[0]),a[1]+k*(b[1]-a[1])]);buf[count*4]=sa[0];buf[count*4+1]=sa[1];buf[count*4+2]=sb[0];buf[count*4+3]=sb[1];count++;budget-=L;}}
+   const img=light&&!light.lost?light.render({width:o.cv.width,height:o.cv.height,size:[o.W,o.H],segments:buf,count,color:rgb(C.accent),strength:Math.min(.3,Math.max(.008,3/m.paths.length)),camera:o.navigation?.camera}):null;
+   if(img){g.save();g.setTransform(1,0,0,1,0,0);g.drawImage(img,0,0,o.cv.width,o.cv.height);g.restore();}
+   else{light=null;const stride=Math.ceil(m.paths.length/96);m.paths.forEach((p,i)=>{if(i%stride===0)drawRay(p.points,C,elapsed);});}
+  }
   else m.paths.forEach(p=>drawRay(p.points,C,elapsed));
   const target=PRESETS[s.room].target;if(target)dot(g,screen(target),C.neg,6,'T');
   if(s.room==='penrose')for(const p of [[-4,-1],[4,-1],[-4,1],[4,1]])dot(g,screen(p),C.muted,3,'F');
@@ -53,5 +66,5 @@ export function mount({stage,fmt,getState,setState}){
   const chosen=hs[selected]||hs[0],name=chosen.type==='lamp'?t('Lampe S','Lamp S'):chosen.type==='vertex'?t('Sommet','Vertex'):t('Courbure','Curvature');
   o.read(warning+' '+name+' '+fmt.pt(...chosen.p)+'. '+(target?t('T est le point non éclairé depuis la position initiale S selon la construction publiée ; déplacer S retire cette garantie.','T is unilluminated from the initial S according to the published construction; moving S removes that guarantee.'):t('Les traces montrent seulement les directions échantillonnées.','Traces show only sampled directions.')));
  });
- return {handles:[],draw(){dirty=true;o.redraw();},destroy(){o.stop();}};
+ return {handles:[],draw(){dirty=true;o.redraw();},destroy(){o.stop();light?.destroy();}};
 }

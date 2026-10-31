@@ -17,7 +17,7 @@ export default {
  controls:{
   room:{kind:'choice',key:'room',label:P('Pièce','Room'),options:[['penrose','Penrose : arcs elliptiques','Penrose: elliptical arcs'],['tokarsky','Tokarsky : 26 côtés','Tokarsky: 26 sides'],['wolecki','Wolecki : 22 côtés','Wolecki: 22 sides'],['polygon','Mon polygone','My polygon'],['curved','Mes murs courbes','My curved walls']].map(([value,fr,en])=>({value,label:P(fr,en)})),set:(s,room)=>({room,sx:PRESETS[room].source[0],sy:PRESETS[room].source[1],playing:false,progress:1,unfolding:false})},
   bounces:{kind:'slider',key:'bounces',min:0,max:100,step:1,label:P('Réflexions maximales','Maximum reflections')},
-  rays:{kind:'choice',key:'rays',label:P('Rayons échantillonnés','Sampled rays'),options:[1,24,48,96].map(value=>({value,label:P(String(value),String(value))}))},
+  rays:{kind:'choice',key:'rays',label:P('Rayons échantillonnés','Sampled rays'),options:[1,24,48,96,360,1440].map(value=>({value,label:P(String(value),String(value))}))},
   angle:{kind:'slider',key:'angle',min:0,max:6.28,step:.01,label:P('Direction initiale (rad)','Initial direction (rad)')},
   speed:{kind:'slider',key:'speed',min:.2,max:10,step:.2,label:P('Vitesse de parcours','Travel speed')},
  },

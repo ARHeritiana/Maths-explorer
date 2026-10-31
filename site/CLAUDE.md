@@ -43,6 +43,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/lab-objects.js` | `mountObject`: the gallery exhibits (Galton, Reuleaux, Platonic, chaos game and more; pure maths first, then DOM) |
 | `js/gallery-objects.js` | Fourier circles (Madagascar opens on 24 circles), Mandelbrot/Julia explorer |
 | `js/fractal-gl.js` | WebGL2 renderer of the Mandelbrot and Julia views: smooth escape time at device resolution, perturbation around a double-precision reference orbit (deep zooms without glitches), 2x2 supersampling at rest; the CPU path of `gallery-objects.js` is the fallback |
+| `js/illumination-gl.js` | GPU light map of the mirrored rooms: segments drawn additively (coverage of thousands of rays); `illumination-model.js` `trace` is the allocation-free tracer (`traceReference` is the checked original) |
 | `js/gallery-math.js` | pure maths of the gallery (escape times, DFT, Madagascar outline) |
 | `js/gallery-additions.js` | six experiment-first gallery entries (with the four colour map) and source labels |
 | `js/gallery-models.js`, `js/gallery-kit.js` | Voronoi clipping, descent timing, film area minimisation; shared exhibit lifecycle |

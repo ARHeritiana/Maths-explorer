@@ -2,12 +2,13 @@ import {canvasIn,palette,field,bind,loopFor} from './object-kit.js';
 import {makeNet} from './platonic-fold.js';
 const TAU=2*Math.PI;
 export function mountPlatonic(root,{t,reduced},solids,names,schlafli,angle,verdict) {
-  let name='cube',fold=1,yaw=-.6,pitch=.65,drag=null,playing=false,p=4,q=3,selected=-1;
+  let name='cube',fold=1,yaw=-.6,pitch=.65,drag=null,playing=false,p=4,q=3,selected=-1,hover=-1,spin=!reduced(),numbers=false,vyaw=0,vpitch=0,idle=0;
   const nets=Object.fromEntries(Object.entries(solids).map(([id,s])=>[id,makeNet(s)]));
-  root.innerHTML=`<p class="act-help">${t('Ouvre le patron, puis replie les faces. Elles tournent autour de leurs arêtes sans se déformer. Glisse le fond pour tourner la vue ; touche une face pour la repérer.','Open the net, then fold the faces. Each face turns around an edge without changing shape. Drag the background to rotate; tap a face to identify it.')}</p>
+  root.innerHTML=`<p class="act-help">${t('Ouvre le patron, puis replie les faces. Elles tournent autour de leurs arêtes sans se déformer. Glisse le fond pour tourner la vue ; touche une face pour la repérer.','Open the net, then fold the faces. Each face turns around an edge without changing shape. Drag the background to rotate; tap a face to identify it.')} ${t('Le solide tourne seul ; lâche-le pour qu’il continue sur son élan, double-clique pour revenir à la vue de départ.','The solid turns by itself; release it mid-turn and it keeps its momentum; double-click to return to the starting view.')}</p>
   <div class="obj-stage" id="pl-stage"></div>
   <div class="act-buttons">${Object.keys(solids).map(id=>`<button type="button" class="btn btn-secondary" data-solid="${id}" aria-pressed="${id===name}">${t(...names[id])}</button>`).join('')}</div>
-  <div class="act-controls">${field('pl-fold',t('Pliage : patron → solide','Fold: net → solid'),0,100,1,100)}<button class="btn btn-secondary" id="pl-open" type="button">${t('Ouvrir le patron','Open net')}</button><button class="btn btn-primary" id="pl-play" type="button">${t('Replier','Fold')}</button></div>
+  <div class="act-controls">${field('pl-fold',t('Pliage : patron → solide','Fold: net → solid'),0,100,1,100)}<button class="btn btn-secondary" id="pl-open" type="button">${t('Ouvrir le patron','Open net')}</button><button class="btn btn-primary" id="pl-play" type="button">${t('Replier','Fold')}</button>
+    <label class="act-check"><input id="pl-spin" type="checkbox" ${spin?'checked':''}> ${t('Rotation automatique','Turn automatically')}</label><label class="act-check"><input id="pl-numbers" type="checkbox"> ${t('Numéroter les faces','Number the faces')}</label></div>
   <p class="act-readout" id="pl-read" aria-live="polite"></p>
   <details class="platonic-proof" open><summary>${t('Pourquoi exactement cinq solides réguliers convexes ?','Why exactly five convex regular solids?')}</summary>
     <ol class="fold-reason"><li>${t('À un sommet, au moins trois faces se rejoignent. Si chaque face a p côtés, son angle vaut α = (p − 2) × 180° / p.','At least three faces meet at a vertex. If each face has p sides, its angle is α = (p − 2) × 180° / p.')}</li>
@@ -25,7 +26,7 @@ export function mountPlatonic(root,{t,reduced},solids,names,schlafli,angle,verdi
     const C=palette(),net=nets[name],polys=net.faces(fold),scale=Math.min(280/net.radius,175/net.radius),screen=polys.map(poly=>poly.map(v=>{const r=rot(v);return[o.W/2+scale*r[0],o.H/2-scale*r[1],r[2]];}));
     g.clearRect(0,0,o.W,o.H);g.fillStyle=C.sunken;g.fillRect(0,0,o.W,o.H);
     projected=screen.map((pts,i)=>({pts,i,depth:pts.reduce((s,p)=>s+p[2]/pts.length,0)})).sort((a,b)=>b.depth-a.depth);
-    for(const {pts,i}of projected){g.beginPath();pts.forEach(([x,y],j)=>j?g.lineTo(x,y):g.moveTo(x,y));g.closePath();g.globalAlpha=i===selected?1:.85;g.fillStyle=C.c[i%8];g.fill();g.globalAlpha=1;g.lineWidth=i===selected?4:1.8;g.strokeStyle=i===selected?C.accent:C.ink;g.stroke();
+    for(const {pts,i}of projected){g.beginPath();pts.forEach(([x,y],j)=>j?g.lineTo(x,y):g.moveTo(x,y));g.closePath();g.globalAlpha=i===selected||i===hover?1:.85;g.fillStyle=C.c[i%8];g.fill();g.globalAlpha=1;g.lineWidth=i===selected?4:i===hover?3:1.8;g.strokeStyle=i===selected?C.accent:C.ink;g.stroke();if(!numbers&&i!==selected)continue;
       const x=pts.reduce((s,p)=>s+p[0]/pts.length,0),y=pts.reduce((s,p)=>s+p[1]/pts.length,0);g.fillStyle=C.ink;g.font='600 13px system-ui';g.textAlign='center';g.fillText(String(i+1),x,y+4);
     }
   }
@@ -61,12 +62,15 @@ export function mountPlatonic(root,{t,reduced},solids,names,schlafli,angle,verdi
   root.querySelector('#pl-build-case').onclick=()=>{const id=Object.keys(solids).find(id=>schlafli[id][0]===p&&schlafli[id][1]===q);if(id){choose(id);fold=0;playing=!reduced();if(reduced())fold=1;pitch=.65;sync();draw();o.cv.focus();}};
   const inside=(pt,poly)=>{let yes=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if((a[1]>pt[1])!==(b[1]>pt[1])&&pt[0]<(b[0]-a[0])*(pt[1]-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;};
   o.touchHit(pt=>projected.some(face=>inside(pt,face.pts)));
-  o.cv.addEventListener('pointerdown',e=>{if(e.button!==0)return;playing=false;drag={x:e.clientX,y:e.clientY,start:[e.clientX,e.clientY]};o.cv.setPointerCapture(e.pointerId);});
-  o.cv.addEventListener('pointermove',e=>{if(!drag)return;yaw+=(e.clientX-drag.x)*.01;pitch=Math.max(.12,Math.min(1.45,pitch+(e.clientY-drag.y)*.008));drag={...drag,x:e.clientX,y:e.clientY};draw();});
-  o.cv.addEventListener('pointerup',e=>{if(drag&&Math.hypot(e.clientX-drag.start[0],e.clientY-drag.start[1])<5){const at=o.point(e);selected=[...projected].reverse().find(f=>inside(at,f.pts))?.i??-1;sync();draw();}drag=null;});
+  o.cv.addEventListener('pointerdown',e=>{if(e.button!==0)return;playing=false;drag={x:e.clientX,y:e.clientY,start:[e.clientX,e.clientY],time:performance.now()};vyaw=vpitch=0;o.cv.setPointerCapture(e.pointerId);});
+  o.cv.addEventListener('pointermove',e=>{if(!drag){const at=o.point(e),h=[...projected].reverse().find(f=>inside(at,f.pts))?.i??-1;if(h!==hover){hover=h;o.redraw();}return;}const now=performance.now(),dtm=Math.max(8,now-(drag.time||now))/1000;vyaw=.6*vyaw+.4*((e.clientX-drag.x)*.01/dtm);vpitch=.6*vpitch+.4*((e.clientY-drag.y)*.008/dtm);yaw+=(e.clientX-drag.x)*.01;pitch=Math.max(-1.45,Math.min(1.45,pitch+(e.clientY-drag.y)*.008));drag={...drag,x:e.clientX,y:e.clientY,time:now};draw();});
+  o.cv.addEventListener('pointerup',e=>{if(drag&&Math.hypot(e.clientX-drag.start[0],e.clientY-drag.start[1])<5){const at=o.point(e);selected=[...projected].reverse().find(f=>inside(at,f.pts))?.i??-1;vyaw=vpitch=0;sync();draw();}else if(performance.now()-(drag.time||0)>120){vyaw=vpitch=0;}drag=null;});
+  o.cv.addEventListener('pointerleave',()=>{if(hover>=0){hover=-1;o.redraw();}});
+  o.cv.addEventListener('dblclick',()=>{yaw=-.6;pitch=.65;vyaw=vpitch=0;draw();});
+  root.querySelector('#pl-spin').onchange=e=>{spin=e.target.checked;};root.querySelector('#pl-numbers').onchange=e=>{numbers=e.target.checked;draw();};
   for(const ev of ['pointercancel','view-gesture','lostpointercapture'])o.cv.addEventListener(ev,()=>drag=null);
-  o.cv.addEventListener('keydown',e=>{const d={ArrowLeft:[-.1,0],ArrowRight:[.1,0],ArrowUp:[0,.08],ArrowDown:[0,-.08]}[e.key];if(d){e.preventDefault();yaw+=d[0];pitch=Math.max(.12,Math.min(1.45,pitch+d[1]));draw();}});
+  o.cv.addEventListener('keydown',e=>{const d={ArrowLeft:[-.1,0],ArrowRight:[.1,0],ArrowUp:[0,.08],ArrowDown:[0,-.08]}[e.key];if(d){e.preventDefault();yaw+=d[0];pitch=Math.max(-1.45,Math.min(1.45,pitch+d[1]));draw();}});
   o.cv.setAttribute('aria-label',t('Solide et patron 3D. Flèches pour tourner ; plus et moins pour zoomer.','3D solid and net. Arrow keys rotate; plus and minus zoom.'));o.cv.style.cursor='grab';
-  o.redraw=()=>draw();fo.redraw=fan;sync();fan();draw();const stop=loopFor(dt=>{if(playing)draw(dt);},reduced);
+  o.redraw=()=>draw();fo.redraw=fan;sync();fan();draw();const stop=loopFor(dt=>{let moving=false;if(!drag&&!reduced()){if(Math.abs(vyaw)>.02||Math.abs(vpitch)>.02){const k=Math.exp(-dt*2.2);yaw+=vyaw*dt;pitch=Math.max(-1.45,Math.min(1.45,pitch+vpitch*dt));vyaw*=k;vpitch*=k;moving=true;}else if(spin){yaw+=dt*.45;moving=true;}}if(playing||moving)draw(dt);},reduced);
   return()=>{stop();o.navigation?.destroy();fo.navigation?.destroy();};
 }

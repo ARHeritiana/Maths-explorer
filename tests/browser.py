@@ -360,7 +360,8 @@ with sync_playwright() as p:
     page.locator('[data-e="0-1"]').click()
     assert page.locator('.rm-edge.c1').count() == 1
     page.goto(BASE+'/#challenges/konigsberg')
-    page.locator('[data-b="0"]').dispatch_event('click'); page.locator('[data-b="1"]').dispatch_event('click')   # curved: the centre of the box is not on the stroke
+    page.locator('[data-b="0"]').dispatch_event('click'); page.wait_for_timeout(1300)   # the walker really crosses: wait for him
+    page.locator('[data-b="1"]').dispatch_event('click'); page.wait_for_timeout(1300)   # curved: the centre of the box is not on the stroke
     assert page.locator('.kb-bridge.crossed').count() == 2
     page.goto(BASE+'/#challenges/josephus')
     page.locator('#js-n').fill('7'); page.locator('#js-run').click()

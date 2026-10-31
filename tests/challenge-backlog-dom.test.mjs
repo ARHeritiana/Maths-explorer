@@ -45,10 +45,11 @@ test('room traversal, keyboard editing and undo operate without exposing the Eul
   root.querySelector('[data-undo]').click();assert.match(root.querySelector('[role=status]').textContent,/0\/16/);
   assert.doesNotMatch(root.querySelector('[role=status]').textContent,/odd|Euler|possible/i);
   const mode=root.querySelector('select');mode.value='edit';mode.dispatchEvent(new w.Event('change'));
-  room(0).dispatchEvent(new w.KeyboardEvent('keydown',{key:' ',bubbles:true}));
-  room(1).dispatchEvent(new w.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
-  assert.match(root.querySelector('[role=status]').textContent,/0\/17/);
-  const hit=door(0).querySelector('path');assert.equal(hit.getAttribute('vector-effect'),'non-scaling-stroke');assert.equal(hit.getAttribute('stroke-width'),'44');
+  door(0).dispatchEvent(new w.KeyboardEvent('keydown',{key:' ',bubbles:true}));
+  assert.match(root.querySelector('[role=status]').textContent,/0\/15/);   // closing a door removes it from the count
+  door(0).dispatchEvent(new w.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
+  assert.match(root.querySelector('[role=status]').textContent,/0\/16/);
+  assert.equal(root.querySelectorAll('[data-door]').length,16);assert.equal(root.querySelectorAll('[data-room]').length,6);
   f.close();
 });
 test('factor removal and hidden exact calculation respect hints, validation and exact BigInt inputs',()=>{

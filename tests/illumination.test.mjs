@@ -32,3 +32,15 @@ test('verified room side counts, source/target interiors and finite ray segments
  // Wolecki's vertex contact is retained, not silently repaired into another room.
  assert.equal(WOLECKI.filter(p=>p[0]===4&&p[1]===4).length,2);
 });
+test('the allocation-free tracer agrees with the reference tracer: reason, hit sequence, points and length',()=>{
+ // polygons: 60 bounces; the elliptical Penrose room: 8 (billiards are chaotic, so rounding differences grow with the bounces)
+ for(const [name,bounces] of [['tokarsky',60],['wolecki',60],['polygon',60],['penrose',8]]){
+  const p=PRESETS[name];
+  for(let i=0;i<300;i++){const th=.01+i*.021,d=[Math.cos(th),Math.sin(th)],a=M.traceReference(p.edges,p.source,d,bounces),b=M.trace(p.edges,p.source,d,bounces);
+   assert.equal(b.reason,a.reason,`${name} ${i}`);assert.deepEqual(b.hits,a.hits,`${name} ${i}`);assert.equal(b.points.length,a.points.length);
+   a.points.forEach((q,k)=>{near(q[0],b.points[k][0],1e-7);near(q[1],b.points[k][1],1e-7);});near(a.length,b.length,1e-6);}
+ }
+ // a curved custom wall (Bezier) still goes through the general path
+ const edges=[M.line([-4,-3],[4,-3]),M.bezier([4,-3],[6,0],[4,3]),M.line([4,3],[-4,3]),M.line([-4,3],[-4,-3])];
+ for(let i=0;i<50;i++){const d=[Math.cos(i*.13),Math.sin(i*.13)],a=M.traceReference(edges,[0,0],d,20),b=M.trace(edges,[0,0],d,20);assert.equal(b.reason,a.reason);assert.deepEqual(b.hits,a.hits);}
+});
