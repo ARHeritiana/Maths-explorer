@@ -45,7 +45,14 @@ export function installPresenting() {
     else target.classList.add("presenting");
     sync();
   });
-  document.addEventListener("fullscreenchange", sync);
+  // Leaving full screen (Escape, F11, the browser's own control or the button) also ends presenting:
+  // the browser keeps the Escape key for itself, so the keydown handler below never sees it.
+  let fullscreenTarget = null;
+  document.addEventListener("fullscreenchange", () => {
+    if (document.fullscreenElement) fullscreenTarget = document.fullscreenElement;
+    else if (fullscreenTarget) { fullscreenTarget.classList.remove("presenting"); fullscreenTarget = null; }
+    sync();
+  });
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") return;
     const target = document.querySelector(".presenting");

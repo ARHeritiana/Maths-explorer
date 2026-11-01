@@ -37,6 +37,8 @@ try:
         result = subprocess.run([sys.executable, 'tests/device_scale_browser.py'], cwd=root)
     if result.returncode == 0:   # long lists keep their scroll position
         result = subprocess.run([sys.executable, 'tests/ergonomics_browser.py'], cwd=root)
+    if result.returncode == 0:   # automatismes and sheets: MathJax on every class, projection stage, phone width
+        result = subprocess.run([sys.executable, 'tests/generators_browser.py'], cwd=root)
     if result.returncode == 0:   # the four chapter destinations and the legacy stage links
         result = subprocess.run([sys.executable, 'tests/chapter_destinations_browser.py'], cwd=root)
     if result.returncode == 0:   # the unpublished references of docs/future-work (workstream G), opened from files
