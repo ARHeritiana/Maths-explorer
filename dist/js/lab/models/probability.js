@@ -3,7 +3,10 @@
 // button presses that led to N, and a series with another p reuses the same uniform draws (success when draw < p).
 import { binomial } from "../../math.js";
 
-export const MAX_RUNS = 5000;
+export const MAX_RUNS = 5000;   // what the animated, one-by-one stream reaches
+// A series may be longer where the device proved it can (buttons "+ 10,000" and more, lab/scale.js).
+export let SERIES_MAX = MAX_RUNS;
+export const setSeriesMax = (n) => { SERIES_MAX = Math.max(MAX_RUNS, Math.floor(n)); };
 export const SHOWN_ROWS = 6;
 
 // mulberry32: a small seedable generator with a 32-bit state; returns uniform numbers in [0, 1).

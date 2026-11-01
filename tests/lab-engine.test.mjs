@@ -654,7 +654,9 @@ test("probability: the binomial law is consistent and the seeded simulation is r
 
 test("probability: the run buttons add experiments up to the cap, and 'new series' starts again", () => {
   const run = byId.probability.controls.run, s = { n: 10, p: 0.3, runs: 0, seed: 2, theory: 0 };
-  assert.deepEqual(run.options.map((o) => o.value), [1, 10, 100, 1000, "new"]);
+  // the longer series (10,000 and more) exist but stay hidden on a device not measured as capable (lab/scale.js)
+  assert.deepEqual(run.options.filter((o) => !o.hidden?.()).map((o) => o.value), [1, 10, 100, 1000, "new"]);
+  assert.deepEqual(run.options.filter((o) => o.hidden?.()).map((o) => o.value), [10000, 100000, 1000000]);
   let state = s;
   for (const v of [1, 10, 100, 1000]) state = { ...state, ...run.act(state, v) };
   assert.equal(state.runs, 1111);

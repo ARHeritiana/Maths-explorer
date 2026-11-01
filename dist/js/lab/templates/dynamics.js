@@ -9,7 +9,7 @@ export function mount(env) {
   for(const spec of exp.settings||[]){
     const label=document.createElement('label'),name=document.createElement('span'),input=document.createElement(spec.options?'select':'input');
     name.textContent=fmt.t(spec.label);label.className='lab2-ctl';label.append(name,input);details.append(label);
-    if(spec.options)for(const [value,text]of spec.options){const option=document.createElement('option');option.value=value;option.textContent=fmt.t(text);input.append(option);}
+    if(spec.options)for(const [value,text,off]of spec.options){const option=document.createElement('option');option.value=value;option.textContent=fmt.t(text);option.disabled=!!off?.();input.append(option);}
     else{input.type='number';input.min=spec.min;input.max=spec.max;input.step=spec.step;}
     input.addEventListener('change',()=>{let value=spec.options?input.value:Number(input.value);if(!spec.options){if(!Number.isFinite(value))return;value=Math.max(spec.min,Math.min(spec.max,value));}
       setState(spec.set?spec.set(getState(),value):{[spec.key]:value,time:0});stage.invalidate();},{signal:abort.signal});slots.push({spec,input});
@@ -28,5 +28,5 @@ export function mount(env) {
       });onChange?.(true);
     }};playing=api;return api;
   }
-  return {...base,player,draw(g){base.draw(g);const s=getState();for(const {spec,input}of slots){const v=String(spec.get?spec.get(s):s[spec.key]);if(input.value!==v)input.value=v;}},destroy(){playing?.stop();abort.abort();details.remove();base.destroy();}};
+  return {...base,player,draw(g){base.draw(g);const s=getState();for(const {spec,input}of slots){const v=String(spec.get?spec.get(s):s[spec.key]);if(input.value!==v)input.value=v;if(spec.options)spec.options.forEach(([,,off],i)=>{if(off){const d=!!off();if(input.options[i].disabled!==d)input.options[i].disabled=d;}});}},destroy(){playing?.stop();abort.abort();details.remove();base.destroy();}};
 }

@@ -3,7 +3,10 @@
 // are the same whatever the button presses that led to N, and changing L reuses the same centres and angles. No DOM.
 import { rng } from "./probability.js";
 
-export const MAX_RUNS = 5000;
+export const MAX_RUNS = 5000;   // what the animated, one-by-one stream reaches
+// A series may be longer where the device proved it can (buttons "+ 10,000" and more, lab/scale.js).
+export let SERIES_MAX = MAX_RUNS;
+export const setSeriesMax = (n) => { SERIES_MAX = Math.max(MAX_RUNS, Math.floor(n)); };
 export const SHOWN = 120;          // needles drawn on the floor (the last ones)
 export const FLOOR = [8, 5];       // width and height of the floor drawn, lines at y = 0, 1, …, 5
 

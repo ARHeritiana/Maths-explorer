@@ -181,6 +181,10 @@ export function createShell(host, exp, tpl, opts = {}) {
   // ---- template
   const env = { exp, stage, fmt, getState, getShown, setState: userApply, advance: apply, refresh: () => { synced = -1; stage.invalidate(); }, isUnlocked: (id) => unlocked.has(id), ghost: () => (ghostSet ? { ...state, ...ghostSet } : null) };
   view = tpl.mount(env);
+  // An experiment that can use more resources than a basic device offers declares `scale: { kind, work, share, apply }`: the device is
+  // measured once (device-capability.js), apply(result) raises its ceilings, and the controls are redrawn with the new choices.
+  if (exp.scale) import('../device-capability.js').then(({ capability }) => capability({ kind: exp.scale.kind, gpu: false, share: exp.scale.share ?? 0.3, work: exp.scale.work }))
+    .then((r) => { if (alive) { exp.scale.apply(r); env.refresh(); } }).catch(() => {});
   const allHandles = view.handles;
   const players = new Map();
 
@@ -612,6 +616,7 @@ export function createShell(host, exp, tpl, opts = {}) {
     for (const n of Object.values(controlNodes)) {
       const c = n.c;
       if (n.streamBtn) n.streamBtn.disabled = !unlocked.has("run") || s.runs >= exp.model.MAX_RUNS;
+      if (n.buttons && c.options.some((o) => o.hidden)) c.options.forEach((o, i) => { if (o.hidden) n.buttons[i].hidden = !!o.hidden(s); });   // an extra button may be absent on a basic device
       if (n.select) {
         const value = c.get ? c.get(s) : s[c.key];
         if (n.select.value !== String(value)) n.select.value = String(value);

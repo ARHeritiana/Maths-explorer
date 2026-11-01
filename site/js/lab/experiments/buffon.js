@@ -1,11 +1,13 @@
 // Experiment `buffon` (template figure, no axes): needles dropped on a floor of parallel lines one unit apart. The frequency of
 // crossings approaches 2L/π, which gives an estimate of π. State {L, runs, seed}. Pure maths: models/buffon.js.
 import * as M from "../models/buffon.js";
+import { deviceScale, scaleFor } from "../scale.js";
 
 const { model, MAX_RUNS, FLOOR } = M;
 const newSeed = () => (Math.floor(Math.random() * 2 ** 31) % 1000000) + 1;
 
 export default {
+  scale: scaleFor("draws", () => { M.simulate(1, 0.8, 3000); return 3000; }, (r) => M.setSeriesMax(r.limits.draws)),
   id: "buffon", template: "figure", section: "geochance", sub: ["L’aiguille de Buffon", "Buffon’s needle"],
   symbol: "π", group: ["Données & hasard", "Data & chance"],
   title: ["Des aiguilles pour calculer π", "Needles to compute π"],
@@ -26,9 +28,10 @@ export default {
       kind: "action", label: ["Lancer des aiguilles", "Drop needles"],
       options: [
         { value: 10, label: ["+ 10", "+ 10"] }, { value: 100, label: ["+ 100", "+ 100"] }, { value: 1000, label: ["+ 1 000", "+ 1,000"] },
+        { value: 10000, label: ["+ 10 000", "+ 10,000"], hidden: () => 10000 > deviceScale.limits.draws }, { value: 100000, label: ["+ 100 000", "+ 100,000"], hidden: () => 100000 > deviceScale.limits.draws }, { value: 1000000, label: ["+ 1 000 000", "+ 1,000,000"], hidden: () => 1000000 > deviceScale.limits.draws },
         { value: "new", label: ["Nouvelle série", "New series"] },
       ],
-      act: (s, v) => (v === "new" ? { runs: 0, seed: newSeed() } : { runs: Math.min(MAX_RUNS, s.runs + v) }),
+      act: (s, v) => (v === "new" ? { runs: 0, seed: newSeed() } : { runs: Math.min(M.SERIES_MAX, s.runs + v) }),
     },
   },
   views: {

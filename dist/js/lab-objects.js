@@ -111,11 +111,12 @@ import { fairGallery } from './gallery-fair-division.js';
 import { topologyGallery } from './gallery-topology.js';
 import { illuminationGallery } from './illumination-content.js';
 import { gomboc } from './gallery-gomboc.js';
+import { capability } from './device-capability.js';
 
 /* ---------------------------------------------------------------- Galton */
 function galton(root, { t, reduced, lang }) {
-  let rows = 10, p = 0.5, counts = [], pending = [], total = 0, balls = [], continuous = false, pascal = false, theory = true, acc = 0;
-  const reset = () => { counts = Array(rows + 1).fill(0); pending = Array(rows + 1).fill(0); total = 0; balls = []; };
+  let rows = 10, p = 0.5, counts = [], pending = [], total = 0, balls = [], continuous = false, pascal = false, theory = true, acc = 0, bigEpoch = 0, gone = false;
+  const reset = () => { bigEpoch++; counts = Array(rows + 1).fill(0); pending = Array(rows + 1).fill(0); total = 0; balls = []; };
   root.innerHTML = `
     <p class="act-help">${t("Chaque bille rencontre une rangée de clous : à chaque clou, elle part à droite avec la probabilité p, à gauche sinon. Lâche des billes et compare l’histogramme à la loi binomiale.", "Each ball meets a row of pegs: at each peg it goes right with probability p, left otherwise. Drop balls and compare the histogram with the binomial law.")}</p>
     <div class="obj-stage" id="gb-stage"></div>
@@ -124,6 +125,7 @@ function galton(root, { t, reduced, lang }) {
       <button class="btn btn-primary" id="gb-one" type="button">${t("Lâcher une bille", "Drop one ball")}</button>
       <button class="btn btn-secondary" id="gb-run" type="button" aria-pressed="false">${t("En continu", "Keep dropping")}</button>
       <button class="btn btn-secondary" id="gb-100" type="button">${t("+ 100 d’un coup", "+ 100 at once")}</button>
+      <button class="btn btn-secondary" id="gb-big" type="button" hidden></button>
       <button class="btn-quiet" id="gb-clear" type="button">${t("Vider", "Clear")}</button>
       <label class="act-check"><input id="gb-pascal" type="checkbox"> ${t("Nombres de chemins", "Path counts")}</label>
       <label class="act-check"><input id="gb-theory" type="checkbox" checked> ${t("Loi binomiale", "Binomial law")}</label>
@@ -156,13 +158,15 @@ function galton(root, { t, reduced, lang }) {
     const pr = binomial(rows, p), fullest = Math.max(1, ...counts.map((c, k) => c + pending[k]));
     let R = 5, cols = Math.max(1, Math.floor((G.dx - 4) / (2 * R)));
     while (R > 1.2 && Math.ceil(fullest / cols) * 2 * R > G.hmax) { R -= 0.2; cols = Math.max(1, Math.floor((G.dx - 4) / (2 * R))); }
-    const perBall = (2 * R) / cols, slot = (k, i) => [G.cx + (k - rows / 2) * G.dx - cols * R + R + (i % cols) * 2 * R, G.bottom - R - Math.floor(i / cols) * 2 * R];
+    // Beyond about 1,500 balls in a column the balls cannot be told apart: the columns become bars (the count is still printed above each one)
+    const bars = fullest > 1500, perBall = bars ? (G.hmax * 0.92) / fullest : (2 * R) / cols, slot = (k, i) => [G.cx + (k - rows / 2) * G.dx - cols * R + R + (i % cols) * 2 * R, G.bottom - R - Math.floor(i / cols) * 2 * R];
     for (let k = 0; k <= rows; k++) {
       const x = G.cx + (k - rows / 2) * G.dx - G.dx / 2;
       g.strokeStyle = C.line; g.lineWidth = 1; g.strokeRect(x, G.base, G.dx, G.bottom - G.base);
       g.fillStyle = C.c[k % 8]; g.strokeStyle = C.ink; g.lineWidth = 0.8;
-      for (let i = 0; i < counts[k]; i++) { const [bx, by] = slot(k, i); g.beginPath(); g.arc(bx, by, R * 0.92, 0, TAU); g.fill(); g.stroke(); }
-      if (counts[k] && G.dx > 22) { const top = slot(k, counts[k] - 1)[1] - R; g.fillStyle = C.ink; g.font = "600 12px system-ui"; g.textAlign = "center"; g.fillText(counts[k], G.cx + (k - rows / 2) * G.dx, top - 4); }
+      if (bars) { const hh = counts[k] * perBall; g.fillRect(x + 2, G.bottom - hh, G.dx - 4, hh); g.strokeRect(x + 2, G.bottom - hh, G.dx - 4, hh); }
+      else for (let i = 0; i < counts[k]; i++) { const [bx, by] = slot(k, i); g.beginPath(); g.arc(bx, by, R * 0.92, 0, TAU); g.fill(); g.stroke(); }
+      if (counts[k] && G.dx > 22) { const top = bars ? G.bottom - counts[k] * perBall : slot(k, counts[k] - 1)[1] - R; g.fillStyle = C.ink; g.font = "600 12px system-ui"; g.textAlign = "center"; g.fillText(counts[k], G.cx + (k - rows / 2) * G.dx, top - 4); }
     }
     if (theory && total) {
       g.strokeStyle = C.ink; g.lineWidth = 2; g.setLineDash([5, 4]); g.beginPath();
@@ -194,6 +198,20 @@ function galton(root, { t, reduced, lang }) {
   bind(root, "gb-p", (v) => { p = v; reset(); lastText = ""; }, (v) => (lang === "fr" ? String(v).replace(".", ",") : String(v)));
   root.querySelector("#gb-one").addEventListener("click", () => drop(false));
   root.querySelector("#gb-100").addEventListener("click", () => { for (let i = 0; i < 100; i++) drop(true); lastText = ""; });
+  // Where the device measured fast enough (device-capability.js): a very large drop at once, sampled in slices so the page keeps answering.
+  const big = root.querySelector("#gb-big"); let bigN = 0, bigRun = 0; gone = false;
+  capability({ kind: "draws", gpu: false, share: 0.3, work: () => { let s = 0; for (let i = 0; i < 3000; i++) { let j = 0; for (let r = 0; r < 15; r++) if (Math.random() < 0.5) j++; s += j; } return 3000 + (s < 0 ? 1 : 0); } })
+    .then((r) => { if (gone || r.tier === "basic") return; bigN = r.limits.draws; big.hidden = false; big.textContent = t(`+ ${bigN.toLocaleString("fr-FR")} d’un coup`, `+ ${bigN.toLocaleString("en-GB")} at once`); }).catch(() => {});
+  big.addEventListener("click", () => {
+    if (!bigN || bigRun) return; const cum = []; let acc0 = 0; binomial(rows, p).forEach((x) => cum.push((acc0 += x))); let left = bigN; big.disabled = true; const mine = bigEpoch;
+    const slice = () => {
+      if (gone) return; if (mine !== bigEpoch) { bigRun = 0; big.disabled = false; return; } const n = Math.min(left, 100000);
+      for (let i = 0; i < n; i++) { const u = Math.random(); let k = 0; while (k < rows && u > cum[k]) k++; counts[k]++; }
+      total += n; left -= n; lastText = "";
+      if (left > 0) bigRun = setTimeout(slice, 0); else { bigRun = 0; big.disabled = false; }
+    };
+    bigRun = setTimeout(slice, 0);
+  });
   root.querySelector("#gb-clear").addEventListener("click", () => { reset(); lastText = ""; });
   root.querySelector("#gb-pascal").addEventListener("change", (e) => (pascal = e.target.checked));
   root.querySelector("#gb-theory").addEventListener("change", (e) => (theory = e.target.checked));
@@ -203,7 +221,7 @@ function galton(root, { t, reduced, lang }) {
   o.cv.setAttribute('aria-label',t('Planche de Galton : toucher ou Entrée pour lâcher une bille.','Galton board: tap or press Enter to drop a ball.'));
   reset(); o.redraw = () => draw(0);
   const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced);
-  return () => { stop(); o.navigation?.destroy(); };
+  return () => { gone = true; clearTimeout(bigRun); stop(); o.navigation?.destroy(); };
 }
 
 /* -------------------------------------------------------------- Reuleaux */
@@ -313,6 +331,11 @@ function chaos(root, { t, reduced, lang }) {
   const f = (x) => (lang === "fr" ? String(Math.round(x * 1000) / 1000).replace(".", ",") : String(Math.round(x * 1000) / 1000));
   let layer = null; // offscreen accumulation of points
   const ensureLayer = () => { if (!layer) { layer = document.createElement("canvas"); layer.width = o.W; layer.height = o.H; } return layer; };
+  // Points per frame: 900 as ever, more where the device measured fast enough, and never more than what fits in 8 ms of a frame.
+  let perFrame = 900, closed = false;
+  capability({ kind: "draws", gpu: false, share: 0.3, work: () => { let s = 0; for (let i = 0; i < 3000; i++) { let j = 0; for (let r = 0; r < 15; r++) if (Math.random() < 0.5) j++; s += j; } return 3000 + (s < 0 ? 1 : 0); } })
+    .then((r) => { if (!closed) perFrame = { basic: 900, standard: 4000, high: 20000, extreme: 100000 }[r.tier] || 900; }).catch(() => {});
+  function stepFor(ms, max) { const t0 = performance.now(); let done = 0; while (done < max && performance.now() - t0 < ms) { const n = Math.min(500, max - done); step(n); done += n; } }
   function step(count) { const lg = ensureLayer().getContext("2d"), C = palette(); lg.fillStyle = C.accent; for (let i = 0; i < count; i++) { const v = verts[Math.floor(Math.random() * k)]; cur = [cur[0] + (v[0] - cur[0]) * ratio, cur[1] + (v[1] - cur[1]) * ratio]; if (pts.length++ > 12) lg.fillRect(cur[0], cur[1], 1.6, 1.6); } }
   function triangle(lg, a, b, c, lv) { if (lv === 0) { lg.beginPath(); lg.moveTo(...a); lg.lineTo(...b); lg.lineTo(...c); lg.closePath(); lg.fill(); return; } const mid = (u, v) => [(u[0] + v[0]) / 2, (u[1] + v[1]) / 2]; const ab = mid(a, b), bc = mid(b, c), ca = mid(c, a); triangle(lg, a, ab, ca, lv - 1); triangle(lg, ab, b, bc, lv - 1); triangle(lg, ca, bc, c, lv - 1); }
   const idle = idleGuard(o);
@@ -324,7 +347,7 @@ function chaos(root, { t, reduced, lang }) {
     if (mode === "game") {
       // A move of a vertex (or of r, or of the number of vertices) empties the layer: refill it at once with a burst of
       // points, whether or not the animation is playing, so that the figure never vanishes while the vertex is dragged.
-      if (!pts.length && !blank) step(20000); else if (playing && !reduced()) { blank = false; step(900); }
+      if (!pts.length && !blank) step(20000); else if (playing && !reduced()) { blank = false; stepFor(8, perFrame); }
       if (layer) g.drawImage(layer, 0, 0);
       verts.forEach((v, i) => { g.fillStyle = C.obj2; g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.arc(v[0], v[1], 9, 0, TAU); g.fill(); g.stroke(); g.fillStyle = C.ink; g.font = "700 13px system-ui"; g.textAlign = "center"; g.fillText("ABCDEF"[i], v[0], v[1] - 15); });
       setRead(`${pts.length.toLocaleString(lang === "fr" ? "fr-FR" : "en-US")} ${t("points", "points")} · r = <strong>${f(ratio)}</strong> · ${t("pour", "for")} ${k} ${t("sommets, la valeur", "vertices, the value")} <strong>${f(1 - gonContraction(k))}</strong> ${t("donne une figure de type fractal (r = 1/2 pour le triangle)", "gives a fractal figure (r = 1/2 for the triangle)")}.`);
@@ -351,7 +374,7 @@ function chaos(root, { t, reduced, lang }) {
   o.cv.setAttribute('aria-label',t('Sommets : [ et ] pour choisir, flèches pour déplacer.','Vertices: [ and ] select, arrow keys move.'));
   layout(); o.redraw = () => draw();
   const stop = loopFor(() => draw(), reduced);
-  return () => { stop(); o.navigation?.destroy(); };
+  return () => { closed = true; stop(); o.navigation?.destroy(); };
 }
 
 export const OBJECTS = { ...Object.fromEntries(["double-pendulum", "three-body", "logistic"].map(id => [id + "-gallery", dynamicsGallery(id)])), "mirrored-rooms":illuminationGallery, gomboc, ...Object.fromEntries(["secretary", "tank", "benford", "baker", "birthdays", "monty"].map(id => [id + "-gallery", inferenceGallery(id)])), galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles, 'four-colours':fourColours, life:gameOfLife, 'square-packing':squarePacking, 'moving-sofa':movingSofa, 'inscribed-square':inscribedSquare, 'opaque-square':opaqueSquare, equidecomposition };

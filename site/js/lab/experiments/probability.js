@@ -3,10 +3,12 @@
 // whether the theoretical probabilities are shown (only in the last mission). Pure maths: models/probability.js.
 import * as P from "../models/probability.js";
 import { clamp, snap } from "../models/num.js";
+import { deviceScale, scaleFor } from "../scale.js";
 
 const { model, MAX_RUNS } = P;
 
 export default {
+  scale: scaleFor("draws", () => { P.simulate(1, 10, 0.5, 3000); return 3000; }, (r) => P.setSeriesMax(r.limits.draws)),
   id: "probability", template: "chance",
   symbol: "P", group: ["Données & hasard", "Data & chance"],
   title: ["Le hasard a ses habitudes", "Chance has its patterns"],
@@ -33,10 +35,11 @@ export default {
       options: [
         { value: 1, label: ["+ 1", "+ 1"] }, { value: 10, label: ["+ 10", "+ 10"] },
         { value: 100, label: ["+ 100", "+ 100"] }, { value: 1000, label: ["+ 1 000", "+ 1,000"] },
+        { value: 10000, label: ["+ 10 000", "+ 10,000"], hidden: () => 10000 > deviceScale.limits.draws }, { value: 100000, label: ["+ 100 000", "+ 100,000"], hidden: () => 100000 > deviceScale.limits.draws }, { value: 1000000, label: ["+ 1 000 000", "+ 1,000,000"], hidden: () => 1000000 > deviceScale.limits.draws },
         { value: "new", label: ["Nouvelle série", "New series"] },
       ],
       // "new" starts again with another seed; the other buttons add experiments to the same series
-      act: (s, v) => (v === "new" ? { runs: 0, seed: (Math.floor(Math.random() * 2 ** 31) % 1000000) + 1 } : { runs: Math.min(MAX_RUNS, s.runs + v) }),
+      act: (s, v) => (v === "new" ? { runs: 0, seed: (Math.floor(Math.random() * 2 ** 31) % 1000000) + 1 } : { runs: Math.min(P.SERIES_MAX, s.runs + v) }),
     },
   },
   views: {

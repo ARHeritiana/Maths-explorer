@@ -2,6 +2,7 @@
 // inscribed equilateral triangle with probability 1/3, 1/2 or 1/4 depending on how it is chosen. State {method, runs, seed}.
 // Pure maths: models/bertrand.js.
 import * as M from "../models/bertrand.js";
+import { deviceScale, scaleFor } from "../scale.js";
 
 const { model, MAX_RUNS } = M;
 const newSeed = () => (Math.floor(Math.random() * 2 ** 31) % 1000000) + 1;
@@ -9,6 +10,7 @@ const TRI = [90, 210, 330].map((d) => [Math.cos((d * Math.PI) / 180), Math.sin((
 const FRAC = { ends: "1/3", radius: "1/2", midpoint: "1/4" };
 
 export default {
+  scale: scaleFor("draws", () => { M.simulate(1, "ends", 3000); return 3000; }, (r) => M.setSeriesMax(r.limits.draws)),
   id: "bertrand", template: "figure", section: "geochance", sub: ["Le paradoxe de Bertrand", "Bertrand’s paradox"],
   symbol: "⌀", group: ["Données & hasard", "Data & chance"],
   title: ["Une corde au hasard ?", "A chord at random?"],
@@ -36,9 +38,10 @@ export default {
       kind: "action", label: ["Tirer des cordes", "Draw chords"],
       options: [
         { value: 10, label: ["+ 10", "+ 10"] }, { value: 100, label: ["+ 100", "+ 100"] }, { value: 1000, label: ["+ 1 000", "+ 1,000"] },
+        { value: 10000, label: ["+ 10 000", "+ 10,000"], hidden: () => 10000 > deviceScale.limits.draws }, { value: 100000, label: ["+ 100 000", "+ 100,000"], hidden: () => 100000 > deviceScale.limits.draws }, { value: 1000000, label: ["+ 1 000 000", "+ 1,000,000"], hidden: () => 1000000 > deviceScale.limits.draws },
         { value: "new", label: ["Nouvelle série", "New series"] },
       ],
-      act: (s, v) => (v === "new" ? { runs: 0, seed: newSeed() } : { runs: Math.min(MAX_RUNS, s.runs + v) }),
+      act: (s, v) => (v === "new" ? { runs: 0, seed: newSeed() } : { runs: Math.min(M.SERIES_MAX, s.runs + v) }),
     },
   },
   views: {

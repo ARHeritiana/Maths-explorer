@@ -8,8 +8,8 @@ import json, os
 from playwright.sync_api import sync_playwright
 
 BASE = os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173')
-LIMITS = {'basic': {'runs': 10000, 'rays': 1440, 'bounces': 100, 'segments': 3e5, 'trialsPerSecond': 6000, 'workers': 0},
-          'extreme': {'runs': 10000000, 'rays': 500000, 'bounces': 2000, 'segments': 2.4e7, 'trialsPerSecond': 2000000, 'workers': 8}}
+LIMITS = {'basic': {'draws': 5000, 'steps': 1e5, 'tolerance': 1e-10, 'runs': 10000, 'rays': 1440, 'bounces': 100, 'segments': 3e5, 'trialsPerSecond': 6000, 'workers': 0},
+          'extreme': {'draws': 5000000, 'steps': 8e6, 'tolerance': 1e-13, 'runs': 10000000, 'rays': 500000, 'bounces': 2000, 'segments': 2.4e7, 'trialsPerSecond': 2000000, 'workers': 8}}
 def store(tier, workers): return json.dumps({'tier': tier, 'limits': LIMITS[tier], 'workers': workers, 'reasons': [], 'speed': 1e6, 'memoryGB': 8})
 
 with sync_playwright() as p:
@@ -65,6 +65,26 @@ with sync_playwright() as p:
             page.locator('.mc-speed select').select_option('turbo'); page.locator('.mc-run').click()
             page.wait_for_function("(() => { const m = document.querySelector('.inference-status').innerText.match(/([0-9][0-9 \\u202f.,]*)\\s*(essais|trials)/); return m && parseInt(m[1].replace(/[^0-9]/g, '')) > 100000; })()", timeout=60000)
             page.locator('.mc-run').click(); page.wait_for_timeout(300)
+        ctx.close()
+    # the other items: longer series (probability), finer solver tolerance (double pendulum), a very large Galton drop
+    for tier, workers in (('basic', 0), ('extreme', 4)):
+        ctx = browser.new_context(viewport={'width': 1200, 'height': 900}); page = ctx.new_page(); page.on('pageerror', lambda e: errors.append(str(e)))
+        for kind in ('draws', 'dynamics'):
+            page.add_init_script("sessionStorage.setItem('mx-capability-%s', %s)" % (kind, json.dumps(store(tier, workers))))
+        page.goto(f'{BASE}/#lab/probability'); page.wait_for_selector('[data-control=run] button'); page.wait_for_timeout(700)
+        big = page.locator('[data-control=run] button:has-text("1 000 000"), [data-control=run] button:has-text("1,000,000")')
+        assert big.count() == 1 and (big.first.is_visible() == (tier == 'extreme')), (tier, 'the 1,000,000 series button belongs to capable devices only')
+        if tier == 'extreme':
+            big.first.click(); page.wait_for_timeout(1500)
+            assert '1000000' in page.inner_text('main').replace(' ', '').replace('\u202f', '').replace(',', ''), 'a million experiments were added'
+        page.goto(f'{BASE}/#lab/double-pendulum'); page.wait_for_selector('details.lab2-dynamics-settings'); page.wait_for_timeout(700)
+        page.locator('details.lab2-dynamics-settings summary').click()
+        fine = page.locator('details.lab2-dynamics-settings select option[value="1e-13"]')
+        assert fine.count() == 1 and fine.evaluate('o => o.disabled') == (tier == 'basic'), (tier, 'the finest tolerance is offered only on a capable device')
+        page.goto(f'{BASE}/#gallery/galton'); page.wait_for_selector('#gb-one'); page.wait_for_timeout(700)
+        assert page.locator('#gb-big').is_visible() == (tier == 'extreme'), (tier, 'the huge Galton drop belongs to capable devices only')
+        if tier == 'extreme':
+            page.locator('#gb-big').click(); page.wait_for_function("document.querySelector('#gb-big').disabled === false && /5[ \\u202f,.]?000[ \\u202f,.]?000/.test(document.getElementById('gb-read').innerText)", timeout=60000)
         ctx.close()
     assert not errors, errors
     browser.close()

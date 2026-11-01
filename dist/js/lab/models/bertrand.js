@@ -3,7 +3,10 @@
 // random radius) or 1/4 (random midpoint in the disc). Seeded simulation (rng of probability.js). No DOM.
 import { rng } from "./probability.js";
 
-export const MAX_RUNS = 5000;
+export const MAX_RUNS = 5000;   // what the animated, one-by-one stream reaches
+// A series may be longer where the device proved it can (buttons "+ 10,000" and more, lab/scale.js).
+export let SERIES_MAX = MAX_RUNS;
+export const setSeriesMax = (n) => { SERIES_MAX = Math.max(MAX_RUNS, Math.floor(n)); };
 export const SHOWN = 80;
 export const METHODS = ["ends", "radius", "midpoint"];
 export const THEORY = { ends: 1 / 3, radius: 1 / 2, midpoint: 1 / 4 };

@@ -126,8 +126,11 @@ await go('#lab/space-lines/parallel');{const L=document.querySelector('.lab2'),A
   press(cv,'pointerdown',hx,hy);for(let i=1;i<=8;i++){press(cv,'pointermove',hx+i*14,hy);flush();}press(cv,'pointerup',hx+112,hy);flush();
   assert.notEqual(JSON.stringify(A.getState()),st,'the handle moved the state');assert.equal(cam.yaw,ang,'and did not turn the view');}
 // the run buttons of the chance experiment: a click adds experiments and draws without creating an element
+// (the device is pinned to basic: the longer series, offered only on a capable device, have their own browser test)
+{const {deviceScale}=await import('../dist/js/lab/scale.js'),{LIMITS}=await import('../dist/js/device-capability.js');deviceScale.tier='basic';deviceScale.limits=LIMITS.basic;}
+try{globalThis.sessionStorage=window.sessionStorage;window.sessionStorage.setItem('mx-capability-draws',JSON.stringify({tier:'basic',limits:{runs:1e4,draws:5000,steps:1e5,tolerance:1e-10,rays:1440,bounces:100,segments:3e5,trialsPerSecond:6000,workers:0},workers:0,reasons:[],speed:1e6,memoryGB:4}));}catch{}
 await go('#lab/probability/run');{const L=document.querySelector('.lab2'),A=L.__lab,rec=[],obs=new window.MutationObserver(rs=>{for(const r of rs)if(r.type==='childList')for(const n of [...r.addedNodes,...r.removedNodes])rec.push(n.nodeName);});
-  assert.equal(A.getState().runs,0);const buttons=[...L.querySelectorAll('[data-control="run"] button')];assert.equal(buttons.length,5);assert.ok(buttons.every(b=>!b.disabled),'the run buttons are unlocked in this mission');
+  await new Promise(r=>setTimeout(r,80));assert.equal(A.getState().runs,0);A.flush?.();flush();const buttons=[...L.querySelectorAll('[data-control="run"] button')].filter(b=>!b.hidden);assert.equal(buttons.length,5);   // the longer series (10,000 and more) are hidden on a device not measured as capableassert.ok(buttons.every(b=>!b.disabled),'the run buttons are unlocked in this mission');
   obs.observe(L,{childList:true,subtree:true});for(const b of buttons.slice(0,4)){b.click();flush();}obs.disconnect();
   assert.equal(A.getState().runs,1111);assert.deepEqual(rec,[],'running experiments adds no element');assert.match(L.querySelector('.lab2-readout').textContent,/1111|1 111/);
   buttons[4].click();flush();assert.equal(A.getState().runs,0,'a new series starts again');}

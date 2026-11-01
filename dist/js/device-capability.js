@@ -7,12 +7,13 @@
 // off the main thread in slices, and stops at the memory ceiling instead of freezing the tab. The pure decision (`decide`) takes
 // plain numbers, so it is tested without a browser.
 export const TIERS = ['basic', 'standard', 'high', 'extreme'];
-// ceilings per tier: rays and bounces offered, segments kept (16 bytes each on the GPU side), trials per second for sampling
+// ceilings per tier: rays and bounces offered, segments kept (16 bytes each on the GPU side), trials per second for sampling,
+// runs (sampling), draws (series of animated experiments), solver steps and the smallest solver tolerance offered
 export const LIMITS = {
-  basic: { runs: 1e4, rays: 1440, bounces: 100, segments: 3e5, trialsPerSecond: 6000, workers: 0 },
-  standard: { runs: 1e5, rays: 5000, bounces: 200, segments: 1.5e6, trialsPerSecond: 60000, workers: 2 },
-  high: { runs: 1e6, rays: 50000, bounces: 500, segments: 8e6, trialsPerSecond: 400000, workers: 4 },
-  extreme: { runs: 1e7, rays: 500000, bounces: 2000, segments: 2.4e7, trialsPerSecond: 2000000, workers: 8 },
+  basic: { draws: 5e3, steps: 1e5, tolerance: 1e-10, runs: 1e4, rays: 1440, bounces: 100, segments: 3e5, trialsPerSecond: 6000, workers: 0 },
+  standard: { draws: 5e4, steps: 4e5, tolerance: 1e-11, runs: 1e5, rays: 5000, bounces: 200, segments: 1.5e6, trialsPerSecond: 60000, workers: 2 },
+  high: { draws: 5e5, steps: 2e6, tolerance: 1e-12, runs: 1e6, rays: 50000, bounces: 500, segments: 8e6, trialsPerSecond: 400000, workers: 4 },
+  extreme: { draws: 5e6, steps: 8e6, tolerance: 1e-13, runs: 1e7, rays: 500000, bounces: 2000, segments: 2.4e7, trialsPerSecond: 2000000, workers: 8 },
 };
 const TARGET_SECONDS = 6;      // a full budget must be reachable in about this long on all workers
 const SEGMENTS_PER_GB = 1.2e6; // memory share an exhibit may take per GB reported

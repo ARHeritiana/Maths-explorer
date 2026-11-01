@@ -1,11 +1,16 @@
 // Initial conditions are the canvas handles; physical settings remain in a folded panel.
 import * as D from '../models/dynamics.js';
+import {LIMITS} from '../../device-capability.js';
 const P=(fr,en)=>[fr,en],clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 const time={kind:'scrubber',min:0,max:20,step:.04,label:P('Temps simulé','Simulation time'),get:s=>s.time,set:(s,time)=>({time}),play:{step:.04}};
 const run={kind:'action',label:P('Repartir de ces conditions','Use these initial conditions'),options:[{value:'step',label:P('Un pas','One step')},{value:'reset',label:P('Revenir au départ','Reset time')}],act:(s,v)=>({time:v==='step'?Math.min(20,s.time+.04):0})};
 const delta={kind:'slider',key:'delta',min:0,max:.01,step:.000001,label:P('Écart initial de la comparaison','Initial comparison difference')};
 const speed={key:'speed',label:P('Vitesse de lecture','Playback speed'),options:[.25,.5,1,2,4].map(x=>[x,P(`× ${x}`,`× ${x}`)]),set:(s,x)=>({speed:Number(x)})};
-const precision={key:'tolerance',label:P('Tolérance locale du solveur','Solver local tolerance'),options:[1e-6,1e-8,1e-10].map(x=>[x,P(String(x),String(x))]),set:(s,x)=>({tolerance:Number(x),time:0})};
+// Finer tolerances only where the device measured fast enough (device-capability.js): the trajectories are recomputed at each drag.
+export const device={tier:'basic',limits:LIMITS.basic};
+const precision={key:'tolerance',label:P('Tolérance locale du solveur','Solver local tolerance'),options:[1e-6,1e-8,1e-10,1e-11,1e-12,1e-13].map(x=>[x,P(x<=1e-12?`${x} (plus lent)`:String(x),x<=1e-12?`${x} (slower)`:String(x)),()=>x<device.limits.tolerance]),set:(s,x)=>({tolerance:Number(x),time:0})};
+// measured once by the shell: how many solver steps per second this device does
+const scale={kind:'dynamics',share:.3,work:()=>{const r=D.simulateDynamics('pendulum',{m1:1,m2:1,l1:1,l2:1,g:9.81,damping:0},[2,1.9,0,0],2,{tolerance:1e-9});return r.accepted+r.rejected;},apply:r=>{device.tier=r.tier;device.limits=r.limits;}};
 const settings=(key,label,min,max,step=.1)=>({key,label,min,max,step});
 function diagnostic(model){return {x:[0,20],y:[0,8],share:.65,xTicks:[0,5,10,15,20],yTicks:[0,2,4,6,8],scene(s,{fmt}){
   const m=model(s),points=m.path.samples.filter(q=>q.t<=m.now.t).map(q=>{const other=D.stateAt(m.other,q.t);let distance;
@@ -18,7 +23,7 @@ function readout(model){return(s,{fmt})=>{const m=model(s);return [[P('Temps eff
 const pendulumState={system:'pendulum',a:2,b:1.9,u:0,v:0,l1:1,l2:1,m1:1,m2:1,g:9.81,damping:0,time:0,delta:.00001,speed:1,tolerance:1e-8};
 function moveBob(s,index,x,y){const m=D.pendulumModel(s),a=m.now.y[0],b=m.now.y[1];if(index===0)return{a:Math.atan2(x,-y),b,u:0,v:0,time:0};const first=D.pendulumPoints(m.params,[a,b])[0];return {a,b:Math.atan2(x-first[0],-(y-first[1])),u:0,v:0,time:0};}
 const pendulum={
- id:'double-pendulum',template:'dynamics',symbol:'∿',group:P('Systèmes dynamiques','Dynamical systems'),title:P('Deux pendules, deux futurs proches','Two pendulums, two nearby futures'),short:P('Le double pendule','The double pendulum'),intro:P('Glisse les deux masses, puis lance le temps. Compare deux départs presque identiques et surveille les erreurs numériques.','Drag both masses, then start time. Compare almost identical starts and inspect numerical errors.'),duration:18,level:P('Lycée · Université','Upper secondary · University'),prereq:P('Angles, énergie, dérivées','Angles, energy, derivatives'),state:pendulumState,
+ scale,id:'double-pendulum',template:'dynamics',symbol:'∿',group:P('Systèmes dynamiques','Dynamical systems'),title:P('Deux pendules, deux futurs proches','Two pendulums, two nearby futures'),short:P('Le double pendule','The double pendulum'),intro:P('Glisse les deux masses, puis lance le temps. Compare deux départs presque identiques et surveille les erreurs numériques.','Drag both masses, then start time. Compare almost identical starts and inspect numerical errors.'),duration:18,level:P('Lycée · Université','Upper secondary · University'),prereq:P('Angles, énergie, dérivées','Angles, energy, derivatives'),state:pendulumState,
  model:{model:D.pendulumModel,quantities:{energy:s=>D.pendulumEnergy(D.pendulumParameters(s),D.pendulumInitial(s))},quantity:(k,s)=>D.pendulumEnergy(D.pendulumParameters(s),D.pendulumInitial(s))},
  controls:{bob1:{kind:'handle',panel:'motion',label:P('Première masse : angle initial','First mass: initial angle'),grid:.02,at:s=>D.pendulumModel(s).points[0],drag:(s,x,y)=>moveBob(s,0,x,y),nudge:(s,dx,dy)=>({a:s.a+(dx||dy)*.02,time:0})},bob2:{kind:'handle',panel:'motion',label:P('Seconde masse : angle initial','Second mass: initial angle'),grid:.02,at:s=>D.pendulumModel(s).points[1],drag:(s,x,y)=>moveBob(s,1,x,y),nudge:(s,dx,dy)=>({b:s.b+(dx||dy)*.02,time:0})},time,run,delta},
  settings:[settings('m1',P('Masse 1','Mass 1'),.1,5),settings('m2',P('Masse 2','Mass 2'),.1,5),settings('l1',P('Longueur 1','Length 1'),.2,2),settings('l2',P('Longueur 2','Length 2'),.2,2),settings('g',P('Gravité','Gravity'),.1,20),settings('u',P('Vitesse angulaire initiale 1','Initial angular velocity 1'),-10,10),settings('v',P('Vitesse angulaire initiale 2','Initial angular velocity 2'),-10,10),settings('damping',P('Frottement visqueux','Viscous damping'),0,1,.01),speed,precision],

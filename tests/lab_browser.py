@@ -193,8 +193,10 @@ with sync_playwright() as p:
     assert page.evaluate("() => { const c = document.querySelector('.lab2').__lab.stage.camera3; return [c.yaw, c.pitch]; }") == a, 'no idle rotation'
     page.context.close()
 
-    # ---- chance: the run buttons need no element creation either, and the series is bounded
+    # ---- chance: the run buttons need no element creation either, and the series is bounded (on a basic device: the headless
+    # browser would measure as capable, so the measurement is pinned; the longer series are covered by tests/device_scale_browser.py)
     page = new_page()
+    page.add_init_script("sessionStorage.setItem('mx-capability-draws', JSON.stringify({tier:'basic',limits:{runs:1e4,draws:5000,steps:1e5,tolerance:1e-10,rays:1440,bounces:100,segments:3e5,trialsPerSecond:6000,workers:0},workers:0,reasons:[],speed:1e6,memoryGB:4}))")
     ready(page, 'lab/probability/run')
     page.evaluate(WATCH)
     for i in [0, 1, 2, 3, 3, 3]:
