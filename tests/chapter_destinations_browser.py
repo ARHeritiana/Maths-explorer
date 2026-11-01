@@ -41,8 +41,8 @@ with sync_playwright() as p:
         assert page.locator('.chapter-errors a[href^="#errors/"]').count() >= 2, tab
     page.goto(f'{BASE}/#chapter/{CHAPTER}/cours/errors'); loaded(page)
     page.wait_for_function("document.querySelector('#chapter-errors-title').getBoundingClientRect().top < 300")
-    page.goto(f'{BASE}/#slides'); page.locator('details[data-course="seconde"] summary').click()
-    page.wait_for_selector('details[data-course="seconde"] .deck-source[href$="/cours/errors"]')
+    page.goto(f'{BASE}/#slides/seconde')
+    page.wait_for_selector('#slides-list .deck-source[href$="/cours/errors"]')
     page.goto(f'{BASE}/#errors/square-inequality'); page.wait_for_selector('.error-bench')
     assert 'x < y' in page.locator('#err-verdict').inner_text() or page.locator('#err-verdict').inner_text(), 'hypothesis message or verdict'
     page.goto(f'{BASE}/#chapter/{CHAPTER}/cours'); loaded(page)

@@ -1,54 +1,78 @@
 import { courses, university } from './catalogue-data.js';
 import { assetHref, fetchJSON } from './data-loader.js';
-import { universitySlideLinks } from './university-model.js';
 import { icon } from './icons.js';
 import { errorsFor } from './errors-model.js';
-// Slides index: classroom decks (French and English) opened in the standalone player.
+// Slides index (#slides[/<course>]): a rail of curricula, then levels (owner request, 1 November 2026: curriculum first,
+// deck counts only); the decks of the chosen level fill the panel, in the HTML (explore) or PDF (lecture) edition.
 const P = (fr, en) => [fr, en];
 const E = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const FAMILIES = [
+  ['fr', 'books', P('Programme français', 'French curriculum')],
+  ['mg', 'path', P('Programme malgache', 'Malagasy curriculum')],
+];
+const SHORT = { seconde: P('Seconde', 'Seconde'), premiere: P('Première spécialité', 'Première'), terminale: P('Terminale spécialité', 'Terminale'), expertes: P('Maths expertes', 'Further maths'), stmg: P('Terminale STMG', 'Terminale STMG'), t10: P('T10', 'T10'), t11s: P('T11 série S', 'T11 S') };
+const slideCourses = () => courses.filter(c => c.curriculum === 'fr' || c.curriculum === 'mg');
+const chosen = () => {
+  const id = location.hash.split('/')[1];
+  if (slideCourses().some(c => c.id === id)) return id;
+  try { const saved = sessionStorage.getItem('mx-course'); if (slideCourses().some(c => c.id === saved)) return saved; } catch { /* storage blocked */ }
+  return slideCourses()[0].id;
+};
 
 export function slidesPage(t) {
   const L = t(['0', '1']) === '1' ? 1 : 0;
-  return `<main id="main" tabindex="-1" class="page pack-page slides-page"><div class="pack-heading"><h1>${P('Diaporamas pour la classe', 'Classroom slides')[L]}</h1>
-  <p>${P('Un diaporama par chapitre : notions, exemples, erreurs fréquentes, activités et canevas interactifs à manipuler en direct. Flèches pour avancer, R pour la réponse, G pour le plan, F pour le plein écran.', 'One deck per chapter: notions, worked examples, common mistakes, activities and interactive canvases to manipulate live. Arrow keys to move, R for the answer, G for the outline, F for full screen.')[L]}</p></div>
-  <div class="slide-type-toggle" role="group" aria-label="${P('Usage du diaporama','Slide purpose')[L]}"><button type="button" data-slide-type="explore" aria-pressed="true"><strong>${P('Explorer · HTML','Explore · HTML')[L]}</strong><span>${P('Manipuler, essayer, conjecturer','Manipulate, test, conjecture')[L]}</span></button><button type="button" data-slide-type="lecture" aria-pressed="false"><strong>${P('Présenter · PDF','Lecture · PDF')[L]}</strong><span>${P('Cours, démonstrations et exemples','Definitions, proofs and examples')[L]}</span></button></div>
-  <p id="slide-purpose">${P('Les figures HTML se manipulent en direct. Les supports PDF sont des diaporamas Beamer Metropolis 16:9 pour le cours, avec des corrections séparées des questions.','HTML figures can be manipulated live. The PDFs are 16:9 Metropolis Beamer lecture decks, with worked answers following their questions.')[L]}</p>
-  <div id="slides-list" aria-live="polite"><p>${P('Chargement…', 'Loading…')[L]}</p></div>${universitySlideLinks(university,L)}</main>`;
+  const pick = c => `<li><button type="button" class="pw-pick" data-course="${E(c.id)}" aria-pressed="false"><span>${E((SHORT[c.id] || c.title)[L])}</span><small data-deck-count="${E(c.id)}"></small></button></li>`;
+  const families = FAMILIES.map(([k, ic, name]) => `<div class="pw-family"><p class="pw-family-name">${icon(ic, 18)}${name[L]}</p><ul>${slideCourses().filter(c => c.curriculum === k).map(pick).join('')}</ul></div>`).join('');
+  const higher = `<div class="pw-family"><p class="pw-family-name">${icon('graduation-cap', 18)}${P('Supérieur', 'University')[L]}</p><ul>${university.sections.map(s => `<li><a class="pw-pick res-go" href="#university">${E(s.title[L])}</a></li>`).join('')}</ul></div>`;
+  return `<main id="main" tabindex="-1" class="page slides-page"><div class="res-top"><div><h1>${P('Diaporamas pour la classe', 'Classroom slides')[L]}</h1>
+  <p class="page-intro">${P('Un diaporama par chapitre : notions, exemples, erreurs fréquentes, activités et canevas interactifs à manipuler en direct. Flèches pour avancer, R pour la réponse, G pour le plan, F pour le plein écran.', 'One deck per chapter: notions, worked examples, common mistakes, activities and interactive canvases to manipulate live. Arrow keys to move, R for the answer, G for the outline, F for full screen.')[L]}</p></div>
+  <div class="slide-type-toggle" role="group" aria-label="${P('Usage du diaporama', 'Slide purpose')[L]}"><button type="button" data-slide-type="explore" aria-pressed="true"><strong>${P('Explorer · HTML', 'Explore · HTML')[L]}</strong><span>${P('Manipuler, essayer, conjecturer', 'Manipulate, test, conjecture')[L]}</span></button><button type="button" data-slide-type="lecture" aria-pressed="false"><strong>${P('Présenter · PDF', 'Lecture · PDF')[L]}</strong><span>${P('Cours, démonstrations et exemples', 'Definitions, proofs and examples')[L]}</span></button></div></div>
+  <div class="pw-layout res-layout"><nav class="pw-rail res-rail" aria-label="${P('Programmes et niveaux', 'Curricula and levels')[L]}">${families}${higher}</nav>
+  <section class="pw-panel" id="slides-list" aria-live="polite"><p>${P('Chargement…', 'Loading…')[L]}</p></section></div></main>`;
 }
 
 export async function bindSlides(t) {
   const L = t(['0', '1']) === '1' ? 1 : 0, host = document.getElementById('slides-list');
   try {
-    const index = await fetchJSON('./slides/data/index.json'), lang = L ? 'en' : 'fr';
-    const lectureIndex = await fetchJSON('./slides/lectures/index.json').catch(()=>[]);
-    const lectures = new Map(lectureIndex.map(d=>[d.id,d]));
-    let mode = 'explore';
+    const index = await fetchJSON('./slides/data/index.json');
+    const lectureIndex = await fetchJSON('./slides/lectures/index.json').catch(() => []);
+    const lectures = new Map(lectureIndex.map(d => [d.id, d]));
+    let mode = 'explore', course = chosen();
+    document.querySelectorAll('[data-deck-count]').forEach(s => { s.textContent = index.filter(d => d.course === s.dataset.deckCount).length || ''; });
     const paint = () => {
-    if (!host.isConnected) return;
-    // One folded group per course (none opened by default); the groups the reader opened stay open across a mode change.
-    const open = new Set([...host.querySelectorAll('details[open]')].map(d => d.dataset.course));
-    host.innerHTML = courses.map(({id, title: name, contentLanguage}) => {
-      const decks = index.filter(d => d.course === id).sort((a, b) => a.number - b.number);
-      if (!decks.length) return '';
-      const lang = contentLanguage || (L ? 'en' : 'fr');
-      const row = (title, meta, actions = '') => `<li class="deck"><div class="deck-main">${title}<span class="deck-meta">${meta}</span></div>${actions ? `<div class="deck-actions">${actions}</div>` : ''}</li>`;
-      return `<details class="source-course" data-course="${E(id)}" ${open.has(id) ? 'open' : ''}><summary class="source-head"><h2>${E(name[L])}</h2><span>${decks.length} ${P('diaporamas', 'decks')[L]} · ${decks.reduce((s, d) => s + (mode==='lecture' ? lectures.get(d.id)?.editions?.[lang]?.pages || 0 : d.editions?.[lang]?.slides || 0), 0)} ${P('diapositives', 'slides')[L]}</span></summary>
-      <ul class="deck-list">${decks.map(d => {
-        const edition = lectures.get(d.id)?.editions?.[lang];
-        const title=d.title[L] || d.title[lang==='en'?1:0] || d.title.find(Boolean), htmlEdition=d.editions?.[lang];
-        if(mode==='explore'&&!htmlEdition)return row(`<strong class="deck-title">${E(title)}</strong>`,P('Édition HTML indisponible dans cette langue','HTML edition unavailable in this language')[L]+` · ${Object.keys(d.editions||{}).map(code=>code.toUpperCase()).join(' / ')}`);
-        if (mode === 'lecture' && !edition) return row(`<strong class="deck-title">${E(title)}</strong>`, P('Édition PDF indisponible', 'PDF edition unavailable')[L]);
+      if (!host.isConnected) return;
+      const c = courses.find(x => x.id === course), lang = c.contentLanguage || (L ? 'en' : 'fr');
+      const decks = index.filter(d => d.course === course).sort((a, b) => a.number - b.number);
+      document.querySelectorAll('.slides-page [data-course]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.course === course)));
+      const card = d => {
+        const edition = lectures.get(d.id)?.editions?.[lang], htmlEdition = d.editions?.[lang];
+        const title = d.title[L] || d.title[lang === 'en' ? 1 : 0] || d.title.find(Boolean);
+        const errors = errorsFor('#chapter/' + d.id).length;
+        let main, actions = '';
         if (mode === 'lecture') {
-          const pdf = `./slides/lectures/${E(edition.pdf)}?v=${E(edition.sha256)}`;
-          return row(`<a class="deck-title" href="${pdf}">${E(title)}</a>`, `${edition.pages} ${P('diapositives · cours', 'slides · lecture')[L]}`,
-            `<a class="deck-download" href="${pdf}" download>${icon('download-simple', 16)}PDF</a><a class="deck-source" href="${E(assetHref('./slides/lectures/' + edition.source))}" download>${P('Source', 'Source')[L]}</a>`);
+          if (!edition) { main = `<span class="deck-title">${E(title)}</span>`; actions = `<span class="deck-meta">${P('Édition PDF indisponible', 'PDF edition unavailable')[L]}</span>`; }
+          else {
+            const pdf = `./slides/lectures/${E(edition.pdf)}?v=${E(edition.sha256)}`;
+            main = `<a class="deck-title" href="${pdf}">${E(title)}</a>`;
+            actions = `<a href="${pdf}" download>${icon('download-simple', 16)}PDF</a><a href="${E(assetHref('./slides/lectures/' + edition.source))}" download>LaTeX</a>`;
+          }
+        } else if (!htmlEdition) {
+          main = `<span class="deck-title">${E(title)}</span>`; actions = `<span class="deck-meta">${P('Édition HTML indisponible dans cette langue', 'HTML edition unavailable in this language')[L]}</span>`;
+        } else {
+          main = `<a class="deck-title" href="${E(assetHref('./slides/player.html'))}&amp;deck=${E(d.id)}&amp;lang=${E(lang)}">${E(title)}</a>`;
+          actions = `<a class="deck-play" href="${E(assetHref('./slides/player.html'))}&amp;deck=${E(d.id)}&amp;lang=${E(lang)}">${icon('presentation-chart', 16)}${P('Présenter', 'Present')[L]}</a><a href="${E(assetHref('./slides/export/' + d.id + '.html'))}" download="${E(d.id)}.html" aria-label="${P('Télécharger en HTML : ', 'Download as HTML: ')[L]}${E(title)}">${icon('download-simple', 16)}HTML</a>${errors ? `<a class="deck-source" href="#chapter/${E(d.id)}/cours/errors">${P('Erreurs fréquentes', 'Common errors')[L]} (${errors})</a>` : ''}`;
         }
-        return row(`<a class="deck-title" href="${E(assetHref("./slides/player.html"))}&amp;deck=${E(d.id)}&amp;lang=${E(lang)}">${E(title)}</a>`, `${htmlEdition.slides} ${P('diapositives', 'slides')[L]}`,
-          `<a class="deck-download" href="${E(assetHref('./slides/export/' + d.id + '.html'))}" download="${E(d.id)}.html" aria-label="${P('Télécharger en HTML : ', 'Download as HTML: ')[L]}${E(title)}">${icon('download-simple', 16)}HTML</a>${errorsFor('#chapter/' + d.id).length ? `<a class="deck-source" href="#chapter/${E(d.id)}/cours/errors">${P('Erreurs fréquentes', 'Common errors')[L]} (${errorsFor('#chapter/' + d.id).length})</a>` : ''}`);
-      }).join('')}</ul></details>`;
-    }).join('');
+        return `<li class="deck-card"><span class="deck-no">${String(d.number).padStart(2, '0')}</span>${main}<div class="deck-actions">${actions}</div></li>`;
+      };
+      host.innerHTML = `<div class="res-head"><h2>${E(c.title[L])}</h2><span class="pw-count">${decks.length} ${P('diaporamas', 'decks')[L]}</span><nav class="res-quick"><a href="#resources">${icon('books', 16)}${P('Chapitres', 'Chapters')[L]}</a><a href="#bank/${E(course)}">${icon('seal-check', 16)}${P('Exercices corrigés', 'Worked exercises')[L]}</a></nav></div>${decks.length ? `<ol class="deck-grid">${decks.map(card).join('')}</ol>` : `<p class="pw-empty">${P('Pas encore de diaporama pour ce niveau.', 'No deck for this level yet.')[L]}</p>`}`;
     };
-    document.querySelectorAll('[data-slide-type]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.slideType;document.querySelectorAll('[data-slide-type]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));paint();}));
+    const root = document.querySelector('.slides-page');
+    root.addEventListener('click', e => {
+      const pick = e.target.closest('[data-course]');
+      if (pick) { course = pick.dataset.course; try { sessionStorage.setItem('mx-course', course); } catch { /* storage blocked */ } history.replaceState(null, '', '#slides/' + course); paint(); return; }
+      const type = e.target.closest('[data-slide-type]');
+      if (type) { mode = type.dataset.slideType; root.querySelectorAll('[data-slide-type]').forEach(b => b.setAttribute('aria-pressed', String(b === type))); paint(); }
+    });
     paint();
   } catch { host.innerHTML = `<p class="pack-error">${P('Impossible de charger la liste.', 'Could not load the list.')[L]}</p>`; }
 }

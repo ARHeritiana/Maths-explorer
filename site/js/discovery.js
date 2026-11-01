@@ -1,4 +1,4 @@
-// Topic browser and contextual links. Static model-based previews need no timers or hover interaction.
+// Topic browser and contextual links. Each preview is also a link to its resource (CSS-only hover motion, no timers).
 import {TOPICS,topicById,membershipByKey} from './topic-registry.js';
 import {buildDiscoveryIndex,filterDiscovery,topicCounts,recommendations,FORMAT_LABELS} from './discovery-index.js';
 import {BIOGRAPHIES,STORIES} from './reading-content.js';
@@ -33,7 +33,7 @@ export function discoveryPage(index,id,subtopic,t) {
   <p id="discovery-count" role="status" aria-live="polite" aria-atomic="true"></p><div id="discovery-results" class="discovery-results"></div></main>`;
 }
 export function discoveryCards(items,t) {
-  return items.length?items.map(x=>`<article class="discovery-card">${previewSVG(x,t)}<div><p class="section-kicker">${E(t(FORMAT_LABELS[x.format]))} · ${E(t(x.level))}</p><h2><a href="${E(x.route)}">${E(t(x.title))}</a></h2>${t(x.summary)?`<p>${E(t(x.summary))}</p>`:''}<div class="discovery-tags">${[...new Set(x.memberships.map(m=>m.split('/')[0]))].map(id=>topicLink(id,t(topicById(id).title))).join('')}</div></div></article>`).join(''):`<p>${t(['Aucune ressource ne correspond à ces critères.','No resources match these filters.'])}</p>`;
+  return items.length?items.map(x=>`<article class="discovery-card"><a class="discovery-thumb" href="${E(x.route)}" tabindex="-1" aria-hidden="true">${previewSVG(x,t)}</a><div><p class="section-kicker">${E(t(FORMAT_LABELS[x.format]))} · ${E(t(x.level))}</p><h2><a href="${E(x.route)}">${E(t(x.title))}</a></h2>${t(x.summary)?`<p>${E(t(x.summary))}</p>`:''}<div class="discovery-tags">${[...new Set(x.memberships.map(m=>m.split('/')[0]))].map(id=>topicLink(id,t(topicById(id).title))).join('')}</div></div></article>`).join(''):`<p>${t(['Aucune ressource ne correspond à ces critères.','No resources match these filters.'])}</p>`;
 }
 export function bindDiscovery(root,index,id,subtopic,t) {
   const form=root.querySelector('#discovery-filters');

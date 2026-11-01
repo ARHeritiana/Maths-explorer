@@ -86,14 +86,14 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `#topics[/<topic>[/<subtopic>]]` | Explorer > Domaines | `discovery.js`, `discovery-index.js`, `topic-registry.js` |
 | `#home` (default) | logo | `welcome.js` `homePage`, drawings `home-art.js` |
 | `#basics[/place-value|addition|subtraction|multiplication|division|sets]` | Apprendre > Bases | `app.js` `basicsPage` / `bindBasics`, `site/resources/basics/place-value.html, site/resources/basics/place-value.en.html`, `site/resources/basics/addition.html, site/resources/basics/addition.en.html` and `site/resources/basics/subtraction.html, site/resources/basics/subtraction.en.html`, `site/resources/basics/multiplication.html, site/resources/basics/multiplication.en.html` and `site/resources/basics/division.html, site/resources/basics/division.en.html` and `site/resources/basics/sets.html, site/resources/basics/sets.en.html` (discovery record `FOUNDATION_LESSONS` in `discovery.js`) |
-| `#resources` | Apprendre > Cours | `resource-library.js` `libraryPage` / `bindLibrary` (curriculum menu first, then the course list) |
+| `#resources` | Apprendre > Cours | `resource-library.js` `libraryPage` / `bindLibrary` (rail of curricula and levels beside the chapter grid; classroom tools in the rail) |
 | `#chapter/<id>[/<tab>]` | (Cours) | `resource-library.js` `chapterPage` → `chapter-sequence.js` |
 | `#library[/<id>]` | (Cours) | `library.js` `mountLibrary` |
 | `#workshop/quadratic` | (Cours) | `quadratic-workshop.js` |
 | `#pack[/<id>]`, `#sources` | (Cours) | `pack-builder.js` |
 | `#automatismes` | Apprendre > Automatismes | `automatismes.js` (generator, projection, print, LaTeX); engine in `js/exercises/` |
 | `#sheets` | Apprendre > Fiches | `worksheets.js` (worksheets, quizzes, tests; student and teacher versions) |
-| `#slides` | Apprendre > Diaporamas | `slides-page.js`; decks open in `slides/player.html` with `deck=<id>` |
+| `#slides[/<course>]` | Apprendre > Diaporamas | `slides-page.js` (rail of curricula and levels, deck cards); decks open in `slides/player.html` with `deck=<id>` |
 | `#lab` | Explorer > Laboratoire | `site/js/lab/page.js` `indexPage` (experiments grouped by type of activity) |
 | `#lab/<experiment>[/<mission>]` | Laboratoire | `site/js/lab/page.js` `experimentPage` + `site/js/lab/mount.js` `mountExperiment`; the mission is kept in the address |
 | `#history[/<kind>[/<id>]]` (`people` or `advances`) | Lire > Chronologies | `history.js`, `history-layout.js`, `history-images.js`; sourced records in `history-data.js` |

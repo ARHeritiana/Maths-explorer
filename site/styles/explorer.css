@@ -204,7 +204,7 @@ footer a { color: var(--ink); text-decoration: underline; text-underline-offset:
 .resource-empty button { margin-top: 8px; min-height: 44px; padding: 0 18px; border-radius: var(--r-sm); background: var(--accent); color: var(--accent-ink); font-weight: 700; }
 
 /* Preview stage: the chapter's own figure, beside the list. Phones skip it (data and space). */
-.preview { position: sticky; top: calc(var(--chrome) + 16px); max-height: calc(100dvh - var(--chrome) - 32px); overflow-y: auto; padding: 20px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.preview { position: sticky; top: calc(var(--chrome) + 16px); padding: 20px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
 .stage-kicker { margin: 0 0 4px; color: var(--muted); font-size: 0.92rem; }
 .stage-head h2 { margin: 0 0 8px; font-size: clamp(1.5rem, 2.2vw, 1.9rem); }
 .stage-idea { margin: 0 0 14px; color: var(--ink-2); font-size: 1.02rem; line-height: 1.5; }

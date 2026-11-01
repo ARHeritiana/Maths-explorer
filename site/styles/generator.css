@@ -2,7 +2,7 @@
    Controls use the site tokens; the generated sheets are "paper" (white, black) in both themes so that the
    preview matches the print. See site/js/exercises/ for the engine. */
 .gen-layout { display: grid; grid-template-columns: minmax(280px, 400px) minmax(0, 1fr); gap: 28px; align-items: start; margin-top: 18px; }
-.gen-form { display: grid; gap: 14px; padding: 16px; border: 2px solid var(--line); background: var(--surface); position: sticky; top: calc(var(--chrome) + 12px); max-height: calc(100dvh - var(--chrome) - 24px); overflow: auto; }
+.gen-form { display: grid; gap: 14px; padding: 16px; border: 2px solid var(--line); background: var(--surface); }
 .gen-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
 .gen-field { display: grid; gap: 4px; flex: 1 1 140px; min-width: 0; }
 .gen-field > span, .gen-chips legend { font-size: 0.9rem; color: var(--muted); font-weight: 700; }
@@ -12,7 +12,7 @@
 .gen-check input { width: 22px; height: 22px; margin-top: 3px; flex: none; accent-color: var(--accent); }
 .gen-chips { border: 0; margin: 0; padding: 0; min-width: 0; }
 .gen-chips legend { padding: 0; margin-bottom: 6px; }
-.gen-chiplist { display: flex; flex-wrap: wrap; gap: 6px; max-height: 220px; overflow: auto; }
+.gen-chiplist { display: flex; flex-wrap: wrap; gap: 6px; }
 .gen-chip { position: relative; display: inline-flex; }
 .gen-chip input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
 .gen-chip span { display: inline-flex; align-items: center; min-height: 44px; padding: 4px 10px; border: 2px solid var(--line-strong); background: var(--bg); font-size: 0.95rem; line-height: 1.25; }
