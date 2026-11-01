@@ -1,5 +1,25 @@
 # Handoff
 
+## Layout harmonisation and Pathways redesign (1 November 2026, owner request)
+
+**Done (on `main`):**
+- `#pathways` rebuilt (`site/js/pathways-view.js`, styles at the end of `pages.css`): curriculum rail (MG, FR, IB, SAT, university collections), level tabs (opens on the first level, "Tous les niveaux" one click away), topic chips from each experiment's `group`, tile grid; the choice of curriculum is kept for the session. Data in `content.js` `pathways` is unchanged.
+- One container width: `--page-w` (1440px, `explorer.css`) for pages, sub-navigation, home, laboratory, history, pack. The errors activity keeps a 980px reading measure.
+- `#topics`: results 24 at a time with "Afficher la suite" (page height 77,000 px to about 3,200 px); field counts no longer wrap. `#errors`: suggested route in columns.
+- The 38 `gallery-*` modules moved to `site/js/gallery/` (`git mv`, names kept) with their own index `site/js/gallery/CLAUDE.md`; `tests/map.test.mjs` checks it. Imports between them use `./`, shared modules `../`.
+
+**Still to do (design audit, owner goal: no endless scrolling, use large screens, guide the eye):**
+1. Home (`welcome.js`) and the course list (`#resources`, `#library`, about 8,000 px tall): apply the rail, level and topic pattern; library list in a grid with "show more".
+2. Gallery index (about 4,000 px): topic filter chips and a denser grid on wide screens; challenges (about 2,900 px) and laboratory index the same way.
+3. Sub-navigation tabs sit 14 px right of the page text edge on wide screens; align the two.
+4. Old `.pathway-*` and `.programme*` rules in `pages.css` are now unused; remove them after checking `tests` and the print rules.
+5. Run `design:accessibility-review` (contrast of `--muted` text on tiles, focus order of the rail and tabs) and `design:design-critique` on each page above.
+6. Further regrouping of `site/js/` (history, reading, errors, discovery families) is possible; do it only as one mechanical, test-verified commit like the gallery one.
+
+**Known and not caused by this work:** 28 tests fail on `main` (`npm test`, mostly modules that need packages absent here); the GitHub "Website checks" workflow is red for the same reason. Build needs `pymupdf` (`pip install pymupdf`).
+
+**Git:** in the cloud session the local branch `claude/friendly-bohr-syi5c6` could not be pushed (permission check); its content is all in `main`. The branch can be reset to `origin/main` or deleted.
+
 ## Workstreams G and H (31 October to 1 November 2026)
 
 G: the four audited references are integrated, from the prototypes kept in `docs/future-work/`: the Monte Carlo experiments (`monte-carlo-pi`, `-lake`, `-integral`, `-walk`, Laboratoire group "Inférer et décider", listed in the French pathway's Terminale stage), the equidecomposition exhibit (Lire > Curiosités, `#gallery/equidecomposition`), the sets lesson (Apprendre > Bases, `#basics/sets`, French and English editions) and the Ferris wheel experiment (`#lab/ferris-wheel`, International pathway, English-only exercise rule; the owner confirmed on 31 October that it is an IB exercise). Placement and language: `docs/future-work/g-placement-20261031.md`. Two independent audits (different models, separate sessions) were run on the integrated code; the mathematics checked out; the audit findings were fixed except the ones listed below; the reports are in the private repository (`audits/`). **Fixed after the audits (1 November, owner instructions):** the equidecomposition pieces no longer overlap at the end of any step (each triangle is worked on in its own box, a test samples every step boundary); the lake select no longer shows "Drawn by hand" before a shape is drawn and an open stroke is refused; typed vertices accept a decimal point or a decimal comma; the topic browser no longer files calculus and modelling experiments under Arithmetic (the word "calcul" matched; 29 records re-filed); the Fourier circles never open on one circle (24 for Madagascar, 12 for the others) and no longer restart from one circle by themselves; long lists (gallery sidebar, timelines, strips) keep their scroll position when a neighbouring entry is opened and show the current entry (`site/js/scroll-memory.js`, `tests/ergonomics_browser.py`). **Owner decisions:** the French sets notation (Aᶜ, Card(A)) is correct as written; the unchecked facts (London Eye figures and links, historical dates and attributions, Ulam and von Neumann) are left as they are; the Ferris wheel exercise is the owner's own teaching exercise for an IB student, so originality against IB papers is not an open item. **Still open:** a screen-reader pass; the owner's review of the French wording.

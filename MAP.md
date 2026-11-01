@@ -69,7 +69,7 @@ really need them.
 | programme references, curriculum scope | `PROJECT_BRIEF.md` section 3, `docs/CURRICULUM.md` | |
 | review status, audits, verification scripts | not in this repository: the private repository ARHeritiana/Maths-explorer-backup (ledger, audits, verification, course quality; the local folder private stays git-ignored here) | commit new audit notes and verification scripts there, on `main` |
 | the consolidated backlog, active workstreams or the revised mathematicians' timeline criteria | `docs/ACTIVE_WORKSTREAMS.md`, root `HANDOFF.md`; historical biography draft `docs/future-work/mathematicians-timeline-expanded-profiles.md` | Task-specific private handoffs cover only one chunk and must not supersede parallel owner tasks. | 
-| an unpublished future-exploration reference | `HANDOFF.md` task queue, then `docs/future-work/equidecomposability-of-polygons.html` | Prototype, now integrated as the gallery exhibit `equidecomposition` (`site/js/gallery-equidecomposition*.js`); kept as reference. |
+| an unpublished future-exploration reference | `HANDOFF.md` task queue, then `docs/future-work/equidecomposability-of-polygons.html` | Prototype, now integrated as the gallery exhibit `equidecomposition` (`site/js/gallery/gallery-equidecomposition*.js`); kept as reference. |
 | the unpublished Monte Carlo exploration lab | `HANDOFF.md` task queue, then `docs/future-work/monte-carlo-lab.html` | Prototype, now integrated as the `monte-carlo-*` laboratory experiments (`site/js/lab/experiments/monte-carlo.js`); kept as reference. |
 | the unpublished set theory interactive atlas | `HANDOFF.md` task queue, then `docs/future-work/set-theory-interactive-atlas.html` | Prototype, now integrated as the foundations lesson `#basics/sets` (`site/resources/basics/sets*.html`); kept as reference. |
 | the unpublished London Eye trigonometry exercise | `HANDOFF.md` task queue, then `docs/future-work/london-eye-interactive-exercise.html` | Prototype, now integrated as the experiment `ferris-wheel` (International pathway); kept as reference. |
@@ -106,6 +106,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | Folder | Index | Holds |
 |---|---|---|
 | `site/` | `site/CLAUDE.md` | hand-written web source: every JS module by feature, styles, slide player |
+| `site/js/gallery/` | `site/js/gallery/CLAUDE.md` | the gallery exhibits: one module per exhibit with its pure model, shared kit |
 | `site/js/lab/` | `site/js/lab/CLAUDE.md` | the laboratory: engine, shell, templates, models, one file per experiment |
 | `content/` | `content/CLAUDE.md` | TeX courses, slide decks, manifest and other data |
 | `build/mxbuild/` | `build/mxbuild/CLAUDE.md` | the pipeline (`make tex`, `site`, `catalog`, `check`) |
