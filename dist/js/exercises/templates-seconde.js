@@ -153,4 +153,28 @@ export const seconde = [
       if (level < 3) return { q: `On donne ${given}. Calculer ${M('P(A\\cap B)')}.`, a: M(`P(A\\cap B)=${numTex(pa)}\\times ${numTex(pb_a)}=${numTex(inter)}`), ok: () => Math.abs(val(inter) - (p * q) / 100) < 1e-12 };
       return { q: `On donne ${given}. Calculer ${M('P(B)')} avec la formule des probabilités totales.`, a: M(`P(B)=${numTex(inter)}+${numTex(sub(F(1), pa))}\\times ${numTex(pb_na)}=${numTex(tot)}`), ok: () => Math.abs(val(tot) - (p * q + (10 - p) * s) / 100) < 1e-12 };
     } },
+  { id: 's-two-way', cls: C, chapter: 'seconde-11', domain: 'stats-proba', skill: 'Tableau croisé : fréquences marginales et conditionnelles', fast: false,
+    make(r, level) {
+      // two qualitative variables on one population; a, b / c, d are the four counts
+      const [who, rows, cols] = r.pick([
+        ['élèves d’un lycée', ['filles', 'garçons'], ['demi-pensionnaires', 'externes']],
+        ['clients d’une salle de sport', ['clients de moins de 30 ans', 'clients de 30 ans ou plus'], ['abonnés', 'non-abonnés']],
+        ['salariés d’une entreprise', ['salariés à temps plein', 'salariés à temps partiel'], ['télétravailleurs', 'non-télétravailleurs']],
+        ['spectateurs d’un festival', ['spectateurs venus en train', 'spectateurs venus en voiture'], ['résidents de la région', 'visiteurs extérieurs']],
+      ]);
+      const a = r.int(12, 95), b = r.int(12, 95), c = r.int(12, 95), d = r.int(12, 95), N = a + b + c + d;
+      const freq = (n, m) => { const f = F(n, m), k = decimals(f), p = mul(f, F(100)); return `\\dfrac{${n}}{${m}}${k >= 0 && k <= 3 ? `=${numTex(p)}\\,\\%` : `\\approx ${roundTex(val(p), 1)}\\,\\%`}`; };
+      const cap = (s) => s[0].toUpperCase() + s.slice(1);
+      const table = `\\begin{array}{l|cc|c}&\\text{${cols[0]}}&\\text{${cols[1]}}&\\text{Total}\\\\\\hline\\text{${cap(rows[0])}}&${a}&${b}&${a + b}\\\\\\text{${cap(rows[1])}}&${c}&${d}&${c + d}\\\\\\hline\\text{Total}&${a + c}&${b + d}&${N}\\end{array}`;
+      const intro = `On a relevé deux caractères chez ${N} ${who} : ${M(table)}`;
+      const kind = level === 1 ? r.pick(['marginal', 'joint']) : level === 2 ? 'cond' : 'compare';
+      if (kind === 'marginal') return { q: `${intro} Quelle est la fréquence des ${cols[0]} dans l’ensemble ?`, a: M(freq(a + c, N)), ok: () => a + c + b + d === N };
+      if (kind === 'joint') return { q: `${intro} Quelle est la fréquence des ${rows[1]} qui sont ${cols[1]}, parmi l’ensemble ?`, a: M(freq(d, N)), ok: () => d <= N && a + b + c + d === N };
+      if (kind === 'cond') { const i = r.int(0, 1), n = i === 0 ? a : c, m = i === 0 ? a + b : c + d; return { q: `${intro} Parmi les ${rows[i]}, quelle est la fréquence des ${cols[0]} ?`, a: M(freq(n, m)), s: `On divise par l’effectif des ${rows[i]}, pas par l’effectif total.`, ok: () => n <= m && m < N }; }
+      const f1 = a / (a + b), f2 = c / (c + d), more = f1 > f2 ? 0 : 1;
+      if (Math.abs(f1 - f2) < 0.005) return this.make(r, level);
+      return { q: `${intro} Les ${cols[0]} sont-ils proportionnellement plus nombreux chez les ${rows[0]} ou chez les ${rows[1]} ? Justifier.`,
+        a: `${M(`f_{1}=${freq(a, a + b)}`)} chez les ${rows[0]} et ${M(`f_{2}=${freq(c, c + d)}`)} chez les ${rows[1]} : ils sont proportionnellement plus nombreux chez les ${rows[more]}.`,
+        ok: () => (a * (c + d) > c * (a + b)) === (more === 0) };
+    } },
 ];

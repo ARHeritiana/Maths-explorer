@@ -1,6 +1,6 @@
 // Terminale (spécialité) templates; same contract as templates-seconde.js. Chapter ids: content/data/manifest.json.
 // Where a template has no routine version, `levels` lists the levels it supports.
-import { F, add, sub, mul, div, val, eq, M, R, fracTex, numTex, roundTex, polyTex, evalPoly, sgn, par, gcd, binom, sum, pow, interval } from './engine.js';
+import { F, add, sub, mul, div, val, eq, M, R, fracTex, numTex, roundTex, polyTex, evalPoly, sgn, par, gcd, binom, sum, pow, interval, decimals } from './engine.js';
 import { piTex } from './templates-premiere.js';
 
 const C = 'terminale';
@@ -10,6 +10,8 @@ const near = (a, b, tol = 1e-4) => Math.abs(a - b) <= tol * Math.max(1, Math.abs
 // a x + b y + c z + d with the usual conventions for coefficients 0 and 1
 const lin3 = (a, b, c, d) => { let s = ''; [[a, 'x'], [b, 'y'], [c, 'z']].forEach(([k, v]) => { if (k === 0) return; s += (k < 0 ? '-' : (s ? '+' : '')) + (Math.abs(k) === 1 ? '' : Math.abs(k)) + v; }); return s + (d === 0 ? '' : sgn(d)); };
 const coef = (k) => (k === 1 ? '' : k === -1 ? '-' : `${k}`);
+const grp = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\\,');   // 60\,000: thousands grouped
+const lin2 = (p, q) => { let s = ''; [[p, 'a'], [q, 'b']].forEach(([k, v]) => { if (k === 0) return; s += (k < 0 ? '-' : (s ? '+' : '')) + (Math.abs(k) === 1 ? '' : Math.abs(k)) + v; }); return s || '0'; };
 const simpson = (f, a, b, n = 2000) => { const h = (b - a) / n; let s = f(a) + f(b); for (let i = 1; i < n; i++) s += f(a + i * h) * (i % 2 ? 4 : 2); return (s * h) / 3; };
 
 const VALUES = [['1', 1], ['0', 0], ['-1', -1], ['\\dfrac{1}{2}', 0.5], ['-\\dfrac{1}{2}', -0.5], ['\\dfrac{\\sqrt{2}}{2}', Math.SQRT1_2], ['-\\dfrac{\\sqrt{2}}{2}', -Math.SQRT1_2], ['\\dfrac{\\sqrt{3}}{2}', Math.sqrt(3) / 2], ['-\\dfrac{\\sqrt{3}}{2}', -Math.sqrt(3) / 2]];
@@ -164,5 +166,79 @@ export const terminale = [
       const f = (x) => a * x ** 3 + b * x * x + c * x + d, f2 = [6 * a, 2 * b];
       return { q: `Soit ${M(`f(x)=${polyTex([a, b, c, d])}`)}. Calculer ${M("f''(x)")}, étudier la convexité de ${M('f')} sur ${M(R)} et préciser son point d’inflexion.`, a: M(`f''(x)=${polyTex(f2)}=${6 * a}(x${sgn(-x0)})`.replace('(x+0)', 'x').replace('(x-0)', 'x')) + `. ${M('f')} est ${a > 0 ? 'concave' : 'convexe'} sur ${M(`]-\\infty\\,;\\,${x0}]`)} et ${a > 0 ? 'convexe' : 'concave'} sur ${M(`[${x0}\\,;\\,+\\infty[`)} ; point d’inflexion ${M(`(${x0}\\,;\\,${f(x0)})`)}.`,
         ok: () => { const s2 = (x) => (nd((t) => nd(f, t), x)); return near(s2(x0), 0, 1e-1) && (s2(x0 + 1) > 0) === (a > 0) && (s2(x0 - 1) > 0) === (a < 0); } };
+    } },
+  { id: 't-space-vectors', cls: C, chapter: 'terminale-02', domain: 'geometrie', skill: 'Vecteurs de l’espace : coordonnées, alignement, colinéarité', fast: true,
+    make(r, level) {
+      const pt = () => [r.int(-6, 6), r.int(-6, 6), r.int(-6, 6)], P = (name, p) => `${name}(${p.join('\\,;\\,')})`, col = (v) => `\\begin{pmatrix}${v.join('\\\\')}\\end{pmatrix}`;
+      if (level === 1) {
+        const A = pt(); let B; do { B = pt(); } while (B.every((x, i) => x === A[i]));
+        const AB = B.map((x, i) => x - A[i]), I = A.map((x, i) => F(x + B[i], 2));
+        return { q: `Dans un repère de l’espace, ${M(P('A', A))} et ${M(P('B', B))}. Calculer les coordonnées du vecteur ${M('\\overrightarrow{AB}')} et du milieu ${M('I')} de ${M('[AB]')}.`, a: M(`\\overrightarrow{AB}${col(AB)}\\ ;\\ I(${I.map(numTex).join('\\,;\\,')})`), ok: () => AB.every((x, i) => A[i] + x === B[i]) && I.every((x, i) => eq(add(x, x), F(A[i] + B[i]))) };
+      }
+      if (level === 2) {   // three points: aligned or not
+        const A = pt(); let u; do { u = [r.int(-3, 3), r.int(-3, 3), r.int(-3, 3)]; } while (u.every((x) => x === 0));
+        const k = r.pick([-3, -2, 2, 3]), aligned = r.next() < 0.5, B = A.map((x, i) => x + u[i]), C = A.map((x, i) => x + k * u[i]);
+        // nudge a coordinate that really breaks the alignment (not the only non-zero direction of u)
+        if (!aligned) { const j = r.shuffle([0, 1, 2]).find((i) => u[i] === 0 || u.filter((x) => x !== 0).length > 1); C[j] += r.pick([-1, 1]); }
+        const AB = B.map((x, i) => x - A[i]), AC = C.map((x, i) => x - A[i]);
+        const prop = AB.every((x, i) => AC[i] * AB.find((y) => y !== 0) === k * x * AB.find((y) => y !== 0));
+        return { q: `Dans un repère de l’espace, ${M(P('A', A))}, ${M(P('B', B))} et ${M(P('C', C))}. Les points ${M('A')}, ${M('B')} et ${M('C')} sont-ils alignés ?`,
+          a: aligned ? `${M(`\\overrightarrow{AB}${col(AB)},\\ \\overrightarrow{AC}${col(AC)}`)} et ${M(`\\overrightarrow{AC}=${k}\\overrightarrow{AB}`)} : les vecteurs sont colinéaires, les points sont alignés.` : `${M(`\\overrightarrow{AB}${col(AB)},\\ \\overrightarrow{AC}${col(AC)}`)} : les coordonnées ne sont pas proportionnelles, les points ne sont pas alignés.`,
+          ok: () => { const cross = [AB[1] * AC[2] - AB[2] * AC[1], AB[2] * AC[0] - AB[0] * AC[2], AB[0] * AC[1] - AB[1] * AC[0]]; return cross.every((x) => x === 0) === aligned && (!aligned || prop); } };
+      }
+      let u; do { u = [r.nz(-4, 4), r.int(-5, 5), r.nz(-4, 4)]; } while (u[1] === 0);
+      const k = r.pick([-3, -2, 2, 3]), v = u.map((x) => k * x), m = u[1];
+      return { q: `Déterminer le réel ${M('m')} pour que les vecteurs ${M(`\\vec{u}\\begin{pmatrix}${u[0]}\\\\m\\\\${u[2]}\\end{pmatrix}`)} et ${M(`\\vec{v}${col(v)}`)} soient colinéaires.`,
+        a: `${M(`\\vec{v}=${k}\\vec{u}`)} d’après la première et la troisième coordonnée, donc ${M(`${v[1]}=${k}m`)} et ${M(`m=${m}`)}.`, ok: () => v[0] === k * u[0] && v[2] === k * u[2] && v[1] === k * m };
+    } },
+  { id: 't-space-coplanar', cls: C, chapter: 'terminale-02', domain: 'geometrie', skill: 'Vecteurs coplanaires', fast: false, levels: [2, 3],
+    make(r, level) {
+      let u, v; do { u = [r.int(-3, 3), r.int(-3, 3), r.int(-3, 3)]; v = [r.int(-3, 3), r.int(-3, 3), r.int(-3, 3)]; } while (u[0] * v[1] - u[1] * v[0] === 0);
+      const a = r.nz(-3, 3), b = r.nz(-3, 3), copl = r.next() < 0.5, w = u.map((x, i) => a * x + b * v[i]);
+      if (!copl) w[2] += r.pick([-2, -1, 1, 2]);
+      const col = (t) => `\\begin{pmatrix}${t.join('\\\\')}\\end{pmatrix}`;
+      const sys = `\\left\\{\\begin{array}{l}${[0, 1, 2].map((i) => `${lin2(u[i], v[i])}=${w[i]}`).join('\\\\')}\\end{array}\\right.`;
+      const lead = `On cherche ${M('a')} et ${M('b')} tels que ${M('\\vec{w}=a\\vec{u}+b\\vec{v}')} : ${M(sys)}. Les deux premières équations donnent ${M(`a=${a}`)} et ${M(`b=${b}`)}`;
+      if (level === 3) {   // the third coordinate of w is unknown
+        const m = a * u[2] + b * v[2], wm = `\\begin{pmatrix}${w[0]}\\\\${w[1]}\\\\m\\end{pmatrix}`;
+        return { q: `Déterminer le réel ${M('m')} pour que les vecteurs ${M(`\\vec{u}${col(u)}`)}, ${M(`\\vec{v}${col(v)}`)} et ${M(`\\vec{w}${wm}`)} soient coplanaires.`,
+          a: `Comme ${M('\\vec{u}')} et ${M('\\vec{v}')} ne sont pas colinéaires, on cherche ${M('a')} et ${M('b')} tels que ${M('\\vec{w}=a\\vec{u}+b\\vec{v}')}. Les deux premières coordonnées donnent ${M(`${lin2(u[0], v[0])}=${w[0]}`)} et ${M(`${lin2(u[1], v[1])}=${w[1]}`)}, d’où ${M(`a=${a}`)} et ${M(`b=${b}`)}. Alors ${M(`m=${par(a)}\\times ${par(u[2])}${b < 0 ? '-' : '+'}${Math.abs(b)}\\times ${par(v[2])}=${m}`)}.`,
+          ok: () => { const W = [w[0], w[1], m]; const det = u[0] * (v[1] * W[2] - v[2] * W[1]) - u[1] * (v[0] * W[2] - v[2] * W[0]) + u[2] * (v[0] * W[1] - v[1] * W[0]); return det === 0; } };
+      }
+      return { q: `Les vecteurs ${M(`\\vec{u}${col(u)}`)}, ${M(`\\vec{v}${col(v)}`)} et ${M(`\\vec{w}${col(w)}`)} sont-ils coplanaires ?`,
+        a: copl ? `${lead}, et la troisième est vérifiée : ${M(`\\vec{w}=${coef(a)}\\vec{u}${b < 0 ? '-' : '+'}${Math.abs(b) === 1 ? '' : Math.abs(b)}\\vec{v}`)}, les vecteurs sont coplanaires.` : `${lead}, mais la troisième n’est pas vérifiée (${M(`${a * u[2] + b * v[2]}\\neq ${w[2]}`)}) : les vecteurs ne sont pas coplanaires.`,
+        ok: () => { const det = u[0] * (v[1] * w[2] - v[2] * w[1]) - u[1] * (v[0] * w[2] - v[2] * w[0]) + u[2] * (v[0] * w[1] - v[1] * w[0]); return (det === 0) === copl && a * u[0] + b * v[0] === w[0] && a * u[1] + b * v[1] === w[1]; } };
+    } },
+  { id: 't-rv-sum', cls: C, chapter: 'terminale-12', domain: 'stats-proba', skill: 'Espérance et variance d’une somme, d’une moyenne', fast: true,
+    make(r, level) {
+      if (level === 1) {
+        const mu = r.int(-5, 12), V = r.int(1, 12), a = r.nz(-4, 4), b = r.int(-9, 9);
+        const Y = `${coef(a)}X${b === 0 ? '' : sgn(b)}`;
+        return { q: `Une variable aléatoire ${M('X')} a pour espérance ${M(`E(X)=${mu}`)} et pour variance ${M(`V(X)=${V}`)}. On pose ${M(`Y=${Y}`)}. Calculer ${M('E(Y)')} et ${M('V(Y)')}.`, a: M(`E(Y)=${par(a)}\\times ${par(mu)}${b === 0 ? '' : sgn(b)}=${a * mu + b}\\ ;\\ V(Y)=${par(a)}^{2}\\times ${V}=${a * a * V}`), ok: () => a * mu + b === a * mu + b && a * a * V === (-a) * (-a) * V };
+      }
+      if (level === 2) {
+        const mu = r.int(1, 20), V = r.int(1, 15), n = r.pick([10, 20, 25, 40, 50, 100]), VM = F(V, n);
+        return { q: `${M('X_{1},\\dots,X_{n}')} sont ${M(`n=${n}`)} variables aléatoires indépendantes de même loi, d’espérance ${M(mu)} et de variance ${M(V)}. On note ${M('S_{n}=X_{1}+\\dots+X_{n}')} et ${M('M_{n}=\\dfrac{S_{n}}{n}')}. Calculer ${M('E(S_{n})')}, ${M('V(S_{n})')}, ${M('E(M_{n})')} et ${M('V(M_{n})')}.`,
+          a: M(`E(S_{n})=${n * mu}\\ ;\\ V(S_{n})=${n * V}\\ ;\\ E(M_{n})=${mu}\\ ;\\ V(M_{n})=\\dfrac{${V}}{${n}}${decimals(VM) >= 0 ? `=${numTex(VM)}` : ''}`), ok: () => eq(F(n * V, n * n), VM) };
+      }
+      const ex = r.int(-4, 8), vx = r.int(1, 9), ey = r.int(-4, 8), vy = r.int(1, 9), a = r.nz(-3, 3), b = r.nz(-3, 3);
+      const Z = `${coef(a)}X${b < 0 ? '-' : '+'}${Math.abs(b) === 1 ? '' : Math.abs(b)}Y`;
+      return { q: `${M('X')} et ${M('Y')} sont deux variables aléatoires indépendantes avec ${M(`E(X)=${ex}`)}, ${M(`V(X)=${vx}`)}, ${M(`E(Y)=${ey}`)} et ${M(`V(Y)=${vy}`)}. Calculer ${M(`E(${Z})`)} et ${M(`V(${Z})`)}.`,
+        a: M(`E=${par(a)}\\times ${par(ex)}${b < 0 ? '-' : '+'}${Math.abs(b)}\\times ${par(ey)}=${a * ex + b * ey}\\ ;\\ V=${a * a}\\times ${vx}+${b * b}\\times ${vy}=${a * a * vx + b * b * vy}`),
+        s: 'Les variances s’ajoutent, même pour une différence, car les variables sont indépendantes.', ok: () => a * a * vx + b * b * vy > 0 };
+    } },
+  { id: 't-concentration', cls: C, chapter: 'terminale-12', domain: 'stats-proba', skill: 'Inégalité de Bienaymé-Tchebychev, inégalité de concentration', fast: false, levels: [2, 3],
+    make(r, level) {
+      if (level === 2) {
+        let mu, V, dlt; do { mu = r.int(10, 200); V = r.int(2, 60); dlt = r.int(3, 20); } while (V >= dlt * dlt);
+        const bound = F(V, dlt * dlt);
+        return { q: `Une variable aléatoire ${M('X')} a pour espérance ${M(mu)} et pour variance ${M(V)}. Majorer ${M(`P\\left(|X-${mu}|\\geqslant ${dlt}\\right)`)} à l’aide de l’inégalité de Bienaymé-Tchebychev.`,
+          a: M(`P\\left(|X-${mu}|\\geqslant ${dlt}\\right)\\leqslant \\dfrac{${V}}{${dlt}^{2}}=${fracTex(bound)}${decimals(bound) >= 0 ? '' : `\\approx ${roundTex(val(bound), 3)}`}`), ok: () => near(val(bound), V / dlt ** 2, 1e-12) && val(bound) < 1 };
+      }
+      const k = r.int(1, 10), p = F(k, 20), V = F(k * (20 - k), 400), dlt = r.pick([F(1, 10), F(1, 20), F(1, 25), F(1, 50), F(1, 100)]), alpha = r.pick([F(1, 10), F(1, 20), F(1, 40), F(1, 100)]);
+      const need = div(V, mul(alpha, mul(dlt, dlt))), n = Math.ceil(val(need) - 1e-12);
+      return { q: `On répète ${M('n')} fois, de façon indépendante, une épreuve de Bernoulli de paramètre ${M(`p=${numTex(p)}`)} et on note ${M('M_{n}')} la fréquence des succès. Déterminer un entier ${M('n')} tel que ${M(`P\\left(|M_{n}-${numTex(p)}|\\geqslant ${numTex(dlt)}\\right)\\leqslant ${numTex(alpha)}`)} à l’aide de l’inégalité de concentration.`,
+        a: `${M(`V(M_{n})=\\dfrac{p(1-p)}{n}=\\dfrac{${numTex(V)}}{n}`)}, il suffit que ${M(`\\dfrac{${numTex(V)}}{n\\times ${numTex(dlt)}^{2}}\\leqslant ${numTex(alpha)}`)}, soit ${M(`n\\geqslant ${need.d === 1 ? grp(need.n) : numTex(need)}`)} : ${M(`n=${grp(n)}`)} convient.`,
+        ok: () => n >= val(need) - 1e-9 && n - 1 < val(need) && near(val(V), val(p) * (1 - val(p)), 1e-12) };
     } },
 ];
