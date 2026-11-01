@@ -189,3 +189,44 @@ test('real records sit in their expected fields',async()=>{
     assert.ok(record.topics?.length||PLACEMENTS[route]||membershipsFor(record,'',{fallback:false}).length,`${route} only reaches its field by the fallback`);
   }
 });
+
+// Issue #22, owner choices: field menu figures, difficulty filter, lighter landing.
+test('field menu figures, difficulty bands and the landing selection',async()=>{
+  const {discoveryIndex,topicStarters}=await import('../site/js/discovery.js');
+  const {challenges}=await import('../site/js/content.js');
+  const {TOPIC_FIGURES,TOPIC_STARTERS,DIFFICULTY_BANDS,difficultyBand}=await import('../site/js/topic-registry.js');
+  for(const topic of TOPICS) assert.ok(modelPreview(TOPIC_FIGURES[topic.id]),`figure for ${topic.id}`);
+  // Bands: a challenge's own difficulty, else the earliest stage named by the level; unknown stays unbanded.
+  assert.equal(difficultyBand(3,['Pour tous','For everyone']),3);
+  assert.equal(difficultyBand(null,['Seconde · Première','Year 10 · 11']),1);
+  assert.equal(difficultyBand(null,['Collège et après','Lower secondary and up']),1);
+  assert.equal(difficultyBand(null,['Lycée · Université','Upper secondary · University']),2);
+  assert.equal(difficultyBand(null,['Terminale spécialité','Year 12']),2);
+  assert.equal(difficultyBand(null,['Mathématiques expertes','Further maths']),3);
+  assert.equal(difficultyBand(null,['Université','University']),3);
+  assert.equal(difficultyBand(null,['Pour tous','For everyone']),null);
+  assert.deepEqual(DIFFICULTY_BANDS.map(b=>b.id),[1,2,3]);
+  const index=discoveryIndex({labs,challenges,chapters:[]});
+  for(const band of [1,2,3]) {
+    const hits=filterDiscovery(index,{difficulty:String(band)});
+    assert.ok(hits.length>0&&hits.every(x=>x.band===band),`band ${band}`);
+  }
+  assert.equal(filterDiscovery(index,{difficulty:''}).length,index.length);
+  const k=index.find(x=>x.route==='#challenges/konigsberg');assert.equal(k.band,k.difficulty);
+  // Every curated starter exists; they are of several kinds.
+  const starters=topicStarters(index);
+  assert.equal(starters.length,TOPIC_STARTERS.length);
+  assert.ok(new Set(starters.map(x=>x.format)).size>=4);
+  // Landing: fields first, then the selection, then the full list; a field page has no selection.
+  const T=x=>x[1], landing=discoveryPage(index,'','',T), field=discoveryPage(index,'probability','',T);
+  assert.ok(landing.indexOf('topic-menu-landing')<landing.indexOf('topics-starters')&&landing.indexOf('topics-starters')<landing.indexOf('discovery-filters'));
+  assert.equal((landing.match(/class="topic-figure"/g)||[]).length,TOPICS.length);
+  assert.ok(!field.includes('topics-starters')&&!field.includes('topic-menu-landing')&&field.includes('topic-figure'));
+  for(const html of [landing,field]) assert.ok(html.includes('name="difficulty"'));
+  // The difficulty select filters the list under jsdom.
+  const dom=new JSDOM(`<div id="r">${landing}</div>`),root=dom.window.document.getElementById('r');
+  const stop=bindDiscovery(root,index,'','',T),select=root.querySelector('select[name="difficulty"]');
+  select.value='3';select.dispatchEvent(new dom.window.Event('input',{bubbles:true}));
+  assert.equal(root.querySelector('#discovery-count').textContent,`${filterDiscovery(index,{difficulty:'3'}).length} resources`);
+  stop();
+});

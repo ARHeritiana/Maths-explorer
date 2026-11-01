@@ -1,5 +1,5 @@
 // Pure assembly and queries: rebuilding from the current registries removes stale routes and counts.
-import {TOPICS, membershipsFor} from './topic-registry.js';
+import {TOPICS, membershipsFor, difficultyBand} from './topic-registry.js';
 export const FORMAT_LABELS = {lab:['Laboratoire','Laboratory'], gallery:['Curiosité','Curiosity'], challenge:['Défi','Challenge'], error:['Erreur à corriger','Error to correct'], biography:['Biographie','Biography'], story:['Histoire','Story'], timeline:['Chronologie','Timeline'], chapter:['Chapitre','Chapter'], lesson:['Leçon','Lesson'], workshop:['Atelier','Workshop'], pdf:['PDF','PDF'], html:['HTML','HTML']};
 const pair = value => Array.isArray(value)?value:[String(value || ''),String(value || '')];
 export const normalize = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
@@ -9,7 +9,7 @@ export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryCh
     const title=pair(record.title || record.name), memberships=membershipsFor(record,kind,{route,fallback:kind!=='lesson'});
     const item={id:route,route,title,summary:pair(record.intro || record.dek || record.summary || ''),memberships,
       concepts:[...new Set([...(record.concepts || []),...(typeof record.topic==='string'?[record.topic]:[]),...memberships.map(k=>k.split('/')[1])])],
-      level:pair(record.level || extra.level || ['Pour tous','For everyone']),difficulty:record.difficulty || null,format:kind,formats:[...new Set([kind,...(record.formats || []).map(f=>f.toLowerCase()),...(record.files?.length?['pdf']:[])])],
+      level:pair(record.level || extra.level || ['Pour tous','For everyone']),difficulty:record.difficulty || null,band:difficultyBand(record.difficulty,record.level || extra.level),format:kind,formats:[...new Set([kind,...(record.formats || []).map(f=>f.toLowerCase()),...(record.files?.length?['pdf']:[])])],
       related:[],preview:record.preview || null,...extra,
       links:[...(record.links || []),...(extra.links || [])]};
     records.set(route,item);
@@ -44,10 +44,10 @@ export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryCh
   }
   return [...records.values()].map(item=>({...item,related:[...new Set(item.related)].sort(),links:undefined}));
 }
-export function filterDiscovery(index,{topic='',subtopic='',query='',format='',level=''}={}) {
+export function filterDiscovery(index,{topic='',subtopic='',query='',format='',level='',difficulty=''}={}) {
   const terms=normalize(query).trim().split(/\s+/).filter(Boolean);
   return index.filter(item=>(!topic || item.memberships.some(m=>m===`${topic}/${subtopic}` || !subtopic&&m.startsWith(topic+'/')))
-    && (!format || item.formats.includes(format)) && (!level || item.level.includes(level))
+    && (!format || item.formats.includes(format)) && (!level || item.level.includes(level)) && (!difficulty || item.band===Number(difficulty))
     && terms.every(term=>normalize([item.title,item.summary,item.concepts,item.level,item.memberships].flat(Infinity).join(' ')).includes(term)));
 }
 export const topicCounts = index => Object.fromEntries(TOPICS.map(t=>[t.id,index.filter(item=>item.memberships.some(m=>m.startsWith(t.id+'/'))).length]));

@@ -83,7 +83,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 
 | Route | Nav label | Page module |
 |---|---|---|
-| `#topics[/<topic>[/<subtopic>]]` | Explorer > Domaines | `discovery.js`, `discovery-index.js`, `topic-registry.js` |
+| `#topics[/<topic>[/<subtopic>]]` | Explorer > Domaines | `discovery.js`, `discovery-index.js`, `topic-registry.js` (field figures, starters, difficulty bands), `styles/topics.css` |
 | `#home` (default) | logo | `welcome.js` `homePage`, drawings `home-art.js` |
 | `#basics[/place-value|addition|subtraction|multiplication|division|sets]` | Apprendre > Bases | `app.js` `basicsPage` / `bindBasics`, `site/resources/basics/place-value.html, site/resources/basics/place-value.en.html`, `site/resources/basics/addition.html, site/resources/basics/addition.en.html` and `site/resources/basics/subtraction.html, site/resources/basics/subtraction.en.html`, `site/resources/basics/multiplication.html, site/resources/basics/multiplication.en.html` and `site/resources/basics/division.html, site/resources/basics/division.en.html` and `site/resources/basics/sets.html, site/resources/basics/sets.en.html` (discovery record `FOUNDATION_LESSONS` in `discovery.js`) |
 | `#resources` | Apprendre > Cours | `resource-library.js` `libraryPage` / `bindLibrary` (rail of curricula and levels beside the chapter grid; classroom tools in the rail) |

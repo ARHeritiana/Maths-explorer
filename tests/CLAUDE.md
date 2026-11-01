@@ -91,7 +91,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 
 `inference.test.mjs`: independent exact enumeration of secretary stopping, tank estimator moments and confidence coverage, Benford digits, iid Gaussian inference calibration, birthday collision distributions and explicit Monty host rules.
 
-`discovery.test.mjs`: real placements of the site's records pinned (issue #22: explicit `PLACEMENTS` in `topic-registry.js`, whole-word rules, no lab, exhibit or challenge filed only by the fallback), overlapping taxonomy, canonical deduplication, exact counts, accent-insensitive combined filters, reciprocal recommendations, content addition/removal invariants, named preview and gallery-alias coverage, honest unknown-model fallbacks, static SVG bounds and independent plotted-geometry benchmarks.
+`discovery.test.mjs`: field menu figures, difficulty bands and filter, the landing order (fields, starters, full list); real placements of the site's records pinned (issue #22: explicit `PLACEMENTS` in `topic-registry.js`, whole-word rules, no lab, exhibit or challenge filed only by the fallback), overlapping taxonomy, canonical deduplication, exact counts, accent-insensitive combined filters, reciprocal recommendations, content addition/removal invariants, named preview and gallery-alias coverage, honest unknown-model fallbacks, static SVG bounds and independent plotted-geometry benchmarks.
 
 `pilot.test.mjs`: exact polynomial equivalence across quadratic input forms, independent six-case selectors,
 honest rounding, shared-slide control visibility, root-mode fallback, slider range updates, camera independence and cleanup.

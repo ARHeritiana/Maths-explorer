@@ -97,3 +97,26 @@ export function membershipsFor(record, kind='', {route='', fallback=true}={}) {
   if (kind==='story' || kind==='timeline') result.push('history/advances');
   return [...new Set(result.length||!fallback?result:['foundations/reasoning'])];
 }
+// Figures of the field menu (kinds of discovery-previews.js `modelPreview`): one recognisable object per field.
+export const TOPIC_FIGURES = {arithmetic:'euler-primes', algebra:'quadratic', analysis:'integral', geometry:'reuleaux',
+  topology:'nonorientable-surfaces', probability:'probability', statistics:'statistics', discrete:'graphs',
+  dynamics:'logistic', foundations:'sets', history:'timeline'};
+// "Pour commencer" on the #topics landing: a short, varied selection (an experiment, a curiosity, a challenge, a story...),
+// one door per kind of activity. Routes that disappear are skipped by the page and caught by tests/discovery.test.mjs.
+export const TOPIC_STARTERS = ['#lab/quadratic','#gallery/mandelbrot','#challenges/konigsberg','#lab/monty',
+  '#gallery/moving-sofa','#errors/square-of-sum'];
+// Difficulty bands. Challenges carry their own difficulty (1 to 3). Other resources get the band of the earliest stage
+// their level names (the first segment of "Seconde · Première" is Seconde); "Pour tous" and mixed collections stay
+// unbanded and appear only under "all difficulties".
+export const DIFFICULTY_BANDS = [
+  {id:1, title:['Premiers pas (collège, Seconde, T10)','First steps (lower secondary, Year 10)']},
+  {id:2, title:['Lycée (Première, Terminale, T11)','Upper secondary (Years 11 and 12)']},
+  {id:3, title:['Approfondissement (expertes, université)','Further study (advanced, university)']}];
+export function difficultyBand(difficulty, level) {
+  if (Number.isInteger(difficulty) && difficulty >= 1 && difficulty <= 3) return difficulty;
+  const first = String((Array.isArray(level) ? level[0] : level) || '').split('·')[0].trim().toLowerCase();
+  if (/^(coll[eè]ge|seconde|t10\b)/.test(first)) return 1;
+  if (/expert|universit|supérieur|approfond|atelier/.test(first)) return 3;
+  if (/^(premi|terminale|lycée|t11\b|interm)/.test(first)) return 2;
+  return null;
+}

@@ -1,5 +1,5 @@
 // Topic browser and contextual links. Each preview is also a link to its resource (CSS-only hover motion, no timers).
-import {TOPICS,topicById,membershipByKey} from './topic-registry.js';
+import {TOPICS,topicById,membershipByKey,TOPIC_FIGURES,TOPIC_STARTERS,DIFFICULTY_BANDS} from './topic-registry.js';
 import {buildDiscoveryIndex,filterDiscovery,topicCounts,recommendations,FORMAT_LABELS} from './discovery-index.js';
 import {BIOGRAPHIES,STORIES} from './reading-content.js';
 import {university,courses,discoveryChapters} from './catalogue-data.js';
@@ -19,6 +19,17 @@ export function previewSVG(item,t) {
   if(!preview)return `<figure class="discovery-preview" data-preview="reading"><figcaption>${E(t(item.title))}</figcaption></figure>`;
   return `<figure class="discovery-preview" data-preview="${kind}"><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false">${t([preview.drawing,preview.drawingEn||preview.drawing])}</svg><figcaption>${E(t(preview.caption))}</figcaption></figure>`;
 }
+// Field menu figure: the model preview of the field (static SVG, decorative; the field name is the link text).
+function topicFigure(id,t) {
+  const preview=modelPreview(TOPIC_FIGURES[id]);
+  return preview?`<svg class="topic-figure" viewBox="0 0 160 100" aria-hidden="true" focusable="false">${t([preview.drawing,preview.drawingEn||preview.drawing])}</svg>`:'';
+}
+// Landing selection: a few doors of different kinds before the full list (routes missing from the index are skipped).
+export function topicStarters(index) {return TOPIC_STARTERS.map(route=>index.find(x=>x.route===route)).filter(Boolean);}
+function startersBlock(index,t) {
+  const items=topicStarters(index);
+  return items.length?`<section class="topics-starters" aria-labelledby="topics-start"><h2 class="topics-heading" id="topics-start">${t(['Pour commencer','Where to start'])}</h2><div class="discovery-results">${discoveryCards(items,t)}</div></section>`:'';
+}
 export function isTopicRoute(id,subtopic) {return !id&&!subtopic || !!topicById(id)&&(!subtopic||!!membershipByKey(`${id}/${subtopic}`));}
 const topicLink=(id,title)=>`<a href="#topics/${id}">${E(title)}</a>`;
 export function discoveryPage(index,id,subtopic,t) {
@@ -27,9 +38,10 @@ export function discoveryPage(index,id,subtopic,t) {
   const formats=[...new Set(index.flatMap(x=>[x.format,...x.formats]))];
   return `<main id="main" tabindex="-1" class="page discovery-page"><nav class="discovery-breadcrumb" aria-label="${t(['Fil d’Ariane','Breadcrumb'])}"><a href="#home">${t(['Accueil','Home'])}</a><span aria-hidden="true"> / </span>${topic?`<a href="#topics">${t(['Domaines','Topics'])}</a><span aria-hidden="true"> / </span>${sub?topicLink(topic.id,t(topic.title)):E(t(topic.title))}${sub?`<span aria-hidden="true"> / </span>${E(t(sub.title))}`:''}`:t(['Domaines','Topics'])}</nav>
   <div class="page-heading"><div><h1>${E(t(sub?.title || topic?.title || ['Explorer les mathématiques','Explore mathematics']))}</h1><p>${t(['Une idée, plusieurs chemins : manipuler, résoudre un problème, puis approfondir.','One idea, several paths: experiment, solve a problem, then study further.'])}</p></div></div>
-  <nav class="topic-menu" aria-label="${t(['Domaines mathématiques','Mathematical fields'])}">${TOPICS.map(x=>`<a href="#topics/${x.id}" ${id===x.id?'aria-current="page"':''}><span>${E(t(x.title))}</span><span>${counts[x.id]}</span></a>`).join('')}</nav>
+  ${topic?'':`<h2 class="topics-heading">${t(['Choisir un domaine','Choose a field'])}</h2>`}<nav class="topic-menu topic-menu-figures${topic?'':' topic-menu-landing'}" aria-label="${t(['Domaines mathématiques','Mathematical fields'])}">${TOPICS.map(x=>`<a href="#topics/${x.id}" ${id===x.id?'aria-current="page"':''}>${topicFigure(x.id,t)}<span class="topic-name">${E(t(x.title))}</span><span class="topic-count" aria-label="${t([`${counts[x.id]} ressources`,`${counts[x.id]} resources`])}">${counts[x.id]}</span></a>`).join('')}</nav>
+  ${topic?'':startersBlock(index,t)}
   ${topic?`<nav class="topic-subtopics" aria-label="${t(['Sous-domaines','Subtopics'])}">${topic.subtopics.map(s=>`<a href="#topics/${topic.id}/${s.id}" ${subtopic===s.id?'aria-current="page"':''}>${E(t(s.title))} <span>${filterDiscovery(index,{topic:topic.id,subtopic:s.id}).length}</span></a>`).join('')}</nav>`:''}
-  <form class="discovery-filters" role="search" id="discovery-filters"><label>${t(['Rechercher une idée','Find an idea'])}<input type="search" name="query" autocomplete="off"></label><label>${t(['Format','Format'])}<select name="format"><option value="">${t(['Tous les formats','All formats'])}</option>${formats.map(f=>`<option value="${f}">${E(t(FORMAT_LABELS[f]))}</option>`).join('')}</select></label><label>${t(['Niveau','Level'])}<select name="level"><option value="">${t(['Tous les niveaux','All levels'])}</option>${levels.map(l=>`<option value="${E(l)}">${E(l)}</option>`).join('')}</select></label><button type="reset" class="secondary">${t(['Réinitialiser','Reset'])}</button></form>
+  ${topic?'':`<h2 class="topics-heading" id="topics-all">${t(['Tout parcourir','Browse everything'])}</h2>`}<form class="discovery-filters" role="search" id="discovery-filters"><label>${t(['Rechercher une idée','Find an idea'])}<input type="search" name="query" autocomplete="off"></label><label>${t(['Format','Format'])}<select name="format"><option value="">${t(['Tous les formats','All formats'])}</option>${formats.map(f=>`<option value="${f}">${E(t(FORMAT_LABELS[f]))}</option>`).join('')}</select></label><label>${t(['Difficulté','Difficulty'])}<select name="difficulty"><option value="">${t(['Toutes les difficultés','All difficulties'])}</option>${DIFFICULTY_BANDS.map(b=>`<option value="${b.id}">${'★'.repeat(b.id)} ${E(t(b.title))}</option>`).join('')}</select></label><label>${t(['Niveau','Level'])}<select name="level"><option value="">${t(['Tous les niveaux','All levels'])}</option>${levels.map(l=>`<option value="${E(l)}">${E(l)}</option>`).join('')}</select></label><button type="reset" class="secondary">${t(['Réinitialiser','Reset'])}</button></form>
   <p id="discovery-count" role="status" aria-live="polite" aria-atomic="true"></p><div id="discovery-results" class="discovery-results"></div></main>`;
 }
 export function discoveryCards(items,t) {
@@ -39,10 +51,10 @@ export function bindDiscovery(root,index,id,subtopic,t) {
   const form=root.querySelector('#discovery-filters');
   const BATCH=24,box=root.querySelector('#discovery-results');let result=[],shown=BATCH;
   const draw=()=>{const rest=result.length-shown;box.innerHTML=discoveryCards(result.slice(0,shown),t)+(rest>0?`<button type="button" class="btn btn-secondary discovery-more">${t([`Afficher la suite (${rest} de plus)`,`Show more (${rest} left)`])}</button>`:'');};
-  const update=()=>{result=filterDiscovery(index,{topic:id,subtopic,query:form.elements.query.value,format:form.elements.format.value,level:form.elements.level.value});shown=BATCH;root.querySelector('#discovery-count').textContent=t([`${result.length} ressources`,`${result.length} resources`]);draw();};
+  const update=()=>{result=filterDiscovery(index,{topic:id,subtopic,query:form.elements.query.value,format:form.elements.format.value,level:form.elements.level.value,difficulty:form.elements.difficulty.value});shown=BATCH;root.querySelector('#discovery-count').textContent=t([`${result.length} ressources`,`${result.length} resources`]);draw();};
   const more=e=>{if(!e.target.closest('.discovery-more'))return;const first=shown;shown+=BATCH;draw();box.querySelectorAll('.discovery-card')[first]?.querySelector('a')?.focus();};
   box.addEventListener('click',more);
-  const reset=()=>{form.elements.query.value='';form.elements.format.value='';form.elements.level.value='';update();};
+  const reset=()=>{form.elements.query.value='';form.elements.format.value='';form.elements.level.value='';form.elements.difficulty.value='';update();};
   const submit=e=>e.preventDefault();
   form.addEventListener('input',update);form.addEventListener('reset',reset);form.addEventListener('submit',submit);update();
   return ()=>{box.removeEventListener('click',more);form.removeEventListener('input',update);form.removeEventListener('reset',reset);form.removeEventListener('submit',submit);};

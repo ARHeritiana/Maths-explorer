@@ -1,0 +1,32 @@
+/* Topics browser (#topics): field menu with figures, landing selection, headings. Issue #22. Cards and their hover
+   motion stay in pages.css (.discovery-card, .discovery-thumb). */
+.topics-heading {font-size:1.25rem;margin:2rem 0 .5rem}
+.topic-menu-figures a {display:grid;grid-template-columns:3.5rem minmax(0,1fr) auto;align-items:center;gap:.6rem;padding:.4rem .7rem}
+.topic-menu-figures .topic-figure {display:block;width:3.5rem;height:2.2rem;color:var(--accent);stroke:currentColor;stroke-width:2.4;fill:none}
+.topic-menu-figures .topic-figure text {stroke:none;fill:var(--ink);font-size:16px}
+.topic-menu-figures .topic-figure .preview-axis {stroke:var(--muted);stroke-width:1}
+.topic-menu-figures .topic-figure .preview-fill {fill:currentColor;fill-opacity:.3}
+.topic-menu-figures .topic-figure .preview-paper {fill:var(--surface)}
+.topic-menu-figures .topic-name {min-width:0;overflow-wrap:break-word;hyphens:auto}
+.topic-menu-figures a {overflow-wrap:normal}
+.topic-menu-figures .topic-count {white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--muted)}
+.topic-menu-figures a:hover {border-color:var(--accent);background:var(--surface)}
+.topic-menu-figures a:focus-visible {outline:3px solid var(--accent);outline-offset:2px}
+/* Landing: larger tiles, figure above the name, so the fields are what the eye meets first. */
+.topic-menu-landing {grid-template-columns:repeat(auto-fill,minmax(min(100%,11rem),1fr));gap:.75rem}
+.topic-menu-landing a {grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;padding:.75rem;row-gap:.5rem}
+.topic-menu-landing .topic-figure {grid-column:1/-1;width:100%;height:5rem}
+.topic-menu-landing .topic-name {font-weight:600}
+@media (hover:hover) and (prefers-reduced-motion:no-preference) {
+  .topic-menu-landing a {transition:transform .2s ease,box-shadow .2s ease}
+  .topic-menu-landing a:hover {transform:translateY(-2px);box-shadow:0 6px 16px color-mix(in srgb,var(--ink) 12%,transparent)}
+}
+.topics-starters .discovery-results {margin-top:.25rem}
+@media (max-width:480px) {
+  .topic-menu-landing {grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem}
+  .topic-menu-landing a {padding:.5rem}
+  .topic-menu-landing .topic-figure {height:3.6rem}
+  .topic-menu-figures:not(.topic-menu-landing) {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .topic-menu-figures:not(.topic-menu-landing) a {grid-template-columns:2.4rem minmax(0,1fr) auto;gap:.4rem;padding:.35rem .5rem;font-size:.9rem}
+  .topic-menu-figures:not(.topic-menu-landing) .topic-figure {width:2.4rem;height:1.6rem}
+}
