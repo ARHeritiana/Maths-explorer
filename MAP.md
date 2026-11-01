@@ -37,6 +37,7 @@ really need them.
 | the laboratory rebuild (templates, missions, lab references) | `docs/LAB_DESIGN.md` (the contract) | |
 | a laboratory experiment (new one, new mission, handles, drawing) | `site/js/lab/CLAUDE.md`, then `site/js/lab/experiments/<id>.js`, `models/<id>.js`; contract `docs/LAB_DESIGN.md`; recipe `lab` | `site/js/lab/templates/` only for a template change |
 | the laboratory engine (drag, camera, readouts, rAF), the mission card or the lab page | `site/js/lab/engine.js`, `shell.js`, `page.js` (and `plot.js` for drawing) | |
+| exercises with random values from a seed, fluency starters (automatismes), worksheets, quizzes, supervised tests, their LaTeX and projection exports | `site/CLAUDE.md` section Generators; generators in `site/js/exercises/templates-<class>.js` (add one), fixed exercises `authored.js`, seeded problems `problems.js`; pages `site/js/automatismes.js`, `site/js/worksheets.js`; `tests/exercise-bank.test.mjs` | |
 | a biography or a story ("Lire"), or a cross-link between a text, a curiosity and a challenge | `site/js/reading-content.js` (texts and their `links`), `site/js/reading.js` (pages, `readAlso`); curiosity links: `links` in `site/js/gallery/gallery-curiosities.js` | a link is written once; the page it points to shows it back |
 | a gallery curiosity or a lab "object" | `site/js/lab-objects.js` (`mountObject`), `js/gallery/gallery-objects.js`, maths in `js/gallery/gallery-math.js`; card drawing in `home-art.js` | |
 | the error correction collection ("Erreurs": false claims, counterexamples, repairs, flawed derivations) | `site/js/errors-data.js` (the records; add an error here), `site/js/errors-model.js` (computed checks, `errorsFor`), `site/js/errors.js` (page); `tests/errors.test.mjs` | goals 4 and 5 of `docs/IMPROVEMENT_GOALS.md`; links to chapters are `links` of each record and appear back on chapter pages, the slides index and in discovery; coverage: `content/data/error-coverage.json`, then `node scripts/error-coverage.mjs` |
@@ -89,6 +90,8 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `#library[/<id>]` | (Cours) | `library.js` `mountLibrary` |
 | `#workshop/quadratic` | (Cours) | `quadratic-workshop.js` |
 | `#pack[/<id>]`, `#sources` | (Cours) | `pack-builder.js` |
+| `#automatismes` | Apprendre > Automatismes | `automatismes.js` (generator, projection, print, LaTeX); engine in `js/exercises/` |
+| `#sheets` | Apprendre > Fiches | `worksheets.js` (worksheets, quizzes, tests; student and teacher versions) |
 | `#slides` | Apprendre > Diaporamas | `slides-page.js`; decks open in `slides/player.html` with `deck=<id>` |
 | `#lab` | Explorer > Laboratoire | `site/js/lab/page.js` `indexPage` (experiments grouped by type of activity) |
 | `#lab/<experiment>[/<mission>]` | Laboratoire | `site/js/lab/page.js` `experimentPage` + `site/js/lab/mount.js` `mountExperiment`; the mission is kept in the address |

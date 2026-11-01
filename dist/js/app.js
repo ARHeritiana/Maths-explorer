@@ -8,6 +8,8 @@ import { withEntryNav } from "./entry-nav.js";
 import { isErrorRoute } from "./errors-model.js";
 import { libraryPage, bindLibrary, chapterPage, bindChapter, relatedChapters, resourceCatalog } from "./resource-library.js";
 import { packPage, bindPack, sourcesPage, bindSources } from "./pack-builder.js";
+import { automatismesPage, bindAutomatismes } from "./automatismes.js";
+import { sheetsPage, bindSheets } from "./worksheets.js";
 import { slidesPage, bindSlides } from "./slides-page.js";
 import { universityPage, bindUniversity } from "./university.js";
 import { observeSvgNavigation } from "./canvas-navigation.js";
@@ -108,6 +110,8 @@ const SECTIONS = [
     ["basics", "Bases", "Foundations", "books"],
     ["resources", "Cours", "Lessons", "books"],
     ["slides", "Diaporamas", "Slides", "presentation-chart"],
+    ["automatismes", "Automatismes", "Starters", "lightbulb"],
+    ["sheets", "Fiches", "Worksheets", "pencil-simple-line"],
     ["pathways", "Parcours", "Pathways", "path"],
   ]],
   ["explore", "Explorer", "Explore", "flask", [
@@ -139,6 +143,8 @@ function header(page) {
 function footer() {
   return `<footer><span class="foot-brand">Maths Explorer</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><nav class="foot-links" aria-label="${pair("Autres pages", "More pages")}"><a href="#pack">${pair("Dossier sur mesure", "Custom pack")}</a><a href="#sources">${pair("Sources LaTeX", "LaTeX sources")}</a><a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.${lang}" rel="license noopener" target="_blank">${pair("Licence CC BY-NC-SA 4.0", "CC BY-NC-SA 4.0 licence")}</a></nav></footer>`;
 }
+// French title of a chapter, for the generators (their content is French)
+const chapterTitleFr = (id) => resourceCatalog.chapters.find((c) => c.id === id)?.title?.[0] || id;
 let lastPage = null;
 function render() {
   const keptScrolls = rememberScrolls($("#app")), cameFrom = lastPage;
@@ -168,13 +174,13 @@ function render() {
     (r.page === 'topics' && isTopicRoute(r.id,r.tab)) ||
     (r.page === "errors" && isErrorRoute(r.id)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction" || r.id === "multiplication" || r.id === "division" || r.id === "sets")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
+    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction" || r.id === "multiplication" || r.id === "division" || r.id === "sets")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" ||
     r.page === "university" || (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
   $("#app").innerHTML =
     header(page) +
-    (page === "basics" ? basicsPage(r.id) : page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
+    (page === "basics" ? basicsPage(r.id) : page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "university" ? universityPage(lang)
       : page === "topics" ? discoveryPage(discovery,r.id,r.tab,t)
       : page === "history" ? historyPage(r.id,r.tab,t,discovery)
@@ -222,6 +228,8 @@ function render() {
   if (page === "pack") bindPack(t);
   if (page === "sources") bindSources(t);
   if (page === "slides") bindSlides(t);
+  if (page === "automatismes") stopChapter = bindAutomatismes($("#main"), t, { chapterTitle: chapterTitleFr });
+  if (page === "sheets") stopChapter = bindSheets($("#main"), t, { chapterTitle: chapterTitleFr });
   if (page === "university") bindUniversity(r.id, lang);
   if (page === "chapter") {
     stopChapter = bindChapter(r.id, t, fmt);

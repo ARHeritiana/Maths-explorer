@@ -1,0 +1,82 @@
+/* Generators: #automatismes (fluency series) and #sheets (worksheets, quizzes, tests).
+   Controls use the site tokens; the generated sheets are "paper" (white, black) in both themes so that the
+   preview matches the print. See site/js/exercises/ for the engine. */
+.gen-layout { display: grid; grid-template-columns: minmax(280px, 400px) minmax(0, 1fr); gap: 28px; align-items: start; margin-top: 18px; }
+.gen-form { display: grid; gap: 14px; padding: 16px; border: 2px solid var(--line); background: var(--surface); position: sticky; top: calc(var(--chrome) + 12px); max-height: calc(100dvh - var(--chrome) - 24px); overflow: auto; }
+.gen-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+.gen-field { display: grid; gap: 4px; flex: 1 1 140px; min-width: 0; }
+.gen-field > span, .gen-chips legend { font-size: 0.9rem; color: var(--muted); font-weight: 700; }
+.gen-field input, .gen-field select { min-height: 44px; padding: 6px 10px; border: 2px solid var(--line-strong); background: var(--bg); width: 100%; border-radius: 0; }
+.gen-field input:focus-visible, .gen-field select:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; }
+.gen-check { display: flex; gap: 10px; align-items: flex-start; min-height: 44px; font-size: 1rem; }
+.gen-check input { width: 22px; height: 22px; margin-top: 3px; flex: none; accent-color: var(--accent); }
+.gen-chips { border: 0; margin: 0; padding: 0; min-width: 0; }
+.gen-chips legend { padding: 0; margin-bottom: 6px; }
+.gen-chiplist { display: flex; flex-wrap: wrap; gap: 6px; max-height: 220px; overflow: auto; }
+.gen-chip { position: relative; display: inline-flex; }
+.gen-chip input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.gen-chip span { display: inline-flex; align-items: center; min-height: 44px; padding: 4px 10px; border: 2px solid var(--line-strong); background: var(--bg); font-size: 0.95rem; line-height: 1.25; }
+.gen-chip input:checked + span { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.gen-chip input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+.gen-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.gen-tabs { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin: 6px 0; }
+.gen-tabs [hidden] { display: none; }
+.gen-sep { width: 1px; align-self: stretch; background: var(--line); margin: 0 8px; }
+.gen-answers { margin-top: 18px; border: 2px solid var(--line); padding: 4px 14px; background: var(--surface); }
+.gen-answers summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 700; }
+.gen-list { padding-left: 1.4rem; display: grid; gap: 10px; }
+.gen-answer { margin-top: 2px; }
+.gen-preview { overflow-x: auto; }
+
+/* projection stage: a card on the page, the whole screen when presented */
+.auto-stage { display: grid; gap: 12px; padding: 18px; border: 2px solid var(--line-strong); background: var(--surface); }
+.auto-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; color: var(--muted); font-size: 1rem; }
+#st-timer { font-variant-numeric: tabular-nums; font-size: 1.6rem; font-weight: 700; color: var(--ink); }
+.auto-bar { height: 6px; background: var(--line); }
+.auto-bar i { display: block; height: 100%; width: 0; background: var(--accent); }
+.auto-body { min-height: 200px; display: grid; align-content: center; gap: 18px; text-align: center; padding: 12px 0; }
+.auto-q { font-size: clamp(1.3rem, 2.4vw, 2rem); line-height: 1.4; }
+.auto-a { font-size: clamp(1.2rem, 2.2vw, 1.8rem); color: var(--pos); min-height: 1.6em; }
+.auto-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.auto-controls .btn-quiet { margin-left: auto; }
+.auto-keys { margin-left: 8px; }
+.auto-stage.presenting { display: grid; grid-template-rows: auto auto 1fr auto; padding: 24px 4vw; }
+.auto-stage.presenting .auto-q { font-size: clamp(2.2rem, 5vw, 4.6rem); }
+.auto-stage.presenting .auto-a { font-size: clamp(2rem, 4.4vw, 4rem); }
+.auto-stage.presenting #st-timer { font-size: clamp(2rem, 4vw, 3.4rem); }
+.auto-stage:fullscreen { padding: 24px 4vw; background: var(--bg); }
+
+/* generated paper (preview and print) */
+.sheet-doc { background: #fff; color: #000; border: 1px solid var(--line); padding: 28px 34px; max-width: 860px; font-family: "STIX Two Text", "Times New Roman", serif; font-size: 1.05rem; line-height: 1.55; }
+.sheet-doc h1 { font-family: var(--display); font-size: 1.7rem; text-align: center; margin: 0 0 4px; color: #000; letter-spacing: 0; }
+.sheet-doc header > p { text-align: center; margin: 2px 0; color: #333; }
+.sheet-doc .sheet-fields { text-align: left; margin-top: 12px; }
+.sheet-fields span { display: inline-block; width: 11em; border-bottom: 1px solid #000; margin-right: 1.2em; }
+.sheet-meta { font-style: italic; text-align: left !important; margin-top: 10px !important; }
+.sheet-ex h2 { font-family: var(--display); font-size: 1.15rem; margin: 22px 0 6px; color: #000; }
+.sheet-ex h2 small { font-weight: 400; color: #333; }
+.sheet-parts { list-style: lower-alpha; padding-left: 1.6em; display: grid; gap: 8px; }
+.sheet-starter { padding-left: 1.6em; column-gap: 40px; }
+@media (min-width: 901px) { .sheet-doc:not(.is-teacher) .sheet-starter { columns: 2; } }
+.sheet-starter li { break-inside: avoid; margin-bottom: 1.1em; }
+.sheet-space { height: 2.2em; }
+.sheet-pts { color: #333; white-space: nowrap; }
+.sheet-answer { border-left: 3px solid #555; padding: 1px 0 1px 10px; margin: 4px 0 6px; font-size: 0.97em; }
+.sheet-doc mjx-container { color: #000; }
+.print-doc { display: none; }
+
+@media (max-width: 900px) {
+  .gen-layout { grid-template-columns: 1fr; }
+  .gen-form { position: static; max-height: none; }
+  .sheet-doc { padding: 16px; }
+}
+@media print {
+  @page { margin: 14mm; }
+  html.printing-doc body > *:not(.print-doc) { display: none !important; }
+  html.printing-doc .print-doc { display: block; }
+  html.printing-doc, html.printing-doc body { background: #fff !important; }
+  .print-doc .sheet-doc { border: 0; padding: 0; max-width: none; font-size: 11.5pt; }
+  .sheet-doc:not(.is-teacher) .sheet-starter { columns: 2; }
+  .sheet-parts li, .sheet-ex h2 { break-inside: avoid; }
+  .sheet-ex h2 { break-after: avoid; }
+}

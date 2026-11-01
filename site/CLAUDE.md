@@ -67,6 +67,25 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/figure-engine.js` | canvas engine of those figures: free handles, spring easing, pan, Ctrl-wheel and pinch zoom, soft magnet, keyboard; `readouts` |
 | `js/figure-scenes.js` | the five scenes (parabola, unit circle, secant to tangent, left Riemann sum, logistic cobweb), pure and tested; `SLIDES` texts in both languages |
 
+## Generators (automatismes, worksheets, tests; the exercise bank)
+
+Seeded and limitless: any text is a seed, the same seed gives the same series. French content (curricula), UI in both languages. Exports: print (browser), LaTeX source (pdfLaTeX + mathpazo), standalone projection page.
+
+| File | Holds |
+|---|---|
+| `js/automatismes.js` | `#automatismes` page: class, chapters, topics, levels, number, total time, order, seed; projection stage (timer, keys, full screen), print, `.tex`, projection `.html` |
+| `js/worksheets.js` | `#sheets` page: worksheet, quiz (interro) or supervised test (devoir); marking scheme, subjects A and B, student and teacher versions |
+| `js/exercises/engine.js` | seeded random numbers, exact fractions, LaTeX helpers (`polyTex`, `numTex`, `sqrtTex`...) |
+| `js/exercises/templates-<class>.js` | the generators of `seconde`, `premiere`, `terminale`, `expertes`, `stmg`: `make(r, level)` returns statement, answer and `ok()` that recomputes the answer another way; chapter ids are those of `manifest.json` |
+| `js/exercises/authored.js` | fixed multi-part exercises with a full correction (`ok()` checks the quoted numbers) |
+| `js/exercises/problems.js` | the same kind of problem, with numbers drawn from the seed |
+| `js/exercises/bank.js` | registry, `instance`, `buildStarter`, `buildSheet`, marking scheme (`scalePoints`) |
+| `js/exercises/export.js` | HTML, LaTeX and projection-page builders (one source string serves all three) |
+| `js/exercises/ui-kit.js` | form chips, settings kept on the device, MathJax loading, download, print, `stepSeed` |
+| `styles/generator.css` | forms, projection stage, paper preview and print rules |
+
+To add a generator: write `make` in the class file, give it a manifest chapter, a domain and an `ok()`; `tests/exercise-bank.test.mjs` then checks it (answers, formatting, variety of at least 20 questions).
+
 ## Reading ("Lire": biographies, stories; the curiosities are the gallery)
 
 | File | Holds |

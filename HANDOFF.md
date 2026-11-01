@@ -1,5 +1,15 @@
 # Handoff
 
+## Generators: automatismes, worksheets, exercise bank (1 November 2026, owner request)
+
+**Done (on `main`):** two new pages under Apprendre, `#automatismes` (fluency starters) and `#sheets` (worksheets, quizzes, supervised tests), on a seeded exercise bank (`site/js/exercises/`, index in `site/CLAUDE.md` section Generators). Any text is a seed and the same seed gives the same series; arrows step to the previous or next series, so the supply is unlimited in practice.
+- Bank: 69 generators (Seconde 15, Première 15, Terminale 16, Maths expertes 14, STMG 9) with three levels, each returning statement, answer and an `ok()` that recomputes the answer another way; 20 fixed written exercises with full corrections and 6 seeded problems (multi-part, numbers from the seed). Chapter ids and classes are those of `manifest.json`. Distinct questions per generator over 4,000 seeds: median about 1,400; the smallest spaces are the exact-value trigonometry topics (tens of variants, inherent to the topic). `tests/exercise-bank.test.mjs` fails below 20.
+- Automatismes: class, chapters, topics, levels, number of questions, total time (seconds per question follow), progressive or mixed order, short questions only; projection stage on the page (timer, keys, full screen), print (students, answer key), LaTeX source, standalone projection page (`.html`, loads MathJax from cdnjs, so the room needs internet).
+- Sheets: type (worksheet, interro, devoir), marking scheme optional (points scale exactly to the total, half points), subjects A and B, student and teacher versions, print and LaTeX source.
+- Not done: no `pdflatex` in the cloud container, so the `.tex` files are tested for structure only, never compiled (compile one before relying on it: pdfLaTeX + mathpazo, `mdframed`, `needspace`); the generators have not been reviewed by the owner against the new 2026 programmes (chapter titles are the site's own; level labels are the assistant's) [VERIFY]; Malagasy T10/T11 and Olympiad classes have no generators yet; English editions: none (curricula are French only, standby unchanged); a real-device screen-reader pass.
+- Publication gate removed by the owner the same day (`PROJECT_BRIEF.md` section 2): nothing here was waiting for audits.
+- Build note: `make site` needs `pip install pymupdf`; the 28 failing node tests of the earlier note were missing `jsdom` (`npm install` fixes it; 476 pass).
+
 ## Layout harmonisation and Pathways redesign (1 November 2026, owner request)
 
 **Done (on `main`):**
