@@ -4,6 +4,28 @@ Review date: **7 October 2026**; French première probability rechecked **10 Oct
 
 ## Madagascar
 
+### T10 and T11 S on the site (1 November 2026)
+
+The owner's books (repository Mada-Boky, `Livres/T10` and `Livres/T11-S`, LaTeX) are the courses `t10` (9 chapters) and `t11s`
+(20 chapters), curriculum `mg`, French only. `scripts/build-mada.py --books <Mada-Boky>/Livres [--compile]` cuts both editions by
+their bookmarks into `dist/resources/<chapter>/{chapter,teacher}.pdf` (T10 teacher files add the chapter's block of the
+"Corrigés" part) and the supplements (T10: automatismes, bank of exercises and problems, teacher guide; T11 S: assessments and
+synthesis papers, formulas and glossary, yearly plan), clears the PDF metadata and writes the manifest records; labs and topics are
+authored in its tables. Front pages are never published (the T11 S front pages carry working notes).
+
+Building the books here: T11 S compiles with XeLaTeX (`bash compiler.sh les-deux`). T10 uses pdfLaTeX and `mathpazo`; on a TeX
+installation without the Palatino fonts, put first on `TEXINPUTS` a stand-in `mathpazo.sty` that loads `amsmath`, `newpxtext`
+and `newpxmath`, declares `amssymb` and `amsfonts` as loaded (`\expandafter\def\csname ver@amssymb.sty\endcsname{...}`) and
+ends with `\let\vv\relax` (the book defines its own `\vv`).
+
+Two source defects were fixed in the local build copy only and should be fixed in Mada-Boky: T11 S uses `\vecz` (chapter 13)
+without defining it (`preambule/bmt-macros.sty`: add `\newcommand{\vecz}{\vect{z}}`); the T10 class loads no French language
+support, so LaTeX printed "Chapter", "Contents" and "Table" (fixed with `\renewcommand` of `\chaptername`, `\contentsname`,
+`\tablename` at the end of `seconde-mada.cls`, before `\endinput`).
+
+Not yet done: slide decks (and so the web lesson and exercise tabs of the chapter pages) for these chapters; generators for T10
+and T11 S in the exercise bank.
+
 Use the [official annual-distribution index](https://www.education.gov.mg/repartition-annuelle-du-programme-detudes/), which separates T10 and T11/T12 S, OSE and L. Its linked editions reviewed here are **2024–2025**. No official 2026–2027 replacement or declaration of continuing applicability was verified. The older [lycée page](https://www.education.gov.mg/systeme-educatif/lycee/) foregrounds A/C/D resources and is not evidence that those streams match S/OSE/L.
 
 | Reference | Sections checked (printed PDF pages) | Selected lab relationship |

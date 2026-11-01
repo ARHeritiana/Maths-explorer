@@ -8,6 +8,7 @@ Builders called by `build/mxbuild` (see `pipeline.py` `COURSES`) or by `make`. E
 | `build-expertes.py`, `build-stmg.py`, `build-automatismes.py` | Maths expertes, STMG, automatismes PDFs | `make tex` |
 | `build-enrichment.py`, `enrichment_sections.py` | enrichment PDFs, HTML and site data | `make tex COURSE=enrichment` |
 | `build-slides.py` | slide decks and figures from TeX and `content/slides` (`WIDGETS` table places canvases) | `make slides` |
+| `build-mada.py` | Malagasy curriculum (T10, T11 S): chapter and supplement PDFs cut from the owner's compiled Mada-Boky books, manifest records | by hand, then `make site` |
 | `export-slides.py` | one self-contained HTML per deck | `make slides`, `make site` |
 | `build-lecture-slides.py` | Beamer lecture PDFs | `make lectures` |
 | `extract-terminale-slides.py` | one-off: Terminale French drafts from LaTeX | by hand |

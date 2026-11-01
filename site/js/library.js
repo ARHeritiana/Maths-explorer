@@ -16,8 +16,10 @@ export function selectChapters(catalog,filter=filters) {
   const q=normalize(filter.search);
   return catalog.chapters.filter(c=>{
     if(filter.lab&&!c.labs.some(ref=>ref.split('/')[0]===filter.lab))return false;
-    if(['mg','ib'].includes(filter.curriculum)&&!['shared','explorations'].includes(c.course))return false;
-    if(filter.curriculum==='fr'&&['shared','explorations'].includes(c.course))return false;
+    // a course belongs to its curriculum (manifest field); shared and exploration chapters serve every curriculum but the French one
+    const own=catalog.courses.find(x=>x.id===c.course)?.curriculum, common=['shared','explorations'].includes(c.course);
+    if(filter.curriculum==='fr'&&own!=='fr')return false;
+    if(['mg','ib'].includes(filter.curriculum)&&!common&&own!==filter.curriculum)return false;
     if(filter.course!=='all'&&c.course!==filter.course)return false;
     const rs=catalog.resources.filter(r=>r.chapter===c.id||r.chapter===c.guide);
     if(filter.type!=='all'&&!rs.some(r=>r.type===filter.type&&(filter.solutions||r.audience!=='teacher')))return false;

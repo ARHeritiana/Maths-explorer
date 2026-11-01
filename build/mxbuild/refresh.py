@@ -52,7 +52,19 @@ def inputs():
     result['sources'] = fingerprint(['content/tex/courses/**/*', 'content/tex/core/*',
                                      'scripts/publish-sources.py'],
                                     {'books': manifest['books'], 'courses': manifest['catalog']['courses']})
+    result['mada'] = fingerprint(['scripts/build-mada.py'], mada_records(manifest))
     return result
+
+
+MADA = ('t10', 't11s')   # Malagasy courses: their PDFs are cut from the owner's Mada-Boky books by scripts/build-mada.py
+
+
+def mada_records(manifest):
+    ours = lambda cid: str(cid).split('-')[0] in MADA
+    cat, comp = manifest['catalog'], manifest['companion']
+    return {'courses': [c for c in cat['courses'] if c['id'] in MADA], 'chapters': [c for c in cat['chapters'] if ours(c['id'])],
+            'resources': [r for r in cat['resources'] if ours(r['chapter'])], 'companion': [c for c in comp['chapters'] + comp['supplements'] if ours(c['id'])],
+            'sources': [s for s in cat['sources'] + comp['sources'] if s['name'].startswith(MADA)]}
 
 
 def changed_jobs(before, after):
@@ -91,6 +103,13 @@ def run_job(key):
         command(sys.executable,'scripts/'+script)
     elif key == 'sources':
         command(sys.executable, 'scripts/publish-sources.py')
+    elif key == 'mada':
+        # The books live in another repository: here we only check that every file named by the records was cut.
+        rec = mada_records(catalog.load())
+        paths = [e['path'] for r in rec['resources'] for e in r['editions'].values()] + [e['path'] for c in rec['companion'] for f in c['files'] for e in f['editions'].values()]
+        missing = [p for p in paths if not (DIST / p.removeprefix('./')).is_file()]
+        if missing:
+            raise RuntimeError('Malagasy PDFs missing; run scripts/build-mada.py --books <Mada-Boky>/Livres: ' + ', '.join(missing[:5]))
 
 
 def cleanup(previous):

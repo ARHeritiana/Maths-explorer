@@ -26,9 +26,14 @@ Still to do (next sessions):
    tier). It now stops at line 279: the `#pathways` assertions ('2027–2028', 'AI SL', 'Removed') describe the page before its
    redesign of 1 November; rewrite them against the new rail, then rerun (CI 'Website checks' stays red until then); `make check` runs `build-lecture-slides.py --check`, which compares with
    git-ignored build files and cannot pass on a fresh clone.
-4. Private repository `Maths-explorer-backup` not reached from this laptop (no GitHub access at the time): nothing was read from its
+4. Malagasy curriculum (evening of 1 November): T10 and T11 S are on the site as courses (`#resources`, "Programme malgache"):
+   29 chapters with student and teacher PDFs, 6 supplements, cut from the owner's Mada-Boky books by `scripts/build-mada.py`
+   (details and the two source fixes to report upstream: `docs/CURRICULUM.md`). The owner approved publication of T11 S, whose
+   own notes still called it a model-reviewed draft. Next: slide decks from the books' LaTeX (the chapter pages then get their
+   web lesson and exercises), generators for T10 and T11 S.
+5. Private repository `Maths-explorer-backup` not reached from this laptop (no GitHub access at the time): nothing was read from its
    review queue.
-5. Bilingual goal for lessons: still on standby (owner rule), unfinished.
+6. Bilingual goal for lessons: still on standby (owner rule), unfinished.
 
 ## Generators: automatismes, worksheets, exercise bank (1 November 2026, owner request)
 
