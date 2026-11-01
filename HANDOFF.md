@@ -1,5 +1,33 @@
 # Handoff
 
+## Open issues: triage (1 November 2026, night, issues agent; read-only checks, nothing closed)
+
+| Issue | State found on `main` | Plan |
+|---|---|---|
+| #1 Illumination, Penrose room | owned by the gallery-redesign agent | not handled here |
+| #5 Secretary problem | `#lab/secretary`, `#gallery/secretary-gallery`: exact p(r), proof to 1/e in the text; the 25 Oct gaps remain (no n/e or 1/e mark on the threshold chart, no variant with recall or another payoff) | finish: chart marks, one playable variant |
+| #6 German tank | `#lab/tank`: unbiased estimator, 95 % bound, histogram of repeated N̂; gaps remain (no Bayesian or other estimator, raw maximum distribution not drawn, history one sentence) | finish: second estimator, M distribution, sourced history |
+| #7 Benford | `#lab/benford`: theory, scale invariance, presets; gaps remain (forensic context, fixed-price and fabricated-data presets, a representative real dataset) | finish with sourced context and a real dataset |
+| #8 Poincaré and the baker | `#lab/baker`: statistics complete; anecdote not told, only source a Stack Exchange thread | needs a reliable source; tell only what is documented [VERIFY] |
+| #12 Banach-Tarski | `#lab/banach-tarski-model`: "a choice principle", the axiom of choice never named or stated; dimension 3 condition and physics line partly present | small: name and state the axiom, dimension ≥ 3, physical matter line |
+| #15 Mathematicians timeline | 56 people in `history-data.js` (30 thin entries removed); Riemann, Cantor, Gödel, Kovalevskaya, Wiles, Perelman absent; a staged 60-biography set sits in the private repository | owner decision on the staged private set, else add sourced records |
+| #16 Advances timeline | 56 advances; Riemann hypothesis, Goldbach, Fermat's last theorem, Poincaré conjecture, Cantor, Gödel, Hilbert's problems, non-Euclidean geometry absent | add about 25 sourced events (MacTutor) |
+| #22 Taxonomy | `#topics` built; the 25 Oct misplacements still real (checked with `buildDiscoveryIndex`): Banach-Tarski under foundations/reasoning only, Monty Hall and secretary not in probability/conditioning, tank not in statistics/inference, topology labs in foundations/reasoning (`logi` matches "Topologie"), Mandelbrot in foundations/sets ("ensemble") | explicit `topics`, tighter patterns, placement test |
+| #23 Javalab/Mathoutils audit | public credit and links removed, guard `tests/attribution.test.mjs`, audit `docs/future-work/h-provenance-audit.md`; live comparison impossible (sites unreachable) | report findings in an issue comment; owner names any copied wording |
+| #24 Foundations locale | fixed on 28 Oct (`fd079963`): six lessons in FR and EN, iframe src, lang and title follow the site language, the switch reloads the lesson; verified in the browser on 1 Nov; new `tests/basics_browser.py` | close after owner check |
+| #26 Malagasy T10, T11 S | courses (29 chapters, PDFs) and 29 decks on the site; exercise extraction belongs to the exercise agent; left: generators for T10 and T11 S, the books' figures in the decks, official syllabus check [VERIFY] | other parts after the exercise agent |
+| #27 Prince Rupert | nothing on the site | new lab: pure projection model, cube witness 3√2/4, tests |
+| #28 Against intuition (six puzzles) | nothing (π collisions, napkin ring, hundred boxes...) | new experiments, one at a time |
+| #29 Guided investigation pattern | mission contract exists (`docs/LAB_DESIGN.md`); no documented pattern linking a curiosity to its investigation, proof and exercise | document the pattern, apply it to the new exhibits |
+| #30 Cavalieri | nothing | new lab (hemisphere vs cylinder minus cone, napkin ring) |
+| #31 Dandelin spheres | nothing | new 3D lab |
+| #32 Eratosthenes | nothing (one Olympiad mention) | new lab, sourced history [VERIFY] numbers |
+| #33 Viviani | nothing | new lab (area proof) |
+| #34 Braess | nothing | new challenge or lab (65 vs 80 minutes) |
+| #35 Polyhedra by transformation | only `#gallery/platonic` | truncation and duality lab |
+| #36 Fractal collection | Mandelbrot/Julia, chaos game (Sierpiński), Barnsley in `content.js`; no Koch, Menger, Cantor or unified menu | collection with dimensions, reuse existing renderers |
+| #37 Informative gallery entries | owned by the gallery-redesign agent | not handled here |
+
 ## Design pass, exercise bank online, gallery references (1 November 2026, evening, owner request)
 
 Owner requests: fewer inner scroll boxes, no one-shot menus, use large screens, clickable topic previews, rework of

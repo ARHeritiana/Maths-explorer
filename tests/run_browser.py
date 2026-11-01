@@ -47,6 +47,8 @@ try:
         result = subprocess.run([sys.executable, 'tests/history_browser.py'], cwd=root)
     if result.returncode == 0:   # the sets foundation lesson, both languages and themes
         result = subprocess.run([sys.executable, 'tests/sets_browser.py'], cwd=root)
+    if result.returncode == 0:   # the six foundation lessons follow the site language, also when it is switched (#24)
+        result = subprocess.run([sys.executable, 'tests/basics_browser.py'], cwd=root)
 finally:
     if server:
         server.terminate()
