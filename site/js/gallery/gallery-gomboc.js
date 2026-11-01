@@ -70,6 +70,8 @@ export function gomboc(root, opts) {
   const project = (p) => { const q = cam3Project(cam.yaw, cam.pitch, p[0] - focus[0], p[1] - focus[1], p[2] - focus[2]); return [CENTRE[0] + q.u * SCALE * zoom, CENTRE[1] - q.v * SCALE * zoom, q.d]; };
   const setZoom = (z, instant = false) => { zoomTarget = Math.min(4, Math.max(0.3, z)); if (instant || reduced()) zoom = zoomTarget; const out = root.querySelector('#go-zoom-out'), el = root.querySelector('#go-zoom'); if (el) el.value = zoomTarget; if (out) out.textContent = num(zoomTarget, 2); dirty = true; };
   const worldScreen = (dx, dy) => { const cy = Math.cos(cam.yaw), sy = Math.sin(cam.yaw); return [cy * dx + sy * dy, -sy * dx + cy * dy]; };
+  // pinch, Ctrl + wheel and the + / − keys of the page camera all go through its zoomAt: send them to the smooth zoom about the body
+  if (o.navigation?.camera) { const cam2 = o.navigation.camera, reset2 = cam2.reset; cam2.zoomAt = (factor) => setZoom(zoomTarget * factor); cam2.reset = () => { reset2(); setZoom(1); }; }
   const offsetNow = () => [0, 0];
   function tipBody(dx, dy) { const w = worldScreen(dx, -dy); s = P.tilt(s, -w[1] * 0.004, w[0] * 0.004); baseline = diag(s, kappa()).energy; check = null; dirty = true; }
   function pushBody(dx, dy) { const w = worldScreen(dx, -dy), gain = model.radial ? 0.0004 : 0.01; s = P.spin(s, [-w[1] * gain, w[0] * gain, 0]); baseline = diag(s, kappa()).energy; dirty = true; }
