@@ -127,7 +127,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
   level; the curriculum chooser stays under "Cours" (`#resources`) and "Parcours". The laboratory has nine guided
   experiments (all missions in `site/js/lab/`, rebuilt on 18 October 2026); the curiosities (Galton board, Reuleaux, Platonic solids, chaos game, Fourier circles,
   Mandelbrot) are in the gallery (`#gallery`, every lab with `custom: true`; `#lab/<custom id>` redirects). Live drawings for the
-  home page and the gallery cards are in `home-art.js`. The Madagascar outline in `gallery-math.js` is 360 points traced (PIL and numpy, smoothed, resampled) from an outline image supplied by the
+  home page and the gallery cards are in `home-art.js`. The Madagascar outline in `js/gallery/gallery-math.js` is 360 points traced (PIL and numpy, smoothed, resampled) from an outline image supplied by the
   owner; it is a drawing aid, not a survey.
 
 - Structure (20 October 2026): three sections. "Apprendre" (cours, diaporamas, parcours), "Explorer" (laboratoire, défis),
@@ -296,7 +296,7 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 
 ## Knot preview rendering, 19 October 2026
 
-- [x] Replaced faceted tubes and local overpass patches with the preview’s simple solid strand and depth-ordered crossing gaps. The card and explorer share `gallery-knot-render.js`; rotation, catalogue, deformations and projection colouring remain available.
+- [x] Replaced faceted tubes and local overpass patches with the preview’s simple solid strand and depth-ordered crossing gaps. The card and explorer share `js/gallery/gallery-knot-render.js`; rotation, catalogue, deformations and projection colouring remain available.
 
 ## Interaction surfaces, 19 October 2026
 

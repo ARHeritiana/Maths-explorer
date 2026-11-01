@@ -32,21 +32,21 @@ literals. Camera, drag and keys come from the engine; do not add listeners of yo
 
 ## Gallery curiosity or lab object (not a formula with sliders)
 Entry in `labs` with `custom: true` and the object id; code in `site/js/lab-objects.js` (`OBJECTS` registry used by
-`mountObject`) or `gallery-objects.js`; pure maths in `gallery-math.js` or the first part of `lab-objects.js`, tested in
+`mountObject`) or `js/gallery/gallery-objects.js`; pure maths in `js/gallery/gallery-math.js` or the first part of `lab-objects.js`, tested in
 `tests/gallery-math.test.mjs` / `tests/lab-objects.test.mjs`. Card drawing in `home-art.js`. Colours come from
 `object-kit.js` `palette()`, never literals. Canvas behaviour (zoom, pan, drag, keys) comes from `canvas-navigation.js`;
 do not reimplement it. Then follow `release.md`.
 
-New discovery exhibits: `gallery-additions.js` holds their catalogue data. `gallery-models.js` holds Voronoi,
-descent and film maths; `gallery-kit.js` shares lifecycle and drawing. Their interfaces are `gallery-voronoi.js`,
-`gallery-fastest.js`, `gallery-soap.js`. Knots use `gallery-knot-model.js` and `gallery-knots.js`;
-the Einstein family uses `gallery-hat-model.js` and `gallery-hat.js`. Verify with
+New discovery exhibits: `js/gallery/gallery-additions.js` holds their catalogue data. `js/gallery/gallery-models.js` holds Voronoi,
+descent and film maths; `js/gallery/gallery-kit.js` shares lifecycle and drawing. Their interfaces are `js/gallery/gallery-voronoi.js`,
+`js/gallery/gallery-fastest.js`, `js/gallery/gallery-soap.js`. Knots use `js/gallery/gallery-knot-model.js` and `js/gallery/gallery-knots.js`;
+the Einstein family uses `js/gallery/gallery-hat-model.js` and `js/gallery/gallery-hat.js`. Verify with
 `tests/gallery-discovery.test.mjs` and `tests/gallery-discovery-dom.test.mjs`.
 
-Spatial gallery revisions: `gallery-knot-geometry.js` computes projections/Fox colour spaces directly from
-`knot-catalogue.js` curves; retain `knotinfo-license.txt`. `gallery-soap-model.js` has full-xyz area descent
-and a separate tetrahedral junction solver. `gallery-context.js` supplies reading paths for every exhibit.
-`makeExpandingFamilyWindow()` in `gallery-hat-model.js` lazily fills the camera window from a nested hierarchy;
+Spatial gallery revisions: `js/gallery/gallery-knot-geometry.js` computes projections/Fox colour spaces directly from
+`knot-catalogue.js` curves; retain `knotinfo-license.txt`. `js/gallery/gallery-soap-model.js` has full-xyz area descent
+and a separate tetrahedral junction solver. `js/gallery/gallery-context.js` supplies reading paths for every exhibit.
+`makeExpandingFamilyWindow()` in `js/gallery/gallery-hat-model.js` lazily fills the camera window from a nested hierarchy;
 never periodically repeat a patch to simulate an aperiodic tiling. Verify spatial revisions with
 `tests/gallery-spatial.test.mjs` as well as the discovery/DOM/browser suites.
 

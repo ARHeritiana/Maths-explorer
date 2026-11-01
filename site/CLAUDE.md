@@ -52,23 +52,13 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | File | Holds |
 |---|---|
 | `js/lab/` | **the laboratory**: engine, shell, mount (modes `full`, `inline`, `slide`), registry (`resolveRef`), format, templates, models and one file per experiment (quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, space-lines, fourier, tiles, euler-primes, fermat, circle-regions, buffon, bertrand); index in `js/lab/CLAUDE.md`. Also mounted by chapter pages (`chapter-sequence.js`) and by slides (`slides/widgets.js` `type: 'lab'`) |
+| `js/gallery/` | **the gallery** ("Lire > Curiosités"): one `gallery-*` module per exhibit with its pure model; index in `js/gallery/CLAUDE.md` |
+| `js/knot-catalogue.js` | 44 verified spatial curves (KnotInfo coordinates) used by the knot exhibit (`js/gallery/gallery-knots.js`) |
 | `js/math.js` | pure maths shared by the labs (quadratic, sequences, binomial, statistics, Riemann...) |
 | `js/lab-objects.js` | `mountObject`: the gallery exhibits (Galton, Reuleaux, Platonic, chaos game and more; pure maths first, then DOM) |
-| `js/gallery-objects.js` | Fourier circles (Madagascar opens on 24 circles), Mandelbrot/Julia explorer |
-| `js/fractal-gl.js` | WebGL2 renderer of the Mandelbrot and Julia views: smooth escape time at device resolution, perturbation around a double-precision reference orbit (deep zooms without glitches), 2x2 supersampling at rest; the CPU path of `gallery-objects.js` is the fallback |
+| `js/fractal-gl.js` | WebGL2 renderer of the Mandelbrot and Julia views: smooth escape time at device resolution, perturbation around a double-precision reference orbit (deep zooms without glitches), 2x2 supersampling at rest; the CPU path of `js/gallery/gallery-objects.js` is the fallback |
 | `js/illumination-gl.js` | GPU light map of the mirrored rooms: segments drawn additively (coverage of thousands of rays); `illumination-model.js` `trace` is the allocation-free tracer (`traceReference` is the checked original) |
-| `js/gallery-math.js` | pure maths of the gallery (escape times, DFT, Madagascar outline) |
-| `js/gallery-additions.js` | six experiment-first gallery entries (with the four colour map) and source labels |
-| `js/gallery-models.js`, `js/gallery-kit.js` | Voronoi clipping, descent timing, film area minimisation; shared exhibit lifecycle |
-| `js/gallery-voronoi.js`, `js/gallery-fastest.js`, `js/gallery-soap.js` | draggable territories, bead races, rotatable film |
-| `js/gallery-knot-model.js` | legacy pure braid/invariant helpers and verified mirror certificate, retained for model tests |
-| `js/gallery-knots.js`, `js/gallery-knot-geometry.js`, `js/knot-catalogue.js` | 44 verified spatial curves, preview-style strands, true projections, F3 colours and continuous examples |
-| `js/gallery-knot-render.js` | shared solid-colour strand drawing with depth-ordered crossing gaps for the card and full explorer |
 | `js/knotinfo-license.txt` | MIT licence for KnotInfo coordinate assets |
-| `js/gallery-soap-model.js` | 13 fixed-topology spatial meshes and a separate tetrahedral junction solver; movable frame handles (`frameHandleIds`, `moveFrameHandle`) |
-| `js/gallery-context.js` | mathematical ideas, historical context and applications for all gallery entries |
-| `js/gallery-hat-model.js`, `js/gallery-hat.js` | H7/H8 geometry and continuous hat-family explorer |
-| `js/gallery-four-colour-model.js`, `js/gallery-four-colour.js` | four colour exhibit: nine menu choices, point-contact and disconnected-country examples, connected-country border editor with undo, shared-border neighbours and exact backtracking colouring |
 | `js/platonic-explorer.js`, `js/platonic-fold.js` | Platonic solids and their folding nets |
 | `js/object-kit.js` | canvas sizing, `palette()` from CSS tokens, sliders, loop |
 | `js/home-art.js` | live drawings of the home page and the gallery cards |
@@ -76,15 +66,6 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/home-slides.js` | the animated plate of the home page: five live figures one after the other, tabs with a progress rule, pause, reduced motion (design v6) |
 | `js/figure-engine.js` | canvas engine of those figures: free handles, spring easing, pan, Ctrl-wheel and pinch zoom, soft magnet, keyboard; `readouts` |
 | `js/figure-scenes.js` | the five scenes (parabola, unit circle, secant to tangent, left Riemann sum, logistic cobweb), pure and tested; `SLIDES` texts in both languages |
-| `js/gallery-curiosities.js` | catalogue lines (and `links`) of the Game of Life, square packing, moving sofa, inscribed square, opaque square and equidecomposition curiosities |
-| `js/gallery-equidecomposition-model.js`, `js/gallery-equidecomposition.js` | equidecomposable polygons (Wallace-Bolyai-Gerwien): pure ear clipping, validator, dissection stages in eight steps; presets, pairs, polygons drawn or typed as x,y pairs; catalogue line in `gallery-curiosities.js` |
-| `js/gallery-sofa-model.js`, `js/gallery-sofa.js` | moving sofa: L-shaped hallway, pose test, penetration and `pushOut` (the walls push the sofa), `resolve` (moves, turns about the centroid, optional guide), Hammersley's family and motion, Gerver's motion, freehand sofas |
-| `js/gallery-sofa-gerver.js` | GENERATED by `scripts/build-gallery-data.py sofa`: Gerver's sofa (outline, rotation path, constants) from Romik's equations |
-| `js/gallery-inscribed-model.js`, `js/gallery-inscribed.js` | inscribed square: closed spline through control points, self-crossing test, random curves, numerical search for inscribed squares and rectangles; draw, reshape, add or delete points |
-| `js/gallery-opaque-model.js`, `js/gallery-opaque.js` | opaque square: gaps of a barrier in each direction, opacity check, preset barriers; draw segments, turn the light |
-| `js/gallery-life-model.js`, `js/gallery-life.js` | Game of Life: B3/S23 on the unbounded plane, presets (oscillators, ships, Gosper gun, long evolutions); drawing, play, step |
-| `js/gallery-squares-model.js`, `js/gallery-squares.js` | unit squares in a square: separating-axis overlap test, frame, records (status proved, claimed, open), best known packings n = 1 to 28, exact constructions of 5 and 10; drag and turn |
-| `js/gallery-squares-data.js` | GENERATED by `scripts/build-gallery-data.py squares`: best known packings and bounds for n = 1 to 28 (the squares project, CC BY 4.0) |
 
 ## Reading ("Lire": biographies, stories; the curiosities are the gallery)
 
@@ -143,15 +124,15 @@ Discovery: `js/topic-registry.js` is the shared overlapping topic/subtopic regis
 
 History: `js/history-data.js` holds sourced people and advances; `js/history.js` renders the timeline and detail routes, with `styles/history.css`; `js/history-layout.js` owns period scales and collision-free lanes; `js/history-images.js` holds image sources and licence metadata for the local WebP copies in `data/history/`; `js/reading-history-content.js` supplies the linked Galois biography.
 
-Inference: `js/inference-content.js` shares assumptions, formal arguments and citations among six laboratories, `js/gallery-inference.js` mounts those same experiments from gallery cards; styles in `styles/inference.css`.
+Inference: `js/inference-content.js` shares assumptions, formal arguments and citations among six laboratories, `js/gallery/gallery-inference.js` mounts those same experiments from gallery cards; styles in `styles/inference.css`.
 
 `js/illumination-model.js`: analytic specular reflection on segments, ellipse arcs and quadratic Bezier curves, polygon validation and unfolding. `js/illumination-presets.js`: documented Penrose, Tokarsky and Wolecki coordinate reconstructions.
 
 `js/illumination-content.js`: catalogue and sourced lesson for mirrored rooms, shared gallery/lab mounting.
 
-The Gömböc (Várkonyi and Domokos 2006), smooth and exact: `js/gomboc-body.js` (pure: radial law R = 1 + d·ΔR, mass properties by quadrature, exact contact and support function, display meshes), `js/gomboc-rolling.js` (pure: rolling without slipping, RK4, energy and diagnostics), `js/gomboc-gl.js` (WebGL2 drawing with the colour map of ΔR; the page has a CPU fallback), `js/gallery-gomboc.js` (the page: free orbit with `cam3TurnFree`, tip and push, map of the body, readouts) and `js/gomboc-content.js` (gallery and reading text). Previews on the home page and the discovery cards use `previewMesh`.
+The Gömböc (Várkonyi and Domokos 2006), smooth and exact: `js/gomboc-body.js` (pure: radial law R = 1 + d·ΔR, mass properties by quadrature, exact contact and support function, display meshes), `js/gomboc-rolling.js` (pure: rolling without slipping, RK4, energy and diagnostics), `js/gomboc-gl.js` (WebGL2 drawing with the colour map of ΔR; the page has a CPU fallback), `js/gallery/gallery-gomboc.js` (the page: free orbit with `cam3TurnFree`, tip and push, map of the body, readouts) and `js/gomboc-content.js` (gallery and reading text). Previews on the home page and the discovery cards use `previewMesh`.
 
-Fair division: `js/fair-division-content.js` holds gallery and formal reading entry points; `js/gallery-fair-division.js` mounts the same cake and goods laboratories.
-Topology: `js/topology-content.js` holds tangent fields, surfaces and Banach-Tarski reading/gallery entry points; `js/gallery-topology.js` reuses the guided laboratories.
+Fair division: `js/fair-division-content.js` holds gallery and formal reading entry points; `js/gallery/gallery-fair-division.js` mounts the same cake and goods laboratories.
+Topology: `js/topology-content.js` holds tangent fields, surfaces and Banach-Tarski reading/gallery entry points; `js/gallery/gallery-topology.js` reuses the guided laboratories.
 
-`js/dynamics-content.js` shares original sourced pendulum, three-body and logistic explanations across reading and gallery. `js/gallery-dynamics.js` mounts those same laboratory simulations in gallery entries.
+`js/dynamics-content.js` shares original sourced pendulum, three-body and logistic explanations across reading and gallery. `js/gallery/gallery-dynamics.js` mounts those same laboratory simulations in gallery entries.

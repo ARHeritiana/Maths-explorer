@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { JSDOM } from 'jsdom';
-import { fourColours } from '../site/js/gallery-four-colour.js';
+import { fourColours } from '../site/js/gallery/gallery-four-colour.js';
 import { installControlPolicy } from '../site/js/control-policy.js';
 
 test('four-colour menu, drawing, undo, colouring, keyboard and gesture cancellation work in both languages', async () => {

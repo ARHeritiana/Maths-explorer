@@ -1,4 +1,4 @@
-import {galleryContext} from './gallery-context.js';
+import {galleryContext} from './gallery/gallery-context.js';
 import {installControlPolicy} from "./control-policy.js";
 import {preferredLanguage,routeLanguage} from "./content-language.js";
 import {workshopMarkup,bindWorkshop} from './quadratic-workshop.js';

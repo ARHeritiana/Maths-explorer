@@ -1,7 +1,7 @@
 // Fourier shares the retained canvas, camera, scheduler, keyboard handles and mission shell of every laboratory.
 import {panelView,drawAxes,drawHandle} from '../plot.js';
 import * as F from '../../fourier-model.js';
-import {arms} from '../../gallery-math.js';
+import {arms} from '../../gallery/gallery-math.js';
 export function mount(env){
   const {stage,getState,setState,advance,isUnlocked,fmt}=env;
   let v=null,w=null,co=[],pts=[],cache='',curve=[],stroke=null;

@@ -5,8 +5,8 @@ import assert from "node:assert/strict";
 import { BIOGRAPHIES, STORIES } from "../dist/js/reading-content.js";
 import { describe, relatedTo, readAlso, readingPage, isReading } from "../dist/js/reading.js";
 import { labs } from "../dist/js/content.js";
-import * as L from "../dist/js/gallery-life-model.js";
-import * as S from "../dist/js/gallery-squares-model.js";
+import * as L from "../dist/js/gallery/gallery-life-model.js";
+import * as S from "../dist/js/gallery/gallery-squares-model.js";
 import { SERIES_PRESETS, parseSeries, seriesSum } from "../dist/js/challenges/gauss-sum/maths.js";
 import { VARIANTS, defaults } from "../dist/js/challenges/registry.js";
 

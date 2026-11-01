@@ -1,7 +1,7 @@
 // Independent mathematical checks and reciprocal-link checks for the Fourier learning triangle.
 import test from 'node:test';import assert from 'node:assert/strict';
 import * as F from '../site/js/fourier-model.js';
-import {fourier,arms} from '../site/js/gallery-math.js';
+import {fourier,arms} from '../site/js/gallery/gallery-math.js';
 const near=(a,b,tol=2e-6)=>assert.ok(Math.abs(a-b)<tol,`${a} versus ${b}`);
 test('continuous coefficients agree with midpoint correlation, and errors agree with direct integration',()=>{
  const M=12000;

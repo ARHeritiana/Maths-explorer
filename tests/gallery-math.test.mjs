@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { escape, mandelbrot, julia, MADAGASCAR, resample, fourier, arms } from "../dist/js/gallery-math.js";
+import { escape, mandelbrot, julia, MADAGASCAR, resample, fourier, arms } from "../dist/js/gallery/gallery-math.js";
 
 test("mandelbrot: known members and non-members", () => {
   assert.equal(mandelbrot(0, 0, 500), 500); assert.equal(mandelbrot(-1, 0, 500), 500);       // inside (period 2 bulb)

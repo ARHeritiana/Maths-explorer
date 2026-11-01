@@ -2,7 +2,7 @@
 // needs four colours and the pizza two, and every random map of the exhibit is coloured with at most four.
 import test from "node:test";
 import assert from "node:assert/strict";
-import * as FC from "../dist/js/gallery-four-colour-model.js";
+import * as FC from "../dist/js/gallery/gallery-four-colour-model.js";
 
 // independent check of a colouring: every shared border has two different colours, by brute force over the edges
 const proper = (edges, col) => edges.every(([i, j]) => col[i] !== col[j]);

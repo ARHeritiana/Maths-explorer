@@ -1,9 +1,9 @@
 // Independent checks of gallery geometry, physical timing, area descent and knot invariants.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {voronoiCells,polygonArea,polygonCentroid,cycloid,bezierTrack,descentTrack,pointAtTime,filmMesh,filmArea,relaxFilm} from '../site/js/gallery-models.js';
-import {tileOutline,makeFamilyPatch} from '../site/js/gallery-hat-model.js';
-import {KNOTS,braidMove,braidColors,colorings,knotComponents,mirrorSequence,moveStrands} from '../site/js/gallery-knot-model.js';
+import {voronoiCells,polygonArea,polygonCentroid,cycloid,bezierTrack,descentTrack,pointAtTime,filmMesh,filmArea,relaxFilm} from '../site/js/gallery/gallery-models.js';
+import {tileOutline,makeFamilyPatch} from '../site/js/gallery/gallery-hat-model.js';
+import {KNOTS,braidMove,braidColors,colorings,knotComponents,mirrorSequence,moveStrands} from '../site/js/gallery/gallery-knot-model.js';
 test('Voronoi cells partition a rectangle and every sampled interior belongs to its nearest seed',()=>{
   for(const seeds of [[[1,5],[9,5]],[[2,2],[8,2],[5,8]],[[2,2],[2,2],[8,8]]]){
     const cells=voronoiCells(seeds,[0,0,10,10]);assert.ok(Math.abs(cells.reduce((s,p)=>s+polygonArea(p),0)-100)<1e-7);

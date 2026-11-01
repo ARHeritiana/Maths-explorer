@@ -1,20 +1,20 @@
 // Small live drawings for the home page and the gallery cards. Each one draws on a canvas, pauses when it is off screen or the
-// tab is hidden, and draws one still frame under prefers-reduced-motion. Mathematics comes from gallery-math.js and lab-objects.js.
-import { escape, MADAGASCAR, resample, fourier, arms, COUNT_SCHEDULE, REVOLUTION } from "./gallery-math.js";
+// tab is hidden, and draws one still frame under prefers-reduced-motion. Mathematics comes from gallery/gallery-math.js and lab-objects.js.
+import { escape, MADAGASCAR, resample, fourier, arms, COUNT_SCHEDULE, REVOLUTION } from "./gallery/gallery-math.js";
 import { platonic, reuleaux, binomial } from "./lab-objects.js";
-import {voronoiCells,cycloid,descentTrack,pointAtTime} from './gallery-models.js';
-import {neighbours,colourWith} from './gallery-four-colour-model.js';
-import {drawKnotStrand} from './gallery-knot-render.js';
-import {spaceKnot} from './gallery-knot-model.js';
+import {voronoiCells,cycloid,descentTrack,pointAtTime} from './gallery/gallery-models.js';
+import {neighbours,colourWith} from './gallery/gallery-four-colour-model.js';
+import {drawKnotStrand} from './gallery/gallery-knot-render.js';
+import {spaceKnot} from './gallery/gallery-knot-model.js';
 import {previewMesh as gombocMesh} from './gomboc-body.js';
 import {cam3Project} from './camera3d.js';
-import {makeFamilyPatch} from './gallery-hat-model.js';
-import {presetSet,step,coords} from './gallery-life-model.js';
-import {ten,vertices} from './gallery-squares-model.js';
-import {hammersley,hammersleyPose,HAMMERSLEY_R,place} from './gallery-sofa-model.js';
-import {curve,PRESETS as CURVES,inscribed} from './gallery-inscribed-model.js';
-import {BARRIERS,lineAt} from './gallery-opaque-model.js';
-import {preset as eqPreset,buildChain as eqChain,frame as eqFrame} from './gallery-equidecomposition-model.js';
+import {makeFamilyPatch} from './gallery/gallery-hat-model.js';
+import {presetSet,step,coords} from './gallery/gallery-life-model.js';
+import {ten,vertices} from './gallery/gallery-squares-model.js';
+import {hammersley,hammersleyPose,HAMMERSLEY_R,place} from './gallery/gallery-sofa-model.js';
+import {curve,PRESETS as CURVES,inscribed} from './gallery/gallery-inscribed-model.js';
+import {BARRIERS,lineAt} from './gallery/gallery-opaque-model.js';
+import {preset as eqPreset,buildChain as eqChain,frame as eqFrame} from './gallery/gallery-equidecomposition-model.js';
 
 const TAU = Math.PI * 2;
 const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || "#888";

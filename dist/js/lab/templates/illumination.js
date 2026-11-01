@@ -1,6 +1,6 @@
 // One retained mirrored-room editor, shared by the gallery and all laboratory missions.
 export {createStage} from './inference.js';
-import {exhibit,button,background,path,dot} from '../../gallery-kit.js';
+import {exhibit,button,background,path,dot} from '../../gallery/gallery-kit.js';
 import * as M from '../../illumination-model.js';
 import {PRESETS} from '../../illumination-presets.js';
 import {createLightMap,createDensityMap} from '../../illumination-gl.js';

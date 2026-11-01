@@ -1,4 +1,4 @@
-import {MADAGASCAR,heart,star,resample,fourier} from './gallery-math.js';
+import {MADAGASCAR,heart,star,resample,fourier} from './gallery/gallery-math.js';
 // Pure, period-one Fourier models. Continuous coefficients and sampled DFTs are deliberately distinct.
 export const TAU = 2 * Math.PI;
 export const SIGNALS = ['square', 'saw', 'triangle', 'mixture'];

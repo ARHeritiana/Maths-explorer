@@ -1,10 +1,10 @@
 // Moving sofa, inscribed square and opaque square: the maths of the three exhibits, by independent methods.
 import test from "node:test";
 import assert from "node:assert/strict";
-import * as S from "../dist/js/gallery-sofa-model.js";
-import * as I from "../dist/js/gallery-inscribed-model.js";
-import * as O from "../dist/js/gallery-opaque-model.js";
-import { GERVER } from "../dist/js/gallery-sofa-gerver.js";
+import * as S from "../dist/js/gallery/gallery-sofa-model.js";
+import * as I from "../dist/js/gallery/gallery-inscribed-model.js";
+import * as O from "../dist/js/gallery/gallery-opaque-model.js";
+import { GERVER } from "../dist/js/gallery/gallery-sofa-gerver.js";
 
 test("moving sofa: Hammersley's family has the stated area and turns the corner; a bigger copy does not", () => {
   for (const r of [0, 0.25, S.HAMMERSLEY_R, 0.8, 1]) {

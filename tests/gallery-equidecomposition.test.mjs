@@ -3,7 +3,7 @@
 // behave as the audit of 31 October 2026 describes.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import * as E from '../site/js/gallery-equidecomposition-model.js';
+import * as E from '../site/js/gallery/gallery-equidecomposition-model.js';
 
 const polyArea = (p) => Math.abs(E.area(p));
 // even-odd point in polygon (independent of the model's own tests)

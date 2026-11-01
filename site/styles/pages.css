@@ -1099,7 +1099,7 @@ details.source-course[open] { padding-bottom: 16px; }
 /* Fourier entry points share the measured collection catalogue. */
 .fourier-triangle{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}.fourier-triangle a{min-height:44px;display:inline-flex;align-items:center;white-space:normal}
 
-/* Four colour exhibit (gallery-four-colour.js): the colour palette. */
+/* Four colour exhibit (gallery/gallery-four-colour.js): the colour palette. */
 .fc-palette { display: flex; flex-wrap: wrap; gap: 6px; flex-basis: 100%; }
 .fc-swatch { display: grid; place-items: center; width: 44px; height: 44px; border: 2px solid var(--line-strong); border-radius: 50%; background: color-mix(in srgb, var(--fc, var(--surface)) 62%, var(--surface)); color: var(--ink); font-weight: 700; }
 .fc-swatch[aria-pressed="true"] { border-color: var(--ink); box-shadow: 0 0 0 3px var(--accent-soft); }

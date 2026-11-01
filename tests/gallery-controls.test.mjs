@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {JSDOM} from 'jsdom';
-import {GALLERY_OBJECTS} from '../site/js/gallery-objects.js';
+import {GALLERY_OBJECTS} from '../site/js/gallery/gallery-objects.js';
 
 test('fractal gestures replace view buttons, reset either plane, and stop drifting at zoom limits',()=>{
   const dom=new JSDOM('<main></main>',{pretendToBeVisual:true}),w=dom.window;

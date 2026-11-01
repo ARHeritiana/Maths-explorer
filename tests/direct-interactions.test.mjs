@@ -6,9 +6,9 @@ import { flyMotion, meetTime, flyTrace, flyNumber } from '../site/js/challenges/
 import { activity as flyActivity } from '../site/js/challenges/fly/activity.js';
 import { activity as jugActivity } from '../site/js/challenges/jugs/activity.js';
 import { normalise, defaults, mountActivity } from '../site/js/challenges/registry.js';
-import { normaliseKnot, cameraKnot, projectedKnotCrossings, knotCrossingBridge } from '../site/js/gallery-knot-geometry.js';
+import { normaliseKnot, cameraKnot, projectedKnotCrossings, knotCrossingBridge } from '../site/js/gallery/gallery-knot-geometry.js';
 import { KNOT_CATALOGUE } from '../site/js/knot-catalogue.js';
-import { drawKnotStrand } from '../site/js/gallery-knot-render.js';
+import { drawKnotStrand } from '../site/js/gallery/gallery-knot-render.js';
 
 test('preview-style strands draw near crossings last with a matching background gap', () => {
   const strokes=[];let a,b;

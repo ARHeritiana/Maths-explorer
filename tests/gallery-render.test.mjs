@@ -3,9 +3,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {referenceOrbit, ORBIT_CAPACITY} from '../site/js/fractal-gl.js';
-import {escape} from '../site/js/gallery-math.js';
-import * as Soap from '../site/js/gallery-soap-model.js';
-import * as Sofa from '../site/js/gallery-sofa-model.js';
+import {escape} from '../site/js/gallery/gallery-math.js';
+import * as Soap from '../site/js/gallery/gallery-soap-model.js';
+import * as Sofa from '../site/js/gallery/gallery-sofa-model.js';
 
 test('reference orbit is the double-precision orbit, and stops when it leaves a large disc', () => {
   const o = referenceOrbit(0, 0, -0.5, 0.1, 50);

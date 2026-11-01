@@ -1,6 +1,6 @@
 import { university } from './catalogue-data.js';
-import { GALLERY_ADDITIONS } from './gallery-additions.js';
-import { CURIOSITIES } from './gallery-curiosities.js';
+import { GALLERY_ADDITIONS } from './gallery/gallery-additions.js';
+import { CURIOSITIES } from './gallery/gallery-curiosities.js';
 import { INFERENCE_GALLERY } from './inference-content.js';
 import { FAIR_GALLERY } from './fair-division-content.js';
 import { TOPOLOGY_GALLERY } from './topology-content.js';

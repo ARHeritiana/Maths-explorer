@@ -7,7 +7,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {JSDOM} from 'jsdom';
 import {mountObject} from '../site/js/lab-objects.js';
-import {CURIOSITIES} from '../site/js/gallery-curiosities.js';
+import {CURIOSITIES} from '../site/js/gallery/gallery-curiosities.js';
 import {labs} from '../site/js/content.js';
 import {describe} from '../site/js/reading.js';
 
@@ -27,7 +27,7 @@ test('catalogue line: bilingual pairs, links resolve, no dashes',()=>{
   assert.equal(e.answer,36/9);
   for(const h of e.links)assert.ok(describe(h),`link ${h} resolves`);
   for(const h of ['#lab/tiles','#gallery/banach-tarski-gallery'])assert.ok(e.links.includes(h));
-  const src=['site/js/gallery-equidecomposition.js','site/js/gallery-equidecomposition-model.js','site/js/gallery-curiosities.js'].map(f=>readFileSync(f,'utf8')).join('');
+  const src=['site/js/gallery/gallery-equidecomposition.js','site/js/gallery/gallery-equidecomposition-model.js','site/js/gallery/gallery-curiosities.js'].map(f=>readFileSync(f,'utf8')).join('');
   assert.ok(!/[–—]/.test(src),'no en or em dash');
   assert.ok(!/javalab|mathoutils/i.test(src));
 });

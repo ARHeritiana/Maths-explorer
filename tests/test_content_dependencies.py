@@ -40,7 +40,7 @@ class Dependencies(unittest.TestCase):
             newer=refresh.inputs();self.assertIn('slides',refresh.changed_jobs(after,newer))
     def test_fourier_shared_models_invalidate_slide_exports(self):
         with tempfile.TemporaryDirectory() as tmp,patch.object(refresh,'ROOT',Path(tmp)),patch.object(catalog,'load',return_value=self.manifest):
-            for name in ['fourier-model.js','gallery-math.js']:
+            for name in ['fourier-model.js','gallery/gallery-math.js']:
                 p=Path(tmp)/'site/js'/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text('before')
                 before=refresh.inputs();p.write_text('after');after=refresh.inputs()
                 self.assertIn('slide-exports',refresh.changed_jobs(before,after))
@@ -50,6 +50,6 @@ class Dependencies(unittest.TestCase):
         self.assertIn('./player.css?v=',text)
         self.assertIn('./widgets.js?v=',text)
         self.assertIn('../js/fourier-model.js?v=',text)
-        self.assertIn('../js/gallery-math.js?v=',text)
+        self.assertIn('../js/gallery/gallery-math.js?v=',text)
 
 if __name__=='__main__':unittest.main()

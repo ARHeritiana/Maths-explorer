@@ -2,9 +2,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {KNOT_CATALOGUE} from '../site/js/knot-catalogue.js';
-import {normaliseKnot,knotProjection,knotDeformation,cameraKnot,colouringErrors} from '../site/js/gallery-knot-geometry.js';
-import {SOAP_FRAMES,makeSoapFrame,meshArea3D,relaxMesh3D,tetraFilm,relaxTetraNetwork} from '../site/js/gallery-soap-model.js';
-import {makeFamilyWindow,makeExpandingFamilyWindow} from '../site/js/gallery-hat-model.js';
+import {normaliseKnot,knotProjection,knotDeformation,cameraKnot,colouringErrors} from '../site/js/gallery/gallery-knot-geometry.js';
+import {SOAP_FRAMES,makeSoapFrame,meshArea3D,relaxMesh3D,tetraFilm,relaxTetraNetwork} from '../site/js/gallery/gallery-soap-model.js';
+import {makeFamilyWindow,makeExpandingFamilyWindow} from '../site/js/gallery/gallery-hat-model.js';
 test('All 44 actual spatial curves produce consistent Fox colours in independent views',()=>{
   assert.equal(KNOT_CATALOGUE.length,44);assert.equal(KNOT_CATALOGUE.filter(x=>x.kind==='prime').length,35);assert.equal(KNOT_CATALOGUE.filter(x=>x.kind==='composite').length,8);
   for(const entry of KNOT_CATALOGUE){const points=normaliseKnot(entry),reference=knotProjection(points);

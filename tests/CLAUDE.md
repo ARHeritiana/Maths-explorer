@@ -19,7 +19,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `trigonometry.test.mjs` | `site/js/lab/models/trig.js` and the circle and curve of the trig experiment |
 | `lab-objects.test.mjs` | `lab-objects.js` pure maths |
 | `explorer-models.test.mjs` | `canvas-navigation.js`, `lab-objects.js`, `platonic-fold.js` |
-| `gallery-math.test.mjs`, `gallery-controls.test.mjs` | `gallery-math.js`, `gallery-objects.js` |
+| `gallery-math.test.mjs`, `gallery-controls.test.mjs` | `js/gallery/gallery-math.js`, `js/gallery/gallery-objects.js` |
 | `challenge-puzzles.test.mjs`, `challenge-puzzles2.test.mjs` | pure challenge maths, by an independent method |
 | `challenges-variants.test.mjs` | every challenge has variant, original, activity, solution; answers recomputed |
 | `cake-model.test.mjs`, `box-model.test.mjs` | cake and box sandboxes |
