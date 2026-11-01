@@ -85,12 +85,18 @@ export function isSimple(A) {
 }
 const dedupe = (A) => A.filter((p, i) => dist(p, A[(i + A.length - 1) % A.length]) > 1e-9);
 
-// Typed vertices "x,y; x,y; ..." (a point as decimal separator; pairs separated by semicolons or new lines). Null if malformed.
+// Typed vertices: pairs separated by semicolons or new lines, x and y separated by a comma ("2.5,3"), by spaces ("2,5 3,5")
+// or both ("2.5, 3"). The decimal separator is a point or a comma; a comma is read as the separator of x and y only when it is
+// the single comma of a pair without spaces. Null if malformed.
 export function parseVertices(text) {
   const parts = String(text).split(/[;\n]+/).map((s) => s.trim()).filter(Boolean), out = [];
   for (const part of parts) {
-    const q = part.split(/[\s,]+/).filter(Boolean); if (q.length !== 2) return null;
-    const n = q.map(Number); if (!n.every(Number.isFinite)) return null; out.push(n);
+    const tok = part.split(/\s+/).filter(Boolean); let q = null;
+    if (tok.length === 1) { const c = tok[0].split(','); if (c.length === 2) q = c; }
+    else if (tok.length === 2) q = [tok[0].replace(/,$/, ''), tok[1]];
+    else if (tok.length === 3 && tok[1] === ',') q = [tok[0], tok[2]];
+    if (!q) return null;
+    const n = q.map((x) => (/^[+-]?(\d+([.,]\d*)?|[.,]\d+)([eE][+-]?\d+)?$/.test(x) ? Number(x.replace(',', '.')) : NaN)); if (!n.every(Number.isFinite)) return null; out.push(n);
   }
   return out.length ? out : null;
 }
@@ -143,25 +149,47 @@ function lemma(o, eu, ev, L, off, H, toRect, col) {
   return out;
 }
 // Stages 1 to 3: rectangle -> parallelogram with slanted side W -> rectangle of width W -> stacked into R.
-function later(rects, W, X0, Y0) {
-  const s2a = [], s2b = [], s3 = []; let y = Y0;
-  rects.forEach((r) => {
-    const s = Math.sqrt(W * W - r.b * r.b);
-    s2a.push(...lemma(r.o, r.ex, r.ey, r.a, s, r.b, false, r.col));
-    const w = [s * r.ex[0] + r.b * r.ey[0], s * r.ex[1] + r.b * r.ey[1]], u = mul(w, 1 / W); let v = [-u[1], u[0]]; const e = mul(r.ex, r.a); if (dot(e, v) < 0) v = mul(v, -1);
-    const off = dot(e, u), H = dot(e, v); s2b.push(...lemma(r.o, u, v, W, off, H, true, r.col));
-    const ph = -Math.atan2(u[1], u[0]), cs = Math.cos(ph), sn = Math.sin(ph), cor = [[0, 0], [W, 0], [W, H], [0, H]].map((q) => [r.o[0] + q[0] * u[0] + q[1] * v[0], r.o[1] + q[0] * u[1] + q[1] * v[1]]);
-    const rot = cor.map((q) => { const d = sub(q, r.o); return [r.o[0] + cs * d[0] - sn * d[1], r.o[1] + sn * d[0] + cs * d[1]]; });
-    s3.push({ p: cor, c: r.o, a: ph, v: [X0 - Math.min(...rot.map((q) => q[0])), y - Math.min(...rot.map((q) => q[1]))], col: r.col, l: 0 }); y += H;
+// Each triangle is worked on in its own workspace (a box of a row, see `shelf`), so that the pieces of different triangles
+// never overlap at the end of a step: step 0 cuts the triangle and carries the pieces to the box as a rectangle, step 1 shears
+// the rectangle, step 2 turns the parallelogram into a rectangle of width W inside the same box, step 3 carries it into R.
+const frameOf = (r, W) => {
+  const s = Math.sqrt(W * W - r.b * r.b);
+  const w = [s * r.ex[0] + r.b * r.ey[0], s * r.ex[1] + r.b * r.ey[1]], u = mul(w, 1 / W); let v = [-u[1], u[0]]; const e = mul(r.ex, r.a); if (dot(e, v) < 0) v = mul(v, -1);
+  return { s, u, v, off: dot(e, u), H: dot(e, v) };
+};
+// Boxes (relative to each rectangle's origin) holding the parallelogram of step 1 and the rectangle of step 2, laid out in a row.
+function shelf(rects, W) {
+  const boxes = rects.map((r) => {
+    const f = frameOf(r, W), pts = [[0, 0], [r.a, 0], [r.a, r.b], [0, r.b], [r.a + f.s, r.b], [f.s, r.b]].map(([x, y]) => [x * r.ex[0] + y * r.ey[0], x * r.ex[1] + y * r.ey[1]])
+      .concat([[0, 0], [W, 0], [W, f.H], [0, f.H]].map(([x, y]) => [x * f.u[0] + y * f.v[0], x * f.u[1] + y * f.v[1]]));
+    const xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
+    return { x0: Math.min(...xs), x1: Math.max(...xs), y0: Math.min(...ys), y1: Math.max(...ys) };
   });
-  return [s2a, s2b, s3];
+  const gap = 0.06 * W, total = boxes.reduce((t, bx) => t + (bx.x1 - bx.x0), 0) + gap * (boxes.length - 1), tall = Math.max(...boxes.map((bx) => bx.y1 - bx.y0));
+  let x = -total / 2;
+  return boxes.map((bx) => { const at = [x - bx.x0, -35 - tall / 2 - bx.y0]; x += bx.x1 - bx.x0 + gap; return at; });
+}
+function later(rects, W, X0, Y0) {
+  const s2a = [], s2b = [], s3 = [], spots = shelf(rects, W); let y = Y0;
+  rects.forEach((r, i) => {
+    const { s, u, v, off, H } = frameOf(r, W), o2 = [spots[i][0], spots[i][1]];
+    s2a.push(...lemma(o2, r.ex, r.ey, r.a, s, r.b, false, r.col));
+    s2b.push(...lemma(o2, u, v, W, off, H, true, r.col));
+    const ph = -Math.atan2(u[1], u[0]), cs = Math.cos(ph), sn = Math.sin(ph), cor = [[0, 0], [W, 0], [W, H], [0, H]].map((q) => [o2[0] + q[0] * u[0] + q[1] * v[0], o2[1] + q[0] * u[1] + q[1] * v[1]]);
+    const rot = cor.map((q) => { const d = sub(q, o2); return [o2[0] + cs * d[0] - sn * d[1], o2[1] + sn * d[0] + cs * d[1]]; });
+    s3.push({ p: cor, c: o2, a: ph, v: [X0 - Math.min(...rot.map((q) => q[0])), y - Math.min(...rot.map((q) => q[1]))], col: r.col, l: 0 }); y += H;
+  });
+  return { stages: [s2a, s2b, s3], spots };
 }
 
 // The whole chain for two polygons (any simple polygons, counter-clockwise or not). Both are rescaled to area AREA.
 export function buildChain(P, Q) {
   const AP = normalise(P, -50, -25), AQ = normalise(Q, 50, -25), a = stage0(AP, 0), b = stage0(AQ, 4);
   const W = 1.25 * Math.max(...a.rects.concat(b.rects).map((r) => r.a)), H = AREA / W, X0 = -W / 2, Y0 = 30 - H / 2;
-  const CH = { AP, AQ, W, H, X0, Y0, nP: a.rects.length, nQ: b.rects.length, P: [a.pcs, ...later(a.rects, W, X0, Y0)], Q: [b.pcs, ...later(b.rects, W, X0, Y0)] };
+  const lp = later(a.rects, W, X0, Y0), lq = later(b.rects, W, X0, Y0);
+  // step 0 also carries each triangle's pieces to the workspace of its rectangle (the pieces know their triangle by `col`)
+  for (const [st, l, c0, rs] of [[a.pcs, lp, 0, a.rects], [b.pcs, lq, 4, b.rects]]) st.forEach((pc) => { const i = pc.col - c0; pc.v = [l.spots[i][0] - rs[i].o[0], l.spots[i][1] - rs[i].o[1]]; });
+  const CH = { AP, AQ, W, H, X0, Y0, nP: a.rects.length, nQ: b.rects.length, P: [a.pcs, ...lp.stages], Q: [b.pcs, ...lq.stages] };
   const all = [...AP, ...AQ, [X0, Y0], [X0 + W, Y0 + H]];
   [...CH.P, ...CH.Q].forEach((st) => st.forEach((pc) => pc.p.forEach((q) => { all.push(place(pc, q, 0), place(pc, q, 1)); })));
   CH.bbox = all; CH.R = [[X0, Y0], [X0 + W, Y0], [X0 + W, Y0 + H], [X0, Y0 + H]];

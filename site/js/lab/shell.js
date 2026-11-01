@@ -228,6 +228,7 @@ export function createShell(host, exp, tpl, opts = {}) {
         select.addEventListener("change", () => {
           const option = c.options.find((o) => String(o.value) === select.value);
           if (option) userApply(c.set ? c.set(state, option.value) : { [c.key]: option.value });
+          select.value = String(c.get ? c.get(state) : state[c.key]);   // a refused choice leaves the list on the real state
         });
         wrap.append(label, select); controlsEl.append(wrap);
         controlNodes[id] = { wrap, select, c };
@@ -614,6 +615,7 @@ export function createShell(host, exp, tpl, opts = {}) {
       if (n.select) {
         const value = c.get ? c.get(s) : s[c.key];
         if (n.select.value !== String(value)) n.select.value = String(value);
+        c.options.forEach((o, i) => { if (o.disabled) n.select.options[i].disabled = !!o.disabled(s); });   // an option may be unavailable in some states
       } else if (n.input) {
         const v = sliderValue(c, s);
         if (c.range) { const range = c.range(s); n.input.min = Math.min(range[0], v); n.input.max = Math.max(range[1], v); }

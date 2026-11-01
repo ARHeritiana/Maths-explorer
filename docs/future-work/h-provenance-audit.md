@@ -34,3 +34,7 @@ No line-level evidence of copying was found, so nothing was left unstripped for 
   was found to be copied. The structure of the chapter page has since been replaced (four destinations, 31 October).
 - Still open for the owner: if any companion guide or exercise wording was taken from either site, name it so that it can be
   rewritten from the course PDFs, the provenance kept in the private repository, and the mathematics verified.
+
+## Ferris wheel exercise (1 November 2026)
+
+The owner states that the London Eye / Ferris wheel exercise is their own teaching exercise, created for an IB student, not a copy of a published problem. The site statements were in any case written in original wording and carry no mark allocations. Treated as settled by the owner's statement; not independently verifiable here.

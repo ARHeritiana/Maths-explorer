@@ -81,7 +81,7 @@ const lakeExp = common("monte-carlo-lake", "lake", {
   controls: {
     run,
     shape: { kind: "choice", presentation: "select", label: P("Forme du lac", "Lake shape"),
-      options: [["default", "Rivage initial", "Default shoreline"], ["disc", "Disque", "Disc"], ["square", "Carré", "Square"], ["ell", "En L", "L shape"], ["custom", "Dessiné à la main", "Drawn by hand"]].map(([value, fr, en]) => ({ value, label: P(fr, en) })),
+      options: [["default", "Rivage initial", "Default shoreline"], ["disc", "Disque", "Disc"], ["square", "Carré", "Square"], ["ell", "En L", "L shape"], ["custom", "Dessiné à la main", "Drawn by hand"]].map(([value, fr, en]) => ({ value, label: P(fr, en), ...(value === "custom" ? { disabled: (s) => !s.poly } : {}) })),
       key: "shape", set: (s, v) => (v === "custom" && !s.poly ? {} : { shape: v, runs: 0 }) },
   },
   monteCarlo: {

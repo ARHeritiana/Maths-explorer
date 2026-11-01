@@ -4,7 +4,7 @@ const sub = (id, fr, en, concepts, words) => ({id, title:P(fr,en), concepts:conc
 export const TOPICS = [
   {id:'arithmetic', title:P('Arithmétique','Arithmetic'), preview:'numbers', subtopics:[
     sub('integers','Entiers et divisibilité','Integers and divisibility','arithmetic primes bezout congruences modular diophantine factorial factorials valuations jugs euler-primes fermat doors','arithm|divisib|prime|premier|congru|factoriel|factorial|entier'),
-    sub('calculation','Calcul et proportions','Calculation and proportions','percentages reals gauss-sum','calcul|proportion|pourcent|percent|fraction')]},
+    sub('calculation','Calcul et proportions','Calculation and proportions','percentages reals gauss-sum','calcul mental|calcul numérique|calcul décimal|proportion|pourcent|percent|fraction')]},
   {id:'algebra', title:P('Algèbre','Algebra'), preview:'parabola', subtopics:[
     sub('equations','Équations et polynômes','Equations and polynomials','algebra quadratic polynomials inequalities sumproduct','algebr|algèbr|equation|équation|polyn|trinôme|quadratic'),
     sub('linear','Vecteurs et algèbre linéaire','Vectors and linear algebra','vectors scalar matrices matrix orthogonality space-equations','vect|matri|linéaire|linear'),

@@ -3,6 +3,7 @@ import {installControlPolicy} from "./control-policy.js";
 import {preferredLanguage,routeLanguage} from "./content-language.js";
 import {workshopMarkup,bindWorkshop} from './quadratic-workshop.js';
 import { errorsPage, bindErrors } from "./errors.js";
+import { rememberScrolls, restoreScrolls } from "./scroll-memory.js";
 import { isErrorRoute } from "./errors-model.js";
 import { libraryPage, bindLibrary, chapterPage, bindChapter, relatedChapters, resourceCatalog } from "./resource-library.js";
 import { packPage, bindPack, sourcesPage, bindSources } from "./pack-builder.js";
@@ -136,7 +137,9 @@ function header(page) {
 function footer() {
   return `<footer><span class="foot-brand">Maths Explorer</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><nav class="foot-links" aria-label="${pair("Autres pages", "More pages")}"><a href="#pack">${pair("Dossier sur mesure", "Custom pack")}</a><a href="#sources">${pair("Sources LaTeX", "LaTeX sources")}</a><a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.${lang}" rel="license noopener" target="_blank">${pair("Licence CC BY-NC-SA 4.0", "CC BY-NC-SA 4.0 licence")}</a></nav></footer>`;
 }
+let lastPage = null;
 function render() {
+  const keptScrolls = rememberScrolls($("#app")), cameFrom = lastPage;
   stopViews.forEach(stop=>stop()); stopViews=[];
   stopLab();
   stopLab = () => {};
@@ -231,6 +234,9 @@ function render() {
   stopViews.push(observeSvgNavigation($("#main"), "svg.act-svg, #quadratic-graph svg",lang));
   if (page === "library") mountLibrary($("#main"), {lang,id:r.id});
   installPresenting();
+  // the lists of the previous page of the same kind keep their scroll position (gallery sidebar, timelines, strips)
+  restoreScrolls($("#app"), cameFrom === page ? keptScrolls : null);
+  lastPage = page;
 }
 function bindCommon() {
  const navButton=$(".nav-toggle"), nav=$("#primary-nav");

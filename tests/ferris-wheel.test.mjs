@@ -142,3 +142,15 @@ test('registered in the laboratory, mission rules hold, and the experiment is pl
   assert.match(stage.note[1], /Indicative placement/); assert.match(stage.note[1], /not a claim/);
   assert.ok(!pathwayStages(pathways.find((p) => p.id === 'mg')).some((st) => st.ids.includes('ferris-wheel')));
 });
+
+test('topic browser: calculus and modelling experiments are not filed under arithmetic (the word "calcul" in a text is not arithmetic)', async () => {
+  const {discoveryIndex} = await import('../site/js/discovery.js');
+  const {labs, challenges} = await import('../site/js/content.js');
+  const index = discoveryIndex({labs, challenges, chapters: []});
+  for (const id of ['ferris-wheel', 'monte-carlo-integral', 'derivative', 'integral']) {
+    const rec = index.find((x) => x.route === '#lab/' + id);
+    assert.ok(rec, id);
+    assert.ok(!rec.memberships.includes('arithmetic/calculation'), id + ' ' + rec.memberships);
+    assert.ok(rec.memberships.some((k) => k.startsWith('analysis/')), id + ' ' + rec.memberships);
+  }
+});

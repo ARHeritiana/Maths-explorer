@@ -108,6 +108,10 @@ test('typed vertices go through the same validator', () => {
   assert.deepEqual(E.parseVertices('0,0; 10,0; 10,6; 0,6'), [[0, 0], [10, 0], [10, 6], [0, 6]]);
   assert.deepEqual(E.parseVertices('0 0;10 0\n10 6 ;0,6;'), [[0, 0], [10, 0], [10, 6], [0, 6]]);
   assert.deepEqual(E.parseVertices('1.5,-2e1'), [[1.5, -20]]);
+  // decimal point or decimal comma: a lone comma in a pair without spaces separates x and y, otherwise it is the decimal mark
+  assert.deepEqual(E.parseVertices('1,5 2,5; 3 4'), [[1.5, 2.5], [3, 4]]);
+  assert.deepEqual(E.parseVertices('1, 2; 3.5,4; 0,5 -1,25'), [[1, 2], [3.5, 4], [0.5, -1.25]]);
+  assert.equal(E.parseVertices('1,5,2; 3,4'), null);
   for (const bad of ['', '   ', '1;2', '1,2,3', 'a,b', '1,Infinity', '0,0; x']) assert.equal(E.parseVertices(bad), null, JSON.stringify(bad));
   assert.ok(E.validatePolygon(E.parseVertices('0,0; 10,0; 10,6; 0,6')).ok);
   assert.equal(E.validatePolygon(E.parseVertices('0,0; 10,10; 10,0; 0,10')).code, 'invalid');
@@ -121,4 +125,19 @@ test('ear clipping: n - 2 triangles whose areas add up, on random star-shaped po
   }
   // a self-crossing bow-tie can still be clipped into n - 2 triangles: only the simplicity test refuses it
   assert.equal(E.isSimple([[0, 0], [10, 10], [10, 0], [0, 10]]), false);
+});
+
+test('at the end of every step no point is covered by two pieces (pieces of different triangles do not overlap on screen)', () => {
+  for (const p of E.PRESETS) for (const q of E.PRESETS) {
+    if (p === q) continue;
+    const CH = E.buildChain(p.pts, q.pts);
+    for (let T = 0; T <= E.STAGES; T++) {
+      const polys = E.frame(CH, T).pieces.map((x) => x.poly), pts = polys.flat();
+      const xs = pts.map((z) => z[0]), ys = pts.map((z) => z[1]), x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+      for (let k = 0; k < 120; k++) {
+        const pt = [x0 + rnd() * (x1 - x0), y0 + rnd() * (y1 - y0)], n = polys.filter((poly) => inside(pt, poly)).length;
+        assert.ok(n <= 1, `${p.id} to ${q.id}, step boundary ${T}: a point lies in ${n} pieces`);
+      }
+    }
+  }
 });

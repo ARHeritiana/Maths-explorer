@@ -9,6 +9,7 @@ import { escape, MADAGASCAR, resample, fourier, arms, heart, star, COUNT_SCHEDUL
 const TAU = Math.PI * 2;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const DEFAULT_MADAGASCAR = 24;   // number of circles Madagascar starts with
+const DEFAULT_CIRCLES = 12;      // every other outline (heart, star, a drawn curve) opens on at least this many: never on a single circle
 const SHAPES = {
   madagascar: () => MADAGASCAR,
   heart: () => heart(160),
@@ -18,7 +19,7 @@ const SHAPES = {
 /* ============================================================ Fourier */
 function fourierLab(root, { t, reduced, lang }) {
   const N = 256, fmt = (v, d = 1) => (lang === "fr" ? String(Math.round(v * 10 ** d) / 10 ** d).replace(".", ",") : String(Math.round(v * 10 ** d) / 10 ** d));
-  let shape = "madagascar", pts = [], co = [], count = 1, auto = true, showCircles = true, showFull = false, clock = 0, trail = [], drawing = null, userCurve = null, scale = 1, centre = [0, 0], lastCount = 0;
+  let shape = "madagascar", pts = [], co = [], count = DEFAULT_MADAGASCAR, auto = false, showCircles = true, showFull = false, clock = 0, trail = [], drawing = null, userCurve = null, scale = 1, centre = [0, 0], lastCount = 0;
   root.innerHTML = `
     <p class="act-help">${t("Chaque cercle tourne à vitesse constante, centré sur le bout du précédent. Ensemble, ils redessinent une forme fermée. Ajoute des cercles : la forme se précise. Choisis « Ma forme » pour dessiner la tienne.", "Each circle turns at a constant speed, centred on the tip of the previous one. Together they redraw a closed shape. Add circles: the shape sharpens. Choose “My shape” to draw your own.")}</p>
     <div class="obj-stage" id="fr-stage"></div>
@@ -27,7 +28,7 @@ function fourierLab(root, { t, reduced, lang }) {
         ${[["madagascar", "Madagascar", "Madagascar"], ["heart", "Cœur", "Heart"], ["star", "Étoile", "Star"], ["mine", "Ma forme", "My shape"]].map(([v, fr, en]) => `<label><input type="radio" name="fr-shape" value="${v}" ${v === shape ? "checked" : ""}> ${t(fr, en)}</label>`).join("")}</fieldset>
     </div>
     <div class="act-controls">
-      <label class="act-field" for="fr-n"><span class="act-label">${t("Nombre de cercles", "Number of circles")} <output id="fr-n-out">1</output></span><input id="fr-n" type="range" min="1" max="150" step="1" value="1"></label>
+      <label class="act-field" for="fr-n"><span class="act-label">${t("Nombre de cercles", "Number of circles")} <output id="fr-n-out">${count}</output></span><input id="fr-n" type="range" min="1" max="150" step="1" value="${count}"></label>
       <label class="act-check"><input id="fr-circles" type="checkbox" checked> ${t("Montrer les cercles", "Show the circles")}</label>
       <label class="act-check"><input id="fr-full" type="checkbox"> ${t("Montrer la forme à atteindre", "Show the target shape")}</label>
       <button class="btn btn-secondary" id="fr-build" type="button">${t("Reconstruire peu à peu", "Build up again")}</button>
@@ -40,9 +41,9 @@ function fourierLab(root, { t, reduced, lang }) {
     pts = r0.map((p) => [p[0] - mx, p[1] - my]); co = fourier(pts);   // centred: the constant term vanishes and every circle turns
     const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]), w = Math.max(...xs) - Math.min(...xs), h = Math.max(...ys) - Math.min(...ys);
     scale = Math.min((o.W - 120) / w, (o.H - 80) / h); centre = [(Math.max(...xs) + Math.min(...xs)) / 2, (Math.max(...ys) + Math.min(...ys)) / 2];
-    trail = []; clock = 0; auto = (shape !== "mine" || !!raw) && name !== "madagascar";
+    trail = []; clock = 0; auto = false;   // the build-up plays only when asked ("Build up again")
     // Madagascar opens on 24 circles (recognisable outline, still visibly approximate); "Build up again" restarts from 1
-    if (name !== "mine" || raw) { count = name === "madagascar" ? DEFAULT_MADAGASCAR : 1; slider.value = count; }
+    if (name !== "mine" || raw) { count = Math.min(name === "madagascar" ? DEFAULT_MADAGASCAR : DEFAULT_CIRCLES, co.length); slider.value = count; }
     update();
   };
   const toScreen = (x, y) => [o.W / 2 + (x - centre[0]) * scale, o.H / 2 - (y - centre[1]) * scale];
@@ -62,7 +63,7 @@ function fourierLab(root, { t, reduced, lang }) {
     if (!reduced() && !drawing) clock += dt;
     if (auto && !reduced() && co.length) {
       const rev = Math.floor(clock / REVOLUTION), next = Math.min(COUNT_SCHEDULE[Math.min(rev, COUNT_SCHEDULE.length - 1)], co.length);
-      if (rev > COUNT_SCHEDULE.length + 1) { clock = 0; trail = []; count = 1; update(); }
+      if (rev > COUNT_SCHEDULE.length + 1) { auto = false; }   // the build-up stops on its last, most detailed picture instead of starting over from one circle
       else if (next !== count) { count = next; update(); }
     }
     const phase = reduced() ? 0 : (clock / REVOLUTION) % 1;

@@ -17,7 +17,7 @@ export function equidecomposition(root,opts){
     t('Étape 7 · Q à l’envers : chaque parallélogramme devient le rectangle d’un triangle de Q','Step 7 · Q reversed: each parallelogram becomes the rectangle of a triangle of Q'),
     t('Étape 8 · Q à l’envers : les rectangles redeviennent des triangles, qui forment Q','Step 8 · Q reversed: the rectangles become triangles again, which make up Q')];
   const MESSAGES={
-    numbers:t('Écris les sommets sous la forme x,y séparés par des points-virgules, par exemple 0,0; 10,0; 10,6; 0,6 (point décimal : 2.5).','Type vertices as x,y pairs separated by semicolons, for example 0,0; 10,0; 10,6; 0,6 (decimal point: 2.5).'),
+    numbers:t('Écris les sommets par paires séparées par des points-virgules, par exemple 0,0; 10,0; 10,6; 0,6. Le point ou la virgule fait la décimale ; avec une virgule décimale, sépare x et y par une espace : 2,5 3,5; 10 6.','Type vertices as pairs separated by semicolons, for example 0,0; 10,0; 10,6; 0,6. A point or a comma is the decimal mark; with a decimal comma, separate x and y by a space: 2,5 3,5; 10 6.'),
     few:t('Il faut au moins trois sommets distincts.','At least three distinct vertices are needed.'),
     many:t(`Trop de sommets (au plus ${MAX_VERTICES}).`,`Too many vertices (at most ${MAX_VERTICES}).`),
     thin:t('Trop fin : la boîte englobante est plus de 40 fois plus longue que large, les morceaux seraient illisibles. Annule un sommet ou recommence.','Too thin: the bounding box is more than 40 times longer than wide, which would make the pieces unreadable. Undo or cancel.'),

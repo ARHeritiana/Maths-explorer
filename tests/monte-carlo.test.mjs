@@ -161,3 +161,11 @@ test('the run is time-based: 1 second gives the same number of trials at 60 Hz a
   root.querySelector('.mc-run').click(); assert.equal(api.getState().runs, 100, 'reduced motion: one batch per press'); tick(500); tick(1000); assert.equal(api.getState().runs, 100);
   api.destroy();
 });
+
+test('a hand-drawn stroke must come back near its start: an open C is refused, a closed loop accepted', async () => {
+  const M = await import('../site/js/lab/models/monte-carlo.js');
+  const arc = (from, to, n = 80) => Array.from({ length: n }, (_, i) => { const a = from + (to - from) * i / (n - 1); return [0.5 + 0.3 * Math.cos(a), 0.5 + 0.3 * Math.sin(a)]; });
+  assert.equal(M.polygonFromTrace(arc(0.4, 2 * Math.PI - 0.4)), null, 'an open C is not a lake');
+  assert.ok(M.polygonFromTrace(arc(0, 2 * Math.PI)), 'a closed loop is accepted');
+  assert.ok(M.polygonFromTrace(arc(0.05, 2 * Math.PI - 0.05)), 'a loop that stops just short of its start is closed');
+});

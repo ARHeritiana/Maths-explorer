@@ -103,10 +103,12 @@ export function selfIntersects(poly) {
   }
   return false;
 }
-// A hand-drawn trace (points of the unit square) becomes a polygon, or null when it is too short, too small or crosses itself.
+// A hand-drawn trace (points of the unit square) becomes a polygon, or null when it is too short, too small, open or crosses itself.
 export function polygonFromTrace(points) {
   if (!Array.isArray(points) || points.length < 12) return null;
   const clean = points.map(([x, y]) => [Math.min(1, Math.max(0, x)), Math.min(1, Math.max(0, y))]);
+  // an open stroke (a C, an arc) is not a lake: the end must come back near the start (within 0.12 of the map side)
+  if (Math.hypot(clean.at(-1)[0] - clean[0][0], clean.at(-1)[1] - clean[0][1]) > 0.12) return null;
   const step = Math.max(1, Math.floor(clean.length / 250));
   const poly = clean.filter((_, i) => i % step === 0);
   const deduped = poly.filter((p, i) => i === 0 || p[0] !== poly[i - 1][0] || p[1] !== poly[i - 1][1]);

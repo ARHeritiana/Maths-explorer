@@ -5101,7 +5101,7 @@ const lakeExp = common("monte-carlo-lake", "lake", {
   controls: {
     run,
     shape: { kind: "choice", presentation: "select", label: P("Forme du lac", "Lake shape"),
-      options: [["default", "Rivage initial", "Default shoreline"], ["disc", "Disque", "Disc"], ["square", "Carré", "Square"], ["ell", "En L", "L shape"], ["custom", "Dessiné à la main", "Drawn by hand"]].map(([value, fr, en]) => ({ value, label: P(fr, en) })),
+      options: [["default", "Rivage initial", "Default shoreline"], ["disc", "Disque", "Disc"], ["square", "Carré", "Square"], ["ell", "En L", "L shape"], ["custom", "Dessiné à la main", "Drawn by hand"]].map(([value, fr, en]) => ({ value, label: P(fr, en), ...(value === "custom" ? { disabled: (s) => !s.poly } : {}) })),
       key: "shape", set: (s, v) => (v === "custom" && !s.poly ? {} : { shape: v, runs: 0 }) },
   },
   monteCarlo: {
@@ -8114,10 +8114,12 @@ function selfIntersects(poly) {
   }
   return false;
 }
-// A hand-drawn trace (points of the unit square) becomes a polygon, or null when it is too short, too small or crosses itself.
+// A hand-drawn trace (points of the unit square) becomes a polygon, or null when it is too short, too small, open or crosses itself.
 function polygonFromTrace(points) {
   if (!Array.isArray(points) || points.length < 12) return null;
   const clean = points.map(([x, y]) => [Math.min(1, Math.max(0, x)), Math.min(1, Math.max(0, y))]);
+  // an open stroke (a C, an arc) is not a lake: the end must come back near the start (within 0.12 of the map side)
+  if (Math.hypot(clean.at(-1)[0] - clean[0][0], clean.at(-1)[1] - clean[0][1]) > 0.12) return null;
   const step = Math.max(1, Math.floor(clean.length / 250));
   const poly = clean.filter((_, i) => i % step === 0);
   const deduped = poly.filter((p, i) => i === 0 || p[0] !== poly[i - 1][0] || p[1] !== poly[i - 1][1]);
@@ -9647,6 +9649,7 @@ function createShell(host, exp, tpl, opts = {}) {
         select.addEventListener("change", () => {
           const option = c.options.find((o) => String(o.value) === select.value);
           if (option) userApply(c.set ? c.set(state, option.value) : { [c.key]: option.value });
+          select.value = String(c.get ? c.get(state) : state[c.key]);   // a refused choice leaves the list on the real state
         });
         wrap.append(label, select); controlsEl.append(wrap);
         controlNodes[id] = { wrap, select, c };
@@ -10033,6 +10036,7 @@ function createShell(host, exp, tpl, opts = {}) {
       if (n.select) {
         const value = c.get ? c.get(s) : s[c.key];
         if (n.select.value !== String(value)) n.select.value = String(value);
+        c.options.forEach((o, i) => { if (o.disabled) n.select.options[i].disabled = !!o.disabled(s); });   // an option may be unavailable in some states
       } else if (n.input) {
         const v = sliderValue(c, s);
         if (c.range) { const range = c.range(s); n.input.min = Math.min(range[0], v); n.input.max = Math.max(range[1], v); }
