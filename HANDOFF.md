@@ -1,5 +1,33 @@
 # Handoff
 
+## Local session on the owner's laptop (1 November 2026, afternoon): generators made classroom-ready, more slide canvases
+
+Owner request: advance the practical work for the French classes (Seconde, Première, Terminale, maths expertes, STMG): fully working
+automatismes, exercise and problem generators, and interactive slides wherever useful. Done on `main`:
+- **LaTeX exports compiled for the first time** (pdflatex here): every generator at every level, every problem, starters and sheets in
+  both versions. Fixed: the preamble now takes newpx (Palatino) when installed, else mathpazo (Fedora ships mathpazo.sty without its
+  fonts: every export failed there); `s-inequation` wrote `\leqslantx`; marks no longer break across lines; automatismes in two
+  columns (20 questions on one page). `tests/exercise-latex.test.mjs` (known LaTeX commands; compile when pdflatex exists).
+- **Projection stage**: leaving full screen (Escape, F11, the button) left the overlay over the page; fixed in `ui.js` for every
+  presenting target. `tests/generators_browser.py`: MathJax on all classes and sheet kinds, the stage, 390 px.
+- **Variety**: no generator below 10 distinct questions (were 10); ratchet 49 and 0 (were 52 and 10).
+- **Coverage**: new generators `s-two-way` (Seconde 11), `t-space-vectors`, `t-space-coplanar` (Terminale 02), `t-rv-sum`,
+  `t-concentration` (Terminale 12); every chapter of the five classes has generators except the synthesis ones (Seconde 05, 13, 15,
+  STMG 08, Première revision). Seven seeded problems, the first two for maths expertes (Markov chain, affine cipher).
+- **Slides**: 22 more laboratory canvases (list in `docs/SLIDES.md`); premiere-06 and seconde-01 had none. Built with
+  `MX_REUSE_FIGS=1` and `refresh --adopt` because TeX here cannot rebuild the figures (Palatino fonts missing): figures unchanged.
+
+Still to do (next sessions):
+1. Slides: Seconde 08 (algebra) and Seconde 11 (two-way tables) have no canvas; a two-way table widget would serve Seconde 11 and STMG 06.
+   Most decks still have one or two canvases among 15 to 49 slides; the Terminale decks were not touched.
+2. Owner review of the new generators and problems against the 2026 programmes (wording, levels) [VERIFY].
+3. Pre-existing: `tests/browser.py` fails on `#errors/square-of-sum` at 320 px with enlarged text (also on the unchanged
+   `origin/main`), and `run_browser.py` stops there; `make check` runs `build-lecture-slides.py --check`, which compares with
+   git-ignored build files and cannot pass on a fresh clone.
+4. Private repository `Maths-explorer-backup` not reached from this laptop (no GitHub access at the time): nothing was read from its
+   review queue.
+5. Bilingual goal for lessons: still on standby (owner rule), unfinished.
+
 ## Generators: automatismes, worksheets, exercise bank (1 November 2026, owner request)
 
 **Done (on `main`):** two new pages under Apprendre, `#automatismes` (fluency starters) and `#sheets` (worksheets, quizzes, supervised tests), on a seeded exercise bank (`site/js/exercises/`, index in `site/CLAUDE.md` section Generators). Any text is a seed and the same seed gives the same series; arrows step to the previous or next series, so the supply is unlimited in practice.
