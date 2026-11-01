@@ -1,5 +1,34 @@
 # Handoff
 
+## Design pass, exercise bank online, gallery references (1 November 2026, evening, owner request)
+
+Owner requests: fewer inner scroll boxes, no one-shot menus, use large screens, clickable topic previews, rework of
+`#resources`, slides by curriculum first, a real exercise bank (not PDF links), many more starters and worksheet materials.
+**Done (on `main`):**
+- `#resources`: rail of curricula and levels (FR, MG, other pathways, classroom tools) beside the chapter grid; search spans
+  every level; per-level quick links (worked exercises, slides, starters, worksheets); supplement PDFs as a compact list.
+- `#slides[/<course>]`: same rail, deck cards (Present, HTML, errors / PDF, LaTeX), deck counts only (slide counts dropped).
+- `#topics`: each preview links to its resource, hover lift and curve redraw (reduced motion respected).
+- Inner scroll boxes removed: generator form (no sticky max-height), chapter chips, pack chapter list (now in columns), tables.
+- `#bank[/<course>[/<chapter>]]` (Apprendre > Exercices, `site/js/bank-page.js`): worked exercises from `authored.js` and
+  `problems.js` with hints (`hint` on a part) and folded corrections, renewable seeded problems, quick practice from the
+  generators, level filter, show all, print with or without corrections. `site/js/exercises/bank-mada.js` is empty.
+**Still to do, in this order:**
+1. Bank content: every chapter of the five French classes needs at least six worked exercises (about 33 exist, many chapters
+   have none) and four generators (one or two today); T10 and T11 S: extract the exercises and solutions of
+   `content/tex/mada/` (about 550 exercises, 218 solutions) into `bank-mada.js`; same for STMG and maths expertes TeX.
+2. Starters and worksheets: more generators per chapter (feeds both pages and the bank's quick practice).
+3. Gallery redesign after the owner's references https://missionmaths.fr/animations/mandelbrot.html and
+   https://missionmaths.fr/decouvertes.html (ideas only, never their code or assets): stage first and large, with title,
+   hints and zoom buttons over the canvas; a side panel with tabs (Explore, Understand, Challenges) instead of long text
+   below; destination thumbnails (Mandelbrot: named places); a readout strip under the stage and a colour legend; linked
+   secondary views (Julia set, orbit step by step with play and step); a guided tour that stops when the visitor acts;
+   figurative scenes where they help (Monty Hall: real doors, goats and a car; play mode and a simulate mode with
+   cumulative frequencies converging to 1/3 and 2/3); live charts beside simulations (Game of Life: population over time,
+   births and deaths); headline stat chips in the stage header. Pilot on Mandelbrot, then a shared exhibit layout.
+   Also: about 14 gallery cards have blank previews (Bayes, Benford, birthdays, doors, pendulums, Möbius...): give each a
+   drawing in `home-art.js`.
+
 ## Local session on the owner's laptop (1 November 2026, afternoon): generators made classroom-ready, more slide canvases
 
 Owner request: advance the practical work for the French classes (Seconde, Première, Terminale, maths expertes, STMG): fully working
