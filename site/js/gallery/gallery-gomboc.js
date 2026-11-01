@@ -1,10 +1,13 @@
-// The Gömböc of Várkonyi and Domokos (2006): a smooth, homogeneous, convex body with one stable and one unstable equilibrium.
+// Two smooth, homogeneous, convex bodies with one stable and one unstable equilibrium: the body of Várkonyi and Domokos (2006),
+// a sphere to within 0.002 %, and a visibly shaped body found by optimisation (gomboc-support.js).
 // Exact radial law and mass properties: gomboc-body.js. Rolling dynamics without slipping: gomboc-rolling.js. Drawing: gomboc-gl.js.
 import { exhibit, button, field, palette, path, dot as drawDot } from './gallery-kit.js';
 import { CAM3_DEFAULT, cam3Project, cam3TurnFree } from '../camera3d.js';
 import * as B from '../gomboc-body.js';
 import * as P from '../gomboc-rolling.js';
 import { createGombocGL } from '../gomboc-gl.js';
+import { makeSupportBody } from '../gomboc-support.js';
+import { VISIBLE_TERMS, VISIBLE_META } from '../gomboc-support-data.js';
 
 const CENTRE = [320, 215], SCALE = 150, MAP_W = 168, MAP_H = 84;
 const PRESETS = { tilt: { colatitude: 1, azimuth: 0.4 }, near: { colatitude: 0.15, azimuth: 1.2 }, nearUnstable: { colatitude: Math.PI - 0.02, azimuth: 0.7 }, stable: { colatitude: 0 }, unstable: { colatitude: Math.PI } };
@@ -12,53 +15,60 @@ const PRESETS = { tilt: { colatitude: 1, azimuth: 0.4 }, near: { colatitude: 0.1
 export function gomboc(root, opts) {
   const { t, lang } = opts, reduced = typeof opts.reduced === 'function' ? opts.reduced : () => !!opts.reduced;
   const num = (v, d = 3) => Number(v).toLocaleString(lang, { maximumFractionDigits: d });
-  let alive = true, glr = null, mesh = null, s = null, playing = false, dirty = true, drag = null, accumulator = 0, check = null, baseline = 0, keyboardBody = false, trail = [], mapTrail = [], mapImage = null;
+  const visible = makeSupportBody(VISIBLE_TERMS), vr = visible.range(), MODELS = { visible, paper: B.PAPER };
+  const SETTINGS = { visible: { speed: 1, rolling: 0.03, dt: '0.01' }, paper: { speed: 100, rolling: 0.0007, dt: '0.05' } };
+  let model = visible, alive = true, glr = null, mesh = null, s = null, playing = false, dirty = true, drag = null, accumulator = 0, check = null, baseline = 0, keyboardBody = false, trail = [], mapTrail = [], mapImage = null;
   const cam = { ...CAM3_DEFAULT };
   const o = exhibit(root, { ...opts, reduced }, t(
     'Glisse pour tourner la vue : le corps se regarde sous tous les angles, de dessus comme de dessous. Choisis « Incliner » ou « Pousser » pour agir sur le corps. Au clavier : flèches pour tourner la vue ; H sélectionne le corps (les flèches l’inclinent), Échap le relâche ; P pousse ; Espace lance la lecture ; 0 recentre le zoom.',
     'Drag to turn the view: the body can be seen from every angle, above and below. Choose "Tip" or "Push" to act on the body. Keyboard: arrows turn the view; H selects the body (arrows tip it), Escape releases it; P pushes; Space toggles playback; 0 resets the zoom.'),
+    `<label class="act-field"><span class="act-label">${t('Corps', 'Body')}</span><select id="go-body"><option value="visible">${t('Corps visible (optimisé)', 'Visibly shaped body (optimised)')}</option><option value="paper">${t('Corps de l’article de 2006 (sphère à 0,002 % près)', 'Body of the 2006 paper (a sphere to 0.002 %)')}</option></select></label>` +
     `<label class="act-field"><span class="act-label">${t('Geste', 'Gesture')}</span><select id="go-mode"><option value="orbit">${t('Tourner la vue', 'Turn the view')}</option><option value="tip">${t('Incliner le corps', 'Tip the body')}</option><option value="push">${t('Pousser le corps', 'Push the body')}</option></select></label>` +
     `<label class="act-field"><span class="act-label">${t('Départ', 'Start')}</span><select id="go-preset"><option value="tilt">${t('Incliné de 1 rad', 'Tipped by 1 rad')}</option><option value="near">${t('Presque sur le pôle stable', 'Almost on the stable pole')}</option><option value="nearUnstable">${t('Presque sur le pôle instable', 'Almost on the unstable pole')}</option><option value="stable">${t('Pôle stable, exactement', 'Stable pole, exactly')}</option><option value="unstable">${t('Pôle instable, exactement', 'Unstable pole, exactly')}</option></select></label>` +
     button('go-play', t('Lecture', 'Play'), true) + button('go-step', t('Un pas', 'One step')) + button('go-reset', t('Recommencer', 'Restart')) + button('go-view', t('Vue initiale', 'Reset view')) +
     field('go-relief', t('Relief exagéré ×', 'Relief exaggeration ×'), 1, 3000, 1, 1500) +
+    field('go-mu', t('Frottement du sol μ (pour l’avertissement)', 'Floor friction μ (for the warning)'), 0.05, 1, 0.05, 0.5) +
     field('go-speed', t('Vitesse de lecture ×', 'Playback speed ×'), 1, 500, 1, 100) +
     `<label><input id="go-follow" type="checkbox" checked> ${t('Suivre le corps', 'Follow the body')}</label>` +
     `<details><summary>${t('Contact et précision', 'Contact and precision')}</summary>` +
     field('go-rolling', t('Résistance au roulement κ (0 : aucune perte)', 'Rolling resistance κ (0: no loss)'), 0, 0.005, 0.0001, 0.0007) +
-    `<label class="act-field"><span class="act-label">${t('Pas de calcul', 'Time step')}</span><select id="go-dt"><option value="0.1">0,1 s</option><option value="0.05" selected>0,05 s</option><option value="0.02">0,02 s</option></select></label>` +
+    `<label class="act-field"><span class="act-label">${t('Pas de calcul', 'Time step')}</span><select id="go-dt"><option value="0.1">0,1 s</option><option value="0.05">0,05 s</option><option value="0.02">0,02 s</option><option value="0.01">0,01 s</option><option value="0.005">0,005 s</option></select></label>` +
     button('go-check', t('Comparer avec un pas deux fois plus petit', 'Compare with half the time step')) + `</details>`,
-    `<p>${t('Le corps est celui de Várkonyi et Domokos (2006) : en coordonnées sphériques, R(θ,φ) = 1 + d·ΔR(θ,φ), avec ΔR construit à partir de f(φ) = π[(e^{φ/(cπ)+1/(2c)} − 1)/(e^{1/c} − 1) − ½]. Le paramètre c est fixé pour que le centre de gravité du corps homogène soit l’origine (c ≈ 0,27824) et d = 2·10⁻⁵ garantit la convexité (borne des auteurs : environ 5·10⁻⁵). Le corps est donc une sphère à 0,002 % près : ce n’est pas un défaut du dessin, c’est la mathématique. Le curseur « Relief exagéré » ne change que l’image, et au-delà de ×1 le corps dessiné n’est ni convexe ni un Gömböc.', 'The body is the one of Várkonyi and Domokos (2006): in spherical coordinates R(θ,φ) = 1 + d·ΔR(θ,φ), with ΔR built from f(φ) = π[(e^{φ/(cπ)+1/(2c)} − 1)/(e^{1/c} − 1) − ½]. The parameter c is fixed so that the centre of gravity of the homogeneous body is the origin (c ≈ 0.27824) and d = 2·10⁻⁵ ensures convexity (the authors\' bound is about 5·10⁻⁵). The body is therefore a sphere to within 0.002 %: this is not a flaw of the drawing, it is the mathematics. The "Relief exaggeration" slider changes the picture only, and beyond ×1 the drawn body is neither convex nor a Gömböc.')}</p>` +
-    `<p>${t('Les couleurs montrent ΔR : bleu où R < 1 (partie mince), orange où R > 1 (partie épaisse). La courbe sombre ΔR = 0 les sépare. Le pôle sud S (φ = −π/2, ΔR = −1) est le seul minimum, donc l’équilibre stable ; le pôle nord N (ΔR = +1) est le seul maximum, donc l’équilibre instable. Le quadrillage tourne avec le corps et rend le roulement visible. La carte en bas à droite est le corps déroulé (longitude, latitude) : le point est le contact actuel.', 'The colours show ΔR: blue where R < 1 (thin part), orange where R > 1 (thick part). The dark curve ΔR = 0 separates them. The south pole S (φ = −π/2, ΔR = −1) is the only minimum, so the stable equilibrium; the north pole N (ΔR = +1) is the only maximum, so the unstable equilibrium. The grid turns with the body and makes the rolling visible. The map at the bottom right is the body unrolled (longitude, latitude): the dot is the current contact.')}</p>` +
-    `<p>${t('Physique. Le contact est exact (la surface est lisse, aucune approximation polyédrique) : le point de contact est celui dont la normale est verticale, et la hauteur du centre de gravité est la fonction d’appui H(ν) du corps. Le corps roule sans glisser. Les équations de Newton et d’Euler donnent ω′ par un système linéaire 3×3 ; l’énergie ½|v|² + ½ωᵀIω + gH est conservée quand κ = 0 (le programme la compare à l’énergie de départ). La résistance au roulement est un couple −κNω pendant le contact (N force normale) : elle ne fait que retirer de l’énergie. Les rayons de courbure valent 1 à 10⁻⁴ près : le corps se redresse très lentement (périodes de plusieurs minutes, d’où la vitesse de lecture), et le frottement nécessaire pour ne pas glisser est de l’ordre de 10⁻⁴ (affiché). Sans pertes, il oscille indéfiniment autour du pôle stable ; avec pertes, il s’y arrête.', 'Physics. The contact is exact (the surface is smooth, there is no polyhedral approximation): the contact point is the one whose normal is vertical, and the height of the centre of gravity is the support function H(ν) of the body. The body rolls without slipping. Newton\'s and Euler\'s equations give ω′ through a 3×3 linear system; the energy ½|v|² + ½ωᵀIω + gH is conserved when κ = 0 (the program compares it with the starting energy). Rolling resistance is a couple −κNω during contact (N the normal force): it only removes energy. The radii of curvature equal 1 to within 10⁻⁴: the body rights itself very slowly (periods of several minutes, hence the playback speed), and the friction needed to avoid slipping is of the order of 10⁻⁴ (displayed). Without losses it oscillates for ever about the stable pole; with losses it comes to rest there.')}</p>` +
+    `<p>${t('Corps visible (calculé pour cette page). Un corps convexe est décrit par sa fonction d’appui h(ν), la hauteur du centre de gravité au-dessus d’un plan posé contre le corps de normale ν ; ses équilibres sont les points critiques de h, et il est convexe exactement quand les rayons de courbure (valeurs propres de Hess h + h) sont positifs. Ici h est un polynôme de degré ' + VISIBLE_META.degree + ' en x² et z, à deux plans de symétrie, dont les coefficients ont été trouvés par programmation linéaire séquentielle : maximiser h(N) − h(S) sous les conditions (échantillonnées sur une grille) rayons de courbure ≥ ' + num(VISIBLE_META.convexityMargin, 2) + ', h décroissante de la ligne θ = 0 à la ligne θ = π/2 et croissante de S à N sur les deux lignes de symétrie, centre de gravité en O. Ces conditions n’autorisent que deux points critiques, les pôles S (minimum, stable) et N (maximum, instable). Résultat : h varie de ' + num(vr.lo, 3) + ' à ' + num(vr.hi, 3) + ' (rapport ' + num(vr.hi / vr.lo, 2) + '), un corps nettement non sphérique. Les conditions étant imposées sur une grille, la vérification du programme de test (grille plus fine, calcul indépendant) est numérique, pas une démonstration. Ce corps n’est ni celui de l’article ni la copie d’un autre corps : il a été calculé ici.', 'Visibly shaped body (computed for this page). A convex body is described by its support function h(ν), the height of the centre of gravity above a plane resting against the body with normal ν; its equilibria are the critical points of h, and it is convex exactly when the radii of curvature (eigenvalues of Hess h + h) are positive. Here h is a polynomial of degree ' + VISIBLE_META.degree + ' in x² and z, with two mirror planes, whose coefficients were found by sequential linear programming: maximise h(N) − h(S) under the conditions (sampled on a grid) radii of curvature ≥ ' + num(VISIBLE_META.convexityMargin, 2) + ', h decreasing from the line θ = 0 to the line θ = π/2 and increasing from S to N on both symmetry lines, centre of gravity at O. These conditions allow only two critical points, the poles S (minimum, stable) and N (maximum, unstable). Result: h runs from ' + num(vr.lo, 3) + ' to ' + num(vr.hi, 3) + ' (ratio ' + num(vr.hi / vr.lo, 2) + '), a clearly non-spherical body. The conditions being imposed on a grid, the test program\'s check (finer grid, independent computation) is numerical, not a proof. This body is neither the one of the paper nor a copy of another body: it was computed here.')}</p>` +
+    `<p>${t('Corps de l’article. Il est celui de Várkonyi et Domokos (2006) : en coordonnées sphériques, R(θ,φ) = 1 + d·ΔR(θ,φ), avec ΔR construit à partir de f(φ) = π[(e^{φ/(cπ)+1/(2c)} − 1)/(e^{1/c} − 1) − ½]. Le paramètre c est fixé pour que le centre de gravité du corps homogène soit l’origine (c ≈ 0,27824) et d = 2·10⁻⁵ garantit la convexité (borne des auteurs : environ 5·10⁻⁵). Ce corps est donc une sphère à 0,002 % près : ce n’est pas un défaut du dessin, c’est la mathématique. Le curseur « Relief exagéré » ne change que l’image, et au-delà de ×1 le corps dessiné n’est ni convexe ni un Gömböc. Les couleurs montrent ΔR : bleu où R < 1, orange où R > 1 ; la courbe sombre ΔR = 0 les sépare.', 'Body of the paper. It is the one of Várkonyi and Domokos (2006): in spherical coordinates R(θ,φ) = 1 + d·ΔR(θ,φ), with ΔR built from f(φ) = π[(e^{φ/(cπ)+1/(2c)} − 1)/(e^{1/c} − 1) − ½]. The parameter c is fixed so that the centre of gravity of the homogeneous body is the origin (c ≈ 0.27824) and d = 2·10⁻⁵ ensures convexity (the authors\' bound is about 5·10⁻⁵). This body is therefore a sphere to within 0.002 %: this is not a flaw of the drawing, it is the mathematics. The "Relief exaggeration" slider changes the picture only, and beyond ×1 the drawn body is neither convex nor a Gömböc. The colours show ΔR: blue where R < 1, orange where R > 1; the dark curve ΔR = 0 separates them.')}</p>` +
+    `<p>${t('Sur les deux corps, le pôle sud S est l’équilibre stable et le pôle nord N l’équilibre instable. Le quadrillage tourne avec le corps et rend le roulement visible ; la carte en bas à droite est le corps déroulé (longitude, latitude) et son point est le contact actuel. Pour le corps visible, la couleur est la hauteur h (bleu : basse, orange : haute).', 'On both bodies the south pole S is the stable equilibrium and the north pole N the unstable one. The grid turns with the body and makes the rolling visible; the map at the bottom right is the body unrolled (longitude, latitude) and its dot is the current contact. For the visibly shaped body, the colour is the height h (blue: low, orange: high).')}</p>` +
+    `<p>${t('Physique. Le contact est exact (la surface est lisse, aucune approximation polyédrique) : le point de contact est celui dont la normale est verticale, et la hauteur du centre de gravité est la fonction d’appui H(ν) du corps. Le corps roule sans glisser. Les équations de Newton et d’Euler donnent ω′ par un système linéaire 3×3 ; l’énergie ½|v|² + ½ωᵀIω + gH est conservée quand κ = 0 (le programme la compare à l’énergie de départ). La résistance au roulement est un couple −κNω pendant le contact (N force normale) : elle ne fait que retirer de l’énergie. Pour le corps de l’article, les rayons de courbure valent 1 à 10⁻⁴ près : il se redresse très lentement (périodes de plusieurs minutes, d’où la vitesse de lecture ×100) et le frottement nécessaire est de l’ordre de 10⁻⁴. Le corps visible oscille en quelques secondes et demande un frottement d’environ 0,3 (affiché) ; si le frottement du sol est plus faible, il glisserait et le modèle ne s’applique plus (avertissement dans la ligne d’état). Sans pertes, il oscille indéfiniment autour du pôle stable ; avec pertes, il s’y arrête.', 'Physics. The contact is exact (the surface is smooth, there is no polyhedral approximation): the contact point is the one whose normal is vertical, and the height of the centre of gravity is the support function H(ν) of the body. The body rolls without slipping. Newton\'s and Euler\'s equations give ω′ through a 3×3 linear system; the energy ½|v|² + ½ωᵀIω + gH is conserved when κ = 0 (the program compares it with the starting energy). Rolling resistance is a couple −κNω during contact (N the normal force): it only removes energy. For the body of the paper the radii of curvature equal 1 to within 10⁻⁴: it rights itself very slowly (periods of several minutes, hence the playback speed ×100) and the friction needed is of the order of 10⁻⁴. The visibly shaped body oscillates within a few seconds and needs a friction of about 0.3 (displayed); if the floor\'s friction is lower it would slip and the model no longer applies (a warning appears in the status line). Without losses it oscillates for ever about the stable pole; with losses it comes to rest there.')}</p>` +
     `<p>${t('Sources : Várkonyi et Domokos, J. Nonlinear Sci. 16 (2006) 255-281, section 3, équations (1) à (8). La seconde forme de l’équation (7) imprimée dans l’article (cos²f(φ)/cos²f(−φ)) est l’inverse de la première ; seule la première est cohérente avec la limite (22), les figures 6 et 9 et la valeur c ≈ 0,275 des auteurs, et c’est elle qui est utilisée.', 'Sources: Várkonyi and Domokos, J. Nonlinear Sci. 16 (2006) 255-281, section 3, equations (1) to (8). The second form of equation (7) as printed (cos²f(φ)/cos²f(−φ)) is the inverse of the first; only the first agrees with the limit (22), figures 6 and 9 and the authors\' value c ≈ 0.275, and it is the one used.')}</p>`);
-  const play = root.querySelector('#go-play'), inputs = Object.fromEntries(['mode', 'preset', 'speed', 'relief', 'rolling', 'dt', 'follow'].map((k) => [k, root.querySelector('#go-' + k)]));
+  const play = root.querySelector('#go-play'), inputs = Object.fromEntries(['body', 'mode', 'preset', 'mu', 'speed', 'relief', 'rolling', 'dt', 'follow'].map((k) => [k, root.querySelector('#go-' + k)]));
+  const derivedOf = (st) => P.derived(st, model), diag = (st, k) => P.diagnostics(st, k, model), sim = (st, sec, k, dt) => P.simulate(st, sec, k, dt, model), adv = (st, h, k) => P.advance(st, h, k, model);
   const abort = new AbortController(), kappa = () => +inputs.rolling.value, relief = () => +inputs.relief.value, stepSize = () => +inputs.dt.value;
-  function reset() { s = P.start(PRESETS[inputs.preset.value]); baseline = P.diagnostics(s, kappa()).energy; check = null; playing = false; trail = []; mapTrail = []; remember(); dirty = true; accumulator = 0; updatePlay(); }
+  function reset() { s = P.start(PRESETS[inputs.preset.value]); baseline = diag(s, kappa()).energy; check = null; playing = false; trail = []; mapTrail = []; remember(); dirty = true; accumulator = 0; updatePlay(); }
   function remember() {
-    const d = P.derived(s), last = trail[trail.length - 1];
+    const d = derivedOf(s), last = trail[trail.length - 1];
     if (!last || Math.hypot(last[0] - s.c[0], last[1] - s.c[1]) > 0.004) { trail.push([s.c[0], s.c[1]]); if (trail.length > 900) trail.shift(); }
     const w = d.hit.w, m = mapTrail[mapTrail.length - 1];
     if (!m || Math.hypot(m[0] - w[0], m[1] - w[1], m[2] - w[2]) > 0.004) { mapTrail.push(w); if (mapTrail.length > 600) mapTrail.shift(); }
   }
   function updatePlay() { play.textContent = playing ? t('Pause', 'Pause') : t('Lecture', 'Play'); play.setAttribute('aria-pressed', String(playing)); }
-  function run() { if (reduced()) { playing = false; tick(5); } else playing = !playing; dirty = true; updatePlay(); }
-  function tick(seconds) { s = P.simulate(s, seconds, kappa(), stepSize()); remember(); dirty = true; }
-  o.on(play, 'click', run); o.on(root.querySelector('#go-step'), 'click', () => tick(10));
+  function run() { if (reduced()) { playing = false; tick(model.radial ? 5 : 0.5); } else playing = !playing; dirty = true; updatePlay(); }
+  function tick(seconds) { s = sim(s, seconds, kappa(), stepSize()); remember(); dirty = true; }
+  o.on(play, 'click', run); o.on(root.querySelector('#go-step'), 'click', () => tick(model.radial ? 10 : 1));
   o.on(root.querySelector('#go-reset'), 'click', reset); o.on(inputs.preset, 'change', reset);
   o.on(root.querySelector('#go-view'), 'click', () => { Object.assign(cam, CAM3_DEFAULT); o.navigation?.camera?.reset?.(); dirty = true; });
-  for (const k of ['speed', 'relief', 'rolling']) { const el = inputs[k], out = root.querySelector('#go-' + k + '-out'); out.textContent = num(el.value, k === 'rolling' ? 4 : 0); o.on(el, 'input', () => { out.textContent = num(el.value, k === 'rolling' ? 4 : 0); check = null; dirty = true; }); }
+  const digits = (k) => (k === 'rolling' ? 4 : k === 'mu' ? 2 : 0);
+  for (const k of ['speed', 'relief', 'rolling', 'mu']) { const el = inputs[k], out = root.querySelector('#go-' + k + '-out'); out.textContent = num(el.value, digits(k)); o.on(el, 'input', () => { out.textContent = num(el.value, digits(k)); check = null; dirty = true; }); }
   o.on(inputs.dt, 'change', () => { check = null; dirty = true; }); o.on(inputs.follow, 'change', () => { dirty = true; });
   o.on(root.querySelector('#go-check'), 'click', () => {
     playing = false; updatePlay();
-    const a = P.simulate(s, 60, kappa(), stepSize()), b = P.simulate(s, 60, kappa(), stepSize() / 2), da = P.derived(a), db = P.derived(b);
+    const a = sim(s, 60, kappa(), stepSize()), b = sim(s, 60, kappa(), stepSize() / 2), da = derivedOf(a), db = derivedOf(b);
     check = { position: Math.hypot(da.p[0] - db.p[0], da.p[1] - db.p[1], da.p[2] - db.p[2]), angle: Math.acos(Math.max(-1, Math.min(1, da.hit.w[0] * db.hit.w[0] + da.hit.w[1] * db.hit.w[1] + da.hit.w[2] * db.hit.w[2]))) }; dirty = true;
   });
   const project = (p) => { const q = cam3Project(cam.yaw, cam.pitch, ...p); return [CENTRE[0] + q.u * SCALE, CENTRE[1] - q.v * SCALE, q.d]; };
   const worldScreen = (dx, dy) => { const cy = Math.cos(cam.yaw), sy = Math.sin(cam.yaw); return [cy * dx + sy * dy, -sy * dx + cy * dy]; };
-  function offsetNow() { if (!inputs.follow.checked || !s) return [0, 0]; const p = P.derived(s).p, a = project([p[0], p[1], 0]), base = project([0, 0, 0]); return [base[0] - a[0], base[1] - a[1]]; }
-  function tipBody(dx, dy) { const w = worldScreen(dx, -dy); s = P.tilt(s, -w[1] * 0.004, w[0] * 0.004); baseline = P.diagnostics(s, kappa()).energy; check = null; dirty = true; }
-  function pushBody(dx, dy) { const w = worldScreen(dx, -dy); s = P.spin(s, [-w[1] * 0.0004, w[0] * 0.0004, 0]); baseline = P.diagnostics(s, kappa()).energy; dirty = true; }
-  const insideBody = (p) => { const off = offsetNow(), dp = P.derived(s).p, c = project(dp); return Math.hypot(p[0] - c[0] - off[0], p[1] - c[1] - off[1]) < SCALE * 1.12; };
+  function offsetNow() { if (!inputs.follow.checked || !s) return [0, 0]; const p = derivedOf(s).p, a = project([p[0], p[1], 0]), base = project([0, 0, 0]); return [base[0] - a[0], base[1] - a[1]]; }
+  function tipBody(dx, dy) { const w = worldScreen(dx, -dy); s = P.tilt(s, -w[1] * 0.004, w[0] * 0.004); baseline = diag(s, kappa()).energy; check = null; dirty = true; }
+  function pushBody(dx, dy) { const w = worldScreen(dx, -dy), gain = model.radial ? 0.0004 : 0.01; s = P.spin(s, [-w[1] * gain, w[0] * gain, 0]); baseline = diag(s, kappa()).energy; dirty = true; }
+  const insideBody = (p) => { const off = offsetNow(), dp = derivedOf(s).p, c = project(dp); return Math.hypot(p[0] - c[0] - off[0], p[1] - c[1] - off[1]) < SCALE * 1.12; };
   o.touchHit((p) => !!s && insideBody(p));
   o.on(o.cv, 'pointerdown', (e) => { if (!s) return; const p = o.point(e), mode = inputs.mode.value; drag = { p, last: p, mode: mode !== 'orbit' && insideBody(p) ? mode : 'orbit' }; playing = false; updatePlay(); o.cv.setPointerCapture?.(e.pointerId); e.preventDefault(); });
   o.on(o.cv, 'pointermove', (e) => {
@@ -85,7 +95,7 @@ export function gomboc(root, opts) {
   const ramp = (v) => { const x = Math.max(-1, Math.min(1, v)), a = x < 0 ? [36, 97, 179] : [219, 92, 36], m = [230, 224, 209], k = Math.abs(x); return [0, 1, 2].map((i) => Math.round(m[i] + (a[i] - m[i]) * k)); };
   function buildMap() {
     const cv = document.createElement('canvas'); cv.width = MAP_W; cv.height = MAP_H; const g = cv.getContext('2d'), img = g.createImageData(MAP_W, MAP_H);
-    for (let y = 0; y < MAP_H; y++) for (let x = 0; x < MAP_W; x++) { const th = ((x + 0.5) / MAP_W) * 2 * Math.PI - Math.PI, ph = Math.PI / 2 - ((y + 0.5) / MAP_H) * Math.PI, c = ramp(B.deltaR(th, ph).v), i = 4 * (y * MAP_W + x); img.data[i] = c[0]; img.data[i + 1] = c[1]; img.data[i + 2] = c[2]; img.data[i + 3] = 255; }
+    for (let y = 0; y < MAP_H; y++) for (let x = 0; x < MAP_W; x++) { const th = ((x + 0.5) / MAP_W) * 2 * Math.PI - Math.PI, ph = Math.PI / 2 - ((y + 0.5) / MAP_H) * Math.PI, c = ramp(model.tint(B.direction(th, ph))), i = 4 * (y * MAP_W + x); img.data[i] = c[0]; img.data[i + 1] = c[1]; img.data[i + 2] = c[2]; img.data[i + 3] = 255; }
     g.putImageData(img, 0, 0); return cv;
   }
   function drawMap(g, C, hitW) {
@@ -115,7 +125,7 @@ export function gomboc(root, opts) {
   function draw() {
     const C = palette(), g = o.g; g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
     if (!s) return;
-    const d = P.derived(s), R = P.rotation(s.q), k = relief() * B.D;
+    const d = derivedOf(s), R = P.rotation(s.q), k = model.radial ? relief() * B.D : 0;
     curOffset = offsetNow(); const off = curOffset, below = cam.pitch < 0.03;
     const Pj = (p) => { const q = project(p); return [q[0] + off[0], q[1] + off[1], q[2]]; };
     if (!below) drawFloor(g, C, d.p, false);
@@ -134,34 +144,41 @@ export function gomboc(root, opts) {
     if (!glr) fallback(g, C, R, d, k, Pj, toViewer);
     if (below) drawFloor(g, C, d.p, true);
     // the two equilibria
-    const place = (w) => { const r = B.surface(w, relief()), v = P.rotationApply(R, r); return [v[0] + d.p[0], v[1] + d.p[1], v[2] + d.p[2]]; };
+    const place = (w) => { const r = model.surface(w, relief()), v = P.rotationApply(R, r); return [v[0] + d.p[0], v[1] + d.p[1], v[2] + d.p[2]]; };
     const facing = (w) => { const v = P.rotationApply(R, w); return v[0] * toViewer[0] + v[1] * toViewer[1] + v[2] * toViewer[2] > 0.05; };
     const south = [0, 0, -1], north = [0, 0, 1];
     if (facing(south)) drawDot(g, Pj(place(south)), C.pos, 6, t('S : stable', 'S: stable')); if (facing(north)) drawDot(g, Pj(place(north)), C.obj2, 6, t('N : instable', 'N: unstable'));
     const cc = Pj([s.c[0], s.c[1], 0]); drawDot(g, cc, C.neg, 4);
     drawMap(g, C, d.hit.w);
     // readout
-    const dg = P.diagnostics(s, kappa()), e0 = (dg.energy - baseline) / (P.GRAVITY * B.D);
-    let text = `${t('Temps', 'Time')} ${num(s.t, 0)} s · ${t('contact à', 'contact at')} ${num(dg.angleStable * 180 / Math.PI, 1)}° ${t('du pôle stable', 'from the stable pole')} · ${t('hauteur de G', 'height of G')} = 1 ${dg.heightOverD < 0 ? '−' : '+'} ${num(Math.abs(dg.heightOverD), 2)} d · ${t('E − E₀', 'E − E₀')} ≈ ${num(e0, 4)} g·d · ${t('frottement nécessaire', 'friction needed')} μ ≥ ${num(dg.slip, 6)}`;
-    text += relief() > 1 ? ` · ${t('Dessin avec relief ×' + num(relief(), 0) + ' : le corps réel est une sphère à 0,002 % près', 'Drawing with relief ×' + num(relief(), 0) + ': the real body is a sphere to within 0.002 %')}` : ` · ${t('Corps réel, à l’échelle', 'Real body, to scale')}`;
+    const dg = diag(s, kappa()), e0 = (dg.energy - baseline) / (P.GRAVITY * model.heightUnit.scale);
+    const hu = model.heightUnit, H = hu.offset + dg.heightOverD * hu.scale;
+    let text = `${t('Temps', 'Time')} ${num(s.t, model.radial ? 0 : 1)} s · ${t('contact à', 'contact at')} ${num(dg.angleStable * 180 / Math.PI, 1)}° ${t('du pôle stable', 'from the stable pole')} · ${model.radial ? `${t('hauteur de G', 'height of G')} = 1 ${dg.heightOverD < 0 ? '−' : '+'} ${num(Math.abs(dg.heightOverD), 2)} d` : `${t('hauteur de G au-dessus du sol', 'height of G above the floor')} h = ${num(H, 4)} (${t('entre', 'between')} ${num(vr.lo, 3)} ${t('et', 'and')} ${num(vr.hi, 3)})`} · ${t('E − E₀', 'E − E₀')} ≈ ${num(e0, 4)} ${model.radial ? 'g·d' : t('g·demi-écart', 'g·half-range')} · ${t('frottement nécessaire', 'friction needed')} μ ≥ ${num(dg.slip, 4)}`;
+    if (model.radial) text += relief() > 1 ? ` · ${t('Dessin avec relief ×' + num(relief(), 0) + ' : le corps réel est une sphère à 0,002 % près', 'Drawing with relief ×' + num(relief(), 0) + ': the real body is a sphere to within 0.002 %')}` : ` · ${t('Corps réel, à l’échelle', 'Real body, to scale')}`;
+    else text += ` · ${t('Corps à l’échelle', 'Body to scale')}`;
+    if (dg.slip > +inputs.mu.value) text += ` · ${t('ATTENTION : le frottement nécessaire dépasse celui du sol, le corps glisserait : le modèle de roulement sans glissement ne s’applique plus ici', 'WARNING: the friction needed exceeds the floor\'s, the body would slip: the no-slip rolling model no longer applies here')}`;
     if (check) text += ` · ${t('Écart après 60 s avec Δt/2 : position', 'Difference after 60 s with Δt/2: position')} ≈ ${num(check.position, 9)}, ${t('direction du contact', 'contact direction')} ≈ ${num(check.angle, 9)} rad`;
     if (keyboardBody) text += ` · ${t('Corps sélectionné : les flèches l’inclinent.', 'Body selected: arrows tip it.')}`;
-    if (reduced()) text += ` · ${t('Mouvement réduit : avance avec Un pas (10 s).', 'Reduced motion: use One step (10 s).')}`;
+    if (reduced()) text += ` · ${t('Mouvement réduit : avance avec Un pas.', 'Reduced motion: use One step.')}`;
     o.read(text);
   }
   // CPU drawing when WebGL2 is not available: the same radial law on a coarse mesh, shaded with the exact normal
   function fallback(g, C, R, d, k, Pj, toViewer) {
-    mesh ||= B.buildMesh(72, 36); const m = mesh, pts = new Array(m.vertices), nrm = new Array(m.vertices);
+    mesh ||= model.radial ? B.buildMesh(72, 36) : visible.buildMesh(72, 36); const m = mesh, pts = new Array(m.vertices), nrm = new Array(m.vertices), delta = m.explicit ? m.tint : m.delta;
     for (let i = 0; i < m.vertices; i++) {
-      const w = [m.dir[3 * i], m.dir[3 * i + 1], m.dir[3 * i + 2]], rho = 1 + k * m.delta[i], q = P.rotationApply(R, w.map((x) => x * rho)), gr = [m.grad[3 * i], m.grad[3 * i + 1], m.grad[3 * i + 2]];
-      const nb = [w[0] - (k * gr[0]) / rho, w[1] - (k * gr[1]) / rho, w[2] - (k * gr[2]) / rho], nn = P.rotationApply(R, nb), l = Math.hypot(...nn) || 1;
-      pts[i] = Pj([q[0] + d.p[0], q[1] + d.p[1], q[2] + d.p[2]]); nrm[i] = nn.map((x) => x / l);
+      let q, nn;
+      if (m.explicit) { q = P.rotationApply(R, [m.pos[3 * i], m.pos[3 * i + 1], m.pos[3 * i + 2]]); nn = P.rotationApply(R, [m.normals[3 * i], m.normals[3 * i + 1], m.normals[3 * i + 2]]); }
+      else {
+        const w = [m.dir[3 * i], m.dir[3 * i + 1], m.dir[3 * i + 2]], rho = 1 + k * m.delta[i], gr = [m.grad[3 * i], m.grad[3 * i + 1], m.grad[3 * i + 2]];
+        q = P.rotationApply(R, w.map((x) => x * rho)); nn = P.rotationApply(R, [w[0] - (k * gr[0]) / rho, w[1] - (k * gr[1]) / rho, w[2] - (k * gr[2]) / rho]);
+      }
+      const l = Math.hypot(...nn) || 1; pts[i] = Pj([q[0] + d.p[0], q[1] + d.p[1], q[2] + d.p[2]]); nrm[i] = nn.map((x) => x / l);
     }
     const faces = [];
     for (let i = 0; i < m.indices.length; i += 3) {
       const a = m.indices[i], b = m.indices[i + 1], c = m.indices[i + 2], n = [0, 1, 2].map((x) => (nrm[a][x] + nrm[b][x] + nrm[c][x]) / 3), facing = n[0] * toViewer[0] + n[1] * toViewer[1] + n[2] * toViewer[2];
       if (facing <= 0) continue;
-      const light = Math.max(0, n[0] * 0.4 + n[1] * 0.4 + n[2] * 0.8) / 1.0, col = ramp((m.delta[a] + m.delta[b] + m.delta[c]) / 3).map((x) => Math.round(x * (0.45 + 0.55 * Math.min(1, light + 0.2))));
+      const light = Math.max(0, n[0] * 0.4 + n[1] * 0.4 + n[2] * 0.8), col = ramp((delta[a] + delta[b] + delta[c]) / 3).map((x) => Math.round(x * (0.45 + 0.55 * Math.min(1, light + 0.2))));
       faces.push({ p: [pts[a], pts[b], pts[c]], col, depth: (pts[a][2] + pts[b][2] + pts[c][2]) / 3 });
     }
     faces.sort((x, y) => y.depth - x.depth);
@@ -169,11 +186,19 @@ export function gomboc(root, opts) {
   }
   o.animate((dt) => {
     if (reduced() && playing) { playing = false; updatePlay(); }
-    if (playing && dt && s) { accumulator += dt * +inputs.speed.value; const h = stepSize(); let n = 0; while (accumulator >= h && n++ < 400) { s = P.advance(s, h, kappa()); accumulator -= h; } if (n >= 400) accumulator = 0; remember(); dirty = true; }
+    if (playing && dt && s) { accumulator += dt * +inputs.speed.value; const h = stepSize(); let n = 0; while (accumulator >= h && n++ < 400) { s = adv(s, h, kappa()); accumulator -= h; } if (n >= 400) accumulator = 0; remember(); dirty = true; }
     if (dirty || playing) { dirty = false; draw(); }
   });
-  try { mesh = B.buildMesh(); glr = createGombocGL(mesh); } catch { glr = null; }
-  reset(); o.redraw();
-  root.__gomboc = { getState: () => s, getCamera: () => cam, setPreset: (value) => { inputs.preset.value = value; reset(); }, step: tick, usesGL: () => !!glr };
+  function useModel(name) {
+    model = MODELS[name]; const st = SETTINGS[name];
+    glr?.destroy(); glr = null; mapImage = null; mesh = null;
+    try { mesh = model.radial ? B.buildMesh() : visible.buildMesh(); glr = createGombocGL(mesh); } catch { glr = null; }
+    for (const k of ['speed', 'rolling']) { inputs[k].value = st[k]; root.querySelector('#go-' + k + '-out').textContent = num(st[k], k === 'rolling' ? 4 : 0); }
+    inputs.dt.value = st.dt; const rl = inputs.relief.closest('label') || inputs.relief.parentElement; if (rl) rl.hidden = !model.radial;
+    reset();
+  }
+  o.on(inputs.body, 'change', () => { useModel(inputs.body.value); o.redraw(); });
+  useModel(inputs.body.value); o.redraw();
+  root.__gomboc = { setBody: (name) => { inputs.body.value = name; useModel(name); }, getModel: () => model, getState: () => s, getCamera: () => cam, setPreset: (value) => { inputs.preset.value = value; reset(); }, step: tick, usesGL: () => !!glr };
   return () => { alive = false; abort.abort(); o.stop(); glr?.destroy(); delete root.__gomboc; };
 }

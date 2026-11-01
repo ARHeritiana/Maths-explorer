@@ -181,3 +181,12 @@ export function previewMesh(relief = 1500, nLon = 14, nLat = 9) {
   for (let j = 0; j < nLon; j++) { quads.push([south, at(1, j + 1), at(1, j), south]); quads.push([north, at(nLat - 1, j), at(nLat - 1, j + 1), north]); }
   return { vertices, quads };
 }
+
+// The body of the paper as a model for the rolling dynamics (see gomboc-rolling.js): contact, its derivative, mass properties and
+// the unit in which heights above the mean are read.
+export const PAPER = {
+  id: 'paper', radial: true, D, C,
+  contact: (nu, guess) => contact(nu, guess), contactJacobian: (nu, hit) => contactJacobian(nu, hit),
+  massProperties: () => massProperties(C, D, 160, 256), heightUnit: { offset: 1, scale: D },
+  tint: (w) => deltaAt(w).v, surface: (w, relief = 1) => surface(w, relief), poles: { S: [0, 0, -1], N: [0, 0, 1] },
+};

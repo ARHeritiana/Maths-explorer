@@ -5,6 +5,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as B from '../site/js/gomboc-body.js';
 import * as P from '../site/js/gomboc-rolling.js';
+import {makeSupportBody} from '../site/js/gomboc-support.js';
+import {VISIBLE_TERMS,VISIBLE_META} from '../site/js/gomboc-support-data.js';
 import {GOMBOC_GALLERY,GOMBOC_STORY} from '../site/js/gomboc-content.js';
 const PI=Math.PI,near=(a,b,eps)=>assert.ok(Math.abs(a-b)<=eps,`${a} versus ${b} (eps ${eps})`);
 
@@ -120,4 +122,73 @@ test('entry points describe the smooth body, its size, and the sources honestly'
  assert.ok(GOMBOC_GALLERY.links.includes('#stories/'+GOMBOC_STORY.id));assert.ok(GOMBOC_STORY.links.includes('#gallery/gomboc'));
  const text=JSON.stringify([GOMBOC_GALLERY,GOMBOC_STORY]);assert.match(text,/0,002 %/);assert.match(text,/0\.002 %/);assert.match(text,/c ≈ 0,275|c ≈ 0\.275/);assert.doesNotMatch(text,/polyhedr|polyédr/i);assert.doesNotMatch(text,/[—–]/);
  assert.equal(GOMBOC_GALLERY.answer,4);assert.equal(B.D,2e-5);
+});
+
+// ---------------------------------------------------------------------------------------------------------------------
+// The visibly shaped body, defined by its support function (gomboc-support.js, coefficients from scripts/optimise-gomboc.py).
+const V=makeSupportBody(VISIBLE_TERMS),VR=V.range(),dirOf=(th,ph)=>[Math.cos(ph)*Math.cos(th),Math.cos(ph)*Math.sin(th),Math.sin(ph)];
+const eigs=(A,nu)=>{const th=Math.atan2(nu[1],nu[0]),ph=Math.asin(nu[2]),ep=[-Math.sin(ph)*Math.cos(th),-Math.sin(ph)*Math.sin(th),Math.cos(ph)],et=[-Math.sin(th),Math.cos(th),0],
+ Ae=(u,v)=>{let q=0;for(let a=0;a<3;a++)for(let b=0;b<3;b++)q+=u[a]*A[3*a+b]*v[b];return q;},a=Ae(ep,ep),b=Ae(ep,et),c=Ae(et,et),m=(a+c)/2,r=Math.sqrt((a-c)**2/4+b*b);return [m-r,m+r];};
+
+test('visible body: it is clearly not a sphere, its centre of gravity is the origin, quadrature has converged',()=>{
+ assert.ok(VR.hi/VR.lo>1.15,`ratio ${VR.hi/VR.lo}`);near(V.height([0,0,-1]),VR.lo,0);near(V.height([0,0,1]),VR.hi,0);
+ const a=V.massProperties(64,96),b=V.massProperties(120,200);
+ near(a.volume,b.volume,1e-11);for(let k=0;k<3;k++){near(a.centroid[k],0,1e-8);near(b.centroid[k],0,1e-8);}
+ for(let k=0;k<9;k++)near(a.inertia[k],b.inertia[k],1e-10);
+ // the volume of a body with these heights lies between the balls of radius h_min and h_max
+ assert.ok(a.volume>4*PI/3*VR.lo**3&&a.volume<4*PI/3*VR.hi**3);
+ assert.ok(VISIBLE_META.convexityMargin>0&&VISIBLE_META.degree>=8);
+});
+
+test('visible body: jet is consistent with finite differences, the surface is its own support function, A is the derivative of the contact point',()=>{
+ for(const [th,ph] of [[.4,.3],[1.2,-.9],[.05,1.3],[1.5,-1.4],[0,0]]){
+  const nu=dirOf(th,ph),j=V.jet(nu),h=1e-5,ep=[-Math.sin(ph)*Math.cos(th),-Math.sin(ph)*Math.sin(th),Math.cos(ph)],et=[-Math.sin(th),Math.cos(th),0];
+  const f=(t,p)=>V.height(dirOf(t,p));
+  near(Math.hypot(...j.g)>0?j.g[0]*ep[0]+j.g[1]*ep[1]+j.g[2]*ep[2]:0,(f(th,ph+h)-f(th,ph-h))/(2*h),1e-7);
+  near((j.g[0]*et[0]+j.g[1]*et[1]+j.g[2]*et[2])*Math.cos(ph),(f(th+h,ph)-f(th-h,ph))/(2*h),1e-7);
+  // contact point derivative: r(ν + δ) − r(ν − δ) ≈ 2 A δ along a tangent direction
+  const d=1e-5,up=dirOf(th,ph+d),dn=dirOf(th,ph-d),ru=V.contact(up).r,rd=V.contact(dn).r,A=V.contactJacobian(nu);
+  for(let k=0;k<3;k++)near((ru[k]-rd[k])/(2*d),A[3*k]*ep[0]+A[3*k+1]*ep[1]+A[3*k+2]*ep[2],1e-6);
+  // support property: no surface point goes further along ν than h(ν)
+  let best=-Infinity;for(let i=0;i<1500;i++){const a=i*2.399963229728653,z=1-2*(i+.5)/1500,r=Math.sqrt(1-z*z),w=[r*Math.cos(a),r*Math.sin(a),z],p=V.contact(w).r;best=Math.max(best,p[0]*nu[0]+p[1]*nu[1]+p[2]*nu[2]);}
+  assert.ok(best<=V.height(nu)+1e-9,`${best} ${V.height(nu)}`);
+ }
+});
+
+test('visible body: convex everywhere (radii of curvature positive, poles included) and only the two poles are equilibria',()=>{
+ let lo=Infinity,hi=-Infinity,least=Infinity,leastLine=Infinity;
+ for(let i=0;i<=180;i++)for(let k=0;k<=90;k++){const ph=-PI/2+PI*i/180,th=k/90*PI/2,nu=dirOf(th,ph),{g,A}=V.jet(nu),[l1,l2]=eigs(A,nu);
+  lo=Math.min(lo,l1);hi=Math.max(hi,l2);
+  if(Math.abs(ph)<PI/2-.03&&th>.03&&th<PI/2-.03)least=Math.min(least,Math.hypot(...g));
+  if((k===0||k===90)&&Math.abs(ph)<PI/2-.01)leastLine=Math.min(leastLine,Math.hypot(...g)/Math.cos(ph));}
+ for(const nu of [[0,0,-1],[0,0,1]]){const [l1]=eigs(V.jet(nu).A,[1e-9,0,Math.sign(nu[2])*1]);assert.ok(l1>0.02,`pole curvature ${l1}`);}
+ assert.ok(lo>0.02,`smallest radius of curvature ${lo}`);assert.ok(hi<5);
+ assert.ok(least>5e-4,`gradient of h away from the symmetry lines ${least}`);assert.ok(leastLine>1e-3,`gradient on the lines ${leastLine}`);
+ // independent classification on a lattice of the whole sphere: no local extremum of h except the poles
+ const n=120,m=240,H=(i,j)=>V.height(dirOf(2*PI*j/m,-PI/2+PI*i/n));let extra=0;
+ for(let i=1;i<n;i++)for(let j=0;j<m;j++){const c=H(i,j),nb=[H(i-1,j),H(i+1,j),H(i,(j+1)%m),H(i,(j+m-1)%m),H(i-1,(j+1)%m),H(i-1,(j+m-1)%m),H(i+1,(j+1)%m),H(i+1,(j+m-1)%m)];
+  if(nb.every(x=>c>x)||nb.every(x=>c<x))extra++;}
+ // the grid rows next to the poles are allowed as the extremum ring only if the pole itself is: none must appear
+ assert.equal(extra,0);
+ let argmin=[0,0],mn=Infinity,mx=-Infinity;for(let i=0;i<=n;i++)for(let j=0;j<m;j++){const v=H(i,j);if(v<mn){mn=v;argmin=[i,j];}mx=Math.max(mx,v);}
+ near(mn,VR.lo,1e-12);near(mx,VR.hi,1e-12);assert.equal(argmin[0],0);
+});
+
+test('visible body: rolling without slipping conserves energy, rests at its poles, leaves the unstable one, settles with damping',()=>{
+ let s=P.start({colatitude:1,azimuth:.4});const e0=P.derived(s,V).energy,unit=P.GRAVITY*(VR.hi-VR.lo)/2;
+ for(let k=0;k<10;k++){s=P.simulate(s,10,0,.01,V);assert.ok(Math.abs(P.derived(s,V).energy-e0)<2e-6*unit,`energy ${P.derived(s,V).energy-e0}`);}
+ const run=(dt)=>P.simulate(P.start({colatitude:1,azimuth:.4}),20,0,dt,V),c1=run(.02),c2=run(.01),c3=run(.005),err=(x,y)=>Math.hypot(x.c[0]-y.c[0],x.c[1]-y.c[1]);
+ assert.ok(err(c2,c3)<2e-3&&err(c1,c3)>6*err(c2,c3),`step convergence ${err(c1,c3)} ${err(c2,c3)}`);
+ // Newton's law from the kinematics
+ const a=P.derived(P.advance(s,-.005,0,V),V),b=P.derived(P.advance(s,.005,0,V),V),e=P.evaluate(s,0,V);
+ for(let i=0;i<3;i++)near((b.v[i]-a.v[i])/.01+(i===2?P.GRAVITY:0),e.F[i],3e-4);
+ assert.ok(e.F[2]>0&&Math.hypot(e.F[0],e.F[1])/e.F[2]<.4,'no-slip needs a friction a dry floor can give');
+ const rest=P.simulate(P.start({colatitude:0}),30,0,.01,V);assert.ok(Math.hypot(...rest.om)<1e-9);
+ const top=P.simulate(P.start({colatitude:PI}),5,0,.01,V);assert.ok(Math.hypot(...top.om)<.05);
+ const gone=P.simulate(P.start({colatitude:PI-1e-2,azimuth:.7}),60,0,.01,V);assert.ok(P.diagnostics(gone,0,V).angleStable<PI-.5);
+ // oscillation about the stable pole stays near it; with damping the contact settles there and the energy never rises
+ let near0=P.start({colatitude:.1,azimuth:1}),worst=0;for(let k=0;k<20;k++){near0=P.simulate(near0,5,0,.01,V);worst=Math.max(worst,P.diagnostics(near0,0,V).angleStable);}assert.ok(worst<.15,String(worst));
+ let d=P.start({colatitude:1.2,azimuth:.4}),last=P.derived(d,V).energy;
+ for(let k=0;k<30;k++){d=P.simulate(d,5,.03,.01,V);const en=P.derived(d,V).energy;assert.ok(en<=last+1e-6*unit,'energy rose');last=en;}
+ assert.ok(P.diagnostics(d,.03,V).angleStable<.2,String(P.diagnostics(d,.03,V).angleStable));
 });

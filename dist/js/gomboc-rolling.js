@@ -13,7 +13,7 @@
 //     E = ½ |v|² + ½ ωᵀ I_w ω + g H(ν)
 // is conserved (tested). Dissipation is a rolling-resistance couple τ = −κ N ω while in contact (N the normal force): it
 // removes energy only. The no-slip assumption needs |F_tangential| ≤ μ N; the ratio is reported, never hidden.
-import { contact, contactJacobian, massProperties, D, C } from './gomboc-body.js';
+import { PAPER } from './gomboc-body.js';
 
 export const GRAVITY = 9.81;
 const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
@@ -40,18 +40,20 @@ export function qbetween(a, b) {
 }
 const normalize = (q) => { const n = Math.hypot(...q); return q.map((x) => x / n); };
 
-let props = null;
-export function body() {
-  if (!props) { const m = massProperties(C, D, 160, 256); props = { I: m.inertia.map((x) => x / m.volume), mass: m.volume }; }
-  return props;
+// The body is a model with contact(ν, guess) -> {w, r, H}, contactJacobian(ν, hit) (3×3) and massProperties(); the default is the
+// paper's body (gomboc-body.js PAPER), the other is the support-function body (gomboc-support.js). Unit mass.
+const props = new WeakMap();
+export function body(model = PAPER) {
+  if (!props.has(model)) { const m = model.massProperties(); props.set(model, { I: m.inertia.map((x) => x / m.volume), mass: m.volume }); }
+  return props.get(model);
 }
 
 export const rotationApply = (R, v) => mv(R, v);
 const ZHAT = [0, 0, 1];
 
 // Everything the dynamics needs at a state, and the rates of change. `kappa` is the rolling-resistance coefficient.
-export function evaluate(s, kappa = 0) {
-  const R = rotation(s.q), Ib = body().I, nu = mvT(R, [0, 0, -1]), hit = contact(nu, s.w), J = contactJacobian(nu, hit);
+export function evaluate(s, kappa = 0, model = PAPER) {
+  const R = rotation(s.q), Ib = body(model).I, nu = mvT(R, [0, 0, -1]), hit = model.contact(nu, s.w), J = model.contactJacobian(nu, hit);
   const rho = mv(R, hit.r), omb = mvT(R, s.om), nudot = mul(cross(omb, nu), -1), rhodot = add(cross(s.om, rho), mv(R, mv(J, nudot)));
   const Iw = mm(mm(R, Ib), tr(R)), r2 = dot(rho, rho), M = new Array(9);
   for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) M[3 * i + j] = Iw[3 * i + j] + (i === j ? r2 : 0) - rho[i] * rho[j];
@@ -63,26 +65,26 @@ export function evaluate(s, kappa = 0) {
   return { R, nu, hit, rho, rhodot, Iw, omd, F, qdot, cdot };
 }
 // Where G is, its velocity, and the energy (kinetic + gravitational, unit mass).
-export function derived(s) {
-  const R = rotation(s.q), nu = mvT(R, [0, 0, -1]), hit = contact(nu, s.w), rho = mv(R, hit.r), Iw = mm(mm(R, body().I), tr(R)), v = mul(cross(s.om, rho), -1);
+export function derived(s, model = PAPER) {
+  const R = rotation(s.q), nu = mvT(R, [0, 0, -1]), hit = model.contact(nu, s.w), rho = mv(R, hit.r), Iw = mm(mm(R, body(model).I), tr(R)), v = mul(cross(s.om, rho), -1);
   return { p: [s.c[0] - rho[0], s.c[1] - rho[1], hit.H], v, rho, hit, nu, energy: dot(v, v) / 2 + dot(s.om, mv(Iw, s.om)) / 2 + GRAVITY * hit.H };
 }
 
-export function advance(s, h, kappa = 0) {
+export function advance(s, h, kappa = 0, model = PAPER) {
   const at = (base, k, f) => ({ q: normalize(base.q.map((x, i) => x + f * k.qdot[i])), om: add(base.om, mul(k.omd, f)), c: [base.c[0] + f * k.cdot[0], base.c[1] + f * k.cdot[1]], w: base.w, t: base.t });
-  const k1 = evaluate(s, kappa), s2 = at(s, k1, h / 2); s2.w = k1.hit.w;
-  const k2 = evaluate(s2, kappa), s3 = at(s, k2, h / 2); s3.w = k2.hit.w;
-  const k3 = evaluate(s3, kappa), s4 = at(s, k3, h); s4.w = k3.hit.w;
-  const k4 = evaluate(s4, kappa);
+  const k1 = evaluate(s, kappa, model), s2 = at(s, k1, h / 2); s2.w = k1.hit.w;
+  const k2 = evaluate(s2, kappa, model), s3 = at(s, k2, h / 2); s3.w = k2.hit.w;
+  const k3 = evaluate(s3, kappa, model), s4 = at(s, k3, h); s4.w = k3.hit.w;
+  const k4 = evaluate(s4, kappa, model);
   const q = normalize(s.q.map((x, i) => x + (h / 6) * (k1.qdot[i] + 2 * k2.qdot[i] + 2 * k3.qdot[i] + k4.qdot[i])));
   const om = [0, 1, 2].map((i) => s.om[i] + (h / 6) * (k1.omd[i] + 2 * k2.omd[i] + 2 * k3.omd[i] + k4.omd[i]));
   const c = [0, 1].map((i) => s.c[i] + (h / 6) * (k1.cdot[i] + 2 * k2.cdot[i] + 2 * k3.cdot[i] + k4.cdot[i]));
   const out = { q, om, c, w: k4.hit.w, t: s.t + h };
   return out;
 }
-export function simulate(s, seconds, kappa = 0, dt = 0.05) {
+export function simulate(s, seconds, kappa = 0, dt = 0.05, model = PAPER) {
   const n = Math.max(1, Math.ceil(seconds / dt)), h = seconds / n; let out = s;
-  for (let i = 0; i < n; i++) out = advance(out, h, kappa);
+  for (let i = 0; i < n; i++) out = advance(out, h, kappa, model);
   return out;
 }
 
@@ -99,8 +101,8 @@ export function tilt(s, ax, ay) { return { ...s, q: normalize(qmul(qaxis([1, 0, 
 export function spin(s, dom) { return { ...s, om: add(s.om, dom) }; }
 // Diagnostics: normal force, tangential/normal ratio (needed friction coefficient for the no-slip assumption), contact
 // angle to the stable pole, height of G above the plane in units of d.
-export function diagnostics(s, kappa = 0) {
-  const e = evaluate(s, kappa), d = derived(s), tan = Math.hypot(e.F[0], e.F[1]), N = e.F[2];
+export function diagnostics(s, kappa = 0, model = PAPER) {
+  const e = evaluate(s, kappa, model), d = derived(s, model), tan = Math.hypot(e.F[0], e.F[1]), N = e.F[2];
   const angleStable = Math.acos(Math.max(-1, Math.min(1, -e.hit.w[2])));
-  return { N, slip: N > 0 ? tan / N : Infinity, angleStable, heightOverD: (d.hit.H - 1) / D, energy: d.energy, p: d.p, hit: e.hit };
+  return { N, slip: N > 0 ? tan / N : Infinity, angleStable, heightOverD: (d.hit.H - model.heightUnit.offset) / model.heightUnit.scale, energy: d.energy, p: d.p, hit: e.hit };
 }

@@ -1,4 +1,4 @@
-// WebGL2 renderer of the smooth Gömböc (mesh and radial law from gomboc-body.js). One draw call per frame; the physics, the
+// WebGL2 renderer of the smooth Gömböc bodies (radial law of gomboc-body.js, or explicit positions and normals of gomboc-support.js). One draw call per frame; the physics, the
 // markers and the floor stay in the page's 2D canvas. Returns null without WebGL2.
 //
 // The vertex shader places each vertex at (1 + k·ΔR)·direction, with k = relief·d, and the fragment shader shades with the
@@ -10,7 +10,7 @@
 // the page canvas (the page's zoom and pan are applied here), then composited by the page with an identity transform.
 
 const VERTEX = `#version 300 es
-in vec3 aDir; in float aDelta; in vec3 aGrad;
+in vec3 aDir; in float aDelta; in vec3 aGrad; in vec3 aPos;
 uniform mat3 uR;        // body rotation (world = R p + uP)
 uniform mat3 uView;     // rows: screen u (right), v (up), d (away); applied to world vectors
 uniform vec3 uP;        // position of the centre of mass
@@ -18,11 +18,12 @@ uniform vec4 uScreen;   // centre x, centre y (logical px), scale (px per unit),
 uniform vec2 uOffset;   // display offset, logical px
 uniform vec3 uCamera;   // page camera: x, y, scale
 uniform vec2 uSize;     // logical canvas size
+uniform float uExplicit; // 1: aPos is the position and aGrad the normal (support-function body); 0: radial law
 out vec3 vN; out vec3 vDir; out float vDelta;
 void main() {
   float k = uScreen.w, rho = 1.0 + k * aDelta;
-  vec3 pos = aDir * rho;
-  vec3 nb = normalize(aDir - k * aGrad / rho);       // normal of the radial graph, body frame
+  vec3 pos = uExplicit > 0.5 ? aPos : aDir * rho;
+  vec3 nb = uExplicit > 0.5 ? aGrad : normalize(aDir - k * aGrad / rho);   // normal of the radial graph, or the given normal
   vec3 w = uR * pos + uP;
   vec3 v = uView * w;
   vec2 s = vec2(uScreen.x + v.x * uScreen.z, uScreen.y - v.y * uScreen.z) + uOffset;
@@ -37,6 +38,7 @@ in vec3 vN; in vec3 vDir; in float vDelta;
 uniform vec3 uToViewer;   // unit world vector from the surface towards the viewer
 uniform vec3 uKey;        // unit world vector towards the key light
 uniform float uDark;      // 1 in the dark theme
+uniform float uSep;       // 1: draw the curve where the tint is zero
 out vec4 fragColor;
 float line(float x, float step, float width) {   // anti-aliased line at multiples of step
   float f = abs(fract(x / step + 0.5) - 0.5) * step, w = fwidth(x) * width;
@@ -55,7 +57,7 @@ void main() {
   float grid = max(line(lat, 0.2617994, 1.0), line(lon, 0.2617994, 1.0) * fade);
   float sep = 1.0 - smoothstep(fwidth(vDelta) * 1.0, fwidth(vDelta) * 2.2, abs(vDelta));
   base = mix(base, base * 0.55, 0.55 * grid);
-  base = mix(base, vec3(0.05, 0.06, 0.09), 0.9 * sep);
+  base = mix(base, vec3(0.05, 0.06, 0.09), 0.9 * sep * uSep);
   vec3 r = reflect(-V, n);
   vec3 sky = mix(vec3(0.85, 0.90, 0.98), vec3(0.34, 0.48, 0.74), smoothstep(0.0, 1.0, r.z));
   vec3 env = mix(vec3(0.16, 0.12, 0.09), sky, smoothstep(-0.12, 0.18, r.z));
@@ -85,11 +87,12 @@ export function createGombocGL(mesh, makeCanvas = () => document.createElement('
   gl.useProgram(program);
   const vao = gl.createVertexArray(); gl.bindVertexArray(vao);
   const buffer = (target, data) => { const b = gl.createBuffer(); gl.bindBuffer(target, b); gl.bufferData(target, data, gl.STATIC_DRAW); return b; };
-  for (const [name, data, size] of [['aDir', mesh.dir, 3], ['aDelta', mesh.delta, 1], ['aGrad', mesh.grad, 3]]) {
+  const explicit = !!mesh.explicit, zeros = new Float32Array(mesh.dir.length);
+  for (const [name, data, size] of [['aDir', mesh.dir, 3], ['aDelta', explicit ? mesh.tint : mesh.delta, 1], ['aGrad', explicit ? mesh.normals : mesh.grad, 3], ['aPos', explicit ? mesh.pos : zeros, 3]]) {
     buffer(gl.ARRAY_BUFFER, data); const at = gl.getAttribLocation(program, name); gl.enableVertexAttribArray(at); gl.vertexAttribPointer(at, size, gl.FLOAT, false, 0, 0);
   }
   buffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indices);
-  const U = Object.fromEntries(['uR', 'uView', 'uP', 'uScreen', 'uOffset', 'uCamera', 'uSize', 'uToViewer', 'uKey', 'uDark'].map((k) => [k, gl.getUniformLocation(program, k)]));
+  const U = Object.fromEntries(['uR', 'uView', 'uP', 'uScreen', 'uOffset', 'uCamera', 'uSize', 'uToViewer', 'uKey', 'uDark', 'uExplicit', 'uSep'].map((k) => [k, gl.getUniformLocation(program, k)]));
   gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LESS);
   let lost = false;
   canvas.addEventListener?.('webglcontextlost', (e) => { lost = true; e.preventDefault?.(); });
@@ -106,7 +109,7 @@ export function createGombocGL(mesh, makeCanvas = () => document.createElement('
       gl.uniformMatrix3fv(U.uR, false, colMajor(R)); gl.uniformMatrix3fv(U.uView, false, colMajor(view));
       gl.uniform3f(U.uP, p[0], p[1], p[2]); gl.uniform4f(U.uScreen, centre[0], centre[1], scale, k); gl.uniform2f(U.uOffset, offset[0], offset[1]);
       gl.uniform3f(U.uCamera, camera.x, camera.y, camera.scale); gl.uniform2f(U.uSize, size[0], size[1]);
-      gl.uniform3f(U.uToViewer, ...toViewer); gl.uniform3f(U.uKey, ...key); gl.uniform1f(U.uDark, dark);
+      gl.uniform3f(U.uToViewer, ...toViewer); gl.uniform3f(U.uKey, ...key); gl.uniform1f(U.uDark, dark); gl.uniform1f(U.uExplicit, explicit ? 1 : 0); gl.uniform1f(U.uSep, explicit ? 0 : 1);
       gl.drawElements(gl.TRIANGLES, mesh.indices.length, gl.UNSIGNED_INT, 0);
       return canvas;
     },
