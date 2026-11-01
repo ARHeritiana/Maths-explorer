@@ -11,6 +11,7 @@ import { slidesPage, bindSlides } from "./slides-page.js";
 import { universityPage, bindUniversity } from "./university.js";
 import { observeSvgNavigation } from "./canvas-navigation.js";
 import { labs, challenges, pathways } from "./content.js";
+import { pathwayPage as pathwayPageView, bindPathways } from "./pathways-view.js";
 import { mountObject } from "./lab-objects.js";
 import { homePage, bindHome, galleryPage as galleryIndex } from "./welcome.js";
 import { isReading, readingPage, readAlso } from "./reading.js";
@@ -216,6 +217,7 @@ function render() {
   if (page === "home") stopChapter = bindHome($("#main"),discovery,t);
   if (page === "basics" && r.id) stopChapter = bindBasics();
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
+  if (page === "pathways") stopChapter = bindPathways({ root: $("#main"), pathways, labs, t, pair, link, glyph, completed });
   if (page === "pack") bindPack(t);
   if (page === "sources") bindSources(t);
   if (page === "slides") bindSlides(t);
@@ -489,25 +491,8 @@ function bindBasics(){
   return ()=>{alive=false;window.removeEventListener("message",message);frame.removeEventListener("load",load);obs?.disconnect();};
 }
 
-// Stages (with their explorations) and the source link of a pathway or of one of its programmes.
-function pathwayBlock(x, heading) {
-  const stages = x.stages
-    .map(
-      (s) =>
-        `<div class="stage"><${heading}>${t(s.name)}</${heading}>${s.note ? `<p class="muted">${t(s.note)}</p>` : ""}${s.ids.length ? `<ul>${s.ids
-          .map((id) => {
-            const l = labs.find((y) => y.id === id);
-            return `<li><a href="${link("lab", id)}"><span aria-hidden="true">${glyph(l.symbol)}</span>${t(l.short)}${completed.has(id) ? '<span class="check">✓</span>' : ""}</a></li>`;
-          })
-          .join("")}</ul>` : ""}</div>`,
-    )
-    .join("");
-  const resources = (x.resources || []).map(r => `<a class="btn btn-secondary" href="${r.href}">${t(r.title)}</a>`).join('');
-  return `${stages}${resources}${x.source ? `<a class="source-link" href="${x.source}" target="_blank" rel="noopener noreferrer">${t(x.sourceName)} <span class="sr-only">${pair("(nouvel onglet)", "(new tab)")}</span></a>` : ''}`;
-}
-function pathwayPage() {
-  return `<main id="main" class="page" tabindex="-1"><h1>${pair("Les mêmes idées, plusieurs parcours.", "Shared ideas, different pathways.")}</h1><p class="page-intro">${pair("Pars de ton programme ou suis simplement ta curiosité. Chaque expérience précise ses prérequis.", "Start with your curriculum or simply follow your curiosity. Each experiment lists its prerequisites.")}</p><div class="pathway-grid">${pathways.map((p) => `<section class="pathway-card${p.programmes ? " has-programmes" : ""}"><div class="pathway-label">${p.icon ? icon(p.icon, 28) : p.label}</div><h2>${t(p.name)}</h2><p>${t(p.intro)}</p>${p.programmes ? `<div class="programmes">${p.programmes.map((x) => `<details class="programme"><summary><h3 class="programme-title">${t(x.name)}</h3><p>${t(x.intro)}</p></summary>${pathwayBlock(x, "h4")}</details>`).join("")}</div>` : pathwayBlock(p, "h3")}</section>`).join("")}</div><details class="curriculum-note"><summary><h2>${pair("À propos de ces repères", "About these pathways")}</h2></summary><p>${pair("Ce laboratoire est une sélection d’explorations, pas un programme exhaustif ni une certification d’alignement. Les placements sont pédagogiques et indicatifs ; vérifie la série, l’option et l’année avec ton enseignant. Les références ont été consultées en octobre 2026.", "This laboratory is a selection of explorations, not a complete syllabus or a certification of alignment. Placements are pedagogical suggestions; check your stream, option and year with your teacher. References were consulted in October 2026.")}</p><p>${pair("France : nouveaux programmes de seconde et première en 2026–2027, de terminale en 2027–2028. IB : première mise en œuvre en août 2027, première évaluation en mai 2029. Madagascar : références S/OSE/L datées de 2024–2025 ; l’application actuelle reste à confirmer.", "France: new seconde and première programmes in 2026–2027, terminale in 2027–2028. IB: first teaching August 2027, first assessment May 2029. Madagascar: S/OSE/L references date from 2024–2025; current applicability needs confirmation.")}</p><p>${pair("Les repères historiques renvoient aux notices du MacTutor History of Mathematics Archive de l’université de St Andrews. Le laboratoire conserve la langue et les réponses réussies dans ce navigateur ; les notes restent en mémoire pendant la session. Il n’envoie ni réponses ni notes et n’intègre aucun outil d’analyse. Ouvrir une source externe te conduit sur un autre site ; l’hébergeur gère l’accès privé.", "History boxes link to the University of St Andrews MacTutor History of Mathematics Archive. The laboratory keeps language and completed answers in this browser; notes stay in session memory. It sends no answers or notes and includes no analytics. Opening an external source takes you to another website; the host manages private access.")}</p></details></main>`;
-}
+// Pathways page: curriculum rail, level tabs, topic filters and tile grid (js/pathways-view.js).
+function pathwayPage() { return pathwayPageView({ pathways, labs, t, pair, icon }); }
 
 $(".skip").addEventListener("click", e => {
   e.preventDefault();

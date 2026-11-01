@@ -12,6 +12,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 |---|---|
 | `index.html` | page skeleton, theme bootstrap, generated import map (do not edit the map) |
 | `js/app.js` | router and page shell: `route()`, `link()`, `header()` (nav), `footer()`, `render()` (route validity and dispatch), `bindCommon()`; experiment pages mount `js/lab/` (`render()` dispatch, `mountExperiment`); the gallery page of one exhibit (`galleryDetail`, `bindGallery`), challenge and pathway pages |
+| `js/pathways-view.js` | `#pathways` page: curriculum rail, level tabs, topic filters and tile grid (`pathwayPage`, `bindPathways`); data stays in `js/content.js` `pathways` |
 | `js/ui.js` | theme choice, full-screen presenting |
 | `js/icons.js` | Phosphor icon paths, `icon(name, size)` |
 | `js/motion.js` | interface motion (`installInterfaceMotion`, `celebrate`, `illuminateFeedback`) |
