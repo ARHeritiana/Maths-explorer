@@ -136,3 +136,27 @@ test('atlas view, era jumps, scale, empty recovery and documentary markers work 
  root.querySelector('[data-history-reset]').click();assert.equal(root.querySelectorAll('.history-list>li').length,PEOPLE.length);
  stop();const left=viewport.scrollLeft;root.querySelector('[data-history-era="today"]').click();assert.equal(viewport.scrollLeft,left,'listeners cleaned up');
 });
+
+// Issue #16: major questions and results, dated against MacTutor, the Clay Institute and the journal pages.
+test('major questions and results of #16 are dated, typed and sourced',()=>{
+ const expected={'kepler-packing':[1611,'conjecture'],'fermat-last-note':[1630,'conjecture'],'euler-basel':[1735,'proof'],'goldbach-conjecture':[1742,'conjecture'],
+  'wessel-plane':[1799,'publication'],'gauss-fundamental-algebra':[1799,'proof'],'cauchy-cours':[1821,'publication'],'non-euclidean':[1829,'publication'],
+  'hamilton-quaternions':[1843,'discovery'],'boole-laws':[1854,'publication'],'riemann-hypothesis':[1859,'conjecture'],'dedekind-cuts':[1872,'publication'],
+  'cantor-uncountable':[1874,'proof'],'lindemann-pi':[1882,'proof'],'prime-number-theorem':[1896,'proof'],'hilbert-problems':[1900,'conjecture'],
+  'lebesgue-integral':[1902,'publication'],'poincare-conjecture':[1904,'conjecture'],'zermelo-choice':[1904,'proof'],'godel-incompleteness':[1931,'publication'],
+  'kolmogorov-axioms':[1933,'publication'],'godel-consistency':[1940,'proof'],'cohen-independence':[1963,'proof'],'wiles-fermat':[1995,'proof'],
+  'perelman-preprints':[2002,'preprint'],'hales-kepler-formal':[2017,'proof']};
+ for(const [id,[year,kind]] of Object.entries(expected)){
+  const e=ADVANCES.find(x=>x.id===id);assert.ok(e,id);assert.equal(e.start,year,id);assert.equal(e.kind,kind,id);
+  assert.match(e.source,/^https:\/\/(mathshistory\.st-andrews\.ac\.uk|www\.claymath\.org|arxiv\.org|doi\.org)\//,id);
+  assert.ok(e.summary.every(s=>s.length>60&&!/VERIFY/.test(s)),id);
+  for(const route of e.links.filter(r=>r.startsWith('#history/')))assert.ok(historyRecord(...route.slice(9).split('/')),route);
+ }
+ // Open questions are not called solved; the solved ones point to their question and back.
+ for(const id of ['riemann-hypothesis','goldbach-conjecture'])assert.match(ADVANCES.find(x=>x.id===id).summary[1],/open/);
+ for(const [q,a] of [['fermat-last-note','wiles-fermat'],['poincare-conjecture','perelman-preprints'],['kepler-packing','hales-kepler-formal']]){
+  assert.ok(ADVANCES.find(x=>x.id===q).links.includes('#history/advances/'+a));assert.ok(ADVANCES.find(x=>x.id===a).links.includes('#history/advances/'+q));
+ }
+ // No new person was added for these events (issue #15 is separate): authors are credited by name.
+ for(const name of ['Bernhard Riemann','Georg Cantor','Kurt Gödel','Andrew Wiles','Grigori Perelman'])assert.ok(ADVANCES.some(e=>e.credits.includes(name)),name);
+});

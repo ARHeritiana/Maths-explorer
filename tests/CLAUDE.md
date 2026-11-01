@@ -116,7 +116,7 @@ honest rounding, shared-slide control visibility, root-mode fallback, slider ran
 
 `pack-missing-parts.test.mjs`: actual pack-form selection with an absent chapter/part combination, explicit warning and blocked downloads until the selection becomes complete.
 
-`history.test.mjs`: sourced chronological records, documentary dates, filtering, detail links and reciprocal timeline navigation.
+`history.test.mjs`: sourced chronological records (the 26 major events of issue #16 pinned by date, kind and source), documentary dates, filtering, detail links and reciprocal timeline navigation.
 
 `history_browser.py`: FR/EN atlas and reading geometry, both themes, normal/doubled text, hidden-to-visible relayout, background pan, keyboard, first-click search navigation and local image attribution; included in `run_browser.py`.
 

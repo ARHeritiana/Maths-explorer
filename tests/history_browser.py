@@ -52,10 +52,10 @@ with sync_playwright() as p:
   page.goto(f'{BASE}/#history/{kind}/{id}',wait_until='networkidle');page.locator('.history-credit summary').first.click()
   assert page.locator('.history-detail>header img').evaluate('e=>e.complete&&e.naturalWidth>0'),id
   assert not page.evaluate('/[–—]/.test(document.querySelector("main").textContent)'),id
- page.goto(BASE+'/#history/advances',wait_until='networkidle');assert page.locator('.history-node').count()==56
+ page.goto(BASE+'/#history/advances',wait_until='networkidle');assert page.locator('.history-node').count()==82
  page.locator('input[name=query]').fill('galois');assert page.locator('.history-node').count()==3
  page.locator('input[name=query]').fill('zzzzzzzz');assert page.locator('.history-empty').is_visible()
- page.locator('[data-history-reset]').click();assert page.locator('.history-node').count()==56
+ page.locator('[data-history-reset]').click();assert page.locator('.history-node').count()==82
  assert not errors,errors
  b.close()
 print(len(results),'layout combinations passed; keyboard, mouse pan, search, navigation, images and credits passed')
