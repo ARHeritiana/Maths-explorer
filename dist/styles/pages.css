@@ -1424,3 +1424,17 @@ input[type="range"]::-moz-range-thumb { background: var(--accent); border-color:
 .error-route li { break-inside: avoid; padding: 2px 0; }
 .pack-page { max-width: var(--page-w); }
 .errors-page[data-error] { max-width: 980px; } /* one activity: keep a reading measure */
+
+/* Gömböc exhibit: controls in labelled groups (motion, body and start, view and gesture, contact and precision) */
+.go-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; width: 100%; align-items: start; }
+.go-group { margin: 0; padding: 10px 12px 12px; min-width: 0; display: grid; gap: 10px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.go-group > legend, .go-group > summary { padding: 0 6px; font-weight: 800; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.go-physics > summary { cursor: pointer; padding: 0; min-height: 32px; display: flex; align-items: center; }
+.go-physics[open] > summary { margin-bottom: 10px; }
+.go-physics { display: block; }
+.go-physics[open] { display: grid; gap: 10px; }
+.go-buttons, .go-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.go-buttons .btn { flex: 1 1 96px; }
+.go-row { justify-content: space-between; }
+.go-group .act-field { flex: none; }
+@media (max-width: 600px) { .go-panel { grid-template-columns: 1fr; } .go-group { padding: 8px 10px 10px; } }
