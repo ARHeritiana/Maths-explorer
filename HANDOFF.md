@@ -29,8 +29,8 @@ Still to do (next sessions):
 4. Malagasy curriculum (evening of 1 November): T10 and T11 S are on the site as courses (`#resources`, "Programme malgache"):
    29 chapters with student and teacher PDFs, 6 supplements, cut from the owner's Mada-Boky books by `scripts/build-mada.py`
    (details and the two source fixes to report upstream: `docs/CURRICULUM.md`). The owner approved publication of T11 S, whose
-   own notes still called it a model-reviewed draft. Next: slide decks from the books' LaTeX (the chapter pages then get their
-   web lesson and exercises), generators for T10 and T11 S.
+   own notes still called it a model-reviewed draft. Slide decks done the same evening (29 decks from
+   `content/tex/mada/`, lab canvases at the end, lecture PDFs). Next: generators for T10 and T11 S; figures of the books in the decks.
 5. Private repository `Maths-explorer-backup` not reached from this laptop (no GitHub access at the time): nothing was read from its
    review queue.
 6. Bilingual goal for lessons: still on standby (owner rule), unfinished.

@@ -1,0 +1,96 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Systèmes linéaires et pivot de Gauss}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Systèmes linéaires et pivot de Gauss}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Résoudre un système jusqu’à quatre inconnues et interpréter l’unicité, l’incompatibilité ou une famille de solutions.
+\end{frame}
+\begin{frame}{Transformer un système sans changer ses solutions}
+Une solution d’un système est un tuple qui vérifie toutes les équations simultanément. Les coefficients sont fixés; les inconnues désignent les quantités à déterminer.
+\end{frame}
+\begin{frame}{Transformer un système sans changer ses solutions}
+On peut échanger deux équations, multiplier une équation par un réel non nul, ou ajouter à une équation un multiple d’une autre. Ces opérations conservent exactement les solutions.
+\end{frame}
+\begin{frame}{Transformer un système sans changer ses solutions}
+Chaque opération est réversible : échanger de nouveau, diviser par le coefficient non nul, ou soustraire le même multiple. Les systèmes avant et après sont donc équivalents.
+\end{frame}
+\begin{frame}{Transformer un système sans changer ses solutions}
+Choisir un coefficient non nul comme pivot, échanger des lignes si nécessaire, éliminer cette inconnue dans les lignes suivantes; recommencer avec les inconnues restantes. Quand le système est triangulaire, résoudre la dernière équation puis remonter. Ne jamais diviser par un pivot nul.
+\end{frame}
+\begin{frame}{Transformer un système sans changer ses solutions}
+\[
+\begin{cases}
+x+y+z+t=10,\\x-y+z+t=6,\\x+y-z+t=4,\\x+y+z-t=2.
+\end{cases}
+\]
+Soustraire la première ligne aux trois autres donne \(-2y=-4\), \(-2z=-6\), \(-2t=-8\). Ainsi \(y=2,z=3,t=4\), puis \(x=1\). Vérification : les quatre membres gauches valent \(10,6,4,2\).
+\end{frame}
+\begin{frame}{Reconnaître les trois issues}
+Le système \(x+y=2\), \(2x+2y=5\) donne après élimination \(0=1\) : aucune solution. Si la seconde équation est \(2x+2y=4\), elle devient \(0=0\), donc n’ajoute aucune contrainte; les solutions sont \((2-s;s)\) pour \(s\in\mathbb{R}\).
+\end{frame}
+\begin{frame}{Reconnaître les trois issues}
+Une ligne \(0=0\) ne signifie pas que toutes les inconnues sont nulles. Une ligne impossible rend tout le système incompatible. Une famille à paramètre doit conserver les autres équations.
+\end{frame}
+\begin{frame}{Modéliser}
+Pour \(x+y+z=6\), \(2x-y+z=3\), \(x+2y-z=2\), utiliser la première ligne comme pivot. Les opérations \(L_2\leftarrow L_2-2L_1\) et \(L_3\leftarrow L_3-L_1\) donnent
+\[
+\begin{cases}x+y+z=6,\\-3y-z=-9,\\y-2z=-4.\end{cases}
+\]
+Puis \(L_3\leftarrow3L_3+L_2\) donne \(-7z=-21\). On remonte : \(z=3\), \(y=2\), \(x=1\). L’opération combinée signifie multiplier d’abord la troisième ligne par \(3\ne0\), puis lui ajouter la deuxième; elle est réversible. La substitution finale contrôle les trois données originales.
+\end{frame}
+\begin{frame}{Modéliser}
+Si une inconnue reste libre, la nommer par un paramètre \(s\) et exprimer toutes les autres en fonction de \(s\). Indiquer son domaine. Dans une situation de prix ou d’effectifs, ajouter ensuite les contraintes de positivité ou d’intégralité; elles peuvent restreindre la famille obtenue dans \(\mathbb{R}\).
+\end{frame}
+\begin{frame}{Modéliser}
+Si deux prix, en milliers d’ariary, vérifient seulement \(a+b=12\), les solutions réelles sont \((12-s;s)\). Pour deux prix strictement positifs, on impose \(0<s<12\). Une seule équation ne détermine pas les deux prix, même si le total est connu. Ajouter la différence \(a-b=4\) impose \(s=4\) et donc \((a;b)=(8;4)\).
+\end{frame}
+\begin{frame}{Modéliser}
+Un tuple vérifié est une solution, mais cette vérification seule n’exclut pas d’autres solutions. L’équivalence des systèmes et la remontée imposant chaque inconnue établissent l’unicité. Une égalité \(0=0\) doit être interprétée; ce n’est pas un nouveau pivot.
+\end{frame}
+\end{document}

@@ -1,0 +1,160 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Trigonométrie}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Trigonométrie}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{}
+Sur des cercles de rayons différents, construire un arc de longueur égale au
+rayon. Comparer l'angle au centre obtenu. Cette invariance conduit à définir le
+radian; en déduire la mesure d'un tour complet.
+\end{frame}
+\begin{frame}{Objectifs}
+\begin{itemize}
+
+  \item Convertir entre degrés et radians.
+  
+\item Utiliser le cercle trigonométrique.
+  
+\item Connaître les valeurs remarquables de sin, cos, tan.
+  
+\item Utiliser \(\cos^2\theta + \sin^2\theta = 1\).
+  
+\item Résoudre graphiquement \(\cos x = a\) et \(\sin x = b\).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Radians}
+Le \textbf{radian} est l'unité d'angle SI. Un angle de \(1\) rad correspond
+à un arc de longueur égale au rayon.
+\[\alpha_\circ \times \dfrac{\pi}{180} = \alpha_\text{rad},\qquad
+  \alpha_\text{rad} \times \dfrac{180}{\pi} = \alpha_\circ.\]
+\end{frame}
+\begin{frame}{Valeurs remarquables et relations}
+\begin{center}\begin{tabular}{lllllll}
+\(\theta\) & \(0\) & \(\dfrac{\pi}{6}\) & \(\dfrac{\pi}{4}\) & \(\dfrac{\pi}{3}\) & \(\dfrac{\pi}{2}\) & \(\pi\) \\ 
+\(\cos\theta\) & \(1\) & \(\dfrac{\sqrt{3}}{2}\) & \(\dfrac{\sqrt{2}}{2}\) & \(\dfrac{1}{2}\) & \(0\) & \(-1\) \\ 
+\(\sin\theta\) & \(0\) & \(\dfrac{1}{2}\) & \(\dfrac{\sqrt{2}}{2}\) & \(\dfrac{\sqrt{3}}{2}\) & \(1\) & \(0\) \\ 
+\end{tabular}\end{center}
+\end{frame}
+\begin{frame}{Le cercle trigonométrique}
+On place un angle \(\theta\) (en radians) sur le cercle unité, en partant
+du point \(A(1,0)\) et en tournant dans le sens direct (sens anti-horaire).
+Le point \(M\) ainsi obtenu a pour coordonnées :
+\[M(\cos\theta,\, \sin\theta).\]
+Pour \(\cos\theta\ne0\), on définit aussi la \textbf{tangente} :
+\[\tan\theta = \dfrac{\sin\theta}{\cos\theta}.\]
+\end{frame}
+\begin{frame}{Le cercle trigonométrique}
+\begin{center}\begin{tabular}{lll}
+Symétrie & Cosinus & Sinus \\ 
+Opposé : \(-\theta\) & \(\cos(-\theta)=\cos\theta\) & \(\sin(-\theta)=-\sin\theta\) \\ 
+Supplément : \(\pi-\theta\) & \(\cos(\pi-\theta)=-\cos\theta\) & \(\sin(\pi-\theta)=\sin\theta\) \\ 
+Antipose : \(\pi+\theta\) & \(\cos(\pi+\theta)=-\cos\theta\) & \(\sin(\pi+\theta)=-\sin\theta\) \\ 
+Période : \(\theta+2k\pi\) & \(\cos(\theta+2k\pi)=\cos\theta\) & \(\sin(\theta+2k\pi)=\sin\theta\) \\ 
+\end{tabular}\end{center}
+\end{frame}
+\begin{frame}{Le cercle trigonométrique}
+\begin{enumerate}
+\setcounter{enumi}{0}
+  \item Repérer le quadrant (\(\cos\) et \(\sin\) sont positifs ou négatifs).
+  
+\item Identifier l'angle de référence (angle avec l'axe des \(x\)).
+  
+\item Appliquer la symétrie correspondante.
+
+\end{enumerate}
+
+\emph{Exemple :} \(\cos(\dfrac{5\pi}{6})\).
+\(\dfrac{5\pi}{6} = \pi - \dfrac{\pi}{6}\) : second quadrant.
+\(\cos(\dfrac{5\pi}{6}) = -\cos(\dfrac{\pi}{6}) = -\dfrac{\sqrt{3}}{2}\).
+\end{frame}
+\begin{frame}{Résolution d'équations trigonométriques}
+\begin{enumerate}
+\setcounter{enumi}{0}
+  \item Si \(|a|>1\) : pas de solution.
+  
+\item Trouver l'angle de référence \(\alpha\in[0,\pi]\) tel que \(\cos\alpha=a\).
+  
+\item Les solutions sur \([0,2\pi]\) sont : \(x=\alpha\) et \(x=2\pi-\alpha\).
+        (Symétrie par rapport à l'axe \(Ox\).)
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Résolution d'équations trigonométriques}
+\begin{enumerate}
+\setcounter{enumi}{0}
+  \item Si \(|a|>1\) : pas de solution.
+  
+\item Trouver l'angle de référence \(\alpha\in[-\dfrac{\pi}{2},\dfrac{\pi}{2}]\) tel que \(\sin\alpha=a\).
+  
+\item Les solutions sur \([0,2\pi]\) sont : \(x=\alpha\) (adapté à \([0,2\pi]\))
+        et \(x=\pi-\alpha\) (adapté à \([0,2\pi]\)).
+        (Symétrie par rapport à l'axe \(Oy\).)
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Résolution d'équations trigonométriques}
+L'angle de référence : \(\cos(\dfrac{\pi}{3})=\dfrac{1}{2}\), donc \(\cos(\pi-\dfrac{\pi}{3})=-\dfrac{1}{2}\).
+\(\alpha = \dfrac{2\pi}{3}\).
+Solutions : \(x = \dfrac{2\pi}{3}\) et \(x = 2\pi - \dfrac{2\pi}{3} = \dfrac{4\pi}{3}\).
+\end{frame}
+\begin{frame}{Résolution d'équations trigonométriques}
+\(\sin(\dfrac{\pi}{4})=\dfrac{\sqrt{2}}{2}\).
+Solutions : \(x = \dfrac{\pi}{4}\) et \(x = \pi - \dfrac{\pi}{4} = \dfrac{3\pi}{4}\).
+\end{frame}
+\begin{frame}{Résolution d'équations trigonométriques}
+\(\tan\theta = \dfrac{\sin\theta}{\cos\theta}\) est définie pour \(\cos\theta\ne0\),
+c'est-à-dire \(\theta\ne\dfrac{\pi}{2}+k\pi\).
+
+Valeurs remarquables :
+\(\tan(0)=0\), 
+\(\tan(\dfrac{\pi}{6})=\dfrac{1}{\sqrt{3}}=\dfrac{\sqrt{3}}{3}\), 
+\(\tan(\dfrac{\pi}{4})=1\), 
+\(\tan(\dfrac{\pi}{3})=\sqrt{3}\).
+\end{frame}
+\end{document}

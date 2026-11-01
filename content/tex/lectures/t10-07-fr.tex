@@ -1,0 +1,196 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Fonctions numériques}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Fonctions numériques}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{}
+Une machine associe à \(x\) le nombre \(x^2-4\). Construire une table pour sept
+valeurs de \(x\), placer les points correspondants, puis répondre aux mêmes
+questions à partir de la formule, du tableau et du graphique. Comparer ce que
+chaque représentation rend facile ou difficile.
+\end{frame}
+\begin{frame}{Objectifs}
+\begin{itemize}
+
+  \item Lire et interpréter une courbe représentative.
+  
+\item Déterminer domaine de définition, image, antécédent, extremums.
+  
+\item Dresser et lire un tableau de variation.
+  
+\item Connaître les fonctions de référence.
+  
+\item Déduire les courbes des fonctions associées par transformations.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Généralités}
+Une \textbf{fonction numérique} \(f\) est une application d'un ensemble \(D_f \subset \mathbb{R}\)
+(domaine de définition) vers \(\mathbb{R}\). \(f(x)\) est l'\textbf{image} de \(x\),
+et \(x\) est un \textbf{antécédent} de \(f(x)\).
+\end{frame}
+\begin{frame}{Généralités}
+Le domaine \(D_f\) doit être symétrique par rapport à \(0\) :
+\(x\in D_f\Rightarrow -x\in D_f\). Les égalités suivantes valent pour tout \(x\in D_f\).
+\(f\) est \textbf{paire} si \(f(-x)=f(x)\) (courbe symétrique par rapport à \(Oy\)).
+
+\(f\) est \textbf{impaire} si \(f(-x)=-f(x)\) (courbe symétrique par rapport à \(O\)).
+\end{frame}
+\begin{frame}{Transformations}
+À partir de la courbe \(\mathcal{C}_f\) de \(f\) :
+
+\begin{itemize}
+
+  \item \(f(x)+a\) : translation verticale de vecteur \((0,a)\).
+  
+\item \(f(x+a)\) : translation horizontale de vecteur \((-a,0)\).
+  
+\item \(-f(x)\) : symétrie par rapport à \(Ox\).
+  
+\item \(f(-x)\) : symétrie par rapport à \(Oy\).
+  
+\item \(|f(x)|\) : replier la partie négative vers le haut.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Lecture de courbe et vocabulaire}
+Le \textbf{domaine de définition} \(D_f\) est l'ensemble des réels \(x\)
+pour lesquels \(f(x)\) est défini. Deux causes d'exclusion :
+
+\begin{itemize}
+
+  \item Division par zéro : exclure les \(x\) qui annulent le dénominateur.
+  
+\item Racine carrée d'un négatif : exclure les \(x\) où l'expression
+        sous le radical est \(<0\).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Lecture de courbe et vocabulaire}
+Pour \(y = f(x)\) :
+
+\begin{itemize}
+
+  \item \(y\) est l'\textbf{image} de \(x\) par \(f\).
+  
+\item \(x\) est un \textbf{antécédent} de \(y\) : il peut y en avoir
+        plusieurs, un seul, ou aucun.
+
+\end{itemize}
+
+\emph{Graphiquement :} l'image de \(x=a\) est l'ordonnée de la courbe
+à l'abscisse \(a\) ; les antécédents de \(y=b\) sont les abscisses
+des points d'intersection de la courbe avec la droite horizontale \(y=b\).
+\end{frame}
+\begin{frame}{Lecture de courbe et vocabulaire}
+\begin{itemize}
+\item \(f\) est \textbf{croissante} sur \(I\) si :
+        \(\forall x_1,x_2\in I,\ x_1<x_2\Rightarrow f(x_1)\leq f(x_2)\).
+  
+\item \(f\) est \textbf{décroissante} sur \(I\) si :
+        \(\forall x_1,x_2\in I,\ x_1<x_2\Rightarrow f(x_1)\geq f(x_2)\).
+  
+\item On dit \textbf{strictement} croissante ou décroissante si les
+        inégalités entre les images sont strictes.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Lecture de courbe et vocabulaire (2)}
+\begin{itemize}
+\item \(f(a)\) est un minimum sur \(I\) si \(a\in I\) et
+        \(f(a)\leq f(x)\) pour tout \(x\in I\); pour un maximum, \(f(a)\geq f(x)\).
+        Un extremum seulement comparé aux valeurs voisines est dit \textbf{local}.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Lecture de courbe et vocabulaire}
+\begin{enumerate}
+\setcounter{enumi}{0}
+  \item Identifier le domaine de définition.
+  
+\item Déterminer les intervalles de croissance et décroissance
+        (graphiquement, ou en utilisant le signe de \(f(x_2)-f(x_1)\)).
+  
+\item Indiquer les valeurs aux bornes et aux extremums.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Lecture de courbe et vocabulaire}
+\begin{center}\begin{tabular}{llllll}
+\(x\) & \(-\infty\) &  & \(0\) &  & \(+\infty\) \\ 
+\(f(x)\) & \(+\infty\) &  & \(-4\) &  & \(+\infty\) \\ 
+\end{tabular}\end{center}
+
+\(f\) est décroissante sur \(]-\infty,0]\) et croissante sur \([0,+\infty[\) ;
+minimum \(f(0)=-4\).
+\end{frame}
+\begin{frame}{Transformations de courbes}
+À partir de la courbe \(\mathcal{C}_f\) de \(f\) :
+\end{frame}
+\begin{frame}{Transformations de courbes (2)}
+\begin{center}\begin{tabular}{lll}
+Nouvelle fonction & Transformation & Description \\ 
+\(f(x)+k\) & Translation verticale & Monte de \(k\) (ou descend si \(k<0\)) \\ 
+\(f(x+k)\) & Translation horizontale & Glisse à gauche de \(k\) (si \(k>0\)) \\ 
+\(-f(x)\) & Symétrie par rapport à \(Ox\) & Retourne la courbe \\ 
+\(f(-x)\) & Symétrie par rapport à \(Oy\) & Image miroir \\ 
+\(|f(x)|\) & Valeur absolue & Remonte la partie négative \\ 
+\end{tabular}\end{center}
+\end{frame}
+\begin{frame}{Transformations de courbes}
+\begin{itemize}
+
+  \item \(x^2+3\) : parabole montée de \(3\) (sommet en \((0,3)\)).
+  
+\item \((x-2)^2\) : parabole déplacée à droite de \(2\) (sommet en \((2,0)\)).
+  
+\item \(-(x+1)^2+2\) : parabole retournée, sommet en \((-1,2)\), maximum \(2\).
+
+\end{itemize}
+\end{frame}
+\end{document}

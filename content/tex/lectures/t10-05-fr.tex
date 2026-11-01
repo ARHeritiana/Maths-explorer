@@ -1,0 +1,152 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Vecteurs du plan}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Vecteurs du plan}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{}
+Sur un plan quadrillé, plusieurs chemins conduisent du point \(A\) au point \(B\).
+Coder chacun par ses déplacements horizontal et vertical. Identifier ce qui
+reste invariant malgré le chemin choisi, puis proposer une règle d'addition de
+deux déplacements successifs.
+\end{frame}
+\begin{frame}{Objectifs}
+\begin{itemize}
+
+  \item Connaître les caractéristiques d'un vecteur (direction, sens, norme).
+  
+\item Maîtriser l'addition vectorielle et la multiplication par un scalaire.
+  
+\item Calculer et utiliser le produit scalaire.
+  
+\item Démontrer colinéarité et orthogonalité.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Généralités}
+Un \textbf{vecteur non nul} \(\overrightarrow{AB}\) est défini par sa \textbf{direction},
+son \textbf{sens} et sa \textbf{norme} \(\left\|\overrightarrow{AB}\right\| = AB\).
+Si \(A=B\), \(\overrightarrow{AB}=\vec0\) : sa norme est nulle et il n'a ni direction ni sens.
+Deux vecteurs non nuls sont \textbf{égaux} s'ils ont même direction, sens et norme.
+\end{frame}
+\begin{frame}{Généralités}
+\(I\) est le milieu de \([AB]\) si et seulement si
+\(\overrightarrow{IA} + \overrightarrow{IB} = \overrightarrow{0}\).
+\end{frame}
+\begin{frame}{Produit scalaire}
+Soient \(\vec{u}=(x_1,y_1)\) et \(\vec{v}=(x_2,y_2)\) :
+\[\vec{u} \cdot \vec{v} = x_1 x_2 + y_1 y_2
+  .\]
+Si les deux vecteurs sont non nuls, on a aussi
+\(\vec u\cdot\vec v=\left\|\vec u\right\|\,\left\|\vec v\right\|\cos\theta\),
+où \(\theta\) est leur angle. Si l'un est nul, le produit scalaire vaut \(0\).
+\end{frame}
+\begin{frame}{Produit scalaire}
+\begin{itemize}
+
+  \item \(\vec{u} \perp \vec{v} \Leftrightarrow \vec{u}\cdot\vec{v}=0\).
+  
+\item \(\vec{u} \parallel \vec{v} \Leftrightarrow x_1 y_2 - x_2 y_1 = 0\).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Opérations sur les vecteurs}
+Soient \(\vec{u}=(x_1,y_1)\), \(\vec{v}=(x_2,y_2)\) et \(\lambda\in\mathbb{R}\).
+\[\vec{u}+\vec{v} = (x_1+x_2,\, y_1+y_2),\qquad
+  \lambda\vec{u} = (\lambda x_1,\, \lambda y_1).\]
+Le vecteur \(-\vec{u} = (-x_1,-y_1)\) est l'\textbf{opposé} de \(\vec{u}\).
+\end{frame}
+\begin{frame}{Opérations sur les vecteurs}
+\begin{itemize}
+
+  \item \textbf{Commutativité :} \(\vec{u}+\vec{v}=\vec{v}+\vec{u}\).
+  
+\item \textbf{Associativité :} \((\vec{u}+\vec{v})+\vec{w}=\vec{u}+(\vec{v}+\vec{w})\).
+  
+\item \textbf{Élément neutre :} \(\vec{u}+\vec{0}=\vec{u}\).
+  
+\item \textbf{Relation de Chasles :} \(\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}\).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Opérations sur les vecteurs}
+Si \(A(x_A,y_A)\) et \(B(x_B,y_B)\), alors :
+\[\overrightarrow{AB} = (x_B-x_A,\; y_B-y_A),\qquad
+  \left\|\overrightarrow{AB}\right\| = \sqrt{(x_B-x_A)^2+(y_B-y_A)^2}.\]
+\end{frame}
+\begin{frame}{Opérations sur les vecteurs}
+\(\vec{u}=(x_1,y_1)\) et \(\vec{v}=(x_2,y_2)\) sont \textbf{colinéaires}
+si et seulement si :
+\[x_1 y_2 - x_2 y_1 = 0.\]
+Deux vecteurs non nuls colinéaires ont la même direction.
+Le vecteur nul est colinéaire à tout vecteur.
+Cette expression s'appelle le \textbf{déterminant} du couple \((\vec{u},\vec{v})\).
+\end{frame}
+\begin{frame}{Opérations sur les vecteurs}
+Le milieu \(I\) de \([AB]\) a pour coordonnées :
+\(I\!\left(\dfrac{x_A+x_B}{2},\; \dfrac{y_A+y_B}{2}\right).\)
+
+Le centre de gravité \(G\) du triangle \(ABC\) vérifie :
+\(\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec{0}\), et ses coordonnées sont
+\(G\!\left(\dfrac{x_A+x_B+x_C}{3},\; \dfrac{y_A+y_B+y_C}{3}\right).\)
+\end{frame}
+\begin{frame}{Repère et coordonnées}
+Un \textbf{repère orthonormé} \((O, \vec{\imath}, \vec{\jmath})\) est formé d'un
+point \(O\) (origine) et de deux vecteurs perpendiculaires de norme \(1\).
+Tout vecteur \(\vec{u}\) s'écrit \(\vec{u} = x\vec{\imath} + y\vec{\jmath}\) ;
+\((x,y)\) sont les \textbf{coordonnées} de \(\vec{u}\).
+\end{frame}
+\begin{frame}{Repère et coordonnées}
+\(A\), \(B\), \(C\) sont alignés ssi \(\overrightarrow{AB}\) et \(\overrightarrow{AC}\) sont colinéaires, c'est-à-dire :
+\[\det(\overrightarrow{AB}, \overrightarrow{AC})
+  = (x_B-x_A)(y_C-y_A) - (x_C-x_A)(y_B-y_A) = 0.\]
+\end{frame}
+\begin{frame}{Repère et coordonnées}
+\(ABCD\) est un parallélogramme ssi \(\overrightarrow{AB} = \overrightarrow{DC}\)
+(ou, de manière équivalente, si les diagonales se coupent en leur milieu).
+\end{frame}
+\end{document}

@@ -45,7 +45,8 @@ pre{background:var(--panel);border:1px solid var(--panel-2);border-radius:12px;p
 #live .hd{font-size:17px;margin-bottom:2px}
 #readout{overflow-wrap:anywhere}
 
-.sg{border-collapse:collapse;margin:8px 0;max-width:100%}
+/* A table wider than the text column scrolls inside it instead of widening the column (a table that fits looks the same). */
+.sg{border-collapse:collapse;margin:8px 0;max-width:100%;display:block;overflow-x:auto}
 .sg td{padding:4px 14px;min-width:28px;height:40px;text-align:center;vertical-align:middle}
 /* Dense lists of observations keep each value intact inside the text column. */
 .sg:has(tr > td:nth-child(12)) td{padding-inline:4px;white-space:nowrap}

@@ -1,0 +1,151 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Logique}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Logique}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{}
+Par groupes, classer dix phrases proposées par le professeur. Pour chaque phrase
+classée vraie ou fausse, rédiger une justification; pour chaque phrase refusée,
+expliquer quelle information manque. Transformer ensuite deux phrases ouvertes
+en propositions à l'aide de « pour tout » ou « il existe ».
+\end{frame}
+\begin{frame}{Objectifs}
+\begin{itemize}
+
+  \item Distinguer énoncé, proposition et prédicat.
+  
+\item Maîtriser les connecteurs logiques et leurs tables de vérité.
+  
+\item Utiliser les quantificateurs \(\forall\) et \(\exists\).
+  
+\item Former la négation et la réciproque d'une implication.
+  
+\item Découvrir, en approfondissement, la contraposée et le raisonnement par l'absurde.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Énoncés et propositions}
+Une \textbf{proposition} est un énoncé pouvant être \textbf{vrai} (\textbf{V})
+ou \textbf{faux} (\textbf{F}), mais pas les deux simultanément.
+\end{frame}
+\begin{frame}{Énoncés et propositions}
+\begin{itemize}
+
+  \item  \(2 + 2 = 4\)  : proposition vraie.
+  
+\item  \(7\) est pair  : proposition fausse.
+  
+\item  \(x > 3\)  : prédicat (sa valeur dépend de \(x\)), \emph{pas} une proposition.
+  
+\item   Viens ici  : phrase impérative, pas une proposition.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Négation et connecteurs logiques}
+Soient \(P\) et \(Q\) deux propositions. On définit :
+\end{frame}
+\begin{frame}{Négation et connecteurs logiques (2)}
+\begin{center}\begin{tabular}{llllll}
+\(P\) & \(Q\) & \(\lnot P\) & \(P \land Q\) & \(P \lor Q\) & \(P \Rightarrow Q\) \\ 
+\textbf{V} & \textbf{V} & \textbf{F} & \textbf{V} & \textbf{V} & \textbf{V} \\ 
+\textbf{V} & \textbf{F} & \textbf{F} & \textbf{F} & \textbf{V} & \textbf{F} \\ 
+\textbf{F} & \textbf{V} & \textbf{V} & \textbf{F} & \textbf{V} & \textbf{V} \\ 
+\textbf{F} & \textbf{F} & \textbf{V} & \textbf{F} & \textbf{F} & \textbf{V} \\ 
+\end{tabular}\end{center}
+\end{frame}
+\begin{frame}{Négation et connecteurs logiques (3)}
+L'implication \(P \Rightarrow Q\) est fausse \emph{uniquement} quand \(P\) est vraie et
+\(Q\) est fausse. Le   ou  mathématique est \textbf{inclusif}.
+\end{frame}
+\begin{frame}{Négation et connecteurs logiques}
+\(P \Leftrightarrow Q\) est vraie si \(P\) et \(Q\) ont la même valeur de vérité :
+\[P \Leftrightarrow Q \;\equiv\; (P \Rightarrow Q) \land (Q \Rightarrow P).\]
+\end{frame}
+\begin{frame}{Négation et connecteurs logiques}
+La \textbf{contraposée} de \(P \Rightarrow Q\) est \(\lnot Q \Rightarrow \lnot P\).
+Ces deux implications sont toujours équivalentes. Pour démontrer
+\(P \Rightarrow Q\), il suffit de démontrer \(\lnot Q \Rightarrow \lnot P\).
+\end{frame}
+\begin{frame}{Quantificateurs}
+\begin{itemize}
+
+  \item \(\forall x \in E,\ P(x)\) :   pour tout \(x\) dans \(E\), \(P(x)\) est vraie. 
+  
+\item \(\exists x \in E,\ P(x)\) :   il existe au moins un \(x\) dans \(E\) tel que
+        \(P(x)\) est vraie. 
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Quantificateurs}
+\[\lnot\bigl(\forall x \in E,\ P(x)\bigr) \;\equiv\; \exists x \in E,\ \lnot P(x)\]
+\[\lnot\bigl(\exists x \in E,\ P(x)\bigr) \;\equiv\; \forall x \in E,\ \lnot P(x)\]
+\end{frame}
+\begin{frame}{Types de raisonnement}
+Pour démontrer \(P \Rightarrow Q\) directement :
+on suppose \(P\) vraie et on en déduit, par une chaîne d'implications,
+que \(Q\) est vraie.
+\end{frame}
+\begin{frame}{Types de raisonnement}
+On démontre \(\lnot Q \Rightarrow \lnot P\) à la place de \(P \Rightarrow Q\).
+\textbf{Étapes :} (1) Supposer \(\lnot Q\). (2) En déduire \(\lnot P\).
+\end{frame}
+\begin{frame}{Types de raisonnement}
+Pour démontrer \(P\) :
+on suppose \(\lnot P\) et on aboutit à une \textbf{contradiction}.
+La contradiction montre que \(\lnot P\) est fausse, donc \(P\) est vraie.
+\end{frame}
+\begin{frame}{Types de raisonnement}
+Démontrons que \(\sqrt{2}\) est irrationnel.
+\emph{Supposons} \(\sqrt{2} \in \mathbb{Q}\) : il existe \(p, q \in \mathbb{N}^*\) avec \(\operatorname{pgcd}(p,q)=1\)
+et \(\sqrt{2} = p/q\).
+Alors \(2q^2 = p^2\), donc \(p^2\) est pair, donc \(p\) est pair : \(p = 2k\).
+On obtient \(2q^2 = 4k^2\), d'où \(q^2 = 2k^2\), et \(q\) est pair.
+Mais alors \(2 \mid \operatorname{pgcd}(p,q)\), ce qui contredit \(\operatorname{pgcd}(p,q)=1\). \textbf{Contradiction.}
+Donc \(\sqrt{2} \notin \mathbb{Q}\).
+\end{frame}
+\end{document}

@@ -43,13 +43,16 @@ def convert(fragment):
     for i,tex in enumerate(maths):result=result.replace(f'MXMATH{i}TOKEN',tex)
     return re.sub(r'\n\s*\n\s*\n','\n\n',result).strip()
 
+def weight(html_text):
+    # characters of text, plus a line's worth for each table row (a variation table is short in characters, tall on the page)
+    return len(re.sub('<[^>]*>','',html_text))+80*html_text.count('<tr')
 def chunks(fragment,limit=540):
     # Keep displayed maths and list items intact. A lecture page has a reading order, no live control instructions.
     pieces=re.split(r'(?:<br\s*/?>\s*){2,}|(?<=</p>)\s*|(?=<(?:ul|ol)>)|(?<=</ul>)|(?<=</ol>)',fragment)
     out=[];current=''
     for piece in pieces:
         if not piece.strip():continue
-        if len(re.sub('<[^>]*>','',current+piece))>limit and current:out.append(current);current=''
+        if weight(current+piece)>limit and current:out.append(current);current=''
         # An oversized list is split item-by-item while retaining its list semantics.
         if len(re.sub('<[^>]*>','',piece))>limit and re.fullmatch(r'\s*<(ul|ol)>[\s\S]*</\1>\s*',piece):
             node=dom.fragment_fromstring(piece);tag=node.tag

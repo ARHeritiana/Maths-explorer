@@ -1,0 +1,180 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Droites et cercles}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Droites et cercles}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{}
+Marquer un point \(\Omega\) puis placer le plus grand nombre possible de points à
+exactement \(4\) cm de \(\Omega\). Décrire l'ensemble obtenu. Dans un repère où
+\(\Omega(a;b)\), traduire la contrainte de distance par une équation.
+\end{frame}
+\begin{frame}{Objectifs}
+\begin{itemize}
+
+  \item Écrire les équations d'une droite sous toutes ses formes.
+  
+\item Écrire et reconnaître l'équation d'un cercle.
+  
+\item Calculer la distance d'un point à une droite.
+  
+\item Étudier la position relative d'une droite et d'un cercle.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Équations d'une droite}
+Dans un repère :
+
+\begin{itemize}
+
+  \item \textbf{Cartésienne} : \(ax + by + c = 0\), avec \((a,b)\ne(0,0)\).
+  
+\item \textbf{Réduite} : \(y = mx + p\) (\(m\) = coefficient directeur).
+  
+\item \textbf{Paramétrique} :
+        \(\begin{cases}x = x_0 + t\,d_x\\ y = y_0 + t\,d_y\end{cases}\),
+        \(t\in\mathbb{R}\), \((d_x,d_y)\ne(0,0)\) vecteur directeur.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Cercles et distance}
+Cercle de centre \(\Omega(a,b)\) et rayon \(r>0\) :
+\[(x-a)^2 + (y-b)^2 = r^2.\]
+\end{frame}
+\begin{frame}{Droites : propriétés et méthodes}
+Pour une droite \(y=mx+p\) :
+
+\begin{itemize}
+
+  \item \(m>0\) : droite croissante (monte de gauche à droite).
+  
+\item \(m<0\) : droite décroissante.
+  
+\item \(m=0\) : droite horizontale.
+  
+\item Droite verticale : équation \(x=k\) (pas de coefficient directeur).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Droites : propriétés et méthodes}
+\begin{enumerate}
+\setcounter{enumi}{0}
+  \item Par deux points \(A(x_A,y_A)\) et \(B(x_B,y_B)\) :
+        \(m = \dfrac{y_B-y_A}{x_B-x_A}\) (si \(x_A\ne x_B\)),
+        puis \(p = y_A - mx_A\).
+  
+\item \textbf{Par un point et une pente :}
+        \(y - y_A = m(x-x_A)\).
+  
+\item Parallèle à \(y=mx+p\) : même pente \(m\), chercher \(p'\)
+        via le point donné.
+  
+\item Perpendiculaire à \(y=mx+p\) : si \(m\ne0\), pente \(m'=-1/m\).
+        Si \(m=0\), la perpendiculaire passant par \(A\) est la verticale \(x=x_A\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Droites : propriétés et méthodes}
+Deux droites \(d_1\) : \(y=m_1x+p_1\) et \(d_2\) : \(y=m_2x+p_2\) :
+
+\begin{itemize}
+
+  \item \(d_1 \parallel d_2 \Leftrightarrow m_1=m_2\).
+  
+\item \(d_1 \perp d_2 \Leftrightarrow m_1\times m_2 = -1\).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Droites : propriétés et méthodes}
+La médiatrice de \([AB]\) (\(A(1,3)\), \(B(5,1)\)) passe par le milieu
+\(I(3,2)\) et est perpendiculaire à \(\overrightarrow{AB}=(4,-2)\),
+donc son coefficient directeur est \(m=2\).
+Équation : \(y-2 = 2(x-3)\), soit \(y=2x-4\).
+\end{frame}
+\begin{frame}{Cercles : propriétés et méthodes}
+L'équation \(x^2+y^2+Dx+Ey+F=0\) représente un cercle si et seulement si
+\(D^2+E^2-4F > 0\).
+On le met sous forme standard en complétant le carré :
+\[\left(x+\dfrac{D}{2}\right)^2+\left(y+\dfrac{E}{2}\right)^2 = \dfrac{D^2+E^2-4F}{4}.\]
+Centre : \(\Omega\!\left(-\dfrac{D}{2},\,-\dfrac{E}{2}\right)\) ;
+rayon : \(r=\dfrac{\sqrt{D^2+E^2-4F}}{2}\).
+\end{frame}
+\begin{frame}{Cercles : propriétés et méthodes}
+La tangente au cercle \(\mathcal{C}\) de centre \(\Omega\) en un point \(A\) de \(\mathcal{C}\) :
+
+\begin{itemize}
+
+  \item Est perpendiculaire au rayon \(\Omega A\).
+  
+\item Passe par \(A\).
+
+\end{itemize}
+
+Pour \(\mathcal{C}\) : \(x^2+y^2=r^2\) et \(A(x_0,y_0)\in\mathcal{C}\) :
+équation de la tangente : \(x_0 x + y_0 y = r^2\).
+\end{frame}
+\begin{frame}{Cercles : propriétés et méthodes}
+Deux cercles de centres \(\Omega_1\), \(\Omega_2\) et de rayons \(r_1\), \(r_2\)
+avec \(d = \Omega_1\Omega_2\) :
+
+\begin{itemize}
+
+  \item \(d > r_1+r_2\) : extérieurs l'un à l'autre (0 point commun).
+  
+\item \(d = r_1+r_2\) : tangents extérieurement (1 point commun).
+  
+\item \(|r_1-r_2| < d < r_1+r_2\) : sécants (2 points communs).
+  
+\item \(d = |r_1-r_2|>0\) : tangents intérieurement (1 point commun).
+  
+\item \(d=0\) et \(r_1=r_2\) : cercles confondus (une infinité de points communs).
+  
+\item \(d < |r_1-r_2|\) : l'un à l'intérieur de l'autre (0 point commun).
+
+\end{itemize}
+\end{frame}
+\end{document}

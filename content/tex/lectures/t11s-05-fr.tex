@@ -1,0 +1,100 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Étude complète et représentation graphique}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Étude complète et représentation graphique}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Assembler domaines, limites, dérivée, points remarquables et positions relatives pour tracer une courbe justifiée.
+\end{frame}
+\begin{frame}{Organiser l’étude}
+Domaine et éventuelle réduction par symétrie/périodicité; limites et branches infinies; dérivée et variations; points d’intersection avec les axes; tangentes ou points particuliers; tracé cohérent avec l’ensemble des résultats. Pour comparer deux courbes, étudier le signe de leur différence sur leur domaine commun.
+\end{frame}
+\begin{frame}{Organiser l’étude}
+Soit \(f(x)=\dfrac{x^2+1}{x-1}=x+1+\dfrac2{x-1}\).
+Le domaine est \(\mathbb{R}\setminus\{1\}\). Les limites en \(1^-\) et \(1^+\) sont \(-\infty\) et \(+\infty\). Aux deux infinis, l’asymptote est \(y=x+1\).
+\[
+f'(x)=1-\dfrac2{(x-1)^2}
+=\dfrac{(x-1)^2-2}{(x-1)^2}.
+\]
+Elle s’annule en \(a=1-\sqrt2\) et \(b=1+\sqrt2\). Elle est positive en dehors de \([a;b]\) et négative à l’intérieur, en séparant les deux intervalles du domaine. Les valeurs sont \(f(a)=2-2\sqrt2\) et \(f(b)=2+2\sqrt2\).
+\end{frame}
+\begin{frame}{Organiser l’étude (2)}
+\begin{center}\begin{tabular}{llllllll}
+\(x\) & \(-\infty\) &  & \(a\) &  & \(1\) &  &  \\ 
+\(f'\) &  & \(+\) & \(0\) & \(-\) & non défini &  &  \\ 
+\(f\) & \(-\infty\) & \(\nearrow\) & \(2-2\sqrt2\) & \(\searrow\) & \(-\infty\) &  &  \\ 
+\(x\) & \(1\) &  & \(b\) &  & \(+\infty\) &  &  \\ 
+\(f'\) & non défini & \(-\) & \(0\) & \(+\) &  &  &  \\ 
+\(f\) & \(+\infty\) & \(\searrow\) & \(2+2\sqrt2\) & \(\nearrow\) & \(+\infty\) &  &  \\ 
+\end{tabular}\end{center}
+\end{frame}
+\begin{frame}{Organiser l’étude (3)}
+\(f(0)=-1\). Le numérateur \(x^2+1\) ne s’annule jamais, donc la courbe ne coupe pas l’axe des abscisses. Pour tout \(h\ne0\), \(f(1+h)+f(1-h)=4\), et le domaine est symétrique par rapport à \(1\) : \((1;2)\) est centre de symétrie.
+\end{frame}
+\begin{frame}{Point d’inflexion et tangente}
+Un point d’inflexion est un point où la courbe change de convexité. Pour les fonctions deux fois dérivables étudiées ici, un changement de signe de \(f''\) de part et d’autre fournit un critère suffisant (admis). La convexité désigne l’allure courbée vers le haut, la concavité vers le bas.
+\end{frame}
+\begin{frame}{Point d’inflexion et tangente}
+Pour \(g(x)=x^3\), \(g''(x)=6x\) change de signe en \(0\). L’origine est un point d’inflexion, et la tangente \(y=0\) est traversée par la courbe. Pour \(x^4\), \(g''(0)=0\) mais \(g''\) reste positive : pas d’inflexion en \(0\).
+\end{frame}
+\begin{frame}{Point d’inflexion et tangente}
+Annuler \(f''\) ne suffit pas. Une courbe apparemment proche d’une droite ne prouve pas une asymptote. Une esquisse est un résumé de résultats déjà justifiés.
+\end{frame}
+\begin{frame}{Comparer deux fonctions}
+Tracer d’abord les axes et les asymptotes. Placer ensuite les points connus, en particulier extrema et intersections. Dessiner séparément chaque intervalle du domaine, en respectant les sens de variation et la position par rapport aux droites. Revenir au tableau pour contrôler chaque branche : la calculatrice peut aider à visualiser, mais ne remplace aucune justification.
+\end{frame}
+\begin{frame}{Comparer deux fonctions}
+Pour \(p(x)=x^3-3x\), la dérivée est \(3(x-1)(x+1)\). Les intervalles de monotonie stricte sont \(]-\infty;-1]\), \([-1;1]\) et \([1;+\infty[\), avec valeurs remarquables \(2\) et \(-2\). Une horizontale \(y=k\) avec \(-2<k<2\) rencontre chaque branche exactement une fois : la continuité donne l’existence et la monotonie l’unicité sur chaque branche. Ainsi on peut compter trois solutions sans les écrire en formule explicite.
+\end{frame}
+\begin{frame}{Comparer deux fonctions}
+Pour \(h(x)=(2x+1)/(x-1)\), résoudre \(h(x)=c\) exige \(x\ne1\). Multiplier alors par \(x-1\) donne \((2-c)x=-1-c\). Si \(c=2\), on obtient \(0=-3\), impossible. Sinon, \(x=(1+c)/(c-2)\); ce nombre n’est jamais \(1\), car cela imposerait \(1=-2\). Le niveau de l’asymptote horizontale n’est pas atteint dans cet exemple, mais cette propriété ne vaut pas pour toute asymptote.
+\end{frame}
+\begin{frame}{Comparer deux fonctions}
+Un extremum local concerne les valeurs voisines; un extremum global concerne tout le domaine. Un point d’inflexion marque un changement de convexité et peut avoir une tangente non horizontale. Une valeur interdite ne devient pas un point de la courbe même si sa limite est finie.
+\end{frame}
+\end{document}

@@ -1,0 +1,87 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Ensembles, applications et dénombrement}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Ensembles, applications et dénombrement}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Choisir entre produit, permutation, arrangement et combinaison; reconnaître injection, surjection et bijection.
+\end{frame}
+\begin{frame}{Cardinal et opérations}
+Le cardinal \(|E|\) d’un ensemble fini est son nombre d’éléments. L’intersection contient les éléments communs; l’union ceux de l’un ou de l’autre; le complémentaire \(\overline A\) est pris dans un ensemble de référence \(E\) annoncé.
+\end{frame}
+\begin{frame}{Cardinal et opérations}
+Pour \(A,B\) finis, \(|A\cup B|=|A|+|B|-|A\cap B|\) et \(|\overline A|=|E|-|A|\). Le principe du produit multiplie les nombres de choix successifs lorsque le nombre de possibilités à chaque étape est fixé pour tous les choix précédents.
+\end{frame}
+\begin{frame}{Cardinal et opérations}
+La somme des deux cardinaux compte deux fois l’intersection. Pour le produit, grouper les résultats par premier choix : chaque groupe a le même nombre de possibilités suivantes; répéter le raisonnement.
+\end{frame}
+\begin{frame}{Applications entre ensembles finis}
+Une application \(f:E\to F\) associe à chaque élément de \(E\) un unique élément de \(F\). Elle est injective si deux éléments distincts ont des images distinctes; surjective si chaque élément de \(F\) possède au moins un antécédent; bijective si elle est injective et surjective.
+\end{frame}
+\begin{frame}{Applications entre ensembles finis}
+Si \(|E|=p,|F|=n\), avec \(n\ge1\), il existe \(n^p\) applications. Une injection exige \(p\le n\); leur nombre est \(n(n-1)\cdots(n-p+1)\) pour \(p\ge1\), et \(1\) pour \(p=0\). Pour \(p=n\), les bijections sont \(n!\). Une surjection exige \(p\ge n\) si \(F\) est non vide.
+\end{frame}
+\begin{frame}{Applications entre ensembles finis}
+Une application choisit indépendamment une image parmi \(n\) pour chacun des \(p\) éléments. Une injection retire à chaque étape les images déjà utilisées. Une injection entre deux ensembles de même cardinal utilise toutes les images, donc elle est aussi surjective. La condition pour la surjection résulte du nombre d’images disponibles.
+\end{frame}
+\begin{frame}{Applications entre ensembles finis}
+La formule \(n^p\) compte toutes les applications, pas seulement les surjections. Le programme demande de reconnaître la surjection, sans formule générale de comptage; les petits exemples peuvent être énumérés.
+\end{frame}
+\begin{frame}{Ordre et répétition}
+\(n!=1\times2\times\cdots\times n\), avec \(0!=1\). Une permutation ordonne tous les éléments distincts : \(n!\) choix. Un arrangement de \(p\) éléments distincts parmi \(n\) est une liste ordonnée sans répétition : \(A_n^p=n!/(n-p)!\). Une combinaison est un sous-ensemble de \(p\) éléments : \(\binom np=n!/[p!(n-p)!]\), pour \(0\le p\le n\).
+\end{frame}
+\begin{frame}{Ordre et répétition}
+Chaque sous-ensemble de \(p\) éléments donne exactement \(p!\) ordres; les arrangements comptent chacun \(p!\) fois, donc on divise par \(p!\).
+\end{frame}
+\begin{frame}{Ordre et répétition}
+Parmi \(8\) élèves, un podium de trois places se compte par \(8\times7\times6=336\); un groupe de trois élèves se compte par \(\binom83=56\). Un code de trois chiffres avec répétition autorisée a \(10^3=1000\) possibilités, si le zéro initial est accepté.
+\end{frame}
+\begin{frame}{Ordre et répétition}
+L’ordre distingue-t-il deux résultats ? La répétition est-elle autorisée ? Choisit-on tous les éléments ou seulement certains ? Donner un exemple de résultat permet de choisir le bon univers de comptage.
+\end{frame}
+\end{document}

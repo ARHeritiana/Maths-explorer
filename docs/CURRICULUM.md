@@ -23,8 +23,11 @@ without defining it (`preambule/bmt-macros.sty`: add `\newcommand{\vecz}{\vect{z
 support, so LaTeX printed "Chapter", "Contents" and "Table" (fixed with `\renewcommand` of `\chaptername`, `\contentsname`,
 `\tablename` at the end of `seconde-mada.cls`, before `\endinput`).
 
-Not yet done: slide decks (and so the web lesson and exercise tabs of the chapter pages) for these chapters; generators for T10
-and T11 S in the exercise bank.
+Slide decks (same evening): the chapter sources are copied in `content/tex/mada/` (chapters, T10 activities, the macro files of both
+books, with the two fixes above) and `build/mxbuild/mada.py` rewrites them for the slide parser (macros expanded; teacher material,
+figures, pseudo-code and exercise sections dropped); each deck ends with the chapter's laboratory experiments. The chapter pages get
+their web lesson from these decks, and the 29 lecture PDFs are built like the others. When the books change upstream, copy the
+changed chapter files again and run `make site`. Not yet done: generators for T10 and T11 S in the exercise bank.
 
 Use the [official annual-distribution index](https://www.education.gov.mg/repartition-annuelle-du-programme-detudes/), which separates T10 and T11/T12 S, OSE and L. Its linked editions reviewed here are **2024–2025**. No official 2026–2027 replacement or declaration of continuing applicability was verified. The older [lycée page](https://www.education.gov.mg/systeme-educatif/lycee/) foregrounds A/C/D resources and is not evidence that those streams match S/OSE/L.
 

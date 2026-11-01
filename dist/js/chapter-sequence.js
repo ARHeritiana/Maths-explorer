@@ -38,8 +38,8 @@ async function math(root){
 // The edition of the interface language. A missing edition is reported, never replaced (owner rule), except in a curriculum
 // that is French only by the language rule (Malagasy): its French edition is the only one, named as such.
 let frenchOnly=false;
-// Every chapter of the French courses has a slide deck; the Malagasy chapters (T10, T11 S) do not yet.
-const hasDeck=c=>courses.find(x=>x.id===c.course)?.curriculum!=='mg';
+// Every chapter has a slide deck (the Malagasy ones are built from the owner's books, content/tex/mada/).
+const hasDeck=()=>true;
 function fileLink(f,L,label,page=1){if(!f)return '';const own=editionFor(f,L?'en':'fr'),other=own||!frenchOnly?null:editionFor(f,'fr'),edition=own||other;if(!edition)return `<p class="resource-note">${E(label)} · ${P('Édition indisponible','Edition unavailable')[L]}</p>`;const {path,bytes,pages}=edition;const note=other?` · ${P('en anglais','in French')[L]}`:'';return `<a class="document-link" href="./${E(assetHref(path.replace(/^\.\//,'')))}#page=${page}" target="_blank" rel="noopener">${E(label)}<span>PDF · ${pages} p.${bytes?' · '+Math.round(bytes/1024)+(L?' KB':' Ko'):''}${note}</span></a>`;}
 
 function slideBody(s,id,L){if(s.k==='code')return `<pre class="sequence-code"><code>${E((s.b[L]||'').replaceAll('&lt;','<').replaceAll('&gt;','>').replaceAll('&amp;','&'))}</code></pre>`;const figs=(s.f||[]).map(p=>`<figure class="sequence-figure"><img loading="lazy" src="./slides/fig/${id}-${p[L]}${L?'-en':''}.svg" alt="${E(s.t[L])}"></figure>`).join('');return `<div class="sequence-maths">${s.b[L]||''}</div>${figs}`;}

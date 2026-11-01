@@ -1,0 +1,86 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Probabilités sur un univers fini}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Probabilités sur un univers fini}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Décrire l’univers, calculer la probabilité d’un événement et exploiter unions, intersections et événements contraires.
+\end{frame}
+\begin{frame}{Univers et événements}
+L’univers \(\Omega\) est l’ensemble des issues d’une expérience aléatoire. Un événement est un sous-ensemble de \(\Omega\); un événement élémentaire contient une issue. \(\varnothing\) est impossible, \(\Omega\) certain. Deux événements sont incompatibles lorsque leur intersection est vide.
+\end{frame}
+\begin{frame}{Univers et événements}
+À chaque issue \(\omega\) on associe un nombre \(p_\omega\ge0\) avec \(\sum_{\omega\in\Omega}p_\omega=1\). Pour \(A\subseteq\Omega\), \(\mathbb{P}(A)=\sum_{\omega\in A}p_\omega\). Dans un univers fini non vide équiprobable, chaque poids vaut \(1/|\Omega|\), donc \(\mathbb{P}(A)=|A|/|\Omega|\).
+\end{frame}
+\begin{frame}{Univers et événements}
+L’équiprobabilité doit venir du modèle, par exemple un dé équilibré ou un tirage uniforme. Les valeurs d’une somme de deux dés ne sont pas équiprobables : la somme \(7\) a plus de couples que la somme \(2\).
+\end{frame}
+\begin{frame}{Propriétés}
+\(0\le\mathbb{P}(A)\le1\), \(\mathbb{P}(\varnothing)=0\), \(\mathbb{P}(\Omega)=1\);
+\(\mathbb{P}(\overline A)=1-\mathbb{P}(A)\);
+\[
+\mathbb{P}(A\cup B)=\mathbb{P}(A)+\mathbb{P}(B)-\mathbb{P}(A\cap B).
+\]
+Si \(A\subseteq B\), \(\mathbb{P}(A)\le\mathbb{P}(B)\).
+\end{frame}
+\begin{frame}{Propriétés}
+Les sommes portent sur des poids positifs ou nuls. Le complément partage l’univers avec \(A\). La formule de réunion retire les poids de l’intersection comptés deux fois. Pour l’inclusion, les poids supplémentaires de \(B\setminus A\) sont positifs ou nuls.
+\end{frame}
+\begin{frame}{Propriétés}
+Pour \(A=\{2,4,6\}\) et \(B=\{4,5,6\}\), \(\mathbb{P}(A)=\mathbb{P}(B)=1/2\), \(A\cap B=\{4,6\}\) donc \(\mathbb{P}(A\cap B)=1/3\); la réunion a probabilité \(2/3\). Les événements ne sont pas incompatibles.
+\end{frame}
+\begin{frame}{Compter un tirage}
+Pour deux lancers successifs équilibrés et indépendants, les couples ordonnés sont équiprobables. Pour un tirage simultané uniforme de \(p\) objets distincts parmi \(n\), les sous-ensembles sont équiprobables. Compter favorable et total avec la même notion de résultat; vérifier que la probabilité est comprise entre zéro et un.
+\end{frame}
+\begin{frame}{Compter un tirage}
+Une urne contient \(3\) boules rouges et \(2\) bleues, toutes distinguables. Tirer simultanément deux boules de façon uniforme. Il y a \(\binom52=10\) paires; les deux rouges donnent \(\binom32=3\) paires, probabilité \(3/10\). Au moins une rouge est le contraire de deux bleues : \(1-\binom22/\binom52=9/10\).
+\end{frame}
+\begin{frame}{Compter un tirage}
+Dans un petit univers, un tableau ou une liste complète évite une formule inadaptée. Les probabilités conditionnelles, les lois de variables aléatoires et la loi binomiale ne sont pas nécessaires pour ces exercices.
+\end{frame}
+\end{document}

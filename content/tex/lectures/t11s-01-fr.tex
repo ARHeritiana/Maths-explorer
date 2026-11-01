@@ -1,0 +1,434 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Généralités sur les fonctions numériques}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Généralités sur les fonctions numériques}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Lire une image et un antécédent sur une courbe comme sur une expression,
+  déterminer un ensemble de définition, établir qu'une fonction est paire,
+  impaire ou périodique, et en tirer l'intervalle sur lequel il suffit de
+  l'étudier.
+\end{frame}
+\begin{frame}{Fonction, image et antécédent}
+Soit \(\mathcal{D}\) une partie de \(\mathbb{R}\). Définir une \textbf{fonction numérique} \(f\) sur
+\(\mathcal{D}\), c'est associer à tout réel \(x\) de \(\mathcal{D}\) un unique réel, noté \(f(x)\).
+On écrit
+\[
+  f : \begin{array}{ccc}
+        \mathcal{D} & \longrightarrow & \mathbb{R} \\[0.15em]
+        x   & \longmapsto     & f(x)
+      \end{array}
+\]
+Le réel \(f(x)\) s'appelle l'\textbf{image} de \(x\) par \(f\). Réciproquement, si
+\(y\) est un réel et si \(x\) est un élément de \(\mathcal{D}\) tel que \(f(x) = y\), on dit
+que \(x\) est un \textbf{antécédent} de \(y\) par \(f\).
+\end{frame}
+\begin{frame}{Fonction, image et antécédent}
+Un réel de \(\mathcal{D}\) a une image et une seule. En revanche, un réel \(y\) peut
+avoir plusieurs antécédents, ou n'en avoir aucun : la fonction carré donne
+deux antécédents à \(4\), et aucun à \(-1\).
+\end{frame}
+\begin{frame}{Fonction, image et antécédent}
+Soit \(f\) la fonction définie sur \(\mathbb{R}\) par \(f(x) = x^{2} - 3x\).
+
+Image de \(4\). On remplace : \(f(4) = 4^{2} - 3 \times 4 = 16 - 12 = 4\).
+L'image de \(4\) est \(4\).
+
+Antécédents de \(-2\). On résout l'équation \(f(x) = -2\), c'est-à-dire
+\[
+  x^{2} - 3x = -2
+  \quad\Longleftrightarrow\quad x^{2} - 3x + 2 = 0 .
+\]
+Le discriminant vaut \(\Delta = 9 - 8 = 1 > 0\), d'où les deux solutions
+\(x_{1} = \dfrac{3-1}{2} = 1\) et \(x_{2} = \dfrac{3+1}{2} = 2\). Le réel \(-2\)
+admet donc exactement deux antécédents : \(1\) et \(2\).
+\end{frame}
+\begin{frame}{Fonction, image et antécédent (2)}
+Antécédents de \(-3\). On résout \(x^{2} - 3x + 3 = 0\), dont le
+discriminant vaut \(\Delta = 9 - 12 = -3 < 0\). Le réel \(-3\) n'a aucun
+antécédent par \(f\).
+\end{frame}
+\begin{frame}{L'ensemble de définition}
+Lorsqu'une fonction \(f\) est donnée par une expression, son \textbf{ensemble de
+définition}, noté \(\mathcal{D}_{f}\), est l'ensemble des réels \(x\) pour lesquels cette
+expression a un sens, c'est-à-dire pour lesquels le calcul de \(f(x)\) est
+possible dans \(\mathbb{R}\).
+\end{frame}
+\begin{frame}{L'ensemble de définition}
+Pour les expressions polynomiales, rationnelles et à racines carrées,
+les contraintes suivantes déterminent le domaine :
+
+\begin{enumerate}
+\setcounter{enumi}{0}
+  \item \(x\) annule un \textbf{dénominateur} : le quotient \(\dfrac{A}{B}\)
+        n'existe que si \(B \neq 0\) ;
+  
+\item \(x\) rend négatif ce qui se trouve \textbf{sous une racine carrée} :
+        \(\sqrt{A}\) n'existe que si \(A \geq 0\) ;
+  
+\item les deux à la fois, lorsqu'une racine figure au dénominateur :
+        \(\dfrac{1}{\sqrt{A}}\) n'existe que si \(A > 0\), l'inégalité devenant
+        stricte.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{L'ensemble de définition (2)}
+Une fonction polynôme n'est jamais concernée : son ensemble de définition
+est \(\mathbb{R}\) tout entier.
+\end{frame}
+\begin{frame}{L'ensemble de définition}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Repérer dans l'expression tous les dénominateurs et toutes les
+        racines carrées. Pour un polynôme, conclure : \(\mathcal{D}_f=\mathbb{R}\). Pour une fonction trigonométrique, vérifier aussi son domaine; la tangente exige \(\cos x\ne0\).
+  
+\item Écrire une condition par obstacle rencontré : une équation
+        \(B \neq 0\), une inéquation \(A \geq 0\).
+  
+\item Résoudre chaque condition séparément. Un tableau de signes est
+        souvent le chemin le plus court pour une inéquation du second degré
+        ou pour un quotient.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{L'ensemble de définition (2)}
+\begin{enumerate}
+\setcounter{enumi}{3}\item Conserver les réels qui vérifient \emph{toutes} les conditions à la
+        fois : l'ensemble de définition est leur intersection.
+  
+\item Écrire la réponse sous forme d'intervalles ou de réunion
+        d'intervalles, jamais sous forme de phrase.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{L'ensemble de définition}
+Soit \(f(x) = \dfrac{x+5}{x^{2} - x - 6}\).
+
+Le seul obstacle est le dénominateur : il faut \(x^{2} - x - 6 \neq 0\). On
+résout d'abord l'équation associée : \(\Delta = 1 + 24 = 25\), donc
+\(x_{1} = \dfrac{1-5}{2} = -2\) et \(x_{2} = \dfrac{1+5}{2} = 3\).
+
+Ces deux réels, et eux seuls, sont à exclure :
+\[
+  \mathcal{D}_{f} = \mathbb{R} \setminus \{-2\,;\,3\}
+          = \left]-\infty\,;\,-2\right[ \cup \left]-2\,;\,3\right[
+            \cup \left]3\,;\,+\infty\right[.
+\]
+\end{frame}
+\begin{frame}{L'ensemble de définition}
+Soit \(g(x) = \dfrac{\sqrt{x+1}}{x-4}\).
+
+Deux obstacles cette fois. Sous la racine : \(x + 1 \geq 0\), soit
+\(x \geq -1\). Au dénominateur : \(x - 4 \neq 0\), soit \(x \neq 4\).
+
+On garde les réels vérifiant les deux conditions :
+\[
+  \mathcal{D}_{g} = \left[-1\,;\,4\right[ \cup \left]4\,;\,+\infty\right[.
+\]
+Remarquez que \(-1\) est conservé - la racine y vaut \(0\), ce qui est
+parfaitement licite - tandis que \(4\) est exclu.
+\end{frame}
+\begin{frame}{Sens de variation}
+Soit \(f\) une fonction définie sur un intervalle \(I\).
+
+\begin{itemize}
+
+  \item \(f\) est \textbf{croissante} sur \(I\) lorsque, pour tous réels \(a\) et
+        \(b\) de \(I\) : \(a \leq b \implies f(a) \leq f(b)\).
+  
+\item \(f\) est \textbf{décroissante} sur \(I\) lorsque, pour tous réels \(a\) et
+        \(b\) de \(I\) : \(a \leq b \implies f(a) \geq f(b)\).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Sens de variation (2)}
+Pour la croissance stricte, \(a<b\) implique \(f(a)<f(b)\); pour la
+décroissance stricte, \(a<b\) implique \(f(a)>f(b)\). Une fonction \textbf{monotone} sur \(I\) est une fonction
+qui y est croissante, ou qui y est décroissante.
+\end{frame}
+\begin{frame}{Sens de variation}
+La fonction inverse est décroissante sur \(\left]-\infty\,;\,0\right[\) et
+décroissante sur \(\left]0\,;\,+\infty\right[\), mais elle n'est pas décroissante
+sur leur réunion. Prenons en effet \(a = -1\) et \(b = 1\) : on a bien
+\(a \leq b\), et pourtant \(f(a) = -1\) tandis que \(f(b) = 1\), de sorte que
+\(f(a) < f(b)\) - l'inégalité n'a pas été renversée. Dire « \(f\) est
+décroissante sur \(\mathbb{R}^{*}\) » est donc faux. On écrit deux lignes, pas une.
+\end{frame}
+\begin{frame}{Sens de variation}
+Soit \(f\) une fonction monotone sur un intervalle \(I\) et \(\lambda\) un réel non
+nul. La fonction \(\lambda f\) a le même sens de variation que \(f\) sur \(I\) si
+\(\lambda > 0\), et le sens contraire si \(\lambda < 0\).
+\end{frame}
+\begin{frame}{Sens de variation}
+Supposons \(f\) croissante sur \(I\) et \(\lambda > 0\). Soient \(a\) et \(b\) deux
+réels de \(I\) tels que \(a \leq b\). Par croissance de \(f\), on a
+\(f(a) \leq f(b)\). Multiplier les deux membres d'une inégalité par un réel
+strictement positif en conserve le sens, donc
+\(\lambda f(a) \leq \lambda f(b)\), c'est-à-dire
+\((\lambda f)(a) \leq (\lambda f)(b)\) : la fonction \(\lambda f\) est croissante
+sur \(I\).
+\end{frame}
+\begin{frame}{Sens de variation (2)}
+Si \(\lambda < 0\), la même multiplication renverse l'inégalité et donne
+\(\lambda f(a) \geq \lambda f(b)\) : la fonction \(\lambda f\) est alors
+décroissante sur \(I\). Le cas où \(f\) est décroissante se traite mot pour mot
+de la même manière.
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète}
+Une partie \(\mathcal{D}\) de \(\mathbb{R}\) est \textbf{symétrique par rapport à zéro} lorsque,
+pour tout réel \(x\), l'appartenance de \(x\) à \(\mathcal{D}\) entraîne celle de \(-x\) à
+\(\mathcal{D}\).
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète}
+Soit \(f\) une fonction dont l'ensemble de définition \(\mathcal{D}_{f}\) est symétrique
+par rapport à zéro.
+
+\begin{itemize}
+
+  \item \(f\) est \textbf{paire} lorsque \(f(-x) = f(x)\) pour tout \(x\) de
+        \(\mathcal{D}_{f}\).
+  
+\item \(f\) est \textbf{impaire} lorsque \(f(-x) = -f(x)\) pour tout \(x\) de
+        \(\mathcal{D}_{f}\).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète}
+Le plan est rapporté à un repère orthogonal \(\left(O\,;\,\overrightarrow{\imath},\,\overrightarrow{\jmath}\right)\) et \(\mathcal{C}_{f}\) désigne la
+courbe représentative de \(f\).
+
+\begin{itemize}
+
+  \item \(f\) est paire si et seulement si \(\mathcal{C}_{f}\) est symétrique par rapport à l'axe des
+        ordonnées.
+  
+\item \(f\) est impaire si et seulement si \(\mathcal{C}_{f}\) est symétrique par rapport à
+        l'origine \(O\) du repère.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète}
+Le point \(M\) de coordonnées \((x\,;\,y)\) a pour symétrique par rapport à l'axe
+des ordonnées le point \(M'\) de coordonnées \((-x\,;\,y)\).
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète (2)}
+Supposons \(f\) paire et prenons un point \(M(x\,;\,f(x))\) de \(\mathcal{C}_{f}\). Son
+symétrique est \(M'(-x\,;\,f(x))\). Comme \(\mathcal{D}_{f}\) est symétrique par rapport
+à zéro, le réel \(-x\) appartient à \(\mathcal{D}_{f}\), et la parité donne
+\(f(-x) = f(x)\). L'ordonnée de \(M'\) est donc bien \(f(-x)\) : le point \(M'\)
+appartient à \(\mathcal{C}_{f}\). La courbe est donc globalement invariante par cette
+symétrie.
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète (3)}
+Réciproquement, si \(\mathcal{C}_{f}\) est symétrique par rapport à l'axe des
+ordonnées, alors pour tout \(x\) de \(\mathcal{D}_{f}\) le symétrique
+\(M'(-x\,;\,f(x))\) du point \(M(x\,;\,f(x))\) appartient à \(\mathcal{C}_{f}\) ; son
+ordonnée vaut donc \(f(-x)\), d'où \(f(-x) = f(x)\).
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète}
+\begin{enumerate}
+\setcounter{enumi}{0}
+  \item Déterminer \(\mathcal{D}_{f}\) et vérifier qu'il est symétrique par rapport à
+        zéro. Si ce n'est pas le cas, conclure immédiatement : la fonction
+        n'est ni paire ni impaire, et il n'y a rien d'autre à écrire.
+  
+\item Calculer \(f(-x)\) en remplaçant partout \(x\) par \(-x\), puis simplifier
+        \emph{complètement} l'expression obtenue.
+  
+\item Comparer le résultat à \(f(x)\) et à \(-f(x)\) :
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète (2)}
+\begin{itemize}
+
+          \item si \(f(-x) = f(x)\), la fonction est paire ;
+          
+\item si \(f(-x) = -f(x)\), la fonction est impaire ;
+          
+\item si aucune des deux égalités n'est vraie pour tout \(x\), elle
+                n'est ni l'une ni l'autre - et un seul contre-exemple
+                numérique pour chacune des deux égalités suffit alors à le prouver.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète}
+\textbf{a)} \(f(x) = 3x^{4} - x^{2} + 5\), définie sur \(\mathbb{R}\), qui est symétrique
+par rapport à zéro. On calcule
+\[
+  f(-x) = 3(-x)^{4} - (-x)^{2} + 5 = 3x^{4} - x^{2} + 5 = f(x).
+\]
+La fonction \(f\) est paire. C'était prévisible : tous les exposants de \(x\)
+sont pairs, et la constante \(5\) se lit comme \(5x^{0}\).
+
+\textbf{b)} \(g(x) = \dfrac{x}{x^{2}+1}\), définie sur \(\mathbb{R}\). On calcule
+\[
+  g(-x) = \dfrac{-x}{(-x)^{2}+1} = \dfrac{-x}{x^{2}+1}
+        = -\,\dfrac{x}{x^{2}+1} = -g(x).
+\]
+La fonction \(g\) est impaire.
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète (2)}
+\textbf{c)} \(h(x) = x^{2} + x\), définie sur \(\mathbb{R}\). On calcule
+\(h(-x) = x^{2} - x\). Pour conclure, un contre-exemple suffit : \(h(1) = 2\) et
+\(h(-1) = 0\). Comme \(h(-1) \neq h(1)\) la fonction n'est pas paire, et comme
+\(h(-1) \neq -h(1)\) elle n'est pas impaire non plus.
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète}
+Soit \(f\) une fonction et \(\mathcal{C}_{f}\) sa courbe dans un repère orthogonal
+\(\left(O\,;\,\overrightarrow{\imath},\,\overrightarrow{\jmath}\right)\). Soient \(a\) et \(b\) deux réels. Le domaine doit être symétrique par rapport à \(a\) : \(a+h\) appartient au domaine si et seulement si \(a-h\) y appartient. Sous cette condition,
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète (2)}
+\begin{itemize}
+
+  \item La droite d'équation \(x = a\) est un \textbf{axe de symétrie} de
+        \(\mathcal{C}_{f}\) si et seulement si, pour tout réel \(h\) tel que \(a+h\) et \(a-h\)
+        appartiennent à \(\mathcal{D}_{f}\),
+        \[ f(a+h) = f(a-h). \]
+  
+\item Le point \(\Omega(a\,;\,b)\) est un \textbf{centre de symétrie} de
+        \(\mathcal{C}_{f}\) si et seulement si, pour tout réel \(h\) tel que \(a+h\) et \(a-h\)
+        appartiennent à \(\mathcal{D}_{f}\),
+        \[ f(a+h) + f(a-h) = 2b. \]
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète}
+Le symétrique du point \(M(a+h\,;\,f(a+h))\) par rapport au point
+\(\Omega(a\,;\,b)\) est le point \(M'\) tel que \(\Omega\) soit le milieu de
+\([MM']\). En écrivant les coordonnées du milieu, \(M'\) a pour abscisse
+\(2a - (a+h) = a - h\) et pour ordonnée \(2b - f(a+h)\).
+
+Dire que \(\Omega\) est centre de symétrie de \(\mathcal{C}_{f}\), c'est dire que \(M'\)
+appartient à \(\mathcal{C}_{f}\), c'est-à-dire que son ordonnée est l'image de son
+abscisse :
+\[
+  2b - f(a+h) = f(a-h),
+  \quad\text{soit}\quad
+  f(a+h) + f(a-h) = 2b .
+\]
+\end{frame}
+\begin{frame}{Parité : quand la courbe se reflète}
+En prenant \(a = 0\), la première égalité devient \(f(h) = f(-h)\) : c'est la
+parité. En prenant \(a = 0\) et \(b = 0\), la seconde devient
+\(f(h) + f(-h) = 0\) : c'est l'imparité. Il n'y a donc qu'un seul résultat à
+retenir, la parité n'en étant que la version centrée à l'origine.
+\end{frame}
+\begin{frame}{Périodicité : quand la courbe se répète}
+Soit \(f\) une fonction définie sur \(\mathcal{D}_{f}\) et \(T\) un réel strictement
+positif. La fonction \(f\) est périodique de période \(T\) lorsque, pour
+tout \(x\) de \(\mathcal{D}_{f}\), les réels \(x+T\) et \(x-T\) appartiennent à \(\mathcal{D}_{f}\) et
+\[
+  f(x+T) = f(x).
+\]
+Le plus petit réel strictement positif vérifiant cette égalité, lorsqu'il
+existe, s'appelle la \textbf{période} de \(f\).
+\end{frame}
+\begin{frame}{Périodicité : quand la courbe se répète}
+Si \(f\) est périodique de période \(T\), alors pour tout entier relatif \(k\) et
+tout \(x\) de \(\mathcal{D}_{f}\) :
+\[
+  f(x + kT) = f(x).
+\]
+Il suffit donc d'étudier \(f\) sur un intervalle de longueur \(T\) - par exemple
+\(\left[0\,;\,T\right[\) - et de reproduire la portion de courbe obtenue par
+translations successives de vecteur \(T\overrightarrow{\imath}\) pour obtenir la courbe entière.
+\end{frame}
+\begin{frame}{Périodicité : quand la courbe se répète}
+L’égalité est vraie pour \(k=0\). Si elle est vraie pour un entier \(k\ge0\), alors
+\(f(x+(k+1)T)=f((x+kT)+T)=f(x+kT)=f(x)\); une récurrence donne tous les entiers naturels.
+En appliquant la définition en \(x-T\), on obtient \(f(x-T)=f(x)\). Répéter ce déplacement donne les entiers négatifs. Le domaine reste invariant à chaque déplacement.
+\end{frame}
+\begin{frame}{Périodicité : quand la courbe se répète}
+Les fonctions \(x \mapsto \cos x\) et \(x \mapsto \sin x\) sont définies sur \(\mathbb{R}\)
+et périodiques de période \(2\pi\) : un tour complet du cercle
+trigonométrique ramène au même point, donc aux mêmes coordonnées.
+
+La fonction \(f(x) = \cos(3x)\) est également périodique. Cherchons sa période.
+Pour tout réel \(x\),
+\[
+  f\!\left(x + \dfrac{2\pi}{3}\right)
+  = \cos\!\left(3x + 2\pi\right) = \cos(3x) = f(x),
+\]
+donc \(\dfrac{2\pi}{3}\) est une période de \(f\).
+\end{frame}
+\begin{frame}{Périodicité : quand la courbe se répète}
+Lorsqu'une fonction est à la fois périodique et paire (ou impaire), les deux
+propriétés se cumulent et l'intervalle d'étude se réduit deux fois.
+\end{frame}
+\begin{frame}{Périodicité : quand la courbe se répète (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}
+  \item La périodicité de période \(T\) ramène l'étude à un intervalle de
+        longueur \(T\), centré si possible en zéro :
+        \(\left[-\dfrac{T}{2}\,;\,\dfrac{T}{2}\right]\).
+  
+\item La parité, ou l'imparité, permet alors de n'étudier que la moitié
+        droite : \(\left[0\,;\,\dfrac{T}{2}\right]\).
+  
+\item On trace la courbe sur ce dernier intervalle, on complète par la
+        symétrie donnée par la parité, puis on reproduit le motif obtenu par
+        translations de vecteur \(T\overrightarrow{\imath}\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Périodicité : quand la courbe se répète}
+Soit \(f(x) = \cos(2x)\), définie sur \(\mathbb{R}\).
+
+\textbf{Périodicité.} Pour tout réel \(x\), \(f(x + \pi) = \cos(2x + 2\pi)
+= \cos(2x) = f(x)\). La fonction est périodique de période \(\pi\), et l'on
+peut se limiter à \(\left[-\dfrac{\pi}{2}\,;\,\dfrac{\pi}{2}\right]\).
+
+\textbf{Parité.} Pour tout réel \(x\), \(f(-x) = \cos(-2x) = \cos(2x) = f(x)\),
+car la fonction cosinus est paire. La fonction \(f\) est donc paire, et l'on
+peut se limiter à \(\left[0\,;\,\dfrac{\pi}{2}\right]\).
+\end{frame}
+\begin{frame}{Périodicité : quand la courbe se répète (2)}
+D'un intervalle infini, on est passé à un intervalle de longueur
+\(\dfrac{\pi}{2}\).
+\end{frame}
+\end{document}

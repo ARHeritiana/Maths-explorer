@@ -1,0 +1,159 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Statistiques}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Statistiques}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{}
+Comparer les séries \(A=(8,8,8,8,8)\) et \(B=(4,6,8,10,12)\). Elles ont la même
+moyenne. Sont-elles pourtant semblables? Proposer une mesure de la dispersion,
+puis confronter les propositions à la variance et à l'écart-type.
+\end{frame}
+\begin{frame}{Objectifs}
+\begin{itemize}
+
+  \item Organiser des données statistiques : variable discrète et continue.
+  
+\item Calculer et interpréter les indicateurs de position :
+        moyenne, médiane, mode.
+  
+\item Calculer et interpréter les indicateurs de dispersion :
+        étendue, variance, écart-type.
+  
+\item Construire et lire les représentations graphiques :
+        diagramme en bâtons, diagramme circulaire, histogramme.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Statistiques descriptives}
+Pour une série non vide de valeurs \(x_1,\ldots,x_n\) :
+
+\begin{itemize}
+
+  \item \textbf{Moyenne} : \(\bar{x} = \dfrac{1}{n}\displaystyle\sum_{i=1}^n x_i\).
+  
+\item \textbf{Médiane} \(Q_2\) : valeur centrale une fois les données triées.
+  
+\item \textbf{Quartiles} \(Q_1\), \(Q_3\)  : valeurs aux rangs \(\lceil n/4\rceil\) et \(\lceil3n/4\rceil\) dans la série triée.
+  
+\item \textbf{Écart-type} :
+        \(\sigma = \sqrt{\dfrac{1}{n}\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2}\).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Caractéristiques complémentaires}
+Le \textbf{mode} d'une série statistique est la valeur (ou la classe) qui
+apparaît le plus souvent. Dans une distribution en classes, on parle de
+\textbf{classe modale}.
+\end{frame}
+\begin{frame}{Caractéristiques complémentaires}
+La \textbf{fréquence} d'une valeur \(x_i\) est \(f_i = n_i / N\).
+La \textbf{fréquence cumulée croissante} jusqu'à \(x_k\) est
+\(F_k = \displaystyle\sum_{i \leq k} f_i\).
+La médiane se détermine par les rangs centraux dans la série triée.
+La fréquence cumulée n'atteint pas forcément exactement \(50\%\).
+\end{frame}
+\begin{frame}{Séries statistiques groupées}
+Pour \(n\) valeurs \(x_1,\ldots,x_p\) aux effectifs \(n_1,\ldots,n_p\)
+(avec \(N=\sum n_i\)), la \textbf{fréquence} de \(x_i\) est \(f_i=n_i/N\).
+\end{frame}
+\begin{frame}{Séries statistiques groupées}
+\begin{itemize}
+
+  \item \textbf{Moyenne :} \(\bar{x} = \dfrac{1}{N}\sum_{i=1}^p n_i x_i\).
+  
+\item \textbf{Médiane :} valeur \(Q_2\) partageant la série en deux moitiés égales.
+  
+\item \textbf{Mode :} valeur (ou classe) de plus grande fréquence.
+  
+\item \textbf{Quartiles :} \(Q_1\) (25\%), \(Q_2\) (50\%), \(Q_3\) (75\%).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Séries statistiques groupées}
+\begin{itemize}
+
+  \item \textbf{Étendue :} \(e = x_{\max} - x_{\min}\).
+  
+\item \textbf{Variance :}
+        \(V = \dfrac{1}{N}\sum_{i=1}^p n_i(x_i-\bar{x})^2
+           = \overline{x^2} - \bar{x}^2\)
+        (variance \(=\) moyenne des carrés moins carré de la moyenne).
+  
+\item \textbf{Écart-type :} \(\sigma = \sqrt{V}\).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Séries statistiques groupées}
+\begin{enumerate}
+\setcounter{enumi}{0}
+  \item Trier les valeurs dans l'ordre croissant.
+  
+\item Calculer les effectifs cumulés.
+  
+\item La médiane est :
+
+\begin{itemize}
+
+      \item si \(N\) est impair : la valeur de rang \((N+1)/2\).
+      
+\item si \(N\) est pair : la demi-somme des valeurs de rangs \(N/2\) et \(N/2+1\).
+
+\end{itemize}
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Séries statistiques groupées}
+Pour des données connues seulement par classes, remplacer les valeurs par
+les centres donne une \textbf{estimation} de la moyenne et de la variance.
+La médiane exacte n'est pas déterminée par les seuls effectifs des classes.
+Les estimations par interpolation supposent une répartition uniforme dans
+chaque classe. Dans un histogramme, ce sont les \textbf{aires} des rectangles
+qui sont proportionnelles aux effectifs; pour des amplitudes inégales,
+les hauteurs sont proportionnelles à effectif/amplitude.
+\end{frame}
+\end{document}

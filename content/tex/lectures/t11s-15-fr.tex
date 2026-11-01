@@ -1,0 +1,116 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Transformations et similitudes directes}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Transformations et similitudes directes}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Construire les images de points et de figures, utiliser les expressions analytiques et composer deux transformations.
+\end{frame}
+\begin{frame}{Translations et symétries}
+La translation de vecteur \(\overrightarrow{u}\) envoie \(M\) sur \(M'\) tel que \(\overrightarrow{MM'}=\overrightarrow{u}\). La symétrie centrale de centre \(O\) fait de \(O\) le milieu de \([MM']\). La réflexion d’axe \(d\) fixe les points de \(d\); pour \(M\) hors de \(d\), son image \(M'\) est l’unique point tel que \(d\) soit la médiatrice de \([MM']\). Elle échange les deux demi-plans délimités par \(d\).
+\end{frame}
+\begin{frame}{Translations et symétries}
+Pour une translation de vecteur \((a;b)\), \((x',y')=(x+a,y+b)\). Pour la symétrie centrale de centre \((a;b)\), \((x',y')=(2a-x,2b-y)\). La réflexion d’axe \(y=0\) donne \((x,-y)\); d’axe \(x=0\), \((-x,y)\); d’axe \(y=x\), \((y,x)\).
+\end{frame}
+\begin{frame}{Translations et symétries}
+La translation résulte des coordonnées du vecteur; la symétrie centrale résulte de la formule du milieu. Les réflexions se vérifient par perpendicularité et milieu sur l’axe.
+\end{frame}
+\begin{frame}{Homothéties et rotations}
+Une homothétie de centre \(O\) et rapport \(k\ne0\) envoie \(M\) sur \(M'\) avec \(\overrightarrow{OM'}=k\overrightarrow{OM}\). Une rotation de centre \(O\) et angle \(\theta\) conserve \(OM\) et ajoute \(\theta\) à la direction du vecteur (le centre reste fixe).
+\end{frame}
+\begin{frame}{Homothéties et rotations}
+Pour \(O(a;b)\), l’homothétie donne \(x'=a+k(x-a)\), \(y'=b+k(y-b)\). Dans un repère orthonormé direct, la rotation donne
+\[
+\begin{cases}x'=a+\cos\theta(x-a)-\sin\theta(y-b),\\
+y'=b+\sin\theta(x-a)+\cos\theta(y-b).
+\end{cases}
+\]
+Translations, rotations et symétries conservent les distances. L’homothétie multiplie les distances par \(|k|\) et les aires par \(k^2\).
+\end{frame}
+\begin{frame}{Homothéties et rotations}
+Les images des deux vecteurs de base sous une rotation ont coordonnées \((\cos\theta;\sin\theta)\) et \((-\sin\theta;\cos\theta)\). Par linéarité, on obtient les formules; l’identité \(\cos^2\theta+\sin^2\theta=1\) conserve le carré des normes. Pour l’homothétie, la norme de \(k\overrightarrow{u}\) est \(|k|\left\| \overrightarrow{u} \right\|\) et chaque longueur d’une aire est multipliée par \(|k|\).
+\end{frame}
+\begin{frame}{Composer : l’ordre compte}
+\(g\circ f\) applique d’abord \(f\), puis \(g\). La composée de deux translations est la translation de la somme des vecteurs. Deux rotations de même centre se composent en additionnant les angles; deux homothéties de même centre multiplient les rapports.
+\end{frame}
+\begin{frame}{Composer : l’ordre compte}
+Si \(t(x,y)=(x+1,y)\) et \(r(x,y)=(-y,x)\), alors \((r\circ t)(x,y)=(-y,x+1)\) mais \((t\circ r)(x,y)=(1-y,x)\). Les deux transformations ne commutent pas.
+\end{frame}
+\begin{frame}{Composer : l’ordre compte}
+La composée de deux symétries centrales, de centres \(A\) puis \(B\), est la translation de vecteur \(2\overrightarrow{AB}\).
+\end{frame}
+\begin{frame}{Composer : l’ordre compte}
+Dans un repère, \(s_A(M)=2A-M\), puis \(s_B(s_A(M))=2B-(2A-M)=M+2(B-A)\).
+\end{frame}
+\begin{frame}{Similitudes planes directes}
+Une similitude directe est une transformation obtenue à partir d’une translation et d’une rotation suivie d’une homothétie de rapport strictement positif. Elle multiplie les distances par un rapport \(\rho>0\) et conserve les angles orientés. Dans un repère orthonormé direct,
+\[
+\begin{cases}x'=\alpha x-\beta y+p,\\y'=\beta x+\alpha y+q,\end{cases}
+\qquad \alpha^2+\beta^2>0.
+\]
+Son rapport est \(\rho=\sqrt{\alpha^2+\beta^2}\); son angle vérifie \(\cos\theta=\alpha/\rho\), \(\sin\theta=\beta/\rho\).
+\end{frame}
+\begin{frame}{Similitudes planes directes}
+Si \((\alpha,\beta)\ne(1,0)\), cette similitude possède un unique point fixe, obtenu en résolvant \(x'=x,y'=y\). Si \((\alpha,\beta)=(1,0)\), elle est une translation, sans centre unique; pour \(p=q=0\), c’est l’identité.
+\end{frame}
+\begin{frame}{Similitudes planes directes}
+Le système du point fixe a pour déterminant \((1-\alpha)^2+\beta^2\), strictement positif sauf dans le cas exclu. Autour de ce point fixe, l’expression est une rotation et une multiplication par \(\rho\).
+\end{frame}
+\begin{frame}{Similitudes planes directes}
+Pour une homothétie ou rotation de centre \(J(a;b)\), écrire les coordonnées de \(\overrightarrow{JM}\), appliquer la transformation à ce vecteur, puis ajouter celles de \(J\). Cette démarche explique les formules et évite d’oublier la translation du centre. Pour contrôler une image, comparer les distances au centre et l’angle orienté lorsque celui-ci intervient.
+\end{frame}
+\begin{frame}{Similitudes planes directes}
+Pour \(J(1;2)\) et \(M(4;3)\), \(\overrightarrow{JM}=(3;1)\). Une rotation d’angle \(\pi/2\) donne \((-1;3)\), donc \(M'=(0;5)\). Les carrés des distances sont \(3^2+1^2=10\) et \((-1)^2+3^2=10\). Faire seulement \((x;y)\mapsto(-y;x)\) aurait tourné autour de l’origine, pas de \(J\).
+\end{frame}
+\begin{frame}{Similitudes planes directes}
+Comparer les coefficients aux deux formes \(\alpha x-\beta y+p\) et \(\beta x+\alpha y+q\). Calculer rapport et angle; résoudre ensuite les équations de point fixe. Si \((\alpha,\beta)=(1,0)\), examiner la translation au lieu de forcer un centre par une division nulle. Une transformation conservant les distances n’est pas forcément directe : une réflexion en est un exemple.
+\end{frame}
+\begin{frame}{Similitudes planes directes}
+L’homothétie de rapport \(-2\) a le même effet sur un vecteur qu’une rotation de \(\pi\) suivie d’une homothétie de rapport positif \(2\). Les distances sont multipliées par \(2\), les aires par \(4\); le signe négatif modifie la direction, il ne produit pas une longueur négative.
+\end{frame}
+\end{document}
