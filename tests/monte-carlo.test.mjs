@@ -148,7 +148,7 @@ test('the run is time-based: 1 second gives the same number of trials at 60 Hz a
     const dt = 1000 / hz; let now = 1000; tick(now);
     for (let k = 0; k < Math.round(seconds * hz); k++) { now += dt; tick(now); }
     const runs = api.getState().runs; root.querySelector('.mc-run').click(); const stopped = api.getState().runs; tick(now + 100); assert.equal(api.getState().runs, stopped, 'pause stops the run');
-    api.destroy(); assert.equal(frames.size === 0 || true, true); root.remove(); return runs;
+    api.destroy(); assert.equal(frames.size, 0, "destroy leaves no pending animation frame"); root.remove(); return runs;
   };
   const a = await trials(60, 1), b = await trials(144, 1), c = await trials(30, 1);
   for (const r of [a, b, c]) assert.ok(r >= 590 && r <= 610, `about 600 trials in one second, got ${r}`);

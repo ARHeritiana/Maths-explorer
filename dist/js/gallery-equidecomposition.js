@@ -103,7 +103,7 @@ export function equidecomposition(root,opts){
     }
     fr.pieces.forEach(pc=>{trace(pc.poly);g.globalAlpha=.8;g.fillStyle=C.c[pc.colour];g.fill();g.globalAlpha=1;g.strokeStyle=C.ink;g.lineWidth=1;g.stroke();});
     slider.value=String(T);sliderOut.textContent=num(Math.min(STAGES,T+0),2);slider.setAttribute('aria-valuetext',t(`Étape ${step+1} sur ${STAGES}`,`Step ${step+1} of ${STAGES}`));
-    o.read(`${LABELS[step]} · ${t('Aire commune','Common area')} A = ${AREA} u² · W = ${num(CH.W)} · ${t('triangles','triangles')} : P ${CH.nP}, Q ${CH.nQ} · ${t('morceaux dans cette étape','pieces in this step')} : ${pieceCount(CH,step)}`);
+    o.read(`${LABELS[step]} · ${t('Aire commune','Common area')} A = ${AREA} u² · W = ${num(CH.W)} · ${t('triangles : ','triangles: ')}P ${CH.nP}, Q ${CH.nQ} · ${t('morceaux dans cette étape : ','pieces in this step: ')}${pieceCount(CH,step)}`);
   });
   return o.stop;
 }

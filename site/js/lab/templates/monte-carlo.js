@@ -13,7 +13,9 @@ export function mountMonteCarlo({ exp, stage, fmt, getState, setState, advance }
   const cfg = exp.monteCarlo, kind = cfg.kind, t = fmt.t, fr = fmt.fr, root = stage.wrap;
   const step = advance || setState, model = exp.model.model;
   const abort = new (root.ownerDocument.defaultView.AbortController)(), on = (n, ev, fn, o) => n.addEventListener(ev, fn, { signal: abort.signal, ...o });
-  let alive = true, running = false, raf = 0, last = null, carry = 0, rate = SPEEDS.normal, showRef = true, previous = "", note = null, lastStatus = 0;
+  let alive = true, running = false, raf = 0, last = null, carry = 0, rate = SPEEDS.normal, showRef = true, hideNow = false, previous = "", note = null, lastStatus = 0;
+  // a check mission sets `hide`: the quantity it asks for (the reference, the theoretical standard deviation) stays out of sight
+  const shown = () => showRef && !hideNow;
 
   const premise = el("p", "inference-assumption", t(cfg.assumption));
   const figure = el("div", "mc-figure"), canvas = el("canvas", "mc-canvas"), hint = el("p", "inference-plot-note", t(cfg.hint));
@@ -157,13 +159,13 @@ export function mountMonteCarlo({ exp, stage, fmt, getState, setState, advance }
   function drawChart(m, col, digits) {
     const w = Math.max(120, Math.round(chart.clientWidth || figure.clientWidth || 300)), h = 170, g = setup(chart, w, h); if (!g) return;
     const L = 46, R = 10, T = 10, B = 24, W = w - L - R, H = h - T - B, ys = m.history.map((p) => p[1]);
-    let lo = Math.min(...ys, showRef ? m.reference : Infinity), hi = Math.max(...ys, showRef ? m.reference : -Infinity);
-    if (!ys.length) { lo = showRef ? m.reference * 0.85 : 0; hi = showRef ? m.reference * 1.15 : 1; }
+    let lo = Math.min(...ys, shown() ? m.reference : Infinity), hi = Math.max(...ys, shown() ? m.reference : -Infinity);
+    if (!ys.length) { lo = shown() ? m.reference * 0.85 : 0; hi = shown() ? m.reference * 1.15 : 1; }
     const pad = (hi - lo || Math.abs(hi) * 0.1 || 0.1) * 0.15; lo -= pad; hi += pad;
     const X = (n) => L + (m.n > 1 ? (n - 1) / (m.n - 1) : 0.5) * W, Y = (v) => T + ((hi - v) / (hi - lo)) * H;
     g.fillStyle = col.sunken; g.fillRect(L, T, W, H); g.strokeStyle = col.grid; g.lineWidth = 1;
     for (let i = 0; i <= 3; i++) { const yy = T + (H * i) / 3; g.beginPath(); g.moveTo(L, yy); g.lineTo(L + W, yy); g.stroke(); label(g, fmt.num(hi - ((hi - lo) * i) / 3, 3), L - 5, yy, col.muted, "right", 10); }
-    if (showRef) { g.setLineDash([7, 5]); g.strokeStyle = col.out; g.lineWidth = 1.6; g.beginPath(); g.moveTo(L, Y(m.reference)); g.lineTo(L + W, Y(m.reference)); g.stroke(); g.setLineDash([]); }
+    if (shown()) { g.setLineDash([7, 5]); g.strokeStyle = col.out; g.lineWidth = 1.6; g.beginPath(); g.moveTo(L, Y(m.reference)); g.lineTo(L + W, Y(m.reference)); g.stroke(); g.setLineDash([]); }
     if (ys.length) { g.beginPath(); m.history.forEach(([n, y], i) => (i ? g.lineTo(X(n), Y(y)) : g.moveTo(X(n), Y(y)))); g.strokeStyle = col.blue; g.lineWidth = 2; g.lineJoin = "round"; g.stroke(); }
     else label(g, t(["Lance l’expérience pour tracer les estimations", "Run the experiment to trace the estimates"]), L + W / 2, T + H / 2, col.muted, "center");
     g.strokeStyle = col.ink; g.lineWidth = 1.2; g.beginPath(); g.moveTo(L, T); g.lineTo(L, T + H); g.lineTo(L + W, T + H); g.stroke();
@@ -181,30 +183,30 @@ export function mountMonteCarlo({ exp, stage, fmt, getState, setState, advance }
   return {
     handles: [],
     draw() {
-      const s = getState(), { w, h } = size(), key = JSON.stringify(s) + "|" + w + "|" + h + "|" + showRef + "|" + (note || "");
+      const s = getState(), { w, h } = size(); hideNow = !!s.hide; const key = JSON.stringify(s) + "|" + w + "|" + h + "|" + showRef + "|" + (note || "");
       if (key === previous) return; previous = key;
       const m = model(s), col = css(); cur = { m, col };
       const g = setup(canvas, w, h);
       if (g) { if (kind === "integral") drawIntegral(g, w, h, m, col, s); else if (kind === "walk") drawWalk(g, w, h, m, col, s); else drawSquare(g, w, h, m, col, false); }
       drawChart(m, col, d);
-      write(refBtn, showRef ? t(["Masquer la référence", "Hide the reference"]) : t(["Révéler la référence", "Reveal the reference"]));
-      const ref = showRef ? fmt.read(m.reference, d) : "•••", unit = cfg.unit ? " " + cfg.unit : "";
+      refBtn.disabled = hideNow; write(refBtn, shown() ? t(["Masquer la référence", "Hide the reference"]) : t(["Révéler la référence", "Reveal the reference"]));
+      const ref = shown() ? fmt.read(m.reference, d) : hideNow ? t(["à calculer", "to compute"]) : "•••", unit = cfg.unit ? " " + cfg.unit : "";
       const iv = m.interval ? "≈ [" + fmt.num(m.interval[0], d) + (fr ? " ; " : ", ") + fmt.num(m.interval[1], d) + "]" + unit : t(["Au moins 30 essais", "At least 30 trials"]);
       const rows8 = [
         [["Essais indépendants N", "Independent trials N"], fmt.num(m.n, 0)],
         [["Estimation", "Estimate"], m.estimate === null ? est(null) : est(m.estimate) + unit],
-        [["Référence", "Reference"], showRef ? ref + unit : ref],
-        [["Erreur absolue", "Absolute error"], showRef && m.error !== null ? fmt.read(m.error, d) + unit : "•••"],
+        [["Référence", "Reference"], shown() ? ref + unit : ref],
+        [["Erreur absolue", "Absolute error"], shown() && m.error !== null ? fmt.read(m.error, d) + unit : "•••"],
         kind === "integral" ? [["Hauteur moyenne", "Mean height"], m.meanHeight === null ? est(null) : fmt.read(m.meanHeight, d)] : [["Succès / essais", "Successes / trials"], fmt.num(m.hits, 0) + " / " + fmt.num(m.n, 0)],
         [["Intervalle approché à 95 %", "Approximate 95% interval"], iv],
-        [kind === "integral" ? ["Écart type estimé de l’estimation", "Estimated standard deviation of the estimate"] : ["Écart type théorique de l’estimation", "Theoretical standard deviation of the estimate"], m.standardError === null ? est(null) : fmt.read(m.standardError, d + 1)],
-        [["L’intervalle contient la référence ?", "Does the interval contain the reference?"], !showRef || m.covered === null ? "•••" : t(m.covered ? ["Oui", "Yes"] : ["Non", "No"])],
+        [kind === "integral" ? ["Écart type estimé de l’estimation", "Estimated standard deviation of the estimate"] : ["Écart type théorique de l’estimation", "Theoretical standard deviation of the estimate"], m.standardError === null ? est(null) : hideNow ? t(["à calculer", "to compute"]) : fmt.read(m.standardError, d + 1)],
+        [["L’intervalle contient la référence ?", "Does the interval contain the reference?"], !shown() || m.covered === null ? "•••" : t(m.covered ? ["Oui", "Yes"] : ["Non", "No"])],
       ];
       pairs.forEach(([a, b], i) => { write(a, t(rows8[i][0])); write(b, rows8[i][1]); });
       CHECKPOINTS.forEach((n, i) => {
         const row = m.history.find((p) => p[0] === n);
         write(rows[i][0], row ? fmt.read(row[1], d) : t(["Pas encore", "Not yet"]));
-        write(rows[i][1], row && showRef ? fmt.read(Math.abs(row[1] - m.reference), d) : "•••");
+        write(rows[i][1], row && shown() ? fmt.read(Math.abs(row[1] - m.reference), d) : "•••");
       });
       const line = m.n ? `${fmt.num(m.n, 0)} ${t(["essais", "trials"])}. ${t(["Estimation", "Estimate"])} ${est(m.estimate)}${unit}.` : t(["Aucun essai pour l’instant. Lance l’expérience.", "No trial yet. Run the experiment."]);
       if (!running || now() - lastStatus > 2000 || m.n === 0) { write(status, note || line); lastStatus = now(); }

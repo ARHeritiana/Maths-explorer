@@ -23,7 +23,7 @@ export default {
   level: ["Intermédiaire", "Intermediate"],
   prereq: ["Cosinus, radians, dérivée d’une fonction composée", "Cosine, radians, derivative of a composite function"],
   model: F,
-  state: { t: 0, aid: "none" },
+  state: { t: 0, aid: "none", hide: 0 },
   controls: {
     seat: {
       kind: "handle", panel: "wheel", color: "accent", absolute: true, label: ["Point marqué sur la roue", "Marked point on the wheel"],
@@ -110,13 +110,15 @@ export default {
     },
     formula(s, { fmt }) {
       const h = height(s.t);
-      return `h(t) = 75 − 60 cos(πt/15) ; h(${fmt.num(s.t)}) ${fmt.eq(h)} ${fmt.num(h)}`;
+      const sep = fmt.fr ? " ; " : ", ";
+      // `hide` keeps the value asked by the check mission out of sight until the learner has answered
+      return s.hide ? `h(t) = 75 − 60 cos(πt/15)${sep}${fmt.t(["h(5) est à calculer", "h(5) is yours to compute"])}` : `h(t) = 75 − 60 cos(πt/15)${sep}h(${fmt.num(s.t)}) ${fmt.eq(h)} ${fmt.num(h)}`;
     },
     readout(s, { fmt }) {
       const m = model(s), side = fmt.t(m.side > 0 ? ["au-dessus de 120 m", "above 120 m"] : m.side < 0 ? ["sous 120 m", "below 120 m"] : ["à 120 m exactement", "exactly 120 m"]);
       return [
         [["Temps écoulé t", "Elapsed time t"], `${fmt.num(s.t)} min`],
-        [["Hauteur h(t)", "Height h(t)"], `${fmt.read(m.h)} m`],
+        [["Hauteur h(t)", "Height h(t)"], s.hide ? fmt.t(["à calculer", "to compute"]) : `${fmt.read(m.h)} m`],
         [["Vitesse verticale h′(t)", "Vertical rate h′(t)"], `${fmt.read(m.rate)} m/min`],
         [["Par rapport à 120 m", "Against 120 m"], side],
       ];
@@ -124,7 +126,7 @@ export default {
   },
   missions: [
     {
-      id: "fastest", kind: "predict", set: { t: 0, aid: "none" }, correct: 1,
+      id: "fastest", kind: "predict", set: { t: 0, aid: "none", hide: 0 }, correct: 1,
       prompt: [
         "Un point marqué du bord d’une roue part du point le plus bas et tourne à vitesse constante jusqu’au point le plus haut. Sa hauteur augmente tout au long de la montée. Où augmente-t-elle le plus vite ?",
         "A marked point on the rim of a wheel starts at the lowest point and turns at a steady speed up to the highest point. Its height keeps increasing during the climb. Where does it increase fastest?",
@@ -136,7 +138,7 @@ export default {
       ],
     },
     {
-      id: "model", kind: "explore", set: { t: 0, aid: "none" }, unlock: ["seat", "onGraph", "time"],
+      id: "model", kind: "explore", set: { t: 0, aid: "none", hide: 0 }, unlock: ["seat", "onGraph", "time"],
       prompt: [
         "Modèle idéalisé : le point tourne régulièrement, exactement un tour en 30 minutes, à partir du point le plus bas, sur un cercle de 120 m de diamètre dont le sommet est à 135 m du niveau de référence. Amène le point en haut et lis les deux hauteurs extrêmes. Elles imposent h(t) = a cos(bt) + d : quelles valeurs pour a, b et d ?",
         "Idealised model: the point turns steadily, exactly one revolution in 30 minutes, from the lowest point, on a circle of diameter 120 m whose top is 135 m above the reference level. Take the point to the top and read the two extreme heights. They fix h(t) = a cos(bt) + d: which values for a, b and d?",
@@ -152,7 +154,7 @@ export default {
       ],
     },
     {
-      id: "height", kind: "check", set: { t: 5, aid: "none" }, quantity: "height", answer: 45, tolerance: 0.01,
+      id: "height", kind: "check", set: { t: 5, aid: "none", hide: 1 }, quantity: "height", answer: 45, tolerance: 0.01,
       prompt: [
         "Avec la formule du modèle, quelle est la hauteur du point au bout de 5 minutes, en mètres ? Compare avec la position du point sur la roue.",
         "With the formula of the model, what is the height of the point after 5 minutes, in metres? Compare with the position of the point on the wheel.",
@@ -164,7 +166,7 @@ export default {
       ],
     },
     {
-      id: "first", kind: "explore", set: { t: 0, aid: "level" }, unlock: ["onGraph", "time"],
+      id: "first", kind: "explore", set: { t: 0, aid: "level", hide: 0 }, unlock: ["onGraph", "time"],
       prompt: [
         "Le trait en pointillés marque 120 m. Avance le temps jusqu’à ce que le point atteigne 120 m pour la première fois, puis calcule cet instant exactement en résolvant 75 − 60 cos(πt/15) = 120.",
         "The dashed line marks 120 m. Move the time until the point first reaches 120 m, then find that moment exactly by solving 75 − 60 cos(πt/15) = 120.",
@@ -177,7 +179,7 @@ export default {
       ],
     },
     {
-      id: "above", kind: "check", set: { t: 11.55, aid: "level" }, quantity: "above", answer: 6.9, tolerance: 0.01,
+      id: "above", kind: "check", set: { t: 11.55, aid: "level", hide: 0 }, quantity: "above", answer: 6.9016, tolerance: 0.005,
       prompt: [
         "Pendant un tour, combien de temps la hauteur reste-t-elle supérieure ou égale à 120 m ? Donne la réponse en minutes, à deux décimales.",
         "During one revolution, for how long is the height at least 120 m? Give the answer in minutes, to two decimal places.",
@@ -192,7 +194,7 @@ export default {
       ],
     },
     {
-      id: "why", kind: "explain", set: { t: 7.5, aid: "tangent" },
+      id: "why", kind: "explain", set: { t: 7.5, aid: "tangent", hide: 0 },
       prompt: [
         "Pourquoi la hauteur augmente-t-elle le plus vite à la hauteur du moyeu, et à quelle vitesse ?",
         "Why does the height increase fastest level with the hub, and how fast is that?",
