@@ -810,7 +810,8 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
-        "quadratic/sign"
+        "quadratic/sign",
+        "line/intercept"
       ]
     },
     {
@@ -2272,7 +2273,8 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
-        "sequences/signs"
+        "sequences/signs",
+        "cobweb/steps"
       ]
     },
     {
@@ -2669,7 +2671,8 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
-        "derivative/where"
+        "derivative/where",
+        "quadratic/vertex"
       ]
     },
     {
@@ -2906,7 +2909,9 @@ export const resourceCatalog = {
           "englishBytes": 222372
         }
       ],
-      "labs": []
+      "labs": [
+        "exponential/sequence"
+      ]
     },
     {
       "id": "premiere-10",

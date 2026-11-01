@@ -6,7 +6,7 @@ decks are written to dist/slides/data/<chapter id>.json and indexed in dist/slid
 Teacher-only material (solutions boxes, \\enseignant, \\prof, fluency drills) is never included.
 Hand-authored decks (content/slides/*.json) are merged into the index unchanged.
 """
-import hashlib, json, re, sys
+import hashlib, json, os, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -284,6 +284,13 @@ def compile_figs(course, lang, jobs):
     build = ROOT / 'build/tex/figs'; build.mkdir(parents=True, exist_ok=True)
     figdir = OUT.parent / 'fig'; figdir.mkdir(parents=True, exist_ok=True)
     done = set()
+    # MX_REUSE_FIGS=1: keep the committed SVG of a figure instead of recompiling it (a machine whose TeX or PyMuPDF
+    # differs from the publishing one would rewrite every figure, or fail on missing fonts); only new figures compile.
+    if os.environ.get('MX_REUSE_FIGS') == '1':
+        kept = [it for it in jobs if (figdir / f'{it[0]}-{it[1]}{"-en" if lang == "en" else ""}.svg').exists()]
+        done.update((cid, n) for cid, n, _ in kept)
+        jobs = [it for it in jobs if it not in kept]
+        if not jobs: return done
     def run(items, job):
         items=[(cid,n,re.sub(r'^(?:\\begin\{center\}\s*)|(?:\s*\\end\{center\})$', '', code.strip())) for cid,n,code in items]
         body = '\n'.join('\\begin{preview}\n%s\n\\end{preview}' % code for _, _, code in items)
@@ -469,33 +476,35 @@ def lab_title(ref):
 
 # (deck id) -> [(regex on the unit title, widget spec)]: the widget slide is inserted after that unit
 WIDGETS = {
-    'premiere-01': [(r'Geometric sequences', lab('sequences/signs'))], 'premiere-02': [(r'Three forms', lab('quadratic/vertex'))],
-    'premiere-03': [(r'Coordinates, norm', {'type': 'vec'})], 'premiere-04': [(r'Tangent and affine', lab('derivative/approach'))],
-    'premiere-05': [(r'Trees, partitions', {'type': 'tree'})], 'premiere-07': [(r'Normal vector', {'type': 'vec'})],
-    'premiere-08': [(r'Variable, event', {'type': 'rv'})], 'premiere-09': [(r'Defining a new function', {'type': 'fn', 'mode': 'exp', 'modes': ['exp']})],
-    'premiere-10': [(r'Wrapping', lab('trig/quadrants'))],
-    'seconde-02': [(r'Collinearity and determinant', lab('vectors/collinear'))], 'seconde-03': [(r'Slope-intercept', lab('line/slope'))],
-    'seconde-04': [(r'Intervals of the real line', {'type': 'interval'})], 'seconde-06': [(r'Square and inverse', {'type': 'ref'})],
-    'seconde-07': [(r'Quartiles and box plot', lab('statistics/box'))], 'seconde-09': [(r'Successive changes', {'type': 'pct'})],
+    'premiere-01': [(r'Geometric sequences', lab('sequences/signs')), (r'Arithmetic sequences', lab('sequences/difference')), (r'Conjecturing a limit', lab('cobweb/steps'))], 'premiere-02': [(r'Three forms', lab('quadratic/vertex')), (r'Discriminant and solving', lab('quadratic/roots')), (r'Sign, inequalities', lab('quadratic/sign'))],
+    'premiere-03': [(r'Coordinates, norm', {'type': 'vec'})], 'premiere-04': [(r'Tangent and affine', lab('derivative/approach')), (r'When differentiability fails', lab('derivative/sides'))],
+    'premiere-05': [(r'Trees, partitions', {'type': 'tree'}), (r'Simulating and discussing', lab('probability/few'))], 'premiere-07': [(r'Normal vector', {'type': 'vec'})],
+    'premiere-08': [(r'Variable, event', {'type': 'rv'}), (r'Samples and observed mean', lab('probability/mean'))], 'premiere-09': [(r'Defining a new function', {'type': 'fn', 'mode': 'exp', 'modes': ['exp']}), (r'From discrete to continuous', lab('exponential/sequence'))],
+    'premiere-10': [(r'Wrapping', lab('trig/quadrants')), (r'Sine, cosine and standard values', lab('trig/exact')), (r'Related angles', lab('trig/associated'))],
+    'seconde-02': [(r'Collinearity and determinant', lab('vectors/collinear'))], 'seconde-03': [(r'Slope-intercept', lab('line/slope')), (r'Relative positions of two lines', lab('line/direction'))],
+    'seconde-04': [(r'Intervals of the real line', {'type': 'interval'})], 'seconde-06': [(r'Square and inverse', {'type': 'ref'}), (r'Affine functions and absolute', lab('line/intercept'))],
+    'seconde-07': [(r'Quartiles and box plot', lab('statistics/box')), (r'Adding or removing a value', lab('statistics/outlier'))], 'seconde-09': [(r'Successive changes', {'type': 'pct'})],
     'seconde-10': [(r'Variations of the square', {'type': 'ref'})], 'seconde-12': [(r'Comparing a vector', lab('vectors/collinear'))],
-    'seconde-14': [(r'Weighted trees', {'type': 'tree'})],
-    'stmg-01': [(r'Geometric sequences: recognising', lab('sequences/versus'))], 'stmg-02': [(r'Functions .*k a\^x|Definition and direction', lab('exponential/base'))],
+    'seconde-14': [(r'Weighted trees', {'type': 'tree'}), (r'Simulation and the law of large', lab('probability/few'))],
+    'stmg-01': [(r'Geometric sequences: recognising', lab('sequences/versus')), (r'Arithmetic sequences: recognising', lab('sequences/difference'))], 'stmg-02': [(r'Functions .*k a\^x|Definition and direction', lab('exponential/base')), (r'Functions .*k a\^x', lab('exponential/scale'))],
     'stmg-03': [(r'Variations and graph', {'type': 'fn', 'mode': 'log', 'modes': ['log']})], 'stmg-04': [(r'Definition and graph of the reciprocal', {'type': 'fn', 'mode': 'inv', 'modes': ['inv']})],
     'stmg-05': [(r'Linear regression', {'type': 'scatter'})], 'stmg-06': [(r'Weighted trees', {'type': 'tree'})],
-    'stmg-07': [(r'Binomial distribution: recognising', lab('probability/run'))],
+    'stmg-07': [(r'Binomial distribution: recognising', lab('probability/run')), (r'Binomial probabilities', lab('probability/read'))],
     'terminale-01': [(r'^Proof by induction', lab('cobweb/steps'))], 'terminale-02': [(r'^Vector calculus', lab('space-lines/param'))],
     'terminale-03': [(r'^Course notes', {'type': 'limit'})], 'terminale-06': [(r'^Convexity', {'type': 'convex'})],
     'terminale-07': [(r'^Reminders', {'type': 'tree'})], 'terminale-09': [(r'^Line, plane and normal', lab('space-lines/normal'))],
     'terminale-12': [(r'^Sums and transformations', {'type': 'rv'})], 'terminale-13': [(r'^Parametric lines', lab('space-lines/param')), (r'^Intersections', lab('space-lines/parallel'))],
     'terminale-14': [(r'^Circle and functions', lab('trig/quadrants'))], 'terminale-11': [(r'^Area and antiderivative', lab('integral/bound'))],
-    'expertes-01': [(r'^Conjugate', {'type': 'complex', 'mode': 'alg'})], 'expertes-02': [(r'^Argument and trigonometric', {'type': 'complex', 'mode': 'polar'})],
+    'expertes-01': [(r'^Conjugate', {'type': 'complex', 'mode': 'alg'})], 'expertes-02': [(r'^Argument and trigonometric', {'type': 'complex', 'mode': 'polar'}), (r'^Modulus', lab('complex/scale'))],
     'expertes-03': [(r'^Product and arguments', lab('complex/angles')), (r'^Exponential form', lab('trig/exact'))],
     'expertes-04': [(r'^Quadratics with real', {'type': 'cquad'})], 'expertes-05': [(r'roots of unity', {'type': 'roots', 'n': 6})],
     'expertes-06': [(r'^Congruences', {'type': 'modclock', 'mode': 'powers', 'n': 9, 'a': 2})],
     'expertes-07': [(r'^Gauss', {'type': 'modclock', 'mode': 'inverse', 'n': 26, 'a': 7})],
     'expertes-08': [(r'^Fermat', {'type': 'modclock', 'mode': 'powers', 'n': 13, 'a': 2})],
-    'expertes-09': [(r'^Inverse and systems', lab('matrix/flat'))], 'expertes-10': [(r'^Adjacency matrix', {'type': 'walks'})],
+    'expertes-09': [(r'^Inverse and systems', lab('matrix/flat')), (r'^Vocabulary and operations', lab('matrix/columns'))], 'expertes-10': [(r'^Adjacency matrix', {'type': 'walks'})],
     'expertes-11': [(r'^Markov chains', {'type': 'markov'})],
+    'premiere-06': [(r'Sign of the derivative and extrema', lab('derivative/where')), (r'^Optimisation', lab('quadratic/vertex'))],
+    'seconde-01': [(r'Parity and prime numbers', lab('euler-primes/hunt'))],
 }
 
 

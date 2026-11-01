@@ -37,6 +37,15 @@ statistics, `binom` to probability, `line` to line, `fn` mode exp to exponential
 Maths expertes widgets: `complex` (z and its conjugate; modulus and argument; product zw), `cquad` (roots of a real
 quadratic), `roots` (n-th roots of a), `modclock` (powers and inverses modulo n; the 2 by 2 matrix is the laboratory experiment `matrix`), `walks` (walks counted by powers of the adjacency matrix), `markov` (two-state chain).
 
+Second canvases (1 November 2026): 22 more laboratory placements, each opening on the mission of its section (for example
+`derivative/where` at "Sign of the derivative and extrema" in premiere-06, `statistics/outlier` at "Adding or removing a value" in
+seconde-07, `probability/few` at the simulation sections, `trig/exact` and `trig/associated` in premiere-10); premiere-06 and
+seconde-01 had no canvas before. Seconde 08 and 11 still have none (no experiment fits a two-way table or algebraic manipulation yet).
+
+Building on a machine whose TeX or PyMuPDF differs from the publishing one: `MX_REUSE_FIGS=1 make site` (or
+`MX_REUSE_FIGS=1 python3 scripts/build-slides.py`) keeps the committed figure SVGs and compiles only new figures. Without it,
+every figure is recompiled, and a TeX installation without the Palatino fonts of `mathpazo` fails on the first figure.
+
 ## Checks
 `python3 tests/slides_smoke.py` opens every deck in Chromium in both languages (console errors, MathJax errors, undefined macros shown as red text, raw TeX,
 overflow, widget drag). `python3 tests/slides_check.py` compares the English Terminale decks with their French drafts
