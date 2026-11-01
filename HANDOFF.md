@@ -21,8 +21,10 @@ Still to do (next sessions):
 1. Slides: done the same evening, widgets `twoway` and `signtable` (Seconde 08, 11, 14, STMG 04, 06). Most decks still have one to
    three canvases among 15 to 49 slides; the Terminale decks were not touched.
 2. Owner review of the new generators and problems against the 2026 programmes (wording, levels) [VERIFY].
-3. Pre-existing: `tests/browser.py` fails on `#errors/square-of-sum` at 320 px with enlarged text (also on the unchanged
-   `origin/main`), and `run_browser.py` stops there; `make check` runs `build-lecture-slides.py --check`, which compares with
+3. `tests/browser.py`: the overflow of `#errors/square-of-sum` at 320 px with doubled text is fixed (the bench grid column could not
+   shrink), and the counts that had gone stale behind it are updated (42 experiments, 16 groups, 8 biographies, run buttons by device
+   tier). It now stops at line 279: the `#pathways` assertions ('2027–2028', 'AI SL', 'Removed') describe the page before its
+   redesign of 1 November; rewrite them against the new rail, then rerun (CI 'Website checks' stays red until then); `make check` runs `build-lecture-slides.py --check`, which compares with
    git-ignored build files and cannot pass on a fresh clone.
 4. Private repository `Maths-explorer-backup` not reached from this laptop (no GitHub access at the time): nothing was read from its
    review queue.

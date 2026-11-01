@@ -88,7 +88,7 @@ with sync_playwright() as p:
     assert page.locator('.tool-card').count() == 6
     page.locator('.entrance-actions a[href="#lab"]').click()
     page.wait_for_url('**/#lab')
-    assert page.locator('.lab2-card-link').count() == 37
+    assert page.locator('.lab2-card-link').count() == 42   # every experiment of site/js/lab/registry.js (37 before the Monte Carlo and Ferris wheel experiments)
     page.goto(BASE)
     page.locator('#home-query').wait_for()
     page.locator('#home-query').fill('derivee')
@@ -187,8 +187,8 @@ with sync_playwright() as p:
         assert response.body().startswith(b'%PDF-' if key in ['module-workbook','module-statements'] else b'PK'), key
     page.set_viewport_size({'width':1440,'height':1000})
     page.goto(BASE+'/#gallery'); page.wait_for_selector('.wonder')
-    page.goto(BASE+'/#lab'); assert page.locator('.lab2-card-link').count() == 37, 'the laboratory index includes all registered experiments'
-    assert page.locator('.lab2-group').count() == 15
+    page.goto(BASE+'/#lab'); assert page.locator('.lab2-card-link').count() == 42, 'the laboratory index includes all registered experiments'
+    assert page.locator('.lab2-group').count() == 16   # with the group of the Monte Carlo experiments
     page.goto(BASE+'/#lab/galton'); page.wait_for_selector('#object-stage canvas'); assert page.evaluate('location.hash') == '#gallery/galton', 'curiosities redirect to the gallery'
     for language in ['fr','en']:
         page.locator('[data-lang="'+language+'"]').click()
@@ -207,12 +207,12 @@ with sync_playwright() as p:
     # Probability: the run buttons add experiments to one series; the seeded series is the same after a reload of the mission.
     page.goto(BASE+'/#lab/probability/run'); page.locator('.lab2-canvas').wait_for()
     run = page.locator('[data-control="run"] button')
-    assert run.count() == 5
+    assert run.count() in (5, 8)   # + 1 to + 1,000 and New series; a capable device adds + 10,000 to + 1,000,000 before New series
     run.nth(2).click(); run.nth(3).click()
     page.wait_for_function("() => document.querySelector('.lab2-readout dd')?.textContent === '1100'")
     page.evaluate("() => document.querySelector('.lab2').__lab.setState({p: 0})")
     page.wait_for_function("() => document.querySelectorAll('.lab2-readout dd')[1]?.textContent === '0'")   # p = 0: no success in any experiment
-    run.nth(4).click()
+    run.last.click()
     page.wait_for_function("() => document.querySelector('.lab2-readout dd')?.textContent === '0'")        # a new series starts at zero
     page.goto(BASE+'/#lab/sequences/signs')
     page.wait_for_function("() => document.querySelector('.lab2-formula')?.textContent.includes('×') && document.querySelector('.lab2-readout')?.textContent.length > 0")
@@ -230,7 +230,7 @@ with sync_playwright() as p:
         page.locator('[data-filter="'+kind+'"]').click()
         assert page.locator('.challenge-card').count() == count
     # "Lire": three tabs, texts and curiosities, and the cross-links shown both ways (Hanoi challenge and its legend).
-    page.goto(BASE+'/#biographies'); assert page.locator('.subnav a[href="#history"]').count() == 1 and page.locator('.read-card').count() == 4
+    page.goto(BASE+'/#biographies'); assert page.locator('.subnav a[href="#history"]').count() == 1 and page.locator('.read-card').count() == 8   # the biographies of site/js/reading-content.js
     page.goto(BASE+'/#stories/gauss-sum'); page.locator('.read-also a[href="#challenges/gauss-sum"]').click(); page.wait_for_url('**/#challenges/gauss-sum')
     page.goto(BASE+'/#challenges/hanoi'); page.locator('.read-also a[href="#stories/hanoi-legend"]').click(); page.locator('.read-article h1').wait_for()
     assert page.locator('.read-also a[href="#challenges/hanoi"]').count() == 1
