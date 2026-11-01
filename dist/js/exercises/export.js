@@ -1,4 +1,4 @@
-// Exports of a generated document: HTML for the page and for printing, LaTeX source (pdfLaTeX + mathpazo),
+// Exports of a generated document: HTML for the page and for printing, LaTeX source (pdfLaTeX, Palatino: newpx or mathpazo),
 // and a standalone projection page for the automatismes. Pure string builders, no DOM.
 // A statement is French text with maths between \( \) or \[ \]; nothing else is interpreted.
 
@@ -34,15 +34,20 @@ const PREAMBLE = String.raw`\documentclass[11pt,a4paper]{article}
 \DeclareUnicodeCharacter{2081}{\ensuremath{{}_1}}
 \DeclareUnicodeCharacter{2083}{\ensuremath{{}_3}}
 \usepackage[french]{babel}
-\usepackage{mathpazo}
 \usepackage{amsmath,amssymb}
+% Palatino: newpx when installed (the same design, complete fonts), else mathpazo. Some installations
+% (Fedora's split TeX Live packages) ship mathpazo.sty without the Palatino fonts it needs.
+\IfFileExists{newpxmath.sty}{\usepackage{newpxtext}\usepackage{newpxmath}}{\usepackage{mathpazo}}
 \usepackage[a4paper,margin=2cm]{geometry}
 \usepackage{enumitem}
 \usepackage{mdframed}
 \usepackage{needspace}
+\usepackage{multicol}
 \setlist[enumerate]{label=\alph*)}
 % exercise counter: never numbered by hand
 \newcounter{exo}
+% marks at the right margin, moved whole to the next line when the statement leaves no room (TeXbook, \signed)
+\newcommand{\pts}[1]{\unskip\nobreak\hfil\penalty50\hskip1em\hbox{}\nobreak\hfill\mbox{\textit{(#1)}}}
 % correction frame: a left rule, may break across pages
 \mdfdefinestyle{corrige}{linewidth=0pt,leftline=true,linecolor=gray,innerleftmargin=8pt,innertopmargin=2pt,innerbottommargin=2pt,skipabove=4pt,skipbelow=4pt}`;
 
@@ -61,7 +66,7 @@ export function sheetTex(doc, opts = {}) {
     if (e.intro) L.push(`${tex(e.intro)}\\par`);
     L.push('\\begin{enumerate}');
     for (const p of e.parts) {
-      L.push(`\\item ${tex(p.q)}${bareme ? ` \\hfill\\textit{(${pts(p.pts)} pt${p.pts > 1 ? 's' : ''})}` : ''}`);
+      L.push(`\\item ${tex(p.q)}${bareme ? `\\pts{${pts(p.pts)} pt${p.pts > 1 ? 's' : ''}}` : ''}`);
       if (teacher) L.push(`\\begin{mdframed}[style=corrige]${tex(p.a)}${p.s ? `\\par\\textit{${tex(p.s)}}` : ''}\\end{mdframed}`);
     }
     L.push('\\end{enumerate}');
@@ -70,19 +75,19 @@ export function sheetTex(doc, opts = {}) {
   return L.join('\n') + '\n';
 }
 
-// Automatismes: two columns of numbered questions; the teacher version adds the answer key on a second page.
+// Automatismes: two columns of numbered questions; the teacher version gives each answer under its question.
 export function starterTex(doc, opts = {}) {
   const teacher = opts.version === 'teacher';
   const L = [PREAMBLE.replace('\\setlist[enumerate]{label=\\alph*)}', '\\setlist[enumerate]{label=\\arabic*.}'), '\\pagestyle{empty}', '\\begin{document}'];
   L.push(`\\begin{center}{\\Large\\bfseries Automatismes${teacher ? ' --- corrigé' : ''}}\\\\[2pt]${tex(opts.subtitle || '')}\\end{center}`);
   if (!teacher) L.push(`\\noindent Nom : \\dotfill\\quad Date : \\dotfill\\hfill\\textit{${doc.minutes} minutes}\\par\\medskip`);
-  L.push('\\begin{enumerate}[itemsep=0.9em]');
+  L.push('\\begin{multicols}{2}', '\\begin{enumerate}[itemsep=0.9em]');
   for (const it of doc.items) {
     L.push(`\\item ${tex(it.q)}`);
     if (teacher) L.push(`\\\\\\hspace*{1em}\\textbf{Réponse :} ${tex(it.a)}${it.s ? ` \\textit{(${tex(it.s)})}` : ''}`);
     else L.push('\\vspace{2.2em}');
   }
-  L.push('\\end{enumerate}', '\\end{document}');
+  L.push('\\end{enumerate}', '\\end{multicols}', '\\end{document}');
   return L.join('\n') + '\n';
 }
 

@@ -69,7 +69,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 
 ## Generators (automatismes, worksheets, tests; the exercise bank)
 
-Seeded and limitless: any text is a seed, the same seed gives the same series. French content (curricula), UI in both languages. Exports: print (browser), LaTeX source (pdfLaTeX + mathpazo), standalone projection page.
+Seeded and limitless: any text is a seed, the same seed gives the same series. French content (curricula), UI in both languages. Exports: print (browser), LaTeX source (pdfLaTeX, Palatino through newpx or else mathpazo; compiled by `tests/exercise-latex.test.mjs` when pdflatex is installed), standalone projection page.
 
 | File | Holds |
 |---|---|

@@ -120,7 +120,7 @@ test('LaTeX and HTML exports: balanced, escaped, anonymous, no unsupported chara
     assert.equal((src.match(/\\begin\{(enumerate|mdframed|center|array|pmatrix|cases)\}/g) || []).length, (src.match(/\\end\{(enumerate|mdframed|center|array|pmatrix|cases)\}/g) || []).length);
     assert.equal((src.replace(/\\\$/g, '').match(/\$/g) || []).length % 2, 0, 'even number of $');
     assert.ok(!/arheritiana|@|http/i.test(src));
-    assert.ok(src.includes('mathpazo') && src.includes('\\newcounter{exo}'));
+    assert.ok(src.includes('newpxmath') && src.includes('mathpazo') && src.includes('\\newcounter{exo}'));
   }
   const proj = projectionHtml(st, { title: 'Automatismes' });
   assert.ok(proj.includes('<script id="data" type="application/json">') && proj.includes('mathjax/3.2.2'));

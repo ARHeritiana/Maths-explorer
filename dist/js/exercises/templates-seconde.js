@@ -92,7 +92,7 @@ export const seconde = [
     make(r, level) {
       let a, c; do { a = r.nz(-5, 5); c = r.nz(-5, 5); } while (a === c);
       const b = r.int(-9, 9), d = r.int(-9, 9);
-      const strict = r.next() < .5, rel = strict ? '<' : '\\leqslant';
+      const strict = r.next() < .5, rel = strict ? '<' : '\\leqslant ';
       const x0 = F(d - b, a - c), up = a - c > 0; // a x + b < c x + d  <=>  (a-c) x < d-b
       const set = up ? interval('-\\infty', fracTex(x0), false, !strict) : interval(fracTex(x0), '+\\infty', !strict, false);
       return { q: `Résoudre dans ${M(R)} : ${M(`${polyTex([a, b])}${rel}${polyTex([c, d])}`)}.`, a: M(`S=${set}`), s: a - c < 0 ? 'On change le sens de l’inégalité en divisant par un nombre négatif.' : '',
