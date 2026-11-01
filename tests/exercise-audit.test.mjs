@@ -73,9 +73,10 @@ test('capacity ratchet: generator-and-level pairs with few distinct questions mu
     if (n < 100) small++;
     if (n < 10) tiny.push(`${t.id}/${level}:${n}`);
   }
-  // Measured on 1 November 2026 with 5000 seeds: 203 pairs, 52 under 100 questions, 10 under 10 (listed by the failure message). Lower the bounds when a generator is widened.
+  // Measured on 1 November 2026 with 5000 seeds: 203 pairs, 52 under 100 questions, 10 under 10; after the widening of the same day
+  // (t-counting, s-percent, m-cm, p-trig-exact, p-radians, m-exp-evolution, t-trig-deriv, t-ln-deriv, e-modulus-arg): 49 and 0. Lower the bounds when a generator is widened.
   assert.ok(pairs >= 203, `pairs: ${pairs}`);
   assert.ok(small <= SMALL_BOUND, `${small} pairs give fewer than 100 distinct questions (bound ${SMALL_BOUND})`);
   assert.ok(tiny.length <= TINY_BOUND, `${tiny.length} pairs give fewer than 10: ${tiny.join(', ')} (bound ${TINY_BOUND})`);
 });
-const SMALL_BOUND = 52, TINY_BOUND = 10;
+const SMALL_BOUND = 49, TINY_BOUND = 0;

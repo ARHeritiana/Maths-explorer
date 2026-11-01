@@ -141,16 +141,17 @@ export const premiere = [
   { id: 'p-trig-exact', cls: C, chapter: 'premiere-10', domain: 'geometrie', skill: 'Valeurs exactes du cosinus et du sinus', fast: true,
     make(r, level) {
       const first = [0, 2, 3, 4, 6], all = [0, 2, 3, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22];
-      let u = level === 1 ? r.pick(first.slice(1)) : r.pick(all.slice(1));
+      let u = level === 1 ? r.pick([...first.slice(1), 8, 9, 10, 12]) : r.pick(all.slice(1));
       if (level === 3) u += 24 * r.nz(-3, 3);
-      const ex = exactCosSin(u), ang = piTex(u, 12);
-      return { q: `Donner les valeurs exactes de ${M(`\\cos\\left(${ang}\\right)`)} et ${M(`\\sin\\left(${ang}\\right)`)}.`, a: M(`\\cos\\left(${ang}\\right)=${ex.cos}\\ ;\\ \\sin\\left(${ang}\\right)=${ex.sin}`), ok: () => near(Math.cos((u * Math.PI) / 12), ex.cosN, 1e-9) && near(Math.sin((u * Math.PI) / 12), ex.sinN, 1e-9) };
+      const ex = exactCosSin(u), ang = piTex(u, 12), ask = level === 1 ? r.pick(['both', 'cos', 'sin']) : 'both';
+      const qc = M(`\\cos\\left(${ang}\\right)`), qs = M(`\\sin\\left(${ang}\\right)`), ac = `\\cos\\left(${ang}\\right)=${ex.cos}`, as = `\\sin\\left(${ang}\\right)=${ex.sin}`;
+      return { q: ask === 'both' ? `Donner les valeurs exactes de ${qc} et ${qs}.` : `Donner la valeur exacte de ${ask === 'cos' ? qc : qs}.`, a: M(ask === 'both' ? `${ac}\\ ;\\ ${as}` : ask === 'cos' ? ac : as), ok: () => near(Math.cos((u * Math.PI) / 12), ex.cosN, 1e-9) && near(Math.sin((u * Math.PI) / 12), ex.sinN, 1e-9) };
     } },
   { id: 'p-radians', cls: C, chapter: 'premiere-10', domain: 'geometrie', skill: 'Degrés et radians', fast: true,
     make(r, level) {
-      const base = level === 1 ? [30, 45, 60, 90, 180, 120, 135, 150] : Array.from({ length: 49 }, (_, i) => 15 * (i - 24)).filter((x) => x !== 0);
+      const base = level === 1 ? [30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330, 360] : Array.from({ length: 49 }, (_, i) => 15 * (i - 24)).filter((x) => x !== 0);
       const d = r.pick(base), f = F(d, 180);
-      if (level < 3 || r.next() < 0.4) return { q: `Convertir ${M(`${d}^{\\circ}`)} en radians.`, a: M(`${d}^{\\circ}=${piTex(f.n, f.d)}\\ \\text{rad}`), ok: () => near((d * Math.PI) / 180, (f.n / f.d) * Math.PI, 1e-12) };
+      if (level === 2 || r.next() < (level === 1 ? 0.6 : 0.4)) return { q: `Convertir ${M(`${d}^{\\circ}`)} en radians.`, a: M(`${d}^{\\circ}=${piTex(f.n, f.d)}\\ \\text{rad}`), ok: () => near((d * Math.PI) / 180, (f.n / f.d) * Math.PI, 1e-12) };
       return { q: `Convertir ${M(`${piTex(f.n, f.d)}\\ \\text{rad}`)} en degrés.`, a: M(`${d}^{\\circ}`), ok: () => near(((f.n / f.d) * 180), d, 1e-12) };
     } },
 ];

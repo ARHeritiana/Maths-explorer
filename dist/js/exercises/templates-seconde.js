@@ -118,8 +118,11 @@ export const seconde = [
     make(r, level) {
       if (level === 1) { const p = 20 * r.int(2, 15), t = r.pick([5, 10, 20, 25, 50]) * r.sign(); const res = F(p * (100 + t), 100); return { q: `Un article coûte ${M(`${p}\\ \\text{€}`)}. Son prix ${t > 0 ? 'augmente' : 'baisse'} de ${M(`${Math.abs(t)}\\,\\%`)}. Calculer son nouveau prix.`, a: M(`${numTex(res)}\\ \\text{€}`), ok: () => Math.abs(val(res) - p * (1 + t / 100)) < 1e-9 }; }
       if (level === 2) { const t1 = r.pick([10, 20, 25, 50]) * r.sign(), t2 = r.pick([10, 20, 25, 50]) * r.sign(); const cm = mul(F(100 + t1, 100), F(100 + t2, 100)); const rate = mul(sub(cm, F(1)), F(100)); return { q: `Une quantité subit une évolution de ${M(`${t1 > 0 ? '+' : '-'}${Math.abs(t1)}\\,\\%`)} puis de ${M(`${t2 > 0 ? '+' : '-'}${Math.abs(t2)}\\,\\%`)}. Déterminer le taux d’évolution global.`, a: M(`CM=${numTex(cm)}\\ \\text{ donc }\\ ${val(rate) >= 0 ? '+' : ''}${numTex(rate)}\\,\\%`), ok: () => Math.abs(val(cm) - (1 + t1 / 100) * (1 + t2 / 100)) < 1e-12 }; }
-      const t = r.pick([25, 100, 150, 300]); const back = F(100 * t, 100 + t);
-      return { q: `Après une hausse de ${M(`${t}\\,\\%`)}, de quel pourcentage faut-il baisser pour revenir à la valeur initiale ?`, a: M(`\\text{baisse de }${numTex(back)}\\,\\%`), s: M(`\\dfrac{1}{${numTex(F(100 + t, 100))}}`), ok: () => Math.abs((1 + t / 100) * (1 - val(back) / 100) - 1) < 1e-12 };
+      const up = r.next() < 0.6, t = up ? 5 * r.int(1, 60) : 5 * r.int(1, 12), cm = F(up ? 100 + t : 100 - t, 100);
+      const back = F(100 * t, up ? 100 + t : 100 - t), k = decimals(back), exact = k >= 0 && k <= 2;
+      const shown = exact ? `${numTex(back)}\\,\\%` : `\\approx ${roundTex(val(back), 1)}\\,\\%`;
+      return { q: `Après une ${up ? 'hausse' : 'baisse'} de ${M(`${t}\\,\\%`)}, de quel pourcentage faut-il ${up ? 'baisser' : 'augmenter'} pour revenir à la valeur initiale ?`, a: M(`\\text{${up ? 'baisse' : 'hausse'} de }${shown}`), s: M(`CM=\\dfrac{1}{${numTex(cm)}}`) + (exact ? '' : ', valeur arrondie au dixième'),
+        ok: () => Math.abs(val(cm) * (1 + (up ? -1 : 1) * val(back) / 100) - 1) < 1e-12 };
     } },
   { id: 's-stats', cls: C, chapter: 'seconde-07', domain: 'stats-proba', skill: 'Moyenne, médiane, quartiles', fast: false,
     make(r, level) {

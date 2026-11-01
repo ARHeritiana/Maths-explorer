@@ -32,7 +32,7 @@ export const expertes = [
       if (level < 3) {
         const dirs = [['1', '1', '\\sqrt{2}', 1, 1, 1, 4], ['-1', '1', '\\sqrt{2}', 1, 3, 1, 4], ['-1', '-1', '\\sqrt{2}', 1, -3, 1, 4], ['1', '-1', '\\sqrt{2}', 1, -1, 1, 4], ['1', '\\sqrt{3}', '2', 2, 1, 1, 3], ['-1', '\\sqrt{3}', '2', 2, 2, 1, 3], ['1', '-\\sqrt{3}', '2', 2, -1, 1, 3], ['\\sqrt{3}', '1', '2', 2, 1, 1, 6]];
         const nums = { '1': 1, '-1': -1, '\\sqrt{3}': Math.sqrt(3), '-\\sqrt{3}': -Math.sqrt(3) };
-        const k = level === 1 ? 1 : r.int(2, 4), [x, y, modTex, modN, an, ad0, ad] = r.pick(dirs);
+        const k = level === 1 ? r.int(1, 3) : r.int(2, 6), [x, y, modTex, modN, an, ad0, ad] = r.pick(dirs);
         const kx = (t) => (t === '1' ? `${k}` : t === '-1' ? `-${k}` : (k === 1 ? '' : k) + t.replace('1', '1')), kt = (t) => { const neg = t.startsWith('-'); const b = neg ? t.slice(1) : t; return (neg ? '-' : '') + (b === '1' ? `${k}` : (k === 1 ? '' : `${k}`) + b); };
         const re = kt(x), im = kt(y); const zt = `${re}${im.startsWith('-') ? '' : '+'}${im.replace(/^(-?)1?(\\sqrt)/, '$1$2')}i`;
         const modK = modN === 1 ? (k === 1 ? '\\sqrt{2}' : `${k}\\sqrt{2}`) : `${2 * k}`; const modNum = modN === 1 ? k * Math.SQRT2 : 2 * k;

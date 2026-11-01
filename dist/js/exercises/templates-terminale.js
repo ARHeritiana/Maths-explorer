@@ -47,7 +47,13 @@ export const terminale = [
     make(r, level) {
       if (level === 1) { const n = r.int(6, 12), k = r.int(2, 4); return { q: `Calculer ${M(`\\dbinom{${n}}{${k}}`)}.`, a: M(`\\dbinom{${n}}{${k}}=${binom(n, k)}`), ok: () => { let s = 1; for (let i = 0; i < k; i++) s = (s * (n - i)) / (i + 1); return Math.round(s) === binom(n, k) && binom(n, k) === binom(n, n - k); } }; }
       if (level === 2) { const f = r.int(4, 8), h = r.int(4, 8), k = r.int(3, 4), j = r.int(1, k - 1); return { q: `Un groupe compte ${M(f)} filles et ${M(h)} garçons. On choisit un comité de ${M(k)} personnes. Combien y a-t-il de comités comportant exactement ${M(j)} fille${j > 1 ? 's' : ''} ?`, a: M(`\\dbinom{${f}}{${j}}\\times\\dbinom{${h}}{${k - j}}=${binom(f, j) * binom(h, k - j)}`), ok: () => { const pas = (n, k) => (k === 0 || k === n ? 1 : k < 0 || k > n ? 0 : pas(n - 1, k - 1) + pas(n - 1, k)); return pas(f, j) * pas(h, k - j) === binom(f, j) * binom(h, k - j) && pas(f + h, k) === Array.from({ length: k + 1 }, (_, g) => pas(f, g) * pas(h, k - g)).reduce((x, y) => x + y, 0); } }; }
-      const k = r.int(3, 5); return { q: `On tire simultanément ${M(k)} cartes dans un jeu de ${M(32)} cartes. Combien de tirages contiennent au moins un cœur (il y a ${M(8)} cœurs) ?`, a: M(`\\dbinom{32}{${k}}-\\dbinom{24}{${k}}=${binom(32, k) - binom(24, k)}`), ok: () => binom(32, k) - binom(24, k) === Array.from({ length: k }, (_, i) => i + 1).reduce((s, h) => s + (h <= 8 ? binom(8, h) * binom(24, k - h) : 0), 0) };
+      // "at least one" through the complement; n objects, m of them marked, k drawn at once
+      const k = r.int(2, 5), scen = r.pick(['cards', 'urn', 'class']); let n, m, text;
+      if (scen === 'cards') { n = r.pick([32, 52]); const [mm, one, many] = r.pick([[n === 32 ? 8 : 13, 'un cœur', 'cœurs'], [4, 'un as', 'as'], [12, 'une figure', 'figures']]); m = mm; text = `On tire simultanément ${M(k)} cartes dans un jeu de ${M(n)} cartes. Combien de tirages contiennent au moins ${one} (il y a ${M(m)} ${many}) ?`; }
+      else if (scen === 'urn') { n = r.int(9, 16); m = r.int(2, n - k - 1); text = `Une urne contient ${M(n)} boules dont ${M(m)} rouges. On tire simultanément ${M(k)} boules. Combien de tirages contiennent au moins une boule rouge ?`; }
+      else { const f = r.int(3, 9), h = r.int(5, 10); n = f + h; m = f; text = `Une classe compte ${M(f)} filles et ${M(h)} garçons. On choisit ${M(k)} délégués, sans ordre. Combien de choix comportent au moins une fille ?`; }
+      const res = binom(n, k) - binom(n - m, k);
+      return { q: text, a: M(`\\dbinom{${n}}{${k}}-\\dbinom{${n - m}}{${k}}=${res}`), s: 'On retire du total les tirages qui n’en contiennent aucun.', ok: () => res === Array.from({ length: k }, (_, i) => i + 1).reduce((s, h) => s + (h <= m ? binom(m, h) * binom(n - m, k - h) : 0), 0) };
     } },
   { id: 't-ln-equation', cls: C, chapter: 'terminale-08', domain: 'analyse', skill: 'Équations avec logarithme népérien', fast: false,
     make(r, level) {
@@ -65,7 +71,11 @@ export const terminale = [
   { id: 't-ln-deriv', cls: C, chapter: 'terminale-08', domain: 'analyse', skill: 'Dériver avec le logarithme', fast: true,
     make(r, level) {
       if (level === 1) { let a, b; do { a = r.nz(-4, 4); b = r.int(1, 8); } while (false); const f = (x) => Math.log(a * x + b); const x0 = a > 0 ? 1 : -(b / (2 * a)) * 0.5 + 0; return { q: `Calculer la dérivée de ${M(`f(x)=\\ln(${polyTex([a, b])})`)} sur l’intervalle où elle est définie.`, a: M(`f'(x)=\\dfrac{${a}}{${polyTex([a, b])}}`), ok: () => { const x = a > 0 ? 1 : (-b / a) - 0.5; return near(nd(f, x), a / (a * x + b), 1e-3); } }; }
-      if (level === 2) { const a = r.int(1, 9); const f = (x) => a * x * Math.log(x) - a * x; return { q: `Calculer la dérivée de ${M(`f(x)=${coef(a)}x\\ln x-${coef(a)}x`)} sur ${M('\\left]0\\,;\\,+\\infty\\right[')}.`, a: M(`f'(x)=${coef(a)}\\ln x`), ok: () => near(nd(f, 2.5), a * Math.log(2.5), 1e-3) }; }
+      if (level === 2) {   // a x ln x + b x, derivative a ln x + a + b
+        const a = r.nz(-6, 6), b = r.int(-9, 9), f = (x) => a * x * Math.log(x) + b * x;
+        const bx = b === 0 ? '' : `${b < 0 ? '-' : '+'}${Math.abs(b) === 1 ? '' : Math.abs(b)}x`;
+        return { q: `Calculer la dérivée de ${M(`f(x)=${coef(a)}x\\ln x${bx}`)} sur ${M('\\left]0\\,;\\,+\\infty\\right[')}.`, a: M(`f'(x)=${coef(a)}\\ln x${a + b === 0 ? '' : sgn(a + b)}`), ok: () => near(nd(f, 2.5), a * Math.log(2.5) + a + b, 1e-3) };
+      }
       const a = r.int(1, 14), f = (x) => Math.log(x * x + a);
       return { q: `Calculer la dérivée de ${M(`f(x)=\\ln(x^{2}+${a})`)} sur ${M(R)}.`, a: M(`f'(x)=\\dfrac{2x}{x^{2}+${a}}`), ok: () => near(nd(f, 1.7), (2 * 1.7) / (1.7 * 1.7 + a), 1e-3) };
     } },
@@ -137,7 +147,15 @@ export const terminale = [
   { id: 't-trig-deriv', cls: C, chapter: 'terminale-14', domain: 'analyse', skill: 'Dériver avec sinus et cosinus', fast: true,
     make(r, level) {
       if (level === 1) { const a = r.nz(-4, 4), b = r.int(-3, 3), fn = r.pick(['sin', 'cos']); const f = (x) => Math[fn](a * x + b); return { q: `Calculer la dérivée de ${M(`f(x)=\\${fn}(${polyTex([a, b])})`)}.`, a: M(fn === 'sin' ? `f'(x)=${coef(a)}\\cos(${polyTex([a, b])})` : `f'(x)=${-a === 1 ? '' : -a === -1 ? '-' : -a}\\sin(${polyTex([a, b])})`), ok: () => near(nd(f, 0.5), fn === 'sin' ? a * Math.cos(a * 0.5 + b) : -a * Math.sin(a * 0.5 + b), 1e-3) }; }
-      if (level === 2) { const a = r.nz(-3, 3), f = (x) => a * x * Math.sin(x); return { q: `Calculer la dérivée de ${M(`f(x)=${coef(a)}x\\sin x`)}.`, a: M(`f'(x)=${coef(a)}\\sin x${a < 0 ? '-' : '+'}${Math.abs(a) === 1 ? '' : Math.abs(a)}x\\cos x`), ok: () => near(nd(f, 0.8), a * Math.sin(0.8) + a * 0.8 * Math.cos(0.8), 1e-3) }; }
+      if (level === 2) {   // product (ax+b) times sin or cos
+        const a = r.nz(-3, 3), b = r.int(-4, 4), fn = r.pick(['sin', 'cos']), other = fn === 'sin' ? 'cos' : 'sin', lin = polyTex([a, b]);
+        const g = (x) => (a * x + b) * Math[fn](x), dfn = (x) => (fn === 'sin' ? Math.cos(x) : -Math.sin(x));
+        const shown = b === 0 ? `${coef(a)}x\\${fn} x` : `(${lin})\\${fn} x`;
+        const pos = fn === 'sin' ? a > 0 : a < 0;   // sign of the second term when b = 0
+        const L = fn === 'sin' ? [a, b] : [-a, -b];   // the factor of the other function, written with a positive leading coefficient
+        const second = b === 0 ? `${pos ? '+' : '-'}${Math.abs(a) === 1 ? '' : Math.abs(a)}x\\${other} x` : L[0] > 0 ? `+(${polyTex(L)})\\${other} x` : `-(${polyTex([-L[0], -L[1]])})\\${other} x`;
+        return { q: `Calculer la dérivée de ${M(`f(x)=${shown}`)}.`, a: M(`f'(x)=${coef(a)}\\${fn} x${second}`), ok: () => near(nd(g, 0.8), a * Math[fn](0.8) + (a * 0.8 + b) * dfn(0.8), 1e-3) };
+      }
       const c = r.int(1, 9), kind = r.pick(['cos', 'sin']), f = (x) => c * Math[kind](x) ** 2, sg = kind === 'cos' ? -1 : 1; return { q: `Calculer la dérivée de ${M(`f(x)=${c === 1 ? '' : c}\\${kind}^{2}x`)} et l’écrire avec ${M('\\sin 2x')}.`, a: M(kind === 'cos' ? `f'(x)=-${c === 1 ? '' : 2 * c}${c === 1 ? '2' : ''}\\sin x\\cos x=-${c === 1 ? '' : c}\\sin 2x` : `f'(x)=${c === 1 ? '' : 2 * c}${c === 1 ? '2' : ''}\\sin x\\cos x=${c === 1 ? '' : c}\\sin 2x`), ok: () => near(nd(f, 0.9), sg * c * Math.sin(1.8), 1e-3) };
     } },
   { id: 't-convex', cls: C, chapter: 'terminale-06', domain: 'analyse', skill: 'Convexité et point d’inflexion', fast: false,

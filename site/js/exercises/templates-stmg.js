@@ -1,6 +1,6 @@
 // Terminale STMG templates; same contract as templates-seconde.js. Chapter ids: content/data/manifest.json.
 // Money and rates are written in euros and percent; rounded results say so in the statement.
-import { F, add, sub, mul, div, val, eq, M, fracTex, numTex, roundTex, polyTex, binom, sum, sgn, par } from './engine.js';
+import { F, add, sub, mul, div, val, eq, M, fracTex, numTex, roundTex, polyTex, binom, sum, sgn, par, decimals } from './engine.js';
 
 const C = 'stmg';
 const pw = (t, k) => (k === 1 ? t : `${t}^{${k}}`);   // no exponent 1
@@ -33,14 +33,21 @@ export const stmg = [
     make(r, level) {
       if (level === 1) { const p = 20 * r.int(2, 20), t = r.pick([5, 8, 10, 15, 20, 25]) * r.sign(); const res = F(p * (100 + t), 100); return { q: `Un prix de ${M(euro(p))} subit une évolution de ${M(pct(t))}. Donner le coefficient multiplicateur et le nouveau prix.`, a: M(`CM=${numTex(F(100 + t, 100))}\\ ;\\ \\text{nouveau prix }${numTex(res)}\\ \\text{€}`), ok: () => near(val(res), p * (1 + t / 100), 1e-12) }; }
       if (level === 2) { const t1 = r.pick([5, 10, 20, 25, 50]) * r.sign(), t2 = r.pick([5, 10, 20, 25, 50]) * r.sign(), cm = mul(F(100 + t1, 100), F(100 + t2, 100)), rate = mul(sub(cm, F(1)), F(100)); return { q: `Une grandeur évolue de ${M(pct(t1))} puis de ${M(pct(t2))}. Calculer le taux d’évolution global.`, a: M(`CM=${numTex(cm)}\\ \\text{ donc }${val(rate) >= 0 ? '+' : ''}${numTex(rate)}\\,\\%`), ok: () => near(val(cm), (1 + t1 / 100) * (1 + t2 / 100), 1e-12) }; }
-      const t = r.pick([25, 100, 150, 300]), back = F(100 * t, 100 + t); return { q: `Après une hausse de ${M(`${t}\\,\\%`)}, quel taux d’évolution ramène à la valeur initiale ?`, a: M(`CM=\\dfrac{1}{${numTex(F(100 + t, 100))}}\\ \\text{ donc }-${numTex(back)}\\,\\%`), ok: () => near((1 + t / 100) * (1 - val(back) / 100), 1, 1e-12) };
+      const up = r.next() < 0.6, t = up ? 5 * r.int(1, 60) : 5 * r.int(1, 12), cm = F(up ? 100 + t : 100 - t, 100);
+      const back = F(100 * t, up ? 100 + t : 100 - t), k = decimals(back), exact = k >= 0 && k <= 2;
+      return { q: `Après une ${up ? 'hausse' : 'baisse'} de ${M(`${t}\\,\\%`)}, quel taux d’évolution ramène à la valeur initiale ?`, a: M(`CM=\\dfrac{1}{${numTex(cm)}}\\ \\text{ donc }${exact ? `${up ? '-' : '+'}${numTex(back)}` : `\\approx ${up ? '-' : '+'}${roundTex(val(back), 1)}`}\\,\\%`),
+        ok: () => near(val(cm) * (1 + (up ? -1 : 1) * val(back) / 100), 1, 1e-12) };
     } },
   { id: 'm-exp-evolution', cls: C, chapter: 'stmg-02', domain: 'fonctions', skill: 'Taux moyen et fonctions exponentielles', fast: false,
     make(r, level) {
       if (level === 1) { const a = r.pick([2, 3, 4, 5, -2, -3]), qq = r.pick([2, 3]), k = r.int(2, 5); const f = (x) => a * qq ** x; return { q: `Soit ${M(`f(x)=${a}\\times ${qq}^{x}`)}. Calculer ${M(`f(${k})`)}.`, a: M(`f(${k})=${a}\\times ${qq ** k}=${f(k)}`), ok: () => { let y = a; for (let i = 0; i < k; i++) y *= qq; return y === f(k); } }; }
-      const t = r.pick([10, 20, 25, 50]), n = level === 2 ? 2 : r.pick([3, 4]), tot = (1 + t / 100) ** n - 1;
-      if (t * 1 === 50 && n === 4) return this.make(r, level);
-      return { q: `Un prix augmente de ${M(`${roundTex(tot * 100, 2).replace('{,}00', '').replace(/(\{,\}\d)0$/, '$1')}\\,\\%`)} en ${M(n)} ans, avec le même taux annuel. Déterminer le taux annuel moyen.`, a: M(`CM_{\\text{global}}=${roundTex(1 + tot, 4).replace(/(\{,\}\d*?)0+$/, '$1').replace(/\{,\}$/, '')}\\ ;\\ CM=${n === 2 ? '\\sqrt{' : `\\sqrt[${n}]{`}CM_{\\text{global}}}=${numTex(F(100 + t, 100))}\\ \\text{ donc }+${t}\\,\\%`), ok: () => near((1 + tot) ** (1 / n), 1 + t / 100, 1e-9) };
+      const trim = (s) => s.replace(/(\{,\}\d*?)0+$/, '$1').replace(/\{,\}$/, '');
+      let t, n, tot;
+      do { t = r.pick([2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 30, 40, 50]) * (r.next() < 0.75 ? 1 : -1); n = level === 2 ? 2 : r.pick([3, 4, 5]); tot = (1 + t / 100) ** n - 1; } while (tot > 3);
+      const shown = roundTex(Math.abs(tot) * 100, 2), exact = Math.abs(Math.abs(tot) * 100 - Number(shown.replace('{,}', '.'))) < 1e-9;
+      const root = n === 2 ? '\\sqrt{' : `\\sqrt[${n}]{`;
+      return { q: `Un prix ${t > 0 ? 'augmente' : 'baisse'} de ${M(`${trim(shown)}\\,\\%`)} en ${M(n)} ans, avec le même taux chaque année${exact ? '' : ' (pourcentage arrondi au centième)'}. Déterminer le taux annuel moyen.`,
+        a: M(`CM_{\\text{global}}=${trim(roundTex(1 + tot, 4))}\\ ;\\ CM=${root}CM_{\\text{global}}}${exact ? '=' : '\\approx '}${numTex(F(100 + t, 100))}\\ \\text{ donc }${exact ? '' : '\\approx '}${t > 0 ? '+' : '-'}${Math.abs(t)}\\,\\%`), ok: () => near((1 + tot) ** (1 / n), 1 + t / 100, 1e-9) };
     } },
   { id: 'm-threshold', cls: C, chapter: 'stmg-03', domain: 'fonctions', skill: 'Seuil avec le logarithme décimal', fast: false,
     make(r, level) {
