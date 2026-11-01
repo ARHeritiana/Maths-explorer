@@ -27,6 +27,7 @@ export function gomboc(root, opts) {
     `<label class="act-field"><span class="act-label">${t('Départ', 'Start')}</span><select id="go-preset"><option value="tilt">${t('Incliné de 1 rad', 'Tipped by 1 rad')}</option><option value="near">${t('Presque sur le pôle stable', 'Almost on the stable pole')}</option><option value="nearUnstable">${t('Presque sur le pôle instable', 'Almost on the unstable pole')}</option><option value="stable">${t('Pôle stable, exactement', 'Stable pole, exactly')}</option><option value="unstable">${t('Pôle instable, exactement', 'Unstable pole, exactly')}</option></select></label>` +
     button('go-play', t('Lecture', 'Play'), true) + button('go-step', t('Un pas', 'One step')) + button('go-reset', t('Recommencer', 'Restart')) + button('go-view', t('Vue initiale', 'Reset view')) +
     field('go-relief', t('Relief exagéré ×', 'Relief exaggeration ×'), 1, 3000, 1, 1500) +
+    field('go-zoom', t('Zoom ×', 'Zoom ×'), 0.3, 4, 0.01, 1) +
     field('go-mu', t('Frottement du sol μ (pour l’avertissement)', 'Floor friction μ (for the warning)'), 0.05, 1, 0.05, 0.5) +
     field('go-speed', t('Vitesse de lecture ×', 'Playback speed ×'), 1, 500, 1, 100) +
     `<label><input id="go-follow" type="checkbox" checked> ${t('Suivre le corps', 'Follow the body')}</label>` +
@@ -39,7 +40,7 @@ export function gomboc(root, opts) {
     `<p>${t('Sur les deux corps, le pôle sud S est l’équilibre stable et le pôle nord N l’équilibre instable. Le quadrillage tourne avec le corps et rend le roulement visible ; la carte en bas à droite est le corps déroulé (longitude, latitude) et son point est le contact actuel. Pour le corps visible, la couleur est la hauteur h (bleu : basse, orange : haute).', 'On both bodies the south pole S is the stable equilibrium and the north pole N the unstable one. The grid turns with the body and makes the rolling visible; the map at the bottom right is the body unrolled (longitude, latitude) and its dot is the current contact. For the visibly shaped body, the colour is the height h (blue: low, orange: high).')}</p>` +
     `<p>${t('Physique. Le contact est exact (la surface est lisse, aucune approximation polyédrique) : le point de contact est celui dont la normale est verticale, et la hauteur du centre de gravité est la fonction d’appui H(ν) du corps. Le corps roule sans glisser. Les équations de Newton et d’Euler donnent ω′ par un système linéaire 3×3 ; l’énergie ½|v|² + ½ωᵀIω + gH est conservée quand κ = 0 (le programme la compare à l’énergie de départ). La résistance au roulement est un couple −κNω pendant le contact (N force normale) : elle ne fait que retirer de l’énergie. Pour le corps de l’article, les rayons de courbure valent 1 à 10⁻⁴ près : il se redresse très lentement (périodes de plusieurs minutes, d’où la vitesse de lecture ×100) et le frottement nécessaire est de l’ordre de 10⁻⁴. Le corps visible oscille en quelques secondes et demande un frottement d’environ 0,3 (affiché) ; si le frottement du sol est plus faible, il glisserait et le modèle ne s’applique plus (avertissement dans la ligne d’état). Sans pertes, il oscille indéfiniment autour du pôle stable ; avec pertes, il s’y arrête.', 'Physics. The contact is exact (the surface is smooth, there is no polyhedral approximation): the contact point is the one whose normal is vertical, and the height of the centre of gravity is the support function H(ν) of the body. The body rolls without slipping. Newton\'s and Euler\'s equations give ω′ through a 3×3 linear system; the energy ½|v|² + ½ωᵀIω + gH is conserved when κ = 0 (the program compares it with the starting energy). Rolling resistance is a couple −κNω during contact (N the normal force): it only removes energy. For the body of the paper the radii of curvature equal 1 to within 10⁻⁴: it rights itself very slowly (periods of several minutes, hence the playback speed ×100) and the friction needed is of the order of 10⁻⁴. The visibly shaped body oscillates within a few seconds and needs a friction of about 0.3 (displayed); if the floor\'s friction is lower it would slip and the model no longer applies (a warning appears in the status line). Without losses it oscillates for ever about the stable pole; with losses it comes to rest there.')}</p>` +
     `<p>${t('Sources : Várkonyi et Domokos, J. Nonlinear Sci. 16 (2006) 255-281, section 3, équations (1) à (8). La seconde forme de l’équation (7) imprimée dans l’article (cos²f(φ)/cos²f(−φ)) est l’inverse de la première ; seule la première est cohérente avec la limite (22), les figures 6 et 9 et la valeur c ≈ 0,275 des auteurs, et c’est elle qui est utilisée.', 'Sources: Várkonyi and Domokos, J. Nonlinear Sci. 16 (2006) 255-281, section 3, equations (1) to (8). The second form of equation (7) as printed (cos²f(φ)/cos²f(−φ)) is the inverse of the first; only the first agrees with the limit (22), figures 6 and 9 and the authors\' value c ≈ 0.275, and it is the one used.')}</p>`);
-  const play = root.querySelector('#go-play'), inputs = Object.fromEntries(['body', 'mode', 'preset', 'mu', 'speed', 'relief', 'rolling', 'dt', 'follow'].map((k) => [k, root.querySelector('#go-' + k)]));
+  const play = root.querySelector('#go-play'), inputs = Object.fromEntries(['body', 'mode', 'preset', 'zoom', 'mu', 'speed', 'relief', 'rolling', 'dt', 'follow'].map((k) => [k, root.querySelector('#go-' + k)]));
   const derivedOf = (st) => P.derived(st, model), diag = (st, k) => P.diagnostics(st, k, model), sim = (st, sec, k, dt) => P.simulate(st, sec, k, dt, model), adv = (st, h, k) => P.advance(st, h, k, model);
   const abort = new AbortController(), kappa = () => +inputs.rolling.value, relief = () => +inputs.relief.value, stepSize = () => +inputs.dt.value;
   function reset() { s = P.start(PRESETS[inputs.preset.value]); baseline = diag(s, kappa()).energy; check = null; playing = false; trail = []; mapTrail = []; remember(); dirty = true; accumulator = 0; updatePlay(); }
@@ -54,21 +55,25 @@ export function gomboc(root, opts) {
   function tick(seconds) { s = sim(s, seconds, kappa(), stepSize()); remember(); dirty = true; }
   o.on(play, 'click', run); o.on(root.querySelector('#go-step'), 'click', () => tick(model.radial ? 10 : 1));
   o.on(root.querySelector('#go-reset'), 'click', reset); o.on(inputs.preset, 'change', reset);
-  o.on(root.querySelector('#go-view'), 'click', () => { Object.assign(cam, CAM3_DEFAULT); o.navigation?.camera?.reset?.(); dirty = true; });
-  const digits = (k) => (k === 'rolling' ? 4 : k === 'mu' ? 2 : 0);
-  for (const k of ['speed', 'relief', 'rolling', 'mu']) { const el = inputs[k], out = root.querySelector('#go-' + k + '-out'); out.textContent = num(el.value, digits(k)); o.on(el, 'input', () => { out.textContent = num(el.value, digits(k)); check = null; dirty = true; }); }
+  o.on(root.querySelector('#go-view'), 'click', () => { Object.assign(cam, CAM3_DEFAULT); o.navigation?.camera?.reset?.(); o.navigation?.apply?.(); setZoom(1); dirty = true; });
+  const digits = (k) => (k === 'rolling' ? 4 : k === 'mu' || k === 'zoom' ? 2 : 0);
+  for (const k of ['speed', 'relief', 'rolling', 'mu', 'zoom']) { const el = inputs[k], out = root.querySelector('#go-' + k + '-out'); out.textContent = num(el.value, digits(k)); o.on(el, 'input', () => { out.textContent = num(el.value, digits(k)); check = null; if (k === 'zoom') setZoom(+el.value); dirty = true; }); }
   o.on(inputs.dt, 'change', () => { check = null; dirty = true; }); o.on(inputs.follow, 'change', () => { dirty = true; });
   o.on(root.querySelector('#go-check'), 'click', () => {
     playing = false; updatePlay();
     const a = sim(s, 60, kappa(), stepSize()), b = sim(s, 60, kappa(), stepSize() / 2), da = derivedOf(a), db = derivedOf(b);
     check = { position: Math.hypot(da.p[0] - db.p[0], da.p[1] - db.p[1], da.p[2] - db.p[2]), angle: Math.acos(Math.max(-1, Math.min(1, da.hit.w[0] * db.hit.w[0] + da.hit.w[1] * db.hit.w[1] + da.hit.w[2] * db.hit.w[2]))) }; dirty = true;
   });
-  const project = (p) => { const q = cam3Project(cam.yaw, cam.pitch, ...p); return [CENTRE[0] + q.u * SCALE, CENTRE[1] - q.v * SCALE, q.d]; };
+  // The view is centred on a focus point (the body's centre of mass when it is followed, else a fixed point) and zoomed by `zoom`,
+  // which follows `zoomTarget` smoothly (wheel, pinch through the page camera, or the slider).
+  let focus = [0, 0, 1], zoom = 1, zoomTarget = 1;
+  const project = (p) => { const q = cam3Project(cam.yaw, cam.pitch, p[0] - focus[0], p[1] - focus[1], p[2] - focus[2]); return [CENTRE[0] + q.u * SCALE * zoom, CENTRE[1] - q.v * SCALE * zoom, q.d]; };
+  const setZoom = (z, instant = false) => { zoomTarget = Math.min(4, Math.max(0.3, z)); if (instant || reduced()) zoom = zoomTarget; const out = root.querySelector('#go-zoom-out'), el = root.querySelector('#go-zoom'); if (el) el.value = zoomTarget; if (out) out.textContent = num(zoomTarget, 2); dirty = true; };
   const worldScreen = (dx, dy) => { const cy = Math.cos(cam.yaw), sy = Math.sin(cam.yaw); return [cy * dx + sy * dy, -sy * dx + cy * dy]; };
-  function offsetNow() { if (!inputs.follow.checked || !s) return [0, 0]; const p = derivedOf(s).p, a = project([p[0], p[1], 0]), base = project([0, 0, 0]); return [base[0] - a[0], base[1] - a[1]]; }
+  const offsetNow = () => [0, 0];
   function tipBody(dx, dy) { const w = worldScreen(dx, -dy); s = P.tilt(s, -w[1] * 0.004, w[0] * 0.004); baseline = diag(s, kappa()).energy; check = null; dirty = true; }
   function pushBody(dx, dy) { const w = worldScreen(dx, -dy), gain = model.radial ? 0.0004 : 0.01; s = P.spin(s, [-w[1] * gain, w[0] * gain, 0]); baseline = diag(s, kappa()).energy; dirty = true; }
-  const insideBody = (p) => { const off = offsetNow(), dp = derivedOf(s).p, c = project(dp); return Math.hypot(p[0] - c[0] - off[0], p[1] - c[1] - off[1]) < SCALE * 1.12; };
+  const insideBody = (p) => { const off = offsetNow(), dp = derivedOf(s).p, c = project(dp); return Math.hypot(p[0] - c[0] - off[0], p[1] - c[1] - off[1]) < SCALE * zoom * 1.2; };
   o.touchHit((p) => !!s && insideBody(p));
   o.on(o.cv, 'pointerdown', (e) => { if (!s) return; const p = o.point(e), mode = inputs.mode.value; drag = { p, last: p, mode: mode !== 'orbit' && insideBody(p) ? mode : 'orbit' }; playing = false; updatePlay(); o.cv.setPointerCapture?.(e.pointerId); e.preventDefault(); });
   o.on(o.cv, 'pointermove', (e) => {
@@ -79,6 +84,8 @@ export function gomboc(root, opts) {
     drag.last = p; dirty = true;
   });
   o.on(o.cv, 'pointerup', () => { if (!drag) return; if (drag.mode === 'push' && drag.pushed) { pushBody(...drag.pushed); if (!reduced()) playing = true; } drag = null; updatePlay(); dirty = true; });
+  // plain wheel zooms smoothly about the body (Ctrl + wheel and pinch stay with the page camera)
+  o.on(o.cv, 'wheel', (e) => { if (e.ctrlKey || e.metaKey) return; e.preventDefault(); const dy = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaMode === 2 ? e.deltaY * 400 : e.deltaY; setZoom(zoomTarget * Math.exp(-dy * 0.0012)); });
   o.cancelDrag = () => { drag = null; };
   o.cv.setAttribute('aria-label', t('Gömböc en trois dimensions, à voir sous tous les angles. Flèches : tourner la vue ; H puis flèches : incliner le corps ; Espace : lecture.', 'Three-dimensional Gömböc, to be seen from every angle. Arrows: turn the view; H then arrows: tip the body; Space: play.'));
   o.on(o.cv, 'keydown', (e) => {
@@ -126,7 +133,7 @@ export function gomboc(root, opts) {
     const C = palette(), g = o.g; g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
     if (!s) return;
     const d = derivedOf(s), R = P.rotation(s.q), k = model.radial ? relief() * B.D : 0;
-    curOffset = offsetNow(); const off = curOffset, below = cam.pitch < 0.03;
+    focus = inputs.follow.checked ? d.p.slice() : [0, 0, 1]; curOffset = [0, 0]; const off = curOffset, below = cam.pitch < 0.03;
     const Pj = (p) => { const q = project(p); return [q[0] + off[0], q[1] + off[1], q[2]]; };
     if (!below) drawFloor(g, C, d.p, false);
     // contact shadow, darker and tighter near the plane; the contact point and the path it has followed on the plane
@@ -138,7 +145,7 @@ export function gomboc(root, opts) {
     const cy = Math.cos(cam.yaw), sy = Math.sin(cam.yaw), cp = Math.cos(cam.pitch), sp = Math.sin(cam.pitch), toViewer = [-sy * cp, -cy * cp, sp], right = [cy, -sy, 0];
     if (glr && !glr.lost) {
       const key = [0.55 * toViewer[0] - 0.5 * right[0], 0.55 * toViewer[1] - 0.5 * right[1], 0.55 * toViewer[2] - 0.5 * right[2] + 0.8];
-      const img = glr.render({ width: o.cv.width, height: o.cv.height, size: [o.W, o.H], R, p: d.p, view: [cy, -sy, 0, sy * sp, cy * sp, cp, sy * cp, cy * cp, -sp], centre: CENTRE, scale: SCALE, k, offset: off, camera: o.navigation?.camera, toViewer, key });
+      const img = glr.render({ width: o.cv.width, height: o.cv.height, size: [o.W, o.H], R, p: [d.p[0] - focus[0], d.p[1] - focus[1], d.p[2] - focus[2]], view: [cy, -sy, 0, sy * sp, cy * sp, cp, sy * cp, cy * cp, -sp], centre: CENTRE, scale: SCALE * zoom, k, offset: off, camera: o.navigation?.camera, toViewer, key });
       if (img) { g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.drawImage(img, 0, 0, o.cv.width, o.cv.height); g.restore(); } else glr = null;
     }
     if (!glr) fallback(g, C, R, d, k, Pj, toViewer);
@@ -185,6 +192,7 @@ export function gomboc(root, opts) {
     for (const f of faces) { const css = `rgb(${f.col[0]},${f.col[1]},${f.col[2]})`; path(g, f.p, { close: true, fill: css, stroke: css, width: 0.7 }); }
   }
   o.animate((dt) => {
+    if (Math.abs(zoomTarget - zoom) > 1e-4) { zoom += (zoomTarget - zoom) * (dt ? 1 - Math.exp(-dt * 14) : 1); if (Math.abs(zoomTarget - zoom) < 1e-4) zoom = zoomTarget; dirty = true; }
     if (reduced() && playing) { playing = false; updatePlay(); }
     if (playing && dt && s) { accumulator += dt * +inputs.speed.value; const h = stepSize(); let n = 0; while (accumulator >= h && n++ < 400) { s = adv(s, h, kappa()); accumulator -= h; } if (n >= 400) accumulator = 0; remember(); dirty = true; }
     if (dirty || playing) { dirty = false; draw(); }
@@ -198,7 +206,7 @@ export function gomboc(root, opts) {
     reset();
   }
   o.on(inputs.body, 'change', () => { useModel(inputs.body.value); o.redraw(); });
-  useModel(inputs.body.value); o.redraw();
+  useModel(inputs.body.value); setZoom(1, true); o.redraw();
   root.__gomboc = { setBody: (name) => { inputs.body.value = name; useModel(name); }, getModel: () => model, getState: () => s, getCamera: () => cam, setPreset: (value) => { inputs.preset.value = value; reset(); }, step: tick, usesGL: () => !!glr };
   return () => { alive = false; abort.abort(); o.stop(); glr?.destroy(); delete root.__gomboc; };
 }
