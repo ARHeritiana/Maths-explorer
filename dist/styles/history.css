@@ -1,7 +1,7 @@
 /* History atlas: a bounded native scroll region on desktop; a chronological reading view on phones.
    All colours, type and radii use Cahier tokens. Time is linear within each explicitly labelled period. */
 .history-page>*{animation:none}
-.history-page{max-width:1400px;min-width:0}
+.history-page{max-width:var(--page-w);min-width:0}
 .history-heading{max-width:850px;margin:1.5rem 0}
 .history-heading h1{font-size:clamp(2rem,4vw,3.25rem);margin-bottom:.75rem}
 .history-heading p{max-width:68ch;color:var(--ink-2);margin-bottom:0}

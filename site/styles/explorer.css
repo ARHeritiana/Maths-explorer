@@ -41,6 +41,7 @@
   --display: "Schibsted Grotesk", system-ui, sans-serif; --ui: "Schibsted Grotesk", system-ui, sans-serif;
   --body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
   --math: "STIX Two Text", "Times New Roman", serif;
+  --page-w: 1440px; /* one container width: pages, sub-navigation, home */
   --r: 0; --r-sm: 0; --header: 66px; --chrome: var(--header); --t: 120ms ease;
   font-size: 100%;
 }
@@ -106,7 +107,7 @@ i { font-family: var(--math); }
 .tools { display: flex; align-items: center; gap: 4px; }
 /* Tabs of the current section, one row under the header (sticky with it). */
 .subnav { position: sticky; top: var(--header); z-index: 49; background: var(--surface); border-bottom: 1px solid var(--line); }
-.subnav-inner { display: flex; gap: 4px; max-width: 1280px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 32px); overflow-x: auto; scrollbar-width: none; }
+.subnav-inner { display: flex; gap: 4px; max-width: var(--page-w); margin: 0 auto; padding: 0 clamp(16px, 3vw, 32px); overflow-x: auto; scrollbar-width: none; }
 .subnav-inner::-webkit-scrollbar { display: none; }
 .subnav a { position: relative; display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 14px; color: var(--muted); font-weight: 700; font-size: 0.95rem; white-space: nowrap; transition: color var(--t); }
 .subnav a:hover { color: var(--ink); }
@@ -138,7 +139,7 @@ footer a { color: var(--ink); text-decoration: underline; text-underline-offset:
 .foot-brand { font: 700 1.05rem var(--display); color: var(--ink); }
 
 /* -------------------------------------------------------------------- home */
-.home { max-width: 1280px; width: 100%; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 3vw, 32px) 0; }
+.home { max-width: var(--page-w); width: 100%; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 3vw, 32px) 0; }
 .home:focus { outline: none; }
 .home-head { margin-bottom: 20px; }
 .home-head h1 { margin-bottom: 8px; font-size: clamp(2rem, 3.6vw, 3rem); letter-spacing: -0.02em; }

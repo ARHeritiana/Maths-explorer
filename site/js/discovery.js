@@ -37,11 +37,15 @@ export function discoveryCards(items,t) {
 }
 export function bindDiscovery(root,index,id,subtopic,t) {
   const form=root.querySelector('#discovery-filters');
-  const update=()=>{const result=filterDiscovery(index,{topic:id,subtopic,query:form.elements.query.value,format:form.elements.format.value,level:form.elements.level.value});root.querySelector('#discovery-count').textContent=t([`${result.length} ressources`,`${result.length} resources`]);root.querySelector('#discovery-results').innerHTML=discoveryCards(result,t);};
+  const BATCH=24,box=root.querySelector('#discovery-results');let result=[],shown=BATCH;
+  const draw=()=>{const rest=result.length-shown;box.innerHTML=discoveryCards(result.slice(0,shown),t)+(rest>0?`<button type="button" class="btn btn-secondary discovery-more">${t([`Afficher la suite (${rest} de plus)`,`Show more (${rest} left)`])}</button>`:'');};
+  const update=()=>{result=filterDiscovery(index,{topic:id,subtopic,query:form.elements.query.value,format:form.elements.format.value,level:form.elements.level.value});shown=BATCH;root.querySelector('#discovery-count').textContent=t([`${result.length} ressources`,`${result.length} resources`]);draw();};
+  const more=e=>{if(!e.target.closest('.discovery-more'))return;const first=shown;shown+=BATCH;draw();box.querySelectorAll('.discovery-card')[first]?.querySelector('a')?.focus();};
+  box.addEventListener('click',more);
   const reset=()=>{form.elements.query.value='';form.elements.format.value='';form.elements.level.value='';update();};
   const submit=e=>e.preventDefault();
   form.addEventListener('input',update);form.addEventListener('reset',reset);form.addEventListener('submit',submit);update();
-  return ()=>{form.removeEventListener('input',update);form.removeEventListener('reset',reset);form.removeEventListener('submit',submit);};
+  return ()=>{box.removeEventListener('click',more);form.removeEventListener('input',update);form.removeEventListener('reset',reset);form.removeEventListener('submit',submit);};
 }
 export function discoveryContext(index,route,t) {
   const item=index.find(x=>x.route===route);if(!item)return '';
