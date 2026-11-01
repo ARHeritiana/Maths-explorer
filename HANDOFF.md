@@ -10,6 +10,8 @@
 - Publication gate removed by the owner the same day (`PROJECT_BRIEF.md` section 2): nothing here was waiting for audits.
 - Build note: `make site` needs `pip install pymupdf`; the 28 failing node tests of the earlier note were missing `jsdom` (`npm install` fixes it; 476 pass).
 
+**Audit of the bank's variety (1 November 2026, `tests/exercise-audit.test.mjs`):** "unlimited in practice" holds for many generators but not for all. Over 5000 seeds, 52 of the 203 generator-and-level pairs give fewer than 100 distinct questions, 94 fewer than 500, and 10 fewer than 10: `t-counting/3` (3), `s-percent/3` (4), `p-trig-exact/1` (4), `m-cm/3` (4), `m-exp-evolution/2` (4) and `/3` (7), `t-trig-deriv/2` (6), `p-radians/1` (8), `e-modulus-arg/1` (8), `t-ln-deriv/2` (9). The existing test only demands 20 per generator summed over its levels. `p-quad-roots` level 1 has exactly 78 equations. The test keeps these counts from growing; widen a family (more parameters, other forms of the statement) and lower the bounds. The first, parallel version of seeded exercises is kept as `docs/future-work/seeded-exercises-first-slice.patch`; its single-file student/teacher TeX switch (one `\ifteacher` line) is the one idea not ported.
+
 ## Layout harmonisation and Pathways redesign (1 November 2026, owner request)
 
 **Done (on `main`):**

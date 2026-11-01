@@ -23,4 +23,5 @@ Read one only when the task router in `MAP.md` sends you here.
 | `ACTIVE_WORKSTREAMS.md` | current parallel-task register and corrected mathematicians' timeline scope; preserve it when writing a narrower handoff |
 | `HANDOFF.md` | TeX pipeline hand-off: open owner questions, TeX status (older than root `HANDOFF.md`) |
 | `LOG.md` | dated log of past sessions (append one line per finished task) |
+| `future-work/seeded-exercises-first-slice.patch` | superseded first version of seeded exercises (a quadratic generator with its own page `#exercises`, HTML sheet, print, single-file student/teacher TeX export, 9 tests), kept as reference after the bank in `site/js/exercises/` covered it; `git apply --stat` shows the files, it applies to the tree before commit `68c84ba` |
 | `history/` | superseded plans and reports; do not read unless asked |

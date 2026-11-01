@@ -1,0 +1,595 @@
+From 0935239f8ab3d06f52be776cf626f22590af767b Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 1 Nov 2026 08:19:41 +0000
+Subject: [PATCH] Add seeded exercises: quadratic generator, HTML sheet, print
+ and TeX export
+
+Page #exercises (Explorer > Exercices). A seed fixes an exercise; the sheet is
+typeset in the browser (MathJax), printed from the browser, or exported as a
+self-contained pdfLaTeX file with a student/teacher switch. Tests check 6000
+generated exercises by an independent reader of the statement.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_0129aVGR4TaYpYFQ3zf5eFnf
+---
+ site/js/exercises-generators.js | 118 ++++++++++++++++++++++++++
+ site/js/exercises-prng.js       |  36 ++++++++
+ site/js/exercises-render.js     |  62 ++++++++++++++
+ site/js/exercises.js            | 136 ++++++++++++++++++++++++++++++
+ site/styles/pages.css           |  30 +++++++
+ tests/exercises.test.mjs        | 145 ++++++++++++++++++++++++++++++++
+ 6 files changed, 527 insertions(+)
+ create mode 100644 site/js/exercises-generators.js
+ create mode 100644 site/js/exercises-prng.js
+ create mode 100644 site/js/exercises-render.js
+ create mode 100644 site/js/exercises.js
+ create mode 100644 tests/exercises.test.mjs
+
+diff --git a/site/js/exercises-generators.js b/site/js/exercises-generators.js
+new file mode 100644
+index 0000000..18d49ed
+--- /dev/null
++++ b/site/js/exercises-generators.js
+@@ -0,0 +1,118 @@
++// Generators of seeded exercises. A generator turns (seed, level) into one exercise, always the same one: the exercise is its seed.
++// The result is a neutral structure (no layout): { generator, version, level, seed, lang, title, parts: [{ prompt, answer: [lines] }], facts }.
++// Text is plain French with maths between dollar signs ($...$, LaTeX); exercises-render.js turns it into HTML (MathJax) or TeX.
++// Rules for every generator: draw only from the rng, in a fixed order; exact integer arithmetic only; state the admissible
++// values with `draw` (rejection sampling), so that no seed gives a degenerate exercise; put the answer in the same model that
++// built the statement. If a rule changes what a seed produces, raise `version`. tests/exercises.test.mjs checks the invariants
++// on thousands of seeds with a method independent of the one used here.
++import { makeRng, draw } from './exercises-prng.js';
++
++// ---- quadratic equations a x^2 + b x + c = 0 --------------------------------------------------------------------------
++// Terms of a polynomial in x, LaTeX: coefficient 1 is omitted, a zero coefficient is dropped, signs are explicit.
++export function poly(a, b, c) {
++  const term = (k, body, first) => {
++    if (k === 0) return '';
++    const sign = k < 0 ? '-' : (first ? '' : '+');
++    const mag = Math.abs(k);
++    return sign + (body && mag === 1 ? '' : String(mag)) + body;
++  };
++  const s = term(a, 'x^2', true) + term(b, 'x', !a) + term(c, '', !a && !b);
++  return s || '0';
++}
++const par = (n) => (n < 0 ? `(${n})` : String(n));
++// (x - r) written without a double sign: r > 0 gives (x-r), r < 0 gives (x+|r|), r = 0 gives x.
++const linear = (r) => (r === 0 ? 'x' : r > 0 ? `(x-${r})` : `(x+${-r})`);
++const lead = (a) => (a === 1 ? '' : a === -1 ? '-' : String(a));
++
++// Level 1: a = 1, two distinct integer roots. Level 2: a other than 1, two distinct integer roots.
++// Level 3: any of two roots, a double root, or no real root.
++const QUAD_LEVELS = [
++  { id: 1, label: ['Niveau 1 : a = 1, deux racines entières', 'Level 1: a = 1, two integer roots'] },
++  { id: 2, label: ['Niveau 2 : a différent de 1, deux racines entières', 'Level 2: a not 1, two integer roots'] },
++  { id: 3, label: ['Niveau 3 : deux racines, une racine double ou aucune', 'Level 3: two roots, a double root or none'] },
++];
++const nonzero = (lo, hi) => (rng) => draw(rng, (r) => r.int(lo, hi), (n) => n !== 0);
++
++function drawQuadratic(rng, level) {
++  const kind = level === 3 ? rng.pick(['two', 'two', 'double', 'none']) : 'two';
++  if (kind === 'none') {
++    return draw(rng, (r) => ({ a: nonzero(-3, 3)(r), b: r.int(-6, 6), c: r.int(-9, 9) }),
++      ({ a, b, c }) => b !== 0 && c !== 0 && b * b - 4 * a * c < 0 && b * b - 4 * a * c >= -60);
++  }
++  const A = level === 1 ? [1] : level === 2 ? [2, 3, 4, -1, -2, -3] : [1, 1, 2, 3, -1, -2];
++  const a = rng.pick(A);
++  const R = level === 1 ? 9 : 6;
++  const [r1, r2] = draw(rng, (r) => (kind === 'double' ? (() => { const x = r.int(-R, R); return [x, x]; })() : [r.int(-R, R), r.int(-R, R)]),
++    ([x, y]) => (kind === 'double' ? x !== 0 : x !== y) && x + y !== 0 && x * y !== 0
++      && Math.abs(a * (x + y)) <= 60 && Math.abs(a * x * y) <= 80);
++  return { a, b: -a * (r1 + r2), c: a * r1 * r2 };
++}
++
++function quadraticRoots(seed, level) {
++  const rng = makeRng(seed);
++  const { a, b, c } = drawQuadratic(rng, level);
++  const delta = b * b - 4 * a * c;
++  const eq = poly(a, b, c);
++  const sq = delta > 0 ? Math.round(Math.sqrt(delta)) : 0;   // delta is a perfect square by construction when positive
++  const x1 = delta >= 0 ? (-b - sq) / (2 * a) : null, x2 = delta >= 0 ? (-b + sq) / (2 * a) : null;
++  const roots = delta < 0 ? [] : [...new Set([x1, x2])].sort((u, v) => u - v);
++
++  const deltaLines = [
++    `$\\Delta=b^2-4ac=${par(b)}^2-4\\times${par(a)}\\times${par(c)}=${delta}$`,
++    delta > 0 ? '$\\Delta>0$ : l\u2019équation a deux solutions réelles distinctes.'
++      : delta === 0 ? '$\\Delta=0$ : l\u2019équation a une solution réelle double.'
++        : '$\\Delta<0$ : l\u2019équation n\u2019a aucune solution réelle.',
++  ];
++  let solve;
++  if (delta > 0) {
++    solve = [`$x_1=\\dfrac{-b-\\sqrt{\\Delta}}{2a}=\\dfrac{${-b}-${sq}}{${2 * a}}=${x1}$ et $x_2=\\dfrac{-b+\\sqrt{\\Delta}}{2a}=\\dfrac{${-b}+${sq}}{${2 * a}}=${x2}$`,
++      `$S=\\{${roots.join(' ; ')}\\}$`];
++  } else if (delta === 0) {
++    solve = [`$x_0=\\dfrac{-b}{2a}=\\dfrac{${-b}}{${2 * a}}=${x1}$`, `$S=\\{${x1}\\}$`];
++  } else {
++    solve = ['$S=\\varnothing$'];
++  }
++  let third;
++  if (delta > 0) {
++    third = {
++      prompt: `Factoriser $${eq}$.`,
++      answer: [`$${eq}=a(x-x_1)(x-x_2)=${lead(a)}${linear(x1)}${linear(x2)}$`],
++    };
++  } else if (delta === 0) {
++    third = { prompt: `Factoriser $${eq}$.`, answer: [`$${eq}=a(x-x_0)^2=${lead(a)}${linear(x1)}^2$`] };
++  } else {
++    third = {
++      prompt: `Le trinôme $${eq}$ peut-il se factoriser dans $\\mathbb{R}$ ? Justifier.`,
++      answer: ['Non : $\\Delta<0$, le trinôme n\u2019a pas de racine réelle, donc il n\u2019est pas factorisable dans $\\mathbb{R}$.'],
++    };
++  }
++  return {
++    generator: 'quadratic-roots', version: 1, level, seed, lang: 'fr',
++    title: 'Équation du second degré',
++    parts: [
++      { prompt: `Calculer le discriminant de $${eq}$.`, answer: deltaLines },
++      { prompt: `Résoudre dans $\\mathbb{R}$ l\u2019équation $${eq}=0$.`, answer: solve },
++      third,
++    ],
++    facts: { a, b, c, delta, roots },
++  };
++}
++
++export const GENERATORS = {
++  'quadratic-roots': {
++    id: 'quadratic-roots', version: 1, lang: 'fr',
++    title: ['Équations du second degré', 'Quadratic equations'],
++    summary: ['Discriminant, résolution et factorisation de $ax^2+bx+c$ ; racines entières choisies pour que le calcul reste propre.',
++      'Discriminant, solving and factorising $ax^2+bx+c$, with integer roots chosen so the arithmetic stays clean.'],
++    levels: QUAD_LEVELS,
++    generate: quadraticRoots,
++  },
++};
++export const generatorIds = () => Object.keys(GENERATORS);
++export const isGenerator = (id) => Object.prototype.hasOwnProperty.call(GENERATORS, id);
++
++// A sheet: `count` exercises of one generator and level, seeds seed, seed+1, ... (modulo 2^32).
++export function makeSheet(id, level, seed, count) {
++  const g = GENERATORS[id];
++  return Array.from({ length: count }, (_, i) => g.generate((seed + i) >>> 0, level));
++}
+diff --git a/site/js/exercises-prng.js b/site/js/exercises-prng.js
+new file mode 100644
+index 0000000..f51a125
+--- /dev/null
++++ b/site/js/exercises-prng.js
+@@ -0,0 +1,36 @@
++// Seeded random numbers for the exercise generators. A seed (an integer from 0 to 4294967295) fixes an exercise forever:
++// this file never calls Math.random, and every generator must draw only from the `rng` it receives, in a fixed order.
++// Changing the order of draws, or any rule of a generator, changes the exercise of a seed: raise that generator's `version`.
++export const MAX_SEED = 4294967295;
++
++// Accepts a decimal string or a number; returns an integer in [0, MAX_SEED] or null.
++export function parseSeed(v) {
++  const s = String(v ?? '').trim();
++  if (!/^\d{1,10}$/.test(s)) return null;
++  const n = Number(s);
++  return n <= MAX_SEED ? n : null;
++}
++
++// mulberry32: 32-bit state, integer arithmetic only (Math.imul), so every JavaScript engine gives the same sequence.
++export function makeRng(seed) {
++  let a = seed >>> 0;
++  const next = () => {
++    a = (a + 0x6D2B79F5) >>> 0;
++    let t = a;
++    t = Math.imul(t ^ (t >>> 15), t | 1);
++    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
++    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
++  };
++  const int = (lo, hi) => lo + Math.floor(next() * (hi - lo + 1));   // inclusive bounds
++  const pick = (list) => list[int(0, list.length - 1)];
++  return { next, int, pick };
++}
++
++// Draw until `ok(candidate)` holds. Bounded, so a badly written rule fails loudly instead of looping forever.
++export function draw(rng, make, ok, tries = 500) {
++  for (let i = 0; i < tries; i++) {
++    const c = make(rng);
++    if (ok(c)) return c;
++  }
++  throw new Error('exercise generator: no admissible draw in ' + tries + ' tries');
++}
+diff --git a/site/js/exercises-render.js b/site/js/exercises-render.js
+new file mode 100644
+index 0000000..2c19ae0
+--- /dev/null
++++ b/site/js/exercises-render.js
+@@ -0,0 +1,62 @@
++// Renderers of generated exercises: HTML for the page (formulas typeset by MathJax) and a TeX document the visitor compiles elsewhere.
++// Both read the neutral structure of exercises-generators.js: plain text with maths between dollar signs. Pure functions, no DOM.
++
++// Split "text $math$ text" into [{ math: false, s }, { math: true, s }, ...]. A text has no escaped dollar (generators never write one).
++export function segments(text) {
++  return String(text).split('$').map((s, i) => ({ math: i % 2 === 1, s })).filter((x) => x.s !== '');
++}
++const escHtml = (x) => String(x).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
++export const toHtml = (text) => segments(text).map((x) => (x.math ? `\\(${escHtml(x.s)}\\)` : escHtml(x.s))).join('');
++// Outside maths, TeX needs these characters escaped; inside maths the text is already LaTeX.
++const escTex = (x) => String(x).replace(/[\\&%#_{}~^]/g, (c) => ({ '\\': '\\textbackslash{}', '~': '\\textasciitilde{}', '^': '\\textasciicircum{}' })[c] || '\\' + c);
++export const toTex = (text) => segments(text).map((x) => (x.math ? `$${x.s}$` : escTex(x.s))).join('');
++
++const PARTS = 'abcdefghijklmnopqrstuvwxyz';
++
++// One exercise as an HTML article. `n` is its number on the sheet.
++export function exerciseHtml(ex, n, labels = { exercise: 'Exercice', seed: 'graine', answer: 'Correction' }) {
++  const parts = ex.parts.map((p, i) => `<li><span class="ex-prompt">${toHtml(p.prompt)}</span>
++<div class="ex-answer"><p class="ex-answer-label">${escHtml(labels.answer)}</p>${p.answer.map((l) => `<p>${toHtml(l)}</p>`).join('')}</div></li>`).join('');
++  return `<article class="ex" data-seed="${ex.seed}"><header><h3>${escHtml(labels.exercise)} ${n}</h3><span class="ex-seed">${escHtml(labels.seed)} ${ex.seed}</span></header>
++<p class="ex-title">${escHtml(ex.title)}</p><ol class="ex-parts" type="a">${parts}</ol></article>`;
++}
++
++// A complete, self-contained LaTeX document (article, standard packages only), so that it compiles with any TeX distribution.
++// `teacher` sets the default of the \ifteacher switch at the top of the file; the visitor can change that one line.
++export function texDocument(sheet, { teacher = false, url = '' } = {}) {
++  const first = sheet[0];
++  const seeds = sheet.map((e) => e.seed).join(', ');
++  const body = sheet.map((ex) => {
++    const parts = ex.parts.map((p) => `  \\item ${toTex(p.prompt)}\n  \\begin{solution}\n  \\textit{Correction.}\\par\n${p.answer.map((l) => `  ${toTex(l)}\\par`).join('\n')}\n  \\end{solution}`).join('\n');
++    return `\\mxexercise{${toTex(ex.title)}}{${ex.seed}}\n\\begin{enumerate}[label=\\alph*)]\n${parts}\n\\end{enumerate}`;
++  }).join('\n\n');
++  return `% Maths Explorer: generated exercises. Generator ${first.generator} (version ${first.version}), level ${first.level}, seeds ${seeds}.
++% The same generator, level and seed always give the same exercise${url ? `: ${url}` : ''}.
++% Compile with pdfLaTeX (TeX Live or MiKTeX): pdflatex exercises.tex
++% Student or teacher edition: change \\teacherfalse to \\teachertrue on the line marked EDITION.
++\\documentclass[11pt,a4paper]{article}
++\\usepackage[utf8]{inputenc}
++\\usepackage[T1]{fontenc}
++\\usepackage{mathpazo}
++\\usepackage{amsmath,amssymb}
++\\usepackage[french]{babel}
++\\usepackage[a4paper,margin=2cm]{geometry}
++\\usepackage{enumitem}
++\\usepackage{needspace}
++\\newif\\ifteacher
++\\teacher${teacher ? 'true' : 'false'} % EDITION
++% Exercise counter (automatic numbering) and the heading with the seed that reproduces the exercise.
++\\newcounter{mxex}
++\\newcommand{\\mxexercise}[2]{\\needspace{6\\baselineskip}\\refstepcounter{mxex}\\par\\bigskip\\noindent\\textbf{Exercice~\\themxex}\\ (#1)\\hfill{\\small\\textit{graine~#2}}\\par\\nopagebreak}
++% The environment solution is printed in the teacher edition only.
++% (Student edition: the text is typeset into a box that is thrown away, so the page shows nothing and no package is needed.)
++\\newenvironment{solution}{\\ifteacher\\par\\smallskip\\small\\else\\setbox0\\vbox\\bgroup\\fi}{\\ifteacher\\par\\else\\egroup\\fi}
++\\begin{document}
++\\pagestyle{empty}
++\\begin{center}\\Large\\textbf{Feuille d\u2019exercices}\\end{center}
++
++${body}
++
++\\end{document}
++`;
++}
+diff --git a/site/js/exercises.js b/site/js/exercises.js
+new file mode 100644
+index 0000000..89d5c71
+--- /dev/null
++++ b/site/js/exercises.js
+@@ -0,0 +1,136 @@
++// "Exercices" (#exercises[/<generator>[/<level>-<seed>[x<count>]]]): seeded exercise sheets. The address is the exercise: the same
++// link always shows the same sheet. The page typesets with MathJax, prints from the browser (a print stylesheet hides the interface),
++// and exports a self-contained .tex file the visitor compiles on their own machine. Nothing is sent anywhere.
++import { GENERATORS, isGenerator, makeSheet } from './exercises-generators.js';
++import { parseSeed, MAX_SEED } from './exercises-prng.js';
++import { exerciseHtml, texDocument, toHtml } from './exercises-render.js';
++
++const esc = (x) => String(x).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
++const MAX_COUNT = 20, DEFAULT_COUNT = 4;
++
++// "2-4271x6" -> { level: 2, seed: 4271, count: 6 }; anything else is not a sheet address (null). An empty tab is the default sheet.
++export function parseSheet(tab) {
++  if (!tab) return { level: 1, seed: null, count: DEFAULT_COUNT };
++  const m = /^([1-9])-(\d{1,10})(?:x(\d{1,2}))?$/.exec(tab);
++  if (!m) return null;
++  const seed = parseSeed(m[2]);
++  const count = m[3] ? Number(m[3]) : DEFAULT_COUNT;
++  if (seed === null || count < 1 || count > MAX_COUNT) return null;
++  return { level: Number(m[1]), seed, count };
++}
++export const sheetTab = ({ level, seed, count }) => `${level}-${seed}${count === DEFAULT_COUNT ? '' : 'x' + count}`;
++export function isExerciseRoute(id, tab) {
++  if (!id) return !tab;
++  if (!isGenerator(id)) return false;
++  const s = parseSheet(tab);
++  return !!s && s.level <= GENERATORS[id].levels.length;
++}
++
++// Seeds for "new sheet": the clock, mixed so that two clicks in the same millisecond still differ. The seed is shown, so the sheet can be reproduced.
++const freshSeed = () => Math.floor(Math.random() * (MAX_SEED + 1));
++
++export function exercisesPage(id, tab, t) {
++  if (!id) return indexPage(t);
++  const g = GENERATORS[id], s = parseSheet(tab);
++  const seed = s.seed ?? freshSeed();
++  return sheetPage(g, { level: s.level, seed, count: s.count }, t);
++}
++
++function indexPage(t) {
++  const cards = Object.values(GENERATORS).map((g) => `<li><a class="error-card" href="#exercises/${g.id}"><span class="error-card-claim">${esc(t(g.title))}</span><span class="error-card-title">${toHtml(t(g.summary))}</span></a></li>`).join('');
++  return `<main id="main" tabindex="-1" class="page exercises-page"><h1>${t(['Exercices à graine', 'Seeded exercises'])}</h1>
++<p class="page-intro">${t(['Chaque exercice est fabriqué à partir d’un nombre, sa graine : le même lien redonne toujours le même exercice, et les graines sont très nombreuses (le niveau 1, volontairement simple, se répète après 144 exercices). Imprime la feuille ou exporte-la en TeX.', 'Each exercise is built from one number, its seed: the same link always gives the same exercise, and seeds are plentiful (level 1, deliberately simple, repeats after 144 exercises). Print the sheet or export it as TeX.'])}</p>
++<ul class="error-grid">${cards}</ul></main>`;
++}
++
++function sheetPage(g, sheet, t) {
++  const exercises = makeSheet(g.id, sheet.level, sheet.seed, sheet.count);
++  const labels = { exercise: t(['Exercice', 'Exercise']), seed: t(['graine', 'seed']), answer: t(['Correction', 'Answer']) };
++  const levels = g.levels.map((l) => `<option value="${l.id}"${l.id === sheet.level ? ' selected' : ''}>${esc(t(l.label))}</option>`).join('');
++  return `<main id="main" tabindex="-1" class="page exercises-page" data-generator="${g.id}">
++<p class="exercises-back"><a href="#exercises">${t(['Tous les générateurs', 'All generators'])}</a></p>
++<h1>${esc(t(g.title))}</h1>
++<form class="exercises-controls" aria-label="${t(['Réglages de la feuille', 'Sheet settings'])}">
++<label>${t(['Niveau', 'Level'])}<select name="level">${levels}</select></label>
++<label>${t(['Graine', 'Seed'])}<input name="seed" type="number" inputmode="numeric" min="0" max="${MAX_SEED}" step="1" value="${sheet.seed}"></label>
++<label>${t(['Nombre d’exercices', 'Number of exercises'])}<input name="count" type="number" min="1" max="${MAX_COUNT}" step="1" value="${sheet.count}"></label>
++<label class="exercises-check"><input name="answers" type="checkbox"> ${t(['Afficher la correction', 'Show the answers'])}</label>
++</form>
++<div class="exercises-actions">
++<button type="button" class="btn secondary" data-act="next">${t(['Feuille suivante', 'Next sheet'])}</button>
++<button type="button" class="btn secondary" data-act="random">${t(['Nouvelle feuille au hasard', 'New random sheet'])}</button>
++<button type="button" class="btn btn-primary" data-act="print">${t(['Imprimer ou enregistrer en PDF', 'Print or save as PDF'])}</button>
++<button type="button" class="btn btn-primary" data-act="tex">${t(['Exporter en TeX', 'Export as TeX'])}</button>
++<button type="button" class="btn secondary" data-act="copy">${t(['Copier le lien', 'Copy link'])}</button>
++</div>
++<p class="muted exercises-note" role="status" aria-live="polite"></p>
++<section class="exercises-sheet" aria-label="${t(['Feuille d’exercices', 'Exercise sheet'])}">${exercises.map((ex, i) => exerciseHtml(ex, i + 1, labels)).join('')}</section>
++</main>`;
++}
++
++let mathPromise;
++async function typeset(root) {
++  try {
++    if (!mathPromise) {
++      mathPromise = (async () => {
++        if (!window.MathJax?.startup?.promise) {
++          window.MathJax = { startup: { typeset: false }, svg: { fontCache: 'none' }, options: { enableAssistiveMml: true }, tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
++          await new Promise((resolve, reject) => { const s = document.createElement('script'); s.src = './vendor/mathjax-tex-svg.js'; s.onload = resolve; s.onerror = reject; document.head.append(s); });
++        }
++        await window.MathJax.startup.promise;
++      })();
++    }
++    await mathPromise;
++    if (root.isConnected) await window.MathJax.typesetPromise([root]);
++  } catch { mathPromise = null; }
++}
++
++export function bindExercises(root, t, id, tab) {
++  if (!root) return () => {};
++  if (!id) { typeset(root); return () => {}; }
++  const g = GENERATORS[id], s = parseSheet(tab);
++  const sheet = { level: s.level, count: s.count, seed: Number(root.querySelector('[name="seed"]').value) };
++  if (!tab) history.replaceState(null, '', `#exercises/${g.id}/${sheetTab(sheet)}`);   // the address now names the sheet that is shown
++  const form = root.querySelector('.exercises-controls'), note = root.querySelector('.exercises-note');
++  const show = root.querySelector('[name="answers"]'), box = root.querySelector('.exercises-sheet');
++  const say = (m) => { note.textContent = m; };
++  const go = (next) => {
++    const hash = `#exercises/${g.id}/${sheetTab(next)}`;
++    if (location.hash === hash) window.dispatchEvent(new HashChangeEvent('hashchange')); else location.hash = hash;
++  };
++  const read = () => {
++    const seed = parseSeed(form.seed.value);
++    const level = Number(form.level.value), count = Math.round(Number(form.count.value));
++    if (seed === null) { say(t([`La graine est un entier de 0 à ${MAX_SEED}.`, `The seed is an integer from 0 to ${MAX_SEED}.`])); return null; }
++    if (!(count >= 1 && count <= MAX_COUNT)) { say(t([`Entre 1 et ${MAX_COUNT} exercices.`, `Between 1 and ${MAX_COUNT} exercises.`])); return null; }
++    return { level, seed, count };
++  };
++  const apply = () => { const n = read(); if (n) go(n); };
++  const toggleAnswers = () => { box.classList.toggle('show-answers', show.checked); };
++  form.addEventListener('submit', (e) => { e.preventDefault(); apply(); });
++  form.level.addEventListener('change', apply);
++  form.seed.addEventListener('change', apply);
++  form.count.addEventListener('change', apply);
++  show.addEventListener('change', toggleAnswers);
++  const actions = {
++    next: () => go({ ...sheet, seed: (sheet.seed + sheet.count) % (MAX_SEED + 1) }),
++    random: () => go({ ...sheet, seed: freshSeed() }),
++    print: () => window.print(),
++    tex: () => {
++      const doc = texDocument(makeSheet(g.id, sheet.level, sheet.seed, sheet.count), { teacher: show.checked, url: location.href });
++      const a = document.createElement('a');
++      a.href = URL.createObjectURL(new Blob([doc], { type: 'application/x-tex;charset=utf-8' }));
++      a.download = `exercices-${g.id}-${sheetTab(sheet)}.tex`;
++      document.body.append(a); a.click(); a.remove();
++      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
++      say(t(['Fichier TeX exporté. Compile-le avec pdfLaTeX ; la ligne EDITION choisit élève ou professeur.', 'TeX file exported. Compile it with pdfLaTeX; the EDITION line chooses student or teacher.']));
++    },
++    copy: async () => {
++      try { await navigator.clipboard.writeText(location.href); say(t(['Lien copié.', 'Link copied.'])); } catch { say(location.href); }
++    },
++  };
++  const onClick = (e) => { const b = e.target.closest('[data-act]'); if (b && actions[b.dataset.act]) actions[b.dataset.act](); };
++  root.addEventListener('click', onClick);
++  typeset(box);
++  return () => root.removeEventListener('click', onClick);
++}
+diff --git a/site/styles/pages.css b/site/styles/pages.css
+index fc4e2a4..46674fd 100644
+--- a/site/styles/pages.css
++++ b/site/styles/pages.css
+@@ -1438,3 +1438,33 @@ input[type="range"]::-moz-range-thumb { background: var(--accent); border-color:
+ .go-row { justify-content: space-between; }
+ .go-group .act-field { flex: none; }
+ @media (max-width: 600px) { .go-panel { grid-template-columns: 1fr; } .go-group { padding: 8px 10px 10px; } }
++
++/* ------------------------------------------------- seeded exercises (#exercises) */
++.exercises-page { max-width: 980px; }
++.exercises-page .page-intro { max-width: 70ch; margin-bottom: 24px; }
++.exercises-back { margin: 0 0 8px; }
++.exercises-controls { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: end; margin: 16px 0 12px; }
++.exercises-controls label { display: grid; gap: 4px; font-weight: 700; min-width: 0; max-width: 100%; }
++.exercises-controls label:first-child { flex: 1 1 100%; }
++.exercises-controls select { width: 100%; max-width: 100%; }
++.exercises-controls input[type="number"], .exercises-controls select { min-height: 44px; padding: 6px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); }
++.exercises-controls .exercises-check { display: flex; align-items: center; gap: 8px; min-height: 44px; }
++.exercises-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
++.exercises-note { min-height: 1.5em; margin: 0 0 12px; }
++.exercises-sheet { display: grid; gap: 16px; }
++.ex { padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); break-inside: avoid; }
++.ex header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
++.ex h3 { margin: 0; font-size: 1.1rem; }
++.ex-seed { color: var(--muted); font-size: 0.9rem; }
++.ex-title { margin: 2px 0 8px; color: var(--ink-2); }
++.ex-parts { margin: 0; padding-left: 1.4em; display: grid; gap: 10px; }
++.ex-answer { display: none; margin-top: 6px; padding: 8px 12px; border-left: 3px solid var(--accent); background: var(--sunken); }
++.ex-answer p { margin: 2px 0; }
++.ex-answer-label { font-weight: 700; color: var(--ink-2); }
++.exercises-sheet.show-answers .ex-answer { display: block; }
++@media print {
++  .topbar, .subnav, footer, .skip, .exercises-controls, .exercises-actions, .exercises-note, .exercises-back { display: none !important; }
++  .exercises-page { max-width: none; padding: 0; }
++  .ex { background: #fff; border-color: #888; color: #000; }
++  .ex-answer { background: #fff; border-left-color: #444; }
++}
+diff --git a/tests/exercises.test.mjs b/tests/exercises.test.mjs
+new file mode 100644
+index 0000000..e5b57a3
+--- /dev/null
++++ b/tests/exercises.test.mjs
+@@ -0,0 +1,145 @@
++// Seeded exercises: the random numbers, the generators (many seeds, checked by an independent method), the HTML and TeX renderers
++// and the address of a sheet. Imports site/js directly (pure modules, no build needed).
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import { makeRng, parseSeed, draw, MAX_SEED } from '../site/js/exercises-prng.js';
++import { GENERATORS, poly, makeSheet } from '../site/js/exercises-generators.js';
++import { segments, toHtml, toTex, exerciseHtml, texDocument } from '../site/js/exercises-render.js';
++import { parseSheet, sheetTab, isExerciseRoute, exercisesPage } from '../site/js/exercises.js';
++
++const t = (pair) => pair[0];
++
++test('the random numbers: reproducible, in range, a fixed sequence', () => {
++  const a = makeRng(12345), b = makeRng(12345);
++  const xs = Array.from({ length: 50 }, () => a.next()), ys = Array.from({ length: 50 }, () => b.next());
++  assert.deepEqual(xs, ys);
++  assert.ok(xs.every((x) => x >= 0 && x < 1));
++  assert.notDeepEqual(xs, Array.from({ length: 50 }, ((r) => () => r.next())(makeRng(12346))));
++  const r = makeRng(7);
++  for (let i = 0; i < 2000; i++) { const n = r.int(-3, 4); assert.ok(Number.isInteger(n) && n >= -3 && n <= 4); }
++  // Locked values: if these change, every seed ever shared changes its exercise.
++  const lock = makeRng(1);
++  assert.deepEqual([lock.int(0, 99), lock.int(0, 99), lock.int(0, 99)], LOCK_RNG);
++});
++const LOCK_RNG = [62, 0, 52];
++
++test('seed parsing accepts integers from 0 to 2^32-1 only', () => {
++  assert.equal(parseSeed('0'), 0);
++  assert.equal(parseSeed(' 4271 '), 4271);
++  assert.equal(parseSeed(String(MAX_SEED)), MAX_SEED);
++  for (const bad of ['', 'x', '-1', '1.5', '4294967296', '99999999999', null, undefined]) assert.equal(parseSeed(bad), null, String(bad));
++  assert.throws(() => draw(makeRng(1), (r) => r.next(), () => false, 20), /no admissible draw/);
++});
++
++// Independent reader of a polynomial printed by poly(): coefficients of x^2, x, 1 from the string alone.
++function readPoly(s) {
++  const out = { a: 0, b: 0, c: 0 };
++  for (const m of s.matchAll(/([+-]?)(\d*)(x\^2|x)?/g)) {
++    if (!m[0]) continue;
++    const k = (m[1] === '-' ? -1 : 1) * (m[2] === '' ? (m[3] ? 1 : 0) : Number(m[2]));
++    if (m[3] === 'x^2') out.a += k; else if (m[3] === 'x') out.b += k; else out.c += k;
++  }
++  return out;
++}
++
++test('poly writes and reads back every small trinomial', () => {
++  for (let a = -4; a <= 4; a++) for (let b = -4; b <= 4; b++) for (let c = -4; c <= 4; c++) {
++    if (a === 0 && b === 0 && c === 0) continue;
++    const s = poly(a, b, c);
++    assert.deepEqual(readPoly(s), { a, b, c }, s);
++    assert.ok(!/\+-|--|\+\+|^\+/.test(s), s);
++  }
++  assert.equal(poly(1, -5, 6), 'x^2-5x+6');
++  assert.equal(poly(-1, 1, -1), '-x^2+x-1');
++});
++
++test('quadratic-roots: 3 levels x 2000 seeds satisfy the rules of the level, checked independently', () => {
++  const g = GENERATORS['quadratic-roots'];
++  const seen = { 1: new Set(), 2: new Set(), 3: new Set() }, kinds = { two: 0, double: 0, none: 0 };
++  for (const lv of g.levels) for (let seed = 0; seed < 2000; seed++) {
++    const ex = g.generate(seed, lv.id);
++    const { a, b, c } = readPoly(ex.parts[0].prompt.match(/\$([^$]+)\$/)[1]);
++    const f = ex.facts;
++    assert.deepEqual([a, b, c], [f.a, f.b, f.c], `statement matches the model (level ${lv.id}, seed ${seed})`);
++    assert.ok(a !== 0 && b !== 0 && c !== 0, 'full trinomial');
++    assert.ok(Math.abs(b) <= 60 && Math.abs(c) <= 80, 'coefficients stay small');
++    const delta = b * b - 4 * a * c;
++    assert.equal(f.delta, delta);
++    // roots by exact test: each listed root zeroes the polynomial, and the count matches the sign of delta
++    for (const r of f.roots) { assert.ok(Number.isInteger(r)); assert.equal(a * r * r + b * r + c, 0); }
++    assert.equal(f.roots.length, delta > 0 ? 2 : delta === 0 ? 1 : 0);
++    if (delta > 0) assert.ok(Number.isInteger(Math.sqrt(delta)), 'delta is a perfect square');
++    if (lv.id === 1) assert.ok(a === 1 && delta > 0);
++    if (lv.id === 2) assert.ok(a !== 1 && delta > 0);
++    kinds[delta > 0 ? 'two' : delta === 0 ? 'double' : 'none']++;
++    // every part has a prompt and a non-empty answer, balanced dollar signs
++    assert.equal(ex.parts.length, 3);
++    for (const p of ex.parts) {
++      assert.ok(p.prompt && p.answer.length >= 1);
++      for (const line of [p.prompt, ...p.answer]) assert.equal((line.match(/\$/g) || []).length % 2, 0, line);
++    }
++    seen[lv.id].add(`${a},${b},${c}`);
++    assert.deepEqual(g.generate(seed, lv.id), ex, 'same seed, same exercise');
++  }
++  assert.ok(kinds.double > 50 && kinds.none > 50, JSON.stringify(kinds));
++  // Level 1 is finite by design: unordered pairs of distinct non-zero roots in [-9, 9] with a non-zero sum = C(18,2) - 9 = 144.
++  // 2000 seeds reach all of them. After that a seed repeats an earlier exercise: for endless variety, widen the family, not the seed.
++  assert.equal(seen[1].size, 144);
++  assert.ok(seen[2].size > 300 && seen[3].size > 300, 'enough variety: ' + [1, 2, 3].map((k) => seen[k].size));
++});
++
++test('the answer text contains the right numbers (spot checks)', () => {
++  const ex = GENERATORS['quadratic-roots'].generate(4271, 1);
++  const { a, b, c, delta, roots } = ex.facts;
++  assert.ok(ex.parts[0].answer[0].endsWith(`=${delta}$`));
++  assert.ok(ex.parts[1].answer.join(' ').includes(`S=\\{${roots.join(' ; ')}\\}`));
++  assert.equal(a, 1);
++  assert.ok(ex.parts[0].prompt.includes(poly(a, b, c)));
++  assert.deepEqual(GENERATORS['quadratic-roots'].generate(4271, 1).facts, LOCK_FACTS);
++});
++const LOCK_FACTS = { a: 1, b: 14, c: 48, delta: 4, roots: [-8, -6] };   // (x+8)(x+6), checked by hand
++
++test('makeSheet: consecutive seeds, wrapping at 2^32', () => {
++  const s = makeSheet('quadratic-roots', 2, MAX_SEED - 1, 4);
++  assert.deepEqual(s.map((e) => e.seed), [MAX_SEED - 1, MAX_SEED, 0, 1]);
++});
++
++test('renderers: escaping, maths delimiters, a self-contained balanced TeX document', () => {
++  assert.deepEqual(segments('a $x$ b'), [{ math: false, s: 'a ' }, { math: true, s: 'x' }, { math: false, s: ' b' }]);
++  assert.equal(toHtml('1 < 2 & $x<y$'), '1 &lt; 2 &amp; \\(x&lt;y\\)');
++  assert.equal(toTex('50% de a_b & $x_1$'), '50\\% de a\\_b \\& $x_1$');
++  const sheet = makeSheet('quadratic-roots', 3, 99, 5);
++  for (const teacher of [false, true]) {
++    const tex = texDocument(sheet, { teacher, url: 'https://example.org/#exercises' });
++    assert.ok(tex.includes(teacher ? '\\teachertrue % EDITION' : '\\teacherfalse % EDITION'));
++    assert.ok(tex.startsWith('% Maths Explorer'));
++    for (const e of sheet) assert.ok(tex.includes(`{${e.seed}}`));
++    const env = (n) => (tex.match(new RegExp('\\\\begin\\{' + n + '\\}', 'g')) || []).length === (tex.match(new RegExp('\\\\end\\{' + n + '\\}', 'g')) || []).length;
++    assert.ok(env('enumerate') && env('solution') && env('document'));
++    assert.equal((tex.match(/\\mxexercise\{/g) || []).length, 5);   // 5 uses; the definition has no brace right after
++    assert.ok(!/[\u2013\u2014]/.test(tex), 'no em or en dash');
++    // dollar signs of the body are paired: count outside comments
++    assert.equal((tex.replace(/%.*$/gm, '').match(/\$/g) || []).length % 2, 0);
++  }
++  const html = exerciseHtml(sheet[0], 1);
++  assert.ok(html.includes('data-seed="99"') && html.includes('ex-answer') && (html.match(/<li>/g) || []).length === 3);
++});
++
++test('sheet addresses', () => {
++  assert.deepEqual(parseSheet('2-4271'), { level: 2, seed: 4271, count: 4 });
++  assert.deepEqual(parseSheet('1-0x10'), { level: 1, seed: 0, count: 10 });
++  assert.equal(sheetTab({ level: 3, seed: 5, count: 4 }), '3-5');
++  assert.equal(sheetTab({ level: 3, seed: 5, count: 6 }), '3-5x6');
++  assert.deepEqual(parseSheet(sheetTab({ level: 2, seed: 77, count: 9 })), { level: 2, seed: 77, count: 9 });
++  for (const bad of ['x', '1-', '1-4294967296', '1-5x0', '1-5x21', '0-5', '1-5x']) assert.equal(parseSheet(bad), null, bad);
++  assert.ok(isExerciseRoute(undefined, undefined) && isExerciseRoute('quadratic-roots', undefined) && isExerciseRoute('quadratic-roots', '3-9'));
++  assert.ok(!isExerciseRoute('quadratic-roots', '4-9') && !isExerciseRoute('nope', undefined) && !isExerciseRoute(undefined, '1-1'));
++});
++
++test('the page: index, and a sheet with the right number of exercises', () => {
++  assert.ok(exercisesPage(undefined, undefined, t).includes('#exercises/quadratic-roots'));
++  const page = exercisesPage('quadratic-roots', '2-100x3', t);
++  assert.equal((page.match(/<article class="ex"/g) || []).length, 3);
++  assert.ok(page.includes('value="100"') && page.includes('data-act="tex"') && page.includes('data-act="print"'));
++  assert.ok(!/[\u2013\u2014]/.test(page));
++});
+-- 
+2.43.0
+
