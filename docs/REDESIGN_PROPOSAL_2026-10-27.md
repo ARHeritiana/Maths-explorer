@@ -181,7 +181,7 @@ Rework `site/js/chapter-sequence.js` and the corresponding resource-library entr
 Acceptance: no required stepping through unrelated screens; direct links to concepts and exercises work; back navigation restores context; downloads and presentations are reachable without traversing the lesson.
 
 ### Milestone 3: complete priority content
-Build the private coverage matrix, assess priority chapters, and fill gaps in instructional order. Move beyond deck-derived fallback content with explicit shared chapter structures and references. Follow the existing two-independent-audit and computed-result-verification publication gate.
+Build the private coverage matrix, assess priority chapters, and fill gaps in instructional order. Move beyond deck-derived fallback content with explicit shared chapter structures and references. (The two-audit and verification gate was removed by the owner on 1 November 2026.)
 
 Acceptance: every claimed complete chapter meets the matrix; all linked resources exist and match the chosen edition; examples, practice and assessment are distinguishable; no placeholder is counted as a completed learning component.
 

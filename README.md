@@ -55,7 +55,7 @@ Edit `site/`, never the copies in `dist/`: `python -m mxbuild site` (or `make si
 
 ## Rules in one paragraph
 
-No identifying information about the author or any employer anywhere published (HTML, PDF text and metadata, file names). No links to personal storage. No visible AI notice or review label. No tracking. Draft, audit and review status stay in the private repository ARHeritiana/Maths-explorer-backup, outside this public repository. A resource is publishable after two independent AI audits and code verification of every computed result. Full rules: `PROJECT_BRIEF.md`, section 2.
+No identifying information about the author or any employer anywhere published (HTML, PDF text and metadata, file names). No links to personal storage. No visible AI notice or review label. No tracking. Draft, audit and review status stay in the private repository ARHeritiana/Maths-explorer-backup, outside this public repository. No audit or verification is required before publication (owner decision of 1 November 2026). Full rules: `PROJECT_BRIEF.md`, section 2.
 
 ## Licences
 

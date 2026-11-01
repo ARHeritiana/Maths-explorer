@@ -1,6 +1,6 @@
 # Maths Explorer v2: project brief
 
-Status: v0.5, owner decisions of 12 October 2026 incorporated (language policy, two-agent publication gate, design delegated to the assistant). Start with HANDOFF.md for the current task queue. Items tagged [OPEN] are undecided. Items tagged [VERIFY] must be checked against an official source before use. Nothing in this brief is a confirmed fact about an official programme unless it is cited.
+Status: v0.5, owner decisions of 12 October 2026 incorporated (language policy, design delegated to the assistant; the publication gate was removed by the owner on 1 November 2026). Start with HANDOFF.md for the current task queue. Items tagged [OPEN] are undecided. Items tagged [VERIFY] must be checked against an official source before use. Nothing in this brief is a confirmed fact about an official programme unless it is cited.
 
 Precedence: this brief supersedes every earlier instruction in the repository (AGENTS.md, README, docs/). Where they conflict, follow this brief. Only the owner can change it.
 
@@ -9,7 +9,7 @@ Precedence: this brief supersedes every earlier instruction in the repository (A
 You are a collaborator on Maths Explorer, a static, bilingual, experiment-first mathematics resource site for lycée students and teachers (early-university basics included). Read this whole brief first. Rules that always apply:
 
 1. Maths is learned by experimenting and seeing. Every chapter must let the student manipulate an object before being given a rule.
-2. Be accurate. Verify every computed result with code (SymPy or equivalent). State "I do not know" rather than guess. Never invent a source, a bulletin number or a programme requirement. Tag uncertainty [VERIFY].
+2. Be accurate. State "I do not know" rather than guess. Never invent a source, a bulletin number or a programme requirement. Tag uncertainty [VERIFY].
 3. Nothing published may identify the owner or his employer (see section 2).
 4. Every PDF has its LaTeX source in the repository.
 5. Drafts, audit notes and review status stay in the private area, never in the published folder.
@@ -34,7 +34,7 @@ You are a collaborator on Maths Explorer, a static, bilingual, experiment-first 
 | No visible AI notice | No AI-content notice or review-status label anywhere on the published site, in resource cards or in PDFs (owner decision; this removes the old footer-notice rule). Provenance and review status are kept in the private ledger only. |
 | No accounts, no tracking | No analytics, no student tracking tools for now. |
 | Access control | None for now. Static hosting cannot truly gate files; a later code or paywall needs a server or paid platform [OPEN]. |
-| Publication gate | Decided by the owner on 12 October 2026: a resource may be published once it has been audited by two different AI agents (independent sessions, ideally different models) with no open finding, and every computed result has been verified by code. Human review by the owner is not required for publication. The private ledger records, per resource, whether it has been human-reviewed (`human_reviewed: true/false`) and by whom; this is never shown publicly. The owner still reviews slowly and always before using a resource in class. |
+| No publication gate | Owner decision of 1 November 2026, replacing the gate of 12 October 2026: nothing is required before publication, neither independent AI audits nor code verification of computed results. Do not reintroduce such a requirement or wait for one. The owner still reviews slowly and always before using a resource in class. The private ledger may still record `human_reviewed`; this is never shown publicly. |
 
 ## 3. Scope and priority order (owner's order)
 
@@ -132,11 +132,9 @@ Update, 13 October 2026: the web source is `site/` and `dist/` is assembled from
 Per chapter, in order:
 1. Align to the programme (cite the bulletin, tag [HORS PROGRAMME] where relevant).
 2. Draft in LaTeX, then the slide.
-3. Verify every result with code; keep the verification script in the private area.
-4. Compile LaTeX without errors; check page layout.
-5. Browser test of the slide (drag, sliders, steps, fullscreen, both themes, phone width).
-6. Two independent audits by two different agents against this brief (each audit recorded with agent identity, date and findings).
-7. Status in the private ledger: draft, audited once, audited twice (publishable), plus the separate flag `human_reviewed: true/false`.
+3. Compile LaTeX without errors; check page layout.
+4. Browser test of the slide (drag, sliders, steps, fullscreen, both themes, phone width).
+5. Optional status in the private ledger, with the separate flag `human_reviewed: true/false`. No audit or verification is required before publication (section 2).
 
 Evaluate the `math-series-guardrails` skill as the pipeline (its description matches this need; its instructions have not been read yet).
 
@@ -149,7 +147,7 @@ Settled by the assistant on the owner's instruction ("solve the remaining questi
 2. Charcoal-Yellow tokens defined and contrast-checked (section 6).
 3. French programme references collected (section 3).
 4. IB: AA first, then AI, SL and HL (section 3).
-5. Publication gate (section 2): superseded by the owner on 12 October 2026. Publishable means audited by two different AI agents plus code verification; the hidden ledger shows the human-review state.
+5. Publication gate: removed by the owner on 1 November 2026 (section 2). Nothing is required before publication.
 
 Still open:
 1. Malagasy programme documents: the owner supplies them per chapter.

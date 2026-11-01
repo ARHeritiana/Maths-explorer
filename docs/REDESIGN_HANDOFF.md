@@ -44,7 +44,7 @@ Follow the governing curriculum priority order. Preserve experiment-first teachi
 
 Work on main only. Edit source files, regenerate served outputs through the established pipeline, and run npm test, npm run check, make check and relevant browser checks before pushing. Keep old hash links working. Verify phone layouts, both themes, keyboard operation, mathematical dragging, reduced motion, 200% text, downloads and language editions.
 
-Preserve anonymity, local resource hosting, no accounts, no analytics and no student tracking. Keep drafts and review evidence private. Follow the existing independent-audit and mathematical-verification publication gate for educational resources.
+Preserve anonymity, local resource hosting, no accounts, no analytics and no student tracking. Keep drafts and review evidence private. The independent-audit and verification publication gate was removed by the owner on 1 November 2026.
 
 French and Malagasy curricula use French; International uses English; university retains the original language; Olympiad is separate and bilingual by default. Existing English editions stay available. The bilingual curriculum goal remains on standby and unfinished.
 
