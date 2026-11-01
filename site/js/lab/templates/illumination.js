@@ -3,9 +3,12 @@ export {createStage} from './inference.js';
 import {exhibit,button,background,path,dot} from '../../gallery-kit.js';
 import * as M from '../../illumination-model.js';
 import {PRESETS} from '../../illumination-presets.js';
-import {createLightMap} from '../../illumination-gl.js';
-import {model,boundary} from '../experiments/illumination.js';
-export function mount({stage,fmt,getState,setState}){
+import {createLightMap,createDensityMap} from '../../illumination-gl.js';
+import {createFarm,moduleWorker,inlineWorker,traceChunk} from '../../illumination-farm.js';
+import {capability,LIMITS} from '../../device-capability.js';
+import {assetHref} from '../../data-loader.js';
+import {model,boundary,device,SYNC_MAX,effectiveRays} from '../experiments/illumination.js';
+export function mount({stage,fmt,getState,setState,refresh}){
  const t=(fr,en)=>fmt.t([fr,en]),root=stage.wrap;
  const o=exhibit(root,{t,reduced:()=>stage.reduced()},t('Glisse la lampe. Dans un éditeur, touche un mur pour ajouter un sommet, puis glisse les sommets ; en mode courbe, glisse le milieu d’un mur. H : choisir lampe, sommet ou courbure ; flèches : déplacer ; Insérer : ajouter un sommet ; Suppr : supprimer.','Drag the lamp. In an editor, tap a wall to add a vertex, then drag vertices; in curve mode drag a wall midpoint. H: select lamp, vertex or curvature; arrows: move; Insert: add vertex; Delete: remove.'),
  `<label class="act-field"><span>${t('Manipuler','Edit')}</span><select data-edit><option value="lamp">${t('Lampe','Lamp')}</option><option value="vertices">${t('Sommets','Vertices')}</option><option value="curves">${t('Courbures','Curvature')}</option></select></label>`+button('light-play',t('Parcourir les rayons','Play rays'))+button('light-step',t('Un pas','One step'))+button('light-reset',t('Réinitialiser la pièce','Reset room'))+button('light-empty',t('Dessiner une pièce','Draw a room'))+button('light-close',t('Fermer la pièce','Close boundary'))+button('light-unfold',t('Déplier le premier rayon','Unfold first ray')),
@@ -39,16 +42,51 @@ export function mount({stage,fmt,getState,setState}){
  o.on(o.cv,'pointermove',e=>{if(drag)move(drag,world(o.point(e)));});o.on(o.cv,'pointerup',()=>{drag=null;});o.cancelDrag=()=>{drag=null;};
  o.on(o.cv,'keydown',e=>{if(e.shiftKey||e.ctrlKey||e.metaKey)return;const hs=handles();if(e.key.toLowerCase()==='h'){selected=(selected+1)%hs.length;e.preventDefault();dirty=true;return;}if(e.key==='Insert'){addVertex();e.preventDefault();return;}if(['Delete','Backspace'].includes(e.key)){removeVertex();e.preventDefault();return;}const delta={ArrowLeft:[-.1,0],ArrowRight:[.1,0],ArrowUp:[0,-.1],ArrowDown:[0,.1]}[e.key];if(delta){const h=hs[selected]||hs[0];move(h,h.p.map((x,k)=>x+delta[k]));e.preventDefault();}});
  let light=null,lightTried=false,buf=new Float32Array(4096);
+ // Beyond SYNC_MAX rays: workers trace chunks of rays, a float density map counts the crossings (device-capability.js decides how far
+ // this device may go; the farm stops at its memory ceiling). Chunks stay in room units so a pan or a zoom redraws without retracing.
+ let density=null,densityTried=false,farm=null,farmKey='',farmStats=null,farmDone=false,chunks=[],camKey='',presented=0,alive=true;
+ const makeWorker=()=>{if(typeof Worker==='function'){try{return moduleWorker(assetHref('./js/illumination-worker.js'));}catch{/* fall back to the page */}}return inlineWorker();};
+ const probeWork=()=>{const p=PRESETS.tokarsky;return traceChunk(p.edges,p.source,.1,24,0,24,80).count;};
+ capability({kind:'illumination',work:probeWork}).then(r=>{if(!alive)return;device.tier=r.tier;device.limits=r.limits;device.workers=r.workers;device.reasons=r.reasons;device.ready=true;refresh?.();dirty=true;}).catch(()=>{device.ready=true;});
  const rgb=c=>{const m=/^#?([0-9a-f]{6})$/i.exec(c.trim());if(m){const v=parseInt(m[1],16);return [(v>>16)/255,(v>>8&255)/255,(v&255)/255];}const n=(c.match(/[\d.]+/g)||[]).slice(0,3).map(Number);return n.length===3?n.map(x=>x/255):[.9,.2,.2];};
  // One path per ray (a single stroke instead of one per segment); more than 96 rays are drawn as a GPU light map
  function drawRay(points,C,distance){let budget=distance,begun=false;g.beginPath();for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i],L=Math.hypot(a[0]-b[0],a[1]-b[1]);if(budget<=0)break;const t=Math.min(1,budget/L),sa=screen(a),sb=screen([a[0]+t*(b[0]-a[0]),a[1]+t*(b[1]-a[1])]);if(!begun||i===1){g.moveTo(sa[0],sa[1]);begun=true;}g.lineTo(sb[0],sb[1]);budget-=L;}g.globalAlpha=.5;g.strokeStyle=C.accent;g.lineWidth=1.2;g.stroke();g.globalAlpha=1;}
+ const affine=()=>{const a=screen([0,0]),bx=screen([1,0]),by=screen([0,1]);return {ox:a[0],oy:a[1],sx:bx[0]-a[0],sy:by[1]-a[1]};};
+ const sizeNow=()=>[Math.max(2,Math.round(o.cv.width)),Math.max(2,Math.round(o.cv.height))];
+ const roomArea=edges=>{const q=M.flatten(edges);let a=0;for(let i=0;i<q.length;i++){const p=q[i],r=q[(i+1)%q.length];a+=p[0]*r[1]-r[0]*p[1];}return Math.abs(a)/2;};
+ function farmText(m){const f=farmStats,n=x=>x.toLocaleString(t('fr-FR','en-GB'));return t(`${n(f.rays)} rayons sur ${n(m.rays)}, ${n(f.segments)} segments ; ${n(f.corners)} arrêt(s) à un coin, ${n(f.tangents)} tangence(s) ; niveau de l’appareil : ${device.tier}.${f.capped?' Limite de mémoire atteinte : le tracé s’arrête là.':farmDone?'':' Calcul en cours…'}`,`${n(f.rays)} of ${n(m.rays)} rays, ${n(f.segments)} segments; ${n(f.corners)} corner stop(s), ${n(f.tangents)} tangencies; device level: ${device.tier}.${f.capped?' Memory limit reached: the trace stops here.':farmDone?'':' Computing…'}`);}
+ function drawCrazy(s,m,C){
+  const [w,h]=sizeNow(),cam=o.navigation?.camera||{x:0,y:0,scale:1},world=affine(),interactive=!!drag;
+  const rays=interactive?Math.min(m.rays,3000):m.rays,bounces=Math.min(interactive?Math.min(s.bounces,100):s.bounces,device.limits.bounces);
+  const jobKey=JSON.stringify([s.room,s.sx,s.sy,s.vertices,s.bends,s.closed,s.angle,rays,bounces,w,h,world]),cKey=JSON.stringify([cam.x,cam.y,cam.scale]);
+  if(jobKey!==farmKey){
+   farmKey=jobKey;camKey=cKey;chunks=[];farmStats={rays:0,segments:0,corners:0,tangents:0,escaped:0,limit:0,length:0,capped:false};farmDone=false;
+   if(!density.reset(w,h))return;
+   if(!farm)farm=createFarm({make:makeWorker,workers:Math.max(1,device.workers)});
+   const area=roomArea(m.edges)*Math.abs(world.sx*world.sy),mine=jobKey;
+   farm.run({edges:m.edges,source:m.source,angle:s.angle,rays,bounces,segmentCap:device.limits.segments,
+    onChunk:c=>{if(mine!==farmKey||!alive)return;chunks.push(c.segments);density.add({segments:c.segments,count:c.count,size:[o.W,o.H],world,camera:o.navigation?.camera});
+     for(const k of ['rays','corners','tangents','escaped','limit','length'])farmStats[k]+=c[k];farmStats.segments+=c.count;farmStats.area=area;dirty=true;},
+    onDone:st=>{if(mine!==farmKey||!alive)return;farmStats.capped=st.capped;farmDone=true;dirty=true;}});
+  }else if(cKey!==camKey){   // pan or zoom: the counts are redrawn from the chunks already traced
+   camKey=cKey;if(density.reset(w,h))for(const c of chunks)density.add({segments:c,count:c.length/4,size:[o.W,o.H],world,camera:cam});
+  }
+  // brightness: the mean number of crossings per pixel is the traced length over the area of the room, extrapolated to all the rays
+  const f=farmStats,expected=f.rays?f.length/f.rays*rays*Math.abs(world.sx)/Math.max(1,f.area||1):1,rgbv=rgb(C.accent);
+  const img=density.present({color:rgbv,gain:Math.min(40,Math.max(0.0005,2.2/Math.max(1e-6,expected)))});
+  if(img){g.save();g.setTransform(1,0,0,1,0,0);g.drawImage(img,0,0,o.cv.width,o.cv.height);g.restore();}
+ }
  o.animate(dt=>{
   const s=getState(),next=JSON.stringify(s);if(next!==key){key=next;dirty=true;}
   if(s.playing&&!stage.reduced()){elapsed+=dt*s.speed;dirty=true;}else if(s.playing&&stage.reduced()){setState({playing:false});elapsed=Infinity;dirty=true;}
   if(!dirty)return;dirty=false;const C=background(o),m=model(s),customRoom=custom(),hs=handles();
   edit.closest('label').hidden=!customRoom;close.hidden=!customRoom||s.closed;root.querySelector('#light-empty').hidden=!customRoom;unfoldButton.disabled=m.edges.some(e=>e.type!=='line');unfoldButton.setAttribute('aria-pressed',String(s.unfolding));play.setAttribute('aria-pressed',String(s.playing));play.textContent=s.playing?t('Pause','Pause'):t('Parcourir les rayons','Play rays');
   const poly=M.flatten(m.edges);path(g,poly.map(screen),{close:s.closed,fill:s.closed?C.surface:null,stroke:C.ink,width:2});
+  const crazy=m.deferred&&m.validation.ok&&m.inRoom&&!s.unfolding;
+  if(crazy&&!densityTried){densityTried=true;density=createDensityMap();if(!density){device.limits=LIMITS.basic;device.tier='basic';device.reasons=['no float GPU buffer'];}}
+  if(crazy&&density&&!density.lost)drawCrazy(s,m,C);
   if(s.unfolding&&m.paths[0]){const u=M.unfold(m.edges,m.paths[0]);if(u){u.copies.slice(1,9).forEach((p,i)=>path(g,p.map(screen),{close:true,stroke:C.muted,alpha:.5/(1+i*.1),width:1}));drawRay(u.points,C,elapsed);}}
+  else if(crazy&&density&&!density.lost){/* drawn above */}
   else if(m.paths.length>96){
    // thousands of rays: a coverage map drawn by the GPU (additive lines), or a thinned set of rays without WebGL
    if(!lightTried){lightTried=true;light=createLightMap();}
@@ -62,9 +100,9 @@ export function mount({stage,fmt,getState,setState}){
   const target=PRESETS[s.room].target;if(target)dot(g,screen(target),C.neg,6,'T');
   if(s.room==='penrose')for(const p of [[-4,-1],[4,-1],[-4,1],[4,1]])dot(g,screen(p),C.muted,3,'F');
   hs.forEach((h,i)=>{if(h.type==='lamp'||i===selected||customRoom&&(h.type==='vertex'||edit.value==='curves'))dot(g,screen(h.p),i===selected?C.pos:h.type==='lamp'?C.accent:C.obj2,h.type==='lamp'?9:5,h.type==='lamp'?'S':i===selected?String((h.i??0)+1):'');});
-  const warning=!m.validation.ok?t('Contour invalide ou ouvert : pas de simulation.','Invalid or open boundary: simulation paused.'):!m.inRoom?t('Place la lampe strictement à l’intérieur de la pièce.','Place the lamp strictly inside the room.'):t(`${m.paths.length} rayons, ${m.segments} segments ; ${m.corners} arrêt(s) à un coin, ${m.tangencies} tangence(s).`,`${m.paths.length} rays, ${m.segments} segments; ${m.corners} corner stop(s), ${m.tangencies} tangencies.`);
+  const warning=crazy&&farmStats?farmText(m):!m.validation.ok?t('Contour invalide ou ouvert : pas de simulation.','Invalid or open boundary: simulation paused.'):!m.inRoom?t('Place la lampe strictement à l’intérieur de la pièce.','Place the lamp strictly inside the room.'):t(`${m.paths.length} rayons, ${m.segments} segments ; ${m.corners} arrêt(s) à un coin, ${m.tangencies} tangence(s).`,`${m.paths.length} rays, ${m.segments} segments; ${m.corners} corner stop(s), ${m.tangencies} tangencies.`);
   const chosen=hs[selected]||hs[0],name=chosen.type==='lamp'?t('Lampe S','Lamp S'):chosen.type==='vertex'?t('Sommet','Vertex'):t('Courbure','Curvature');
   o.read(warning+' '+name+' '+fmt.pt(...chosen.p)+'. '+(target?t('T est le point non éclairé depuis la position initiale S selon la construction publiée ; déplacer S retire cette garantie.','T is unilluminated from the initial S according to the published construction; moving S removes that guarantee.'):t('Les traces montrent seulement les directions échantillonnées.','Traces show only sampled directions.')));
  });
- return {handles:[],draw(){dirty=true;o.redraw();},destroy(){o.stop();light?.destroy();}};
+ return {handles:[],draw(){dirty=true;o.redraw();},destroy(){alive=false;farm?.destroy();density?.destroy();o.stop();light?.destroy();}};
 }

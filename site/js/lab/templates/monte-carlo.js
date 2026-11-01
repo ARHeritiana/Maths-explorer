@@ -3,6 +3,7 @@
 // the estimate with its approximate interval and the exact reference, the convergence of the estimate, a table of checkpoints
 // and the pseudocode. Reduced motion: the run button adds one batch per press and nothing is animated.
 import * as M from "../models/monte-carlo.js";
+import { capability } from "../../device-capability.js";
 
 const el = (tag, cls = "", text = "") => { const n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; };
 const write = (n, text) => { if (n.textContent !== text) n.textContent = text; };
@@ -31,6 +32,19 @@ export function mountMonteCarlo({ exp, stage, fmt, getState, setState, advance }
     o.value = key; speed.append(o);
   }
   speed.value = "normal";
+  // Beyond 6,000 trials per second, and beyond 10,000 trials in all, only where this device measured fast enough: the extra speed
+  // uses at most 30% of what one thread can sample, so the page keeps answering (device-capability.js).
+  const turbo = { rate: 0 };
+  capability({ kind: "montecarlo", gpu: false, share: 0.3, work: () => { M.createSampler("pi", {}, 1, { track: false }).advance(20000); return 20000; } }).then((r) => {
+    if (!alive) return;
+    M.setMaxRuns(r.limits.runs);
+    if (r.tier !== "basic") {
+      turbo.rate = r.limits.trialsPerSecond;
+      const o = el("option", "", `${t(["Très rapide", "Very fast"])} (${fmt.num(turbo.rate, 0)} ${t(["essais/s", "trials/s"])}, ${t(["jusqu’à", "up to"])} ${fmt.num(r.limits.runs, 0)})`);
+      o.value = "turbo"; speed.append(o);
+    }
+    previous = ""; stage.invalidate();
+  }).catch(() => {});
   bar.append(runBtn, speedLabel, refBtn);
   const status = el("p", "inference-status"); status.setAttribute("role", "status"); status.setAttribute("aria-live", "polite");
   const stats = el("dl", "inference-stats"), pairs = Array.from({ length: 8 }, () => { const dt = el("dt"), dd = el("dd"); stats.append(dt, dd); return [dt, dd]; });
@@ -72,7 +86,7 @@ export function mountMonteCarlo({ exp, stage, fmt, getState, setState, advance }
     if (stage.reduced()) { step({ runs: Math.min(M.MAX_RUNS, s.runs + 100) }); return; }
     running = true; last = null; carry = 0; paintRun(); raf = requestAnimationFrame(tick);
   });
-  on(speed, "change", () => { rate = SPEEDS[speed.value] || SPEEDS.normal; });
+  on(speed, "change", () => { rate = speed.value === "turbo" && turbo.rate ? turbo.rate : SPEEDS[speed.value] || SPEEDS.normal; });
   on(refBtn, "click", () => { showRef = !showRef; previous = ""; stage.invalidate(); });
 
   // ---- drawing a shoreline (lake): a trace of the unit square, then the polygon replaces the lake

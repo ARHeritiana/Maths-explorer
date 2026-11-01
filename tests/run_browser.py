@@ -33,6 +33,8 @@ try:
         result = subprocess.run([sys.executable, 'tests/lab_browser.py'], cwd=root)
     if result.returncode == 0:   # the laboratory in slides and on chapter pages
         result = subprocess.run([sys.executable, 'tests/slides_lab_browser.py'], cwd=root)
+    if result.returncode == 0:   # heavy modes only where the device allows
+        result = subprocess.run([sys.executable, 'tests/device_scale_browser.py'], cwd=root)
     if result.returncode == 0:   # long lists keep their scroll position
         result = subprocess.run([sys.executable, 'tests/ergonomics_browser.py'], cwd=root)
     if result.returncode == 0:   # the four chapter destinations and the legacy stage links

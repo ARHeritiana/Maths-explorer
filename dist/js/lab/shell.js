@@ -179,7 +179,7 @@ export function createShell(host, exp, tpl, opts = {}) {
   }
 
   // ---- template
-  const env = { exp, stage, fmt, getState, getShown, setState: userApply, advance: apply, isUnlocked: (id) => unlocked.has(id), ghost: () => (ghostSet ? { ...state, ...ghostSet } : null) };
+  const env = { exp, stage, fmt, getState, getShown, setState: userApply, advance: apply, refresh: () => { synced = -1; stage.invalidate(); }, isUnlocked: (id) => unlocked.has(id), ghost: () => (ghostSet ? { ...state, ...ghostSet } : null) };
   view = tpl.mount(env);
   const allHandles = view.handles;
   const players = new Map();

@@ -4,6 +4,7 @@ import {preferredLanguage,routeLanguage} from "./content-language.js";
 import {workshopMarkup,bindWorkshop} from './quadratic-workshop.js';
 import { errorsPage, bindErrors } from "./errors.js";
 import { rememberScrolls, restoreScrolls } from "./scroll-memory.js";
+import { withEntryNav } from "./entry-nav.js";
 import { isErrorRoute } from "./errors-model.js";
 import { libraryPage, bindLibrary, chapterPage, bindChapter, relatedChapters, resourceCatalog } from "./resource-library.js";
 import { packPage, bindPack, sourcesPage, bindSources } from "./pack-builder.js";
@@ -315,7 +316,12 @@ function bindGallery() {
 }
 function challengePage(id) {
   const c = challenges.find((x) => x.id === id);
-  if (c) return challengeDetail(c);
+  if (c) {
+    // the list of challenges, grouped by topic, beside the open one
+    const groups = [];
+    for (const x of challenges) { const key = x.topic[0]; let g = groups.find((y) => y.key === key); if (!g) groups.push((g = { key, label: x.topic, items: [] })); g.items.push({ id: x.id, href: link("challenges", x.id), title: x.title }); }
+    return withEntryNav(challengeDetail(c), { t, label: ["Défis", "Challenges"], title: ["Les défis", "The challenges"], groups, current: c.id });
+  }
   const filtered = challenges.filter(
     (x) => challengeFilter === "all" || x.type === challengeFilter,
   );

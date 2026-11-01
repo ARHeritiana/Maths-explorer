@@ -85,8 +85,9 @@ function prepare(edges){
   const cap=2*n+4;P={n,acx,acy,arx,ary,ast,asw,ax,ay,vx,vy,nx,ny,line,cap,ct:new Float64Array(cap),cu:new Float64Array(cap),cnx:new Float64Array(cap),cny:new Float64Array(cap),cpx:new Float64Array(cap),cpy:new Float64Array(cap),ce:new Int32Array(cap)};
   prepared.set(edges,P);return P;
 }
+export const MAX_BOUNCES=2000;   // the reference tracer stays at 300; devices that can afford it go further (device-capability.js)
 export function trace(edges,source,direction,bounces=30){
-  if(!Number.isInteger(bounces)||bounces<0||bounces>300)throw new RangeError('bounces');
+  if(!Number.isInteger(bounces)||bounces<0||bounces>MAX_BOUNCES)throw new RangeError('bounces');
   const P=prepared.get(edges)||prepare(edges),{n,acx,acy,arx,ary,ast,asw,ax,ay,vx,vy,nx,ny,line,ct,cu,cnx,cny,cpx,cpy,ce}=P;
   const u0=unit(direction);let ox=source[0],oy=source[1],dx=u0[0],dy=u0[1],length=0;const points=[[ox,oy]],hits=[];
   for(let bounce=0;bounce<=bounces;bounce++){

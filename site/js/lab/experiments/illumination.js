@@ -1,14 +1,21 @@
 // Guided mirrored-room exploration. Gallery and lab use the same editor, source and exact reflection model.
 import * as M from '../../illumination-model.js';
 import {PRESETS,SOURCES} from '../../illumination-presets.js';
+import {LIMITS} from '../../device-capability.js';
 const P=(fr,en)=>[fr,en];
 export function boundary(s){return ['polygon','curved'].includes(s.room)?s.vertices.map((p,i)=>s.room==='curved'&&s.bends[i]?M.bezier(p,s.bends[i],s.vertices[(i+1)%s.vertices.length]):M.line(p,s.vertices[(i+1)%s.vertices.length])):PRESETS[s.room].edges;}
+// What this device can afford (device-capability.js); the template fills it once the device has been measured. Until then, and
+// on every device that cannot do better, the ceilings are the basic ones: 1440 rays, 100 reflections, traced on the page itself.
+export const device={tier:'basic',limits:LIMITS.basic,workers:0,ready:false,reasons:[]};
+export const SYNC_MAX=1440;   // up to this many rays are traced on the page (paths kept, animated); above, a worker farm and a density map
+export const RAY_OPTIONS=[1,24,48,96,360,1440,5000,20000,100000,500000];
+export const effectiveRays=s=>Math.min(s.rays,device.limits.rays);   // a state above the ceiling of this device is drawn at the ceiling
 let memo={key:null,value:null};
 export function model(s){
- const key=JSON.stringify([s.room,s.sx,s.sy,s.vertices,s.bends,s.closed,s.angle,s.rays,s.bounces]);if(key===memo.key)return memo.value;
+ const rays=effectiveRays(s),deferred=rays>SYNC_MAX,key=JSON.stringify([s.room,s.sx,s.sy,s.vertices,s.bends,s.closed,s.angle,rays,s.bounces]);if(key===memo.key)return memo.value;
  const edges=boundary(s),custom=['polygon','curved'].includes(s.room),validation=custom?(s.closed?M.validate(edges):{ok:false,reason:'open'}):{ok:true},source=[s.sx,s.sy],inRoom=M.inside(source,M.flatten(edges))&&!edges.some(e=>M.onBoundary(source,e)),paths=[];
- if(validation.ok&&inRoom)for(let i=0;i<s.rays;i++){const theta=s.angle+i*M.TAU/s.rays;paths.push(M.trace(edges,source,[Math.cos(theta),Math.sin(theta)],s.bounces));}
- const value={edges,source,validation,inRoom,paths,segments:paths.reduce((n,p)=>n+p.points.length-1,0),corners:paths.filter(p=>p.reason==='corner').length,tangencies:paths.filter(p=>p.reason==='tangent').length};memo={key,value};return value;
+ if(validation.ok&&inRoom&&!deferred)for(let i=0;i<rays;i++){const theta=s.angle+i*M.TAU/rays;paths.push(M.trace(edges,source,[Math.cos(theta),Math.sin(theta)],Math.min(s.bounces,device.limits.bounces)));}
+ const value={edges,source,validation,inRoom,paths,deferred,rays,segments:paths.reduce((n,p)=>n+p.points.length-1,0),corners:paths.filter(p=>p.reason==='corner').length,tangencies:paths.filter(p=>p.reason==='tangent').length};memo={key,value};return value;
 }
 export const initial={room:'penrose',sx:0,sy:0,vertices:[[-4,-3],[4,-3],[4,3],[-4,3]],bends:[null,null,null,null],closed:true,angle:.173,rays:48,bounces:20,speed:2,playing:false,progress:1,unfolding:false,edit:'lamp'};
 export default {
@@ -16,8 +23,8 @@ export default {
  model:{model,quantities:{normal:()=>-1},quantity:()=>-1},
  controls:{
   room:{kind:'choice',key:'room',label:P('Pièce','Room'),options:[['penrose','Penrose : arcs elliptiques','Penrose: elliptical arcs'],['tokarsky','Tokarsky : 26 côtés','Tokarsky: 26 sides'],['wolecki','Wolecki : 22 côtés','Wolecki: 22 sides'],['polygon','Mon polygone','My polygon'],['curved','Mes murs courbes','My curved walls']].map(([value,fr,en])=>({value,label:P(fr,en)})),set:(s,room)=>({room,sx:PRESETS[room].source[0],sy:PRESETS[room].source[1],playing:false,progress:1,unfolding:false})},
-  bounces:{kind:'slider',key:'bounces',min:0,max:100,step:1,label:P('Réflexions maximales','Maximum reflections')},
-  rays:{kind:'choice',key:'rays',label:P('Rayons échantillonnés','Sampled rays'),options:[1,24,48,96,360,1440].map(value=>({value,label:P(String(value),String(value))}))},
+  bounces:{kind:'slider',key:'bounces',min:0,max:100,step:1,range:()=>[0,Math.max(100,device.limits.bounces)],label:P('Réflexions maximales','Maximum reflections')},
+  rays:{kind:'choice',presentation:'select',key:'rays',label:P('Rayons échantillonnés','Sampled rays'),options:RAY_OPTIONS.map(value=>({value,label:P(value.toLocaleString('fr-FR'),value.toLocaleString('en-GB')),disabled:()=>value>device.limits.rays}))},
   angle:{kind:'slider',key:'angle',min:0,max:6.28,step:.01,label:P('Direction initiale (rad)','Initial direction (rad)')},
   speed:{kind:'slider',key:'speed',min:.2,max:10,step:.2,label:P('Vitesse de parcours','Travel speed')},
  },

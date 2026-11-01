@@ -2,6 +2,7 @@
 // Cross-references are written once, as `links` of a text or a curiosity; `readAlso` shows them on the page that
 // declares them and, reversed, on every page they point to (challenges, gallery, laboratory, other texts).
 import { BIOGRAPHIES, STORIES } from "./reading-content.js";
+import { withEntryNav } from "./entry-nav.js";
 import { labs, challenges } from "./content.js";
 import {PEOPLE,ADVANCES,historyRecord,historyLinks,historyRoute} from './history-data.js';
 import {discoveryChapters} from './catalogue-data.js';
@@ -71,6 +72,12 @@ function storyPage(s, t) {
 
 export const isReading = (page, id) => (page === "biographies" && (!id || BIOGRAPHIES.some((b) => b.id === id))) || (page === "stories" && (!id || STORIES.some((s) => s.id === id)));
 export function readingPage(page, id, t) {
-  if (page === "biographies") { const b = BIOGRAPHIES.find((x) => x.id === id); return b ? biographyPage(b, t) : biographyIndex(t); }
-  const s = STORIES.find((x) => x.id === id); return s ? storyPage(s, t) : storyIndex(t);
+  if (page === "biographies") {
+    const b = BIOGRAPHIES.find((x) => x.id === id);
+    return b ? withEntryNav(biographyPage(b, t), { t, label: ["Biographies", "Biographies"], title: ["Les biographies", "The biographies"], current: b.id,
+      groups: [{ label: null, items: BIOGRAPHIES.map((x) => ({ id: x.id, href: "#biographies/" + x.id, title: [x.name, x.name] })) }] }) : biographyIndex(t);
+  }
+  const s = STORIES.find((x) => x.id === id);
+  return s ? withEntryNav(storyPage(s, t), { t, label: ["Histoires et lectures", "Stories and readings"], title: ["Les histoires", "The stories"], current: s.id,
+    groups: [{ label: null, items: STORIES.map((x) => ({ id: x.id, href: "#stories/" + x.id, title: x.title })) }] }) : storyIndex(t);
 }

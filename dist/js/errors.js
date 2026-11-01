@@ -3,6 +3,7 @@
 // Each activity: the claim a learner might write, a test bench with sliders, a diagnosis, then a repair to choose.
 import { ERRORS, DERIVATIONS, ROUTE, FAMILIES, find, grid, relOf, claimAt, checkRepair, coincidences, evaluateDerivation, show } from './errors-model.js';
 import { assetHref } from './data-loader.js';
+import { withEntryNav } from './entry-nav.js';
 import { describe } from './reading.js';
 
 const P = (fr, en) => [fr, en];
@@ -35,7 +36,8 @@ function related(e, t) {
 }
 
 function detailPage(e, t) {
-  return e.steps ? derivationPage(e, t) : claimPage(e, t);
+  const groups = Object.keys(FAMILIES).map((f) => ({ label: FAMILIES[f], items: [...ERRORS, ...DERIVATIONS].filter((x) => x.family === f).map((x) => ({ id: x.id, href: '#errors/' + x.id, title: x.title })) })).filter((g) => g.items.length);
+  return withEntryNav(e.steps ? derivationPage(e, t) : claimPage(e, t), { t, label: P('Erreurs', 'Errors'), title: P('Les erreurs', 'The errors'), groups, current: e.id });
 }
 
 // Fixed, id-dependent rotation so the correct repair is not always first.

@@ -9,7 +9,10 @@
 // with the sample variance for a mean (integral). It can be too narrow for a rare, spiky function.
 import { rng } from "./probability.js";
 
-export const MAX_RUNS = 10000;
+// The ceiling of runs of this page: 10,000, or more on a device that proved it can afford it (setMaxRuns, device-capability.js).
+export const BASE_MAX_RUNS = 10000;
+export let MAX_RUNS = BASE_MAX_RUNS;
+export const setMaxRuns = (n) => { MAX_RUNS = Math.max(BASE_MAX_RUNS, Math.floor(n)); };
 export const SHOWN = 600;          // points of the last trials kept for the drawing
 export const SHOWN_WALKS = 12;     // paths of the last walks kept for the drawing
 export const MIN_INTERVAL = 30;    // no interval under 30 trials
@@ -122,7 +125,8 @@ export function polygonFromTrace(points) {
 export const walkReference = (upper, lower) => lower / (upper + lower);
 
 // ---- the samplers
-const checkpoint = (n) => n <= 100 || n % 20 === 0;
+// n up to 10,000: as before; above, the spacing grows with the size of n so that 10 million trials keep about a thousand checkpoints
+const checkpoint = (n) => n <= 100 || (n <= 10000 ? n % 20 === 0 : n % 10 ** (Math.floor(Math.log10(n)) - 2) === 0);
 function trialFor(kind, params) {
   if (kind === "pi") return (next) => { const x = 2 * next() - 1, y = 2 * next() - 1, hit = x * x + y * y <= 1; return { hit, x: (x + 1) / 2, y: (y + 1) / 2 }; };
   if (kind === "lake") {
@@ -154,17 +158,23 @@ export function createSampler(kind, params, seed, { track = true } = {}) {
   const next = rng(seed), trial = trialFor(kind, params);
   const S = { kind, n: 0, hits: 0, mean: 0, m2: 0, points: [], walks: [], history: [], advance };
   function advance(k) {
+    // only the last SHOWN trials (SHOWN_WALKS walks) are kept for the drawing: earlier ones are not recorded at all
+    const keepFrom = track ? k - (kind === "walk" ? SHOWN_WALKS : SHOWN) : Infinity;
     for (let i = 0; i < k; i++) {
       const t = trial(next);
       S.n++;
       if (kind === "integral") { const d = t.value - S.mean; S.mean += d / S.n; S.m2 += d * (t.value - S.mean); }
       else if (t.hit) S.hits++;
       if (track) {
-        if (kind === "walk") { S.walks.push({ path: t.path, success: t.hit }); if (S.walks.length > SHOWN_WALKS) S.walks.shift(); }
-        else { S.points.push(kind === "integral" ? { x: t.x, value: t.height } : { x: t.x, y: t.y, inside: t.hit }); if (S.points.length > SHOWN) S.points.shift(); }
+        if (i >= keepFrom) {
+          if (kind === "walk") S.walks.push({ path: t.path, success: t.hit });
+          else S.points.push(kind === "integral" ? { x: t.x, value: t.height } : { x: t.x, y: t.y, inside: t.hit });
+        }
         if (checkpoint(S.n)) S.history.push([S.n, estimateOf(kind, S)]);
       }
     }
+    if (S.walks.length > SHOWN_WALKS) S.walks.splice(0, S.walks.length - SHOWN_WALKS);
+    if (S.points.length > SHOWN) S.points.splice(0, S.points.length - SHOWN);
     return S;
   }
   return S;
