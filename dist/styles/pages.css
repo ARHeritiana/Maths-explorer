@@ -1438,3 +1438,37 @@ input[type="range"]::-moz-range-thumb { background: var(--accent); border-color:
 .go-row { justify-content: space-between; }
 .go-group .act-field { flex: none; }
 @media (max-width: 600px) { .go-panel { grid-template-columns: 1fr; } .go-group { padding: 8px 10px 10px; } }
+
+/* ---- Olympiad strategies (#olympiad, #olympiad/<id>; site/js/olympiad.js) ---- */
+.olymp-page{max-width:var(--page-w);margin-inline:auto}
+.olymp-detail{max-width:min(var(--page-w),980px)}
+.olymp-levels{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:12px 0 24px}
+.olymp-level{display:inline-block;font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid var(--line-strong);color:var(--ink-2)}
+.olymp-level.olymp-mg{border-color:var(--pos);color:var(--pos)}
+.olymp-level.olymp-pan{border-color:var(--obj2);color:var(--obj2)}
+.olymp-level.olymp-intl{border-color:var(--accent);color:var(--accent)}
+.olymp-theme h2{margin-top:28px}
+.olymp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:14px;list-style:none;padding:0;margin:0}
+.olymp-card{display:flex;flex-direction:column;gap:8px;height:100%;padding:18px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink);text-decoration:none}
+.olymp-card:hover,.olymp-card:focus-visible{border-color:var(--accent)}
+.olymp-card svg{color:var(--accent)}
+.olymp-card span{color:var(--ink-2);font-size:.95rem}
+.olymp-card small{color:var(--muted);margin-top:auto}
+.olymp-note{margin-top:28px}
+.olymp-detail section{margin-top:28px}
+.olymp-question{font-size:1.15rem;font-weight:600}
+.olymp-widget,.olymp-lab{margin-top:14px;max-width:600px}
+.olymp-readout{color:var(--ink-2);max-width:720px}
+.olymp-problem{margin-top:18px;padding:18px;border:1px solid var(--line);border-left:4px solid var(--line-strong);border-radius:var(--r);background:var(--surface)}
+.olymp-problem.olymp-mg{border-left-color:var(--pos)}.olymp-problem.olymp-pan{border-left-color:var(--obj2)}.olymp-problem.olymp-intl{border-left-color:var(--accent)}
+.olymp-problem header{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+.olymp-problem h3{margin:0;font-size:1.05rem}
+.olymp-hint,.olymp-solution{margin-top:10px}
+.olymp-hint summary,.olymp-solution summary{cursor:pointer;font-weight:600;min-height:32px}
+.olymp-solution{padding:10px 14px;border-radius:var(--r);background:var(--sunken)}
+.olymp-source{color:var(--muted);font-size:.85rem;margin-top:10px}
+.olymp-code{overflow-x:auto;padding:12px;border-radius:var(--r);background:var(--sunken);font-size:.9rem}
+.olymp-links ul{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0}
+.olymp-links a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);border-radius:var(--r);text-decoration:none;color:var(--ink)}
+.olymp-pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px;flex-wrap:wrap}
+.olymp-detail mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%}

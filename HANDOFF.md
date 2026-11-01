@@ -31,9 +31,15 @@ Still to do (next sessions):
    (details and the two source fixes to report upstream: `docs/CURRICULUM.md`). The owner approved publication of T11 S, whose
    own notes still called it a model-reviewed draft. Slide decks done the same evening (29 decks from
    `content/tex/mada/`, lab canvases at the end, lecture PDFs). Next: generators for T10 and T11 S; figures of the books in the decks.
-5. Private repository `Maths-explorer-backup` not reached from this laptop (no GitHub access at the time): nothing was read from its
+5. Olympiad (evening of 1 November): new category `#olympiad` (Explorer > Olympiades), bilingual. Ten strategies seeded from the
+   owner's COMIMa courses, rewritten in the site's spirit (a question to handle first, the idea, a solved example), 50 problems
+   (5 per strategy, national to international level) with progressive hints and full solutions, three new figures (nearest
+   neighbours, inscribed angle, rectangle and square) and links to 30 existing challenges and experiments. Problems are classical
+   ones restated in our own words; COMIMa's verbatim third-party statements (Engel, Dujella) were not used. Every solution was
+   checked by hand; the IMO 1986 semi-invariant numerically. Next: more problems per strategy, olympiad papers by level, review.
+6. Private repository `Maths-explorer-backup` not reached from this laptop (no GitHub access at the time): nothing was read from its
    review queue.
-6. Bilingual goal for lessons: still on standby (owner rule), unfinished.
+7. Bilingual goal for lessons: still on standby (owner rule), unfinished.
 
 ## Generators: automatismes, worksheets, exercise bank (1 November 2026, owner request)
 

@@ -86,6 +86,14 @@ Seeded and limitless: any text is a seed, the same seed gives the same series. F
 
 To add a generator: write `make` in the class file, give it a manifest chapter, a domain and an `ok()`; `tests/exercise-bank.test.mjs` then checks it (answers, formatting, variety of at least 20 questions).
 
+## Olympiad ("Explorer > Olympiades")
+
+| File | Holds |
+|---|---|
+| `js/olympiad-content.js` | the ten strategies (bilingual): the question, the idea, a solved example, five problems per strategy (national, Pan-African, international level) with hints and solutions, links to experiments and challenges; seeded from the owner's COMIMa courses, rewritten, problems restated |
+| `js/olympiad.js` | `#olympiad` (index) and `#olympiad/<id>` (one strategy): page markup, inline figure or laboratory experiment, MathJax typesetting |
+| `js/olympiad-widgets.js` | three figures with pure models: nearest neighbours (extremal principle), the inscribed angle, rectangle and square of the same perimeter |
+
 ## Reading ("Lire": biographies, stories; the curiosities are the gallery)
 
 | File | Holds |

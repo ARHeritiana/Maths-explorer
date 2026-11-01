@@ -41,6 +41,7 @@ really need them.
 | a biography or a story ("Lire"), or a cross-link between a text, a curiosity and a challenge | `site/js/reading-content.js` (texts and their `links`), `site/js/reading.js` (pages, `readAlso`); curiosity links: `links` in `site/js/gallery/gallery-curiosities.js` | a link is written once; the page it points to shows it back |
 | a gallery curiosity or a lab "object" | `site/js/lab-objects.js` (`mountObject`), `js/gallery/gallery-objects.js`, maths in `js/gallery/gallery-math.js`; card drawing in `home-art.js` | |
 | the error correction collection ("Erreurs": false claims, counterexamples, repairs, flawed derivations) | `site/js/errors-data.js` (the records; add an error here), `site/js/errors-model.js` (computed checks, `errorsFor`), `site/js/errors.js` (page); `tests/errors.test.mjs` | goals 4 and 5 of `docs/IMPROVEMENT_GOALS.md`; links to chapters are `links` of each record and appear back on chapter pages, the slides index and in discovery; coverage: `content/data/error-coverage.json`, then `node scripts/error-coverage.mjs` |
+| an Olympiad strategy (idea, example, problems, hints, solutions, links) | `site/js/olympiad-content.js`; page `site/js/olympiad.js`; figures `site/js/olympiad-widgets.js`; `tests/olympiad.test.mjs` | bilingual (owner rule: Olympiad is its own category) |
 | one challenge | its folder `site/js/challenges/<id>/` (index in `site/js/challenges/CLAUDE.md`) | new challenge: recipe `challenge` |
 | the home page | `site/js/welcome.js`, live drawings `site/js/home-art.js` | |
 | course catalogue entries, titles, chapters, language of a course | `content/data/manifest.json` | `make site` |
@@ -99,6 +100,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `#biographies[/<id>]` | Lire > Biographies | `reading.js` `readingPage`; texts `reading-content.js` |
 | `#stories[/<id>]` | Lire > Histoires | `reading.js` `readingPage`; texts `reading-content.js` |
 | `#gallery[/<id>]` | Lire > Curiosités | `welcome.js` `galleryPage` (index), `app.js` `galleryDetail` / `bindGallery` (one exhibit); objects `lab-objects.js`, `js/gallery/gallery-objects.js`; data `labs` with `custom: true` (`#lab/<exhibit>` redirects here) |
+| `#olympiad[/<id>]` | Explorer > Olympiades | `olympiad.js` (`olympiadPage`, `bindOlympiad`); content `olympiad-content.js`, figures `olympiad-widgets.js` |
 | `#errors[/<id>]` | Explorer > Erreurs | `errors.js` `errorsPage` / `bindErrors`; data and checks `errors-model.js` |
 | `#challenges[/<id>]` | Explorer > Défis | `app.js` `challengePage`, `challengeDetail`, `bindChallenges`; content from `site/js/challenges/registry.js` |
 | `#pathways` | Apprendre > Parcours | `app.js` `pathwayPage`; data `content.js` `pathways` |
