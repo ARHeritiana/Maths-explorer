@@ -93,6 +93,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `#pack[/<id>]`, `#sources` | (Cours) | `pack-builder.js` |
 | `#automatismes` | Apprendre > Automatismes | `automatismes.js` (generator, projection, print, LaTeX); engine in `js/exercises/` |
 | `#sheets` | Apprendre > Fiches | `worksheets.js` (worksheets, quizzes, tests; student and teacher versions) |
+| `#bank[/<course>[/<chapter>]]` | Apprendre > Exercices | `bank-page.js` (online exercise bank); data `js/exercises/bank.js`, `authored.js`, `problems.js`, `bank-mada.js` |
 | `#slides[/<course>]` | Apprendre > Diaporamas | `slides-page.js` (rail of curricula and levels, deck cards); decks open in `slides/player.html` with `deck=<id>` |
 | `#lab` | Explorer > Laboratoire | `site/js/lab/page.js` `indexPage` (experiments grouped by type of activity) |
 | `#lab/<experiment>[/<mission>]` | Laboratoire | `site/js/lab/page.js` `experimentPage` + `site/js/lab/mount.js` `mountExperiment`; the mission is kept in the address |

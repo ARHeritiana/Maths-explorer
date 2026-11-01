@@ -11,6 +11,7 @@ import { libraryPage, bindLibrary, chapterPage, bindChapter, relatedChapters, re
 import { packPage, bindPack, sourcesPage, bindSources } from "./pack-builder.js";
 import { automatismesPage, bindAutomatismes } from "./automatismes.js";
 import { sheetsPage, bindSheets } from "./worksheets.js";
+import { bankPage, bindBank, isBankRoute } from "./bank-page.js";
 import { slidesPage, bindSlides } from "./slides-page.js";
 import { universityPage, bindUniversity } from "./university.js";
 import { observeSvgNavigation } from "./canvas-navigation.js";
@@ -111,6 +112,7 @@ const SECTIONS = [
     ["basics", "Bases", "Foundations", "books"],
     ["resources", "Cours", "Lessons", "books"],
     ["slides", "Diaporamas", "Slides", "presentation-chart"],
+    ["bank", "Exercices", "Exercises", "seal-check"],
     ["automatismes", "Automatismes", "Starters", "lightbulb"],
     ["sheets", "Fiches", "Worksheets", "pencil-simple-line"],
     ["pathways", "Parcours", "Pathways", "path"],
@@ -177,13 +179,13 @@ function render() {
     (r.page === "errors" && isErrorRoute(r.id)) ||
     (r.page === "olympiad" && isOlympiadRoute(r.id)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction" || r.id === "multiplication" || r.id === "division" || r.id === "sets")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" ||
+    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction" || r.id === "multiplication" || r.id === "division" || r.id === "sets")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab)) ||
     r.page === "university" || (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
   $("#app").innerHTML =
     header(page) +
-    (page === "basics" ? basicsPage(r.id) : page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
+    (page === "basics" ? basicsPage(r.id) : page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "bank" ? bankPage(t, r.id, r.tab) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "university" ? universityPage(lang)
       : page === "topics" ? discoveryPage(discovery,r.id,r.tab,t)
       : page === "history" ? historyPage(r.id,r.tab,t,discovery)
@@ -234,6 +236,7 @@ function render() {
   if (page === "sources") bindSources(t);
   if (page === "slides") bindSlides(t);
   if (page === "automatismes") stopChapter = bindAutomatismes($("#main"), t, { chapterTitle: chapterTitleFr });
+  if (page === "bank") stopChapter = bindBank($("#main"), t, r.id, r.tab);
   if (page === "sheets") stopChapter = bindSheets($("#main"), t, { chapterTitle: chapterTitleFr });
   if (page === "university") bindUniversity(r.id, lang);
   if (page === "chapter") {

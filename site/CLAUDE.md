@@ -79,6 +79,8 @@ Seeded and limitless: any text is a seed, the same seed gives the same series. F
 | `js/exercises/templates-<class>.js` | the generators of `seconde`, `premiere`, `terminale`, `expertes`, `stmg`: `make(r, level)` returns statement, answer and `ok()` that recomputes the answer another way; chapter ids are those of `manifest.json` |
 | `js/exercises/authored.js` | fixed multi-part exercises with a full correction (`ok()` checks the quoted numbers) |
 | `js/exercises/problems.js` | the same kind of problem, with numbers drawn from the seed |
+| `js/bank-page.js` | `#bank[/<course>[/<chapter>]]`: the online exercise bank (rail of levels, chapter index, worked exercises with hints and folded corrections, renewable seeded problems, quick practice from the generators, print with or without corrections) |
+| `js/exercises/bank-mada.js` | exercises of the Malagasy books (T10, T11 S) for the online bank, same shape as `authored.js` |
 | `js/exercises/bank.js` | registry, `instance`, `buildStarter`, `buildSheet`, marking scheme (`scalePoints`) |
 | `js/exercises/export.js` | HTML, LaTeX and projection-page builders (one source string serves all three) |
 | `js/exercises/ui-kit.js` | form chips, settings kept on the device, MathJax loading, download, print, `stepSeed` |

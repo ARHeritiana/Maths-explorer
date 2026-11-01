@@ -1,0 +1,99 @@
+// Online exercise bank (#bank[/<course>[/<chapter>]]): worked exercises to do on screen, chapter by chapter, with hints
+// and corrections revealed on demand, seeded problems whose numbers can be renewed, and a quick series of generated
+// questions. Data: js/exercises/bank.js (generators, authored exercises, seeded problems) and js/exercises/bank-mada.js
+// (exercises of the Malagasy books). Printing reuses the worksheet print path.
+import { resourceCatalog } from './resources-data.js';
+import { primaryCourses } from './catalogue-data.js';
+import { AUTHORED, TEMPLATES, instance } from './exercises/bank.js';
+import { MADA } from './exercises/bank-mada.js';
+import { rng } from './exercises/engine.js';
+import { typeset, printMarkup } from './exercises/ui-kit.js';
+import { icon } from './icons.js';
+
+const P = (fr, en) => [fr, en];
+const E = (x) => String(x).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const SHORT = { seconde: P('Seconde', 'Seconde'), premiere: P('Première spécialité', 'Première'), terminale: P('Terminale spécialité', 'Terminale'), expertes: P('Maths expertes', 'Further maths'), stmg: P('Terminale STMG', 'Terminale STMG'), t10: P('T10', 'T10'), t11s: P('T11 série S', 'T11 S') };
+const LEVEL = { 1: P('Routine', 'Routine'), 2: P('Standard', 'Standard'), 3: P('Exigeant', 'Demanding') };
+const courses = primaryCourses.filter((c) => c.curriculum === 'fr' || c.curriculum === 'mg');
+const chaptersOf = (course) => resourceCatalog.chapters.filter((c) => c.course === course).sort((a, b) => a.number - b.number);
+// A seeded problem that repeats a fixed exercise of the same title (its random-values twin) replaces it: one card each.
+const exercisesOf = (chapter) => { const all = [...AUTHORED, ...MADA].filter((e) => e.chapters.includes(chapter)); return all.filter((e) => e.make || !all.some((x) => x.make && x.title === e.title)).sort((a, b) => a.level - b.level); };
+const generatorsOf = (chapter) => TEMPLATES.filter((t) => t.chapter === chapter);
+export const bankCount = (chapter) => exercisesOf(chapter).length;
+export const isBankRoute = (course, chapter) => (!course || courses.some((c) => c.id === course)) && (!chapter || chaptersOf(course).some((c) => c.id === chapter));
+
+const stars = (n) => `<span class="bank-level" data-level="${n}">${'●'.repeat(n)}${'○'.repeat(3 - n)}</span>`;
+// One exercise: statement, then each part with its hint and its correction folded.
+function exerciseCard(e, k, seed, t) {
+  const body = e.make ? e.make(rng(`${seed}|${e.id}`)) : e;
+  const parts = body.parts || [];
+  return `<article class="bank-ex" id="ex-${E(e.id)}" data-ex="${E(e.id)}"><header class="bank-ex-head"><span class="bank-no">${k}</span><div><h3>${E(e.title)}</h3><p class="bank-meta">${stars(e.level)} ${t(LEVEL[e.level])} · ${e.minutes || 10} min${e.make ? ` · ${t(P('valeurs tirées au hasard', 'random values'))}` : ''}${e.source ? ` · ${E(e.source)}` : ''}</p></div>${e.make ? `<button type="button" class="bank-renew" data-renew="${E(e.id)}">${icon('arrows-clockwise', 16)}${t(P('Nouvelles valeurs', 'New values'))}</button>` : ''}</header>
+  <div class="bank-intro">${body.intro || ''}</div>
+  ${parts.length ? `<ol class="bank-parts">${parts.map((p) => `<li><div class="bank-q">${p.q}</div>${p.hint ? `<details class="bank-hint"><summary>${t(P('Indice', 'Hint'))}</summary><div>${p.hint}</div></details>` : ''}<details class="bank-sol"><summary>${t(P('Correction', 'Solution'))}</summary><div>${p.a}</div></details></li>`).join('')}</ol>` : ''}
+  ${body.solution ? `<details class="bank-sol"><summary>${t(P('Correction', 'Solution'))}</summary><div>${body.solution}</div></details>` : ''}</article>`;
+}
+function quickSeries(chapter, seed, t) {
+  const gens = generatorsOf(chapter);
+  if (!gens.length) return '';
+  const r = rng(`${seed}|quick|${chapter}`), items = [];
+  for (let i = 0; i < 8; i++) { const g = gens[i % gens.length], level = 1 + Math.floor((i * 3) / 8); items.push(instance(g, level, `${seed}-${i}-${r.int(1, 1e6)}`)); }
+  return `<section class="bank-quick" aria-labelledby="bank-quick-title"><div class="bank-section-head"><h2 id="bank-quick-title">${t(P('Entraînement express', 'Quick practice'))}</h2><button type="button" class="bank-renew" data-quick>${icon('arrows-clockwise', 16)}${t(P('Nouvelle série', 'New series'))}</button></div><p class="group-note">${t(P('Huit questions courtes, de la routine à l’exigeant. Les nombres changent à chaque série.', 'Eight short questions, from routine to demanding. The numbers change with every series.'))}</p><ol class="bank-quick-list">${items.map((x) => `<li><div class="bank-q">${x.q}</div><details class="bank-sol"><summary>${t(P('Réponse', 'Answer'))}</summary><div>${x.a}${x.s ? `<p>${x.s}</p>` : ''}</div></details></li>`).join('')}</ol></section>`;
+}
+function rail(course, t) {
+  const pick = (c) => `<li><a class="pw-pick" href="#bank/${c.id}" ${c.id === course ? 'aria-current="page" aria-pressed="true"' : 'aria-pressed="false"'}><span>${E(t(SHORT[c.id] || c.title))}</span><small>${chaptersOf(c.id).reduce((a, ch) => a + bankCount(ch.id), 0)}</small></a></li>`;
+  return `<nav class="pw-rail res-rail" aria-label="${t(P('Niveaux', 'Levels'))}"><div class="pw-family"><p class="pw-family-name">${icon('books', 18)}${t(P('Programme français', 'French curriculum'))}</p><ul>${courses.filter((c) => c.curriculum === 'fr').map(pick).join('')}</ul></div><div class="pw-family"><p class="pw-family-name">${icon('path', 18)}${t(P('Programme malgache', 'Malagasy curriculum'))}</p><ul>${courses.filter((c) => c.curriculum === 'mg').map(pick).join('')}</ul></div><div class="pw-family"><p class="pw-family-name">${icon('presentation-chart', 18)}${t(P('Générer', 'Generate'))}</p><ul><li><a class="pw-pick res-go" href="#automatismes">${icon('lightbulb', 18)}<span>${t(P('Automatismes', 'Starters'))}</span></a></li><li><a class="pw-pick res-go" href="#sheets">${icon('pencil-simple-line', 18)}<span>${t(P('Fiches, interros, devoirs', 'Worksheets, quizzes, tests'))}</span></a></li></ul></div></nav>`;
+}
+function chapterIndex(course, t) {
+  return `<div class="res-head"><h2>${E(t(primaryCourses.find((c) => c.id === course).title))}</h2><span class="pw-count">${t(P('Choisis un chapitre', 'Pick a chapter'))}</span></div><ol class="bank-chapters">${chaptersOf(course).map((c) => { const n = bankCount(c.id), g = generatorsOf(c.id).length; return `<li><a href="#bank/${course}/${c.id}"><span class="bank-ch-no">${String(c.number).padStart(2, '0')}</span><span class="bank-ch-title">${E(t(c.title))}</span><span class="bank-ch-meta">${n} ${t(n > 1 ? P('exercices corrigés', 'worked exercises') : P('exercice corrigé', 'worked exercise'))}${g ? ` · ${t(P('entraînement express', 'quick practice'))}` : ''}</span></a></li>`; }).join('')}</ol>`;
+}
+function chapterView(course, chapter, seed, t) {
+  const c = resourceCatalog.chapters.find((x) => x.id === chapter), list = exercisesOf(chapter), chapters = chaptersOf(course), i = chapters.findIndex((x) => x.id === chapter);
+  const prev = chapters[i - 1], next = chapters[i + 1];
+  return `<nav class="discovery-breadcrumb" aria-label="${t(P('Fil d’Ariane', 'Breadcrumb'))}"><a href="#bank">${t(P('Banque d’exercices', 'Exercise bank'))}</a> / <a href="#bank/${course}">${E(t(SHORT[course]))}</a></nav>
+  <div class="res-head"><h2>${t(P('Chapitre', 'Chapter'))} ${c.number} · ${E(t(c.title))}</h2><nav class="res-quick"><a href="#chapter/${chapter}">${icon('books', 16)}${t(P('Le cours', 'The lesson'))}</a><a href="#slides/${course}">${icon('presentation-chart', 16)}${t(P('Diaporama', 'Slides'))}</a></nav></div>
+  <div class="bank-tools" role="toolbar" aria-label="${t(P('Affichage', 'Display'))}"><div class="bank-filter" role="group" aria-label="${t(P('Niveau', 'Level'))}">${[0, 1, 2, 3].map((l) => `<button type="button" class="filter" data-level-filter="${l}" aria-pressed="${l === 0}">${l ? t(LEVEL[l]) : t(P('Tous les niveaux', 'All levels'))}</button>`).join('')}</div><button type="button" class="filter" data-open-all>${t(P('Déplier toutes les corrections', 'Show every solution'))}</button><button type="button" class="filter" data-print="student">${t(P('Imprimer l’énoncé', 'Print the questions'))}</button><button type="button" class="filter" data-print="teacher">${t(P('Imprimer avec corrections', 'Print with solutions'))}</button></div>
+  <section aria-labelledby="bank-ex-title"><h2 id="bank-ex-title" class="sr-only">${t(P('Exercices corrigés', 'Worked exercises'))}</h2>${list.length ? `<div class="bank-list">${list.map((e, k) => exerciseCard(e, k + 1, seed, t)).join('')}</div>` : `<p class="pw-empty">${t(P('Les exercices corrigés de ce chapitre sont en préparation. L’entraînement express ci-dessous est déjà disponible.', 'The worked exercises of this chapter are being written. The quick practice below is already available.'))}</p>`}</section>
+  <div id="bank-quick">${quickSeries(chapter, seed, t)}</div>
+  <nav class="bank-pager">${prev ? `<a href="#bank/${course}/${prev.id}">${icon('caret-left', 16)} ${E(t(prev.title))}</a>` : '<span></span>'}${next ? `<a href="#bank/${course}/${next.id}">${E(t(next.title))} ${icon('caret-right', 16)}</a>` : ''}</nav>`;
+}
+
+export function bankPage(t, course, chapter) {
+  let saved = ''; try { saved = sessionStorage.getItem('mx-course') || ''; } catch { /* storage blocked */ }
+  const id = course || (courses.some((c) => c.id === saved) ? saved : courses[0].id);
+  return `<main id="main" tabindex="-1" class="page bank-page"><div class="res-top"><div><h1>${t(P('Banque d’exercices', 'Exercise bank'))}</h1><p class="page-intro">${t(P('Des exercices corrigés pour chaque chapitre, à faire à l’écran : cherche, demande un indice, puis ouvre la correction. Les problèmes marqués « valeurs tirées au hasard » se renouvellent à volonté.', 'Worked exercises for every chapter, to do on screen: try, ask for a hint, then open the solution. Problems marked “random values” can be renewed at will.'))}</p></div></div>
+  <div class="pw-layout res-layout">${rail(id, t)}<section class="pw-panel" id="bank-panel">${chapter ? chapterView(id, chapter, 'bank', t) : chapterIndex(id, t)}</section></div></main>`;
+}
+
+export function bindBank(root, t, course, chapter) {
+  const panel = root.querySelector('#bank-panel');
+  if (course) try { sessionStorage.setItem('mx-course', course); } catch { /* storage blocked */ }
+  typeset(panel);
+  if (!chapter) return () => {};
+  let quick = 1;
+  const click = async (e) => {
+    const renew = e.target.closest('[data-renew]'), lf = e.target.closest('[data-level-filter]'), pr = e.target.closest('[data-print]');
+    if (renew) {
+      const ex = AUTHORED.find((x) => x.id === renew.dataset.renew), card = renew.closest('.bank-ex'), k = card.querySelector('.bank-no').textContent;
+      const tmp = document.createElement('div'); tmp.innerHTML = exerciseCard(ex, k, `bank-${Date.now()}`, t);
+      const fresh = tmp.firstElementChild; card.replaceWith(fresh); typeset(fresh); fresh.querySelector('[data-renew]')?.focus();
+    } else if (e.target.closest('[data-quick]')) {
+      const host = panel.querySelector('#bank-quick'); host.innerHTML = quickSeries(chapter, `bank-q${++quick}`, t); typeset(host); host.querySelector('[data-quick]')?.focus();
+    } else if (lf) {
+      const l = Number(lf.dataset.levelFilter);
+      panel.querySelectorAll('[data-level-filter]').forEach((b) => b.setAttribute('aria-pressed', String(b === lf)));
+      panel.querySelectorAll('.bank-ex').forEach((card) => { card.hidden = !!l && card.querySelector('.bank-level')?.dataset.level !== String(l); });
+    } else if (e.target.closest('[data-open-all]')) {
+      const all = [...panel.querySelectorAll('.bank-list details, .bank-quick details')], open = !all.every((d) => d.open);
+      all.forEach((d) => { d.open = open; });
+    } else if (pr) {
+      const teacher = pr.dataset.print === 'teacher', c = resourceCatalog.chapters.find((x) => x.id === chapter);
+      const clone = panel.querySelector('.bank-list')?.cloneNode(true) || document.createElement('div');
+      clone.querySelectorAll('.bank-renew').forEach((b) => b.remove());
+      clone.querySelectorAll('[hidden]').forEach((b) => b.remove());
+      clone.querySelectorAll('details').forEach((d) => { if (!teacher || d.classList.contains('bank-hint')) d.remove(); else { d.open = true; } });
+      await printMarkup(`<div class="gen-paper bank-print"><h1>${E(t(c.title))}</h1><p>${E(t(SHORT[course]))} · ${teacher ? t(P('avec corrections', 'with solutions')) : t(P('énoncés', 'questions'))}</p>${clone.outerHTML}</div>`);
+    }
+  };
+  panel.addEventListener('click', click);
+  return () => panel.removeEventListener('click', click);
+}
