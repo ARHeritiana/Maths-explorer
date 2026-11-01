@@ -6,11 +6,11 @@ export const normalize = value => String(value).normalize('NFD').replace(/[\u030
 export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryChapters=[],biographies=[],stories=[],people=[],advances=[],university={sections:[]},enrichment=[],courses=[],errors=[],lessons=[]}={}) {
   const records = new Map();
   function add(record, kind, route, extra={}) {
-    const title=pair(record.title || record.name), memberships=membershipsFor(record,kind);
+    const title=pair(record.title || record.name), memberships=membershipsFor(record,kind,{route,fallback:kind!=='lesson'});
     const item={id:route,route,title,summary:pair(record.intro || record.dek || record.summary || ''),memberships,
       concepts:[...new Set([...(record.concepts || []),...(typeof record.topic==='string'?[record.topic]:[]),...memberships.map(k=>k.split('/')[1])])],
       level:pair(record.level || extra.level || ['Pour tous','For everyone']),difficulty:record.difficulty || null,format:kind,formats:[...new Set([kind,...(record.formats || []).map(f=>f.toLowerCase()),...(record.files?.length?['pdf']:[])])],
-      related:[],preview:record.preview || {kind:TOPICS.find(t=>t.id===memberships[0].split('/')[0]).preview,ref:route},...extra,
+      related:[],preview:record.preview || null,...extra,
       links:[...(record.links || []),...(extra.links || [])]};
     records.set(route,item);
   }
@@ -36,6 +36,11 @@ export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryCh
   // History has mathematical memberships too, inherited from the existing verified cross-links.
   for(const item of records.values()) if(['biography','story','timeline','lesson'].includes(item.format)) {
     item.memberships=[...new Set([...item.memberships,...item.related.flatMap(route=>records.get(route).memberships.filter(k=>!k.startsWith('history/')))])];
+  }
+  // A lesson nothing places and nothing links stays findable under the general fallback; previews follow the first field.
+  for(const item of records.values()) {
+    if(!item.memberships.length) item.memberships=['foundations/reasoning'];
+    item.preview ||= {kind:TOPICS.find(t=>t.id===item.memberships[0].split('/')[0]).preview,ref:item.route};
   }
   return [...records.values()].map(item=>({...item,related:[...new Set(item.related)].sort(),links:undefined}));
 }

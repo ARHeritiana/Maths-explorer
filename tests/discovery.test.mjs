@@ -150,3 +150,42 @@ test('plotted geometry agrees with independent analytical benchmarks',()=>{
   for(let i=2;i<rods.length;i+=2)assert.ok(Math.abs(Math.hypot(rods[i]-rods[i-2],rods[i+1]-rods[i-1])-35)<.002,'each rod has unit physical length');
   const graph=documentFor('graphs');assert.equal(graph.querySelectorAll('circle').length,4);assert.equal(graph.querySelectorAll('path').length,5);
 });
+
+// Issue #22: real placements of the site's own records, pinned (the word rules once filed the topology labs under logic
+// because "logi" matched "Topologie", Mandelbrot under sets because of "l'ensemble", every "Données & hasard" exhibit
+// under statistics/data because the broad gallery group was matched).
+test('real records sit in their expected fields',async()=>{
+  const {discoveryIndex}=await import('../site/js/discovery.js');
+  const {challenges}=await import('../site/js/content.js');
+  const {PLACEMENTS}=await import('../site/js/topic-registry.js');
+  const index=discoveryIndex({labs,challenges,chapters:[]}), at=route=>{const x=index.find(i=>i.route===route);assert.ok(x,route);return x.memberships;};
+  const expect={
+    '#lab/banach-tarski-model':['foundations/sets'],'#gallery/banach-tarski-gallery':['foundations/sets'],
+    '#lab/monty':['probability/conditioning'],'#gallery/monty-gallery':['probability/conditioning'],
+    '#lab/secretary':['probability/conditioning'],'#gallery/secretary-gallery':['probability/conditioning'],
+    '#lab/tank':['statistics/inference'],'#gallery/tank-gallery':['statistics/inference'],
+    '#lab/hairy-ball':['topology/surfaces'],'#lab/nonorientable-surfaces':['topology/surfaces'],
+    '#gallery/hairy-ball-gallery':['topology/surfaces'],'#gallery/nonorientable-surfaces-gallery':['topology/surfaces'],
+    '#gallery/mandelbrot':['dynamics/iteration','algebra/complex'],'#gallery/four-colours':['discrete/graphs'],
+    '#gallery/einstein':['geometry/plane'],'#gallery/soap-films':['geometry/space'],
+    '#stories/secretary':['probability/conditioning'],'#stories/tank':['statistics/inference'],
+  };
+  for(const [route,keys] of Object.entries(expect)) for(const key of keys) assert.ok(at(route).includes(key),`${route} in ${key}: ${at(route)}`);
+  const never=[['#lab/hairy-ball','foundations/reasoning'],['#lab/nonorientable-surfaces','foundations/reasoning'],
+    ['#gallery/mandelbrot','foundations/sets'],['#gallery/mandelbrot','dynamics/motion'],['#lab/monty','statistics/data'],
+    ['#lab/secretary','statistics/data'],['#lab/buffon','statistics/data'],['#lab/trig','statistics/data'],
+    ['#lab/banach-tarski-model','foundations/reasoning'],['#stories/monty','foundations/reasoning']];
+  for(const [route,key] of never) assert.ok(!at(route).includes(key),`${route} not in ${key}: ${at(route)}`);
+  // Whole words only: these titles must not be filed by a fragment of a longer word.
+  assert.deepEqual(membershipsFor({id:'x',title:['Révision et consolidation','Review and consolidation']}),['foundations/reasoning']);
+  assert.ok(!membershipsFor({id:'x',title:['La fonction logarithme','The logarithm function']}).includes('arithmetic/integers'));
+  assert.ok(!membershipsFor({id:'x',title:['Étude et graphe d’une fonction','Graph of a function']}).includes('discrete/graphs'));
+  assert.ok(!membershipsFor({id:'x',title:['Topologie des surfaces','Topology of surfaces']}).includes('foundations/reasoning'));
+  // Every explicit placement names a record that exists and resolves; no lab, exhibit or challenge relies on the fallback.
+  const routes=new Set(index.map(i=>i.route));
+  for(const [route,keys] of Object.entries(PLACEMENTS)) {assert.ok(routes.has(route),`stale placement ${route}`);for(const k of keys)assert.ok(membershipByKey(k),k);}
+  for(const record of [...labs,...challenges]) {
+    const route=record.custom?`#gallery/${record.id}`:labs.includes(record)?`#lab/${record.id}`:`#challenges/${record.id}`;
+    assert.ok(record.topics?.length||PLACEMENTS[route]||membershipsFor(record,'',{fallback:false}).length,`${route} only reaches its field by the fallback`);
+  }
+});
