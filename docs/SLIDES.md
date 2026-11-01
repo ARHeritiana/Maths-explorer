@@ -40,7 +40,9 @@ quadratic), `roots` (n-th roots of a), `modclock` (powers and inverses modulo n;
 Second canvases (1 November 2026): 22 more laboratory placements, each opening on the mission of its section (for example
 `derivative/where` at "Sign of the derivative and extrema" in premiere-06, `statistics/outlier` at "Adding or removing a value" in
 seconde-07, `probability/few` at the simulation sections, `trig/exact` and `trig/associated` in premiere-10); premiere-06 and
-seconde-01 had no canvas before. Seconde 08 and 11 still have none (no experiment fits a two-way table or algebraic manipulation yet).
+seconde-01 had no canvas before. Two new widgets (same day): `twoway` (a two-way table as a draggable mosaic: counts, marginal and
+conditional frequencies both ways, the overall share as a dashed line; seconde-11, seconde-14, stmg-06) and `signtable` (two
+draggable affine functions and the sign table of their product or quotient, rebuilt live; seconde-08 twice, stmg-04).
 
 Building on a machine whose TeX or PyMuPDF differs from the publishing one: `MX_REUSE_FIGS=1 make site` (or
 `MX_REUSE_FIGS=1 python3 scripts/build-slides.py`) keeps the committed figure SVGs and compiles only new figures. Without it,

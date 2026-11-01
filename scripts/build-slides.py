@@ -441,6 +441,9 @@ WTEXT = {
     'stats': (['Série statistique', 'A data set'], ['Déplacez les valeurs : moyenne, médiane et quartiles réagissent.', 'Drag the values: mean, median and quartiles react.']),
     'pct': (['Évolutions successives', 'Successive changes'], ['Réglez deux taux : le coefficient global n’est pas la somme.', 'Set two rates: the overall multiplier is not the sum.']),
     'ref': (['Fonctions de référence', 'Reference functions'], ['Choisissez une fonction, déplacez M : image et antécédents.', 'Choose a function, drag M: image and preimages.']),
+    'twoway': (['Tableau croisé', 'Two-way table'], ['Déplacez la frontière des lignes et les deux partages : effectifs, fréquences marginales et conditionnelles se mettent à jour. Comparez chaque partage à la ligne pointillée.', 'Drag the row boundary and the two splits: counts, marginal and conditional frequencies update. Compare each split with the dashed line.']),
+    'signtable': (['Signe d’un produit', 'Sign of a product'], ['Déplacez la racine de chaque droite sur l’axe et son point de pente : le tableau de signes se reconstruit.', 'Drag the root of each line along the axis and its slope point: the sign table rebuilds itself.']),
+    'signtable:quotient': (['Signe d’un quotient', 'Sign of a quotient'], ['Même jeu avec un quotient : la racine du dénominateur est une valeur interdite (double barre).', 'Same game with a quotient: the root of the denominator is excluded (double bar).']),
     'interval': (['Intervalles', 'Intervals'], ['Déplacez les bornes de I et J : intersection et réunion.', 'Drag the ends of I and J: intersection and union.']),
     'integral': (['Aire sous la courbe', 'Area under the curve'], ['Déplacez les bornes a et b, augmentez n : la somme de Riemann tend vers l’intégrale.', 'Drag the bounds a and b, increase n: the Riemann sum tends to the integral.']),
     'limit': (['Limite d’une suite', 'Limit of a sequence'], ['Réglez ε, ℓ et u₀ : à partir du rang N, tous les termes restent dans la bande.', 'Set ε, ℓ and u₀: from rank N on, every term stays inside the band.']),
@@ -485,10 +488,10 @@ WIDGETS = {
     'seconde-04': [(r'Intervals of the real line', {'type': 'interval'})], 'seconde-06': [(r'Square and inverse', {'type': 'ref'}), (r'Affine functions and absolute', lab('line/intercept'))],
     'seconde-07': [(r'Quartiles and box plot', lab('statistics/box')), (r'Adding or removing a value', lab('statistics/outlier'))], 'seconde-09': [(r'Successive changes', {'type': 'pct'})],
     'seconde-10': [(r'Variations of the square', {'type': 'ref'})], 'seconde-12': [(r'Comparing a vector', lab('vectors/collinear'))],
-    'seconde-14': [(r'Weighted trees', {'type': 'tree'}), (r'Simulation and the law of large', lab('probability/few'))],
+    'seconde-14': [(r'Weighted trees', {'type': 'tree'}), (r'Simulation and the law of large', lab('probability/few')), (r'Conditional probability from a table', {'type': 'twoway', 'n': 400})],
     'stmg-01': [(r'Geometric sequences: recognising', lab('sequences/versus')), (r'Arithmetic sequences: recognising', lab('sequences/difference'))], 'stmg-02': [(r'Functions .*k a\^x|Definition and direction', lab('exponential/base')), (r'Functions .*k a\^x', lab('exponential/scale'))],
-    'stmg-03': [(r'Variations and graph', {'type': 'fn', 'mode': 'log', 'modes': ['log']})], 'stmg-04': [(r'Definition and graph of the reciprocal', {'type': 'fn', 'mode': 'inv', 'modes': ['inv']})],
-    'stmg-05': [(r'Linear regression', {'type': 'scatter'})], 'stmg-06': [(r'Weighted trees', {'type': 'tree'})],
+    'stmg-03': [(r'Variations and graph', {'type': 'fn', 'mode': 'log', 'modes': ['log']})], 'stmg-04': [(r'Definition and graph of the reciprocal', {'type': 'fn', 'mode': 'inv', 'modes': ['inv']}), (r'Sign and factorisation', {'type': 'signtable'})],
+    'stmg-05': [(r'Linear regression', {'type': 'scatter'})], 'stmg-06': [(r'Weighted trees', {'type': 'tree'}), (r'^Conditioning', {'type': 'twoway', 'n': 500})],
     'stmg-07': [(r'Binomial distribution: recognising', lab('probability/run')), (r'Binomial probabilities', lab('probability/read'))],
     'terminale-01': [(r'^Proof by induction', lab('cobweb/steps'))], 'terminale-02': [(r'^Vector calculus', lab('space-lines/param'))],
     'terminale-03': [(r'^Course notes', {'type': 'limit'})], 'terminale-06': [(r'^Convexity', {'type': 'convex'})],
@@ -505,6 +508,8 @@ WIDGETS = {
     'expertes-11': [(r'^Markov chains', {'type': 'markov'})],
     'premiere-06': [(r'Sign of the derivative and extrema', lab('derivative/where')), (r'^Optimisation', lab('quadratic/vertex'))],
     'seconde-01': [(r'Parity and prime numbers', lab('euler-primes/hunt'))],
+    'seconde-11': [(r'Two-way tables and marginal', {'type': 'twoway', 'n': 200})],
+    'seconde-08': [(r'Sign of an affine expression', {'type': 'signtable'}), (r'Sign of a quotient', {'type': 'signtable', 'mode': 'quotient'})],
 }
 
 

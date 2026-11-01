@@ -1011,6 +1011,94 @@ var W2 = {
       },
     };
   },
+
+  // Two-way table as a mosaic: the width of each row band is its share of the total, the split inside a band is the
+  // conditional frequency of B in that row. Drag the row boundary and the two splits; the table, the marginal and the
+  // conditional frequencies (both directions) follow. Counts are whole numbers out of a total chosen with the slider.
+  twoway(o) {
+    let n = o.spec.n || 200, rA = .45, pA = .7, pN = .3;   // share of A, f(B | A), f(B | not A)
+    const lab = o.spec.labels || ["A", "\\overline{A}", "B", "\\overline{B}"];
+    slider(o, o.pair("Effectif total", "Total count"), 40, 600, 20, n, v => { n = v; o.redraw(); });
+    const box = () => ({ x: 70, y: 46, w: o.W - 140, h: o.H - 120 });
+    const counts = () => { const nA = Math.round(n * rA), nN = n - nA, a = Math.round(nA * pA), c = Math.round(nN * pN); return { a, b: nA - a, c, d: nN - c, nA, nN }; };
+    return {
+      handles() {
+        const B = box(), hA = B.h * rA;
+        return [
+          { x: B.x + B.w / 2, y: B.y + hA, cur: "ns-resize", move(_, Y) { rA = clamp(snap((Y - B.y) / B.h, .01), .1, .9); } },
+          { x: B.x + B.w * pA, y: B.y + hA / 2, cur: "ew-resize", move(X) { pA = clamp(snap((X - B.x) / B.w, .01), .02, .98); } },
+          { x: B.x + B.w * pN, y: B.y + hA + (B.h - hA) / 2, cur: "ew-resize", move(X) { pN = clamp(snap((X - B.x) / B.w, .01), .02, .98); } },
+        ];
+      },
+      draw(g) {
+        const B = box(), hA = B.h * rA, k = counts(), N = o.tn;
+        const cell = (x, y, w, h, col, val) => { g.fillStyle = col; g.globalAlpha = .78; g.fillRect(x, y, w, h); g.globalAlpha = 1; g.strokeStyle = C.bg; g.lineWidth = 3; g.strokeRect(x, y, w, h); if (w > 40 && h > 30) text(g, String(val), x + w / 2, y + h / 2 + 8, C.bg, 22, "center"); };
+        cell(B.x, B.y, B.w * pA, hA, C.acc, k.a); cell(B.x + B.w * pA, B.y, B.w * (1 - pA), hA, C.blue, k.b);
+        cell(B.x, B.y + hA, B.w * pN, B.h - hA, C.acc, k.c); cell(B.x + B.w * pN, B.y + hA, B.w * (1 - pN), B.h - hA, C.blue, k.d);
+        text(g, inl(lab[0]), B.x - 14, B.y + hA / 2 + 8, C.ink, 20, "right"); text(g, inl(lab[1]), B.x - 14, B.y + hA + (B.h - hA) / 2 + 8, C.ink, 20, "right");
+        text(g, inl(lab[2]), B.x + 8, B.y - 14, C.acc, 20); text(g, inl(lab[3]), B.x + B.w - 8, B.y - 14, C.blue, 20, "right");
+        // the overall share of B, as a dashed line: compare it with the two conditional splits
+        const fB = (k.a + k.c) / n; g.save(); g.setLineDash([6, 6]); g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.moveTo(B.x + B.w * fB, B.y - 6); g.lineTo(B.x + B.w * fB, B.y + B.h + 6); g.stroke(); g.restore();
+        text(g, inl(`f(${lab[2]})`), B.x + B.w * fB, B.y + B.h + 30, C.ink, 18, "center");
+        [[B.x + B.w / 2, B.y + hA, C.ink], [B.x + B.w * pA, B.y + hA / 2, C.ink], [B.x + B.w * pN, B.y + hA + (B.h - hA) / 2, C.ink]].forEach(([x, y, col]) => dot(o, x, y, col));
+        const fr = (p, q) => (q ? `\\tfrac{${p}}{${q}}\\approx ${N(p / q, 3)}` : "?");
+        const tab = `\\begin{array}{c|cc|c}&${lab[2]}&${lab[3]}&\\text{Total}\\\\\\hline ${lab[0]}&${k.a}&${k.b}&${k.nA}\\\\${lab[1]}&${k.c}&${k.d}&${k.nN}\\\\\\hline\\text{Total}&${k.a + k.c}&${k.b + k.d}&${n}\\end{array}`;
+        set(o, lines(inl(tab), o.pair("Fréquences marginales : ", "Marginal frequencies: ") + inl(`f(${lab[0]})=${fr(k.nA, n)}`) + " ; " + inl(`f(${lab[2]})=${fr(k.a + k.c, n)}`),
+          o.pair("Conditionnelles : ", "Conditional: ") + inl(`f_{${lab[0]}}(${lab[2]})=${fr(k.a, k.nA)}`) + " ; " + inl(`f_{${lab[1]}}(${lab[2]})=${fr(k.c, k.nN)}`),
+          o.pair("Dans l’autre sens : ", "The other way round: ") + inl(`f_{${lab[2]}}(${lab[0]})=${fr(k.a, k.a + k.c)}`),
+          Math.abs(k.a / (k.nA || 1) - k.c / (k.nN || 1)) < .015 ? o.pair("Les deux conditionnelles sont presque égales : les caractères semblent indépendants.", "The two conditional frequencies are almost equal: the variables look independent.") : ""));
+      },
+    };
+  },
+
+  // Sign of a product or a quotient of two affine functions: drag the root of each line along the x-axis and the
+  // slope point; the sign table below the graph is rebuilt from the two roots and the two slopes.
+  signtable(o) {
+    let r1 = -2, a1 = 1, r2 = 1.5, a2 = -.5, mode = o.spec.mode || "product";
+    choice(o, [["product", o.pair("Produit", "Product"), o.pair("Produit", "Product")], ["quotient", o.pair("Quotient", "Quotient"), o.pair("Quotient", "Quotient")]], mode, m => { mode = m; o.redraw(); });
+    const v = () => { const w = o.W - 72, h = o.H * .55, k = w / h; return { ...view(o, -5 * k / 1.6, 5 * k / 1.6, -5, 5), Y: y => 24 + (5 - y) / 10 * h, iY: Y => 5 - (Y - 24) / h * 10 }; };
+    const aff = (r, a) => x => a * (x - r);
+    return {
+      handles() {
+        const V = v();
+        return [[() => r1, x => (r1 = x), () => a1, x => (a1 = x)], [() => r2, x => (r2 = x), () => a2, x => (a2 = x)]].flatMap(([r, sr, a, sa]) => [
+          { x: V.X(r()), y: V.Y(0), cur: "ew-resize", move(X) { sr(clamp(snap(V.iX(X), .25), V.x0 + .5, V.x1 - .5)); } },
+          { x: V.X(r() + 1), y: V.Y(clamp(a(), -4.8, 4.8)), cur: "ns-resize", move(_, Y) { let t = clamp(snap(V.iY(Y), .25), -4.75, 4.75); if (Math.abs(t) < .25) t = t < 0 ? -.25 : .25; sa(t); } },
+        ]);
+      },
+      draw(g) {
+        const V = v(), N = o.tn, f = aff(r1, a1), h = aff(r2, a2), prod = mode === "product";
+        // graph (top part): the two lines and, faintly, the product or the quotient
+        g.save(); g.beginPath(); g.rect(0, 0, o.W, V.Y(-5) + 2); g.clip(); axes(g, V, { lang: o.L });
+        curve(g, V, prod ? x => f(x) * h(x) : x => f(x) / h(x), V.x0, V.x1, C.muted, 2);
+        curve(g, V, f, V.x0, V.x1, C.acc, 3); curve(g, V, h, V.x0, V.x1, C.blue, 3); g.restore();
+        dot(o, V.X(r1), V.Y(0), C.acc); dot(o, V.X(r1 + 1), V.Y(clamp(a1, -4.8, 4.8)), C.acc, inl("f"));
+        dot(o, V.X(r2), V.Y(0), C.blue); dot(o, V.X(r2 + 1), V.Y(clamp(a2, -4.8, 4.8)), C.blue, inl("g"));
+        // sign table (bottom part)
+        const top = V.Y(-5) + 18, rowH = (o.H - top - 10) / 4, x0 = 120, x1 = o.W - 30, roots = [...new Set([r1, r2])].sort((p, q) => p - q);
+        const cols = [-Infinity, ...roots, Infinity], X = i => x0 + (x1 - x0) * i / (cols.length - 1);
+        g.save(); g.strokeStyle = C.axis; g.lineWidth = 1.5; g.strokeRect(x0 - 100, top, x1 - x0 + 100, rowH * 4);
+        for (let i = 1; i < 4; i++) { g.beginPath(); g.moveTo(x0 - 100, top + rowH * i); g.lineTo(x1, top + rowH * i); g.stroke(); }
+        g.beginPath(); g.moveTo(x0, top); g.lineTo(x0, top + rowH * 4); g.stroke(); g.restore();
+        ["x", "f(x)", "g(x)", prod ? "f(x)g(x)" : "f(x)/g(x)"].forEach((t, i) => text(g, inl(t), x0 - 50, top + rowH * i + rowH / 2 + 7, C.ink, 18, "center"));
+        cols.forEach((c, i) => text(g, inl(c === -Infinity ? "-\\infty" : c === Infinity ? "+\\infty" : N(c)), X(i) + (i === 0 ? 22 : i === cols.length - 1 ? -22 : 0), top + rowH / 2 + 7, C.ink, 18, "center"));
+        const sgnAt = (fn, x) => (fn(x) > 0 ? "+" : "-");
+        for (let i = 0; i < cols.length - 1; i++) {
+          const lo = cols[i] === -Infinity ? roots[0] - 1 : cols[i], hi = cols[i + 1] === Infinity ? roots[roots.length - 1] + 1 : cols[i + 1], m = (lo + hi) / 2, xm = (X(i) + X(i + 1)) / 2;
+          const sf = sgnAt(f, m), sh = sgnAt(h, m), sp = sf === sh ? "+" : "-";
+          [[sf, 1, C.acc], [sh, 2, C.blue], [sp, 3, C.ink]].forEach(([s_, row, col]) => text(g, s_ === "+" ? "+" : "−", xm, top + rowH * row + rowH / 2 + 8, col, 24, "center"));
+        }
+        roots.forEach((r, j) => { const xi = X(j + 1); [[f, 1], [h, 2]].forEach(([fn, row]) => { if (Math.abs(fn(r)) < 1e-9) text(g, "0", xi, top + rowH * row + rowH / 2 + 8, C.ink, 20, "center"); else { g.save(); g.strokeStyle = C.grid; g.setLineDash([4, 4]); g.beginPath(); g.moveTo(xi, top + rowH * row + 4); g.lineTo(xi, top + rowH * (row + 1) - 4); g.stroke(); g.restore(); } });
+          const zeroDen = !prod && Math.abs(h(r)) < 1e-9;
+          if (zeroDen) { g.save(); g.strokeStyle = C.warn; g.lineWidth = 2; [-3, 3].forEach(d => { g.beginPath(); g.moveTo(xi + d, top + rowH * 3 + 4); g.lineTo(xi + d, top + rowH * 4 - 4); g.stroke(); }); g.restore(); }
+          else text(g, "0", xi, top + rowH * 3 + rowH / 2 + 8, C.ink, 20, "center"); });
+        set(o, lines(inl(`f(x)=${tpoly([[a1, "x"], [-a1 * r1, ""]], N)}`) + o.pair(", racine ", ", root ") + inl(N(r1)),
+          inl(`g(x)=${tpoly([[a2, "x"], [-a2 * r2, ""]], N)}`) + o.pair(", racine ", ", root ") + inl(N(r2)),
+          o.pair("Une expression affine prend le signe de son coefficient directeur à droite de sa racine.", "An affine expression has the sign of its slope to the right of its root."),
+          prod ? o.pair("Règle des signes : le produit est positif là où les deux facteurs ont le même signe.", "Sign rule: the product is positive where both factors have the same sign.") : o.pair(`La valeur ${inl(N(r2))} est interdite : ${inl("g")} s’y annule (double barre).`, `The value ${inl(N(r2))} is excluded: ${inl("g")} vanishes there (double bar).`)));
+      },
+    };
+  },
 };
 }
 

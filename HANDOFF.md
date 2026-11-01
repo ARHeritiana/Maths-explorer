@@ -18,8 +18,8 @@ automatismes, exercise and problem generators, and interactive slides wherever u
   `MX_REUSE_FIGS=1` and `refresh --adopt` because TeX here cannot rebuild the figures (Palatino fonts missing): figures unchanged.
 
 Still to do (next sessions):
-1. Slides: Seconde 08 (algebra) and Seconde 11 (two-way tables) have no canvas; a two-way table widget would serve Seconde 11 and STMG 06.
-   Most decks still have one or two canvases among 15 to 49 slides; the Terminale decks were not touched.
+1. Slides: done the same evening, widgets `twoway` and `signtable` (Seconde 08, 11, 14, STMG 04, 06). Most decks still have one to
+   three canvases among 15 to 49 slides; the Terminale decks were not touched.
 2. Owner review of the new generators and problems against the 2026 programmes (wording, levels) [VERIFY].
 3. Pre-existing: `tests/browser.py` fails on `#errors/square-of-sum` at 320 px with enlarged text (also on the unchanged
    `origin/main`), and `run_browser.py` stops there; `make check` runs `build-lecture-slides.py --check`, which compares with
