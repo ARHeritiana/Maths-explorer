@@ -1,3 +1,4 @@
+import {mountMandelbrotPreview} from './mandelbrot-preview.js';
 // Small live drawings for the home page and the gallery cards. Each one draws on a canvas, pauses when it is off screen or the
 // tab is hidden, and draws one still frame under prefers-reduced-motion. Mathematics comes from gallery/gallery-math.js and lab-objects.js.
 import { escape, MADAGASCAR, resample, fourier, arms, COUNT_SCHEDULE, REVOLUTION } from "./gallery/gallery-math.js";
@@ -113,10 +114,7 @@ const juliaArt = (cv, o) => fractalArt(cv, o, (px, w, h, t) => {
   const a = 0.6 + t * 0.25, cr = 0.7885 * Math.cos(a), ci = 0.7885 * Math.sin(a), W = 3.0, H = (W * h) / w, max = 70;
   for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { const c = shade(escape(((x + 0.5) / w - 0.5) * W, -((y + 0.5) / h - 0.5) * H, cr, ci, max, true), max); px[y * w + x] = o.dark ? dim(c, 0.42) : c; }
 });
-const mandelArt = (cv, o) => fractalArt(cv, o, (px, w, h, t) => {
-  const k = ((t % 24) / 24), z = Math.exp(Math.log(3.4) + (Math.log(0.0035) - Math.log(3.4)) * (o.reduced?.() ? 0.62 : k * k * (3 - 2 * k))), cx = -0.5 + (-0.743643887037151 + 0.5) * Math.min(1, (1 - z / 3.4) * 1.3), cy = 0.13182590420533 * Math.min(1, (1 - z / 3.4) * 1.3), max = Math.round(80 + 40 * Math.log2(3.4 / z)), H = (z * h) / w;
-  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) px[y * w + x] = shade(escape(0, 0, cx + ((x + 0.5) / w - 0.5) * z, cy - ((y + 0.5) / h - 0.5) * H, max, true), max);
-});
+const mandelArt = (cv, opts) => mountMandelbrotPreview(cv, opts);
 
 /* ------------------------------------------------------------ chaos game */
 function chaosArt(cv, opts) {

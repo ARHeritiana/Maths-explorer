@@ -65,6 +65,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/knotinfo-license.txt` | MIT licence for KnotInfo coordinate assets |
 | `js/platonic-explorer.js`, `js/platonic-fold.js` | Platonic solids and their folding nets |
 | `js/object-kit.js` | canvas sizing, `palette()` from CSS tokens, sliders, loop |
+| `js/mandelbrot-preview.js` | fixed screen-resolution, antialiased GPU card preview; blended repeating zoom, reduced-motion and CPU still fallback |
 | `js/home-art.js` | live drawings of the home page and the gallery cards |
 | `js/welcome.js` | home page and gallery index (the "Curiosités" tab of "Lire") |
 | `js/home-slides.js` | the animated plate of the home page: five live figures one after the other, tabs with a progress rule, pause, reduced motion (design v6) |
