@@ -9,7 +9,7 @@ import {buildDiscoveryIndex,topicCounts} from '../site/js/discovery-index.js';
 import {GALOIS_BIOGRAPHY} from '../site/js/reading-history-content.js';
 const t=p=>p[0];
 test('historical records have typed dates, sources, context and resolving people',()=>{
- assert.ok(PEOPLE.length===56&&ADVANCES.length>=50);
+ assert.ok(PEOPLE.length===57&&ADVANCES.length>=50);
  for(const list of [PEOPLE,ADVANCES])assert.equal(list.length,new Set(list.map(x=>x.id)).size);
  for(const item of [...PEOPLE,...ADVANCES]){
   assert.ok(Number.isInteger(item.start));assert.ok(item.end===null||Number.isInteger(item.end)&&item.end>=item.start);
@@ -21,7 +21,7 @@ test('historical records have typed dates, sources, context and resolving people
  // People not shown in the people timeline stay credited by name in the advances timeline.
  for(const id of ['ahmes','buffon','gerver','smith','schettini-gherardini','plato'])assert.ok(!PEOPLE.some(p=>p.id===id),id);
  assert.deepEqual(ADVANCES.find(e=>e.id==='hat').credits,['David Smith','Joseph Samuel Myers','Craig S. Kaplan','Chaim Goodman-Strauss']);
- assert.deepEqual(ADVANCES.find(e=>e.id==='gerver-sofa').credits,['Joseph Gerver','John Hammersley']);
+ assert.deepEqual(ADVANCES.find(e=>e.id==='gerver-sofa').credits,['Joseph Gerver']);assert.deepEqual(ADVANCES.find(e=>e.id==='gerver-sofa').people,['hammersley']);
  assert.deepEqual(ADVANCES.find(e=>e.id==='illumination-rational').people,['mirzakhani']);
  assert.equal(historyRecord('unknown','galois'),null);
  assert.equal(dateLabel(PEOPLE.find(p=>p.id==='may'),'en'),'Documents: 1976');

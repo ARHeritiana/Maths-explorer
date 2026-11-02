@@ -230,7 +230,7 @@ with sync_playwright() as p:
         page.locator('[data-filter="'+kind+'"]').click()
         assert page.locator('.challenge-card').count() == count
     # "Lire": three tabs, texts and curiosities, and the cross-links shown both ways (Hanoi challenge and its legend).
-    page.goto(BASE+'/#biographies'); assert page.locator('.subnav a[href="#history"]').count() == 1 and page.locator('.read-card').count() == 28   # the biographies of site/js/reading-content.js
+    page.goto(BASE+'/#biographies'); assert page.locator('.subnav a[href="#history"]').count() == 1 and page.locator('.read-card').count() == 48   # the biographies of site/js/reading-content.js
     page.goto(BASE+'/#stories/gauss-sum'); page.locator('.read-also a[href="#challenges/gauss-sum"]').click(); page.wait_for_url('**/#challenges/gauss-sum')
     page.goto(BASE+'/#challenges/hanoi'); page.locator('.read-also a[href="#stories/hanoi-legend"]').click(); page.locator('.read-article h1').wait_for()
     assert page.locator('.read-also a[href="#challenges/hanoi"]').count() == 1

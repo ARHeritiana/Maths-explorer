@@ -1234,5 +1234,1264 @@ export const MAJOR_BIOGRAPHIES = [
     ]
    ]
   ]
+ },
+ {
+  "id": "legendre",
+  "name": "Adrien-Marie Legendre",
+  "dates": "1752-1833",
+  "places": [
+   "France, géométrie et théorie des nombres",
+   "France, geometry and number theory"
+  ],
+  "dek": [
+   "Legendre occupe une place importante dans la théorie des nombres, l’analyse et les méthodes numériques de la fin du XVIIIe et du début du XIXe siècle.",
+   "Legendre was an important contributor to number theory, analysis and numerical methods around the turn of the nineteenth century."
+  ],
+  "facts": [
+   [
+    "1752",
+    [
+     "Naissance le 18 septembre 1752.",
+     "Born on 18 September 1752."
+    ]
+   ],
+   [
+    "1805",
+    [
+     "Publie la méthode des moindres carrés.",
+     "Publishes the method of least squares."
+    ]
+   ],
+   [
+    "1833",
+    [
+     "Mort le 10 janvier 1833.",
+     "Dies on 10 January 1833."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Il développe des travaux sur la distribution des nombres premiers, la réciprocité quadratique et les équations arithmétiques, et introduit le symbole qui porte son nom pour étudier les résidus quadratiques. Son Essai sur la théorie des nombres contribue à structurer la discipline. En analyse, il travaille sur les intégrales elliptiques et les fonctions qui portent son nom. Il publie également une présentation de la méthode des moindres carrés en 1805, indépendamment de travaux antérieurs de Gauss, ce qui constitue un épisode complexe d’histoire des priorités. Son œuvre comprend aussi une géométrie destinée à l’enseignement et des recherches sur les calculs liés aux factorielles.",
+      "He studied the distribution of primes, quadratic reciprocity and arithmetic equations, and introduced the Legendre symbol for quadratic residues. His Essay on the Theory of Numbers helped organize the subject. In analysis, he investigated elliptic integrals and the functions that now bear his name. He also published the least-squares method in 1805, independently of earlier work by Gauss, an episode involving complex questions of priority. Legendre wrote an influential geometry textbook and examined methods relevant to the prime factors of factorials. His work was both theoretical and practical."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/legendre"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Legendre/",
+    [
+     "Adrien-Marie Legendre · MacTutor (anglais)",
+     "Adrien-Marie Legendre · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "fourier",
+  "name": "Joseph Fourier",
+  "dates": "1768-1830",
+  "places": [
+   "France, chaleur et analyse",
+   "France, heat and analysis"
+  ],
+  "dek": [
+   "Fourier a montré qu’un problème physique, la diffusion de la chaleur, peut conduire à une transformation profonde de l’analyse mathématique.",
+   "Fourier showed how a physical problem, the diffusion of heat, could transform mathematical analysis."
+  ],
+  "facts": [
+   [
+    "1768",
+    [
+     "Naissance le 21 mars 1768.",
+     "Born on 21 March 1768."
+    ]
+   ],
+   [
+    "1822",
+    [
+     "Théorie analytique de la chaleur.",
+     "Analytical Theory of Heat."
+    ]
+   ],
+   [
+    "1830",
+    [
+     "Mort le 16 mai 1830.",
+     "Dies on 16 May 1830."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Dans sa Théorie analytique de la chaleur (1822), il utilise des sommes de fonctions trigonométriques pour décrire des distributions de température et leur évolution. L’idée de décomposer une fonction en composantes sinusoïdales deviendra l’un des outils fondamentaux de la physique, du traitement du signal et des équations aux dérivées partielles. Ses affirmations sur la représentation des fonctions ont suscité des débats qui ont contribué à préciser les notions de fonction, de convergence et d’intégration. Fourier ne résout pas à lui seul toutes ces difficultés, mais il ouvre un programme mathématique durable. Ses travaux montrent aussi comment une question expérimentale peut conduire à des structures abstraites nouvelles.",
+      "In his Analytical Theory of Heat (1822), he used sums of trigonometric functions to describe temperature distributions and their evolution. Decomposing a function into sinusoidal components became foundational in physics, signal processing and partial differential equations. His claims concerning function representation provoked debates that helped clarify the concepts of function, convergence and integration. Fourier did not settle all these difficulties himself, but he opened a lasting mathematical research program. His work is a classic example of a concrete physical question giving rise to new abstract structures."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/fourier",
+   "#history/advances/fourier-heat"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Fourier/",
+    [
+     "Joseph Fourier · MacTutor (anglais)",
+     "Joseph Fourier · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "cauchy",
+  "name": "Augustin-Louis Cauchy",
+  "dates": "1789-1857",
+  "places": [
+   "France, analyse du XIXe siècle",
+   "France, nineteenth-century analysis"
+  ],
+  "dek": [
+   "Cauchy joue un rôle central dans la transformation de l’analyse au XIXe siècle.",
+   "Cauchy was central to the transformation of nineteenth-century analysis."
+  ],
+  "facts": [
+   [
+    "1789",
+    [
+     "Naissance le 21 août 1789.",
+     "Born on 21 August 1789."
+    ]
+   ],
+   [
+    "1821",
+    [
+     "Cours d’analyse de l’École polytechnique.",
+     "Cours d’analyse of the École Polytechnique."
+    ]
+   ],
+   [
+    "1857",
+    [
+     "Mort le 23 mai 1857.",
+     "Dies on 23 May 1857."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Son Cours d’analyse (1821) cherche à clarifier les notions de limite, de continuité et de convergence et à remplacer les manipulations informelles par des justifications plus systématiques. Ses critères et théorèmes sur les séries deviennent essentiels, même si le langage rigoureux des générations ultérieures corrigera certains de ses énoncés. En analyse complexe, il établit des résultats majeurs sur l’intégration le long de contours et les fonctions analytiques, fondant une partie de la théorie des fonctions d’une variable complexe. Il contribue aussi aux équations différentielles, à l’élasticité, aux déterminants et à la théorie des permutations. Son activité exceptionnelle et son influence pédagogique font de lui l’une des figures structurantes des mathématiques modernes.",
+      "His Cours d’analyse (1821) sought to clarify limits, continuity and convergence, replacing informal manipulations with more systematic arguments. His criteria and theorems for series became fundamental, although later mathematicians refined or corrected some formulations. In complex analysis, he established major results on contour integration and analytic functions, helping found the theory of functions of a complex variable. He also contributed to differential equations, elasticity, determinants and permutations. His extraordinary productivity and influence on mathematical teaching made him a defining figure in modern analysis."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/cauchy",
+   "#history/advances/cauchy-cours"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Cauchy/",
+    [
+     "Augustin-Louis Cauchy · MacTutor (anglais)",
+     "Augustin-Louis Cauchy · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "mobius",
+  "name": "August Ferdinand Möbius",
+  "dates": "1790-1868",
+  "places": [
+   "Europe, géométrie et topologie",
+   "Europe, geometry and topology"
+  ],
+  "dek": [
+   "Möbius est surtout connu du grand public pour le ruban à une seule face associé à son nom, étudié également par Johann Benedict Listing.",
+   "Möbius is widely known for the one-sided strip bearing his name, also studied independently by Johann Benedict Listing, but his mathematical work was far broader."
+  ],
+  "facts": [
+   [
+    "1790",
+    [
+     "Naissance le 17 novembre 1790.",
+     "Born on 17 November 1790."
+    ]
+   ],
+   [
+    "1858",
+    [
+     "Découvre la bande à une seule face.",
+     "Discovers the one-sided strip."
+    ]
+   ],
+   [
+    "1868",
+    [
+     "Mort le 26 septembre 1868.",
+     "Dies on 26 September 1868."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Pourtant son œuvre mathématique est beaucoup plus large. Il développe des méthodes de géométrie analytique et projective, notamment le calcul barycentrique, qui permet de décrire des points à l’aide de masses et de coordonnées adaptées à des figures. Il s’intéresse aux transformations, à la géométrie des configurations et à des questions arithmétiques. La fonction de Möbius et la formule d’inversion associée sont devenues des outils essentiels de la théorie des nombres. Ses travaux sur les surfaces non orientables appartiennent aux premiers développements de la topologie. Sa carrière illustre comment de nouvelles notations et constructions peuvent relier des domaines jusque-là séparés.",
+      "He developed analytic and projective geometry, notably barycentric calculus, which represents points using weighted coordinates adapted to geometric figures. He investigated transformations, configurations and number-theoretic problems. The Möbius function and inversion formula became important tools in number theory. His study of nonorientable surfaces belongs to the early history of topology. His career illustrates how new methods of representation can connect apparently separate mathematical areas."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/mobius",
+   "#history/advances/mobius-strip"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Mobius/",
+    [
+     "August Ferdinand Möbius · MacTutor (anglais)",
+     "August Ferdinand Möbius · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "abel",
+  "name": "Niels Henrik Abel",
+  "dates": "1802-1829",
+  "places": [
+   "Norvège et réseaux européens",
+   "Norway and European networks"
+  ],
+  "dek": [
+   "Malgré une vie très courte, Abel apporte des résultats décisifs en algèbre et en analyse.",
+   "Despite his very short life, Abel made decisive contributions to algebra and analysis."
+  ],
+  "facts": [
+   [
+    "1802",
+    [
+     "Naissance le 5 août 1802.",
+     "Born on 5 August 1802."
+    ]
+   ],
+   [
+    "1824",
+    [
+     "Démontre l’impossibilité de résoudre l’équation générale du cinquième degré par radicaux.",
+     "Proves that the general quintic cannot be solved by radicals."
+    ]
+   ],
+   [
+    "1829",
+    [
+     "Mort le 6 avril 1829.",
+     "Dies on 6 April 1829."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Il démontre qu’il n’existe pas, pour l’équation générale du cinquième degré, de formule utilisant seulement les opérations arithmétiques et les radicaux. Il ne prétend pas pour autant que toutes les équations particulières de degré cinq soient insolubles. Son travail prépare les recherches ultérieures sur les groupes et la résolubilité des équations. Il étudie aussi avec profondeur les fonctions elliptiques, les intégrales dites abéliennes et les séries infinies, en portant une attention nouvelle aux conditions de convergence. Son théorème sur la continuité des sommes de séries de fonctions a conservé une grande influence. Abel laisse ainsi une œuvre extraordinairement dense, qui a contribué à changer simultanément la théorie des équations et l’analyse.",
+      "He proved that the general quintic equation cannot be solved by a formula using only arithmetic operations and radicals, without claiming that every particular quintic is unsolvable. This result prepared the later study of groups and algebraic solvability. He also investigated elliptic functions, Abelian integrals and infinite series, giving new attention to the conditions required for convergence. His theorem concerning continuity of the sums of certain series retained lasting influence. Abel left an unusually concentrated body of work that changed both the theory of equations and analysis."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/abel",
+   "#history/advances/abel-quintic"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Abel/",
+    [
+     "Niels Henrik Abel · MacTutor (anglais)",
+     "Niels Henrik Abel · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "klein",
+  "name": "Felix Klein",
+  "dates": "1849-1925",
+  "places": [
+   "Europe, géométrie et topologie",
+   "Europe, geometry and topology"
+  ],
+  "dek": [
+   "Klein a proposé une nouvelle manière d’organiser la géométrie : dans le programme d’Erlangen de 1872, il caractérise les géométries par les groupes de transformations qui préservent leurs propriétés.",
+   "Klein proposed a new way of organizing geometry."
+  ],
+  "facts": [
+   [
+    "1849",
+    [
+     "Naissance le 25 avril 1849.",
+     "Born on 25 April 1849."
+    ]
+   ],
+   [
+    "1872",
+    [
+     "Professeur à Erlangen ; programme d’Erlangen.",
+     "Professor at Erlangen; the Erlangen Program."
+    ]
+   ],
+   [
+    "1925",
+    [
+     "Mort le 22 juin 1925.",
+     "Dies on 22 June 1925."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Cette perspective rapproche géométrie euclidienne, projective et géométries non euclidiennes, et elle influence durablement les liens entre géométrie et algèbre. Il étudie aussi les fonctions automorphes, les surfaces de Riemann et des questions de topologie ; la bouteille de Klein illustre une surface fermée non orientable, que l’on ne peut représenter dans l’espace ordinaire sans auto-intersection. À Göttingen, il joue un rôle déterminant dans l’organisation de la recherche et le renouvellement de l’enseignement des mathématiques. Sa contribution concerne donc à la fois les découvertes, la structuration des disciplines et leur transmission.",
+      "In his 1872 Erlangen Program, geometries were characterized through the groups of transformations preserving their properties. This approach connected Euclidean, projective and non-Euclidean geometries and profoundly shaped the relationship between geometry and algebra. Klein also studied automorphic functions, Riemann surfaces and topology. The Klein bottle illustrates a closed nonorientable surface that cannot be embedded in ordinary three-dimensional space without self-intersection. At Göttingen he was a major organizer of research and an advocate for reform in mathematical education. His impact included original discoveries, the structure of mathematical disciplines and their teaching."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/klein",
+   "#history/advances/klein-bottle"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Klein/",
+    [
+     "Felix Klein · MacTutor (anglais)",
+     "Felix Klein · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "poincare",
+  "name": "Henri Poincaré",
+  "dates": "1854-1912",
+  "places": [
+   "France, mécanique et topologie",
+   "France, mechanics and topology"
+  ],
+  "dek": [
+   "Poincaré a transformé l’étude des systèmes dynamiques en montrant qu’il faut comprendre l’organisation globale des trajectoires plutôt que chercher seulement des formules explicites.",
+   "Poincaré transformed the study of dynamical systems by showing the need to understand the global organization of trajectories, rather than seeking explicit formulas alone."
+  ],
+  "facts": [
+   [
+    "1854",
+    [
+     "Naissance le 29 avril 1854.",
+     "Born on 29 April 1854."
+    ]
+   ],
+   [
+    "1912",
+    [
+     "Mort le 17 juillet 1912.",
+     "Dies on 17 July 1912."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Ses travaux sur le problème des trois corps révèlent des comportements très complexes, aujourd’hui rapprochés de la théorie du chaos. Il contribue à la naissance de la topologie algébrique en étudiant les propriétés des espaces conservées par déformation continue, les groupes fondamentaux et les questions relatives aux variétés. En analyse, il approfondit les fonctions automorphes et les équations différentielles ; en physique mathématique, il réfléchit à la mécanique, à l’électromagnétisme et aux transformations de la relativité. Ses textes philosophiques interrogent la nature des démonstrations et de l’invention scientifique. L’étendue de ses contributions le place parmi les grands mathématiciens universels de son époque.",
+      "His work on the three-body problem revealed complex behavior now associated with chaos theory. He helped found algebraic topology through investigations of properties preserved by continuous deformation, fundamental groups and manifolds. In analysis, he advanced automorphic functions and differential equations; in mathematical physics, he examined mechanics, electromagnetism and transformations related to relativity. His philosophical writings explored proof and scientific discovery. The exceptional range of his contributions makes him one of the outstanding mathematical figures of his era."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/poincare",
+   "#history/advances/poincare-three-body",
+   "#history/advances/poincare-conjecture"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Poincare/",
+    [
+     "Henri Poincaré · MacTutor (anglais)",
+     "Henri Poincaré · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "hilbert",
+  "name": "David Hilbert",
+  "dates": "1862-1943",
+  "places": [
+   "Europe, programmes de recherche",
+   "Europe, research programs"
+  ],
+  "dek": [
+   "Hilbert a façonné plusieurs des grands programmes de recherche des mathématiques du XXe siècle.",
+   "Hilbert shaped several major research directions in twentieth-century mathematics."
+  ],
+  "facts": [
+   [
+    "1862",
+    [
+     "Naissance le 23 janvier 1862.",
+     "Born on 23 January 1862."
+    ]
+   ],
+   [
+    "1899",
+    [
+     "Grundlagen der Geometrie.",
+     "Grundlagen der Geometrie."
+    ]
+   ],
+   [
+    "1900",
+    [
+     "Présente ses problèmes au congrès de Paris.",
+     "Presents his problems at the Paris congress."
+    ]
+   ],
+   [
+    "1943",
+    [
+     "Mort le 14 février 1943.",
+     "Dies on 14 February 1943."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Il renouvelle la théorie des invariants en montrant que certaines familles de relations algébriques peuvent être décrites par un nombre fini de générateurs. Ses Fondements de la géométrie (1899) proposent une clarification axiomatique de la discipline. En 1900, sa liste de vingt-trois problèmes attire l’attention sur des questions majeures, sans que toute la recherche ultérieure suive un programme unique. Ses travaux touchent aussi les équations intégrales, les espaces fonctionnels, la théorie des nombres et les fondements de la logique. Son programme visant à établir la cohérence des mathématiques par des méthodes finitaires aura un rôle fondamental, notamment à travers les limites mises en évidence plus tard par Gödel. Hilbert est à la fois créateur de résultats et organisateur de questions nouvelles.",
+      "He transformed invariant theory by establishing finite-generation results for families of algebraic relations. His Foundations of Geometry (1899) offered a systematic axiomatic treatment of geometry. In 1900, his list of twenty-three problems drew attention to major questions, although later research did not follow a single unified plan. He also contributed to integral equations, function spaces, number theory and mathematical logic. His program for proving the consistency of mathematics by finitary methods profoundly influenced foundational studies, including the later limitations revealed by Gödel. Hilbert was both a creator of major results and an exceptional organizer of research questions."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/hilbert",
+   "#history/advances/hilbert-problems"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Hilbert/",
+    [
+     "David Hilbert · MacTutor (anglais)",
+     "David Hilbert · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "voronoi",
+  "name": "Georgy Voronoï",
+  "dates": "1868-1908",
+  "places": [
+   "Europe orientale, nombres et géométrie",
+   "Eastern Europe, numbers and geometry"
+  ],
+  "dek": [
+   "Voronoï est un mathématicien majeur de la théorie des nombres et de la géométrie des réseaux, bien au-delà des diagrammes de proximité qui portent aujourd’hui son nom.",
+   "Voronoï was a major figure in number theory and the geometry of lattices, far beyond the proximity diagrams now bearing his name."
+  ],
+  "facts": [
+   [
+    "1868",
+    [
+     "Naissance le 28 avril 1868.",
+     "Born on 28 April 1868."
+    ]
+   ],
+   [
+    "1908",
+    [
+     "Recherches sur les paralléloèdres primitifs.",
+     "Research on primitive parallelohedra."
+    ]
+   ],
+   [
+    "1908",
+    [
+     "Mort le 20 novembre 1908.",
+     "Dies on 20 November 1908."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Il étudie les formes quadratiques et la manière dont des configurations discrètes structurent l’espace, prolongeant certaines recherches de Minkowski. Ses travaux donnent une approche géométrique de problèmes arithmétiques et des méthodes de classification des réseaux. Les régions associant chaque point de l’espace au site le plus proche jouent un rôle central dans une partie de ses mémoires et seront redécouvertes comme outils de géométrie algorithmique, de modélisation spatiale et de sciences appliquées. Il apporte également des contributions à l’étude des sommes arithmétiques et des fonctions de nombres. Le diagramme de Voronoï est donc une porte d’entrée vers une œuvre mathématique plus vaste et profondément théorique.",
+      "He studied quadratic forms and the ways discrete configurations organize space, extending parts of Minkowski’s geometric approach. His work developed geometric methods for arithmetic problems and techniques for classifying lattices. Regions consisting of points nearest to a particular site appeared prominently in his investigations and later became tools of computational geometry and spatial modeling. He also contributed to arithmetic sums and number-theoretic functions. The Voronoi diagram is therefore an accessible introduction to a much broader and deeply theoretical mathematical achievement."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/voronoi",
+   "#history/advances/voronoi"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Voronoy/",
+    [
+     "Georgy Voronoï · MacTutor (anglais)",
+     "Georgy Voronoï · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "noether",
+  "name": "Emmy Noether",
+  "dates": "1882-1935",
+  "places": [
+   "Europe et États-Unis, obstacles institutionnels",
+   "Europe and United States, institutional barriers"
+  ],
+  "dek": [
+   "Emmy Noether change profondément l’algèbre abstraite en privilégiant la structure des objets plutôt que les calculs particuliers.",
+   "Emmy Noether transformed abstract algebra by emphasizing the structure of mathematical objects rather than isolated calculations."
+  ],
+  "facts": [
+   [
+    "1882",
+    [
+     "Naissance le 23 mars 1882.",
+     "Born on 23 March 1882."
+    ]
+   ],
+   [
+    "1918",
+    [
+     "Théorème reliant symétries et lois de conservation.",
+     "Theorem linking symmetries and conservation laws."
+    ]
+   ],
+   [
+    "1935",
+    [
+     "Mort le 14 avril 1935.",
+     "Dies on 14 April 1935."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Elle travaille sur les idéaux, les anneaux et les conditions de finitude qui conduiront à la notion d’anneau noethérien ; ses méthodes deviennent centrales en algèbre commutative et dans l’étude des extensions algébriques. En 1918, elle démontre un théorème fondamental reliant les symétries continues des systèmes décrits par un principe variationnel à des lois de conservation, avec une portée considérable pour la physique théorique. Son influence passe aussi par son enseignement et par le cercle de chercheurs qu’elle anime à Göttingen. Les restrictions institutionnelles imposées aux femmes, puis son exil hors d’Allemagne, ont profondément marqué sa carrière sans limiter l’importance scientifique de son œuvre.",
+      "She investigated ideals, rings and finiteness conditions leading to Noetherian rings; her methods became fundamental in commutative algebra and the study of algebraic extensions. In 1918, she proved a profound theorem connecting continuous symmetries of variational systems with conservation laws, of lasting importance in theoretical physics. Her influence also spread through teaching and the research circle she helped build at Göttingen. Institutional restrictions on women, followed by her exile from Germany, shaped her career but cannot diminish the mathematical significance of her work."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/noether",
+   "#history/advances/noether-conservation"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Noether_Emmy/",
+    [
+     "Emmy Noether · MacTutor (anglais)",
+     "Emmy Noether · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "ramanujan",
+  "name": "Srinivasa Ramanujan",
+  "dates": "1887-1920",
+  "places": [
+   "Inde et Grande-Bretagne",
+   "India and Britain"
+  ],
+  "dek": [
+   "Ramanujan a développé des résultats d’une originalité exceptionnelle en théorie des nombres et en analyse, d’abord de manière largement autodidacte en Inde, puis en collaboration avec G.",
+   "Ramanujan produced extraordinarily original results in number theory and analysis, first largely through independent study in India and later in collaboration with G."
+  ],
+  "facts": [
+   [
+    "1887",
+    [
+     "Naissance le 22 décembre 1887.",
+     "Born on 22 December 1887."
+    ]
+   ],
+   [
+    "1914",
+    [
+     "Rejoint Hardy au Trinity College de Cambridge.",
+     "Joins Hardy at Trinity College, Cambridge."
+    ]
+   ],
+   [
+    "1920",
+    [
+     "Mort le 26 avril 1920.",
+     "Dies on 26 April 1920."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "H. Hardy à Cambridge. Il trouve des identités remarquables impliquant des séries infinies, des fractions continues, des fonctions modulaires et des partitions d’entiers. Avec Hardy, il obtient une formule asymptotique célèbre pour le nombre de partitions d’un entier et approfondit la compréhension de leur croissance. Ses travaux abordent également les nombres hautement composés et des fonctions aujourd’hui qualifiées de « mock theta ». Ses cahiers contiennent de nombreux énoncés dont les preuves et le sens ont parfois été élucidés bien après sa mort. Son histoire scientifique ne doit pas effacer l’importance de ses recherches antérieures à son arrivée en Europe.",
+      "H. Hardy at Cambridge. He discovered striking identities involving infinite series, continued fractions, modular functions and integer partitions. With Hardy, he obtained a celebrated asymptotic formula for the number of partitions of an integer and advanced the study of their growth. His work also addressed highly composite numbers and functions now called mock theta functions. His notebooks contain many claims whose proofs and significance were clarified only long after his death. His scientific history should not obscure the importance of work completed before he reached Europe."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/ramanujan"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Ramanujan/",
+    [
+     "Srinivasa Ramanujan · MacTutor (anglais)",
+     "Srinivasa Ramanujan · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "steinhaus",
+  "name": "Hugo Steinhaus",
+  "dates": "1887-1972",
+  "places": [
+   "Europe centrale, probabilités et partage",
+   "Central Europe, probability and division"
+  ],
+  "dek": [
+   "Steinhaus contribue à la formation d’une école polonaise d’analyse qui comptera parmi les plus fécondes du XXe siècle.",
+   "Steinhaus helped build the Polish school of analysis, one of the most productive mathematical communities of the twentieth century."
+  ],
+  "facts": [
+   [
+    "1887",
+    [
+     "Naissance le 14 janvier 1887.",
+     "Born on 14 January 1887."
+    ]
+   ],
+   [
+    "1972",
+    [
+     "Mort le 25 février 1972.",
+     "Dies on 25 February 1972."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Il obtient des résultats sur les séries trigonométriques, les fonctions réelles, les probabilités et les méthodes de mesure. Son nom est associé à un théorème fondamental sur les ensembles de mesure positive, dont les différences contiennent un voisinage de zéro. Il participe au développement de l’analyse fonctionnelle, notamment par des travaux avec Banach, et s’intéresse aux applications mathématiques à des problèmes concrets. Ses réflexions sur le partage équitable inspirent des questions qui deviendront centrales en théorie algorithmique du partage des biens. Il publie aussi des ouvrages de vulgarisation inventifs, sans que cette activité efface ses contributions originales à l’analyse et à la probabilité.",
+      "He contributed to trigonometric series, real functions, probability and measurement. His name is attached to a fundamental theorem showing that the difference set of a measurable set of positive measure contains a neighborhood of zero. He developed functional analysis in collaboration with researchers including Banach and investigated practical mathematical applications. His questions about fair division helped inspire what became an important area of mathematical and algorithmic research. He also wrote inventive popular mathematics books, alongside substantial original work in analysis and probability."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/steinhaus",
+   "#history/advances/fair-division"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Steinhaus/",
+    [
+     "Hugo Steinhaus · MacTutor (anglais)",
+     "Hugo Steinhaus · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "banach",
+  "name": "Stefan Banach",
+  "dates": "1892-1945",
+  "places": [
+   "Europe centrale, analyse fonctionnelle",
+   "Central Europe, functional analysis"
+  ],
+  "dek": [
+   "Banach est l’un des fondateurs de l’analyse fonctionnelle, qui étudie les espaces de fonctions et les opérateurs agissant sur ces espaces.",
+   "Banach was a founder of functional analysis, the study of spaces of functions and operators acting on them."
+  ],
+  "facts": [
+   [
+    "1892",
+    [
+     "Naissance le 30 mars 1892.",
+     "Born on 30 March 1892."
+    ]
+   ],
+   [
+    "1932",
+    [
+     "Théorie des opérations linéaires.",
+     "Théorie des opérations linéaires (Theory of linear operations)."
+    ]
+   ],
+   [
+    "1945",
+    [
+     "Mort le 31 août 1945.",
+     "Dies on 31 August 1945."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Ses recherches mettent en évidence le rôle des espaces vectoriels normés complets, aujourd’hui appelés espaces de Banach, pour comprendre la convergence et résoudre des équations. Il démontre des résultats fondamentaux sur les applications linéaires, les opérateurs et les points fixes ; plusieurs théorèmes centraux de l’analyse fonctionnelle portent son nom. Avec Hugo Steinhaus et d’autres chercheurs, il contribue à faire de l’école de Lwów un foyer majeur de mathématiques. Il est aussi l’un des auteurs du paradoxe de Banach-Tarski, qui met en jeu l’axiome du choix et des ensembles non mesurables. Sa pensée a transformé l’analyse abstraite et ses applications.",
+      "He established the importance of complete normed vector spaces, now called Banach spaces, for convergence and the solution of equations. His work produced foundational theorems concerning linear maps, operators and fixed points; several central results of functional analysis bear his name. With Hugo Steinhaus and others, he helped make the Lwów school a leading mathematical center. He also coauthored the Banach-Tarski paradox, which involves the axiom of choice and nonmeasurable sets. His methods permanently transformed abstract analysis and its applications."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/banach",
+   "#history/advances/banach-tarski"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Banach/",
+    [
+     "Stefan Banach · MacTutor (anglais)",
+     "Stefan Banach · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "tarski",
+  "name": "Alfred Tarski",
+  "dates": "1901-1983",
+  "places": [
+   "Europe et États-Unis, logique",
+   "Europe and United States, logic"
+  ],
+  "dek": [
+   "Tarski compte parmi les créateurs de la logique mathématique contemporaine.",
+   "Tarski was one of the founders of modern mathematical logic."
+  ],
+  "facts": [
+   [
+    "1901",
+    [
+     "Naissance le 14 janvier 1901.",
+     "Born on 14 January 1901."
+    ]
+   ],
+   [
+    "1924",
+    [
+     "Docteur à Varsovie ; théorème de Banach-Tarski.",
+     "Doctorate in Warsaw; Banach-Tarski theorem."
+    ]
+   ],
+   [
+    "1983",
+    [
+     "Mort le 26 octobre 1983.",
+     "Dies on 26 October 1983."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Il formule une définition rigoureuse de la vérité pour certains langages formels, en distinguant le langage étudié du métalangage utilisé pour en parler. Son théorème d’indéfinissabilité met en évidence les limites d’une définition de la vérité à l’intérieur de systèmes suffisamment expressifs. Il contribue à la théorie des modèles, à l’algèbre de la logique et à la notion de conséquence logique. Ses résultats de décidabilité concernant la théorie du premier ordre des corps réels clos établissent qu’une large classe de questions algébriques peut être résolue par une procédure effective. Avec Banach, il démontre le paradoxe de décomposition d’une boule. Sa carrière relie logique, fondements, géométrie et algèbre avec une remarquable unité intellectuelle.",
+      "He formulated a rigorous account of truth for certain formal languages, distinguishing the object language from the metalanguage used to discuss it. His undefinability theorem revealed limits on defining truth within sufficiently expressive systems. He advanced model theory, algebraic logic and the analysis of logical consequence. His decidability results for the first-order theory of real closed fields established that a broad class of algebraic questions can be settled by an effective procedure. With Banach, he proved the paradoxical decomposition of a ball. His work connected logic, foundations, geometry and algebra with unusual depth and coherence."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/tarski",
+   "#history/advances/banach-tarski"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Tarski/",
+    [
+     "Alfred Tarski · MacTutor (anglais)",
+     "Alfred Tarski · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "ulam",
+  "name": "Stanisław Ulam",
+  "dates": "1909-1984",
+  "places": [
+   "Europe et États-Unis, calcul scientifique",
+   "Europe and United States, scientific computing"
+  ],
+  "dek": [
+   "Ulam a travaillé sur des questions majeures de théorie des ensembles, de combinatoire, de probabilités et de calcul scientifique.",
+   "Ulam worked on important questions in set theory, combinatorics, probability and scientific computation."
+  ],
+  "facts": [
+   [
+    "1909",
+    [
+     "Naissance le 13 avril 1909.",
+     "Born on 13 April 1909."
+    ]
+   ],
+   [
+    "1984",
+    [
+     "Mort le 13 mai 1984.",
+     "Dies on 13 May 1984."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Issu de l’école mathématique de Lwów, il contribue à des problèmes de mesures, de transformations et de structures infinies. Aux États-Unis, ses recherches conduisent, avec d’autres scientifiques, à l’élaboration et à la diffusion de la méthode de Monte-Carlo, qui utilise des simulations aléatoires pour approcher des calculs difficiles. Il collabore à des travaux sur les systèmes physiques non linéaires, notamment l’expérience numérique dite de Fermi-Pasta-Ulam-Tsingou, importante pour l’histoire du chaos et de la physique statistique. Son nom est aussi associé à des conjectures sur les suites d’entiers et à la visualisation en spirale des nombres premiers. La diversité de ses recherches fait de lui bien davantage que l’auteur d’un seul problème récréatif.",
+      "Emerging from the Lwów mathematical community, he contributed to problems involving measures, transformations and infinite structures. In the United States, he helped develop and popularize Monte Carlo methods, using random simulation to approximate difficult calculations. He also took part in investigations of nonlinear physical systems, notably the numerical Fermi-Pasta-Ulam-Tsingou experiment, influential in the history of chaos and statistical physics. His name is associated with number-sequence conjectures and the visual arrangement of primes in the Ulam spiral. The diversity of his work makes him far more than the originator of a recreational problem."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/ulam"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Ulam/",
+    [
+     "Stanisław Ulam · MacTutor (anglais)",
+     "Stanisław Ulam · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "turing",
+  "name": "Alan Turing",
+  "dates": "1912-1954",
+  "places": [
+   "Grande-Bretagne, logique et calcul",
+   "Britain, logic and computing"
+  ],
+  "dek": [
+   "Turing est l’un des fondateurs de l’informatique théorique et un grand logicien du XXe siècle.",
+   "Turing was a founder of theoretical computer science and a major twentieth-century logician."
+  ],
+  "facts": [
+   [
+    "1912",
+    [
+     "Naissance le 23 juin 1912.",
+     "Born on 23 June 1912."
+    ]
+   ],
+   [
+    "1936",
+    [
+     "On Computable Numbers : la machine de Turing.",
+     "On Computable Numbers: the Turing machine."
+    ]
+   ],
+   [
+    "1954",
+    [
+     "Mort le 7 juin 1954.",
+     "Dies on 7 June 1954."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Dans son article de 1936 sur les nombres calculables, il décrit une machine abstraite permettant de définir rigoureusement ce qu’un calcul mécanique peut accomplir, puis montre qu’il existe des problèmes qu’aucune procédure générale ne peut résoudre. Il contribue ainsi à l’étude de la décidabilité et aux fondements de la notion d’algorithme. Pendant la Seconde Guerre mondiale, il participe aux recherches cryptanalytiques britanniques. Après la guerre, il travaille à l’organisation des calculateurs électroniques et s’interroge sur l’intelligence des machines. Il étudie également des modèles mathématiques de morphogenèse montrant comment des réactions et diffusions chimiques peuvent créer des motifs. Ces contributions majeures couvrent logique, calcul, cryptanalyse et biologie mathématique.",
+      "In his 1936 paper on computable numbers, he described an abstract machine providing a rigorous account of mechanical computation and demonstrated the existence of problems with no general algorithmic solution. This transformed the study of decidability and the mathematical notion of an algorithm. During the Second World War he contributed to British cryptanalysis. Later he worked on electronic computing and the question of machine intelligence. He also studied mathematical models of morphogenesis, showing how reaction and diffusion processes could generate patterns. His achievements span logic, computation, cryptanalysis and mathematical biology."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/turing",
+   "#history/advances/turing-computability"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Turing/",
+    [
+     "Alan Turing · MacTutor (anglais)",
+     "Alan Turing · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "shannon",
+  "name": "Claude Shannon",
+  "dates": "1916-2001",
+  "places": [
+   "États-Unis, communications et information",
+   "United States, communication and information"
+  ],
+  "dek": [
+   "Shannon a donné une structure mathématique nouvelle à la communication et au traitement de l’information.",
+   "Shannon created a new mathematical framework for communication and information processing."
+  ],
+  "facts": [
+   [
+    "1916",
+    [
+     "Naissance le 30 avril 1916.",
+     "Born on 30 April 1916."
+    ]
+   ],
+   [
+    "1948",
+    [
+     "A Mathematical Theory of Communication.",
+     "A Mathematical Theory of Communication."
+    ]
+   ],
+   [
+    "2001",
+    [
+     "Mort le 24 février 2001.",
+     "Dies on 24 February 2001."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Dans son mémoire de master, il montre comment l’algèbre de Boole peut décrire et simplifier les circuits électriques de commutation, faisant apparaître un lien fondamental entre logique et technologie. En 1948, sa Théorie mathématique de la communication introduit un cadre quantitatif pour étudier les messages, les canaux et le bruit, notamment la notion d’entropie de l’information et les limites de transmission fiable. Ses résultats ne se limitent pas à la téléphonie : ils sont au fondement de la compression, de la correction d’erreurs et des communications numériques. Il s’intéresse aussi à la cryptographie, aux automates et aux machines capables de stratégies simples. Sa contribution originale relève pleinement des mathématiques appliquées et de la théorie des probabilités.",
+      "In his master’s thesis, he showed how Boolean algebra could describe and simplify electrical switching circuits, establishing a fundamental connection between logic and technology. His 1948 Mathematical Theory of Communication introduced quantitative tools for messages, channels and noise, including information entropy and fundamental limits on reliable transmission. His results reached far beyond telephony and underpin compression, error correction and digital communications. He also studied cryptography, automata and machines capable of simple strategies. His original contribution belongs squarely to applied mathematics and probability theory."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/shannon",
+   "#history/advances/information"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Shannon/",
+    [
+     "Claude Shannon · MacTutor (anglais)",
+     "Claude Shannon · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "hammersley",
+  "name": "John Hammersley",
+  "dates": "1920-2004",
+  "places": [
+   "Grande-Bretagne, probabilités et géométrie",
+   "Britain, probability and geometry"
+  ],
+  "dek": [
+   "Hammersley est un pionnier majeur de la théorie moderne des phénomènes aléatoires spatiaux.",
+   "Hammersley was a leading pioneer in the mathematical study of random spatial phenomena."
+  ],
+  "facts": [
+   [
+    "1920",
+    [
+     "Naissance le 21 mars 1920.",
+     "Born on 21 March 1920."
+    ]
+   ],
+   [
+    "1965",
+    [
+     "Monte Carlo Methods, avec D. C. Handscomb.",
+     "Monte Carlo Methods, with D. C. Handscomb."
+    ]
+   ],
+   [
+    "2004",
+    [
+     "Mort le 2 mai 2004.",
+     "Dies on 2 May 2004."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Avec Simon Broadbent, il contribue à créer la théorie de la percolation, qui cherche à comprendre à quelles conditions des connexions aléatoires permettent la traversée d’un réseau. Il étudie également les marches aléatoires qui ne se recoupent pas, les modèles de polymères et les processus stochastiques. Ses recherches sur les méthodes de Monte-Carlo contribuent à expliquer comment utiliser le hasard simulé pour traiter des problèmes de calcul difficiles ; son livre de 1965 avec David Handscomb devient une référence. Il développe encore des applications aux files d’attente, au trafic et à diverses questions de physique mathématique. Son importance dépasse donc largement l’étude d’un problème géométrique isolé : il a contribué à établir des outils fondamentaux pour les probabilités appliquées.",
+      "With Simon Broadbent he helped establish percolation theory, which investigates when random connections allow paths across a network. He also studied self-avoiding random walks, polymer models and stochastic processes. His contributions to Monte Carlo methods helped explain how simulated randomness could tackle difficult computational problems; his 1965 book with David Handscomb became an influential reference. He developed applications to queues, traffic and mathematical physics. His importance extends far beyond one geometrical puzzle: he helped establish fundamental tools for applied probability."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/hammersley",
+   "#history/advances/gerver-sofa",
+   "#lab/monte-carlo-pi"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Hammersley/",
+    [
+     "John Hammersley · MacTutor (anglais)",
+     "John Hammersley · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "penrose",
+  "name": "Roger Penrose",
+  "dates": "Né en 1931 / Born 1931",
+  "places": [
+   "Grande-Bretagne, géométrie et physique",
+   "Britain, geometry and physics"
+  ],
+  "dek": [
+   "Roger Penrose a profondément renouvelé la géométrie de l’espace-temps et l’étude mathématique de la relativité générale.",
+   "Roger Penrose transformed the geometric study of spacetime and the mathematical foundations of general relativity."
+  ],
+  "facts": [
+   [
+    "1931",
+    [
+     "Naissance le 8 août 1931.",
+     "Born on 8 August 1931."
+    ]
+   ],
+   [
+    "1965",
+    [
+     "Théorème sur l’effondrement gravitationnel.",
+     "Theorem on gravitational collapse."
+    ]
+   ],
+   [
+    "2020",
+    [
+     "Prix Nobel de physique.",
+     "Nobel Prize in Physics."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Dans un article de 1965 sur l’effondrement gravitationnel, il utilise notamment la notion de surface piégée et des méthodes géométriques globales pour établir un théorème de singularité sans supposer une symétrie sphérique parfaite. Cette contribution a montré la portée générale des prédictions de la théorie d’Einstein et lui a valu le prix Nobel de physique 2020. Son œuvre dépasse toutefois les trous noirs : il développe la théorie des twisteurs, qui relie la géométrie complexe à certains problèmes de physique mathématique, et contribue aux méthodes fondées sur les spineurs. En géométrie discrète, ses pavages apériodiques, réalisables avec deux types de tuiles et des règles d’assemblage, illustrent comment un ordre structuré peut exister sans périodicité de translation. Ses recherches font ainsi dialoguer géométrie, topologie, structures algébriques et physique, tandis que ses pavages constituent un terrain d’expérimentation particulièrement fécond pour l’apprentissage visuel.",
+      "In a 1965 paper on gravitational collapse, he used trapped surfaces and global geometric methods to prove a singularity theorem without requiring perfect spherical symmetry. This breakthrough demonstrated the broad mathematical force of Einstein’s theory and was recognized by the 2020 Nobel Prize in Physics. His work extends well beyond black holes: he developed twistor theory, relating complex geometry to problems in mathematical physics, and contributed to spinor methods for describing spacetime. In discrete geometry, his aperiodic tilings, constructed from two tile types subject to matching rules, reveal how intricate order can arise without translational periodicity. His research therefore connects geometry, topology, algebraic structures and physics, while the tilings provide an especially rich setting for visual experimentation and mathematical conjecture."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/penrose",
+   "#history/advances/penrose-room"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Penrose/",
+    [
+     "Roger Penrose · MacTutor (anglais)",
+     "Roger Penrose · MacTutor"
+    ]
+   ],
+   [
+    "https://www.nobelprize.org/prizes/physics/2020/penrose/biographical/",
+    [
+     "Prix Nobel de physique 2020, notice biographique (anglais)",
+     "Nobel Prize in Physics 2020, biographical note"
+    ]
+   ],
+   [
+    "https://royalsociety.org/people/roger-penrose-12076/",
+    [
+     "Royal Society, notice (anglais)",
+     "Royal Society, profile"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "conway",
+  "name": "John Horton Conway",
+  "dates": "1937-2020",
+  "places": [
+   "Grande-Bretagne et États-Unis",
+   "Britain and United States"
+  ],
+  "dek": [
+   "Conway est célèbre pour le Jeu de la vie, automate cellulaire montrant comment des règles locales très simples peuvent produire des comportements complexes.",
+   "Conway is famous for the Game of Life, a cellular automaton showing how simple local rules can produce complex behavior."
+  ],
+  "facts": [
+   [
+    "1937",
+    [
+     "Naissance le 26 décembre 1937.",
+     "Born on 26 December 1937."
+    ]
+   ],
+   [
+    "1970",
+    [
+     "Le jeu de la vie paraît dans la chronique de Martin Gardner.",
+     "The Game of Life appears in Martin Gardner’s column."
+    ]
+   ],
+   [
+    "2020",
+    [
+     "Mort le 11 avril 2020.",
+     "Dies on 11 April 2020."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Mais son œuvre mathématique est beaucoup plus profonde et variée. Il contribue à la théorie des groupes finis, notamment à l’étude des groupes sporadiques, à la géométrie des réseaux et à la théorie des nombres. Dans les jeux combinatoires, il crée un cadre algébrique original qui conduit à la théorie des nombres surréels et à une analyse systématique des positions de jeu. Il s’intéresse également aux nœuds, aux polyèdres, aux pavages et à des curiosités qui révèlent des structures surprenantes. Son talent pour inventer des objets accessibles sans sacrifier la profondeur théorique en fait une figure particulièrement proche de l’esprit d’exploration mathématique.",
+      "But his mathematical work was much broader and deeper. He contributed to finite group theory, especially sporadic groups, the geometry of lattices and number theory. In combinatorial game theory, he created an original algebraic framework leading to surreal numbers and the systematic analysis of game positions. He also investigated knots, polyhedra, tilings and mathematical curiosities that reveal unexpected structures. His ability to invent accessible objects without sacrificing theoretical depth makes him a particularly fitting figure for an experiment-first mathematical timeline."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/conway",
+   "#history/advances/life"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Conway/",
+    [
+     "John Horton Conway · MacTutor (anglais)",
+     "John Horton Conway · MacTutor"
+    ]
+   ]
+  ]
  }
 ];
