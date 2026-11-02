@@ -1583,3 +1583,21 @@ input[type="range"]::-moz-range-thumb { background: var(--accent); border-color:
 .bank-print details > summary { display: none; }
 .bank-print .bank-sol > div { border: 0; background: none; padding: 0 0 0 10px; font-style: italic; }
 @media (prefers-reduced-motion: reduce) { .bank-chapters a:hover { transform: none; } }
+
+/* Fractal explorer: a large plane, a compact control rail, and linked views. */
+.mb-explorer { display:grid; grid-template-columns:minmax(0, 3fr) minmax(240px, 1fr); gap:20px; align-items:start; }
+.mb-explorer > div, .mb-linked > section { min-width:0; }
+.mb-controls { display:grid; gap:10px; padding:18px; border:1px solid var(--line); border-radius:12px; background:var(--surface); }
+.mb-controls h3, .mb-linked h3 { margin:0; }
+.mb-controls label, .mb-linked label { font-weight:600; }
+.mb-controls select, .mb-parameter input { width:100%; min-height:44px; padding:8px; color:var(--ink); background:var(--surface); border:1px solid var(--line-strong); border-radius:8px; font:inherit; }
+.mb-controls input[type=range], .mb-linked input[type=range] { width:100%; }
+.mb-controls button { width:100%; }
+.mb-coordinates { font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.mb-linked { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin-top:24px; }
+.mb-linked section { padding:18px; border:1px solid var(--line); border-radius:12px; }
+.mb-linked canvas { display:block; max-width:100%; }
+.mb-parameter { display:flex; flex-wrap:wrap; align-items:end; gap:10px; margin-top:12px; }
+.mb-parameter label { flex:1 1 120px; }
+#mb-orbit { width:100%; height:auto; border:1px solid var(--line); border-radius:8px; background:var(--surface); }
+@media (max-width:800px) { .mb-explorer,.mb-linked { grid-template-columns:1fr; } }

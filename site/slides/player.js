@@ -53,7 +53,7 @@ function shell() {
   $("#stage").innerHTML = `<div id="col"><div id="flow" tabindex="-1"></div><div id="live" hidden><div class="hd" id="live-lab"></div><div id="readout"></div></div></div>
 <div id="rt"></div>
 <div id="r1"><button class="b" id="step-prev">◀</button><span id="step-count"></span><button class="b" id="step-next">▶</button><button class="b" id="all-steps">Tout</button><span class="gap"></span><button class="b" id="pv">‹</button><span class="count" id="count"></span><button class="b" id="nx">›</button></div>
-<div id="r2"><button class="b" id="tg" hidden></button><button class="b" id="rev" hidden></button><button class="b" id="lst" aria-pressed="false"></button><button class="b" id="fs" title="Plein écran">⛶</button></div>
+<div id="r2">${EXPORT ? "" : `<a class="b" id="home" href="../index.html#slides">${t("home")}</a>`}<button class="b" id="tg" hidden></button><button class="b" id="rev" hidden></button><button class="b" id="lst" aria-pressed="false"></button><button class="b" id="fs" title="Plein écran">⛶</button></div>
 <div id="prog"><i></i></div><nav id="drawer" hidden></nav><div id="toast" hidden></div>`;
 }
 

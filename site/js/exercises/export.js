@@ -40,6 +40,7 @@ const PREAMBLE = String.raw`\documentclass[11pt,a4paper]{article}
 \IfFileExists{newpxmath.sty}{\usepackage{newpxtext}\usepackage{newpxmath}}{\usepackage{mathpazo}}
 \usepackage[a4paper,margin=2cm]{geometry}
 \usepackage{enumitem}
+\usepackage{xcolor}
 \usepackage{mdframed}
 \usepackage{needspace}
 \usepackage{multicol}

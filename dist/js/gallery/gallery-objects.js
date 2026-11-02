@@ -128,22 +128,35 @@ function fourierLab(root, { t, reduced, lang }) {
 /* =========================================================== Mandelbrot */
 function mandelbrotLab(root, { t, reduced, lang }) {
   const SEAHORSE = [-0.743643887037151, 0.13182590420533], W0 = 3.4;
-  let jx=0,jy=0,jw=3.2;
+  let jx=0,jy=0,jw=3.2, paletteId=0, phase=0, iterationLimit=300, orbitSteps=12, activePlane="mandelbrot", zStart=[0,0], orbitPlaying=false, orbitClock=0;
   let cx = -0.5, cy = 0, w = W0, cSel = [-0.4, 0.6], drag = null, flying = null, dirty = true, hq = true, last = "";
   root.innerHTML = `
     <p class="act-help">${t("Chaque point c du plan est testé : on répète z → z² + c depuis 0. S’il ne s’échappe jamais, c est noir. Déplace le pointeur : l’ensemble de Julia de c change à droite. Glisse pour te déplacer, utilise Ctrl + molette ou le pincement pour zoomer. Double-clique pour réinitialiser la vue.", "Every point c of the plane is tested: repeat z → z² + c from 0. If it never escapes, c is black. Move the pointer: the Julia set of c changes on the right. Drag to pan, use the pinch or Ctrl + wheel to zoom. Double-click to reset the view.")}</p>
-    <div class="mb-grid"><div class="obj-stage" id="mb-stage"></div><div class="obj-stage mb-julia" id="mb-julia"></div></div>
-    <div class="act-controls">
-      <button class="btn btn-primary" id="mb-fly" type="button">${t("Voyage vers la vallée des hippocampes", "Fly to the seahorse valley")}</button>
+    <div class="act-controls" role="group" aria-label="${t('Plan principal', 'Main plane')}"><button class="btn btn-secondary" id="mb-mode-m" type="button" aria-pressed="true">Mandelbrot · c</button><button class="btn btn-secondary" id="mb-mode-j" type="button" aria-pressed="false">Julia · z₀</button></div>
+    <div class="mb-explorer">
+      <div><div class="obj-stage" id="mb-stage"></div><p class="mb-coordinates" id="mb-view"></p></div>
+      <aside class="mb-controls" aria-label="${t('Réglages de la fractale', 'Fractal settings')}">
+        <h3>${t('Explorer', 'Explore')}</h3>
+        <label for="mb-place">${t('Destinations', 'Places')}</label>
+        <select id="mb-place"><option value="overview">${t('Vue générale', 'Overview')}</option><option value="seahorse">${t('Vallée des hippocampes', 'Seahorse valley')}</option><option value="elephant">${t('Vallée des éléphants', 'Elephant valley')}</option><option value="spiral">${t('Spirale', 'Spiral')}</option></select>
+        <label for="mb-julia-preset">${t('Mondes de Julia', 'Julia worlds')}</label><select id="mb-julia-preset"><option value="custom">${t('Personnalisé', 'Custom')}</option><option value="lace">${t('Dentelle', 'Lace')} · −0.8 + 0.156i</option><option value="coral">${t('Corail', 'Coral')} · −0.4 + 0.6i</option><option value="dust">${t('Poussière', 'Dust')} · 0.285 + 0.01i</option><option value="disk">${t('Disque', 'Disk')} · 0</option><option value="lobes">${t('Deux lobes', 'Two lobes')} · −1</option><option value="spirals">${t('Spirales', 'Spirals')} · −0.74543 + 0.113008i</option></select>
+        <label for="mb-palette">${t('Palette', 'Palette')}</label><select id="mb-palette"><option value="0">${t('Flamme', 'Flame')}</option><option value="1">${t('Océan', 'Ocean')}</option><option value="2">${t('Encre', 'Ink')}</option><option value="3">${t('Jardin', 'Garden')}</option></select>
+        <label for="mb-phase">${t('Décalage des couleurs', 'Colour shift')} <output id="mb-phase-out">0</output></label><input id="mb-phase" type="range" min="0" max="100" value="0">
+        <label for="mb-iterations">${t('Itérations maximales', 'Iteration limit')} <output id="mb-iterations-out">300</output></label><input id="mb-iterations" type="range" min="50" max="1500" step="50" value="300">
+        <button class="btn btn-secondary" id="mb-fly" type="button">${t('Voyager vers les hippocampes', 'Fly to the seahorses')}</button>
+        <button class="btn btn-secondary" id="mb-save" type="button">${t('Télécharger l’image PNG', 'Download PNG')}</button>
+      </aside>
     </div>
+    <div class="mb-linked"><section><h3 id="mb-secondary-title">${t('L’ensemble de Julia', 'Julia set')}</h3><p id="mb-secondary-help">${t('Il change avec le point c choisi sur le grand plan.', 'It changes with the point c selected on the main plane.')}</p><div class="obj-stage mb-julia" id="mb-julia"></div><div class="mb-parameter"><label>${t('Partie réelle de c', 'Real part of c')} <input id="mb-real" type="number" step="any" value="-0.4"></label><label>${t('Partie imaginaire de c', 'Imaginary part of c')} <input id="mb-imag" type="number" step="any" value="0.6"></label><button class="btn btn-secondary" id="mb-apply" type="button">${t('Appliquer', 'Apply')}</button></div></section>
+    <section><h3>${t('L’orbite, pas à pas', 'The orbit, step by step')}</h3><p id="mb-orbit-help">${t('Depuis z₀ = 0, on calcule zₙ₊₁ = zₙ² + c.', 'Starting at z₀ = 0, calculate zₙ₊₁ = zₙ² + c.')}</p><canvas id="mb-orbit" width="500" height="260" aria-label="${t('Orbite du point choisi', 'Orbit of the selected point')}"></canvas><div class="act-controls"><button class="btn btn-secondary" id="mb-orbit-play" type="button" aria-pressed="false">${t("Lire l’orbite", "Play orbit")}</button><button class="btn btn-secondary" id="mb-orbit-next" type="button">${t("Étape suivante", "Next step")}</button></div><label for="mb-steps">${t('Étapes', 'Steps')} <output id="mb-steps-out">12</output></label><input id="mb-steps" type="range" min="1" max="40" value="12"><p id="mb-orbit-read" aria-live="polite"></p></section></div>
     <p class="act-readout" id="mb-read" role="status" aria-live="polite"></p>`;
   const o = canvasIn(root.querySelector("#mb-stage"), 640 / 400, {navigation:false}), j = canvasIn(root.querySelector("#mb-julia"), 640 / 400, {navigation:false}), read = root.querySelector("#mb-read");
   o.cv.style.cursor = "crosshair";
-  const maxIt = () => clamp(Math.round(90 + 38 * Math.log2(W0 / w)), 90, 1500);
+  const maxIt = () => iterationLimit;
   // cosine palette on the smooth escape time; the inside of the set is dark
   const colour = (v, max) => {
     if (v >= max) return 0xff140c0a;
-    const k = 0.045 * v + 0.2, r = 0.5 + 0.5 * Math.cos(TAU * (k + 0.0)), gg = 0.5 + 0.5 * Math.cos(TAU * (k + 0.12)), b = 0.5 + 0.5 * Math.cos(TAU * (k + 0.28));
+    const k = 0.045 * v + 0.2 + phase, shifts = [[0,.12,.28],[.32,.12,0],[0,0,0],[.15,.32,.05]][paletteId], r = 0.5 + 0.5 * Math.cos(TAU * (k + shifts[0])), gg = 0.5 + 0.5 * Math.cos(TAU * (k + shifts[1])), b = 0.5 + 0.5 * Math.cos(TAU * (k + shifts[2]));
     return (255 << 24) | ((b * 235 + 12) << 16) | ((gg * 220 + 12) << 8) | (r * 215 + 20);
   };
   const off = document.createElement("canvas"), oj = document.createElement("canvas");
@@ -154,10 +167,10 @@ function mandelbrotLab(root, { t, reduced, lang }) {
     const h = (w * o.H) / o.W, [sx, sy] = [(0.5 + (cSel[0] - cx) / w) * o.W, (0.5 - (cSel[1] - cy) / h) * o.H];
     o.g.strokeStyle = "#fff"; o.g.lineWidth = 2; o.g.beginPath(); o.g.arc(sx, sy, 8, 0, TAU); o.g.moveTo(sx - 13, sy); o.g.lineTo(sx + 13, sy); o.g.moveTo(sx, sy - 13); o.g.lineTo(sx, sy + 13); o.g.stroke();
   };
-  const maxJulia = () => clamp(Math.round(120 + 30 * Math.log2(3.2 / jw)), 120, 1500);
+  const maxJulia = () => iterationLimit;
   function renderMain(res) {
     if (glMain && !glMain.lost) {
-      const [pw, ph] = glSize(o, hq ? 1 : 0.5), h = (w * o.H) / o.W, img = glMain.render({ width: pw, height: ph, kind: "mandelbrot", cx, cy, w, h, max: maxIt(), samples: hq ? 2 : 1 });
+      const [pw, ph] = glSize(o, hq ? 1 : 0.5), h = (w * o.H) / o.W, img = glMain.render({ width: pw, height: ph, kind: "mandelbrot", cx, cy, w, h, max: maxIt(), samples: hq ? 2 : 1, palette: paletteId, phase });
       if (img) { o.g.imageSmoothingEnabled = true; o.g.imageSmoothingQuality = "high"; o.g.drawImage(img, 0, 0, o.W, o.H); marker(); return; }
     }
     glMain = null;
@@ -172,25 +185,34 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   }
   function renderJulia() {
     if (glJulia && !glJulia.lost) {
-      const [pw, ph] = glSize(j, hq ? 1 : 0.75), h = (jw * j.H) / j.W, img = glJulia.render({ width: pw, height: ph, kind: "julia", cx: jx, cy: jy, w: jw, h, c: cSel, max: maxJulia(), samples: hq ? 2 : 1 });
+      const [pw, ph] = glSize(j, hq ? 1 : 0.75), h = (jw * j.H) / j.W, img = glJulia.render({ width: pw, height: ph, kind: "julia", cx: jx, cy: jy, w: jw, h, c: cSel, max: maxJulia(), samples: hq ? 2 : 1, palette: paletteId, phase });
       if (img) { j.g.imageSmoothingEnabled = true; j.g.imageSmoothingQuality = "high"; j.g.drawImage(img, 0, 0, j.W, j.H); return; }
     }
     glJulia = null;
     const res = 2, pw = Math.round(j.W / res), ph = Math.round(j.H / res); oj.width = pw; oj.height = ph;
     const c2 = oj.getContext("2d"), img = c2.createImageData(pw, ph), px = new Uint32Array(img.data.buffer), W = jw, h = (W * j.H) / j.W;
-    for (let y = 0; y < ph; y++) for (let x = 0; x < pw; x++) px[y * pw + x] = colour(escape(jx+((x + 0.5) / pw - 0.5) * W, jy-((y + 0.5) / ph - 0.5) * h, cSel[0], cSel[1], 160, true), 110);
+    for (let y = 0; y < ph; y++) for (let x = 0; x < pw; x++) px[y * pw + x] = colour(escape(jx+((x + 0.5) / pw - 0.5) * W, jy-((y + 0.5) / ph - 0.5) * h, cSel[0], cSel[1], maxJulia(), true), maxJulia());
     c2.putImageData(img, 0, 0); j.g.drawImage(oj, 0, 0, j.W, j.H);
   }
   const f = (v) => (lang === "fr" ? String(Math.round(v * 1e6) / 1e6).replace(".", ",") : String(Math.round(v * 1e6) / 1e6));
   function readout() {
     const max = 300, n = escape(0, 0, cSel[0], cSel[1], max), sign = cSel[1] < 0 ? "−" : "+", txt = `c = ${f(cSel[0])} ${sign} ${f(Math.abs(cSel[1]))} i`;
-    const s = n >= max ? t(`${txt} : la suite ne s’échappe pas (au moins ${max} itérations) : c est dans l’ensemble de Mandelbrot.`, `${txt}: the sequence does not escape (at least ${max} iterations): c is in the Mandelbrot set.`) : t(`${txt} : |z| dépasse 2 après ${n} itérations : c n’est pas dans l’ensemble.`, `${txt}: |z| exceeds 2 after ${n} iterations: c is not in the set.`);
+    const s = n >= max ? t(`${txt} : aucune échappée en ${max} itérations ; cela ne prouve pas l’appartenance à l’ensemble.`, `${txt}: no escape in ${max} iterations; this does not prove membership.`) : t(`${txt} : |z| dépasse 2 après ${n} itérations : c n’est pas dans l’ensemble.`, `${txt}: |z| exceeds 2 after ${n} iterations: c is not in the set.`);
     if (s !== last) { read.textContent = s; last = s; }
   }
   const view = () => ({ h: (w * o.H) / o.W });
   const toC = (e) => { const [x, y] = o.point(e), { h } = view(); return [cx + (x / o.W - 0.5) * w, cy - (y / o.H - 0.5) * h]; };
-  const draw = () => { if (!dirty) return; dirty = false; renderMain(hq ? 2 : 4); renderJulia(); readout(); };
+  const draw = () => { if (!dirty) return; dirty = false; renderMain(hq ? 2 : 4); renderJulia(); readout(); drawOrbit(); const [vx,vy,vw]=activePlane==='julia'?[jx,jy,jw]:[cx,cy,w]; root.querySelector('#mb-view').textContent = `${t('Centre', 'Centre')} : ${f(vx)} ${vy < 0 ? '−' : '+'} ${f(Math.abs(vy))}i · ${t('Largeur', 'Width')} : ${vw.toPrecision(4)} · ${t('Itérations', 'Iterations')} : ${maxIt()}`; };
+  function drawOrbit() {
+    const canvas = root.querySelector('#mb-orbit'), g = canvas.getContext('2d'); if (!g) return;
+    const points = [activePlane === 'julia' ? [...zStart] : [0,0]]; let [x,y]=points[0];
+    for(let i=0;i<orbitSteps;i++){const nx=x*x-y*y+cSel[0]; y=2*x*y+cSel[1]; x=nx; if(!Number.isFinite(x)||!Number.isFinite(y)) break; points.push([x,y]); if(x*x+y*y>16) break;}
+    const scale= Math.max(2,...points.flatMap(p=>p.map(Math.abs))), W=canvas.width,H=canvas.height, k=Math.min(W,H)/(2.4*scale);
+    g.clearRect(0,0,W,H);g.strokeStyle='#8292a5';g.lineWidth=1;g.beginPath();g.moveTo(0,H/2);g.lineTo(W,H/2);g.moveTo(W/2,0);g.lineTo(W/2,H);g.stroke();g.strokeStyle='#d58d28';g.lineWidth=2;g.beginPath();points.forEach(([a,b],i)=>{const px=W/2+a*k,py=H/2-b*k;if(i)g.lineTo(px,py);else g.moveTo(px,py);});g.stroke();
+    const p=points[points.length-1];root.querySelector('#mb-orbit-read').textContent=`z${points.length-1} = ${f(p[0])} ${p[1]<0?'−':'+'} ${f(Math.abs(p[1]))}i`;
+  }
   const stop = loopFor((dt) => {
+    if (orbitPlaying) { orbitClock += dt; if (orbitClock >= .5) { orbitClock=0; orbitSteps = orbitSteps >= 40 ? 1 : orbitSteps+1; root.querySelector('#mb-steps').value=orbitSteps; root.querySelector('#mb-steps-out').textContent=orbitSteps; dirty=true; } }
     if (flying) {
       flying.t = Math.min(1, flying.t + dt / 16); const k = flying.t * flying.t * (3 - 2 * flying.t);
       w = Math.exp(Math.log(W0) + (Math.log(4e-4) - Math.log(W0)) * k); cx = -0.5 + (SEAHORSE[0] + 0.5) * Math.min(1, k * 1.6); cy = SEAHORSE[1] * Math.min(1, k * 1.6);
@@ -199,7 +221,24 @@ function mandelbrotLab(root, { t, reduced, lang }) {
     draw();
   }, () => false);
   o.redraw = () => { dirty = true; }; j.redraw = () => { dirty = true; };
-  const setSel = (c) => { cSel = c; dirty = true; };
+  const setSel = (c) => { cSel = c; root.querySelector('#mb-real').value=String(c[0]); root.querySelector('#mb-imag').value=String(c[1]); dirty = true; };
+  const mainSlot=root.querySelector('#mb-stage').parentElement, secondarySlot=root.querySelector('#mb-julia').parentElement;
+  const mHost=root.querySelector('#mb-stage'), jHost=root.querySelector('#mb-julia');
+  function setPlane(plane) { activePlane=plane; if(plane==='julia'){mainSlot.prepend(jHost);secondarySlot.append(mHost);}else{mainSlot.prepend(mHost);secondarySlot.append(jHost);} root.querySelector('#mb-secondary-title').textContent=plane==='julia'?'Mandelbrot':t('L’ensemble de Julia','Julia set');root.querySelector('#mb-secondary-help').textContent=plane==='julia'?t('Le point c détermine la forme de Julia.','The point c determines the Julia shape.'):t('Il change avec le point c choisi sur le grand plan.','It changes with the point c selected on the main plane.');root.querySelector('#mb-orbit-help').textContent=plane==='julia'?t('Choisis z₀ dans le plan de Julia, puis calcule zₙ₊₁ = zₙ² + c.','Choose z₀ in the Julia plane, then calculate zₙ₊₁ = zₙ² + c.'):t('Depuis z₀ = 0, on calcule zₙ₊₁ = zₙ² + c.','Starting at z₀ = 0, calculate zₙ₊₁ = zₙ² + c.');root.querySelector('#mb-mode-m').setAttribute('aria-pressed',String(plane==='mandelbrot'));root.querySelector('#mb-mode-j').setAttribute('aria-pressed',String(plane==='julia'));dirty=true; }
+  root.querySelector('#mb-mode-m').addEventListener('click',()=>setPlane('mandelbrot'));
+  root.querySelector('#mb-mode-j').addEventListener('click',()=>setPlane('julia'));
+  const juliaPresets={lace:[-.8,.156],coral:[-.4,.6],dust:[.285,.01],disk:[0,0],lobes:[-1,0],spirals:[-.74543,.113008]};
+  root.querySelector('#mb-julia-preset').addEventListener('change',e=>{if(juliaPresets[e.target.value]){setSel([...juliaPresets[e.target.value]]);setPlane('julia');}});
+  const places = {overview:[-.5,0,W0],seahorse:[SEAHORSE[0],SEAHORSE[1],.02],elephant:[.285,.01,.12],spiral:[-.761574,-.0847596,.006]};
+  root.querySelector('#mb-place').addEventListener('change', e=>{[cx,cy,w]=places[e.target.value];flying=null;hq=true;dirty=true;});
+  root.querySelector('#mb-palette').addEventListener('change',e=>{paletteId=Number(e.target.value);dirty=true;});
+  root.querySelector('#mb-phase').addEventListener('input',e=>{phase=Number(e.target.value)/100;root.querySelector('#mb-phase-out').textContent=e.target.value;dirty=true;});
+  root.querySelector('#mb-iterations').addEventListener('input',e=>{iterationLimit=Number(e.target.value);root.querySelector('#mb-iterations-out').textContent=e.target.value;dirty=true;});
+  root.querySelector('#mb-orbit-play').addEventListener('click',e=>{orbitPlaying=!orbitPlaying;e.currentTarget.setAttribute('aria-pressed',String(orbitPlaying));e.currentTarget.textContent=orbitPlaying?t('Pause','Pause'):t('Lire l’orbite','Play orbit');});
+  root.querySelector('#mb-orbit-next').addEventListener('click',()=>{orbitPlaying=false;const b=root.querySelector('#mb-orbit-play');b.setAttribute('aria-pressed','false');b.textContent=t('Lire l’orbite','Play orbit');orbitSteps=Math.min(40,orbitSteps+1);root.querySelector('#mb-steps').value=orbitSteps;root.querySelector('#mb-steps-out').textContent=orbitSteps;dirty=true;});
+  root.querySelector('#mb-steps').addEventListener('input',e=>{orbitSteps=Number(e.target.value);root.querySelector('#mb-steps-out').textContent=e.target.value;dirty=true;});
+  root.querySelector('#mb-apply').addEventListener('click',()=>{const r=root.querySelector('#mb-real'),i=root.querySelector('#mb-imag');if(r.value!==''&&i.value!==''&&Number.isFinite(Number(r.value))&&Number.isFinite(Number(i.value))) setSel([Number(r.value),Number(i.value)]);});
+  root.querySelector('#mb-save').addEventListener('click',()=>{const a=document.createElement('a');a.download=activePlane+'.png';a.href=(activePlane==='julia'?j.cv:o.cv).toDataURL('image/png');a.click();});
   o.cv.addEventListener("pointermove", (e) => { if (drag) { const { h } = view(), dx = ((e.clientX - drag.x) / o.cv.getBoundingClientRect().width) * w, dy = ((e.clientY - drag.y) / o.cv.getBoundingClientRect().height) * h; cx = drag.cx - dx; cy = drag.cy + dy; hq = false; dirty = true; return; } if (e.pointerType === "mouse") setSel(toC(e)); });
   o.cv.addEventListener("pointerdown", (e) => { flying = null; drag = { x: e.clientX, y: e.clientY, cx, cy, moved: false, id: e.pointerId }; o.cv.setPointerCapture(e.pointerId); });
   o.cv.addEventListener("pointerup", (e) => { if (!drag) return; const moved = Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 5; drag = null; hq = true; if (!moved) setSel(toC(e)); dirty = true; });
@@ -224,7 +263,8 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   let jdrag=null;j.cv.style.cursor='grab';
   j.cv.addEventListener('pointerdown',e=>{if(e.button!==0)return;jdrag={x:e.clientX,y:e.clientY,jx,jy};j.cv.setPointerCapture(e.pointerId);});
   j.cv.addEventListener('pointermove',e=>{if(!jdrag)return;const r=j.cv.getBoundingClientRect();jx=jdrag.jx-(e.clientX-jdrag.x)/r.width*jw;jy=jdrag.jy+(e.clientY-jdrag.y)/r.height*jw*j.H/j.W;dirty=true;});
-  for(const ev of ['pointerup','pointercancel','view-gesture'])j.cv.addEventListener(ev,()=>jdrag=null);
+  j.cv.addEventListener('pointerup',e=>{if(jdrag&&activePlane==='julia'&&Math.hypot(e.clientX-jdrag.x,e.clientY-jdrag.y)<5){const [px,py]=j.point(e);zStart=[jx+(px/j.W-.5)*jw,jy-(py/j.H-.5)*jw*j.H/j.W];dirty=true;}jdrag=null;});
+  for(const ev of ['pointercancel','view-gesture'])j.cv.addEventListener(ev,()=>jdrag=null);
   j.cv.addEventListener('wheel',e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();const [px,py]=j.point(e),at=[jx+(px/j.W-.5)*jw,jy-(py/j.H-.5)*jw*j.H/j.W],old=jw;jw=clamp(jw*Math.exp(e.deltaY*.005),2e-13,6);const k=jw/old;jx=at[0]+(jx-at[0])*k;jy=at[1]+(jy-at[1])*k;dirty=true;},{passive:false});
   return () => { stop(); o.stopTouch?.(); j.stopTouch?.(); glMain?.destroy(); glJulia?.destroy(); };
 }

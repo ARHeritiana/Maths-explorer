@@ -72,8 +72,29 @@ Un \textbf{trinôme du second degré} est une expression \(f(x) = ax^2+bx+c\)
 avec \(a \ne 0\) et \(a,b,c \in \mathbb{R}\).
 \end{frame}
 \begin{frame}{Trinôme du second degré}
+Pour \(ax^2+bx+c=0\) (\(a \ne 0\)), le \textbf{discriminant} est \(\Delta = b^2-4ac\).
+
+\begin{itemize}
+
+  \item \(\Delta < 0\) : aucune racine réelle, \(S = \emptyset\).
+  
+\item \(\Delta = 0\) : racine double \(x_0 = -\dfrac{b}{2a}\), 
+        \(ax^2+bx+c = a(x-x_0)^2\).
+  
+\item \(\Delta > 0\) : deux racines
+        \(x_{1,2} = \dfrac{-b \pm \sqrt{\Delta}}{2a}\), 
+        \(ax^2+bx+c = a(x-x_1)(x-x_2)\).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Trinôme du second degré}
 Si \(x_1, x_2\) sont les deux racines :
 \[x_1 + x_2 = -\dfrac{b}{a},\qquad x_1 x_2 = \dfrac{c}{a}.\]
+\end{frame}
+\begin{frame}{Signe du trinôme}
+Si \(\Delta > 0\) (\(x_1 < x_2\)) et \(a > 0\) :
+
+Si \(a > 0\) et \(\Delta \leq 0\) : \(ax^2+bx+c \geq 0\) sur tout \(\mathbb{R}\).
 \end{frame}
 \begin{frame}{Forme canonique}
 Tout trinôme \(f(x)=ax^2+bx+c\) se met sous la forme :
@@ -94,6 +115,12 @@ Un \textbf{polynôme de degré 3} est une expression de la forme
 \(P(x) = ax^3 + bx^2 + cx + d\) avec \(a \ne 0\).
 
 On dit que \(r\) est une \textbf{racine} de \(P\) si \(P(r) = 0\).
+\end{frame}
+\begin{frame}{Polynôme de degré 3}
+Si \(r\) est une racine de \(P(x) = ax^3+bx^2+cx+d\), alors il existe un
+trinôme \(Q(x) = ax^2 + ex + f\) tel que :
+\[P(x) = (x - r)\cdot Q(x).\]
+On détermine \(Q\) par l'une des deux méthodes suivantes.
 \end{frame}
 \begin{frame}{Polynôme de degré 3}
 On écrit \(P(x) = (x-r)(ax^2+ex+f)\) et on développe.

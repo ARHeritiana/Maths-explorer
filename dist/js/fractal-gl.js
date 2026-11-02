@@ -36,6 +36,8 @@ uniform sampler2D uOrbit;
 uniform int uLength;      // valid texels of the reference orbit
 uniform int uMax;         // iteration limit
 uniform int uJulia;       // 1: the pixel is the starting point z_0, 0: the pixel is the parameter c
+uniform int uPalette;
+uniform float uPhase;
 uniform int uSamples;     // samples per axis (1 or 2)
 uniform vec2 uRes;        // size of the target in pixels
 uniform vec2 uSize;       // world width and height of the view
@@ -47,8 +49,9 @@ vec2 cmul(vec2 a, vec2 b) { return vec2(a.x * b.x - a.y * b.y, a.x * b.y + a.y *
 
 // cosine palette on the smooth escape time; the inside of the set is dark
 vec3 palette(float v) {
-  float k = 0.045 * v + 0.2;
-  vec3 c = 0.5 + 0.5 * cos(TAU * (k + vec3(0.0, 0.12, 0.28)));
+  float k = 0.045 * v + 0.2 + uPhase;
+  vec3 shifts = uPalette == 1 ? vec3(0.32, 0.12, 0.0) : uPalette == 2 ? vec3(0.0, 0.0, 0.0) : uPalette == 3 ? vec3(0.15, 0.32, 0.05) : vec3(0.0, 0.12, 0.28);
+  vec3 c = 0.5 + 0.5 * cos(TAU * (k + shifts));
   return (c * vec3(215.0, 220.0, 235.0) + vec3(20.0, 12.0, 12.0)) / 255.0;
 }
 
@@ -95,7 +98,7 @@ export function createFractalGL(makeCanvas = () => document.createElement('canva
   if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return null;
   gl.useProgram(program);
   const loc = (name) => gl.getUniformLocation(program, name);
-  const U = { orbit: loc('uOrbit'), length: loc('uLength'), max: loc('uMax'), julia: loc('uJulia'), samples: loc('uSamples'), res: loc('uRes'), size: loc('uSize') };
+  const U = { orbit: loc('uOrbit'), length: loc('uLength'), max: loc('uMax'), julia: loc('uJulia'), samples: loc('uSamples'), palette: loc('uPalette'), phase: loc('uPhase'), res: loc('uRes'), size: loc('uSize') };
   const texture = gl.createTexture();
   gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, texture);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
@@ -110,7 +113,7 @@ export function createFractalGL(makeCanvas = () => document.createElement('canva
     get lost() { return lost || gl.isContextLost?.() === true; },
     // opts: width, height (pixels), kind 'mandelbrot' | 'julia', cx, cy (centre of the view), w (world width), h (world
     // height), c = [cr, ci] (Julia parameter), max (iteration limit), samples (1 or 2 per axis). Returns the canvas.
-    render({ width, height, kind, cx, cy, w, h, c = [0, 0], max, samples = 1 }) {
+    render({ width, height, kind, cx, cy, w, h, c = [0, 0], max, samples = 1, palette = 0, phase = 0 }) {
       if (api.lost) return null;
       width = Math.max(2, Math.round(width)); height = Math.max(2, Math.round(height));
       if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; }
@@ -120,7 +123,7 @@ export function createFractalGL(makeCanvas = () => document.createElement('canva
       gl.bindTexture(gl.TEXTURE_2D, texture);
       gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, ORBIT_CAPACITY, 1, gl.RG, gl.FLOAT, orbit.data);
       gl.uniform1i(U.length, orbit.length); gl.uniform1i(U.max, limit); gl.uniform1i(U.julia, julia ? 1 : 0);
-      gl.uniform1i(U.samples, samples > 1 ? 2 : 1); gl.uniform2f(U.res, width, height); gl.uniform2f(U.size, w, h);
+      gl.uniform1i(U.palette, palette); gl.uniform1f(U.phase, phase); gl.uniform1i(U.samples, samples > 1 ? 2 : 1); gl.uniform2f(U.res, width, height); gl.uniform2f(U.size, w, h);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       return canvas;
     },

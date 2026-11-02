@@ -16,7 +16,7 @@ test('fractal gestures replace view buttons, reset either plane, and stop drifti
     w.HTMLCanvasElement.prototype.getBoundingClientRect=()=>({left:0,top:0,width:640,height:400});
     w.HTMLCanvasElement.prototype.setPointerCapture=()=>{};
     w.HTMLCanvasElement.prototype.getContext=function(){
-      if(!contexts.has(this))contexts.set(this,{setTransform(){},createImageData:(x,y)=>({data:new Uint8ClampedArray(x*y*4)}),putImageData(image){this.pixels=image.data;},drawImage(source){this.pixels=contexts.get(source).pixels;},beginPath(){},arc(){},moveTo(){},lineTo(){},stroke(){}});
+      if(!contexts.has(this))contexts.set(this,{setTransform(){},clearRect(){},createImageData:(x,y)=>({data:new Uint8ClampedArray(x*y*4)}),putImageData(image){this.pixels=image.data;},drawImage(source){this.pixels=contexts.get(source).pixels;},beginPath(){},arc(){},moveTo(){},lineTo(){},stroke(){}});
       return contexts.get(this);
     };
     const root=document.querySelector('main');stop=GALLERY_OBJECTS.mandelbrot(root,{t:(fr)=>fr,reduced:()=>true,lang:'fr'});

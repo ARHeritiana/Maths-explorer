@@ -99,19 +99,17 @@ with sync_playwright() as p:
     gallery_ids = page.evaluate("async () => { const {labs} = await import('./js/content.js'); return labs.filter(l => l.custom).map(l => l.id); }")
     assert page.locator('.wonder').count() == len(gallery_ids), 'gallery cards follow the shared catalogue'
     assert {urlparse(a).fragment.split('/')[-1] for a in page.locator('.wonder').evaluate_all('(links) => links.map(a => a.href)')} == set(gallery_ids)
-    # Versions belong in query strings; check resource paths rather than the end of the URL.
-    decks = page.request.get(BASE+'/slides/data/index.json').json()
+    # The catalogue displays one course at a time, with separate HTML and PDF actions.
     page.goto(BASE+'/#slides')
-    page.wait_for_function('n => document.querySelectorAll(".deck-download").length === n', arg=len(decks))
+    page.locator('.deck-card').first.wait_for()
     for mode, extension, signature in [('lecture', '.pdf', b'%PDF-'), ('explore', '.html', b'<!doctype html>')]:
         page.locator('[data-slide-type='+mode+']').click()
-        links = page.locator('.deck-download').evaluate_all('(links) => links.map(a => a.href)')
-        assert len(links) == len(decks), (mode, len(links), len(decks))
-        assert all(urlparse(href).path.endswith(extension) for href in links), (mode, links)
+        links = page.locator('.deck-card a[download]').evaluate_all('(links) => links.map(a => a.href)')
+        links = [href for href in links if urlparse(href).path.endswith(extension)]
+        assert links, mode
         assert all('v=' in urlparse(href).query for href in links), 'downloads must retain cache versions'
         response = page.request.get(links[0])
-        assert response.ok and response.body().lstrip().lower().startswith(signature.lower()), links[0]
-        assert page.locator('.deck-list li').evaluate_all('(rows) => rows.every(row => row.querySelector("a:not([download])") && row.querySelector("a[download]"))')
+        assert response.ok and response.body().lstrip().lower().startswith(signature.lower())
 
     # The screenshot's single-figure case: curriculum language, direct manipulation, quiet toolbar.
     os.makedirs('test-results', exist_ok=True)
@@ -121,6 +119,8 @@ with sync_playwright() as p:
     widget_at = next(i for i,s in enumerate(player_deck['slides']) if s['k'] == 'widget')
     player.goto(BASE+'/slides/player.html?deck=premiere-02#'+str(widget_at))
     player.wait_for_selector('#wcanvas canvas')
+    assert player.locator('#home').get_attribute('href') == '../index.html#slides'
+    assert player.locator('#home').is_visible()
     assert player.locator('html').get_attribute('lang') == 'fr'
     player.goto(BASE+'/slides/player.html?deck=premiere-02&lang=en#'+str(widget_at))
     player.wait_for_selector('#wcanvas canvas')
@@ -274,10 +274,12 @@ with sync_playwright() as p:
     page.wait_for_function("() => document.querySelectorAll('.lab2-readout dd')[0]?.textContent.includes('2') && document.querySelectorAll('.lab2-readout dd')[0]?.textContent.includes('90')")
     page.locator('[data-lang="en"]').click()
     page.goto(BASE+'/#pathways')
-    # programmes and the note are folded (details): read the text content, not only what is rendered
-    assert '2027–2028' in page.locator('#main').text_content()
-    assert 'AI SL' in page.locator('#main').text_content()
-    assert 'Removed' in page.locator('#main').text_content()
+    # Select a curriculum and verify its interactive pathway tiles.
+    page.locator('.pw-pick').first.wait_for()
+    page.locator('.pw-pick').first.click()
+    assert page.locator('.pw-pick[aria-pressed="true"]').count() == 1
+    assert page.locator('#pw-panel .pw-title').is_visible()
+    assert page.locator('#pw-panel .pw-tile').count() > 0
     # The app never sends answers or notes through fetch/XHR.
     submissions = []
     page.on('request', lambda req: submissions.append(req.url) if req.resource_type in ['xhr','fetch'] else None)
@@ -322,11 +324,14 @@ with sync_playwright() as p:
     page.locator('#dr-k').fill('100')
     assert page.locator('.door.open').count() == 10
     page.goto(BASE+'/#challenges/chess')
-    svg = page.locator('.dom-svg'); svg.scroll_into_view_if_needed(); box = svg.bounding_box(); unit = box['width'] / (12 + 352 + 28 + 104 + 16)
-    def at(x, y): return box['x'] + x * unit, box['y'] + y * unit
-    page.mouse.move(*at(392 + 6 + 41, 12 + 84 + 19)); page.mouse.down(); page.mouse.move(*at(100, 78), steps=8); page.mouse.up()
+    svg = page.locator('.dom-svg'); svg.scroll_into_view_if_needed()
+    source = page.locator('.dom[data-src="h"]').bounding_box()
+    board = svg.bounding_box()
+    view = svg.evaluate("el => ({width: el.viewBox.baseVal.width, height: el.viewBox.baseVal.height})")
+    def at(x, y): return board['x'] + x * board['width'] / view['width'], board['y'] + y * board['height'] / view['height']
+    page.mouse.move(source['x'] + source['width']/2, source['y'] + source['height']/2); page.mouse.down(); page.mouse.move(*at(100, 78), steps=8); page.mouse.up()
     assert page.locator('.dom[data-d]').count() == 1 and '60' in page.locator('#dm-read').inner_text()
-    page.mouse.move(*at(100, 78)); page.mouse.down(); page.mouse.move(box['x'] + box['width'] - 4, box['y'] + box['height'] - 4, steps=8); page.mouse.up()
+    page.mouse.move(*at(100, 78)); page.mouse.down(); page.mouse.move(board['x'] + board['width'] - 4, board['y'] + board['height'] - 4, steps=8); page.mouse.up()
     assert page.locator('.dom[data-d]').count() == 0
     page.goto(BASE+'/#challenges/nim')
     page.locator('[data-take="1"]').click()
@@ -421,7 +426,7 @@ with sync_playwright() as p:
     assert '210' in page.locator('#gp-read').inner_text() and 'Chemin au hasard' not in page.locator('#gp-read').inner_text()
     go('horses')
     for h in range(5): page.locator('.cl-tok[data-h="%d"]'%h).click()
-    page.locator('#hs-race').click(); assert page.locator('#hs-log li').count() == 1
+    page.locator('#hs-race').click(); page.locator('#hs-log li').first.wait_for(); assert page.locator('#hs-log li').count() == 1
     tok = page.locator('.cl-tok[data-h="24"]').bounding_box(); arena = page.locator('.cl-arena').bounding_box()   # horses can be rearranged by dragging
     page.mouse.move(tok['x'] + tok['width'] / 2, tok['y'] + tok['height'] / 2); page.mouse.down()
     page.mouse.move(arena['x'] + arena['width'] * 0.95, arena['y'] + arena['height'] * 0.95, steps=6); page.mouse.up()
@@ -451,8 +456,12 @@ with sync_playwright() as p:
     assert page.locator('#sn-next').is_disabled()
     go('bridge')
     def cross(*who):
-        for i in who: page.locator('.br-man[data-i="%d"]'%i).click()
+        count = page.locator('#br-log li').count()
+        for i in who: page.locator('.br-night [data-i="%d"]'%i).click()
         page.locator('#br-go').click()
+        page.wait_for_function('n => document.querySelectorAll("#br-log li").length === n', arg=count + 1)
+        page.locator('#br-undo').wait_for(state='visible')
+        page.wait_for_function('() => !document.querySelector("#br-undo").disabled')
     cross(0,1); cross(0); cross(2,3); cross(1); cross(0,1)
     assert '17' in page.locator('#br-read').inner_text() and page.locator('#br-log li').count() == 5
     go('lighteggs')
@@ -506,7 +515,7 @@ with sync_playwright() as p:
             cdp.send('Input.dispatchTouchEvent', {'type': 'touchStart', 'touchPoints': [{'x': box['x'] + pts[0][0] * box['width'], 'y': box['y'] + pts[0][1] * box['height']}]})
             for fx, fy in pts[1:]: cdp.send('Input.dispatchTouchEvent', {'type': 'touchMove', 'touchPoints': [{'x': box['x'] + fx * box['width'], 'y': box['y'] + fy * box['height']}]})
             cdp.send('Input.dispatchTouchEvent', {'type': 'touchEnd', 'touchPoints': []})
-        tp.goto(BASE+'/#gallery/fourier'); tp.wait_for_selector('#fr-stage canvas'); tp.locator('#fr-stage canvas').scroll_into_view_if_needed(); y1 = tp.evaluate('scrollY')
+        tp.goto(BASE+'/#gallery/fourier'); tp.wait_for_selector('#fr-stage canvas'); tp.locator('[name="fr-shape"][value="mine"]').check(); tp.locator('#fr-stage canvas').scroll_into_view_if_needed(); y1 = tp.evaluate('scrollY')
         swipe([(0.5 + 0.25 * math.cos(a / 20 * 2 * math.pi), 0.5 + 0.3 * math.sin(a / 20 * 2 * math.pi)) for a in range(21)], tp.locator('#fr-stage canvas').bounding_box()); tp.wait_for_timeout(300)
         assert tp.locator('[name="fr-shape"][value="mine"]').is_checked() and abs(tp.evaluate('scrollY') - y1) < 5, 'a finger-drawn shape is redrawn by circles without scrolling'
         tp.goto(BASE+'/#gallery/mandelbrot'); tp.wait_for_selector('#mb-stage canvas'); tp.locator('#mb-stage canvas').scroll_into_view_if_needed(); y1 = tp.evaluate('scrollY')
