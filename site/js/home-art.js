@@ -318,9 +318,18 @@ function subjectArt(kind, cv, opts) {
       path([[122,81],[125,73],[133,73],[136,81]],ink,1.5,accent);rect(120,81,18,8,accent);ellipse(124,90,2.5,2.5,ink,null);ellipse(134,90,2.5,2.5,ink,null);
       arrow([55,19],[183,19]);
     }else if(kind==='birthdays-gallery'){
-      floor();rect(59,26,122,91,C.surface);rect(59,26,122,22,accent);[80,160].forEach(x=>path([[x,20],[x,33]],ink,4));
-      for(let i=0;i<5;i++)for(let j=0;j<3;j++){const x=73+i*24,y=61+j*22,match=(i===1&&j===0)||(i===4&&j===2);if(match)ellipse(x,y,10,10,gold,null);text(match?'7':String(1+i+5*j),x,y,11);}
-      path([[97,61],[126,83],[169,105]],accent,1.5);
+      // A crowd with one matching pair; the card title supplies the context.
+      for(let row=0;row<3;row++)for(let col=0;col<5;col++){
+        const x=42+col*39,y=23+row*38;
+        const matched=(row===0&&col===1)||(row===2&&col===3);
+        const colour=matched?accent:ink;
+        g.globalAlpha=matched?1:.24;
+        ellipse(x,y,6,6,colour,null);
+        g.beginPath();g.moveTo(X(x-11),Y(y+26));g.lineTo(X(x-11),Y(y+16));
+        g.bezierCurveTo(X(x-11),Y(y+7),X(x+11),Y(y+7),X(x+11),Y(y+16));
+        g.lineTo(X(x+11),Y(y+26));g.closePath();g.fillStyle=colour;g.fill();
+      }
+      g.globalAlpha=1;
     }else if(kind==='benford-gallery'){
       path([[29,112],[215,112]],C.line,1);for(let i=1;i<=9;i++){let h=83*Math.log10(1+1/i)/Math.log10(2);rect(25+i*19,111-h,12,h,i===1?accent:blue,null);text(String(i),31+i*19,124,10);}
       text('30.1%',50,17,12,accent);
