@@ -105,6 +105,7 @@ CHECKS = [
     ('enrichment units match the JSON', [PY, '-m', 'mxbuild', 'enrichment', '--check']),
     ('enrichment converter tests', [PY, 'tests/test_enrichment.py']),
     ('notation: class and web agree, rewrite', [PY, 'tests/test_notation.py']),
+    ('Malagasy books converter (T12 vocabulary, synthetic)', [PY, 'tests/test_mada.py']),
     ('slide MathJax table from mx-math', [PY, '-m', 'mxbuild', 'notation', '--check']),
     ('slides check', [PY, 'tests/slides_check.py']),
     ('slide HTML exports: up to date, skill lint', [PY, 'tests/slides_export_check.py']),

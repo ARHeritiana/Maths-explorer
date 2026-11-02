@@ -18,7 +18,7 @@ The pipeline package. Run with `PYTHONPATH=build python3 -m mxbuild <command>` o
 | `pdf.py` | PDF excerpt assembly with the native frame | |
 | `twin.py` | French-to-English twin generation and checked standby snapshots (`docs/ADR-0001-tex-i18n.md`) | |
 | `notation.py` | web side of `mx-notation.sty`, slide MathJax table | |
-| `mada.py` | the Malagasy books' LaTeX (`content/tex/mada/`) rewritten for the slide parser: macros expanded, teacher material, figures and exercises dropped | slides |
+| `mada.py` | the Malagasy books' LaTeX (`content/tex/mada/`; T10, T11 S and the vocabulary of the T12 C/D book, class bokiko) rewritten for the slide parser: macros expanded (`\providecommand` and chapter definitions included), boxes unwrapped, teacher material, figures, exercises and answers dropped; tests `tests/test_mada.py` | slides |
 | `enrichment.py` | enrichment TeX units from `content/data/enrichment.json` | |
 | `migrate.py` | one-off migration of a course to the TeX system (historical) | |
 
