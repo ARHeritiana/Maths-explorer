@@ -206,3 +206,11 @@ and a summary sheet) can run 3–6 first as a pilot.
 4. [OPEN] Where the master lives (Mada-Boky or `content/tex/mada/t12/`), and whether fixes go back to the owner's copy.
 5. [OPEN] Teacher edition: publish teacher PDFs only for chapters with answers, or write answers first.
 6. [OPEN] Files not in the book (old exercise sets, `Nalefa TC`, `ProStat`, `Complexe/exercices.tex`): bank material or discard.
+
+
+## Owner decisions (2 November 2026)
+
+1. The T12 book is the owner's own work: publish it, with the owner's name removed everywhere (author macro emptied, no front matter, covers, preface signature or page footers). Leave out the third-party exercises (the "Prépa Bac" series, the named textbook) and the six "sujets type D": they are not imported.
+2. Bac C and D statements 2003 to 2018: publish, with an attribution line (Baccalauréat malgache, série, année); publish only the solutions checked as real (C 2003, C 2004, C 2005 partial, marked partial). Further solutions are written by us and checked.
+3. Two courses: T12 C (`t12c`) and T12 D (`t12d`); the shared chapters appear in both (one source, two catalogue entries), the C-only and D-only chapters in their course.
+4. Not decided, defaults taken: master copy in `content/tex/mada/t12/`; teacher PDFs only where answers exist, the others after the bank has their answers; files outside the book stay in the private repository.

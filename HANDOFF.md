@@ -28,6 +28,10 @@
 | #36 Fractal collection | Mandelbrot/Julia, chaos game (Sierpiński), Barnsley in `content.js`; no Koch, Menger, Cantor or unified menu | collection with dimensions, reuse existing renderers |
 | #37 Informative gallery entries | owned by the gallery-redesign agent | not handled here |
 
+## Owner decisions, 2 November 2026
+- T12 C/D (`docs/future-work/malagasy-t12-cd-audit.md`, section "Owner decisions"): the book is the owner's own work, published without the owner's name; borrowed exercises and the six type-D sujets left out; Bac C and D statements published with attribution, only real checked solutions; two courses `t12c` and `t12d`.
+- #15 timeline of mathematicians: use the 60 staged biographies of the private repository, after checking sources and dates.
+
 ## Design pass, exercise bank online, gallery references (1 November 2026, evening, owner request)
 
 Owner requests: fewer inner scroll boxes, no one-shot menus, use large screens, clickable topic previews, rework of
