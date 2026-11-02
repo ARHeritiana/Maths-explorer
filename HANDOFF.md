@@ -59,6 +59,24 @@ Owner requests: fewer inner scroll boxes, no one-shot menus, use large screens, 
    03 9/5, 04 10/4, 05 7/4, 06 9/4, 07 7/4, 08 14/6, 09 8/4, 10 9/4, 11 7/4, 12 9/4 (four primary), 13 8/4, 14 8/4, 15 7/4.
    Next class: Première spécialité (waiting for the coordinator).
 2. Starters and worksheets: more generators per chapter (feeds both pages and the bank's quick practice).
+   **Gallery step 1 done (2 November 2026): the unilluminable room** (`#gallery/mirrored-rooms`, `#lab/illumination`). Rebuilt
+   on a shared canvas `site/js/illumination-view.js` and a pure light module `site/js/illumination-light.js` (worker
+   `illumination-light-worker.js`): the lit floor is computed from beams between neighbouring rays (split breadth-first near
+   corners), counted on a grid of reflection levels, and what no beam reaches is hatched and numbered (Penrose from the centre:
+   four pockets of about 0.8 u², exact 0.8; L-room: shadow of exact area 10.5 with no reflection, gone after two). Night scene,
+   direct and reflected light in two tones, rays from 1 to the device ceiling (slider and quick choices; beyond 1,440 the
+   existing worker farm and density map), reflections slider, light shown reflection by reflection, rays travelling, unfolding.
+   Editor: Walls tool (click on the 0.5 grid, click the first vertex to close, drag, click a wall to insert, double click to
+   remove, Shift without snapping), Curve tool (Bezier diamonds), undo and redo, live validation with crossing walls in red, the
+   lamp put inside on closing, "edit this room" copies a polygonal preset. Presets as thumbnails: Penrose, Tokarsky, Wolecki and
+   three ordinary rooms (L-shaped, star, ellipse). Gallery page in the new exhibit layout (`site/styles/exhibit.css`, entry
+   `layout: 'exhibit'`): chips above the stage, tools, hint and zoom over it, readout and legend under it, tabs Explorer,
+   Dessiner, Comprendre, Défis (four challenges, two checked automatically). The earlier versions (commits 2e7745b9, ec83c556,
+   branch ccr-f8cd81a4) were the same editor with 1 to 96 rays drawn one by one; what was better there (few clearly visible
+   rays, travelling rays, unfolding) is kept; the 500,000-ray density mode is kept but no longer the main picture. Tests:
+   `tests/illumination-light.test.mjs`, `tests/room_browser.py` (in `run_browser.py`); `device_scale_browser.py` unchanged and green.
+   Not done: guided tour; Wolecki and Tokarsky drawn y-down (mirror of the papers' figures, same room); the light of curved custom
+   rooms takes a few seconds on a slow device (shown as a rough preview meanwhile); the lab page keeps its select for the rays.
 3. Gallery redesign after the owner's references https://missionmaths.fr/animations/mandelbrot.html and
    https://missionmaths.fr/decouvertes.html (ideas only, never their code or assets): stage first and large, with title,
    hints and zoom buttons over the canvas; a side panel with tabs (Explore, Understand, Challenges) instead of long text
