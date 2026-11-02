@@ -11,10 +11,10 @@ const decOrFrac = (f) => numTex(f);
 export const seconde = [
   { id: 's-prime-factors', cls: C, chapter: 'seconde-01', domain: 'nombres', skill: 'Décomposer en facteurs premiers', fast: true,
     make(r, level) {
-      const pool = level === 1 ? [2, 3, 5] : level === 2 ? [2, 3, 5, 7] : [2, 3, 5, 7, 11, 13];
-      const max = level === 1 ? 200 : level === 2 ? 2000 : 20000;
+      const pool = level === 1 ? [2, 3, 5, 7] : level === 2 ? [2, 3, 5, 7, 11, 13] : [2, 3, 5, 7, 11, 13, 17, 19];
+      const max = level === 1 ? 1000 : level === 2 ? 5000 : 30000;
       let n;
-      do { const k = r.int(level === 1 ? 2 : 3, level === 3 ? 5 : 4); n = 1; for (let i = 0; i < k; i++) n *= r.pick(pool); } while (n > max || n < 12 || isPrime(n));
+      do { const k = r.int(level === 1 ? 2 : 3, level === 1 ? 6 : level === 3 ? 6 : 5); n = 1; for (let i = 0; i < k; i++) n *= r.pick(pool); } while (n > max || n < 12 || isPrime(n));
       const f = factor(n);
       return { q: `Décomposer ${M(n)} en produit de facteurs premiers.`, a: M(`${n}=${expo(f)}`),
         ok: () => f.reduce((x, y) => x * y, 1) === n && f.every(isPrime) };
@@ -103,22 +103,22 @@ export const seconde = [
       let p, q, text;
       if (level === 1) { const k = r.nz(-5, 5), a = r.nz(-4, 4), b = r.nz(-6, 6); p = [k]; q = [a, b]; text = `${k < 0 ? `-${-k}` : k}(${polyTex(q)})`; text = `${par(k)}(${polyTex(q)})`; }
       else if (level === 2) { const a = r.nz(-4, 4), b = r.nz(-6, 6), c = r.nz(-4, 4), d = r.nz(-6, 6); p = [a, b]; q = [c, d]; text = `(${polyTex(p)})(${polyTex(q)})`; }
-      else { const a = r.int(1, 4), b = r.nz(-6, 6); if (r.next() < .5) { p = [a, b]; q = [a, b]; text = `(${polyTex(p)})^{2}`; } else { p = [a, b]; q = [a, -b]; text = `(${polyTex(p)})(${polyTex(q)})`; } }
+      else { const a = r.int(1, 6), b = r.nz(-9, 9); if (r.next() < .5) { p = [a, b]; q = [a, b]; text = `(${polyTex(p)})^{2}`; } else { p = [a, b]; q = [a, -b]; text = `(${polyTex(p)})(${polyTex(q)})`; } }
       const out = mulPoly(p, q);
       return { q: `Développer et réduire : ${M(text)}.`, a: M(polyTex(out)), ok: () => sameOnGrid((x) => evalPoly(p, x) * evalPoly(q, x), (x) => evalPoly(out, x)) };
     } },
   { id: 's-factor', cls: C, chapter: 'seconde-08', domain: 'algebre', skill: 'Factoriser', fast: true,
     make(r, level) {
       if (level === 1) { const k = r.int(2, 6), a = r.nz(-5, 5), b = r.nz(-7, 7); const e = [k * a, k * b]; return { q: `Factoriser : ${M(polyTex(e))}.`, a: M(`${k}(${polyTex([a, b])})`), ok: () => sameOnGrid((x) => evalPoly(e, x), (x) => k * evalPoly([a, b], x)) }; }
-      if (level === 2) { const a = r.int(1, 5), b = r.int(1, 9); const e = [a * a, 0, -b * b]; return { q: `Factoriser : ${M(polyTex(e))}.`, a: M(`(${polyTex([a, -b])})(${polyTex([a, b])})`), ok: () => sameOnGrid((x) => evalPoly(e, x), (x) => evalPoly([a, -b], x) * evalPoly([a, b], x)) }; }
-      const a = r.int(1, 4), b = r.nz(-6, 6), e = [a * a, 2 * a * b, b * b];
+      if (level === 2) { const a = r.int(1, 9), b = r.int(1, 12); const e = [a * a, 0, -b * b]; return { q: `Factoriser : ${M(polyTex(e))}.`, a: M(`(${polyTex([a, -b])})(${polyTex([a, b])})`), ok: () => sameOnGrid((x) => evalPoly(e, x), (x) => evalPoly([a, -b], x) * evalPoly([a, b], x)) }; }
+      const a = r.int(1, 7), b = r.nz(-12, 12), e = [a * a, 2 * a * b, b * b];
       return { q: `Factoriser : ${M(polyTex(e))}.`, a: M(`(${polyTex([a, b])})^{2}`), ok: () => sameOnGrid((x) => evalPoly(e, x), (x) => evalPoly([a, b], x) ** 2) };
     } },
   { id: 's-percent', cls: C, chapter: 'seconde-09', domain: 'nombres', skill: 'Évolutions en pourcentage', fast: true,
     make(r, level) {
       if (level === 1) { const p = 20 * r.int(2, 15), t = r.pick([5, 10, 20, 25, 50]) * r.sign(); const res = F(p * (100 + t), 100); return { q: `Un article coûte ${M(`${p}\\ \\text{€}`)}. Son prix ${t > 0 ? 'augmente' : 'baisse'} de ${M(`${Math.abs(t)}\\,\\%`)}. Calculer son nouveau prix.`, a: M(`${numTex(res)}\\ \\text{€}`), ok: () => Math.abs(val(res) - p * (1 + t / 100)) < 1e-9 }; }
-      if (level === 2) { const t1 = r.pick([10, 20, 25, 50]) * r.sign(), t2 = r.pick([10, 20, 25, 50]) * r.sign(); const cm = mul(F(100 + t1, 100), F(100 + t2, 100)); const rate = mul(sub(cm, F(1)), F(100)); return { q: `Une quantité subit une évolution de ${M(`${t1 > 0 ? '+' : '-'}${Math.abs(t1)}\\,\\%`)} puis de ${M(`${t2 > 0 ? '+' : '-'}${Math.abs(t2)}\\,\\%`)}. Déterminer le taux d’évolution global.`, a: M(`CM=${numTex(cm)}\\ \\text{ donc }\\ ${val(rate) >= 0 ? '+' : ''}${numTex(rate)}\\,\\%`), ok: () => Math.abs(val(cm) - (1 + t1 / 100) * (1 + t2 / 100)) < 1e-12 }; }
-      const up = r.next() < 0.6, t = up ? 5 * r.int(1, 60) : 5 * r.int(1, 12), cm = F(up ? 100 + t : 100 - t, 100);
+      if (level === 2) { const t1 = r.pick([5, 10, 15, 20, 25, 30, 40, 50]) * r.sign(), t2 = r.pick([5, 10, 15, 20, 25, 30, 40, 50]) * r.sign(); const cm = mul(F(100 + t1, 100), F(100 + t2, 100)); const rate = mul(sub(cm, F(1)), F(100)); return { q: `Une quantité subit une évolution de ${M(`${t1 > 0 ? '+' : '-'}${Math.abs(t1)}\\,\\%`)} puis de ${M(`${t2 > 0 ? '+' : '-'}${Math.abs(t2)}\\,\\%`)}. Déterminer le taux d’évolution global.`, a: M(`CM=${numTex(cm)}\\ \\text{ donc }\\ ${val(rate) >= 0 ? '+' : ''}${numTex(rate)}\\,\\%`), ok: () => Math.abs(val(cm) - (1 + t1 / 100) * (1 + t2 / 100)) < 1e-12 }; }
+      const up = r.next() < 0.6, t = up ? r.int(1, 150) : r.int(1, 80), cm = F(up ? 100 + t : 100 - t, 100);
       const back = F(100 * t, up ? 100 + t : 100 - t), k = decimals(back), exact = k >= 0 && k <= 2;
       const shown = exact ? `${numTex(back)}\\,\\%` : `\\approx ${roundTex(val(back), 1)}\\,\\%`;
       return { q: `Après une ${up ? 'hausse' : 'baisse'} de ${M(`${t}\\,\\%`)}, de quel pourcentage faut-il ${up ? 'baisser' : 'augmenter'} pour revenir à la valeur initiale ?`, a: M(`\\text{${up ? 'baisse' : 'hausse'} de }${shown}`), s: M(`CM=\\dfrac{1}{${numTex(cm)}}`) + (exact ? '' : ', valeur arrondie au dixième'),

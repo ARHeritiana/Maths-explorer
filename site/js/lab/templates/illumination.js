@@ -1,108 +1,36 @@
-// One retained mirrored-room editor, shared by the gallery and all laboratory missions.
+// The mirrored room in the laboratory: the shared canvas of ../../illumination-view.js (light, dark zones, rays, room editor)
+// with a compact toolbar; the shell's controls (room, reflections, rays, direction, speed) and missions drive the same state.
 export {createStage} from './inference.js';
-import {exhibit,button,background,path,dot} from '../../gallery/gallery-kit.js';
-import * as M from '../../illumination-model.js';
+import {createRoomView,isCustom,lightBounces} from '../../illumination-view.js';
 import {PRESETS} from '../../illumination-presets.js';
-import {createLightMap,createDensityMap} from '../../illumination-gl.js';
-import {createFarm,moduleWorker,inlineWorker,traceChunk} from '../../illumination-farm.js';
-import {capability,LIMITS} from '../../device-capability.js';
-import {assetHref} from '../../data-loader.js';
-import {model,boundary,device,SYNC_MAX,effectiveRays} from '../experiments/illumination.js';
 export function mount({stage,fmt,getState,setState,refresh}){
- const t=(fr,en)=>fmt.t([fr,en]),root=stage.wrap;
- const o=exhibit(root,{t,reduced:()=>stage.reduced()},t('Glisse la lampe. Dans un éditeur, touche un mur pour ajouter un sommet, puis glisse les sommets ; en mode courbe, glisse le milieu d’un mur. H : choisir lampe, sommet ou courbure ; flèches : déplacer ; Insérer : ajouter un sommet ; Suppr : supprimer.','Drag the lamp. In an editor, tap a wall to add a vertex, then drag vertices; in curve mode drag a wall midpoint. H: select lamp, vertex or curvature; arrows: move; Insert: add vertex; Delete: remove.'),
- `<label class="act-field"><span>${t('Manipuler','Edit')}</span><select data-edit><option value="lamp">${t('Lampe','Lamp')}</option><option value="vertices">${t('Sommets','Vertices')}</option><option value="curves">${t('Courbures','Curvature')}</option></select></label>`+button('light-play',t('Parcourir les rayons','Play rays'))+button('light-step',t('Un pas','One step'))+button('light-reset',t('Réinitialiser la pièce','Reset room'))+button('light-empty',t('Dessiner une pièce','Draw a room'))+button('light-close',t('Fermer la pièce','Close boundary'))+button('light-unfold',t('Déplier le premier rayon','Unfold first ray')),
- `<p>${t('Les zones non visitées après N réflexions ne sont pas déclarées sombres. Normales et intersections sont calculées sur les courbes, sans remplacer les miroirs par des facettes. La validation d’une pièce courbe utilise un échantillonnage fin du contour : évite les détails plus petits que 0,05 unité.','Unvisited regions after N reflections are not declared dark. Normals and intersections are calculated on the curves, without replacing mirrors by facets. Curved-room validation samples the boundary finely: avoid details smaller than 0.05 units.')}</p>`);
- o.cv.setAttribute('aria-label',root.querySelector('.act-help').textContent+' '+o.cv.getAttribute('aria-label'));
- const g=o.g,edit=root.querySelector('[data-edit]'),play=root.querySelector('#light-play'),close=root.querySelector('#light-close'),unfoldButton=root.querySelector('#light-unfold');let selected=0,drag=null,dirty=true,key='',elapsed=Infinity;
- const world=p=>{const b=PRESETS[getState().room].bounds,S=Math.min(o.W/(b[1]-b[0]),o.H/(b[3]-b[2]))*.88;return [(p[0]-o.W/2)/S+(b[0]+b[1])/2,(p[1]-o.H/2)/S+(b[2]+b[3])/2];};
- const screen=p=>{const b=PRESETS[getState().room].bounds,S=Math.min(o.W/(b[1]-b[0]),o.H/(b[3]-b[2]))*.88;return [o.W/2+(p[0]-(b[0]+b[1])/2)*S,o.H/2+(p[1]-(b[2]+b[3])/2)*S];};
- const custom=()=>['polygon','curved'].includes(getState().room);
- const handles=()=>{const s=getState();return [{type:'lamp',p:[s.sx,s.sy]},...(custom()?s.vertices.map((p,i)=>({type:'vertex',i,p})):[]),...(s.room==='curved'?s.vertices.map((p,i)=>({type:'bend',i,p:s.bends[i]||M.pointAt(M.line(p,s.vertices[(i+1)%s.vertices.length]),.5)})):[])];};
- function move(h,p){if(h.type==='lamp'){setState({sx:p[0],sy:p[1]});}else if(h.type==='vertex'){const s=getState(),vertices=s.vertices.map(q=>[...q]);vertices[h.i]=p;setState({vertices,playing:false});}else{const bends=getState().bends.map(q=>q&&[...q]);bends[h.i]=p;setState({bends,playing:false});}dirty=true;}
- function addVertex(){const s=getState();if(!custom()||s.vertices.length>=32)return;const i=Math.max(0,handles()[selected]?.i||0),a=s.vertices[i]||[-2,-2],b=s.vertices[(i+1)%s.vertices.length]||[2,2],p=a.map((x,k)=>(x+b[k])/2),vertices=s.vertices.map(q=>[...q]),insert=Math.min(vertices.length,i+1);vertices.splice(insert,0,p);setState({vertices,bends:vertices.map(()=>null)});selected=insert+1;dirty=true;}
- function removeVertex(){const s=getState(),h=handles()[selected];if(!custom()||h?.type!=='vertex'||s.vertices.length<=3)return;const vertices=s.vertices.filter((_,i)=>i!==h.i);setState({vertices,bends:vertices.map(()=>null)});selected=0;dirty=true;}
- o.on(edit,'change',()=>{dirty=true;});
- o.on(play,'click',()=>{const s=getState();if(stage.reduced()){elapsed=Infinity;setState({playing:false});}else{if(!s.playing&&!Number.isFinite(elapsed))elapsed=0;setState({playing:!s.playing});}dirty=true;});
- o.on(root.querySelector('#light-step'),'click',()=>{elapsed=Number.isFinite(elapsed)?elapsed+1:1;setState({playing:false});dirty=true;});
- o.on(root.querySelector('#light-reset'),'click',()=>{const s=getState(),p=PRESETS[s.room];setState({sx:p.source[0],sy:p.source[1],vertices:[[-4,-3],[4,-3],[4,3],[-4,3]],bends:[null,null,null,null],closed:true,playing:false,unfolding:false});elapsed=Infinity;selected=0;dirty=true;});
- o.on(root.querySelector('#light-empty'),'click',()=>{setState({room:custom()?getState().room:'polygon',vertices:[],bends:[],closed:false,playing:false});edit.value='vertices';selected=0;dirty=true;});
- o.on(close,'click',()=>{setState({closed:true});dirty=true;});
- o.on(unfoldButton,'click',()=>{setState({unfolding:!getState().unfolding});dirty=true;});
- o.on(o.cv,'pointerdown',e=>{
-  const ps=o.point(e),p=world(ps),s=getState(),hs=handles(),allowed=h=>h.type==='lamp'||edit.value==='vertices'&&h.type==='vertex'||edit.value==='curves'&&h.type==='bend';
-  const width=o.cv.getBoundingClientRect().width||o.W,hitRadius=22*o.W/width/(o.navigation?.camera.scale||1);
-  let hit=null;hs.forEach((h,i)=>{const q=screen(h.p),d=Math.hypot(q[0]-ps[0],q[1]-ps[1]);if(allowed(h)&&d<hitRadius&&(!hit||d<hit.d))hit={h,i,d};});
-  if(hit){selected=hit.i;drag=hit.h;}else if(custom()&&edit.value==='vertices'){
-   let vertices=s.vertices.map(q=>[...q]),insert=vertices.length;if(!s.closed||vertices.length<3)vertices.push(p);else{const es=boundary(s);let nearest=0,best=Infinity;es.forEach((edge,i)=>{const q=M.pointAt(edge,.5),d=M.norm(q.map((x,k)=>x-p[k]));if(d<best){best=d;nearest=i;}});insert=nearest+1;vertices.splice(insert,0,p);}
-   if(vertices.length<=32){setState({vertices,bends:vertices.map(()=>null)});selected=insert+1;drag={type:'vertex',i:insert,p};}
-  }
-  o.cv.setPointerCapture?.(e.pointerId);e.preventDefault();dirty=true;
- });
- o.on(o.cv,'pointermove',e=>{if(drag)move(drag,world(o.point(e)));});o.on(o.cv,'pointerup',()=>{drag=null;});o.cancelDrag=()=>{drag=null;};
- o.on(o.cv,'keydown',e=>{if(e.shiftKey||e.ctrlKey||e.metaKey)return;const hs=handles();if(e.key.toLowerCase()==='h'){selected=(selected+1)%hs.length;e.preventDefault();dirty=true;return;}if(e.key==='Insert'){addVertex();e.preventDefault();return;}if(['Delete','Backspace'].includes(e.key)){removeVertex();e.preventDefault();return;}const delta={ArrowLeft:[-.1,0],ArrowRight:[.1,0],ArrowUp:[0,-.1],ArrowDown:[0,.1]}[e.key];if(delta){const h=hs[selected]||hs[0];move(h,h.p.map((x,k)=>x+delta[k]));e.preventDefault();}});
- let light=null,lightTried=false,buf=new Float32Array(4096);
- // Beyond SYNC_MAX rays: workers trace chunks of rays, a float density map counts the crossings (device-capability.js decides how far
- // this device may go; the farm stops at its memory ceiling). Chunks stay in room units so a pan or a zoom redraws without retracing.
- let density=null,densityTried=false,farm=null,farmKey='',farmStats=null,farmDone=false,chunks=[],camKey='',presented=0,alive=true;
- const makeWorker=()=>{if(typeof Worker==='function'){try{return moduleWorker(assetHref('./js/illumination-worker.js'));}catch{/* fall back to the page */}}return inlineWorker();};
- const probeWork=()=>{const p=PRESETS.tokarsky;return traceChunk(p.edges,p.source,.1,24,0,24,80).count;};
- capability({kind:'illumination',work:probeWork}).then(r=>{if(!alive)return;device.tier=r.tier;device.limits=r.limits;device.workers=r.workers;device.reasons=r.reasons;device.ready=true;refresh?.();dirty=true;}).catch(()=>{device.ready=true;});
- const rgb=c=>{const m=/^#?([0-9a-f]{6})$/i.exec(c.trim());if(m){const v=parseInt(m[1],16);return [(v>>16)/255,(v>>8&255)/255,(v&255)/255];}const n=(c.match(/[\d.]+/g)||[]).slice(0,3).map(Number);return n.length===3?n.map(x=>x/255):[.9,.2,.2];};
- // One path per ray (a single stroke instead of one per segment); more than 96 rays are drawn as a GPU light map
- function drawRay(points,C,distance){let budget=distance,begun=false;g.beginPath();for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i],L=Math.hypot(a[0]-b[0],a[1]-b[1]);if(budget<=0)break;const t=Math.min(1,budget/L),sa=screen(a),sb=screen([a[0]+t*(b[0]-a[0]),a[1]+t*(b[1]-a[1])]);if(!begun||i===1){g.moveTo(sa[0],sa[1]);begun=true;}g.lineTo(sb[0],sb[1]);budget-=L;}g.globalAlpha=.5;g.strokeStyle=C.accent;g.lineWidth=1.2;g.stroke();g.globalAlpha=1;}
- const affine=()=>{const a=screen([0,0]),bx=screen([1,0]),by=screen([0,1]);return {ox:a[0],oy:a[1],sx:bx[0]-a[0],sy:by[1]-a[1]};};
- const sizeNow=()=>[Math.max(2,Math.round(o.cv.width)),Math.max(2,Math.round(o.cv.height))];
- const roomArea=edges=>{const q=M.flatten(edges);let a=0;for(let i=0;i<q.length;i++){const p=q[i],r=q[(i+1)%q.length];a+=p[0]*r[1]-r[0]*p[1];}return Math.abs(a)/2;};
- function farmText(m){const f=farmStats,n=x=>x.toLocaleString(t('fr-FR','en-GB'));return t(`${n(f.rays)} rayons sur ${n(m.rays)}, ${n(f.segments)} segments ; ${n(f.corners)} arrêt(s) à un coin, ${n(f.tangents)} tangence(s) ; niveau de l’appareil : ${device.tier}.${f.capped?' Limite de mémoire atteinte : le tracé s’arrête là.':farmDone?'':' Calcul en cours…'}`,`${n(f.rays)} of ${n(m.rays)} rays, ${n(f.segments)} segments; ${n(f.corners)} corner stop(s), ${n(f.tangents)} tangencies; device level: ${device.tier}.${f.capped?' Memory limit reached: the trace stops here.':farmDone?'':' Computing…'}`);}
- function drawCrazy(s,m,C){
-  const [w,h]=sizeNow(),cam=o.navigation?.camera||{x:0,y:0,scale:1},world=affine(),interactive=!!drag;
-  const rays=interactive?Math.min(m.rays,3000):m.rays,bounces=Math.min(interactive?Math.min(s.bounces,100):s.bounces,device.limits.bounces);
-  const jobKey=JSON.stringify([s.room,s.sx,s.sy,s.vertices,s.bends,s.closed,s.angle,rays,bounces,w,h,world]),cKey=JSON.stringify([cam.x,cam.y,cam.scale]);
-  if(jobKey!==farmKey){
-   farmKey=jobKey;camKey=cKey;chunks=[];farmStats={rays:0,segments:0,corners:0,tangents:0,escaped:0,limit:0,length:0,capped:false};farmDone=false;
-   if(!density.reset(w,h))return;
-   if(!farm)farm=createFarm({make:makeWorker,workers:Math.max(1,device.workers)});
-   const area=roomArea(m.edges)*Math.abs(world.sx*world.sy),mine=jobKey;
-   farm.run({edges:m.edges,source:m.source,angle:s.angle,rays,bounces,segmentCap:device.limits.segments,
-    onChunk:c=>{if(mine!==farmKey||!alive)return;chunks.push(c.segments);density.add({segments:c.segments,count:c.count,size:[o.W,o.H],world,camera:o.navigation?.camera});
-     for(const k of ['rays','corners','tangents','escaped','limit','length'])farmStats[k]+=c[k];farmStats.segments+=c.count;farmStats.area=area;dirty=true;},
-    onDone:st=>{if(mine!==farmKey||!alive)return;farmStats.capped=st.capped;farmDone=true;dirty=true;}});
-  }else if(cKey!==camKey){   // pan or zoom: the counts are redrawn from the chunks already traced
-   camKey=cKey;if(density.reset(w,h))for(const c of chunks)density.add({segments:c,count:c.length/4,size:[o.W,o.H],world,camera:cam});
-  }
-  // brightness: the mean number of crossings per pixel is the traced length over the area of the room, extrapolated to all the rays
-  const f=farmStats,expected=f.rays?f.length/f.rays*rays*Math.abs(world.sx)/Math.max(1,f.area||1):1,rgbv=rgb(C.accent);
-  const img=density.present({color:rgbv,gain:Math.min(40,Math.max(0.0005,2.2/Math.max(1e-6,expected)))});
-  if(img){g.save();g.setTransform(1,0,0,1,0,0);g.drawImage(img,0,0,o.cv.width,o.cv.height);g.restore();}
- }
- o.animate(dt=>{
-  const s=getState(),next=JSON.stringify(s);if(next!==key){key=next;dirty=true;}
-  if(s.playing&&!stage.reduced()){elapsed+=dt*s.speed;dirty=true;}else if(s.playing&&stage.reduced()){setState({playing:false});elapsed=Infinity;dirty=true;}
-  if(!dirty)return;dirty=false;const C=background(o),m=model(s),customRoom=custom(),hs=handles();
-  edit.closest('label').hidden=!customRoom;close.hidden=!customRoom||s.closed;root.querySelector('#light-empty').hidden=!customRoom;unfoldButton.disabled=m.edges.some(e=>e.type!=='line');unfoldButton.setAttribute('aria-pressed',String(s.unfolding));play.setAttribute('aria-pressed',String(s.playing));play.textContent=s.playing?t('Pause','Pause'):t('Parcourir les rayons','Play rays');
-  const poly=M.flatten(m.edges);path(g,poly.map(screen),{close:s.closed,fill:s.closed?C.surface:null,stroke:C.ink,width:2});
-  const crazy=m.deferred&&m.validation.ok&&m.inRoom&&!s.unfolding;
-  if(crazy&&!densityTried){densityTried=true;density=createDensityMap();if(!density){device.limits=LIMITS.basic;device.tier='basic';device.reasons=['no float GPU buffer'];}}
-  if(crazy&&density&&!density.lost)drawCrazy(s,m,C);
-  if(s.unfolding&&m.paths[0]){const u=M.unfold(m.edges,m.paths[0]);if(u){u.copies.slice(1,9).forEach((p,i)=>path(g,p.map(screen),{close:true,stroke:C.muted,alpha:.5/(1+i*.1),width:1}));drawRay(u.points,C,elapsed);}}
-  else if(crazy&&density&&!density.lost){/* drawn above */}
-  else if(m.paths.length>96){
-   // thousands of rays: a coverage map drawn by the GPU (additive lines), or a thinned set of rays without WebGL
-   if(!lightTried){lightTried=true;light=createLightMap();}
-   let count=0;const need=m.segments*4;if(buf.length<need)buf=new Float32Array(Math.max(need,buf.length*2));
-   for(const p of m.paths){let budget=elapsed;for(let i=1;i<p.points.length&&budget>0;i++){const a=p.points[i-1],b=p.points[i],L=Math.hypot(a[0]-b[0],a[1]-b[1]),k=Math.min(1,budget/L),sa=screen(a),sb=screen([a[0]+k*(b[0]-a[0]),a[1]+k*(b[1]-a[1])]);buf[count*4]=sa[0];buf[count*4+1]=sa[1];buf[count*4+2]=sb[0];buf[count*4+3]=sb[1];count++;budget-=L;}}
-   const img=light&&!light.lost?light.render({width:o.cv.width,height:o.cv.height,size:[o.W,o.H],segments:buf,count,color:rgb(C.accent),strength:Math.min(.3,Math.max(.008,3/m.paths.length)),camera:o.navigation?.camera}):null;
-   if(img){g.save();g.setTransform(1,0,0,1,0,0);g.drawImage(img,0,0,o.cv.width,o.cv.height);g.restore();}
-   else{light=null;const stride=Math.ceil(m.paths.length/96);m.paths.forEach((p,i)=>{if(i%stride===0)drawRay(p.points,C,elapsed);});}
-  }
-  else m.paths.forEach(p=>drawRay(p.points,C,elapsed));
-  const target=PRESETS[s.room].target;if(target)dot(g,screen(target),C.neg,6,'T');
-  if(s.room==='penrose')for(const p of [[-4,-1],[4,-1],[-4,1],[4,1]])dot(g,screen(p),C.muted,3,'F');
-  hs.forEach((h,i)=>{if(h.type==='lamp'||i===selected||customRoom&&(h.type==='vertex'||edit.value==='curves'))dot(g,screen(h.p),i===selected?C.pos:h.type==='lamp'?C.accent:C.obj2,h.type==='lamp'?9:5,h.type==='lamp'?'S':i===selected?String((h.i??0)+1):'');});
-  const warning=crazy&&farmStats?farmText(m):!m.validation.ok?t('Contour invalide ou ouvert : pas de simulation.','Invalid or open boundary: simulation paused.'):!m.inRoom?t('Place la lampe strictement à l’intérieur de la pièce.','Place the lamp strictly inside the room.'):t(`${m.paths.length} rayons, ${m.segments} segments ; ${m.corners} arrêt(s) à un coin, ${m.tangencies} tangence(s).`,`${m.paths.length} rays, ${m.segments} segments; ${m.corners} corner stop(s), ${m.tangencies} tangencies.`);
-  const chosen=hs[selected]||hs[0],name=chosen.type==='lamp'?t('Lampe S','Lamp S'):chosen.type==='vertex'?t('Sommet','Vertex'):t('Courbure','Curvature');
-  o.read(warning+' '+name+' '+fmt.pt(...chosen.p)+'. '+(target?t('T est le point non éclairé depuis la position initiale S selon la construction publiée ; déplacer S retire cette garantie.','T is unilluminated from the initial S according to the published construction; moving S removes that guarantee.'):t('Les traces montrent seulement les directions échantillonnées.','Traces show only sampled directions.')));
- });
- return {handles:[],draw(){dirty=true;o.redraw();},destroy(){alive=false;farm?.destroy();density?.destroy();o.stop();light?.destroy();}};
+ const t=(fr,en)=>fmt.t([fr,en]),root=stage.wrap,lang=t('fr','en'),locale=lang==='fr'?'fr-FR':'en-GB',n=x=>x.toLocaleString(locale,{maximumFractionDigits:2});
+ const b=(id,label,pressed)=>`<button type="button" class="btn btn-secondary" data-act="${id}"${pressed===undefined?'':` aria-pressed="${pressed}"`}>${label}</button>`;
+ root.innerHTML=`<div class="room-lab"><div class="room-lab-bar" role="toolbar" aria-label="${t('Outils de la pièce','Room tools')}">
+  <span class="room-lab-tools" role="radiogroup" aria-label="${t('Outil','Tool')}"><button type="button" role="radio" data-tool="lamp">${t('Lampe','Lamp')}</button><button type="button" role="radio" data-tool="draw">${t('Murs','Walls')}</button><button type="button" role="radio" data-tool="curve">${t('Courber','Curve')}</button></span>
+  ${b('light',t('Lumière','Light'),true)}${b('rays',t('Rayons','Rays'),true)}${b('play',t('Faire voyager les rayons','Send the rays travelling'))}${b('step',t('Un pas','One step'))}${b('lightplay',t('Allumer réflexion par réflexion','Light up reflection by reflection'))}${b('unfold',t('Déplier le premier rayon','Unfold the first ray'),false)}${b('new',t('Nouvelle pièce','New room'))}${b('close',t('Fermer la pièce','Close the room'))}${b('undo',t('Annuler','Undo'))}
+ </div><div class="exh-stage room-lab-stage"><div class="exh-canvas"></div></div>
+ <p class="act-readout" role="status" aria-live="polite" data-status></p><p class="exh-detail" data-detail></p></div>`;
+ const $=s=>root.querySelector(s),$$=s=>[...root.querySelectorAll(s)];
+ let last='';
+ const view=createRoomView($('.exh-canvas'),{t,fmt,get:getState,set:p=>setState(p),reduced:()=>stage.reduced(),onStats:st=>{
+  const s=getState();
+  const status=!st.valid?(st.reason==='crossing'?t('Deux murs se croisent (en rouge) : déplace un sommet.','Two walls cross (in red): move a vertex.'):st.reason==='open'||st.reason==='few'?t('Pièce ouverte : pose au moins trois sommets puis clique sur le premier.','Open room: put down at least three vertices, then click the first one.'):t('Contour invalide : pas de simulation.','Invalid boundary: simulation paused.'))
+   :!st.inRoom?t('Place la lampe strictement à l’intérieur de la pièce.','Place the lamp strictly inside the room.')
+   :st.litShare===null?(st.computing?t('Calcul de la lumière…','Computing the light…'):t(`${st.rays} rayons, ${st.segments} segments ; ${st.corners} arrêt(s) à un coin, ${st.tangencies} tangence(s).`,`${st.rays} rays, ${st.segments} segments; ${st.corners} corner stop(s), ${st.tangencies} tangencies.`))
+   :t(`Sol éclairé ≈ ${n(100*st.litShare)} % après ${st.lightBounces} réflexion(s) ; ${st.patches.length} zone(s) hachurée(s) jamais atteinte(s) dans ce calcul.`,`Lit floor ≈ ${n(100*st.litShare)}% after ${st.lightBounces} reflection(s); ${st.patches.length} hatched zone(s) never reached in this computation.`);
+  if(status!==last&&!st.coarse){last=status;$('[data-status]').textContent=status;}
+  const target=PRESETS[s.room]?.target;
+  $('[data-detail]').textContent=(st.farm?t(`${st.farm.rays} rayons sur ${st.rays}, ${st.farm.segments} segments${st.farm.capped?' ; limite de mémoire atteinte : le tracé s’arrête là.':st.farm.done?'':' ; calcul en cours…'} Niveau de l’appareil : ${st.tier}.`,`${st.farm.rays} of ${st.rays} rays, ${st.farm.segments} segments${st.farm.capped?'; memory limit reached: the trace stops here.':st.farm.done?'':'; computing…'} Device level: ${st.tier}.`):`${st.rays} ${t('rayons','rays')}, ${st.segments} segments.`)+' '+(target?t('T n’est jamais éclairé depuis la position initiale de S (construction publiée) ; déplacer S retire cette garantie.','T is never lit from the initial S (published construction); moving S removes that guarantee.'):t('Une zone hachurée n’est atteinte par aucun rayon calculé : c’est un indice, pas une preuve.','A hatched zone is reached by no computed ray: evidence, not a proof.'));
+  $('[data-act=unfold]').setAttribute('aria-pressed',String(!!s.unfolding));$('[data-act=play]').textContent=s.playing?t('Pause','Pause'):t('Faire voyager les rayons','Send the rays travelling');
+  $('[data-act=close]').hidden=!(st.custom&&!st.closed);$('[data-act=undo]').disabled=!view.canUndo;
+ }});
+ view.onDevice=()=>refresh?.();
+ const tools=$$('[data-tool]');view.onTool=tool=>tools.forEach(x=>{x.setAttribute('aria-checked',String(x.dataset.tool===tool));x.tabIndex=x.dataset.tool===tool?0:-1;});view.onTool('lamp');
+ tools.forEach((x,i)=>{x.addEventListener('click',()=>view.setTool(x.dataset.tool));x.addEventListener('keydown',e=>{const d={ArrowRight:1,ArrowLeft:-1}[e.key];if(d){e.preventDefault();const nb=tools[(i+d+tools.length)%tools.length];view.setTool(nb.dataset.tool);nb.focus();}});});
+ const layer=(name,btn)=>{const on=btn.getAttribute('aria-pressed')!=='true';btn.setAttribute('aria-pressed',String(on));view.setLayer(name,on);};
+ const acts={light:e=>layer('light',e.currentTarget),rays:e=>layer('rays',e.currentTarget),play:()=>view.playRays(),step:()=>view.stepRays(),lightplay:()=>view.playLight(),unfold:()=>setState({unfolding:!getState().unfolding}),new:()=>view.newRoom(),close:()=>view.close(),undo:()=>view.undo()};
+ $$('[data-act]').forEach(x=>x.addEventListener('click',e=>acts[x.dataset.act](e)));
+ void isCustom;void lightBounces;
+ return {handles:[],draw(){view.redraw();},destroy(){view.destroy();}};
 }

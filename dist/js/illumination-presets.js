@@ -13,10 +13,18 @@ export const TOKARSKY=[[0,2],[1,2],[1,3],[2,3],[2,4],[3,3],[4,3],[4,4],[5,3],[6,
 // It is a singular absorbing corner, never a hole filled by the renderer or a route for a ray to pass through.
 export const WOLECKI=[[0,4],[1,3],[2,3],[2,2],[3,2],[3,1],[4,0],[4,1],[5,1],[6,2],[5,2],[5,3],[4,4],[4,3],[3,3],[4,4],[3,4],[3,5],[2,5],[2,6],[1,5],[1,4]];
 export const PENROSE=[line([-4,-1],[-4,-.2]),line([-4,-.2],[-5,-.2]),line([-5,-.2],[-5,-1]),arc([0,-1],5,3,Math.PI,Math.PI),line([5,-1],[5,-.2]),line([5,-.2],[4,-.2]),line([4,-.2],[4,-1]),arc([4,0],.5,1,-Math.PI/2,-Math.PI),line([4,1],[4,.2]),line([4,.2],[5,.2]),line([5,.2],[5,1]),arc([0,1],5,3,0,Math.PI),line([-5,1],[-5,.2]),line([-5,.2],[-4,.2]),line([-4,.2],[-4,1]),arc([-4,0],.5,1,Math.PI/2,-Math.PI)];
+// Ordinary rooms for comparison (the site's own): an L-shaped room (one corner hides part of it from a lamp, until the light is
+// reflected), a five-pointed star and an ellipse (every ray from one focus passes through the other).
+export const LROOM=[[-5,-4],[0,-4],[0,1],[5,1],[5,4],[-5,4]];
+export const STAR=Array.from({length:10},(_,i)=>{const a=-Math.PI/2+i*Math.PI/5,r=i%2?1.9:4.6;return [Math.round(r*Math.cos(a)*1e6)/1e6,Math.round(r*Math.sin(a)*1e6)/1e6];});
+export const ELLIPSE=[0,1,2,3].map(i=>arc([0,0],5,3,i*Math.PI/2,Math.PI/2));   // four quarter arcs (a room has at least three walls)
 export const PRESETS={
- penrose:{edges:PENROSE,source:[0,0],target:null,bounds:[-6,6,-5,5]},
+ penrose:{edges:PENROSE,source:[0,0],target:null,bounds:[-6,6,-5,5],foci:[[-4,-1],[4,-1],[-4,1],[4,1]]},
  tokarsky:{edges:polygonEdges(TOKARSKY),source:[2,2],target:[6,2],bounds:[-1,9,-1,5]},
  wolecki:{edges:polygonEdges(WOLECKI),source:[2,4],target:[4,2],bounds:[-1,7,-1,7]},
+ lroom:{edges:polygonEdges(LROOM),source:[-3,-2],target:null,bounds:[-6,6,-5,5]},
+ star:{edges:polygonEdges(STAR),source:[0,-3.2],target:null,bounds:[-6,6,-5.5,5.5]},
+ ellipse:{edges:ELLIPSE,source:[-4,0],target:null,bounds:[-6,6,-4,4],foci:[[-4,0],[4,0]]},
  polygon:{edges:polygonEdges([[-4,-3],[4,-3],[4,3],[-4,3]]),source:[0,0],target:null,bounds:[-6,6,-5,5]},
  curved:{edges:polygonEdges([[-4,-3],[4,-3],[4,3],[-4,3]]),source:[0,0],target:null,bounds:[-6,6,-5,5]},
 };

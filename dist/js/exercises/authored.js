@@ -13,8 +13,8 @@ export const authored = [
     parts: [
       { w: 1, q: `Exprimer en fonction de ${M('x')} le coût ${M('f(x)')} de la formule A et le coût ${M('g(x)')} de la formule B.`, a: M('f(x)=2x+15\\ \\text{ et }\\ g(x)=3x+5') },
       { w: 1, q: `Quelle formule est la moins chère pour ${M('8')} séances ?`, a: `${M('f(8)=31')} et ${M('g(8)=29')} : la formule B est la moins chère (${M('29\\ \\text{€}')}).` },
-      { w: 2, q: `Résoudre ${M('f(x)=g(x)')}. Interpréter.`, a: `${M('2x+15=3x+5\\iff x=10')} : pour ${M('10')} séances, les deux formules coûtent ${M('35\\ \\text{€}')}.` },
-      { w: 2, q: `Résoudre ${M('f(x)<g(x)')} et conclure.`, a: `${M('2x+15<3x+5\\iff 10<x')} : la formule A est avantageuse à partir de ${M('11')} séances.` },
+      { w: 2, q: `Résoudre ${M('f(x)=g(x)')}. Interpréter.`, hint: 'Regrouper les termes en x d’un même côté, puis diviser par le coefficient de x.', a: `${M('2x+15=3x+5\\iff x=10')} : pour ${M('10')} séances, les deux formules coûtent ${M('35\\ \\text{€}')}.` },
+      { w: 2, q: `Résoudre ${M('f(x)<g(x)')} et conclure.`, hint: 'Même méthode que pour l’équation ; si l’on divise par un nombre négatif, le sens de l’inégalité change.', a: `${M('2x+15<3x+5\\iff 10<x')} : la formule A est avantageuse à partir de ${M('11')} séances.` },
     ],
     ok: () => { const f = (x) => 2 * x + 15, g = (x) => 3 * x + 5; return f(8) === 31 && g(8) === 29 && f(10) === g(10) && f(10) === 35 && f(11) < g(11) && f(9) > g(9); } },
   { id: 'a-sec-soldes', cls: 'seconde', chapters: ['seconde-09'], domain: 'nombres', level: 2, minutes: 12, title: 'Deux remises successives',
@@ -22,7 +22,7 @@ export const authored = [
     parts: [
       { w: 1, q: 'Calculer le prix après la première remise.', a: `${M('80\\times 0{,}70=56\\ \\text{€}')}.` },
       { w: 1, q: 'Calculer le prix final.', a: `${M('56\\times 0{,}80=44{,}80\\ \\text{€}')}.` },
-      { w: 2, q: 'Déterminer le taux d’évolution global.', a: `${M('CM=0{,}70\\times 0{,}80=0{,}56')} donc une baisse de ${M('44\\,\\%')}.` },
+      { w: 2, q: 'Déterminer le taux d’évolution global.', hint: 'Multiplier les deux coefficients multiplicateurs.', a: `${M('CM=0{,}70\\times 0{,}80=0{,}56')} donc une baisse de ${M('44\\,\\%')}.` },
       { w: 2, q: `Un client affirme : « ${M('30\\,\\%')} puis ${M('20\\,\\%')} de remise, cela fait ${M('50\\,\\%')} ». A-t-il raison ? Expliquer.`, a: `Non : les pourcentages ne s’additionnent pas, car la seconde remise porte sur le prix déjà réduit. La baisse globale est ${M('44\\,\\%')}, pas ${M('50\\,\\%')}.` },
     ],
     ok: () => near(80 * 0.7, 56) && near(56 * 0.8, 44.8) && near(0.7 * 0.8, 0.56) && near(80 * 0.5, 40) && 44.8 !== 40 },
@@ -30,7 +30,7 @@ export const authored = [
     intro: `Dans un repère, on donne ${M('A(-2\\,;\\,1)')}, ${M('B(3\\,;\\,3)')} et ${M('C(4\\,;\\,-1)')}.`,
     parts: [
       { w: 1, q: `Calculer les coordonnées de ${M('\\overrightarrow{AB}')}.`, a: M('\\overrightarrow{AB}\\begin{pmatrix}5\\\\2\\end{pmatrix}') },
-      { w: 2, q: `Déterminer les coordonnées du point ${M('D')} tel que ${M('ABCD')} soit un parallélogramme.`, a: `${M('\\overrightarrow{AB}=\\overrightarrow{DC}')} donne ${M('4-x_D=5')} et ${M('-1-y_D=2')}, donc ${M('D(-1\\,;\\,-3)')}.` },
+      { w: 2, q: `Déterminer les coordonnées du point ${M('D')} tel que ${M('ABCD')} soit un parallélogramme.`, hint: `Écrire l’égalité de vecteurs ${M('\\overrightarrow{AB}=\\overrightarrow{DC}')}, en respectant l’ordre des sommets.`, a: `${M('\\overrightarrow{AB}=\\overrightarrow{DC}')} donne ${M('4-x_D=5')} et ${M('-1-y_D=2')}, donc ${M('D(-1\\,;\\,-3)')}.` },
       { w: 2, q: `Vérifier que les diagonales ${M('[AC]')} et ${M('[BD]')} ont le même milieu.`, a: `Milieu de ${M('[AC]')} : ${M('(1\\,;\\,0)')}. Milieu de ${M('[BD]')} : ${M('\\left(\\dfrac{3-1}{2}\\,;\\,\\dfrac{3-3}{2}\\right)=(1\\,;\\,0)')}. Les milieux coïncident.` },
       { w: 2, q: `Déterminer l’équation réduite de la droite ${M('(AB)')}.`, a: `${M('m=\\dfrac{3-1}{3-(-2)}=\\dfrac{2}{5}')} et ${M('1=\\dfrac{2}{5}\\times(-2)+p')} donne ${M('p=\\dfrac{9}{5}')} : ${M('y=\\dfrac{2}{5}x+\\dfrac{9}{5}')}.` },
     ],
@@ -39,7 +39,7 @@ export const authored = [
     intro: 'Une urne contient 3 boules rouges et 2 boules bleues. On tire successivement deux boules sans remise.',
     parts: [
       { w: 2, q: 'Construire l’arbre pondéré de l’expérience.', a: `Premier tirage : ${M('R')} avec ${M('\\dfrac{3}{5}')}, ${M('B')} avec ${M('\\dfrac{2}{5}')}. Après ${M('R')} : ${M('R')} avec ${M('\\dfrac{2}{4}')}, ${M('B')} avec ${M('\\dfrac{2}{4}')}. Après ${M('B')} : ${M('R')} avec ${M('\\dfrac{3}{4}')}, ${M('B')} avec ${M('\\dfrac{1}{4}')}.` },
-      { w: 1, q: 'Calculer la probabilité d’obtenir deux boules rouges.', a: M('P(RR)=\\dfrac{3}{5}\\times\\dfrac{2}{4}=\\dfrac{3}{10}') },
+      { w: 1, q: 'Calculer la probabilité d’obtenir deux boules rouges.', hint: 'Multiplier les probabilités portées par les branches du chemin.', a: M('P(RR)=\\dfrac{3}{5}\\times\\dfrac{2}{4}=\\dfrac{3}{10}') },
       { w: 1, q: 'Calculer la probabilité d’obtenir deux boules bleues.', a: M('P(BB)=\\dfrac{2}{5}\\times\\dfrac{1}{4}=\\dfrac{1}{10}') },
       { w: 2, q: 'En déduire la probabilité d’obtenir deux boules de couleurs différentes.', a: `${M('1-\\dfrac{3}{10}-\\dfrac{1}{10}=\\dfrac{3}{5}')}. Vérification : ${M('2\\times\\dfrac{3}{5}\\times\\dfrac{2}{4}=\\dfrac{3}{5}')}.` },
     ],

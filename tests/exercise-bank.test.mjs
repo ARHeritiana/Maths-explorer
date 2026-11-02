@@ -54,14 +54,16 @@ test('the supply is practically unlimited: distinct questions per generator over
 
 test('seeded problems and fixed exercises: numbers in the correction recomputed', () => {
   assert.ok(authored.length >= 20 && problems.length >= 6);
-  for (const e of authored) { assert.ok(e.ok(), e.id); assert.equal(chapterCourse[e.chapters[0]], e.cls, e.id); for (const p of e.parts) { assert.ok(p.q && p.a && p.w > 0); for (const v of [p.q, p.a, e.intro]) assert.ok(balanced(v), e.id); } }
-  for (const e of problems) {
+  const ids = new Set();
+  for (const e of AUTHORED) { assert.ok(!ids.has(e.id), `duplicate exercise id ${e.id}`); ids.add(e.id); assert.ok(e.chapters.every((c) => chapterCourse[c] === e.cls), `${e.id}: a chapter is not a ${e.cls} chapter`); assert.ok([1, 2, 3].includes(e.level) && e.minutes > 0 && e.title, e.id); }
+  for (const e of AUTHORED.filter((x) => !x.make)) { assert.ok(e.ok(), e.id); for (const p of e.parts) { assert.ok(p.q && p.a && p.w > 0); for (const v of [p.q, p.a, p.hint || '', e.intro]) { assert.ok(balanced(v), e.id); for (const re of SLIPS.filter((r) => !/\^\\\{1/.test(r.source))) assert.ok(!re.test(v), `${e.id} slip ${re}: ${v}`); } } }
+  for (const e of AUTHORED.filter((x) => x.make)) {
     assert.equal(chapterCourse[e.chapters[0]], e.cls);
     const intros = new Set();
     for (let s = 0; s < 300; s++) {
       const x = e.make(rng(`prob|${s}`)), again = e.make(rng(`prob|${s}`));
       assert.deepEqual(x.parts, again.parts); assert.ok(x.ok(), `${e.id} seed ${s}`);
-      for (const text of [x.intro, ...x.parts.flatMap((p) => [p.q, p.a])]) { assert.ok(balanced(text), e.id); for (const re of SLIPS.filter((r) => !/\^\\\{1/.test(r.source))) assert.ok(!re.test(text), `${e.id} slip ${re}: ${text}`); }
+      for (const text of [x.intro, ...x.parts.flatMap((p) => [p.q, p.a, p.hint || ''])]) { assert.ok(balanced(text), e.id); for (const re of SLIPS.filter((r) => !/\^\\\{1/.test(r.source))) assert.ok(!re.test(text), `${e.id} slip ${re}: ${text}`); }
       intros.add(x.intro);
     }
     assert.ok(intros.size >= 40, `${e.id} gives only ${intros.size} distinct versions`);
@@ -74,6 +76,20 @@ test('all five priority classes have generators, chapters and written exercises'
     assert.ok(chaptersOf(c.id).length >= 5, c.id);
     assert.ok(AUTHORED.filter((e) => e.cls === c.id).length >= 3, c.id);
     assert.ok(templatesFor(c.id).some((t) => t.fast));
+  }
+});
+
+// Coverage of a finished class in the online bank: every chapter has at least six worked exercises shown (a seeded
+// problem replaces a fixed exercise of the same title), all three levels, and at least four generators. Add a class
+// to FINISHED when its bank is complete (Seconde: 2 November 2026).
+const FINISHED = ['seconde'];
+test('finished classes: six worked exercises over three levels and four generators in every chapter', () => {
+  for (const cls of FINISHED) for (const c of manifest.catalog.chapters.filter((x) => x.course === cls && x.number > 0)) {
+    const all = AUTHORED.filter((e) => e.chapters.includes(c.id)), shown = all.filter((e) => e.make || !all.some((x) => x.make && x.title === e.title));
+    assert.ok(shown.length >= 6, `${c.id}: ${shown.length} worked exercises`);
+    assert.deepEqual([1, 2, 3].filter((l) => shown.some((e) => e.level === l)), [1, 2, 3], `${c.id}: a level is missing`);
+    assert.ok(TEMPLATES.filter((t) => t.chapter === c.id).length >= 4, `${c.id}: fewer than four generators`);
+    assert.ok(shown.every((e) => (e.make ? e.make(rng('cov')) : e).parts.some((p) => p.hint)), `${c.id}: an exercise without any hint`);
   }
 });
 

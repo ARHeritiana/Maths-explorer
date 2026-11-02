@@ -70,7 +70,7 @@ Optional `presentationControls` adds an experiment's parameter controls to the s
 
 `experiments/inference.js` registers secretary, tank, Benford, baker, birthday and Monty missions. `templates/inference.js` renders native interactive cards/doors and accessible frequency tables with the shared shell lifecycle; mathematical models remain in `models/inference.js`.
 
-`experiments/illumination.js`, `templates/illumination.js`: guided mirrored rooms and one retained direct editor, shared with gallery; analytic boundaries and finite-ray limitations.
+`experiments/illumination.js`, `templates/illumination.js`: guided mirrored rooms (state, missions, rays up to the device ceiling); the template is a toolbar around `../illumination-view.js`, the canvas shared with the gallery exhibit (lit floor, dark patches, rays, room editor); analytic boundaries and finite-ray limitations.
 
 `models/topology.js`: tangent fields on S²/S¹, Möbius and figure-eight Klein parametrizations, quotient-cell computations of components, boundaries, Euler characteristic and orientability, and finite free-word reduction.
 `experiments/topology.js`: `hairy-ball`, `nonorientable-surfaces` and the explicitly finite `banach-tarski-model`, using the shared space/figure templates.

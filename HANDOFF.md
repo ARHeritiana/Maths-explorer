@@ -49,6 +49,15 @@ Owner requests: fewer inner scroll boxes, no one-shot menus, use large screens, 
 1. Bank content: every chapter of the five French classes needs at least six worked exercises (about 33 exist, many chapters
    have none) and four generators (one or two today); T10 and T11 S: extract the exercises and solutions of
    `content/tex/mada/` (about 550 exercises, 218 solutions) into `bank-mada.js`; same for STMG and maths expertes TeX.
+   **Seconde done (2 November 2026, class 1 of 7, supervised one class at a time):** every chapter seconde-01 to 15 has at least
+   six worked exercises shown in `#bank` (levels 1 to 3, hints, full corrections; 7 to 14 per chapter, shared synthesis problems
+   counted in each chapter they list) and at least four generators (4 to 6). New files: `templates-seconde-2.js`, `-3.js` (49
+   generators), `seconde-kit.js`, `authored-seconde.js` (23 fixed), `problems-seconde.js`, `problems-seconde-2.js` (59 seeded);
+   hints added to the four older Seconde exercises; `s-prime-factors`, `s-expand`, `s-factor`, `s-percent` widened (ratchet
+   49 to 42 small pairs, 363 pairs). `tests/exercise-bank.test.mjs` `FINISHED` checks the class. Bank page text now goes through
+   `html()` (a `<` in maths, as in f(x)<g(x), was eaten as a tag). Counts per chapter (shown / generators): 01 8/5, 02 9/5,
+   03 9/5, 04 10/4, 05 7/4, 06 9/4, 07 7/4, 08 14/6, 09 8/4, 10 9/4, 11 7/4, 12 9/4 (four primary), 13 8/4, 14 8/4, 15 7/4.
+   Next class: Première spécialité (waiting for the coordinator).
 2. Starters and worksheets: more generators per chapter (feeds both pages and the bank's quick practice).
 3. Gallery redesign after the owner's references https://missionmaths.fr/animations/mandelbrot.html and
    https://missionmaths.fr/decouvertes.html (ideas only, never their code or assets): stage first and large, with title,

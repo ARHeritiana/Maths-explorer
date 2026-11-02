@@ -17,8 +17,8 @@ export const problems = [
         parts: [
           { w: 1, q: `Exprimer en fonction de ${M('x')} le coût ${M('f(x)')} de la formule A et le coût ${M('g(x)')} de la formule B.`, a: M(`f(x)=${polyTex([pa, a0])}\\ \\text{ et }\\ g(x)=${polyTex([pb, b0])}`) },
           { w: 1, q: `Quelle formule est la moins chère pour ${M(k)} séances ?`, a: `${M(`f(${k})=${f(k)}`)} et ${M(`g(${k})=${g(k)}`)} : la formule ${cheap} est la moins chère.` },
-          { w: 2, q: `Résoudre ${M('f(x)=g(x)')}. Interpréter.`, a: `${M(`${polyTex([pa, a0])}=${polyTex([pb, b0])}\\iff x=${n0}`)} : pour ${M(n0)} séances, les deux formules coûtent ${M(`${f(n0)}\\ \\text{€}`)}.` },
-          { w: 2, q: `Résoudre ${M('f(x)<g(x)')} et conclure.`, a: `${M(`${polyTex([pa, a0])}<${polyTex([pb, b0])}\\iff ${n0}<x`)} : la formule A est avantageuse à partir de ${M(n0 + 1)} séances.` },
+          { w: 2, q: `Résoudre ${M('f(x)=g(x)')}. Interpréter.`, hint: 'Regrouper les termes en x d’un même côté, puis diviser par le coefficient de x.', a: `${M(`${polyTex([pa, a0])}=${polyTex([pb, b0])}\\iff x=${n0}`)} : pour ${M(n0)} séances, les deux formules coûtent ${M(`${f(n0)}\\ \\text{€}`)}.` },
+          { w: 2, q: `Résoudre ${M('f(x)<g(x)')} et conclure.`, hint: 'Même méthode que pour l’équation ; si l’on divise par un nombre négatif, le sens de l’inégalité change.', a: `${M(`${polyTex([pa, a0])}<${polyTex([pb, b0])}\\iff ${n0}<x`)} : la formule A est avantageuse à partir de ${M(n0 + 1)} séances.` },
         ],
         ok: () => f(n0) === g(n0) && f(n0 + 1) < g(n0 + 1) && f(n0 - 1) > g(n0 - 1) && (f(k) < g(k)) === (cheap === 'A') && a0 > b0 && pa < pb };
     } },
@@ -30,7 +30,7 @@ export const problems = [
         parts: [
           { w: 1, q: 'Calculer le prix après la première remise.', a: M(`${p}\\times ${numTex(c1)}=${numTex(p1)}\\ \\text{€}`) },
           { w: 1, q: 'Calculer le prix final.', a: M(`${numTex(p1)}\\times ${numTex(c2)}=${numTex(p2)}\\ \\text{€}`) },
-          { w: 2, q: 'Déterminer le taux d’évolution global.', a: `${M(`CM=${numTex(c1)}\\times ${numTex(c2)}=${numTex(cm)}`)} donc une baisse de ${M(`${numTex(loss)}\\,\\%`)}.` },
+          { w: 2, q: 'Déterminer le taux d’évolution global.', hint: 'Multiplier les deux coefficients multiplicateurs.', a: `${M(`CM=${numTex(c1)}\\times ${numTex(c2)}=${numTex(cm)}`)} donc une baisse de ${M(`${numTex(loss)}\\,\\%`)}.` },
           { w: 2, q: `Un client affirme : « ${t1} % puis ${t2} % de remise, cela fait ${t1 + t2} % ». A-t-il raison ? Expliquer.`, a: `Non : les pourcentages ne s’additionnent pas, car la seconde remise porte sur le prix déjà réduit. La baisse globale est ${M(`${numTex(loss)}\\,\\%`)}, pas ${M(`${t1 + t2}\\,\\%`)}.` },
         ],
         ok: () => near(val(p2), p * (1 - t1 / 100) * (1 - t2 / 100)) && near(val(loss), 100 - 100 * (1 - t1 / 100) * (1 - t2 / 100)) && val(loss) !== t1 + t2 };
@@ -183,7 +183,7 @@ export const problems = [
       return { intro: `Dans un repère orthonormé, on considère les points ${M(pt('A', A))}, ${M(pt('B', B))} et ${M(pt('C', C))}.`,
         parts: [
           { w: 1, q: `Calculer les coordonnées du vecteur ${M('\\overrightarrow{AB}')}.`, a: M(`\\overrightarrow{AB}\\begin{pmatrix}${p}\\\\${q}\\end{pmatrix}`) },
-          { w: 2, q: `Déterminer les coordonnées du point ${M('D')} tel que ${M('ABCD')} soit un parallélogramme.`, a: `${M('ABCD')} est un parallélogramme si ${M('\\overrightarrow{DC}=\\overrightarrow{AB}')}, soit ${M(`x_{D}=${C[0]}-${par(p)}=${D[0]}`)} et ${M(`y_{D}=${C[1]}-${par(q)}=${D[1]}`)} : ${M(pt('D', D))}.` },
+          { w: 2, q: `Déterminer les coordonnées du point ${M('D')} tel que ${M('ABCD')} soit un parallélogramme.`, hint: `Écrire l’égalité de vecteurs ${M('\\overrightarrow{DC}=\\overrightarrow{AB}')}, en respectant l’ordre des sommets.`, a: `${M('ABCD')} est un parallélogramme si ${M('\\overrightarrow{DC}=\\overrightarrow{AB}')}, soit ${M(`x_{D}=${C[0]}-${par(p)}=${D[0]}`)} et ${M(`y_{D}=${C[1]}-${par(q)}=${D[1]}`)} : ${M(pt('D', D))}.` },
           { w: 1, q: `Calculer les coordonnées du centre ${M('I')} du parallélogramme.`, a: `${M('I')} est le milieu de ${M('[AC]')} : ${M(`I(${I.map(numTex).join('\\,;\\,')})`)}.` },
           { w: 2, q: `Calculer les longueurs ${M('AC')} et ${M('BD')}. Le parallélogramme ${M('ABCD')} est-il un rectangle ?`, a: `${M(`AC=\\sqrt{${ac2}}${sqrtTex(ac2) === `\\sqrt{${ac2}}` ? '' : `=${sqrtTex(ac2)}`}`)} et ${M(`BD=\\sqrt{${bd2}}${sqrtTex(bd2) === `\\sqrt{${bd2}}` ? '' : `=${sqrtTex(bd2)}`}`)}. ${ac2 === bd2 ? 'Les diagonales ont la même longueur : c’est un rectangle.' : 'Les diagonales n’ont pas la même longueur : ce n’est pas un rectangle.'}` },
         ],

@@ -126,3 +126,4 @@ export function createDensityMap(makeCanvas = () => document.createElement('canv
   };
   return api;
 }
+

@@ -8,6 +8,7 @@ import { AUTHORED, TEMPLATES, instance } from './exercises/bank.js';
 import { MADA } from './exercises/bank-mada.js';
 import { rng } from './exercises/engine.js';
 import { typeset, printMarkup } from './exercises/ui-kit.js';
+import { html as H } from './exercises/export.js';
 import { icon } from './icons.js';
 
 const P = (fr, en) => [fr, en];
@@ -28,16 +29,16 @@ function exerciseCard(e, k, seed, t) {
   const body = e.make ? e.make(rng(`${seed}|${e.id}`)) : e;
   const parts = body.parts || [];
   return `<article class="bank-ex" id="ex-${E(e.id)}" data-ex="${E(e.id)}"><header class="bank-ex-head"><span class="bank-no">${k}</span><div><h3>${E(e.title)}</h3><p class="bank-meta">${stars(e.level)} ${t(LEVEL[e.level])} · ${e.minutes || 10} min${e.make ? ` · ${t(P('valeurs tirées au hasard', 'random values'))}` : ''}${e.source ? ` · ${E(e.source)}` : ''}</p></div>${e.make ? `<button type="button" class="bank-renew" data-renew="${E(e.id)}">${icon('arrows-clockwise', 16)}${t(P('Nouvelles valeurs', 'New values'))}</button>` : ''}</header>
-  <div class="bank-intro">${body.intro || ''}</div>
-  ${parts.length ? `<ol class="bank-parts">${parts.map((p) => `<li><div class="bank-q">${p.q}</div>${p.hint ? `<details class="bank-hint"><summary>${t(P('Indice', 'Hint'))}</summary><div>${p.hint}</div></details>` : ''}<details class="bank-sol"><summary>${t(P('Correction', 'Solution'))}</summary><div>${p.a}</div></details></li>`).join('')}</ol>` : ''}
-  ${body.solution ? `<details class="bank-sol"><summary>${t(P('Correction', 'Solution'))}</summary><div>${body.solution}</div></details>` : ''}</article>`;
+  <div class="bank-intro">${H(body.intro || '')}</div>
+  ${parts.length ? `<ol class="bank-parts">${parts.map((p) => `<li><div class="bank-q">${H(p.q)}</div>${p.hint ? `<details class="bank-hint"><summary>${t(P('Indice', 'Hint'))}</summary><div>${H(p.hint)}</div></details>` : ''}<details class="bank-sol"><summary>${t(P('Correction', 'Solution'))}</summary><div>${H(p.a)}</div></details></li>`).join('')}</ol>` : ''}
+  ${body.solution ? `<details class="bank-sol"><summary>${t(P('Correction', 'Solution'))}</summary><div>${H(body.solution)}</div></details>` : ''}</article>`;
 }
 function quickSeries(chapter, seed, t) {
   const gens = generatorsOf(chapter);
   if (!gens.length) return '';
   const r = rng(`${seed}|quick|${chapter}`), items = [];
   for (let i = 0; i < 8; i++) { const g = gens[i % gens.length], level = 1 + Math.floor((i * 3) / 8); items.push(instance(g, level, `${seed}-${i}-${r.int(1, 1e6)}`)); }
-  return `<section class="bank-quick" aria-labelledby="bank-quick-title"><div class="bank-section-head"><h2 id="bank-quick-title">${t(P('Entraînement express', 'Quick practice'))}</h2><button type="button" class="bank-renew" data-quick>${icon('arrows-clockwise', 16)}${t(P('Nouvelle série', 'New series'))}</button></div><p class="group-note">${t(P('Huit questions courtes, de la routine à l’exigeant. Les nombres changent à chaque série.', 'Eight short questions, from routine to demanding. The numbers change with every series.'))}</p><ol class="bank-quick-list">${items.map((x) => `<li><div class="bank-q">${x.q}</div><details class="bank-sol"><summary>${t(P('Réponse', 'Answer'))}</summary><div>${x.a}${x.s ? `<p>${x.s}</p>` : ''}</div></details></li>`).join('')}</ol></section>`;
+  return `<section class="bank-quick" aria-labelledby="bank-quick-title"><div class="bank-section-head"><h2 id="bank-quick-title">${t(P('Entraînement express', 'Quick practice'))}</h2><button type="button" class="bank-renew" data-quick>${icon('arrows-clockwise', 16)}${t(P('Nouvelle série', 'New series'))}</button></div><p class="group-note">${t(P('Huit questions courtes, de la routine à l’exigeant. Les nombres changent à chaque série.', 'Eight short questions, from routine to demanding. The numbers change with every series.'))}</p><ol class="bank-quick-list">${items.map((x) => `<li><div class="bank-q">${H(x.q)}</div><details class="bank-sol"><summary>${t(P('Réponse', 'Answer'))}</summary><div>${H(x.a)}${x.s ? `<p>${H(x.s)}</p>` : ''}</div></details></li>`).join('')}</ol></section>`;
 }
 function rail(course, t) {
   const pick = (c) => `<li><a class="pw-pick" href="#bank/${c.id}" ${c.id === course ? 'aria-current="page" aria-pressed="true"' : 'aria-pressed="false"'}><span>${E(t(SHORT[c.id] || c.title))}</span><small>${chaptersOf(c.id).reduce((a, ch) => a + bankCount(ch.id), 0)}</small></a></li>`;
