@@ -73,6 +73,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `verify-arithmetic.py`, `verify-quadratic.py` | independent maths checks of two courses |
 
 | `gallery-render.test.mjs` | GPU Mandelbrot reference orbit, soap frame handles, sofa contact test with cached samples |
+| `gallery-card-art.test.mjs` | every curiosity card has an illustration registered |
 | `gallery-discovery.test.mjs` | independent Voronoi, cycloid, film-area, hat and knot-invariant checks |
 | `gallery-discovery-dom.test.mjs` | five exhibits, live inputs, bilingual readouts and lifecycle cleanup |
 

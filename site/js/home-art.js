@@ -6,7 +6,8 @@ import {voronoiCells,cycloid,descentTrack,pointAtTime} from './gallery/gallery-m
 import {neighbours,colourWith} from './gallery/gallery-four-colour-model.js';
 import {drawKnotStrand} from './gallery/gallery-knot-render.js';
 import {spaceKnot} from './gallery/gallery-knot-model.js';
-import {previewMesh as gombocMesh} from './gomboc-body.js';
+import {makeSupportBody} from './gomboc-support.js';
+import {VISIBLE_TERMS} from './gomboc-support-data.js';
 import {cam3Project} from './camera3d.js';
 import {makeFamilyPatch} from './gallery/gallery-hat-model.js';
 import {presetSet,step,coords} from './gallery/gallery-life-model.js';
@@ -15,6 +16,9 @@ import {hammersley,hammersleyPose,HAMMERSLEY_R,place} from './gallery/gallery-so
 import {curve,PRESETS as CURVES,inscribed} from './gallery/gallery-inscribed-model.js';
 import {BARRIERS,lineAt} from './gallery/gallery-opaque-model.js';
 import {preset as eqPreset,buildChain as eqChain,frame as eqFrame} from './gallery/gallery-equidecomposition-model.js';
+
+import {PENROSE} from './illumination-presets.js';
+import {flatten as roomOutline, trace as traceRoom} from './illumination-model.js';
 
 const TAU = Math.PI * 2;
 const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || "#888";
@@ -260,8 +264,135 @@ function equidecompositionArt(cv, opts) {
     eqFrame(CH, T).pieces.forEach((pc) => { g.beginPath(); pc.poly.map(X).forEach((p, i) => i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1])); g.closePath(); g.globalAlpha = 0.75; g.fillStyle = C.c[pc.colour]; g.fill(); g.globalAlpha = 1; g.strokeStyle = C.ink; g.lineWidth = 1; g.stroke(); });
   }, { reduced: opts.reduced, still: 1.2 });
 }
-function gombocArt(cv,opts){const mesh=gombocMesh(1500);return runner(cv,(g,W,H,time,C)=>{const k=Math.min(W,H)*.36,points=mesh.vertices.map(p=>{const q=cam3Project(-.7+time*.15,.55,...p);return [W/2+q.u*k,H/2-q.v*k,q.d];});const faces=mesh.quads.map(ids=>ids.map(i=>points[i])).sort((a,b)=>b.reduce((s,p)=>s+p[2],0)-a.reduce((s,p)=>s+p[2],0));for(const p of faces){g.beginPath();p.forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.closePath();g.globalAlpha=.65;g.fillStyle=C.accent;g.fill();g.strokeStyle=C.line;g.lineWidth=.6;g.stroke();}g.globalAlpha=1;},{reduced:opts.reduced,still:0});}
+// The exhibit's visibly shaped support-function body, without exaggerated geometry.
+// Cache the mesh; opaque lit faces reveal its silhouette without a distracting wire grid.
+let cardGombocMesh;
+function gombocArt(cv, opts) {
+  const m = cardGombocMesh ||= makeSupportBody(VISIBLE_TERMS).buildMesh(64, 32);
+  return runner(cv, (g,W,H,t,C) => {
+    const yaw = -.9 + .12*Math.sin(t*.3), pitch = .28;
+    const pts = Array.from({length:m.vertices}, (_,i) => cam3Project(yaw,pitch,...m.pos.slice(i*3,i*3+3)));
+    const xs=pts.map(p=>p.u), ys=pts.map(p=>p.v), lo=Math.min(...xs), hi=Math.max(...xs), bottom=Math.min(...ys), top=Math.max(...ys);
+    const k=Math.min(W*.66/(hi-lo),H*.74/(top-bottom)), cx=(lo+hi)/2,cy=(bottom+top)/2;
+    g.fillStyle=C.ink; g.globalAlpha=.08;g.beginPath();g.ellipse(W/2,H*.88,W*.24,H*.025,0,0,TAU);g.fill();g.globalAlpha=1;
+    const faces=[];
+    for(let i=0;i<m.indices.length;i+=3){const ids=Array.from(m.indices.slice(i,i+3));faces.push({ids,d:ids.reduce((v,j)=>v+pts[j].d,0)});}
+    faces.sort((a,b)=>b.d-a.d);
+    for(const {ids} of faces){
+      const n=ids.map(j=>Array.from(m.normals.slice(j*3,j*3+3))).reduce((a,b)=>a.map((v,i)=>v+b[i]),[0,0,0]);
+      const q=cam3Project(yaw,pitch,...n),len=Math.hypot(q.u,q.v,q.d),light=Math.max(0,(-q.u*.35+q.v*.55-q.d*.75)/len);
+      const shade=26+light*48;
+      g.fillStyle=`hsl(18 54% ${shade}%)`;g.strokeStyle=g.fillStyle;g.lineWidth=.6;
+      g.beginPath();ids.forEach((j,i)=>{const p=pts[j],x=W/2+(p.u-cx)*k,y=H*.47-(p.v-cy)*k;i?g.lineTo(x,y):g.moveTo(x,y);});g.closePath();g.fill();g.stroke();
+    }
+  },{reduced:opts.reduced,still:0});
+}
+
+// The exact Penrose boundary and its reflected paths are shared with the exhibit.
+let penroseCard;
+function penrosePreview() {
+  return penroseCard ||= {
+    outline: roomOutline(PENROSE, 72),
+    rays: Array.from({length:480},(_,i)=>{
+      const a=(i+.5)*TAU/480;
+      return traceRoom(PENROSE,[0,0],[Math.cos(a),Math.sin(a)],12).points;
+    })
+  };
+}
+
+// Illustrated miniatures: common line weight and palette, with recognizable subject matter.
+function subjectArt(kind, cv, opts) {
+  return runner(cv,(g,W,H,t,C)=>{
+    const s=Math.min(W/240,H/140), X=x=>W/2+(x-120)*s,Y=y=>H/2+(y-70)*s;
+    const ink=C.ink, accent=C.accent, blue=C.c[0],gold=C.c[1];
+    g.lineCap='round';g.lineJoin='round';
+    const path=(pts,color=ink,width=2,fill=null)=>{g.beginPath();pts.forEach(([x,y],i)=>i?g.lineTo(X(x),Y(y)):g.moveTo(X(x),Y(y)));if(fill){g.closePath();g.fillStyle=fill;g.fill();}g.strokeStyle=color;g.lineWidth=width*s;g.stroke();};
+    const ellipse=(x,y,rx,ry,fill,color=ink,width=1.5)=>{g.beginPath();g.ellipse(X(x),Y(y),rx*s,ry*s,0,0,TAU);if(fill){g.fillStyle=fill;g.fill();}if(color){g.strokeStyle=color;g.lineWidth=width*s;g.stroke();}};
+    const rect=(x,y,w,h,fill,color=ink)=>{path([[x,y],[x+w,y],[x+w,y+h],[x,y+h]],color,1.5,fill);};
+    const text=(v,x,y,size=13,color=ink)=>{g.font=`600 ${size*s}px sans-serif`;g.textAlign='center';g.textBaseline='middle';g.fillStyle=color;g.fillText(v,X(x),Y(y));};
+    const arrow=(a,b,color=accent)=>{path([a,b],color,2);const angle=Math.atan2(b[1]-a[1],b[0]-a[0]);path([[b[0]-7*Math.cos(angle-.5),b[1]-7*Math.sin(angle-.5)],b,[b[0]-7*Math.cos(angle+.5),b[1]-7*Math.sin(angle+.5)]],color,2);};
+    const floor=()=>{g.globalAlpha=.13;ellipse(120,117,88,5,ink,null);g.globalAlpha=1;};
+    const sphere=(x,y,r,color)=>{const grad=g.createRadialGradient(X(x-r*.35),Y(y-r*.4),r*.05*s,X(x),Y(y),r*s);grad.addColorStop(0,C.surface);grad.addColorStop(.35,color);grad.addColorStop(1,ink);ellipse(x,y,r,r,grad,null);};
+    if(kind==='monty-gallery'){
+      floor();[34,99,164].forEach((x,i)=>{rect(x,26,43,85,C.surface);rect(x+4,30,35,77,i===1?gold:blue);ellipse(x+31,71,2,2,ink,null);text(String(i+1),x+21,43,10);});
+      // Open the middle door to reveal a little car.
+      rect(103,55,35,52,C.surface);path([[104,55],[117,61],[117,107],[104,107]],ink,1.5,gold);
+      path([[122,81],[125,73],[133,73],[136,81]],ink,1.5,accent);rect(120,81,18,8,accent);ellipse(124,90,2.5,2.5,ink,null);ellipse(134,90,2.5,2.5,ink,null);
+      arrow([55,19],[183,19]);
+    }else if(kind==='birthdays-gallery'){
+      floor();rect(59,26,122,91,C.surface);rect(59,26,122,22,accent);[80,160].forEach(x=>path([[x,20],[x,33]],ink,4));
+      for(let i=0;i<5;i++)for(let j=0;j<3;j++){const x=73+i*24,y=61+j*22,match=(i===1&&j===0)||(i===4&&j===2);if(match)ellipse(x,y,10,10,gold,null);text(match?'7':String(1+i+5*j),x,y,11);}
+      path([[97,61],[126,83],[169,105]],accent,1.5);
+    }else if(kind==='benford-gallery'){
+      path([[29,112],[215,112]],C.line,1);for(let i=1;i<=9;i++){let h=83*Math.log10(1+1/i)/Math.log10(2);rect(25+i*19,111-h,12,h,i===1?accent:blue,null);text(String(i),31+i*19,124,10);}
+      text('30.1%',50,17,12,accent);
+    }else if(kind==='secretary-gallery'){
+      const heights=[20,40,27,54,38,71];floor();for(let i=0;i<6;i++){const x=37+i*32,h=heights[i];rect(x-9,109-h,18,h,i===5?accent:C.surface);ellipse(x,99-h,6,6,i===5?accent:blue,null);}
+      g.setLineDash([4*s,4*s]);path([[128,21],[128,115]],C.line,1);g.setLineDash([]);text('1/e',90,22,17);arrow([149,28],[197,28]);
+    }else if(kind==='tank-gallery'){
+      floor();[43,91,139,187].forEach((x,i)=>{path([[x-15,49],[x+17,49],[x+20,85],[x-18,85]],ink,1.5,i===2?gold:C.surface);ellipse(x-17,62,2,2,ink,null);text(['12','38','68','?'][i],x,69,16);});
+      path([[27,37],[27,28],[206,28],[206,37]],C.line,1.5);text('N?',120,111,18,accent);
+    }else if(kind==='baker-gallery'){
+      floor();
+      // Traditional balance, with a loaf on the left and a cast-metal mass on the right.
+      path([[100,109],[120,96],[140,109]],ink,1.5,gold);
+      path([[120,101],[120,37]],ink,3);
+      path([[62,49],[176,49]],ink,2.5);
+      ellipse(120,49,4,4,gold);
+      [65,175].forEach(x=>{
+        path([[x,50],[x-24,91]],C.line,1.2);
+        path([[x,50],[x+24,91]],C.line,1.2);
+        path([[x-25,91],[x-17,97],[x+17,97],[x+25,91]],ink,1.5,gold);
+      });
+      ellipse(65,84,19,10,gold);
+      for(let k=-1;k<=1;k++)path([[62+k*9,78],[67+k*9,85]],ink,1.3);
+      // Rounded handle with a clear hole, sloping shoulders and an engraved mass.
+      ellipse(175,65,6,6,C.surface,ink,2.5);
+      path([[165,72],[185,72],[191,90],[159,90]],ink,1.5,blue);
+      path([[165,72],[185,72],[181,76],[169,76]],ink,.8,C.surface);
+      text('1 kg',175,84,9,C.surface);
+    }else if(kind==='fair-division-gallery'){
+      floor();ellipse(120,95,52,16,gold);rect(68,70,104,24,gold,null);ellipse(120,70,52,17,C.surface);for(const a of [-Math.PI/2,Math.PI/6,5*Math.PI/6])path([[120,70],[120+51*Math.cos(a),70+17*Math.sin(a)]],accent,2);[[95,63],[145,67],[117,79]].forEach(([x,y])=>ellipse(x,y,4,2.5,accent,null));
+    }else if(kind==='fair-goods-gallery'){
+      floor();[58,182].forEach((x,i)=>{ellipse(x,37,10,10,i?accent:blue,null);path([[x-18,68],[x-12,53],[x+12,53],[x+18,68]],ink,1.5,C.surface);});
+      path([[38,96],[79,96],[73,113],[43,113],[38,96]],ink,1.5);path([[161,96],[202,96],[196,113],[166,113],[161,96]],ink,1.5);
+      rect(105,55,27,30,gold);path([[118,55],[118,85],[105,65],[132,65]],ink,1);arrow([103,91],[77,91],blue);arrow([139,91],[164,91]);
+    }else if(kind==='hairy-ball-gallery'){
+      sphere(120,70,47,blue);for(let j=-2;j<=2;j++)for(let i=-2;i<=2;i++){const r=Math.hypot(i,j);if(r<.5||r>2.6)continue;const x=120+i*15,y=70+j*15,a=Math.atan2(j,i)+Math.PI/2;arrow([x,y],[x+8*Math.cos(a),y+8*Math.sin(a)],C.surface);}ellipse(120,70,4,4,accent,C.surface);
+    }else if(kind==='nonorientable-surfaces-gallery'){
+      // A half-twisted ribbon: draw its rear half before its front half.
+      const strips=[];for(let i=0;i<120;i++){let a=i*TAU/120,b=(i+1)*TAU/120;const point=(u,v)=>{const r=49+v*Math.cos(u/2);const q=cam3Project(.25,.5,r*Math.cos(u),r*Math.sin(u),v*Math.sin(u/2));return [120+q.u*1.3,70-q.v*1.3];};strips.push({d:Math.sin(a),p:[point(a,-12),point(b,-12),point(b,12),point(a,12)],c:Math.cos(a/2)>0?blue:gold});}strips.sort((a,b)=>a.d-b.d);for(const q of strips)path(q.p,q.c,1,q.c);
+    }else if(kind==='banach-tarski-gallery'){
+      sphere(54,72,28,blue);sphere(174,45,25,blue);sphere(174,102,25,blue);arrow([91,72],[132,72]);path([[132,72],[140,45]],accent);path([[132,72],[140,102]],accent);
+    }else if(kind==='double-pendulum-gallery'){
+      floor();const draw=(a,b,color)=>{const p=[113+39*Math.sin(a),23+39*Math.cos(a)],q=[p[0]+43*Math.sin(b),p[1]+43*Math.cos(b)];path([[113,23],p,q],color,2.5);ellipse(...p,6,6,color,null);ellipse(...q,8,8,color,null);};g.globalAlpha=.2;draw(.75,-.2,blue);draw(.9,.05,blue);g.globalAlpha=1;draw(.65+.1*Math.sin(t*.5),-.6+.15*Math.sin(t*.7),accent);path([[94,21],[132,21]],ink,3);
+    }else if(kind==='three-body-gallery'){
+      const orbit=(phase,n=100)=>Array.from({length:n+1},(_,i)=>{let a=i*TAU/n+phase;return [120+75*Math.sin(a),70+34*Math.sin(2*a)];});path(orbit(0),C.line,1.4);for(let i=0;i<3;i++){let a=t*.25+i*TAU/3;sphere(120+75*Math.sin(a),70+34*Math.sin(2*a),7+i*2,[blue,gold,accent][i]);}
+    }else if(kind==='logistic-gallery'){
+      // Bifurcation diagram of x -> r*x*(1-x), computed, not decorative noise.
+      g.fillStyle=accent;for(let i=0;i<160;i++){let r=2.8+1.2*i/159,x=.37;for(let k=0;k<180;k++)x=r*x*(1-x);for(let k=0;k<32;k++){x=r*x*(1-x);g.fillRect(X(30+i*1.13),Y(114-x*90),s,s);}}path([[27,20],[27,117],[216,117]],C.line,1);
+    }else if(kind==='mirrored-rooms'){
+      const room=penrosePreview(), map=([x,y])=>[120+x*17,70+y*12];
+      const outline=room.outline.map(map);
+      // Dark mirror chamber: rays leave the recessed end pockets unlit.
+      path(outline,'#53657b',1.8,'#111b2d');
+      g.save();g.beginPath();outline.forEach(([x,y],i)=>i?g.lineTo(X(x),Y(y)):g.moveTo(X(x),Y(y)));g.closePath();g.clip();
+      g.globalAlpha=.035;
+      for(const ray of room.rays)path(ray.map(map),'#f2bf60',1.1);
+      g.globalAlpha=.75;
+      for(const index of [17,161,257,401])path(room.rays[index].slice(0,5).map(map),'#ffd781',.8);
+      g.globalAlpha=1;
+      const glow=g.createRadialGradient(X(120),Y(70),s,X(120),Y(70),17*s);
+      glow.addColorStop(0,'#fff9db');glow.addColorStop(.2,'#ffce6b');glow.addColorStop(1,'rgba(255,206,107,0)');
+      ellipse(120,70,17,17,glow,null);
+      ellipse(120,70,2.5,2.5,'#fff9db',null);
+      g.restore();
+    }
+  },{reduced:opts.reduced,still:1});
+}
+
 export const ART = { gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
   life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt, equidecomposition: equidecompositionArt,
+  ...Object.fromEntries(['secretary-gallery','tank-gallery','benford-gallery','baker-gallery','birthdays-gallery','monty-gallery','fair-division-gallery','fair-goods-gallery','hairy-ball-gallery','nonorientable-surfaces-gallery','banach-tarski-gallery','double-pendulum-gallery','three-body-gallery','logistic-gallery','mirrored-rooms'].map(id => [id, (cv, o) => subjectArt(id, cv, o)])),
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
 export function mountArt(cv, kind, opts = {}) { const f = ART[kind]; return f ? f(cv, opts) : () => {}; }
