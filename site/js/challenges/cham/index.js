@@ -30,6 +30,6 @@ export const original = (q) => { const [a, b, c] = String(q.set).split(","); ret
 `Avec ${a}, ${b} et ${c} caméléons de chaque couleur, peut-on arriver à une île où tous ont la même couleur ? Si oui, décris une suite de rencontres. Sinon, démontre que c’est impossible. Pour quels effectifs de départ est-ce possible ?`,
 `With ${a}, ${b} and ${c} chameleons of each colour, can the island reach a state where all have the same colour? If so, describe a sequence of meetings. If not, prove it is impossible. For which starting numbers is it possible?`); };
 
-export const icon = svg(`<circle class="ci-hue" cx="20" cy="22" r="10" fill="currentColor"/><circle class="ci-hue" style="--d:-1s" cx="44" cy="22" r="10" fill="currentColor"/><circle class="ci-hue" style="--d:-2s" cx="32" cy="44" r="10" fill="currentColor"/>`);
+export const icon = svg(`<circle cx="20" cy="22" r="10"/><circle cx="44" cy="22" r="10" fill="currentColor" fill-opacity=".35"/><circle cx="32" cy="44" r="10" fill="currentColor"/>`);
 
 export const hintActions = { 0: ["diff", "Afficher r − v, v − b, b − r", "Show r − v, v − b, b − r"], 1: ["mod", "Afficher ces différences modulo 3", "Show these differences modulo 3"] };

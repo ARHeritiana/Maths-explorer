@@ -779,7 +779,6 @@ details.source-course[open] { padding-bottom: 16px; }
   .ci-tilt { animation: ci-tilt 3.4s ease-in-out infinite; }
   .ci-merge-l { animation: ci-merge-l 3.2s ease-in-out infinite; }
   .ci-merge-r { animation: ci-merge-r 3.2s ease-in-out infinite; }
-  .ci-hue { animation: ci-hue 3s steps(1) infinite var(--d, 0s); }
   .ci-swap-a { animation: ci-swap-a 3s ease-in-out infinite; }
   .ci-swap-b { animation: ci-swap-b 3s ease-in-out infinite; }
 }
@@ -800,7 +799,6 @@ details.source-course[open] { padding-bottom: 16px; }
 @keyframes ci-tilt { 0%, 100% { transform: rotate(-9deg); } 50% { transform: rotate(9deg); } }
 @keyframes ci-merge-l { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(11px) scale(1.25); } }
 @keyframes ci-merge-r { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-11px) scale(1.25); } }
-@keyframes ci-hue { 0%, 100% { fill: var(--c1); } 33% { fill: var(--c2); } 66% { fill: var(--c3); } }
 @keyframes ci-swap-a { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(13px); } }
 @keyframes ci-swap-b { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-13px); } }
 
