@@ -160,3 +160,24 @@ test('major questions and results of #16 are dated, typed and sourced',()=>{
  // No new person was added for these events (issue #15 is separate): authors are credited by name.
  for(const name of ['Bernhard Riemann','Georg Cantor','Kurt Gödel','Andrew Wiles','Grigori Perelman'])assert.ok(ADVANCES.some(e=>e.credits.includes(name)),name);
 });
+
+// Issue #15: every person with a full biography links to it, and the biography links back to the timeline entry.
+test('people with a full biography and their biographies link both ways',async()=>{
+ const {BIOGRAPHY_PEOPLE}=await import('../site/js/history-data.js');
+ const {BIOGRAPHIES}=await import('../site/js/reading-content.js');
+ const {MAJOR_BIOGRAPHIES}=await import('../site/js/biographies-major.js');
+ const ids=new Set(BIOGRAPHIES.map(b=>b.id));
+ for(const id of BIOGRAPHY_PEOPLE){
+  const p=PEOPLE.find(x=>x.id===id);assert.ok(p,`person ${id}`);assert.ok(ids.has(id),`biography ${id}`);
+  assert.ok(p.links.includes('#biographies/'+id),id);assert.ok(BIOGRAPHIES.find(b=>b.id===id).links.includes('#history/people/'+id),id);
+ }
+ for(const b of BIOGRAPHIES)if(PEOPLE.some(p=>p.id===b.id))assert.ok(BIOGRAPHY_PEOPLE.has(b.id),`${b.id} missing from BIOGRAPHY_PEOPLE`);
+ // Generated biographies: dates agree with the timeline, sources over https, no markdown or straight quote, facts in order.
+ for(const b of MAJOR_BIOGRAPHIES){
+  const p=PEOPLE.find(x=>x.id===b.id);assert.ok(p,b.id);
+  const years=(b.dates.match(/\d{3,4}/g)||[]).map(Number);assert.equal(years[0],Math.abs(p.start),b.id);if(p.end!==null)assert.equal(years[1],Math.abs(p.end),b.id);
+  const text=JSON.stringify([b.dek,b.sections,b.facts]);assert.ok(!/[*'–—]/.test(text),b.id);
+  assert.ok(b.sources.length&&b.sources.every(([u])=>u.startsWith('https://')),b.id);
+  assert.ok(b.facts.length>=2,b.id);
+ }
+});

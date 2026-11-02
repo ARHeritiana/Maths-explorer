@@ -296,3 +296,8 @@ STORIES.push(
     sources: [['https://mathshistory.st-andrews.ac.uk/HistTopics/The_four_colour_theorem/', P('Théorème des quatre couleurs · MacTutor (anglais)', 'Four colour theorem · MacTutor')]]
   }
 );
+
+// Biographies of the leading mathematicians (issue #15), in their own module; each links to its timeline entry and back.
+import { MAJOR_BIOGRAPHIES } from './biographies-major.js';
+BIOGRAPHIES.push(...MAJOR_BIOGRAPHIES.filter((b) => !BIOGRAPHIES.some((x) => x.id === b.id)));
+for (const b of BIOGRAPHIES) if (!(b.links ||= []).includes('#history/people/' + b.id)) b.links.unshift('#history/people/' + b.id);

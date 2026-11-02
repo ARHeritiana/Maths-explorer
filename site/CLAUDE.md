@@ -102,6 +102,7 @@ To add a generator: write `make` in the class file, give it a manifest chapter, 
 | File | Holds |
 |---|---|
 | `js/reading-content.js` | biographies and stories (bilingual), each with `links` and `sources` |
+| `js/biographies-major.js` | the biographies of the leading mathematicians of the people timeline (issue #15), generated from the staged private set and checked against MacTutor; `reading-content.js` adds them to `BIOGRAPHIES`, `history-data.js` `BIOGRAPHY_PEOPLE` links both ways |
 | `js/reading.js` | `#biographies`, `#stories` pages; `readAlso(hash, own, t)`: the cross-link box shown on texts, curiosities and challenges (own links plus pages linking here) |
 
 ## Challenges (`js/challenges/`, one folder per challenge; index in `js/challenges/CLAUDE.md`)
