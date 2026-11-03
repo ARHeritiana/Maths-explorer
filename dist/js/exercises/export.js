@@ -15,9 +15,6 @@ export function segments(str) {
 // HTML for the page: text escaped, maths kept inside \( \) for MathJax (its content escaped too, MathJax reads the text).
 export const html = (str) => segments(str).map((s) => (s.t === 'text' ? HTML(s.v) : s.t === 'math' ? `\\(${HTML(s.v)}\\)` : `\\[${HTML(s.v)}\\]`)).join('');
 
-// Shared skills list for the online bank and printable worksheets.
-export const skillsHtml = (skills = []) => skills.length ? `<div class="exercise-skills"><p><strong>Compétences visées</strong></p><ul>${skills.map(skill => `<li>${html(skill)}</li>`).join('')}</ul></div>` : '';
-
 // LaTeX for the source file.
 const texText = (s) => s.replace(/([%&#_$])/g, '\\$1').replace(/\^/g, '\\^{}').replace(/~/g, '\\~{}');   // statements carry no backslash or brace outside maths
 export const tex = (str) => segments(str).map((s) => (s.t === 'text' ? texText(s.v) : s.t === 'math' ? `$${s.v}$` : `\\[${s.v}\\]`)).join('');
@@ -67,7 +64,6 @@ export function sheetTex(doc, opts = {}) {
   L.push(`\\noindent\\textit{Durée indicative : ${doc.minutes} minutes.${bareme ? ` Barème sur ${doc.total} points.` : ''}}\\par\\medskip`);
   for (const e of doc.exercises) {
     L.push('\\needspace{6\\baselineskip}', `\\refstepcounter{exo}\\subsection*{Exercice \\theexo${e.title ? ` : ${tex(e.title)}` : ''}${bareme ? ` (${pts(e.pts)} points)` : ''}}`);
-    if (e.skills?.length) L.push('\\noindent\\textbf{Compétences visées}', '\\begin{itemize}', ...e.skills.map(skill => `\\item ${tex(skill)}`), '\\end{itemize}');
     if (e.intro) L.push(`${tex(e.intro)}\\par`);
     L.push('\\begin{enumerate}');
     for (const p of e.parts) {
@@ -153,6 +149,6 @@ export function starterHtml(doc, { teacher = false, subtitle = '' } = {}) {
   return `<article class="sheet-doc${teacher ? ' is-teacher' : ''}"><header><h1>Automatismes${teacher ? ' : corrigé' : ''}</h1><p>${esc(subtitle)}</p>${teacher ? '' : `<p class="sheet-fields">Nom : <span></span> Date : <span></span> <em>${doc.minutes} min</em></p>`}</header><ol class="sheet-starter">${doc.items.map((i) => `<li><div>${html(i.q)}</div>${teacher ? `<div class="sheet-answer"><strong>Réponse :</strong> ${html(i.a)}${i.s ? ` <em>${html(i.s)}</em>` : ''}</div>` : '<div class="sheet-space"></div>'}</li>`).join('')}</ol></article>`;
 }
 export function sheetHtml(doc, { teacher = false, bareme = false, title = '', subtitle = '' } = {}) {
-  const ex = (e) => `<section class="sheet-ex"><h2>Exercice ${e.n}${e.title ? ` : ${html(e.title)}` : ''}${bareme ? ` <small>(${pts(e.pts)} points)</small>` : ''}</h2>${skillsHtml(e.skills)}${e.intro ? `<p>${html(e.intro)}</p>` : ''}<ol class="sheet-parts">${e.parts.map((p) => `<li><div>${html(p.q)}${bareme ? ` <em class="sheet-pts">(${pts(p.pts)} pt${p.pts > 1 ? 's' : ''})</em>` : ''}</div>${teacher ? `<div class="sheet-answer">${html(p.a)}${p.s ? ` <em>${html(p.s)}</em>` : ''}</div>` : ''}</li>`).join('')}</ol></section>`;
+  const ex = (e) => `<section class="sheet-ex"><h2>Exercice ${e.n}${e.title ? ` : ${html(e.title)}` : ''}${bareme ? ` <small>(${pts(e.pts)} points)</small>` : ''}</h2>${e.intro ? `<p>${html(e.intro)}</p>` : ''}<ol class="sheet-parts">${e.parts.map((p) => `<li><div>${html(p.q)}${bareme ? ` <em class="sheet-pts">(${pts(p.pts)} pt${p.pts > 1 ? 's' : ''})</em>` : ''}</div>${teacher ? `<div class="sheet-answer">${html(p.a)}${p.s ? ` <em>${html(p.s)}</em>` : ''}</div>` : ''}</li>`).join('')}</ol></section>`;
   return `<article class="sheet-doc"><header><h1>${esc(title || KIND[doc.kind])}${teacher ? ' : corrigé' : ''}</h1><p>${esc(subtitle)}</p>${teacher ? '' : '<p class="sheet-fields">Nom : <span></span> Date : <span></span></p>'}<p class="sheet-meta">Durée indicative : ${doc.minutes} minutes${bareme ? `. Barème sur ${doc.total} points.` : ''}</p></header>${doc.exercises.map(ex).join('')}</article>`;
 }

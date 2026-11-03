@@ -151,6 +151,25 @@ test('LaTeX and HTML exports: balanced, escaped, anonymous, no unsupported chara
   assert.ok(starterHtml(st).includes('<ol') && sheetHtml(sh, { bareme: true }).includes('points'));
 });
 
+
+test('unverified competency labels stay out of exercise pages and printed documents', () => {
+  const ex = { n: 1, title: 'Test', intro: 'Introduction conservée', skills: ['Étiquette trompeuse'],
+    pts: 2, parts: [{ q: 'Question conservée', a: 'Correction conservée', pts: 2 }] };
+  const doc = { kind: 'sheet', minutes: 5, total: 2, exercises: [ex] };
+  const variants = [
+    sheetHtml(doc), sheetHtml(doc, { teacher: true }),
+    sheetTex(doc, { version: 'student' }), sheetTex(doc, { version: 'teacher' }),
+  ];
+  for (const output of variants) {
+    assert.ok(output.includes('Introduction conservée') && output.includes('Question conservée'));
+    assert.ok(!output.includes(['Compétences', 'visées'].join(' ')));
+    assert.ok(!output.includes('Étiquette trompeuse'));
+  }
+  assert.ok(variants[1].includes('Correction conservée') && variants[3].includes('Correction conservée'));
+  const bankSource = readFileSync(new URL('../site/js/bank-page.js', import.meta.url), 'utf8');
+  assert.ok(!bankSource.includes('skillsHtml'), 'the online bank must not render the competency metadata');
+});
+
 test('seed stepping: any text is a seed, the arrows walk through series', () => {
   assert.equal(stepSeed('abc', 1), 'abc-2'); assert.equal(stepSeed('abc-2', 1), 'abc-3'); assert.equal(stepSeed('abc-3', -1), 'abc-2'); assert.equal(stepSeed('abc', -1), 'abc-1');
 });
