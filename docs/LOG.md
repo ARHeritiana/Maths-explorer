@@ -206,3 +206,5 @@ Append one dated line per finished task at the end of the first list (before "Da
 - 2026-11-03: expanded the existing exercise bank with 24 original EAM/E3C/Bac-style problems (84 questions), hints and full solutions, shared with worksheets and exports; bilingual lesson work remains on standby.
 
 - 2026-11-03: listed target skills for every new exam-type problem and propagated them through online cards, printed worksheets and LaTeX exports; bilingual lesson work remains on standby.
+
+- 2026-11-03: introduced internal prerequisite/scope/order diagnostics, 24 question-level exam contracts, concept/course profiles, source-staleness checks and advisory make-check/CI reports; bilingual lesson work remains on standby.

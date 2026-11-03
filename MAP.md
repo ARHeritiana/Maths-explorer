@@ -45,6 +45,7 @@ really need them.
 | one challenge | its folder `site/js/challenges/<id>/` (index in `site/js/challenges/CLAUDE.md`) | new challenge: recipe `challenge` |
 | the home page | `site/js/welcome.js`, live drawings `site/js/home-art.js` | |
 | course catalogue entries, titles, chapters, language of a course | `content/data/manifest.json` | `make site` |
+| internal prerequisite/order/scope diagnostics | `docs/PREREQUISITES.md`, `content/data/prerequisites.json`, `scripts/prerequisite-model.mjs`, `scripts/check-prerequisites.mjs` | `npm run check:prerequisites` (advisory) |
 | a course PDF (text, exercise, figure) | the `.fr.tex` unit under `content/tex/courses/<course>/` (+ `.en.json` table) | `content/CLAUDE.md`, `make tex COURSE=<course>` |
 | the look of every PDF (frame, boxes, colours, notation) | `content/tex/core/` (`mx-layout.sty`, `mx-env.sty`, `mx-notation.sty`) | `docs/TEX_STYLE_GUIDE.md`; rebuilds everything |
 | a chapter page (`#chapter/<id>`) layout or tabs | `site/js/chapter-sequence.js`, `sequence-model.js`, `resource-library.js` | |

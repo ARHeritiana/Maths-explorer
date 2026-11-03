@@ -20,6 +20,8 @@ jobs:
       - run: npm run check
       - run: npm ci --ignore-scripts
       - run: npm test
+      - name: Generate internal prerequisite diagnostics (advisory)
+        run: npm run check:prerequisites
       - run: npm run test:dom
       - name: Check publication anonymity and PDF metadata
         run: |

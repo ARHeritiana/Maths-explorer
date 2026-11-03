@@ -31,3 +31,5 @@ fingerprint covers `site/slides/`, `site/js/lab/` and the helpers the bundled la
 
 To add a pre-push check, append to `CHECKS` in `pipeline.py`. To add a dependency for rebuilds, edit `inputs()` in
 `refresh.py`.
+
+`pipeline.py` runs the prerequisite report generator in advisory mode and prints its summary; content findings do not constitute a publication gate.

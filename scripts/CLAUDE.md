@@ -26,3 +26,5 @@ Builders called by `build/mxbuild` (see `pipeline.py` `COURSES`) or by `make`. E
 
 `build-fourier.py`: six web lessons, four XeLaTeX PDF editions, source bundle and checked build receipt.
 
+
+`prerequisite-model.mjs`: internal concept DAG, course scope/order, local question scaffolding and source fingerprints. `check-prerequisites.mjs`: advisory scan of the real bank, generated samples, authored French decks and chapter TeX; reports in ignored build output. See `docs/PREREQUISITES.md`.

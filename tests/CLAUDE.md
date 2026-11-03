@@ -131,3 +131,5 @@ honest rounding, shared-slide control visibility, root-mode fallback, slider ran
 `monte-carlo.test.mjs`: Monte Carlo experiments with fixed seeds: closed-form references (pi, three integrals, gambler's ruin by value iteration), exact lake preset areas (36, 33), unbiasedness and 95% interval coverage over repeated runs (tolerances stated in the file), the spike's too narrow interval, resumable samplers, bilingual strings, and the time-based run at 30, 60 and 144 Hz under jsdom.
 
 `exam-papers.test.mjs`: 24 original EAM/E3C/Bac problems, 84 complete question pairs, numerical checks, online-bank rendering, folded solutions, Python export and worksheet selection.
+
+`prerequisites.test.mjs`: adversarial scope and order fixtures, transitive prerequisites, explicit inheritance, same-sequence unit order, question scaffolding, source staleness, lexical hint/solution detection, malformed declarations and advisory/strict CLI integration.

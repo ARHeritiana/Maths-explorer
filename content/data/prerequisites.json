@@ -1,0 +1,1472 @@
+{
+  "schemaVersion": 1,
+  "basis": "Site progression and declared entry knowledge, not certification of an official programme. Historical exams do not grant scope.",
+  "concepts": {
+    "numbers.rational": {
+      "label": "Calcul sur les nombres et fractions",
+      "requires": [],
+      "patterns": []
+    },
+    "powers.integer": {
+      "label": "Puissances entières",
+      "requires": [
+        "numbers.rational"
+      ],
+      "patterns": []
+    },
+    "algebra.linear": {
+      "label": "Équations et inéquations du premier degré",
+      "requires": [
+        "numbers.rational"
+      ],
+      "patterns": []
+    },
+    "algebra.factorisation": {
+      "label": "Développement et factorisation",
+      "requires": [
+        "algebra.linear"
+      ],
+      "patterns": [
+        "factoris",
+        "discriminant"
+      ]
+    },
+    "algorithms.loop": {
+      "label": "Boucles et accumulateurs",
+      "requires": [
+        "numbers.rational"
+      ],
+      "patterns": [
+        "\\bwhile\\b",
+        "\\bfor\\b.+\\brange\\b",
+        "accumulateur"
+      ]
+    },
+    "percentages": {
+      "label": "Proportions et taux d’évolution",
+      "requires": [
+        "numbers.rational"
+      ],
+      "patterns": [
+        "pourcent",
+        "coefficient[s]? multiplicateur"
+      ]
+    },
+    "geometry.triangle_cosine": {
+      "label": "Cosinus dans un triangle",
+      "requires": [
+        "numbers.rational"
+      ],
+      "patterns": []
+    },
+    "functions.affine": {
+      "label": "Fonctions affines",
+      "requires": [
+        "algebra.linear"
+      ],
+      "patterns": []
+    },
+    "numbers.divisibility": {
+      "label": "Divisibilité des entiers",
+      "requires": [
+        "numbers.rational"
+      ],
+      "patterns": [
+        "divisibilit",
+        "congruence"
+      ]
+    },
+    "geometry.vectors": {
+      "label": "Vecteurs du plan",
+      "requires": [
+        "numbers.rational"
+      ],
+      "patterns": [
+        "vecteurs?",
+        "\\\\(?:overrightarrow|vect)\\b"
+      ]
+    },
+    "geometry.lines": {
+      "label": "Droites du plan",
+      "requires": [
+        "geometry.vectors",
+        "algebra.linear"
+      ],
+      "patterns": [
+        "\\bdroite\\b",
+        "équation cartésienne"
+      ]
+    },
+    "numbers.intervals": {
+      "label": "Intervalles de réels",
+      "requires": [
+        "algebra.linear"
+      ],
+      "patterns": []
+    },
+    "functions.reference": {
+      "label": "Fonctions de référence",
+      "requires": [
+        "algebra.linear"
+      ],
+      "patterns": []
+    },
+    "statistics.univariate": {
+      "label": "Statistiques à une variable",
+      "requires": [
+        "numbers.rational"
+      ],
+      "patterns": [
+        "quartile",
+        "médiane"
+      ]
+    },
+    "functions.variations": {
+      "label": "Variations et extremums",
+      "requires": [
+        "functions.reference"
+      ],
+      "patterns": [
+        "variations?",
+        "extremum",
+        "minimum",
+        "maximum"
+      ]
+    },
+    "probability.elementary": {
+      "label": "Probabilités élémentaires",
+      "requires": [
+        "numbers.rational"
+      ],
+      "patterns": []
+    },
+    "probability.conditional": {
+      "label": "Probabilités conditionnelles",
+      "requires": [
+        "probability.elementary"
+      ],
+      "patterns": [
+        "probabilités? conditionnell",
+        "conditionnement",
+        "P\\s*\\([^)]*\\\\mid"
+      ]
+    },
+    "probability.independence": {
+      "label": "Indépendance d’événements",
+      "requires": [
+        "probability.conditional"
+      ],
+      "patterns": [
+        "événements? indépendants?",
+        "tirages? indépendants?"
+      ]
+    },
+    "sequences.arithmetic": {
+      "label": "Suites arithmétiques",
+      "requires": [
+        "functions.affine"
+      ],
+      "patterns": [
+        "suites? arithmétique"
+      ]
+    },
+    "sequences.geometric": {
+      "label": "Suites géométriques",
+      "requires": [
+        "powers.integer",
+        "percentages"
+      ],
+      "patterns": [
+        "suites? géométrique"
+      ]
+    },
+    "sequences.sum": {
+      "label": "Sommes de termes de suites",
+      "requires": [
+        "numbers.rational"
+      ],
+      "patterns": [
+        "sommes? géométrique",
+        "sommes? de termes"
+      ]
+    },
+    "sequences.threshold": {
+      "label": "Recherche de seuil sur une suite",
+      "requires": [
+        "algorithms.loop",
+        "sequences.geometric"
+      ],
+      "patterns": [
+        "premier rang",
+        "boucle de seuil"
+      ]
+    },
+    "algebra.quadratic": {
+      "label": "Équations et signe du second degré",
+      "requires": [
+        "algebra.factorisation"
+      ],
+      "patterns": [
+        "second degré",
+        "discriminant"
+      ]
+    },
+    "geometry.dot_product": {
+      "label": "Produit scalaire",
+      "requires": [
+        "geometry.vectors",
+        "geometry.triangle_cosine"
+      ],
+      "patterns": [
+        "produit scalaire"
+      ]
+    },
+    "analysis.derivative": {
+      "label": "Dérivation et tangente",
+      "requires": [
+        "functions.reference"
+      ],
+      "patterns": [
+        "dériv(?:ée|er|ation)",
+        "tangente"
+      ]
+    },
+    "analysis.optimisation": {
+      "label": "Optimisation par dérivation",
+      "requires": [
+        "analysis.derivative",
+        "functions.variations"
+      ],
+      "patterns": []
+    },
+    "geometry.projection": {
+      "label": "Projection orthogonale dans le plan",
+      "requires": [
+        "geometry.dot_product",
+        "geometry.lines"
+      ],
+      "patterns": [
+        "projeté orthogonal",
+        "projection orthogonale"
+      ]
+    },
+    "geometry.circle": {
+      "label": "Cercle dans un repère",
+      "requires": [
+        "geometry.lines"
+      ],
+      "patterns": []
+    },
+    "probability.expectation": {
+      "label": "Variable aléatoire et espérance",
+      "requires": [
+        "probability.elementary"
+      ],
+      "patterns": [
+        "espérance",
+        "loi de probabilité"
+      ]
+    },
+    "probability.variance": {
+      "label": "Variance d’une variable aléatoire",
+      "requires": [
+        "probability.expectation"
+      ],
+      "patterns": [
+        "variance"
+      ]
+    },
+    "functions.exponential": {
+      "label": "Fonction exponentielle",
+      "requires": [
+        "powers.integer"
+      ],
+      "patterns": [
+        "exponentiell",
+        "\\\\exp\\b",
+        "(?<![a-z])e\\^\\s*\\{?\\s*[-(]?[a-z]"
+      ]
+    },
+    "trigonometry.radians": {
+      "label": "Cercle trigonométrique et radians",
+      "requires": [
+        "geometry.triangle_cosine"
+      ],
+      "patterns": [
+        "radians?",
+        "angles? associés?",
+        "cercle trigonométrique"
+      ]
+    },
+    "proof.induction": {
+      "label": "Raisonnement par récurrence",
+      "requires": [
+        "algebra.linear"
+      ],
+      "patterns": [
+        "par récurrence",
+        "hérédité",
+        "initialisation"
+      ]
+    },
+    "geometry.space_vectors": {
+      "label": "Vecteurs et plans de l’espace",
+      "requires": [
+        "geometry.vectors"
+      ],
+      "patterns": [
+        "plans? de l.espace",
+        "repère orthonormé de l.espace"
+      ]
+    },
+    "analysis.sequence_limit": {
+      "label": "Limite d’une suite",
+      "requires": [
+        "sequences.geometric"
+      ],
+      "patterns": [
+        "limite de (?:la |cette |une )?suite",
+        "suite.+converg"
+      ]
+    },
+    "analysis.function_limit": {
+      "label": "Limite d’une fonction",
+      "requires": [
+        "functions.reference"
+      ],
+      "patterns": [
+        "croissance comparée",
+        "limite.+fonction",
+        "\\\\lim\\b"
+      ]
+    },
+    "combinatorics": {
+      "label": "Dénombrement et combinatoire",
+      "requires": [
+        "numbers.rational",
+        "powers.integer"
+      ],
+      "patterns": [
+        "combinatoire",
+        "arrangements?",
+        "permutations?"
+      ]
+    },
+    "analysis.continuity": {
+      "label": "Continuité et théorème des valeurs intermédiaires",
+      "requires": [
+        "analysis.function_limit"
+      ],
+      "patterns": [
+        "continuité",
+        "valeurs intermédiaires",
+        "\\bTVI\\b"
+      ]
+    },
+    "analysis.convexity": {
+      "label": "Convexité",
+      "requires": [
+        "analysis.derivative"
+      ],
+      "patterns": [
+        "convexit",
+        "convexe",
+        "inflexion"
+      ]
+    },
+    "probability.binomial": {
+      "label": "Loi binomiale",
+      "requires": [
+        "probability.independence",
+        "powers.integer"
+      ],
+      "patterns": [
+        "binomial",
+        "\\\\d?binom\\b",
+        "\\\\mathcal\\s*B"
+      ]
+    },
+    "functions.logarithm": {
+      "label": "Fonction logarithme népérien",
+      "requires": [
+        "functions.exponential"
+      ],
+      "patterns": [
+        "logarithme népérien",
+        "\\\\ln\\b",
+        "\\bln\\s*\\("
+      ]
+    },
+    "geometry.space_orthogonality": {
+      "label": "Orthogonalité et distance dans l’espace",
+      "requires": [
+        "geometry.space_vectors",
+        "geometry.dot_product"
+      ],
+      "patterns": []
+    },
+    "analysis.primitive": {
+      "label": "Primitives",
+      "requires": [
+        "analysis.derivative"
+      ],
+      "patterns": [
+        "primitives?"
+      ]
+    },
+    "analysis.differential_equation": {
+      "label": "Équations différentielles",
+      "requires": [
+        "analysis.derivative",
+        "functions.exponential"
+      ],
+      "patterns": [
+        "équations? différentiell"
+      ]
+    },
+    "analysis.integral": {
+      "label": "Calcul intégral et aire",
+      "requires": [
+        "analysis.primitive"
+      ],
+      "patterns": [
+        "intégral",
+        "\\\\int\\b",
+        "\\\\displaystyle\\s*\\\\int"
+      ]
+    },
+    "analysis.integral_mean": {
+      "label": "Valeur moyenne d’une fonction",
+      "requires": [
+        "analysis.integral"
+      ],
+      "patterns": [
+        "(?:valeur|température) moyenne",
+        "moyenne.+fonction"
+      ]
+    },
+    "analysis.integration_by_parts": {
+      "label": "Intégration par parties",
+      "requires": [
+        "analysis.integral",
+        "analysis.derivative"
+      ],
+      "patterns": [
+        "intégration par parties"
+      ]
+    },
+    "probability.frequency_variance": {
+      "label": "Variance d’une fréquence et concentration",
+      "requires": [
+        "probability.variance",
+        "probability.binomial"
+      ],
+      "patterns": [
+        "variance.+fréquence",
+        "concentration",
+        "grands nombres",
+        "Bienaymé",
+        "Tchebychev"
+      ]
+    },
+    "geometry.parametric_space": {
+      "label": "Représentations paramétriques dans l’espace",
+      "requires": [
+        "geometry.space_vectors"
+      ],
+      "patterns": [
+        "représentations? paramétriques?",
+        "droite paramétrée"
+      ]
+    },
+    "trigonometry.functions": {
+      "label": "Fonctions trigonométriques et dérivées",
+      "requires": [
+        "trigonometry.radians",
+        "analysis.derivative"
+      ],
+      "patterns": []
+    },
+    "complex.algebra": {
+      "label": "Nombres complexes",
+      "requires": [
+        "algebra.quadratic"
+      ],
+      "patterns": [
+        "nombres? complexes?",
+        "partie imaginaire",
+        "\\\\mathbb\\s*\\{?C"
+      ]
+    },
+    "complex.geometry": {
+      "label": "Géométrie des nombres complexes",
+      "requires": [
+        "complex.algebra",
+        "geometry.dot_product"
+      ],
+      "patterns": []
+    },
+    "complex.trigonometric_form": {
+      "label": "Forme trigonométrique d’un complexe",
+      "requires": [
+        "complex.algebra",
+        "trigonometry.radians"
+      ],
+      "patterns": []
+    },
+    "algebra.polynomials": {
+      "label": "Équations polynomiales",
+      "requires": [
+        "algebra.factorisation"
+      ],
+      "patterns": []
+    },
+    "numbers.congruence": {
+      "label": "Congruences",
+      "requires": [
+        "numbers.divisibility"
+      ],
+      "patterns": [
+        "congruence",
+        "\\\\pmod\\b"
+      ]
+    },
+    "numbers.bezout": {
+      "label": "PGCD, Bézout et Gauss",
+      "requires": [
+        "numbers.congruence"
+      ],
+      "patterns": [
+        "Bézout",
+        "Euclide étendu"
+      ]
+    },
+    "numbers.fermat": {
+      "label": "Nombres premiers et petit théorème de Fermat",
+      "requires": [
+        "numbers.congruence"
+      ],
+      "patterns": [
+        "petit théorème de Fermat"
+      ]
+    },
+    "algebra.matrices": {
+      "label": "Matrices",
+      "requires": [
+        "algebra.linear"
+      ],
+      "patterns": [
+        "matrices?"
+      ]
+    },
+    "discrete.graphs": {
+      "label": "Graphes",
+      "requires": [
+        "numbers.rational"
+      ],
+      "patterns": [
+        "graphes?",
+        "chaîne eulérienne"
+      ]
+    },
+    "probability.markov": {
+      "label": "Chaînes de Markov",
+      "requires": [
+        "algebra.matrices",
+        "probability.conditional"
+      ],
+      "patterns": [
+        "Markov",
+        "matrice de transition"
+      ]
+    },
+    "functions.decimal_log": {
+      "label": "Logarithme décimal",
+      "requires": [
+        "powers.integer"
+      ],
+      "patterns": [
+        "logarithme décimal",
+        "\\\\log\\b"
+      ]
+    },
+    "statistics.bivariate": {
+      "label": "Statistiques à deux variables",
+      "requires": [
+        "statistics.univariate"
+      ],
+      "patterns": [
+        "régression",
+        "ajustement affine",
+        "moindres carrés"
+      ]
+    }
+  },
+  "profiles": {
+    "seconde": {
+      "inherits": [],
+      "assumes": [
+        "numbers.rational",
+        "powers.integer",
+        "algebra.linear",
+        "algebra.factorisation",
+        "algorithms.loop",
+        "geometry.triangle_cosine",
+        "functions.affine",
+        "probability.elementary"
+      ],
+      "teaches": {
+        "numbers.divisibility": {
+          "chapter": "seconde-01"
+        },
+        "geometry.vectors": {
+          "chapter": "seconde-02"
+        },
+        "geometry.lines": {
+          "chapter": "seconde-03"
+        },
+        "numbers.intervals": {
+          "chapter": "seconde-04"
+        },
+        "functions.reference": {
+          "chapter": "seconde-06"
+        },
+        "statistics.univariate": {
+          "chapter": "seconde-07"
+        },
+        "percentages": {
+          "chapter": "seconde-09"
+        },
+        "functions.variations": {
+          "chapter": "seconde-10"
+        },
+        "probability.conditional": {
+          "chapter": "seconde-14"
+        },
+        "probability.independence": {
+          "chapter": "seconde-14"
+        }
+      }
+    },
+    "premiere": {
+      "inherits": [
+        "seconde"
+      ],
+      "assumes": [],
+      "teaches": {
+        "sequences.arithmetic": {
+          "chapter": "premiere-01"
+        },
+        "sequences.geometric": {
+          "chapter": "premiere-01"
+        },
+        "sequences.sum": {
+          "chapter": "premiere-01"
+        },
+        "sequences.threshold": {
+          "chapter": "premiere-01"
+        },
+        "algebra.quadratic": {
+          "chapter": "premiere-02"
+        },
+        "geometry.dot_product": {
+          "chapter": "premiere-03"
+        },
+        "analysis.derivative": {
+          "chapter": "premiere-04"
+        },
+        "analysis.optimisation": {
+          "chapter": "premiere-06"
+        },
+        "geometry.projection": {
+          "chapter": "premiere-07"
+        },
+        "geometry.circle": {
+          "chapter": "premiere-07"
+        },
+        "probability.expectation": {
+          "chapter": "premiere-08"
+        },
+        "probability.variance": {
+          "chapter": "premiere-08"
+        },
+        "functions.exponential": {
+          "chapter": "premiere-09"
+        },
+        "trigonometry.radians": {
+          "chapter": "premiere-10"
+        }
+      }
+    },
+    "terminale": {
+      "inherits": [
+        "premiere"
+      ],
+      "assumes": [],
+      "teaches": {
+        "proof.induction": {
+          "chapter": "terminale-01"
+        },
+        "geometry.space_vectors": {
+          "chapter": "terminale-02"
+        },
+        "analysis.sequence_limit": {
+          "chapter": "terminale-03"
+        },
+        "analysis.function_limit": {
+          "chapter": "terminale-04"
+        },
+        "combinatorics": {
+          "chapter": "terminale-05"
+        },
+        "analysis.continuity": {
+          "chapter": "terminale-06"
+        },
+        "analysis.convexity": {
+          "chapter": "terminale-06"
+        },
+        "probability.binomial": {
+          "chapter": "terminale-07"
+        },
+        "functions.logarithm": {
+          "chapter": "terminale-08"
+        },
+        "geometry.space_orthogonality": {
+          "chapter": "terminale-09"
+        },
+        "analysis.primitive": {
+          "chapter": "terminale-10"
+        },
+        "analysis.differential_equation": {
+          "chapter": "terminale-10"
+        },
+        "analysis.integral": {
+          "chapter": "terminale-11"
+        },
+        "analysis.integral_mean": {
+          "chapter": "terminale-11"
+        },
+        "analysis.integration_by_parts": {
+          "chapter": "terminale-11"
+        },
+        "probability.frequency_variance": {
+          "chapter": "terminale-12"
+        },
+        "geometry.parametric_space": {
+          "chapter": "terminale-13"
+        },
+        "trigonometry.functions": {
+          "chapter": "terminale-14"
+        }
+      }
+    },
+    "expertes": {
+      "inherits": [
+        "premiere"
+      ],
+      "assumes": [],
+      "teaches": {
+        "complex.algebra": {
+          "chapter": "expertes-01"
+        },
+        "complex.geometry": {
+          "chapter": "expertes-02"
+        },
+        "complex.trigonometric_form": {
+          "chapter": "expertes-03"
+        },
+        "algebra.polynomials": {
+          "chapter": "expertes-04"
+        },
+        "numbers.congruence": {
+          "chapter": "expertes-06"
+        },
+        "numbers.bezout": {
+          "chapter": "expertes-07"
+        },
+        "numbers.fermat": {
+          "chapter": "expertes-08"
+        },
+        "algebra.matrices": {
+          "chapter": "expertes-09"
+        },
+        "discrete.graphs": {
+          "chapter": "expertes-10"
+        },
+        "probability.markov": {
+          "chapter": "expertes-11"
+        }
+      }
+    },
+    "stmg": {
+      "inherits": [
+        "seconde"
+      ],
+      "assumes": [
+        "analysis.derivative"
+      ],
+      "teaches": {
+        "sequences.arithmetic": {
+          "chapter": "stmg-01"
+        },
+        "sequences.geometric": {
+          "chapter": "stmg-01"
+        },
+        "sequences.sum": {
+          "chapter": "stmg-01"
+        },
+        "sequences.threshold": {
+          "chapter": "stmg-01"
+        },
+        "functions.exponential": {
+          "chapter": "stmg-02"
+        },
+        "functions.decimal_log": {
+          "chapter": "stmg-03"
+        },
+        "statistics.bivariate": {
+          "chapter": "stmg-05"
+        },
+        "probability.conditional": {
+          "chapter": "stmg-06"
+        },
+        "probability.independence": {
+          "chapter": "stmg-06"
+        },
+        "probability.expectation": {
+          "chapter": "stmg-07"
+        },
+        "probability.variance": {
+          "chapter": "stmg-07"
+        },
+        "probability.binomial": {
+          "chapter": "stmg-07"
+        }
+      }
+    }
+  },
+  "contracts": {
+    "exam-eam-01": {
+      "requires": [
+        "numbers.rational"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "numbers.rational"
+          ]
+        },
+        {
+          "requires": [
+            "powers.integer"
+          ]
+        },
+        {
+          "requires": [
+            "algebra.factorisation"
+          ]
+        }
+      ],
+      "sourceHash": "b8aa75487fac3e831cc63dad0068afc536569ea606570041db54574989ff2baa"
+    },
+    "exam-eam-02": {
+      "requires": [
+        "percentages"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "percentages"
+          ]
+        },
+        {
+          "requires": [
+            "percentages"
+          ]
+        },
+        {
+          "requires": [
+            "percentages"
+          ]
+        }
+      ],
+      "sourceHash": "4fb0debf35b00907bbb01ec8c5562b436e82b9bbf1eaa5053d24cc916a446753"
+    },
+    "exam-eam-03": {
+      "requires": [
+        "algebra.factorisation"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "algebra.factorisation"
+          ]
+        },
+        {
+          "requires": [
+            "algebra.quadratic"
+          ]
+        },
+        {
+          "requires": [
+            "algebra.quadratic"
+          ]
+        }
+      ],
+      "sourceHash": "4dfc3370172c0bf2518851496cc7e9ee2ce041857786c03ef4f3b00ae06d4277"
+    },
+    "exam-eam-04": {
+      "requires": [
+        "geometry.vectors"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "geometry.dot_product"
+          ]
+        },
+        {
+          "requires": [
+            "geometry.vectors"
+          ]
+        },
+        {
+          "requires": [
+            "geometry.dot_product",
+            "trigonometry.radians"
+          ]
+        }
+      ],
+      "sourceHash": "ba65fc6218732161b02de9e7c241a0568919ce312d70f8bddfc9414c77cde0d6"
+    },
+    "exam-eam-05": {
+      "requires": [
+        "sequences.geometric"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "sequences.geometric"
+          ]
+        },
+        {
+          "requires": [
+            "sequences.geometric"
+          ]
+        },
+        {
+          "requires": [
+            "sequences.threshold"
+          ]
+        }
+      ],
+      "sourceHash": "e97b883bcd323bb263cd5a27e5d91273e3da870028a12b73d7677b88d75bcb73"
+    },
+    "exam-eam-06": {
+      "requires": [
+        "analysis.derivative"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "analysis.derivative"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.optimisation"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.derivative"
+          ]
+        }
+      ],
+      "sourceHash": "d0c62ee939bf7868214014ef59f1d1ab4664fb65fd142667fe21b846728dc85c"
+    },
+    "exam-eam-07": {
+      "requires": [
+        "probability.elementary"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "probability.independence"
+          ]
+        },
+        {
+          "requires": [
+            "probability.expectation"
+          ]
+        },
+        {
+          "requires": [
+            "probability.expectation"
+          ]
+        }
+      ],
+      "sourceHash": "a4d3aac590521754fbac3ef9e574744a9a4258dd8250b34a4d792e63c552a6ec"
+    },
+    "exam-eam-08": {
+      "requires": [
+        "functions.exponential"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "analysis.derivative"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.optimisation"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.derivative"
+          ]
+        }
+      ],
+      "sourceHash": "0c16caac0bb510e93f611c68f7c739cde2c39b6f6db046864fab48787b4741c2"
+    },
+    "exam-e3c-01": {
+      "requires": [
+        "sequences.arithmetic",
+        "sequences.geometric"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "sequences.arithmetic",
+            "sequences.geometric"
+          ]
+        },
+        {
+          "requires": [
+            "sequences.geometric"
+          ]
+        },
+        {
+          "requires": [
+            "sequences.threshold"
+          ]
+        }
+      ],
+      "sourceHash": "28c43f8a79c7eb7aece46c04ceba82c67728fa280d9e8dacdfdca273483f065b"
+    },
+    "exam-e3c-02": {
+      "requires": [
+        "sequences.geometric"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "sequences.sum"
+          ]
+        },
+        {
+          "requires": [
+            "sequences.sum"
+          ]
+        },
+        {
+          "requires": [
+            "sequences.threshold",
+            "sequences.sum"
+          ]
+        }
+      ],
+      "sourceHash": "149c28dc485bc9189c6a19fcca59212b49f2e80c6f5a1dfaa3b317930ca417d2"
+    },
+    "exam-e3c-03": {
+      "requires": [
+        "probability.conditional"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "probability.conditional"
+          ]
+        },
+        {
+          "requires": [
+            "probability.conditional"
+          ]
+        },
+        {
+          "requires": [
+            "probability.conditional"
+          ]
+        },
+        {
+          "requires": [
+            "probability.independence"
+          ]
+        }
+      ],
+      "sourceHash": "ccf55f87314c78ae9e9f9d52b4376d75c380cb5bd6d551709c523b574551e952"
+    },
+    "exam-e3c-04": {
+      "requires": [
+        "probability.elementary"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "numbers.rational"
+          ]
+        },
+        {
+          "requires": [
+            "probability.conditional"
+          ]
+        },
+        {
+          "requires": [
+            "probability.conditional"
+          ]
+        },
+        {
+          "requires": [
+            "probability.independence"
+          ]
+        }
+      ],
+      "sourceHash": "c4005cdfc473448e2c91a12617bb89225f8e5d46b7e5abd9175873b7cb8ac11d"
+    },
+    "exam-e3c-05": {
+      "requires": [
+        "algebra.factorisation"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "analysis.derivative",
+            "analysis.optimisation"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.derivative"
+          ]
+        },
+        {
+          "requires": [
+            "algebra.factorisation"
+          ]
+        },
+        {
+          "requires": [
+            "algebra.quadratic"
+          ]
+        }
+      ],
+      "sourceHash": "03b46b1c78d238a630c2c681a35a7ff19845f20d94bb2b5f7242e6987719cf8b"
+    },
+    "exam-e3c-06": {
+      "requires": [
+        "geometry.vectors"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "geometry.lines"
+          ]
+        },
+        {
+          "requires": [
+            "geometry.projection"
+          ]
+        },
+        {
+          "requires": [
+            "geometry.vectors"
+          ]
+        },
+        {
+          "requires": [
+            "geometry.circle"
+          ]
+        }
+      ],
+      "sourceHash": "e76735a80522973a790ddc369fa5df97f78a2931181ccb38c48732558e895a01"
+    },
+    "exam-e3c-07": {
+      "requires": [
+        "trigonometry.radians"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "trigonometry.radians"
+          ]
+        },
+        {
+          "requires": [
+            "trigonometry.radians"
+          ]
+        },
+        {
+          "requires": [
+            "trigonometry.radians"
+          ]
+        }
+      ],
+      "sourceHash": "f2b662d6434bd7a37bb8ca46637f9cfbf1edf81065ff5377b45954881ed87bbb"
+    },
+    "exam-e3c-08": {
+      "requires": [
+        "functions.exponential"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "analysis.derivative"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.optimisation"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.derivative"
+          ]
+        },
+        {
+          "requires": [
+            "algebra.linear"
+          ]
+        }
+      ],
+      "sourceHash": "5c96eb2dd3c2fce7f3f70bb9d57eb4937110dc1f31b94411272f4bb9c625f5fb"
+    },
+    "exam-bac-01": {
+      "requires": [
+        "probability.binomial"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "probability.expectation"
+          ]
+        },
+        {
+          "requires": [
+            "probability.binomial"
+          ]
+        },
+        {
+          "requires": [
+            "functions.logarithm"
+          ]
+        }
+      ],
+      "sourceHash": "90cb203b4917b23f76efd2b95fd42237cbf27e4042d4673b9ad6b23cbe87a947"
+    },
+    "exam-bac-02": {
+      "requires": [
+        "probability.conditional"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "probability.conditional"
+          ]
+        },
+        {
+          "requires": [
+            "probability.binomial"
+          ]
+        },
+        {
+          "requires": [
+            "probability.binomial"
+          ]
+        },
+        {
+          "requires": [
+            "probability.frequency_variance"
+          ]
+        }
+      ],
+      "sourceHash": "85c59ac47a2eb6d6338881f27755be5eaf9d4517772e9a0f38bc4e4968243906"
+    },
+    "exam-bac-03": {
+      "requires": [
+        "sequences.geometric"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "proof.induction"
+          ]
+        },
+        {
+          "requires": [
+            "sequences.geometric"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.sequence_limit"
+          ]
+        },
+        {
+          "requires": [
+            "powers.integer"
+          ]
+        }
+      ],
+      "sourceHash": "8b40ae7442810a03b42f776d2a2178a1de1caf31abf8008d74ace85b89f43f07"
+    },
+    "exam-bac-04": {
+      "requires": [
+        "functions.exponential"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "analysis.derivative"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.function_limit"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.primitive"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.integral",
+            "analysis.function_limit"
+          ]
+        }
+      ],
+      "sourceHash": "f012545fc78ccb26f6a2fecc6b2cf048f896cbca7fcb7385715f869f3942163f"
+    },
+    "exam-bac-05": {
+      "requires": [
+        "functions.exponential"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "analysis.differential_equation"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.derivative",
+            "analysis.function_limit"
+          ]
+        },
+        {
+          "requires": [
+            "functions.logarithm"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.integral_mean"
+          ]
+        }
+      ],
+      "sourceHash": "51b3ade848a4bbf951c3113a423817687f1bac501d4bb0572e8bbac5c4d9ab7f"
+    },
+    "exam-bac-06": {
+      "requires": [
+        "trigonometry.radians"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "analysis.integration_by_parts"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.integration_by_parts"
+          ]
+        },
+        {
+          "requires": [
+            "algebra.linear"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.integral_mean"
+          ]
+        }
+      ],
+      "sourceHash": "ca4647d54003eedb0b4715233332bc1bffcb04e6d996eeb4e3fd610fe56a13e8"
+    },
+    "exam-bac-07": {
+      "requires": [
+        "geometry.space_vectors"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "geometry.space_vectors"
+          ]
+        },
+        {
+          "requires": [
+            "geometry.space_orthogonality"
+          ]
+        },
+        {
+          "requires": [
+            "geometry.space_orthogonality",
+            "geometry.parametric_space"
+          ]
+        },
+        {
+          "requires": [
+            "geometry.space_orthogonality"
+          ]
+        }
+      ],
+      "sourceHash": "72411fa9fdec9dd6e6f01f1b3f004f0c45f85d8370ee6ab675b466a3d33714d5"
+    },
+    "exam-bac-08": {
+      "requires": [
+        "functions.logarithm"
+      ],
+      "parts": [
+        {
+          "requires": [
+            "analysis.function_limit",
+            "analysis.derivative",
+            "analysis.convexity"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.continuity"
+          ]
+        },
+        {
+          "requires": [
+            "analysis.continuity"
+          ]
+        },
+        {
+          "requires": [
+            "functions.variations"
+          ]
+        }
+      ],
+      "sourceHash": "be1527cf7d352a97df67fd31d9b4dd78f8bf9187ad429a26d3c1a98e17b8ff1a"
+    }
+  }
+}

@@ -84,6 +84,7 @@ def build_tex(courses, force=False):
 
 
 CHECKS = [
+    ('prerequisite report generation (advisory)', ['node', 'scripts/check-prerequisites.mjs']),
     ('Fourier sources and editions', [PY, 'scripts/build-fourier.py', '--check']),
     ('content dependencies and linked views', [PY, '-m', 'mxbuild.refresh', '--check']),
     ('content propagation tests', [PY, 'tests/test_content_dependencies.py']),
@@ -128,6 +129,7 @@ def check(fast=False):
         r = subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True)
         ok = r.returncode == 0
         print(f"{'ok  ' if ok else 'FAIL'} {name} ({time.time() - t0:.0f} s)", flush=True)
+        if ok and name == 'prerequisite report generation (advisory)': print(r.stdout.strip(), flush=True)
         if not ok: failed.append(name); print((r.stdout + r.stderr)[-3000:])
     hits = subprocess.run(['git', 'grep', '-nE', r'drive\.google|docs\.google'], cwd=ROOT, capture_output=True, text=True).stdout
     print(f"{'ok  ' if not hits else 'FAIL'} no Drive links in tracked files")

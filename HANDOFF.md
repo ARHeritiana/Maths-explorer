@@ -486,3 +486,10 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 - French curriculum content remains French only. The bilingual lesson goal remains on standby and unfinished.
 
 - 3 November 2026: all 24 exam-style problems now list observable target skills, distinct from prerequisites; the online bank, printed sheets and LaTeX editions share those lists. Bilingual lesson work remains on standby.
+
+## Internal prerequisites, 3 November 2026
+
+- Added an advisory prerequisite audit integrated with the existing bank registry, chapter catalogue, generated samples, authored French decks, French chapter sources, make check and CI. Design/authoring instructions: `docs/PREREQUISITES.md`.
+- Initial profiles cover the five French priority courses; all 24 new exam problems have explicit per-question contracts. Legacy content remains visibly unannotated and is scanned heuristically, without being certified.
+- Supports concept dependencies, chapter/unit order with sequence identity, local definitions and earlier-question results, reasoned mentions/extensions, stale source declarations and internal JSON/Markdown reports. Default diagnostics do not add a publication gate or student-facing audit labels.
+- Bilingual lesson work remains on standby and unfinished; retained English curriculum editions are not scanned or modified.

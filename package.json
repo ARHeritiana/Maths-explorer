@@ -9,7 +9,9 @@
     "test": "node --test tests/*.test.mjs",
     "check": "node scripts/check-syntax.mjs",
     "test:browser": "python tests/run_browser.py",
-    "test:dom": "node tests/dom-smoke.mjs"
+    "test:dom": "node tests/dom-smoke.mjs",
+    "check:prerequisites": "node scripts/check-prerequisites.mjs",
+    "check:prerequisites:strict": "node scripts/check-prerequisites.mjs --strict"
   },
   "engines": {
     "node": ">=18"
