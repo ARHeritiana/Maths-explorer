@@ -42,8 +42,8 @@ with sync_playwright() as p:
     page = open_room(1440, 'jour')
     page.focus('.room-canvas')
     for _ in range(5): page.keyboard.press('ArrowRight')
+    page.wait_for_function("/S = \\(0[,.]5/.test(document.querySelector('[data-detail]')?.textContent || '')", timeout=60000)
     page.wait_for_function(DONE, timeout=60000)
-    assert 'S = (0,5' in page.inner_text('[data-detail]') or 'S = (0.5' in page.inner_text('[data-detail]'), page.inner_text('[data-detail]')
 
     # draw a room: L shape by clicks, close on the first vertex, curve one wall, undo the curve
     page.click('[data-room=custom]')

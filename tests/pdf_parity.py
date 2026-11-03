@@ -20,6 +20,17 @@ if 'university' in manifest:
 source_layout |= {ROOT / 'dist' / edition['path'].removeprefix('./')
                   for resource in manifest['catalog']['resources']
                   for edition in resource.get('editions', {}).values() if edition.get('layout') == 'source'}
+# The Malagasy books are cut directly from their original PDFs by build-mada.py;
+# their pages retain the books' framing and page numbers, including supplements.
+source_layout |= {ROOT / 'dist' / edition['path'].removeprefix('./')
+                  for resource in manifest['catalog']['resources']
+                  if resource.get('course') in ('t10', 't11s') and resource.get('source', '').startswith(('t10-', 't11s-'))
+                  for edition in resource.get('editions', {}).values()}
+source_layout |= {ROOT / 'dist' / edition['path'].removeprefix('./')
+                  for section in manifest['companion']['supplements']
+                  if section.get('course') in ('t10', 't11s')
+                  for file in section.get('files', []) if file.get('source', '').startswith(('t10-', 't11s-'))
+                  for edition in file.get('editions', {}).values()}
 for path in sorted((ROOT / 'dist/resources').rglob('*.pdf')):
     n += 1
     with pymupdf.open(path) as document:

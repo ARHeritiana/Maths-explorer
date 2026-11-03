@@ -15,7 +15,7 @@ authored in its tables. Front pages are never published (the T11 S front pages c
 
 Building the books here: T11 S compiles with XeLaTeX (`bash compiler.sh les-deux`). T10 uses pdfLaTeX and `mathpazo`; on a TeX
 installation without the Palatino fonts, put first on `TEXINPUTS` a stand-in `mathpazo.sty` that loads `amsmath`, `newpxtext`
-and `newpxmath`, declares `amssymb` and `amsfonts` as loaded (`\expandafter\def\csname ver@amssymb.sty\endcsname{...}`) and
+and `newpxmath`, declares `amssymb` and `amsfonts` as loaded using LaTeX package flags, and
 ends with `\let\vv\relax` (the book defines its own `\vv`).
 
 Two source defects were fixed in the local build copy only and should be fixed in Mada-Boky: T11 S uses `\vecz` (chapter 13)

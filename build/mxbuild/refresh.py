@@ -47,7 +47,7 @@ def inputs():
     result['slides'] = fingerprint(
         ['content/slides/**/*', 'content/tex/courses/**/*', 'content/tex/core/*', 'content/tex/mada/**/*',
          'scripts/build-slides.py','build/mxbuild/slide_editions.py','build/mxbuild/mada.py'], {'chapters':manifest['catalog']['chapters'],'courses':manifest['catalog']['courses']})
-    result['slide-exports']=fingerprint(['scripts/export-slides.py','build/mxbuild/slide_editions.py','site/slides/*','site/js/canvas-navigation.js','site/js/camera3d.js','site/js/lab/**/*','site/js/math.js','site/js/object-kit.js','site/js/fourier-model.js','site/js/gallery/gallery-math.js','dist/slides/data/*.json','dist/slides/fig/*.svg'])
+    result['slide-exports']=fingerprint(['scripts/export-slides.py','build/mxbuild/refresh.py','build/mxbuild/slide_editions.py','site/slides/*','site/js/canvas-navigation.js','site/js/camera3d.js','site/js/lab/**/*','site/js/math.js','site/js/object-kit.js','site/js/fourier-model.js','site/js/gallery/gallery-math.js','dist/slides/data/*.json','dist/slides/fig/*.svg'])
     result['lectures']=fingerprint(['scripts/build-lecture-slides.py','build/mxbuild/slide_editions.py','dist/slides/data/*.json','dist/slides/fig/*.svg'])
     result['sources'] = fingerprint(['content/tex/courses/**/*', 'content/tex/core/*',
                                      'scripts/publish-sources.py'],
@@ -172,6 +172,9 @@ def prepare(check=False, adopt=False):
             run_job(key)
             # Builders may update shared inputs and other outputs. Recheck later jobs.
             pending.update(changed_jobs(saved.get('inputs', {}), inputs()))
+    # Exports embed generated figures and must follow every producer.
+    if not adopt and ('slides' in pending or 'slide-exports' in pending):
+        run_job('slide-exports')
     catalog.write()
     site.write()
     content_index.write()
