@@ -35,6 +35,20 @@ with sync_playwright() as p:
  page.goto(BASE+'/#history/people',wait_until='networkidle')
  assert '/resources/history/mathematicians-timeline.html' in page.url
  assert '236' in page.locator('#total').inner_text()
+ assert page.locator('.topbar .brand').is_visible()
+ assert page.locator('.subnav .mx-return').is_visible()
+ assert page.locator('.topbar .mainnav a').count()==3
+ assert page.locator('.life').first.evaluate('e=>e.getBoundingClientRect().height')>=44
+ assert page.locator('.life img').first.evaluate('e=>e.getBoundingClientRect().height')>=40
+ page.locator('[data-theme-toggle]').click()
+ assert page.evaluate("localStorage.getItem('maths-explorer-theme')")==page.evaluate('document.documentElement.dataset.theme')
+ page.locator('[data-theme-toggle]').click()
+ page.set_viewport_size({'width':390,'height':844})
+ page.wait_for_timeout(100)
+ assert page.locator('.life').first.evaluate('e=>e.getBoundingClientRect().height')>=44
+ assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+ assert page.locator('.mainnav').is_visible()
+ page.set_viewport_size({'width':1440,'height':1000})
  page.locator('#scroller').focus()
  page.keyboard.press('ArrowRight')
  assert page.locator('#scroller').evaluate('e=>e.scrollLeft')>0

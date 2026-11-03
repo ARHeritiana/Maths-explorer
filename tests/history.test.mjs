@@ -194,10 +194,19 @@ test('people with a full biography and their biographies link both ways',async()
 test('standalone timeline provides site navigation and a shared theme',()=>{
  const html=readFileSync(new URL('../site/resources/history/mathematicians-timeline.html',import.meta.url),'utf8');
  const doc=new JSDOM(html).window.document;
- const links=[...doc.querySelectorAll('.mx-top a')].map(x=>x.getAttribute('href'));
+ const links=[...doc.querySelectorAll('.topbar a, .subnav a')].map(x=>x.getAttribute('href'));
  for(const destination of ['../../index.html#home','../../index.html#basics','../../index.html#topics','../../index.html#biographies','../../index.html#history/advances'])
   assert.ok(links.includes(destination),destination);
  assert.equal(doc.querySelector('link[href="../../styles/explorer.css"]')?.getAttribute('rel'),'stylesheet');
+ assert.equal(doc.querySelector('link[href="../../styles/pages.css"]')?.getAttribute('rel'),'stylesheet');
+ assert.equal(doc.querySelector('link[href="../../styles/timeline-standalone.css"]')?.getAttribute('rel'),'stylesheet');
+ assert.equal(doc.querySelectorAll('.topbar .mainnav a').length,3);
+ assert.equal(doc.querySelectorAll('.subnav a[aria-current="page"]').length,1);
+ assert.equal(doc.querySelectorAll('[data-timeline-lang]').length,2);
+ assert.ok(links.includes('../../index.html#home'));
+ assert.match(html,/laneH=mobile\?\(short\?48:52\):\(short\?50:56\)/);
+ assert.match(html,/surface\.style\.height=Math\.max/);
+ assert.doesNotMatch(html,/laneH=mobile\?\(short\?23:/);
  assert.ok(doc.querySelector('#timeline-theme'));
  assert.match(html,/localStorage\.getItem\('maths-explorer-theme'\)/);
  assert.match(html,/localStorage\.setItem\('maths-explorer-theme',theme\)/);

@@ -29,6 +29,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/camera3d.js` | the one orthographic 3D camera (project, unproject, view ray, constraints, turn), used by the laboratory template `space` and by `slides/widgets-3d.js` |
 | `styles/explorer.css` | design tokens (both themes), base elements, layout |
 | `styles/pages.css` | page and component styles, challenge card colours and animations |
+| `styles/timeline-standalone.css` | standalone mathematicians timeline: shared site chrome, Jour/Nuit tokens, readable portrait lanes and mobile scrolling |
 | `styles/topics.css` | the topics browser (`#topics`): field menu with figures, landing tiles and the "where to start" selection (issue #22); cards stay in `pages.css` |
 | `styles/exhibit.css` | the gallery exhibit layout (stage first with chips, tools, hint and zoom over the canvas, readout and legend, tabbed side panel), first used by the mirrored rooms; entries with `layout: 'exhibit'` get the full workbench width |
 | `styles/home.css` | scoped opening layout (the Fourier hero preview is no longer on the home page); search and discovery entrances retained |
@@ -174,4 +175,4 @@ Topology: `js/topology-content.js` holds tangent fields, surfaces and Banach-Tar
 
 ## Mathematical history portrait timeline
 
-| `resources/history/mathematicians-timeline.html` | Self-contained, 236-profile, period-aware portrait timeline opened as a native full-page destination from `#history/people` via `js/history.js` and `js/app.js`; content currently English, with French controls and local credited portraits where available. |
+| `resources/history/mathematicians-timeline.html` | Standalone 236-profile, bilingual portrait timeline opened from `#history/people`; shared site navigation and tokens from `styles/explorer.css`, `styles/pages.css` and `styles/timeline-standalone.css`; scrollable, touch-size portrait lanes and biography links. |
