@@ -1,7 +1,15 @@
 // Six experiment-first gallery entries, with their questions, arguments and source labels in one place.
 const pair=(fr,en)=>[fr,en];
+const PREVIEW_NAMES={
+  voronoi:pair('Diagrammes de Voronoï','Voronoi diagrams'),
+  'fastest-slide':pair('Brachistochrone','Brachistochrone'),
+  'soap-films':pair('Films de savon','Soap films'),
+  knots:pair('Nœuds mathématiques','Mathematical knots'),
+  einstein:pair('Pavé Einstein','Einstein tile'),
+  'four-colours':pair('Théorème des quatre couleurs','Four-colour theorem'),
+};
 function entry(id,title,intro,steps,quiz,answer,explain,history,story,source,sourceLabel,proof){
-  return {id,custom:true,symbol:'◇',group:pair('Formes & expériences','Shapes & experiments'),title,short:title,intro,
+  return {id,custom:true,symbol:'◇',group:pair('Formes & expériences','Shapes & experiments'),title,short:PREVIEW_NAMES[id]||title,intro,
     prereq:pair('De la curiosité. Les explications viennent après la manipulation.','Curiosity. Explanations come after experimenting.'),formula:'',params:[],duration:12,level:pair('Pour tous','For everyone'),steps,quiz,answer,explain,history,story,source,sourceLabel,
     quizState:{},reasoning:{conjecture:intro,proof,transfer:pair('Change une seule chose, prédis le résultat et vérifie ton idée.','Change one thing, predict the outcome, then check your idea.')}};
 }

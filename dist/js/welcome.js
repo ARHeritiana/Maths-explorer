@@ -52,7 +52,7 @@ export function bindHome(root,index,t) {
  form.addEventListener('submit',submit);input.addEventListener('input',update);
  return ()=>{form.removeEventListener('submit',submit);input.removeEventListener('input',update);};
 }
-const card = (l, href, t, pair, link) => `<a class="wonder" href="${link(href,l.id)}"><canvas data-art="${l.id}" role="img" aria-label="${t(l.title)}"></canvas><span class="wonder-body"><strong>${t(l.title)}</strong><span>${t(l.intro)}</span><span class="wonder-go">${pair("Explorer","Explore")} →</span></span></a>`;
+const card = (l, href, t, pair, link) => { const name = E(t(l.short || l.title)); return `<a class="wonder" href="${link(href,l.id)}"><canvas data-art="${l.id}" role="img" aria-label="${name}"></canvas><span class="wonder-body"><strong>${name}</strong><span>${E(t(l.intro))}</span><span class="wonder-go">${pair("Explorer","Explore")} →</span></span></a>`; };
 export function galleryPage({ pair, t, link, labs }) {
   const items = labs.filter((l) => l.custom);
   return `<main id="main" class="page gallery-page" tabindex="-1">

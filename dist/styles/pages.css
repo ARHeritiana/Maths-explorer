@@ -865,6 +865,7 @@ details.source-course[open] { padding-bottom: 16px; }
 .wonder-body { display: grid; gap: 6px; padding: 14px 16px 16px; }
 .wonder-body strong { font: 700 1.1rem var(--display, var(--body)); }
 .wonder-body > span { color: var(--ink-2); font-size: 0.95rem; line-height: 1.45; }
+.gallery-page .wonder-body > span:not(.wonder-go) { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .wonder-body .wonder-go { color: var(--accent); font-weight: 700; margin-top: 4px; }
 .door-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; margin-top: 12px; }
 .door-card { display: grid; gap: 6px; padding: 20px; border-radius: 0; border: 1px solid var(--line); background: var(--surface); color: inherit; text-decoration: none; transition: border-color 0.2s ease, transform 0.25s ease; }

@@ -2,7 +2,7 @@
 export const P = (fr, en) => [fr, en];
 export const INFERENCE = [
   {
-    id:'secretary', symbol:'1/e', title:P('Quand faut-il choisir ?','When should you choose?'), short:P('Arrêt optimal','Optimal stopping'),
+    id:'secretary', symbol:'1/e', title:P('Quand faut-il choisir ?','When should you choose?'), short:P('Problème des secrétaires','Secretary problem'),
     intro:P('Rencontre des candidats, refuse sans retour et choisis le meilleur. Seuls les rangs relatifs sont visibles.','Interview candidates, reject without recall and choose the best. Only relative ranks are visible.'),
     assumption:P('Ordre uniforme parmi n! permutations, qualités distinctes, n connu, aucun rappel. Le gain vaut 1 seulement pour le meilleur.','Uniform order among n! permutations, distinct qualities, known n, no recall. The payoff is 1 only for the best.'),
     formula:'pₙ(r) = (r/n) Σⱼ₌ᵣⁿ⁻¹ 1/j (1 ≤ r < n) ; pₙ(0) = 1/n',
@@ -38,7 +38,7 @@ export const INFERENCE = [
     caution:P('Une décision statistique dépend du modèle et du prélèvement. Elle n’est ni une preuve de fraude ni un jugement sur une personne.','A statistical decision depends on the model and sampling. It is neither proof of fraud nor a judgment about a person.'),
   },
   {
-    id:'birthdays',symbol:'23',title:P('Deux anniversaires le même jour ?','Two birthdays on the same day?'),short:P('Collisions et anniversaires','Collisions and birthdays'),
+    id:'birthdays',symbol:'23',title:P('Deux anniversaires le même jour ?','Two birthdays on the same day?'),short:P('Paradoxe des anniversaires','Birthday paradox'),
     intro:P('Réunis un groupe, repère les collisions et compare une année uniforme à une saisonnalité artificielle.','Gather a group, spot collisions and compare a uniform year with artificial seasonality.'),
     assumption:P('Tirages indépendants. Année de 365 jours sans 29 février ; le mode saisonnier est une distribution fictive connue.','Independent draws. A 365-day year without leap day; seasonal mode is a known fictional distribution.'),
     formula:'P(collision) = 1 − ∏ⱼ₌₀ⁿ⁻¹(1 − j/d)',
@@ -47,7 +47,7 @@ export const INFERENCE = [
     caution:P('Les anniversaires réels ne sont pas parfaitement uniformes ni toujours indépendants. Les fréquences simulées restent aléatoires.','Real birthdays are neither perfectly uniform nor always independent. Simulated frequencies remain random.'),
   },
   {
-    id:'monty',symbol:'⅔',title:P('Changer de porte ?','Switch doors?'),short:P('Le problème de Monty Hall','The Monty Hall problem'),
+    id:'monty',symbol:'⅔',title:P('Changer de porte ?','Switch doors?'),short:P('Paradoxe de Monty Hall','Monty-Hall paradox'),
     intro:P('Choisis une porte, regarde ce que l’animateur révèle et compare deux règles de révélation.','Choose a door, inspect the host’s reveal and compare two reveal rules.'),
     assumption:P('Prix uniforme, choix indépendant. L’animateur informé ouvre toujours une chèvre et propose toujours de changer, départageant uniformément. L’animateur ignorant ouvre au hasard ; on conditionne sur une chèvre.','Uniform prize, independent choice. The informed host always reveals a goat and offers a switch, breaking ties uniformly. The uninformed host opens randomly; results are conditioned on a goat.'),
     formula:'P(gagner en changeant | chèvre révélée) = 2/3 ou 1/2 selon la règle',
