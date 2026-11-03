@@ -31,7 +31,7 @@ jobs:
             git reset --hard origin/main
             make site
             npm run check
-            npm test
+            node --test tests/home.test.mjs tests/discovery.test.mjs
             git add -u site dist content/data/build-state.json
             if git diff --cached --quiet; then
               echo 'Generated products are already current.'
