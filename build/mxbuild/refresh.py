@@ -36,6 +36,7 @@ def inputs():
              'content/data/glossary.json', COURSES.get(course, ['unsupported'])[0], 'build/mxbuild/tex.py',
              'build/mxbuild/twin.py', 'build/mxbuild/books.py'],
             {'book': book, 'chapters': [c for c in manifest['catalog']['chapters'] if c['course'] == course]})
+    result['static-site'] = fingerprint(['site/**/*'])
     result['fourier'] = fingerprint(['content/university/fourier/**/*','scripts/build-fourier.py'],[s for s in manifest['university']['sections'] if s['id']=='fourier'])
     result['foundations'] = fingerprint(
         ['content/tex/university/foundations/**/*', 'content/slides/university/foundations/*',
@@ -83,6 +84,9 @@ def run_job(key):
             raise ValueError(f'No PDF builder configured for {course}; configure it before publication')
         if pipeline.build_tex([course], force=True):
             raise RuntimeError('Course build failed: ' + course)
+    elif key == 'static-site':
+        # site.write() below copies source and updates linked catalogue metadata.
+        return
     elif key == 'fourier':
         command(sys.executable, 'scripts/build-fourier.py')
     elif key == 'foundations':

@@ -33,6 +33,7 @@ with sync_playwright() as p:
      page.locator('[data-history-era="structures"]').click();page.wait_for_timeout(100)
 
  page.goto(BASE+'/#history/people',wait_until='networkidle')
+ page.wait_for_url('**/resources/history/mathematicians-timeline.html*')
  assert '/resources/history/mathematicians-timeline.html' in page.url
  assert '236' in page.locator('#total').inner_text()
  assert page.locator('.era-marker small').count()==0
@@ -60,7 +61,7 @@ with sync_playwright() as p:
  page.locator('#search').fill('Noether')
  page.locator('.result').first.click()
  assert 'Noether' in page.locator('#detail-name').inner_text()
- page.locator('#scroller').click(position={'x':15,'y':400},force=True)
+ page.locator('#total').click()
  assert page.locator('.overlay.show').count()==0
  # Filtering in Reading and loading on a phone must both remeasure translated card heights when the atlas returns.
  page.goto(BASE+'/#history/advances',wait_until='networkidle')
@@ -70,6 +71,7 @@ with sync_playwright() as p:
  page.set_viewport_size({'width':390,'height':844});page.reload(wait_until='networkidle');page.set_viewport_size({'width':1440,'height':1000});page.wait_for_timeout(100)
  assert page.locator('[data-history-id="monty-letters"] .history-node-body').evaluate('e=>e.getBoundingClientRect().bottom')<page.locator('[data-history-id="monty-letters"] .history-document-marker').evaluate('e=>e.getBoundingClientRect().top')
  page.goto(BASE+'/#history/people',wait_until='networkidle')
+ page.wait_for_url('**/resources/history/mathematicians-timeline.html*')
  assert '/resources/history/mathematicians-timeline.html' in page.url
  page.locator('#search').fill('Noether')
  page.locator('.result').first.click()

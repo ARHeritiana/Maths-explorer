@@ -210,8 +210,9 @@ test('standalone timeline provides site navigation and a shared theme',()=>{
  assert.ok(doc.querySelector('#timeline-theme'));
  assert.match(html,/localStorage\.getItem\('maths-explorer-theme'\)/);
  assert.match(html,/localStorage\.setItem\('maths-explorer-theme',theme\)/);
- assert.match(html,/:root\[data-theme="nuit"\]/);
- assert.match(html,/:root\[data-theme="jour"\]/);
+ const sharedStyles=readFileSync(new URL('../site/styles/explorer.css',import.meta.url),'utf8');
+ assert.match(sharedStyles,/:root\[data-theme="nuit"\]/);
+ assert.match(sharedStyles,/:root\[data-theme="jour"\]/);
 });
 
 test('standalone timeline shows each year only on the single time axis',()=>{

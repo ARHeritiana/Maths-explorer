@@ -80,3 +80,15 @@ body{padding:0;overflow:hidden;background:var(--bg);color:var(--ink);font:1.125r
 @media(max-height:580px){.era-marker{top:43px}}
 @media(max-width:500px){.era-marker{top:48px}}
 @media(max-width:500px) and (max-height:580px){.era-marker{top:41px}}
+
+/* Keep the three site destinations available in the compact standalone header. */
+@media(max-width:600px){
+ .topbar{flex-wrap:nowrap;gap:4px;padding:4px 8px}
+ .topbar .brand{gap:4px;flex:none}
+ .topbar .brand-name{display:none}
+ .topbar .mainnav{display:flex;width:auto;flex:1;justify-content:center;gap:0}
+ .topbar .mainnav a{min-height:44px;padding:0 6px;font-size:.8rem;gap:3px}
+ .topbar .mainnav [data-site-icon] .icon{width:18px;height:18px}
+ .topbar .tools .language:not([hidden]){display:flex}
+ .topbar .language button{padding:0 4px;min-width:30px}
+}
