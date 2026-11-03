@@ -108,3 +108,11 @@
  .history-detail>header{grid-template-columns:1fr;gap:1.5rem}.history-detail figure{max-width:280px}.history-detail .history-dek{font-size:1rem}
 }
 @media(forced-colors:active){.history-lifetime,.history-document-marker{border-color:CanvasText}.history-view-switch button[aria-pressed=true]{outline:2px solid Highlight}}
+
+/* Portrait-first mathematicians timeline; the discoveries atlas keeps its original layout. */
+.history-people-page{max-width:none}
+.history-people-page .history-tabs{margin:.8rem 0 1rem}
+.history-people-title{font-size:clamp(1.3rem,2.2vw,1.8rem);margin:.4rem 0 .75rem}
+.history-timeline-frame{display:block;width:100%;height:min(76dvh,800px);min-height:480px;border:1px solid var(--line-strong);border-radius:var(--r);background:#e7d8b6}
+.history-people-language{font-size:.82rem;color:var(--ink-2);margin:.65rem 0}
+@media(max-width:600px){.history-timeline-frame{height:74dvh;min-height:460px}}

@@ -22,20 +22,25 @@ with sync_playwright() as p:
      for font in [100,200]:
       page.evaluate('(n)=>document.documentElement.style.fontSize=n+"%"',font);page.wait_for_timeout(80)
       assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),(lang,kind,theme,width,font,'page overflow')
-      if width>600:
+      if width>600 and kind=='advances':
        overlap=page.locator('.history-atlas').evaluate('''el=>{const nodes=[...el.querySelectorAll('.history-node-body')].map(e=>e.getBoundingClientRect());let count=0;for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){let a=nodes[i],b=nodes[j];if(a.left<b.right-.5&&a.right>b.left+.5&&a.top<b.bottom-.5&&a.bottom>b.top+.5)count++}return count}''')
        assert overlap==0,(lang,kind,theme,width,font,'node overlap',overlap)
       results.append([lang,kind,theme,width,font,'pass'])
     page.evaluate('document.documentElement.style.fontSize="100%"');page.set_viewport_size({'width':1440,'height':1000})
-    page.locator('[data-history-era="structures"]').click();page.wait_for_timeout(100)
+    if kind=='advances':
+     page.locator('[data-history-era="structures"]').click();page.wait_for_timeout(100)
 
  page.goto(BASE+'/#history/people',wait_until='networkidle')
- page.locator('#history-viewport').focus();page.keyboard.press('Home');assert page.locator('#history-viewport').evaluate('e=>e.scrollLeft')==0
- page.keyboard.press('ArrowRight');assert page.locator('#history-viewport').evaluate('e=>e.scrollLeft')>0
- page.locator('[data-history-era="methods"]').click();old=page.locator('#history-viewport').evaluate('e=>e.scrollLeft')
- viewport=page.locator('#history-viewport');viewport.scroll_into_view_if_needed();box=viewport.bounding_box()
- page.mouse.move(box['x']+500,box['y']+100);page.mouse.down();page.mouse.move(box['x']+300,box['y']+100,steps=8);page.mouse.up()
- assert viewport.evaluate('e=>e.scrollLeft')>old,'mouse background pan'
+ frame=page.frame_locator('.history-timeline-frame')
+ assert '236' in frame.locator('#total').inner_text()
+ frame.locator('#scroller').focus()
+ page.keyboard.press('ArrowRight')
+ assert frame.locator('#scroller').evaluate('e=>e.scrollLeft')>0
+ frame.locator('#search').fill('Noether')
+ frame.locator('.result').first.click()
+ assert 'Noether' in frame.locator('#detail-name').inner_text()
+ frame.locator('#scroller').click(position={'x':15,'y':400},force=True)
+ assert frame.locator('.overlay.show').count()==0
  # Filtering in Reading and loading on a phone must both remeasure translated card heights when the atlas returns.
  page.goto(BASE+'/#history/advances',wait_until='networkidle')
  page.locator('button[data-history-view="list"]').click();page.locator('input[name=query]').fill('animateur')
@@ -44,10 +49,10 @@ with sync_playwright() as p:
  page.set_viewport_size({'width':390,'height':844});page.reload(wait_until='networkidle');page.set_viewport_size({'width':1440,'height':1000});page.wait_for_timeout(100)
  assert page.locator('[data-history-id="monty-letters"] .history-node-body').evaluate('e=>e.getBoundingClientRect().bottom')<page.locator('[data-history-id="monty-letters"] .history-document-marker').evaluate('e=>e.getBoundingClientRect().top')
  page.goto(BASE+'/#history/people',wait_until='networkidle')
- page.locator('input[name=query]').fill('noether');assert page.locator('.history-node').count()==1
- page.locator('.history-node').click();page.locator('.history-detail h1').wait_for();assert 'Noether' in page.locator('h1').inner_text()
- page.locator('.history-credit summary').click();assert 'Public domain' in page.locator('.history-credit').inner_text()
- assert page.locator('.history-detail>header img').evaluate('e=>e.complete&&e.naturalWidth>0')
+ frame=page.frame_locator('.history-timeline-frame')
+ frame.locator('#search').fill('Noether')
+ frame.locator('.result').first.click()
+ assert 'Noether' in frame.locator('#detail-name').inner_text()
  for kind,id in [('people','mirzakhani'),('people','shannon'),('advances','elements')]:
   page.goto(f'{BASE}/#history/{kind}/{id}',wait_until='networkidle');page.locator('.history-credit summary').first.click()
   assert page.locator('.history-detail>header img').evaluate('e=>e.complete&&e.naturalWidth>0'),id

@@ -171,3 +171,7 @@ Fair division: `js/fair-division-content.js` holds gallery and formal reading en
 Topology: `js/topology-content.js` holds tangent fields, surfaces and Banach-Tarski reading/gallery entry points; `js/gallery/gallery-topology.js` reuses the guided laboratories.
 
 `js/dynamics-content.js` shares original sourced pendulum, three-body and logistic explanations across reading and gallery. `js/gallery/gallery-dynamics.js` mounts those same laboratory simulations in gallery entries.
+
+## Mathematical history portrait timeline
+
+| `resources/history/mathematicians-timeline.html` | Self-contained, 236-profile, period-aware portrait timeline embedded by `js/history.js` for `#history/people`; content currently English, with French controls and local credited portraits where available. |

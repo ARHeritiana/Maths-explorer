@@ -56,14 +56,22 @@ test('people and developments are reciprocal canonical discovery records',()=>{
  assert.equal(topicCounts(index).history,index.length);
  for(const item of [...PEOPLE,...ADVANCES])for(const route of historyLinks(PEOPLE.includes(item)?'people':'advances',item))if(route.startsWith('#history/')){const [,kind,id]=route.slice(1).split('/');assert.ok(historyRecord(kind,id),route);}
 });
-test('timeline DOM supports search, date errors, reset, detail routes and cleanup',()=>{
- const dom=new JSDOM(historyPage('people',undefined,t)),root=dom.window.document.querySelector('main'),stop=bindHistory(root,'people',t);
- const form=root.querySelector('form'),count=root.querySelector('#history-count');
- assert.match(count.textContent,new RegExp(String(PEOPLE.length)));
- form.elements.query.value='Évariste';form.dispatchEvent(new dom.window.Event('input'));assert.equal(root.querySelectorAll('.history-list>li').length,1);assert.match(root.querySelector('.history-list').textContent,/Galois/);
- form.elements.from.value='2000';form.elements.to.value='1800';form.dispatchEvent(new dom.window.Event('input'));assert.match(count.textContent,/première année/);
- form.dispatchEvent(new dom.window.Event('reset'));assert.equal(root.querySelectorAll('.history-list>li').length,PEOPLE.length);
- stop();form.elements.query.value='nonexistent';form.dispatchEvent(new dom.window.Event('input'));assert.equal(root.querySelectorAll('.history-list>li').length,PEOPLE.length);
+test('the people timeline embeds the complete portrait edition and advances keep native search',()=>{
+ const page=new JSDOM(historyPage('people',undefined,t)).window.document;
+ const iframe=page.querySelector('.history-timeline-frame');
+ assert.ok(iframe);
+ assert.match(iframe.src,/mathematicians-timeline\.html\?lang=fr/);
+ assert.match(page.body.textContent,/236/);
+ const dom=new JSDOM(historyPage('advances',undefined,t));
+ const root=dom.window.document.querySelector('main'),stop=bindHistory(root,'advances',t);
+ const form=root.querySelector('form');
+ form.elements.query.value='galois';form.dispatchEvent(new dom.window.Event('input'));
+ assert.ok(root.querySelectorAll('.history-list>li').length>=1);
+ form.elements.from.value='2000';form.elements.to.value='1800';form.dispatchEvent(new dom.window.Event('input'));
+ assert.match(root.querySelector('#history-count').textContent,/première année/);
+ form.dispatchEvent(new dom.window.Event('reset'));
+ assert.equal(root.querySelectorAll('.history-list>li').length,ADVANCES.length);
+ stop();
  for(const kind of ['people','advances']){assert.ok(isHistoryRoute(kind));assert.ok(!isHistoryRoute(kind,'missing'));}
  assert.match(historyPage('advances','galois-publication',p=>p[1]),/Edition of Galois/);
  assert.ok(isHistoryRoute()&&!isHistoryRoute('missing'));
@@ -121,19 +129,19 @@ test('image register uses local, bounded assets with explicit reusable licences 
  assert.ok(bytes<2_000_000,'complete image collection stays below 2 MB');
 });
 test('atlas view, era jumps, scale, empty recovery and documentary markers work through DOM events',()=>{
- const dom=new JSDOM(historyPage('people',undefined,t)),root=dom.window.document.querySelector('main'),stop=bindHistory(root,'people',t);
+ const dom=new JSDOM(historyPage('advances',undefined,t)),root=dom.window.document.querySelector('main'),stop=bindHistory(root,'advances',t);
  const event=name=>new dom.window.Event(name,{bubbles:true});
  const viewport=root.querySelector('#history-viewport');
- assert.equal(root.querySelectorAll('.history-node').length,PEOPLE.length);
- assert.equal(root.querySelector('[data-history-id="may"] .history-lifetime'),null);
- assert.ok(root.querySelector('[data-history-id="may"] .history-document-marker'));
+ assert.equal(root.querySelectorAll('.history-node').length,ADVANCES.length);
+ assert.equal(root.querySelector('[data-history-id="monty-letters"] .history-lifetime'),null);
+ assert.ok(root.querySelector('[data-history-id="monty-letters"] .history-document-marker'));
  root.querySelector('button[data-history-view="list"]').click();assert.equal(root.dataset.historyView,'list');
  root.querySelector('button[data-history-view="atlas"]').click();assert.equal(root.dataset.historyView,'atlas');
  root.querySelector('[data-history-era="today"]').click();assert.ok(viewport.scrollLeft>4000);
  const before=viewport.scrollLeft,scale=root.querySelector('#history-zoom');scale.value='1.6';scale.dispatchEvent(event('change'));assert.equal(viewport.scrollLeft,before*1.6);
  const form=root.querySelector('form');form.elements.query.value='no-such-mathematician';form.dispatchEvent(event('input'));
  assert.ok(root.classList.contains('history-no-results'));assert.ok(root.querySelector('[data-history-reset]'));
- root.querySelector('[data-history-reset]').click();assert.equal(root.querySelectorAll('.history-list>li').length,PEOPLE.length);
+ root.querySelector('[data-history-reset]').click();assert.equal(root.querySelectorAll('.history-list>li').length,ADVANCES.length);
  stop();const left=viewport.scrollLeft;root.querySelector('[data-history-era="today"]').click();assert.equal(viewport.scrollLeft,left,'listeners cleaned up');
 });
 
