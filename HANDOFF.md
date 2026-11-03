@@ -493,3 +493,5 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 - Initial profiles cover the five French priority courses; all 24 new exam problems have explicit per-question contracts. Legacy content remains visibly unannotated and is scanned heuristically, without being certified.
 - Supports concept dependencies, chapter/unit order with sequence identity, local definitions and earlier-question results, reasoned mentions/extensions, stale source declarations and internal JSON/Markdown reports. Default diagnostics do not add a publication gate or student-facing audit labels.
 - Bilingual lesson work remains on standby and unfinished; retained English curriculum editions are not scanned or modified.
+
+- Current display instruction, 3 November 2026: keep target-skill metadata internal for now; do not display competency lists or exam-type labels on bank cards, printed sheets or LaTeX editions. The prerequisite diagnostics remain internal and advisory. Bilingual lesson work remains on standby.

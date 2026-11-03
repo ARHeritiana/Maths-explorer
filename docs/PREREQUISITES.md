@@ -29,7 +29,7 @@ for unresolved content findings or missing declarations. It is not used by the p
 
 - `content/data/manifest.json` supplies the actual course ids, chapter ids and numeric chapter order. No second chapter list is maintained.
 - `content/data/prerequisites.json` supplies the concept graph, entry assumptions, introduction placements, explicit course inheritance
-  and per-resource/per-question contracts. Its stable concept ids are different from the readable target-skill sentences shown to students.
+  and per-resource/per-question contracts. Its stable concept ids are different from the readable target-skill sentences retained as internal metadata; those sentences are not displayed for now.
 - `scripts/prerequisite-model.mjs` interprets the graph and ordered contracts. `scripts/check-prerequisites.mjs` reads the real exercise registry,
   calls the real generators, reads authored French decks, and scans French chapter sources listed in the books manifest.
 

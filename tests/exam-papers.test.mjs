@@ -11,7 +11,7 @@ import {bankPage,bankCount} from '../dist/js/bank-page.js';
 test('24 original exam problems share 84 complete question/solution pairs with the existing bank',()=>{
   assert.equal(authoredExams.length,24);
   assert.equal(authoredExams.reduce((n,e)=>n+e.parts.length,0),84);
-  for(const format of ['EAM','E3C','Bac'])assert.equal(authoredExams.filter(e=>e.exam===format).length,8);
+  for(const prefix of ['eam','e3c','bac'])assert.equal(authoredExams.filter(e=>e.id.startsWith('exam-'+prefix+'-')).length,8);
   for(const e of authoredExams){
     assert.ok(AUTHORED.includes(e),e.id);
     assert.ok(e.ok(),e.id);
@@ -27,8 +27,8 @@ test('24 original exam problems share 84 complete question/solution pairs with t
     assert.ok(teacher.includes('\\begin{mdframed}'));
     assert.doesNotMatch(teacher,/<pre>|<code>/);
     for(const output of [student,teacher,sheetHtml(doc),sheetHtml(doc,{teacher:true})]) {
-      assert.match(output,/Compétences visées/);
-      for(const skill of e.skills)assert.ok(output.includes(skill),e.id+': '+skill);
+      assert.doesNotMatch(output,/Compétences visées|Type\s+(?:Bac|E3C|EAM)/);
+      assert.doesNotMatch(output,/class="exercise-skills"/);
     }
   }
 });
@@ -41,12 +41,9 @@ test('new problems appear in chapter bank cards, with folded corrections and Pyt
       assert.ok(card,e.id);
       assert.equal(card.querySelectorAll('.bank-sol').length,e.parts.length);
       assert.equal(card.querySelectorAll('details[open]').length,0);
-      assert.match(card.textContent,new RegExp('Type '+e.exam));
-      const skills=card.querySelector('.exercise-skills');
-      assert.ok(skills,e.id);
-      assert.deepEqual([...skills.querySelectorAll('li')].map(li=>li.textContent),e.skills);
-      assert.ok(!skills.closest('details'));
-      assert.ok(skills.compareDocumentPosition(card.querySelector('.bank-intro')) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING);
+      assert.doesNotMatch(card.textContent,/Compétences visées|Type\s+(?:Bac|E3C|EAM)/);
+      assert.equal(card.querySelector('.exercise-skills'),null);
+      assert.ok(card.querySelector('.bank-intro'));
       assert.ok(bankCount(chapter)>=1);
       dom.window.close();
     }
