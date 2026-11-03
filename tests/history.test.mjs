@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
 import {PEOPLE,ADVANCES,DATE_KINDS,dateLabel,queryHistory,historyLinks,historyRecord,personEvents} from '../site/js/history-data.js';
-import {historyPage,bindHistory,isHistoryRoute} from '../site/js/history.js';
+import {historyPage,bindHistory,isHistoryRoute,mathematiciansTimelineUrl} from '../site/js/history.js';
 import {membershipByKey} from '../site/js/topic-registry.js';
 import {buildDiscoveryIndex,topicCounts} from '../site/js/discovery-index.js';
 import {GALOIS_BIOGRAPHY} from '../site/js/reading-history-content.js';
@@ -56,12 +56,12 @@ test('people and developments are reciprocal canonical discovery records',()=>{
  assert.equal(topicCounts(index).history,index.length);
  for(const item of [...PEOPLE,...ADVANCES])for(const route of historyLinks(PEOPLE.includes(item)?'people':'advances',item))if(route.startsWith('#history/')){const [,kind,id]=route.slice(1).split('/');assert.ok(historyRecord(kind,id),route);}
 });
-test('the people timeline embeds the complete portrait edition and advances keep native search',()=>{
+test('the people timeline has a dedicated document, while advances keep native search',()=>{
+ const url=mathematiciansTimelineUrl('fr');
+ assert.ok(url.includes('mathematicians-timeline.html?lang=fr&bios='));
  const page=new JSDOM(historyPage('people',undefined,t)).window.document;
- const iframe=page.querySelector('.history-timeline-frame');
- assert.ok(iframe);
- assert.match(iframe.src,/mathematicians-timeline\.html\?lang=fr/);
- assert.match(page.body.textContent,/236/);
+ assert.equal(page.querySelector('iframe'),null);
+ assert.equal(page.querySelector('main a[href^="./resources/history/"]').getAttribute('href'),url);
  const dom=new JSDOM(historyPage('advances',undefined,t));
  const root=dom.window.document.querySelector('main'),stop=bindHistory(root,'advances',t);
  const form=root.querySelector('form');

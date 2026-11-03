@@ -174,4 +174,4 @@ Topology: `js/topology-content.js` holds tangent fields, surfaces and Banach-Tar
 
 ## Mathematical history portrait timeline
 
-| `resources/history/mathematicians-timeline.html` | Self-contained, 236-profile, period-aware portrait timeline embedded by `js/history.js` for `#history/people`; content currently English, with French controls and local credited portraits where available. |
+| `resources/history/mathematicians-timeline.html` | Self-contained, 236-profile, period-aware portrait timeline opened as a native full-page destination from `#history/people` via `js/history.js` and `js/app.js`; content currently English, with French controls and local credited portraits where available. |
