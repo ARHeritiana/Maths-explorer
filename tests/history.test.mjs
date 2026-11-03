@@ -2,8 +2,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
+import {readFileSync} from 'node:fs';
 import {PEOPLE,ADVANCES,DATE_KINDS,dateLabel,queryHistory,historyLinks,historyRecord,personEvents} from '../site/js/history-data.js';
-import {historyPage,bindHistory,isHistoryRoute} from '../site/js/history.js';
+import {historyPage,bindHistory,isHistoryRoute,mathematiciansTimelineUrl} from '../site/js/history.js';
 import {membershipByKey} from '../site/js/topic-registry.js';
 import {buildDiscoveryIndex,topicCounts} from '../site/js/discovery-index.js';
 import {GALOIS_BIOGRAPHY} from '../site/js/reading-history-content.js';
@@ -56,14 +57,22 @@ test('people and developments are reciprocal canonical discovery records',()=>{
  assert.equal(topicCounts(index).history,index.length);
  for(const item of [...PEOPLE,...ADVANCES])for(const route of historyLinks(PEOPLE.includes(item)?'people':'advances',item))if(route.startsWith('#history/')){const [,kind,id]=route.slice(1).split('/');assert.ok(historyRecord(kind,id),route);}
 });
-test('timeline DOM supports search, date errors, reset, detail routes and cleanup',()=>{
- const dom=new JSDOM(historyPage('people',undefined,t)),root=dom.window.document.querySelector('main'),stop=bindHistory(root,'people',t);
- const form=root.querySelector('form'),count=root.querySelector('#history-count');
- assert.match(count.textContent,new RegExp(String(PEOPLE.length)));
- form.elements.query.value='Évariste';form.dispatchEvent(new dom.window.Event('input'));assert.equal(root.querySelectorAll('.history-list>li').length,1);assert.match(root.querySelector('.history-list').textContent,/Galois/);
- form.elements.from.value='2000';form.elements.to.value='1800';form.dispatchEvent(new dom.window.Event('input'));assert.match(count.textContent,/première année/);
- form.dispatchEvent(new dom.window.Event('reset'));assert.equal(root.querySelectorAll('.history-list>li').length,PEOPLE.length);
- stop();form.elements.query.value='nonexistent';form.dispatchEvent(new dom.window.Event('input'));assert.equal(root.querySelectorAll('.history-list>li').length,PEOPLE.length);
+test('the people timeline has a dedicated document, while advances keep native search',()=>{
+ const url=mathematiciansTimelineUrl('fr');
+ assert.ok(url.includes('mathematicians-timeline.html?lang=fr&bios='));
+ const page=new JSDOM(historyPage('people',undefined,t)).window.document;
+ assert.equal(page.querySelector('iframe'),null);
+ assert.equal(page.querySelector('main a[href^="./resources/history/"]').getAttribute('href'),url);
+ const dom=new JSDOM(historyPage('advances',undefined,t));
+ const root=dom.window.document.querySelector('main'),stop=bindHistory(root,'advances',t);
+ const form=root.querySelector('form');
+ form.elements.query.value='galois';form.dispatchEvent(new dom.window.Event('input'));
+ assert.ok(root.querySelectorAll('.history-list>li').length>=1);
+ form.elements.from.value='2000';form.elements.to.value='1800';form.dispatchEvent(new dom.window.Event('input'));
+ assert.match(root.querySelector('#history-count').textContent,/première année/);
+ form.dispatchEvent(new dom.window.Event('reset'));
+ assert.equal(root.querySelectorAll('.history-list>li').length,ADVANCES.length);
+ stop();
  for(const kind of ['people','advances']){assert.ok(isHistoryRoute(kind));assert.ok(!isHistoryRoute(kind,'missing'));}
  assert.match(historyPage('advances','galois-publication',p=>p[1]),/Edition of Galois/);
  assert.ok(isHistoryRoute()&&!isHistoryRoute('missing'));
@@ -121,19 +130,19 @@ test('image register uses local, bounded assets with explicit reusable licences 
  assert.ok(bytes<2_000_000,'complete image collection stays below 2 MB');
 });
 test('atlas view, era jumps, scale, empty recovery and documentary markers work through DOM events',()=>{
- const dom=new JSDOM(historyPage('people',undefined,t)),root=dom.window.document.querySelector('main'),stop=bindHistory(root,'people',t);
+ const dom=new JSDOM(historyPage('advances',undefined,t)),root=dom.window.document.querySelector('main'),stop=bindHistory(root,'advances',t);
  const event=name=>new dom.window.Event(name,{bubbles:true});
  const viewport=root.querySelector('#history-viewport');
- assert.equal(root.querySelectorAll('.history-node').length,PEOPLE.length);
- assert.equal(root.querySelector('[data-history-id="may"] .history-lifetime'),null);
- assert.ok(root.querySelector('[data-history-id="may"] .history-document-marker'));
+ assert.equal(root.querySelectorAll('.history-node').length,ADVANCES.length);
+ assert.equal(root.querySelector('[data-history-id="monty-letters"] .history-lifetime'),null);
+ assert.ok(root.querySelector('[data-history-id="monty-letters"] .history-document-marker'));
  root.querySelector('button[data-history-view="list"]').click();assert.equal(root.dataset.historyView,'list');
  root.querySelector('button[data-history-view="atlas"]').click();assert.equal(root.dataset.historyView,'atlas');
  root.querySelector('[data-history-era="today"]').click();assert.ok(viewport.scrollLeft>4000);
  const before=viewport.scrollLeft,scale=root.querySelector('#history-zoom');scale.value='1.6';scale.dispatchEvent(event('change'));assert.equal(viewport.scrollLeft,before*1.6);
  const form=root.querySelector('form');form.elements.query.value='no-such-mathematician';form.dispatchEvent(event('input'));
  assert.ok(root.classList.contains('history-no-results'));assert.ok(root.querySelector('[data-history-reset]'));
- root.querySelector('[data-history-reset]').click();assert.equal(root.querySelectorAll('.history-list>li').length,PEOPLE.length);
+ root.querySelector('[data-history-reset]').click();assert.equal(root.querySelectorAll('.history-list>li').length,ADVANCES.length);
  stop();const left=viewport.scrollLeft;root.querySelector('[data-history-era="today"]').click();assert.equal(viewport.scrollLeft,left,'listeners cleaned up');
 });
 
@@ -180,4 +189,38 @@ test('people with a full biography and their biographies link both ways',async()
   assert.ok(b.sources.length&&b.sources.every(([u])=>u.startsWith('https://')),b.id);
   assert.ok(b.facts.length>=2,b.id);
  }
+});
+
+test('standalone timeline provides site navigation and a shared theme',()=>{
+ const html=readFileSync(new URL('../site/resources/history/mathematicians-timeline.html',import.meta.url),'utf8');
+ const doc=new JSDOM(html).window.document;
+ const links=[...doc.querySelectorAll('.topbar a, .subnav a')].map(x=>x.getAttribute('href'));
+ for(const destination of ['../../index.html#home','../../index.html#basics','../../index.html#topics','../../index.html#biographies','../../index.html#history/advances'])
+  assert.ok(links.includes(destination),destination);
+ assert.equal(doc.querySelector('link[href="../../styles/explorer.css"]')?.getAttribute('rel'),'stylesheet');
+ assert.equal(doc.querySelector('link[href="../../styles/pages.css"]')?.getAttribute('rel'),'stylesheet');
+ assert.equal(doc.querySelector('link[href="../../styles/timeline-standalone.css"]')?.getAttribute('rel'),'stylesheet');
+ assert.equal(doc.querySelectorAll('.topbar .mainnav a').length,3);
+ assert.equal(doc.querySelectorAll('.subnav a[aria-current="page"]').length,1);
+ assert.equal(doc.querySelectorAll('[data-timeline-lang]').length,2);
+ assert.ok(links.includes('../../index.html#home'));
+ assert.match(html,/laneH=mobile\?\(short\?48:52\):\(short\?50:56\)/);
+ assert.match(html,/surface\.style\.height=Math\.max/);
+ assert.doesNotMatch(html,/laneH=mobile\?\(short\?23:/);
+ assert.ok(doc.querySelector('#timeline-theme'));
+ assert.match(html,/localStorage\.getItem\('maths-explorer-theme'\)/);
+ assert.match(html,/localStorage\.setItem\('maths-explorer-theme',theme\)/);
+ assert.match(html,/:root\[data-theme="nuit"\]/);
+ assert.match(html,/:root\[data-theme="jour"\]/);
+});
+
+test('standalone timeline shows each year only on the single time axis',()=>{
+ const root=new URL('../site/',import.meta.url);
+ const html=readFileSync(new URL('resources/history/mathematicians-timeline.html',root),'utf8');
+ const css=readFileSync(new URL('styles/timeline-standalone.css',root),'utf8');
+ assert.doesNotMatch(html,/node\('small','',g,fmt\(e\.start\)\)/);
+ assert.match(html,/node\('span','axis-label',axis,fmt\(year\)\)/);
+ assert.match(css,/\.century::after,\.century\.quiet::after\{content:none!important\}/);
+ assert.match(css,/\.era-marker\{[^}]*border:0/);
+ assert.match(css,/\.era-marker small\{display:none!important\}/);
 });

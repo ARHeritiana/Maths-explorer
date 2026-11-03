@@ -1,0 +1,82 @@
+/* Mathematicians chronology: use the main site's Cahier tokens, typography and navigation. */
+:root{--timeline-bar:var(--ink-2);--timeline-text:#fff;--timeline-life:var(--accent)}
+body{padding:0;overflow:hidden;background:var(--bg);color:var(--ink);font:1.125rem/1.6 var(--body)}
+.app{display:flex;flex-direction:column;height:100dvh;min-height:0}
+.topbar{flex:0 0 var(--header);z-index:60}
+.topbar .brand{font:800 1.2rem var(--ui);letter-spacing:-.03em;gap:10px}
+.topbar .mainnav{margin-right:auto}
+.topbar .mainnav [data-site-icon]{display:inline-flex;align-items:center}
+.topbar .tools{margin-left:auto}
+.topbar .icon-btn{display:grid;place-items:center;font-size:24px}
+.subnav{position:static;flex:0 0 47px;background:var(--surface);z-index:50}
+.subnav-inner{height:47px;align-items:center;max-width:var(--page-w)}
+.subnav a{white-space:nowrap;flex:none}
+.subnav a.mx-return{margin-right:10px;border-right:1px solid var(--line)}
+.mx-skip{position:fixed;top:-100px;left:8px;padding:12px 16px;background:var(--accent);color:var(--accent-ink);z-index:120;font-weight:700}
+.mx-skip:focus{top:6px}
+.header{height:56px;flex:0 0 56px;padding:0 clamp(8px,2vw,24px);background:var(--surface);border-bottom:1px solid var(--line);box-shadow:none}
+.header .toolbar{width:100%;justify-content:space-between;gap:8px}
+.header .total,.header .zoomlabel{color:var(--muted);font:600 13px var(--ui)}
+.header .searchwrap{flex:1;min-width:0;max-width:440px}
+.header .searchwrap input{width:100%;max-width:none;min-width:0;height:44px;border:1px solid var(--line-strong);border-radius:0;background:var(--surface);color:var(--ink);padding:0 12px;font:1rem var(--body)}
+.header .searchwrap input::placeholder{color:var(--muted)}
+.header .smallbtn{width:44px;min-width:44px;height:44px;padding:0;border:1px solid var(--line-strong);border-radius:0;background:var(--surface);color:var(--ink);box-shadow:none;font:700 20px var(--ui)}
+.header .smallbtn:hover{background:var(--sunken)}
+.results{top:47px;background:var(--surface);color:var(--ink);border:1px solid var(--line-strong);border-radius:0;box-shadow:none}
+.result{min-height:44px;border-radius:0;color:var(--ink);font:1rem var(--body)}
+.result:hover,.result:focus-visible{background:var(--sunken)}
+.result small{color:var(--muted)}
+.frame{flex:1;min-height:0}
+.stage,.surface{background:var(--bg)}
+.stage::before,.surface::before,.surface::after{content:none!important}
+.scroller{overflow-x:auto;overflow-y:auto;touch-action:pan-x pan-y;overscroll-behavior:contain;scrollbar-color:var(--line-strong) var(--sunken)}
+.surface{box-shadow:none;overflow:visible}
+.paper-sketch,.atmosphere,.sidebar,.stagehead,.lower-controls,.help{display:none!important}
+.century{background:var(--grid)}
+.century.loud{background:var(--line)}
+/* Period titles are quiet headings, not a second competing year axis. */
+.century::after,.century.quiet::after{content:none!important}
+.era-marker{top:52px;transform:translateX(10px);padding:0;border:0;max-width:210px;z-index:3}
+.era-marker span{display:block;color:var(--muted);font:700 12px/1.3 var(--ui);letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.era-marker small{display:none!important}
+.axis{background:var(--sunken);border-top:1px solid var(--line-strong)}
+.axis-label{color:var(--ink-2);font:600 11px var(--ui)}
+.today{border-left-color:var(--accent)}
+.today-label{color:var(--accent);font:700 11px var(--ui)}
+.life{position:absolute;display:flex;align-items:center;width:var(--base-w,48px);height:var(--life-height,50px);min-width:44px;padding:0;margin:0;background:transparent!important;border:0;box-shadow:none;filter:none;overflow:visible;white-space:nowrap;touch-action:pan-x pan-y;z-index:5;isolation:isolate;cursor:pointer;transform:none!important}
+.life .lifeline{position:absolute;left:calc(var(--portrait-size,44px)*.46);right:0;top:50%;height:calc(var(--portrait-size,44px)*.68);transform:translateY(-50%);background:var(--timeline-bar);border:1px solid var(--line-strong);border-radius:4px;box-shadow:none;z-index:0}
+.life.feature .lifeline{background:var(--timeline-life);border-color:var(--timeline-life)}
+.life .lifeline::after{content:none!important}
+.life.compact:not(:hover):not(:focus-visible):not(.selected) .lifeline{right:9px}
+.life.compact:not(:hover):not(:focus-visible):not(.selected) .lifeline::after{content:''!important;position:absolute;left:100%;top:-1px;border-top:calc(var(--portrait-size,44px)*.34 + 1px) solid transparent;border-bottom:calc(var(--portrait-size,44px)*.34 + 1px) solid transparent;border-left:9px solid var(--timeline-bar)}
+.life.compact.feature:not(:hover):not(:focus-visible):not(.selected) .lifeline::after{border-left-color:var(--timeline-life)}
+.life img,.life.feature img{width:var(--portrait-size,44px);height:var(--portrait-size,44px);flex:0 0 var(--portrait-size,44px);border-radius:50%;object-fit:cover;object-position:center 25%;position:relative;z-index:2;background:var(--sunken);border:2px solid var(--line-strong);box-shadow:none;transition:transform var(--t),border-color var(--t)}
+.life:hover img,.life:focus-visible img,.life.selected img{border-color:var(--accent);transform:scale(1.03)}
+.life:hover,.life:focus-visible,.life.selected{width:var(--span-w)!important;z-index:45;filter:none;box-shadow:none}
+.life .life-inline{position:absolute;left:calc(var(--portrait-size,44px) + 8px);right:8px;top:50%;transform:translateY(-50%);z-index:4;color:#fff;font:700 13px/1.2 var(--body);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;pointer-events:none;text-shadow:none}
+.life.compact:not(:hover):not(:focus-visible):not(.selected) .life-inline{display:none}
+.life .life-name{position:absolute;left:0;top:calc(-.75 * var(--portrait-size,44px));max-width:280px;width:max-content;padding:6px 10px;border:1px solid var(--line-strong);border-radius:0;background:var(--surface);color:var(--ink);font:700 13px var(--body);opacity:0;visibility:hidden;transform:none;box-shadow:none;z-index:8;pointer-events:none}
+.life.compact:hover .life-name,.life.compact:focus-visible .life-name{opacity:1;visibility:visible}
+.life.full .life-name,.life.selected .life-name{display:none}
+.life .life-dates{display:none!important}
+.life:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:0}
+.overlay{top:10px;right:10px;bottom:40px;width:min(460px,calc(100% - 20px));background:var(--surface);color:var(--ink);border:1px solid var(--line-strong);border-radius:0;box-shadow:none}
+.overlay-top{background:var(--sunken);border-bottom:1px solid var(--line)}
+.overlay-portrait{background:var(--surface);border:1px solid var(--line-strong);border-radius:0}
+.overlay h2{font:700 23px/1.2 var(--ui);color:var(--ink)}
+.overlay-dates,.overlay-kicker{color:var(--muted);font-family:var(--ui)}
+.overlay-close{width:44px;height:44px;right:3px;top:3px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:0;font-size:24px}
+.overlay-close:hover{background:var(--sunken)}
+.overlay-content{color:var(--ink-2);font:1rem/1.6 var(--body)}
+.overlay-footer{color:var(--muted);font-family:var(--body);border-top:1px solid var(--line);flex-wrap:wrap}
+.overlay-footer a,.site-bio-link{color:var(--accent);text-decoration:underline;font:700 .875rem var(--body)}
+.site-bio-link[hidden]{display:none}
+@media(max-width:960px){.app{height:calc(100dvh - 60px - env(safe-area-inset-bottom))}.topbar .mainnav{margin-right:0}.topbar .mainnav [data-site-icon] .icon{width:24px;height:24px}}
+@media(max-width:620px){.header{padding:0 7px}.header .toolbar{gap:6px}.header .total,.header .zoomlabel{display:none}.header .searchwrap{max-width:none;min-width:0}.header .searchwrap input{height:44px;font-size:14px}.header .smallbtn{height:44px;width:44px}.overlay{left:8px;right:8px;top:8px;bottom:36px;width:auto}.subnav a.mx-return{margin-right:2px}}
+@media(hover:none){.life.compact:not(.selected):hover,.life.full:not(.selected):hover{width:var(--base-w)!important}.life.compact:not(.selected):hover .life-name,.life.compact:not(.selected):hover .life-inline{display:none}.life.compact:not(.selected):hover img{transform:none}}
+@media(prefers-reduced-motion:reduce){.life,.life img,.overlay{transition:none!important}}
+
+/* The compact chronology retains readable period headings at every viewport size. */
+@media(max-height:580px){.era-marker{top:43px}}
+@media(max-width:500px){.era-marker{top:48px}}
+@media(max-width:500px) and (max-height:580px){.era-marker{top:41px}}

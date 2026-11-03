@@ -27,7 +27,7 @@ really need them.
 | I want to change... | Open (and nothing else first) | Then |
 |---|---|---|
 | a colour, font, spacing, radius or theme | `site/styles/explorer.css` (tokens at the top, both themes) | `docs/DESIGN_V3.md` only for a design decision |
-| the look of one page or component | `site/styles/pages.css` (search the page class, see section 3) | |
+| the look of one page or component | `site/styles/pages.css` (search the page class, see section 3) | standalone mathematicians: `site/styles/timeline-standalone.css` and `site/resources/history/mathematicians-timeline.html` |
 | the top navigation (three sections, "Apprendre", "Explorer" and "Lire", each with a row of page tabs), footer, theme or language buttons | `site/js/app.js` `SECTIONS`, `TAB_OF`, `header()` / `footer()` | |
 | a foundations lesson (`#basics`) | `site/js/app.js` `basicsPage` / `bindBasics`, `site/resources/basics/place-value.html, site/resources/basics/place-value.en.html`, `site/resources/basics/addition.html, site/resources/basics/addition.en.html`, `site/resources/basics/subtraction.html, site/resources/basics/subtraction.en.html`, `site/resources/basics/multiplication.html, site/resources/basics/multiplication.en.html`, `site/resources/basics/division.html, site/resources/basics/division.en.html`, `site/resources/basics/sets.html, site/resources/basics/sets.en.html` | place value, the four arithmetic operations, sets (shared code, one text table per edition) |
 | a route (add or rename a page) | `site/js/app.js` `route()`, `render()` (validity list and dispatch) | section 3 |

@@ -29,6 +29,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/camera3d.js` | the one orthographic 3D camera (project, unproject, view ray, constraints, turn), used by the laboratory template `space` and by `slides/widgets-3d.js` |
 | `styles/explorer.css` | design tokens (both themes), base elements, layout |
 | `styles/pages.css` | page and component styles, challenge card colours and animations |
+| `styles/timeline-standalone.css` | standalone mathematicians timeline: shared site chrome, Jour/Nuit tokens, readable portrait lanes and mobile scrolling |
 | `styles/topics.css` | the topics browser (`#topics`): field menu with figures, landing tiles and the "where to start" selection (issue #22); cards stay in `pages.css` |
 | `styles/exhibit.css` | the gallery exhibit layout (stage first with chips, tools, hint and zoom over the canvas, readout and legend, tabbed side panel), first used by the mirrored rooms; entries with `layout: 'exhibit'` get the full workbench width |
 | `styles/home.css` | scoped opening layout (the Fourier hero preview is no longer on the home page); search and discovery entrances retained |
@@ -171,3 +172,7 @@ Fair division: `js/fair-division-content.js` holds gallery and formal reading en
 Topology: `js/topology-content.js` holds tangent fields, surfaces and Banach-Tarski reading/gallery entry points; `js/gallery/gallery-topology.js` reuses the guided laboratories.
 
 `js/dynamics-content.js` shares original sourced pendulum, three-body and logistic explanations across reading and gallery. `js/gallery/gallery-dynamics.js` mounts those same laboratory simulations in gallery entries.
+
+## Mathematical history portrait timeline
+
+| `resources/history/mathematicians-timeline.html` | Standalone 236-profile, bilingual portrait timeline opened from `#history/people`; shared site navigation and tokens from `styles/explorer.css`, `styles/pages.css` and `styles/timeline-standalone.css`; scrollable, touch-size portrait lanes and biography links. |

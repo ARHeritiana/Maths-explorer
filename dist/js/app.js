@@ -34,7 +34,7 @@ import { resolveRef, labRef } from "./lab/registry.js";
 import { indexPage as labIndexPage, experimentPage, bindLabIndex } from "./lab/page.js";
 import { isAnswer, formatNumber } from "./math.js";
 import {discoveryIndex,discoveryPage,bindDiscovery,discoveryContext,isTopicRoute} from './discovery.js';
-import {historyPage,bindHistory,isHistoryRoute} from './history.js';
+import {historyPage,bindHistory,isHistoryRoute,mathematiciansTimelineUrl} from './history.js';
 
 const $ = (s, root = document) => root.querySelector(s);
 const esc = (x) =>
@@ -164,6 +164,11 @@ function render() {
   stopObject = () => {};
   let r = route();
   lang=routeLanguage(r,resourceCatalog.chapters,preferredLang);
+  // The mathematicians' chronology owns its viewport and its own navigation.
+  if (r.page === 'history' && (!r.id || r.id === 'people') && !r.tab) {
+    window.location.replace(mathematiciansTimelineUrl(lang));
+    return;
+  }
   // the curiosities live in the gallery, whatever link points at them
   if (r.page === "lab" && labs.some((l) => l.id === r.id && l.custom)) { history.replaceState(null, "", link("gallery", r.id)); r = route(); }
   document.documentElement.lang = lang;
