@@ -35,6 +35,11 @@ with sync_playwright() as p:
  page.goto(BASE+'/#history/people',wait_until='networkidle')
  assert '/resources/history/mathematicians-timeline.html' in page.url
  assert '236' in page.locator('#total').inner_text()
+ assert page.locator('.era-marker small').count()==0
+ assert page.locator('.era-marker span').count()>0
+ assert page.locator('.axis-label').count()>0
+ assert page.locator('.century.loud').first.evaluate("e=>getComputedStyle(e,'::after').content")=='none'
+ assert page.locator('.era-marker').first.evaluate("e=>getComputedStyle(e).borderLeftWidth")=='0px'
  assert page.locator('.topbar .brand').is_visible()
  assert page.locator('.subnav .mx-return').is_visible()
  assert page.locator('.topbar .mainnav a').count()==3

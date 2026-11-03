@@ -193,7 +193,7 @@ function layout(){
  clearNode(surface);
  for(let year=-600;year<=NOW;year+=100){let g=node('div','century loud',surface);g.style.left=x(year)+'px';g.dataset.year=fmt(year)}
  for(let year=1600;year<=2025;year+=25){if(year%100===0)continue;let g=node('div','century quiet',surface);g.style.left=x(year)+'px';g.dataset.year=year%50===0?String(year):''}
- for(const e of eras){if(e.start>1900)continue;const g=node('div','era-marker',surface);g.style.left=x(Math.max(BASE,e.start))+'px';node('span','',g,e.title);if(e.start<1700)node('small','',g,fmt(e.start))}
+ for(const e of eras){if(e.start>1900)continue;const g=node('div','era-marker',surface);g.style.left=x(Math.max(BASE,e.start))+'px';node('span','',g,e.title)}
 
  // Reserve a minimal portrait-sized interval for every candidate. This is a
  // weighted interval-capacity problem, not a birth-order stacking heuristic.

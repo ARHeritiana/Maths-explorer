@@ -213,3 +213,14 @@ test('standalone timeline provides site navigation and a shared theme',()=>{
  assert.match(html,/:root\[data-theme="nuit"\]/);
  assert.match(html,/:root\[data-theme="jour"\]/);
 });
+
+test('standalone timeline shows each year only on the single time axis',()=>{
+ const root=new URL('../site/',import.meta.url);
+ const html=readFileSync(new URL('resources/history/mathematicians-timeline.html',root),'utf8');
+ const css=readFileSync(new URL('styles/timeline-standalone.css',root),'utf8');
+ assert.doesNotMatch(html,/node\('small','',g,fmt\(e\.start\)\)/);
+ assert.match(html,/node\('span','axis-label',axis,fmt\(year\)\)/);
+ assert.match(css,/\.century::after,\.century\.quiet::after\{content:none!important\}/);
+ assert.match(css,/\.era-marker\{[^}]*border:0/);
+ assert.match(css,/\.era-marker small\{display:none!important\}/);
+});
