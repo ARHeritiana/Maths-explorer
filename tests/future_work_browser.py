@@ -1,6 +1,6 @@
 """Smoke and behaviour checks of the unpublished interactive references in docs/future-work/ (Workstream G).
 They stay outside site/ until the publication gate; these checks keep the audit fixes from regressing:
- - every page loads from file:// with no console error, no external request and no horizontal overflow at 390 px;
+ - every page loads from an isolated local origin with no console error, no external request and no horizontal overflow at 390 px;
  - equidecomposability: custom vertices can be typed (keyboard path), a degenerate or very thin polygon is refused;
  - Monte Carlo: lake shape presets give the exact polygon areas (36, 33), tabs answer the arrow keys;
  - set atlas: the shading check names wrongly shaded and missed regions in words;
@@ -22,8 +22,10 @@ with sync_playwright() as p:
         page = browser.new_page(viewport={'width': width, 'height': 900}); problems = []
         page.on('pageerror', lambda e: problems.append(str(e)))
         page.on('console', lambda m: problems.append(m.text) if m.type == 'error' else None)
-        page.on('request', lambda r: problems.append('external request ' + r.url) if not r.url.startswith(('file:', 'data:', 'blob:')) else None)
-        page.goto((DIR / name).as_uri()); page.wait_for_timeout(300)
+        url = 'http://future-work.test/' + name
+        page.route(url, lambda route: route.fulfill(status=200, content_type='text/html; charset=utf-8', body=(DIR / name).read_text(encoding='utf-8')))
+        page.on('request', lambda r: problems.append('external request ' + r.url) if r.url != url and not r.url.startswith(('data:', 'blob:')) else None)
+        page.goto(url); page.wait_for_timeout(300)
         return page, problems
 
     for name in PAGES:
