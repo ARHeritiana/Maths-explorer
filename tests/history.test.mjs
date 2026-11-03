@@ -2,6 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
+import {readFileSync} from 'node:fs';
 import {PEOPLE,ADVANCES,DATE_KINDS,dateLabel,queryHistory,historyLinks,historyRecord,personEvents} from '../site/js/history-data.js';
 import {historyPage,bindHistory,isHistoryRoute,mathematiciansTimelineUrl} from '../site/js/history.js';
 import {membershipByKey} from '../site/js/topic-registry.js';
@@ -188,4 +189,18 @@ test('people with a full biography and their biographies link both ways',async()
   assert.ok(b.sources.length&&b.sources.every(([u])=>u.startsWith('https://')),b.id);
   assert.ok(b.facts.length>=2,b.id);
  }
+});
+
+test('standalone timeline provides site navigation and a shared theme',()=>{
+ const html=readFileSync(new URL('../site/resources/history/mathematicians-timeline.html',import.meta.url),'utf8');
+ const doc=new JSDOM(html).window.document;
+ const links=[...doc.querySelectorAll('.mx-top a')].map(x=>x.getAttribute('href'));
+ for(const destination of ['../../index.html#home','../../index.html#basics','../../index.html#topics','../../index.html#biographies','../../index.html#history/advances'])
+  assert.ok(links.includes(destination),destination);
+ assert.equal(doc.querySelector('link[href="../../styles/explorer.css"]')?.getAttribute('rel'),'stylesheet');
+ assert.ok(doc.querySelector('#timeline-theme'));
+ assert.match(html,/localStorage\.getItem\('maths-explorer-theme'\)/);
+ assert.match(html,/localStorage\.setItem\('maths-explorer-theme',theme\)/);
+ assert.match(html,/:root\[data-theme="nuit"\]/);
+ assert.match(html,/:root\[data-theme="jour"\]/);
 });
