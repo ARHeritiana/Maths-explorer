@@ -9,6 +9,7 @@ import { terminale } from './templates-terminale.js';
 import { expertes } from './templates-expertes.js';
 import { stmg } from './templates-stmg.js';
 import { authored } from './authored.js';
+import { authoredExams } from './authored-exams.js';
 import { problems } from './problems.js';
 import { authoredSeconde } from './authored-seconde.js';
 import { problemsSeconde } from './problems-seconde.js';
@@ -27,7 +28,7 @@ export const DOMAINS = {
 };
 export const LEVELS = [[1, 'Niveau 1 : routine'], [2, 'Niveau 2 : standard'], [3, 'Niveau 3 : exigeant']];
 export const TEMPLATES = [...seconde, ...seconde2, ...seconde3, ...premiere, ...terminale, ...expertes, ...stmg];
-export const AUTHORED = [...authored, ...authoredSeconde, ...problems, ...problemsSeconde, ...problemsSeconde2];   // fixed exercises, then seeded problems (those have make(r))
+export const AUTHORED = [...authored, ...authoredExams, ...authoredSeconde, ...problems, ...problemsSeconde, ...problemsSeconde2];   // fixed exercises, then seeded problems (those have make(r))
 export const MINUTES = { 1: 2, 2: 4, 3: 6 };           // estimated minutes of a generated part, by level
 
 export const templatesFor = (cls) => TEMPLATES.filter((t) => t.cls === cls);

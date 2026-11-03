@@ -17,7 +17,7 @@ const KNOWN = new Set(('Delta Omega approx arg bar begin cap cdot circ cos cup d
   + 'right sim sin sqrt text theta times to varnothing vec frac tfrac binom quad qquad leq geq le ge ne cdots ldots mid nmid '
   + 'alpha beta gamma delta lambda sigma varepsilon epsilon rho tau phi varphi Rightarrow Leftrightarrow forall exists notin '
   + 'subset cap cup emptyset tan exp max min sum prod lfloor rfloor operatorname boxed underbrace overbrace hat widehat pmod bmod '
-  + 'mathbf mathit ne not lvert rvert vert Vert big Big bigg Bigg displaystyle textstyle limits div nearrow searrow parallel').split(' '));
+  + 'mathbf mathit texttt ne not lvert rvert vert Vert big Big bigg Bigg displaystyle textstyle limits div nearrow searrow parallel').split(' '));
 const texts = (it) => [it.q, it.a, it.s, it.intro, ...(it.parts || []).flatMap((p) => [p.q, p.a])].filter(Boolean);
 const commands = (s) => [...String(s).replace(/\\\\/g, ' ').matchAll(/\\([A-Za-z]+)/g)].map((m) => m[1]);
 
@@ -36,8 +36,8 @@ test('pdflatex compiles every generator at every level, every problem and author
   const dir = mkdtempSync(join(tmpdir(), 'mx-tex-'));
   const compile = (name, src) => {
     writeFileSync(join(dir, `${name}.tex`), src);
-    try { execFileSync('pdflatex', ['-interaction=nonstopmode', '-halt-on-error', `${name}.tex`], { cwd: dir, stdio: 'pipe', timeout: 300000 }); }
-    catch { const log = readFileSync(join(dir, `${name}.log`), 'latin1'); assert.fail(`${name}: ${(log.match(/^! [\s\S]*?\nl\.\d+.*$/m) || ['?'])[0]}`); }
+    try { execFileSync('pdflatex', ['-interaction=nonstopmode', '-halt-on-error', `${name}.tex`], { cwd: dir, stdio: 'pipe', timeout: 300000, maxBuffer: 32 * 1024 * 1024 }); }
+    catch (error) { const log = readFileSync(join(dir, `${name}.log`), 'latin1'); assert.fail(`${name}: ${(log.match(/^! [\s\S]*?\nl\.\d+.*$/m) || [`compiler status ${error.status}, code ${error.code}, signal ${error.signal}; ${log.slice(-400)}`])[0]}`); }
   };
   try {
     for (const c of CLASSES) {

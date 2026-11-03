@@ -176,3 +176,5 @@ Topology: `js/topology-content.js` holds tangent fields, surfaces and Banach-Tar
 ## Mathematical history portrait timeline
 
 | `resources/history/mathematicians-timeline.html` | Standalone 236-profile, bilingual portrait timeline opened from `#history/people`; shared site navigation and tokens from `styles/explorer.css`, `styles/pages.css` and `styles/timeline-standalone.css`; scrollable, touch-size portrait lanes and biography links. |
+
+`js/exercises/authored-exams.js`: 24 original Bac/E3C/EAM-style multi-part problems, shared by the bank, worksheet builder and exports.

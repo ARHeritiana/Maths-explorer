@@ -478,3 +478,9 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 - The quadratic pilot aligns its diagnostics, activity, course, exercises, corrections and shared interactive model. Its chapter template is in `docs/CHAPTER_TEMPLATE.md`; design and classroom acceptance remain with the owner.
 - PDF/privacy checks cover extracted text, document metadata, links and annotations. Text encoded only in pictures or outlined lettering needs separate visual review.
 - Real-device screen-reader testing, owner design/pilot review and the remaining curriculum proofreading/review queue are still open. Preserve those limits in the private evidence.
+
+## Exercise bank expansion, 3 November 2026
+
+- Added 24 original French exam-style problems (84 questions): eight EAM, eight E3C, eight Bac spécialité. Shared records in `site/js/exercises/authored-exams.js` feed the existing online bank, worksheet composer, printing and LaTeX exports.
+- Based on six inspected APMEP papers from 2021, 2025 and 2026; new scenarios and coefficients, hints and full worked solutions. Existing bank entries are preserved.
+- French curriculum content remains French only. The bilingual lesson goal remains on standby and unfinished.
