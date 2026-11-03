@@ -89,7 +89,7 @@ export function buildSheet(o) {
   const nAuth = Math.min(pickAuthored.length, Math.floor(count / 2));
   pickAuthored.slice(0, nAuth).forEach((e, j) => {
     const x = e.make ? e.make(rng(`${seed}|${e.id}|${j}`)) : e;   // a seeded problem draws its numbers here
-    doc.exercises.push({ source: e.make ? 'problem' : 'authored', id: e.id, title: e.title, chapter: e.chapters[0], intro: x.intro, minutes: e.minutes, parts: x.parts.map((p) => ({ q: p.q, a: p.a, s: '', level: e.level, w: p.w })) });
+    doc.exercises.push({ source: e.make ? 'problem' : 'authored', id: e.id, title: e.title, chapter: e.chapters[0], intro: x.intro, skills: [...(x.skills || e.skills || [])], minutes: e.minutes, parts: x.parts.map((p) => ({ q: p.q, a: p.a, s: '', level: e.level, w: p.w })) });
   });
   const chOrder = r.shuffle(chapters);
   let k = 0;

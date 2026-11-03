@@ -5,7 +5,7 @@ import {readFileSync} from 'node:fs';
 import {JSDOM} from 'jsdom';
 import {authoredExams} from '../site/js/exercises/authored-exams.js';
 import {AUTHORED,buildSheet} from '../site/js/exercises/bank.js';
-import {sheetTex,html} from '../site/js/exercises/export.js';
+import {sheetTex,sheetHtml,html} from '../site/js/exercises/export.js';
 import {bankPage,bankCount} from '../dist/js/bank-page.js';
 
 test('24 original exam problems share 84 complete question/solution pairs with the existing bank',()=>{
@@ -15,6 +15,9 @@ test('24 original exam problems share 84 complete question/solution pairs with t
   for(const e of authoredExams){
     assert.ok(AUTHORED.includes(e),e.id);
     assert.ok(e.ok(),e.id);
+    assert.ok(e.skills.length>=3 && e.skills.length<=4,e.id);
+    assert.equal(new Set(e.skills).size,e.skills.length,e.id);
+    assert.ok(e.skills.every(skill=>skill.endsWith('.')),e.id);
     assert.ok(e.parts.some(p=>p.hint),e.id);
     assert.ok(e.parts.every(p=>p.q&&p.a&&p.w>0),e.id);
     for(const s of [e.intro,...e.parts.flatMap(p=>[p.q,p.a,p.hint])])assert.doesNotMatch(s,/<\/?(?:pre|code)>|undefined|NaN/);
@@ -23,6 +26,10 @@ test('24 original exam problems share 84 complete question/solution pairs with t
     assert.ok(student.includes('\\begin{document}'));
     assert.ok(teacher.includes('\\begin{mdframed}'));
     assert.doesNotMatch(teacher,/<pre>|<code>/);
+    for(const output of [student,teacher,sheetHtml(doc),sheetHtml(doc,{teacher:true})]) {
+      assert.match(output,/Compétences visées/);
+      for(const skill of e.skills)assert.ok(output.includes(skill),e.id+': '+skill);
+    }
   }
 });
 test('new problems appear in chapter bank cards, with folded corrections and Python that exports',()=>{
@@ -35,6 +42,11 @@ test('new problems appear in chapter bank cards, with folded corrections and Pyt
       assert.equal(card.querySelectorAll('.bank-sol').length,e.parts.length);
       assert.equal(card.querySelectorAll('details[open]').length,0);
       assert.match(card.textContent,new RegExp('Type '+e.exam));
+      const skills=card.querySelector('.exercise-skills');
+      assert.ok(skills,e.id);
+      assert.deepEqual([...skills.querySelectorAll('li')].map(li=>li.textContent),e.skills);
+      assert.ok(!skills.closest('details'));
+      assert.ok(skills.compareDocumentPosition(card.querySelector('.bank-intro')) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING);
       assert.ok(bankCount(chapter)>=1);
       dom.window.close();
     }
@@ -49,7 +61,11 @@ test('worksheet composition can select every new exam problem without a separate
   const seen=new Set();
   for(const cls of ['premiere','terminale'])for(let n=0;n<120;n++){
     const sheet=buildSheet({cls,kind:'devoir',count:12,includeAuthored:true,levels:[1,2,3],seed:'exam-'+n});
-    sheet.exercises.forEach(e=>seen.add(e.id));
+    sheet.exercises.forEach(e=>{
+      seen.add(e.id);
+      const original=authoredExams.find(x=>x.id===e.id);
+      if(original)assert.deepEqual(e.skills,original.skills,e.id);
+    });
   }
   assert.deepEqual(authoredExams.filter(e=>!seen.has(e.id)).map(e=>e.id),[]);
 });

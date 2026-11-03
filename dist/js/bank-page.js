@@ -8,7 +8,7 @@ import { AUTHORED, TEMPLATES, instance } from './exercises/bank.js';
 import { MADA } from './exercises/bank-mada.js';
 import { rng } from './exercises/engine.js';
 import { typeset, printMarkup } from './exercises/ui-kit.js';
-import { html as H } from './exercises/export.js';
+import { html as H, skillsHtml } from './exercises/export.js';
 import { icon } from './icons.js';
 
 const P = (fr, en) => [fr, en];
@@ -29,6 +29,7 @@ function exerciseCard(e, k, seed, t) {
   const body = e.make ? e.make(rng(`${seed}|${e.id}`)) : e;
   const parts = body.parts || [];
   return `<article class="bank-ex" id="ex-${E(e.id)}" data-ex="${E(e.id)}"><header class="bank-ex-head"><span class="bank-no">${k}</span><div><h3>${E(e.title)}</h3><p class="bank-meta">${stars(e.level)} ${t(LEVEL[e.level])} · ${e.minutes || 10} min${e.make ? ` · ${t(P('valeurs tirées au hasard', 'random values'))}` : ''}${e.source ? ` · ${E(e.source)}` : ''}</p></div>${e.make ? `<button type="button" class="bank-renew" data-renew="${E(e.id)}">${icon('arrows-clockwise', 16)}${t(P('Nouvelles valeurs', 'New values'))}</button>` : ''}</header>
+  ${skillsHtml(body.skills || e.skills)}
   <div class="bank-intro">${H(body.intro || '')}</div>
   ${parts.length ? `<ol class="bank-parts">${parts.map((p) => `<li><div class="bank-q">${H(p.q)}</div>${p.hint ? `<details class="bank-hint"><summary>${t(P('Indice', 'Hint'))}</summary><div>${H(p.hint)}</div></details>` : ''}<details class="bank-sol"><summary>${t(P('Correction', 'Solution'))}</summary><div>${H(p.a)}</div></details></li>`).join('')}</ol>` : ''}
   ${body.solution ? `<details class="bank-sol"><summary>${t(P('Correction', 'Solution'))}</summary><div>${H(body.solution)}</div></details>` : ''}</article>`;

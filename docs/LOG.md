@@ -204,3 +204,5 @@ Append one dated line per finished task at the end of the first list (before "Da
 1 November 2026: added the seeded exercise bank (`site/js/exercises/`: 69 generators for Seconde, Première, Terminale, Maths expertes and STMG, 20 fixed written exercises, 6 seeded problems) and two pages, `#automatismes` (fluency starters with projection, print, LaTeX and standalone projection page) and `#sheets` (worksheets, quizzes, supervised tests with optional marking scheme, subjects A and B, student and teacher versions); `tests/exercise-bank.test.mjs`. Publication gate removed by the owner (brief section 2).
 
 - 2026-11-03: expanded the existing exercise bank with 24 original EAM/E3C/Bac-style problems (84 questions), hints and full solutions, shared with worksheets and exports; bilingual lesson work remains on standby.
+
+- 2026-11-03: listed target skills for every new exam-type problem and propagated them through online cards, printed worksheets and LaTeX exports; bilingual lesson work remains on standby.

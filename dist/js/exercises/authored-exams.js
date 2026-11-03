@@ -33,6 +33,33 @@ const checks={
  'bac-08':()=>{const h=x=>x-2-Math.log(x);return [.1,.5,1,2,5].every(x=>near(derivative(h,x),1-1/x))&&h(1)===-1&&h(3.14)<0&&h(3.15)>0;}
 };
 const domains={'Automatismes':'algebre','Pourcentages':'nombres','Second degré':'algebre','Produit scalaire':'geometrie','Suites':'suites','Dérivation':'analyse','Variables aléatoires':'stats-proba','Exponentielle':'analyse','Probabilités conditionnelles':'stats-proba','Géométrie repérée':'geometrie','Trigonométrie':'fonctions','Loi binomiale':'stats-proba','Suites et récurrence':'suites','Analyse et intégration':'analyse','Équations différentielles':'analyse','Intégration par parties':'analyse','Géométrie de l’espace':'geometrie','Logarithme':'analyse'};
+// Observable learning goals, distinct from the knowledge needed before attempting the problem.
+const targetSkills = {
+ 'eam-01': ['Effectuer un calcul exact sur des fractions.', 'Appliquer les règles de calcul sur les puissances.', 'Développer ou factoriser une expression pour reconnaître une identité.'],
+ 'eam-02': ['Calculer un prix après des évolutions successives.', 'Déterminer un taux global à partir de coefficients multiplicateurs.', 'Calculer un taux réciproque et arrondir un pourcentage.'],
+ 'eam-03': ['Vérifier une factorisation de trinôme.', 'Résoudre une équation du second degré sous forme factorisée.', 'Étudier le signe d’un produit et résoudre une inéquation.'],
+ 'eam-04': ['Calculer les coordonnées et le produit scalaire de deux vecteurs.', 'Déterminer des longueurs dans un repère orthonormé.', 'Déterminer un angle à partir de son cosinus.'],
+ 'eam-05': ['Modéliser une diminution répétée par une suite géométrique.', 'Exprimer et calculer un terme de suite.', 'Écrire une boucle de seuil et justifier le premier rang obtenu.'],
+ 'eam-06': ['Dériver une fonction faisant intervenir un inverse.', 'Déduire les variations et un minimum du signe de la dérivée.', 'Déterminer une équation de tangente.'],
+ 'eam-07': ['Représenter deux épreuves indépendantes par un arbre pondéré.', 'Déterminer la loi d’un gain net.', 'Calculer et interpréter une espérance pour discuter l’équité d’un jeu.'],
+ 'eam-08': ['Dériver un produit comportant une exponentielle.', 'Étudier les variations à partir du signe de la dérivée.', 'Déterminer les coordonnées d’un point à tangente horizontale.'],
+ 'e3c-01': ['Distinguer un modèle arithmétique d’un modèle géométrique.', 'Exprimer et comparer les termes de deux suites.', 'Programmer une comparaison de seuil et justifier le premier dépassement.'],
+ 'e3c-02': ['Exprimer le terme général d’une suite géométrique.', 'Calculer une somme de termes consécutifs.', 'Utiliser un accumulateur pour déterminer un premier seuil.'],
+ 'e3c-03': ['Traduire des probabilités conditionnelles par un arbre pondéré.', 'Calculer une probabilité d’intersection et appliquer les probabilités totales.', 'Inverser un conditionnement.', 'Vérifier si deux événements sont indépendants.'],
+ 'e3c-04': ['Calculer une probabilité à partir d’un dénombrement.', 'Calculer une probabilité conditionnelle.', 'Modéliser deux tirages sans remise.', 'Comparer les modèles avec et sans remise.'],
+ 'e3c-05': ['Étudier les variations d’un polynôme à l’aide de sa dérivée.', 'Déterminer une tangente.', 'Factoriser un polynôme à partir d’une racine connue.', 'Déterminer ses racines et son signe.'],
+ 'e3c-06': ['Déterminer une équation cartésienne de droite et une perpendiculaire.', 'Calculer un projeté orthogonal en résolvant un système.', 'Calculer une distance dans un repère orthonormé.', 'Déterminer un cercle de diamètre donné et tester l’appartenance d’un point.'],
+ 'e3c-07': ['Calculer des valeurs trigonométriques exactes avec les angles associés.', 'Résoudre une équation trigonométrique sur un intervalle imposé.', 'Adapter l’intervalle de résolution lors d’un changement de variable.'],
+ 'e3c-08': ['Dériver un produit comportant une exponentielle.', 'Déterminer des variations et un maximum exact.', 'Déterminer une tangente.', 'Résoudre une équation et étudier un signe en utilisant la positivité de l’exponentielle.'],
+ 'bac-01': ['Justifier une modélisation par une loi binomiale.', 'Calculer une espérance et des probabilités binomiales.', 'Utiliser l’événement contraire pour calculer une probabilité.', 'Déterminer et contrôler une taille minimale d’échantillon.'],
+ 'bac-02': ['Appliquer les probabilités totales et inverser un conditionnement.', 'Modéliser un nombre de défauts par une loi binomiale.', 'Calculer la probabilité d’au moins un défaut.', 'Déterminer l’espérance et la variance d’une fréquence.'],
+ 'bac-03': ['Démontrer par récurrence une propriété assurant l’existence d’une suite.', 'Transformer une récurrence pour obtenir une suite géométrique.', 'Déterminer le sens de variation et la limite d’une suite.', 'Résoudre une inégalité de seuil et vérifier le premier rang.'],
+ 'bac-04': ['Étudier les variations et le maximum d’une fonction.', 'Déterminer une limite par croissance comparée.', 'Vérifier une primitive par dérivation.', 'Calculer une aire par intégration et étudier sa limite.'],
+ 'bac-05': ['Résoudre une équation différentielle avec condition initiale.', 'Étudier les variations et la limite d’un modèle de température.', 'Déterminer un instant de franchissement par le logarithme.', 'Calculer la valeur moyenne d’une fonction sur un intervalle.'],
+ 'bac-06': ['Effectuer une intégration par parties avec des fonctions exponentielles et trigonométriques.', 'Relier deux intégrales et résoudre le système obtenu.', 'Calculer une valeur moyenne à partir d’une intégrale.'],
+ 'bac-07': ['Vérifier l’appartenance d’un point à un plan.', 'Tester le parallélisme ou l’orthogonalité d’une droite et d’un plan.', 'Déterminer une intersection par une représentation paramétrique.', 'Calculer une projection et une distance dans l’espace en justifiant les affirmations.'],
+ 'bac-08': ['Étudier les limites, les variations et la convexité d’une fonction logarithmique.', 'Justifier l’existence et l’unicité de racines sur des intervalles.', 'Encadrer numériquement une solution avec une précision imposée.', 'Résoudre une inéquation à partir du signe de la fonction.']
+};
 // Python is rendered as a display array, so the same code stays legible in HTML, print and LaTeX.
 const codeText=s=>s.replace(/<pre><code>([\s\S]*?)<\/code><\/pre>/g,(_,code)=>'\\[\\begin{array}{l}'+code.split('\n').map(line=>{
   const indent=line.match(/^ */)[0].length/4;
@@ -40,7 +67,7 @@ const codeText=s=>s.replace(/<pre><code>([\s\S]*?)<\/code><\/pre>/g,(_,code)=>'\
 }).join('\\\\')+'\\end{array}\\]');
 const problem=(id,exam,title,topic,chapters,level,minutes,prerequisites,statement,questions,hints,solution)=>({
  id:'exam-'+id,exam,title,topic,cls:exam==='Bac'?'terminale':'premiere',domain:domains[topic],chapters,level,minutes,
- source:'Type '+exam+' : énoncé original',prerequisites,
+ source:'Type '+exam+' : énoncé original',prerequisites,skills:targetSkills[id],
  intro:statement+' Prérequis : '+prerequisites,
  parts:questions.map((q,i)=>({w:1,q,hint:i===0?hints.join(' '):'',a:codeText(solution[i])})),
  ok:checks[id]
