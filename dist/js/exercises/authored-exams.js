@@ -1,4 +1,4 @@
-// Original exam-type practice based on inspected Bac, E3C and EAM papers.
+// Original multi-part practice exercises for the online bank and worksheets.
 // Text and numerical scenarios are newly authored; the normal bank, worksheet and export paths share these records.
 const R = String.raw;
 const near=(a,b,t=1e-8)=>Math.abs(a-b)<=t*Math.max(1,Math.abs(a),Math.abs(b));
@@ -66,8 +66,8 @@ const codeText=s=>s.replace(/<pre><code>([\s\S]*?)<\/code><\/pre>/g,(_,code)=>'\
   return '\\quad'.repeat(indent)+'\\texttt{'+line.trim().replace(/_/g,'\\_')+'}';
 }).join('\\\\')+'\\end{array}\\]');
 const problem=(id,exam,title,topic,chapters,level,minutes,prerequisites,statement,questions,hints,solution)=>({
- id:'exam-'+id,exam,title,topic,cls:exam==='Bac'?'terminale':'premiere',domain:domains[topic],chapters,level,minutes,
- source:'Type '+exam+' : énoncé original',prerequisites,skills:targetSkills[id],
+ id:'exam-'+id,title,topic,cls:exam==='Bac'?'terminale':'premiere',domain:domains[topic],chapters,level,minutes,
+ prerequisites,skills:targetSkills[id],
  intro:statement+' Prérequis : '+prerequisites,
  parts:questions.map((q,i)=>({w:1,q,hint:i===0?hints.join(' '):'',a:codeText(solution[i])})),
  ok:checks[id]

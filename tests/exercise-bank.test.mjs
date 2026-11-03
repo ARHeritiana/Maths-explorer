@@ -70,6 +70,12 @@ test('seeded problems and fixed exercises: numbers in the correction recomputed'
   }
 });
 
+test('original practice exercises retain their content but have no unsupported exam-type labels', () => {
+  const exercises = AUTHORED.filter((e) => e.id.startsWith('exam-'));
+  assert.equal(exercises.length, 24);
+  assert.ok(exercises.every((e) => !('exam' in e) && !('source' in e)));
+});
+
 test('all five priority classes have generators, chapters and written exercises', () => {
   for (const c of CLASSES) {
     assert.ok(templatesFor(c.id).length >= 9, c.id);
