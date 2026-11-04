@@ -1,3 +1,4 @@
+import {liveCatalog} from './live-curriculum.js';
 import {editionFor,editionLabel} from './resource-editions.js';
 import {courseLanguage} from "./content-language.js";
 import { labs } from './content.js';
@@ -5,12 +6,14 @@ import { resolveRef } from './lab/registry.js';
 import { assetHref, fetchJSON } from './data-loader.js';
 import {enrichment} from './enrichment-data.js';
 import {guides} from './study-guides.js';
-import {resourceCatalog as companionCatalog} from './resources-data.js';
+import {resourceCatalog as completeCompanionCatalog} from './resources-data.js';
+import {liveCompanionCatalog} from './live-curriculum.js';
+const companionCatalog = liveCompanionCatalog(completeCompanionCatalog);
 const esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const resourceTypes={all:['Tous les types','All types'],notes:['Notes de cours','Lesson notes'],exercises:['Exercices','Exercises'],problems:['Problèmes','Problems'],activities:['Activités','Activities'],practice:['Applications guidées','Guided practice'],fluency:['Automatismes','Fluency'],assessment:['Évaluations','Assessments'],solutions:['Corrigés / professeur','Solutions / teacher'],booklet:['Chapitres complets','Complete chapters']};
 let catalogPromise;
 let filters={curriculum:'all',course:'all',type:'all',language:'all',search:'',solutions:false};
-const readCatalog=()=>catalogPromise??=fetchJSON('./resources/catalog.json').catch(e=>{catalogPromise=undefined;throw e;});
+const readCatalog=()=>catalogPromise??=fetchJSON('./resources/catalog.json').then(liveCatalog).catch(e=>{catalogPromise=undefined;throw e;});
 const normalize=s=>s.normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase();
 export function selectChapters(catalog,filter=filters) {
   const q=normalize(filter.search);
@@ -45,7 +48,7 @@ export async function mountLibrary(main,{lang,id}) {
     const original=c.chapters.filter(x=>!['shared','explorations'].includes(x.course)&&x.number>0).length;
     const pdf=c.resources.filter(x=>x.format==='PDF').length;
     main.innerHTML=`<div class="section-kicker">${p('La bibliothèque','The resource library')}</div><div class="library-heading"><div><h1>${p('Un chapitre. Une prochaine étape.','A chapter. A next step.')}</h1><p>${p('Cours, exercices, problèmes et corrigés, à lire ou à télécharger.','Notes, exercises, problems and solutions to read or download.')}</p></div><div class="library-count"><strong>${original}</strong><span>${p('chapitres sources','source chapters')}</span><small>${pdf} PDF · ${Object.keys(guides).length} ${p('fiches FR / EN','FR / EN study sheets')}</small></div></div>
-    <form class="resource-filters" id="resource-filters"><label>${p('Rechercher','Search')}<input id="resource-search" type="search" value="${esc(filters.search)}" placeholder="${p('Un chapitre ou une notion…','A chapter or concept…')}"></label><label>${p('Parcours','Pathway')}<select id="resource-curriculum">${[['all','Tous les parcours','All pathways'],['fr','Cours français','French courses'],['mg','Notions communes · Madagascar','Shared concepts · Madagascar'],['ib','Notions communes · International','Shared concepts · International']].map(([v,fr,en])=>`<option value="${v}" ${filters.curriculum===v?'selected':''}>${p(fr,en)}</option>`).join('')}</select></label><label>${p('Cours','Course')}<select id="resource-course"></select></label><label>${p('Type de ressource','Resource type')}<select id="resource-type">${Object.entries(resourceTypes).map(([v,label])=>`<option value="${v}" ${filters.type===v?'selected':''}>${t(label)}</option>`).join('')}</select></label><label>${p('Langue des fichiers','File language')}<select id="resource-language">${[['all','Toutes','All'],['fr','Français','French'],['en','Anglais','English']].map(([v,fr,en])=>`<option value="${v}" ${filters.language===v?'selected':''}>${p(fr,en)}</option>`).join('')}</select></label><label class="teacher-toggle"><input id="resource-solutions" type="checkbox" ${filters.solutions?'checked':''}>${p('Inclure les corrigés et fichiers professeur','Include solutions and teacher files')}</label><button class="secondary" type="reset">${p('Effacer les filtres','Clear filters')}</button></form>
+    <form class="resource-filters" id="resource-filters"><label>${p('Rechercher','Search')}<input id="resource-search" type="search" value="${esc(filters.search)}" placeholder="${p('Un chapitre ou une notion…','A chapter or concept…')}"></label><label>${p('Parcours','Pathway')}<select id="resource-curriculum">${[['fr','Programme français','French curriculum']].map(([v,fr,en])=>`<option value="${v}" ${filters.curriculum===v?'selected':''}>${p(fr,en)}</option>`).join('')}</select></label><label>${p('Cours','Course')}<select id="resource-course"></select></label><label>${p('Type de ressource','Resource type')}<select id="resource-type">${Object.entries(resourceTypes).map(([v,label])=>`<option value="${v}" ${filters.type===v?'selected':''}>${t(label)}</option>`).join('')}</select></label><label>${p('Langue des fichiers','File language')}<select id="resource-language">${[['all','Toutes','All'],['fr','Français','French'],['en','Anglais','English']].map(([v,fr,en])=>`<option value="${v}" ${filters.language===v?'selected':''}>${p(fr,en)}</option>`).join('')}</select></label><label class="teacher-toggle"><input id="resource-solutions" type="checkbox" ${filters.solutions?'checked':''}>${p('Inclure les corrigés et fichiers professeur','Include solutions and teacher files')}</label><button class="secondary" type="reset">${p('Effacer les filtres','Clear filters')}</button></form>
     <p id="pathway-resource-note" class="resource-scope"></p><p class="resource-note">${p('Les langues disponibles sont indiquées pour chaque document. Les fichiers s’ouvrent dans la langue du cursus si cette édition existe.','Available languages are listed for each document. Files open in the curriculum language when that edition exists.')}</p><p id="resource-results-count" role="status" aria-live="polite"></p><div id="chapter-grid" class="chapter-grid"></div>`;
     const form=main.querySelector('form');
     const refresh=()=>{

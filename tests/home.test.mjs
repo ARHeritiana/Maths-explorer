@@ -15,13 +15,13 @@ for(const language of [0,1])test(`home search and entrances, language ${language
  const query=value=>{input.value=value;input.dispatchEvent(new dom.window.Event('input'));return [...root.querySelectorAll('.home-result')];};
  assert.equal(root.querySelector('.home-resume'),null);
  assert.equal(root.querySelectorAll('.tool-card').length,6);
- // The hero figure is the animated plate of five live figures (home-slides.js); the Fourier island is an idea card.
+ // The hero retains its five curriculum figures; the entrances now lead to the French classes.
  assert.equal(root.querySelectorAll('[data-home-slides]').length,1);
  assert.equal(root.querySelectorAll('.figure-tab').length,5);
  assert.ok(root.querySelector('[data-pause]'),'a pause control for the slideshow');
- assert.equal(root.querySelector('.idea-card[href="#gallery/fourier"]')!==null,true);
- assert.equal(root.querySelectorAll('.home-reading a').length,2);
- assert.equal(root.querySelector('.entrance-actions a:last-child').getAttribute('href'),'#lab');
+ assert.equal(root.querySelectorAll('.home-courses .row').length,5);
+ assert.equal(root.querySelectorAll('a[href^="#gallery"],a[href^="#history"],a[href^="#stories"]').length,0);
+ assert.equal(root.querySelector('.entrance-actions a:last-child').getAttribute('href'),'#bank');
  for(const a of root.querySelectorAll('.tool-card'))assert.ok(index.some(x=>x.route===a.getAttribute('href')));
  for(const term of ['dérivée','derivee','hasard','trinôme','parabole'])assert.ok(query(term).length,term);
  assert.equal(query('zzzz-no-matches').length,0);

@@ -1,0 +1,96 @@
+"""French-only live interface. Run against npm start with system Chromium or Playwright."""
+import os
+import shutil
+from playwright.sync_api import sync_playwright
+
+BASE = os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173/')
+COURSES = ['seconde', 'premiere', 'terminale', 'expertes', 'stmg']
+
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True, executable_path=os.environ.get('PLAYWRIGHT_CHROMIUM_PATH') or shutil.which('chromium'))
+    context = browser.new_context(locale='en-US', reduced_motion='reduce')
+    context.add_init_script("""
+      localStorage.setItem('maths-explorer-v1', JSON.stringify({lang:'en', last:'t10-01', seen:['t10-01']}));
+      sessionStorage.setItem('mx-course', 't11s');
+      sessionStorage.setItem('mx-pathway', 'mg');
+    """)
+    page = context.new_page()
+    errors = []
+    page.on('pageerror', lambda error: errors.append(str(error)))
+
+    def go(route):
+        page.goto(BASE + route)
+        page.locator('main').wait_for()
+        page.wait_for_timeout(150)
+        assert page.locator('html').get_attribute('lang') == 'fr'
+        assert page.locator('[data-lang]').count() == 0
+
+    def scoped_links():
+        bad = page.evaluate("""async () => {
+          const {isLiveHash} = await import('./js/live-curriculum.js');
+          return [...document.querySelectorAll('#app a[href^="#"]')]
+            .map(a => a.getAttribute('href')).filter(h => !isLiveHash(h));
+        }""")
+        assert not bad, bad
+
+    go('#home')
+    assert page.locator('.home-courses .row').count() == 5
+    assert page.locator('.home-resume').count() == 0
+    page.locator('#home-query').fill('dérivée')
+    page.locator('.home-result').first.wait_for()
+    scoped_links()
+    page.locator('#home-query').fill('T11')
+    assert page.locator('.home-result').count() == 0
+    for course in COURSES:
+        go('#resources/' + course)
+        assert page.locator('.res-rail [data-course]').count() == 5
+        assert page.locator('.res-rail [data-course][aria-pressed="true"]').get_attribute('data-course') == course
+        assert page.locator('.chapter-tile').count() > 0
+        scoped_links()
+    page.locator('#resource-search').fill('logarithme')
+    assert page.locator('.chapter-tile').count() > 0
+    scoped_links()
+
+    for route in ['#resources/t10', '#slides/t11s', '#bank/t10', '#chapter/t11s-01', '#library/t10-01', '#pack/t10', '#university', '#olympiad', '#gallery', '#history', '#basics', '#topics']:
+        go(route)
+        assert page.evaluate('location.hash') == '#resources', route
+        assert page.locator('.res-rail [data-course]').count() == 5
+
+    go('#slides')
+    page.locator('.deck-card').first.wait_for()
+    assert page.locator('.slides-page [data-course]').count() == 5
+    scoped_links()
+    go('#bank')
+    assert page.locator('.res-rail a[href^="#bank/"]').count() == 5
+    scoped_links()
+    go('#pack')
+    page.locator('[name=course]').first.wait_for()
+    assert page.locator('[name=course]').count() == 5
+    scoped_links()
+    go('#sources')
+    page.locator('[data-zip]').first.wait_for()
+    assert sorted(page.locator('[data-zip]').evaluate_all('(nodes) => nodes.map(n => n.dataset.zip)')) == sorted(COURSES)
+    go('#library')
+    page.locator('#resource-course option').nth(1).wait_for(state='attached')
+    assert page.locator('#resource-course option').count() == 6
+    assert page.locator('#resource-curriculum option').count() == 1
+    scoped_links()
+    go('#pathways')
+    assert page.locator('.pw-pick[data-key]').count() == 1
+    scoped_links()
+    for route in ['#chapter/premiere-03/cours', '#chapter/premiere-03/manipuler', '#chapter/premiere-03/documents', '#bank/seconde/seconde-01', '#automatismes', '#sheets', '#lab/quadratic/vertex']:
+        go(route)
+        assert page.evaluate('location.hash') == route, route
+        scoped_links()
+
+    for theme in ['jour', 'nuit']:
+        for width in [320, 390, 1280]:
+            page.set_viewport_size({'width': width, 'height': 900})
+            for route in ['#home', '#resources', '#bank', '#slides', '#pack', '#sources']:
+                go(route)
+                page.evaluate('(theme) => document.documentElement.dataset.theme = theme', theme)
+                assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 2'), (theme, width, route)
+    assert not errors, errors
+    context.close()
+    browser.close()
+    print('French curriculum: navigation, stored selections, searches, downloads, activities and responsive layouts passed.')

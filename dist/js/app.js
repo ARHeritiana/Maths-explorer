@@ -1,3 +1,4 @@
+import {isLiveRoute, isLiveHash, liveDiscovery, livePathways} from './live-curriculum.js';
 import {galleryContext} from './gallery/gallery-context.js';
 import {installControlPolicy} from "./control-policy.js";
 import {preferredLanguage,routeLanguage} from "./content-language.js";
@@ -51,7 +52,7 @@ try {
   saved = JSON.parse(localStorage.getItem("maths-explorer-v1") || "{}") || {};
 } catch { storageWorks = false; }
 if (!saved || typeof saved !== "object" || Array.isArray(saved)) saved = {};
-let preferredLang = preferredLanguage(saved.lang);
+let preferredLang = 'fr';
 let lang = preferredLang;
 installControlPolicy(document.getElementById("app"));
 const completed = new Set(
@@ -104,31 +105,15 @@ function link(page, id = "") {
   return "#" + page + (id ? "/" + id : "");
 }
 const brandMark = `<svg class="brandmark" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="10" class="bm-bg"/><path d="M9 11Q20 43 31 11" class="bm-curve"/><circle cx="10" cy="20" r="3.2" class="bm-dot"/><circle cx="30" cy="20" r="3.2" class="bm-dot"/></svg>`;
-// Three sections: "Apprendre" (courses, slides, pathways), "Explorer" (laboratory, challenges) and "Lire" (biographies,
-// stories, and the curiosities of the gallery).
-// The main bar names the sections; a row of tabs under it names the pages of the current section.
+// The live site is organised around the French lycée curriculum.
 const SECTIONS = [
-  ["learn", "Apprendre", "Learn", "books", [
-    ["basics", "Bases", "Foundations", "books"],
+  ["learn", "Programme français", "French curriculum", "books", [
     ["resources", "Cours", "Lessons", "books"],
-    ["slides", "Diaporamas", "Slides", "presentation-chart"],
     ["bank", "Exercices", "Exercises", "seal-check"],
+    ["slides", "Diaporamas", "Slides", "presentation-chart"],
     ["automatismes", "Automatismes", "Starters", "lightbulb"],
     ["sheets", "Fiches", "Worksheets", "pencil-simple-line"],
-    ["pathways", "Parcours", "Pathways", "path"],
-  ]],
-  ["explore", "Explorer", "Explore", "flask", [
-    ["topics", "Domaines", "Topics", "magnifying-glass"],
-    ["lab", "Laboratoire", "Laboratory", "flask"],
-    ["challenges", "Défis", "Challenges", "puzzle-piece"],
-    ["olympiad", "Olympiades", "Olympiads", "trophy"],
-    ["errors", "Erreurs", "Errors", "warning"],
-  ]],
-  ["read", "Lire", "Read", "book-open", [
-    ["history", "Chronologies", "Timelines", "scroll"],
-    ["biographies", "Biographies", "Biographies", "user"],
-    ["stories", "Histoires", "Stories", "scroll"],
-    ["gallery", "Curiosités", "Curiosities", "sparkle"],
+    ["pathways", "Programme", "Curriculum", "path"],
   ]],
 ];
 // pages reached from a tab count as that tab
@@ -142,7 +127,7 @@ function header(page) {
     `<a href="#${tabs[0][0]}" data-section="${id}" ${section?.[0] === id ? 'aria-current="true"' : ""}>${icon(ic, 20)}<span>${pair(fr, en)}</span></a>`).join("");
   const subnav = section ? `<nav class="subnav" aria-label="${pair(section[1], section[2])}"><div class="subnav-inner">${section[4].map(([id, fr, en, ic]) =>
     `<a href="#${id}" ${tab === id ? 'aria-current="page"' : ""}>${icon(ic, 18)}<span>${pair(fr, en)}</span></a>`).join("")}</div></nav>` : "";
-  return `<header class="topbar"><a class="brand" href="#home" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">${pair("Menu","Menu")}</button><nav id="primary-nav" class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${sectionLinks}</nav><div class="tools"><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" ${(["chapter","university","workshop"].includes(route().page)||(route().page==="library"&&route().id))?"hidden":""} role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>${subnav}`;
+  return `<header class="topbar"><a class="brand" href="#home" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">${pair("Menu","Menu")}</button><nav id="primary-nav" class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${sectionLinks}</nav><div class="tools"><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button></div></header>${subnav}`;
 }
 function footer() {
   return `<footer><span class="foot-brand">Maths Explorer</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><nav class="foot-links" aria-label="${pair("Autres pages", "More pages")}"><a href="#pack">${pair("Dossier sur mesure", "Custom pack")}</a><a href="#sources">${pair("Sources LaTeX", "LaTeX sources")}</a><a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.${lang}" rel="license noopener" target="_blank">${pair("Licence CC BY-NC-SA 4.0", "CC BY-NC-SA 4.0 licence")}</a></nav></footer>`;
@@ -163,7 +148,11 @@ function render() {
   homeSlides?.destroy(); homeSlides = null;
   stopObject = () => {};
   let r = route();
-  lang=routeLanguage(r,resourceCatalog.chapters,preferredLang);
+  if (!isLiveRoute(r)) {
+    history.replaceState(null, '', '#resources');
+    r = route();
+  }
+  lang='fr';
   // The mathematicians' chronology owns its viewport and its own navigation.
   if (r.page === 'history' && (!r.id || r.id === 'people') && !r.tab) {
     window.location.replace(mathematiciansTimelineUrl(lang));
@@ -173,11 +162,11 @@ function render() {
   if (r.page === "lab" && labs.some((l) => l.id === r.id && l.custom)) { history.replaceState(null, "", link("gallery", r.id)); r = route(); }
   document.documentElement.lang = lang;
   document.title = pair(
-    "Maths Explorer · Laboratoire de mathématiques",
+    "Maths Explorer · Programme français",
     "Maths Explorer · Mathematics laboratory",
   );
   const experiment = r.page === "lab" && r.id ? (resolveRef(labRef(r.id, r.tab)) || resolveRef(r.id))?.experiment || null : null;
-  const discovery=discoveryIndex({labs,challenges,chapters:resourceCatalog.chapters});
+  const discovery=liveDiscovery(discoveryIndex({labs,challenges,chapters:resourceCatalog.chapters}));
   const valid = (r.page === "lab" && (!r.id || !!experiment)) || (r.page === "gallery" && (!r.id || labs.some(l => l.id === r.id && l.custom))) ||
     (r.page === 'history' && isHistoryRoute(r.id,r.tab)) ||
     (r.page === 'topics' && isTopicRoute(r.id,r.tab)) ||
@@ -185,7 +174,7 @@ function render() {
     (r.page === "olympiad" && isOlympiadRoute(r.id)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
     (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction" || r.id === "multiplication" || r.id === "division" || r.id === "sets" || r.id === "fractions")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab)) ||
-    r.page === "university" || (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
+    r.page === "university" || (r.page === "resources" && isLiveRoute(r)) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
   $("#app").innerHTML =
@@ -209,7 +198,7 @@ function render() {
           ? `<main id="main" tabindex="-1" class="library-page"></main>`
         : page === "pathways"
           ? pathwayPage()
-          : `<main id="main" tabindex="-1" class="page"><h1>${pair("Page introuvable", "Page not found")}</h1><a href="#lab">${pair("Ouvrir le laboratoire", "Open the laboratory")}</a></main>`) +
+          : `<main id="main" tabindex="-1" class="page"><h1>${pair("Page introuvable", "Page not found")}</h1><a href="#resources">${pair("Consulter les cours", "Browse lessons")}</a></main>`) +
     footer();
   if(r.id && page!=='topics') {
     const context=discoveryContext(discovery,`#${page}/${r.id}${page==='history'&&r.tab?'/'+r.tab:''}`,t);
@@ -227,6 +216,10 @@ function render() {
   if (page === "home" || (page === "gallery" && !r.id)) stopArt = [...document.querySelectorAll("canvas[data-art]")].map((cv) => mountArt(cv, cv.dataset.art, { reduced: reducedMotion }));
   if (page === "gallery" && $("#object-stage")) stopObject = mountObject($("#object-stage").dataset.object, $("#object-stage"), { lang, reduced: reducedMotion, initialValues: state(labs.find(x=>x.id===currentLab)).values, onChange: values => { state(labs.find(x=>x.id===currentLab)).values = values; } });
   $(".skip").textContent = pair("Aller au contenu", "Skip to content");
+  // Remove collection links from reused teaching components as well as the shell.
+  document.querySelectorAll('#app a[href^="#"]').forEach(a => {
+    if (!isLiveHash(a.getAttribute('href'))) a.remove();
+  });
   bindCommon();
   if (page === "gallery" && r.id) bindGallery();
   if (page === "lab" && !experiment) bindLabIndex($("#main"), pair);
@@ -236,7 +229,7 @@ function render() {
   if (page === "home") stopChapter = bindHome($("#main"),discovery,t);
   if (page === "basics" && r.id) stopChapter = bindBasics();
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
-  if (page === "pathways") stopChapter = bindPathways({ root: $("#main"), pathways, labs, t, pair, link, glyph, completed });
+  if (page === "pathways") stopChapter = bindPathways({ root: $("#main"), pathways: livePathways, labs, t, pair, link, glyph, completed });
   if (page === "pack") bindPack(t);
   if (page === "sources") bindSources(t);
   if (page === "slides") bindSlides(t);
@@ -524,7 +517,7 @@ function bindBasics(){
 }
 
 // Pathways page: curriculum rail, level tabs, topic filters and tile grid (js/pathways-view.js).
-function pathwayPage() { return pathwayPageView({ pathways, labs, t, pair, icon }); }
+function pathwayPage() { return pathwayPageView({ pathways: livePathways, labs, t, pair, icon }); }
 
 $(".skip").addEventListener("click", e => {
   e.preventDefault();

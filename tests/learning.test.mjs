@@ -1,3 +1,4 @@
+import {resourceCatalog as completeCatalog} from '../dist/js/resources-data.js';
 import {assetHref} from "../dist/js/data-loader.js";
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -9,7 +10,8 @@ import {scenes,sceneValues,diagram,bindVisual} from '../dist/js/visual-lessons.j
 import {labs} from '../dist/js/content.js';
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-9,`${a} != ${b}`);
 const fmt=(n,d=4)=>n.toFixed(d),t=p=>p[0];
-test('all chapter extracts match the provenance manifest and have valid page pointers',async()=>{
+test('all retained chapter extracts match the provenance manifest and have valid page pointers',async()=>{
+ const resourceCatalog=completeCatalog;
  const manifest=JSON.parse(await readFile(new URL('../content/data/RESOURCE_PROVENANCE.json',import.meta.url)));
  assert.equal(resourceCatalog.chapters.length,87);/* 58 French chapters, 9 T10 and 20 T11 S (Malagasy curriculum) */assert.equal(manifest.length,[...resourceCatalog.chapters,...resourceCatalog.supplements].reduce((n,c)=>n+c.files.length,0));
  assert.equal(new Set(resourceCatalog.chapters.map(c=>c.id)).size,87);

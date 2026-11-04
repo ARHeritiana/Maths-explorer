@@ -1,3 +1,4 @@
+import {liveCourses, liveDiscovery} from './live-curriculum.js';
 // Useful home entrances reuse the shared discovery catalogue and mathematical previews.
 import {filterDiscovery, FORMAT_LABELS} from './discovery-index.js';
 import {previewSVG} from './discovery.js';
@@ -20,23 +21,24 @@ const TOOLS=[
 ['space-lines',['Manipuler la géométrie dans l’espace','Explore spatial geometry'],['Fais tourner une figure et observe droites et plans.','Rotate a figure and inspect lines and planes.'],['Ouvrir la figure 3D','Open the 3D figure']]
 ];
 export function homePage({pair,t,link,index=[],last=''}) {
- const featured=['fourier','mandelbrot','platonic'].map(id=>index.find(x=>x.route==='#gallery/'+id)).filter(Boolean);
+ index=liveDiscovery(index);
  const resume=index.find(x=>x.route==='#chapter/'+last);
  return `<main id="main" class="page entrance home-discovery" tabindex="-1">
- <section class="entrance-intro"><div><p class="home-greeting"><span lang="mg">Tonga soa</span><span>${pair("Bienvenue", "Welcome")}</span></p>
- <h1>${pair('Comprendre les maths','Understand maths')} <span class="home-highlight">${pair('en les explorant.','through exploration.')}</span></h1>
- <p>${pair('Des cours, des figures à manipuler et des exercices pour passer de l’intuition au raisonnement.','Lessons, hands-on figures and exercises to move from intuition to reasoning.')}</p>
+ <section class="entrance-intro"><div><p class="home-greeting">${pair("Programme français · Lycée", "French curriculum · Lycée")}</p>
+ <h1>${pair('Les maths au lycée,','Lycée mathematics,')} <span class="home-highlight">${pair('chapitre par chapitre.','chapter by chapter.')}</span></h1>
+ <p>${pair('Cours, figures à manipuler et exercices corrigés, de la seconde à la terminale.','Lessons, hands-on figures and exercises to move from intuition to reasoning.')}</p>
  <form id="home-search" role="search"><label for="home-query">${pair('Que veux-tu comprendre ?','What would you like to understand?')}</label><div class="home-search-row"><input id="home-query" type="search" autocomplete="off" placeholder="${pair('Une idée : dérivée, hasard, géométrie…','An idea: derivative, chance, geometry…')}"><button class="btn btn-primary" type="submit">${pair('Rechercher','Search')}</button></div></form>
- <div class="entrance-actions"><a class="btn btn-primary" href="${link('resources')}">${pair('Trouver un cours','Find a lesson')}</a><a class="btn btn-secondary" href="${link('lab')}">${pair('Explorer les outils','Explore the tools')}</a></div>
+ <div class="entrance-actions"><a class="btn btn-primary" href="${link('resources')}">${pair('Trouver un cours','Find a lesson')}</a><a class="btn btn-secondary" href="${link('bank')}">${pair('S’entraîner','Practise')}</a></div>
  ${resume?`<a class="home-resume" href="${E(resume.route)}">${pair('Reprendre :','Continue:')} ${E(t(resume.title))}</a>`:''}
  </div>${slidesFigure({pair})}</section>
+ <section class="entrance-section home-courses" aria-labelledby="home-level-title"><h2 id="home-level-title">${pair('Choisir son niveau','Choose a level')}</h2><ol class="rows">${liveCourses.map((c,i)=>`<li><a class="row" href="#resources/${E(c.id)}"><span class="row-no">${String(i+1).padStart(2,'0')}</span><span class="row-main"><strong class="row-title">${E(t(c.title))}</strong><span class="row-meta">${pair('Cours, exercices corrigés et diaporamas','Lessons, worked exercises and slides')}</span></span>${icon('caret-right',18)}</a></li>`).join('')}</ol></section>
  <section id="home-search-panel" hidden aria-label="${pair('Résultats de recherche','Search results')}"><p id="home-search-count" role="status" aria-live="polite"></p><div id="home-results" class="home-results"></div></section>
- <section id="home-tools" class="entrance-section"><h2>${pair('Les outils pour comprendre','Tools for understanding')}</h2><p>${pair('Une question, une figure, à toi d’essayer.','A question, a figure, your turn to try.')}</p><div class="tool-grid">${TOOLS.filter(([id])=>index.some(x=>x.route==='#lab/'+id)).map(([id,title,description,action])=>`<a class="tool-card" href="#lab/${id}">${previewSVG(index.find(x=>x.route==='#lab/'+id),t)}<div><h3>${E(t(title))}</h3><p>${E(t(description))}</p><span class="task-link">${E(t(action))} →</span></div></a>`).join('')}</div><a class="text-link" href="#lab">${pair('Tous les outils','All tools')} →</a></section>
- <section class="entrance-section"><h2>${pair('Explorer une idée','Explore an idea')}</h2><div class="idea-grid">${featured.map(x=>`<a class="idea-card" href="${E(x.route)}">${previewSVG(x,t)}<h3>${E(t(x.title))}</h3><span class="task-link">${pair('Voir et manipuler','View and explore')} →</span></a>`).join('')}</div></section>
- <section class="home-reading"><h2>${pair('Les idées ont une histoire','Ideas have a history')}</h2><p>${pair('Relie les découvertes aux personnes et aux questions qui les ont fait naître.','Connect discoveries to the people and questions behind them.')}</p><a class="text-link" href="#history">${pair('Parcourir les chronologies','Browse the timelines')} →</a><a class="text-link" href="#stories">${pair('Lire une histoire mathématique','Read a mathematical story')} →</a></section>
+ <section id="home-tools" class="entrance-section"><h2>${pair('Les outils pour comprendre','Tools for understanding')}</h2><p>${pair('Une question, une figure, à toi d’essayer.','A question, a figure, your turn to try.')}</p><div class="tool-grid">${TOOLS.filter(([id])=>index.some(x=>x.route==='#lab/'+id)).map(([id,title,description,action])=>`<a class="tool-card" href="#lab/${id}">${previewSVG(index.find(x=>x.route==='#lab/'+id),t)}<div><h3>${E(t(title))}</h3><p>${E(t(description))}</p><span class="task-link">${E(t(action))} →</span></div></a>`).join('')}</div></section>
+
  </main>`;
 }
 export function bindHome(root,index,t) {
+ index=liveDiscovery(index);
  root.querySelectorAll('.tool-card svg path:not(.preview-axis), .idea-card svg path:not(.preview-axis)').forEach(path=>path.setAttribute('pathLength','1'));
  const form=root.querySelector('#home-search'),input=form.querySelector('input'),panel=root.querySelector('#home-search-panel'),results=root.querySelector('#home-results'),count=root.querySelector('#home-search-count');
  const update=()=>{
@@ -46,7 +48,7 @@ export function bindHome(root,index,t) {
  const key=query.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
  const found=filterDiscovery(index,{query:aliases[key]||query});
  count.textContent=t([`${found.length} résultats`,`${found.length} results`]);
- results.innerHTML=found.length?found.map(x=>`<a class="home-result" href="${E(x.route)}"><strong>${E(t(x.title))}</strong><span>${E(t(FORMAT_LABELS[x.format]))} · ${E(t(x.level))} · ${languageLabel(x)}</span></a>`).join(''):`<p>${t(['Aucun résultat. Essaie un autre mot ou parcours les domaines.','No results. Try another word or browse the topics.'])} <a class="text-link" href="#topics">${t(['Voir les domaines','Browse topics'])}</a></p>`;
+ results.innerHTML=found.length?found.map(x=>`<a class="home-result" href="${E(x.route)}"><strong>${E(t(x.title))}</strong><span>${E(t(FORMAT_LABELS[x.format]))} · ${E(t(x.level))} · ${languageLabel(x)}</span></a>`).join(''):`<p>${t(['Aucun résultat. Essaie un autre mot ou consulte les cours.','No results. Try another word or browse lessons.'])} <a class="text-link" href="#resources">${t(['Voir les cours','Browse lessons'])}</a></p>`;
  };
  const submit=e=>{e.preventDefault();update();panel.scrollIntoView({block:'nearest'});};
  form.addEventListener('submit',submit);input.addEventListener('input',update);

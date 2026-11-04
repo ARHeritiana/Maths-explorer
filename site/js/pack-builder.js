@@ -1,10 +1,12 @@
 import {editionFor,packEditions} from './resource-editions.js';
 import {courseLanguage} from "./content-language.js";
-import { courses, university } from './catalogue-data.js';
+import { liveCourses as courses, liveCatalog } from './live-curriculum.js';
 import { assetHref, fetchJSON } from './data-loader.js';
 // Custom pack builder and LaTeX sources browser.
 // PDFs are merged in the browser from the files the site already serves; nothing is uploaded.
-import { resourceCatalog } from './resources-data.js';
+import { resourceCatalog as completeCatalog } from './resources-data.js';
+import { liveCompanionCatalog } from './live-curriculum.js';
+const resourceCatalog = liveCompanionCatalog(completeCatalog);
 
 const P = (fr, en) => [fr, en];
 const E = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -41,7 +43,7 @@ const load = src => libs[src] ||= new Promise((ok, fail) => {
 });
 async function loadCatalog() {
   if (catalog) return;
-  catalog = await fetchJSON('./resources/catalog.json');
+  catalog = liveCatalog(await fetchJSON('./resources/catalog.json'));
 }
 const fmtBytes = b => b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' kB';
 
@@ -236,7 +238,7 @@ export function sourcesPage(t) {
 export async function bindSources(t) {
   const root = document.querySelector('#sources-app');
   if (!root) return;
-  try { manifest ||= await fetchJSON('./sources/manifest.json'); } catch {
+  try { manifest ||= await fetchJSON('./sources/manifest.json'); manifest = {...manifest, courses: manifest.courses.filter(c => courses.some(x => x.id === c.id))}; } catch {
     root.innerHTML = `<p class="pack-error" role="alert">${t(P('La liste des sources est introuvable.', 'The source list could not be loaded.'))}</p>`; return;
   }
   const kinds = { tex: P('Fichiers TeX', 'TeX files'), style: P('Classes et styles', 'Classes and styles'), figure: P('Figures', 'Figures') };
@@ -251,7 +253,7 @@ export async function bindSources(t) {
         const files = c.files.filter(f => f.kind === k);
         return files.length ? `<details><summary>${t(label)} (${files.length})</summary><ul class="source-files">${files.map(f => `<li><a href="${E(assetHref('./sources/'+f.path))}" download>${E(f.path.split('/').slice(1).join('/'))}</a> <span>${fmtBytes(f.bytes)}</span></li>`).join('')}</ul></details>` : '';
       }).join('')}</section>`;
-  }).join('') + university.sections.map(section=>`<section class="source-course"><h2>${E(t(section.title))}</h2><ul>${section.documents.filter(d=>d.path.endsWith('.zip')).map(d=>`<li><a href="${E(assetHref('./'+d.path))}" download>${E(t(d.label))}</a></li>`).join('')}</ul></section>`).join('') + `<p class="source-note">${t(P('Guide de compilation : ', 'Compilation guide: '))}<a href="./sources/README.md">README</a></p><p class="pack-progress" id="src-progress" role="status" aria-live="polite"></p>`;
+  }).join('') + `<p class="source-note">${t(P('Guide de compilation : ', 'Compilation guide: '))}<a href="./sources/README.md">README</a></p><p class="pack-progress" id="src-progress" role="status" aria-live="polite"></p>`;
   root.querySelectorAll('[data-zip]').forEach(b => b.addEventListener('click', async () => {
     const say = s => { root.querySelector('#src-progress').textContent = s; };
     const course = manifest.courses.find(c => c.id === b.dataset.zip);

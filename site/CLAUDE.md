@@ -23,6 +23,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/control-policy.js` | selectors with one choice become labels |
 | `js/resource-editions.js` | exact language edition selection, available language labels and complete pack checks |
 | `js/content-language.js` | language of each route (neutral pages vs curriculum pages) |
+| `js/live-curriculum.js` | shared live visibility policy: French courses, filtered catalogues, route and discovery scope; complete data is retained |
 | `js/data-loader.js` | `assetHref` (versioned URLs), `fetchJSON` |
 | `js/catalogue-data.js` | GENERATED from `content/data/manifest.json`: courses, university, asset versions |
 | `js/canvas-navigation.js` | camera (zoom, pan, reset) shared with the slide player |

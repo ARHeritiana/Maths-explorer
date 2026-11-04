@@ -2,7 +2,7 @@
 
 A static, experiment-first mathematics resource site for lycée students and teachers (basic early-university topics last). Each chapter is a sequence: automatismes, an introductory activity, course notes, exercises and problems, and an interactive animated slide. Students manipulate a figure first, then conjecture, then prove.
 
-Curricula, in priority order: current French lycée classes (Seconde, Première spécialité, Terminale spécialité, maths expertes, Terminale STMG), Malagasy Terminale, Olympiad, rest of the Malagasy curriculum, International (IB, SAT). Language: French for French and Malagasy curricula, English for International, bilingual for Olympiad. French and English PDFs are produced from one set of TeX sources.
+Live scope: the French lycée curriculum only, in French (Seconde, Première spécialité, Terminale spécialité, Maths expertes, Terminale STMG), with lessons, exercises, slides and classroom tools. Other curricula and standalone collections remain in the repository, hidden from the live interface. `site/js/live-curriculum.js` is the shared visibility policy; the complete manifest and archived resources are preserved. Hiding is not access control: existing static file URLs remain available. The bilingual lesson goal remains on standby, unfinished.
 
 Status: work in progress, launched on 20 October 2026 at https://arheritiana.github.io/Maths-explorer/. The repository is public.
 

@@ -2,8 +2,10 @@
 // and corrections revealed on demand, seeded problems whose numbers can be renewed, and a quick series of generated
 // questions. Data: js/exercises/bank.js (generators, authored exercises, seeded problems) and js/exercises/bank-mada.js
 // (exercises of the Malagasy books). Printing reuses the worksheet print path.
-import { resourceCatalog } from './resources-data.js';
-import { primaryCourses } from './catalogue-data.js';
+import { resourceCatalog as completeCatalog } from './resources-data.js';
+import { liveCompanionCatalog } from './live-curriculum.js';
+const resourceCatalog = liveCompanionCatalog(completeCatalog);
+import { liveCourses as primaryCourses } from './live-curriculum.js';
 import { AUTHORED, TEMPLATES, instance } from './exercises/bank.js';
 import { MADA } from './exercises/bank-mada.js';
 import { rng } from './exercises/engine.js';
@@ -42,7 +44,7 @@ function quickSeries(chapter, seed, t) {
 }
 function rail(course, t) {
   const pick = (c) => `<li><a class="pw-pick" href="#bank/${c.id}" ${c.id === course ? 'aria-current="page" aria-pressed="true"' : 'aria-pressed="false"'}><span>${E(t(SHORT[c.id] || c.title))}</span><small>${chaptersOf(c.id).reduce((a, ch) => a + bankCount(ch.id), 0)}</small></a></li>`;
-  return `<nav class="pw-rail res-rail" aria-label="${t(P('Niveaux', 'Levels'))}"><div class="pw-family"><p class="pw-family-name">${icon('books', 18)}${t(P('Programme français', 'French curriculum'))}</p><ul>${courses.filter((c) => c.curriculum === 'fr').map(pick).join('')}</ul></div><div class="pw-family"><p class="pw-family-name">${icon('path', 18)}${t(P('Programme malgache', 'Malagasy curriculum'))}</p><ul>${courses.filter((c) => c.curriculum === 'mg').map(pick).join('')}</ul></div><div class="pw-family"><p class="pw-family-name">${icon('presentation-chart', 18)}${t(P('Générer', 'Generate'))}</p><ul><li><a class="pw-pick res-go" href="#automatismes">${icon('lightbulb', 18)}<span>${t(P('Automatismes', 'Starters'))}</span></a></li><li><a class="pw-pick res-go" href="#sheets">${icon('pencil-simple-line', 18)}<span>${t(P('Fiches, interros, devoirs', 'Worksheets, quizzes, tests'))}</span></a></li></ul></div></nav>`;
+  return `<nav class="pw-rail res-rail" aria-label="${t(P('Niveaux', 'Levels'))}"><div class="pw-family"><p class="pw-family-name">${icon('books', 18)}${t(P('Programme français', 'French curriculum'))}</p><ul>${courses.filter((c) => c.curriculum === 'fr').map(pick).join('')}</ul></div><div class="pw-family"><p class="pw-family-name">${icon('presentation-chart', 18)}${t(P('Générer', 'Generate'))}</p><ul><li><a class="pw-pick res-go" href="#automatismes">${icon('lightbulb', 18)}<span>${t(P('Automatismes', 'Starters'))}</span></a></li><li><a class="pw-pick res-go" href="#sheets">${icon('pencil-simple-line', 18)}<span>${t(P('Fiches, interros, devoirs', 'Worksheets, quizzes, tests'))}</span></a></li></ul></div></nav>`;
 }
 function chapterIndex(course, t) {
   return `<div class="res-head"><h2>${E(t(primaryCourses.find((c) => c.id === course).title))}</h2><span class="pw-count">${t(P('Choisis un chapitre', 'Pick a chapter'))}</span></div><ol class="bank-chapters">${chaptersOf(course).map((c) => { const n = bankCount(c.id), g = generatorsOf(c.id).length; return `<li><a href="#bank/${course}/${c.id}"><span class="bank-ch-no">${String(c.number).padStart(2, '0')}</span><span class="bank-ch-title">${E(t(c.title))}</span><span class="bank-ch-meta">${n} ${t(n > 1 ? P('exercices corrigés', 'worked exercises') : P('exercice corrigé', 'worked exercise'))}${g ? ` · ${t(P('entraînement express', 'quick practice'))}` : ''}</span></a></li>`; }).join('')}</ol>`;

@@ -1,3 +1,4 @@
+import {isLiveHash} from './live-curriculum.js';
 // "Erreurs" (#errors[/<id>]): the error correction collection. The page builds the markup, bindErrors makes it live.
 // The mathematics (counterexamples, checks of a repair, the faulty step) is in errors-model.js and is computed, not stored.
 // Each activity: the claim a learner might write, a test bench with sliders, a diagnosis, then a repair to choose.
@@ -30,7 +31,7 @@ function indexPage(t) {
 
 const back = (t) => `<a class="back-library" href="#errors">${t(P('Toutes les erreurs', 'All errors'))}</a>`;
 function related(e, t) {
-  const items = (e.links || []).map((h) => [h, describe(h)]).filter(([, d]) => d);
+  const items = (e.links || []).filter(isLiveHash).map((h) => [h, describe(h)]).filter(([, d]) => d);
   const slide = (h) => /^#chapter\//.test(h) ? `<li><a href="${esc(assetHref('./slides/player.html'))}&amp;deck=${esc(h.split('/')[1])}">${t(P('Diaporama', 'Slides'))} · ${esc(t(describe(h).title))} ↗</a></li>` : '';
   return items.length ? `<section class="error-related" aria-labelledby="err-rel"><h2 id="err-rel">${t(P('Dans le cours', 'In the course'))}</h2><ul>${items.map(([h, d]) => `<li><a href="${h}">${esc(t(d.kind))} · ${esc(t(d.title))}</a></li>${slide(h)}`).join('')}</ul></section>` : '';
 }

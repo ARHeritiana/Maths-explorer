@@ -134,3 +134,10 @@ honest rounding, shared-slide control visibility, root-mode fallback, slider ran
 `exam-papers.test.mjs`: 24 original EAM/E3C/Bac problems, 84 complete question pairs, numerical checks, online-bank rendering, folded solutions, Python export and worksheet selection.
 
 `prerequisites.test.mjs`: adversarial scope and order fixtures, transitive prerequisites, explicit inheritance, same-sequence unit order, question scaffolding, source staleness, lexical hint/solution detection, malformed declarations and advisory/strict CLI integration.
+
+`live-curriculum.test.mjs`: French-only live course and resource scope, preserved complete catalogues, old hidden routes, search and reciprocal recommendations.
+`live_curriculum_browser.py`: live French home, stored hidden selections, all course selectors, searches, downloads, route redirects, chapter activities, phone layouts and both themes.
+
+The default browser runner follows the French-only live scope. Legacy collection browser
+scripts remain available beside the retained resources. The DOM smoke keeps direct module
+coverage of every experiment and checks that hidden collection routes return to French courses.

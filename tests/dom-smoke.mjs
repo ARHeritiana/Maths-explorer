@@ -147,40 +147,17 @@ for(const e of EXPERIMENTS)for(const lang of ['fr','en'])for(const mode of ['ful
   m.destroy();flush();assert.equal(host.children.length,0,'destroy removes the experiment');host.remove();
 }
 const missing=document.createElement('div');document.body.append(missing);mountExperiment(missing,'nope',{lang:'fr'});assert.match(missing.textContent,/n’existe pas/);
-await go('#lab');assert.equal(document.querySelectorAll('.lab2-card-link').length,EXPERIMENTS.length,'the index lists all experiments');
-const {groupOf}=await import('../dist/js/lab/registry.js');
-assert.equal(document.querySelectorAll('.lab2-group').length,new Set(EXPERIMENTS.map(groupOf)).size,'every registered activity group is shown');assert.equal(document.querySelectorAll('.lab2-card-link[href^="#lab/"]').length,EXPERIMENTS.length);
-// the old guided page is gone: no chart, no sliders of the previous design, whatever the route
-for(const id of ['probability','vectors','statistics','complex']){await go('#lab/'+id);assert.ok(document.querySelector('.lab2'),id+' is an experiment');assert.equal(document.querySelector('#plot'),null);assert.equal(document.querySelector('[data-param]'),null);}
-await go('#lab/nope');assert.ok(/introuvable|not found/i.test(document.querySelector('#main').textContent),'an unknown experiment is a missing page');
-// the gallery redirect keeps working
-await go('#lab/galton');assert.equal(window.location.hash,'#gallery/galton');assert.ok(document.querySelector('#object-stage canvas'),'a curiosity opens in the gallery');
-for(const id of ['voronoi','fastest-slide','soap-films','knots','einstein','four-colours']){
- window.location.hash='#gallery/'+id;window.dispatchEvent(new window.Event('hashchange'));
- assert.equal(document.querySelector('#object-stage')?.dataset.object,id,'gallery route mounts selected exhibit');
- assert.equal(document.querySelector('#quiz-preset'),null,'empty experiment presets are omitted');
- assert.ok(document.querySelector('#object-stage canvas'));
- assert.ok(!/undefined|NaN/.test(document.querySelector('#main').textContent));
+// Only curriculum-linked experiments have live routes; archived modules above still mount directly.
+for(const id of ['probability','vectors','statistics','complex']){
+ await go('#lab/'+id);assert.ok(document.querySelector('.lab2'),id+' is an experiment');
+ assert.equal(document.querySelector('#plot'),null);assert.equal(document.querySelector('[data-param]'),null);
 }
-console.log('DOM smoke passed: five folding controls, every experiment (drags with no element change, fixed camera, missions, keyboard handles, run buttons, free and gated missions, zoom only on purpose), old guided page gone, gallery redirects; canvas arguments finite.');
-// Compact challenge settings and genuinely editable data: statement, solution, checker and activity all follow.
-for(const id of ['fly','jugs']){
- await go('#challenges/'+id);
- assert.ok(document.querySelector('details.variation:not([open])'),'settings are folded by default');
- assert.equal(document.querySelector('.var-choice input[type="radio"]'),null,'no sprawling preset lists');
- const values=id==='fly'?['137','31','47','250']:['8','13','7'];
- const fields=[...document.querySelectorAll('[data-custom]')];assert.equal(fields.length,values.length);
- fields.forEach((f,i)=>{f.value=values[i];f.dispatchEvent(new window.Event('input'));});
- document.querySelector('[data-apply]').click();flush();assert.ok(document.querySelector('#problem').textContent.includes(values[0]));
- const selector=document.querySelector('select[data-var]');assert.equal(selector.value,'custom');
- assert.ok(document.querySelector('#solution-text').textContent.includes(values[0]));
- if(id==='fly'){
-  assert.equal(document.querySelector('#activity svg').dataset.time,'0');
-  fields[3].value='20';document.querySelector('[data-apply]').click();
-  assert.ok(!fields[3].checkValidity(),'fly slower than a train is rejected');assert.ok(document.querySelector('#problem').textContent.includes('250'));
- }else assert.equal(document.querySelector('.jg-moves'),null,'jug operations live in the scene');
- selector.value=id==='fly'?'200,50,50,75':'3,5,4';selector.dispatchEvent(new window.Event('change'));
- assert.equal(fields[0].value,id==='fly'?'200':'3','choosing an example synchronises editable fields');
+for(const hash of ['#lab','#lab/nope','#lab/galton','#gallery/voronoi','#challenges/fly','#challenges/jugs','#university','#olympiad','#chapter/t10-01']){
+ await go(hash);assert.equal(window.location.hash,'#resources',hash+' returns to the French courses');
+ assert.equal(document.querySelectorAll('.res-rail [data-course]').length,5);
 }
+await go('#home');
+assert.equal(document.querySelectorAll('.home-courses .row').length,5);
+assert.equal(document.querySelector('[data-lang]'),null);
+console.log('DOM smoke passed: archived modules preserved; curriculum experiment drags, camera, missions, keyboard and run buttons work; hidden routes return to French courses.');
 dom.window.close();
-

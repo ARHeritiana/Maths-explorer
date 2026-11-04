@@ -28,7 +28,7 @@ really need them.
 |---|---|---|
 | a colour, font, spacing, radius or theme | `site/styles/explorer.css` (tokens at the top, both themes) | `docs/DESIGN_V3.md` only for a design decision |
 | the look of one page or component | `site/styles/pages.css` (search the page class, see section 3) | standalone mathematicians: `site/styles/timeline-standalone.css` and `site/resources/history/mathematicians-timeline.html` |
-| the top navigation (three sections, "Apprendre", "Explorer" and "Lire", each with a row of page tabs), footer, theme or language buttons | `site/js/app.js` `SECTIONS`, `TAB_OF`, `header()` / `footer()` | |
+| the top navigation (French curriculum with course and classroom-tool tabs), footer, theme or language buttons | `site/js/app.js` `SECTIONS`, `TAB_OF`, `header()` / `footer()` | |
 | a foundations lesson (`#basics`) | `site/js/app.js` `basicsPage` / `bindBasics`, `site/resources/basics/place-value.html, site/resources/basics/place-value.en.html`, `site/resources/basics/addition.html, site/resources/basics/addition.en.html`, `site/resources/basics/subtraction.html, site/resources/basics/subtraction.en.html`, `site/resources/basics/multiplication.html, site/resources/basics/multiplication.en.html`, `site/resources/basics/division.html, site/resources/basics/division.en.html`, `site/resources/basics/sets.html, site/resources/basics/sets.en.html` | place value, the four arithmetic operations, sets (shared code, one text table per edition); `site/resources/basics/fractions.html` and `site/resources/basics/fractions.en.html` are the bilingual fractions workbench |
 | a route (add or rename a page) | `site/js/app.js` `route()`, `render()` (validity list and dispatch) | section 3 |
 | any text of a laboratory experiment (missions, prompts, arguments) | `site/js/lab/experiments/<id>.js` (index in `site/js/lab/CLAUDE.md`) | gallery entries only: `site/js/content.js` `labs` (`custom: true`) |
@@ -80,6 +80,13 @@ really need them.
 
 ## 3. Site map (hash routes)
 
+Live scope, owner decision of 4 November 2026: only the five French lycée courses,
+classroom tools, chapter-linked laboratories and common-error activities are visible.
+`site/js/live-curriculum.js` controls this scope. Other routes in the retained module
+map below redirect to `#resources`; their resources and code are preserved. The home
+page links directly to `#resources/<course>`. The bilingual lesson goal remains on
+standby, unfinished.
+
 All pages are rendered by `site/js/app.js` `render()`; the module named builds the page markup and binds it.
 
 | Route | Nav label | Page module |
@@ -87,7 +94,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `#topics[/<topic>[/<subtopic>]]` | Explorer > Domaines | `discovery.js`, `discovery-index.js`, `topic-registry.js` (field figures, starters, difficulty bands), `styles/topics.css` |
 | `#home` (default) | logo | `welcome.js` `homePage`, drawings `home-art.js` |
 | `#basics[/place-value|addition|subtraction|multiplication|division|sets|fractions]` | Apprendre > Bases | `app.js` `basicsPage` / `bindBasics`, `site/resources/basics/place-value.html, site/resources/basics/place-value.en.html`, `site/resources/basics/addition.html, site/resources/basics/addition.en.html` and `site/resources/basics/subtraction.html, site/resources/basics/subtraction.en.html`, `site/resources/basics/multiplication.html, site/resources/basics/multiplication.en.html` and `site/resources/basics/division.html, site/resources/basics/division.en.html` and `site/resources/basics/sets.html, site/resources/basics/sets.en.html` and `site/resources/basics/fractions.html, site/resources/basics/fractions.en.html` (discovery record `FOUNDATION_LESSONS` in `discovery.js`) |
-| `#resources` | Apprendre > Cours | `resource-library.js` `libraryPage` / `bindLibrary` (rail of curricula and levels beside the chapter grid; classroom tools in the rail) |
+| `#resources[/<course>]` | Programme français > Cours | `resource-library.js` `libraryPage` / `bindLibrary` (rail of curricula and levels beside the chapter grid; classroom tools in the rail) |
 | `#chapter/<id>[/<tab>]` | (Cours) | `resource-library.js` `chapterPage` → `chapter-sequence.js` |
 | `#library[/<id>]` | (Cours) | `library.js` `mountLibrary` |
 | `#workshop/quadratic` | (Cours) | `quadratic-workshop.js` |

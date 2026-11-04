@@ -1,5 +1,19 @@
 # Handoff
 
+## French-only live scope (4 November 2026)
+
+The live site now focuses on the five French lycée classes and their classroom tools.
+`site/js/live-curriculum.js` filters browsing, searches, course selectors, packs, sources
+and routes without deleting curriculum data or resources. Other curricula and standalone
+collections stay in the repository; direct static file URLs are retained. The home page
+provides level links; saved hidden courses fall back to a French level. French chapter
+laboratories remain available. The bilingual lesson goal remains on standby, unfinished.
+Validation: the French live-scope browser checks pass at 320, 390 and 1280 px in both
+themes, including old links and saved hidden courses. `npm test`: 533 pass, one failure
+because this environment lacks the French Babel package; the same TeX setup fails on
+the original checkout. Syntax, catalogue and source-copy checks pass. No PDF, TeX,
+slide deck, resource asset or complete catalogue entry was removed.
+
 ## Fractions foundation (4 November 2026)
 
 Integrated the supplied fractions workbench at `#basics/fractions`, seventh foundation. Eight activities, six guided challenges, shared Cahier typography and themes, visible activity grid, keyboard focus and bounded SVG handles, automatic iframe resizing, arithmetic discovery link. French and English by the specific owner request of 4 November 2026; the wider bilingual lesson goal remains on standby (unfinished). Sources: `site/resources/basics/fractions.html` and `site/resources/basics/fractions.en.html`, with identical scripts outside the language table; regression coverage: `tests/fractions.test.mjs`.

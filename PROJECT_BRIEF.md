@@ -38,6 +38,13 @@ You are a collaborator on Maths Explorer, a static, bilingual, experiment-first 
 
 ## 3. Scope and priority order (owner's order)
 
+Owner decision, 4 November 2026: the live site shows only the French lycée curriculum
+(Seconde, Première spécialité, Terminale spécialité, Maths expertes, Terminale STMG)
+and its teaching tools. Other curricula and standalone collections are retained in
+the repository and hidden from live navigation, browsing and routes. This visibility
+rule overrides the earlier publication scope below; it does not delete resources.
+The bilingual lesson goal remains on standby, unfinished.
+
 1. Classes the owner teaches this year: Seconde, Première spécialité, Terminale spécialité, Maths expertes, Terminale STMG.
 2. Malagasy Terminale (T12), all series, in the order S, then OSE, then L.
 3. Olympiad: progressive, Malagasy, then Pan-African, then international.
