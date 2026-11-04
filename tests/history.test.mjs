@@ -203,7 +203,8 @@ test('standalone timeline provides site navigation and a shared theme',()=>{
  assert.equal(doc.querySelectorAll('.topbar .mainnav a').length,3);
  assert.equal(doc.querySelectorAll('.subnav a[aria-current="page"]').length,1);
  assert.equal(doc.querySelectorAll('[data-timeline-lang]').length,2);
- assert.ok(links.includes('../../index.html#home'));
+ assert.equal(doc.querySelector('.topbar .brand')?.getAttribute('href'),'../../index.html#home');
+ assert.equal(doc.querySelectorAll('.subnav a[href="../../index.html#home"]').length,0);
  assert.match(html,/laneH=mobile\?\(short\?48:52\):\(short\?50:56\)/);
  assert.match(html,/surface\.style\.height=Math\.max/);
  assert.doesNotMatch(html,/laneH=mobile\?\(short\?23:/);

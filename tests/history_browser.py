@@ -42,7 +42,8 @@ with sync_playwright() as p:
  assert page.locator('.century.loud').first.evaluate("e=>getComputedStyle(e,'::after').content")=='none'
  assert page.locator('.era-marker').first.evaluate("e=>getComputedStyle(e).borderLeftWidth")=='0px'
  assert page.locator('.topbar .brand').is_visible()
- assert page.locator('.subnav .mx-return').is_visible()
+ assert page.locator('.subnav a[href="../../index.html#home"]').count()==0
+ assert page.locator('.topbar .brand').get_attribute('href')=='../../index.html#home'
  assert page.locator('.topbar .mainnav a').count()==3
  assert page.locator('.life').first.evaluate('e=>e.getBoundingClientRect().height')>=44
  assert page.locator('.life img').first.evaluate('e=>e.getBoundingClientRect().height')>=40

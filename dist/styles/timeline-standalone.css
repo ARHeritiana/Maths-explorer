@@ -11,7 +11,6 @@ body{padding:0;overflow:hidden;background:var(--bg);color:var(--ink);font:1.125r
 .subnav{position:static;flex:0 0 47px;background:var(--surface);z-index:50}
 .subnav-inner{height:47px;align-items:center;max-width:var(--page-w)}
 .subnav a{white-space:nowrap;flex:none}
-.subnav a.mx-return{margin-right:10px;border-right:1px solid var(--line)}
 .mx-skip{position:fixed;top:-100px;left:8px;padding:12px 16px;background:var(--accent);color:var(--accent-ink);z-index:120;font-weight:700}
 .mx-skip:focus{top:6px}
 .header{height:56px;flex:0 0 56px;padding:0 clamp(8px,2vw,24px);background:var(--surface);border-bottom:1px solid var(--line);box-shadow:none}
@@ -72,7 +71,7 @@ body{padding:0;overflow:hidden;background:var(--bg);color:var(--ink);font:1.125r
 .overlay-footer a,.site-bio-link{color:var(--accent);text-decoration:underline;font:700 .875rem var(--body)}
 .site-bio-link[hidden]{display:none}
 @media(max-width:960px){.app{height:calc(100dvh - 60px - env(safe-area-inset-bottom))}.topbar .mainnav{margin-right:0}.topbar .mainnav [data-site-icon] .icon{width:24px;height:24px}}
-@media(max-width:620px){.header{padding:0 7px}.header .toolbar{gap:6px}.header .total,.header .zoomlabel{display:none}.header .searchwrap{max-width:none;min-width:0}.header .searchwrap input{height:44px;font-size:14px}.header .smallbtn{height:44px;width:44px}.overlay{left:8px;right:8px;top:8px;bottom:36px;width:auto}.subnav a.mx-return{margin-right:2px}}
+@media(max-width:620px){.header{padding:0 7px}.header .toolbar{gap:6px}.header .total,.header .zoomlabel{display:none}.header .searchwrap{max-width:none;min-width:0}.header .searchwrap input{height:44px;font-size:14px}.header .smallbtn{height:44px;width:44px}.overlay{left:8px;right:8px;top:8px;bottom:36px;width:auto}}
 @media(hover:none){.life.compact:not(.selected):hover,.life.full:not(.selected):hover{width:var(--base-w)!important}.life.compact:not(.selected):hover .life-name,.life.compact:not(.selected):hover .life-inline{display:none}.life.compact:not(.selected):hover img{transform:none}}
 @media(prefers-reduced-motion:reduce){.life,.life img,.overlay{transition:none!important}}
 
