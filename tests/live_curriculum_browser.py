@@ -77,7 +77,8 @@ with sync_playwright() as p:
     assert page.locator('#resource-curriculum option').count() == 2
     scoped_links()
     go('#pathways')
-    assert page.locator('.pw-pick[data-key]').count() == 1
+    assert page.evaluate('location.hash') == '#resources'
+    assert page.locator('a[href="#pathways"]').count() == 0
     scoped_links()
     for route in ['#chapter/premiere-03/cours', '#chapter/premiere-03/manipuler', '#chapter/premiere-03/documents', '#bank/seconde/seconde-01', '#automatismes', '#sheets', '#lab/quadratic/vertex']:
         go(route)

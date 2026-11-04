@@ -41,7 +41,8 @@ You are a collaborator on Maths Explorer, a static, bilingual, experiment-first 
 Owner clarification, 4 November 2026: hide only the other curricula from the live
 site. The French lycée curriculum stays visible; galleries, curiosities, laboratories,
 foundations, challenges, history, reading, Olympiad (its own category) and shared
-workshops stay available. Other curriculum resources remain in the repository.
+workshops stay available. Hide the Pathways menu and its footer link as well; old
+Pathways links return to courses. Other curriculum resources remain in the repository.
 The bilingual lesson goal remains on standby, unfinished.
 
 1. Classes the owner teaches this year: Seconde, Première spécialité, Terminale spécialité, Maths expertes, Terminale STMG.

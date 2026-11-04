@@ -5,7 +5,8 @@
 The owner clarified: hide the other curricula only. Galleries, curiosities, all
 laboratories, foundations, challenges, history, reading, Olympiad and shared workshops
 are visible again, along with the original Explorer/Lire navigation and bilingual
-interface. Course selectors and pathways show only the French curriculum; hidden
+interface. The Pathways menu and its footer link are hidden at the owner’s request;
+old Pathways links return to courses. Course selectors show only the French curriculum; hidden
 curriculum links still return to the French courses. Shared library resources and
 source bundles remain accessible. No resource files were removed.
 `site/js/live-curriculum.js` is the shared curriculum visibility policy. The bilingual

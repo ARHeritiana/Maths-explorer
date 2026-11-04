@@ -83,7 +83,8 @@ really need them.
 Live scope, owner clarification of 4 November 2026: only the other curricula are
 hidden. Galleries, curiosities, laboratories, foundations, challenges, history,
 reading, Olympiad and shared workshops remain live. `site/js/live-curriculum.js`
-controls curriculum visibility; complete source data and resources are retained.
+controls curriculum visibility; the Pathways menu and footer link are hidden, with
+old Pathways links returning to courses. Complete source data and resources are retained.
 The bilingual lesson goal remains on standby, unfinished.
 
 All pages are rendered by `site/js/app.js` `render()`; the module named builds the page markup and binds it.

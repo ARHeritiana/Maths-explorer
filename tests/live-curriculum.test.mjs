@@ -23,7 +23,7 @@ test('the live catalogues retain every French chapter without changing the archi
 });
 
 test('old hidden routes cannot reopen a different curriculum', () => {
-  for (const route of ['#resources/t10', '#slides/t11s', '#chapter/t10-01', '#library/t11s-01', '#pack/t10', '#bank/t11s', '#university']) {
+  for (const route of ['#pathways', '#resources/t10', '#slides/t11s', '#chapter/t10-01', '#library/t11s-01', '#pack/t10', '#bank/t11s', '#university']) {
     assert.equal(isLiveHash(route), false, route);
   }
   for (const route of ['#home', '#resources', '#resources/expertes', '#chapter/seconde-01/cours', '#bank/seconde/seconde-01', '#slides/stmg', '#pack/premiere', '#sources', '#lab/quadratic/vertex', '#lab/monte-carlo-pi', '#olympiad', '#gallery/fourier', '#history', '#basics/fractions', '#topics', '#lab/ferris-wheel', '#challenges/fly', '#biographies/galois', '#stories']) {
