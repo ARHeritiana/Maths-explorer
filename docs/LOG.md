@@ -216,3 +216,4 @@ Append one dated line per finished task at the end of the first list (before "Da
 4 November 2026: integrated and redesigned the French fractions workbench as the seventh foundation (`#basics/fractions`), with responsive activity navigation, shared themes, keyboard controls and guided challenges. Bilingual lesson work remains on standby.
 
 - 4 November 2026: removed the redundant Home tab from the standalone mathematicians timeline; the logo retains the home link. Bilingual lesson work remains on standby and unfinished.
+4 November 2026: made the fractions foundation bilingual on explicit request. The site language selector now chooses the complete French or English lesson, including diagrams, hints, feedback and accessibility labels. General bilingual lesson work remains on standby.

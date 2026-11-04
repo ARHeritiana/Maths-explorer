@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="An interactive lab for building, comparing and calculating with fractions.">
+<title>Fractions lab · Maths Explorer</title>
+<link rel="stylesheet" href="../../styles/explorer.css">
+<style>
+/* Shared Cahier tokens; aliases keep the portable fraction diagrams readable. */
+:root{--ink2:var(--ink-2);--strong:var(--line-strong);--accentText:var(--accent-ink);--accentSoft:var(--accent-soft);--blue:var(--c1);--amber:var(--c2);--good:var(--pos);--goodSoft:var(--pos-soft);--bad:var(--neg);--badSoft:var(--neg-soft);--purple:var(--c5);--paper:var(--surface)}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 'Atkinson Hyperlegible',system-ui,-apple-system,'Segoe UI',sans-serif;min-width:0} h1,h2,h3,p{margin:0} h1,h2,h3{font-family:'Schibsted Grotesk',system-ui,sans-serif;line-height:1.17;letter-spacing:-.025em} h1{font-size:clamp(1.9rem,3.1vw,3rem)} h2{font-size:1.4rem} h3{font-size:1.12rem} p{line-height:1.55} .math{font-family:'STIX Two Text',Cambria,'Times New Roman',serif;font-variant-numeric:tabular-nums;font-size:1.1em} .tabular{font-variant-numeric:tabular-nums} button,input,select{font:inherit;color:inherit} button{cursor:pointer} button:disabled{cursor:not-allowed;opacity:.42} :focus-visible{outline:3px solid var(--accent);outline-offset:3px} button,input,select{min-height:44px} a{color:inherit} svg{display:block;max-width:100%} .hidden{display:none!important} .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px clamp(16px,3vw,38px);border-bottom:1px solid var(--line);min-height:68px}.brand{display:flex;align-items:center;gap:10px;font-size:1.2rem;font-weight:800;letter-spacing:-.02em;white-space:nowrap}.mark{width:32px;height:32px;flex:none}.toptools{display:flex;align-items:center;gap:8px}.btn,.mini{display:inline-flex;gap:8px;align-items:center;justify-content:center;min-height:44px;padding:8px 15px;background:var(--surface);color:var(--ink);border:1.5px solid var(--strong);border-radius:0;font-weight:700;line-height:1.25}.btn:hover,.mini:hover{background:var(--sunken)}.btn-primary{background:var(--accent);color:var(--accentText);border-color:var(--accent)}.btn-primary:hover{background:var(--accent);filter:brightness(.92)}.btn-quiet{border-color:var(--line)}.mini{min-width:44px;padding:7px 11px}.small{font-size:.88rem}.wrap{max-width:1440px;margin:0 auto;padding:24px clamp(16px,3vw,38px) 90px}.eyebrow{color:var(--muted);font-size:.83rem;letter-spacing:.09em;font-weight:800;text-transform:uppercase}.intro{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:10px 0 20px}.intro p{color:var(--ink2);max-width:70ch;margin-top:8px}.runinfo{border-left:3px solid var(--accent);padding:4px 0 4px 14px;color:var(--muted);font-size:.87rem;max-width:230px}
+.tabs{display:flex;gap:0;overflow-x:auto;scrollbar-width:thin;border-bottom:1px solid var(--line);margin-bottom:20px;white-space:nowrap}.tab{border:none;border-bottom:3px solid transparent;background:none;min-width:fit-content;padding:13px 15px;color:var(--muted);font-weight:700}.tab:hover{color:var(--ink);background:var(--sunken)}.tab[aria-selected="true"]{border-bottom-color:var(--accent);color:var(--ink)}.layout{display:grid;grid-template-columns:minmax(0,1.78fr) minmax(290px,.87fr);gap:22px;align-items:start}.stage,.side,.below{min-width:0;border:1px solid var(--line);background:var(--surface)}.stage{padding:clamp(15px,2.2vw,27px)}.stage-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:14px}.stage-head h2{font-size:1.35rem}.stage-head .muted{font-size:.9rem}.stage-title{display:flex;align-items:center;gap:10px}.stage-topcontrols{display:flex;align-items:center;gap:7px}.plot{min-height:240px;padding:17px 0 0;display:flex;flex-direction:column;gap:18px}.fraction-row{padding:5px 0}.row-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:7px}.row-title b{font-size:.93rem}.row-title .math{font-size:1.45rem}.bar-svg{width:100%;height:auto;overflow:visible;touch-action:pan-y;user-select:none}.bar-svg.editable{touch-action:none;cursor:crosshair}.bar-svg.draggable{touch-action:none;cursor:grab}.bar-svg.draggable:active{cursor:grabbing}.line-svg{width:100%;height:auto;touch-action:none}.line-svg[data-edit]{cursor:crosshair}.subhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}.label{font-size:.8rem;text-transform:uppercase;letter-spacing:.055em;font-weight:800;color:var(--muted)}.legend{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:.86rem;color:var(--ink2)}.dot{width:11px;height:11px;display:inline-block;vertical-align:middle;margin-right:5px;border-radius:0;background:var(--accent)}.dot.blue{background:var(--blue)}.dot.amber{background:var(--amber)}.equation{font-family:'STIX Two Text',Cambria,'Times New Roman',serif;font-size:clamp(1.15rem,2.65vw,1.85rem);font-variant-numeric:tabular-nums;line-height:1.4;overflow-wrap:anywhere}.equation .a{color:var(--accent)}.equation .b{color:var(--blue)}.equation .valid{color:var(--good)}.expression{border-top:1px solid var(--line);padding:18px 0 4px;margin-top:12px}.hint-strip{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border-left:3px solid var(--accent);background:var(--sunken);font-size:.94rem;margin-top:16px}.hint-strip.warning{border-color:var(--bad)}.hint-strip.success{border-color:var(--good)}.side{padding:20px}.side h3{margin-bottom:12px}.control-set{padding:14px 0;border-top:1px solid var(--line)}.control-set:first-child{border-top:0;padding-top:0}.control-caption{display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:700;margin-bottom:12px}.color-swatch{display:inline-block;width:10px;height:10px;margin-right:7px;vertical-align:middle}.control-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field > label{display:block;color:var(--muted);font-size:.83rem;margin-bottom:5px}.stepper{display:flex;align-items:center;min-height:44px;border:1px solid var(--strong)}.stepper input{width:100%;min-width:0;text-align:center;background:none;border:0;appearance:textfield;font-weight:800;padding:4px 0}.stepper input::-webkit-outer-spin-button,.stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}.stepper button{flex:none;min-width:38px;min-height:44px;border:0;background:var(--sunken);font-weight:800}.stepper button:hover{background:var(--line)}.preset-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.chip{font-family:'STIX Two Text',Cambria,serif;font-size:1.08rem;padding:4px 11px;border:1px solid var(--line);background:none;min-height:39px}.chip:hover{border-color:var(--strong)}.chip[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--accentSoft)}.aside-tools{display:flex;gap:9px;flex-wrap:wrap}.side label.check{display:flex;gap:9px;align-items:center;margin:11px 0;cursor:pointer;font-size:.95rem}.check input{accent-color:var(--accent);width:18px;height:18px;min-height:0}.select,.input{width:100%;min-width:0;padding:9px 12px;border:1px solid var(--strong);background:var(--surface);border-radius:0}.side-note{color:var(--muted);font-size:.88rem;margin-top:11px}.flexrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.choice-row{display:flex;gap:7px;flex-wrap:wrap}.choice-row .btn{flex:1;padding:8px}.choice-row .btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}.below{padding:20px 24px;margin-top:22px}.below h3{margin-bottom:10px}.below p{color:var(--ink2)}.readouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line);margin-top:18px}.readout{padding:14px 12px 3px 0}.readout:not(:first-child){padding-left:16px;border-left:1px solid var(--line)}.readout .value{font-family:'STIX Two Text',Cambria,serif;font-size:1.55rem;font-weight:700;line-height:1.2;margin-top:6px;overflow-wrap:anywhere}.readout .label{font-size:.73rem}
+.option{display:block;min-width:0;padding:12px 0;border-bottom:1px solid var(--line)}.option p{margin-top:6px}.card-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}.task-card{border:1px solid var(--line);padding:12px;background:var(--surface)}.task-card.active{border-color:var(--accent)}.task-card.done{border-color:var(--good)}.task-card button{background:none;border:0;min-height:44px;font-weight:700;text-align:left;width:100%}.task-card small{color:var(--muted);display:block}.lesson-progress{height:6px;background:var(--sunken);margin:12px 0 18px}.lesson-progress div{height:100%;background:var(--good);transition:width 160ms}.answer-form{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin-top:12px}.answer-form input{width:160px;flex:1;max-width:260px}.feedback{margin-top:14px;padding:12px;border-left:3px solid var(--accent);background:var(--sunken)}.feedback.good{border-color:var(--good);background:var(--goodSoft)}.feedback.bad{border-color:var(--bad);background:var(--badSoft)}.feedback:empty{display:none}.fruits{display:flex;flex-wrap:wrap;gap:9px;padding:9px 0}.fruit{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1.5px solid var(--strong);border-radius:50%;background:linear-gradient(90deg,var(--accent) var(--filled),var(--sunken) var(--filled));color:var(--ink);font-size:1.1rem}.groupbox{padding:10px 0;border-top:1px solid var(--line)}.quantity-grid{display:flex;gap:7px;flex-wrap:wrap;max-width:100%}.quantity-grid .fruit{width:30px;height:30px}.comparison{font-family:'STIX Two Text',Cambria,serif;font-size:clamp(1.1rem,2.4vw,1.6rem);font-variant-numeric:tabular-nums}.dropzone{border:2px dashed var(--strong);padding:8px 10px;margin-top:13px}.dropzone.ready{border-color:var(--good)}.dragghost{position:fixed;z-index:1000;pointer-events:none;padding:9px 14px;border:2px solid var(--blue);background:var(--surface);font-family:Cambria,serif;font-size:1.3rem;transform:translate(-50%,-130%);white-space:nowrap}.progress-steps{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}.progress-steps button{width:35px;height:35px;min-height:35px;border:1px solid var(--strong);background:var(--surface);font-weight:800}.progress-steps button.current{background:var(--accent);color:var(--accentText);border-color:var(--accent)}.progress-steps button.done{background:var(--goodSoft);color:var(--good);border-color:var(--good)}.error-card{background:var(--sunken);padding:18px;border-left:4px solid var(--accent)}.error-card .equation{margin:10px 0}.notice{font-size:.85rem;color:var(--muted)}.footer{border-top:1px solid var(--line);margin-top:35px;padding-top:14px;color:var(--muted);font-size:.83rem}.footer strong{color:var(--ink)}.area-graphic{width:100%;height:auto;max-height:340px}.unit-badge{padding:6px 11px;border:1px solid var(--line);font-size:.84rem;font-weight:700}.scrollnote{font-size:.8rem;color:var(--muted)}
+@media(max-width:1000px){.layout{grid-template-columns:minmax(0,1fr) 300px}.wrap{padding-top:16px}.stage{padding:16px}.runinfo{display:none}}
+@media(max-width:800px){.layout{grid-template-columns:minmax(0,1fr)}.side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}.side > h3,.side > .full{grid-column:1/-1}.side > .control-set:first-of-type{border-top:1px solid var(--line);padding-top:14px}.intro{margin-bottom:14px}.tabs{margin-bottom:12px}.plot{min-height:210px}}
+@media(max-width:560px){body{font-size:16px}.brand{font-size:1rem}.topbar{padding:8px 12px}.toptools .long{display:none}.toptools .btn{min-width:44px;padding:8px 10px}.wrap{padding:14px 12px 50px}.intro{display:block}.intro p{font-size:.92rem}.tabs{margin-right:-12px;padding-right:12px}.tab{padding:10px 12px;font-size:.92rem}.stage{padding:13px}.plot{gap:12px;padding-top:12px}.stage-head h2{font-size:1.18rem}.side{display:block;padding:15px}.side > .control-set:first-of-type{border-top:0;padding-top:0}.readouts{grid-template-columns:1fr 1fr}.readout:nth-child(3){grid-column:1/-1;border-left:0;padding-left:0;border-top:1px solid var(--line)}.card-row{grid-template-columns:1fr 1fr}.below{padding:16px}.row-title .math{font-size:1.22rem}.bar-svg{min-height:75px}.choice-row .btn{font-size:.95rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{.topbar,.toptools,.tabs,.side,.stage-topcontrols,.footer,.btn,.answer-form,.progress-steps{display:none!important}.wrap{padding:5px}.layout{display:block}.stage,.below{border:0}.hint-strip{break-inside:avoid}body{background:white;color:black}.plot{min-height:0}}
+#laboratory:fullscreen{background:var(--bg);overflow:auto;max-height:100dvh;padding:22px;display:flex;flex-direction:column}#laboratory:fullscreen .plot{flex:1;justify-content:center}#laboratory:fullscreen .bar-svg{max-height:210px}#laboratory:fullscreen .stage-head h2{font-size:2rem}
+
+/* A quiet workbench: eight visible entrances, a large figure, compact settings. */
+body{padding-bottom:0;overflow-wrap:anywhere}
+.wrap{max-width:1440px;padding-bottom:32px}
+.topbar{position:static;height:auto}
+.brand{text-decoration:none}
+.intro{align-items:center;margin:12px 0 28px}
+.intro p{max-width:62ch;color:var(--muted);font-size:1rem}
+h1{font-size:clamp(1.8rem,3.2vw,2.6rem);letter-spacing:-.045em}
+.runinfo{font-size:.82rem;line-height:1.8;max-width:190px}
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;overflow:visible;white-space:normal;border:1px solid var(--line);margin:0 0 28px}
+.tab{position:relative;min-width:0;text-align:left;display:grid;grid-template-columns:26px minmax(0,1fr);gap:0 8px;align-content:center;padding:14px 16px;border:0;border-bottom:1px solid var(--line);font-size:.94rem;line-height:1.3}
+.tab:nth-child(-n+4){border-bottom:1px solid var(--line)}
+.tab:nth-child(n+5){border-bottom:0}
+.tab:not(:nth-child(4n)){border-right:1px solid var(--line)}
+.tab::before{content:attr(data-number);font-size:.72rem;grid-row:1/3;padding-top:3px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tab small{grid-column:2;font-size:.74rem;font-weight:400;line-height:1.4;margin-top:4px;color:var(--muted)}
+.tab[aria-selected="true"]{background:var(--accentSoft);box-shadow:inset 0 -3px var(--accent)}
+.tab[aria-selected="true"]::before{color:var(--accent)}
+.layout{grid-template-columns:minmax(0,1fr) minmax(280px,340px);gap:24px}
+.stage{border:0;padding:0;min-width:0}
+.stage-head{padding:0 0 16px;min-height:60px}
+.stage-head h2{font-size:1.22rem;letter-spacing:-.025em}
+.plot{background:var(--surface);padding:24px 20px 12px;border:1px solid var(--line);margin-top:20px;gap:24px;min-height:300px}
+.stage-title::before{content:'';width:8px;height:8px;background:var(--accent);flex:none}
+.side{background:var(--sunken);padding:20px;border:0;border-top:3px solid var(--ink)}
+.side .stepper,.side .chip{background:var(--surface)}
+.side h3{font-size:1rem}
+.control-grid{gap:10px}
+.control-caption .math{font-size:1.35rem}
+.expression{padding:20px;background:var(--accentSoft);border:0;margin-top:16px;min-height:0}
+.expression:empty{display:none}
+.expression .label{font-size:.7rem;margin-bottom:8px}
+.equation{line-height:1.65}
+.readouts{margin-top:20px}
+.readout{padding-top:16px;padding-bottom:8px}
+.readout .value{font-size:1.7rem}
+.below{padding:20px 0 0;margin-top:28px;border:0;border-top:1px solid var(--line);max-width:80ch}
+.below h3{font-size:1.12rem}
+.below p{font-size:.95rem;color:var(--muted)}
+.footer{display:block;padding:18px 0 0;margin-top:28px}
+.footer span{display:block;margin-top:4px}
+.chip,.progress-steps button{min-width:44px;min-height:44px}
+.btn:active,.mini:active,.chip:active{transform:translateY(1px)}
+.side .stepper button{min-width:44px}
+.bar-svg,.line-svg{min-height:88px}
+.embedded body{min-height:0}
+.embedded .topbar,.embedded .eyebrow{display:none}
+.embedded .wrap{padding:24px}
+.stage:fullscreen{overflow:auto;padding:28px;background:var(--bg)}
+.stage:fullscreen .plot{min-height:55dvh}
+@media(max-width:1000px){.layout{grid-template-columns:minmax(0,1fr) 290px}.tab{padding:12px 10px;gap:0 4px}.control-grid{grid-template-columns:1fr}.intro{margin-bottom:20px}}
+@media(max-width:800px){.layout{grid-template-columns:minmax(0,1fr)}.side{display:block}.control-grid{grid-template-columns:1fr 1fr}.tabs{margin-bottom:20px}.plot{min-height:240px}}
+@media(max-width:560px){.embedded .wrap{padding:16px 12px}.tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.tab{padding:12px 10px;min-height:72px}.tab:not(:nth-child(4n)){border-right:0}.tab:nth-child(odd){border-right:1px solid var(--line)}.tab:nth-child(-n+6){border-bottom:1px solid var(--line)}.tab small{font-size:.72rem}.intro{margin-top:4px}.plot{padding:16px 10px;gap:16px}.stage-head h2{font-size:1.05rem}.stage-head{flex-wrap:nowrap}.stage-topcontrols{flex:none}.readouts{grid-template-columns:1fr}.readout:not(:first-child){border-left:0;border-top:1px solid var(--line);padding-left:0}.readout:nth-child(3){grid-column:auto}.readout{display:flex;align-items:baseline;justify-content:space-between;gap:12px}.readout .value{font-size:1.35rem}.readout .label{max-width:60%}.expression{padding:16px}.control-grid{grid-template-columns:1fr}.choice-row .btn{flex:1 1 80px}.side{padding:16px}.stage-head .mini{padding:6px;min-width:44px}.row-title{flex-wrap:wrap}}
+@media(max-width:560px){.bar-svg text,.line-svg text{font-size:42px}.line-svg .tick-label{transform:translateY(20px)}}
+@media print{.embedded .wrap{padding:0}.tabs,.side{display:none}.layout{display:block}.plot{border:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<script>
+// Use the site theme in its iframe, while keeping a standalone theme choice.
+(() => {
+const embedded=window.parent!==window;
+document.documentElement.classList.toggle('embedded',embedded);
+try{const theme=embedded?parent.document.documentElement.dataset.theme:localStorage.getItem('mx-fractions-theme');document.documentElement.dataset.theme=theme==='nuit'?'nuit':'jour'}catch{document.documentElement.dataset.theme='jour'}
+})();
+</script>
+<header class="topbar">
+  <a class="brand" href="../../#basics" aria-label="Maths Explorer"><svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" fill="var(--accent)"/><path d="M8 12Q20 44 32 12" fill="none" stroke="var(--accentText)" stroke-width="3.4" stroke-linecap="round"/><circle cx="9.5" cy="20" r="3" fill="var(--accentText)"/><circle cx="30.5" cy="20" r="3" fill="var(--accentText)"/></svg><span>Maths Explorer</span></a>
+  <div class="toptools"><button id="themeToggle" class="btn btn-quiet" title="Change theme" aria-label="Change theme">◐ <span class="long">Light / Dark</span></button><button id="fullToggle" class="btn btn-quiet" title="Present the lab" aria-label="Enter fullscreen">⛶ <span class="long">Present</span></button></div>
+</header>
+<main class="wrap">
+  <div class="eyebrow">Foundations · 07 / Fractions</div>
+  <div class="intro"><div><h1>The fractions lab</h1><p>A fraction is a number. Build it, move it, compare it, then discover how to calculate with it.</p></div><div class="runinfo">Move the bars.<br>Observe the numbers.<br>Explain what changes.</div></div>
+  <nav class="tabs" role="tablist" aria-label="Activities" id="tabBar">
+    <button class="tab" role="tab" id="tab-build" aria-controls="laboratory" data-mode="build" data-number="01"><span>Build</span><small>One number, one length</small></button>
+    <button class="tab" role="tab" id="tab-equiv" aria-controls="laboratory" data-mode="equiv" data-number="02"><span>Equivalent fractions</span><small>Same number, different parts</small></button>
+    <button class="tab" role="tab" id="tab-compare" aria-controls="laboratory" data-mode="compare" data-number="03"><span>Compare</span><small>Place and order</small></button>
+    <button class="tab" role="tab" id="tab-operations" aria-controls="laboratory" data-mode="operations" data-number="04"><span>Calculate</span><small>The four operations</small></button>
+    <button class="tab" role="tab" id="tab-parts" aria-controls="laboratory" data-mode="parts" data-number="05"><span>Fraction of a fraction</span><small>An area to share</small></button>
+    <button class="tab" role="tab" id="tab-quantity" aria-controls="laboratory" data-mode="quantity" data-number="06"><span>Quantities</span><small>From parts to objects</small></button>
+    <button class="tab" role="tab" id="tab-guided" aria-controls="laboratory" data-mode="guided" data-number="07"><span>Guided practice</span><small>Six challenges to practise</small></button>
+    <button class="tab" role="tab" id="tab-errors" aria-controls="laboratory" data-mode="errors" data-number="08"><span>Investigate</span><small>True or false?</small></button>
+  </nav>
+  <div class="layout">
+    <section class="stage" id="laboratory" role="tabpanel" tabindex="0" aria-labelledby="tab-build">
+      <div class="stage-head"><div class="stage-title"><h2 id="stageTitle">Build a number</h2></div><div class="stage-topcontrols"><button class="mini" data-action="reset" title="Return to the initial example" aria-label="Reset">↺</button><button class="mini" id="fullStage" title="Enlarge the diagram" aria-label="Enlarge the diagram">⛶</button></div></div>
+      <div id="plot" class="plot"></div>
+      <div id="mathResult" class="expression"></div>
+      <div id="readout" class="readouts"></div>
+    </section>
+    <aside class="side" id="side" aria-label="Settings and instructions"></aside>
+  </div>
+  <section class="below" id="explanation" aria-label="Understand"></section>
+  <footer class="footer"><strong>Maths Explorer</strong> · Fractions lab · No data collection. <span id="footnote">A diagram builds intuition; mathematical reasoning establishes the rule.</span></footer>
+</main>
+<div id="dragGhost" class="dragghost hidden" aria-hidden="true"></div>
+<div id="announcer" class="sr-only" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+(() => {
+// TEXT-BEGIN
+const T = {
+  "text001": "Build a number",
+  "text002": "Change the partition",
+  "text003": "Compare and order",
+  "text004": "Calculate with bars",
+  "text005": "A fraction of a fraction",
+  "text006": "From a fraction to a quantity",
+  "text007": "Guided practice",
+  "text008": "Investigate mistakes",
+  "text009": "Build three quarters",
+  "text010": "Build exactly 3/4 by clicking a bar or dragging its endpoint.",
+  "text011": "Choose four equal parts and shade three of them.",
+  "text012": "Change the partition",
+  "text013": "Start with 1/2 and split each half into two. What fraction do you get without changing the length?",
+  "text014": "You can multiply the numerator and denominator by the same nonzero integer.",
+  "text015": "Compare two numbers",
+  "text016": "Compare 2/3 and 3/4. Write <, > or =.",
+  "text017": "Place both lengths on the same number line, or use twelfths.",
+  "text018": "Add",
+  "text019": "What is 1/2 + 1/4? Give a fraction; an equivalent fraction is accepted.",
+  "text020": "Write the half as two quarters, then count the quarters.",
+  "text021": "Multiply",
+  "text022": "What fraction of one whole is 2/3 × 3/4?",
+  "text023": "In a rectangle split into 3 columns and 4 rows, look at the 6 overlapping cells.",
+  "text024": "Apply to a quantity",
+  "text025": "What is 2/3 of 9 objects?",
+  "text026": "Share the nine objects into three equal groups, then take two groups.",
+  "text027": "You cannot add the denominators. One half is 2/4: 2/4 + 1/4 = 3/4. Also, 2/6 is less than 1/2, even though we are adding a positive number.",
+  "text028": "The denominator gives the number of equal parts in one whole. The more parts there are, the smaller each part is: 1/3 < 1/2.",
+  "text029": "Both bars have exactly the same length. You can split each half into two without changing the number represented.",
+  "text030": "To multiply two fractions, multiply the numerators together and the denominators together: 6/12 = 1/2.",
+  "text031": "3/2 is not a possible number",
+  "text032": "A fraction can be greater than one. Three halves make one whole and another half: 3/2 = 1 + 1/2.",
+  "text033": "2/3 of 9 = 6",
+  "text034": "Share nine objects into three groups of three and take two groups: 2 × 3 = 6.",
+  "text035": "In twelfths, 3/4 = 9/12 and 2/3 = 8/12. So 3/4 is greater.",
+  "text036": "Two halves placed end to end make exactly one whole.",
+  "text037": "undefined",
+  "text038": "\">Numerator</label><div class=\"stepper\"><button data-step=\"",
+  "text039": ":n:-1\" aria-label=\"Decrease numerator ",
+  "text040": "\" aria-label=\"Numerator ",
+  "text041": ":n:1\" aria-label=\"Increase numerator ",
+  "text042": "\">Denominator</label><div class=\"stepper\"><button data-step=\"",
+  "text043": ":d:-1\" aria-label=\"Decrease denominator ",
+  "text044": "\" aria-label=\"Denominator ",
+  "text045": ":d:1\" aria-label=\"Increase denominator ",
+  "text046": "\" aria-label=\"Number line showing the fractions\" ",
+  "text047": "Bar ",
+  "text048": "\" y=\"112\" font-size=\"15\" fill=\"var(--muted)\" text-anchor=\"end\">Drag to the sum ⇣</text>",
+  "text049": "Assembled sum",
+  "text050": "Area for assembling the bars",
+  "text051": "<svg class=\"area-graphic\" viewBox=\"0 0 930 325\" role=\"img\" aria-label=\"Rectangle with side lengths ",
+  "text052": " and ",
+  "text053": ", area ",
+  "text054": "Undefined",
+  "text055": "<div class=\"label\">Mathematical notation</div><div class=\"equation\">",
+  "text056": "<div class=\"control-set full\"><h3>Display</h3><label class=\"check\"><input type=\"checkbox\" data-toggle=\"showLine\" ",
+  "text057": ">Number line</label><label class=\"check\"><input type=\"checkbox\" data-toggle=\"showSymbols\" ",
+  "text058": ">Mathematical notation</label><label class=\"check\"><input type=\"checkbox\" data-toggle=\"showHelp\" ",
+  "text059": ">Explanations and hints</label>",
+  "text060": "Fraction adjustable by dragging or using the keyboard",
+  "text061": "<div><div class=\"subhead\"><span class=\"label\">The same number on a number line</span><span class=\"notice\">Click or drag the point</span></div>",
+  "text062": "<div class=\"subhead\"><span class=\"label\">One reference unit, always the same length</span><span class=\"unit-badge\">1 whole = ",
+  "text063": " equal parts</span></div><div class=\"fraction-row\"><div class=\"row-title\"><b>Shade parts or move the handle</b><span class=\"math\" data-live-a>",
+  "text064": "Simplified fraction",
+  "text065": "Share of one whole",
+  "text066": "en-GB",
+  "text067": "Decimal form",
+  "text068": "<p class=\"side-note\">You can build 0, a fraction less than 1, or up to 3 wholes. Move the point or select a cell on the bar.</p>",
+  "text069": "Understand equal parts",
+  "text070": "The denominator tells us how many equal parts make one whole. The numerator tells us how many of those parts we count. A fraction is a number, even when the numerator is greater than the denominator.",
+  "text071": "On the number line, the origin is 0 and the distance between two consecutive integers is always one unit.",
+  "text072": "Original partition",
+  "text073": "Finer partition, same length",
+  "text074": "<div><div class=\"label\">Both fractions mark the same point</div>",
+  "text075": "<div class=\"label\">The shaded length stays the same</div><div class=\"fraction-row\"><div class=\"row-title\"><b>Original partition</b><span class=\"math\">",
+  "text076": "</div><div class=\"fraction-row\"><div class=\"row-title\"><b>Each part is split into ",
+  "text077": "Partition factor",
+  "text078": "Number of shaded parts",
+  "text079": "Unchanged length",
+  "text080": "<div class=\"control-set\"><div class=\"control-caption\">Split each part</div><div class=\"choice-row\">",
+  "text081": "Why can we write “=”?",
+  "text082": "Each original part is replaced by smaller parts that together have exactly the same length. Multiply the numerator and denominator by the same nonzero integer.",
+  "text083": "Neither the number represented nor its position on the number line changes.",
+  "text084": "<div><div class=\"label\">Positions on the same number line</div>",
+  "text085": "Comparing A and B",
+  "text086": "Increasing order",
+  "text087": "Cross-products",
+  "text088": "A shared reference",
+  "text089": "We can compare two fractions because they use the same unit. On the bars and on the number line, the one extending furthest to the right represents the greater number.",
+  "text090": "Cross-products let us compare without rounding: a/b and c/d have the same order as ad and bc when the denominators are positive.",
+  "text091": "The parts must have the same size. Here, the common denominator is ",
+  "text092": ". Then add the numbers of parts, keeping the denominator unchanged.",
+  "text093": "After choosing a common partition, subtract a length. When the second number is greater, the result is negative: the number line helps explain this.",
+  "text094": "The area of a rectangle with sides ",
+  "text095": " is ",
+  "text096": " times the area of the unit square. The product can be smaller than either factor when both are between 0 and 1.",
+  "text097": "You cannot divide by zero. Choose a nonzero fraction B.",
+  "text098": "Division asks how many times the length ",
+  "text099": " fits into ",
+  "text100": ". Dividing by a nonzero fraction means multiplying by its reciprocal.",
+  "text101": "<svg class=\"bar-svg\" viewBox=\"0 0 944 111\" role=\"img\" aria-label=\"Length divided into segments of size ",
+  "text102": "\" y=\"15\" fill=\"var(--muted)\" font-size=\"17\" text-anchor=\"middle\">First segments, out of ",
+  "text103": " in total</text>",
+  "text104": "Lengths placed end to end",
+  "text105": "Drop the blue bar into the dashed area",
+  "text106": "Start again",
+  "text107": "Assemble",
+  "text108": "<div class=\"fraction-row\"><div class=\"row-title\"><b>First length</b><span class=\"math\">",
+  "text109": "</div><div class=\"fraction-row\"><div class=\"row-title\"><b>Second length: drag it into the sum</b><span class=\"math\">",
+  "text110": "Remaining length",
+  "text111": "Subtraction goes below zero",
+  "text112": "The first length is too small to subtract the second without using negative numbers. The result is ",
+  "text113": "<div class=\"fraction-row\"><div class=\"row-title\"><b>Starting length</b><span class=\"math\">",
+  "text114": "</div><div class=\"fraction-row\"><div class=\"row-title\"><b>Length to subtract</b><span class=\"math\">",
+  "text115": "<div class=\"subhead\"><span class=\"label\">Area model: the unit square has area 1</span></div>",
+  "text116": "<div class=\"legend\"><span><i class=\"dot\"></i> width ",
+  "text117": "</span><span><i class=\"dot blue\"></i> height ",
+  "text118": "<div><div class=\"label\">Measure in steps of length ",
+  "text119": "This is a whole number of segments.",
+  "text120": "Only part of the last segment is used.",
+  "text121": "The blue segment fits <strong>",
+  "text122": " times</strong> into the red segment. ",
+  "text123": "You cannot measure with a step of length zero.",
+  "text124": "<div><div class=\"label\">Total length to measure</div>",
+  "text125": "</div><div><div class=\"label\">Length of one step</div>",
+  "text126": "Result",
+  "text127": "<div><div class=\"label\">Markers on the number line</div>",
+  "text128": "Exact result",
+  "text129": "Approximate value",
+  "text130": "Operation",
+  "text131": "Subtraction",
+  "text132": "<div class=\"control-set\"><h3>Choose an operation</h3>",
+  "text133": "Why does this operation work?",
+  "text134": "Drag the second bar into the assembly area. You can also use the “Assemble” button.",
+  "text135": "A diagram helps us understand; the properties of numbers justify the rule.",
+  "text136": "<div><div class=\"label\">Product on the number line</div>",
+  "text137": "<div class=\"label\">What is ",
+  "text138": " of ",
+  "text139": "?</div><div><div class=\"row-title\"><b>Starting length</b><span class=\"math\">",
+  "text140": "</div><div><div class=\"subhead\"><span class=\"label\">The area reveals the product</span><span class=\"notice\">Width × height</span></div>",
+  "text141": "</span> of <span class=\"a\">",
+  "text142": "Width",
+  "text143": "Height",
+  "text144": "Area / resulting number",
+  "text145": "<div class=\"control-set\"><button class=\"btn\" data-action=\"presetParts\">Example: 2/3 of 3/4</button></div>",
+  "text146": "Multiplication as “a fraction of”",
+  "text147": "Taking a fraction of a number means multiplying that number by the fraction. The area of a rectangle helps explain the product of two fractions.",
+  "text148": "This area is measured in square units: if a square with side 1 has area 1, the rectangle has area (a/b) × (c/d).",
+  "text149": " objects, ",
+  "text150": " shaded\">",
+  "text151": ", selected fraction ",
+  "text152": "%\" title=\"Object ",
+  "text153": " more objects not shown.</div>",
+  "text154": " complete collection(s)</div>",
+  "text155": "Additional part",
+  "text156": "Collection to share",
+  "text157": "The result is not a whole number of objects. The shaded part of a circle represents a fraction of an object; if the objects cannot be divided, we must adapt the situation.",
+  "text158": "The result is a whole number of objects.",
+  "text159": "<div class=\"subhead\"><span class=\"label\">A collection of ",
+  "text160": " objects</span><span class=\"unit-badge\">Fraction: ",
+  "text161": "</span></div><div class=\"row-title\"><b>Diagram: shaded objects are selected</b><span class=\"math\">",
+  "text162": " object(s)</span></div>",
+  "text163": "</span> of ",
+  "text164": "Starting objects",
+  "text165": "Selected quantity",
+  "text166": "A whole number of objects",
+  "text167": "Yes",
+  "text168": "No",
+  "text169": "<div class=\"control-set\"><div class=\"control-caption\">Collection size</div><div class=\"stepper\"><button data-quantity=\"-1\" aria-label=\"One fewer object\">−</button><input type=\"number\" id=\"quantityInput\" min=\"1\" max=\"24\" value=\"",
+  "text170": "\" aria-label=\"Number of objects\"><button data-quantity=\"1\" aria-label=\"One more object\">+</button></div><div class=\"preset-row\">",
+  "text171": "From a fraction as a number to a fraction as an operator",
+  "text172": "A fraction has a position on the number line. It can also multiply a quantity: taking 2/3 of 9 means calculating (2/3) × 9.",
+  "text173": "Remember: a diagram of separate objects works literally only when the objects can be divided or the result is a whole number.",
+  "text174": "<div class=\"control-set\"><label>Number of objects : <strong>",
+  "text175": "<div class=\"control-set\"><h3>Activity ",
+  "text176": "<div class=\"label\">Build the requested fraction</div>",
+  "text177": "<div class=\"label\">Bar before / after partitioning</div>",
+  "text178": " objects</div>",
+  "text179": "\" aria-label=\"Step ",
+  "text180": "<button class=\"btn btn-primary\" data-action=\"checkLesson\">Check the bar</button>",
+  "text181": "<, > or =",
+  "text182": "e.g. 3/4",
+  "text183": "<label for=\"lessonAnswer\">Your answer</label><input class=\"input\" id=\"lessonAnswer\" value=\"",
+  "text184": "\" autocomplete=\"off\"><button class=\"btn btn-primary\" data-action=\"checkLesson\">Check</button>",
+  "text185": "Restart the practice",
+  "text186": "Next →",
+  "text187": "<div class=\"progress-steps\" aria-label=\"Progress\">",
+  "text188": " of ",
+  "text189": "<button class=\"btn\" data-action=\"hintLesson\">Hint</button></div>",
+  "text190": ">← Previous</button><button class=\"btn\" data-action=\"nextLesson\" ",
+  "text191": "<span class=\"valid\">Solution: ",
+  "text192": "Step",
+  "text193": "Completed steps",
+  "text194": "Progress",
+  "text195": "<div class=\"control-set\"><button class=\"btn\" data-action=\"loadStep\">Restore the question’s values</button></div>",
+  "text196": "One path, six discoveries",
+  "text197": "Each activity gives you something to explore before revealing the result. Use the bars and their settings, then check your answer. Equivalent fractions are accepted.",
+  "text198": "A hint is not the solution: first try making a prediction and comparing it with the diagram.",
+  "text199": "<div class=\"row-title\"><b>First bar</b><span class=\"math\">",
+  "text200": "<div class=\"row-title\"><b>Second bar</b><span class=\"math\">",
+  "text201": "<div class=\"row-title\"><b>Proposed result (compare with the diagram)</b><span class=\"math\">",
+  "text202": "Your choice is correct. Examine the diagrams to explain why.",
+  "text203": "Not yet. Compare the lengths and try again.",
+  "text204": "<div class=\"control-set\" style=\"margin-top:17px\"><h3>Visual check</h3>",
+  "text205": "<div class=\"label\">Investigation ",
+  "text206": "</div><div class=\"error-card\"><div class=\"label\">Claim to examine</div><div class=\"equation\">",
+  "text207": "</div><p>Is this claim correct? Explain your choice using the numbers shown.</p></div><div class=\"choice-row\" style=\"margin-top:14px\"><button class=\"btn ",
+  "text208": "\">True</button><button class=\"btn ",
+  "text209": "\">False</button><button class=\"btn\" data-action=\"revealError\">Examine the bars</button></div>",
+  "text210": "True claim",
+  "text211": "False claim",
+  "text212": "Investigation",
+  "text213": "Your answer",
+  "text214": "True",
+  "text215": "False",
+  "text216": "Explanation",
+  "text217": "Shown",
+  "text218": "To discover",
+  "text219": "<div class=\"control-set\"><h3>Choose a claim</h3><select class=\"select\" data-error-select aria-label=\"Choose an investigation\">",
+  "text220": "</select></div><div class=\"control-set\"><div class=\"flexrow\"><button class=\"btn\" data-action=\"prevError\">← Previous</button><button class=\"btn btn-primary\" data-action=\"nextError\">Next →</button></div></div><p class=\"side-note\">The claims mix correct rules and common mistakes. The diagram appears after your prediction, unless you choose to examine it first.</p>",
+  "text221": "Proof through reasoning",
+  "text222": "A visible contradiction helps us find a mistake. We must then explain the rule for calculating correctly. For example, when adding positive numbers, the sum must be at least as large as each term.",
+  "text223": "Correct. ",
+  "text224": "The bar has the correct length.",
+  "text225": "The value is correct, whichever equivalent fraction you use.",
+  "text226": "The length you built is not yet 3/4. Try again.",
+  "text227": "That is not yet the correct value. Check your partition and use the hint if needed.",
+  "text228": "The sum of the two bars is assembled.",
+  "text229": "Drop the segment into the sum area, or use the Assemble button.",
+  "text230": " → sum",
+  "text231": "Fullscreen is not available in this browser.",
+  "text232": "Fullscreen is unavailable. Open the lesson in a browser tab."
+};
+// TEXT-END
+const MODES={build:T.text001,equiv:T.text002,compare:T.text003,operations:T.text004,parts:T.text005,quantity:T.text006,guided:T.text007,errors:T.text008};
+const steps=[
+ {title:T.text009,task:T.text010,hint:T.text011,a:[1,4],b:[1,4],type:'construct',sol:'3/4'},
+ {title:T.text012,task:T.text013,hint:T.text014,a:[1,2],b:[1,4],factor:2,type:'equiv',sol:'2/4'},
+ {title:T.text015,task:T.text016,hint:T.text017,a:[2,3],b:[3,4],type:'compare',sol:'<'},
+ {title:T.text018,task:T.text019,hint:T.text020,a:[1,2],b:[1,4],op:'+',type:'operations',sol:'3/4'},
+ {title:T.text021,task:T.text022,hint:T.text023,a:[2,3],b:[3,4],op:'×',type:'parts',sol:'1/2'},
+ {title:T.text024,task:T.text025,hint:T.text026,a:[2,3],b:[1,4],q:9,type:'quantity',sol:'6'}
+];
+const errors=[
+ {claim:'1/2 + 1/4 = 2/6',truth:false,kind:'plus',reason:T.text027,a:[1,2],b:[1,4],wrong:[2,6],right:[3,4]},
+ {claim:'1/3 > 1/2',truth:false,kind:'compare',reason:T.text028,a:[1,3],b:[1,2],right:[1,2]},
+ {claim:'2/4 = 1/2',truth:true,kind:'equiv',reason:T.text029,a:[2,4],b:[1,2],right:[1,2]},
+ {claim:'2/3 × 3/4 = 6/7',truth:false,kind:'multiply',reason:T.text030,a:[2,3],b:[3,4],right:[1,2]},
+ {claim:T.text031,truth:false,kind:'greater',reason:T.text032,a:[3,2],b:[1,2],right:[3,2]},
+ {claim:T.text033,truth:true,kind:'quantity',reason:T.text034,a:[2,3],b:[1,4],right:[6,1]},
+ {claim:'3/4 < 2/3',truth:false,kind:'compare',reason:T.text035,a:[3,4],b:[2,3],right:[3,4]},
+ {claim:'1/2 + 1/2 = 1',truth:true,kind:'plus',reason:T.text036,a:[1,2],b:[1,2],right:[1,1]}
+];
+const S={mode:'build',a:{n:1,d:2},b:{n:1,d:4},c:{n:5,d:6},factor:2,op:'+',quantity:9,showLine:true,showSymbols:true,showHelp:true,composed:false,lesson:0,done:new Set(),lessonAnswer:'',lessonHint:false,feedback:'',feedbackGood:false,error:0,errorAnswer:null,errorDetail:false};
+const $=q=>document.querySelector(q);
+const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1};
+const lcm=(a,b)=>a/gcd(a,b)*b;
+const frac=(n,d=1)=>{if(!d)return null;const sign=d<0?-1:1;const g=gcd(n,d);return {n:sign*n/g,d:sign*d/g}};
+const add=(p,q)=>frac(p.n*q.d+q.n*p.d,p.d*q.d);
+const sub=(p,q)=>frac(p.n*q.d-q.n*p.d,p.d*q.d);
+const mul=(p,q)=>frac(p.n*q.n,p.d*q.d);
+const div=(p,q)=>q.n===0?null:frac(p.n*q.d,p.d*q.n);
+const str=p=>!p?T.text037:p.d===1?String(p.n):`${p.n}/${p.d}`;
+const orig=p=>`${p.n}/${p.d}`;
+const v=p=>p.n/p.d;
+const safe=(s)=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $mode=()=>S.mode==='guided'?steps[S.lesson].type:S.mode;
+const fA=()=>frac(S.a.n,S.a.d), fB=()=>frac(S.b.n,S.b.d);
+const colors={a:'var(--accent)',b:'var(--blue)',c:'var(--amber)'};
+const assertN=(n,min,max)=>Math.max(min,Math.min(max,Number.isFinite(+n)?Math.round(+n):min));
+function setFraction(key,n,d){const previous=S[key];d=assertN(d,1,12);n=assertN(n,0,3*d);S[key]={n,d};if(previous.n!==n||previous.d!==d){S.composed=false;S.feedback='';S.errorAnswer=null}}
+function setPreset(key,n,d){setFraction(key,n,d);render()}
+function numControl(key){const x=S[key],name=key==='a'?'Fraction A':key==='b'?'Fraction B':'Fraction C';return `<div class="control-set"><div class="control-caption"><span><i class="color-swatch" style="background:${colors[key]}"></i>${name}</span><span class="math">${orig(x)}</span></div><div class="control-grid"><div class="field"><label for="num_${key}${T.text038}${key}${T.text039}${key}">−</button><input id="num_${key}" type="number" min="0" max="${3*x.d}" inputmode="numeric" data-input="${key}:n" value="${x.n}${T.text040}${name}"><button data-step="${key}${T.text041}${key}">+</button></div></div><div class="field"><label for="den_${key}${T.text042}${key}${T.text043}${key}">−</button><input id="den_${key}" type="number" min="1" max="12" inputmode="numeric" data-input="${key}:d" value="${x.d}${T.text044}${name}"><button data-step="${key}${T.text045}${key}">+</button></div></div></div><div class="preset-row">${[[1,2],[2,3],[3,4],[5,4],[7,3]].map(([n,d])=>`<button class="chip" data-preset="${key}:${n}:${d}" aria-pressed="${x.n===n&&x.d===d}">${n}/${d}</button>`).join('')}</div></div>`}
+function choice(key,opts){return `<div class="choice-row">${opts.map(([v,l])=>`<button class="btn btn-quiet" data-choice="${key}:${v}" aria-pressed="${S[key]===v}">${l}</button>`).join('')}</div>`}
+function numberLine(items,units=2,interactive=null){units=Math.max(1,Math.min(36,units));const x0=42,x1=902,y=70,sc=(x1-x0)/units;let out=`<svg class="line-svg" viewBox="0 0 944 141" role="${interactive?'slider':'img'}${T.text046}${interactive?`data-linebar="${interactive}" data-units="${units}" tabindex="0" aria-valuemin="0" aria-valuemax="${units}" aria-valuenow="${v(S[interactive])}" aria-valuetext="${orig(S[interactive])}"`:''}><line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="var(--ink)" stroke-width="2.3"/><path d="M${x1-11} ${y-6}L${x1} ${y}L${x1-11} ${y+6}" fill="none" stroke="var(--ink)" stroke-width="2"/>`;
+for(let i=0;i<=units;i++){if(i%Math.ceil(units/6)!==0&&i!==units)continue;const x=x0+i*sc;out+=`<line x1="${x}" y1="${y-10}" x2="${x}" y2="${y+10}" stroke="var(--ink)" stroke-width="2"/><text class="tick-label" x="${x}" y="${y+29}" fill="var(--ink)" font-size="21" text-anchor="middle" font-family="Cambria,serif">${i}</text>`}
+for(const item of items){const x=x0+Math.max(0,Math.min(units,v(item.p)))*sc;const up=item.up!==false;out+=`<path d="M${x} ${up?y-12:y+12}L${x} ${up?y-31:y+31}" stroke="${item.color}" stroke-width="3"/><circle cx="${x}" cy="${y}" r="8" fill="${item.color}" stroke="var(--bg)" stroke-width="2"/><text x="${x}" y="${up?y-39:y+50}" fill="${item.color}" font-size="24" text-anchor="middle" font-family="Cambria,serif" font-weight="700">${safe(item.label||orig(item.p))}</text>`}
+if(interactive)out+=`<rect x="${x0}" y="45" width="${x1-x0}" height="48" fill="transparent"/>`;
+return out+'</svg>'}
+function barSVG(p,{key='',units,editable=false,draggable=false,den=p.d,color='var(--accent)',title='',dim=false}={}){
+units=Math.max(1,Math.min(6,units||Math.max(1,Math.ceil(v(p)))));den=Math.max(1,Math.min(144,den));const x0=35,x1=908,w=x1-x0,u=w/units,cw=u/den,total=units*den,quantity=Math.round(p.n/p.d*den);let s=`<svg viewBox="0 0 944 118" class="bar-svg ${editable?'editable':''} ${draggable?'draggable':''}" role="${editable?'slider':'img'}" aria-label="${safe(title||(T.text047+orig(p)))}" ${editable?`aria-valuemin="0" aria-valuemax="${units}" aria-valuenow="${v(p)}" aria-valuetext="${orig(p)}" data-editbar="${key}" data-den="${den}" data-units="${units}" tabindex="0"`:''} ${draggable?`data-dragsource="${key}" tabindex="0"`:''}>`;
+s+=`<rect x="${x0}" y="21" width="${w}" height="49" fill="var(--sunken)" stroke="var(--strong)" stroke-width="1.4"/>`;
+for(let i=0;i<total;i++){const x=x0+i*cw;const active=i<quantity; s+=`<rect data-cell="${i}" x="${x+.3}" y="21.6" width="${Math.max(0,cw-.6)}" height="47.8" fill="${active?color:'transparent'}" opacity="${dim?.35:1}"/><line x1="${x}" x2="${x}" y1="21" y2="70" stroke="var(--strong)" stroke-width="${i%den===0?2:1}" opacity="${i%den===0?1:.65}"/>`}
+for(let i=0;i<=units;i++){const x=x0+i*u;s+=`<line x1="${x}" x2="${x}" y1="17" y2="75" stroke="var(--ink)" stroke-width="2"/><text x="${x}" y="102" font-size="19" fill="var(--muted)" text-anchor="middle" font-family="Cambria,serif">${i}</text>`}
+if(editable){const hx=x0+Math.min(units,p.n/p.d)*u;s+=`<line data-handle x1="${hx}" y1="10" x2="${hx}" y2="75" stroke="${color}" stroke-width="3"/><circle data-handle-circle cx="${hx}" cy="12" r="8" fill="${color}" stroke="var(--bg)" stroke-width="2"/>`}
+if(draggable){s+=`<text x="${x1-7}${T.text048}`}
+return s+'</svg>';
+}
+function stackedSVG(a,b,composed,units,den){units=Math.max(1,Math.min(6,units));den=Math.min(144,den);const x0=35,x1=908,u=(x1-x0)/units,cw=u/den,na=Math.round(v(a)*den),nb=Math.round(v(b)*den);let o=`<svg viewBox="0 0 944 123" class="bar-svg" role="img" aria-label="${composed?T.text049:T.text050}"><rect x="${x0}" y="21" width="${x1-x0}" height="49" fill="var(--sunken)" stroke="var(--strong)" stroke-width="1.5"/>`;
+for(let i=0;i<units*den;i++){const x=x0+i*cw;let col=i<na?'var(--accent)':i<na+nb?(composed?'var(--blue)':'transparent'):'transparent';o+=`<rect x="${x+.3}" y="21.6" width="${Math.max(.1,cw-.6)}" height="47.8" fill="${col}"/>`;if(i>=na&&i<na+nb&&!composed)o+=`<rect x="${x+1}" y="23" width="${Math.max(.1,cw-2)}" height="45" fill="none" stroke="var(--blue)" stroke-dasharray="3 4" opacity=".6"/>`;o+=`<line x1="${x}" x2="${x}" y1="21" y2="70" stroke="var(--strong)" stroke-width="${i%den?0.7:2}"/>`}
+for(let i=0;i<=units;i++){const x=x0+i*u;o+=`<line x1="${x}" y1="18" x2="${x}" y2="74" stroke="var(--ink)" stroke-width="2"/><text x="${x}" y="100" font-size="20" fill="var(--muted)" text-anchor="middle" font-family="Cambria,serif">${i}</text>`}
+return o+'</svg>'}
+function areaSVG(a,b){const av=v(a),bv=v(b),maxA=Math.max(1,Math.ceil(av)),maxB=Math.max(1,Math.ceil(bv));const sx=Math.min(245,760/maxA),sy=Math.min(245,255/maxB),x0=55,y0=20;let s=`${T.text051}${orig(a)}${T.text052}${orig(b)}${T.text053}${str(mul(a,b))}">`;
+for(let i=0;i<maxA;i++)for(let j=0;j<maxB;j++)s+=`<rect x="${x0+i*sx}" y="${y0+j*sy}" width="${sx}" height="${sy}" fill="var(--sunken)" stroke="var(--line)" stroke-width="1"/>`;
+s+=`<rect x="${x0}" y="${y0}" width="${av*sx}" height="${bv*sy}" fill="var(--blue)" opacity=".2" stroke="var(--blue)" stroke-width="3"/>`;
+for(let i=0;i<a.n;i++){const x=x0+i*sx/a.d;s+=`<line x1="${x}" y1="${y0}" x2="${x}" y2="${y0+bv*sy}" stroke="var(--accent)" stroke-width="1" opacity=".65"/>`}
+for(let j=0;j<b.n;j++){const y=y0+j*sy/b.d;s+=`<line x1="${x0}" y1="${y}" x2="${x0+av*sx}" y2="${y}" stroke="var(--blue)" stroke-width="1" opacity=".65"/>`}
+s+=`<rect x="${x0}" y="${y0}" width="${av*sx}" height="${bv*sy}" fill="none" stroke="var(--accent)" stroke-width="3"/>`;
+for(let i=0;i<=maxA;i++)s+=`<text x="${x0+i*sx}" y="${y0+maxB*sy+18}" font-size="18" fill="var(--muted)" font-family="Cambria,serif" text-anchor="middle">${i}</text>`;
+s+=`<text x="${x0+av*sx+9}" y="${y0+bv*sy/2}" fill="var(--blue)" font-size="22" font-family="Cambria,serif">${orig(b)}</text><text x="${x0+av*sx/2}" y="${Math.min(318,y0+bv*sy+34)}" fill="var(--accent)" font-size="22" text-anchor="middle" font-family="Cambria,serif">${orig(a)}</text></svg>`;return s}
+function resultNum(p){if(!p)return T.text054;if(p.d===1)return p.n.toString();return str(p)}
+function stats(items){return items.map(([label,value])=>`<div class="readout"><div class="label">${label}</div><div class="value">${value}</div></div>`).join('')}
+function note(t,kind=''){return `<div class="hint-strip ${kind}"><span aria-hidden="true">${kind==='warning'?'!':kind==='success'?'✓':'↳'}</span><div>${t}</div></div>`}
+function setStage({plot,math='',readout='',side='',below=''}){$('#plot').innerHTML=plot;$('#mathResult').innerHTML= S.showSymbols&&math?`${T.text055}${math}</div>`:'';$('#readout').innerHTML=readout;$('#readout').classList.toggle('hidden',!readout);$('#side').innerHTML=side;$('#explanation').innerHTML=below}
+function commonSide(extra='',more=''){return `${extra}${T.text056}${S.showLine?'checked':''}${T.text057}${S.showSymbols?'checked':''}${T.text058}${S.showHelp?'checked':''}${T.text059}${more}</div>`}
+function sectionBelow(title,paragraph,secondary=''){return `<h3>${title}</h3><p>${paragraph}</p>${secondary?`<p style="margin-top:10px">${secondary}</p>`:''}`}
+function renderBuild(){const a=fA(),units=Math.min(3,Math.max(2,Math.ceil(v(a))));setStage({plot:`${T.text062}${a.d}${T.text063}${orig(S.a)}</span></div>${barSVG(S.a,{key:'a',editable:true,units,title:T.text060})}</div>${S.showLine?`${T.text061}${numberLine([{p:a,color:'var(--accent)',label:orig(S.a)}],units,'a')}</div>`:''}`,math:`<span class="a">${orig(S.a)}</span> = ${a.n} × (1/${a.d}) ${a.n>=a.d?`= <span class="valid">${resultNum(a)}</span>`:''}`,readout:stats([[T.text064,str(a)],[T.text065,(100*v(a)).toLocaleString(T.text066,{maximumFractionDigits:2})+' %'],[T.text067,v(a).toLocaleString(T.text066,{maximumFractionDigits:6})]]),side:commonSide(numControl('a'),`${T.text068}`),below:sectionBelow(T.text069,T.text070,T.text071)});}
+function renderEquiv(){const a=fA(),k=S.factor,den=S.a.d*k,newN=S.a.n*k,units=Math.max(1,Math.ceil(v(a)));setStage({plot:`${T.text075}${orig(S.a)}</span></div>${barSVG(S.a,{units,color:'var(--accent)',title:T.text072})}${T.text076}${k}</b><span class="math">${newN}/${den}</span></div>${barSVG({n:newN,d:den},{units,color:'var(--accent)',title:T.text073})}</div>${S.showLine?`${T.text074}${numberLine([{p:a,color:'var(--accent)',label:orig(S.a)}],Math.max(2,units))}</div>`:''}`,math:`<span class="a">${orig(S.a)}</span> = <span class="a">${newN}/${den}</span> = ${str(a)}`,readout:stats([[T.text077,'× '+k],[T.text078,`${S.a.n} → ${newN}`],[T.text079,str(a)]]),side:commonSide(numControl('a')+`${T.text080}${[1,2,3,4,5].map(t=>`<button class="btn btn-quiet" data-choice="factor:${t}" aria-pressed="${t===k}">× ${t}</button>`).join('')}</div></div>`),below:sectionBelow(T.text081,T.text082,T.text083)});}
+function renderCompare(){const a=fA(),b=fB(),c=frac(S.c.n,S.c.d),list=[{p:S.a,name:'A',color:'var(--accent)'},{p:S.b,name:'B',color:'var(--blue)'},{p:S.c,name:'C',color:'var(--amber)'}];const maxU=Math.max(2,Math.ceil(Math.max(...list.map(z=>v(z.p)))));const comp=a.n*b.d-b.n*a.d;const op=comp>0?'>':comp<0?'<':'=';let ord=list.slice().sort((x,y)=>v(x.p)-v(y.p)).map(z=>`${z.name} (${str(z.p)})`).join(' ≤ ');setStage({plot:`${list.map((item,i)=>`<div class="fraction-row"><div class="row-title"><b style="color:${item.color}">Fraction ${item.name}</b><span class="math">${orig(item.p)}</span></div>${barSVG(item.p,{units:maxU,color:item.color})}</div>`).join('')}${S.showLine?`${T.text084}${numberLine(list.map((z,i)=>({p:z.p,color:z.color,label:z.name,up:i!==1})),Math.max(2,maxU))}</div>`:''}`,math:`<span class="a">${orig(S.a)}</span> ${op} <span class="b">${orig(S.b)}</span> <span class="small">(A ${op} B)</span>`,readout:stats([[T.text085,op],[T.text086,`<span style="font-size:.65em">${ord}</span>`],[T.text087,`${S.a.n}×${S.b.d} ${op} ${S.b.n}×${S.a.d}`]]),side:commonSide(numControl('a')+numControl('b')+numControl('c')),below:sectionBelow(T.text088,T.text089,T.text090)});}
+function calcOp(){const a=fA(),b=fB();return S.op==='+'?add(a,b):S.op==='−'?sub(a,b):S.op==='×'?mul(a,b):div(a,b)}
+function opExplain(a,b,r){if(S.op==='+')return `${T.text091}${lcm(a.d,b.d)}${T.text092}`;if(S.op==='−')return `${T.text093}`;if(S.op==='×')return `${T.text094}${orig(a)}${T.text052}${orig(b)}${T.text095}${str(r)}${T.text096}`;return b.n===0?T.text097:`${T.text098}${orig(b)}${T.text099}${orig(a)}${T.text100}`}
+function divisionSVG(a,b){if(b.n===0)return '';const av=v(a),bv=v(b),units=Math.max(1,Math.ceil(Math.max(av,bv))),x0=35,width=873,unit=width/units,limit=Math.min(48,Math.ceil(av/bv)),q=v(div(a,b));let s=`${T.text101}${orig(b)}"><rect x="${x0}" y="20" width="${width}" height="46" fill="var(--sunken)" stroke="var(--strong)"/><rect x="${x0}" y="20" width="${av*unit}" height="46" fill="var(--accent)" opacity=".17"/>`;for(let i=0;i<limit;i++){const start=i*bv,end=Math.min(av,(i+1)*bv);if(end<=start)break;const x=x0+start*unit,w=(end-start)*unit;s+=`<rect x="${x}" y="20" width="${w}" height="46" fill="var(--blue)" opacity="${i%2?.65:.35}" stroke="var(--ink)" stroke-width="1"/><text x="${x+w/2}" y="50" font-size="17" text-anchor="middle" font-family="Cambria,serif" fill="var(--ink)">${i+1}</text>`}for(let i=0;i<=units;i++)s+=`<text x="${x0+i*unit}" y="92" text-anchor="middle" fill="var(--muted)" font-size="20" font-family="Cambria,serif">${i}</text>`;if(q>48)s+=`<text x="${x0+width/2}${T.text102}${str(div(a,b))}${T.text103}`;return s+'</svg>'}
+function renderOperations(){const a=fA(),b=fB(),r=calcOp(),den=lcm(S.a.d,S.b.d),common=Math.min(144,den),maxU=Math.max(2,Math.ceil(Math.max(v(a),v(b),v(r||{n:0,d:1}),v(add(a,b)))));let main='';
+if(S.op==='+'){main=`${T.text108}${orig(a)}</span></div>${barSVG(S.a,{units:maxU,color:'var(--accent)'})}${T.text109}${orig(b)}</span></div>${barSVG(S.b,{units:maxU,color:'var(--blue)',draggable:true,key:'b'})}</div><div class="dropzone ${S.composed?'ready':''}" data-dropzone="true"><div class="row-title"><b>${S.composed?T.text104:T.text105}</b><button class="btn small btn-quiet" data-action="compose">${S.composed?T.text106:T.text107}</button></div>${stackedSVG(a,b,S.composed,maxU,common)}</div>`}
+else if(S.op==='−'){const positive=r&&r.n>=0;main=`${T.text113}${orig(a)}</span></div>${barSVG(S.a,{units:maxU,color:'var(--accent)'})}${T.text114}${orig(b)}</span></div>${barSVG(S.b,{units:maxU,color:'var(--blue)'})}</div><div><div class="label">${positive?T.text110:T.text111}</div>${positive?barSVG(r,{units:maxU,color:'var(--amber)'}):note(T.text112+str(r)+'.','warning')}</div>`}
+else if(S.op==='×'){main=`${T.text115}${areaSVG(S.a,S.b)}${T.text116}${orig(a)}${T.text117}${orig(b)}</span></div>`}
+else{const valid=b.n!==0;const k=valid?v(r):0,unit=Math.max(1,Math.ceil(Math.max(v(a),v(b))));main=`${T.text124}${barSVG(S.a,{units:unit,color:'var(--accent)'})}${T.text125}${barSVG(S.b,{units:unit,color:'var(--blue)'})}</div>${valid?`${T.text118}${orig(b)}</div>${divisionSVG(a,b)}</div>`:''}<div class="hint-strip">${valid?`${T.text121}${str(r)}${T.text122}${Number.isInteger(k)?T.text119:T.text120}`:T.text123}</div>`}
+const expr=`<span class="a">${orig(S.a)}</span> ${S.op} <span class="b">${orig(S.b)}</span> = <span class="valid">${resultNum(r)}</span>`;
+const ca=a.n*den/a.d, cb=b.n*den/b.d;
+const needsCommon=S.a.d!==den||S.b.d!==den;
+const addExpr=`<span class="a">${orig(S.a)}</span> + <span class="b">${orig(S.b)}</span>${needsCommon?` = <span class="a">${ca}/${den}</span> + <span class="b">${cb}/${den}</span>`:''} = <span class="valid">${resultNum(r)}</span>`;
+setStage({plot:main+(S.showLine&&S.op!=='×'?`${T.text127}${numberLine([{p:a,color:'var(--accent)',label:'A'},{p:b,color:'var(--blue)',label:'B',up:false},...(r&&r.n>=0?[{p:r,color:'var(--amber)',label:T.text126}]:[])],Math.max(2,maxU))}</div>`:''),math:S.op==='+'?addExpr:expr,readout:stats([[T.text128,resultNum(r)],[T.text129,r?v(r).toLocaleString(T.text066,{maximumFractionDigits:5}):'·'],[T.text130,{'+' :'Addition','−':T.text131,'×':'Multiplication','÷':'Division'}[S.op]]]),side:commonSide(`${T.text132}${choice('op',[['+','+'],['−','−'],['×','×'],['÷','÷']])}</div>`+numControl('a')+numControl('b')),below:sectionBelow(T.text133,opExplain(a,b,r),S.op==='+'?T.text134:T.text135)});}
+function renderParts(){const a=fA(),b=fB(),r=mul(a,b);setStage({plot:`${T.text137}${orig(b)}${T.text138}${orig(a)}${T.text139}${orig(a)}</span></div>${barSVG(S.a,{units:Math.max(1,Math.ceil(v(a))),color:'var(--accent)'})}${T.text140}${areaSVG(S.a,S.b)}</div>${S.showLine?`${T.text136}${numberLine([{p:r,color:'var(--amber)',label:str(r)}],Math.max(2,Math.ceil(v(r))))}</div>`:''}`,math:`<span class="b">${orig(b)}${T.text141}${orig(S.a)}</span> = ${orig(S.b)} × ${orig(S.a)} = <span class="valid">${str(r)}</span>`,readout:stats([[T.text142,orig(a)],[T.text143,orig(b)],[T.text144,str(r)]]),side:commonSide(numControl('a')+numControl('b')+`${T.text145}`),below:sectionBelow(T.text146,T.text147,T.text148)});}
+function objectsGroup(count,fill,cap=72){const visible=Math.min(count,cap);let out=`<div class="quantity-grid" role="img" aria-label="${count}${T.text149}${fill.toLocaleString(T.text066,{maximumFractionDigits:3})}${T.text150}`;for(let i=0;i<visible;i++){const pct=Math.min(100,Math.max(0,(fill-i)*100));out+=`<span class="fruit" style="--filled:${pct}${T.text152}${i+1}${pct>0?T.text151+Math.round(pct)+' %':''}"></span>`}return out+`</div>${count>cap?`<div class="notice">${count-cap}${T.text153}`:''}`}
+function renderQuantity(){const a=fA(),q=S.quantity,numer=a.n*q,whole=Math.floor(numer/a.d),rem=numer%a.d,fullLots=Math.floor(a.n/a.d),rest=frac(a.n%a.d,a.d),total=frac(a.n*q,a.d);let grid='';if(fullLots>0){grid+=`<div class="groupbox"><div class="label">${fullLots}${T.text154}${Array.from({length:Math.min(3,fullLots)},()=>objectsGroup(q,q)).join('')}</div>`}
+if(rest.n>0||fullLots===0){let part=rest.n*q/rest.d;grid+=`<div class="groupbox"><div class="subhead"><span class="label">${fullLots?T.text155:T.text156}</span><span class="math">${str(rest)}${T.text138}${q}</span></div>${objectsGroup(q,part)}</div>`}
+setStage({plot:`${T.text159}${q}${T.text160}${orig(a)}${T.text161}${str(total)}${T.text162}${grid}${rem?note(T.text157,'warning'):note(T.text158,'success')}`,math:`<span class="a">${orig(S.a)}${T.text163}${q} = ${orig(S.a)} × ${q} = <span class="valid">${str(total)}</span>`,readout:stats([[T.text164,String(q)],[T.text165,str(total)],[T.text166,rem===0?T.text167:T.text168]]),side:commonSide(numControl('a')+`${T.text169}${q}${T.text170}${[6,9,12,18,24].map(t=>`<button class="chip" data-quantity-preset="${t}" aria-pressed="${q===t}">${t}</button>`).join('')}</div></div>`),below:sectionBelow(T.text171,T.text172,T.text173)});}
+function stepSetting(){const z=steps[S.lesson];return `${T.text175}${S.lesson+1} / ${steps.length}</h3><p>${z.task}</p></div>${numControl('a')}${['compare','operations','parts'].includes(z.type)?numControl('b'):''}${z.type==='equiv'?`<div class="control-set"><div class="control-caption">Subdivision</div>${choice('factor',[[1,'×1'],[2,'×2'],[3,'×3'],[4,'×4']])}</div>`:''}${z.type==='quantity'?`${T.text174}${S.quantity}</strong></label><div class="flexrow"><button class="btn" data-quantity="-1">−</button><button class="btn" data-quantity="1">+</button></div></div>`:''}`}
+function guidedVisual(){const z=steps[S.lesson],a=fA(),b=fB(),unit=Math.max(1,Math.ceil(Math.max(v(a),v(b))));if(z.type==='construct')return `${T.text176}${barSVG(S.a,{key:'a',editable:true,units:1,color:'var(--accent)'})}`;
+if(z.type==='equiv')return `${T.text177}${barSVG(a,{units:1,color:'var(--accent)'})}${barSVG({n:a.n*S.factor,d:a.d*S.factor},{units:1,color:'var(--accent)'})}`;
+if(z.type==='compare')return `${barSVG(S.a,{units:unit,color:'var(--accent)'})}${barSVG(S.b,{units:unit,color:'var(--blue)'})}${S.showLine?numberLine([{p:a,color:'var(--accent)',label:'A'},{p:b,color:'var(--blue)',label:'B',up:false}],Math.max(2,unit)):''}`;
+if(z.type==='operations')return `${barSVG(S.a,{units:unit,color:'var(--accent)'})}${barSVG(S.b,{units:unit,color:'var(--blue)'})}${stackedSVG(a,b,true,Math.max(1,Math.ceil(v(add(a,b)))),lcm(a.d,b.d))}`;
+if(z.type==='parts')return areaSVG(a,b);
+return `<div class="label">${S.quantity}${T.text178}${objectsGroup(S.quantity,S.quantity*v(a))}`}
+function renderGuided(){const z=steps[S.lesson];setStage({plot:`${T.text187}${steps.map((t,i)=>`<button data-lesson="${i}" class="${i===S.lesson?'current':S.done.has(i)?'done':''}" title="${safe(t.title)}${T.text179}${i+1} : ${safe(t.title)}">${S.done.has(i)?'✓':i+1}</button>`).join('')}</div><div class="subhead"><h3>${z.title}</h3><span class="label">${S.lesson+1}${T.text188}${steps.length}</span></div><div class="lesson-progress"><div style="width:${S.done.size/steps.length*100}%"></div></div><p>${z.task}</p><div style="margin-top:15px">${guidedVisual()}</div><div class="answer-form">${z.type==='construct'?`${T.text180}`:`${T.text183}${safe(S.lessonAnswer)}" placeholder="${z.type==='compare'?T.text181:T.text182}${T.text184}`}${T.text189}${S.lessonHint?note(safe(z.hint)):''}<div id="lessonFeedback" class="feedback ${S.feedback?(S.feedbackGood?'good':'bad'):''}">${S.feedback?safe(S.feedback):''}</div><div class="flexrow" style="margin-top:14px"><button class="btn" data-action="prevLesson" ${S.lesson===0?'disabled':''}${T.text190}${!S.done.has(S.lesson)?'disabled':''}>${S.lesson===steps.length-1?T.text185:T.text186}</button></div>`,math:S.done.has(S.lesson)?`${T.text191}${safe(z.sol)}</span>`:'',readout:stats([[T.text192,`${S.lesson+1}/${steps.length}`],[T.text193,`${S.done.size}/${steps.length}`],[T.text194,`${Math.round(S.done.size/steps.length*100)} %`]]),side:`${stepSetting()}${T.text195}`,below:sectionBelow(T.text196,T.text197,T.text198)});}
+function renderErrors(){const e=errors[S.error],a=frac(...e.a),b=frac(...e.b),isCompare=e.kind==='compare',unit=Math.max(1,Math.ceil(Math.max(v(a),v(b),e.wrong?v(frac(...e.wrong)):0)));let vis=e.kind==='quantity'?`${objectsGroup(9,9*v(a))}`:e.kind==='multiply'?areaSVG(a,b):`${T.text199}${orig(a)}</span></div>${barSVG(S.a,{units:unit,color:'var(--accent)'})}${T.text200}${orig(b)}</span></div>${barSVG(S.b,{units:unit,color:'var(--blue)'})}`;
+if(e.wrong&&S.errorDetail)vis+=`${T.text201}${e.wrong.join('/')}</span></div>${barSVG(frac(...e.wrong),{units:unit,color:'var(--amber)'})}`;
+setStage({plot:`${T.text205}${S.error+1}${T.text188}${errors.length}${T.text206}${safe(e.claim)}${T.text207}${S.errorAnswer===true?'btn-primary':''}" data-error-choice="true" aria-pressed="${S.errorAnswer===true}${T.text208}${S.errorAnswer===false?'btn-primary':''}" data-error-choice="false" aria-pressed="${S.errorAnswer===false}${T.text209}${S.errorAnswer!==null?note(S.errorAnswer===e.truth?T.text202:T.text203,S.errorAnswer===e.truth?'success':'warning'):''}${S.errorDetail?`${T.text204}${vis}</div>${note(e.reason,S.errorAnswer===e.truth?'success':'')}`:''}`,math:S.errorDetail?`<span class="valid">${e.truth?T.text210:T.text211}</span>`:'',readout:stats([[T.text212,`${S.error+1}/${errors.length}`],[T.text213,S.errorAnswer===null?'·':S.errorAnswer?T.text214:T.text215],[T.text216,S.errorDetail?T.text217:T.text218]]),side:`${T.text219}${errors.map((e,i)=>`<option value="${i}" ${i===S.error?'selected':''}>${i+1}. ${safe(e.claim)}</option>`).join('')}${T.text220}`,below:sectionBelow(T.text221,T.text222)});}
+function render(){const focused=document.activeElement;const identity=focused?.id?{id:focused.id}:focused?.getAttributeNames?.().filter(a=>a.startsWith('data-')).map(a=>[a,focused.getAttribute(a)]);document.querySelectorAll('[data-mode]').forEach(b=>{const active=b.dataset.mode===S.mode;b.setAttribute('aria-selected',active);b.tabIndex=active?0:-1});$('#stageTitle').textContent=MODES[S.mode];$('#explanation').classList.toggle('hidden',!S.showHelp);const fn={build:renderBuild,equiv:renderEquiv,compare:renderCompare,operations:renderOperations,parts:renderParts,quantity:renderQuantity,guided:renderGuided,errors:renderErrors}[S.mode];$('#laboratory').setAttribute('aria-labelledby','tab-'+S.mode);fn();if(focused&&!focused.isConnected){const replacement=identity?.id?document.getElementById(identity.id):identity?.length?[...document.querySelectorAll('button,input,select,svg[tabindex]')].find(el=>identity.every(([a,v])=>el.getAttribute(a)===v)):null;replacement?.focus({preventScroll:true})}}
+function go(mode){if(!MODES[mode])return;S.mode=mode;S.feedback='';S.composed=false;if(mode==='guided'){loadLesson();return}render()}
+function loadLesson(){const z=steps[S.lesson];setFraction('a',...z.a);setFraction('b',...z.b);if(z.op)S.op=z.op;if(z.factor)S.factor=z.factor;if(z.q)S.quantity=z.q;S.lessonAnswer='';S.lessonHint=false;S.feedback='';S.feedbackGood=false;S.composed=false;render()}
+function normalizeAnswer(t){t=String(t).trim().replace(/\s/g,'').replace(/−/g,'-').replace(',','.');if(t==='<'||t==='>'||t==='=')return t;let m=t.match(/^(-?\d+)(?:\/(-?\d+))?$/);if(m&&(!m[2]||Number(m[2])!==0))return frac(+m[1],m[2]?+m[2]:1);if(/^-?\d+\.\d+$/.test(t)){const decimal=t.split('.')[1].length;if(decimal<=6)return frac(Math.round(Number(t)*10**decimal),10**decimal)}return null}
+function checkLesson(){const z=steps[S.lesson],ans=normalizeAnswer(S.lessonAnswer);let valid=false;if(z.type==='construct')valid=S.a.n*4===3*S.a.d;else if(z.type==='compare')valid=ans==='<';else if(z.type==='equiv')valid=ans&&typeof ans==='object'&&ans.n===1&&ans.d===2&&S.factor===2;else{const target=normalizeAnswer(z.sol);valid=ans&&typeof ans==='object'&&ans.n===target.n&&ans.d===target.d;}if(valid){S.done.add(S.lesson);S.feedbackGood=true;S.feedback=T.text223+(z.type==='construct'?T.text224:T.text225)}else{S.feedbackGood=false;S.feedback=z.type==='construct'?T.text226:T.text227}render();$('#lessonFeedback')?.scrollIntoView({block:'nearest',behavior:'smooth'})}
+const announce=s=>{$('#announcer').textContent=s};
+function handleAction(target){if(target.closest('[data-mode]')){go(target.closest('[data-mode]').dataset.mode);return}
+const step=target.closest('[data-step]');if(step){const [k,f,delta]=step.dataset.step.split(':');const x=S[k];setFraction(k,f==='n'?x.n+ +delta:x.n,f==='d'?x.d+ +delta:x.d);render();return}
+const preset=target.closest('[data-preset]');if(preset){const [k,n,d]=preset.dataset.preset.split(':');setPreset(k,+n,+d);return}
+const choice=target.closest('[data-choice]');if(choice){const [key,value]=choice.dataset.choice.split(':');S[key]=key==='factor'?+value:value;if(key==='op')S.composed=false;render();return}
+const quantity=target.closest('[data-quantity]');if(quantity){S.quantity=assertN(S.quantity+ +quantity.dataset.quantity,1,24);render();return}
+const qp=target.closest('[data-quantity-preset]');if(qp){S.quantity=+qp.dataset.quantityPreset;render();return}
+const lesson=target.closest('[data-lesson]');if(lesson){S.lesson=+lesson.dataset.lesson;loadLesson();return}
+const answer=target.closest('[data-error-choice]');if(answer){S.errorAnswer=answer.dataset.errorChoice==='true';render();return}
+const action=target.closest('[data-action]')?.dataset.action;switch(action){case'reset':resetMode();break;case'compose':S.composed=!S.composed;render();break;case'presetParts':setFraction('a',3,4);setFraction('b',2,3);render();break;case'checkLesson':checkLesson();break;case'hintLesson':S.lessonHint=!S.lessonHint;render();break;case'prevLesson':S.lesson=Math.max(0,S.lesson-1);loadLesson();break;case'nextLesson':if(S.done.has(S.lesson)){if(S.lesson===steps.length-1){S.lesson=0;S.done=new Set()}else S.lesson++;loadLesson()}break;case'loadStep':loadLesson();break;case'revealError':S.errorDetail=!S.errorDetail;render();break;case'prevError':S.error=(S.error-1+errors.length)%errors.length;S.errorAnswer=null;S.errorDetail=false;render();break;case'nextError':S.error=(S.error+1)%errors.length;S.errorAnswer=null;S.errorDetail=false;render();break;}}
+function resetMode(){const m=S.mode;if(m==='guided'){loadLesson();return}if(m==='errors'){S.error=0;S.errorDetail=false;S.errorAnswer=null}setFraction('a',1,2);setFraction('b',1,4);setFraction('c',5,6);S.factor=2;S.quantity=9;S.op='+';S.composed=false;render()}
+document.addEventListener('click',e=>{if(e.target.closest('button[data-mode],button[data-step],button[data-preset],button[data-choice],button[data-quantity],button[data-quantity-preset],button[data-lesson],button[data-error-choice],button[data-action]'))handleAction(e.target)});
+document.addEventListener('change',e=>{const el=e.target;if(el.matches('[data-input]')){const [key,part]=el.dataset.input.split(':');const x=S[key];setFraction(key,part==='n'?el.value:x.n,part==='d'?el.value:x.d);render()}
+else if(el.matches('[data-toggle]')){S[el.dataset.toggle]=el.checked;render()}
+else if(el.id==='quantityInput'){S.quantity=assertN(el.value,1,24);render()}
+else if(el.matches('[data-error-select]')){S.error=+el.value;S.errorAnswer=null;S.errorDetail=false;render()}});
+document.addEventListener('input',e=>{if(e.target.id==='lessonAnswer')S.lessonAnswer=e.target.value});
+document.addEventListener('keydown',e=>{const tab=e.target.closest('button[data-mode]');if(tab&&['ArrowRight','ArrowLeft','Home','End'].includes(e.key)){const tabs=[...document.querySelectorAll('button[data-mode]')];const i=tabs.indexOf(tab);const j=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;e.preventDefault();go(tabs[j].dataset.mode);tabs[j].focus();return}if(e.target.id==='lessonAnswer'&&e.key==='Enter'){e.preventDefault();checkLesson()}});
+function svgLocalX(svg,e){const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const transform=svg.getScreenCTM();if(!transform)return 35;return pt.matrixTransform(transform.inverse()).x}
+let activeDrag=null;
+function changeBarLive(svg,e,finish){const key=activeDrag?.key;if(!key)return;const den=S[key].d,units=+svg.dataset.units||1,u=(908-35)/units;const x=svgLocalX(svg,e);const n=assertN(Math.round(((x-35)/u)*den),0,Math.min(units*den,3*den));if(n!==S[key].n){setFraction(key,n,den);const active=svg.querySelectorAll('[data-cell]');active.forEach((cell,i)=>cell.setAttribute('fill',i<n?colors[key]:'transparent'));const hx=35+n/den*u;svg.querySelector('[data-handle]')?.setAttribute('x1',hx);svg.querySelector('[data-handle]')?.setAttribute('x2',hx);svg.querySelector('[data-handle-circle]')?.setAttribute('cx',hx);document.querySelectorAll(`[data-live-${key}]`).forEach(node=>node.textContent=`${n}/${den}`)}if(finish){activeDrag=null;render();announce(`Fraction ${key} : ${n}/${den}`)}}
+function changeLineLive(svg,e,finish){const key=activeDrag?.key;if(!key)return;const den=S[key].d,units=+svg.dataset.units||1,unit=(902-42)/units,x=svgLocalX(svg,e),n=assertN(Math.round((x-42)/unit*den),0,Math.min(3*den,units*den));if(n!==S[key].n)setFraction(key,n,den);if(finish){activeDrag=null;render();announce(`Fraction ${key} : ${n}/${den}`)}}
+let dragSource=null;
+function positionGhost(e){const ghost=$('#dragGhost');ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px'}
+function finishDrag(e){if(!dragSource)return;const drop=document.querySelector('[data-dropzone]');const rect=drop?.getBoundingClientRect();const hit=rect&&e.clientX>=rect.left&&e.clientX<=rect.right&&e.clientY>=rect.top&&e.clientY<=rect.bottom;$('#dragGhost').classList.add('hidden');dragSource=null;if(hit){S.composed=true;announce(T.text228);render()}else announce(T.text229)}
+document.addEventListener('pointerdown',e=>{const svg=e.target.closest('svg[data-editbar],svg[data-linebar],svg[data-dragsource]');if(!svg||e.button>0)return;if(svg.dataset.dragsource){try{svg.setPointerCapture(e.pointerId)}catch(_){}dragSource={pointerId:e.pointerId};const ghost=$('#dragGhost');ghost.textContent=`${orig(S.b)}${T.text230}`;ghost.classList.remove('hidden');positionGhost(e);e.preventDefault();return}
+const key=svg.dataset.editbar||svg.dataset.linebar;activeDrag={pointerId:e.pointerId,key,svg,type:svg.dataset.editbar?'bar':'line'};try{svg.setPointerCapture(e.pointerId)}catch(_){}e.preventDefault();if(activeDrag.type==='bar')changeBarLive(svg,e,false);else changeLineLive(svg,e,false)});
+document.addEventListener('pointermove',e=>{if(dragSource&&e.pointerId===dragSource.pointerId){positionGhost(e);return}if(activeDrag&&e.pointerId===activeDrag.pointerId){if(activeDrag.type==='bar')changeBarLive(activeDrag.svg,e,false);else changeLineLive(activeDrag.svg,e,false)}});
+document.addEventListener('pointerup',e=>{if(dragSource&&e.pointerId===dragSource.pointerId){finishDrag(e);return}if(activeDrag&&e.pointerId===activeDrag.pointerId){if(activeDrag.type==='bar')changeBarLive(activeDrag.svg,e,true);else changeLineLive(activeDrag.svg,e,true)}});
+document.addEventListener('pointercancel',()=>{if(activeDrag){activeDrag=null;render()}if(dragSource){dragSource=null;$('#dragGhost').classList.add('hidden')}});
+document.addEventListener('keydown',e=>{const svg=e.target.closest('svg[data-editbar],svg[data-linebar]');if(!svg||!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;const key=svg.dataset.editbar||svg.dataset.linebar,x=S[key];let n=x.n;if(e.key==='ArrowLeft')n--;if(e.key==='ArrowRight')n++;if(e.key==='Home')n=0;if(e.key==='End')n=(+svg.dataset.units||1)*x.d;n=assertN(n,0,(+svg.dataset.units||1)*x.d);setFraction(key,n,x.d);e.preventDefault();render();const replacement=document.querySelector(`svg[data-${svg.dataset.editbar?'editbar':'linebar'}="${key}"]`);replacement?.focus();announce(`Fraction ${key} : ${n}/${x.d}`)});
+async function fullscreen(){const node=$('#laboratory');try{if(document.fullscreenElement)await document.exitFullscreen();else if(node.requestFullscreen)await node.requestFullscreen();else announce(T.text231)}catch(_){announce(T.text232)}}
+$('#fullToggle').addEventListener('click',fullscreen);$('#fullStage').addEventListener('click',fullscreen);
+$('#themeToggle').addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='jour'?'nuit':'jour';document.documentElement.dataset.theme=next;try{localStorage.setItem('mx-fractions-theme',next)}catch(_){}render()});
+if(window.parent===window){try{const theme=localStorage.getItem('mx-fractions-theme');if(theme==='jour'||theme==='nuit')document.documentElement.dataset.theme=theme}catch(_){}}
+new MutationObserver(()=>{const theme=document.documentElement.dataset.theme;if(theme==='dark'||theme==='light')document.documentElement.dataset.theme=theme==='dark'?'nuit':'jour'}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+function notifySize(){if(window.parent===window||document.fullscreenElement)return;try{parent.postMessage({type:'mx-basics-size',height:Math.ceil(document.body.getBoundingClientRect().height)},location.origin)}catch{}}
+if(typeof ResizeObserver!=='undefined')new ResizeObserver(notifySize).observe(document.body);
+window.addEventListener('load',notifySize);document.fonts?.ready.then(notifySize);
+
+render();
+// Expose a small read-only testing surface to make arithmetic regression checks straightforward.
+window.MXFractionsTest=Object.freeze({gcd,lcm,frac,add,sub,mul,div,normalizeAnswer,getState:()=>JSON.parse(JSON.stringify({...S,done:[...S.done]}))});
+})();
+</script>
+</body>
+</html>

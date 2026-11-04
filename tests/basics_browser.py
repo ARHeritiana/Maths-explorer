@@ -1,4 +1,4 @@
-"""Browser checks of the six foundations lessons (#basics/<id>) in both languages (issue #24).
+"""Browser checks of the seven foundations lessons (#basics/<id>) in both languages (issue #24).
  - the shell and the embedded lesson use the site language: iframe src (.en.html or not), iframe lang and title,
    <html lang> inside the lesson, the lesson's own heading;
  - switching FR/EN on the route reloads the lesson in the other language (both directions);
@@ -10,7 +10,7 @@ import re
 from playwright.sync_api import sync_playwright
 
 BASE = os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173')
-IDS = ['place-value', 'addition', 'subtraction', 'multiplication', 'division', 'sets']
+IDS = ['place-value', 'addition', 'subtraction', 'multiplication', 'division', 'sets', 'fractions']
 FRENCH = re.compile(r"\b(jetons?|numération|retenues?|emprunts?|dizaines?|centaines?|unités|réinitialiser|vérifier|"
                     r"ensembles?|bravo|essaie|réponse|chiffres?|colonne|partage|suivant|précédent)\b", re.I)
 

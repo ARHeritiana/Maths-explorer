@@ -121,24 +121,260 @@ try{const theme=embedded?parent.document.documentElement.dataset.theme:localStor
 <script>
 'use strict';
 (() => {
-const MODES={build:'Construire un nombre',equiv:'Changer le découpage',compare:'Comparer et ordonner',operations:'Calculer avec les barres',parts:'Une fraction d’une fraction',quantity:'D’une fraction à une quantité',guided:'Parcours guidé',errors:'Enquête sur les erreurs'};
+// TEXT-BEGIN
+const T = {
+  "text001": "Construire un nombre",
+  "text002": "Changer le découpage",
+  "text003": "Comparer et ordonner",
+  "text004": "Calculer avec les barres",
+  "text005": "Une fraction d’une fraction",
+  "text006": "D’une fraction à une quantité",
+  "text007": "Parcours guidé",
+  "text008": "Enquête sur les erreurs",
+  "text009": "Construire trois quarts",
+  "text010": "Construis exactement 3/4 en cliquant sur une barre ou en déplaçant son extrémité.",
+  "text011": "Choisis quatre parts égales et colorie trois parts.",
+  "text012": "Changer de découpage",
+  "text013": "Pars de 1/2 et recoupe chaque moitié en deux. Quelle fraction obtient-on sans changer la longueur ?",
+  "text014": "On peut multiplier numérateur et dénominateur par le même entier.",
+  "text015": "Comparer deux nombres",
+  "text016": "Compare 2/3 et 3/4. Écris <, > ou =.",
+  "text017": "Place les deux longueurs sur une même droite, ou utilise douze parts.",
+  "text018": "Additionner",
+  "text019": "Combien vaut 1/2 + 1/4 ? Donne une fraction, éventuellement équivalente.",
+  "text020": "Transforme la moitié en deux quarts, puis compte les quarts.",
+  "text021": "Multiplier",
+  "text022": "Quelle fraction de l’unité représente 2/3 × 3/4 ?",
+  "text023": "Dans un rectangle découpé en 3 colonnes et 4 lignes, observe les 6 cases communes.",
+  "text024": "Appliquer à une quantité",
+  "text025": "Quelle est la valeur de 2/3 de 9 objets ?",
+  "text026": "Partage les neuf objets en trois groupes égaux, puis prends deux groupes.",
+  "text027": "On ne peut pas additionner les dénominateurs. Une moitié représente 2/4 : 2/4 + 1/4 = 3/4. De plus, 2/6 est plus petit que 1/2 alors que l’on ajoute un nombre positif.",
+  "text028": "Le dénominateur indique le nombre de parts égales de l’unité. Plus il y en a, plus chaque part est petite : 1/3 < 1/2.",
+  "text029": "Les deux barres ont exactement la même longueur. On peut découper chaque moitié en deux sans changer le nombre représenté.",
+  "text030": "Pour multiplier deux fractions, on multiplie les numérateurs entre eux et les dénominateurs entre eux : 6/12 = 1/2.",
+  "text031": "3/2 n’est pas un nombre possible",
+  "text032": "Une fraction peut dépasser l’unité. Trois moitiés remplissent une unité entière, puis encore une moitié : 3/2 = 1 + 1/2.",
+  "text033": "2/3 de 9 = 6",
+  "text034": "On partage neuf objets en trois groupes de trois et on en prend deux : 2 × 3 = 6.",
+  "text035": "En douzièmes, 3/4 = 9/12 et 2/3 = 8/12. Donc 3/4 est strictement plus grand.",
+  "text036": "Deux moitiés mises bout à bout forment exactement une unité.",
+  "text037": "non définie",
+  "text038": "\">Numérateur</label><div class=\"stepper\"><button data-step=\"",
+  "text039": ":n:-1\" aria-label=\"Diminuer le numérateur ",
+  "text040": "\" aria-label=\"Numérateur ",
+  "text041": ":n:1\" aria-label=\"Augmenter le numérateur ",
+  "text042": "\">Dénominateur</label><div class=\"stepper\"><button data-step=\"",
+  "text043": ":d:-1\" aria-label=\"Diminuer le dénominateur ",
+  "text044": "\" aria-label=\"Dénominateur ",
+  "text045": ":d:1\" aria-label=\"Augmenter le dénominateur ",
+  "text046": "\" aria-label=\"Droite graduée avec les fractions\" ",
+  "text047": "Barre ",
+  "text048": "\" y=\"112\" font-size=\"15\" fill=\"var(--muted)\" text-anchor=\"end\">Glisser vers la somme ⇣</text>",
+  "text049": "Somme composée",
+  "text050": "Zone pour assembler les barres",
+  "text051": "<svg class=\"area-graphic\" viewBox=\"0 0 930 325\" role=\"img\" aria-label=\"Rectangle de dimensions ",
+  "text052": " et ",
+  "text053": ", aire ",
+  "text054": "Indéfini",
+  "text055": "<div class=\"label\">Écriture mathématique</div><div class=\"equation\">",
+  "text056": "<div class=\"control-set full\"><h3>Affichage</h3><label class=\"check\"><input type=\"checkbox\" data-toggle=\"showLine\" ",
+  "text057": ">Droite graduée</label><label class=\"check\"><input type=\"checkbox\" data-toggle=\"showSymbols\" ",
+  "text058": ">Écritures mathématiques</label><label class=\"check\"><input type=\"checkbox\" data-toggle=\"showHelp\" ",
+  "text059": ">Explications et indices</label>",
+  "text060": "Fraction modifiable par glissement ou au clavier",
+  "text061": "<div><div class=\"subhead\"><span class=\"label\">Le même nombre sur une droite</span><span class=\"notice\">Clique ou glisse le point</span></div>",
+  "text062": "<div class=\"subhead\"><span class=\"label\">Une unité de référence, toujours la même longueur</span><span class=\"unit-badge\">1 unité = ",
+  "text063": " parts égales</span></div><div class=\"fraction-row\"><div class=\"row-title\"><b>Colorie des parts ou déplace le curseur</b><span class=\"math\" data-live-a>",
+  "text064": "Fraction simplifiée",
+  "text065": "Part d’une unité",
+  "text066": "fr-FR",
+  "text067": "Écriture décimale",
+  "text068": "<p class=\"side-note\">Tu peux construire 0, une fraction inférieure à 1 ou jusqu’à 3 unités. Déplace le point ou sélectionne directement une case de la barre.</p>",
+  "text069": "Comprendre le partage",
+  "text070": "Le dénominateur indique en combien de parts égales on découpe chaque unité. Le numérateur indique combien de ces parts on compte. Une fraction est un nombre, même lorsque le numérateur dépasse le dénominateur.",
+  "text071": "Sur la droite graduée, l’origine est 0 et la distance entre deux entiers consécutifs représente toujours une unité.",
+  "text072": "Découpage initial",
+  "text073": "Découpage plus fin, longueur identique",
+  "text074": "<div><div class=\"label\">Les deux écritures représentent le même point</div>",
+  "text075": "<div class=\"label\">La longueur colorée ne change jamais</div><div class=\"fraction-row\"><div class=\"row-title\"><b>Découpage initial</b><span class=\"math\">",
+  "text076": "</div><div class=\"fraction-row\"><div class=\"row-title\"><b>Chaque part est recoupée en ",
+  "text077": "Facteur de découpage",
+  "text078": "Nombre de parts colorées",
+  "text079": "Longueur inchangée",
+  "text080": "<div class=\"control-set\"><div class=\"control-caption\">Recouper chaque part</div><div class=\"choice-row\">",
+  "text081": "Pourquoi a-t-on le droit d’écrire « = » ?",
+  "text082": "Chaque ancienne part est simplement remplacée par plusieurs parts plus petites dont la réunion a exactement la même longueur. On multiplie numérateur et dénominateur par un même entier non nul.",
+  "text083": "On ne change ni le nombre représenté ni sa position sur la droite graduée.",
+  "text084": "<div><div class=\"label\">Positions sur la même droite graduée</div>",
+  "text085": "Comparaison A et B",
+  "text086": "Ordre croissant",
+  "text087": "Produits croisés",
+  "text088": "Un repère commun",
+  "text089": "Deux fractions sont comparables parce qu’elles utilisent la même unité. Sur les barres comme sur la droite, celle qui va le plus loin vers la droite représente le plus grand nombre.",
+  "text090": "Les produits croisés permettent de comparer sans arrondir : a/b et c/d sont ordonnés comme ad et bc pour des dénominateurs positifs.",
+  "text091": "Les parts doivent avoir la même taille. Ici, le dénominateur commun est ",
+  "text092": ". On additionne ensuite les nombres de parts, sans additionner les dénominateurs.",
+  "text093": "Après un découpage commun, on enlève une longueur. Lorsque le second nombre est plus grand, le résultat est négatif : la droite graduée aide à le comprendre.",
+  "text094": "L’aire d’un rectangle de côtés ",
+  "text095": " vaut ",
+  "text096": " fois l’aire du carré unité. Le produit peut être plus petit que chacun des facteurs lorsque ceux-ci sont entre 0 et 1.",
+  "text097": "On ne peut pas diviser par zéro. Choisis une fraction B non nulle.",
+  "text098": "La division demande combien de fois la longueur ",
+  "text099": " entre dans ",
+  "text100": ". Diviser par une fraction non nulle revient à multiplier par son inverse.",
+  "text101": "<svg class=\"bar-svg\" viewBox=\"0 0 944 111\" role=\"img\" aria-label=\"Longueur divisée en segments de taille ",
+  "text102": "\" y=\"15\" fill=\"var(--muted)\" font-size=\"17\" text-anchor=\"middle\">Premiers segments, sur ",
+  "text103": " au total</text>",
+  "text104": "Longueurs mises bout à bout",
+  "text105": "Dépose le bleu dans la zone en pointillés",
+  "text106": "Recommencer",
+  "text107": "Assembler",
+  "text108": "<div class=\"fraction-row\"><div class=\"row-title\"><b>Première longueur</b><span class=\"math\">",
+  "text109": "</div><div class=\"fraction-row\"><div class=\"row-title\"><b>Deuxième longueur : glisse-la dans la somme</b><span class=\"math\">",
+  "text110": "Longueur restante",
+  "text111": "La soustraction passe sous zéro",
+  "text112": "La première longueur est trop petite pour retirer la seconde sans passer par des nombres négatifs. Le résultat est ",
+  "text113": "<div class=\"fraction-row\"><div class=\"row-title\"><b>Longueur de départ</b><span class=\"math\">",
+  "text114": "</div><div class=\"fraction-row\"><div class=\"row-title\"><b>Longueur à retirer</b><span class=\"math\">",
+  "text115": "<div class=\"subhead\"><span class=\"label\">Modèle par aire : le carré unité a pour aire 1</span></div>",
+  "text116": "<div class=\"legend\"><span><i class=\"dot\"></i> largeur ",
+  "text117": "</span><span><i class=\"dot blue\"></i> hauteur ",
+  "text118": "<div><div class=\"label\">Mesure par pas de longueur ",
+  "text119": "Cela correspond à un nombre entier de segments.",
+  "text120": "Le dernier segment est pris partiellement.",
+  "text121": "Le segment bleu tient <strong>",
+  "text122": " fois</strong> dans le segment rouge. ",
+  "text123": "Impossible de mesurer avec un pas de longueur zéro.",
+  "text124": "<div><div class=\"label\">Longueur totale à mesurer</div>",
+  "text125": "</div><div><div class=\"label\">Longueur d’un pas</div>",
+  "text126": "Résultat",
+  "text127": "<div><div class=\"label\">Repères sur la droite graduée</div>",
+  "text128": "Résultat exact",
+  "text129": "Valeur approchée",
+  "text130": "Opération",
+  "text131": "Soustraction",
+  "text132": "<div class=\"control-set\"><h3>Choisir une opération</h3>",
+  "text133": "Pourquoi cette opération fonctionne-t-elle ?",
+  "text134": "Pour agir directement, fais glisser la deuxième barre vers la zone de composition. Le bouton « Assembler » donne une alternative au glisser-déposer.",
+  "text135": "Une représentation est un moyen de comprendre : la justification de la règle repose sur les propriétés des nombres.",
+  "text136": "<div><div class=\"label\">Produit sur la droite</div>",
+  "text137": "<div class=\"label\">Combien représente ",
+  "text138": " de ",
+  "text139": " ?</div><div><div class=\"row-title\"><b>Longueur de départ</b><span class=\"math\">",
+  "text140": "</div><div><div class=\"subhead\"><span class=\"label\">L’aire révèle le produit</span><span class=\"notice\">Largeur × hauteur</span></div>",
+  "text141": "</span> de <span class=\"a\">",
+  "text142": "Largeur",
+  "text143": "Hauteur",
+  "text144": "Aire / nombre obtenu",
+  "text145": "<div class=\"control-set\"><button class=\"btn\" data-action=\"presetParts\">Exemple : 2/3 de 3/4</button></div>",
+  "text146": "La multiplication comme « fraction de »",
+  "text147": "Prendre une fraction d’un nombre, c’est multiplier ce nombre par la fraction. L’aire d’un rectangle permet de donner du sens au produit de deux fractions.",
+  "text148": "Cette aire est exprimée en unités d’aire : si un carré de côté 1 a pour aire 1, le rectangle a pour aire (a/b) × (c/d).",
+  "text149": " objets, ",
+  "text150": " colorés\">",
+  "text151": ", fraction sélectionnée ",
+  "text152": "%\" title=\"Objet ",
+  "text153": " objets supplémentaires non dessinés.</div>",
+  "text154": " collection(s) complète(s)</div>",
+  "text155": "Partie supplémentaire",
+  "text156": "Collection à partager",
+  "text157": "Le résultat n’est pas un nombre entier d’objets. La partie colorée d’un cercle représente une fraction d’objet ; avec des objets indivisibles, on doit adapter la situation.",
+  "text158": "Le résultat compte un nombre entier d’objets.",
+  "text159": "<div class=\"subhead\"><span class=\"label\">Une collection de ",
+  "text160": " objets</span><span class=\"unit-badge\">Fraction : ",
+  "text161": "</span></div><div class=\"row-title\"><b>Visualisation : les objets colorés sont sélectionnés</b><span class=\"math\">",
+  "text162": " objet(s)</span></div>",
+  "text163": "</span> de ",
+  "text164": "Objets au départ",
+  "text165": "Quantité choisie",
+  "text166": "Divisible en objets entiers",
+  "text167": "Oui",
+  "text168": "Non",
+  "text169": "<div class=\"control-set\"><div class=\"control-caption\">Taille de la collection</div><div class=\"stepper\"><button data-quantity=\"-1\" aria-label=\"Un objet de moins\">−</button><input type=\"number\" id=\"quantityInput\" min=\"1\" max=\"24\" value=\"",
+  "text170": "\" aria-label=\"Nombre d’objets\"><button data-quantity=\"1\" aria-label=\"Un objet de plus\">+</button></div><div class=\"preset-row\">",
+  "text171": "De la fraction-nombre à la fraction-opérateur",
+  "text172": "La fraction a d’abord une place sur la droite graduée. On peut ensuite l’utiliser comme multiplicateur d’une quantité : prendre 2/3 de 9, c’est calculer (2/3) × 9.",
+  "text173": "Attention : le dessin d’objets séparés ne fonctionne littéralement que si les objets peuvent être partagés ou si le résultat est entier.",
+  "text174": "<div class=\"control-set\"><label>Nombre d’objets : <strong>",
+  "text175": "<div class=\"control-set\"><h3>Activité ",
+  "text176": "<div class=\"label\">Construis la fraction demandée</div>",
+  "text177": "<div class=\"label\">Barre avant / après découpage</div>",
+  "text178": " objets</div>",
+  "text179": "\" aria-label=\"Étape ",
+  "text180": "<button class=\"btn btn-primary\" data-action=\"checkLesson\">Vérifier la barre</button>",
+  "text181": "<, > ou =",
+  "text182": "ex. 3/4",
+  "text183": "<label for=\"lessonAnswer\">Ta réponse</label><input class=\"input\" id=\"lessonAnswer\" value=\"",
+  "text184": "\" autocomplete=\"off\"><button class=\"btn btn-primary\" data-action=\"checkLesson\">Vérifier</button>",
+  "text185": "Recommencer le parcours",
+  "text186": "Suivant →",
+  "text187": "<div class=\"progress-steps\" aria-label=\"Progression\">",
+  "text188": " sur ",
+  "text189": "<button class=\"btn\" data-action=\"hintLesson\">Indice</button></div>",
+  "text190": ">← Précédent</button><button class=\"btn\" data-action=\"nextLesson\" ",
+  "text191": "<span class=\"valid\">Solution : ",
+  "text192": "Étape",
+  "text193": "Étapes validées",
+  "text194": "Progression",
+  "text195": "<div class=\"control-set\"><button class=\"btn\" data-action=\"loadStep\">Reprendre les valeurs de l’énoncé</button></div>",
+  "text196": "Un parcours, six découvertes",
+  "text197": "Chaque activité propose une situation à explorer avant de donner le résultat. Utilise les barres et leurs réglages, puis vérifie ta réponse. Les fractions équivalentes sont acceptées.",
+  "text198": "L’indice n’est pas la solution : essaie d’abord de faire une prédiction et de la confronter au dessin.",
+  "text199": "<div class=\"row-title\"><b>Première barre</b><span class=\"math\">",
+  "text200": "<div class=\"row-title\"><b>Deuxième barre</b><span class=\"math\">",
+  "text201": "<div class=\"row-title\"><b>Résultat proposé (à confronter au dessin)</b><span class=\"math\">",
+  "text202": "Ton choix est correct. Examine les représentations pour expliquer pourquoi.",
+  "text203": "Pas encore. Compare les longueurs et réessaie.",
+  "text204": "<div class=\"control-set\" style=\"margin-top:17px\"><h3>Vérification visuelle</h3>",
+  "text205": "<div class=\"label\">Enquête ",
+  "text206": "</div><div class=\"error-card\"><div class=\"label\">Affirmation à examiner</div><div class=\"equation\">",
+  "text207": "</div><p>Cette affirmation est-elle correcte ? Explique ton choix à partir des nombres représentés.</p></div><div class=\"choice-row\" style=\"margin-top:14px\"><button class=\"btn ",
+  "text208": "\">Vrai</button><button class=\"btn ",
+  "text209": "\">Faux</button><button class=\"btn\" data-action=\"revealError\">Examiner les barres</button></div>",
+  "text210": "Affirmation vraie",
+  "text211": "Affirmation fausse",
+  "text212": "Enquête",
+  "text213": "Ta réponse",
+  "text214": "Vrai",
+  "text215": "Faux",
+  "text216": "Justification",
+  "text217": "Affichée",
+  "text218": "À découvrir",
+  "text219": "<div class=\"control-set\"><h3>Choisir une affirmation</h3><select class=\"select\" data-error-select aria-label=\"Choisir l’enquête\">",
+  "text220": "</select></div><div class=\"control-set\"><div class=\"flexrow\"><button class=\"btn\" data-action=\"prevError\">← Précédente</button><button class=\"btn btn-primary\" data-action=\"nextError\">Suivante →</button></div></div><p class=\"side-note\">Les affirmations sont un mélange de règles exactes et d’erreurs classiques. Le dessin n’apparaît qu’après ta prédiction, sauf si tu choisis de l’examiner.</p>",
+  "text221": "La preuve par le raisonnement",
+  "text222": "Une contradiction visible est utile pour détecter une erreur. On doit ensuite expliquer la règle qui permet de calculer correctement. Pour les additions de nombres positifs, par exemple, la somme doit être au moins aussi grande que chacun des termes.",
+  "text223": "Exact. ",
+  "text224": "La barre a la bonne longueur.",
+  "text225": "La valeur est correcte, quelle que soit son écriture équivalente.",
+  "text226": "La longueur construite ne correspond pas encore à 3/4. Réessaie.",
+  "text227": "Ce n’est pas encore la bonne valeur. Vérifie ton découpage et utilise l’indice si nécessaire.",
+  "text228": "La somme des deux barres est construite.",
+  "text229": "Dépose le segment dans la zone de somme, ou utilise le bouton Assembler.",
+  "text230": " → somme",
+  "text231": "Le plein écran n’est pas disponible dans ce navigateur.",
+  "text232": "Plein écran indisponible. Ouvre la leçon dans un onglet du navigateur."
+};
+// TEXT-END
+const MODES={build:T.text001,equiv:T.text002,compare:T.text003,operations:T.text004,parts:T.text005,quantity:T.text006,guided:T.text007,errors:T.text008};
 const steps=[
- {title:'Construire trois quarts',task:'Construis exactement 3/4 en cliquant sur une barre ou en déplaçant son extrémité.',hint:'Choisis quatre parts égales et colorie trois parts.',a:[1,4],b:[1,4],type:'construct',sol:'3/4'},
- {title:'Changer de découpage',task:'Pars de 1/2 et recoupe chaque moitié en deux. Quelle fraction obtient-on sans changer la longueur ?',hint:'On peut multiplier numérateur et dénominateur par le même entier.',a:[1,2],b:[1,4],factor:2,type:'equiv',sol:'2/4'},
- {title:'Comparer deux nombres',task:'Compare 2/3 et 3/4. Écris <, > ou =.',hint:'Place les deux longueurs sur une même droite, ou utilise douze parts.',a:[2,3],b:[3,4],type:'compare',sol:'<'},
- {title:'Additionner',task:'Combien vaut 1/2 + 1/4 ? Donne une fraction, éventuellement équivalente.',hint:'Transforme la moitié en deux quarts, puis compte les quarts.',a:[1,2],b:[1,4],op:'+',type:'operations',sol:'3/4'},
- {title:'Multiplier',task:'Quelle fraction de l’unité représente 2/3 × 3/4 ?',hint:'Dans un rectangle découpé en 3 colonnes et 4 lignes, observe les 6 cases communes.',a:[2,3],b:[3,4],op:'×',type:'parts',sol:'1/2'},
- {title:'Appliquer à une quantité',task:'Quelle est la valeur de 2/3 de 9 objets ?',hint:'Partage les neuf objets en trois groupes égaux, puis prends deux groupes.',a:[2,3],b:[1,4],q:9,type:'quantity',sol:'6'}
+ {title:T.text009,task:T.text010,hint:T.text011,a:[1,4],b:[1,4],type:'construct',sol:'3/4'},
+ {title:T.text012,task:T.text013,hint:T.text014,a:[1,2],b:[1,4],factor:2,type:'equiv',sol:'2/4'},
+ {title:T.text015,task:T.text016,hint:T.text017,a:[2,3],b:[3,4],type:'compare',sol:'<'},
+ {title:T.text018,task:T.text019,hint:T.text020,a:[1,2],b:[1,4],op:'+',type:'operations',sol:'3/4'},
+ {title:T.text021,task:T.text022,hint:T.text023,a:[2,3],b:[3,4],op:'×',type:'parts',sol:'1/2'},
+ {title:T.text024,task:T.text025,hint:T.text026,a:[2,3],b:[1,4],q:9,type:'quantity',sol:'6'}
 ];
 const errors=[
- {claim:'1/2 + 1/4 = 2/6',truth:false,kind:'plus',reason:'On ne peut pas additionner les dénominateurs. Une moitié représente 2/4 : 2/4 + 1/4 = 3/4. De plus, 2/6 est plus petit que 1/2 alors que l’on ajoute un nombre positif.',a:[1,2],b:[1,4],wrong:[2,6],right:[3,4]},
- {claim:'1/3 > 1/2',truth:false,kind:'compare',reason:'Le dénominateur indique le nombre de parts égales de l’unité. Plus il y en a, plus chaque part est petite : 1/3 < 1/2.',a:[1,3],b:[1,2],right:[1,2]},
- {claim:'2/4 = 1/2',truth:true,kind:'equiv',reason:'Les deux barres ont exactement la même longueur. On peut découper chaque moitié en deux sans changer le nombre représenté.',a:[2,4],b:[1,2],right:[1,2]},
- {claim:'2/3 × 3/4 = 6/7',truth:false,kind:'multiply',reason:'Pour multiplier deux fractions, on multiplie les numérateurs entre eux et les dénominateurs entre eux : 6/12 = 1/2.',a:[2,3],b:[3,4],right:[1,2]},
- {claim:'3/2 n’est pas un nombre possible',truth:false,kind:'greater',reason:'Une fraction peut dépasser l’unité. Trois moitiés remplissent une unité entière, puis encore une moitié : 3/2 = 1 + 1/2.',a:[3,2],b:[1,2],right:[3,2]},
- {claim:'2/3 de 9 = 6',truth:true,kind:'quantity',reason:'On partage neuf objets en trois groupes de trois et on en prend deux : 2 × 3 = 6.',a:[2,3],b:[1,4],right:[6,1]},
- {claim:'3/4 < 2/3',truth:false,kind:'compare',reason:'En douzièmes, 3/4 = 9/12 et 2/3 = 8/12. Donc 3/4 est strictement plus grand.',a:[3,4],b:[2,3],right:[3,4]},
- {claim:'1/2 + 1/2 = 1',truth:true,kind:'plus',reason:'Deux moitiés mises bout à bout forment exactement une unité.',a:[1,2],b:[1,2],right:[1,1]}
+ {claim:'1/2 + 1/4 = 2/6',truth:false,kind:'plus',reason:T.text027,a:[1,2],b:[1,4],wrong:[2,6],right:[3,4]},
+ {claim:'1/3 > 1/2',truth:false,kind:'compare',reason:T.text028,a:[1,3],b:[1,2],right:[1,2]},
+ {claim:'2/4 = 1/2',truth:true,kind:'equiv',reason:T.text029,a:[2,4],b:[1,2],right:[1,2]},
+ {claim:'2/3 × 3/4 = 6/7',truth:false,kind:'multiply',reason:T.text030,a:[2,3],b:[3,4],right:[1,2]},
+ {claim:T.text031,truth:false,kind:'greater',reason:T.text032,a:[3,2],b:[1,2],right:[3,2]},
+ {claim:T.text033,truth:true,kind:'quantity',reason:T.text034,a:[2,3],b:[1,4],right:[6,1]},
+ {claim:'3/4 < 2/3',truth:false,kind:'compare',reason:T.text035,a:[3,4],b:[2,3],right:[3,4]},
+ {claim:'1/2 + 1/2 = 1',truth:true,kind:'plus',reason:T.text036,a:[1,2],b:[1,2],right:[1,1]}
 ];
 const S={mode:'build',a:{n:1,d:2},b:{n:1,d:4},c:{n:5,d:6},factor:2,op:'+',quantity:9,showLine:true,showSymbols:true,showHelp:true,composed:false,lesson:0,done:new Set(),lessonAnswer:'',lessonHint:false,feedback:'',feedbackGood:false,error:0,errorAnswer:null,errorDetail:false};
 const $=q=>document.querySelector(q);
@@ -149,7 +385,7 @@ const add=(p,q)=>frac(p.n*q.d+q.n*p.d,p.d*q.d);
 const sub=(p,q)=>frac(p.n*q.d-q.n*p.d,p.d*q.d);
 const mul=(p,q)=>frac(p.n*q.n,p.d*q.d);
 const div=(p,q)=>q.n===0?null:frac(p.n*q.d,p.d*q.n);
-const str=p=>!p?'non définie':p.d===1?String(p.n):`${p.n}/${p.d}`;
+const str=p=>!p?T.text037:p.d===1?String(p.n):`${p.n}/${p.d}`;
 const orig=p=>`${p.n}/${p.d}`;
 const v=p=>p.n/p.d;
 const safe=(s)=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -159,27 +395,27 @@ const colors={a:'var(--accent)',b:'var(--blue)',c:'var(--amber)'};
 const assertN=(n,min,max)=>Math.max(min,Math.min(max,Number.isFinite(+n)?Math.round(+n):min));
 function setFraction(key,n,d){const previous=S[key];d=assertN(d,1,12);n=assertN(n,0,3*d);S[key]={n,d};if(previous.n!==n||previous.d!==d){S.composed=false;S.feedback='';S.errorAnswer=null}}
 function setPreset(key,n,d){setFraction(key,n,d);render()}
-function numControl(key){const x=S[key],name=key==='a'?'Fraction A':key==='b'?'Fraction B':'Fraction C';return `<div class="control-set"><div class="control-caption"><span><i class="color-swatch" style="background:${colors[key]}"></i>${name}</span><span class="math">${orig(x)}</span></div><div class="control-grid"><div class="field"><label for="num_${key}">Numérateur</label><div class="stepper"><button data-step="${key}:n:-1" aria-label="Diminuer le numérateur ${key}">−</button><input id="num_${key}" type="number" min="0" max="${3*x.d}" inputmode="numeric" data-input="${key}:n" value="${x.n}" aria-label="Numérateur ${name}"><button data-step="${key}:n:1" aria-label="Augmenter le numérateur ${key}">+</button></div></div><div class="field"><label for="den_${key}">Dénominateur</label><div class="stepper"><button data-step="${key}:d:-1" aria-label="Diminuer le dénominateur ${key}">−</button><input id="den_${key}" type="number" min="1" max="12" inputmode="numeric" data-input="${key}:d" value="${x.d}" aria-label="Dénominateur ${name}"><button data-step="${key}:d:1" aria-label="Augmenter le dénominateur ${key}">+</button></div></div></div><div class="preset-row">${[[1,2],[2,3],[3,4],[5,4],[7,3]].map(([n,d])=>`<button class="chip" data-preset="${key}:${n}:${d}" aria-pressed="${x.n===n&&x.d===d}">${n}/${d}</button>`).join('')}</div></div>`}
+function numControl(key){const x=S[key],name=key==='a'?'Fraction A':key==='b'?'Fraction B':'Fraction C';return `<div class="control-set"><div class="control-caption"><span><i class="color-swatch" style="background:${colors[key]}"></i>${name}</span><span class="math">${orig(x)}</span></div><div class="control-grid"><div class="field"><label for="num_${key}${T.text038}${key}${T.text039}${key}">−</button><input id="num_${key}" type="number" min="0" max="${3*x.d}" inputmode="numeric" data-input="${key}:n" value="${x.n}${T.text040}${name}"><button data-step="${key}${T.text041}${key}">+</button></div></div><div class="field"><label for="den_${key}${T.text042}${key}${T.text043}${key}">−</button><input id="den_${key}" type="number" min="1" max="12" inputmode="numeric" data-input="${key}:d" value="${x.d}${T.text044}${name}"><button data-step="${key}${T.text045}${key}">+</button></div></div></div><div class="preset-row">${[[1,2],[2,3],[3,4],[5,4],[7,3]].map(([n,d])=>`<button class="chip" data-preset="${key}:${n}:${d}" aria-pressed="${x.n===n&&x.d===d}">${n}/${d}</button>`).join('')}</div></div>`}
 function choice(key,opts){return `<div class="choice-row">${opts.map(([v,l])=>`<button class="btn btn-quiet" data-choice="${key}:${v}" aria-pressed="${S[key]===v}">${l}</button>`).join('')}</div>`}
-function numberLine(items,units=2,interactive=null){units=Math.max(1,Math.min(36,units));const x0=42,x1=902,y=70,sc=(x1-x0)/units;let out=`<svg class="line-svg" viewBox="0 0 944 141" role="${interactive?'slider':'img'}" aria-label="Droite graduée avec les fractions" ${interactive?`data-linebar="${interactive}" data-units="${units}" tabindex="0" aria-valuemin="0" aria-valuemax="${units}" aria-valuenow="${v(S[interactive])}" aria-valuetext="${orig(S[interactive])}"`:''}><line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="var(--ink)" stroke-width="2.3"/><path d="M${x1-11} ${y-6}L${x1} ${y}L${x1-11} ${y+6}" fill="none" stroke="var(--ink)" stroke-width="2"/>`;
+function numberLine(items,units=2,interactive=null){units=Math.max(1,Math.min(36,units));const x0=42,x1=902,y=70,sc=(x1-x0)/units;let out=`<svg class="line-svg" viewBox="0 0 944 141" role="${interactive?'slider':'img'}${T.text046}${interactive?`data-linebar="${interactive}" data-units="${units}" tabindex="0" aria-valuemin="0" aria-valuemax="${units}" aria-valuenow="${v(S[interactive])}" aria-valuetext="${orig(S[interactive])}"`:''}><line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="var(--ink)" stroke-width="2.3"/><path d="M${x1-11} ${y-6}L${x1} ${y}L${x1-11} ${y+6}" fill="none" stroke="var(--ink)" stroke-width="2"/>`;
 for(let i=0;i<=units;i++){if(i%Math.ceil(units/6)!==0&&i!==units)continue;const x=x0+i*sc;out+=`<line x1="${x}" y1="${y-10}" x2="${x}" y2="${y+10}" stroke="var(--ink)" stroke-width="2"/><text class="tick-label" x="${x}" y="${y+29}" fill="var(--ink)" font-size="21" text-anchor="middle" font-family="Cambria,serif">${i}</text>`}
 for(const item of items){const x=x0+Math.max(0,Math.min(units,v(item.p)))*sc;const up=item.up!==false;out+=`<path d="M${x} ${up?y-12:y+12}L${x} ${up?y-31:y+31}" stroke="${item.color}" stroke-width="3"/><circle cx="${x}" cy="${y}" r="8" fill="${item.color}" stroke="var(--bg)" stroke-width="2"/><text x="${x}" y="${up?y-39:y+50}" fill="${item.color}" font-size="24" text-anchor="middle" font-family="Cambria,serif" font-weight="700">${safe(item.label||orig(item.p))}</text>`}
 if(interactive)out+=`<rect x="${x0}" y="45" width="${x1-x0}" height="48" fill="transparent"/>`;
 return out+'</svg>'}
 function barSVG(p,{key='',units,editable=false,draggable=false,den=p.d,color='var(--accent)',title='',dim=false}={}){
-units=Math.max(1,Math.min(6,units||Math.max(1,Math.ceil(v(p)))));den=Math.max(1,Math.min(144,den));const x0=35,x1=908,w=x1-x0,u=w/units,cw=u/den,total=units*den,quantity=Math.round(p.n/p.d*den);let s=`<svg viewBox="0 0 944 118" class="bar-svg ${editable?'editable':''} ${draggable?'draggable':''}" role="${editable?'slider':'img'}" aria-label="${safe(title||('Barre '+orig(p)))}" ${editable?`aria-valuemin="0" aria-valuemax="${units}" aria-valuenow="${v(p)}" aria-valuetext="${orig(p)}" data-editbar="${key}" data-den="${den}" data-units="${units}" tabindex="0"`:''} ${draggable?`data-dragsource="${key}" tabindex="0"`:''}>`;
+units=Math.max(1,Math.min(6,units||Math.max(1,Math.ceil(v(p)))));den=Math.max(1,Math.min(144,den));const x0=35,x1=908,w=x1-x0,u=w/units,cw=u/den,total=units*den,quantity=Math.round(p.n/p.d*den);let s=`<svg viewBox="0 0 944 118" class="bar-svg ${editable?'editable':''} ${draggable?'draggable':''}" role="${editable?'slider':'img'}" aria-label="${safe(title||(T.text047+orig(p)))}" ${editable?`aria-valuemin="0" aria-valuemax="${units}" aria-valuenow="${v(p)}" aria-valuetext="${orig(p)}" data-editbar="${key}" data-den="${den}" data-units="${units}" tabindex="0"`:''} ${draggable?`data-dragsource="${key}" tabindex="0"`:''}>`;
 s+=`<rect x="${x0}" y="21" width="${w}" height="49" fill="var(--sunken)" stroke="var(--strong)" stroke-width="1.4"/>`;
 for(let i=0;i<total;i++){const x=x0+i*cw;const active=i<quantity; s+=`<rect data-cell="${i}" x="${x+.3}" y="21.6" width="${Math.max(0,cw-.6)}" height="47.8" fill="${active?color:'transparent'}" opacity="${dim?.35:1}"/><line x1="${x}" x2="${x}" y1="21" y2="70" stroke="var(--strong)" stroke-width="${i%den===0?2:1}" opacity="${i%den===0?1:.65}"/>`}
 for(let i=0;i<=units;i++){const x=x0+i*u;s+=`<line x1="${x}" x2="${x}" y1="17" y2="75" stroke="var(--ink)" stroke-width="2"/><text x="${x}" y="102" font-size="19" fill="var(--muted)" text-anchor="middle" font-family="Cambria,serif">${i}</text>`}
 if(editable){const hx=x0+Math.min(units,p.n/p.d)*u;s+=`<line data-handle x1="${hx}" y1="10" x2="${hx}" y2="75" stroke="${color}" stroke-width="3"/><circle data-handle-circle cx="${hx}" cy="12" r="8" fill="${color}" stroke="var(--bg)" stroke-width="2"/>`}
-if(draggable){s+=`<text x="${x1-7}" y="112" font-size="15" fill="var(--muted)" text-anchor="end">Glisser vers la somme ⇣</text>`}
+if(draggable){s+=`<text x="${x1-7}${T.text048}`}
 return s+'</svg>';
 }
-function stackedSVG(a,b,composed,units,den){units=Math.max(1,Math.min(6,units));den=Math.min(144,den);const x0=35,x1=908,u=(x1-x0)/units,cw=u/den,na=Math.round(v(a)*den),nb=Math.round(v(b)*den);let o=`<svg viewBox="0 0 944 123" class="bar-svg" role="img" aria-label="${composed?'Somme composée':'Zone pour assembler les barres'}"><rect x="${x0}" y="21" width="${x1-x0}" height="49" fill="var(--sunken)" stroke="var(--strong)" stroke-width="1.5"/>`;
+function stackedSVG(a,b,composed,units,den){units=Math.max(1,Math.min(6,units));den=Math.min(144,den);const x0=35,x1=908,u=(x1-x0)/units,cw=u/den,na=Math.round(v(a)*den),nb=Math.round(v(b)*den);let o=`<svg viewBox="0 0 944 123" class="bar-svg" role="img" aria-label="${composed?T.text049:T.text050}"><rect x="${x0}" y="21" width="${x1-x0}" height="49" fill="var(--sunken)" stroke="var(--strong)" stroke-width="1.5"/>`;
 for(let i=0;i<units*den;i++){const x=x0+i*cw;let col=i<na?'var(--accent)':i<na+nb?(composed?'var(--blue)':'transparent'):'transparent';o+=`<rect x="${x+.3}" y="21.6" width="${Math.max(.1,cw-.6)}" height="47.8" fill="${col}"/>`;if(i>=na&&i<na+nb&&!composed)o+=`<rect x="${x+1}" y="23" width="${Math.max(.1,cw-2)}" height="45" fill="none" stroke="var(--blue)" stroke-dasharray="3 4" opacity=".6"/>`;o+=`<line x1="${x}" x2="${x}" y1="21" y2="70" stroke="var(--strong)" stroke-width="${i%den?0.7:2}"/>`}
 for(let i=0;i<=units;i++){const x=x0+i*u;o+=`<line x1="${x}" y1="18" x2="${x}" y2="74" stroke="var(--ink)" stroke-width="2"/><text x="${x}" y="100" font-size="20" fill="var(--muted)" text-anchor="middle" font-family="Cambria,serif">${i}</text>`}
 return o+'</svg>'}
-function areaSVG(a,b){const av=v(a),bv=v(b),maxA=Math.max(1,Math.ceil(av)),maxB=Math.max(1,Math.ceil(bv));const sx=Math.min(245,760/maxA),sy=Math.min(245,255/maxB),x0=55,y0=20;let s=`<svg class="area-graphic" viewBox="0 0 930 325" role="img" aria-label="Rectangle de dimensions ${orig(a)} et ${orig(b)}, aire ${str(mul(a,b))}">`;
+function areaSVG(a,b){const av=v(a),bv=v(b),maxA=Math.max(1,Math.ceil(av)),maxB=Math.max(1,Math.ceil(bv));const sx=Math.min(245,760/maxA),sy=Math.min(245,255/maxB),x0=55,y0=20;let s=`${T.text051}${orig(a)}${T.text052}${orig(b)}${T.text053}${str(mul(a,b))}">`;
 for(let i=0;i<maxA;i++)for(let j=0;j<maxB;j++)s+=`<rect x="${x0+i*sx}" y="${y0+j*sy}" width="${sx}" height="${sy}" fill="var(--sunken)" stroke="var(--line)" stroke-width="1"/>`;
 s+=`<rect x="${x0}" y="${y0}" width="${av*sx}" height="${bv*sy}" fill="var(--blue)" opacity=".2" stroke="var(--blue)" stroke-width="3"/>`;
 for(let i=0;i<a.n;i++){const x=x0+i*sx/a.d;s+=`<line x1="${x}" y1="${y0}" x2="${x}" y2="${y0+bv*sy}" stroke="var(--accent)" stroke-width="1" opacity=".65"/>`}
@@ -187,49 +423,49 @@ for(let j=0;j<b.n;j++){const y=y0+j*sy/b.d;s+=`<line x1="${x0}" y1="${y}" x2="${
 s+=`<rect x="${x0}" y="${y0}" width="${av*sx}" height="${bv*sy}" fill="none" stroke="var(--accent)" stroke-width="3"/>`;
 for(let i=0;i<=maxA;i++)s+=`<text x="${x0+i*sx}" y="${y0+maxB*sy+18}" font-size="18" fill="var(--muted)" font-family="Cambria,serif" text-anchor="middle">${i}</text>`;
 s+=`<text x="${x0+av*sx+9}" y="${y0+bv*sy/2}" fill="var(--blue)" font-size="22" font-family="Cambria,serif">${orig(b)}</text><text x="${x0+av*sx/2}" y="${Math.min(318,y0+bv*sy+34)}" fill="var(--accent)" font-size="22" text-anchor="middle" font-family="Cambria,serif">${orig(a)}</text></svg>`;return s}
-function resultNum(p){if(!p)return 'Indéfini';if(p.d===1)return p.n.toString();return str(p)}
+function resultNum(p){if(!p)return T.text054;if(p.d===1)return p.n.toString();return str(p)}
 function stats(items){return items.map(([label,value])=>`<div class="readout"><div class="label">${label}</div><div class="value">${value}</div></div>`).join('')}
 function note(t,kind=''){return `<div class="hint-strip ${kind}"><span aria-hidden="true">${kind==='warning'?'!':kind==='success'?'✓':'↳'}</span><div>${t}</div></div>`}
-function setStage({plot,math='',readout='',side='',below=''}){$('#plot').innerHTML=plot;$('#mathResult').innerHTML= S.showSymbols&&math?`<div class="label">Écriture mathématique</div><div class="equation">${math}</div>`:'';$('#readout').innerHTML=readout;$('#readout').classList.toggle('hidden',!readout);$('#side').innerHTML=side;$('#explanation').innerHTML=below}
-function commonSide(extra='',more=''){return `${extra}<div class="control-set full"><h3>Affichage</h3><label class="check"><input type="checkbox" data-toggle="showLine" ${S.showLine?'checked':''}>Droite graduée</label><label class="check"><input type="checkbox" data-toggle="showSymbols" ${S.showSymbols?'checked':''}>Écritures mathématiques</label><label class="check"><input type="checkbox" data-toggle="showHelp" ${S.showHelp?'checked':''}>Explications et indices</label>${more}</div>`}
+function setStage({plot,math='',readout='',side='',below=''}){$('#plot').innerHTML=plot;$('#mathResult').innerHTML= S.showSymbols&&math?`${T.text055}${math}</div>`:'';$('#readout').innerHTML=readout;$('#readout').classList.toggle('hidden',!readout);$('#side').innerHTML=side;$('#explanation').innerHTML=below}
+function commonSide(extra='',more=''){return `${extra}${T.text056}${S.showLine?'checked':''}${T.text057}${S.showSymbols?'checked':''}${T.text058}${S.showHelp?'checked':''}${T.text059}${more}</div>`}
 function sectionBelow(title,paragraph,secondary=''){return `<h3>${title}</h3><p>${paragraph}</p>${secondary?`<p style="margin-top:10px">${secondary}</p>`:''}`}
-function renderBuild(){const a=fA(),units=Math.min(3,Math.max(2,Math.ceil(v(a))));setStage({plot:`<div class="subhead"><span class="label">Une unité de référence, toujours la même longueur</span><span class="unit-badge">1 unité = ${a.d} parts égales</span></div><div class="fraction-row"><div class="row-title"><b>Colorie des parts ou déplace le curseur</b><span class="math" data-live-a>${orig(S.a)}</span></div>${barSVG(S.a,{key:'a',editable:true,units,title:'Fraction modifiable par glissement ou au clavier'})}</div>${S.showLine?`<div><div class="subhead"><span class="label">Le même nombre sur une droite</span><span class="notice">Clique ou glisse le point</span></div>${numberLine([{p:a,color:'var(--accent)',label:orig(S.a)}],units,'a')}</div>`:''}`,math:`<span class="a">${orig(S.a)}</span> = ${a.n} × (1/${a.d}) ${a.n>=a.d?`= <span class="valid">${resultNum(a)}</span>`:''}`,readout:stats([['Fraction simplifiée',str(a)],['Part d’une unité',(100*v(a)).toLocaleString('fr-FR',{maximumFractionDigits:2})+' %'],['Écriture décimale',v(a).toLocaleString('fr-FR',{maximumFractionDigits:6})]]),side:commonSide(numControl('a'),`<p class="side-note">Tu peux construire 0, une fraction inférieure à 1 ou jusqu’à 3 unités. Déplace le point ou sélectionne directement une case de la barre.</p>`),below:sectionBelow('Comprendre le partage','Le dénominateur indique en combien de parts égales on découpe chaque unité. Le numérateur indique combien de ces parts on compte. Une fraction est un nombre, même lorsque le numérateur dépasse le dénominateur.','Sur la droite graduée, l’origine est 0 et la distance entre deux entiers consécutifs représente toujours une unité.')});}
-function renderEquiv(){const a=fA(),k=S.factor,den=S.a.d*k,newN=S.a.n*k,units=Math.max(1,Math.ceil(v(a)));setStage({plot:`<div class="label">La longueur colorée ne change jamais</div><div class="fraction-row"><div class="row-title"><b>Découpage initial</b><span class="math">${orig(S.a)}</span></div>${barSVG(S.a,{units,color:'var(--accent)',title:'Découpage initial'})}</div><div class="fraction-row"><div class="row-title"><b>Chaque part est recoupée en ${k}</b><span class="math">${newN}/${den}</span></div>${barSVG({n:newN,d:den},{units,color:'var(--accent)',title:'Découpage plus fin, longueur identique'})}</div>${S.showLine?`<div><div class="label">Les deux écritures représentent le même point</div>${numberLine([{p:a,color:'var(--accent)',label:orig(S.a)}],Math.max(2,units))}</div>`:''}`,math:`<span class="a">${orig(S.a)}</span> = <span class="a">${newN}/${den}</span> = ${str(a)}`,readout:stats([['Facteur de découpage','× '+k],['Nombre de parts colorées',`${S.a.n} → ${newN}`],['Longueur inchangée',str(a)]]),side:commonSide(numControl('a')+`<div class="control-set"><div class="control-caption">Recouper chaque part</div><div class="choice-row">${[1,2,3,4,5].map(t=>`<button class="btn btn-quiet" data-choice="factor:${t}" aria-pressed="${t===k}">× ${t}</button>`).join('')}</div></div>`),below:sectionBelow('Pourquoi a-t-on le droit d’écrire « = » ?','Chaque ancienne part est simplement remplacée par plusieurs parts plus petites dont la réunion a exactement la même longueur. On multiplie numérateur et dénominateur par un même entier non nul.','On ne change ni le nombre représenté ni sa position sur la droite graduée.')});}
-function renderCompare(){const a=fA(),b=fB(),c=frac(S.c.n,S.c.d),list=[{p:S.a,name:'A',color:'var(--accent)'},{p:S.b,name:'B',color:'var(--blue)'},{p:S.c,name:'C',color:'var(--amber)'}];const maxU=Math.max(2,Math.ceil(Math.max(...list.map(z=>v(z.p)))));const comp=a.n*b.d-b.n*a.d;const op=comp>0?'>':comp<0?'<':'=';let ord=list.slice().sort((x,y)=>v(x.p)-v(y.p)).map(z=>`${z.name} (${str(z.p)})`).join(' ≤ ');setStage({plot:`${list.map((item,i)=>`<div class="fraction-row"><div class="row-title"><b style="color:${item.color}">Fraction ${item.name}</b><span class="math">${orig(item.p)}</span></div>${barSVG(item.p,{units:maxU,color:item.color})}</div>`).join('')}${S.showLine?`<div><div class="label">Positions sur la même droite graduée</div>${numberLine(list.map((z,i)=>({p:z.p,color:z.color,label:z.name,up:i!==1})),Math.max(2,maxU))}</div>`:''}`,math:`<span class="a">${orig(S.a)}</span> ${op} <span class="b">${orig(S.b)}</span> <span class="small">(A ${op} B)</span>`,readout:stats([['Comparaison A et B',op],['Ordre croissant',`<span style="font-size:.65em">${ord}</span>`],['Produits croisés',`${S.a.n}×${S.b.d} ${op} ${S.b.n}×${S.a.d}`]]),side:commonSide(numControl('a')+numControl('b')+numControl('c')),below:sectionBelow('Un repère commun','Deux fractions sont comparables parce qu’elles utilisent la même unité. Sur les barres comme sur la droite, celle qui va le plus loin vers la droite représente le plus grand nombre.','Les produits croisés permettent de comparer sans arrondir : a/b et c/d sont ordonnés comme ad et bc pour des dénominateurs positifs.')});}
+function renderBuild(){const a=fA(),units=Math.min(3,Math.max(2,Math.ceil(v(a))));setStage({plot:`${T.text062}${a.d}${T.text063}${orig(S.a)}</span></div>${barSVG(S.a,{key:'a',editable:true,units,title:T.text060})}</div>${S.showLine?`${T.text061}${numberLine([{p:a,color:'var(--accent)',label:orig(S.a)}],units,'a')}</div>`:''}`,math:`<span class="a">${orig(S.a)}</span> = ${a.n} × (1/${a.d}) ${a.n>=a.d?`= <span class="valid">${resultNum(a)}</span>`:''}`,readout:stats([[T.text064,str(a)],[T.text065,(100*v(a)).toLocaleString(T.text066,{maximumFractionDigits:2})+' %'],[T.text067,v(a).toLocaleString(T.text066,{maximumFractionDigits:6})]]),side:commonSide(numControl('a'),`${T.text068}`),below:sectionBelow(T.text069,T.text070,T.text071)});}
+function renderEquiv(){const a=fA(),k=S.factor,den=S.a.d*k,newN=S.a.n*k,units=Math.max(1,Math.ceil(v(a)));setStage({plot:`${T.text075}${orig(S.a)}</span></div>${barSVG(S.a,{units,color:'var(--accent)',title:T.text072})}${T.text076}${k}</b><span class="math">${newN}/${den}</span></div>${barSVG({n:newN,d:den},{units,color:'var(--accent)',title:T.text073})}</div>${S.showLine?`${T.text074}${numberLine([{p:a,color:'var(--accent)',label:orig(S.a)}],Math.max(2,units))}</div>`:''}`,math:`<span class="a">${orig(S.a)}</span> = <span class="a">${newN}/${den}</span> = ${str(a)}`,readout:stats([[T.text077,'× '+k],[T.text078,`${S.a.n} → ${newN}`],[T.text079,str(a)]]),side:commonSide(numControl('a')+`${T.text080}${[1,2,3,4,5].map(t=>`<button class="btn btn-quiet" data-choice="factor:${t}" aria-pressed="${t===k}">× ${t}</button>`).join('')}</div></div>`),below:sectionBelow(T.text081,T.text082,T.text083)});}
+function renderCompare(){const a=fA(),b=fB(),c=frac(S.c.n,S.c.d),list=[{p:S.a,name:'A',color:'var(--accent)'},{p:S.b,name:'B',color:'var(--blue)'},{p:S.c,name:'C',color:'var(--amber)'}];const maxU=Math.max(2,Math.ceil(Math.max(...list.map(z=>v(z.p)))));const comp=a.n*b.d-b.n*a.d;const op=comp>0?'>':comp<0?'<':'=';let ord=list.slice().sort((x,y)=>v(x.p)-v(y.p)).map(z=>`${z.name} (${str(z.p)})`).join(' ≤ ');setStage({plot:`${list.map((item,i)=>`<div class="fraction-row"><div class="row-title"><b style="color:${item.color}">Fraction ${item.name}</b><span class="math">${orig(item.p)}</span></div>${barSVG(item.p,{units:maxU,color:item.color})}</div>`).join('')}${S.showLine?`${T.text084}${numberLine(list.map((z,i)=>({p:z.p,color:z.color,label:z.name,up:i!==1})),Math.max(2,maxU))}</div>`:''}`,math:`<span class="a">${orig(S.a)}</span> ${op} <span class="b">${orig(S.b)}</span> <span class="small">(A ${op} B)</span>`,readout:stats([[T.text085,op],[T.text086,`<span style="font-size:.65em">${ord}</span>`],[T.text087,`${S.a.n}×${S.b.d} ${op} ${S.b.n}×${S.a.d}`]]),side:commonSide(numControl('a')+numControl('b')+numControl('c')),below:sectionBelow(T.text088,T.text089,T.text090)});}
 function calcOp(){const a=fA(),b=fB();return S.op==='+'?add(a,b):S.op==='−'?sub(a,b):S.op==='×'?mul(a,b):div(a,b)}
-function opExplain(a,b,r){if(S.op==='+')return `Les parts doivent avoir la même taille. Ici, le dénominateur commun est ${lcm(a.d,b.d)}. On additionne ensuite les nombres de parts, sans additionner les dénominateurs.`;if(S.op==='−')return `Après un découpage commun, on enlève une longueur. Lorsque le second nombre est plus grand, le résultat est négatif : la droite graduée aide à le comprendre.`;if(S.op==='×')return `L’aire d’un rectangle de côtés ${orig(a)} et ${orig(b)} vaut ${str(r)} fois l’aire du carré unité. Le produit peut être plus petit que chacun des facteurs lorsque ceux-ci sont entre 0 et 1.`;return b.n===0?'On ne peut pas diviser par zéro. Choisis une fraction B non nulle.':`La division demande combien de fois la longueur ${orig(b)} entre dans ${orig(a)}. Diviser par une fraction non nulle revient à multiplier par son inverse.`}
-function divisionSVG(a,b){if(b.n===0)return '';const av=v(a),bv=v(b),units=Math.max(1,Math.ceil(Math.max(av,bv))),x0=35,width=873,unit=width/units,limit=Math.min(48,Math.ceil(av/bv)),q=v(div(a,b));let s=`<svg class="bar-svg" viewBox="0 0 944 111" role="img" aria-label="Longueur divisée en segments de taille ${orig(b)}"><rect x="${x0}" y="20" width="${width}" height="46" fill="var(--sunken)" stroke="var(--strong)"/><rect x="${x0}" y="20" width="${av*unit}" height="46" fill="var(--accent)" opacity=".17"/>`;for(let i=0;i<limit;i++){const start=i*bv,end=Math.min(av,(i+1)*bv);if(end<=start)break;const x=x0+start*unit,w=(end-start)*unit;s+=`<rect x="${x}" y="20" width="${w}" height="46" fill="var(--blue)" opacity="${i%2?.65:.35}" stroke="var(--ink)" stroke-width="1"/><text x="${x+w/2}" y="50" font-size="17" text-anchor="middle" font-family="Cambria,serif" fill="var(--ink)">${i+1}</text>`}for(let i=0;i<=units;i++)s+=`<text x="${x0+i*unit}" y="92" text-anchor="middle" fill="var(--muted)" font-size="20" font-family="Cambria,serif">${i}</text>`;if(q>48)s+=`<text x="${x0+width/2}" y="15" fill="var(--muted)" font-size="17" text-anchor="middle">Premiers segments, sur ${str(div(a,b))} au total</text>`;return s+'</svg>'}
+function opExplain(a,b,r){if(S.op==='+')return `${T.text091}${lcm(a.d,b.d)}${T.text092}`;if(S.op==='−')return `${T.text093}`;if(S.op==='×')return `${T.text094}${orig(a)}${T.text052}${orig(b)}${T.text095}${str(r)}${T.text096}`;return b.n===0?T.text097:`${T.text098}${orig(b)}${T.text099}${orig(a)}${T.text100}`}
+function divisionSVG(a,b){if(b.n===0)return '';const av=v(a),bv=v(b),units=Math.max(1,Math.ceil(Math.max(av,bv))),x0=35,width=873,unit=width/units,limit=Math.min(48,Math.ceil(av/bv)),q=v(div(a,b));let s=`${T.text101}${orig(b)}"><rect x="${x0}" y="20" width="${width}" height="46" fill="var(--sunken)" stroke="var(--strong)"/><rect x="${x0}" y="20" width="${av*unit}" height="46" fill="var(--accent)" opacity=".17"/>`;for(let i=0;i<limit;i++){const start=i*bv,end=Math.min(av,(i+1)*bv);if(end<=start)break;const x=x0+start*unit,w=(end-start)*unit;s+=`<rect x="${x}" y="20" width="${w}" height="46" fill="var(--blue)" opacity="${i%2?.65:.35}" stroke="var(--ink)" stroke-width="1"/><text x="${x+w/2}" y="50" font-size="17" text-anchor="middle" font-family="Cambria,serif" fill="var(--ink)">${i+1}</text>`}for(let i=0;i<=units;i++)s+=`<text x="${x0+i*unit}" y="92" text-anchor="middle" fill="var(--muted)" font-size="20" font-family="Cambria,serif">${i}</text>`;if(q>48)s+=`<text x="${x0+width/2}${T.text102}${str(div(a,b))}${T.text103}`;return s+'</svg>'}
 function renderOperations(){const a=fA(),b=fB(),r=calcOp(),den=lcm(S.a.d,S.b.d),common=Math.min(144,den),maxU=Math.max(2,Math.ceil(Math.max(v(a),v(b),v(r||{n:0,d:1}),v(add(a,b)))));let main='';
-if(S.op==='+'){main=`<div class="fraction-row"><div class="row-title"><b>Première longueur</b><span class="math">${orig(a)}</span></div>${barSVG(S.a,{units:maxU,color:'var(--accent)'})}</div><div class="fraction-row"><div class="row-title"><b>Deuxième longueur : glisse-la dans la somme</b><span class="math">${orig(b)}</span></div>${barSVG(S.b,{units:maxU,color:'var(--blue)',draggable:true,key:'b'})}</div><div class="dropzone ${S.composed?'ready':''}" data-dropzone="true"><div class="row-title"><b>${S.composed?'Longueurs mises bout à bout':'Dépose le bleu dans la zone en pointillés'}</b><button class="btn small btn-quiet" data-action="compose">${S.composed?'Recommencer':'Assembler'}</button></div>${stackedSVG(a,b,S.composed,maxU,common)}</div>`}
-else if(S.op==='−'){const positive=r&&r.n>=0;main=`<div class="fraction-row"><div class="row-title"><b>Longueur de départ</b><span class="math">${orig(a)}</span></div>${barSVG(S.a,{units:maxU,color:'var(--accent)'})}</div><div class="fraction-row"><div class="row-title"><b>Longueur à retirer</b><span class="math">${orig(b)}</span></div>${barSVG(S.b,{units:maxU,color:'var(--blue)'})}</div><div><div class="label">${positive?'Longueur restante':'La soustraction passe sous zéro'}</div>${positive?barSVG(r,{units:maxU,color:'var(--amber)'}):note('La première longueur est trop petite pour retirer la seconde sans passer par des nombres négatifs. Le résultat est '+str(r)+'.','warning')}</div>`}
-else if(S.op==='×'){main=`<div class="subhead"><span class="label">Modèle par aire : le carré unité a pour aire 1</span></div>${areaSVG(S.a,S.b)}<div class="legend"><span><i class="dot"></i> largeur ${orig(a)}</span><span><i class="dot blue"></i> hauteur ${orig(b)}</span></div>`}
-else{const valid=b.n!==0;const k=valid?v(r):0,unit=Math.max(1,Math.ceil(Math.max(v(a),v(b))));main=`<div><div class="label">Longueur totale à mesurer</div>${barSVG(S.a,{units:unit,color:'var(--accent)'})}</div><div><div class="label">Longueur d’un pas</div>${barSVG(S.b,{units:unit,color:'var(--blue)'})}</div>${valid?`<div><div class="label">Mesure par pas de longueur ${orig(b)}</div>${divisionSVG(a,b)}</div>`:''}<div class="hint-strip">${valid?`Le segment bleu tient <strong>${str(r)} fois</strong> dans le segment rouge. ${Number.isInteger(k)?'Cela correspond à un nombre entier de segments.':'Le dernier segment est pris partiellement.'}`:'Impossible de mesurer avec un pas de longueur zéro.'}</div>`}
+if(S.op==='+'){main=`${T.text108}${orig(a)}</span></div>${barSVG(S.a,{units:maxU,color:'var(--accent)'})}${T.text109}${orig(b)}</span></div>${barSVG(S.b,{units:maxU,color:'var(--blue)',draggable:true,key:'b'})}</div><div class="dropzone ${S.composed?'ready':''}" data-dropzone="true"><div class="row-title"><b>${S.composed?T.text104:T.text105}</b><button class="btn small btn-quiet" data-action="compose">${S.composed?T.text106:T.text107}</button></div>${stackedSVG(a,b,S.composed,maxU,common)}</div>`}
+else if(S.op==='−'){const positive=r&&r.n>=0;main=`${T.text113}${orig(a)}</span></div>${barSVG(S.a,{units:maxU,color:'var(--accent)'})}${T.text114}${orig(b)}</span></div>${barSVG(S.b,{units:maxU,color:'var(--blue)'})}</div><div><div class="label">${positive?T.text110:T.text111}</div>${positive?barSVG(r,{units:maxU,color:'var(--amber)'}):note(T.text112+str(r)+'.','warning')}</div>`}
+else if(S.op==='×'){main=`${T.text115}${areaSVG(S.a,S.b)}${T.text116}${orig(a)}${T.text117}${orig(b)}</span></div>`}
+else{const valid=b.n!==0;const k=valid?v(r):0,unit=Math.max(1,Math.ceil(Math.max(v(a),v(b))));main=`${T.text124}${barSVG(S.a,{units:unit,color:'var(--accent)'})}${T.text125}${barSVG(S.b,{units:unit,color:'var(--blue)'})}</div>${valid?`${T.text118}${orig(b)}</div>${divisionSVG(a,b)}</div>`:''}<div class="hint-strip">${valid?`${T.text121}${str(r)}${T.text122}${Number.isInteger(k)?T.text119:T.text120}`:T.text123}</div>`}
 const expr=`<span class="a">${orig(S.a)}</span> ${S.op} <span class="b">${orig(S.b)}</span> = <span class="valid">${resultNum(r)}</span>`;
 const ca=a.n*den/a.d, cb=b.n*den/b.d;
 const needsCommon=S.a.d!==den||S.b.d!==den;
 const addExpr=`<span class="a">${orig(S.a)}</span> + <span class="b">${orig(S.b)}</span>${needsCommon?` = <span class="a">${ca}/${den}</span> + <span class="b">${cb}/${den}</span>`:''} = <span class="valid">${resultNum(r)}</span>`;
-setStage({plot:main+(S.showLine&&S.op!=='×'?`<div><div class="label">Repères sur la droite graduée</div>${numberLine([{p:a,color:'var(--accent)',label:'A'},{p:b,color:'var(--blue)',label:'B',up:false},...(r&&r.n>=0?[{p:r,color:'var(--amber)',label:'Résultat'}]:[])],Math.max(2,maxU))}</div>`:''),math:S.op==='+'?addExpr:expr,readout:stats([['Résultat exact',resultNum(r)],['Valeur approchée',r?v(r).toLocaleString('fr-FR',{maximumFractionDigits:5}):'·'],['Opération',{'+' :'Addition','−':'Soustraction','×':'Multiplication','÷':'Division'}[S.op]]]),side:commonSide(`<div class="control-set"><h3>Choisir une opération</h3>${choice('op',[['+','+'],['−','−'],['×','×'],['÷','÷']])}</div>`+numControl('a')+numControl('b')),below:sectionBelow('Pourquoi cette opération fonctionne-t-elle ?',opExplain(a,b,r),S.op==='+'?'Pour agir directement, fais glisser la deuxième barre vers la zone de composition. Le bouton « Assembler » donne une alternative au glisser-déposer.':'Une représentation est un moyen de comprendre : la justification de la règle repose sur les propriétés des nombres.')});}
-function renderParts(){const a=fA(),b=fB(),r=mul(a,b);setStage({plot:`<div class="label">Combien représente ${orig(b)} de ${orig(a)} ?</div><div><div class="row-title"><b>Longueur de départ</b><span class="math">${orig(a)}</span></div>${barSVG(S.a,{units:Math.max(1,Math.ceil(v(a))),color:'var(--accent)'})}</div><div><div class="subhead"><span class="label">L’aire révèle le produit</span><span class="notice">Largeur × hauteur</span></div>${areaSVG(S.a,S.b)}</div>${S.showLine?`<div><div class="label">Produit sur la droite</div>${numberLine([{p:r,color:'var(--amber)',label:str(r)}],Math.max(2,Math.ceil(v(r))))}</div>`:''}`,math:`<span class="b">${orig(b)}</span> de <span class="a">${orig(S.a)}</span> = ${orig(S.b)} × ${orig(S.a)} = <span class="valid">${str(r)}</span>`,readout:stats([['Largeur',orig(a)],['Hauteur',orig(b)],['Aire / nombre obtenu',str(r)]]),side:commonSide(numControl('a')+numControl('b')+`<div class="control-set"><button class="btn" data-action="presetParts">Exemple : 2/3 de 3/4</button></div>`),below:sectionBelow('La multiplication comme « fraction de »','Prendre une fraction d’un nombre, c’est multiplier ce nombre par la fraction. L’aire d’un rectangle permet de donner du sens au produit de deux fractions.','Cette aire est exprimée en unités d’aire : si un carré de côté 1 a pour aire 1, le rectangle a pour aire (a/b) × (c/d).')});}
-function objectsGroup(count,fill,cap=72){const visible=Math.min(count,cap);let out=`<div class="quantity-grid" role="img" aria-label="${count} objets, ${fill.toLocaleString('fr-FR',{maximumFractionDigits:3})} colorés">`;for(let i=0;i<visible;i++){const pct=Math.min(100,Math.max(0,(fill-i)*100));out+=`<span class="fruit" style="--filled:${pct}%" title="Objet ${i+1}${pct>0?', fraction sélectionnée '+Math.round(pct)+' %':''}"></span>`}return out+`</div>${count>cap?`<div class="notice">${count-cap} objets supplémentaires non dessinés.</div>`:''}`}
-function renderQuantity(){const a=fA(),q=S.quantity,numer=a.n*q,whole=Math.floor(numer/a.d),rem=numer%a.d,fullLots=Math.floor(a.n/a.d),rest=frac(a.n%a.d,a.d),total=frac(a.n*q,a.d);let grid='';if(fullLots>0){grid+=`<div class="groupbox"><div class="label">${fullLots} collection(s) complète(s)</div>${Array.from({length:Math.min(3,fullLots)},()=>objectsGroup(q,q)).join('')}</div>`}
-if(rest.n>0||fullLots===0){let part=rest.n*q/rest.d;grid+=`<div class="groupbox"><div class="subhead"><span class="label">${fullLots?'Partie supplémentaire':'Collection à partager'}</span><span class="math">${str(rest)} de ${q}</span></div>${objectsGroup(q,part)}</div>`}
-setStage({plot:`<div class="subhead"><span class="label">Une collection de ${q} objets</span><span class="unit-badge">Fraction : ${orig(a)}</span></div><div class="row-title"><b>Visualisation : les objets colorés sont sélectionnés</b><span class="math">${str(total)} objet(s)</span></div>${grid}${rem?note('Le résultat n’est pas un nombre entier d’objets. La partie colorée d’un cercle représente une fraction d’objet ; avec des objets indivisibles, on doit adapter la situation.','warning'):note('Le résultat compte un nombre entier d’objets.','success')}`,math:`<span class="a">${orig(S.a)}</span> de ${q} = ${orig(S.a)} × ${q} = <span class="valid">${str(total)}</span>`,readout:stats([['Objets au départ',String(q)],['Quantité choisie',str(total)],['Divisible en objets entiers',rem===0?'Oui':'Non']]),side:commonSide(numControl('a')+`<div class="control-set"><div class="control-caption">Taille de la collection</div><div class="stepper"><button data-quantity="-1" aria-label="Un objet de moins">−</button><input type="number" id="quantityInput" min="1" max="24" value="${q}" aria-label="Nombre d’objets"><button data-quantity="1" aria-label="Un objet de plus">+</button></div><div class="preset-row">${[6,9,12,18,24].map(t=>`<button class="chip" data-quantity-preset="${t}" aria-pressed="${q===t}">${t}</button>`).join('')}</div></div>`),below:sectionBelow('De la fraction-nombre à la fraction-opérateur','La fraction a d’abord une place sur la droite graduée. On peut ensuite l’utiliser comme multiplicateur d’une quantité : prendre 2/3 de 9, c’est calculer (2/3) × 9.','Attention : le dessin d’objets séparés ne fonctionne littéralement que si les objets peuvent être partagés ou si le résultat est entier.')});}
-function stepSetting(){const z=steps[S.lesson];return `<div class="control-set"><h3>Activité ${S.lesson+1} / ${steps.length}</h3><p>${z.task}</p></div>${numControl('a')}${['compare','operations','parts'].includes(z.type)?numControl('b'):''}${z.type==='equiv'?`<div class="control-set"><div class="control-caption">Subdivision</div>${choice('factor',[[1,'×1'],[2,'×2'],[3,'×3'],[4,'×4']])}</div>`:''}${z.type==='quantity'?`<div class="control-set"><label>Nombre d’objets : <strong>${S.quantity}</strong></label><div class="flexrow"><button class="btn" data-quantity="-1">−</button><button class="btn" data-quantity="1">+</button></div></div>`:''}`}
-function guidedVisual(){const z=steps[S.lesson],a=fA(),b=fB(),unit=Math.max(1,Math.ceil(Math.max(v(a),v(b))));if(z.type==='construct')return `<div class="label">Construis la fraction demandée</div>${barSVG(S.a,{key:'a',editable:true,units:1,color:'var(--accent)'})}`;
-if(z.type==='equiv')return `<div class="label">Barre avant / après découpage</div>${barSVG(a,{units:1,color:'var(--accent)'})}${barSVG({n:a.n*S.factor,d:a.d*S.factor},{units:1,color:'var(--accent)'})}`;
+setStage({plot:main+(S.showLine&&S.op!=='×'?`${T.text127}${numberLine([{p:a,color:'var(--accent)',label:'A'},{p:b,color:'var(--blue)',label:'B',up:false},...(r&&r.n>=0?[{p:r,color:'var(--amber)',label:T.text126}]:[])],Math.max(2,maxU))}</div>`:''),math:S.op==='+'?addExpr:expr,readout:stats([[T.text128,resultNum(r)],[T.text129,r?v(r).toLocaleString(T.text066,{maximumFractionDigits:5}):'·'],[T.text130,{'+' :'Addition','−':T.text131,'×':'Multiplication','÷':'Division'}[S.op]]]),side:commonSide(`${T.text132}${choice('op',[['+','+'],['−','−'],['×','×'],['÷','÷']])}</div>`+numControl('a')+numControl('b')),below:sectionBelow(T.text133,opExplain(a,b,r),S.op==='+'?T.text134:T.text135)});}
+function renderParts(){const a=fA(),b=fB(),r=mul(a,b);setStage({plot:`${T.text137}${orig(b)}${T.text138}${orig(a)}${T.text139}${orig(a)}</span></div>${barSVG(S.a,{units:Math.max(1,Math.ceil(v(a))),color:'var(--accent)'})}${T.text140}${areaSVG(S.a,S.b)}</div>${S.showLine?`${T.text136}${numberLine([{p:r,color:'var(--amber)',label:str(r)}],Math.max(2,Math.ceil(v(r))))}</div>`:''}`,math:`<span class="b">${orig(b)}${T.text141}${orig(S.a)}</span> = ${orig(S.b)} × ${orig(S.a)} = <span class="valid">${str(r)}</span>`,readout:stats([[T.text142,orig(a)],[T.text143,orig(b)],[T.text144,str(r)]]),side:commonSide(numControl('a')+numControl('b')+`${T.text145}`),below:sectionBelow(T.text146,T.text147,T.text148)});}
+function objectsGroup(count,fill,cap=72){const visible=Math.min(count,cap);let out=`<div class="quantity-grid" role="img" aria-label="${count}${T.text149}${fill.toLocaleString(T.text066,{maximumFractionDigits:3})}${T.text150}`;for(let i=0;i<visible;i++){const pct=Math.min(100,Math.max(0,(fill-i)*100));out+=`<span class="fruit" style="--filled:${pct}${T.text152}${i+1}${pct>0?T.text151+Math.round(pct)+' %':''}"></span>`}return out+`</div>${count>cap?`<div class="notice">${count-cap}${T.text153}`:''}`}
+function renderQuantity(){const a=fA(),q=S.quantity,numer=a.n*q,whole=Math.floor(numer/a.d),rem=numer%a.d,fullLots=Math.floor(a.n/a.d),rest=frac(a.n%a.d,a.d),total=frac(a.n*q,a.d);let grid='';if(fullLots>0){grid+=`<div class="groupbox"><div class="label">${fullLots}${T.text154}${Array.from({length:Math.min(3,fullLots)},()=>objectsGroup(q,q)).join('')}</div>`}
+if(rest.n>0||fullLots===0){let part=rest.n*q/rest.d;grid+=`<div class="groupbox"><div class="subhead"><span class="label">${fullLots?T.text155:T.text156}</span><span class="math">${str(rest)}${T.text138}${q}</span></div>${objectsGroup(q,part)}</div>`}
+setStage({plot:`${T.text159}${q}${T.text160}${orig(a)}${T.text161}${str(total)}${T.text162}${grid}${rem?note(T.text157,'warning'):note(T.text158,'success')}`,math:`<span class="a">${orig(S.a)}${T.text163}${q} = ${orig(S.a)} × ${q} = <span class="valid">${str(total)}</span>`,readout:stats([[T.text164,String(q)],[T.text165,str(total)],[T.text166,rem===0?T.text167:T.text168]]),side:commonSide(numControl('a')+`${T.text169}${q}${T.text170}${[6,9,12,18,24].map(t=>`<button class="chip" data-quantity-preset="${t}" aria-pressed="${q===t}">${t}</button>`).join('')}</div></div>`),below:sectionBelow(T.text171,T.text172,T.text173)});}
+function stepSetting(){const z=steps[S.lesson];return `${T.text175}${S.lesson+1} / ${steps.length}</h3><p>${z.task}</p></div>${numControl('a')}${['compare','operations','parts'].includes(z.type)?numControl('b'):''}${z.type==='equiv'?`<div class="control-set"><div class="control-caption">Subdivision</div>${choice('factor',[[1,'×1'],[2,'×2'],[3,'×3'],[4,'×4']])}</div>`:''}${z.type==='quantity'?`${T.text174}${S.quantity}</strong></label><div class="flexrow"><button class="btn" data-quantity="-1">−</button><button class="btn" data-quantity="1">+</button></div></div>`:''}`}
+function guidedVisual(){const z=steps[S.lesson],a=fA(),b=fB(),unit=Math.max(1,Math.ceil(Math.max(v(a),v(b))));if(z.type==='construct')return `${T.text176}${barSVG(S.a,{key:'a',editable:true,units:1,color:'var(--accent)'})}`;
+if(z.type==='equiv')return `${T.text177}${barSVG(a,{units:1,color:'var(--accent)'})}${barSVG({n:a.n*S.factor,d:a.d*S.factor},{units:1,color:'var(--accent)'})}`;
 if(z.type==='compare')return `${barSVG(S.a,{units:unit,color:'var(--accent)'})}${barSVG(S.b,{units:unit,color:'var(--blue)'})}${S.showLine?numberLine([{p:a,color:'var(--accent)',label:'A'},{p:b,color:'var(--blue)',label:'B',up:false}],Math.max(2,unit)):''}`;
 if(z.type==='operations')return `${barSVG(S.a,{units:unit,color:'var(--accent)'})}${barSVG(S.b,{units:unit,color:'var(--blue)'})}${stackedSVG(a,b,true,Math.max(1,Math.ceil(v(add(a,b)))),lcm(a.d,b.d))}`;
 if(z.type==='parts')return areaSVG(a,b);
-return `<div class="label">${S.quantity} objets</div>${objectsGroup(S.quantity,S.quantity*v(a))}`}
-function renderGuided(){const z=steps[S.lesson];setStage({plot:`<div class="progress-steps" aria-label="Progression">${steps.map((t,i)=>`<button data-lesson="${i}" class="${i===S.lesson?'current':S.done.has(i)?'done':''}" title="${safe(t.title)}" aria-label="Étape ${i+1} : ${safe(t.title)}">${S.done.has(i)?'✓':i+1}</button>`).join('')}</div><div class="subhead"><h3>${z.title}</h3><span class="label">${S.lesson+1} sur ${steps.length}</span></div><div class="lesson-progress"><div style="width:${S.done.size/steps.length*100}%"></div></div><p>${z.task}</p><div style="margin-top:15px">${guidedVisual()}</div><div class="answer-form">${z.type==='construct'?`<button class="btn btn-primary" data-action="checkLesson">Vérifier la barre</button>`:`<label for="lessonAnswer">Ta réponse</label><input class="input" id="lessonAnswer" value="${safe(S.lessonAnswer)}" placeholder="${z.type==='compare'?'<, > ou =':'ex. 3/4'}" autocomplete="off"><button class="btn btn-primary" data-action="checkLesson">Vérifier</button>`}<button class="btn" data-action="hintLesson">Indice</button></div>${S.lessonHint?note(safe(z.hint)):''}<div id="lessonFeedback" class="feedback ${S.feedback?(S.feedbackGood?'good':'bad'):''}">${S.feedback?safe(S.feedback):''}</div><div class="flexrow" style="margin-top:14px"><button class="btn" data-action="prevLesson" ${S.lesson===0?'disabled':''}>← Précédent</button><button class="btn" data-action="nextLesson" ${!S.done.has(S.lesson)?'disabled':''}>${S.lesson===steps.length-1?'Recommencer le parcours':'Suivant →'}</button></div>`,math:S.done.has(S.lesson)?`<span class="valid">Solution : ${safe(z.sol)}</span>`:'',readout:stats([['Étape',`${S.lesson+1}/${steps.length}`],['Étapes validées',`${S.done.size}/${steps.length}`],['Progression',`${Math.round(S.done.size/steps.length*100)} %`]]),side:`${stepSetting()}<div class="control-set"><button class="btn" data-action="loadStep">Reprendre les valeurs de l’énoncé</button></div>`,below:sectionBelow('Un parcours, six découvertes','Chaque activité propose une situation à explorer avant de donner le résultat. Utilise les barres et leurs réglages, puis vérifie ta réponse. Les fractions équivalentes sont acceptées.','L’indice n’est pas la solution : essaie d’abord de faire une prédiction et de la confronter au dessin.')});}
-function renderErrors(){const e=errors[S.error],a=frac(...e.a),b=frac(...e.b),isCompare=e.kind==='compare',unit=Math.max(1,Math.ceil(Math.max(v(a),v(b),e.wrong?v(frac(...e.wrong)):0)));let vis=e.kind==='quantity'?`${objectsGroup(9,9*v(a))}`:e.kind==='multiply'?areaSVG(a,b):`<div class="row-title"><b>Première barre</b><span class="math">${orig(a)}</span></div>${barSVG(S.a,{units:unit,color:'var(--accent)'})}<div class="row-title"><b>Deuxième barre</b><span class="math">${orig(b)}</span></div>${barSVG(S.b,{units:unit,color:'var(--blue)'})}`;
-if(e.wrong&&S.errorDetail)vis+=`<div class="row-title"><b>Résultat proposé (à confronter au dessin)</b><span class="math">${e.wrong.join('/')}</span></div>${barSVG(frac(...e.wrong),{units:unit,color:'var(--amber)'})}`;
-setStage({plot:`<div class="label">Enquête ${S.error+1} sur ${errors.length}</div><div class="error-card"><div class="label">Affirmation à examiner</div><div class="equation">${safe(e.claim)}</div><p>Cette affirmation est-elle correcte ? Explique ton choix à partir des nombres représentés.</p></div><div class="choice-row" style="margin-top:14px"><button class="btn ${S.errorAnswer===true?'btn-primary':''}" data-error-choice="true" aria-pressed="${S.errorAnswer===true}">Vrai</button><button class="btn ${S.errorAnswer===false?'btn-primary':''}" data-error-choice="false" aria-pressed="${S.errorAnswer===false}">Faux</button><button class="btn" data-action="revealError">Examiner les barres</button></div>${S.errorAnswer!==null?note(S.errorAnswer===e.truth?'Ton choix est correct. Examine les représentations pour expliquer pourquoi.':'Pas encore. Compare les longueurs et réessaie.',S.errorAnswer===e.truth?'success':'warning'):''}${S.errorDetail?`<div class="control-set" style="margin-top:17px"><h3>Vérification visuelle</h3>${vis}</div>${note(e.reason,S.errorAnswer===e.truth?'success':'')}`:''}`,math:S.errorDetail?`<span class="valid">${e.truth?'Affirmation vraie':'Affirmation fausse'}</span>`:'',readout:stats([['Enquête',`${S.error+1}/${errors.length}`],['Ta réponse',S.errorAnswer===null?'·':S.errorAnswer?'Vrai':'Faux'],['Justification',S.errorDetail?'Affichée':'À découvrir']]),side:`<div class="control-set"><h3>Choisir une affirmation</h3><select class="select" data-error-select aria-label="Choisir l’enquête">${errors.map((e,i)=>`<option value="${i}" ${i===S.error?'selected':''}>${i+1}. ${safe(e.claim)}</option>`).join('')}</select></div><div class="control-set"><div class="flexrow"><button class="btn" data-action="prevError">← Précédente</button><button class="btn btn-primary" data-action="nextError">Suivante →</button></div></div><p class="side-note">Les affirmations sont un mélange de règles exactes et d’erreurs classiques. Le dessin n’apparaît qu’après ta prédiction, sauf si tu choisis de l’examiner.</p>`,below:sectionBelow('La preuve par le raisonnement','Une contradiction visible est utile pour détecter une erreur. On doit ensuite expliquer la règle qui permet de calculer correctement. Pour les additions de nombres positifs, par exemple, la somme doit être au moins aussi grande que chacun des termes.')});}
+return `<div class="label">${S.quantity}${T.text178}${objectsGroup(S.quantity,S.quantity*v(a))}`}
+function renderGuided(){const z=steps[S.lesson];setStage({plot:`${T.text187}${steps.map((t,i)=>`<button data-lesson="${i}" class="${i===S.lesson?'current':S.done.has(i)?'done':''}" title="${safe(t.title)}${T.text179}${i+1} : ${safe(t.title)}">${S.done.has(i)?'✓':i+1}</button>`).join('')}</div><div class="subhead"><h3>${z.title}</h3><span class="label">${S.lesson+1}${T.text188}${steps.length}</span></div><div class="lesson-progress"><div style="width:${S.done.size/steps.length*100}%"></div></div><p>${z.task}</p><div style="margin-top:15px">${guidedVisual()}</div><div class="answer-form">${z.type==='construct'?`${T.text180}`:`${T.text183}${safe(S.lessonAnswer)}" placeholder="${z.type==='compare'?T.text181:T.text182}${T.text184}`}${T.text189}${S.lessonHint?note(safe(z.hint)):''}<div id="lessonFeedback" class="feedback ${S.feedback?(S.feedbackGood?'good':'bad'):''}">${S.feedback?safe(S.feedback):''}</div><div class="flexrow" style="margin-top:14px"><button class="btn" data-action="prevLesson" ${S.lesson===0?'disabled':''}${T.text190}${!S.done.has(S.lesson)?'disabled':''}>${S.lesson===steps.length-1?T.text185:T.text186}</button></div>`,math:S.done.has(S.lesson)?`${T.text191}${safe(z.sol)}</span>`:'',readout:stats([[T.text192,`${S.lesson+1}/${steps.length}`],[T.text193,`${S.done.size}/${steps.length}`],[T.text194,`${Math.round(S.done.size/steps.length*100)} %`]]),side:`${stepSetting()}${T.text195}`,below:sectionBelow(T.text196,T.text197,T.text198)});}
+function renderErrors(){const e=errors[S.error],a=frac(...e.a),b=frac(...e.b),isCompare=e.kind==='compare',unit=Math.max(1,Math.ceil(Math.max(v(a),v(b),e.wrong?v(frac(...e.wrong)):0)));let vis=e.kind==='quantity'?`${objectsGroup(9,9*v(a))}`:e.kind==='multiply'?areaSVG(a,b):`${T.text199}${orig(a)}</span></div>${barSVG(S.a,{units:unit,color:'var(--accent)'})}${T.text200}${orig(b)}</span></div>${barSVG(S.b,{units:unit,color:'var(--blue)'})}`;
+if(e.wrong&&S.errorDetail)vis+=`${T.text201}${e.wrong.join('/')}</span></div>${barSVG(frac(...e.wrong),{units:unit,color:'var(--amber)'})}`;
+setStage({plot:`${T.text205}${S.error+1}${T.text188}${errors.length}${T.text206}${safe(e.claim)}${T.text207}${S.errorAnswer===true?'btn-primary':''}" data-error-choice="true" aria-pressed="${S.errorAnswer===true}${T.text208}${S.errorAnswer===false?'btn-primary':''}" data-error-choice="false" aria-pressed="${S.errorAnswer===false}${T.text209}${S.errorAnswer!==null?note(S.errorAnswer===e.truth?T.text202:T.text203,S.errorAnswer===e.truth?'success':'warning'):''}${S.errorDetail?`${T.text204}${vis}</div>${note(e.reason,S.errorAnswer===e.truth?'success':'')}`:''}`,math:S.errorDetail?`<span class="valid">${e.truth?T.text210:T.text211}</span>`:'',readout:stats([[T.text212,`${S.error+1}/${errors.length}`],[T.text213,S.errorAnswer===null?'·':S.errorAnswer?T.text214:T.text215],[T.text216,S.errorDetail?T.text217:T.text218]]),side:`${T.text219}${errors.map((e,i)=>`<option value="${i}" ${i===S.error?'selected':''}>${i+1}. ${safe(e.claim)}</option>`).join('')}${T.text220}`,below:sectionBelow(T.text221,T.text222)});}
 function render(){const focused=document.activeElement;const identity=focused?.id?{id:focused.id}:focused?.getAttributeNames?.().filter(a=>a.startsWith('data-')).map(a=>[a,focused.getAttribute(a)]);document.querySelectorAll('[data-mode]').forEach(b=>{const active=b.dataset.mode===S.mode;b.setAttribute('aria-selected',active);b.tabIndex=active?0:-1});$('#stageTitle').textContent=MODES[S.mode];$('#explanation').classList.toggle('hidden',!S.showHelp);const fn={build:renderBuild,equiv:renderEquiv,compare:renderCompare,operations:renderOperations,parts:renderParts,quantity:renderQuantity,guided:renderGuided,errors:renderErrors}[S.mode];$('#laboratory').setAttribute('aria-labelledby','tab-'+S.mode);fn();if(focused&&!focused.isConnected){const replacement=identity?.id?document.getElementById(identity.id):identity?.length?[...document.querySelectorAll('button,input,select,svg[tabindex]')].find(el=>identity.every(([a,v])=>el.getAttribute(a)===v)):null;replacement?.focus({preventScroll:true})}}
 function go(mode){if(!MODES[mode])return;S.mode=mode;S.feedback='';S.composed=false;if(mode==='guided'){loadLesson();return}render()}
 function loadLesson(){const z=steps[S.lesson];setFraction('a',...z.a);setFraction('b',...z.b);if(z.op)S.op=z.op;if(z.factor)S.factor=z.factor;if(z.q)S.quantity=z.q;S.lessonAnswer='';S.lessonHint=false;S.feedback='';S.feedbackGood=false;S.composed=false;render()}
 function normalizeAnswer(t){t=String(t).trim().replace(/\s/g,'').replace(/−/g,'-').replace(',','.');if(t==='<'||t==='>'||t==='=')return t;let m=t.match(/^(-?\d+)(?:\/(-?\d+))?$/);if(m&&(!m[2]||Number(m[2])!==0))return frac(+m[1],m[2]?+m[2]:1);if(/^-?\d+\.\d+$/.test(t)){const decimal=t.split('.')[1].length;if(decimal<=6)return frac(Math.round(Number(t)*10**decimal),10**decimal)}return null}
-function checkLesson(){const z=steps[S.lesson],ans=normalizeAnswer(S.lessonAnswer);let valid=false;if(z.type==='construct')valid=S.a.n*4===3*S.a.d;else if(z.type==='compare')valid=ans==='<';else if(z.type==='equiv')valid=ans&&typeof ans==='object'&&ans.n===1&&ans.d===2&&S.factor===2;else{const target=normalizeAnswer(z.sol);valid=ans&&typeof ans==='object'&&ans.n===target.n&&ans.d===target.d;}if(valid){S.done.add(S.lesson);S.feedbackGood=true;S.feedback='Exact. '+(z.type==='construct'?'La barre a la bonne longueur.':'La valeur est correcte, quelle que soit son écriture équivalente.')}else{S.feedbackGood=false;S.feedback=z.type==='construct'?'La longueur construite ne correspond pas encore à 3/4. Réessaie.':'Ce n’est pas encore la bonne valeur. Vérifie ton découpage et utilise l’indice si nécessaire.'}render();$('#lessonFeedback')?.scrollIntoView({block:'nearest',behavior:'smooth'})}
+function checkLesson(){const z=steps[S.lesson],ans=normalizeAnswer(S.lessonAnswer);let valid=false;if(z.type==='construct')valid=S.a.n*4===3*S.a.d;else if(z.type==='compare')valid=ans==='<';else if(z.type==='equiv')valid=ans&&typeof ans==='object'&&ans.n===1&&ans.d===2&&S.factor===2;else{const target=normalizeAnswer(z.sol);valid=ans&&typeof ans==='object'&&ans.n===target.n&&ans.d===target.d;}if(valid){S.done.add(S.lesson);S.feedbackGood=true;S.feedback=T.text223+(z.type==='construct'?T.text224:T.text225)}else{S.feedbackGood=false;S.feedback=z.type==='construct'?T.text226:T.text227}render();$('#lessonFeedback')?.scrollIntoView({block:'nearest',behavior:'smooth'})}
 const announce=s=>{$('#announcer').textContent=s};
 function handleAction(target){if(target.closest('[data-mode]')){go(target.closest('[data-mode]').dataset.mode);return}
 const step=target.closest('[data-step]');if(step){const [k,f,delta]=step.dataset.step.split(':');const x=S[k];setFraction(k,f==='n'?x.n+ +delta:x.n,f==='d'?x.d+ +delta:x.d);render();return}
@@ -254,14 +490,14 @@ function changeBarLive(svg,e,finish){const key=activeDrag?.key;if(!key)return;co
 function changeLineLive(svg,e,finish){const key=activeDrag?.key;if(!key)return;const den=S[key].d,units=+svg.dataset.units||1,unit=(902-42)/units,x=svgLocalX(svg,e),n=assertN(Math.round((x-42)/unit*den),0,Math.min(3*den,units*den));if(n!==S[key].n)setFraction(key,n,den);if(finish){activeDrag=null;render();announce(`Fraction ${key} : ${n}/${den}`)}}
 let dragSource=null;
 function positionGhost(e){const ghost=$('#dragGhost');ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px'}
-function finishDrag(e){if(!dragSource)return;const drop=document.querySelector('[data-dropzone]');const rect=drop?.getBoundingClientRect();const hit=rect&&e.clientX>=rect.left&&e.clientX<=rect.right&&e.clientY>=rect.top&&e.clientY<=rect.bottom;$('#dragGhost').classList.add('hidden');dragSource=null;if(hit){S.composed=true;announce('La somme des deux barres est construite.');render()}else announce('Dépose le segment dans la zone de somme, ou utilise le bouton Assembler.')}
-document.addEventListener('pointerdown',e=>{const svg=e.target.closest('svg[data-editbar],svg[data-linebar],svg[data-dragsource]');if(!svg||e.button>0)return;if(svg.dataset.dragsource){try{svg.setPointerCapture(e.pointerId)}catch(_){}dragSource={pointerId:e.pointerId};const ghost=$('#dragGhost');ghost.textContent=`${orig(S.b)} → somme`;ghost.classList.remove('hidden');positionGhost(e);e.preventDefault();return}
+function finishDrag(e){if(!dragSource)return;const drop=document.querySelector('[data-dropzone]');const rect=drop?.getBoundingClientRect();const hit=rect&&e.clientX>=rect.left&&e.clientX<=rect.right&&e.clientY>=rect.top&&e.clientY<=rect.bottom;$('#dragGhost').classList.add('hidden');dragSource=null;if(hit){S.composed=true;announce(T.text228);render()}else announce(T.text229)}
+document.addEventListener('pointerdown',e=>{const svg=e.target.closest('svg[data-editbar],svg[data-linebar],svg[data-dragsource]');if(!svg||e.button>0)return;if(svg.dataset.dragsource){try{svg.setPointerCapture(e.pointerId)}catch(_){}dragSource={pointerId:e.pointerId};const ghost=$('#dragGhost');ghost.textContent=`${orig(S.b)}${T.text230}`;ghost.classList.remove('hidden');positionGhost(e);e.preventDefault();return}
 const key=svg.dataset.editbar||svg.dataset.linebar;activeDrag={pointerId:e.pointerId,key,svg,type:svg.dataset.editbar?'bar':'line'};try{svg.setPointerCapture(e.pointerId)}catch(_){}e.preventDefault();if(activeDrag.type==='bar')changeBarLive(svg,e,false);else changeLineLive(svg,e,false)});
 document.addEventListener('pointermove',e=>{if(dragSource&&e.pointerId===dragSource.pointerId){positionGhost(e);return}if(activeDrag&&e.pointerId===activeDrag.pointerId){if(activeDrag.type==='bar')changeBarLive(activeDrag.svg,e,false);else changeLineLive(activeDrag.svg,e,false)}});
 document.addEventListener('pointerup',e=>{if(dragSource&&e.pointerId===dragSource.pointerId){finishDrag(e);return}if(activeDrag&&e.pointerId===activeDrag.pointerId){if(activeDrag.type==='bar')changeBarLive(activeDrag.svg,e,true);else changeLineLive(activeDrag.svg,e,true)}});
 document.addEventListener('pointercancel',()=>{if(activeDrag){activeDrag=null;render()}if(dragSource){dragSource=null;$('#dragGhost').classList.add('hidden')}});
 document.addEventListener('keydown',e=>{const svg=e.target.closest('svg[data-editbar],svg[data-linebar]');if(!svg||!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;const key=svg.dataset.editbar||svg.dataset.linebar,x=S[key];let n=x.n;if(e.key==='ArrowLeft')n--;if(e.key==='ArrowRight')n++;if(e.key==='Home')n=0;if(e.key==='End')n=(+svg.dataset.units||1)*x.d;n=assertN(n,0,(+svg.dataset.units||1)*x.d);setFraction(key,n,x.d);e.preventDefault();render();const replacement=document.querySelector(`svg[data-${svg.dataset.editbar?'editbar':'linebar'}="${key}"]`);replacement?.focus();announce(`Fraction ${key} : ${n}/${x.d}`)});
-async function fullscreen(){const node=$('#laboratory');try{if(document.fullscreenElement)await document.exitFullscreen();else if(node.requestFullscreen)await node.requestFullscreen();else announce('Le plein écran n’est pas disponible dans ce navigateur.')}catch(_){announce('Plein écran indisponible. Ouvre la leçon dans un onglet du navigateur.')}}
+async function fullscreen(){const node=$('#laboratory');try{if(document.fullscreenElement)await document.exitFullscreen();else if(node.requestFullscreen)await node.requestFullscreen();else announce(T.text231)}catch(_){announce(T.text232)}}
 $('#fullToggle').addEventListener('click',fullscreen);$('#fullStage').addEventListener('click',fullscreen);
 $('#themeToggle').addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='jour'?'nuit':'jour';document.documentElement.dataset.theme=next;try{localStorage.setItem('mx-fractions-theme',next)}catch(_){}render()});
 if(window.parent===window){try{const theme=localStorage.getItem('mx-fractions-theme');if(theme==='jour'||theme==='nuit')document.documentElement.dataset.theme=theme}catch(_){}}

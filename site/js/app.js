@@ -490,9 +490,9 @@ const basicsLessons = [
   {id: "sets", number: "06", kind: ["Ensembles", "Sets"], title: ["Ensembles", "Sets and operations"],
    description: ["Manipuler des ensembles avec des diagrammes de Venn, découvrir réunion, intersection, différence et complémentaire, puis s’exercer.", "Explore sets with Venn diagrams: union, intersection, difference and complement, then practise."],
    frameTitle: ["Activité interactive sur les ensembles et leurs opérations", "Interactive sets and operations activity"]},
-  {id: "fractions", number: "07", language: "fr", title: ["Le laboratoire des fractions", "Le laboratoire des fractions"],
-   description: ["Construire, comparer et calculer avec des fractions : barres, droite graduée, aires et six défis guidés. Leçon en français.", "Build, compare and calculate with fractions using bars, a number line, areas and six guided challenges. Lesson in French."],
-   frameTitle: ["Laboratoire interactif des fractions", "Laboratoire interactif des fractions"]},
+  {id: "fractions", number: "07", title: ["Le laboratoire des fractions", "The fractions lab"],
+   description: ["Construire, comparer et calculer avec des fractions : barres, droite graduée, aires et six défis guidés.", "Build, compare and calculate with fractions using bars, a number line, areas and six guided challenges."],
+   frameTitle: ["Laboratoire interactif des fractions", "Interactive fractions lab"]},
 ];
 function basicsPage(id) {
   if (!id) return '<main id="main" class="page" tabindex="-1"><div class="section-kicker">'+pair("Apprendre", "Learn")+'</div><h1>'+pair("Les bases des mathématiques", "Mathematical foundations")+'</h1><p class="page-intro">'+pair("Pour comprendre les idées de départ en manipulant, avant de mémoriser les règles.", "Explore starting ideas with your hands before memorising rules.")+'</p><div class="pathway-grid" style="margin-top:24px">'+basicsLessons.map(l=>'<article class="pathway-card"><div class="section-kicker">'+l.number+' · '+t(l.kind||["Nombres", "Numbers"])+'</div><h2><a href="#basics/'+l.id+'">'+t(l.title)+'</a></h2><p>'+t(l.description)+'</p><a class="btn btn-primary" href="#basics/'+l.id+'">'+pair("Explorer la leçon", "Open the lesson")+'</a></article>').join("")+'</div></main>';

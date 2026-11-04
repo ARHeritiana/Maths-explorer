@@ -63,6 +63,7 @@ Language at launch (decided): French for the French and Malagasy curricula; Engl
 
 Language policy, owner decision of 25 October 2026 (binding on all future work until the owner says otherwise):
 - The bilingual goal for lessons is on standby. Do not translate, proofread or integrate English editions of curriculum lessons.
+- Specific exception, owner request of 4 November 2026: the fractions foundation (`#basics/fractions`) must be bilingual in French and English. This does not lift the general standby.
 - French and Malagasy curricula: French only.
 - International curriculum (IB, SAT): English only.
 - University: the language the resource was started in.
