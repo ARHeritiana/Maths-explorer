@@ -10,7 +10,7 @@ with sync_playwright() as p:
     browser = p.chromium.launch(headless=True, executable_path=os.environ.get('PLAYWRIGHT_CHROMIUM_PATH') or shutil.which('chromium'))
     context = browser.new_context(locale='en-US', reduced_motion='reduce')
     context.add_init_script("""
-      localStorage.setItem('maths-explorer-v1', JSON.stringify({lang:'en', last:'t10-01', seen:['t10-01']}));
+      localStorage.setItem('maths-explorer-v1', JSON.stringify({lang:'fr', last:'t10-01', seen:['t10-01']}));
       sessionStorage.setItem('mx-course', 't11s');
       sessionStorage.setItem('mx-pathway', 'mg');
     """)
@@ -23,7 +23,6 @@ with sync_playwright() as p:
         page.locator('main').wait_for()
         page.wait_for_timeout(150)
         assert page.locator('html').get_attribute('lang') == 'fr'
-        assert page.locator('[data-lang]').count() == 0
 
     def scoped_links():
         bad = page.evaluate("""async () => {
@@ -34,7 +33,9 @@ with sync_playwright() as p:
         assert not bad, bad
 
     go('#home')
-    assert page.locator('.home-courses .row').count() == 5
+    assert page.locator('.idea-card[href="#gallery/fourier"]').count() == 1
+    assert page.locator('.home-reading a').count() == 2
+    assert page.locator('.mainnav a').count() == 3
     assert page.locator('.home-resume').count() == 0
     page.locator('#home-query').fill('dérivée')
     page.locator('.home-result').first.wait_for()
@@ -51,7 +52,7 @@ with sync_playwright() as p:
     assert page.locator('.chapter-tile').count() > 0
     scoped_links()
 
-    for route in ['#resources/t10', '#slides/t11s', '#bank/t10', '#chapter/t11s-01', '#library/t10-01', '#pack/t10', '#university', '#olympiad', '#gallery', '#history', '#basics', '#topics']:
+    for route in ['#resources/t10', '#slides/t11s', '#bank/t10', '#chapter/t11s-01', '#library/t10-01', '#pack/t10', '#university']:
         go(route)
         assert page.evaluate('location.hash') == '#resources', route
         assert page.locator('.res-rail [data-course]').count() == 5
@@ -65,15 +66,15 @@ with sync_playwright() as p:
     scoped_links()
     go('#pack')
     page.locator('[name=course]').first.wait_for()
-    assert page.locator('[name=course]').count() == 5
+    assert page.locator('[name=course]').count() == 7
     scoped_links()
     go('#sources')
     page.locator('[data-zip]').first.wait_for()
-    assert sorted(page.locator('[data-zip]').evaluate_all('(nodes) => nodes.map(n => n.dataset.zip)')) == sorted(COURSES)
+    assert set(page.locator('[data-zip]').evaluate_all('(nodes) => nodes.map(n => n.dataset.zip)')) == set(COURSES + ['automatismes', 'enrichment'])
     go('#library')
     page.locator('#resource-course option').nth(1).wait_for(state='attached')
-    assert page.locator('#resource-course option').count() == 6
-    assert page.locator('#resource-curriculum option').count() == 1
+    assert page.locator('#resource-course option').count() == 8
+    assert page.locator('#resource-curriculum option').count() == 2
     scoped_links()
     go('#pathways')
     assert page.locator('.pw-pick[data-key]').count() == 1
@@ -82,6 +83,18 @@ with sync_playwright() as p:
         go(route)
         assert page.evaluate('location.hash') == route, route
         scoped_links()
+
+    for route, selector in [('#gallery', '.wonder-grid'), ('#gallery/fourier', '#object-stage'),
+                            ('#lab', '.lab2-card-link'), ('#topics', '.discovery-page'),
+                            ('#basics', 'main'), ('#challenges', 'main'),
+                            ('#olympiad', 'main'), ('#stories', 'main'), ('#biographies', 'main')]:
+        go(route)
+        page.locator(selector).first.wait_for()
+        assert page.evaluate('location.hash') == route, route
+        scoped_links()
+    go('#history/advances')
+    assert page.evaluate('location.hash') == '#history/advances'
+    scoped_links()
 
     for theme in ['jour', 'nuit']:
         for width in [320, 390, 1280]:
@@ -93,4 +106,4 @@ with sync_playwright() as p:
     assert not errors, errors
     context.close()
     browser.close()
-    print('French curriculum: navigation, stored selections, searches, downloads, activities and responsive layouts passed.')
+    print('Other curricula hidden; galleries, curiosities and general collections restored. Navigation, searches, downloads, activities and responsive layouts passed.')

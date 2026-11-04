@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { liveCourses, liveCatalog, liveCompanionCatalog, liveDiscovery, isLiveHash } from '../site/js/live-curriculum.js';
+import { liveCourses, liveLibraryCourses, liveCatalog, liveCompanionCatalog, liveDiscovery, isLiveHash } from '../site/js/live-curriculum.js';
 import { resourceCatalog } from '../dist/js/resources-data.js';
 import { discoveryIndex } from '../site/js/discovery.js';
 import { labs, challenges } from '../site/js/content.js';
@@ -16,17 +16,17 @@ test('the live catalogues retain every French chapter without changing the archi
   assert.ok(catalog.courses.some(c => c.id === 't10'));
   assert.ok(live.resources.length > 0);
   for (const list of [live.chapters, live.resources, companion.chapters, companion.supplements]) {
-    assert.ok(list.every(item => liveCourses.some(c => c.id === item.course)));
+    assert.ok(list.every(item => liveLibraryCourses.some(c => c.id === item.course)));
   }
   assert.equal(JSON.stringify(catalog), before);
   assert.equal(JSON.stringify(resourceCatalog), companionBefore);
 });
 
-test('old hidden routes cannot reopen a different curriculum or collection', () => {
-  for (const route of ['#resources/t10', '#slides/t11s', '#chapter/t10-01', '#library/t11s-01', '#pack/t10', '#bank/t11s', '#university', '#olympiad', '#gallery/fourier', '#history', '#basics/fractions', '#topics', '#lab/ferris-wheel']) {
+test('old hidden routes cannot reopen a different curriculum', () => {
+  for (const route of ['#resources/t10', '#slides/t11s', '#chapter/t10-01', '#library/t11s-01', '#pack/t10', '#bank/t11s', '#university']) {
     assert.equal(isLiveHash(route), false, route);
   }
-  for (const route of ['#home', '#resources', '#resources/expertes', '#chapter/seconde-01/cours', '#bank/seconde/seconde-01', '#slides/stmg', '#pack/premiere', '#sources', '#lab/quadratic/vertex', '#lab/monte-carlo-pi']) {
+  for (const route of ['#home', '#resources', '#resources/expertes', '#chapter/seconde-01/cours', '#bank/seconde/seconde-01', '#slides/stmg', '#pack/premiere', '#sources', '#lab/quadratic/vertex', '#lab/monte-carlo-pi', '#olympiad', '#gallery/fourier', '#history', '#basics/fractions', '#topics', '#lab/ferris-wheel', '#challenges/fly', '#biographies/galois', '#stories']) {
     assert.equal(isLiveHash(route), true, route);
   }
   assert.equal(isLiveHash('#bank/seconde/premiere-01'), false);
@@ -37,6 +37,9 @@ test('search results and reciprocal recommendations stay within the live scope',
   const visible = liveDiscovery(complete), routes = new Set(visible.map(x => x.route));
   assert.ok(complete.some(x => x.route.startsWith('#university/')));
   assert.ok(visible.some(x => x.route === '#chapter/premiere-01'));
+  assert.ok(visible.some(x => x.route === '#gallery/fourier'));
+  assert.ok(visible.some(x => x.route.startsWith('#basics/')));
+  assert.ok(visible.some(x => x.route.startsWith('#library/explore-')));
   for (const item of visible) {
     assert.ok(isLiveHash(item.route), item.route);
     assert.ok(item.related.every(route => routes.has(route)));

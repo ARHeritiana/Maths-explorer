@@ -1,6 +1,6 @@
 import {editionFor,packEditions} from './resource-editions.js';
 import {courseLanguage} from "./content-language.js";
-import { liveCourses as courses, liveCatalog } from './live-curriculum.js';
+import { liveLibraryCourses as courses, liveCatalog } from './live-curriculum.js';
 import { assetHref, fetchJSON } from './data-loader.js';
 // Custom pack builder and LaTeX sources browser.
 // PDFs are merged in the browser from the files the site already serves; nothing is uploaded.
@@ -238,7 +238,7 @@ export function sourcesPage(t) {
 export async function bindSources(t) {
   const root = document.querySelector('#sources-app');
   if (!root) return;
-  try { manifest ||= await fetchJSON('./sources/manifest.json'); manifest = {...manifest, courses: manifest.courses.filter(c => courses.some(x => x.id === c.id))}; } catch {
+  try { manifest ||= await fetchJSON('./sources/manifest.json'); manifest = {...manifest, courses: manifest.courses.filter(c => courses.some(x => x.id === c.id) || c.id === 'automatismes' || c.id === 'enrichment')}; } catch {
     root.innerHTML = `<p class="pack-error" role="alert">${t(P('La liste des sources est introuvable.', 'The source list could not be loaded.'))}</p>`; return;
   }
   const kinds = { tex: P('Fichiers TeX', 'TeX files'), style: P('Classes et styles', 'Classes and styles'), figure: P('Figures', 'Figures') };

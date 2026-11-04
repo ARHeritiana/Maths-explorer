@@ -1,18 +1,15 @@
 # Handoff
 
-## French-only live scope (4 November 2026)
+## Curriculum visibility corrected (4 November 2026)
 
-The live site now focuses on the five French lycée classes and their classroom tools.
-`site/js/live-curriculum.js` filters browsing, searches, course selectors, packs, sources
-and routes without deleting curriculum data or resources. Other curricula and standalone
-collections stay in the repository; direct static file URLs are retained. The home page
-provides level links; saved hidden courses fall back to a French level. French chapter
-laboratories remain available. The bilingual lesson goal remains on standby, unfinished.
-Validation: the French live-scope browser checks pass at 320, 390 and 1280 px in both
-themes, including old links and saved hidden courses. `npm test`: 533 pass, one failure
-because this environment lacks the French Babel package; the same TeX setup fails on
-the original checkout. Syntax, catalogue and source-copy checks pass. No PDF, TeX,
-slide deck, resource asset or complete catalogue entry was removed.
+The owner clarified: hide the other curricula only. Galleries, curiosities, all
+laboratories, foundations, challenges, history, reading, Olympiad and shared workshops
+are visible again, along with the original Explorer/Lire navigation and bilingual
+interface. Course selectors and pathways show only the French curriculum; hidden
+curriculum links still return to the French courses. Shared library resources and
+source bundles remain accessible. No resource files were removed.
+`site/js/live-curriculum.js` is the shared curriculum visibility policy. The bilingual
+lesson goal remains on standby, unfinished.
 
 ## Fractions foundation (4 November 2026)
 

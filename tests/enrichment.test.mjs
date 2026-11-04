@@ -13,7 +13,7 @@ test('twelve bilingual workshops contain notes, four exercises and a solved synt
   for(const x of p.exercises)for(const key of ['q','a'])assert.ok(x[key].length===2&&x[key].every(Boolean));
   const resources=catalog.resources.filter(r=>r.chapter==='explore-'+p.id);assert.equal(resources.length,4);
   for(const r of resources){assert.equal(r.translation,'authored-bilingual');for(const url of [...r.url,...r.htmlUrl])assert.ok(fs.existsSync(new URL('../dist/'+url.slice(2),import.meta.url)));}
-  for(const j of [0,1])assert.ok(!libraryPage(x=>x[j]).includes('#library/explore-'+p.id), 'retained workshops are hidden from the French curriculum browser');
+  for(const j of [0,1])assert.ok(libraryPage(x=>x[j]).includes('#library/explore-'+p.id));
  }
  assert.equal(selectChapters(catalog,{curriculum:'all',course:'explorations',type:'all',language:'en',search:'',solutions:false}).length,12);
 });
