@@ -184,7 +184,7 @@ function render() {
     (r.page === "errors" && isErrorRoute(r.id)) ||
     (r.page === "olympiad" && isOlympiadRoute(r.id)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction" || r.id === "multiplication" || r.id === "division" || r.id === "sets")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab)) ||
+    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction" || r.id === "multiplication" || r.id === "division" || r.id === "sets" || r.id === "fractions")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab)) ||
     r.page === "university" || (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
@@ -490,13 +490,18 @@ const basicsLessons = [
   {id: "sets", number: "06", kind: ["Ensembles", "Sets"], title: ["Ensembles", "Sets and operations"],
    description: ["Manipuler des ensembles avec des diagrammes de Venn, découvrir réunion, intersection, différence et complémentaire, puis s’exercer.", "Explore sets with Venn diagrams: union, intersection, difference and complement, then practise."],
    frameTitle: ["Activité interactive sur les ensembles et leurs opérations", "Interactive sets and operations activity"]},
+  {id: "fractions", number: "07", language: "fr", title: ["Le laboratoire des fractions", "Le laboratoire des fractions"],
+   description: ["Construire, comparer et calculer avec des fractions : barres, droite graduée, aires et six défis guidés. Leçon en français.", "Build, compare and calculate with fractions using bars, a number line, areas and six guided challenges. Lesson in French."],
+   frameTitle: ["Laboratoire interactif des fractions", "Laboratoire interactif des fractions"]},
 ];
 function basicsPage(id) {
   if (!id) return '<main id="main" class="page" tabindex="-1"><div class="section-kicker">'+pair("Apprendre", "Learn")+'</div><h1>'+pair("Les bases des mathématiques", "Mathematical foundations")+'</h1><p class="page-intro">'+pair("Pour comprendre les idées de départ en manipulant, avant de mémoriser les règles.", "Explore starting ideas with your hands before memorising rules.")+'</p><div class="pathway-grid" style="margin-top:24px">'+basicsLessons.map(l=>'<article class="pathway-card"><div class="section-kicker">'+l.number+' · '+t(l.kind||["Nombres", "Numbers"])+'</div><h2><a href="#basics/'+l.id+'">'+t(l.title)+'</a></h2><p>'+t(l.description)+'</p><a class="btn btn-primary" href="#basics/'+l.id+'">'+pair("Explorer la leçon", "Open the lesson")+'</a></article>').join("")+'</div></main>';
   const lesson = basicsLessons.find(l=>l.id===id);
   if (!lesson) return "";
-  const related = id === "sets"
-    ? '<p class="muted"><a href="#basics/division">'+pair("Leçon précédente : division", "Previous lesson: division")+'</a></p>'
+  const related = id === "fractions"
+    ? '<p class="muted"><a href="#basics/sets">'+pair("Leçon précédente : ensembles", "Previous lesson: sets")+'</a> · <a href="#basics/division">'+pair("Revoir le partage et la division", "Review sharing and division")+'</a></p>'
+    : id === "sets"
+    ? '<p class="muted"><a href="#basics/division">'+pair("Leçon précédente : division", "Previous lesson: division")+'</a> · <a href="#basics/fractions">'+pair("Leçon suivante : fractions", "Next lesson: fractions")+'</a></p>'
     : id === "division"
     ? '<p class="muted"><a href="#basics/multiplication">'+pair("Leçon précédente : multiplication", "Previous lesson: multiplication")+'</a> · <a href="#basics/sets">'+pair("Leçon suivante : ensembles", "Next lesson: sets and operations")+'</a></p>'
     : id === "multiplication"
@@ -506,7 +511,7 @@ function basicsPage(id) {
     : id === "addition"
       ? '<p class="muted"><a href="#basics/place-value">'+pair("Revoir d’abord les regroupements et la numération", "Review place value and grouping first")+'</a> · <a href="#basics/subtraction">'+pair("Leçon suivante : soustraction et emprunts", "Next lesson: subtraction and borrowing")+'</a></p>'
       : '<p class="muted"><a href="#basics/addition">'+pair("Leçon suivante : addition et retenues", "Next lesson: addition and carrying")+'</a></p>';
-  return '<main id="main" class="page" tabindex="-1"><a class="backlink" href="#basics">'+pair("Toutes les bases", "All foundations")+'</a>'+related+'<iframe id="basics-frame" lang="'+lang+'" title="'+t(lesson.frameTitle)+'" src="'+assetHref("./resources/basics/"+lesson.id+(lang==="en"?".en":"")+".html")+'" style="width:100%;display:block;border:1px solid var(--line);border-radius:12px;background:var(--surface);min-height:560px" scrolling="no"></iframe></main>';
+  return '<main id="main" class="page" tabindex="-1"><a class="backlink" href="#basics">'+pair("Toutes les bases", "All foundations")+'</a>'+related+'<iframe id="basics-frame" lang="'+(lesson.language||lang)+'" title="'+t(lesson.frameTitle)+'" src="'+assetHref("./resources/basics/"+(lesson.language?lesson.id:lesson.id+(lang==="en"?".en":""))+".html")+'" style="width:100%;display:block;border:1px solid var(--line);background:var(--surface);min-height:560px" scrolling="no" allow="fullscreen"></iframe></main>';
 }
 function bindBasics(){
   const frame=$("#basics-frame"); if(!frame)return ()=>{};

@@ -17,3 +17,5 @@ Visual check: `npm start`, screenshot at 1440 and 390 px, light and dark themes,
 Then follow `release.md`.
 
 - History atlas: `site/js/history.js`, `site/js/history-layout.js`, `site/js/history-images.js`, `site/styles/history.css`; image files in `site/data/history/`. Preserve source/creator/licence metadata and distinguish documentary dates from lifetimes.
+
+- Foundations resources: `site/resources/basics/fractions.html` (French-only fractions workbench), `site/js/app.js` `basicsLessons` / `basicsPage` / `bindBasics`, and `site/js/discovery.js` `FOUNDATION_LESSONS`. Check host theme, iframe height, keyboard controls and phone layout.

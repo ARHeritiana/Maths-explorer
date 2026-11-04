@@ -28,6 +28,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `university.test.mjs`, `university-slides.test.mjs` | `university.js`, `university-model.js`, university decks |
 | `learning.test.mjs` | `learning-content.js`, `visual-lessons.js`, chapter pages |
 | `basics-addition.test.mjs` | the published addition and carrying Basics lesson, linked route, display hooks and exact regrouped sums in bases 2 to 16 |
+| `fractions.test.mjs` | French fractions foundation: source parity, independent rational arithmetic, all modes, focus preservation, bounded keyboard handles and equivalent guided answers |
 | `basics-language.test.mjs` | Both Foundation languages, iframe locale, independent English arithmetic and source-publication parity |
 | `basics-interactions.test.mjs` | Both foundation editions: all-base place-value capacity, keyboard 3D camera, theme redraw and cancellation of a delayed carry after reset, with real lesson scripts under DOM events |
 | `sets-lesson.test.mjs` | the sets lesson in both editions under jsdom: all 15 laws and every operation against real `Set`s over the 4096 triples of a 4-element universe, every quiz generator many times (one correct option, no duplicate text, answer recomputed from the question data), the shading check report and keyboard use, tabs, roles and pressed states, no external request or dash |

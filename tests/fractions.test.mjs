@@ -1,0 +1,80 @@
+// Fractions foundation: independent arithmetic, guided answers and keyboard regressions.
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {JSDOM} from 'jsdom';
+const source=readFileSync(new URL('../site/resources/basics/fractions.html',import.meta.url),'utf8');
+function page(){
+ const dom=new JSDOM(source,{runScripts:'outside-only',url:'https://example.test/resources/basics/fractions.html'});
+ const w=dom.window;w.HTMLElement.prototype.scrollIntoView=()=>{};
+ for(const [,script] of source.matchAll(/<script>([\s\S]*?)<\/script>/g))w.eval(script);
+ return {w,doc:w.document,api:w.MXFractionsTest,close:()=>w.close()};
+}
+test('fractions source is published and remains French with no external runtime',()=>{
+ assert.equal(readFileSync(new URL('../dist/resources/basics/fractions.html',import.meta.url),'utf8'),source);
+ assert.match(source,/<html lang="fr"/);assert.doesNotMatch(source,/<script[^>]+src=|https?:\/\/|[—–]/);
+ const app=readFileSync(new URL('../site/js/app.js',import.meta.url),'utf8');
+ assert.match(app,/id: "fractions", number: "07", language: "fr"/);
+ assert.match(app,/#basics\/fractions/);
+});
+test('fraction arithmetic agrees with independent cross-products, including zero and negative results',()=>{
+ const P=page();try{
+ for(let d=1;d<=12;d++)for(let e=1;e<=12;e++)for(const n of [0,1,d,3*d])for(const m of [0,1,e,3*e]){
+  const a={n,d},b={n:m,d:e};
+  for(const [op,num,den] of [['add',n*e+m*d,d*e],['sub',n*e-m*d,d*e],['mul',n*m,d*e]]){
+   const r=P.api[op](a,b);assert.equal(r.n*den,num*r.d,op);assert.ok(r.d>0);
+  }
+  const q=P.api.div(a,b);if(m===0)assert.equal(q,null);else assert.equal(q.n*d*m,n*e*q.d);
+ }
+ assert.equal(P.api.normalizeAnswer('1/0'),null);
+ assert.equal(P.api.normalizeAnswer('<svg>'),null);
+ assert.deepEqual(JSON.parse(JSON.stringify(P.api.normalizeAnswer('0,75'))),{n:3,d:4});
+ }finally{P.close()}
+});
+test('all activities mount; steppers retain keyboard focus and SVG End stays within the displayed scale',()=>{
+ const P=page();try{
+ for(const tab of P.doc.querySelectorAll('[data-mode]')){tab.click();assert.equal(tab.getAttribute('aria-selected'),'true');assert.ok(P.doc.querySelector('#plot').children.length>0,tab.dataset.mode);}
+ P.doc.querySelector('[data-mode="build"]').click();
+ let plus=P.doc.querySelector('[data-step="a:n:1"]');plus.focus();plus.click();
+ assert.equal(P.doc.activeElement.dataset.step,'a:n:1');
+ const svg=P.doc.querySelector('[data-editbar]');const max=+svg.dataset.units;
+ svg.dispatchEvent(new P.w.KeyboardEvent('keydown',{key:'End',bubbles:true}));
+ const state=P.api.getState();assert.equal(state.a.n/state.a.d,max);
+ assert.equal(+P.doc.querySelector('[data-editbar]').getAttribute('aria-valuenow'),max);
+ }finally{P.close()}
+});
+test('six guided challenges accept equivalent fractions, reject mistakes and unlock progression',()=>{
+ const P=page();try{
+ P.doc.querySelector('[data-mode="guided"]').click();
+ const numerator=P.doc.querySelector('#num_a');numerator.value='3';numerator.dispatchEvent(new P.w.Event('change',{bubbles:true}));
+ P.doc.querySelector('[data-action="checkLesson"]').click();assert.equal(P.api.getState().done.length,1);
+ const answers=['2/4','<','6/8','6/12','12/2'];
+ for(const answer of answers){
+  P.doc.querySelector('[data-action="nextLesson"]').click();
+  const input=P.doc.querySelector('#lessonAnswer');input.value='999';input.dispatchEvent(new P.w.Event('input',{bubbles:true}));
+  P.doc.querySelector('[data-action="checkLesson"]').click();assert.equal(P.api.getState().feedbackGood,false);
+  const again=P.doc.querySelector('#lessonAnswer');again.value=answer;again.dispatchEvent(new P.w.Event('input',{bubbles:true}));
+  P.doc.querySelector('[data-action="checkLesson"]').click();assert.equal(P.api.getState().feedbackGood,true,answer);
+ }
+ assert.equal(P.api.getState().done.length,6);
+ }finally{P.close()}
+});
+
+test('fine common partitions and large quotients retain exact diagram scales',()=>{
+ const P=page();try{
+ P.doc.querySelector('[data-mode="operations"]').click();
+ const set=(id,value)=>{const el=P.doc.getElementById(id);el.value=String(value);el.dispatchEvent(new P.w.Event('change',{bubbles:true}));};
+ set('den_a',11);set('num_a',1);set('den_b',12);set('num_b',1);
+ P.doc.querySelector('[data-action="compose"]').click();
+ const colored=P.doc.querySelectorAll('[data-dropzone] svg rect[fill="var(--accent)"]');
+ assert.equal(colored.length,12,'one eleventh is exactly twelve 132nds');
+ const blue=P.doc.querySelectorAll('[data-dropzone] svg rect[fill="var(--blue)"]');
+ assert.equal(blue.length,11,'one twelfth is exactly eleven 132nds');
+ set('den_a',1);set('num_a',3);set('den_b',12);set('num_b',1);
+ P.doc.querySelector('[data-choice="op:÷"]').click();
+ const line=P.doc.querySelector('.line-svg');
+ assert.ok([...line.querySelectorAll('.tick-label')].some(t=>t.textContent==='36'));
+ const result=[...line.querySelectorAll('text')].find(t=>t.textContent==='Résultat');
+ assert.equal(+result.getAttribute('x'),902,'the quotient 36 reaches the true endpoint');
+ }finally{P.close()}
+});

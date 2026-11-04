@@ -137,6 +137,7 @@ To add a generator: write `make` in the class file, give it a manifest chapter, 
 | `resources/basics/addition.en.html` | English interactive foundation edition, with local typography and iframe resizing |
 | `resources/basics/subtraction.html` | Third foundation: subtraction with borrowing across empty columns, written subtraction, bases 2 to 16; embedded by `js/app.js` |
 | `resources/basics/subtraction.en.html` | English interactive foundation edition, with local typography and iframe resizing |
+| `resources/basics/fractions.html` | Seventh foundation, French: eight fraction activities, guided challenges, shared Cahier tokens and host theme/height synchronisation; embedded by `js/app.js` |
 | `resources/basics/sets.html` | Sixth foundation, French: sets and operations (Venn diagrams, 18 concepts, quizzes, shading practice, 15 laws); inclusion is written ⊂; embedded by `js/app.js` |
 | `resources/basics/sets.en.html` | English edition of the sets lesson. The two files share all code; only the `TEXT-BEGIN`/`TEXT-END` table, the title and `lang` differ (`tests/sets-language.test.mjs` enforces it): edit the logic in both |
 

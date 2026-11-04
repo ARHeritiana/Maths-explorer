@@ -212,3 +212,5 @@ Append one dated line per finished task at the end of the first list (before "Da
 - 2026-11-03: aligned the original-practice regression tests with hidden competency lists and removed exam-type labels, retaining internal skills and prerequisite contracts; bilingual lesson work remains on standby.
 
 - 2026-11-03: repaired portable slide export invalidation for shared inference labels and refreshed the affected downloads during release validation.
+
+4 November 2026: integrated and redesigned the French fractions workbench as the seventh foundation (`#basics/fractions`), with responsive activity navigation, shared themes, keyboard controls and guided challenges. Bilingual lesson work remains on standby.

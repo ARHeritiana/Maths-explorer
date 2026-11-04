@@ -1,5 +1,9 @@
 # Handoff
 
+## Fractions foundation (4 November 2026)
+
+Integrated the supplied fractions workbench at `#basics/fractions`, seventh foundation. Eight activities, six guided challenges, shared Cahier typography and themes, visible activity grid, keyboard focus and bounded SVG handles, automatic iframe resizing, arithmetic discovery link. French only; the bilingual lesson goal remains on standby (unfinished). Source: `site/resources/basics/fractions.html`; regression coverage: `tests/fractions.test.mjs`.
+
 ## Open issues: triage (1 November 2026, night, issues agent; read-only checks, nothing closed)
 
 | Issue | State found on `main` | Plan |
