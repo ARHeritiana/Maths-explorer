@@ -1,0 +1,199 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet19_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{1.}
+	
+	\subsubsection*{a.}
+	
+	\begin{align*}
+&M(x ; y) \in C \cap d \\
+\iff& f(x)=2x+3\\
+\iff&  2x + 3 = 2x^3 + 2x^2 - 2x + 3 \\
+\iff& 2x^3 + 2x^2 - 4x = 0 \\
+\iff& 2x (x^2 + x - 2) = 0.
+	\end{align*}
+	
+	\subsubsection*{b.}
+	
+	On résout l’équation précédente :
+	
+	\[
+	2x (x^2 + x - 2) =0 \iff
+	\begin{cases}
+		x = 0 \\
+		x^2 + x - 2 = 0
+	\end{cases}.
+	\]
+	
+	La première solution est \(x = 0\), d’où \(y = 2 \times 0 + 3 = 3\).
+	
+	Pour l’équation du second degré :
+	\[
+	x^2 + x - 2 = 0
+	\]
+	
+	\[
+	\Delta = 1^2 - 4 \times (-2) = 1 + 8 = 9 = 3^2 > 0.
+	\]
+	
+	Il y a donc deux solutions :
+	
+	\[
+	x = \dfrac{-1 + 3}{2} = 1 \quad et \quad x = \dfrac{-1 - 3}{2} = -2,
+	\]
+	
+	d’où les ordonnées respectives
+	
+	\[
+	f(1) = 2 \times 1 + 3 = 5 \quad et \quad f(-2) = -4 + 3 = -1.
+	\]
+	
+	Les points communs à \(d\) et à \(C\) ont pour coordonnées : 	\((0 ; 3)\), \((1 ; 5)\), \((-2 ; -1)\).
+	
+	\subsection*{2.}
+\begin{flushright}
+	\begin{center}
+			\definecolor{ccqqqq}{rgb}{0.8,0,0}
+	\definecolor{qqttff}{rgb}{0,0.2,1}
+	\definecolor{cqcqcq}{rgb}{0.75,0.75,0.75}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+		\draw [color=cqcqcq,dash pattern=on 1pt off 1pt, xstep=1.0cm,ystep=1.0cm] (-3,-0.76) grid (2,8.14);
+		\draw[->,color=black] (-3,0) -- (2,0);
+		\foreach \x in {-3,-2,-1,1}
+		\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+		\draw[->,color=black] (0,-0.76) -- (0,8.14);
+		\foreach \y in {,1,2,3,4,5,6,7,8}
+		\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+		\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+		\clip(-3,-0.76) rectangle (2,8.14);
+		\draw[line width=2pt,color=qqttff, smooth,samples=100,domain=-3.0:2.0] plot(\x,{2*(\x)^3+2*(\x)^2-2*(\x)+3});
+		\draw[line width=1.6pt,color=ccqqqq, smooth,samples=100,domain=-3.0:2.0] plot(\x,{2*(\x)+1.74});
+		\draw[line width=1.6pt,color=ccqqqq, smooth,samples=100,domain=-3.0:2.0] plot(\x,{2*(\x)+7.23});
+	\end{tikzpicture}
+	\end{center}
+\end{flushright}
+	
+	On voit qu’il existe deux valeurs de \(a\) (ordonnée à l’origine des droites tangentes à la courbe), \(a \approx 1,9\) et \(a \approx 7,1\).
+	
+	Remarque : il faut trouver des points d’abscisse \(x\) tels que le nombre dérivé est égal à 2, soit résoudre l’équation :
+	\[
+	6x^2 + 4x - 2 = 2 \iff 6x^2 + 4x - 4 = 0 \iff 3x^2 + 2x - 2 = 0.
+	\]
+	
+	On a :
+	\[
+	\Delta = 4 - 4 \times 3 \times (-2) = 4 + 24 = 28 > 0.
+	\]
+	
+	Il y a deux solutions :
+	
+	\[
+	x = \dfrac{-2 + \sqrt{28}}{6} \approx 0,549 \quad et \quad x = \dfrac{-2 - \sqrt{28}}{6} \approx -1,215.
+	\]
+	
+	Les droites sont tracées en rouge.
+	
+	\subsection*{3.}
+	
+	\subsubsection*{a.}
+	
+	Le polynôme \(f(x)\) est dérivable sur \(\mathbb{R}\) et sur cet intervalle :
+	\[
+	f'(x) = 6x^2 + 4x - 2 = 2(3x^2 + 2x - 1).
+	\]
+	
+	Or pour le trinôme \(3x^2 + 2x - 1\), \(\Delta = 4 + 12 = 16 = 4^2 > 0\). Le trinôme a deux racines :
+	\[
+	x_1 = \dfrac{-2 + 4}{6} = \dfrac{2}{6} = \dfrac{1}{3} \quad et \quad x_2 = \dfrac{-2 - 4}{6} = \dfrac{-6}{6} = -1.
+	\]
+	
+	On sait qu’alors \(3x^2 + 2x - 1 = 3(x + 1)(x - \dfrac{1}{3})\). Donc
+	\[
+	f'(x) = 6(x + 1)(x - \dfrac{1}{3}).
+	\]
+	
+	\subsubsection*{b.}
+	
+	On sait que \(f'(x)\) est positive sauf sur l’intervalle \(\left] -1 ; \dfrac{1}{3} \right[\), donc la fonction est croissante sauf sur l’intervalle \(\left] -1 ; \dfrac{1}{3} \right[\) où elle est décroissante.
+
+\end{document}

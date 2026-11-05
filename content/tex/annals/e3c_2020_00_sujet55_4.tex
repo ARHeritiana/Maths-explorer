@@ -1,0 +1,69 @@
+\medskip
+
+La bibliothèque municipale étant devenue trop petite, une commune a décidé d'ouvrir une médiathèque qui pourra contenir \np{100000} ouvrages au total. Pour l'ouverture prévue le 1\up{er} janvier 2020, la médiathèque dispose du stock de \np{35000} ouvrages de l'ancienne bibliothèque, augmenté de \np{7000} ouvrages supplémentaires neufs offerts par la commune.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+Chaque année, le bibliothécaire est chargée de supprimer 5\,\% des ouvrages, trop vieux ou abîmés, et d'acheter \np{6 000} ouvrages neufs.
+
+On appelle $u_n$ le nombre, en milliers, d'ouvrages disponibles le 1\up{er} janvier de l'année (2020+$n$).
+
+On donne $u_0 = 42$.
+
+\medskip
+ 
+\begin{enumerate}
+\item  Justifier que, pour tout entier naturel n, on a $u_{n+1} = u_n\times  0,95+6$.
+\item On propose ci-dessous un programme en langage Python :
+\begin{lstlisting}[style=python]
+def suite(n) :
+u=42
+for i in range(n) :
+	u=0.95*u+6
+return u
+\end{lstlisting}
+
+Expliquer ce que permet de déterminer ce programme.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+La commune doit finalement revoir ses dépenses à la baisse, elle ne pourra financer que \np{4000} nouveaux ouvrages par an au lieu des \np{6000} prévus.
+
+On appelle $v_n$ le nombre, en milliers, d'ouvrages disponibles le 1\up{er} janvier de l'année (2020+$n$).
+
+\medskip
+
+\begin{enumerate}
+\item  On admet que $v_{n+1} = 0,95\times v_n + 4$ pour tout entier naturel $n\geqslant 0$ avec $v_0 = 42$.
+
+On considère la suite $(w_n)$ définie, pour tout entier naturel $n$, par $w_n= v_n-80$.
+	\begin{enumerate}
+		\item Montrer que $\left(w_n\right)$ est une suite géométrique de raison $q = 0,95$ et préciser son premier terme $w_0$.
+		\item En déduire l'expression de $w_n$ puis de $ v_n$ en fonction de $n$.
+
+	\end{enumerate}
+\item On donne ci-dessous un programme en langage Python.
+
+\begin{center}
+\begin{lstlisting}[style=python]
+def objet(A) :
+v=42
+n=0
+while v<A :
+	v=0.95*v+4
+	n=n+1
+return n 
+\end{lstlisting}
+\end{center}
+
+L'appel à la fonction objet(70) renvoie 27. Interpréter ce résultat dans le contexte de l'exercice.
+\end{enumerate}

@@ -1,0 +1,233 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_09_sujet1_polynesie_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On considère le cube ABCDEFGH.
+On note I le milieu du segment[EH] et on considère le triangle CFI.
+L'espace est muni du repère orthonormé $\left(\text{A}~;~ \vect{\text{AB}},\: \vect{\text{AD}},\: \vect{\text{AE}}\right)$ et on admet que le point I a pour coordonnées $\left(0~;~\dfrac12;~1\right)$ dans ce repère.
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(7.4,8)
+\pspolygon(0.2,0.8)(4.6,0.2)(4.6,4.6)(0.2,5.2)
+\psline(4.6,0.2)(7.2,2.6)(7.2,7)(4.6,4.6)
+\psline(7.2,7)(2.8,7.6)(0.2,5.2)
+\psline[linestyle=dashed](0.2,0.8)(2.8,3.2)(7.2,2.6)
+\psline[linestyle=dashed](2.8,3.2)(2.8,7.6)
+\psline(5,7.3)(0.2,5.2)(4.6,0.2)
+\psline[linestyle=dashed](5,7.3)(4.6,0.2)
+\psdots(2.8,3.2)(0.2,0.8)(4.6,0.2)(7.2,2.6)(2.8,7.6)(0.2,5.2)(4.6,4.6)(7.2,7)(5,7.3)(2.4,4.9)
+\uput[l](2.8,3.2){A} \uput[l](0.2,0.8){B} \uput[dr](4.6,0.2){C} \uput[r](7.2,2.6){D}
+\uput[u](2.8,7.6){E} \uput[l](0.2,5.2){F} \uput[dl](4.6,4.6){G} \uput[ur](7.2,7){H}
+\uput[u](5,7.3){I} \uput[u](2.4,4.9){J}
+\end{pspicture}
+\end{center}
+
+\smallskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Les coordonnées des points C, F et G sont:
+$\text{C}\begin{pmatrix}1\\1\\0\end{pmatrix}$, $\text{F}\begin{pmatrix}1\\0\\1\end{pmatrix}$ et $\text{G}\begin{pmatrix}1\\1\\1\end{pmatrix}$
+		
+		\item Soit le vecteur $\vect{n}\begin{pmatrix}1\\2\\2\end{pmatrix}$.
+		
+\begin{list}{\textbullet}{}
+\item $\vectt{CF}\begin{pmatrix}0\\-1\\1\end{pmatrix}$;
+$\vect{n}\cdot \vectt{CF} = 1\times 0+2\times (-1) + 2\times 1=0$ donc $\vect{n}\perp \vectt{CF}$
+\item $\vectt{CI}\begin{pmatrix}-1\\-\frac{1}{2}\\1\end{pmatrix}$;
+$\vect{n}\cdot \vectt{CI} = 1\times (-1)+2\times (-\frac{1}{2}) + 2\times 1=0$ donc $\vect{n}\perp \vectt{CI}$
+\item Les points C, F et I ne sont pas alignés donc ces trois points forment le plan (CFI) dont $\vectt{CF}$ et $\vectt{CI}$ sont deux vecteurs directeurs.
+\end{list}
+
+Le vecteur $\vect{n}$ est orthogonal à deux vecteurs directeurs du plan (CFI) donc il est normal au plan (CFI).
+	
+		\item
+D'après la question précédente, le plan (CFI) a une équation de la forme \\
+$x+2y+2z+d=0$ où $d\in\R$.
+
+$\text{C} \in (\text{CFI})$ donc $x_{\text{C}}+2y_{\text{C}}+2z_{\text{C}}+d=0$ soit $1+2\times 1 +2\times 0+d=0$ donc $d=-3$.
+
+Une équation cartésienne du plan (CFI) est donc: $x + 2y + 2z - 3 = 0$.		
+
+	\end{enumerate}	
+\item  On note $d$ la droite passant par G et orthogonale au plan (CFI).
+	\begin{enumerate}
+		\item 
+La droite $d$ est orthogonale au plan (CFI); elle a donc le vecteur $\vect{n}$ comme vecteur directeur.
+De plus elle passe par le point G.
+C'est donc l'ensemble des points M de coordonnées $(x\;; y\;; z)$ tels que $\vectt{GM}$ et $\vect n$ soient colinéaires, c'est-à-dire tels que $\vectt{GM} =t.\vect n$ avec $t\in\R$.
+		
+$\vectt{GM} =t.\vect n
+\iff
+\left \{
+\begin{array}{l !{=} r}
+x-1 & t\\
+y-1 & 2t\\
+z-1 & 2t
+\end{array}
+\right . $		
+
+La droite $d$ a donc pour représentation paramétrique:
+$\left \{
+\begin{array}{l !{=} r}
+x & 1+t\\
+y & 1+2t\\
+z &1+ 2t
+\end{array}
+\right . \text{ avec }t\in\R$
+		
+		\item 
+La droite $d$ est orthogonale au plan (CFI) donc le projeté orthogonal K du point G de la droite $d$ sur le plan (CFI), est le point d'intersection de $d$ et de (CFI); donc ses coordonnées $(x\;; y\;; z)$ vérifient le système:
+$\left \{
+\begin{array}{r !{=} l}
+x & 1+t\\
+y & 1+2t\\
+z &1+ 2t\\
+x+2y+2z-3 & 0
+\end{array}
+\right .$
+		
+On a donc: $(1+t) +2\left (1+2t\right ) + 2\left (1+2t\right ) -3=0$,
+ce qui donne: \\
+$1+t+2+4t+2+4t-3=0$
+soit
+$9t=-2$ donc $t=-\frac{2}{9}$.
+
+$\left \{
+\begin{array}{r !{=} r !{=} l !{=} l}
+x & 1+t & 1 -\frac{2}{9} & \frac{7}{9}\\[4pt]
+y & 1+2t & 1- 2\times \frac{2}{9} & \frac{5}{9}\\[4pt]
+z &1+ 2t & 1- 2\times \frac{2}{9} & \frac{5}{9}
+\end{array}
+\right .$
+
+Donc le projeté orthogonal K du point G sur le plan (CFI) a pour coordonnées $\left (\dfrac{7}{9}\;; \dfrac{5}{9}\;; \dfrac{5}{9} \right )$.
+		\item La distance du point G au plan (CFI) est:
+		
+$\begin{gathered}\text{GK}= \ds\sqrt{(x_{\text K} - x_{\text G})^2 + (y_{\text K} - y_{\text G})^2 +(z_{\text K} - z_{\text G})^2 }
+= \ds\sqrt{\left ( \frac{7}{9} - 1\right )^2 + \left ( \frac{5}{9} - 1\right )^2+\left ( \frac{5}{9} - 1\right )^2}\\
+\phantom{\text{GK}}
+= \ds\sqrt{\left ( -\frac{2}{9}\right )^2 + \left ( -\frac{4}{9}\right )^2+\left ( -\frac{4}{9}\right )^2}
+=\ds\sqrt{\frac{4}{81} + \frac{16}{81} + \frac{16}{81}}
+=\ds\sqrt{ \frac{36}{81}}
+= \frac{6}{9}
+= \frac23\end{gathered}$.
+	\end{enumerate}
+	
+\item On considère la pyramide GCFI.
+
+
+
+
+
+
+
+	\begin{enumerate}
+		\item 
+Si on considère que I est le sommet de la pyramide, la base en est le triangle GFC rectangle en G.
+
+Le projeté orthogonal de I sur le plan (GFC) est le point J, milieu de [FG], et $\text{IJ}=1$ donc la hauteur $h$ vaut 1.
+
+Le triangle GFC a pour aire $\dfrac{\text{GF}\times \text{GC}}{2} = \dfrac{1}{2}$.
+
+La pyramide GCFI a donc pour volume, en unité de volume:  $\dfrac{1}{3}\times \dfrac{1}{2}\times 1 = \dfrac{1}{6}$.
+		
+		\item Appelons $\mathcal{A}$ l'aire du triangle CFI.
+		
+Si on considère que G est le sommet de la pyramide, la base en est le triangle CFI d'aire $\mathcal{A}$.
+
+Le projeté orthogonal de G sur le plan (CFI) est le point K, donc la hauteur $h$ vaut GK soit $\dfrac{2}{3}$.
+
+La pyramide GCFI a donc pour volume:  $\dfrac{1}{3}\times \mathcal{A}\times \dfrac{2}{3} = \dfrac{2\mathcal{A}}{9}$.
+
+Or le volume de la pyramide vaut $\dfrac{1}{6}$, donc $\dfrac{2\mathcal{A}}{9} = \dfrac{1}{6}$ donc $\mathcal{A}=\dfrac{9}{12}=\dfrac{3}{4}$.
+
+L'aire du triangle CFI est, en unité d'aire, égale à $\dfrac{3}{4}$.
+		
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

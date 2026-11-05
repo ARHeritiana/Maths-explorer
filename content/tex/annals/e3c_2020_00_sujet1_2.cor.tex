@@ -1,0 +1,29 @@
+Une entreprise pharmaceutique fabrique un soin antipelliculaire. Elle peut produire entre 200 et 2000 litres de produit par semaine. Le résultat, en dizaines de milliers d’euros, réalisé pour la production et la vente de $x$ centaines de litres est donné par la fonction $R$ définie par :
+	
+	\[ R(x)= (5x - 30)e^{-0,25x}, \text{ pour tout réel } x \in [2, 20]. \]
+	
+\begin{enumerate}
+	\item 	On a $R(7) = (5 \times 7 - 30)e^{-0,25 \times 7} = 5e^{-1,75} \approx 0,868869$\\
+	 soit en euros environ $0,868869 \times 10000 = 8688,69$ soit $8689$ €.
+	\item	On a $R(4)= (5 \times 4 - 30)e^{-0,25 \times 4} = -10e^{-1} \approx -3,67879$ \\
+	soit environ $-3,67879 \times 10000 = -36787,9$ donc $-36788$ € à l’euro près.
+	\item	On sait que quel que soit le réel $a$, $e^a > 0$, donc
+	\[ R(x)> 0 \iff (5x - 30)e^{-0,25x} > 0 \iff 5x - 30 > 0 \iff 5x > 30 \iff x > 6. \]
+	
+	Pour avoir un résultat positif il faut donc vendre au moins 600 litres de produit par semaine.
+	\item	On a  \begin{align*}
+	&R'(x) > 0 \\
+	\iff &(-1,25x + 12,5)e^{-0,25x} > 0 \\
+	\iff& -1,25x + 12,5 > 0 \\
+	\iff& 12,5 > 1,25x \\
+	\iff& 10 > x
+	\end{align*}
+	
+
+	
+	On en déduit que la fonction $R$ est croissante sur $[2, 10]$ et décroissante sur $[10, 20]$.
+	
+	Le maximum de la fonction $R$ est donc $R(10) = (5 \times 10 - 30)e^{-0,25 \times 10} = 20e^{-2,5} \approx 1,64169$, soit $1,64169 \times 10000 \approx 16417$ € à l’euro près.
+	
+	Le résultat est maximal pour la production et la vente de 10 centaines de litres soit 1000 litres.
+\end{enumerate}

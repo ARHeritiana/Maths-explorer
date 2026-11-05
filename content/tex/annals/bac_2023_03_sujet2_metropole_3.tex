@@ -1,0 +1,75 @@
+\medskip
+
+Dans l'espace rapporté à un repère orthonormé \Oijk, on considère :
+
+\begin{itemize}
+\item[$\bullet~~$]le plan $\mathcal{P}_1$ dont une équation cartésienne est $2x + y - z +2 = 0$,
+\item[$\bullet~~$]le plan $\mathcal{P}_2$ passant par le point B(1~;~1~;~2) et dont un vecteur normal est $\vect{n_2}\begin{pmatrix}1\\-1\\1\end{pmatrix}$.
+\end{itemize}
+
+\smallskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Donner les coordonnées d'un vecteur $\vect{n_1}$ normal au plan $\mathcal{P}_1$.
+		\item On rappelle que deux plans sont perpendiculaires si un vecteur normal à l'un des plans est orthogonal à un vecteur normal à l'autre plan.
+		
+Montrer que les plans $\mathcal{P}_1$ et $\mathcal{P}_2$ sont perpendiculaires. 
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Déterminer une équation cartésienne du plan $\mathcal{P}_2$.
+
+		\item On note $\Delta$ la droite dont une représentation paramétrique est : $\left\{\begin{array}{l c l}
+x&=&0\\y &=& -2 + t\\ z&=&\phantom{2+t}t
+\end{array}\right.,\quad t \in  \R$.
+
+Montrer que la droite $\Delta$ est l'intersection des plans $\mathcal{P}_1$ et $\mathcal{P}_2$.
+	\end{enumerate}
+On considère le point A(1~;~1~;~1) et on admet que le point A n'appartient ni à $\mathcal{P}_1$ ni à $\mathcal{P}_2$.
+
+On note H le projeté orthogonal du point A sur la droite $\Delta$.
+\item On rappelle que, d'après la question 2. b, la droite $\Delta$ est l'ensemble des points $M_t$ de coordonnées $(0~;~-2 + t~;~t)$, où $t$ désigne un nombre réel quelconque.
+	\begin{enumerate}
+		\item Montrer que, pour tout réel $t$,\: A$M_t = \sqrt{2t^2 - 8t + 11}$.
+		\item En déduire que AH $= \sqrt 3$.
+	\end{enumerate}
+\item On note $\mathcal{D}_1$ la droite orthogonale au plan $\mathcal{P}_1$ passant par le point A et H$_1$ le projeté orthogonal du point A sur le plan $\mathcal{P}_1$.
+	\begin{enumerate}
+		\item Déterminer une représentation paramétrique de la droite $\mathcal{D}_1$.
+		\item En déduire que le point H$_1$ a pour coordonnées $\left(- \dfrac13~;~\dfrac13~;~\dfrac53\right)$.
+	\end{enumerate}
+\end{enumerate}
+\begin{minipage}{0.48\linewidth}
+\begin{enumerate}[resume]
+\item Soit H$_2$ le projeté orthogonal de A sur le plan $\mathcal{P}_2$.
+
+On admet que H$_2$ a pour coordonnées $\left(\dfrac43~;~\dfrac23~;~\dfrac43\right)$
+et que H a pour coordonnées (0~;~0~;~2). 
+
+Sur le schéma ci-contre, les plans $\mathcal{P}_1$ et $\mathcal{P}_2$
+sont représentés, ainsi que les points A, H$_1$, H$_2$, H. 
+
+Montrer que AH$_1$HH$_2$ est un rectangle.
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.48\linewidth}
+\psset{unit=1cm}
+\begin{pspicture}(7.4,8.6)
+
+\pspolygon(0,2.7)(5.5,0.5)(7.2,4.3)(1.7,6.5)
+\psline(2.5,0)(2.5,4.7)(4.2,8.4)(4.2,5.3)
+\psline(1.8,0)(3.1,2.7)
+\psline[linestyle=dashed](3.1,2.7)(3.6,3.62)
+\psline[linestyle=dashed](4.2,5.3)(4.2,1.1)
+\psline(3.6,3.62)(5.6,8)
+\psline(4.2,1.1)(3.7,0)
+\pspolygon(3.1,2.7)(4.6,2.3)(4.6,3.4)(3.1,3.8)
+\uput[l](2,0.4){$\Delta$}\rput(0.4,2.8){$\mathcal{P}_2$}\rput(4,7.4){$\mathcal{P}_1$}
+\uput[dl](3.1,2.7){H}\uput[dr](4.6,2.3){H$_2$}\uput[ur](4.6,3.4){A}\uput[ul](3.1,3.8){H$_1$}
+\end{pspicture}
+\end{minipage}
+
+
+\bigskip

@@ -1,0 +1,47 @@
+\medskip
+
+\begin{enumerate}
+	\item La fonction $g$ est continue et dérivable. $\forall x \in \R$, $f'(x)=\np{1000}x^{999}+1$.
+	
+La fonction $g'$ est continue et dérivable. $\forall x \in \R$, $g''(x)=999\times \np{1000}x^{998}=\np{999000}x^{998}$.
+	
+	$\forall x \in \R$, $\np{999000}x^{998}\geqslant 0$ et $g''$ s'annule sans changer de signe sur $\R$.
+	
+La fonction $g$ est donc convexe sur $\R$. \hfill \fbox{\textbf{Réponse b}}
+	\item D'après la représentation graphique de $f'$, on peut affirmer que $f'(0)=1$. La pente de la tangente à $\mathcal{C}$ au point d'abscisse 0 est égale à 1. Toute droite ayant la même pente est donc parallèle à cette tangente. C'est le cas de la droite d'équation $y=x$. 
+	
+\hfill \fbox{\textbf{Réponse a}}
+	\item On considère la suite $\left(u_n\right)$ définie pour tout entier naturel $n$ par $u_n = \dfrac{(-1)^n}{n+1}$.
+	
+$\forall n \in \N$, $ -1\leqslant (-1)^n \leqslant 1$ donc $-\dfrac{1}{n+1} \leqslant u_n \leqslant \dfrac{1}{n+1}$.
+	
+Or $\forall n \in \N$, $n+1\geqslant 1$ donc $\dfrac{1}{n+1} \leqslant 1$ et $-\dfrac{1}{n+1} \geqslant -1$.
+	
+Donc  $\forall n \in \N$, $-1\leqslant u_n \leqslant 1$. La suite $(u_n)$ est donc bornée.
+	
+\hfill \fbox{\textbf{Réponse c}}
+	\item Soit $\left(v_n\right)$ une suite telle que $v_0 = k$ et $\forall n \in \N$, $v_n\times v_{n+1}<0$. Cette inégalité nous permet d'affirmer que $\forall n \in \N$,  deux termes consécutifs $v_n$ et $v_{n+1}$ sont de signes opposés. Donc les termes  $v_{n+1}$ et  $v_{n+2}$ le sont aussi. Donc on peut en déduire que $\forall n \in \N$, $v_n$ et $v_{n+2}$  sont de même signe.
+	
+Donc $v_0$, $v_2$, ..., $v_{2k}$, \: avec $k\in \N$ (tous les termes de rangs pairs), sont de même signe, donc du signe de $k$.
+	
+\hfill \fbox{\textbf{Réponse c}}
+	\item On considère la suite $\left(w_n\right)$ définie pour tout entier naturel $n$ par $w_{n+1} = 2w_n - 4\quad \text{et}\quad  w_2 = 8$.
+	
+Donc $\forall n \in \N$,  $w_n=\dfrac{w_{n+1}+4}{2}$.
+	
+$w_1=\dfrac{w_{2}+4}{2}=\dfrac{8+4}{2}=6$ et $w_0=\dfrac{w_{1}+4}{2}=\dfrac{6+4}{2}=5$ \hfill \fbox{\textbf{Réponse b}}
+	\item Il est facile de démontrer par récurrence que $\forall n \in \N$, $a_n > 0$ car $\dfrac{\e^n}{\e^n+1}> 0 $ et $a_0 > 0$.
+	
+$\forall n \in \N$, $\e^n <  \e^n+1$ donc $\dfrac{\e^n}{\e^n+1}< 1$ donc $\dfrac{\e^n}{\e^n+1} a_n< a_n$ donc $a_{n+1} < a_n$. La suite $(a_n)$ est donc strictement décroissante. \hfill \fbox{\textbf{Réponse b}}
+	
+	\item D'après l'énoncé, nous savons que le nombre de cellules double à chaque intervalle de temps écoulé. Cherchons le premier entier $n$ tel que $2^n\geqslant \np{4000}$. La fonction $x\mapsto \ln(x)$ est strictement croissante sur $\R_+^*$ donc 
+	
+$2^n\geqslant \np{4000}\iff \ln\left(2^n\right) \geqslant \ln(\np{4000})\iff n \times \ln(2) \geqslant \ln(\np{4000}) \iff n \geqslant \dfrac{\ln(\np{4000}) }{\ln(2)}$.
+	
+À la calculatrice : $\dfrac{\ln(\np{4000}) }{\ln(2)}\approx 11,97$ donc $n\geqslant 12.$
+	
+Il s'est donc écoulé 12 intervalles de temps pour que le nombre de cellules atteigne $\np{4000}$ en 4 heures. Chaque intervalle de temps est donc : $\dfrac{4\times 60}{12}= 20$ (min.).\hfill \fbox{\textbf{Réponse c}}
+	
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,61 @@
+\medskip
+
+Des pucerons envahissent une roseraie.
+
+On introduit alors des coccinelles, prédatrices des pucerons, à l'instant $t = 0$, et on s'intéresse à l'évolution du nombre de pucerons à partir de cet instant et sur une période de $20$ jours.
+
+\bigskip
+
+\textbf{Partie A :}
+
+\medskip
+
+Dans le repère ci-dessous, on a tracé :
+
+\begin{itemize}[label=\textbullet]
+\item La courbe $\mathcal{C}$ représentant le nombre de milliers de pucerons en fonction du nombre de jours écoulés depuis l'introduction des coccinelles.
+\item La tangente $T$ à la courbe $\mathcal{C}$ au point d'abscisse 0 passe par les points A(0~;~2,1) et B(2~;~4,3).
+\end{itemize}
+
+\begin{center}
+\psset{unit=0.6cm}
+\begin{pspicture}(-1,-0.75)(22,7)
+\psgrid[gridlabels=0pt,subgriddiv=5](0,0)(22,7)
+\psaxes[linewidth=1.25pt,labelFontSize=\displaystyle]{->}(0,0)(0,0)(22,7)
+\def\F{x 3 exp 0.003 mul x dup mul 0.12 mul sub 1.1 x mul add 2.1 add}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0}{20}{x 3 exp 0.003 mul x dup mul 0.12 mul sub 1.1 x mul add 2.1 add}
+\uput[ur](16,1.25){\red $\mathcal{C}$}\uput[u](20,0){\small $t$, nombre de jours}\uput[r](0,6.7){\small  $f(t)$ nombre de pucerons en milliers}
+
+\psline[linewidth=1.25pt]{->}(0,2.1)(2,4.3)
+\uput[ul](2,4.3){$T$}
+\end{pspicture}
+\end{center}
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer par lecture graphique le nombre de pucerons à l'instant où l'on introduit les coccinelles puis le nombre maximal de pucerons sur la période de $20$ jours.
+\item On assimile la vitesse de prolifération des pucerons à l'instant $t$ au nombre dérivé $f'(t)$.
+
+Déterminer graphiquement la vitesse de prolifération des pucerons à l'instant $t = 0$.
+\end{enumerate}
+
+\textbf{Partie B :}
+
+\medskip
+
+On modélise l'évolution du nombre de pucerons par la fonction $f$ définie, pour tout $t$ appartenant à l'intervalle [0~;~20], par:
+
+\[f(t) = 0,003t^3 - 0,12t^2 + 1,1t + 2,1\]
+
+où $t$ représente le nombre de jours écoulés depuis l'introduction des coccinelles et
+$f(t)$ le nombre de pucerons en milliers.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer $f'(t)$ pour tout $t$ appartenant à l'intervalle [0~;~20] où $f'$ désigne la
+dérivée de la fonction $f$.
+\item Dresser le tableau de signes de $f'(t)$ sur l'intervalle [0~;~20].
+\item En déduire le tableau des variations de la fonction $f$ sur l'intervalle [0~;~20]. Préciser les images des valeurs de $t$ apparaissant dans le tableau.
+\end{enumerate}

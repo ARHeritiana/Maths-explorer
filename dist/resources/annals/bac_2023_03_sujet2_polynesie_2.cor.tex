@@ -1,0 +1,150 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet2_polynesie_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\bigskip
+
+\begin{enumerate}
+\item  Le plan $\mathcal{P}_1$ a pour équation $5x+2y+4z=17$,  un vecteur normal à $\mathcal{P}_1$ est donc $\vect{n_1}=\begin{pmatrix} 5\\2\\4 \end{pmatrix}$. 
+
+De même le plan $\mathcal{P}_2$ a pour équation $10x+14y+3z=19$,  un vecteur normal à $\mathcal{P}_2$ est  $\vect{n_2}=\begin{pmatrix} 10\\14\\3 \end{pmatrix}$. 
+
+Il n'existe pas de réel $\lambda$ tel que $\vect{n_2}=\lambda \vect{n_1} \quad \left(\dfrac{10}{5}\neq\dfrac{14}{2}\right)$  donc les vecteurs $\vect{n_1}$ et $\vect{n_2}$ ne sont pas colinéaires, d'où les plans $\mathcal{P}_1$ et $\mathcal{P}_2$ ne sont pas parallèles.
+
+\item Les plans $\mathcal{P}_1$ et $\mathcal{P}_2$ ne sont pas parallèles,  ils sont donc sécants.
+
+Vérifions que la droite $\mathcal{D}$ est l'intersection des plans  $\mathcal{P}_1$ et $\mathcal{P}_2$.
+
+Soit $t$ un réel quelconque et soit $M_t$ le point de paramètre $t$ de la droite $\mathcal{D}$.
+
+$5x_{M_t}+2y_{M_t}+4z_{M_t}=5 (1+2t)+2\times (-t) +4 (3 - 2t)= 5+10t-2t+12-8t=17$ donc $M_t$ est aussi un point du plan $\mathcal{P}_1$.
+
+$10x_{M_t}+ 14y_{M_t}+ 3z_{M_t}=10 (1 + 2t)+14\times (- t) +3 (3 - 2t)= 10+20t-14t+9-6t=19$ donc $M_t$ est aussi un point du plan $\mathcal{P}_2$.
+
+$M_t$ appartient donc l'intersection de $\mathcal{P}_1$ et $\mathcal{P}_2$,  la droite $\mathcal{D}$ est donc bien  l'intersection des plans  $\mathcal{P}_1$ et $\mathcal{P}_2$.
+
+\item
+\begin{enumerate}
+\item   $5x_{\mathrm{A}}+2y_{\mathrm{A}}+4z_{\mathrm{A}}=5 \times 1 +2\times (-1) +4 \times (-1)= 5-2-4=-1 \neq 17$ donc le points A n'appartient pas au plan $\mathcal{P}_1$.
+	\item  A appartient à la droite $\mathcal{D}$ si et seulement si il existe un réel $t$ tel que : 
+	
+$\left\{\begin{array}{@{}l} x_{\mathrm{A}}=1+2t\\y_{\mathrm{A}}=-t\\z_{\mathrm{A}}=3-2t\end{array}\right. 	
+\iff \left\{\begin{array}{@{}l} 1=1+2t\\-1=-t\\-1=3-2t\end{array}\right. 	  
+\iff \left\{\begin{array}{@{}l} 0=2t\\1=t\\2t=4\end{array}\right. 	  
+\iff \left\{\begin{array}{@{}l} t=0\\t=1\\t=2\end{array}\right. $
+
+Ce système n'admet pas de solution donc le point A n'appartient donc pas à la droite $\mathcal{D}$.
+\end{enumerate}
+
+\item
+	\begin{enumerate}
+		\item  Soit $t$ un réel :
+
+$f(t)=\mathrm{A}M^2= {(x_M - x_\mathrm{A})^2+(y_M - y_\mathrm{A})^2+(z_M - z_\mathrm{A})^2} ={ (1+2t-1)^2+ (-t+1)^2+(3-2t+1)^2    }$
+
+$f(t) ={ (2t)^2+ (-t+1)^2+(4-2t)^2  } 
+={ 4t^2+ t^2-2t+1+16-16t+4t^2    }= 9t^2-18t+17$ 
+
+	\item La distance A$M$ est minimale si et seulement si la distance A$M^2$ est minimale c'est à dire $f(t)$ est minimale.
+
+	$f$ est un polynôme du second degré avec un coefficient dominant (9)  positif.  $f$ admet donc un minimum pour $t=\dfrac{-(-18)}{2\times 9} = \dfrac{18}{18}=1$.
+	
+	Le point de $\mathcal{D}$ qui correspond au paramètre $t=1$ est le point $M$ de coordonnées $(1+2\times 1~;~-1~;~3-2\times 1)$ c'est à dire $M(3~;~-1~;~1)$, ce qui est ce qu'il fallait démontrer.
+
+	\end{enumerate}
+
+\item Un vecteur directeur de la droite (AH) est le vecteur $\vect{\mathrm{AH}} \begin{pmatrix} x_\mathrm{H}-x_\mathrm{A}\\y_\mathrm{H}-y_\mathrm{A}\\z_\mathrm{H}-z_\mathrm{A} \end{pmatrix} = \begin{pmatrix} 3-1\\-1+1\\1+1\end{pmatrix}= \begin{pmatrix} 2\\0\\2\end{pmatrix}$
+
+D'après la représentation paramétrique de la droite $\mathcal{D}$,  un vecteur directeur de la droite $\mathcal{D}$ est $\vect{u}\begin{pmatrix}2\\-1\\-2 \end{pmatrix}$ .
+
+Comme le repère est orthonormé,  on peut calculer les produits scalaires à l'aide des coordonnées :
+
+$ \vect{u}\cdot \vect{\mathrm{AH}} = 2\times 2 - 1 \times 0 + 2 \times (-2) = 4 + 0 - 4 = 0$ : $\vect{u}$ est orthogonal à $ \vect{\mathrm{AH}}$.
+
+Les droites (AH) et $\mathcal{D}$ sont donc orthogonales.
+
+De plus, d'après la question précédente, le point H appartient à la droite $\mathcal{D}$, il appartient aussi à la droite (AH), ces deux droites sont donc sécantes au point H, elles sont donc perpendiculaires.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

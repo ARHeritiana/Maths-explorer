@@ -1,0 +1,144 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_01_sujet0_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+L'exercice est constitué de deux parties indépendantes.
+
+\medskip
+
+\noindent {\Large \textbf{Partie 1}}
+
+\medskip
+
+On considère l'équation différentielle :
+\[(E): y' + y = \e^{-x}\]
+
+\begin{enumerate}
+\item Soit $u$ la fonction définie sur $\R$ par $u(x) = x \e^{-x}$.
+
+Vérifier que la fonction $u$ est une solution de l'équation différentielle $(E)$.
+\item On considère l'équation différentielle $\left(E'\right): y' + y = 0$.
+
+Résoudre l'équation différentielle $\left(E'\right)$ sur $\R$.
+
+\item En déduire toutes les solutions de l'équation différentielle $(E)$ sur $\R$.
+
+\item Déterminer l'unique solution $g$ de l'équation différentielle $(E)$ telle que $g(0) = 2$.
+\end{enumerate}
+
+
+\medskip
+
+\noindent {\Large \textbf{Partie 2}}
+
+\medskip
+
+Dans cette partie, $k$ est un nombre réel fixé que l'on cherche à déterminer.
+
+On considère la fonction $f_{k}$ définie sur $\R$ par :
+\[f_{k}(x) = (x + k) \e^{-x}.\]
+
+Soit $h$ la fonction définie sur $\R$ par
+\[h(x) = \e^{-x}.\]
+
+On note $C_{k}$ la courbe représentative de la fonction $f_{k}$ dans un repère orthogonal et $C$ la courbe représentative de la fonction $h$.
+
+On a représenté sur le graphique en fin d'exercice les courbes $C_{k}$ et $C$ sans indiquer les unités sur les axes ni le nom des courbes.
+
+	\begin{enumerate}
+		\item Sur le graphique en fin d'exercice à rendre avec la copie, l'une des courbes est en traits pointillés, l'autre est en trait plein. Laquelle est la courbe $C$ ?
+
+		\item En expliquant la démarche utilisée, déterminer la valeur du nombre réel $k$ et placer sur le graphique ci-dessous avec la copie l'unité sur chacun des axes du graphique.
+	\end{enumerate}
+
+\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[x = {20mm},y = {20mm}, xmin = -2.5, xmax = 4.5, ymin = -0.5, ymax = 3,
+			xtick = \empty, ytick = \empty,
+			grid = major, axis lines = center]
+			\addplot [line width = 1.2pt,color = red,smooth,samples = 100,domain = -2.5:4.5 ]{exp(-x)};
+			\addplot [line width = 1.2pt,color = teal,dashed,smooth,samples = 100,domain = -2.5:4.5 ]{(x + 2)*exp(-x)};
+		\end{axis}
+	\end{tikzpicture}
+\end{center}
+
+\end{document}

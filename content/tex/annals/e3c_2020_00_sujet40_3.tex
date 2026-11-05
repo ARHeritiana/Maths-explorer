@@ -1,0 +1,37 @@
+\medskip
+ 
+À l'issue d'une étude conduite pendant plusieurs années, on modélise l'évolution du prix du m$^2$ d'un appartement neuf dans une ville française de la manière suivante:
+
+À partir d'un prix de \np{4200}~\euro{} le m$^2$ en 2019, on applique chaque année une augmentation annuelle de 3\,\%.
+
+\medskip
+
+\begin{enumerate}
+\item Avec ce modèle, montrer que le prix du m$^2$ d'un appartement neuf dans cette ville en 2021 serait de \np{4455,78}~\euro.
+\item  On considère la suite de terme général $u_n$ qui permet d'estimer, avec ce modèle, le prix en euro du m$^2$ d'un appartement neuf l'année $2019 + n$. On a donc $u_0 = \np{4200}$.
+	\begin{enumerate}
+		\item Quelle est la nature de la suite $\left(u_n\right)$ ? En préciser la raison.
+		\item En déduire l'expression du terme général $u_n$ en fonction de $n$, pour tout entier naturel~$n$.
+		\item Selon ce modèle, pourra-t-on acheter en 2024, un appartement de $40$~m$^2$ si l'on dispose d'une somme de \np{200000}~\euro ?
+	\end{enumerate}
+\item  On définit, en langage Python, la fonction seuil ci-dessous.
+
+\begin{center}
+\fbox{
+\begin{tabularx}{0.5\linewidth}{c X}
+1& \texttt{def seuil():}\\
+2&\qquad \texttt{u = 4200} \\
+3&\qquad \texttt{n = 0 }\\
+4&\qquad \texttt{while u <= 8000 : }\\
+5&\qquad \qquad \texttt{u = \ldots} \\
+6&\qquad \qquad \texttt{n = n+1 }\\
+7&\qquad \texttt{return \ldots}\\% \hline
+\end{tabularx}
+}
+\end{center}
+ 
+Recopier et compléter les lignes 5 et 7 de sorte que cette fonction renvoie le nombre d'années nécessaires pour que, selon ce modèle, le prix du m$^2$ d'un appartement neuf dépasse \np{8000}~\euro.
+
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,163 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet18_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{1.}
+	
+	On considère la fonction \(f\) définie par :
+	\[
+	f(x) = x^3 + 3x^2 - 9x - 1.
+	\]
+	
+	\subsubsection*{a.}
+	
+	On a :
+	\[
+	f'(x) = 3x^2 + 6x - 9 = 3(x^2 + 2x - 3).
+	\]
+	
+	\subsubsection*{b.}
+	
+	Le signe de \(f'(x)\) est celui du trinôme \(x^2 + 2x - 3\).
+	
+	Pour celui-ci :
+	\[
+	\Delta = 2^2 - 4 \times 1 \times (-3) = 4 + 12 = 16 = 4^2 > 0.
+	\]
+	
+	Le trinôme a donc deux racines :
+	\[
+	x_1 = \dfrac{-2 + 4}{2} = 1 \quad \text{et} \quad x_2 = \dfrac{-2 - 4}{2} = -3.
+	\]
+	
+	On sait que ce trinôme est positif sauf sur l'intervalle \(\left] -3 ; 1 \right[\) où il est négatif.
+	
+	Il en résulte que la fonction \(f\) est croissante sauf sur l'intervalle \(\left] -3 ; 1 \right[\) où elle est décroissante.
+	
+	Avec \(f(-3) = 26\) et \(f(1) = -6\), on a le tableau de variations :
+	
+	\begin{center}
+	\begin{tikzpicture}[double distance=2pt]
+		\tkzTabInit{$x$/1,$f'(x)$/1,$f(x)$/3}{$-\infty$,$-3$,$1$, $+\infty$}
+		\tkzTabLine{,+,z,-,z, +}
+		\tkzTabVar{-/,+/$26$,-/$-6$,+/}
+	\end{tikzpicture}
+\end{center} 
+
+	
+	\subsubsection*{c.}
+	
+	On sait qu'une équation réduite de la tangente à \(C_f\) au point d'abscisse \(-1\) est :
+	\[
+	y - f(-1) = f'(-1)(x - (-1)).
+	\]
+	
+	Avec \(f(-1) = 10\) et \(f'(-1) = -12\), l'équation devient :
+	\[
+	y - 10 = -12(x + 1) \quad \Leftrightarrow \quad y = -12x - 12 + 10 \quad \Leftrightarrow \quad y = -12x - 2.
+	\]
+	
+	\subsection*{2.}
+	
+	\subsubsection*{a.}
+	
+	La parabole a sa concavité tournée vers le haut : on a donc \(a > 0\) (on rappelle que \(a \neq 0\)).
+	
+	La parabole n'a pas de point commun avec l'axe des abscisses, donc le trinôme n'a pas de racines : \(\Delta < 0\).
+	
+	\subsubsection*{b.}
+	
+	Un point est commun si et seulement si ses coordonnées vérifient les équations des deux courbes ; il faut donc résoudre l'équation :
+	\[
+	x^3 + 3x^2 - 9x - 1 = 10x^2 + 8x + 8 \quad \text{ou} \quad x^3 - 7x^2 - 17x - 9 = 0.
+	\]
+	
+	Ceci n'est pas possible, mais sur la figure, on voit que les deux courbes ont un point commun d'abscisse \(-1\) :
+	\[
+	f(-1) = 10 \quad \text{et} \quad g(-1) = 10 - 8 + 8 = 10.
+	\]
+	
+	De plus, \(f'(-1) = -12\) et comme \(g'(x) = 20x + 8\), on a \(g'(-1) = -20 + 8 = -12\).
+	
+	Au point d'abscisse \(-1\), les deux fonctions ont le même nombre dérivé, donc la même tangente.
+
+\end{document}

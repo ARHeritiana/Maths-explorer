@@ -1,0 +1,277 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet2_metropole_devoile_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Les parties {\rm A} et {\rm B} sont indépendantes.}
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item ~
+
+\begin{minipage}{0.55\linewidth}
+	\begin{enumerate}
+		\item Reproduire l'arbre ci-contre et compléter les pointillés.
+		\item 
+		On a $p(R \cap F) = p(R) \times p_R(F) =$
+
+$ 0,6 \times 0,47 = 0,282$.
+	\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}
+\begin{center}
+\pstree[treemode=R,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$R~$}\taput{0,6}}
+	{
+	\TR{$F$} \taput{0,47}
+	\TR{$\overline{F}$} \tbput{0,53}
+	}
+\pstree{\TR{$\overline{R~}$}\tbput{0,4}}
+	{\TR{$F$} \taput{\ldots}
+	\TR{$\overline{F}$} \tbput{\ldots}
+	}
+}
+\end{center}
+\end{minipage}
+		\item 
+
+
+
+Il faut trouver $p_{\overline{R}}(F)$
+
+D'après la loi des probabilités totales, on a :
+
+$p(F) = p(F \cap R) + p\left(F \cap \overline{R}\right) = p(R \cap F) + p\left(\overline{R} \cap F\right)$, soit :
+
+$0,38 = 0,282 + p\left(\overline{R} \cap F\right)$, d'où $p\left(\overline{R} \cap F\right) = 0,38 - 0,282 = 0,098$.
+
+Puis $p_{\overline{R}}(F) = \dfrac{\overline{R} \cap F}{\overline{R}} = \dfrac{0,098}{0,4} = 0,0245$.
+		\item 
+		On a $p_F(R) = \dfrac{p(F \cap R)}{p(F)} = \dfrac{0,282}{0,38} \approx 0,74$, soit 74\,\%. L'affirmation est fausse.
+\item 
+
+
+
+
+
+	\begin{enumerate}
+		\item 
+	Le choix des 20 clients s'effectue de façon indépendante  et chaque tirage correspond à un choix de probabilité 0,38, la variable aléatoire $X$ donnant le nombre de clients ayant acheté la carte de fidélité est une loi binomiale de paramètres $n = 20, \:p = 0,38$.
+		\item 
+		On a $p(X \leqslant 4) \approx \np{0,0726}$, donc $p(X \geqslant 5) \approx 1 - \np{0,0726}$ soit environ \np{0,9273} soit 0,927 au millième près.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+La variable aléatoire $X_2$ suit la loi binomiale de paramètres $n=\np{1000}$ et $p=0,47$ donc son espérance $E(X_2)$ est égale à $np=\np{1000}\times 0,47=470$.
+
+Cela signifie qu'en moyenne, sur un échantillon de \np{1000} clients réguliers, il y en aura $470$ qui ont acheté la carte de fidélité.
+\end{enumerate}
+
+On note $Y = Y_1 + Y_2$ la variable aléatoire égale au total général, en euros, des montants offerts (bon d'achat et prime de fidélité) aux \np{1000} clients. On admet que les variables aléatoires $Y_1$ et $Y_2$ sont indépendantes.
+
+On note $Z$ la variable aléatoire définie par $Z = \dfrac{Y}{\np{1000}}$.
+
+\begin{enumerate}[resume]
+\item 
+La variable $Z$ représente la moyenne par client des montants offerts aux \np{1000} clients.
+
+\begin{list}{\textbullet}{}
+\item On utilise la linéarité de l'espérance.
+
+$Z=\dfrac{Y}{\np{1000}}$ donc  $E(Z)=\dfrac{E(Y)}{\np{1000}}$, et $Y=Y_1+Y_2$ donc $E(Y)=E(Y_1)+E(Y_2)$.
+
+De plus, $Y_2=50X_2$ donc $E(Y_2)=50E(X_2) = 50\times 470 = \np{23500}$
+
+On sait que $E(Y_1)=\np{30000}$.
+
+On en déduit que:
+$E(Y)=E(Y_1)+E(Y_2) = \np{30000} + \np{23500} = \np{53500}$,
+et donc que
+$E(Z)=\dfrac{E(Y)}{\np{1000}} = \dfrac{\np{53500}}{\np{1000}} = 53,5$.
+
+\item Les variables étant indépendantes, on va utiliser l'additivité de la variance.
+
+$V(Y)= V(Y_1+Y_2) = V(Y_1) + V(Y_2)$, 
+$V(Y_2) = V(50X_2) = 50^2V(X_2) = \np{2500}V(X_2)$, et
+$V(Z)= V\left (\dfrac{Y}{\np{1000}}\right ) = \dfrac{V(Y)}{\np{1000}^2}= \dfrac{V(Y)}{10^6}$
+
+La variable aléatoire $X_2$ suit la loi binomiale de paramètres $n=\np{1000}$ et $p=0,47$ donc sa variance $V(X_2)$ est égale à  $np(1-p) = \np{1000}\times 0,47 \times (1-0,47) = 249,1$.
+
+On en déduit que $V(Y_2) = \np{2500}V(X_2) = \np{2500}\times 249,1 = \np{622750}$.
+
+On sait que $V(Y_1)=\np{100000}$ donc\\
+$V(Y) = V(Y_1) + V(Y_2) = \np{100000} + \np{622750} = \np{722750}$.
+
+$V(Z)=\dfrac{V(Y)}{10^6} = \dfrac{\np{722750}}{10^6} = \np{0,72275}$
+\end{list}
+
+
+
+\item La variable aléatoire $Z$ a pour espérance $E(Z)=53,5$ et pour variance $V(Z)=\np{0,72275}$ donc, d'après l'inégalité de Bienaymé-Tchebychev, on a:
+
+pour tout $\delta\in\, \left ]0\;;\;+\infty\strut \right [$, $P\left ( \left |Z-E(Z)\strut \right | \geqslant \delta \right ) \leqslant \dfrac{V(Z)}{\delta^2}$.
+
+$\begin{aligned}
+51,7 < Z < 55,3 & \iff 53,5-1,8 < Z < 53,5+1,8 \iff -1,8 < Z - 53,5 < 1,8 \\
+ & \iff \left | Z-53,5 \strut \right | <1,8
+ \end{aligned}$
+
+En remplaçant $E(Z)$ et $V(Z)$ par leurs valeurs, et en prenant $\delta=1,8$, l'inégalité de Bienaymé-Tchebychev devient:
+$P\left ( \left |Z-53,5\strut \right | \geqslant 1,8 \right ) \leqslant \dfrac{\np{0,72275}}{1,8^2}$
+
+En considérant l'évènement contraire, on a:
+$P\left ( \left |Z-53,5\strut \right | < 1,8 \right ) > 1-  \dfrac{\np{0,72275}}{1,8^2}$.
+
+$1- \dfrac{\np{0,72275}}{1,8^2} \approx 0,777$
+
+Donc la probabilité que $Z$ soit strictement compris entre $51,7$ euros et $55,3$ euros est supérieure à $0,75$.
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bigskip
+
+\end{document}

@@ -1,0 +1,132 @@
+\medskip
+
+Dans l'espace rapporté à un repère orthonormé \Oijk, on considère les points
+
+\[\text{A}(-1~;~-1~;~3),\qquad \text{B}(1~;~1~;~2),\qquad  \text{C}(1~;~-1~;~7)\]
+
+On considère également la droite $\Delta$ passant par les points D$(-1~;~6~;~8)$ et E$(11~;~- 9~;~2)$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+		
+
+
+
+
+
+Avec $\vect{\text{DE}}\begin{pmatrix}12\\-15\\-6\end{pmatrix}$, on peut prendre comme vecteur directeur de $\Delta$:
+$\dfrac13\vect{\text{DE}}\begin{pmatrix}4\\-5\\-2\end{pmatrix}$.
+
+On a  $M(x~;~y~;~z) \in (\text{DE}) \iff \text{il existe } t \in \R, \: \text{tel que } \: \vect{\text{D}M} = t \dfrac13\vect{\text{DE}}$, soit 
+
+\[\left\{\begin{array}{l c r}
+x + 1 &=& 4t\\
+y - 6 &=&-5t\\
+z - 8 &=& -2t
+\end{array}\right. \quad\text{avec}\: t \in \R
+\iff 
+\left\{\begin{array}{l c l}
+x &=& -1 + 4t\\
+y &=& \phantom{-}6 - 5t \\
+z &=& \phantom{-}8 - 2t
+\end{array}\right. \quad\text{avec}\: t \in \R\]
+		\item La droite $\Delta'$ est parallèle à $\Delta$ donc elle a les mêmes vecteurs directeurs que $\Delta$. De plus, elle passe par l'origine O du repère donc elle a pour représentation paramétrique:
+
+$\left\{\begin{array}{l !{=} r}
+x&0+4t\\
+y&0-5t\\
+z& 0-2t
+\end{array}\right. \quad\text{avec}\: t \in \R$
+soit
+$\left\{\begin{array}{l !{=} r}
+x&4t\\
+y&-5t\\
+z& -2t
+\end{array}\right. \quad\text{avec}\: t \in \R$
+
+		\item 
+		F$(1,36~;~-1,7~;~-0,7) \in\Delta' \iff \left\{\begin{array}{l c l}
+1,36&=&\phantom{-}4t\\
+-1,7&=&-5t \quad\text{avec}\: t \in \R\\
+-0,7&=& -2t
+\end{array}\right.$
+
+Les deux premières équations donnent $t = 0,34$ et la dernière $t = 0,35$. \\
+Donc F $\notin \Delta$.
+	\end{enumerate}	
+\item
+	\begin{enumerate}
+		\item 
+		On a $\vect{\text{AB}}\begin{pmatrix}2\\2\\-1\end{pmatrix}$ et $\vect{\text{AC}}\begin{pmatrix}2\\0\\4\end{pmatrix}$ : ces deux vecteurs ne sont manifestement pas colinéaires, donc les trois points A, B et C définissent un plan.
+		\item 
+On a $\dfrac13\vect{\text{DE}} \cdot \vect{\text{AB}} = 8 - 10 + 2 = 0$ ;
+
+De même $\dfrac13\vect{\text{DE}} \cdot \vect{\text{AC}} = 8 + 0 - 8 = 0$.
+
+Donc $\vect{\text{DE}}$ est orthogonal à deux vecteurs non colinéaires du plan (ABC) ; il est normal à ce plan.
+
+		\item 
+		
+D'après la question précédente on sait que :
+
+$M(x~;~y~;~z) \in (\text{ABC}) \iff 4x - 5y - 2z + d = 0$ avec $d \in \R$
+
+Or A$(- 1~;~-1~;~3) \in (\text{ABC})$ donc $4\times (-1) - 5\times (-1)  - 2\times 3  + d = 0$ avec $d \in \R$, soit $- 5 + d = 0 \iff d = 5$.
+
+Conclusion : $M(x~;~y~;~z) \in (\text{ABC}) \iff 4x - 5y - 2z + 5 = 0$.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item 
+		G$(7~;~-4~;~4) \in \Delta \iff \left\{\begin{array}{r c l}
+7 &=& -1 + 4t\\
+-4 &=& \phantom{-}6 - 5t \quad\text{avec}\: t \in \R\\
+4 &=& \phantom{-}8 - 2t
+\end{array}\right.$
+
+Ces trois équations ont pour solution $t = 2$, donc G$(7~;~-4~;~4) \in \Delta$.
+		\item 
+Le point H appartient à la droite $\Delta$ et au plan (ABC). Donc ses coordonnées $x,\,y,\:z$ vérifient le système :
+
+$\left\{\begin{array}{l c l}
+x &=& -1 + 4t\\
+y &=& \phantom{-}6 - 5t \quad\text{avec}\: t \in \R\\
+z &=& \phantom{-}8 - 2t\\
+4x - 5y - 2z + 5 &=& 0
+\end{array}\right.$
+
+En replaçant $x,\:y,\: z$ par leurs valeurs en fonction de $t$ dans la dernière équation, on obtient :
+
+$4(- 1 + 4t) - 5(6 - 5t) - 2(8 - 2t) + 5 = 0\iff -4 + 16t - 30 + 25t - 16 + 4t + 5 = 0\iff 45t -45 = 0 \iff 45t = 45 \iff t = 1$.
+
+Les coordonnées de H sont donc $(-1 + 4~;~6 - 5~;~8 - 2)$ soit H(3~;~1~;~6).
+		\item 
+		
+		La distance du point G au plan (ABC) est donc égale à GH.
+		
+		Or GH$^2 = (3 - 7)^2 + (1 + 4)^2 + (6 - 4)^2 = 16 + 25 + 4 = 45$, d'où \\
+		GH $= \sqrt{45} = \sqrt{9 \times 5} = \sqrt{9} \sqrt{5} = 3\sqrt{5}$.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item 
+D'après la question \textbf{2. a.}, on a $\vect{\text{AB}} \cdot \vect{\text{AC}}  = 2 \times 2 + 2 \times 0 + 4 \times (- 1) = 4 - 4 = 0$ : les vecteurs $\vect{\text{AB}} $ et  $\vect{\text{AC}}$ sont orthogonaux, donc les droites (AB) et (AC) sont perpendiculaires : le triangle ABC est rectangle en A.
+
+		\item 
+En prenant comme base le triangle ABC, la hauteur correspondante est GH, donc :
+
+$V = \dfrac13 \times \mathcal{A}(\text{ABC}) \times \text{GH} = \dfrac13 \times \dfrac12 \times \text{AB} \times \text{AC}  \times \text{GH}$.
+
+On a AB$^2 = 2^2 + 2^2 + (- 1)^2 = 4 + 4 + 1 = 9$, donc AB $= 3$ ;
+
+AC$^2 = 2^2 + 0^2 + 4^2 = 4 + 16 = 20$, donc AC $ = \sqrt{20} = \sqrt{4 \times 5} = 2\sqrt{5}$.
+
+Donc $V = \dfrac13 \times \dfrac12 \times 3\times 2\sqrt{5}\times 3\sqrt{5} = 15$.
+		
+
+	\end{enumerate}
+\end{enumerate}

@@ -1,0 +1,172 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_09_sujet1_ameriquesud_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+\item Entre 1998 et 2020, en France \np{18221965} accouchements ont été recensés, parmi lesquels
+\np{293898} ont donné naissance à des jumeaux et \np{4921} ont donné naissance à au moins trois enfants.
+	\begin{enumerate}
+		\item Avec une précision de 0,1\,\% calculer parmi tous les accouchements recensés, le pourcentage d'accouchements donnant naissance à des jumeaux sur la période 1998-2020.
+		\item Vérifier que le pourcentage d'accouchements qui ont donné naissance à au moins trois enfants est inférieur à 0,1\,\%.
+\end{enumerate}
+\end{enumerate}
+
+On considère alors que ce pourcentage est négligeable.
+
+On appelle accouchement ordinaire, un accouchement donnant naissance à un seul enfant.
+
+On appelle accouchement double, un accouchement donnant naissance à exactement deux enfants.
+
+On considère dans la suite de l'exercice qu'un accouchement est soit ordinaire, soit double.
+
+La probabilité d'un accouchement ordinaire est égale à $0,984$ et celle d'un accouchement double est alors égale à $0,016$.
+
+Les probabilités calculées dans la suite seront arrondies au millième.
+
+\begin{enumerate}[resume]
+\item On admet qu'un jour donné dans une maternité, on réalise $n$ accouchements.
+
+On considère que ces $n$ accouchements sont indépendants les uns des autres.
+
+On note $X$ la variable aléatoire qui donne le nombre d'accouchements doubles pratiqués ce
+jour.
+	\begin{enumerate}
+		\item Dans le cas où $n =  20$, préciser la loi de probabilité suivie par la variable aléatoire $X$ et calculer la probabilité qu'on réalise exactement un accouchement double.
+		\item Par la méthode de votre choix que vous expliciterez, déterminer la plus petite valeur de $n$ telle que $P(X \geqslant 1) \geqslant  0,99$.
+
+Interpréter le résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\item Dans cette maternité, parmi les naissances double, on estime qu'il y a 30\,\% de jumeaux monozygotes (appelés \og  vrais jumeaux \fg{}  qui sont obligatoirement de même sexe : deux garçons ou deux filles) et donc 70\,\% de jumeaux dizygotes (appelés \og  faux jumeaux \fg, qui peuvent être de sexes différents: deux garçons, deux filles ou un garçon et une fille).
+
+Dans le cas de naissances doubles, on admet que, comme pour les naissances ordinaires, la probabilité d'être une fille à la naissance est égale à $0,49$ et que celle d'être un garçon à la naissance est égale à $0,51$.
+
+Dans le cas d'une naissance double de jumeaux dizygotes, on admet aussi que le sexe du
+second nouveau-né des jumeaux est indépendant du sexe du premier nouveau-né.
+
+On choisit au hasard un accouchement double réalisé dans cette maternité et on considère les évènements suivants :
+
+\begin{itemize}
+\item[$\bullet~~$]$M$ : \og  les jumeaux sont monozygotes \fg{}  ;
+\item[$\bullet~~$]$F_1$ : \og le premier nouveau-né est une fille \fg{} ;
+\item[$\bullet~~$]$F_2$ : \og le second nouveau-né est une fille \fg.
+\end{itemize}
+
+\emph{On notera $P(A)$ la probabilité de l'évènement $A$ et $\overline{A}$ l'évènement contraire de $A$.}
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$M$~~}}
+	{\pstree{\TR{$F_1$}}
+		{\TR{$F_2$}	
+		}
+	\pstree{\TR{$\overline{F_1}$~}}
+		{\TR{$\overline{F_2}$}	
+		}
+	}
+\pstree{\TR{$\overline{M}$~~}}
+	{\pstree{\TR{$F_{1}$~}}
+		{\TR{$F_2$}
+		\TR{$\overline{F_2}$}
+		}
+	\pstree{\TR{$\overline{F_1}$~}}
+		{\TR{$F_2$}
+		\TR{$\overline{F_2}$}
+		}
+	}
+}
+\end{center}
+\smallskip
+
+	\begin{enumerate}
+		\item Recopier puis compléter l'arbre pondéré ci-dessus.
+		\item Montrer que la probabilité que les deux nouveaux-nés soient des filles est \np{0,31507}.
+		\item Les deux nouveaux-nés sont des jumelles. Calculer la probabilité qu'elles soient monozygotes.
+	\end{enumerate}
+\end{enumerate}
+
+
+
+\bigskip
+
+\end{document}

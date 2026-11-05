@@ -1,0 +1,64 @@
+\medskip
+
+\begin{enumerate}
+\item Déterminons les coordonnées des vecteurs $\vect{AB}$, $\vect{AC}$ et $\vect{AD}$. Avec $A(3~;~-2~;~2)$, $B(6~;~1~;~5)$, $C(6~;~-2~;~-1)$ et $D(0~;~4~;~-1)$, on obtient : 
+	\(\overrightarrow{AB}\begin{pmatrix}3\\3\\3\end{pmatrix}\) \quad \(\overrightarrow{AC}\begin{pmatrix}3\\0\\-3\end{pmatrix}\) \quad \(\overrightarrow{AD}\begin{pmatrix}-3\\6\\-3\end{pmatrix}\).
+	
+Pour que les points $A$, $B$, $C$ et $D$ soient coplanaires, il faut que (par exemple) le vecteur $\vect{AD}$ soit une combinaison linéaires des vecteurs $\vect{AB}$ et $\vect{AC}$. Existe-t-il un couple de réels $(a~;~b)$ tel que $\vect{AD}=a\vect{AB}+b\vect{AB}$ ? Cette égalité vectorielle se traduit par le système suivant :
+	
+$\left\{\begin{array}{l c l} 3a+3b&=&-3\\3a &=& 6\\3a-3b&=&-3	\end{array}\right. \iff \left\{\begin{array}{l c l} a+b&=&-1\\a &=& 2\\a-b&=&-1	\end{array}\right.\iff \left\{\begin{array}{l c l} b&=&-3\\a &=& 2\\-b&=&-3 \end{array}\right. \iff \left\{\begin{array}{l c l} b&=&-3\\a &=& 2\\b&=&3	\end{array}\right.$
+	
+C'est impossible. Donc le vecteur $\vect{AD}$ ne peut être écrit comme une combinaison linéaire des vecteurs $\vect{AB}$ et $\vect{AC}$. Donc les points $A$, $B$, $C$ et $D$ ne sont pas coplanaires.
+	\item Calculons $\vect{AB}.\vect{AC}$ : $\vect{AB}.\vect{AC}=3\times3+3\times 0+ 3\times (-3) = 9 - 9 = 0$. Donc $\vect{AB}\perp \vect{AC}$.
+	
+Le triangle $ABC$ est rectangle est rectangle en $A$.
+\item Calculons $\vect{AD}.\vect{AB}$ et $\vect{AD}.\vect{AC}$ :
+
+$\vect{AD} \cdot \vect{AB}= (-3)\times 3+6\times 3 + (-3)\times 3 = - 9+18-9=0$
+
+$\vect{AD} \cdot \vect{AC}= (-3)\times 3+6\times 0 + (-3)\times (-3)=-9+9=0$
+
+Donc le vecteur $\vect{AD}$ est orthogonal aux vecteurs $\vect{AB}$ et $\vect{AC}$, donc il est aussi orthogonal à toute combinaison linéaire des vecteurs $\vect{AB}$ et $\vect{AC}$, donc orthogonal à tout vecteur du plan $(ABC)$.
+	\item Les questions précédentes permettent d'affirmer que le point $A$ est le projeté orthogonal du point $D$ sur le plan $(ABC)$. Donc $\mathcal{V}_{ABCD} = \dfrac13 \mathcal{A}_{ABC} \times AD$.
+	
+$\lVert\vect{AD}\rVert=\sqrt{(-3)^2+6^2+(-3)^2}=\sqrt{54}=3\sqrt{6}$
+
+$\lVert\vect{AB}\rVert=\sqrt{3^2+3^2+3^2}=\sqrt{27}=3\sqrt{3}$
+
+$\lVert\vect{AC}\rVert=\sqrt{(-3)^2+0^2+(-3)^2}=\sqrt{18}=3\sqrt{2}$
+	
+	Donc $\mathcal{A}_{ABC}=\dfrac{1}{2}\times AB\times AC=\dfrac{1}{2} \times 3\sqrt{3} \times 3\sqrt{2}=\dfrac{9\sqrt{6}}{2}$
+	
+	Donc $\mathcal{V}_{ABCD}=\dfrac13 \times \dfrac{9\sqrt{6}}{2} \times 3\sqrt{6}= 27 $ unités de volume.
+\item Soit $H(5~;~0~;~1)$.
+	\begin{enumerate}
+		\item Les coordonnées des vecteurs $\vect{BH}$, $\vect{BC}$ et $\vect{BD}$ sont :
+
+\(\overrightarrow{BH}\begin{pmatrix}-1\\-1\\-4\end{pmatrix}\) \quad \(\overrightarrow{BC}\begin{pmatrix}0\\- 3\\- 6\end{pmatrix}\) \quad \(\overrightarrow{BD}\begin{pmatrix}- 6\\3\\- 6\end{pmatrix}\).
+
+Existe-t-il un couple de réels $(\alpha~;~\beta)$ tel que $\vect{BH}=\alpha\vect{BC}+\beta\vect{BD}$ ? Cette égalité vectorielle est équivalente et permet d'écrire le système suivant :
+
+$\left\{\begin{array}{l c l} -6\beta&=&-1\\-3\alpha+3\beta &=& -1\\-6\alpha-6\beta&=&-4	\end{array}\right. \iff 
+\left\{\begin{array}{l c l} \beta&=&\dfrac16\\-3\alpha &=& -1-\dfrac36\\-6\alpha&=&-4+1	\end{array}\right. \iff
+ \left\{\begin{array}{l c l} \beta&=&\dfrac16\\-3\alpha &=& -\dfrac32\\6\alpha&=&-3	\end{array}\right.$
+		 
+		 $\iff \left\{\begin{array}{l c l} \beta&=&\dfrac16\\\alpha &=& \dfrac12\end{array}\right. $. \quad Donc $\vect{BH}=\dfrac12 \vect{BC}+\dfrac16 \vect{BD}$.
+		\item D'après la question précédente, Le vecteur $\vect{BH}$ peut s'écrire comme une combinaison linéaire de deux vecteurs non-colinéaires dur plan $(BCD)$. On peut donc affirmer que le point $H$ appartient au plan $(BCD)$. Montrons maintenant que le vecteur $\vect{AH}$ est normal au plan $(BCD)$, c'est-a-dire que le vecteur $\vect{AH}$ est orthogonal à une base du plan $(BCD)$, c'est-a-dire orthogonal aux vecteurs $\vect{BC}$ et $\vect{BD}$.
+		
+		On a : \(\overrightarrow{AH}\begin{pmatrix}2\\2\\-1\end{pmatrix}\) \quad \(\overrightarrow{BC}\begin{pmatrix}0\\-3\\6\end{pmatrix}\) \quad \(\overrightarrow{BD}\begin{pmatrix}-6\\3\\-6\end{pmatrix}\).
+		
+		$\vect{AH}.\vect{BC}= 2\times 0+2\times (-3)+(-1)\times (-6)=-6+6=0$
+		
+		$\vect{AH}.\vect{DB}= 2\times (-6)+2\times 3+(-1)\times (-6)=-12+6+6=0$
+		
+		Donc $\vect{AH}$ est orthogonal aux vecteurs $\vect{BC}$ et $\vect{BD}$, donc à toute combinaison linéaire de ces deux vecteurs, donc à tout vecteur du plan $(BCD)$. Donc $H$ est le projeté orthogonal de $A$ sur le plan $(BCD)$.
+		\item La distance du point $A$ au plan $(BCD)$ est égale à $\lVert\vect{AH}\rVert$ :
+		
+		$\lVert\vect{AH}\rVert=\sqrt{2^2+2^2+(-1)^2}=\sqrt{9}=3$ unités de longueur.
+\end{enumerate}
+\item $\mathcal{V}_{ABCD}=\dfrac{1}{3}\times \mathcal{A}_{BCD}\times AH$ d'où $\mathcal{A}_{BCD}=\dfrac{3\times \mathcal{V}_{ABCD}}{AH}$.
+
+
+Donc $\mathcal{A}_{AHC}=\dfrac{3\times 27}{3}=27$ unités d'aire. 
+\end{enumerate}
+\bigskip

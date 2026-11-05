@@ -1,0 +1,87 @@
+On s'intéresse à l'évolution du taux d'équipement en réfrigérateurs d'une population donnée, c'est-à-dire à la proportion de cette population qui possède au moins un réfrigérateur.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On admet que le taux d'équipement en réfrigérateurs est modélisé par une fonction $f$ définie sur l'intervalle $[0~;~+\infty[$ par :
+
+\[f(t) = \dfrac{1}{a+ \e^{-bt}}\]
+
+où $t$ représente le temps écoulé, en années, depuis 1960, et $a$ et $b$ sont deux constantes réelles strictement positives.
+
+On admet que la fonction $f$ est dérivable sur l'intervalle $[0~;~+\infty[$. La fonction $f$ admet pour représentation graphique la courbe $\mathcal{C}_f$ ci-dessous :
+
+\begin{center}
+\psset{xunit=0.25cm,yunit=5cm,arrowsize=2pt 3,comma,algebraic}
+\begin{pspicture*}(-4,-0.1)(33,1.1)
+\psaxes[linewidth=1.25pt,Dx=5,Dy=0.5,labelFontSize=\scriptstyle]{->}(0,0)(0,0)(33,1.1)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{33}{1/(1+2.71828^(-0.2*x))}
+\psplotTangent[linewidth=0.5pt,linecolor=red]{0}{20}{1/(1+2.71828^(-0.2*x))}
+\uput[dr](0,0.5){A}\uput[dr](10,1){B}\psdots[dotscale=1.5,dotstyle=+,dotangle=45](10,1)
+\uput[d](30,1){\blue $\mathcal{C}_f$}
+\end{pspicture*}
+\end{center}
+
+On considère les points A(0~;~0,5) et B(10~;~1).
+
+On admet que la droite (AB) est tangente à la courbe $\mathcal{C}_f$ au point A.
+
+\medskip
+
+\begin{enumerate}
+\item Par lecture graphique, donner une valeur approchée du taux d'équipement en
+réfrigérateurs en 1970.
+\item On admet que $\displaystyle\lim_{t \to + \infty} f(t) = 1$.
+
+Interpréter ce résultat dans le contexte de l'exercice.
+\item Justifier que $a = 1$.
+\item Déterminer le coefficient directeur de la droite (AB).
+\item 
+	\begin{enumerate}
+		\item Déterminer l'expression de $f'(t)$ en fonction de $t$ et de la constante $b$.
+		\item En déduire la valeur de $b$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On admet, dans la suite de l'exercice, que le taux d'équipement en réfrigérateurs est représenté par la fonction $f$ définie sur l'intervalle $[0~;~+\infty[$ par:
+
+\[f(t) = \dfrac{1}{1+ \e^{-0,2t}}\]
+
+\begin{enumerate}
+\item Déterminer $\displaystyle\lim_{t \to + \infty} f(t)$.
+\item Étudier les variations de la fonction $f$ sur l'intervalle $[0~;~+\infty[$.
+\item Montrer qu'il existe un unique réel $\alpha$ positif tel que $f(\alpha) = 0,97$.
+\item À l'aide de la calculatrice, donner un encadrement du réel $a$ par deux nombres entiers
+consécutifs.
+
+Interpréter ce résultat dans le contexte de l'énoncé.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C}
+
+\medskip
+
+Dans cette partie, on cherche à calculer la moyenne du taux d'équipement en réfrigérateurs entre 1960 et 2000.
+
+\medskip
+
+\begin{enumerate}
+\item Montrer que, pour tout $t$ appartenant à l'intervalle $[0~;~+\infty[$,\: $f(t) = \dfrac{\e^{0,2t}}{1 + \e^{0,2t}}$.
+\item En déduire une primitive de la fonction $f$ sur l'intervalle $[0~;~+\infty[$.
+\item Calculer la valeur moyenne de la fonction $f$ sur l'intervalle [0~;~ 40], c'est-à-dire:
+
+\[I = \dfrac{1}{40}\displaystyle\int_0^{40} \dfrac{1}{1 + \e^{-0,2t}}\,\text{d}t.\]
+
+\emph{On donnera la valeur exacte et une valeur approchée au millième.}
+\end{enumerate}

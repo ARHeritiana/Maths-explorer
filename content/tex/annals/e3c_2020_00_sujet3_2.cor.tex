@@ -1,0 +1,79 @@
+\section*{Exercice 2 (5 points)}
+	
+
+	
+	\subsection*{1. Quelle est la valeur de $u_3$ ?}
+	
+	On a $u_3 = 18$.
+	
+	\subsection*{2. On admet que la suite $(u_n)$ est arithmétique de raison 6. Exprimer $u_n$ en fonction de $n$.}
+	
+	On a $u_n = 6n$.
+	
+	\subsection*{3. Combien l’artisan a-t-il ajouté de carreaux pour faire l’étape 5 ?}
+	
+	Avec $u_4 = 6 \times 4 = 24$ et $u_5 = 6 \times 5 = 30$, on a donc ajouté $30 - 24 = 6$ carreaux pour faire l’étape 5.
+	
+	\subsection*{4. Combien a-t-il alors posé de carreaux au total lorsqu’il termine l’étape 5 (en comptant le carreau central initial) ?}
+	
+	Il a posé en tout :
+	\[
+	1 + 6 + 12 + 18 + 24 + 30 = 91 \text{ carreaux}
+	\]
+	
+	\subsection*{5. On pose $S_n = u_1 + u_2 + \dots + u_n$. Montrer que $S_n = 6(1 + 2 + 3 + \dots + n)$ puis que $S_n = 3n^2 + 3n$.}
+	
+	\[
+	S_n = 6 \times (1 + 2 + 3 + 4 + 5 + \dots + n)
+	\]
+	
+	Or
+	\[
+	T_n = 1 + 2 + 3 + \dots + n
+	\]
+	
+	On peut écrire
+	\[
+	T_n = n + (n-1) + \dots + 3 + 2 + 1
+	\]
+	
+	En sommant membre à membre :
+	\[
+	2T_n = (n+1) + (n+1) + \dots + (n+1) = n(n+1)
+	\]
+	
+	Donc
+	\[
+	T_n = \dfrac{n(n+1)}{2}
+	\]
+	
+	et par suite
+	\[
+	S_n = 6 \times \dfrac{n(n+1)}{2} = 3n(n+1) = 3n^2 + 3n
+	\]
+	
+	\subsection*{6. Si on compte le premier carreau central, le nombre total de carreaux posés par l’artisan depuis le début, lorsqu’il termine la n-ième étape, est donc $3n^2 + 3n + 1$.}
+	
+	À la fin de sa semaine, l’artisan termine la pose du carrelage en collant son 2977ème carreau. Combien a-t-il fait d’étapes ?
+	
+	On a donc $3n^2 + 3n + 1 = 2977$. Il faut donc résoudre dans $\mathbb{N}$ l’équation :
+	\[
+	3n^2 + 3n - 2976 = 0
+	\]
+	
+	ou en simplifiant par 3 :
+	\[
+	n^2 + n - 992 = 0
+	\]
+	
+	On a
+	\[
+	\Delta = 1 + 4 \times 992 = 1 + 3968 = 3969 = 63^2
+	\]
+	
+	Les solutions sont donc
+	\[
+	n_1 = \dfrac{-1 + 63}{2} = 31 \quad \text{et} \quad n_2 = \dfrac{-1 - 63}{2} = -32
+	\]
+	
+	On ne retient que la solution 31. L’artisan a donc fait 31 étapes.

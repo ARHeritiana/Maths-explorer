@@ -1,0 +1,42 @@
+\bigskip
+
+\begin{minipage}[]{8.6cm}
+Soit $f$ la fonction définie sur $\R$ par : 
+
+\[f(x) = (5 - 2x)\e^x.\]
+
+On note $\mathcal{C}$ la courbe représentative de $f$. Sur la figure ci-contre, on a tracé
+la courbe $\mathcal{C}$ dans un repère orthogonal où les unités ont été effacées.
+A est le point d'intersection de $\mathcal{C}$ avec l'axe des ordonnées et B le point
+d'intersection de $\mathcal{C}$ avec l'axe des abscisses.
+
+D est le point de $\mathcal{C}$ dont l'ordonnée est le maximum de la fonction $f$ sur $\R$.
+\end{minipage}
+\hspace{1.5em}
+\begin{minipage}[]{6cm}
+\psset{xunit=0.7cm,yunit=0.3cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture*}(-3,-3)(3.4,12)
+
+\psaxes[linewidth=0.95pt,labels=none,ticks=none]{->}(0,0)(-3,-3)(3.3,11.5)
+\def\Func{2.71828 x exp 5 2 x mul sub mul }
+\psplot[plotpoints=2000,linewidth=0.85pt,linecolor=red]{-3}{2.6}{\Func}
+\psdots[dotstyle=Mul,dotscale=1.9,linecolor=blue](0,5)(2.5,0)(1.5,8.9634)
+\uput[ul](0,5){A}\uput[u](1.5,8.9634){D}\uput[ur](2.5,0){B}
+\psplot[plotpoints=2000,linewidth=1pt,linecolor=blue]{-3}{2.7}{x 3 mul 5 add}
+\end{pspicture*}
+\end{minipage}
+
+\medskip
+
+\begin{enumerate}
+\item Calculer les coordonnées des points A et B.
+\item Soit $f'$ la fonction dérivée de $f$ sur $\R$. Montrer que, pour tout réel $x$,
+
+\[f'(x) = (3 - 2x)\e^x .\]
+
+\item Étudier le sens de variation de la fonction $f$.
+\item En déduire que le point D admet comme coordonnées $\left(1,5~;~2\e^{1,5}\right)$.
+\item Déterminer une équation de la tangente à la courbe $\mathcal{C}$ au point A, puis vérifier, à l'aide de l'équation obtenue, que le point D n'appartient pas à cette tangente.
+\end{enumerate}
+
+\vspace{0,5cm}

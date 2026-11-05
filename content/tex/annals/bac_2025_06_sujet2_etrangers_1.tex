@@ -1,0 +1,96 @@
+On se propose de comparer l'évolution d'une population animale dans deux milieux distincts A et B.
+
+Au 1\up{er} janvier 2025, on introduit \np{6000} individus dans chacun des milieux A et B.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+Dans cette partie, on étudie l'évolution de la population dans le milieu A.
+
+On suppose que dans ce milieu, l'évolution de la population est modélisée par une suite géométrique $(u_n)$ de premier terme $u_0 = 6$ et de raison $0,93$.
+
+Pour tout entier naturel $n,\: u_n$ représente la population au 1\up{er} janvier de l'année $2025+n$, exprimée en millier d'individus.
+
+\medskip
+
+\begin{enumerate}
+\item Donner, selon ce modèle, la population au 1\up{er} janvier 2026.
+\item Pour tout entier naturel $n$, exprimer $u_n$ en fonction de $n$.
+\item Déterminer la limite de la suite $(u_n)$.
+
+Interpréter ce résultat dans le contexte de l'exercice.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+Dans cette partie, on étudie l'évolution de la population dans le milieu B.
+
+On suppose que dans ce milieu, l'évolution de la population est modélisée par la suite $(v_n)$ définie par 
+
+\begin{center}$v_0 = 6$ et pour tout entier naturel $n,\: v_{n+1} = -0,05v_n^2 +1,1v_n$.\end{center}
+
+Pour tout entier naturel $n, v_n$ représente la population au 1\up{er} janvier de l'année $2025 + n$, exprimée en millier d'individus.
+
+\medskip
+
+\begin{enumerate}
+\item Donner, selon ce modèle, la population au 1\up{er} janvier 2026.
+\end{enumerate}
+
+Soit $f$ la fonction définie sur l'intervalle $[0~;~+\infty[$ par 
+
+\[f(x) = -0,05x^2 + 1,1x.\]
+
+\begin{enumerate}[resume]
+\item Démontrer que la fonction $f$ est croissante sur l'intervalle [0~;~11].
+\item Démontrer par récurrence que pour tout entier naturel $n$, on a 
+
+\[2 \leqslant v_{n+1} \leqslant v_n \leqslant 6.\]
+
+\item En déduire que la suite $(v_n)$ est convergente vers une limite $\ell$.
+\item 
+	\begin{enumerate}
+		\item Justifier que la limite $\ell$ vérifie $f(\ell) = \ell$ puis en déduire la valeur de $\ell$.
+		\item Interpréter ce résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C}
+
+Cette partie a pour but de comparer l'évolution de la population dans les deux milieux.
+
+\begin{enumerate}
+\item En résolvant une inéquation, déterminer l'année à partir de laquelle la population du milieu A sera strictement inférieure à \np{3000} individus.
+\item À l'aide de la calculatrice, déterminer l'année à partir de laquelle la population du milieu B sera strictement inférieure à \np{3000} individus.
+\end{enumerate}
+\begin{minipage}{0.78\linewidth}
+\begin{enumerate}[resume]
+\item Justifier qu'à partir d'une certaine année, la population du milieu B dépassera la population du milieu A.
+\item On considère le programme Python ci-contre.
+	\begin{enumerate}
+		\item Recopier et compléter ce programme afin qu'après exécution, il affiche l'année à partir de laquelle la population du milieu B est strictement supérieure à la population du milieu A.
+		\item Déterminer l'année affichée après exécution du programme.
+	\end{enumerate}
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.19\linewidth}
+\begin{tabular}{|l|}\hline
+n=0 \\
+u = 6\\
+v = 6 \\
+\textbf{while} \ldots :\\
+\qquad u = \ldots\\
+\qquad v= \ldots\\
+\qquad n = n+1\\
+\textbf{print} (2025 + n)\\ \hline
+\end{tabular}
+\end{minipage}

@@ -1,0 +1,201 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet2_metropole_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A : étude d'un modèle discret.}
+
+\smallskip
+
+\begin{enumerate}
+	\item Ajouter 15 g, soit \np[mg]{15000}, de chlore, dans une piscine de \np[m^3]{50}, soit \np[L]{50000}, c'est donc faire augmenter la concentration de :\quad$\dfrac{15000}{50000} =\dfrac{15}{50}= \dfrac{3}{10} = \np[mg\cdot L^{-1}]{0,3}$.
+
+	\item \emph{Remarque :} la relation de récurrence peut s'interpréter, en disant que sous l'action du milieu ambiant, 8\,\% du chlore présent dans la piscine disparaît chaque jour (et donc 92\,\% du chlore présent une journée est encore présent le jour suivant).
+	\begin{enumerate}
+		\item \emph{Initialisation :} on a \quad $v_0 = 0,7$
+
+		d'après la relation de récurrence :\quad $v_1 = 0,92v_0 + 0,3 = 0,944$.
+
+		On a donc bien :\quad $v_0 \leqslant v_1 \leqslant 4$.
+
+		L'inégalité souhaitée est donc vérifiée au rang 0.
+
+		\smallskip
+
+		\emph{Hérédité :} soit $n$ naturel donné, tel que l'inégalité est vraie au rang $n$, c'est-à-dire que :\quad $v_n \leqslant v_{n+1}\leqslant 4$.
+
+Par hypothèse de récurrence, on a :
+
+$\begin{aligned}[t] v_n \leqslant v_{n+1}\leqslant 4 &\implies 0,92 v_n \leqslant 0,92v_{n+1} \leqslant 0,92 \times 4\qquad\text{car } 0,92 >0\\
+		&\implies 0,92 v_n + 0,3 \leqslant 0,92v_{n+1}+ 0,3 \leqslant 3,68 + 0,3 \\
+		&\implies v_{n+1} \leqslant v_{n+2}  \leqslant 3,98 \\
+		&\implies v_{n+1} \leqslant v_{n+2}  \leqslant 4\\
+		\end{aligned}$
+
+La véracité de l'inégalité est donc héréditaire.
+
+\emph{Conclusion :} L'encadrement est vrai au rang 0 et s'il est vrai au rang $n \in \N$, il l'est encore au rang $n + 1$, donc en vertu du principe de récurrence, pour tout entier $n$ naturel, on a :\quad $v_n \leqslant v_{n+1} \leqslant 4$.
+
+		\item De la question précédente, on retient :
+		\begin{itemize}
+			\item $\forall n \in \N,\quad v_n \leqslant v_{n+1}$\quad donc la suite $\left(v_n\right)$ est croissante;
+			\item $\forall n \in \N,\quad v_n \leqslant 4$ \quad donc la suite $\left(v_n\right)$ est majorée par 4.
+		\end{itemize}
+D'après le théorème de croissance monotone la suite $\left(v_n\right)$ est donc convergente, vers une limite $\ell$ inférieure ou égale à 4.
+
+		De plus, la suite $\left(v_n\right)$ est définie par récurrence, et la fonction de récurrence : \quad $x\longmapsto 0,92x + 0,3$ \quad est continue sur $\R$, puisque c'est une fonction affine, donc la suite ne peut converger que vers un point fixe de la fonction de récurrence
+
+$\ell$ est donc une solution de l'équation :\quad $\begin{aligned}[t] x = 0,92x + 0,3 &\iff 0,08x = 0,3\\&\iff x = \dfrac{0,3}{0,08}\\&\iff x = 3,75\end{aligned}$
+
+L'équation n'a qu'une solution, donc la suite $\left(v_n\right)$ converge vers $3,75$.
+	\end{enumerate}
+\item À long terme, le taux de chlore ne sera pas conforme à la préconisation des piscinistes, car si la limite est $3,75$  alors tout intervalle ouvert contenant $3,75$  contiendra tous les termes à partir d'un certain rang. Notamment l'intervalle $]3~;~5[$.
+
+Il existe donc un rang à partir duquel les termes de la suite seront dans l'intervalle $]3~;~5[$, et donc la concentration en chlore dépassera strictement la limite supérieure de \np[mg \cdot L^{-1}]{3} recommandée par les piscinistes.
+
+	\item C'est un algorithme de seuil classique, on va calculer les termes de la suite, les uns après les autres. Pour s'arrêter dès qu'un terme est strictement supérieur au seuil $s$, il faut continuer tant que (while) les termes ne sont pas strictement supérieurs, donc tant que les termes sont inférieurs ou égaux au seuil $s$.
+
+Le programme complété est donc :
+
+	\begin{center}
+	\begin{tabular}{|l|}\hline
+		\textbf{def} alerte\_chlore(s):\\
+		\qquad n = 0\\
+		\qquad u = 0.7\\
+		\qquad \textbf{while} u <= s:\\
+		\qquad \qquad n = n + 1 \\
+		\qquad \qquad u = 0.92*u + 0.3\\
+		\qquad \textbf{return} n\\ \hline
+	\end{tabular}
+\end{center}
+
+	\item En saisissant l'instruction {\begin{Verb}| alerte_chlore(3)|\end{Verb}}, le programme renvoie 17 (en effet, $v_{16}\approx 2,95 \leqslant 3$ et $v_{17} \approx 3,01 > 3$).
+
+Dans le contexte de l'exercice, cela veut dire que si Alain applique cette méthode, 17 jours après le 19 juin, le taux de chlore dans sa piscine serait trop élevé, par rapport aux recommandations des piscinistes.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B : étude d'un modèle continu.}
+
+\smallskip
+
+\begin{enumerate}
+\item Les équations différentielles de la forme \quad$y' = ay + b$, où $a$ et $b$ sont des réels ($a$ non nul), ont pour solutions les équations de la forme \quad $x\longmapsto C\e^{ax} - \dfrac{b}{a}$, où $C$ est une constante réelle.
+
+Ici, avec $a = -0,08$ et $b = \dfrac{q}{50}$, cela conduit à :
+
+$x\longmapsto C\e^{-0,08x} - \dfrac{\dfrac{q}{50}}{-0,08} = C\e^{-0,08x} + \dfrac{q}{50\times 0,08}$.
+
+On arrive donc bien à une solution $f$ de la forme $f(x)=C \e^{-0,08 x}+\dfrac{q}{4}$ où $C$ est une constante réelle.
+
+\item
+	\begin{enumerate}
+		\item Puisque $-0,08<0$, on a :\quad $\lim\limits_{x \to +\infty}-0,08x = -\infty$
+
+donc, par composition :\quad $\lim\limits_{x \to +\infty}\e^{-0,08x} = \lim\limits_{y \to -\infty} \e^y = 0$
+
+puis, par limite du produit :\quad $ \lim\limits_{x \to +\infty}C\e^{-0,08x} = 0$
+
+enfin, par limite de la somme :\quad $\lim\limits_{x \to +\infty}f(x) = \dfrac{q}{4}$.
+
+		\item Si on veut que le taux de chlore se stabilise autour de \np[mg \cdot L^{-1}]{2}, il faut que la limite de la fonction $f$ soit 2, donc on veut :
+
+$\dfrac{q}{4} = 2 \iff q = 8$.
+
+Pour cet objectif à long terme, Alain devra donc ajouter 8 grammes de chlore par jour dans sa piscine.
+
+À l'instant $t = 0$, on avait donc un	taux de \np[mg \cdot L^{-1}]{0,7}, donc $f(0) = 0,7$.
+
+$\begin{aligned}[t] f(0) = 0,7 &\iff C\e^{-0,08\times 0} + \dfrac{8}{4} =0,7\\
+&\iff C + 2 = 0,7\\
+&\iff C = -1,3\end{aligned}$
+
+La fonction $f$ donnant l'évolution du taux de chlore dans la piscine d'Alain est donc :
+\quad$f :x \longmapsto -1,3\e^{-0,08x} + 2$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\end{document}

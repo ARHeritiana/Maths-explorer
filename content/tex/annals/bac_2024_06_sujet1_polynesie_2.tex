@@ -1,0 +1,64 @@
+\medskip
+
+Une entreprise fabrique des objets en plastique en injectant dans un moule de la matière fondue à $210$~\ensuremath{^\circ} C. On cherche à modéliser le refroidissement du matériau à l'aide d'une fonction $f$ donnant la température du matériau injecté en fonction du temps $t$.
+
+Le temps est exprimé en seconde et la température est exprimée en degré Celsius.
+
+On admet que la fonction $f$ cherchée est solution d'une équation différentielle de la forme suivante où $m$ est une constante réelle que l'on cherche à déterminer:
+
+\[(E) : \quad  y'  +0,02y = m\]
+
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item Justifier l'affichage suivant d'un logiciel de calcul formel:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|l|X|}\hline
+Entrée :& RésoudreEquationDifférentielle $(y' + 0,02y = m)$\\ \hline
+Sortie :& \fbox{$\to$}\: $y = k *\text{exp}(-0.02 * t) + 50 * m$\\ \hline
+\end{tabularx}
+\end{center}
+
+\item  La température de l'atelier est de 30~\ensuremath{^\circ} C. On admet que la température $f(t)$ tend vers 30~\ensuremath{^\circ} C lorsque $t$ tend vers l'infini.
+
+Démontrer que $m = 0,6$.
+\item Déterminer l'expression de la fonction $f$ cherchée en tenant compte de la condition
+initiale $f(0) = 210.$
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On admet ici que la température (exprimée en degré Celsius) du matériau injecté en fonction du temps (exprimé en seconde) est donnée par la fonction dont l'expression et une représentation graphique sont données ci-dessous:
+
+\[f(t) =180 \e^{-0,02t} + 30.\]
+
+\begin{center}
+\psset{unit=0.05cm,yunit=0.02cm,arrowsize =2pt 3}
+\begin{pspicture}(-20,-15)(220,230)
+\multido{\n=0+20}{11}{\psline[linewidth=0.2pt](\n,0)(\n,230)}
+\multido{\n=0+50}{5}{\psline[linewidth=0.2pt](0,\n)(220,\n)}
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle,Dx=20,Dy=50]{->}(0,0)(0,0)(220,230)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{220}{180 2.71828 0.02 x mul exp div 30 add}
+\uput[u](190,0){temps (en s)}\uput[r](0,220){température (en \ensuremath{^\circ} C)}
+\end{pspicture}
+\end{center}
+
+\begin{enumerate}
+\item L'objet peut être démoulé lorsque sa température devient inférieure à 50\ensuremath{^\circ} C. 
+	\begin{enumerate}
+		\item Par lecture graphique, donner une valeur approchée du nombre $T$ de
+secondes à attendre avant de démouler l'objet.
+		\item Déterminer par le calcul la valeur exacte de ce temps $T$.
+	\end{enumerate}	
+\item À l'aide d'une intégrale, calculer la valeur moyenne de la température sur les $100$~premières secondes.
+\end{enumerate}
+
+\bigskip

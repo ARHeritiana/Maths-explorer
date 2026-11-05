@@ -28,3 +28,7 @@ Builders called by `build/mxbuild` (see `pipeline.py` `COURSES`) or by `make`. E
 
 
 `prerequisite-model.mjs`: internal concept DAG, course scope/order, local question scaffolding and source fingerprints. `check-prerequisites.mjs`: advisory scan of the real bank, generated samples, authored French decks and chapter TeX; reports in ignored build output. See `docs/PREREQUISITES.md`.
+
+`build-annals.py`: structured HTML, original-source SVG figures and downloadable LaTeX for the locally hosted annales bank; source and output hashes in content/data/annals-build.json.
+
+`build-annals-pdf.py`: native course-style annales statement/correction PDFs and their portable source bundle with precompiled vector figures; `data/annals-pdf-build.json` records source/output integrity.

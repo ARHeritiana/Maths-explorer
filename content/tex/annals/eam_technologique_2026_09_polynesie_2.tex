@@ -1,0 +1,35 @@
+Au 1\up{er} janvier 2025, une réserve d'eau naturelle contient $\np{3000}\text{ m}^{3}$ d'eau.
+
+Une étude indique que la réserve perd chaque année 10\,\% du volume d'eau qu'elle avait en début d'année.
+
+\medskip
+
+On modélise l'évolution du volume d'eau de cette réserve par une suite $(u_{n})$, où $u_{n}$ désigne la quantité d'eau, exprimée en mètres cubes, contenue dans la réserve au 1\up{er} janvier de l'année $2025+n$.
+
+On a donc $u_{0}=\np{3000}$.
+
+\begin{enumerate}
+	\item Montrer que $u_{1}=\np{2700}$.
+	\item Pour tout entier naturel $n$, exprimer $u_{n+1}$ en fonction de $u_{n}$.
+	\item Quelle est la nature de la suite $(u_{n})$ ? Préciser sa raison.
+	\item Dans la feuille de calcul suivante on a calculé les premiers termes de la suite $(u_{n})$. Le format des cellules de la ligne 2 permet d'afficher les nombres arrondis à l'unité.
+
+	\begin{center}
+	\begin{tblr}[T]
+		{hlines, vlines, columns={c},
+		cells={font=\sffamily},
+		row{1}={bg=gray9},
+		column{1}={bg=gray9},
+		cell{1}{1}={gray9,cmd={\tikz[baseline={(0,0.05)}]{\clip(0,0) rectangle (0.6,0.5) ;\fill[gray!50] (0,0)--(0.5,0.5)--(0.5,0);}}} }
+		   & A & B & C & D & E & F & G & H & I \\
+		1  & $n$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+		2  & $u_n$ & \np{3000} & \np{2700} & \np{2430} & \np{2187} & \np{1968} & \np{1771} & \np{1594} & \np{1435} \\
+	\end{tblr}
+	\end{center}
+
+	Quelle formule a été saisie en cellule C2 afin d'obtenir, par glisser-coller vers la droite, les premiers termes de la suite $(u_{n})$ ?
+
+	\item Pour assurer la sécurité de la lutte contre les incendies on estime que la réserve doit contenir au moins $\np{2000}\text{ m}^{3}$.
+
+	D'après le tableau précédent, à partir de quelle année la quantité d'eau dans la réserve deviendra insuffisante ?
+\end{enumerate}

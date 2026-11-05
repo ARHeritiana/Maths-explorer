@@ -1,0 +1,198 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_05_ameriquenord_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Commun à tous les candidats}
+
+
+
+
+
+
+
+
+
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item ~
+\begin{center}
+\pstree[treemode=R,nodesepB=3pt,levelsep=2.75cm]{\TR{}}
+{\pstree{\TR{$D$~~}\taput{0,08}}
+	{\TR{$T$}\taput{0,98}
+	\Tr{$\overline{T}$}\tbput{0,02}
+	}
+\pstree{\TR{$\overline{D}$~~}\tbput{0,92}}
+	{\TR{$T$}\taput{0,005}
+	\Tr{$\overline{T}$}\tbput{0,995}
+	}	
+}
+\end{center}
+
+\item 
+D'après la loi des probabilités totales :
+
+$P(T) = P(D \cap T) + P\left(\overline{D} \cap T \right)$ : or
+
+$P(D \cap T) = P(D) \times P_D(T) =  0,08 \times 0,98 = \np{0,0784}$ et 
+
+$P\left(\overline{D} \cap T \right) = P\left(\overline{D}  \right) \times P_{\overline{D}}(T) = 0,92 \times 0,005 = \np{0,00460}$. Donc :
+
+$P(T)  = \np{0,0784} + \np{0,0046} = 0,083$.
+\item 
+	\begin{enumerate}
+		\item 
+La probabilité conditionnelle $P_T(D) = \dfrac{P(T \cap D)}{P(T)} = \dfrac{P(D \cap T)}{P(T)} = \dfrac{\np{0,0784}}{0,083} \approx \np{0,9445}$, soit 0,945 au millième près.
+		\item 
+D'après la question précédente $0,945 < 0,95$, donc le test ne sera pas commercialisé.
+
+
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+
+
+	\begin{enumerate}
+		\item 
+		Quel que soit l'athlète choisi la probabilité que cet  athlète présente un test positif est $0,103$. La variable aléatoire $X$ suit donc une loi binomiale de paramètres $n = 5$ et $p = 0,103$.
+		\item 
+On sait que $E = n \times p = 5 \times 0,103 = 0,515$ : ceci montre que sur un grand nombre de contrôles, il y aura à peu près 1 athlète sur 10 contrôlé positif.
+		\item 
+La probabilité qu'aucun athlète ne soit contrôlé positif est :
+
+$0,103^0 \times (1 - 0,103)^5 = 0,897^5 \approx \np{0,5807}$ soit environ 0,581 au millième près.
+
+Donc la probabilité qu'au moins un des 5 athlètes contrôlés présente un test positif est :
+
+$1 - 0,581$, soit 0,419 au millième près.
+	\end{enumerate}
+\item 
+On a pour $n$ athlètes contrôlés, $P(X = 0) = 0,103^0 \times 0,897^n = 0,897^n$.
+
+Il faut donc trouver $n$ tel que :
+
+$1 - 0,897^n \geqslant 0,75 \iff 1 - 0,75 \geqslant 0,897^n \iff 0,25 \geqslant 0,897^n$.
+
+La calculatrice donne le plus petit $n \in \N$ vérifiant cette inéquation : pour $n = 13$, on a $0,897^{13} \approx 0,243$.
+
+Il faut donc contrôler 13 athlètes en moyenne pour en trouver un positif.
+\end{enumerate}
+\vspace{0,5cm}
+\bigskip
+
+\end{document}

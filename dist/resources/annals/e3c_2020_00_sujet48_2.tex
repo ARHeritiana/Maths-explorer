@@ -1,0 +1,120 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet48_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Une entreprise fabrique chaque jour $x$ tonnes d'un produit. Le coût total mensuel, en milliers d'euros, pour produire chaque jour $x$ tonnes de ce produit est modélisé par la fonction $C$ définie sur l'intervalle [0~;~10] par:
+
+\[C(x) = (5x - 2)\text{e}^{-0,2x} + 2.\]
+
+On a représenté ci-dessous la courbe $\mathcal{C}_C$ de la fonction $C$ dans un repère.
+
+\begin{center}
+\psset{unit=0.5cm,arrowsize=2pt 3}
+\begin{pspicture*}(-1.2,-1.2)(10.5,12.5)
+\psgrid[gridlabels=0pt,subgriddiv=1](0,0)(10.5,12.5)
+\psaxes[linewidth=1.25pt,Dx=2,Dy=2]{->}(0,0)(0,0)(10.5,12.5)
+\psaxes[linewidth=1.25pt,Dx=2,Dy=2](0,0)(0,0)(10.5,12.5)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{10}{5 x mul 2 sub 2.71828 0.2 x mul exp div 2 add}
+\uput[ur](9,9){\blue $\mathcal{C}_C$}
+\end{pspicture*}
+\end{center}
+\medskip
+
+\begin{enumerate}
+\item Par lecture graphique, donner une estimation de la quantité journalière de produit pour laquelle le coût total mensuel est maximal.
+\item Le \textbf{coût marginal} $C_m$ qui correspond au supplément de coût total pour la production d'une unité de valeur supplémentaire, est assimilé à la \textbf{dérivée} de la fonction coût total.
+	\begin{enumerate}
+		\item Démontrer que le coût marginal $C_m$ est défini sur l'intervalle [0~;~10] par: 
+		
+\[C_m(x) = (-x + 5,4)\text{e}^{-0,2x}.\]
+		
+		\item Pour quelle quantité de produit fabriqué par jour le coût marginal est-il négatif ? 
+		\item Donner le tableau de variations de la fonction $C$ sur l'intervalle [0~;~10].
+		\item Déterminer le coût total mensuel maximal sur l'intervalle considéré. On donnera la valeur arrondie à l'euro près.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

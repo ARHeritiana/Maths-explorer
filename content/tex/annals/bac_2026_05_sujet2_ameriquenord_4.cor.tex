@@ -1,0 +1,155 @@
+On considère la fonction $f$ définie sur l'intervalle $]0~;~+\infty[$ par
+$f(x) = x(\ln x)^2$.
+
+
+
+
+
+\begin{enumerate}
+	\item On cherche la limite de la fonction $f$ en $+\infty$.
+
+	Pour tout réel $x$ strictement positif, $f(x)=x\left(\ln x\right)^2=x \times \ln(x) \times \ln(x)$. 
+	
+	$\begin{cases}
+		\lim\limits_{x \to +\infty} \ln(x)= +\infty\\
+		\lim\limits_{x\to +\infty}  x = +\infty
+	\end{cases}$ donc, par produit,  $\lim\limits_{x \to +\infty} f(x)= +\infty$.
+	
+	\item Pour tout réel x > 0, on pose $g(x) = x\ln x$.
+	\begin{enumerate}
+		\item Soit $x \in ]0~;~+\infty[$, 
+
+		$4\left(g\left(\sqrt x\right)\right) ^2= 4 \left( \sqrt{x} \ln\big(\sqrt{x}\big) \right) ^2= 4 \left( \sqrt{x} \times \dfrac{1}{2} \ln(x)\right)^2 = 4 \times x \times \dfrac{1}{4} \left( \ln x\right) ^2 = x \left( \ln x\right) ^2 =f(x)$
+
+On a bien :  pour tout réel $x > 0$, on a $f(x) = 4\left(g\left(\sqrt x\right)\right)$.
+		\item On cherche $\displaystyle\lim_{x \to 0} f(x)$.
+
+$\begin{cases}
+\lim\limits_{x \to 0} \sqrt{x} =0 \\
+\lim\limits_{X \to 0} X\ln X = 0 \, \text{par croissances comparées} \\
+\end{cases}$ donc, par composition, $\lim\limits_{x\to 0} g(\sqrt x)=0$
+
+D'où, par produit, $\lim\limits_{x\to 0} f(x)=0$. 
+	\end{enumerate}
+\item On étudie les variations de la fonction $f$ sur l'intervalle $]0~;~+\infty[$.
+	\begin{enumerate}
+		\item $f$ est de la forme $uv$ avec : \quad $\forall x \in ]0;+\infty[  \begin{cases}
+u(x)=x\\ v(x)=(\ln x)^2\end{cases}$
+
+On a alors :\quad $\forall x \in ]0;+\infty[ 
+\begin{cases} u'(x)=1 \\ v'(x)=2 \times \dfrac{1}{x} \times \ln x 
+\end{cases}$ 
+
+Or :\quad $f' = u'v+v'u$ 
+
+Donc, $\begin{aligned}[t]\forall x \in ] 0 ;+\infty[, \quad f'(x)&= 1 \times (\ln x)^2 + x \times \dfrac{2 \ln x}{x}\\
+		&= \ln x \times \ln x + 2 \ln x \\
+		&=(\ln x)(\ln x +2)
+\end{aligned}$
+		
+Donc sur l'intervalle $]0~;~+\infty[$, \: $f'(x) = (\ln x)(2 + \ln x)$.
+
+	\item On en déduit les variations de la fonction $f$ sur l'intervalle $]0~;~+\infty[$.
+
+Étudions le signe de $f'(x)$ : 
+
+$2+ \ln(x)> 0 \Longleftrightarrow \ln x > -2 \Longleftrightarrow x > \e^{-2}$ 
+
+$\ln x > 0 \Longleftrightarrow x >1$ 
+
+On a donc le tableau de variations suivant : 
+
+\hfill~\begin{tikzpicture}
+	\tkzTabInit[lgt=3,espcl=2]{$x$/0.7,
+	signe de $\ln x$/0.7,
+	signe de $2 + \ln x$/0.7,
+	signe de $f'(x)$/0.7,
+	variations de $f$/1.5}{$0$,$\e^{-2}$,1,$+\infty$}
+	\tkzTabLine{,-,t,-,z,+,}
+	\tkzTabLine{,-,z,+,t,+,}
+	\tkzTabLine{,+,z,-,z,+,}
+	\tkzTabVar{-/0,+/$f\left(\e^{-2}\right)$,-/0,+/{$+\infty$}}
+		\end{tikzpicture}\hfill~
+
+		\item $f\left(\e^{-2}\right) = \e^{-2} \left( \ln \left(\e^{-2}\right) \right) ^2= \e^{-2} \times (-2)^2= 4 \e^{-2}$
+
+Le maximum de la fonction $f$ sur l'intervalle $]0~;~1]$ est $4\e^{-2}$.
+	\end{enumerate}
+
+\item 
+	\begin{enumerate}
+		\item Sur l'intervalle $]0~;~1]$, le maximum est $4\e^{-2} \approx 0,54 < 2$ donc l'équation $f(x) = 2$ n'admet pas de solution sur cet intervalle.
+
+Sur l'intervalle $[1; +\infty[$ : 
+\begin{itemize}
+	\item $f$ est continue car dérivable ;
+	\item $f$ est strictement croissante ;
+	\item $f(1) =0 <2$ et $\lim\limits_{x \to +\infty} f(x)= +\infty >2$ 
+\end{itemize}
+
+Donc, d'après le théorème de la bijection, l'équation $f(x)=2$ admet une unique solution sur l'intervalle $[1~;~+\infty[$.
+
+donc l'équation admet une unique solution  $\alpha$ sur l'intervalle $]0~;~+\infty[$.
+
+\item À l'aide de la calculatrice, on trouve $\alpha \approx 2,46$ donc : \quad  $ 2,4 < \alpha <2,5$. 
+	\end{enumerate}
+\item Soit $a$ un nombre réel appartenant à l'intervalle ]0~;~1].
+	\begin{enumerate}
+		\item La fonction $f$ est positive sur l'intervalle $[a;1]$ donc $\displaystyle\int_a^1 f(x)\: \text{d}x$ est égal à l'aire, en unité d'aire,  du domaine délimité par les droites d'équation $x=a$ et $x=1$, par l'axe des abscisses et la courbe. 
+		
+		\item  $x \longmapsto x \left(\ln x \right)^2$\quad est de la forme $u' v$ avec \quad $\begin{cases}u'(x)=x\\ v(x)=(\ln x)^2 \end{cases}$
+
+Ce qui implique : \quad $\begin{cases}u(x)=\dfrac{1}{2}x^2\\v'(x)=2 \times \dfrac{1}{x}\ln (x)\end{cases}$
+
+Les fonctions $u$ et $v$ sont continues et dérivables sur $[a~;~1]$ et les fonctions $u'$ et $v'$ sont continues sur $[a~;~1]$, donc , d'après la formule d'intégration par parties :
+
+$\displaystyle \int_{a}^{1} u'(x)v(x)\, \mathrm{d}x = \Big [ u(x)v(x)\strut\Big]_{a}^{1} - \int_{a}^{1} u(x)v'(x) \, \mathrm{d}x$\
+
+donc 
+$\begin{aligned}[t]
+\displaystyle\int_a^1 f(x)\, \mathrm{d}x  & =\Big[ \dfrac{x^2}{2 }\times (\ln x)^2 \Big]_a^{1}-\int_a^{1} \dfrac{x^2}{2} \times \dfrac{2\ln x}{x} \, \mathrm{d}x \\
+	& = \dfrac{1^2}{2} (\ln 1)^2  - \dfrac{a^2}{2} (\ln a)^2  - \int_a^{1} x \ln(x) \, \mathrm{d}x \\
+	&= - \dfrac{a^2}{2} (\ln a)^2  - \int_a^{1} x \ln(x) \, \mathrm{d}x
+\end{aligned}	$
+
+Ce qui est le résultat demandé. 
+
+	\item  $x \longmapsto x \ln x $\quad est de la forme $u' v$ avec \quad $\begin{cases}u'(x)=x\\ v(x)=\ln x \end{cases}$
+
+Ce qui implique : \quad $\begin{cases}u(x)=\dfrac{1}{2}x^2\\v'(x)=\dfrac{1}{x}\end{cases}$
+
+Les fonctions $u$ et $v$ sont continues et dérivables sur $[a~;~1]$ et les fonctions $u'$ et $v'$ sont continues sur $[a~;~1]$, donc , d'après la formule d'intégration par parties :
+
+$\displaystyle \int_{a}^{1} u'(x)v(x)\, \mathrm{d}x = \Big [ u(x)v(x)\strut\Big]_{a}^{1} - \int_{a}^{1} u(x)v'(x) \, \mathrm{d}x$\
+
+donc 
+$\begin{aligned}[t]
+\displaystyle\int_a^1 x \ln (x)\, \mathrm{d}x  & =\Big[ \dfrac{x^2}{2 }\times \ln (x)\Big]_a^{1}-\int_a^{1} \dfrac{x^2}{2} \times \dfrac{1}{x} \, \mathrm{d}x \\
+	& =  \dfrac{1^2}{2} \ln (1)  - \dfrac{a^2}{2} \ln (a)  - \int_a^{1} \dfrac{1}{2}x \, \mathrm{d}x \\
+	&= - \dfrac{a^2}{2} \ln (a)  - \Big[ \dfrac{1}{2} \times \dfrac{x^2}{2 }\Big]_a^{1}\\
+	&= - \dfrac{a^2}{2} \ln (a)  - \Big[ \dfrac{1}{2} \times \dfrac{1^2}{2 } - \dfrac{1}{2} \times \dfrac{a^2}{2 }  \Big]\\
+	&= - \dfrac{a^2}{2} \ln (a)  -  \dfrac{1}{4} +  \dfrac{a^2}{4 } 
+\end{aligned}$
+
+D'où :
+$\begin{aligned}[t]
+\displaystyle\int_a^1 f(x)\: \text{d}x & =  - \dfrac{a^2}{2} (\ln a)^2  - \int_a^{1} x \ln(x) \, \mathrm{d}x \\
+	&= - \dfrac{a^2}{2}(\ln a)^2  - \left( - \dfrac{a^2}{2} \ln (a)  -  \dfrac{1}{4} +  \dfrac{a^2}{4 }  \right) \\
+	&= - \dfrac{a^2}{2}(\ln a)^2 + \dfrac{a^2}{2} \ln a + \dfrac14 - \dfrac{a^2}{4}
+		\end{aligned}$
+
+Ce qui est le résultat demandé.
+\item  On cherche  la limite de $\displaystyle\int_a^1 f(x)\: \text{d}x$ quand $a$ tend vers 0.
+
+$\displaystyle\int_a^1 f(x)\: \text{d}x = - \dfrac{a^2}{2}(\ln a)^2 + \dfrac{a^2}{2} \ln a + \dfrac14 - \dfrac{a^2}{4} = - \dfrac{1}{2} \left(a \ln a\right)^2+ \dfrac{a}{2} \times  a \ln a + \dfrac{1}{4} - \dfrac{a^2}{4}$.
+
+Par croissances comparées : $\lim\limits_{a \to 0} a \ln a = 0$ 
+
+donc : par produit $\lim\limits_{a \to 0} \left(a \ln a \right)^2= 0$ et $\lim\limits_{a \to 0} \dfrac{a}{2} \times a\ln a=0$.
+
+De plus, $\lim\limits_{a \to 0}  \dfrac{1}{4} - \dfrac{a^2}{4}=\dfrac{1}{4}$ 
+
+donc, par somme, $\lim\limits_{a \to 0 }	\displaystyle\int_a^1 f(x)\: \text{d}x  = \dfrac{1}{4}$
+
+	\end{enumerate}
+\end{enumerate}

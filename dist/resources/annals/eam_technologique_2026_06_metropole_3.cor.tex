@@ -1,0 +1,143 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_technologique_2026_06_metropole_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\par
+\textbf{Pour chaque affirmation, répondre par VRAI ou FAUX, en justifiant la réponse.}\par
+Toute absence de justification ou justification incorrecte ne sera pas prise en compte dans la notation.
+
+Une enquête est réalisée sur l'équipement informatique des 400 élèves d'un collège.
+\begin{center}\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{|p{3.2cm}|c|c|c|}\hline
+& Ont une adresse mail & N'ont pas d'adresse mail & Total\\\hline
+Ont un équipement individuel & 50 & 210 & 260\\\hline
+N'ont pas d'équipement individuel & 40 & 100 & 140\\\hline
+Total & 90 & 310 & 400\\\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+\item \underline{Affirmation}
+
+50\% des élèves du collège possèdent une adresse mail et un équipement individuel.
+
+\item \underline{Affirmation}
+
+Au moins 50\% des élèves du collège ne possèdent pas d'adresse mail.
+
+\item \underline{Affirmation}
+
+On choisit un élève au hasard dans le collège. La probabilité qu'il ne possède ni adresse mail ni équipement individuel est égale à 25\%.
+
+\item \underline{Affirmation}
+
+Au moins $\dfrac{1}{5}$ des élèves ayant un équipement individuel possèdent également une adresse mail.
+\end{enumerate}
+
+\begin{color}{blue}Solution :\par
+
+\begin{enumerate}
+\item
+50 élèves du collège possèdent une adresse mail et un équipement individuel sur 400 élèves au total. Cela correspond à une proportion de $\dfrac{50}{400} = \dfrac{12,5}{100} = 12,5~\% \neq 50~\% $.
+
+\textbf{L'affirmation est fausse.}
+
+\item 
+310 élèves du collège ne possèdent pas d'adresse mail. $310>200$, la moitié de 400.
+
+\textbf{L'affirmation est vraie.}
+\item 
+
+100 élèves du collège ne possèdent ni d'adresse mail ni d'équipement individuel sur 400 élèves au total. Cela correspond à une proportion de $\dfrac{100}{400} = \dfrac{25}{100} = 25~\% $. Si on choisit un élève au hasard parmi les élèves du collège, avec l'hypothèse d'équiprobabilité, la probabilité qu'il ne possède ni adresse mail ni équipement individuel est égale à 25\%.
+
+\textbf{L'affirmation est vraie.}
+\item 
+
+260 élèves possèdent un équipement individuel. Parmi ceux-ci, 50 ont une adresse mail. La proportion d'élèves ayant une adresse mail parmi les élèves ayant un équipement individuel est $\dfrac{50}{260}=\dfrac{5}{26}$ et $\dfrac{5}{26}<\dfrac{5}{25}$. Comme $\dfrac{5}{25}=\dfrac{1}{5}$, $\dfrac{50}{260}<\dfrac{1}{5}$.
+
+\textbf{L'affirmation est fausse.}
+
+\end{enumerate}
+
+\end{color}
+
+\end{document}

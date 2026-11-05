@@ -1,0 +1,113 @@
+\medskip
+
+Un commerçant vend deux types de matelas: matelas RESSORTS et matelas MOUSSE. 
+
+On suppose que chaque client achète un seul matelas.
+
+On dispose des informations suivantes :
+\begin{itemize}
+\item[$\bullet~~$] 20\,\% des clients achètent un matelas RESSORTS. 
+
+Parmi eux, 90\,\% sont satisfaits de leur achat.
+\item[$\bullet~~$] 82\,\% des clients sont satisfaits de leur achat.
+\end{itemize}
+
+
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+
+
+
+
+
+
+
+On note $x = P_{\overline{R}}(S)$, où $P_{\overline{R}}(S)$ désigne la probabilité de $S$ sachant que $R$ n'est pas réalisé.
+
+\begin{minipage}{0.58\linewidth}
+\begin{enumerate}
+\item Recopier et compléter l'arbre pondéré ci-contre décrivant la situation.
+\end{enumerate}
+
+\end{minipage}\hfill
+\begin{minipage}{0.38\linewidth}
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$R$~~}\taput{0,20}}
+{\TR{$S$}\taput{0,9}
+\TR{$\overline{S}$}\tbput{0,1}
+}
+\pstree{\TR{$\overline{R}$~~}\tbput{0,80}}
+{\TR{$S$}\taput{$x$}
+\TR{$\overline{S}$}\tbput{$1 - x$}
+}}
+\end{center}
+\end{minipage}
+
+\begin{enumerate}[start=2]
+\item 
+D'après la loi des probabilités totales :
+$P(S) = P(R \cap S) + P\left(\overline{R} \cap S \right)$ Or :
+
+$\bullet~~P(R \cap S) = P(R) \times P_R(S) = 0,2 \times 0,9 = 0,18$ et 
+
+$\bullet~~P\left(\overline{R} \cap S \right) = P\left(\overline{R}\right) \times P_{\overline{R}}(S) = 0,8 \times x = 0,8x$ et comme $P(S) = 0,82$, on a donc l'équation :
+
+$0,18 + 0,8x = 0,82 \iff 0,8x = 0,64 \iff x = 0,8$.
+\item On choisit un client satisfait de son achat.
+
+Quelle est la probabilité qu'il ait acheté un matelas RESSORTS ?
+
+
+Il faut calculer $P_S(R) = \dfrac{P(S \cap R)}{P(S)} = \dfrac{0,18}{0,82} = \dfrac{18}{82} = \dfrac{9}{41} \approx 0,219$, soit 0,22 au centième près.
+\end{enumerate}
+\medskip
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item On choisit 5 clients au hasard.
+
+On considère la variable aléatoire $X$ qui donne le
+nombre de clients satisfaits de leur achat parmi ces 5 clients.
+	\begin{enumerate}
+		\item 
+Les paramètres de la loi binomiale sont $ n = 5 $ \quad et \quad  $ p=\np{0.82}$.
+		\item 
+		
+
+Il faut trouver $P(X \leqslant 3) \approx \np{0,2223}$, d'après la calculatrice soit 0,222 au millième près.
+	\end{enumerate}
+\item 
+
+
+	\begin{enumerate}
+		\item On note $p_n$ la probabilité que les $n$ clients soient tous satisfaits de leur achat.
+
+
+La probabilité qu'un acheteur soit satisfait est égale à 0,82, la probabilité que deux acheteurs soient satisfaits est $0,82^2$, \ldots, la probabilité que les $n$ acheteurs soient satisfaits est égale à $0,82^n$.
+		\item 
+		
+
+Il faut donc résoudre dans $\N$ l'inéquation :
+
+$p_n < 0,01 \iff 0,82^n < 0,01 \iff n \ln 0,82 < \ln 0,01$ par croissance de la fonction logarithme népérien soit encore 
+
+$n > \dfrac{\ln 0,01}{\ln 0,82}$. (car $\ln 0,82 < 0$). Or $\dfrac{\ln 0,01}{\ln 0,82} \approx 23,2$.
+
+Il faut donc au minimum 24 acheteurs.
+
+Moins de 1\,\% des acheteurs seront tous satisfaits si leur nombre dépasse 23.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

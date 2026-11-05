@@ -1,0 +1,141 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_technologique_2026_09_antilles_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Une entreprise peut produire entre 0 et $40$ tonnes de compote par mois.
+
+Le coût de production de $x$ tonnes de compote, exprimé en euros, est donné par la fonction $C$ définie sur $[0~;~40]$.
+
+La recette réalisée pour $x$ tonnes de compote vendues, exprimée en euros, est donnée par la fonction $R$ définie sur $[0~;~40]$.
+
+Dans cet exercice on s'intéresse à la différence entre la recette et le coût de production. Lorsque cette différence est positive on l'appelle le bénéfice.
+
+\subsection*{Partie A -- Étude graphique}
+
+Les représentations graphiques $\mathcal{C}_C$ et $\mathcal{C}_R$ des fonctions $C$ et $R$ sont données ci-dessous.
+
+\begin{center}
+	\begin{tikzpicture}[x=0.2cm,y=0.42cm,>=stealth]
+		
+		\draw[xstep=1,ystep=0.4,gray!30,line width=0.3pt] (0,0) grid (45,14);
+		\draw[xstep=5,ystep=2,gray!75,line width=0.5pt] (0,0) grid (45,14);
+		\draw[->,line width=1pt] (0,0) -- (46,0);
+		\draw[->,line width=1pt] (0,0) -- (0,14.6);
+		\foreach \x in {5,10,...,45} \draw (\x,2pt) -- (\x,-2pt) node[below] {\small \x};
+		\foreach \y in {2,4,...,14} \draw (2pt,\y) -- (-2pt,\y) node[left] {\small \np{\y000}};
+		\draw (-2pt,-2pt) node[below left] {\small 0};
+		\draw[line width=1.2pt,blue] plot[domain=0:40] (\x,{0.3*\x});
+		\draw[line width=1.2pt,red] plot[domain=0:40,samples=100] (\x,{(\x/10)^3-5.4*(\x/10)^2+8.4*(\x/10)+2});
+		\foreach \P in {(20,6),(40,12)} \draw[line width=1.25pt,darkgray,shift={\P}] (-3pt,0) -- (3pt,0) (0,-3pt) -- (0,3pt);
+		\node[red,below] at (32.5,6) {$\mathcal{C}_C$};
+		\node[blue,above] at (25,8) {$\mathcal{C}_R$};
+	\end{tikzpicture}
+\end{center}
+
+Vous répondrez aux trois questions suivantes en vous appuyant uniquement sur ce graphique.
+
+\begin{enumerate}
+	\item Déterminer l'expression $R(x)$ de la recette réalisée pour $x$ tonnes de compote vendues.
+	\item Pour quelle(s) valeur(s) de $x$ l'entreprise réalise-t-elle un bénéfice ? On donnera des valeurs approchées à l'entier près.
+	\item Avec la précision permise par le graphique, évaluer le bénéfice maximal réalisé par l'entreprise.
+\end{enumerate}
+
+\subsection*{Partie B -- Étude du résultat}
+
+On admet que le résultat réalisé pour $x$ tonnes de compote fabriquées et vendues, exprimé en euro, est donné par la fonction $B$ définie sur l'intervalle $[0~;~40]$ par :
+\[ B(x) = -x^3+54x^2-540x-\np{2000} \]
+
+On donne les valeurs suivantes :
+\[B(0) = -\np{2000} \,;\quad B(6) = -\np{3512} \,;\quad B(30) = \np{3400} \,;\quad B(40) = -\np{1200}\]
+
+\begin{enumerate}
+	\item On note $B'$ la fonction dérivée de la fonction $B$.
+
+	Calculer $B'(x)$ et montrer que $B'(x)$ peut s'écrire sous la forme :
+	\[ B'(x) = (-3x + 18)(x - 30) \]
+	\item Étudier le signe de $B'$ sur l'intervalle $[0~;~40]$ et en déduire les variations de la fonction $B$ sur ce même intervalle.
+	\item Pour quelle quantité de compote le bénéfice réalisé par l'entreprise est-il maximal ?
+\end{enumerate}
+
+\medskip
+
+\end{document}

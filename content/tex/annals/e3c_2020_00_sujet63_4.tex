@@ -1,0 +1,38 @@
+\medskip
+
+On considère la fonction $P$ définie sur l'intervalle [0~;~5] par 
+
+\[P(t) = 100t\text{e}^{-t}.\]
+
+\smallskip
+
+\begin{enumerate}
+\item Calculer $P(0)$ et $P(5)$ (on arrondira à l'unité).
+\item À l'aide d'un logiciel de calcul formel, on a obtenu une expression de la dérivée de la fonction $P$: pour tout réel $t$ de l'intervalle [0~;~5], $P'(t) = 100(1 - t)\text{e}^{-t}$.
+	\begin{enumerate}
+		\item Utiliser cette expression pour étudier le signe de $P'(t)$ sur l'intervalle [0~;~5].
+		\item En déduire le tableau de variations de la fonction $P$ sur l'intervalle [0~;~5].
+		\item Pour quelle valeur de $t$ la fonction $P$ admet-elle un maximum ? Quelle est la valeur de ce maximum ? (on arrondira à l'unité).
+	\end{enumerate}
+\item  Une station pompe l'eau d'une rivière pour la transformer ensuite en eau potable. Lors d'un épisode de pollution, il faut interrompre le pompage en attendant que la vague de pollution soit évacuée par le courant. On étudie ici un épisode de pollution ayant duré $5$ heures environ.
+
+La concentration en polluant, exprimée en milligrammes par litre (mg/L) est modélisée par la fonction $P$ définie précédemment, où $t$ est le temps écoulé depuis le début de l'alerte, exprimé en heures.
+
+On donne ci-dessous la représentation graphique de la fonction $P$ dans le plan muni d'un repère orthogonal.
+
+\begin{center}
+\psset{xunit=2cm,yunit=0.25cm}
+\begin{pspicture}(-0.25,-5)(5.25,40)
+\multido{\n=0.00+0.25}{21}{\psline[linestyle=dashed,linewidth=0.5pt](\n,0)(\n,40)}
+\multido{\n=0+5}{9}{\psline[linestyle=dashed,linewidth=0.5pt](0,\n)(5,\n)}
+\psaxes[linewidth=1.25pt,Dy=10]{->}(0,0)(0,0)(5,40)
+\psaxes[linewidth=1.25pt,Dy=10](0,0)(0,0)(5,40)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{5}{100 x mul 2.71828 x exp div}
+\uput[u](5.1,0){$t$ (h)}\uput[r](0,39){mg/l}
+\end{pspicture}
+\end{center}
+
+Les normes en vigueur indiquent que ce polluant devient dangereux pour la santé si sa concentration dépasse $5$~mg/L.
+
+Lors d'un épisode déclaré de pollution dans la rivière et après arrêt du pompage, à partir de combien d'heures peut-on considérer que la pollution ne représente plus de danger pour la santé ?
+\end{enumerate}

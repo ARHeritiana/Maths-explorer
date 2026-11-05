@@ -1,0 +1,159 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet2_antilles_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+	\item  	\textbf{Affirmation 1  est Fausse. } 
+	
+	L'équation différentielle \quad $\left(E_{1}\right): \quad y'+2 y=0 \iff y'=-2y$ est de la forme $y'=ay$ 
+	
+donc les  solutions sont les fonctions de la forme $x\mapsto C\e^{ax}$ avec $C\in\R$. 
+
+Donc, il existe $C\in \R$ tel que $f(x)= C \e^{-2x}$ .
+
+Or $f(0)=1$ donc $1=C\e^{-2\times 0} \iff C=1$ .
+
+donc $f$ est définie sur $\R$ par $f(x)=\e^{-2x}$. 
+
+$f(ln 2) = \e^{-2\ln 2} = \e^{ -ln 2^2}= \e^{ln \left(\frac{1}{4}\right)}= \dfrac{1}{4} \neq \dfrac{1}{2}$
+
+Donc : le point A de coordonnées $\left(\ln 2 ; \dfrac{1}{2}\right)$ n'appartient pas à la courbe représentative de la fonction $f$.
+
+
+
+	\item	\textbf{Affirmation 2  est  Fausse. } 
+	
+Pour étudier la position relative de la courbe représentative de la fonction $f$ et de ses tangentes, étudions la convexité de la fonction. 
+
+Pour tout réel $x\in \left[\dfrac{\pi}{2} ; \pi\right]$  : 
+
+$f'(x) = 1 + \sin(x)$ 
+
+et donc   $f''(x)= \cos(x)$.
+
+Or sur l'intervalle $\left[\dfrac{\pi}{2} ; \pi\right]$ , $cos(x) \leq 0$ donc la fonction est concave. 
+
+Elle est donc située en-dessous de toutes ses tangentes. 
+
+
+
+
+
+	\item 	\textbf{Affirmation 3  est  Vraie. }
+	
+	
+	Pour tout réel  $x\in ] 0 ;+\infty[$ : 
+	
+	$\begin{aligned}
+		-1 \leqslant \sin(x) \leqslant 1 &\implies  -\dfrac{1}{x} \leqslant  \dfrac{\sin (x)}{x} \leqslant \dfrac{1}{x}  \quad \text{car } x>0 \\
+	&	\implies  1 -\dfrac{1}{x} \leqslant  1 + \dfrac{\sin (x)}{x} \leqslant 1 +\dfrac{1}{x}  \\
+	&	\implies  1 -\dfrac{1}{x} \leqslant  f(x)  \leqslant 1 +\dfrac{1}{x}  \\
+	\end{aligned}$
+	
+	Or $\lim\limits_{x\to +\infty} \dfrac{1}{x} =0 $ donc, par somme,  $\lim\limits_{x\to +\infty }1 -\dfrac{1}{x} =1 $ et  $\lim\limits_{x\to +\infty }1 +\dfrac{1}{x} =1 $. 
+	
+	D'après le théorème des gendarmes, on a donc : $\lim\limits_{x\to +\infty }f(x) =1 $. 
+	
+	C'est à dire, la droite d'équation $y=1$ est une asymptote horizontale à la courbe représentative de la fonction $f$ au voisinage de $+\infty$.
+	\end{enumerate}
+
+
+
+	\item 	\textbf{Affirmation 4  est Vraie.} 
+	
+	
+	 La fonction $f$ est dérivable sur $\R$ et pour tout réel $x$, $f'(x) = 2 -3 \e^{3x}$.
+	
+	Donc, pour tout réel $x$ : 
+	
+	$\begin{aligned} f'(x) -3f(x) &=  2 -3 \e^{3x} - 3 \left(2x-\e^{3x}\right) \\
+		 &= 2 -3 \e^{3x} - 6x +3 \e^{3x} \\
+		 &= 2  - 6x 
+		 \end{aligned}$ 
+		 
+		 Donc $f$ est solution de l'équation $(E_{2})$.
+	
+\end{enumerate}
+
+\end{document}

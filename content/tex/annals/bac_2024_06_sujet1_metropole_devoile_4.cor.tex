@@ -1,0 +1,150 @@
+\medskip
+
+
+
+
+
+
+	\begin{enumerate}
+		\item On considère ci-dessous le tableau de variations d'une fonction $f$ définie sur $\R\setminus \{- 2\}$.
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.1}
+\psset{nodesep=3pt,arrowsize=2pt 3}  
+\def\esp{\hspace*{1.5cm}}
+\def\hauteur{0pt}
+$\begin{array}{|c| c c c r c l c c c |}
+\hline
+ x & -\infty & \esp &  & -2 & & \esp & 1 & \esp & +\infty \\
+\hline
+  &   \Rnode{max1}{5} & &   & \vline\;\vline &  & & \Rnode{max2}{3} & & \\
+f  & &  &  & \vline\;\vline & & & & & \rule{0pt}{\hauteur}\\
+ & & & \Rnode{min1}{-\infty}  & \vline\;\vline & \Rnode{min2}{-\infty} & &  & & \Rnode{min3}{1} \rule{0pt}{\hauteur} 
+\ncline{->}{max1}{min1} 
+\ncline{->}{min2}{max2}
+\ncline{->}{max2}{min3} \\
+\hline
+\end{array}$
+}
+\end{center}
+	\begin{enumerate}
+		\item \textbf{Affirmation 1 :}
+\og La droite d'équation $y = -2$ est asymptote horizontale à la courbe $\mathcal{C}_f$ de la fonction $f$. \fg{} 
+
+La droite d'équation $y = -2$ est asymptote horizontale à la courbe $\mathcal{C}_f$ de la fonction $f$ si et seulement si $\ds\lim_{x\to -\infty} f(x)=-2$ ou $\ds\lim_{x\to +\infty} f(x)=-2$.
+
+
+
+Or, d'après le tableau de variations de $f$, $\ds\lim_{x\to -\infty} f(x)=5$ et $\ds\lim_{x\to +\infty} f(x)=1$.
+
+\hfill\textbf{Affirmation 1 fausse}
+
+		\item \textbf{Affirmation 2:}
+\og  $\displaystyle\lim_{x \to - \infty} \dfrac{2}{f(x) - 5} = + \infty$. \fg{}
+
+D'après le tableau de variations de $f$, celle-ci est décroissante sur l'intervalle $]- \infty~;~-2[$, donc sur cet intervalle $f(x) < 5$ et donc $f(x)-5<0$.
+
+Comme $\displaystyle\lim_{x \to - \infty} f(x) = 5$, on a donc $\displaystyle\lim_{x \to - \infty} f(x) - 5 = 0^{-}$ et donc\\
+ $\displaystyle\lim_{x \to - \infty} \dfrac{1}{f(x) - 5} = - \infty$ et enfin  $\displaystyle\lim_{x \to - \infty} \dfrac{2}{f(x) - 5} = - \infty$.
+ 
+ \hfill\textbf{Affirmation 2 fausse}
+	\end{enumerate}
+	
+\item On considère la fonction $g$ définie sur $\R$ par $g(x) = x\e^{-x}$.
+	\begin{enumerate}
+	
+		\item \textbf{Affirmation 3 :} 
+\og  Le point A$\left(2~;~\dfrac{2}{\e^2}\right)$ est l'unique point d'inflexion de la courbe $\mathcal{C}_g$ de la fonction~$g$. \fg{} 
+
+La fonction $g$ produit de fonctions dérivables sur $\R$ est dérivable et sur cet intervalle :
+
+$g'(x) = \e^{-x} - x\e^{-x} = \e^{-x}(1 - x)$, qui est elle-même dérivable sur $\R$ et 
+
+$g''(x) = -\e^{-x} - (1 - x)\e^{-x} = \e^{-x}(x - 2)$.
+
+On a $g''(x) = 0 \iff \e^{-x}(x - 2) \iff x - 2 = 0$, puisque $\e^{-x} \ne 0$, quel que soit $x \in \R$, donc la dérivée seconde ne s'annule qu'en $x = 2$.
+
+Comme $g(2) = 2\e^{-2} = \dfrac{2}{\e^2}$ et comme $g''(x)$ a le signe de $(x - 2)$ et donc change de signe (de moins à plus) en 2, le point A$\left(2~;~\dfrac{2}{\e^2}\right)$ est l'unique point d'inflexion de la courbe $\mathcal{C}_g$.
+
+ \hfill\textbf{Affirmation 3 vraie}
+ 
+		\item \textbf{Affirmation 4 :} 
+\og  Pour tout nombre réel $x$ appartenant à $] - \infty~;~2[$, on a $g(x) \leqslant x$. \fg{} 
+
+$g(x) \leqslant x \iff x\e^{-x} \leqslant x \iff x \leqslant x\e^{x} \iff 0 \leqslant x\e^{x}-x \iff x\left (\e^{x}-1\right )\geqslant 0$
+
+On établit un tableau de signes:
+
+\begin{center}
+{
+\def\esp{\hspace*{3cm}}
+$\begin{array}{|c | *{5}{c} |} 
+\hline
+x  & -\infty & \esp & 0 & \esp  & 2 \\
+\hline
+x &  & \pmb{-} &  \vline\hspace{-2.7pt}{0} & \pmb{+} &   \\
+\hline
+\e^{x}-1 &  & \pmb{-} &  \vline\hspace{-2.7pt}{0} & \pmb{+} &   \\
+\hline
+x\left (\e^{x}-1\right ) &  & \pmb{+} &  \vline\hspace{-2.7pt}{0} & \pmb{+} &   \\
+\hline
+\end{array}$
+}
+\end{center}
+
+Donc, pour tout $x$ de $] - \infty~;~2[$, on a $x\left (\e^{x}-1\right ) \geqslant 0$ donc $g(x) \leqslant x$.
+
+
+
+
+
+
+
+
+ 
+  \hfill\textbf{Affirmation 4 vraie}
+\end{enumerate}
+	
+\item \textbf{Affirmation 5 :} 
+\og  L'équation $x\, \ln (x) = 1$ admet exactement deux solutions sur l'intervalle $]0~;~ +\infty[$. \fg{}
+
+Soit $f$ la fonction définie sur $\left ]0\;;\;+\infty\strut\right [$ par $f(x)=x\,\ln(x)-1$.
+
+$x\, \ln (x) = 1 \iff x\, \ln (x) - 1 = 0 \iff f(x)=0$
+
+\begin{list}{\textbullet}{}
+\item La fonction $f$ est dérivable et $f'(x)=1\times \ln(x) + x\times \dfrac{1}{x}-0=\ln(x)+1$.
+\item $f'(x)>0 \iff \ln(x) +1>0 \iff \ln(x)>-1 \iff x>\e^{-1}$
+\item $\ds\lim_{x\to 0 \atop x>0} x\,\ln(x)=0$ donc $\ds\lim_{x\to 0 \atop x>0} f(x)=-1$
+\item $\ds\lim_{x\to +\infty} x =+\infty$ et $\ds\lim_{x\to +\infty} \ln(x)=+\infty$ donc $\ds\lim_{x\to +\infty} f(x)=+\infty$
+\item  $f(\e^{-1})=\e^{-1}\,\ln(\e^{-1})-1 = -\e^{-1}-1<0$
+\end{list}
+
+D'où le tableau de variation de $f$:
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.1}
+\psset{nodesep=3pt,arrowsize=2pt 3}  
+\def\esp{\hspace*{2cm}}
+\def\hauteur{0pt}
+$\begin{array}{|c| l  *4{c}|}
+\hline
+ x & 0 & \esp & \e^{-1} & \esp & +\infty \\
+ \hline
+f'(x) & \vline\;\vline &  \pmb{-} & \vline\hspace{-2.7pt}0 & \pmb{+} & \\  
+\hline
+  & \vline\;\vline~\Rnode{max1}{-1}  &  &  &  & \Rnode{max2}{+\infty} \\
+f(x) &\vline\;\vline &  & & &  \rule{0pt}{\hauteur} \\
+ & \vline\;\vline & &   \Rnode{min}{-\e^{-1}-1} & & \rule{0pt}{\hauteur}
+\ncline{->}{max1}{min} \ncline{->}{min}{max2}\\
+\hline
+\end{array}$
+}
+\end{center}	
+
+Sur l'intervalle $\left ]0\;;\;\e^{-1}\strut\right [$, la fonction $f$ est négative, donc l'équation $f(x)=0$ n'a pas de solution.
+
+Sur l'intervalle $\left ]\e^{-1}\;;\; +\infty\strut\right [$, la fonction $f$, continue et strictement croissante, passe du négatif au positif: d'après le corollaire du théorème des valeurs intermédiaires, l'équation $f(x)=0$ admet une solution unique.
+
+\hfill\textbf{Affirmation 5 fausse}
+\end{enumerate}

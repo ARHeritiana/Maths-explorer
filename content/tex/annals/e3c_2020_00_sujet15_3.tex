@@ -1,0 +1,30 @@
+\medskip
+
+On appelle orthocentre d’un triangle le point de concours de ses trois hauteurs.
+
+Dans le plan muni d’un repère orthonormé, on considère les points A$(-4~;~10)$, B(8~;~16) , C$(8~;~-2)$, H(2~;~10) et K(5~;~7). (Voir figure ci-dessous)
+
+\begin{center}
+\psset{unit=0.4 cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-8,-8)(15,20)
+\multido{\n=-7+1}{22}{\psline[linewidth=0.75pt,linecolor=lightgray](\n,-7)(\n,19)}
+\multido{\n=-7+1}{27}{\psline[linewidth=0.75pt,linecolor=lightgray](-7,\n)(14,\n)}
+\psaxes[linewidth=0.95pt,Dx=5,Dy=5]{->}(0,0)(-7,-7)(14,19)
+\psdots[dotstyle=x,dotscale =1.4](-4,10)(8,16)(8,-2)(2,10)(5,7)
+\uput[l](-4,10){A} \uput[u](8,16){B}\uput[dr](8,-2){C}\uput[ul](2,10){H}\uput[ul](5,7){K}
+\psline[linewidth=1.25pt,linecolor=darkgray]{-}(-4,10)(8,16)\psline[linewidth=1.25pt,linecolor=darkgray]{-}(8,16)(8,-2)
+\psline[linewidth=1.25pt,linecolor=darkgray]{-}(8,-2)(-4,10)
+\uput[dl](0,0){O}
+\end{pspicture}
+\end{center}
+
+\begin{enumerate}
+\item Montrer que $\vvt{AB}\cdot\vvt{HC}=0 $ et que $\vvt{AC}\cdot\vvt{HB}= 0$.
+\item Que représente le point H pour le triangle ABC ?
+\item Montrer que K est le centre du cercle passant par les sommets du triangle ABC .
+\item On admet que G, le centre de gravité du triangle ABC, est le point qui vérifie
+$\vvt{AG} =\dfrac{2}{3}\vvt{AM}$ où M est le milieu du segment [BC]. Déterminer les coordonnées de G.
+\item Montrer que les points G, H et K sont alignés. 
+\end{enumerate}
+
+\vspace{0,5cm}

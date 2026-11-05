@@ -1,0 +1,89 @@
+\medskip
+
+Des biologistes étudient l'évolution d'une population d'insectes dans un jardin botanique. 
+
+Au début de l'étude la population est de \np{100000}~insectes.
+
+Pour préserver l'équilibre du milieu naturelle nombre d'insectes ne doit pas dépasser \np{400000}.
+
+\bigskip
+
+\textbf{Partie A : Étude d'un premier modèle en laboratoire}
+
+\medskip
+
+L'observation de l'évolution de ces populations d'insectes en laboratoire, en l'absence de tout prédateur, montre que le nombre d'insectes augmente de 60\,\% chaque mois.
+
+En tenant compte de cette observation, les biologistes modélisent l'évolution de la population d'insectes à l'aide d'une suite $\left(u_n\right)$ où, pour tout entier naturel $n$, \: $u_n$ modélise le nombre d'insectes, exprimé en millions, au bout de $n$ mois. 
+
+On a donc $u_0 = 0,1$.
+
+\medskip
+
+\begin{enumerate}
+\item Justifier que pour tout entier naturel $n$ : \:$u_n = 0,1 \times 1,6^n$.
+\item Déterminer la limite de la suite $\left(u_n\right)$.
+\item En résolvant une inéquation, déterminer le plus petit entier naturel $n$ à partir duquel $u_n > 0,4$.
+\item Selon ce modèle, l'équilibre du milieu naturel serait-il préservé ? Justifier la réponse.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B : Étude d'un second modèle}
+
+\medskip
+
+En tenant compte des contraintes du milieu naturel dans lequel évoluent les insectes, les biologistes choisissent une nouvelle modélisation.
+
+Ils modélisent le nombre d'insectes à l'aide de la suite $\left(v_n\right)$, définie par :
+
+\begin{center}$v_0 = 0,1$ \quad et, pour tout entier naturel $n,\: v_{n+1} = 1,6v_n - 1,6v_n^2$,\end{center}
+
+où, pour tout entier naturel $n,\: v_n$ est le nombre d'insectes, exprimé en millions, au bout de $n$ mois.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer le nombre d'insectes au bout d'un mois.
+\item On considère la fonction $f$ définie sur l'intervalle $\left[0~;~\dfrac12\right]$ par
+\[f(x) = 1,6x - 1,6x^2.\]
+
+	\begin{enumerate}
+		\item Résoudre l'équation $f(x) = x$.
+		\item Montrer que la fonction $f$ est croissante sur l'intervalle $\left[0~;~\dfrac12\right]$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Montrer par récurrence que, pour tout entier naturel $n,\: 0 \leqslant v_n  \leqslant  v_{n+1} \leqslant  \dfrac12$.
+		\item Montrer que la suite $\left(v_n\right)$ est convergente.
+		
+On note $\ell$ la valeur de sa limite. On admet que $\ell$ est solution de l'équation $f(x) = x$.
+		\item Déterminer la valeur de $\ell$. 
+		
+Selon ce modèle, l'équilibre du milieu naturel sera-t-il préservé ? Justifier la réponse.
+	\end{enumerate}	
+\end{enumerate}
+\begin{minipage}{0.6\linewidth}
+\begin{enumerate}[resume]
+\item  On donne ci-contre la fonction seuil, écrite en langage Python.
+	\begin{enumerate}
+		\item Qu'observe-t-on si on saisit seuil(0.4) ?
+		\item Déterminer la valeur renvoyée par la saisie de seuil(0.35).
+		
+Interpréter cette valeur dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}	
+\end{minipage}\hfill
+\begin{minipage}{0.36\linewidth}
+\begin{tabularx}{\linewidth}{|X|}\hline
+def seuil(a) :\\
+\qquad v=0.1\\
+\qquad n=0\\
+\qquad while v<a :\\
+\qquad \qquad v=1.6*v-1.6*v*v\\
+\qquad \qquad n=n+1\\
+\qquad return n\\ \hline
+\end{tabularx}
+\end{minipage}
+
+\bigskip

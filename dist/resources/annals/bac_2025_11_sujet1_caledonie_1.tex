@@ -1,0 +1,162 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet1_caledonie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+On dispose d’un sac et de deux urnes A et B.
+
+\begin{itemize}
+\item Le sac contient 4 boules : 1 boule avec la lettre A et 3 boules avec la lettre B.
+\item L’urne A contient 5 billets : 3 billets de $50$~euros et 2 billets de $10$~euros.
+\item L’urne B contient 4 billets : 1 billet de $50$~euros et 3 billets de $10$~euros.
+\end{itemize}
+
+\noindent
+Un joueur prend au hasard une boule dans le sac :
+\begin{itemize}
+\item si c’est une boule avec la lettre A, il prend au hasard un billet dans l’urne A.
+\item si c’est une boule avec la lettre B, il prend au hasard un billet dans l’urne B.
+\end{itemize}
+
+\noindent
+
+On note les évènements suivants :
+
+\begin{itemize}[label=$\bullet~$]
+\item $A$ : le joueur obtient une boule avec la lettre A.
+\item $C$ : le joueur obtient un billet de 50 euros.
+\end{itemize}
+
+\medskip
+
+\begin{minipage}{0.6\linewidth}
+\begin{enumerate}
+\item Recopier et compléter l'arbre ci-contre représentant la situation.
+\item Quelle est la probabilité de l'évènement \og \emph{le joueur obtient une boule avec la lettre {\rm A} et un billet de $50$ }\euro \fg{} ?
+\item Démontrer que la probabilité $P(C)$ est égale à \np{0,3375}.
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.38\linewidth}
+\begin{center}
+\pstree[treemode=R,levelsep=2cm]{\TR{}}
+{\pstree{\TR{$~A~$}\taput{\ldots}}
+	{\TR{~$C$} \taput{\ldots}
+	\TR{~$\overline{C}$} \tbput{\ldots}
+	}
+\pstree{\TR{~$\overline{A}~$}\tbput{\ldots}}
+	{\TR{~$C$} \taput{\ldots}
+	\TR{~$\overline{C}$} \tbput{\ldots}
+	}
+}
+\end{center}
+\end{minipage}
+
+\begin{enumerate}[start=4]
+\item Le joueur a obtenu un billet de 10 euros.
+
+L'affirmation \og \emph{Il y a plus de $80\,\%$ de chances qu'il ait au préalable obtenu une boule avec la lettre} B \fg{} est-elle vraie ? Justifier.
+\item On note $X_1$ la variable aléatoire qui donne la somme, en euros, obtenue par le joueur.
+
+Exemple : si le joueur obtient un billet de $50$~\euro, on a $X_1 = 50$.
+
+Montrer que l'espérance $E(X_1)$ est égale à $23,50$ et que la variance $V(X_1)$ est égale à $357,75$.
+\item Après avoir remis la boule dans le sac et le billet dans l'urne où il a été pris, le joueur joue une deuxième partie. On note $X_2 $ la variable aléatoire qui donne la somme obtenue par le joueur lors de cette deuxième partie.
+
+On note $Y$ la variable aléatoire ainsi définie : $Y = X_1 + X_2$.
+	\begin{enumerate}
+		\item Montrer que $E(Y) = 47$.
+		\item Expliquer pourquoi on a $V(Y) = V(X_1) + V(X_2)$
+	\end{enumerate}
+\item Le joueur joue de même une troisième, une quatrième,\ldots, une centième partie.
+
+On définit donc de la même façon les variables aléatoires $X_3, \:X_4,\:\ldots, X_{100}$.
+
+On note $Z$ la variable aléatoire définie par $Z = X_1 + X_2 + \ldots + X_{100}$.
+
+Démontrer que la probabilité que $Z$ appartienne à l'intervalle $]\np{1950}~;~\np{2750}[$ 
+ est supérieure ou égale à $0,75$.
+\end{enumerate}
+
+\noindent
+
+\bigskip
+
+\end{document}

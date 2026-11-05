@@ -1,0 +1,182 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_09_sujet2_metropole_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On considère la fonction $f$ définie sur ]0~;~8] par 
+
+\[f(x) = \dfrac{10\ln \left(- x^2 + 7x + 9\right)}{x}\]
+
+Soit $C_f$ la représentation graphique de la fonction $f$ dans un repère orthonormé \Oij.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item Résoudre dans $\R$ l’inéquation $- x^2 + 7x + 8 \geqslant 0$.
+\item En déduire que pour tout $x \in ]0~;~8]$, on a $f(x) \geqslant 0$.
+\item Interpréter graphiquement ce résultat.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+La courbe $C_f$ est représentée ci-dessous.
+
+Soit $M$ le point de $C_f$ d’abscisse $x$ avec $x \in ]0~;~8]$.
+
+On appelle $N$ et $P$ les projetés orthogonaux du point $M$ respectivement sur l’axe des abscisses et sur l’axe des ordonnées.
+
+Dans cette partie, on s’intéresse à l’aire $\mathcal{A}(x)$ du rectangle O$NMP$.
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(-0.5,-0.5)(8.5,10)
+\uput[ur](4,7.6){\red $(C_f)$}
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle,labels=none](0,0)(8.5,10)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle,labels=none]{->}(1,1)
+\psframe[linewidth=1.5pt](6.8,3.438)\psframe(6.8,0)(6.6,0.2)\psframe(0,3.438)(0.2,3.238)
+\uput[dl](0,0){O}\uput[l](0,3.438){$P$}\uput[ur](6.8,3.438){$M$}\uput[d](6.8,0){$N$}
+\psgrid[subgriddiv=1,gridwidth=0.3pt,labels=none](0,0)(8,10)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{3}{8}{7 x mul 9 add x dup mul sub ln 10 mul x div}
+\uput[d](0.5,0){\small $\vect{\imath}$}\uput[l](0,0.5){\small $\vect{\jmath}$}
+\end{pspicture}
+\end{center}
+\medskip
+
+\begin{enumerate}
+\item Donner les coordonnées des points $N$ et $P$ en fonction de $x$.
+\item Montrer que pour tout $x$ appartenant à l’intervalle ]0~;~8],
+
+\[\mathcal{A}(x) = 10 \ln \left(-x^2 + 7x + 9\right)\]
+
+\item Existe-t-il une position du point $M$ pour laquelle l’aire du rectangle O$NMP$ est
+maximale ? Si elle existe, déterminer cette position.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C}
+
+\medskip
+
+On considère un réel strictement positif $k$.
+
+On souhaite déterminer la plus petite valeur de $x$, approchée au dixième, appartenant à [3,5~;~8] pour laquelle l’aire $\mathcal{A}(x)$ devient inférieure ou égale à $k$.
+
+Pour ce faire, on considère l’algorithme ci-dessous.
+
+Pour rappel, en langage Python, $\ln (x)$ s’écrit log ($x$).
+
+\begin{center}
+\begin{ttfamily}
+\begin{tabular}{c l}
+1&from math import *\\
+2&\\
+3&def A(x) :\\
+4&\quad return 10*log (- 1* x**2 + 7*x + 9)\\
+5&\quad \\
+6&def pluspetitevaleur(k) :\\
+7&\quad x = 3.5\\
+8&\quad while A(x).......... :\\
+9& \qquad x = x + 0.1\\
+10&\quad return ...........
+\end{tabular}
+\end{ttfamily}
+\end{center}
+
+\smallskip
+
+\begin{enumerate}
+\item Recopier et compléter les lignes 8 et 10 de l’algorithme.
+\item Quel nombre renvoie alors l’instruction \texttt{pluspetitevaleur}(30) ?
+\item Que se passe-t-il lorsque $k = 35$ ? Justifier.
+\end{enumerate}
+
+\medskip
+
+\end{document}

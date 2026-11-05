@@ -1,0 +1,45 @@
+\medskip
+
+\Oij{} est un repère orthonormé du plan.
+
+On considère les points A, B et C de coordonnées respectives $(-2~;~0)$, (6~;~0) et (0~;~6).
+
+Les points A$'$, B$'$ et C$'$ milieux respectifs des segments [BC], [AC] et [AB].
+
+Le cercle $\Gamma$ passant par les points A$'$, B$'$ et C$'$ a pour centre le point I de coordonnées (1~;~2).
+
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture*}(-3.5,-0.75)(7.1,6.5)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.1pt]
+\psaxes[linewidth=0.6pt,labelFontSize=\scriptstyle](0,0)(-3.5,-0.5)(7,6.5)
+\psaxes[linewidth=0.6pt,labelFontSize=\scriptstyle]{->}(0,0)(1,1)
+\pspolygon(-2,0)(6,0)(0,6)
+\psdots(-2,0)(6,0)(0,6)(1,2)(3,3)(-1,3)
+\uput[ul](-2,0){A}\uput[ur](6,0){B}\uput[ur](3,3){A$'$}\uput[ur](0,6){C}\uput[ul](-1,3){B$'$}
+\uput[ur](1,2){I}\uput[dl](0,0){O}
+\uput[d](0.5,0){$\vect{\imath}$}\uput[l](0,0.5){$\vect{\jmath}$}
+\pscircle(1,2){2.23607}\uput[r](3,1){$\Gamma$}
+\end{pspicture*}
+\end{center}
+
+\smallskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Calculer le rayon de ce cercle.
+		\item En déduire qu'une équation du cercle $\Gamma$ est $(x - 1)^2 + (y - 2)^2 = 5$. 
+	\end{enumerate}
+\item  Propriété des hauteurs du triangle ABC
+	\begin{enumerate}
+		\item On admet que O est le pied de la hauteur issue de C. 
+		
+Montrer que le point O est sur le cercle $\Gamma$.
+		\item Soit H$_{\text{A}}$ le pied de la hauteur issue de A. 
+		
+Montrer que H$_{\text{A}}$ a pour coordonnées (2; 4). 
+		\item Justifier que la point H$_{\text{A}}$ est sur le cercle $\Gamma$.
+	\end{enumerate}
+\end{enumerate}

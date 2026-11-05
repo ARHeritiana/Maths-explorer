@@ -1,0 +1,151 @@
+\medskip
+
+\textbf{PARTIE A}
+
+\medskip
+
+On définit sur l'intervalle $]0~;~+\infty[$ la fonction $g$ par :
+\[g(x) = \dfrac 2x - \dfrac{1}{x^2} + \ln x \quad \text{où ln désigne la fonction logarithme népérien}.\]
+
+On admet que la fonction $g$ est dérivable sur $]0~;~+\infty[$ et on note $g'$ sa fonction dérivée.
+
+\medskip
+
+\begin{enumerate}
+\item 
+La fonction $g$ somme de fonctions dérivables sur $]0~;~+\infty[$ est dérivable et sur cet intervalle:
+
+$g'(x) = - \dfrac{2}{x^2} + \dfrac{2}{x^3} + \dfrac{1}{x} = \dfrac{x^2 - 2x + 2}{x^3}$.
+
+Or $ x > 0 \Rightarrow x^3 > 0$, donc le signe de $g'(x)$ est celui du numérateur le trinôme  $x^2 - 2x + 2$.
+\item 
+On a $x^2 - 2x + 2 = (x - 1)^2 - 1 + 2 = (x - 1)^2 + 1$.
+
+Comme $(x - 1)^2 + 1 \geqslant 1 > 0$, ce trinôme est donc supérieur à zéro pour tout $x > 0$ : la fonction $g$ est donc strictement croissante sur $]0~;~+\infty[$.
+\item 
+$\bullet~~$ On a $\displaystyle\lim_{x \to 0} -\dfrac 2x = - \infty, \: \displaystyle\lim_{x \to 0} - \dfrac{1}{x^2} = - \infty$ et $\displaystyle\lim_{x \to 0} \ln x = - \infty$.
+
+Par somme de limites on en déduit que $\displaystyle\lim_{x \to + \infty} g(x) = - \infty$.
+
+$\bullet~~$ On a $\displaystyle\lim_{x \to + \infty} - \dfrac{2}{x^2} = 0, \: \displaystyle\lim_{x \to + \infty}\dfrac{2}{x^3}  = 0$ et $\displaystyle\lim_{x \to + \infty}\ln x = + \infty$.
+
+Par somme de limites on en déduit que $\displaystyle\lim_{x \to + \infty} g(x) = + \infty$.
+\item ~
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(4,1)
+\psline(0,0.5)(4,0.5)\psline(1,0)(1,1)\psline(1.1,0)(1.1,0.5)
+\uput[u](0.5,0.4){$x$} \uput[u](1.2,0.4){$0$} \uput[u](2.5,0.4){$\alpha$} \uput[u](3.7,0.4){$+\infty$}
+\uput[u](0.5,-0.1){$g(x)$}\uput[u](1.75,-0.1){$-$}\uput[u](2.5,-0.1){$0$}
+\uput[u](3.25,-0.1){$+$}
+\end{pspicture}
+\end{center}
+
+
+La fonction $g$ est continue sur l'intervalle $]0~;~+\infty[$ car dérivable sur cet intervalle et on a démontré que sur cet intervalle la fonction est croissante de moins l'infini à plus l'infini : d'après le théorème des valeurs intermédiaires il existe un réel unique $\alpha$ tel que $g(\alpha) = 0$.
+
+On a (calculatrice) $g(0,5) \approx - 0,69$ et $g(1) = 1$ , le même théorème permet d'affirmer que 
+
+$0,5 < \alpha < 1$.
+\end{enumerate}
+
+\medskip
+
+\textbf{PARTIE B}
+
+\medskip
+
+On considère la fonction $f$ définie sur l'intervalle $]0~;~+\infty[$ par: 
+\[f(x) = \e^x \ln x.\]
+
+
+
+\begin{enumerate}
+\item 
+
+On admet que pour tout nombre réel $x > 0,\:\: f'(x) = \e^x \left(\dfrac 1x + \ln x\right)$.
+
+
+Produit de fonctions dérivables sur $]0~;~+\infty[$, \:$f'(x)$ est dérivable et sur cet intervalle :
+
+$f''(x) = \e^x \left(\dfrac 1x + \ln x\right) + \e^x \left(-\dfrac{1}{x^2} + \dfrac 1x\right) = \e^x \left(\dfrac 1x + \ln x -\dfrac{1}{x^2} + \dfrac 1x\right) =  \e^x \left(\dfrac 2x - \dfrac{1}{x^2} + \ln x\right)$.
+\item 
+
+On a donc $f''(x) = \e^x g(x)$.
+\item 
+	\begin{enumerate}
+		\item 
+Comme $\e^x > 0$ quel que soit le réel $x$, le signe de $f''(x)$ est celui de $g(x)$ donné précédemment, soit
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(4,1)
+\psline(0,0.5)(4,0.5)\psline(1,0)(1,1)\psline(1.1,0)(1.1,0.5)
+\uput[u](0.5,0.4){$x$} \uput[u](1.2,0.4){$0$} \uput[u](2.5,0.4){$\alpha$} \uput[u](3.7,0.4){$+\infty$}
+\uput[u](0.5,-0.1){$f''(x)$}\uput[u](1.75,-0.1){$-$}\uput[u](2.5,-0.1){$0$}
+\uput[u](3.25,-0.1){$+$}
+\end{pspicture}
+\end{center}
+		\item 
+On sait que si $f''(\beta) = 0$, la courbe $\mathcal{C}_f$ admet un  point d'inflexion au point d'abscisse $\beta$.
+
+Or $f''(x) = 0 \iff \e^x g(x) = 0 \iff g(x) = 0 \iff x = \alpha$.
+
+\emph{Rem.} : la calculatrice donne $\alpha \approx 0,592$, puis $f(\alpha) \approx - 0,948$. Le point A$(0,592~;~-0,948)$ est le seul point d'inflexion de la courbe $\mathcal{C}_f$.
+		\item 
+On a vu que sur sur l'intervalle $]0~;~\alpha]$, la dérivée seconde est négative : la fonction $f$ est concave sur cet intervalle.
+
+Sur l'intervalle $[\alpha~;~+ \infty[$ la dérivée seconde est positive : la fonction $f$ est convexe sur cet intervalle.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item 
+$\bullet~~$ On a $\displaystyle\lim_{x \to 0} \e^x = 1$ et $\displaystyle\lim_{x \to 0}\ln x = - \infty$, donc par produit de limites : $\displaystyle\lim_{x \to 0}f(x) = - \infty$ ;
+
+$\bullet~~$ On a $\displaystyle\lim_{x \to + \infty} \e^x = + \infty$ et $\displaystyle\lim_{x \to + \infty} \ln x = + \infty$ , donc par produit de limites : $\displaystyle\lim_{x \to + \infty}f(x) = + \infty$.
+		\item 
+
+
+On sait que $g(\alpha) = 0 \iff \dfrac{2}{\alpha} - \dfrac{1}{\alpha^2} + \ln \alpha = 0 \iff \ln \alpha  = \dfrac{1}{\alpha^2} - \dfrac{2}{\alpha} = \dfrac{1}{\alpha^2}(1 - 2\alpha)$.
+
+Donc $f'(\alpha) = \e^{\alpha}\left(\dfrac{1}{\alpha} + \ln \alpha \right) = \e^{\alpha}\left(\dfrac{1}{\alpha} +\dfrac{1}{\alpha^2} - \dfrac{2}{\alpha}\right) = \e^{\alpha}\left(\dfrac{1}{\alpha^2} - \dfrac{1}{\alpha}\right) = \dfrac{\e^{\alpha}}{\alpha^2}(1 - \alpha)$.
+		\item 
+On sait que $\e^{\alpha} > 0, \: \alpha^2 > 0$ et que $\alpha \approx 0,592 < 1$, donc $1 - \alpha > 0$. Donc $f'(\alpha) > 0$ comme produit de trois facteurs supérieurs à zéro.
+
+On a vu que $f''(x) = \e^x g(x)$, donc :
+
+$\bullet~~$sur $]0~;~\alpha], \: g(x) < 0$, donc $\e^x g(x) = f''(x) < 0$ : la fonction $f'$ est décroissante sur cet intervalle ;
+
+$\bullet~~$sur $]\alpha~;~+\infty[, \: g(x) > 0$, donc $\e^x g(x) = f''(x) > 0$ : la fonction $f'$ est croissante sur cet intervalle ;
+
+$\bullet~~$Donc $f'(\alpha)$ est le minimum de la fonction $f'$ sur l'intervalle $]0~;~+ \infty[$.
+
+Ce minimum étant supérieur à zéro, on a donc $f'(x) > 0$ sur $]0~;~+ \infty[$ et enfin la fonction $f$ est strictement croissante de moins l'infini à plus l'infini.
+		\item 
+On peut établir le tableau de variations de la fonction $f$ sur l'intervalle $]0~;~+ \infty[$ :
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(9,3.)
+\psframe(9,3)\psline(0,2)(9,2)\psline(0,2.5)(9,2.5)
+\psline(1,0)(1,3.)\psline(1.1,0)(1.1,2.5)
+\uput[u](0.5,2.4){$x$}\uput[u](1.1,2.4){$0$}\uput[u](3,2.4){$\alpha$}\uput[u](5,2.4){$1$}\uput[u](8.5,2.4){$+\infty$}
+\uput[u](0.5,1.9){$f'(x)$}\uput[u](3,1.9){$+$}\uput[u](7,1.9){$+$}
+\psline{->}(1.5,0.5)(8.5,1.5)\uput[u](1.5,0){$- \infty$}\uput[d](8.5,2){$+ \infty$}
+\rput(5,1){0}\rput(3,0.75){$\approx-0,948$}
+\rput(0.5,1){$f(x)$}
+\end{pspicture}
+
+\medskip
+
+\psset{xunit=3cm,arrowsize=2pt 3}
+\begin{pspicture*}(-0.2,-5)(3,5)
+\psgrid[gridlabels=0pt,subgriddiv=1]
+\psaxes[linewidth=1.25pt]{->}(0,0)(-0.2,-4.9)(3,5)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0.1}{10}{2.71828 x exp x ln mul}
+\psplotTangent[linecolor=red,arrows=<->]{0.592}{1.}{2.71828 x exp x ln mul}
+\uput[ul](0.592,-0.948){\red A}\uput[r](2,4.8){\red $f(x) = \e^x \ln x$}
+\psdots[linecolor=red](0.592,-0.948)
+\end{pspicture*}
+\end{center}
+	\end{enumerate}
+\end{enumerate}

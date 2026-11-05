@@ -1,0 +1,202 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet2_metropole_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{center}\textbf{Partie A} \end{center}
+
+\smallskip
+
+\begin{enumerate}
+\item Les droites sont sécantes s'il existe un point dont les coordonnées vérifient les équations paramétriques des deux droites, donc s'il existe deux réels $t$ et $s$ donnant les mêmes coordonnées avec les deux systèmes d'équations, soit :
+
+$\left\{\begin{array}{l c l}
+x& =& \frac 32 + 2t = s\\
+y&=&2 +t = \frac 32 + s\\
+z&=&3 - t = 3 - 2s
+\end{array}\right.\iff 
+\left\{\begin{array}{l c l}
+\frac 32 + 2t& =& s\\
+2 +t &=& \frac 32 + \frac 32 + 2t\\
+3 - t &=& 3 - 2(\frac 32 + 2t)
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+\frac 32 + 2t& =& s\\
+2 + t&=&3 + 2t\\
+3 - t&=&- 4t\end{array}\right. $
+
+$\iff \left\{\begin{array}{l c l} 
+\frac 32 + 2t& =& s\\
+- 1&=&t\\
+3t&=&-3\end{array}\right. \iff \left\{\begin{array}{l c l} -\frac 12 & =& s\\
+- 1&=&t\\
+t&=&-1\end{array}\right.$
+
+Ces équations sont compatibles : les équations paramétriques de $d$ et de $(d')$ donnent respectivement  avec $t = - 1$ et $s = -\frac 12$ les mêmes coordonnées $\left(- \frac12~;~1~;~4 \right)$ du point commun à ces deux droites.
+\item
+	\begin{enumerate}
+		\item On a $\vect{\text{AB}}\begin{pmatrix}2\\-3\\1\end{pmatrix}$ et $\vect{\text{AC}}\begin{pmatrix}2\\-1\\0\end{pmatrix}$.
+
+Ces deux vecteurs ne sont pas colinéaires : leurs premières coordonnées sont égales mais pas les autres
+
+Or $\vect{n} \cdot \vect{\text{AB}} = 2 - 6 + 4 = 0$ et $\vect{n} \cdot \vect{\text{AC}} = 2 - 2 + 0 = 0$.
+
+Conclusion $\vect{n}$ orthogonal à deux vecteurs non colinéaires du plan (ABC) est un vecteur normal à ce plan.
+	\item Le résultat précédent montre que :
+	
+$M(x~;~y~;~z) in (\text{ABC}) \iff 1x + 2y + 4z + d = 0, \: d \in \R$.
+
+En particulier C$(1~;~1~;~1) in (\text{ABC}) \iff 1 + 2 + 4 + d = 0, \: d \in \R \iff  d = - 7$.
+
+Finalement : $M(x~;~y~;~z) in (\text{ABC}) \iff x + 2y + 4z - 7 = 0$.
+	\end{enumerate}
+\item A, B et C définissant un plan, il suffit de montrer que S n'appartient pas à ce plan :
+
+S$\left(- \frac 12~;~1~;~4\right) \notin (\text{ABC}) \iff - \dfrac 12  + 2 + 16 - 7 \ne 0 \iff \dfrac{21}{2} \ne 0$ qui est bien vraie.
+\item 
+	\begin{enumerate}
+		\item Si H est le projeté orthogonal de S sur le plan (ABC), alors $\vect{\text{SH}}$ est un vecteur normal au plan (ABC), donc colinéaire au vecteur $\vect{n}$.
+		
+Or $\vect{\text{SH}}\begin{pmatrix}- \dfrac 12\\- 1\\-2\end{pmatrix}$.
+
+Avec $\vect{n}\begin{pmatrix} 1\\2\\4\end{pmatrix}$, on a bien $\vect{n} = - 2\vect{\text{SH}}$.
+
+D'autre part on a ;
+
+H$(-1~;~0~;~2) \in (\text{ABC}) \iff - 1 + 2\times 0  + 4 \times 2 - 7 = 0$ qui est vraie.
+
+Conclusion : le point H$(-1~;~0~;~2)$ est le projeté orthogonal de S sur le plan (ABC).
+	\item De $\vect{\text{SH}}\begin{pmatrix}- \dfrac 12\\- 1\\-2\end{pmatrix}$ on en déduit que SH$^2 = \dfrac 14 + 1 + 4 = \dfrac 14 + \dfrac{20}{4} = \dfrac{21}{4}$, d'où SH $ = \sqrt{\dfrac{21}{4}} = \dfrac{\sqrt{21}}{\sqrt{4}} = \dfrac{\sqrt{21}}{2}$.
+	
+Comme H est le projeté orthogonal de S sur le plan (ABC) on sait que la distance SH est la plus petite distance de S au plan. Pour tout autre point M distinct de H du plan (ABC), [SM] est l'hypoténuse du triangle rectangle SHM donc le côté le plus long de ce triangle et en particulier SM $> $ SH, soit SM $ > \dfrac{\sqrt{21}}{2}$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\begin{center}\textbf{Partie B} \end{center}
+
+\smallskip
+
+\begin{enumerate}
+\item Si $M(x~;~y~;~z)$, avec $\vect{\text{CS}}\begin{pmatrix}- \dfrac 32\\0\\3\end{pmatrix}$, on a 
+
+$\vect{\text{C}M} = k\vect{\text{CS}} \iff \left\{\begin{array}{l c l}
+x - 1&=&- \dfrac 32 k\\
+y - 1&=&0k\\
+z - 1&=&3k
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+x &=& 1 - \dfrac 32 k\\
+y &=&1\\
+z &=&1 + 3k
+\end{array}\right.$
+	\item ($M$AB) est rectangle en $M$ si :
+	
+(A$M$) et (B$M$) sont perpendiculaires soit si $\vect{\text{A}M} \cdot \vect{\text{B}M} = 0$.
+
+Avec $\vect{\text{A}M}\begin{pmatrix}1 - \dfrac 32 k + 1\\1 - 2\\1 + 3k - 1\end{pmatrix}$ soit $\vect{\text{A}M}\begin{pmatrix} 2 - \dfrac 32 k\\ - 1\\3k\end{pmatrix}$ et 
+$\vect{\text{B}M}\begin{pmatrix}1 - \dfrac 32 k - 1\\1 + 1\\1 + 3k - 2\end{pmatrix}$, soit $\vect{\text{B}M}\begin{pmatrix}- \dfrac 32 k \\2\\3k - 1\end{pmatrix}$ le produit scalaire s'écrit :
+
+$- \dfrac 32 k\left(2 - \dfrac 32 k\right) - 2 + 3k(3k - 1) = 0 \iff - 3k + \dfrac 94 k^2 - 2 + 9k^2 + \dfrac 94 k^2 - 2 + 9k^2 - 3k = 0 \iff 
+9k^2 + 36k^2 - 24k- 8 = 0 \iff 45k^2- 24k - 8 = 0$.
+
+Pour cette équation du second degré, on a 
+
+$\Delta = 24^2 - 4 \times 45 \times (- 8) = \np{2016} > 0$.
+
+L'équation a deux solutions :
+
+$k_1 = \dfrac{24+ \sqrt{\np{2016}}}{90} \approx 0,765$ et 
+$k_2 = \dfrac{24 - \sqrt{\np{2016}}}{90} \approx -0,232$.
+
+Seul $k_1 \in [0~;~1]$.
+
+Conclusion : il existe un seul point $M_1$ du segment [CS] tel que $M_1$AB est un triangle rectangle en $M_1$.
+
+\emph{Rem.} Si on remplace $k$ par la valeur trouvée ci-dessus, on trouve que AB$^2 = 14$, \: A$M_1^2 = 7$ et B$M_1^2 = 7$.
+
+Le triangle $M_1$AB est un triangle rectangle ($7 + 7 = 14$), mais aussi isocèle.
+\end{enumerate}
+
+\medskip
+
+\end{document}

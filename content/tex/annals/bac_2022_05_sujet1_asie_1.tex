@@ -1,0 +1,71 @@
+\medskip
+
+\emph{Principaux domaines abordés}: Probabilités conditionnelles et indépendance. Variables aléatoires.
+
+\medskip
+
+Lors d'une kermesse, un organisateur de jeux dispose, d'une part, d'une roue comportant quatre cases blanches et huit cases rouges et, d'autre part, d'un sac contenant cinq jetons portant les numéros 1, 2, 3, 4 et 5.
+
+Le jeu consiste à faire tourner la roue, chaque case ayant la même probabilité d'être obtenue, puis à extraire un ou deux jetons du sac selon la règle suivante :
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet~~$] si la case obtenue par la roue est blanche, alors le joueur extrait un jeton du sac ;
+\item[$\bullet~~$] si la case obtenue par la roue est rouge, alors le joueur extrait successivement et sans remise deux jetons du sac.
+\end{itemize}
+\setlength\parindent{0cm}
+
+Le joueur gagne si le ou les jetons tirés portent tous un numéro impair.
+
+\medskip
+
+\begin{enumerate}
+\item Un joueur fait une partie et on note $B$ l'évènement \og la case obtenue est blanche \fg,
+$R$ l'évènement \og la case obtenue est rouge\fg{} et $G$ l'évènement \og le joueur gagne la partie \fg. 
+	\begin{enumerate}
+		\item Donner la valeur de la probabilité conditionnelle $P_B(G)$.
+		\item On admettra que la probabilité de tirer successivement et sans remise deux jetons impairs est égale à $0,3$. 
+		
+Recopier et compléter l'arbre de probabilité suivant:
+
+\begin{center}
+\pstree[treemode=R,nodesepB=3pt,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$B$~~} }
+	{\TR{$G$}
+	\TR{$\overline{G}$}
+	}
+\pstree{\TR{$R$~~} }
+	{\TR{$G$}
+	\TR{$\overline{G}$}
+	}	
+}
+\end{center}
+
+	\end{enumerate}
+
+\item
+	\begin{enumerate}
+		\item Montrer que $P(G) = 0,4$.
+		\item Un joueur gagne la partie.
+		
+Quelle est la probabilité qu'il ait obtenu une case blanche en lançant la roue?
+	\end{enumerate}
+\item Les évènements $B$ et $G$ sont-ils indépendants ? Justifier.
+\item Un même joueur fait dix parties. Les jetons tirés sont remis dans le sac après chaque partie.
+
+On note $X$ la variable aléatoire égale au nombre de parties gagnées.
+	\begin{enumerate}
+		\item Expliquer pourquoi $X$ suit une loi binomiale et préciser ses paramètres.
+		\item Calculer la probabilité, arrondie à $10^{-3}$ près, que le joueur gagne exactement trois parties sur les dix parties jouées.
+		\item Calculer $P (X \geqslant 4)$ arrondie à $10^{-3}$ près.
+		
+Donner une interprétation du résultat obtenu.
+	\end{enumerate}
+\item Un joueur fait $n$ parties et on note $p_n$ la probabilité de l'évènement \og le joueur gagne au moins une partie \fg.
+	\begin{enumerate}
+		\item Montrer que $p_n = 1 - 0,6^n$.
+		\item Déterminer la plus petite valeur de l'entier $n$ pour laquelle la probabilité de gagner au moins une partie est supérieure ou égale à $0,99$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

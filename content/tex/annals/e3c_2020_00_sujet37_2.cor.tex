@@ -1,0 +1,37 @@
+\subsection*{1.}
+
+Retrancher 10 \%, c'est multiplier par \(1 - \frac{10}{100} = 0{,}9\).
+
+Donc :
+\begin{align*}
+&u_1 = 0{,}9 u_0 = 200 \times 0{,}9 = 180, \\
+&u_2 = 0{,}9 u_1 = 180 \times 0{,}9 = 162.
+\end{align*}
+
+\subsection*{2.}
+
+Puisque, pour tout entier naturel \(n\), \(u_{n+1} = 0{,}9 u_n\), cette égalité montre que la suite \((u_n)\) est géométrique de raison \(q = 0{,}9\) et de premier terme \(u_0 = 200\).
+
+On a donc, pour tout entier naturel \(n\) : \(u_n = 200 \times 0{,}9^n\).
+
+\subsection*{3.}
+
+On a : \(u_{12} = 200 \times 0{,}9^{12} \approx 56{,}49\) (€).
+
+\subsection*{4.}
+
+\begin{center}
+\begin{lstlisting}[style=python]
+def seuil(x):
+    u = 200
+    n = 0
+    while u > x :
+        u = u * 0.9
+        n = n + 1
+    return n
+\end{lstlisting}
+\end{center}
+
+\subsection*{5.}
+
+Au bout de sept semaines le prix est environ de \(95{,}66\) €.

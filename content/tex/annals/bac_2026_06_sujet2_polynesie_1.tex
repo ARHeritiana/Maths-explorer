@@ -1,0 +1,81 @@
+\medskip
+
+Dans cet exercice, on s'intéresse à la part des filles et des garçons s'orientant vers des études scientifiques après avoir suivi un enseignement de spécialité mathématiques en terminale.
+
+ Les parties A et B peuvent être traitées de façon indépendante.
+
+\subsection*{Partie A}
+
+Dans une académie donnée, la population est constituée d'élèves de terminale ayant choisi la spécialité mathématiques. On souhaite analyser leurs choix d'orientation, notamment vers les études supérieures en ingénierie.
+
+Les répartitions sont les suivantes :
+
+\begin{itemize}[noitemsep]
+\item 40\,\% sont des filles ; 60\,\% sont des garçons ;
+\item parmi les filles, 33,75\,\% envisagent des études d'ingénieur ;
+\item parmi les garçons, 54,25\,\% envisagent des études d'ingénieur.
+\end{itemize}
+
+On interroge uniformément au hasard un élève de terminale ayant choisi la spécialité mathématiques de cette académie et on considère les évènements suivants :
+\begin{itemize}[noitemsep]
+\item $F$ : \og L'élève est une fille \fg ;
+\item $I$ : \og L'élève envisage des études d'ingénieur \fg.
+\end{itemize}
+
+ Pour un évènement $E$ quelconque, on note $\overline{E}$ l'évènement contraire et $P(E)$ la probabilité de $E$.
+
+\begin{enumerate}
+\item Représenter cette situation à l'aide d'un arbre pondéré.
+\item Calculer la probabilité que l'élève choisi au hasard soit une fille envisageant des études d'ingénieur.
+\item Démontrer que la probabilité que l'élève choisi au hasard envisage des études d'ingénieur est égale à $0{,}4605$.
+\item L'élève interrogé envisage des études d'ingénieur. Quelle est la probabilité qu'il s'agisse d'une fille ?\\
+\textit{Donner une valeur approchée du résultat à $10^{-3}$ près.}
+\end{enumerate}
+
+\subsection*{Partie B}
+
+Dans cette partie, on considère un entier naturel $n$ non nul.
+
+ On interroge uniformément au hasard dans cette académie $n$ filles en terminale, qu'elles suivent ou non la spécialité mathématiques. On suppose que ce nombre de filles est suffisamment important pour assimiler ce prélèvement à des tirages indépendants avec remise.
+
+On note $X$ la variable aléatoire qui modélise le nombre de filles envisageant de devenir ingénieure qu'elle suive ou non la spécialité mathématiques.
+
+On admet que la probabilité qu'une fille souhaite devenir ingénieure est égale à $0{,}15$.
+
+\medskip
+
+\begin{enumerate}
+\item[1.] 
+	\begin{enumerate}[label=\alph*.]
+		\item Justifier que $X$ suit une loi binomiale.
+		\item Exprimer en fonction de $n$ l'espérance de $X$.
+	\end{enumerate}
+\item[2.] En résolvant une inéquation, déterminer le plus petit nombre de lycéennes qu'il faut interroger pour que la probabilité de l'évènement \og Au moins une fille parmi celles interrogées souhaite devenir ingénieure \fg soit supérieure ou égale à $0{,}99$.
+\item[3.] Dans cette question, on choisit un échantillon de $n = 29$ filles.
+
+Déterminer la probabilité qu'au moins le quart des filles interrogées souhaite devenir ingénieure. \textit{Donner une valeur approchée du résultat à $10^{-3}$ près.}
+\end{enumerate}
+
+\subsection*{Partie C}
+
+On s'intéresse à dix académies françaises de tailles comparables numérotées de 1 à 10.
+
+On considère $X_1$ la variable aléatoire qui, à un échantillon de 1\,500 lycéennes de l'académie n°1, associe le nombre de filles envisageant de devenir ingénieure.
+
+On définit de la même façon les variables aléatoires $X_2, \dots, X_{10}$ pour les académies 2 à 10.
+
+On admet que les variables aléatoires $X_1, X_2, \dots, X_{10}$ sont indépendantes entre elles et qu'elles admettent la même espérance égale à $225$ et la même variance égale à $191{,}25$.
+
+On considère la variable aléatoire $S = X_1 + X_2 + \cdots + X_{10}$.
+
+\medskip
+
+\begin{enumerate}
+\item Que représente la variable aléatoire $S$ pour les \np{15000} lycéennes interrogées sur l'ensemble des dix académies ?
+\item Calculer l'espérance et la variance de $S$.
+\item On considère l'ensemble des 15\,000 lycéennes formé par les échantillons issus des dix académies.
+
+Argumenter pour dire si l'affirmation suivante est vraie, fausse ou si on ne peut pas savoir : \og La probabilité que le nombre total de filles envisageant de devenir ingénieure soit strictement compris entre \np{2000} et \np{2500} est supérieure à $0{,}95$ \fg.
+\end{enumerate}
+
+\bigskip

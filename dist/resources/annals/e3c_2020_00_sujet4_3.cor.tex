@@ -1,0 +1,179 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet4_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\section*{Exercice 3 (5 points)}
+	
+	\subsection*{Partie A}
+	
+	\subsubsection*{1. Calculer $P(B \cap S)$}
+	
+	On peut dresser un arbre pondéré de probabilités :
+	
+	\begin{tikzpicture}
+	[level 1/.style={level distance=2cm,
+		sibling distance=3cm},
+	level 2/.style={level distance=2.5cm,
+		sibling distance=1.5cm}]
+	\node {} [grow'=right]
+	child {node {$S$}
+		child {node {$B$}
+			edge from parent node[above] {$\dfrac34$}
+		}
+		child {node {$\overline B$}
+			edge from parent node[below] {$\dfrac14$}
+		}
+		edge from parent node[above] {$\dfrac12$}
+	}
+	child {node {$\overline S$}
+		child {node {$B$}
+			edge from parent node[above] {$\dfrac18$}
+		}
+		child {node {$\overline B$}
+			edge from parent node[below] {$\dfrac78$}
+		}
+		edge from parent node[below] {$\dfrac12$}
+	}
+	;
+\end{tikzpicture}
+
+	
+	On a $P(B \cap S) = P(S \cap B) = P(S) \times P_S(B) = \dfrac{1}{2} \times \dfrac{3}{4} = \dfrac{3}{8}$.
+	
+	\subsubsection*{2. Déterminer la probabilité que le groupe de copains réponde correctement à la question posée}
+	
+	D’après la loi des probabilités totales on a :
+	\[
+	P(B) = P(B \cap S) + P(B \cap \overline{S}) = \dfrac{1}{2} + \dfrac{1}{2} \times \dfrac{1}{8} = \dfrac{3}{8} + \dfrac{1}{16} = \dfrac{6}{16} + \dfrac{1}{16} = \dfrac{7}{16}
+	\]
+	
+	\subsubsection*{3. Les évènements $S$ et $B$ sont-ils indépendants ?}
+	
+	On a avec $P(S) = \dfrac{1}{2}$ :
+	\[
+	P(B \cap S) = \dfrac{3}{8} \text{ et } P(B) \times P(S) = \dfrac{7}{16} \times \dfrac{1}{2} = \dfrac{7}{32}
+	\]
+	Les évènements $S$ et $B$ ne sont donc pas indépendants.
+	
+	\subsection*{Partie B}
+	
+
+	
+	\subsubsection*{1. Déterminer la loi de probabilité de $X$}
+	
+	On a $P(\overline{B}) = 1 - \dfrac{7}{16} = \dfrac{9}{16}$. D’où le tableau :
+	
+	\[
+	\begin{array}{|c|c|c|c|}
+		\hline
+		&&&\\
+		X & -5 & 5 & 25 \\
+		&&&\\
+		\hline
+		&&&\\
+		P(X = x_i) & \dfrac{9}{16} & \dfrac{6}{16} & \dfrac{1}{16} \\
+		&&&\\
+		\hline
+	\end{array}
+	\]
+	
+	\subsubsection*{2. Que retourne la fonction \texttt{Jeu} écrite ci-dessous en langage Python avec les listes $L = [-5, 5, 25]$ et $G = [0,5625; 0,375; 0,0625]$ ?}
+	
+\begin{center}
+	
+	\begin{tabularx}{0.4\linewidth}{|X|}\hline
+		def \texttt{Jeu(L,G):}\\
+		\quad  \texttt{n = len(L)}\\
+		\quad \texttt{E = 0}\\
+		\quad \texttt{for i in range(n):}\\
+		\qquad \texttt{E =E + L[i]*G[i]} \\
+		\quad \texttt{return(E)}\\ \hline
+	\end{tabularx}
+\end{center}
+	
+	L’algorithme donne l’espérance mathématique du jeu :
+	\[
+	E = -5 \times \dfrac{9}{16} + 5 \times \dfrac{6}{16} + 25 \times \dfrac{1}{16} = \dfrac{-45 + 30 + 25}{16} = \dfrac{10}{16} = \dfrac{5}{8} = 0,625~\euro{}
+	\]
+	En moyenne ce jeu permettra de gagner 6,25€ en 10 parties.
+
+\end{document}

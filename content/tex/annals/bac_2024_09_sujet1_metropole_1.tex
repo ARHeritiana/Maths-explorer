@@ -1,0 +1,79 @@
+\medskip
+
+On considère un cube ABCDEFGH de côté 1.
+
+\begin{center}
+\psset{unit=0.8cm}
+\begin{pspicture}(9,9.4)
+\psdots(1.4,1)(5.6,0.5)(7.9,1.4)(3.7,1.9)(1.4,5.5)(5.6,5)(7.9,5.9)(3.7,6.4)(4.65,1.2)(1.4,8.2)(7.1,4.72)
+\pspolygon(1.4,1)(5.6,0.5)(5.6,5)(1.4,5.5)
+\psline(5.6,0.5)(7.9,1.4)(7.9,5.9)(5.6,5)
+\psline(7.9,5.9)(3.7,6.4)(1.4,5.5)
+\psline(1.4,8.2)(5.6,0.5)(7.9,5.9)
+\psline(1.4,8.2)(5.5,5.7)
+\psline[linestyle=dashed](5.5,5.7)(7.9,4.2)
+\psline(1.4,8.2)(2.24,5.98)
+\psline(1.4,1)(1.4,9)
+\psline(0.4,8.8)(1.4,8.2)
+\psline[linestyle=dashed](2.24,5.98)(3.7,1.9)
+\psline(7.9,4.2)(8.7,3.7)
+\psline[linestyle=dashed](1.4,1)(3.7,1.9)(7.9,1.4)
+\psline[linestyle=dashed](3.7,6.4)(3.7,1.9)(5.6,0.5)
+\psline[linestyle=dashed](4.65,1.2)(7.9,5.9)(3.7,1.9)
+\uput[l](1.4,1){A} \uput[dr](5.6,0.5){B} \uput[r](7.9,1.4){C} \uput[170](3.7,1.9){D}
+\uput[l](1.4,5.5){E} \uput[ul](5.6,5){F} \uput[ur](7.9,5.9){G} \uput[170](3.7,6.4){H}
+\uput[dl](4.65,1.2){I} \uput[ur](1.4,8.2){K} \uput[d](7.1,4.72){L} \uput[dl](0.4,8.8){$\Delta$}
+\end{pspicture}
+\end{center}
+
+Le point I est le milieu du segment [BD]. On définit le point L tel que $\vect{\text{IL}}= \dfrac34\vect{\text{IG}}$.
+
+On se place dans le repère orthonormé $\left(\text{A}~;~\vect{\text{AB}},\:\vect{\text{AD}},\:\vect{\text{AE}}\right)$.
+
+\begin{enumerate}
+\item
+	\begin{enumerate}
+		\item Préciser les coordonnées des points D, B, I et G. \\
+		Aucune justification n'est attendue.
+		\item Montrer que le point L a pour coordonnées $\left(\dfrac78~;~\dfrac78~;~\dfrac34\right)$.
+	\end{enumerate}
+\item Vérifier qu'une équation cartésienne du plan (BDG) est $x + y - z - 1 = 0$.
+\item On considère la droite $\Delta$ perpendiculaire au plan (BDG) passant par L.
+	\begin{enumerate}
+		\item Justifier qu'une représentation paramétrique de la droite $\Delta$ est : 
+\renewcommand\arraystretch{1.9}
+\[
+\left\{\begin{array}{l c l}x&=&\dfrac78 + t \\ y &=& \dfrac78+t \\ z&=&\dfrac34 -t \end{array}\right. \text{ où } t \in \R. \]
+\renewcommand\arraystretch{1}
+		\item Montrer que les droites $\Delta$ et (AE) sont sécantes au point K de coordonnées $\left(0~;~0~;~\dfrac{13}{8}\right)$.
+		\item Que représente le point L pour le point K ? Justifier la réponse.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Calculer la distance KL.
+		\item On admet que le triangle DBG est équilatéral. 
+		
+		Montrer que son aire est égale à $\dfrac{\sqrt{3}}{2}$.
+
+		\item En déduire le volume du tétraèdre KDBG.
+
+\begin{list}{\textbullet}{On rappelle que :}
+\item le volume d'une pyramide est donné par la formule $\mathcal{V} = \dfrac13 \times \mathcal{B} \times h$ où $\mathcal{B}$ est l'aire d'une base et $h$ la longueur de la hauteur relative a cette base ;
+\item un tétraèdre est une pyramide à base triangulaire.
+\end{list}
+	\end{enumerate}
+	
+\item On désigne par $a$ un réel appartenant à l'intervalle $]0~;~+\infty[$ et on note $K_a$ le point de coordonnées $(0~;~0~;~a)$.
+	\begin{enumerate}
+		\item Exprimer le volume $\mathcal{V}_a$ de la pyramide ABCD$K_a$ en fonction de $a$.
+		\item On note $\Delta_a$ la droite de représentation paramétrique 
+
+\[
+\left\{\begin{array}{l c l}x&=&\phantom{-}t' \\ y &=&\phantom{-}t' \\ z&=&- t' + a \end{array}\right. \text{ où } t' \in \R. \]
+
+On appelle $L_a$ le point d'intersection de la droite $\Delta_a$ avec le plan (BDG).
+
+Montrer que les coordonnées du point $L_a$ sont $\left(\dfrac{a+1}{3}~;~\dfrac{a+1}{3}~;~\dfrac{2a-1}{3}\right)$.
+		\item Déterminer, s'il existe, un réel strictement positif $a$ tel que le tétraèdre GDB$K_a$ et la pyramide ABCD$K_a$ sont de même volume.
+	\end{enumerate}
+\end{enumerate}

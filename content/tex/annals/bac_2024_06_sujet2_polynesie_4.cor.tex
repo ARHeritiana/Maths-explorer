@@ -1,0 +1,95 @@
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+	\item 
+On a $\vect{\text{AB}}\begin{pmatrix}5\\-1\\- 13\end{pmatrix}$ et $\vect{\text{AC}}\begin{pmatrix}2\\-2\\- 10\end{pmatrix}$.
+
+Ces vecteurs ne sont pas colinéaires donc les points A, B et C  sont distincts et non alignés : ils définissent le plan $\mathcal{P} = $ (ABC).
+\end{enumerate}
+
+Dans la suite, on considère le vecteur $\vect{n} \begin{pmatrix}2\\-3\\1\end{pmatrix}$.
+
+\begin{enumerate}[resume]
+	\item 
+	\begin{enumerate}
+		\item 
+On a $\vect{n} \cdot \vect{\text{AB}} = 10  + 3 - 13 = 0$ et  $\vect{n} \cdot \vect{\text{AB}} = 4  + 6 - 10 = 0$.
+
+Le vecteur $\vect{n}$ orthogonal à deux vecteurs non colinéaires du plan (ABC) est normal à ce plan
+		\item 
+On sait qu'alors :
+		
+$M(x~;~y~;~z) \in  (\text{ABC}) \iff 2x - 3y + 1z + d = 0, \: d \in \R$.
+		
+Par exemple A$(-1~;~-1~;~17)\in (\text{ABC}) \iff - 2 + 3 + 17 + d = 0 \iff d = -18$, donc 
+
+$M(x~;~y~;~z) \in  (\text{ABC}) \iff 2x - 3y + z - 18 = 0$.
+\end{enumerate}
+	\item 
+
+\[ d~:~\left\{\begin{array}{l c l}
+x&=&3t+2\\y&=&\phantom{3}t+5\\z&=&4t+1\end{array}\right.\text{, avec } t \in \R. \]
+	\begin{enumerate}
+		\item 
+On sait que les coordonnées d'un vecteur directeur $\vect{d}$ de $d$ sont les coefficients de $t$, soit $\vect{d}\begin{pmatrix}3\\1\\4\end{pmatrix}$
+		\item 
+		Les coordonnées de E commun à $d$ et au plan (ABC) vérifient les équations paramétriques de $d$ et l'équation cartésienne de (ABC) soit le système
+		
+		$\left\{\begin{array}{l c l}
+x&=&3t+2\\y&=&\phantom{3}t+5\\z&=&4t+1\\
+2x - 3y + 1z - 18 &=& 0
+\end{array}\right.\text{, avec } t \in \R.$
+
+En remplaçant $x, \:y$ et $z$ par leurs valeurs en fonction de $t$ dans la dernière équation on obtient :
+
+$2(3t + 2)- 3(t + 5) + 4t + 1 - 18 = 0 \iff 6t + 4 - 3y - 15 + 4t + 1 - 18 = 0\iff $
+
+$7t - 28 = 0 \iff 7t = 28 \iff t = 4$.
+
+D'où les coordonnées de E en remplaçant $t$ par dans les équations de $d$ : E(14~;~9~;~17)
+	\end{enumerate}
+	\item 
+La droite $\Delta$ contient D et a pour vecteur directeur un vecteur normal au plan (ABC) soit le vecteur $\vect{n}$.
+
+Une équation de $\Delta$ est donc $\left\{\begin{array}{l c l}
+x&=&2t+2\\y&=&-3t+5\\z&=&t+1\\
+2x - 3y + 1z - 18 &=& 0
+\end{array}\right.\text{, avec } t \in \R.$
+
+En résolvant le système obtenu en rajoutant l'équation de $\mathcal{P}$ permet d'obtenir $t = 2$, d'où F$(6~;~-1~;~3)$.
+
+Puisque la droite (DF) est perpendiculaire au plan $\mathcal{P}$, la distance DF est la (plus courte) distance du point au plan $\mathcal{P}$.
+
+Or $\vect{\text{DF}}\begin{pmatrix}4\\-6\\2\end{pmatrix}$, d'où $\left\|\vect{\text{DF}}\right\|^2 = \text{DF}^2 = 4^2 + (-6)^2 + 2^2 = 16 + 36 + 4 = 56 = 4 \times 14$.
+
+On a donc DF $ = \sqrt{4 \times 14} = \sqrt 4 \times \sqrt{14} = 2\sqrt{14}$ (en centaines de metres).
+	
+
+	\item 
+	
+
+La plus petite distance du point de lancer au plan (ABC) est égale à $2\sqrt{14}$ centaines de mètres : il faut donc calculer le temps mis à la vitesse de 18,6~$\text{m.s}^{-1}$ par un drone pour effectuer ce parcours de D à F.
+
+On sait que $v = \dfrac{d}{t}$, ou $t = \dfrac{d}{v} = \dfrac{\text{DF}}{v} = \dfrac{2\sqrt{14} \times 100}{18,6} \approx 40,23$ (secondes).
+
+Conclusion : le drone n'arrivera pas à temps.
+\end{enumerate}

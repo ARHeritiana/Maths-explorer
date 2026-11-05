@@ -1,0 +1,120 @@
+\medskip
+
+On considère la suite $\left(u_n\right)$ définie par : 
+
+\begin{center} $u_0 = 8$ \:  et pour tout entier naturel \:\:$n,\:\:~u_{n+1} = u_n -\ln\left(\dfrac{u_n}{4}\right)$.\end{center}
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item ~
+		
+$\bullet~u_1 = 8 - \ln 2 \approx 7,31$ ;
+		
+$\bullet~u_2 = 8 - \ln 2  \ln {8 - \ln 2}{4}- \approx 6,70$.
+
+		\item 
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+\texttt{mystere(10)} donne la somme des premiers termes de la suite de $u_0$ à $u_9$, soit 
+
+$u_0 + u_1 + \ldots + u_9 = \displaystyle\sum_{k=0}^n u_k$.
+		\item 
+Il suffit en ligne 7 de remplacer S par (S /k)
+	\end{enumerate}
+\item 
+
+\[ f(x) = x - \ln\left(\dfrac{x}{4}\right).\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+La fonction $f$ somme de fonctions dérivables sur $[0~;~+\infty[$ est dérivable et sur cet intervalle en posant $u(x) = \dfrac x4$, d'où $u'(x) = \dfrac14$,
+
+$f'(x) = 1 - \dfrac14 \times \dfrac{1}{\dfrac x4} = 1 - \dfrac14 \times 4 \dfrac 1x  = 1 - \dfrac 1x  = \dfrac{x - 1}{x}$
+
+Comme $x > 0$, le signe de $f'(x)$ est celui de $x - 1$ :
+
+$\bullet~$ si $0< x < 1$, alors $x - 1 < 0$  : la fonction $f$ est décroissante sur $]0~;~1[$ ;
+
+$\bullet~$ si $x > 1$, alors $x - 1 > 0$ : la fonction $f$ est croissante sur $-1~;~+ \infty[$
+
+$\bullet~$si $x = 1$, alors $f'(1) = 0$ et $f(1) = 1 - \ln \dfrac14 = 1 - (-\ln 4) = 1 + \ln 4$ est le minimum de la fonction $f$ sur $[0~;~+ \infty[$.
+\end{enumerate}
+
+Dans la suite de l'exercice, on remarquera que pour tout entier naturel $n$,\: $u_{n+1} = f\left(u_n\right)$.
+
+\begin{enumerate}[resume]
+\item 
+	\begin{enumerate}
+		\item 
+
+
+\emph{Initialisation} : on a vu que $u_1 \approx 7,3$ et comme $u_0 = 8$, on a donc :
+
+\[1 \leqslant u_{1} \leqslant u_0\]
+l'encadrement est vrai au rang 0.
+
+\emph{Hérédité} : soit $n \in \N$, tel que  $1 \leqslant u_{n+1} \leqslant u_n$.
+
+On sait que sur l'intervalle $[1~;~+ \infty[$ la fonction $f$ est croissante, donc on a 
+
+$f(1) \leqslant f\left(u_{n+1}\right) \leqslant f\left(u_{n}\right)$ .
+
+Or $f(1) = 1 - \ln \dfrac14 \approx 2,39$, donc $f(1) \geqslant 1$ et on a 
+
+$1 \leqslant u_{n+2} \leqslant u_{n+1}$ : l'encadrement est vrai au rang $n + 1$.
+
+\emph{Conclusion} : l'encadrement est vrai au rang 0 et s'il est vrai au rang $n \in \N$ il l'est encore au rang suivant : d'après le principe de récurrence :
+
+pour tout entier naturel $n$, on a : $1 \leqslant u_{n+1} \leqslant u_n.$
+
+	\item L'encadrement précédent montre que : pour tout naturel $n$
+
+$\bullet~ u_{n+1} \leqslant u_n$ : la suite $\left(u_n\right)$ est décroissante ;
+
+$\bullet~ 1 \leqslant u_n$ :  la suite $\left(u_n\right)$ est minorée par 1.
+
+On sait qu'alors la suite $\left(u_n\right)$ converge vers une limite $\ell \geqslant 1$
+
+
+
+
+		\item 
+$f(x) = x \iff x - \ln \left(\dfrac x4 \right) = x \iff 0 = \ln \left(\dfrac x4 \right) \iff \dfrac x4  = 1 \iff x = 4$.
+		\item 
+Par continuité de la fonction $f$ (car elle est dérivable sur $]0~;~+ \infty[$), la relation 
+
+$u_{n+1} = u_n - \ln \left(\dfrac{u_n}{4}\right)$, donne puisque $\displaystyle\lim_{ n \to + \infty} u_n = \ell$ :
+
+$\ell = \ell - \ln \left(\dfrac{\ell}{4}\right)$ : d'après la question précédente $\ell = 4$.
+
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,181 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet2_etrangers_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+On se propose de comparer l'évolution d'une population animale dans deux milieux distincts A et B.
+
+Au 1\up{er} janvier 2025, on introduit \np{6000} individus dans chacun des milieux A et B.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+Dans cette partie, on étudie l'évolution de la population dans le milieu A.
+
+On suppose que dans ce milieu, l'évolution de la population est modélisée par une suite géométrique $(u_n)$ de premier terme $u_0 = 6$ et de raison $0,93$.
+
+Pour tout entier naturel $n,\: u_n$ représente la population au 1\up{er} janvier de l'année $2025+n$, exprimée en millier d'individus.
+
+\medskip
+
+\begin{enumerate}
+\item Donner, selon ce modèle, la population au 1\up{er} janvier 2026.
+\item Pour tout entier naturel $n$, exprimer $u_n$ en fonction de $n$.
+\item Déterminer la limite de la suite $(u_n)$.
+
+Interpréter ce résultat dans le contexte de l'exercice.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+Dans cette partie, on étudie l'évolution de la population dans le milieu B.
+
+On suppose que dans ce milieu, l'évolution de la population est modélisée par la suite $(v_n)$ définie par 
+
+\begin{center}$v_0 = 6$ et pour tout entier naturel $n,\: v_{n+1} = -0,05v_n^2 +1,1v_n$.\end{center}
+
+Pour tout entier naturel $n, v_n$ représente la population au 1\up{er} janvier de l'année $2025 + n$, exprimée en millier d'individus.
+
+\medskip
+
+\begin{enumerate}
+\item Donner, selon ce modèle, la population au 1\up{er} janvier 2026.
+\end{enumerate}
+
+Soit $f$ la fonction définie sur l'intervalle $[0~;~+\infty[$ par 
+
+\[f(x) = -0,05x^2 + 1,1x.\]
+
+\begin{enumerate}[resume]
+\item Démontrer que la fonction $f$ est croissante sur l'intervalle [0~;~11].
+\item Démontrer par récurrence que pour tout entier naturel $n$, on a 
+
+\[2 \leqslant v_{n+1} \leqslant v_n \leqslant 6.\]
+
+\item En déduire que la suite $(v_n)$ est convergente vers une limite $\ell$.
+\item 
+	\begin{enumerate}
+		\item Justifier que la limite $\ell$ vérifie $f(\ell) = \ell$ puis en déduire la valeur de $\ell$.
+		\item Interpréter ce résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C}
+
+Cette partie a pour but de comparer l'évolution de la population dans les deux milieux.
+
+\begin{enumerate}
+\item En résolvant une inéquation, déterminer l'année à partir de laquelle la population du milieu A sera strictement inférieure à \np{3000} individus.
+\item À l'aide de la calculatrice, déterminer l'année à partir de laquelle la population du milieu B sera strictement inférieure à \np{3000} individus.
+\end{enumerate}
+\begin{minipage}{0.78\linewidth}
+\begin{enumerate}[resume]
+\item Justifier qu'à partir d'une certaine année, la population du milieu B dépassera la population du milieu A.
+\item On considère le programme Python ci-contre.
+	\begin{enumerate}
+		\item Recopier et compléter ce programme afin qu'après exécution, il affiche l'année à partir de laquelle la population du milieu B est strictement supérieure à la population du milieu A.
+		\item Déterminer l'année affichée après exécution du programme.
+	\end{enumerate}
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.19\linewidth}
+\begin{tabular}{|l|}\hline
+n=0 \\
+u = 6\\
+v = 6 \\
+\textbf{while} \ldots :\\
+\qquad u = \ldots\\
+\qquad v= \ldots\\
+\qquad n = n+1\\
+\textbf{print} (2025 + n)\\ \hline
+\end{tabular}
+\end{minipage}
+
+\end{document}

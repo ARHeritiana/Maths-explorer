@@ -1,0 +1,183 @@
+\begin{enumerate}
+	\item  On a :\quad $\vectt{AB}
+	\begin{pmatrix}
+		x_\mathrm{B} - x_\mathrm{A}\\
+		y_\mathrm{B} - y_\mathrm{A}\\
+		z_\mathrm{B} - z_\mathrm{A}\\
+	\end{pmatrix}$ \quad soit \quad
+	$\vectt{AB}
+	\begin{pmatrix}
+		2- 1\\
+		1-0\\
+		-1-3
+	\end{pmatrix}$
+	\quad et donc, finalement :\quad
+	$\vectt{AB}
+	\begin{pmatrix}
+		1\\
+		1\\
+		-4\\
+	\end{pmatrix}$.
+
+	De même :\quad $\vectt{AC}
+	\begin{pmatrix}
+		x_\mathrm{C} - x_\mathrm{A}\\
+		y_\mathrm{C} - y_\mathrm{A}\\
+		z_\mathrm{C} - z_\mathrm{A}\\
+	\end{pmatrix}$ \quad soit \quad
+	$\vectt{AC}
+	\begin{pmatrix}
+		1 - 1\\
+		1- 0\\
+		1-3
+	\end{pmatrix}$
+	\quad et donc, finalement :\quad
+	$\vectt{AC}
+	\begin{pmatrix}
+		0\\
+		1\\
+		-2\\
+	\end{pmatrix}$.
+
+	Ces coordonnées ne sont pas proportionnelles, donc les vecteurs ne sont pas colinéaires et les points A, B et C ne sont pas alignés.
+
+	Ils définissent donc un plan de l'espace.
+
+	\item Comme le repère est orthonormé, on va utiliser la formule analytique pour calculer les produits scalaires :
+
+	\begin{itemize}[label=\textbullet]
+		\item $\vect{n} \cdot \vectt{AB} = 4 \times 1 + 4 \times 1 + 2 \times (-4) = 4 + 4 -8 =0$.\quad $\vect{n}$ et $\vectt{AB}$ sont orthogonaux;
+		\item $\vect{n} \cdot \vectt{AC} = 4 \times 0 +4 \times 1 + 2 \times (-2) = 0 + 4 -4 =  0$\quad $\vect{n}$ et $\vectt{AB}$ sont orthogonaux.
+	\end{itemize}
+
+	$\vect{n}$ est donc orthogonal à deux vecteurs non colinéaires qui forment une base du plan (ABC), donc il est normal au plan (ABC).
+
+
+
+	\item 	Par propriété, on en déduit qu'une équation cartésienne du plan (ABC) est de la forme \\
+	$4 \times x + 4 \times y +2  \times z+d=0$ avec $d \in \R$.
+
+	A étant un point du plan (ABC), ses coordonnées doivent vérifier l'équation du plan.
+
+	$\begin{aligned}
+		\mathrm{A} \in (\mathrm{ABC})
+		&\iff  4 \times 1 + 4\times 0  +2  \times 3 + d = 0\\
+		&\iff 4 + 0 + 6 +  d = 0\\
+		&\iff d = -10
+	\end{aligned}$
+
+	Une équation cartésienne du plan est donc bien \quad$4x + 4y  +2 z -10   = 0$.
+
+	En divisant cette équation par 2 (qui est non nul), on obtient une équation équivalente, donc une équation du plan (ABC) : \quad  $2x + 2y  + z -5   = 0$.
+
+	\item Vérifions que le point H appartient au plan (ABC).
+
+	$2\times x_\mathrm{H}+2 \times y_\mathrm{H}+z_\mathrm{H}-5 = 2 \times 0 + 2\times 2 + 1 -5 = 0+4+1-5=0$
+
+	Donc le point H appartient bien au plan (ABC).
+
+	\item  On a :\quad
+	$\vectt{AB}
+	\begin{pmatrix}
+		1\\
+		1\\
+		-4\\
+	\end{pmatrix}$.
+
+	Et :\quad $\vectt{AH}
+	\begin{pmatrix}
+		x_\mathrm{H} - x_\mathrm{A}\\
+		y_\mathrm{H} - y_\mathrm{A}\\
+		z_\mathrm{H} - z_\mathrm{A}\\
+	\end{pmatrix}$ \quad soit \quad
+	$\vectt{AH}
+	\begin{pmatrix}
+		0 - 1\\
+		2- 0\\
+		1-3
+	\end{pmatrix}$
+	\quad et donc, finalement :\quad
+	$\vectt{AH}
+	\begin{pmatrix}
+		-1\\
+		2\\
+		-2\\
+	\end{pmatrix}$.
+
+	Comme le repère est orthonormé, le produit scalaire peut se calculer avec la formule analytique :
+	\quad $\vectt{AB}\cdot\vectt{AH} = 1 \times (-1) +1 \times 2 -4 \times (-2) = -1 +2 +8=9$.
+
+
+	Comme on est dans un repère orthonormé :
+
+	$\mathrm{AB}=\sqrt{ {x_{\vectt{AB}}}^2  + {y_{\vectt{AB}}}^2  +{z_{\vectt{AB}}}^2 } = \sqrt{ 1^2+ 1^2+(-4)^2}= \sqrt{1+1+16}=\sqrt{18} = 3 \sqrt{2}$.
+
+	et de même :  $\mathrm{AH}=\sqrt{  (-1)^2 +2^2+(-2)^2}= \sqrt{ 1+4+4}= \sqrt{9}=3$.
+
+	L'expression trigonométrique du produit scalaire donne :
+
+	$\begin{aligned}
+		\vectt{AB}\cdot\vectt{AH}
+		&= \mathrm{AB} \times \mathrm{AH} \times \cos\left(\widehat{\mathrm{BAH}}\right)
+	\end{aligned}$
+
+	donc, avec les valeurs connues :\quad $\begin{aligned}[t]
+		\vectt{AB}\cdot\vectt{AH}
+		&= 3 \sqrt{2} \times 3\times \cos\left(\widehat{\mathrm{BAH}}\right)\\
+		&=  9 \sqrt{2} \cos\left(\widehat{\mathrm{BAH}}\right)
+	\end{aligned}$
+
+	On a donc deux expressions du même produit scalaire, ce qui donne :
+
+	$ 9= 9 \sqrt{2} \cos\left(\widehat{\mathrm{BAH}}\right) \iff \cos\left(\widehat{\mathrm{BAH}}\right) = \dfrac{1}{\sqrt{2}} = \dfrac{\sqrt{2}}{2} $
+
+	D'où : $\widehat{\mathrm{BAH}} =45 ^\circ$.
+
+
+
+
+
+
+	\item La droite $(d)$ orthogonale au plan (ABC)  donc tout vecteur normal au plan (ABC) est un vecteur directeur de la droite $(d)$.
+
+	$(d)$ admet donc le vecteur $\vect{n}$ comme vecteur directeur et passe par le point H.
+
+	Une représentation paramétrique de la droite $(d)$ est donc :
+
+	\[\begin{cases}
+		x=0 + 4 \times   t\\
+		y=2 + 4 \times t \\
+		z=1 +2 \times  t
+	\end{cases} \quad \text{avec } t \in \R\]
+
+	\item   Soit S un point de la droite $(d)$.
+
+	Le point H appartient à la fois au plan (ABC) et à  la droite $(d)$  qui est orthogonale au plan (ABC) donc H est le projeté orthogonal du point S sur le plan (ABC).
+
+	La distance entre le point S et  le plan (ABC) est donc égale à la distance SH.
+
+	S est un point de la droite $(d)$ donc il existe un réel $t$ tel que  $\begin{cases}
+		x_\mathrm{S} = 4t \\ y_\mathrm{S}=2+4t \\z_\mathrm{S}=1 +2t \end{cases}$.
+
+	On a :
+
+	$\begin{aligned} \mathrm{SH} &= \sqrt{{ \left(  x_\mathrm{H}-x_\mathrm{S} \right)}^2 +  { \left(  y_\mathrm{H}-y_\mathrm{S} \right)}^2+{ \left(  z_\mathrm{H}-z_\mathrm{S} \right)}^2} \\
+		& = \sqrt{ (0 - 4t)^2 + (2-2-4t)^2 + (1- 1-2t)^2}\\
+		&= \sqrt{16t^2+16t^2+4t^2}\\
+		&= \sqrt{36t^2} \\
+		&=6 |t| \text{ car une distance est positive}
+	\end{aligned}$.
+
+
+	De plus, la distance entre le point S et le plan (ABC) doit être égale à 6, on a donc :
+
+	$ \begin{aligned} 6 |t| =6  &\iff  |t| = 1\\
+		&\iff   t = - 1\text{ ou } t =  1
+	\end{aligned}$
+
+	Enfin, l'abscisse $x_{\mathrm{S}}$ doit être positive, on doit donc avoir $4t \geq 0$ soit $t\geq 0$.
+
+	On a donc : $t=1$ et les coordonnés de S sont : $(4;6;3)$.
+
+
+\end{enumerate}

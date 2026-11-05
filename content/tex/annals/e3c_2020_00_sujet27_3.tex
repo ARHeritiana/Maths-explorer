@@ -1,0 +1,62 @@
+\medskip
+
+Dans cet exercice et si cela est nécessaire, les résultats seront arrondis à 0,1.
+
+\begin{minipage}[]{6.25cm}
+Le graphique ci-contre illustre l'évolution du nombre (en milliers) de voitures électriques immatriculées en France entre 2015 et 2018.
+\end{minipage}
+\begin{minipage}[]{8.8125cm}
+\psset{xunit=1.5cm,yunit=0.15cm}
+\begin{pspicture}(-0.9,-7)(4.85,40)
+\psaxes[axesstyle=none,ticks=none,Ox=2015,Dy=5]{-}(0,0)(0,-1)(4.25,33.5)
+\multido{\n=0+5}{8}{\psline[linewidth=0.2pt](0,\n)(5,\n)}
+\psframe[fillstyle=solid,fillcolor=lightgray](0.75,0)(1.25,17.3)
+\psframe[fillstyle=solid,fillcolor=lightgray](1.75,0)(2.25,21.8)
+\psframe[fillstyle=solid,fillcolor=lightgray](2.75,0)(3.25,24.9)
+\psframe[fillstyle=solid,fillcolor=lightgray](3.75,0)(4.25,31.1)
+\uput[u](1,17.3){$17,3$}
+\uput[u](2,21.8){$21,8$}
+\uput[u](3,24.9){$24,9$}
+\uput[u](4,31.1){$31,1$}
+\end{pspicture}
+\end{minipage}
+
+\medskip
+
+\begin{enumerate}
+\item  On cherche à modéliser l'évolution du nombre (en milliers) de voitures électriques immatriculées en France à compter de l'année 2015 à l'aide d'une suite. On hésite entre deux modèles :
+\begin{itemize}
+\item Premier modèle : 
+
+on fait l'hypothèse que ce nombre augmente de 21\,\% par an. On définit alors une suite $\left(u_n\right)$ où, selon ce modèle, $u_n$ est le nombre (en milliers) de voitures électriques immatriculées en France l'année $2015+n$ avec $n\in \N$. Ainsi, on a $u_0=17,3$.
+\item Second modèle :
+
+on définit la suite $\left(v_n\right)$ par $v_0= 17,3$ et pour tout entier naturel $n$,
+ \mbox{$v_{n+1}= 0,7v_n + 10$}. D'après ce modèle et pour tout entier naturel $n$, $v_n$ est le nombre (en milliers) de voitures électriques immatriculées en France l'année $2015+n$.
+\end{itemize}
+
+\begin{enumerate}
+\item Donner les valeurs des réels $u_1$, $u_2$, $u_3$, $v_1$, $v_2$ et $v_3$.
+\item Des deux modèles, lequel apparaît le mieux adapté pour modéliser à l'aide d'une suite l'évolution du nombre de voitures électriques immatriculées en France à compter de l'année 2015 donnée dans le graphique ? Argumenter.
+\end{enumerate}
+\item Dans ce qui suit, on choisit de modéliser le nombre de voitures immatriculées en France à compter de l'année 2015 à l'aide de la suite $\left(u_n\right)$ définie dans la question \textbf{1}.
+	\begin{enumerate}
+		\item  Donner la nature de la suite $\left(u_n\right)$ et préciser sa raison.
+		\item Pour tout entier naturel $n$, exprimer $u_n$ en fonction de $n$.
+		\item On considère l'algorithme en langage Python ci-dessous.
+\begin{center}
+\begin{lstlisting}[style=python]
+u=17.3
+n=0
+while u<50 :
+  u=1.21*u
+  n=n+1
+\end{lstlisting}
+\end{center}
+
+Quelle est la valeur de la variable $n$ à la fin de l'exécution de cet algorithme ? Interpréter ce
+résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+\vspace{0,5cm}

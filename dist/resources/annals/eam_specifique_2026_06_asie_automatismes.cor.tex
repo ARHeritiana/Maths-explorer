@@ -1,0 +1,168 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_06_asie_automatismes_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Question 1}
+	10~\% c'est un dixième, donc il a perdu \np[~g]{0.5}, et sa masse est passée à \np[~g]{4.5}.
+
+	\textbf{Bonne réponse : C.}
+
+\subsection*{Question 2}
+	Augmenter une valeur de 15~\% revient à la multiplier par \quad $\dfrac{100+15}{100} = \dfrac{115}{100} = \np{1.15}$.
+
+	\textbf{Bonne réponse : B.}
+
+\subsection*{Question 3}
+	$100 = 5\times 20$, \quad donc \quad $\dfrac25 = \dfrac{2\times20}{5\times20} = \dfrac{40}{100} = \np[~\%]{40}$.
+
+	\textbf{Bonne réponse : C}
+
+\subsection*{Question 4}
+	On applique les règles de manipulation des puissances  :\quad $\big(a^b\big)^c  =  a^{b \times c}$ \quad et  \quad $a^b \times a^c  =  a^{b + c}$.
+
+	$B = 5^{3\times4}\times5^{10} = 5^{12}\times5^{10} = 5^{12+10} = 5^{22}$.
+
+	\textbf{Bonne réponse : C.}
+
+\subsection*{Question 5}
+	Le triple de $3^{12}$ c'est \quad $3\times3^{12} = 3^1\times3^{12} = 3^{1+12} = 3^{13}$.
+
+	\textbf{Bonne réponse : C.}
+
+\subsection*{Question 6}
+	C'est une identité remarquable :\quad $(2x+5)^2 = (2x)^2+2\times(2x)\times5+5^2 = 4x^2+20x+25$.
+
+	\textbf{Bonne réponse : D.}
+
+\subsection*{Question 7}
+	Il y a deux réels dont le carré est égal à 5 : \quad $\sqrt{5}$ et $-\sqrt{5}$.
+
+	Si on veut détailler :\quad $\begin{aligned}[t]
+		x^2 = 5
+		&\iff x^2 - 5 = 0\\
+		&\iff x^2 - \left(\sqrt{5}\right)^2 = 0\quad \text{on reconnaît une identité remarquable}\\
+		&\iff \left(x+\sqrt5\right)\left(x-\sqrt5\right) = 0\quad\text{d'après la règle du produit nul :}\\
+		&\iff x+\sqrt5 = 0 \quad \text{ou}\quad x-\sqrt5=0\\
+		&\iff x=-\sqrt5 \quad \text{ou}\quad x =\sqrt5
+	\end{aligned}$
+
+	Il y a donc bien deux solutions $-\sqrt5\text{ et }\sqrt5$.
+
+	\textbf{Bonne réponse : D.}
+
+\subsection*{Question 8}
+	$\np[cm]{1} = \np[mm]{10}$\quad donc \quad $\np[cm^3]{1} = 10^3\,\text{mm}^3 = \np[mm^3]{1000}$.
+
+	Dans un cm\up{3}, il y a \np{1000}~mm\up{3}, il faut donc diviser la valeur en mm$^3$ par \np{1000} pour obtenir la valeur en cm$^3$ :
+	\quad
+	$\np[mm^3]{3400} = \dfrac{\np{3400}}{\np{1000}}\,\text{cm}^3 = \np[cm^3]{3,4}$.
+
+	\textbf{Bonne réponse : A.}
+
+\subsection*{Question 9}
+	Puisque A appartient à la parabole de la fonction carré, son ordonnée vérifie :\quad $y_\text{A} = (-3)^2 = 9$.
+
+	\textbf{Bonne réponse : D.}
+
+\subsection*{Question 10}
+	La somme des probabilités de toutes les issues est égale à 1, donc : \quad  $\np{0.1}+\np{0.25}+\np{0.3}+x = 1$,
+
+	c'est-à-dire :\quad $\np{0.65}+x = 1$, \quad donc \quad $x = \np{0.35}$.
+
+	\textbf{Bonne réponse : A.}
+
+\subsection*{Question 11}
+	$\dfrac15 = \dfrac{2}{10} = \np{0.2}$ est plus grand que \np{0.1}.
+
+	\emph{Remarque :} On a aussi :$10^{-2} = 0,01 < 0,1$;\quad $7\,\% = 0,07 < 0,1$ \quad et  comme \quad $12 > 10$ \quad et que la fonction inverse est strictement décroissante  sur $\R^{*+}$, on a :\quad $\dfrac{1}{12} < \dfrac{1}{10}$\quad soit \quad $\dfrac{1}{12} < 0,1$.
+
+	\textbf{Bonne réponse : C.}
+
+\subsection*{Question 12}
+	Calculons :\quad
+	$A = \dfrac{3 \times 2}{5} + 1 = \dfrac{6}{5} + 1 = \dfrac65+\dfrac55 = \dfrac{11}{5}$.
+
+	\textbf{Bonne réponse : A.}
+
+\needspace{10\baselineskip}
+
+\end{document}

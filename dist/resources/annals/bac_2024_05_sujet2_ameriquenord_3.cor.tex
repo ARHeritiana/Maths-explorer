@@ -1,0 +1,183 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_05_sujet2_ameriquenord_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\[g(x) = 2x - x^{2}.\]
+
+\smallskip
+
+\begin{enumerate}
+\item 
+Le trinôme $g(x)$ est dérivable sur $\R$, donc sur $[0~;~1]$ et sur cet intervalle :
+
+$g'(x) = 2 - 2x = 2(1 - x)$.
+
+Or on sait que $0\leqslant x \leqslant 1\Rightarrow - x \leqslant 0 \leqslant 1 - x$ ou en lisant de droite à gauche 
+
+$1 - x \geqslant 0 \Rightarrow 2(1 - x) \geqslant 0 \iff g'(x) \geqslant 0$ : la dérivée étant positive sur $[0~;~1]$ et ne s'annulant qu'en $x = 1$, la fonction $g$ est strictement croissante de $g(0 ) = 0$ à $g(1) = 2 - 1^2 = 1$.
+\end{enumerate}
+
+On considère la suite $\left(u_{n}\right)$ définie par $\left\{\begin{array}{l c l}u_{0}&=&\dfrac{1}{2}\\ u_{n+1}&=&g\left(u_{n}\right)\end{array}\right.$ pour tout entier naturel $n$.
+
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item 
+$\bullet~~u_1 = 2 \times \dfrac{1}{2} - \left(\dfrac{1}{2}\right)^2 = 1 - \dfrac14 = \dfrac34 = 0,75$ ;
+
+$\bullet~~u_2 = 2 \times \dfrac34 - \left(\dfrac34\right)^2 = \dfrac32 - \dfrac{9}{16} = \dfrac{24}{16} -  \dfrac{9}{16} = \dfrac{15}{16} = \np{0,9375}$.
+\item 
+Démonstration par récurrence :
+
+$\bullet~~$\emph{Initialisation} :
+
+On a $0 < \dfrac12 < \dfrac34 < 1$, soit $0 < u_0 < u_1 < 1$ : l'encadrement est vrai au rang zéro.
+
+$\bullet~~$\emph{Hérédité} :
+Supposons que pour $n \in \N$, on ait $0 < u_{n} < u_{n+1}< 1$.
+
+Alors par stricte croissance sur [0~;~1] de la fonction $g$, on a :
+
+$g(0) < g\left(u_n\right) < g\left(u_{n+1} \right) < g(1)$, soit d'après les résultats précédents :
+
+$0 < u_{n+1} < u_{n+2} < 1$ : l'encadrement est encore vrai au rang $n + 1$.
+
+\emph{Conclusion} : la relation est vraie au rang $n = 0$ et si elle est vraie au rang $n \in \N$ elle l'est encore au rang $n + 1$ : par le principe de récurrence, on a donc 
+
+Pour tout entier naturel $n$,\:: $0 < u_{n} < u_{n+1} < 1$.
+\item 
+Le résultat précédent montre que la suite $\left(u_{n}\right)$ est croissante  et qu'elle est majorée par 1 : elle converge donc vers une limite $\ell \leqslant 1$.
+\item 
+La relation $g\left(u_n\right) = u_{n+1} = 2u_n - u_n^2$ donne à la limite car $g$ est continue car dérivable sur l'intervalle [0~;~1] : $\ell = 2\ell - \ell^2 \iff $
+
+$\ell - \ell^2 = 0 \iff \ell (1 - \ell) = 0$ soit 
+
+$\left\{\begin{array}{l c l}
+\ell&=&0 \:\:\text{ou}\\
+1 - \ell&=&0
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+\ell&=&0 \:\:\text{ou}\\
+1  &=&\ell
+\end{array}\right.$
+
+La solution $\ell = 0 $ n'est pas possible (la suite est croissante ) ; il reste $\displaystyle\lim_{n \to + \infty} u_n = 1$
+\end{enumerate}
+
+On considère la suite $\left(v_{n}\right)$ définie pour tout entier naturel $n$ par $v_{n}=\ln \left(1 - u_{n}\right)$.
+
+\begin{enumerate}
+\setcounter{enumi}{5}
+\item 
+On a pour $n \in \N, \: v_{n+1} = \ln \left(1 - u_{n+1}\right) = \ln \left[1 - \left(2u_n - u^2_n \right) \right] = \ln \left(1 - 2u_n + u_n^2 \right) =$
+
+$ \ln \left( 1 - u_n\right)^2 = 2\ln \left( 1 - u_n\right)$ (car $1 - u_n > 0$ voir la récurrence ci-dessus, donc $\ln \left( 1 - u_n\right)$ existe). Or $\ln \left(1 - u_n\right) = v_n$.
+
+Finalement : $v_{n + 1} = 2v_n$ ce qui montre que la suite  $\left(v_{n}\right)$ est une suite géométrique de raison 2 et de premier terme $v_0 = \ln \left(1 - u_0\right) = \ln \left(1 - \dfrac12\right) = \ln \dfrac12 = - \ln 2$.
+\item 
+On sait qu'alors pour tout $n \in \N, \:v_n = v_0 \times 2^n$, soit $v_n = - \ln 2 \times 2^n$.
+\item 
+La relation $v_{n}=\ln \left(1 - u_{n}\right)$ donne donc :
+
+$- \ln 2 \times 2^n = \ln \left(1 - u_{n}\right) \iff \e^{- \ln 2 \times 2^n} = \e^{\ln \left(1 - u_{n}\right)}$, (par croissance de la fonction exponentielle), soit encore :
+
+$\e^{- \ln 2 \times 2^n} = 1 - u_n \iff u_n = 1 - \e^{- \ln 2 \times 2^n}$.
+
+Or on sait que $\displaystyle\lim_{n \to + \infty}- \ln 2 \times 2^n = - \infty$, donc $\displaystyle\lim_{n \to + \infty} \e^{- \ln 2 \times 2^n} = 0$ et par conséquent :
+\[\displaystyle\lim_{n \to + \infty} u_n = 1.\]
+
+\item 
+\end{enumerate}
+
+\begin{center}
+\begin{tabular}{|>{\texttt} l|}\hline
+
+\textbf{def }seuil():\\
+\qquad n=0\\
+\qquad u=0.5\\
+\qquad \textbf{while} u < 0.95 :\\
+\qquad \qquad n={\red n + 1}\\
+\qquad \qquad {\red u=2*u - u**2}\\
+\qquad \textbf{return} n\\ \hline
+\end{tabular}
+
+\end{center}
+
+\end{document}

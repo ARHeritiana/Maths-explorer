@@ -40,7 +40,9 @@ Append one dated line per finished task at the end of the first list (before "Da
 - 2026-10-27: replaced the welcome splash with discovery search, direct course/tool entrances, illustrated chapter cards and a compact phone menu; followed with stable artwork colours, blue headline emphasis and restrained curve-tracing feedback. Phone challenge cards retain readable widths, and changing variation data no longer leaves stale solution playback handlers. `npm test`, `npm run check` and full `make check` pass, including browser integration and every slide deck; focused search, layout, 200% text, theme, keyboard and download checks also pass. Human classroom and real-device screen-reader acceptance remain pending. The bilingual curriculum goal remains on standby.
 - 2026-11-01: Reconciled a parallel first slice of seeded exercises with the exercise bank on `main`: the bank covers it (`p-quad-roots`, `g-pre-trinome`), so only the new checks were kept (`tests/exercise-audit.test.mjs`: statement read-back, capacity ratchet) and the first version is kept as `docs/future-work/seeded-exercises-first-slice.patch`. Finding: 52 of 203 generator-and-level pairs give fewer than 100 distinct questions.
 
-### Dated session notes
+#- 2026-11-05: Integrated 829 self-hosted Bac/EAM/E3C exercises and 821 source corrections into the existing chapter bank, with attributed CC BY-SA sources, local typesetting, native PDF books and LaTeX bundles.
+
+## Dated session notes
 
 - 2026-10-27: French course quality batch for Première C07 and STMG C04: two independent chapter audits and exact computations, completed corrections, eight original reciprocal-function homework tasks and corrected session 29 graph; independent French builds preserve English editions on standby. Lecture figure caches now follow changed SVGs, and checks compare archived figures with current inputs. Review evidence stays private; human classroom acceptance remains pending.
 
@@ -217,3 +219,4 @@ Append one dated line per finished task at the end of the first list (before "Da
 
 - 4 November 2026: removed the redundant Home tab from the standalone mathematicians timeline; the logo retains the home link. Bilingual lesson work remains on standby and unfinished.
 4 November 2026: made the fractions foundation bilingual on explicit request. The site language selector now chooses the complete French or English lesson, including diagrams, hints, feedback and accessibility labels. General bilingual lesson work remains on standby.
+

@@ -1,0 +1,156 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet1_asie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Principaux domaines abordés}: Probabilités conditionnelles et indépendance. Variables aléatoires.
+
+\medskip
+
+Lors d'une kermesse, un organisateur de jeux dispose, d'une part, d'une roue comportant quatre cases blanches et huit cases rouges et, d'autre part, d'un sac contenant cinq jetons portant les numéros 1, 2, 3, 4 et 5.
+
+Le jeu consiste à faire tourner la roue, chaque case ayant la même probabilité d'être obtenue, puis à extraire un ou deux jetons du sac selon la règle suivante :
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet~~$] si la case obtenue par la roue est blanche, alors le joueur extrait un jeton du sac ;
+\item[$\bullet~~$] si la case obtenue par la roue est rouge, alors le joueur extrait successivement et sans remise deux jetons du sac.
+\end{itemize}
+\setlength\parindent{0cm}
+
+Le joueur gagne si le ou les jetons tirés portent tous un numéro impair.
+
+\medskip
+
+\begin{enumerate}
+\item Un joueur fait une partie et on note $B$ l'évènement \og la case obtenue est blanche \fg,
+$R$ l'évènement \og la case obtenue est rouge\fg{} et $G$ l'évènement \og le joueur gagne la partie \fg. 
+	\begin{enumerate}
+		\item Donner la valeur de la probabilité conditionnelle $P_B(G)$.
+		\item On admettra que la probabilité de tirer successivement et sans remise deux jetons impairs est égale à $0,3$. 
+		
+Recopier et compléter l'arbre de probabilité suivant:
+
+\begin{center}
+\pstree[treemode=R,nodesepB=3pt,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$B$~~} }
+	{\TR{$G$}
+	\TR{$\overline{G}$}
+	}
+\pstree{\TR{$R$~~} }
+	{\TR{$G$}
+	\TR{$\overline{G}$}
+	}	
+}
+\end{center}
+
+	\end{enumerate}
+
+\item
+	\begin{enumerate}
+		\item Montrer que $P(G) = 0,4$.
+		\item Un joueur gagne la partie.
+		
+Quelle est la probabilité qu'il ait obtenu une case blanche en lançant la roue?
+	\end{enumerate}
+\item Les évènements $B$ et $G$ sont-ils indépendants ? Justifier.
+\item Un même joueur fait dix parties. Les jetons tirés sont remis dans le sac après chaque partie.
+
+On note $X$ la variable aléatoire égale au nombre de parties gagnées.
+	\begin{enumerate}
+		\item Expliquer pourquoi $X$ suit une loi binomiale et préciser ses paramètres.
+		\item Calculer la probabilité, arrondie à $10^{-3}$ près, que le joueur gagne exactement trois parties sur les dix parties jouées.
+		\item Calculer $P (X \geqslant 4)$ arrondie à $10^{-3}$ près.
+		
+Donner une interprétation du résultat obtenu.
+	\end{enumerate}
+\item Un joueur fait $n$ parties et on note $p_n$ la probabilité de l'évènement \og le joueur gagne au moins une partie \fg.
+	\begin{enumerate}
+		\item Montrer que $p_n = 1 - 0,6^n$.
+		\item Déterminer la plus petite valeur de l'entier $n$ pour laquelle la probabilité de gagner au moins une partie est supérieure ou égale à $0,99$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

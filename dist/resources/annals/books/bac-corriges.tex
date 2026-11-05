@@ -1,0 +1,1774 @@
+\makeatletter\def\input@path{{core/}}\makeatother
+\documentclass[lang=fr,edition=teacher,layout=sheet]{mxbook}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\let\pscalculate\undefined
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\usepackage[tikz]{tablvar}\usepackage[export]{adjustbox}\providecommand{\psset}[1]{}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\microtypesetup{expansion=false}
+\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}\graphicspath{{assets/}}
+\begin{document}
+\chapter*{Banque BAC : corrigés}
+Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.\par\medskip
+\noindent Documents adaptés sous licence CC BY-SA. Les sujets zéro et spécimens sont des modèles ; les autres exercices proviennent des sessions ou banques indiquées. Les sujets historiques ne certifient pas un alignement avec le programme actuel.
+\par\smallskip\url{https://coopmaths.fr/www/about/}
+\clearpage\section*{Suites numériques et récurrence}
+\mxneed{6}\subsection*{BAC 2021 Janvier sujet0 : exercice 1}
+\typeout{MXEX:bac_2021_01_sujet0_1}
+\begingroup\input{units/bac_2021_01_sujet0_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Janvier sujet0 : exercice 5}
+\typeout{MXEX:bac_2021_01_sujet0_5}
+\begingroup\input{units/bac_2021_01_sujet0_5.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Asie : exercice 1}
+\typeout{MXEX:bac_2021_06_asie_1}
+\begingroup\input{units/bac_2021_06_asie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Asie : exercice 10}
+\typeout{MXEX:bac_2021_06_asie_10}
+\begingroup\input{units/bac_2021_06_asie_10.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Asie : exercice 9}
+\typeout{MXEX:bac_2021_06_asie_9}
+\begingroup\input{units/bac_2021_06_asie_9.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Centres étrangers : exercice 3}
+\typeout{MXEX:bac_2021_06_etrangers_3}
+\begingroup\input{units/bac_2021_06_etrangers_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Centres étrangers : exercice 6}
+\typeout{MXEX:bac_2021_06_etrangers_6}
+\begingroup\input{units/bac_2021_06_etrangers_6.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Centres étrangers : exercice 7}
+\typeout{MXEX:bac_2021_06_etrangers_7}
+\begingroup\input{units/bac_2021_06_etrangers_7.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Métropole : exercice 3}
+\typeout{MXEX:bac_2021_06_metropole_3}
+\begingroup\input{units/bac_2021_06_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Métropole : exercice 8}
+\typeout{MXEX:bac_2021_06_metropole_8}
+\begingroup\input{units/bac_2021_06_metropole_8.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Polynésie : exercice 1}
+\typeout{MXEX:bac_2021_06_polynesie_1}
+\begingroup\input{units/bac_2021_06_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mai Amérique du Nord : exercice 2}
+\typeout{MXEX:bac_2021_05_ameriquenord_2}
+\begingroup\input{units/bac_2021_05_ameriquenord_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mars sujet1 : exercice 4}
+\typeout{MXEX:bac_2021_03_sujet1_4}
+\begingroup\input{units/bac_2021_03_sujet1_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mars sujet2 : exercice 2}
+\typeout{MXEX:bac_2021_03_sujet2_2}
+\begingroup\input{units/bac_2021_03_sujet2_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Septembre Métropole : exercice 2}
+\typeout{MXEX:bac_2021_09_metropole_2}
+\begingroup\input{units/bac_2021_09_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Septembre Métropole : exercice 9}
+\typeout{MXEX:bac_2021_09_metropole_9}
+\begingroup\input{units/bac_2021_09_metropole_9.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Amérique du Nord J1 : exercice 2}
+\typeout{MXEX:bac_2022_05_sujet1_ameriquenord_2}
+\begingroup\input{units/bac_2022_05_sujet1_ameriquenord_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Amérique du Nord J2 : exercice 1}
+\typeout{MXEX:bac_2022_05_sujet2_ameriquenord_1}
+\begingroup\input{units/bac_2022_05_sujet2_ameriquenord_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Asie J1 : exercice 2}
+\typeout{MXEX:bac_2022_05_sujet1_asie_2}
+\begingroup\input{units/bac_2022_05_sujet1_asie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Asie J2 : exercice 4}
+\typeout{MXEX:bac_2022_05_sujet2_asie_4}
+\begingroup\input{units/bac_2022_05_sujet2_asie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Centres étrangers J1 : exercice 3}
+\typeout{MXEX:bac_2022_05_sujet1_etrangers_3}
+\begingroup\input{units/bac_2022_05_sujet1_etrangers_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Centres étrangers J2 : exercice 2}
+\typeout{MXEX:bac_2022_05_sujet2_etrangers_2}
+\begingroup\input{units/bac_2022_05_sujet2_etrangers_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Madagascar J1 : exercice 2}
+\typeout{MXEX:bac_2022_05_sujet1_madagascar_2}
+\begingroup\input{units/bac_2022_05_sujet1_madagascar_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Madagascar J1 : exercice 3}
+\typeout{MXEX:bac_2022_05_sujet1_madagascar_3}
+\begingroup\input{units/bac_2022_05_sujet1_madagascar_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Madagascar J2 : exercice 3}
+\typeout{MXEX:bac_2022_05_sujet2_madagascar_3}
+\begingroup\input{units/bac_2022_05_sujet2_madagascar_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Madagascar J2 : exercice 4}
+\typeout{MXEX:bac_2022_05_sujet2_madagascar_4}
+\begingroup\input{units/bac_2022_05_sujet2_madagascar_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Métropole J1 : exercice 1}
+\typeout{MXEX:bac_2022_05_sujet1_metropole_1}
+\begingroup\input{units/bac_2022_05_sujet1_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Métropole J2 : exercice 2}
+\typeout{MXEX:bac_2022_05_sujet2_metropole_2}
+\begingroup\input{units/bac_2022_05_sujet2_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Polynésie J1 : exercice 1}
+\typeout{MXEX:bac_2022_05_sujet1_polynesie_1}
+\begingroup\input{units/bac_2022_05_sujet1_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Polynésie J1 : exercice 3}
+\typeout{MXEX:bac_2022_05_sujet1_polynesie_3}
+\begingroup\input{units/bac_2022_05_sujet1_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Polynésie J2 : exercice 3}
+\typeout{MXEX:bac_2022_05_sujet2_polynesie_3}
+\begingroup\input{units/bac_2022_05_sujet2_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Octobre Nouvelle Calédonie J1 : exercice 2}
+\typeout{MXEX:bac_2022_10_sujet1_caledonie_2}
+\begingroup\input{units/bac_2022_10_sujet1_caledonie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Octobre Nouvelle Calédonie J2 : exercice 4}
+\typeout{MXEX:bac_2022_10_sujet2_caledonie_4}
+\begingroup\input{units/bac_2022_10_sujet2_caledonie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Amérique du sud J1 : exercice 2}
+\typeout{MXEX:bac_2022_09_sujet1_ameriquesud_2}
+\begingroup\input{units/bac_2022_09_sujet1_ameriquesud_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Métropole J1 : exercice 1}
+\typeout{MXEX:bac_2022_09_sujet1_metropole_1}
+\begingroup\input{units/bac_2022_09_sujet1_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Métropole J2 : exercice 2}
+\typeout{MXEX:bac_2022_09_sujet2_metropole_2}
+\begingroup\input{units/bac_2022_09_sujet2_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Métropole J2 : exercice 3}
+\typeout{MXEX:bac_2022_09_sujet2_metropole_3}
+\begingroup\input{units/bac_2022_09_sujet2_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Polynésie J1 : exercice 2}
+\typeout{MXEX:bac_2022_09_sujet1_polynesie_2}
+\begingroup\input{units/bac_2022_09_sujet1_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Août Nouvelle Calédonie J1 : exercice 2}
+\typeout{MXEX:bac_2023_08_sujet1_caledonie_2}
+\begingroup\input{units/bac_2023_08_sujet1_caledonie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Août Nouvelle Calédonie J2 : exercice 3}
+\typeout{MXEX:bac_2023_08_sujet2_caledonie_3}
+\begingroup\input{units/bac_2023_08_sujet2_caledonie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Amérique du Nord J1 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet1_ameriquenord_4}
+\begingroup\input{units/bac_2023_03_sujet1_ameriquenord_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Amérique du Nord J2 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet2_ameriquenord_2}
+\begingroup\input{units/bac_2023_03_sujet2_ameriquenord_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Amérique du Nord J2 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet2_ameriquenord_4}
+\begingroup\input{units/bac_2023_03_sujet2_ameriquenord_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Asie J1 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet1_asie_1}
+\begingroup\input{units/bac_2023_03_sujet1_asie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Asie J2 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet2_asie_3}
+\begingroup\input{units/bac_2023_03_sujet2_asie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G1 J1 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet1_etrangers_groupe1_1}
+\begingroup\input{units/bac_2023_03_sujet1_etrangers_groupe1_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G1 J1 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet1_etrangers_groupe1_2}
+\begingroup\input{units/bac_2023_03_sujet1_etrangers_groupe1_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G1 J2 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet2_etrangers_groupe1_2}
+\begingroup\input{units/bac_2023_03_sujet2_etrangers_groupe1_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G2 J1 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet1_etrangers_groupe2_2}
+\begingroup\input{units/bac_2023_03_sujet1_etrangers_groupe2_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G2 J1 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet1_etrangers_groupe2_3}
+\begingroup\input{units/bac_2023_03_sujet1_etrangers_groupe2_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G2 J2 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet2_etrangers_groupe2_2}
+\begingroup\input{units/bac_2023_03_sujet2_etrangers_groupe2_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Métropole J1 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet1_metropole_3}
+\begingroup\input{units/bac_2023_03_sujet1_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Métropole J2 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet2_metropole_2}
+\begingroup\input{units/bac_2023_03_sujet2_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Polynésie J1 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet1_polynesie_4}
+\begingroup\input{units/bac_2023_03_sujet1_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Polynésie J2 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet2_polynesie_1}
+\begingroup\input{units/bac_2023_03_sujet2_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Polynésie J2 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet2_polynesie_4}
+\begingroup\input{units/bac_2023_03_sujet2_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars reunion J1 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet1_reunion_3}
+\begingroup\input{units/bac_2023_03_sujet1_reunion_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars reunion J2 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet2_reunion_2}
+\begingroup\input{units/bac_2023_03_sujet2_reunion_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Amérique du sud J1 : exercice 4}
+\typeout{MXEX:bac_2023_09_sujet1_ameriquesud_4}
+\begingroup\input{units/bac_2023_09_sujet1_ameriquesud_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Amérique du sud J2 : exercice 3}
+\typeout{MXEX:bac_2023_09_sujet2_ameriquesud_3}
+\begingroup\input{units/bac_2023_09_sujet2_ameriquesud_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Métropole J1 : exercice 1}
+\typeout{MXEX:bac_2023_09_sujet1_metropole_1}
+\begingroup\input{units/bac_2023_09_sujet1_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Métropole J2 : exercice 3}
+\typeout{MXEX:bac_2023_09_sujet2_metropole_3}
+\begingroup\input{units/bac_2023_09_sujet2_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Polynésie J1 : exercice 3}
+\typeout{MXEX:bac_2023_09_sujet1_polynesie_3}
+\begingroup\input{units/bac_2023_09_sujet1_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Janvier sujet0 : exercice 2}
+\typeout{MXEX:bac_2024_01_sujet0_2}
+\begingroup\input{units/bac_2024_01_sujet0_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Janvier sujet0 : exercice 6}
+\typeout{MXEX:bac_2024_01_sujet0_6}
+\begingroup\input{units/bac_2024_01_sujet0_6.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Janvier sujet0 : exercice 8}
+\typeout{MXEX:bac_2024_01_sujet0_8}
+\begingroup\input{units/bac_2024_01_sujet0_8.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Asie J1 : exercice 4}
+\typeout{MXEX:bac_2024_06_sujet1_asie_4}
+\begingroup\input{units/bac_2024_06_sujet1_asie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Asie J2 : exercice 1}
+\typeout{MXEX:bac_2024_06_sujet2_asie_1}
+\begingroup\input{units/bac_2024_06_sujet2_asie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Asie J2 : exercice 2}
+\typeout{MXEX:bac_2024_06_sujet2_asie_2}
+\begingroup\input{units/bac_2024_06_sujet2_asie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Centres étrangers J1 : exercice 2}
+\typeout{MXEX:bac_2024_06_sujet1_etrangers_2}
+\begingroup\input{units/bac_2024_06_sujet1_etrangers_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Centres étrangers J2 : exercice 4}
+\typeout{MXEX:bac_2024_06_sujet2_etrangers_4}
+\begingroup\input{units/bac_2024_06_sujet2_etrangers_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J1 : exercice 1}
+\typeout{MXEX:bac_2024_06_sujet1_metropole_1}
+\begingroup\input{units/bac_2024_06_sujet1_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J1 : exercice devoile}
+\typeout{MXEX:bac_2024_06_sujet1_metropole_devoile_3}
+\begingroup\input{units/bac_2024_06_sujet1_metropole_devoile_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J2 : exercice 2}
+\typeout{MXEX:bac_2024_06_sujet2_metropole_2}
+\begingroup\input{units/bac_2024_06_sujet2_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J2 : exercice devoile}
+\typeout{MXEX:bac_2024_06_sujet2_metropole_devoile_3}
+\begingroup\input{units/bac_2024_06_sujet2_metropole_devoile_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Polynésie J1 : exercice 4}
+\typeout{MXEX:bac_2024_06_sujet1_polynesie_4}
+\begingroup\input{units/bac_2024_06_sujet1_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Polynésie J2 : exercice 3}
+\typeout{MXEX:bac_2024_06_sujet2_polynesie_3}
+\begingroup\input{units/bac_2024_06_sujet2_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin suede J1 : exercice 1}
+\typeout{MXEX:bac_2024_06_sujet1_suede_1}
+\begingroup\input{units/bac_2024_06_sujet1_suede_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin suede J1 : exercice 2}
+\typeout{MXEX:bac_2024_06_sujet1_suede_2}
+\begingroup\input{units/bac_2024_06_sujet1_suede_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Mai Amérique du Nord J1 : exercice 4}
+\typeout{MXEX:bac_2024_05_sujet1_ameriquenord_4}
+\begingroup\input{units/bac_2024_05_sujet1_ameriquenord_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Mai Amérique du Nord J2 : exercice 3}
+\typeout{MXEX:bac_2024_05_sujet2_ameriquenord_3}
+\begingroup\input{units/bac_2024_05_sujet2_ameriquenord_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Novembre amsud J1 : exercice 3}
+\typeout{MXEX:bac_2024_11_sujet1_amsud_3}
+\begingroup\input{units/bac_2024_11_sujet1_amsud_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Novembre amsud J2 : exercice 2}
+\typeout{MXEX:bac_2024_11_sujet2_amsud_2}
+\begingroup\input{units/bac_2024_11_sujet2_amsud_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Septembre Métropole J1 : exercice 3}
+\typeout{MXEX:bac_2024_09_sujet1_metropole_3}
+\begingroup\input{units/bac_2024_09_sujet1_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Septembre Polynésie J1 : exercice 3}
+\typeout{MXEX:bac_2024_09_sujet1_polynesie_3}
+\begingroup\input{units/bac_2024_09_sujet1_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Asie J1 : exercice 3}
+\typeout{MXEX:bac_2025_06_sujet1_asie_3}
+\begingroup\input{units/bac_2025_06_sujet1_asie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Asie J2 : exercice 2}
+\typeout{MXEX:bac_2025_06_sujet2_asie_2}
+\begingroup\input{units/bac_2025_06_sujet2_asie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Centres étrangers J1 : exercice 3}
+\typeout{MXEX:bac_2025_06_sujet1_etrangers_3}
+\begingroup\input{units/bac_2025_06_sujet1_etrangers_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Centres étrangers J2 : exercice 1}
+\typeout{MXEX:bac_2025_06_sujet2_etrangers_1}
+\begingroup\input{units/bac_2025_06_sujet2_etrangers_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Métropole J1 : exercice 4}
+\typeout{MXEX:bac_2025_06_sujet1_metropole_4}
+\begingroup\input{units/bac_2025_06_sujet1_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Métropole J2 : exercice 3}
+\typeout{MXEX:bac_2025_06_sujet2_metropole_3}
+\begingroup\input{units/bac_2025_06_sujet2_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Polynésie J1 : exercice 3}
+\typeout{MXEX:bac_2025_06_sujet1_polynesie_3}
+\begingroup\input{units/bac_2025_06_sujet1_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Polynésie J1 : exercice 4}
+\typeout{MXEX:bac_2025_06_sujet1_polynesie_4}
+\begingroup\input{units/bac_2025_06_sujet1_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Polynésie J2 : exercice 1}
+\typeout{MXEX:bac_2025_06_sujet2_polynesie_1}
+\begingroup\input{units/bac_2025_06_sujet2_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Polynésie J2 : exercice 4}
+\typeout{MXEX:bac_2025_06_sujet2_polynesie_4}
+\begingroup\input{units/bac_2025_06_sujet2_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Mai Amérique du Nord J1 : exercice 2}
+\typeout{MXEX:bac_2025_05_sujet1_ameriquenord_2}
+\begingroup\input{units/bac_2025_05_sujet1_ameriquenord_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Mai Amérique du Nord J2 : exercice 2}
+\typeout{MXEX:bac_2025_05_sujet2_ameriquenord_2}
+\begingroup\input{units/bac_2025_05_sujet2_ameriquenord_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Mai Amérique du Nord J2 : exercice secours}
+\typeout{MXEX:bac_2025_05_sujet2_ameriquenord_secours_4}
+\begingroup\input{units/bac_2025_05_sujet2_ameriquenord_secours_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Amérique du sud J1 : exercice 1}
+\typeout{MXEX:bac_2025_11_sujet1_ameriquesud_1}
+\begingroup\input{units/bac_2025_11_sujet1_ameriquesud_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Amérique du sud J2 : exercice 3}
+\typeout{MXEX:bac_2025_11_sujet2_ameriquesud_3}
+\begingroup\input{units/bac_2025_11_sujet2_ameriquesud_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Nouvelle Calédonie J1 : exercice 3}
+\typeout{MXEX:bac_2025_11_sujet1_caledonie_3}
+\begingroup\input{units/bac_2025_11_sujet1_caledonie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Nouvelle Calédonie J1 : exercice 4}
+\typeout{MXEX:bac_2025_11_sujet1_caledonie_4}
+\begingroup\input{units/bac_2025_11_sujet1_caledonie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Nouvelle Calédonie J2 : exercice 3}
+\typeout{MXEX:bac_2025_11_sujet2_caledonie_3}
+\begingroup\input{units/bac_2025_11_sujet2_caledonie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Asie J1 : exercice 4}
+\typeout{MXEX:bac_2025_09_sujet1_asie_4}
+\begingroup\input{units/bac_2025_09_sujet1_asie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Métropole J1 : exercice 3}
+\typeout{MXEX:bac_2025_09_sujet1_metropole_3}
+\begingroup\input{units/bac_2025_09_sujet1_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Métropole J2 : exercice 1}
+\typeout{MXEX:bac_2025_09_sujet2_metropole_1}
+\begingroup\input{units/bac_2025_09_sujet2_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Polynésie J1 : exercice 3}
+\typeout{MXEX:bac_2025_09_sujet1_polynesie_3}
+\begingroup\input{units/bac_2025_09_sujet1_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Antilles J2 : exercice 1}
+\typeout{MXEX:bac_2026_06_sujet2_antilles_1}
+\begingroup\input{units/bac_2026_06_sujet2_antilles_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Asie J1 : exercice 1}
+\typeout{MXEX:bac_2026_06_sujet1_asie_1}
+\begingroup\input{units/bac_2026_06_sujet1_asie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Asie J1 : exercice 2}
+\typeout{MXEX:bac_2026_06_sujet1_asie_2}
+\begingroup\input{units/bac_2026_06_sujet1_asie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Asie J2 : exercice 1}
+\typeout{MXEX:bac_2026_06_sujet2_asie_1}
+\begingroup\input{units/bac_2026_06_sujet2_asie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Centres étrangers J1 : exercice 2}
+\typeout{MXEX:bac_2026_06_sujet1_etrangers_2}
+\begingroup\input{units/bac_2026_06_sujet1_etrangers_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Centres étrangers J2 : exercice 3}
+\typeout{MXEX:bac_2026_06_sujet2_etrangers_3}
+\begingroup\input{units/bac_2026_06_sujet2_etrangers_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Métropole J1 : exercice 3}
+\typeout{MXEX:bac_2026_06_sujet1_metropole_3}
+\begingroup\input{units/bac_2026_06_sujet1_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Métropole J2 : exercice 2}
+\typeout{MXEX:bac_2026_06_sujet2_metropole_2}
+\begingroup\input{units/bac_2026_06_sujet2_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Polynésie J1 : exercice 3}
+\typeout{MXEX:bac_2026_06_sujet1_polynesie_3}
+\begingroup\input{units/bac_2026_06_sujet1_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Polynésie J2 : exercice 2}
+\typeout{MXEX:bac_2026_06_sujet2_polynesie_2}
+\begingroup\input{units/bac_2026_06_sujet2_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Mai Amérique du Nord J1 : exercice 2}
+\typeout{MXEX:bac_2026_05_sujet1_ameriquenord_2}
+\begingroup\input{units/bac_2026_05_sujet1_ameriquenord_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Mai Amérique du Nord J2 : exercice 2}
+\typeout{MXEX:bac_2026_05_sujet2_ameriquenord_2}
+\begingroup\input{units/bac_2026_05_sujet2_ameriquenord_2.cor.tex}\endgroup
+\par\bigskip
+\clearpage\section*{Vecteurs, droites et plans de l'espace}
+\mxneed{6}\subsection*{BAC 2021 Janvier sujet0 : exercice 2}
+\typeout{MXEX:bac_2021_01_sujet0_2}
+\begingroup\input{units/bac_2021_01_sujet0_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Asie : exercice 2}
+\typeout{MXEX:bac_2021_06_asie_2}
+\begingroup\input{units/bac_2021_06_asie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Asie : exercice 7}
+\typeout{MXEX:bac_2021_06_asie_7}
+\begingroup\input{units/bac_2021_06_asie_7.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Centres étrangers : exercice 4}
+\typeout{MXEX:bac_2021_06_etrangers_4}
+\begingroup\input{units/bac_2021_06_etrangers_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Centres étrangers : exercice 8}
+\typeout{MXEX:bac_2021_06_etrangers_8}
+\begingroup\input{units/bac_2021_06_etrangers_8.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Métropole : exercice 4}
+\typeout{MXEX:bac_2021_06_metropole_4}
+\begingroup\input{units/bac_2021_06_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Métropole : exercice 6}
+\typeout{MXEX:bac_2021_06_metropole_6}
+\begingroup\input{units/bac_2021_06_metropole_6.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Polynésie : exercice 3}
+\typeout{MXEX:bac_2021_06_polynesie_3}
+\begingroup\input{units/bac_2021_06_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mai Amérique du Nord : exercice 3}
+\typeout{MXEX:bac_2021_05_ameriquenord_3}
+\begingroup\input{units/bac_2021_05_ameriquenord_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mars sujet1 : exercice 3}
+\typeout{MXEX:bac_2021_03_sujet1_3}
+\begingroup\input{units/bac_2021_03_sujet1_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mars sujet2 : exercice 3}
+\typeout{MXEX:bac_2021_03_sujet2_3}
+\begingroup\input{units/bac_2021_03_sujet2_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Septembre Métropole : exercice 4}
+\typeout{MXEX:bac_2021_09_metropole_4}
+\begingroup\input{units/bac_2021_09_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Septembre Métropole : exercice 7}
+\typeout{MXEX:bac_2021_09_metropole_7}
+\begingroup\input{units/bac_2021_09_metropole_7.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Amérique du Nord J1 : exercice 3}
+\typeout{MXEX:bac_2022_05_sujet1_ameriquenord_3}
+\begingroup\input{units/bac_2022_05_sujet1_ameriquenord_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Amérique du Nord J2 : exercice 3}
+\typeout{MXEX:bac_2022_05_sujet2_ameriquenord_3}
+\begingroup\input{units/bac_2022_05_sujet2_ameriquenord_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Asie J1 : exercice 3}
+\typeout{MXEX:bac_2022_05_sujet1_asie_3}
+\begingroup\input{units/bac_2022_05_sujet1_asie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Asie J2 : exercice 1}
+\typeout{MXEX:bac_2022_05_sujet2_asie_1}
+\begingroup\input{units/bac_2022_05_sujet2_asie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Centres étrangers J1 : exercice 2}
+\typeout{MXEX:bac_2022_05_sujet1_etrangers_2}
+\begingroup\input{units/bac_2022_05_sujet1_etrangers_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Centres étrangers J2 : exercice 3}
+\typeout{MXEX:bac_2022_05_sujet2_etrangers_3}
+\begingroup\input{units/bac_2022_05_sujet2_etrangers_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Madagascar J1 : exercice 4}
+\typeout{MXEX:bac_2022_05_sujet1_madagascar_4}
+\begingroup\input{units/bac_2022_05_sujet1_madagascar_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Madagascar J2 : exercice 2}
+\typeout{MXEX:bac_2022_05_sujet2_madagascar_2}
+\begingroup\input{units/bac_2022_05_sujet2_madagascar_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Métropole J1 : exercice 2}
+\typeout{MXEX:bac_2022_05_sujet1_metropole_2}
+\begingroup\input{units/bac_2022_05_sujet1_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Métropole J2 : exercice 3}
+\typeout{MXEX:bac_2022_05_sujet2_metropole_3}
+\begingroup\input{units/bac_2022_05_sujet2_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Polynésie J1 : exercice 4}
+\typeout{MXEX:bac_2022_05_sujet1_polynesie_4}
+\begingroup\input{units/bac_2022_05_sujet1_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Polynésie J2 : exercice 4}
+\typeout{MXEX:bac_2022_05_sujet2_polynesie_4}
+\begingroup\input{units/bac_2022_05_sujet2_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Octobre Nouvelle Calédonie J1 : exercice 3}
+\typeout{MXEX:bac_2022_10_sujet1_caledonie_3}
+\begingroup\input{units/bac_2022_10_sujet1_caledonie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Octobre Nouvelle Calédonie J2 : exercice 3}
+\typeout{MXEX:bac_2022_10_sujet2_caledonie_3}
+\begingroup\input{units/bac_2022_10_sujet2_caledonie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Amérique du sud J1 : exercice 4}
+\typeout{MXEX:bac_2022_09_sujet1_ameriquesud_4}
+\begingroup\input{units/bac_2022_09_sujet1_ameriquesud_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Métropole J1 : exercice 4}
+\typeout{MXEX:bac_2022_09_sujet1_metropole_4}
+\begingroup\input{units/bac_2022_09_sujet1_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Métropole J2 : exercice 4}
+\typeout{MXEX:bac_2022_09_sujet2_metropole_4}
+\begingroup\input{units/bac_2022_09_sujet2_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Polynésie J1 : exercice 4}
+\typeout{MXEX:bac_2022_09_sujet1_polynesie_4}
+\begingroup\input{units/bac_2022_09_sujet1_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Août Nouvelle Calédonie J1 : exercice 3}
+\typeout{MXEX:bac_2023_08_sujet1_caledonie_3}
+\begingroup\input{units/bac_2023_08_sujet1_caledonie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Août Nouvelle Calédonie J2 : exercice 1}
+\typeout{MXEX:bac_2023_08_sujet2_caledonie_1}
+\begingroup\input{units/bac_2023_08_sujet2_caledonie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Amérique du Nord J1 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet1_ameriquenord_3}
+\begingroup\input{units/bac_2023_03_sujet1_ameriquenord_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Amérique du Nord J2 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet2_ameriquenord_3}
+\begingroup\input{units/bac_2023_03_sujet2_ameriquenord_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Asie J1 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet1_asie_2}
+\begingroup\input{units/bac_2023_03_sujet1_asie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Asie J2 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet2_asie_1}
+\begingroup\input{units/bac_2023_03_sujet2_asie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G1 J1 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet1_etrangers_groupe1_3}
+\begingroup\input{units/bac_2023_03_sujet1_etrangers_groupe1_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G1 J2 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet2_etrangers_groupe1_3}
+\begingroup\input{units/bac_2023_03_sujet2_etrangers_groupe1_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G2 J1 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet1_etrangers_groupe2_4}
+\begingroup\input{units/bac_2023_03_sujet1_etrangers_groupe2_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G2 J2 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet2_etrangers_groupe2_3}
+\begingroup\input{units/bac_2023_03_sujet2_etrangers_groupe2_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Métropole J1 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet1_metropole_4}
+\begingroup\input{units/bac_2023_03_sujet1_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Métropole J2 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet2_metropole_3}
+\begingroup\input{units/bac_2023_03_sujet2_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Polynésie J1 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet1_polynesie_2}
+\begingroup\input{units/bac_2023_03_sujet1_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Polynésie J2 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet2_polynesie_2}
+\begingroup\input{units/bac_2023_03_sujet2_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars reunion J1 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet1_reunion_4}
+\begingroup\input{units/bac_2023_03_sujet1_reunion_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars reunion J2 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet2_reunion_3}
+\begingroup\input{units/bac_2023_03_sujet2_reunion_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Amérique du sud J1 : exercice 3}
+\typeout{MXEX:bac_2023_09_sujet1_ameriquesud_3}
+\begingroup\input{units/bac_2023_09_sujet1_ameriquesud_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Amérique du sud J2 : exercice 2}
+\typeout{MXEX:bac_2023_09_sujet2_ameriquesud_2}
+\begingroup\input{units/bac_2023_09_sujet2_ameriquesud_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Métropole J1 : exercice 2}
+\typeout{MXEX:bac_2023_09_sujet1_metropole_2}
+\begingroup\input{units/bac_2023_09_sujet1_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Métropole J2 : exercice 4}
+\typeout{MXEX:bac_2023_09_sujet2_metropole_4}
+\begingroup\input{units/bac_2023_09_sujet2_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Polynésie J1 : exercice 4}
+\typeout{MXEX:bac_2023_09_sujet1_polynesie_4}
+\begingroup\input{units/bac_2023_09_sujet1_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Janvier sujet0 : exercice 4}
+\typeout{MXEX:bac_2024_01_sujet0_4}
+\begingroup\input{units/bac_2024_01_sujet0_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Asie J1 : exercice 2}
+\typeout{MXEX:bac_2024_06_sujet1_asie_2}
+\begingroup\input{units/bac_2024_06_sujet1_asie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Asie J2 : exercice 4}
+\typeout{MXEX:bac_2024_06_sujet2_asie_4}
+\begingroup\input{units/bac_2024_06_sujet2_asie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Centres étrangers J1 : exercice 4}
+\typeout{MXEX:bac_2024_06_sujet1_etrangers_4}
+\begingroup\input{units/bac_2024_06_sujet1_etrangers_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Centres étrangers J2 : exercice 3}
+\typeout{MXEX:bac_2024_06_sujet2_etrangers_3}
+\begingroup\input{units/bac_2024_06_sujet2_etrangers_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J1 : exercice 3}
+\typeout{MXEX:bac_2024_06_sujet1_metropole_3}
+\begingroup\input{units/bac_2024_06_sujet1_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J1 : exercice devoile}
+\typeout{MXEX:bac_2024_06_sujet1_metropole_devoile_1}
+\begingroup\input{units/bac_2024_06_sujet1_metropole_devoile_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J2 : exercice 4}
+\typeout{MXEX:bac_2024_06_sujet2_metropole_4}
+\begingroup\input{units/bac_2024_06_sujet2_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J2 : exercice devoile}
+\typeout{MXEX:bac_2024_06_sujet2_metropole_devoile_2}
+\begingroup\input{units/bac_2024_06_sujet2_metropole_devoile_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Polynésie J1 : exercice 1}
+\typeout{MXEX:bac_2024_06_sujet1_polynesie_1}
+\begingroup\input{units/bac_2024_06_sujet1_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Polynésie J2 : exercice 4}
+\typeout{MXEX:bac_2024_06_sujet2_polynesie_4}
+\begingroup\input{units/bac_2024_06_sujet2_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin suede J1 : exercice 4}
+\typeout{MXEX:bac_2024_06_sujet1_suede_4}
+\begingroup\input{units/bac_2024_06_sujet1_suede_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Mai Amérique du Nord J1 : exercice 2}
+\typeout{MXEX:bac_2024_05_sujet1_ameriquenord_2}
+\begingroup\input{units/bac_2024_05_sujet1_ameriquenord_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Mai Amérique du Nord J2 : exercice 2}
+\typeout{MXEX:bac_2024_05_sujet2_ameriquenord_2}
+\begingroup\input{units/bac_2024_05_sujet2_ameriquenord_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Novembre amsud J1 : exercice 4}
+\typeout{MXEX:bac_2024_11_sujet1_amsud_4}
+\begingroup\input{units/bac_2024_11_sujet1_amsud_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Novembre amsud J2 : exercice 4}
+\typeout{MXEX:bac_2024_11_sujet2_amsud_4}
+\begingroup\input{units/bac_2024_11_sujet2_amsud_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Septembre Métropole J1 : exercice 1}
+\typeout{MXEX:bac_2024_09_sujet1_metropole_1}
+\begingroup\input{units/bac_2024_09_sujet1_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Septembre Polynésie J1 : exercice 4}
+\typeout{MXEX:bac_2024_09_sujet1_polynesie_4}
+\begingroup\input{units/bac_2024_09_sujet1_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Asie J1 : exercice 1}
+\typeout{MXEX:bac_2025_06_sujet1_asie_1}
+\begingroup\input{units/bac_2025_06_sujet1_asie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Asie J2 : exercice 3}
+\typeout{MXEX:bac_2025_06_sujet2_asie_3}
+\begingroup\input{units/bac_2025_06_sujet2_asie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Centres étrangers J1 : exercice 2}
+\typeout{MXEX:bac_2025_06_sujet1_etrangers_2}
+\begingroup\input{units/bac_2025_06_sujet1_etrangers_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Centres étrangers J2 : exercice 4}
+\typeout{MXEX:bac_2025_06_sujet2_etrangers_4}
+\begingroup\input{units/bac_2025_06_sujet2_etrangers_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Métropole J1 : exercice 3}
+\typeout{MXEX:bac_2025_06_sujet1_metropole_3}
+\begingroup\input{units/bac_2025_06_sujet1_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Métropole J2 : exercice 2}
+\typeout{MXEX:bac_2025_06_sujet2_metropole_2}
+\begingroup\input{units/bac_2025_06_sujet2_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Polynésie J1 : exercice 2}
+\typeout{MXEX:bac_2025_06_sujet1_polynesie_2}
+\begingroup\input{units/bac_2025_06_sujet1_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Polynésie J2 : exercice 3}
+\typeout{MXEX:bac_2025_06_sujet2_polynesie_3}
+\begingroup\input{units/bac_2025_06_sujet2_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Mai Amérique du Nord J1 : exercice 3}
+\typeout{MXEX:bac_2025_05_sujet1_ameriquenord_3}
+\begingroup\input{units/bac_2025_05_sujet1_ameriquenord_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Mai Amérique du Nord J2 : exercice 3}
+\typeout{MXEX:bac_2025_05_sujet2_ameriquenord_3}
+\begingroup\input{units/bac_2025_05_sujet2_ameriquenord_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Mai Amérique du Nord J2 : exercice secours}
+\typeout{MXEX:bac_2025_05_sujet2_ameriquenord_secours_2}
+\begingroup\input{units/bac_2025_05_sujet2_ameriquenord_secours_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Amérique du sud J1 : exercice 4}
+\typeout{MXEX:bac_2025_11_sujet1_ameriquesud_4}
+\begingroup\input{units/bac_2025_11_sujet1_ameriquesud_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Amérique du sud J2 : exercice 2}
+\typeout{MXEX:bac_2025_11_sujet2_ameriquesud_2}
+\begingroup\input{units/bac_2025_11_sujet2_ameriquesud_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Nouvelle Calédonie J1 : exercice 2}
+\typeout{MXEX:bac_2025_11_sujet1_caledonie_2}
+\begingroup\input{units/bac_2025_11_sujet1_caledonie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Nouvelle Calédonie J2 : exercice 1}
+\typeout{MXEX:bac_2025_11_sujet2_caledonie_1}
+\begingroup\input{units/bac_2025_11_sujet2_caledonie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Asie J1 : exercice 2}
+\typeout{MXEX:bac_2025_09_sujet1_asie_2}
+\begingroup\input{units/bac_2025_09_sujet1_asie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Métropole J1 : exercice 2}
+\typeout{MXEX:bac_2025_09_sujet1_metropole_2}
+\begingroup\input{units/bac_2025_09_sujet1_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Métropole J2 : exercice 4}
+\typeout{MXEX:bac_2025_09_sujet2_metropole_4}
+\begingroup\input{units/bac_2025_09_sujet2_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Polynésie J1 : exercice 4}
+\typeout{MXEX:bac_2025_09_sujet1_polynesie_4}
+\begingroup\input{units/bac_2025_09_sujet1_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Antilles J2 : exercice 2}
+\typeout{MXEX:bac_2026_06_sujet2_antilles_2}
+\begingroup\input{units/bac_2026_06_sujet2_antilles_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Métropole J1 : exercice 2}
+\typeout{MXEX:bac_2026_06_sujet1_metropole_2}
+\begingroup\input{units/bac_2026_06_sujet1_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Métropole J2 : exercice 1}
+\typeout{MXEX:bac_2026_06_sujet2_metropole_1}
+\begingroup\input{units/bac_2026_06_sujet2_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Polynésie J1 : exercice 4}
+\typeout{MXEX:bac_2026_06_sujet1_polynesie_4}
+\begingroup\input{units/bac_2026_06_sujet1_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Polynésie J2 : exercice 3}
+\typeout{MXEX:bac_2026_06_sujet2_polynesie_3}
+\begingroup\input{units/bac_2026_06_sujet2_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\clearpage\section*{Limites de suites}
+\mxneed{6}\subsection*{BAC 2021 Mai Amérique du Nord : exercice 5}
+\typeout{MXEX:bac_2021_05_ameriquenord_5}
+\begingroup\input{units/bac_2021_05_ameriquenord_5.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Asie J2 : exercice 2}
+\typeout{MXEX:bac_2022_05_sujet2_asie_2}
+\begingroup\input{units/bac_2022_05_sujet2_asie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Métropole J1 : exercice 3}
+\typeout{MXEX:bac_2022_09_sujet1_metropole_3}
+\begingroup\input{units/bac_2022_09_sujet1_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Asie J2 : exercice 3}
+\typeout{MXEX:bac_2024_06_sujet2_asie_3}
+\begingroup\input{units/bac_2024_06_sujet2_asie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Polynésie J2 : exercice 4}
+\typeout{MXEX:bac_2026_06_sujet2_polynesie_4}
+\begingroup\input{units/bac_2026_06_sujet2_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\clearpage\section*{Limites de fonctions}
+\mxneed{6}\subsection*{BAC 2021 Janvier sujet0 : exercice 4}
+\typeout{MXEX:bac_2021_01_sujet0_4}
+\begingroup\input{units/bac_2021_01_sujet0_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Asie : exercice 4}
+\typeout{MXEX:bac_2021_06_asie_4}
+\begingroup\input{units/bac_2021_06_asie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Asie : exercice 5}
+\typeout{MXEX:bac_2021_06_asie_5}
+\begingroup\input{units/bac_2021_06_asie_5.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Asie : exercice 6}
+\typeout{MXEX:bac_2021_06_asie_6}
+\begingroup\input{units/bac_2021_06_asie_6.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Centres étrangers : exercice 1}
+\typeout{MXEX:bac_2021_06_etrangers_1}
+\begingroup\input{units/bac_2021_06_etrangers_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Centres étrangers : exercice 10}
+\typeout{MXEX:bac_2021_06_etrangers_10}
+\begingroup\input{units/bac_2021_06_etrangers_10.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Centres étrangers : exercice 5}
+\typeout{MXEX:bac_2021_06_etrangers_5}
+\begingroup\input{units/bac_2021_06_etrangers_5.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Centres étrangers : exercice 9}
+\typeout{MXEX:bac_2021_06_etrangers_9}
+\begingroup\input{units/bac_2021_06_etrangers_9.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Métropole : exercice 1}
+\typeout{MXEX:bac_2021_06_metropole_1}
+\begingroup\input{units/bac_2021_06_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Métropole : exercice 10}
+\typeout{MXEX:bac_2021_06_metropole_10}
+\begingroup\input{units/bac_2021_06_metropole_10.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Métropole : exercice 5}
+\typeout{MXEX:bac_2021_06_metropole_5}
+\begingroup\input{units/bac_2021_06_metropole_5.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Métropole : exercice 9}
+\typeout{MXEX:bac_2021_06_metropole_9}
+\begingroup\input{units/bac_2021_06_metropole_9.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Polynésie : exercice 4}
+\typeout{MXEX:bac_2021_06_polynesie_4}
+\begingroup\input{units/bac_2021_06_polynesie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mai Amérique du Nord : exercice 4}
+\typeout{MXEX:bac_2021_05_ameriquenord_4}
+\begingroup\input{units/bac_2021_05_ameriquenord_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mars sujet1 : exercice 2}
+\typeout{MXEX:bac_2021_03_sujet1_2}
+\begingroup\input{units/bac_2021_03_sujet1_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mars sujet1 : exercice 5}
+\typeout{MXEX:bac_2021_03_sujet1_5}
+\begingroup\input{units/bac_2021_03_sujet1_5.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mars sujet2 : exercice 4}
+\typeout{MXEX:bac_2021_03_sujet2_4}
+\begingroup\input{units/bac_2021_03_sujet2_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mars sujet2 : exercice 5}
+\typeout{MXEX:bac_2021_03_sujet2_5}
+\begingroup\input{units/bac_2021_03_sujet2_5.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Septembre Métropole : exercice 1}
+\typeout{MXEX:bac_2021_09_metropole_1}
+\begingroup\input{units/bac_2021_09_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Septembre Métropole : exercice 10}
+\typeout{MXEX:bac_2021_09_metropole_10}
+\begingroup\input{units/bac_2021_09_metropole_10.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Septembre Métropole : exercice 3}
+\typeout{MXEX:bac_2021_09_metropole_3}
+\begingroup\input{units/bac_2021_09_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Septembre Métropole : exercice 5}
+\typeout{MXEX:bac_2021_09_metropole_5}
+\begingroup\input{units/bac_2021_09_metropole_5.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Septembre Métropole : exercice 8}
+\typeout{MXEX:bac_2021_09_metropole_8}
+\begingroup\input{units/bac_2021_09_metropole_8.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Amérique du Nord J1 : exercice 4}
+\typeout{MXEX:bac_2022_05_sujet1_ameriquenord_4}
+\begingroup\input{units/bac_2022_05_sujet1_ameriquenord_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Amérique du Nord J2 : exercice 2}
+\typeout{MXEX:bac_2022_05_sujet2_ameriquenord_2}
+\begingroup\input{units/bac_2022_05_sujet2_ameriquenord_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Asie J1 : exercice 4}
+\typeout{MXEX:bac_2022_05_sujet1_asie_4}
+\begingroup\input{units/bac_2022_05_sujet1_asie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Centres étrangers J2 : exercice 1}
+\typeout{MXEX:bac_2022_05_sujet2_etrangers_1}
+\begingroup\input{units/bac_2022_05_sujet2_etrangers_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Métropole J1 : exercice 4}
+\typeout{MXEX:bac_2022_05_sujet1_metropole_4}
+\begingroup\input{units/bac_2022_05_sujet1_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Métropole J2 : exercice 4}
+\typeout{MXEX:bac_2022_05_sujet2_metropole_4}
+\begingroup\input{units/bac_2022_05_sujet2_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Polynésie J2 : exercice 1}
+\typeout{MXEX:bac_2022_05_sujet2_polynesie_1}
+\begingroup\input{units/bac_2022_05_sujet2_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Octobre Nouvelle Calédonie J1 : exercice 1}
+\typeout{MXEX:bac_2022_10_sujet1_caledonie_1}
+\begingroup\input{units/bac_2022_10_sujet1_caledonie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Octobre Nouvelle Calédonie J2 : exercice 2}
+\typeout{MXEX:bac_2022_10_sujet2_caledonie_2}
+\begingroup\input{units/bac_2022_10_sujet2_caledonie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Amérique du sud J1 : exercice 3}
+\typeout{MXEX:bac_2022_09_sujet1_ameriquesud_3}
+\begingroup\input{units/bac_2022_09_sujet1_ameriquesud_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Polynésie J1 : exercice 3}
+\typeout{MXEX:bac_2022_09_sujet1_polynesie_3}
+\begingroup\input{units/bac_2022_09_sujet1_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Août Nouvelle Calédonie J1 : exercice 4}
+\typeout{MXEX:bac_2023_08_sujet1_caledonie_4}
+\begingroup\input{units/bac_2023_08_sujet1_caledonie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Août Nouvelle Calédonie J2 : exercice 2}
+\typeout{MXEX:bac_2023_08_sujet2_caledonie_2}
+\begingroup\input{units/bac_2023_08_sujet2_caledonie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Amérique du Nord J1 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet1_ameriquenord_2}
+\begingroup\input{units/bac_2023_03_sujet1_ameriquenord_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Amérique du Nord J2 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet2_ameriquenord_1}
+\begingroup\input{units/bac_2023_03_sujet2_ameriquenord_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Asie J1 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet1_asie_3}
+\begingroup\input{units/bac_2023_03_sujet1_asie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Asie J2 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet2_asie_2}
+\begingroup\input{units/bac_2023_03_sujet2_asie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G1 J1 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet1_etrangers_groupe1_4}
+\begingroup\input{units/bac_2023_03_sujet1_etrangers_groupe1_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G1 J2 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet2_etrangers_groupe1_1}
+\begingroup\input{units/bac_2023_03_sujet2_etrangers_groupe1_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G2 J1 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet1_etrangers_groupe2_1}
+\begingroup\input{units/bac_2023_03_sujet1_etrangers_groupe2_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G2 J2 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet2_etrangers_groupe2_1}
+\begingroup\input{units/bac_2023_03_sujet2_etrangers_groupe2_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Métropole J1 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet1_metropole_2}
+\begingroup\input{units/bac_2023_03_sujet1_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Métropole J2 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet2_metropole_4}
+\begingroup\input{units/bac_2023_03_sujet2_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Polynésie J1 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet1_polynesie_3}
+\begingroup\input{units/bac_2023_03_sujet1_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Polynésie J2 : exercice 3}
+\typeout{MXEX:bac_2023_03_sujet2_polynesie_3}
+\begingroup\input{units/bac_2023_03_sujet2_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars reunion J1 : exercice 2}
+\typeout{MXEX:bac_2023_03_sujet1_reunion_2}
+\begingroup\input{units/bac_2023_03_sujet1_reunion_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars reunion J2 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet2_reunion_4}
+\begingroup\input{units/bac_2023_03_sujet2_reunion_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Amérique du sud J1 : exercice 1}
+\typeout{MXEX:bac_2023_09_sujet1_ameriquesud_1}
+\begingroup\input{units/bac_2023_09_sujet1_ameriquesud_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Amérique du sud J2 : exercice 4}
+\typeout{MXEX:bac_2023_09_sujet2_ameriquesud_4}
+\begingroup\input{units/bac_2023_09_sujet2_ameriquesud_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Métropole J1 : exercice 4}
+\typeout{MXEX:bac_2023_09_sujet1_metropole_4}
+\begingroup\input{units/bac_2023_09_sujet1_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Métropole J2 : exercice 2}
+\typeout{MXEX:bac_2023_09_sujet2_metropole_2}
+\begingroup\input{units/bac_2023_09_sujet2_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Polynésie J1 : exercice 2}
+\typeout{MXEX:bac_2023_09_sujet1_polynesie_2}
+\begingroup\input{units/bac_2023_09_sujet1_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Janvier sujet0 : exercice 1}
+\typeout{MXEX:bac_2024_01_sujet0_1}
+\begingroup\input{units/bac_2024_01_sujet0_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Janvier sujet0 : exercice 7}
+\typeout{MXEX:bac_2024_01_sujet0_7}
+\begingroup\input{units/bac_2024_01_sujet0_7.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Asie J1 : exercice 1}
+\typeout{MXEX:bac_2024_06_sujet1_asie_1}
+\begingroup\input{units/bac_2024_06_sujet1_asie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Centres étrangers J2 : exercice 2}
+\typeout{MXEX:bac_2024_06_sujet2_etrangers_2}
+\begingroup\input{units/bac_2024_06_sujet2_etrangers_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J1 : exercice 4}
+\typeout{MXEX:bac_2024_06_sujet1_metropole_4}
+\begingroup\input{units/bac_2024_06_sujet1_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J1 : exercice devoile}
+\typeout{MXEX:bac_2024_06_sujet1_metropole_devoile_4}
+\begingroup\input{units/bac_2024_06_sujet1_metropole_devoile_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J2 : exercice 3}
+\typeout{MXEX:bac_2024_06_sujet2_metropole_3}
+\begingroup\input{units/bac_2024_06_sujet2_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J2 : exercice devoile}
+\typeout{MXEX:bac_2024_06_sujet2_metropole_devoile_4}
+\begingroup\input{units/bac_2024_06_sujet2_metropole_devoile_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin suede J1 : exercice 3}
+\typeout{MXEX:bac_2024_06_sujet1_suede_3}
+\begingroup\input{units/bac_2024_06_sujet1_suede_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Mai Amérique du Nord J1 : exercice 3}
+\typeout{MXEX:bac_2024_05_sujet1_ameriquenord_3}
+\begingroup\input{units/bac_2024_05_sujet1_ameriquenord_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Novembre amsud J1 : exercice 1}
+\typeout{MXEX:bac_2024_11_sujet1_amsud_1}
+\begingroup\input{units/bac_2024_11_sujet1_amsud_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Novembre amsud J2 : exercice 3}
+\typeout{MXEX:bac_2024_11_sujet2_amsud_3}
+\begingroup\input{units/bac_2024_11_sujet2_amsud_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Septembre Métropole J1 : exercice 2}
+\typeout{MXEX:bac_2024_09_sujet1_metropole_2}
+\begingroup\input{units/bac_2024_09_sujet1_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Septembre Polynésie J1 : exercice 2}
+\typeout{MXEX:bac_2024_09_sujet1_polynesie_2}
+\begingroup\input{units/bac_2024_09_sujet1_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Asie J1 : exercice 4}
+\typeout{MXEX:bac_2025_06_sujet1_asie_4}
+\begingroup\input{units/bac_2025_06_sujet1_asie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Asie J2 : exercice 4}
+\typeout{MXEX:bac_2025_06_sujet2_asie_4}
+\begingroup\input{units/bac_2025_06_sujet2_asie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Centres étrangers J1 : exercice 4}
+\typeout{MXEX:bac_2025_06_sujet1_etrangers_4}
+\begingroup\input{units/bac_2025_06_sujet1_etrangers_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Centres étrangers J2 : exercice 2}
+\typeout{MXEX:bac_2025_06_sujet2_etrangers_2}
+\begingroup\input{units/bac_2025_06_sujet2_etrangers_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Métropole J1 : exercice 2}
+\typeout{MXEX:bac_2025_06_sujet1_metropole_2}
+\begingroup\input{units/bac_2025_06_sujet1_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Métropole J2 : exercice 4}
+\typeout{MXEX:bac_2025_06_sujet2_metropole_4}
+\begingroup\input{units/bac_2025_06_sujet2_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Polynésie J2 : exercice 2}
+\typeout{MXEX:bac_2025_06_sujet2_polynesie_2}
+\begingroup\input{units/bac_2025_06_sujet2_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Mai Amérique du Nord J1 : exercice 4}
+\typeout{MXEX:bac_2025_05_sujet1_ameriquenord_4}
+\begingroup\input{units/bac_2025_05_sujet1_ameriquenord_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Mai Amérique du Nord J2 : exercice 4}
+\typeout{MXEX:bac_2025_05_sujet2_ameriquenord_4}
+\begingroup\input{units/bac_2025_05_sujet2_ameriquenord_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Mai Amérique du Nord J2 : exercice secours}
+\typeout{MXEX:bac_2025_05_sujet2_ameriquenord_secours_1}
+\begingroup\input{units/bac_2025_05_sujet2_ameriquenord_secours_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Amérique du sud J1 : exercice 3}
+\typeout{MXEX:bac_2025_11_sujet1_ameriquesud_3}
+\begingroup\input{units/bac_2025_11_sujet1_ameriquesud_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Amérique du sud J2 : exercice 4}
+\typeout{MXEX:bac_2025_11_sujet2_ameriquesud_4}
+\begingroup\input{units/bac_2025_11_sujet2_ameriquesud_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Nouvelle Calédonie J2 : exercice 4}
+\typeout{MXEX:bac_2025_11_sujet2_caledonie_4}
+\begingroup\input{units/bac_2025_11_sujet2_caledonie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Asie J1 : exercice 1}
+\typeout{MXEX:bac_2025_09_sujet1_asie_1}
+\begingroup\input{units/bac_2025_09_sujet1_asie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Métropole J1 : exercice 1}
+\typeout{MXEX:bac_2025_09_sujet1_metropole_1}
+\begingroup\input{units/bac_2025_09_sujet1_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Polynésie J1 : exercice 2}
+\typeout{MXEX:bac_2025_09_sujet1_polynesie_2}
+\begingroup\input{units/bac_2025_09_sujet1_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Antilles J2 : exercice 4}
+\typeout{MXEX:bac_2026_06_sujet2_antilles_4}
+\begingroup\input{units/bac_2026_06_sujet2_antilles_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Centres étrangers J1 : exercice 4}
+\typeout{MXEX:bac_2026_06_sujet1_etrangers_4}
+\begingroup\input{units/bac_2026_06_sujet1_etrangers_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Centres étrangers J2 : exercice 4}
+\typeout{MXEX:bac_2026_06_sujet2_etrangers_4}
+\begingroup\input{units/bac_2026_06_sujet2_etrangers_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Métropole J1 : exercice 4}
+\typeout{MXEX:bac_2026_06_sujet1_metropole_4}
+\begingroup\input{units/bac_2026_06_sujet1_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Métropole J2 : exercice 4}
+\typeout{MXEX:bac_2026_06_sujet2_metropole_4}
+\begingroup\input{units/bac_2026_06_sujet2_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Polynésie J1 : exercice 2}
+\typeout{MXEX:bac_2026_06_sujet1_polynesie_2}
+\begingroup\input{units/bac_2026_06_sujet1_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Mai Amérique du Nord J1 : exercice 4}
+\typeout{MXEX:bac_2026_05_sujet1_ameriquenord_4}
+\begingroup\input{units/bac_2026_05_sujet1_ameriquenord_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Mai Amérique du Nord J2 : exercice 4}
+\typeout{MXEX:bac_2026_05_sujet2_ameriquenord_4}
+\begingroup\input{units/bac_2026_05_sujet2_ameriquenord_4.cor.tex}\endgroup
+\par\bigskip
+\clearpage\section*{Combinatoire et dénombrement}
+\mxneed{6}\subsection*{BAC 2021 Juin Asie : exercice 3}
+\typeout{MXEX:bac_2021_06_asie_3}
+\begingroup\input{units/bac_2021_06_asie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Asie : exercice 8}
+\typeout{MXEX:bac_2021_06_asie_8}
+\begingroup\input{units/bac_2021_06_asie_8.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Janvier sujet0 : exercice 5}
+\typeout{MXEX:bac_2024_01_sujet0_5}
+\begingroup\input{units/bac_2024_01_sujet0_5.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Polynésie J2 : exercice 2}
+\typeout{MXEX:bac_2024_06_sujet2_polynesie_2}
+\begingroup\input{units/bac_2024_06_sujet2_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Novembre amsud J1 : exercice 2}
+\typeout{MXEX:bac_2024_11_sujet1_amsud_2}
+\begingroup\input{units/bac_2024_11_sujet1_amsud_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Centres étrangers J2 : exercice 3}
+\typeout{MXEX:bac_2025_06_sujet2_etrangers_3}
+\begingroup\input{units/bac_2025_06_sujet2_etrangers_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Amérique du sud J1 : exercice 2}
+\typeout{MXEX:bac_2025_11_sujet1_ameriquesud_2}
+\begingroup\input{units/bac_2025_11_sujet1_ameriquesud_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Métropole J1 : exercice 4}
+\typeout{MXEX:bac_2025_09_sujet1_metropole_4}
+\begingroup\input{units/bac_2025_09_sujet1_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Métropole J2 : exercice 2}
+\typeout{MXEX:bac_2025_09_sujet2_metropole_2}
+\begingroup\input{units/bac_2025_09_sujet2_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Asie J2 : exercice 4}
+\typeout{MXEX:bac_2026_06_sujet2_asie_4}
+\begingroup\input{units/bac_2026_06_sujet2_asie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Métropole J2 : exercice 3}
+\typeout{MXEX:bac_2026_06_sujet2_metropole_3}
+\begingroup\input{units/bac_2026_06_sujet2_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Polynésie J1 : exercice 1}
+\typeout{MXEX:bac_2026_06_sujet1_polynesie_1}
+\begingroup\input{units/bac_2026_06_sujet1_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\clearpage\section*{Dérivation, convexité et continuité}
+\mxneed{6}\subsection*{BAC 2021 Juin Polynésie : exercice 5}
+\typeout{MXEX:bac_2021_06_polynesie_5}
+\begingroup\input{units/bac_2021_06_polynesie_5.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Centres étrangers J1 : exercice 1}
+\typeout{MXEX:bac_2022_05_sujet1_etrangers_1}
+\begingroup\input{units/bac_2022_05_sujet1_etrangers_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Antilles J2 : exercice 3}
+\typeout{MXEX:bac_2026_06_sujet2_antilles_3}
+\begingroup\input{units/bac_2026_06_sujet2_antilles_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Asie J1 : exercice 4}
+\typeout{MXEX:bac_2026_06_sujet1_asie_4}
+\begingroup\input{units/bac_2026_06_sujet1_asie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Asie J2 : exercice 2}
+\typeout{MXEX:bac_2026_06_sujet2_asie_2}
+\begingroup\input{units/bac_2026_06_sujet2_asie_2.cor.tex}\endgroup
+\par\bigskip
+\clearpage\section*{Probabilités conditionnelles et loi binomiale}
+\mxneed{6}\subsection*{BAC 2021 Janvier sujet0 : exercice 3}
+\typeout{MXEX:bac_2021_01_sujet0_3}
+\begingroup\input{units/bac_2021_01_sujet0_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Centres étrangers : exercice 2}
+\typeout{MXEX:bac_2021_06_etrangers_2}
+\begingroup\input{units/bac_2021_06_etrangers_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Métropole : exercice 2}
+\typeout{MXEX:bac_2021_06_metropole_2}
+\begingroup\input{units/bac_2021_06_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Métropole : exercice 7}
+\typeout{MXEX:bac_2021_06_metropole_7}
+\begingroup\input{units/bac_2021_06_metropole_7.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Juin Polynésie : exercice 2}
+\typeout{MXEX:bac_2021_06_polynesie_2}
+\begingroup\input{units/bac_2021_06_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mai Amérique du Nord : exercice 1}
+\typeout{MXEX:bac_2021_05_ameriquenord_1}
+\begingroup\input{units/bac_2021_05_ameriquenord_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mars sujet1 : exercice 1}
+\typeout{MXEX:bac_2021_03_sujet1_1}
+\begingroup\input{units/bac_2021_03_sujet1_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Mars sujet2 : exercice 1}
+\typeout{MXEX:bac_2021_03_sujet2_1}
+\begingroup\input{units/bac_2021_03_sujet2_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2021 Septembre Métropole : exercice 6}
+\typeout{MXEX:bac_2021_09_metropole_6}
+\begingroup\input{units/bac_2021_09_metropole_6.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Amérique du Nord J1 : exercice 1}
+\typeout{MXEX:bac_2022_05_sujet1_ameriquenord_1}
+\begingroup\input{units/bac_2022_05_sujet1_ameriquenord_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Amérique du Nord J2 : exercice 4}
+\typeout{MXEX:bac_2022_05_sujet2_ameriquenord_4}
+\begingroup\input{units/bac_2022_05_sujet2_ameriquenord_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Asie J1 : exercice 1}
+\typeout{MXEX:bac_2022_05_sujet1_asie_1}
+\begingroup\input{units/bac_2022_05_sujet1_asie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Asie J2 : exercice 3}
+\typeout{MXEX:bac_2022_05_sujet2_asie_3}
+\begingroup\input{units/bac_2022_05_sujet2_asie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Centres étrangers J1 : exercice 4}
+\typeout{MXEX:bac_2022_05_sujet1_etrangers_4}
+\begingroup\input{units/bac_2022_05_sujet1_etrangers_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Centres étrangers J2 : exercice 4}
+\typeout{MXEX:bac_2022_05_sujet2_etrangers_4}
+\begingroup\input{units/bac_2022_05_sujet2_etrangers_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Madagascar J1 : exercice 1}
+\typeout{MXEX:bac_2022_05_sujet1_madagascar_1}
+\begingroup\input{units/bac_2022_05_sujet1_madagascar_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Madagascar J2 : exercice 1}
+\typeout{MXEX:bac_2022_05_sujet2_madagascar_1}
+\begingroup\input{units/bac_2022_05_sujet2_madagascar_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Métropole J1 : exercice 3}
+\typeout{MXEX:bac_2022_05_sujet1_metropole_3}
+\begingroup\input{units/bac_2022_05_sujet1_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Métropole J2 : exercice 1}
+\typeout{MXEX:bac_2022_05_sujet2_metropole_1}
+\begingroup\input{units/bac_2022_05_sujet2_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Polynésie J1 : exercice 2}
+\typeout{MXEX:bac_2022_05_sujet1_polynesie_2}
+\begingroup\input{units/bac_2022_05_sujet1_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Mai Polynésie J2 : exercice 2}
+\typeout{MXEX:bac_2022_05_sujet2_polynesie_2}
+\begingroup\input{units/bac_2022_05_sujet2_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Octobre Nouvelle Calédonie J1 : exercice 4}
+\typeout{MXEX:bac_2022_10_sujet1_caledonie_4}
+\begingroup\input{units/bac_2022_10_sujet1_caledonie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Octobre Nouvelle Calédonie J2 : exercice 1}
+\typeout{MXEX:bac_2022_10_sujet2_caledonie_1}
+\begingroup\input{units/bac_2022_10_sujet2_caledonie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Amérique du sud J1 : exercice 1}
+\typeout{MXEX:bac_2022_09_sujet1_ameriquesud_1}
+\begingroup\input{units/bac_2022_09_sujet1_ameriquesud_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Métropole J1 : exercice 2}
+\typeout{MXEX:bac_2022_09_sujet1_metropole_2}
+\begingroup\input{units/bac_2022_09_sujet1_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Métropole J2 : exercice 1}
+\typeout{MXEX:bac_2022_09_sujet2_metropole_1}
+\begingroup\input{units/bac_2022_09_sujet2_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2022 Septembre Polynésie J1 : exercice 1}
+\typeout{MXEX:bac_2022_09_sujet1_polynesie_1}
+\begingroup\input{units/bac_2022_09_sujet1_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Août Nouvelle Calédonie J1 : exercice 1}
+\typeout{MXEX:bac_2023_08_sujet1_caledonie_1}
+\begingroup\input{units/bac_2023_08_sujet1_caledonie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Août Nouvelle Calédonie J2 : exercice 4}
+\typeout{MXEX:bac_2023_08_sujet2_caledonie_4}
+\begingroup\input{units/bac_2023_08_sujet2_caledonie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Amérique du Nord J1 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet1_ameriquenord_1}
+\begingroup\input{units/bac_2023_03_sujet1_ameriquenord_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Asie J1 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet1_asie_4}
+\begingroup\input{units/bac_2023_03_sujet1_asie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Asie J2 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet2_asie_4}
+\begingroup\input{units/bac_2023_03_sujet2_asie_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G1 J2 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet2_etrangers_groupe1_4}
+\begingroup\input{units/bac_2023_03_sujet2_etrangers_groupe1_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Centres étrangers G2 J2 : exercice 4}
+\typeout{MXEX:bac_2023_03_sujet2_etrangers_groupe2_4}
+\begingroup\input{units/bac_2023_03_sujet2_etrangers_groupe2_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Métropole J1 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet1_metropole_1}
+\begingroup\input{units/bac_2023_03_sujet1_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Métropole J2 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet2_metropole_1}
+\begingroup\input{units/bac_2023_03_sujet2_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars Polynésie J1 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet1_polynesie_1}
+\begingroup\input{units/bac_2023_03_sujet1_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars reunion J1 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet1_reunion_1}
+\begingroup\input{units/bac_2023_03_sujet1_reunion_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Mars reunion J2 : exercice 1}
+\typeout{MXEX:bac_2023_03_sujet2_reunion_1}
+\begingroup\input{units/bac_2023_03_sujet2_reunion_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Amérique du sud J1 : exercice 2}
+\typeout{MXEX:bac_2023_09_sujet1_ameriquesud_2}
+\begingroup\input{units/bac_2023_09_sujet1_ameriquesud_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Amérique du sud J2 : exercice 1}
+\typeout{MXEX:bac_2023_09_sujet2_ameriquesud_1}
+\begingroup\input{units/bac_2023_09_sujet2_ameriquesud_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Métropole J1 : exercice 3}
+\typeout{MXEX:bac_2023_09_sujet1_metropole_3}
+\begingroup\input{units/bac_2023_09_sujet1_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Métropole J2 : exercice 1}
+\typeout{MXEX:bac_2023_09_sujet2_metropole_1}
+\begingroup\input{units/bac_2023_09_sujet2_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2023 Septembre Polynésie J1 : exercice 1}
+\typeout{MXEX:bac_2023_09_sujet1_polynesie_1}
+\begingroup\input{units/bac_2023_09_sujet1_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Janvier sujet0 : exercice 3}
+\typeout{MXEX:bac_2024_01_sujet0_3}
+\begingroup\input{units/bac_2024_01_sujet0_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Asie J1 : exercice 3}
+\typeout{MXEX:bac_2024_06_sujet1_asie_3}
+\begingroup\input{units/bac_2024_06_sujet1_asie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Centres étrangers J1 : exercice 1}
+\typeout{MXEX:bac_2024_06_sujet1_etrangers_1}
+\begingroup\input{units/bac_2024_06_sujet1_etrangers_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Centres étrangers J2 : exercice 1}
+\typeout{MXEX:bac_2024_06_sujet2_etrangers_1}
+\begingroup\input{units/bac_2024_06_sujet2_etrangers_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J1 : exercice 2}
+\typeout{MXEX:bac_2024_06_sujet1_metropole_2}
+\begingroup\input{units/bac_2024_06_sujet1_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J1 : exercice devoile}
+\typeout{MXEX:bac_2024_06_sujet1_metropole_devoile_2}
+\begingroup\input{units/bac_2024_06_sujet1_metropole_devoile_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J2 : exercice 1}
+\typeout{MXEX:bac_2024_06_sujet2_metropole_1}
+\begingroup\input{units/bac_2024_06_sujet2_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Métropole J2 : exercice devoile}
+\typeout{MXEX:bac_2024_06_sujet2_metropole_devoile_1}
+\begingroup\input{units/bac_2024_06_sujet2_metropole_devoile_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Polynésie J1 : exercice 3}
+\typeout{MXEX:bac_2024_06_sujet1_polynesie_3}
+\begingroup\input{units/bac_2024_06_sujet1_polynesie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Polynésie J2 : exercice 1}
+\typeout{MXEX:bac_2024_06_sujet2_polynesie_1}
+\begingroup\input{units/bac_2024_06_sujet2_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Mai Amérique du Nord J1 : exercice 1}
+\typeout{MXEX:bac_2024_05_sujet1_ameriquenord_1}
+\begingroup\input{units/bac_2024_05_sujet1_ameriquenord_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Mai Amérique du Nord J2 : exercice 1}
+\typeout{MXEX:bac_2024_05_sujet2_ameriquenord_1}
+\begingroup\input{units/bac_2024_05_sujet2_ameriquenord_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Novembre amsud J2 : exercice 1}
+\typeout{MXEX:bac_2024_11_sujet2_amsud_1}
+\begingroup\input{units/bac_2024_11_sujet2_amsud_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Septembre Métropole J1 : exercice 4}
+\typeout{MXEX:bac_2024_09_sujet1_metropole_4}
+\begingroup\input{units/bac_2024_09_sujet1_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Septembre Polynésie J1 : exercice 1}
+\typeout{MXEX:bac_2024_09_sujet1_polynesie_1}
+\begingroup\input{units/bac_2024_09_sujet1_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Asie J1 : exercice 2}
+\typeout{MXEX:bac_2025_06_sujet1_asie_2}
+\begingroup\input{units/bac_2025_06_sujet1_asie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Asie J2 : exercice 1}
+\typeout{MXEX:bac_2025_06_sujet2_asie_1}
+\begingroup\input{units/bac_2025_06_sujet2_asie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Centres étrangers J1 : exercice 1}
+\typeout{MXEX:bac_2025_06_sujet1_etrangers_1}
+\begingroup\input{units/bac_2025_06_sujet1_etrangers_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Métropole J1 : exercice 1}
+\typeout{MXEX:bac_2025_06_sujet1_metropole_1}
+\begingroup\input{units/bac_2025_06_sujet1_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Métropole J2 : exercice 1}
+\typeout{MXEX:bac_2025_06_sujet2_metropole_1}
+\begingroup\input{units/bac_2025_06_sujet2_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Juin Polynésie J1 : exercice 1}
+\typeout{MXEX:bac_2025_06_sujet1_polynesie_1}
+\begingroup\input{units/bac_2025_06_sujet1_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Mai Amérique du Nord J1 : exercice 1}
+\typeout{MXEX:bac_2025_05_sujet1_ameriquenord_1}
+\begingroup\input{units/bac_2025_05_sujet1_ameriquenord_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Mai Amérique du Nord J2 : exercice 1}
+\typeout{MXEX:bac_2025_05_sujet2_ameriquenord_1}
+\begingroup\input{units/bac_2025_05_sujet2_ameriquenord_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Mai Amérique du Nord J2 : exercice secours}
+\typeout{MXEX:bac_2025_05_sujet2_ameriquenord_secours_3}
+\begingroup\input{units/bac_2025_05_sujet2_ameriquenord_secours_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Amérique du sud J2 : exercice 1}
+\typeout{MXEX:bac_2025_11_sujet2_ameriquesud_1}
+\begingroup\input{units/bac_2025_11_sujet2_ameriquesud_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Nouvelle Calédonie J1 : exercice 1}
+\typeout{MXEX:bac_2025_11_sujet1_caledonie_1}
+\begingroup\input{units/bac_2025_11_sujet1_caledonie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Novembre Nouvelle Calédonie J2 : exercice 2}
+\typeout{MXEX:bac_2025_11_sujet2_caledonie_2}
+\begingroup\input{units/bac_2025_11_sujet2_caledonie_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Asie J1 : exercice 3}
+\typeout{MXEX:bac_2025_09_sujet1_asie_3}
+\begingroup\input{units/bac_2025_09_sujet1_asie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Polynésie J1 : exercice 1}
+\typeout{MXEX:bac_2025_09_sujet1_polynesie_1}
+\begingroup\input{units/bac_2025_09_sujet1_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Centres étrangers J1 : exercice 1}
+\typeout{MXEX:bac_2026_06_sujet1_etrangers_1}
+\begingroup\input{units/bac_2026_06_sujet1_etrangers_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Centres étrangers J2 : exercice 2}
+\typeout{MXEX:bac_2026_06_sujet2_etrangers_2}
+\begingroup\input{units/bac_2026_06_sujet2_etrangers_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Métropole J1 : exercice 1}
+\typeout{MXEX:bac_2026_06_sujet1_metropole_1}
+\begingroup\input{units/bac_2026_06_sujet1_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Polynésie J2 : exercice 1}
+\typeout{MXEX:bac_2026_06_sujet2_polynesie_1}
+\begingroup\input{units/bac_2026_06_sujet2_polynesie_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Mai Amérique du Nord J1 : exercice 1}
+\typeout{MXEX:bac_2026_05_sujet1_ameriquenord_1}
+\begingroup\input{units/bac_2026_05_sujet1_ameriquenord_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Mai Amérique du Nord J2 : exercice 1}
+\typeout{MXEX:bac_2026_05_sujet2_ameriquenord_1}
+\begingroup\input{units/bac_2026_05_sujet2_ameriquenord_1.cor.tex}\endgroup
+\par\bigskip
+\clearpage\section*{Fonction logarithme}
+\mxneed{6}\subsection*{BAC 2024 Mai Amérique du Nord J2 : exercice 4}
+\typeout{MXEX:bac_2024_05_sujet2_ameriquenord_4}
+\begingroup\input{units/bac_2024_05_sujet2_ameriquenord_4.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2025 Septembre Métropole J2 : exercice 3}
+\typeout{MXEX:bac_2025_09_sujet2_metropole_3}
+\begingroup\input{units/bac_2025_09_sujet2_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\clearpage\section*{Primitives et équations différentielles}
+\mxneed{6}\subsection*{BAC 2024 Juin Centres étrangers J1 : exercice 3}
+\typeout{MXEX:bac_2024_06_sujet1_etrangers_3}
+\begingroup\input{units/bac_2024_06_sujet1_etrangers_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2024 Juin Polynésie J1 : exercice 2}
+\typeout{MXEX:bac_2024_06_sujet1_polynesie_2}
+\begingroup\input{units/bac_2024_06_sujet1_polynesie_2.cor.tex}\endgroup
+\par\bigskip
+\clearpage\section*{Exercices transversaux}
+\mxneed{6}\subsection*{BAC 2026 Juin Asie J1 : exercice 3}
+\typeout{MXEX:bac_2026_06_sujet1_asie_3}
+\begingroup\input{units/bac_2026_06_sujet1_asie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Asie J2 : exercice 3}
+\typeout{MXEX:bac_2026_06_sujet2_asie_3}
+\begingroup\input{units/bac_2026_06_sujet2_asie_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Centres étrangers J1 : exercice 3}
+\typeout{MXEX:bac_2026_06_sujet1_etrangers_3}
+\begingroup\input{units/bac_2026_06_sujet1_etrangers_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Juin Centres étrangers J2 : exercice 1}
+\typeout{MXEX:bac_2026_06_sujet2_etrangers_1}
+\begingroup\input{units/bac_2026_06_sujet2_etrangers_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Mai Amérique du Nord J1 : exercice 3}
+\typeout{MXEX:bac_2026_05_sujet1_ameriquenord_3}
+\begingroup\input{units/bac_2026_05_sujet1_ameriquenord_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Mai Amérique du Nord J2 : exercice 3}
+\typeout{MXEX:bac_2026_05_sujet2_ameriquenord_3}
+\begingroup\input{units/bac_2026_05_sujet2_ameriquenord_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Septembre Métropole J2 : exercice 1}
+\typeout{MXEX:bac_2026_09_sujet2_metropole_1}
+\begingroup\input{units/bac_2026_09_sujet2_metropole_1.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Septembre Métropole J2 : exercice 2}
+\typeout{MXEX:bac_2026_09_sujet2_metropole_2}
+\begingroup\input{units/bac_2026_09_sujet2_metropole_2.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Septembre Métropole J2 : exercice 3}
+\typeout{MXEX:bac_2026_09_sujet2_metropole_3}
+\begingroup\input{units/bac_2026_09_sujet2_metropole_3.cor.tex}\endgroup
+\par\bigskip
+\mxneed{6}\subsection*{BAC 2026 Septembre Métropole J2 : exercice 4}
+\typeout{MXEX:bac_2026_09_sujet2_metropole_4}
+\begingroup\input{units/bac_2026_09_sujet2_metropole_4.cor.tex}\endgroup
+\par\bigskip
+\end{document}

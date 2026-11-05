@@ -1,0 +1,128 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|X|}\hline
+\textbf{Principaux domaines abordés :} Géométrie dans l'espace\\ \hline
+\end{tabularx}
+
+\medskip
+
+L'espace est muni d'un repère orthonormé \Oijk.
+
+On considère les points A$(5~;~0~;~-1)$, B$(1~;~4~;~-1)$, C(1~;~0~;~3), D(5~;~4~;~3) et E(10~;~9~;~8).
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+		
+
+$\bullet~~$On a R$(3~;~2~;~-1)$ ;
+
+$\bullet~~$$\vect{\text{AB}}\begin{pmatrix}-4\\4\\0\end{pmatrix}$.
+		\item 
+Si $\vect{\text{AB}}$ est un vecteur normal au plan $\mathcal{P}_1$ on sait qu'une équation de ce plan est :
+
+$-4x + 4y + 0z = d$, avec $d \in \R$.
+
+Comme R$(3~;~2~;~-1) \in \mathcal{P}_1 \iff -12 + 8 + 0 = d \iff d = - 4$.
+
+Donc $M(x~;~y~;~z) \in \mathcal{P}_1 \iff - 4x + 4y = -4 \iff x - y - 1 = 0$.
+		\item Démontrer que le point E appartient au plan $\mathcal{P}_1$ et que EA = EB.
+On a E$(10~;~9~;~8) \in \mathcal{P}_1 \iff 10 - 9 - 1 = 0$ : cette égalité est vraie.
+
+D'autre part $\vect{\text{EA}}\begin{pmatrix}-5\\-9\\-9\end{pmatrix}$ et 
+$\vect{\text{EB}}\begin{pmatrix}-9\\-5\\-9\end{pmatrix}$.
+
+On en déduit : EA$^2 = 25 + 81 + 81 = 187$ et EA$^2 = 81 + 25 + 81 = 187$.
+
+EA$^2 = \text{EB}^2 \Rightarrow \text{EA} = \text{EB}$.
+
+	\end{enumerate}	
+\item On considère le plan $\mathcal{P}_2$ d'équation cartésienne $x - z - 2 = 0$.
+	\begin{enumerate}
+		\item 
+On a vu que le plan $\mathcal{P}_1$ a pour vecteur normal $\vect{\text{AB}}\begin{pmatrix}-4\\4\\0\end{pmatrix}$.
+
+Le plan $\mathcal{P}_2$ a pour vecteur normal $\vect{n}\begin{pmatrix}1\\0\\-1\end{pmatrix}$.
+
+Ces deux vecteurs directeurs ne sont pas colinéaires, donc $\mathcal{P}_1$ et $\mathcal{P}_2$ ne sont pas parallèles, ils sont donc sécants.
+		\item 
+		
+
+
+
+
+
+
+Si $M(x~;~y;~z)$ est commun aux deux plans ses coordonnées vérifient les équations des deux plans, donc le système :
+
+$\left\{\begin{array}{l c l}
+x - y - 1 &=& 0\\
+x - z - 2 &=& 0
+\end{array}\right.$. En posant $z = t$ le système devient :
+
+$\left\{\begin{array}{l c l}
+x - y - 1 &=& 0\\
+x - z - 2 &=& 0\\
+z&=&t
+\end{array}\right.\Rightarrow \left\{\begin{array}{l c l}
+x - 1 &=&y\\
+x &=&z + 2\\
+z&=&t
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+x - 1 &=&y\\
+x &=&t + 2\\
+z&=&t
+\end{array}\right. \iff$
+
+$\left\{\begin{array}{l c l}
+t + 2 - 1 &=&y\\
+x &=&t + 2\\
+z&=&t
+\end{array}\right. 
+\iff \left\{\begin{array}{l c l}
+y&=&t + 1\\
+x &=&t + 2\\
+z&=&t
+\end{array}\right.$, avec $t \in \R$.
+	\end{enumerate}
+\item  
+
+
+Si $\Omega(x~;~y~;~z)$ est commun à la droite $\Delta$ et au plan $\mathcal{P}_3$ ses coordonnées vérifient l'équation du plan et les équations paramétriques de la droite, soit le système :
+
+$\left\{\begin{array}{l c l}
+y&=&t + 1\\
+x &=&t + 2\\
+z&=&t\\
+y + z - 3&=&0
+\end{array}\right.$. En remplaçant $x,\:y,\:z$ par leurs expressions en fonction de $t$ dans l'équation du plan on obtient :
+
+$t + 1 + t - 3= 0 \iff 2t - 2 = 0 \iff 2t = 2 \iff t = 1$.
+
+On a donc $\Omega\left(3~;~2~;~1 \right)$.
+\end{enumerate}
+
+\medskip
+
+Si S et T sont deux points distincts de l'espace, on rappelle que l'ensemble des points M de l'espace tels que MS = MT est un plan, appelé plan médiateur du segment [ST]. On admet que les plans $\mathcal{P}_1$,\: $\mathcal{P}_2$ et $\mathcal{P}_3$ sont les plans médiateurs respectifs des segments [AB], [AC] et [AD].
+
+\begin{enumerate}[resume]
+\item
+	\begin{enumerate}
+		\item 
+Sans admettre que les plans $\mathcal{P}_1$,\: $\mathcal{P}_2$ et $\mathcal{P}_3$ sont les plans médiateurs respectifs des segments [AB], [AC] et [AD], on peut calculer :
+
+$\vect{\Omega \text{A}}\begin{pmatrix}2\\-2\\-2\end{pmatrix},\quad \vect{\Omega \text{B}}\begin{pmatrix}-2\\-2\\-2\end{pmatrix}, \quad \vect{\Omega \text{C}}\begin{pmatrix}-2\\-2\\2\end{pmatrix},\quad \vect{\Omega \text{D}}\begin{pmatrix}2\\2\\2\end{pmatrix}$.
+
+On a donc $\Omega\text{A}^2 = 4 + 4 + 4 = 12, \: \Omega\text{B}^2 = 12,\: \Omega\text{C}^2 = 12, \: \Omega\text{D}^2 = 12$ et par conséquent :
+
+$\Omega\text{A} = \Omega\text{B} = \Omega\text{C} = \Omega\text{D} = \sqrt{12} = \sqrt{4 \times 3} = 2\sqrt{3}$.
+		\item 
+
+
+Le résultat précédent montre que $\Omega$ est équidistant de A, B, C et D donc est le centre de la sphère de rayon $2\sqrt{3}$ contenant A, B, C et D.
+	\end{enumerate}
+\end{enumerate}

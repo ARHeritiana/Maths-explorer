@@ -1,0 +1,53 @@
+\medskip
+
+\begin{minipage}{0.5\linewidth}
+On considère un cube ABCDEFGH et l'espace est rapporté au repère orthonormal
+$\left(\text{A}~;~\vect{\text{AB}},~\vect{\text{AD}},~\vect{\text{AE}}\right)$.
+
+Pour tout réel $m$ appartenant à l'intervalle [0~;~ 1], on considère les points $K$ et $L$ de coordonnées:
+
+\begin{center}$K(m~;~0~;~0)$\quad et \quad $L(1 - m~;~1~;~1)$.\end{center}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+\psset{unit=0.85cm}
+\begin{pspicture}(6.6,6.6)
+\pspolygon(0.4,1)(4.2,0.5)(4.2,4.8)(0.4,5.3)
+\psline(4.2,0.5)(6.6,1.4)(6.6,5.7)(4.2,4.8)
+\psline(6.6,5.7)(2.8,6.2)(0.4,5.3)
+\psline(5,5.9)(0.4,5.3)(1.6,0.82)
+\psline[linestyle=dashed](5,5.9)(6.6,1.4)(1.6,0.84)
+\psline[linestyle=dashed](0.4,1)(2.8,1.9)(6.6,1.4)
+\psline[linestyle=dashed](2.8,1.9)(2.8,6.2)
+\uput[dl](0.4,1){A} \uput[d](4.2,0.5){B} \uput[dr](6.6,1.4){C} \uput[ul](2.8,1.9){D}
+\uput[ul](0.4,5.3){E} \uput[dr](4.2,4.8){F} \uput[ur](6.6,5.7){G} \uput[u](2.8,6.2){H}
+\uput[dl](1.6,0.84){K} \uput[u](5,5.9){L}
+\end{pspicture}
+\end{minipage}
+
+\medskip
+
+\begin{enumerate}
+\item Donner les coordonnées des points E et C dans ce repère.
+\item Dans cette question, $m = 0$. Ainsi, le point L(1~;~1~;~1) est confondu avec le point G, le point K(0~;~0~;~0) est confondu avec le point A et le plan (LEK) est donc le plan (GEA).
+	\begin{enumerate}
+		\item Justifier que le vecteur $\vect{\text{DB}}\begin{pmatrix}1\\-1\\0\end{pmatrix}$ est normal au plan (GEA).
+		\item Déterminer une équation cartésienne du plan (GEA).
+	\end{enumerate}
+\end{enumerate}
+
+On s'intéresse désormais à la nature de C$K$E$L$ en fonction du paramètre $m$.
+
+\begin{enumerate}[resume]
+\item Dans cette question, $m$ est un réel quelconque de l'intervalle [0~;~1].
+	\begin{enumerate}
+		\item Démontrer que C$K$E$L$ est un parallélogramme.
+		\item Justifier que $\vect{K\text{C}} \cdot \vect{K\text{E}} = m(m - 1)$.
+		\item Démontrer que C$K$E$L$ est un rectangle si, et seulement si, $m = 0$ ou $m = 1$.
+	\end{enumerate}
+\item Dans cette question, $m = \dfrac12$.Ainsi, L a pour coordonnées 
+$\left(\dfrac12~;~1~;~1\right)$ et K a pour coordonnées $\left(\dfrac12~;~0~;~0\right)$.
+	\begin{enumerate}
+		\item Démontrer que le parallélogramme CKEL est alors un losange.
+		\item À l'aide de la question \textbf{3.~b.}, déterminer une valeur approchée au degré près de la mesure de l'angle $\widehat{\text{CKE}}$.
+	\end{enumerate}
+\end{enumerate}

@@ -1,0 +1,34 @@
+\emph{On note $I$ l'évènement \og le client a acheté sur internet \fg{} et $S$ l'évènement \og le client est satisfait \fg.}
+
+\begin{enumerate}
+	\item Acheteurs en magasin : $\np{1000} - 400 = 600$.
+
+	Internet et satisfaits : $0,9 \times 400 = 360$, donc internet et non satisfaits : $400 - 360 = 40$.
+
+	Magasin et non satisfaits : $0,2 \times 600 = 120$, donc magasin et satisfaits : $600 - 120 = 480$.
+
+	\begin{center}
+		\begin{tblr}{hlines, vlines, colspec={X[l,4cm]X[c,3.5cm]X[c,3.5cm]X[c,2cm]}}
+			& Achat sur internet ($I$) & Achat en magasin ($\overline{I}$) & Total \\
+			Satisfait ($S$) & 360 & 480 & 840 \\
+			Non satisfait ($\overline{S}$) & 40 & 120 & 160 \\
+			Total & 400 & 600 & \np{1000} \\
+		\end{tblr}
+	\end{center}
+
+	\item Le client étant choisi au hasard, on est en situation d'équiprobabilité. La probabilité que le client ait acheté en magasin et soit satisfait est $P\left(\overline{I} \cap S\right)$.
+	
+	\[P\left(\overline{I} \cap S\right) = \dfrac{480}{\np{1000}} = 0,48.\]
+
+La probabilité que le client ait acheté en magasin et soit satisfait est égale à $0,48$.
+
+	\item Parmi les 160 clients non satisfaits, 40 ont acheté sur internet :
+	\[P_{\overline{S}}(I) = \dfrac{40}{160} = 0,25.\]
+	Sachant que le client n'est pas satisfait, la probabilité qu'il ait acheté sur internet est égale à
+	$0,25$.
+
+	\item La proportion de clients non satisfaits est
+	$\dfrac{160}{\np{1000}} = 0,16 = 16\,\%$.
+
+	Or $16\,\% > 10\,\%$ : la stratégie d'amélioration sera mise en place.
+\end{enumerate}

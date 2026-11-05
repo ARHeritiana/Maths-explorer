@@ -1,0 +1,150 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet20_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{1.}
+	
+	\subsubsection*{a.	$C(5) = 5^3 - 18 \times 5^2 + 750 \times 5 + 200 = 3625 $ euros.}
+	
+	\subsubsection*{b.}
+	Le coût moyen de fabrication d’un millier d’objets lorsqu’on fabrique 5 000 objets est donc :
+	\[
+	\dfrac{3625}{5} = 725 \, \text{euros}.
+	\]
+	
+	\subsection*{2.}
+	
+	Le coût moyen \(CM(q)\) de fabrication de \(q\) milliers d’objets, exprimé en euros, est donné par l’expression :
+	
+	\[
+	CM(q) = \dfrac{C(q)}{q} = q^2 - 18q + 750 + \dfrac{200}{q}.
+	\]
+	
+	\subsubsection*{a.}
+		On a sur l’intervalle \([1 ; 20]\),
+	\[
+	C'_M(q) = 2q - 18 - \dfrac{200}{q^2} = \dfrac{2q^3 - 18q^2 - 200}{q^2}.
+	\]
+	
+	Or
+\begin{align*}
+	2(q - 10)(q^2 + q + 10) &= (2q - 20)(q^2 + q + 10)\\
+	& = 2q^3 + 2q^2 + 20q - 20q^2 - 20q - 200 \\
+	&= 2q^3 - 18q^2 - 200
+\end{align*}
+
+	
+	
+	soit le numérateur de \(C'_M(x)\). \\
+	Donc, pour tout \(q \in [1 ; 20]\),
+	\[
+	C'_M(q) = \dfrac{2(q - 10)(q^2 + q + 10)}{q^2}.
+	\]
+	
+	\subsubsection*{b.}
+	
+
+	Pour le trinôme \(q^2 + q + 10\), on a \(\Delta = 1 - 40 = -39\) : pas de racines réelles et on sait que le trinôme est positif (signe de 1, coefficient de \(q^2\)).
+	
+	Comme \(q^2 > 0\) sur \([1 ; 20]\), le signe de \(C'_M(q)\) est celui de \(q - 10\).
+	
+	Donc sur \([1 ; 10]\), \(C'_M(q) < 0\) :\\
+	 La fonction \(C_M\) est décroissante de \(C_M(1) = 1 - 18 + 750 + 200 = 933\)\\
+	  à \(C_M(10) = 10^2 - 18 \times 10 + 750 + 20 = 690\).
+	
+	Sur \([10 ; 20]\), la fonction \(C_M\) est croissante de \(CM(10) = 690\) à \(CM(20) = 20^2 - 18 \times 20 + 750 + 10 = 800\).
+	
+	\begin{center}
+	\begin{tikzpicture}[double distance=2pt]
+		\tkzTabInit{$x$/1,$C'_M(x)$/1,$C_M$/3}{$-\infty$,$10$, $+\infty$}
+		\tkzTabLine{,-,z,+}
+		\tkzTabVar{+/$933$,-/$690$,+/$800$}
+	\end{tikzpicture}
+\end{center} 
+	
+	\subsubsection*{c.}
+	
+	Quel est le coût moyen minimal et pour quelle quantité d’objets est-il obtenu ?
+	
+	On voit sur le tableau que le coût moyen minimal de 690 est obtenu lorsque l’entreprise fabrique 10 000 objets.
+
+\end{document}

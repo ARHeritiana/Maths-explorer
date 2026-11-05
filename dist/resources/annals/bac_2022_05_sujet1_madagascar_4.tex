@@ -1,0 +1,142 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet1_madagascar_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{tabularx}{\linewidth}{|X|}\hline
+\textbf{Principaux domaines abordés :} Géométrie dans l'espace\\ \hline
+\end{tabularx}
+
+\medskip
+
+L'espace est muni d'un repère orthonormé \Oijk.
+
+On considère les points A$(5~;~0~;~-1)$, B$(1~;~4~;~-1)$, C(1~;~0~;~3), D(5~;~4~;~3) et E(10~;~9~;~8).
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Soit R le milieu du segment [AB].
+		
+Calculer les coordonnées du point R ainsi que les coordonnées du vecteur $\vect{\text{AB}}$.
+		\item Soit $\mathcal{P}_1$ le plan passant par le point R et dont $\vect{\text{AB}}$ est un vecteur normal. Démontrer qu'une équation cartésienne du plan $\mathcal{P}_1$ est :
+
+\[x - y - 1 = 0.\]
+
+		\item Démontrer que le point E appartient au plan $\mathcal{P}_1$ et que EA = EB .
+	\end{enumerate}	
+\item  On considère le plan $\mathcal{P}_2$ d'équation cartésienne $x - z - 2 = 0$. 
+	\begin{enumerate}
+		\item Justifier que les plans $\mathcal{P}_1$ et $\mathcal{P}_2$ sont sécants.
+		\item On note $\Delta$ la droite d'intersection de $\mathcal{P}_1$ et $\mathcal{P}_2$.
+		
+Démontrer qu'une représentation paramétrique de la droite $\Delta$ est :
+
+\[\left\{\begin{array}{l c r}
+x&=&2+t\\
+y&=&1+t \\
+z&=&t\end{array}\right.(t \in \R).\]
+
+	\end{enumerate}
+\item  On considère le plan $\mathcal{P}_3$ d'équation cartésienne $y + z - 3 = 0$.
+
+Justifier que la droite $\Delta$ est sécante au plan $\mathcal{P}_3$ en un point $\Omega$ dont on déterminera les coordonnées.
+\end{enumerate}
+
+\medskip
+
+Si S et T sont deux points distincts de l'espace, on rappelle que l'ensemble des points M de l'espace tels que MS = MT est un plan, appelé plan médiateur du segment [ST]. On admet que les plans $\mathcal{P}_1$,\: $\mathcal{P}_2$ et $\mathcal{P}_3$ sont les plans médiateurs respectifs des
+segments [AB], [AC] et [AD].
+
+\begin{enumerate}[resume]
+\item
+	\begin{enumerate}
+		\item Justifier que $\Omega \text{A} = \Omega \text{B} = \Omega \text{C} = \Omega \text{D}$.
+		\item En déduire que les points A, B, C et D appartiennent à une même sphère dont
+on précisera le centre et le rayon.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

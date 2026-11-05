@@ -1,0 +1,45 @@
+\subsection*{1.}
+
+\paragraph{a.} Augmenter de 11 \%, c'est multiplier par \( 1 + \dfrac{11}{100} = 1 + 0{,}11 = 1,11 \).
+
+On a donc, pour tout naturel \( n \), \( u_{n+1} = u_n \times 1,11 \) : la suite \( (u_n) \) est donc une suite géométrique de raison \(q = 1{,}11\) et de premier terme \( u_0 = 300 \).
+
+\paragraph{b.} On sait que, pour tout naturel \( n \), \( u_n = u_0 \times q^n \), \( q \) étant la raison de la suite.
+
+Donc \( u_n = 300 \times 1,11^n \), quel que soit le naturel \( n \).
+
+\subsection*{2.}
+
+\paragraph{a.}
+\begin{center}
+\begin{lstlisting}[style=python]
+u = 300
+n = 0
+while u < 1000 :
+    u = u * 1.11
+    n = n + 1
+\end{lstlisting}
+\end{center}
+
+\paragraph{b.} On a \( u_{11} \approx 945{,}5 \) et \( u_{12} \approx 1049{,}5 \).
+
+Il changera de péniche en \( 2012 + 12 = 2024 \).
+
+\subsection*{3.}
+
+On a :
+\[
+S = u_0 + u_1 + u_2 + \dots + u_7 \quad (1),
+\]
+et par conséquent :
+\[
+1,11S = u_1 + u_2 + \dots + u_7 + u_8 \quad (2),
+\]
+d'où par différence \((2) - (1)\) :
+\[
+0,11S = u_8 - u_0 \quad \text{d'où} \quad S = \dfrac{300 \times 1,11^8 - 300}{0,11} \approx 3558 (t).
+\]
+
+Il aura donc transporté 3558 tonnes à 15 € la tonne.
+
+Son chiffre d'affaires total entre 2012 et 2019 est donc \( 3558 \times 15 = 53370 \), soit beaucoup moins que les 70000 € prévus.

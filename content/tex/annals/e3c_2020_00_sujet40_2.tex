@@ -1,0 +1,47 @@
+\medskip
+
+Une enquête a été réalisée auprès des élèves d'un lycée afin de connaître leur point de vue sur la durée de la pause méridienne et sur les rythmes scolaires.
+
+L'enquête révèle que 55\,\% des élèves sont favorables à une pause méridienne plus longue.
+
+Parmi ceux qui sont favorables à une pause méridienne plus longue, 95\,\% souhaitent une répartition des cours plus étalée sur l'année scolaire.
+
+Parmi ceux qui ne sont pas favorables à une pause méridienne plus longue, seulement 10\,\% souhaitent une répartition des cours plus étalée sur l'année scolaire.
+
+\smallskip
+
+On tire au hasard le nom d'un élève du lycée. On considère les évènements suivants:
+
+\smallskip
+
+$\bullet~~$ $L$: \og L'élève concerné est favorable à une pause méridienne plus longue. \fg
+
+$\bullet~~$ $C$ : \og L'élève concerné souhaite une répartition des cours plus étalée sur l'année scolaire. \fg.
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter l'arbre pondéré ci-dessous décrivant la situation.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=3pt]{\TR{}}
+{\pstree{\TR{$L$~~}\naput{\ldots}}
+	{\TR{$C$}\naput{\ldots}
+	\TR{$\overline{C}$}\nbput{\ldots}
+	}
+\pstree{\TR{$\overline{L}$~~}\nbput{\ldots}}
+	{\TR{$C$}\naput{\ldots}
+	\TR{$\overline{C}$}\nbput{\ldots}
+	}
+}
+\end{center}
+
+\item Calculer la probabilité que l'élève concerné soit favorable à une pause méridienne plus longue et souhaite une répartition des cours plus étalée sur l'année scolaire.
+\item Montrer que $P(C) = \np{0,5675}$.
+\item Calculer la probabilité que l'élève concerné soit favorable à une pause méridienne plus longue sachant qu'il souhaite une répartition des cours plus étalée sur l'année scolaire.
+
+En donner une valeur arrondie à $10^{-4}$.
+\item Les évènements $L$ et $C$ sont-ils indépendants ? Justifier la réponse.
+\end{enumerate}
+
+\bigskip

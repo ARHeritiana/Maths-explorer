@@ -1,0 +1,100 @@
+\medskip
+
+
+
+
+
+
+
+
+
+\textbf{Partie 1}
+
+\medskip
+
+
+
+\begin{center}$u_0 = 10$\, et pour tout entier naturel $n,\,u_{n+1} = \dfrac13 u_n + 2$.\end{center}
+
+\medskip
+
+\begin{enumerate}
+\item \textbf{Affirmation 1} : Vraie. 
+
+Démonstration par récurrence :
+
+soit $P_n$ la proposition : \og $0 \leqslant u_{n+1} \leqslant u_n $\fg.
+
+\emph{Initialisation} : $u_0 = 10$ et $u_1 = \dfrac13 \times 10 + 2 = \dfrac{10}{3} + \dfrac63 = \dfrac{16}{3} < \dfrac{30}{3}$, soit $0\leqslant u_1 \leqslant u_0$ : la proposition est vraie au rang $0$ ;
+
+\emph{Hérédité} : soit $n$ un entier naturel ; supposons que  $0\leqslant u_{n+1} \leqslant u_n$ ; il en résulte par produit par le réel positif $\dfrac13$ que \quad  $0 \leqslant \dfrac13 u_{n+1} \leqslant \dfrac13 u_n$ puis par somme avec 2 :
+
+$2 \leqslant \dfrac13 u_{n+1} + 2 \leqslant \dfrac13 u_n + 2$, soit finalement :
+
+$2 \leqslant u_{n+2} \leqslant u_{n+1}$ : la proposition est vraie au rang $n + 1$.
+
+\emph{Conclusion} : la proposition est vraie au rang 0 et si elle est vraie au rang $n \in \N$ elle l'est aussi au rang $n + 1$. D'après le principe de récurrence quel que soit $n \in \N,\,$
+
+$ 0 < 2 \leqslant u_{n+1} \leqslant u_n$, autrement dit la suite est décroissante et minorée par $0$.
+
+\item \textbf{Affirmation 2} : Fausse.
+
+En effet dans la question précédente on a montré au moment de l'hérédité que pour $n \in \N, \, u_{n+1} \geqslant 2$, donc pour $n\in \N, \, u_n \geqslant 2 > 0$ : la limite de la suite ne peut être nulle.
+\item \textbf{Affirmation 3} : Vraie.
+
+$v_{n+1} = u_{n+1} - 3 = \dfrac13u_n + 2 - 3 = \dfrac13u_n - 1 = \dfrac13(u_n - 3) = \dfrac13v_n$.
+
+L'égalité $v_{n+1} = \dfrac13v_n$ vraie pour tout naturel $n$ montre que le suite $(v_n)$ est une suite géométrique de raison $\dfrac13$ et de premier terme $v_0 = u_0 - 3 = 10 - 3 = 7$.
+
+On sait qu'alors pour $n \in \N, \, v_n = v_0 \times q^n$ (avec $q$ raison de la suite), soit $v_n = 7\times \left(\dfrac13\right)^n$.
+
+Comme $0 < \dfrac13 < 1$, on sait que $\displaystyle\lim_{n \to + \infty} v_n = 0$ et il en résulte que $\displaystyle\lim_{n \to + \infty} u_n = 3$, ce qui améliore le résultat de la question précédente.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie 2}
+
+\medskip
+
+On considère l'équation différentielle $(E) :\, y' = \dfrac32 y + 2$ d'inconnue $y$, fonction définie et 
+dérivable sur $\R$
+
+\medskip
+
+\begin{enumerate}
+\item \textbf{Affirmation 4} : Vraie.  
+
+Il existe une fonction constante solution de l'équation différentielle (E).
+
+Soit $g$ la fonction constante définie sur $\R$ par $g(x) = K$, avec $K \in \R$ ; alors $g'(x) = 0$.
+
+$g$ est donc solution de l'équation différentielle si 
+
+$g'(x) = \dfrac32g(x) + 2 \iff 0 = \dfrac32 \times K + 2 \iff \dfrac32K = - 2 \iff K= - \dfrac43$.
+\item Dans un repère orthonormé \Oij{} on note $\mathcal{C}_f$ la courbe représentative de la fonction $f$ solution de $(E)$ telle  que $f(0) = 0$.
+
+\item \textbf{Affirmation 5} : Vraie  La tangente au point d'abscisse 1 de $\mathcal{C}_f$ a pour coefficient directeur $2 \e^{\frac32}$.
+
+Soit $f$ une  solution sur $\R$ de l'équation $(E)$, alors :
+
+$f'(x) = \dfrac32 f(x) + 2$. Or on a vu que $g'(x) =\dfrac32 g(x) + 2$, d'où par différence membre à membre de ces deux égalités :
+
+$f'(x) - g'(x) = \dfrac32 f(x) - \dfrac32 g(x) \iff f'(x) - g'(x) = \dfrac32 (f(x) - g(x)) \iff $
+
+$(f - g)'(x) = \dfrac32 (f(x) - g(x))$ par linéarité de la dérivation : ceci signifie que la fonction $f - g$ est solution de l'équation $y' = \dfrac32y$ dont les solutions sont les fonctions $x \longmapsto K\e^{\frac32 x}$, avec $ K \in \R$.
+
+On a donc $f(x) - g(x) = f(x ) - \left(- \dfrac43\right) = K\e^{\frac32 x}$, avec $ K \in \R$.
+
+Finalement les solutions de $(E)$ sont définies sur $\R$ par $f(x) = K\e^{\frac32 x} - \dfrac43$.
+
+En particulier la fonction $f_1$ telle que $f_1(0) = 0$ vérifie $K\e^{0} - \dfrac43 \iff K = \dfrac43$, donc 
+
+$f_1(x) = \dfrac43\e^{\frac32 x} - \dfrac43$.
+
+Puisque $f_1$ est une solution de $(E)$, on a $f'_1(1) = \dfrac32f(1) + 2 = \dfrac32\left(\dfrac43\e^{\frac32\times 1} - \dfrac43\right) + 2 = 2\e^{\frac32} - 2 + 2 = 2\e^{\frac32}$. 
+
+Le nombre dérivé en 1 est égal à la pente de la tangente à la courbe représentative de $f_1$ au point d'abscisse 1.
+\end{enumerate}
+
+\bigskip

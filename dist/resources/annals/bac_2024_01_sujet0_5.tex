@@ -1,0 +1,149 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_01_sujet0_5.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\emph{Cet exercice est un questionnaire à choix multiples.\\
+Pour chaque question, une seule des quatre propositions est exacte. Indiquer sur la copie le numéro de la question et la lettre de la proposition choisie.\\
+Aucune justification n'est demandée.\\
+Pour chaque question, une réponse exacte rapporte un point. Une réponse fausse, une réponse multiple ou l'absence de réponse ne rapporte ni n'enlève de point.\\
+Les questions sont indépendantes.}
+\bigskip
+
+
+\begin{enumerate}
+	\item Sur l'intervalle $[0~;~2 \pi]$, l'équation 
+\[\sin (x) = 0,1\]
+admet :
+
+	\begin{tabularx}{\linewidth}{*{2}{>{\bfseries\arraybackslash}p{5mm}@{}X}}
+		a.& zéro solution&
+		b.& une solution\\
+		c.& deux solutions&
+		d.& quatre solutions\\
+	\end{tabularx}
+
+	\item On considère la fonction $f$ définie sur l'intervalle $[0~;~\pi]$ par 
+	\[f(x) = x + \sin (x).\]
+On admet que $f$ est deux fois dérivable.
+
+	\begin{tabularx}{\linewidth}{{>{\bfseries\arraybackslash}p{5mm}@{}X}}
+		a.& La fonction $f$ est convexe sur l'intervalle $[0~;~\pi]$\\
+		b.& La fonction $f$ est concave sur l'intervalle $[0~;~\pi]$\\
+		c.& La fonction $f$ admet sur l'intervalle $[0~;~\pi]$ un unique point d'inflexion\\
+		d.& La fonction $f$ admet sur l'intervalle $[0~;~\pi]$ exactement deux points d'inflexion\\
+	\end{tabularx}
+
+	\item Une urne contient cinquante boules numérotées de 1 à 50. On tire successivement trois boules dans cette urne, \textbf{sans remise}. On appelle \og{} tirage \fg{} la liste non ordonnée des numéros des trois boules tirées.
+	
+Quel est le nombre de tirages possibles, \textbf{sans tenir compte de l'ordre des numéros}?
+
+	\begin{tabularx}{\linewidth}{*{4}{>{\bfseries\arraybackslash}p{5mm}@{}X}}
+		a.& $50^{3}$&
+		b.& $1 \times 2 \times 3$&
+		c.& $50 \times 49 \times 48$&
+		d.& $\dfrac{50 \times 49 \times 48}{1 \times 2 \times 3}$\\
+	\end{tabularx}
+
+	\item On effectue dix lancers d'une pièce de monnaie. Le résultat d'un lancer est \og{}pile\fg{} ou \og{}face\fg{}. On note la liste ordonnée des dix résultats.
+
+Quel est le nombre de listes ordonnées possibles?
+
+	\begin{tabularx}{\linewidth}{*{2}{>{\bfseries\arraybackslash}p{5mm}@{}X}}
+		a.& $2 \times 10$&
+		b.& $2^{10}$\\
+		c.& $1 \times 2 \times 3 \times \cdots \times 10$&
+		d.& $\dfrac{1 \times 2 \times 3 \times \cdots \times 10}{1 \times 2}$\\
+	\end{tabularx}
+
+	\item On effectue $n$ lancers d'une pièce de monnaie équilibrée. Le résultat d'un lancer est \og{}pile\fg{} ou \og{}face\fg{}. On considère la liste ordonnée des $n$ résultats.
+
+Quelle est la probabilité d'obtenir au plus deux fois \og{} pile \fg{} dans cette liste ?
+
+	\begin{tabularx}{\linewidth}{*{2}{>{\bfseries\arraybackslash}p{5mm}@{}X}}
+		a.& $\dfrac{n(n-1)}{2}$&
+		b.& $\dfrac{n(n-1)}{2} \times\left(\dfrac{1}{2}\right)^{n}$\\
+		c.& $1 + n + \dfrac{n(n-1)}{2}$&
+		d.& $\left(1 + n + \dfrac{n(n-1)}{2}\right) \times\left(\dfrac{1}{2}\right)^{n}$
+	\end{tabularx}
+\end{enumerate}
+
+\end{document}

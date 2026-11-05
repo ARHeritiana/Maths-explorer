@@ -1,0 +1,77 @@
+\medskip
+
+Une concession automobile vend des véhicules à moteur électrique et des véhicules à moteur thermique.
+
+Certains clients, avant de se rendre sur le site de la concession, ont consulté la plate- forme numérique de la concession. On a ainsi observé que :
+\begin{itemize}
+\item[$\bullet$~~]20\,\% des clients sont intéressés par les véhicules à moteur électrique et 80\,\% préfèrent s'orienter vers l'achat d'un véhicule à moteur thermique ;
+\item[$\bullet$~~]lorsqu'un client souhaite acheter un véhicule à moteur électrique, la probabilité pour que le client ait consulté la plate-forme numérique est de $0,5$ ;
+\item[$\bullet$~~]lorsqu'un client souhaite acheter un véhicule à moteur thermique, la probabilité pour que le client ait consulté la plate-forme numérique est de $0,375$.
+\end{itemize}
+
+\begin{list}{\textbullet}{On considère les évènements suivants:}
+\item $C$ : \og un client a consulté la plate-forme numérique \fg{} ;
+\item $E$ : \og un client souhaite acquérir un véhicule à moteur électrique \fg{} ;
+\item $T$ : \og un client souhaite acquérir un véhicule à moteur thermique \fg.
+\end{list}
+
+Les clients font des choix indépendants les uns des autres.
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item On résume les informations dans un arbre pondéré.
+
+\begin{center}
+\bigskip
+  \pstree[treemode=R,nodesepA=0pt,nodesepB=4pt,levelsep=3.5cm,nrot=:U]{\TR{}}
+ {
+ 	\pstree[nodesepA=4pt]{\TR{$E$}\naput{$0,2$}}
+ 	  {
+ 		\TR{$C$}\naput{$0,5$}
+ 		\TR{$\overline{C}$}\nbput{\blue $1-0,5=0,5$}	   
+ 	  }
+ 	\pstree[nodesepA=4pt]{\TR{$T$}\nbput{$0,8$}}
+ 	  {
+ 		\TR{$C$}\naput{$0,375$}
+        \TR{$\overline{C}$}\nbput{\blue $1-0,375=0,625$} 
+     }
+}
+\bigskip
+\end{center}
+		
+La probabilité qu'un client choisi au hasard souhaite acquérir un véhicule à moteur électrique et ait consulté la plate-forme numérique est:
+
+$P(E\cap C)= P(E)\times P_{E}(C)=0,2\times 0,5 = 0,1$.
+		
+
+		\item 
+D'après la formule des probabilités totales:
+
+$P(C)=P(E\cap C) + P(T\cap C)= 0,1+0,8\times 0,375 = 0,4$.
+		
+		\item On suppose qu'un client a consulté la plate-forme numérique; la probabilité qu'il souhaite acheter un véhicule à moteur électrique est :
+
+$P_{C}(E)= \dfrac{P(E\cap C)}{P(C)}=\dfrac{0,1}{0,4} = 0,25$.
+	\end{enumerate}
+\item La concession accueille quotidiennement $17$ clients en moyenne.
+On note $X$ la variable aléatoire donnant le nombre de clients souhaitant acquérir un véhicule à moteur électrique.
+
+	\begin{enumerate}
+		\item 
+Les clients font des choix indépendants les uns des autres, donc on a une répétition de 17 épreuves indépendantes dont la probabilité de succès de chacune est $p=0,2$.
+
+La variable aléatoire $X$ suit donc la loi binomiale de paramètres $n=17$ et $p=0,2$.
+
+		\item La probabilité qu'au moins trois des clients souhaitent acheter un véhicule à moteur électrique lors d'une journée est $P(X\geqslant 3)$.
+		
+$P(X\geqslant 3) = 1-P(X<3) = 1- P(X\leqslant 2) \approx 1- \np{0,3096}$
+
+Donc la probabilité cherchée est d'environ $0,69$.
+
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

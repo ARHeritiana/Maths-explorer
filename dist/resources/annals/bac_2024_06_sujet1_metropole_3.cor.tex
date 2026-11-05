@@ -1,0 +1,167 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_metropole_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+\item
+	\begin{enumerate}
+		\item On a $\vect{\text{CA}}\begin{pmatrix}5\\5\\-10\end{pmatrix}$ et $\vect{\text{DC}}\begin{pmatrix}0\\0\\\frac{25}{2}\end{pmatrix}$.
+		
+Or ces deux vecteurs ne sont pas colinéaires et :
+
+$\vect{n_1} \cdot \vect{\text{CA}} = 5 - 5 + 0 = 0$ et 
+
+$\vect{n_1} \cdot \vect{\text{DC}} = 0 +  0 + 0 = 0$.
+
+Conclusion : le vecteur $\vect{n_1}$ est orthogonal à deux vecteurs non colinéaires du plan (CAD) : il est donc normal à ce plan.
+		\item On sait qu'alors :
+		
+$M(x~;~y~;~z) \in (\text{CAD}) \iff 1x - 1y + 0z + d = 0 \iff x - y + d = 0$, avec \:$ d \in \R$.
+
+Ceci est vrai pour exemple pour C :
+
+$C(0~;~0~;~10) \in (\text{CAD}) \iff 0 - 1y + 0 + d = 0$  avec \: $d \in \R$, soit $d = 0$.
+
+Donc $M(x~;~y~;~z) \in (\text{CAD}) \iff x - y  = 0$.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item Si la droite $(D)$ est sécante au plan (CAD) en un point H les coordonnées de ce point vérifient les équations paramétriques de ($D$) et celle du plan soit :
+
+H$(x~;~y~;~z) \in D \cap (\text{CAD})\iff \left\{\begin{array}{l c l}
+x&=&\phantom{5 -} + \frac52 t\\
+y &=&5 - \frac52 t\\
+z&=&\phantom{5 -}0t\\
+x - y = 0
+\end{array}\right.\:(t \in \R) \Rightarrow \dfrac52t - \left(5 - \dfrac52 t \right) = 0 \iff 5t - 5 = 0 \iff t = 1$.
+
+Donc H$\left(\dfrac52~;~\dfrac52~;~0\right)$.
+		\item On a $M(x~;~y~;~z) \in D \iff \left\{\begin{array}{l c l}
+x&=&0 + \frac52 t\\
+y &=&5 - \frac52 t\\
+z&=&0 + 0t
+\end{array}\right.$
+
+On reconnait dans les coefficients de $t$ les coordonnées du vecteur $\begin{pmatrix}\frac52\\- \frac52\\0\end{pmatrix}$, soit $\frac52\vect{n_1}$ et (0~;~5~;~0) sont les coordonnées de B.
+
+Donc $D$ est la droite contenant B et de vecteur directeur $\vect{n_1}$.
+
+Or on a vu que le vecteur $\vect{n_1}$ est normal au plan (CAD), donc la droite $D$ est perpendiculaire à (CAD) au point H.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item On a vu que (BH) = $D$ donc a pour vecteur directeur $\vect{n_1}$.
+		
+$\vect{\text{HA}}\begin{pmatrix}\frac52\\\frac52\\0\end{pmatrix}$ et $\vect{n_1} \cdot \vect{\text{HA}} = \dfrac52 - \dfrac52 + 0 = 0$.
+		
+Les vecteurs $\vect{\text{BH}}$ et $\vect{\text{HA}}$ sont orthogonaux donc les droites (BH) et (HA) sont perpendiculaires, le triangle ABH est rectangle en H.
+		\item On a $\left\|\vect{\text{BH}}\right\|^2 = \frac{25}{4} + \frac{25}{4} + 0 = \frac{50}{4}$, d'où $\left\|\vect{\text{BH}}\right\| = \text{BH} = \sqrt{\frac{50}{4}} = \dfrac{5\sqrt 2}{2}$ et 
+		
+$\left|\vect{\text{HA}}\right\|^2 = \frac{25}{4} + \frac{25}{4} + 0 = \frac{50}{4}$, d'où $\left\|\vect{\text{HA}}\right\| = \text{HA} = \sqrt{\frac{50}{4}} = \dfrac{5\sqrt 2}{2}$.
+
+Donc $\mathcal{A}(\text{ABH}) = \dfrac{\text{BH} \times \text{HA}}{2} = \dfrac12 \times \dfrac{5\sqrt 2}{2} \times \dfrac{5\sqrt 2}{2} = \dfrac{25 \times 2}{8} = \dfrac{25}{4}$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Les points A, B et H ont une cote nulle : ils appartiennent donc au plan définis par les vecteurs unitaires $\vect{\imath}$ et $\vect{\jmath}$ et C a une abscisse et une ordonnée nulles, donc appartient à l'axe $\left(\text{O},~\vect{k}\right)$ qui est perpendiculaire au plan (ABH), donc (CO) est la hauteur contenant C du tétraèdre ABCH.
+		\item De façon évidente CO $ = 10$, donc :
+		
+		$\mathcal{V}(\text{ABCH}) = \dfrac{\mathcal{A}(\text{ABH}) \times \text{CO}}{3} = \dfrac{\frac{25}{4} \times 10}{3} = \dfrac{125}{6}$.
+	\end{enumerate}
+\item On a $\vect{\text{BA}}\begin{pmatrix}5\\0\\0\end{pmatrix}$ et $\vect{\text{BC}}\begin{pmatrix}0\\-5\\10\end{pmatrix}$, d'où $\vect{\text{BA}} \cdot \vect{\text{BC}} = 0 + 0 + 0 = 0$ : les vecteurs sont orthogonaux donc les droites (BA) et (BC) sont perpendiculaires, le triangle (ABC) est rectangle en B.
+
+On a BA$^2 = 5^2$, donc BA $ = 5$ et BC$^2 = 5^2 + 10^2 = 25 + 100 = 125$, donc BC $= \sqrt{125} = 5 \sqrt 5$.
+
+L'aire du triangle (ABC) est égale à :
+
+$\mathcal{A}(\text{ABC}) = \dfrac{\text{AB} \times \text{BC}}{2} = \dfrac{ 5 \times 5 \sqrt 5}{2} = \dfrac{25\sqrt 5}{2}$.
+
+On a $\mathcal{V}(\text{ABCH}) = \dfrac{\mathcal{A}(\text{ABC}) \times d}{3}$, $d$ étant la distance du point H au plan (ABC).
+
+On a donc : $\dfrac{125}{6} = \dfrac{\dfrac{25\sqrt 5}{2} \times d}{3} \iff d = \dfrac{125}{6} \times \dfrac{3 \times 2}{25\sqrt 5} = \sqrt 5$.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

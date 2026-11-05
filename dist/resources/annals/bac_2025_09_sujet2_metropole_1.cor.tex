@@ -1,0 +1,223 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_09_sujet2_metropole_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Partie A}
+
+\begin{enumerate}
+	\item La variable aléatoire $X$ compte le nombre de succès d'une répétition de 10 épreuves de Bernoulli. Les épreuves sont indépendantes deux à deux. La probabilité du succès est $p=\np{0.4}$. Donc $X$ suit une loi binomiale de paramètres 10 ; \np{0.4} : $X \sim \mathcal{B}(10~;~\np{0.4})$.
+	\item
+		\begin{enumerate}
+			\item $P(X = 2) = \binom{10}{2}\times p^2\times(1-p)^{10-2}= \binom{10}{2}\times\np{0.4}^{2}\times \np{0.6}^{8} \approx \np{0.1209}$
+			\item Comme les évènements $\{X = i\}$ et $\{X = j\}$ sont disjoints pour $i \neq j$ :
+\[
+\begin{aligned}
+P(X \leqslant 2)
+&= P(\{X = 0\} \cup \{X = 1\} \cup \{X = 2\}) \\
+&= \sum_{i=0}^{2} P(X=i) \\
+&= \sum_{i=0}^{2}\binom{10}{i} p^{i}(1-p)^{10-i} \\
+&\approx 0{,}1673
+\end{aligned}
+\]
+			
+			La probabilité que le phénomène El Niño soit dominant au plus deux années sur une période de 10~ans est d'environ \np{0.1673}.
+		\end{enumerate}
+	\item Comme $X$ suit une loi binomiale $\mathcal{B}(10~;~\np{0.4})$ : $E(X) = n\times p = 10 \times \np{0.4} = 4$. En moyenne le phénomène El Nino est dominant quatre années sur une période de 10~ans.
+\end{enumerate}
+
+\subsection*{Partie B}
+
+\begin{enumerate}
+	\item  \ {}
+	
+\begin{center}
+\pstree[treemode=R,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$E_n~$}\taput{$p_n$}}
+	{\TR{$E_{n+1}$} \taput{0,5}
+	\TR{$\overline{E_{n+1}}$} \tbput{0,5}
+	}
+\pstree{\TR{$\overline{E_n}~$}\tbput{$1 - p_n$}}
+	{\TR{$E_{n+1}$} \taput{0,3}
+	\TR{$\overline{E_{n+1}}$} \tbput{0,7}
+	}
+}
+\end{center}
+
+	\item $p_0 = 0$\\ $1-p_0 = 1$
+	
+	$p_1 = P\left(E_1\right) = P\left(E_0\right)\times P_{E_{0}}\left(E_1\right) + P\left(\overline{E_0}\right)\times P_{\overline{E_{0}}}\left(E_1\right)
+	= 0 \times \np{0.5} + 1 \times  \np{0.3} =   \np{0.3}$
+	\item $\begin{gathered}p_{n+1} = P\left(E_{n+1}\right) = P\left(E_n\right)\times P_{E_{n}}\left(E_{n+1}\right) + P\left(\overline{E_n}\right)\times P_{\overline{E_{n}}}\left(E_{n+1}\right)\\
+	= p_n \times \np{0.5} + (1-p_n) \times  \np{0.3} = \np{0.2}\times p_n + \np{0.3}\end{gathered}$
+	\item
+		\begin{enumerate}
+			\item En utilisant la calculatrice la suite $\left(p_n\right)$ semble être croissante et avoir pour limite $\np{0.375}$.
+
+
+\begin{center}
+\begin{tabular}{cl}
+\toprule
+$n$ & \multicolumn{1}{c}{$p_n$} \\
+\midrule
+0 &\np{0} \\
+1 &\np{0.3} \\
+2 &\np{0.36} \\
+3 &\np{0.372} \\
+\vdots & \multicolumn{1}{c}{\vdots} \\
+13 &\np{0.3749999996928} \\
+14 &\np{0.37499999993856} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+			
+			\item On formule l'hypothèse de récurrence $\mathcal{H}(n)~:~p_n\leqslant \np{0.375}$.
+			
+\textbf{On vérifie que $\mathcal{H}(0)$ est vraie (initialisation).}
+
+Comme $p_0 = 0 \leqslant \np{0.375}$,  $\mathcal{H}(0)$ est vraie.
+
+\textbf{Montrons que $\mathcal{H}(n)\Rightarrow \mathcal{H}(n+1)$ (hérédité).}
+
+On suppose que $\mathcal{H}(n)$ est vraie, avec $n \in \N$.
+
+$p_{n+1} = \np{0.2}\times p_n + \np{0.3}$
+
+D'après $\mathcal{H}(n)$, $p_n \leqslant \np{0.375}$, en multipliant par $\np{0.2}$ on obtient :
+
+$ \np{0.2}\times p_n \leqslant \np{0.075}$, en ajoutant  $\np{0.3}$ on obtient :
+
+$ \np{0.2}\times p_n + \np{0.3} \leqslant \np{0.375}$, ainsi on obtient :
+
+$p_{n+1} \leqslant \np{0.375} $ ($\mathcal{H}(n+1)$ est vérifiée)
+
+\textbf{D'après le principe de récurrence},
+
+$\forall n\in \N, n \geqslant 0, p_n\leqslant \np{0.375}$
+		\item Pour tout $n\in \N$, $p_n$ désignant une probabilité est un nombre positif.
+
+Soit ${n\in\N}$
+
+$p_{n+1}-p_{n} = \np{-0.8}\times p_n + \np{0.3} $
+
+$p_{n+1}-p_{n} \geqslant \np{-0.8}\times \np{0.375} + \np{0.3} $
+
+$p_{n+1}-p_{n} \geqslant 0 $
+
+Ceci étant valable quelque soit le choix de $n$, $\forall n \in \N,~p_{n+1}-p_{n} \geqslant 0 $, donc $\left(p_n\right)$ est croissante.
+			\item $\left(p_n\right)$ est croissante et majorée donc $\left(p_n\right)$ est convergente vers $l$. De plus ${l\leqslant \np{0.375}}$.
+		\end{enumerate}
+	\item
+		\begin{enumerate}
+			\item \ {}
+			
+			\renewcommand{\arraystretch}{2}
+			$\begin{array}{rcl}
+			u_{n+1} 	&=& p_{n+1} - \dfrac{3}{8}\\
+					&=& \np{0.2}\times p_n + \np{0.3} - \dfrac{3}{8}\\
+					&=& \np{0.2}\times p_n +\np{0.2}\times \dfrac{3}{2} - \np{0.2}\times\dfrac{15}{8}\\
+					&=& \np{0.2}\times p_n +\np{0.2}\times\left( \dfrac{3}{2} - \dfrac{15}{8}\right)\\
+					&=& \np{0.2}\times p_n +\np{0.2}\times\left(  - \dfrac{3}{8}\right)\\
+					&=& \np{0.2}\times \left(p_n - \dfrac{3}{8}\right)\\
+			\end{array}$
+
+Finalement quel que soit $n$ naturel, $u_{n+1} = \np{0.2}\times u_{n}$ : ceci prouve que $\left(u_n\right)$ est une suite géométrique de raison $\np{0.2}$.
+
+			$u_0 = p_{0} - \dfrac{3}{8} = 0 - \dfrac{3}{8} = -\dfrac{3}{8}$
+
+			Le premier terme est donné par : ${u_0 = - \dfrac{3}{8}}$
+
+			\item Comme $\left(u_n\right)$ est une suite géométrique de raison $\np{0.2}$ de premier terme ${u_0 = - \dfrac{3}{8}}$ :
+
+			$\forall n \in \N~:~u_n = - \dfrac{3}{8} \times \np{0.2}^{n} $
+
+			Comme $\forall n \in \N~:~u_n = p_{n} - \dfrac{3}{8}$,
+
+			$\forall n \in \N~:~p_n = -u_{n} + \dfrac{3}{8} = \left(-\np{0.2}^{n} +1 \right)\times \dfrac{3}{8} = \dfrac{3}{8}\left(1-\np{0.2}^{n}  \right)$
+			
+			\item
+			Comme $\np{0.2}<1$, $\displaystyle\lim_{n\rightarrow +\infty}\np{0.2}^{n} = 0$ et donc $\displaystyle\lim_{n\rightarrow +\infty}p_{n} = \dfrac{3}{8}$
+			\item La probabilité d'observer un phénomène El Niño dominant tend vers $\dfrac{3}{8}$ quand le nombre d'années d'observation augmente.
+		\end{enumerate}	
+\end{enumerate}
+
+\end{document}

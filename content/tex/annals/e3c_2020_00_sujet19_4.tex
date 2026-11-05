@@ -1,0 +1,57 @@
+\medskip
+
+Une résidence de vacances propose uniquement deux formules :
+
+\begin{itemize}
+\item la formule \og pension complète \fg{} dans laquelle 3 repas par jour sont fournis ;
+\item la formule \og demi-pension \fg{} dans laquelle sont fournis uniquement le petit déjeuner et le dîner.
+\end{itemize}
+Pour l’année 2018, 65\,\% des clients ont choisi la pension complète ; les autres ont choisi la formule \og demi-pension \fg.
+
+Parmi les clients qui ont choisi la demi-pension, 30\,\% ont réservé l’option \og ménage \fg{} en fin de semaine.
+
+De plus, 70\,\% des clients qui ont choisi la pension complète ont réservé l’option \og ménage\fg.
+
+On choisit un client au hasard parmi ceux de l’année 2018 et l’on considère les évènements suivants :
+
+\begin{itemize}
+\item C : le client a choisi la formule \og pension complète \fg{} ;
+\item M : le client a choisi l’option \og ménage \fg.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item  Recopier sur la copie et compléter l’arbre pondéré ci-dessous :
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.5cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$C$~~}\taput{$\np{0.65}$}}
+	{
+	\TR{$M$}\taput{$\dots$}
+	\TR{$\overline{M}$}\tbput{$\dots$}
+	}
+\pstree{\TR{$\overline{C}$~~}\tbput{$\dots$}}
+	{\TR{$M$}\taput{$\dots$}
+	\TR{$\overline{M}$}\tbput{$\dots$}
+	}
+}
+\end{center}
+\item Calculer $p(C\cap M)$.
+\item Montrer que la probabilité que le client ait réservé l’option \og ménage\fg{} est égale à $0,56$.
+\item Calculer la probabilité que le client ait choisi la formule \og pension complète \fg{} sachant qu’il a réservé l’option \og ménage\fg.
+\item Voici la grille de tarifs de la résidence de vacances pour l’année 2018:
+
+\begin{center}\begin{tabular}[]{|lr|}
+\hline
+Une semaine de pension complète&800~\euro\\
+Une semaine de demi-pension&650~\euro\\
+Option  \og ménage \fg&50~\euro\\
+\hline
+\end{tabular}
+\end{center}
+
+On note $X$ la variable aléatoire égale au montant payé par un client de 2018.
+
+Calculer $p(X = 850)$.
+\end{enumerate}

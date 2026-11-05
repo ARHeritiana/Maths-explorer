@@ -1,0 +1,157 @@
+\begin{enumerate}
+\item La valeur de $p_1$ est la probabilité d'atteindre le centre de la cible au premier tir.
+
+D'après l'énoncé, cette probabilité est de $p_1=\dfrac12$.
+
+Les deux phrases suivantes nous donnent, pour les tirs suivants :
+\[
+P_{T_n}(T_{n+1})=\dfrac45 \quad \text{et} \quad P_{\overline{T_n}}(T_{n+1})=\dfrac13.
+\]
+
+L'événement $T_1$ et son événement contraire $\overline{T_1}$ partitionnent l'univers, donc, d'après la loi des probabilités totales :
+\[
+\begin{aligned}
+p_2=P(T_2)&=P(T_1\cap T_2)+P(\overline{T_1}\cap T_2)\\
+&=P(T_1)\times P_{T_1}(T_2)+P(\overline{T_1})\times P_{\overline{T_1}}(T_2)\\
+&=\dfrac12\times \dfrac45+\left(1-\dfrac12\right)\times \dfrac13.
+\end{aligned}
+\]
+\[
+p_2=\dfrac{17}{30}
+\]
+On arrive bien à $p_2=\dfrac{17}{30}$.
+
+\item L'arbre complété est donc :
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=1, every node/.style={font=\normalsize}]
+\coordinate (O) at (0,0);
+\coordinate (A) at (2.6,1.84);
+\coordinate (B) at (2.6,-1.84);
+\coordinate (A1) at (6,2.2);
+\coordinate (A2) at (6,0.6);
+\coordinate (B1) at (6,-0.6);
+\coordinate (B2) at (6,-2.2);
+\draw (O)--(A) node[midway,above left]{$p_n$};
+\draw (O)--(B) node[midway,below left]{$1-p_n$};
+\draw (A)--(A1) node[midway,above]{$\dfrac45$};
+\draw (A)--(A2) node[midway,below]{$\dfrac15$};
+\draw (B)--(B1) node[midway,above]{$\dfrac13$};
+\draw (B)--(B2) node[midway,below]{$\dfrac23$};
+\node[right] at (A1) {$T_{n+1}$};
+\node[right] at (A2) {$\overline{T_{n+1}}$};
+\node[right] at (B1) {$T_{n+1}$};
+\node[right] at (B2) {$\overline{T_{n+1}}$};
+\node[above left] at (A) {$T_n$};
+\node[below left] at (B) {$\overline{T_n}$};
+\end{tikzpicture}
+\end{center}
+
+\item Soit $n$ un entier naturel non nul.
+
+Les événements $T_n$ et $\overline{T_n}$ partitionnent l'univers, donc, d'après la loi des probabilités totales :
+\[
+\begin{aligned}
+p_{n+1}=P(T_{n+1})&=P(T_n\cap T_{n+1})+P(\overline{T_n}\cap T_{n+1})\\
+&=P(T_n)\times P_{T_n}(T_{n+1})+P(\overline{T_n})\times P_{\overline{T_n}}(T_{n+1})
+\end{aligned}
+\]
+\[
+\begin{aligned}
+p_{n+1}&=p_n\times \dfrac45+(1-p_n)\times \dfrac13\\
+&=p_n\times \dfrac45+\dfrac13-p_n\times \dfrac13\\
+&=p_n\times \left(\dfrac45-\dfrac13\right)+\dfrac13\\
+&=\dfrac7{15}p_n+\dfrac13.
+\end{aligned}
+\]
+On a bien établi la relation de récurrence de la suite $(p_n)$.
+
+\item \begin{enumerate}
+\item On va montrer que la suite $(u_n)$ est une suite géométrique de raison $\dfrac7{15}$, en établissant sa relation de récurrence. On sait que pour tout $n$, on a $u_n=p_n-\dfrac58$ donc $p_n=u_n+\dfrac58$.
+
+Soit $n$ un entier naturel non nul :
+\[
+\begin{aligned}
+u_{n+1}&=p_{n+1}-\dfrac58 \quad \text{d'après la définition de la suite }(u_n)\\
+&=\left(\dfrac7{15}p_n+\dfrac13\right)-\dfrac58 \quad \text{d'après la relation de récurrence de la suite }(p_n)\\
+&=\dfrac7{15}p_n+\dfrac8{24}-\dfrac{15}{24}\\
+&=\dfrac7{15}p_n-\dfrac7{24}\\
+&=\dfrac7{15}\left(u_n+\dfrac58\right)-\dfrac7{24}\\
+&=\dfrac7{15}u_n+\dfrac7{15}\times \dfrac58-\dfrac7{24}\\
+&=\dfrac7{15}u_n+\dfrac7{24}-\dfrac7{24}\\
+&=\dfrac7{15}\times u_n.
+\end{aligned}
+\]
+La relation de récurrence de la suite $(u_n)$ est bien celle d'une suite géométrique de raison :
+\[
+q=\dfrac7{15}.
+\]
+
+\item Le premier terme de la suite est :
+\[
+u_1=p_1-\dfrac58=\dfrac12-\dfrac58=-\dfrac18.
+\]
+Puisque $(u_n)$ est géométrique, par propriété, pour tout entier naturel non nul $n$, on a :
+\[
+u_n=u_1\times q^{n-1}=-\dfrac18\times \left(\dfrac7{15}\right)^{n-1}.
+\]
+
+\item En partant de la définition de la suite $(u_n)$, pour un entier $n$ naturel non nul, on a :
+\[
+\begin{aligned}
+u_n=p_n-\dfrac58&\Longleftrightarrow p_n=\dfrac58+u_n\\
+&\Longleftrightarrow p_n=\dfrac58-\dfrac18\left(\dfrac7{15}\right)^{n-1}.
+\end{aligned}
+\]
+\end{enumerate}
+
+\item Comme on a : $0<\dfrac7{15}<1$, on en déduit :
+\[
+\lim_{n\to +\infty}\left(\dfrac7{15}\right)^{n-1}=0.
+\]
+Par limite du produit, on en déduit :
+\[
+\lim_{n\to +\infty}-\dfrac18\left(\dfrac7{15}\right)^{n-1}=0.
+\]
+Enfin, par limite de la somme, on conclut :
+\[
+\lim_{n\to +\infty}p_n=\dfrac58.
+\]
+Dans le contexte de l'exercice, cela signifie qu'au bout d'un nombre de tir important, la probabilité pour le titreur d'atteindre le centre de la cible se stabilise autour de $\dfrac58$.
+
+\item Pour que la fonction renvoie la plus petite valeur de l'entier $n$ telle que $p_n$ soit supérieur ou égal à 0,6, il faut que la boucle while dans laquelle on va actualiser les valeurs de l'indice et du terme de la suite $(p_n)$ tourne tant que $p_n$ n'est pas supérieur ou égal à 0,6, c'est-à-dire tant que le terme de $(p_n)$ est strictement inférieur à 0,6.
+
+Cela donne donc :
+
+\begin{minipage}{0.4\linewidth}\begin{lstlisting}[style=python]
+def seuil():
+   n = 1
+   p = 0.5
+   while p < 0.6 :
+      n = n + 1
+      p = p*7/15 + 1/3
+   return n
+\end{lstlisting}\end{minipage}
+
+\item Résolvons dans $\N$ :
+\[
+\begin{aligned}
+p_n\geq 0,6&\Longleftrightarrow \dfrac58-\dfrac18\left(\dfrac7{15}\right)^{n-1}\geq 0,6\\
+&\Longleftrightarrow -\dfrac18\left(\dfrac7{15}\right)^{n-1}\geq 0,6-\dfrac58\\
+&\Longleftrightarrow \left(\dfrac7{15}\right)^{n-1}\leq -8\times \left(0,6-\dfrac58\right) \quad \text{car } -8<0\\
+&\Longleftrightarrow \left(\dfrac7{15}\right)^{n-1}\leq -4,8+5\\
+&\Longleftrightarrow \left(\dfrac7{15}\right)^{n-1}\leq 0,2\\
+&\Longleftrightarrow \ln\left(\left(\dfrac7{15}\right)^{n-1}\right)\leq \ln(0,2) \quad \text{car } \ln \text{ est croissante sur }\R^{*}_{+}\\
+&\Longleftrightarrow (n-1)\ln\left(\dfrac7{15}\right)\leq \ln(0,2) \quad \text{par propriété de la fonction }\ln\\
+&\Longleftrightarrow n-1\geq \dfrac{\ln(0,2)}{\ln\left(\dfrac7{15}\right)} \quad \text{car } \ln\left(\dfrac7{15}\right)<0\\
+&\Longleftrightarrow n\geq 1+\dfrac{\ln(0,2)}{\ln\left(\dfrac7{15}\right)}.
+\end{aligned}
+\]
+Or $1+\dfrac{\ln(0,2)}{\ln\left(\dfrac7{15}\right)}\approx 3,1$.
+
+Comme on résout dans $\N$, les solutions sont les entiers supérieurs ou égaux à 4.
+
+C'est donc à partir de quatre lancers que l'archer a une probabilité d'atteindre le centre de la cible supérieure ou égale à 0,6.
+
+Remarque : si on exécute la fonction seuil, elle renvoie effectivement 4.
+\end{enumerate}

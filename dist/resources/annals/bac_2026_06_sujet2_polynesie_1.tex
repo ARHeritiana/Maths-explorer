@@ -1,0 +1,166 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet2_polynesie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Dans cet exercice, on s'intéresse à la part des filles et des garçons s'orientant vers des études scientifiques après avoir suivi un enseignement de spécialité mathématiques en terminale.
+
+ Les parties A et B peuvent être traitées de façon indépendante.
+
+\subsection*{Partie A}
+
+Dans une académie donnée, la population est constituée d'élèves de terminale ayant choisi la spécialité mathématiques. On souhaite analyser leurs choix d'orientation, notamment vers les études supérieures en ingénierie.
+
+Les répartitions sont les suivantes :
+
+\begin{itemize}[noitemsep]
+\item 40\,\% sont des filles ; 60\,\% sont des garçons ;
+\item parmi les filles, 33,75\,\% envisagent des études d'ingénieur ;
+\item parmi les garçons, 54,25\,\% envisagent des études d'ingénieur.
+\end{itemize}
+
+On interroge uniformément au hasard un élève de terminale ayant choisi la spécialité mathématiques de cette académie et on considère les évènements suivants :
+\begin{itemize}[noitemsep]
+\item $F$ : \og L'élève est une fille \fg ;
+\item $I$ : \og L'élève envisage des études d'ingénieur \fg.
+\end{itemize}
+
+ Pour un évènement $E$ quelconque, on note $\overline{E}$ l'évènement contraire et $P(E)$ la probabilité de $E$.
+
+\begin{enumerate}
+\item Représenter cette situation à l'aide d'un arbre pondéré.
+\item Calculer la probabilité que l'élève choisi au hasard soit une fille envisageant des études d'ingénieur.
+\item Démontrer que la probabilité que l'élève choisi au hasard envisage des études d'ingénieur est égale à $0{,}4605$.
+\item L'élève interrogé envisage des études d'ingénieur. Quelle est la probabilité qu'il s'agisse d'une fille ?\\
+\textit{Donner une valeur approchée du résultat à $10^{-3}$ près.}
+\end{enumerate}
+
+\subsection*{Partie B}
+
+Dans cette partie, on considère un entier naturel $n$ non nul.
+
+ On interroge uniformément au hasard dans cette académie $n$ filles en terminale, qu'elles suivent ou non la spécialité mathématiques. On suppose que ce nombre de filles est suffisamment important pour assimiler ce prélèvement à des tirages indépendants avec remise.
+
+On note $X$ la variable aléatoire qui modélise le nombre de filles envisageant de devenir ingénieure qu'elle suive ou non la spécialité mathématiques.
+
+On admet que la probabilité qu'une fille souhaite devenir ingénieure est égale à $0{,}15$.
+
+\medskip
+
+\begin{enumerate}
+\item[1.] 
+	\begin{enumerate}[label=\alph*.]
+		\item Justifier que $X$ suit une loi binomiale.
+		\item Exprimer en fonction de $n$ l'espérance de $X$.
+	\end{enumerate}
+\item[2.] En résolvant une inéquation, déterminer le plus petit nombre de lycéennes qu'il faut interroger pour que la probabilité de l'évènement \og Au moins une fille parmi celles interrogées souhaite devenir ingénieure \fg soit supérieure ou égale à $0{,}99$.
+\item[3.] Dans cette question, on choisit un échantillon de $n = 29$ filles.
+
+Déterminer la probabilité qu'au moins le quart des filles interrogées souhaite devenir ingénieure. \textit{Donner une valeur approchée du résultat à $10^{-3}$ près.}
+\end{enumerate}
+
+\subsection*{Partie C}
+
+On s'intéresse à dix académies françaises de tailles comparables numérotées de 1 à 10.
+
+On considère $X_1$ la variable aléatoire qui, à un échantillon de 1\,500 lycéennes de l'académie n°1, associe le nombre de filles envisageant de devenir ingénieure.
+
+On définit de la même façon les variables aléatoires $X_2, \dots, X_{10}$ pour les académies 2 à 10.
+
+On admet que les variables aléatoires $X_1, X_2, \dots, X_{10}$ sont indépendantes entre elles et qu'elles admettent la même espérance égale à $225$ et la même variance égale à $191{,}25$.
+
+On considère la variable aléatoire $S = X_1 + X_2 + \cdots + X_{10}$.
+
+\medskip
+
+\begin{enumerate}
+\item Que représente la variable aléatoire $S$ pour les \np{15000} lycéennes interrogées sur l'ensemble des dix académies ?
+\item Calculer l'espérance et la variance de $S$.
+\item On considère l'ensemble des 15\,000 lycéennes formé par les échantillons issus des dix académies.
+
+Argumenter pour dire si l'affirmation suivante est vraie, fausse ou si on ne peut pas savoir : \og La probabilité que le nombre total de filles envisageant de devenir ingénieure soit strictement compris entre \np{2000} et \np{2500} est supérieure à $0{,}95$ \fg.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

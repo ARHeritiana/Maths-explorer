@@ -1,0 +1,134 @@
+\medskip
+
+Le coyote est un animal sauvage proche du loup, qui vit en Amérique du Nord.
+
+Dans l'état d'Oklahoma, aux États-Unis, 70\,\% des coyotes sont touchés par une maladie appelée ehrlichiose.
+
+Il existe un test aidant à la détection de cette maladie. Lorsque ce test est appliqué à un coyote, son résultat est soit positif, soit négatif, et on sait que :
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet~~$] Si le coyote est malade, le test est positif dans 97\,\% des cas.
+\item[$\bullet~~$] Si le coyote n'est pas malade, le test est négatif dans 95\,\% des cas.
+\end{itemize}
+\setlength\parindent{0cm}
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+Des vétérinaires capturent un coyote d'Oklahoma au hasard et lui font subir un test pour l'ehrlichiose.
+
+On considère les évènements suivants :
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet~~$]$M$: \og le coyote est malade \fg;
+\item[$\bullet~~$]$T$: \og le test du coyote est positif \fg.
+\end{itemize}
+\setlength\parindent{0cm}
+
+On note $\overline{M}$ et $\overline{T}$ respectivement les évènements contraires de $M$ et $T$.
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter l'arbre pondéré ci-dessous qui modélise la situation.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep=1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$M$~}\taput{0,70}}
+	{\TR{$T$}\taput{0,97}
+	\TR{$\overline{T}$}\tbput{0,03}
+	}
+\pstree{\TR{$\overline{M}$~}\tbput{0,30}}
+	{\TR{$T$}\taput{0,05}
+	\TR{$\overline{T}$}\tbput{0,95}
+	}
+}
+\end{center}
+
+\item Déterminer la probabilité que le coyote soit malade et que son test soit positif.
+
+On calcule $P(M \cap T) = P(M) \times P_M(T) = 0,7 \times 0,97 = 0,679$
+\item Démontrer que la probabilité de T est égale à $0,694$.
+
+D'après la loi des probabilités totales :
+
+$P(T) = P(M \cap T) + P\left(\overline{M} \cap T\right)$ ; or
+
+$P\left(\overline{M} \cap T\right) = P\left(\overline{M}\right) \times P_{\overline{M}}(T) = 0,3 \times 0,05 = 0,015$, d'où :
+
+$P(T) = 0,679 + 0,015 = 0,694$.
+\item On appelle \og valeur prédictive positive du test \fg{} la probabilité que le coyote soit effectivement malade sachant que son test est positif.
+
+Calculer la valeur prédictive positive du test. On arrondira le résultat au millième.
+
+On calcule donc $P_T(M) = \dfrac{P(T \cap M)}{P(T)} = \dfrac{P(M \cap T)}{P(T)} = \dfrac{0,679}{0,694}\approx \np{0,9784}$ soit 0,978 au millième près.
+\item  
+\begin{enumerate}
+\item Par analogie avec la question précédente, proposer une définition de la \og valeur prédictive négative du test \fg{} et calculer cette valeur en arrondissant au millième.
+
+On appelle \og valeur prédictive négative du test \fg{} la probabilité que le coyote ne soit pas malade sachant que son test est négatif.
+
+Elle est égale à $P_{\overline{T}}\left(\overline{M}\right) = \dfrac{P\left(\overline{T} \cap \overline{M} \right)}{P\left(\overline{T}\right)}$.
+
+Or $P\left(\overline{T} \cap \overline{M} \right) = P\left(\overline{T}\right) \times P_{\overline{T}}\left(\overline{M}\right)$ ;
+
+$\bullet~~$$P\left(\overline{T}\right) = 1 - P(T) = 1 - 0,694 = 0,306$ ;
+
+$\bullet~~$$P_{\overline{T}}\left(\overline{M}\right) = \dfrac{P\left(\overline{T} \cap \overline{M}\right)}{P\left(\overline{T}\right)} = \dfrac{0,3 \times 0,95}{0,306} \approx 0,9313$, soit 0,931 au millième près.
+\item Comparer les valeurs prédictives positive et négative du test, et interpréter.
+
+Comme $0,978 > 0,931$ cela signifie qu'un résultat positif (erreur d'à peu près 2\,\%) est plus probant qu'un résultat négatif (erreur d'à peu près 7\,\%).
+	\end{enumerate}	
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On rappelle que la probabilité qu'un coyote capturé au hasard présente un test positif est de $0,694$.
+
+\medskip
+
+\begin{enumerate}
+\item Lorsqu'on capture au hasard cinq coyotes, on assimile ce choix à un tirage avec remise.
+
+On note $X$ la variable aléatoire qui à un échantillon de cinq coyotes capturés au hasard associe le nombre de coyotes dans cet échantillon ayant un test positif.
+\begin{enumerate}
+\item Quelle est la loi de probabilité suivie par $X$ ? Justifier et préciser ses paramètres.
+
+Le nombre de coyotes est assez important pour que toutes les captures indépendantes sont celles d'animaux dont la probabilité de positivité au test est de 0,694. La variable $X$ suit donc une loi binomiale de paramètres $n = 5$ et $P = 0,694$.
+\item Calculer la probabilité que dans un échantillon de cinq coyotes capturés au hasard, un seul ait un test positif. On arrondira le résultat au centième.
+
+On sait que $P(X = 1) = \binom{5}{1} \times 0,694^1 \times (1 - 0,694)^{5 - 1} \approx 0,030$ soit 0,03 au centième près.
+\item Un vétérinaire affirme qu'il y a plus d'une chance sur deux qu'au moins quatre coyotes sur cinq aient un test positif : cette affirmation est-elle vraie ? Justifier la réponse.
+
+On vérifie si effectivement $P(X \geqslant 4) > \dfrac{1}{2}$.
+
+Or $P(X \geqslant 4) = P(X = 4) + P(X = 5)$ ;
+
+$P(X = 4) = \binom{5}{4}\times 0,694^4 \times 0,306^1 \approx \np{0,3549}$ et 
+
+$P(X = 5) = \binom{5}{5}\times 0,694^5 \times 0,306^0 \approx \np{0,1609}$
+
+Donc $P(X \geqslant 4) \approx \np{0,3549} + \np{0,3549}$, soit $P(X \geqslant 4) \approx \np{0,5158}$ valeur supérieure à 0,5 : le vétérinaire a raison.
+	\end{enumerate}	
+\item Pour tester des médicaments, les vétérinaires ont besoin de disposer d'un coyote présentant un test positif. Combien doivent-ils capturer de coyotes pour que la probabilité qu'au moins l'un d'entre eux présente un test positif soit supérieure à $0,99$ ?
+
+Il faut trouver $n \in \N$ tel que $P(Y \geqslant 1) > 0,99$ avec $Y$ variable aléatoire associée au nombre de coyotes ayant un test positif.
+
+Or $P(Y \geqslant 1) = 1 - P(Y = 0) = 1 - \binom{n}{0}\times 0,694^0 \times 0,306^n = 1 - 0,306^n$.
+Il faut donc résoudre dans $\N$ l'inéquation : $1 - 0,306^n > 0,99 \iff 0,01 > 0,306^n$
+
+Par croissance de la fonction logarithme népérien : $\ln 0,01 > n \ln 0,306 \iff \dfrac{\ln 0,01}{\ln 0,306} < n$ car $\ln 0,306 < 0$.
+
+Comme $\dfrac{\ln 0,01}{\ln 0,306} \approx 3,9$ : il faut donc capturer au moins 4 coyotes.
+\end{enumerate}
+
+\bigskip

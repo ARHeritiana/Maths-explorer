@@ -1,0 +1,66 @@
+\medskip
+
+On considère la suite $\left(u_n\right)$ définie par : 
+
+\begin{center} $u_0 = 8$ \:  et pour tout entier naturel \:\:$n,\:\:~u_{n+1} = u_n -\ln\left(\dfrac{u_n}{4}\right)$.\end{center}
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Donner les valeurs arrondies au centième de $u_1$ et $u_2$.
+		\item On considère la fonction \texttt{mystere} définie ci-dessous en \textsf{Python}. On admet que, pour tout réel strictement positif \texttt{a}, \texttt{log(a)} renvoie la valeur du logarithme népérien de \texttt{a}.
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+def mystere(k) :\\
+\qquad u = 8\\
+\qquad S = 0\\
+\qquad for i in range(k) :\\
+\qquad \qquad S = S + u\\
+\qquad \qquad u = u $-$ log( u / 4 )\\
+\qquad return S\\ \hline
+\end{tabular}
+\end{center}
+	
+L'exécution de \texttt{mystere(10)} renvoie \texttt{58.44045206721732}. Que représente ce résultat ?
+		\item Modifier la fonction précédente afin qu'elle renvoie la moyenne des $k$ premiers termes de la suite $\left(u_n\right)$.
+	\end{enumerate}
+\item On considère la fonction $f$ définie et dérivable sur $]0~;~+\infty[$ par :
+
+\[ f(x) = x - \ln\left(\dfrac{x}{4}\right).\]
+
+On donne ci-dessous une représentation graphique $\mathcal{C}_f$ de la fonction $f$ pour les valeurs de $x$ comprises entre 0 et 6.
+	
+\begin{center}
+\psset{xunit=2cm,yunit=1.2cm,arrowsize=2pt 3}
+\begin{pspicture}(-0.5,-0.25)(6.1,6.1)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.3pt]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(0,0)(6.1,6.1)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle](0,0)(0,0)(6.1,6.1)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0.01}{6}{x  x 4 div ln sub}
+\uput[u](5.5,5.2){\red $\mathcal{C}_f$}
+\end{pspicture}
+\end{center}
+	
+Étudier les variations de $f$ sur $]0~;~+\infty[$ et dresser son tableau de variations.
+	
+\emph{On précisera la valeur exacte du minimum de $f$ sur $]0~;~+\infty[$. Les limites ne sont pas demandées.}
+\end{enumerate}
+
+Dans la suite de l'exercice, on remarquera que pour tout entier naturel $n$,\: $u_{n+1} = f\left(u_n\right)$.
+
+\begin{enumerate}[resume]
+\item 
+	\begin{enumerate}
+		\item Démontrer, par récurrence, que pour tout entier naturel $n$, on a : 
+
+		\[ 1 \leqslant u_{n+1} \leqslant u_n. \]
+		\item En déduire que la suite $\left(u_n\right)$ converge vers une limite réelle.
+
+On note $\ell$ la valeur de cette limite 
+		\item Résoudre l'équation $f(x) = x$.
+		\item En déduire la valeur de $\ell$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,46 @@
+\medskip
+
+\emph{Pour chacune des affirmations suivantes, indiquer si elle est vraie ou fausse.\\
+Justifier chaque réponse. Une réponse non justifiée ne rapporte aucun point.}
+
+\medskip
+
+\begin{enumerate}
+\item La suite $(u_n)$ est définie pour tout entier naturel $n$ par
+\[u_n = \dfrac{1 + 5^n}{2 +3^n}.\]
+
+\textbf{Affirmation 1 :} La suite $(u_n)$ converge vers $\dfrac 53$.
+\item On considère la suite $(w_n)$ définie par:
+
+\begin{center}$w_0 = 0$\: et, pour tout entier naturel\: $n, w_{n+1} = 3w_n - 2n + 3$.\end{center}
+
+\textbf{Affirmation 2 :} Pour tout entier naturel $n,\: w_n \geqslant n$.
+\item On considère la fonction $f$ définie sur $]0~;~+\infty[$ dont la courbe représentative $\mathcal{C}_f$ est donnée dans un repère orthonormé sur la figure (Fig. 1) en page suivante.
+
+On précise que:
+
+\begin{itemize}[label=$\bullet~$]
+\item $T$ est la tangente à $\mathcal{C}_f$ au point A d'abscisse 8 ;
+\item L'axe des abscisses est la tangente horizontale à $\mathcal{C}_f$ au point d'abscisse 1.
+\end{itemize}
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture*}(-0.5,-1.5)(12,8)
+\psaxes[linewidth=1.25pt,Dx=15,Dy=15]{->}(0,0)(0,0)(12,8)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.2pt](0,0)(12,8)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0.01}{12}{x 0.0195 exp 1 sub 50 mul x ln  mul}
+\uput[dr](11,5.6){\blue $\mathcal{C}_f$} \uput[ul](11,6){$T$}
+\uput[u](8,4.3026){A}\psdot(8,4.3026)
+\psline(-0.3,0)(8,4.3026)(16.3,8.6052)
+\rput(6,-0.5){\emph{Fig. 1}}
+\uput[d](1,0){1}\uput[l](0,1){1}\uput[dl](0,0) {O}
+\end{pspicture*}
+\end{center}
+
+\textbf{Affirmation 3 :} D'après le graphique, la fonction $f$ est convexe sur son ensemble
+de définition.
+
+\item  \textbf{Affirmation 4 :} Pour tout réel $x > 0,\quad \ln (x) - x + 1 \leqslant 0$, où $\ln$ désigne la fonction logarithme népérien.
+\end{enumerate}
+
+\bigskip

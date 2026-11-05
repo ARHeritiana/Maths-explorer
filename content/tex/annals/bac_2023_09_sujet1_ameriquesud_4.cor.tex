@@ -1,0 +1,132 @@
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+
+\[u_{n+1} =  2u_n\left(1 - u_n\right).\]
+
+Cette relation de récurrence s'écrit $u_{n+1} =  f\left(u_n\right)$, où $f$ est la fonction définie sur $\R$ par :
+\[f(x) = 2x(1 - x).\]
+
+\smallskip
+\begin{enumerate}
+\item 
+$f$ est une fonction polynomiale donc dérivable sur $\R$ et sur cet intervalle :
+
+$f(x) = 2x - 2x^2$, d'où $f'(x) = 2 - 4x = 2(1 - 2x)$.
+
+On a :
+
+$\bullet~~$$f'(x) = 0 \iff 1 - 2x = 0 \iff x = \dfrac12$ ;
+
+$\bullet~~$$f'(x) > 0 \iff 1 - 2x > 0 \iff x < \dfrac12$ ; la dérivée est positive sur $\left[0~;~\dfrac12\right]$, la fonction $f$ est donc croissante sur cet intervalle.
+
+$\bullet~~$$f'(x) < 0 \iff 1 - 2x < 0 \iff x > \dfrac12$ ;
+\item On admet que pour tout entier naturel $n,\:0 \leqslant u_n \leqslant \dfrac12$.
+
+
+$\bullet~~$$u_1 = 2u_0\left(1 - u_0\right) = 2\times 0,3 \times 0,7= 0,42$.
+
+$\bullet~~$Démonstration par récurrence :
+
+\begin{itemize}
+\item \emph{Initialisation} : on a $u_0 \leqslant u_1$ car $0,3 \leqslant 0,42$.
+\item \emph{Hérédité} On suppose qu'il existe $n \in \N$  tel que $u_n \leqslant u_{n+1}$.
+
+Comme on suppose que $u_n \leqslant u_{n+1} \leqslant \dfrac12$ on a par croissance de la fonction $f$ sur $\left[0~;~\dfrac12\right], \: \:f\left(u_n\right) \leqslant f\left(u_{n+1}\right) \leqslant f\left(\dfrac12\right)$, soit 
+
+$u_{n+1} \leqslant u_{n+2} \leqslant 2 \times \dfrac12 \times \dfrac12$, ou encore $u_{n+1} \leqslant u_{n+2} \leqslant \dfrac12$ : l'encadrement est vrai au rang $n+1$.
+
+La relation est vraie au rang 0 et si elle est vraie au rang $n \in \N$ elle l'est encore au rang $n + 1$ : d'après le principe de récurrence on a démontré que :
+
+pour tout rentier naturel $n,\: u_n \leqslant u_{n+1} \leqslant \dfrac12$
+\end{itemize}
+
+\item 
+Cet encadrement montre que 
+\begin{itemize}
+\item la suite $\left(u_n\right)$ est croissante et
+\item la suite $\left(u_n\right)$ est majorée par $\dfrac12$.
+\end{itemize}
+
+Conclusion la suite $\left(u_n\right)$ croissante et majorée converge vers une limite $\ell \leqslant \dfrac12$.
+
+\item 
+La fonction $f$ étant continue on a donc :
+
+$\displaystyle\lim_{n \to + \infty} f\left(u_n\right) = \displaystyle\lim_{n \to + \infty} 2u_n\left(1 - u_n\right)$, soit 
+
+$\ell = 2\ell(1 - \ell) \iff \ell = 2\ell - 2\ell^2 \iff 2\ell^2 - \ell = 0 \iff \ell\left(2\ell - 1\right) = 0 \iff \left\{\begin{array}{l c l}
+\ell&=&0\\
+2\ell - 1&=&0
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+\ell&=&0\\
+\ell &=&\dfrac12
+\end{array}\right.$ La seule solution acceptable est $\ell = \dfrac12$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+\begin{center}$P_{n+1} -  P_n = P_n\left(1 -  b \times P_n\right)$, où $b$ est un réel strictement positif.\end{center}
+
+Le réel $b$ est un facteur de freinage qui permet de tenir compte du caractère limité des
+ressources du milieu dans lequel évoluent ces individus.
+
+\medskip
+
+\begin{enumerate}
+\item Dans cette question $b  = 0$.
+	\begin{enumerate}
+		\item 
+		La relation de récurrence s'écrit alors $P_{n+1} - P_n = P_n\left(1 - 0 \times P_n\right)$, soit 
+
+$P_{n+1} - P_n = P_n \iff P_{n+1}  = 2 P_n$, donc $P_{n+1} = 2 P_n$ : cette égalité montre que la suite $\left(P_n\right)$ est une suite géométrique de raison $2$ et de premier terme $P_0 = 3$.
+		\item 
+On sait quel que soit $n \in \N$, \: $P_n = 3 \times 2^n$ : la limite de la suite $\left(P_n\right)$ est plus l'infini (impossible)
+	\end{enumerate}
+\item Dans cette question $b = 0,2$. On a donc $P_{n+1} - P_n = P_n\left(1 - 0,2P_n\right)$
+	\begin{enumerate}
+		\item 
+
+
+On a $v_0 = 0,1 \times P_0 = 01 \times 3 = 0,3$.
+
+La relation de récurrence devient :
+
+$P_{n+1} -  P_n = P_n\left(1 -  0,2 \times P_n\right) \iff P_{n+1} -  P_n = P_n - 0,2P_n^2$, d'où
+
+$P_{n+1} = 2P_n - 0,2P_n^2$. \: (1)
+
+Or $v_{n+1} = 0,1P_{n+1} = 0,1\left(2P_n - 0,2P_n^2\right) = 0,2\left(P_n - 0,1P_n^2\right)$.
+
+Comme $v_n = 0,1 \times P_n \iff 10v_n = P_n$, l'égalité ci-dessus devient :
+
+$v_{n+1} = 0,2\left(10v_n - 0,1 \times \left(10v_n\right)^2\right)$, soit 
+
+$v_{n+1} = 0,2\left(10v_n - 10v_n^2\right) = 2v_n \left(1 - v_n\right)$.
+		\item 
+La relation de la question précédente montre que la suite $\left(v_n \right)$ est la suite $\left(u_n \right)$ de la \textbf{Partie A} et on a vu que cette suite converge vers $\dfrac12$.
+
+On a donc $\displaystyle\lim_{n \to + \infty} v_n = \dfrac12$.
+
+Or $P_n = 10v_n$, donc $\displaystyle\lim_{n \to + \infty}P_n = 10 \times \dfrac12 = 5$.
+
+Finalement la population se rapprochera de \np{5000}~individus.
+	\end{enumerate}
+\end{enumerate}

@@ -1,0 +1,192 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_05_sujet1_ameriquenord_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\textbf{Partie A}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+On dresse l'arbre pondéré de probabilités en utilisant les données de l'énoncé :
+
+$p(R) = 0,07 \:; p_R(E) = 0,8$ et $p_{\overline{R}}(E) = 0,4$:
+
+\begin{center}
+\pstree[treemode=R,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$R~~$}\taput{0,07}}
+	{\TR{$E$}\taput{0,8}
+	\TR{$\overline{E}$}\tbput{\red 0,2}
+	}
+\pstree{\TR{$\overline{R}~~$}\tbput{\red 0,93}}
+	{\TR{$E$}\taput{0,4}
+	\TR{$\overline{E}$}\tbput{\red 0,6}
+	}
+}
+\end{center}
+
+On a $p(R \cap E) = p(R) \times p_{R}(E) = 0,07 \times 0,8 = 0,056$.
+\item 
+D'après la loi des probabilités totales :
+
+$p(E) = p(R \cap E) + p\left(\overline{R} \cap E\right)$.
+
+Or $p\left(\overline{R} \cap E\right) = p\left(\overline{R}\right) \times p_{\overline{R}}(E) = 0,93 \times 0,4 = 0,372$.
+
+Donc $p(E) =0,056 + 0,372 = 0,428$.
+\item 
+On a $p_{E}(R) = \dfrac{p(E \cap R)}{p(E)} = \dfrac{p(R \cap E)}{p(E)} = \dfrac{0,056}{0,428} = \dfrac{56}{428} = \dfrac{14}{107} \approx \np{0,1308}$ soit 0,131 au millième près.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+Les évènements étant indépendants et la probabilité d'obtenir un objet rare étant toujours égale à 0,07, la variable aléatoire $X$ suit une loi binomiale $\mathcal{B}(n,\:p)$ avec $n = 30$ et $p = 0,07$.
+
+L'espérance mathématique est $E = n \times p = 30 \times 0,07 = 2,1$.
+\item 
+
+La calculatrice donne $P(X < 6) \approx \np{0,9838}$ soit 0,984 au millième près.
+\item 
+Quel que soit $k \in \N$, \: $p(X \geqslant k + 1) = 1 - p(X \leqslant k)$.
+D'après la calculatrice :
+
+$p(X \geqslant 1 + 1) = 1 - p(X \leqslant 1) \approx 0,631$, et $p(X \geqslant 2 + 1) = 1 - p(X \leqslant 2) \approx 0,351$, on a donc $k = 2$.
+
+Dans le cadre du jeu ceci signifie que la probabilité d'obtenir au moins 2 objets rares est supérieure à $\dfrac12$.
+\item 
+
+
+
+
+
+Il faut donc trouver $X$ tel que $p(X \geqslant 1) \geqslant 0,95$ ou encore $1 - p(X = 0) \geqslant 0,95 \iff p(X = 0) \leqslant 1 - 0,95 \iff p(X = 0) \leqslant 0,05$.
+
+Or $p(X = 0) = \binom{N}{0} \times 0,07^0 \times (1 - 0,07)^N = 0,93^N$.
+
+Il faut donc résoudre l'inéquation :
+
+$0,93^N \leqslant 0,05 \Rightarrow N \ln 0,93 \leqslant \ln 0,05$ par croissance de la fonction logarithme népérien  et enfin $N \geqslant \dfrac{\ln 0,05}{\ln 0,93}$, car $\ln 0,93 < 0$ et son inverse $\dfrac{1}{\ln 0,93}$ aussi.
+
+D'après la calculatrice $\dfrac{\ln 0,05}{\ln 0,93} \approx 41,3$.
+
+Conclusion Il faut que $N \geqslant 42$.
+\end{enumerate}
+
+\end{document}

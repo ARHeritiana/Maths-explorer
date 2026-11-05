@@ -1,0 +1,79 @@
+\medskip
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+\[f(x) = x \e^{x^2 - 3}.\]
+
+
+
+
+
+
+
+
+Avec $F(x) = \dfrac12 \e^{x^2 - 3}$, on a $F'(x) = 2x \times \dfrac12\e^{x^2 - 3} = x\e^{x^2 - 3} = f(x)$ : réponse \textbf{d.~}
+
+
+
+
+
+
+\item On considère la suite $\left(u_n\right)$ définie pour tout entier naturel $n$ par: \[u_n = \e^{2n+1}.\]
+
+
+
+
+
+
+
+
+
+Si pour tout entier naturel $n$, \: $u_n = \e^{2n+1}$, alors $u_{n+1} = \e^{2(n+1)+ 1} = \e^{2n + 2 + 1} = \e^{2} \times \e^{2n + 1} = \e^{2} \times u_n$ : cette égalité montre que la suite $\left(u_n\right)$ est géométrique de raison $\e^{2}$ : réponse \textbf{c.~~}
+
+Pour les questions \textbf{3.} et \textbf{4.}, on considère la suite $\left(u_n\right)$ définie sur $\N$ par:
+\[u_0 = 15 \quad \text{et pour tout entier naturel }\: n \quad :\: u_{n+1} = 1,2u_n + 12.\]
+
+\item ~
+
+\begin{center}
+\begin{tabular}{|>{\ttfamily}l|}\hline
+def seuil() :\\
+\qquad n=0\\
+\qquad u=15\\
+\qquad while u$\leqslant \np{10000}$:\\
+\qquad \quad n=n+1\\
+\qquad \quad u=1,2$*$u+12\\
+\qquad return(n)\\ \hline
+\end{tabular}
+\end{center}
+
+Réponse \textbf{a.}
+
+
+
+
+
+
+
+
+\item On considère la suite $\left(v_n\right)$ définie sur $\N$ par : $v_n = u_n + 60$. 
+
+
+
+
+
+
+
+
+
+On a quel que soit $n \in \N, \: v_{n+1} = u_{n+1} + 60 =  1,2u_n + 12 + 60 = 1,2u_n + 72 = 1,2\left(u_n + 60\right) = 1,2v_n$ : cette égalité montre que la suite $\left(v_n\right)$ est géométrique de raison 1,2.
+\end{enumerate}
+
+\bigskip

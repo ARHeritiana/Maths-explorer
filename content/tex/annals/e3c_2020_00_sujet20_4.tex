@@ -1,0 +1,47 @@
+\medskip
+
+Pierre joue à un jeu dont une partie est constituée d'un lancer d'une fléchette sur une cible suivi d'un tirage au sort dans deux urnes contenant des tickets marqués \og gagnant\fg ou
+\og perdant\fg{} indiscernables.
+
+\setlength\parindent{8mm}
+\begin{itemize}
+\item[$\bullet~~$] S'il tire un ticket marqué \og gagnant \fg, il pourra recommencer une partie.
+\item[$\bullet~~$] S'il atteint le centre de la cible, Pierre tire un ticket dans l'urne $U_1$ contenant exactement neuf tickets marqués \og gagnant\fg et un ticket marqué \og perdant \fg.
+\item[$\bullet~~$] S'il n'atteint pas le centre de la cible (donc même s'il n'atteint pas la cible), Pierre tire un ticket dans l'urne $U_2$ contenant exactement quatre tickets marqués \og gagnant\fg et six tickets marqués \og perdant \fg.
+\end{itemize}
+\setlength\parindent{0mm}
+
+\smallskip
+
+Pierre atteint le centre de la cible avec une probabilité de 0,3.
+
+\smallskip
+On note les évènements suivants:
+
+\qquad $C$ : \og Pierre atteint le centre de la cible\fg{} ;
+
+\qquad $G$ : \og Pierre tire un ticket lui offrant une autre partie \fg.
+
+\medskip
+
+\begin{enumerate}
+\item Recopier l'arbre pondéré ci-dessous et justifier la valeur $0,9$.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=3pt]{\TR{}}
+{\pstree{\TR{$C$~~}\naput{0,3}}
+	{\TR{$G$} \naput{0,9}
+	\TR{$\overline{G}$}\nbput{\ldots}
+	}
+\pstree{\TR{$\overline{C}$~~}\nbput{\ldots}}
+	{\TR{$G$} \naput{\ldots}
+	\TR{$\overline{G}$}\nbput{\ldots}
+	}
+}
+\end{center}
+
+\item Compléter sur la copie l'arbre pondéré en traduisant les données de l'exercice.
+\item Calculer la probabilité de l'évènement $\overline{C} \cap G$.
+\item Montrer que la probabilité qu'à l'issue d'une partie Pierre en gagne une nouvelle est égale à $0,55$.
+\item Sachant que Pierre a gagné une nouvelle partie, quelle est la probabilité qu'il ait atteint le centre de la cible ? Arrondir le résultat à $10^{-3}$.
+\end{enumerate}

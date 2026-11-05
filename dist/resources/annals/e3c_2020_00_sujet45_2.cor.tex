@@ -1,0 +1,164 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet45_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{1.}
+
+La probabilité de tirer une boule rouge est :
+\[
+p(R) = \dfrac{2}{2+3} = \dfrac{2}{5} = \dfrac{4}{10} = 0{,}4.
+\]
+La probabilité de tirer une boule noire est :
+\[
+p(N) = \dfrac{3}{2+3} = \dfrac{3}{5} = \dfrac{6}{10} = 0{,}6.
+\]
+
+On peut donc dresser l’arbre pondéré :
+\begin{center}
+\begin{tikzpicture}[thick, scale=1.5]
+\node (P_-1_0) at (-2,-1.5) {$\phantom{A}$};
+\node (P_0_0) at (0,-0.5) {$R$};
+\draw (P_-1_0) -- (P_0_0) node[midway, above] {$\frac25$};
+\node (P_1_0) at (2,-0) {$R$};
+\draw (P_0_0) -- (P_1_0) node[midway, above] {$\frac25$};
+\node (P_1_1) at (2,-1) {$N$};
+\draw (P_0_0) -- (P_1_1) node[midway, below] {$\frac35$};
+\node (P_0_2) at (0,-2.5) {$N$};
+\draw (P_-1_0) -- (P_0_2) node[midway, below] {$\frac35$};
+\node (P_1_2) at (2,-2) {$R$};
+\draw (P_0_2) -- (P_1_2) node[midway, above] {$\frac25$};
+\node (P_1_3) at (2,-3) {$N$};
+\draw (P_0_2) -- (P_1_3) node[midway, below] {$\frac35$};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{2.}
+
+On a :
+\[
+p(R \cap R) = p(R) \times p_R(R) = \dfrac{2}{5} \times \dfrac{2}{5} = \dfrac{4}{25} = 0{,}16.
+\]
+
+\subsection*{3.}
+
+La probabilité de tirer deux boules noires est :
+\[
+p(N \cap N) = p(N) \times p_N(N) = \dfrac{3}{5} \times \dfrac{3}{5} = \dfrac{9}{25} = \dfrac{36}{100} = 0{,}36.
+\]
+Dans ce cas \(X = -20\).
+
+La probabilité de tirer une boule de chaque couleur est donc :
+\begin{align*}
+1 - p(R \cap R) - p(N \cap N) &= 1 - 0{,}16 - 0{,}36 \\
+&= 1 - 0{,}52 \\
+&= 0{,}48.
+\end{align*}
+Dans ce cas \(X = 40\), le dernier cas étant \(X = 20 - 10 = 10\).
+
+D'où le tableau de la loi de probabilité de \(X\) :
+\[
+\begin{array}{|c|c|c|c|}
+\hline
+X = x_i& 40 & -20 & 10 \\
+\hline
+p(X = x_i) & 0{,}16 & 0{,}36 & 0{,}48 \\
+\hline
+\end{array}
+\]
+
+\subsection*{4.}
+
+La probabilité de gagner de l’argent (\(X > 0\)) est égale à \(0{,}16 + 0{,}48 = 0{,}64\).
+
+\subsection*{5.}
+
+L’espérance mathématique de la variable aléatoire \(X\) est :
+\begin{align*}
+E(X) &= 40 \times 0{,}16 - 20 \times 0{,}36 + 10 \times 0{,}48 \\
+&= 6{,}4 - 7{,}2 + 4{,}8 \\
+&= 11{,}2 - 7{,}2 \\
+&= 4.
+\end{align*}
+
+En moyenne, sur un grand nombre de parties, le gain est de 4 € par partie.
+
+\end{document}

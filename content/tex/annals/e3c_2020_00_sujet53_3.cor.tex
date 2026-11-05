@@ -1,0 +1,31 @@
+\subsection*{1.}
+
+\paragraph{a.} On a :
+\[
+P_1 = (1 + 0{,}2) \times 500 + 70 = 500 \times 1{,}2 + 70 = 670,
+\]
+puis :
+\[
+P_2 = 1{,}2P_1 + 70 = 1{,}2 \times 670 + 70 = 874.
+\]
+
+\paragraph{b.}
+\begin{center}
+\begin{lstlisting}[style=python]
+def Nombrebacteries(N) :
+    P = 500
+    for i in range(0, N) :
+        P = P * 1.2 + 70
+    return P
+\end{lstlisting}
+\end{center}
+
+\subsection*{2.}
+
+\paragraph{a.} On a donc \(\alpha = 0{,}09\) et \(\beta = 0\).
+
+\paragraph{b.} Puisque chaque jour la population augmente de 9 \%, elle est multipliée par \(1{,}09\) : c'est donc une suite géométrique de raison \(1{,}09\) et de premier terme 500.
+
+\paragraph{c.} On sait que, pour tout naturel \(n\), \(P_n = 500 \times 1{,}09^n\).
+
+Donc avec \(n = 9\), \(P_9 = 500 \times 1{,}09^9 \approx 1085{,}95\) : la population a plus que doublé.

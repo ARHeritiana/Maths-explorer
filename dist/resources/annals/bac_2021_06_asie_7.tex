@@ -1,0 +1,147 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_asie_7.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Commun à tous les candidats}
+
+\medskip
+
+On considère un pavé droit ABCDEFGH tel que AB = AD = 1 et AE = 2, représenté ci- dessous.
+
+Le point I est le milieu du segment [AE]. Le point K est le milieu du segment [DC]. Le point L
+est défini par: $\vect{\text{DL}} = \dfrac{3}{2}\vect{\text{AI}}$. N est le projeté orthogonal du point D sur le plan (AKL).
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 4}
+\begin{pspicture}(6,10)
+\pspolygon(0.5,0.5)(4,0)(4,7.2)(0.5,7.7)
+\uput[d](0.5,0.5){B} \uput[d](4,0){C} \uput[ul](4,7.2){G} \uput[ul](0.5,7.7){F} 
+\psline(4,0)(5,1.4)(5,8.6)(4,7.2)
+\uput[r](5,1.4){D} \uput[ur](5,8.6){H} \uput[d](1.5,1.9){A} \uput[dr](4.5,0.7){K}\uput[l](1.5,5.5){I}
+\uput[r](5,7.3){L}
+\psline(5,8.6)(1.5,9.1)(0.5,7.7)
+\uput[u](1.5,9.1){E}
+\psline[linestyle=dashed]{->}(1.5,1.9)(1.5,5.5)
+\psline[linestyle=dashed]{->}(1.5,1.9)(0.5,0.5)
+\psline[linestyle=dashed]{->}(1.5,1.9)(5,1.4)
+\psline[linestyle=dashed](4.5,0.7)(1.5,1.9)(5,7.3)
+\psline[linestyle=dashed](1.5,5.5)(1.5,9.1)
+\psline(4.5,0.7)(5,7.3)
+\end{pspicture}
+\end{center}
+
+\bigskip
+
+On se place dans le repère orthonormé $\left(\text{A}~;~\vect{\text{AB}},~\vect{\text{AD}},~\vect{\text{AI}}\right)$. 
+
+On admet que le point L a pour coordonnées $\left(0~;~1~;~\dfrac{3}{2}\right)$.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer les coordonnées des vecteurs $\vect{\text{AK}}$ et $\vect{\text{AL}}$.
+\item  
+	\begin{enumerate}
+		\item Démontrer que le vecteur $\vect{n}$ de coordonnées $(6~;~-3~;~2)$ est un vecteur normal au plan (AKL).
+		\item En déduire une équation cartésienne du plan (AKL).
+		\item Déterminer un système d'équations paramétriques de la droite $\Delta$ passant par D et
+perpendiculaire au plan (AKL).
+		\item En déduire que le point N de coordonnées $\left(\dfrac{18}{49}~;~\dfrac{40}{49}~;~\dfrac{6}{49}\right)$ est le projeté orthogonal du point D sur le plan (AKL).
+	\end{enumerate}
+\end{enumerate}
+
+On rappelle que le volume $\mathcal{V}$ d'un tétraèdre est donné par la formule : 
+
+\[\mathcal{V} = \dfrac{1}{3}\times  (\text{aire de la base}) \times \text{hauteur}.\]
+
+\begin{enumerate}[resume]
+\item 
+	\begin{enumerate}
+		\item Calculer le volume du tétraèdre ADKL en utilisant le triangle ADK comme base. 
+		\item Calculer la distance du point D au plan (AKL).
+		\item Déduire des questions précédentes l'aire du triangle AKL.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

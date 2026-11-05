@@ -1,0 +1,304 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet2_ameriquesud_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A : dénombrement}
+
+On considère l'ensemble des nombres entiers relatifs \textbf{non nuls} compris entre $- 30$ et $30$ ; cet ensemble peut s'écrire ainsi : \{$- 30~;~- 29~;~- 28~;~ ... - 1~;~1~;~ ... ~;~ 28~;~29~;~30$\}. Il comporte 60 éléments.
+
+On choisit dans cet ensemble successivement et sans remise un entier relatif $a$ puis un entier relatif $c$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+On peut choisir comme premier terme du couple entre 60 entiers ;  comme il n'y a pas de remise (???) et que $(a~;~b) \ne (b~;~a)$, le deuxième terme peut être choisi entre 59 entiers.
+
+On peut donc obtenir $60 \times 59 = \np{3540}$ couples différents.
+\end{enumerate}
+
+
+
+\begin{enumerate}[resume]
+\item 
+L'équation a deux racines si  le déterminant est supérieur à zéro, donc si :
+
+$\Delta = 4 - 4ac >  \iff (4(1 - ac) > \iff 1 - ac > 0 \iff ac < 1$.
+\item 
+Il faut donc trouver le nombre de couples vérifiant $ac \geqslant 1$, mais en fait $ac > 1$ puisque l'on ne peut avoir $(-1~;~-1)$ ni (1~;~1).
+
+Si l'on choisit en premier un entier négatif (30 choix) le second terme sera choisi dans les 29 entiers négatifs restant, soit $30 \times 29 = 870$ couples ;
+
+Même chose si les deux termes choisis sont positifs, soit 870 couples.
+
+L'évènement $\overline{M}$ sera réalisé pour $870 + 870 = \np{1740}$ couples.
+\item 
+D'après le résultat précédent l'évènement $M$ sera réalisé pour $\np{3540} - \np{1740} = \np{1800}$ couples.
+
+Donc $p(M) = \dfrac{\np{1800}}{\np{3540}} = \dfrac{30}{59} \approx \np{0,5084}$ soit 0,508 au millième près.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B : équation différentielle}
+
+\medskip
+
+On considère l'équation différentielle 
+
+\begin{center}$(E) :\quad  y' + 10y = \left(30x^2 + 22x - 8\right)\e^{-5x+1}$\quad avec \quad $x \in \R$\end{center}
+
+où $y$ est une fonction définie et dérivable sur $\R$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+L'équation différentielle est équivalente à l'équation $y' = - 10y$.
+
+On sait que les solutions de cette équation sont les fonctions définies par 
+
+$x \longmapsto f(x) = C\e^{-10x}, \quad \text{avec}\: C \in \R$.
+\item 
+
+\[f(x) = \left(6x^2 + 2x - 2\right)\e^{-5x+ 1}.\]
+
+
+
+
+Étant admis que $f$ est dérivable sur $\R$, on calcule :
+
+$f'(x) = (12x + 2)\e^{-5x+ 1} + (- 5)\left(6x^2 + 2x - 2\right)\e^{-5x+ 1} = \e^{-5x+ 1}\left[12x + 2 - 30x^2- 10x + 10\right)] = \e^{-5x+ 1}\left(-30x^2 + 2x + 12\right)$.
+
+Alors $f'(x) + f(x) = \e^{-5x+ 1}\left(-30x^2 + 2x + 12\right) + 10\left(6x^2 + 2x - 2\right)\e^{-5x+ 1} =$
+
+$ \e^{-5x+ 1}\left(-30x^2 + 2x + 12 + 60x^2 + 20x - 20\right) = \e^{-5x+ 1}\left(30x^2 + 22x - 8\right)$.
+
+On a donc bien démontré que $f$ est une solution de l'équation différentielle $(E)$.
+\item 
+Les résultats précédents permettent d'énoncer que toutes les solutions de $(E)$ sont la somme de $f$ et des solutions de l'équation $y' + 10y = 0$, soit 
+
+Toutes les solutions de $(E)$ sont de la forme $\left(6x^2 + 2x - 2\right)\e^{-5x+ 1} + C\e^{-10x}$, avec $C \in \R$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C : étude de fonction}
+
+\medskip
+
+
+
+On rappelle que, pour tout réel $x\:, f(x) = \left(6x^2 + 2x - 2\right)\e^{-5x+ 1}$.
+
+
+
+\medskip
+
+\begin{enumerate}
+\item On admet que $\displaystyle\lim_{x \to + \infty} f(x) = 0$.
+
+
+On a $6x^2 + 2x - 2 = x^2\left(6 + \dfrac{2}{x} - \dfrac{2}{x^2} \right)$.
+
+Comme $\displaystyle\lim_{x \to - \infty} \dfrac{2}{x} = \displaystyle\lim_{x \to - \infty}\dfrac{2}{x^2} = 0$, donc 
+
+$\displaystyle\lim_{x \to - \infty}6 + \dfrac{2}{x} - \dfrac{2}{x^2} = 6$.
+
+$\displaystyle\lim_{x \to - \infty} x^2 = + \infty$, 
+
+Enfin on sait que $\displaystyle\lim_{x \to - \infty}\e^{-5x+ 1} = + \infty$ on a finalement :
+
+\[\displaystyle\lim_{x \to - \infty}f(x) = + \infty.\]
+\item 
+On sait que quel que soit le réel $- 5x + 1$, \: \: $\e^{- 5x + 1} > 0$ : le signe de $f(x)$ est donc celui du trinôme $6x^2 + 2x - 2$.
+
+Le trinôme vérifie l'évènement $M$ puisque avec $a = 6$ et $c = - 2, \quad ac= - 12 < 1$.
+Le trinôme s'annule donc pour deux réels distincts : géométriquement $\mathcal{C}_f$ coupe l'axe des abscisses en deux points.
+
+\emph{Non demandé} : $\Delta = 4 + 48 = 52 = 4 \times 13$.
+
+Les racines sont donc $x_1 = \dfrac{2+ \sqrt{52}}{12} = \dfrac{1 + \sqrt{13}}{6} \approx 0,77$ et $x_2 = \dfrac{2 - \sqrt{52}}{12} = \dfrac{1 - \sqrt{13}}{6} \approx - 0,43$
+\item 
+On a vu en \textbf{A . 2.} que $f'(x) = \e^{-5x+ 1}\left(-30x^2 + 2x + 12\right)$ ; comme on sait que quel que soit le réel $-5x + 1,\:\: \: \e^{-5x+ 1} \ne 0$, donc $f'(x) = 0 \iff -30x^2 + 2x + 12 = 0 \iff$
+
+$- 15x^2 + x + 6 = 0$. Comme $\Delta = (-1)^2 - 4 \times (- 15) \times 6 = 361 = 19^2 > 0$, ce trinôme s'annule pour $x_1 = \dfrac{- 1 + 19}{- 30} = -\dfrac{18}{30} = -\dfrac35$ et $x_2 = \dfrac{- 1 - 19}{- 30} = \dfrac{20}{30} = \dfrac23$.
+
+Aux points d'abscisse $- \dfrac35$ et $\dfrac23$, le nombre dérivé est nul ce qui signifie que la tangente en ces deux points est horizontale.
+\item Avec $f\left(- \dfrac35\right) \approx - 56,8$ et $f\left(\dfrac23\right) \approx 0,19$
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(-0.2,0)(11,3.1)
+\psframe(-0.2,0)(11,3.1)\psline(-0.2,2)(11,2)\psline(-0.2,2.5)(11,2.5)\psline(2,0)(2,3.1)
+\uput[u](1,2.4){$x$} \uput[u](2.4,2.4){$- \infty$} \uput[u](5,2.4){$-\frac35$} \uput[u](8,2.4){$\frac23$} \uput[u](10.5,2.4){$+ \infty$}
+\rput(0.9,2.25){\small signe de $f'(x)$}
+\rput(0.9,1){\small variations de $f$}
+\psline{->}(2.5,1.5)(4.5,0.5)\psline{->}(5.5,0.5)(7.5,1.5)\psline{->}(8.5,1.5)(10.5,0.5)
+\uput[d](2.4,2){$+ \infty$}
+\rput(3.5,2.25){$-$}\rput(6.5,2.25){+}\rput(9.5,2.25){$-$}
+\rput(5,2.25){0}\rput(8,2.25){0}
+\uput[u](5,0){$\approx - 56,8$}\uput[d](8,2){$\approx 0,19$}\uput[u](10.6,0){0}
+\end{pspicture}
+\end{center}
+
+\item 
+Sur l'intervalle $\left]- \infty~;~-\dfrac35\right[$, la fonction $f$ décroit de plus l'infini à environ $-56,8$ : d'après le théorème des valeurs intermédiaires il existe un réel $\alpha$ de cet intervalle tel que 
+
+$f(\alpha) = 1$.
+
+Sur l'intervalle $\left]-\dfrac35~;~+ \infty\right[, \: f(x) \leqslant 0,19 < 1$ : il n'existe pas de solution de l'équation $f(x) = 1$ sur cet intervalle.
+
+Conclusion : sur $\R$, l'équation $f(x) = 1$ a une solution.
+\item Pour tout réel $m$ strictement supérieur à $0,2$, on définit $I_m$ par $I_m = \displaystyle\int_{0,2}^m f(x)\:\text{d}x$.
+	\begin{enumerate}
+		\item 
+
+
+
+$F$ est un produit de fonctions dérivables sur $\R$ : sur cet intervalle :
+
+$F'(x) = \left(- \dfrac{12}{5}x - \dfrac{22}{25} \right)\e^{-5x+ 1} - 5\left(-\dfrac65 x^2 - \dfrac{22}{25}x + \dfrac{28}{125}\right)\e^{-5x+ 1} =$
+
+$ \e^{-5x+ 1}\left(- \dfrac{12}{5}x - \dfrac{22}{25} + 6x^2 + \dfrac{22}{5}x - \dfrac{28}{25}\right) = \left(6x^2 - \dfrac{10}{5}x - - \dfrac{50}{25}\right)\e^{-5x+ 1} =$
+
+$ \left(6x^2 - 2x + 2\right)\e^{-5x+ 1} = f(x)$.
+
+Sur $\R$, \: $F'(x)  = f(x)$ montre que $F$ est une primitive de la fonction $f$.
+		\item 
+
+
+On a donc $I_m = \displaystyle\int_{0,2}^m f(x)\:\text{d}x = \left[F(x) \right]_{0,2}^m = F(m) - F(0,2).$
+
+Or $F(0,2) = F\left(\dfrac15\right) = \left(-\dfrac65 \times \dfrac{1}{25} - \dfrac{22}{25}\times \dfrac{1}{5} + \dfrac{28}{125}\right)\e^{-5\times \frac{1}{5}+ 1} = \left(- \dfrac{28}{125} + \dfrac{28}{125} \right)\e^{0} = $
+
+$0 \times 1 = 0$.
+
+Il faut donc résoudre l'équation $F(m) = 0$ soit $\left(-\frac65m^2 - \frac{22}{25}m + \frac{28}{125}\right)\e^{-5m+ 1} = 0 \iff -\dfrac65 m^2 - \dfrac{22}{25}m + \dfrac{28}{125} = 0$, car quel que soit $m \in \R , \:\e^{-5m+ 1} > 0$.
+
+On étudie donc le trinôme $-\dfrac65 m^2 - \dfrac{22}{25}m + \dfrac{28}{125}$ ou encore $-150m^2 - 110m + 28$ en multipliant par 125, et en simplifiant par 2 le trinôme : $- 75m^2 - 55m + 14$.
+
+Pour ce trinôme $\Delta = (- 55)^2 - 4 \times (- 75) \times 14 = \np{7225} = 85^2 > 0$.
+
+Ce trinôme a deux racines $m_1 = \dfrac{55 + 85}{-150} = - \dfrac{140}{150} = - \dfrac{14}{15}$ et $m_2 = \dfrac{55 - 85}{-150} =  \dfrac{- 30}{-150} = \dfrac15 = 0,2$.
+
+La deuxième solution a déjà été trouvée ci-dessus ($F(0,2) = 0$).
+
+Il existe donc une autre valeur $- \dfrac{14}{15}$ telle que $F\left(- \dfrac{14}{15}\right) = 0$ mais cette solution est négative alors que l'on demande une solution supérieure à 0,2 donc positive.
+
+\textbf{Interprétation graphique}
+
+On a tracé les représentations graphiques des fonctions $f$ et $F$.
+
+La surface limitée par la représentation graphique de $f$, \: $\mathcal{C}_f$, l'axe des abscisses et les droites verticales d'équation $x = 0,2$ et $x = m$ est égale à l'intégrale $I_m$.
+
+Cette surface se compose de deux parties :
+
+\begin{itemize}
+\item une première partie correspondant à l'intégrale de 0,2 à environ 0,43 (valeur qui annule $f$) ; la courbe étant sous l'axe des abscisses l'aire  est l'opposée de l'intégrale ;
+\item une deuxième partie correspondant à l'intégrale de 0,43 à $m$  ; la courbe étant au dessus  de l'axe des abscisses l'aire  est égale à  l'intégrale.
+
+On a trouvé qu'il n'existe pas de valeur de $m$ telle que $I_m$ s'annule signifie géométriquement que quel que soit $m > 0,2$, l'aire de la surface située au dessus de l'axe des abscisses n'est pas égale à l'aire de la surface située sous l'axe des abscisses.
+
+On voit aussi que pour $m > 0,2$ aucun point de la représentation de $F$ (en rouge) n'a une ordonnée nulle.
+\end{itemize}
+
+	\end{enumerate}
+\end{enumerate}
+
+\begin{center}
+\psset{unit=5cm,arrowsize=2pt 3}
+\begin{pspicture*}(-0.4,-1.4)(2,1)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-0.4,-1.4)(2,1)
+\psgrid[gridlabels=0pt,subgriddiv=10]
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-1}{2}{0.224 x dup mul 1.2 mul sub 0.88 x  mul sub 2.71828 5 x mul 1 sub exp div}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-1}{2}{x dup mul 6 mul 2 x  mul add 2 sub 2.71828 5 x mul 1 sub exp div}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-2.8}{0}{x dup mul 6 mul 2 x  mul add 2 sub 2.71828 5 x mul 1 sub exp div}
+\uput[ur](1,0.12){\blue $\mathcal{C}_f$}\uput[ur](0.1,0.2){\red $\mathcal{C}_F$}
+\pscustom[fillstyle=hlines,linecolor=blue]{\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0.2}{0.43}{x dup mul 6 mul 2 x  mul add 2 sub 2.71828 5 x mul 1 sub exp div}\psline(0.43,0)(0.2,0)(0.2,-1.4)}
+\pscustom[fillstyle=vlines,linecolor=blue]{\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0.43}{1.2}{x dup mul 6 mul 2 x  mul add 2 sub 2.71828 5 x mul 1 sub exp div}\psline(1.2,0.08)(1.2,0)(0.43,0)}
+\uput[d](1.2,0){$m$}
+\end{pspicture*}
+\end{center}
+
+\end{document}

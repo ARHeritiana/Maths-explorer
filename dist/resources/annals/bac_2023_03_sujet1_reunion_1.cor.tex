@@ -1,0 +1,206 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet1_reunion_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Une entreprise appelle des personnes par téléphone pour leur vendre un produit. 
+
+\begin{itemize}
+\item L'entreprise appelle chaque personne une première fois:
+\begin{itemize}
+\item[$\bullet~~$]la probabilité que la personne ne décroche pas est égale à 0,6 ;
+\item[$\bullet~~$]si la personne décroche, la probabilité qu'elle achète le produit est égale à 0,3.
+\end{itemize}
+\item Si la personne n'a pas décroché au premier appel, on procède à un second appel: 
+\begin{itemize}
+\item[$\bullet~~$]la probabilité que la personne ne décroche pas est égale à $0,3$ ;
+\item[$\bullet~~$]si la personne décroche, la probabilité qu'elle achète le produit est égale à 0,2.
+\end{itemize}
+\item Si une personne ne décroche pas au second appel, on cesse de la contacter.
+\end{itemize}
+
+\medskip
+
+On choisit une personne au hasard et on considère les évènements suivants : 
+
+\begin{description}
+\item[ ] $D_1$ : \og la personne décroche au premier appel\fg{} ;
+\item[ ] $D_2$ : \og la personne décroche au deuxième appel\fg{} ;
+\item[ ] $A$ : \og la personne achète le produit \fg.
+\end{description}
+
+
+
+\bigskip
+
+\textbf{Partie A}
+
+\begin{enumerate}
+\item On  complète l'arbre pondéré.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.cm]{\TR{}}
+{\pstree{\TR{$D_1$~}\taput{\blue$0,4$}}
+	{\TR{$A$}\taput{$0,3$}
+	\TR{$\overline{A}$}\tbput{\blue$0,7$}
+	}
+\pstree{\TR{$\overline{D_1}$~}\tbput{$0,6$}}
+	{\pstree{\TR{$D_{2}$}\taput{\blue$0,7$}}
+		{\TR{$A$}\taput{\blue$0,2$}
+		\TR{$\overline{A}$}\tbput{\blue$0,8$}
+		}
+	\TR{$\overline{D_{2}}$}\tbput{\blue$0,3$}
+		}
+}
+\end{center}
+
+
+\item En utilisant les propriétés de l'arbre pondéré, on a: 
+
+$P(A) = P\left (D_{1}\cap A\right ) + P\left (\overline{D_{1}} \cap D_{2} \cap A\right )= 0,4\times 0,3 + 0,6 \times 0,7 \times 0,2 = 0,204$
+
+\item On sait que la personne a acheté le produit.
+
+La probabilité qu'elle ait décroché au premier appel est:
+
+$P_{A}\left (D_{1}\right )
+= \dfrac{P\left ( D_{1} \cap A\right )}{P(A)}
+= \dfrac{0,4\times 0,3}{0,204}
+\approx 0,588$
+
+\end{enumerate}
+
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On rappelle que, pour une personne donnée, la probabilité qu'elle achète le produit est égale à $0,204$.
+
+
+
+\begin{enumerate}
+\item On considère un échantillon aléatoire de $30$ personnes.
+
+On note $X$ la variable aléatoire qui donne le nombre de personnes de l'échantillon qui achètent le produit.
+	\begin{enumerate}
+		\item On admet que X suit une loi binomiale; ses paramètres sont $n=30$ et $p=0,204$.
+		
+		\item La probabilité qu'exactement 6 personnes de l'échantillon achètent le produit est:
+		
+$P(X=6)= \ds\binom{30}{6}\times 0,204^{6}\times \left (1-0,204\right )^{30-6}
+\approx 0,179$
+		
+		
+
+		\item 
+L'espérance de la variable aléatoire $X$ est $E(X)=np = 30\times 0,204 = 6,12$.
+
+Donc pour chaque échantillon de 30 personnes, il y en a en moyenne $6,12$ qui achètent le produit.
+
+	\end{enumerate}
+\item Soit $n$ un entier naturel non nul.
+On considère désormais un échantillon de $n$ personnes. 
+
+La plus petite valeur de $n$ telle que la probabilité qu'au moins l'une des personnes de l'échantillon achète le produit soit supérieure ou égale à $0,99$ est le plus petit entier naturel $n$ tel que $P(X\geqslant 1) \geqslant 0,99$. On résout cette inéquation.
+
+$\begin{gathered}P(X\geqslant 1) \geqslant 0,99
+\iff 1-P(X=0) \geqslant 0,99
+\iff 0,01 \geqslant P(X=0)\\
+\phantom{P(X\geqslant 1) \geqslant 0,99}
+\iff 0,01 \geqslant \ds\binom{n}{0}\times  0,204^0 \times (1-0,204)^n
+\iff 0,01\geqslant 0,796^n\\
+\phantom{P(X\geqslant 1) \geqslant 0,99}
+\iff \ln(0,01) \geqslant \ln\left (0,796^n\right )
+\iff \ln(0,01) \geqslant n\ln(0,796)
+\iff \dfrac{\ln(0,01)}{\ln(0,796)} \leqslant n\end{gathered}$
+
+Or $\dfrac{\ln(0,01)}{\ln(0,796)}\approx 20,2$ donc la valeur de $n$ cherchée est 21.
+
+\end{enumerate}
+
+\bigskip
+
+\end{document}

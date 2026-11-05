@@ -1,0 +1,48 @@
+\medskip
+
+Une entreprise fabrique des pièces en acier, toutes identiques, pour l’industrie
+aéronautique.
+
+Ces pièces sont coulées dans des moules à la sortie du four. Elles sont stockées dans un
+entrepôt dont la température ambiante est maintenue à 25\textcelsius.
+
+Ces pièces peuvent être modelées dès que leur température devient inférieure ou égale à
+600\textcelsius{} et on peut les travailler tant que leur température reste supérieure ou égale à 500\textcelsius.
+
+La température de ces pièces varie en fonction du temps.
+
+On admet que la température en degré Celsius de ces pièces peut être modélisée par la
+fonction $f$ définie sur l’intervalle $[0 ; +\infty[$ par :
+\[f(t) = \np{1 375}\e^{-0,075t} + 25,\]
+où $t$ correspond au temps, exprimé en heures, mesuré après la sortie du four.
+
+\begin{enumerate}
+\item  Calculer la température des pièces à la sortie du four.
+\item Étudier le sens de variation de la fonction $f$ sur l’intervalle $[0 ; +\infty[$.
+
+ Ce résultat était-il prévisible dans le contexte de l’exercice ?
+\item Les pièces peuvent-elles être modelées 10 heures après la sortie du four ? Après 14 heures ?
+\item On souhaite déterminer le temps minimum d’attente en heures après la sortie du four avant
+de pouvoir modeler les pièces.
+
+\begin{enumerate}
+\item  Compléter l’algorithme donné ci-dessous pour qu’il renvoie ce temps minimum d’attente en heure (arrondi par excès à 0,1 près).
+
+\begin{tabular}[]{l}
+from math import exp\\
+def f(t) :\\
+\phantom{xxxx}return 1375*exp (-0.075 t)+25\\
+def seuil(()\\
+\phantom{xxxx}t=\dotfill\\\
+\phantom{xxxx}temperature =\dotfill\\
+\phantom{xxxx}while temperature >=\dotfill\\
+\phantom{xxxxxx}t=t+0.1\\
+\phantom{xxxxxx}temperature =\dotfill\\
+\phantom{xxxx}return t\\
+\end{tabular}
+
+\item Déterminer ce temps minimum d’attente. On arrondira au dixième.
+\end{enumerate}
+\end{enumerate}
+
+\vspace{0,5cm}

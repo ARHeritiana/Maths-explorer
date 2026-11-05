@@ -1,0 +1,91 @@
+\medskip
+
+On considère la suite $\left(u_{n}\right)$ définie par: 
+$\left\{
+\begin{array}{l}
+u_{1}=\dfrac{1}{\e} \\
+\text{pour tout entier } n \geqslant 1,\: u_{n+1}=\dfrac{1}{\e}\left(1+\dfrac{1}{n}\right) u_{n}
+\end{array}
+\right.$
+
+\begin{enumerate}
+	\item 
+\begin{list}{\textbullet}{}
+\item Pour $n=1$: $u_2=u_{1+1}=\dfrac{1}{\e}\left (1+\dfrac{1}{1}\right )u_1 =\dfrac{1}{\e}(2)\dfrac{1}{\e}=\dfrac{2}{\e^{2}}$
+\item Pour $n=2$: $u_3=u_{2+1}=\dfrac{1}{\e}\left (1+\dfrac{1}{2}\right )u_2 =\dfrac{1}{\e}\left (\dfrac{3}{2}\right )\dfrac{2}{\e^2}=\dfrac{3}{\e^{3}}$
+\end{list}
+
+	\item On considère une fonction écrite en langage Python qui, pour un entier naturel $n$ donné, affiche le terme $u_{n}$. On complète les lignes $L_{2}$ et $L_{4}$ de ce programme.
+
+	\begin{center}
+		\begin{tabular}{|c|>{\ttfamily}l|}
+			\hline
+			$L_{1}$ & def suite(n): \\
+			$L_{2}$ & ~~\blue u = 1/e \\
+			$L_{3}$ & ~~for i in range(1, n): \\
+			$L_{4}$ & ~~~~u = \blue 1/e*(1+1/i)*u\\
+			$L_{5}$ & return u \\
+			\hline
+		\end{tabular}
+	\end{center}
+
+	\item On admet que tous les termes de la suite $\left(u_{n}\right)$ sont strictement positifs.
+	\begin{enumerate}
+		\item 
+$n\geqslant 1 \implies \dfrac{1}{n}\leqslant 1 \implies 1+\dfrac{1}{n}\leqslant 2$ donc $1+\dfrac{1}{n}\leqslant \e$
+
+		\item 
+$1+\dfrac{1}{n}\leqslant \e$ donc $\dfrac{1}{\e} \left (1+\dfrac{1}{n}\right )\leqslant 1$
+
+Or pour tout $n$, $u_n>0$, donc:
+$\dfrac{1}{\e} \left (1+\dfrac{1}{n}\right ) u_n\leqslant u_n$
+c'est-à-dire $u_{n+1}\leqslant u_n$.
+
+La suite $\left(u_{n}\right)$ est décroissante.
+		
+		\item 
+Pour tout $n$, $u_n>0$ donc la suite $(u_n)$ est minorée par 0.
+
+On a démontré que cette suite était décroissante donc, d'après le théorème de la convergence monotone, la suite $(u_n)$ est convergente.		
+		\end{enumerate}
+
+	\item \begin{enumerate}
+		\item Soit $\mathcal{P}_n$ la propriété: $u_{n}=\dfrac{n}{\e^{n}}$.
+		
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+Pour $n=1$: $u_1=\dfrac{1}{\e}$ et $\dfrac{n}{\e^{n}}=\dfrac{1}{\e}$
+
+Donc la propriété est vraie au rang $n=1$.
+
+\item \textbf{Hérédité}
+
+On suppose que la propriété est vraie au rang $n\geqslant 1$; c'est l'hypothèse de récurrence.
+
+$u_{n+1} = \dfrac{1}{\e}\left (1+\dfrac{1}{n}\right ) u_n
+= \dfrac{1}{\e}\left (\dfrac{n+1}{n}\right ) \dfrac{n}{\e^n}
+= \dfrac{n+1}{\e^{n+1}}$
+donc la propriété est vraie au rang $n+1$.
+\item \textbf{Conclusion}
+
+La propriété est vraie au rang 1, elle est héréditaire pour tout $n\geqslant 1$, donc, d'après le principe de récurrence, elle est vraie pour tout $n\geqslant 1$.
+\end{list}		
+		
+On a donc démontré que, pour tout $n\geqslant 1$, on a: $u_{n}=\dfrac{n}{\e^{n}}$.
+
+		\item 
+On sait que
+$\ds\lim _{x\to +\infty} \dfrac{\e^{x}}{x}=+\infty$,
+donc		
+$\ds\lim _{x\to +\infty} \dfrac{x}{\e^{x}}=0$.
+
+On en déduit que
+$\ds\lim _{n\to +\infty} \dfrac{n}{\e^{n}}=0$
+et donc que
+$\ds\lim _{n\to +\infty} u_n=0$.
+
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

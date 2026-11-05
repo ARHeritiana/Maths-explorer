@@ -1,0 +1,148 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specialite_2026_04_polynesie_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\emph{Pour $t \in [0~;~13]$, $f(t) = \left(t^2 + t + 1\right)\e^{-t}$ où $t$ est le nombre
+d'heures écoulées depuis l'injection et $f(t)$ la concentration du médicament dans le sang,
+en g/L.}
+
+\begin{enumerate}
+	\item $f(0) = \left(0^2 + 0 + 1\right)\e^{0} = 1 \times 1 = 1$.
+
+	Au moment de l'injection, la concentration du médicament dans le sang est de
+	1~g/L.
+
+	\item
+	\begin{enumerate}
+		\item $f$ est un produit $uv$ avec $u(t) = t^2 + t + 1$, $u'(t) = 2t + 1$ et
+		$v(t) = \e^{-t}$, $v'(t) = -\e^{-t}$. Pour tout $t$ de $[0 ; 13]$ :
+		\[f'(t) = (2t + 1)\e^{-t} + \left(t^2 + t + 1\right)\times\left(-\e^{-t}\right)
+		= \e^{-t}\left[(2t + 1) - \left(t^2 + t + 1\right)\right]
+		= \e^{-t}\left(-t^2 + t\right)\]
+		donc $f'(t) = t(-t + 1)\e^{-t}$.
+
+		\item Le facteur $t$ s'annule en 0 ;\\
+
+		 $-t + 1 \geqslant 0 \iff t \leqslant 1$.
+
+		\begin{center}
+			\begin{tikzpicture}
+				\tkzTabInit[lgt=3.4,espcl=2.6]
+				{$t$/1,$t$/1,$-t+1$/1,$t(-t+1)$/1}{$0$,$1$,$13$}
+				\tkzTabLine{z,+,,+,}
+				\tkzTabLine{,+,z,-,}
+				\tkzTabLine{z,+,z,-,}
+			\end{tikzpicture}
+		\end{center}
+
+		\item Pour tout réel $t$, $\e^{-t} > 0$ : le signe de $f'(t)$ est celui de
+		$t(-t + 1)$.
+
+		\begin{center}
+			\begin{tikzpicture}
+				\tkzTabInit[lgt=3.4,espcl=2.8]
+				{$t$/1,$f'(t)$/1,$f$/2}{$0$,$1$,$13$}
+				\tkzTabLine{z,+,z,-,}
+				\tkzTabVar{-/,+/,-/}
+			\end{tikzpicture}
+		\end{center}
+
+Il n'est pas demandé de calculer les images.
+	\end{enumerate}
+
+	\item Le médicament reste actif tant que $f(t) \geqslant 0,1$. Comme $f$ est décroissante sur $[1~;~13]$ :
+
+\begin{center}
+\begin{tblr}{hlines, vlines, colspec={c*{11}{X[c]}}, cells={font=\small}}
+$t$ & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+$f(t)$ & 0,647 & 0,385 & 0,209 & \textbf{0,107} & 0,052 & 0,025 & 0,011 & 0,005 & 0,002 & 0,001 & 0 \\
+\end{tblr}
+\end{center}
+
+	$f(6) \approx 0,107 \geqslant 0,1$ et $f(7) \approx 0,052 < 0,1$.
+
+	Le nombre maximal d'heures pendant lequel le médicament reste actif est
+	$t_0 = 6$. La nouvelle injection doit être pratiquée au bout de
+	6 heures.
+\end{enumerate}
+
+\end{document}

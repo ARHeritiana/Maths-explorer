@@ -1,0 +1,166 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet64_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Lors des journées classées \og rouges \fg{} selon Bison Futé, l'autoroute qui relie Paris à Limoges
+en passant par Orléans est surchargée.
+
+Lors de ces journées classées \og rouges \fg{}, on a pu observer le comportement des
+automobilistes faisant le trajet de Paris à Limoges en passant par Orléans.
+\begin{itemize}
+\item Pour le trajet de Paris à Orléans, 30\,\% d'entre eux prennent la route nationale, les
+autres prennent l'autoroute.
+
+\item Pour le trajet d'Orléans à Limoges :
+
+\begin{itemize}
+\item  parmi les automobilistes ayant pris la route nationale entre Paris et Orléans,
+
+40\,\% prennent la route départementale, les autres prennent l'autoroute ;
+
+ \item parmi les automobilistes n'ayant pas pris la route nationale entre Paris et Orléans, 
+ 
+45\,\% prennent la route départementale, les autres prennent l'autoroute.
+\end{itemize}
+\end{itemize}
+On choisit un automobiliste au hasard parmi ceux effectuant, en journée classée rouge, le
+trajet Paris - Limoges en passant par Orléans.
+
+On note $N$ l'événement \og l'automobiliste prend la route nationale entre Paris et Orléans \fg{}
+et $D$ l'événement \og l'automobiliste prend la route départementale entre Orléans et
+Limoges \fg.
+
+Si $A$ est un évènement, on note $\overline{A}$ l'évènement contraire de A.
+
+\medskip
+
+\begin{enumerate}
+\item  Recopier sur la copie et compléter l'arbre ci-dessous.
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$N$~~}\taput{$\dots$}}
+	{
+	\TR{$D$}\taput{$\dots$}
+	\TR{$\overline{D}$}\tbput{$\dots$}
+	}
+\pstree{\TR{$\overline{N}$~~}\tbput{$\dots$}}
+	{\TR{$D$}\taput{$\dots$}
+	\TR{$\overline{D}$}\tbput{$\dots$}
+	}
+}
+\end{center}
+
+
+
+\item Calculer $p\left(\overline{N}\cap \overline{D}\right)$  et interpréter le résultat.
+\item Montrer que la probabilité que l'automobiliste ne choisisse pas la Route Départementale
+entre Orléans et Limoges est 0,565.
+\end{enumerate}
+Lors de ces journées classées \og rouges \fg, on donne les temps de parcours suivants :
+
+Paris - Orléans, par autoroute : 3 heures ;
+
+Paris - Orléans, par nationale : 2 heures ;
+
+Orléans - Limoges, par autoroute : 4 heures ;
+
+Orléans - Limoges, par départementale : 3 heures et demie.
+\begin{enumerate}[resume]
+\item Recopier et compléter le tableau ci-dessous, qui donne pour chaque trajet, le temps en
+heure et la probabilité :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|m{3cm}|*{4}{>{\centering \arraybackslash}X|}} \hline
+Évènement 		&$N\cap D$ &$N\cap \overline{D}$ &$\overline{N}\cap D$& $\overline{N}\cap\overline{D}$\\\hline
+Temps en heure 	& 5,5 &&&\\\hline
+Probabilité 	&0,12&&&\\\hline
+\end{tabularx}
+\end{center}
+
+\item Calculer l'espérance de la variable aléatoire qui donne la durée du trajet en heure et en
+donner une interprétation.
+\end{enumerate}
+
+\end{document}

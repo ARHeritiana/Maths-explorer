@@ -1,0 +1,266 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet2_metropole_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{\centering Partie A}
+
+			Soit $f$ une fonction définie et dérivable sur l'intervalle $[0 ;+\infty[$ dont on donne ci-dessous une partie de la courbe représentative $\mathcal{C}_f$ dans un repère orthogonal.
+
+			\begin{minipage}{0.45\linewidth}
+				On note $f'$ sa fonction dérivée.\\
+
+			\begin{list}{\textbullet}{On précise que:}
+				\item la courbe $\mathcal{C}_f$ admet une tangente parallèle à l'axe des abscisses au point C d'abscisse 1;
+
+				\item la tangente $T_{\mathrm{A}}$ à la courbe $\mathcal{C}_f$ au point A$\left(\dfrac{1}{2} ; 0 \right)$ passe par le point B$\left(1 ; \e^{2}\right)$.
+			\end{list}
+
+\medskip
+
+			\begin{enumerate}
+				\item À l'aide du graphique ci-contre :
+					\begin{enumerate}
+						\item Donner $f'(1)$.
+
+						\item Donner la solution de l'équation $f(x)=0$ sur l'intervalle $[0 ; 3]$.
+					\end{enumerate}
+
+				\item Déterminer $f'\left(\dfrac{1}{2}\right)$.
+			\end{enumerate}
+			\end{minipage}
+			\hfill
+			\begin{tikzpicture}[baseline={(current bounding box.center)}]
+				\begin{axis}[/pgf/number format/.cd, use comma,
+					x={15mm}, y={7.5mm},
+					xmin = -0.4, xmax = 4.7,
+					ymin = -3.4, ymax = 8.6,
+					xtick={0,1,...,5},
+					ytick ={-3,...,8},
+					xticklabels={0,1},
+					yticklabels={,,,0,1},
+					minor tick num = 0,
+					grid=major, axis lines =center]
+					\draw[teal,line width=0.8pt] (0,-7.389)--(1.5,14.778) node[pos=0.71,right]{$T_{\mathrm{A}}$};
+					\addplot [line width=1.2pt,color=red,smooth,samples=100,domain= 0.2:5 ]{(2*x-1)*exp(-2*x+3)};
+					\node[below left] at (axis cs: 0,0) {{0}};
+					\node[red] at(axis cs: 3.2,0.6) {$ \mathcal{C}_f $};
+					\draw[shift={(axis cs: 0.5,0)}] (2pt,-2pt)--(-2pt,2pt) (-2pt,-2pt)--(2pt,2pt) node[above left]{A} ;
+					\draw[shift={(axis cs: 1,7.389)}] (2pt,-2pt)--(-2pt,2pt) (2pt,2pt)--(-2pt,-2pt) node[left]{B} ;
+					\draw[shift={(axis cs: 1,2.718)}] (2pt,-2pt)--(-2pt,2pt) (-2pt,-2pt)--(2pt,2pt) node[above right]{C} ;
+				\end{axis}
+			\end{tikzpicture}
+
+			\begin{enumerate}[start=3]
+				\item Parmi les trois courbes $\mathcal{C}_{1}$, $\mathcal{C}_{2}$ et $\mathcal{C}_{3}$ ci-dessous, deux représentent des primitives de la fonction $f$.
+
+				Indiquer lesquelles et justifier.
+
+				\begin{center}
+					\begin{tikzpicture}[baseline={(current bounding box.center)}]
+						\begin{axis}[/pgf/number format/.cd, use comma,
+							x={19mm}, y={10mm},
+							xmin = -0.4, xmax = 4.7,
+							ymin = -3.4, ymax = 5.4,
+							xtick={0,1,...,5},
+							ytick ={-3,...,8},
+							xticklabels={0,1},
+							yticklabels={,,,0,1},
+							minor tick num = 0,
+							grid=major, axis lines =center]
+							\node[below left] at (axis cs: 0,0) {{0}};
+							\addplot [line width=1.2pt,color=red,smooth,samples=100, dashed,domain= 0:5 ]{-x*exp(-2*x+3)+exp(1)+1};
+							\node[red] at(axis cs: 2.3,3.6) {$ \mathcal{C}_1 $};
+							\addplot [line width=1.2pt,color=teal,smooth,samples=100, dotted,domain= 0:5 ]{-x*exp(-2*x+3)+exp(1)-1};
+							\node[teal] at(axis cs: 2.3,1.6) {$ \mathcal{C}_2 $};
+							\addplot [line width=1.2pt,color=blue,smooth,samples=100, dashdotted ,domain= 0:5 ]{-(x-0.4)*exp(-2*(x-.4)+3)+exp(1)-1};
+							\node[blue] at(axis cs: 2.3,0.4) {$ \mathcal{C}_3 $};
+						\end{axis}
+					\end{tikzpicture}
+				\end{center}
+			\end{enumerate}
+
+
+		\subsection*{\centering Partie B}
+
+			\begin{minipage}{0.55\linewidth}
+				Un industriel doit créer un logo représentant la forme ci-contre (Fig. 1).
+
+				La dimension de \np[cm]{0,3} indiquée sur la figure est une contrainte imposée par le client.
+
+				\bigskip
+
+				L'industriel choisit de modéliser le contour de ce logo à l'aide d'une portion de la courbe de la fonction $f$ vue en \textbf{partie A}, et de l'image de cette portion par la symétrie par rapport à l'axe des abscisses, sur un intervalle $[0,5 ; \alpha]$.
+
+				Le nombre $\alpha$ est un réel supérieur à 1 que l'on déterminera dans cette partie.
+
+\medskip
+
+				L'ensemble est représenté graphiquement dans un repère orthonormé (Fig. 2) d'unité 1 cm.
+			\end{minipage}
+			\hfill
+			\begin{tikzpicture}[baseline={(current bounding box.center)},>=stealth]
+				\begin{axis}[/pgf/number format/.cd, use comma,
+					x={12mm}, y={12mm},
+					xmin = 0.4, xmax = 4.2,
+					ymin = -3, ymax = 3,
+					axis lines=none,
+					xtick=\empty, ytick=\empty, grid=none]
+					\addplot [line width=1.2pt,color=red,smooth,samples=100,domain= 0.5:3.312]{(2*x-1)*exp(-2*x+3)};
+					\addplot [line width=1.2pt,color=red,smooth,samples=100,domain= 0.5:3.312]{-(2*x-1)*exp(-2*x+3)};
+					\draw[red,line width=1.2pt](axis cs: 3.312,-0.15)--(axis cs: 3.312,0.15) ;
+					\draw[line width=0.8pt,<->](axis cs: 3.45,-0.15)--(axis cs: 3.45,0.15) node[pos=0.5,right] {\np[cm]{0,3}};
+					\node at(axis cs: 2.3,-2.5) {Fig. 1};
+				\end{axis}
+			\end{tikzpicture}
+
+			On admet que la fonction $f$ est définie sur l'intervalle $[0 ;+\infty[$ par :
+			\[f(x)=(2 x-1) \e^{-2 x+3}.\]
+			\begin{minipage}{0.55\linewidth}
+			\begin{enumerate}
+				\item \begin{enumerate}
+					\item Vérifier que pour tout réel $x$ appartenant à l'intervalle $[0 ;+\infty[$ :
+					\[f(x)=\e^{2} \times \dfrac{2 x-1}{\e^{2 x-1}}.\]
+
+					\item En déduire la limite de $f$ en $+\infty$.
+
+					(On pourra poser $X = 2x-1)$.
+				\end{enumerate}
+
+				\item \begin{enumerate}
+					\item Montrer que,
+
+					 pour tout $x$ de l'intervalle $[0 ; +\infty[$,
+					\[f'(x)=(-4 x+4) \e^{-2 x+3}.\]
+					\item Construire le tableau complet des variations de la fonction $f$ sur l'intervalle $[0 ;+\infty[$.
+				\end{enumerate}
+				\item Justifier que la contrainte imposée par le client se traduit par l'égalité
+				\quad $f(\alpha)=0,15$.
+
+				Montrer qu'il existe une unique valeur de $\alpha$ dans l'intervalle $[1 ;+\infty[$ qui permette de vérifier cette égalité.
+
+				En donner une valeur arrondie au dixième.
+			\end{enumerate}
+			\end{minipage}
+			\hfill
+				\begin{tikzpicture}[baseline={(current bounding box.center)},>=stealth]
+					\begin{axis}[/pgf/number format/.cd, use comma,
+						x={14mm}, y={14mm},
+						xmin = -0.4, xmax = 3.8,
+						ymin = -3.1, ymax = 3.1,
+						xtick={0,1,...,5},
+						ytick ={-3,...,8},
+						xticklabels={0,1},
+						yticklabels={,,,0,1},
+						minor tick num = 0,
+						grid=major, axis lines =center]
+						\node[below left] at (axis cs: 0,0) {{0}};
+						\addplot [name path = Cf,line width=1.2pt,color=red,smooth,samples=100,domain= 0.5:3.312]{(2*x-1)*exp(-2*x+3)};
+						\addplot [name path = Cg,line width=1.2pt,color=red,smooth,samples=100,domain= 0.5:3.312,dashed]{-(2*x-1)*exp(-2*x+3)};
+						\addplot[fill=gray,fill opacity=0.1] fill between[of=Cf and Cg];
+						\node[right] at(axis cs: 3.312,-0.2) {$\alpha$};
+						\node[red] at(axis cs: 2.7,0.7) {$ \mathcal{C}_f $};
+						\node[fill=white] at(axis cs: 2,-3) {Fig. 2};
+					\end{axis}
+				\end{tikzpicture}
+
+		\subsection*{\centering Partie C}
+
+			On fabrique un porte-clé en découpant une plaque d'acier suivant la forme du logo représenté par la surface grisée en figure 2 de la \textbf{partie B}.
+
+			On précise que cette plaque a une épaisseur de $\np[cm]{0,2}$.
+
+			\begin{enumerate}
+				\item On considère :
+				\[I=\int_{0,5}^{3,3} f(x) \,\mathrm{d} x\]
+
+				À l'aide d'une intégration par parties, montrer que l'intégrale $I$ arrondie au dixième est égale à 3,6.
+
+				\item On précise que le volume du porte-clé est égal à :
+
+\begin{center}
+\emph{Aire du logo} $\times$ \emph{épaisseur de la plaque}
+\end{center}
+
+				Déterminer le volume du porte-clé en $\mathrm{cm}^{3}$, arrondi au dixième.
+			\end{enumerate}
+
+\end{document}

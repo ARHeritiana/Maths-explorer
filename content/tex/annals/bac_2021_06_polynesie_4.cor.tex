@@ -1,0 +1,114 @@
+\medskip
+
+
+
+
+
+
+
+
+
+\medskip
+
+
+
+
+\begin{center}
+\psset{unit=1.25cm}
+\begin{pspicture*}(-3,-0.95)(3.5,3.5)
+\psgrid[gridlabels=0pt,subgriddiv=1,griddots=8]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-3,-0.95)(3.5,3.5)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-2.25}{3.5}{x 2 add 2.71828 x exp div}
+\psplot[plotpoints=200,linewidth=1.5pt,linestyle=dotted]{-1.5}{2.5}{ 2 x sub}
+\uput[ul](-1.6,2){\red $\mathcal{C}$}\uput[ur](0,2){A}\uput[ur](2,0){B}
+\uput[d](3.4,0){\small $x$}\uput[l](0,3.4){\small $y$}
+\end{pspicture*}
+\end{center}
+
+
+
+\bigskip
+
+\begin{center}\textbf{Partie 1}\end{center}
+
+
+
+\medskip
+
+\begin{enumerate}
+\item $\bullet~~$A a pour ordonnée $f(0) = 2$ ;
+
+
+$\bullet~~$Le nombre dérivé $f'(0) = \dfrac{y_{\text{B}} - y_{\text{A}}}{x_{\text{B}} - x_{\text{A}}} = \dfrac{0 - 2}{2 - 0} = \dfrac{-2}{2} = - 1$.
+\item 
+La fonction $f$ semble convexe sur l'intervalle $[0 ~;~+\infty[$.
+\end{enumerate}
+
+\bigskip
+
+\begin{center}\textbf{Partie 2}\end{center}
+
+On note $(E)$ l'équation différentielle : $y' = -y + \text{e}^{-x}$.
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+
+On sait que les solutions de l'équation $(H)\,:\, y'=-y$ sont les fonctions $x \longmapsto K\text{e}^{-x}$, avec $K \in \R$.
+\item 
+Les solutions de l'équation $(E)$ sont donc les fonctions 
+
+\[x \longmapsto x\text{e}^{-x} + K\text{e}^{-x} = (x + K)\text{e}^{-x},\, K \in \R.\]
+
+\item 
+Avec $f(x) = (x + K)\text{e}^{-x}$ et 
+$f(0) = 2$, on a: $(0+K)\text{e}^{-0} = 2 \iff K = 2$.
+
+Conclusion : $f(x) = (x + 2)\text{e}^{-x}$.
+\end{enumerate}
+
+\bigskip
+
+\begin{center}\textbf{Partie 3}\end{center}
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+Puisque $f$ est solution de l'équation différentielle $(E)$; on a donc 
+		
+$f'(x) = - f(x) + \text{e}^{-x} = -(x+2)\text{e}^{-x} + \text{e}^{-x} = \text{e}^{-x}(- x - 2 + 1) = (- x - 1)\text{e}^{-x}$.
+		\item 
+
+
+
+
+Comme quel que soit $x \in \R$, \, $\text{e}^{-x} > 0$, le signe de $f'(x)$ est celui de $- x - 1$. Donc :
+
+$- x - 1 > 0 \iff - 1 > x \iff x < - 1$ ; 
+
+$- x - 1 < 0 \iff - 1 < x \iff x > - 1$ ;
+
+$- x - 1 = 0 \iff - 1 = x $.
+
+La fonction est donc croissante sur $]- \infty~;~-1[$, décroissante sur $]- 1~;~+ \infty[$ et a donc un maximum $f(- 1) = (- 1 + 2)\text{e}^{-(-1)} = \text{e}$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+		De $f'(x) = -f(x) + \text{e}^{-x}$, on obtient en dérivant :
+		
+		$f''(x) = - f'(x) - \text{e}^{-x} = - (- x - 1)\text{e}^{-x} - \text{e}^{-x} = \text{e}^{-x}(x + 1 - 1) = x\text{e}^{-x}$.
+		\item 
+D'après le résultat précédent sur $[0~;~+\infty[$, \, $x \geqslant  0$ et $\text{e}^{-x} > 0$, donc le produit $x \text{e}^{-x} \geqslant 0$ : la dérivée seconde est positive, la fonction $f$ est convexe sur $[0~;~+\infty[$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

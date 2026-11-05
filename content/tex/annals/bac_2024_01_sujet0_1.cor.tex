@@ -1,0 +1,99 @@
+\medskip
+
+\noindent {\Large \textbf{Partie 1}}
+
+\medskip
+
+
+On considère l'équation différentielle :  $(E): y' + y = \e^{-x}$.
+
+\begin{enumerate}
+\item Soit $u$ la fonction définie sur $\R$ par $u(x) = x \e^{-x}$.
+
+
+$u'(x)+u(x)=\left (\e^{-x}+x\times (-1)\e^{-x}\right )+x\e^{-x}
+=\e^{-x}-x\e^{-x} + x\e^{-x} = \e^{-x}$
+
+Donc  la fonction $u$ est une solution de l'équation différentielle $(E)$.
+
+\item On considère l'équation différentielle $\left(E'\right): y' + y = 0$ soit $\left(E'\right) \iff y'=-y$.
+
+L'équation différentielle $y'=ay$ a pour solutions les fonctions $x \longmapsto k\e^{ax}$ avec \mbox{$k\in\R$}, donc l'équation différentielle $\left(E'\right)$ a pour solutions les fonctions $x \longmapsto k\e^{-x}$ avec $k\in\R$.
+
+\item 
+La solution générale de l'équation $(E)$ est la somme de la solution générale de l'équation sans second membre associée $(E')$, et d'une solution particulière de $(E)$.
+
+On en déduit que les solutions de l'équation différentielle $(E)$ sont les fonctions $x \longmapsto k\e^{-x} + x\e^{-x}$ avec $k\in\R$.
+
+\item On cherche l'unique solution $g$ de l'équation différentielle $(E)$ telle que $g(0) = 2$.
+
+$g(0)=2 \iff k\e^{0}+0=2 \iff k=2$; donc $g(x)=(x+2)\e^{-x}$.
+\end{enumerate}
+
+
+\medskip
+
+\noindent {\Large \textbf{Partie 2}}
+
+\medskip
+
+
+Dans cette partie, $k$ est un nombre réel fixé que l'on cherche à déterminer.
+
+On considère la fonction $f_{k}$ définie sur $\R$ par : $f_{k}(x) = (x + k) \e^{-x}.$
+
+Soit $h$ la fonction définie sur $\R$ par $h(x) = \e^{-x}.$
+
+On note $\mathcal{C}_{k}$ la courbe représentative de la fonction $f_{k}$ dans un repère orthogonal et $\mathcal{C}$ la courbe représentative de la fonction $h$.
+
+On a représenté sur le graphique suivant les courbes $\mathcal{C}_{k}$ et $\mathcal{C}$ sans indiquer les unités sur les axes ni le nom des courbes.
+
+
+\begin{center}
+\psset{unit=2cm}
+\def\xmin{-2.5} \def\xmax{4.5} \def\ymin{-0.5} \def\ymax{3}
+\begin{pspicture*}(\xmin,\ymin)(\xmax,\ymax)
+
+\psaxes[arrowsize=3pt 3, ticksize=-2pt 2pt,ticks=none, labels=none](0,0)(\xmin,\ymin)(\xmax,\ymax) 
+\uput[dl](0,0){O}
+
+
+\def\f{2.7183 -1 x mul exp}
+\def\g{x 2 add 2.7183 -1 x mul exp mul}
+\psplot[plotpoints=1000,linecolor=red]{\xmin}{\xmax}{\f}
+\uput[ur](1,0.369){\red $\mathcal{C}_h$} 
+\psplot[plotpoints=1000,linecolor=blue,linestyle=dashed]{\xmin}{\xmax}{\g}
+\uput[ur](1,1.1){\blue $\mathcal{C}_{f_{k}}$} 
+\psdots(0,1)(0,2)(-1,2.718)(-1,0)(1,0)
+\uput[dl](0,1){A} \uput[ur](0,1){1} \uput[dl](0,2){B}  \uput[ur](0,2){2}
+\uput[ur](-1,2.718){C}
+\psline[linestyle=dotted](-1,2.718)(-1,0) 
+\uput[d](-1,0){$-1$} \uput[ur](-1,0){H} 
+\uput[d](1,0){$1$} \uput[u](1,0){I} 
+\end{pspicture*}
+\end{center}
+
+	\begin{enumerate}
+		\item 
+La fonction $h$ est définie par $h(x)=\e^{-x}$. Sa dérivée $h'$ est définie par $h'(x)=-\e^{-x}$. Donc $h'(x)<0$ sur $\R$ donc la fonction $h$ est décroissante. C'est donc la courbe en trait plein qui représente la fonction $h$.		
+		
+		\item 
+\begin{list}{\textbullet}{}
+\item La courbe $\mathcal{C}_h$ coupe l'axe des ordonnées au point A. Le point A a donc pour coordonnées $(0\;;\;h(0))$.
+Or $h(0)=\e^{0}=1$, donc le point A a pour ordonnée 1.
+\item La courbe $\mathcal{C}_{f_{k}}$ coupe l'axe des ordonnées au point qui semble avoir pour ordonnée 2. Donc $f_k(0)=2$, c'est-à-dire $(0+k)\e^{0}=2$ donc $k=2$. Donc la courbe en pointillés représente la fonction $f_2$ définie par $f_2(x)=(x+2)\e^{-x}$.
+\item Les deux courbes se coupent au point C dont l'abscisse est solution de l'équation $f_2(x)=h(x)$.
+
+$f_2(x)=h(x)
+\iff (x+2)\e^{-x}=\e^{-x} \left (\text{ car } \e^{-x}\neq 0\strut\right )
+\iff x+2 = 1
+\iff x=-1$
+
+Le projeté orthogonal H de C sur l'axe des abscisses a pour coordonnées $(-1\;;\;0)$, ce qui permet, par symétrie par rapport au point O, de placer le point I de coordonnées $(1\;;\;0)$.
+\end{list}
+
+\medskip
+
+\emph{\textbf{Remarque des correcteurs} -- La détermination de $k$ repose sur une lecture graphique. Cette question a été posée en juin 2010 dans le sujet de terminale S de métropole; à l'époque, les graduations figuraient sur le repère, sans les unités naturellement!}
+
+	\end{enumerate}

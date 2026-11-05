@@ -1,0 +1,33 @@
+\subsection*{1.}
+
+Baisser de 8\% revient à multiplier par :
+\(1 - \dfrac{8}{100} = 1 - 0,08 = 0,92\).
+
+Donc : \(u_1 = 2 \times 0,92 = 1,84\).
+
+\subsection*{2.}
+
+\paragraph{a.} On a vu que l'on passe d'un terme au suivant en le multipliant par \(0,92\).  
+
+On a donc, quel que soit \(n \in \mathbb{N}\), \(u_{n+1} = 0,92 u_n\).
+
+\paragraph{b.} Le résultat précédent montre que la suite \((u_n)\) est une suite géométrique de raison \(0,92\) et de premier terme \(u_0 = 2\).
+
+\subsection*{3.}
+
+\paragraph{a.}
+\begin{center}
+\begin{lstlisting}[style=python]
+def volMedicament(S) :
+	u = 2
+	n = 0
+	while u > S :
+		u = u * 0.92
+		n = n + 1
+	return n
+\end{lstlisting}
+\end{center}
+
+\paragraph{b.} Il faut saisir \texttt{volMedicament(1,5)}.
+
+On obtient \(n = 5\) : au bout de ce temps, il ne reste qu'environ \(1,43 \, \text{cm}^3\) de médicament.

@@ -1,0 +1,192 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet1_metropole_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On compte quatre groupes sanguins dans l'espèce humaine: A, B, AB et O.
+
+Chaque groupe sanguin peut présenter un facteur rhésus. Lorsqu'il est présent, on dit que le rhésus est positif, sinon on dit qu'il est négatif.
+
+Au sein de la population française, on sait que:
+
+
+\begin{itemize}[label=$\bullet~$]
+\item 45\,\% des individus appartiennent au groupe A, et parmi eux 85\,\% sont de rhésus positif;
+\item 10\,\% des individus appartiennent au groupe B, et parmi eux 84\,\% sont de rhésus positif;
+\item 3\,\% des individus appartiennent au groupe AB, et parmi eux 82\,\% sont de rhésus positif.
+\end{itemize}
+\smallskip
+
+On choisit au hasard une personne dans la population française. 
+
+On désigne par:
+
+\begin{itemize}[label=$\bullet~$]
+\item $A$ l'évènement \og La personne choisie est de groupe sanguin A \fg{} ;
+\item $B$ l'évènement \og La personne choisie est de groupe sanguin B \fg ;
+\item $AB$ l'évènement \og La personne choisie est de groupe sanguin AB \fg ; 
+\item $O$ l'évènement \og La personne choisie est de groupe sanguin O \fg ;
+\item $R$ l'évènement \og La personne choisie a un facteur rhésus positif \fg.
+\end{itemize}
+
+\medskip
+
+Pour un évènement quelconque $E$, on note $\overline{E}$ l'évènement contraire de $E$ et $p(E)$ la probabilité de $E$.
+
+\medskip
+
+\begin{minipage}{0.55\linewidth}
+\begin{enumerate}
+\item Recopier l'arbre ci-contre en complétant les dix pointillés.
+\item Montrer que $p(B \cap R) = 0,084$. Interpréter ce résultat dans le contexte de l'exercice.
+\item On précise que $p(R) = \np{0,8397}$.
+
+Montrer que $p_O(R) = 0,83$.
+\item On dit qu'un individu est \og donneur universel \fg lorsque son sang peut être transfusé à toute personne sans risque d'incompatibilité.
+
+Le groupe O de rhésus négatif est le seul vérifiant cette caractéristique.
+
+Montrer que la probabilité qu'un individu choisi au hasard dans la population française soit donneur universel est de \np{0,0714}.
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.42\linewidth}
+\begin{center}
+\pstree[treemode=R,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$A~$}\taput{\ldots}}
+	{\TR{$R$} \taput{\ldots}
+	\TR{$\overline{R}$} \tbput{\ldots}
+	}
+\pstree{\TR{$B~$}\taput{\ldots}}
+	{\TR{$R$} \taput{\ldots}
+	\TR{$\overline{R}$} \tbput{\ldots}
+	}
+\pstree{\TR{$AB~$}\tbput{\ldots}}
+	{\TR{$R$} \taput{\ldots}
+	\TR{$\overline{R}$} \tbput{\ldots}
+	}
+	\pstree{\TR{$O~$}\tbput{\ldots}}
+	{\TR{$R$} \taput{}
+	\TR{$\overline{R}$} \tbput{}
+	}
+}
+\end{center}
+\end{minipage}
+
+
+\begin{enumerate}[resume]
+\item Lors d'une collecte de sang, on choisit un échantillon de $100$ personnes dans la population d'une ville française. Cette population est suffisamment grande pour assimiler ce choix à un tirage avec remise.
+On note $X$ la variable aléatoire qui à chaque échantillon de $100$~personnes
+associe le nombre de donneurs universels dans cet échantillon.
+
+	\begin{enumerate}
+		\item Justifier que $X$ suit une loi binomiale dont on précisera les paramètres.
+		\item Déterminer à $10^{-3}$ près la probabilité qu'il y ait au plus 7 donneurs universels
+dans cet échantillon.
+		\item Montrer que l'espérance $E(X)$ de la variable aléatoire $X$ est égale à $7,14$ et
+que sa variance $V(X)$ est égale à $6,63$ à $10^{-2}$ près.
+	\end{enumerate}
+\item Lors de la semaine nationale du don du sang, une collecte de sang est organisée dans $N$ villes françaises choisies au hasard numérotées 1,2, 3, ... , $N$ où $N$ est un entier naturel non nul.
+
+On considère la variable aléatoire $X_1$ qui à chaque échantillon de 100 personnes de la ville 1 associe le nombre de donneurs universels dans cet échantillon.
+
+On définit de la même manière les variables aléatoires $X_2$ pour la ville 2, ... , $X_N$ pour la ville $N$.
+
+On suppose que ces variables aléatoires sont indépendantes et qu'elles admettent la même espérance égale à $7,14$ et la même variance égale à $6,63$.
+
+On considère la variable aléatoire $M_N = \dfrac{X_1 + X_2 + \ldots + X_N}{N}$.
+	\begin{enumerate}
+		\item Que représente la variable aléatoire $M_N$ dans le contexte de l'exercice ?
+		\item Calculer l'espérance $E(M_N)$.
+		\item On désigne par $V(M_N)$ la variance de la variable aléatoire $M_N$.
+
+Montrer que $V(M_N) = \dfrac{6,63}{N}$.
+		\item Déterminer la plus petite valeur de $N$ pour laquelle l'inégalité de Bienaymé- Tchebychev permet d'affirmer que:
+
+\[P(7 < M_N < 7,28) \geqslant 0,95.\]
+
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

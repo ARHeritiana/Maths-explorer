@@ -1,0 +1,149 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet27_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{center}
+		\psset{xunit=2.5cm,yunit=1.5cm,labelFontSize=\scriptstyle,showorigin=false,comma=true}
+		\begin{pspicture}(-3,-3)(3,2.6)
+			\multido{\n=-2.5+0.1}{50}{\psline[linewidth=0.35pt,linecolor=lightgray](\n,-2.9)(\n,2.4)}
+			\multido{\n=-2.9+0.1}{54}{\psline[linewidth=0.35pt,linecolor=lightgray](-2.5,\n)(2.4,\n)}
+			\multido{\n=-2.5+0.5}{10}{\psline[linewidth=0.45pt](\n,-2.9)(\n,2.4)}
+			\multido{\n=-2.5+0.5}{10}{\psline[linewidth=0.45pt](-2.5,\n)(2.4,\n)}
+			\psaxes[linewidth=0.95pt,Dx=0.5,Dy=0.5]{->}(0,0)(-2.5,-2.9)(2.5,2.4)
+			\def\Func{x x x 1 add mul 1 sub mul 1 sub}
+			\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-1.986}{1.412}{\Func}
+			\def\Func{x x x 1 add mul mul}
+			\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=green]{-1.849}{1.075}{\Func}
+			\def\Func{x 1 add}
+			\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-2.5}{1.4}{\Func}
+			\psline[linewidth=1.25pt](-2.5,-1.185185)(2.4,-1.185185)
+			\psdots[dotstyle=Mul,dotscale=2.06,linecolor=blue](-1,0)(0.333333,-1.185185)
+			\uput[u](-1,0){$A$}\uput[d](0.333333,-1.185185){$B$}\uput[dl](0,0){O}\uput[r](1.01,1.3){\red $\mathcal{C}_f$} \uput[r](0.45,1.1){\green $\mathcal{C}_g$} \uput[d](2.2,-1.25){$T_B$}
+		\end{pspicture}
+	\end{center}
+	
+	1. On lit sur la figure \( f(-1) = 0 \) et \( f(1) = 0 \).
+	
+	La fonction \( f \) est définie sur \( \mathbb{R} \) par \( f(x) = x^3 + x^2 - x - 1 \). On note \( f' \) la dérivée de \( f \).
+	
+	2. La fonction polynôme \( f \) est dérivable sur \( \mathbb{R} \) et sur cet intervalle :
+	\[
+	f'(x) = 3x^2 + 2x - 1.
+	\]
+	3. On sait que \( f'(x) \) s'annule pour \( x = -1 \) et pour \( x = \dfrac{1}{3} \).
+	
+	Comme \( f'(x) = 3(x - \alpha)(x - \beta) \), avec \( a \) coefficient de \( x^2 \), \( \alpha \) et \( \beta \) racines du trinôme, on a :
+	\[
+	f'(x) = 3 \left( x - \dfrac{1}{3} \right) (x - (-1)) = 3 \left( x - \dfrac{1}{3} \right) (x + 1).
+	\]
+	On sait que ce trinôme est du signe de \( a = 3 \), donc positif sauf dans l'intervalle \( \left] -1 \, ; \, \dfrac{1}{3} \right[ \).
+	
+\begin{center}
+	\begin{tikzpicture}[double distance=2pt]
+		\tkzTabInit[lgt=3,espcl=2]{$x$/1,$f'(x)$/1,$f(x)$/2}{$-\infty$,$-1$, $\dfrac{1}{3}$,$+\infty$}
+		\tkzTabLine{,+,z,-,z,+}
+		\tkzTabVar{-/ , +/0  , -/  , +/}
+	\end{tikzpicture}
+\end{center}
+
+	
+	La fonction \( f \) est donc croissante sauf sur l'intervalle \( \left] -1 \, ; \, \dfrac{1}{3} \right[ \), où elle est décroissante (ce que conforte la figure donnée).
+	
+	4. Des variations précédentes, on constate que :
+	\begin{itemize}
+		\item $f(x) < 0$ sur $ ]-\infty \,;\, 1[$ 
+		\item $f(x) > 0$  sur $]1 \,;\, +\infty[$.
+	\end{itemize}
+	
+	La fonction \(d\) définie sur \(\mathbb{R}\) par :
+	\[
+	d(x) = g(x) - (x + 1) = x^3 + x^2 - x - 1 = f(x)
+	\]
+	donne la différence pour deux points d'abscisse \(x\) entre leurs images par \(g\) et par \(x \mapsto x + 1\).
+	
+	Or les variations précédentes de \(f\) montrent que :
+	\begin{itemize}[label=-]
+		\item \(f(x) < 0\) sur \( ]-\infty \,;\, 1[ \) ; autrement dit \(x^3 + x^2 < x + 1\), soit la courbe \(C_g\) est en-dessous de la droite d'équation \(y = x + 1\);
+		\item \(f(x) > 0\) sur \( ]1 \,;\, +\infty[ \) ; autrement dit \(x^3 + x^2 > x + 1\), soit la courbe \(C_g\) est au-dessus de la droite d'équation \(y = x + 1\).
+	\end{itemize}
+
+\end{document}

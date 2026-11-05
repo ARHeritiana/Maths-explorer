@@ -1,0 +1,100 @@
+\medskip
+
+Albert a acquis un étang d'une surface de \np{2000}~m$^2$.
+Le jour de son anniversaire, un dimanche, il installe des nénuphars sur une surface de $200$~m$^2$.
+
+
+
+\begin{enumerate}
+\item Le dimanche d'après, la surface des nénuphars a augmenté de $40$~m$^2$.
+	\begin{enumerate}
+		\item 
+$\dfrac{40}{200}=\dfrac{20}{100}$ donc le pourcentage d'augmentation est de 20\,\%.		
+				\item La surface occupée par les nénuphars est alors de 240~m$^2$.
+	\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item Dans cette question, on suppose que la surface occupée par les nénuphars augmente de $40$ m$^2$ chaque semaine, depuis la date de l'anniversaire, tant que cela est possible.
+	\begin{enumerate}
+		\item $10\times 40=400$ et $200+400=600$
+		
+Donc la surface occupée par les nénuphars 10 semaines après l'anniversaire est de 600~m$^2$.
+		\item 
+Si  la surface occupée par les nénuphars est égale à $580$~m$^2$, cela veut dire qu'il y a eu une augmentation de 380~m$^2$ de la surface des nénuphars. Or 380 n'est pas un multiple de 40, donc ce n'est pas possible d'arriver à une surface occupée par les nénuphars de 580~m$^2$.
+		
+		\item
+L'étang sera  entièrement recouvert de nénuphars quand la surface des nénuphars aura atteint \np{2000}~m$^2$, c'est-à-dire quand la surface des nénuphars aura augmenté de \np{1800}~m$^2$.
+
+$\dfrac{\np{1800}}{40}=45$; il faudra donc 45 semaines pour que l'étang soit entièrement recouvert de nénuphars.
+		
+		
+	\end{enumerate}
+\item Dans cette question, on suppose que la surface occupée par les nénuphars augmente de $20\,\%$ chaque semaine, depuis la date de l'anniversaire, tant que cela est possible.
+	\begin{enumerate}
+		\item 
+\begin{list}{\textbullet}{}
+\item Une semaine après l'anniversaire la surface occupée par les nénuphars est, en m$^2$, de: $200+\dfrac{20}{100}\times 200 = 200+40=240$.
+\item Deux semaines après l'anniversaire la surface occupée par les nénuphars est, en m$^2$, de: $240+\dfrac{20}{100}\times 240 = 240+48=288$.
+\end{list}		
+		
+		\item On considère un entier naturel $n$. 
+		
+Ajouter 20\,\%, c'est multiplier par $1+\dfrac{20}{100}=1,2$.
+
+Pour avoir la surface occupée par les nénuphars au bout d'une semaine, il faut multiplier la surface du départ par $1,2$.
+		
+Pour avoir la surface occupée par les nénuphars au bout de deux semaines, il faut multiplier la surface du départ par $1,2\times 1,2=1,2^2$. Etc.
+
+Pour avoir la surface occupée par les nénuphars au bout de $n$ semaines, il faut multiplier la surface du départ par $1,2^n$.
+		
+La surface occupée par les nénuphars $n$ semaines après l'anniversaire est donc
+$200\times 1,2^n$.
+		
+		\item 
+L'étang sera entièrement recouvert par les nénuphars quand $n$ sera tel que $200\times 1,2^n \geqslant \np{2000}$, c'est-à-dire $1,2^n \geqslant 10$.
+
+D'après le tableau fourni, ce sera pour $n=13$, donc au bout de 13 semaines.				
+	\end{enumerate}
+	
+\begin{center}
+\begin{tabularx}{\linewidth}{|l|*{9}{>{\centering \arraybackslash}X|}}\hline
+$n=$& 0 &1 &2 &5 &10 &12 &13 &14 &15\\ \hline
+$1,2^n \approx$& 1 &1,2& 1,44& 2,49& 6,19& 8,92& 10,70& 12,84& 15,40\\ \hline
+\end{tabularx}
+\end{center}
+
+\item  Schéma sur lequel apparaissent l'allure des nuages de points traduisant la progression de la surface occupée par les nénuphars, aussi bien dans le cas de la question 2 (en noir) que dans le cas de la question 3 (en bleu).
+
+\begin{center}
+\scalebox{0.7}{
+\psset{xunit=0.3cm,yunit=0.008cm,arrowsize=2pt 3}
+\def\xmin{-5}   \def\xmax{47} \def\ymin{-100}   \def\ymax{2200}
+\begin{pspicture*}(\xmin,\ymin)(\xmax,\ymax)
+\psgrid[xunit=1.5cm,yunit=0.8cm,subgriddiv=1,  gridlabels=0, gridcolor=lightgray](0,0)(15,22)
+\psaxes[arrowsize=3pt 3, ticksize=-2pt 2pt, Dx=5,Dy=100](0,0)(-4.9,-99)(\xmax,2199)
+\psplot[plotpoints=46,plotstyle=dots]{0}{45}{200 40 x mul add}
+\psline[linestyle=dashed](45,0)(45,2000)
+\psplot[plotpoints=14,plotstyle=dots,linecolor=blue]{0}{13}{200 1.2 x exp mul}
+\psline[linecolor=blue,linestyle=dashed](13,0)(13,2140)
+\uput{8pt}[d](13,0){\blue 13}
+\psplot[linecolor=red,linestyle=dashed]{0}{\xmax}{2000}
+\uput[r](0,2150){Surface nénuphars} \uput[u](37,0){Nombre de semaines}
+\end{pspicture*}
+}
+\end{center}
+
+\end{enumerate}
+
+\bigskip

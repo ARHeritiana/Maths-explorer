@@ -1,0 +1,199 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet2_metropole_devoile_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Pour chacune des affirmations suivantes, indiquer si elle est vraie ou fausse. Chaque réponse doit être justifiée. Une réponse non justifiée ne rapporte aucun point.
+Les quatre questions de cet exercice sont indépendantes.}
+
+\medskip
+
+
+\begin{center}A$(0~;~ 4~;~-1)$, \quad B(6~;~1~;~5) \quad et \quad C$(6~;~-2~;~-1)$.\end{center} 
+
+
+
+\medskip
+
+\textbf{Affirmation 1 :} Le vecteur $\vect{n}\begin{pmatrix}2\\2\\-1\end{pmatrix}$ est un vecteur normal au plan (ABC).
+
+\medskip
+
+On a $\vect{\text{AB}}\begin{pmatrix}6\\-3\\6\end{pmatrix}$ et $\vect{\text{AC}}\begin{pmatrix}6\\-6\\0\end{pmatrix}$.
+
+Or  $\vect{n} \cdot \vect{\text{AB}} = 12 - 6 - 6 = 0$ et $\vect{n} \cdot \vect{\text{AC}} = 12 - 12  + 0  = 0$.
+
+Or il est admis que les points A, B et C ne sont pas alignés, donc les vecteurs $\vect{\text{AB}}$ et $\vect{\text{AC}}$ ne sont pas colinéaires.
+
+Donc le vecteur $\vect{n}$ est orthogonal à deux vecteurs non colinéaires du plan (ABC) : c'est un vecteur normal à ce plan : affirmation \textbf{Vraie}.
+\textbf{Affirmation 2 :} 
+
+
+
+
+
+
+On sait que :
+
+$M(x~;~y~;~z) \in (\text{AB}) \iff \vect{\text{A}M} = u\vect{\text{AB}}$.
+
+Avec $\vect{\text{A}M}\begin{pmatrix}x - 0\\y - 4\\z - (-1-\end{pmatrix}$ et $\vect{\text{AB}}\begin{pmatrix}6\\-3\\6\end{pmatrix}$, vecteur qui est colinéaire à $\dfrac13\vect{\text{AB}}\begin{pmatrix}2\\-1\\2\end{pmatrix}$.
+
+Donc $M(x~;~y~;~z) \in (\text{AB}) \iff \left\{\begin{array}{l c l}
+x - 0&=& 2u\\
+y - 4&=&  - u\\
+z - (-1)&=&2u
+\end{array}\right. \:\text{où } u \in \R. \iff \left\{\begin{array}{l c l}
+x &=& 2u\\
+y &=&4  - u\\
+z &=&- 1 + 2u
+\end{array}\right. \:\text{où } \in \R.$
+
+On pose $u = t + 1$ et on obtient un autre système paramétrique :
+
+$M(x~;~y~;~z) \in (\text{AB}) \iff \left\{\begin{array}{l c l}
+x&=&2t + 2\\y &=& 3 - t\\z&=&2t + 1
+\end{array}\right. \:\text{où } t \in \R.$
+
+L'affirmation est \textbf{Vraie}.
+
+\medskip
+
+\textbf{Affirmation 3 :} 
+
+Puisque $\mathcal{P}$ est orthogonal à la droite(AB) , le vecteur $\vect{\text{AB}}$ ou plus simplement le vecteur $\dfrac13\vect{\text{AB}}\begin{pmatrix}2\\-1\\2\end{pmatrix}$ est un vecteur normal au plan $\mathcal{P}$.
+
+On sait qu'alors $M(x~;~y~;~z) \in \mathcal{P} \iff 2x - y + 2z + d = 0$ avec $d \in \R$.
+
+Comme C$(6~;~-2~;~-1) \in \mathcal{P} \iff 12  + 2 - 2 + d = 0\iff 12 + d = 0 \iff d = - 12$, on obtient finalement :
+
+$M(x~;~y~;~z) \in \mathcal{P} \iff 2x - y + 2z - 12= 0$ : l'affirmation  est \textbf{Fausse}.
+
+\bigskip
+
+
+
+\[\mathcal{D}\quad \left\{\begin{array}{l c l}
+x&=&3+t\\
+y&=&1+t\\
+z&=&2+t
+\end{array}\right. \:\text{où } t \in \R \:\:;\quad
+\mathcal{D}'\quad \left\{\begin{array}{l c l}
+x&= &2t'\\
+y&=&4 - t'\\
+z&=&-1 + 2t'
+\end{array}\right. \:\text{où } t' \in \R.\]
+
+\textbf{Affirmation 4 :} $\mathcal{D}$ et $\mathcal{D}'$ ne sont pas coplanaires.
+
+La droite $\mathcal{D}$ contient le point D(3~;~1~;~2) et a pour vecteur directeur $\vect{d}\begin{pmatrix}1\\1\\1\end{pmatrix}$ et la droite $\mathcal{D}'$ contient le point E(0~;~4~;~-1) et a pour vecteur directeur $\vect{d'}\begin{pmatrix}2\\-1\\2\end{pmatrix}$.
+
+Les vecteurs $\vect{d}$ et $\vect{d}'$ ne sont pas colinéaires donc les droites ne sont pas parallèles.
+
+Si elles ont point commun les coordonnées de celui-ci vérifient les deux systèmes d'où le nouveau système :
+
+$\left\{\begin{array}{l c l}
+3+t&=&2t'\\
+1+t&=&4 - t'\\
+2+t&=& - 1+ 2t'
+\end{array}\right.\iff \left\{\begin{array}{l c l}
+t&=&2t' - 3\\
+t&=&3 - t'\\
+t&=& - 3+ 2t'
+\end{array}\right. \Rightarrow \left\{\begin{array}{l c l}
+2t' - 3&=&3 - t'\\
+3 - t'&=& - 3+ 2t'
+\end{array}\right. \iff $
+
+$\left\{\begin{array}{l c l}
+3t' &=&6 \\
+6&=& 3t'
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+t' &=&2 \\
+2&=& t'
+\end{array}\right.$ et comme $t = 3 - t' = 3 - 2 = 1$. Le système a une solution.
+
+Conclusion : les droites  sont sécantes au point de coordonnées (4~;~2~;~3) ; elles sont coplanaires : l'affirmation 4 est \textbf{Fausse}
+\bigskip
+
+\end{document}

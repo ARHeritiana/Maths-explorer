@@ -1,0 +1,258 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet56_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Ce QCM comprend $5$ questions indépendantes.}
+
+\emph{Pour chacune d'elles, une seule des réponses proposées est exacte.}
+
+\emph{Indiquer pour chaque question sur la copie la lettre correspondant à la réponse
+choisie. Aucune justification n'est demandée.}
+
+\emph{Chaque réponse correcte rapporte 1 point. Une réponse incorrecte ou une absence de réponse n'apporte ni ne retire de point.}
+
+\medskip
+
+\textbf{QUESTION 1}
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} Si le discriminant
+d'un polynôme
+du second degré
+est strictement
+positif, alors ce
+polynôme admet
+2 racines
+positives.&
+\textbf{b.~~} Si le discriminant
+d'un polynôme
+du second degré
+est strictement
+négatif, alors ce
+polynôme admet
+2 racines
+négatives.&
+\textbf{c.~~} Si un polynôme
+du second degré
+est toujours
+strictement
+positif, alors ce
+polynôme
+n'admet pas de
+racine.&
+\textbf{d.~~}Si le discriminant
+d'un polynôme
+du second degré
+est nul, alors ce
+polynôme admet
+le nombre 0 pour
+racine.
+\end{tabularx}
+
+\medskip
+
+\textbf{QUESTION 2}
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\begin{minipage}[t]{3.5cm}\textbf{a.~~}
+L'équation
+
+ $\cos x =-\frac{1}{2}$
+admet 2 solutions dans l'intervalle
+ $\left]-\frac{\pi}{2};\frac{\pi}{2}\right]$.
+\end{minipage}&
+\begin{minipage}[t]{3.5cm}\textbf{b.~~}
+ L'équation
+ 
+$\cos x= -\frac{1}{2}$
+admet 1
+solution dans
+l'intervalle $[0 ; \pi[$.
+\end{minipage}&
+ \begin{minipage}[t]{3.5cm}\textbf{c.~~}
+L'équation
+
+$\sin x = -\frac{1}{2}$ admet 1
+solution dans
+l'intervalle \mbox{$[0 ; \pi[$}.
+\end{minipage}&
+ \begin{minipage}[t]{3.5cm}\textbf{d.~~}
+\L'équation
+
+$\sin x= -\frac{1}{2}$ admet 2
+solutions dans
+l'intervalle $\left]-\frac{\pi}{2} ;\frac{\pi}{2}\right]$.
+\end{minipage}
+\end{tabularx}
+
+\medskip
+
+\textbf{QUESTION 3}
+
+\medskip
+
+La courbe représentative d'une fonction $f$, définie et dérivable sur l'ensemble
+des nombres réels, est donnée ci-dessous avec ses tangentes, aux points A
+et B d'abscisses respectives 2 et 4. On note $f'$ la fonction dérivée de $f$.
+
+\begin{center}
+\psset{unit=0.5cm,labelFontSize=\scriptstyle,labelsep=0.1pt,showorigin=false}
+\begin{pspicture}(-3.5,-5.8)(9,7)
+\multido{\n=-3+1}{13}{\psline[linewidth=0.75pt,linecolor=lightgray](\n,-4.5)(\n,6.2)}
+\multido{\n=-4+1}{11}{\psline[linewidth=0.75pt,linecolor=lightgray](-3.5,\n)(9.2,\n)}
+\psaxes[linewidth=0.95pt,]{->}(0,0)(-3.5,-4.5)(9.5,6.4)
+\psdots[dotstyle=+,dotscale =1.4,dotangle=45](2,-2) \psdots[dotstyle=+,dotscale =1.4,dotangle=45](4,-1)
+\uput[dl](3.8,-1){B} \uput[dr](2,-2.1){A} 
+\psplot[linewidth=1pt,linecolor=blue,plotpoints=5000]{-2.7}{5.7}{ x x x 0.125 neg mul 0.75 add mul 0.5 sub mul 3 sub }
+\psplot[linewidth=1pt,linecolor=orange,plotpoints=3000]{-1}{9}{x  4 sub}
+\psplot[linewidth=1pt,linecolor=red,plotpoints=3000]{-3}{9}{x 0.5 neg mul 1  add}
+\end{pspicture}
+\end{center}
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $f(0) = 1$ &\textbf{b.~~} $f'(2) = 1$&\textbf{c.~~}$f'(2) = -2 $& \textbf{d.~~} $f'(4) = 0,5$.
+\end{tabularx}
+\medskip
+
+\textbf{QUESTION 4}
+
+\medskip
+
+On considère la fonction $g$ définie sur l'ensemble des nombres réels $\R$ par :
+$g(x)= x^3 - \np{0,0012}x + 1$.
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $g$ est strictement
+croissante sur~$\R$.&
+\textbf{b.~~} $g$ est croissante
+sur~$R$.&
+\textbf{c.~~} $g$ est constante
+sur l'intervalle
+\mbox{$[- 0,02~;~0,02]$}.&
+\textbf{d.~~} $g$ est
+décroissante sur
+l'intervalle
+\mbox{$[- 0,02~;~0,02]$}.
+\end{tabularx}
+
+\medskip
+
+\textbf{QUESTION 5}
+
+\medskip
+\begin{tabularx}{\linewidth}{*{4}{X}}
+
+\textbf{a.~~} L'équation
+\mbox{$(\e^x)^2 = 1$} 
+admet deux solutions
+dans $\R$.
+
+&\textbf{b.~~} L'ensemble de
+définition de la
+fonction
+exponentielle est
+\mbox{$]0~;~+ \infty[$}.
+
+&\textbf{c.~~} La fonction
+dérivée de la
+fonction
+$x\mapsto \e^{-x}$ est la
+fonction $x \mapsto \e^{-x}$.
+
+& \textbf{d.~~} L'ensemble de
+définition de la
+fonction
+exponentielle est
+$\R$.
+\end{tabularx}
+
+\vspace{0,5cm}
+
+\end{document}

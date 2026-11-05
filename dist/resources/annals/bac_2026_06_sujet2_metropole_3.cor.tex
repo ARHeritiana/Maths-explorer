@@ -1,0 +1,171 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet2_metropole_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+	\item \textbf{Affirmation 1 : Vraie.}
+
+	Comme on choisit une personne au hasard, on est en situation d'équiprobabilité, et les proportions de l'énoncé sont assimilables à des probabilités.
+
+	Si on traduit les informations données, on a :
+	\begin{itemize}
+		\item $P(O) = 0,52$;
+		\item $P_O(F) = 0,32$;
+		\item $P(F) = 0,2$.
+	\end{itemize}
+
+	La question posée est de déterminer $P_F(O)$.
+
+	Par définition des probabilités conditionnelles :\quad $P_F(O) = \dfrac{P(O \cap F)}{P(F)} = \dfrac{P(O)\times P_O(F)}{P(F)}$
+
+	On a finalement :\quad $P_F(O) = \dfrac{0,52 \times 0,32}{0,2} = \dfrac{0,1664}{0,2} = 0,832$,\quad c'est bien la valeur annoncée.
+
+	\emph{Remarque :} On peut tracer un arbre de probabilité pour visualiser les informations données, mais ici, toutes les probabilités utiles étaient données directement, on peut aussi s'en passer.
+
+	\item \textbf{Affirmation 2 : Fausse.}
+
+	Ici, on a :
+	\begin{itemize}
+		\item une épreuve aléatoire (le choix d'une personne au hasard dans la population) à deux issues : le succès (la personne joue de la musique professionnellement), ayant une probabilité estimée à $p = 0,062$, et l'échec;
+		\item cette épreuve aléatoire est répétée $n = \np{5000}$ fois, d'une façon qui est considérée comme identique et indépendante (le choix étant assimilable à un tirage avec remise);
+		\item la variable aléatoire $X$ dénombre les succès parmi les $n$ répétitions;
+	\end{itemize}
+
+	Ces trois critères permettent d'affirmer que $X$ suit une loi binomiale de paramètres $n = \np{5000}$ et $p = 0,062$.
+
+	L'utilisation de la calculatrice donne :\quad $P(X \leqslant 340) \approx 0,96$.
+
+	L'écart entre cette valeur et 0,4 est donc strictement supérieur à un dixième : 0,4 n'est donc pas une valeur approchée au dixième près de cette probabilité.
+
+	\bigskip
+
+	\textbf{Affirmation 3 : Vraie.}
+
+	Pour tout réel strictement positif $t$, l'inégalité de Bienaymé-Tchébychev s'écrit :
+	\[P\big(\big|X - \mathrm{E}(X)\big| \geqslant t \big) \leqslant \dfrac{\mathrm{V}(X)}{t^2}\]
+
+	Comme $X$ suit une loi binomiale, on a des propriétés pour calculer son espérance et sa variance :
+
+	$\mathrm{E}(X) = np = \np{5000}\times 0,062 = 310$\qquad et \qquad $\mathrm{V}(X) = np(1 - p) = \np{5000} \times 0,062 \times (1 - 0,062) = 290,78.$
+
+	On s'intéresse ici à l'évènement :\quad $\begin{aligned}[t]
+		\big\{230 < X < 390\big\}
+		&\iff \big\{230-310 < X-310 < 390-310\big\} \\
+		&\iff \big\{-80 < X-\mathrm{E}(X) < 80\big\} \\
+		&\iff \big\{ \big|X-\mathrm{E}(X)\big| < 80\big\} \\
+	\end{aligned}$
+
+	L'évènement \quad $\big\{230 < X < 390\big\}$ \quad  est donc l'évènement contraire de \quad $\big\{ \big|X-\mathrm{E}(X)\big| \geqslant 80\big\}$.
+
+	On va donc appliquer l'inégalité de Bienaymé-Tchebychev avec $t = 80$ : \quad
+	$P\big(\big|X - \mathrm{E}(X)\big| \geqslant 80 \big) \leqslant \dfrac{290,78}{80^2}$
+
+	Comme \quad $\dfrac{290,78}{80^2} \leqslant 0,05$\quad (car une valeur approchée au centième est 0,045) on a :
+
+	$P\big(230 < X < 390\big) = 1 - P\big(\big|X-\mathrm{E}(X)\big| \geqslant 80\big) \geqslant 1 - 0,05$,\quad soit \quad $P\big(230 < X < 390\big) \geqslant 0,95$.
+
+	Finalement, on a bien plus de 95\,\% de chance que le nombre de musiciens professionnels soit strictement compris entre 230 et 290.
+
+	\item \textbf{Affirmation 4 : Vraie.}
+
+	On ne précise pas de rôles spécifiques au sein de l'équipe, donc les membres d'une équipe sont interchangeables, et une équipe est donc assimilable à un ensemble (non ordonné) et pas à une liste (ordonnée).
+
+	Une équipe est donc constituée de la réunion de deux sous ensmbles :
+	\begin{itemize}
+		\item deux joueurs musiciens professionnels, choisis dans un ensemble de cardinal 4 :
+
+		il y a donc $\ds \binom{4}{2} = 6$ façons de choisir les deux musiciens professionnels;
+		\item trois joueurs non musiciens professionnels, choisis dans un ensemble de cardinal 6 :
+
+		il y a $\ds \binom{6}{3} = 20$ façons de faire ce choix;
+
+		\item la constitution d'une équipe revient à associer n'importe quel ensemble de deux musiciens professionnels à n'importe quel ensemble de trois joueurs non professionnels, et donc par principe multiplicatif, on a :\quad $6 \times 20 = 120$ équipes différentes possibles.
+	\end{itemize}
+
+	\emph{Remarque :} Quand une équipe est constituée, les joueurs restants forment obligatoirement l'équipe opposée, par complémentaire.
+
+	L'équipe $E$ sera donc forcément opposée à l'équipe $\overline{E}$, et le match $E$ contre $\overline{E}$ est le même que le match $\overline{E}$ contre $E$, il y a donc $\dfrac{120}{2}$ matchs différents, mais la question portait bien sur le nombre d'équipes différentes, ce nombre est bien égal à 120.
+
+
+\end{enumerate}
+
+\end{document}

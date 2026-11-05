@@ -1,0 +1,79 @@
+\medskip
+
+L'espace est muni d'un repère orthonormé \Oijk.
+
+On considère les points 
+\begin{center}A(3~;~0~;~1),\qquad  B(2~;~1~;~2)\quad  et \quad C$(- 2~;~- 5~;~1)$.\end{center}
+
+\smallskip
+
+\begin{enumerate}
+\item 
+On considère les vecteurs $\vect{\text{AB}}\begin{pmatrix}-1\\1\\1\end{pmatrix}$ et $\vect{\text{AC}}\begin{pmatrix}-5\\-5\\0\end{pmatrix}$ : ces coordonnées ne sont pas proportionnelles, donc les vecteurs ne sont pas colinéaires ; les trois points A, B et C définissent donc un plan noté (ABC).
+\item 
+On a $\vect{\text{AB}} \cdot \vect{\text{AC}} = (- 1) \times (- 5) + 1 \times (- 5) + 1 \times 0 = 5 - 5 + 0 = 0$ : les vecteurs $\vect{\text{AB}}$ et $\vect{\text{AC}}$ sont orthogonaux, les droites (AB) et (AC) sont donc perpendiculaires en A et le triangle ABC est rectangle en A.
+\item 
+
+On a A$(3~;~0~;~1) \in \text{ABC} \iff - 3  + 0 - 2 + 5 = 0$ égalité vraie ;
+
+B$(2~;~1~;~2) \in \text{ABC} \iff - 2  + 1 - 4 + 5 = 0$ égalité vraie ;
+
+A$(- 2~;~- 5~;~1) \in \text{ABC} \iff 2  - 5 - 2 + 5 = 0$ égalité vraie.
+
+Les coordonnées des points A, B et C vérifient l'équation donnée : comme il n'existe qu'un plan contenant trois points distincts non alignés une équation du plan ABC est :
+
+\[M(x~;~y~;~z) \in \text{ABC} \iff -x + y - 2z + 5 = 0.\]
+
+\item On considère le point S$(1~;~-2~;~4)$.
+
+
+
+
+On sait qu'un vecteur normal au plan ABC a pour coordonnées les coefficients de $x, y$ et $z$ dans l'équation de ce plan. Donc on a $\vect{n}\begin{pmatrix}-1\\1\\-2\end{pmatrix}$.
+
+La droite ($\Delta$) orthogonale au plan ABC a un vecteur directeur colinéaire au vecteur $\vect{n}$.
+
+Donc $M(x~;~y~;~z) \in (\Delta) \iff \vect{\text{S}M} = t\vect{n}$, avec $t \in \R$, ce qui se traduit par les équations paramétriques:
+
+$\left\{\begin{array}{l c l}
+x - 1&=&- t\\
+y - (- 2)&=&1t\\
+z -4&=&-2t
+\end{array}\right.\iff \left\{\begin{array}{l c l}
+x &=&1 - t\\
+y &=& -2 + t\\
+z &=&4 -2t
+\end{array}\right.$\quad $t \in \R \iff M(x~;~y~;~z) \in (\Delta) $.
+\item On appelle H le point d'intersection de la droite ($\Delta$) et du plan (ABC).
+
+
+Le point commun à la droite ($\Delta$) et au plan ABC a ses coordonnées qui vérifient les équations de $\Delta$ et l'équation du plan, soit le système :
+
+$\left\{\begin{array}{l c l} 
+x &=&1 - t\\
+y &=& -2 + t\\
+z &=&4 -2t\\
+-x + y - 2z + 5 &=& 0
+\end{array}\right.$ En remplaçant $x, y$ et $z$ dans la dernière équation par leur valeur en fonction de $t$, on obtient :
+
+$- (1 - t) + (-2 + t) - 2(4 - 2t) + 5 = 0 \iff - 1 + t - 2 + t - 8 + 4t + 5 = 0 \iff 6t - 6 = 0 
+\iff t = 1$
+On a donc $x = 1 - 1 = 0, \: y = - 2 + 1 = - 1, \: z = 4 - 2 = 2$, soit H$(0~;~- 1~;~2)$.
+
+\item 
+On a SH$^2 = (0 - 1)^2 + (- 1 - (-2))^2 + (2 - 4)^2 = 1 + 1 + 4 = 6$, donc SH $= \sqrt{6}$.
+\item On considère le cercle $\mathcal{C}$, inclus dans le plan (ABC), de centre H, passant par le
+point B. On appelle $\mathcal{D}$ le disque délimité par le cercle $\mathcal{C}$.
+
+Déterminer la valeur exacte de l'aire du disque $\mathcal{D}$.
+On a HB$^2 = (- 2)^2 + (- 2)^2 + 0^2 = 4 + 4 = 4 \times 2$, d'où HB $= 2\sqrt 2$.
+
+L'aire du disque $\mathcal{D}$ est égale à $\mathcal{A}  = \pi \times \text{HB}^2 = 8\pi$.
+\item 
+
+(SH) est perpendiculaire au plan ABC du disque, donc [SH] est la hauteur du cône et la base est le disque $\mathcal{D}$, donc :
+
+$\mathcal{V} = \dfrac{8\pi \times \sqrt{6}}{3}$.
+\end{enumerate}
+
+\medskip

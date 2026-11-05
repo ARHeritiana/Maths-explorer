@@ -1,0 +1,149 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet2_polynesie_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+\item L'année 2022 est l'année 2021 + 1, donc on doit calculer $u_1$.
+
+$u_1 = 0,008u_0(200 - u_0) = 0,008\times 40 \times 160 = 51,2$.
+
+L'estimation est donc de 51,2 oiseaux (arrondie à 51 animaux).
+
+\item Résolvons $f(x) = x$.
+
+$ \begin{aligned}[t] f(x) = x &\iff 0,008x(200 - x) = x \\
+&\iff 1,6x - 0,008x^2 = x\\
+&\iff 0,008x^2 - 0,6x = 0\\
+&\iff x(0,008x - 0,6) = 0\\
+&\iff x = 0 \quad \text{ou}\quad 0,008x - 0,6 = 0\\
+&\iff x = 0 \quad \text{ou}\quad x = \dfrac{0,6}{0,008} =75
+\end{aligned}$
+
+L'équation admet deux solutions dans $ [0~;~100] $ : 0 et 75.
+
+\item 
+	\begin{enumerate}
+		\item Pour tout $x$ entre 0 et 100, on a : $f(x) = -0,008x^2 + 1,6x$. C'est une fonction polynôme de degré 2, dont le coefficient dominant est négatif ($-0,008$).
+
+Le sommet de la parabole représentant la fonction définie sur $\R$ a pour abscisse : $\dfrac{- 1,6}{2\times (- 0,008)} = 100$.
+
+La fonction définie sur $\R$ serait donc croissante sur l'intervalle $]-\infty~;~100]$ et décroissante sur $[100~;~+\infty[$, donc $f$, qui est définie sur $[0~;~100]$ est bien strictement croissante sur $ [0~;~100] $.
+
+		\item Pour tout entier naturel $n$, on pose $P_n$ la propriété : \og $0\leqslant u_n \leqslant u_{n+1} \leqslant 100$\fg{}.
+
+\begin{itemize}
+\item Initialisation : On a $u_0 = 40$ et $u_1 = 51,2$, donc on a bien $0 \leqslant u_0 \leqslant u_1 \leqslant 100$ donc la propriété $P_0$ est vraie.
+\item Hérédité : Soit $n$ un entier naturel . On suppose $P_n$ vraie.
+
+$ \begin{aligned}[t] P_n &\implies 0 \leqslant u_n \leqslant u_{n+1}\leqslant 100\\
+&\implies f(0) \leqslant f(u_n)\leqslant f(u_{n+1}) \leqslant f(100) \quad \text{ $f$ est croissante sur }[0~;~100]\\
+&\implies 0 \leqslant u_{n+1} \leqslant u_{n+2} \leqslant 80 \qquad \text{car }f(0) = 0 ; ~f(100) = 80 \\
+&\implies 0 \leqslant u_{n+1} \leqslant u_{n+2} \leqslant 100 \\
+&\implies P_{n+1}
+\end{aligned} $
+
+Ainsi, la propriété est héréditaire.
+
+	\item Conclusion : La propriété $P_0$ est vraie, et pour un naturel $n$ quelconque, si $P_n$ est vraie, $P_{n+1}$ l'est aussi donc, d'après l'axiome du raisonnement par récurrence :
+
+$\forall n \in \N ; \quad 0\leqslant u_n \leqslant u_{n+1} \leqslant 100$
+
+On en déduit donc que la suite est bornée par 0 et 100, et qu'elle est croissante.
+\end{itemize}
+
+	\item La suite est croissante et majorée par 100, donc elle converge vers une limite $\ell$, qui est supérieure à $u_0 = 40$ et inférieure au majorant 100.
+
+	\item Puisque la suite est convergente et définie par récurrence et que la fonction de récurrence $f$ est continue sur $ [0~;~100] $, intervalle contenant la limite $\ell$, d'après le théorème du point fixe, $\ell$ est une solution de l'équation $f(x) = x$.
+
+Comme on a établi que cette équation n'a que deux solutions dans $[0~;~100]$, 0 et 75, et que l'on a établi que $\ell$ est comprise entre 40 et 100, il vient que $\ell = 75$.
+
+La suite converge donc vers 75.
+		\end{enumerate}
+
+		\item Le principe de cette fonction \texttt{seuil(p)} est de renvoyer l'année où l'estimation dépasse le seuil \texttt{p}, notre suite ici est croissante et converge vers 75, donc elle est majorée par 75. Aucun terme ne dépassera donc 75, et le test de la boucle \texttt{while} sera toujours satisfait, donc on aura une fonction qui tourne de façon infinie et ne renvoie donc aucun résultat.
+	\end{enumerate}
+
+\bigskip
+
+\end{document}

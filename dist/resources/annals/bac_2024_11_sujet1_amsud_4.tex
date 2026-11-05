@@ -1,0 +1,125 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_11_sujet1_amsud_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+L'objectif de cet exercice est de déterminer la distance entre deux droites non coplanaires.
+
+Par définition, la distance entre deux droites non coplanaires de l'espace, $(d_1)$ et $(d_2)$ est la longueur du segment [EF], où E et F sont des points appartenant respectivement à $(d_1)$ et à $(d_2)$ tels que la droite (EF) est orthogonale à $(d_1)$ et $(d_2)$.
+
+L'espace est muni d'un repère orthonormé \Oijk.
+
+Soit $(d_1)$ la droite passant par A$(1~;~2~;~-1)$ de vecteur directeur $\vect{u_1}\begin{pmatrix}1\\2\\0\end{pmatrix}$ et $(d_2)$ la droite dont une représentation paramétrique est : 
+$\left\{\begin{array}{l c l}
+x&=&0\\y &=& 1 + t\\z &=& 2 + t\\
+\end{array}\right.,\: t  \in \R.$
+
+\medskip
+
+\begin{enumerate}
+\item Donner une représentation paramétrique de la droite $(d_1)$
+\item Démontrer que les droites $(d_1)$ et $(d_2)$ sont non coplanaires.
+\item Soit $\mathcal{P}$ le plan passant par A et dirigé par les vecteurs non colinéaires $\vect{u_1}$ et $\vect{w}\begin{pmatrix}2\\-1\\1\\\end{pmatrix}$.
+
+Justifier qu'une équation cartésienne du plan $\mathcal{P}$ est : $-2x +y +5z +5 = 0$.
+\item
+	\begin{enumerate}
+		\item Sans chercher à calculer les coordonnées du point d'intersection, justifier que la droite
+$(d_2)$ et le plan $\mathcal{P}$ sont sécants.
+		\item On note F le point d'intersection de la droite $(d_2)$ et du plan $\mathcal{P}$.
+		
+Vérifier que le point F a pour coordonnées $\left(0~;~- \dfrac53~;~- \dfrac23\right)$.
+\end{enumerate}
+\end{enumerate}
+		
+Soit $(\delta)$ la droite passant par F et de vecteur directeur $\vect{w}$. On admet que les droites $(\delta)$ et $(d_1)$ sont sécantes en un point E de coordonnées $\left( -\dfrac23~;~- \dfrac43~;~-1\right)$.
+
+	\begin{enumerate}[resume]
+\item 
+	\begin{enumerate}
+		\item Justifier que la distance EF est la distance entre les droites $(d_1)$ et $(d_2)$. 
+		\item Calculer la distance entre les droites $(d_1)$ et $(d_2)$.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

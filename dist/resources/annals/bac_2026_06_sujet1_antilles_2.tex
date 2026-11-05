@@ -1,0 +1,150 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet1_antilles_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Un médicament est administré à un patient par voie intraveineuse.
+
+La notice du médicament indique que:
+
+\begin{itemize}[noitemsep]
+\item le traitement doit durer au moins 7~h ;
+\item lorsque sa quantité, en mg, présente dans le sang est supérieure ou égale à 3~mg, il y a un risque de toxicité.
+\end{itemize}
+
+On s'intéresse à la quantité de médicament présente dans le sang au cours du temps sachant que le patient reçoit une première dose de 1~mg.
+
+Deux protocoles sont étudiés dans les deux parties qui sont indépendantes.
+
+\subsection*{Partie A : étude du premier protocole}
+
+Après l'injection de la première dose, une quantité supplémentaire de médicament est administrée régulièrement et de façon continue à un patient mis sous perfusion.
+
+Dans cette partie, on modélise la quantité de médicament présente dans le sang du patient par une fonction $q$ définie sur $[0~;~+\infty[$, où $q(t)$ désigne la quantité, en mg, de médicament présente dans le sang du patient, et $t$ représente le temps, en heure, écoulé depuis l'injection initiale. On a ainsi $q(0) = 1$.
+
+On admet que~:
+\begin{itemize}[noitemsep]
+\item la fonction $q$ est dérivable sur $[0~;+\infty[$ et on note $q'$ sa fonction dérivée~;
+\item la fonction $q$ est solution sur $[0~;+\infty[$ de l'équation différentielle $(E)$~:
+
+\[y' = -\frac{3}{10}y + 1\]
+
+où $y$ est une fonction de la variable réelle $t$, définie et dérivable sur l'intervalle $[0~;~+\infty[$, et $y'$ sa fonction dérivée.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Donner les solutions sur $[0~;~+\infty[$ de l'équation différentielle $(E)$.
+\item Montrer que pour tout réel $t$ appartenant à $[0~;~+\infty[$, $q(t) = \dfrac{10}{3} - \dfrac{7}{3}\e^{-\frac{3}{10}t}$.
+\item Déterminer la limite de la fonction $q$ en $+\infty$. Interpréter cette valeur dans le contexte de l'exercice.
+\item Étudier les variations de la fonction $q$ sur $[0~;+\infty[$.
+\item Déterminer, en résolvant une inéquation, au bout de combien de temps après l'injection initiale le médicament présente un risque pour le patient. On donnera la valeur exacte puis une valeur approchée à $10^{-1}$.
+\item D'après ce modèle, le protocole présente-t-il un risque pour le patient~? Justifier.
+\end{enumerate}
+
+
+\subsection*{Partie B : étude du second protocole}
+
+On injecte au patient une première dose de médicament de 1~mg. On admet que la quantité de médicament présente dans le sang du patient baisse de 30\,\% toutes les heures. Pour compenser cette baisse, on injecte une dose supplémentaire de 0,75~mg de médicament toutes les heures.
+
+On modélise la situation par une suite $(u_n)$, où, pour tout entier naturel $n$, $u_n$ représente la quantité, en mg, de médicament présente dans le sang du patient au bout de $n$ heures écoulées depuis l'injection initiale.
+
+Sous ces conditions, on a $u_0 = 1$.
+
+\begin{enumerate}
+\item Justifier que pour tout entier naturel $n$, $u_{n+1} = 0,7 \times u_n + 0,75$.
+\item
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Montrer par récurrence que pour tout entier naturel $n$, $u_n \leqslant u_{n+1} \leqslant 4$.
+\item En déduire que la suite $(u_n)$ est convergente.
+\item Déterminer la limite $\ell$ de la suite $(u_n)$.
+\item D'après ce modèle, le traitement présente-t-il un risque pour le patient~? Justifier.
+\end{enumerate}
+\item On considère la suite $(v_n)$ définie, pour tout entier naturel $n$, par $v_n = u_n - 2,5$.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Montrer que $(v_n)$ est une suite géométrique dont on précisera la raison et le terme initial.
+\item Montrer que pour tout entier naturel $n$, $u_n = 2,5 - 1,5 \times 0,7^n$.
+\end{enumerate}
+\item D'après ce modèle, au bout de combien d'injections supplémentaires la quantité de médicament présente dans le sang de ce patient dépasse-t-elle 2,4~mg~?
+\end{enumerate}
+
+\end{document}

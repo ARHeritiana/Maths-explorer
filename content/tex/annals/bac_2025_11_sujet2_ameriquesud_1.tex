@@ -1,0 +1,71 @@
+\medskip
+
+\emph{Dans cet exercice, tous les résultats seront arrondis à $10^{-3}$ près en cas de besoin.\\
+Les deux parties de cet exercice sont indépendantes l'une de l'autre.}
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+Au tennis, le joueur qui est au service peut, en cas d'échec lors du premier service, servir une deuxième balle.
+
+En match, Abel réussit son premier service dans 70\,\% des cas. Lorsque le premier service est réussi, il gagne le point dans 80\,\% des cas.
+
+En revanche, après un échec à son premier service, Abel gagne
+le point dans 45\,\% des cas.
+
+\medskip
+
+Abel est au service.
+
+On considère les évènements suivants:
+
+\begin{itemize}[label=$\bullet~~$]
+\item $S$ : \og Abel réussit son premier service \fg
+\item $G$ : \og Abel gagne le point \fg.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Décrire l'évènement $S$ puis traduire la situation par un arbre pondéré.
+\item Calculer $P(S \cap G)$.
+\item Justifier que la probabilité de l'évènement $G$ est égale à $0,695$.
+\item Abel a gagné le point. Quelle est la probabilité qu'il ait réussi son premier service ?
+\item Les évènements $S$ et $G$ sont-ils indépendants ? Justifier.
+\end{enumerate}
+
+\textbf{Partie B}
+
+\medskip
+
+À la sortie d'une usine de fabrication de balles de tennis, une balle est jugée conforme dans 85\,\% des cas.
+
+\medskip
+
+\begin{enumerate}
+\item On teste successivement $20$~balles. On considère que le nombre de balles est suffisamment grand pour assimiler ces tests à un tirage avec remise. On note $X$ la variable aléatoire qui compte le nombre de balles conformes parmi les $20$ testées.
+	\begin{enumerate}
+		\item Quelle est la loi suivie par $X$ et quels sont ses paramètres ? Justifier.
+		\item Calculer $P(X \leqslant 18)$.
+		\item Quelle est la probabilité qu'au moins deux balles ne soient pas conformes parmi les $20$ balles testées ?
+		\item Déterminer l'espérance de $X$.
+	\end{enumerate}
+\item On teste maintenant $n$ balles successivement. On considère les $n$ tests comme un échantillon
+de $n$ variables aléatoires $X$ indépendantes suivant la loi de Bernoulli de paramètre $0,85$.
+	
+On considère la variable aléatoire
+	
+\[M_n = \displaystyle\sum_{i=1}^n \dfrac{X_i}{n} = \dfrac{X_1}{n} + \dfrac{X_2}{n} + \dfrac{X_3}{n} + \ldots + \dfrac{X_n}{n}\]
+
+	\begin{enumerate}
+		\item Déterminer l'espérance et la variance de $M_n$.
+		\item Après avoir rappelé l'inégalité de Bienaymé-Tchebychev, montrer que, pour tout entier naturel $n$,\: $P(0,75 < M_n < 0,95) \geqslant  1 - \dfrac{12,75}{n}$.
+		\item En déduire un entier $n$ tel que la moyenne du nombre de balles conformes pour un échantillon de taille $n$ appartienne à l'intervalle ]0,75~;~0,95 [ avec une probabilité
+supérieure à $0,9$.
+	\end{enumerate}
+\end{enumerate}
+
+\vspace{0,5cm}

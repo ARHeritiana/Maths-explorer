@@ -1,0 +1,123 @@
+\medskip
+
+\begin{center}\textbf{Partie A} \end{center}
+
+\begin{enumerate}
+\item 
+Graphiquement on lit que $f(2) = 15$ : le chariot a parcouru 15 m en 2 secondes.
+\item 
+L'équation d $\Delta$ a une équation $y = k$, avec $k < 23$.
+
+Une zone de 23~m de longueur  semble suffisante.
+
+\item 
+La tangente en A contient les points de coordonnées (0~;~16,5) et (4,7~;~21). Son coefficient directeur est donc égal à : $\dfrac{21 - 16,5}{4,7 - 0} = \dfrac{4,5}{4,7} \approx 0,96$.
+\end{enumerate}
+
+\begin{center}\textbf{Partie B} \end{center}
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item On considère l'équation différentielle 
+		\[(E') :\quad y' + 0,6y = 0.\]
+
+On sait que les solutions de cette équation (homogène) sont les fonctions définies sur $[0~;~+ \infty[$ par :
+
+\[t \longmapsto f(t) = K\e^{-0,6t}, \quad \text{avec}\: K \in \R.\]
+		\item Si $g$ la fonction définie sur $[0~;~+\infty[$ par $g(t) = t\e^{-0,6t}$, alors 
+
+$g'(t) = \e^{-0,6t} - 0,6t\e^{-0,6t} = \e^{-0,6t}(1 - 0,6t)$.
+
+Calculons $g'(t) + 0,6g(t) = \e^{-0,6t}(1 - 0,6t) + 0,6 \times t\e^{-0,6t} = \e^{-0,6t}(1 - 0,6t + 0,6t) = \e^{-0,6t} \times 1 = \e^{-0,6t}$.
+
+Comme $g'(t) + 0,6g(t) = \e^{-0,6t}$, $g$ est bien une solution particulière de l'équation $(E)$.
+
+		\item On sait qu'alors les solutions de l'équation $(E)$ sont les fonctions  $f$ définies sur $[0~;~+ \infty[$ par :
+		
+\[t \longmapsto f(t) = t\e^{-0,6t} + K\e^{-0,6t} = \e^{-0,6t}(t + K),  \quad \text{avec}\: K \in \R.\]
+\item En particulier la fonction $v$, est de cette forme :
+
+$v(t) = \e^{-0,6t}(t + K)$  et vérifie $v(0) = 12$.
+
+Or $v(0) = \e^{-0,6\times 0}(0 + K) = 12 \iff 0 + K = 12 \iff K = 12$.
+
+Conclusion : $v(t) = (12 + t)\e^{-0,6t}$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Puisque $v$ est une solution de $(E)$, elle vérifie donc $v'(t) + 0,6v(t) = \e^{-0,6t}\iff v'(t)  = \e^{-0,6t} - 0,6v(t) \iff v'(t) = \e^{-0,6t} - 0,6(12 + t)\e^{-0,6t} \iff$
+
+$ v'(t) = \e^{-0,6t}(1 - 7,2 - 0,6t) = \e^{-0,6t}(- 6,2 - 0,6t)$.
+		\item Avec l'écriture $v(t) = 12\e^{-0,6t} + \dfrac{1}{0,6} \times \dfrac{0,6t}{\e^{0,6t}}$, on a :
+
+$\bullet \displaystyle\lim_{t \to + \infty} \e^{-0,6t} = 0$ et $\displaystyle\lim_{t \to + \infty} 12\e^{-0,6t} = 0$ ;
+
+$\bullet \displaystyle\lim_{t \to + \infty} \dfrac{0,6t}{\e^{0,6t}} = 0$ (puissances comparées au voisinage de plus l'infini) et ensuite $\displaystyle\lim_{t \to + \infty} \dfrac{1}{0,6}\dfrac{0,6t}{\e^{0,6t}} = 0$.
+
+Finalement par somme de limites : $\displaystyle\lim_{t \to + \infty} v(t) = 0$ (ce qui est rassurant : le chariot va s'arrêter).
+	\item Puisque $v'(t) = \e^{-0,6t}(- 6,2 - 0,6t)$
+ et comme $\e^{-0,6t} > 0$ quel que soit $t \in \R$, le signe de $v'(t)$ est celui de $(- 6,2 - 0,6t)$.
+
+$\bullet~- 6,2 - 0,6t > 0 \iff - 6,2 > 0,6t \iff -62 > 6t \iff - \dfrac{62}{6} > t \iff t < \dfrac{62}{6}$ soit enfin $t < \dfrac{31}{3}$ ; $v$ est donc croissante sur $\left[- \infty~;~-\dfrac{31}{3}\right[$ ; dans le cadre de l'exercice puisque $t \geqslant 0$ ceci ne peut arriver, donc 
+
+$\bullet~- 6,2 - 0,6t <  0 \iff t > -\dfrac{62}{6}$, soit en fait pour $t \geqslant 0$, donc $v$ est décroissante sur $\left[0~;~+ \infty\right[$ de 12 à 0.
+	\item D'où le tableau de variation suivant :
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(7,3)
+\psframe(7,3)\psline(0,2)(7,2)\psline(0,2.5)(7,2.5)\psline(1,0)(1,3)
+\uput[u](0.5,2.4){$x$}\uput[u](1.2,2.4){$0$}\uput[u](6.5,2.4){$+\infty$}
+\uput[d](1.2,2){$12$}\uput[u](6.5,0){0}
+\psline{->}(1.8,1.45)(6.3,0.3)
+\rput(0.5,2.25){$v'(t)$}\rput(4,2.25){$-$}\rput(0.5,1){$v$}\uput[u](5.5,0.25){1}
+\psline[linecolor=red]{->}(5.5,0.9)(5.5,2.5)\uput[u](5.5,2.4){\red $\alpha$}
+\end{pspicture}
+\end{center}
+
+Sur l'intervalle $]0~;~+ \infty[$, la fonction $v$ continue, car dérivable est strictement décroissante de 12 à 0 ; comme $1 \in ]0~;~12]$, il existe d'après le théorème des valeurs intermédiaires un réel unique $\alpha \in ]0~;~+ \infty[$ tel que $v(\alpha) = 1$.
+
+La calculatrice montre que :
+
+$v(4) \approx 1,5$ et $v(5) \approx 0,85$, donc $4 < \alpha < 5$ ;
+
+$v(4,6) \approx 1,05$ et $v(4,7) \approx 0,995$, donc $4,6 < \alpha < 4,7$ ; à 0,1 près on prend $\alpha \approx 4,7$.
+	\end{enumerate}
+\item D'après la question précédente la vitesse descend à 1 m/s au bout de 4,7 s. Le système d'arrêt se déclenchera donc au bout de 4,7~s.
+\end{enumerate}
+
+\begin{center}\textbf{Partie C} \end{center}
+
+\begin{enumerate}
+\item Calcul de l'intégrale : $d(t) = \displaystyle\int_0^t (12 + x)\e^{-0,6x}\,\text{d}x$ :
+
+Avec
+
+$\left\{\begin{array}{l l}
+u(x) = 12 + x	&v'(x) = \e^{-0,6x}\\
+u'(x) = 1		&v(x) = - \dfrac{1}{0,6}\e^{-0,6x}\\
+\end{array}\right.$,
+
+et toutes ces fonctions étant continues car dérivables sur $[0~;~t]$, on peut intégrer par parties :
+
+\textbf{Rappel :} \fbox{$\displaystyle\int_0^t u(x) v'(x)\,\text{d}x = \left[u(x)v(x) \right]_0^t - \displaystyle\int_0^t u'(x) v(x)\,\text{d}x$}.
+
+Donc $d(t) = \left[-(12 + x)\times \dfrac{1}{0,6}\e^{-0,6x}\right]_0^t - \displaystyle\int_0^t -\,\dfrac{1}{0,6}\e^{-0,6x}\,\text{d}x$.
+
+Soit $d(t) = \left[-(12 + x)\times \dfrac{1}{0,6}\e^{-0,6x} \right]_0^t + \displaystyle\int_0^t \,\dfrac{1}{0,6}\e^{-0,6x}\,\text{d}x = $
+
+$\left[-(12 + x)\times \dfrac{1}{0,6}\e^{-0,6x} \right]_0^t - \dfrac{1}{0,6}\left[\dfrac{1}{0,6}\e^{-0,6x}\right]_0^t  = \left[-(12 + x)\times \dfrac{1}{0,6}\e^{-0,6x} - \dfrac{1}{0,36}\e^{-0,6x} \right]_0^t$.
+
+Or $\dfrac{1}{0,6} = \dfrac{10}{6} = \dfrac 53$ et $\dfrac{1}{0,36} = \dfrac{100}{36} = \dfrac{4\times 25}{4 \times 9} = \dfrac{25}{9}$.
+
+Soit $d(t) = \left[-(12 + x)\times \dfrac53\e^{-0,6x} \right]_0^t - \left[\dfrac{25}{9}\e^{-0,6x} \right]_0^t = \left[-\e^{-0,6x}\left(\dfrac{5(12 + x)}{3}  + \dfrac{25}{9}\right) \right]_0^t =$
+
+$ -\e^{-0,6t}\left(20 + \dfrac{5t}{3} + \dfrac{25}{9}\right) + 20 + \dfrac{25}{9} = \e^{-0,6t}\left(- \dfrac 53 t - \dfrac{205}{9}\right) + \dfrac{205}{9}$.
+\item On a vu que la vitesse du chariot est à peu près égale à 1 m/s au bout de 4,7~s.
+
+La distance parcourue par le chariot au moment du déclenchement de l'arrêt est donc $d(4,7) = \e^{-0,6\times {\blue 4,7}}\left(- \dfrac 53 \times{\blue 4,7} - \dfrac{205}{9}\right) + \dfrac{205}{9} \approx 20,95$~(m) au centimètre près.
+
+Le dispositif s'arrêt se déclenche quand le chariot a parcouru environ 20,95~m.
+
+\end{enumerate}

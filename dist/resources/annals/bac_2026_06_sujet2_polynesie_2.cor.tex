@@ -1,0 +1,174 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet2_polynesie_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Partie A}
+\begin{enumerate}
+	\item On pourrait justifier que la fonction polynôme \quad $u : x \longmapsto 8x^3 -1$ \quad est dérivable,
+
+	avec \quad $u' : x \longmapsto 24 x ^2 > 0$ \quad sur l'intervalle $[4 ; 10]$ donc croissante sur cet intervalle.
+
+	$u(4) = \ln(511) > 0$,\quad ce qui montre l'existence de la fonction $f$ sur l'intervalle $[4 ; 10]$ et par suite la dérivabilité de cette fonction en tant que fonction composée :
+	\quad
+	$f'(x) = \dfrac{u'(x)}{u(x)} = \dfrac{24x^2}{8x^3 - 1}$.
+
+	Comme \quad $(2x-1)(4x^2+2x+1) = 8x^3 + 4x^2 + 2x - 4x^2 - 2x - 1 = 8x^3 - 1$,
+
+	on a bien : \quad
+	$f'(x) = \dfrac{24x^2}{(2x-1)(4x^2+2x+1)}$.
+
+	\needspace{3\baselineskip}
+	\item \begin{enumerate}
+		\item D'après la question précédente \quad $f'(x) =  \dfrac{24x^2}{(2x-1)(4x^2+2x+1)}$.
+
+		Or pour $x \geqslant 4$ :
+
+		\begin{itemize}
+			\item $24x^2 > 0$ ;
+
+			\item $2x - 1 > 0$ ;
+
+			\item $4x^2+2x+1 > 0$ comme somme de termes supérieurs à zéro sur [4 ; 10],\,
+		\end{itemize}
+
+		$f'(x) > 0$ : la fonction $f$ est croissante sur $[4 ; 10]$ de $f(4) = \ln 511 \approx 6,236$ à $f(10) = \ln \np{7999} \approx 8,99 < 10$.
+
+		\item En résumé si $4 \leqslant x \leqslant 10$, alors $f(4) \leqslant f(x) \leqslant f(10)$ donc d'après ce qui précède: $4 \leqslant f(x) \leqslant 10$.
+	\end{enumerate}
+
+	\item \begin{enumerate}
+		\item Sur l'intervalle $[4 ; 10]$ :
+
+		\begin{itemize}
+			\item la fonction $g$ est continue car dérivable sur cet intervalle;
+			\item $g$ est strictement décroissante;
+			\item 0 est une valeur comprise entre \quad $g(4) = f(4) - 4 \approx 2,236$ \quad et \quad $g(10) = f(10) - 10 \approx -1,013$.
+		\end{itemize}
+
+		D'après le corollaire du théorème sur les valeurs intermédiaires, il existe un réel unique $\alpha \in [4 ; 10]$ tel que $g(\alpha) = 0$.
+
+		\item La calculatrice donne successivement : $8 < \alpha < 9 \:; \quad  8,4 < \alpha < 8,5$ ;
+
+		$8,49 < \alpha < 8,50 \: ;\quad 8,499 < \alpha < 8,500$ encadrement de $\alpha$ au millième près.
+	\end{enumerate}
+\end{enumerate}
+
+\subsection*{Partie B}
+\begin{enumerate}
+	\item $u_1 = f(u_0) = f(5) = \ln \left(8 \times 5^3 - 5\right) = \ln 999 \approx 6,91$.
+	\item \begin{enumerate}
+		\item \emph{Initialisation} :
+
+		On a calculé que si $u_0 = 5$, alors $u_1 \approx 6,91$.
+
+		On a bien  $4 \leqslant u_0 \leqslant u_1 \leqslant 10$.
+
+		L'encadrement est vrai au rang $n = 0$
+
+		\emph{Hérédité} : soit $n \in \N$ et supposons que $4 \leqslant u_n \leqslant u_{n+1} \leqslant 10$ ; la fonction $f$ étant croissante sur l'intervalle [4 ; 10], on a donc
+
+		$f(4) \leqslant f(u_n) \leqslant f(u_{n+1} \leqslant f(10)$.
+
+		Comme $f(4) > 4, \: f(10) < 10$, que $f(u_n) = u_{n+1}$ et $f(u_{n+1} = u_{n+2}$, l'encadrement devient :
+
+		$4 \leqslant u_{n+1} \leqslant u_{n+2} \leqslant 10$ : l'encadrement est donc vrai au rang $n + 1$.
+
+		\emph{Conclusion} : l'encadrement est vrai au rang $n = 0$ et s'il est vrai au rang $n \geqslant 0$, il l'est encore au rang $n + 1$ : d'après le principe de récurrence :
+
+		quel que soit $n \in \N$ :\quad $4 \leqslant u_n \leqslant u_{n+1} \leqslant 10$.
+
+		\item L'inégalité centrale montre que la suite $(u_n)$ est croissante et la borne de droite montre que la suite $(u_n)$ est majorée par 10 : croissante et majorée la suite $(u_n)$ converge vers une limite $\ell \leqslant 10$.
+	\end{enumerate}
+
+	\item Comme $u_{n+1} = f(u_n)$, que $f$ est continue sur [4 ; 10], la suite $(u_n)$ converge vers un réel $\ell$ tel que $\ell = f(\ell) \iff f(\ell) - \ell = 0 \iff g(\ell)  = 0$.
+
+	Conclusion le nombre $\ell$ est solution sur [4 ; 10] de l'équation $g(x) = 0$ résolue à la question \textbf{3.} partie B, donc finalement $\ell = \alpha$.
+\end{enumerate}
+
+\subsection*{Partie C}
+\begin{enumerate}
+	\item \texttt{alpha(8.499)} renvoie  11 signifie que c'est à partir du rang $n = 11$, que $u_n \geqslant 8,499$.
+
+	\item On a vu que quel que soit $n \in \N$, \: $u_n < 8,6$ : donc l'algorithme ne trouvera jamais un rang tel que $u_n > 8,6$ : il ne donnera donc aucun rang.
+\end{enumerate}
+
+\end{document}

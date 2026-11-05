@@ -1,0 +1,45 @@
+\medskip
+
+D'après l'ADEME (Agence De l'Environnement et de la Maîtrise de l'Énergie), chaque Français
+a produit une masse moyenne de \np[kg]{365}  de déchets ménagers en 2018.
+
+Un maire, étant informé que la masse moyenne de déchets ménagers dans sa commune en
+2018 était de \np[kg]{400}  par habitant, décide d'une campagne annuelle de sensibilisation au
+recyclage qui conduit à une réduction de cette production de 1,5\,\% par an, et cela dès
+l'année 2019.
+
+On modélise alors la masse moyenne de déchets ménagers par habitant calculée en fin
+d'année dans cette commune par une suite $(d_n)$ où pour tout entier naturel $n$, $d_n$
+correspond à la masse moyenne de déchets ménagers par habitant, en kg, pour l'année
+2018+ $n$.
+
+Ainsi, $d_0 = 400$.
+
+\medskip
+
+\begin{enumerate}
+\item Prouver que $d_1 = 394$. Interpréter ce résultat.
+\item 
+	\begin{enumerate}
+		\item  Déterminer la nature de la suite $(d_n)$. Préciser sa raison et son premier terme.
+		\item Pour tout entier naturel $n$, exprimer $d_n$ en fonction de $n$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item  D'après le tableau de valeurs suivant, en quelle année la masse moyenne de déchets
+ménagers par habitant deviendra-t-elle inférieure à \np[kg]{365} ?
+
+\smallskip
+
+\begin{tabular}[]{|l|*{9}{c|}}
+\hline
+$n$& 0& 1& 2& 3& 4& 5& 6 &7& 8\\
+\hline
+$d_n$& 400& 394& 388,09& 382,27& 376,53& 370,89& 365,32& 359,84& 354,45\\
+\hline
+\end{tabular}
+
+		\item Écrire une fonction Python qui retourne l'année à laquelle la masse moyenne de déchets
+ménagers par habitant de la commune devient inférieure à \np[kg]{365}.
+	\end{enumerate}
+\end{enumerate}

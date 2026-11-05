@@ -1,0 +1,238 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_09_sujet2_metropole_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On considère la fonction $f$ définie sur l'intervalle $] 0~;~+\infty[$ par 
+$f(x) = (2-\ln x) \times \ln x,$
+
+où $\ln$ désigne la fonction logarithme népérien.
+
+On admet que la fonction $f$ est deux fois dérivable sur $]0~;~+\infty[$.
+On note $C$ la courbe représentative de la fonction $f$ dans un repère orthogonal et $C'$ la courbe représentative de la fonction $f'$, fonction dérivée de la fonction $f$.
+
+La \textbf{courbe} $\boldsymbol{C}'$ est donnée ci-dessous ainsi que son unique tangente horizontale $(T)$.
+
+\begin{figure}[t]
+\centering
+\psset{xunit=0.7cm, yunit=3.5cm,comma}
+\def\xmin {-1.9}   \def\xmax {17.8} \def\ymin {-0.39}   \def\ymax {2.18}
+\begin{pspicture*}(\xmin,\ymin)(\xmax,\ymax)
+\psgrid[xunit=3.5cm,subgriddiv=5, gridlabels=0,griddots=5](0,\ymin)(\xmax,\ymax)
+\psaxes[labelFontSize=\small, arrowsize=3pt 2, ticksize=-2pt 2pt,Dy=0.2]{->}(0,0)(-0.9,\ymin)(\xmax,\ymax)
+\uput[dl](0,0){O}
+\def\f{2 1 x ln sub mul x div}
+\psplot[plotpoints=2000,linecolor=blue]{0.1}{\xmax}{\f}
+\psline[linecolor=red](0,-0.27)(\xmax,-0.27)
+\psline[linestyle=dashed,dash=3pt 3pt, linecolor=red](7.39,0)(7.39,-0.27)
+\rput*(9.5,1.8){\fbox{\parbox{9cm}{\centering\textbf{On rappelle que cette courbe $\boldsymbol{C'}$ est la courbe représentative de la fonction dérivée $\boldsymbol{f'}$}}}}
+\uput[ur](1.27,1.2){\blue $C'$}
+\uput[d](1,-0.27){\red $(T)$}
+
+\psline[ArrowInside=->,linecolor=red,arrowscale=2,linestyle=dashed](1,0)(1,2)(0,2)
+\psline[linecolor=red,linewidth=2pt]{]-}(7.39,0)(\xmax,0)
+\uput[ur](7.39,0){\small\red $7,4$}
+\end{pspicture*}
+\end{figure}
+
+\begin{enumerate}
+	\item
+
+	\begin{enumerate}
+		\item Le coefficient directeur de la tangente à $C$ au point d'abscisse 1 est $f'(1)$; graphiquement, c'est environ 2.
+
+		\item 	Le plus grand intervalle sur lequel la fonction $f$ est convexe est le plus grand intervalle sur lequel la fonction $f'$ est croissante, soit  $[7,4\;;\;+\infty[$.
+	\end{enumerate}
+
+	\item \begin{enumerate}
+		\item 
+$\left .\begin{array}{l}
+\ds\lim _{x\to +\infty} \ln x = +\infty\\
+\ds\lim _{x\to +\infty} 2-\ln x = -\infty
+\end{array}		
+\right \}
+\ds\lim _{x\to +\infty} \left (2-\ln x\right )\times \ln x = -\infty$
+et donc
+$\ds\lim _{x\to +\infty} f(x) = -\infty$.
+
+		\item
+$\left .\begin{array}{l}
+\ds\lim _{x\to 0} \ln x = -\infty\\
+\ds\lim _{x\to +\infty} 2-\ln x = +\infty
+\end{array}		
+\right \}
+\ds\lim _{x\to 0} \left (2-\ln x\right )\times \ln x = -\infty$
+et donc
+$\ds\lim _{x\to 0} f(x) = -\infty$.
+		
+On en déduit que la courbe $C$ admet la droite d'équation $x=0$ comme asymptote verticale.		
+	\end{enumerate}
+
+	\item 
+Les abscisses des points d'intersection de la courbe $C$ et de l'axe des abscisses sont solutions de l'équation $f(x)=0$; on résout cette équation.
+
+$\begin{gathered}f(x)=0
+\iff
+(2-\ln x)\times \ln x=0
+\iff
+2-\ln x = 0 \text{ ou }	\ln x = 0
+\iff
+\ln x = 2 \text{ ou } \ln x = 0\\
+\phantom{f(x)=0}
+\iff
+x=\e^{2} \text{ ou } x=1\end{gathered}$
+
+Les coordonnées des  points d'intersection de la courbe $C$ et de l'axe des abscisses sont donc \\$(1\;;\;0)$ et $(\e^{2}\;;\;0)$.
+
+	\item \begin{enumerate}
+		\item Pour tout réel $x$ appartenant à $]0~;~+\infty[$: 
+		
+$f'(x)= \left (0-\dfrac{1}{x}\right ) \times \ln x + (2-\ln x)\times \dfrac{1}{x}
+= -\dfrac{\ln x}{x} + \dfrac{2-\ln x}{x}
+= \dfrac{2-2\ln x}{x}
+= \dfrac{2 \left (1-\ln x\right )}{x}$
+
+		\item 
+$f'(x)$ s'annule et change de signe quand $1-\ln x = 0$, donc pour $x=\e$.
+
+$f(\e)= (2-\ln\e)\times \ln\e = (2-1)\times 1=1$
+
+D'où le tableau de variations de la fonction $f$:
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}
+\def\esp{\hspace*{2.5cm}}
+\def\hauteur{0pt}
+$\begin{array}{|c| l *4{c}|}
+\hline
+x & 0  & \esp & \e & \esp & +\infty \\ 
+\hline
+x & 0  &   \pmb{+} & \vline\hspace{-2.7pt}{\phantom 0} & \pmb{+} & \\ 
+\hline
+1-\ln x &\vline\;\vline  &   \pmb{+} & \vline\hspace{-2.7pt}0 & \pmb{-} & \\ 
+\hline
+f'(x) &\vline\;\vline  &   \pmb{+} & \vline\hspace{-2.7pt}0 & \pmb{-} & \\ 
+\hline
+ &\vline\;\vline &  &   \Rnode{max}{1}  &  &   \\  
+f(x) &\vline\;\vline &     &  &  &  \rule{0pt}{\hauteur} \\ 
+ &\vline\;\vline \Rnode{min1}{~-\infty} &   &  &  &   \Rnode{min2}{-\infty} \rule{0pt}{\hauteur}    
+ \ncline{->}{min1}{max} 
+ \ncline{->}{max}{min2} 
+ \\ 
+\hline
+\end{array} $
+}
+\end{center}			
+
+	\end{enumerate}
+
+	\item On note $f''$ la dérivée seconde de $f$ et on admet que sur $]0~;~+\infty[$, $f''(x) = \dfrac{2(\ln x-2)}{x^{2}}$.
+
+
+
+La fonction $f$ est convexe si et seulement si $f''(x)\geqslant 0$; on résout cette inéquation.
+
+$f''(x)\geqslant0
+\iff
+\dfrac{2(\ln x-2)}{x^{2}} \geqslant 0
+\iff
+\ln x - 2\geqslant 0
+\iff
+\ln x \geqslant 2
+\iff
+x\geqslant \e^{2}$
+
+Le plus grand intervalle sur lequel la fonction $f$ est convexe est donc
+$\left [  \e^{2}\;;\;+\infty\right [$.
+
+$f''(x)=0 \iff 2-\ln x=0 \iff x=\e^{2}$ et
+$f(\e^{2})=(2-\ln \e^{2})\times \ln \e^{2}=0$
+
+Donc la courbe $C$ admet le point de coordonnées $(\e^{2}\;;\;0)$ comme point d'inflexion.
+
+\end{enumerate}
+
+\vspace{1cm}
+
+\end{document}

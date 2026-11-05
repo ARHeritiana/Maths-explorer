@@ -1,0 +1,42 @@
+\medskip
+
+\begin{enumerate}
+\item  Soit la fonction $f$ définie sur l'intervalle $[0~;~+\infty[$ par 
+
+\[f(x) = x^2 - 3x + 4.\]
+
+Étudier les variations de $f$ sur $[0~;~+\infty[$.
+\item  Dans un repère orthonormé, on considère la courbe $\mathcal{C}$ représentant la fonction racine carrée et le point $A(2~;~0)$.
+
+\begin{center}
+
+\psset{xunit=1cm,yunit=1cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-2.4,-1.)(5.5,3.6)
+\multido{\n=-1.8+0.2}{34}{\psline[linewidth=0.25pt,linecolor=lightgray](\n,-0.99)(\n,3.2)}
+\multido{\n=-0.8+0.2}{20}{\psline[linewidth=0.25pt,linecolor=lightgray](-1.8,\n)(4.8,\n)}
+\multido{\n=-1+1}{6}{\psline[linewidth=0.45pt](\n,-0.9)(\n,3.2)}
+\multido{\n=0+1}{4}{\psline[linewidth=0.45pt](-1.8,\n)(4.8,\n)}
+\psaxes[linewidth=1.25pt]{-}(0,0)(-1.8,-0.99)(4.9,3.4)
+\def\Func{x 0.5  exp}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0.01}{4.8}{\Func}
+\uput[dl](0,0){O}
+\psdots[dotstyle=Mul,dotscale=1.5,](2,0)(3.42,1.849324)
+\uput[dr](2,0){\footnotesize A}\uput[ur](3.42,1.849324){\footnotesize M}
+\psline[linewidth=0.5pt,linecolor=blue](2,0)(3.42,1.849324)
+\psset{linecolor=blue}
+\uput[ur](4.4,2.2){ $\mathcal{C}$}
+\end{pspicture}
+\end{center}
+
+\begin{enumerate}
+\item Soit $M(x~;~y)$ un point de $\mathcal{C}$. Exprimer $y$ en fonction de $x$.
+\item En déduire que $AM^2 = x^2 -3x + 4$.
+\item Déterminer les coordonnées du point de $\mathcal{C}$ le plus proche de A.
+
+\emph{Ce point est noté {\rm B} pour la suite.}
+\item Un élève affirme que la tangente en B à $\mathcal{C}$ est perpendiculaire au segment [AB].
+A-t-il raison ? Justifier.
+\end{enumerate}
+\end{enumerate}
+
+\vspace{0,5cm}

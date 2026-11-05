@@ -1,0 +1,347 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specialite_2026_06_etrangers_automatismes.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Pour cette première partie, aucune justification n'est demandée et une seule réponse est possible par question. Pour chaque question, reportez son numéro sur votre copie et indiquez votre réponse.}
+
+	Une réponse fausse ou l'absence de réponse n'enlève aucun point.
+
+\bigskip
+
+Pour cette première partie, aucune justification n'est demandée et une seule réponse est possible par question. Pour chaque question, reportez son numéro sur votre copie et indiquez votre réponse.
+
+Une réponse fausse ou l'absence de réponse n'enlève aucun point.
+
+\medskip
+\textbf{\underline{Question 1}}
+
+\medskip
+Soient $A$ et $B$ deux événements.
+
+
+On donne l'arbre de probabilités ci-contre :
+
+\begin{center}
+	\begin{tikzpicture}[scale=0.7,>=stealth]
+		
+		
+		\coordinate (O) at (0,0);
+		
+		
+		\coordinate (A) at (3,1.8);
+		\coordinate (Abar) at (3,-1.8);
+		
+		
+		\coordinate (B1) at (5.5,2.8);
+		\coordinate (Bbar1) at (5.5,0.8);
+		
+		
+		\coordinate (B2) at (5.5,-0.8);
+		\coordinate (Bbar2) at (5.5,-2.8);
+		
+		
+		\draw[line width=1.2pt] (O) -- (A);
+		\draw[line width=1.2pt] (O) -- (Abar);
+		
+		\draw[line width=1.2pt] (A) -- (B1);
+		\draw[line width=1.2pt] (A) -- (Bbar1);
+		
+		\draw[line width=1.2pt] (Abar) -- (B2);
+		\draw[line width=1.2pt] (Abar) -- (Bbar2);
+		
+		
+		\node at (1.0,1.1) {$0,4$};
+		\node at (1.0,-1.1) {$0,6$};
+		
+		
+		\node at (4.0,2.7) {$0,2$};
+		\node at (4.0,0.8) {$0,8$};
+		\node at (4.0,-0.80) {$0,7$};
+		\node[below]at (4.0,-2.35) {$0,3$};
+		
+		
+		\node[above left] at (A) {$A$};
+		\node[below left] at (Abar) {$\overline{A}$};
+		
+		\node[right] at (B1) {$B$};
+		\node[right] at (Bbar1) {$\overline{B}$};
+		\node[right] at (B2) {$B$};
+		\node[right] at (Bbar2) {$\overline{B}$};
+		
+	\end{tikzpicture}
+\end{center}
+On peut alors affirmer que $P(\overline{A}\cap B)$ est égale à :
+
+\begin{center}
+\begin{tblr}{colspec={X[c]X[c]X[c]X[c]},hlines,vlines,width=\linewidth}
+\textbf{a.} 1,3 & \textbf{b.} 0,42 & \textbf{c.} 0,7 & \textbf{d.} 0,18 \\
+\end{tblr}
+\end{center}
+
+\medskip
+\textbf{\underline{Question 2}}
+
+\medskip
+Dans un lycée, 150 élèves de première générale suivent la spécialité Mathématiques
+
+ce qui représente $\dfrac{3}{5}$ de l'ensemble des élèves de première générale.
+
+\medskip
+Le nombre d'élèves en première générale dans ce lycée est :
+
+\begin{center}
+\begin{tblr}{colspec={X[c]X[c]X[c]X[c]},hlines,vlines,width=\linewidth}
+\textbf{a.} 90 & \textbf{b.} 200 & \textbf{c.} 250 & \textbf{d.} 300 \\
+\end{tblr}
+\end{center}
+
+\medskip
+\textbf{\underline{Question 3}}
+
+\medskip
+On considère les nombres $A=\dfrac{1}{3}$ et $B=\dfrac{5}{6}$.
+
+Le nombre $\dfrac{A}{B}+1$ est égal à :
+
+\begin{center}
+\begin{tblr}{colspec={X[c]X[c]X[c]X[c]},hlines,vlines,width=\linewidth}
+\textbf{a.} $\dfrac{7}{5}$ & \textbf{b.} $\dfrac{3}{5}$ & \textbf{c.} $\dfrac{23}{18}$ & \textbf{d.} $\dfrac{7}{3}$ \\
+\end{tblr}
+\end{center}
+
+\textbf{\underline{Question 4}}
+
+\medskip
+Dans un repère orthonormé $(O\ ;\ \vec{\imath}\ ,\ \vec{\jmath})$, la droite $d$ d'équation réduite $y=\dfrac{1}{3}x+1$ est représentée par :
+
+\begin{center}
+	\begin{tikzpicture}
+		
+		\pgfplotsset{
+			monrepere/.style={
+				width=6cm,
+				height=8.57cm,
+				xmin=-2, xmax=5,
+				ymin=-2, ymax=8,
+				axis lines=middle,
+				axis line style={->, line width=0.9pt},
+				xtick={-2,-1,0,1,2,3,4,5},
+				ytick={-2,-1,0,1,2,3,4,5,6,7,8},
+				xticklabels=\empty,
+				yticklabels=\empty,
+				tick style={line width=0.8pt},
+				grid=major,
+				grid style={line width=0.5pt, gray!60},
+				minor tick num=0,
+				clip=false
+			}
+		}
+		
+		
+		
+		
+		\begin{axis}[
+			monrepere,
+			at={(0cm,9.4cm)},
+			anchor=south west
+			]
+			\addplot[domain=-2:5, samples=2, very thick] {x+3};
+			\node[font=\bfseries, anchor=east] at (axis cs:-2.35,4) {a.};
+			\node[below left] at (axis cs:0,0) {$O$};
+			\node[below] at (axis cs:1,0) {$\vec{\imath}$};
+			\node[left] at (axis cs:0,1) {$\vec{\jmath}$};
+		\end{axis}
+		
+		
+		
+		
+		\begin{axis}[
+			monrepere,
+			at={(8cm,9.4cm)},
+			anchor=south west
+			]
+			\addplot[domain=-1:7/3, samples=2, very thick] {3*x+1};
+			\node[font=\bfseries, anchor=east] at (axis cs:-2.35,4) {b.};
+			\node[below left] at (axis cs:0,0) {$O$};
+			\node[below] at (axis cs:1,0) {$\vec{\imath}$};
+			\node[left] at (axis cs:0,1) {$\vec{\jmath}$};
+		\end{axis}
+		
+		
+		
+		
+		\begin{axis}[
+			monrepere,
+			at={(0cm,0cm)},
+			anchor=south west
+			]
+			\addplot[domain=-2:5, samples=2, very thick] {x/3+1};
+			\node[font=\bfseries, anchor=east] at (axis cs:-2.35,4) {c.};
+			\node[below left] at (axis cs:0,0) {$O$};
+			\node[below] at (axis cs:1,0) {$\vec{\imath}$};
+			\node[left] at (axis cs:0,1) {$\vec{\jmath}$};
+		\end{axis}
+		
+		
+		
+		
+		\begin{axis}[
+			monrepere,
+			at={(8cm,0cm)},
+			anchor=south west
+			]
+			\addplot[domain=-1.5:3.5, samples=2, very thick] {2*x+1};
+			\node[font=\bfseries, anchor=east] at (axis cs:-2.35,4) {d.};
+			\node[below left] at (axis cs:0,0) {$O$};
+			\node[below] at (axis cs:1,0) {$\vec{\imath}$};
+			\node[left] at (axis cs:0,1) {$\vec{\jmath}$};
+		\end{axis}
+		
+	\end{tikzpicture}
+\end{center}
+\medskip
+\textbf{\underline{Question 5}}
+
+\medskip
+La forme développée de $(x^3-1)^2$ est :
+
+\begin{center}
+\begin{tblr}{colspec={X[c]X[c]},hlines,vlines,width=\linewidth}
+\textbf{a.}\quad $x^6-1$ & \textbf{b.}\quad $x^6-2x^3+1$ \\
+\textbf{c.}\quad $x^5-2x^3+1$ & \textbf{d.}\quad $x^6+2x^3-1$ \\
+\end{tblr}
+\end{center}
+
+\medskip
+\textbf{\underline{Question 6}}
+
+\medskip
+L'évolution globale correspondant à une hausse de 20 \% puis une baisse de 50 \%, est une baisse de :
+
+\begin{center}
+\begin{tblr}{colspec={X[c]X[c]X[c]X[c]},hlines,vlines,width=\linewidth}
+\textbf{a.} 10 \% & \textbf{b.} 30 \% & \textbf{c.} 40 \% & \textbf{d.} 60 \% \\
+\end{tblr}
+\end{center}
+
+\clearpage
+\textbf{\underline{Question 7}}
+
+\medskip
+Ce tableau donne les résultats partiels d'un sondage dans une classe de première comptant 25 élèves :
+
+\begin{center}
+\begin{tblr}{colspec={Q[c,m]Q[c,m]Q[c,m]},hlines,vlines,width=0.7\linewidth,
+cell{1}{1}={white},cell{1}{2-3}={gray!45},cell{2-3}{1}={gray!45}}
+ & \textbf{16 ans ou moins} & \textbf{Plus de 16 ans} \\
+\textbf{\shortstack{Suivent la spécialité\\ Mathématiques}} & 8 &  \\
+\textbf{\shortstack{Ne suivent pas la spécialité\\ Mathématiques}} & 7 & 4 \\
+\end{tblr}
+\end{center}
+
+On interroge un élève de cette classe au hasard.
+
+La probabilité que ce soit un élève qui suive la spécialité Mathématiques sachant qu'il est âgé de plus de 16 ans est :
+
+\begin{center}
+\begin{tblr}{colspec={X[c]X[c]X[c]X[c]},hlines,vlines,width=\linewidth}
+\textbf{a.} $\dfrac{3}{7}$ & \textbf{b.} $\dfrac{6}{25}$ & \textbf{c.} 6 & \textbf{d.} $\dfrac{3}{5}$ \\
+\end{tblr}
+\end{center}
+
+\medskip
+\textbf{\underline{Question 8}}
+
+\medskip
+Soient $x$ et $y$ deux réels strictement positifs tels que : \quad $x=\dfrac{5}{2+y}$
+
+On peut affirmer que :
+
+\begin{center}
+\begin{tblr}{colspec={X[c]X[c]X[c]X[c]},hlines,vlines,width=\linewidth}
+\textbf{a.} $y=\dfrac{10}{2x-5}$ & \textbf{b.} $y=\dfrac{5}{2+x}$ & \textbf{c.} $y=5-2x$ & \textbf{d.} $y=\dfrac{5}{x}-2$ \\
+\end{tblr}
+\end{center}
+
+\clearpage
+
+\end{document}

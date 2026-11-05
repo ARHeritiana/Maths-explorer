@@ -1,0 +1,507 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2025/tex/eam_specialite_2025_06_sujet0v2_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Question 1}
+
+\begin{minipage}{0.58\linewidth}
+On considère l'arbre de probabilité ci-contre. \\
+\\
+On cherche la probabilité de l'évènement $B$.\\
+\\
+On a
+\end{minipage}\hfill
+\begin{minipage}{0.37\linewidth}
+\begin{center}
+\pstree[treemode=R,levelsep=2cm,nodesepB=2pt]{\TR{}}
+{\pstree[nodesepA=2pt]{\TR{$A$}\taput{$0,4$}}
+	{\TR{$B$} \taput{$0,3$}
+	\TR{$\overline{B}$} \tbput{\blue $0,7$}
+	}
+\pstree[nodesepA=2pt]{\TR{$\overline{A}$}\tbput{\blue $0,6$}}
+	{\TR{$B$} \taput{\blue $0,1$}
+	\TR{$\overline{B}$} \tbput{$0,9$}
+	}
+}
+\medskip
+\end{center}
+\end{minipage}
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}
+\hline
+\textbf{A.}&\textbf{B.}& \textbf{C.}& \textbf{D.}\\ 
+$p(B) = 0,18$&$p(B) = 0,12$&$p(B) = 0,66$&$p(B) = 0,3$\\ 
+\hline
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+On a complété l'arbre de probabilités en bleu.
+
+D'après la formule des probabilités totales:
+
+$\begin{aligned}[b]
+p\left (B\right )
+& = p\left (A\cap B\right ) + p\left (\overline{A}\cap B\right )
+= p\left (A\right ) \times p_{A}\left (B\right ) + p\left (\overline{A}\right ) \times p_{\overline{A}}\left (B\right ) \\
+& =  0,4\times 0,3 + 0,6\times 0,1 = 0,12 + 0,06 = 0,18
+\end{aligned}$
+\hfill\textbf{Réponse A.}
+\end{tabular}
+
+\bigskip
+
+\textbf{Question 2}
+
+Une tablette coûte $200$ euros. Son prix diminue de $30\,\%$. \\
+Le prix après cette diminution est :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}
+\hline
+\textbf{A.}&\textbf{B.}& \textbf{C.}& \textbf{D.}\\
+140 euros&170 euros&194~euros&197~euros\\ 
+\hline
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+Diminuer de 30\,\%, c'est multiplier par $1-\dfrac{30}{100}$ soit $0,7$.
+
+$200\times 0,7=140$ \hfill\textbf{Réponse A.}
+\end{tabular}
+
+\bigskip
+
+\textbf{Question 3}
+
+\medskip
+
+Une réduction de 50\,\% suivi d'une augmentation de 50\,\% équivaut à :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}
+\hline
+\textbf{A.}&\textbf{B.}& \textbf{C.}& \textbf{D.}\\ 
+une réduction de 50\,\%&une réduction de 25\,\%& une augmentation de 25\,\%&une augmentation de 75\,\%\\ 
+\hline
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+Pratiquer une réduction de 50\,\%, c'est multiplier par $1-\dfrac{50}{100}=0,5$.
+
+Augmenter de 50\,\%, c'est multiplier par $1+\dfrac{50}{100}=1,5$.
+
+Réduire de 50\,\% puis augmenter de 50\,\%, c'est multiplier par $0,5\times 1,5= 0,75$.
+
+$0,75=1-\dfrac{25}{100}$ donc multiplier par $0,75$ c'est effectuer une réduction de 25\,\%.
+
+\hfill\textbf{Réponse B.}
+\end{tabular}
+
+
+\textbf{Question 4}
+
+\medskip
+
+Dans un lycée, le quart des élèves sont internes, parmi eux, la moitié sont des filles. 
+
+La proportion des filles internes par rapport à l'ensemble des élèves du lycée est égale à :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}
+\hline
+\textbf{A.}&\textbf{B.}& \textbf{C.}& \textbf{D.}\\
+ 4\,\%&12,5\,\%&25\,\%& 50\,\%\\ 
+ \hline
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+La moitié du quart est $\dfrac{1}{2}\times \dfrac{1}{4}=\dfrac{1}{8}$ 
+et
+$\dfrac{1}{8} = \dfrac{12,5}{100}$ 
+\hfill\textbf{Réponse B.}
+\end{tabular}
+
+\bigskip
+
+\textbf{Question 5}
+
+\medskip
+
+On considère le nombre $N = \dfrac{10^7}{5^2}$. On a :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}
+\hline
+\textbf{A.}&\textbf{B.}& \textbf{C.}& \textbf{D.}\\ 
+ $N = 2^5$&$N = \np{20000}$&$N = \dfrac{1}{10^5}$&$N = 4 \times 10^5$\rule[-10pt]{0pt}{25pt}\\ 
+ \hline
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+$N = \dfrac{10^7}{5^2} = \dfrac{10^2\times 10^5}{5^2}
+= \dfrac{10^2}{5^2}\times 10^5
+= \left (\dfrac{10}{5}\right )^2 \times 10^5
+= 2^2 \times 10^5
+= 4\times 10^5$
+
+\hfill\textbf{Réponse D.}
+\end{tabular}
+
+\bigskip
+
+\textbf{Question 6}
+
+\medskip
+
+Un appareil a besoin d'une énergie de $7,5 \times 10^6$ joules pour se mettre en route.
+
+À combien de kiloWatts-heure (kWh) cela correspond-il ?
+
+\hfill \emph{Données} : 1 kWh $= 3,6 \times 10^6$~J
+\medskip
+
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}
+\hline
+\textbf{A.}&\textbf{B.}& \textbf{C.}& \textbf{D.}\\ 
+0,5 kWh&2,08 kWh&5,3 kWh&20,35 kWh\\ 
+\hline
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+1 kWh $= 3,6 \times 10^6$~J donc 2 kWh $= 7,2 \times 10^6$~J
+
+Donc $7,5 \times 10^6$~J correspond à un peu plus de 2 kWh.
+\hfill\textbf{Réponse B.}
+\end{tabular}
+
+\bigskip
+
+\textbf{Question 7}
+
+\medskip
+
+Le plan est muni d'un repère orthogonal. On note $d$ la droite passant par les points 
+A$(0~;~-1)$ et B(2~;~5).
+
+Le coefficient directeur de la droite $d$ est égal à :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}
+\hline
+\textbf{A.}&\textbf{B.}& \textbf{C.}& \textbf{D.}\\ 
+$- \dfrac 12$&$2$&3&$\dfrac 13$\rule[-10pt]{0pt}{25pt}\\ 
+\hline
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+Le coefficient directeur de la droite $d$ est égal à 
+$\dfrac{y_{\text{B}}- y_{\text{A}}}{x_{\text{B}}- x_{\text{A}}}
+= \dfrac{5-(-1)}{2-0}= \dfrac{6}{2} = 3$.
+
+\hfill\textbf{Réponse C.}
+\end{tabular}
+
+
+\textbf{Question 8}
+
+\begin{minipage}{0.7\linewidth}
+On a représenté ci-contre une droite $D$.\\
+
+Parmi les quatre équations ci-dessous, la seule susceptible de représenter la droite $D$
+est :
+\end{minipage}\hfill
+\begin{minipage}{0.23\linewidth}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture*}(-1.4,-1.4)(1.6,1.4)
+\psaxes[Dx=5,Dy=5]{->}(0,0)(-1.4,-1.4)(1.6,1.4)
+\psplot[plotpoints= 600,linecolor=blue]{-1.4}{1.4}{2 x mul neg}
+\uput[u](1.3,0){\small $x$}\uput[r](0,1.3){\small $y$}
+\uput[l](-0.5,1){\blue $D$}
+\uput[dl](0,0){\footnotesize 0}
+\end{pspicture*}
+\end{minipage}
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}
+\hline
+\textbf{A.}			&\textbf{B.}		& \textbf{C.}			& \textbf{D.}\\
+$2x - y = 0$& $2x  + y + 1 = 0$ & $y = x^2 -(x + 1)^2 + 1$ & $y = 2x - 1$\\ 
+\hline
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+\begin{list}{\textbullet}{La droite a un coefficient directeur négatif et passe par l'origine.}
+\item \textbf{A.} $2x-y=0$ équivaut à $y=2x$; on peut éliminer car le coefficient directeur est positif.
+\item \textbf{B.} $2x  + y + 1 = 0$ équivaut à $y=-2x-1$; on peut éliminer car la droite ne passe pas par l'origine.
+\item \textbf{D.} $y = 2x - 1$; on peut éliminer car la droite ne passe pas par l'origine.
+\item \textbf{C.} $y = x^2 -(x + 1)^2 + 1$ équivaut à $y = x^2 -\left (x^2+2x+1\right ) +1$
+
+\qquad  équivaut à $y=x^2 - x^2 - 2x -1+1$ soit $y=-2x$.
+\end{list}
+
+\hfill\textbf{Réponse C.}
+\end{tabular}
+
+\bigskip
+
+\textbf{Question 9}
+
+\medskip
+
+On note $\mathcal{S}$ l'ensemble des solutions de l'équation $x^2 = 10$
+sur $\R$. On a :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}
+\hline
+\textbf{A.}	&\textbf{B.}		&\textbf{C.}			&\textbf{D.}\\ 
+$\mathcal{S} = \{-5~;~5\} $ &$\mathcal{S} = \left\{-\sqrt 5~;~\sqrt 5\strut\right\}$ & $\mathcal{S} = \left\{-\sqrt{10}~;~\sqrt{10}\strut\right\}$ & $\mathcal{S} = \emptyset$\\
+\hline
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+L'équation admet deux solutions $-\sqrt{10}$ et $\sqrt{10}$.
+\hfill\textbf{Réponse C.}
+\end{tabular}
+
+\bigskip
+
+\textbf{Question 10}
+
+\medskip
+
+La fonction $f$ définie sur $\R$ par 
+$f(x) = (3x - 15)(x + 2)$
+admet pour tableau de signes :
+
+\medskip
+
+\renewcommand{\arraystretch}{1.2}
+\psset{unit=1.8em}
+
+\begin{tabularx}{\linewidth}{|*{2}{>{\centering\arraybackslash}X|}}
+\hline
+\textbf{A.} & \textbf{B.} \\
+\hline
+$\begin{tablvar}{7}
+\hline
+x & -\infty && -2 && 5 && +\infty \\
+\hline
+f(x) & & + & 0 & - & 0 & + & \\
+\hline
+\end{tablvar}$
+&
+$\begin{tablvar}{7}
+\hline
+x & -\infty && -2 && 5 && +\infty \\
+\hline
+f(x) & & - & 0 & + & 0 & - & \\
+\hline
+\end{tablvar}$ \\
+\hline
+\textbf{C.} & \textbf{D.} \\
+\hline
+$\begin{tablvar}{7}
+\hline
+x & -\infty && -5 && 2 && +\infty \\
+\hline
+f(x) & & + & 0 & - & 0 & + & \\
+\hline
+\end{tablvar}$
+&
+$\begin{tablvar}{7}
+\hline
+x & -\infty && -5 && 2 && +\infty \\
+\hline
+f(x) & & - & 0 & + & 0 & - & \\
+\hline
+\end{tablvar}$ \\
+\hline
+\end{tabularx}
+
+\renewcommand{\arraystretch}{1}
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+$3x-15$ s'annule et change de signe pour $x=5$, et $x+2$ s'annule et change de signe pour $x=-2$.
+
+On établit le tableau de signes complet.
+
+\[\begin{tablvar}{7}
+\hline
+x & -\infty && -2 && 5 && +\infty \\
+\hline
+3x-15 & & - & \barre & - & \barre[0] & + & \\
+\hline
+x+2 & & - & \barre[0] & + & \barre & + & \\
+\hline
+f(x) & & + & \barre[0] & - & \barre[0] & + & \\
+\hline
+\end{tablvar}\]
+
+\hfill\textbf{Réponse A.}
+\end{tabular}
+
+\bigskip
+
+\textbf{Question 11}
+
+\medskip
+
+L'expression développée de $(2x + 0,5)^2$ est :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}
+ \hline
+ \textbf{A.}			&\textbf{B.}		& \textbf{C.}			& \textbf{D.}\\
+$4x^2 + x + 0,25$	&	$4x^2+ 4x + 2$	&	$4x^2 + 2x + 0,25$	&$4x^2 + 2x + 1$\\ 
+\hline
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+$(2x + 0,5)^2 = (2x)^2 + 2\times 2x \times 0,5 + (0,5)^2= 4x^2 + 2x +0,25$
+\hfill\textbf{Réponse C.}
+\end{tabular}
+
+\bigskip
+
+\textbf{Question 12}
+
+\medskip
+
+Lorsqu'un point mobile suit une trajectoire circulaire de rayon $R$, en mètre (m), son accélération centripète $a$ (en m/s$^2$) s'exprime en fonction de la vitesse  (en m/s) de la manière suivante:
+$a = \dfrac{v^2}{R}$.
+
+L'expression permettant, à partir de cette formule, d'exprimer la vitesse $v$ est :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}
+\hline
+\textbf{A.}&\textbf{B.}& \textbf{C.}& \textbf{D.}\\ 
+$v = aR^2$&$v = \sqrt{aR}$&$v = \sqrt{\dfrac aR}$&$v = \dfrac{a^2}{R}$\rule[-10pt]{0pt}{25pt} \\
+\hline
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+$a = \dfrac{v^2}{R}$ équivaut à $aR=v^2$ et donc $v=\ds\sqrt{aR}$.
+\hfill\textbf{Réponse B.}
+\end{tabular}
+
+
+\medskip
+
+\end{document}

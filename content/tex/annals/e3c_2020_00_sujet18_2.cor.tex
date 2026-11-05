@@ -1,0 +1,39 @@
+\subsection*{1.}
+	
+	\subsubsection*{a.}
+	
+	On a entré dans la cellule B3 : "=1,05*B2-12"
+	
+	\subsubsection*{b.}
+	
+	20 \% de 1 000 représentent \(0,20 \times 1000 = 200\). Il faut donc attendre la cinquième année.
+	
+
+	\subsection*{2.}
+	
+	On a pour tout naturel \(n\),
+\begin{align*}
+			v_{n+1}& = u_{n+1} - 240\\
+			& = 1,05u_n - 12 - 240 \\
+			&= 1,05u_n - 252 \\
+			&= 1,05(u_n - \dfrac{252}{1,05}) \\
+			&= 1,05(u_n - 240) \\
+			&= 1,05v_n
+\end{align*}
+
+	
+	
+	L'égalité, vraie pour tout naturel \(n\), \(v_{n+1} = 1,05v_n\) montre que la suite \((v_n)\) est géométrique de raison 1,05 et de premier terme \(v_0 = u_0 - 240 = 1000 - 240 = 760\).
+	
+	\subsection*{3.}
+	
+	On sait qu'alors pour tout naturel \(n\), \(v_n = 760 \times 1,05^n\).
+	
+	Or \(v_n = u_n - 240\) entraîne que \(u_n = v_n + 240 = 760 \times 1,05^n + 240\).
+	
+	\subsection*{4.}
+	
+	Application : pour \(n = 20\),
+	\[
+	u_{20} = 760 \times 1,05^{20} + 240 \approx 2256,51
+	\]

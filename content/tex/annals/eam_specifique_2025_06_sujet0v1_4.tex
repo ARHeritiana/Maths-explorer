@@ -1,0 +1,21 @@
+\begin{itemize}
+\item Sur un axe gradué en mètres, on organise une course entre une tortue et un escargot.
+\item La tortue part du point d'abscisse $x = 0$. Elle se déplace vers la droite à une vitesse de 2 mètres par minute.
+\item L'escargot part du point d'abscisse $x = 12$. Il se déplace vers la droite à une vitesse de 50 centimètres par minute.
+\item Les deux concurrents partent en même temps.
+\end{itemize}
+
+À quel endroit la tortue rattrapera-t-elle l'escargot ?
+
+\textit{(Toute trace de recherche, même infructueuse, sera prise en compte).}
+
+\bigskip
+
+\begin{tikzpicture}
+    \draw[very thick,->,>=latex] (-0.5,0)--(14.5,0);
+    \foreach \x in {0,...,14}{
+        \draw[thick] (\x,0)--(\x,-2.5pt) node[below] {\x};
+    }
+    \node[above, text=darkgreen, font=\small] at (0,0) {Tortue};
+    \node[above, text=blue, font=\small] at (12,0) {Escargot};
+\end{tikzpicture}

@@ -1,0 +1,41 @@
+\medskip
+
+On procède, chez un sportif, à l'injection intramusculaire d'un produit.
+
+Celui-ci se diffuse progressivement dans le sang. On admet que la concentration de ce produit dans le sang (exprimée en mg/L = milligramme par litre) peut être modélisée par la fonction $f$, définie sur l'intervalle [0~;~10] par :
+
+\[f(x)=\dfrac{6x}{\e^x} \]
+
+où $x$ est le temps exprimé en heure.
+
+Sa courbe représentative  est donnée ci-dessous dans un repère orthonormé du plan.
+
+\psset{xunit=1.2cm,yunit=1.2cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-1,-1.4)(10.5,3.7)
+\multido{\n=-0.2+0.2}{56}{\psline[linewidth=0.35pt,linecolor=lightgray](\n,-1)(\n,3)}
+\multido{\n=-1.0+0.2}{21}{\psline[linewidth=0.35pt,linecolor=lightgray](0,\n)(10.8,\n)}
+\multido{\n=0+1}{11}{\psline[linewidth=0.45pt](\n,-1)(\n,3)}
+\multido{\n=-1+1}{5}{\psline[linewidth=0.45pt](0,\n)(10.8,\n)}
+\psaxes[linewidth=0.95pt]{->}(0,0)(0,-1)(11,3)
+\def\Func{x 6 mul  2.71828 x exp div}
+\psplot[plotpoints=3000,linewidth=1.25pt,linecolor=red]{0}{10}{\Func}
+\uput[ur](2.5,1.5){\red $\mathcal{C}$}
+\end{pspicture}
+
+\begin{enumerate}
+\item Montrer que pour tout $x\in [0~;~10]$, la fonction dérivée de $f$, notée $f'$, a pour expression : 
+
+\[f'(x)=\dfrac{6-6x}{\e^x}.\]
+
+\item Étudier le signe de $f'(x)$ sur [0~;~10] puis en déduire le tableau de variations de $f$ sur [0~;~10].
+\item Quelle est la concentration maximale du médicament dans le sang ? 
+
+\emph{(On donnera la valeur exacte et une valeur approchée à $10^{-1}$ près).}
+
+Au bout de combien de temps est-elle atteinte ?
+\item Ce produit fait l'objet d'une réglementation par la fédération sportive : un sportif est en infraction si, au moment du contrôle, la concentration dans son sang du produit est supérieure à  \np[mg/L]{2}.
+
+Le sportif peut-il être contrôlé à tout moment après son injection ?
+
+ Expliquer votre raisonnement en vous basant sur l'étude de la fonction et/ou une lecture graphique sur la courbe $\mathcal{C}$.
+\end{enumerate}

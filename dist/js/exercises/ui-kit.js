@@ -17,7 +17,7 @@ export function loadMath() {
   return (mathPromise ||= new Promise((ok, fail) => {
     if (!window.MathJax) window.MathJax = { startup: { typeset: false }, svg: { fontCache: 'none' }, options: { enableAssistiveMml: true }, tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
     const s = document.createElement('script');
-    s.src = './vendor/mathjax-tex-svg.js'; s.onload = () => (window.MathJax.startup?.promise || Promise.resolve()).then(ok, ok); s.onerror = () => { mathPromise = null; fail(new Error('MathJax')); };
+    s.src = './vendor/mathjax-tex-svg.js?v=3.2.2-full'; s.onload = () => (window.MathJax.startup?.promise || Promise.resolve()).then(ok, ok); s.onerror = () => { mathPromise = null; fail(new Error('MathJax')); };
     document.head.append(s);
   }));
 }
@@ -38,6 +38,7 @@ export async function printMarkup(markup) {
   const host = Object.assign(document.createElement('div'), { className: 'print-doc', innerHTML: markup });
   document.body.append(host);
   await typeset(host);
+  await Promise.all([...host.querySelectorAll('img')].map(img=>{img.loading='eager';return img.decode?img.decode().catch(()=>{}):Promise.resolve();}));
   const root = document.documentElement;
   root.classList.add('printing-doc');
   const done = () => { root.classList.remove('printing-doc'); host.remove(); window.removeEventListener('afterprint', done); };

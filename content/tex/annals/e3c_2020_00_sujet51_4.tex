@@ -1,0 +1,46 @@
+\medskip
+
+On considère deux élevages de chatons sacrés de Birmanie :
+\begin{itemize}
+\item  Dans le premier élevage 75\,\% des chatons deviennent couleur Chocolat et 25\,\% deviennent couleur Blue.
+\item Dans le second élevage 30\,\% des chatons deviennent couleur Chocolat et 70\,\% deviennent couleur Blue.
+\end{itemize}
+
+Une animalerie se fournit dans ces deux élevages. Elle achète 40\,\% de ses chatons au premier élevage et 60\,\% au deuxième.
+
+On choisit au hasard un chaton de l'animalerie.
+
+On note $A$ l'évènement \og Le chaton provient du premier élevage \fg{} et $B$ l'évènement \og Le chaton est de couleur Blue \fg.
+
+On note $\overline{A}$ l'évènement contraire de $A$ et $\overline{B}$ l'évènement contraire de $B$.
+
+\medskip
+
+\begin{enumerate}
+\item
+	\begin{enumerate}
+		\item Recopier sur la copie et compléter l'arbre de probabilité ci-dessous :
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.5cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$A$~~}\taput{$\dots$}}
+	{
+	\TR{$B$}\taput{$\dots$}
+	\TR{$\overline{B}$}\tbput{$\dots$}
+	}
+\pstree{\TR{$\overline{A}$~~}\tbput{$\dots$}}
+	{\TR{$B$}\taput{$\dots$}
+	\TR{$\overline{B}$}\tbput{$\dots$}
+	}
+}
+\end{center}
+
+		\item Calculer $p\left(\overline{A}\cap \overline{B}\right)$ et interpréter ce résultat.
+		\item Montrer que la probabilité que le chaton soit de couleur Chocolat est $0,48$.
+		\item Sachant que Jules a choisi un chaton couleur Blue dans cette animalerie, quelle est la probabilité que le chaton provienne du deuxième élevage ? 	On donnera le résultat à $10^{-2}$ près.
+	\end{enumerate}
+\item Le responsable du rayon fixe à $100$~\euro{} le prix de vente d'un chaton couleur Blue et à 75~\euro{} le prix d'un chaton couleur Chocolat.
+
+On choisit au hasard un chaton de l'animalerie et on désigne par $X$ la variable aléatoire égale au prix en euros du chaton acheté. Déterminer la loi de probabilité de $X$.
+\end{enumerate}

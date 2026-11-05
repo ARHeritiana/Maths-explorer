@@ -1,0 +1,46 @@
+\medskip
+
+Le principe d'un Escape Game est le suivant : une équipe de participants est enfermée à l'intérieur d'une salle à thème et doit réussir à en sortir en moins d'une heure (on parle alors de partie réussie). Au-delà d'une heure, les participants sont libérés et la partie est perdue.
+
+Un exploitant d'Escape Game propose à ses participants de faire deux parties à la suite : la première partie se déroule dans la salle à thème \og Espion \fg, la seconde partie dans la salle à thème \og Musée \fg{}. Il dispose des données suivantes :
+\begin{itemize}
+\item lorsqu'une équipe joue dans la salle à thème \og Espion \fg{}, la probabilité qu'elle réussisse sa partie \og Espion \fg{} est égale à 0,5 ;
+\item lorsqu'une équipe a réussi la partie \og Espion\fg, la probabilité qu'elle réussisse sa partie \og Musée \fg{} est égale à 0,6 ;
+\item lorsqu'une équipe n'a pas réussi la partie \og Espion \fg, la probabilité qu'elle réussisse sa partie \og Musée \fg{} est égale à 0,45.
+\end{itemize}
+ 
+Une équipe est choisie au hasard. On note les événements suivants :
+\begin{itemize}
+\item $E$ : \og l'équipe réussit la partie \og Espion \fg{} ;
+\item $M$ : \og l'équipe réussit la partie \og Musée \fg.
+\end{itemize} 
+
+\medskip
+
+\begin{enumerate}
+\item Sur la copie, recopier et compléter l'arbre de probabilités suivant :
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.5cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$E$~~}\taput{$\dots$}}
+	{
+	\TR{$M$}\taput{$\dots$}
+	\TR{$\overline{M}$}\tbput{$\dots$}
+	}
+\pstree{\TR{$\overline{E}$~~}\tbput{$\dots$}}
+	{\TR{$M$}\taput{$\dots$}
+	\TR{$\overline{M}$}\tbput{$\dots$}
+	}
+}
+\end{center}
+
+\item Déterminer la probabilité que l'équipe réussisse les deux parties.
+\item Montrer que la probabilité que l'équipe réussisse la partie \og Musée \fg{} est égale à 0,525.
+\item Quelle est la probabilité qu'une équipe échoue à la partie \og Espion \fg{} sachant qu'elle a réussi la partie \og Musée \fg{} ? On donnera la réponse arrondie à $10^{-2}$.
+\item Pour chacune des deux parties qui sont gagnées, une équipe reçoit 2 \euro{} de réduction pour une prochaine visite. Elle peut donc recevoir 0, 2 ou 4 \euro{} de réduction.
+
+Si un très grand nombre d'équipes jouent les deux parties, quel est le montant moyen de la réduction obtenue à la fin des deux parties ? Expliquer la démarche.
+\end{enumerate}
+
+\vspace{0,5cm}

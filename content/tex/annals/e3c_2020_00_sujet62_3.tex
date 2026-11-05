@@ -1,0 +1,53 @@
+\medskip
+
+Claire joue régulièrement à un jeu de simulation de tournois de judo en ligne. Les
+adversaires qu'elle combat sont générés automatiquement de manière aléatoire selon le
+niveau atteint dans le jeu.
+
+Elle a atteint le niveau le plus élevé, celui de la ceinture noire. Les scores relevés par le jeu
+montrent qu'elle gagne dans 45\,\% des cas si son adversaire est ceinture noire et dans 70\,\%
+si son adversaire n'est pas ceinture noire.
+
+Claire commence un tournoi et un premier adversaire est généré par le jeu. À ce niveau la
+probabilité d'affronter un adversaire ayant une ceinture noire est 0,6.
+
+On note :
+
+\begin{itemize}
+\item $N$ l'évènement : \og l'adversaire est ceinture noire \fg{} ;
+\item $G$ l'évènement : \og Claire gagne le combat \fg.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item  Recopier et compléter l'arbre pondéré ci-dessous modélisant cette situation.
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.5,labelsep=0.1pt,levelsep=2.5cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$N$~}\taput{}}
+	{
+	\TR{$G$}\taput{}
+	\TR{$\overline{G}$}\tbput{}
+	}
+\pstree{\TR{$\overline{N}$~}\tbput{}}
+	{\TR{$G$}\taput{}
+	\TR{$\overline{G}$}\tbput{}
+	}
+}
+\end{center}
+
+\item Calculer la probabilité que l'adversaire soit ceinture noire et que Claire gagne son
+tournoi.
+\item Montrer que la probabilité que Claire gagne son combat est $0,55$.
+\item Claire vient de perdre un combat. Quelle est la probabilité que le combat ait été
+contre une ceinture noire ?
+\item On considère dans cette question que la probabilité que Claire gagne est $0,55$. Elle
+fait deux combats successifs.
+
+On note $X$ la variable qui compte le nombre de victoires.
+Donner la loi de probabilité de $X$.
+\end{enumerate}
+
+\vspace{0,5cm}

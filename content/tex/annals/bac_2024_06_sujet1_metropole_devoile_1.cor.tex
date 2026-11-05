@@ -1,0 +1,169 @@
+\medskip
+
+\begin{minipage}[t]{0.4\linewidth}
+\vspace{0pt}
+On considère un repère orthonormé $\left(\text{A}~;~\vect{\imath},~\vect{\jmath},~\vect{k}\right)$ de l'espace dans lequel on place les points
+
+B(4~;~0~;~0), D(0~;~4~;~0), E(0~;~0~;~4),
+
+et les points C, F{}, G et H de sorte que le solide ABCDEFGH soit un cube.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\linewidth}
+\vspace{0pt}
+\scalebox{0.8}{
+\psset{unit=0.8cm}
+\begin{pspicture}(8,8.6)
+
+\psframe(0.5,0.5)(6.1,6.1)
+\psline(6.1,0.5)(7.9,2.4)(7.9,8)(6.1,6.1)
+\psline(7.9,8)(2.3,8)(0.5,6.1)
+\psline(0.5,6.1)(0.5,8.6)
+\psline(0,8.753)(1.7,7.38)
+\psline[linestyle=dashed](1.7,7.38)(8,2.321)
+\psline(7.9,2.4)(8,2.321)
+\psline[linestyle=dashed](0.5,0.5)(2.3,2.4)(7.9,2.4)
+\psline[linestyle=dashed](2.3,2.4)(2.3,8)
+\uput[dl](0.5,0.5){A} \uput[d](6.1,0.5){B} \uput[ur](7.9,2.4){C} \uput[ur](2.3,2.4){D}
+\uput[l](0.5,6.1){E} \uput[r](6.1,6.1){F} \uput[ur](7.9,8){G} \uput[u](2.3,8){H} 
+\uput[u](3.3,6.1){I} \uput[ul](1.4,1.45){K}
+\psdots(3.3,6.1)(1.4,1.45)
+\psline[linewidth=1.25pt]{->}(0.5,0.5)(1.9,0.5)\uput[d](1.2,0.5){$\vect{\imath}$}
+\psline[linewidth=1.25pt]{->}(0.5,0.5)(0.95,0.975)\uput[r](0.725,0.725){$\vect{\jmath}$}
+\psline[linewidth=1.25pt]{->}(0.5,0.5)(0.5,1.9)\uput[l](0.5,1.2){$\vect{k}$}
+\end{pspicture}
+}
+\end{minipage}
+
+\begin{enumerate}
+\item 
+De $\vect{\text{AC}} = \vect{\text{AB}} + \vect{\text{AD}} = 4\vect{\imath} + 4\vect{\jmath}$, on déduit que C(4~;~4~;~0) ;
+
+De $\vect{\text{AF}} = \vect{\text{AB}} + \vect{\text{AE }} = 4\vect{\imath} + 4\vect{k}$, on déduit que F(4~;~0~;~4) ;
+
+De $\vect{\text{AG}} = \vect{\text{AB}} +  \vect{\text{AD}} + \vect{\text{AE }} = 4\vect{\imath}+ 4\vect{\jmath} + 4\vect{k}$, on déduit que G(4~;~4~;~4) ;
+
+De $\vect{\text{AH}} = \vect{\text{AD}} +  \vect{\text{AE}} = 4\vect{\jmath}+ 4\vect{k}$, on déduit que H(0~;~4~;~4).
+
+\item 
+
+
+Le point I, milieu de [EF], a pour coordonnées $\left(\dfrac{0 + 4}{2}~;~\dfrac{0 + 0}{2}~;~\dfrac{4 + 4}{2} \right) = (2~;~0~;~4)$.
+
+On sait que $M(x~;~y~;~z) \in (\text{IC}) \iff \vect{\text{I}M} = t \vect{\text{IC}}$, avec $t \in \R$.
+
+Avec $\vect{\text{IC}}\begin{pmatrix}2\\4\\-4\end{pmatrix}$, on a donc :
+
+$M(x~;~y~;~z) \in (\text{IC}) \iff \left\{\begin{array}{l c l}
+x - 2&=&2t\\
+y - 0&=&4t\\
+z - 4&=&-4t,
+\end{array}\right.
+ \text{avec } t \in \R \iff
+\left\{\begin{array}{l c l}
+x &=&2+2t\\
+y &=&\phantom{2 +~}4t\\
+z &=&4 - 4t
+\end{array}\right.\:\text{où} \: t \in \R$.
+
+\item On désigne par $\mathcal{P}$ le plan orthogonal à la droite (IC) passant par le point G, et par J l'intersection de $\mathcal{P}$ avec (lC).
+
+	\begin{enumerate}
+		\item 
+Le vecteur $\vect{\text{IC}}\begin{pmatrix}2\\4\\-4\end{pmatrix}$ est un vecteur normal au plan $\mathcal{P}$. On sait qu'alors :
+		
+$M(x~;~y~;~z) \in \mathcal{P} \iff 2x + 4y - 4z + d = 0$, avec $d \in \R$.
+
+Ainsi G(4~;~4~;~4) $\in \mathcal{P} \iff 2 \times 4 + 4 \times 4 - 4 \times 4 + d = 0 \iff d = - 8$.
+
+On a donc $M(x~;~y~;~z) \in \mathcal{P} \iff 2x + 4y - 4z - 8 = 0 \iff x + 2y - 2z - 4 = 0$.
+
+
+		\item 
+		
+
+J étant commun à (IC) et $\mathcal{P}$, ses coordonnées $(x~;~y~;~z)$ vérifient les équations paramétriques de (IC) et l'équation cartésienne de $\mathcal{P}$, soit le système :
+
+$\left\{\begin{array}{l c l}
+x &=&2+2t\\
+y &=&\phantom{2 +~}4t\\
+z &=&4 - 4t\\
+x + 2y - 2z - 4 &=& 0
+\end{array}\right.$ 
+
+En remplaçant $x,\:y$ et $z$ par leurs valeurs en fonction de $t$ dans la dernière équation on obtient :
+
+$\begin{gathered}2+2t + 2\times 4t - 2\times (4 - 4t) - 4 = 0 \iff 2 + 2t + 8t - 8  + 8t - 4 = 0\\
+\iff 18t - 10 = 0\iff 9t - 5 = 0 \iff t = \dfrac{5}{9}\end{gathered}$.
+
+En utilisant la représentation paramétrique de (IC), on obtient :
+
+$x = 2 + 2\times \dfrac{5}{9} = \dfrac{18 + 10}{9} = \dfrac{28}{9}$ ; $y = 4 \times \dfrac59 = \dfrac{20}{9}$ et $z = 4 - 4\times \dfrac59 = \dfrac{36 - 20}{9} = \dfrac{16}{9}$.
+
+Donc C est la perpendiculaire (IC) au plan $\mathcal{P}$ qui coupe ce plan en J : J est donc le projeté orthogonal de C sur le plan, $\mathcal{P}$.
+
+		\item 
+K$(0~;~2~;~0) \in \mathcal{P} \iff 0 + 2 \times 2 - 2\times 0 - 4 = 0$ : cette égalité est vraie
+
+		\item 
+On vient de voir que K est un point de $\mathcal{P}$ et K est un point du plan de la base (ABCD) du cube.
+
+D'autre part B$(4~;~0~;~0) \in \mathcal{P} \iff 4 + 2 \times 0 - 2 \times 0 - 4 = 0$, qui est vraie donc B est un point de $\mathcal{P}$ et bien sur de (ABC).
+
+Conclusion : les deux points B et K sont communs aux deux plans, donc l'intersection des plans $\mathcal{P}$ et (ABC) est la droite (BK).
+	\end{enumerate}
+	
+\item 
+	\begin{enumerate}
+		\item 
+		On prend comme base le triangle CBG de la face de droite BCGF  : son aire est la moitié de celle du carré de côté 4, soit $\dfrac{4^2}{2} = 8$.
+		
+La hauteur de la pyramide est alors [DC) avec DC $= 4$.
+
+On a donc : $V_{\text{CBKG}} = \dfrac{8 \times 4}{3} = \dfrac{32}{3}$.
+		\item 
+En prenant pour la même pyramide la base BKG, la hauteur est [CJ].
+		
+Comme $\vect{\text{CJ}}\begin{pmatrix}4 - \frac{28}{9}\\4 - \frac{20}{9}\\ \frac{16}{9}\end{pmatrix} = \begin{pmatrix}\frac89\\\frac{16}{9}\\\frac{16}{9} \end{pmatrix}$, d'où :
+		
+CJ$^2 = \|\vect{\text{CJ}}\|^2 = \left(\dfrac89\right)^2 + \left(\dfrac{16}{9}\right)^2  + \left(\dfrac{16}{9}\right)^2 = \dfrac{64 + 256 + 256}{81} = \dfrac{576}{81} = \dfrac{9 \times 64}{9 \times 9} = \dfrac{64}{9} = \left(\dfrac83\right)^2$. Donc CJ $= \dfrac83$.
+
+Le volume de la pyramide est égal à:
+
+$\dfrac{32}{3} = \dfrac{\text{aire(BKG)} \times \dfrac83}{3} \iff \text{aire(BKG)} = 32 \times \dfrac38 = 4 \times 3 = 12$.
+
+		\item 
+		On a déjà vu que B est un point de $\mathcal{P}$ et G aussi par définition, donc la droite (BG) est incluse dans le plan $\mathcal{P}$.
+
+		\item On note I$'$ un point de l'arête [EF], et $\mathcal{P}'$ le plan orthogonal à la droite (I$'$C) passant par G.
+		
+
+
+Le point I$'$ a pour coordonnées $(x\;;\;y\;;\;z)$ telles que 
+$\vectt{EI}' = k\vectt{EF}$ avec $k\in [0\;;\;1]$.
+
+Donc
+$\left \{
+\begin{array}{l !{=} l}
+x-0 & (4-0)k\\
+y-0 & (0-0)k\\
+z-4 & (4-4)k
+\end{array}
+\right .$ et donc
+I$' \;\begin{pmatrix}
+4k \\ 0 \\ 4
+\end{pmatrix}$; on a donc
+$\vectt{I'C}\;\begin{pmatrix}
+4-4k \\ 4 \\ -4
+\end{pmatrix}$.
+
+$\vectt{BG}\;\begin{pmatrix} 0 \\ 4 \\ 4 \end{pmatrix}$
+donc
+$\vectt{I'C}\cdot \vectt{BG}=(4-4k)\times 0 + 4\times 4 +(-4)\times 4=0$ donc
+$\vectt{I'C}\perp \vectt{BG}$.
+
+G appartient au plan $\mathcal{P}'$ qui est le plan orthogonal à (I$'$C); comme $\vectt{I'C}\perp \vectt{BG}$, on peut dire que B appartient aussi à $\mathcal{P}'$. Donc la droite (BG) est incluse dans $\mathcal{P}'$.
+
+
+	\end{enumerate}
+\end{enumerate}

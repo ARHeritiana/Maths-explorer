@@ -1,0 +1,124 @@
+\medskip
+
+\textbf{Partie A}
+
+\begin{enumerate}
+	\item On a :\quad $u_2 = 2 + 0,8u_1 = 2 + 0,8 \times 2 = 2 + 1,6 = 3,6$.
+
+Après deux prises du médicament, le patient a 3,6 mL de médicament dans son organisme.
+
+	\item Pour tout entier naturel non nul $n$, on pose $P_n$, l'affirmation : \og $u_n = 10 - 8\times 0,8^{n-1}$ \fg{}.
+
+\textbf{Initialisation }: On a, d'une part : $u_1 = 2$, d'après l'énoncé.
+
+Et, d'autre part : $10 - 8 \times 0,8^{1 - 1} = 10 - 8 \times 0,8^0 = 10 - 8 \times 1 = 2$.
+
+On constate que pour $n = 1$, l'affirmation $P_1$ est vraie.
+
+\textbf{Hérédité } : Soit $n$ un entier naturel non nul. On suppose l'affirmation $P_n $ vraie, c'est-à-dire : \quad \og $u_n = 10 - 8\times 0,8^{n-1}$ \fg{}.
+
+On veut montrer que cela implique que l'affirmation $ P_{n+1} $ est vraie.
+
+	On a : \quad $ \begin{aligned}[t] u_{n+1}
+		&= 2 + 0,8u_n \quad \text{	par définition de la suite }(u_n) \\
+		&= 2 + 0,8 \Big(10 - 8\times 0,8^{n-1}\Big) \quad \text{	par hypothèse de récurrence}\\
+		&= 2 + 0,8 \times 10 - 0,8 \times 8\times 0,8^{n-1}\\
+		&= 2 + 8 - 8\times 0,8 \times 0,8^{n-1}\\
+		&= 10 - 8 \times 0,8^{n} \quad \text{c'est l'égalité } P_{n+1}\\
+	\end{aligned}$
+
+\textbf{Conclusion :} L'affirmation est vraie au rang 1, et, pour tout rang naturel non nul $n$, \: si $P_n$ est vraie alors $P_{n+1}$ l'est aussi, donc, en vertu du principe de démonstration par récurrence, on a donc démontré que  $P_n-$ est vraie pour tout entier naturel $n$ non nul, autrement dit, on a établi une expression explicite du terme général de la suite.
+
+	\item Par connaissance des limites des suites géométriques, comme on a $-1 < 0,8 < 1$, on en déduit : \quad $\lim\limits_{n \to +\infty} 0,8^{n-1} =  \lim\limits_{n \to +\infty} - 8\times 0,8^{n-1} = 0$.
+
+Par limite de la somme, on en déduit : \quad $\lim\limits_{n\to +\infty} u_n = \lim\limits_{n\to +\infty} = 10 + 0 = 10$.
+
+La suite $(u_n)$ converge donc vers 10.
+
+Dans le contexte de l'exercice, cela signifie qu'au bout d'un nombre important de prises de ce médicament, l'organisme du patient contiendra une quantité de médicament qui tend vers les 10 mL.
+
+	\item Soit $N$ un entier naturel non nul, étudions l'inéquation :
+
+$\begin{aligned}
+	u_N \geqslant 10
+	&\iff 10 - 8 \times 0,8^{N-1} \geqslant 10\\
+	&\iff -8\times 0,8^{N-1} \geqslant 0
+\end{aligned} $
+
+Le membre de gauche est un réel strictement négatif (car 8 et 0,8 sont strictement positifs) et ne peut être supérieur ou égal à 0.
+
+L'inéquation n'admet donc pas de solution.
+
+Dans le contexte de l'exercice, cela peut s'interpréter sur le comportement de la suite, qui est donc majorée (strictement) par 10, ou par la quantité de médicament dans l'organisme de l'individu qui est toujours strictement inférieure à 10 mL, quel que soit le nombre de prises du médicament enchaînées.
+
+	\item On résout une inéquation différente, avec $n$ un entier naturel non nul :
+
+$ \begin{aligned}
+		u_n > 9
+		&\iff 10 - 8 \times 0,8^{n-1} > 9\\
+		&\iff - 8 \times 0,8^{n-1} > -1\\
+		&\iff 0,8^{n-1} < \dfrac{1}{8} \quad \text{car } -8<0\\
+		&\iff \ln\left(0,8^{n-1}\right) < \ln\left(\dfrac{1}{8}\right) \quad {\small \text{la fonction ln étant strictement croissante sur }\R^{*+}} \\
+		&\iff (n-1)\ln(0,8) < -\ln(8) \quad \text{ d'après les propriétés de la fonction ln}\\
+		&\iff n-1 > -\dfrac{\ln(8)}{\ln(0,8)} \quad \text{car } \ln(0,8) < 0\\
+		&\iff n > 1 - \dfrac{\ln(8)}{\ln(0,8)}
+\end{aligned}$
+
+Or, $1 - \dfrac{\ln(8)}{\ln(0,8)} \approx 10,3$.
+
+Comme on résout pour $n$ entier naturel non nul, les solutions sont les entiers supérieurs ou égaux à 11.
+
+C'est à partir de 11 prises successives du médicament que la quantité de celui-ci dans l'organisme du patient dépasse strictement les \np[mL]{9}.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+	\item On a $S_2 = \dfrac{u_1 + u_2}{n} = \dfrac{2 + 3,6}{2} = 2,8$.
+
+	\item Pour donner l'expression explicite de la somme, on utilisera l'expression explicite du terme général de la suite $(u_n)$, établi à la question \textbf{A. 2.}.
+
+	La somme est une somme de $n$ termes consécutifs, de $u_1$ à $u_n$ :
+
+$\begin{aligned}
+		u_1 + u_2 + \dots + u_n
+		&= 10 - 8\times 0,8^{0} + 10 - 8\times 0,8^{1} + \dots + 10 - 8\times 0,8^{n-1}\\
+		&= 10 + 10 + \dots + 10 - 8\times \left( 0,8^{0} + 0,8^{1} + \dots + 0,8^{n-1}\right)\\
+		&= 10\times n - 8 \times 1 \times \dfrac{1 - 0,8^{n}}{1 - 0,8}\quad \text{formule connue}\\
+		&= 10 n - \dfrac{8}{0,2} \times \left(1 - 0,8^{n}\right)\\
+		&= 10 n - 40 \times \left(1 - 0,8^{n}\right)\\
+		&= 10 n - 40 + 40 \times 0,8^{n}\quad \text{en développant}\\
+\end{aligned}$
+
+On arrive donc bien à l'expression annoncée.
+
+	\item On déduit de la question précédente que, pour tout $n$ entier naturel non nul, on a : \quad $ S_n = 10 - \dfrac{40}{n} + \dfrac{40}{n}\times 0,8^n $.
+
+On a donc, par limite du quotient : \quad $\lim\limits_{n \to +\infty} \dfrac{40}{n} = 0$,
+
+de plus, par limite des suites géométriques, comme $-1 < 0,8 < 1 $ :\quad $\lim\limits_{n \to +\infty} 0,8^n = 0$.
+
+Ainsi, par limite de la somme et du produit, on en déduit :
+
+$\lim\limits_{n \to +\infty} S_n = \lim\limits_{n \to +\infty} 10 - \dfrac{40}{n} + \dfrac{40}{n}\times 0,8^n  = 10$.
+
+La quantité moyenne de médicament présente dans l'organisme du patient tend elle aussi vers \np[mL]{10}.
+
+	\item La fonction mystère est une fonction de seuil : elle détermine l'indice seuil pour lequel la valeur de $S_n$ franchit le seuil \texttt{k} pour la première fois.
+
+	\texttt{mystere(9)} renvoie donc le premier nombre entier naturel non nul $n$ pour lequel la quantité moyenne de médicament dans l'organisme du patient depuis le début de la prise devient supérieure ou égale à \np[mL]{9}.
+
+	\item Cette valeur est donc nécessairement strictement supérieure à 10, puisque l'on a établi à la fin de la \textbf{partie A} que c'est seulement à la onzième prise du médicament que la quantité \textbf{à ce moment là} dans le corps du patient dépasse les \np[mL]{9}.
+
+Avant $n = 11$, les valeurs de la suite $(u_n)$ sont donc toutes inférieures strictement à 9, et donc leur moyenne le sera aussi.
+
+Il est donc impossible que $S_n$ soit supérieur à 9 pour tout entier naturel non nul $n$, pour $n$ inférieur ou égal à 10.
+
+La fonction \texttt{mystère} doit donc renvoyer une valeur (un indice) strictement supérieur à 10. Elle renverra en réalité 40 (on a $S_{39} \approx 9,97$ et $S_{40} \approx \np{9,0001}$).
+\end{enumerate}
+
+\medskip

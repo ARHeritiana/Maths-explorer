@@ -1,0 +1,192 @@
+\begin{enumerate}
+		\item On considère la fonction $f$ définie sur $]0 ~;~ +\infty [$ par : $f(x)=x\, \ln(x)$.
+
+		\textbf{Affirmation 1 :}
+$\ds\int_{1}^{\e} f(x) \,\mathrm{d} x=\dfrac{\e^{2}+1}{4}$
+
+On calcule $\ds\int_{1}^{\e} f(x) \d x = \ds\int_{1}^{\e} x\,\ln(x) \d x$ en faisant une intégration par parties:
+
+$\ds\int_{a}^{b} u'(x)\,v(x) \d x = \left [u(x)\,v(x)\strut \right ]_{a}^{b}- \int_{a}^{b} u(x) \, v'(x) \d x$.
+
+$\left \{
+\begin{array}{r !{=} l !{\implies} r !{=} l}
+u'(x) & x & u(x) & \dfrac{x^2}{2}\\[8pt]
+v(x) & \ln(x) & v'(x) & \dfrac{1}{x}
+\end{array}
+\right .$
+
+$\begin{aligned}
+ \ds\int_{1}^{\e} x\,\ln(x) \d x 
+& = \left [\dfrac{x^2}{2}\times \ln(x) \right ]_{1}^{\e}- \int_{1}^{\e} \dfrac{x^2}{2}\times \dfrac{1}{x} \d x
+= \left [\dfrac{x^2}{2}\times \ln(x) \right ]_{1}^{\e}- \int_{1}^{\e} \dfrac{x}{2} \d x\\
+& = \left [\dfrac{x^2}{2}\times \ln(x) \right ]_{1}^{\e}-  \left [ \dfrac{x^2}{4}  \right ]_{1}^{\e}
+= \left [\dfrac{\e^2}{2}\times \ln(\e) - \dfrac{1^2}{2}\times \ln(1) \right ]-  \left [ \dfrac{\e^2}{4} - \dfrac{1^2}{4} \right ]\\
+& = \dfrac{\e^2}{2} - 0 - \dfrac{\e^2}{4} + \dfrac{1}{4}
+= \dfrac{\e^2}{4}+\dfrac{1}{4}
+= \dfrac{\e^2+1}{4}
+\end{aligned}$
+
+\hfill\textbf{Affirmation 1 vraie}
+
+\item Soient $n$ et $k$ deux entiers naturels non nuls tels que $k \leqslant n$.
+
+\textbf{Affirmation 2 :}
+$\ds n \times\binom{n-1}{k-1}=k \times\binom{ n}{k}$
+
+On va utiliser les propriétés: $\dfrac{k}{k\,!} = \dfrac{1}{(k-1)\,!}$ et $n\,! = n\times (n-1)\,!$.
+
+\begin{list}{\textbullet}{}
+\item 
+$\ds\binom{n}{k}= \dfrac{n\,!}{k\,! \times (n-k)\,!}$ donc
+
+$\ds k\times \binom{n}{k}= k\times \dfrac{n\,!}{k\,! \times (n-k)\,!}
+= \dfrac{k\times n\,!}{k\,! \times (n-k)\,!}
+= \dfrac{n\,!}{(k-1)\,! \times (n-k)\,!}$
+\item
+$\begin{aligned}[t]
+\ds\binom{n-1}{k-1}
+& = \dfrac{(n-1)\,!}{(k-1)\,! \times \left ((n-1)-(k-1)\right )\,!}
+ = \dfrac{(n-1)\,!}{(k-1)\,! \times (n-1-k+1)\,!}\\
+&= \dfrac{(n-1)\,!}{(k-1)\,! \times (n-k)\,!} \text{ donc}
+\end{aligned}$ 
+
+$\ds n\times \binom{n-1}{k-1}
+= n\times \dfrac{(n-1)\,!}{(k-1)\,! \times (n-k)\,!}
+= \dfrac{n\times (n-1)\,!}{(k-1)\,! \times (n-k)\,!}
+== \dfrac{n\,!}{(k-1)\,! \times (n-k)\,!}$
+\end{list}
+
+\hfill\textbf{Affirmation 2 vraie}
+
+		\item Pour les trois affirmations suivantes, on considère que l'espace est muni d'un repère orthonormé \Oijk.
+
+\medskip
+
+Soit $d$ la droite de représentation paramétrique : \quad 
+$\left\{\begin{array}{l c l}
+x&=&\phantom{2}t+1 \\
+y&=&2 t+1 \\
+z&=&-t
+\end{array},\quad t \in \R\right.$.
+
+		Soit $d'$ la droite de représentation paramétrique : \quad $\left\{\begin{array}{l c l}
+x&=&2t'-1 \\
+y&=&-t'+2 \\
+z&=&\phantom{-}t'+1
+\end{array},\quad t' \in \R\right.$.
+
+\medskip
+
+Soit $P$ le plan d'équation cartésienne : $2 x+y-2 z+18=0$.
+
+Soit A le point de coordonnées $(-1 ~;~-3 ~;~ 2)$ et B le point de coordonnées $(-5 ~;~-5~;~6)$.
+
+On appelle plan médiateur du segment [AB] le plan passant par le milieu du segment [AB] et orthogonal à la droite (AB).
+
+\medskip
+
+\textbf{Affirmation 3 :} Le point A appartient à la droite $d$.
+
+$A\in d$ si et seulement s'il existe un réel $t$ tel que:
+$\left\{
+\begin{array}{r !{=} l}
+-1 &t+1 \\
+-3 &2 t+1 \\
+2 &-t
+\end{array}
+\right.$
+
+Le réel $t=-2$ vérifie les trois égalités donc le point A appartient à la droite $d$.
+
+\hfill\textbf{Affirmation 3 vraie}
+
+\medskip
+
+\textbf{Affirmation 4 :} Les droites $d$ et $d'$ sont sécantes.
+
+$d$ et $d'$ sont sécantes s'il existe un couple $(t\,,\,t')$ tel que
+$\left\{
+\begin{array}{l !{=} r}
+t+1 & 2t'-1 \\
+2 t+1 & -t'+2 \\
+-t & t'+1
+\end{array}
+\right.$
+
+$\left\{
+\begin{array}{l !{=} r}
+t+1 & 2t'-1 \\
+2 t+1 & -t'+2 \\
+-t & t'+1
+\end{array}
+\right.
+\iff
+\left\{
+\begin{array}{l !{=} r}
+t & 2t'-2 \\
+2 (2t'-2)+1 & -t'+2 \\
+-(2t'-2) & t'+1
+\end{array}
+\right.$
+
+$\iff
+\left\{
+\begin{array}{l !{=} r}
+t & 2t'-2 \\
+4t'-4+1 & -t'+2 \\
+-2t'+2 & t'+1
+\end{array}
+\right.
+\iff
+\left\{
+\begin{array}{l !{=} r}
+t & 2t'-2 \\
+5t' & 5 \\
+1 & 3t'
+\end{array}
+\right.
+\iff
+\left\{
+\begin{array}{l !{=} r}
+t & 2t'-2 \\
+t' & 1 \\
+\dfrac{1}{3} & t'
+\end{array}
+\right.$
+
+Le système n'a pas de solution donc les droites $d$ et $d'$ ne sont pas sécantes.
+
+\hfill\textbf{Affirmation 4 fausse}
+
+\medskip
+
+		\textbf{Affirmation 5 :} Le plan $P$ est le plan médiateur du segment [AB].
+
+Le plan médiateur du segment [AB] est l'ensemble des points M de coordonnées $(x\,,\, y \,,\, z)$ tels que $\text{MA} = \text{MB}$, ce qui équivaut à $\text{MA}^2 = \text{MB}^2$.
+
+$\begin{aligned}
+\text{MA}^2 
+& = (x+1)^2+(y+3)^2 + (z-2)^2\\ 
+& = x^2+2x+1 + y^2+6y+9+z^2-4z+4\\
+& = x^2+2x + y^2+6y+z^2-4z+14
+\end{aligned}$
+
+$\begin{aligned}
+\text{MB}^2 
+& = (x+5)^2+(y+5)^2+ (z-6)^2\\
+& = x^2+10x+25 + y^2+10y +25 +z^2-12z+36\\
+& = x^2+10x + y^2+10y+z^2-12z+86
+\end{aligned}$
+
+$\begin{aligned}
+\text{MA}^2 = \text{MB}^2
+& \iff x^2+2x + y^2+6y+z^2-4z+14 = x^2+10x + y^2+10y+z^2-12z+86\\
+& \iff -8x -4y + 8z -72=0
+\iff -4\left ( 2x +y -2z +18\right ) = 0\\
+& \iff 2x+y-2z  +18 = 0
+\end{aligned}$
+
+On retrouve l'équation du plan $P$ donc $P$ est le plan médiateur du segment [AB].
+
+\hfill\textbf{Affirmation 5 vraie}
+	\end{enumerate}

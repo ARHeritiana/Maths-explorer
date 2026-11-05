@@ -1,0 +1,172 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_06_metropole_automatismes_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Question 1}
+	Soit on sait que $\dfrac{1}{5}=0,2$ et on multiplie par 2, soit on transforme la fraction pour pouvoir calculer le quotient $\dfrac{2}{5}=\dfrac{4}{10}=0,4$.
+
+	C'est la réponse \textbf{C}.
+
+\subsection*{Question 2}
+	$30\,\%$ de 150 veut dire :\quad $150 \times \dfrac{30}{100}= 150 \times \dfrac{3}{10}= \dfrac{150}{10} \times 3= 15 \times 3=45$.
+
+	C'est la réponse \textbf{C}.
+
+\subsection*{Question 3}
+
+\begin{minipage}{0.55\linewidth}
+	Par lecture graphique, on observe que 1 est un antécédent de 3.
+
+	C'est la réponse \textbf{B}.
+\end{minipage}
+	\hfill
+	\begin{tikzpicture}[baseline={(current bounding box.center)},scale=0.7,>=stealth]
+		\draw [color = gray!75, line width = 0.5pt, xstep=0.5, ystep = 0.5] (-4.4,-2.2) grid (5.4,3.6);
+		\draw (-4.4,0) -- (5.4,0);
+		\foreach \x in {-4,...,-1,1,2,...,5}
+		\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\np{\x}$};
+		\draw (0,-2.4) -- (0,3.9);
+		\foreach \y in {-2,-1,1,2,3}
+		\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\np{\y}$};
+		\draw[color=black] (-2pt,-2pt) node[below left] {\footnotesize 0};
+		\draw[line width=1.2pt,red]
+		(-4,-0.5) .. controls (-3.75,0.75) and (-3.3,1.5) ..
+		(-3,1.5) .. controls (-2.1 ,1.5 ) and (-2.4,-1.5) ..
+		(-1.5,-1.5) .. controls (-1.25,-1.5 ) and (-1.1,-1.1) ..(-1,-1) --
+		(0.5,2) .. controls (0.6,2.15 ) and (0.8,3) ..
+		(1,3) .. controls (1.2,3) and (1.4,2.15 ) ..
+		(1.5,2) .. controls (1.6,1.8) and (2.4,1.2) ..
+		(2.5,1) .. controls (2.7,.8) and (2.8,0.5) ..
+		(3,0.5) .. controls (3.2,0.5) and (3.3,0.8) ..
+		(3.5,1) -- (5,2.5);
+		\draw[teal, line width=1.5pt,dashed,->] (0,3)--(1,3)--(1,0);
+	\end{tikzpicture}
+
+
+\subsection*{Question 4}
+	On résout l'équation $\begin{aligned}[t] 7 x+4 & = 5 x+ 6 \\
+	7x-5x &= 6-4\\
+	2x &= 2\\
+	x &= 1
+	\end{aligned}$
+
+	L'équation a une solution : $x = 1$.
+
+	C'est la réponse \textbf{D}.
+
+\needspace{5\baselineskip}
+\subsection*{Question 5}
+	Le prix est d'abord multiplié par 0,9 puis par 1,1.
+
+	$50 \times 0,9 \times 1,1= 5 \times 9 \times 1,1 = 45 \times 1,1 = 49,50$.
+
+	\emph{Ou bien} : $0,9\times 1,1= 0,99$. \quad L'évolution globale est donc une baisse de 1\,\%, et 1\,\% de 50\,\euro{} c'est 0,50\,\euro{}.
+
+	$50 - 0,5 = 49,5$.
+
+	C'est la réponse \textbf{A}.
+
+\subsection*{Question 6}
+	Le point de la courbe d'abscisse $-1$ a pour ordonnée l'image de $-1$ par la fonction $x \mapsto 2 x^{2}-x+3$.
+
+	$2 (-1)^{2}-(-1)+3=2+1+3=6$.
+
+	L'image de $-1$ est 6, donc la courbe passe par le point de coordonnées $(-1 ; 6)$.
+
+	C'est la réponse \textbf{D}.
+
+\subsection*{Question 7}
+	Le coefficient directeur de la droite (AB) est \quad $m=\dfrac{y_{\mathrm{B}}-y_{\mathrm{A}}}{x_{\mathrm{B}}-x_{\mathrm{A}}}=\dfrac{4-2}{-3-(-1)}=-1$.
+
+	C'est la réponse \textbf{B}.
+
+\subsection*{Question 8}
+	Si on range les valeurs de la série dans l'ordre croissant, on obtient \quad $2 ; 2 ; 3 ; 3 ; 4 ; 5$.
+
+	La série est composée d'un nombre pair de notes, donc la médiane est la moyenne des deux valeurs centrales, c'est-à-dire ici de la moyenne entre la 3\up{e} et la 4\up{e} valeur. Ces deux valeurs sont des 3, donc la médiane est 3.
+
+	C'est la réponse \textbf{B}.
+
+
+\needspace{10\baselineskip}
+
+\end{document}

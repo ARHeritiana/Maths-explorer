@@ -1,0 +1,77 @@
+\medskip
+
+On considère la fonction $f$ définie sur $\R$ par 
+
+\[f(x) = \ln \left(\e^{2x}  - \e^x  + 1\right).\]
+
+On note $\mathcal{C}_f$ sa courbe représentative représentée ci-dessous.
+
+\begin{center}
+\psset{unit=1.35cm,arrowsize=2pt 3,comma=true}
+\begin{pspicture*}(-3.6,-2)(3,3)
+\psaxes[linewidth=1.25pt,Dx=0.5,Dy=0.5,labelFontSize=\scriptstyle]{->}(0,0)(-3.5,-1.95)(3,3)
+\psgrid[gridlabels=0pt,subgriddiv=2]
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-3.5}{2}{2.71828 x 2 mul exp 2.71828 x exp sub 1 add ln} \uput[dr](1.4,2.5){\blue $\mathcal{C}_f$}
+\end{pspicture*}
+\end{center}
+
+Un élève formule les conjectures suivantes à partir de cette représentation graphique :
+
+\smallskip
+
+\begin{tabularx}{\linewidth}{|X|}\hline
+\textbf{1.~~}L'équation $f(x) = 2$ semble admettre au moins une solution.\\
+\textbf{2.~~}Le plus grand intervalle sur lequel la fonction $f$ semble être croissante est $[- 0,5~;~+\infty[$.\\
+\textbf{3.~~}L'équation de la tangente au point d'abscisse $x = 0$ semble être: $y = 1,5x$.\\ \hline
+\end{tabularx}
+
+\medskip
+
+Le but de cet exercice est de valider ou rejeter les conjectures concernant la fonction $f$.
+
+\medskip
+
+\textbf{Partie A : Étude d'une fonction auxiliaire}
+
+\medskip
+
+On définit sur $\R$ la fonction $g$ définie par 
+\[g(x) = \e^{2x} - \e^x + 1.\]
+
+\begin{enumerate}
+\item Déterminer $\displaystyle\lim_{x \to - \infty} g(x)$.
+\item Montrer que $\displaystyle\lim_{x \to + \infty} g(x) = + \infty$.
+\item Montrer que $g'(x) = \e^x\left(2\e^x - 1\right)$ pour tout $x \in  \R$.
+\item Étudier le sens de variation de la fonction $g$ sur $\R$.
+
+Dresser le tableau des variations de la fonction $g$ en y faisant figurer la valeur exacte des extremums s'il y en a, ainsi que les limites de $g$ en $-\infty$ et $+ \infty$.
+\item En déduire le signe de $g$ sur $\R$.
+\item Sans en mener nécessairement les calculs, expliquer comment on pourrait établir le résultat
+de la question 5 en posant $X = \e^x$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item Justifier que la fonction $f$ est bien définie sur $\R$.
+\item La fonction dérivée de la fonction $f$ est notée $f'$.
+
+Justifier que $f'(x) = \dfrac{g'(x)}{g(x)}$ pour tout $x \in \R$.
+\item Déterminer une équation de la tangente à la courbe au point d'abscisse $0$.
+\item Montrer que la fonction $f$ est strictement croissante sur $[-\ln (2)~;~ +\infty[$.
+\item Montrer que l'équation $f(x) = 2$ admet une unique solution $\alpha$ sur $[-\ln (2)~;~ +\infty[$ et déterminer une valeur approchée de $\alpha$ à $10^{-2}$ près.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C}
+
+\medskip
+
+À l'aide des résultats de la partie B, indiquer, pour chaque conjecture de l'élève, si elle est vraie ou fausse. Justifier.
+
+\medskip

@@ -1,0 +1,156 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_05_ameriquenord_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Commun à tous les candidats}
+
+\medskip
+
+
+Les probabilités demandées dans cet exercice seront arrondies à $10^{-3}$.
+
+\medskip
+
+Un laboratoire pharmaceutique vient d'élaborer un nouveau test anti-dopage. 
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+Une étude sur ce nouveau test donne les résultats suivants:
+
+\setlength\parindent{9mm}
+\begin{itemize}
+\item[$\bullet~~$] si un athlète est dopé, la probabilité que le résultat du test soit positif est $0,98$ (sensibilité du test) ;
+\item[$\bullet~~$]si un athlète n'est pas dopé, la probabilité que le résultat du test soit négatif est $0,995$ (spécificité du test).
+\end{itemize}
+\setlength\parindent{0mm}
+
+\smallskip
+
+On fait subir le test à un athlète sélectionné au hasard au sein des participants à une compétition d'athlétisme. 
+
+On note $D$ l'évènement \og l'athlète est dopé \fg{} et $T$ l'évènement \og le test est positif \fg. 
+
+On admet que la probabilité de l'évènement $D$ est égale à 0,08.
+
+\medskip
+
+\begin{enumerate}
+\item Traduire la situation sous la forme d'un arbre pondéré.
+\item Démontrer que $P(T) = 0,083$.
+\item 
+	\begin{enumerate}
+		\item Sachant qu'un athlète présente un test positif, quelle est la probabilité qu'il soit dopé ?
+		\item Le laboratoire décide de commercialiser le test si la probabilité de l'évènement \og un athlète présentant un test positif est dopé \fg{} est supérieure ou égale à $0,95$.
+
+Le test proposé par le laboratoire sera-t-il commercialisé ? Justifier.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+Dans une compétition sportive, on admet que la probabilité qu'un athlète contrôlé présente un test positif est $0,103$.
+
+\medskip
+
+\begin{enumerate}
+\item Dans cette question \textbf{1.} on suppose que les organisateurs décident de contrôler $5$ ~athlètes au hasard parmi les athlètes de cette compétition. 
+
+On note $X$ la variable aléatoire égale au nombre d'athlètes présentant un test positif parmi les $5$ athlètes contrôlés.
+	\begin{enumerate}
+		\item Donner la loi suivie par la variable aléatoire $X$. Préciser ses paramètres.
+		\item Calculer l'espérance $E(X)$ et interpréter le résultat dans le contexte de l'exercice.
+		\item Quelle est la probabilité qu'au moins un des 5 athlètes contrôlés présente un test positif ?
+	\end{enumerate}
+\item Combien d'athlètes faut-il contrôler au minimum pour que la probabilité de l'évènement \og au moins un athlète contrôlé présente un test positif\fg{} soit supérieure ou égale à $0,75$ ? Justifier.
+\end{enumerate}
+\vspace{0,5cm}
+\bigskip
+
+\end{document}

@@ -1,0 +1,145 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet53_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{1.}
+
+On a :
+\[
+p_T(S) = \dfrac{p(T \cap S)}{p(T)} = \dfrac{0{,}02}{0{,}08} = \dfrac{2}{8} = \dfrac{1}{4} = 0{,}25.
+\]
+
+\subsection*{2.}
+
+\begin{center}
+\begin{tikzpicture}[thick, scale=1.5]
+\node (P_-1_0) at (-2,-1.5) {$\phantom{A}$};
+\node (P_0_0) at (0,-0.5) {$T$};
+\draw (P_-1_0) -- (P_0_0) node[midway, above] {$0{,}08$};
+\node (P_1_0) at (2,-0) {$S$};
+\draw (P_0_0) -- (P_1_0) node[midway, above] {$0{,}25$};
+\node (P_1_1) at (2,-1) {$\overline{S}$};
+\draw (P_0_0) -- (P_1_1) node[midway, below] {$0{,}75$};
+\node (P_0_2) at (0,-2.5) {$\overline{T}$};
+\draw (P_-1_0) -- (P_0_2) node[midway, below] {$0{,}92$};
+\node (P_1_2) at (2,-2) {$S$};
+\draw (P_0_2) -- (P_1_2) node[midway, above] {$0{,}05$};
+\node (P_1_3) at (2,-3) {$\overline{S}$};
+\draw (P_0_2) -- (P_1_3) node[midway, below] {$0{,}95$};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{3.}
+
+On a :
+\begin{itemize}
+    \item \(p(\overline{S} \cap T) = p(T \cap \overline{S}) = p(T) \times p_T(\overline{S}) = 0{,}08 \times 0{,}75 = 0{,}06\).
+    \item \(p(\overline{S} \cap \overline{T}) = p(\overline{T} \cap \overline{S}) = p(\overline{T}) \times p_{\overline{T}}(\overline{S}) = 0{,}92 \times 0{,}95 = 0{,}874\).
+\end{itemize}
+
+D'après la loi des probabilités totales :
+\begin{align*}
+p(\overline{S}) &= p(\overline{S} \cap T) + p(\overline{S} \cap \overline{T}) \\
+&= 0{,}06 + 0{,}874 \\
+&= 0{,}934.
+\end{align*}
+
+\subsection*{4.}
+
+\paragraph{a.}
+\[
+\begin{array}{|c|c|c|c|}
+\hline
+x_i & 0 & 9 & 14 \\
+\hline
+P(X = x_i) & 0{,}066 & 0{,}06 & 0{,}874 \\
+\hline
+\end{array}
+\]
+
+\paragraph{b.} Le prix de vente moyen d'un jeu fabriqué par cette entreprise est égal à l'espérance mathématique de la variable aléatoire \(X\), soit :
+\[
+E(X) = 0 \times 0{,}066 + 9 \times 0{,}06 + 14 \times 0{,}874 = 12{,}776,
+\]
+soit \( 12{,}78 \) € au centime près.
+
+\end{document}

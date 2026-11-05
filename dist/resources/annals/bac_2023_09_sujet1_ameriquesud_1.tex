@@ -1,0 +1,181 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_09_sujet1_ameriquesud_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On considère la fonction $f$ définie sur l'ensemble $]0~;~+ \infty[$ par
+
+\[f(x) = 1 + x^2 - 2x^2\ln (x).\]
+
+On admet que $f$ est dérivable sur l'intervalle et on note $f'$ sa fonction dérivée
+
+\medskip
+
+\begin{enumerate}
+\item Justifier que $\displaystyle\lim_{x \to 0} f(x) = 1$ et, en remarquant que $f(x) = 1 + x^2(1 - 2\ln (x))$, justifier que $\displaystyle\lim_{x \to + \infty} f(x) = - \infty$.
+\item Montrer que pour tout réel $x$  de l'intervalle $]0~;~+ \infty[$, \: $f'(x) = - 4x\ln (x)$.
+\item Étudier le signe de $f'(x)$ sur l'intervalle $]0~;~+ \infty[$, puis dresser le tableau de variations de la fonction sur l'intervalle $]0~;~+ \infty[$.
+\item Démontrer que l'équation $f(x) = 0$ admet une unique solution $\alpha$ dans l'intervalle $[1~;~+ \infty[$ et que $\alpha \in [1~;~\text{e}]$.
+\end{enumerate}
+
+On admet dans la suite de l'exercice, que l'équation $f(x) = 0$ n'admet pas de solution sur l'intervalle ]0~;~1].
+
+\begin{enumerate}[resume]
+\item On donne la fonction ci-dessous écrit en Python. L'instruction \emph{from lycee import *} permet d'accéder à la fonction ln.
+
+\begin{center}
+\begin{tabular}{>{\ttfamily}l}
+from lycee import *\\
+\\
+def f(x) :\\
+\qquad return 1 + x**2 - 2*x**2*ln(x)\\
+\\
+def dichotomie(p)\\
+\qquad a=1\\
+\qquad b=2.7\\
+\qquad while b - a > 10**(-p) :\\
+\qquad \begin{tabular}{|l}
+\quad if f(a)*f((a+b)/2) < 0 :\\
+\quad |\quad b = (a+b)/2\\
+\quad else :\\
+\quad |\quad a = (a+b)/2\\
+\end{tabular}\\
+\qquad  return (a,b)
+\end{tabular}
+\end{center}
+
+\medskip
+
+Il écrit dans la console d'exécution :
+
+$>>>$ {\ttfamily dichotomie(1)}
+
+Parmi les quatre propositions ci-dessous, recopier celle affichée par l'instruction précédente ? Justifier votre réponse (on pourra procéder par élimination).
+
+\medskip
+
+\begin{center}
+\begin{tabular}{l l}
+Proposition A :&(1.75, 1.9031250000000002)\\
+Proposition B :&(1.85, 1.9031250000000002)\\
+Proposition C :&(2.75, 2.9031250000000002)\\
+Proposition D :&(2.85, 2.9031250000000002)\\
+\end{tabular}
+\end{center}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On considère la fonction $g$ définie sur l'intervalle $]0~;~+ \infty[$, par 
+\[g(x) = \dfrac{\ln (x)}{1 + x^2}.\]
+
+On admet que $g$ est dérivable sur l'intervalle $]0~;~+ \infty[$ et on note $g'$ sa fonction dérivée.
+
+On note $\mathcal{C}_g$ la courbe représentative de la fonction $g$ dans le plan rapporté à un repère \Oij.
+
+\medskip
+
+\begin{enumerate}
+\item Démontrer que pour tout réel $x$ de l'intervalle $]0~;~+ \infty[$, \: $g'(x) = \dfrac{f(x)}{x\left(1 + x^2\right)^2}$.
+\item Démontrer que la fonction $g$ admet un maximum en $x = \alpha$
+\end{enumerate}
+
+On admet que $g(\alpha) = \dfrac{1}{2\alpha^2}$.
+
+\begin{enumerate}[resume]
+\item On note $T_1$ la tangente à $\mathcal{C}_g$ au point d'abscisse 1 et on note $T_{\alpha}$ la tangente à $\mathcal{C}_g$ au point d'abscisse $\alpha$.
+
+Déterminer, en fonction de $\alpha$, les coordonnées du point d'intersection des droites $T_1$ et $T_{\alpha}$.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

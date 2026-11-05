@@ -1,0 +1,108 @@
+\medskip
+
+
+\emph{Les probabilités demandées seront données à $10^{-3}$ près.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item 
+D'après l'énoncé :
+
+\begin{itemize}
+\item[$\bullet~~$] $p_A(T) = 0,97$ ;
+\item[$\bullet~~$] $p_{\overline{A}}\left(\overline{T}\right) = 0,957$ ;
+\item[$\bullet~~$] $p(T) = 0,2$.
+\end{itemize}
+
+D'où l'arbre pondéré :
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$A$~}\taput{$x$}}
+	{\TR{$T$}\taput{0,97}
+	\TR{$\overline{T}$}\tbput{0,03}
+}
+\pstree{\TR{$\overline{A}$~}\tbput{$1 - x$}}
+{\TR{$T$}\taput{0,043}
+\TR{$\overline{T}$}\tbput{0,957}
+}
+}
+\end{center}
+
+\item 
+	\begin{enumerate}
+		\item 
+D'après la loi des probabilités totales :
+		
+$p(T) = p(A \cap T) + p\left(\overline{A} \cap T\right) = p(A) \times p_{A}(T) + p\left(\overline{A}\right) \times p_{\overline{A}}(T) = x \times 0,97 + (1 - x) \times 0,043 = 0,97x + 0,043 -0,043x = 0,927x + 0,043$.
+		\item 
+Comme $p(T) = 0,2 = 0,927x + 0,043 \iff 0,157 = 0,927x \iff \dfrac{0,157}{0,927} = x$.
+		
+Or $\dfrac{0,157}{0,927} \approx \np{0,1694}$ soit 0,169 au millième près.
+
+$x  = p(A) \approx 0,169$.
+	\end{enumerate}	
+\item 
+
+
+L'affirmation se traduit par : $p_T(A) > 0,8$.
+
+Or $p_T(A) = \dfrac{p(T \cap A)}{p(T)} = \dfrac{p(A \cap T)}{p(T)} = \dfrac{p(A) \times p_A(T)}{p(T)} \approx \dfrac{0,169 \times 0,97}{0,2}$, soit 
+
+$p_T(A) \approx \dfrac{\np{0,16393}}{0,2} \approx \np{0,81965}$, soit environ 81,97\,\% : l'affirmation est vraie.
+\end{enumerate}
+
+
+
+
+
+\textbf{Partie B}
+
+\medskip
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+
+
+Les tirages successifs étant indépendants et chaque personne ayant un probabilité d'être allergique égale à 0,08, $X$ suit une loi de Bernoulli de paramètres $n = 150$ et $p = 0,08$.
+\item 
+La calculatrice donne $p(X = 20) \approx \np{0,00820}$, soit 0,008 au millième près.
+\item 
+La calculatrice donne $p(X \leqslant 14) \approx \np{0,7797}$, donc $p(X \geqslant 15) = 1 - p(X \leqslant 14) \approx 1 - \np{0,7797} \approx \np{0,2203}$ soit 0,220 au millième près.
+\end{enumerate}
+
+\bigskip

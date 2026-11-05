@@ -1,0 +1,47 @@
+\medskip
+
+On injecte dans le sang d'un malade $\np[cm^3]{2}$  d'un médicament. On admet que le processus
+d'élimination du médicament peut être modélisé par une suite $\left(U_n\right)$, dont le terme général $U_n$ représente le volume en cm$^3$ de médicament présent dans le sang au bout de $n$ heures,
+$n$ étant un entier naturel. Dans ce modèle, on considère que le volume de médicament
+contenu dans le sang diminue de 8\,\% chaque heure.
+
+\medskip
+
+\begin{enumerate}
+\item Vérifier que $U_1 = 1,84$ et en donner une interprétation dans le contexte de l'exercice.
+\item 
+	\begin{enumerate}
+		\item Pour tout entier naturel $n$ , exprimer $U_{n+1}$ en fonction de $U_n$.
+
+		\item En déduire la nature de la suite $\left(U_n\right)$. Préciser sa raison et son premier terme.
+
+	\end{enumerate}
+\item Pour que le médicament soit actif, le volume de médicament présent dans le sang du malade doit rester supérieur à un certain seuil $S$ ; ce seuil dépend du malade.
+	\begin{enumerate}
+		\item À l'aide d'une fonction écrite en langage Python, on se propose de déterminer, en fonction de $S$, le nombre maximal d'heures durant lesquelles le médicament reste actif.
+Compléter le programme suivant, écrit en Python.
+
+\begin{center}
+\begin{tabular}{|l|}
+\hline
+def volMedicament(S) :\\
+\hspace{2em}u=2\\
+\hspace{2em}n=0\\
+\hspace{2em}while u > $S$ :\\
+\hspace{2em}	u = u*$\dots$\\
+\hspace{2em}	n = n+1\\
+return n\\\hline
+\end{tabular}
+\end{center}
+
+		\item On s'intéresse au cas d'un malade pour qui ce seuil est estimé à $S = \np[cm^3]{1,5}$.
+Que doit-on saisir pour exécuter la fonction volMedicament afin qu'elle renvoie 
+le nombre maximal d'heures durant lesquelles le médicament reste actif chez ce malade ?
+
+
+Quel est alors ce nombre d'heures ?
+
+	\end{enumerate}
+\end{enumerate}
+
+\vspace{0,5cm}

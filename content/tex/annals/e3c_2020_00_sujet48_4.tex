@@ -1,0 +1,53 @@
+\medskip
+
+Dans un aéroport, les portiques de sécurité servent à détecter les objets métalliques que peuvent emporter les voyageurs.
+
+On choisit au hasard un voyageur franchissant un portique. 
+
+On note:
+
+\setlength\parindent{9mm}
+\begin{itemize}[label=\textbullet]
+\item $S$ l'évènement \og le voyageur fait sonner le portique \fg{} ;
+\item $M$ l'évènement \og le voyageur porte un objet métallique \fg.
+\end{itemize}
+\setlength\parindent{0mm}
+
+On note $\overline{S}$ et $\overline{M}$ les évènements contraires des évènements $S$ et $M$.
+
+On considère qu'un voyageur sur $500$ porte sur lui un objet métallique. 
+
+On admet que :
+
+\setlength\parindent{9mm}
+\begin{itemize}[label=\textbullet]
+\item Lorsqu'un voyageur franchit le portique avec un objet métallique, la probabilité que le portique sonne est égale à 0,95.
+\item Lorsqu'un voyageur franchit le portique sans objet métallique, la probabilité que le portique ne sonne pas est de 0,96.
+\end{itemize}
+\setlength\parindent{0mm}
+
+\medskip
+
+\begin{enumerate}
+\item À l'aide des données de l'énoncé, préciser les valeurs de $P(M)$, $P_M(S)$ et $P_{\overline{M}}\left(\overline{S}\right)$. 
+\item Recopier et compléter l'arbre pondéré ci-dessous, modélisant cette situation :
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=3pt]{\TR{}}
+{
+\pstree{\TR{$M$~~}\taput{\ldots}}
+	{\TR{$S$} \taput{\ldots}
+	\TR{$\overline{S}$} \tbput{\ldots}
+	}
+\pstree{\TR{$\overline{M}$~~}\tbput{\ldots}}
+	{\TR{$S$}\taput{\ldots}
+	\TR{$\overline{S}$}\tbput{\ldots}
+	}
+}
+\end{center}
+
+\item Montrer que $P(S) = \np{0,04182}$.
+\item En déduire la probabilité qu'un voyageur porte un objet métallique sachant qu'il a fait
+sonner le portique en passant. On arrondira le résultat à $10^{-3}$.
+\item Les évènements $M$ et $S$ sont-ils indépendants?
+\end{enumerate}

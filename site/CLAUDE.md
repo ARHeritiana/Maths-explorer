@@ -180,3 +180,5 @@ Topology: `js/topology-content.js` holds tangent fields, surfaces and Banach-Tar
 | `resources/history/mathematicians-timeline.html` | Standalone 236-profile, bilingual portrait timeline opened from `#history/people`; shared site navigation and tokens from `styles/explorer.css`, `styles/pages.css` and `styles/timeline-standalone.css`; scrollable, touch-size portrait lanes and biography links. |
 
 `js/exercises/authored-exams.js`: 24 original multi-part problems; target skills (`skills`) remain internal metadata. Do not render competency lists or exam-type labels in the bank, printed sheets or LaTeX exports for now.
+
+`js/annals-bank.js`: self-hosted Bac/EAM/E3C exercises, topic/year filters, lazy statement and solution loading, local LaTeX and print exports; shared by the bank catalogue and chapter pages.

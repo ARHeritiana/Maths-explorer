@@ -1,0 +1,128 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet55_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{1.}
+
+\begin{align*}
+&M(x\,;\,y) \in d_1 \\
+\iff &\overrightarrow{CM} \cdot \overrightarrow{AB} = 0 \\
+\iff &0 \times (x - 1) + 6(y - 1) = 0 \\
+\iff &y - 1 = 0.
+\end{align*}
+
+\subsection*{2.}
+
+La droite contenant un sommet et perpendiculaire au côté opposé est une hauteur.
+
+\subsection*{3.}
+
+\begin{align*}
+&M(x\,;\,y) \in d_2 \\
+\iff &\overrightarrow{BM} \cdot \overrightarrow{AC} = 0 \\
+\iff &-6(x - 7) + 3(y - 4) = 0 \\
+\iff &-6x + 3y + 42 - 12 = 0 \\
+\iff &-2x + y + 10 = 0.
+\end{align*}
+
+\subsection*{4.}
+
+Si \( H \) est le point d'intersection de deux hauteurs, c'est donc l'orthocentre, point commun aux trois hauteurs. La troisième hauteur est donc \( (AH) \), qui est perpendiculaire à \( (BC) \). Les vecteurs \( \overrightarrow{AH} \) et \( \overrightarrow{BC} \) sont donc orthogonaux, et leur produit scalaire est donc nul.
+
+\begin{center}
+\psset{xunit=0.5cm,yunit=0.5cm,labelsep=0.1pt,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-2,-4.5)(11,8)
+ \multido{\n=-1+1}{13}{\psline[linewidth=0.75pt,linecolor=lightgray](\n,-4)(\n,7.5)}
+ \multido{\n=-4+1}{12}{\psline[linewidth=0.75pt,linecolor=lightgray](-1.5,\n)(11.2,\n)}
+ \psaxes[linewidth=0.95pt]{->}(0,0)(-1.5,-4)(11,7.5)
+\uput[dl](0,-0.2){\footnotesize O}\uput[l](6.8,-2.5){A}\uput[l](6.8,4.5){B}\uput[l](0.8,0.5){C}\uput[l](5.2,1.4){H}
+\psdots[dotstyle=+,dotscale =1.4,dotangle=45](1,1)(7,4)(7,-2)
+\psline[linewidth=1pt](7,-2)(7,4)
+\psline[linewidth=1pt](7,4)(1,1)
+\psline[linewidth=1pt](1,1)(7,-2)
+\psline[linewidth=1pt,linecolor=blue](1,1)(8,1)
+\psline[linewidth=1pt,linecolor=red](8,-4)(4,4)
+\psline[linewidth=1pt,linecolor=blue](4,-2)(8,6)
+\end{pspicture}
+\end{center}
+
+\end{document}

@@ -1,0 +1,92 @@
+\textbf{Principaux domaines abordés :} Probabilités
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+
+
+
+
+
+
+
+	\begin{enumerate}
+		\item ~
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$D$~}\taput{0,25}}
+{\TR{$R$}\taput{0,6}
+\TR{$\overline{R}$}\tbput{0,4}
+}
+\pstree{\TR{$\overline{D}$~}\tbput{0,75}}
+{\TR{$R$}\taput{0,35}
+\TR{$\overline{R}$}\tbput{0,65}
+}}
+\end{center}
+		\item 
+$p\left(\overline{D} \cap R\right) = p\left(\overline{D}\right) \times p_{\overline{D}}\left(R \right) = 0,75 \times 0,35 = \np{0,2625}$.
+
+		\item 
+On a de même $p(D \cap R) = p(D) \times p_D(R) = 0,25 \times 0,6 = 0,15$.
+
+D'après la loi des probabilités totales : 
+
+$p(R) = p(D \cap R) + p\left(\overline{D} \cap R\right) =   0,15 + \np{0,2625} = \np{0,4125}$.
+		\item 
+		Il faut trouver $p_R\left(\overline{D}\right) = \dfrac{p\left(R \cap \overline{D}\right)}{p(R)} = \dfrac{\np{0,2625}}{\np{0,4125}}\approx \np{0,6364}$, soit 0,64 au centième près.
+	\end{enumerate}	
+\item 
+
+
+
+
+	\begin{enumerate}
+		\item 
+Les tirs sont indépendants et à chaque tir la probabilité de le réussir est égale à 0,35 : la variable aléatoire $X$ égale au nombre de réussites suit donc une loi binomiale de paramètres $n = 10$ et $p  = 0,35$.
+		\item 
+		On a $E = np = 10 \times 0,35 = 3,5$ : en moyenne sur $20$ tirs Stéphanie en réussira $7$.
+		\item 
+		La calculatrice donne $p(X \leqslant 6) \approx 0,97$.
+		\item 
+		On a de même $p(X \geqslant 6) \approx 0,095$.
+	\end{enumerate}
+\item 
+
+
+
+
+
+
+La probabilité de rater $n$ tirs à 3 points est égale à $0,65^n$, donc elle d'en réussir un est $1 - 0,65^n$.
+
+Il faut donc résoudre dans $\N$, l'inéquation $1 - 0,65^n \geqslant 0,99 \iff 0,01 \geqslant 0,65^n$, soit par croissance de la fonction logarithme népérien:
+
+$\ln 0,01 \geqslant n\ln 0,62 \iff \dfrac{\ln 0,01}{\ln 0,65} \leqslant n$ (car $\ln 0,65 < 0$).
+
+Or $\dfrac{\ln 0,01}{\ln 0,65} \approx 10,69$ ; le plus petit naturel solution est donc 11 : Stéphanie doit tenter 11 tirs.
+\end{enumerate}
+
+\bigskip

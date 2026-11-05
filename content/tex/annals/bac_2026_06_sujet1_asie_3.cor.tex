@@ -1,0 +1,173 @@
+\begin{enumerate}
+\item \begin{enumerate}
+\item On a :
+\[
+\vect{BC}\begin{pmatrix}3-1\\3-2\\1-3\end{pmatrix}\quad \text{soit}\quad \vect{BC}\begin{pmatrix}2\\1\\-2\end{pmatrix}
+\]
+Et :
+\[
+\vect{BE}\begin{pmatrix}2-1\\-2-2\\2-3\end{pmatrix}\quad \text{soit}\quad \vect{BE}\begin{pmatrix}1\\-4\\-1\end{pmatrix}
+\]
+Ces coordonnées ne sont pas proportionnelles, donc les vecteurs ne sont pas colinéaires, et donc les trois points B, C et E ne sont pas alignés.
+
+Ils définissent donc un plan $(BCE)$.
+
+\item On a :
+\[
+\vect{AF}\begin{pmatrix}3-0\\0-0\\4-1\end{pmatrix}\quad \text{soit}\quad \vect{AF}\begin{pmatrix}3\\0\\3\end{pmatrix}
+\]
+Comme le repère est orthonormé, on va utiliser la formule analytique pour calculer les produits scalaires :
+\begin{itemize}
+\item $\vect{AF}\cdot \vect{BC}=3\times 2+0\times 1+3\times(-2)=6+0-6=0$.
+
+$\vect{AF}$ et $\vect{BC}$ sont orthogonaux;
+\item $\vect{AF}\cdot \vect{BE}=3\times 1+0\times(-4)+3\times(-1)=3+0-3=0$.
+
+$\vect{AF}$ et $\vect{BE}$ sont orthogonaux.
+\end{itemize}
+$\vect{AF}$ est donc orthogonal à deux vecteurs non colinéaires qui forment une base du plan $(BCE)$, donc il est normal au plan $(BCE)$.
+
+\item Par propriété, on en déduit qu'une équation cartésienne du plan $(BCE)$ est de la forme $3\times x+0\times y+3\times z+d=0$.
+
+B étant un point du plan $(BCE)$, ses coordonnées doivent vérifier l'équation du plan.
+\[
+B\in (BCE)\Longleftrightarrow 3\times 1+3\times 3+d=0
+\Longleftrightarrow 12+d=0
+\Longleftrightarrow d=-12.
+\]
+Une équation cartésienne du plan est donc $3x+3z-12=0$.
+
+En divisant cette équation par 3 (qui est non nul), on obtient une équation équivalente, donc une équation du plan $(BCE)$ est bien : $x+z-4=0$.
+\end{enumerate}
+
+\item \begin{enumerate}
+\item Voyons si les coordonnées de G vérifient l'équation du plan :
+\[
+x_G+z_G-4=5+1-4=2\neq 0.
+\]
+Les coordonnées de G ne vérifient pas l'équation du plan $(BCE)$ donc le point G n'appartient pas au plan $(BCE)$.
+
+\item Comme $\vect{BE}$ et $\vect{BC}$ ne sont pas colinéaire (prouvé à la question 1. a.), on en déduit que les vecteurs $\vect{BE}$, $\vect{BC}$ et $\vect{AG}$ sont coplanaires si et seulement si on peut exprimer $\vect{AG}$ comme combinaison linéaire des deux autres vecteurs.
+
+Autrement dit, si et seulement s'il existe deux réels $a$ et $b$ tels que : $\vect{AG}=a\vect{BC}+b\vect{BE}$.
+
+On a :
+\[
+\vect{AG}\begin{pmatrix}5\\1\\1\end{pmatrix}.
+\]
+Donc :
+\[
+\begin{aligned}
+\vect{AG}=a\vect{BC}+b\vect{BE}
+&\Longleftrightarrow
+\begin{cases}
+2a+b=5\\
+a-4b=1\\
+2a-b=1
+\end{cases}\\
+&\Longleftrightarrow
+\begin{cases}
+b=5-2a\\
+a-4(5-2a)=1\\
+2a-(5-2a)=1
+\end{cases}\\
+&\Longleftrightarrow
+\begin{cases}
+b=5-2a\\
+9a-20=1\\
+4a-5=1
+\end{cases}\\
+&\Longleftrightarrow
+\begin{cases}
+b=5-2a\\
+9a=21\\
+4a=6
+\end{cases}\\
+&\Longleftrightarrow
+\begin{cases}
+b=5-2a\\
+a=\dfrac73\\
+a=\dfrac32.
+\end{cases}
+\end{aligned}
+\]
+Les équations du système ne sont pas compatibles.
+
+Donc le système n'a pas de solution.
+
+Donc les vecteurs $\vect{BE}$, $\vect{BC}$ et $\vect{AG}$ ne sont pas coplanaires.
+
+\item La droite $(AG)$ est dirigée par $\vect{AG}$, qui n'est pas un vecteur du plan $(BCE)$, donc la droite $(AG)$ n'est pas parallèle au plan (ni strictement parallèle, ni incluse dans le plan).
+
+Une droite et un plan n'ont que trois positions relatives possibles, et on vient de justifier que deux ne sont pas possibles.
+
+Par élimination, on peut conclure que la droite $(AG)$ et le plan $(BCE)$ sont sécants.
+\end{enumerate}
+
+\item \begin{enumerate}
+\item Par propriété, une représentation paramétrique de $(AG)$ est :
+\[
+\begin{cases}
+x=x_A+x_{\vect{AG}}\times t\\
+y=y_A+y_{\vect{AG}}\times t\\
+z=z_A+z_{\vect{AG}}\times t
+\end{cases}\quad t\in\R.
+\]
+En remplaçant par le coordonnées connues, cela donne :
+\[
+\begin{cases}
+x=0+5\times t\\
+y=0+1\times t\\
+z=1+1\times t
+\end{cases}\quad t\in\R.
+\]
+On a donc bien une représentation paramétrique de $(AG)$ qui est :
+\[
+\begin{cases}
+x=5t\\
+y=t\\
+z=1+t
+\end{cases}\quad t\in\R.
+\]
+
+\item Par définition, le point P est un point de $(AG)$.
+
+Ses coordonnées sont donc de la forme $(5t~;~t~;~1+t)$ avec un $t$ réel.
+
+Comme c'est aussi un point du plan $(BCE)$, ces coordonnées doivent vérifier l'équation du plan :
+\[
+x_P+z_P-4=0\Longleftrightarrow 5t+(1+t)-4=0
+\Longleftrightarrow 6t=3
+\Longleftrightarrow t=0,5.
+\]
+P a donc pour coordonnées : $(5\times 0,5~;~0,5~;~1+0,5)$ soit $(2,5~;~0,5~;~1,5)$.
+
+\item Le milieu du segment $[EC]$ a pour coordonnées :
+\[
+\left(\dfrac{x_E+x_C}{2}~;~\dfrac{y_E+y_C}{2}~;~\dfrac{z_E+z_C}{2}\right).
+\]
+En remplaçant par les valeurs connues :
+\[
+\left(\dfrac{2+3}{2}~;~\dfrac{-2+3}{2}~;~\dfrac{2+1}{2}\right).
+\]
+En effectuant les calculs, on retrouve $(2,5~;~0,5~;~1,5)$ c'est-à-dire les coordonnées de P.
+
+P est donc bien le milieu de $[EC]$.
+\end{enumerate}
+
+\item Les plans $(BCE)$ et $(ACG)$ sont sécants, en effet :
+\begin{itemize}
+\item ils ont le point C en commun, de façon évidente : on en déduit que les plans ne sont pas strictement parallèles;
+\item ils ne sont pas confondus, car le point G appartient à $(ACG)$, mais pas à $(BCE)$ (prouvé à la question 2. a.).
+\end{itemize}
+Deux plans sécants ont une intersection qui est une droite, que l'on va nommer $d$.
+\begin{itemize}
+\item P étant par définition sur la droite $(AG)$, il est un point de $(ACG)$;
+\item P est aussi par définition un point du plan $(BCE)$.
+\end{itemize}
+P est donc un autre point commun aux plans $(ACG)$ et $(BCE)$, donc la droite $(CP)$ est incluse dans l'intersection des plans $(ACG)$ et $(BCE)$.
+
+Comme cette intersection est réduite à une droite, on en déduit que :
+
+l'intersection des plans $(BCE)$ et $(ACG)$ est la droite $(CP)$.
+\end{enumerate}

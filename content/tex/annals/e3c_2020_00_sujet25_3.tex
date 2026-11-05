@@ -1,0 +1,35 @@
+\medskip
+
+En France métropolitaine, 2018 a été l'année la plus chaude d'après les relevés météorologiques. La température moyenne y a été de 14~\textcelsius{} ; elle a dépassé de 1,4~\textcelsius{} la normale de référence calculée sur la période 1981-2010. (\emph{Source : site Météo France})
+
+\medskip
+
+\begin{enumerate}
+\item Pour modéliser la situation, on considère l'année 2018 comme l'année zéro et on suppose que cette hausse moyenne de 1,4~\textcelsius{} par an se poursuit chaque année. Pour tout entier naturel $n$, on note alors $T_n$ la température moyenne annuelle en France pour l'année 2018+$n$.
+	\begin{enumerate}
+		\item Quelle est la nature de la suite $\left(T_n\right)$ ainsi définie ? On donnera son premier terme et sa raison.
+		\item On considère qu'au-delà d'une température moyenne de 35~\textcelsius{} les corps ne se refroidissent pas et il devient insupportable pour les humains de continuer à habiter cette région que l'on qualifie alors d'inhabitable.
+
+Selon le modèle considéré, en quelle année la France deviendrait-elle inhabitable pour les humains ? Justifier.
+	\end{enumerate}
+\item À cause du réchauffement climatique, certaines régions risquent de connaître une baisse de 10\,\% par an des précipitations moyennes annuelles mesurées en millimètres (mm). Dans une région du nord de la France, les précipitations moyennes annuelles étaient de \np[mm]{673}  en 2018. On considère l'année 2018 comme l'année zéro et on suppose que cette baisse de 10\,\% par an se poursuit chaque année. Pour tout entier naturel $n$, on note $P_n$ les précipitations annuelles moyennes en mm dans cette région pour l'année $2018+n$.
+	\begin{enumerate}
+		\item  Quelle est la nature de la suite $\left(P_n\right)$ ainsi définie ? On donnera son premier terme et sa raison.
+		\item Pour tout entier naturel $n$, exprimer $P_n$ en fonction de $n$.
+		\item On donne le programme Python suivant :
+
+\begin{lstlisting}[style=python]
+def precipitations(J):
+	I=673
+	n=0
+	while I > J:
+		I = 0.9*I
+		n = n+1
+	return n+2018
+\end{lstlisting}
+
+L'exécution de \og precipitations(300) \fg{} renvoie la valeur 2026. Que représente cette valeur pour le problème posé ?
+	\end{enumerate}
+\end{enumerate}
+
+\vspace{0,5cm}

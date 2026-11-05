@@ -1,0 +1,129 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet38_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+\item Soit $f$ la fonction définie sur l'intervalle [0~;~2] par $f(x) = 8x - 2x^3$.
+\begin{enumerate}
+\item Montrer que pour tout réel $x$ de [0; 2], $f'(x)$ a le même signe que $4 - 3x^2$.
+\item Étudier les variations de la fonction $f$ sur [0~;~2].
+\end{enumerate}
+\item Dans un repère orthonormal, on considère la parabole $p$ d'équation $y = x^2$ et la droite $\mathscr{D}$ d'équation $y = 4$.
+
+On considère le rectangle $MSFE$ tel que :
+\begin{itemize}
+\item $M$ un point de $p$ dont l'abscisse $x$ est un réel de $]0~;~2[$.
+\item $S$ est le symétrique de $M$ par rapport à l'axe des ordonnées.
+\item $E$ et $F$ sont respectivement les projetés orthogonaux de $M$ et $S$ sur la droite $\mathscr{D}$.
+\end{itemize}
+
+\begin{center}
+
+
+
+\psset{xunit=1cm,yunit=1cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-4.4,-1.5)(4.5,5.6)
+\psframe[fillstyle=solid, fillcolor= blue](-1,1)(1,4)
+\multido{\n=-4+0.2}{40}{\psline[linewidth=0.25pt,linecolor=lightgray](\n,-0.99)(\n,5.2)}
+\multido{\n=-0.8+0.2}{30}{\psline[linewidth=0.25pt,linecolor=lightgray](-4,\n)(4,\n)}
+\multido{\n=-4+1}{9}{\psline[linewidth=0.45pt](\n,-0.9)(\n,5.2)}
+\multido{\n=0+1}{6}{\psline[linewidth=0.45pt](-4,\n)(4,\n)}
+\psaxes[linewidth=0.95pt]{-}(0,0)(-4,-0.99)(4,5.2)
+\def\Func{x x  mul  }
+\psplot[plotpoints=2000,linewidth=0.85pt,linecolor=red]{-2.27}{2.27}{\Func}
+\uput[dl](0,0){O}
+\psdots[dotstyle=Bullet,dotscale=1.5,](1,1)(-1,1)(-1,4)(1,4)
+\uput[dr](1,1){\footnotesize $M$}\uput[ur](1,4){\footnotesize $E$}\uput[ul](-1,4){\footnotesize $F$}\uput[dl](-1,1){\footnotesize $S$}
+\psline[linewidth=1.25pt](-4,4)(4,4)\uput[u](3.8,4){$\mathscr{D}$}
+\end{pspicture}
+\end{center}
+
+	\begin{enumerate}
+		\item  Lorsque l'abscisse $x$ du point $M$ varie dans ]0~;~2[, l'aire du rectangle $MSFE$ est-elle constante ?
+		\item Montrer que l'aire du rectangle $MSFE$ en fonction de l'abscisse $x$ de $M$ est $8x - 2x^3$.
+		\item Montrer que l'aire maximale du rectangle $MSFE$ est $\dfrac{32}{3\sqrt{3}}$.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

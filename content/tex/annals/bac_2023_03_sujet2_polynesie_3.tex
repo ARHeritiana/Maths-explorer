@@ -1,0 +1,64 @@
+\medskip
+
+\emph{Les parties {\rm A} et {\rm B} peuvent être traitées indépendamment}
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+Le plan  est ramené à un repère orthogonal.
+
+On a représenté ci-dessous la courbe d'une fonction $f$ définie et deux fois dérivable sur $\R$, ainsi que celle de sa dérivée $f'$ et de sa dérivée seconde $f''$.
+
+\begin{center}
+\psset{xunit=1.5cm,yunit=1.0cm,algebraic=true,dimen=middle,dotstyle=o,dotsize=5pt 0,linewidth=2.pt,arrowsize=2pt 3}
+\begin{pspicture*}(-0.5,-4.05)(8,5.2)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.2pt](0,-4)(8,5)
+\psaxes[labelFontSize=\scriptstyle,xAxis=true,yAxis=true,,ticksize=-2pt 0,subticks=2]{->}(0,0)(0,-3.95)(8,5)
+\psline[linewidth=4.pt](-3.320081944682136,4.772338854767012)(-1.5600159659972166,4.772338854767012)
+\psplot[linewidth=1.25pt,linecolor=red,plotpoints=2000]{0}{8}{4.0/(1.0+2.718281828^(-3.0*x+12.0))}\uput[r](5,3.6){\red $\mathcal{C}_2$}
+\psplot[linewidth=1.25pt,linecolor=blue,plotpoints=2000]{0}{8}{4.0*3.0*2.71828^(-3.0*x+12.0)/(2.0*2.71828^(-3.0*x+12.0)+(2.71828^(-3.0*x+12.0))^(2.0)+1.0)}\uput[r](5,0.6){\blue $\mathcal{C}_3$}
+\psplot[linewidth=1.25pt,plotpoints=2000]{0}{8}{(-4.0*3.0^(2.0)*2.71828^(-3.0*x+12.0)+4.0*3.0^(2.0)*(2.71828^(-3.0*x+12.0))^(2.0))/(3.0*2.71828^(-3.0*x+12.0)+(2.71828^(-3.0*x+12.0))^(3.0)+3.0*(2.71828^(-3.0*x+12.0))^(2.0)+1.0)}\uput[r](5,-1.6){$\mathcal{C}_1$}
+\end{pspicture*}
+\end{center}
+
+\begin{enumerate}
+\item Déterminer, en justifiant votre choix, quelle courbe correspond à quelle fonction.
+\item Déterminer, avec la précision permise par le graphique, le coefficient directeur de la tangente à la courbe $\mathcal{C}_2$ au point d'abscisse 4.
+\item Donner avec la précision permise par le graphique, l'abscisse de chaque point d'inflexion de la courbe $\mathcal{C}_1$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+Soit un réel $k$ strictement positif.
+
+On considère la fonction $g$ définie sur $\R$ par:
+\[g(x) = \dfrac{4}{1 + \text{e}^{- kx}}.\]
+
+\smallskip
+
+\begin{enumerate}
+\item  Déterminer les limites de $g$ en $+ \infty$ et en $-\infty$,
+\item  Prouver que $g'(0) = k$.
+\item  En admettant le résultat ci-dessous obtenu avec un logiciel de calcul formel,
+prouver que la courbe de $g$ admet un point d'inflexion au point d'abscisse 0.
+\begin{center}
+\begin{tabular}{|c l|}\hline
+\multicolumn{2}{|l|}{$\triangleright$ Calcul formel}\\ \hline
+&g(x) =4/(1 + e{}\^{}(-kx))\\
+1&\\
+&$\to g(x) = \dfrac{4}{\text{e}^{-kx} + 1}$\\ \hline
+&Simplifier$(g''(x))$\\
+2&\\
+&$\to g''(x) = - 4\text{e}^{kx}\left(\text{e}^{kx} - 1\right)\dfrac{k^2}{\left(\text{e}^{kx} + 1 \right)^3}$\\ \hline
+\end{tabular}
+\end{center}
+\end{enumerate}
+
+\bigskip

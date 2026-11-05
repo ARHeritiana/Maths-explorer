@@ -1,0 +1,224 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_10_sujet1_caledonie_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+
+
+
+
+
+
+
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(12.2,6)
+\pspolygon(0.4,3.4)(0.4,1.5)(1.9,0.4)(1.9,2.3)
+\psline(1.9,0.4)(7.9,0.8)(7.9,2.7)(1.9,2.3)
+\psline[linestyle=dashed](0.4,1.5)(6.4,1.9)(6.4,3.8)(0.4,3.4)
+\psline[linestyle=dashed](7.9,0.8)(6.4,1.9)
+\pspolygon(7.9,2.7)(6.4,3.8)(3.4,5.5)(4.9,4.4)
+\psline[linestyle=dashed](4.9,4.4)(4.9,2.5)
+\psline(4.9,4.4)(1.9,2.3)
+\psline(3.4,5.5)(0.4,3.4)
+\psline[linewidth=1.5pt]{->}(1.9,0.4)(3.9,0.533)
+\psline[linewidth=1.5pt]{->}(1.9,0.4)(1.15,0.95)
+\psline[linewidth=1.5pt]{->}(1.9,0.4)(1.9,2.3)
+\psline(11.6,0.3)(7.9,1.2)
+\psline[linestyle=dashed](7.9,1.2)(7.15,1.35)
+\uput[d](1.9,0.4){A} \uput[dr](7.9,0.8){B} \uput[r](6.4,1.9){C} \uput[l](0.4,1.5){D}
+\uput[u](1.9,2.3){E} \uput[r](7.9,2.7){F} \uput[ur](6.4,3.8){G} \uput[ul](0.4,3.4){H}
+\uput[l](4.9,4.4){I} \uput[u](3.4,5.5){J} \uput[r](11.6,0.3){R} \uput[dl](1.7,0.6){$\vect{\jmath}$}
+\uput[dr](2.9,0.45){$\vect{\imath}$} \uput[r](1.9,1.35){$\vect{k}$}
+\uput[d](4.9,2.5){L}
+\psline(5.1,2.53)(5.1,2.75)(4.9,2.73)
+\psdots(11.6,0.3)
+\end{pspicture}
+\end{center}
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+On a $\vect{\text{AG}} = \vect{\text{AB}} + \vect{\text{AD}} + \vect{\text{AE}} = 3\vect{\imath} + 2\vect{\jmath} + \vect{k}$. Donc G(3~;~2~;~1).
+\item 
+
+
+On sait que $M(x~;~y~;~z) \in (\text{EHI}) \iff 2x + 0y - 3z = d$, avec $d \in \R$.
+
+Ainsi, par exemple  E$(0~;~0~;~1) \in (\text{EHI}) \iff 2\times 0 + 0\times 0 - 3\times 1 = d \iff d = -3$.
+
+Donc $M(x~;~y~;~z) \in (\text{EHI}) \iff 2x  - 3z = -3$
+\item 
+Puisque (EIF) est isocèle en I le projeté orthogonal de I sur [EF] est le milieu de [EF] ; ces deux points ont donc la même abscisse qui est aussi celle du milieu de [AB] soit $\dfrac32$.
+
+L'ordonnée de I est aussi celle de E soit $0$, enfin 
+
+I$\left(\dfrac32~;~0~;~z\right) \in (\text{EHI}) \iff 2 \times \dfrac32  - 3z = - 3\iff 3z = 3 + 3 \iff z = 2$. Donc I$\left(\dfrac32~;~0~;~2\right)$.
+\item 
+$\bullet~~$ Avec le produit scalaire : avec E(0~;~0~;~1) et F(3~;~0~;~1), on a $\vect{\text{IE}}\begin{pmatrix}-\dfrac32\\0\\- 1\end{pmatrix}$ et $\vect{\text{IF}}\begin{pmatrix}\dfrac32\\0\\- 1\end{pmatrix}$, donc :
+
+IE$^2 = \dfrac94 + 0 + 1 = \dfrac{13}{4}$, d'où IE $ = \dfrac{\sqrt{13}}{2}$ ;
+
+IF$^2 = \dfrac94 + 0 + 1 = \dfrac{13}{4}$, d'où IF $ = \dfrac{\sqrt{13}}{2}$ ;
+
+Donc $\vect{\text{IE}} \cdot \vect{\text{IF}} = \text{IE} \times \text{IF} \times \cos \left(\vect{\text{IF}}~;~ \right)$, soit :
+
+$- \dfrac94 + 0 + 1 = \dfrac{\sqrt{13}}{2} \times \dfrac{\sqrt{13}}{2} \times \cos \left(\vect{\text{IE}}~;~ \vect{\text{IF}}\right) \iff \dfrac{-5}{4} = \dfrac{13}{4}\times \cos \left(\vect{\text{IE}}~;~ \vect{\text{IF}}\right) $.
+
+Finalement $\cos \left(\vect{\text{IE}}~;~ \vect{\text{IF}}\right) = \dfrac{\dfrac{-5}{4}}{\dfrac{13}{4}} = - \dfrac{5}{13}$. La calculatrice donne $\left(\vect{\text{IE}}~;~ \vect{\text{IF}}\right) \approx 112,6\degres$.
+
+$\bullet~~$ Avec le triangle (IEL) rectangle en L (L projeté orthogonal de I sur (EF) :
+
+On a L$\left(\dfrac32~;~0~;~1\right)$, donc IL$^2 = 0 + 0 + 1^2 = 1$, d'où IL $= 1$ ;
+
+On a vu que EI$ = \dfrac{\sqrt{13}}{2}$, d'où $\cos \left(\widehat{\text{EIL}} \right) = \dfrac{\text{IL}}{\text{IE}} = \dfrac{1}{\dfrac{\sqrt{13}}{2}} = \dfrac{2}{\sqrt{13}}$ : la calculatrice donne $\left(\widehat{\text{EIL}} \right) \approx 56,30\degres$ ; donc 
+$\widehat{\text{EIF}} = 2\widehat{\text{EIL}}\approx 2 \times 56,30$, soit finalement $\widehat{\text{EIF}} \approx 112,6\degres$.
+\item 
+
+
+
+
+	\begin{enumerate}
+		\item 
+On sait que $M(x~;~y~;~z) \in \Delta \iff \vect{\text{R}M} = t \vect{u} \iff \left\{\begin{array}{l c l}
+x - 6&=&- 3t\\
+y + 3&=&4t\\
+z + 1&=&1t
+\end{array}\right.,\:\:  (t \in \R)\iff \left\{\begin{array}{l c l}
+x &=&6 - 3t\\
+y &=&- 3 + 4t\\
+z &=&- 1 + t
+\end{array}\right.,\quad  (t \in \R)$.
+		\item 
+		
+
+
+
+K$(x~;~y~;~z)$ est commun à $\Delta$ et au plan (BFG) si ses coordonnées vérifient les équations paramétriques de $\Delta$ et l'équation cartésienne du plan (BFG) soit si le triplet de réels $(x~;~y~;~z)$ vérifie le système :
+
+$\left\{\begin{array}{l c l}
+x &=&6 - 3t\\
+y &=&- 3 + 4t\\
+z &=&- 1 + t\\
+x &=& 3
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+3 &=&6 - 3t\\
+y &=&- 3 + 4t\\
+z &=&- 1 + t\\
+x &=& 3
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+3t &=&3\\
+y &=&- 3 + 4t\\
+z &=&- 1 + t\\
+x &=& 3
+\end{array}\right.\iff$
+
+$\left\{\begin{array}{l c l}
+t &=&1\\
+y &=&- 3 + 4\\
+z &=&- 1 + 1\\
+x &=& 3
+\end{array}\right.\iff  \left\{\begin{array}{l c l}
+t &=&1\\
+y &=&1\\
+z &=&0\\
+x &=&3
+\end{array}\right.$
+
+Conclusion : K$(3~;~1~;~0)$.
+		\item 
+		Avec B(3~;~0~;~0) et C(3~;~2~;~0) on remarque que les coordonnées de K sont les demi-sommes des coordonnées de B et de C, donc que K est le milieu du segment [BC].
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

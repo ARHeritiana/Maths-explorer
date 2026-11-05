@@ -1,0 +1,149 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet20_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+La famille A décide de diminuer de 2\,\% par mois sa quantité de déchets produits par mois à partir du 1\up{er} janvier 2020.
+
+Au mois de décembre 2019, elle a produit $120$~kg de déchets.
+
+\medskip
+
+\begin{enumerate}
+\item Justifier qu'au bout de 2 mois, la famille A aura produit environ $115$~kg de déchets.
+\end{enumerate}
+
+On admet que la quantité de déchets produits chaque mois conserve la même évolution toute l'année.
+
+On modélise l'évolution de la production de déchets de la famille A par la suite de terme général $a_n$, où $a_n$ représente la quantité, en kg, de déchets produits par la famille A $n$ mois après décembre 2019.
+
+Ainsi, $a_0$ représente la quantité de déchets produits durant le mois de décembre 2019, $a_1$ représente la quantité de déchets produits durant le mois de janvier 2020, etc.
+
+\begin{enumerate}[resume]
+\item  
+	\begin{enumerate}
+		\item Déterminer la nature de la suite $\left(a_n\right)$.
+		\item Pour tout entier naturel $n$, exprimer $a_n$ en fonction de $n$.
+		\item Déterminer la quantité totale de déchets que produira la famille A durant l'année
+2020.
+
+On arrondira le résultat à l'unité.
+
+On rappelle que :
+
+Soit $\left(a_n\right)_{n\in \N}$ une suite géométrique de raison $q$,\,$ q \ne 1$. La somme $S$ de termes consécutifs est égale à $S = u_1 + u_2 +\ldots + u_n = u_1 \times \dfrac{1 - q^n}{1 - q}$.
+		\item On donne le programme ci-dessous.
+		
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+\begin{center}
+\begin{tabular}{c l}
+\texttt 1 & \texttt{{\blue def} S(n) :}\\
+\texttt 2 &  \vline \quad \texttt{U = 120}\\
+\texttt 3 &  \vline \quad \texttt{S = 0}\\
+\texttt 4 &  \vline \quad \texttt{{\blue for} k {\blue in} range (n) :}\\
+\texttt 5 &  \vline \quad \vline \quad \texttt{U = 0.98 * U}\\
+\texttt 6 &  \vline \quad \vline \quad \texttt{S = S + U}\\
+\texttt 7 &  \vline \quad \texttt{{\blue return} (S)}\\
+\texttt 8 & 
+\end{tabular}
+\end{center} 
+ 
+Que représente le résultat renvoyé par la fonction si on entre l'instruction S(6) ?
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

@@ -1,0 +1,66 @@
+\smallskip
+
+\begin{enumerate}
+\item Puisque $x > 0$, on peut écrire $f(x) = x^2\left(\dfrac{\ln (x)}{x^2}  - 1\right)$.
+
+On sait (croissances comparées) que $\displaystyle\lim_{x \to - \infty} \dfrac{\ln (x)}{x^2} = 0$, donc que $\displaystyle\lim_{x \to - \infty} \dfrac{\ln (x)}{x^2} - 1 = - 1$.
+
+Comme $\displaystyle\lim_{x \to - \infty}x^2 = + \infty$, on obtient finalement par produit de limites 
+
+$\displaystyle\lim_{x \to - \infty} x^2 \left(\dfrac{\ln (x)}{x^2}  - 1\right) = - \infty$.
+
+\hfill\textbf{L'affirmation 1 est vraie.}
+
+\item $f(x)=2\,\cos\left (x\right )- \sin\left (x\right )$, donc:
+$f'(x)= -2\,\sin\left (x\right ) - \cos\left (x\right )$. Donc:
+
+$\begin{aligned}[t]
+- 2f'(x) + 3f(x) 
+& = -2\left ( -2\,\sin\left (x\right ) - \cos\left (x\right )\right ) +3 \left (2\,\cos\left (x\right )- \sin\left (x\right ) \right )\\
+& = 4\,\sin\left (x\right ) +2\,\cos\left (x\right ) +6\,\cos\left (x\right ) -3\,\sin\left (x\right )\\
+ & = \sin\left (x\right ) +8\,\cos\left (x\right )
+\end{aligned}$
+
+Donc la fonction $f$ est solution de l'équation différentielle $-2y' +3y =  \sin\left (x\right ) +8\,\cos\left (x\right )$.
+
+\hfill\textbf{L'affirmation 2 est vraie.}
+
+\item On a $u_0 = 25$ et donc $u_1 = \ln (3 \times 25 + 1) = \ln 76 \approx 4,3 < 25$.
+
+On peut donc supposer que la suite est décroissante ce que l'on démontre par récurrence : soit $(P_n) : u_{n+1} < u_n$
+
+\textit{Initialisation} : on a vu que $u_1 < u_0$ donc $P_0$ est vraie.
+
+\textit{Hérédité} : soit $n \in \N$ et supposons que $u_{n+1} < u_n$ : on a succesivement :
+\begin{eqnarray*}
+u_{n+1} < u_n &\iff & 3u_{n+1} < 3u_n\\
+&\iff &3u_{n+1} + 1 < 3u_n + 1\\
+&\iff &\ln \left(3u_{n+1} + 1\right) < \ln \left(3u_n + 1\right)\:\text{par croissance de la fonction ln}\\
+&\iff &u_{n+2} < u_{n+1}
+\end{eqnarray*}
+La relation est vraie au rang $n+1$.
+
+\textit{Conclusion} : La relation est vraie au rang 0 et si elle est vraie au rang $n \in \N$, elle l'est aussi au rang $n + 1$ : d'après le principe de récurrence quel que soit $\begin{gathered}n \in \N, \\\: u_{n+1} < u_n\end{gathered}$ : ceci montre que la suite $(u_n)$ est décroissante.
+
+\hfill\textbf{L'affirmation 3 est vraie.}
+
+\item Une application affine est de la forme $h(x) = ax + b$, avec $a \in \R$ et $b \in \R$.
+
+Donc $k(x) = x^4 + x^2 + ax + b$ ; $k$ est une fonction polynôme dérivable sur $\R$ et sur cet intervalle on a successivement :
+
+$k'(x) = 4x^3 + 2x + a$, puis
+
+$k''(x) = 12x^2 + 2$, comme un carré est supérieur ou égal à zéro, il en résulte que $k''(x) \geqslant 2 > 0$.
+
+Sur $\R$, la dérivée seconde est supérieure à zéro : la fonction $k$ est convexe sur $\R$.
+
+\hfill\textbf{L'affirmation 4 est vraie.}
+
+\item Avec 5 lettres différentes le nombre d'anagrammes est égal à $5! = 120$.
+
+Comme EULER possède deux lettres identiques le nombre d'anagrammes est égal à 
+
+$\dfrac{5!}{2!} = \dfrac{120}{2} = 60$.
+
+\hfill\textbf{L'affirmation 5 est fausse.}
+\end{enumerate}

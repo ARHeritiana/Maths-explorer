@@ -1,0 +1,59 @@
+\medskip
+
+On considère une pyramide à base carrée formée de boules identiques empilées les unes sur les autres:
+
+\bigskip
+
+\begin{minipage}{0.65\linewidth}
+\begin{itemize}[label=$\bullet~$]
+\item le 1\up{er} étage, situé au niveau le plus haut, est composé de 1 boule ;
+\item le 2\up{e} étage, niveau juste en dessous, est composé de 4 boules ;
+\item le 3\up{e} étage possède 9 boules ;
+\item \ldots
+\item le $n$-ième étage possède $n^2$ boules.
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}{0.3\linewidth}
+\includegraphics[width=5cm]{pyramide}
+\end{minipage}
+
+\medskip
+
+Pour tout entier $n \geqslant 1$, on note $u_n$ le nombre de boules qui composent le $n$-ième étage en partant du haut de la pyramide. Ainsi, $u_n = n^2$.
+
+\medskip
+
+\begin{enumerate}
+\item Calculer le nombre total de boules d'une pyramide de 4 étages.
+\item On considère la suite $\left(S_n\right)$ définie pour tout entier $n \geqslant 1$ par 
+\[S_n = u_1 + u_2 + \ldots + u_n.\]
+
+	\begin{enumerate}
+		\item Calculer $S_5$ et interpréter ce résultat.
+		\item On considère la fonction \texttt{pyramide} ci-dessous écrite de manière incomplète en langage Python.
+		
+Recopier et compléter sur la copie le cadre ci-dessous de sorte que, pour tout entier naturel non nul $n$, l'instruction \texttt{pyramide(n)} renvoie le nombre de boules composant une pyramide de $n$ étages.
+
+\begin{center}
+
+\begin{tabular}{|l|}\hline
+\texttt{def pyramide(n) :}\\
+\qquad S = 0\\
+\qquad for i in range(1,~n+1) :\\
+\qquad \qquad S = \ldots\\
+\qquad return \ldots\\ \hline
+\end{tabular}
+
+\end{center}
+
+		\item Vérifier que pour tout entier naturel $n$ :
+
+\[\dfrac{n(n+1)(2n+1)}{6} + (n+1)^2 = \dfrac{(n + 1)(n +2)[2(n + 1) + 1]}{6}\]
+		\item Démontrer par récurrence que pour tout entier $n \geqslant 1$ : 
+\[S_n = \dfrac{n(n + 1)(2n + 1)}{6}.\]
+
+	\end{enumerate}
+\item Un marchand souhaite disposer des oranges en pyramide à base carrée. Il possède $200$~oranges. Combien d'oranges utilise-t-il pour construire la plus grande pyramide possible ?
+\end{enumerate}
+
+\bigskip

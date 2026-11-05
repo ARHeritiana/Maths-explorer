@@ -1,0 +1,288 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specialite_2026_06_metropole_automatismes_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Pour cette première partie, aucune justification n'est demandée et une seule réponse est possible par question. Pour chaque question, reportez son numéro sur votre copie et indiquez votre réponse.}
+
+	Une réponse fausse ou l'absence de réponse n'enlève aucun point.
+
+
+	\vspace{0,25cm}
+\subsubsection*{Question 1}
+La forme développée de l'expression \mbox{$(3x-2)^2$} est :
+		\begin{enumerate}[label=\alph*)]
+\begin{multicols}{2}
+			\item \mbox{$9x^2-4$}
+			\item \mbox{$3x^2-12x+4$}
+
+\end{multicols}
+\begin{multicols}{2}
+	\item \mbox{$9x^2-12x+4$}
+	\item \mbox{$6x-4$}
+
+	\end{multicols}
+		\end{enumerate}
+
+
+ \textcolor{red}{\textsc{Correction}}
+
+
+	C'est une identité remarquable : \quad \mbox{$(3x-2)^2 = (3x)^2 - 2\times (3x) \times 2 + 2^2 = 9x^2-12x+4$}
+
+	\hfill \framebox[1.2\width]{réponse C}
+
+		\subsubsection*{Question 2}
+\begin{minipage}[t]{0.45\linewidth}\vspace{0mm}
+	Dans le repère (O, I, J) ci-contre, la droite \mbox{$(\Delta)$} a pour équation :
+		\begin{enumerate}[label=\alph*)]
+			\begin{multicols}{2}
+				\item \mbox{$y=2x+2$}
+				\item \mbox{$y=-2x+2$}
+
+				\end{multicols}
+			\begin{multicols}{2}
+				\item \mbox{$y=-x+2$}
+				\item \mbox{$y=x+2$}
+
+				\end{multicols}
+		\end{enumerate}
+
+\end{minipage}\hspace{0.05\linewidth}\begin{minipage}[t]{0.45\linewidth}\vspace{0mm}
+\begin{tikzpicture}[xscale=1,yscale=1,rotate=0,every node/.style={scale=1,rotate=0},baseline={(0,2.8)}]
+	\clip(-1.6,-1.4)rectangle(3.6,3.2);
+	\draw[blue!20, very thin](-1.6,-1.4)grid[xstep=0.2,ystep=0.2](3.6,3.2);
+	\draw[blue!30,thick](-1.6,-1.4)grid(3.6,3.2);
+	\draw[line width=0.3mm,->, >=triangle 45](-1.6,0)--(3.6,0);
+	\draw[line width=0.3mm,->, >=triangle 45](0,-1.4)--(0,3.2);
+	\draw[thick,shift={(0,0)}](2pt,0)--(-2pt,0) (0,2pt)--(0,-2pt) node[below left]{O};
+	\draw[thick,shift={(1,0)}](2pt,0)--(-2pt,0) (0,2pt)--(0,-2pt) node[below]{I};
+	\draw[thick,shift={(0,1)}](2pt,0)--(-2pt,0) (0,2pt)--(0,-2pt) node[left]{J};
+	\draw[red, line width=0.3mm](-1.6,3.6)--(3.6,-1.6)node[pos=0.2,below left]{$(\Delta)$};
+\end{tikzpicture}
+
+\end{minipage}
+
+ \textcolor{red}{\textsc{Correction}}
+
+ L'ordonnée à l'origine est $2$.
+
+ $(\Delta)$ passe par les points A\mbox{$(0;2)$} et B\mbox{$(2;0)$}, donc le coefficient directeur est donné par :
+
+ $\dfrac{y_\mathrm{B} - y_{\mathrm{A}}}{x_{\mathrm{B}}-x_{\mathrm{A}}} = \dfrac{0 - 2}{2 - 0} = \dfrac{-2}{2} = -1$.
+
+ L'équation réduite de $(\Delta)$ est \mbox{$y=-x+2$}
+
+ \hfill \framebox[1.2\width]{réponse C}
+
+\subsubsection*{Question 3}
+Dans une classe de première, 75\% des élèves étudient le grec.
+
+Les autres élèves étudient le latin : ils sont 9.
+
+Le nombre d'élèves de cette classe de première est égal à :
+\begin{enumerate}[label=\alph*)]
+	\begin{multicols}{4}
+		\item \mbox{$24$}
+		\item \mbox{$30$}
+		\item \mbox{$34$}
+		\item \mbox{$36$}
+
+		\end{multicols}
+\end{enumerate}
+
+
+ \textcolor{red}{\textsc{Correction}}
+
+
+ Donc 25\% soit $\dfrac14$ des élèves étudient le latin, l'effectif de la classe est donc \quad \mbox{$9\times4=36$},
+
+ \hfill \framebox[1.2\width]{réponse D}
+\subsubsection*{Question 4}
+Le prix d'un article augmente de 15\%.
+
+Cela signifie que le prix de l'article a été multiplié par :
+\begin{enumerate}[label=\alph*)]
+	\begin{multicols}{4}
+		\item \mbox{$\dfrac{15}{100}$}
+		\item \mbox{$\np{1.15}$}
+		\item \mbox{$\np{0.85}$}
+		\item \mbox{$\np{1.115}$}
+
+		\end{multicols}
+\end{enumerate}
+
+
+ \textcolor{red}{\textsc{Correction}}
+
+
+ Augmenter une valeur de 15\% revient à la multiplier par \quad \mbox{$\dfrac{100+15}{100}=\np{1.15}$},
+
+ \hfill \framebox[1.2\width]{ réponse B}
+\subsubsection*{Question 5}
+Parmi les réponses proposées, la valeur la plus proche de \mbox{$\dfrac{\np{150000}}{\np{3200}}$} est :
+\begin{enumerate}[label=\alph*)]
+	\begin{multicols}{4}
+		\item \mbox{$5$}
+		\item \mbox{$50$}
+		\item \mbox{$500$}
+		\item \mbox{$\np{5000}$}
+
+		\end{multicols}
+\end{enumerate}
+
+ \textcolor{red}{\textsc{Correction}}
+
+
+ \mbox{$\np{3200}\approx\np{3000}$}, donc \mbox{$\dfrac{\np{150000}}{\np{3200}}\approx\dfrac{150}{3}=50$},
+
+ \hfill \framebox[1.2\width]{réponse B}
+\subsubsection*{Question 6}
+Une vidéo, d'une durée de 1 minute et 40 secondes, contient \np{2400}~images.
+
+Le nombre d'images par seconde est égal à :
+		\begin{enumerate}[label=\alph*)]
+	\begin{multicols}{2}
+		\item\np{60} images/seconde
+		\item\np{24} images/seconde
+
+		\end{multicols}
+	\begin{multicols}{2}
+		\item\np{120} images/seconde
+		\item\np{15} images/seconde
+
+		\end{multicols}
+\end{enumerate}
+
+ \textcolor{red}{\textsc{Correction}}
+
+
+ 1 minute et 40 secondes c'est 100 secondes, il y a donc 24 images par seconde,
+
+ \hfill \framebox[1.2\width]{réponse B}
+\subsubsection*{Question 7}
+On considère une fonction $f$ définie sur $\mathbb{R}$ par :
+
+\begin{center}
+	\mbox{$f(x)=\np{0.5}(x-3)^2+10$}
+\end{center}
+
+
+On note \mbox{$\mathcal{C}$} sa courbe représentative dans un repère.
+
+Un seul des quatre points ci-dessous appartient à la courbe \mbox{$\mathcal{C}$}. Lequel ?
+\begin{enumerate}[label=\alph*)]
+	\begin{multicols}{4}
+		\item A~\mbox{$(-3;10)$}
+		\item B~\mbox{$(3;\np{10.5})$}
+		\item C~\mbox{$(3;10)$}
+		\item D~\mbox{$(0;\np{19.5})$}
+		\end{multicols}
+\end{enumerate}
+
+ \textcolor{red}{\textsc{Correction}}
+
+
+ On a la forme canonique d'une fonction du second degré, dont le point C est clairement le sommet,
+
+ \hfill \framebox[1.2\width]{réponse C}
+
+\subsubsection*{Question 8}
+On considère le nombre \mbox{$A=\dfrac{10^{201}\times10^{-4}}{(10^2)^{100}}$}
+
+On peut affirmer que :
+\begin{enumerate}[label=\alph*)]
+	\begin{multicols}{4}
+		\item \mbox{$A=-\np{0.001}$}
+		\item \mbox{$A=\np{0.0001}$}
+		\item \mbox{$A=\np{0.001}$}
+		\item \mbox{$A=\np{1000}$}
+		\end{multicols}
+\end{enumerate}
+
+
+ \textcolor{red}{\textsc{Correction}}
+
+ \mbox{$\left(10^2\right)^{100}=10^{200}$}, \quad donc\quad  \mbox{$A=10^{201-4-200}=10^{-3}=\np{0.001}$},
+
+ \hfill\framebox[1.2\width]{réponse C}
+
+\end{document}

@@ -1,0 +1,60 @@
+\medskip
+
+\textbf{Partie A : lecture graphique}
+
+\medskip
+
+\begin{enumerate}
+\item  Dans le plan muni d'un repère orthonormé, $\mathcal{C}_f$ est la courbe représentative d'une fonction $f$, défi\-nie et dérivable sur l'ensemble $\R$ des nombres réels. 
+
+Dans la figure ci-dessous, on a tracé la courbe $\mathcal{C}_f$.
+
+Les points A et B sont les points de $\mathcal{C}_f$ d'abscisses respectives $- 2$ et 0, et on a tracé les tangentes à $\mathcal{C}_f$ en ces points.
+
+On suppose que la tangente en A est parallèle à l'axe des abscisses et que la tangente en B passe par le point C(1~;~6).
+
+On note $f'$ la fonction dérivée de $f$.
+
+Lire graphiquement les valeurs de $f'(-2)$ et $f'(0)$. Justifier brièvement.
+\end{enumerate}
+
+\begin{center}
+\psset{xunit=1.6cm,yunit=1.6cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-4.5,-1.5)(3,7.5)
+ \multido{\n=-4.2+0.2}{36}{\psline[linewidth=0.3pt,linecolor=lightgray](\n,-1.1)(\n,7.2)}
+\multido{\n=-1+0.2}{41}{\psline[linewidth=0.3pt,linecolor=lightgray](-4.2,\n)(2.8,\n)}
+ \multido{\n=-4+1}{7}{\psline[linewidth=0.65pt](\n,-1.1)(\n,7.2)}
+ \multido{\n=-1+1}{9}{\psline[linewidth=0.6pt](-4.2,\n)(2.8,\n)}
+\psaxes[linewidth=0.85pt]{->}(0,0)(-4.3,-1.3)(3,7.3)
+ \def\Func{2.71828 x exp x 2 mul 2 add mul }
+\psplot[plotpoints=2000,linewidth=0.85pt,linecolor=blue]{-4.2}{0.73}{\Func}
+\psdots[dotstyle=Mul,dotscale=1.9,linecolor=blue](-2,-0.27067)(0,2)(1,6)
+\uput[d](-2,-0.27067){A}\uput[r](0,2){B}\uput[r](1,6){C}\uput[dl](0,0){O}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=orange]{-0.8}{1.254}{x 4 mul 2 add}
+\uput[l](0.75,6.48){\blue $\displaystyle \mathcal{C}_f$}
+\psline[linewidth=1.25pt, linecolor=red](-4.2,-0.27067)(2.8,-0.27067)
+\end{pspicture}
+\end{center}
+
+\medskip
+
+\textbf{Partie B : Calcul algébrique}
+
+\medskip
+
+La fonction représentée sur le graphique précédent est la fonction $f$ définie 
+sur l'ensemble $\R$ des nom\-bres réels par : \[f(x)=\e^x(2x + 2)\]
+On admet que $f$ est dérivable sur $\R$.
+
+\medskip
+
+\begin{enumerate}[resume]
+\item Montrer que pour tout nombre réel $x$, $f'(x)=\e^x(2x + 4)$.
+\item Étudier le signe de $f'$ sur $\R$, puis en déduire le tableau de variation de $f$ sur $\R$.
+\item Déterminer par le calcul, l'équation réduite de la tangente à $\mathcal{C}_f$ au point d'abscisse 0.
+\item Justifier par le calcul les deux résultats suivants admis au début de l'exercice :
+\begin{itemize}
+\item La tangente en A est parallèle à l'axe des abscisses.
+\item La tangente en B passe par le point C(1~;~6).
+\end{itemize}
+\end{enumerate}

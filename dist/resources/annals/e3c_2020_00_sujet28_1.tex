@@ -1,0 +1,205 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet28_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Cet exercice est un QCM comportant 5 questions. 
+
+Pour chacune des questions, une seule des quatre réponses proposées est correcte. 
+
+Les questions sont indépendantes.
+
+Pour chaque question, indiquer le numéro de la question et recopier sur la copie la lettre correspondante à la réponse choisie.
+
+Aucune justification n'est demandée mais il peut être nécessaire d'effectuer des recherches au brouillon pour aider à déterminer votre réponse.
+
+Chaque réponse correcte rapporte 1 point. Une réponse incorrecte ou une question sans réponse n'apporte ni ne retire de point.
+
+\bigskip
+
+Le plan est muni d'un repère orthonormé.
+
+\medskip
+
+\textbf{Question 1}
+
+\medskip 
+
+La droite $\mathcal{D}$ de vecteur directeur $\vv{u}\ \binom{-3}{1}$ passant par $A(-1~;~2)$ a pour équation :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $-3x+y-5=0 $ &\textbf{b.~~} $x+3y-5=0 $&\textbf{c.~~} $x-3y-5=0 $& \textbf{d.~~} $3x+y+1=0  $.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 2}
+
+\medskip 
+
+On considère la droite $\mathcal{D}$ d'équation $5x-8y+9=0$ Alors :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} $ A(6~;~7) $ appartient à $\mathcal{D}$ &\textbf{b.~~} $\vv{n}\ \binom{5}{8})$ est un vecteur normal à $\mathcal{D}$ \\
+\textbf{c.~~}$\mathcal{D}$ coupe l'axe des ordonnées au point $B\ (0~;~1) $& \textbf{d.~~} $\mathcal{D}$ est parallèle à la droite $\mathcal{D}'$ d'équation 
+
+$2,5x - 4y + 2 = 0$.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 3}
+
+\medskip 
+
+\begin{minipage}[]{8cm}
+On considère la fonction $f$ dont la représentation graphique $\mathcal{C}_f$ est donnée ci-contre. La droite $\mathcal{D}$ est la tangente à $\mathcal{C}_f$ au point A(1~;~1). Le point $B\ (0~;~-1)$ appartient à la droite $\mathcal{D}$. Le nombre dérivé $f'(1)$ est égal à :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $1$&\textbf{b.~~} $\frac{1}{2}$&\textbf{c.~~}$2$& \textbf{d.~~} $-2$.
+\end{tabularx}
+\end{minipage}
+\hfill
+\begin{minipage}[]{5cm}
+
+\psset{xunit=0.97cm,yunit=0.97cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-2.34,-1.7)(2.8,3.6)
+\multido{\n=-2.2+0.2}{26}{\psline[linewidth=0.35pt,linecolor=lightgray](\n,-1.6)(\n,3.4)}
+\multido{\n=-1.6+0.2}{26}{\psline[linewidth=0.35pt,linecolor=lightgray](-2.4,\n)(2.8,\n)}
+
+
+\psaxes[linewidth=0.95pt]{->}(0,0)(-2.2,-1.6)(2.8,3.6)
+\def\Func{x x mul }
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=orange]{-1.85}{1.85}{\Func}
+\psplot[plotpoints=2000,linewidth=0.85pt]{-0.35}{2.15}{x 2 mul 1 sub}
+\psdots[dotstyle=Mul,dotscale=1.6,linecolor=blue](1,1)(0,-1)
+ \uput[r](1,1){A}\uput[r](0,-1){B}\uput[l](-1.6,2){\red $\mathcal{C}_f$}\uput[r](2,3.2){$\mathcal{D}$}
+\end{pspicture}
+\end{minipage}
+
+\medskip
+
+\textbf{Question 4}
+
+\medskip 
+
+On considère une fonction $f$ polynôme du second degré dont le tableau de signes est donné ci-après :
+\begin{center}
+\begin{tabular}[]{r|ccccccc}
+$x$&$-\infty$&&$-1$&&2&& $+\infty$\\\hline
+$f(x)$&&$-$ &0& + & 0 &$-$&\\
+\end{tabular}
+\end{center}
+
+Une expression de $f(x)$ peut être :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $2x^2+5x-2 $ &\textbf{b.~~} $-x^2+1 $&\textbf{c.~~}$-x^2+x+2 $& \textbf{d.~~} $x^2+x-2  $.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 5}
+
+\medskip 
+
+On considère la fonction $f$ définie sur $\R$ par $f(x)= x\e^x$.
+Alors la fonction dérivée de $f$, notée $f'$, est définie sur $\R$ par :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $ f'(x)= \e^x$ &\textbf{b.~~} $f'(x)=(x+1)\e^x$&\textbf{c.~~}$f'(x)=\e $& \textbf{d.~~} $f'(x)=   x^2\e^x   $.
+\end{tabularx}
+
+\vspace{0,5cm}
+
+\end{document}

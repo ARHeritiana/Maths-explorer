@@ -1,0 +1,139 @@
+\begin{enumerate}
+		\item Soit $g(x) = \e^{\left(x^2\right)}$
+
+		Avec $u(x) = x^2$ puis $u'(x) = 2x$, on a
+
+		$\left(\e^{\left(x^2\right)}\right)' = \left(\e^{u(x))}\right)' = \e^{u(x)} \times u'(x) = \e^{\left(x^2\right)} \times 2x$.
+
+		Donc $f'(x) = \e^{\left(x^2\right)} + x \times \e^{\left(x^2\right)} \times 2x$ ;
+
+		$f'(x) = \e^{\left(x^2\right)}\left(1 + 2x^2\right)$.
+
+		Puis de même $f''(x) = 4x\e^{\left(x^2\right)} + \left(1 + 2x^2\right) \times 2x \e^{\left(x^2\right)} = 2x \left(2 + 1 + 2x^2 \right)\e^{\left(x^2\right)}$.
+
+		Finalement $f''(x) = 2x\left(3 + 2x^2 \right)\e^{\left(x^2\right)}$
+
+		Dans ce produit pour $x \in ]- \infty ; 0[$, on a :
+
+		\begin{itemize}
+			\item $3 + 2x^2 > 0$ ;
+			\item $\e^{\left(x^2\right)} > 0$
+			\item $2x < 0$
+		\end{itemize}
+
+		Conclusion sur $]-\infty ; 0]$, \: $f''(x) < 0$ : la fonction $f$ est concave sur cet intervalle.
+
+		\hfill\textbf{Affirmation 1 vraie}
+
+		\item \begin{itemize}
+			\item Dans le groupe 1 on peut former $\ds\binom{24}{8}$ ensembles de 8 rapaces ;
+
+			\item Dans le groupe 2 on peut former $\ds\binom{16}{8}$ ensembles de 8 rapaces ;
+
+			\item Dans le groupe 3 on peut former $\ds\binom{8}{8}$ ensemble de 8 rapaces ;
+		\end{itemize}
+
+		Il y a donc $\ds\binom{24}{8} \times \binom{16}{8} \times \binom{8}{8}$ façons différentes de répartir 8 rapaces dans ces 3 groupes.
+
+		Or\quad $\ds \binom{24}{8} \times \binom{16}{8} \times \binom{8}{8} = \dfrac{24!}{8! \times (24- 8)!} \times \dfrac{16!}{8!\times (16-8)!} \times 1
+		= \dfrac{24!}{8! \times 16!} \times \dfrac{16!}{8! \times 8!  }
+		= \dfrac{24!}{\left (8!\right )^3}$.
+
+		\hfill\textbf{Affirmation 2 vraie}
+
+		\item $f$ est solution de l'équation différentielle donc quel que soit $x \in \R$,
+
+		$f'(x) = - f(x) + 1$ \quad (1) .
+
+		D'autre part $g(x) = f(x) - 1$ montre que puisque $f$ est dérivable sur \, $g$ l'est aussi avec : $g'(x) = f'(x)$.
+
+		L'égalité (1) devient alors
+
+		$g'(x) 	= - f(x) - 1 = - (f(x) - 1) = - g(x)$
+
+		Conclusion : quel que soit $x \in \R, \: g'(x)= - g(x)$.
+
+		\hfill\textbf{Affirmation 3 vraie}
+
+		\item Quel que soit $n \in \N^*, \: - 1 \leqslant \sin (n) \leqslant 1$.
+
+		En multipliant par $\dfrac1n > 0$, on a
+		$- \dfrac{1}{n} \leqslant \dfrac{\sin(n)}{n} \leqslant \dfrac{1}{n}$ .
+
+		Comme $\displaystyle\lim_{n \to + \infty} -\dfrac{1}{n} = \displaystyle\lim_{n \to + \infty} \dfrac{1}{n} = 0$, on a donc d'après le théorème des gendarmes:
+		\[\displaystyle\lim_{n \to + \infty}\dfrac{\sin(n)}{n} = 0.\]
+
+		La suite converge vers zéro.
+
+		\hfill\textbf{Affirmation 4 fausse}
+
+		\item ~
+		\begin{center}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			\psset{unit=1cm,arrowsize=2pt 3}
+			\begin{pspicture*}(-1.1,-1.5)(5.5,5.5)
+				\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-1,-1.5)(5.5,5.5)
+				\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-0.5}{4.5}{4 x mul 1 add x dup mul sub}
+				\psplot[plotpoints=500,linewidth=1.25pt,linecolor=blue]{-1}{5}{x 1 add}
+				\pscustom[fillstyle=solid,fillcolor=lightgray]{\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0}{3}{4 x mul 1 add x dup mul sub}\psline(3,4)(0,1)}
+				
+				\psgrid[gridlabels=0pt,subgriddiv=2,gridwidth=0.2pt,subgridwidth=0.1pt]
+				\pspolygon[fillstyle=vlines](0,0)(0,1)(3,4)(3,0)
+				\uput[ul](0,0){O}\uput[ul](0,1){I}\uput[r](3,4){A}\uput[dr](3,0){B}
+			\end{pspicture*}
+			
+		\end{center}
+
+		L'aire du domaine grisé est égale à la différence de deux aires :
+
+		\begin{itemize}
+		\item l'aire de la surface limitée par l'axe des abscisses, les droites d'équation $x = 0$ et $x = 4$ et la représentation graphique de la fonction définie sur $\R$ par \quad $f : x \longmapsto - x^2 + 4x + 1$.
+
+		La fonction $f$ étant manifestement positive sur l'intervalle $[0 ; 3]$, cette aire est l'intégrale (en  u. a.) $\displaystyle\int_0^3 f(x) \:\text{d}x = \displaystyle\int_0^3 - x^2 + 4x + 1)\:\text{d}x = \left[-\dfrac{x^3}{3} + 2x^2 + x \right]_0^3 = -\dfrac{3^3}{3} + 2\times 3^2 + 3 - \left(-\dfrac{0^3}{3} + 2\times 0^2 + 0 \right) = - \dfrac{27}{3} + 18 + 3 = 22 - 9 = 12$ \: (u.a.) \:\textbf{et}
+
+		\item l'aire du trapèze rectangle OIAB soit $\dfrac{\text{OI} + \text{AB}}{2}\times \text{OB}$;
+		\end{itemize}
+
+		On a de façon évidente : OI $ = 1$, \: AB $ = 4$ et OB $ =  3$, donc
+
+		$\mathcal{A}(\text{OIAB}) = \dfrac{1 + 4} {2} \times 3 = \dfrac{15}{2}$\: (u.a)
+
+		Si $\mathcal{A}(G)$ est l'aire de la surface grisée alors
+
+		$\mathcal{A}(G) = 12 - \dfrac{15}{2} = \dfrac{24 - 15}{2} = \dfrac{9}{2} = 4,5$\:(u.a.).
+
+		\hfill\textbf{Affirmation 5 fausse}
+
+		\medskip
+
+		\emph{Remarque} : on peut aussi dire que $\mathcal{A}(G)$  est la différence de l'intégrale de la fonction $f(x) = - x^2 + 4x + 1$ et de l'intégrale de la fonction $g(x) = x + 1$ sur l'intervalle [0 ; 3].
+
+		$\mathcal{A}(G) = \displaystyle\int_0^3 \left(- x^2 + 4x + 1\right)\:\text{d}x - \displaystyle\int_0^3 (x + 1)\:\text{d}x$, soit par linéarité de l'intégrale :
+
+		$\mathcal{A}(G) = \displaystyle\int_0^3 \left(- x^2 + 4x + 1 - (x + 1) \right)\:\text{d}x =
+		\displaystyle\int_0^3 \left(- x^2 + 4x + 1 - x - 1) \right)\:\text{d}x = \displaystyle\int_0^3 \left(- x^2 + 3x  \right)\:\text{d}x =
+		\displaystyle\int_0^3 x(3 - x) :\text{d}x$.
+
+		Il faut alors considérer cette fonction trinôme $x \longmapsto x(x - 3)$ qui est négative sauf entre ses racines 0 et 3 sui est justement l'intervalle d'intégration.
+
+		Il faut alors rappeler que cette fonction polynôme trinôme est continue sur $\R$ donc en particulier sur [0 ; 3], donc intégrale sur cet intervalle et affirmer que
+
+		$\mathcal{A}(G) = \displaystyle\int_0^3 \left(- x^2 + 3x \right)\:\text{d}x = \left[- \dfrac{x^3}{3} + 3\frac{x^2}{2} \right]_0^3 = -\dfrac{3^3}{3} + 3\times \dfrac{3^2}{2} - \dfrac{0^3}{3} - 3\times \dfrac{0^2}{2}  = -9 + \dfrac{27}{2} = \dfrac{-18 + 27}{2} = \dfrac92 \ne \dfrac{13}{2}$.
+\end{enumerate}

@@ -1,0 +1,171 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet24_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Cet exercice est un questionnaire à choix multiples (QCM). 
+
+Les cinq questions sont indépendantes.
+
+ Pour chacune des questions, une seule des quatre réponses est exacte.
+ 
+Indiquer sur la copie le numéro de la question ainsi que la réponse choisie.
+
+ Aucune justification n’est attendue.
+ 
+Une réponse juste rapporte un point, une réponse fausse ou l’absence de réponse n’enlèvent pas de point.
+
+\medskip
+
+\textbf{Question 1} 
+
+\medskip 
+
+Dans un repère orthonormé, un vecteur normal à la droite d’équation $4x+5y-32=0$ est le vecteur :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $\vv{v}\ \binom{-5}{4} $ &\textbf{b.~~} $\vv{v}\ \binom{-4}{5} $&\textbf{c.~~}$\vv{v}\ \binom{4}{5} $& \textbf{d.~~} $\vv{v}\ \binom{5}{4}  $.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 2}
+
+\medskip 
+
+Dans un repère orthonormé, le projeté orthogonal du point A(7~;~9) sur la droite d’équation 
+
+$4x+5y-32=0$ est le point :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} H(7~;~0,8)  &\textbf{b.~~} H(3~;~4)&\textbf{c.~~} H(4~;~3,2) & \textbf{d.~~}  H(4~;~5).
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 3}
+
+\medskip 
+
+Dans un repère orthonormé, une équation du cercle de centre A$(-1~;~3)$ et de rayon 2 est :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} $ x^2-1+y^2=2^2 $ &\textbf{b.~~} $x^2+2x+1+y^2-6y+9=2 $\\\textbf{c.~~}$(x+1)^2+(y-3)^2=2^2 $& \textbf{d.~~} $(x-1)^2+(y+3)^2=2^2  $.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 4}
+
+\medskip 
+
+Dans un repère orthonormé, la parabole d’équation $y=3x^2-9x+5$ a pour sommet le point S et pour axe de symétrie la droite $\Delta$. Les coordonnées de S et l’équation de $\Delta$ sont :
+
+\medskip
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} $ S\left(\dfrac{3}{2}~;~-\dfrac{7}{4}\right)$ et $\Delta : x=\dfrac{3}{2}$ &\textbf{b.~~} $S\left(\dfrac{3}{2}~;~-\dfrac{7}{4}\right)$ et $\Delta : y=-\dfrac{7}{4}$\\\textbf{c.~~}$ S(3~;~5) $ et $\Delta : x = 3$ & \textbf{d.~~} $S(3 ;5)$ et $\Delta : y = 5$.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 5}
+
+\medskip 
+
+On considère l’inéquation $- 3x^2 + 9x-5 > 0$. L’ensemble $\mathscr{S}$ des solutions de cette inéquation est ($x_1$ et $x_2$ sont deux réels tels que $x_1< x_2 $ pour les propositions \textbf{b.} et \textbf{d.}) :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} $ \emptyset$ &\textbf{b.~~}de la forme $]-\infty~;~x_1 [ \cup ] x_2~;~+\infty [ $\\\textbf{c.~~}$\R $& \textbf{d.~~}de la forme $  ] x_1~;~x_2 [  $.
+\end{tabularx}
+
+\vspace{0.5cm}
+
+\end{document}

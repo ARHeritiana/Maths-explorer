@@ -1,0 +1,350 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet1_polynesie_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+L'espace est muni d'un repère orthonormé \Oij.
+
+On considère les points A$(1~;2~;~-1)$, B$(0~;3~;~2)$, C$(-2~;4~;~0)$ et D$(8~;2~;~-11)$.
+
+\begin{enumerate}
+\item
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item 
+Les points A, B et C définissent un plan si et seulement si ils ne sont pas alignés, si et seulement si les vecteurs $\vectt{AB}$ et $\vectt{AC}$ ne sont pas colinéaires.
+
+Le vecteur $\vectt{AB}$ a pour coordonnées: 
+$\begin{pmatrix}
+x_{\text B} - x_{\text A} \\ y_{\text B} - y_{\text A} \\ z_{\text B} - z_{\text A}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 - 1 \\ 3-2 \\ 2-(-1) 
+\end{pmatrix}
+=
+\begin{pmatrix}
+-1 \\ 1 \\3
+\end{pmatrix}$
+
+De même le vecteur $\vectt{AC}$ a pour coordonnées: 
+$\begin{pmatrix}
+x_{\text C} - x_{\text A} \\ y_{\text C} - y_{\text A} \\ z_{\text C} - z_{\text A}
+\end{pmatrix}
+=
+\begin{pmatrix}
+-2-1 \\ 4-2 \\ 0-(-1)
+\end{pmatrix}
+=
+\begin{pmatrix}
+-3 \\ 2 \\ 1
+\end{pmatrix}$
+
+Or $x_{\vectt{AB}} \times 3 = x_{\vectt{AC}}$ et $y_{\vectt{AB}} \times 3 = 3 \neq y_{\vectt{AC}}$; donc les vecteurs $\vectt{AB}$ et $\vectt{AC}$ ne sont pas colinéaires.
+
+On en conclut que les trois points A, B et C définissent un plan.  
+
+\item
+On considère le vecteur $\vect{n}\begin{pmatrix}5\\8\\-1\end{pmatrix}$.
+
+$\vect{n} \cdot \vectt{AB} = 5 \times (-1) + 8 \times 1 +(-1) \times 3 = -5+8-3=0$ donc $\vect{n} \perp \vectt{AB}$.
+
+$\vect{n} \cdot \vectt{AC} = 5 \times (-3) + 8 \times 2 +(-1) \times 1 = -15+16-1=0$ donc $\vect{n} \perp \vectt{AC}$.
+
+Le vecteur $\vect{n}$ est donc orthogonal à deux vecteurs directeurs du plan (ABC) donc $\vect{n}$ est un vecteur normal au plan (ABC).
+
+\item 
+Le plan (ABC) est l'ensemble des points M\,$(x\;;\;y\;;\;z)$ tels que $\vectt{AM} \perp \vect{n}$.
+
+$\vectt{AM}$ a pour coordonnées 
+$\begin{pmatrix}
+x-1 \\ y-2 \\ z+1
+\end{pmatrix}$
+
+$\begin{aligned}
+\vectt{AM} \perp \vect{n}
+\iff \vectt{AM} \cdot \vect{n}=0
+& \iff (x-1) \times 5 + (y-2) \times 8 + (z+1) \times (-1)=0\\
+& \iff 5x-5 +8y-16-z-1=0
+\iff 5x+8y-z-22=0
+\end{aligned}$
+
+Donc le plan (ABC) a pour équation cartésienne: $5x+8y-z-22=0$.
+
+\item 
+On regarde si les coordonnées de D vérifient l'équation du plan.
+
+$5x_{\text D}+8y_{\text D}-z_{\text D}-22
+=8\times 5 + 8\times 2 - (-11) -22
+= 40 +16 +11 -22 = 45 \neq 0$
+
+Donc le point D n'appartient pas au plan (ABC).
+
+\end{enumerate}
+
+\item
+	\begin{enumerate}[label=\textbf{\alph*.}]
+		\item On considère la droite $\Delta$, orthogonale au plan (ABC) et passant par D.
+
+
+
+
+
+
+
+
+
+
+La droite $\Delta$ est orthogonale au plan (ABC) donc elle a pour vecteur directeur n'importe quel vecteur normal au plan, en particulier le vecteur $\vect{n}$.
+
+La droite $\Delta$  est donc l'ensemble des points M\,$(x\;;\;y\;;\;z)$ tels que $\vectt{DM}$ et $\vect{n}$ soient colinéaires, c'est-à-dire tels que $\vectt{DM}=t.\vect{n}$ avec $t\in\R$.
+
+$\vectt{DM}=t.\vect{n}
+\iff
+\left \{
+\begin{array}{l !{=} l}
+x-8 & 5t\\
+y-2 & 8t\\
+z-(-11) & -t
+\end{array}
+\right .
+\iff
+\left \{
+\begin{array}{l !{=} l}
+x & 8+5t\\
+y & 2+8t\\
+z & -11 -t
+\end{array}
+\right .$
+
+Donc une représentation paramétrique de la droite $\Delta$ est:
+$\left \{
+\begin{array}{l !{=} l}
+x & 8+5t\\
+y & 2+8t, \text{~~avec } t\in\R\\
+z & -11 -t
+\end{array}
+\right .$
+
+		\item On appelle E le point d'intersection de la droite $\Delta$ et du plan (ABC).
+
+
+
+\begin{list}{\textbullet}{}
+\item Le point E appartient au plan (ABC) donc $5x_{\text E}+8y_{\text E}-z_{\text E}-22=0$.
+\item Le point E appartient à la droite $\Delta$ donc il existe un réel $t$ tel que
+$\left \{
+\begin{array}{l !{=} l}
+x_{\text E} & 8+5t\\
+y_{\text E} & 2+8t\\
+z_{\text E} & -11 -t
+\end{array}
+\right .$
+\end{list}
+
+Le réel $t$ vérifie donc l'équation:
+$5\left (8+5t\right ) + 8\left (2+8t\right ) - \left (-11-t\right )-22=0$,
+c'est-à-dire:
+$40+25t+16+64t+11+t-22=0$
+soit:
+$90t +45=0$
+donc: $t=-\dfrac{1}{2}$
+
+On a donc:
+$\left \{
+\begin{array}{l !{=} l}
+x_{\text E} & 8+5 \times \left (- \frac{1}{2}\right )\\
+y_{\text E} & 2+8\times \left (- \frac{1}{2}\right )\\
+z_{\text E} & -11 - \left (- \frac{1}{2}\right )
+\end{array}
+\right .$
+c'est-à-dire:
+$\left \{
+\begin{array}{l !{=} l}
+x_{\text E} &  \frac{11}{2}\\
+y_{\text E} & -2\\
+z_{\text E} & - \frac{21}{2}
+\end{array}
+\right .$
+
+		\item La valeur exacte de la longueur DE, distance du point D au plan (ABC) est: 
+		
+$\begin{aligned}
+\text{DE}
+& =\ds\sqrt{\left (x_{\text E} - x_{\text D}\right )^2 + \left (y_{\text E} - y_{\text D}\right )^2 + \left (z_{\text E} - z_{\text D}\right )^2}
+ =\ds\sqrt{\left (\frac{11}{2} - 8\right )^2 + \left (-2 - 2\right )^2 + \left (-\frac{21}{2} - (-11)\right )^2}\\
+ & = \ds\sqrt{\left (-\frac{5}{2}\right )^2 + \left (-4\right )^2 + \left (\frac{1}{2}\right )^2}
+ = \ds\sqrt{\frac{25}{4} + 16 + \frac{1}{4} }
+  = \ds\sqrt{\frac{90}{4}}
+  = \dfrac{3\sqrt{10}}{2}
+\end{aligned}$		
+		
+		  
+	\end{enumerate}
+\item On note H le point de coordonnées $\left(-\dfrac{2}{3}~;\dfrac{10}{3}~;\dfrac{4}{3}\right)$.
+
+On admet qu'une représentation paramétrique de la droite (BC) est~:
+
+\[
+\begin{cases}
+x = \phantom{3}-2k\\
+y = 3+k\\
+z = 2-2k
+\end{cases}, \quad \text{avec } k \in \R.
+\]
+
+Avec un logiciel de calcul formel, on obtient les résultats suivants~:
+
+\begin{center}
+\begin{tabular}{|p{8.5cm}|}\hline
+\textbf{Entrée 1~:} $(-2/3-1)*(-2)+(10/3-2)*1+(4/3-(-1))*(-2)$\\
+\textbf{Sortie 1~:} $\rightarrow 0$\\
+\hline
+\textbf{Entrée 2~:} RésoudreSystème$(-2k=-2/3,\ 3+k=10/3,\ 2-2k=4/3)$\\
+\textbf{Sortie 2~:} $\rightarrow k = 1/3$\\
+\hline
+\textbf{Entrée 3~:} RacineCarrée$\big((-2/3-1)^2+(10/3-2)^2+(4/3+1)^2\big)$\\
+\textbf{Sortie 3~:} $\rightarrow$ RacineCarrée$(10)$\\
+\hline
+\textbf{Entrée 4~:} RacineCarrée$\big((-2-0)^2+(4-3)^2+(0-2)^2\big)$\\
+\textbf{Sortie 4~:} $\rightarrow 3$\\
+\hline
+\end{tabular}
+\end{center}
+
+	\begin{enumerate}[label=\textbf{\alph*.}]
+		\item
+\begin{list}{\textbullet}{}
+\item $\vectt{AH}$ a pour coordonnées:
+$\begin{pmatrix}
+-\frac{2}{3}-1 \\ \frac{10}{3} -2 \\ \frac{4}{3}-(-1)
+\end{pmatrix}$
+et $\vect{BC}$:
+$\begin{pmatrix}
+-2-0 \\ 4-3 \\ 0-2
+\end{pmatrix}
+=
+\begin{pmatrix}
+-2 \\ 1 \\ -2
+\end{pmatrix}$
+
+Le premier résultat de la feuille de calculs signifie que le produit scalaire $\vectt{AH}\cdot \vectt{BC}$ est nul, donc que (AH) $\perp$ (BC).
+
+\item D'après le 2\ieme{} résultat de la feuille de calculs, le système
+$\left \{
+\begin{array}{l !{=} l}
+-2k & -\frac{2}{3}\\
+3+k & \frac{10}{3}\\
+2-2k & \frac{4}{3}
+\end{array}
+\right .$
+admet une solution unique; donc les coordonnées de H vérifient la représentation paramétrique de la droite (BC).
+
+Donc le point H appartient à la droite (BC).
+\end{list}		
+		
+De ces deux résultats, on peut déduire que le point H est le projeté orthogonal du point A sur la droite (BC).		
+		
+		\item On veut déterminer le volume du tétraèdre ABCD.
+
+
+
+Le volume du tétraèdre ABCD est égal à un tiers du produit de l'aire de la base ABC par la hauteur $h$ relative à cette base.
+ 
+\begin{list}{\textbullet}{}
+\item La hauteur $h$ est la distance entre le point D et le plan (ABC), c'est-à-dire DE soit $\dfrac{3\sqrt{10}}{2}$.
+
+\item D'après la question précédente, [AH] est la hauteur du triangle ABC relative au côté [BC]; donc l'aire du triangle ABC est: 
+$\mathcal{A}= \dfrac{\text{AH} \times \text{BC}}{2}$.
+
+D'après le 3\ieme{} résultat de la feuille de calculs, on a: $\text{AH}=\sqrt{10}$.
+
+D'après le 4\ieme{} résultat de la feuille de calculs, on a: $\text{BC}=3$.
+
+On en déduit que $\mathcal{A}= \dfrac{3\sqrt{10}}{2}$.
+\end{list}
+
+Le volume du tétraèdre ABCD est égal à:
+$\dfrac{1}{3}\times \dfrac{3\sqrt{10}}{2}\times \dfrac{3\sqrt{10}}{2}
+= \dfrac{15}{2}$.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

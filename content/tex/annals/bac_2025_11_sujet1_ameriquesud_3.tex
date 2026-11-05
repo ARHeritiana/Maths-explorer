@@ -1,0 +1,97 @@
+\medskip
+
+On se propose d'étudier la concentration dans le sang d'un médicament ingéré par une personne pour la première fois. Soit $t$ le temps (en heures) écoulé depuis l'ingestion de ce médicament.
+
+On admet que la concentration de ce médicament dans le sang, en gramme par litre de sang, est modélisée par une fonction $f$ de la variable $t$ définie sur l'intervalle $[0~;~+ \infty[$.
+
+\medskip
+
+\textbf{Partie A : lectures graphiques}
+
+\begin{center}
+\psset{unit=1.6cm,arrowsize=2pt 3}
+\begin{pspicture*}(-0.5,-0.6)(7.5,2.2)
+\psgrid[gridlabels=0pt](0,0)(7.5,2.15)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(0,0)(7.5,2.15)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0}{7.5}{5 x mul 2.71828 x exp div}
+\uput[d](6.8,-.2){\footnotesize temps en heures}\uput[r](0,2.1){\footnotesize concentration en g/L}
+\end{pspicture*}
+\end{center}
+
+On a représenté ci-dessus la courbe représentative de la fonction $f$. Avec la précision permise par le graphique, donner sans justification :
+
+\medskip
+
+\begin{enumerate}
+\item Le temps écoulé depuis l'instant de l'ingestion de ce médicament et l'instant où la concentration de médicament dans le sang est maximale selon ce modèle.
+\item L'ensemble des solutions de l'inéquation $f(t) \geqslant 1$.
+\item La convexité de la fonction $f$ sur l' intervalle [0~;~8].
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B : détermination de la fonction} \boldmath $f$ \unboldmath
+
+\medskip
+
+On considère l'équation différentielle 
+
+\[(E) \::\qquad y' +y = 5\e^{-t},\]
+
+d'inconnue $y$, où $y$ est une fonction définie et dérivable sur l'intervalle $[0~;~+ \infty[$.
+
+On admet que la fonction $f$ est une solution de l'équation différentielle $(E)$.
+
+\medskip
+
+\begin{enumerate}
+\item Résoudre l'équation différentielle $(E') : \:\: y' + y = 0$.
+\item Soit $u$ la fonction définie sur l’intervalle $[0~;~ +\infty[$ par $u(t) = at\e^{-t}$ avec $a \in \R$.
+
+Déterminer la valeur du réel $a$ telle que la fonction $u$ soit solution de l'équation $(E)$.
+\item En déduire l'ensemble des solutions de l'équation différentielle $(E)$.
+\item La personne n'ayant pas pris ce médicament auparavant, on admet que $f(0) = 0$.
+
+Déterminer l'expression de la fonction $f$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C : étude de la fonction} \boldmath $f$ \unboldmath
+
+\medskip
+
+Dans cette partie, on admet que $f$ est définie sur l'intervalle $[0~;~+\infty[$ par $f(t) = 5t \e^{-t}$.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer la limite de $f$ en $+\infty$.
+
+Interpréter ce résultat dans le contexte de l'exercice.
+\item Étudier les variations de $f$ sur l'intervalle $[0~;~ +\infty[$ puis dresser son tableau de variation complet.
+\item Démontrer qu’il existe deux réels $t_1$ et $t_2$ tels que $f\left(t_1\right) = f\left(t_2\right) = 1$.
+
+On donnera une valeur approchée à $10^{-2}$ des réels $t_1$ et $t_2$.
+\item Pour une concentration du médicament supérieure ou égale à 1 gramme par litre de sang, il y a un risque de somnolence.
+
+Quelle est la durée en heures et minutes du risque de somnolence lors de la prise de ce médicament ?
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie D : concentration moyenne}
+
+\medskip
+
+La concentration moyenne du médicament (en gramme par litre de sang) durant la première heure est donnée par :
+
+\[T_m = \displaystyle\int_0^1 f(t) \:\text{d}t\]
+
+où $f$ est la fonction définie sur $[0~;~+\infty[$ par $f(t) = 5t\e^{-t}$.
+
+Calculer cette concentration moyenne.
+
+On donnera la valeur exacte puis une valeur approchée à 0,01 près.
+
+\bigskip

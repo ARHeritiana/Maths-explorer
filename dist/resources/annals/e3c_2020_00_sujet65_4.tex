@@ -1,0 +1,130 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet65_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+La gestionnaire d'un cinéma s'intéresse à la catégorie des films vus par ses spectateurs, ainsi qu'à leur consommation au rayon \og friandises\fg. Une étude sur plusieurs mois a montré que 40\,\% des spectateurs sont allés voir un film d'action, $35$\,\% un dessin animé et les autres une comédie.
+
+Parmi les spectateurs allant voir un film d'action, la moitié achètent des friandises, alors qu'ils sont 80\,\% pour ceux allant voir un dessin animé et $70$\,\% pour ceux allant voir une comédie.
+
+On interroge au hasard un spectateur sortant du cinéma et on note :
+\begin{description}
+\item[]$A$ l'évènement : \og le spectateur a vu un film d'action\fg,
+\item[]$D$ l'évènement : \og le spectateur a vu un dessin animé\fg,
+\item[]$C$ l'évènement : \og le spectateur a vu une comédie\fg,
+\item[]$F$ l'évènement : \og le spectateur a acheté des friandises\fg.
+\end{description}
+\begin{enumerate}
+\item  Reproduire et compléter sur la copie l'arbre de probabilité ci-dessous représentant la situation.
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$A$~~}\taput{}}
+	{
+	\TR{$F$}\taput{}
+	\TR{$\overline{F}$}\tbput{}
+	}
+\pstree{\TR{$D$~~}\tbput{}}
+	{\TR{$F$}\taput{}
+	\TR{$\overline{F}$}\tbput{}
+	}
+\pstree{\TR{$C$~~}\tbput{}}
+	{\TR{$F$}\taput{}
+	\TR{$\overline{F}$}\tbput{}
+	}
+}
+\end{center}
+
+\item Démontrer que $p(F) = 0,655$.
+\item On interroge au hasard un spectateur ayant acheté des friandises. Quelle est la probabilité qu'il ait vu un dessin animé ? On donnera l'arrondi à $10^{-3}$.
+\item Une place de cinéma coûte 10 \euro. On considérera que si un spectateur achète des friandises, il dépense 18 \euro{} pour sa place de cinéma et ses friandises.
+
+On note $X$ la variable aléatoire donnant le coût d'une sortie au cinéma pour un spectateur.
+\begin{enumerate}
+\item  Déterminer la loi de probabilité de $X$.
+\item En déduire le coût moyen par spectateur d'une sortie dans ce cinéma.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}

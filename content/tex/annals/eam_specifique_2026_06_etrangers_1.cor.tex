@@ -1,0 +1,76 @@
+Une compagnie aérienne mène une enquête de satisfaction auprès de ses clients. Les deux questions posées lors de cette enquête sont les suivantes :\\
+ \og Avez-vous acheté votre billet d'avion en agence de voyage ou par internet ? \fg{}\\
+	\og Êtes-vous satisfait des services proposés par notre compagnie ? \fg{}.
+
+	\bigskip 
+	Les résultats sont donnés dans le tableau suivant :
+	
+	\begin{center}
+		\begin{tblr}{hlines,vlines,colspec={X[1.4,l]X[c]X[c]X[c]},cells={m},row{1}={font=\bfseries},column{1}={font=\bfseries}}
+			& Billet acheté par internet & Billet acheté en agence & Total \\
+			Satisfait & 720 & 180 & 900 \\
+			Pas satisfait & 80 & 20 & 100 \\
+			Total & 800 & 200 & 1\,000 \\
+		\end{tblr}
+	\end{center}
+	
+	On choisit au hasard un client ayant répondu aux deux questions.
+	
+	On considère les deux événements suivants :
+	\begin{itemize}[label={}]
+		\item $S$ : \og Le client est satisfait \fg{} ;
+		\item $I$ : \og Le client a acheté son billet par internet \fg{}.
+	\end{itemize}
+
+	\begin{color}{blue}
+	On utilise l'hypothèse d'équiprobabilité : «~chacun des clients à la même chance d'être choisi~».
+	
+	On note $\Omega$ l'univers (les 1000 clients). $\text{Card}(\Omega)$ désigne le nombre d'élément de $\Omega$.
+	\end{color}
+
+
+
+	\begin{enumerate}
+		\item Calculer la probabilité qu'un client soit satisfait.
+		
+		\begin{color}{blue}
+	$\text{P}(S) = \dfrac{\text{Card}(S)}{\text{Card}(\Omega)} = \dfrac{900}{\np{1000}} = \dfrac{9}{10}$.
+	\end{color}
+
+		
+		\item Calculer la probabilité de l'événement $S\cap I$. \\
+		Interpréter le résultat à l'aide d'une phrase.
+		
+		\begin{color}{blue}
+	$\text{P}(S\cap I) = \dfrac{\text{Card}(S\cap I)}{\text{Card}(\Omega)} = \dfrac{720}{\np{1000}} = \dfrac{72}{100} = \dfrac{18}{25}$.
+	
+	Il y a 72~\% de chance de choisir un client satisfait \textbf{et} ayant acheté son billet sur Internet. 
+	\end{color}
+		
+		\item Calculer $\text{P}_{S}(I)$.
+		
+		\begin{color}{blue}
+On calcule la probabilité qu'on choisisse un client ayant acheté son billet  sur Internet \textbf{sachant}	 qu'il était satisfait.
+		
+		$\text{P}_{S}(I)= \dfrac{\text{Card}(S\cap I)}{\text{Card}(S)} = \dfrac{720}{\np{900}} = \dfrac{80}{100} = \dfrac{4}{5}$
+		
+		\end{color}
+		
+		\item Les deux événements $I$ et $S$ sont-ils indépendants ? Justifier la réponse.
+		
+		\begin{color}{blue}
+		On calcule $\text{P}(I) = \dfrac{\text{Card}(I)}{\text{Card}(\Omega)} = \dfrac{800}{\np{1000}} = \dfrac{4}{5}$
+		
+		Comme $\text{P}_{S}(I)=\text{P}(I)$, on peut dire que les évènenents sont indépendants. On a bien dans ce cas $\text{P}(S\cap I) = \text{P}(S) \times \text{P}(I)$.
+		\end{color}
+		\item Le service marketing de la compagnie aérienne affirme que $90~\%$ des clients qui ont acheté leur billet en agence sont satisfaits. Est-ce le cas ? Justifier la réponse.
+		
+		\begin{color}{blue}
+		On calcule la probabilité qu'un client soit satisfait sachant qu'il a acheté son billet en agence.
+		
+		$\text{P}_{\overline{I}}(S) = \dfrac{\text{Card}(S\cap \overline{I})}{\text{Card}(\overline{I})} = \dfrac{180}{200} = \dfrac{90}{100} = 90~\%$
+		
+		C'est bien le cas.
+		
+		\end{color}
+	\end{enumerate}

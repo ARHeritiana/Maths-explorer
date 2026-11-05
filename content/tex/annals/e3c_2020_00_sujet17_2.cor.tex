@@ -1,0 +1,50 @@
+On considère la fonction \(f\) définie sur \(\left] -1 ; +\infty \right[\) par :
+	\[
+	f(x) = \dfrac{x^2 + 1}{x + 1}.
+	\]
+	
+	\subsection*{1.}
+	
+	Puisque \(x > -1\), alors \(x + 1 > 0\), \(f\) est donc une fonction quotient dérivable sur \(\left] -1 ; +\infty \right[\) et :
+	\[
+	f'(x) = \dfrac{2x(x + 1) - 1(x^2 + 1)}{(x + 1)^2} = \dfrac{2x^2 + 2x - x^2 - 1}{(x + 1)^2} = \dfrac{x^2 + 2x - 1}{(x + 1)^2}.
+	\]
+	
+	\subsection*{2.}
+	
+	Comme, quel que soit le réel \(x \in \left] -1 ; +\infty \right[\), \((x + 1)^2 > 0\), le signe de \(f'(x)\) est celui du numérateur, le trinôme \(x^2 + 2x - 1\).
+	
+	Pour celui-ci \(\Delta = 4 + 4 = 4 \times 2 = (2\sqrt{2})^2\).\\ Le trinôme a donc deux racines :
+	\[
+	x_1 = \dfrac{-2 + 2\sqrt{2}}{2} = -1 + \sqrt{2}, \quad x_2 = \dfrac{-2 - 2\sqrt{2}}{2} = -1 - \sqrt{2}.
+	\]
+	
+	On sait que le trinôme et donc la dérivée sont positifs, sauf sur l'intervalle \(\left] -1 - \sqrt{2} ; -1 + \sqrt{2} \right[\).
+	
+	Comme \(-1 - \sqrt{2} \approx -2,414\), la dérivée est négative sur \(\left] -1 ; -1 + \sqrt{2} \right[\) et positive sur \(\left] -1 + \sqrt{2} ; +\infty \right[\).
+	
+	La fonction est donc décroissante sur \(\left] -1 ; -1 + \sqrt{2} \right[\) et croissante sur \(\left] -1 + \sqrt{2} ; +\infty \right[\).
+	
+	\subsection*{3.}
+	
+	On sait que l'équation réduite de la tangente est : \(y - f(0) = f'(0)(x - 0)\).
+	
+	Avec \(f(0) = 1\) et \(f'(0) = -1\), on obtient :
+	\[
+	M(x ; y) \in Y \Leftrightarrow y - 1 = -x \Leftrightarrow y = -x + 1.
+	\]
+	
+	\subsection*{4.}
+	
+	On étudie la fonction différence entre la fonction \(f\) et la fonction \(g\) telle que \(g(x) = x\), soit :
+	\[
+	d(x) = \dfrac{x^2 + 1}{x + 1} - x = \dfrac{x^2 + 1 - x(x + 1)}{x + 1} = \dfrac{x^2 + 1 - x^2 - x}{x + 1} = \dfrac{-x + 1}{x + 1}.
+	\]
+	
+	Or le signe de ce quotient est le même que le signe du produit \((-x + 1)(x + 1)\).
+	
+	On sait que ce trinôme est négatif sauf entre ses racines \(-1\) et 1 où il est positif.
+	
+	Donc sur \(\left] -1 ; 1 \right[\), \(d(x) > 0\) : la courbe est au-dessus de la droite d'équation \(y = x\).
+	
+	Sur \(\left] 1 ; +\infty \right[\), \(d(x) < 0\) : la courbe est en dessous de la droite.

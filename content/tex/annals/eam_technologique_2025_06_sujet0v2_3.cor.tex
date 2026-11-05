@@ -1,0 +1,28 @@
+\medskip
+
+$f (x) = -x^2 + 6x - 5$.
+
+\begin{enumerate}
+\item $f(0) =  0 + 0 - 5 = - 5$ ;
+
+$f(3) = - 3^2 + 6 \times 3 - 5 = - 9 + 18 - 5 = 4$.
+\item Pour tout réel $x$, \: $(x - 1)(5 - x) = 5x - x^2 - 5 + x = - x^2 6x - 5 = f(x)$.
+\item D'après la factorisation précédente : $f(1) = 0 \times 4 = 0$ et $f(5) = 4 \times 0 = 0$ : soit $0$ a deux antécédents 1 et 5.
+\item Quel que soit le réel $x$ , \: $4 - (x - 3)^2 = 4 - \left(x^2  + 9 - 6x \right) = 4 - x^2 - 9 + 6x = - x^2 + 6x - 5 = f(x)$.
+\item Quel que soit le réel $x$, \: $(x - 3)^2 \geqslant 0$, donc $- (x - 3)^2 \leqslant 0$ et en ajoutant 4 à chaque membre de cette inéquation :
+
+$4 - (x - 3)^2 \leqslant 4$ ou encore $f(x) \leqslant 4$ : la plus grande valeur de la fonction $f$ est donc 4 : il n'existe pas de réel $x$ tel que $f(x) > 4$.
+\item
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{center}
+\begin{pspicture*}(-2,-6)(7,5)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-2,-6)(7,5)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-2}{7}{x 6 mul 5 sub x dup mul sub}
+\psline[linestyle=dashed,ArrowInside=->](0,0)(0,-5)(0,-5)
+\psline[linestyle=dashed,ArrowInside=->](3,0)(3,4)(0,4)
+\psdots[linecolor=blue,dotscale=2](1,0)(5,0)
+\end{pspicture*}
+\end{center}
+\end{enumerate}
+
+\bigskip

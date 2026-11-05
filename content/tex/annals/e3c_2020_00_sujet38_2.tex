@@ -1,0 +1,47 @@
+\medskip
+
+Un snack propose deux types de plats : des sandwichs et des pizzas.
+
+Le snack propose également plusieurs desserts.
+
+La gérante constate que 80\,\% des clients qui achètent un plat choisissent un sandwich et que parmi
+ceux-ci seulement 30\,\% prennent également un dessert.
+
+Elle constate aussi que 45\,\% des clients qui ont choisi une pizza comme plat ne prennent pas de
+dessert.
+
+On choisit au hasard un client ayant acheté un plat dans ce snack.
+
+On considère les évènements suivants :
+
+\begin{itemize}
+\item $S$ : \og Le client interrogé a choisi un sandwich \fg.
+\item $T$ : \og Le client interrogé a choisi un dessert \fg.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Sans justifier, recopier puis compléter l'arbre pondéré suivant :
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.75cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$S$~}\taput{$\np{0.8}$}}
+	{
+	\TR{$T$}\taput{$\dots$}
+	\TR{$\overline{T}$}\tbput{$\dots$}
+	}
+\pstree{\TR{$\overline{S}$~}\tbput{$\dots$}}
+	{\TR{$T$}\taput{$\dots$}
+	\TR{$\overline{T}$}\tbput{$\dots$}
+	}
+}
+\end{center}
+\item Calculer la probabilité que le client ait choisi un sandwich et un dessert.
+\item Démontrer que $P(T) = 0,35$.
+\item Sachant que le client a acheté un dessert, quelle est la probabilité, arrondie à \np{0.01} près, qu'il ait acheté une pizza ?
+\item Les évènements $S$ et $T$ sont-ils indépendants ?
+\end{enumerate}
+
+\vspace{0,5cm}

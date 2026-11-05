@@ -1,0 +1,75 @@
+\begin{enumerate}
+\item
+	\begin{enumerate}
+		\item Dans le repère $\big(\mathrm{A}~;~\vect{i},\vect{j},\vect{k}\big)$, on a les points suivants :
+
+H$(0~;~2~;~2)$,  M$ (3~;~0~;~1) $ et N$(3~;~1~;~1)$. \hfill
+
+\item On a  $\vect{\mathrm{HM}}\begin{pmatrix} x_\mathrm{M}-x_\mathrm{H}\\y_\mathrm{M}-y_\mathrm{H}\\z_\mathrm{M}-z_\mathrm{H} \end{pmatrix} = \begin{pmatrix} 3\\-2\\-1\end{pmatrix}$
+
+La droite (HM) est dirigée par $\vect{\mathrm{HM}}$ et elle passe par H, elle admet donc comme représentation paramétrique : $ \left\{\begin{array}{l} x=x_\mathrm{H} + tx_{\vect{\mathrm{HM}}}\\y=y_\mathrm{H} + ty_{\vect{\mathrm{HM}}}\\z=z_\mathrm{H} + tz_{\vect{\mathrm{HM}}} \end{array}\right. \quad t \in \R $, soit ici : $ \left\{\begin{array}{l} x=3t\\y=2 -2 t\\z=2-t \end{array}\right. \quad t \in \R $
+	\end{enumerate}
+\item  Dans le repère $\big(\mathrm{A}~;~\vect{i},\vect{j},\vect{k}\big)$, on a les coordonnées suivantes :
+
+\hfill~ B$(2~;~0~;~0)$ \hfill C$ (2~;~2~;~0) $ \hfill F$(2~;~0~;~2)$ \hfill
+
+Le plan (BCF) est parallèle au plan $yOz$, son équation est donc de la forme $x=c$ , $c\in\R$.
+
+Ici on a donc $x=2$
+
+Cherchons le paramètre $t$ tel qu'un point $M_t$ de paramètre $t$ dans la représentation de (HM) soit un point de (BCF) :
+
+	$\begin{aligned} M_t \in (\mathrm{BCF}) &\iff x_{M_t} = 2\\
+	&\iff 3t=2\\
+	&\iff t = \dfrac{2}{3}\\ \end{aligned}$
+
+	P est donc $M_{\frac{2}{3}}$ sur la droite (HM), il a donc comme coordonnées :
+
+$x_P=2$, $y_P=2-2\times \dfrac{2}{3}=\dfrac{6}{3}-\dfrac{4}{3}=\dfrac{2}{3}$ et $z_P=2-\dfrac{2}{3}=\dfrac{6}{3}-\dfrac{2}{3}=\dfrac{4}{3}$ .
+
+Cela confirme P$\left(2~;~\dfrac{2}{3} ~;~\dfrac{4}{3}\right) $
+
+\item 
+	\begin{enumerate}
+		\item $\vect{\mathrm{PM}}\begin{pmatrix} x_\mathrm{M}-x_\mathrm{P}\\y_\mathrm{M}-y_\mathrm{P}\\z_\mathrm{M}-z_\mathrm{P} \end{pmatrix} = \begin{pmatrix} 3-2\\0-\frac{2}{3}\\1-\frac{4}{3}\end{pmatrix}= \begin{pmatrix} 1\\-\frac{2}{3}\\-\frac{1}{3}\end{pmatrix}$ \quad et de même : $\vect{\mathrm{PN}} \begin{pmatrix} 1\\\frac{1}{3}\\-\frac{1}{3}\end{pmatrix}$ .
+
+Comme le repère est orthonormé, on peut calculer le produit scalaire à l'aide des coordonnées :
+
+$ \vect{\mathrm{PM}}\cdot \vect{\mathrm{PN}} = 1\times 1  -\dfrac{2}{3} \times \dfrac{1}{3} -\dfrac{1}{3} \times \left(-\dfrac{1}{3}\right) = 1 -\dfrac{2}{9}+\dfrac{1}{9} = \dfrac{8}{9}$
+
+		\item $\mathrm{PM}=\sqrt{1^2+{\left(-\dfrac{2}{3}   \right)}^2 +{\left(-\dfrac{1}{3}   \right)}^2} =\sqrt{1+\dfrac{4}{9}+\dfrac{1}{9}}=\sqrt{\dfrac{14}{9}}=\dfrac{\sqrt{14}}{3}$
+
+		\item On sait que $\vect{\mathrm{PM}}\cdot \vect{\mathrm{PN}}=PM \times PN \times \cos\left( \widehat{MPN}\right)$.
+
+On a donc $\dfrac{8}{9}=\dfrac{\sqrt{14}}{3}\times \dfrac{\sqrt{11}}{3}\times \cos \left( \widehat{MPN} \right)$.
+
+d'où $\cos \left( \widehat{MPN} \right) = \dfrac{8}{\sqrt{11}\sqrt{14}}$ soit $\widehat{MPN}\approx 50\degres$.
+
+L'angle ne dépasse pas $55 \degres$, le toit peut donc être construit.
+	\end{enumerate}
+\item 	Les droites (EH) et (MN) sont parallèles donc les droites (HM) et (EN) sont coplanaires et non parallèles , elles sont donc sécantes.
+
+On a  $\vect{\mathrm{EN}}\begin{pmatrix} x_\mathrm{N}-x_\mathrm{E}\\y_\mathrm{N}-y_\mathrm{E}\\z_\mathrm{N}-z_\mathrm{E} \end{pmatrix} = \begin{pmatrix} 3\\1\\-1\end{pmatrix}$
+
+La droite (EN) est dirigée par $\vect{\mathrm{EN}}$ et elle passe par E, elle admet donc comme représentation paramétrique : $ \left\{\begin{array}{l} x=x_\mathrm{E} + tx_{\vect{\mathrm{EN}}}\\y=y_\mathrm{E} + ty_{\vect{\mathrm{EN}}}\\z=z_\mathrm{E} + tz_{\vect{\mathrm{EN}}} \end{array}\right. \quad t \in \R $, soit ici : $ \left\{\begin{array}{l} x=3t'\\y= t'\\z=2-t' \end{array}\right. \quad t'\in \R $
+
+Pour trouver l'intersection des droites (EH) et (MN), il faut donc résoudre le système :
+
+$\left\{\begin{array}{l}
+3t	=3t'\\
+2-2t 	=t'\\
+2-t	=2-t'\\
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+t=t'\\
+2-2t=t\\
+2-t=2-t\\
+\end{array}\right.\iff \left\{\begin{array}{l c l}
+t=t'\\
+2=3t\\
+0=0\\
+\end{array}\right.\iff t=t'=\dfrac{2}{3}$
+
+Le point d'intersection est donc le point P.
+\end{enumerate}
+
+\bigskip

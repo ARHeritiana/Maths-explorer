@@ -1,0 +1,35 @@
+\subsection*{1.}
+
+Retrancher 2 \% revient à multiplier par \(1 - \dfrac{2}{100} = 1 - 0{,}02 = 0{,}98\).
+
+On a donc \(d_2 = 50 \times 0{,}98 = 49\) (km).
+
+\subsection*{2.}
+
+Si \(d_n\) est la distance parcourue le \(n\)-ième jour, alors \(d_{n+1} = d_n \times 0{,}98\).
+
+Ceci montre que la suite \((d_n)\) est géométrique de premier terme \(d_1 = 50\) et de raison \(q = 0{,}98\).
+
+\subsection*{3.}
+
+On sait qu'alors, pour tout entier naturel \(n \geqslant 1\), \(d_n = d_1 \times q^{n-1} = 50 \times 0{,}98^{n-1}\).
+
+\subsection*{4.}
+
+\begin{center}
+\begin{lstlisting}[style=python]
+def nb jours() :
+    j = 1
+    u = 50
+    S = 50
+    while S < 2000 :
+        u = 0.98 * u
+        S = S + u
+        j = j + 1
+    return j
+\end{lstlisting}
+\end{center}
+
+\subsection*{5.}
+
+L'algorithme s'arrête le \(80^{\text{ème}}\) jour.

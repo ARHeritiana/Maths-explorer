@@ -1,0 +1,149 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_metropole_devoile_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On considère un repère orthonormé $\left(\text{A}~;~\vect{\imath},~\vect{\jmath},~\vect{k}\right)$ de l'espace dans lequel on place les points
+\begin{center}
+B(4~;~0~;~0),\quad D(0~;~4~;~0),\quad E(0~;~0~;~4) \end{center}
+et les points C, F{}, G et H de sorte que le solide ABCDEFGH soit un cube.
+
+\begin{center}
+\psset{unit=0.8cm}
+\begin{pspicture}(8,8.6)
+
+\psframe(0.5,0.5)(6.1,6.1)
+\psline(6.1,0.5)(7.9,2.4)(7.9,8)(6.1,6.1)
+\psline(7.9,8)(2.3,8)(0.5,6.1)
+\psline(0.5,6.1)(0.5,8.6)
+\psline(0,8.753)(1.7,7.38)
+\psline[linestyle=dashed](1.7,7.38)(8,2.321)
+\psline(7.9,2.4)(8,2.321)
+\psline[linestyle=dashed](0.5,0.5)(2.3,2.4)(7.9,2.4)
+\psline[linestyle=dashed](2.3,2.4)(2.3,8)
+\uput[dl](0.5,0.5){A} \uput[d](6.1,0.5){B} \uput[ur](7.9,2.4){C} \uput[ur](2.3,2.4){D}
+\uput[l](0.5,6.1){E} \uput[r](6.1,6.1){F} \uput[ur](7.9,8){G} \uput[u](2.3,8){H} 
+\uput[u](3.3,6.1){I} \uput[ul](1.4,1.45){K}
+\psdots(3.3,6.1)(1.4,1.45)
+\psline[linewidth=1.25pt]{->}(0.5,0.5)(1.9,0.5)\uput[d](1.2,0.5){$\vect{\imath}$}
+\psline[linewidth=1.25pt]{->}(0.5,0.5)(0.95,0.975)\uput[r](0.725,0.725){$\vect{\jmath}$}
+\psline[linewidth=1.25pt]{->}(0.5,0.5)(0.5,1.9)\uput[l](0.5,1.2){$\vect{k}$}
+\end{pspicture}
+\end{center}
+
+\begin{enumerate}
+\item Donner les coordonnées des points C, F{}, G et H.
+\item On considère le point I milieu de l'arête [EF].
+
+Montrer qu'une représentation paramétrique de la droite (IC) est donnée par: 
+
+\[\left\{\begin{array}{l c l}
+x &=&2+2t\\
+y &=&\phantom{2 +~}4t\\
+z &=&4 - 4t
+\end{array}\right.\:\text{où} \:  t \in \R.\]
+
+\item On désigne par $\mathcal{P}$ le plan orthogonal à la droite (IC) passant par le point G, et par J l'intersection de $\mathcal{P}$ avec (IC).
+	\begin{enumerate}
+		\item Démontrer qu'une équation cartésienne du plan $\mathcal{P}$ est donnée par : 
+		\[x + 2y - 2z - 4 = 0.\]
+		\item Justifier que J a pour coordonnées $\left(\dfrac{28}{9}~;~\dfrac{20}{9}~;~\dfrac{16}{9}\right)$.
+		
+Que représente J par rapport à C ? 
+		\item Vérifier que le point K(0~;~2~;~0) appartient au plan $\mathcal{P}$.
+		\item Justifier que (BK) est l'intersection des plans $\mathcal{P}$ et (ABC).
+	\end{enumerate}
+\item On rappelle que le volume d'une pyramide est donné par la formule $V = \dfrac{B \times h}{3}$, où $B$ est l'aire d'une base et $h$ la longueur de la hauteur relative à cette base.
+	\begin{enumerate}
+		\item Déterminer le volume de la pyramide CBKG.
+		\item En déduire que l'aire du triangle BKG est égale à $12$.
+		\item Justifier que la droite (BG) est incluse dans $\mathcal{P}$.
+		\item On note I$'$ un point de l'arête [EF], et $P'$ le plan orthogonal à la droite (I$'$ C) passant par G.
+		
+Peut-on affirmer que la droite (BG) est incluse dans $P'$ ?
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

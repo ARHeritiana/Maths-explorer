@@ -1,0 +1,137 @@
+\medskip
+
+\textbf{Principaux domaines abordés :} 
+probabilités.
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+On peut compléter l'arbre pondéré :
+
+\begin{minipage}{0.48\linewidth}
+
+\begin{itemize}
+\item[$\bullet~~$] $E_0$ : \og le bit envoyé est un $0$ \fg{} ;
+\item[$\bullet~~$] $E_1$ : \og le bit envoyé est un 1 \fg{} ;
+\item[$\bullet~~$] $R_0$ : \og le bit reçu est un $0$\fg{} 
+\item[$\bullet~~$] $R_1$ : \og le bit reçu est un $1$ \fg.
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}{0.48\linewidth}
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$E_0$~}\taput{0,4}}
+{\TR{$R_0$}\taput{\blue 0,99}
+\TR{$R_1$}\tbput{0,01}
+}
+\pstree{\TR{$E_1$~}\tbput{\blue 0,6}}
+{\TR{$R_0$}\taput{0,02}
+\TR{$R_1$}\tbput{\blue 0,98}
+}}
+\end{center}
+\end{minipage}
+
+On sait que:
+
+$p\left(E_0\right) = 0,4 ;\quad  p_{R_0}\left(R_1\right) = 0,01 ;\quad p_{R_1}\left(R_0\right) = 0,02$.
+
+On rappelle que la probabilité conditionnelle de $A$ sachant $B$ est notée $p_B(A)$.
+
+On peut ainsi représenter la situation par l'arbre de probabilités ci-dessus.
+
+\medskip
+
+\begin{enumerate}
+\item 
+$p\left(E_0 \cap R_0\right) = p\left(E_0 \right) \times p_{E_0}\left(R_0 \right) = 0,4 \times 0,99 = 0,396$.
+
+
+
+
+
+
+\item 
+On a aussi $p\left(E_1 \cap R_0\right) = p\left(E_1 \right) \times p_{E_1}\left(R_0 \right) = 0,6 \times 0,02 = 0,012$.
+
+ D'après la loi des probabilités totales : $p\left(R_0\right) = p\left(E_0 \cap R_0\right) + p\left(E_1 \cap R_0\right) = 0,396 + 0,012 = 0,408$.
+
+
+
+
+
+\item 
+
+Avec $p\left(R_1 \right) = 1 - p\left(R_0\right) = 1 - 0,408 = 0,592$ ;
+
+$p_{R_1}\left(E_0\right) = \dfrac{p\left(R_1 \cap E_0 \right)}{p\left(R_1\right)} = \dfrac{p\left(E_0 \cap R_1 \right)}{p\left(R_1\right)} = \dfrac{0,4 \times 0,01}{0,592} = \dfrac{0,004}{0,592} \approx \np{0,0067}$, soit environ 0,007 au millième près.
+
+
+
+
+
+\item 
+
+
+
+
+
+On a $p(\text{erreur de transmission}) = p\left(E_0 \cap R_1\right) + p\left(E_1 \cap R_0\right) = 0,4 \times 0,01 + 0,6 \times 0,02 = 0,004 + 0,012 = 0,016$.
+\end{enumerate}
+
+Un message de longueur huit bits est appelé un octet.
+
+On admet que la probabilité qu'un octet soit transmis sans erreur est égale à 0,88.
+
+\begin{enumerate}[resume]
+\item 
+
+
+
+
+
+
+
+
+On a une loi binomiale de paramètres $n = 10$ et $p = 0,88$. Si $x$ est la variable aléatoire égal au nombre d'octets transmis sans erreur, on a :
+
+$p(X = 7) = \binom{10}{7}\times 0,88^7 \times (1 - 0,88)^{10-7} = \binom{10}{7}\times 0,88^7 \times (0,12)^{3} \approx \np{0,0847}$ soit 0,085 au millième près.
+\item 
+
+
+
+
+
+
+
+
+On a $p(X \geqslant 1) = 1 - p(X = 0) = 1 - \binom{10}{0}0,88^{0} \times 0,12^{10} = 1 - 0,12^{10}$.
+\item 
+
+
+
+
+
+
+
+
+
+
+On a $p(X = 18) = 0,88^{18} \approx 0,109 > 0,1$. Donc $N_0 = 18$.
+\end{enumerate}

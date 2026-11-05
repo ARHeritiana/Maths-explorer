@@ -1,0 +1,91 @@
+\medskip
+
+
+
+
+
+
+
+\[(E) : \quad  y'  +0,02y = m\]
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item 
+
+
+
+
+
+
+
+On sait que l'équation différentielle $y' + 0,02y = 0$ a pour solutions les fonctions $t \longmapsto y = k\e^{-0,02t}$, avec $k \in \R$.
+
+D'autre part une fonction constante $y = \alpha$, \:$\alpha \in \R$ est solution de $(E)$ (avec donc $y' = 0$) si $0 + 0,02\alpha = m \iff 0,02\alpha = m \iff \alpha = \dfrac{m}{0,02} = 50m$.
+
+Conclusion : toutes les solutions de $(E)$ sont les fonctions définies par 
+\begin{center} $t \longmapsto y = k\e^{0,02t} + 50m$, \: avec $k \in \R$\end{center}
+\item 
+
+
+On sait que $\displaystyle\lim_{t \to + \infty} \e^{-0,02t} = 0$, donc $\displaystyle\lim_{t \to + \infty} k\e^{-0,02t} = 0$ et $\displaystyle\lim_{t \to + \infty} k\e^{-0,02t} + 50m = 50m$.
+
+Or on a $\displaystyle\lim_{t \to + \infty} k\e^{-0,02t} + 50m  = 30$, donc $m = \dfrac35 = \dfrac{6}{10} = 0,6$.
+\item 
+
+Avec $50m = 50 \times 0,6 v= 5 \times 6 = 30$, les solutions de $(E)$ sont les fonctions $f$ définies par : $ t \longmapsto f(t) = k\e^{-0,02t} + 30$
+
+On a $f(0) = 210 \iff k \times 1 + 30 = 210 \iff k = 180$.
+
+Finalement : $f(t) = 180\e^{-0,02t} + 30$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+
+
+\[f(t) =180 \e^{-0,02t} + 30.\]
+
+\begin{center}
+\psset{unit=0.05cm,yunit=0.02cm,arrowsize =2pt 3}
+\begin{pspicture}(-20,-15)(220,230)
+\multido{\n=0+20}{11}{\psline[linewidth=0.2pt](\n,0)(\n,230)}
+\multido{\n=0+50}{5}{\psline[linewidth=0.2pt](0,\n)(220,\n)}
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle,Dx=20,Dy=50]{->}(0,0)(0,0)(220,230)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{220}{180 2.71828 0.02 x mul exp div 30 add}
+\uput[u](190,0){temps (en s)}\uput[r](0,220){température (en \ensuremath{^\circ} C)}
+\psline[linestyle=dashed,ArrowInside=->,linewidth=1.25pt](0,50)(109.86,50)(109.86,0)
+\psframe[linecolor=red](100,107.82)
+\end{pspicture}
+\end{center}
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+
+On lit sur le graphique $T \approx 110$~(s).
+		\item 
+On a $f(T) = 50 \iff 180 \e^{-0,02T} + 30 = 50 \iff 180 \e^{-0,02T} = 20 \iff 20 \times, 9\e^{-0,02T} = 20 \times 1 \iff 9\e^{-0,02T} = 1 \iff \e^{-0,02T} = \dfrac19 \iff -0,02T = \ln \left(\dfrac 19 \right) \iff -0,02T  = - \ln 9 \iff 0,02T = 9 \iff T = \dfrac{\ln 9}{0,02} \approx 109,86$~(s).
+
+Donc $T = \dfrac{\ln 9}{0,02} = 50\ln 9$.
+	\end{enumerate}	
+\item 
+Soit $\overline{t}$ la valeur moyenne de la température sur les $100$~premières secondes :
+
+$\overline{t} = \dfrac{1}{100}\displaystyle\int_0^{100} \left(180 \e^{-0,02t} + 30\right)\:\text{d}t = \dfrac{1}{100}\left[- \dfrac{180}{0,02}\e^{-0,02t} + 30t \right]_0^{100} = \dfrac{1}{100}\left[- \np{9000}\e^{-0,02t} + 30t \right]_0^{100} = \dfrac{1}{100}\left[-\np{9000}\e^{-2} + \np{3000} - (-\np{9000})\right] = \dfrac{1}{100}\left[-\np{9000}\e^{-2} + \np{12000}\right] = 120 - 90\e^{-2}$ 
+
+soit environ 107,8~(\ensuremath{^\circ} C).
+
+Graphiquement l'aire de la surface limitée par la représentation graphique de $f$, l'axe des abscisses et les droites d'équation $x = 0$ et $x = 100$ est égale à celle du rectangle (en rouge sur la figure) de dimensions 100 et 107,8.
+\end{enumerate}
+
+\bigskip

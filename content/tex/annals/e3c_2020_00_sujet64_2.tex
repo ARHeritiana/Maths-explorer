@@ -1,0 +1,57 @@
+\medskip
+
+Un globe-trotter a comme objectif de parcourir \np[km]{2000}  à pied. Il peut parcourir \np[km]{50}  en
+une journée, mais, la fatigue s'accumulant, la distance qu'il parcourt diminue de 2\,\% chaque
+nouvelle journée.
+
+On note la distance $d_n$ la distance parcourue durant le $n$-ième jour.
+
+Le premier jour de son périple, il parcourt donc $d_1 = \np[km]{50}$.
+
+\medskip
+
+\begin{enumerate}
+\item Calculer la distance parcourue le deuxième jour.
+\item Quelle est la nature de la suite $\left(d_n\right)$ ? Donnez ses éléments caractéristiques.
+\item Pour tout entier naturel $n\geqslant 1$, déterminer l'expression de $d_n$ en fonction de $n$.
+\item Pour calculer le nombre de jours qu'il faudra au globe-trotter pour atteindre son objectif, on
+a écrit le programme Python suivant :
+
+\begin{lstlisting}[style=python]
+def nb jours :
+	j=1
+	u=50
+	S=50
+	while ...... :
+		u=0,98*u
+		S=S+u
+		j=...... 
+	return j
+\end{lstlisting}
+
+Compléter les deux lignes incomplètes de ce programme.
+
+\item \begin{minipage}[t]{4cm}
+
+À l'aide de l'extrait de tableur ci-contre, déterminer
+quand le globe-trotter aura atteint son objectif.
+\end{minipage}\hspace{2.01cm}
+\begin{minipage}[t]{9.215cm}
+\begin{tabularx}{0.5\linewidth}{|>{\columncolor{lightgray}}m{0.35cm}|*{3}{>{\centering \arraybackslash}X|}}
+\hline
+\rowcolor{lightgray}&A&\cellcolor{blue}B&C\\\hline
+1&\cellcolor{green}j&\cellcolor{green}u&\cellcolor{green}s\\\hline
+2&1&50&50\\\hline
+\multicolumn{4}{c}{}\\\hline
+76&75&11&\np{1951}\\\hline
+77&76&11&\np{1962}\\\hline
+78&77&11&\np{1972}\\\hline
+79&78&11&\np{1983}\\\hline
+80&79&10&\np{1993}\\\hline
+81&80&10&\np{2003}\\\hline
+82&81&10&\np{2013}\\\hline
+\end{tabularx}
+\end{minipage}
+\end{enumerate}
+
+\vspace{1cm}

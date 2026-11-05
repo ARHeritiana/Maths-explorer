@@ -1,0 +1,137 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet2_etrangers_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Partie A}
+
+\medskip
+\begin{enumerate}
+	\item Pour chaque caractère, il y a 64 possibilités, donc pour une séquences de 4 caractères, il y a $64^4$ possibilités, soit \np{16777216} possibilités. On pourra noter 
+	
+card$(\Omega)=\np{16777216}$.
+	\item Si les caractères sont différents deux à deux, il s'agit alors d'un arrangement de 4 caractères parmi 64 : $\dfrac{64~!}{(64-4)~!}=64 \times 63 \times 62 \times 61=\np{15249024}$ possibilités.
+	\item 
+	\begin{enumerate}
+		\item On reprend la question \textbf{1.} avec seulement 63 caractères. cela donne donc
+
+$63^4=\np{15752961}$ possibilités.
+		\item Soit $X$ l'évènement : \og la séquence ne comporte pas la lettre A \fg.
+
+Son événement contraire est donc : $\overline{X}$ \og la séquence comporte au moins une fois la lettre A \fg{}.
+
+		Ainsi card$(X) + \text{card}(\overline{X})= \text{card}(\Omega)$ donc card$(\overline{X}) = \text{card}(\Omega) - \text{card}(X) = 64^4 - 63^4 = \np{1024255}$.
+
+Il y a donc \np{1024255} séquences contenant au moins une fois la lettre A.
+		\item La lettre A peut se situer dans l'une des quatre positions dans le code, les trois autres lettres étant différentes. Il y aura donc $4\times 63^3 = \np{1000188}$ possibilités.
+		\item Il y a $\dbinom{4}{2}$ façons de placer les deux lettres A dans la séquence. Les deux autres lettres ne sont pas des A. Il y aura donc $\dbinom{4}{2} \times 63^2 = \np{23814}$ possibilités.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+	\item $X$ suit une loi binomiale de paramètres $n=250$ et $p=0,01$.
+	\item $P(X=0)=\dbinom{250}{0}\times 0,01^0\times (1-0,01)^{250-0}=0,99^{250}\approx 0,081$.
+	\item On calcule $P(X >16)= P(X\geqslant 17)$. Avec la calculatrice, $P(X\geqslant 17)\approx 1,04\times 10^{-9}$, ce qui est négligeable.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C}
+
+\medskip
+
+En utilisant les propriétés sur la linéarité de l'espérance et de la variance (les variables aléatoires $X_1,\: X_2,\: X_3$\: et $X_4$ étant indépendantes), on peut affirmer que :
+
+$E(S)=E(X_1 + X_2 + X_3 + X_4)=E(X_1) + E(X_2) + E(X_3) + E(X_4)= 4\times E(X)=$
+
+$ 4\times n \times p=4\times 250 \times 0,01 = 10$.
+
+Il en est de même pour la variance :
+
+$V(S)=V(X_1 + X_2 + X_3 + X_4)=V(X_1) + V(X_2) + V(X_3) + V(X_4)=4\times V(X)=4\times n \times p \times (1-p)=4\times 250 \times 0,01 \times 0,99=9,9$.
+
+\end{document}

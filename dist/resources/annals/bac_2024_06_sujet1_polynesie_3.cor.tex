@@ -1,0 +1,211 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_polynesie_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Les probabilités demandées seront exprimées sous forme de fractions irréductibles}
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On lance trois fois de suite une pièce de monnaie bien équilibrée. On note $X$ la variable aléatoire qui compte le nombre de fois, sur les trois lancers, où la pièce est retombée du côté \og Face \fg.
+
+\medskip
+
+\begin{enumerate}
+\item 
+
+On peut dresser un arbre pondéré de probabilités :
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=3pt,levelsep=3cm,treesep=0.75cm]{\TR{}}
+{\pstree{\TR{$P$~~}\taput{$\frac12$}}
+	{\pstree{\TR{$P$~~}\taput{$\frac12$}}
+		{\TR{$P$~~0}\taput{$\frac12$}
+		\TR{$F$~~1}\tbput{$\frac12$}
+		}
+	\pstree{\TR{$F$~~}\tbput{$\frac12$}}
+		{\TR{$P$~~1}\taput{$\frac12$}
+		\TR{$F$~~2}\tbput{$\frac12$}
+		}	
+	}
+\pstree{\TR{$F$~~}\tbput{$\frac12$}}
+	{\pstree{\TR{$P$~~}\taput{$\frac12$}}
+		{\TR{$P$~~1}\taput{$\frac12$}
+		\TR{$F$~~2}\tbput{$\frac12$}
+		}
+	\pstree{\TR{$F$~~}\tbput{$\frac12$}}
+		{\TR{$P$~~2}\taput{$\frac12$}
+		\TR{$F$~~3}\tbput{$\frac12$}
+		}	
+	}	
+}
+\end{center}
+\item Recopier et compléter le tableau suivant donnant la loi de probabilité de $X$
+\begin{center}
+\renewcommand\arraystretch{2}
+\begin{tabularx}{\linewidth}{|*{5}{>{\centering \arraybackslash}X|}}\hline
+
+$k$& 0 & 1 & 2& 3 \\ \hline
+$P(X = k)$&$\dfrac18$	&$\dfrac38$	&$\dfrac38$	&$\dfrac18$\\ \hline
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+Voici les règles d'un jeu où le but est d'obtenir trois pièces du côté \og Face \fg{} en un ou deux essais :
+
+\begin{itemize}[label=$\bullet~$]
+\item On lance trois pièces équilibrées :
+	\begin{itemize}[label=$\circ~$]
+	\item Si les trois pièces sont tombées du côté \og Face \fg, la partie est gagnée ;
+	\item Sinon, les pièces tombées du côté \og Face\fg{} sont conservées et on relance
+celles tombées du côté \og Pile \fg.
+	\end{itemize}
+\item La partie est gagnée si on obtient trois pièces du côté \og Face \fg, sinon elle est
+perdue.
+\end{itemize}
+
+On considère les évènements suivants :
+\begin{itemize}[label=$\bullet~$]
+\item $G$ : \og la partie est gagnée \fg.
+
+Et pour tout entier $k$ compris entre 0 et 3, les évènements:
+\item $A_k$ : \og $k$ pièces sont tombées du côté \og Face\fg{} au premier lancer \fg.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Démontrer que $P_{A_1}(G) = \dfrac14$.
+\item Recopier et compléter l'arbre pondéré ci-dessous:
+
+\begin{center}
+\pstree[treemode=R,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$A_0~~$}\taput{$\frac18$}}
+	{\TR{$G$}\taput{$\frac18$}
+	\TR{$\overline{G}$}\tbput{$\frac78$}
+	}
+	\pstree{\TR{$A_1~~$}\taput{$\frac38$}}
+	{\TR{$G$}\taput{$\frac14$}
+	\TR{$\overline{G}$}\tbput{$\frac34$}
+	}
+	\pstree{\TR{$A_2~~$}\tbput{$\frac38$}}
+	{\TR{$G$}\taput{$\frac12$}
+	\TR{$\overline{G}$}\tbput{$\frac12$}
+	}
+	\pstree{\TR{$A_3~~$}\tbput{$\frac18$}}
+	{\TR{$G$}\taput{$1$}	
+	}
+}
+\end{center}
+
+\item 
+D'après la loi des probabilités totales on a :
+
+$p = p(A_0) \times p_{A_0}(G) + p(A_1) \times p_{A_1}(G) + p(A_2) \times p_{A_2}(G) + p(A_3) \times p_{A_3}(G) = $
+
+$\dfrac18 \times \dfrac18 + \dfrac38 \times \dfrac14 + \dfrac38 \times \dfrac12 + \dfrac38 \times 1 = \dfrac18 \times \dfrac18 + \dfrac38 \times \dfrac28 + \dfrac38 \times \dfrac48 + \dfrac38 \times \dfrac88 = \dfrac{1 + 6 + 12 + 8}{64} = \dfrac{27}{64}$.
+\item 
+Il faut trouver $p_G(A_1) = \dfrac{p\left(G \cap A_1\right)}{p(G)} = \dfrac{p\left(A_1 \cap G\right)}{p(G)} = \dfrac{\dfrac38 \times \dfrac14}{\dfrac{27}{64}} = \dfrac{\dfrac{3}{32}}{\dfrac{27}{64}} = \dfrac{3}{32} \times \dfrac{64}{27} = \dfrac29$.
+\item 
+Les parties sont à chaque fois indépendantes et la probabilité de gagner est à chaque fois égale à $\np{0,421875} = \dfrac{27}{64}$. Si sur $n$ parties jouées on appelle $X$ la variable aléatoire comptant le nombre de parties gagnées, $X$ suit une loi binomiale de paramètres $n$ et $p = \dfrac{27}{64}$.
+
+On a donc $p(X = 0) = \displaystyle\binom{n}{0} \times \left(\dfrac{27}{64}\right)^0 \times \left(1 - \dfrac{27}{64}\right)^n = \left(\dfrac{37}{64}\right)^n$.
+
+Il faut trouver $n \in \N$ tel que $p(X \geqslant 1) = 1 - \left(\dfrac{37}{64}\right)^n > 0,95 \iff \left(\dfrac{37}{64}\right)^n < 0,05 \iff n \ln \dfrac{37}{64} < \ln 0,05$ (par croissance de la fonction logarithme népérien), soit $n > \dfrac{\ln 0,05}{\ln \frac{37}{64}}$ car $\dfrac{1}{\ln \frac{37}{64}} < 0$.
+
+Or la calculatrice donne $\dfrac{\ln 0,05}{\ln \frac{37}{64}} \approx 5,46$. Il faut donc faire au moins 6 parties.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

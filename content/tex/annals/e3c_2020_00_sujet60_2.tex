@@ -1,0 +1,56 @@
+\medskip
+
+On modélise la diffusion dans le sang d'un médicament de 1 gramme par intraveineuse (fonction $f_1$, courbe représentative $C_1$) ou par voie orale (fonction $f_2$, courbe représentative $C_2$) pendant une durée de 10 heures.
+
+Plus précisément :
+
+\setlength\parindent{1cm}
+\begin{itemize}[label=\textbullet]
+\item $f_1(t)$ modélise la proportion du médicament dans le sang à l'instant $t$, où $t$ est le temps en heure après injection par intraveineuse ;
+\item $f_2(t)$ modélise la proportion du médicament dans le sang à l'instant $t$, où $t$ est le temps en heure après administration par voie orale.
+\end{itemize}
+\setlength\parindent{0cm}
+
+Pour tout réel $t$ de l'intervalle [0~;~10], on admet que 
+
+\[f_1(t) = \e^{-0,57t}\quad  \text{et} \quad f_2(t) = 1,75t\e^{-t}.\]
+
+Les courbes $C_1$ et $C_2$ de $f_1$ et $f_2$ sont représentées ci-dessous.
+
+\begin{figure}
+\begin{center}
+\psset{xunit=0.7cm,yunit=7.cm,comma=true}
+\begin{pspicture}(-0.5,-0.1)(10.5,1.1)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.1pt](0,0)(10,1)
+\multido{\n=0.0+0.1}{11}{\psline[linewidth=0.1pt](0,\n)(10.5,\n)}
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle,Dy=0.1]{->}(0,0)(0,0)(10.5,1.1)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{10}{2.71828 0.57 x mul neg exp}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0}{10}{2.71828  x neg exp x mul 1.75 mul}
+\uput[ur](0.2,0.9){\blue $C_1$}\uput[ur](2,0.52){\red$C_2$}
+\end{pspicture}
+\end{center}
+\end{figure}
+\smallskip
+
+\begin{enumerate}
+\item \emph{Injection par voie intraveineuse}
+	\begin{enumerate}
+		\item Déterminer le sens de variation de la fonction $f_1$.
+		\item Résoudre graphiquement $f_1(t) < 0,1$. 
+		
+Interpréter la réponse dans le contexte.
+	\end{enumerate}
+\item \emph{Administration par voie orale}
+
+On note $f'_2$ fonction dérivée de la fonction $f_2$.
+
+\medskip
+
+	\begin{enumerate}
+		\item Montrer que, pour tout $t$ de [0~;~10], $f'_2(t) = 1,75(1- t)\e^{-t}$.
+		\item Construire le tableau de variations de la fonction $f_2$.
+		\item À quel instant $t$ la proportion de médicament dans le sang est-elle la plus élevée ?
+	\end{enumerate}
+\end{enumerate}
+
+\medskip

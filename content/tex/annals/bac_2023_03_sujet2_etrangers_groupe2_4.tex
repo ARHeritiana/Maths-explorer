@@ -1,0 +1,80 @@
+\medskip
+
+\emph{Cet exercice est un questionnaire à choix multiple.\\
+Pour chaque question, une seule des quatre réponses proposées est exacte.\\
+Le candidat indiquera sur sa copie le numéro de la question et la réponse choisie.\\
+Aucune justification n'est demandée.\\
+Une réponse fausse, une réponse multiple ou l'absence de réponse à une question ne rapporte ni n'enlève de point.\\
+Les cinq questions sont indépendantes.}
+
+\medskip
+
+Une chaîne de fabrication produit des pièces mécaniques. On estime que 4\,\% des pièces produites par cette chaîne sont défectueuses.
+
+On choisit au hasard $n$ pièces produites par la chaîne de fabrication. 
+
+Le nombre de pièces produites est suffisamment grand pour que ce choix puisse être assimilé à un tirage avec remise. 
+
+On note $X$ la variable aléatoire égale au nombre de pièces défectueuses tirées.
+
+Dans les trois questions suivantes, on prend $n = 50$.
+
+\medskip
+
+\begin{enumerate}
+\item Quelle est la probabilité, arrondie au millième, de tirer au moins une pièce défectueuse ?
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}X}
+\textbf{a.~~} 1&\textbf{b.~~} 0,870&\textbf{c.~~} 0,600&\textbf{d.~~} 0,599\
+\end{tabularx}
+\end{center}
+
+\item La probabilité $p(3 < X \leqslant 7)$ est égale à :
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}X}
+\textbf{a.~~}$p(X \leqslant 7) - p(X > 3)$&
+\textbf{b.~~}$p(X \leqslant 7) - p(X \leqslant 3)$\\
+\textbf{c.~~}$p(X < 7)- p(X > 3)$&
+\textbf{d.~~}$p(X < 7) - p(X \geqslant 3)$
+\end{tabularx}
+\end{center}
+\item Quel est le plus petit entier naturel $k$ tel que la probabilité de tirer au plus $k$ pièces défectueuses soit supérieure ou égale à $95\,\%$ ?
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}X}
+\textbf{a.~~}2&\textbf{b.~~}3&\textbf{c.~~}4&\textbf{d.~~}5
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+Dans les questions suivantes, $n$ ne vaut plus nécessairement $50$.
+
+\begin{enumerate}[resume]
+\item Quelle est la probabilité de ne tirer que des pièces défectueuses ?
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}X}
+\textbf{a.~~}$0,04^n$&\textbf{b.~~}$0,96^n$&\textbf{c.~~}$1 - 0,04^n$ &\textbf{d.~~}$1 - 0,96^n$
+\end{tabularx}
+\end{center}
+
+\item On considère la fonction Python ci-dessous. Que renvoie-t-elle ?
+
+\begin{center}
+\begin{tabularx}{0.4\linewidth}{|X|}\hline
+\textbf{def} seuil (x) :\\
+\qquad n=1\\
+\qquad \textbf{while} 1-0.96**n $<$ x :\\
+\qquad \quad  n = n + 1\\
+\qquad \textbf{return} n\\ \hline
+\end{tabularx}
+\end{center}
+
+	\begin{enumerate}
+		\item Le plus petit nombre $n$ tel que la probabilité de tirer au moins une pièce défectueuse soit supérieure ou égale à x.
+		\item Le plus petit nombre $n$ tel que la probabilité de ne tirer aucune pièce défectueuse soit supérieure ou égale à x.
+		\item Le plus grand nombre $n$ tel que la probabilité de ne tirer que des pièces défectueuses soit supérieure ou égale à x.
+		\item Le plus grand nombre $n$ tel que la probabilité de ne tirer aucune pièce défectueuse soit supérieure ou égale à x.
+	\end{enumerate}
+\end{enumerate}

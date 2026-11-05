@@ -1,0 +1,169 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet1_metropole_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+On étudie le fonctionnement d'un système de chauffage installé dans une pièce.
+
+Ce système se déclenche automatiquement dès que la température de la pièce est inférieure ou égale à 18\,\textdegree{}C (degrés Celsius), et s'éteint lorsqu'elle atteint 20\,\textdegree{}C.
+
+	\subsection*{Partie A : Phase de chauffage}
+		Pour une température de la pièce variant de 18\,\textdegree{}C à 20\,\textdegree{}C, le système de chauffage fonctionne en continu. La température de la pièce augmente progressivement.
+
+		Dans cette partie, on modélise la température de la pièce, en degré Celsius, à l'instant $t$, exprimé en dizaines de minutes, par une fonction $T$ définie sur $[0 ;+\infty[$.
+
+		On admet que la fonction $T$ est :
+		\begin{itemize}[label={\textbullet~}]
+			\item dérivable sur $[0 ;+\infty[$;
+			\item solution de l'équation différentielle
+			\[(E): \quad y'=-0,035 y+0,91\]
+			où $y$ est une fonction de la variable $t$, définie et dérivable sur $[0 ;+\infty[$.
+		\end{itemize}
+
+		On note $T'$ la fonction dérivée de la fonction $T$.
+
+		On suppose qu'au début de l'étude, la température de la pièce est de 18\,\textdegree{}C.
+
+		Ainsi \quad $T(0)=18$.
+
+		\begin{enumerate}
+			\item Donner les solutions de l'équation différentielle $(E)$ sur $[0 ; +\infty[$.
+
+			\item En déduire que, pour tout nombre réel $t$ appartenant à l'intervalle $[0 ;+\infty[$, on a :
+			\[ T(t)=26-8 \e^{-0,035 t}.\]
+
+			\item Selon ce modèle, déterminer au bout de combien de temps la pièce atteindra la température de 20\,\textdegree{}C.
+
+			On exprimera le résultat en heures et minutes arrondi à la minute.
+
+			\item Si une panne du système de chauffage l'empêche de s'éteindre lorsque la température de la pièce atteint 20\,\textdegree{}C, la température de la pièce pourra-t-elle dépasser 28\,\textdegree{}C selon ce modèle ?
+
+			Justifier.
+		\end{enumerate}
+
+	\subsection*{Partie B: Phase de refroidissement}
+		Lorsque la pièce atteint la température de 20\,\textdegree{}C, le système de chauffage s'éteint et la pièce refroidit.
+
+		On modélise la température de la pièce par la suite $(u_{n})$ définie par $u_{0}=20$ et pour tout entier naturel~$n$ :
+		\[u_{n+1}=0,965 u_{n}+0,35+0,07 \e^{-0,1 n}\,,\]
+		où $n$ est un nombre entier exprimant le temps écoulé en dizaines de minutes.
+
+		\begin{enumerate}
+			\item Montrer que \quad $u_{1}=19,72$.
+
+			\item Montrer par récurrence que, pour tout entier naturel $n$, on a
+			\[u_{n}>10.\]
+		\end{enumerate}
+
+		On admet que la suite $(u_{n})$ est décroissante.
+
+		\begin{enumerate}[resume]
+			\item En déduire que la suite $(u_{n})$ est convergente.
+
+			\item On note $\ell$ la limite de la suite $\left(u_{n}\right)$.
+
+			\begin{enumerate}
+				\item Justifier que cette limite est solution de l'équation
+				\[x=0,965 x+0,35.\]
+
+				\item Déterminer $\ell$ et interpréter le résultat dans le contexte de l'exercice.
+			\end{enumerate}
+
+			\item On rappelle que le système de chauffage se met en marche automatiquement dès que la température de la pièce, est inférieure ou égale à 18\,\textdegree{}C.
+			\begin{enumerate}
+				\item Recopier et compléter les lignes 4,5 et 6 du programme écrit en langage Python ci-dessous, afin qu'il renvoie le nombre de dizaines de minutes à partir duquel le système de chauffage se remettra en marche.
+				\begin{center}
+					\begin{tblr}{vline{1,3}={solid}, hline{1,Z}={solid},colspec={X[r,3mm] X[4cm,font=\ttfamily]},rowsep=0pt,column{1}={bg=gray9}}
+						1.& def marche() :\\
+						2.& \quad n = 0\\
+						3.& \quad u = 20\\
+						4.& \quad while \dots :\\
+						5.& \quad \quad u = \dots\\
+						6.& \quad \quad n = \dots\\
+						7.& \quad return n\\
+					\end{tblr}
+				\end{center}
+
+				\item Déterminer le temps, en dizaines de minutes, à partir duquel le système de chauffage se remettra en marche.
+			\end{enumerate}
+		\end{enumerate}
+
+\end{document}

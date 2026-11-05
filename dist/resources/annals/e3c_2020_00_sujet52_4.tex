@@ -1,0 +1,136 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet52_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Le 1\up{er} janvier 2019, le propriétaire d'un appartement a fixé à 650 euros le montant des loyers mensuels pour l'année 2019. Chaque 1\up{er} janvier, le propriétaire augmente de 1,52\,\% le loyer mensuel.
+
+On modélise l'évolution du montant des loyers mensuels par une suite $\left(u_n\right)$. L'arrondi à l'unité du terme $u_n$ représente le montant, en euros, du loyer mensuel fixé le 1\up{er} janvier de l'année $(2019+n)$, pour $n$ entier naturel. Ainsi $u_0 = 650$ euros.
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Calculer le montant du loyer mensuel fixé le 1\up{er} janvier 2020.
+		\item Quelle est la nature de la suite $\left(u_n\right)$ ? Préciser sa raison et son premier terme.
+		\item Calculer le montant du loyer mensuel qui, selon ce modèle, sera fixé pour l'année 2027.
+	\end{enumerate}
+\item Pour calculer la somme totale des loyers perçus par le propriétaire durant les années 2019
+à 2019+A, on utilise la fonction ci-dessous, écrite en langage Python.
+
+\begin{lstlisting}[style=python]
+1 def somme(A):
+2 	S=0
+3 	n=0
+4 	while n<=A:
+5		S=S+7800*1.0152**n
+6 		n = n + 1
+7 	return S
+\end{lstlisting}
+
+L'exécution de ce programme pour quelques valeurs de A donne les résultats ci-dessous :
+
+\begin{center}
+
+\begin{tabular}[]{|l}
+>\! >\! > somme(\textcolor{blue}{0})\\
+\textcolor{blue}{7800.0}\\
+>\! >\! > somme(\textcolor{blue}{1})\\
+\textcolor{blue}{15718.560000000001}\\
+>\! >\! > somme(\textcolor{blue}{2})\\
+\textcolor{blue}{23757.482112000005}\\
+>\! >\! > somme(\textcolor{blue}{3})\\
+\textcolor{blue}{31918.595440102407}\\
+>\! >\! > somme(\textcolor{blue}{8})\\
+\textcolor{blue}{74623.04180934158}\\
+\end{tabular}
+\end{center}
+	\begin{enumerate}
+		\item Interpréter, dans le contexte de l'exercice, le résultat obtenu lors de l'appel somme(1).
+		\item Déterminer la somme totale des loyers perçus par le propriétaire durant les années
+2022 à 2027 incluses. On arrondira le résultat à l'unité.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

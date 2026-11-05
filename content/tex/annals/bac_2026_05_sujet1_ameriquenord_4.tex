@@ -1,0 +1,64 @@
+On considère la fonction $f$ définie sur $\R$ par 
+
+\[f(x)=5 \ln \left(x^{2}+1\right)-3 x\]
+et on admet que la fonction $f$ est dérivable sur $\R$.
+
+On note $\mathcal{C}_{f}$ sa courbe représentative dans un repère orthonormé du plan.
+
+On a tracé ci-dessous la courbe $\mathcal{C}_{f}$ et la tangente à la courbe $\mathcal{C}_{f}$ au point A d'abscisse 1.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+	x={9mm}, y={9mm},
+	xmin = -6.5, xmax = 6.9,
+	ymin = -2.7, ymax = 6.1,
+	xtick distance=1,
+	ytick distance=1,
+	minor tick num = 0,
+	grid=none, axis lines =center]
+	\node[below left=3pt] at (axis cs: 0,0) {{\footnotesize 0}};
+	\addplot [line width=1.2pt, color=red, smooth, samples=100, domain= -1.5:6.9 ]{5*ln(x*x+1)-3*x};
+	\node[red] at(axis cs: -1,3) {$\mathcal{C}_f$};
+	\addplot [line width=1pt, color=teal, smooth, samples=10, domain= -1.5:6.9 ]{2*x-1.534};
+	\draw[shift={(axis cs: 1,0.466)}] (-2pt,-2pt)--(2pt,2pt) (-2pt,2pt)node[above left]{A}--(2pt,-2pt) ;
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item Conjecturer, à l'aide de la représentation graphique de la fonction $f$, les intervalles de $\R$ sur lesquels la fonction $f$ semble convexe ou concave.
+\item Déterminer, en justifiant, la limite de la fonction $f$ en $-\infty$.
+\item
+	\begin{enumerate}
+		\item Démontrer que, pour tout $x$ réel strictement positif,
+
+\[f(x)=x\left(10 \dfrac{\ln x}{x}-3\right)+5 \ln \left(1+\dfrac{1}{x^{2}}\right)\]
+
+		\item Déterminer, en justifiant, la limite de la fonction $f$ en $+\infty$.\end{enumerate}
+\item
+	\begin{enumerate}
+		\item Démontrer que pour tout $x$ réel, \quad $f'(x)= \dfrac{-3 x^{2}+10 x-3}{x^{2}+1}$.
+		\item Étudier les variations de la fonction $f$ sur $\R$.
+	\end{enumerate}
+	\item On admet que la fonction $f$ est deux fois dérivable sur $\R$ et que pour tout réel $x$,
+	\[f''(x)=\dfrac{-10 x^{2}+10}{\left(x^{2}+1\right)^{2}}\]
+
+	\begin{enumerate}
+		\item Valider ou rejeter la conjecture faite à la question \textbf{1}.
+		\item Déterminer l'équation réduite de la tangente à la courbe $\mathcal{C}_{f}$ au point A d'abscisse 1.
+		\item En déduire que pour tout $x \geqslant 1$,\quad $\ln \left(x^{2}+1\right) \leqslant x+\ln (2)-1$.
+	\end{enumerate}
+	\end{enumerate}

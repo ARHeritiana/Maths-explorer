@@ -1,0 +1,267 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet1_ameriquesud_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Un étudiant mange tous les jours au restaurant universitaire. Ce restaurant propose des plats végétariens et des plats non végétariens.
+
+\begin{itemize}[label=$\bullet~~$]
+\item Lorsqu'un jour donné l'étudiant a choisi un plat végétarien, la probabilité qu'il choisisse un plat végétarien le lendemain est $0,9$.
+\item Lorsqu'un jour donné l'étudiant a choisi un plat non végétarien, la probabilité qu'il choisisse un plat végétarien le lendemain est $0,7$.
+\end{itemize}
+
+\medskip
+
+Pour tout entier naturel $n$, on note $V_n$, l'évènement \og l'étudiant a choisi un plat végétarien le $n$-ième jour \fg{} et $p_n$ la probabilité de $V_n$.
+
+Le jour de la rentrée, l'étudiant a choisi le plat végétarien. On a donc $p_1 = 1$.
+
+
+
+\begin{enumerate}
+\item
+	\begin{enumerate}
+		\item 
+
+Lorsqu'un jour donné l'étudiant a choisi un plat végétarien, la probabilité qu'il choisisse un plat végétarien le lendemain est $0,9$. Or $p_1=1$ donc $p_2=0,9$.
+
+		\item 
+$p_3= P\left (V_3\right )$. On représente la situation par un arbre pondéré.
+
+\begin{center}
+\medskip
+\pstree[treemode=R,levelsep=3cm,nodesepA=4pt,nodesepB=4pt]{\TR{$V_1$}}
+{\pstree[nodesepA=4pt]{\TR{$V_2~$}\taput{$0,9$}}
+	{\TR{$V_{3}$}\taput{$0,9$}
+	\TR{$\overline{V_{3}}$}\tbput{$0,1$}
+	}
+\pstree[nodesepA=4pt]{\TR{$\overline{V_2}$}\tbput{$0,1$}}
+	{\TR{$V_{3}$}\taput{$0,7$}
+	\TR{$\overline{V_{3}}$}\tbput{$0,3$}
+	}
+}
+\end{center}
+
+$\left \{ V_2\;,\; \overline{V_2} \right \}$ forme une partition donc, d'après la formule des probabilités totales:
+
+$\begin{aligned}
+p_3=P\left(V_3\right )
+&  = P\left(V_2 \cap V_3\right ) +P\left(\overline{V_2} \cap V_3\right)
+= P\left(V_2\right) \times P_{V_2}\left(V_3\right) + P\left (\overline{V_2} \right) \times P_{\overline{V_2} }\left(V_3\right)\\
+& = 0,9\times 0,9+0,1\times 0,7 = 0,88
+\end{aligned}$
+	
+\item Sachant que le $3\up{\text{e}}$ jour l'étudiant a choisi un plat végétarien,  la probabilité qu'il ait choisi un plat non végétarien le jour précédent est:
+
+$P_{V_3}\left (\overline{V_2}\right )= \dfrac{P\left(\overline{V_2} \cap V_3\right)}{P\left ( V_3\right )}
+= \dfrac{0,1\times 0,7}{0,88} = \dfrac{7}{88}\approx 0,08$ au centième près.
+
+
+	\end{enumerate}
+	
+	
+\item On complète l'arbre pondéré ci-dessous:
+
+\begin{center}
+\pstree[treemode=R,levelsep=3cm,nodesepA=0pt,nodesepB=4pt]{\TR{}}
+{\pstree[nodesepA=4pt]{\TR{$V_n$}\taput{$p_n$}}
+	{\TR{$V_{n+1}$}\taput{\blue $0,9$}
+	\TR{$\overline{V_{n+1}}$} \tbput{\blue $0,1$}
+	}
+\pstree[nodesepA=4pt]{\TR{$\overline{V_n}$}\tbput{\blue $1-p_n$}}
+	{\TR{$V_{n+1}$}\taput{\blue $0,7$}
+	\TR{$\overline{V_{n+1}}$}\tbput{\blue $0,3$}
+	}
+}
+\end{center}
+
+\item
+$\left \{ V_n\;,\; \overline{V_n} \right \}$ forme une partition donc, d'après la formule des probabilités totales:
+
+$\begin{aligned}
+p_{n+1}=P\left(V_{n+1}\right)
+&  = P\left(V_n \cap V_{n+1}\right) +P\left (\overline{V_n} \cap V_{n+1}\right)
+= P\left(V_n\right) \times P_{V_n}\left(V_{n+1}\right) + P\left(\overline{ V_n} \right) \times P_{\overline{V_n}}\left(V_{n+1}\right)\\
+& = p_n\times 0,9+ \left (1-p_n\right )\times 0,7
+= 0,9p_n + 0,7 - 0,7p_n = 0,2p_n + 0,7
+\end{aligned}$
+
+\item On souhaite disposer de la liste des premiers termes de la suite $(p_n)$ pour $n \geqslant 1$.
+
+Pour cela, on utilise une fonction appelée \texttt{repas} programmée en langage Python dont on propose trois versions, indiquées ci-dessous.
+
+
+\begin{center}
+{\scriptsize
+\begin{ttfamily}
+
+\begin{tabular}{ccc}
+\multicolumn{1}{c}{Programme 1}&\multicolumn{1}{c}{Programme 2}&\multicolumn{1}{c}{Programme 3}\\ 
+\begin{tabular}{l| l|}\cline{2-2}
+1&def repas(n):\\
+2&~~p=1\\
+3&~~L=[p]\\
+4&~~for k in range(1,n):\\
+5&~~~~p = 0.2*p+0.7\\
+6&~~~~L.append(p)\\
+7&~~return(L)\\ \cline{2-2}
+\end{tabular}
+&
+\begin{tabular}{l| l|}\cline{2-2}
+1&def repas(n):\\
+2&~~p=1\\
+3&~~L=[p]\\
+4&~~for k in range(1,n+1):\\
+5&~~~~p = 0.2*p+0.7\\
+6&~~~~L.append(p)\\
+7&~~return(L)\\ \cline{2-2}
+\end{tabular}
+&
+\begin{tabular}{l| l|}\cline{2-2}
+1&def repas(n):\\
+2&~~p=1\\
+3&~~L=[p]\\
+4&~~for k in range(1,n):\\
+5&~~~~p=0.2*p+0.7\\
+6&~~~~L.append(p+1)\\
+7&~~return(L)\\ \cline{2-2}
+\end{tabular}\\
+\end{tabular}
+\end{ttfamily}
+}
+\end{center}
+
+	\begin{enumerate}
+		\item Le programme qui permet d'afficher les $n$ premiers termes de la suite $(p_n)$ est le \no 1.
+		
+En effet, le \no 2 donne $n+1$ termes, et le \no 3 donne des valeurs supérieures à 1.		
+		
+		\item Avec le programme \no 1, le résultat affiché pour $n = 5$ sera la liste $\left [p_1\;,\; p_2 \;,\; p_3 \;,\; p_4 \;,\; p_5 \strut \right  ]$.
+		
+$p_1=1$; $p_2=0,9$; $p_3 = 0,88$;
+$p_4 = 0,2p_3 + 0,7 = 0,2\times 0,88 + 0,7 = 0,876$	 et\\
+$p_5 = 0,2p_4 + 0,7 = 0,2\times 0,876 + 0,7 = \np{0,8752}$
+		
+Le résultat affiché par \texttt{repas(5)} sera donc $\left [1\;;\; 0,9 \;;\; 0,88 \;;\; 0,876 \;;\; \np{0,8752} \strut \right]$.
+		
+	\end{enumerate}
+\item On va démontrer par récurrence que $p_n = 0,125 \times 0,2^{n - 1} + 0,875$, pour tout naturel $n \geqslant 1$.
+
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+Pour $n=1$, on a: $0,125 \times 0,2^{1 - 1} + 0,875 = 0,125 + 0,875 =1$.
+
+Or $p_1=1$, donc la propriété est vraie pour $n=1$.
+
+\item \textbf{Hérédité}
+
+On suppose la propriété vraie au rang $n$ c'est-à-dire que $p_{n}=0,125 \times 0,2^{n - 1} + 0,875$; c'est l'hypothèse de récurrence.
+
+$\begin{aligned}
+p_{n+1}
+& = 0,2p_n + 0,7
+= 0,2 \left (0,125 \times 0,2^{n - 1} + 0,875\right )+0,7\\
+& = 0,125 \times 0,2^{n } + 0,2\times  0,875+0,7
+= 0,125 \times 0,2^{n } + 0,175+0,7\\
+& = 0,125 \times 0,2^{n } + 0,875
+\end{aligned}$
+
+La propriété est donc vraie au rang $n+1$.
+
+\item \textbf{Conclusion}
+
+La propriété est vraie au rang 1 et elle est héréditaire pour tout $n\geqslant 1$; d'après le principe de récurrence, la propriété est vraie pour tout entier $n$ non nul.
+\end{list}
+
+On a donc  démontré par récurrence que $p_{n}= 0,125 \times 0,2^{n -1} + 0,875$ pour tout $n\geqslant 1$.
+
+\item 
+$-1<0,2<1$ donc $\ds\lim_{n\to +\infty} 0,2^{n-1}=0$ donc  $\ds\lim_{n\to +\infty} 0,125 \times0,2^{n-1} + 0,875 = 0,875$
+
+La limite de la suite $(p_n)$ est donc $0,875$.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

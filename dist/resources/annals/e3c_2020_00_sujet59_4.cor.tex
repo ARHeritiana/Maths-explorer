@@ -1,0 +1,136 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet59_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{1.}
+
+\begin{center}
+\psset{xunit=0.04cm,yunit=0.04cm,labelFontSize=\scriptstyle}
+\begin{pspicture}(-130,-130)(130,130)
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10,labels=none]{->}(0,0)(-120,-120)(120,120)
+\psset{unit=0.04cm}
+\pscircle[linewidth=1.25pt,linecolor=blue](0,0){110}
+\uput[dl](0,0){0}\uput[d](10,0){10}
+\uput[l](0,10){10}\uput[d](115,0){$x$}
+\uput[l](0,115){$y$}\uput[u](-100,-90){\blue \large\boldmath{$\mathcal{C}$}}
+\end{pspicture}
+\end{center}
+
+\paragraph{a.}
+\begin{align*}
+&M(x\,;\,y) \in \mathcal{C} \\
+\iff &OM^2 = 110 \\
+\iff &(x - 0)^2 + (y - 0)^2 = 110^2 \\
+\iff &x^2 + y^2 = 12100.
+\end{align*}
+
+\paragraph{b.} On a \(\overrightarrow{OA} \begin{pmatrix} -30 \\ 15 \end{pmatrix}\) et \(\overrightarrow{OD} \begin{pmatrix} 80 \\ -40 \end{pmatrix}\).
+
+Comme :
+\[
+\det(\overrightarrow{OA} \,;\, \overrightarrow{OD}) = (-30)(-40) - 15 \times 80 = 1200 - 1200 = 0,
+\]
+les vecteurs sont colinéaires donc les points \(O\), \(A\) et \(D\) sont alignés.
+
+\subsection*{2.}
+
+\paragraph{a.} Avec \(\overrightarrow{AG} \begin{pmatrix} 20 \\ -25 \end{pmatrix}\), on a :
+\[
+\overrightarrow{AG} \cdot \overrightarrow{AO} = 20 \times 30 + (-25) \times (-15) = 600 + 375 = 975.
+\]
+
+\paragraph{b.} L'équation réduite de la droite \((AD)\) est \( y = -\dfrac{1}{2}x \).
+
+Soit \(H\) le projeté orthogonal de \(G\) sur la droite \((AD)\). Quel que soit le point \(M(x\,;\,y)\) de la droite \((AD)\), le triangle \(GHM\) est rectangle en \(H\) et on a \(GH < GM\) (l'hypoténuse est le côté le plus grand) : le point \(H\) est donc le point de \((AD)\) le plus proche de \(G\).
+
+Avec \(H(x\,;\,-\dfrac{1}{2}x)\), on a :
+\begin{align*}
+&\overrightarrow{\text{GH}} \cdot \overrightarrow{\text{OA}} = 0 \\
+\iff &(x + 10) \times (-30) + \left( -\frac{1}{2}x + 10 \right) \times 15 = 0 \\
+\iff &-30x - 300 - 7{,}5x + 150 = 0 \\
+\iff &-150 = 37{,}5x \\
+\iff &x = -\frac{150}{37{,}5} = -4.
+\end{align*}
+
+Le point de \( (AD) \) le plus proche de \( G \) est donc \( H(-4 \,;\, 2) \) : ce n'est pas \( O \).
+
+\end{document}

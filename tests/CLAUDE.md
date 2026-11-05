@@ -65,7 +65,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `chapter_destinations_browser.py` | Playwright: the chapter page opens on Cours with four destination links (no numbered rail, no next-step bar), the six old stage names resolve to them, direct links to an idea (`cours/<n>`) and an exercise (`exercices/<n>`) scroll to it, practice cards link to the exact idea, documents in one tap, Back restores the destination, 320 px without overflow (run by `run_browser.py`) |
 | `slides_lab_browser.py` | Playwright: a deck with a lab widget in the player and in the self-contained export (mount in the widget host, controls, stepper, readout and prompt in the player's areas, MathJax-typeset text, handle drag adds no element, N and P only with canvas focus, arrow keys stay the player's, destroyed when leaving); a chapter page mounts its first lab reference inline, lazily, with one link per reference, destroyed on navigation (run by `run_browser.py` after `lab_browser.py`) |
 | `slides_check.py`, `slides_export_check.py`, `slides_smoke.py` | decks vs drafts, HTML exports, every deck in Chromium |
-| `banned.py`, `banned.mjs`, `banned-sha256.json` | banned names (hashed), links, e-mail addresses |
+| `banned.py`, `banned.mjs`, `banned-sha256.json` | banned names (hashed), links, e-mail addresses; ZIP source entries and embedded PDF text/metadata are inspected after decompression |
 | `privacy_scan.py`, `test_privacy_scan.py` | complete published PDF/text inventory; filenames, PDF text, Info metadata, XMP, outlines, links, annotations, form fields, attachment review and visible notices; adversarial PDF fixtures and private-report handling |
 | `twin_parity.py`, `test_twin.py`, `pdf_parity.py`, `tex_lint.py`, `test_notation.py`, `test_enrichment.py` | TeX system: twins, PDF editions, unit lint, notation, enrichment converter |
 | `test_mada.py` | `build/mxbuild/mada.py` on synthetic snippets of the T12 C/D book vocabulary (`\begin{chapter}`, defi/thm/prp/lem/cor/rmk/dem, dropped exe/valiny/sol/fiche/sujet, `\providecommand`, boxes, `\vln`, multiform, mitanisa, IEEEeqnarray*, description, `\tikznode`, tabularx, accents), then through the slide parser |
@@ -141,3 +141,5 @@ honest rounding, shared-slide control visibility, root-mode fallback, slider ran
 The default browser runner checks French-only curriculum visibility alongside restored
 general collections. The DOM smoke covers all experiments, gallery routes and challenge
 interactions. Additional collection browser scripts remain available.
+
+`annals-bank.test.mjs`: attributed source units, valid chapter links, live bank routes, combined exam/year/topic search and lazy local loading, corrections, paging and reset.

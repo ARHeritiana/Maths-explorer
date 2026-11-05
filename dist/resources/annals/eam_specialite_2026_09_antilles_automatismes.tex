@@ -1,0 +1,231 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specialite_2026_09_antilles_automatismes.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Pour cette première partie, aucune justification n'est demandée et une seule réponse est possible par question. Pour chaque question, reportez son numéro sur votre copie et indiquez votre réponse.}
+
+Une réponse fausse ou l'absence de réponse n'enlève aucun point.
+
+\subsection*{Question 1}
+
+On considère deux réels quelconques $a$ et $b$ ainsi que le réel $E$ défini par
+\[ E = -(a-b) + a - b. \]
+
+On peut affirmer que :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad $E=0$ &
+	\textbf{B.}\quad $E=2a$ &
+	\textbf{C.}\quad $E=2b$ &
+	\textbf{D.}\quad $E=-2b$ \\
+\end{tblr}
+
+\subsection*{Question 2}
+
+On note $S$ l'ensemble des solutions de l'équation $x^2=6$ dans $\R$.
+
+On peut affirmer que :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{2}{X}}}
+	\textbf{A.}\quad $S = \left\{-\sqrt{3} ; \sqrt{3}\right\}$ &
+	\textbf{B.}\quad $S = \{-3 ; 3\}$ \\
+	\textbf{C.}\quad $S = \varnothing$ &
+	\textbf{D.}\quad $S = \left\{-\sqrt{6} ; \sqrt{6}\right\}$ \\
+\end{tblr}
+
+\subsection*{Question 3}
+
+Une expression développée de $(3x-5)^2$ est :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad $9x^2+25$ &
+	\textbf{B.}\quad $9x^2-25$ &
+	\textbf{C.}\quad $3x^2-30x+25$ &
+	\textbf{D.}\quad $9x^2-30x+25$ \\
+\end{tblr}
+
+\subsection*{Question 4}
+
+\begin{minipage}[t]{0.55\linewidth}
+	On a représenté ci-contre une droite dans un repère orthonormé.
+
+	Une équation de cette droite est :
+
+	\medskip
+	\begin{tblr}{colspec = {@{}*{2}{X}}, rowsep=4pt}
+		\textbf{A.}\quad $y = -\dfrac{1}{2}x+3$ &
+		\textbf{B.}\quad $y = -2x+3$ \\
+		\textbf{C.}\quad $y = -6x+3$ &
+		\textbf{D.}\quad $y = \dfrac{3}{6}x+3$ \\
+	\end{tblr}
+\end{minipage}
+\hfill
+\begin{tikzpicture}[x=0.7cm,y=0.7cm,>=stealth,baseline={(current bounding box.north)}]
+	\draw[step=1,gray!75,line width=0.5pt] (-2,-1) grid (8,4);
+	\draw[->,line width=1pt] (-2,0) -- (8,0);
+	\draw[->,line width=1pt] (0,-1) -- (0,4);
+	\foreach \x in {-2,-1,1,2,3,4,5,6,7} \draw (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize \np{\x}};
+	\foreach \y in {-1,1,2,3} \draw (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize \np{\y}};
+	\clip (-2,-1) rectangle (8,4);
+	\draw[line width=1.2pt,red] plot[domain=-2:8] (\x,{-0.5*\x+3});
+\end{tikzpicture}
+
+\subsection*{Question 5}
+
+La moitié de $2^{10}$ est égale à :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad $1^{10}$ &
+	\textbf{B.}\quad $2^5$ &
+	\textbf{C.}\quad $2^9$ &
+	\textbf{D.}\quad $\left(\dfrac{1}{2}\right)^{10}$ \\
+\end{tblr}
+
+
+
+\subsection*{Question 6}
+
+On considère la formule $a = \dfrac{1}{2}bx^2$, où $a$, $b$ et $x$ sont des réels strictement positifs.
+
+On peut affirmer que :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad $x = \sqrt{\dfrac{a}{2b}}$ &
+	\textbf{B.}\quad $x = \sqrt{\dfrac{2a}{b}}$ &
+	\textbf{C.}\quad $x = \dfrac{2a^2}{b}$ &
+	\textbf{D.}\quad $x = \dfrac{\sqrt{a}}{2b}$ \\
+\end{tblr}
+
+\subsection*{Question 7}
+
+On considère la fonction $f$ définie sur $\R$ par $f(x) = (2x-6)(-x+1)$.
+
+Le tableau de signes sur $\R$ de la fonction $f$ est :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{2}{X}}, rowsep=6pt}
+	\textbf{A.}\quad
+	\begin{tikzpicture}[baseline=(current bounding box.center)]
+		\tkzTabInit[espcl=1.35]{$x$/0.8,$f(x)$/0.8}{$-\infty$,$-1$,$3$,$+\infty$}
+		\tkzTabLine{,+,z,-,z,+,}
+	\end{tikzpicture}
+	&
+	\textbf{B.}\quad
+	\begin{tikzpicture}[baseline=(current bounding box.center)]
+		\tkzTabInit[espcl=1.35]{$x$/0.8,$f(x)$/0.8}{$-\infty$,$1$,$3$,$+\infty$}
+		\tkzTabLine{,+,z,-,z,+,}
+	\end{tikzpicture}
+	\\
+	\textbf{C.}\quad
+	\begin{tikzpicture}[baseline=(current bounding box.center)]
+		\tkzTabInit[espcl=1.35]{$x$/0.8,$f(x)$/0.8}{$-\infty$,$1$,$3$,$+\infty$}
+		\tkzTabLine{,-,z,+,z,-,}
+	\end{tikzpicture}
+	&
+	\textbf{D.}\quad
+	\begin{tikzpicture}[baseline=(current bounding box.center)]
+		\tkzTabInit[espcl=1.35]{$x$/0.8,$f(x)$/0.8}{$-\infty$,$-3$,$1$,$+\infty$}
+		\tkzTabLine{,-,z,+,z,-,}
+	\end{tikzpicture}
+	\\
+\end{tblr}
+
+\subsection*{Question 8}
+
+Un prix baisse de 20\,\% puis encore de 30\,\%.
+
+Ces deux baisses sont équivalentes à une baisse de :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad 44\,\% &
+	\textbf{B.}\quad 50\,\% &
+	\textbf{C.}\quad 56\,\% &
+	\textbf{D.}\quad 60\,\% \\
+\end{tblr}
+
+\end{document}

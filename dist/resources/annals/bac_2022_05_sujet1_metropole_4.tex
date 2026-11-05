@@ -1,0 +1,174 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet1_metropole_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Cet exercice est un questionnaire à choix multiple.\\
+Pour chaque question, une seule des quatre réponses proposées est exacte. Le candidat indiquera sur sa copie le numéro de la question et la réponse choisie. \\
+Aucune justification n'est demandée.\\
+Une réponse fausse, une réponse multiple ou l'absence de réponse à une question ne rapporte ni n'enlève de point.}
+
+\emph{Les six questions sont indépendantes}
+
+\medskip
+
+\begin{enumerate}
+\item La courbe représentative de la fonction $f$ définie sur $\R$ par $f(x) = \dfrac{-2x^2 + 3x - 1}{x^2 + 1}$ admet pour asymptote
+la droite d'équation:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}$x = -2$ ; &\textbf{b.~~} $y = -1$;\\
+\textbf{c.~~} $y = - 2$;&\textbf{d.~~} $y = 0$
+\end{tabularx}
+\end{center}
+\item Soit $f$ la fonction définie sur $\R$ par $f(x) = x\text{e}^{x^2}$.
+
+La primitive $F$ de $f$ sur $\R$ qui vérifie $F(0) = 1$ est définie par :
+
+\begin{center}
+\renewcommand\arraystretch{1.9}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} $F(x) = \dfrac{x^2}{2}\text{e}^{x^2}$ ;&\textbf{b.~~} $F(x) = \dfrac{1}{2}\text{e}^{x^2}$\\
+\textbf{c.~~} $F(x) = \left(1 + 2x^2\right)\text{e}^{x^2}$ ;&\textbf{d.~~} $F(x) = \dfrac{1}{2}\text{e}^{x^2} + \dfrac{1}{2}$
+\end{tabularx}
+\renewcommand\arraystretch{1}
+\end{center}
+
+\item ~
+
+\begin{minipage}{0.4\linewidth}
+On donne ci-contre la représentation graphique $\mathcal{C}_{f'}$ de \textbf{la fonction dérivée }\boldmath $f'$\unboldmath{}  d'une fonction $f$ définie sur $\R$.
+
+On peut affirmer que la fonction $f$ est : 
+
+\textbf{a.~~} concave sur $]0~;~+\infty[$ ;
+
+\textbf{b.~~} convexe sur $]0~;~+\infty[$ ;
+
+\textbf{c.~~} convexe sur [0~;~2] ;
+
+\textbf{d.~~} convexe sur $[2~;~+\infty[$.
+\end{minipage}\hfill
+\begin{minipage}{0.58\linewidth}
+\psset{unit=0.75cm}
+\begin{pspicture*}(-0.5,-5)(10,1)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.25pt](-0.5,-5)(10,1)
+\psaxes[linewidth=1.25pt,Dx=11,Dy=11](0,0)(-0.5,-5)(10,1)
+
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-0.3}{11}{x 2 sub 2 mul 2.71828 x 2 div exp div}
+\uput[d](1,0){\footnotesize 1}\uput[d](2,0){\footnotesize 2}\uput[dl](0,0){\footnotesize 0}\uput[d](0,1){\footnotesize 1}
+\uput[r](0.4,-3.5){\blue$\mathcal{C}_{f'}$}
+\end{pspicture*}
+\end{minipage}
+
+\bigskip
+\item Parmi les primitives de la fonction $f$ définie sur $\R$  par $f(x) = 3\text{e}^{-x^2} + 2$ :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} toutes sont croissantes sur $\R$ ;&\textbf{b.~~} toutes sont décroissantes sur $\R$ ;\\
+\textbf{c.~~} certaines sont croissantes sur $\R$ et d'autres
+décroissantes sur $\R$ ;& \textbf{d.~~} toutes sont croissantes sur $]-\infty~;~0]$ et
+décroissantes sur $[0~;~+\infty[$.
+\end{tabularx}
+\end{center}
+
+\item La limite en $+\infty$ de la fonction $f$ définie sur l'intervalle $]0~;~+\infty[$ par $f(x) = \dfrac{2\ln x}{3x^2 + 1}$ est égale à :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $\dfrac23$ ;&\textbf{b.~~} $+ \infty$ ;&\textbf{c.~~} $- \infty$ ; &\textbf{d.~~} $0$.
+\end{tabularx}
+\end{center}
+
+\item L'équation $\text{e}^{2x} + \text{e}^x - 12 = 0$ admet dans $\R$ :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} trois solutions; &\textbf{b.~~} deux solutions; &\textbf{c.~~} une seule solution;&\textbf{d.~~} aucune solution.
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\end{document}

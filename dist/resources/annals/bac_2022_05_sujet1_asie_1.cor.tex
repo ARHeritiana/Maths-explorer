@@ -1,0 +1,193 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet1_asie_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Principaux domaines abordés}: Probabilités conditionnelles et indépendance. Variables aléatoires.
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+$R$ l'évènement \og la case obtenue est rouge\fg{} et $G$ l'évènement \og le joueur gagne la partie \fg. 
+	\begin{enumerate}
+		\item 
+Si la case est blanche on tire 1 seul jeton ; comme il y a 3 résultats impairs sur 5 numéros on a $P_B(G) = \dfrac{3}{5} = \dfrac{6}{10} = 0,6$.
+		\item 
+		
+
+Tout d'abord on a $P(B) = \dfrac{4}{12} = \dfrac13$ et donc $P(R) = \dfrac{8}{12} = \dfrac23$.
+
+Si la case est rouge on tire successivement deux jetons : il y a $5 \times 4 = 20$ issues différentes depuis 1--2 jusqu'à 5-4 et parmi celles-ci les issues gagnantes : 1-3 ; 1-5 ; 3-1 ; 3-5 ; 5-1 et 5-3.
+
+On a donc $P_R(G) = \dfrac{6}{20} = \dfrac{3}{10} = 0,3$ (voir l'énoncé).
+
+On peut donc compléter l'arbre pondéré :
+
+\begin{center}
+\pstree[treemode=R,nodesepB=3pt,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$B$~~} \taput{$\frac13$}}
+	{\TR{$G$}\taput{0,6}
+	\TR{$\overline{G}$}\tbput{0,4}
+	}
+\pstree{\TR{$R$~~} \tbput{$\frac23$}}
+	{\TR{$G$}\taput{0,3}
+	\TR{$\overline{G}$}\tbput{0,7}
+	}	
+}
+\end{center}
+
+	\end{enumerate}
+
+\item
+	\begin{enumerate}
+		\item 
+D'après la loi des probabilités totales :
+		
+$P(G) = P(B \cap G) + P(R \cap G)$
+	
+$\bullet~~$$P(B \cap G) = P(B) \times P_B(G) = \dfrac13 \times 0,6 = \dfrac{0,6}{3} = 0,2$ ; 
+
+$\bullet~~$$P(R \cap G) = P(R) \times P_R(G) = \dfrac23 \times 0,3 = \dfrac{0,6}{3} = 0,2$.
+
+Donc $P(G) = 0,2 + 0,2 = 0,4$.
+		\item 
+		
+
+Il faut trouver $P_G(B) = \dfrac{P(G \cap B)}{P(G)} = \dfrac{P(B \cap G)}{P(G)} = \dfrac{0,2}{0,4} = \dfrac2 = 0,5$.
+	\end{enumerate}
+\item 
+$\bullet~~$$P(B) \times P(G) = \dfrac13 \times 0,4 = \dfrac{0,4}{3} = \dfrac{4}{30} = \dfrac{2}{15}$ ;
+
+$\bullet~~$$P(B \cap G) = \dfrac13 \times 0,6 = 0,2 = \dfrac{2}{10} = \dfrac15$.
+
+Donc $P(B) \times P(G) \ne P(B \cap G)$ : les évènements ne sont pas indépendants.
+\item Un même joueur fait dix parties. Les jetons tirés sont remis dans le sac après chaque partie.
+
+On note $X$ la variable aléatoire égale au nombre de parties gagnées.
+	\begin{enumerate}
+		\item 
+	Les 10 épreuves sont indépendantes et à chacune la probabilité de gagner est égale à 0,4. La variable aléatoire $X$ suit donc une loi binomiale $\mathcal{B}(10~;~0,4)$.
+		\item 
+On a $P(X = 3 = \binom{10}{3} \times 0,4^3 \times (1 - 0,4)^7 \approx 0,215$ au millième près.
+		\item 
+		La calculatrice donne $P(X \leqslant 3) \approx 0,3823$, donc $P(X \geqslant 4) \approx 0,6177$, soit 0,618 au millième près.
+		
+
+
+Il y a plus de 6 chances sur 10 de gagner au moins 4 parties.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+On a $p_n = P(X \geqslant 1) = 1 - P(X = 0) = 1 - 0,6^n$.
+		\item 
+		
+Il faut trouver le plus petit entier $n$ tel que $p_n \geqslant 0,99$, soit :
+		
+$1 - 0,6^n \geqslant 0,99 \iff 0,01 \geqslant 0,6^n$ soit par croissance de la fonction logarithme : $\ln 0,01 \geqslant n \ln 0,6 \iff \dfrac{\ln 0,01}{\ln 0,6} \leqslant n$, car $\ln 0,6 < 0$.
+		
+Or $\dfrac{\ln 0,01}{\ln 0,6} \approx 9,02$.
+		
+Il faut donc jouer au moins 10 parties pour avoir une probabilité d'en gagner une avec une probabilité d'au moins 99\,\%.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

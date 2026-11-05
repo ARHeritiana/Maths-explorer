@@ -1,0 +1,117 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_suede_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+On modélise un passage de spectacle de voltige aérienne en duo de la manière suivante :
+
+\begin{itemize}[label=$\bullet$]
+\item on se place dans un repère orthonormé \Oijk, une unité représentant un mètre;
+
+\item l'avion n\up{o} 1 doit relier le point O au point $\mathrm{A}(0~;~200~;~0)$ selon une trajectoire rectiligne, à la vitesse constante de $\np[m/s]{200}$;
+
+\item l'avion n\up{o} 2 doit, quant à lui, relier le point $\mathrm{B}(-33~;~75~;~44)$ au point $\mathrm{C}(87~;~75~;~-116)$ également selon une trajectoire rectiligne, et à la vitesse constante de $\np[m/s]{200}$.
+
+\item au même instant, l'avion \no 1 est au point O et l'avion \no 2 est au point B.
+\end{itemize}
+\begin{tikzpicture}[x={(-160:0.4mm)},y={(0:0.35mm)},z={(90:0.3mm)},>=stealth]
+	\draw[->] (-150,0,0) -- (150,0,0) node[below left]{$x$};
+	\draw[->] (0,0,0) -- (0,250,0) node[below]{$y$};
+	\draw[->] (0,0,-200) -- (0,0,80) node[left]{$z$};
+	\fill (0,0,0) circle (3pt) node[above right]{O};
+	\fill (0,200,0) circle (3pt) node[above right]{A};
+	\fill (87,75,-116) circle (3pt) node[below=5pt]{C};
+	\fill (-33,75,44) circle (3pt) node[above right]{B};
+	\draw[line width=2pt] (0,0,0) -- (0,200,0) (87,75,-116) -- (-33,75,44) ;
+	\draw[teal,dashed,line width=1pt] (0,0,0) -- (0,75,0) node[color=black,below right]{75} -- (-33,75,0) -- (-33,75,44) -- (-33,0,44) -- (0,0,44)node[black,left]{44} -- cycle
+	(0,0,44) -- (0,75,44) -- (-33,75,44) (0,75,44) -- (0,75,0)
+	(0,0,0) -- (-33,0,0)node[black,above left]{$-33$} -- (-33,75,0) (-33,0,0) -- (-33,0,44);
+	\draw[red,dashed,line width=1pt] (0,0,0) -- (0,75,0) -- (0,75,-116) -- (87,75,-116) -- (87,0,-116) -- (87,0,0)node[black,above left]{87} -- cycle
+	(87,0,0)--(87,75,0) -- (87,75,-116) (87,75,0) -- (0,75,0)
+	(0,0,0) -- (0,0,-116)	(87,0,-116) -- (0,0,-116)node[black, above left]{$-116$} --(0,75,-116);
+\end{tikzpicture}
+\begin{enumerate}
+\item Justifier que l'avion \no 2 mettra autant de temps à parcourir le segment [BC] que l'avion \no 1 à parcourir le segment [OA].
+\item Montrer que les trajectoires des deux avions se coupent.
+\item Les deux avions risquent-ils de se percuter lors de ce passage ?
+\end{enumerate}
+
+\end{document}

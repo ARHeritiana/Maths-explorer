@@ -1,0 +1,139 @@
+\medskip
+
+
+
+
+
+On considère la suite $\left(u_n\right)$ définie par $u_0 = 3$ et pour tout $n \in n\N$ :
+
+\[u_{n+1} = \dfrac{4}{5 - u_n}.\]
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter la fonction Python suivante \texttt{suite(n)} qui prend comme
+paramètre le rang $n$ et renvoie la valeur du terme $u_n$.
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+def suite(n):\\
+\qquad u = 3\\
+\qquad for i in range(n)\quad  :\\
+\qquad \qquad u = 4/(5 - u)\\ 
+\qquad return u \\ \hline
+\end{tabular}
+\end{center}
+
+\item 
+
+
+À la première boucle on trouve $u_1 = \dfrac{4}{5 - 3} = \dfrac{4}{2} = 2$.
+
+
+À la seconde on trouve $u_2 = \dfrac{4}{5 - 2} = \dfrac{4}{3}\approx 1,333$.
+
+\item À l'aide des affichages ci-dessous, émettre une conjecture sur le sens de variation et une conjecture sur la convergence de la suite $\left(u_n\right)$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Les affichages successifs sont des approximations de $u_2, \:u_5,\:u_{10}, \: u_{20}$ et leur examen laisse à conjecturer que la la limite de la suite est égale à 1.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On considère la fonction $f$ définie et dérivable sur l'intervalle $] -\infty~;~5[$ par:
+
+\[f(x) = \dfrac{4}{5 - x}.\]
+
+Ainsi, la suite $\left(u_n\right)$ est définie par $u_0 = 3$ et pour tout $n \in \N,\:\: u_{n+1}  = f\left(u_n\right)$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+La fonction $f$ quotient de fonctions dérivables sur $]-\infty~;~5[$, de dénominateur non nul puisque $x \ne 5$, est dérivable et sur cet intervalle :
+
+$f'(x) = 4 \times \left(- \dfrac{1 \times (-1)}{(5 - x)^2}\right) = \dfrac{4}{(5 - x)^2}$.
+
+Quotient de deux carrés cette dérivée est strictement positive, donc la fonction $f$ est strictement croissante sur $]-\infty~;~5[$.
+\item 
+
+\emph{Initialisation} : on a vu que $u_1 = 2$ et on a $u_0 = 3$, donc 
+\[1 \leqslant u_{1} \leqslant u_0 \leqslant 4.\]
+
+L'encadrement est vrai au rang 0.
+
+\emph{Hérédité} : soit $n \in \N$ tel que $1 \leqslant u_{n+1} \leqslant u_n \leqslant 4$ : ces nombres étant rangés dans l'ordre croissant leur images par $f$ fonction strictement croissante  pour des réels plus petits que 4, sont rangées dans le même ordre, soit 
+
+$f(1) \leqslant f\left(u_{n+1}\right) \leqslant f\left(u_{n}\right) \leqslant f(4)$.
+
+Comme $f(1) = \dfrac{4}{5 - 1} = 1$ et $f(4) = \dfrac{4}{5 - 4} = 4$, on obtient 
+\[1 \leqslant u_{n+2} \leqslant u_{n+1} \leqslant 4 :\]
+
+l'encadrement est vraie au rang $n + 1$.
+
+\emph{Conclusion} : l'encadrement est vrai au rang 0 et s'il est vrai au rang $n \in \N$ il l'est aussi au rang $n + 1$ : d'après le principe de récurrence :
+
+pour tout $n \in \N, \: \: 1 \leqslant u_{1} \leqslant u_0 \leqslant 4$.
+\item 
+	\begin{enumerate}
+		\item Soit $x$ un réel de l'intervalle $]-\infty~;~5[$.
+
+
+
+
+On a pour $x < 5$, \: $f(x) = x \iff \dfrac{4}{5 - x} = x \iff 4 = x(5 - x) \iff 4 = 5x - x^2 \iff x^2 - 5x + 4 = 0$.
+		\item 
+		Résoudre $f(x) = x$ dans l'intervalle $]-\infty~;~5[$, revient d'après la question précédente à résoudre l'équation du second degré $x^2 - 5x + 4 = 0$.
+		
+		Les racines de cette équation 1 et 4 sont évidentes (sinon on calcule le déterminant), donc :
+
+$x^2 - 5x + 4 = 0 \iff (x - 1)( x - 4) = 0 \iff \left\{\begin{array}{l c l}
+x - 1			&=&0\\
+				&\text{ou}&\\
+x - 4			&=&0
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+x 	&=			&1\\
+	&\text{ou}	&\\
+x 	&=			& 4
+\end{array}\right.$
+
+la solution 4 n'est pas vraisemblable puisque $x < 4$, on a donc $S = \{1\}$.
+	\end{enumerate}	
+\item 
+
+
+L'encadrement démontré par récurrence montre deux choses : pour tout $n \in \N$
+
+$\bullet~$ $u_{n+1} \leqslant u_n$ signifie que la suite $\left(u_n\right)$ est décroissante ;
+
+$\bullet~$ $1\leqslant u_n$ signifie que la suite $\left(u_n\right)$ est minorée par 1.
+
+La suite $\left(u_n\right)$ décroissante et minorée par 1 est donc convergente vers un réel $\ell \geqslant 1$.
+
+Par continuité de la fonction trinôme la limite $\ell$ est solution de l'équation précédente et cette solution est 1.
+
+Conclusion : $\displaystyle\lim_{n \to + \infty} u_n = 1$.
+\item 
+Avec $u_0 = 4$, on a $u_1 = \dfrac{4}{5 - 4} =\dfrac41 = 4$ et donc en répétant le calcul $u_n = 4$ quel que soit $n \in \N$.
+
+Dans ce cas la suite est constante : tous ses termes sont égaux à 4.
+\end{enumerate}

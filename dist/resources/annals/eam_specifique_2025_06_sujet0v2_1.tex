@@ -1,0 +1,172 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2025/tex/eam_specifique_2025_06_sujet0v2_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Pour cette première partie, aucune justification n'est demandée et une seule réponse est possible par question. Pour chaque question, reportez son numéro sur votre copie et indiquez votre réponse.}
+
+\subsubsection*{Question 1}
+On considère $A = \dfrac{1}{2} - \dfrac{1}{2} \times \dfrac{4}{3}$.
+
+\textbf{a.} $A = 0$ \hfill \textbf{b.} $A = -\dfrac{1}{6}$ \hfill \textbf{c.} $A = \dfrac{2}{3}$ \hfill \textbf{d.} $A = -1$
+
+\subsubsection*{Question 2}
+Quatre croissants coûtent 6 euros.
+
+Dix croissants coûtent :
+
+\textbf{a.} 60 euros \hfill \textbf{b.} 8 euros \hfill \textbf{c.} 8,50 euros \hfill \textbf{d.} 15 euros
+
+\subsubsection*{Question 3}
+Un prix a doublé. Cela signifie que le prix a augmenté de :
+
+\textbf{a.} 50\% \hfill \textbf{b.} 100\% \hfill \textbf{c.} 150\% \hfill \textbf{d.} 200\%
+
+\subsubsection*{Question 4}
+À l'issue d'une augmentation de 10\%, un article coûte 110 euros.
+
+Laquelle des quatre propositions suivantes est vraie ?
+
+\textbf{a.} Le prix de l'article avant l'augmentation était égal à 99 euros. \\
+\textbf{b.} Le prix de l'article avant l'augmentation était égal à 120 euros. \\
+\textbf{c.} Le prix a augmenté de 10 euros. \\
+\textbf{d.} Le prix a augmenté de 11 euros.
+
+\subsubsection*{Question 5}
+La masse d'un litre d'huile est égale à 900 grammes.
+
+La masse de 750 millilitres de cette huile est égale à :
+
+\textbf{a.} 750 g \hfill \textbf{b.} 0,675 kg \hfill \textbf{c.} 6,75 kg \hfill \textbf{d.} 67,5 g
+
+\subsubsection*{Question 6}
+Dans un repère du plan, on considère les points A$(1~;~100)$ et B$(4~;~106)$. On note $m$ le coefficient directeur de la droite (AB). On peut affirmer que :
+
+\textbf{a.} $m = 2$ \hfill \textbf{b.} $m = 0,5$ \hfill \textbf{c.} $m = -2$ \hfill \textbf{d.} $m = -0,5$
+
+\subsubsection*{Question 7}
+Dans un repère du plan, on considère la droite $D$ de coefficient directeur $-0,1$, passant par le point A$(0~;~4)$.
+
+On note B le point de la droite $D$ dont l'abscisse est égale à 1.
+
+L'ordonnée du point B est égale à :
+
+\textbf{a.} 3 \hfill \textbf{b.} 3,9 \hfill \textbf{c.} 4,1 \hfill \textbf{d.} 5
+
+\subsubsection*{Question 8}
+La forme développée de $(x - 3)(x + 2)$ est :
+
+\textbf{a.} $x^2 - 5x + 6$ \hfill \textbf{b.} $x^2 - x + 6$ \hfill \textbf{c.} $x^2 - x - 6$ \hfill \textbf{d.} $x^2 - 5x - 6$
+
+\subsubsection*{Question 9}
+Le volume $V$ d'un cône de hauteur $h$ et de rayon $r$ est $V = \dfrac{1}{3} \pi r^2 h$.
+
+On cherche à isoler $h$. On a :
+
+\textbf{a.} $h = \dfrac{V}{3 \pi r^2}$ \hfill \textbf{b.} $h = \dfrac{\pi r^2}{3V}$ \hfill \textbf{c.} $h = \dfrac{\sqrt{V}}{\pi r}$ \hfill \textbf{d.} $h = \dfrac{3V}{\pi r^2}$
+
+\subsubsection*{Question 10}
+On considère la fonction $f$ définie sur $\mathbb{R}$ par $f(x) = -2x^2 + 3x + 1$.
+
+L'image de $-1$ par la fonction $f$ est égale à :
+
+\textbf{a.} 0 \hfill \textbf{b.} 2 \hfill \textbf{c.} $-2$ \hfill \textbf{d.} $-4$
+
+\subsubsection*{Question 11}
+On considère la fonction $f$ définie sur $\mathbb{R}$ par $f(x) = 2x^2 - 5x + 3$.
+
+Un antécédent de 0 par la fonction $f$ est :
+
+\textbf{a.} 1 \hfill \textbf{b.} $-1$ \hfill \textbf{c.} 0 \hfill \textbf{d.} 2
+
+\subsubsection*{Question 12}
+On considère les deux séries ci-dessous.
+
+Série A : 9 ; 10 ; 10 ; 11. \hfill Série B : 7 ; 10 ; 10 ; 13.
+
+Laquelle des quatre propositions suivantes est vraie ?
+
+\textbf{a.} La moyenne de la série A est strictement supérieure à la moyenne de la série B. \\
+\textbf{b.} La moyenne de la série B est strictement supérieure à la moyenne de la série A. \\
+\textbf{c.} L'écart-type de la série A est strictement supérieur à l'écart-type de la série B. \\
+\textbf{d.} L'écart-type de la série B est strictement supérieur à l'écart-type de la série A.
+
+\end{document}

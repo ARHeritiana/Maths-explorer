@@ -1,0 +1,32 @@
+\subsection*{1. Le triangle $ABC$ est-il isocèle en $B$ ?}
+On a $BA^2 = (1 - (-1))^2 + (2 - (-3))^2 = 4 + 25 = 29$ ; $BC^2 = (7 - 1)^2 + (1 - 2)^2 = 36 + 1 = 37$, donc $BA^2 \neq BC^2$ : le triangle n'est pas isocèle en $B$.
+	
+	\subsection*{2. Déterminer la valeur arrondie au dixième de degré de l'angle $\widehat{BAC}$.}
+Par définition du produit scalaire :
+	\[
+	\overrightarrow{AB} \cdot 	\overrightarrow{AC} = AB \times AC \times \cos(\widehat{BAC})
+	\]
+	
+	Avec $	\overrightarrow{AB}\displaystyle\binom{2}{5}$, $	\overrightarrow{AC}\displaystyle\binom{8}{4}$, $AB = \sqrt{29}$ et $AC = \sqrt{80}$, l'égalité devient :
+	\[
+	16 + 20 = \sqrt{29} \times \sqrt{80} \times \cos(\widehat{BAC}) \quad \text{d'où} \quad \cos(\widehat{BAC}) = \dfrac{36}{\sqrt{29 \times 80}}
+	\]
+	
+	La calculatrice donne $\widehat{BAC} \approx 41,6^\circ$.
+	
+	\subsection*{3. On considère le point $H$ de coordonnées $(2,6 ; -1,2)$. Le point $H$ est-il le projeté orthogonal du point $B$ sur la droite $(AC)$ ?}
+	
+	Le point $H$ est le projeté orthogonal du point $B$ sur la droite $(AC)$ si :
+	\begin{itemize}
+		\item $H$ appartient à la droite $(AC)$ ;
+		\item $(BH)$ est perpendiculaire à $(AC)$.
+	\end{itemize}
+	
+	Or $\iff{AH}(3,6 ; 1,8)$ et $\iff{AC}(8 ; 4)$ : manifestement ces vecteurs sont colinéaires : $H$ appartient à la droite $(AC)$.
+	
+	De plus $\iff{AC}(8 ; 4)$ et $\iff{BH}(1,6 ; -3,2)$, d'où :
+	\[
+	\iff{AC} \cdot \iff{BH} = 8 \times 1,8 - 4 \times 3,6 = 14,4 - 14,4 = 0
+	\]
+	
+	Les vecteurs sont orthogonaux, donc le point $H$ est le projeté orthogonal du point $B$ sur la droite $(AC)$.

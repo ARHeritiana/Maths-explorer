@@ -1,0 +1,237 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_05_sujet2_ameriquenord_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+
+
+Les parties \textbf{A} et \textbf{B} sont indépendantes.
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+
+
+
+
+
+On note $N$ la variable aléatoire qui donne le nombre de paniers marqués.
+
+\medskip
+
+\emph{Les résultats des probabilités demandées seront, si nécessaire, arrondis au millième.}
+
+\begin{enumerate}
+\item 
+L'épreuve est effectuée 15 fois de façon indépendante et à chaque lancer la probabilité de marquer est égale à $0,32$. $N$ suit donc la loi binomiale $\mathcal{B}(15~;~0,32)$.
+\item 
+La probabilité que Victor réussisse exactement 4 paniers est :
+
+$P(N = 4) = \displaystyle \binom{15}{4}\times 0,32^4 \times (1 - 0,32)^{15-4} \approx 0,206$ au millième près.
+\item 
+La probabilité que Victor réussisse au plus 6 paniers est :
+
+$P(N \leqslant 6) = P(N=0) + P(N = 1) + \ldots + P(N = 6) \approx 0,828$ (calculatrice).
+\item 
+On sait que : $E(N) = n \times p = 15 \times 0,32 = 4,8$.
+
+Donc en moyenne sur 150 lancers, Victor marque 48 paniers.
+\item 
+	\begin{enumerate}
+		\item 
+Chaque lancer étant à 3 points, on a donc $T = 3N$.
+		\item 
+On a $E(T) = E (3N) = 3E(N)$\quad d'après la linéarité de l'espérance, soit
+
+$E(T) = 3 \times 4,8 = 14,4$, donc une moyenne de 144 points marqués sur 150 lancers.
+		\item 
+On a $P(12 \leqslant T = 3N \leqslant 18) = P(4 \leqslant N \leqslant 6)$.
+
+Cette probabilité est égale à :
+
+$P(4 \leqslant N \leqslant 6) = P(N=4) + P(N=5) + P(N = 6) \approx 0,206 + 0,213 + 0,167$, soit
+
+\[P(12 \leqslant T \leqslant 18) \approx 0,586.\]
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item Dans cette question, on prend $n = 50$.
+
+	\begin{enumerate}
+		\item 
+$M_{50}$ représente la moyenne empirique, sur 50 matchs, des points marqués par Victor
+		\item 
+$\bullet~$Chaque variable $X_1,\ldots, X_{50}$ suit la même loi que $X$ donc on a :
+
+{$E(M_{50}) = E (X) = 22$ ;}
+
+$\bullet~$ Comme les variables $X_1$, $X_2$,... $X_50$ sont indépendantes, on en déduit : \quad $V(M_{50}) = \dfrac{1}{50}V(X) = \dfrac{1}{50} \times 65 = \dfrac{65}{50} = \dfrac{130}{100} = 1,3$.
+
+		\item 
+D'après l'inégalité de Bienaymé-Tchébychev, pour une variable aléatoire $X$  d’espérance $E(X)$ et de variance $V (X)$,  pour tout réel $a > 0$ :
+		$$P(|X - E(X)|\geqslant a) \leqslant \dfrac{V(X)}{a^2}$$
+
+donc  ici  : $P(|M_{50} - E(M_{50})| \geqslant 3) \leqslant \dfrac{V(M_{50})}{3^2}$
+
+
+
+Comme $\dfrac{V(M_{50})}{3^2} = \dfrac{1,3}{9} = \dfrac{13}{90}$, on a bien  :  $P\left(\left|M_{50}- 22\right| \geqslant 3\right) \leqslant \dfrac{13}{90}$.
+
+
+
+		\item 
+		L'événement \og  $19 <M_{50}< 25$ \fg{} revient à $\left|M_{50} - 22 \right| < 3$ et
+
+$P\big(\left|M_{50} - 22 \right| < 3\big) = 1 - P\big(\left|M_{50} - 22 \right| \geqslant 3\big)$.
+
+Soit $P\big(\left|M_{50} - 22 \right| \geqslant 3\big) \leqslant \dfrac{13}{90}$ entraîne $P\big(19 < M_{50} < 25 \big) \geqslant 1 - \dfrac{13}{90} = \dfrac{77}{90} \approx 0,856$ : cette probabilité est bien supérieure à 0,85.
+	\end{enumerate}
+
+
+\item 
+
+
+
+D'après la loi faible des grands nombres, $\forall t \in \R^{*+}, \quad \lim\limits_{n \to +\infty} P\Big(\big|M_n - E(X)\big| \geqslant t\Big) = 0$, donc en particulier ici,  $\lim\limits_{n \to +\infty} P\Big(\big|M_n - 22\big| \geqslant 3\Big) = 0$ .
+
+
+donc pour tout $r>0$ il existe un rang $N$ tel que pour tout $n \geqslant N$, $P\big(\left|M_{n}-22\right| \geqslant 3\big)< r$ et c'est vrai en particulier pour $r=0,01$.
+
+
+L'affirmation est donc fausse.
+
+\textbf{Autre méthode : }
+
+Pour tout réel $t>0$, d'après l'inégalité de  concentration, on a :
+
+$ P\big(\left|M_n-E(X)\right| \geqslant t\big) \leqslant \dfrac{V(X)}{t^2 n}$
+
+	Pour $t=3$ on obtient :  $ P\big(|M_n-22| \geqslant 3\big)\leqslant \dfrac{65}{ n \times 3^2}$.
+
+
+
+On veut donc que  :\quad $\begin{aligned}[t]
+	 \dfrac{65}{9 n} \leqslant 0,01 &\iff
+	 \dfrac{6500}{9} \leqslant n \\
+	 &\iff 722+\dfrac{2}{9}\leqslant n
+\end{aligned}$
+
+L'inégalité est donc vraie pour tout entier $n \geqslant 723$.
+
+
+
+\end{enumerate}
+
+
+
+\bigskip
+
+\end{document}

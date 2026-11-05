@@ -1,0 +1,130 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_metropole_devoile_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Pour chacune des affirmations suivantes, indiquer si elle est vraie ou fausse. Chaque
+réponse doit être justifiée. Une réponse non justifiée ne rapporte aucun point.
+
+\medskip
+
+	\begin{enumerate}
+		\item On considère ci-dessous le tableau de variations d'une fonction $f$ définie sur $\R\ \{- 2\}$.
+
+\begin{center}
+\psset{xunit=1.5cm,arrowsize=2pt 3}
+\begin{pspicture}(7,2.5)
+\psframe(7,2.5)\psline(0,2)(7,2)\psline(1,0)(1,2.5)
+\psline(2.95,0)(2.95,2)\psline(3.05,0)(3.05,2)
+\uput[u](0.5,1.9){$x$} \uput[u](1.4,1.9){$- \infty$} \uput[u](3,1.9){$- 2$} \uput[u](5,1.9){$1$} \uput[u](6.6,1.9){$+ \infty$}
+\psline{->}(1.5,1.5)(2.5,0.5)\psline{->}(3.5,0.5)(4.5,1.5)\psline{->}(5.5,1.5)(6.5,0.5)
+\uput[d](1.2,2){5}\uput[u](2.6,0){$-\infty$}\uput[u](3.4,0){$- \infty$}\uput[d](5,2){3}\uput[u](6.8,0){1}
+\rput(0.5,1){$f$}
+\end{pspicture}
+\end{center}
+
+
+
+	\begin{enumerate}
+		\item \textbf{Affirmation 1 :}
+
+La droite d'équation $y = -2$ est asymptote horizontale à la courbe $\mathcal{C}_f$ de la fonction $f$.
+		\item \textbf{Affirmation 2:}
+
+$\displaystyle\lim_{x \to - \infty} \dfrac{2}{f(x) - 5} = + \infty$.
+	\end{enumerate}
+\item On considère la fonction $g$ définie sur $\R$ par $g(x) = x\e^{-x}$.
+	\begin{enumerate}
+		\item \textbf{Affirmation 3 :}
+		
+Le point A$\left(2~;~\dfrac{2}{\e^2}\right)$ est l'unique point d'inflexion de la courbe $\mathcal{C}_g$ de la fonction~$g$.
+		\item \textbf{Affirmation 4 :}
+		
+Pour tout nombre réel $x$ appartenant à $] - \infty~;~2[$, on a $g(x) \leqslant x$.
+	\end{enumerate}
+\item \textbf{Affirmation 5 :}
+
+L'équation $x \ln (x) = 1$ admet exactement deux solutions sur l'intervalle $]0~;~ +\infty[$.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,129 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet2_caledonie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\emph{Pour chacune des quatre affirmations suivantes, indiquer si elle est vraie ou fausse, en justifiant la réponse. Une réponse non justifiée n'est pas prise en compte. Une absence de réponse n'est pas pénalisée.}
+
+\medskip
+
+\begin{minipage}{0.6\linewidth}
+On considère un cube ABCDEFGH d'arête 1 et le point I défini par $\vect{\text{FI}} = \dfrac{1}{3} \vect{\text{FB}}$.
+
+On pourra se placer dans le repère orthonormé de l'espace $\left(\text{A}~;~ \vect{\text{AB}},~\vect{\text{AD}},~ \vect{\text{AE}}\right)$.
+\end{minipage} \hfill
+\begin{minipage}{0.37\linewidth}
+\psset{unit=1cm}
+\begin{pspicture}(6,5.3)
+\psframe(0.2,0.2)(3.8,3.8)
+\psline(3.8,0.2)(5.6,1.4)(5.6,5)(3.8,3.8)
+\psline(5.6,5)(2,5)(0.2,3.8)
+\psline[linestyle=dashed](0.2,0.2)(2,1.4)(5.6,1.4)
+\psline[linestyle=dashed](2,1.4)(2,5)
+\uput[dl](0.2,0.2){A} \uput[dr](3.8,0.2){B} \uput[r](5.6,1.5){C} \uput[l](2,1.5){D}
+\uput[ul](0.2,3.8){E} \uput[ul](3.8,3.8){F} \uput[ur](5.6,5){G} \uput[u](2,5){H}
+\uput[r](3.8,2.6){I}
+\psdots(0.2,0.2)(3.8,0.2)(5.6,1.4)(2,1.4)(0.2,3.8)(3.8,3.8)(5.6,5)(2,5)(3.8,2.6)
+\end{pspicture}
+\end{minipage}
+
+\medskip
+
+\begin{enumerate}
+\item On considère le triangle HAC.
+
+\textbf{Affirmation 1 :} Le triangle HAC est un triangle rectangle.
+\item On considère les droites (HF) et (DI).
+
+\textbf{Affirmation 2 :} Les droites (HF) et (DI) sont sécantes.
+
+\item On considère un réel $\alpha$ appartenant à l'intervalle $]0~;~\pi[$.
+
+On considère le vecteur $\vect{u}$ de coordonnées $\begin{pmatrix} \sin(\alpha) \\ \sin(\pi - \alpha) \\ \sin(-\alpha) \end{pmatrix}$.
+
+\textbf{Affirmation 3 :} Le vecteur $\vect{u}$ est un vecteur normal au plan (FAC).
+
+\item Le cube ABCDEFGH possède 8 sommets. On s'intéresse au nombre $N$ de segments que l'on peut construire en reliant 2 sommets distincts quelconques du cube.
+
+\textbf{Affirmation 4 :} $N = \dfrac{8^2}{2}$.
+\end{enumerate}
+
+\end{document}

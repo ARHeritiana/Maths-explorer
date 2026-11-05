@@ -1,0 +1,117 @@
+\medskip
+
+\emph{Léa passe une bonne partie de ses journées à jouer à un jeu vidéo et s'intéresse aux chances de victoire de ses prochaines parties.}
+
+\medskip
+
+\emph{Elle estime que si elle vient de gagner une partie, elle gagne la suivante dans 70\,\% des cas.}
+
+\medskip
+
+\emph{Mais si elle vient de subir une défaite, d'après elle, la probabilité qu'elle gagne la suivante est de $0,2$.}
+
+\emph{De plus, elle pense avoir autant de chance de gagner la première partie que de la perdre.}
+
+\emph{On s'appuiera sur les affirmations de Léa pour répondre aux questions de cet exercice.}
+
+\medskip
+
+Pour tout entier naturel $n$ non nul, on définit les évènements suivants: 
+
+\begin{itemize}[label=$\bullet~$]
+\item $G_n$ : \og Léa gagne la $n$-ième partie de la journée \fg{} ;
+\item $D_n$ : \og Léa perd la $n$-ième partie de la journée \fg.
+\end{itemize}
+
+\smallskip
+
+Pour tout entier naturel $n$ non nul, on note $g_n$ la probabilité de l'évènement $G_n$.
+
+On a donc $g_1 = 0,5$.
+
+\medskip
+
+\begin{enumerate}
+\item Quelle est la valeur de la probabilité conditionnelle $p_{G_1}\left(D_2\right)$ ?
+\item Recopier et compléter l'arbre des probabilités ci-dessous qui modélise la situation pour
+les deux premières parties de la journée :
+
+\begin{center}
+\pstree[treemode=R,levelsep=3.25cm]{\TR{}}
+{\pstree{\TR{$G_1~$}\taput{\ldots}}
+	{\TR{$G_2~$}\taput{\ldots}
+	\TR{$D_2~$}\tbput{\ldots}
+	}
+\pstree{\TR{$D_1~$}\tbput{\ldots}}
+	{\TR{$G_2~$}\taput{\ldots}
+	\TR{$D_2~$}\tbput{\ldots}
+	}
+}
+\end{center}
+
+\item Calculer $g_2$.
+\item Soit $n$ un entier naturel non nul.
+	\begin{enumerate}
+		\item Recopier et compléter l'arbre des probabilités ci-dessous qui modélise la situation pour les $n$-ième et $(n + 1)$-ième parties de la journée.
+
+\begin{center}
+\pstree[treemode=R,levelsep=3.25cm]{\TR{}}
+{\pstree{\TR{$G_n~$}\taput{$g_n$}}
+	{\TR{$G_{n+1}~$}\taput{\ldots}
+	\TR{$D_{n+1}~$}\tbput{\ldots}
+	}
+\pstree{\TR{$D_n~$}\tbput{\ldots}}
+	{\TR{$G_{n+1}~$}\taput{\ldots}
+	\TR{$D_{n+1}~$}\tbput{\ldots}
+	}
+}
+\end{center}
+		\item Justifier que pour tout entier naturel $n$ non nul,
+		\[g_{n+1} = 0,5g_n + 0,2.\]
+
+	\end{enumerate}
+\item Pour tout entier naturel $n$ non nul, on pose $v_n = g_n - 0,4$.
+	\begin{enumerate}
+		\item Montrer que la suite $\left(v_n\right)$ est géométrique.
+		
+On précisera son premier terme et sa raison.
+		\item Montrer que, pour tout entier naturel $n$ non nul : 
+		\[g_n = 0,1 \times  0,5^{n-1} + 0,4.\]
+		
+	\end{enumerate}
+\item Étudier les variations de la suite $\left(g_n\right)$.
+\item Donner, en justifiant, la limite de la suite $\left(g_n\right)$.
+
+Interpréter le résultat dans le contexte de l'énoncé.
+\item Déterminer, par le calcul, le plus petit entier $n$ tel que $g_n - 0,4 \leqslant 0,001$.
+\item Recopier et compléter les lignes 4, 5 et 6 de la fonction suivante, écrite en langage Python, afin qu'elle renvoie le plus petit rang à partir duquel les termes de la suite $\left(g_n\right)$ sont tous inférieurs ou égaux à $0,4 + e$, où $e$ est un nombre réel strictement positif.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+\fbox{
+\sffamily
+\begin{tabular}{l}
+1 \quad \textbf{def} seuil(e) :\\
+2 \quad \qquad g = 0.5\\
+3 \quad \qquad n = 1\\
+4 \quad \qquad \textbf{while} \ldots  :\\
+5 \quad \qquad \qquad g = 0.5 * g + 0.2 \hspace*{1cm}\\
+6 \quad \qquad \qquad n = \dots\\
+7 \quad \qquad \textbf{return} (n)\\
+\end{tabular}
+}
+\end{center}
+\end{enumerate}
+
+\bigskip

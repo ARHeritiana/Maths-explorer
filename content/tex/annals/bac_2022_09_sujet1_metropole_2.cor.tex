@@ -1,0 +1,158 @@
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+On a $p(M) = 0,7$, donc $p\left(\overline{M}\right) = 1 - 0,7 = 0,3$.
+
+Or $p\left(\overline{M} \cap \overline{G}\right) = 0,06$ donc 
+
+$p\left(\overline{M} \right) \times p_{\overline{M}}\left(\overline{G}\right)=0,06 \iff 
+ 0,3 \times p_{\overline{M}}\left(\overline{G}\right)=0,06 \iff p_{\overline{M}}\left(\overline{G}\right) = 0,2$.
+
+		\item ~
+On complète l'arbre pondéré:		
+		
+		
+		\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$M$~}\taput{0,7}}
+{\TR{$G$}\taput{0,6}
+\TR{$\overline{G}$}\tbput{0,4}
+}
+\pstree{\TR{$\overline{M}$~}\tbput{0,3}}
+{\TR{$G$}\taput{0,8}
+\TR{$\overline{G}$}\tbput{0,2}
+}}
+\end{center}
+		
+		\item La probabilité de l'évènement \og le client visite la grotte et ne visite pas le musée \fg{} est:
+		$p\left(\overline{M} \cap G\right) = p\left(\overline{M}\right)\times p_{\overline{M}}(M) = 0,3 \times 0,8 = 0,24$.
+
+		\item 
+On a de même $p(M \cap G) = p(M) \times p_M(G) = 0,7 \times 0,6 = 0,42$.
+
+D'après la loi des probabilités totales :
+
+$p(G) = p(M \cap G) + p\left(\overline{M} \cap G\right) = 0,42 + 0,24 = 0,66$.
+	\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item Le responsable de l'hôtel affirme que parmi les clients qui visitent la grotte, plus de la moitié visitent également le musée.
+
+On calcule $p_G(M) = \dfrac{p(G \cap M}{p(G)} = \dfrac{p(M \cap G}{p(G)} = \dfrac{0,42}{0,66} = \dfrac{42}{66} = \dfrac{21}{33} = \dfrac{7}{11} \approx 0,64 > 0,5$. \\
+L'affirmation est exacte.
+
+\item 
+
+
+
+
+
+
+
+	\begin{enumerate}
+		\item 
+On a le tableau de probabilités suivant :
+		
+\begin{center}
+\begin{tabularx}{\linewidth}{|l|*{4}{>{\centering \arraybackslash}X|}}\hline
+évènement	&$M \cap G$	&$M \cap \overline{G}$	&$\overline{M} \cap G$	&$\overline{M} \cap \overline{G}$\rule[-3mm]{0mm}{9mm}\\ \hline
+probabilité	&0,42		&0,28					&0,24					&0,06\\ \hline
+dépense		&17			&12						&5						&0\\ \hline
+\end{tabularx}
+\end{center}
+
+		\item 
+D'après le tableau précédent :
+		
+$E(T) = 17 \times 0,42 + 12 \times 0,28 + 5 \times 0,24 + 0 \times 0,06 = 7,14 + 3,36 + 1,2 = 11,7$.
+
+Ceci signifie que sur un grand nombre de visiteurs la dépense moyenne par visiteur est égale à 11,70~\euro.
+		\item 
+
+
+
+Soit $x$ le nombre minimum de visiteurs , $x$ doit vérifier :
+
+$11,7 \times x > 700 \iff x > \dfrac{700}{11,7}$. Or $\dfrac{700}{11,7} \approx 59,8$.
+
+Il faut donc qu'il y ait au moins 60 visiteurs.
+	\end{enumerate}
+\item 
+
+
+Soit $g$ le prix à payer pour visiter la grotte ; le tableau de probabilités devient :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|l|*{4}{>{\centering \arraybackslash}X|}}\hline
+évènement&$M \cap G$&$M \cap \overline{G}$&$\overline{M} \cap G$&$\overline{M} \cap \overline{G}$
+\rule[-3mm]{0mm}{9mm}\\ \hline
+probabilité&0,42&0,28&0,24&0,06\\ \hline
+dépense&12 + g&12&$g$&0\\ \hline
+\end{tabularx}
+\end{center}
+
+L'espérance devient :
+
+$E = 0,42(12 + g) + 12 \times 0,28 + 0,24 \times g + 0 \times 0,06 = 5,04 + 0,42g + 3,36 + 0,24g = 8,4 + 0,66g$.
+
+Le responsable veut que :
+
+$8,4 + 0,66g = 15 \iff 0,66g = 6,6 \iff g = 10$.
+
+Le prix d'entrée à la grotte doit passer à 10 euros.
+\item 
+
+
+
+
+Le nombre de visiteurs étant suffisamment grand pour que le tirage puisse être considéré avec remise, chaque visiteur a donc en moyenne une probabilité de 0,66 de visiter la grotte.
+
+La variable aléatoire $G$ égale au nombre de visiteurs de la grotte suit donc une loi binomiale $\mathcal{B}(100~;~0,66)$.
+
+Il faut donc trouver $p(G \geqslant 75)$.
+
+La calculatrice donne $p(G\leqslant 74) \approx \np{0,9660}$, donc
+
+$p(G \geqslant 75) = 1 - p(G\leqslant 74) \approx 1 - \np{0,9660}\approx 0,034$ au millième près.
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,123 @@
+\medskip
+
+	\begin{enumerate}
+		\item \textbf{Affirmation 1 : Fausse.}
+
+		Un code de validation tel que décrit sera assimilable à un quadruplet d'entiers : en effet, dans un code, l'ordre des chiffres est important, et donc on cherche bien un quadruplet, et non pas un ensemble de cardinal 4. On va noter $(c_1~;~c_2~;~c_3~;~c_4)$ le quadruplet en question.
+
+		On note : $C = \big\{0~;~1~;~2~;~3~;~4~;~5~;~6~;~7~;~8~;~9\big\}$ l'ensemble des 10 chiffres de 0 à 9.
+
+		\begin{itemize}
+			\item $c_1$ sera choisi dans l'ensemble $C^* = \big\{1~;~2~;~3~;~4~;~5~;~6~;~7~;~8~;~9\big\}$, qui a un cardinal de 9, en effet, le premier chiffre doit être différent de 0, d'après l'énoncé;
+			\item Les trois chiffres suivants forment un triplet d'entiers distincts choisis dans $C \setminus \big\{c_1\big\}$, qui a aussi comme cardinal 9 : c'est un arrangement de 3 éléments choisis parmi 9, il y a donc :\quad $\dfrac{9!}{(9 - 3)!} = 504$ façons de choisir les trois chiffres suivants.
+			\item Par principe multiplicatif, il existe donc :\quad $9 \times 504 = \np{4536}$ codes différents.
+		\end{itemize}
+
+	\emph{Remarque :} On peut aussi rédiger de la façon suivante :
+	\begin{itemize}
+		\item Pour le premier chiffre, on a 9 choix possible (n'importe quel chiffre, sauf 0);
+		\item 	Pour le deuxième chiffre, on a 9 choix possibles (n'importe quel chiffre, sauf le premier);
+		\item 	Pour le troisième chiffre, on a 8 choix possibles (n'importe quel chiffre, sauf les deux premiers);
+		\item 	Et pour le quatrième chiffre, on a 7 choix possibles (n'importe quel chiffre, sauf les trois premiers);
+		\item 	Ainsi, par principe multiplicatif, il existe :\quad $ 9 \times 9 \times 8 \times 7 = \np{4536}$ codes  différents.
+	\end{itemize}
+
+	\item \textbf{Affirmation 2 : Fausse.}
+
+	Notons $A$ l'évènement \og{}la personne a choisi l'audioguide\fg{} et $L$ l'évènement \og{}la personne a acheté son billet en ligne\fg{}.
+
+	Visualisons la situation décrite dans l'énoncé au moyen d'un arbre de probabilité. En gras, les probabilités données dans l'énoncé, en plus fin, celles qui s'en déduisent simplement. Les branches sans probabilités mériteront un calcul détaillé.
+
+	\begin{center}
+		\begin{tikzpicture}[xscale=1,yscale=1,baseline={(R.base)}]
+		
+		
+		\tikzstyle{fleche}=[->,>=latex,thick]
+		\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+		\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+		\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+		
+		\def\DistanceInterNiveaux{3}
+		\def\DistanceInterFeuilles{0.8}
+		
+		\def\NiveauA{(0)*\DistanceInterNiveaux}
+		\def\NiveauB{(1)*\DistanceInterNiveaux}
+		\def\NiveauC{(2)*\DistanceInterNiveaux}
+		\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+		
+		\node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {};
+		\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$L$};
+		\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$A$};
+		\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{A}$};
+		\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\overline{L}$};
+		\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$A$};
+		\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{A}$};
+		
+		\draw[fleche] (R.east)--(Ra.west) node[etiquette] {\textbf{0,7}};
+		\draw[fleche] (Ra.east)--(Raa.west) node[etiquette] {\textbf{0,8}};
+		\draw[fleche] (Ra.east)--(Rab.west) node[etiquette] {0,2};
+		\draw[fleche] (R.east)--(Rb.west) node[etiquette] {0,3};
+		\draw[fleche] (Rb.east)--(Rba.west);
+		\draw[fleche] (Rb.east)--(Rbb.west);
+	\end{tikzpicture}
+
+	L'énoncé donne aussi P$\big(\,\overline{A}\,\big) = 0,32$.
+	\end{center}
+
+	La question porte sur $P_{\overline{L}}\big(\overline{A}\big)$.
+	Par définition, on a :\quad $P_{\overline{L}}\big(\,\overline{A}\,\big) = \dfrac{P\big(\,\overline{L} \cap \overline{A}\,\big)}{P\big(\,\overline{L} \,\big) }$.
+
+	$L$ et $\overline{L}$ formant une partition de l'univers, d'après la loi des probabilités totales, on a :
+
+	$P\big(\, \overline{A}\, \big) = P\big(\, L \cap \overline{A}\, \big) + P\big(\, \overline{L} \cap \overline{A}\, \big)$.
+
+	D'après notre arbre :\quad $P\big(\, L \cap \overline{A} \, \big) = P\big(\, L \,\big) \times P_{\overline{A}}\big(\,L\,\big) = 0,7 \times 0,2 = 0,14$.
+
+	On a donc :\quad $\begin{aligned}[t]
+		P\big(\, \overline{A}\, \big) = P\big(\, L \cap \overline{A}\, \big) + P\big(\, \overline{L} \cap \overline{A}\, \big)
+		&\iff 0,32 = 0,14 + P\big(\, \overline{L} \cap \overline{A}\, \big)\\
+		&\iff P\big(\, \overline{L} \cap \overline{A}\, \big) = 0,32 - 0,14\\
+		&\iff P\big(\, \overline{L} \cap \overline{A}\, \big) = 0,18\\
+	\end{aligned}$.
+
+	On calcule finalement :\quad $P_{\overline{L}}\big(\,\overline{A}\,\big) = \dfrac{P\big(\,\overline{L} \cap \overline{A}\,\big)}{P\big(\,\overline{L} \,\big) } = \dfrac{0,18}{0,3} = 0,6 < \dfrac{2}{3}$.
+
+	La probabilité qu'un visiteur ne prenne pas l'audioguide sachant qu'il a acheté son billet au guichet est de 0,6, qui est strictement inférieur à deux tiers.
+
+	\item \textbf{Affirmation 3 : Vraie.}
+
+	On a choisi nos 12 visiteurs au hasard. Soit $X$ la variable aléatoire qui donne le nombre de visiteurs n'ayant pas choisi l'audioguide.
+
+	$X$ suit une loi binomiale de paramètres $n=12$ et $p = 0,32$.
+
+	\begin{itemize}
+		\item En effet, chaque choix de visiteur du groupe de 12 est une expérience aléatoire à deux issues : le succès (le visiteur n'a pas choisi d'utiliser un audioguide) de probabilité $p = 0,32$ et l'échec;
+		\item cette expérience est répétée $n = 12$ fois, de façon indépendante (d'après l'énoncé) et identique (les probabilités étant les mêmes);
+		\item $X$ compte le nombre de succès sur ces 12 répétitions.
+	\end{itemize}
+
+	L'événement \og{}exactement la moitié des 12 visiteurs opte pour l'audioguide\fg{} est donc l'événement $\{X = 6\}$ : la moitié (6 visiteurs) opte pour l'audioguide, et donc l'autre moitié (les 6 autres visiteurs) refusent l'audioguide.
+
+	Par propriété, on a :\quad $P(X = 6) = \displaystyle \binom{12}{6} \times 0,32^6 \times (1 - 0,32)^6$.
+
+	Or :\quad $\displaystyle \binom{12}{6} = \dfrac{12 !}{6! \times 6!} = 924$
+
+	et :\quad $0,32^6 \times (1-0,32)^6 = 0,32^6 \times 0,68^6 = \left(0,32 \times 0,68\right)^6 = 0,2176^6$.
+
+	On a donc bien :\quad $P(X = 6) = \displaystyle \binom{12}{6} \times 0,32^6 \times (1 - 0,32)^6 = 924 \times 0,2176^6$.
+
+	\item \textbf{Affirmation 4 : Fausse.}
+
+	Dans cette question, $X$ est donc la variable aléatoire qui donne la durée du parcours, exprimée en minutes.
+
+	On rappelle que 1 h 20 min correspondent à 80 minutes et 1 h 40 minutes à 100 minutes.
+
+	Par définition, on a : \quad $\begin{aligned}[t]
+		E(X) &= P(X = 50) \times 50 + P(X = 80) \times 80 + P(X = 100) \times 100\\
+		&= 0,1 \times 50 + 0,6 \times 80 + 0,3 \times 100\\
+		&= 5 + 48 + 30\\
+		&= 83\\
+	\end{aligned}$
+
+	L'espérance de $X$ est donc de 83 minutes, ce qui veut dire que la durée moyenne d'une visite avec l'audioguide est de 83 minutes, soit 1 h 23 min.
+	\end{enumerate}

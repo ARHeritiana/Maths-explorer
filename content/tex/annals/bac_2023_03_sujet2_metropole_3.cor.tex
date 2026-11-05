@@ -1,0 +1,205 @@
+\medskip
+
+Dans l'espace rapporté à un repère orthonormé \Oijk, on considère :
+
+\begin{itemize}
+\item[$\bullet~~$]le plan $\mathcal{P}_1$ dont une équation cartésienne est $2x + y - z +2 = 0$,
+\item[$\bullet~~$]le plan $\mathcal{P}_2$ passant par le point B(1~;~1~;~2) et dont un vecteur normal est $\vect{n_2}\begin{pmatrix}1\\-1\\1\end{pmatrix}$.
+\end{itemize}
+
+
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item  Le vecteur $\vect{n_1}\;\begin{pmatrix} 2 \\1 \\ -1\end{pmatrix}$ est normal au plan $\mathcal{P}_1$ d'équation $2x+y-z+2=0$.
+		
+		\item 
+		
+
+
+$\vect{n_1}.\vect{n_2} = 2\times 1 + 1\times (-1) +(-1)\times 1 = 0$ donc $\vect{n_1}$ et $\vect{n_2}$ sont orthogonaux. 
+
+On en déduit que les plans $\mathcal{P}_1$ et $\mathcal{P}_2$ sont perpendiculaires. 
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+Le plan $\mathcal{P}_2$ a pour vecteur normal $\vect{n_2}\begin{pmatrix}1\\-1\\1\end{pmatrix}$, donc il a une équation cartésienne de la forme $x-y+z+d=0$ où $d$ est un réel à déterminer.
+
+$\text{B} \in \mathcal{P}_2$ donc $x_{\text B}-y_{\text B}+z_{\text B}+d=0$, autrement dit $1 - 1 +2 +d=0$ donc $d=-2$.
+
+Le plan $\mathcal{P}_2$ a donc pour équation cartésienne $x-y+z-2=0$.
+
+		\item On note $\Delta$ la droite dont une représentation paramétrique est : $\left\{\begin{array}{l !{=} l}
+x&0\\y & -2 + t\\ z&\phantom{2+t}t
+\end{array}\right.,\quad t \in  \R$.
+
+On cherche l'intersection des plans $\mathcal{P}_1$ et $\mathcal{P}_2$ est l'ensemble des points de coordonnées $(x\;;\;y\;;\;z)$ vérifiant le système:
+$\left \{
+\begin{array}{l !{=} l}
+2x+y-z +2 & 0\\
+x - y + z - 2&0
+\end{array}
+\right .$.
+
+$\left \{
+\begin{array}{l !{=} l}
+2x+y-z +2 & 0\\
+x - y + z - 2&0
+\end{array}
+\right .
+\iff
+\left \{
+\begin{array}{l !{=} l}
+2x+y & z-2\\
+x - y &-z+2
+\end{array}
+\right .
+\iff
+\left \{
+\begin{array}{l !{=} l}
+3x&0\\
+2x+y & z-2
+\end{array}
+\right .$
+
+On aboutit donc à $x=0$, $y=z-2$ et $z$ quelconque égal à $t$.
+
+Les plans $\mathcal{P}_1$ et $\mathcal{P}_2$ ont donc pour intersection la droite de représentation paramétrique 
+$\left \{
+\begin{array}{l !{=} r l}
+x & 0\phantom{+t}\\
+y & -2+t & t\in\R\\
+z & t
+\end{array}
+\right.$, c'est-à-dire la droite $\Delta$.
+	\end{enumerate}
+	\end{enumerate}
+	
+On considère le point A(1~;~1~;~1) et on admet que le point A n'appartient ni à $\mathcal{P}_1$ ni à $\mathcal{P}_2$.
+
+On note H le projeté orthogonal du point A sur la droite $\Delta$.
+
+\begin{enumerate}[resume]
+\item On rappelle que, d'après la question 2. b, la droite $\Delta$ est l'ensemble des points M$_t$ de coordonnées $(0~;~-2 + t~;~t)$, où $t$ désigne un nombre réel quelconque.
+
+	\begin{enumerate}
+		\item 
+		
+$\text{AM}_t^2 = (0-1)^2 + (-2+t-1)^2 +(t-1)^2 = 1 + \left (9 -6t +t^2\right ) +\left (t^2 -2t +1\right ) = 2t^2 -8t +11$
+
+Donc $\text{AM}_t = \ds\sqrt{2t^2-8t+11}$.
+		
+		\item 
+Le point H est le projeté orthogonal de A sur la droite $\Delta$, donc la longueur AH  réalise le minimum des longueurs AM$_t$ où M$_t$ est un point de $\Delta$.
+
+Il faut donc chercher le minimum de $ \ds\sqrt{2t^2-8t+11}$, donc le minimum de $2t^2-8t+11$.
+
+D'après les propriétés de la fonction du second degré, le minimum de $f(x)=ax^2+bx+c$ quand $a>0$, est réalisé pour $x=-\dfrac{b}{2a}$ et vaut $f\left (-\dfrac{b}{2a}\right )$.
+
+Donc le minimum de $2t^2 - 8t + 11$ est réalisé pour $t=-\dfrac{-8}{2\times 2}=2$, et  vaut $2\times 2^2 -8\times 2 + 11 = 3$.
+
+On en déduit que $\text{AH}=\ds\sqrt{3}$.
+		
+		
+	\end{enumerate}
+\item On note $\mathcal{D}_1$ la droite orthogonale au plan $\mathcal{P}_1$ passant par le point A et H$_1$ le projeté orthogonal du point A sur le plan $\mathcal{P}_1$.
+	\begin{enumerate}
+		\item Déterminer une représentation paramétrique de la droite $\mathcal{D}_1$.
+		
+La droite $\mathcal{D}_1$ est orthogonale au plan $\mathcal{P}_1$ donc le vecteur $\vect{n_1}$, normal au plan $\mathcal{P}_1$ est un vecteur directeur de la droite $\mathcal{D}_1$. De plus la droite $\mathcal{D}_1$ passe par le point A. Elle a donc pour représentation paramétrique:
+
+$\left \{
+\begin{array}{l !{=} r l}
+x & x_{\text A} + 2t\\
+y & y_{\text A} +t & t\in \R\\
+z & z_{\text A} -t
+\end{array}
+\right .$
+c'est-à-dire
+$\left \{
+\begin{array}{l !{=} r l}
+x & 1 + 2t\\
+y & 1 +t & t\in \R\\
+z & 1 -t
+\end{array}
+\right .$		
+		
+		\item 
+La droite $\mathcal{D}_1$ est orthogonale au plan $\mathcal{P}_1$ donc le projeté orthogonal de A sur $\mathcal{P}_1$ est le point d'intersection de $\mathcal{D}_1$ et de $\mathcal{P}_1$; ses coordonnées vérifient le système:
+
+$\left \{
+\begin{array}{r !{=} l}
+x & 1 + 2t\\
+y & 1 +t \\
+z & 1 -t\\
+2x +y-z+2 & 0
+\end{array}
+\right .$
+
+Donc $t$ vérifie $2(1+2t) +(1+t) -(1-t) +2=0$, soit $2+4t+1+t-1+t+2=0$, ce qui donne $t=-\dfrac{2}{3}$.
+
+$x=1+2t = 1-\dfrac{4}{3} =-\dfrac{1}{3}$, $y=1+t = 1-\dfrac{2}{3}=\dfrac{1}{3}$ et $z=1-t= 1+\dfrac{2}{3}=\dfrac{5}{3}$
+
+Le point H$_1$ a donc pour coordonnées $\left (-\dfrac{1}{3}\;;\; \dfrac{1}{3}\;;\;\dfrac{5}{3} \right )$.
+		
+	\end{enumerate}
+\item Soit H$_2$ le projeté orthogonal de A sur le plan $\mathcal{P}_2$.
+
+\begin{minipage}{0.48\linewidth}
+
+On admet que H$_2$ a pour coordonnées $\left(\dfrac43~;~\dfrac23~;~\dfrac43\right)$
+et que H a pour coordonnées (0~;~0~;~2). 
+
+Sur le schéma ci-contre, les plans $\mathcal{P}_1$ et $\mathcal{P}_2$
+sont représentés, ainsi que les points A, H$_1$, H$_2$, H. 
+\end{minipage}\hfill
+\begin{minipage}{0.48\linewidth}
+\scalebox{0.8}{
+\psset{unit=1cm}
+\begin{pspicture}(7.4,8.6)
+
+\pspolygon(0,2.7)(5.5,0.5)(7.2,4.3)(1.7,6.5)
+\psline(2.5,0)(2.5,4.7)(4.2,8.4)(4.2,5.3)
+\psline(1.8,0)(3.1,2.7)
+\psline[linestyle=dashed](3.1,2.7)(3.6,3.62)
+\psline[linestyle=dashed](4.2,5.3)(4.2,1.1)
+\psline(3.6,3.62)(5.6,8)
+\psline(4.2,1.1)(3.7,0)
+\pspolygon(3.1,2.7)(4.6,2.3)(4.6,3.4)(3.1,3.8)
+\uput[l](2,0.4){$\Delta$}\rput(0.4,2.8){$\mathcal{P}_2$}\rput(4,7.4){$\mathcal{P}_1$}
+\uput[dl](3.1,2.7){H}\uput[dr](4.6,2.3){H$_2$}\uput[ur](4.6,3.4){A}\uput[ul](3.1,3.8){H$_1$}
+\end{pspicture}
+}
+\end{minipage}
+
+
+
+Le vecteur $\vect{\text{AH}_1}$ a pour coordonnées
+$\begin{pmatrix}
+-\frac{1}{3}-1 \\ \frac{1}{3}-1 \\ \frac{5}{3}-1
+\end{pmatrix}$
+=
+$\begin{pmatrix}
+-\frac{4}{3} \\ -\frac{2}{3} \\ \frac{2}{3}
+\end{pmatrix}$.
+
+Le vecteur $\vect{\text{H}_2\text{H}}$ a pour coordonnées
+$\begin{pmatrix}
+0- \frac{4}{3}\\ 0- \frac{2}{3} \\ 2- \frac{4}{3}
+\end{pmatrix}$
+=
+$\begin{pmatrix}
+-\frac{4}{3} \\ -\frac{2}{3} \\ \frac{2}{3}
+\end{pmatrix}$.
+
+$\vect{\text{AH}_1} = \vect{\text{H}_2\text{H}}$ donc la quadrilatère AH$_1$HH$_2$ est un parallélogramme.
+
+La droite (AH$_1$) est orthogonale au plan $\mathcal{P}_1$ et H$_1$  appartient à ce plan; donc (AH$_1$) est perpendiculaire à toutes les droites de $\mathcal{P}_1$ passant par H$_1$, en particulier la droite (HH$_1$).
+
+Le parallélogramme AH$_1$HH$_2$  possède un angle droit donc c'est un rectangle.
+
+\end{enumerate}
+
+\bigskip

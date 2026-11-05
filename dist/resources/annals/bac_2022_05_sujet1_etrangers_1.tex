@@ -1,0 +1,168 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet1_etrangers_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Cet exercice est un questionnaire à choix multiples. Pour chacune des questions suivantes, une seule des quatre réponses proposées est exacte. Les six questions sont indépendantes.}
+
+\smallskip
+
+\emph{Une réponse incorrecte, une réponse multiple ou l'absence de réponse à une question ne rapporte ni n'enlève de point. Pour répondre, indiquer sur la copie le numéro de la question et la lettre de la réponse choisie. \\
+Aucune justification n'est demandée.}
+
+\medskip
+
+\begin{enumerate}
+\item On considère la fonction $f$ définie pour tout réel $x$ par $f(x) = \ln \left(1  + x^2\right)$. 
+
+Sur $\R$, l'équation $f(x) = \np{2022}$
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} n'admet aucune solution. &\textbf{b.~~} admet exactement une solution.\\
+\textbf{c.~~}admet exactement deux solutions.&\textbf{d.~~} admet une infinité de solutions.
+\end{tabularx}
+\end{center}
+
+\item Soit la fonction $g$ définie pour tout réel $x$ strictement positif par: 
+\[g(x) = x \ln (x) - x^2\]
+
+On note $\mathcal{C}_g$ sa courbe représentative dans un repère du plan.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} La fonction $g$ est convexe sur $]0~;~+\infty[$.&\textbf{b.~~} La fonction $g$ est concave sur $]0~;~+\infty[$.\\
+\textbf{c.~~}La courbe $\mathcal{C}_g$ admet exactement un point d'inflexion sur $]0~;~+\infty[$.&\textbf{d.~~}La courbe $\mathcal{C}_g$ admet exactement
+deux points d'inflexion sur $]0~;~+\infty[$.
+\end{tabularx}
+\end{center}
+
+\item On considère la fonction $f$ définie sur $]- 1~;~1[$ par
+
+\[f(x) = \dfrac{x}{1 - x^2}\]
+
+Une primitive de la fonction $f$ est la fonction $g$ définie sur l'intervalle $] - 1~;~1[$ par :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} $g(x) = - \dfrac12 \ln \left(1 - x^2\right)$&\textbf{b.~~} $g(x) =  \dfrac{1 + x^2}{ \left(1 - x^2\right)^2}$\\
+\textbf{c.~~} $g(x)= \dfrac{x^2}{2\left(x - \dfrac{x^3}{3}\right)}$&\textbf{d.~~} $g(x) = \dfrac{x^2}{2}\ln \left(1 - x^2\right)$
+\end{tabularx}
+\end{center}
+
+\item La  fonction $x \longmapsto  \ln \left(-x^2- x + 6\right)$ est définie sur
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} $]- 3~;~2[$&\textbf{b.~~} $]- \infty~;~6]$\\
+\textbf{c.~~} $]0~;~+\infty[$&\textbf{d.~~} $]2~;~+\infty[$
+\end{tabularx}
+\end{center}
+
+\item On considère la fonction $f$ définie sur $]0,5~;~+ \infty [$ par 
+
+\[f(x) =x^2- 4x+ 3 \ln (2x - 1)\]
+
+Une équation de la tangente à la courbe représentative de $f$ au point d'abscisse 1 est:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}$y = 4x- 7$ &\textbf{b.~~}$y = 2x - 4$\\
+\textbf{c.~~}$y = -3(x - 1) + 4$ &\textbf{d.~~}$y = 2x - 1$
+\end{tabularx}
+\end{center}
+
+\item L'ensemble $S$ des solutions dans $\R$ de l'inéquation $\ln (x + 3) < 2\ln (x + 1)$ est:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}$S = ]- \infty~;~-2[ \cup ]1~;~+\infty[$&\textbf{b.~~}$S = ]1~;~+ \infty[$\\
+\textbf{c.~~} $S = \emptyset$&\textbf{d.~~} $S = ]- 1~;~1[$
+\end{tabularx}
+\end{center}
+
+\end{enumerate}
+
+\bigskip
+
+\end{document}

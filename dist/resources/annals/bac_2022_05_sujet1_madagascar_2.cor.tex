@@ -1,0 +1,240 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet1_madagascar_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{tabularx}{\linewidth}{|X|}\hline
+\textbf{Principaux domaines abordés:} Suites ; Fonctions, Fonction logarithme.\\ \hline
+\end{tabularx}
+
+\medskip
+
+\emph{Cet exercice est un questionnaire à choix multiples.\\
+Pour chacune des questions suivantes, une seule des quatre réponses proposées
+est exacte.\\
+Une réponse exacte rapporte un point. Une réponse fausse, une réponse multiple ou
+l'absence de réponse à une question ne rapporte ni n'enlève de point.\\
+Pour répondre, indiquer sur la copie le numéro de la question et la lettre de la réponse choisie. Aucune justification n'est demandée.}
+
+\bigskip
+\begin{enumerate}
+\item Un récipient contenant initialement 1 litre d'eau est laissé au soleil.
+
+Toutes les heures, le volume d'eau diminue de 15\,\%.
+
+Au bout de quel nombre entier d'heures le volume d'eau devient-il inférieur à un quart de litre ?
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} 2 heures &\textbf{b.~~} 8 heures .&\textbf{c.~~} 9 heures
+&\textbf{d.~~} 13 heures
+\end{tabularx}
+\end{center}
+Enlever 15\,\%, revient à multiplier par 0,85 $\left(1 - \dfrac{15}{100} = \dfrac{85}{100} = 0,85 \right)$.
+
+Il faut donc trouver $n \in \N$ tel que $1 \times 0,85^n < 0,25$ soit en prenant le logarithme népérien $n\ln 0,95 < \ln 0,25 \iff n > \dfrac{\ln 0,25}{\ln 0,85}$.
+
+Or $\dfrac{\ln 0,25}{\ln 0,85} \approx 8,5$ : il faut donc attendre au moins la 9\up{e} heure.
+\item  On considère la fonction $f$ définie sur l'intervalle $]0~;~+\infty[$ par $f(x) = 4\ln (3x)$.
+
+Pour tout réel $x$ de l'intervalle $]0~;~+\infty[$ , on a :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} $f(2x) = f(x) + \ln (24)$&\textbf{b.~~} $f(2x) = f(x) + \ln (16)$\\
+\textbf{c.~~} $f(2x) = \ln (2) + f(x)$& \textbf{d.~~} $f(2x) = 2f(x)$
+\end{tabularx}
+\end{center}
+
+$\bullet~~$ On a $f(x) + \ln (16) = 4 \ln (3x) + \ln 2^4= \ln (3x)^4  + \ln 2^4 = \ln \left[2^4 \times (3x)^4\right] = \ln \left[(6x)^4\right] = 4 \ln (6x) = f(2x)$ Réponse \textbf{b.}
+
+$\bullet~~$ Autre solution : $f(2x) = 4\ln (3 \times 2x) = 4 \ln (2 \times 3x) = 4\ln 2 + 4\ln (3x) = \ln 2^4 + 4\ln (3x) =$
+
+$ \ln 16 + 4\ln (3x) = f(x) + \ln 16$.
+\item On considère la fonction $g$ définie sur l'intervalle $]1~;~+\infty[$ par : 
+
+\[g(x) = \dfrac{\ln (x)}{x - 1}.\]
+
+
+On note $\mathcal{C}_g$ la courbe représentative de la fonction $g$ dans un repère orthogonal. La courbe $\mathcal{C}_g$ admet :
+
+$\bullet~~$Limite de la fonction $g$ au voisinage de plus l'infini :
+
+$g(x) = \dfrac{\ln x}{x} \times \dfrac{x}{x - 1}$.
+
+Or on sait que $\displaystyle\lim_{x \to +\infty} \dfrac{\ln x}{x} = 0$ et que  $\displaystyle\lim_{x \to +\infty} \dfrac{x}{x - 1} = 1$, donc par produit de limites : $\displaystyle\lim_{x \to +\infty} g(x) = 0$ : l'axe des abscisses est asymptote horizontale au voisinage de plus l'infini.
+
+$\bullet~~$Limite de la fonction $g$ au voisinage de 1 : on a :
+
+$g(x) = \dfrac{\ln (x)}{x - 1} = \dfrac{\ln (x) - \ln (1)}{x - 1}$, donc $\displaystyle\lim_{x \to 1} \dfrac{\ln (x) - \ln (1)}{x - 1} = [\ln (x)]'_{x = 1}$, nombre dérivé de la fonction logarithme népérien en $x = 1$, soit $\dfrac{1}{1} = 1$ : il n'y a as d'asymptote verticale au voisinage de 1. Réponse : \textbf{c.}
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+Dans la suite de l'exercice, on considère la fonction $h$ définie sur l'intervalle ]0~;~2] par:
+
+\[h(x) = x^2(1 + 2\ln (x)).\]
+
+On note $\mathcal{C}_h$ la courbe représentative de $h$ dans un repère du plan. 
+
+On admet que $h$ est deux fois dérivable sur l'intervalle ]0~;~2].
+
+On note $h'$ sa dérivée et $h''$ sa dérivée seconde.
+
+On admet que, pour tout réel $x$ de l'intervalle ]0~;~2], on a :
+
+\[h'(x) = 4x(1 + \ln (x)).\]
+
+\begin{enumerate}[resume]
+\item Sur l'intervalle ]0~;~2], la fonction $h$ s'annule :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} exactement 0 fois. &\textbf{b.~~} exactement 1 fois.\\
+\textbf{c.~~} exactement 2 fois. &\textbf{d.~~} exactement 3 fois.
+\end{tabularx}
+\end{center}
+On a $h(x) = 0 \iff x^2(1 + 2\ln (x)) = 0 \iff \left\{\begin{array}{l c l}
+x^2 &=&0\\
+1 + 2\ln (x)&=&0
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+x &=&0\\
+1 + 2\ln (x)&=&0
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+x &=&0\\
+2\ln (x)&=&- 1
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+x &=&0\\
+\ln (x)&=&- \dfrac{1}{2}\end{array}\right.\iff \left\{\begin{array}{l c l}
+x &=&0\\
+x&=&\text{e}^{- \frac{1}{2}}\end{array}\right.$
+
+Comme 0 ne peut être solution et que $\text{e}^{- \frac{1}{2}} \in ]0~;~2]$, l'équation a une solution : réponse \textbf{b.}
+\item Une équation de la tangente à $\mathcal{C}_h$ au point d'abscisse $\sqrt{\text{e}}$ est:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} $y = \left(6\text{e}^{\frac12}\right).{} x $&
+\textbf{b.~~} $y = \left(6\sqrt{\text{e}}\right).{} x + 2\text{e}$\\
+\textbf{c.~~} $y = 6\text{e}^{\frac{x}{2}}$
+&\textbf{d.~~} $y = \left(6\text{e}^{\frac12}\right) .{} x - 4\text{e}$.
+\end{tabularx}
+\end{center}
+Une équation de la tangente est $y - h\left(\sqrt{\text{e}}\right) = f'\left(\sqrt{\text{e}}\right)\left(x - \sqrt{\text{e}}\right)$.
+
+$\bullet~~$$h'\left(\sqrt{\text{e}}\right)  = 4 \times \sqrt{\text{e}}\left(1 + \ln \left(\sqrt{\text{e}}\right)\right) = 4 \times \sqrt{\text{e}} \times \left(1 + \dfrac12\right) = 6\sqrt{\text{e}}$.
+
+$\bullet~~$$h\left(\sqrt{\text{e}}\right) = \left(\sqrt{\text{e}}\right)^2\left(1 + 2 \ln \left(\sqrt{\text{e}}\right)\right) = \text{e}\ln \left(1 +  2 \times \dfrac12\ln \text{e}\right) = \text{e}\times (1 + 1) = 2\text{e}$.
+
+L'équation de la tangente s'écrit donc :
+
+$y - 2\text{e} = 6\sqrt{\text{e}}\left(x - \sqrt{\text{e}}\right) \iff y = 2\text{e} + 6x\sqrt{\text{e}} - 6\text{e}\iff y = 6x\sqrt{\text{e}} - 4\text{e}$. Réponse \textbf{d.}
+
+\item Sur l'intervalle $]0~;~2]$, le nombre de points d'inflexion de la courbe $\mathcal{C}_h$ est égal à :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} 0&\textbf{b.~~} 1 &\textbf{c.~~} 2 &\textbf{d.~~} 3
+\end{tabularx}
+\end{center}
+
+La fonction $h'$ produit de fonctions dérivables sur ]0~;~2] est dérivable et sur cet intervalle :
+
+$f''(x) = 4(1 + \ln (x)) + 4x \times \dfrac{1}{x} = 4 + 4\ln (x)) + 4 = 8 + 4\ln (x) = 4(2 + \ln (x)$.
+
+De même $h'''(x) = \dfrac{4}{x}$. Sur l'intervalle ]0~;~2], $h'''(x) > 0$, donc $h''(x)$ est croissante et s'annule si $h''(x) = 0 \iff 2 + \ln (x) = 0 \iff \ln (x) = - 2 \iff x = \text{e}^{-2} \approx 0,135 \in ]0~;~2]$.
+
+La dérivée seconde s'annule donc une seule fois sur l'intervalle ]0~;~2] en changeant de signe. Donc un seul point d'inflexion. Réponse \textbf{b.}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

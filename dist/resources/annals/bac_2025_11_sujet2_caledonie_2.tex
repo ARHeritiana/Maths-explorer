@@ -1,0 +1,178 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet2_caledonie_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{minipage}{0.58\linewidth}
+Dans le repère orthonormé (O~;~I, J) ci-contre, on a représenté :
+\begin{itemize}
+\item la droite d'équation $y = x$;
+\item la droite d'équation $y = 1$;
+\item la droite d'équation $x = 1$;
+\item la parabole d'équation $y = x^2$.
+\end{itemize}
+
+On peut ainsi partager le carré OIKJ en trois zones.
+\end{minipage} \hfill
+\begin{minipage}{0.42\linewidth}
+\psset{unit=5cm,arrowsize=2pt 3}
+\begin{pspicture}(-0.2,-0.2)(1.1,1.1)
+\psaxes[linewidth=1.25pt,Dx=2,Dy=2]{->}(0,0)(0,0)(1,1)
+\uput[dl](0,0){O}\uput[dr](1,0){I}\uput[ul](0,1){J}\uput[ur](1,1){K}
+\psline[linewidth=1.25pt](1,0)(1,1)(0,1)
+\psline[linewidth=1.25pt,linecolor=red](1,1)
+\psplot[plotpoints=1000,linewidth=1.25pt,linecolor=red]{0}{1}{x dup mul}
+\rput(0.2,0.7){ZONE 1}\rput(0.8,0.2){ZONE 2}\rput{45}(0.5,0.4){\red ZONE 3}
+\end{pspicture}
+\end{minipage}
+
+\begin{center}\emph{Les parties {\rm B} et {\rm C} peuvent être traitées indépendamment l'une de l'autre}\end{center}
+
+\subsection*{Partie A}
+
+Démontrer les résultats figurant dans le tableau ci-dessous.
+
+\begin{center}
+
+\begin{tabularx}{0.6\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+ZONE & ZONE 1 & ZONE 2 & ZONE 3 \\ \hline
+AIRE & $\dfrac{1}{2}$ & $\dfrac{1}{3}$ & $\dfrac{1}{6}$\rule[-10pt]{0mm}{30pt}\\ 
+\hline
+\end{tabularx}
+\end{center}
+
+\subsection*{Partie B : un premier jeu}
+
+Un joueur lance une fléchette sur le carré ci-dessus. On admet que la probabilité qu'elle tombe sur une zone est égale à l'aire de cette zone. Ainsi, la probabilité que la fléchette tombe sur la ZONE 3 est égale à $\dfrac{1}{6}$.
+
+\begin{itemize}[label=$\bullet~~$]
+\item Si la fléchette tombe sur la ZONE 3, alors le joueur lance une pièce équilibrée.
+
+Si la pièce tombe sur PILE, alors le joueur gagne, sinon il perd.
+\item Si la fléchette tombe sur une autre zone que la ZONE 3, alors le joueur lance un dé équilibré à six faces. Si le dé tombe sur la FACE 6, alors le joueur gagne, sinon il perd.
+\end{itemize}
+
+\medskip
+
+On note les évènements suivants :
+
+\begin{description}
+\item[ ] $T$ : \og la fléchette tombe sur la ZONE 3 \fg{} ;
+\item[ ] $G$ : \og le joueur gagne \fg.
+\end{description}
+
+\medskip
+
+\begin{enumerate}
+\item Représenter la situation par un arbre pondéré.
+\item Démontrer que la probabilité de l'évènement $G$ est égale à $\dfrac{2}{9}$.
+\item On sait que le joueur a gagné. Quelle est la probabilité que la fléchette soit tombée sur la ZONE 3 ?
+\end{enumerate}
+
+\subsection*{Partie C : un second jeu}
+
+Un joueur, appelé joueur $\no 1$, lance une fléchette sur le carré précédent. Comme dans la partie B, on admet que la probabilité que la fléchette tombe sur chacune des zones est égale à l'aire de cette zone.
+
+Le joueur gagne une somme égale, en euros, au numéro de la zone. Par exemple, si la fléchette tombe sur la ZONE 3, le joueur gagne 3 euros.
+
+On note $X_{1}$ la variable aléatoire donnant le gain du joueur $\no 1$.
+
+On note respectivement $E(X_{1})$ et $V(X_{1})$ l'espérance et la variance de la variable aléatoire $X_{1}$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Calculer $E(X_{1})$.
+		\item Montrer que $V(X_{1}) = \dfrac{5}{9}$.
+	\end{enumerate}
+\item  Un joueur $\no 2$ et un joueur $\no 3$ jouent à leur tour, dans les mêmes conditions que le joueur $\no 1$. On admet que les parties de ces trois joueurs sont indépendantes les unes des autres.
+
+On note $X_{2}$ et $X_{3}$ les variables aléatoires donnant les gains des joueurs $\no 2$ et $\no 3$. On note $Y$ la variable aléatoire définie par $Y = X_{1} + X_{2} + X_{3}$.
+	\begin{enumerate}
+		\item Déterminer la probabilité que l'on ait $Y = 9$.
+		\item Calculer $E(Y)$.
+		\item Justifier que $V(Y) = \dfrac{5}{3}$.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

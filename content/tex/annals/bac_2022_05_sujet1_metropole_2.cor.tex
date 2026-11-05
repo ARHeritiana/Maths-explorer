@@ -1,0 +1,67 @@
+\medskip
+
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+	\item La droite $\mathcal{D}$ dont une représentation paramétrique est $\left\{\begin{array}{l c l}
+		x&=&1+2t\\y &=& 2 - t\\z&=& 2+2t
+	\end{array}\right.  , t \in \R$ a pour vecteur directeur \(\overrightarrow{u}\begin{pmatrix}2\\-1\\2\end{pmatrix}\).
+	\item Si $B$ appartient à la droite $\mathcal{D}$ alors $\exists t \in \R$ tel que :
+	
+	 $\left\{\begin{array}{l c l} -1&=&1+2t\\3 &=& 2 - t\\0&=& 2+2t
+	\end{array}\right.\iff \left\{\begin{array}{l c l}
+	2t&=&-2\\-t&=&1\\2t&=&-2t\end{array}\right. \iff t=-1 $. Donc $B \in  \mathcal{D}$.
+\item On a $A(-1~;~1~;~3)$ et $B(-1~;~3~;~0)$. Donc \(\overrightarrow{AB}\begin{pmatrix}0\\2\\-3\end{pmatrix}\).
+
+Alors $\vect{AB}.\vect{u}=0\times 2+2\times (-1)+(-3)\times 2=-8$
+\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Le plan $\mathcal{P}$ passant par $A$ est orthogonal à la droite $\mathcal{D}$. Donc $\mathcal{P}$ a pour vecteur normal le vecteur $\vect{u}$ (vecteur directeur de $\mathcal{D}$).
+	
+Son équation cartésienne sera de la forme $ax+by+cz+d=0$, où $(a~;~b~;~c)$ sont les cordonnées d'un vecteur normal au plan.
+	
+En prenant comme vecteur normal à $\mathcal{P}$ le vecteur $\vect{u}$, on obtient : $\mathcal{P}~:$
+
+$2x-y+2z+d=0$. Or $A\in \mathcal{P}$ donc $-2-1+6+d=0$ donc $d=-3$. Donc $\mathcal{P}$ a pour équation $2x-y+2z-3=0$
+		\item Le projeté orthogonal de $A$ sur la droite $\mathcal{D}$, noté $H$, est l'unique point d'intersection de $\mathcal{P}$ et $\mathcal{D}$. Résolvons donc le système suivant : \\
+	$\left\{\begin{array}{l c l} 2x-y + 2z-3&=&0\\x&=&1+2t\\y &=& 2 - t\\z&=& 2+2t \end{array}\right.$. On remplace $x$, $y$ et $z$ dans la première équation :\\
+	$2x-y+2z-3=0\iff 2(1 + 2t)-(2 - t)+2(2 + 2t) - 3 = 0 \iff $
+	
+$2 + 4t  - 2 + t + 4 + 4t = 0 \iff 9t + 1= 0\iff t = -\dfrac{1}{9}$.\\
+	On remplace la valeur de $t$ dans les trois dernières équations :\\
+		$\left\{\begin{array}{l c l} x&=&1+2\times-\dfrac{1}{9}=\dfrac{7}{9} \\y &=& 2 - \left(-\dfrac{1}{9}\right)=\dfrac{19}{9}\\z&=& 2+2 \times \left(-\dfrac{1}{9}\right) =\dfrac{16}{9} \end{array}\right.$. Donc $H\left(\dfrac79~;~\dfrac{19}{9}~;~\dfrac{16}{9}\right)$.
+		\item Déterminons les coordonnées de $\vect{AH}$ avec $A(-1~;~1~;~3)$ et $H\left(\dfrac79~;~\dfrac{19}{9}~;~\dfrac{16}{9}\right)$ : \(\overrightarrow{AH}\begin{pmatrix}\frac{16}{9}\\\frac{10}{9}\\-\frac{11}{9}\end{pmatrix}\).
+
+Donc $\left\| \vect{AH}\right\| =\sqrt{\left(\dfrac{16}{9}\right)^2+\left(\dfrac{10}{9}\right)^2+\left(-\dfrac{11}{9}\right)^2}=\dfrac{\sqrt{477}}{9}=\dfrac{\sqrt{53}}{3}$
+\end{enumerate}
+\item 
+\begin{enumerate}
+	\item Les points $H$ et $B$ appartiennent à $\mathcal{D}$, donc le vecteur $\vect{HB}$ est un vecteur directeur de $\mathcal{D}$, tout comme $\vect{u}$. Donc les vecteurs $\vect{HB}$ et $\vect{u}$ sont colinéaires donc $\exists k \in \R$ tel que \\$\vect{HB}=k\times \vect{u}$.
+	\item D'après les propriétés du produit scalaire, et en utilisant la relation de Chasles, \\ $\vect{AB}.\vect{u}=\left(\vect{AH}+\vect{HB}\right).\vect{u}=\vect{AH}.\vect{u}+ \vect{HB}.\vect{u}$.
+	
+Or les points $A$ et $H$ appartiennent au plan $\mathcal{P}$ normal à la droite $\mathcal{D}$, donc tout vecteur de $\mathcal{P}$ est orthogonal à tout vecteur de $\mathcal{D}$ donc $\vect{AH}\perp \vect{u}$ donc $\vect{AH}.\vect{u}=0$.
+
+Donc $\vect{AB}.\vect{u}=\vect{HB}.\vect{u} = k \times \vect{u}.\vect{u}=k~\vect{u}^2=k~\lVert\vect{u}\rVert^2$ donc $k=\dfrac{\vect{AB}.\vect{u}}{\lVert\vect{u}\rVert^2}$.
+	\item On a \(\overrightarrow{u}\begin{pmatrix}2\\-1\\2\end{pmatrix}\) donc $\lVert\vect{u}\rVert=\sqrt{2^2+(-1)^2+2^2}=\sqrt{9}=3$ et $\vect{AB}.\vect{u}=-8$ donc 
+	
+$k=\dfrac{-8}{3^2}=-\dfrac{8}{9}$.
+
+Donc en posant $H(x~;~y~;~z)$ et $B(-1~;~3~;~0)$ alors \(\overrightarrow{HB}\begin{pmatrix}- 1 - x\\3 - y\\- z\end{pmatrix}\).
+
+De plus $\vect{HB}=k\times \vect{u}=-\dfrac{8}{9}\times \vect{u}$ donc 	$\left\{\begin{array}{l c l}- 1 - x&=&-\dfrac{8}{9}\times 2\\3 - y &=& -\dfrac{8}{9}\times (- 1)\\-z&=&-\dfrac{8}{9}\times 2 \end{array}\right.$
+
+Donc $x=\dfrac{16}{9}-1=\dfrac{7}{9}$ , $y=3-\dfrac{8}{9}=\dfrac{19}{9}$ et $z=\dfrac{16}{9}$. On retrouve les coordonnées du point $H$.
+\end{enumerate}
+		\item Les points $A$, $H$ et $C$ appartiennent au plan $\mathcal{P}$. $H$ est le projeté orthogonal de B sur  $\mathcal{P}$. Le tétraèdre $BAHC$ a pour base le triangle $AHC$ et pour hauteur $BH$.
+
+Donc $\mathcal{V}_{BAHC}=\dfrac{1}{3}\times \mathcal{A}_{AHC}\times BH$ d'où $\mathcal{A}_{AHC}=\dfrac{3\times \mathcal{V}_{BAHC}}{BH}$.
+
+D'après la question \textbf{3. c}, $\vect{HB}=k\times \vect{u}=$ donc \(\overrightarrow{HB}\begin{pmatrix}\frac{16}{9}\\-\frac{8}{9}\\\frac{16}{9}\end{pmatrix}\) donc
+
+$HB=\sqrt{\left(\dfrac{16}{9}\right)^2+\left(-\dfrac{8}{9}\right)^2+\left(\dfrac{16}{9}\right)^2} = \dfrac{8}{3}$
+
+Donc  $\mathcal{A}_{AHC}=\dfrac{3\times \dfrac{8}{9}}{\dfrac{8}{3}}=1$ unité d'aire.
+\end{enumerate}
+
+\bigskip

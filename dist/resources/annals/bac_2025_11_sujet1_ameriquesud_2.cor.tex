@@ -1,0 +1,238 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet1_ameriquesud_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+
+
+
+
+\begin{enumerate}
+\item Deux équipes de footballeurs de 22 et 25 joueurs échangent une poignée de main à la fin d'un match. Chaque joueur d'une équipe serre une seule fois la main de chaque joueur de l'autre équipe.
+
+\textbf{Affirmation 1}
+
+47 poignées de mains ont été échangées.
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+Chaque joueur de l'équipe de 22 joueurs serre 25 mains; cela fait donc en tout $22\times 25$ soit 550 poignées de main.
+
+\hfill \textbf{Affirmation 1 fausse}
+\end{tabular}
+
+\medskip
+
+\item Une course oppose 18 concurrents. On récompense indistinctement les trois premiers en offrant le même prix à chacun.
+
+\textbf{Affirmation 2}
+
+Il y a \np{4896} possibilités de distribuer ces prix.
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+Comme on récompense  indistinctement les trois premiers en offrant le même prix à chacun, il faut chercher le nombre d'ensembles à 3 éléments parmi 18 soit:
+$\ds\binom{18}{3}= 816$.
+
+\hfill \textbf{Affirmation 2 fausse}
+\end{tabular}
+
+\medskip
+
+\item Une association organise une compétition de course de haies qui permettra d'établir un podium (le podium est constitué des trois meilleurs sportifs classés dans leur ordre d'arrivée). Sept sportifs participent au tournoi. Jacques est l'un d'entre eux.
+
+\textbf{Affirmation 3}
+
+Il y a 90 podiums différents dont Jacques fait partie.
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+Jacques est sur le podium donc il a décroché une des 3 premières places.
+
+Si Jacques finit 1\ier{}, il y a 6 possibilités pour le 2\ieme{} et 5 possibilités pour le 3\ieme; cela fait 30 podiums.
+
+Si Jacques finit 2\ieme{}, il y a 6 possibilités pour le 1\ier{} et 5 possibilités pour le 3\ieme; cela fait 30 podiums.
+
+Si Jacques finit 3\ieme{}, il y a 6 possibilités pour le 1\ier{} et 5 possibilités pour le 2\ieme; cela fait 30 podiums.
+
+Il y a 90 podiums différents dont Jacques fait partie.
+
+\hfill \textbf{Affirmation 3 vraie}
+\end{tabular}
+
+
+\item Soit $X_1$ et $X_2$ deux variables aléatoires de même loi donnée par le tableau ci-dessous :
+
+\begin{center}
+\begin{tabularx}{0.5\linewidth}{|c|*{4}{>{\centering \arraybackslash}X|}}\hline
+$x_i$&$-2$&$-1$&2&5\\ \hline
+$P(X = x_i)$& $0,1$ & $0,4$ & $0,3$ & $0,2$\\ \hline
+\end{tabularx}
+\end{center}
+
+On suppose que $X_1$ et $X_2$ sont indépendantes et on considère $Y$ la variable aléatoire somme de ces deux variables aléatoires.
+
+\textbf{Affirmation 4}
+
+$P(Y=4) = 0,25$.
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+
+Les variables aléatoires $X_1$ et $X_2$ sont indépendantes donc\\
+$P\left ( \left (X_1=x_i\right ) \cap \left (X_2=x_j\right )\right ) = P\left (X_1=x_i\right ) \times P\left (X_2=x_j\right )$.
+
+L'événement $\left (Y=4\right )$ est réalisé dans 3 cas disjoints: \\
+$\left (X_1=-1 \text{ et }X_2=5\right )$, $\left (X_1=2 \text{ et }X_2=2\right )$, $\left (X_1=5 \text{ et }X_2=-1\right )$.
+
+$\begin{aligned}
+P\left (Y=4\right)
+& = P\left (\left(X_1=-1\right) \cap \left (X_2=5\right)\right) + P\left (\left (X_1=2\right ) \cap \left (X_2=2\right)\right) + P\left (\left (X_1=5\right ) \cap \left (X_2=-1\right )\right )\\
+& = P\left(X_1=-1\right) \times P\left(X_2=5\right) + P\left(X_1=2\right) \times P\left(X_2=2\right) + P\left(X_1=5\right) \times P\left (X_2=-1\right)\\
+& = 0,4\times 0,2 + 0,3\times 0,3 + 0,2\times 0,4 = 0,25.
+\end{aligned}$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\hfill \textbf{Affirmation 4 vraie}
+\end{tabular}
+
+\medskip
+
+\item Un nageur s'entraîne dans l'objectif de parcourir le $50$ mètres nage libre en moins de $25$ secondes. Au fil des entraînements, il s'avère que la probabilité qu'il y parvienne s'établit à $0,85$.
+Il effectue, sur une journée, $20$ parcours chronométrés sur $50$ mètres. On note $X$ la variable  aléatoire qui compte le nombre de fois où il nage cette distance en moins de $25$ secondes lors de cette journée.
+
+On admet que $X$ suit la loi binomiale de paramètres $n = 20$ et $p = 0,85$.
+
+\textbf{Affirmation 5}
+
+Sachant qu'il a atteint au moins $15$ fois son objectif, une valeur approchée à $10^{-3}$ de la probabilité qu'il l'ait atteint au moins 18 fois est $0,434$.
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+La probabilité cherchée est:
+$P_{(X\geqslant 15)} \left (X\geqslant 18\right )
+= \dfrac{P\left (\left (X\geqslant 15\right )\cap \left (X\geqslant 18\right )\right )}{P\left (X\geqslant 15\right )}
+= \dfrac{P\left (X\geqslant 18\right )}{P\left (X\geqslant 15\right )}$
+
+À la calculatrice, on trouve: \\
+$P\left (X\geqslant 15\right )\approx \np{0,9327}$ et $P\left (X\geqslant 18\right )\approx \np{0,4049}$ donc $ \dfrac{P\left (X\geqslant 18\right )}{P\left (X\geqslant 15\right )}\approx 0,434$.
+
+\hfill \textbf{Affirmation 5 vraie}
+\end{tabular}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

@@ -1,0 +1,102 @@
+\medskip
+
+
+
+
+
+\begin{enumerate}
+\item Un employé reçoit des appels téléphoniques.
+
+On estime que la probabilité qu'un appel dure plus de cinq minutes est égale à 0,3.\\
+On suppose que les durées des différents appels sont indépendantes.\\
+Ce matin, l'employé reçoit deux appels.
+
+\smallskip 
+
+
+
+\begin{list}{\textbullet}{On représente la situation au moyen d'un arbre de probabilité en appelant:}
+\item $P$ l'événement \og l'appel a duré plus de 5 minutes \fg{};
+\item $M$ l'événement \og l'appel n'a pas duré plus de 5 minutes \fg{}.
+\end{list}
+
+\begin{center}
+\bigskip
+  \pstree[treemode=R,nodesepA=0pt,nodesepB=4pt,levelsep=2.5cm]{\TR{}}
+ {
+ 	\pstree[nodesepA=4pt]{\TR{$P$}\ncput*{$0,3$}}
+ 	  { 
+ 		  \TR{$P$}~{\blue $\longrightarrow PP\quad \red 0,3\times 0,3=0,09$}\ncput*{$0,3$}
+ 		  \TR{$M$}~{\blue $\longrightarrow PM\quad \red 0,3\times 0,7=0,21$}\ncput*{$0,7$}	   
+ 	  }
+ 	\pstree[nodesepA=4pt]{\TR{$M$}\ncput*{$0,7$}}
+ 	  {
+ 		  \TR{$P$}~{\blue $\longrightarrow MP\quad \red 0,7\times 0,3=0,21$}\ncput*{$0,3$}
+ 		  \TR{$M$}~{\blue $\longrightarrow MM\quad \red 0,7\times 0,7=0,49$}\ncput*{$0,7$}	   
+      }
+}
+\bigskip
+\end{center}
+
+\textbf{Affirmation 1 :}
+
+La probabilité que les deux appels durent tous les deux plus de cinq minutes est égale à 0,09.
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+L'événement \og les deux appels durent tous les deux plus de cinq minutes\fg{} correspond à l'évènement $PP$ dont la probabilité est: $0,3\times 0,3=0,09$.
+
+\hfill\textbf{Affirmation 1 vraie}
+\end{tabular}
+
+\medskip 
+
+\textbf{Affirmation 2 :}
+
+La probabilité qu'un appel exactement sur les deux dure plus de cinq minutes est égale à 0,21.
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+L'événement \og un appel exactement sur les deux dure plus de cinq minutes\fg{} correspond à la réunion des évènements incompatibles $PM$ et $MP$.
+
+La probabilité de chacun de ces événements est $0,3\times 0,7=0,21$, donc la probabilité cherchée est de $0,21+0,21=0,42$.
+
+\hfill\textbf{Affirmation 2 fausse}
+\end{tabular}
+
+
+\medskip 
+
+\item Le gérant d'une piscine s'intéresse à la présence de bactéries dans l'eau. Il effectue un prélèvement. Ce prélèvement montre que la concentration de bactéries est égale à $\np{1000}$ bactéries par millilitre. Le seuil maximal autorisé est égal à $\np{1500}$ bactéries par millilitre.
+
+On admet que la concentration de bactéries est modélisée par la fonction $f$ définie sur l'intervalle~$[0~; ~+\infty[$ par :
+$f(t) = 1,1^{t}$,
+où $f(t)$ désigne la concentration, en milliers de bactéries par millilitre, et $t$ désigne la durée, en heure, écoulée depuis que le prélèvement a été effectué.
+
+\smallskip 
+
+\textbf{Affirmation 3 :}
+
+La fonction $f$ est croissante sur l'intervalle $[0~;~+\infty[$.
+
+\smallskip 
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+La fonction $f$ est une fonction exponentielle de type $t \longmapsto a^t$, avec $a=1,1$; or $1,1>1$ donc la fonction $f$ est strictement croissante.
+
+\hfill\textbf{Affirmation 3 vraie}
+\end{tabular}
+
+\medskip 
+
+\textbf{Affirmation 4 :}
+
+La concentration de bactéries deux heures après le prélèvement est inférieure au seuil maximal autorisé.
+
+\smallskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+$f(2)=1,1^2=1,21$; donc la concentration de bactéries deux heures après le prélèvement est de $\np{1210}$ bactéries, donc inférieure au seuil maximal autorisé. 
+
+\hfill\textbf{Affirmation 4 vraie}
+\end{tabular}
+
+\end{enumerate}

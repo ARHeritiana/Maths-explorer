@@ -1,0 +1,40 @@
+\medskip
+
+Un complexe cinématographique a ouvert ses portes en 2018 en périphérie d'une ville.
+En 2018, le complexe a accueilli 180 mille spectateurs. La gestionnaire du complexe prévoit une augmentation de 4\,\% par an de la fréquentation du complexe.
+
+Soit $n$ un entier naturel. On note $u_n$ le nombre de spectateurs, en milliers, du complexe cinématographique pour l'année $(2018+n)$. On a donc $u_0=180$.
+
+\medskip
+
+\begin{enumerate}
+\item  Étude de la suite $\left(u_n\right)$.
+	\begin{enumerate}
+		\item  Calculer le nombre de spectateurs en 2019.
+		\item Justifier que la suite $\left(u_n\right)$ est géométrique. Préciser sa raison.
+		\item Exprimer $u_n$ en fonction de $n$, pour tout entier naturel $n$.
+	\end{enumerate}
+\item Un cinéma était déjà installé au centre-ville. En 2018, il a accueilli \np{260 000} spectateurs. Avec l'ouverture du complexe, le cinéma du centre-ville prévoit de perdre \np{10 000} spectateurs par an.
+Pour $n$, entier naturel, on note $v_n$ le nombre de spectateurs, en milliers, accueillis dans le cinéma du centre-ville l'année $(2018 + n)$. On a donc $v_0 = 260$.
+	\begin{enumerate}
+		\item Quelle est la nature de la suite $\left(v_n\right)$ ?
+		\item On donne le programme ci-dessous, écrit en Python.
+
+\begin{lstlisting}[style=python]
+def cinema() :
+	n = 0
+	u = 180
+	v = 260
+	while u < v :
+		n = n + 1
+		u = 1.04*u
+		v = v - 10
+	return n
+\end{lstlisting}
+	\end{enumerate}
+Quelle est la valeur renvoyée lors de l'exécution de la fonction cinema() ? 
+
+L'interpréter dans le contexte de l'exercice.
+\end{enumerate}
+
+\vspace{0,5cm}

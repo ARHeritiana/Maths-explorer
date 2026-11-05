@@ -1,0 +1,162 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet1_reunion_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On considère la suite $\left(u_n\right)$ définie par $u_0 = 3$ et, pour tout entier naturel $n$,
+\[u_{n+1} = \dfrac12u_n + \dfrac12n + 1.\]
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+\emph{Cette partie est un questionnaire à choix multiples.\\ Pour chacune des questions suivantes, une seule des quatre réponses proposées est exacte.\\Pour répondre, indiquer sur la copie le numéro de la question et la lettre de la réponse choisie.\\Aucune justification n'est demandée.\\Une réponse fausse, une absence de réponse, ou une réponse multiple, ne rapporte ni n'enlève de point.}
+
+\medskip
+
+\begin{enumerate}
+\item La valeur de $u_2$ est égale à :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} $\dfrac{11}{4}$& \textbf{b.~~} $\dfrac{13}{2}$\\
+\textbf{c.~~} 3,5&\textbf{b.~~}2,7
+\end{tabularx}
+\end{center}
+
+\item La suite $\left(v_n\right)$ définie, pour tout entier naturel $n$, par $v_n = u_n - n$ est :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} arithmétique de raison $\dfrac12$&\textbf{b.~~} géométrique de raison $\dfrac12$\\
+\textbf{c.~~}  constante. &\textbf{d.~~}  ni arithmétique, ni géométrique.
+\end{tabularx}
+\end{center}
+
+\item On considère la fonction ci-dessous, écrite de manière incomplète en langage Python.
+
+\begin{minipage}{0.58\linewidth}
+$n$ désigne un entier naturel non nul. 
+
+On rappelle qu'en langage Python
+\og i in range (n)\fg{} signifie que i varie de 0 à $n-1$.
+\end{minipage}\hfill
+\begin{minipage}{0.38\linewidth}
+\begin{tabular}{|c|l|}\hline
+1&def terme (n)\\
+2&\qquad U=3\\
+3&\qquad for i in range(n): \\
+4& \dotfill \\
+5&\qquad return U\\ \hline
+\end{tabular}
+\end{minipage}
+
+Pour que terme (n) renvoie la valeur de $u_n$, on peut compléter la ligne 4 par : 
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}U = U/2 + (i$+$1)/2+1	&\textbf{b.~~} U = U/2 + n/2 + 1\\
+\textbf{c.~~}U = U/2 + (i$-$1)/2+1 	&\textbf{d.~~} U = U/2 + i/2 + 1
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item Démontrer par récurrence que pour tout entier naturel $n$ :
+\[n \leqslant u_n \leqslant n + 3.\]
+
+\item En déduire la limite de la suite $\left(u_n\right)$.
+\item Déterminer la limite de la suite $\left(\dfrac{u_n}{n}\right)$.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

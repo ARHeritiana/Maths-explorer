@@ -1,0 +1,109 @@
+\medskip
+
+\begin{center}
+\psset{unit=0.9cm,radius=0pt}
+\begin{pspicture}(0,-1)(9,7)
+
+
+\Cnode*(0.5,0.4){A} \Cnode*(5.5,0){B} 
+\Cnode*(7.5,1.4){C} \Cnode*(2.5,1.8){D}
+\Cnode*(0.5,5.4){E} \Cnode*(5.5,5){F} 
+\Cnode*(7.5,6.4){G} \Cnode*(2.5,6.8){H}
+\Cnode*[radius=2pt](3,5.2){I}
+\Cnode*[radius=2pt](1.5,3.6){K}
+\Cnode*[radius=2pt](4,3.4){O}
+
+\uput[dl](A){A} \uput[dr](B){B} \uput[r](C){C} 
+\uput[ur](D){D} \uput[ul](E){E} \uput[u](F){F} 
+\uput[ur](G){G} \uput[u](H){H} \uput[u](I){I}
+\uput[dr](O){O}
+\uput[l](K){K}
+
+\pspolygon(A)(B)(F)(E)
+\psline(B)(C)(G)(F)
+\psline(G)(H)(E)
+\psline(A)(I)(G)
+\psline[linestyle=dashed](A)(G)
+\psline[linestyle=dashed](A)(D)(H)
+\psline[linestyle=dashed](D)(C)
+\end{pspicture}
+\end{center}
+
+\medskip
+
+\textbf{Partie A}
+		
+\begin{enumerate}
+\item On a les coordonnées suivantes : A $(0~;~0~;~0)$ (origine du repère), B $(1~;~0~;~0)$ et 
+
+G $(1~;~1~;~1)$.
+
+\item Les points A, I et G ne sont pas alignés, donc $ \vect{\mathrm{AI}} $ et $ \vect{\mathrm{AG}} $ sont deux vecteurs formant une base de (AIG).
+
+On a les coordonnées suivantes : $ \vect{\mathrm{AI}} \begin{pmatrix} 0,5\\0\\1 \end{pmatrix} $, $ \vect{\mathrm{AG}} \begin{pmatrix} 1\\1\\1 \end{pmatrix} $ et $ \vect{\mathrm{BK}} \begin{pmatrix} -1\\0,5\\0,5 \end{pmatrix} $.
+
+Le repère est orthonormé (car ABCDEFGH est un cube d'arête 1), donc on calcule les produits scalaires avec les coordonnées :
+
+$ \vect{\mathrm{BK}}\cdot\vect{\mathrm{AI}} = -1 \times 0,5 + 0,5 \times 0 + 0,5 \times 1 = 0$ : les vecteurs $ \vect{\mathrm{BK}}$ et $\vect{\mathrm{AI}}$ sont orthogonaux.
+
+$ \vect{\mathrm{BK}}\cdot\vect{\mathrm{AG}} = -1 \times 1 + 0,5 \times 1 + 0,5 \times 1 = 0$ : les vecteurs $ \vect{\mathrm{BK}}$ et $\vect{\mathrm{AG}}$ sont orthogonaux.
+
+$ \vect{\mathrm{BK}}$ étant orthogonal à deux vecteurs formant une base de (AIG), on en déduit que la droite (BK) est bien orthogonale à (AIG).
+
+\item Puisque (BK) est orthogonale à (AIG), alors un vecteur directeur de (BK) est un vecteur normal à (AIG), notamment, $\vect{n} = -2\vect{\mathrm{BK}}$ de coordonnées $\begin{pmatrix} 2\\-1\\-1 \end{pmatrix} $ est normal à (AIG). Ce plan a donc une équation de la forme :
+\quad
+$2x - y - z + d=0$.
+
+Comme A $ (0~;~0~;~0) \in $(AIG), on en déduit que $d$ est tel que :
+
+$\begin{aligned}[t]  2x_\mathrm{A} - y_\mathrm{A} - z_\mathrm{A} + d=0 &\iff 2\times 0 - 0 - 0 + d = 0\\&\iff d =0\end{aligned}$
+
+Finalement, une équation du plan (AIG) est donc bien $2x-y-z = 0$.
+
+\item La droite (BK) est dirigée par $ \vect{\mathrm{BK}} \begin{pmatrix} -1\\0,5\\0,5 \end{pmatrix}$ et passe par B $ (1~;~0~;~0)$, donc elle admet pour représentation paramétrique :
+\quad
+$ \left\{\begin{array}{l} x = 1 - t\\y = 0 + 0,5t\\z = 0 + 0,5t  \end{array}\right. \quad t \in \R \iff \left\{\begin{array}{l c r} x &=& 1 - t\\y &=&\phantom{1 -}0,5t\\z &=&\phantom{1 -}0,5t \end{array}\right. \quad t \in \R$.
+
+\item Le point L dont on donne les coordonnées est clairement le point de paramètre $ \dfrac{2}{3} $ dans la représentation paramétrique établie à la question précédente, donc $\mathrm{L} \in (\mathrm{BK})$.
+
+Vérifions si L est un point du plan (AIG) : $2x_\mathrm{L} - y_\mathrm{L} -z_\mathrm{L} = 2\times \dfrac{1}{3} - \dfrac{1}{3} - \dfrac{1}{3} = 0$.
+
+Les coordonnées de L vérifient l'équation du plan : $\mathrm{L} \in (\mathrm{AIG})$.
+
+L est donc le point d'intersection de la droite (BK) et du plan (AIG) (qui sont sécants, puisque perpendiculaires), et donc L est le projeté orthogonal de B sur le plan (AIG).
+
+\item La distance de B à (AIG) est donc la distance (BL), et comme le repère est orthonormé :
+
+$\begin{aligned}[t] \mathrm{BL} &= \sqrt{\left(x_\mathrm{L} - x_\mathrm{B}\right)^2+\left(y_\mathrm{L} - y_\mathrm{B}\right)^2+\left(z_\mathrm{L} - z_\mathrm{B}\right)^2 }
+			 = \sqrt{\left(\dfrac{1}{3}-1\right)^2+\left(\dfrac{1}{3}-0\right)^2+\left(\dfrac{1}{3}-0\right)^2 }\\
+			 &=  \sqrt{\left(-\dfrac{2}{3}\right)^2+\left(\dfrac{1}{3}\right)^2+\left(\dfrac{1}{3}\right)^2 } = \sqrt{\dfrac{4 + 1 + 1}{9}} = \dfrac{\sqrt{6}}{3}\end{aligned}$
+		\end{enumerate}
+
+		\textbf{Partie B}
+		\begin{enumerate}
+			\item \begin{enumerate}
+				\item Dans le tétraèdre ABIG, si on considère AIB comme base, alors cette base est incluse dans le plan (AIB), qui contient la face avant du cube (la face ABFE), et donc l'arête [GF] est bien perpendiculaire à ce plan, puisque ABCDEFGH est un cube.
+				\item Le tétraèdre ABIG a donc pour volume $V_{\mathrm{ABIG}} = \dfrac{1}{3} \times b_{\mathrm{ABI}} \times h_{\mathrm{GF}} = \dfrac{1}{3} \times \dfrac{1 \times 1}{2} \times 1 = \dfrac{1}{6}$.
+
+(Le triangle ABI a une base [AB] de longueur 1 et la hauteur correspondante, issue de I est de même longueur que [AE], donc de longueur 1 aussi).
+	\end{enumerate}
+
+\item Dans le triangle isocèle AIG, la hauteur principale issue de I est donc aussi une médiane, et elle passe donc par le milieu de la base principale [AG], c'est à dire par le point O.
+
+On détermine la distance IO : $\mathrm{IO} = \sqrt{0^2 + 0,5^2 + (-0,5)^2} = \sqrt{0,5} = \dfrac{\sqrt{2}}{2}$.
+
+L'aire du triangle est donc $A_\mathrm{AIG} = \dfrac{\mathrm{AG} \times \mathrm{OI}}{2} = \dfrac{\sqrt{3}\times \dfrac{\sqrt{2}}{2}}{2} = \dfrac{\sqrt{6}}{4}$.
+
+\item Le tétraèdre AIBG dont on a déjà calculé le volume peut aussi être vu comme ayant pour base le triangle AGI et comme hauteur correspondante, la hauteur issue de B, donc la longueur $h$ est la distance séparant B du plan (AGI).
+
+On a donc : $\begin{aligned}[t] V_\mathrm{ABIG} = \dfrac{1}{6} &\iff \dfrac{1}{3}\times A_\mathrm{AIG} \times h = \dfrac{1}{6}\\
+			&\iff h = \dfrac{3}{A_\mathrm{AIG}\times 6 }\\
+			&\iff h = \dfrac{1}{2A_\mathrm{AIG}}\\
+			&\iff h = \dfrac{1}{2\times \dfrac{\sqrt{6}}{4}}\\
+			&\iff h = \dfrac{2}{\sqrt{6}}\\
+			&\iff h = \dfrac{2\sqrt{6}}{6}\\
+			&\iff h = \dfrac{\sqrt{6}}{3}
+			\end{aligned}$
+
+On retrouve bien une distance de B au plan (AIG) qui est $ \dfrac{\sqrt{6}}{3} $.
+\end{enumerate}

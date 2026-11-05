@@ -1,0 +1,104 @@
+\medskip
+
+On décide d'étudier le rayonnement radioactif du polonium lors de la désintégration des noyaux atomiques au cours du temps.
+
+Au début de l'expérience, on dispose d'un morceau de $2$~g de polonium.
+
+On sait que $1$~g de polonium contient $3 \times 10^{21}$ noyaux atomiques.
+
+On admet que, au bout de 24 heures, $0,5\,\%$ des noyaux se sont désintégrés et que, pour compenser cette disparition, on ajoute alors $0,005$ g de polonium.
+
+On modélise la situation à l'aide d'une suite $\left(v_n\right)_{n \in \N}$ ; on note $v_0$ le nombre de noyaux contenus dans le polonium au début de l'expérience. 
+
+Pour $n \geqslant 1,\: v_n$ désigne le nombre de noyaux contenus dans le polonium au bout de $n$ jours écoulés.
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+$v_0 = 2 \times 3 \times 10^{21} = 6 \times 10^{21}$noyaux atomiques.
+		\item 
+Si $v_n$ est le nombre de noyaux contenus dans le polonium au bout de $n$ jours, le lendemain 0,5\,\% ont disparu, il reste donc $v_n \left( 1 -\dfrac{0,5}{100}\right)  = v_n \times (1 - 0,005) = 0,995v_n$ que l'on augmente de 0,005. Donc $v_{n+1} = 0,995v_n + 0,005 \times 3 \times 10^{21} = 0,995v_n + 0,015 \times 10^{21}$ ou encore 
+
+\[v_{n+1} = 0,995v_n + 1,5 \times 10^{19}.\]
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+\emph{Initialisation} :
+
+Pour $n = 0,\:u_0 = 6\times 10^{21}$ ;
+
+Pour $n = 1$, la relation de récurrence donne :
+
+$u_1 = 0,995\times 6\times 10^{21}v + 1,5 \times 10^{19} = 5,97 \times 10^{21} + 1,5 \times 10^{19} = 597 \times 10^{19} + 1,5 \times 10^{19} = 598,5 \times 10^{19} = 5,985 \times 10^{21}$.
+
+On a donc $0\leqslant v_{1}  \leqslant v_0$. la proposition est vraie au rang $n = 0$.
+
+\emph{Hérédité} : soit $n \in \N$ tel que $0 \leqslant v_{n+1}  \leqslant v_n$. On peut écrire successivement :	
+
+$0 \leqslant v_{n+1} \leqslant v_n \iff 0,995\times 0 \leqslant 0,995v_{n+1} \leqslant 0995v_n \iff 0 + 1,5 \times 10^{19} \leqslant v_{n+1} \times 0,995 + 1,5 \times 10^{19} \leqslant 0,995v_n + 1,5 \times 10^{19}$ soit $1,5 \times 10^{19} \leqslant u_{n+2} \leqslant u_{n+1}$. La proposition est donc vraie au rang $n + 1$.
+
+\emph{Conclusion }: la proposition est vraie au rang 0 et si elle est vraie au rang $n$ elle l'est aussi au rang $n + 1$ : d'après le principe de récurrence, pour tout $n \in \N$ :
+\[0 \leqslant v_{n+1}  \leqslant v_n.\]
+
+		\item 
+		
+La partie gauche de la proposition montre que la suite $\left(v_n\right)_{n\in \N}$ est minorée par $0$ et la partie de droite montre que la suite $\left(v_n\right)_{n\in \N}$ est décroissante, donc la suite $\left(v_n\right)_{n\in \N}$ est convergente vers un réel $\ell \geqslant 0$.
+	\end{enumerate}
+\item On considère la suite $\left(u_n\right)_{n \in \N}$ définie, pour tout entier naturel $n$, par: \[u_n = v_n - 3 \times 10^{21}.\]
+	\begin{enumerate}
+		\item 
+D'après la définition on a :
+
+$u_{n+1} = v_{n+1} - 3 \times 10^{21} = 0,995v_n + 1,5 \times 10^{19} - 3 \times 10^{21} = 0,995v_n + 1,5 \times 10^{19} - 300 \times 10^{19}$, soit $u_{n+1} = 0,995v_n - 298,5 \times 10^{19} = 0,995v_n - 2,985 \times 10^{21} = 0,995v_n - 3 \times 0,995\times 10^{21} = 0,995\left(v_n - 3\times 10^{21} \right) = 0,995 u_n$.
+
+L'égalité $u_{n+} = 0,995u_n$, vraie pour tout $n \in \N$ montre que la suite $\left(u_n\right)_{n \in \N}$ est géométrique de raison $0,995$, de premier terme $u_0 = v_0 - 3 \times 10^{21} = 6 \times 10^{21} - 3 \times 10^{21} = 3 \times 10^{21}$.
+		\item 
+On sait que le terme général de la suite $\left(u_n\right)_{n \in \N}$ est $u_n = u_0 \times 0,995^n = 3 \times 10^{21} \times 0,995^n$.
+
+Or $u_n = v_n - 3 \times 10^{21} \iff v_n = u_n + 3 \times 10^{21} = 3 \times 10^{21} \times 0,995^n + 3 \times 10^{21} = 3 \times 10^{21}\left(0,995^n + 1\right)$.
+
+
+		\item 
+		Comme $- 1 < 0,995 < 1$, on sait que $\displaystyle\lim_{n \to + \infty} 0,995^n = 0$, donc $\displaystyle\lim_{n \to + \infty}0,995^n + 1 = 1$ et enfin $\displaystyle\lim_{n \to + \infty}v_n = 3 \times 10^{21}$.
+	\end{enumerate}
+\item 
+Il faut résoudre l'inéquation :
+
+$v_n < 4,5 \times 10^{21} \iff 3 \times 10^{21}\left(0,995^n + 1\right) < 4,5 \times 10^{21} \iff 3\left(0,995^n + 1\right) < 4,5 \iff 0,995^n + 1 < 1,5 \iff 0,995^n < 0,5 \iff n \ln 0,995 < \ln 0,5 \iff n > \dfrac{\ln 0,5}{\ln 0,995}$ (car $\ln 0,995 < 0$).
+
+La calculatrice donne $\dfrac{\ln 0,5}{\ln 0,995} \approx 138,3$.
+
+Le nombre de noyaux de polonium sera inférieur à $4,5 \times 10^{21}$ au bout de 139 jours.
+\item 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	\begin{enumerate}
+		\item 
+Pour définir V on peut utiliser la définition ou la formule explicite, soit 
+
+V = 0.995*V + 1.5*10**19 ou
+
+V= 3*10**21*(0.995**(k+1)+1)
+		\item 
+52 semaines à 7 jours représentent 364 jours. Il faut donc écrire noyaux(364).
+	\end{enumerate}
+\end{enumerate}
+
+\medskip

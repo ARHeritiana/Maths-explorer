@@ -1,0 +1,48 @@
+\medskip
+
+Lorsqu'il s'entraîne au tennis, Roger utilise un lance-balle.
+
+Cette machine lance les balles soit sur le coup droit soit sur le revers du joueur.
+On la remplit de balles et on la programme de la façon suivante : deux tiers des
+balles seront lancées sur le coup droit du joueur, le reste sur son revers.
+On s'intéresse à la réussite des frappes de Roger pendant une séance
+d'entraînement.
+
+\begin{description}
+\item[]On note $D$ l'évènement : \og le joueur reçoit la balle sur son coup droit \fg.
+
+\item[]On note $\overline{D}$ l'évènement contraire de l'évènement D.
+\end{description}
+
+Roger réussit $\dfrac{9}{10}$ de ses coups droits et 75\,\% de ses revers.
+
+On note $S$ l'évènement : \og La frappe de Roger est un succès \fg.
+
+\medskip
+
+\begin{enumerate}
+\item Donner $ p\left(\overline{D}\right)$.
+\item Compléter l'arbre pondéré situé ci-dessous représentant la situation.
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,levelsep =3cm,labelsep=0.51pt}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$D$~}\taput{$\frac{2}{3}$}}
+	{
+	\TR{$S$}\taput{$\dots$}
+	\TR{$\overline{S}$}\tbput{$\dots$}
+	}
+\pstree{\TR{$\overline{D}$~}\tbput{$\dots$}}
+	{\TR{$S$}\taput{$\dots$}
+	\TR{$\overline{S}$}\tbput{$\dots$}
+	}
+}
+\end{center}
+
+
+\item Calculer $p\left(\overline{D}\cap S\right)$. Interpréter ce résultat dans le contexte de l'exercice.
+\item Montrer que la probabilité que la frappe de Roger soit un succès est égale à 0,85.
+\item Sachant que la frappe que vient de réaliser Roger est un succès, calculer la probabilité que ce soit sur un revers. Arrondir le résultat au centième.
+\end{enumerate}
+
+\vspace{0,5cm}

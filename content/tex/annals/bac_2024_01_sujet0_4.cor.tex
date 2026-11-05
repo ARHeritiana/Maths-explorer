@@ -1,0 +1,124 @@
+\begin{multicols}{2}
+~\\
+On considère le prisme droit ABFEDCGH tel que $\mathrm{AB} = \mathrm{AD}$.\\
+
+Sa base ABFE est un trapèze rectangle en A, vérifiant $\vect{\mathrm{BF}} = \dfrac{1}{2} \vect{\mathrm{AE}}$.\\
+
+On note I le milieu du segment [EF].\\
+
+On note J le milieu du segment [AE].\\
+
+On associe à ce prisme le repère orthonormé $\left(\text{A}~;~ \vect{\imath\vphantom{k}}, \vect{\jmath\vphantom{k}}, \vect{k}\right)$ tel que :\\
+$\vect{\imath} = \vect{\mathrm{AB}} ;\quad \vect{\jmath} = \vect{\mathrm{AD}} ;\quad \vect{k} = \vect{\mathrm{AJ}}$
+
+\vfill\null
+
+\columnbreak
+
+\scalebox{0.7}{
+\psset{unit=1cm,radius=2pt}
+\def\xmin{-1} \def\xmax{8} \def\ymin{-1} \def\ymax{10.5}
+\begin{pspicture*}(\xmin,\ymin)(\xmax,\ymax)
+
+\Cnode*(0,0){A} \Cnode*(4,-0.5){B} \Cnode*(7,0.5){C} \Cnode*(3,1){D} 
+\uput[dl](A){A} \uput[d](B){B} \uput[r](C){C} \uput[ur](D){D} 
+\Cnode*(0,9){E} \Cnode*(4,4){F} \Cnode*(7,5){G} \Cnode*(3,10){H}
+\uput[ul](E){E} \uput[80](F){F} \uput[60](G){G} \uput[u](H){H} 
+\Cnode*[radius=2pt](0,4.5){J} \Cnode*[radius=2pt](2,6.5){I} 
+\uput[r](J){J} \uput[ur](I){I}
+\psline(B)(C)(G)(F)(B)(A)(E)(H)(G) \psline(E)(F)
+\psline[linestyle=dashed](C)(D)(H) \psline[linestyle=dashed](A)(D)
+\end{pspicture*}
+}
+\end{multicols}
+
+\begin{enumerate}
+
+\item On donne les coordonnées de quatre vecteurs dans la base $\left(\vect{\imath\vphantom{k}}, \vect{\jmath\vphantom{k}}, \vect{k}\right)$. \\
+Lequel est un vecteur normal au plan (ABG)?
+
+	\begin{tabularx}{\linewidth}{*{4}{>{\bfseries\arraybackslash}p{5mm}@{}X}}
+		a.&$\vect{n} \begin{pmatrix}1 \\ 1 \\ 1\end{pmatrix}$&
+		b.&$\vect{n} \begin{pmatrix}-1 \\ 1 \\ 1\end{pmatrix}$&
+		c.&$\vect{n} \begin{pmatrix}0 \\ -1 \\ 1\end{pmatrix}$&
+		d.&$\vect{n} \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}$\\
+	\end{tabularx}
+
+Le plan (ABG) a pour vecteurs directeurs $\vectt{AB}$ et $\vectt{BG}$.
+
+$\vectt{AB}$ a pour coordonnées $\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}$ et\\
+$\vectt{BG} = \vectt{BC}+\vectt{CG} = \vectt{AD}+\vectt{AJ}$ donc $\vectt{BG}$ a pour coordonnées  $ \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}$.
+
+On cherche donc, parmi les trois vecteurs proposés, celui qui est orthogonal à la fois à $\vectt{AB}$ et à $\vectt{BG}$.
+Pour $\vect{n} \begin{pmatrix}0 \\ -1 \\ 1\end{pmatrix}$, on a:\\
+$\vect{n}\cdot\vectt{AB}= 0\times 1+(-1)\times 0+1\times 0=0$ donc $\vect{n}\perp \vectt{AB}$;\\
+$\vect{n}\cdot\vectt{BG}= 0\times 0+(-1)\times 1+1\times 1=0$ donc $\vect{n}\perp \vectt{BG}$
+
+\hfill\textbf{Réponse c.}
+
+	\item Parmi les droites suivantes, laquelle est parallèle à la droite (IJ) ?
+
+	\begin{tabularx}{\linewidth}{*{4}{>{\bfseries\arraybackslash}p{5mm}@{}X}}
+		a.&(DG)&
+		b.&(BD)&
+		c.&(AG)&
+		d.&(FG)\\
+	\end{tabularx}
+
+La droite (IJ) est parallèle à la droite (AF) (droite des milieux dans le triangle AEF).
+
+Les vecteurs $\vectt{AF}$ et $\vectt{DG}$ sont égaux donc les droites (AF) et (DG) sont parallèles.
+
+On en déduit que  les droites (IJ) et (DG) sont parallèles.
+
+\hfill\textbf{Réponse a.}
+
+	\item Quels vecteurs forment une base de l'espace ?
+
+	\begin{tabularx}{\linewidth}{*{4}{>{\bfseries\arraybackslash}p{5mm}@{}X}}
+		a.& $\left(\vect{\mathrm{AB}} ; \vect{\mathrm{CG}}\right)$&
+		b.& $\left(\vect{\mathrm{AB}} ; \vect{\mathrm{AC}} ; \vect{\mathrm{AD}}\right)$ &
+		c.& $\left(\vect{\mathrm{DA}} ; \vect{\mathrm{DC}} ; \vect{\mathrm{DG}}\right)$&
+		d.& $\left(\vect{\mathrm{CA}} ; \vect{\mathrm{CG}} ; \vect{\mathrm{CE}}\right)$\\
+	\end{tabularx}
+
+Il faut trouver trois vecteurs non coplanaires.
+
+On peut éliminer la proposition \textbf{a} car il n'y a que deux vecteurs.
+
+On peut éliminer la proposition \textbf{b} car $\vectt{AC} = \vectt{AB} + \vectt{AD}$ donc les trois vecteurs sont coplanaires. 
+
+On peut éliminer la proposition \textbf{d} car $\vectt{CE} = \vectt{CA} + \vectt{AE} = \vectt{CA} + 2\vectt{CG}$ donc les trois vecteurs sont coplanaires. 
+
+\hfill\textbf{Réponse c.}
+
+	\item Une décomposition du vecteur $\vect{\mathrm{AG}}$ comme somme de plusieurs vecteurs \textbf{deux à deux orthogonaux} est :
+
+	\begin{tabularx}{\linewidth}{*{2}{>{\bfseries\arraybackslash}p{5mm}@{}X}}
+		a.& $\vect{\mathrm{AG}} = \vect{\mathrm{AB}} + \vect{\mathrm{HG}}$ &
+		b.& $\vect{\mathrm{AG}} = \vect{\mathrm{AB}} + \vect{\mathrm{AD}} + \vect{\mathrm{AJ}}$\\
+		c.& $\vect{\mathrm{AG}} = \vect{\mathrm{AB}} + \vect{\mathrm{BJ}} + \vect{\mathrm{JG}}$&
+		d.& $\vect{\mathrm{AG}} = \vect{\mathrm{AD}} + \vect{\mathrm{DH}} + \vect{\mathrm{HG}}$\\
+	\end{tabularx}
+
+$\vectt{AG} = \vectt{AB} +  \vectt{BG}$ et $ \vectt{BG} \neq  \vectt{HG}$; donc la proposition \textbf{a} est fausse.
+
+Les trois vecteurs $ \vectt{AB}$,  $\vectt{AD}$ et  $\vectt{AJ}$ sont orthogonaux deux à deux puisqu'ils forment une base orthonormée.
+
+De plus $ \vectt{AB}+\vectt{AD}+\vectt{AJ} = \vectt{AB}+\vectt{BC}+\vectt{CG}= \vectt{AG}$.
+
+\hfill\textbf{Réponse b.} 
+
+	\item Le volume du prisme droit ABFEDCGH, est égal à :
+
+		\begin{tabularx}{\linewidth}{*{4}{>{\bfseries\arraybackslash}p{5mm}@{}X}}
+			a.& $\dfrac{5}{8}$&
+			b.& $\dfrac{8}{5}$&
+			c.& $\dfrac{3}{2}$&
+			d.& 2\\
+		\end{tabularx}
+
+Si on appelle K le milieu de [DH], on peut dire que le  prisme est composé du cube ABCDJFGK, de volume 1, surmonté du prisme JFGKHE, qui est la moitié du cube du dessous, donc qui a pour volume $\dfrac{1}{2}$. Le volume total fait donc $\dfrac{3}{2}$.
+
+\hfill\textbf{Réponse c.}
+\end{enumerate}

@@ -1,0 +1,79 @@
+\medskip
+
+\begin{enumerate}
+	\item L'arbre complété avec les valeurs disponibles :
+		\begin{center}
+		\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep=1cm,levelsep=2.5cm]{\TR{}}
+		{\pstree{\TR{$A_1$~~}\taput{0,5}}
+			{\TR{$A_2$}\taput{0,84}
+			\TR{$B_2$}\tbput{0,16}
+			}
+		\pstree{\TR{$B_1$~~}\tbput{0,5}}
+			{\TR{$A_2$}\taput{0,24}
+			\TR{$B_2$}\tbput{0,76}
+			}
+		}
+		\end{center}
+	\item 
+	\begin{enumerate}
+		\item 	Utilisons la formule des probabilités totales pour calculer $a_2=p(A_2)$ :
+		
+		$\begin{gathered}a_2=p(A_2\cap A_1)+p(A_2\cap B_1)=p_{A_1}(A_2)\times p(A_1)+p_{B_1}(A_2)\times p(B_1)\\=0,84\times 0,5+0,24\times 0,5=0,54\end{gathered}$. Donc $a_2=0,54$.
+		\item Utilisons la formule de Bayes pour calculer $p_{A_2}(B_1)$ :
+		
+		$p_{A_2}(B_1)=\dfrac{p(A_2\cap B_1)}{p(A_2)}=\dfrac{p_{B_1}(A_2)\times p(B_1)}{p(A_2)}=\dfrac{0,24\times 0,5}{0,54}\approx 0,222$ 
+	\end{enumerate}
+	\item 
+	\begin{enumerate}
+		\item On remarquera au préalable que, $\forall n\in \N^*$, $a_n+b_n=1$.
+		
+		L'arbre complété avec les valeurs disponibles :
+			\begin{center}
+				\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep=1cm,levelsep=2.5cm]{\TR{}}
+				{\pstree{\TR{$A_n$~~}\taput{$a_n$}}
+					{\TR{$A_{n+1}$}\taput{0,84}
+					\TR{$B_{n+1}$}\tbput{0,16}
+					}
+				\pstree{\TR{$B_n$~~}\tbput{$1-a_n$}}
+					{\TR{$A_{n+1}$}\taput{0,24}
+					\TR{$B_{n+1}$}\tbput{0,76}
+					}
+				}
+			\end{center} 
+		\item Utilisons là encore, la formule des probabilités totales pour déterminer $a_{n+1}$ en fonction de $a_n$, pour tout entier naturel non nul :
+		
+		$\forall n\in \N^*$, $\begin{gathered}a_{n+1}=p(A_{n+1}\cap A_n)+p(A_{n+1}\cap B_n)=p_{A_n}(A_{n+1})\times p(A_n)+p_{B_n}(A_{n+1})\times p(B_n)\\=0,84\times p(A_n)+0,24\times p(B_n)=0,84~a_n+0,24~b_n\end{gathered}$. Or $\forall n\in \N^*$, $b_n=1-a_n$.
+		
+		Donc $\forall n\in \N^*$, $a_{n+1}=0,84~a_n+0,24(1-a_n)=0,6~a_n+0,24$
+		\item Montrons par récurrence que $\forall n \in \N^*$, $a_n = 0,6 - 0,1 \times 0,6^{n - 1}$.
+						
+		\textit{Initialisation :} $a_1=0,6 - 0,1 \times 0,6^{1 - 1}=0,6-0,1=0,5$. L'initialisation est vérifiée.
+				
+		\textit{Hérédité :} Soit  $n \in \N^*$, et supposons que $a_n = 0,6 - 0,1 \times 0,6^{n - 1}$.
+		
+		Montrons que $a_{n+1} = 0,6 - 0,1 \times 0,6^{n}$.
+				
+		D'après la question précédente,$a_{n+1}=0,6~a_n+0,24$, donc en utilisant l'hypothèse de récurrence,
+		
+		$a_{n+1}=0,6\left(0,6 - 0,1 \times 0,6^{n - 1}\right)+0,24=0,36-0,1\times0,6 \times0,6^{n - 1}+0,24=0,6-0,1\times 0,6^n $. On obtient ce qu'il fallait démontrer. L'hérédité est démontrée.
+				
+		\textit{Conclusion : }  La proposition est vraie au rang $0$ et si elle est vraie au rang $n$, elle l'est aussi au rang $n + 1$.	D'après l'axiome de récurrence, $\forall n \in \N^*$, $a_n = 0,6 - 0,1 \times 0,6^{n - 1}$.
+		\item $\displaystyle\lim\limits_{n \rightarrow +\infty} 0,6^{n-1}=0$ car $0,6\in ]-1~;~1[$. Donc $\displaystyle\lim\limits_{n \rightarrow +\infty} a_n=0,6$.
+		
+		Cela signifie qu'au bout d'un certain temps, la probabilité qu'un vélo soit à la station A est de 60 \%.
+		\item Résolvons : $a_n\geqslant 0,599$.
+		$\begin{gathered}a_n\geqslant 0,599\iff  0,6 - 0,1 \times 0,6^{n - 1} \geqslant 0,599 \\
+		\iff - 0,1 \times 0,6^{n - 1} \geqslant -0,001 \iff 0,6^{n - 1} \leqslant \dfrac{-0,001}{-0,1} \iff 0,6^{n - 1} \leqslant \dfrac{1}{100} \end{gathered}$.
+		
+		Sachant que la fonction $x\mapsto\ln(x)$ est strictement croissante sur $\R_+^*$, 
+		
+		$0,6^{n - 1} \leqslant \dfrac{1}{100} \iff \ln\left(0,6^{n - 1} \right) \leqslant \ln\left(\dfrac{1}{100}\right) \iff (n-1)\times \ln(0,6) \leqslant -\ln(100)$. Or $\ln(0,6)<0$, donc
+		$n-1 \geqslant \dfrac{-\ln(100)}{\ln(0,6)} \iff n \geqslant 1-\dfrac{2\ln(10)}{\ln(0,6)}$.
+		
+		À la calculatrice, $1-\dfrac{2\ln(10)}{\ln(0,6)}\approx 10,02$ donc $n\geqslant 11$.
+		
+		La probabilité que le vélo se trouve au point A est supérieure à $0,599$ à partir du 11-ième jour.
+		\end{enumerate}
+\end{enumerate}
+
+\bigskip

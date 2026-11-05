@@ -1,0 +1,299 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet1_ameriquesud_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On se propose d'étudier la concentration dans le sang d'un médicament ingéré par une personne pour la première fois. Soit $t$ le temps (en heures) écoulé depuis l'ingestion de ce médicament.
+On admet que la concentration de ce médicament dans le sang, en gramme par litre de sang, est modélisée par une fonction $f$ de la variable $t$ définie sur l'intervalle $[0~;~+ \infty[$.
+
+
+\textbf{Partie A : lectures graphiques}
+
+\begin{center}
+\psset{unit=1.6cm,arrowsize=2pt 3}
+\begin{pspicture*}(-0.4,-0.6)(7.6,2.4)
+\psgrid[unit=0.8cm,gridlabels=0pt,gridcolor=gray!50,subgridcolor=lightgray!50](-1,-2)(16,5)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-0.4,-0.6)(7.6,2.4)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{7.5}{5 x mul 2.71828 x exp div}
+\uput[d](6.8,-.2){\footnotesize temps en heures}
+\uput[r](0,2.2){\footnotesize concentration en g/L}
+
+\psset{linecolor=red,linestyle=dashed,linewidth=1.2pt}
+\psline(0,1)(7.5,1)
+\psline(0.25,0)(0.25,1) \psline(2.5,0)(2.5,1)
+\psline[linestyle=solid,linewidth=2pt]{[-]}(0.25,0)(2.5,0)
+\psline[linecolor=blue](1,0)(1,1.84)
+\end{pspicture*}
+\end{center}
+
+On a représenté ci-dessus la courbe représentative de la fonction $f$. 
+
+Avec la précision permise par le graphique, on donne sans justification :
+
+
+
+\begin{enumerate}
+\item Le temps écoulé depuis l'instant de l'ingestion de ce médicament et l'instant où la concentration de médicament dans le sang est maximale selon ce modèle: 1 heure.
+
+\item L'ensemble des solutions de l'inéquation $f(t) \geqslant 1$: l'intervalle $\left [0,25\;;\; 2,5\strut\right ]$.
+
+\item La convexité de la fonction $f$ sur l' intervalle [0~;~8]: la fonction semble concave entre 0 et 2, puis convexe.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B : détermination de la fonction} \boldmath $f$ \unboldmath
+
+\medskip
+
+On considère l'équation différentielle  $(E)$: $y' +y = 5\e^{-t}$,
+
+d'inconnue $y$, où $y$ est une fonction définie et dérivable sur l'intervalle $[0~;~+ \infty[$.
+
+On admet que la fonction $f$ est une solution de l'équation différentielle $(E)$.
+
+
+
+\begin{enumerate}
+\item On résout l'équation différentielle $(E')$: $y' + y = 0$.
+
+D'après le cours, on sait que les équations différentielles de la forme $ay'+by=0$ ont des solutions $y$ s'écrivant $y(t) = k\e^{-\frac{b}{a}t}$ où $k$ est un réel quelconque.
+
+Donc l'équation $(E')$ a pour solutions les fonctions $y$ s'écrivant $y(t)=k\e^{-t}$ où $k\in\R$.
+
+\item Soit $u$ la fonction définie sur l'intervalle $[0~;~ +\infty[$ par $u(t) = at\e^{-t}$ avec $a \in \R$.
+
+
+
+La fonction $u$ est solution de l'équation différentielle $(E)$ si et seulement si $u'(t)+u(t)=5\e^{-t}$.
+
+$u(t)=at\e^{-t}$ donc $u'(t)= a\times \e^{-t} + at\times (-1)\e^{-t}= a\e^{-t}-at\e^{-t}$
+
+$u'(t)+u(t)=5\e^{-t}
+\iff a\e^{-t}-at\e^{-t} + at\e^{-t}=5\e^{-t}
+\iff a\e^{-t}=5\e^{-t}
+\iff a=5$ car $\e^{-t}\neq 0$ pour tout $t$.
+
+Donc la fonction $u$ définie par $u(t)=5t\e^{-t}$ est une solution de $(E)$.
+
+\item
+La solution générale de l'équation $(E)$ est la somme d'une solution particulière de $(E)$ et de la solution générale de l'équation sans second membre $(E')$: ce sont donc les fonctions $f$ définies par $f(t)=k\e^{-t}+5t\e^{-t}$ où $k\in\R$.
+
+\item La personne n'ayant pas pris ce médicament auparavant, on admet que $f(0) = 0$.
+
+
+
+$f(0)=0 \iff k\e^{0}+5\times 0 \times \e^{0}=0 \iff = 0$
+
+L'expression de la fonction $f$ est $f(t)=5t\e^{-t}$.
+
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C : étude de la fonction} \boldmath $f$ \unboldmath
+
+\medskip
+
+Dans cette partie, on admet que $f$ est définie sur l'intervalle $[0~;~+\infty[$ par $f(t) = 5t \e^{-t}$.
+
+
+
+\begin{enumerate}
+\item 
+On sait que $\ds\lim_{t\to +\infty} \dfrac{\e^{t}}{t}=+\infty$ donc $\ds\lim_{t\to +\infty} \dfrac{t}{\e^{t}}=0$, donc $\ds\lim_{t\to +\infty} 5t\e^{-t}=0$, et donc $\ds\lim_{t\to +\infty} f(t)=0$
+
+Cela signifie que la concentration en médicament devient nulle quand le temps augmente indéfiniment.
+
+
+
+\item 
+$f$ est le produit de fonctions dérivables sur $\R$ donc $f$ est dérivable sur $[0~;~+\infty[$.
+
+$f(t)=5t\e^{-t}$ donc $f'(t) = 5\times \e^{-t} + 5t\times (-1)\e^{-t} = \left (5-5t\right )\e^{-t}$
+
+On étudie le signe de $f'(t)$ sur $[0~;~+\infty[$.
+
+\[ \begin{tablvar}[intervalwidth=6em,stretch=1.2]{2}
+ \hline
+t & 0 & & 1 & & +\infty\\
+ \hline
+5-5t & & + & \barre[0] & - & \\
+ \hline
+\e^{-t} & & + & \barre & + & \\
+ \hline
+f'(t) & & + & \barre[0] & - & \\
+ \hline
+ \end{tablvar}\]
+
+$f(0)=0$ et $f(1)= 5\times 1 \times \e^{-1} = 5\e^{-1}$
+
+On établit le tableau de variation complet de $f$ sur  $[0~;~+\infty[$.
+
+\[\begin{tablvar}[6em]{2}
+\hline
+t & 0 && 1 && +\infty \\
+\hline
+f'(t) & & + & \barre[0] & - & \\
+\hline
+\variations{\mil{f} & \bas{0} && \haut{5\e^{-1}} &&  \bas{0}} 
+\hline
+\end{tablvar}\]
+
+\item On veut montrer qu'il existe deux réels $t_1$ et $t_2$ tels que $f\left(t_1\right) = f\left(t_2\right) = 1$.
+
+Le maximum de la fonction $f$ est $f(1)=5\e^{-1}\approx 1,84>1$.
+
+On complète le tableau de variation de $f$.
+
+\[\begin{tablvar}[6em]{2}
+\hline
+t & 0 & \vr{t_1} & 1 &  \vr{t_2} & +\infty\\
+\hline
+\variations{\mil{f} & \bas{0} & \vr{1} & \haut{5\e^{-1}} & \vr{1} & \bas{0}} 
+\hline
+\end{tablvar}\]
+
+\begin{list}{\textbullet}{}
+\item Sur l'intervalle $]0~;~1[$, la fonction $f$ est continue et strictement croissante. De plus $1 \in\, \left ]f(0)~;~f(1)\right [$. Donc, d'après le corollaire du théorème des valeurs intermédiaires, l'équation $f(t)=1$ admet une solution unique dans $]0~;~1[$. On l'appelle $t_1$.
+
+D'après la calculatrice: $f(0,25) \approx 0,97  < 1$ et $f(0,26) \approx 1,002 >1$ donc $0,25$ est une valeur approchée de $t_1$ à $10^{-2}$.
+
+\item Sur l'intervalle $]1~;~+\infty[$, la fonction $f$ est continue et strictement décroissante. De plus $1 \in\, \left ]\ds\lim_{t\to +\infty} f(t)~;~f(1)\right [$. Donc, d'après le corollaire du théorème des valeurs intermédiaires, l'équation $f(t)=1$ admet une solution unique dans $]1~;~+\infty[$. On l'appelle $t_2$.
+
+D'après la calculatrice: $f(2,54) \approx  1,002 > 1$ et $f(2,55) \approx 0,996  <1$ donc $2,54$ est une valeur approchée de $t_2$ à $10^{-2}$.
+\end{list}
+
+
+
+\item Pour une concentration du médicament supérieure ou égale à 1 gramme par litre de sang, il y a un risque de somnolence. C'est donc quand $f(t) \geqslant 1$.
+
+$f(t)\geqslant 1$ pour $t\in  \left [ t_1~;~t_2\strut \right ]$, soit pour une durée égale à $t_2-t_1$ qui vaut environ $2,54 - 0,25$ soit $2,29$ heures; cela fait environ 2 heures et 17 minutes.
+
+
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie D : concentration moyenne}
+
+\medskip
+
+La concentration moyenne du médicament (en gramme par litre de sang) durant la première heure est donnée par :
+$T_m = \displaystyle\int_0^1 f(t) \d t$
+où $f$ est définie sur $[0~;~+\infty[$ par $f(t) = 5t\e^{-t}$.
+
+
+
+On utilise une intégration par parties:
+$\ds\int_{a}^{b} u(t)v'(t)\d t =\left [ u(t)v(t)\strut \right ]_{a}^{b} -\int_{a}^{b} u'(t) v(t) \d t$.
+
+On pose
+$\left \{
+\begin{array}{l}
+u(t)=5t\\
+v'(t)=\e^{-t}
+\end{array}
+\right .$
+donc
+$\left \{
+\begin{array}{l}
+u'(t)=5\\
+v(t)= - \e^{-t}
+\end{array}
+\right .$
+
+$\begin{aligned}[t]
+T_m
+& = \displaystyle\int_0^1 5t\e^{-t} \d t
+ = \left [5t\times \left (-\e^{-t} \right )\right ]_{0}^{1}- \ds\int_{0}^{1} 5\times \left ( -\e^{-t} \right ) \d t
+  = \left [-5 t\e^{-t} \right ]_{0}^{1}- 5\left [ \e^{-t} \right ]_{0}^{1}\\
+& = \left (-5\e^{-1}-0\right )-\left (-5\e^{-1} + 5\e^{0} \right )
+= 5-10\e^{-1} \approx 1,32
+\end{aligned}$
+
+
+
+\bigskip
+
+\end{document}

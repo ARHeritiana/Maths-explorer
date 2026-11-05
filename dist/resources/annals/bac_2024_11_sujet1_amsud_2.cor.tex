@@ -1,0 +1,291 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_11_sujet1_amsud_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On dispose de deux urnes opaques U$_1$ et U$_2$.
+L'urne U$_1$ contient 4 boules noires et 6 boules blanches.
+L'urne U$_2$ contient 1 boule noire et 3 boules blanches.
+
+On considère l'expérience aléatoire suivante :
+on pioche au hasard une boule dans U$_1$ que l'on place dans U$_2$, puis on pioche au hasard une boule dans U$_2$.
+
+\begin{list}{\textbullet}{On note:}
+\item $N_1$ l'évènement \og Piocher une boule noire dans l'urne U$_1$ \fg.
+\item $N_2$ l'évènement \og Piocher une boule noire dans l'urne U$_2$ \fg.
+\end{list}
+
+Pour tout évènement $A$, on note $\overline{A}$ son évènement contraire.
+
+\bigskip
+
+\textbf{PARTIE A}
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+Si on a pioché une boule blanche dans U$_1$ et qu'on l'a mise dans U$_2$, il y a dans l'urne U$_2$ 1 boule noire et 4 boules blanches.
+La probabilité de piocher alors une boule noire dans l'urne U$_2$ est $P_{\overline{N_1}}\left (N_2\right ) = \dfrac{1}{5}=0,2$.		
+		
+		\item 
+Dans U$_1$ il y a 4 boules noires et 6 boules blanches donc la probabilité de piocher une boule noire est $P\left (N_1\right )=\dfrac{4}{10}=0,4$.		
+
+Si on a pioché une boule noire dans U$_1$ et qu'on l'a mise dans U$_2$, il y a dans l'urne U$_2$ 2 boules noires et 3 boules blanches.
+La probabilité de piocher alors une boule noire dans l'urne U$_2$ est $P_{N_1}\left (N_2\right )= \dfrac{2}{5}=0,4$.	
+		
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$N_1$~}\ncput*{$\blue 0,4$}}
+	{\TR{$N_2$}\ncput*{$\blue 0,4$}
+	\TR{$\overline{N_2}$}\ncput*{$\blue 0,6$}
+	}
+\pstree{\TR{$\overline{N_1}$~}\ncput*{$\blue 0,6$}}
+	{\TR{$N_2$}\ncput*{$0,2$}
+	\TR{$\overline{N_2}$}\ncput*{$\blue 0,8$}
+	}
+}
+\end{center}
+
+	\end{enumerate}
+
+\item La probabilité de piocher une boule noire dans l'urne U$_1$ et une boule noire dans l'urne U$_2$ est:
+$P\left ( N_1 \cap N_2 \right ) = P\left (N_1\right ) \times P_{N_1}\left (N_2\right ) = 0,4\times 0,4 = 0,16$.
+
+\item On cherche la probabilité de piocher une boule noire dans l'urne U$_2$.
+
+ D'après la formule des probabilités totales:
+
+$P\left (N_2\right ) = P\left ( N_1 \cap N_2 \right ) + P\left ( \overline{N_1} \cap N_2 \right )= 0,16 + 0,6 \times 0,2 = 0,28$.
+
+\item On a pioché une boule noire dans l'urne U$_2$.
+
+La probabilité d'avoir pioché une boule blanche dans l'urne U$_1$ est:
+
+$P_{N_2}\left (\overline{N_1}\right ) = \dfrac{P\left ( N_2 \cap \overline{N_1} \right )}{P\left (N_2\right ) } = \dfrac{0,12}{0,28} = \dfrac37 \approx 0,43$.
+
+
+\end{enumerate}
+
+\bigskip
+
+\textbf{PARTIE B}
+
+\medskip
+
+$n$ désigne un entier naturel non nul.
+
+L'expérience aléatoire précédente est répétée $n$ fois de façon identique et indépendante, c'est-à-dire que les urnes U$_1$ et U$_2$ sont remises dans leur configuration initiale, avec respectivement 4 boules noires et 6 boules blanches dans l'urne U$_1$ et 1 boule noire et 3 boules blanches dans l'urne U$_2$, entre chaque expérience.
+
+On note $X$ la variable aléatoire qui compte le nombre de fois où on pioche une boule noire dans l'urne U$_2$.
+
+On rappelle que la probabilité de piocher une boule noire dans l'urne U$_2$ est égale à $0,28$ et celle de piocher une boule blanche dans l'urne U$_2$ est égale à $0,72$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+D'après le texte, on est dans le cas de $n$ répétitions,  de façon identique et indépendante, d'une expérience qui n'a que deux issues.
+
+Donc la variable $X$ qui donne le nombre de succès, c'est-à-dire le nombre  de fois où on pioche une boule noire dans l'urne U$_2$, suit la loi binomiale de paramètres $n$ et $p= 0,28$.
+
+\item 
+On résout l'inéquation $1 - 0,72^n \geqslant 0,9.$
+
+$\begin{aligned}[t]
+1 - 0,72^n \geqslant 0,9
+& \iff 1-0,9 \geqslant 0,72^n
+\iff 0,1 \geqslant 0,7^n\\
+& \iff \ln\left (0,1\right ) \geqslant \ln \left ( 0,72^n\right ) \quad \left (\text{fonction ln croissante sur }[0\,;\,+\infty[\strut\right )\\
+& \iff \ln\left (0,1\right ) \geqslant n\,\ln \left ( 0,72\right )\\
+& \iff \dfrac{\ln\left (0,1\right )}{\ln \left ( 0,72\right )} \leqslant n \quad \left (\ln\left (0,72\right )<0\strut\right )
+\end{aligned}$
+
+$ \dfrac{\ln\left (0,1\right )}{\ln \left ( 0,72\right )} \approx 7,01$ donc le plus petit entier naturel $n$ tel que:  $1 - 0,72^n \geqslant 0,9$ est 8.
+
+\item
+$0,72$ est la probabilité de piocher une boule blanche dans l'urne U$_2$.
+
+$0,72^n$ est la probabilité de piocher $n$ boules blanches dans l'urne U$_2$ lors des $n$ tirages.
+
+$1-0,72^n$ est la probabilité de l'événement contraire, c'est-à-dire la probabilité de piocher au moins une boule noire lors des $n$ tirages.
+
+Il faut donc au moins 8 tirages pour que la probabilité de piocher au moins une boule noire soit supérieure à $0,9$.
+
+\end{enumerate}
+
+\bigskip
+
+\textbf{PARTIE C}
+
+\medskip
+
+Dans cette partie les urnes U$_1$ et U$_2$ sont remises dans leur configuration initiale, avec respectivement 4 boules noires et 6 boules blanches dans l'urne U$_1$ et 1 boule noire et 3 boules blanches dans l'urne U$_2$.
+
+\smallskip
+
+On considère la nouvelle expérience aléatoire suivante: on pioche simultanément deux boules dans l'urne U$_1$ que l'on place dans l'urne U$_2$, puis on pioche au hasard une boule dans l'urne U$_2$.
+
+\medskip
+
+\begin{enumerate}
+\item
+Dans l'urne U$_1$ il y a 10 boules et on en prend 2 simultanément; il y a donc $\ds\binom{10}{2}=45$ tirages possibles.
+
+\item
+Il y a 4 boules noires et 6 boules blanches dans l'urne U$_1$; le nombre de tirages possibles de deux boules simultanément dans l'urne U$_1$ contenant exactement une boule blanche et une boule noire est donc $\ds\binom{4}{1}\times \binom{6}{1} = 4\times 6 = 24$.
+
+\item 
+\begin{list}{\textbullet}{On examine les différents cas.}
+\item On a pioché 2 boules noires dans U$_1$ (événement noté $NN$).
+
+\begin{list}{$\vartriangleright$}{}
+\item $P\left (NN\right ) = \dfrac{\binom{4}{2}}{45} = \dfrac{6}{45}=\dfrac{2}{15}$
+\item On a mis les 2 boules noires piochées dans U$_1$ dans l'urne U$_2$; l'urne U$_2$ contient alors 3 boules noires et 3 boules blanches. 
+
+La probabilité de piocher une boule noire dans U$_2$ est alors $\dfrac{3}{6}=\dfrac{1}{2}$.
+\end{list}
+
+\item On a pioché 1 boule noire et 1 boule blanche dans U$_1$ (événement noté $NB$).
+
+\begin{list}{$\vartriangleright$}{}
+\item $P\left (NB\right ) = \dfrac{24}{45} =\dfrac{8}{15}$
+\item On a mis les 2 boules,  une noire une blanche, piochées dans U$_1$ dans l'urne U$_2$; l'urne U$_2$ contient alors 2 boules noires et 4 boules blanches. 
+
+La probabilité de piocher une boule noire dans U$_2$ est alors $\dfrac{2}{6}=\dfrac{1}{3}$.
+\end{list}
+
+\item On a pioché 2 boules blanches dans U$_1$ (événement noté $BB$).
+
+\begin{list}{$\vartriangleright$}{}
+\item $P\left (BB\right ) = \dfrac{\binom{6}{2}}{45} = \dfrac{15}{45}=\dfrac{1}{3}$
+\item On a mis les 2 boules blanches piochées dans U$_1$ dans l'urne U$_2$; l'urne U$_2$ contient alors 1 boule noire et 5 boules blanches. 
+
+La probabilité de piocher une boule noire dans U$_2$ est alors $\dfrac{1}{6}$.
+\end{list}
+\end{list}
+
+
+On résume la situation dans un arbre pondéré.
+
+\begin{center}
+\medskip
+\psset{levelsep=3cm,nodesepB=4pt, treesep=10mm}
+\pstree[treemode=R,nodesepA=0pt]
+       {\TR{}}
+       {
+       \pstree[nodesepA=4pt]{\TR{$NN$}\ncput*{$\frac{2}{15}$}}
+	                        {
+	                        \TR{$N_2$}~{\blue $\blacktriangleright \frac{2}{15}\times\frac{1}{2}=\frac{1}{15}=\frac{6}{90}$}\ncput*{$\frac{1}{2}$}
+			                \TR{$\overline{N_2}$}\ncput*{$\frac{1}{2}$}
+	                        }
+       \pstree[nodesepA=4pt]{\TR{$NB$}\ncput*{$\frac{8}{15}$}}
+	                        {
+	                        \TR{$N_2$}~{\blue $\blacktriangleright \frac{8}{15}\times\frac{1}{3}=\frac{8}{45}=\frac{16}{90}$}\ncput*{$\frac{1}{3}$}
+			                \TR{$\overline{N_2}$}\ncput*{$\frac{2}{3}$}
+	                        }
+       \pstree[nodesepA=4pt]{\TR{$BB$}\ncput*{$\frac{1}{3}$}}
+	                        {
+	                        \TR{$N_2$}~{\blue $\blacktriangleright \frac{1}{3}\times\frac{1}{6}=\frac{1}{18}=\frac{5}{90}$}\ncput*{$\frac{1}{6}$}
+			                \TR{$\overline{N_2}$}\ncput*{$\frac{5}{6}$}
+	                        }	                        
+      }
+\medskip
+\end{center}
+
+La probabilité de piocher une boule noire dans U$_2$ est, d'après la formule des probabilités totales:
+
+$P\left (N_2\right )
+= P\left ( NN \cap N_2\right ) + P\left ( NB \cap N_2\right )  + P\left ( BB \cap N_2\right ) 
+= \dfrac{6}{90} + \dfrac{16}{90} + \dfrac{5}{90}
+= \dfrac{27}{90} = \dfrac{3}{10} = 0,3$
+
+La probabilité de piocher une boule noire dans l'urne U$_2$ avec cette nouvelle expérience est égale à $0,3$;  elle est donc supérieure à la probabilité de tirer une boule noire dans l'urne U$_2$ avec l'expérience de la partie A qui était de $0,28$.
+
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\end{document}

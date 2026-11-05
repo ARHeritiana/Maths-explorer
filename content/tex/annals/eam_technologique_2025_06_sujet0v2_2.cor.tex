@@ -1,0 +1,39 @@
+\medskip
+
+\begin{enumerate}
+\item On passe de $u_{50}$ à $u_{60}$ en ajoutant 10 fois $r = \dfrac12$, soit $10 \times \dfrac 12 = 5$. Donc $u_{60} = \np{1000} + 5 = \np{1005}$.
+\item O a $u_{101} = u_{100} \times q$ et $u_{102} = u_{101} \times q$, donc :
+
+$u_{102} = u_{100} \times q \times q = u_{100} \times q^2$ ou avec les données de l'énoncé :
+
+$20 = 5 \times q^2$, soit $4 = q^2$ et $q = 2$ puisque la raison est positive.
+
+Donc $u_{100} = u_{99} \times q$, soit $5 = u_{99} \times 2$, d'où l'on obtient $u_{99} = 2,5$.
+\item $x + x = x^2$ ou $2x = x^2$ ou $2x - x^2 = 0$ ou en factorisant $x$ : 
+
+$x(2 - x) = 0$, donc $\left\{\begin{array}{l c l}
+x&=&0\\
+2 - x&=&0
+\end{array}\right.$ : il y a donc deux solutions : $x = 0$ et $x = 2$.
+\item Avec $P$ : \og la pièce tombe sur pile \fg et $F$ : \og la pièce tombe sur face on peut dresser l'arbre suivant :
+\begin{center}
+\pstree[treemode=R,treesep=1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$P~$}\taput{$\frac 12$}}
+	{\TR{$P$}\taput{$\frac 12$}
+	\TR{$F$}\tbput{$\frac 12$}
+	}
+\pstree{\TR{$F~$}\taput{$\frac 12$}}
+	{\TR{$P$}\taput{$\frac 12$}
+	\TR{$F$}\tbput{$\frac 12$}
+	}
+}
+\end{center}
+
+On a donc $p(PP) = \frac 12 \times \frac 12 = \frac 14$ et de même :
+
+$p(FF) = \frac 12 \times \frac 12 = \frac 14$.
+
+La probabilité de gagner est donc égale à : $\frac 14 + \frac 14 = \frac 12$
+\end{enumerate}
+
+\bigskip

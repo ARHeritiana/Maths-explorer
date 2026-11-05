@@ -1,0 +1,65 @@
+\medskip
+
+\begin{enumerate}
+	\item \textbf{Affirmation 1 : FAUSSE.}
+
+	La propriété du cours indique que toute suite décroissante et minorée par 0 converge vers une limite $\ell$, avec $\ell\geqslant 0$.
+
+	Il suffit donc d'exhiber un contre-exemple.
+
+	La suite constante égale à 1 est décroissante (mais pas strictement décroissante) et minorée par 0 (entre autres), et pourtant, elle converge vers 1, et pas vers 0.
+
+	Si on préfère donner un contre exemple avec une suite strictement décroissante, on peut par exemple choisir la suite définie sur $\N^*$ et de terme général :\quad $u_n = 1 + \dfrac{1}{n}$, par exemple. Cette suite est assez clairement décroissante, minorée par 0 et converge vers 1.
+
+	\item \textbf{Affirmation 2 : VRAIE.}
+
+	En effet, pour $n$ entier naturel :\quad $v_n = \dfrac{-9^n + 3^n}{7^n} = -\left(\dfrac{9}{7}\right)^n \times \dfrac{1 - \left(\dfrac{3}{9}\right)^n }{1} = -\left(\dfrac{9}{7}\right)^n \times \left(1 - \left(\dfrac{1}{3}\right)^n\right)$
+
+	Comme on a : $\dfrac{9}{7}>1$, on en déduit que $\lim\limits_{n \to +\infty} \left(\dfrac{9}{7}\right)^n = +\infty.$
+
+	Par ailleurs : $-1 < \dfrac{1}{3}<1$, donc on en déduit $\lim\limits_{n \to +\infty} \left(\dfrac{1}{3}\right)^n = 0$, donc, par limite de la somme : $\lim\limits_{n \to +\infty} 1 - \left(\dfrac{1}{3}\right)^n = 1$.
+
+	Finalement, par limite du produit : $\lim\limits_{n \to +\infty} -\left(\dfrac{9}{7}\right)^n \times \left(1 - \left(\dfrac{1}{3}\right)^n\right) = -\infty$.
+
+	Si on a, pour tout $n$ naturel, $u_n \leqslant v_n$ et $\lim\limits_{n \to +\infty} v_n = -\infty$, alors, par comparaison : \quad $\lim\limits_{n \to + \infty} u_n = -\infty$.
+
+	\item \textbf{Affirmation 3 : VRAIE.}
+
+	L'appel \texttt{terme(4)} commence par initialiser la variable \texttt{U} avec la valeur 1 (ligne 2 de la fonction).
+
+	Puis, la boucle \texttt{for} va s'exécuter \texttt{N} fois, ici donc 4 fois, avec le compteur \texttt{i} qui va prendre les valeurs entières entre 0 et \texttt{N-1}, donc ici 0, 1, 2 et 3.
+
+	\begin{itemize}
+		\item La première exécution \og modifie\fg{} \texttt{U} en \texttt{U + 0}, la valeur reste égale à 1;
+		\item La deuxième exécution modifie \texttt{U} en \texttt{U + 1}, la valeur devient égale à $1 + 1 = 2$;
+		\item La troisième exécution modifie \texttt{U} en \texttt{U + 2}, la valeur devient égale à $2 + 2 = 4$;
+		\item La dernière exécution modifie \texttt{U} en \texttt{U + 3}, la valeur devient égale à $4 + 3 = 7$.
+	\end{itemize}
+
+	On a donc bien la valeur 7 renvoyée par cet appel.
+	\item \textbf{Affirmation 4 : FAUSSE.}
+
+	Pour connaître le montant total du prix A, il suffit de multipler 1000 par 15. Le montant total est donc de $\np{15000}$\,\euro{}.
+
+	Pour le prix B, il s'agit d'additionner les 15 premier termes d'une suite géométrique de premier terme 1 (le montant du prix le premier jours) et de raison 2 (car le montant chaque jour est le double du montant de la veille).
+
+	On applique la formule connue : \quad $1 \times \dfrac{1 - 2^{15}}{1 - 2} =\dfrac{1-2^{15}}{-1} = 2^{15} - 1 = \np{32767}$.
+
+	Comme $\np{32767} > \np{15000}$, le prix B est (nettement) plus avantageux.
+
+	\emph{Remarque :} En cas d'oubli de cette formule, on peut aussi (patiemment) calculer la somme des 15 termes, voire même remarquer que la somme reçue au quinzième jour sera de $2^{15 - 1} = \np{16384}$, donc rien que la somme reçue le quinzième jour du prix B est strictement supérieure aux quinze jours cumulés pour le prix A.
+
+	\item \textbf{Affirmation 5 : VRAIE.}
+
+	Soit $n$ un entier naturel non nul quelconque :
+
+	\begin{itemize}
+		\item La fonction ln est strictement croissante sur $\R^{*+}$, et $\ln(1) = 0$, donc on en déduit que la fonction ln est à valeurs positives sur $[1 ~;~ +\infty[$ (voire à valeurs strictement positives sur $]1~;~ +\infty[$).
+		\item $\begin{aligned}[t] \displaystyle v_{n+1}	- v_n &= \int_{1}^{n+1} \ln x \:\mathrm{d} x - \int_{1}^{n} \ln x \:\mathrm{d} x \\
+		&= \int_{n}^{n+1} \ln x \:\mathrm{d} x \quad\text{par la relation de Chasles} \end{aligned}$
+
+		\item l'expression $v_{n+1} - v_n$ est donc l'intégrale, entre deux bornes ordonnées dans l'ordre croissant (car $n < n+1$) d'une fonction à valeurs positives sur l'intervalle d'intégration (car $[n ~;~ n+1] \subset [1 ~;~ +\infty[$, puisque $n\geqslant 1$) : cette expression est donc positive.
+
+\end{itemize}
+	Pour un $n$ quelconque supérieur à 1, la différence entre les termes $v_{n+1}$ et $v_n$ est positive, donc la suite $\left(v_n\right)$ est bien croissante.
+\end{enumerate}

@@ -1,0 +1,229 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet2_metropole_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Partie A}
+	\begin{enumerate}
+		\item \begin{enumerate}
+			\item Puisque la tangente à $\mathcal{C}_f$ en C (d'abscisse 1), est parallèle à l'axe des abscisses, c'est donc une droite dont le coefficient directeur est 0.
+
+			On peut donc affirmer :\quad $f'(1) = 0$.
+
+			\item Sur l'intervalle $[0 ; 3]$, la courbe $\mathcal{C}_f$ coupe l'axe des abscisses (d'équation y = 0) une seule fois, au point A.
+
+			Comme l'abscisse de A est $\dfrac{1}{2}$, on en déduit que la solution de l'équation \quad $f(x) = 0$\quad sur $[0 ; 3]$ est $\dfrac{1}{2}$.
+		\end{enumerate}
+
+		\item A est le point d'abscisse $\dfrac{1}{2}$ sur $\mathcal{C}_f$.
+
+		Par propriété, $f'\left(\dfrac{1}{2}\right)$ est donc le coefficient directeur de la tangente à $\mathcal{C}_f$ en A.
+
+		La tangente $T_{\mathrm{A}}$ est aussi la droite (AB), d'après l'énoncé, donc son coefficient directeur est :
+
+		$\dfrac{y_{\mathrm{B}} - y_{\mathrm{A}}}{x_{\mathrm{B}}-x_{\mathrm{A}}} = \dfrac{\e^2 - 0}{1 - \dfrac{1}{2}} = 2\e^2$.
+
+		On a donc :\quad $f'\left(\dfrac{1}{2}\right) = 2\e^2$.
+
+		\item Deux primitives d'une même fonction diffèrent d'une constante. Graphiquement, cela se traduit par une courbe qui est l'image de l'autre par une translation d'un vecteur colinéaire au vecteur dirigeant l'axe des ordonnées (généralement le vecteur $\vect{j}$, mais il n'est pas nommé dans cet énoncé).
+
+		Ceci correspond aux courbes $\mathcal{C}_1$ et $\mathcal{C_2}$.
+
+		\emph{Remarque :} On peut aussi procéder par élimination : la courbe $\mathcal{C}_3$ représente une fonction décroissante sur un intervalle englobant au moins $[0,5 ; 0,7]$, quand la fonction $f$ est positive sur l'intervalle $[0,5 ; 0,7]$ : une primitive de $f$ devrait être croissante sur cet intervalle, ce que n'est pas la fonction représentée par $\mathcal{C}_3$.
+	\end{enumerate}
+
+\subsection*{Partie B}
+	\begin{enumerate}
+		\item \begin{enumerate}
+			\item Soit $x$ un réel strictement positif :
+
+			$f(x) = (2x - 1)\e^{-2x + 3}= (2x - 1)\e^{-2x + 1 + 2} = (2x - 1)\e^{-2x + 1}\times \e^{2} = (2x - 1)\times \e^{-(2x - 1)} \times \e^{2}$
+
+			Finalement, on a bien :\quad $f(x) = \dfrac{2x - 1}{\e^{2x - 1}} \times \e^{2} = \e^{2}\dfrac{2x - 1}{\e^{2x - 1}}$.
+
+			\item On a :\quad $\lim\limits_{x \to +\infty 2x - 1} = +\infty$.
+
+			D'après la propriété des croissances comparées : \quad $\lim\limits_{X \to +\infty} \dfrac{\e^{X}}{X} = +\infty$, \quad donc, par composition :\quad $\lim\limits_{x \to +\infty} \dfrac{\e^{2x - 1}}{2x - 1}= + \infty$.
+
+			Donc, par limite du quotient :\quad $\lim\limits_{x \to +\infty} \dfrac{2x - 1}{\e^{2x - 1}}= 0$.
+
+			Enfin, par limite du produit :\quad $\lim\limits_{x \to +\infty} \e^{2}\dfrac{2x - 1}{\e^{2x - 1}} = \lim\limits_{x \to +\infty} f(x) = 0$.
+
+			\emph{Remarque :} On peut donc dire que l'axe des abscisses est asymptote horizontale à la courbe représentative de $f$ au voisinage de $+\infty$.
+		\end{enumerate}
+
+		\item \begin{enumerate}
+			\item On va utiliser les formules pour dériver un produit et pour dériver une fonction composée, en prenant la forme de $f$ qui est : \quad $f(x) = (2x-1)\e^{-2x+3}$.
+
+			$\forall x \in [0 ; +\infty[,\quad \begin{aligned}[t]
+			f'(x) &= 2 \times \e^{-2x + 3} + (2x-1) \times \left(-2\e^{-2x+3}\right) = \big(2 + (2x-1)\times(-2)\big)\e^{-2x+3} \\
+			f'(x)&= (2 - 4x + 2)\e^{-2x+3} = (-4x+4)\e^{-2x+3}
+			\end{aligned}$
+
+			On arrive bien à l'expression annoncée.
+
+			\item La fonction exponentielle est à valeurs strictement positives, donc $f'(x)$ est du même signe que l'expression affine $(-4x + 4)$, décroissante sur $\R$ et s'annulant pour $x = 1$.
+
+			On en déduit que $f$ changera de variation en $x = 1$.
+
+			Calculons : \quad $f(0) = (2\times 0 -1)\e^{-2\times 0 +3} = -\e^{3}$,\quad $f(1) = (2\times 1 - 1)\e^{-2\times 1+3} = \e$.
+
+			On peut donc construire le tableau de variations complet de la fonction $f$ :
+
+			\begin{center}
+			\begin{tikzpicture}
+				\tkzTabInit[lgt=3,espcl=4]
+				{$x$/0.7, signe de $-4x + 4$/0.7, signe de $f'(x)$/0.7, variations de $f$/2}{0,1,$+\infty$}
+				\tkzTabLine{,+,z,-,}
+				\tkzTabLine{,+,z,-,}
+				\tkzTabVar{-/$-\e^{3}$,+/$\e$,-/0}
+			\end{tikzpicture}
+			\end{center}
+		\end{enumerate}
+
+		\item L'unité graphique du repère est le centimètre, donc une distance de \np[cm]{0,3} se traduit par une distance de 0,3 unité graphique.
+
+		Puisque cette distance est verticale, entre le point d'abcisse $\alpha$ sur la courbe, de coordonnées $(\alpha ; f(\alpha))$ et le symétrique de ce point par rapport à l'axe des abscisses, c'est-à-dire le point de coordonnées $(\alpha ; -f(\alpha))$, la distance entre les deux points est égale à :\quad $2f(\alpha)$.
+
+		On doit donc avoir :\quad $2f(\alpha) = 0,3 \iff f(\alpha) = 0,15$.
+
+		Sur $[1 ; + \infty[$, la fonction $f$ est continue (car dérivable), strictement décroissante, et le nombre$ 0,15$ est une valeur intermédiaire entre $f(1) = \e \approx 2,7$ et $\lim\limits_{x \to +\infty} f(x)=0$.
+
+		D'après le corollaire au théorème des valeurs intermédiaires appliqué aux fonctions strictement monotones (aussi appelé théorème de la bijection), l'équation \quad $f(x) = 0,15$\quad admet une unique solution sur $[1 ; +\infty[$, qui est le nombre $\alpha$.
+
+		Par exploration à la calculatrice, une valeur arrondie au dixième près de $\alpha$ est $\alpha \approx 3,3$.
+	\end{enumerate}
+
+\subsection*{Partie C}
+	\begin{enumerate}
+		\item Posons $u$ et $v$, les fonctions définies sur $[0 ; + \infty[$ par : \quad $\begin{cases}
+			u(x) = (2x - 1)\\
+			v(x) = \dfrac{-1}{2}\e^{-2x+3}
+		\end{cases}$
+
+		Ces fonctions sont dérivables, et, sur le même intervalle :\quad $\begin{cases}
+			u'(x) = 2\\
+			v'(x) = \e^{-2x+3}
+			\end{cases}$
+
+		Ainsi, on reconnaît : \quad $f(x) = u(x)\times v'(x)$.
+
+		Les fonctions $u'$ et $v'$ étant continues, on peut appliquer la formule d'intégration par parties :
+
+		$\begin{aligned} \ds
+			I &= \int_{0,5}^{3,3} f(x) \d x\\
+				&= \int_{0,5}^{3,3} u(x)\times v'(x) \d x\\
+				&= \Big[u(x) \times v(x)\Big]_{0,5}^{3,3} - \int_{0,5}^{3,3} u'(x)\times v(x) \d x\\
+				&= \Big[(2x-1) \times \dfrac{(-1)}{2}\e^{-2x+3}\Big]_{0,5}^{3,3} - \int_{0,5}^{3,3} 2\times \dfrac{(-1)}{2}\e^{-2x+3} \d x\\
+				&= -\dfrac{1}{2} \Big[(2x-1)\e^{-2x+3}\Big]_{0,5}^{3,3} - \int_{0,5}^{3,3} -\e^{-2x+3} \d x\\
+				&= -\dfrac{1}{2} \Big[(2x-1)\e^{-2x+3}\Big]_{0,5}^{3,3} + \int_{0,5}^{3,3} \e^{-2x+3} \d x\quad \text{par linéarité de l'intégrale}\\
+				&= -\dfrac{1}{2} \Big[\left( (2\times 3,3-1)\e^{-2\times 3,3+3}\right) - (2\times 0,5 - 1)\e^{-2\times 0,5 + 3}\Big] + \left[\dfrac{-1}{2}  \e^{-2x+3}\right]_{0,5}^{3,3}\\
+				&= -\dfrac{1}{2} \Big[\left( 5,6\e^{-3,6}\right) - 0\times \e^{2}\Big] -\dfrac{1}{2} \left[\e^{-2\times 3,3+3} - \e^{-2\times 0,5 + 3}\right]\\
+				&= -2,8\e^{-3,6} -\dfrac{1}{2} \left[\e^{-3,6} - \e^{2}\right]\\
+				&= -2,8\e^{-3,6} - 0,5\e^{-3,6} +0,5 \e^{2}\\
+				&= 0,5\e^{2} - 3,3\e^{-3,6}
+		\end{aligned}$
+
+		Comme on a :\quad $I= 0,5\e^{2} - 3,3\e^{-3,6}\approx 3,6$\quad au dixième près, on arrive bien à l'arrondi annoncé.
+
+		\item Sur l'intervalle $[0,5 ; 3,3]$, la fonction $f$ est continue et à valeurs positives, donc l'aire du domaine délimité par : la courbe $\mathcal{C}_f$, l'axe des abscisses et les droites verticales d'équations $x = 0,5$ et $x = 3,3$ est donnée par l'intégrale $I$, dont on a calculé une valeur approchée à la question précédente.
+
+		En doublant cette surface, cela revient à considérer un domaine deux fois plus grand, qui serait délimité par $\mathcal{C}_f$ et sa courbe symétrique par rapport à l'axe des abscisses, entre les abscisses 0,5 et 3,3.
+
+		Si on utilise l'approximation $\alpha \approx 3,3$, on peut donc considérer que $2I$ est une approximation de la surface grisée.
+
+		Ainsi le volume du porte-clé est proche de :\quad $2I \times 0,2 \approx 2 \times 3,6 \times 0,2$.
+
+		On peut donc donner une valeur approchée de \np[cm^3]{1,44}, soit, au dixième près \np[cm^3]{1,4}.
+
+		\emph{Remarque :} Ce qui suit n'était absolument pas attendu.
+
+	 Ici, le calcul fait intervenir trois approximations :
+	 \begin{itemize}
+	 	\item $\alpha \approx 3,3$;
+	 	\item le fait que l'aire grisée est approchée par $2I$, quand on devrait avoir \quad $\ds 2\int_{0,5}^{\alpha} f(x) \d x$;
+	 	\item et enfin le fait que $I$ est proche de \np[cm^2]{3,6}.
+	 \end{itemize}
+
+		Sans rentrer dans le détail, ces approximations enchaînées ici permettent quand même d'avoir une valeur finale avec la précision requise.
+	\end{enumerate}
+
+\end{document}

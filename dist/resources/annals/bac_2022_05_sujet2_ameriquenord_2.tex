@@ -1,0 +1,164 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet2_ameriquenord_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\bigskip
+
+\textbf{Partie A}
+
+\medskip 
+
+Soit $p$ la fonction définie sur l'intervalle $[-3~;~4]$ par :
+
+\[p(x) = x^3 - 3x^2 + 5x + 1\]
+
+\begin{enumerate}
+\item Déterminer les variations de la fonction $p$ sur l'intervalle $[-3~;~4]$.
+\item Justifier que l'équation $p(x) = 0$ admet dans l'intervalle $[-3~;~4]$ une unique solution qui sera notée $\alpha$.
+\item Déterminer une valeur approchée du réel $\alpha$ au dixième près.
+\item Donner le tableau de signes de la fonction $p$ sur l'intervalle $[-3~;~4]$. 
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip 
+
+Soit $f$ la fonction définie sur l'intervalle $[-3~;~4]$ par :
+
+\[f(x) = \dfrac{\text{e}^x}{1 + x^2}\]
+
+On note $\mathcal{C}_f$ sa courbe représentative dans un repère orthogonal.
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Déterminer la dérivée de la fonction $f$ sur l'intervalle $[-3~;~4]$.
+		\item Justifier que la courbe $\mathcal{C}_f$ admet une tangente horizontale au point d'abscisse 1.
+	\end{enumerate}
+\item  Les concepteurs d'un toboggan utilisent la courbe $\mathcal{C}_f$ comme profil d'un toboggan. Ils estiment que le toboggan assure de bonnes sensations si le profil possède au moins deux points d'inflexion.
+
+\medskip
+
+\begin{minipage}{0.48\linewidth}
+\psset{unit=0.75cm}
+\begin{pspicture*}(-4,-1.95)(4.25,4.1)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.15pt](-4,0)(4,4)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle](0,0)(-4,-0)(4.25,4.1)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-3}{4}{2.71828 x exp x dup mul 1 add div}
+\rput(0,-1){Représentation de la courbe $\mathcal{C}_f$}
+\uput[ul](3,2){\blue \small $\mathcal{C}_f$}
+\end{pspicture*}
+\end{minipage} \hfill
+\begin{minipage}{0.48\linewidth}
+\psset{unit=0.75cm}
+\begin{pspicture}(-4,-1.95)(4.25,4.1)
+
+\def\tobo{\psplot[plotpoints=2000,linewidth=1.25pt]{-3}{4}{2.71828 x exp x dup mul 1 add div}}
+\psplot[plotpoints=2000,linewidth=1.25pt]{-3}{4}{2.71828 x exp x dup mul 1 add div}
+\rput(-0.6,0.6){\tobo}
+\psline(-3,0)(-3.6,0.6)\psline(4,3.2)(3.4,3.8)
+\pscustom[fillstyle=solid,fillcolor=lightgray]
+{\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-3}{4}{2.71828 x exp x dup mul 1 add div}
+\psline(4,3.2)(4,0)(-2,0)}
+\rput(0,-1){Vue de profil du toboggan}
+\end{pspicture}
+\end{minipage}
+
+	\begin{enumerate}
+		\item D'après le graphique ci-dessus, le toboggan semble-t-il assurer de bonnes sensations ? Argumenter.
+		\item On admet que la fonction $f''$, dérivée seconde de la fonction $f$, a pour expression pour tout réel $x$ de l'intervalle $[-3~;~4]$ :
+
+		\[f''(x) = \dfrac{p(x)(x - 1)\text{e}^x}{\left(1 + x^2\right)^3}\]
+
+où $p$ est la fonction définie dans la partie A.
+
+En utilisant l'expression précédente de $f''$, répondre à la question : \og le toboggan assure-t-il de bonnes sensations ? \fg. Justifier.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

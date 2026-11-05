@@ -1,0 +1,202 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet1_etrangers_groupe2_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Dans l'espace muni d'un repère orthonormé \Oijk, on considère les
+points
+\begin{center}A$(-1~;~-3~;~2)$,\qquad B$(3~;~-2~;~6)$ \quad et \quad  C$(1~;~2~;~-4)$.\end{center}
+
+\smallskip
+
+\begin{enumerate}
+\item 
+On a $\vect{\text{AB}}\begin{pmatrix}4\\1\\4\end{pmatrix}$ et $\vect{\text{AC}}\begin{pmatrix}2\\5\\-6\end{pmatrix}$ : ces vecteurs ne sont pas colinéaires, donc les points A, B et C ne sont pas alignés : ils définissent donc un plan $\mathcal{P}$.
+\item 
+	\begin{enumerate}
+		\item 
+On a :
+
+$\bullet~~$$\vect{n} \cdot \vect{\text{AB}} = 4 \times 13 + 1 \times (- 16) + 4 \times (-9) = 52 - 16 - 36 = 52 - 52 = 0$ ;
+
+$\bullet~~$$\vect{n} \cdot \vect{\text{AC}} = 2 \times 13 + 5 \times (- 13) + (- 6 \times (-9) = 26 - 65 + 54  = 52 - 52 = 0$.
+
+Le vecteur $\vect{n}$ est donc orthogonal à deux vecteurs non colinéaires du plan $\mathcal{P}$ : il est normal à ce plan.
+		\item 
+On sait que $M(x~;~y~;~z) \in \mathcal{P} \iff ax + by + cz + d = 0$ et que $a, b $ et $c$ sont les composantes d'un vecteur normal à ce plan donc par exemple $\vect{n}$.
+		
+On a donc $M(x~;~y~;~z) \in \mathcal{P} \iff 13x - 16y -9z + d = 0$.
+		
+par exemple C$(1~;~2~;~- 4) \in \mathcal{P} \iff 13\times 1 + 2\times  (-16) -9 \times (- 4) + d = 0   + d = 0 \iff 13 - 32 + 36 + d = 0 \iff 17 + d = 0 \iff d = - 17$.
+		
+On a donc $M(x~;~y~;~z) \in \mathcal{P} \iff 13x - 16y - 9z - 17 = 0$.
+	\end{enumerate}
+\end{enumerate}
+
+On note $\mathcal{D}$ la droite passant par le point F$(15~;~-16~;~-8)$ et orthogonale au plan $\mathcal{P}$.
+\begin{enumerate}[resume]
+\item 
+La droite $\mathcal{D}$ étant orthogonale au plan $\mathcal{P}$ a pour vecteur directeur le vecteur $\vect{n}$ normal au plan $\mathcal{P}$.
+
+On a donc $M(x~;~y~;~z) \in \mathcal{D} \iff \vect{\text{F}M} = t \vect{n}, \quad t \in \R$, soit $\left\{\begin{array}{l c l}
+x - 15&=&13t\\
+y + 16&=&- 16t\\
+z + 8&=&- 9t
+\end{array}\right., \quad t \in \R$
+\item 
+Si E$(x~;~y~;~z)$ est commun à la droite $\mathcal{D}$ et au plan $\mathcal{P}$, ses coordonnées vérifient les équations de la droite et celle du plan donc le système :
+
+$\left\{\begin{array}{l c l}
+x - 15&=&13t\\
+y + 16&=&- 16t\\
+z + 8&=&- 9t\\
+13x - 16y - 9z - 17 &=& 0
+\end{array}\right., \quad t \in \R$.
+
+En remplaçant $x, y$ et $z$ par leurs valeurs en fonction de $t$ dans l'équation du plan, on obtient :
+
+$13(13t + 15) - 16(16t - 16)- 9(- 9t - 8) - 17 = 0 \iff 169t + 195 + 256t + 256 +81t + 72 - 17 = 0 \iff 506t + 506 = 0 \iff t = - 1$.
+
+En reportant cette valeur dans les équations paramétriques de la droite $\mathcal{D}$, on obtient  :
+
+$\left\{\begin{array}{l c l}
+x - 15&=&-13 \\
+y + 16&=&16\\
+z + 8&=&9\\
+\end{array}\right.\iff \left\{\begin{array}{l c l}
+x &=&2 \\
+y &=&0\\
+z &=&1\\
+\end{array}\right.$
+
+Donc E(2~;~0~;~1).
+
+\item 
+F et E appartiennent à la droite $\mathcal{D}$ perpendiculaire au plan $\mathcal{P}$, donc la distance du point F au plan est égale à FE.
+
+Or FE$^2 = (- 13)^2 + 16^2 + 9^2 = 169 + 256 + 81 = 506$. D'où FE $ = \sqrt{506}$.
+\item 
+Comme précédemment si $M \in \mathcal{D}$ perpendiculaire au plan $\mathcal{P}$ la distance de ce point au plan $\mathcal{P}$ est $M$E.
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(0,-1)(8,1)
+\psline(8,0)
+\psdots(1,0)(3,0)(5,0)(7,0)
+\uput[d](1,0){F} \uput[d](3,0){$M_1$} \uput[d](5,0){E} \uput[d](7,0){$M_2$}
+\multido{\n=1.9+2.0,\na=2.1+2.0}{3}{\psline(\n,-0.2)(\na,0.2)}
+\end{pspicture}
+\end{center}
+
+$\bullet~~$Premier point répondant à la question : $M_1$ tel que $\vect{\text{E}M_1} = \dfrac12 \vect{\text{EF}}$.
+
+De $\vect{\text{EF}}\begin{pmatrix}13\\-16\\-9\end{pmatrix}$, on déduit que $\dfrac12 \vect{\text{EF}} = \vect{\text{E}M_1}\begin{pmatrix}6,5\\-8\\-4,5\end{pmatrix}$, soit 
+
+$\left\{\begin{array}{l c l}
+x_1 - 2&=&6,5\\
+y_1 - 0&=&- 8\\
+z - 1&=&-4,5
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+x_1 &=&8,5\\
+y_1 &=&- 8\\
+z &=&-3,5
+\end{array}\right.$
+
+$\bullet~~$Deuxième point répondant à la question : $M_2$ tel que $\vect{\text{E}M_2} = -\dfrac12 \vect{\text{EF}}$.
+
+De $\vect{\text{EF}}\begin{pmatrix}13\\-16\\-9\end{pmatrix}$, on déduit que $-\dfrac12 \vect{\text{EF}} = \vect{\text{E}M_2}\begin{pmatrix}-6,5\\8\\4,5\end{pmatrix}$, soit 
+
+$\left\{\begin{array}{l c l}
+x_2 - 2&=&-6,5\\
+y_2 - 0&=& 8\\
+z_2 - 1&=&4,5
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+x_2 &=&- 4,5\\
+y_2 &=& 8\\
+z_2 &=&5,5
+\end{array}\right.$
+
+Donc $M_1(8,5~;~-8~;~- 3,5)$ et $M_2(-4,5~;~ 8~;~5,5)$.
+\end{enumerate}
+
+\end{document}

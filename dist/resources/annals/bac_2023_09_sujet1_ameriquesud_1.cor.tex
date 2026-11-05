@@ -1,0 +1,248 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_09_sujet1_ameriquesud_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+
+
+\[f(x) = 1 + x^2 - 2x^2\ln (x).\]
+
+
+
+\medskip
+
+\begin{enumerate}
+\item ~
+$\bullet~~$Limite en 0 : On sait que $\displaystyle\lim_{x \to 0} x^2\ln (x) = 0$, que $\displaystyle\lim_{x \to 0} x = 0$, donc par somme de limites :
+
+$\displaystyle\lim_{x \to 0} f(x) = 1$.
+
+$\bullet~~$Limite en $+ \infty$ : en écrivant $f(x) = 1 + x^2(1 - 2\ln (x))$, on a :
+
+$\displaystyle\lim_{x \to + \infty}x^2 = + \infty, \:\displaystyle\lim_{x \to + \infty} - 2\ln (x) = - \infty$, puis $\displaystyle\lim_{x \to + \infty}1 - 2\ln (x) = - \infty$ et enfin par produit de limites :
+
+$\displaystyle\lim_{x \to + \infty}f(x) = - \infty$.
+\item 
+
+Pour tout réel de l'intervalle $]0~;~+ \infty[, \: f'(x) = 2x - 4x\ln (x) - 2x^2 \times \dfrac1x = 2x - 4x\ln (x) - 2x = - 4x\ln (x)$.
+\item 
+Puisque $x \geqslant 0$, le signe de $f'(x)$ est l'opposé de celui de $\ln (x)$.
+
+On sait que $\ln (x) < 0$ sur $[0~;~1[$, donc $f'(x) > 0$ sur $[0~;~1[$ et que 
+
+$\ln (x) > 0$ sur $]1~;~+ \infty[$, donc $f'(x) < 0$ sur $]1~;~+ \infty[$.
+
+La fonction $f$ est donc :
+
+$\bullet~~$croissante sur [0~;~1] de 1 à $f(1) = 1 + 1 - 2 \times 1 \times 0 = 2$ ;
+
+$\bullet~~$décroissante sur $[1~;~+\infty[$ de 2 à moins l'infini.
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(7,2.5)
+\psframe(7,2.5)\psline(0,1.5)(7,1.5)\psline(0,2)(7,2)\psline(1,0)(1,2.5)\psline(1.1,0)(1.1,2)
+\uput[u](0.5,1.9){$x$} \uput[u](1.1,1.9){$0$} \uput[u](4,1.9){$1$} \uput[u](6.5,1.9){$+\infty$}
+\uput[u](0.5,1.4){$f'(x)$} \uput[u](2,1.4){$+$} \uput[u](4,1.4){$0$} \uput[u](5.5,1.4){$-$}
+\rput(0.5,0.75){$f(x)$}\uput[u](1.2,0){1}\uput[d](4,1.5){2} \uput[u](6.5,0){$- \infty$}
+\psline{->}(1.5,0.4)(3.6,1.3)\psline{->}(4.4,1.3)(6.6,0.4)
+\end{pspicture}
+\end{center}
+
+\item 
+La fonction $f$ est continue car dérivable sur l'intervalle $[1~;~+ \infty]$ et décroissante de 2 à moins l'infini : d'après le théorème des valeurs intermédiaires, il existe un réel unique $\alpha$, avec $\alpha \in ]1~;~+ \infty[$ tel que $f(\alpha) = 0$.
+
+Comme $f(\e) = 1 + \e^2(1 - 2\ln \e) = 1 + \e^2(1 - 2) = 1 - \e^2 \approx - 6,4$.
+
+En appliquant le même théorème, on a donc $1 < \alpha < \e$.
+\end{enumerate}
+
+On admet dans la suite de l'exercice, que l'équation $f(x) = 0$ n'admet pas de solution sur l'intervalle ]0~;~1].
+
+\emph{Rem. } : comme $0 \notin [1~;~2]$ le même théorème montre qu'il n'existe pas de réel $\beta \in [0~;~1]$ tel que $f(\beta) = 0$.
+
+\begin{enumerate}[resume]
+\item 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+On part de l'intervalle [1~;~2,7], (avec $\e \approx 2,7$)
+{\ttfamily dichotomie(1)} donne par dichotomie un encadrement de $\alpha$ par deux réels $a$ et $b$ tels que $b - a \leqslant 10^{-1}$.
+
+Comme $\alpha \approx 1,9$, C et D sont exclus et A ne donne pas un encadrement au dixième : reste la proposition B.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On considère la fonction $g$ définie sur l'intervalle $]0~;~+ \infty[$, par 
+\[g(x) = \dfrac{\ln (x)}{1 + x^2}.\]
+
+On admet que $g$ est dérivable sur l'intervalle $]0~;~+ \infty[$ et on note $g'$ sa fonction dérivée.
+
+On note $\mathcal{C}_g$ la courbe représentative de la fonction $g$ dans le plan rapporté à un repère \Oij.
+
+\medskip
+
+\begin{enumerate}
+\item 
+$g$ est un quotient de fonctions dérivables sur $]0~;~+ \infty[$, le dénominateur étant non nul (supérieur ou égal à 1), donc quel que soit $x \in ]0~;~+ \infty[$ :
+
+$g'(x) = \dfrac{\dfrac 1x \times \left(1 + x^2\right) - 2x \ln (x)}{\left(1 + x^2\right)^2} = \dfrac{\dfrac{1 + x^2 - 2x^2\ln (x)}{x}}{\left(1 + x^2\right)^2}  = \dfrac{1 + x^2 - 2x^2\ln (x)}{x\left(1 + x^2\right)^2} = \dfrac{f(x)}{x\left(1 + x^2\right)^2}$.
+\item 
+
+
+Le résultat précédent montre que puisque $x > 0$ et $\left(1 + x^2\right)^2 > 0$, le signe de $g'(x)$ est celui du numérateur donc le signe de $f(x)$.
+
+Or on a vu (Partie A question 3.) que $f(x) > 0$ sur $]0~;~\alpha[$ et $f(x) < 0$ sur $]\alpha~;~+ \infty[$.
+
+La fonction $g$ est donc croissante sur $[0~;~\alpha]$, puis décroissante sur $[\alpha~;~+ \infty[$ avec un maximum $g(\alpha)$.
+
+\emph{Rem.} : on sait que $f(\alpha) = 0 \iff 1 + \alpha^2 - 2\alpha^2 \ln \alpha \iff 2\alpha^2 \ln \alpha = 1 + \alpha^2 \iff $
+
+$\ln \alpha = \dfrac{1 + \alpha^2}{2\alpha^2}$.
+
+Donc $g(\alpha) = \dfrac{f(\alpha)}{1 + \alpha^2} = \dfrac{\dfrac{1 + \alpha^2}{2\alpha^2}}{1 + \alpha^2} = \dfrac{1}{2\alpha^2}$.
+\item On note $T_1$ la tangente à $\mathcal{C}_g$ au point d'abscisse 1 et on note $T_{\alpha}$ la tangente à $\mathcal{C}_g$ au point d'abscisse $\alpha$.
+
+$\bullet~~$On a $M(x~;~y) \in T_1 \iff y - g(1) = g'(1)(x - 1) \iff y - 0 = \dfrac12(x - 1) = \dfrac12 x - \dfrac12$ ;
+
+$\bullet~~$On a vu que la fonction a un maximum en $\alpha$ et en ce point le nombre dérivé égal au coefficient directeur de la tangente en ce point (donc $T_{\alpha}$) est nul : la tangente est donc horizontale d'équation $y = g(\alpha)$ ou $y = \dfrac{1}{2\alpha^2}$. 
+
+
+Donc $M(x~;~y) \in T_1 \cap T_{\alpha} \iff \dfrac12 x - \dfrac12 = \dfrac{1}{2\alpha^2}$, soit 
+
+$x - 1 = \dfrac{1}{\alpha^2} \iff x = 1 + \dfrac{1}{\alpha^2}$ et $y = \dfrac{1}{2\alpha^2}$.
+
+Donc $T_1 \cap T_{\alpha}\left(1 + \dfrac{1}{\alpha^2}~;~\dfrac{1}{2\alpha^2}\right)$.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

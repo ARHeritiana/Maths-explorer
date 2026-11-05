@@ -1,0 +1,36 @@
+\subsection*{1.}
+
+Augmenter de 9 \%, c'est multiplier par \(1 + \frac{9}{100} = 1 + 0{,}09 = 1{,}09\).
+
+Donc :
+\begin{align*}
+&d_2 = d_1 \times 1{,}09 = 30 \times 1{,}09 = 32{,}7, \\
+&d_3 = d_2 \times 1{,}09 = 32{,}7 \times 1{,}09 = 35{,}643.
+\end{align*}
+
+\subsection*{2.}
+
+On a donc, quel que soit \( n \geqslant 1 \), \(d_{n+1} = 1{,}09 \times d_n\) : ceci montre que la suite \( (d_n) \) est géométrique de raison \(q = 1{,}09\) et de premier terme \(d_1 = 30\).
+
+\subsection*{3.}
+
+On sait alors que, quel que soit \(n \geqslant 1\), \( d_n = d_1 \times 1{,}09^{n-1} \).
+
+\subsection*{4.}
+
+La fonction `distance(150)` renverra le nombre de semaines nécessaires pour atteindre une distance de 150 km, ce qui correspond à 20 semaines.
+
+\subsection*{5.}
+
+Il faut trouver :
+\[
+D = 30 + 30 \times 1{,}09 + 30 \times 1{,}09^2 + \dots + 30 \times 1{,}09^{20} \quad (1).
+\]
+Or :
+\[
+1{,}09D = 30 \times 1{,}09 + 30 \times 1{,}09^2 + \dots + 30 \times 1{,}09^{20} + 30 \times 1{,}09^{21} \quad (2).
+\]
+Par différence \((2) - (1) \), on obtient :
+\[
+0{,}09D = 30 \times 1{,}09^{21} - 30, \text{ d'où } D = \frac{30 \times 1{,}09^{21} - 30}{0{,}09} \approx 1702{,}94 \, \text{(km)}.
+\]

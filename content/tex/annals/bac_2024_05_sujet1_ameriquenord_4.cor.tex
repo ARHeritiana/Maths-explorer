@@ -1,0 +1,104 @@
+\medskip
+
+
+
+\[I_n = \displaystyle\int_0^{\pi} \text{e}^{- nx}\sin (x)\:\text{d}x, \quad  J_n = \displaystyle\int_0^{\pi} \text{e}^{-nx}\cos (x)\:\text{d}x.\]
+
+\medskip
+
+\begin{enumerate}
+\item 
+$I_0 = \displaystyle\int_0^{\pi} 1 \times \sin (x)\:\text{d}x = \displaystyle\int_0^{\pi} \sin (x)\:\text{d}x  = [- \cos x]_0^{\pi} = - \cos \pi - (- \cos 0) = 1 + 1 = 2$.
+\item 
+	\begin{enumerate}
+		\item 
+On sait que $0 \leqslant x \leqslant  \pi \Rightarrow 0 \leqslant \sin x \leqslant 1 \Rightarrow 0 \leqslant \text{e}^{- nx}\sin (x) \leqslant \text{e}^{- nx}$ par produit par $\text{e}^{- nx} > 0$ : la fonction à intégrer étant positive et l'intervalle d'intégration étant croissant on sait que l'intégrale de cette fonction positive est positive. Quel que soit $n \in \N$,\: $I_n \geqslant 0$.
+		\item 
+Pour $n \in \N$, \: $I_{n+1} - I_n  = \displaystyle\int_0^{\pi} \e^{-(n+1)x} \sin (x)\:\text{d}x - \displaystyle\int_0^{\pi} \e^{-(nx)} \sin (x)\:\text{d}x = $
+
+$\displaystyle\int_0^{\pi}\sin x\left[\e^{-(n+1)x}  - \e^{-(nx)} \right]\:\text{d}x$ par linéarité de l'intégrale, puis 
+
+$I_{n+1} - I_n  = \displaystyle\int_0^{\pi} \sin x  \e^{-(nx)}\left[\e^{- x} - 1\right]\:\text{d}x$.
+
+Soit $u$ la fonction définie sur $[0~;~\pi]$ par $u(x) = \e^{- x} - 1$.
+
+$u$ est dérivable sur $[0~;~\pi]$ et sur cet intervalle $u'(x) = - \e^{-x} < 0$.
+La fonction $u$ est donc décroissante de $\e^{-0} - 1 = 0$ à $\e^{- \pi} - 1 \approx -0,957$.
+
+Comme $\sin x  \e^{-(nx)} \geqslant 0$ et $\e^{- x} - 1 < 0$, la fonction à intégrer dans $I_{n+1} - I_n$ est négative et donc $I_{n+1} - I_n \leqslant 0$.
+		\item 
+
+On vient de démontrer que $I_{n+1} - I_n \leqslant 0 \iff I_{n+1} \leqslant I_n $, c'est-à-dire que la suite $\left(I_n\right)$ est décroissante ; étant minorée par zéro elle converge donc vers une limite $\ell \geqslant 0$.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item 
+On a déjà vu que  que $0 \leqslant x \leqslant \pi \Rightarrow 0 \leqslant \sin x \leqslant 1 \Rightarrow 0 \leqslant \text{e}^{- nx}\sin (x) \leqslant \text{e}^{- nx}$, donc par intégration sur l'intervalle $[0~;~+ \pi]$ on obtient 
+		
+$\displaystyle\int_0^{\pi} 0\:\text{d}x \leqslant I_n \leqslant \displaystyle\int_0^{\pi}\e^{-n\pi}\:\text{d}x$.
+
+\[I_n \leqslant \displaystyle\int_0^{\pi} \text{e}^{- nx}\:\text{d}x.\]
+		
+		\item 
+
+Une primitive de $\text{e}^{- nx}$est $\dfrac{1}{- n}\text{e}^{- nx}$, donc pour $n \geqslant 1$, \: $\displaystyle\int_0^{\pi} \text{e}^{- nx}\:\text{d}x = \left[\dfrac{1}{- n}\text{e}^{- nx}\right]_0^{\pi} = - \dfrac 1n\left[\e^{-n \pi} - \e^0\right] = - \dfrac 1n\left[\e^{-n \pi} - 1\right] = \dfrac{1 - \e^{-n \pi}}{n}.$
+		\item 
+On sait que $\displaystyle\lim_{n \to + \infty}\e^{-n \pi} = 0$, donc $\displaystyle\lim_{n \to + \infty} 1 - \e^{-n \pi} = 1$ et enfin $\displaystyle\lim_{n \to + \infty}\dfrac{1 - \e^{-n \pi}}{n} = 0$.
+
+D'après le théorème des \og gendarmes \fg{} la suite $\left(I_n\right)$ a pour limite 0.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item 
+
+
+$\bullet~~$IPP1 On pose :
+
+$\begin{array}{l l}
+u(x) = \e^{-nx}&v'(x) = \sin x\\
+u'(x) = -n\e^{-nx}&v(x) = - \cos x
+\end{array}$
+
+On a donc $I_n = \left[- \e^{-nx}\cos x\right]_0^{\pi} - \displaystyle\int_0^{\pi} n\e^{-nx}\cos x\:\text{d}x  = \e^{-n \pi} + 1 - nJ_n =$
+
+$ 1 + \e^{-n \pi} - nJ_n$.
+
+$\bullet~~$IPP2 On pose :
+
+$\begin{array}{l l}
+u(x) = \sin x&v'(x) = \e^{-nx}\\
+u'(x) = \cos x&v(x) = \dfrac{1}{-n}\e^{-nx} 
+\end{array}$
+
+On a donc $I_n = \left[\dfrac{1}{-n} \e^{-nx}\sin x \right]_0^{\pi} - \displaystyle\int_0^{\pi}\cos x\dfrac{1}{-n}\e^{-nx}\:\text{d}x = -\dfrac 1n \displaystyle\int_0^{\pi}\e^{-nx} \cos x\:\text{d}x =  \dfrac 1n J_n$.
+		\item 
+
+En égalant les deux valeurs de $I_n$ trouvées on obtient :
+
+$1 + \e^{-n\pi} - nJ_n =  \dfrac 1n J_n\iff 1 + \e^{-n\pi} = J_n \left(n + \dfrac 1n\right)$
+
+$ \iff J_n\left(\dfrac{n^2 + 1}{n}\right) = 1 + \e^{-n\pi} \iff J_n = \dfrac{n}{n^2 + 1} \times \left[1 + \e^{-n\pi}\right]$.
+
+En, reportant dans l'expression $I_n = \dfrac 1n J_n$, on obtient finalement :
+
+\[I_n = \dfrac 1n\times \dfrac{n}{n^2 + 1}\times \left[1 + \e^{-n\pi}\right] = \dfrac{1 + \e^{-n\pi}}{n^2 + 1}.\]
+
+	\end{enumerate}
+\item On souhaite obtenir le rang $n$ à partir duquel la suite $\left(I_n\right)$ devient inférieure à 0,1.
+
+Recopier et compléter la cinquième ligne du script Python ci-dessous avec la
+commande appropriée.
+\begin{center}
+\begin{tabular}{|l l|}\hline
+1 &\textbf{from} math \textbf{import *}\\
+2 &def seuil() :\\
+3 &\quad n = 0\\
+4 &\quad I = 2\\
+5 &\quad {\red while I >= 0.1 :}\\
+6 &\quad \qquad n=n+1\\
+7 &\quad \qquad I=(1+exp(-n*pi))/(n*n+1)\\
+8 & \textbf{return} n\\ \hline
+\end{tabular}
+\end{center}
+
+\end{enumerate}

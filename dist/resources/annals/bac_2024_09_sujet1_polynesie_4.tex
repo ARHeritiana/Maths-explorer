@@ -1,0 +1,138 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_09_sujet1_polynesie_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{minipage}{0.5\linewidth}
+On considère un cube ABCDEFGH et l'espace est rapporté au repère orthonormal
+$\left(\text{A}~;~\vect{\text{AB}},~\vect{\text{AD}},~\vect{\text{AE}}\right)$.
+
+Pour tout réel $m$ appartenant à l'intervalle [0~;~ 1], on considère les points $K$ et $L$ de coordonnées:
+
+\begin{center}$K(m~;~0~;~0)$\quad et \quad $L(1 - m~;~1~;~1)$.\end{center}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+\psset{unit=0.85cm}
+\begin{pspicture}(6.6,6.6)
+\pspolygon(0.4,1)(4.2,0.5)(4.2,4.8)(0.4,5.3)
+\psline(4.2,0.5)(6.6,1.4)(6.6,5.7)(4.2,4.8)
+\psline(6.6,5.7)(2.8,6.2)(0.4,5.3)
+\psline(5,5.9)(0.4,5.3)(1.6,0.82)
+\psline[linestyle=dashed](5,5.9)(6.6,1.4)(1.6,0.84)
+\psline[linestyle=dashed](0.4,1)(2.8,1.9)(6.6,1.4)
+\psline[linestyle=dashed](2.8,1.9)(2.8,6.2)
+\uput[dl](0.4,1){A} \uput[d](4.2,0.5){B} \uput[dr](6.6,1.4){C} \uput[ul](2.8,1.9){D}
+\uput[ul](0.4,5.3){E} \uput[dr](4.2,4.8){F} \uput[ur](6.6,5.7){G} \uput[u](2.8,6.2){H}
+\uput[dl](1.6,0.84){K} \uput[u](5,5.9){L}
+\end{pspicture}
+\end{minipage}
+
+\medskip
+
+\begin{enumerate}
+\item Donner les coordonnées des points E et C dans ce repère.
+\item Dans cette question, $m = 0$. Ainsi, le point L(1~;~1~;~1) est confondu avec le point G, le point K(0~;~0~;~0) est confondu avec le point A et le plan (LEK) est donc le plan (GEA).
+	\begin{enumerate}
+		\item Justifier que le vecteur $\vect{\text{DB}}\begin{pmatrix}1\\-1\\0\end{pmatrix}$ est normal au plan (GEA).
+		\item Déterminer une équation cartésienne du plan (GEA).
+	\end{enumerate}
+\end{enumerate}
+
+On s'intéresse désormais à la nature de C$K$E$L$ en fonction du paramètre $m$.
+
+\begin{enumerate}[resume]
+\item Dans cette question, $m$ est un réel quelconque de l'intervalle [0~;~1].
+	\begin{enumerate}
+		\item Démontrer que C$K$E$L$ est un parallélogramme.
+		\item Justifier que $\vect{K\text{C}} \cdot \vect{K\text{E}} = m(m - 1)$.
+		\item Démontrer que C$K$E$L$ est un rectangle si, et seulement si, $m = 0$ ou $m = 1$.
+	\end{enumerate}
+\item Dans cette question, $m = \dfrac12$.Ainsi, L a pour coordonnées 
+$\left(\dfrac12~;~1~;~1\right)$ et K a pour coordonnées $\left(\dfrac12~;~0~;~0\right)$.
+	\begin{enumerate}
+		\item Démontrer que le parallélogramme CKEL est alors un losange.
+		\item À l'aide de la question \textbf{3.~b.}, déterminer une valeur approchée au degré près de la mesure de l'angle $\widehat{\text{CKE}}$.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,339 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet1_reunion_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On considère le cube ABCDEFGH ci-dessous tel que AB $= 1$.
+
+On note M le centre de la face BCGF et N le centre de la face EFGH.
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(6,5.6)
+\psframe(0.3,0.3)(4,4)
+\psline(4,0.3)(5.7,1.4)(5.7,5.1)(4,4)
+\psline(5.7,5.1)(2,5.1)(0.3,4)
+\psline[linestyle=dashed](0.3,0.3)(2,1.4)(2,5.1)
+\psline[linestyle=dashed](2,1.4)(5.7,1.4)
+\uput[u](2,5.1){A} \uput[u](5.7,5.1){B} \uput[r](5.7,1.4){C} \uput[dr](2,1.4){D}
+\uput[l](0.3,4){E} \uput[u](4,4){F} \uput[dr](4,0.3){G} \uput[dl](0.3,0.3){H}
+\end{pspicture}
+\end{center}
+
+\medskip
+
+On se place dans le repère orthonormé $\left(\text{D}~;~ \vect{\text{DH}},~\vect{\text{DC}},~\vect{\text{DA}}\right)$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+On a: F\;$\begin{pmatrix} 1 \\ 1\\ 1\end{pmatrix}$ et C\;$\begin{pmatrix} 0 \\ 1\\ 0\end{pmatrix}$
+
+\item 
+Le point M est le centre de la face BCGF donc c'est le milieu de [CF]; il a donc pour coordonnées la demi-somme des coordonnées de C et de F:
+
+M a pour coordonnées 
+$\begin{pmatrix} 
+\frac{x_{\text C} + x_{\text F}}{2} \\  
+\frac{y_{\text C} + y_{\text F}}{2}\\  
+\frac{z_{\text C} + z_{\text F}}{2}
+\end{pmatrix}
+=
+\begin{pmatrix} 
+\frac{0+1}{2} \\  
+\frac{1+1}{2}\\  
+\frac{0+1}{2}
+\end{pmatrix}
+=
+\begin{pmatrix} 
+\frac{1}{2} \\  
+1\\  
+\frac{1}{2}
+\end{pmatrix}$
+
+Le point N est le centre de la face EFGH donc c'est le milieu de [FH]; il a donc pour coordonnées la demi-somme des coordonnées de F et de H:
+
+N a pour coordonnées 
+$\begin{pmatrix} 
+\frac{x_{\text F} + x_{\text H}}{2} \\  
+\frac{y_{\text F} + y_{\text H}}{2}\\  
+\frac{z_{\text F} + z_{\text H}}{2}
+\end{pmatrix}
+=
+\begin{pmatrix} 
+\frac{1+1}{2} \\  
+\frac{1+0}{2}\\  
+\frac{1+0}{2}
+\end{pmatrix}
+=
+\begin{pmatrix} 
+1 \\  
+\frac{1}{2}\\  
+\frac{1}{2}
+\end{pmatrix}$
+
+\item 
+	\begin{enumerate}
+		\item 
+Le plan (HFC) a pour vecteurs directeurs $\vectt{HF}$ et $\vectt{CF}$ car les points H, F et C ne sont pas alignés.		
+
+$\vectt{HF}$ a pour coordonnées
+$\begin{pmatrix}
+1-1\\1-0\\1-0
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\1\\1
+\end{pmatrix}$
+et
+$\vectt{CF}$ a pour coordonnées
+$\begin{pmatrix}
+1-0\\1-1\\1-0
+\end{pmatrix}
+=
+\begin{pmatrix}
+1\\0\\1
+\end{pmatrix}$
+		
+$\vectt{AG}$ a pour coordonnées
+$\begin{pmatrix}
+1-0\\1-0\\0-1
+\end{pmatrix}
+=
+\begin{pmatrix}
+1\\1\\-1
+\end{pmatrix}$		
+	
+$\vectt{AG}\cdot\vectt{HF}=1\times 0 + 1\times 1 + (-1)\times 1 = 0$
+donc $\vectt{AG}\perp\vectt{HF}$
+		
+$\vectt{AG}\cdot\vectt{CF}=1\times 1 + 1\times 0 + (-1)\times 1 = 0$
+donc $\vectt{AG}\perp\vectt{CF}$		
+
+Le vecteur $\vectt{AG}$ est orthogonal à deux vecteurs directeurs du plan (HFC) donc c'est un vecteur normal à ce plan.
+		
+		\item 
+Le plan (HFC) passe par le point F et a pour vecteur normal $\vectt{AG}$, c'est donc l'ensemble des points X de coordonnées $(x\;,\;y\;,\;z)$ tels que 
+$\vectt{FX}\perp\vectt{AG}$.		
+		
+$\vectt{FX}$ a pour coordonnées
+$\begin{pmatrix}
+x-1\\y-1\\z-1
+\end{pmatrix}$
+et $\vectt{AG}$ a pour coordonnées
+$\begin{pmatrix}
+1\\1\\-1
+\end{pmatrix}$
+
+$\begin{gathered}\vectt{FX}\perp\vectt{AG}
+\iff \vectt{FX}\cdot\vectt{AG}=0
+\iff (x-1)\times 1 + (y-1)\times 1 + (z-1)\times(-1)=0\\
+\phantom{\vectt{FX}\perp\vectt{AG}}
+\iff x-1+y-1-z+1=0
+\iff x+y-z-1=0\end{gathered}$
+
+Le plan (HFC) a donc pour équation cartésienne: $x+y-z-1=0$.
+
+	\end{enumerate}
+\item La droite (AG) a pour vecteur directeur $\vectt{AG}\;\left (1\;,\;1\;,\;-1 \right )$ et passe par le point A de coordonnées $\left ( 0\;,\;0\;,\;1\right )$; elle a donc pour représentation paramétrique:
+
+$\left \{
+\begin{array}{l !{=} r l}
+x & x_{\text A} + 1\times t\\
+y & y_{\text A} + 1 \times t & t\in\R\\
+z & z_{\text A} + (-1)\times t
+\end{array}
+\right .$
+soit
+$\left \{
+\begin{array}{l !{=} r l}
+x &  t\\
+y &  t & t\in\R\\
+z & 1- t
+\end{array}
+\right .$
+
+\item 
+Soit R le projeté orthogonal de G sur le plan (HFC). donc R appartient au plan (HFC).
+
+De plus, comme la droite (AG) est orthogonale au plan (HFC), le point R appartient à la droite (AG).
+
+Les coordonnées de R vérifient donc le système:
+$\left \{
+\begin{array}{l !{=} r}
+x &  t\\
+y &  t \\
+z & 1- t\\
+x+y-z-1 & 0
+\end{array}
+\right .$
+
+On a donc $t+t-(1-t)-1=0$ donc $3t=2$ donc $t=\dfrac{2}{3}$.
+
+Donc R a pour coordonnées $x_{\text R}=t=\dfrac{2}{3}$, $y_{\text R}=t=\dfrac{2}{3}$, $z_{\text R}=1-t=\dfrac{1}{3}$, soit $\left (\dfrac{2}{3}~,~\dfrac{2}{3}~,~\dfrac{1}{3}\right )$.
+\item Une représentation paramétrique de la droite (FG) est:
+$\left\{\begin{array}{l !{=} l l}
+x&1\\
+y&1 & t\in\R\\ 
+z&t
+\end{array}\right.$.
+
+On cherche un point K sur la droite (FG) tel que le triangle KMN soit rectangle en K.
+
+K est un point de (FG) donc ses coordonnées sont de la forme $\left (1~,~1~,~t\right )$.
+
+De plus, le triangle KMN est rectangle en K donc $\vectt{MK}\perp\vectt{NK}$ donc $\vectt{MK}\cdot\vectt{NK}=0$.
+
+$\vectt{MK}$ a pour coordonnées
+$\begin{pmatrix}
+1-\frac{1}{2}\\1-1\\t-\frac{1}{2}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\frac{1}{2}\\0\\t-\frac{1}{2}
+\end{pmatrix}$
+et
+$\vectt{NK}$ a pour coordonnées
+$\begin{pmatrix}
+1-1\\1-\frac{1}{2}\\t-\frac{1}{2}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\\frac{1}{2}\\t-\frac{1}{2}
+\end{pmatrix}$
+
+$\vectt{MK}\cdot\vectt{NK}=0
+\iff \dfrac{1}{2}\times 0 + 0\times \dfrac{1}{2} + \left (t-\dfrac{1}{2}\right )\times \left (t-\dfrac{1}{2}\right ) = 0
+\iff \left (t-\dfrac{1}{2}\right )^2=0
+\iff t=\dfrac{1}{2}$
+
+Le point K a donc pour coordonnées $\left (1~,~1~,~\dfrac{1}{2} \right )$.
+
+\item 
+Le tétraèdre FNKM a pour hauteur [FK] et pour base le triangle KMN.
+
+\begin{list}{\textbullet}{}
+\item F a pour coordonnées $\left (1~,~1~,~1\right )$ et K a pour coordonnées $\left (1~,~1~,~\dfrac{1}{2} \right )$; donc $\text{FK}=\dfrac{1}{2}$.
+
+\item L'aire du triangle rectangle KMN est $\dfrac{\text{KM}\times\text{KN}}{2}$.
+
+\begin{list}{$\circ$}{}
+\item M\;$\left (\dfrac{1}{2}~,~1~,~\dfrac{1}{2} \right )$ et K\;$\left (1~,~1~,~\dfrac{1}{2} \right )$ donc $\text{KM}=\dfrac{1}{2}$
+\item N\;$\left (1~,~\dfrac{1}{2}~,~\dfrac{1}{2} \right )$ et K\;$\left (1~,~1~,~\dfrac{1}{2} \right )$ donc $\text{KN}=\dfrac{1}{2}$
+\end{list}
+
+L'aire du triangle KMN est donc $\dfrac{\frac{1}{2}\times\frac{1}{2}}{2}=\dfrac{1}{8}$.
+
+\item Le volume d'un tétraèdre  est, en unité de volume: 
+$\dfrac{\text{aire de la base}\times\text{hauteur}}{3}$.
+
+Le volume du tétraèdre FNKM est donc:
+$\dfrac{\left (\text{aire de KMN}\right )\times\text{FK}}{3}
+= \dfrac{\frac{1}{8}\times\frac{1}{2}}{3} = \dfrac{1}{48}$.
+\end{list}
+
+Le volume du cube est 1, celle du tétraèdre FNKM est $\dfrac{1}{48}$ donc le volume du tétraèdre représente un quarante-huitième du volume du cube.
+
+\end{enumerate}
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(6,5.6)
+\psframe(0.3,0.3)(4,4)
+\psline(4,0.3)(5.7,1.4)(5.7,5.1)(4,4)
+\psline(5.7,5.1)(2,5.1)(0.3,4)
+\psline[linestyle=dashed](0.3,0.3)(2,1.4)(2,5.1)
+\psline[linestyle=dashed](2,1.4)(5.7,1.4)
+\uput[u](2,5.1){A} \uput[u](5.7,5.1){B} \uput[r](5.7,1.4){C} \uput[dr](2,1.4){D}
+\uput[l](0.3,4){E} \uput[u](4,4){F} \uput[dr](4,0.3){G} \uput[dl](0.3,0.3){H}
+
+\psset{linecolor=blue,linewidth=1.3pt}
+\psdots(4.85,2.7)(4,2.15)(2.15,2.15) 
+\uput[dr](4.85,2.7){\blue{}M} \uput[dr](4,2.15){\blue{}K} \uput[l](2.15,2.15){\blue{}N}
+\psline(4,4)(4.85,2.7)(4,2.15)(4,4)(2.15,2.15)(4,2.15)
+\psline[linestyle=dashed](4.85,2.7)(2.15,2.15)
+\end{pspicture}
+\end{center}
+
+\end{document}

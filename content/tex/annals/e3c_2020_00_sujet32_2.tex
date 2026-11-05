@@ -1,0 +1,47 @@
+\medskip
+
+Une entreprise vend des téléviseurs. Une étude a montré que ces téléviseurs peuvent rencontrer deux types de défauts : un défaut sur la dalle, un défaut sur le condensateur.
+L'étude indique que :
+
+\begin{itemize}
+\item 3\,\% des téléviseurs présentent un défaut sur la dalle et que parmi ceux-ci, 2\% ont également un défaut sur le condensateur.
+\item 5\,\% des téléviseurs ont un défaut sur le condensateur.
+\end{itemize}
+On choisit un téléviseur au hasard et on considère les évènements suivants :
+\begin{itemize}
+\item $D$ : \og le téléviseur a un défaut sur la dalle \fg{} ;
+\item $C$ : \og le téléviseur a un défaut sur le condensateur \fg.
+\end{itemize}
+
+Pour tout évènement $E$, on note $p(E)$ sa probabilité et $\overline{E}$ l'évènement contraire de $E$. Pour tout évènement $F$ de probabilité non nulle, on note $p_F(E)$ la probabilité de $E$ sachant que $F$ est réalisé.
+
+Les résultats seront approchés si nécessaire à $10^{-4}$ près.
+
+\medskip
+
+\begin{enumerate}
+\item  Justifier que $p(D)= 0,03$ puis donner $p_D(C)$.
+\item Recopier l'arbre ci-dessous et compléter uniquement les pointillés par les probabilités associées :
+
+\begin{center}
+
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.75cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$D$~~}\taput{$\dots $}}
+	{
+	\TR{$C$}\taput{$\dots $}
+	\TR{$\overline{C}$}\tbput{$\dots $}
+	}
+\pstree{\TR{$\overline{D}$~~}\tbput{$\dots $}}
+	{\TR{$C$}\taput{$ $}
+	\TR{$\overline{C}$}\tbput{$ $}
+	}
+}
+\end{center}
+
+\item Calculer la probabilité $p(D\cap C)$ de l'évènement $D \cap C$.
+\item Le téléviseur choisi a un défaut sur le condensateur. Quelle est alors la probabilité qu'il ait un défaut sur la dalle ?
+\item Montrer que la probabilité que le téléviseur choisi ait un défaut sur le condensateur et n'ait pas de défaut sur la dalle est égale à 0,0494.
+\end{enumerate}
+
+\vspace{0,5cm}

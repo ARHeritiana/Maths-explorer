@@ -1,0 +1,232 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_09_sujet2_metropole_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+La paratuberculose est une maladie digestive infectieuse qui touche les vaches. Elle est due à la présence d'une bactérie dans l'intestin de la vache.
+On réalise une étude dans une région dont 0,4\,\% de la population de vaches est infectée.
+Il existe un test qui met en évidence la réaction immunitaire de l'organisme infecté par la bactérie.
+Le résultat de ce test peut être soit \og positif\fg{}, soit \og négatif\fg{}.
+On choisit une vache au hasard dans la région.
+
+\begin{list}{\textbullet}{Compte tenu des caractéristiques du test, on sait que :}
+\item Si la vache est atteinte par l'infection, la probabilité que son test soit positif est de $0,992$ ;
+\item Si la vache n'est pas atteinte par l'infection, la probabilité que son test soit négatif est de $0,984$.
+\end{list}
+
+\begin{list}{\textbullet}{On désigne par :}
+		\item $I$ l'évènement \og{}la vache est atteinte par l'infection\fg{} ;
+		\item $T$ l'évènement \og{}la vache présente un test positif\fg{}.
+	\end{list}
+
+On note $\overline{I}$ l'évènement contraire de $I$ et $\overline{T}$ l'évènement contraire de $T$.
+
+
+
+
+
+\bigskip
+
+\textbf{Partie A}
+
+
+\begin{enumerate}
+	\item On complète l'arbre pondéré ci-dessous modélisant la situation.
+
+\begin{center}
+\bigskip
+  \pstree[treemode=R,nodesepA=0pt,nodesepB=4pt,levelsep=3.5cm,nrot=:U]{\TR{}}
+ {
+ 	\pstree[nodesepA=4pt]{\TR{$I$}\naput{\small $0,004$}}
+ 	  { 
+ 		  \TR{$T$}\naput{\blue\small $0,992$}
+ 		  \TR{$\overline{T}$}\nbput{\blue\small $1-0,992=0,008$}	   
+ 	  }
+ 	\pstree[nodesepA=4pt]{\TR{$\overline{I}$}\nbput{\blue\small $1-0,004=0,996$}}
+ 	  {
+ 		  \TR{$T$}\naput{\blue\small $1-0,984=0,016$}
+          \TR{$\overline{T}$}\nbput{\blue\small $0,984$} 
+     }
+}
+\bigskip
+\end{center}
+
+	\item \begin{enumerate}
+		\item La probabilité que la vache ne soit pas atteinte par l'infection et que son test soit négatif est:
+		$P\left (\overline{I} \cap \overline{T}	\right )= 0,996\times 0,984 \approx 0,980$.	
+		
+
+
+		\item La probabilité que la vache présente un test positif est $P(T)$.
+		
+D'après la formule des probabilités totales:
+
+$P(T)=P\left (I\cap T\right ) + P\left (\overline{I}\cap T\right )
+=0,004\times 0,992 + 0,996\times 0,016
+=\np{0,019904}$
+soit
+$0,020$ à $10^{-3}$ près,
+		
+		\item La \og{}valeur prédictive positive du test\fg{} est la probabilité que la vache soit atteinte par l'infection sachant que son test est positif, c'est-à-dire: $P_{T}(I)$.
+		
+
+
+$P_{T}(I) = \dfrac{P(I\cap T)}{P(T)}
+= \dfrac{0,004\times 0,992}{0,02}
+\approx 0,199$
+
+		\item Le test donne une information erronée sur l'état de santé de la vache lorsque la vache n'est pas infectée et présente un résultat positif au test, c'est-à-dire avec une probabilité de $P\left (\overline{I}\cap T\right )$, ou lorsque la vache est infectée et présente un résultat négatif au test, c'est-à-dire avec une probabilité de $P\left (I\cap \overline{T}\right )$.
+
+La probabilité que ce test donne une information erronée sur l'état de santé de la vache est donc:
+$P\left (\overline{I}\cap T\right ) + P\left (I\cap \overline{T}\right )
+= 0,996\times 0,016 + 0,004\times 0,008
+\approx 0,160$.
+
+
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+
+
+\begin{enumerate}
+\setcounter{enumi}{2}
+	\item Lorsqu'on choisit au hasard dans la région un échantillon de 100 vaches, on assimile ce choix à un tirage avec remise.	
+On rappelle que, pour une vache choisie au hasard dans la région, la probabilité que le test soit positif est égale à 0,02.
+On note $X$ la variable aléatoire qui à un échantillon de 100 vaches de la région choisies au hasard associe le nombre de vaches présentant un test positif dans cet échantillon.
+
+	\begin{enumerate}
+		\item 
+L'expérience élémentaire consiste à savoir si, pour une vache donnée, le test est positif (avec une probabilité $p=0,02$) ou non; il n'y a donc que deux issues.
+
+On exécute cette expérience élémentaire 100 fois pour extraire un échantillon de taille $n=100$ en assimilant ce choix à un tirage avec remise.
+
+La variable aléatoire $X$ qui donne  le nombre de vaches présentant un test positif dans cet échantillon suit donc la loi binomiale de paramètres $n=100$ et $p=0,02$.
+
+		\item La probabilité que dans un échantillon de 100 vaches, il y ait exactement 3 vaches présentant un test positif est:	
+$P(X=3) = \ds\binom{100}{3}\times 0,02^{3}\times (1-0,02)^{100-3}
+\approx 0,182$.
+				
+
+
+		\item La probabilité que dans un échantillon de 100 vaches, il y ait au plus 3 vaches présentant un test positif est:		
+$P(X\leqslant 3)\approx 0,859$ (résultat donné par la calculatrice).		
+		
+
+
+
+	\end{enumerate}
+
+	\item On choisit à présent un échantillon de $n$ vaches dans cette région, $n$ étant un entier naturel non nul. On admet que l'on peut assimiler ce choix à un tirage avec remise.
+
+La valeur minimale de $n$ pour que la probabilité qu'il y ait, dans l'échantillon, au moins une vache testée positive, soit supérieure ou égale à 0,99 est telle que
+$P(X\geqslant 1) \geqslant 0,99$.
+
+C'est-à-dire:
+$1-P(X=0) \geqslant 0,99$
+ou encore:
+$0,01\geqslant P(X=0)$.
+
+On résout l'inéquation: $P(X=0)\leqslant 0,01$.
+
+$P(X=0) = \ds\binom{n}{0}\times 0,02^{0}\times (1-0,02)^{n-0}=0,98^n$
+
+$0,98^n \leqslant 0,01
+\iff
+\ln\left (0,98^n\right ) \leqslant \ln(0,01)
+\iff
+n\times \ln (0,98 ) \leqslant \ln(0,01)
+\iff
+n \geqslant \dfrac{\ln(0,01)}{\ln(0,98)}$
+
+Or $\dfrac{\ln(0,01)}{\ln(0,98)} \approx 227,95$
+donc il faut un échantillon d'au moins 228 vaches pour que la probabilité qu'il y ait, dans l'échantillon, au moins une vache testée positive, soit supérieure ou égale à 0,99.
+
+\end{enumerate}
+
+\vspace{1cm}
+
+\end{document}

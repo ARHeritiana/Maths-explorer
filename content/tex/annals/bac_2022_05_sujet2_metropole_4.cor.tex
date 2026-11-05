@@ -1,0 +1,237 @@
+\begin{center}
+
+\textbf{Partie A : études de deux fonctions}
+
+\end{center}
+
+On considère les deux fonctions $f$ et $g$ définies sur l'intervalle $[0~;~+\infty[$ par:
+
+\[f(x) = 0,06\left(-x^2 +13,7x\right)\quad  \text{et}\quad  g(x) = (-0,15x + 2,2)\text{e}^{0,2x} - 2,2.\]
+
+On admet que les fonctions $f$ et $g$ sont dérivables et on note $f'$ et $g'$ leurs fonctions dérivées respectives.
+
+\medskip
+
+\begin{enumerate}
+\item On donne le tableau de variations complet de la fonction $f$ sur l'intervalle $[0~;~+\infty[$.
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(6.5,2)
+\psframe(6.5,2)\psline(0,1.5)(6.5,1.5)\psline(1.5,0)(1.5,2)
+\uput[u](0.75,1.4){$x$} \uput[u](1.6,1.4){$0$} \uput[u](4,1.4){$6,85$} \uput[u](6,1.4){$+ \infty$} 
+\rput(0.75,0.75){$f(x)$}\uput[u](1.65,0){$0$}\uput[d](4,1.5){$f(6,85)$}\uput[u](6,0){$- \infty$}
+\psline{->}(1.75,0.25)(3.4,1.25)\psline{->}(4.6,1.25)(5.9,0.35)
+\end{pspicture}
+\end{center}
+
+	\begin{enumerate}
+		\item Justifier la limite de $f$ en $+\infty$.
+		
+		On a $f(x) = 0,06x^2\left(- 1 + \dfrac{13,7}{x}\right)$
+		
+		On a donc $\displaystyle\lim_{x \to + \infty} \dfrac{13,7}{x} = 0$, donc  $\displaystyle\lim_{x \to + \infty} - 1 + \dfrac{13,7}{x} = - 1$ et par produit de limites $\displaystyle\lim_{x \to + \infty} f(x) = - \infty$.
+		\item Justifier les variations de la fonction $f$.
+		
+La fonction polynôme $f$ est dérivable sur $\R$ et sur cet intervalle :
+		
+		$f'(x) = -0,12x +  0,06 \times 13,7 = 0,822 - 0,12x$.
+		
+On a $0,822 - 0,12x > 0 \iff 0,822 > 0,12x \iff \dfrac{0,822}{0,12} > x  \iff x < 6,85$.
+
+De même $f'(x) < 0 \iff x > 6,85$.
+
+La fonction $f$ est donc croissante sur $[0~;~6,85]$ et décroissante sur $[6,85~;~+ \infty[$.
+		\item Résoudre l'équation $f(x) = 0$.
+		
+$f(x) = 0 \iff 0,06\left(-x^2 +13,7x\right) = 0 \iff -x^2 + 13,7x = 0 \iff x(13,7 - x) = 0\iff \left\{\begin{array}{l c l}
+x&=&0\\
+13,7&=&x
+\end{array}\right>.$
+
+On a donc $S = \{0~;~13,7\}$.
+\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Déterminer la limite de $g$ en $+\infty$.
+		
+On a $\displaystyle\lim_{x \to + \infty} (2,2 - 1,5x) = - \infty$ ; d'autre part $\displaystyle\lim_{x \to + \infty} 2x = + \infty$ et $\displaystyle\lim_{x \to + \infty} \text{e}^{2x} = + \infty$.
+
+Par produit de limites $\displaystyle\lim_{x \to + \infty} = - \infty$.
+		\item Démontrer que, pour tout réel $x$ appartenant à $[0~;~+\infty[$ on a : $g'(x) = (- 0,03x + 0,29)\text{e}^{0,2x}$.
+		
+$g$ est un produit de fonctions dérivables sur $[0~;~+ \infty[$, et sur cet intervalle :
+		
+$g'(x) = - 0,15 \text{e}^{0,2x} + 0,2(-0,15x + 2,2)\text{e}^{0,2x} = \text{e}^{0,2x}(- 0,15 - 0,03x + 0,44) = (- 0,03x + 0,29)\text{e}^{0,2x}$.
+		\item Étudier les variations de la fonction $g$ et dresser son tableau de variations sur $[0~;~+\infty[$.
+		
+On a donc $g'(x) > 0 \iff (- 0,03x + 0,29)\text{e}^{0,2x} > 0 \iff - 0,03x + 0,29 > 0$ car $\text{e}^{0,2x} > 0$ quel que soit le réel $x$), puis 
+
+$0,29 > 0,03x \iff x < \dfrac{0,29}{0,03} \iff x < \dfrac{29}{3}$.
+
+On obtient de la même façon que $g'(x) < 0 \iff x > \dfrac{29}{3}$.
+
+La fonction $g$ est donc croissante sur $\left[0~;~\dfrac{29}{3}\right]$ puis décroissante sur $\left[\dfrac{29}{3}~:~+ \infty\right[$.
+
+Préciser une valeur approchée à $10^{-2}$ près du maximum de $g$.
+
+$g$ a donc un maximum $g\left(\dfrac{29}{3}\right) = (-0,15\times \frac{29}{3} + 2,2)\text{e}^{0,2\times \frac{29}{3}} - 2,2 \approx 2,984$ soit 2,98 au centième près.
+		\item Montrer que l'équation $g(x) = 0$ admet une unique solution non nulle et déterminer, à $10^{-2}$ près, une valeur approchée de cette solution.
+		
+La fonction $g$ croit à partir de $g(0) = 2,2\text{e}^0 - 2,2 = 2,2 - 2,2 = 0$ jusqu'à environ 2,98 et décroit ensuite jusqu'en moins l'infini.
+
+Sur l'intervalle $\left[\dfrac{29}{3}~:~+ \infty\right[$ la fonction $g$ est strictement décroissante, continue car dérivable sur cet intervalle  ; comme $0 \in ]- \infty~;~2,98[$ il existe d'après le théorème des valeurs intermédiaires un réel unique $\alpha$ tel que $g(\alpha) = 0$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B : trajectoires d'une balle de golf}
+
+\medskip
+
+Pour frapper la balle, un joueur de golf utilise un instrument appelé \og club\fg{} de golf.
+
+On souhaite exploiter les fonctions $f$ et $g$ étudiées en Partie A pour modéliser de deux façons différentes la trajectoire d'une balle de golf. On suppose que le terrain est parfaitement plat.
+
+On admettra ici que $13,7$ est la valeur qui annule la fonction $f$ et une approximation de la valeur qui annule la fonction $g$.
+
+On donne ci-dessous les représentations graphiques de $f$ et $g$ sur l'intervalle [0~;~13,7].
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture*}(-1,-1)(14,3.5)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.2pt]
+\psaxes[linewidth=1.25pt,Dx=20,Dy=20]{->}(0,0)(-1,-1)(14,3.5)
+\psplot[plotpoints=1000,linewidth=1.25pt,linecolor=red]{0}{13.7}{13.7 x mul x dup mul sub 0.06 mul}\uput[ul](3,2){\red $\mathcal{C}_f$}
+\psplot[plotpoints=1000,linewidth=1.25pt,linecolor=blue]{0}{13.7}{2.2 0.15 x mul sub 2.71828 0.2 x mul exp mul 2.2 sub}\uput[ur](12,2.2){\blue $\mathcal{C}_g$}
+\uput[dl](0,0){0}\uput[d](1,0){1}\uput[l](0,1){1}\uput[d](13.7,0){13,7}
+\end{pspicture*}
+\end{center}
+
+Pour $x$ représentant la distance horizontale parcourue par la balle en dizaine de yards après la frappe, (avec $0 < x < 13,7$), $f(x)$ (ou $g(x)$ selon le modèle) représente la hauteur correspondante de la balle par rapport au sol, en dizaine de yards (1 yard correspond à environ $0,914$ mètre).
+
+On appelle \og angle de décollage \fg{} de la balle, l'angle entre l'axe des abscisses et la tangente à la courbe ($\mathcal{C}_f$ ou $\mathcal{C}_g$ selon le modèle) en son point d'abscisse $0$. Une mesure de l'angle de décollage de la balle est
+un nombre réel $d$ tel que $\tan (d)$ est égal au coefficient directeur de cette tangente.
+
+De même, on appelle \og angle d'atterrissage \fg{} de la balle, l'angle entre l'axe des abscisses et la tangente
+à la courbe ($\mathcal{C}_f$ ou $\mathcal{C}_g$ selon le modèle) en son point d'abscisse $13,7$. Une mesure de l'angle d'atterrissage de la balle est un nombre réel $a$ tel que $\tan (a)$ est égal à l'opposé du coefficient directeur de cette tangente.
+
+Tous les angles sont mesurés en degré.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|p{5.75cm}|X|}\hline
+Le schéma illustre les angles de décollage et d'atterrissage associés à la courbe 
+$\mathcal{C}_f$&Le schéma illustre les angles de décollage et d'atterrissage
+associés à la courbe $\mathcal{C}_g$.\\ \hline
+\psset{unit=0.4cm}
+\begin{pspicture}(-0.3,-0.75)(14,3.2)
+
+\psaxes[linewidth=1.25pt,Dx=20,Dy=10](0,0)(-0.3,-0.3)(14,3)
+\psplot[plotpoints=1000]{0}{2}{0.822 x mul}
+\psplot[plotpoints=1000,linewidth=1.25pt,linecolor=red]{0}{13.7}{13.7 x mul x dup mul sub 0.06 mul}\uput[ul](3,2){\red $\mathcal{C}_f$}
+\psline(13.7,0)(11,2)
+\psarc(0,0){0.7}{0}{40}\rput(1.2,0.5){\footnotesize $d$}
+\psarc(13.7,0){0.7}{140}{180}\rput(12.4,0.5){\footnotesize $a$}
+\uput[d](13.7,0){\footnotesize 13,7}
+\end{pspicture}&\psset{unit=0.5cm}
+\begin{pspicture}(-0.3,-0.75)(14,3.2)
+
+\psaxes[linewidth=1.25pt,Dx=20,Dy=10](0,0)(-0.3,-0.5)(14,3)
+\psplot[plotpoints=1000,linewidth=1.25pt,linecolor=blue]{0}{13.7}{2.2 0.15 x mul sub 2.71828 0.2 x mul exp mul 2.2 sub}
+\psline(0,0)(10.4,2.8)
+\psline(13.7,0)(12,2.9)
+\psarc(0,0){1}{0}{20}\rput(2,0.25){\footnotesize $d$}
+\psarc(13.7,0){1}{120}{180}\rput(12.4,0.5){\footnotesize $a$}
+\uput[d](13.7,0){\footnotesize 13,7}
+\end{pspicture}\\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\begin{enumerate}
+\item \emph{Première modélisation} : on rappelle qu'ici, l'unité étant la dizaine de yards, $x$ représente la distance horizontale parcourue par la balle après la frappe et $f(x)$ la hauteur correspondante de la balle.
+
+Selon ce modèle :
+	\begin{enumerate}
+		\item Quelle est la hauteur maximale, en yard, atteinte par la balle au cours de sa trajectoire ?
+		
+On a vu que le maximum de $f$ sur $[0~;~+ \infty[$ est $f(6,85) = 0,06\left(- 6,85^2 + 13,7 \times 6,85\right) = \np{2,81535} \approx 2,815$, soit en yards : $28,15$.
+
+		\item Vérifier que $f'(0) = 0,822$.
+		
+De $f'(x) = 0,06(- 2x + 13,7)$ on déduit que $f'(0) = 0,06 \times 13,7 = 0,822$. Ce nombre dérivé est le coefficient directeur de la tangente à la courbe $\mathcal{C}_f$ au point d'abscisse $0$, donc 
+
+$f'(0) = \tan d = 0,822$.
+
+		\item Donner une mesure en degré de l'angle de décollage de la balle, arrondie au dixième. (On pourra éventuellement utiliser le tableau ci-dessous).
+		
+D'après le tableau donné (colonne I), on a donc $d \approx 39,42$.
+		\item Quelle propriété graphique de la courbe $\mathcal{C}_f$ permet de justifier que les angles de décollage et d'atterrissage de la balle sont égaux ?
+		
+	La courbe est une partie de parabole et celle-ci est symétrique autour de la droite d'équation $x = 6,85$ : donc les angles de décollage et d'atterrissage sont égaux
+	\end{enumerate}
+\item \emph{Seconde modélisation } : on rappelle qu'ici, l'unité étant la dizaine de yards, $x$ représente la distance horizontale parcourue par la balle après la frappe et $g(x)$ la hauteur correspondante de la balle.
+
+Selon ce modèle :
+
+	\begin{enumerate}
+		\item Quelle est la hauteur maximale, en yard, atteinte par la balle au cours de sa trajectoire ?
+
+On a vu que le maximum de la fonction $g$ sur l'intervalle $[0~;~+ \infty[$ est $g\left(\dfrac{29}{3} \right) \approx 2,98$.
+
+La hauteur maximale de la balle est donc 29,8 (yards).
+
+On précise que $g'(0) = 0,29$ et $g'(13,7) \approx -1,87$.
+		\item Donner une mesure en degré de l'angle de décollage de la balle, arrondie au dixième. (On pourra éventuellement utiliser le tableau ci-dessous).
+		
+Comme $g'(0) = 0,29$ comme dans le premier cas c'est aussi le coefficient directeur de la tangente au point d'abscisse $0$, donc $\tan d \approx 0,29$ et d'après le tableau $d \approx 16,2\degres$.
+		\item Justifier que $62$ est une valeur approchée, arrondie à l'unité près, d'une mesure en degré de l'angle d'atterrissage de la balle.
+		
+Par contre à l'atterrissage $g'(13,7) \approx -1,87$ donc $\tan a \approx 1,87$ d'où $a \approx 62\degres$.
+	\end{enumerate}
+\medskip
+
+\textbf{Tableau :} extrait d'une feuille de calcul donnant une mesure en degré d'un angle quand on connait sa tangente :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|c|*{13}{>{\centering \arraybackslash}X|}}\hline
+&A	&B	&C	&D	&E	&F	&G	&H	&I	&J	&K	&L	&M\\ \hline
+1&$\tan (\theta)$&0,815&0,816&0,817&0,818&0,819&0,82&0,821&0,822&0,823&0,824&0,825&0,826\\ \hline
+2&\scriptsize $\theta$ en degrés&39,18&39,21&39,25&39,28&39,32&39,35&39,39&39,42&39,45&39,49&39,52&39,56\\ \hline
+3&	&	&	&	&	&	&	&	&&&&&\\ \hline
+4&$\tan (\theta)$&0,285& 0,286& 0,287& 0,288& 0,289&0,29&0,291&0,292&
+0,293&0,294&0,295 &0,296\\ \hline
+5&\scriptsize  $\theta$ en degrés&15,91 &15,96&16,01& 16,07& 16,12& 16,17& 16,23& 16,28& 16,33& 16,38& 16,44& 16,49\\ \hline
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\bigskip
+
+\begin{center}
+\textbf{Partie C : interrogation des modèles}
+\end{center}
+
+À partir d'un grand nombre d'observations des performances de joueurs professionnels, on a obtenu les résultats moyens suivants:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash \footnotesize}X|}}\hline
+Angle de décollage en degré&Hauteur maximale en yard&Angle d'atterrissage en degré&Distance horizontale en yard au point de chute\\ \hline
+24&32&52&137\\ \hline
+\end{tabularx}
+\end{center}
+
+Quel modèle, parmi les deux étudiés précédemment, semble le plus adapté pour décrire la frappe de la balle par un joueur professionnel ? La réponse sera justifiée.
+
+Au vu des observations sur les professionnels on remarque que :
+
+\begin{itemize}
+\item[$\bullet~~$]Le seul résultat confirmé est la distance horizontale 137 en yard ;
+\item[$\bullet~~$]L'angle décollage est surestimé avec la première modélisation et sous-estimé avec la seconde ;
+\item[$\bullet~~$]la hauteur maximale est sous-estimé dans les deux cas ;
+\item[$\bullet~~$]l'angle d'atterrissage est sous-estimé dans le premier cas et surestimé dans le second.
+\end{itemize}
+
+Conclusion : aucun des deux modèles n'est satisfaisant !

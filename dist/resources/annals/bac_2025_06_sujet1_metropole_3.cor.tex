@@ -1,0 +1,193 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet1_metropole_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+	\item \textbf{Affirmation 1 : Vraie.}
+
+	La lecture de la représentation paramétrique donnée indique que la droite représentée :
+	\begin{itemize}
+		\item passe (pour le paramètre $t=0$) par le point de coordonnées $(3 ~;~ 2 ~;~ -1)$, autrement dit par B;
+		\item et qu'elle est dirigée par le vecteur $\vect{u} \begin{pmatrix}-2 \\-1 \\ 3\end{pmatrix}$.
+
+		Comme on a :\quad $\vect{\mathrm{AB}} \begin{pmatrix} 3 - (-1) \\ 2 - 0 \\ -1 - 5\end{pmatrix}$, soit $\vect{\mathrm{AB}} \begin{pmatrix} 4 \\ 2 \\ -6\end{pmatrix}$, on remarque que $\vect{\mathrm{AB}} = -2\vect{u}$, donc la droite dont on a la représentation paramétrique est dirigée par un vecteur colinéaire à $\vect{\mathrm{AB}}$.
+	\end{itemize}
+
+	Ainsi, la représentation paramétrique donnée est celle d'une droite passant par B et dirigée par $\vect{\mathrm{AB}}$ : c'est bien la droite (AB).
+
+	\medskip
+
+	\textbf{Affirmation 2 : Fausse.}
+
+	Comme O est l'origine du repère, on a $\vect{\mathrm{OA}}\begin{pmatrix} -1 \\ 0 \\ 5	\end{pmatrix}$ et $\vect{\mathrm{OB}}\begin{pmatrix} 3 \\ 2 \\ -1	\end{pmatrix}$.
+
+	Ces vecteurs sont clairement non colinéaires, et donc O, A et B définissent bien un plan. Le repère est orthonormal, donc on peut calculer des produits scalaires à l'aide des coordonnées :
+
+	On a bien :\quad $\vect{n} \cdot \vect{\mathrm{OA}} = 5 \times (-1) + (-2) \times 0 + 1 \times 5 = -5 + 0 + 5 = 0$ et $\vect{n}$ est donc bien orthogonal à $\vect{\mathrm{OA}}$,
+
+	par contre, on a :\quad $\vect{n} \cdot \vect{\mathrm{OB}} = 5 \times 3 + (-2) \times 2 + 1 \times (-1) = 15 - 4 - 1 = 10 \neq 0$ et $\vect{n}$ n'est donc pas orthogonal à $\vect{\mathrm{OB}}$.
+
+	Ainsi, $\vect{n}$ n'est pas orthogonal au plan (OAB), car il n'est pas orthogonal à deux vecteurs définissant une base de ce plan.
+
+	\item \textbf{Affirmation 3 : Fausse.}
+
+	Par lecture des représentations paramétriques, les deux droites $d$ et $d'$ sont dirigées respectivement par $\vect{v} \begin{pmatrix} 1 \\-1\\2\end{pmatrix}$ et  $\vect{v'} \begin{pmatrix} 4 \\4\\-6\end{pmatrix}$.
+
+	Ces vecteurs sont clairement non colinéaires, donc les droites ne sont pas parallèles (ni confondues, ni strictement parallèles). Elles peuvent donc être soit sécantes, soit non coplanaires.
+
+	Cherchons s'il existe un coupe $(k~;~s)$ tel que le point de paramètre $k$ sur $d$ soit confondu avec le point de paramètre $s$ sur $d'$, pour cela, résolvons :
+
+	\[
+	\begin{aligned}
+		\begin{cases}
+			15+k=1+4 s \\
+			8-k=2+4 s \\
+			-6+2 k=1-6 s
+		\end{cases}
+		&\iff \begin{cases}
+			k=-14 + 4 s \\
+			8-(-14 + 4 s)=2+4 s \\
+			-6+2(- 14 + 4 s)=1-6 s
+		\end{cases}\\
+		&\iff \begin{cases}
+			k=-14+4 s \\
+			8+14-4 s=2+4 s \\
+			-6-28+8 s=1-6 s
+		\end{cases}\\
+		&\iff \begin{cases}
+			k=-14+4 s \\
+			8 s=20 \\
+			14 s=35
+		\end{cases}\\
+		&\iff \begin{cases}
+			k=-14+4 s \\
+			s=\frac{20}{8}=\frac{5}{2} \\
+			s=\frac{35}{14}=\frac{5}{2}
+		\end{cases}\\
+		&\iff \begin{cases}
+			s=2,5 \\
+			s=2,5 \\
+			k=-4
+		\end{cases}
+	\end{aligned}
+	\]
+
+	Le système a une solution, donc les deux droites ont un point commun, le point qui a comme coordonnées $(11 ~;~ 12 ~;~ -14)$, c'est le point de paramètre $k = -4$ sur $d$ et c'est aussi le point de paramètre $s = 2,5$ sur $d'$.
+
+	Elles sont donc sécantes en ce point, et donc sont coplanaires.
+
+	\item \textbf{Affirmation 4 : Vraie.}
+
+	Le repère est orthonormé, donc par lecture de l'équation de plan, $P$ admet comme vecteur normal $\vect{n'}$ de coordonnées : \quad$\vect{n'} \begin{pmatrix} 1\\-1\\1	\end{pmatrix}$.
+
+	Ainsi, la droite $\Delta$, passant par C et orthogonale à $P$ aura pour représentation paramétrique : \quad $\begin{cases} x = 2 + l\\y = -1 - l\\ z= 2 + l\end{cases}\quad$ avec $l\in\R$.
+
+	Si on appelle H le projeté orthogonal de C sur $P$, alors $\mathrm{H} = P \cap \Delta$. Donc H sera le point de $\Delta$ dont le paramètre fait que les coordonnées paramétriques vérifient l'équation de $P$.
+
+	On résout donc :  \quad $\begin{aligned}[t]
+		(2 + l) - (-1 - l) + (2 + l) + 1 = 0 &\iff 3l + 6 = 0\\
+		&\iff 3l = -6\\
+		&\iff l = -2
+	\end{aligned}$
+
+	H est donc le point de paramètre $l = -2$ sur $\Delta$, donc ses coordonnées sont :
+
+	$\mathrm{H} (0 ~;~ 1 ~;~ 0)$.
+
+	La distance CH vaut donc : \quad $\begin{aligned}[t]
+		\mathrm{CH} &= \sqrt{(0 - 2)^2 + (1 - (-1))^2 + (0 - 2)^2}\\
+			&=\sqrt{4 + 4 + 4}\\
+			&=\sqrt{4\times 3}\\
+			&=\sqrt{4}\times \sqrt{3}\\
+			&=2\sqrt{3}
+	\end{aligned}$
+
+	La distance entre C et $P$, c'est-à-dire la distance de C à son projeté orthogonal sur $P$ est donc bien égale à $2\sqrt{3}$.
+
+
+
+\end{enumerate}
+\medskip
+
+\end{document}

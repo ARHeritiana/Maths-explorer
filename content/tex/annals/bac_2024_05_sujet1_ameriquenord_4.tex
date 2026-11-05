@@ -1,0 +1,54 @@
+\medskip
+
+Pour tout entier naturel $n$, on considère les intégrales suivantes :
+
+\[I_n = \displaystyle\int_0^{\pi} \text{e}^{- nx}\sin (x)\:\text{d}x, \quad  J_n = \displaystyle\int_0^{\pi} \text{e}^{-nx}\cos (x)\:\text{d}x.\]
+
+\medskip
+
+\begin{enumerate}
+\item Calculer $I_0$.
+\item 
+	\begin{enumerate}
+		\item Justifier que, pour tout entier naturel $n$ , on a $I_n \geqslant 0$.
+		\item Montrer que, pour tout entier naturel $n$ , on a $I_{n+1} - I_n \leqslant 0$.
+		\item Déduire des deux questions précédentes que la suite $\left(I_n\right)$ converge.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item Montrer que, pour tout entier naturel $n$ , on a : 
+		\[I_n \leqslant \displaystyle\int_0^{\pi} \text{e}^{- nx}\:\text{d}x.\]
+		
+
+		\item Montrer que, pour tout entier naturel $n \geqslant 1$, on a : 
+		\[\displaystyle\int_0^{\pi} \text{e}^{- nx}\:\text{d}x = \dfrac{1 - \e^{-n \pi}}{n}.\]
+		
+		\item Déduire des deux questions précédentes la limite de la suite $\left(I_n\right)$.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item En intégrant par parties l'intégrale $I_n$ de deux façons différentes, établir les deux relations suivantes, pour tout entier naturel $n \geqslant 1$ :
+
+\begin{center}$I_n = 1 + \e^{-n\pi} - nJ_n$ \quad et\quad  $I_n = \dfrac 1n J_n$\end{center}
+
+		\item En déduire que, pour tout entier naturel $n \geqslant 1$, on a 
+		\[I_n = \dfrac{1 + \e^{-n \pi}}{n^2 + 1}\]
+	\end{enumerate}
+\item On souhaite obtenir le rang $n$ à partir duquel la suite $\left(I_n\right)$ devient inférieure à 0,1.
+
+Recopier et compléter la cinquième ligne du script Python ci-dessous avec la
+commande appropriée.
+\begin{center}
+\begin{tabular}{|l l|}\hline
+1 &\textbf{from} math \textbf{import *}\\
+2 &def seuil() :\\
+3 &\quad n = 0\\
+4 &\quad I = 2\\
+5 &\quad \ldots\\
+6 &\quad \qquad n=n+1\\
+7 &\quad \qquad I=(1+exp(-n*pi))/(n*n+1)\\
+8 & \textbf{return} n\\ \hline
+\end{tabular}
+\end{center}
+
+\end{enumerate}

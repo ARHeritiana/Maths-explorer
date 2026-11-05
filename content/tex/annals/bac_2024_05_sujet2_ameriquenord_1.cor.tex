@@ -1,0 +1,99 @@
+\textbf{Partie A}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item \phantom{21}  
+\begin{center}
+\pstree[treemode=R,levelsep = 3.5cm]{\TR{}}
+{\pstree{\TR{$N~~$}\taput{\np{0,2286}}}
+	{\TR{$R$}\taput{\np{0,0808}}
+	\TR{$\overline{R}$}\tbput{\red 0,9192}
+	}
+\pstree{\TR{$\overline{N}~~$}\tbput{\red\np{0,7714}}}
+	{\TR{$R$}\taput{\np{0,0127}}
+	\TR{$\overline{R}$}\tbput{\red 0,9873}
+	}
+}
+\end{center}
+
+\item 
+On calcule $p(N \cap R) = p(N) \times p_N(R) = \np{0,2286} \times \np{0,0808} = \np{0,018471}$ soit \np{0,0185} à $10^{-4}$ près.
+\item 
+On a de même $p\left(\overline{N} \cap R\right) = p\left(N\right) \times p_{\overline{N}}(R) = \np{0,7714} \times \np{0,0127} = \np{0,009797}$ soit \np{0,0098} à $10^{-4}$ près.
+
+D'après la loi des probabilités totales :
+
+$p(R) = p(N \cap R) + p\left(\overline{N} \cap R\right) \approx \np{0,0185} + \np{0,0098}$
+
+$p(R) \approx \np{0,0283}$.
+
+\item 
+On a $p_R(N) = \dfrac{p(R \cap N)}{p(R)} = \dfrac{p(N \cap R)}{p(R)} \approx \dfrac{\np{0,0185}}{\np{0,0283}} \approx \np{0,65371}$ soit \np{0,6537} à $10^{-4}$ près.
+\end{enumerate}
+
+\textbf{Partie B}
+
+\medskip
+
+
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+
+$X$ suit donc la loi binomiale $\mathcal{B}(n = 500, \: p = 0,65)$.
+\item 
+On calcule $\binom{500}{325} \times 0,65^{325} \times 0,35^{175} \approx \np{0,037384}$ soit \np{0,0374} à $10^{-4}$ près. (Utiliser la fonction binomiale de la calculatrice  si les capacités de calcul de celle-ci sont dépassées).
+\item 
+On a $p(X \geqslant 325) = 1 - p(X \leqslant 324)$ soit d'après la calculatrice \np{0,47944}, donc 
+
+$p(X \geqslant 325) \approx 1 - \np{0,4794} = \np{0,5206}$ à $10^{-4}$ près.
+\end{enumerate}
+
+\textbf{Partie C}
+
+\medskip
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+On a $p_n = (1 - 0,65)^n = 0,35^n$.
+
+\item On a $q_n = 1 - p_n$.
+
+On cherche donc $n$ tel que $1 - p_n \geqslant \np{0,9999} \iff p_n \leqslant \np{0,0001}$, soit par croissance de la fonction logarithme népérien :
+
+$n\ln 0,35 \leqslant \ln 0\np{0,0001} \iff n \geqslant \dfrac{\ln \np{0,0001}}{\ln 0,35}$ car $\dfrac{1}{\ln 0,35} < 0$.
+
+D'après la calculatrice $\dfrac{\ln \np{0,0001}}{\ln 0,35} \approx 8,8$.
+
+Il faut prendre au minimum $n = 9$.
+
+
+
+\end{enumerate}

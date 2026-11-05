@@ -1,0 +1,204 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet2_madagascar_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+	\item La fonction $x\mapsto \e^{-x}$ est continue en 0 et $\e^{-0}=1$. $\begin{gathered}\displaystyle\lim\limits_{\substack{x \rightarrow 0 \\ x>0}}\ln(x)=-\infty\end{gathered}$ donc $\begin{gathered}\displaystyle\lim\limits_{\substack{x \rightarrow 0\\ x>0}} f(x)=-\infty\end{gathered}$ 
+	\item La fonction $f$ est continue et dérivable sur $]0~;~1]$. 
+	
+$\forall x \in ]0~;~1]$, $f'(x)=-\e^{-x}+\dfrac1x=\dfrac{-x\e^{-x}+1}{x}=\dfrac{1-x\e^{-x}}{x}$
+	\item La fonction $x\mapsto \e^{-x}$ est continue, dérivable de dérivée $x\mapsto -\e^{-x}$. Or $\forall x \in ]0~;~1]$, $-\e^{-x}<0$. donc la fonction  $x\mapsto \e^{-x}$ est strictement décroissante sur $]0~;~1]$.
+	
+Donc $\forall x \in ]0~;~1]$, $:e^{-1} \leqslant \e^{-x}<\e^{0}<1$ donc $0< \e^{-x}<\e^{0}<1$. De plus $0<x\leqslant 1$ donc $0<x\e^{-x}<1$.
+	
+Cela signifie que $\forall x \in ]0~;~1]$, $1-x\e^{-x}>0$ donc $f'(x)>0$ donc $f$ est strictement croissante sur $]0~;~1]$. $f(1)=\e^{-1}+\ln(1)=\e^{-1}$. 
+	
+Ci-dessous le tableau de variation de la fonction $f$ :
+	\begin{center}
+
+
+
+
+
+\psset{unit=1cm}
+\begin{pspicture}(6,3)
+\psframe(6,3)\psline(0,2)(6,2)\psline(0,2.5)(6,2.5)\psline(2,0)(2,3)
+\psline(2.1,0)(2.1,2.5)\psline(2.15,0)(2.15,2.5)
+\uput[u](1,2.4){$x$}\uput[u](2.125,2.4){$0$}\uput[u](5.8,2.4){$1$}
+\rput(1,2.25){$f'(x)$}\rput(4,2.25){$+$}
+\rput(1,1){$f$}\uput[u](2.5,0){$- \infty$}\uput[d](5.6,2){$\text{e}^{- 1}$}
+\psline{->}(2.6,0.5)(5.5,1.45)
+\end{pspicture}
+	\end{center}
+\item La fonction $f$ est continue et strictement croissante sur $]0~;~1]$ à valeurs dans $]-\infty~;~\e^{-1}]$. Or $0 \in ]-\infty~;~\e^{-1}]$ donc d'après le corollaire du théorème des valeurs intermédiaires, l'équation $f(x)=0$ admet une unique solution,  notée $\ell$, dans $]0~;~1]$.
+
+À la calculatrice : $\ell \approx 0,567$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On définit deux suites $\left(a_n\right)$ et $\left(b_n\right)$ par:
+
+\[\left\{\begin{array}{l c l}
+	a_0& =& \dfrac{1}{10}\\
+	b_0& =& 1
+\end{array}\right.\: \text{et, pour tout entier naturel }\: n,\left\{\begin{array}{l c l}
+	a_{n+1}&=&\text{e}^{-b_n}\\
+	b_{n+1}&=&\text{e}^{-a_n}
+\end{array}\right.\]
+
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item $a_1=\e^{-b_0}=\e^{-1}\approx 0,37$ \quad et \quad $b_1=\e^{a_0}=\e^{-\frac{1}{10}}\approx 0,90$.
+		\item Pour utiliser en Python la fonction exponentielle, il faut charger en premier la fonction \textit{exp()} de la librairie "math" : \textit{from math import exp}. 
+		
+		\begin{center}
+			
+			\begin{tabular}{|l|}\hline
+				\texttt{from math import exp}\\
+				\texttt{def termes(n) :}\\
+				\quad \texttt{a = 1/10}\\
+				\quad \texttt{b = 1}\\
+				\quad \texttt{for k in range(0, n) :}\\
+				\qquad \texttt{c =  exp(-b)}\\
+				\qquad \texttt{b  = exp(-a)}\\
+				\qquad \texttt{a  =  c}\\
+				\quad \texttt{return(a, b)}\\ \hline
+			\end{tabular}
+		\end{center}
+	\end{enumerate}
+\item  
+
+\begin{enumerate}
+	\item Montrons par récurrence que $\forall n \in \N$, $0 < a_n \leqslant a_{n+1} \leqslant b_{n+1} \leqslant b_n \leqslant 1$.
+
+\textit{Initialisation :} $a_0=\dfrac{1}{10}$ \quad $a_1=\e^{-1}=\dfrac{1}{\e}$ \quad $b_0=1=\e^0$  \quad $b_1=\e^{-\frac{1}{10}}$.
+
+La fonction $x\mapsto\e^x$ est strictement croissante sur $\R$ et  $-1\leqslant -\dfrac{1}{10} \leqslant 0$ donc ,  $\e^{-1}\leqslant \e^{-\frac{1}{10}} \leqslant \e^0$ et $\dfrac{1}{\e}>\dfrac{1}{10}$ donc  on peut alors affirmer que $0<a_0 \leqslant a_1 \leqslant b_1 \leqslant b_0 \leqslant1$.
+
+L'initialisation est vérifiée.
+
+\textit{Hérédité :} Soit  $n \in \N^*$, et supposons que $0 < a_n \leqslant a_{n+1} \leqslant b_{n+1} \leqslant b_n \leqslant 1$.
+		
+Montrons que $0 < a_{n+1} \leqslant a_{n+2} \leqslant b_{n+2} \leqslant b_{n+1} \leqslant 1$.
+					
+La fonction $x \longmapsto \text{e}^{-x}$ est décroissante sur $\R$. Donc 
+			
+$0 < a_n \leqslant a_{n+1} \leqslant b_{n+1} \leqslant b_n \leqslant 1 \iff \e^{-0} >\e^{-a_n }\geqslant \e^{-a_{n+1}}\geqslant \e^{-b_{n+1}} \geqslant \e^{-b_n} \geqslant \e^{-1} $
+			
+soit $0< \e^{-1} \leqslant \e^{-b_n} \leqslant \e^{-b_{n+1}} \leqslant \e^{-a_{n+1}} \leqslant \e^{-a_n } < 1 \leqslant 1$ donc
+
+$0 < a_{n+1} \leqslant a_{n+2} \leqslant b_{n+2} \leqslant b_{n+1} \leqslant 1$. On obtient ce qu'il fallait démontrer.
+			
+L'hérédité est démontrée.
+					
+\textit{Conclusion : } La proposition est vraie au rang $0$ et si elle est vraie au rang $n$, elle l'est aussi au rang $n + 1$.	D'après l'axiome de récurrence, $\forall n \in \N$, $0 < a_n \leqslant a_{n+1} \leqslant b_{n+1} \leqslant b_n \leqslant 1$.
+			\item Nous venons de montrer que $\forall n \in \N$, $0<a_n\leqslant a_{n+1} \leqslant1$ et que $0 \leqslant b_{n+1} \leqslant b_n  \leqslant 1$.
+			
+			La suite $(a_n)$ est croissante et majorée par 1. D'après  le théorème de convergence monotone, la suite $(a_n)$ converge.
+			
+			De même, la suite $(b_n)$ est décroissante et minorée par 0. D'après  le théorème de convergence monotone, la suite $(b_n)$ converge.
+\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item $A = \text{e}^{-B}$ et $B = \text{e}^{-A}$.
+
+		$A = \text{e}^{-B} \iff \ln(A)=-B=-\e^{-A}$ donc $\ln(A)+\e^{-A}=0$ donc $f(A)=0$.
+
+		\item De même $B = \e^{-A}\iff \ln(B)=-A=-\e^{B}$ donc $\ln(B)+\e^{-B}=0$ donc $f(B)=0$.
+
+Donc A et B sont deux solutions de l'équation $f(x)=0$. Or d'après la question A.4, cette équation admet une unique solution, donc $A= B$ et $A - B = 0$.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

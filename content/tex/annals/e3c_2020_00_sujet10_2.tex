@@ -1,0 +1,38 @@
+\medskip
+
+Un industriel souhaite fabriquer une boîte sans couvercle à partir d'une plaque de métal de
+$18$~cm de largeur et de $24$~cm de longueur. Pour cela, il enlève des carrés dont la longueur du côté mesure $x$ cm aux quatre coins de la pièce de métal et relève ensuite verticalement pour fermer les côtés.
+
+\begin{center}
+\psset{unit=0.8cm}
+\begin{pspicture}(16,7)
+
+\psframe(1,1)(7,5)
+\pspolygon[linestyle=dashed,fillstyle=solid,fillcolor=lightgray](1,2)(1,4)(2,4)(2,5)(6,5)(6,4)(7,4)(7,2)(6,2)(6,1)(2,1)(2,2)
+\psline{<->}(6,0.5)(7,0.5)\uput[d](6.5,0.5){$x$}
+\psline{<->}(7.4,1)(7.4,2)\uput[r](7.4,1.5){$x$}
+\psline{<->}(0.3,1)(0.3,5)\psline{<->}(1,5.6)(7,5.6)
+\uput[l](0.3,3){18}\uput[u](4,5.6){24}
+\psframe[fillstyle=solid,fillcolor=lightgray](10,1)(14,2)
+\pspolygon[fillstyle=solid,fillcolor=lightgray](14,1)(16,2.8)(16,3.8)(14,2)
+\psline(10,2)(12,3.8)(16,3.8)
+\psline(12,3.8)(12,2.8)(14.85,2.8)
+\psline(11,2)(12,2.8)
+\psarc[linewidth=0.15cm]{<-}(8.5,0){3}{70}{110}
+\end{pspicture}
+\end{center}
+
+Le volume de la boîte ainsi obtenue est une fonction définie sur l'intervalle [0~;~9] notée
+$V(x)$.
+
+\medskip
+
+\begin{enumerate}
+\item Justifier que pour tout réel $x$ appartenant à [0~;~9] : $V(x) = 4x^3 - 84x^2 + 432x$. 
+\item On note $V'$ la fonction dérivée de $V$ sur [0~;~9]. \\
+Donner l'expression de $V'(x)$ en fonction de $x$.
+\item Dresser alors le tableau de variations de $V$ en détaillant la démarche.
+\item Pour quelle(s) valeur(s) de $x$ la contenance de la boîte est-elle maximale ?
+\item L'industriel peut-il construire ainsi une boîte dont la contenance est supérieure ou égale à $650$ cm$^3$ ? Justifier.
+\end{enumerate}
+\bigskip

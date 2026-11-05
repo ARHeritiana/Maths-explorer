@@ -1,0 +1,83 @@
+\subsection*{1.}
+
+On a donc \( u_2 = 200 + 5 = 205 \) et \( u_3 = u_2 + 5 = 205 + 5 = 210 \).
+
+De même, on a :
+\[
+v_2 = 200 \times \left(1 + \dfrac{2}{100}\right) = 200 \times 1{,}02 = 204 \quad \text{et} \quad v_3 = v_2 \times 1{,}02 = 208{,}80 \text{ (en euros)}.
+\]
+
+\subsection*{2.}
+
+\paragraph{a.}
+\begin{center}
+\begin{lstlisting}[style=python]
+u = 200
+v = 200
+n = int(input("Saisir une valeur de n :"))
+for i in range(1,n) :
+    u = u + 5 
+    v = v * 1.02
+print("Pour n =",n,"on a","u =",u,"et v =",v)
+\end{lstlisting}
+\end{center}
+
+\paragraph{b.} On a :
+\[
+u_4 = u_3 + 5 = 215 \quad \text{et} \quad v_4 = v_3 \times 1{,}02 \approx 110{,}98.
+\]
+
+\subsection*{3.}
+
+Quel que soit le naturel \( n \), \( n \geq 1 \), on a :
+\begin{itemize}
+    \item \( u_{n+1} = u_n + 5 \) : la suite \( (u_n) \) est une suite arithmétique de premier terme 200 et de raison 5, donc \( u_n = 200 + 5(n - 1) \).
+    \item \( v_{n+1} = v_n \times 1{,}02 \) : la suite \( (v_n) \) est une suite géométrique de premier terme 200 et de raison 1{,}02, donc \( v_n = 200 \times 1{,}02^{n-1} \).
+\end{itemize}
+
+\subsection*{4.}
+
+3 ans correspondent à \( 3 \times 12 = 36 \) mois de loyers.
+
+\begin{itemize}
+    \item Avec le premier contrat :
+    \[
+    S_{36} = u_1 + u_2 + \dots + u_{36},
+    \]
+    que l'on peut écrire :
+    \[
+    S_{36} = 200 + 205 + \dots + 200 + 5 \times 35,
+    \]
+    ou encore :
+    \[
+    S_{36} = 200 + 5 \times 35 + \dots + 205 + 200,
+    \]
+    et en sommant membres à membres :
+    \[
+    2S_{36} = 36 \times (200 + 200 + 5 \times 35) = 36 \times 575 = 20700,
+    \]
+   	d'où \(S_{36} = 10350\) (euros).
+
+    \item Avec le second contrat :
+    \[
+    T_{36} = v_1 + v_2 + \dots + v_{36},
+    \]
+    que l'on peut écrire :
+    \[
+    T_{36} = 200 + 200 \times 1{,}02 + \dots + 200 \times 1{,}02^{35} \quad (1),
+    \]
+    d'où, par produit par 1{,}02 :
+    \[
+    1{,}02 T_{36} = 200 \times 1{,}02 + 200 \times 1{,}02^2 + \dots + 200 \times 1{,}02^{36} \quad (2),
+    \]
+    et par différence \((2) - (1)\) :
+    \[
+    0{,}02 T_{36} = 200 \times 1{,}02^{36} - 200,
+    \]
+    d'où :
+    \[
+    T_{36} = \dfrac{200 \times 1{,}02^{36} - 200}{0{,}02} \approx 10398{,}87 \text{ (euros)}.
+    \]
+\end{itemize}
+
+C'est donc le premier contrat qui reviendra le moins cher (de peu!).

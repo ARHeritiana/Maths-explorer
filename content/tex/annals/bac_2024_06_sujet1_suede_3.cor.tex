@@ -1,0 +1,168 @@
+\subsection*{Partie 1 : appareil de la marque A}
+
+\begin{center}
+	\begin{tikzpicture}[> = stealth]
+		\begin{axis}[/pgf/number format/.cd, use comma,/pgf/number format/set thousands separator={\,}, x={0.086mm}, y={0.172mm}, xmin=0, xmax=1170, ymin = 0, ymax=410, xtick distance=100, ytick distance =50,
+			xlabel={Temps (en min)},ylabel={Température (en °C)},
+			tick label style={font=\footnotesize}, minor tick num = 1, grid=both, axis lines =center]
+			\addplot[color=blue,fill=blue,fill opacity=0.2,  domain=0:600,samples=100] {20+330*x*exp(-0.005*x)/73.58} \closedcycle;
+			\addplot [line width=1.2pt,color=red,smooth,samples=100,domain= 0:1170, ]{20+330*x*exp(-0.005*x)/73.58};
+		\node[below left] at (axis cs: 0,0) {{\footnotesize 0}};
+		\draw[teal,dashed, line width = 1.5pt] (0,300)--(1170,300) ;
+		\draw[teal,<->,line width=1pt] (106.1,365)--(337.5,365);
+		\draw[teal,,line width=1pt](106.1,300)--(106.1,375) (337.5,300)--(337.5,375) ;
+		\draw[blue] (50,0) rectangle (600,150) node[pos=0.5]{66};
+		\draw[blue] (0,0) rectangle (50,25) node[pos=0.5]{1};
+		\draw[blue] (50,150) rectangle (100,175) node[pos=0.5]{1};
+		\draw[blue] (100,150) rectangle (350,300) node[pos=0.5]{30};
+		\draw[blue] (350,300)--(600,150) (450,175)node{15} ;
+		\draw[blue] (0,25)--(50,175) (25,50)node{3} ;
+		\draw[blue] (50,175)--(100,300) (75,200)node[rotate=90]{2,5} ;
+		\draw[blue] (100,300)--(200,350)--(200,300) (175,312)node{2} ;
+		\draw[blue] (200,350)--(350,300) (240,312)node{3} ;
+	\end{axis}
+	\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+	\item Le point le plus haut de la courbe est à $(200 ; 350)$, c'est donc au bout de 200 minutes (soit 3 h 20 min) que la température maximale (de 350~\ensuremath{^\circ} C) est atteinte.
+
+	\item (voir les tracés en vert pour la justification).
+
+On mesure environ 2 cm de large sur lesquels la courbe est au dessus de la droite d'équation $y=300$, donc, avec 1\,000 minutes représentées par 8,6 cm, on en déduit que la durée pendant laquelle la température à l'intérieur du foyer dépasse $300~\degres C$ est d'environ : $\dfrac{2\times 1000}{8,6} \approx 233$ minutes.
+
+(Ici, la précision de la lecture pouvait donner des résultats assez variables, une différence d'un millimètre dans la lecture donnant environ 11 minutes d'écart).
+
+	\item Si $f$ est la fonction représentée sur le graphique, manifestement à valeurs positives sur l'intervalle $[0 ; 600]$, alors $\displaystyle\dfrac{1}{600} \int_{0}^{600} f(t) \d t$ est la surface de la zone colorée sur le graphique, délimitée par l'axe des abscisses, la courbe représentant $f$, et les droites verticales d'équation $x = 0$ et $x = 600$, exprimée en unités d'aires.
+
+On peut donc compter les carreaux colorés, ce sera une estimation, bien sûr, en délimitant des zones, pour ne pas compter individuellement les carreaux. Avec le découpage proposé en bleu, on compte 123,5 carreaux colorés, et donc, un carreau représentant une largeur de 50 unités pour une hauteur de 25 unités, chaque carreau correspond à \np{1250} unités d'aire.
+
+Une estimation de l'intégrale est donc de : \quad $\np{1250}\times 123,5 = \np{154375}$ unités d'aire.
+
+On a donc :\quad  $\displaystyle\dfrac{1}{600} \int_{0}^{600} f(t) \d t \approx \dfrac{1}{600}\times \np{154375} \approx 257,3 $.
+
+Le quotient de l'intégrale de 0 à 600 de la fonction par 600 (qui est l'amplitude de l'intervalle de 0 à 600) fait que la valeur demandée est exactement la définition de la \emph{valeur moyenne} de la fonction $f$ sur l'intervalle $[0~;~600]$.
+
+On peut donc interpréter notre estimation en disant que, au cours des 10 premières heures (de 0 à 600 minutes, donc), la température moyenne de l'intérieur du foyer est donc de 257~\ensuremath{^\circ} C, environ.
+\end{enumerate}
+
+\subsection*{Partie 2 : étude d'une fonction}
+
+\begin{enumerate}
+	\item Pour tout $t$ réel strictement positif, on a :
+
+$g(t) = 10 \times (-100) \times (-0,01t)\e^{-0,01t} + 20=-1000 \times (-0,01t)\e^{-0,01t} + 20$
+
+Comme $-0,01 < 0$, \quad$\lim\limits_{t \to +\infty} -0,01t = -\infty$.
+
+Par composition (en posant $y = -0,01t$) :\quad $\lim\limits_{t \to +\infty} -0,01t \e^{-0,01t} = \lim\limits_{y \to -\infty} y\e^{y} = 0$.
+
+La limite $\lim\limits_{y \to -\infty} y\e^{y} = 0$ est connue par la propriété des croissances comparées.
+
+Finalement, par limite du produit et de la somme, on a :
+
+$\lim\limits_{t \to +\infty} g(t) = -1000 \times 0 + 20 = 20$.
+
+	\item \begin{enumerate}
+		\item Pour tout $t$ réel positif, on pose :\quad $u(t) = 10t$ \quad et \quad $v(t) = \e^{-0,01t}$,
+
+donc on a, pout $t$ réel positif :\quad $u'(t) = 10$ \quad et \quad $v'(t) = -0,01 \times \e^{-0,01t}$.
+
+$g = u\times v + 20$,\quad donc\quad $g' = u'v+v'u + 0$
+
+On a donc, pour $t$ réel positif : \quad $  \begin{aligned}[t] g'(t) &= 10 \times \e^{-0,01t} + \big(-0,01\e^{-0,01t}\big)\times 10t\\
+		&= \big(10 - 0,01\times 10t\big)\e^{-0,01t}\\
+		&= \big(-0,1 t + 10\big) \e^{-0,01 t}.\end{aligned}$
+
+		\item La fonction exponentielle étant à valeurs strictement positives, on en déduit que, pour tout réel $t$ positif, on a :\quad $\e^{-0,01t} >0$ \quad et donc $g'(x)$ a le signe de \quad $(-0,1t+ 10)$.
+
+$\begin{aligned}[t] -0,1t + 10 > 0 &\iff -0,1t > -10\\
+&\iff t < 100,\quad \text{car }  -0,1 < 0\end{aligned}$
+
+La fonction $g$ est donc strictement croissante sur l'intervalle $[0 ; 100]$, puis strictement décroissante sur $[100~;~+\infty[$.
+
+On calcule $g(0) = 10\times 0 \times \e^{0}+20 = 20$ et $g(100) = 10 \times 100 \times \e^{-1} + 20 = 1000\e^{-1} + 20$ (avec $g(100)\approx 388$).
+
+On peut donc établir le tableau de variations suivant :
+
+\hfill~\begin{tikzpicture}
+\tkzTabInit[lgt=3]{$x$/0.7, signe de $g'(x)$/0.7, variations de $g$/1.5}{0,100,$+\infty$}
+			\tkzTabLine{,+,z,-,}
+			\tkzTabVar{-/20,+/{\footnotesize $1000\e^{-1} + 20$},-/20}
+	\end{tikzpicture}\hfill~
+\end{enumerate}
+
+	\item \begin{itemize}[label=$\bullet~$]
+		\item Sur $[0 ; 100]$, la fonction $g$ est continue (car dérivable), strictement croissante et 300 est une valeur intermédiaire entre $g(0) = 20$ et $g(100)\approx 388$, donc en appliquant le corollaire au théorème des valeurs intermédiaires appliqué aux fonctions strictement monotones, on en déduit que 300 admet un unique antécédent par $g$ dans l'intervalle $[0;100]$ (et cet antécédent n'est pas 100, dont l'image n'est pas 300).
+		\item De même, sur $[100;+\infty[$, $g$ reste continue, est cette fois strictement décroissante, et 300 est une valeur strictement intermédiaire entre $g(100)\approx 388$ et \linebreak $\lim\limits_{t\to +\infty}g(t) = 20$, donc d'après le même corollaire, $300$ admet un unique antécédent par $g$ sur $[100~;~+\infty[$.
+	\end{itemize}
+
+Ainsi, l'équation $g(t) = 300$ admet exactement deux solutions distinctes sur [ $0; + \infty[$ : une strictement inférieure à 100, l'autre strictement supérieure à 100.
+
+Avec la calculatrice, on a des valeurs approchées qui sont : 43 et 193.
+
+	\item $\begin{aligned}[t] \displaystyle \int_{0}^{600} g(t) \d t
+	&= \int_{0}^{600} \big(10t\e^{-0,01t} + 20\big) \d t \\
+	&= 10 \int_{0}^{600} \big(t\e^{-0,01t}\big) \d t  + \int_{0}^{600} 20 \d t \quad\text{par linéarité de l'intégrale}\\
+	&= 10 \int_{0}^{600} \big(t\e^{-0,01t}\big) \d t  + 20\times 600\\
+	&= \np{12000} + 10 \int_{0}^{600} \big(t\e^{-0,01t}\big) \d t\\
+	\end{aligned}$
+
+Ensuite, on pose, pour tout réel positif $t$ :\quad $u(t) = t$ \quad et \quad $v'(t) = \e^{-0,01t}$.
+
+On a alors : \quad $u'(t) = 1$\quad et, par exemple, \quad $v(t) = -100\e^{-0,01t}$.
+
+Avec ces fonctions $u$ et $v$ ainsi introduites, on a :
+
+$\displaystyle \int_{0}^{600} \big(t\e^{-0,01t}\big) \d t = \int_{0}^{600} u(t)\times v'(t) \d t$
+
+D'après la propriété d'intégration par parties, on en déduit :
+
+	$\begin{aligned}[t] \displaystyle \int_{0}^{600} \big(t\e^{-0,01t}\big) \d t
+	&= \Big[u(t)\times v(t) \Big]_0^{600} - \int_{0}^{600} u'(t)\times v(t) \d t\\
+	&= \Big[t\times (-100)\e^{-0,01t} \Big]_0^{600} - \int_{0}^{600} 1\times( -100)\times \e^{-0,01t} \d t\\
+	&= -100 \Big[t\e^{-0,01t} \Big]_0^{600} +100 \int_{0}^{600} \e^{-0,01t} \d t\\
+	&= -100 \Big(600\e^{-6} - 0\e^{0}\Big) + 100 \Big[-100\e^{-0,01t}\Big]_{0}^{600}\\
+	&= -\np{60000}\e^{-6} - \np{10000} \Big(\e^{-6} - \e^{0}\Big)\\
+	&= -\np{60000}\e^{-6} - \np{10000} \Big(\e^{-6} - 1\Big)\\
+	&= \np{10000}-\np{70000}\e^{-6}\\
+	\end{aligned}$
+
+Ainsi, en reprenant le calcul de départ, et en y intégrant ce dernier résultat :
+
+$\begin{aligned}[t] \displaystyle \int_{0}^{600} g(t) \d t
+&= \np{12000} + 10 \int_{0}^{600} \big(t\e^{-0,01t}\big) \d t\\
+&= \np{12000} + 10\Big(\np{10000}-\np{70000}\e^{-6}\Big)\\
+&=\np{112000} - \np{700000}\e^{-6}	\end{aligned}$
+
+(On a une valeur approchée pour cette intégrale de \np{110265}, à l'unité près.)
+\end{enumerate}
+
+\subsection*{Partie 3 : évaluation}
+
+Reprenons les résultats de la partie A (pour l'appareil A) et de la partie B (pour l'appareil B) afin de voir quels critères sont satisfaits :
+
+\begin{itemize}
+\item Critère 1 : la température maximale est supérieure à $320~\degres$C.
+
+	Validé pour les deux appareils (on a une température maximale d'environ $350~\degres$C pour l'appareil A, environ $388~\degres$ C pour l'appareil B).
+
+\item Critère 2 : la température maximale est atteinte en moins de 2 heures.
+
+Validé pour l'appareil B, qui atteint sa température maximale pour $t = 100$ minutes après l'allumage, soit 1 h 40 min après l'allumage. L'appareil A, lui, n'atteint sa température maximale qu'au bout de 200 minutes, soit 3 h 20 min.
+\item Critère 3 : la température moyenne durant les 10 premières heures après l'allumage dépasse $250~\degres$ C.
+
+Validé pour l'appareil A, on a une température moyenne sur les 10 premières heures d'environ $250~\degres$ C.
+
+Pour l'appareil B, déterminons la température moyenne :
+
+$\mu = \dfrac{1}{600} \displaystyle \int_{0}^{600}g(t) \d t = \dfrac{\np{112000} - \np{700000}\e^{-6}}{600} \approx 184$. L'appareil B ne valide pas ce critère, sa température moyenne pour les dix premières heures après l'allumage n'est que d'environ 184 °C.
+
+\item Critère 4 : la température à l'intérieur du foyer ne doit pas dépasser $300^{\circ} \mathrm{C}$ pendant plus de 5 heures.
+
+Ce critère est validé pour l'appareil A, on avait trouvé une durée totale au dessus de $300~\degres$ C d'environ 233 minutes, soit 3~h 53.
+
+Pour l'appareil B, entre les variations de la fonction $g$ et les antécédants de 300 approchés, on a une durée au-dessus de 300 °C de $193 - 43 = 150$ minutes, soit 2 h 30 min : le critère est vérifié également.
+\end{itemize}
+
+Les deux appareils obtiennent bien exactement trois étoiles : tous les critères sauf le n\up{o} 2 sont validés par l'appareil A, et pour l'appareil B, ce sont tous les critères, sauf le n\up{o} 3.

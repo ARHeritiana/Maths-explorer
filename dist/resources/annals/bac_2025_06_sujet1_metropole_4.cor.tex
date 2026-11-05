@@ -1,0 +1,260 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet1_metropole_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+\subsection*{Partie A : étude d'un modèle discret}
+
+\begin{enumerate}
+	\item Le premier juillet 2025 étant le premier juillet $2024 + 1$, on demande ici de calculer :
+	$u_1 = u_{0 + 1} = -0,02u_0^2 + 1,3u_0 = -0,02\times 1^2 + 1,3 \times 1 = 1,3-0,02 = 1,28$.
+
+	D'après ce modèle, au premier juillet 2025, la posidonie recouvrera une superficie de \np[ha]{1,28}.
+
+	\item On remarque que la fonction $h$ introduite dans la question est la fonction de récurrence de la suite, c'est-à-dire que pour tout entier naturel $n$, on a : $h(u_n)= u_{n+1}$.
+
+	Pour tout entier naturel $n$, on pose l'affirmation $P_n$ :\quad \og $1 \leqslant u_n \leqslant u_{n+1} \leqslant 20$.\fg{}
+
+	\textbf{Initialisation : } pour $n = 0$, on a, d'après la définition de la suite $u_0 = 1$ et d'après la question précédente $u_1 = 1,28$.
+
+	On constate donc que l'affirmation $P_0$ est vraie.
+
+	\textbf{Hérédité :} On suppose que, pour un entier naturel $n$ donné, l'affirmation $P_n$ est vraie.
+
+	Par hypothèse de récurrence, on a :
+
+	$\begin{aligned}[t] 1 \leqslant u_n \leqslant u_{n+1} \leqslant 20
+		&\implies h(1) \leqslant h(u_n) \leqslant h(u_{n+1}) \leqslant h(20)\\
+		&\qquad \qquad \text{car $h$ est supposée croissante sur }[0~;~20]\\
+		&\implies 1,28 \leqslant u_{n+1} \leqslant u_{n+2} \leqslant 18 \quad \text{car } h(1) = 1,28 \text{~ et ~} h(20) = 18.\\
+		&\implies 1 \leqslant u_{n+1} \leqslant u_{n+2} \leqslant 20 \quad \text{car } 1 \leqslant 1,28 \text{~ et ~} 18 \leqslant 20.\\
+	\end{aligned}$
+
+	Si $P_n$ est vraie, alors $P_{n+1}$ est donc vraie aussi.
+
+	\textbf{Conclusion : } On a établi que la propriété était vraie au rang 0, et que, pour tout entier naturel $n$, sa véracité est héréditaire, donc d'après le principe de récurrence, on en déduit :
+	\quad
+	$\forall n \in \N,\quad 1 \leqslant u_n \leqslant u_{n+1} \leqslant 20.$
+
+	\item D'après la question précédente, on a :
+
+	\begin{itemize}
+		\item 	$\forall n \in \N,\quad 1\leqslant u_n \leqslant 20$ : \quad la suite est bornée par 1 et 20;
+		\item 	$\forall n \in \N,\quad u_n \leqslant u_{n+1}$:\quad la suite est croissante;
+	\end{itemize}
+	La suite est donc croissante et majorée, elle est donc convergente, vers une limite $L$.
+
+	Comme la suite est bornée par 1 et 20, on en déduit que la limite $L$ est donc un réel de l'intervalle $[1 ~;~20]$.
+
+	\item La suite $u$ est définie par récurrence, sa fonction de récurrence étant continue (la fonction $h$ est un polynôme de degré 2, donc continue sur son ensemble de définition); la suite est également convergente. D'après le théorème du point fixe, on en déduit que la limite de la suite $(u_n)$ doit être une solution à l'équation $h(x) = x$.
+
+	Résolvons cette équation : \quad
+	$\begin{aligned}[t]
+		h(x) = x
+			&\iff -0,02x^2 +1,3x = x\\
+			&\iff -0,02x^2 + 0,3 x = 0\\
+			&\iff -0,02x \left(x + \dfrac{0,3}{-0,02}\right ) = 0\\
+			&\iff -0,02x (x - 15) = 0\\
+			&\iff x = 0 \text{~ ou bien ~} x = 15\\
+	\end{aligned}$
+
+	L'équation a deux solutions, 0 et 15, et parmi ces deux solutions, seule 15 est dans l'intervalle $[1 ~;~ 20]$, dont on a établi qu'il contient la limite $L$.
+
+	La limite de la suite est donc bien $L = 15$.
+
+	\item \begin{enumerate}
+		\item Puisque la suite converge vers 15, tout intervalle ouvert contenant 15 doit contenir tous les termes de la suite, à partir d'un certain rang.
+
+		L'intervalle $]14 ~;~ +\infty[$ est un tel intervalle, donc il existe un rang $N_0$ à partir duquel les termes de la suite sont dans l'intervalle $]14 ~;~ +\infty[$, et sont donc supérieurs à 14.
+
+		Il existe donc une année à partir de laquelle la posidonie recouvrira une surface dépassant les \np[ha]{14}.
+
+		\item Il s'agit ici d'un algorithme de seuil classique, \texttt{n} et \texttt{u} sont initialisées à 0 et $u_0$ respectivement. Tant que le terme stocké dans la variable \texttt{u} restera inférieur ou égal à 14, alors on mettra à jour ces deux variables pour qu'elles contiennent respectivement l'indice suivant et le terme suivant dans la suite.
+
+		Cela donne :
+
+		\begin{verbatim}
+			def seuil():
+					n=0
+					u=1
+					while u < = 14 :
+							n= n+1
+							u= -0.02*u**2 + 1.3*u
+					return n
+		\end{verbatim}
+
+	\emph{Remarque :} Il y a une légère ambigüité sur l'interprétation de l'expression \og dépassera les 14 hectares\fg{}. On a choisi dans ce corrigé de le comprendre comme \og devenant strictement supérieur à 14 hectares \fg{}.
+
+	Si on interprète comme \og devenant supérieur ou égal à 14 hectares \fg{}, alors la quatrième ligne de l'algorithme devient : \quad \texttt{while u < 14 :}
+	Les deux versions renvoient le même résultat, de toutes façons, car aucun terme de la suite n'est égal à 14.
+
+	L'appel \texttt{seuil()} renvoie ici 18, car $u_{17} \approx 13,8$ et $u_{18} \approx 14,1$. Il faudra donc 18 ans pour que la posidonie recouvre une surface dépassant les 14 hectares.
+	\end{enumerate}
+\end{enumerate}
+
+\subsection*{Partie B : étude d'un modèle continu}
+
+\begin{enumerate}
+	\item Si on a, pour tout réel positif $t$, \quad$g = \dfrac{1}{f(t)}$, alors pour tout réel $t$ positif, on a :
+
+	$g'(t) = \dfrac{-f'(t)}{f(t)^2}$
+
+	On aura alors : \quad
+	$\begin{aligned}[t]
+		-0,3g(t) + 0,02
+		&= \dfrac{-0,3}{f(t)} + 0,02 \\
+		&= \dfrac{-0,3 + 0,02f(t)}{f(t)}\\
+	\end{aligned}$
+
+	Et, par ailleurs : \quad
+	$\begin{aligned}[t]
+		g'(t)
+		&= \dfrac{-f'(t)}{f(t)^2} \\
+		&= \dfrac{-\big[0,02f(t)(15 - f(t))\big]}{f(t)^2}\quad \text{ car $f$ est solution de }(E_1)\\
+		&= \dfrac{-\big[0,02(15 - f(t))\big]}{f(t)}\quad \text{en simplifiant par } f(t) \\
+		&\qquad\qquad \text{on rappelle que $f$ ne s'annule pas sur $[0~;~ +\infty[$}\\
+		&= \dfrac{-0,3 + f(t)}{f(t)}\quad \text{en développant}\\
+		&=-0,3g(t) + 0,02
+	\end{aligned}$
+
+	On constate bien que $g$ est une solution de l'équation différentielle $(E_2)$.
+
+	\item Les solutions de l'équation $(E_2)$ sont, d'après une propriété du cours, les fonctions de la forme :
+	\quad
+	$t \longmapsto C \e^{-0,3t} + \dfrac{-0,02}{-0,3}$,\quad où $C \in \R$.
+
+	C'est-à-dire, les fonctions de la forme \quad
+	$t \longmapsto C \e^{-0,3t} + \dfrac{1}{15}$,\quad où $C \in \R$.
+
+	\item Comme on sait que $f(0) = 1$, on en déduit $g(0) = \dfrac{1}{f(0)} = 1$.
+
+	Donc \quad
+	$\begin{aligned}[t]
+		g(0) = 1
+		&\iff C \e^{-0,3\times 0} + \dfrac{1}{15} = 1\\
+		&\iff C + \dfrac{1}{15} = 1\\
+		&\iff C = 1 - \dfrac{1}{15}\\
+		&\iff C = \dfrac{14}{15}\\
+	\end{aligned}$
+
+	La seule fonction solution de $(E_2)$ vérifiant $g(0) = 1$ est donc
+
+	$g : t \longmapsto \dfrac{14}{15} \e^{-0,3t} + \dfrac{1}{15}$.
+
+	On en déduit donc que, pour tout $t$ réel positif, on a :\quad
+	$\begin{aligned}[t]
+		f(t) &=\dfrac{1}{g(t)}\\
+			&= \dfrac{1}{\dfrac{14}{15} \e^{-0,3t} + \dfrac{1}{15}}\\
+			&= \dfrac{15}{14 \e^{-0,3t} + 1}\\
+	\end{aligned} $
+
+	On arrive bien à l'expression annoncée.
+
+	\item On a : \quad $\lim\limits_{t \to +\infty} -0,3t = -\infty$,\quad donc par composition, $\lim\limits_{t \to +\infty} \e^{-0,3t} = \lim\limits_{y\to -\infty} \e^{y} = 0$
+
+	Par limite du produit et de la somme, on a alors :\quad $\lim\limits_{t \to +\infty} 14\e^{-0,3t} + 1  =1$.
+
+	Finalement, par limite du quotient : \quad $\lim\limits_{t \to +\infty} f(t) = \lim\limits_{t \to +\infty} \dfrac{15}{14\e^{-0,3t} + 1}  =15$.
+
+	La fonction $f$ tend vers 15 quand $t$ tend vers $+\infty$. Le modèle continu rejoint la conclusion du modèle discret : la posidonie tendra à occuper une surface de 15 hectares.
+
+	\item Soit $t$ un réel positif. Résolvons :
+
+	$\begin{aligned}
+		f(t) > 14
+			&\iff \dfrac{15}{14\e^{-0,3t} + 1} > 14\\
+			&\iff 15 > 14(14\e^{-0,3t} + 1) \quad \text{car } 14\e^{-0,3t} + 1 > 0\\
+			&\iff 15 > 196 \e^{-0,3t} + 14\\
+			&\iff 1 > 196 \e^{-0,3t}\\
+			&\iff \dfrac{1}{196} > \e^{-0,3t} \quad \text{car } 196 >0\\
+			&\iff \ln\left(\dfrac{1}{196}\right) > -0,3t \quad \text{car ln est strictement croissante sur } \R^+\\
+			&\iff -\ln\left(196\right) > -0,3t \quad \text{par proriété de la fonction ln}\\
+			&\iff \dfrac{\ln(196)}{0,3} < t \quad \text{ car } -0,3 < 0\\
+	\end{aligned}$
+
+	L'ensemble des solutions de l'inéquation est donc l'intervalle $\left]\dfrac{\ln(196)}{0,3}~;~+\infty\right[ $.
+
+	Comme $ \dfrac{\ln(196)}{0,3}\approx 17,6$, cela signifie qu'il faudra environ 17,6 années (soit 17 ans et un peu plus de 7 mois) pour que la posidonie occupe un espace strictement supérieur à 14 hectares. Là encore, le modèle continu a des conclusions cohérentes avec celles du modèle discret.
+
+\end{enumerate}
+
+\end{document}

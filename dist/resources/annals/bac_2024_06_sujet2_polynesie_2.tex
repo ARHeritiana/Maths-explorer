@@ -1,0 +1,169 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet2_polynesie_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textit{Cet exercice est un questionnaire à choix multiples (QCM) qui comprend cinq questions. Les cinq questions sont indépendantes.\\
+Pour chacune des questions, \textbf{une seule des quatre réponses est exacte}. Le candidat indiquera sur sa copie le numéro de la question suivi de la lettre correspondant à la réponse exacte.\\
+Aucune justification n'est demandée.\\
+Une réponse fausse, une réponse multiple ou une absence de réponse ne rapporte, ni n'enlève aucun point.}
+
+\begin{enumerate}
+	\item La solution $f$ de l'équation différentielle $y'=-3y+7$ telle que $f(0)=1$ est la fonction définie sur $\R$ par :
+	
+	\smallskip
+	
+\begin{center}
+\renewcommand\arraystretch{1.9}
+\begin{tabularx}{\linewidth}{X X}
+\textbf{A. } $f(x) = \e^{-3x}$&\textbf{B. } $f(x) = - \dfrac43 \e^{-3x} + \dfrac73$\\
+\textbf{C. } $f(x) = \e^{-3x} + \dfrac73$&\textbf{D.~} $f(x) = - \dfrac{10}{3} \e^{-3x} - \dfrac73$
+\end{tabularx}
+\end{center}
+	\item La courbe d'une fonction $f$ définie sur $[0~;~+\infty[$ est donnée ci-dessous.
+	
+\begin{center}
+\psset{unit=1.4cm}
+\begin{pspicture}(-0.5,-0.25)(6.25,4.25)
+\psgrid[gridlabels=0pt,subgriddiv=1]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(0,0)(6.25,4.25)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0}{6.25}{0.00196  x 5 exp mul 0.05764 x  4 exp mul sub 0.62643 x  3 exp mul add 3.00524 x dup mul mul sub 5.43449  x mul add}
+\end{pspicture}
+\end{center}
+
+Un encadrement de l'intégrale $I = \displaystyle\int_1^5 f(x) \:\text{d}x$ est :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{X X}
+\textbf{A. } $0 \leqslant I \leqslant 4$&\textbf{B. } $1 \leqslant I \leqslant 5$\\
+\textbf{C. } $5 \leqslant I \leqslant 10$&\textbf{D. } $10 \leqslant I \leqslant 15$
+\end{tabularx}
+\end{center}
+
+\item On considère la fonction $g$ définie sur $\R$ par $g(x) = x^2 \ln \left(x^2 + 4\right) $.
+
+Alors $\displaystyle\int_0^2 g'(x)\:\text{d}x$ vaut, à $10^{-1}$ près :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{X X}
+\textbf{A. } 4,9&\textbf{B. } $8,3$\\
+\textbf{C. } $1,7$&\textbf{D. } $7,5$
+\end{tabularx}
+\end{center}	
+	\smallskip
+	
+\item Une professeure enseigne la spécialité mathématiques dans une classe de $31$ élèves de terminale.
+	
+Elle veut former un groupe de 5 élèves. De combien de façons différentes peut-elle former 
+un tel groupe de 5 élèves ?
+
+\begin{center}
+\begin{tabularx}{\linewidth}{X X}
+\textbf{A. } $31^5$&\textbf{B. } $31\times30\times29\times28\times27$\\
+\textbf{C. } $31+30+29+28+27$&\textbf{D. } $\dbinom{31}{5}$
+\end{tabularx}
+\end{center}
+
+	\item La professeure s'intéresse maintenant à l'autre spécialité des 31 élèves de son groupe :
+	
+\begin{itemize}
+	\item 10 élèves ont choisi la spécialité physique-chimie ;
+	\item 20 élèves ont choisi la spécialité SES ;
+	\item 1 élève a choisi la spécialité LLCE espagnol.
+\end{itemize}
+	
+Elle veut former un groupe de 5 élèves comportant exactement 3 élèves ayant choisi la
+	spécialité SES. De combien de façons différentes peut-elle former un tel groupe ?
+	
+\begin{center}
+\renewcommand\arraystretch{1.9}
+\begin{tabularx}{\linewidth}{X X}
+\textbf{A. } $\displaystyle\binom{20}{3} \times \binom{11}{2}$&\textbf{B. } $\displaystyle\binom{20}{3} + \binom{11}{2}$\\
+\textbf{C. } $\displaystyle\binom{20}{3}$&\textbf{D. } $20^3 \times 11^2$
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

@@ -1,0 +1,65 @@
+Un médicament est administré à un patient par voie intraveineuse.
+
+La notice du médicament indique que:
+
+\begin{itemize}[noitemsep]
+\item le traitement doit durer au moins 7~h ;
+\item lorsque sa quantité, en mg, présente dans le sang est supérieure ou égale à 3~mg, il y a un risque de toxicité.
+\end{itemize}
+
+On s'intéresse à la quantité de médicament présente dans le sang au cours du temps sachant que le patient reçoit une première dose de 1~mg.
+
+Deux protocoles sont étudiés dans les deux parties qui sont indépendantes.
+
+\subsection*{Partie A : étude du premier protocole}
+
+Après l'injection de la première dose, une quantité supplémentaire de médicament est administrée régulièrement et de façon continue à un patient mis sous perfusion.
+
+Dans cette partie, on modélise la quantité de médicament présente dans le sang du patient par une fonction $q$ définie sur $[0~;~+\infty[$, où $q(t)$ désigne la quantité, en mg, de médicament présente dans le sang du patient, et $t$ représente le temps, en heure, écoulé depuis l'injection initiale. On a ainsi $q(0) = 1$.
+
+On admet que~:
+\begin{itemize}[noitemsep]
+\item la fonction $q$ est dérivable sur $[0~;+\infty[$ et on note $q'$ sa fonction dérivée~;
+\item la fonction $q$ est solution sur $[0~;+\infty[$ de l'équation différentielle $(E)$~:
+
+\[y' = -\frac{3}{10}y + 1\]
+
+où $y$ est une fonction de la variable réelle $t$, définie et dérivable sur l'intervalle $[0~;~+\infty[$, et $y'$ sa fonction dérivée.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Donner les solutions sur $[0~;~+\infty[$ de l'équation différentielle $(E)$.
+\item Montrer que pour tout réel $t$ appartenant à $[0~;~+\infty[$, $q(t) = \dfrac{10}{3} - \dfrac{7}{3}\e^{-\frac{3}{10}t}$.
+\item Déterminer la limite de la fonction $q$ en $+\infty$. Interpréter cette valeur dans le contexte de l'exercice.
+\item Étudier les variations de la fonction $q$ sur $[0~;+\infty[$.
+\item Déterminer, en résolvant une inéquation, au bout de combien de temps après l'injection initiale le médicament présente un risque pour le patient. On donnera la valeur exacte puis une valeur approchée à $10^{-1}$.
+\item D'après ce modèle, le protocole présente-t-il un risque pour le patient~? Justifier.
+\end{enumerate}
+
+
+\subsection*{Partie B : étude du second protocole}
+
+On injecte au patient une première dose de médicament de 1~mg. On admet que la quantité de médicament présente dans le sang du patient baisse de 30\,\% toutes les heures. Pour compenser cette baisse, on injecte une dose supplémentaire de 0,75~mg de médicament toutes les heures.
+
+On modélise la situation par une suite $(u_n)$, où, pour tout entier naturel $n$, $u_n$ représente la quantité, en mg, de médicament présente dans le sang du patient au bout de $n$ heures écoulées depuis l'injection initiale.
+
+Sous ces conditions, on a $u_0 = 1$.
+
+\begin{enumerate}
+\item Justifier que pour tout entier naturel $n$, $u_{n+1} = 0,7 \times u_n + 0,75$.
+\item
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Montrer par récurrence que pour tout entier naturel $n$, $u_n \leqslant u_{n+1} \leqslant 4$.
+\item En déduire que la suite $(u_n)$ est convergente.
+\item Déterminer la limite $\ell$ de la suite $(u_n)$.
+\item D'après ce modèle, le traitement présente-t-il un risque pour le patient~? Justifier.
+\end{enumerate}
+\item On considère la suite $(v_n)$ définie, pour tout entier naturel $n$, par $v_n = u_n - 2,5$.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Montrer que $(v_n)$ est une suite géométrique dont on précisera la raison et le terme initial.
+\item Montrer que pour tout entier naturel $n$, $u_n = 2,5 - 1,5 \times 0,7^n$.
+\end{enumerate}
+\item D'après ce modèle, au bout de combien d'injections supplémentaires la quantité de médicament présente dans le sang de ce patient dépasse-t-elle 2,4~mg~?
+\end{enumerate}

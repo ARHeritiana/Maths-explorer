@@ -1,0 +1,124 @@
+\begin{enumerate}
+		\item \begin{enumerate}
+			\item \textbf{Affirmation 1 : Vraie.}
+
+			Par lecture de l'équation cartésienne du plan on peut affirmer que $\vect{n}\begin{pmatrix}-1\\1\\-5\end{pmatrix}$ est un vecteur normal au plan $(\mathcal{P})$.
+
+			La droite (AB) est dirigée par le vecteur $\vectt{AB}$, de coordonnées : \quad $\begin{pmatrix} x_{\mathrm{B}} - x_{\mathrm{A}} \\ y_{\mathrm{B}} - y_{\mathrm{A}} \\ z_{\mathrm{B}} - z_{\mathrm{A}} \end{pmatrix} $
+
+			soit :\quad $\vectt{AB} \begin{pmatrix} 2 - 3\\1-0\\3-2 \end{pmatrix} $ \quad et donc :\quad $\vectt{AB} \begin{pmatrix} -1\\1\\-5 \end{pmatrix} $.
+
+			Comme $\vectt{AB} = \vect{n}$, le vecteur directeur de la droite (AB) est donc normal au plan $(\mathcal{P})$.
+
+			Par définition, la droite (AB) est donc orthogonale au plan $\mathcal{P}$.
+
+			Le milieu du segment [AB] est le point I, et ses coordonnées vérifient :
+
+			$\mathrm{I}\left(\dfrac{x_{\mathrm{A}} + x_{\mathrm{B}}}{2} ; \dfrac{y_{\mathrm{A}} + y_{\mathrm{B}}}{2} ; \dfrac{z_{\mathrm{A}} + z_{\mathrm{B}}}{2}\right) $\quad soit \quad $\mathrm{I} \left(\dfrac{3+2}{2} ; \dfrac{0+1}{2} ; \dfrac{2-3}{2}\right) $\quad et finalement \quad $\mathrm{I}(2,5 ; 0,5 ; -0,5)$.
+
+			Vérifions si les coordonnées de I vérifient l'équation du plan $(\mathcal{P})$ :
+
+			$-x_{\mathrm{I}}+y_{\mathrm{I}}-5 z_{\mathrm{I}}-0,5= -2,5 +  0,5 -5 \times (-0,5) - 0,5 = -2,5 +0,5 + 2,5 - 0,5 = 0$
+
+			I est donc un point du plan $(\mathcal{P})$.
+
+			Le plan $(\mathcal{P})$ est bien orthogonal à la droite (AB), et passe par le milieu du segment [AB]
+
+			(autrement dit, c'est le plan médiateur du segment [AB]).
+
+			\item \textbf{Affirmation 2 : Fausse.}
+
+			La droite (AB) est dirigée par le vecteur $\vectt{AB} \begin{pmatrix} -1\\1\\-5 \end{pmatrix} $.
+
+			Par lecture de sa représentation paramétrique, on peut dire que $(d)$ est dirigée par $\vect{u}\begin{pmatrix} 1\\-1\\-2 \end{pmatrix}$.
+
+			Les deux vecteurs ont des coordonnées clairement non proportionnelles, donc ils ne sont pas colinéaires.
+
+			Les droites (AB) et $(d)$ ne sont donc pas parallèles (ni strictement, ni confondues).
+
+			Elles peuvent donc être sécantes, ou non coplanaires.
+
+			Pour trancher, cherchons à établir si elles ont un point commun.
+
+			Une représentation paramétrique de (AB) est :\quad $\begin{cases}
+				x = x_{\mathrm{A}} + x_{\vectt{AB}}\times s\\
+				y = y_{\mathrm{A}} + y_{\vectt{AB}}\times s\\
+				z = z_{\mathrm{A}} + z_{\vectt{AB}}\times s\\
+			\end{cases}\quad \text{ où } s \in \R$
+
+			Soit, en remplaçant par les valeurs connues : \quad $\begin{cases}
+				x = 3 - s\\ y = s \\ z = 2 - 5s
+			\end{cases}\quad \text{ où } s \in \R$
+
+			Le point de paramètre $t$ sur $(d)$ est confondu avec le point de paramètre $s$ sur (AB) si et seulement si $(s ; t)$ est solution du système :
+
+			$\begin{aligned}
+				\begin{cases}
+					3-s = t\\
+					s = -1,5 - t\\
+					2 -5s = 2 - 2t
+				\end{cases}
+				&\iff \begin{cases}
+					3-s = t\\
+					s = -1,5 - (3 - s)\\
+					2 -5s = 2 - 2(3 - s)
+				\end{cases}\\
+				&\iff \begin{cases}
+					3-s = t\\
+					s = -1,5 - 3 + s\\
+					2 -5s = 2 - 6 + 2s
+				\end{cases}\\
+			\end{aligned} $
+
+			Les équations du système sont incompatibles (la deuxième équation est équivaut à $0 = -4,5$).
+
+			Le système n'a pas de solution.
+
+			Il n'y a donc aucun point commun entre les droites (AB) et $(d)$, qui sont donc non coplanaires, et pas sécantes.
+
+			\item \textbf{Affirmation 3 : Vraie}
+
+			On a :\quad $\vectt{CA} \begin{pmatrix} 1,5\\3\\3 \end{pmatrix} $\quad et \quad $\vectt{CB} \begin{pmatrix} 0,5\\4\\-2 \end{pmatrix} $.
+
+			Comme ce sont des coordonnées dans un repère orthonormé, on utilise la formule analytique du produit scalaire :\quad $\vectt{CA}\cdot\vectt{CB} = 1,5 \times 0,5 + 3 \times 4 + 3 \times (-2) = 0,75 + 12 - 6 = 6,75$.
+
+			Par ailleurs, on peut calculer les longueurs CA et CB :
+
+			$\mathrm{CA} = \sqrt{1,5^2 + 3^2 + 3^2} = \sqrt{20,25} = 4,5$.\quad $\mathrm{CB} = \sqrt{0,5^2 + 4^2 + (-2)^2} = \sqrt{20,25} = 4,5$.
+
+			On remarque donc (même si c'est hors sujet) que le triangle ACB est isocèle en C.
+
+			En utilisant la définition trigonométrique du produit scalaire, on a :
+
+			$\vectt{CA}\cdot\vectt{CB} = \mathrm{CA} \times \mathrm{CB} \times \cos\left(\widehat{\mathrm{ACB}}\right)$.
+
+			En remplaçant les valeurs connues, on a :\quad $6,75 = 4,5 \times 4,5 \times \cos\left(\widehat{\mathrm{ACB}}\right)$,
+
+			ce qui équivaut à \quad $\cos\left(\widehat{\mathrm{ACB}}\right) = \dfrac{6,75}{4,5^2} = \dfrac{1}{3}$.
+
+			On en déduit :\quad $\widehat{\mathrm{ACB}} = \arccos\left(\dfrac{1}{3}\right) \approx 70,53$\,\textdegree.
+
+			On a donc bien $\widehat{\mathrm{ACB}} \approx 70,5$\,\textdegree, à $10^{-1}$ près.
+		\end{enumerate}
+
+		\item \textbf{Affirmation 4 : Vraie.}
+
+		\begin{itemize}[label=\textbullet~]
+			\item Titouan doit, pour ouvrir sa porte, trouver les quatre symboles différents de son code, et les saisir dans un ordre quelconque.
+
+			Il s'agit donc d'une combinaison (pas de répétition des éléments, l'ordre ne compte pas) de quatre éléments, dans un ensemble de cardinal 8 (huit symboles sur le digicode).
+
+			$\ds \binom{8}{4} = 70$.
+
+			Titouan a donc 70 codes différents possibles, chacun ayant donc une probabilité de $\dfrac{1}{70}$, puisque tous les choix des codes sont équiprobables.
+			\item Clotilde, elle, doit saisir trois symboles différents, mais en tenant compte de l'ordre.
+
+			Il s'agit donc d'un arrangement (pas de répétition, l'ordre compte) de trois éléments dans un ensemble de cardinal 8.
+
+			$ \dfrac{8!}{(8-3)!} = \dfrac{8!}{5!} = 8\times 7 \times 6 = 336$.
+
+			Clotilde a donc 336 codes différents possibles, tous ayant une probabilité de $\dfrac{1}{336}$.
+		\end{itemize}
+
+		Comme \quad $\dfrac{1}{70} > \dfrac{1}{336}$\quad la probabilité que Titouan ouvre sa porte est bien supérieur à la probabilité que Clotilde ouvre la sienne.
+	\end{enumerate}

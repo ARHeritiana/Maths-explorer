@@ -1,0 +1,111 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2025/tex/eam_specifique_2025_06_sujet0v2_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+\item $A = \dfrac 12 - \dfrac 12 \times \dfrac 43 = \dfrac 12 - \dfrac23 = \dfrac{1 \times 3 - 2 \times 2}{2 \times 3} = \dfrac{-1}{6}$.
+\item 2 croissants coûtent 3~euros donc $2 \times 5 = 10$ croissants coûtent $3  \times 5 = 15$~euros.
+\item Multiplier un prix par deux, c'est le multiplier par $1 + 1 = 1 + \dfrac{100}{100}$, c'est donc l'augmenter de $100~\,\%$.
+\item Augmenter un prix de 10\,\%, c'est le multiplier par $1 + \dfrac{10}{100} = 1 + 0,10 = 1,1$.
+
+Le prix initial était donc de $\dfrac{110}{1,10} = 100$. l'augmentation est donc de 10~\euro.
+\item La masse de \np{1000} millilitres d'huile est égale à 900~grammes, donc la masse de 250  millilitres d'huile est égale à 225~grammes (table de 4), et enfin la masse de $3 \times 250$ millilitres d'huile est égale à $3 \times 225 = 675$~grammes, ou 0,675~kg.
+\item Le coefficient directeur de la droite (AB) est égal à $\dfrac{y_{\text{B}} - y_{\text{A}}}{x_{\text{B}} - x_{\text{A}}} = \dfrac{106 - 100 }{4 - 1} = \dfrac 63 = 2$.
+\item Le coefficient directeur de la droite (AB) est égal à $\dfrac{y_{\text{B}} - 4}{1 -  0} = \dfrac{y_{\text{B}} - 4}{1} = y_{\text{B}} - 4 = - 0,1$, d'où :
+$y_{\text{B}} = 4 - 0,1 = 3,9$.
+\item $(x - 3)(x + 2) = x^2  + 2x - 3x - 6 = x^2 - x - 6$.
+\item $V = \dfrac 13 \pi r^2 h$, donc $3V = \pi r^2 h$ et $h = \dfrac{3V}{\pi r^2}$.
+\item On a $f(1) = 2 - 5 + 3 = 5 - 5 = 0$, donc 1 est un antécédent de 0.
+\item Avec des notations évidentes, on a :
+
+$m_{\text{A}} = \dfrac{9 + 10 + 10 + 11}{4} = \dfrac{40}{4} = 10$.
+
+$m_{\text{B}} = \dfrac{7 + 10 + 10 + 13}{4} = \dfrac{40}{4} = 10$.
+
+$\sigma_{\text{A}}^2 = \dfrac{(- 1)^2 + 0 + 0 + 1^2}{4} = \dfrac{2}{4} = \dfrac12$.
+
+$\sigma_{\text{B}}^2 = \dfrac{(- 3)^2  + 0 + 0 + 3^2}{4} = \dfrac{18}{4} = 4,5$. Réponse D.
+\end{enumerate}
+
+\medskip
+
+\end{document}

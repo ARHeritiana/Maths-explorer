@@ -1,0 +1,46 @@
+\medskip
+
+Durant le mois de janvier 2020, une entreprise produit \np{2500} flacons de parfum ce qui correspond exactement au nombre de flacons commandés. Le propriétaire de l’entreprise décide d’augmenter chaque mois la production de 108 flacons et il espère que le nombre de flacons commandés augmentera chaque mois de 3,8 \,\%.
+
+On considère la suite ($f_n)$ où pour tout entier naturel $n$, $f_n$ modélise le nombre de flacons produits lors du mois de rang $n$ après janvier 2020 ; ainsi $f_0$ est le nombre de flacons produits en janvier 2020, $f_1$ le nombre de flacons produits en février 2020, etc.
+
+De la même manière, on considère la suite $(c_n)$ où pour tout entier naturel $n$, $c_n$ modélise le nombre potentiel de flacons commandés lors du mois de de rang $n $ après janvier 2020.
+
+On a donc $f_0 = c_0 = \np{2 500}$.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer, en expliquant les calculs effectués, le nombre de flacons produits et le nombre potentiel de flacons commandés en février 2020.
+\item Déterminer la nature des suites $(f_n)$ et $(c_n)$.
+\item Exprimer, pour tout entier $n$, $f_n$ et $c_n$ en fonction de $n$.
+\item On admet que, selon ce modèle, au bout d’un certain nombre de mois le nombre potentiel de flacons commandés dépassera le nombre de flacons produits.
+
+\begin{minipage}[b]{8.7 cm}
+Reproduire et compléter sur la copie l’algorithme ci-contre, écrit en Python, afin qu’après son exécution la variable $n$ contienne le nombre de mois à attendre après le mois de janvier 2020 pour que le nombre potentiel de flacons commandés dépasse le nombre de flacons produits.
+\end{minipage}\hspace{1.28cm}
+\begin{minipage}[b]{4cm}
+\begin{tabular}[]{|m{2.5cm}|}
+\hline
+n = 0\\
+f = \np{2500}\\
+c = \np{2500}\\
+while $\dots$ :\\
+\hspace{1.8em}n = $\dots$\\
+\hspace{1.8em}f = $\dots$\\
+\hspace{1.8em}c = $\dots$\\
+\hline
+\end{tabular}
+\end{minipage}
+
+\item De début janvier 2020 à fin décembre 2020, la production globale dépassera-t-elle le nombre de commandes potentielles ? Expliquer votre démarche.
+\end{enumerate}
+
+On rappelle que :
+\begin{itemize}
+\item Si $(u_n)$ est une suite arithmétique de premier terme $u_0$, alors, pour tout entier naturel $n$,
+\[u_0+ u_1+\dots+u_n=\dfrac{(n+1)(u_0+u_n)}{2}\]
+ \item Si $(v_n)$ est une suite géométrique de raison $q\not= 1$, alors, pour tout entier naturel $n$,
+ 
+\[v_0+v_1+\dots+v_n=v_0\dfrac{1-q^{n+1}}{1-q}\] 
+\end{itemize}

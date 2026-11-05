@@ -1,0 +1,273 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet1_metropole_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Une entreprise a créé une Foire Aux Questions (\og FAQ \fg) sur son site internet.
+
+
+
+On étudie le nombre de questions qui y sont posées chaque mois.
+
+\bigskip
+
+\textbf{Partie A : Première modélisation}
+
+\medskip
+
+Dans cette partie, on admet que, chaque mois :
+
+\begin{itemize}
+\item[$\bullet~~$]90\,\% des questions déjà posées le mois précédent sont conservées sur la FAQ ;
+\item[$\bullet~~$]130 nouvelles questions sont ajoutées à la FAQ.
+\end{itemize}
+
+Au cours du premier mois, $300$ questions ont été posées.
+
+
+
+Pour estimer le nombre de questions, en centaines, présentes sur la FAQ le $n$-ième
+mois, on modélise la situation ci-dessus à l'aide de la suite $\left(u_n\right)$ définie par : $u_1 =3$ et, pour tout entier naturel $n \geqslant 1$, $u_{n+1} = 0,9u_n + 1,3$.
+
+
+\begin{enumerate}
+\item $u_2 = 0,9\times u_1 +1,3 = 0,9\times 3 + 1,3= 4$ et 
+$u_3 =0,9\times u_2 +1,3 = 0,9\times 4 + 1,3= 4,9$
+
+
+On peut estimer à 400 le nombre de questions le 2\up{e} mois, et à 490 le 3\up{e} mois.
+
+\item On va montrer par récurrence la propriété  $u_n = 13 - \dfrac{100}{9} \times 0,9^n$ pour tout $n\geqslant1$.
+
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+Pour $n=1$, on a $u_1=3$ et $13 -\dfrac{100}{9}\times 0,9^1=13-\dfrac{90}{9}=3$.
+
+La propriété est vérifiée au rang 1.
+\item \textbf{Hérédité}
+
+On suppose la propriété vraie au rang $n$ avec $n\geqslant 1$; autrement dit $u_n = 13 - \dfrac{100}{9} \times 0,9^n$ ; c'est l'hypothèse de récurrence.
+
+$\begin{gathered}u_{n+1} = 0,9u_n+1,3 = 0,9 \left (13 - \dfrac{100}{9} \times 0,9^n\right ) +1,3
+= 0,9\times 13 - \dfrac{100}{9}\times 0,9^{n+1}+0,1\times 13\\
+\phantom{u_{n+1}}
+= 13- \dfrac{100}{9}\times 0,9^{n+1}\end{gathered}$
+
+Donc la propriété est vraie au rang $n+1$.
+\item \textbf{Conclusion}
+
+La propriété est vraie au rang 1 et elle est héréditaire pour tout $n\geqslant 1$; d'après le principe de récurrence, elle est vraie pour tout $n\geqslant 1$.
+\end{list}
+
+Donc pour tout $n\geqslant 1$, on a: $u_n = 13 - \dfrac{100}{9} \times 0,9^n$.
+
+\item  
+Pour tout $n\geqslant 1$, on a:
+
+$\begin{gathered}u_{n+1}-u_n
+=\left (13-\dfrac{100}{9}\times 0,9^{n+1}\right ) - \left (13-\dfrac{100}{9}\times 0,9^{n}\right ) 
+= 13-\dfrac{100}{9}\times 0,9^{n+1} - 13+\dfrac{100}{9}\times 0,9^{n}\\
+\phantom{u_{n+1}-u_n}
+= \dfrac{100}{9}\times 0,9^{n}\left (1-0,9\right )
+= \dfrac{100}{9}\times 0,9^{n} \times 0,1>0\end{gathered}$
+
+donc la suite $(u_n)_{n\in\N*}$ est croissante.
+
+\item On considère le programme ci-contre, écrit en langage Python.
+
+\begin{minipage}{0.72\linewidth}
+
+
+
+Ce programme renvoie la plus petite valeur $n$ telle que $u_n>\texttt{p}$; donc \texttt{seuil(8.5)} renvoie la plus petite valeur $n$ telle que $u_n>8,5$. On résout cette inéquation.
+
+$\begin{gathered}u_n>8,5
+\iff
+13 -\dfrac{100}{9}\times 0,9^n > 8,5
+\iff
+4,5 > \dfrac{100}{9}\times 0,9^n\\
+\phantom{u_n>8,5}
+\iff
+\dfrac{4,5\times 9}{100}> 0,9^n
+\iff
+\ln(0,405) > \ln \left (0,9^n\right )\\
+\phantom{u_n>8,5}
+\iff
+\ln(0,405) >n \times \ln  (0,9)
+\iff
+\dfrac{\ln(0,405)}{\ln(0,9)} <n\end{gathered}$
+\end{minipage}\hfill
+\begin{minipage}{0.25\linewidth}
+\renewcommand\arraystretch{0.9}
+\begin{tabularx}{\linewidth}{|X|} \hline
+def seuil(p) :\\
+\qquad n=1\\
+\qquad u=3\\
+\qquad while u<=p :\\
+\qquad  \qquad n=n+1\\
+\qquad \qquad u=0.9*u+1.3 \\
+\qquad return n\\ \hline
+\end{tabularx}
+\end{minipage}
+
+$\dfrac{\ln(0,405)}{\ln(0,9)} \approx 8,6$ donc la valeur renvoyée par \texttt{seuil(8.5)} est 9.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B : Une autre modélisation}
+
+\medskip
+
+Dans cette partie, on considère une seconde modélisation à l'aide d'une nouvelle
+suite $\left(v_n\right)$ définie pour tout entier naturel $n \geqslant 1$ par:
+$v_n = 9 - 6 \times \e^{-0,19\times(n - 1)}$.
+
+Le terme $v_n$ est une estimation du nombre de questions, en centaines, présentes le $n$-ième mois sur la FAQ.
+
+\medskip
+
+\begin{enumerate}
+\item 
+$v_1=9-6\e^{0}=3$ et $v_2=9-6\e^{-0,19}\approx 4,04$
+
+\item On résout l'inéquation $v_n > 8,5$.
+
+$v_n > 8,5
+\iff
+9 - 6 \times \e^{-0,19\times(n - 1)} > 8,5
+\iff 
+0,5 > 6 \times \e^{-0,19\times(n - 1)}
+$\\
+
+$\phantom{v_n > 8,5}\iff\dfrac{0,5}{6} > \e^{-0,19\times(n - 1)}$ et par croissance de la fonction logarithme népérien\\
+$\phantom{v_n > 8,5}
+\iff
+\ln \left (\dfrac{0,5}{6}\right ) > -0,19\times (n-1)
+\iff
+-\dfrac{\ln \left (\frac{0,5}{6}\right )}{0,19} < n - 1 \iff n > 1 -\dfrac{\ln \left (\frac{0,5}{6}\right )}{0,19}$
+
+Or $-\dfrac{\ln \left (\frac{0,5}{6}\right )}{0,19}\approx -13,08$ et 1 + 13,08 = 14,08 donc la plus petite valeur telle que $v_n > 8,5$ est $n = 15$.
+
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie C : Comparaison des deux modèles}
+
+\medskip
+
+\begin{enumerate}
+\item L'entreprise considère qu'elle doit modifier la présentation de son site lorsque plus de 850 questions sont présentes sur la FAQ. 
+
+\begin{list}{\textbullet}{}
+\item Selon le 1\ier{} modèle, il y a plus de 850 questions sur la FAQ quand $u_n>8,5$, c'est-à-dire le 9\up{e} mois.
+\item Selon le 2\up{e} modèle, il y a plus de 850 questions sur la FAQ quand $v_n>8,5$, c'est-à-dire le 15\up{e} mois.
+\end{list}
+
+C'est la première modélisation qui conduit à procéder le plus tôt à cette modification.
+
+
+\item Pour savoir pour quelle modélisation il y a le plus grand nombre de questions sur la FAQ à long terme, on cherche les limites des suites $(u_n)$ et $(v_n)$.
+
+\begin{list}{\textbullet}{}
+\item $u_n=13 - \dfrac{100}{9}\times 0,9^n$
+
+$-1<0,9 <1$ donc $\ds\lim_{n\to +\infty} 0,9^n=0$ donc $\ds\lim_{n\to +\infty} u_n=13$.
+
+À long terme il y aura \np{1300} questions pour la 1\up{e} modélisation..
+\item $v_n = 9 - 6 \times \e^{-0,19\times(n - 1)}$
+
+$\ds\lim_{n\to +\infty} -0,19\times (n-1) = -\infty$ et $\ds\lim_{X\to -\infty} \e^{X}=0$ donc $\ds\lim_{n\to +\infty} \e^{-0,19\times(n - 1)}=0$; on en déduit que $\ds\lim_{n\to +\infty} v_n=9$.
+
+À long terme il y aura \np{900} questions pour la 2\up{e} modélisation..
+\end{list}
+
+C'est donc pour la 1\up{re} modélisation qu'il y aura le plus de questions à long terme.
+
+\end{enumerate}
+
+\bigskip
+
+\end{document}

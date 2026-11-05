@@ -1,0 +1,83 @@
+On considère le pavé droit ABCDEFGH tel que AB $= 3$ et AD = AE $= 1$ représenté ci-dessous.
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(9.4,6.3)
+\psframe(0.3,0.6)(7.8,4.3)
+\psline(7.8,0.6)(8.6,2.2)(8.6,5.9)(7.8,4.3)
+\psline(8.6,5.9)(1.1,5.9)(0.3,4.3)
+\psline[linestyle=dashed](0.3,0.6)(1.1,2.2)(8.6,2.2)
+\psline[linestyle=dashed](1.1,2.2)(1.1,5.9)
+\psdots[dotstyle=+,dotangle=45,dotscale=1.9](2.8,0.6)(4.85,2.2)\uput[d](2.8,0.6){I}
+\uput[dl](0.3,0.6){A} \uput[dr](7.8,0.6){B} \uput[r](8.6,2.2){C} \uput[ul](1.1,2.2){D}
+\uput[l](0.3,4.3){E} \uput[r](7.8,4.3){F} \uput[ur](8.6,5.9){G} \uput[ul](1.1,5.9){H}
+\uput[u](4.85,2.2){M}
+\end{pspicture}
+\end{center}
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+F(3~;~0~;~1), \: H(0~;~1~;~1), \:M(1,5~;~1~;~0).
+\item 
+	\begin{enumerate}
+		\item 
+	
+Soit $\vect{\text{HF}}\begin{pmatrix}3\\-1\\0\end{pmatrix}$ et $\vect{\text{MF}}\begin{pmatrix}1,5\\-1\\1\end{pmatrix}$. Ces deux vecteurs ne sont manifestement pas colinéaires.
+
+On a $\vect{n} \cdot \vect{\text{HF}} = 6 - 6 + 0 = 0$
+
+On a $\vect{n} \cdot \vect{\text{MF}} = 3 - 6 + 3 = 0$.
+
+Conclusion : le vecteur $\vect{n}$ est orthogonal à deux vecteurs non colinéaires du plan  (HMF), il est donc normal à ce plan.
+		\item 
+On sait qu'alors :
+
+$X(x~;~y~;~z) \in  (\text{MHF}) \iff 2x + 6y + 3z + d = 0$. Ainsi par exemple :
+
+$\text{H}(x~;~y~;~z) \in  (\text{MHF}) \iff 0 + 6 + 3 + d = 0 \iff d = - 9$, donc finalement :
+
+\[X(x~;~y~;~z) \in  (\text{MHF}) \iff 2x + 6y + 3z - 9 = 0.\]
+		\item 
+Le plan $\mathcal{P}$ a par exemple pour vecteur normal $\vect{p}\begin{pmatrix}5\\15\\-3\end{pmatrix}$ et ce vecteur n'est pas colinéaire au vecteur $\vect{n}$, (on a bien $2 \times \dfrac52 = 5, \: 6 \times \dfrac52 = 15$, mais $3 \times \dfrac52 \ne - 3$)  donc les deux plans ne sont pas parallèles.
+	\end{enumerate}
+\item 
+On a D(0~;~1~;~0) et G(3~;~1~;~1), d'où $\vect{\text{DG}}\begin{pmatrix}3\\0\\1\end{pmatrix}$.
+
+On sait que :
+
+$X(x~;~y~;~z) \in  (\text{DG}) \iff \vect{\text{DX}} = t\vect{\text{DG}}, \: t \in \R \iff \left\{\begin{array}{l c l}
+x - 0&=&3t\\y - 1&=&0\\z - 0 &=& 1t\end{array}\right.\: t \in \R \iff \left\{\begin{array}{l c l}
+x &=&3t\\y &=&1\\z  &=& t\end{array}\right.\: t \in \R$.
+\item 
+
+
+Si la droite coupe le plan en un point N, les coordonnées de ce point vérifient les équations de la droite et celle du plan soit le système :
+
+$\left\{\begin{array}{l c l}
+x &=&3t\\y &=&1\\z  &=& t\\
+2x + 6y + 3z - 9 &= &0
+\end{array}\right.\: t \in \R$.
+
+En remplaçant $x,\:y$ et $z$ par leurs valeurs en fonction de $t$ dans la dernière équation, on obtient :
+
+$6t + 6 + 3t - 9 = 0 \iff 9t - 3 = 0 \iff 3t - 1 = 0 \iff t = \dfrac 13$.
+Les coordonnées de N sont donc $\left(3\times \frac13~;~1~;~\frac13\right)$, soit 
+N$\left(1~;~1~;~\dfrac13\right)$.
+\item 
+$\bullet~~$On vérifie d'abord que R appartient au plan (HMF) :
+
+$\text{R}\left(3~;~\dfrac{1}{4}~;~\dfrac{1}{2}\right) \in \text{(HMF)} \iff 6 + \dfrac32 + \dfrac32 - 9 = 0 \iff 6 + 3 - 9 = 0$ ce qui est vrai.
+
+$\bullet~~$On vérifie maintenant que le vecteur $\vect{\text{GR}}$ est bien un vecteur normal au plan (HMF) :
+
+On a $\vect{\text{GR}}\begin{pmatrix}3 - 3\\ \frac14 - 1\\ \frac12 - 1\end{pmatrix} = \begin{pmatrix}0\\- \frac34\\- \frac12\end{pmatrix}$.
+Or ce vecteur n'est manifestement pas colinéaire au vecteur connu $\vect{n}\begin{pmatrix}2\\6\\3\end{pmatrix}$ : pour que $\vect{n}$ soit colinéaire au vecteur $\vect{\text{GR}}$ il faudrait que sa première coordonnée soit égale à 0, ce qui n'est pas le cas.
+
+Conclusion : le point R n'est pas le projeté orthogonal du point G sur le plan (HMF).
+\end{enumerate}

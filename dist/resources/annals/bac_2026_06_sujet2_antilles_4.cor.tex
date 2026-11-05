@@ -1,0 +1,318 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet2_antilles_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Partie A : étude d'un premier cas particulier}
+
+\begin{enumerate}
+	\item 
+	 $F_{2}$ est une primitive de la fonction $f_{2}$ sur $] 0 ;+\infty[$ donc $f_2$ est la dérivée de la fonction $F_{2}$. 
+	 
+	 Les variations de la fonction $F_2$ sont donc données par le signe de la fonction $f_2$. 
+	 
+	 
+	 
+	
+	Avec la précision permise par le graphique : 
+	
+	
+	
+	
+		\hfill~
+	\begin{tikzpicture}
+		\tkzTabInit[lgt=3]{$x$/0.6,  signe de $f_2(x)$/0.6, variations de $F_2$/1.5}
+		{$0$,${0,3}$,${2,5}$, $3$}
+		\tkzTabLine{d,-,z,+,z,-}
+		\tkzTabVar{D+/,- /,+/, -/}
+	\end{tikzpicture}
+	\hfill~
+	
+La fonction $F_{2}$ est décroissante sur  l'intervalle $]0;0,3]$ et sur l'intervalle $[2,5;3]$, et elle est  croissante sur l'intervalle $[0,3 ; 2,5]$.
+	
+	\item   La courbe   1  représente la fonction $f_{2}'$ et la courbe 2  représente la fonction $f_{2}''$ : 
+	
+	La dérivée de la fonction $f_2$ doit s'annuler lorsque la fonction $f_2$ admet un maximum. Ce maximum est atteint pour $x \approx 0,75$. 
+	
+	La seule courbe qui s'annule aux environs de $0,75$ est la courbe 1 donc la courbe 1 représente la fonction $f_2'$.
+	
+	Le point A est un point d'inflexion pour la courbe de la fonction $f_2$ donc la dérivée seconde s'annule en  $x_A \approx 1,6$. 
+	
+	 La seule courbe qui s'annule aux environs de $1,6$ est la courbe 2 donc la courbe 2 représente la fonction $f_2''$.
+
+\end{enumerate}
+
+\subsection*{Partie B : étude d'un second cas particulier}
+
+
+\begin{enumerate}
+	\item \begin{enumerate}
+		\item  $f_1$ est de la forme $w + \dfrac{u}{v}$ avec $\begin{cases}w(x)= 1-x \\ u(x)=1+\ln(x) \\ v(x)= x  \end{cases} $.  \quad On a : $\begin{cases}w'(x)= -1 \\ u'(x)=\dfrac{1}{x} \\ v'(x)= 1  \end{cases} $. 
+		
+		On a : $f_1'= w'+ \dfrac{u'v - v'u}{v^2}$
+		
+		Donc, pour tout réel $x>0$ : 
+		
+		$\begin{aligned}
+		f_1'(x) &= -1 + \dfrac{\dfrac{1}{x} \times x- 1 \times \big( 1 +\ln(x) \big) }{x^2} \\
+		&= -1 + \dfrac{1- 1 -\ln(x)}{x^2} \\
+		&= -1-\dfrac{\ln x}{x^2}
+		\end{aligned}$
+		
+		
+		
+		
+		
+		On a bien,  pour tout réel $x>0$, \quad  $f_{1}'(x)=-1-\dfrac{\ln x}{x^2}$.
+		
+		\item  Pour tout réel $x>0$, \quad $f_{1}'(x)=-1-\dfrac{\ln x}{x^2} $. 
+		
+		
+		Par croissances comparées, $	\lim\limits_{x\to +\infty } \dfrac{\ln x}{x^2}  = 0 $  donc, par somme, $\lim\limits_{x \to +\infty } f_1'(x)= - 1$.  
+	
+	\end{enumerate}
+	
+	\item 
+	
+	\begin{enumerate}
+		\item  Pour tout réel $x>0$, \quad  $f_{1}''(x)=\dfrac{2 \ln x-1}{x^{3}}$.
+		
+		
+		$x>0$ donc $x^3>0$ donc $f_1''(x)$ est du signe de $2\ln (x) -1$. 
+		
+		$\begin{aligned}  2\ln (x) -1>0 &\iff 2\ln(x) >1 \\
+			&\iff \ln(x) > \dfrac{1}{2} \\
+			&\iff x > \e^{\frac{1}{2}} \quad \text{ car la fonction exponentielle est strictement croissante}
+			\end{aligned}$
+			
+			De plus $\begin{aligned}[t] f_1'\left( \e^{\frac{1}{2}}\right) & =- 1-  \dfrac{ \ln \left( \e^{\frac{1}{2}}\right)  }{ \left(\e^{\frac{1}{2}}\right)^2 }\\
+			& = -1- \dfrac{ \frac{1}{2} }{ \e^1}\\
+		   & = -1- \dfrac{ 1 }{ 2 \e}
+		   	\end{aligned}$
+	
+		
+		On a donc : 
+	
+		\hfill~
+	\begin{tikzpicture}
+		\tkzTabInit[lgt=4]{$x$/0.8,  signe de $f_1''(x)$/0.6, variations de $f_1'$/1.5}
+		{0,$\e^{\frac{1}{2}}$,$+\infty$}
+		\tkzTabLine{d,-,z,+,}
+			\tkzTabVar{D+/,-/$-1-\dfrac{1}{2\e}$,+/}
+	\end{tikzpicture}
+	\hfill~
+		
+		
+		
+		
+		
+		\item   Pour tout réel $x>0$, \quad $f_{1}'(x)= -1-\dfrac{\ln x}{x^2}$. 
+		
+		
+		$\begin{cases}
+			\lim\limits_{x\to 0^+} - \ln(x)= +\infty \\
+			\lim\limits_{x\to 0^+ } {x^2}= 0^+ \\
+		\end{cases}$ donc, par quotient et somme, $\lim\limits_{x \to +\infty } f_1(x)= + \infty$.  
+		
+		
+		
+		
+		\item  Sur l'intervalle $\Big]0 ; \e^{\frac{1}{2}}\Big]$ :
+		
+		La fonction $f_1'$ est continue (car dérivable) et  strictement décroissante.
+		
+		De plus, $\lim\limits_{x\to 0^+ } f_1'(x) = +\infty >0 $ et $f_1'\left(\e^{\frac{1}{2}}\right) = -1 -\dfrac{1}{2\e}<0$.
+		
+		Donc, d'après le corollaire du théorème des valeurs intermédiaires, l'équation $f_1'(x) = 0$ admet une unique solution dans l'intervalle $\Big]0 ; \e^{\frac{1}{2}}\Big]$
+		
+		
+		Sur l'intervalle $\Big[ \e^{\frac{1}{2}}; +\infty \Big[$, la fonction $f_1'$ est strictement croissante et $\lim\limits_{x \to +\infty} f_1'(x) =-1$ 
+		
+		donc, pour tout réel $x > \e^{\frac{1}{2}}$, \quad $f_1'(x) <-1 <0$. 
+		
+		Donc l'équation $f_1'(x) = 0$ n'admet pas de solution dans l'intervalle $\Big[ \e^{\frac{1}{2}}; +\infty \Big[$. 
+		
+		Finalement, il existe une unique solution $\alpha$ à l'équation \quad $f_{1}'(x)=0$ \quad sur $] 0 ;+\infty[$.
+		
+		On peut donc en déduire le signe de  $f_1'$  et les variations de $f_1$ sur cet intervalle : 
+		
+		
+		\hfill~
+		\begin{tikzpicture}
+			\tkzTabInit[lgt=4]{$x$/0.8,  signe de $f_1(x)$/0.6, variations de $f_1$/1.5}
+			{0,$\alpha$,$+\infty$}
+			\tkzTabLine{d,+,z,-,}
+			\tkzTabVar{D-/,+/,-/}
+		\end{tikzpicture}
+		\hfill~
+		
+		
+		 $f_{1}$ admet donc un maximum atteint pour $x=\alpha$ sur l'intervalle $] 0 ;+\infty[$.
+		
+		\item Le programme écrit en langage Python renvoyant  une valeur approchée à $10^{-2}$ près de la solution $\alpha$ de l'équation \quad $f_{1}'(x)=0$ \quad sur $] 0 ;+\infty[$ est : 
+		
+		
+\begin{center}
+\begin{lstlisting}[style=python,tabsize=4,numbers=none,xleftmargin=5cm,xrightmargin=5cm]
+def d(x) :
+	return -1-ln(x)/x**2
+
+def alpha() :
+    u = 0.5
+    while d(u)  > 0 :
+	    u = u + 0.01
+    return u
+\end{lstlisting}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	\end{enumerate}
+	
+\end{enumerate}
+
+\subsection*{Partie C: $\boldsymbol{k}$ quelconque}
+
+
+\begin{enumerate}
+	\item 
+	
+	$H$ est dérivable sur $] 0 ;+\infty[$ 
+	
+	$H$ est de la forme $\dfrac{1}{2}u^2$ avec $u(x) = 1 + \ln(x)$. On a  $u'(x) = \dfrac{1}{x}$. 
+	
+	On a $H'= \dfrac{1}{2} \times 2 u'u $ 
+	
+	Donc pour tout réel $x>0$ : 
+	
+	$\begin{aligned} H'(x) &= \dfrac{1}{x} \times \left(1 + \ln(x) \right) \\
+		&= \dfrac{1+\ln x}{x} \\
+		&=h(x)
+		\end{aligned}$	
+		
+		Donc la fonction $H$ est une primitive de $h$ sur $] 0 ;+\infty[$ . 
+	
+	
+\end{enumerate}
+
+
+
+\begin{enumerate}[resume]
+	\item La valeur moyenne de la fonction $f_{k}$ sur l'intervalle $[ 1 ; \e]$ est égale à $\ds \mu= \dfrac{1}{\e-1} \int_1^{\e} f_k(x) \,\d x$. 
+	
+	
+	
+	$\begin{aligned}  \ds \mu& = \dfrac{1}{\e-1} \int_1^{\e} f_k(x) \,\d x\\
+		&= \dfrac{1}{\e-1} \int_1^{\e}   \left(1-x+\dfrac{k(1+\ln x)}{x}  \right)\,\d x\\
+		&= \dfrac{1}{\e-1} \int_1^{\e}   \left(1-x+kh(x)  \right)\,\d x\\
+		&= \dfrac{1}{\e-1} \Big[x-\dfrac{x^2}{2} + kH(x)\Big]_1^{\e} \\
+		&= \dfrac{1}{\e-1} \left( \Big(\e-\dfrac{\e^2}{2} + kH(\e)\Big) -  \Big(1-\dfrac{1^2}{2} + kH(1)\Big)  \right) \\
+		&= \dfrac{1}{\e-1} \left( \Big(\e-\dfrac{\e^2}{2} + k\dfrac{1}{2}(1+\ln \e)^{2} \Big) -  \Big(1-\dfrac{1^2}{2} + k\dfrac{1}{2}(1+\ln 1)^{2}\Big)  \right) \\
+			&= \dfrac{1}{\e-1} \left( \e-\dfrac{\e^2}{2} + k\dfrac{(1+1)^2}{2} -  1+\dfrac{1}{2} - k\dfrac{(1+0)^2}{2}\right) \\
+		&= \dfrac{ 2\e-\e^2 + 4k -  2+1- k}{2(\e-1)}\\
+			&= \dfrac{ 2\e-\e^2 + 3k -  1}{2(\e-1)}\\
+		\end{aligned}$.
+	
+	
+	
+	
+On a donc : 
+
+$\mu =0 \iff 2\e-\e^2 + 3k -  1 =0 \iff   k= \dfrac{-2\e+\e^2 +   1}{3} \iff k= \dfrac{(\e-1)^2}{3}$. 
+
+
+	
+	La valeur moyenne de la fonction $f_{k}$ sur l'intervalle $[ 1 ; \e]$ est  nulle si est seulement si $k=   \dfrac{(\e-1)^2}{3}$
+\end{enumerate}
+
+\end{document}

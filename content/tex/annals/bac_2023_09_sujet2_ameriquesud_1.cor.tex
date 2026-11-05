@@ -1,0 +1,162 @@
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+Un jeu proposé dans une fête foraine consiste à effectuer trois tirs successivement sur une cible mouvante.
+
+On a constaté que :
+\begin{itemize}
+\item[$\bullet~~$] Si le joueur atteint la cible lors d'un tir alors il ne l'atteint pas lors du tir suivant dans 65\,\% des cas ;
+\item[$\bullet~~$] Si le joueur n'atteint pas la cible lors d'un tir alors il l'atteint lors du tir suivant dans 50\,\% des cas.
+\end{itemize}
+
+La probabilité qu'un joueur atteigne la cible lors de son premier tir est de $0,6$.
+
+
+
+On choisit au hasard un joueur à ce jeu de tirs.
+
+On considère les évènements suivants:
+\begin{itemize}
+\item[$\bullet~~$] $A_1$ : \og Le joueur atteint la cible lors du 1\up{er} tir \fg
+\item[$\bullet~~$] $A_2$ : \og Le joueur atteint la cible lors du 2\up{e} tir \fg
+\item[$\bullet~~$] $A_3$ : \og Le joueur atteint la cible lors du 3\up{e} tir \fg.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item D'après le texte, pour $k=1$ ou $k=2$, on a:
+$P_{A_k}\left (\overline{A_{k+1}}\right) =0,65$ et  $P_{\overline{A_k}}(A_{k+1}) =0,5$.
+
+Donc $P_{A_k}(A_{k+1}) =0,35$ et  $P_{\overline{A_k}}\left (\overline{A_{k+1}}\right ) =0,5$.
+
+On complète l'arbre pondéré ci-dessous modélisant la situation.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 0.75cm,levelsep=3cm,nrot=:U]{\TR{}}
+{\pstree[nodesepA=2.5pt]{\TR{$A_1$}\naput{$0,6$}}
+	{\pstree{\TR{$A_{2}$}\naput{$0,35$}}
+		{
+		\TR{$A_{3}$}\naput{$0,35$}
+		\TR{$\overline{A_{3}}$}\nbput{$0,65$}
+		}
+	\pstree{\TR{$\overline{A_{2}}$}\nbput{$0,65$}}
+		{
+		\TR{$A_{3}$}\naput{$0,5$}
+		\TR{$\overline{A_{3}}$}\nbput{$0,5$}
+		}
+	}
+\pstree[nodesepA=2.5pt]{\TR{$\overline{A_1}$}\nbput{$0,4$}}
+	{\pstree{\TR{$A_{2}$}\naput{$0,5$}}
+		{
+		\TR{$A_{3}$}\naput{$0,35$}
+		\TR{$\overline{A_{3}}$}\nbput{$0,65$}
+		}
+	\pstree{\TR{$\overline{A_{2}}$}\nbput{$0,5$}}
+		{
+		\TR{$A_{3}$}\naput{$0,5$}
+		\TR{$\overline{A_{3}}$}\nbput{$0,5$}
+		}
+	}
+}
+\end{center}
+\end{enumerate}
+
+Soit $X$ la variable aléatoire qui donne le nombre de fois où le joueur atteint sa cible au cours des trois tirs.
+
+\begin{enumerate}[resume]
+\item La probabilité que le joueur atteigne  deux fois la cible au cours des trois tirs est:
+
+$\begin{gathered}P(X=2)=P\left (A_1 \cap A_2 \cap \overline{A_3}\right ) + P\left (A_1 \cap \overline{A_2} \cap A_3\right ) + P\left ( \overline{A_1} \cap A_2 \cap A_3\right )\\
+\phantom{P(X=2)}
+=0,6\times 0,35\times 0,65 + 0,6\times 0,65\times 0,5  + 0,4\times 0,5\times 0,35 
+= \np{0,1365} + \np{0,195} + \np{0,07} \\
+\phantom{P(X=2)}
+=\np{0,4015} \end{gathered}$
+
+\item 
+	\begin{enumerate}
+		\item On a vu que $P(X=2)=\np{0,4015}$; de plus	 $P(X=0)$ et $P(X=3)$ sont donnés dans le tableau. On a donc:
+		
+$\begin{gathered}P(X=1)=1- \left (P(X=0)+P(X=2)+P(X=3)\strut\right )
+= 1-\left (0,1 + \np{0,4015} + \np{0,0735}\right )\\
+\phantom{P(X=1)}
+= 1- 0,575
+= 0,425\end{gathered}$		
+		
+On complète le tableau  donnant la loi de probabilité de la variable aléatoire $X$.
+		
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{5}{>{\centering \arraybackslash}X|}}\hline
+$X = x_i$				&0	&1	&2	&3\\ \hline
+$P\left(X = x_i\right)$	& $0,1$&$\blue 0,425$	& $\blue\np{0,4015}$	& \np{0,0735}\\ \hline
+\end{tabularx}
+\end{center}
+		\item 
+$E(X) = 0\times 0,1 + 1\times 0,425 + 2\times\np{0,4015} + 3\times\np{0,0735}
+= \np{1,4485}$
+
+		\item
+Sur 3 tirs, le joueur atteindra sa cible, en moyenne, $1,5$ fois.		
+		
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On considère $N$, un entier naturel supérieur ou égal à 1.
+Un groupe de $N$ personnes se présente à ce stand pour jouer à ce jeu dans des conditions identiques et indépendantes. 
+Un joueur est déclaré gagnant lorsqu'il atteint trois fois la cible.
+On note $Y$ la variable aléatoire qui compte parmi les $N$ personnes le nombre de joueurs déclarés gagnants.
+
+
+
+\begin{enumerate}
+\item Dans cette question, $N = 15$.
+	\begin{enumerate}
+		\item 
+L'expérience élémentaire consiste à voir si une personne est gagnante (avec une probabilité $p=\np{0,0735}$) ou non; il n'y a donc que deux issues.
+On effectue cette expérience élémentaire	15 fois dans des conditions identiques et indépendantes.
+
+Donc la variable aléatoire $Y$ qui donne le nombre de gagnants sur 15 personnes, suit la loi binomiale de paramètres $n=15$ et $p=\np{0,0735}$.
+		
+		
+		\item La probabilité qu'exactement 5 joueurs soient gagnants à ce jeu est:
+		
+$P(Y=5)=\ds\binom{15}{5}\times \np{0,0735}^{5} \times \left (1-\np{0,0735}\right )^{15-5} \approx 0,003$
+	\end{enumerate}
+	
+\item On cherche le nombre minimum $n$ de personnes qui doivent se présenter à ce stand pour que la probabilité qu'il y ait au moins un joueur gagnant soit supérieure ou égale à $0,98$, c'est-à-dire tel que $P(Y\geqslant 1)\geqslant 0,98$.
+On résout cette inéquation.
+
+$\begin{gathered}P(Y\geqslant 1) \geqslant 0,98
+\iff
+1-P(Y=0) \geqslant 0,98
+\iff
+0,02\geqslant P(Y=0)\\
+\phantom{P(Y\geqslant 1) \geqslant 0,98}
+\iff
+0,02 \geqslant \ds\binom{n}{0}\times \np{0,0735}^{0} \times \left (1-\np{0,0735}\right )^{n-0}
+\iff
+0,02 \geqslant \np{0,9265}^n \\
+\phantom{P(Y\geqslant 1) \geqslant 0,98}
+\iff
+\ln\left (0,02\right ) \geqslant \ln\left (\np{0,9265}^n\right )
+\iff
+\ln\left (0,02\right ) \geqslant n\times \ln\left (\np{0,9265}\right )\\
+\phantom{P(Y\geqslant 1) \geqslant 0,98}
+\iff
+\dfrac{\ln\left (0,02\right )}{\ln\left (\np{0,9265}\right )} \leqslant n\end{gathered}$
+
+Or $\dfrac{\ln\left (0,02\right )}{\ln\left (\np{0,9265}\right )}\approx 51,24$ donc $n=52$.
+
+\end{enumerate}
+
+\bigskip

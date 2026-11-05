@@ -1,0 +1,33 @@
+\subsection*{1.}
+
+Le prix en 2021 devrait être : \(u_2 = 4200 \times 1{,}03^2 = 4455{,}78\) (€).
+
+\subsection*{2.}
+
+\paragraph{a.} Puisque \( u_{n + 1} = 1{,}03u_n \), la suite \((u_n)\) est une suite géométrique de raison \(q = 1{,}03\).
+
+\paragraph{b.} On sais que quel que soit \(n \in \mathbb{N}\), \(u_n = u_0 \times 1{,}03^n = 4200 \times 1{,}03^n\).
+
+\paragraph{c.} En 2024, le prix au mètre carré (€/m²) sera :
+\[
+u_5 = 4200 \times 1{,}03^5 \approx 4868{,}95.
+\]
+Pour 40 m², cela donne :
+\[
+4868{,}95 \times 40 = 194758 \, \text{€},
+\]
+donc moins de 200000 €, on pourra acheter l'appartement.
+
+\subsection*{3.}
+
+\begin{center}
+\begin{lstlisting}[style=python]
+def seuil() :
+    u = 4200
+    n = 0
+    while u <= 8000 :
+        u = u * 1.03
+        n = n + 1
+    return n
+\end{lstlisting}
+\end{center}

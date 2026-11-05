@@ -1,0 +1,36 @@
+\subsection*{Partie A}
+
+\paragraph{1.} On sait que quel que soit \(n\), \( u_n = u_0 \times q^n \).
+
+Donc : \(u_{19} = 82695 \times 0{,}999^{19} \approx 81137{,}9\).
+
+\paragraph{2.}
+\[
+S = u_0 + u_1 + \dots + u_{19} \quad (1).
+\]
+Donc
+\[
+0{,}999S = u_1 + \dots + u_{19} + u_{20} \quad (2).
+\]
+Par différence \((1) - (2)\), on obtient :
+\begin{align*}
+&0{,}001S = u_0 - u_{20} \\
+\iff &S = 1000(u_0 - u_{20}) \\
+\iff &S = 1000(82695 - 82695 \times 0{,}999^{20}) \approx 1638281{,}8.
+\end{align*}
+
+\subsection*{Partie B}
+
+Retrancher 0{,}1 \% revient à multiplier par \(1 - \dfrac{0{,}1}{100} = 1 - 0{,}001 = 0{,}999\).
+
+Le terme \(u_0\) de la partie A est la population (en milliers) au 1er janvier 2016.
+
+La population en 2035 est donc en milliers le terme \(u_19 \approx 81138 \) soit environ \(81138000\) habitants.
+
+\subsection*{Partie C}
+
+\paragraph{1.} Population (2) va donner la population en 2017, soit 826471005 puis celle de 2018 soit \( \approx 82647035 \).
+
+\paragraph{2.} Population (19) donne la population 19 ans après 2016, soit en 2035. 
+    
+Donc au 1\(^\text{er}\) janvier 2035, il y aura environ 82243175 habitants.

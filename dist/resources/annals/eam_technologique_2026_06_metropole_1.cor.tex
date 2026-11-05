@@ -1,0 +1,224 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_technologique_2026_06_metropole_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{center}		
+\begin{tikzpicture}
+		
+		
+			\begin{axis}[/pgf/number format/.cd, use comma,1000 sep={\,},
+				width=13cm,height=13cm,
+				xmin=-3.4,xmax=4.4,ymin=-12.7,ymax=5.2,
+				xtick={-4,-3,...,5},
+				minor x tick num =4,
+				ytick={-14,-13,...,5},
+				minor y tick num =4,
+				tick label style={font=\scriptsize},
+				grid=both, axis lines=center,
+				grid style={gray!35,line width=0.3pt},
+				minor grid style={gray!20,line width=0.2pt},
+				enlargelimits=false]
+				\addplot[color=blue,domain=-3:4,smooth,samples=200,line width=1.2pt] {-1*(x+1)*(x-3)} node [above right,pos=0.8] {$\mathcal{C}_f$};
+				\node[below left] at (axis cs:0,0) {\scriptsize 0};			
+				\coordinate[label=135:A] (A) at (axis cs:-2,-5) ;
+				\node[draw=black,thick,rotate=45,cross out,inner sep=0pt,minimum width=3pt,minimum height=3pt] at (A) {};
+				\coordinate[label=135:C] (C) at (axis cs:-1,1) ;
+				\node[draw=black,thick,rotate=45,cross out,inner sep=0pt,minimum width=3pt,minimum height=3pt] at (C) {};
+				\coordinate[label=90:B] (B) at (axis cs:1,4) ;
+				\node[draw=black,thick,rotate=45,cross out,inner sep=0pt,minimum width=3pt,minimum height=3pt] at (B) {};
+				\addplot[color=red,domain=-5:6,smooth,samples=2,line width=1pt] {-5+6*(x+2)} node [above left,pos=0.38] {$(d)$};
+				\addplot[color=green4,domain=-5:6,smooth,samples=2,line width=1pt] {4} node [above left,pos=0.65] {$T$};
+			\end{axis}
+				
+		\end{tikzpicture}
+\end{center}
+
+
+
+On considère la courbe représentative $\mathcal{C}_f$ d'une fonction $f$ définie sur l'intervalle $[-3\,;\,4]$.\par
+On note $f'$ la fonction dérivée de la fonction $f$.
+
+On précise que :
+\begin{itemize}
+\item la droite $(d)$ est tangente à la courbe $\mathcal{C}_f$ au point A et passe par le point C ;
+\item la tangente à $C_f$ au point B est parallèle à l'axe des abscisses.
+\end{itemize}
+
+\textbf{Par lecture graphique :}
+\begin{enumerate}
+\item Déterminer $f(-2)$ et $f(1)$.
+\item Déterminer $f'(-2)$ et $f'(1)$.
+\item Résoudre l'équation $f(x)=0$.
+\item Dresser le tableau de variation de $f$.
+\end{enumerate}
+
+\begin{color}{blue}Solution :\par
+\begin{enumerate}
+\item $f(-2) = -5$ (coordonnées de A) et $f(1) = 4$ (coordonnées de B).
+\item $f'(-2) = 6$ (pente de la droite $(d)$ tangente de $\mathcal{C}_f$ au point A d'abscisse $-2$) et $f'(1) = 0$ (pente de la droite $T$ tangente de $\mathcal{C}_f$ au point B d'abscisse $1$).
+\item Les solutions de l'équation $f(x)=0$ sont $-1$ et $3$ car $\mathcal{C}_f$ coupe l'axe des abscisses aux points d'abscisses  $-1$ et $3$.
+\item \ {}
+
+\begin{tikzpicture}
+\tkzTabInit[lgt=2.5, espcl=2]{$x$ / 1, {variation de $f(x)$} / 3}{${-3}$, ${1}$, ${4}$}
+\tkzTabVar{-/$-12$,+/$4$,-/$-5$}
+\end{tikzpicture}
+
+\end{enumerate}
+\end{color}
+
+\textbf{On admet que $f(x)=-x^2+2x+3$ sur l'intervalle $[-3\,;\,4]$.}
+\begin{enumerate}[start=5]
+\item Retrouver par le calcul les résultats de la question 1.
+
+\begin{color}{blue}Solution :\par
+$f(-2)=-(-2)^2+2\times(-2)+3 = -4 - 4 + 3 = -5$.
+
+$f(1)=-1^2+2\times 1 +3 = -1  + 2 + 3 = 4$.
+\end{color}
+
+\item
+\begin{enumerate}[label=\alph*)]
+\item Déterminer $f'(x)$ puis retrouver les résultats de la question 2.
+
+\begin{color}{blue}Solution :\par
+Pour tout $x$ sur l'intervalle $[-3;4]$, $f'(x) = (-1) \times 2\times x + 2 = -2x+2 $.
+
+$f'(-2)=-2\times (-2) + 2  = 4 + 2 = 6$.
+
+$f'(1)=-2\times 1 + 2  = -2 + 2 = 0$.
+
+
+
+\end{color}
+
+\item Vérifier par le calcul que $f(x)=(x+1)(-x+3)$.\par Retrouver les résultats de la question 3.
+
+\begin{color}{blue}Solution :\par
+On développe l'expression $(x+1)(-x+3)$ :
+
+$(x+1)(-x+3) = x\times(-x) + 1\times (-x) +x\times 3 + 1\times 3$
+
+On réduit les produits :
+
+$(x+1)(-x+3) = -x^2 - x + 3x + 3$
+
+On réduit les sommes :
+
+$(x+1)(-x+3) = -x^2 + 2x + 3$
+
+Ainsi on retrouve l'expression de $f(x)$. $f(x)=(x+1)(-x+3)$.
+
+$(x+1)(-x+3) = 0 \iff (x+1) = 0 \text{ ou } (-x+3) = 0 $
+
+$(x+1)(-x+3) = 0 \iff x = -1 \text{ ou } x = 3 $
+\end{color}
+
+
+
+\item Dresser le tableau de signes de $f'(x)$ sur l'intervalle $[-3\,;\,4]$.\par En déduire les variations de la fonction $f$ sur cet intervalle.
+
+\begin{color}{blue}Solution :\par
+
+$f'(x) =  -2x+2 $ 
+
+$-2x+2 = 0 \iff x = 1$ et $-2x+2 > 0 \iff 1 > x$ (comme le taux d'accroissements de la fonction affine $x\longmapsto -2x+2 $ vaut $-2$, alors $-2x+2$ est positif pour les valeurs de $x$ inférieures à la racine).
+
+On établit le tableau de signes de $f'(x)$ sur l'intervalle $[-3\,;\,4]$ :
+
+\begin{tikzpicture}
+\tkzTabInit[lgt=3.5, espcl=2]{$x$ / 1, {signe de $f'(x)=-2x+2$} / 1}{${-3}$, ${1}$ , ${4}$}
+\tkzTabLine{,+,z,-,}
+\end{tikzpicture}
+
+La fonction $f$ est croissante sur les intervalles où $f'(x)\geqslant 0$, donc sur l'intervalle $[-3\,;\,1]$.
+
+La fonction $f$ est décroissante sur les intervalles où $f'(x)\leqslant 0$, donc sur l'intervalle $[1\,;\,4]$.
+
+\end{color}
+
+\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

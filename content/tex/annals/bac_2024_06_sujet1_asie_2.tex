@@ -1,0 +1,56 @@
+\medskip
+
+\begin{minipage}{0.48\linewidth}
+Dans l'espace muni d'un repère orthonormé \Oijk{} d'unité 1 cm, on considère les points : A$(3~;~-1~;~1)$ ; B$(4~;~-1~;~0)$ ;
+ C$(0 ~;~3~;~2)$ ; D$(4~;~3~;~-2)$ et S$(2~;~1~;~4)$.
+
+Dans cet exercice on souhaite montrer que SABDC est une pyramide à base ABDC trapézoïdale de sommet S, afin de calculer son volume.
+\end{minipage}\hfill
+\begin{minipage}{0.48\linewidth}
+\psset{unit=1cm}
+\begin{pspicture}(4.7,5)
+\pspolygon(2.4,4.5)(0.2,1.5)(1.3,0.2)(4.3,2.7)(2.4,4.5)(1.3,0.2)
+\psline[linestyle=dashed](2.4,4.5)(1.4,2.6)(0.2,1.5)
+\psline[linestyle=dashed](1.4,2.6)(4.3,2.7)
+\uput[d](1.4,2.6){A} \uput[ul](0.2,1.5){B} \uput[dr](4.3,2.7){C} \uput[d](1.3,0.2){D} \uput[u](2.4,4.5){S}
+\end{pspicture}
+\end{minipage}
+
+\medskip
+
+\begin{enumerate}
+\item Montrer que les points A, B et C ne sont pas alignés.
+\item
+	\begin{enumerate}
+		\item Montrer que les points A, B, C et D sont coplanaires.
+		\item Montrer que le quadrilatère ABDC est un trapèze de bases [AB] et [CD].
+
+\emph{On rappelle qu'un trapèze est un quadrilatère ayant deux côtés opposés parallèles appelés bases}.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item Démontrer que le vecteur $\vect{n}(2~;~1~;~2)$ est un vecteur normal au plan (ABC).
+		\item En déduire une équation cartésienne du plan (ABC).
+		\item Déterminer une représentation paramétrique de la droite $\Delta$ passant par le point S et orthogonale au plan (ABC).
+		\item On note I le point d'intersection de la droite $\Delta$ et du plan (ABC).
+
+Montrer que le point I a pour coordonnées $\left(\dfrac23~;~\dfrac13~;~\dfrac83~\right)$, puis montrer que $\mathrm{SI} = \np[cm]{2}$.
+		\end{enumerate}
+\item
+	\begin{enumerate}
+		\item Vérifier que le projeté orthogonal H du point B sur la droite (CD) a pour coordonnées H$(3~;~3~;~-1)$ et montrer que HB $= 3\sqrt 2$~cm.
+		\item Calculer la valeur exacte de l'aire du trapèze ABDC.
+
+On rappelle que l'aire d'un trapèze est donnée par la formule
+\[\mathcal{A} = \dfrac{b + B}{2} \times h\]
+
+où $b$ et $B$ sont les longueurs des bases du trapèze et $h$ sa hauteur.
+		\end{enumerate}
+\item Déterminer le volume de la pyramide SABDC.
+
+On rappelle que le volume $V$ d'une pyramide est donné par la formule
+
+\begin{center}$V = \dfrac13 \times$  aire de la base $\times$ hauteur\end{center}
+\end{enumerate}
+
+\bigskip

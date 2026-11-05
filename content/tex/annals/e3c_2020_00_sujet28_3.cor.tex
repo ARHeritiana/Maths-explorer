@@ -1,0 +1,52 @@
+\subsection*{1.}
+	Diminuer de \(5\%\), c'est multiplier la quantité de déchets par \(1 - \dfrac{5}{100} = 1 - 0,05 = 0,95\). Donc l'entreprise s'engage à produire seulement en 2020 :
+	\[
+	6000 \times 0,95 = 5700 \text{ (tonnes)}.
+	\]
+	
+	\subsection*{2.}
+	
+	\paragraph{a.} On a donc pour tout entier naturel \(n\),
+	\[
+	d_{n+1} = 0,95 d_n.
+	\]
+	
+	\paragraph{b.} La relation précédente montre que la suite \((d_n)\) est une suite géométrique de raison \(0,95\) et de premier terme \(d_0 = 6000\).
+	
+	\paragraph{c.} On sait que pour tout entier naturel \(n\) :
+	\[
+	d_n = d_0 \times 0,95^n = 6000 \times 0,95^n.
+	\]
+	La quantité totale de déchets produite de 2019 à 2023 est :
+	\begin{align*}
+		T &= d_0 + d_1 + d_2 + d_3 + d_4 \\
+		&= 6000 \times 0,95^0 + 6000 \times 0,95^1 + 6000 \times 0,95^2 + 6000 \times 0,95^3 + 6000 \times 0,95^4 \quad (1),
+	\end{align*}
+	d'où, par produit par \(0,95\) :
+	\begin{align*}
+		0,95T &= 6000 \times 0,95^1 + 6000 \times 0,95^2 + 6000 \times 0,95^3 + 6000 \times 0,95^4 + 6000 \times 0,95^5 \quad (2),
+	\end{align*}
+	d'où, par différence \((1) - (2)\) :
+	\[
+	0,05T = 6000 - 6000 \times 0,95^5,
+	\]
+	d'où on tire :
+	\[
+	T = \dfrac{6000 - 6000 \times 0,95^5}{0,05} \approx 27146 \text{ tonnes}.
+	\]
+	
+	\subsection*{3.}
+	\begin{tcolorbox}[colback=white,colframe=black,left=1mm,right=1mm,top=1mm,bottom=1mm,boxsep=0mm]
+		\[
+		\begin{array}{l}
+			D \leftarrow 6000 \\
+			N \leftarrow 0 \\
+			\text{Tant que } D > 3600 \\
+			\quad D \leftarrow 0,95 * D \\
+			\quad N \leftarrow N + 1 \\
+			\text{Fin Tant que}
+		\end{array}
+		\]
+	\end{tcolorbox}
+	
+	L'algorithme donnera \(N = 10\), soit en 2029.

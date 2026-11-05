@@ -1,0 +1,180 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet1_ameriquesud_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Un étudiant mange tous les jours au restaurant universitaire. Ce restaurant propose des plats végétariens et des plats non végétariens.
+
+\begin{itemize}[label=$\bullet~~$]
+\item Lorsqu'un jour donné l'étudiant a choisi un plat végétarien, la probabilité qu'il choisisse un plat végétarien le lendemain est $0,9$.
+\item Lorsqu'un jour donné l'étudiant a choisi un plat non végétarien, la probabilité qu'il choisisse un plat végétarien le lendemain est $0,7$.
+\end{itemize}
+
+\medskip
+
+Pour tout entier naturel $n$, on note $V_n$ l'évènement \og l'étudiant a choisi un plat végétarien le $n^{\text{e}}$ jour \fg{} et $p_n$ la probabilité de $V_n$.
+
+Le jour de la rentrée, l'étudiant a choisi le plat végétarien. On a donc $p_1 = 1$.
+
+\medskip
+
+\begin{enumerate}
+\item
+	\begin{enumerate}
+		\item Indiquer la valeur de $p_2$.
+		\item Montrer que $p_3 = 0,88$. On pourra s'aider d'un arbre pondéré.
+		\item Sachant que le $3\up{\text{e}}$ jour l'étudiant a choisi un plat végétarien, quelle est la probabilité qu’il ait choisi un plat non végétarien le jour précédent ?
+
+On arrondira le résultat à $10^{-2}$.
+	\end{enumerate}
+\item Recopier et compléter l'arbre pondéré ci-dessous:
+
+\begin{center}
+\pstree[treemode=R,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$V_n~$}\taput{$p_n$}}
+	{\TR{$V_{n+1}$}
+	\TR{$\overline{V_{n+1}}$} 
+	}
+\pstree{\TR{$\overline{V_n}~$}}
+	{\TR{$V_{n+1}$}
+	\TR{$\overline{V_{n+1}}$} 
+	}
+}
+\end{center}
+\item Justifier que, pour tout entier naturel $n \geqslant 1,\:\: p_{n+1} = 0,2p_n + 0,7$.
+\item On souhaite disposer de la liste des premiers termes de la suite $(p_n)$ pour $n \geqslant 1$.
+
+Pour cela, on utilise une fonction appelée \texttt{repas} programmée en langage Python dont on propose trois versions, indiquées ci-dessous.
+\end{enumerate}
+\hspace{-0.5cm}\vspace{-0.5cm}
+
+\begin{center}
+{\footnotesize
+\begin{ttfamily}
+\begin{tabularx}{\linewidth}{*{3}{>{\centering \arraybackslash}X}}
+\multicolumn{1}{c}{Programme 1}&\multicolumn{1}{c}{Programme 2}&\multicolumn{1}{c}{Programme 3}\\ 
+\begin{tabular}{l| l|}\cline{2-2}
+1&def repas(n):\\
+2&~~p=1\\
+3&~~L=[p]\\
+4&~~for k in range(1,n):\\
+5&~~~~p = 0.2*p+0.7\\
+6&~~~~L. append(p)\\
+7&~~~return(L)\\ \cline{2-2}
+\end{tabular}&
+\begin{tabular}{l| l|}\cline{2-2}
+1&def repas(n):\\
+2&~~p=1\\
+3&~~L=[p]\\
+4&~~for k in range(1,n+1):\\
+5&~~~~p = 0.2*p+0.7\\
+6&~~~~L. append(p)\\
+7&~~return(L)\\ \cline{2-2}
+\end{tabular}&
+\begin{tabular}{l| l|}\cline{2-2}
+1&def repas(n):\\
+2&~~p=1\\
+3&~~L=[p]\\
+4&~~for k in range(1,n):\\
+5&~~~~p = 0.2*p+0.7\\
+6&~~~~L.append(p+1)\\
+7&~~return(L)\\ \cline{2-2}
+\end{tabular}\\
+\end{tabularx}
+\end{ttfamily}
+}
+\end{center}
+
+\begin{enumerate}[start=4]
+	\item
+	\begin{enumerate}
+		\item Lequel de ces programmes permet d’afficher les $n$ premiers termes de la suite $(p_n)$ ? Aucune justification n'est attendue.
+		\item Avec le programme choisi à la question \textbf{a.} donner le résultat affiché pour $n = 5$.
+	\end{enumerate}
+\item Démontrer par récurrence que, pour tout naturel $n \geqslant 1,\:\: p_n = 0,125 \times 0,2^{n - 1} + 0,875$.
+\item En déduire la limite de la suite $(p_n)$.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

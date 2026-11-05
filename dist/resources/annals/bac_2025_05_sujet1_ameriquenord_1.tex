@@ -1,0 +1,236 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_05_sujet1_ameriquenord_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+Pour accéder au réseau privé d'une entreprise depuis l'extérieur, les connexions des employés transitent aléatoirement via trois serveurs distants différents, notés A, B et C. Ces serveurs ont des caractéristiques techniques différentes et les connexions se répartissent de la manière suivante :
+
+\begin{itemize}
+\item 25~\% des connexions transitent via le serveur A;
+\item 15~\% des connexions transitent via le serveur B;
+\item le reste des connexions s'effectue via le serveur C.
+\end{itemize}
+
+\medskip
+
+Les connexions à distance sont parfois instables et, lors du fonctionnement normal des serveurs, les utilisateurs peuvent subir des déconnexions pour différentes raisons (saturation des serveurs, débit internet insuffisant, attaques malveillantes, mises à jour de logiciels, etc.).
+
+\medskip
+
+On dira qu'une connexion est stable si l'utilisateur ne subit pas de déconnexion après son identification aux serveurs. L'équipe de maintenance informatique a observé statistiquement que, dans le cadre d'un fonctionnement habituel des serveurs :
+
+\begin{itemize}
+\item 90~\% des connexions via le serveur A sont stables;
+\item 80~\% des connexions via le serveur B sont stables;
+\item 85~\% des connexions via le serveur C sont stables.
+\end{itemize}
+
+Les parties \textbf{A} et \textbf{B} sont indépendantes l'une de l'autre et peuvent être traitées séparément.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On s'intéresse au hasard à l'état d'une connexion effectuée par un employé de l'entreprise. On considère les évènements suivants :
+
+\begin{itemize}
+\item $A$ : \og La connexion s'est effectuée via le serveur A\fg{};
+\item $B$ : \og La connexion s'est effectuée via le serveur B\fg{};
+\item $C$ : \og La connexion s'est effectuée via le serveur C\fg{};
+\item $S$ : \og La connexion est stable\fg.
+\end{itemize}
+
+On note $\overline{S}$ l'évènement contraire de l'évènement $S$.
+
+\begin{enumerate}
+\item Recopier et compléter l'arbre pondéré ci-dessous modélisant la situation de l'énoncé.
+
+	
+\begin{center}
+	
+\begin{tikzpicture}[xscale=1,yscale=1]
+	
+	\tikzstyle{fleche}=[->,>=latex,thick]
+	\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+	\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+	\tikzstyle{etiquette}=[midway,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+	
+	\def\DistanceInterNiveaux{3}
+	\def\DistanceInterFeuilles{0.65}
+	
+	\def\NiveauA{(0)*\DistanceInterNiveaux}
+	\def\NiveauB{(1)*\DistanceInterNiveaux}
+	\def\NiveauC{(2)*\DistanceInterNiveaux}
+	\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+	
+	\node[noeud] (R) at ({\NiveauA},{(2.5)*\InterFeuilles}) {$$};
+	\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$A$};
+	\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$S$};
+	\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{S}$};
+	\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$B$};
+	\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$S$};
+	\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{S}$};
+	\node[noeud] (Rc) at ({\NiveauB},{(4.5)*\InterFeuilles}) {$C$};
+	\node[feuille] (Rca) at ({\NiveauC},{(4)*\InterFeuilles}) {$S$};
+	\node[feuille] (Rcb) at ({\NiveauC},{(5)*\InterFeuilles}) {$\overline{S}$};
+	
+	\draw[fleche] (R.east)--(Ra.west) node[etiquette] {$\dots$};
+	\draw[fleche] (Ra.east)--(Raa.west) node[etiquette] {$\dots$};
+	\draw[fleche] (Ra.east)--(Rab.west) node[etiquette] {$\dots$};
+		\draw[fleche] (R.east)--(Rb.west) node[etiquette] {$\dots$};
+	\draw[fleche] (Rb.east)--(Rba.west) node[etiquette] {$\dots$};
+	\draw[fleche] (Rb.east)--(Rbb.west) node[etiquette] {$\dots$};
+	\draw[fleche] (R.east)--(Rc.west) node[etiquette] {$\dots$};
+	\draw[fleche] (Rc.east)--(Rca.west) node[etiquette] {$\dots$};
+	\draw[fleche] (Rc.east)--(Rcb.west) node[etiquette] {$\dots$};
+\end{tikzpicture}
+\end{center}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item Démontrer que la probabilité que la connexion soit stable et passe par le serveur B est égale à $0,12$.
+\item Calculer la probabilité $P\left(C \cap \overline{S}\right)$ et interpréter le résultat dans le contexte de l'exercice.
+\item Démontrer que la probabilité de l'évènement $S$ est $P(S) = 0,855$.
+\item On suppose désormais que la connexion est stable.
+
+Calculer la probabilité que la connexion ait eu lieu depuis le serveur B.
+
+\emph{On donnera la valeur arrondie au millième}.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+D'après la \textbf{partie A}, la probabilité qu'une connexion soit \textbf{instable} est égale à $0,145$.
+
+\begin{enumerate}
+\item Dans le but de détecter les dysfonctionnements de serveurs, on étudie un échantillon de 50 connexions au réseau, ces connexions étant choisies au hasard. On suppose que le nombre de connexions est suffisamment important pour que ce choix puisse être assimilé à un tirage avec remise.
+
+\smallskip
+
+On désigne par $X$ la variable aléatoire égale au nombre de connexions instables au réseau de l'entreprise, dans cet échantillon de 50 connexions.
+
+	\begin{enumerate}
+		\item On admet que la variable aléatoire $X$ suit une loi binomiale. Préciser ses paramètres.
+		\item Donner la probabilité qu'au plus huit connexions soient instables. \emph{On donnera la valeur arrondie au millième}.
+	\end{enumerate}
+
+\item Dans cette question, on constitue désormais un échantillon de $n$ connexions, toujours dans les mêmes conditions, où $n$ désigne un entier naturel strictement positif. On note $X_{n}$ la variable aléatoire égale aux nombres de connexions instables et on admet que $X_{n}$ suit une loi binomiale de paramètres $n$ et 0,145.
+	\begin{enumerate}
+		\item Donner l'expression en fonction de $n$ de la probabilité $p_{n}$ qu'au moins une connexion de cet échantillon soit instable.
+		\item Déterminer, en justifiant, la plus petite valeur de l'entier naturel $n$ telle que la probabilité $p_{n}$ est supérieure ou égale à 0,99.
+	\end{enumerate}
+\item On s'intéresse à la variable aléatoire $F_{n}$ égale à la fréquence de connexions instables dans un échantillon de $n$ connexions, où $n$ désigne un entier naturel strictement positif.
+
+On a donc $F_{n}=\dfrac{X_{n}}{n}$, où $X_{n}$ est la variable aléatoire définie à la question \textbf{2.}
+	\begin{enumerate}
+		\item Calculer l'espérance $E\left(F_{n}\right)$.
+
+On admet que $V\left(F_{n}\right)=\dfrac{0,123975}{n}$.
+
+		\item Vérifier que : $P\left(\left|F_{n}-0,145\right| \geqslant 0,1\right) \leqslant \dfrac{12,5}{n}$
+		\item Un responsable de l'entreprise étudie un échantillon de \np{1000} connexions et constate que pour cet échantillon $F_{1000}=0,3$. II soupçonne un dysfonctionnement des serveurs. A-t-il raison ?
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

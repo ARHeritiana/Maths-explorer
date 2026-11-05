@@ -1,0 +1,149 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2021/tex/e3c_2021_01_specimen1_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\bigskip
+
+Une urne contient six jetons rouges dont un est marqué « gagnant » et quatre jetons verts dont trois d'entre eux sont marqués « gagnant ».
+
+\begin{list}{}{On tire au hasard un jeton de l'urne et on note les évènements :}
+\item $R$ : « le jeton tiré est rouge »,
+\item $V$ : « le jeton tiré est vert »,
+\item $G$ : « le jeton tiré est gagnant ».
+\end{list}
+
+\begin{enumerate}
+\item  On modélise la situation à l'aide d'un arbre de probabilité.
+
+\begin{center}
+\bigskip
+  \pstree[treemode=R,nodesepA=0pt,nodesepB=4pt,levelsep=2.5cm,treesep=1.2cm]{\TR{}}
+ {
+ 	\pstree[nodesepA=4pt]{\TR{$R$}\ncput*{$\frac{6}{10}$}}
+ 	  { 
+ 		  \TR{$G$}\ncput*{$\frac{1}{6}$}
+ 		  \TR{$\overline{G}$}\ncput*{$\frac{5}{6}$}	   
+ 	  }
+ 	\pstree[nodesepA=4pt]{\TR{$V$}\ncput*{$\frac{4}{10}$}}
+ 	  {
+ 		  \TR{$G$}\ncput*{$\frac{3}{4}$}
+          \TR{$\overline{G}$}\ncput*{$\frac{1}{4}$} 
+     }
+}
+\bigskip
+\end{center}
+
+\item La probabilité de l'évènement « le jeton tiré est un jeton vert et marqué gagnant » est:
+
+$P(V\cap G) = p(V)\times P_{V}(G)= \dfrac{4}{10}\times \dfrac{3}{4}=\dfrac{3}{10}$.
+
+\item Soit $P(G)$ la probabilité de tirer un jeton gagnant. 
+
+D'après la formule des probabilités totales:
+
+$P(G) = P(R\cap G) + P(V\cap G) = \dfrac{6}{10}\times \dfrac{1}{6}+ \dfrac{3}{10} 
+= \dfrac{1}{10} + \dfrac{3}{10} = \dfrac{4}{10}=\dfrac{2}{5}$.
+
+\item Sachant que le jeton tiré est gagnant, la probabilité qu'il soit de couleur rouge est:
+
+$P_G(R) = \dfrac{P(R\cap G)}{P(G)} = \dfrac{\frac{1}{10}}{\frac{4}{10}} = \dfrac{1}{4}$.
+
+\item On tire maintenant, toujours au hasard et simultanément, deux jetons dans l'urne.
+
+On cherche la probabilité que les deux jetons soient marqués « gagnant ». 
+
+
+
+Il y a en tout 10 jetons dont 4 gagnants.
+
+\begin{list}{\textbullet}{}
+\item Il y a $\ds\binom{10}{2}=45$ façons de tirer 2 jetons parmi 10.
+\item Il y a $\ds\binom{4}{2}= 6$ façons de tirer 2 jetons gagnants parmi les 4 gagnants.
+\item Le tirage se fait au hasard donc il y a équiprobabilité.
+
+\end{list}
+
+La probabilité que les deux jetons soient marqués « gagnant » est donc: $\dfrac{6}{45} = \dfrac{2}{15}$. 
+
+\end{enumerate}
+
+\end{document}

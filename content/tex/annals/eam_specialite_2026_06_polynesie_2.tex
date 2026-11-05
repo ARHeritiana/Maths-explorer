@@ -1,0 +1,75 @@
+\subsection*{Partie A}
+
+On considère la fonction $f$ définie sur $\mathbb{R}$ par
+\[f(x)=\left(\dfrac12 x + 1\right) \e^{-x}.\]
+
+On note \mbox{$(\mathcal{C}_f)$} sa courbe représentative dans un repère orthonormé.
+
+On admet que la fonction $f$ est dérivable sur $\mathbb{R}$ et on désigne par $f'$ sa fonction dérivée.
+
+\begin{enumerate}
+	\item Démontrer que, pour tout réel $x$,
+	\[f'(x)=\left(-\dfrac12 x -\dfrac12\right) \e^{-x}.\]
+
+	\item Étudier les variations de la fonction $f$ sur $\mathbb{R}$.
+
+	\item L'affirmation \og{}Pour tout réel $x$, \mbox{$f(x)\leqslant 2$}\fg{} est-elle vraie ou fausse ?
+
+	Justifier.
+	\item Déterminer l'équation réduite de la tangente à \mbox{$(\mathcal{C}_f)$} au point d'abscisse 0.
+\end{enumerate}
+	\begin{center}
+		\fcolorbox{black}{white}{
+	\begin{minipage}[t]{0.8\linewidth}\vspace{0cm}
+		\textsc{Aide aux calculs}
+		\medskip
+
+	\begin{tblr}{X[c]X[c]X[c]}
+	\mbox{$\e^{1}\approx\np{2.7}$}&
+	\mbox{$\e^{-1}\approx\np{0.4}$}&
+	\mbox{$\e^{2}\approx\np{7.4}$}
+	\end{tblr}
+	\end{minipage}
+}
+	\end{center}
+
+\subsection*{Partie B}
+
+Soit $g$ la fonction polynôme du second degré définie par
+\[g(x)=\np{0.5}x^2+bx+c\]
+où $b$ et $c$ sont deux réels.
+
+On crée la courbe représentée ci-dessous, constituée des deux éléments suivants :
+\begin{itemize}[label=$\bullet$]
+	\item Une partie de la courbe \mbox{$(\mathcal{C}_f)$} représentative de la fonction $f$ définie dans la partie A sur l'intervalle \mbox{$[-2;0]$}.
+
+	\item Une partie de la courbe \mbox{$(\mathcal{C}_g)$} représentative de la fonction $g$  sur l'intervalle \mbox{$[0;3]$}.
+\end{itemize}
+
+\begin{center}
+		\begin{tikzpicture}[xscale=1.3,yscale=1.3,rotate=0]
+	\clip(-3.2,-0.6)rectangle(3.9,4.3);
+	\draw[blue!30,thick](-3.2,-0.6)grid(3.9,4.3);
+	\draw[line width=0.3mm,->, >=triangle 45](-3.2,0)--(3.9,0);
+	\draw[line width=0.3mm,->, >=triangle 45](0,-0.6)--(0,4.3);
+	\foreach \i in {-3,-2,-1,1,2,3,4}{\draw (\i,2pt)--(\i,-2pt) node[below ]{\np{\i}} (2pt,\i)--(-2pt,\i)node[left]{\np{\i}};}
+	\draw(-2pt,-2pt) node[below left]{\np{0}};
+	\draw[red](-1.5,1.5)node{\mbox{$(\mathcal{C}_f)$}};
+	\draw[purple](2.6,2.2)node{\mbox{$(\mathcal{C}_g)$}};
+	\node[draw,cross out, thick,minimum width=2pt, minimum height = 2pt] at (0,1){}; \draw(0,1)node[above right=1.5pt]{M};
+	\draw[red, line width=0.3mm]plot[smooth,domain=-2:0]	(\x,{(\x/2+1)*exp(-\x)});
+	\draw[purple, line width=0.3mm]plot[smooth,domain=0:3](\x,{\x*\x/2-\x/2+1});
+\end{tikzpicture}
+
+\end{center}
+\vspace{5mm}
+Le but de cette partie est de déterminer les valeurs des réels $b$ et $c$.
+\begin{enumerate}
+	\item Le point \mbox{M~$(0;1)$} appartient aux deux courbes  \mbox{$(\mathcal{C}_f)$} et  \mbox{$(\mathcal{C}_g)$}.
+
+	Démontrer que \mbox{$c=1$}.
+	\item
+ Au point  \mbox{M~$(0;1)$} les courbes  \mbox{$(\mathcal{C}_f)$} et  \mbox{$(\mathcal{C}_g)$} admettent la même tangente.
+
+ Déterminer la valeur de $b$.
+\end{enumerate}

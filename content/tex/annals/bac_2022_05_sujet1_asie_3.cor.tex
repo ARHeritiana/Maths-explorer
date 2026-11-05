@@ -1,0 +1,110 @@
+\medskip
+
+\emph{Principaux domaines abordés}: Manipulation des vecteurs, des droites et des plans de l'espace. Orthogonalité et distances dans l'espace. Représentations paramétriques et équations cartésiennes.
+
+\medskip
+
+\begin{enumerate}
+\item 
+ Voici les points P, Q et R sur la figure.
+\begin{center}
+
+\psset{unit=1.5cm}
+\begin{pspicture}(6.5,5.8)
+\pspolygon[fillstyle=solid,fillcolor=lightgray](0.5,2.06)(2.3,4.55)(1.3,4.04)
+\pspolygon(0.5,1)(2.9,0.5)(2.9,3.7)(0.5,4.2)
+\psline(2.9,0.5)(5.6,1)(5.6,4.2)(2.9,3.7)
+\psline(5.6,4.2)(3.2,4.7)(0.5,4.2)
+\psline[linestyle=dashed](0.5,1)(3.2,1.5)(5.6,1)
+\psline[linestyle=dashed](3.2,1.5)(3.2,4.7)
+\psline[linewidth=1.3pt]{->}(0.5,1)(1.3,0.84)
+\psline[linewidth=1.3pt]{->}(0.5,1)(1.4,1.16)
+\psline[linewidth=1.3pt]{->}(0.5,1)(0.5,2.06)
+\uput[dl](0.5,1){A} \uput[d](2.9,0.5){B} \uput[r](5.6,1){C} \uput[d](3.2,1.5){D}
+\uput[l](0.5,4.2){E} \uput[u](2.9,3.7){F} \uput[r](5.6,4.2){G} \uput[u](3.2,4.7){H}
+\uput[d](0.7,0.9){$\vect{\imath}$} \uput[u](0.95,1.08){$\vect{\jmath}$} \uput[l](0.5,1.53){$\vect{k}$}
+\psdots(0.5,2.06)(2.3,4.55)(1.3,4.04)
+
+\uput[l](0.5,2.06){P}\uput[u](2.3,4.55){Q}\uput[ul](1.3,4.04){R}
+\end{pspicture}
+\end{center}
+\item 
+On a $\vect{\text{PR}}\begin{pmatrix}1\\0\\-2\end{pmatrix}$ et $\vect{\text{QR}}\begin{pmatrix}1\\-2\\0\end{pmatrix}$.
+
+Donc PR$^2 = \left\|\vect{\text{PR}}\right\|^2 = 1^2 + 0^2 + 2^2 = 1 + 4 = 5$ et QR$ = \left\|\vect{\text{QR}}\right\|^2 = 1^2 + (- 2)^2 + 0^2 = 1 + 4 = 5$.
+Donc PR = QR $ = \sqrt{5}$ : le triangle (PQR) est isocèle en R.
+\item 
+
+Les vecteurs $\vect{\text{PR}}$ et $\vect{\text{QR}}$ ne sont pas colinéaires donc les points P{}, Q et R ne sont pas alignés : les points P{}, Q et R définissent un plan.
+\item 
+	\begin{enumerate}
+		\item ~
+$\bullet~~$$\vect{\text{PR}} \cdot \vect{u} = 2 +  0 - 2 = 0$ ;
+
+$\bullet~~$$\vect{\text{QR}} \cdot \vect{u} = 2 - 2 + 0  = 0$.
+
+Donc le vecteur $\vect{u}(2~;~1~;~- 1)$ orthogonal à deux vecteurs non colinéaires du plan (PQR) est normal à ce plan.
+		\item 
+On sait qu'alors $M(x~;~y~;~z) \in (\text{PQR}) \iff 2x + 1y - 1z = d$, \: $d \in \R$.
+
+En particulier $\text{P}(0~;~0~;~1) \in (\text{PQR}) \iff 2\times 0  + 1\times 0 - 1 \times 1 = d \iff - 1 = d$.
+
+On a donc $M(x~;~y~;~z) \in (\text{PQR}) \iff 2x + y - z = - 1$.
+		\item 
+Si $d$ est orthogonale au plan (PQR) elle a pour vecteur directeur le vecteur $\vect{u}$.
+
+On a donc :
+
+$M(x~;~y~;~z) \in (d) \iff \vect{\text{E}M} = t\vect{u}\iff \left\{\begin{array}{l c l}
+x - 0 = 2t\\
+y - 0= 1t\\
+z - 3 = -1t
+\end{array}\right., t \in \R \iff \left\{\begin{array}{l c l}
+x&=& 2t\\
+y&=& t\\
+z &=& -t + 3
+\end{array}\right., t \in \R$.
+		\item 
+Si L est le projeté orthogonal du point E sur le plan (PQR), la droite (LE) est perpendiculaire à ce plan donc l appartient à $(d)$ et ce point L appartient aussi au plan (PQR). les coordonnées de L vérifient donc le système d'équations :
+
+$\left\{\begin{array}{l c l}
+x - 0 = 2t\\
+y - 0= 1t\\
+z - 3 = -1t\\
+2x + y - z &=& - 1
+\end{array}\right., t \in \R \iff \left\{\begin{array}{l c l}
+x= 2t\\
+y= t\\
+z= -t + 3\\
+2x + y - z &=& - 1
+\end{array}\right., t \in \R$.
+
+En remplaçant $x,\:y$ et $z$ par leurs expressions en fonction de $t$ dans la dernière équation, on obtient :
+
+$2\times 2t + t - (- t + 3) = - 1 \iff 6t - 3= - 1\iff 6t = 2 \iff t = \dfrac13$. L$\left(\dfrac23~;~\dfrac13~;~\dfrac83\right)$.
+On a donc $x = \dfrac23, \: y = \dfrac13$ et $z = 3 - \dfrac13 = \dfrac83$.
+		\item 
+		On a donc avec $\vect{\text{EL}}\begin{pmatrix}\dfrac23\\\dfrac13\\- \dfrac13\end{pmatrix}$, on déduit EL$^2 = \dfrac49 + \dfrac19 + \dfrac19 = \dfrac69$.
+		
+La distance de E au plan (PQR) est donc égale à EL $ = \dfrac{\sqrt{6}}{3}$.
+	\end{enumerate}
+\item 
+
+
+
+
+Si on prend EQR comme base la hauteur est [PE].
+
+On a $\mathcal{A}(EQR) = \dfrac{\text{EQ} \times \text{ER}}{2} = \dfrac{2 \times 1}{2} = 1$ et PE = 2, donc :
+
+$V(\text{EPQR}) = \dfrac13 \times 1 \times 2 = \dfrac23$.
+\item 
+
+On a aussi $V(\text{EPQR}) = \dfrac13 \times \mathcal{A}(\text{PQR}) = \times \text{EL}$, soit 
+
+$\dfrac23 = \dfrac13 \times \mathcal{A}(\text{PQR}) \times \dfrac{\sqrt{6}}{3} \iff \mathcal{A}(\text{PQR}) = \dfrac{6}{\sqrt{6}} = \sqrt{6}$.
+
+\emph{Rem.} On peut retrouver cette aire en calculant l'aire de ce triangle isocèle directement
+\end{enumerate}
+
+\bigskip

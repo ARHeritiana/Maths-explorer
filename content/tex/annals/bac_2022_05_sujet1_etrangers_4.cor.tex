@@ -1,0 +1,96 @@
+\bigskip
+
+
+
+
+
+
+
+
+
+\textbf{Partie A}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter le tableau suivant avec les probabilités correspondantes.
+
+\begin{center}
+\begin{tabularx}{0.45\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+				&$A$ 	&$\overline{A}$	&Total\\ \hline
+\black $B$				&\blue 0,05		&\blue 0,15				&\black 0,2\\ \hline
+\black $\overline{B}$	&\blue 0,05		&\black 0,75				&\blue 0,8\\ \hline
+\black Total			&\black 0,1		&\blue 0,9				&\black 1\\ \hline
+\end{tabularx}
+\end{center}
+
+\item
+	\begin{enumerate}
+		\item 
+La probabilité qu'une paire de verres, prélevée au hasard dans la production, présente un défaut pour au moins un des deux traitements T1 ou T2 est l'évènement contraire de l'évènement \og une paire de verres ne présente aucun des deux défauts \fg, donc sa probabilité est égale $1 - 0,75 = 0,25$. Ou encore $P(A \cup B) = 1 - \left(\overline{A} \cap \overline{B} \right)$.
+		\item 
+		
+$\bullet~~$On a $P\left(\overline{A}\right) = 1 - P(A) = 1 - 0,1 = 0,9$ ;
+
+$\bullet~~$On a $P\left(\overline{B}\right) = 1 - P(B) = 1 - 0,2 = 0,8$.
+
+Donc $P\left(A \cap \overline{B}\right) = 0,8 - 0,75 = 0,05$ et 
+
+$P\left(B \cap \overline{A}\right) = 0,9 - 0,75 = 0,15$.
+
+Donc la probabilité qu'une paire de verres, prélevée au hasard dans la production, présente deux  défauts  est égale à :
+
+$P(A \cap B) = 1 - P\left(A \cap \overline{B}\right)  -  P\left(B \cap \overline{A}\right) - P\left(\overline{A} \cap \overline{B} \right) = 1 - 0,05 - 0,15  - 0,75 = 0,05$.
+		\item 
+$P(A) \times P(B) = 0,1 \times 0,2 = 0,02$ et $P(A \cap B) = 0,05$.
+
+On a donc $P(A \cap B) \ne P(A) \times P(B)$ : les évènements $A$ et $B$ ne sont pas indépendants.
+	\end{enumerate}	
+\item 
+On a $P\left(A \cap \overline{B}\right) + P\left(B \cap \overline{A}\right)= 0,05 + 0,15 = 0,2$
+\item 
+On a $P_{A}\left(B \right) = \dfrac{P(A \cap B)}{P(A)} = \dfrac{0,05}{0,1} = \dfrac12$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+La production est suffisamment importante pour que la probabilité d'avoir le déf	ut $T1$ est égale à 0,1. Comme il y a 50 tirages indépendants, la variable aléatoire $X$ suit une loi binomiale de paramètres $n = 50$ et $p = 0,1$.
+\item 
+On sait que $P(X = 10) = \binom{50}{10}\times 0,1^{10} \times (1 - 0,1)^{50 - 10}$.
+
+La calculatrice donne $P(X = 10)  \approx 0,015$ au millième près.
+
+
+\item 
+La moyenne est l'espérance de la variable $X$ et on sait que $E(X) = n \times p = 50 \times 0,1 = 5$.
+\end{enumerate}

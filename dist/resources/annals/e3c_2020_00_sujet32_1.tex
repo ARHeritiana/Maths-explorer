@@ -1,0 +1,174 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet32_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Cet exercice est un questionnaire à choix multiples.
+
+Pour chacune des questions suivantes, une seule des quatre réponses proposées est exacte. 
+
+Aucune justification n'est demandée.
+
+Une bonne réponse rapporte un point. Une mauvaise réponse, une réponse multiple ou l'absence de réponse ne rapporte ni n'enlève aucun point.
+
+Indiquer sur la copie le numéro de la question et la réponse correspondante.
+
+\medskip
+
+\textbf{Question 1}
+
+\medskip 
+
+Soit la fonction $P$ définie sur $\R$ par $P(x)=(x^2+x+1)(x-1)$.
+L'équation $P(x)=0$ :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}n'a pas de solution sur $\R$ &\textbf{b.~~}a une unique solution sur $\R$ \\\textbf{c.~~}a exactement deux solutions sur $\R$& \textbf{d.~~} a exactement trois solutions sur $\R$.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 2}
+
+\medskip 
+
+Soit la fonction $f$ définie sur $\R$ par $f(x) = (7x - 23)\left(\e^x+1\right)$.
+
+L'équation $f(x)=0$ :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}admet $x=1$ comme solution &\textbf{b.~~}admet deux solutions sur $\R $\\\textbf{c.~~} admet $x=\frac{23}{7}$ comme solution & \textbf{d.~~}admet $x=0$ comme solution.
+\end{tabularx}
+
+
+\medskip
+
+\textbf{Question 3}
+
+\medskip 
+
+Dans le plan rapporté à un repère orthonormé, le cercle de centre A$(-4~;2)$ et de rayon $r=\sqrt{2}$ a pour équation :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} $(x+4)^2+(y-2)^2=\sqrt{2} $ &\textbf{b.~~} $(x-4)^2+(y-2)^2=4 $\\\textbf{c.~~}$(x+4)^2+(y-2)^2=2 $& \textbf{d.~~} $(x-4)^2+(y+2)^2=2  $.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 4}
+
+\medskip 
+
+Dans le plan rapporté à un repère orthonormé, on considère les vecteurs $\vv{u}(m+1~;~- 1)$ et $\vv{v}(m~;~2)$ où $m$ est un réel.
+
+Une valeur de $m$ pour laquelle les vecteurs $\vv{u}$ et $\vv{v}$ sont orthogonaux est :
+
+\medskip
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $m= -\frac{2}{3}$ &\textbf{b.~~} $m=-2 $&\textbf{c.~~}$m=2 $& \textbf{d.~~} $m=-1  $.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 5}
+
+\medskip 
+
+Dans le plan rapporté à un repère orthonormé, une équation cartésienne de la droite $D$ passant par le point $A(-2~;~5)$ et admettant pour vecteur normal
+ $\vv{n}\, (-1~;~3)$ est :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} $-x + 3y + 7 = 0 $ &\textbf{b.~~} $x-3y + 17 = 0 $\\\textbf{c.~~}$-3x - y - 1 = 0$& \textbf{d.~~} $-x - 3y + 13 = 0  $.
+\end{tabularx}
+
+\vspace{0,5cm}
+
+\end{document}

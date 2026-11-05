@@ -1,0 +1,130 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet61_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Une entreprise vend des smartphones d'un seul modèle \og haut de gamme \fg.
+
+Le service marketing modélise le nombre de smartphones modèle \og haut de gamme\fg{}
+vendus par trimestre en fonction du prix de vente $x$ par la fonction $N$ définie par 
+
+\[N(x) = 100\e^{-2x}\,  \text{où :}\]
+
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item $x$ est le prix de vente en \textbf{milliers d'euros} d'un smartphone modèle \og haut de gamme \fg.
+
+ Le prix du smartphone modèle \og haut de gamme\fg{} est compris entre 400~\euro{} et \np{2000}~\euro{} ; on a donc $x \in [0,4~;~2]$.
+\item $N(x)$ est le nombre de smartphones modèle \og haut de gamme\fg{} vendus trimestriellement en \textbf{millions d'unités}.
+\end{itemize}
+\setlength\parindent{0cm}
+
+\smallskip
+
+\begin{enumerate}
+\item Si le service commercial fixe le prix de vente de ce smartphone modèle \og haut de gamme\fg{} à \np{1000}~\euro, quel sera le nombre de smartphones vendus trimestriellement ? 
+
+On arrondira le résultat à mille unités.
+\end{enumerate}
+
+La recette trimestrielle $R(x)$ est obtenue en multipliant le nombre de smartphones modèle \og haut de gamme\fg{} vendus par le prix de vente. 
+
+On obtient $R(x) = x \times  N(x)$ en \textbf{milliards d'euros}.
+
+Le coût de production en milliards d'euros en fonction du nombre de smartphones modèle \og haut de gamme\fg{} fabriqués est modélisé par la fonction $C$ définie par $C(x) = 0,4 \times N(x)$ où $x$ est le prix de vente en \textbf{milliers d'euros}.
+
+Le bénéfice est obtenu en calculant la différence entre la recette et le coût de production.
+
+\smallskip
+
+\begin{enumerate}[resume]
+\item Vérifier que le bénéfice trimestriel peut être estimé à $8,120$ milliards d'euros pour un prix de vente \np{1000}~\euro.
+\item Montrer que le bénéfice trimestriel s'exprime en milliards d'euros en fonction du prix de vente $x$ en milliers d'euros par : $B(x) = (100x - 40) \e^{-2x}.$
+\item On admet que pour tout réel $x \in  [0,4~;~2],\: B'(x) = (180 - 200x )\e^{-2x}$.
+
+ Étudier les variations de la fonction $B$ sur l'intervalle [0,4~;~2].
+\item À quel prix faut-il vendre ces smartphones pour assurer un bénéfice maximal ?
+\end{enumerate}
+
+\end{document}

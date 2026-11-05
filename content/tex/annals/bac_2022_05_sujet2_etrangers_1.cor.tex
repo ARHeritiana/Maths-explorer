@@ -1,0 +1,27 @@
+\medskip
+
+\begin{enumerate}
+	\item Soit $f$ la fonction continue et dérivable sur $\R$, définie par $x \longmapsto \dfrac{x}{\text{e}^x}$.
+	
+	En utilisant la formule de la dérivée d'un quotient, on peut écrire :
+	
+	$\forall x \in \R$, $f'(x)=\dfrac{1\times \e^{x}-x\times \e^x}{\left(\e^x\right)^2}=\dfrac{(1-x)\e^x}{\e^{2x}}=\dfrac{1-x}{\e^x}=(1-x)\e^{-x}$. \hfill \fbox{\textbf{Réponse c}}
+	\item La courbe représentative donnée est celle de $f''$. Avec la précision permise par ce graphique, on peut affirmer que $f''$ est positive sur $[-3~;~-1]$, négative sur $[-1~;~1]$ et s'annule pour $x= - 1$. 
+	
+Cela signifie donc que $f'$ est croissante sur $[-3~;~-1]$ puis décroissante sur $[-1~;~1]$. Donc la fonction $f'$ admet un maximum en $x = -1$. \hfill \fbox{\textbf{Réponse d}}
+	\item Les fonctions $F$ proposées sont continues et dérivables sur $\R$. Dérivons chacune d'entre-elles. $\forall x \in \R$, 
+	\begin{enumerate}
+		\item $\begin{gathered}F'(x)=-\dfrac{1}{6}\left(3x^2\e^{-x^2}+(x^3+1)\times -2x\e^{-x^2}\right)=-\dfrac{1}{6}\e^{-x^2}(3x^2-2x^3-2x)\\=-\dfrac{1}{6}\e^{-x^2}(-2x^3+3x^2-2x)\end{gathered}$
+		\item $F'(x)=-\dfrac{1}{4}\left(4x^3 \times \e^{-x^2}+x^4\times -2x\e^{-x^2}\right)=-\dfrac{1}{4}\e^{-x^2}(4x^3-2x^5)$
+		\item $F'(x)=-\dfrac{1}{2}\left(2x\times \e^{-x^2}+(x^2+1)\times -2x\e^{-x^2}\right)=-\dfrac{1}{2}\e^{-x^2}(2x-2x^3-2x)=x^3\e^{-x^2}$
+		\item $F'(x)=(6x-8x^3)\times \e^{-x^2}+(3x^2-2x^4)\times -2x\e^{-x^2}= (4x^5-14x^3+6x)\e^{-x^2} $
+	\end{enumerate}
+\hfill \fbox{\textbf{Réponse c}}
+	\item $\forall x \in \R$, $f(x)=\dfrac{\e^x\left(1+\dfrac{1}{\e^x}\right)}{\e^x\left(1-\dfrac{1}{\e^x}\right)}=\dfrac{1+\e^{-x}}{1-\e^{-x}}$. Or $\displaystyle\lim\limits_{x \rightarrow +\infty} \e^{-x}=0$ donc $\displaystyle\lim\limits_{x \rightarrow +\infty} f(x)=1$. \hfill \fbox{\textbf{Réponse b}}
+	\item La fonction $f$ est continue sur $\R$, donc elle admet des primitives notées $F$. De plus $f(x)$ est de la forme $u'(x)\e^{u(x)}$ avec $u(x)=2x+1$. En remarquant que $f(x)=\dfrac{1}{2} \times 2\e^{2x+1}$, on peut alors écrire que pour tout réel $x$, $F(x)=\dfrac{1}{2}\e^{2x+1}+k$ avec $k\in \R$. Sachant que $F(0)=1$ alors
+	
+	 $\dfrac{1}{2}\e^1+k=1 \iff k=1-\dfrac{1}{2}\e$. Donc $\forall x \in \R$, $F(x)=\dfrac{1}{2}\e^{2x+1}+1-\dfrac{1}{2}\e$. \hfill \fbox{\textbf{Réponse c}}
+	 \item Avec la précision permise par le graphique, on peut affirmer que la fonction $f$ est concave sur $[-2~;~1]$, convexe sur $[1~;~4]$ et $f''(1)=0$ (point d'inflexion). $f''$est donc négative sur $[-2~;~1]$, positive sur $[1~;~4]$ s'annulant en 1. \hfill \fbox{\textbf{Réponse a}}
+\end{enumerate}
+
+\pagebreak

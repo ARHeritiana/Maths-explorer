@@ -1,0 +1,174 @@
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture*}(-2.5,-1.5)(5.5,3.5)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-2.5,-1.5)(5.5,3.5)
+\psplot[plotpoints=3000,linewidth=1.25pt,linecolor=red]{-2.5}{5.5}{x 2 add 2.71828 x exp div}
+\psplotTangent{0}{4.5}{x 2 add 2.71828 x exp div}
+\uput[ul](-2,0){M} \uput[ur](0,2){N} \uput[ur](2,0){P}\uput[d](3,-1){$T$}
+\end{pspicture*}
+
+\end{center}
+
+\begin{center}\textbf{Partie A : étude graphique}\end{center}
+
+On répondra aux questions suivantes en utilisant le graphique.
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+On lit $f(0) = 2$.
+		\item Déterminer $f'(0)$.
+Le nombre dérivé $f'(0)$ est égal au coefficient directeur de la droite (NP) soit à $\dfrac{0 - 2}{2 - 0} = - 1 = f'(0)$
+	\end{enumerate}
+\item 
+Il semble que $f(-2) = 0$. $S = \{-2\}$.
+\item 
+Il semble que la fonction est convexe sur l'intervalle $[0~;~+ \infty[$ : sur cet intervalle toutes les tangentes à la courbe représentative $\mathcal{C}_f$ sont sous cette courbe.
+
+Toujours graphiquement sur l'intervalle $[0~;~+ \infty[$ les coefficients directeurs des tangentes à la courbe ($- 1$ et 0 au voisinage de plus l'infini) sont croissants : autrement dit la fonction $f"$ est croissante donc $f''(x) \geqslant 0$
+\item 
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{3}{>{\centering \arraybackslash}X|}}\hline
+Courbe 1&Courbe 2&Courbe 3\\ \hline
+\psset{unit=0.4cm,arrowsize=2pt 3}
+\begin{pspicture*}(-2.5,-8)(8,3)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-2.5,-8)(8,3)
+\psplot[plotpoints=3000,linewidth=1.25pt,linecolor=red]{-2.5}{5.5}{x 1 add 2.71828 x exp div neg}
+\end{pspicture*}&
+\psset{unit=0.4cm,arrowsize=2pt 3}
+\begin{pspicture*}(-4,-8)(6,3)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-4,-8)(6,3)
+\psplot[plotpoints=3000,linewidth=1.25pt,linecolor=red]{-4}{5.5}{x 3 add 2.71828 x exp div neg}
+\end{pspicture*}
+&\psset{unit=0.4cm,arrowsize=2pt 3}
+\begin{pspicture*}(-2.5,-8)(8,3)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-2.5,-8)(8,3)
+\psplot[plotpoints=3000,linewidth=1.25pt,linecolor=red]{-2.5}{5.5}{x 1 sub 2.71828 x exp div neg}
+\end{pspicture*}\\ \hline
+\end{tabularx}
+\end{center}
+
+$\bullet~~$On sait que $f(x) \geqslant 0$ sur $[0~;~+ \infty[$, donc une primitive sur le même intervalle est croissante ce qui élimine la courbe 3 ;
+
+$\bullet~~$Si $F$ est une primitive de $f$ et est représentée par la courbe 1, alors $F'(0) = 0 = f(0) = - 1$ : ceci est faux donc la courbe 1 est éliminée.
+
+Il ne reste que la courbe 2.
+\end{enumerate}
+
+\medskip
+
+\begin{center}\textbf{Partie B :  recherche d'une expression algébrique}\end{center}
+
+On admet que la fonction $f$ est de la forme 
+\[f(x)= (ax + b)\e^{\lambda x},\]
+où $a, b$ et $\lambda$ sont des constantes réelles.
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+On a vu que $f(0) = 2 \iff b\e^{\lambda \times 0} = 2 \iff b = 2$.
+
+Donc $f(x) = (ax + 2)\e^{\lambda x}$.
+\item 
+
+On a donc $f(x) = (ax + 2)\e^{\lambda x}$.
+
+On sait aussi que $f(-2) = 0 \iff (-2a + 2)\e^{-2\lambda } = 0$ et comme $\e^{-2\lambda }  \ne 0$ on a donc $-2a + 2 = 0 \iff a = 1$.
+
+Donc $f(x) = (x + 2)\e^{\lambda x}$.
+\item 
+On a vu que $f'(0) = - 1$
+
+La fonction $f$ est dérivable sur $\R$ et sur cet intervalle :
+
+$f'(x) = \e^{\lambda x} + \lambda (x + 2)\e^{\lambda x} = \e^{\lambda x}(1 + \lambda x + 2\lambda )\e^{\lambda x}$.
+
+Donc $f'(0) = - 1 \iff 1  + 2\lambda = - 1 \iff 2\lambda  = - 2 \iff \lambda = - 1 $.
+
+On a donc finalement $f(x) = (x + 2)\e^{- x}$.
+\end{enumerate}
+
+\medskip
+
+\begin{center}\textbf{Partie C : étude algébrique}\end{center}
+
+On admet que la fonction $f$ est définie sur $\R$ par 
+\[f(x) = (x + 2)\e^{-x}.\]
+
+\smallskip
+
+\begin{enumerate}
+\item 
+On a $\displaystyle\lim_{x \to -\infty} x + 2 = - \infty$ et $\displaystyle\lim_{x \to -\infty}
+\e^{-x} = + \infty$, donc par produit de limites $\displaystyle\lim_{x \to -\infty}f(x) = - \infty$.
+
+\item 
+Produit de fonctions dérivables sur $\R$, $f$ est dérivable et sur cet intervalle :
+
+$f'(x) = \e^{-x} - (x + 2)\e^{-x} = \e^{-x}(1 - x - 2) = (- x - 1)\e^{-x}$.
+
+On sait que quel que soit $x \in \R, \: \e^{-x} > 0$ : le signe de $f('x)$ est donc celui de $- x - 1$.
+
+$\bullet -x - 1 > 0 \iff - 1 > x \iff x < - 1$ : sur l'intervalle $]- \infty~;~-1[ \: f'(x) > 0$ : la fonction $f$ est croissante sur cet intervalle ;
+
+$\bullet -x - 1 < 0 \iff - 1 < x \iff x > - 1$ : sur l'intervalle $]-1 ~;~+\infty[\: f'(x) < 0$ : la fonction $f$ est décroissante sur cet intervalle ;
+
+$\bullet -x - 1 = 0 \iff - 1 = x, f'(1) = 0$ ; $f(-1) = (-1 + 2)\e^{1} = \e$ est le maximum de $f$ sur $\R$.
+Il reste à calculer la liite en plus l'infini : comme $f(x) = x\e^{-x} + 2\e^{-x}$.
+
+Or on sait que $\displaystyle\lim_{x \to + \infty} x\e^{-x} = 0$ (puissances comparées) et $\displaystyle\lim_{x \to + \infty} 2\e^{-x} = 0$, d'où par somme de limites :
+$\displaystyle\lim_{x \to + \infty} f(x) = 0$.
+
+\item 
+	\begin{enumerate}
+		\item 
+$f'$ est elle-même dérivable sur $\R$ et sur cet intervalle :
+
+$f''(x) = -\e^{-x} + (x + 1)\e^{-x} = \e^{-x}(x + 1 - 1) = x \e^{-x}$.
+
+Comme $\e^{-x} > 0$, le signe de $f''(x)$ est celui de $x$, donc :
+
+$\bullet~~$$f$ est convexe sur $[0~;~+ \infty[$ ;
+
+$\bullet~~$$f$ est concave sur $]- \infty~;~0]$ ;
+		\item 
+-- Donc d'après le résultat précédent la courbe $\mathcal{C}_f$ a un seul point d'inflexion de coordonnées (0~;~2).
+	\end{enumerate}
+\item 
+\[I(t) = \displaystyle\int_{-2}^t (x + 2)\e^{-x}\:\text{d}x.\]
+
+	\begin{enumerate}
+		\item 
+On pose $u(x) = x + 2$ et $v'(x) = \e^{-x}$, d'où	
+
+$u'(x) = 1$ et $v(x) = - \e^{-x}$.
+
+Toutes ces fonctions étant continues car dérivables on peut intégrer par parties :
+
+$I(t) = \left[-(x + 2)\e^{-x} \right]_{-2}^t + \displaystyle\int_{-2}^t \e^{-x}\:\text{d}x = \left[-(x + 2)\e^{-x}- \e^{-x}\right]_{-2}^t = \left[(- x - 3) \e^{-x} \right]_{-2}^t = (- t - 3) \e^{-t} +1 \e^{2} = \e^{2} - (t + 3)\e^{-t}$.
+
+
+		\item 
+$f$ est positive sur l'intervalle $[-2~;~+ \infty[$ ; on sait qu'alors l'aire de la surface limitée par la courbe $\mathcal{C}_f$, l'axe des abscisses et les droites d'équations $x = - 2$ et $x = t$ est égale à l'intégrale $I(t)$.
+
+Or quand $t \to + \infty$, la surface n'est pas limitée à droite alors que l'intégrale l'est elle puisqu'on a $\displaystyle\lim_{t \to + \infty} (t + 3)\e^{- t} = 0$, donc $\displaystyle\lim_{t \to + \infty} I(t) = \e^2$.
+	\end{enumerate}
+\end{enumerate}

@@ -1,0 +1,206 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_etrangers_7_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Commun à tous les candidats}
+
+\medskip
+
+
+
+
+
+
+
+\textbf{Partie A - Modélisation à l'aide d'une suite}
+
+\medskip
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item  
+Retrancher 2\,\% c'est multiplier par $1 - \dfrac{2}{100} = 1 - 0,02 = 0,98$.
+
+D'une année sur l'autre on multiplie le nombre de panneaux par 0,98 puis on augment de nombre de panneaux de 250.
+		\item  
+		
+
+Avec la calculatrice il suffit de taper \np{10560} Entrée puis $\times 0,98 + 50$.
+
+Entrée donne $u_1 \approx \np{10599}$, les appuis successifs de Entrée donnent $u_2$, \, $u_3$, etc.
+
+On obtient $u_{68} \approx \np{12009}$.
+
+le nombre de panneaux dépassera \np{12000} au bout de 68 ans soit en 2088.
+		\item  Recopier et compléter le programme en Python ci-dessous de sorte que la valeur
+cherchée à la question précédente soit stockée dans la variable n à l'issue de l'exécution de ce dernier.
+\begin{center}
+\begin{tabular}{|l|}\hline
+u $= \np{10560}$\\
+n$ =0$\\
+while  u $\leqslant \np{12000}$ :\\
+\qquad u $= 0,98*\text{u} + 250$  \\
+\qquad n $= \text{n} + 1$\\ \hline
+\end{tabular}
+\end{center}
+
+	\end{enumerate}
+\item 
+\emph{Initialisation }: $u_0 = \np{10560} \leqslant \np{12500}$ : la proposition est vraie au rang 0.
+
+\emph{Hérédité} : soit $n \in \N$ tel que $u_n \leqslant \np{12500}$ soit en multipliant par 0,98 :
+
+$0,98u_n \leqslant 0,98 \times \np{12500}$ et en ajoutant 250 à chaque membre :
+
+$0,98u_n + 250  \leqslant 0,98 \times \np{12500} + 250$ ou $u_{n+1}  \leqslant \np{12250} + 250 $ et finalement $u_{n+1} \leqslant \np{12500}$ : la proposition est vraie au r	ng $n + 1$.
+
+La proposition est vraie au rang 0 et si elle est vraie au rang $n \in \N$ elle est vraie au rang $n + 1$ : d'après le principe de la récurrence la proposition $u_n \leqslant \np{12500}$ est vraie pur tout naturel $n \in \N$.
+\item 
+On a pour $n \in \N$, \, $u_{n+1} - u_n = 0,98u_n + 250 - u_n = 250  - 0,02u_n$.
+
+Or d'après le résultat précédent :
+
+$u_n \leqslant \np{12500} \Rightarrow 0,02u_n \leqslant 0,02 \times \np{12500}$ ou encore $0,02u_n \leqslant 250$ ou en ajoutant à chaque membre $- 0,02u_n$ :
+
+$0 \leqslant 250 - 0,02u_n$ ; on a donc démontré que $u_{n+1} - u_n  \geqslant 0$, ce qui signifie que la suite $\left(u_n\right)$ est croissante.
+\item 
+La suite $\left(u_n\right)$ est croissante et majorée par \np{12500} : elle est donc convergente vers une limite $\ell$, telle que $\ell \leqslant \np{2500}$.
+\item 
+	\begin{enumerate}
+		\item 
+		Quel que soit $n \in \N$, \, $v_{n+1} = u_{n+1} - \np{12500} = 0,98u_n + 250 - \np{12500}$, soit 
+		
+		$v_{n+1}  = 0,98u_n - \np{12250} = 0,98u_n - \np{12250}\times \frac{0,98}{0,98} = 0,98u_n - \np{12500} \times 0,98 = 0,98\left(u_n - \np{12500}\right)$ soit enfin $v_{n+1} = 0,98v_n$ : cette relation vraie quel que soit $n \in \N$ montre que la suite $\left(v_n\right)$ est une suite géométrique de raison $0,98$ de premier terme $v_0 = u_0 - \np{12500} = \np{10560} - \np{12500} = - \np{1940}$.
+		\item 
+		On sait qu'alors quel que soit $n \in \N$, \, $v_n = v_0 \times 0,98^n$, soit $v_n = - \np{1940} \times 0,98^n$.
+		\item 
+Pour tout entier naturel $n$,\,$v_n = u_n - \np{12500} \iff u_n = v_n + \np{12500} = \np{12500} - \np{1940} \times 0,98^n$.
+		\item 
+		
+Comme $0 < 0,98 < 1$, on sait que $\displaystyle\lim_{n \to + \infty} 0,98^n = 0$, donc 
+		
+$\displaystyle\lim_{n \to + \infty} u_n = \np{12500}$
+		
+Interpréter ce résultat dans le contexte du modèle.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B - Modélisation à l'aide d'une fonction}
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+La fonction $f$ est une somme de fonctions dérivables sur $[0~;~ +\infty[$ et sur cet intervalle :
+
+$f'(x) = - 0,02 \times (- 500)\e^{-0,02x+1,4} = 10\e^{-0,02x+1,4}$.
+
+Comme la fonction exponentielle est strictement positive, on en déduit que $f'(x) > 0$ : la fonction est donc strictement croissante sur $[0~;~ +\infty[$ 
+\item 
+On sait que $\displaystyle\lim_{n \to + \infty} \e^{-0,02x+1,4} = 0$, donc $\displaystyle\lim_{n \to + \infty} 500 \e^{-0,02x+1,4} = 0$ et $\displaystyle\lim_{n \to + \infty} f(x) = \np{12500}$.
+\item 
+Il faut résoudre l'inéquation :
+
+$\np{12500} - 500 \e^{-0,02x+1,4} > \np{12000} \iff 500 > 500\e^{-0,02x+1,4} \iff 1 >\e^{-0,02x+1,4} \iff \e^0 \geqslant \e^{-0,02x+1,4}$, soit par croissance de la fonction exponentielle :
+
+$0 > - 0,02x + 1,4 \iff 0,02x > 1,4$ et en multipliant chaque membre par 50 : 
+
+$x > 70$ :il faut donc attendre 71 ans pour que le nombre de panneaux dépasse \np{12000}, soit en 2091.
+
+\end{enumerate}
+
+\bigskip
+
+\end{document}

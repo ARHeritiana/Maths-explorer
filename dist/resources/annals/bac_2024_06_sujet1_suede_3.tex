@@ -1,0 +1,146 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_suede_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Un organisme certificateur est missionné pour évaluer deux appareils de chauffage, l'un d'une marque A et l'autre d'une marque B.
+
+\begin{center}
+\textit{Les parties $1$ et $2$ sont indépendantes.}
+\end{center}
+
+\subsection*{Partie 1 : appareil de la marque A}
+
+À l'aide d'une sonde, on a mesuré la température à l'intérieur du foyer d'un appareil de la marque $A$.
+
+On a représenté, ci-dessous, la courbe de la température en degrés Celsius à l'intérieur du foyer en fonction du temps écoulé, exprimé en minutes, depuis l'allumage du foyer.
+
+\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[/pgf/number format/.cd, use comma,/pgf/number format/set thousands separator={\,}, x={0.086mm}, y={0.172mm}, xmin=0, xmax=1170, ymin = 0, ymax=410, xtick distance=100, ytick distance =50,
+			xlabel={Temps (en min)},ylabel={Température (en °C)},
+			tick label style={font=\footnotesize}, minor tick num = 1, grid=both, axis lines =center]
+			\addplot [line width=1.25pt,color=red,smooth,samples=100,domain= 0:1170 ]{20+330*x*exp(-0.005*x)/73.58};
+			\node[below left] at (axis cs: 0,0) {{\footnotesize 0}};
+		\end{axis}
+	\end{tikzpicture}
+\end{center}
+
+Par lecture graphique :
+
+\begin{enumerate}
+	\item Donner le temps au bout duquel la température maximale est atteinte à l'intérieur du foyer.
+	\item Donner une valeur approchée, en minutes, de la durée pendant laquelle la température à l'intérieur du foyer dépasse $300$~\ensuremath{^\circ} C.
+	\item On note $f$ la fonction représentée sur le graphique.
+
+	Estimer la valeur de \quad $\displaystyle\dfrac{1}{600} \int_{0}^{600} f(t) \d t$.\quad Interpréter le résultat.
+\end{enumerate}
+
+\subsection*{Partie 2 : étude d'une fonction}
+Soit la fonction $g$ définie sur l'intervalle $[0~;~+ \infty[ $ par :
+
+\[g(t) = 10 t \e^{-0,01 t} + 20.\]
+
+\begin{enumerate}
+	\item Déterminer la limite de $g$ en $+ \infty$.
+	\item \begin{enumerate}
+		\item Montrer que pour tout $t \in [0~;~+ \infty[,\quad g'(t)=(-0,1 t + 10) \e^{- 0,01 t}$.
+		\item Étudier les variations de la fonction $g$ sur $[0~;~+ \infty[$ et construire son tableau de variations.
+	\end{enumerate}
+	\item Démontrer que l'équation $g(t) = 300$ admet exactement deux solutions distinctes sur [$0~;~+ \infty[$. En donner des valeurs approchées à l'unité.
+	\item À l'aide d'une intégration par parties, calculer \quad $\displaystyle \int_{0}^{600} g(t) \:\text{d}t$.
+\end{enumerate}
+
+\subsection*{Partie 3 : évaluation}
+Pour un appareil de la marque B, la température en degrés Celsius à l'intérieur du foyer $t$ minutes après l'allumage est modélisée sur $[0~;~600]$ par la fonction $g$.
+
+L'organisme certificateur attribue une étoile par critère validé parmi les quatre suivants :
+
+\begin{itemize}
+\item Critère 1 : la température maximale est supérieure à $320~$\ensuremath{^\circ} C.
+\item Critère 2 : la température maximale est atteinte en moins de 2 heures.
+\item Critère 3 : la température moyenne durant les 10 premières heures après l'allumage dépasse $250$~\ensuremath{^\circ} C.
+\item Critère 4 : la température à l'intérieur du foyer ne doit pas dépasser $300$~\ensuremath{^\circ} C pendant plus de 5 heures.
+\end{itemize}
+
+Chaque appareil obtient-il exactement trois étoiles ? Justifier votre réponse.
+
+\end{document}

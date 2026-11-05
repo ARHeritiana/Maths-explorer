@@ -1,0 +1,131 @@
+\medskip
+
+Le plan est muni d'un repère orthogonal.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On considère la fonction $P$ définie sur l'intervalle $[-5\;; 3]$ par :
+$P(x) = 2 x^{2}+ x - 10$.
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item
+$P(x) = 2 x^{2}+ x - 10$ est un polynôme du second degré.
+
+$\Delta=b^2-4ac=1^2-4\times 2 \times (-10)=1+80=81=9^2$
+
+Les racines de $P$ sont:
+
+$x'=\dfrac{-b-\sqrt{\Delta}}{2a}=\dfrac{-1-9}{4}=-\dfrac{10}{4}=-\dfrac{5}{2}$ et		
+$x''=\dfrac{-b+\sqrt{\Delta}}{2a}=\dfrac{-1+9}{4}=\dfrac{8}{4}=2$
+		
+		\item
+$\dfrac{x'+x''}{2}= \dfrac{-\frac{5}{2}+2}{2} = \dfrac{\frac{-5}{2} + \frac{4}{2}}{2} = \dfrac{\frac{-1}{2}}{2} = -\dfrac{1}{4}$
+
+L'axe de symétrie de la parabole d'équation $y= P(x)$ est donc la droite verticale d'équation $x=-\dfrac{1}{4}$.
+			\end{enumerate}
+			
+\item 
+Le polynôme $P$ a pour racines $x'=-\dfrac{5}{2}$ et $x''=2$, donc 
+
+$P(x)=a(x-x')(x-x'') = 2\left (x-\left( -\dfrac{5}{2}\right ) \right ) \left (x-2\right )= 2\left (x+\dfrac{5}{2}\right )\left (x-2\right )$
+
+On établit  le tableau de signes de la fonction $P$ sur l'intervalle $[-5~:~3]$.
+
+\[\begin{tablvar}{7}
+\hline
+x & -5 && -\frac{5}{2} && 2 && 3 \\
+\hline
+x+\frac{5}{2} & & - & \barre[0] & + & \barre & + & \\
+\hline
+x-2 & & - & \barre & - & \barre[0] & + & \\
+\hline
+2 & & + & \barre & + & \barre & + & \\
+\hline
+P(x) & & + & \barre[0] & - & \barre[0] & + & \\
+\hline
+\end{tablvar}\]
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On considère la fonction $f$ définie et dérivable sur l'intervalle  $[-5~:~3]$  dont on donne ci-dessous la courbe représentative $\mathcal{C}_{f}$.
+
+\begin{center}
+\fbox{
+\psset{xunit=1.2cm,yunit=0.2cm,arrowsize=2pt 3}
+\begin{pspicture*}(-5.5,-14)(3.5,22)
+\psgrid[xunit=0.6cm,yunit=1cm,subgriddiv=5,  gridlabels=0, gridcolor=lightgray,subgridcolor=lightgray!50](-11,-3)(7,6)
+\psaxes[linewidth=0pt,Dx=0.5,Dy=50,labels=none](0,0)(-5.49,-14)(3.5,22)
+\psaxes[linewidth=1.25pt,Dx=1,Dy=5,labelFontSize=\scriptstyle]{->}(0,0)(-5.49,-14)(3.5,22)
+\multido{\n=-4.5+1.0}{8}{\uput[u](\n,0){\scriptsize\np{\n}}}
+\uput{12pt}[dl](0,0){\scriptsize 0}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-5}{3}{x dup mul 4 mul 14 x mul sub 8 add 2.71828 0.5 x mul exp mul}
+\uput[u](-4.2,17){\red $\mathcal{C}_{f}$}
+\psdots(2,-10.873)\uput[d](2,-10.873){A}
+\psline[linecolor=blue](-5.5,-10.873)(3.5,-10.873)
+\uput [u](-4.3,-10.873){\blue $T$}
+
+\psset{linecolor=blue}
+\psline[linestyle=dashed](-2.5,0)(-2.5,19.48)
+\psline[linestyle=dashed](2,0)(2,-10.87)
+\psline[linewidth=1.5pt]{]-[}(-2.5,0)(2,0)
+\end{pspicture*}
+}
+\end{center}
+
+La tangente $T$ à la courbe $\mathcal{C}_{f}$ au point A d'abscisse 2 est horizontale.
+
+\begin{enumerate}
+\item 
+$f'(2)$ est le coefficient directeur de la tangente à la courbe $\mathcal{C}_f$ au point de la courbe d'abscisse 2; c'est donc le coefficient directeur de la droite $T$. Or la droite $T$ est horizontale, donc son coefficient directeur est égal à 0.
+
+On en déduit que $f'(2)=0$.
+
+\item
+Les solutions de l'inéquation $f'(x) < 0$ sont les valeurs de $x$ pour lesquelles la fonction $f$ est strictement décroissante, soit l'intervalle $]-2,5\;; 2[$ d'après le graphique.
+
+\item On sait que sur l'intervalle $[-5~;~3]$ : $f(x)=\left(4 x^{2}-14 x + 8\right) \e^{0,5x}$.
+
+
+
+D'après la formule de dérivation d'un produit:
+
+$\begin{aligned}
+f'(x)
+&= \left (4\times 2x - 14\right )\times \e^{0,5x} + \left(4 x^{2}-14 x + 8\right)\times 0,5 \e^{0,5x} \\
+&= \left ( 8x-14 + \left (4x^2-14x+8\right )\times 0,5\right )\e^{0,5x}\\
+&= \left ( 8x-14 +2x^2-7x+4\right )\e^{0,5x}\\
+&= \left ( 2x^2 +x-10\right )\e^{0,5x}\\
+&= P(x)\e^{0,5x}
+\end{aligned}$
+
+\item 
+D'après la partie A, on connaît le signe de $P(x)$. De plus, on sait que $\e^{0,5x}>0$ pour tout réel $x$.
+On peut donc établir le tableau de signes de $f'(x)$, puis le tableau de variations de la fonction $f$.
+
+\[\renewcommand{\fleche}{\ncline[linewidth=1.2pt,arrowsize=2pt 3,nodesep=2.5pt]{->}}
+\begin{tablvar}{7}
+\hline
+x & -5 && -\frac{5}{2} && 2 && 3 \\
+\hline
+P(x) & & + & \barre[0] & - & \barre[0] & + & \\
+\hline
+\e^{0,5x} & & + & \barre & + & \barre & + & \\
+\hline
+f'(x) = P(x)\e^{0,5x} & & + & \barre[0] & - & \barre[0] & + & \\
+\hline
+\variations{\mil{\text{variations de } f} & \bas{~} && \haut{~} && \bas{~} && \haut{~}}
+\hline
+\end{tablvar}\]
+
+\end{enumerate}

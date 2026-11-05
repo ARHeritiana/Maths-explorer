@@ -1,0 +1,175 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_asie_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+\item On a : \quad $\vect{\mathrm{AB}}\begin{pmatrix} 4 - 3\\ -1 - (-1) \\ 0-1\end{pmatrix} = \begin{pmatrix}1\\0\\-1\end{pmatrix}$ \quad et \quad $\vect{\mathrm{AC}}\begin{pmatrix} 0 - 3\\ 3 - (-1) \\ 2-1\end{pmatrix} = \begin{pmatrix}-3\\4\\1\end{pmatrix}$.
+
+On a $x_{\vect{\mathrm{AC}}} = -3 x_{\vect{\mathrm{AB}}}$, mais $y_{\vect{\mathrm{AC}}} \neq -3 y_{\vect{\mathrm{AB}}}$, les vecteurs sont donc non colinéaires, et donc les points A, B et C ne sont pas alignés.
+
+\item
+	\begin{enumerate}
+		\item On sait que A, B et C ne sont pas alignés, et donc qu'ils définissent un plan. Pour montrer que les points A, B, C et D sont coplanaires, il suffit de montrer que D est un point du plan (ABC), ce qui équivaut à prouver qu'un vecteur reliant un point du plan (ABC) au point D est coplanaire à deux vecteurs non colinéaires du plan (ABC).
+
+		Pas tout à fait au hasard (car on a regardé l'énoncé de la question suivante), on va choisir d'exprimer le vecteur $\vect{\mathrm{CD}}$ en fonction d'une base de (ABC) constituée des vecteurs $\vect{\mathrm{AB}}$ et $\vect{\mathrm{AC}}$ dont on a déjà déterminé les coordonnées précédemment.
+
+		On a : \quad $\vect{\mathrm{CD}}\begin{pmatrix}4 - 0\\3 - 3\\-2 - 2\end{pmatrix} = \begin{pmatrix}4\\0\\-4\end{pmatrix}$.
+
+		On remarque que l'on a :\quad $\vect{\mathrm{CD}} = 4\times \vect{\mathrm{AB}} + 0\times \vect{\mathrm{AC}}$.
+
+		Le vecteur $\vect{\mathrm{CD}}$ peut donc être écrit comme combinaison linéaire des vecteurs $\vect{\mathrm{AB}}$ et $\vect{\mathrm{AC}}$, donc c'est un vecteur du plan (ABC), et puisque C est dans le plan (ABC), on en déduit que D est également dans (ABC).
+
+		Finalement, puisque D est dans (ABC), les quatre points A, B, C et D sont bien coplanaires.
+
+		\item À la question précédente, on a établi $\vect{\mathrm{CD}} = 4\times \vect{\mathrm{AB}} + 0\times \vect{\mathrm{AC}}$, c'est-à-dire $\vect{\mathrm{CD}} = 4\times \vect{\mathrm{AB}}$. Les vecteurs $\vect{\mathrm{AB}}$ et $\vect{\mathrm{CD}}$ étant colinéaires, les segments [AB] et [CD] sont portés par des droites parallèles (strictement, car C n'est pas aligné avec A et B).
+
+		ABCD est donc une figure plane (les quatre points étant coplanaires), c'est donc un quadrilatère, non croisé (puisque $\vect{\mathrm{AB}}$ et $\vect{\mathrm{CD}}$ sont colinéaires de même sens, cela signifie que ABDC est non croisé, ABCD serait un quadrilatère croisé), dont les côtés [AB] et [DC] sont parallèles : le quadrilatère ABDC est donc bien un trapèze, de bases [AB] et [DC].
+	\end{enumerate}
+
+\item \begin{enumerate}
+	\item Comme on est dans un repère \Oijk{} orthonormé, on va utiliser les coordonnées des vecteurs pour calculer le produit scalaire :
+	\begin{itemize}
+		\item $\vect{n}\cdot\vect{\mathrm{AB}} = 2\times 1 + 1 \times 0 + 2 \times (-1) = 2 + 0 - 2 = 0$ :\quad $ \vect{n}$ et $\vect{\mathrm{AB}}$ sont donc orthogonaux;
+		\item $\vect{n}\cdot\vect{\mathrm{AC}} = 2\times (-3) + 1 \times 4 + 2 \times 1 = -6 + 4 + 2 = 0$ :\quad $ \vect{n}$ et $\vect{\mathrm{AC}}$ sont aussi orthogonaux;
+	\end{itemize}
+
+	$\vect{n}$ étant orthogonal à une base (deux vecteurs non colinéaires) du plan (ABC), on en déduit que $\vect{n}$ est un vecteur normal au plan (ABC).
+
+	\item $\vect{n}$ de coordonnées $\begin{pmatrix}2\\1\\2\end{pmatrix}$ étant normal à (ABC), on en déduit que (ABC) admet une équation de la forme :\quad$ 2x + y + 2z + d = 0$, où $d$ est un réel donné.
+
+	De plus, $\begin{aligned}[t] \mathrm{A} \in (\mathrm{ABC}) &\iff 2x_{\mathrm{A}} + y_{\mathrm{A}} + 2z_{\mathrm{A}} + d = 0\\
+	&\iff 2\times 3 + (-1) + 2\times 1 + d = 0\\
+	&\iff 6 - 1 + 2 + d = 0\\
+	&\iff d = -7\end{aligned}$
+
+	Finalement, une équation de (ABC) est :\quad$2x + y + 2z - 7 = 0$.
+
+	\item Si $\Delta$ est orthogonale à (ABC), cela signifie que $\vect{n}$, qui est normal à (ABC) doit diriger $\Delta$. Et si la droite passe par S, de coordonnées $(2 ~;~ 1 ~;~ 4)$, on en déduit qu'une représentation paramétrique de $\Delta$ est :
+
+	$\begin{cases}x = x_{\mathrm{S}} + x_{\vect{n}}t\\y = y_{\mathrm{S}} + y_{\vect{n}}t\\z = z_{\mathrm{S}} + z_{\vect{n}}t\\	\end{cases} \quad t \in \R$\quad ce qui donne ici :\quad $\begin{cases}x  = 2 + 2t\\y=1+t\\z=4+2t\end{cases} \quad t \in \R$.
+
+	\item On nomme $M_t$ le point de paramètre $t$ sur la droite $\Delta$.
+
+	$\begin{aligned}[t] M_t \in (\mathrm{ABC}) &\iff 2x_{M_{t}} + y_{M_{t}} + 2z_{M_{t}} - 7 = 0\\
+	&\iff 2(2 + 2t) + (1 + t) + 2(4 + 2t) - 7 = 0\\
+	&\iff 4 + 4t + 1 + t + 8 + 4t - 7 = 0\\
+	&\iff 9t + 6 = 0\\
+	&\iff t = \dfrac{-2}{3}\end{aligned}$
+
+	Il existe donc un unique point de $\Delta$ qui est sur le plan (ABC), c'est le point de paramètre $t=\dfrac{-2}{3}$ dans la représentation paramétrique. Ce point est donc le point I (ou bien $M_{\frac{-2}{3}}$), et a bien pour coordonnées : $\left(2 + 2\times \dfrac{-2}{3} ~;~ 1 + \dfrac{-2}{3}~;~ 4 + 2\times \dfrac{-2}{3}\right)  = \left(\dfrac{2}{3} ~;~ \dfrac{1}{3} ~;~ \dfrac{8}{3}\right)$.
+
+	Dans le repère orthonormé \Oijk{}, on a donc :
+
+	$\begin{aligned}[t] \mathrm{SI} &= \sqrt{\left(x_\mathrm{I} - x_{\mathrm{S}}\right)^2 +\left(y_\mathrm{I} - y_{\mathrm{S}}\right)^2 +\left(z_\mathrm{I} - z_{\mathrm{S}}\right)^2 } = \sqrt{\left(\dfrac{2}{3}-2\right)^2 + \left(\dfrac{1}{3} - 1\right)^2 + \left(\dfrac{8}{3} - 4\right)^2   } \\
+	&=\sqrt{\left(-\dfrac{4}{3}\right)^2 + \left(-\dfrac{2}{3}\right)^2 + \left(-\dfrac{4}{3}\right)^2  } = \sqrt{\dfrac{16}{9}+\dfrac{4}{9} + \dfrac{16}{9}} = \sqrt{\dfrac{36}{9}} = \sqrt{4} = 2 \end{aligned}$
+
+	On arrive bien à SI = 2 unités graphique, et comme \Oijk{} est d'unité graphique 1 cm, on a bien SI = 2 cm.
+\end{enumerate}
+\item \begin{enumerate}
+	\item Avec les coordonnées données pour H, on a $\vect{\mathrm{BH}} \begin{pmatrix}-1 \\ 4\\-1\end{pmatrix}$ et $\vect{\mathrm{CH}} \begin{pmatrix}3 \\ 0\\-3\end{pmatrix}$.
+
+	On a donc : \quad $\vect{\mathrm{CD}}\cdot\vect{\mathrm{BH}} = 4\times (-1) + 0\times 4 + (-4) \times -1 = -4 + 0 + 4 = 0$, donc les vecteurs sont orthogonaux, et les droites (BH) et (CD) qu'ils dirigent sont orthogonales.
+
+	Par ailleurs  :\quad $\vect{\mathrm{CH}} = \dfrac{3}{4}\vect{\mathrm{CD}}$, les points C, H et D sont alignés, donc H est sur la droite (CD).
+
+	H est donc le point de la droite (CD) tel que (BH) est orthogonale à (CD), donc c'est bien le projeté orthogonal de B sur (CD).
+
+	On a $\mathrm{BH} = \sqrt{(-1)^2 + 4^2 + (-1)^2 } = \sqrt{1 + 16 + 1} = \sqrt{18} = 3\sqrt{2}$.
+
+	La distance BH est bien égale à $3\sqrt{2}$ cm.
+
+	\item On a donc besoin de connaître les longueurs des deux bases du trapèze :
+	\begin{itemize}
+		\item $\mathrm{AB} = \sqrt{1^2 + 0^2 + (-1)^2} = \sqrt{2}$ cm;
+		\item Comme on a $\vect{\mathrm{CD}} = 4\times \vect{\mathrm{AB}}$, on a notamment, $\mathrm{CD} = \left|4\right|\times \mathrm{AB} = 4\sqrt{2}$ cm.
+	\end{itemize}
+
+	L'aire du trapèze ABDC est donc :\quad $\mathcal{A}_{\mathrm{ABDC}} = \dfrac{\sqrt{2} + 4\sqrt{2}}{2}\times 3\sqrt{2} =\dfrac{5\sqrt{2}}{2}\times 3\sqrt{2}= \np[cm^2]{15} $
+\end{enumerate}
+\item Finalement, le volume de la pyramide est :\quad $\mathcal{V}_{\mathrm{ABDCS}} = \dfrac{1}{3} \times 15 \times 2 = \np[cm^3]{10}$.
+\end{enumerate}
+
+	\medskip
+
+\end{document}

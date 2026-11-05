@@ -1,0 +1,37 @@
+\subsection*{1.}
+
+Retrancher 25 \%, c'est multiplier par \(1 - \dfrac{25}{100} = 0{,}75\).
+
+Donc :
+\begin{align*}
+&u_1 = u_0 \times 0{,}75 = 3 \times 0{,}75 = 2{,}25 \, \text{(m)}, \\
+&u_2 = u_1 \times 0{,}75 = 2{,}25 \times 0{,}75 = 1{,}6875 \, \text{(m)}.
+\end{align*}
+
+\subsection*{2.}
+
+Puisque pour tout \(n\), \(h_{n+1} = 0{,}75 h_n\), la suite n'est pas arithmétique mais géométrique de raison \(q = 0{,}75\) et de premier terme \(h_0 = 3\).
+
+\subsection*{3.}
+
+Voir ci-dessus.
+
+\subsection*{4.}
+
+On obtient \(h_6 = 0{,}5340\) soit \(0{,}53 \, \text{(m)}\) au cm près.
+
+\subsection*{5.}
+
+\begin{center}
+\begin{lstlisting}[style=python]
+def seuil() :
+    h = 3
+    n = 0
+    while h >= 0.1 :
+        h = h * 0.75
+        n = n + 1
+    return n
+\end{lstlisting}
+\end{center}
+
+Le script renverra la valeur \(n = 12\).

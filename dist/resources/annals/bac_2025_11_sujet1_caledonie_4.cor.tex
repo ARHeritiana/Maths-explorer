@@ -1,0 +1,151 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet1_caledonie_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\smallskip
+
+\begin{enumerate}
+\item Puisque $x > 0$, on peut écrire $f(x) = x^2\left(\dfrac{\ln (x)}{x^2}  - 1\right)$.
+
+On sait (croissances comparées) que $\displaystyle\lim_{x \to - \infty} \dfrac{\ln (x)}{x^2} = 0$, donc que $\displaystyle\lim_{x \to - \infty} \dfrac{\ln (x)}{x^2} - 1 = - 1$.
+
+Comme $\displaystyle\lim_{x \to - \infty}x^2 = + \infty$, on obtient finalement par produit de limites 
+
+$\displaystyle\lim_{x \to - \infty} x^2 \left(\dfrac{\ln (x)}{x^2}  - 1\right) = - \infty$.
+
+\hfill\textbf{L'affirmation 1 est vraie.}
+
+\item $f(x)=2\,\cos\left (x\right )- \sin\left (x\right )$, donc:
+$f'(x)= -2\,\sin\left (x\right ) - \cos\left (x\right )$. Donc:
+
+$\begin{aligned}[t]
+- 2f'(x) + 3f(x) 
+& = -2\left ( -2\,\sin\left (x\right ) - \cos\left (x\right )\right ) +3 \left (2\,\cos\left (x\right )- \sin\left (x\right ) \right )\\
+& = 4\,\sin\left (x\right ) +2\,\cos\left (x\right ) +6\,\cos\left (x\right ) -3\,\sin\left (x\right )\\
+ & = \sin\left (x\right ) +8\,\cos\left (x\right )
+\end{aligned}$
+
+Donc la fonction $f$ est solution de l'équation différentielle $-2y' +3y =  \sin\left (x\right ) +8\,\cos\left (x\right )$.
+
+\hfill\textbf{L'affirmation 2 est vraie.}
+
+\item On a $u_0 = 25$ et donc $u_1 = \ln (3 \times 25 + 1) = \ln 76 \approx 4,3 < 25$.
+
+On peut donc supposer que la suite est décroissante ce que l'on démontre par récurrence : soit $(P_n) : u_{n+1} < u_n$
+
+\textit{Initialisation} : on a vu que $u_1 < u_0$ donc $P_0$ est vraie.
+
+\textit{Hérédité} : soit $n \in \N$ et supposons que $u_{n+1} < u_n$ : on a succesivement :
+\begin{eqnarray*}
+u_{n+1} < u_n &\iff & 3u_{n+1} < 3u_n\\
+&\iff &3u_{n+1} + 1 < 3u_n + 1\\
+&\iff &\ln \left(3u_{n+1} + 1\right) < \ln \left(3u_n + 1\right)\:\text{par croissance de la fonction ln}\\
+&\iff &u_{n+2} < u_{n+1}
+\end{eqnarray*}
+La relation est vraie au rang $n+1$.
+
+\textit{Conclusion} : La relation est vraie au rang 0 et si elle est vraie au rang $n \in \N$, elle l'est aussi au rang $n + 1$ : d'après le principe de récurrence quel que soit $\begin{gathered}n \in \N, \\\: u_{n+1} < u_n\end{gathered}$ : ceci montre que la suite $(u_n)$ est décroissante.
+
+\hfill\textbf{L'affirmation 3 est vraie.}
+
+\item Une application affine est de la forme $h(x) = ax + b$, avec $a \in \R$ et $b \in \R$.
+
+Donc $k(x) = x^4 + x^2 + ax + b$ ; $k$ est une fonction polynôme dérivable sur $\R$ et sur cet intervalle on a successivement :
+
+$k'(x) = 4x^3 + 2x + a$, puis
+
+$k''(x) = 12x^2 + 2$, comme un carré est supérieur ou égal à zéro, il en résulte que $k''(x) \geqslant 2 > 0$.
+
+Sur $\R$, la dérivée seconde est supérieure à zéro : la fonction $k$ est convexe sur $\R$.
+
+\hfill\textbf{L'affirmation 4 est vraie.}
+
+\item Avec 5 lettres différentes le nombre d'anagrammes est égal à $5! = 120$.
+
+Comme EULER possède deux lettres identiques le nombre d'anagrammes est égal à 
+
+$\dfrac{5!}{2!} = \dfrac{120}{2} = 60$.
+
+\hfill\textbf{L'affirmation 5 est fausse.}
+\end{enumerate}
+
+\end{document}

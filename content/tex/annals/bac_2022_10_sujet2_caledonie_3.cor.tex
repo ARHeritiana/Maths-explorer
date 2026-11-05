@@ -1,0 +1,166 @@
+\textbf{Principaux domaines abordés :} géométrie dans l'espace
+
+\medskip
+
+\begin{minipage}{0.5\linewidth}
+Une maison est modélisée par un parallélépipède rectangle ABCDEFGH surmonté d'une pyramide EFGHS.
+
+On a DC $= 6$,\:\: DA = DH $= 4$.
+
+Soit les points I, J et K tels que
+
+$\vect{\text{DI}} = \dfrac16\vect{\text{DC}}, \quad \vect{\text{DJ}} = \dfrac14\vect{\text{DA}},\quad \vect{\text{DK}} = \dfrac14\vect{\text{DH}}$.
+
+On note $\vect{\imath} = \vect{\text{DI}},\:\vect{\jmath} = \vect{\text{DJ}},\: \vect{k} = \vect{\text{DK}}$.
+
+On se place dans le repère orthonormé $\left(\text{D}~;~\vect{\imath},\:\vect{\jmath}, \: \vect{k}\right)$.
+
+On admet que le point S a pour coordonnées (3~;~2~;~6).
+\end{minipage} \hfill
+\begin{minipage}{0.46\linewidth}
+
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(6.3,6)
+\pspolygon(0.3,3.9)(0.3,0.7)(2.7,0.3)(2.7,3.5)
+\psline(2.7,0.3)(6,1.1)(6,4.3)(2.7,3.5)
+\psline[linestyle=dotted,linewidth=1.25pt](0.3,0.7)(3.6,1.5)(6,1.1)
+\psline[linestyle=dotted,linewidth=1.25pt](3.6,1.5)(3.6,4.7)(3.1,5.6)
+\psline[linestyle=dotted,linewidth=1.25pt](0.3,3.9)(3.6,4.7)(6,4.3)
+\psline(6,4.3)(3.1,5.6)(2.7,3.5)
+\psline(3.1,5.6)(0.3,3.9)
+\psline(4.3,4.8)(4.3,5.35)
+\psline[linewidth=1.25pt]{->}(3.6,1.5)(3.05,1.37)
+\psline[linewidth=1.25pt]{->}(3.6,1.5)(4.2,1.4)
+\psline[linewidth=1.25pt]{->}(3.6,1.5)(3.6,2.3)
+\uput[r](6,1.1){A} \uput[d](2.7,0.3){B} \uput[dl](0.3,0.7){C} \uput[d](3.6,1.5){D}
+\uput[ur](6,4.3){E} \uput[dl](2.7,3.5){F} \uput[l](0.3,3.9){G} \uput[ur](3.6,4.7){H}
+\uput[u](3.1,5.6){S} \uput[d](4.3,4.8){P} \uput[u](4.3,5.35){Q} \uput[u](3.05,1.37){I}
+\uput[ur](4.2,0.9){J} \uput[r](3.6,2.3){K} \uput[d](3.32,1.42){$\vect{\imath}$} \uput[u](3.9,1.3){$\vect{\jmath}$}
+\uput[l](3.6,1.9){$\vect{k}$}
+\end{pspicture}
+
+\end{minipage}
+
+\medskip
+
+\begin{enumerate}
+\item 
+B(6~;~4~;~0), \quad E(0~;~4~;~4), \quad F(6~;~4~;~4), \quad G(6~;~0~;~4).
+\item 
+
+
+
+
+On a $\mathcal{A}(\text{EFGH}) = 6 \times 4 = 24$.
+
+La hauteur de la pyramide est égale à $6 - 4 = 2$, donc :
+
+$V(\text{EFGHS}) = \dfrac13 \times 24 \times 2 = 16$.
+
+D'autre part $V(\text{ABCDEFGH})  = 6 \times 4 \times 4 = 96$.
+
+Le volume de la maison est donc égal à $16 + 96 = 112$.
+
+Or $\dfrac{V(\text{EFGHS})}{V(\text{maison})} = \dfrac{16}{112}\dfrac{4}{28} = \dfrac{1}{7}$.
+\item 
+	\begin{enumerate}
+		\item 
+		On a $\vect{\text{EF}}\begin{pmatrix}6\\0\\0\end{pmatrix}$ et $\vect{\text{ES}}\begin{pmatrix}3\\-2\\2\end{pmatrix}$.
+		
+$\vect{\text{EF}}\cdot \vect{n} = 6 \times 0 + 0 \times 1 + 0 \times 1 = 0$ et 
+
+$\vect{\text{ES}}\cdot \vect{n} = 3 \times 0 - 2 \times 1 + 2 \times 1 = 0$.
+
+Le vecteur $\vect{n}$ orthogonal à deux vecteurs manifestement non colinéaires du plan (EFS) est donc normal à ce plan.
+		\item 
+		Le résultat précédent montre que :
+		
+$M(x~;~y~;~z) \in (\text{EFS}) \iff 0x + 1y + 1z = d, \quad d \in \R$.
+
+Or, par exemple E(0~;~4~;~4) $\in (\text{EFS}) \iff 0 + 4 + 4 = d \iff d = 8$.
+
+On a donc $M(x~;~y~;~z) \in (\text{EFS}) \iff y + z = 8.$
+	\end{enumerate}	
+\item 
+
+
+
+
+
+
+	\begin{enumerate}
+		\item 
+
+
+
+
+
+
+On a $M(x~;~y~;~z) \in (\text{PQ}) \iff \vect{\text{Q}M} = t\vect{k}, \quad (t \in \R) \iff \left\{\begin{array}{l c l}
+x - 2 &=& 0t\\
+y - 3&=&0t\\
+z - 5,5&=&1t
+\end{array}\right.\iff \left\{\begin{array}{l c l}
+x &=& 2\\
+y &=&3\\
+z &=&5,5 + t
+\end{array}\right., \quad (t \in \R)$.
+		\item 
+Les coordonnées du point P vérifient les équations paramétriques de la droite (PQ) et du plan (EFS), donc du système :
+
+$\left\{\begin{array}{l c l}
+x &=&2\\
+y &=&3\\
+z &=&5,5 + t\\
+y + z &=& 8
+\end{array}\right. \Rightarrow 3 + 5,5 + t  = 8 \iff t = - 0,5$.
+
+Conclusion : P(2~;~3~;~5).
+		\item 
+On a PQ$^2 = (2 - 2)^2 + (3 - 3)^2 + (5,5 - 5)^2 = 0,25$ , donc PQ $ = 0,5$.
+	\end{enumerate}	
+
+
+
+
+
+
+
+
+\item 
+$\Delta$ a pour vecteur directeur $\vect{\delta}\begin{pmatrix}6\\-4\\4\end{pmatrix}$ et la droite (PQ) a pour vecteur directeur $\vect{k}\begin{pmatrix}0\\0\\1\end{pmatrix}$ : ces deux vecteurs ne sont pas colinéaires donc les droites ne sont pas parallèles.
+
+Elles sont sécantes s'il existe un point $M(x~;~y~;~z)$ dont les coordonnées vérifient les équations des deux droites soit le système :
+
+$\left\{\begin{array}{l c l}
+x &=&2\\
+y &=&3\\
+z &=&5,5 + t\\
+x & =& -4 + 6s\\
+y &=& 7 - 4s\\
+z &=& 2 + 4s
+\end{array}\right.$
+
+ On en déduit (équations 1 et 4) que $2 = - 4 + 6s \iff 6 = 6s \iff s = 1$ et (équations 3 et 6) que $5,5 + t = 2 + 4 \iff t = 0,5.$
+
+Il existe donc un point commun aux deux droites de coordonnées (2~;~3~;~4)
+
+Reprenons les équations paramétriques de la droite (PQ) : $M(x~;~y~;~z) \in (\text{PQ}) \iff \left\{\begin{array}{l c l}
+x &=& 2\\
+y &=&3\\
+z &=&5,5 + t
+\end{array}\right., \quad (t \in \R)$
+
+L'abscisse et l'ordonnée de tous les points de cette droite sont fixes, seule la cote varie de 5 pour P (correspondant à $t = -0,5$ à 5,5 pour Q (correspondant à $t = 0$) ; autrement dit les points du segment vérifient le système :
+
+$M(x~;~y~;~z) \in [\text{PQ}] \iff \left\{\begin{array}{l c l}
+x &=& 2\\
+y &=&3\\
+z &=&5,5 + t
+\end{array}\right., \quad (-0,5 \leqslant t \leqslant 0)$.
+
+Le point commun aux deux droites correspond lui à $t = 0,5$, donc n'appartient pas au segment [PQ] : autrement dit l'oiseau ne va pas percuter l'antenne représentée par le segment [PQ].
+
+\end{enumerate}
+
+\bigskip

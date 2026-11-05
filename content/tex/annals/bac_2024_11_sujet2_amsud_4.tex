@@ -1,0 +1,56 @@
+\medskip
+
+L'espace est muni d'un repère orthonormé \Oijk.
+
+On considère les trois points A(3~;~0~;~0), B(0~;~2~;~0) et C(0~;~0~;~2).
+
+\begin{center}
+\psset{unit=0.8cm,arrowsize=2pt 3}
+\begin{pspicture}(-2.5,-1.8)(3,2.5)
+\psline[linewidth=1.25pt]{->}(1,0)
+\psline[linewidth=1.25pt]{->}(0,1)
+\psline[linewidth=1.25pt]{->}(-0.6,-0.6)
+\uput[u](0.5,0){\footnotesize $\vect{\jmath}$}
+\uput[l](0,0.5){\footnotesize $\vect{k}$}
+\uput[ul](-0.3,-0.3){\footnotesize $\vect{\imath}$}
+\psline[linewidth=1.25pt]{->}(1,0)
+\psline(3,0)\psline(0,2.5)\psline(-2,-2)
+\uput[ul](-1.8,-1.8){A}\uput[u](2,0){B}\uput[l](0,2){C}
+\psdots(-1.8,-1.8)(2,0)(0,2)\uput[dr](0,0){O}
+\end{pspicture}
+\end{center}
+
+L'objectif de cet exercice est de démontrer la propriété suivante :
+
+\og Le carré de l'aire du triangle ABC est égal à la somme des carrés des aires des trois autres faces du tétraèdre OABC \fg,
+
+\bigskip
+
+\textbf{Partie 1 : Distance du point O au plan (ABC)}
+
+\medskip
+
+\begin{enumerate}
+\item Démontrer que le vecteur $\vect{n}(2~;~3~;~3)$ est normal au plan (ABC).
+\item Démontrer qu'une équation cartésienne du plan (ABC) est : $2x + 3y + 3z - 6 = 0$.
+\item Donner une représentation paramétrique de la droite $d$ passant par O et de vecteur directeur $\vect{n}$.
+\item On note H le point d'intersection de la droite $d$ et du plan (ABC).
+
+Déterminer les coordonnées du point H.
+\item En déduire que la distance du point O au plan (ABC) est égale à $\dfrac{3\sqrt{22}}{11}$ 
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2 : Démonstration de la propriété}
+
+\medskip
+
+\begin{enumerate}
+\item Démontrer que le volume du tétraèdre OABC est égal à 2.
+\item En déduire que l'aire du triangle ABC est égale à $\sqrt{22}$.
+\item Démontrer que pour le tétraèdre OABC, \og le carré de l'aire du triangle ABC est égal à la somme des carrés des aires des trois autres faces du tétraèdre \fg.
+
+On rappelle que le volume d'un tétraèdre est donné par $V = \dfrac13B \times h$ où $B$ est l'aire d'une 
+base du tétraèdre et $h$ est la hauteur relative à cette base.
+\end{enumerate}

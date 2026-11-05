@@ -1,0 +1,269 @@
+\medskip
+
+On considère un cube ABCDEFGH de côté 1.
+
+\begin{center}
+\psset{unit=0.8cm}
+\begin{pspicture}(9,9.4)
+\psdots(1.4,1)(5.6,0.5)(7.9,1.4)(3.7,1.9)(1.4,5.5)(5.6,5)(7.9,5.9)(3.7,6.4)(4.65,1.2)(1.4,8.2)(7.1,4.72)
+\pspolygon(1.4,1)(5.6,0.5)(5.6,5)(1.4,5.5)
+\psline(5.6,0.5)(7.9,1.4)(7.9,5.9)(5.6,5)
+\psline(7.9,5.9)(3.7,6.4)(1.4,5.5)
+\psline(1.4,8.2)(5.6,0.5)(7.9,5.9)
+\psline(1.4,8.2)(5.5,5.7)
+\psline[linestyle=dashed](5.5,5.7)(7.9,4.2)
+\psline(1.4,8.2)(2.24,5.98)
+\psline(1.4,1)(1.4,9)
+\psline(0.4,8.8)(1.4,8.2)
+\psline[linestyle=dashed](2.24,5.98)(3.7,1.9)
+\psline(7.9,4.2)(8.7,3.7)
+\psline[linestyle=dashed](1.4,1)(3.7,1.9)(7.9,1.4)
+\psline[linestyle=dashed](3.7,6.4)(3.7,1.9)(5.6,0.5)
+\psline[linestyle=dashed](4.65,1.2)(7.9,5.9)(3.7,1.9)
+\uput[l](1.4,1){A} \uput[dr](5.6,0.5){B} \uput[r](7.9,1.4){C} \uput[170](3.7,1.9){D}
+\uput[l](1.4,5.5){E} \uput[ul](5.6,5){F} \uput[ur](7.9,5.9){G} \uput[170](3.7,6.4){H}
+\uput[dl](4.65,1.2){I} \uput[ur](1.4,8.2){K} \uput[d](7.1,4.72){L} \uput[dl](0.4,8.8){$\Delta$}
+\end{pspicture}
+\end{center}
+
+Le point I est le milieu du segment [BD]. On définit le point L tel que $\vect{\text{IL}}= \dfrac34\vect{\text{IG}}$.
+
+On se place dans le repère orthonormé $\left(\text{A}~;~\vect{\text{AB}},\:\vect{\text{AD}},\:\vect{\text{AE}}\right)$.
+
+\begin{enumerate}
+\item
+	\begin{enumerate}
+		\item
+D\,(0~;~1~;~0), B\,(1~;~0~;~0), I\,$\left ( \dfrac{1}{2}~;\dfrac{~1}{2}~;~0 \right )$ et G\,(1~;~1~;~1)
+		
+		\item 
+{\renewcommand{\arraystretch}{1.2}		
+\begin{list}{\textbullet}{}
+\item		
+$\vectt{IL}$ a pour coordonnées
+$\begin{pmatrix} 
+x_{\text L} - x_{\text I} \\ y_{\text L} - y_{\text I} \\ z_{\text L} - z_{\text I} 
+\end{pmatrix}
+=
+\begin{pmatrix} 
+x_{\text L} - \frac{1}{2} \\ y_{\text L} - \frac{1}{2} \\ z_{\text L} - 0 
+\end{pmatrix}
+=
+\begin{pmatrix} 
+x_{\text L} - \frac{1}{2} \\ y_{\text L} - \frac{1}{2} \\ z_{\text L} 
+\end{pmatrix}$		
+
+\item		
+$\vectt{IG}$ a pour coordonnées
+$\begin{pmatrix} 
+x_{\text G} - x_{\text I} \\ y_{\text G} - y_{\text I} \\ z_{\text G} - z_{\text I} 
+\end{pmatrix}
+=
+\begin{pmatrix} 
+1 - \frac{1}{2} \\ 1 - \frac{1}{2} \\ 1-0 
+\end{pmatrix}
+=
+\begin{pmatrix} 
+\frac{1}{2} \\ \frac{1}{2} \\ 1
+\end{pmatrix}$	
+\end{list}
+	
+$\vectt{IL} = \dfrac{3}{4} \vectt{IG}	
+\iff
+\left \{
+\begin{array}{l !{=} l}
+x_{\text L} - \frac{1}{2} & \frac{3}{4} \times \frac{1}{2} \\ 
+y_{\text L} - \frac{1}{2} & \frac{3}{4} \times \frac{1}{2}\\ 
+z_{\text L} &\frac{3}{4} \times 1
+\end{array}
+\right .
+\iff
+\left \{
+\begin{array}{l !{=}l}
+x_{\text L} & \frac{3}{8} + \frac{1}{2} \\ 
+y_{\text L} &\frac{3}{8} + \frac{1}{2}\\ 
+z_{\text L} &\frac{3}{4}
+\end{array}
+\right .
+\iff
+\left \{
+\begin{array}{l !{=}l}
+x_{\text L} & \frac{7}{8} \\ 
+y_{\text L} &\frac{7}{8}\\ 
+z_{\text L} &\frac{3}{4}
+\end{array}
+\right .$
+}
+	\end{enumerate}
+	
+\item Soit $\mathcal{P}$ le plan d'équation cartésienne $x + y - z - 1 = 0$.
+
+\begin{list}{\textbullet}{}
+\item $x_{\text B} + y_{\text B} -z_{\text B} -1 = 1+0 - 0-1 = 0$ donc $\text{B}\in\mathcal{P}$.
+\item $x_{\text D} + y_{\text D} -z_{\text D} -1 = 0+1-0-1=0$ donc $\text{D}\in\mathcal{P}$.
+\item $x_{\text G} + y_{\text G} -z_{\text G} -1 = 1+1-1-1=0$ donc $\text{G}\in\mathcal{P}$.
+\end{list}
+
+Donc le plan (BDG) a pour équation cartésienne $x + y - z - 1 = 0$.
+
+\item On considère la droite $\Delta$ perpendiculaire au plan (BDG) passant par L.
+	\begin{enumerate}
+		\item 
+(BDG) a pour équation $x+y-z-1=0$, donc il a pour vecteur normal
+$\vect{n}\,\begin{pmatrix} 1 \\ 1 \\ -1\end{pmatrix}$
+
+La droite $\Delta$ est perpendiculaire au plan (BDG) donc elle a le vecteur $\vect{n}$ comme vecteur directeur.
+Donc la droite $\Delta$ est l'ensemble des points M\,$(x~;~y~;~z)$ tels que $\vectt{LM}=t\vect{n}$ avec $t\in\R$.
+
+{\renewcommand{\arraystretch}{1.3}
+$\vectt{LM}=t\vect{n}
+\iff
+\left \{
+\begin{array}{l !{=} l}
+x- \frac{7}{8} & t\times 1\\
+y- \frac{7}{8} & t\times 1\\
+z-\frac{3}{4} & t\times (-1)
+\end{array}
+\right .
+\iff
+\left \{
+\begin{array}{l !{=} l}
+x & \frac{7}{8} + t\\
+y & \frac{7}{8} + t\\
+z & \frac{3}{4} - t
+\end{array}
+\right .  \text{ où } t\in\R$}
+
+		\item Soit K le point de coordonnées $\left(0~;~0~;~\dfrac{13}{8}\right)$.
+
+\begin{list}{\textbullet}{}
+\item On regarde si les coordonnées de K vérifient la représentation paramétrique de $\Delta$, autrement dit on cherche s'il existe un réel $t$ tel que;
+{\renewcommand{\arraystretch}{1.3}
+$\left \{
+\begin{array}{l !{=} l}
+0 & \frac{7}{8} + t\\
+0 & \frac{7}{8} + t\\
+\frac{13}{8} & \frac{3}{4} - t
+\end{array}
+\right .$}
+
+Le réel $t=-\dfrac{7}{8}$ convient donc $\text K \in \Delta$.
+
+\item $\vectt{AE}$ a pour coordonnées 
+$\begin{pmatrix}  0\\0\\1 \end{pmatrix}$
+et  $\vectt{AK}$ a pour coordonnées
+$\begin{pmatrix} 0\\ 0 \\ \frac{13}{8} \end{pmatrix}$.
+
+Donc les vecteurs $\vectt{AE}$ et $\vectt{AK}$ sont colinéaires donc $\text K \in \text{(AE)}$.
+\end{list}
+
+Les deux droites $\Delta$ et (AE) sont donc sécantes en K.
+
+		\item 
+\begin{list}{\textbullet}{}
+\item $\vect{\text{IL}}= \dfrac34\vect{\text{IG}}$ donc $\text L \in (\text{IG})$ donc $\text L \in (\text{BDG})$.
+\item La droite $\Delta$ est perpendiculaire au plan (BDG).
+\item $\text K \in \text{(BDG)}$
+\end{list}
+
+Donc le point L est le projeté orthogonal du point K sur le plan (BDG).
+	\end{enumerate}
+
+\item 
+	\begin{enumerate}
+		\item
+K a pour coordonnées $\left(0~;~0~;~\dfrac{13}{8}\right)$ et L a pour coordonnées $\left(\dfrac78~;~\dfrac78~;~\dfrac34\right)$. Donc
+
+$\text{KL}^2 = \left (\dfrac{7}{8}-0 \right )^2 + \left ( \dfrac{7}{8}-0 \right )^2 + \left ( \dfrac{3}{4} - \dfrac{13}{8}\right )^2
+= \left (\dfrac{7}{8}\right )^2 + \left ( \dfrac{7}{8}\right )^2 + \left (  - \dfrac{7}{8}\right )^2
+= \dfrac{49}{64} + \dfrac{49}{64} + \dfrac{49}{64}
+= \dfrac{147}{64}$\\
+donc $\text{KL} = \dfrac{\sqrt{147}}{8}=\dfrac{7\sqrt{3}}{8}$
+		
+		\item On admet que le triangle DBG est équilatéral, donc chaque angle mesure $\dfrac{\pi}{3}$.
+
+Le point I est le milieu de [BD] donc I est aussi le pied de la hauteur issue de G dans le triangle DBG.
+
+Dans le triangle GIB rectangle en I, on a:
+$\sin \left ( \widehat{\text{IBG}} \right ) = \dfrac{\text{IG}}{\text{BG}}$.
+
+BG est la diagonale du carré BCGF de côté 1, donc $\text{BG}=\sqrt{2}$.
+De même $\text{BD}=\sqrt{2}$.
+		
+On a donc $\sin \left ( \dfrac{\pi}{3} \right ) = 	\dfrac{\text{IG}}{\text{BG}}$, donc $\dfrac{\sqrt{3}}{2}= \dfrac{\text{IG}}{\sqrt{2}}$ et donc $\text{IG} = \dfrac{\sqrt{6}}{2}$.
+
+L'aire du triangle BDG vaut:
+$\dfrac{\text{BD} \times \text{IG}}{2}=\dfrac{\sqrt{2}\times \frac{\sqrt{6}}{2}}{2}
+= \dfrac{ \frac{\sqrt{2}\times \sqrt{2} \times \sqrt{3}}{2}}{2}= \dfrac{\sqrt{3}}{2}$.
+		
+		\item Le tétraèdre KDBG a pour base le triangle BDG et pour hauteur KL, donc son volume vaut:	
+$\dfrac{1}{3}\times \text{aire(BDG)}\times \text{KL}
+= \dfrac{1}{3}\times \dfrac{\sqrt{3}}{2}\times \dfrac{7\sqrt{3}}{8}
+= \dfrac{7}{16}$		
+
+
+
+
+
+
+\end{enumerate}
+
+\item On désigne par $a$ un réel appartenant à l'intervalle $]0~;~+\infty[$ et on note K$_a$ le point de coordonnées $(0~;~0~;~a)$.
+	\begin{enumerate}
+		\item On exprime le volume $\mathcal{V}_a$ de la pyramide ABCDK$_a$ en fonction de $a$.
+		
+\begin{list}{\textbullet}{}
+\item La base de la pyramide est le carré ABCD d'aire 1.
+\item Le point K$_a$ a pour  coordonnées $(0~;~0~;~a)$ donc il appartient  à la droite (AE) et donc AK$_a$ est la hauteur de la pyramide ABCDK$_a$.
+\item De façon évidente, AK$_a$ = $a$.
+\end{list}		
+
+Donc $\mathcal{V}_a= \dfrac{1}{3}\times a \times 1 = \dfrac{a}{3}$.
+		
+		\item On note $\Delta_a$ la droite de représentation paramétrique 
+$\left\{\begin{array}{l !{=} l}
+x&\phantom{-}t' \\ 
+y &\phantom{-}t' \\ 
+z&- t' + a \end{array}\right. \text{ où } t' \in \R. $
+
+On appelle L$_a$ le point d'intersection de la droite $\Delta_a$ avec le plan (BDG).
+
+
+
+Les coordonnées de L$_a$ vérifient le système
+$\left\{
+\begin{array}{l !{=} l}
+x&\phantom{-}t' \\ 
+y &\phantom{-}t' \\ 
+z&- t' + a \\
+x+y-z-1 & 0
+\end{array}
+\right.$
+
+On a donc $t' + t' -(-t'+a) -1=0$ soit $3t'=a+1$ donc $t'=\dfrac{a+1}{3}$.
+
+$x=t'=\dfrac{a+1}{3}$; $y=t'=\dfrac{a+1}{3}$ et $z=-t'+a = -\dfrac{a+1}{3}+a = \dfrac{-a-1+3a}{3}=\dfrac{2a-1}{3}$
+
+Donc les coordonnées du point L$_a$ sont $\left(\dfrac{a+1}{3}~;~\dfrac{a+1}{3}~;~\dfrac{2a-1}{3}\right)$.
+		\item 
+		\begin{list}{\textbullet}{On cherche le volume du tétraèdre GDBK$_a$.}
+\item 
+$\begin{aligned}[t]
+\text{K}_a\text{L}_a^{~~2}
+& =\left ( \dfrac{a+1}{3} - 0\right )^2 + \left ( \dfrac{a+1}{3} - 0\right )^2 + \left ( \dfrac{2a-1}{3} - a\right )^2\\
+& = \left ( \dfrac{a+1}{3}\right )^2 + \left ( \dfrac{a+1}{3}\right )^2 + \left ( \dfrac{-a-1}{3}\right )^2
+= 3\times \dfrac{(a+1)^2}{9} = \dfrac{(a+1)^2}{3}
+\end{aligned}$
+
+Donc $\text{K}_a\text{L}_a = \dfrac{a+1}{\sqrt{3}}$.
+\item Le volume du tétraèdre GDBK$_a$ est:\\
+$\dfrac{1}{3}\times \text{K}_a\text{L}_a \times \text{aire(GBD)}
+= \dfrac{1}{3} \times \dfrac{a+1}{\sqrt{3}} \times \dfrac{\sqrt{3}}{2}
+= \dfrac{a+1}{6}$
+\end{list}		
+
+Le tétraèdre GDBK$_a$ et la pyramide ABCDK$_a$ sont de même volume si et seulement si $\dfrac{a+1}{6}=\dfrac{a}{3}$, soit $\dfrac{a+1}{6}=\dfrac{2a}{3}$, soit $a+1=2a$, et donc si $a=1$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

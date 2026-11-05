@@ -1,0 +1,141 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet34_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Un pépiniériste stocke un grand nombre d'arbustes de la famille des \emph{viburnum} en vue de les
+vendre. Ceux-ci sont de deux espèces différentes : les \emph{viburnum tinus} (nom commun : laurier
+tin) et les \emph{viburnum opulus} (nom commun : boule de neige). Il constate que :
+\begin{itemize}
+\item 80\,\% de ses arbustes sont des lauriers tins, les autres sont des boules de neige.
+\item Parmi les lauriers tins, 41\,\% mesurent \np[m]{1.10} ou plus.
+\item Parmi les boules de neige, 32\,\% mesurent \np[m]{1.10} ou plus.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+	\item Est-il vrai que moins de 15\,\% des \emph{viburnum} de ce pépiniériste sont des boules de neige de moins de \np[m]{1.10} ?
+\end{enumerate}
+
+On choisit au hasard un \emph{viburnum} chez ce pépiniériste et on considère les évènements
+suivants :
+
+\begin{itemize}
+\item $L$ : \og le \emph{viburnum} choisi est un laurier tin \fg
+\item $T$ : \og le \emph{viburnum} mesure plus de \np[m]{1.10}\fg.
+\end{itemize}
+
+\begin{enumerate}[resume]
+\item Décrire par une phrase la probabilité $p_L\left(\overline{T}\right)$.
+
+ Décrire également par une phrase l'évènement $\overline{L}\cap T$
+
+\item Recopier et compléter sur la copie l'arbre de probabilité ci-dessous traduisant les données de l'énoncé.
+
+\vspace{0,5cm}
+\begin{center}
+
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.75cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$L$~~}\taput{$\dots$}}
+	{
+	\TR{$T$}\taput{$\dots$}
+	\TR{$\overline{T}$}\tbput{$\dots$}
+	}
+\pstree{\TR{$\overline{L}$~~}\tbput{$\dots$}}
+	{\TR{$T$}\taput{$\dots$}
+	\TR{$\overline{T}$}\tbput{$\dots$}
+	}
+}
+\end{center}
+
+\medskip
+
+\item Montrer que la probabilité que le \emph{viburnum} mesure \np[m]{1.10} ou plus est égale à 0,392.
+\item Le \emph{viburnum} choisi a une taille inférieure à \np[m]{1.10}. Quelle est la probabilité que ce soit un boule de neige ? On arrondira le résultat à  $10^{-3}$.
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\end{document}

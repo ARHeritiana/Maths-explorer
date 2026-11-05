@@ -1,0 +1,128 @@
+\medskip
+
+Un des objectifs de cet exercice est de déterminer une approximation du nombre réel $\ln(2)$, en utilisant une des méthodes du mathématicien anglais Henry Briggs au XVI\up{e} siècle.
+
+\bigskip
+
+On désigne par $\left(u_{n}\right)$ la suite définie par :
+
+\[u_{0}=2 \quad \text { et, pour tout entier naturel } n,\quad  u_{n+1}=\sqrt{u_{n}}\]
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Donner la valeur exacte de $u_{1}$ et de $u_{2}$.
+		\item Émettre une conjecture, à l'aide de la calculatrice, sur le sens de variation et la limite éventuelle de la suite.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Montrer par récurrence que pour tout entier naturel $n$,\quad $1 \leqslant u_{n+1} \leqslant u_{n}$.
+		\item En déduire que la suite $\left(u_{n}\right)$ est convergente.
+		\item Résoudre dans l'intervalle $[0~;~+\infty[$ l'équation $\sqrt{x} =x$.
+		\item Déterminer, en justifiant, la limite de la suite $\left(u_{n}\right)$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+	On désigne par $\left(v_{n}\right)$ la suite définie pour tout entier naturel $n$ par $v_{n}=\ln \left(u_{n}\right)$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Démontrer que la suite $\left(v_{n}\right)$ est géométrique de raison $\dfrac{1}{2}$.
+		\item Exprimer $v_{n}$ en fonction de $n$, pour tout entier naturel $n$.
+		\item En déduire que, pour tout entier naturel $n$,\quad $\ln (2)=2^{n} \ln \left(u_{n}\right)$.
+	\end{enumerate}
+\item On a tracé ci-dessous dans un repère orthonormé la courbe $\mathscr{C}$ de la fonction ln et la tangente T à la courbe $\mathscr{C}$ au point d'abscisse 1.
+
+Une équation de la droite T est $y = x - 1$.
+
+Les points $\mathrm{A}_{0}$, $\mathrm{A}_{1}$, $\mathrm{A}_{2}$ ont pour abscisses respectives $u_{0}$, $u_{1}$ et $u_{2}$ et pour ordonnée~0.
+
+\begin{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\psset{xunit=4.5cm, yunit=4.5cm,arrowsize=2pt 3}
+\begin{pspicture*}(-0.2,-0.2)(2.2,1.2)
+\psaxes[linewidth=0.8pt,labels=none,Dx=1,Dy=0.5]{->}(0,0)(-0.2,-0.2)(2.2,1.2)
+
+\psline[linewidth=0.5pt](1,-0.05)(1,0.05)
+\rput[t](1,-0.1){\footnotesize 1}
+\psline[linewidth=0.5pt](2,-0.05)(2,0.05)
+\rput[t](2,-0.1){\footnotesize 2}
+\psline[linewidth=0.5pt](-0.05,0.5)(0.05,0.5)
+\rput[r](-0.1,0.5){\footnotesize 0{,}5}
+\psline[linewidth=0.5pt](-0.05,1)(0.05,1)
+\rput[r](-0.1,1){\footnotesize 1}
+\rput[tr](-0.05,-0.05){\footnotesize 0}
+
+\psplot[linewidth=1.25pt,linecolor=red,plotpoints=2000]{0.6}{2.2}{x ln}
+\rput[l](1.9,0.58){\red $\mathscr{C}$}
+\psplot[linewidth=1pt, linecolor=blue, plotpoints=10]{0.6}{2.2}{x 1 sub}
+\rput[l](1.9,0.8){\blue T}
+
+\psdot[dotsize=2pt, linecolor=black](2,0)
+\rput[b](2,0.05){A$_0$}
+\psdot[dotsize=2pt, linecolor=black](1.414,0)
+\rput[b](1.414,0.05){A$_1$}
+\psdot[dotsize=2pt, linecolor=black](1.189,0)
+\rput[b](1.189,0.05){A$_2$}
+\end{pspicture*}
+\end{center}
+
+On décide de prendre $x - 1$ comme approximation de $\ln (x)$ lorsque $x$ appartient à l'intervalle $]0,99~;~1,01[$.
+
+	\begin{enumerate}
+		\item Déterminer à l'aide de la calculatrice le plus petit entier naturel $k$ tel que $u_{k}$ appartienne à l'intervalle $]0,99 ~;~1,01[$ et donner une valeur approchée de $u_{k}$ à $10^{-5}$ près.
+		\item En déduire une approximation de $\ln \left(u_{k}\right)$.
+\item Déduire des questions \textbf{1. c.} et \textbf{2. b.} de la \textbf{partie B} une approximation de $\ln (2)$.
+	\end{enumerate}
+
+\item On généralise la méthode précédente à tout réel $a$ strictement supérieur à 1.
+
+Recopier et compléter l'algorithme ci-dessous afin que l'appel \texttt{Briggs(a)} renvoie une approximation de $\ln (a)$.
+
+On rappelle que l'instruction en langage Python \texttt{sqrt(a)} correspond à $\sqrt{a}$.
+
+\begin{center}
+\begin{ttfamily}
+\begin{tabularx}{8cm}{|X|}\hline
+\textbf{from} math \textbf{import}*\\
+\textbf{def} Briggs(a):\\
+\quad n = 0\\
+\quad \textbf{while} a >= 1.01:\\
+	\quad \quad a = \textbf{sqrt}(a)\\
+	\quad \quad n = n+1\\
+	\quad L =\dots\\
+	\textbf{return} L\\ \hline
+	\end{tabularx}
+	\end{ttfamily}
+\end{center}
+\end{enumerate}
+
+
+
+\bigskip

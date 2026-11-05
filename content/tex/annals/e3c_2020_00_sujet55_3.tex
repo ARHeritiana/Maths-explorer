@@ -1,0 +1,26 @@
+\medskip
+
+Le plan est muni d'un repère orthonormé \Oij.
+
+On considère les points A, B et C de coordonnées : A$(7~;~-2)$, B (7~;~4) et C (1~;~1).
+\begin{enumerate}
+\item Montrer que $y=1$ est une équation de la droite $(d_1)$ passant par C et perpendiculaire à (AB).
+\item Que représente cette droite pour le triangle ABC ?
+\item Donner une équation de la droite $(d_2)$, hauteur du triangle ABC issue du sommet B.
+\item On appelle H le point d'intersection des droites $(d_1)$ et $(d_2)$.
+Donner en justifiant la valeur du produit scalaire : $\vv{AH}\cdot \vv{CB}$.
+\end{enumerate}
+
+
+\begin{center}
+\psset{xunit=0.5cm,yunit=0.5cm,labelsep=0.1pt,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-2,-4.5)(11,8)
+ \multido{\n=-1+1}{13}{\psline[linewidth=0.75pt,linecolor=lightgray](\n,-4)(\n,7.5)}
+ \multido{\n=-4+1}{12}{\psline[linewidth=0.75pt,linecolor=lightgray](-1.5,\n)(11.2,\n)}
+ \psaxes[linewidth=0.95pt]{->}(0,0)(-1.5,-4)(11,7.5)
+\uput[dl](0,-0.2){\footnotesize O}\uput[l](6.8,-2){A}\uput[l](6.8,4){B}\uput[l](0.9,0.9){C}
+\psdots[dotstyle=+,dotscale =1.4,dotangle=45](1,1)(7,4)(7,-2)
+\end{pspicture}
+\end{center}
+
+\vspace{0.75cm}

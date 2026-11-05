@@ -1,0 +1,82 @@
+\textbf{Pour cette première partie, aucune justification n'est demandée et une seule réponse est possible par question.} Les justifications ci-dessous sont fournies à titre pédagogique.
+
+Une réponse fausse ou l'absence de réponse n'enlève aucun point : il ne faut donc jamais laisser une question sans réponse.
+
+\subsection*{Question 1 \quad Réponse C}
+
+Baisser de 3\,\% revient à multiplier par le coefficient multiplicateur
+$1 - \dfrac{3}{100} = 0,97$. Le nouveau prix est donc $0,97 \times P$.
+
+
+
+\subsection*{Question 2 \quad Réponse D}
+
+On applique l'identité remarquable $(a-b)^2 = a^2 - 2ab + b^2$ avec $a = 3x$ et $b = 1$ :
+\[(3x-1)^2 = (3x)^2 - 2\times 3x \times 1 + 1^2 = 9x^2 - 6x + 1.\]
+
+\subsection*{Question 3 \quad Réponse C}
+
+$f(x) = -5(x-1)(x+3)$ est une fonction polynôme du second degré :
+\begin{itemize}
+	\item ses racines sont $1$ et $-3$ (produit nul) : la parabole coupe l'axe des abscisses
+	en $x = -3$ et $x = 1$ ;
+	\item le coefficient de $x^2$ vaut $-5 < 0$ : la parabole est ouverte vers le bas ;
+	\item $f(0) = -5 \times (-1) \times 3 = 15$ : elle coupe l'axe des ordonnées en 15.
+\end{itemize}
+Seul le graphique C réunit ces trois caractéristiques. Le graphique A a les bonnes racines
+mais est ouvert vers le haut (c'est la courbe de $-f$) ; le graphique B n'est pas une
+parabole (trois points d'intersection avec l'axe des abscisses) ; le graphique D est
+ouvert vers le bas mais coupe l'axe des abscisses en $-1$ et $3$.
+
+\subsection*{Question 4 \quad Réponse B}
+
+Pour comparer deux fractions, on les réduit au même dénominateur :
+\[\dfrac{7}{9} = \dfrac{49}{63} \quad\text{et}\quad \dfrac{5}{7} = \dfrac{45}{63},
+\qquad\text{donc}\qquad \dfrac{7}{9} > \dfrac{5}{7}.\]
+
+
+\subsection*{Question 5 \quad Réponse C}
+
+Les solutions de $f(x) \leqslant 10$ sont les abscisses des points de $\mathcal{C}$ situés
+\emph{sur ou sous} la droite horizontale d'équation $y = 10$.
+
+\begin{center}
+	\begin{tikzpicture}[x=0.55cm,y=0.12cm,>=stealth]
+		\draw[xstep=1,ystep=5,gray!75,line width=0.5pt,dash pattern=on 1.5mm off 1.5mm, dash phase=0.75mm] (-4,0) grid (10,30);
+		\draw[->,line width=1pt] (-4.5,0) -- (10.6,0) node[right]{$x$};
+		\draw[->,line width=1pt] (0,-1) -- (0,32) node[above]{$y$};
+		\foreach \x in {-4,-2,2,4,6,8,10} \draw (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize \np{\x}};
+		\foreach \y in {10,20,30} \draw (2pt,\y) -- (-2pt,\y) node[left,fill=white,inner sep=1pt] {\footnotesize \np{\y}};
+		\draw[blue,dashed,line width=1pt] (-4,10) -- (10,10) node[right]{$y=10$};
+		\draw[red,line width=1.2pt] plot[smooth] coordinates {(-4.000,15.000) (-3.900,14.251) (-3.800,13.505) (-3.700,12.767) (-3.600,12.040) (-3.500,11.328) (-3.400,10.635) (-3.300,9.964) (-3.200,9.320) (-3.100,8.706) (-3.000,8.125) (-2.900,7.582) (-2.800,7.080) (-2.700,6.623) (-2.600,6.215) (-2.500,5.859) (-2.400,5.560) (-2.300,5.321) (-2.200,5.145) (-2.100,5.037) (-2.000,5.000) (-1.900,5.097) (-1.800,5.377) (-1.700,5.828) (-1.600,6.433) (-1.500,7.179) (-1.400,8.051) (-1.300,9.035) (-1.200,10.116) (-1.100,11.280) (-1.000,12.513) (-0.900,13.800) (-0.800,15.127) (-0.700,16.478) (-0.600,17.841) (-0.500,19.200) (-0.400,20.541) (-0.300,21.849) (-0.200,23.111) (-0.100,24.311) (0.000,25.436) (0.100,26.470) (0.200,27.400) (0.300,28.211) (0.400,28.888) (0.500,29.418) (0.600,29.785) (0.700,29.976) (0.800,29.978) (0.900,29.809) (1.000,29.486) (1.100,29.024) (1.200,28.440) (1.300,27.749) (1.400,26.968) (1.500,26.111) (1.600,25.195) (1.700,24.236) (1.800,23.249) (1.900,22.250) (2.000,21.255) (2.100,20.280) (2.200,19.340) (2.300,18.452) (2.400,17.631) (2.500,16.893) (2.600,16.254) (2.700,15.729) (2.800,15.334) (2.900,15.086) (3.000,15.000) (3.100,15.026) (3.200,15.104) (3.300,15.229) (3.400,15.398) (3.500,15.609) (3.600,15.859) (3.700,16.144) (3.800,16.461) (3.900,16.808) (4.000,17.181) (4.100,17.577) (4.200,17.993) (4.300,18.425) (4.400,18.872) (4.500,19.329) (4.600,19.795) (4.700,20.264) (4.800,20.736) (4.900,21.205) (5.000,21.671) (5.100,22.128) (5.200,22.575) (5.300,23.007) (5.400,23.423) (5.500,23.819) (5.600,24.192) (5.700,24.539) (5.800,24.856) (5.900,25.141) (6.000,25.391) (6.100,25.602) (6.200,25.771) (6.300,25.896) (6.400,25.974) (6.500,26.000) (6.600,25.890) (6.700,25.573) (6.800,25.066) (6.900,24.388) (7.000,23.556) (7.100,22.589) (7.200,21.505) (7.300,20.321) (7.400,19.056) (7.500,17.728) (7.600,16.355) (7.700,14.955) (7.800,13.545) (7.900,12.145) (8.000,10.772) (8.100,9.444) (8.200,8.179) (8.300,6.995) (8.400,5.911) (8.500,4.944) (8.600,4.112) (8.700,3.434) (8.800,2.927) (8.900,2.610) (9.000,2.500) (9.100,2.670) (9.200,3.160) (9.300,3.940) (9.400,4.980) (9.500,6.250) (9.600,7.720) (9.700,9.360) (9.800,11.140) (9.900,13.030) (10.000,15.000)};
+		\draw[blue,line width=2.5pt] (-3.2,0) -- (-1.2,0);
+		\draw[blue,line width=2.5pt] (8,0) -- (9.7,0);
+		\foreach \k in {-3.2,-1.2,8,9.7} \draw[blue,densely dotted] (\k,0) -- (\k,10);
+	\end{tikzpicture}
+\end{center}
+
+La courbe passe sous la droite $y = 10$ entre $x \approx -3,2$ et $x \approx -1,2$
+(creux autour de $x = -2$), puis entre $x \approx 8$ et $x \approx 9,7$ (creux autour de
+$x = 9$). Le creux situé vers $x = 3$ reste au-dessus de 10 (ordonnée 15).
+D'où $S = [-3,2~;~-1,2] \cup [8~;~9,7]$.
+
+
+
+\subsection*{Question 6 \quad Réponse C}
+
+Dans une moyenne pondérée, on divise la somme des produits note $\times$ coefficient par la
+somme des coefficients, ici $1 + 1 + 1 + 2 = 5$ :
+\[\dfrac{12 + 10 + 14 + 2x}{5} = 14 \iff 36 + 2x = 70 \iff 2x = 34 \iff x = 17.\]
+
+\subsection*{Question 7 \quad Réponse A}
+
+On applique $\left(a^m\right)^n = a^{mn}$ puis $\dfrac{a^m}{a^n} = a^{m-n}$ :
+\[\dfrac{\left(a^5\right)^2}{a^{-10}} = \dfrac{a^{10}}{a^{-10}} = a^{10-(-10)} = a^{20}.\]
+
+
+\subsection*{Question 8 \quad Réponse A}
+
+La droite passe par le point de coordonnées $(0~;~-5)$ : son ordonnée à l'origine est $b = -5$. Son coefficient
+directeur vaut
+\[a = \dfrac{0 - (-5)}{15 - 0} = \dfrac{5}{15} = \dfrac{1}{3}.\]
+Une équation de la droite est donc $y = \dfrac{1}{3}x - 5$.

@@ -1,0 +1,264 @@
+\medskip
+
+\begin{minipage}{6.7cm}On considère le cube ABCDEFGH d'arête 1 représenté ci-contre.
+
+On note K le milieu du segment [HG].
+
+On se place dans le repère orthonormé $\left(\text{A}~;~\vect{\text{AD}},~\vect{\text{AB}}, \vect{\text{AE}}\right)$.
+
+
+
+
+
+
+
+
+
+
+
+
+\end{minipage}
+\hfill
+\begin{minipage}{5cm}
+\scalebox{0.8}{
+\psset{unit=0.75cm,arrowsize=2pt 3}
+\begin{pspicture}(-2.8,-2.4)(5,5.3)
+\psline[linestyle=dashed](3,0)(0,0)(0,3)
+\psline[linestyle=dashed](-1.3,-1.3)
+\psline[linewidth=1.25pt](3,0)(5,0)
+\psline[linewidth=1.25pt](0,3)(0,5.3)
+\psline[linewidth=1.25pt](-1.3,-1.3)(-2.8,-2.8)
+\psframe[linewidth=1.25pt](-1.3,-1.3)(1.7,1.7)
+\psline[linewidth=1.25pt](1.7,-1.3)(3,0)(3,3)(1.7,1.7)
+\psline[linewidth=1.25pt](3,3)(0,3)(-1.3,1.7)
+\uput[ur](0,0){A} \uput[dr](3,0){B} \uput[dr](1.7,-1.3){C} \uput[dr](-1.3,-1.3){D}
+\uput[ul](0,3){E} \uput[ur](3,3){F} \uput[ul](1.7,1.7){G} \uput[ul](-1.3,1.7){H}
+\uput[ul](-2.8,-2.8){$x$} \uput[u](5,0){$y$} \uput[r](0,5.3){$z$}
+\psdots(0,0)(3,0)(1.7,-1.3)(-1.3,-1.3)(0,3)(3,3)(1.7,1.7)(-1.3,1.7)(0.2,1.7)
+\uput[70](0.2,1.7){K}
+\end{pspicture}
+}
+\end{minipage}
+
+
+
+
+
+
+
+\bigskip
+
+\begin{enumerate}
+\item Les points C, F et K définissent un plan si et seulement si ils ne sont pas alignés. 
+
+
+
+\begin{list}{\textbullet}{}
+\item $\vectt{AC}=\vectt{AD}+\vectt{AB}$ donc le point C a pour coordonnées
+$\begin{pmatrix}
+1 \\ 1 \\ 0
+\end{pmatrix}$.
+
+\item $\vectt{AF}=\vectt{AB}+\vectt{AE}$ donc le point F a pour coordonnées
+$\begin{pmatrix}
+0 \\ 1 \\ 1 
+\end{pmatrix}$.
+
+\item $\vectt{AH}=\vectt{AD}+\vectt{AE}$ donc le point H a pour coordonnées
+$\begin{pmatrix}
+1 \\ 0 \\ 1 
+\end{pmatrix}$.
+
+$\vectt{AG}=\vectt{AD}+\vectt{AB}+\vectt{AE}$ donc le point G a pour coordonnées
+$\begin{pmatrix}
+1 \\ 1 \\ 1 
+\end{pmatrix}$.
+
+K est le milieu de [HG] donc il a pour coordonnées
+$\begin{pmatrix}
+\frac{x_{\text H}+x_{\text G}}{2} \\[4pt] \frac{y_{\text H}+y_{\text G}}{2} \\[4pt] \frac{z_{\text H}+z_{\text G}}{2} 
+\end{pmatrix}
+=\begin{pmatrix}
+\frac{1+1}{2} \\[4pt] \frac{0+1}{2} \\[4pt] \frac{1+1}{2} 
+\end{pmatrix}
+=\begin{pmatrix}
+1 \\[4pt] \frac{1}{2} \\[4pt] 1 
+\end{pmatrix}$.
+\end{list}
+
+$\vectt{CF}$ et $\vectt{CK}$ ont pour coordonnées respectives
+$\begin{pmatrix}
+x_{\text F}-x_{\text C} \\ y_{\text F}-y_{\text C} \\ z_{\text F}-z_{\text C} 
+\end{pmatrix}
+=
+\begin{pmatrix}
+-1 \\ 0 \\ 1
+\end{pmatrix}$
+et
+$\begin{pmatrix}
+x_{\text K}-x_{\text C} \\ y_{\text K}-y_{\text C} \\ z_{\text K}-z_{\text C} 
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 \\ -\frac{1}{2} \\ 1
+\end{pmatrix}$.
+
+Donc les vecteurs $\vectt{CF}$ et $\vectt{CK}$ ne sont pas colinéaires donc les points C, F et K ne sont pas alignés, et donc ces trois points définissent un plan.
+
+\item 
+	\begin{enumerate}
+		\item $\text{KG}=\frac{1}{2}$, $\text{GF}=1$ et $\text{GC}=1$.
+		\item Le triangle FGC est rectangle en G donc son aire vaut en unités d'aire:\\
+		$\mathcal{A}=\dfrac{\text{GF}\times\text{GC}}{2}=\dfrac{1}{2}$.
+		\item Le tétraèdre FGCK a pour base le triangle FGC et pour hauteur KG donc son volume vaut, en unité de volume:	
+		$\dfrac{1}{3}\times \mathcal{A}\times \text{KG}=\dfrac{1}{3}\times \dfrac{1}{2}\times\dfrac{1}{2}=\dfrac{1}{12}$.
+	\end{enumerate}
+
+\item 
+	\begin{enumerate}
+		\item On note $\vect{n}$ le vecteur de coordonnées $\begin{pmatrix}1\\2\\1\end{pmatrix}$.
+		
+
+
+\begin{list}{\textbullet}{}
+\item $\vect{n}\cdot\vectt{CF}=1\times (-1) + 2\times 0 + 1\times 1 = 0$ donc $\vect{n}\perp\vectt{CF}$.
+\item $\vect{n}\cdot\vectt{CK}=1\times 0 + 2\times (-\frac{1}{2}) + 1\times 1 = 0$ donc $\vect{n}\perp\vectt{CK}$.
+\end{list}
+
+Le vecteur $\vect{n}$ est donc orthogonal à deux vecteurs directeurs du plan (CFK) donc c'est un vecteur normal au plan (CFK).
+
+		\item  
+Le plan (CFK) est l'ensemble des points M de coordonnées
+$\begin{pmatrix}
+x \\ y \\ z
+\end{pmatrix}$
+tels que $\vectt{CM}$ et $\vect{n}$ soient orthogonaux, c'est-à-dire tels que $\vectt{CM}\cdot\vect{n}=0$.
+
+$\vectt{CM}$ a pour coordonnées 
+$\begin{pmatrix}
+x-1 \\ y-1 \\ z
+\end{pmatrix}$.
+
+$\begin{gathered}\vectt{CM}\cdot\vect{n}=0
+\iff
+(x-1)\times 1 + (y-1)\times 2 + z\times 1=0\\
+\phantom{\vectt{CM}\cdot\vectt{n}=0}
+\iff
+x-1+2y-2+z=0
+\iff
+x+2y+z-3=0\end{gathered}$
+
+Le plan (CFK) a donc pour équation cartésienne $x+2y+z-3=0$.
+
+	\end{enumerate}
+	
+\item On note $\Delta$ la droite passant par le point G et orthogonale au plan (CFK). 
+
+
+
+
+
+
+
+
+La droite $\Delta$ est orthogonale au plan (CFK) donc elle a $\vect{n}$ pour vecteur directeur.
+De plus, elle passe par le point G de coordonnées
+$\begin{pmatrix}
+1 \\ 1 \\ 1
+\end{pmatrix}$.
+Donc la droite $\Delta$ est l'ensemble des points M de coordonnées
+$\begin{pmatrix}
+x \\ y \\ z
+\end{pmatrix}$
+tels que $\vectt{GM}$ et $\vect{n}$ soient colinéaires, autrement dit tels que $\vectt{GM}=t\cdot\vect{n}$ où $t\in\R$.
+
+$\vectt{GM}$ a pour coordonnées 
+$\begin{pmatrix}
+x-1 \\ y-1 \\ z-1
+\end{pmatrix}$.
+
+$\vectt{GM}=t\cdot\vect{n}
+\iff
+\left \{
+\begin{array}{l !{=} l}
+x-1 & t\times 1\\
+y-1 & t\times 2\\
+z-1 & t\times 1
+\end{array}
+\right .
+\iff
+\left \{
+\begin{array}{l !{=} l}
+x & 1+t\\
+y & 1+2t\\
+z & 1+t
+\end{array}
+\right .$
+
+Donc la droite $\Delta$ a pour représentation paramétrique:
+$\left\{\begin{array}{l !{=} l}
+x&1 + t\\
+y&1 + 2t\\
+z&1 + t
+\end{array}
+\right. \quad  (t \in \R)$.
+
+\item Soit L le point d'intersection entre la droite $\Delta$ et le plan (CFK).
+	\begin{enumerate}
+		\item Les coordonnées
+$\begin{pmatrix}
+x \\ y \\ z
+\end{pmatrix}$
+du point L sont solutions du système
+$\left \{
+\begin{array}{r !{=} l}
+x&1 + t\\
+y & 1 + 2t\\
+z & 1 + t\\
+x+2y+z-3 & 0
+\end{array}
+\right .$.
+
+On a donc: $(1+t)+2(1+2t) +(1+t)-3=0$ soit $1+t+2+4t+1+t-3=0$, ou encore $6t+1=0$, soit $t=-\frac{1}{6}$.
+
+Le point L a donc pour coordonnées:
+$\left \{
+\begin{array}{r !{=} l !{=} l !{=} l}
+x&1 + t & 1 -\frac{1}{6} & \frac{5}{6}\\[4pt]
+y&1 + 2t & 1 - \frac{2}{6} & \frac{2}{3}\\[4pt]
+z&1 + t & 1 -\frac{1}{6} & \frac{5}{6}
+\end{array}
+\right .$
+
+		\item 
+$\begin{gathered}\text{LG}
+= \ds\sqrt{\left (x_{\text G} - x_{\text L}\right )^2 + \left (y_{\text G} - y_{\text L}\right )^2 + \left (z_{\text G} - z_{\text L}\right )^2}
+= \ds\sqrt{\left (1 -\frac{5}{6}\right )^2 + \left (1-\frac{2}{3}\right )^2 + \left (1-\frac{5}{6}\right )^2}\\
+\phantom{\text{LG}}
+=\ds\sqrt{\frac{1}{36} + \frac{1}{9} + \frac{1}{36}}
+= \ds\sqrt{\frac{6}{36}}
+= \frac{\sqrt{6}}{6}
+\end{gathered}$
+
+\end{enumerate}	
+	
+\item 
+Le tétraèdre FGCK a pour base le triangle CFK d'aire $\mathcal{B}$, et pour hauteur LG.
+
+Son volume vaut donc: 
+$\dfrac{1}{3}\times \mathcal{B}\times \text{LG}$.
+Ce volume vaut $\dfrac{1}{12}$ donc on a:
+
+$\dfrac{1}{12}=\dfrac{1}{3}\times \mathcal{B} \times \dfrac{\sqrt{6}}{6}$
+donc
+$\dfrac{1}{12} = \dfrac{\sqrt{6}}{18}\times \mathcal{B}$
+donc
+$\dfrac{18}{12\sqrt{6}}=\mathcal{B}$
+donc
+$\mathcal{B}= \dfrac{\sqrt{6}}{4}$. 
+
+L'aire du triangle CFK est, en unité d'aire: $\dfrac{\sqrt{6}}{4}$.
+
+\end{enumerate}
+
+\bigskip

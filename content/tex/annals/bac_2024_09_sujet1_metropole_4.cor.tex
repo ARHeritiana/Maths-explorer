@@ -1,0 +1,141 @@
+\smallskip
+
+Un laboratoire fabrique un médicament conditionné sous forme de cachets.
+
+\begin{center}
+\textbf{Partie A}
+\end{center}
+
+Un contrôle de qualité, portant sur la masse des cachets, a montré que 2\,\% des cachets ont une masse non conforme. Ces cachets sont conditionnés par boîtes de 100 choisis au hasard dans la chaîne de production. On admet que la conformité d'un cachet est indépendante de celle des autres.
+
+
+
+On note $N$ la variable aléatoire qui à chaque boîte de $100$~cachets associe le nombre de cachets non conformes dans cette boîte.
+
+\begin{enumerate}
+	\item 
+Un cachet peut être non conforme, avec la probabilité $p=0,02$, ou conforme.	
+	
+Un échantillon de 100 cachets correspond à une répétition avec remise de l'expérience qui consiste à tirer un cachet de la production totale.
+
+Donc la variable aléatoire $N$ qui à chaque boîte de $100$~cachets associe le nombre de cachets non conformes dans cette boîte suit  la loi binomiale de paramètres $n=100$ et $p=0,02$.
+	
+	\item L'espérance de $N$ est $E(N)=np=100\times 0,02 =2$.
+	
+Il y a donc, en moyenne, 2 cachets non conformes par boîte.
+	
+	\item 
+	\begin{enumerate}
+		\item 
+La probabilité qu'une boîte contienne exactement trois cachets non conformes est:
+$P(N=3)= \binom{100}{3} \times 0,02^3 \times (1-0,02)^{100-3}\approx 0,182$.
+		\item La probabilité qu'une boîte contienne au moins 95 cachets conformes est la probabilité qu'elle contienne  au plus 5 cachets non conformes, c'est-à-dire:
+
+$P(N\leqslant 5)\approx 0,985$.
+	\end{enumerate}
+	\item Le directeur du laboratoire veut modifier le nombre de cachets par boîte pour pouvoir affirmer : \og La probabilité qu'une boîte ne contienne que des cachets conformes est supérieure à $0,5$\fg.
+	
+
+
+Pour $N$ suivant la loi binomiale de paramètres $n$, à déterminer, et $p=0,02$, on veut: $P(N=0) >0,5$. C'est-à-dire:
+$\ds\binom{n}{0} \times 0,02^0 \times (1-0,02)^{n} > 0,5$.
+On résout cette inéquation.
+
+$\begin{aligned}
+\ds\binom{n}{0} \times 0,02^0 \times (1-0,02)^{n} > 0,5
+& \iff
+0,98^n > 0,5
+\iff
+\ln \left (0,98^n \right ) > \ln\left (0,5\right )\\
+& \iff
+n \times \ln \left (0,98 \right ) > \ln\left (0,5\right )
+\iff
+n < \dfrac{\ln\left (0,5\right )}{\ln \left (0,98 \right )}
+\end{aligned}$
+
+$\dfrac{\ln\left (0,5\right )}{\ln \left (0,98 \right )}\approx 34,3$
+
+Donc le nombre maximum de cachets dans la boîte pour que la  probabilité qu'une boîte ne contienne que des cachets conformes soit supérieure à $0,5$ est 34.
+\end{enumerate}
+
+\begin{center}
+	\textbf{Partie B}
+\end{center}
+
+On admet que les masses des cachets sont indépendantes les unes des autres. On prélève 
+$100$~cachets et on note $M_i$, pour $i$ entier naturel compris entre 1 et $100$, la variable aléatoire qui donne la masse en gramme du $i$-ème cachet prélevé.
+
+
+
+On considère la variable aléatoire $S$ définie par :
+$ S= M_1+ M_1+ \ldots+ M_{100}.$
+
+On admet que les variables aléatoires $M_1$,\: $M_2$,\: \ldots,\: $M_{100}$ suivent la même loi de probabilité d'espérance $\mu = 2$ et d'écart-type $\sigma$.
+
+\begin{enumerate}
+	\item Chaque variable aléatoire $M_i$ suit une loi de probabilité d'espérance $\mu=2$.
+	
+$ S= M_1+ M_2+ \ldots+ M_{100}$
+
+On utilise la linéarité de l'espérance donc:
+
+$E(S) = E \left (M_1+ M_2+ \ldots+ M_{100} \right )
+= E \left (M_1\right ) + E\left (M_2\right) + \ldots+ E\left (M_{100} \right)
+= 100 \times 2 = 200$
+	
+
+
+La masse de 100 cachets est donc en moyenne de 200 grammes.
+
+	\item On note $s$ l'écart type de la variable aléatoire $S$.
+	
+Chaque variable aléatoire $M_i$ suit une loi de probabilité d'écart-type $\sigma$, donc de variance $V\left (M_i\right ) = \sigma^2$.
+	
+Les variables $M_i$ étant indépendantes, on va utiliser l'additivité de la variance:
+
+$V(S) = V \left (M_1+ M_2+ \ldots+ M_{100} \right )
+= V \left (M_1\right ) + V\left (M_2\right )+ \ldots+ V\left (M_{100} \right )
+= 100 \sigma^2$
+
+$s = \ds\sqrt{V(S)} = \ds\sqrt{100 \sigma^2}=10\sigma$
+
+
+	\item On souhaite que la masse totale, en gramme, des comprimés contenus dans une boîte soit strictement comprise entre 199 et 201 avec une probabilité au moins égale à $0,9$, c'est-à-dire que $P(199<S<201) > 0,9$.
+	\begin{enumerate}
+		\item 
+
+$\begin{aligned}[t]
+199 < S < 201 
+& \iff 199-200 < S - 200 < 201-200
+\iff -1 < S-200 < 1\\
+& \iff \left | S-200 \strut \right |<1
+\end{aligned}$
+
+Donc $P \left ( 199 < S < 201  \right ) = P \left ( \left | S-200 \strut \right |<1\right )$
+
+En prenant l'événement contraire: 
+
+$P \left ( \left | S-200 \strut \right |<1\right ) > 0,9
+\iff P \left ( \left |S-200 \strut \right | \geqslant 1 \right ) \leqslant 0,1$
+
+\item
+La variable aléatoire $S$ a pour espérance $E(S)=200$ et pour variance $V(S)=100\sigma2$ donc, d'après l'inégalité de Bienaymé-Tchebychev, on a:
+
+pour tout $\delta\in\, \left ]0\;;\;+\infty\strut \right [$, $P\left ( \left |S-E(S)\strut \right | \geqslant \delta \right ) \leqslant \dfrac{V(S)}{\delta^2}$, 
+
+c'est-à-dire,
+pour tout $\delta\in\, \left ]0\;;\;+\infty\strut \right [$, $P\left ( \left |S-200\strut \right | \geqslant \delta \right ) \leqslant \dfrac{100\sigma^2}{\delta^2}$, 
+
+On cherche $\sigma$ pour que
+$P \left ( \left |S-200 \strut \right | \geqslant 1 \right ) \leqslant 0,1$.
+
+On prend $\delta=1$ donc l'inégalité de Bienaymé-Tchebychev devient:\\
+$P\left ( \left |S-200\strut \right | \geqslant 1 \right ) \leqslant \dfrac{100\sigma^2}{1^2}$, c'est-à-dire
+$P\left ( \left |S-200\strut \right | \geqslant 1 \right ) \leqslant 100\sigma^2$
+
+Il suffit  que $100\sigma^2 \leqslant 0,1$ donc que $\sigma^2 \leqslant 10^{-3}$, et donc que $\sigma \leqslant \ds\sqrt{10^{-3}}$.
+
+La valeur maximale de $\sigma$ qui permet d'assurer la condition requise est\\
+ $\sigma= \ds \sqrt{10^{-3}}\approx \np{0,0316}$. 
+	\end{enumerate}
+\end{enumerate}

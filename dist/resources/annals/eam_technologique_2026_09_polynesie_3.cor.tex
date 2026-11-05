@@ -1,0 +1,132 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_technologique_2026_09_polynesie_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+\item 
+
+\mbox{$f(10)=-\np{0.25}\times10^2+30\times10-500=-\np{0.25}\times100+300-500=-225$} : l'image de $10$ par $f$ est $-225$.
+\item 
+
+On développe \mbox{$(-\np{0.25}x+5)(x-100)=-\np{0.25}x\times x-\np{0.25}x\times(-100)+5\times x+5\times(-100)$}.
+
+Donc  \mbox{$(-\np{0.25}x+5)(x-100)=-\np{0.25}x^2+25x+5 x-500=f(x)$}.
+
+\mbox{$(-\np{0.25}x+5)(x-100)$} est la forme factorisée de $f(x)$.
+\item 
+
+\mbox{$f(x)=0\iff -\np{0.25}x+5=0\text{ ou }x-100=0$} (équation \og{}produit nul\fg{}).
+Il y a deux solutions qui sont 20 et 100.
+\item 
+
+On a \mbox{$f'(x)=-\np{0.25}\times2x+30=-\np{0.5}x+30$}.
+\item 
+
+$f'$ est positive puis négative, et change de signe pour \mbox{$x=60$}.
+$f$ est donc croissante puis décroissante, et on peut construire son tableau de variations :
+
+\begin{center}
+	\begin{adjustbox}{max width=1\linewidth,max totalheight=255mm}
+	\begin{tikzpicture}[xscale=1,yscale=1,rotate=0,every node/.style={scale=1,rotate=0}]
+		\tkzTabInit[deltacl=1]          {$x$/0.85,$f~'(x)$/.85,$f(x)$/2.5}
+		
+		{$0$,$60$,$200$}		
+		\tkzTabLine{,+,0,-,}
+		\tkzTabVar{-/$-500$,+/$400$,-/$-\np{4500}$}			
+
+	\end{tikzpicture}
+\end{adjustbox} 
+
+\end{center}
+\textit{NB}: vraisemblablement, les valeurs prises par $f$ ne sont pas exigibles dans le tableau de variations.
+
+Pour $f(0)$, c'est quand même simple \dots
+
+Pour $f(60)$, \mbox{$6\times6=36$}, donc \mbox{$60^2=\np{3600}$}, et \mbox{$-\np{0.25}\times\np{3600}=-900$} (le quart\dots)  \mbox{$3\times6=18$}, donc \mbox{$30\times60=\np{1800}$}, on a donc \og{}au final\fg{} \mbox{$f(60)=-900+\np{1800}-500=400$}.
+
+Enfin pour \mbox{$f(200)$}, \mbox{$2^2=4$}, donc \mbox{$200^2=\np{40000}$}.
+
+\mbox{$-\np{0.25}\times200^2=-\np{10000}$}. \mbox{$30\times200=\np{6000}$}, donc \mbox{$f(200)=-\np{10000}+\np{6000}-\np{500}=-\np{4500}$}.
+
+\end{enumerate}
+
+\end{document}

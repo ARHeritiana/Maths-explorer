@@ -1,0 +1,144 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet2_asie_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\emph{On pourra traiter indépendamment les deux parties de l'exercice. \\
+On arrondira, si nécessaire, les résultats à $10^{-3}$ près.}
+
+\medskip
+Dans cet exercice, on s'intéresse aux lancers-francs effectués par un joueur lors de compétitions de basketball.
+
+Pour modéliser la situation, on considère dans chaque partie du problème que les conditions dans lesquelles s'effectuent ces lancers sont identiques et que ces lancers sont indépendants deux à deux.
+
+\subsection*{Partie  A}
+	Les statistiques de réussite des lancers-francs d'un joueur sont de 49,2~\% lors d'une saison.
+
+	Dans cette partie, on assimilera cette fréquence à sa probabilité de réussite d'un lancer-franc.
+
+	Au cours d'un match, ce joueur tente 16 lancers-francs.
+
+	On désigne par $X$ la variable aléatoire qui donne le nombre de lancers-francs réussis par ce joueur lors de ce match.
+
+	\begin{enumerate}
+		\item Justifier que la variable aléatoire $X$ suit une loi binomiale dont on précisera les paramètres.
+
+		\item Déterminer l'espérance de la variable aléatoire $X$ et l'interpréter dans le contexte de cet exercice.
+
+		\item Calculer $P(X=5)$.
+
+		\item Calculer la probabilité que le joueur réussisse au moins six lancers-francs.
+	\end{enumerate}
+
+\subsection*{Partie  B}
+	On note $p$ la probabilité que le joueur réussisse un lancer-franc, où $p$ est un réel tel que
+	\[0 \leqslant  p \leqslant  1\]
+
+	On se place dans le cas où le joueur effectue 3 lancers-francs.
+
+	On désigne par $Y$ la variable aléatoire qui donne le nombre de lancers-francs réussis par ce joueur.
+
+	\begin{enumerate}
+		\item Déterminer les valeurs prises par la variable aléatoire $Y$.
+
+		\item Exprimer $P(Y=2)$ en fonction de $p$.
+
+		\item Donner la loi de probabilité de $Y$.
+
+		Présenter la réponse sous forme de tableau.
+
+		\item Montrer que
+		\[P(Y \geqslant  2)=-2 p^{3}+3 p^{2}\]
+
+		\item On considère la fonction $f$ définie sur l'intervalle $[0 ; 1]$ par
+		\[f(x)=-2 x^{3}+3 x^{2}.\]
+		\begin{enumerate}
+			\item Étudier le sens de variation de la fonction $f$ sur l'intervalle $[0 ; 1]$ et dresser son tableau de variation en y faisant figurer les valeurs aux bornes de l'intervalle $[0 ; 1]$.
+
+			\item En déduire l'existence d'une unique valeur $\alpha$ dans l'intervalle $[0 ; 1]$ telle que $f(\alpha)=0,9$.
+
+			\item Donner un encadrement d'amplitude $10^{-2}$ de cette valeur $\alpha$.
+
+			\item Interpréter la valeur de $\alpha$ dans le contexte de l'exercice.
+		\end{enumerate}
+	\end{enumerate}
+
+\end{document}

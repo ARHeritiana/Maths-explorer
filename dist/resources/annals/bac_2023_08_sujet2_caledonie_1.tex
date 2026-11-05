@@ -1,0 +1,156 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_08_sujet2_caledonie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{minipage}{6.7cm}On considère le cube ABCDEFGH d'arête 1 représenté ci-contre.
+
+On note K le milieu du segment [HG].
+
+On se place dans le repère orthonormé $\left(\text{A}~;~\vect{\text{AD}},~\vect{\text{AB}}, \vect{\text{AE}}\right)$.
+
+\smallskip
+
+\begin{enumerate}
+\item Justifier que les points C, F et K définissent un plan.
+\item 
+	\begin{enumerate}
+		\item Donner, sans justifier, les longueurs KG, GF et GC.
+		\item Calculer l'aire du triangle FGC.
+		\item Calculer le volume du tétraèdre FGCK.
+	\end{enumerate}
+\end{enumerate}	
+\end{minipage}\hfill
+\begin{minipage}{6.7cm}
+\psset{unit=0.75cm,arrowsize=2pt 3}
+\begin{pspicture}(-2.8,-2.4)(5,5.3)
+\psline[linestyle=dashed](3,0)(0,0)(0,3)
+\psline[linestyle=dashed](-1.3,-1.3)
+\psline[linewidth=1.25pt](3,0)(5,0)
+\psline[linewidth=1.25pt](0,3)(0,5.3)
+\psline[linewidth=1.25pt](-1.3,-1.3)(-2.8,-2.8)
+\psframe[linewidth=1.25pt](-1.3,-1.3)(1.7,1.7)
+\psline[linewidth=1.25pt](1.7,-1.3)(3,0)(3,3)(1.7,1.7)
+\psline[linewidth=1.25pt](3,3)(0,3)(-1.3,1.7)
+\uput[ur](0,0){A} \uput[dr](3,0){B} \uput[dr](1.7,-1.3){C} \uput[dr](-1.3,-1.3){D}
+\uput[ul](0,3){E} \uput[ur](3,3){F} \uput[ul](1.7,1.7){G} \uput[ul](-1.3,1.7){H}
+\uput[ul](-2.8,-2.8){$x$} \uput[u](5,0){$y$} \uput[r](0,5.3){$z$}
+\psdots(0,0)(3,0)(1.7,-1.3)(-1.3,-1.3)(0,3)(3,3)(1.7,1.7)(-1.3,1.7)(0.2,1.7)
+\uput[u](0.2,1.7){K}
+\end{pspicture}
+\end{minipage}
+
+\smallskip
+	
+On rappelle que le volume $V$ d'un tétraèdre est donné par:
+\[V = \dfrac13\mathcal{B} \times h,\]
+où $\mathcal{B}$ est l'aire d'une base et $h$ la hauteur correspondante.
+
+\begin{enumerate}[start=3]
+\item 
+	\begin{enumerate}
+		\item On note $\vect{n}$ le vecteur de coordonnées $\begin{pmatrix}1\\2\\1\end{pmatrix}$.
+		
+Démontrer que $\vect{n}$ est normal au plan (CFK).
+		\item  En déduire qu'une équation cartésienne du plan (CFK) est:
+\[x + 2y + z - 3 = 0.\]
+	\end{enumerate}
+\item On note $\Delta$ la droite passant par le point G et orthogonale au plan (CFK). 
+
+Démontrer qu'une représentation paramétrique de la droite $\Delta$ est:
+\[\left\{\begin{array}{l c l}
+x&=&1 + t\\
+y&=&1 + 2t\\
+z&=&1 + t
+\end{array}\right. \quad  (t \in \R))\]
+\item Soit L le point d'intersection entre la droite $\Delta$ et le plan (CFK).
+	\begin{enumerate}
+		\item Déterminer les coordonnées du point L.
+		\item En déduire que LG $= \dfrac{\sqrt 6}{6}$.
+	\end{enumerate}
+\item En utilisant la question 2., déterminer la valeur exacte de l'aire du triangle CFK.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

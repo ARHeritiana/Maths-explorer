@@ -1,0 +1,164 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_09_sujet1_metropole_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Les parties \textbf{A} et \textbf{B} sont indépendantes.\\
+Les probabilités demandées seront données à $10^{-3}$ près.}
+
+Pour aider à la détection de certaines allergies, on peut procéder à un test sanguin dont le résultat est soit positif, soit négatif.
+
+Dans une population, ce test donne les résultats suivants :
+\begin{itemize}
+\item Si un individu est allergique, le test est positif dans 97\,\% des cas;
+\item Si un individu n'est pas allergique, le test est négatif dans 95,7\,\% des cas.
+\end{itemize}
+
+Par ailleurs, 20\,\% des individus de la population concernée présentent un test positif.
+
+On choisit au hasard un individu dans la population, et on note :
+
+\begin{itemize}
+\item[$\bullet~~$] $A$ l'évènement \og l'individu est allergique \fg{} ;
+\item[$\bullet~~$] $T$ l'évènement \og l'individu présente un test positif \fg.
+\end{itemize}
+
+On notera $\overline{A}$ et $\overline{T}$ les évènements contraires de $A$ et $T$.
+On appelle par ailleurs $x$ la probabilité de l'évènement $A$ : $x = p(A)$.
+
+\begin{minipage}{9cm}
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item Reproduire et compléter l'arbre ci-contre décrivant la situation,
+en indiquant sur chaque branche la probabilité correspondante.
+\item 
+	\begin{enumerate}
+		\item Démontrer l'égalité : $p(T) = 0,927x + 0,043$.
+		\item En déduire la probabilité que l'individu choisi soit allergique.
+	\end{enumerate}	
+\item Justifier par un calcul l'affirmation suivante :
+
+\og Si le test d'un individu choisi au hasard est positif, il y a plus de 80\,\% de chances que cet individu soit allergique \fg.
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{5.5cm}
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$A$~}\taput{$x$}}
+{\TR{$T$}\taput{\ldots}
+\TR{$\overline{T}$}\tbput{\ldots}
+}
+\pstree{\TR{$\overline{A}$~}\tbput{\ldots}}
+{\TR{$T$}\taput{\ldots}
+\TR{$\overline{T}$}\tbput{\ldots}
+}
+}
+\end{center}
+\end{minipage}
+
+\textbf{Partie B}
+
+\medskip
+
+On réalise une enquête sur les allergies dans une ville en interrogeant $150$~habitants choisis au hasard, et on admet que ce choix se ramène à des tirages successifs indépendants avec remise.
+
+On sait que la probabilité qu'un habitant choisi au hasard dans cette ville soit allergique est égale à $0,08$.
+
+On note $X$ la variable aléatoire qui à un échantillon de $150$~habitants choisis au hasard associe le nombre de personnes allergiques dans cet échantillon.
+
+\medskip
+
+\begin{enumerate}
+\item Quelle est la loi de probabilité suivie par la variable aléatoire $X$ ?
+
+Préciser ses paramètres.
+\item Déterminer la probabilité que $20$~personnes exactement parmi les $150$ interrogées soient allergiques.
+\item Déterminer la probabilité qu'au moins 10\,\% des personnes parmi les $150$ interrogées soient allergiques.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

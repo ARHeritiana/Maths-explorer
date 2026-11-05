@@ -1,0 +1,83 @@
+\medskip
+
+\emph{Principaux domaines abordés}: Étude de fonctions. Fonction logarithme.
+
+\bigskip
+
+Soit $f$ une fonction définie et dérivable sur $\R$. On considère les points A(1~;~3) et B(3~;~5).
+
+On donne ci-dessous $\mathcal{C}_f$ la courbe représentative de $f$ dans un repère orthogonal du plan, ainsi que la tangente (AB) à la courbe $\mathcal{C}_f$ au point A.
+
+\medskip
+
+\begin{center}
+\psset{unit=0.8cm,arrowsize=2pt 3}
+\begin{pspicture*}(-7,-2.25)(8,6.25)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.15pt]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-7,-2.25)(8,6.25)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-7}{8}{x dup mul 1 add ln 3 add 2 ln sub}
+\psplot[linestyle=dashed]{-7}{8}{x 2 add}
+\uput[dr](1,3){A}\uput[ul](3,5){B}
+\psdots[dotstyle=+,dotangle=45,dotscale=1.5](1,3)(3,5)
+\uput[d](-5.5,5.75){\red $\mathcal{C}_f$}
+\end{pspicture*}
+\end{center}
+
+\emph{Les trois parties de l'exercice peuvent être traitées de manière indépendante.}
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer graphiquement les valeurs de $f(1)$ et $f'(1)$.
+\item La fonction $f$ est définie par l'expression $f(x) = \ln \left(ax^2 + 1\right) + b$, où $a$ et $b$ sont des nombres réels positifs.
+	\begin{enumerate}
+		\item Déterminer l'expression de $f'(x)$.
+		\item Déterminer les valeurs de $a$ et $b$ à l'aide des résultats précédents.
+
+	\end{enumerate}
+\end{enumerate} 
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On admet que la fonction $f$ est définie sur $\R$ par 
+
+\[f(x) = \ln \left(x^2 + 1\right) + 3 - \ln (2).\]
+
+\medskip
+
+\begin{enumerate}
+\item Montrer que $f$ est une fonction paire.
+\item Déterminer les limites de $f$ en $+\infty$ et en $-\infty$.
+\item Déterminer l'expression de $f'(x)$.
+
+Étudier le sens de variation de la fonction $f$ sur $\R$.
+
+Dresser le tableau des variations de $f$ en y faisant figurer la valeur exacte du minimum ainsi que les limites de $f$ en $-\infty$ et $+\infty$.
+\item À l'aide du tableau des variations de $f$, donner les valeurs du réel $k$ pour lesquelles l'équation $f(x) = k$ admet deux solutions.
+\item Résoudre l'équation $f(x) = 3 + \ln 2$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie C}
+
+\medskip
+
+On rappelle que la fonction $f$ est définie sur $R$ par $f(x) = \ln \left(x^2 + 1\right) + 3 - \ln (2)$.
+
+\medskip
+
+\begin{enumerate}
+\item Conjecturer, par lecture graphique, les abscisses des éventuels points d'inflexion
+de la courbe $\mathcal{C}_f$.
+\item Montrer que, pour tout nombre réel $x$, on a : $f''(x) = \dfrac{2\left(1 - x^2\right)}{\left(x^2 + 1\right)^2}$.
+\item En déduire le plus grand intervalle sur lequel la fonction $f$ est convexe.
+\end{enumerate}

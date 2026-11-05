@@ -1,0 +1,235 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_09_sujet2_ameriquesud_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Soit la fonction $f$ définie sur $\R$ par 
+$f(x) = \ln \left(1 + \text{e}^{-x}\right) + \dfrac14 x.$
+
+On note $\mathcal{C}_f$ la courbe représentative de la fonction $f$ dans un repère orthonormé \Oij{} du plan.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item 
+\begin{list}{\textbullet}{}
+\item $\ds\lim _{x\to +\infty} \e^{-x}=0$ donc $\ds\lim _{x\to +\infty} \ln\left (1+\e^{-x}\right ) = \ln(1)=0$
+\item $\ds\lim _{x\to +\infty} \dfrac{1}{4}x=+\infty$
+\end{list}
+
+Donc $\ds\lim _{x\to +\infty} f(x) = +\infty$.
+
+\item On admet que la fonction $f$ est dérivable sur $\R$ et on note $f'$ sa fonction dérivée.
+	\begin{enumerate}
+		\item 
+$\begin{gathered}f'(x)=\dfrac{-\e^{-x}}{1+\e^{-x}}+\dfrac{1}{4}
+= \dfrac{\e^{x}\times \left (-\e^{-x}\right )}{\e^{x}\times \left (1+\e^{-x}\right )}+\dfrac{1}{4}
+= \dfrac{-1}{\e^{x}+1} + \dfrac{\e^{x}+1}{4\left (\e^{x}+1\right )}
+= \dfrac{-4+\e^{x}+1}{4\left (\e^{x}+1\right )}\\
+\phantom{f'(x)}
+= \dfrac{\e^{x}-3}{4\left (\e^{x}+1\right )}\end{gathered}$
+				
+		\item 
+Sur $\R$, $f'(x)$ est du signe de $\e^{x}-3$.
+
+$\e^{x}-3\geqslant 0
+\iff
+\e^{x}\geqslant 3
+\iff
+x \geqslant \ln(3)$
+
+\begin{list}{\textbullet}{Donc:}
+\item sur $\left ] -\infty\;;\;\ln(3)\strut\right [$, $f'(x)<0$ donc $f$ est strictement décroissante;
+\item sur $\left ] \ln(3)\;;\;+\infty\strut\right [$, $f'(x)> 0$ donc $f$ est strictement croissante;
+\item la fonction $f$ admet pour $x=\ln(3)$ un minimum.
+\end{list}
+
+		\item 
+\begin{list}{\textbullet}{}
+\item $\ln(3)\approx 1,1$ donc $[2~;~5] \subset\; ]\ln(3)\;;\;+\infty[$, et donc la fonction $f$ est strictement croissante sur $[2~;~5]$.
+\item $f(2)=\ln\left (1+\e^{-2}\right ) + \dfrac{1}{4}\times 2 \approx 0,63$ donc $f(2)<1$.
+\item $f(5)=\ln\left (1+\e^{-5}\right ) + \dfrac{1}{4}\times 5 \approx 6,25$ donc $f(5)>1$.	\item De plus, la fonction $f$ est dérivable sur $\R$ donc continue.
+\end{list}
+	
+D'après le corollaire du théorème des valeurs intermédiaires, 	on peut déduire que l'équation $f(x)=1$ admet une solution unique sur $[2~;~5]$. On l'appelle $\alpha$.
+	\end{enumerate}
+	
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On admettra que la fonction $f'$ est dérivable sur $\R$ et pour tout réel $x$,
+$f''(x) = \dfrac{\e^x}{\left(\e^x + 1\right)^2}$.
+
+On note $\Delta$ la tangente à la courbe $\mathcal{C}_f$ au point d'abscisse $0$.
+
+Dans le graphique ci-dessous, on a représenté la courbe $\mathcal{C}_f$ la tangente $\Delta$ et le quadrilatère MNPQ tel que M et N sont les deux points de la courbe $\mathcal{C}_f$ d'abscisses respectives $\alpha$ et $- \alpha$, et Q et P sont les deux points de la droite $\Delta$ d'abscisses respectives $\alpha$ et $- \alpha$.
+
+
+\psset{unit=1.2cm,arrowsize=2pt 3}
+\begin{center}
+\begin{pspicture}(-6,-1)(6,5)
+\pspolygon[linewidth=1.25pt,linecolor=blue,fillstyle=solid,fillcolor=blue!20](3.922,-0.3)(3.922,1)(- 3.922,2.961)(-3.922,1.7)
+
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10](0,0)(-6,-1)(6,5)
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10]{->}(0,0)(1,1)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-6}{6}{1 1 2.71828 x exp div add ln 0.25 x mul add}
+\psplotTangent[linewidth=1.25pt,linecolor=blue]{0}{6}{1 1 2.71828 x exp div add ln 0.25 x mul add}
+
+\psline[linestyle=dashed](-3.922,1.7)(-3.922,0)
+\uput[d](0.5,0){$\vect{\imath}$}\uput[l](0,0.5){$\vect{\jmath}$}
+\uput[d](3.922,-0.3){Q}\uput[u](3.922,1){M}\uput[ur](- 3.922,2.961){N}\uput[dl](-3.922,1.7){P}
+\uput[dr](3.922,0){$\alpha$}\uput[d](-3.922,0){$- \alpha$}\uput[dl](0,0){O}\uput[d](-5.2,2){\blue$\Delta$}
+\uput[d](-5.2,3.8){\red $\mathcal{C}_f$}
+\end{pspicture}
+\end{center}
+
+\smallskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+\begin{list}{\textbullet}{Pour tout réel $x$:}
+\item $\e^{x}>0$;
+\item $\e^{x}>0$ donc $\e^{x}+1>0$ donc $\left(\e^x + 1\right)^2>0$.
+\end{list}		
+
+Donc $f''(x) = \dfrac{\e^x}{\left(\e^x + 1\right)^2}>0$.
+
+		\item
+Pour tout réel $x$, $f''(x)>0$ donc la fonction $f$ est convexe; sa courbe représentative est donc située au-dessus de toutes ses tangentes, donc au-dessus de $\Delta$.
+
+De plus, comme la fonction $f$ est convexe, sa courbe représentative entre les points M et N est située en-dessous de la sécante (MN).
+
+Donc  la portion de la courbe $\mathcal{C}_f$ sur l'intervalle $[-\alpha~;~\alpha]$, est inscrite dans le quadrilatère MNPQ.
+	\end{enumerate}
+	
+\item 	
+	\begin{enumerate}
+		\item 
+$\begin{gathered}f(-\alpha) = \ln\left (1+\e^{\alpha}\right ) -\dfrac{1}{4}\alpha
+= \ln \left (\e^{\alpha} \left (\e^{-\alpha}+1\right )\right ) -\dfrac{1}{4}\alpha
+= \ln\left (\e^{\alpha}\right ) + \ln \left (\e^{-\alpha}+1\right ) -\dfrac{1}{4}\alpha\\[7pt]
+\phantom{f(-\alpha)}
+= \alpha + \ln \left (\e^{-\alpha}+1\right ) -\dfrac{1}{4}\alpha
+= \ln \left (\e^{-\alpha}+1\right )+ \dfrac{3}{4}\alpha\end{gathered}$
+		
+		\item 
+On sait que $f(\alpha)=1$, donc $\ln\left (1+\e^{-\alpha}\right )+\dfrac{1}{4}\alpha = 1$ et donc $\ln\left (1+\e^{-\alpha}\right ) = 1-\dfrac{1}{4}\alpha$.
+
+Donc comme $f(-\alpha) = \ln \left (\e^{-\alpha}+1\right )+ \dfrac{3}{4}\alpha$, on a:
+$f(-\alpha) = 1-\dfrac{1}{4}\alpha + \dfrac{3}{4}\alpha = 1+\dfrac{1}{2}\alpha$.
+
+
+Les points M et N ont respectivement pour coordonnées $\left (\alpha\;;\;f(\alpha)\right )$ et $\left (-\alpha\;;\;f(-\alpha)\right )$ donc le coefficient directeur de la droite (MN) est égal à:
+
+\[\dfrac{y_{\text M} - y_{\text N}}{x_{\text M} - x_{\text N}}
+= \dfrac{f(\alpha) - f(-\alpha)}{\alpha-(-\alpha)}
+= \dfrac{1-\left (1+\frac{1}{2}\alpha\right )}{2\alpha}
+= \dfrac{-\frac{1}{2}\alpha}{2\alpha}
+= -\dfrac{1}{4}\]
+
+La droite $\Delta$ est tangente en 0 à la courbe $\mathcal{C}_f$; donc son coefficient directeur est égal à:
+$f'(0)=\dfrac{\e^{0}-3}{4\left (1+\e^{0}\right )}
+= \dfrac{1-3}{4\left (1+1\right )}
+= \dfrac{-2}{8}
+= -\dfrac{1}{4}$
+
+Les droites (MN) et $\Delta$ ont le même coefficient directeur, donc elles sont parallèles, donc $(\text{MN}) /\!/ (\text{QP})$.
+
+Par construction, les droites (MQ) et (NP) sont parallèles.
+
+On peut donc en déduire que le quadrilatère MNPQ est un parallélogramme.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,155 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_polynesie_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Commun à tous les candidats}
+
+\medskip
+
+On considère la suite $\left(u_n\right)$ définie par $u_0 = \np{10000}$ et pour tout entier naturel $n$ : 
+
+\[u_{n+1} = 0,95u_n + 200.\]
+
+\begin{enumerate}
+\item $\bullet~~u_1 = 0,95 \times u_0 + 200 = 0,95 \times \np{10000} + 200 = \np{9500} + 200 = \np{9700}$.
+
+$\bullet~~u_2 = 0,95 \times u_1 + 200 = 0,95 \times \np{9700} + 200 = \np{9215} + 200 = \np{9415}$. 
+\item 
+	\begin{enumerate}
+		\item On démontre  par récurrence, que pour tout entier naturel $n$ : $u_n > \np{4000}.$
+		
+\emph{Initialisation} : $u_0 = \np{10000} > \np{4000}$ : l'inégalité est vraie au rang $0$ ;
+
+\emph{Hérédité} : supposons que pour $n \in \N$, on ait $u_n > \np{4000}$, alors par produit par $0,95 > 0$,\, on a $0,95u_n > 0,95 \times \np{4000}$, soit :
+
+$0,95u_n > \np{3800}$, et en ajoutant 200 à chaque membre :
+
+$0,95u_n  + 200 > \np{3800} + 200$, c'est-à-dire $u_{n+1} > \np{4000}$ : la relation est vraie au rang $n + 1$.
+
+Conclusion : l'inégalité est vraie au rang $0$ et si elle est vraie au rang $n \in \N$, elle est vraie au rang $n + 1$ : d'après le principe de récurrence $u_n > \np{4000}$ quel que soit le naturel $n$.
+		\item 
+On sait que si la suite est décroissante et minorée par \np{4000}, elle converge vers une limite $\ell$, avec $\ell \geqslant \np{4000}$.
+	\end{enumerate}
+\item  
+	\begin{enumerate}
+		\item 
+Pour $n = 0$, on a $v_0 = u_0 -  \np{4000} =  \np{10000} -  \np{4000} =  \np{6000}$.
+		\item 
+Au choix :
+		
+\emph{Méthode} 1 : pour $n \in \N$, on a :
+
+$v_{n+1} = u_{n+1} - \np{4000} = 0,95u_n + 200 - \np{4000} = 0,95u_n  - \np{3800} = 0,95\left(u_n - \dfrac{\np{3800}}{0,95}\right) = 0,95\left(u_n - \np{4000}\right) = 0,95v_n$.
+
+L'égalité $v_{n+1} = 0,95v_n$ vraie quel que soit $n \in \N$ montre que la suite $\left(v_n\right)$ est géométrique de raison égale à $0,95$.
+		
+\emph{Méthode} 2 : pour $n \in \N$, on a vu que $u_n > \np{4000}$, donc $v_n = u_n - 4000 > 0$.
+
+On peut donc calculer : $\dfrac{v_{n+1}}{v_n} = \dfrac{u_{n+1} - \np{4000}}{u_n - \np{4000}} = \dfrac{0,95u_n + 200 - \np{4000}}{u_n - \np{4000}} =$
+
+$ \dfrac{0,95u_n - \np{3800}}{u_n - \np{4000}} = \dfrac{0,95u_n - \np{3800}}{u_n - \np{4000}} = \frac{0,95\left(u_n - \frac{\np{3800}}{0,95} \right)}{u_n - \np{4000}} = \dfrac{0,95\left(u_n - \np{4000} \right)}{u_n - \np{4000}} = 0,95$.
+
+Cette égalité vraie pour tout naturel $n$, montre que la suite $\left(v_n\right)$ est géométrique de raison égale à $0,95$.
+		\item 
+
+
+D'après le résultat précédent, on sait que que pour tout $n \in \N$, \, 
+
+$v_n = v_0 \times 0,95^n = \np{6000} \times 0,95^n$.
+
+Or $v_n = u_n - \np{4000} \iff u_n = v_n + \np{4000} = \np{6000} \times 0,95^n + \np{4000}$.
+		\item 
+		Comme $0 < 0,95 < 1$, on sait que $\displaystyle\lim_{n \to + \infty} 0,95^n = 0$, donc $\displaystyle\lim_{n \to + \infty} \np{6000} \times 0,95^n = 0$, d'où $\displaystyle\lim_{n \to + \infty}u_n = \np{4000}$ (par somme de limites).
+	\end{enumerate}
+\item 
+
+
+
+
+
+
+$u_n$ est égal au nombre d'individus de l'espèce animale au rang $n$ ; d'après le résultat précédent ce nombre va diminuer et se rapprocher de \np{4000} soit moins de la moitié de la population initiale : le responsable a raison.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

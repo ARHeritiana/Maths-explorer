@@ -1,0 +1,141 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet16_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Une chaîne de salons de coiffure propose à ses \np{5000} clients qui viennent pour une
+coupe deux prestations supplémentaires cumulables :
+
+\begin{itemize}
+\item  une coloration naturelle à base de plantes appelée \og couleur-soin \fg,
+\item des mèches blondes pour donner du relief à la chevelure, appelées \og effet
+coup de soleil \fg.
+\end{itemize}
+
+Il apparaît que \np{2000} clients demandent une \og couleur-soin \fg. Parmi ceux qui ne
+veulent pas de \og couleur soin \fg, $900$ demandent un \og effet coup de soleil \fg. Par
+ailleurs, $650$ clients demandent une \og couleur soin \fg et un \og effet coup de soleil \fg.
+
+On notera $C$ l'évènement \og le client souhaite une \og couleur-soin \fg.
+
+On notera $E$ l'évènement \og le client souhaite un \og effet coup de soleil \fg.
+
+\begin{enumerate}
+\item Recopier sur votre copie et compléter le tableau suivant :
+
+\begin{center}
+\begin{tabularx}{0.7\linewidth}{|*{3}{>{\centering \arraybackslash}X|}m{0.75cm}|}
+\hline
+				& $C$ 	&$\overline{C}$	& Total\\\hline
+$E$				&		& $900$			&\\\hline
+$\overline{E}$ 	&		&				&\\\hline
+Total			&		&				&\np{5000}\\\hline
+\end{tabularx}
+\end{center}
+\smallskip
+
+\item On interroge un client au hasard parmi les \np{5000} clients.
+	\begin{enumerate}
+		\item Quelle est la probabilité qu'il ait choisi les deux prestations : \og couleur soin \fg{}
+et \og effet coup de soleil \fg ?
+		\item Calculer $P_E\left(\overline{C}\right)$.
+	\end{enumerate}
+\item On a des prix différents suivant la prestation fournie. On appelle $X$ le prix payé
+en euros par chaque client.
+
+\begin{tabularx}{\linewidth}{|m{1.85cm}|m{2cm}|*{3}{>{\centering \arraybackslash}X|}}
+\hline
+&Coupe seule&Coupe avec \og couleur soin \fg &Coupe avec \og effet coup desoleil \fg &\small Coupe avec\og couleur soin \fg{} et \og effet coup de soleil \fg \\\hline
+Valeurs de $k$ en \euro 	&\centering  20	& 50 	&65 	&80\\\hline
+$P(X = k)$					&		&		& 0,18	&0,13\\
+\hline
+\end{tabularx}
+
+\smallskip
+
+Après avoir recopié et complété le tableau, calculer l'espérance de $X$.
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\end{document}

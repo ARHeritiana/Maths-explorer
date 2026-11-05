@@ -1,0 +1,143 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2021/tex/e3c_2021_06_ameriquenord_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+La population d'une ville A augmente chaque année de 2\,\%. 
+La ville A avait \np{4600} habitants en 2010.
+La population d'une ville B augmente de 110 habitants par année.
+La ville B avait \np{5100} habitants en 2010.
+
+Pour tout entier $n$, on note $u_n$ le nombre d'habitants de la ville A et $v_n$ le nombre d'habitants de la ville B à la fin de l'année $2010 + n$.
+
+\medskip
+
+\begin{enumerate}
+\item
+\begin{list}{\textbullet}{À la fin de 2011:}
+\item Le nombre d'habitants de la ville A est: \\[5pt]
+$u_1=u_0 + u_0\times \dfrac{2}{100}= \np{4600} + \np{4600}\times \dfrac{2}{100}=  \np{4692}$.
+
+\item Le nombre d'habitants de la ville B est: $v_1=v_0+110 = \np{5100}+110 = \np{5210}$.
+\end{list}
+
+\item
+\begin{list}{\textbullet}{}
+\item Ajouter $2\,\%$, c'est multiplier par $1+\dfrac{2}{100}=1,02$; donc la suite $(u_n)$ est géométrique de raison $q=1,02$ et de premier terme $u_0=\np{4600}$.
+\item On passe de $v_n$ à $v_{n+1}$ en ajoutant $110$, donc la suite $(v_n)$ est arithmétique de raison $r=110$ et de premier terme $v_0=\np{5100}$.
+\end{list}
+
+\item 
+La suite $(u_n)$ est géométrique de raison $q=1,02$ et de premier terme $u_0=\np{4600}$ donc, pour tout entier naturel $n$, on a: $u_n=u_0\times q^n = \np{4600}\times 1,02^n$.
+
+Le nombre d'habitants dans la ville A en 2020 est: $u_{10}=\np{4600}\times 1,02^{10}\approx \np{5607}$.
+
+\item 
+La suite $(v_n)$ est arithmétique de raison $r=110$ et de premier terme $v_0=\np{5100}$ donc pour tout entier naturel $n$, on a:
+$u_n=u_0 + n\times r = \np{5100} + 110n$.
+
+Le nombre d'habitants dans la ville B en 2020 est: $v_{10}= \np{5100}+110\times 10 = \np{6200}$.
+
+\item On complète l'algorithme ci-dessous qui permet de déterminer au bout de combien d'années la population de la ville A dépasse celle de la ville B.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\fbox{
+\begin{tabular}{l}
+def année () : \hspace*{3cm}\\
+\quad $u =\np{4600}$\\
+\quad $v =\np{5100}$\\
+\quad $n = 0$\\
+\quad while $\blue u \leqslant v$\\
+\qquad $u = \blue u \times 1,02$\\
+\qquad $u = \blue v + 110$\\
+\qquad $n = \blue n+1$\\
+\quad return $n$\\ 
+\end{tabular}
+}
+\end{center}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

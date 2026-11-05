@@ -1,0 +1,130 @@
+\medskip
+
+Cet exercice est un questionnaire à choix multiples (QCM). Pour chacune des questions, une seule des quatre propositions est correcte.
+
+Les questions sont indépendantes. Pour chaque question, indiquer le numéro de la question et recopier sur la copie la lettre correspondant à la réponse choisie. Aucune justification n'est demandée.
+
+Chaque réponse exacte rapporte un point. Une réponse fausse ou une absence de réponse ne rapporte aucun point.
+
+\medskip
+
+\textbf{Question 1}
+
+\medskip
+
+On lance deux fois une pièce équilibrée, de manières identiques et indépendantes.
+
+Si le joueur obtient 2 Faces, il perd 5~\euro, s'il obtient exactement une Face, il gagne 2~\euro, s'il obtient 2 Piles il gagne 4~\euro.
+
+ On note $G$ la variable aléatoire correspondant au gain algébrique du joueur, en euros.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}$E(G) = 0,75$& \textbf{b.~~}$E(G) = 3$&\textbf{c.~~}$E(G) = 1$&\textbf{d.~~}$E(G) =- 4$ \\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 2}
+
+\medskip
+
+$A$ et $B$ sont deux évènements, et on donne $P(A) = \dfrac{3}{7}$,\, $P(B) = \dfrac{3}{20}$,\, $P(A \cup B) = \dfrac{4}{7}$.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}A et B sont indépendants.& \textbf{b.~~}$P_A(B) = \dfrac{3}{980}$&\textbf{c.~~}$P(A \cap B) = \dfrac{1}{140}$&\textbf{d.~~}$P_A(B) = \dfrac{1}{60}$ \\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 3}
+
+\medskip
+
+On donne l'arbre de probabilités ci-dessous, ainsi que la probabilité $P(C) = 0,48$.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=3pt]{\TR{}}
+{\pstree{\TR{$A~~$} \naput{0,2}}
+	{\TR{$C~~$}\naput{0,6}
+	\TR{$\overline{C}~~$}\nbput{0,4}
+	}
+\pstree{\TR{$\overline{A}~~$} \nbput{0,8}}
+	{\TR{$C~~$}\naput{$x$}
+	\TR{$\overline{C}~~$}\nbput{$1 - x$}
+	}
+}
+\end{center}
+
+\smallskip
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}$x = 0,6$& \textbf{b.~~}$x = 0,36$&\textbf{c.~~}$x = 0,45$&\textbf{d.~~}$x = \dfrac{0,48}{0,12}$\rule[-3mm]{0mm}{9mm} \\ \hline
+\end{tabularx}
+\end{center}
+\medskip
+
+\textbf{Question 4}
+
+\medskip
+
+On a tracé la courbe représentative $\mathcal{C}_f$ d'une fonction $f$ dans un repère orthonormé, ainsi que deux de ses tangentes, au point E d'abscisse 2 et au point G d'abscisse 4.
+
+\medskip
+
+\parbox{0.48\linewidth}{Les coordonnées des points E, F, G, H placés dans le repère ci-contre peuvent être lues graphiquement, ce sont des entiers.
+
+La tangente à $\mathcal{C}_f$ au point E est la droite (EF). 
+
+La tangente à $\mathcal{C}_f$ au point G est la droite (GH). 
+
+On note $f'$ la fonction dérivée de $f$.}\hfill
+\parbox{0.51\linewidth}{\psset{unit=0.9cm}
+\begin{pspicture*}(-0.75,-1.5)(6.5,6.5)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.4pt](0,-1)(7,7)
+\psaxes[linewidth=1.25pt]{->}(0,0)(-0.5,-1.5)(6.5,6.5)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0.5}{6.5}{x 5 sub x 3 exp 3 mul 14 div x dup mul 1.75 mul sub 3.5 x mul add 19 7 div sub mul}
+\psplot[plotpoints=2000,linewidth=1.pt]{0}{4}{2 x mul 1 sub}
+\psplot[plotpoints=2000,linewidth=1.pt]{2.5}{6}{15 3 x mul sub}
+\uput[dr](0,-1){F} \uput[ul](2,3){E}\uput[ur](4,3){G}\uput[dl](5,0){H}
+\uput[r](0.6,6){\blue $\mathcal{C}_f$}\uput[dl](0,0){O}
+\psdots(0,-1)(2,3)(4,3)(5,0)
+\end{pspicture*}}
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}$f'(2) = 4$& \textbf{b.~~}$f'(2) = 3$&\textbf{c.~~}$f'(4)=3$&\textbf{d.~~}$f'(4)= - 3$ \\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 5}
+
+\medskip
+
+On considère la fonction Python suivante :
+
+\begin{center}
+$\begin{array}{l}
+\text{def } evolu(k) :\\
+\qquad  i = 200\\
+\qquad n = 0\\
+\qquad \text{while}\: i < k :\\
+\qquad\qquad i= 1.2*i + 10\\
+\qquad\qquad n = n+1\\
+\qquad \text{return}\: n\\
+\end{array}$
+\end{center}
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}$evolu(500) = 4$& \textbf{b.~~}$evolu(600) = 5$&\textbf{c.~~}$evolu(300) = 3$&\textbf{d.~~}$evolu(400) = 4$\\ \hline
+\end{tabularx}
+\end{center}
+
+\bigskip

@@ -1,0 +1,215 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_asie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On considère une fonction $f$ définie sur $[0~;~ +\infty[$, représentée par la courbe
+$\mathcal{C}$ ci-dessous.
+
+La droite $T$ est tangente à la courbe $\mathcal{C}$ au point A d'abscisse $\dfrac52$.
+
+\begin{center}
+\psset{xunit=2cm,arrowsize=2pt 3,comma}
+\begin{pspicture}(-0.5,-5.5)(5.5,5.5)
+\multido{\n=0.0+0.5}{12}{\psline[linewidth=0.2pt](\n,-5.5)(\n,5.5)}
+\multido{\n=0.0+0.1}{56}{\psline[linewidth=0.1pt](\n,-5.5)(\n,5.5)}
+\multido{\n=-5+1}{11}{\psline[linewidth=0.2pt](0,\n)(5.5,\n)}
+\multido{\n=-5.4+0.2}{55}{\psline[linewidth=0.1pt](0,\n)(5.5,\n)}
+\psaxes[linewidth=1.25pt,Dx=0.5]{->}(0,0)(0,-5.5)(5.5,5.5)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=cyan]{0}{5.5}{4 x mul 2 sub 2.71828 x 1 sub exp div}
+\psplotTangent{2.5}{3}{4 x mul 2 sub 2.71828 x 1 sub exp div}
+\uput[r](0.25,-3){\cyan $\mathcal{C}$}\uput[u](0.25,3.8){$T$}
+\psdots[dotstyle=+,dotscale=2.2](2.5,1.785)\uput[ur](2.5,1.785){A}
+\end{pspicture}
+\end{center}
+
+\begin{enumerate}
+\item Dresser, par lecture graphique, le tableau des variations de la fonction $f$ sur l'intervalle [0~;~5].
+\item Que semble présenter la courbe $\mathcal{C}$ au point A ?
+\item La dérivée $f'$ et la dérivée seconde $f''$ de la fonction $f$ sont représentées par les courbes ci-dessous.
+
+Associer à chacune de ces deux fonctions la courbe qui la représente.
+
+Ce choix sera justifié.
+
+\begin{tabularx}{\linewidth}{*{2}{>{\centering \arraybackslash}X}}
+\psset{xunit=1cm,yunit=0.2cm,arrowsize=2pt 3,comma}
+\begin{pspicture}(-0.5,-26)(5.5,0.5)
+\multido{\n=0.0+0.5}{12}{\psline[linewidth=0.2pt](\n,-26)(\n,0.5)}
+\multido{\n=-26+2}{14}{\psline[linewidth=0.2pt](0,\n)(5.5,\n)}
+\psaxes[linewidth=1.25pt,Dx=0.5,Dy=2,labelFontSize=\scriptstyle]{->}(0,0)(-0.5,-26)(5.5,0.5)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{5.5}{4 x mul 10 sub 2.71828 x 1 sub exp div}
+\uput[r](0.25,-20){\blue $\mathcal{C}_1$}
+\end{pspicture}&
+\psset{xunit=1cm,yunit=0.28cm,arrowsize=2pt 3,comma}
+\begin{pspicture}(-0.5,-2)(5.5,17)
+\multido{\n=0.0+0.5}{12}{\psline[linewidth=0.2pt](\n,-2)(\n,16)}
+\multido{\n=-2+2}{10}{\psline[linewidth=0.2pt](0,\n)(5.5,\n)}
+\psaxes[linewidth=1.25pt,Dx=0.5,Dy=2,labelFontSize=\scriptstyle]{->}(0,0)(-0.5,-2)(5.5,17)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0}{5.5}{6 4 x mul sub 2.71828 x 1 sub exp div}
+\uput[r](0.5,7){\red $\mathcal{C}_2$}
+\end{pspicture}\\
+Courbe $\mathcal{C}_1$	&Courbe $\mathcal{C}_2$\\
+\end{tabularx}
+
+\begin{minipage}{0.48\linewidth}
+\item  La courbe $\mathcal{C}_3$ ci-contre peut-elle être la
+représentation graphique sur $[0~;~+\infty[$ d'une primitive de la fonction $f$ ? Justifier.
+\end{minipage}\hfill
+\begin{minipage}{0.48\linewidth}
+\psset{xunit=1cm,yunit=0.5cm,arrowsize=2pt 3,comma}
+\begin{pspicture}(-0.5,-0.4)(5.5,7.5)
+\multido{\n=0.0+0.5}{12}{\psline[linewidth=0.2pt](\n,-0.5)(\n,7.5)}
+\multido{\n=0+1}{8}{\psline[linewidth=0.2pt](0,\n)(5.5,\n)}
+\psaxes[linewidth=1.25pt,Dx=0.5,Dy=2,labelFontSize=\scriptstyle]{->}(0,0)(0,-0.5)(5.5,7.5)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=cyan]{0}{5.5}{4 x mul 2 add 2.71828 x 1 sub exp div }
+\uput[ur](1.5,5){\cyan $\mathcal{C}_3$}
+\end{pspicture}
+\end{minipage}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+Dans cette partie, on considère que la fonction $f$, définie et deux fois dérivable sur
+$[0~; ~+\infty[$,
+est définie par
+\[f(x)  = (4x - 2)\e^{-x+1}.\]
+
+On notera respectivement $f'$ et $f''$ la dérivée et la dérivée seconde de la fonction $f$.
+
+\medskip
+
+\begin{enumerate}
+\item Étude de la fonction $f$
+	\begin{enumerate}
+		\item Montrer que $f'(x) = (-4x + 6)\e^{-x+1}$.
+		\item Utiliser ce résultat pour déterminer le tableau complet des variations de la fonction $f$ sur $[0~; ~+\infty[$. On admet que $\displaystyle\lim_{x \to + \infty}f(x) = 0$.
+		\item Étudier la convexité de la fonction $f$  et préciser l'abscisse d'un éventuel point d'inflexion de la courbe représentative de $f$.
+	\end{enumerate}
+\item On considère une fonction $F$ définie sur $[0~; ~+\infty[$ par $F(x) = (ax + b)\e^{-x+1}$, où $a$ et $b$ sont deux nombres réels.
+	\begin{enumerate}
+		\item Déterminer les valeurs des réels $a$ et $b$ telles que la fonction $F$ soit une primitive de la fonction $f$ sur $[0~; ~+\infty[$.
+		\item On admet que $F(x) = (-4x - 2)\e^{-x+1}$ est une primitive de la fonction $f$ sur
+	$[0~; ~+\infty[$.
+
+En déduire la valeur exacte, puis une valeur approchée à $10^{-2}$ près, de l'intégrale
+
+\[I = \displaystyle\int_{\frac32}^8 f(x)\:\text{d}x.\]
+	\end{enumerate}
+\begin{minipage}{0.4\linewidth}
+\item  Une municipalité a décidé de construire une piste de trottinette freestyle.
+
+Le profil de cette piste est donné par la courbe représentative de la fonction $f$
+sur l'intervalle $\left[\frac32~;~ 8\right]$.
+
+L'unité de longueur est le mètre.
+\end{minipage}
+\begin{minipage}{0.48\linewidth}
+\psset{xunit=1.1cm,yunit=1.5cm,arrowsize=2pt 3,comma}
+\begin{pspicture}(1.5,-0.5)(8,2.45)
+\psaxes[linewidth=1.25pt,Dx=10,Dy=3,labelFontSize=\scriptstyle](1.5,0)(1.5,0)(8,2.45)
+\psplot[plotpoints=2000,linewidth=1.25pt]{1.5}{8}{4 x mul 2 sub 2.71828 x 1 sub exp div}
+\multido{\n=1.5+0.5,\na=1.5+0.5}{14}{\uput[d](\n,0){\footnotesize \np{\n}}}
+\uput[ur](1.5,2.45){D}
+\end{pspicture}
+\end{minipage}
+
+	\begin{enumerate}
+		\item  Donner une valeur approchée au cm près de la hauteur du point de départ D.
+		\item  La municipalité a organisé un concours de graffiti pour orner le mur de profil de la piste. L'artiste retenue prévoit de couvrir environ 75\,\% de la surface du mur.
+
+Sachant qu'une bombe aérosol de $150$~mL permet de couvrir une surface de $0,8$ m$^2$, déterminer le nombre de bombes qu'elle devra utiliser pour réaliser cette œuvre.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

@@ -1,0 +1,31 @@
+\textbf{Question 1}
+	
+	Retrancher 15\% signifie multiplier par $1 - \dfrac{1,5}{100} = 0,985$.\\
+	 Ainsi, pour tout naturel $n$, on a :
+	\[
+	d_{n+1} = 0,985 d_n.
+	\]
+	En particulier :
+	\[
+	d_1 = 0,985 \times 537 \approx 529.
+	\]
+	
+	\textbf{Question 2}
+	
+	La suite $(d_n)$ est une suite géométrique de premier terme $d_0 = 537$ et de raison $q = 0,985$.
+	
+	\textbf{Question 3}
+	
+	Le programme Python pour trouver au bout de combien d'années la quantité de déchets est inférieure à 513 kg est :
+	
+	\begin{verbatim}
+		def annee():
+		n = 0
+		d = 537
+		while d > 513:
+		    n = n + 1
+		    d = 0.985 * d
+		return n
+	\end{verbatim}
+	
+	On trouve qu'au bout de 4 ans, soit en 2023, la quantité de déchets devient inférieure à 513 kg pour la première fois.

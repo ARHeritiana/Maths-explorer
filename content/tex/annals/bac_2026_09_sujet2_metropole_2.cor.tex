@@ -1,0 +1,110 @@
+\begin{enumerate}
+		\item On a :\quad
+		$\displaystyle \lim_{x \to -\infty} 3x-1 = - \infty$
+		\quad et \quad
+		$\displaystyle \lim_{x \to -\infty} \e^{-x} = + \infty$,
+
+		par limite du produit :\quad $\displaystyle \lim_{x \to -\infty} f(x) = - \infty$.
+
+		\item On a :\quad
+		$\displaystyle \lim_{x \to +\infty} 3x-1 = + \infty$
+		\quad et \quad
+		$\displaystyle \lim_{x \to +\infty} \e^{-x} = 0$, \quad sous cette forme, on a donc une forme indéterminée.
+
+		Mais, pour tout $x$ réel, on a :\quad $f(x) = (3x- 1)\e^{-x} +2 =  -3 \big(-x \big)\e^{-x} - \e^{-x} +2$.
+
+
+		$\displaystyle  \lim_{x \to +\infty} -x \e^{-x} = \displaystyle  \lim_{X \to -\infty} X \e^{X} = 0  $, \quad d'après la propriété des croissances comparées.
+
+		On obtient alors, par limite de la somme :\quad $\displaystyle  \lim_{x \to +\infty} f(x) =2$.
+
+		On en déduit que la droite d'équation $y=2$ est une asymptote horizontale à la courbe $\mathcal{C}_f$ en $+\infty$.
+
+		\item \begin{enumerate}
+			\item On a, pour tout réel $x$ : \quad $f'(x)=3 \times \e^{-x} + (3x-1) \times \left( - \e^{-x} \right)$.
+
+			Soit \quad $f'(x)=\e^{-x} \big( 3-(3x-1) \big)=(-3x+4) \e^{-x}$.
+
+			\item Pour tout $x \in \R$, \quad $\e^{-x} >0$ \quad donc le signe de $f'$ est le même que celui de $-3x+4$.
+
+			Or \quad $-3x+4 \geqslant 0 \iff x \leqslant \dfrac43$.
+
+			De plus, on a : \quad $f \left(\dfrac43 \right) = 3 \e^{-\frac43}+2$.
+
+			On obtient le tableau de variations
+			\begin{center}
+				\begin{tikzpicture}
+					\tkzTabInit[lgt=3,espcl=4]{$x$ / 0.8 , signe de $f'(x)$ / 1, variation de $f$ / 2}{$-\infty$, $\frac43$, $+\infty$}
+					\tkzTabLine{,+,z,-, }
+					\tkzTabVar{-/$-\infty$, +/$3\e^{\frac43}+2$,  -/$2$ }
+				\end{tikzpicture}
+			\end{center}
+		\end{enumerate}
+
+		\item \begin{enumerate}
+			\item Sur l'intervalle $\left[ \dfrac43 ; +\infty \right[$, la fonction $f$ est strictement positive (elle est minorée par 2), donc l'équation $f(x)=0$ n'admet pas de solution.
+
+			Sur l'intervalle $\left] -\infty  ;\dfrac43 \right]$, la fonction $f$ est dérivable donc continue. Elle est strictement croissante sur cet intervalle.
+
+			De plus, l'image de l'intervalle $\left] -\infty  ;\dfrac43 \right]$ est l'intervalle $\left] -\infty  ;3\e^{\frac43}+2 \right]$ avec $3\e^{\frac43}+2 >0$.
+
+			Donc d'après le théorème de la bijection, l'équation $f(x)=0$ admet une unique solution sur $\left] -\infty  ;\dfrac43 \right]$.
+
+			En conclusion, l'équation $f(x)=0$ admet une unique solution $\alpha$ sur $\R$.
+
+			\item On sait que $\alpha \in \left] -\infty  ;\dfrac43 \right]$
+
+			La calculatrice permet d'obtenir :
+
+			$f \left(-1 \right) \approx \np{-8,87}$ et $f \left(0 \right)=1$ donc $-1 < \alpha < 0 $
+
+			$f \left( \np{-0,3} \right) \approx \np{-0,56}$ et $f \left( \np{-0,2} \right) \approx \np{-0,046}$ donc $- \np{0,3} < \alpha < \np{-0,2} $
+
+			$f \left( \np{-0,21} \right) \approx \np{-0,01}$ et $f \left( \np{-0,2} \right) \approx \np{-0,046}$ donc $- \np{0,21} < \alpha < \np{-0,2} $
+
+			$f \left( \np{-0,209} \right) \approx \np{-0,00}5$ et $f \left( \np{-0,208} \right) \approx \np{-0,00}05$ donc $- \np{0,209} < \alpha < \np{-0,208} $
+
+			On en déduit que $\alpha \approx \np{-0,21}$. (Remarque : on peut se contenter de donner la valeur approchée renvoyée par le mode "résolution d'équation" de la calculatrice).
+
+			\item Par lecture du tableau de variation, on obtient le tableau de signes suivant
+			\begin{center}
+				\begin{tikzpicture}
+					\tkzTabInit[lgt=3,espcl=4]{$x$ / 0.8 , signe de $f$ / 1}{$-\infty$, $\alpha$, $+\infty$}
+					\tkzTabLine{,-,z,+, }
+				\end{tikzpicture}
+			\end{center}
+
+			\item Sur l'intervalle $\big[0  ; 2 \big]$, la fonction $f$ est positive donc l'aire du domaine limité par la courbe $\mathcal{C}_f$, l'axe de abscisses et les droites d'équation $x = 0$ et $x = 2$ est $\mathcal{A}=\displaystyle \int_0^2 f(x) dx$.
+
+			$\begin{aligned}[t] \mathcal{A}&=\displaystyle \int_0^2 f(x) dx \\
+			&= \bigg[ F(x) \bigg]_0^2 \\
+			&= F(2) - F(0) \\
+			&= -8\e^2 +4 +2 \\
+			&=6-8\e^2
+			\end{aligned}$
+
+			L'aire du domaine limité par la courbe $\mathcal{C}_f$, l'axe de abscisses et les droites d'équation $x = 0$ et $x = 2$ mesure $6-8\e^2$ unités d'aire.
+		\end{enumerate}
+
+		\item On remarque que l'inéquation est :\quad $f(x) \leqslant 4x + 1$.
+
+		Graphiquement, cela correspond au fait que la courbe $\mathcal{C}_f$ est en-dessous de sa tangente au point d'abscisse 0, et ce pour tout réel $x$ : cela fait penser à étudier la convexité de la fonction $f$.
+
+		On va donc déterminer la dérivée seconde de $f$ :
+
+		On a, pour tout $x$ réel :\quad  $f''(x)= -3\e^{-x} + (-3x + 4)\times \big(-\e^{-x}\big) = \e^{-x} \big(-3 - (-3x+4)\big)-\e^{-x} (3x-7)$.
+
+		La dérivée seconde $f''$ est strictement négative quand $3x-7$ est strictement négatif soit sur $\left] -\infty  ; \dfrac73 \right[$.
+
+		On en déduit que sur $\left] -\infty  ; \dfrac73 \right[$, $f$ est concave donc sa courbe $\mathcal{C}_f$ est en-dessous de toutes ses tangentes. En particulier, $\mathcal{C}_f$ est en-dessous de sa tangente au point d'abscisse 0.
+
+		On a donc, pour tout $x \in \left] -\infty  ; \dfrac73 \right[$, \quad $(3x - 1)\e^{-x} + 2 \leqslant 4x + 1$.
+
+		Sur $\bigg[ \dfrac73  ; +\infty \bigg[$, la fonction \quad $x \longmapsto 4x+1$ \quad est croissante donc \quad $4x+1 \geqslant 4 \times \dfrac73 +1$\quad soit \quad $4x+1 \geqslant \dfrac{29}{3}$.
+
+		Sur $\bigg[ \dfrac73  ; +\infty \bigg[$, la fonction $f$ est décroissante donc \quad $f(x) \leqslant f\left( \dfrac73 \right)$ \quad or $f\left( \dfrac73 \right) \leqslant \dfrac{29}{3}$, \quad d'après la concavité de $f$ sur $\left] -\infty  ; \dfrac73 \right[$.
+
+		On en conclut que pour tout $x \in \bigg[ \dfrac73  ; +\infty \bigg[$, \quad $f(x) \leqslant 4x+1$.
+	\end{enumerate}
+
+\needspace{10\baselineskip}

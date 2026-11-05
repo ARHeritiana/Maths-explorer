@@ -1,0 +1,75 @@
+\textbf{Commun à tous les candidats}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item ~
+
+\begin{center}
+\pstree[treemode=R,nodesepB=3pt,levelsep=2.75cm]{\TR{}}
+{\pstree{\TR{$S$~~}\taput{0,08}}
+	{\TR{$I$}\taput{0,9}
+	\TR{$\overline{I}$}\tbput{0,1}
+	}
+\pstree{\TR{$\overline{S}$~~}\tbput{0,92}}
+	{\TR{$I$}\taput{0,01}
+	\TR{$\overline{I}$}\tbput{0,99}
+	}	
+}
+\end{center}
+\item 
+	\begin{enumerate}
+		\item 
+On a $P(S \cap I) = P(S) \times P_S(I) = 0,08 \times 0,9 = 0,072$
+		\item 
+On a de même $P\left(\overline{S} \cap I\right) = P\left(\overline{S}\right) \times P_{\overline{S}}(I) = 0,92 \times 0,01 = \np{0,0092}$.
+
+D'après la loi des probabilités totales :
+
+$P(I) = P(S \cap I) + P\left(\overline{S} \cap I\right) = 0,072 + \np{0,0092} = \np{0,0812}$.
+		\item 
+Il faut calculer $P_I(S) = \dfrac{P(I \cap S)}{P(I)}  = \dfrac{0,072}{\np{0,0812}}\approx 0,887$ soit 0,89 au centième près.
+	\end{enumerate}
+\item 
+
+
+	\begin{enumerate}
+		\item 
+		Les tirages étant indépendants les uns des autres et étant assez nombreux on peut considérer que la variable $Z$ suit une loi binomiale de paramètres $n = 50$ et $p = 0,08$.
+		\item 
+		On a $P(Z = 0) = 0,08^0 \times 0,92^{50} \approx \np{0,015466}$ ;
+		
+		$P(Z = 1) = \binom{50}{1} \times 0,08 \times 0,92^{49} \approx \np{0,067426}$ , donc 
+		
+		$P(Z \geqslant 2) = 1 - [P(Z = 0) + P(Z = 1)]  = 1 - (\np{0,015466} + \np{0,067426}) \approx \np{0,917}$, soit $0,92$ au centième près.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,212 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet2_polynesie_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Partie A}
+\begin{enumerate}
+	\item D'après l'énoncé voici l'arbre pondéré des évènements $F$ et $I$ :
+
+	\begin{center}
+	
+	\begin{tikzpicture}[xscale=1,yscale=1,baseline={(R.base)}]
+		
+		\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+		\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+		\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+		
+		\def\DistanceInterNiveaux{4}
+		\def\DistanceInterFeuilles{0.9}
+		
+		\def\NiveauA{(0)*\DistanceInterNiveaux}
+		\def\NiveauB{(1)*\DistanceInterNiveaux}
+		\def\NiveauC{(2)*\DistanceInterNiveaux}
+		\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+		
+		\node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {};
+		\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$F$};
+		\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$I$};
+		\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{I}$};
+		\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\overline{F}$};
+		\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$I$};
+		\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{I}$};
+		
+		\draw (R.east)--(Ra.west) node[etiquette] {$0,4$};
+		\draw (Ra.east)--(Raa.west) node[etiquette] {$\np{0,3375}$};
+		\draw (Ra.east)--(Rab.west) node[etiquette] {$\np{0,6625}$};
+		\draw (R.east)--(Rb.west) node[etiquette] {$\np{0,6}$};
+		\draw (Rb.east)--(Rba.west) node[etiquette] {$\np{0,5425}$};
+		\draw (Rb.east)--(Rbb.west) node[etiquette] {$\np{0,4547}$};
+	\end{tikzpicture}
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	\end{center}
+
+	\item Il faut trouver $P(F \cap I)=  P(F) \times P_F(I) = 0,4 \times \np{0,3375} = 0,135$.
+
+	\item On a de même $P\left(\overline{F} \cap I\right)=  P\left(\overline{F}\right) \times P_{\overline{F}}(I) = 0,6 \times \np{0,5425} = \np{0,3225}$.
+
+	D'après la loi des probabilités totale la probabilité que l'élève choisi au hasard envisage des études d'ingénieur est égale à :
+
+	$P(I) = P(F \cap I) + P\left(\overline{F} \cap I\right) = 0,135 + \np{0,3225} = \np{0,4605}$.
+
+	\item On calcule $P_I(F) = \dfrac{P(F \cap I)}{P(I)} = \dfrac{0,135}{\np{0,4605}} \approx \np{0,2932}$ soit $0,293$ au millième près.
+
+	Parmi les élèves envisageant des études d'ingénieur un peu moins de 30\,\% sont des filles.
+\end{enumerate}
+
+\subsection*{Partie B}
+\begin{enumerate} \item
+	\begin{enumerate}
+		\item Le nombre $n$ est assez grand pour que l'on puisse considérer que chaque fille choisie ait une probabilité de vouloir devenir ingénieure est égale à 0,15 : la variable $X$ suit donc une loi binomiale de paramètres $n$ et $p = 0,15$.
+
+		\item On sait que $E  = n \times p = n \times 0,15 = 0,15n$.
+	\end{enumerate}
+	\item On a : $P(X \geqslant 1) = 1 - P(X = 0) =\ds 1 - \binom{n}{0} \times 0,15^0 \times (1 - 0,15)^n = 1 - 0,85^n$.
+
+	Il faut donc que $P(X \geqslant 1) \geqslant 0,99 \iff 1 - 0,85^n \geqslant 0,99 \iff 0,01 \geqslant 0,85^n$,
+
+	d'où par croissance de la fonction logarithme népérien :
+
+	$\ln 0,01 \geqslant n\ln 0,85 \iff \dfrac{\ln 0,01}{\ln 0,85} \leqslant n$ car $\ln 0,85 < 0$.
+
+	Or $\dfrac{\ln 0,01}{\ln 0,85} \approx 28,3$.
+
+	Il faut donc interroger au moins 29 lycéennes.
+
+	\item On a $\dfrac{29}{4} = 7,25$. Il faut donc choisir sur les 29 filles 8 qui souhaitent devenir ingénieure, d'où :
+
+	$P(X\geqslant 8) = 1 - P(X < 8) = 1 - P(X \leqslant 7)
+	$ : la calculatrice donne environ $0,059$ : sur 29 filles interrogées la probabilité qu'au moins le quart souhaite devenir ingénieure est légèrement inférieure à 6\,\%.
+\end{enumerate}
+
+\subsection*{Partie C}
+\begin{enumerate}
+	\item $S$ représente le nombre de lycéennes souhaitant devenir ingénieure parmi les \np{15000} lycéennes interrogées.
+
+	\item $\mathrm{E}(S) = \mathrm{E}(X_1 + \ldots + X_{10}) = \mathrm{E}(X_1) + \ldots \mathrm{E}(X_{10})$ par linéarité ;
+
+	$\mathrm{E}(S) = 10\mathrm{E}(X) $ car toutes les variables aléatoires ont la même espérance, donc :
+
+	$\mathrm{E}(S) = 10 \times 225 = \np{2250}$.
+
+	Il en est de même pour la variance de $S$ :
+
+	$\mathrm{V}(S) = \mathrm{V}(X_1 + \ldots + X_{10}) = \mathrm{V}(X_1) + \ldots + \mathrm{V}(X_{10})$ car les lois sont indépendantes.
+
+	$\mathrm{V}(S) = 10\mathrm{V}(X)$ car elles suivent la, même loi de probabilité.
+
+	$\mathrm{V}(S) = 10 \times 191,25 = \np{1912,5}$.
+
+	\item On sait que $S$ a une espérance. Utilisons l'inégalité de Bienaymé-Tchebychev pour minorer la probabilité  d'avoir un nombre de lycéennes désirant devenir ingénieure compris entre \np{2000} et \np{2500} :
+
+	$P(\np{2000} < S < \np{2500})  = P(- 250 <S - \mathrm{E}(S) < 250) = P(|S - \mathrm{E}(S)| < 250)$ ou
+
+	$P(\np{2000} < S < \np{2500})  = 1 - P(|S - \mathrm{E}(S)| \geqslant 250$ ;
+	d'après l'inégalité de Bienaymé-Tchebychev :
+
+	$P(\np{2000} < S < \np{2500}) \geqslant 1 - \dfrac{\mathrm{V}(S)}{250^2}$ soit
+
+	$P(\np{2000} < S < \np{2500}) \geqslant 1 - \dfrac{\np{1912,5}}{\np{62500}}$
+
+	$P(\np{2000} < S < \np{2500}) \geqslant 1 - \np{0,0306}$ et finalement,
+
+	$P(\np{2000} < S <\np{2500}) \geqslant \np{0,9694} > 0,95$.
+
+	Conclusion : à 5\,\% près l'affirmation est vraie.
+
+\end{enumerate}
+
+\end{document}

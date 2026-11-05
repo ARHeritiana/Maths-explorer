@@ -1,0 +1,68 @@
+\bigskip
+
+\textbf{Partie A}
+
+\begin{enumerate}
+
+\item La fonction dont la courbe représentative est la courbe $\mathcal{C}_2$ est strictement positive sur $\R$, si c'était la dérivée d'une fonction, cette fonction serait strictement croissante or aucune des deux autres fonctions n'est strictement croissante. Cette fonction ne peut pas être la dérivée d'une des deux autres,  c'est donc la fonction $f$.
+
+$f$ étant strictement croissante, sa dérivée est une fonction strictement positive sur $\R$, sa dérivée est donc la fonction dont la courbe représentative est la courbe $\mathcal{C}_3$
+
+Et par élimination, $\mathcal{C}_1$  est la courbe représentative de la fonction $f''$ 
+(On vérifie que $f'$ est croissante sur $]-\infty~;~ 4]$ et  décroissante sur $[4~;~+\infty[$ ce qui coïncide avec le signe de $f''(x)$ qui est positive sur $]-\infty~;~4]$ et négative sur $[4~;~+\infty[$.
+
+$\mathcal{C}_1$  est la courbe représentative de la fonction $f''$.
+
+$\mathcal{C}_2$ est la courbe représentative de la fonction $f$.
+
+$\mathcal{C}_3$ est la courbe représentative de la fonction $f'$.
+
+\item Le coefficient directeur de la  tangente à la courbe $\mathcal{C}_2$, courbe représentative de la fonction $f$, au point d'abscisse 4 est égal à $f'(4)$ soit 3 par lecture graphique.
+\item  Les abscisses des points d'inflexion de la courbe $\mathcal{C}_1$ sont  environ \, 3 \, , \, 4 \, et \, 5.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item $\lim\limits_{x \to -\infty}{-kx}=+\infty$  car $k>0$ et $\lim\limits_{X\to +\infty}{\mathrm{e}^X}=+\infty$, donc, par composition, $\lim\limits_{x\to -\infty}{ \mathrm{e}^{-kx}}= +\infty$
+
+d'où, par somme, $\lim\limits_{x\to -\infty} 1+ \mathrm{e}^{-kx}=+\infty$
+
+et donc, par quotient $\lim\limits_{x\to -\infty}\dfrac{4}{1+\mathrm{e}^{-kx}}=0$ \hfill{donc  $\lim\limits_{x\to -\infty}g(x)=0$}
+
+
+$\lim\limits_{x \to +\infty}{-kx}=-\infty$  car $k>0$ et $\lim\limits_{X\to -\infty}{\mathrm{e}^X}=0$, donc, par composition, $\lim\limits_{x\to +\infty}{ \mathrm{e}^{-kx}}=0$
+
+	d'où, par somme, $\lim\limits_{x\to +\infty} 1+ \mathrm{e}^{-kx}=1$
+
+	et donc, par quotient $\lim\limits_{x\to +\infty}\dfrac{4}{1+\mathrm{e}^{-kx}}=4$ \hfill donc  $\lim\limits_{x\to +\infty}g(x)=4$
+
+
+\item  $g$ est dérivable sur $\R$ comme composée de fonctions dérivables sur ce même intervalle. 
+
+$g$ est de la forme$4\times \dfrac{1}{u}$ avec $u(x)=1+\mathrm{e}^{-kx}$. On a $u'(x)=-k \mathrm{e}^{-kx}$.
+
+$g'=4\times \dfrac{-u'}{u^2}$ donc, pour tout réel $x$,  $g'(x)=4\times \dfrac{k \mathrm{e}^{-kx}}{{\left(1+ \mathrm{e}^{-kx}\right)} ^2}$ 
+
+On a donc : $g'(0)=\dfrac{4k\mathrm{e} ^0}{{\left( 1+ \mathrm{e}^{-k0}\right)} ^2} =\dfrac{4k}{2^2}=k$ 
+
+\item  La courbe de $g$ admet un point d'inflexion au point d'abscisse $x$ si et seulement si $g''$ s'annule en changeant de signe en $x$.  Il faut donc étudier le signe de $g''(x)$. 
+
+Pour tout réel $x$,  $g''(x)=-4 \mathrm{e}^{kx} \left( \mathrm{e}^{kx} -1 \right) \dfrac{k^2}{ { \left( \mathrm{e}^{kx}+1 \right)}^3}$. 
+
+Une exponentielle est strictement positive  et $k$ est un réel strictement positif, donc, pour tout réel $x$,  $ 4\mathrm{e}^{kx} \dfrac{k^2}{ { \left( \mathrm{e}^{kx}+1 \right)}^3} >0$.
+
+Le signe de $g''(x)$ est donc le signe de $-\left( \mathrm{e}^{kx} -1 \right)= 1-\mathrm{e}^{kx}$
+
+$1-\mathrm{e}^{kx} > 0 \iff 1>\mathrm{e}^{kx} \iff 0>kx \iff 0>x$ car $k>0$.
+
+$g''(x)$ est donc  strictement positive sur $]-\infty~;~ 0[$, s'annule en 0 et strictement négative sur $]0~;~+\infty[$.
+
+$g$ admet donc un point d'inflexion au point d'abscisse 0.
+\end{enumerate}
+
+\bigskip

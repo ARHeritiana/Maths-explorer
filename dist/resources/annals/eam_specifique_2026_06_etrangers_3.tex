@@ -1,0 +1,128 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_06_etrangers_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+En 2025, dans une ville, le club de basketball comptait 900 adhérents. On estime que chaque année, le club perd 10 adhérents.
+	
+	On note $B_{n}$ le nombre d'adhérents au club de basket l'année $2025+n$.
+	
+	\begin{enumerate}
+		\item Calculer $B_{1}$ et interpréter le résultat.
+		\item Exprimer $B_{n}$ en fonction de $n$.
+		\item Justifier que le club aura perdu plus de $10~\%$ de ses adhérents entre 2025 et 2035.
+	\end{enumerate}
+	
+	Dans cette même ville en 2025, le club de handball comptait 200 adhérents.
+	
+	Pour les années suivantes, on estime que le nombre d'adhérents au club de handball peut être représenté par le graphique suivant :
+	
+	\begin{center}
+		\begin{tikzpicture}
+		
+		
+			\begin{axis}[/pgf/number format/.cd, use comma,1000 sep={\,},
+				width=13cm,height=8cm,
+				xmin=-0.4,xmax=10.6,ymin=-70,ymax=1300,
+				xtick={0,1,2,3,4,5,6,7,8,9,10},
+				ytick={0,100,200,300,400,500,600,700,800,900,1000,1100,1200},
+				minor ytick={50,150,250,350,450,550,650,750,850,950,1050,1150,1250},
+				tick label style={font=\scriptsize},
+				grid=both, axis lines=center,
+				grid style={gray!35,line width=0.3pt},
+				minor grid style={gray!20,line width=0.2pt}]
+				\addplot[only marks,mark=*,mark size=1.6pt,color=blue] coordinates {
+					(0,200) (1,240) (2,288) (3,346) (4,415) (5,498)
+					(6,597) (7,717) (8,860) (9,1032) (10,1238)};
+				\node[above right] at (axis cs:0.5,1075) {\footnotesize Nombre d'adhérents au handball};
+				\node[below right] at (axis cs:7.5,260) {\footnotesize\begin{tabular}{l}Nombre d'années\\depuis 2025\end{tabular}};
+				\node[below left] at (axis cs:0,0) {\scriptsize 0};
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+	
+	\begin{enumerate}[start=4]
+		\item Par lecture graphique, estimer, avec la précision permise par le graphique, le nombre d'adhérents au club de handball en 2028.
+		\item On modélise le nombre d'adhérents au club de handball l'année $2025+n$ par $H_{n}$ et on admet que, pour tout entier naturel $n$, $H_{n+1}=1{,}2\times H_{n}$. Quelle est la nature de la suite $\left(H_{n}\right)$ ? Préciser son premier terme et sa raison.
+		\item À partir de quelle année le nombre d'adhérents au club de handball sera supérieur au nombre d'adhérents au club de basketball ? Justifier la réponse.
+	\end{enumerate}
+
+\end{document}

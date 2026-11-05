@@ -1,0 +1,121 @@
+\begin{enumerate}
+\item Le sol est le plan $P_{0}$ d'équation $z=0$ donc l'avion touchera le sol lorsque $z=0$, c'est à dire $11-4t=0$ soit $t=\dfrac{11}{4}$.
+
+Les coordonnées du point S sont donc : $\begin{cases} x = -11 + 5\times\dfrac{11}{4} = \dfrac{11}{4}  \\ y = -5 + \dfrac{11}{4} =-\dfrac{9}{4}\\ z = 0 \end{cases}$
+
+S'il ne dévie pas de sa trajectoire,  les coordonnées du point S en lequel l'avion Bêta touchera le sol sont : $\left(\dfrac{11}{4};-\dfrac{9}{4};0\right)$.
+\item
+	\begin{enumerate}
+		\item  L'avion Alpha transmet à la tour sa position en A$(-7; 1; 7)$ et sa trajectoire est dirigée par le vecteur $\vect{u}\begin{pmatrix}2\\-1\\-3\end{pmatrix}$.
+
+Une représentation paramétrique de la droite $d_{\mathrm{A}}$ caractérisant la trajectoire de l'avion Alpha est donc :
+$\begin{cases} x = -7 + 2s \\ y = 1 -s \\ z = 7 - 3s \end{cases}~\text{ où } s \text{ décrit } \R.$
+
+		\item Les deux avions entreront  en collision si leur deux trajectoires se coupent, c'est à dire si les droites $d_{\mathrm{A}}$ et $d_{\mathrm{B}}$ sont sécantes.
+
+Cherchons s'il existe un couple $(t~;~s)$ tel que le point de paramètre $t$ sur $d_{\mathrm{B}}$ soit confondu avec le point de paramètre $s$ sur $d_{\mathrm{A}}$, pour cela, résolvons :
+
+\[
+\begin{aligned}
+	\begin{cases}
+	-11+5t=-7+2s \\
+	-5+t=1-s \\
+	11-4t=7-3 s
+	\end{cases}
+	&\iff \begin{cases}
+	-11+5 (6-s)=-7+2s \\
+	t=6-s \\
+	11-4(6-s)=7-3 s
+	\end{cases}\\
+	&\iff \begin{cases}
+	-11+30-5s=-7+2s \\
+	t=6-s \\
+	11-24+4s=7-3 s
+	\end{cases}\\
+	&\iff \begin{cases}
+	26=7s \\
+	t=6-s \\
+	7s=20
+	\end{cases}\\
+	&\iff \begin{cases}
+	s=\dfrac{26}{7}\\
+	t=6-s \\
+	s=\dfrac{20}{7}
+	\end{cases}
+	\end{aligned}
+	\]
+
+Le système n'a pas de  solution, donc les deux avions ne peuvent pas rentrer en collision.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item L'avion Alpha passe par la position E$(-3~;~-1~;~1)$  s'il existe un réel $s$  tel que le point de paramètre $s$ sur $d_{\mathrm{A}}$ ait pour coordonnées $(-3~;~-1~;~1)$, pour cela, résolvons :
+
+\[
+\begin{aligned}
+\begin{cases}
+-3=-7+2s \\
+-3=1-s \\
+1=7-3 s
+\end{cases}
+	&\iff \begin{cases}
+4=2s \\
+-4=-s \\
+-6=-3 s
+\end{cases}\\
+	&\iff \begin{cases}
+s=2\\
+s=2 \\
+s=2
+	\end{cases}
+\end{aligned}
+\]
+
+Le point E$(-3~;~-1~;~1)$  correspond au point de paramètre $s = 2$ donc l'avion Alpha passe par le point~E.
+		\item Le plan  $P_{\mathrm{E}}$ est perpendiculaire à la droite  $d_{\mathrm{A}}$ dirigée par le vecteur $\vect{u}\begin{pmatrix}2\\- 1\\- 3\end{pmatrix}$, donc $\vect{u}$ est un vecteur normal au plan $P_{\mathrm{E}}$.
+
+Une équation cartésienne du plan $P_{\mathrm{E}}$ est donc de la forme : $2x - y - 3z + d = 0$ avec $d\in \R$.
+
+De plus, le point E appartient au plan  $P_{\mathrm{E}}$ donc les coordonnées du point E vérifient l'équation du plan $P_{\mathrm{E}}$,
+		d'où : d'où : $2x_E - y_E - 3z_E + d = 0$, soit $2 \times (-3) - (-1) - 3 \times 1 + d = 0$
+
+on a donc $-6+1-3+d=0 \iff d = 8$
+
+Conclusion : ine équation cartésienne du plan  $P_{\mathrm{E}}$ est bien : $2x - y - 3z + 8 = 0.$
+		\item Déterminons les coordonnées du point F,  intersection du plan $P_{\mathrm{E}}$ et de la droite $d_{\mathrm{B}}$.
+
+Les coordonnées des points d'intersection sont solutions du système
+
+$\begin{cases}
+x=-11+5t\\ y=-5+t \\ z=11-4t \\ 2x-y-3z+8 = 0
+\end{cases}$
+
+On cherche donc $t$ qui vérifie $2(-11 + 5t)- (-5 + t)-3(11 - 4t) + 8 = 0$ c'est-à-dire : 
+
+$-22+10t +5-t -33 +12t+8=0 \iff 21t= 42 \iff t=\dfrac{42}{21} = 2$.
+
+\smallskip
+
+On en déduit
+$\begin{cases}
+x=-11+5t=-11+5\times 2 =-1\\
+y= -5+t=-5+2=-3\\
+z=11-4t=11-4\times 2 =11-8=3\\
+\end{cases}$
+
+Le point d'intersection du plan  $P_{\mathrm{E}}$ et de la droite $d_{\mathrm{B}}$ est le point  F$(-1~;~-3~;~3)$.
+		\item Le repère est orthonormé on peut donc utiliser les coordonnées pour calculer les distances.
+
+$\begin{aligned} \mathrm{EF} & =\sqrt{\left(x_\mathrm{F}-x_\mathrm{E}\right)^2+\left(y_\mathrm{F}-y_\mathrm{E}\right)^2+\left(z_\mathrm{F}-z_\mathrm{E}\right)^2}\\
+\mathrm{EF} &=\sqrt{\left(-1-(-3)\right)^2+\left(-3-(-1)\right)^2+\left(3-1\right)^2}\\
+	\mathrm{EF}& =\sqrt{\left(2\right)^2+\left(-2\right)^2+\left(2\right)^2}\\
+	\mathrm{EF}&=\sqrt{4+4+4}\\
+	\mathrm{EF}&= \sqrt{12}=2\sqrt{3}
+\end{aligned}$
+
+d'où EF$\approx \np[km]{3,4641}$ soit EF$\approx \np[m]{3646}$ à 1~m près.
+	\end{enumerate}
+	\item Si les avions Alpha et Bêta sont respectivement en E et F au même instant, la distance les séparant est de $\np[m]{3646}$ soit environ $\np{1215}$ milles nautiques.
+
+Or $\np{1215}<\np{1852}$ donc leur distance de sécurité n'est pas respectée.
+\end{enumerate}

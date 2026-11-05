@@ -1,0 +1,144 @@
+\medskip
+
+On considère la fonction $f$ définie sur $\R$ par 
+$f(x) = \dfrac34 x^2 - 2x + 3.$
+
+\begin{enumerate}
+\item 
+$f'(x)=\dfrac{3}{2}x -2 = \dfrac{3}{2}\left (x-\dfrac{4}{3}\right )$, donc $f'(x)$ est du signe de $x-\dfrac{4}{3}$ donc s'annule et change de signe pour $x=\dfrac{4}{3}$.
+
+$f$ est une fonction polynôme donc:
+
+$\ds\lim_{x\to -\infty} f(x) = \ds\lim_{x\to -\infty} \dfrac{3}{4}x^2 = +\infty$
+et
+$\ds\lim_{x\to +\infty} f(x) = \ds\lim_{x\to +\infty} \dfrac{3}{4}x^2 = +\infty$.
+
+De plus, $f\left(\dfrac43\right) = \dfrac34 \times \dfrac43 \times \dfrac43 - 2\times \dfrac43 + 3 = \dfrac43 - \dfrac83 + \dfrac93 = \dfrac53$.
+
+On établit le tableau des variations de $f$:
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}  
+\def\esp{\hspace*{1.5cm}}
+\def\hauteur{0pt}
+$\begin{array}{|c| *4{c} c|}
+\hline
+ x & -\infty & \esp & \frac{4}{3} & \esp & +\infty \\
+\hline
+x-\frac{4}{3} &  &  \pmb{-} & \vline\hspace{-2.7pt}0 & \pmb{+} & \\
+ \hline
+f'(x) &  &  \pmb{-} & \vline\hspace{-2.7pt}0 & \pmb{+} & \\  
+\hline
+  & \Rnode{max1}{+\infty}  &  &  &  & \Rnode{max2}{+\infty}   \\
+f(x) & &  & & &  \rule{0pt}{\hauteur} \\
+ &  & &   \Rnode{min}{\frac{5}{3}} & & \rule{0pt}{\hauteur}
+\ncline{->}{max1}{min} \ncline{->}{min}{max2}\\
+\hline
+\end{array}$
+}
+\end{center}
+
+\item 
+D'après le résultat précédent la fonction $f$ est croissante sur l'intervalle $\left[\dfrac43~;~2\right]$.
+
+On a donc : $\dfrac43 \leqslant x \leqslant 2 \Longrightarrow f\left(\dfrac43\right) \leqslant f(x) \leqslant f(2)$.
+
+Or $f\left(\dfrac43\right) = \dfrac53$ et $f(2) = \dfrac34 \times 4 - 2 \times 2 + 3 = 3 - 4 + 3 = 2$.
+
+Donc $\dfrac53 \leqslant f(x) \leqslant  2$ et \emph{a fortiori} : $\dfrac43 \leqslant f(x) \leqslant 2$.
+
+\item
+
+
+
+
+$f(x)-x = \dfrac{3}{4} x^2 -2x+3-x = \dfrac{3}{4}x^2 - 3x +3 = \dfrac{3}{4}\left ( x^2 -4x+4 \right ) = \dfrac{3}{4} \left (x-2\right )^2$ 
+
+Pour tout réel $x$, $(x-2)^2\geqslant 0$ donc $f(x)-x \geqslant 0$ donc $x\leqslant f(x)$.
+\end{enumerate}
+
+On considère la suite $\left(u_n\right)$ définie par un réel $u_0$ et pour tout  $n\in\N$ : $u_{n+1} = f\left(u_n\right).$
+
+On a donc, pour tout entier naturel $n$,
+$u_{n+1} = \dfrac34 u_n^2 - 2u_n + 3.$
+
+\begin{enumerate}[resume]
+\item Étude du cas: $\dfrac43 \leqslant u_0 \leqslant  2$.
+	\begin{enumerate}
+		\item On va démontrer par récurrence que  la propriété $u_n \leqslant u_{n+1} \leqslant 2$ est vraie pour tout entier naturel $n$.
+
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+D'après la question précédente, pour $x\in\left [ \dfrac{4}{3}\;;\;2\right ]$, on a $x\leqslant f(x)$. \\
+Or $u_0\in\left [ \dfrac{4}{3}\;;\;2\right ]$ donc $u_0\leqslant f(u_0)$, ce qui revient à $u_0\leqslant u_1$.
+
+De plus, si $x\in\left [ \dfrac{4}{3}\;;\;2\right ]$, $f(x)\in\left [ \dfrac{4}{3}\;;\;2\right ]$.\\
+Or $u_0\in\left [ \dfrac{4}{3}\;;\;2\right ]$ donc  $f(u_0)\in\left [ \dfrac{4}{3}\;;\;2\right ]$ et donc $u_1 \in\left [ \dfrac{4}{3}\;;\;2\right ]$ et donc $u_{n+1}\leqslant 2$.
+
+Donc $u_0\leqslant u_1 \leqslant 2$; la propriété est vraie au rang $n=0$.
+
+\item \textbf{Hérédité}
+
+On suppose la propriété vraie au rang $n$, c'est-à-dire $u_n\leqslant u_{n+1}\leqslant 2$.
+
+On est dans l'intervalle $\left [ \dfrac{4}{3}\;;\;2\right ]$ donc la fonction $f$ est croissante; on en déduit: $f(u_n)\leqslant f(u_{n+1})\leqslant f(2)$.
+
+Or $f(u_n)=u_{n+1}$, $f(u_{n+1})=u_{n+2}$ et $f(2)=2$.
+
+Donc on a: $u_{n+1}\leqslant u_{n+2}\leqslant 2$; la propriété est héréditaire.
+\item \textbf{Conclusion}
+
+La propriété est vraie au rang 0 et elle est héréditaire pour tout $n\geqslant 0$; d'après le principe de récurrence, elle est vraie pour tout  $n\in\N$.
+\end{list}
+		\item 
+Pour tout $n$, on a $u_n \leqslant u_{n+1}\leqslant 2$ donc la suite $\left(u_n\right)$ est croissante et majorée; d'après le théorème de la convergence monotone, la suite 
+$\left(u_n\right)$ est convergente vers une limite $\ell$ telle que $\ell \leqslant 2$.
+
+		\item 
+La suite $\left(u_n\right)$ est définie par $f(u_n)=u_{n+1}$ où $f$ est une fonction polynôme donc continue. 
+
+La suite $\left(u_n\right)$ est convergente vers $\ell$ donc la limite $\ell$ vérifie $f(\ell) = \ell$.
+
+$f(\ell) = \ell \iff f(\ell)-\ell=0 \iff \dfrac{3}{4}\left(\ell -2\right )^2= 0 \iff \ell = 2$.
+
+La suite $\left(u_n\right)$ converge donc vers 2.
+
+
+	\end{enumerate}
+\item Étude du cas: $u_0 = 3$.
+On admet que dans ce cas la suite $\left(u_n\right)$ tend vers $+\infty$.
+
+On complète la fonction \og \texttt{seuil} \fg{} suivante écrite en Python, afin qu'elle renvoie la plus petite valeur de $n$ telle que $u_n$ soit supérieur ou égal à 100.
+
+\begin{center}
+\texttt{
+\begin{tabular}{|l|}\hline
+def seuil() :\\
+\quad  u = 3\\
+\quad  n = 0\\
+\quad while {\blue u < 100}\\
+\quad\qquad  u = {\blue 3*u*u/4 - 2*u + 3}\\
+\quad\qquad  n = {\blue n + 1}\\
+\quad return n\\ \hline
+\end{tabular}}
+\end{center}
+
+
+\item Étude du cas : $u_0 > 2$.
+
+
+Pour tout réel $x$, on a: $x\leqslant f(x)$ donc, pour tout $n$, $u_n\leqslant f(u_n)$ soit $u_n\leqslant u_{n+1}$ ; la suite $(u_n)$ est donc croissante.
+
+On en déduit que pour tout $n$, on a: $u_n\geqslant u_0$.
+
+Si la suite $(u_n)$ converge vers un réel $\ell$, on aura donc: $\ell \geqslant u_0$.
+
+On a vu que la seule limite possible de la suite $(u_n)$ était $\ell = 2$; donc on ne peut pas avoir $\ell \geqslant u_0$ car $u_0>2$.
+
+Pour $u_0>2$, la suite $(u_n)$ n'est donc pas convergente.
+
+\end{enumerate}
+
+\bigskip

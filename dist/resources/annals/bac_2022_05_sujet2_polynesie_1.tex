@@ -1,0 +1,156 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet2_polynesie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Cet exercice est un questionnaire à choix multiples. \\
+Pour chacune des six questions suivantes, une seule des quatre réponses proposées est exacte.\\
+Une réponse fausse, une réponse multiple ou l'absence de réponse à une question ne rapporte ni n'enlève de point.\\
+Pour répondre, indiquer sur la copie le numéro de la question et la lettre de la réponse choisie.\\
+Aucune justification n'est demandée.}
+
+\medskip
+
+\begin{enumerate}
+\item On considère la fonction $f$ définie et dérivable sur $]0~;~+\infty[$ par:
+\[f(x) = x \ln(x) - x + 1.\]
+
+Parmi les quatre expressions suivantes, laquelle est celle de la fonction dérivée de $f$?
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~} $\ln (x)$&\textbf{b.~~}$\dfrac{1}{x} - 1$&\textbf{c.~~} $\ln (x) - 2$&\textbf{d.~~}$\ln (x) - 1$\rule[-3mm]{0mm}{9mm}\\ \hline
+\end{tabularx}
+\end{center}
+
+\item On considère la fonction $g$ définie sur $]0~;~+\infty[$ par $g(x) = x^2[1 - \ln (x)]$.
+
+ Parmi les quatre affirmations suivantes, laquelle est correcte ?
+ 
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}$\displaystyle\lim_{x \to 0} g(x) = +\infty$&\textbf{b.~~} 
+$\displaystyle\lim_{x \to 0} g(x) = - \infty$&\textbf{c.~~} $\displaystyle\lim_{x \to 0} g(x) = 0$&\textbf{d.~~} La fonction $g$ n'admet pas de limite en 0.\\ \hline
+\end{tabularx}
+\end{center}
+
+\item On considère la fonction $f$ définie sur $\R$ par $f(x) = x^3 - 0,9x^2 -0,1x$. Le nombre de solutions de l'équation $f(x) = 0$ sur $\R$ est :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~} $0$&\textbf{b.~~}$1$&\textbf{c.~~} $2$&\textbf{d.~~}$3$\\ \hline
+\end{tabularx}
+\end{center}
+
+\item Si $H$ est une primitive d'une fonction $h$ définie et continue sur $\R$, 
+et si $k$ est la fonction définie sur $\R$ par $k(x) = h(2x)$, 
+alors, une primitive $K$ de $k$ est définie sur $\R$ par :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~} $K(x) =H(2x)$&\textbf{b.~~}$K(x) =2H(2x)$&\textbf{c.~~} $ K(x) =\dfrac{1}{2}H(2x)$&\textbf{d.~~}$K(x) =2H(x)$\rule[-3mm]{0mm}{9mm}\\ \hline
+\end{tabularx}
+\end{center}
+
+\item L'équation réduite de la tangente au point d'abscisse 1 de la courbe de la fonction $f$ définie sur $\R$ par $f(x) = x\text{e}^x$ est:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~} $y = \text{e}x + \text{e}$&\textbf{b.~~}$y =2\text{e}x - \text{e}$&\textbf{c.~~} $y = 2\text{e}x +  \text{e}$&\textbf{d.~~}$y = \text{e}x$\\ \hline
+\end{tabularx}
+\end{center}
+
+\item Les nombres entiers $n$ solutions de l'inéquation $(0,2)^n < 0,001$ sont tous les
+nombres entiers $n$ tels que :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~} $n \leqslant 4$&\textbf{b.~~}$n\leqslant 5$&\textbf{c.~~} $n \geqslant 4$ &\textbf{d.~~}$n \geqslant 5$\\ \hline
+\end{tabularx}
+\end{center}
+
+\end{enumerate}
+
+\bigskip
+
+\end{document}

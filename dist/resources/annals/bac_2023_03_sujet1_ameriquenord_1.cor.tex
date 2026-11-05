@@ -1,0 +1,187 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet1_ameriquenord_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+	\textbf{Partie A}
+
+	\begin{enumerate}
+	  \item \begin{minipage}[t]{0.5\linewidth}
+	  	Puisqu'on prélève au hasard un déchet, on est en situation d'équiprobabilité et les proportions sont assimilables à des probabilités. On peut donc compléter l'arbre pondéré ci-contre.
+	  \end{minipage}\hfill
+	\begin{tikzpicture}[xscale=1,yscale=1,baseline=(Ra)]
+		
+		\tikzstyle{fleche}=[->,>=latex,thick]
+		\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+		\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+		\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt, label={[font=\small]}]
+		
+		\def\DistanceInterNiveaux{3}
+		\def\DistanceInterFeuilles{0.7}
+		
+		\def\NiveauA{(0)*\DistanceInterNiveaux}
+		\def\NiveauB{(1)*\DistanceInterNiveaux}
+		\def\NiveauC{(2)*\DistanceInterNiveaux}
+		\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+		
+		\node[noeud] (R) at ({\NiveauA},{(2.5)*\InterFeuilles}) {};
+		\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$M$};
+		\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$R$};
+		\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{R}$};
+		\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$N$};
+		\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$R$};
+		\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{R}$};
+		\node[noeud] (Rc) at ({\NiveauB},{(4.5)*\InterFeuilles}) {$D$};
+		\node[feuille] (Rca) at ({\NiveauC},{(4)*\InterFeuilles}) {$R$};
+		\node[feuille] (Rcb) at ({\NiveauC},{(5)*\InterFeuilles}) {$\overline{R}$};
+		
+		\draw[fleche] (R.east)--(Ra.west) node[etiquette] {$0,69$};
+		\draw[fleche] (Ra.east)--(Raa.west) node[etiquette] {$0,73$};
+		\draw[fleche] (Ra.east)--(Rab.west) node[etiquette] {$0,27$};
+		\draw[fleche] (R.east)--(Rb.west) node[etiquette] {$0,28$};
+		\draw[fleche] (Rb.east)--(Rba.west) node[etiquette] {$0,49$};
+		\draw[fleche] (Rb.east)--(Rbb.west) node[etiquette] {$0,51$};
+		\draw[fleche] (R.east)--(Rc.west) node[etiquette] {$0,03$};
+		\draw[fleche] (Rc.east)--(Rca.west) node[etiquette] {$0,35$};
+		\draw[fleche] (Rc.east)--(Rcb.west) node[etiquette] {$0,65$};
+	\end{tikzpicture}\hfill~
+
+\item L'évènement \og le déchet est dangereux et recyclable \fg{} est $D \cap R$.
+
+$P(D \cap R) = P(D) \times P_{D}(R) = 0,03 \times 0,35 = \np{0,0105}$.
+
+\item $P\left(M \cap \overline{R}\right) = P(M) \times P_{M}\left(\overline{R}\right) = 0,69 \times 0,27 = \np{0,1863} $.
+
+Dans le contexte de l'exercice, cela signifie que sur l'ensemble des déchets produits par l'entreprise, 18,63\,\% d'entre eux sont des déchets qui sont minéraux et non recyclables.
+
+\item Les évènements $M$, $N$ et $D$ partitionnent l'univers, donc, d'après la loi des probabilités totales, on en déduit :
+
+$P(R) = P(R \cap M) + P(R \cap N) + P(R \cap D) = 0,69 \times 0,73 + 0,28 \times 0,49 + 0,03 \times 0,35 = \np{0,6514}$
+
+On obtient bien la probabilité annoncée.
+
+\item La probabilité demandée est :
+
+$ P_{R}(N) = \dfrac{P(R \cap N)}{P(R)} = \dfrac{0,28 \times 0,49}{\np{0,6514}} = \dfrac{686}{\np{3257}}\approx \np{0,2106}$ ~ au dix-millième près.
+
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item
+	\begin{enumerate}
+		\item On admet que la variable aléatoire $X$ suit une loi binomiale. Puisqu'elle compte le nombre de déchets recyclables, le succès est donc l'évènement $R$, de probabilité $p = \np{0,6514}$, ceci dans un lot de 20 déchets, ce qui signifie qu'il y a eu $n = 20$ répétitions identiques et indépendantes.
+
+C'est donc la loi binomiale $\mathcal{B}(20~;~\np{0,6514})$ que suit $X$.
+
+		\item On cherche la probabilité de l'évènement $(X = 14)$. On a :
+
+$P(X=14) = \displaystyle \binom{20}{14} p^{14}\times (1-p)^{20 - 14} = \binom{20}{14} \np{0,6514}^{14}\times 0,3486^{6} \approx 0,1723$ au dix-millième près.
+	\end{enumerate}
+\item Dans cette question, on prélève désormais $n$ déchets, où $n$ désigne un entier naturel strictement positif. On note $X_n$ la variable aléatoire qui compte le nombre de déchets recyclables dans ce nouvel échantillon. $X_n$ suit donc la loi binomiale de paramètres $(n~;~\np{0.6514})$
+	\begin{enumerate}
+		\item On a $p_{n} = P(X_n = 0) = \displaystyle \binom{n}{0} p^0 (1 - p)^{n} = (1 - p)^n = \np{0,3486}^n$.
+
+La probabilité qu'aucun déchet ne soit recyclable sur un échantillon de $n$ déchet est donc de $p_n = \np{0,3486}^n$
+
+		\item L'évènement \og au moins un déchet du prélèvement est recyclable \fg{} est contraire de celui dont on a calculé la probabilité à la question précédente. On est donc amené à résoudre :
+
+$\begin{aligned} 1 - p_n \geqslant \np{0,9999} &\iff -p_n \geqslant -\np{0,0001}\\
+&\iff p_n \leqslant \np{0,0001} \qquad \text{car }-1<0\\
+&\iff \np{0,3486}^n \leqslant \np{0,0001}\\
+&\iff n \ln(\np{0,3486}) \leqslant \ln(\np{0,0001}) \qquad \text{car ln est croissante sur } \R^{*+}\\
+&\iff n \geqslant \dfrac{\ln(\np{0,0001})}{\ln(\np{0,3486})} \qquad \text{car } \np{0,3486}<1 \text{ donc } \ln(\np{0,3486})<0
+\\ \end{aligned}$
+
+Or, on a $\dfrac{\ln(\np{0,0001})}{\ln(\np{0,3486})} \approx 8,7$ et comme $n$ est un entier, on en déduit que c'est à partir de 9 déchets dans l'échantillon que la probabilité qu'au moins un des déchets soit recyclable est supérieure ou égale à \np{0,9999}.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

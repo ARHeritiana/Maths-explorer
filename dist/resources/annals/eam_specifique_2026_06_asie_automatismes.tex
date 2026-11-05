@@ -1,0 +1,234 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_06_asie_automatismes.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Pour cette première partie, aucune justification n'est demandée et une seule réponse est possible par question. Pour chaque question, reportez son numéro sur votre copie et indiquez votre réponse.}
+
+Une réponse fausse ou l'absence de réponse n'enlève aucun point.
+
+\subsection*{Question 1}
+	Un article de \np[g]{5} perd $10\,\%$ de sa masse. Sa nouvelle masse est :
+
+	\medskip
+	\begin{tblr}{colspec = {*4{X}}}
+		\textbf{A.}\quad \np[g]{4,0} &
+		\textbf{B.}\quad \np[g]{4,1} &
+		\textbf{C.}\quad \np[g]{4,5} &
+		\textbf{D.}\quad \np[g]{4,9} \\
+	\end{tblr}
+
+\subsection*{Question 2}
+	Pour augmenter un prix de $15\,\%$, je dois le multiplier par :
+
+
+	\begin{tblr}{colspec = {*4{X}}}
+		\textbf{A.}\quad 0,15 &
+		\textbf{B.}\quad 1,15 &
+		\textbf{C.}\quad 0,85 &
+		\textbf{D.}\quad 1,015\\
+	\end{tblr}
+
+\subsection*{Question 3}
+	On considère \quad $A=\dfrac{2}{5}$. \quad Alors :
+
+	\medskip
+	\begin{tblr}{colspec = {*4{X}}}
+		\textbf{A.}\quad $A = 2,5\,\%$ &
+		\textbf{B.}\quad $A = 4\,\%$ &
+		\textbf{C.}\quad $A = 40\,\%$ &
+		\textbf{D.}\quad $A = 25\,\%$ \\
+	\end{tblr}
+
+\subsection*{Question 4}
+
+	On considère \quad $B=\left(5^{3}\right)^{4} \times 5^{10}$. \quad Alors :
+
+	\medskip
+	\begin{tblr}{colspec = {*4{X}}}
+		\textbf{A.}\quad $B=5^{17}$ &
+		\textbf{B.}\quad $B=5^{120}$ &
+		\textbf{C.}\quad $B=5^{22}$ &
+		\textbf{D.}\quad $B=5^{70}$ \\
+	\end{tblr}
+
+\subsection*{Question 5}
+	Le triple de $3^{12}$ est :
+
+	\medskip
+	\begin{tblr}{colspec = {*4{X}}}
+		\textbf{A.}\quad $9^{12}$ &
+		\textbf{B.}\quad $3^{36}$ &
+		\textbf{C.}\quad $3^{13}$ &
+		\textbf{D.}\quad $9^{36}$ \\
+	\end{tblr}
+
+\subsection*{Question 6}
+	Une expression développée de $(2 x+5)^{2}$ est :
+
+	\medskip
+	\begin{tblr}{colspec = {*4{X}}}
+		\textbf{A.}\quad $4 x^{2}+25$ &
+		\textbf{B.}\quad $4 x^{2}+10 x+25$ &
+		\textbf{C.}\quad $2 x^{2}+20 x+25$ &
+		\textbf{D.}\quad $4 x^{2}+20 x+25$ \\
+	\end{tblr}
+
+\subsection*{Question 7}
+	L'ensemble des solutions de l'équation $x^{2}=5$ est :
+
+	\medskip
+	\begin{tblr}{colspec = {*4{X}}}
+		\textbf{A.}\quad $\big\{-2,5 ; 2,5\big\}$ &
+		\textbf{B.}\quad $\big\{\sqrt{5}\big\}$ &
+		\textbf{C.}\quad $\big\{2,5\big\}$ &
+		\textbf{D.}\quad $\big\{-\sqrt{5} ; \sqrt{5}\big\}$
+	\end{tblr}
+
+\subsection*{Question 8}
+	En convertissant $\np[mm^3]{3400}$ en $\mathrm{cm}^{3}$, on obtient :
+
+	\medskip
+	\begin{tblr}{colspec = {*4{X}}}
+		\textbf{A.}\quad $\np[cm^3]{3,4}$ &
+		\textbf{B.}\quad $\np[cm^3]{34}$ &
+		\textbf{C.}\quad $\np[cm^3]{340}$ &
+		\textbf{D.}\quad $\np[cm^3]{0,34}$
+	\end{tblr}
+
+\subsection*{Question 9}
+	En sachant que le point A de coordonnées $(-3 ; y_{\mathrm{A}})$ appartient à la courbe d'équation $y=x^{2}$, on a :
+
+	\medskip
+	\begin{tblr}{colspec = {*4{X}}}
+		\textbf{A.}\quad $y_{\mathrm{A}}=-9$ &
+		\textbf{B.}\quad $y_{\mathrm{A}}=-6$ &
+		\textbf{C.}\quad $y_{\mathrm{A}}=6$ &
+		\textbf{D.}\quad $y_{\mathrm{A}}=9$
+	\end{tblr}
+
+\subsection*{Question 10}
+	On lance un dé truqué à 4 faces. La probabilité d'obtenir chacune des faces est donnée par le tableau ci-dessous.
+
+	\medskip
+
+	\begin{tblr}{colspec={cX[c]X[c]X[c]X[c]},hlines, vlines}
+		   Face     & Face numéro 1 & Face numéro 2 & Face numéro 3 & Face numéro 4 \\
+		Probabilité & 0,1           & 0,25          & 0,3           & $x$
+	\end{tblr}
+	\smallskip
+
+	On a alors :
+
+	\medskip
+	\begin{tblr}{colspec = {*4{X}}}
+		\textbf{A.}\quad $x=0,35$ &
+		\textbf{B.}\quad $x=0,45$ &
+		\textbf{C.}\quad $x=0,65$ &
+		\textbf{D.}\quad $x=0,60$\\
+	\end{tblr}
+
+\subsection*{Question 11}
+	Lequel de ces nombres est supérieur à 0,1 ?
+
+	\medskip
+	\begin{tblr}{colspec = {*4{X}}}
+		\textbf{A.}\quad $\dfrac{1}{12}$ &
+		\textbf{B.}\quad $10^{-2}$ &
+		\textbf{C.}\quad $\dfrac{1}{5}$ &
+		\textbf{D.}\quad $7\,\%$\\
+	\end{tblr}
+
+\subsection*{Question 12}
+	On considère \quad $A=3 \times \dfrac{2}{5}+1$.\quad On a :
+
+	\medskip
+	\begin{tblr}{colspec = {*4{X}}}
+		\textbf{A.}\quad $A=\dfrac{11}{5}$ &
+		\textbf{B.}\quad $A=\dfrac{7}{15}$ &
+		\textbf{C.}\quad $A=\dfrac{11}{10}$ &
+		\textbf{D.}\quad $A=\dfrac{11}{15}$
+	\end{tblr}
+
+
+\needspace{10\baselineskip}
+
+\end{document}

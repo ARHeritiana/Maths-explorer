@@ -1,0 +1,225 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_09_sujet1_polynesie_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{minipage}{0.5\linewidth}
+On considère un cube ABCDEFGH et l'espace est rapporté au repère orthonormal
+$\left(\text{A}~;~\vect{\text{AB}},~\vect{\text{AD}},~\vect{\text{AE}}\right)$.
+
+Pour tout réel $m$ appartenant à l'intervalle [0~;~1], on considère les points K et L de coordonnées:
+
+\begin{center}K\,$(m~;~0~;~0)$\quad et \quad L\,$(1 - m~;~1~;~1)$.\end{center}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+\psset{unit=0.85cm}
+\begin{pspicture}(6.6,6.6)
+\pspolygon[fillstyle=solid,fillcolor=lightgray!30,linewidth=0pt](5,5.9)(0.4,5.3)(1.6,0.82)(6.6,1.4)
+\pspolygon(0.4,1)(4.2,0.5)(4.2,4.8)(0.4,5.3)
+\psline(4.2,0.5)(6.6,1.4)(6.6,5.7)(4.2,4.8)
+\psline(6.6,5.7)(2.8,6.2)(0.4,5.3)
+\psline(5,5.9)(0.4,5.3)(1.6,0.82)
+\psline[linestyle=dashed](5,5.9)(6.6,1.4)(1.6,0.84)
+\psline[linestyle=dashed](0.4,1)(2.8,1.9)(6.6,1.4)
+\psline[linestyle=dashed](2.8,1.9)(2.8,6.2)
+\uput[dl](0.4,1){A} \uput[d](4.2,0.5){B} \uput[dr](6.6,1.4){C} \uput[ul](2.8,1.9){D}
+\uput[ul](0.4,5.3){E} \uput[dr](4.2,4.8){F} \uput[ur](6.6,5.7){G} \uput[u](2.8,6.2){H}
+\uput[dl](1.6,0.84){K} \uput[u](5,5.9){L}
+\end{pspicture}
+\end{minipage}
+
+\medskip
+
+\begin{enumerate}
+\item Le point E a pour coordonnées (0~;~0~;~1).
+
+Comme $\vectt{AC}=\vectt{AB}+\vectt{AD}$, le point C a pour coordonnées (1~;~1~;~0).
+
+\item Dans cette question, $m = 0$. Ainsi, le point L\,(1~;~1~;~1) est confondu avec le point G, le point K(0~;~0~;~0) est confondu avec le point A et le plan (LEK) est donc le plan (GEA).
+	\begin{enumerate}
+		\item 
+\begin{list}{\textbullet}{}
+\item ABCD est un carré donc ses diagonales sont perpendiculaires, donc $\vectt{DB} \perp \vectt{AC}$.
+\item Le vecteur $\vectt{AE}$ est normal au plan (ABD) donc $\vectt{AE}$ est orthogonal à tout vecteur du plan (ABD), donc $\vectt{AE} \perp \vectt{DB}$.
+\item Les vecteurs $\vectt{AE}$ et $\vectt{AC}$ ne sont pas colinéaires. 
+\end{list}		
+		
+Le vecteur $\vectt{DB}$	est orthogonal à deux vecteurs non colinéaires du plan (GEA) donc le vecteur $\vectt{DB}$ est normal au plan (GEA).
+		
+		\item 
+On déduit de la question précédente que le plan (GEA) a une équation de la forme $1\times x + (-1)\times y + 0\times z + d =0$, soit $x-y+d=0$.
+
+Le plan (GEA) passe par le point A de coordonnées (0~;~0~;~0) donc $0-0+d=0$ et donc $d=0$.
+
+Le plan (GEA) a donc pour équation $x-y=0$.
+	\end{enumerate}
+\end{enumerate}
+
+On s'intéresse désormais à la nature de CKEL en fonction du paramètre $m$.
+
+\begin{enumerate}[resume]
+\item Dans cette question, $m$ est un réel quelconque de l'intervalle [0~;~1].
+	\begin{enumerate}
+		\item 
+\begin{list}{\textbullet}{}
+\item 
+K\,$\begin{pmatrix} m\\0\\0 \end{pmatrix}$ et
+E\,$\begin{pmatrix} 0\\0\\1 \end{pmatrix}$
+donc $\vectt{KE}$ a pour coordonnées
+$\begin{pmatrix} 0-m\\0-0\\1-0 \end{pmatrix} = \begin{pmatrix} -m\\0\\1 \end{pmatrix}$.
+\item 
+C\,$\begin{pmatrix} 1\\1\\0 \end{pmatrix}$ et
+L\,$\begin{pmatrix} 1-m\\1\\1 \end{pmatrix}$ 
+donc $\vectt{CL}$ a pour coordonnées
+$\begin{pmatrix} 1-m-1\\1-1\\1-0 \end{pmatrix} = \begin{pmatrix} -m\\0\\1 \end{pmatrix}$.
+\end{list}		
+
+$\vectt{KE} = \vectt{CL}$ donc CKEL est un parallélogramme.
+		
+		\item
+K\,$\begin{pmatrix} m\\0\\0 \end{pmatrix}$ et
+C\,$\begin{pmatrix} 1\\1\\0 \end{pmatrix}$
+donc $\vectt{KC}$ a pour coordonnées
+$\begin{pmatrix} 1-m\\1-0\\0-0 \end{pmatrix} = \begin{pmatrix} 1-m\\1\\0 \end{pmatrix}$.
+
+$\vectt{KC} \cdot \vectt{KE} 
+= x_{\vectt{KC}}\times x_{\vectt{KE}} + y_{\vectt{KC}}\times y_{\vectt{KE}}  + z_{\vectt{KC}}\times z_{\vectt{KE}} 
+= (1-m)\times (-m) + 1 \times 0 + 0 \times (-1)
+= m(m - 1)$	
+		
+		\item
+\begin{tabular}[t]{@{} l @{ si, et seulement si, } l}
+CKEL est un rectangle & CKEL possède un angle droit\\
+&$\vectt{KC} \perp \vectt{KE}$\\
+& $\vectt{KC} \cdot \vectt{KE}=0$\\
+& $m(m-1)=0$\\
+&$m = 0$ ou $m = 1$
+\end{tabular}	
+
+\end{enumerate}
+\item Dans cette question, $m = \dfrac12$. 
+
+Ainsi, L a pour coordonnées  $\left(\dfrac12~;~1~;~1\right)$ et K a pour coordonnées $\left(\dfrac12~;~0~;~0\right)$.
+	\begin{enumerate}
+		\item 
+\begin{list}{\textbullet}{}
+\item
+K\,$\begin{pmatrix} \frac{1}{2}\\0\\0 \end{pmatrix}$ et
+L\,$\begin{pmatrix} \frac{1}{2}\\1\\1 \end{pmatrix}$
+donc $\vectt{KL}$ a pour coordonnées
+$\begin{pmatrix} \frac{1}{2}-\frac{1}{2}\\1-0\\1-0 \end{pmatrix} = \begin{pmatrix} 0\\1\\1 \end{pmatrix}$.		
+\item
+E\,$\begin{pmatrix} 0\\0\\1 \end{pmatrix}$ et
+C\,$\begin{pmatrix} 1\\1\\0  \end{pmatrix}$
+donc $\vectt{EC}$ a pour coordonnées
+$\begin{pmatrix} 1-0\\1-0\\0-1 \end{pmatrix} = \begin{pmatrix} 1\\1\\-1 \end{pmatrix}$.		
+\item
+$\vectt{KL} \cdot \vectt{EC} = 0\times 1 + 1\times 1 + 1 \times (-1)=0$ donc $\vectt{KL} \perp \vectt{EC}$
+\end{list}
+		
+Le parallélogramme CKEL a ses diagonales perpendiculaires donc c'est un losange.		
+		
+		\item 
+\begin{list}{\textbullet}{}
+\item $\vectt{KC} \cdot \vectt{KE}  = m(m-1)$; or $m=\dfrac{1}{2}$ donc $\vectt{KC} \cdot \vectt{KE} =\dfrac{1}{2} \left ( \dfrac{1}{2}-1 \right ) = - \dfrac{1}{4}$
+\item $\vectt{KC} \cdot \vectt{KE}  = \text{KC} \times \text{KE} \times \cos \left ( \widehat{\text{CKE}} \right )$
+
+\item $\vectt{KC}$ a pour coordonnées $\begin{pmatrix} 1-m\\1\\0 \end{pmatrix} = \begin{pmatrix}  \frac{1}{2}\\1\\0 \end{pmatrix}$
+
+Donc $\text{KC}^2 = \left ( \dfrac{1}{2} \right )^2+ 1^2+0^2=\dfrac{5}{4}$ donc $\text{KC}=\dfrac{\sqrt{5}}{2}$
+
+\item $\vectt{KE}$ a pour coordonnées $\begin{pmatrix} -m\\0\\1 \end{pmatrix} = \begin{pmatrix}  -\frac{1}{2}\\0\\1 \end{pmatrix}$
+
+Donc $\text{KE}^2 = \left (-\dfrac{1}{2} \right )^2+ 0^2+1^2=\dfrac{5}{4}$ donc $\text{KE}=\dfrac{\sqrt{5}}{2}$
+\end{list}		
+
+On a donc:
+$-\dfrac{1}{4} = \dfrac{\sqrt{5}}{2}\times \dfrac{\sqrt{5}}{2} \times \cos \left ( \widehat{\text{CKE}} \right )$
+
+Donc $-\dfrac{1}{4} = \dfrac{5}{4}\times \cos \left ( \widehat{\text{CKE}} \right )$ et donc  $\cos \left ( \widehat{\text{CKE}} \right ) = -\dfrac{1}{5}$
+
+On en déduit avec la calculatrice que $\widehat{\text{CKE}} \approx 101,5\degres$, soit $\widehat{\text{CKE}} \approx 102\degres$.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

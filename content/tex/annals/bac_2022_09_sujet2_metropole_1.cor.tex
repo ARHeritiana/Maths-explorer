@@ -1,0 +1,164 @@
+\medskip
+
+Dans le magasin d'Hugo, les clients peuvent louer deux types de vélos : vélos de route ou bien vélos tout terrain. 
+
+Chaque type de vélo peut être loué dans sa version électrique ou non.
+
+On choisit un client du magasin au hasard, et on admet que:
+\begin{itemize}
+\item Si le client loue un vélo de route, la probabilité que ce soit un vélo électrique est de 0,4 ;
+\item Si le client loue un vélo tout terrain, la probabilité que ce soit un vélo électrique est de 0,7 ; 
+\item La probabilité que le client loue un vélo électrique est de $0,58$.
+\end{itemize}
+
+\medskip
+
+On appelle $\alpha$ la probabilité que le client loue un vélo de route, avec $0 \leqslant \alpha \leqslant 1$. 
+
+On considère les évènements suivants:
+
+\begin{itemize}
+\item[$\bullet~~$] $R$ : \og le client loue un vélo de route \fg{} ;
+\item[$\bullet~~$] $E$ : \og le client loue un vélo électrique \fg{} ;
+\item[$\bullet~~$] $\overline{R}$ et $\overline{E}$, évènements contraires de $R$ et $E$.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item On complète l'arbre proposé.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm, levelsep=3cm,nrot=:U]{\TR{}}
+{\pstree{\TR{$R$~}\naput{$\alpha$}}
+{\TR{$E$}\naput{\blue $0,4$}
+\TR{$\overline{E}$}\nbput{\blue $1-0,4=0,6$}
+}
+\pstree{\TR{$\overline{R}$~}\nbput{$1 - \alpha$}}
+{\TR{$E$}\naput{\blue $0,7$}
+\TR{$\overline{E}$}\nbput{\blue$1-0,7=0,3$}
+}}
+\bigskip
+\end{center}
+
+\item 
+	\begin{enumerate}
+		\item D'après la formule des probabilités totales:
+		
+		 $p(E) = p\left (R\cap E\right )+p\left (\overline{R}\cap E\right )
+		 = \alpha \times 0,4+\left (1-\alpha\right )\times 0,7
+		 =0,4\alpha + 0,7 - 0,7\alpha 
+		 = 0,7 - 0,3\alpha$.
+		 
+		\item  La probabilité que le client loue un vélo électrique est  $p(E) = 0,58$.
+		
+Or $p(E)=0,7-0,3\alpha$. Donc $0,7 - 0,3\alpha = 0,58$ ce qui équivaut à $0,7-0,58 = 0,3\alpha$ ou encore $0,12=0,3\alpha$ soit $\alpha = 0,4$.
+	\end{enumerate}
+	
+\item On sait que le client a loué un vélo électrique. 
+
+La probabilité qu'il ait loué un vélo tout terrain est:
+
+$p_E\left (\overline{R}\right ) 
+= \dfrac{p\left ( \overline{R}\cap E\right )}{p(E)}
+= \dfrac{\left (1-0,4\right )\times 0,7}{0,58}
+= \dfrac{0,42}{0,58} \approx 0,72$.
+
+
+
+\item La probabilité que le client loue un vélo tout terrain électrique est:
+$p\left (\overline{R} \cap E\right )=0,42$.
+
+\item Le prix de la location à la journée d'un vélo de route non électrique est de $25$~euros, celui d'un vélo tout terrain non électrique de $35$~euros. 
+Pour chaque type de vélo, le choix de la version électrique augmente le prix de location à la journée de $15$~euros. 
+
+On appelle $X$ la variable aléatoire modélisant le prix de location d'un vélo à la journée. 
+	\begin{enumerate}
+		\item 
+On a quatre possibilités.
+
+\begin{list}{\textbullet}{}
+\item La location d'un vélo de route non électrique coûte 25~\euro.
+
+Cela correspond à  l'évènement $R\cap \overline{E}$ de probabilité $0,4\times 0,6=0,24$.
+
+\item La location d'un vélo de route  électrique coûte $25+15$ soit 40~\euro.
+
+Cela correspond à  l'évènement $R\cap E$ de probabilité $0,4\times 0,4=0,16$.
+ 
+\item La location d'un vélo tout terrain non électrique coûte 35~\euro.
+
+Cela correspond à  l'évènement $\overline{R} \cap \overline{E}$ de probabilité $0,6 \times 0,3=0,18$.
+
+\item La location d'un vélo tout terrain  électrique coûte $35+15$ soit 50~\euro.
+
+Cela correspond à  l'évènement $\overline{R}\cap E$ de probabilité $0,6\times 0,7=0,42$.
+ 
+\end{list}		
+		
+On établit la loi de probabilité de $X$:
+
+\begin{center}
+\begin{tabularx}{0.7\linewidth}{|c|*{4}{>{\centering \arraybackslash}X|}}
+\hline
+$x_i$ & 25 & 35 & 40 & 50\\
+\hline
+$p_i=p(X=x_i)$ & $0,24$ & $0,18$ & $0,16$ & $0,42$\\
+ \hline
+\end{tabularx}
+\end{center}
+			
+		\item 
+L'espérance mathématique de $X$ est:
+
+$E(X)=\ds\sum x_i\times p_i 
+= 25\times 0,24 + 35\times 0,18 + 40\times 0,16 + 50\times 0,42 
+= 39,7$.		
+
+Le coût moyen d'une location est donc de $39,70$~euros.		
+		
+	\end{enumerate}	
+\item Lorsqu'on choisit $30$ clients d'Hugo au hasard, on assimile ce choix à un tirage avec remise. 
+On note $Y$ la variable aléatoire associant à un échantillon de 30 clients choisis au hasard le nombre de clients qui louent un vélo électrique.
+
+On rappelle que la probabilité de l'évènement $E$ est : $p(E) = 0,58$.
+	\begin{enumerate}
+		\item 
+Il s'agit d'une répétition de 30 épreuves identiques et indépendantes n'ayant que deux issues, la probabilité du succès pour une épreuve étant égale à $0,58$.		
+		
+		Donc la variable aléatoire $Y$ qui donne le nombre de succès sur 30 tirages, suit une loi binomiale de paramètres $n=30$ et $p=0,58$.
+				
+		\item La probabilité qu'un échantillon contienne exactement $20$ clients qui louent un vélo électrique est:
+		
+$p(Y=20) = \ds\binom{30}{20}\times 0,58^{20}	\times (1-0,58)^{30-20}
+\approx 0,095$.
+
+		\item La probabilité qu'un échantillon contienne au moins $15$ clients qui louent un vélo électrique est:
+
+$p(Y\geqslant 15) = 1 - p(Y\leqslant 14)\approx 1 - 0,14190 \approx 0,858$.
+
+	\end{enumerate}
+
+\end{enumerate}

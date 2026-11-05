@@ -1,0 +1,49 @@
+\subsection*{1.}
+	
+	À la sortie du four \(t = 0\), donc
+	\[
+	f(0) = 1375e^{-0,075 \times 0} + 25 = 1375 + 25 = 1400.
+	\]
+	
+	\subsection*{2.}
+	
+	La fonction \(f\) est dérivable sur \(\left[0 ; +\infty\right[\) et sur cet intervalle :
+	\[
+	f'(t) = 1375 \times (-0,075)e^{-0,075t} = -103,125e^{-0,075t}.
+	\]
+	
+	Comme quel que soit \(t\), \(e^{-0,075t} > 0\), on a donc \(f'(t) < 0\) : la fonction \(f\) est donc strictement décroissante de 1400 à 25.
+	
+	Ce résultat était prévisible car la pièce ne peut que se refroidir et atteindre la température ambiante.
+	
+	\subsection*{3.}
+	
+	On a
+$
+	f(10) = 1375e^{-0,075 \times 10} + 25 \approx 674,4$ : la pièce ne peut être travaillée car trop chaude.\\
+$
+	f(14) = 1375e^{-0,075 \times 14} + 25 \approx 506,2$ : la pièce peut être travaillée mais pour peu de temps.
+
+	
+	\subsection*{4.}
+	
+	a. 	\begin{verbatim}
+		from math import exp
+		
+		def f(t):
+		     return 1375 * exp(-0,075 * t) + 25
+		
+		def seuil():
+		     t = 0
+		     temperature = f(t)
+		     while temperature >= 600:
+		          t = t + 0,1
+		          temperature = f(t)
+	    	return t
+	\end{verbatim}
+	
+	
+	
+	
+	
+	b. On trouve \(t = 17,3 \, h\), soit environ 17 h 18 min.

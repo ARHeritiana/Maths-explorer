@@ -1,0 +1,50 @@
+\medskip
+
+Laura reçoit chaque jour beaucoup de courriels. Pour se protéger des courriels indésirables, elle achète un logiciel anti-spam.
+
+Chaque jour, 
+
+\begin{itemize}
+\item 35\,\% des courriels reçus par Laura sont indésirables ;
+\item 95 \,\% des courriels indésirables sont automatiquement bloqués par le logiciel anti-spam.
+\item Parmi les courriels qui ne sont pas indésirables, le logiciel anti-spam en bloque 2\,\%.
+\end{itemize}
+On choisit au hasard un courriel reçu par Laura.
+Chaque courriel a la même probabilité d’être choisi.
+
+On considère les évènements suivants :
+\begin{itemize}
+\item $I$ : \og le courriel choisi est indésirable \fg,
+\item $S$ : \og le logiciel anti-spam bloque le courriel choisi \fg.
+\end{itemize}
+
+Pour tout évènement $A$, on note $\overline{A}$ l’évènement contraire de l’évènement A.
+
+Pour tout évènement $A$ et $B$ avec $B$ un évènement de probabilité non nulle, la probabilité de $A$ sachant $B$ est notée $ p_{B}(A)$.
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter sur la copie l’arbre de probabilité traduisant la situation.
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.75cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$I$~}\taput{$\np{0.35}$}}
+	{
+	\TR{$S$}\taput{$\np{0.95}$}
+	\TR{$\overline{S}$}\tbput{$\dots$}
+	}
+\pstree{\TR{$\overline{I}$~}\tbput{$\dots$}}
+	{\TR{$S$}\taput{$\dots$}
+	\TR{$\overline{S}$}\tbput{$\dots$}
+	}
+}
+\end{center}
+\item Calculer la probabilité que le courriel reçu par Laura ne soit pas indésirable et soit bloqué par le logiciel anti-spam.
+\item Montrer que $p(S)= \np{0,3455}$.
+\item Le logiciel anti-spam a bloqué un courriel reçu par Laura. Calculer la probabilité que ce courriel soit indésirable. On donnera le résultat arrondi à $10^{-3}$.
+\item Le fournisseur du logiciel anti-spam affirme que son logiciel se trompe dans moins de 2\,\% des cas. Est-ce vrai ? Justifier votre réponse.
+\end{enumerate}
+
+\vspace{0.5cm}

@@ -1,0 +1,47 @@
+\medskip
+
+Une enquête réalisée dans un camping a donné les résultats suivants :
+
+\begin{itemize}
+\item 60\,\% des campeurs viennent en famille, les autres viennent entre amis ;
+\item parmi ceux venant en famille, 35\,\% profitent des activités du camping ;
+\item parmi ceux venant entre amis, 70\,\% ne profitent pas des activités du camping.
+\end{itemize}
+
+On choisit au hasard un client de ce camping et on considère les évènements suivants :
+
+\begin{itemize}
+\item $F$ : \og le campeur choisi est venu en famille \fg,
+\item $A$ : \og le campeur choisi profite des activités du camping \fg.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter l'arbre de probabilités donné ci-dessous :
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.75cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$F$~~}\taput{$\np{0.6}$}}
+	{
+	\TR{$A$}\taput{}
+	\TR{$\overline{A}$}\tbput{}
+	}
+\pstree{\TR{$\overline{F}$~~}\tbput{}}
+	{\TR{$A$}\taput{}
+	\TR{$\overline{A}$}\tbput{}
+	}
+}
+\end{center}
+
+\medskip
+
+\item 
+	\begin{enumerate}
+		\item Calculer $p(F\cap\overline{A})$.
+		\item Interpréter ce résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\item Montrer que $p(A) = 0,33$.
+\item Sachant que le campeur choisi a profité des activités du camping, calculer la probabilité qu'il soit venu en famille. Arrondir le résultat au centième.
+\end{enumerate}

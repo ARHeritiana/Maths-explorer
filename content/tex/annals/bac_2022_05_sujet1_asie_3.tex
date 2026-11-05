@@ -1,0 +1,74 @@
+\medskip
+
+\emph{Principaux domaines abordés}: Manipulation des vecteurs, des droites et des plans de l'espace. Orthogonalité et distances dans l'espace. Représentations paramétriques et équations cartésiennes.
+
+\bigskip
+
+Le solide ABCDEFGH est un cube. On se place dans le repère orthonormé $\left(\text{A}~;~\vect{\imath},~\vect{\jmath},~\vect{k}\right)$ de l'espace dans lequel les coordonnées des points B, D et E sont : 
+
+\[\text{B}(3~;~0 ~;~0) , \text{D} (0~;~3~;~0)\: \text{et E}(0~;~0~;~3).\]
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(6.5,5.8)
+\pspolygon(0.5,1)(2.9,0.5)(2.9,3.7)(0.5,4.2)
+\psline(2.9,0.5)(5.6,1)(5.6,4.2)(2.9,3.7)
+\psline(5.6,4.2)(3.2,4.7)(0.5,4.2)
+\psline[linestyle=dashed](0.5,1)(3.2,1.5)(5.6,1)
+\psline[linestyle=dashed](3.2,1.5)(3.2,4.7)
+\psline[linewidth=1.3pt]{->}(0.5,1)(1.3,0.84)
+\psline[linewidth=1.3pt]{->}(0.5,1)(1.4,1.16)
+\psline[linewidth=1.3pt]{->}(0.5,1)(0.5,2.06)
+\uput[dl](0.5,1){A} \uput[d](2.9,0.5){B} \uput[r](5.6,1){C} \uput[d](3.2,1.5){D}
+\uput[l](0.5,4.2){E} \uput[u](2.9,3.7){F} \uput[r](5.6,4.2){G} \uput[u](3.2,4.7){H}
+\uput[d](0.7,0.9){$\vect{\imath}$} \uput[u](0.95,1.08){$\vect{\jmath}$} \uput[l](0.5,1.53){$\vect{k}$}
+\end{pspicture}
+\end{center}
+
+On considère les points P(0~;~0~;~1), Q(0~;~2~;~3) et R(1~;~0~;~3).
+
+\medskip
+
+\begin{enumerate}
+\item Placer les points P, Q et R sur la figure.
+\begin{center}
+
+
+\psset{unit=1.5cm}
+\begin{pspicture}(6.5,5.8)
+\pspolygon(0.5,1)(2.9,0.5)(2.9,3.7)(0.5,4.2)
+\psline(2.9,0.5)(5.6,1)(5.6,4.2)(2.9,3.7)
+\psline(5.6,4.2)(3.2,4.7)(0.5,4.2)
+\psline[linestyle=dashed](0.5,1)(3.2,1.5)(5.6,1)
+\psline[linestyle=dashed](3.2,1.5)(3.2,4.7)
+\psline[linewidth=1.3pt]{->}(0.5,1)(1.3,0.84)
+\psline[linewidth=1.3pt]{->}(0.5,1)(1.4,1.16)
+\psline[linewidth=1.3pt]{->}(0.5,1)(0.5,2.06)
+\uput[dl](0.5,1){A} \uput[d](2.9,0.5){B} \uput[r](5.6,1){C} \uput[d](3.2,1.5){D}
+\uput[l](0.5,4.2){E} \uput[u](2.9,3.7){F} \uput[r](5.6,4.2){G} \uput[u](3.2,4.7){H}
+\uput[d](0.7,0.9){$\vect{\imath}$} \uput[u](0.95,1.08){$\vect{\jmath}$} \uput[l](0.5,1.53){$\vect{k}$}
+
+
+\end{pspicture}
+\end{center}
+
+\item Montrer que le triangle PQR est isocèle en R.
+\item Justifier que les points P{}, Q et R définissent un plan.
+\item On s'intéresse à présent à la distance entre le point E et le plan (PQR).
+	\begin{enumerate}
+		\item Montrer que le vecteur $\vect{u}(2~;~1~;~- 1)$ est normal au plan (PQR).
+		\item En déduire une équation cartésienne du plan (PQR).
+		\item Déterminer une représentation paramétrique de la droite $(d)$ passant par le point E et orthogonale au plan (PQR).
+		\item Montrer que le point L$\left(\dfrac23~;~\dfrac13~;~\dfrac83\right)$ est le projeté orthogonal du point E sur le plan (PQR).
+		\item Déterminer la distance entre le point E et le plan (PQR).
+	\end{enumerate}
+\item En choisissant le triangle EQR comme base, montrer que le volume du tétraèdre EPQR est $\dfrac23$.
+
+On rappelle que le volume $V$ d'un tétraèdre est donné par la formule : 
+
+\[V = \dfrac13 \times \text{aire d'une base} \times \text{hauteur correspondante}.\]
+
+\item Trouver, à l'aide des deux questions précédentes, l'aire du triangle PQR.
+\end{enumerate}
+
+\bigskip

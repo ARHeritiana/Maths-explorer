@@ -1,0 +1,175 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_asie_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+Il y a 7 tirages contenant la lettre A, puis 
+
+6 tirages contenant la lettre B (le tirage AB étant le même que le tirage BA), 
+
+5 tirages contenant la lettre C, etc.
+
+Il y a donc : $7 + 6 + 5 + 4 + 3 + 2 + 1 = \dfrac{7 \times 8}{2}= 7 \times 4 = 28$ tirages différents.
+		\item 
+Les tirages gagnant sont les 6 tirages contenant la lettre A et une consonne et les 6 contenanr la lettre E et une consonne : il y a donc $6 + 6 = 12$ tirages gagants.
+
+La probabilité que le joueur gagne à ce jeu est donc égale à $\dfrac{12}{28} = \dfrac{4\times 3}{4 \times 7} = \dfrac{3}{7}$.
+	\end{enumerate}
+\end{enumerate}
+	
+
+
+
+
+\begin{enumerate}[resume]
+\item 
+
+
+
+
+
+	\begin{enumerate}
+		\item 
+On a $P(G = 10 - k) = \dfrac{3}{7}$ et $P(G = -k) = \dfrac{4}{7}$. D'où le tableau :
+
+\begin{center}
+$\begin{array}{|*{3}{c|}}\hline
+G				&- k			&10 - k\\ \hline
+P(G = ...)		&\dfrac{4}{7}	&\dfrac{3}{7}\rule[-3mm]{0mm}{9mm}\\ \hline
+\end{array}$
+\end{center}
+		\item 
+L'espérance mathématique de la variable aléatoire $G$ est égale à 
+		
+$E(G) = - k \times \dfrac{4}{7} + (10 - k) \times \dfrac{3}{7} = \dfrac{-4k + 30 - 3k}{7} = \dfrac{30 - 7k}{7}$.
+
+Le jeu est favorable au joueur si :
+
+$E(G) > 0 \iff \dfrac{30 - 7k}{7} \iff 30 - 7k > 0 \iff 7k < 30 \iff k < \dfrac{30}{7}$.
+
+$\dfrac{30}{7} \approx 4,3$.
+
+La somme payée au départ pour que le jeu reste favorable au joueur ne doit pas dépasser 4~\euro.	
+	\end{enumerate}
+\item 
+
+
+	\begin{enumerate}
+		\item 
+Le tirage par un joueur est indépendant de celui des autres et chacun a une probabilité de gagner de $\dfrac{3}{7}$ ; $X$ suit donc une loi binomiale de paramètres $n = 10$ et $p = \dfrac{3}{7}$.
+		\item 
+On a $p(X = 4) = \binom{10}{4}\left(\dfrac{3}{7}\right)^4\left( 1 - \dfrac{3}{7}  \right)^{10-4} = 210 \times\left(\dfrac{3}{7}\right)^4 \times \left(\dfrac{4}{7}\right)^6 \approx \np{0,2466}$, soit 0,247 au millième près.
+		\item  
+La calculatrice donne $p(X\leqslant 4) \approx 0,560$ donc 
+
+$p(X\geqslant 5) = 1 - p(X\leqslant 4) \approx (1 - 0,560)$.
+
+Finalement : $p(X\geqslant 5) \approx 0,440$.
+		
+La probabilité qu'il y ait au moins 5 gagnants sur 10 joueurs est d'environ 0,440.
+		\item 
+La calculatrice donne :
+		
+$p(X \leqslant 5) \approx 0,782$ et $p(X \leqslant 6) \approx 0,921$, donc 
+le plus petit entier $n$ tel que 
+
+$P(X \leqslant n) \geqslant 0,9$ est donc $n = 6$.
+	\end{enumerate}
+\end{enumerate}
+
+
+\medskip
+
+\end{document}

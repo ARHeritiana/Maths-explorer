@@ -1,0 +1,156 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet2_etrangers_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+	\item 
+	
+$\bullet~~$On sait que $\displaystyle\lim_{x \to 0} x \ln x = 0$, donc $\displaystyle\lim_{x \to 0} f(x) = 1$.
+
+$\bullet~~$Comme $\displaystyle\lim_{x \to + \infty} x = + \infty$ et $\displaystyle\lim_{x \to + \infty} \ln x = + \infty$, on a par produit de limites $\displaystyle\lim_{x \to + \infty} x \ln x = + \infty$ et enfin $\displaystyle\lim_{x \to + \infty} f(x) = + \infty$.
+	\item \begin{enumerate}
+		\item La fonction $f$ est continue et dérivable sur $]0~;~+\infty[$. En utilisant le formule de la dérivée d'un produit, $\forall x \in ]0~;~+\infty[$, $f'(x)=1\times \ln(x)+x\times \dfrac{1}{x}=\ln(x)+1$
+		\item $f'(x)\geqslant 0 \iff \ln(x)+1 \geqslant 0 \iff \ln(x) \geqslant -1 \iff x\geqslant \e^{-1}$.
+		
+		Dans le tableau : $f\left(\e^{-1}\right)= \e^{-1} \ln(\e^{-1})+1=-\e^{-1}+1=1-\e^{-1}>0$
+\begin{center}
+\begin{pspicture}(8,3)
+\psframe(8,3)\psline(0,2)(8,2)\psline(0,2.5)(8,2.5)
+\psline(2,0)(2,2.5)\psline(2.05,0)(2.05,2.5)
+\uput[u](1,2.4){$x$}\uput[u](2.025,2.4){$0$}\uput[u](5,2.4){$\text{e}^{-1}$}\uput[u](7.5,2.4){$+ \infty$}\uput[u](6.5,2.4){$1$}
+\rput(1,2.25){$f'(x)$}\uput[u](3.5,1.9){$-$}\uput[u](5,1.9){$0$}\uput[u](6.5,1.9){$+$}
+\rput(1,1){$f(x)$}\uput[d](2.2,2){1}\uput[u](5,0){$1 - \text{e}^{-1} \approx 0,632$}
+\uput[d](7.5,2){$+ \infty$}\rput(6.5,1){1}
+\psline{->}(2.2,1.5)(4.5,0.5)\psline{->}(5.5,0.5)(7.5,1.5)
+\end{pspicture}
+\end{center}
+		\item $f(1)=1$. D'après les variations de la fonction $f$,
+\begin{itemize}
+	\item $\forall x \in ]0~;~\e^{-1}]$, $f(x)\in [1-\e^{-1}~;~1[$ ;
+	\item $\forall x \in [\e^{-1}~;~1]$, $f(x) \in [1-\e^{-1}~;~1]$.
+\end{itemize}
+
+Donc $\forall x \in ]0~;~1]$, $f(x)\in \left[1-\e^{-1}~;~1\right]$. Or $1 - \e^{-1} > 0$ donc $f(x)\in ]~0~;~1]$ pour tout réel $x$ dans $]0~;~1]$.
+		\end{enumerate}
+	\item 
+	\begin{enumerate}
+		\item L'équation de la tangente $(T)$ à $\mathcal{C}_f$ au point d'abscisse 1 a pour équation :
+
+$y=f'(1)(x-1)+f(1)$
+
+		 Avec $f'(1)=1$ et $f(1)=1$, on en déduit l'équation de $(T)~:~y=x-1+1=x$, soit 
+
+$M(x~;~y) \in (T) \iff y = x$.
+		\item Nous savons que $\forall x \in ]0~;~+\infty[$, $f'(x)=\ln(x)+1$.
+
+		La fonction $f'$  est continue et dérivable sur $]0~;~+\infty[$, et $f''(x)=\dfrac{1}{x}>0$, donc $f$ est convexe sur $]0~;~+\infty[$.
+		\item La courbe représentative d'une fonction convexe est au-dessus de toutes ses tangentes. En particulier $\mathcal{C}_f$ est au-dessus de $(T)$. Donc $\forall x \in ]0~;~+\infty[$, $f(x)\geqslant x$.
+	\end{enumerate}
+	\item Soit $\left(u_n\right)$ la suite définie par $u_0 \in ]0~;~1]$ et $u_{n+1}=f(u_n)$.
+	\begin{enumerate}
+		\item Montrons par récurrence que $0 < u_n <1$ pour tout entier naturel $n$.
+		
+\emph{Initialisation} : on a $u_0 \in ]0~;~1[$, soit $0 < u_0 < 1$ : l'encadrement est vrai au rang $0$ ;
+
+\emph{Hérédité} : soit $n \in \N$ et supposons que $0 < u_n < 1$.
+
+On a vu à la question \textbf{2. b.} que si $0 < x < 1$, alors $0 < f(x) < 1$.
+
+Donc si $0 < u_n < 1$, alors $0 < f\left(u_n\right) < 1$, soit $0 < u_{n+1} < 1$.
+
+\emph{Conclusion} : l'encadrement est vrai au rang 0 et s'il est vrai au rang $n \in \N$, il l'est aussi au rang $n + 1$ : d'après le principe de récurrence pour tout entier naturel $n$, on a : $0 < u_n < 1$.
+		
+
+		\item D'après la question \textbf{3.c}, pour tout réel $x$ positif, $f(x)>x$.
+
+De plus pour tout entier naturel $n$, $u_n>0$
+
+Donc, $\forall n \in \N$, $f(u_n)>u_n$ donc $u_{n+1}>u_n$. La suite $\left(u_n\right)$ est donc croissante.
+		 \item La suite $\left(u_n\right)$ est croissante et majorée par 1. Donc d'après le théorème de convergence monotone, la suite $\left(u_n\right)$ converge vers une limite finie notée $l$.
+	\end{enumerate}
+\end{enumerate}
+
+\pagebreak
+
+\end{document}

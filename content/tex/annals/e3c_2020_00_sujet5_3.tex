@@ -1,0 +1,52 @@
+\medskip
+
+On s'intéresse à la consommation d'essence d'un véhicule en fonction de sa vitesse.
+
+\medskip
+
+\textbf{Lecture graphique}
+
+Le graphique ci-dessous représente la consommation d'essence en litres pour $100$~km en fonction de la vitesse en km.h$^{-1}$ du véhicule.
+
+\begin{center}
+\psset{xunit=0.08cm,yunit=0.4cm}
+\begin{pspicture}(-5,-1)(135,16)
+\multido{\n=0+5}{28}{\psline[linestyle=dotted](\n,0)(\n,14)}
+\multido{\n=0+1}{15}{\psline[linestyle=dotted](0,\n)(135,\n)}
+\psaxes[linewidth=1.25pt,Dx=10,Dy=2]{->}(0,0)(0,0)(135,15)
+\uput[r](0,15){consommation en litres pour 100 km}
+\uput[u](120,0){vitesse en km.h$^{-1}$}
+
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{30}{130}{x dup mul 20 mul 1600 x mul sub 40000 add x dup mul div}
+\end{pspicture}
+\end{center}
+
+Avec la précision permise par le graphique, répondre aux questions suivantes:
+
+\medskip
+
+\begin{enumerate}
+\item Quelle est la consommation du véhicule lorsque celui-ci roule à 40 km.h$^{-1}$ ?
+\item Pour quelle(s) vitesse(s) le véhicule consomme-t-il 8 litres pour 100 km ?
+\item Pour quelle vitesse la consommation du véhicule semble-t-elle minimale ?
+\end{enumerate}
+
+\textbf{Modélisation}
+
+\medskip
+
+Si on note $x$  la vitesse du véhicule en km.h$^{-1}$, avec $30 \leqslant x \leqslant 130$, la consommation d'essence en litres pour 100 km est modélisée par la fonction $f$ d'expression :
+
+\[f(x) = \dfrac{20x^2  - \np{1600}x + \np{40000}}{x^2}.\]
+
+On désigne par $f'$ la fonction dérivée de la fonction $f$ sur l'intervalle [30~;~130].
+
+\begin{enumerate}[resume]
+\item Montrer que pour tout $x \in [30~;~130],$
+
+\[f'(x) = \dfrac{800\left (2x - 100\right )}{x^3}.\]
+
+\item Démontrer la conjoncture de la question 3.
+\end{enumerate}
+
+\bigskip

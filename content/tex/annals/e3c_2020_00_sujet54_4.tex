@@ -1,0 +1,52 @@
+\medskip
+
+$150$ élèves d'un établissement sont inscrits aux activités du midi :
+\begin{itemize}
+\item $30$ sont inscrits en musique.
+\item $45$ sont inscrits en sport.
+\item $75$ sont inscrits en cinéma.
+\end{itemize} 
+
+Chaque élève pratique une et une seule activité. 
+\begin{itemize}
+\item Parmi les élèves inscrits en musique, 30\,\% sont des filles.
+\item Parmi les élèves inscrits en sport, 60\,\% sont des filles.
+\item Parmi les élèves inscrits en cinéma, 72\,\% sont des filles.
+\end{itemize}
+On choisit au hasard un élève inscrit aux activités du midi.
+
+On note : 
+\begin{itemize}
+\item $F$ l'évènement : \og l'élève choisi est une fille \fg,
+\item $M$ l'évènement : \og l'élève choisi est inscrit en musique \fg,
+\item $S$ l'évènement : \og l'élève choisi est inscrit en sport \fg, 
+\item $C$ l'évènement : \og l'élève choisi est inscrit en cinéma \fg.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item  Recopier et compléter l'arbre pondéré représentant la situation.
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.5cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$M$~~}\taput{$\np{0.2}$}}
+	{
+	\TR{$F$}\taput{}
+	\TR{$\overline{F}$}\tbput{}
+	}
+\pstree{\TR{$S$~~}\tbput{}}
+	{\TR{$F$}\taput{}
+	\TR{$\overline{F}$}\tbput{}
+	}
+\pstree{\TR{$C$~~}\tbput{}}
+	{\TR{$F$}\taput{}
+	\TR{$\overline{F}$}\tbput{}
+	}
+}
+\end{center}
+\item Calculer la probabilité que l'élève choisi soit une fille inscrite en musique.
+\item Montrer que la probabilité que l'élève choisi soit une fille est égale à $0,6$.
+\item Les évènements $M$ et $F$ sont-ils indépendants ?
+\item Sachant que l'élève choisi est un garçon, calculer la probabilité qu'il soit inscrit en cinéma.
+\end{enumerate}

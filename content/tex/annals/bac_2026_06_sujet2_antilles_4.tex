@@ -1,0 +1,195 @@
+On considère la fonction $f_{k}$ définie sur $] 0 ;+\infty[$ par :
+	\[f_{k}(x)=1-x+\dfrac{k(1+\ln x)}{x}\]
+	où $k$ est un réel strictement positif et ln désigne la fonction logarithme népérien.
+
+	\medskip
+
+	On désigne par $\mathcal{C}_{k}$ la représentation graphique de la fonction $f_{k}$ dans un repère orthonormé.
+
+	\medskip
+
+	On admet que la fonction $f_{k}$ est deux fois dérivable sur $] 0 ;+\infty[$.
+
+	\medskip
+
+	On note $f_{k}'$ sa dérivée première et $f_{k}''$ sa dérivée seconde.
+
+	\subsection*{Partie A : étude d'un premier cas particulier}
+		Dans cette partie, on se place dans le cas $k=2$.
+
+		La courbe $\mathcal{C}_{2}$ est représentée sur le graphique ci-dessous.
+
+		On précise que :
+
+		\begin{itemize}[leftmargin=10mm]
+			\item Le point A est un point d'inflexion de la courbe $\mathcal{C}_{2}$;
+			\item $T_{2}$ est la tangente à la courbe $\mathcal{C}_{2}$ au point A.
+
+			\begin{center}
+			\begin{tikzpicture}[baseline={(current bounding box.center)}]
+				\begin{axis}[/pgf/number format/.cd, use comma,
+					x={22mm}, y={22mm},
+					xmin = -0.3, xmax = 3.6,
+					ymin = -1.6, ymax = 2.4,
+					xtick={0,1,...,4},
+					ytick ={-2,...,2},
+					xticklabels={0,1},
+					yticklabels={,,0,1},
+					minor tick num = 1,
+					grid=both, axis lines =center]
+					\addplot [line width=1.pt,color=teal,smooth,samples=100,domain= 0.1:3.6,dashed]{-1.369*(x-1.649)+1.171};
+					\addplot [line width=1.2pt,color=red,smooth,samples=100,domain= 0.1:3.6]{1-x+2*(1+ln(x))/x};
+					\node[below left] at (axis cs: 0,0) {{0}};
+					\node[red] at(axis cs: 0.47,-1.25) {$ \mathcal{C}_2$};
+					\node[teal] at(axis cs: 1,2.25) {$T_2$};
+					\draw[shift={(axis cs: 1.649,1.171)}] (2pt,-2pt)--(-2pt,2pt) (-2pt,-2pt)--(2pt,2pt) node[above right]{A} ;
+				\end{axis}
+			\end{tikzpicture}
+			\end{center}
+		\end{itemize}
+
+		\begin{enumerate}
+			\item On considère une primitive $F_{2}$ de la fonction $f_{2}$ sur $] 0 ;+\infty[$.
+
+			Avec la précision permise par le graphique, donner les variations de la fonction $F_{2}$ sur l'intervalle $]0 ; 3]$.
+
+			\item Parmi les trois courbes ci-dessous, indiquer celle qui représente $f_{2}'$ et celle qui représente $f_{2}''$.
+
+			Justifier.
+		\end{enumerate}
+
+		\begin{tabular}{ccc}
+			\begin{tikzpicture}[baseline={(current bounding box.center)}]
+				\begin{axis}[/pgf/number format/.cd, use comma,
+					x={11mm}, y={11mm},
+					xmin = -0.3, xmax = 3.6,
+					ymin = -1.6, ymax = 2.4,
+					xtick={0,1,...,4},
+					ytick ={-2,...,2},
+					xticklabels={0,1},
+					yticklabels={,,0,1},
+					minor tick num = 1,
+					grid=both, axis lines =center]
+					\addplot [line width=1.2pt,color=red,smooth,samples=100,domain= 0.5:3.6]{-1-2*ln(x)/(x^2)};
+					\node[below left] at (axis cs: 0,0) {{0}};
+				\end{axis}
+			\end{tikzpicture}&
+			\begin{tikzpicture}[baseline={(current bounding box.center)}]
+				\begin{axis}[/pgf/number format/.cd, use comma,
+					x={11mm}, y={11mm},
+					xmin = -0.3, xmax = 3.6,
+					ymin = -1.6, ymax = 2.4,
+					xtick={0,1,...,4},
+					ytick ={-2,...,2},
+					xticklabels={0,1},
+					yticklabels={,,0,1},
+					minor tick num = 1,
+					grid=both, axis lines =center]
+					\addplot [line width=1.2pt,color=red,smooth,samples=100,domain= 0.9:3.6]{(-2+4*ln(x))/(x^3)};
+					\node[below left] at (axis cs: 0,0) {{0}};
+				\end{axis}
+			\end{tikzpicture}&
+			\begin{tikzpicture}[baseline={(current bounding box.center)}]
+				\begin{axis}[/pgf/number format/.cd, use comma,
+					x={11mm}, y={11mm},
+					xmin = -0.3, xmax = 3.6,
+					ymin = -1.6, ymax = 2.4,
+					xtick={0,1,...,4},
+					ytick ={-2,...,2},
+					xticklabels={0,1},
+					yticklabels={,,0,1},
+					minor tick num = 1,
+					grid=both, axis lines =center]
+					\draw[line width=1.2pt,color=red,smooth]
+					(axis cs: 0.5,-1.6) .. controls (axis cs: 1,-0.85) and (axis cs: 1.5,-0.4) .. (axis cs: 2.5,0)
+					.. controls (axis cs: 3.5,0.4) and (axis cs: 3.6,0.35) .. (axis cs: 3.6,0.35);
+					\node[below left] at (axis cs: 0,0) {{0}};
+				\end{axis}
+			\end{tikzpicture}\\
+			Courbe 1 & Courbe 2 & Courbe 3\\
+		\end{tabular}
+
+	\subsection*{Partie B : étude d'un second cas particulier}
+		Dans cette partie on se place dans le cas $k=1$.
+
+		\medskip
+
+		On considère la fonction $f_{1}$ définie sur $] 0 ;+\infty[$ par :
+		\[f_{1}(x)=1-x+\dfrac{1+\ln x}{x}\]
+
+		\begin{enumerate}
+			\item \begin{enumerate}
+				\item Montrer que pour tout réel $x>0$ :
+				\[f_{1}'(x)=-1-\dfrac{\ln x}{x^{2}}.\]
+
+				\item Déterminer la limite de $f_{1}'(x)$ lorsque $x$ tend vers $+\infty$.
+			\end{enumerate}
+
+			\item On admet que :
+			\begin{itemize}[leftmargin=1cm]
+				\item l'axe des ordonnées est une asymptote de la courbe de $f_{1}'$;
+				\item pour tout réel $x>0$, \quad $f_{1}''(x)=\dfrac{2 \ln x-1}{x^{3}}$.
+			\end{itemize}
+
+			On donne ci-dessous le tableau de variations de $f_{1}'$ sur l'intervalle $] 0 ;+\infty[$.
+
+			\begin{center}
+			\begin{tikzpicture}
+				\tkzTabInit[lgt=1,espcl=4]
+				{$x$/0.8, $f_{1}'$/2}
+				{0,$\e^{\frac{1}{2}}$,$+\infty$}
+				\tkzTabVar{D+/$+\infty$,-/$-1-\dfrac{1}{2\e}$,+/$-1$}
+			\end{tikzpicture}
+			\end{center}
+
+			\begin{enumerate}
+				\item Justifier les variations de la fonction $f_{1}'$ sur l'intervalle $]0 ;+\infty[$ et la valeur de l'extremum.
+
+				\item Justifier la limite de la fonction $f_{1}'$ en 0.
+
+				\item Montrer qu'il existe une unique solution $\alpha$ à l'équation \quad $f_{1}'(x)=0$ \quad sur $] 0 ;+\infty[$.
+
+				En déduire que $f_{1}$ admet un maximum sur l'intervalle $] 0 ;+\infty[$.
+
+				\item Recopier et compléter les pointillés du programme écrit en langage Python ci-dessous, afin qu'il renvoie une valeur approchée à $10^{-2}$ près de la solution $\alpha$ de l'équation \quad $f_{1}'(x)=0$ \quad sur $] 0 ;+\infty[$.
+
+				\begin{center}
+				\begin{tblr}{colspec={X[6cm, font=\ttfamily]},rowsep=0pt, vlines, hline{1,Z}={solid}}
+					def d(x) :\\
+					\quad return -1-ln(x)/x**2\\
+					\\
+					def alpha() :\\
+					\quad u = 0.5\\
+					\quad while d(u) ... 0 :\\
+					\quad \quad u = ...\\
+					\quad return u\\
+				\end{tblr}
+				\end{center}
+
+				On rappelle que \texttt{x**2} désigne $x^{2}$.
+			\end{enumerate}
+
+			\end{enumerate}
+
+	\subsection*{Partie C: $\boldsymbol{k}$ quelconque}
+		On considère la fonction $h$ définie sur $] 0 ;+\infty[$ par \quad
+		$h(x)=\dfrac{1+\ln x}{x}$,
+
+		et la fonction $H$ définie sur $] 0 ;+\infty[$ par \quad
+		$H(x)=\dfrac{1}{2}(1+\ln x)^{2}$.
+
+		On admet que $H$ est dérivable sur $] 0 ;+\infty[$.
+
+		\begin{enumerate}
+			\item Montrer que la fonction $H$ est une primitive de $h$.
+		\end{enumerate}
+
+		On rappelle que $k$ est un réel strictement positif et que $f_{k}$ est la fonction définie sur $] 0 ;+\infty[$ par :
+		\[f_{k}(x)=1-x+\dfrac{k(1+\ln x)}{x}\]
+
+		\begin{enumerate}
+			\setcounter{enumi}{1}
+			\item Existe-t-il une valeur de $k$ pour laquelle la valeur moyenne de la fonction $f_{k}$ sur l'intervalle $[ 1 ; \e]$ est égale à 0 ?
+
+			Justifier.
+		\end{enumerate}

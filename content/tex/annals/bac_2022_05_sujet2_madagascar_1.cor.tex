@@ -1,0 +1,51 @@
+\medskip
+
+\begin{enumerate}
+	\item  L'arbre complété avec les valeurs disponibles :
+			\begin{center}
+				\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep=1cm,levelsep=2.5cm]{\TR{}}
+				{\pstree{\TR{$F$~}\taput{0,48}}
+						{\TR{$C$}\taput{0,165}
+							\TR{$\overline{C}$}\tbput{0,835}
+							}
+					\pstree{\TR{$H$~}\tbput{0,52}}
+						{\TR{$C$}\taput{0,215}
+							\TR{$\overline{C}$}\tbput{0,785}
+							}
+					}
+				\end{center}
+	\item Calculons $p(C\cap F)$ : $p(C\cap F)=p_F(C)\times p(F)=0,165\times 0,48=0,0792$
+	\item
+		\begin{enumerate}
+			\item Utilisons la formule des probabilités totales pour calculer $p(C)$ :
+			
+			$p(C)=p(C\cap F)+p\left(C\cap \overline{F}\right) = p_F(C)\times p(F) + p_{\overline{F}}(C)\times p\left(\overline{F}\right) = 0,165\times 0,48 + 0,215 \times 0,52 = 0,191$.
+			\item Si les évènements $F$ et $C$ sont indépendants, alors $p(F\cap C) = p(F)\times  p(C)$.
+			
+			$p(F\cap C)=0,0792$ \quad et \quad $p(F)\times p(C) = 0,48 \times 0,191=0,09168$.
+			
+Ces deux résultats sont différents. Les évènements $F$ et $C$ ne sont pas indépendants.
+		\end{enumerate}
+	\item D'après la formule de Bayes : $p_C(F)=\dfrac{p(F\cap C)}{p(C)}=\dfrac{0,0792}{0,191}\approx 0,4147$.
+	
+La probabilité de choisir une femme sachant qu'elle est cadre est égale à 0,4147.
+	\item 
+	\begin{enumerate}
+		\item Il s'agit là d'un schéma de Bernoulli : la répétition de 15 expériences aléatoires n'ayant que deux issues, identiques et indépendantes entre elles. Si on note par $X$ la variable aléatoire donnant le nombre de cadres dans l'échantillon, alors $X$ suit donc une loi binomiale de paramètres $n=15$ et $p=0,191$ : $X \sim \mathcal{B}\left(15~;~0,191\right)$
+		\item $\begin{gathered}p(X\leqslant 1)=p(X=0)+p(X=1)=\dbinom{15}{0}\times 0,191^0\times (1-0,191)^{15}+\dbinom{15}{1}\times 0,191^1\times (1-0,191)^{15-1}\\ \approx 0,1890\end{gathered}$.
+		\item $E(X)=n\times p= 15\times 0,191= 2,865$.
+	\end{enumerate}
+	\item Soit $n \in \N$.. Cherchons la plus petite valeur de $n$ telle que $p(X\geqslant 1)\geqslant 0,99$.
+
+	$\begin{gathered}p(X\geqslant 1)\geqslant 0,99 \iff  \iff 1-p(X<1)\geqslant 0,99 \iff 1-p(X=0)\geqslant 0,99 \iff -p(X=0)\geqslant -0,01 \\ \iff  p(X=0)\leqslant 0,01 \iff (1-0,191)^n\leqslant 0,01 \iff 0,809^n\leqslant 0,01\end{gathered}$. 
+	
+La fonction $x\mapsto\ln(x)$ est strictement croissante sur $\R_+^*$ donc
+	
+	$\begin{gathered}0,809^n\leqslant 0,01 \iff \ln\left(0,809^n \right) \leqslant \ln(0,01) \iff n \times \ln(0,809) \leqslant \ln(0,01) \\ \iff n\geqslant \dfrac{\ln(0,01)}{\ln(0,809)}\end{gathered}$ car $\ln(0,809)<0$. 
+
+À la calculatrice : $\dfrac{\ln(0,01)}{\ln(0,809)}\approx 21,73$ donc $n\geqslant 22$.
+
+Il faudra donc que la taille de l'échantillon choisi soit supérieure ou égale à 22.
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,188 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet2_ameriquenord_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\bigskip
+
+
+Une exposition d'art contemporain a lieu dans une salle en forme de pavé droit de largeur 6 m, de longueur 8 m et de hauteur 4 m. 
+
+Elle est représentée par le parallélépipède rectangle OBCDEFGH où
+OB = 6 m, OD = 8 m et OE = 4 m.
+
+On utilise le repère orthonormé \Oijk{} tel que $\vect{\imath} = \dfrac16\vect{\text{OB}}, \vect{\jmath} = \dfrac18\vect{\text{OD}}$ et $\vect{k} =\dfrac14\vect{\text{OE}}$.
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(7.2,5.3)
+
+\pspolygon(0.2,1.2)(4.5,0.2)(4.5,2.7)(0.2,3.7)
+\psline(4.5,0.2)(6.9,1.2)(6.9,3.7)(4.5,2.7)
+\psline(6.9,3.7)(2.6,4.7)(0.2,3.7)
+\psline(0.2,2.45)(1.8,3.33)(1.4,4.2)
+\psline[linestyle=dashed,linewidth=1.5pt](0.2,2.45)(1.4,4.2)
+\psline[linestyle=dotted,linewidth=1.5pt](0.2,1.2)(2.6,2.2)(2.6,4.7)
+\psline[linestyle=dotted,linewidth=1.5pt](2.6,2.2)(6.9,1.2)
+\psline{->}(2.6,2.2)(2.2,2.02)
+\psline{->}(2.6,2.2)(3.4,2.03)
+\psline{->}(2.6,2.2)(2.6,2.82)
+\psdot(2.7,1.5)
+\uput[l](0.2,2.45){A} \uput[dl](0.2,1.2){B} \uput[d](4.5,0.2){C} \uput[dr](6.9,1.2){D}
+\uput[u](2.6,4.7){E} \uput[ul](0.2,3.7){F} \uput[dr](4.5,2.7){G} \uput[ur](6.9,3.7){H}
+\uput[d](2.6,2.2){O} \uput[ur](1.8,3.33){R} \uput[d](2.7,1.5){S} \uput[u](1.4,4.2){T}
+\uput[ul](2.2,2){$\vect{\imath}$}\uput[ur](3.4,2.03){$\vect{\jmath}$}\uput[l](2.6,2.82){$\vect{k}$}
+\end{pspicture}
+\end{center}
+
+Dans ce repère on a, en particulier C(6~;~8~;~0), F(6~;~0~;~4) et G(6~;~8~;~4).
+
+Une des œuvres exposées est un triangle de verre représenté par le triangle ART qui a pour
+
+sommets A(6~;~0~;~2), R(6~;~3~;~4) et T(3~;~0~;~4), Enfin, S est le point de coordonnées $\left(3~;~\dfrac52~;~0\right)$.
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Vérifier que le triangle ART est isocèle en A.
+		\item Calculer le produit scalaire $\vect{\text{AR}} \cdot \vect{\text{AT}}$.
+		\item En déduire une valeur approchée à $0,1$ degré près de l'angle $\widehat{\text{RAT}}$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Justifier que le vecteur $\vect{n}\begin{pmatrix}2\\-2\\3\end{pmatrix}$ est un vecteur normal au plan (ART).
+		\item En déduire une équation cartésienne du plan (ART).
+	\end{enumerate}
+\item Un rayon laser dirigé vers le triangle ART est émis du plancher à partir du point S. On admet que ce rayon est orthogonal au plan (ART).
+	\begin{enumerate}
+		\item Soit $\Delta$ la droite orthogonale au plan (ART) et passant par le point S.
+		
+Justifier que le système ci-dessous est une représentation paramétrique de la droite $\Delta$ :
+
+\[\left\{\begin{array}{l c r}
+x&=&3+2k\\
+y&=& \dfrac52 - 2k\\
+z &=& 3k
+\end{array}\right.,\: \text{avec }\:k \in \R.\]
+
+		\item Soit L le point d'intersection de la droite $\Delta$, avec le plan (ART).
+
+Démontrer que L a pour coordonnées $\left(5~;~\dfrac12~;~3\right)$.
+	\end{enumerate}
+\item L'artiste installe un rail représenté  par le segment  [DK] ou K est le milieu du segment [EH].
+
+Sur ce rail, il positionne une source lumineuse laser en un point N du segment [DK] et il oriente ce
+second rayon laser vers le point S.
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(7.2,5.3)
+
+\pspolygon(0.2,1.2)(4.5,0.2)(4.5,2.7)(0.2,3.7)
+\psline(4.5,0.2)(6.9,1.2)(6.9,3.7)(4.5,2.7)
+\psline(6.9,3.7)(2.6,4.7)(0.2,3.7)
+\psline(0.2,2.45)(1.8,3.33)(1.4,4.2)
+\psline[linestyle=dashed,linewidth=1.5pt](0.2,2.45)(1.4,4.2)
+\psline[linestyle=dotted,linewidth=1.5pt](0.2,1.2)(2.6,2.2)(2.6,4.7)
+\psline[linestyle=dotted,linewidth=1.5pt](2.6,2.2)(6.9,1.2)
+\psline[linestyle=dotted,linewidth=1.5pt](4.75,4.2)(6.9,1.2)
+\psline{->}(2.6,2.2)(2.2,2.)
+\psline{->}(2.6,2.2)(3.4,2.03)
+\psline{->}(2.6,2.2)(2.6,2.82)
+\psline[ArrowInside=->](5.2,3.6)(2.7,1.5)(0.8,3.1)
+\psdots(5.2,3.6)(2.7,1.5)(0.8,3.1)
+\uput[l](0.2,2.45){A} \uput[dl](0.2,1.2){B} \uput[d](4.5,0.2){C} \uput[dr](6.9,1.2){D}
+\uput[u](2.6,4.7){E} \uput[ul](0.2,3.7){F} \uput[dr](4.5,2.7){G} \uput[ur](6.9,3.7){H}
+\uput[d](2.6,2.2){O} \uput[ur](1.8,3.33){R} \uput[d](2.7,1.5){S} \uput[u](1.4,4.2){T}
+\uput[u](2.2,2){\small $\vect{\imath}$}\uput[u](3.4,2.03){\small $\vect{\jmath}$}\uput[u](2.6,2.82){\small $\vect{k}$}
+\uput[ur](5.2,3.6){N}\uput[u](4.75,4.2){K}\uput[d](0.8,3.1){L}
+\end{pspicture}
+\end{center}
+
+	\begin{enumerate}
+		\item Montrer que, pour tout réel $t$ de l'intervalle [0~;~1], le point N de coordonnées $(0~;~8 - 4t~;~4t)$ est un point du segment [DK].
+		\item  Calculer les coordonnées exactes du point N tel que les deux rayons laser représentés par les segments [SL] et [SN] soient perpendiculaires.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

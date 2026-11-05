@@ -1,0 +1,147 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet2_asie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On considère deux cubes ABCDEFGH et BKLCFJMG positionnés comme sur la figure suivante:
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(10.2,7.8)
+\pspolygon(0.2,2.5)(5.8,0.3)(5.8,4.1)(0.2,6.3)
+\psline(3,1.4)(3,5.2)(6.8,6.2)
+\psline(5.8,0.3)(9.6,1.3)(9.6,5.1)(5.8,4.1)
+\psline(6.8,6.2)(4,7.3)(0.2,6.3)
+\psline(9.6,5.1)(6.8,6.2)
+\psline[linestyle=dashed](4,7.3)(4,3.5)(9.6,1.3)
+\pspolygon[linestyle=dashed](3,1.4)(6.8,2.4)(6.8,6.2)
+\psline[linestyle=dashed](0.2,2.5)(4,3.5)
+
+\psline[linewidth=1.25pt]{->}(0.2,2.5)(3,1.4)
+\psline[linewidth=1.25pt,linestyle=dashed]{->}(0.2,2.5)(4,3.5)
+\psline[linewidth=1.25pt]{->}(0.2,2.5)(0.2,6.3)
+\psline(3,1.4)(1.6,5.75)(6.8,6.2)
+\uput[dl](0.2,2.5){A} \uput[dl](3,1.4){B} \uput[ur](6.8,2.4){C} \uput[ul](4,3.5){D}
+\uput[l](0.2,6.3){E} \uput[dl](3,5.2){F} \uput[ur](6.8,6.2){G} \uput[u](4,7.3){H}
+\uput[u](5.8,4.1){J} \uput[d](5.8,0.3){K} \uput[r](9.6,1.3){L} \uput[ur](9.6,5.1){M}
+\uput[u](1.6,5.75){I}
+\end{pspicture}
+\end{center}
+
+Le point I est le milieu de [EF].
+
+Dans toute la suite de l'exercice, on se place dans le repère orthonormé $\left(\text{A}~;~\vect{\text{AB}}~;~\vect{\text{AD}}~;~\vect{\text{AE}}\right)$.
+
+Ainsi, par exemple, les points F, G et J ont pour coordonnées 
+
+\begin{center}F(1~;~0~;~1),\qquad  G(1~;~1~;~1)\quad et\quad  J(2~;~0~;~1).\end{center}
+
+\medskip
+
+\begin{enumerate}
+\item Montrer que le volume du tétraèdre FIGB est égal à $\dfrac{1}{12}$ d'unité de volume. 
+
+On rappelle que le volume $V$ d'un tétraèdre est donné par la formule :
+
+\begin{center}$V = \dfrac13 \times \text{aire d'une base} \times  \text{hauteur correspondante}$.\end{center}
+\item Déterminer les coordonnées du point I.
+\item Montrer que le vecteur $\vect{\text{DJ}}$ un vecteur normal au plan (BIG).
+\item Montrer qu'une équation cartésienne du plan (BIG) est $2x - y + z - 2 = 0$.
+\item Déterminer une représentation paramétrique de la droite $d$, orthogonale à (BIG) et passant par F.
+\item
+	\begin{enumerate}
+		\item La droite $d$ coupe le plan (BIG) au point L.
+		
+Montrer que les coordonnées du point L sont $\left(\dfrac23~;~\dfrac16~;~\dfrac56\right)$.
+		\item Calculer la longueur FL.
+		\item Déduire des questions précédentes l'aire du triangle IGB.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\end{document}

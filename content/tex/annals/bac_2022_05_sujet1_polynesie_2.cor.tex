@@ -1,0 +1,88 @@
+\medskip
+
+Selon les autorités sanitaires d'un pays, 7\,\% des habitants sont affectés par une certaine maladie.
+
+Dans ce pays, un test est mis au point pour détecter cette maladie. Ce test a les caractéristiques suivantes :
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet~~$] Pour les individus malades, le test donne un résultat négatif dans $20 \,\%$ des cas ;
+\item[$\bullet~~$] Pour les individus sains, le test donne un résultat positif dans $1\,\%$ des cas.
+\end{itemize}
+\setlength\parindent{0cm}
+
+Une personne est choisie au hasard dans la population et testée.
+
+On considère les évènements suivants :
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet~~$] $M$ \og la personne est malade \fg{} ;
+\item[$\bullet~~$]  $T$ \og le test est positif \fg{}.
+\end{itemize}
+\setlength\parindent{0cm}
+
+\medskip
+
+\begin{enumerate}
+\item Pour calculer la probabilité de l'évènement $M \cap T$, on s'appuie sur un arbre pondéré :
+
+
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep=1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$M$~}\taput{$0,07$}}
+	{\TR{$T$}\taput{$0,8$}
+	\TR{$\overline{T}$}\tbput{$0,2$}
+	}
+\pstree{\TR{$\overline{M}$~}\tbput{$0,93$}}
+	{\TR{$T$}\taput{$0,01$}
+	\TR{$\overline{T}$}\tbput{$0,99$}
+	}
+}
+\end{center}
+
+
+
+On a donc $P(M\cap T) = 0,07 \times 0,8 = 0,056$
+
+\item 
+$M$ et $\overline{M}$ formant une partition de l'univers, d'après les probabilités totales,
+
+$P(T)=P(M \cap T)+ P\left(\overline{M} \cap T\right) = 0,07 \times 0,8 + 0,93 \times 0,01 = \np{0,0653}$.
+
+\item 
+$P_M(T)$ est la probabilité d'avoir un test positif sachant qu'on est malade, et  $P_T(M)$ est la probabilité d'être malade sachant que le test est positif.
+
+Dans un contexte de dépistage de la maladie, il est plus pertinent de calculer la probabilité d'être malade sachant que le test est positif c'est-à-dire $P_T(M)$.
+
+\item On considère dans cette question que la personne choisie au hasard a eu un test positif.
+
+La probabilité qu'elle soit malade est:
+$P_T(M)=\dfrac{P(M \cap T)}{P(T)}=\dfrac{0,07 \times 0,8}{0,0653} \approx 0,86$
+
+\item On choisit des personnes au hasard dans la population. La taille de la population de ce pays permet d'assimiler ce prélèvement à un tirage avec remise.
+
+On note $X$ la variable aléatoire qui donne le nombre d'individus ayant un test positif parmi les 10 personnes. 
+
+	\begin{enumerate}
+		\item 
+Le tirage étant assimilé à un tirage avec remise, on a une indépendance des 10  tirages, le succès étant défini par le test positif, on peut assimiler cette variable aléatoire à une loi binomiale de paramètre $n=10$ et $p= \np{0,0653}$
+
+		\item La probabilité pour qu'exactement deux personnes aient un test positif est:
+		
+$P(X = 2) = \binom{10}{2} \times 0,0653^2 \times (1-0,0653)^8 \approx 0,11$
+	\end{enumerate}	
+
+\item On veut déterminer le nombre minimum de personnes à tester dans ce pays pour que la probabilité qu'au moins l'une d'entre elles ait un test positif, soit supérieure à $99\,\%$.
+
+Soit $n$ le nombre de personnes testées;  on cherche $n$ pour que $P(X\geqslant 1) \geqslant 0,99$.
+
+On a $P(X\geqslant 1)=1 - P(X = 0)$  soit 
+
+$1 - 0,9347^n \geqslant 0,99 \iff 0,9347^n \leqslant 0,01 \iff n \ln (0,9347) \leqslant \ln(0,01) \iff n \geqslant \dfrac{\ln(0,01}{\ln(0,9347} $. Or $\dfrac{\ln(0,01}{\ln(0,9347} \approx 68,2$.
+
+Il faut donc tester $69$ personnes dans ce pays pour que au moins une ait un test positif.
+
+\end{enumerate}
+
+\vspace{1cm}

@@ -1,0 +1,155 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet2_ameriquenord_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+En utilisant le repère fourni \Oijk, les points notés ont pour coordonnées : 
+$A\left(6~;~0~;~2\right)$ , $B\left(6~;~0~;~0\right)$,$C\left(6~;~8~;~0\right)$, $D\left(0~;~8~;~0\right)$, $E\left(0~;~0~;~4\right)$, $F\left(6~;~0~;~4\right)$, $G\left(6~;~8~;~4\right)$, $H\left(0~;~8~;~4\right)$, $R\left(6~;~3~;~4\right)$, $T\left(3~;~0~;~4\right)$ et $S\left(3~;~\dfrac52~;~0\right)$
+
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Les vecteurs $\vect{AR}$ et $\vect{AT}$ ont pour coordonnées : \(\overrightarrow{AR}\begin{pmatrix}0\\3\\2\end{pmatrix}\) et \(\overrightarrow{AT}\begin{pmatrix}-3\\0\\2\end{pmatrix}\).
+		
+		$AR=\lVert\vect{AR}\rVert=\sqrt{0^2+3^2+2^2}=\sqrt{13}$ et $AT=\lVert\vect{AT}\rVert=\sqrt{(-3)^2+0^2+2^2}=\sqrt{13}$
+			
+		$\lVert\vect{AR}\rVert=\lVert\vect{AR}\rVert$ donc le triangle $ART$ est isocèle en A.
+		\item $\vect{AR}.\vect{AT}=0\times(-3)+3\times 0+2\times 2 = 4$
+		\item Utilisons la formule du produit scalaire : $\vect{AR}.\vect{AT}= \left\|\vect{AR}\right\| \times \left\|\vect{AT}\right\| \times \cos \left(\widehat{\text{RAT}}\right)$ 
+		
+donc
+		$\cos \left(\widehat{\text{RAT}}\right) = \dfrac{\vect{AR}.\vect{AR}}{\lVert\vect{AR}\rVert \times \lVert\vect{AT}\rVert}=\dfrac{4}{\sqrt{13}^2}=\dfrac{4}{13}$ donc $\widehat{RAT}=\arccos\left(\dfrac{4}{13}\right)\approx 72,1 \degres$
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Les vecteurs $\vect{AR}$ et $\vect{AT}$ ne sont pas colinéaires : il n'existe pas de réel $k$ tel que $\vect{JK}=k\times \vect{JL}$.
+		
+		En effet le système $\left\{\begin{array}{l c l} 0&=&k\times (-3)\\3 &=& k\times 0\\2&=& k\times 2 \end{array}\right.$ n'admet pas de solution.
+		Donc ils définissent une base du plan $(ART)$.
+		Calculons :
+		
+		$\vect{n}.\vect{AR}=2\times 0+(-2)\times 3+3\times 2=-6+6=0$ et $\vect{n}.\vect{AT}=2\times(-3)+(-2)\times 0+3\times 2=-6+6=0$.
+		
+		Donc $\vect{n}\perp\vect{AR}$ et $\vect{n}\perp\vect{AT}$ donc $\vect{n}$ est normal à tout vecteur du plan $(ART)$, donc $\vect{n}$ est un vecteur normal au plan $(ART)$.
+		\item Le plan $(ART)$ a pour équation cartésienne : $ax+by+cz+d = 0$, où $(a~;~b~;~c)$ sont les cordonnées d'un vecteur normal au plan. En prenant comme vecteur normal le vecteur $\vect{n}$, on obtient : $(ART)$ : $2x - 2y + 3z + d = 0$. 
+				
+Or $A\in \text{(ART)}$ donc $12-0+6+d=0$ donc $d=-18$.
+
+Donc le plan $(ART)$ a pour équation $2x - 2y + 3z - 18 = 0$.
+	\end{enumerate}
+	\item 
+	\begin{enumerate}
+		\item La droite $\Delta$ est orthogonale au plan $(ART)$, donc elle admet comme vecteur directeur le vecteur $\vect{u}$, vecteur normal à ce plan. Elle passe par le point S$\left(3~;~\dfrac52~;~0\right)$. Une représentation paramétrique de la droite $\Delta$ est donc : 
+
+		$\left\{\begin{array}{l c l}	x&=&3+2k\\y &=&\dfrac52-2k\\z&=&0+3k			\end{array}\right. , k \in \R$ soit 
+		$\left\{\begin{array}{l c r}x&=&3+2k\\y&=& \dfrac52 - 2k\\z &=& 3k \end{array}\right.,\: \text{avec }\:k \in \R.$
+		\item Les coordonnées du point L sont les uniques solutions du système :
+		
+$(S) \left\{\begin{array}{l}	x = 3 + 2k\\y =\dfrac52-2k\\z=3k\\2x - 2y + 3z - 18=0			\end{array}\right.$
+		En remplaçant $x$, $y$ et $z$ dans la dernière équation, on obtient : 
+$2x - 2y + 3z - 18=0 \iff 2(3+2k)-2\left(\dfrac52-2k\right)+3\times 3k-18=0 \iff 17k-17=0 \iff k=1$
+		
+Donc $x=3+2k=5$, $y =\dfrac52-2k=\dfrac12$ et $z=3k=3$.
+Le point $L$ a pour coordonnées $\left(5~;~\dfrac12~;~3\right)$.
+	\end{enumerate}
+	\item Le milieu $K$ de $[EH]$ a donc pour coordonnées $\left(0~;~4~;~4\right)$. $N$ a pour coordonnées $(0~;~8 - 4t~;~4t)$. Pour $t\in [0~;~1]$, les vecteurs $\vect{DK}$ et $\vect{ND}$ ont pour coordonnées  : \(\overrightarrow{DK}\begin{pmatrix}0\\-4\\4\end{pmatrix}\) et \(\overrightarrow{DN}\begin{pmatrix}0\\-4t\\4t\end{pmatrix}\).
+	
+	On remarque alors que $\vect{DN}=t\times \vect{DK}$. Les deux vecteurs sont donc colinéaires, donc les points $D, K$ et $N$ sont alignés.
+	
+	Pour vérifier que $N$ est un point du segment $[DK]$, montrons que $\vect{NK}.\vect{ND}\leqslant 0$ :
+	
+	\(\overrightarrow{NK}\begin{pmatrix}0\\-4+4t\\4-4t\end{pmatrix}\) et \(\overrightarrow{ND}\begin{pmatrix}0\\4t\\-4t\end{pmatrix}\) 
+	
+	donc $\vect{NK}.\vect{ND}=0\times 0+(-4+4t)\times 4t+(4-4t)\times (-4t) =32t^2-32t =32t(t-1)$.
+	
+	$t\in [0~;~1]$ donc $32t(t-1)\leqslant 0$ donc $N$ est un point du segment $[DK]$.
+	\item Les vecteurs $\vect{SL}$ et $\vect{SN}$ ont pour coordonnées : \(\overrightarrow{SL}\begin{pmatrix}2\\-2\\3\end{pmatrix}\) et \(\overrightarrow{SN}\begin{pmatrix}-3\\\dfrac{11}{2}-4t\\4t\end{pmatrix}\)
+	
+Les vecteurs $\vect{SL}$ et $\vect{SN}$ sont orthogonaux donc $\vect{SL}.\vect{SN}=0$.
+	
+	$\vect{SL}.\vect{SN}=0 \iff 2\times(-3)+(-2)\times \left(\dfrac{11}{2}-4t\right)+3\times 4t=0 \iff 20t-17=0 \iff t=\dfrac{17}{20}$.
+	Le point $N$ aura alors pour coordonnées : $N\left(0~;~8-4\times\dfrac{17}{20}~;~4\times \dfrac{17}{20} \right)$ soit $N\left(0~;~\dfrac{23}{5}~;~\dfrac{17}{5} \right)$
+	\end{enumerate}
+
+\bigskip
+
+\end{document}

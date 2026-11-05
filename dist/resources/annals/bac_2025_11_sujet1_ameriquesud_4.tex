@@ -1,0 +1,136 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet1_ameriquesud_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+L'espace est muni d'un repère orthonormé \Oijk.
+
+On considère les points
+
+\begin{center}A$\left(2\sqrt 3~;~0~;~0\right)$,\quad  B(0~;~2~;~0), \quad C(0~;~0~;~1)\quad et \quad K$\left(\dfrac{\sqrt 3}{2}~;~\dfrac32~;~0\right)$.\end{center}
+
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{center}
+\begin{pspicture}(-4,-2)(4,2.3)
+
+\psline(-4,-2)\psline(3.9,-0.7)\psline(0,2.3)
+\psline[linecolor=blue]{->}(-1.1,-0.55)\psline[linecolor=blue]{->}(1.7,-0.285)\psline[linecolor=blue]{->}(0,1.8)
+\pspolygon(-3.5,-1.73)(3.4,-0.6)(0,1.8)
+\psline(0,1.8)(1.55,-0.9)
+\uput[ul](-3.5,-1.73){A} \uput[ur](3.4,-0.6){B} \uput[ul](0,1.8){C} \uput[d](0,0){O} \uput[dr](1.55,-0.9){K}
+\uput[u](-0.5,-0.3){\blue $\vect{\imath}$} \uput[u](0.6,-0.1){\blue $\vect{\jmath}$} \uput[l](0,0.8){\blue $\vect{k}$}
+\end{pspicture}
+\end{center}
+
+\medskip
+
+\begin{enumerate}
+\item Justifier qu'une représentation paramétrique de la droite (CK) est :
+
+\renewcommand\arraystretch{1.7}
+\[\left\{\begin{array}{l c l}
+x&=&\phantom{1-}\dfrac{\sqrt 3}{2}t\\
+y&=&\phantom{1-}\dfrac32 t\\
+z&=&1 - t
+\end{array}\right. \: (t \in \R)\]
+\renewcommand\arraystretch{1.}
+
+\item Soit M$(t)$ un point de la droite (CK) paramétrée par un réel $t$.
+
+Établir que OM$(t) = \sqrt{4t^2 - 2t + 1}$.
+\item Soit $f$ la fonction définie et dérivable sur $\R$ par $f(t) = \text{OM}(t)$.
+	\begin{enumerate}
+		\item Étudier les variations de la fonction $f$ sur $\R$.
+		\item En déduire la valeur de $t$ pour laquelle $f$ atteint son minimum.
+	\end{enumerate}
+\item En déduire que le point H$\left(\dfrac{\sqrt3}{8}~;~\dfrac38~;~\dfrac34\right)$ est le projeté orthogonal du point O sur la droite~(CK).
+\item Démontrer, à l'aide de l'outil produit scalaire, que le point H est l'orthocentre (intersection des hauteurs d'un triangle) du triangle ABC.
+\item 
+	\begin{enumerate}
+		\item Démontrer que la droite (OH) est orthogonale au plan (ABC).
+		\item En déduire une équation du plan (ABC). 
+	\end{enumerate}
+	\item Calculer, en unité d'aire, l'aire du triangle ABC.
+\end{enumerate}
+
+\end{document}

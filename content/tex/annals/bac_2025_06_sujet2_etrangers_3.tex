@@ -1,0 +1,63 @@
+Le codage \og base64 \fg, utilisé en informatique, permet de représenter et de transmettre des messages et d'autres données telles que des images, en utilisant 64 caractères: les 26 lettres majuscules, les 26 lettres minuscules, les chiffres de 0 à 9 et deux autres caractères spéciaux.
+
+\emph{Les parties {\rm A, B} et {\rm C} sont indépendantes.}
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+Dans cette partie, on s'intéresse aux séquences de 4 caractères en base64.
+Par exemple, \og gP3g \fg est une telle séquence.
+Dans une séquence, l'ordre est à prendre en compte: les séquences \og m5C2 \fg et \og 5C2m \fg ne sont pas identiques.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer le nombre de séquences possibles.
+\item Déterminer le nombre de séquences si l'on impose que les 4 caractères sont
+différents deux à deux.
+\item 
+	\begin{enumerate}
+		\item Déterminer le nombre de séquences ne comportant pas de lettre A majuscule
+		\item En déduire le nombre de séquences comportant au moins une lettre A majuscule.
+		\item Déterminer le nombre de séquences comportant exactement une fois la lettre A majuscule.
+		\item Déterminer le nombre de séquences comportant exactement deux fois la lettre A majuscule.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On s'intéresse à la transmission d'une séquence de 250 caractères d'un ordinateur à un autre. On suppose que la probabilité qu'un caractère soit mal transmis est égale à 0,01 et que les transmissions des différents caractères sont indépendantes entre elles.
+On note X la variable aléatoire égale au nombre de caractères mal transmis.
+
+\medskip
+
+\begin{enumerate}
+\item On admet que la variable aléatoire X suit la loi binomiale. Donner ses paramètres.
+\item Déterminer la probabilité que tous les caractères soient bien transmis. \emph{On donnera
+l'expression exacte, puis une valeur approchée à $10^{-3}$ près}.
+\item Que pensez-vous de l'affirmation suivante: \og La probabilité que plus de 16
+caractères soient mal transmis est négligeable\fg ?
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C}
+
+\medskip
+
+On s'intéresse maintenant à la transmission de 4 séquences de 250 caractères.
+
+On note $X_1,\: X_2,\: X_3$\: et $X_4$ les variables aléatoires correspondant aux nombres de caractères mal transmis lors de la transmission de chacune des 4 séquences. 
+
+On admet que les variables aléatoires $X_1,\: X_2,\: X_3$\: et $X_4$ sont indépendantes entre elles et suivent la même loi que la variable aléatoire $X$ définie en partie B.
+
+On note $S = X_1 + X_2 + X_3 + X_4.$
+
+Déterminer, en justifiant, l'espérance et la variance de la variable aléatoire $S$.

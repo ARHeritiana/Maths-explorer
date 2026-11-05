@@ -1,0 +1,120 @@
+\medskip
+
+On considère la figure suivante, représentée dans un repère orthonormé \Oij.
+
+\begin{figure}[t]
+\centering
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(-1,-1)(5,5)
+
+\psaxes[linewidth=1.25pt]{->}(0,0)(0,0)(1,1)
+\psaxes[linewidth=1.25pt,Dx=6,Dy=6](0,0)(0,0)(5,5)
+\psframe[linewidth=1.5pt](4,4)
+\psline[linewidth=1.5pt](0,4)(1.92,1.44)(4,3)
+\uput[dl](0,0){O} \uput[ur](4,0){A} \uput[ur](4,4){B} \uput[ur](0,4){C} 
+\uput[d](1.92,1.44){H} \uput[r](4,3){I} \uput[d](0.5,0){$\vect{\imath}$} \uput[l](0,0.5){$\vect{\jmath}$}
+\rput{40}(1.92,1.44){\psframe(0.25,0.25)}
+\uput[d](4,0){\small 4}\uput[l](0,4){\small 4}
+\pscircle[linecolor=red,linewidth=1.5pt](2,2){0.5}\psdots[linecolor=red](2,2)
+\end{pspicture}
+\end{figure}
+
+\medskip
+
+\begin{list}{\textbullet}{On dispose des données suivantes:}
+\item Le quadrilatère OABC est un carré de côté 4 ;
+\item On a A(4~;~0),\: B(4~;~4), C(0~;~4), I(4~;~3) ;
+\item Le point H est le projeté orthogonal du point C sur la droite (OI) ;
+\item On note $\mathcal{E}$ le cercle de centre D(2~;~2) et de rayon 0,5.
+\end{list}
+
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+On a I\,$\begin{pmatrix} 4\\3 \end{pmatrix}$ donc
+$\vectt{OI} \begin{pmatrix} 4\\3 \end{pmatrix}$,
+et
+C\,$\begin{pmatrix} 0\\4 \end{pmatrix}$ donc
+$\vectt{OC} \begin{pmatrix} 0\\4 \end{pmatrix}$
+
+		\item 
+On en déduit que
+$\vectt{OI}\cdot \vectt{OC}=4\times 0 + 3\times 4 = 12$.		
+	\end{enumerate}
+	
+\item 
+	\begin{enumerate}
+		\item 
+D'après le texte, le point H est le projeté orthogonal du point C sur la droite (OI), donc
+$\vectt{OC}\cdot \vectt{OI} = \vectt{OH}\cdot \vectt{OI}$.
+Les vecteurs $ \vectt{OH}$ et $\vectt{OI}$ sont colinéaires et de même sens donc $\vectt{OH}\cdot \vectt{OI}= \text{OH}\times \text{OI}$.
+
+De plus, $\vectt{OI}\cdot \vectt{OC} = \vectt{OC}\cdot \vectt{OI}$.
+
+On peut donc conclure que $\vectt{OI}\cdot \vectt{OC} = \text{OH}\times \text{OI}$.
+
+		\item 
+$\vectt{OI} \begin{pmatrix} 4\\3 \end{pmatrix}$ donc $\text{OI} = \ds\sqrt{4^2+3^2} = \sqrt{25} = 5$
+
+		\item 
+On a: $\begin{aligned}[t]
+ & \vectt{OI}\cdot \vectt{OC} = \text{OH}\times \text{OI}\\
+& \vectt{OI}\cdot \vectt{OC} = 12\\
+& \text{OI}=5
+\end{aligned}$
+
+On en déduit que $\text{OH}\times 5=12$ donc que $\text{OH} = \dfrac{12}{5}=2,4$.
+
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item 
+Le point H est le projeté orthogonal du point C sur la droite (OI), donc les vecteurs $\vectt{OI}$ et $\vectt{CH}$ sont orthogonaux, donc le vecteur $\vectt{OI}$ est un vecteur normal à la droite (CH).
+
+Or $\vectt{OI}$ a pour coordonnées $\begin{pmatrix} 4\\3 \end{pmatrix}$ donc la droite (CH) a une équation cartésienne de la forme $4x+3y+c=0$, où $c$ est un réel à déterminer.
+
+La droite (CH) contient le point C de coordonnées $\begin{pmatrix} 0\\4 \end{pmatrix}$, et le point C appartient à la droite (CH); donc:
+$4\times 0 + 3 \times 4 + c=0$ donc $c=-12$.
+
+La droite (CH) a pour équation $4x+3y-12=0$.
+
+		\item 
+Le cercle $\mathcal{E}$ de centre D\,$(2\,,\,2)$ et de rayon $0,5$ a pour équation:
+
+$(x-2)^2+(y-2)^2=0,5^2$ soit $x^2-4x+4+y^2-4y+4-0,25=0$
+
+c'est-à-dire $x^2+y^2-4x-4y +7,75=0$
+
+		\item Soit M le point de coordonnées (1,5~;~2).
+
+\begin{list}{\textbullet}{}
+\item
+$\begin{aligned}[t]
+x_{\text{M}}^2+y_{\text{M}}^2-4x_{\text{M}}-4y_{\text{M}} +7,75
+& = 1,5^2 + 2^2 -4\times 1,5 - 4\times 2 + 7,75\\
+& = 2,25 + 4 - 6 - 8 + 7,75\\
+& = 0
+\end{aligned}$
+
+Donc $\text{M} \in \mathcal{E}$.
+\item 
+$\begin{aligned}[t]
+4x_{\text{M}}+3y_{\text{M}}-12
+& = 4\times 1,5 + 3\times 2 - 12\\
+& = 6+6-12\\
+& = 0
+\end{aligned}$
+
+Donc $\text{M} \in \text{(CH)}$.
+\end{list}
+	
+On peut donc dire que le point M(1,5~;~2) appartient à l'intersection du cercle $\mathcal{E}$ et de la droite (CH)	
+
+	\end{enumerate}
+
+
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,180 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_05_sujet2_ameriquenord_secours_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+\item Ici, on interroge une personne au hasard, donc toutes les personnes qui constituent la population du pays ont la même probabilité d'être choisis : c'est une situation d'équiprobabilité et donc les proportions sont assimilables à des probabilités.
+
+On a donc :
+\begin{itemize}
+\item $P(C) = 0,02$, car 2~\% de la population du pays a été contaminée;
+\item $P(V) = 0,9$, car 90~\% de la population a été vaccinée;
+\item $P_C(V) = 0,62$, car 62~\% des personnes contaminées ont été vaccinées.
+\end{itemize}
+
+\item 
+	\begin{enumerate}
+		\item On a :\quad $P(C \cap V) = P(C) \times P_C(V) = 0,02 \times 0,62 = 0,0124$.
+		\item Les évènements $C$ et $\overline{C}$ partitionnent l'univers, donc, d'après la formule des probabilités totales :
+
+$P(V) = P(C \cap V) + P\big(\,\overline{C}\cap V\big) \iff P\big(\,\overline{C} \cap V\big) = P(V) -
+ P(C \cap V)$
+
+On a donc : \quad $P\big(\,\overline{C} \cap V\big) = P(V) - P(C \cap V) = 0,9 - 0,0124 = \np{0,8876}$
+	\end{enumerate}
+\item Pour compléter l'arbre de probabilité, il nous faut $P_{\overline{C}}(V)$.
+
+Par définition :\quad $P_{\overline{C}}(V) = \dfrac{P\big(\,\overline{C} \cap V\big)}{P\big(\,\overline{C}\,\big)} = \dfrac{0,8876}{1 - P(C)}=\dfrac{0,8876}{0,98} \approx 0,9057$ au dix-millième près.
+
+Et donc : \hfill~
+\begin{tikzpicture}[xscale=1,yscale=1,baseline={(R.base)}]
+
+\tikzstyle{fleche}=[->,>=latex,thick]
+\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+
+\def\DistanceInterNiveaux{4.5}
+\def\DistanceInterFeuilles{0.9}
+
+\def\NiveauA{(0)*\DistanceInterNiveaux}
+\def\NiveauB{(1)*\DistanceInterNiveaux}
+\def\NiveauC{(2)*\DistanceInterNiveaux}
+\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+
+\node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {};
+\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$C$};
+\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$V$};
+\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{V}$};
+\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\overline{C}$};
+\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$V$};
+\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{V}$};
+
+\draw[fleche] (R.east)--(Ra.west) node[etiquette] {$0,02$};
+\draw[fleche] (Ra.east)--(Raa.west) node[etiquette] {$0,62$};
+\draw[fleche] (Ra.east)--(Rab.west) node[etiquette] {$0,38$};
+\draw[fleche] (R.east)--(Rb.west) node[etiquette] {$0,98$};
+\draw[fleche] (Rb.east)--(Rba.west) node[etiquette] {$0,9057$};
+\draw[fleche] (Rb.east)--(Rbb.west) node[etiquette] {$0,0943$};
+\end{tikzpicture}
+\hfill~
+
+\item Par définition :\quad $P_V(C) = \dfrac{P(V \cap C)}{P(V)} = \dfrac{0,0124}{0,9} \approx 0,0138$.
+
+Dans le contexte de l'exercice, cela signifie qu'environ 1,38~\% des personnes vaccinées ont été contaminées par le virus.
+
+\item
+	\begin{enumerate}
+		\item \og Parmi les personnes non contaminées, il y a dix fois plus de personnes vaccinées que de personnes non vaccinées.\fg{}.
+
+Cette affirmation est \textbf{fausse}, car un peu exagérée, parmi les personnes non contaminées, environ 90,57~\% d'entre elles sont vaccinées, quand 9,43~\% d'entre elles ne le sont pas, mais le décuple de 9,43~\% est 94,3~\%, qui est donc supérieur à 90,57~\%.
+
+Il y a $\dfrac{90,57}{9,43}\approx 9,6$ fois plus de personnes vaccinées que non vaccinées parmi les personnes non contaminées.
+
+		\item \og Plus de 98~\% de la population vaccinée n'a pas été contaminée.\fg{}
+
+Cette affirmation est \textbf{vraie}, car on a calculé qu'environ 1,38~\% des personnes vaccinées ont été contaminées par le virus, donc, par complémentaire, cela implique qu'environ 98,62~\% des personnes vaccinées n'ont pas été contaminées. Il est donc correct de dire que c'est plus de 98~\%.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item 
+\begin{itemize}
+\item On a une épreuve aléatoire à deux issues. On qualifie de succès l'évènement $C$, de probabilité $p = 0,02$;
+\item Cette épreuve est répétée $n =20$ fois pour constituer l'échantillon de 20 personnes. La répétition étant assimilable à des tirages successifs avec remise, on peut dire que les répétitions sont identiques et indépendantes;
+\item La variable aléatoire $X$ compte le nombres de personnes contaminées, donc le nombre de succès, dans l'échantillon.
+\end{itemize}
+
+Ces trois éléments garantissent que $X$ suit la loi binomiale, de paramètres $n = 20$ et $p = 0,02$.
+
+		\item La probabilité que 4 personnes exactement soient contaminées dans ce groupe de 20 personnes est :
+
+			$P(X = 4) = \displaystyle \binom{20}{4}\times 0,02^4 \times 0,98^{20 - 4} = \np{4845}\times 0,02^4 \times 0,98^{16} \approx 5,6\times 10^{-4}$
+
+Finalement, avec les consignes d'arrondi : \quad $P(X = 4) \approx 0,0006$
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\end{document}

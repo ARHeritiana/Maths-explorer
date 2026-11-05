@@ -1,0 +1,70 @@
+\medskip
+
+\textbf{Partie A : }
+\medskip
+
+On considère l'équation différentielle $\left(E_{1}\right): y'+0,48 y=\dfrac{1}{250}$ où $y$ est une fonction de la variable $t$ définie sur l'intervalle $[0 ;+\infty[$.
+
+\begin{enumerate}
+\item La fonction $h$ est dérivable  sur $[0 ;+\infty[$ et pour  tout réel positif $t$, $h'(t)=0$ 
+On a dont $h'(t) +0,48 h(t) =0 + 0,48 \times \dfrac{1}{120}= \dfrac{1}{250}$ 
+
+Donc  la fonction $h$ est solution de l'équation différentielle $\left(E_{1}\right)$.
+\item Les solutions de l'équation différentielle $y'+0,48 y=0$ sont les fonctions de la forme $f(t) =C \e^{-0,48t}$ avec $C \in \R$. 
+\item Les solutions de l'équation différentielle $\left(E_{1}\right)$ sont donc les fonctions de la forme $f(t) =C \e^{-0,48t} + \dfrac{1}{120}$ avec $C \in \R$.
+\end{enumerate}
+\medskip
+
+\textbf{Partie B :}
+\medskip
+
+\begin{enumerate}
+\item Supposons que $p$ est solution de l'équation différentielle ( $E_{2}$ ),
+
+On a donc $p'=\dfrac{1}{250} p \times(120-p)$ 
+
+Or $p=\dfrac{1}{y}$ et $p'= \dfrac{-y'}{y^2}$ 
+
+D'où  $\begin{aligned} \dfrac{-y'}{y^2}= \dfrac{1}{250} \dfrac{1}{y} \times\left( 120-\dfrac{1}{y}\right)& \Longrightarrow -y'=y^2 \times  \dfrac{1}{250y }\times \dfrac{120y-1}{y}\\
+&\Longleftrightarrow -y' = \dfrac{1}{250} \times (120y-1)\\
+&\Longleftrightarrow -y'= 0,48 y -\dfrac{1}{250}\\
+&\Longleftrightarrow y'+0,48 y=\dfrac{1}{250}
+\end{aligned}$.
+
+Donc $y$ est solution de l'équation différentielle $\left(E_{1}\right): y'+0,48 y=\dfrac{1}{250}$.
+
+\item $y$ est de la forme $y(t)=C \e^{-0,48t} + \dfrac{1}{120}$ avec $C \in \R$.
+
+on a donc $\begin{aligned}[t] p(t)& = \dfrac{1}{y(t)}\\
+& = \dfrac{1}{C \e^{-0,48t} + \frac{1}{120}} \, \text{ avec } C \in \R\\
+& = \dfrac{120}{120 C \e^{-0,48t} +1 } \, \text{ avec } C \in \R\\
+& = \dfrac{120}{K \e^{-0,48t} +1 } \, \text{ avec } K \in \R \text { en posant }  K=120C\\
+\end{aligned}$
+
+\item  On sait que  $p(0)=30$ donc $\dfrac{120}{K \e^{0} +1 }=30$ 
+
+donc $\dfrac{120}{30}= K+1$   d'où $K =\dfrac{120}{30}-1=3$
+
+\item On sait que : $\begin{cases}
+\lim\limits_{t \to +\infty }-0,48t= -\infty \\
+\lim\limits_{X\to -\infty} \e^X = 0
+\end{cases}$ donc, par composition, $\lim\limits_{t\to +\infty }\e^{-0,48t}=0$ 
+
+Donc, par produit et somme, $\lim\limits_{t \to +\infty}1+3\e^{-0,48t}=1$ 
+
+et finalement par quotient, $\lim\limits_{t \to +\infty}p(t) =120$ 
+
+Dans le contexte de l'exercice la population de la bactérie  se stabilisera vers $\np{120000}$. 
+
+
+
+\item $\begin{aligned}[t] p(t)=60 & \iff \dfrac{120}{3 \e^{-0,48t} +1 }=60 \\
+	& \iff 120 = 60 \times \left(3 \e^{-0,48t} +1\right)\\
+	& \iff 2 = 3 \e^{-0,48t} +1\\
+	& \iff \dfrac{1}{3}= \e^{-0,48t}\\
+	& \iff -0,48 t = \ln\left(\dfrac{1}{3}\right)=-\ln(3)\\
+	& \iff t = \dfrac{\ln(3)}{0,48}\approx 2,289
+	\end{aligned}$
+	
+Le temps nécessaire pour que la population de bactéries dépasse $\np{60000}$ individus est de $2,289$ heures soit 2 heures et 17 minutes.
+\end{enumerate}

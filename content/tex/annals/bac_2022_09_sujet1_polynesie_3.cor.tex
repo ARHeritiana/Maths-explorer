@@ -1,0 +1,134 @@
+\bigskip
+
+\textbf{Partie 1}
+
+\medskip
+
+Soit $g$ la fonction définie pour tout réel $x\in \; ]0~;~+ \infty[$ par:
+$g(x) = \dfrac{2 \ln x}{ x}.$
+
+
+
+\begin{enumerate}
+\item On note $g'$ la dérivée de $g$.
+On a: $g'(x)=\dfrac{2\dfrac{1}{x}\times x - 2\ln x \times 1}{x^2}
+= \dfrac{2-2\ln x}{x^2}$
+
+\item On dispose de ce tableau de variations de la fonction $g$ sur l'intervalle $]0~;~+ \infty[$ : 
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}
+\def\esp{\hspace*{1.5cm}}
+\def\hauteur{20pt}
+$\begin{array}{|c|l*4{c}|}
+\hline
+x & 0  & \esp\esp & \e & \esp & +\infty \\ 
+\hline
+ &\vline\;\vline &  &   \Rnode{max}{\frac{2}{\e}}  &  &   \\  
+\text{Variations} \atop \text{de }g & \vline\;\vline &     &  &  &  \rule{0pt}{\hauteur} \\ 
+ &\vline\;\vline \Rnode{min1}{~-\infty} &   &  &  &   \Rnode{min2}{0} \rule{0pt}{\hauteur}    
+ \ncline{->}{min1}{max} 
+ \ncline{->}{max}{min2} 
+ \rput*(-5,0.915){\Rnode{zero}{0}}
+\rput(-5,2.55){\Rnode{alpha}{1}}
+ \\ 
+\hline
+\end{array} $
+}
+\end{center}	
+
+
+
+
+
+	\begin{enumerate}
+		\item La valeur $\dfrac{2}{\text{e}}$ est l'image de e par $f$: $f(\e)=\dfrac{2\ln\e}{\e} = \dfrac{2}{\e}$.
+		\item 
+$g'(x)= \dfrac{2-2\ln x}{x^2}$ donc $g'(x)$ est du signe de $2-2\ln x=2\left (1-\ln x\right )$.
+\begin{list}{\textbullet}{}
+\item Sur $]0\;;\e[$, $\ln x < 1$ donc $1-\ln x>0$ donc $g'(x)>0$; la fonction $g$ est strictement croissante sur cet intervalle.
+\item Sur $]\e\;; +\infty[$, $\ln x >1$ donc $1-\ln x<0$ donc $g'(x)<0$; la fonction $g$ est strictement décroissante sur cet intervalle.
+\end{list}		
+
+		\item On justifie les limites de la fonction $g$ aux bornes de son ensemble de définition.
+\begin{list}{\textbullet}{}
+\item $\ds\lim_{x\to 0\atop x>0} 2\ln x = -\infty$ et $\ds\lim_{x\to 0\atop x>0} \dfrac{1}{x}=+\infty$. \\
+Donc, par produit de limites, $\ds\lim_{x\to 0\atop x>0} g(x)= \ds\lim_{x\to 0\atop x>0} 2\ln x\times \dfrac{1}{x}=-\infty$.
+\item D'après le cours, $\ds\lim_{x\to +\infty} \dfrac{\ln x}{x}=0$ donc $\ds\lim_{x\to +\infty} g(x)=0$. 
+\end{list}		
+		
+	\end{enumerate}
+	
+\item On en déduit le tableau de signes de la fonction $g$ sur l'intervalle $]0~;~+ \infty[$.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\def\esp{\hspace*{1.1cm}}
+$\begin{array}{|c |l *{3}{c} r|} 
+\hline
+x  & 0 & \esp & 1 & \esp\esp  & +\infty \\
+\hline
+\text{signe de }g(x) & \vline\;\vline  & \pmb{-} &  \vline\hspace{-2.7pt}{0} & \pmb{+} & 0   \\
+\hline
+\end{array}$
+\renewcommand{\arraystretch}{1}
+\end{center}
+
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2}
+
+\medskip
+
+Soit $f$ la fonction définie sur l'intervalle $]0~;~ + \infty[$ par 
+$f(x) = [\ln (x)]^2.$
+
+ Dans cette partie, chaque étude est effectuée sur l'intervalle $]0~;~+ \infty[$.
+
+
+
+\begin{enumerate}
+\item 
+$[(u(x)^2]' = 2u'(x)u(x)$ donc
+$f'(x)= 2\times \dfrac{1}{x}\times \ln x = \dfrac{2\ln x}{x}=g(x)$
+
+Donc sur l'intervalle $]0~;~+ \infty[$, la fonction $f$ est une primitive de la fonction $g$.
+
+\item 
+	\begin{enumerate}
+		\item On étudie la convexité de la fonction $f$.
+		
+D'après les questions précédentes, la fonction $g$, dérivée de la fonction $f$, est croissante sur $]0\;; \e[$, donc la fonction $f$ est convexe sur cet intervalle.		
+		
+De même, la fonction $g$, dérivée de la fonction $f$, est décroissante sur $]\e\;; +\infty[$, donc la fonction $f$ est concave sur cet intervalle.
+
+De plus, la fonction $g$ donc la fonction $f'$, change de sens de variation en $x=\e$, donc la courbe représentant la fonction $f$ admet un point d'inflexion en $x=\e$.
+		
+		\item On étudie les variations de la fonction $f$ en utilisant le signe de $f'=g$.
+		
+Sur l'intervalle $]0\;; 1[$, la fonction $g$ est négative donc $f'$ est négative; la fonction $f$ est donc strictement décroissante sur cet intervalle.
+
+Sur l'intervalle $]1\;; +\infty[$, la fonction $g$ est positive donc $f'$ est positive; la fonction $f$ est donc strictement croissante sur cet intervalle.
+
+De plus on peut dire que la fonction $f$ admet un minimum pour $x=1$.
+		
+\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Une équation de la tangente à la courbe représentative de $f$ au point d'abscisse e est: $y=f'(\e)\left (x-\e\right )+f(\e)$. On a: $f'(\e) = g(\e)=\dfrac{2}{\e}$; $f(\e)=\left (\ln\e\right )^2=1$
+
+L'équation devient: $y=\dfrac{2}{\e}\left (x-\e\right ) +1$ soit
+$y=\dfrac{2}{\e}x -2+1$ c'est-à-dire $y=\dfrac{2}{\e}x-1$.
+		
+		\item 
+La courbe représentant $f$ admet un point d'inflexion en $x=\e$ donc la tangente en ce point coupe la courbe; à gauche du point, la fonction est convexe donc la courbe est au dessus de cette tangente.
+
+On en déduit que sur  $]0~;~\e]$, on a: $[\ln (x)]^2 \geqslant \dfrac{2}{\e}x - 1.$
+
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,39 @@
+\medskip
+
+La concentration d'un médicament dans le sang en mg.L$^{-1}$ au cours du temps $t$,
+exprimé en heure, est modélisée par la fonction $f$ définie sur $[0~;~+ \infty[$ par :
+
+\[f(t) = t\e^{-0,5t}\]
+
+dont la représentation graphique est donnée ci-dessous.
+
+\medskip
+
+\begin{center}
+\psset{yunit=3cm,labelFontSize=\scriptstyle}
+\begin{pspicture}(-0.75,-0.2)(11,1.1)
+\multido{\n=0.0+0.2}{56}{\psline[linewidth=0.25pt,linecolor=lightgray](\n,0)(\n,1)}
+\multido{\n=0.0+0.2}{6}{\psline[linewidth=0.25pt,linecolor=lightgray](0,\n)(11,\n)}
+\multido{\n=0+1}{11}{\psline[linewidth=0.45pt](\n,0)(\n,1)}
+\multido{\n=0+1}{2}{\psline[linewidth=0.45pt](0,\n)(10.8,\n)}
+\psaxes[linewidth=1.25pt]{->}(0,0)(-0.1,0)(11,1)
+\psaxes[linewidth=1.25pt](0,0)(0,0)(11,1)
+\def\Func{2.71828 x 0.5 neg  mul exp  x mul  }
+\psplot[plotpoints=3000,linewidth=1.25pt,linecolor=red]{0}{11}{\Func}
+\uput[dr](6,0.5){\red $\mathcal{C}$}
+\end{pspicture}
+\end{center}
+
+\begin{enumerate}
+\item Calculer la valeur exacte de $f(4)$ et interpréter le résultat dans le contexte de
+l'exercice.
+\item On note $f'$ la fonction dérivée de $f$.
+Montrer que pour tout $t\in  [0~;~+\infty[$,\[ f'(t) = (1 - 0,5t)\e^{-0,5t}\].
+\item Étudier le signe de $f'(t)$ sur $[0~;~+ \infty[$.
+\item Déduire de la question précédente le tableau de variations de la fonction $f$
+sur $[0~;~+ \infty[$.
+\item Quelle est la concentration maximale du médicament dans le sang ? On
+donnera la valeur exacte, puis une valeur approchée à $10^{-2}$ près.
+\end{enumerate}
+
+\vspace{0,5cm}

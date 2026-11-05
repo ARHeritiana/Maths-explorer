@@ -1,0 +1,130 @@
+\medskip
+
+L'objet de cet exercice est l'étude de l'arrêt d'un chariot sur un manège, à partir du
+moment où il entre dans la zone de freinage en fin de parcours.
+
+On note $t$ le temps écoulé, exprimé en seconde, à partir du moment où le chariot arrive sur la zone de freinage.
+
+On modélise la distance parcourue par le chariot dans la zone de freinage, exprimée en mètre, en fonction de $t$, à l'aide d'une fonction notée $d$ définie sur $[0 ~;~+\infty[$.
+
+On a ainsi $d(0) = 0$.
+
+Par ailleurs, on admet que cette fonction $d$ est dérivable sur son ensemble de
+définition. On note $d'$ sa fonction dérivée.
+
+\begin{center}\textbf{Partie A} \end{center}
+
+Sur la figure (Fig. 2) ci-dessous, on a tracé dans un repère orthonormé :
+
+\begin{itemize}[label=$\bullet~$]
+\item la courbe représentative $\mathcal{C}_d$ de la fonction $d$ ;
+\item la tangente $T$ à la courbe $\mathcal{C}_d$ au point A d'abscisse 4,7 ;
+\item l'asymptote $\Delta$ à $\mathcal{C}_d$ en $+\infty$.
+\end{itemize}
+
+\begin{center}
+\psset{unit=0.4cm,arrowsize=2pt 3}
+\begin{pspicture}(-1,-2)(17,24)
+\psgrid[gridlabels=0pt,subgriddiv=5,gridcolor=gray,subgridcolor=lightgray](0,0)(17,24)
+\rput(8.25,-2){$Fig. 2$}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{16.5}{205 9 div 5 3 div x mul 205 9 div add 2.71828 0.6 x mul exp div sub}
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10]{->}(0,0)(0,0)(17,24)
+\uput[ul](4.7,21){A}\uput[d](16,0){$t$}\uput[ul](7,23){$T$}
+\psline(0,16.4)(8,24.3)\psdot(4.7,21)\uput[d](16,22.7){\blue $\mathcal{C}_d$}
+\uput[d](1,0){1}\uput[l](0,1){1}
+\psline[linewidth=1.25pt,linestyle=dashed](0,22.778)(17,22.778)\uput[u](2,22.778){$\Delta$}
+\end{pspicture}
+\end{center}
+
+
+\emph{Dans cette partie, aucune justification n'est attendue.}
+
+\medskip
+
+Avec la précision que permet le graphique, répondre aux questions ci-dessous.
+
+D'après ce modèle :
+
+\medskip
+
+\begin{enumerate}
+\item Au bout de combien de temps le chariot aura-t-il parcouru $15$~m dans la zone de freinage ?
+\item Quelle longueur minimale doit-être prévue pour la zone de freinage ?
+\item Que vaut $d'(4,7)$ ? Interpréter ce résultat dans le contexte de l'exercice.
+\end{enumerate}
+
+\begin{center}\textbf{Partie B} \end{center}
+
+On rappelle que $t$ désigne le temps écoulé, en seconde, à partir du moment où le chariot arrive sur la zone de freinage.
+
+On modélise la vitesse instantanée du chariot, en mètre par seconde $\left(\text{m}.\text{s}^{-1}\right)$, en fonction de $t$, par une fonction $v$ définie sur $[0~;~+\infty[$.
+
+On admet que :
+
+\begin{itemize}[label=$\bullet~$]
+\item la fonction $v$ est dérivable sur son ensemble de définition, et on note $v'$ sa
+fonction dérivée ;
+\item la fonction $v$ est une solution de l'équation différentielle 
+\[(E) :\quad y' + 0,6y = \e^{-0,6t},\]
+
+où $y$ est une fonction inconnue et où $y'$ est la fonction dérivée de $y$.
+
+On précise de plus que, lors de son arrivée sur la zone de freinage, la vitesse du chariot est égale à $12$ m.s$^{-1}$, c'est-à-dire $v(0) = 12$.
+
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item On considère l'équation différentielle 
+		\[(E') :\quad y' + 0,6y = 0.\]
+		
+Déterminer les solutions de l'équation différentielle $(E')$ sur $[0~;~+\infty[$.
+		\item Soit $g$ la fonction définie sur $[0~;~+\infty[$ par $g(t) = t\e^{-0,6t}$.
+		
+Vérifier que la fonction $g$ est une solution de l'équation différentielle $(E)$.
+		\item En déduire les solutions de l'équation différentielle $(E)$ sur $[0~;~+\infty[$.
+		\item En déduire que pour tout réel $t$ appartenant à l'intervalle $[0~;~+\infty[$, on a :
+\[v(t) = (12+t)\e^{-0,6t}.\]
+	\end{enumerate}
+\item Dans cette question, on étudie la fonction $v$ sur $[0~;~+\infty[$.
+	\begin{enumerate}
+		\item Montrer que pour tout réel $t \in [0~;~ +\infty[,\: v'(t) = (-6,2 - 0,6t)\e^{-0,6t}$.
+		\item En admettant que:
+		
+\[v(t) = 12\e^{-0,6t} + \dfrac{1}{0,6} \times  \dfrac{0,6t}{\e^{0,6t}},\]
+déterminer la limite de $v$ en $+\infty$.
+		\item Étudier le sens de variation de la fonction $v$ et dresser son tableau de
+variation complet. Justifier.
+		\item Montrer que l'équation $v(t) = 1$ admet une solution unique $\alpha$, dont on
+donnera une valeur approchée au dixième.
+	\end{enumerate}
+\item Lorsque la vitesse du chariot est inférieure ou égale à 1 mètre par seconde, un système mécanique se déclenche permettant son arrêt complet.
+
+Déterminer au bout de combien de temps ce système entre en action. Justifier.
+\end{enumerate}
+
+\begin{center}\textbf{Partie C} \end{center}
+
+On rappelle que pour tout réel $t$ appartenant à l'intervalle $[0~;~ +\infty[$ :
+
+\[v(t) = (12 + t)\e^{-0,6t}.\]
+
+On admet que pour tout réel $t$ dans l'intervalle $[0~;~ +\infty[$ :
+
+\[d(t) = \displaystyle\int_0^t v(x)\:\text{d}x.\]
+
+\smallskip
+
+\begin{enumerate}
+\item À l'aide d'une intégration par parties, montrer que la distance parcourue par le
+chariot entre les instants 0 et $t$ est donnée par : 
+
+\[d(t)= \e^{-0,6t} \left(- \dfrac53 t - \dfrac{205}{9}\right) + \dfrac{205}{9}.\]
+
+\item On rappelle que le dispositif d'arrêt se déclenche lorsque la vitesse du chariot est inférieure ou égale à 1 mètre par seconde.
+
+Déterminer, selon ce modèle, une valeur approchée au centième de la distance parcourue par le chariot dans la zone de freinage avant le déclenchement de ce dispositif.
+\end{enumerate}

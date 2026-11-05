@@ -1,0 +1,87 @@
+\medskip
+
+Une concession automobile vend deux sortes de véhicules :
+
+\begin{itemize}[label=$\bullet~$]
+\item 60\,\% sont des véhicules tout-électrique ;
+\item 40\,\% sont des véhicules hybrides rechargeables.
+\end{itemize}
+
+\medskip
+
+75\,\% des acheteurs de véhicules tout-électrique et 52\,\% des acheteurs de véhicules hybrides ont la possibilité matérielle d'installer une borne de recharge à domicile.
+
+On choisit un acheteur au hasard et on considère les évènements suivants:
+
+\begin{itemize}[label=$\bullet~$]
+\item $E$ : \og l'acheteur choisit un véhicule tout-électrique \fg{} ;
+\item $B$ : \og l'acheteur a la possibilité d'installer une borne de recharge à son domicile \fg.
+\end{itemize}
+
+
+
+
+
+
+
+On crée un arbre pondéré résumant la situation.
+
+\begin{center}
+\bigskip
+  \pstree[treemode=R,nodesepA=0pt,nodesepB=4pt,levelsep=3.5cm,nrot=:U]{\TR{}}
+ {
+ 	\pstree[nodesepA=4pt]{\TR{$E$}\naput{$0,6$}}
+ 	  { 
+ 		  \TR{$B$}\naput{$0,75$}
+ 		  \TR{$\overline{B}$}\nbput{\blue $1-0,75=0,25$}	   
+ 	  }
+ 	\pstree[nodesepA=4pt]{\TR{$\overline{E}$}\nbput{$0,4$}}
+ 	  {
+ 		  \TR{$B$}\naput{$0,52$}
+          \TR{$\overline{B}$}\nbput{\blue $1-0,52=0,48$} 
+     }
+}
+\bigskip
+\end{center}
+
+\begin{enumerate}
+\item La probabilité que l'acheteur choisisse un véhicule tout-électrique et qu'il ait la possibilité d'installer une borne de recharge à son domicile est:\\
+$P(E\cap B) = P(E)\times P_E(B)=0,6\times 0,75 = 0,45$.
+
+
+
+\item 
+D'après la formule des probabilités totales:\\
+$P(B)= P(E\cap B) + P \left (\overline{E}\cap B \right ) = 0,45+0,4\times 0,52=0,658$.
+
+\item Un acheteur a la possibilité d'installer une borne de recharge à son domicile.
+
+La probabilité qu'il choisisse un véhicule tout-électrique est:\\
+$P_B(E)=\dfrac{P(E\cap B)}{P(B)} = \dfrac{0,45}{0,658}\approx 0,684$.
+
+\item On choisit un échantillon de $20$ acheteurs. On assimile ce prélèvement à un tirage avec remise.
+On note $X$ la variable aléatoire qui donne le nombre total d'acheteurs pouvant installer une borne de recharge à leur domicile parmi l'échantillon de $20$~acheteurs.
+
+	\begin{enumerate}
+	\item 
+On est dans le cas d'une répétition avec remise d'une expérience n'ayant que 2 issues: la possibilité d'installer une borne de recharge, avec la probabilité $p=0,658$, ou non.
+Donc la variable aléatoire $X$ qui donne le nombre total d'acheteurs pouvant installer une borne de recharge à leur domicile suit la loi binomiale de paramètres $n=20$ et $p=0,658$.
+
+		\item $P(X = 8) = \ds\binom{20}{8}\times 0,658^8\times (1-0,658)^{20-8} \approx 0,011$
+
+		\item La probabilité qu'au moins 10 acheteurs puissent installer une borne de recharge est:
+$P(X\geqslant 10) = 1-P(X\leqslant 9) \approx 1- \np{0,0452} \approx 0,955$
+
+		\item L'espérance de $X$ est: $E(X)=np=20\times 0,658 = 13,16$.
+
+		\item La directrice de la concession décide d'offrir l'installation de la borne de recharge aux acheteurs ayant la possibilité d'en installer une à leur domicile. Cette installation coûte \np{1200}~\euro.
+		
+
+
+L'espérance de $X$ représente le nombre moyen de clients pouvant installer une borne de recharge à leur domicile. L'installation d'une borne coûte \np{1200}~\euro.
+
+Il faut donc prévoir: $13,16\times \np{1200}$ soit \np{15792}~\euro.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

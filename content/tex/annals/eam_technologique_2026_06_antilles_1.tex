@@ -1,0 +1,118 @@
+\begin{minipage}[t]{0.6\linewidth}
+	Au $1{ }^{\text {er }}$ janvier 2025, une famille installe des éoliennes domestiques qui produiront une quantité d'énergie de \np[kWh]{3000} en 2025.
+
+	On constate que chaque année, la quantité d'énergie produite par cette installation baisse de 5\,\%.
+
+	Pour tout entier $n \geqslant  0$, on note $u_{n}$ la quantité d'énergie (en kWh) produite par l'installation durant l'année $(2025+n)$.
+
+	On a donc $u_{0}=3000$.
+
+	\begin{enumerate}
+		\item \begin{enumerate}
+			\item Quelle sera la quantité d'énergie produite par l'installation durant l'année 2026 ?
+
+			Détailler les calculs.
+
+			\item Justifier que, pour tout entier naturel $n$,
+			\[u_{n+1}=0,95 \times u_{n}.\]
+
+			\item Quelle est la nature de la suite $(u_{n})$ ?
+
+			Préciser sa raison.
+		\end{enumerate}
+	\end{enumerate}
+
+	À l'aide d'un tableur, on a obtenu les valeurs successives des termes de la suite $(u_{n})$.
+
+	On donne ci-contre un extrait de la feuille de calculs.
+
+	\begin{enumerate}[resume]
+		\item Vous répondrez aux questions suivantes à l'aide du tableau ci-contre.
+
+		\begin{enumerate}
+			\item Déterminer à partir de quelle année la quantité d'énergie produite sera inférieure à \np[kWh]{1000}.
+
+			\item Après 25 ans de fonctionnement, le fabricant affirme que la quantité d'énergie produite s'élèvera à plus de $30\,\%$ de la quantité produite initialement.
+
+			Cette affirmation est-elle vraie ou fausse ?
+
+			Justifier.
+		\end{enumerate}
+	\end{enumerate}
+	\end{minipage}
+	\hfill
+	\begin{tblr}[T]{hlines, vlines, rowsep=0.5pt, columns={c,font=\sffamily},column{1}={wd=7mm,colsep=2pt},
+		row{1}={rowsep=0pt,bg=gray9,rowsep =0pt},
+		column{1}={colsep=0pt,7mm,bg=gray9},
+		cell{1}{1}={gray9,halign=r,valign=b,cmd={\tikz{\fill[gray!50] (0,0)--(0.4,0.4)--(0.4,0);\clip (0,0) rectangle (0.5,0.45);}}}}
+& A           & B                                   \\
+		1  & Valeur de n & Valeur de u\textsubscript{n} \\
+		2  & 0           & 3000,00                             \\
+		3  & 1           &                                     \\
+		4  & 2           & 2707,50                             \\
+		5  & 3           & 2572,13                             \\
+		6  & 4           & 2443,52                             \\
+		7  & 5           & 2321,34                             \\
+		8  & 6           & 2205,28                             \\
+		9  & 7           & 2095,01                             \\
+		10 & 8           & 1990,26                             \\
+		11 & 9           & 1890,75                             \\
+		12 & 10          & 1796,21                             \\
+		13 & 11          & 1706,40                             \\
+		14 & 12          & 1621,08                             \\
+		15 & 13          & 1540,03                             \\
+		16 & 14          & 1463,02                             \\
+		17 & 15          & 1389,87                             \\
+		18 & 16          & 1320,38                             \\
+		19 & 17          & 1254,36                             \\
+		20 & 18          & 1191,64                             \\
+		21 & 19          & 1132,06                             \\
+		22 & 20          & 1075,46                             \\
+		23 & 21          & 1021,68                             \\
+		24 & 22          & 970,60                              \\
+		25 & 23          & 922,07                              \\
+		26 & 24          & 875,97                              \\
+		27 & 25          & 832,17                              \\
+		28 & 26          & 790,56                              \\
+		29 & 27          & 751,03                              \\
+		30 & 28          & 713,48                              \\
+		31 & 29          & 677,81                              \\
+		32 & 30          & 643,92                              \\
+		33 & 31          & 611,72                              \\
+		34 & 32          & 581,13
+	\end{tblr}
+
+	\begin{enumerate}
+		\setcounter{enumi}{2}
+		\item On a représenté ci-dessous deux suites.
+
+		Indiquer le graphique correspondant à la représentation de la suite $\left(u_n\right) $.
+
+		Justifier votre réponse.
+
+		\begin{tikzpicture}[x = 4mm,y = 0.03mm,> =stealth]
+			\draw[->] (-8mm,0)--(32,0) ;
+			\foreach \x in {10,20,30}
+			{\draw (\x,2pt)--(\x,-2pt) node[below]{\np{\x}} ;}
+			\draw[->] (0,-8mm)--(0,3200);
+			\foreach \y in {500,1000,...,3000}
+			{\draw (2pt,\y)--(-2pt,\y) node[left]{\np{\y}} ;}
+			\node[below left] at (-2pt,-2pt) {0};
+			\foreach \n in {0,...,29}
+			{\node[red] at (\n,{3000-75*\n}) {\textbf{+}};}
+			\node[left] at(30,2400) {Graphique 1};
+		\end{tikzpicture}
+
+		\begin{tikzpicture}[x = 4mm,y = 0.03mm,> =stealth]
+			\draw[->] (-8mm,0)--(32,0) ;
+			\foreach \x in {10,20,30}
+			{\draw (\x,2pt)--(\x,-2pt) node[below]{\np{\x}} ;}
+			\draw[->] (0,-8mm)--(0,3200);
+			\foreach \y in {500,1000,...,3000}
+			{\draw (2pt,\y)--(-2pt,\y) node[left]{\np{\y}} ;}
+			\node[below left] at (-2pt,-2pt) {0};
+			\foreach \n in {0,...,29}
+			{\node[red] at (\n,{3000*0.95^\n}) {\textbf{+}};}
+			\node[left] at(30,2400) {Graphique 2};
+		\end{tikzpicture}
+	\end{enumerate}

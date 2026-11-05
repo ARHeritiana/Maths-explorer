@@ -1,0 +1,29 @@
+\subsection*{1.}
+
+Avec \(n = 0\), on calcule : \(u_1 = 0{,}98 \times 800 = 784\) (habitants).
+
+\subsection*{2.}
+
+La relation \(u_{n+1} = 0{,}98 u_n\), vraie pour tout entier naturel \(n\), montre que la suite \((u_n)\) est géométrique de raison \(0{,}98\) et de premier terme \(u_0 = 800\).
+
+\subsection*{3.}
+
+On sait que pour tout entier naturel \(n\), \(u_n = 800 \times 0{,}98^n\).
+
+\subsection*{4.}
+
+2025 correspond à \(n = 4\), d'où :
+\[
+u_5 = 800 \times 0{,}98^4 \approx 723{,}1,
+\]
+soit 723 habitants à l'unité près.
+
+\subsection*{5.}
+
+\begin{lstlisting}[style=python]
+def u(n) :	
+	u = 800
+	for i in range(1,n) :
+		u = u * 0.98
+	return u
+\end{lstlisting}

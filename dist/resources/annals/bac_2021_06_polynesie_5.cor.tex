@@ -1,0 +1,202 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_polynesie_5_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{center}\textbf{Partie 1 : Étude d'une fonction auxiliaire}\end{center}
+
+\begin{center}
+Soit la fonction $f$ définie sur l'intervalle [1~;~4] par : 
+$f(x) = - 30x + 50 + 35\ln x.$
+\end{center}
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+Sur l'intervalle [1~;~4], \, $f'(x) = - 30 + \dfrac{35}{x} = \dfrac{- 30x + 35}{x} = \dfrac{35- 30x}{x}$.		
+
+
+		\item 
+Puisque $1 \leqslant x \leqslant 4$, \, $ x > 0$, donc le signe de $f'(x)$ est celui du numérateur $35 - 30x = 5(7 - 6x)$ donc du facteur $7 - 6x$.
+
+$7 - 6x > 0 \iff 7 > 6x \iff \dfrac{7}{6} > x \iff x < \dfrac{7}{6}$ ;
+
+$7 - 6x < 0 \iff 7 < 6x \iff \dfrac{7}{6} <> x \iff x > \dfrac{7}{6}$ ;
+
+$7 - 6x = 0 \iff 7 = 6x \iff \dfrac{7}{6} = x \iff x = \dfrac{7}{6}$.
+		\item 
+La fonction $f$ est donc croissante sur $\left[1~;~\dfrac{7}{6}\right]$, décroissante sur $\left[\dfrac{7}{6}~;~4\right]$ et a donc un maximum : $f\left(\dfrac{7}{6}\right) = - 30 \times \dfrac{7}{6} + 50 + 35 \ln \dfrac{7}{6} = - 35 + 50 + 35 \ln \dfrac{7}{6} = 15 + 35 \ln \dfrac{7}{6} \approx 20,4$.
+	\end{enumerate}
+\item 
+$f$ décroit sur $\left[\dfrac{7}{6}~;~4\right]$ de $f\left(\dfrac{7}{6}\right) =15 + 35 \ln \dfrac{7}{6} \approx 20,4$ à $f(4) = - 120 + 50 + 35 \ln 4 = 35\ln 4 - 70 \approx - 21,5$.
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}
+\def\esp{\hspace*{2.5cm}}
+\def\hauteur{20pt}
+$\begin{array}{|c|*5{c}|}
+\hline
+x & 1  & \esp & \frac{7}{6} & \esp & 4 \\ 
+\hline
+ & &  & \Rnode{max}{\approx 20,4} & &  \\  
+f & & &  &  &  \rule{0pt}{\hauteur} \\ 
+ & \Rnode{min1}{20} &   &  &  &   \Rnode{min2}{\approx -21,4} \rule{0pt}{\hauteur}    
+ \ncline{->}{min1}{max} 
+ \ncline{->}{max}{min2} 
+\rput*(-2.5,0.9){\Rnode{zero2}{\blue 0}}
+\rput(-2.5,2.5){\Rnode{beta}{\blue \alpha}}
+\ncline[linestyle=dotted, linecolor=red]{beta}{zero2}
+ \\ 
+\hline
+\end{array} $
+}
+\end{center}	
+
+Sur l'intervalle $\left[\dfrac{7}{6}~;~4\right]$, $f$ est continue et strictement décroissante.
+
+Comme $0 \in \left[f\left(\frac{7}{6}\right)~;~f(4)\right]$, il existe d'après le théorème des valeurs intermédiaires, un réel unique $\alpha$ de cet intervalle tel que $f(\alpha) = 0$.
+
+$\bullet~~$On a $f(2) \approx 14,26$ et $f(3)\approx -1,54$, donc $2 < \alpha < 3$ ;
+
+$\bullet~~$On a $f(2,9) \approx 0,26$ et $f(3,0)\approx -1,54$, donc $2,9 < \alpha < 3,0$ ;
+
+$\bullet~~$On a $f(2,91) \approx 0,09$ et $f(2,92)\approx -0,09$, donc $2,91 < \alpha < 2,92$ ;
+
+$\bullet~~$On a $f(2,914) \approx 0,0013$ et $f(2,915)\approx -0,005$, donc $2,914 < \alpha < 2,915$.
+\item  
+On a donc $f(x) \geqslant 0$ sur $[1~;~\alpha]$ et $f(x) \leqslant 0$ sur $[\alpha~;~4]$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2 : Optimisation}
+
+\medskip
+
+
+
+\[B(x) = - 15x^2 + 15x +35x \ln x.\]
+
+\begin{enumerate}
+\item 
+
+
+\np{2500}~litres correspondent à $x = 2,5$ et $B(2,5) = - 15 \times 2,5^2 + 15 \times 2,5 + 35 \times 2,5 \times \ln 2,5 \approx \np{23,9254}$ soit environ \np{23925}~\euro.
+\item 
+La fonction $B$ est dérivable sur [1~;~4] et sur cet intervalle :
+
+$B'(x) = - 30x + 15 + 35\ln x + 35x \times \dfrac{1}{x} = 50 - 30x + 35\ln x = f(x)$.
+\item 
+	\begin{enumerate}
+		\item 
+D'après la partie 1, $f(x) = B'(x) \geqslant  0$ sur $[1~;~\alpha]$ : la fonction $B$ est donc croissante sur $[1~;~\alpha]$.
+
+De même $f(x) = B'(x) \leqslant  0$ sur $[\alpha~;~4]$ : la fonction $B$ est donc décroissante sur $[1~;~\alpha]$.
+
+Conclusion : $B(\alpha)$ est le maximum de la fonction $B$ sur l'intervalle [1~;~4].
+		\item 
+$B(\alpha) = - 15\alpha^2 + 15\alpha + 35\alpha \ln \alpha$.
+
+En utilisant la valeur approchée de $\alpha$ trouvée dans la partie 1, on a :
+
+$B(\alpha) \approx - 15 \times 2,914^2 + 15 \times 2,914 + 35 \times 2,914 \times \ln 2,914 \approx 25,4201$, soit environ \np{25420}~\euro{} à l'euro près.
+
+Il faut donc que l'entreprise vende \np{2914}~litres de jus de fruits pour faire un bénéficie maximal.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

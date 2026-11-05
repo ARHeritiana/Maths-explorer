@@ -1,0 +1,206 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_09_sujet2_ameriquesud_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Soit la suite $\left(u_n\right)$ définie par $u_0 = 0$ et, pour tout $n \in \N$, 
+$u_{n+1} = 5u_n - 8n + 6$.
+
+
+
+\begin{enumerate}
+\item
+\begin{list}{\textbullet}{}
+\item Pour $n=0$ on a:
+$u_1=u_{0+1}=5u_0 -8\times 0 +6=0-0+6=6$
+\item Pour $n=1$ on a: $u_2=u_{1+1}=5u_1 -8\times 1 +6= 5\times 6 -8+6=28$
+\end{list}
+
+\item Soit $n$ un entier naturel.
+On complète la fonction {\ttfamily suite\_u} d'argument {\ttfamily n}  ci-dessous, écrite en langage Python, afin qu'elle retourne la valeur de $u_n$.
+
+\begin{center}
+\begin{tabular}{>{\ttfamily}l}
+def suite\_u(n) : \\
+\qquad u = \blue 0\\
+\qquad for i in range(1,n+1) :\\
+\qquad \vline \qquad u = \blue 5*u - 8*(i-1) + 6\\
+\qquad return u
+\end{tabular}
+\end{center}
+
+\emph{Rem}: il aurait sans doute été plus simple de donner comme algorithme:
+
+\begin{center}
+\begin{tabular}{>{\ttfamily}l}
+def suite\_u(n) : \\
+\qquad u = \blue 0\\
+\qquad for i in \red range(0,n) :\\
+\qquad \vline \qquad u = \blue 5*u - 8*i + 6\\
+\qquad return u
+\end{tabular}
+\end{center}
+
+\item
+	\begin{enumerate}
+		\item Soit $\mathcal{P}_n$ la propriété:  $u_n \geqslant 2n$.
+
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+Pour $n=0$, on a: $u_0=0$ et $2n=0$; donc $\mathcal{P}_0$ est vraie.
+\item \textbf{Hérédité}
+
+On suppose que $u_n \geqslant 2n$ pour $n\geqslant 0$; c'est l'hypothèse de récurrence.
+
+$u_{n+1}=5u_n -8n+6 \geqslant 5\times (2n) -8n+6 = 2n+6 = 2(n+1)+4 \geqslant 2(n+1)$
+
+Donc $\mathcal{P}_{n+1}$ est vérifiée.
+\item \textbf{Conclusion} 
+
+La propriété est vraie au rang 0, et elle est héréditaire pour tout $n\geqslant 0$, donc, d'après le principe de récurrence, elle est vraie pour tout $n$.
+\end{list}		
+
+On a donc démontré que, pour tout entier naturel $n$, on a: $u_n\geqslant 2n$.		
+		
+		\item
+$\ds\lim _{n\to +\infty} 2n=+\infty$ et $u_n\geqslant 2n$ donc $\ds\lim _{n\to +\infty} u_n = +\infty$.
+		
+		\item Soit $p \in \N^*$.
+		
+$\ds\lim _{n\to +\infty} u_n = +\infty$ donc, d'après la définition de la limite vers $+\infty$ d'une suite, pour tout réel $A>0$, il existe un rang $n_0$ à partir duquel tous les termes de la suite sont supérieurs à $A$; donc il existe un rang $n_0$ tel que si $n\geqslant n_0$, alors $u_{n_0}\geqslant 10^p$.
+\end{enumerate}
+
+\item 
+Pour tout $n$, on a:
+$u_{n+1}-u_n=5u_n-8n+6 -u_n = 4u_n - 8n +6$;
+or $u_n\geqslant 2n$ donc $4u_n-8n\geqslant 0$ et donc $u_{n+1}-u_n\geqslant 6$.
+
+On en déduit que la suite $(u_n)$ est croissante.
+
+\item On considère la suite $\left(v_n\right)$, définie pour tout $n \in  \N$, par $v_n = u_n - 2n + 1$.
+	\begin{enumerate}
+		\item En dessous de la fonction {\ttfamily suite\_u} précédente, on a écrit la fonction {\ttfamily suite\_v} ci-dessous :
+\begin{center}
+\begin{tabular}{>{\ttfamily}l}
+def suite\_v(n):\\
+\qquad L = []\\
+\qquad  for i in range(n+1) :\\
+\qquad \vline \qquad L.append(suite\_u(i) - 2*i + 1)\\
+\qquad return L
+\end{tabular}
+\end{center}
+
+
+
+Lorsqu'on saisit {\ttfamily suite\_v(5)} dans la console, on obtient l'affichage suivant :
+
+\begin{center}
+\begin{tabular}{>{\ttfamily} l}
+$>>>$ suite\_v(5)\\
+$[1,~5,~25,~125,~625,~3125]$\\
+\end{tabular}
+\end{center}
+
+
+
+On peut conjecturer que, pour tout $n$, on a: $v_{n+1}=5v_n$.
+
+
+
+$\begin{gathered}v_{n+1}=u_{n+1}-2(n+1)+1 = 5u_n -8n +6 -2n-2+1=5u_n-10n+5= 5(u_n-2n+1)\\
+\phantom{v_{n+1}}
+=5v_n\end{gathered}$
+
+		\item 
+On déduit de la question précédente que  la suite $(v_n)$ est géométrique de raison $q=5$, et de premier terme $v_0=u_0-2\times 0+1=1$. 
+
+On a donc, pour tout $n$: $v_n = v_0\times q^n = 5^n$.
+
+Pour tout $n$, $v_n=u_n-2n+1$ donc $u_n=v_n+2n-1$ et donc $u_n= 5^n +2n-1$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

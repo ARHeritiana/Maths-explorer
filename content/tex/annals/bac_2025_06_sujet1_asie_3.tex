@@ -1,0 +1,62 @@
+Un patient doit prendre toutes les heures une dose de $2$ mL d'un médicament.
+
+On introduit la suite $\left(u_n\right)$
+telle que le terme $u_n$ représente la quantité de médicament, exprimée en mL présente dans l'organisme immédiatement après $n$ prises de médicament.
+
+On a $u_1 = 2$ et 
+
+\begin{center}pour tout entier naturel $n$ strictement positif : $u_{n+1} = 2 + 0,8u_n$.\end{center}
+
+\subsection*{Partie A}
+
+En utilisant ce modèle, un médecin cherche à savoir à partir de combien de prises du médicament la quantité présente dans l'organisme du patient est strictement supérieure à 9 mL.
+
+\begin{enumerate}
+\item Calculer la valeur $u_2$.
+\item Montrer par récurrence que :
+\[u_n = 10 - 8 \times 0{,}8^{n-1} \,\text{pour tout entier naturel} \:n \:\text{strictement
+positif.}\]
+
+\item Déterminer $\lim\limits_{n \to +\infty} u_n$ et donner une interprétation de ce résultat dans le contexte de l'exercice.
+\item Soit $N$ un entier naturel strictement positif, l'inéquation $u_N \geqslant 10$ admet-elle des solutions ? 
+
+Interpréter le résultat de cette question dans le contexte de l'exercice.
+\item Déterminer à partir de combien de prises de médicament la quantité de médicament présente dans l'organisme du patient est strictement supérieure à $9$~mL. Justifier votre démarche.
+\end{enumerate}
+
+\subsection*{Partie B}
+
+En utilisant la même modélisation, le médecin s'intéresse à la quantité moyenne de médicament présente dans l'organisme du malade au cours du temps.
+
+On définit pour cela la suite $\left(S_n\right)$ définie pour tout entier naturel $n$ strictement positif par
+
+\[S_n = \frac{u_1 + u_2 + \dots + u_n}{n}.\]
+
+On admet que la suite $\left(S_n\right)$ est croissante.
+
+\medskip
+
+\begin{enumerate}
+\item Calculer $S_2$.
+\item Montrer que pour tout entier naturel $n$ strictement positif,
+
+\[u_1 + u_2 + \dots + u_n = 10n - 40 + 40 \times 0{,}8^n.\]
+
+\item Calculer $\lim\limits_{n \to +\infty} S_n$.
+\item On donne la fonction mystere suivante, écrite en langage Python :
+
+\begin{center}
+\begin{tabular}{c|l|}\cline{2-2}
+1&def mystere(k):\\
+2&\quad n = 1\\
+3&\quad s = 2\\
+4&\quad while s < k:\\
+5&\quad\qquad n = n + 1\\
+6&\quad\qquad s = 10 - 40/n + (40*0.8**n)/n\\
+7&\quad return n\\ \cline{2-2}
+\end{tabular}
+\end{center}
+
+Dans le contexte de l'énoncé, que représente la valeur renvoyée par la saisie \texttt{mystere(9)} ? 
+\item Justifier que cette valeur est strictement supérieure à $10$.
+\end{enumerate}

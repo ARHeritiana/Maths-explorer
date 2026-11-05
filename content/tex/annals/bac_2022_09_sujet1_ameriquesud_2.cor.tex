@@ -1,0 +1,132 @@
+\medskip
+
+Soit $\left(u_n\right)$ la suite définie par $u_0 = 4$ et, pour tout entier naturel $n$,\: $u_{n+1} = \dfrac15 u_n^2$.
+
+
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item $u_1 = \dfrac{1}{5} u_0^2 = \dfrac{16}{5}$ et $u_2 = \dfrac{1}{5} u_1^{2} = \dfrac{\left (\frac{16}{5}\right )^2}{5} = \dfrac{256}{125}$
+		
+		\item On complète la fonction ci-dessous qui renvoie la valeur du terme de rang $p$ de la suite $\left(u_n\right)$.
+
+\begin{center}
+\begin{tabular}{l}
+\texttt{def suite\_u(p) :}\\
+\quad \texttt{u = \blue 4}\\
+\quad \texttt{for i in range(1,{\blue p + 1}) :}\\
+\quad \qquad \texttt{u = \blue u*u/5}\\
+\quad \texttt{return u}\\
+\end{tabular}
+\end{center}
+	\end{enumerate}
+
+\item 
+	\begin{enumerate}
+		\item 
+Soit $\mathcal{P}_n$ la propriété $0 < u_n \leqslant 4$.
+
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+$u_0=4$ et $0<4\leqslant 4$ donc $\mathcal{P}_0$ est vraie.
+
+\item \textbf{Hérédité}
+
+On suppose $\mathcal{P}_n$ vraie, c'est-à-dire $0 < u_n \leqslant 4$ (hypothèse de récurrence).
+
+$0 < u_n \leqslant 4$ donc
+$0 < u_n^2 \leqslant 16$ donc
+$0 < \dfrac{1}{5} u_n^2 \leqslant \dfrac{16}{5}$
+
+Or $\dfrac{16}{5} =3,2 \leqslant 4$ donc $0 < \dfrac{1}{5} u_n^2 \leqslant 4$, c'est-à-dire $0 < u_{n+1} \leqslant 4$.
+
+Donc $\mathcal{P}_{n+1}$ est vraie.
+
+\item \textbf{Conclusion}
+
+La propriété est vraie au rang 0, et elle est héréditaire. Donc, d'après le principe de récurrence, elle est vraie pour tout entier naturel.
+\end{list}
+
+On a donc démontré que pour tout entier naturel $n$, on a: $0 < u_n \leqslant 4$.
+
+		\item 
+$u_{n+1}-u_n = \dfrac{1}{5} u_n^2 - u_n = u_n \left (\dfrac{u_n}{5}-1\right )
+= u_n \left (\dfrac{u_n-5}{5}\right )$		
+
+$u_n\leqslant 4$ donc $u_n-5<0$; or $u_n>0$ donc $u_n\left (u_n-5\right )<0$ et donc $u_{n+1}-u_n<0$
+
+On en conclut que la suite $(u_n)$ est décroissante.
+		
+		\item 
+Pour tout $n$, $0<u_n$ donc la suite $(u_n)$ est minorée par 0.
+
+La suite $(u_n)$ est décroissante et minorée donc, d'après le théorème de la convergence monotone, la suite $(u_n)$ est convergente.		
+	\end{enumerate}
+	
+\item 
+	\begin{enumerate}
+		\item
+\begin{list}{\textbullet}{}
+\item $\ds\lim_{n\to +\infty} u_{n+1} = \ds\lim_{n\to +\infty} u_{n} =\ell$;
+\item $\ds\lim_{n\to +\infty} \dfrac{1}{5}u_{n}^2  = \dfrac{1}{5}\ell^2$;
+\item Pour tout $n$, on a: $u_{n+1}=\dfrac{1}{5}u_n^2$.
+\end{list}		
+
+On peut en conclure que $\ell = \dfrac{1}{5}\ell^2$.
+		
+		\item 
+$\ell$ est solution de l'équation $x=\dfrac{1}{5}x^2$; on résout cette	équation.
+
+$x=\dfrac{1}{5}x^2 \iff x\left (1-\dfrac{1}{5}x\right )=0
+\iff x=0 \text{ ou } x=5$
+
+Or, pour tout $n$, on a: $0<u_n\leqslant 4$ donc $\ell$ vérifie $0\leqslant \ell \leqslant 4$. La solution $\ell=5$ n'est donc pas valable donc $\ell=0$.
+		
+	\end{enumerate}
+\item Pour tout entier naturel $n$, on pose $v_n = \ln \left(u_n\right)$ et $w_n = v_n - \ln (5)$.
+	\begin{enumerate}
+		\item 
+$\begin{gathered}v_{n+1} = \ln \left (u_{n+1}\right ) = \ln \left (\dfrac{1}{5}u_n^2\right )
+= \ln \left ( \dfrac{1}{5}\right ) + \ln \left ( u_n^2 \right )
+= - \ln \left (5\right ) +2 \ln \left (u_n\right )
+=2 \ln\left (u_n\right ) -\ln \left (5\right )\\
+\phantom{v_{n+1}}
+=2 v_n -\ln \left (5\right )\end{gathered}$		
+		
+		\item 
+$w_n = v_n - \ln (5)$ donc $v_n=w_n+ \ln(5)$
+
+$\begin{gathered}w_{n+1} =v_{n+1} - \ln(5) = 2 v_n -\ln(5) -\ln(5)
+= 2\left (w_n +\ln(5)\mathstrut\right ) -2\ln(5)\\
+\phantom{w_{n+1}}
+=2 w_n +2\ln(5)-2\ln(5)=2w_n\end{gathered}$		
+		
+Donc la suite $\left(w_n\right)$ est géométrique de raison 2.
+		
+		\item 
+$v_0=\ln\left (u_0\right )=\ln(4)$ donc $w_0=v_0-\ln(5)=\ln(4)-\ln(5) = \ln \left (\dfrac{4}{5}\right )$
+
+La suite $(w_n)$ est géométrique de raison $q=2$ et de premier terme $w_0=\ln\left (\dfrac{4}{5}\right )$ donc, pour tout entier naturel $n$, on a:
+$w_n=w_0\times q^n = \ln\left (\dfrac{4}{5}\right ) \times 2^n$.
+
+Pour tout $n$, $v_n=w_n +\ln(5)$ donc $v_n = \ln\left (\dfrac{4}{5}\right )\times 2^n +\ln(5)$.		
+			\end{enumerate}
+			
+\item 
+$\ds\lim_{n\to +\infty} 2^n=+\infty$;
+$\dfrac{4}{5}<1$ donc $\ln\left (\dfrac{4}{5}\right )<0$.
+
+On en déduit que $\ds\lim_{n\to +\infty} \ln\left (\dfrac{4}{5}\right )\times 2^n=-\infty$, et donc que $\ds\lim_{n\to +\infty} v_n=-\infty$.
+
+$v_n=\ln\left (u_n\right )$ donc $u_n=\e^{v_n}$
+
+Or $\ds\lim_{x\to -\infty} \e^{x}=0$, et $\ds\lim_{n\to +\infty} v_n=-\infty$, donc $\ds\lim_{n\to +\infty} \e^{v_n}=0$.
+
+On a donc redémontré que $\ds\lim_{n\to +\infty} u_n=0$.
+
+
+\end{enumerate}
+
+\vspace{0.5cm}

@@ -1,0 +1,38 @@
+\medskip
+
+Les résultats seront arrondis à l’unité.
+
+La quantité (en kg) de déchets ménagers produite par habitant d’une ville de taille moyenne a été de \np[kg]{537} en 2019 et la municipalité espère réduire ensuite cette production de 1,5\,\% par an.
+
+Pour tout entier naturel $n$, on note $d_n$ la quantité (en kg) de déchets ménagers produite par habitant de cette ville durant l’année 2019 +$n$, on a donc $d_0=537$.
+
+\medskip
+
+\begin{enumerate}
+\item Montrer par un calcul que $d_1=0,985\times d_0$.
+\item Pour tout entier naturel $n$ , exprimer $d_{n+1}$ en fonction de $d_n$.
+\item En déduire la nature de la suite $(d_n)$ puis une expression de $d_n$ en fonction de $n$.
+\item On souhaite savoir à partir de quelle année la production moyenne de déchets produite par chaque habitant
+sera inférieure à celle enregistrée en 2019 au niveau national, à savoir \np[kg]{513} .
+
+Pour cela, on considère l’algorithme suivant rédigé en langage Python.
+
+\begin{center}
+\texttt{
+\begin{tabular}[]{cl}
+1& def année() :\\
+2& \qquad n = 0\\
+3& \qquad d = 537 \\
+4& \qquad While d > $\cdots$ :\\
+5& \qquad \qquad n = n + 1\\
+6& \qquad \qquad d = $\cdots$\\
+7& \qquad return (n)
+\end{tabular}
+}
+\end{center}
+
+\begin{enumerate}
+\item Recopier et compléter l’algorithme afin de répondre au problème posé
+\item À partir de quelle année la production moyenne de déchets produite par chaque habitant sera-t-elle inférieure à celle enregistrée en 2019 au niveau national ?
+\end{enumerate}
+\end{enumerate}

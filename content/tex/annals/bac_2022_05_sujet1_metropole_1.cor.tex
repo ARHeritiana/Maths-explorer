@@ -1,0 +1,90 @@
+\medskip
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+	\item \begin{enumerate}
+		\item La fonction $f$ est continue et dérivable sur $[0~;~10]$. En utilisant les règles de dérivation d'un produit, on obtient :\\
+		$f'(t)=3\e^{-0,5t+1}+3t\times -0,5\e^{0,5t+1}=\e^{-0,5t+1}\left(+-3(0,5t+1)\right)=(-1,5t+3)\e^{-0,5t+1}$\\
+		Donc $\forall t \in [0~;~10]$, $f'(t)=3(-0,5t+1)\e^{-0,5t+1}$
+		\item $\forall t \in [0~;~10]$, $\e^{-0,5t+1}>0$ donc $f'(t)$ a le même signe que $-0,5t+1$.\\
+		$-0,5t+1\geqslant 0 \iff x\leqslant 2$.\\
+Dans le tableau : $f(0)=0$, $f(2)=6\e^0=6$ et $f(10)=30\e^{-5+1}=30\e^{-4}$.
+
+D'où le tableau de variation de $f$ :
+\begin{center}
+
+
+
+
+
+\psset{unit=1cm}
+\begin{pspicture}(8.4,3.3)
+
+\psframe(8.4,3.3)\psline(0,1.4)(8.4,1.4)\psline(0,2.3)(8.4,2.3)\psline(1.8,0)(1.8,3.3)
+\uput[u](0.9,2.5){$x$}\uput[u](2,2.5){$0$}\uput[u](5.1,2.5){$2$}\uput[u](8.2,2.5){$10$}
+\uput[u](0.9,1.5){$f'(x)$}\uput[u](3.55,1.5){$+$}\uput[u](5.1,1.5){$0$}\uput[u](6.65,1.5){$-$}
+\uput[u](0.9,0.45){$f(x)$}
+\uput[u](2,0){$0$}\uput[d](5.1,1.4){$6$}\uput[u](7.9,0){$30\text{e}^{-4}$}
+\psline{->}(2.2,0.3)(4.9,1.1)\psline{->}(5.3,1.1)(7.3,0.3)
+\end{pspicture}
+\end{center}		
+\item Le maximum de la fonction $f$ est atteint pour $t=2$, et $f(2)=6$. La dose maximale de 6 mg sera atteinte au bout de 2 heures.		
+		\end{enumerate}
+	\item
+	\begin{enumerate}
+		\item Sur l'intervalle $[0~;~2]$, la fonction $f$ est continue et strictement croissante à valeurs dans $[0~;~6]$. Or $5\in [0~;~6]$, donc d'après le corollaire du TVI (théorème des valeurs intermédiaires), l'équation $f(t)=5$ admet une unique solution, notée $\alpha$, dans l'intervalle $[0~;~2]$.
+		
+		À la calculatrice, $\alpha\approx 1,02$.
+		\item D'après le tableau de variations, $f(t)\geqslant 5 \iff t \in [\alpha~;~\beta]$. De plus $\beta-\alpha=2,44$ (heures).\\
+		Donc le traitement sera efficace pendant 2,44 heures soit environ 146 minutes.
+	\end{enumerate} 
+\end{enumerate}
+
+\medskip
+\textbf{Partie A}
+\medskip
+
+\begin{enumerate}
+	\item Au bout d'une heure, la quantité de médicament dans le sang diminue de 30 \%, donc il en reste 70 \%. Puis on en injecte à nouveau 1,8 mg. Sachant que $u_0=2$, alors $u_1=0,70\times 2+1,8=3,2$. Au bout d'une heure, la quantité de médicament dans le sang sera de 3,2 mg.
+	\item Soi $n\in \N$. $u_n$ désigne la quantité de médicament dans le sang au bout de $n$ heures. Une heure plus tard, il ne restera que 70 \% de la quantité précédente (70 \% de $u_n$), puis on en ajoute 1,8 mg par injection.\\
+	Donc $\forall n \in \N$, $u_{n+1}=0,7\times u_n+1,8$.
+	\item \begin{enumerate}
+		\item Montrons par récurrence que $\forall n \in \N$, $u_n\leqslant u_{n+1} <6$.
+		
+\textit{Initialisation :} $u_0=2$ et $u_1=3,2$. Donc $u_0\leqslant u_1<6$. L'initialisation est vérifiée.
+
+\textit{Hérédité :} on suppose que si $n \in \N$, alors $u_n\leqslant u_{n+1} < 6$.
+		
+Montrons que $u_{n+1}\leqslant u_{n+2} < 6$.
+
+$u_n\leqslant u_{n+1} < 6\iff 0,7 \times u_n\leqslant 0,7\times u_{n+1} <0,7 \times 6\iff 0,7 u_n\leqslant 0,7 u_{n+1} < 4,2$\\ donc $0,7 u_n+1,8\leqslant 0,7 u_{n+1}+ 1,8 < 4,2 + 1,8 \iff 0,7 u_n + 1,8 \leqslant 0,7 u_{n+1} + 1,8 < 6$.
+
+Donc $u_{n+1}\leqslant u_{n+2}< 6$. L'hérédité est démontrée.
+
+		\textit{Conclusion : }  La proposition est vraie au rang $0$ et si elle est vraie au rang $n$, elle l'est aussi au rang $n + 1$.
+		
+D'après l'axiome de récurrence, $\forall n \in \N$, $u_n\leqslant u_{n+1} < 6$.
+		\item Nous venons de montrer que $\forall n \in \N$, $u_n\leqslant u_{n+1} < 6$. Cela signifie que la suite $\left(u_n\right)$ est croissante et majorée par 6. Donc d'après le théorème de convergence monotone, la suite $\left(u_n\right)$ converge vers une limite finie notée $\ell$.
+		\item La suite $\left(u_n\right)$ converge vers $\ell$ donc $\ell$ est l'unique solution de l'équation $\ell = 0,7\ell + 1,8$ (théorème du point fixe).
+		
+		$l=0,7l+1,8\iff 0,3l=1,8\iff l=6$. Donc $\displaystyle\lim\limits_{n \rightarrow +\infty} u_n=6$
+	\end{enumerate}
+\item On considère la suite $(v_n)$ définie pour tout entier naturel $n$ par $v_{n}=-u_{n}+6$.
+\begin{enumerate}
+	\item $\forall n\in \N$, $\begin{gathered}v_{n+1}=-u_{n+1}+6=-(0,7\times u_n+1,8)+6=-0,7u_n+4,2=0,7\left(-u_n+\dfrac{4,2}{0,7}\right)\\=0,7(-u_n+6)=0,7v_n\end{gathered}$.\\
+	Donc $\forall n\in \N$, $v_{n+1}=0,7n_n$ donc la suite $\left(v_n\right)$  est géométrique de raison 0,7 et de premier terme $v_0=-u_0+6=4$.
+	\item $\forall n\in \N$, $v_n=v_0 \times q^n=4 \times 0,7^n$.
+	
+De plus  $\forall n\in \N$, $v_n=-u_n+6$ donc $u_n=-v_n+6=6-4\times 0,7^n$.
+	 \item $u_n\geqslant 5,5 \iff 6-4\times 0,7^n\geqslant 5,5 \iff -4\times 0,7^n\geqslant -0,5 \iff 0,7^n\leqslant \dfrac{-0,5}{-4}$
+
+$\iff \ln\left(0,7^n\right) \leqslant \ln\left(\dfrac{1}{8}\right) \iff n\times \ln(0,7) \leqslant -\ln(8) \iff n\geqslant -\dfrac{\ln(8)}{\ln(0,7)}$ car $\ln(0,7)<0$\\
+Donc $n\geqslant -\dfrac{2\ln(2)}{\ln(0,7)}$. À la calculatrice : $-\dfrac{2\ln(2)}{\ln(0,7)}\approx 5,83$ donc $n\geqslant 6$.
+
+Cela signifie que $u_6\geqslant 5,5$. Il faudra donc au total 7 injections (de l'injection initiale $u_0$ à la 7\up{e} qui correspond à $u_6$).
+\end{enumerate}
+\end{enumerate}
+
+\bigskip

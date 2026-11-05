@@ -1,0 +1,52 @@
+\medskip
+
+Un jeu est organisé à partir d'un sac contenant 6 jetons rouges et 4 jetons noirs. Les jetons
+sont indiscernables au toucher.
+
+Un joueur prend deux jetons au hasard dans le sac selon le déroulé suivant :
+\begin{itemize}
+\item le joueur prend un premier jeton au hasard dans le sac et il met le jeton de côté ;
+\item le joueur prend un second jeton au hasard dans le sac et il met le jeton de côté.
+\end{itemize}
+
+On note :
+\begin{itemize}
+\item $R_1$ l'évènement \og le premier jeton tiré est de couleur rouge \fg;
+\item $R_2$ l'évènement \og le second jeton tiré est de couleur rouge \fg.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item  Recopier sur la copie et compléter l'arbre ci-dessous :
+
+\begin{center}
+
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.75cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$R_1$~~}\taput{$\dots$}}
+	{
+	\TR{$R_2$}\taput{$\dots$}
+	\TR{$\overline{R_2}$}\tbput{$\dots$}
+	}
+\pstree{\TR{$\overline{R_1}$~~}\tbput{$\dots$}}
+	{\TR{$R_2$}\taput{$\dots$}
+	\TR{$\overline{R_2}$}\tbput{$\dots$}
+	}
+}
+\end{center}
+
+\item On considère l'évènement $A$  \og le joueur obtient deux jetons de couleur rouge \fg.
+	\begin{enumerate}
+		\item Déterminer la probabilité $p(A)$.
+		\item Décrire l'évènement contraire de l'évènement $A$ par une phrase de la forme
+
+\hspace{7em}\og le joueur obtient $\ldots$ \fg.
+		\item Montrer que la probabilité que le second jeton tiré soit de couleur rouge est égale à $0,6$.
+		\item Le second jeton tiré est de couleur noire. Que peut-on alors penser de l'affirmation suivante :
+
+\og il y a plus de 50\,\% de chance que le premier jeton tiré ait été de couleur rouge \fg{} ?
+
+Justifier la réponse.
+	\end{enumerate}
+\end{enumerate}

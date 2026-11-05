@@ -1,0 +1,56 @@
+\subsection*{1.}
+
+La tension est donnée par :
+\begin{align*}
+u(0) &= \sqrt{3} \sin\left(100\pi \times 0 + \dfrac{\pi}{3}\right) \\
+&= \sqrt{3} \sin\left(\dfrac{\pi}{3}\right) \\
+&= \sqrt{3} \times \dfrac{\sqrt{3}}{2} \\
+&= \dfrac{3}{2} > \dfrac{\sqrt{3}}{2},
+\end{align*}
+la diode est donc passante à \( t = 0 \).
+
+\subsection*{2.}
+
+\begin{align*}
+u\left(\dfrac{1}{100}\right) &= \sqrt{3} \sin\left(100\pi \times \dfrac{1}{100} + \dfrac{\pi}{3}\right) \\
+&= \sqrt{3} \sin\left(\pi + \dfrac{\pi}{3}\right) \\
+&= \sqrt{3} \times \left(-\sin \left(\dfrac{\pi}{3}\right)\right) \\
+&= \sqrt{3} \times \left(- \dfrac{\sqrt{3}}{2}\right) \\
+&= - \dfrac{3}{2} < \dfrac{\sqrt{3}}{2}.
+\end{align*}
+à \( t = \dfrac{1}{100} \), la diode n'est donc pas passante.
+
+\subsection*{3.}
+
+Puisque \( u\left(t + \dfrac{2}{100}\right) = u(t) \) pour tout \( t \geqslant 0 \), la fonction \( u \) est périodique de période \( T = \dfrac{2}{100} = 0{,}02 \) s.
+
+\subsection*{4.}
+
+\paragraph{a.} En observant la courbe, la diode semble devenir non passante autour de \( t = 0{,}005 \).
+
+\begin{center}
+\psset{xunit=500cm,yunit=1cm,algebraic=true,comma=true}
+\begin{pspicture}(-0.0001,-2)(0.02,2)
+\multido{\n=0.000+0.001}{21}{\psline[linewidth=0.2pt](\n,-2)(\n,2)}
+\multido{\n=-2.0+0.5}{9}{\psline[linewidth=0.2pt](0,\n)(0.02,\n)}
+\psaxes[linewidth=1.25pt,Dx=0.005,labelFontSize=\scriptstyle]{->}(0,0)(0,-2)(0.02,2)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{0.02}{1.73205*sin(314.159*x+1.0472)}
+
+
+\psline[linewidth=1.25pt,linecolor=red]{->}(0.005,0.833)(0,0.833) 
+\psline[linewidth=1.25pt,linecolor=red]{->}(0.005,0)(0.005,0.833) 
+\uput[l](0,0.74){\red $\dfrac{\sqrt{3}}{2} \approx 0,83$} 
+
+\end{pspicture}
+\end{center}
+
+\paragraph{b.}
+
+\begin{align*}
+u(0{,}005) &= \sqrt{3} \sin\left(100 \pi \times 0{,}005 + \dfrac{\pi}{3}\right) \\
+&= \sqrt{3} \sin\left(\dfrac{\pi}{2} + \dfrac{\pi}{3}\right) \\
+&= \sqrt{3} \sin\left(\dfrac{5\pi}{6}\right) \\
+&= \sqrt{3} \times \frac{1}{2} \\
+&= \frac{\sqrt{3}}{2}.
+\end{align*}
+La tension atteint exactement \( \dfrac{\sqrt{3}}{2} \) à \( t = 0{,}005 \), donc la diode devient non passante à cet instant.

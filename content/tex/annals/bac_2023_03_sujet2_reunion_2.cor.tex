@@ -1,0 +1,99 @@
+\medskip
+
+On considère la suite $\left(u_n\right)$ définie par $u_0 = 8$ et, pour tout entier naturel $n$,
+\[u_{n +1} = \dfrac{6u_n + 2}{u_n +5}.\]
+
+\smallskip
+
+\begin{enumerate}
+\item 
+Pour $n = 0$, on a $u_1 = \dfrac{6 \times 8 + 2}{8 + 5} = \dfrac{50}{13}$.
+\item 
+\[f(x) = \dfrac{6x + 2 }{x +5}.\]
+
+
+	\begin{enumerate}
+		\item 
+		Le dénominateur étant supérieur à 4 ne s'annule pas : la fonction $f$ est donc dérivable sur $[0~;~+\infty[$ et sur cet intervalle :
+		
+$f'(x) = \dfrac{6(x + 5) - 1(6x + 2)}{(x + 5)^2} = \dfrac{6x + 30 - 6x - 2}{(x + 5)^2} = \dfrac{28}{(x + 5)^2}$ :quotient de deux nombres supérieurs à zéro cette dérivée est supérieure à zéro : la fonction $f$ est donc strictement croissante sur $[0~;~+\infty[$ et son minimum est $f(0) = \dfrac25 = \dfrac{4}{10} = 0,4$.
+		
+
+On a $f(2) = \dfrac{6\times 2 + 2}{2 + 5} = \dfrac{14}{7} = 2$.
+
+Or comme $f$ est croissante sur $[0~;~+\infty[$ :
+$x > 2 \implies f(x) > f(2) = 2$ d'après le calcul précédent.
+
+		\item 
+\emph{Initialisation} : $u_0 = 8 > 2$ : la relation est vraie au rang $0$.
+	
+\emph{Hérédité} : soit $n \in \N$ tel que $u_n > 2$.
+
+Alors par croissance de la fonction $f$ : $f\left(u_n\right) > f(2) = 2$.
+
+Or $f\left(u_n\right) = u_{n+1}$ : on a donc $u_{n+1} > 2$.
+
+\emph{Conclusion} : la relation est vraie au rang $0$ et si elle est vraie au rang $n, \: n \in \N$ elle l'est aussi au rang $n + 1$. Par le principe de récurrence quel que soit $n \in \N$, \: $u_n > 2$.
+	\end{enumerate}
+\item On admet que, pour tout entier naturel $n$, on a :
+\[u_{n+1} - u_n = \dfrac{\left(2 - u_n\right)\left(u_n + 1\right)}{u_n +5}.\]
+
+	\begin{enumerate}
+		\item 
+		On a $u_n > 2 \implies u_n + 1 > 2 + 1 > 0$ et $u_n > 2 \implies u_n + 5 > 2 + 5 > 0$.
+		
+Le signe du quotient précédent est donc celui de $2 - u_n$ ; or $u_n > 2 \implies $
+
+$0 > 2 - u_n$, donc $u_{n+1} - u_n < 0$ ce qui signifie que la suite $\left(u_n\right)$ est décroissante.
+		\item 
+La suite $\left(u_n\right)$ étant décroissante et minorée par 2 est donc convergente vers une limite $\ell$, avec $\ell \geqslant 2$.
+	\end{enumerate}
+\item On définit la suite $\left(v_n\right)$ pour tout entier naturel par:
+\[v_n = \dfrac{u_n - 2}{u_n + 1}.\]
+
+	\begin{enumerate}
+		\item 
+$v_0 = \dfrac{u_0 - 2}{u_0 + 1} = \dfrac{8 - 2}{8 + 1} = \dfrac{6}{9} = \dfrac{2}{3}$.
+		\item 
+On sait que $u_{n +1} = \dfrac{6u_n + 2}{u_n +5}$
+		
+Or $v_{n+1} = \dfrac{u_{n+1} - 2}{u_{n+1} + 1}$ et en utilisant la relation précédente :
+
+$v_{n+1} =  \dfrac{\frac{6u_n + 2}{u_n + 5} - 2}{\frac{6u_n + 2}{u_n + 5} + 1} = \dfrac{\frac{6u_n + 2}{u_n + 5} - \frac{2u_n + 10}{u_n + 5}}{\frac{6u_n + 2}{u_n + 5} + \frac{u_n + 5}{u_n + 5}} =\dfrac{4u_n - 8}{7u_n + 7} = \dfrac{4\left(u_n - 2\right)}{7\left(u_n + 1\right)} = \dfrac47 v_n$.
+
+La relation $v_{n+1} = \dfrac47v_n$ vraie pour tout $n \in \N$ signifie que la suite $\left(v_n\right)$ est une suite géométrique de raison $\dfrac47$.
+		\item 
+$\bullet~~$On sait qu'alors quel que soit $n \in \N$, \: $v_n = v_0\left(\dfrac47\right)^n$ ou encore $v_n = \dfrac{2}{3}\times \left(\dfrac47\right)^n$.
+
+Or comme $- 1 < \dfrac{4}{7} < 1$, on a $\displaystyle\lim_{n \to + \infty} \left(\dfrac47\right)^n$ et par produit de limites $\displaystyle\lim_{n \to + \infty}v_n = 0$.
+
+
+On a donc $\displaystyle\lim_{n \to + \infty} \dfrac{u_n - 2}{u_n + 1}$ et comme $u_n + 1 > 2 + 1 > 0$, on a $\displaystyle\lim_{n \to + \infty} u_n - 2 = 0$, soit enfin $\displaystyle\lim_{n \to + \infty} u_n = 2$. Donc $\ell = 2$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item On vérifie à la calculatrice que $u_{14} \approx \np{2,00079}$ est le premier terme inférieur à 2,001. Valeur renvoyée : 14.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

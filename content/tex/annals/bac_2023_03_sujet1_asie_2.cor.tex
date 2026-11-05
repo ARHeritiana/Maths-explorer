@@ -1,0 +1,120 @@
+\medskip
+
+\begin{enumerate}
+\item On a les coordonnées suivantes :
+\quad
+	$\vect{\text{MN}}\begin{pmatrix} x_\mathrm{N} - x_\mathrm{M}\\ y_\mathrm{N}-y_\mathrm{M} \\ z_\mathrm{N} - z_\mathrm{M} \end{pmatrix}=\begin{pmatrix} -1\\ -\frac12 \\ \frac14 \end{pmatrix}$ et $\vect{\text{MP}}\begin{pmatrix}0\\-1\\-2\end{pmatrix}$.
+
+\item On obtient la figure suivante :
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+\hfill~\begin{tikzpicture}[x={(50mm,-7mm)},y={(32mm,11mm)},z={(0mm,57mm)}]
+		\coordinate (A) at (0,0,0); \coordinate (E) at (0,0,1);
+		\coordinate (B) at (1,0,0); \coordinate (F) at (1,0,1);
+		\coordinate (C) at (1,1,0); \coordinate (G) at (1,1,1);
+		\coordinate (D) at (0,1,0); \coordinate (H) at (0,1,1);
+		\coordinate (M) at (1,1,0.75); \coordinate (N) at (0,0.5,1);
+		\coordinate (P) at (1,0,-1.25); 
+
+		\draw (A)node[below left]{A}--(B)node[below]{B}
+			--(C) node[right] {C} -- (G) node[above right]{G}
+			--(H) node[above] {H} -- (E) node[left]{E}--cycle
+			(B) -- (F) node[above]{F}--(E) (F)--(G)  ;
+		\draw [dash pattern= on 2mm off 1mm]
+		(A) -- (D) node[below]{D}--(H) (D)--(C)  ;
+		\draw (M)++(-2pt,-2pt)--++(4pt,4pt) ++(-4pt,0pt)--++(4pt,-4pt) node[right]{M};
+		\draw (N)++(-2pt,-2pt)--++(4pt,4pt) ++(0,-4pt)--++(-4pt,4pt) node[above]{N};
+		\draw (P)++(-2pt,-2pt)--++(4pt,4pt) ++(0,-4pt)--++(-4pt,4pt) node[left]{P};
+		\draw [dotted](B)--(P);
+	\end{tikzpicture}\hfill~
+
+\item Les vecteurs $\vect{\mathrm{MN}}$ et $\vect{\mathrm{MP}}$ sont clairement non colinéaires (l'abscisse de l'un est nulle sans que celle l'autre ne le soit), donc les trois points M, N et P sont non alignés, et définissent donc un plan.
+
+\item
+	\begin{enumerate}
+		\item Puisque le repère est orthonormé, on va calculer le produit scalaire avec les coordonnées :
+
+$\vect{\text{MN}} \cdot \vect{\text{MP}} = (-1)\times 0 + \left(\dfrac{-1}{2}\right) \times (-1) + \dfrac{1}{4}\times (-2) = 0 + \dfrac{1}{2} - \dfrac{1}{2} = 0 $.
+
+Les vecteurs sont donc orthogonaux et non nuls, donc l'angle qu'ils définissent est un angle droit. On en déduit que le triangle est rectangle en M.
+
+Calculons les longueurs MN et MP :
+
+$\mathrm{MN} = \sqrt{\left(-1\right)^2+\left(-\dfrac{1}{2}\right)^2+\left(\dfrac{1}{4}\right)^2 } = \dfrac{\sqrt{21}}{4}$.
+\qquad
+$\mathrm{MP} = \sqrt{\left(0\right)^2+\left(-1\right)^2+\left(-2\right)^2} = \sqrt{5}$
+
+Comme $\mathrm{MN} \neq \mathrm{MP}$, le triangle est seulement un triangle rectangle en M (il n'est pas isocèle).
+
+	\item L'aire du triangle MNP est la moitié du produit de la longueur d'une base par la longueur de la hauteur correspondante.
+
+Comme le triangle est rectangle en M, on choisit [MN] comme base et donc [MP] est donc la hauteur correspondante.
+
+L'aire du triangle est donc $\mathcal{A}_{\mathrm{MNP}} = \dfrac{\dfrac{\sqrt{21}}{4}\times \sqrt{5}}{2} = \dfrac{\sqrt{105}}{8}$
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item Avec $\vect{n}(5~;~-8~;~4)$ on a :
+
+$\vect{\mathrm{MN}}\cdot \vect{n} = (-1)\times 5 + \left(-\dfrac{1}{2}\right) \times (-8) + \dfrac{1}{4} \times 4 = -5 + 4 + 1 = 0$
+
+$\vect{\mathrm{MP}}\cdot \vect{n} = 0\times 5 + (-1) \times (-8) + (-2) \times 4 = 0 + 8 -8 = 0$
+
+Le vecteur non nul $\vect{n}$ est donc orthogonal à deux vecteurs non colinéaires du plan (MNP), il est donc orthogonal au plan.
+
+C'est donc un vecteur normal de (MNP).
+
+\item On en déduit que le plan (MNP) a une équation cartésienne de la forme $5x - 8y + 4z + d= 0$, où $d$ est un nombre réel.
+
+Comme $\mathrm{M} \in (\mathrm{MNP})$, $d$ est tel que :
+
+$\begin{aligned} 5x_\mathrm{M} - 8y_\mathrm{M} + 4z_\mathrm{M} + d= 0
+&\iff 5\times 1 - 8\times 1 + 4\times \dfrac{3}{4} + d =0\\
+&\iff 5 - 8 + 3 + d=0\\
+&\iff d = 0\\ \end{aligned}$
+
+Une équation cartésienne de (MNP) est donc bien $5x-8y+4z=0$.
+	\end{enumerate}
+\item Si une droite est orthogonale au plan (MNP), c'est donc qu'elle est dirigée par un vecteur normal à (MNP), donc $\vect{n}$, par exemple.
+
+Le point F a pour coordonnées F(1~;~0~;~1) et $\vect{n}$ a pour coordonnées $\vect{n}(5~;~-8~;~4)$ et donc la droite passant par F et dirigée par $\vect{n}$ admet pour représentation paramétrique le système : $\left\{\begin{array}{l} x=x_{\mathrm{F}} + tx_{\vect{n}}\\
+	y=y_{\mathrm{F}} + ty_{\vect{n}}\\
+	z=z_{\mathrm{F}} + tz_{\vect{n}} \end{array}\right.\quad t \in \R $,\qquad  soit, ici : $\left\{\begin{array}{l} x=1 + 5t\\
+	y=\phantom{1}-8t\\
+	z=1+4t \end{array}\right.\quad t \in \R $
+
+\item Si L le projeté orthogonal du point F sur le plan (MNP), alors, c'est que L est l'intersection du plan (MNP) avec la droite $d$, orthogonale à (MNP) et passant par F.
+
+Si on considère le point $L_t$, de paramètre $t$ sur la droite $d$, cherchons la valeur du paramètre $t$ pour que $L_t \in (\mathrm{MNP})$.
+
+$ \begin{aligned} L_t \in (\mathrm{MNP}) &\iff 5x_{L_t} - 8y_{L_t} + 4z_{L_t} = 0\\
+		&\iff 5(1 + 5t) - 8(-8t) + 4(1 + 4t) = 0\\
+		&\iff 5 + 25t +64t + 4 + 16 t = 0\\
+		&\iff 105t + 9 = 0\\
+		&\iff t = \dfrac{-9}{105} = \dfrac{-3}{35}	\\ \end{aligned}$
+
+Le point de paramètre $\dfrac{-3}{35}$ sur $d$ a pour coordonnées : $\left(1 + 5\times \dfrac{-3}{35}~;~-8\times \dfrac{-3}{35}~;~1 + 4\times \dfrac{-3}{35}\right) $, c'est donc bien le point L, de coordonnées  L$\left(\dfrac47~~;~~\dfrac{24}{35}~~;~~\dfrac{23}{35}\right)$.
+
+\item On a donc $\vect{\mathrm{FL}}\begin{pmatrix} \frac{-3}7\\ \frac{24}{35}\\ \frac{-12}{35}	\end{pmatrix}$ et donc FL $= \sqrt{\left(\dfrac{-3}{7}\right)^2 + \left(\dfrac{24}{35}\right)^2 + \left(\dfrac{-12}{35}\right)^2 } = \dfrac{3\sqrt{105}}{35}$.
+
+Pour calculer le volume du tétraèdre FMNP, on va considérer le triangle MNP comme étant la base, avec $\mathcal{A}_{\mathrm{MNP}} =\dfrac{\sqrt{105}}{8} $.
+
+La hauteur correspondante est donc la distance du quatrième sommet F au plan contenant la base, c'est-à-dire le plan (MNP). D'après la question \textbf{7.}, c'est donc la distance FL, que l'on vient de calculer.
+
+On a donc $ V_{\mathrm{FMNP}} = \dfrac{1}{3} \times \mathcal{A}_{\mathrm{MNP}} \times \mathrm{FL} = \dfrac{1}{3}\times \dfrac{\sqrt{105}}{8} \times \dfrac{3\sqrt{105}}{35} = \dfrac{105}{8\times 35} = \dfrac{3\times 35}{8\times 35 } = \dfrac{3}{8}$
+
+Le volume de FMNP est donc de $\dfrac{3}{8}$.
+\end{enumerate}
+
+\medskip

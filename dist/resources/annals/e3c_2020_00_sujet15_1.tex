@@ -1,0 +1,211 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet15_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Ce QCM comprend $5$ questions.
+
+\emph{Pour chacune des questions, une seule des quatre réponses proposées est correcte.}
+
+\emph{Les questions sont indépendantes.}
+
+\emph{Pour chaque question, indiquer le numéro de la question et recopier sur la copie la lettre correspondante à la réponse choisie.}
+
+\emph{Aucune justification n’est demandée mais il peut être nécessaire d’effectuer des recherches au brouillon pour aider à déterminer votre réponse.}
+
+\emph{Chaque réponse correcte rapporte 1 point. Une réponse incorrecte ou une question sans réponse n’apporte ni ne retire de point.}
+
+\medskip
+ \textbf{Question 1 :}
+\medskip
+
+ On considère la suite $\left(u_n\right)$ définie par $u_0=  100$ et pour tout entier naturel $n$, $u_{n+1}=u_n-\frac{13}{100}u_n$. 
+
+Quelle est la nature de la suite $\left(u_n\right)$ ?
+
+
+\begin{tabularx}{\linewidth}{*{1}{X}}
+\textbf{A.~~} géométrique de raison 1\\
+\textbf{B.~~} arithmétique de raison $-\dfrac{13}{100}$\\
+\textbf{C.~~} géométrique de raison 1 et arithmétique de raison $-\dfrac{13}{100}$\\
+\textbf{D.~~} géométrique de raison $0,87$\\
+\end{tabularx}
+
+\medskip
+ \textbf{Question 2 :}
+\medskip
+
+On considère la variable aléatoire $X$ qui prend les valeurs $x_i$ pour $i$ entier naturel allant de 1 à 5.
+
+La loi de probabilité incomplète de la variable aléatoire $X$ est donnée ci-dessous :
+
+\begin{center}
+\begin{tabular}[]{|*{6}{c|}}
+\hline
+$X = x_i$				&$- 6$	&$- 3$	&0	&3	&$x_5$\\\hline
+$P\left(X = x_i\right)$	&0,2	&0,1	&0,2&0,4&0,1\\\hline
+\end{tabular}
+\end{center}
+
+L’espérance de la variable aléatoire $X$ est égale à $0,7$.
+
+Quelle est la valeur $x_5$ prise par la variable aléatoire $X$ ?
+
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{A.~~} $6$ &\textbf{B.~~} $1$&\textbf{C.~~}$10$& \textbf{D.~~} $100$.
+\end{tabularx}
+
+\medskip
+ \textbf{Question 3 :}
+\medskip
+
+ Soit $f$ la fonction dérivable définie sur $\left]-\dfrac{7}{3} ; +\infty\right[$ par $f(x)= \dfrac{2x+3}{3x+7}$ et $f'$ sa fonction dérivée.
+ 
+ \begin{center}
+ \begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{A.~~} $f'(x)=\dfrac{2}{3} $ &\textbf{B.~~} $f'(x) =\dfrac{23}{(3x+7)^2}$&\textbf{C.~~}$f'(x)=\dfrac{5}{(3x+7)^2} $& \textbf{D.~~} $f'(x)=\dfrac{5}{3x+7}$.
+\end{tabularx}
+ \end{center}
+ 
+\medskip
+ \textbf{Question 4 :} 
+\medskip
+
+De 2017 à 2018, le prix d’un article a augmenté de 10\,\%. En 2019, ce même article a retrouvé son prix de 2018. Quelle a été l’évolution du prix entre 2018 et 2019 ?
+
+\begin{tabularx}{\linewidth}{*{1}{X}}
+\textbf{A.~~} une baisse de 10\,\%\\
+\textbf{B.~~} une baisse de plus de 10\,\%\\
+\textbf{C.~~} on ne peut pas savoir\\
+\textbf{D.~~} une baisse de moins de 10\,\%.\\
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 5 :}
+
+\medskip
+
+Soit $\left(u_n\right)$ la suite définie par $u_0 = 4$ et pour tout entier naturel $n$ par $u_{n+1} = 3u_n - 5$.
+
+On souhaite qu'à la fin de l'exécution de l'algorithme, la valeur contenue dans la variable $u$ soit celle de $u_5$. Quel algorithme doit-on choisir ?
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{A.~~}
+\fbox{
+\begin{minipage}[t]{3cm}
+$u=4$ \\
+$n=0$\\
+For $k$ in range (5) :\\
+\hspace*{0.3cm}$u=3*n-5$\\
+\hspace*{0.3cm}$n=n+1$
+\end{minipage}}&
+\textbf{B.~~} \fbox{
+\begin{minipage}[t]{3cm}
+ $u=4$\\
+ $n=0$ \\
+ For $k$ in range (5) :\\
+\hspace*{0.3cm}$u_{n+1}=3*u_n-5$\\
+\hspace*{0.3cm}$n=n+1$
+ \end{minipage}}\\
+ &\\
+\textbf{C.~~}\fbox{\begin{minipage}[t]{3cm}
+$u=4$ \\
+For $k$ in range (5) :\\
+\hspace*{0.3cm}$u=3*u-5$
+\end{minipage}}&
+\textbf{D.~~}\fbox{\begin{minipage}[t]{3cm}
+$u=4$\\
+$n=0$\\
+While $\leqslant$ 5 :\\
+\hspace*{0.3cm}$u=3*u-5$\\
+\hspace*{0.3cm}$n=n+1$
+\end{minipage}}
+\end{tabularx}
+
+\vspace{1cm}
+
+\end{document}

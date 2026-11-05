@@ -1,0 +1,38 @@
+\medskip
+
+Désirant participer à une course de 150~km, un cycliste prévoit l'entraînement suivant :
+\begin{itemize}
+\item parcourir 30~km en première semaine ;
+\item chaque semaine qui suit, augmenter la distance parcourue de 9\,\% par rapport à celle
+parcourue la semaine précédente.
+\end{itemize}
+On modélise la distance parcourue chaque semaine à l'entraînement par la suite $\left(d_n\right)$ où $d_n$
+représente la distance en km parcourue pendant la $n$-ième semaine d'entraînement.
+
+On a ainsi $d_1 = 30$.
+
+\medskip
+
+\begin{enumerate}
+\item Prouver que $d_3 = 35,643$.
+\item Quelle est la nature de la suite $\left(d_n\right)$ ? Justifier.
+\item En déduire l'expression de $d_n$ en fonction de $n$.
+\item On considère la fonction définie de la façon suivante en langage Python.
+
+\begin{lstlisting}[style=python]
+ def distance (k) :
+   d=30
+   n=1
+   while d<=k :
+      d=d*1.09
+ 	  n=n+1
+   return n
+\end{lstlisting}
+
+Quelle information est obtenue par le calcul de distance(150) ?
+\item Calculer la distance totale parcourue par le cycliste pendant les 20 premières semaines
+d'entraînement.
+
+\end{enumerate}
+
+\vspace{0,5cm}

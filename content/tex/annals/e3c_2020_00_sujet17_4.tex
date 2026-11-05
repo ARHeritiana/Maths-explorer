@@ -1,0 +1,31 @@
+\medskip
+
+\psset{labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-7,-3)(4,4)
+ \psline[linewidth=0.5pt](-2,0)(3,0)
+\psline[linewidth=0.5pt](0,-2)(0,3)
+\psline[linewidth=0.5pt](3,0)(3,3)
+\psline[linewidth=0.5pt](0,3)(3,3)
+ \psline[linewidth=0.5pt](-2,0)(-2,-2)
+\psline[linewidth=0.5pt](-2,-2)(0,-2)
+\psline[linewidth=0.5pt,linestyle=dashed](3,0)(3,-2)
+\psline[linewidth=0.5pt,linestyle=dashed](0,-2)(3,-2)
+\uput[ul](0,0){O}\uput[ul](0,3){C}\uput[ur](3,3){B}\uput[r](3,0){A}\uput[dr](3,-2){M}
+\uput[ul](-2,0){D}\uput[dl](-2,-2){E}\uput[d](0,-2){F}
+\psplot[plotpoints=1000, linewidth=0.5pt, linecolor=lightgray]{-3.3333}{1.24}{x 1.5 mul 3 add}
+\psplot[plotpoints=1000, linewidth=0.5pt, linecolor=lightgray]{-4.5}{3.4}{x 0.6667 neg  mul }
+\end{pspicture}
+
+OABC et ODEF sont des carrés de côtés respectifs 3 et 2. OAMF est un rectangle.
+On note H le projeté orthogonal du point M sur la droite (DC).
+
+Dans cet exercice, on pourra, si on le souhaite, se placer dans le repère
+$(\text{O},\frac{1}{3}\,\vv{\text{OA}} ,\frac{1}{3}\,\vv{\text{OC}} )$.
+
+\medskip
+
+\begin{enumerate}
+\item La droite (OM) est-elle perpendiculaire à la droite (DC) ?
+\item Calculer $\vv{\text{CD}}\cdot \vv{\text{CM}}$.
+\item Déterminer la longueur CH.
+\end{enumerate}

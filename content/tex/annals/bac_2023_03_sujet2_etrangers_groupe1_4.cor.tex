@@ -1,0 +1,56 @@
+\bigskip
+
+Vérifions d'abord la condition 1 portant sur la première phase.
+
+Nous avons :
+\begin{itemize}
+\item une expérience à deux issues (le candidat est qualifié), le succès est \og être qualifié\fg{}, a une probabilité $p = 0,6$ ;
+\item cette expérience est répétée quatre fois (quatre candidats) de façon identique et indépendante, donc $n=4$ répétitions;
+\item dans ce schéma de Bernoulli de paramètres $n=4$ et $p=0,6$, on note $X$ la variable aléatoire qui compte le nombre de succès.
+\end{itemize}
+
+Avec ces éléments, on peut dire que $X$ suit la loi binomiale $ \mathcal{B}\left(4 ~;~ 0,6\right)$.
+
+La condition 1 \og la deuxième phase doit avoir lieu dans 80\% des cas \fg{} correspond à l'évènement \og au moins deux candidats sont sélectionnés \fg{} a une probabilité supérieure ou égale à 0,8 (c'est à dire correspond à $P(X \geqslant 2)\geqslant 0,8$.
+
+Avec la calculatrice : $\displaystyle P(X \geqslant  2)  \approx 0,821$.
+
+On a donc bien : $P(X \geqslant 2)\geqslant 0,8$, la condition 1 est donc vérifiée.
+
+\bigskip 
+
+Pour la condition 2 :
+
+Soit $T$ la variable aléatoire donnant la durée de la deuxième phase.
+
+Les valeurs prises par $T$ sont : 0, 5, 9 et 11.
+
+La deuxième phase dure 11 minutes lorsque quatre candidats sont sélectionnés donc
+
+ $P(T=11)=P(X=4)= \binom{4}{4}\times 0,6^4\times 0,4^{0}=0,6^4= \np{0,1296}$.
+
+De même :
+
+$P(T=9)=P(X=3)= \binom{4}{3}\times 0,6^3\times 0,4^1= \np{0,3456}$.
+
+$P(T=5)=P(X=2)= \binom{4}{2}\times 0,6^2\times 0,4^2= \np{0,3456}$.
+
+$P(T=0)=P(X=0)+P(X=1)= \binom{4}{0}\times 0,6^0\times 0,4^4+ \binom{4}{1}\times 0,6^1\times 0,4^3= \np{0,0256} + \np{0,1536} = \np{0,1792}$
+
+
+On peut résumer les résultats dans le tableau de la loi de probabilité de la loi $T$ : 
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}\hline 
+$t_i$ 		& 0 			& 5 			& 9 			& 11\\\hline
+$P(T=t_i)$ 	& \np{0,1792} 	& \np{0,3456} 	& \np{0,3456} 	& \np{0,1296}\\\hline
+\end{tabular}
+\end{center}
+
+La durée moyenne du jeu correspond à l'espérance de la variable aléatoire $T$.
+
+$E(T)= 0 \times P(T=0) + 5 \times P(T=5) + 9 \times P(T=9) + 11 \times P(T=11)$
+
+$E(T) = 0 + 5\times \np{0,3456}+ 9 \times \np{0,3456} + 11 \times \np{0,1296}= 6,264$
+
+La durée moyenne du jeu est donc supérieur à  6 minutes, la deuxième condition n'est pas vérifiée, le jeu ne peut donc pas être retenu.

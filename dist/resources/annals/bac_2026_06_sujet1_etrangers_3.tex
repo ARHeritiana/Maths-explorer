@@ -1,0 +1,145 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet1_etrangers_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+On considère le cube ABCDEFGH représenté ci-dessous.
+	
+	\begin{center}
+		\begin{tikzpicture}[x=(-14:30mm),y=(18:23mm),z=(90:36mm)]
+			\draw (0,0,0)node[below left]{A}--
+			(1,0,0)node[below right]{B}--
+			(1,1,0)node[right]{C}--
+			(1,1,1)node[right]{G}--
+			(0,1,1)node[above]{H}--
+			(0,0,1)node[above left]{E}-- cycle
+			(0,0,1) --(1,0,1)node[below right]{F}--(1,0,0)
+			(1,0,1) -- (1,1,1);
+			\draw[dashed] (0,1,0)node[below]{D}--(0,0,0)
+			(0,1,0)--(0,1,1) (0,1,0)--(1,1,0);
+			\foreach \coord/\lettre/\pos in {{(0.5,0,1)}/I/{below},{(0,0.5,1)}/J/{above left},{(0,0,0.5)}/K/{left}}
+			{\draw[shift={\coord}] (2pt,2pt)--(-2pt,-2pt) (2pt,-2pt)--(-2pt,2pt) (0,0)node[\pos]{\lettre} ;}
+		\end{tikzpicture}
+	\end{center}
+	
+	On munit l'espace du repère orthonormal $\left(\mathrm{A};\vectt{AB},\vectt{AD},\vectt{AE}\right)$.
+	
+	Soit I le milieu du segment [EF], J le milieu de [EH] et K le milieu de [AE].
+	
+	\begin{enumerate}
+		\item Donner les coordonnées des points I, J et K.
+		
+		\item \begin{enumerate}
+			\item Déterminer la valeur du produit scalaire $\vectt{AI}\cdot\vectt{AJ}$.
+			
+			\item En déduire la mesure de l'angle $\widehat{\mathrm{IAJ}}$ arrondie au dixième de degré.
+		\end{enumerate}
+		
+		\item \begin{enumerate}
+			\item Démontrer que le vecteur $\vectt{KC}$ est un vecteur normal au plan (AIJ).
+			
+			\item En déduire qu'une équation cartésienne du plan (AIJ) est \quad  \[x+y-\dfrac{1}{2}z=0\]
+		\end{enumerate}
+		
+		\item Soit L le projeté orthogonal du point C sur le plan (AIJ).
+		\begin{enumerate}
+			\item Déterminer les coordonnées du point L.
+			
+			\item En déduire que la distance du point C au plan (AIJ) est égale à $\dfrac{4}{3}$.
+		\end{enumerate}
+		
+		\item Soit M un point de la droite (FG).
+		
+		On admet que les coordonnées de M sont $(1 ; m ; 1)$ avec $m$ appartenant à $\R$.
+		
+		\begin{enumerate}
+			\item Démontrer qu'une représentation paramétrique de la droite (IM) est
+			\[\begin{cases}
+				x=\dfrac{1}{2} s+\dfrac{1}{2} \\
+				y=m s \\
+				z=1
+			\end{cases} \quad \text{avec } s \in \R\]
+			
+			\item Peut-on affirmer que les droites (IM) et (KC) sont coplanaires quelle que soit la valeur de $m$ ?
+		\end{enumerate}
+	\end{enumerate}
+
+\end{document}

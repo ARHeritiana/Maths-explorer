@@ -1,0 +1,200 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_05_sujet2_ameriquenord_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Un supermarché dispose d'un stock de tomates provenant de deux fournisseurs A et B.
+
+II a été constaté que :
+
+\begin{itemize}[label=$\bullet~$]
+\item 91\,\% du stock de tomates est commercialisable ;
+\item 60\,\% du stock de tomates provient du fournisseur A ;
+\item parmi les tomates provenant du fournisseur A , la proportion de tomates commercialisables
+est de 95\,\%.
+\end{itemize}
+
+On choisit au hasard une tomate dans le stock.
+
+On désigne par :
+\begin{itemize}[label=$\bullet~$]
+\item $A$ l'évènement \og La tomate provient du fournisseur A \fg ;
+\item $B$ l'évènement \og La tomate provient du fournisseur B \fg ;
+\item $C$ l'évènement \og La tomate est commercialisable \fg.
+\end{itemize}
+
+Pour un évènement quelconque $E$, on note $P(E)$ la probabilité de $E$.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item Recopier l'arbre ci-dessous en complétant les pointillés.
+
+
+\begin{center}
+\pstree[treemode=R,levelsep=3.5cm, treesep=0.7cm]{\TR{}}
+{\pstree{\TR{$A~$}\ncput*{\ldots}}
+	{\TR{$C$} \ncput*{\ldots}
+	\TR{$\overline{C}$} \ncput*{\ldots}
+	}
+\pstree{\TR{$B~$}\ncput*{\ldots}}
+	{\TR{$C$} 
+	\TR{$\overline{C}$} 
+	}
+}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item
+	\begin{enumerate}
+		\item Déterminer la probabilité que la tomate choisie soit commercialisable et provienne du fournisseur A
+		\item Démontrer que $P_B(C) = 0,85$.
+		\item La tomate choisie est non commercialisable. Le responsable des achats estime qu'il
+y a deux fois moins de chance qu'elle provienne du fournisseur A que du fournisseur B. A-t-il raison ?
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On rappelle que 9\,\% des tomates du stock ne sont pas commercialisables.
+
+\medskip
+
+\begin{enumerate}
+\item On prend $15$ tomates dans le stock au hasard et de manière indépendante. On considère que le stock est suffisamment important pour qu'on puisse assimiler ce prélèvement à un tirage aléatoire avec remise.
+
+On note $X$ la variable aléatoire égale au nombre de tomates non commercialisables dans cet échantillon de $15$~tomates.
+	\begin{enumerate}
+		\item On admet que la variable aléatoire $X$ suit une loi binomiale. En préciser les paramètres.
+		\item Déterminer la probabilité qu'exactement deux tomates soient non commercialisables.
+
+\emph{On donnera la valeur arrondie au millième.}
+		\item Déterminer la probabilité qu'au plus deux tomates soient non commercialisables.
+
+\emph{On donnera la valeur arrondie au millième.}
+	\end{enumerate}
+\item On constitue désormais un échantillon de $n$ tomates, toujours dans les mêmes conditions, où $n$ désigne un entier naturel non nul.
+
+On note $X_n$, la variable aléatoire égale au nombre de tomates non commercialisables et $F_n$ la variable aléatoire égale à la fréquence de tomates non commercialisables dans cet échantillon de $n$ tomates.
+
+On a donc $F_n = \dfrac{X_n}{n}$.
+
+On admet que la variable aléatoire $X_n$, suit la loi binomiale de paramètres $n$ et $0,09$.
+	\begin{enumerate}
+		\item Calculer l'espérance $E(F_n)$ et exprimer la variance $V(F_n)$ en fonction de $n$.
+		\item Démontrer que $P(0,04 < F_n < 0,14) \geqslant 1 - \dfrac{32,76}{n}$.
+		\item Le responsable des achats prélève dans le stock un échantillon de $500$ tomates. Il s'aperçoit que $55$ tomates ne sont pas commercialisables. 
+
+Est-ce conforme à ce qu'il pouvait attendre ? Justifier la réponse.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\end{document}

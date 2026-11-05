@@ -1,0 +1,166 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet18_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{1.}
+	
+	\subsubsection*{a.}
+	
+\begin{center}
+	\begin{tikzpicture}
+		[level 1/.style={level distance=2cm,
+			sibling distance=3cm},
+		level 2/.style={level distance=2.5cm,
+			sibling distance=1.5cm}]
+		\node {} [grow'=right]
+		child {node {$E$}
+			child {node {$B$}
+				edge from parent node[above] {$0,3$}
+			}
+			child {node {$\overline B$}
+				edge from parent node[below] {$0,7$}
+			}
+			edge from parent node[above] {$0,45$}
+		}
+		child {node {$\overline E$}
+			child {node {$B$}
+				edge from parent node[above] {$0,2$}
+			}
+			child {node {$\overline B$}
+				edge from parent node[below] {$0,8$}
+			}
+			edge from parent node[below] {$0,55$}
+		}
+		;
+	\end{tikzpicture}
+\end{center}
+	
+	\subsubsection*{b.}
+	
+	\[
+	\begin{aligned}
+		P(E \cap B) &= P(E) \times P_E(B) = 0,45 \times 0,30 = 0,135, \\
+		P(\overline{E} \cap B) &= P(\overline{E}) \times P_{\overline{E}}(B) = 0,55 \times 0,20 = 0,11.
+	\end{aligned}
+	\]
+	
+	D'après la loi des probabilités totales :
+	\[
+	P(B) = P(E \cap B) + P(\overline{E} \cap B) = 0,135 + 0,11 = 0,245.
+	\]
+	
+	\subsubsection*{c.}
+	
+	On calcule
+	$	P_B(E) = \dfrac{P(B \cap E)}{P(B)} = \dfrac{P(E \cap B)}{P(B)} = \dfrac{0,135}{0,245} \approx 0,55102 $\\
+	\quad soit \quad 0,551 \quad au millième près.
+	
+	
+	\subsection*{2.}
+	
+	\subsubsection*{a.}
+	
+
+	\[
+	\begin{array}{|c|c|c|c|c|}
+		\hline	x_i & 20 & 50 & 60 & 90 \\
+		\hline
+		P(X = x_i) & 0,44 & 0,315 & 0,11 & 0,135 \\
+			\hline
+	\end{array}
+	\]
+	
+	\subsubsection*{b.}
+	
+	L'espérance mathématique de la variable aléatoire est égale à :
+	\[
+	E(X) = 20 \times 0,44 + 50 \times 0,315 + 60 \times 0,11 + 90 \times 0,135 = 8,8 + 15,75 + 6,6 + 12,15 = 45,30.
+	\]
+	
+	Ceci représente le coût moyen de réparation par téléphone.
+	
+	Donc pour 500 téléphones, la dépense de l'entreprise sera environ de :
+	\[
+	500 \times 45,30 = 22 650 \, \text{euros}.
+	\]
+
+\end{document}

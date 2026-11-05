@@ -1,0 +1,309 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_09_sujet2_metropole_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Dans l'espace rapporté à un repère orthonormé \Oijk, on considère:
+
+\begin{itemize}
+\item[$\bullet~~$] la droite $\mathcal{D}$ passant par le point A(2~;~4~;~0) et dont un vecteur directeur est $\vect{u}\begin{pmatrix}1\\2\\0\end{pmatrix}$ ;
+\item[$\bullet~~$] la droite $\mathcal{D}'$ dont une représentation paramétrique est : $\left\{\begin{array}{l !{=} l}
+x&3\\
+y& 3 + t\\
+z&3 + t
+\end{array}\right. ,\: t \in \R$.
+\end{itemize}
+
+
+
+\begin{enumerate}
+\item 
+
+	\begin{enumerate}
+		\item 
+La droite $\mathcal{D}'$ a pour vecteur directeur $\vect{u'}$ de  coordonnées 
+$\begin{pmatrix}
+0\\1\\1
+\end{pmatrix}$
+
+		\item Les vecteurs $\vect{u}\begin{pmatrix}1\\2\\0\end{pmatrix}$ et  $\vect{u'}\begin{pmatrix}0\\1\\1\end{pmatrix}$ ne sont pas colinéaires, donc les droites $\mathcal{D}$ et $\mathcal{D}'$ ne sont pas parallèles.
+
+		\item La droite $\mathcal{D}$ est l'ensemble des points M$\left (x\,; y\;;z\right )$ tels que $\vectt{AM}$ et $\vect{u}$ soient colinéaires, c'est-à-dire $\vectt{AM}= t.\vect{u}$ avec $t\in\R$, soit:	
+$\left\{\begin{array}{l !{=} l}
+x-2&t\\
+y-4& 2 t\\
+z-0&0t
+\end{array}\right. ,\: t \in \R$
+		
+		
+La droite $\mathcal{D}$ a pour représentation paramétrique
+$\left\{\begin{array}{l !{=} l}
+x&2+t\\
+y&4+ 2 t\\
+z&0
+\end{array}\right. ,\: t \in \R$
+
+	\end{enumerate}
+
+\end{enumerate}
+
+On admet dans la suite de cet exercice qu'il existe une unique droite $\Delta$ perpendiculaire aux droites $\mathcal{D}$ et $\mathcal{D}'$. Cette droite $\Delta$ coupe chacune des droites $\mathcal{D}$ et $\mathcal{D}'$. On appellera M le point d'intersection de $\Delta$ et $\mathcal{D}$, et M$'$ le point d'intersection de $\Delta$ et $\mathcal{D}'$.
+
+On se propose de déterminer la distance MM$'$ appelée \og distance entre les droites $\mathcal{D}$ et $\mathcal{D}'$ \fg.
+
+\begin{enumerate}[resume]
+\item Soit le vecteur $\vect{v}\begin{pmatrix}2\\- 1\\1\end{pmatrix}$.
+
+\begin{list}{\textbullet}{}
+\item $\vect{v}\cdot\vect{u}=2\times 1 + (-1)\times 2 +1\times 0 = 0$ donc $\vect{v}\perp \vect{u}$.
+\item $\vect{v}\cdot\vect{u'}=2\times 0 + (-1)\times 1 +1\times 1 = 0$ donc $\vect{v}\perp \vect{u'}$.
+\end{list}
+
+Le vecteur $\vect{v}$ est donc orthogonal aux deux vecteurs directeurs de $\mathcal{D}$ et $\mathcal{D}'$, donc c'est un vecteur directeur de leur perpendiculaire commune $\Delta$.
+
+\item On note $\mathcal{P}$ le plan contenant les droites $\mathcal{D}$ et $\Delta$, c'est-à-dire le plan passant par le point A et de vecteurs directeurs $\vect{u}$ et $\vect{v}$.
+	\begin{enumerate}
+		\item Soit le vecteur $\vect{n}\begin{pmatrix}2\\-1\\-5 \end{pmatrix}$.
+		
+\begin{list}{\textbullet}{}
+\item $\vect{n}\cdot\vect{u}=2\times 1 + (-1)\times 2 +(-5)\times 0 = 0$ donc $\vect{n}\perp \vect{u}$.
+\item $\vect{n}\cdot\vect{v}=2\times 2 + (-1)\times (-1) +(-5)\times 1 = 0$ donc $\vect{n}\perp \vect{v}$.
+\end{list}		
+
+Le vecteur $\vect{n}$ est donc orthogonal à deux vecteurs directeurs du plan $\mathcal{P}$, donc le vecteur $\vect{n}$ est un vecteur normal au plan $\mathcal{P}$.
+		
+		\item 
+Le plan $\mathcal{P}$ est le plan ayant $\vect n$ comme vecteur normal et passant par A, donc c'est  l'ensemble des points P$\left (x\,; y\;;z\right )$ tels que 
+$\vectt{AP} \perp \vect n$.
+
+$\vectt{AP}$ a pour coordonnées 
+$\begin{pmatrix}
+x-2\\y-4\\z
+\end{pmatrix}$
+
+$\begin{gathered}\vectt{AP} \perp \vect n
+\iff \vectt{AP} \cdot \vect n
+\iff (x-2)\times 2 + (y-4)\times (-1) + z\times (-5)=0\\
+\phantom{\vectt{AP} \perp \vect n \iff \vectt{AP} \cdot \vect n}
+\iff 2x-4-y+4 -5z=0
+\iff 2x-y-5z=0\end{gathered}$
+
+Donc une équation du plan $\mathcal{P}$ est : $2x - y - 5z = 0$.		
+		
+		\item On rappelle que M$'$ est le point d'intersection des droites $\Delta$ et $\mathcal{D}'$.
+		
+
+
+Le plan $\mathcal{P}$ contient la droite $\Delta$ et M$'$ est un point de la droite $\Delta$; donc M$'$ est un point du plan $\mathcal{P}$.
+M$'$ appartient à $\mathcal{D}'$ et à $\mathcal{P}$ donc M$'$ est  le point d'intersection de la droite $\mathcal{D}'$ et du plan $\mathcal{P}$.
+		
+
+
+Les coordonnées $\left (x\,; y\;;z\right )$ de M$'$ vérifient donc le système
+$\left \{
+\begin{array}{r !{=} l}
+x & 3\\
+y & 3+t\\
+z & 3+t\\
+2x-y-5z & 0
+\end{array}
+\right .$
+
+$2x-y-5z=0$ devient $2\times 3 -(3+t) -5(3+t)=0$ soit $6-3-t-15-5t=0$ ou encore $-12=6t$ ce qui donne $t=-2$.
+
+$x=3$; $y=3+t=3-2=1$ et $z=3+t=1$
+
+Les coordonnées du point M$'$ sont donc (3~;~1~;~1).
+
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item La droite $\Delta$ a pour vecteur directeur $\vect v$ et passe par le point M$'$,  donc elle a pour représentation paramétrique:
+$\left \{
+\begin{array}{r !{=} l}
+x & 3+2t'\\
+y & 1-t'\\
+z & 1+t'
+\end{array}
+\right . \quad t'\in\R$.		
+		
+		\item 
+Le point M est le point d'intersection de $\mathcal{D}$ et de $\Delta$ donc ses coordonnées $\left (x\,; y\;;z\right )$ sont solutions du système:
+$\left \{
+\begin{array}{r !{=} l}
+x&2+t\\
+y&4+ 2 t\\
+z&0\\
+x & 3+2t'\\
+y & 1-t'\\
+z & 1+t'
+\end{array}
+\right . $
+		
+On a donc 	
+$\left \{
+\begin{array}{r !{=} l}
+2+t & 3+2t'\\
+4+2t & 1-t'\\
+0 & 1+t'
+\end{array}
+\right . $
+ou encore
+$\left \{
+\begin{array}{r !{=} l}
+t & -1\\
+-1 & t'
+\end{array}
+\right . $
+
+$\left \{
+\begin{array}{r !{=} l}
+x&2+t\\
+y&4+ 2 t\\
+z&0
+\end{array}
+\right . $	
+donc
+$\left \{
+\begin{array}{r !{=} l}
+x&1\\
+y&2\\
+z&0
+\end{array}
+\right . $
+
+Donc  le point M a pour coordonnées (1~;~2~;~0).
+
+		\item 
+$\begin{gathered}\text{MM}' = \ds\sqrt{(x_{\text{M}'} - x_{\text{M}})^2+(y_{\text{M}'} - y_{\text{M}})^2+ (z_{\text{M}'} - z_{\text{M}})^2}\\
+\phantom{\text{MM}'}
+=\ds\sqrt{(3-1)^2+(1-2)^2+(1-0)^2}
+=\ds\sqrt{4+1+1}
+=\ds\sqrt{6}\end{gathered}$
+	\end{enumerate}
+	
+\item On considère la droite $d$ de représentation paramétrique 
+$\left\{\begin{array}{l !{=} r}
+x & 5t\\y & 2 + 5t \\z &1 + t\end{array}\right.$ avec $t \in \R$.
+	\begin{enumerate}
+		\item 
+On cherche	l'intersection de la droite $d$ et du plan $\mathcal{P}$, et pour cela on résout le système:
+$\left\{\begin{array}{r !{=} r}
+x & 5t\\y & 2 + 5t \\z &1 + t \\ 2x-y-5z & 0\end{array}\right.$
+
+On a donc $2\times (5t) -(2+5t) -5(1+t)=0$ soit $10t -2-5t-5-5t=0$ ou  $0t=7$.
+
+Le système n'a pas de solution donc la droite $d$ est strictement parallèle à $\mathcal{P}$.
+		
+		\item On note $\ell$ la distance d'un point N de la droite $d$ au plan $\mathcal{P}$ . 
+		
+On veut exprimer le volume $V$ du  tétraèdre ANMM$'$ en fonction de $\ell$.
+
+$V = \dfrac13 \times B \times h$ où $B$ désigne l'aire d'une base et $h$ la hauteur relative à cette base.
+
+Les points A, M et M$'$ appartiennent au plan $\mathcal{P}$ donc le triangle AMM$'$ forme une base du tétraèdre dont la hauteur est la distance du point N au plan $\mathcal{P}$, c'est-à-dire $\ell$.
+
+La droite $\Delta$ est la perpendiculaire commune à $\mathcal{D}$ et $\mathcal{D}'$ donc $\mathcal{D}$ est perpendiculaire à $\Delta$.
+
+A appartient à $\mathcal{D}$, M est le point d'intersection de $\mathcal{D}$ et de $\Delta$, M$'$ appartient à $\Delta$, et les droites $\mathcal{D}$ et $\Delta$ sont perpendiculaires. On peut en déduire que le triangle AMM$'$ est rectangle en M.
+
+$\begin{gathered}\text{AM} = \ds\sqrt{(x_{\text{M}} - x_{\text{A}})^2+(y_{\text{M}} - y_{\text{A}})^2+ (z_{\text{M}} - z_{\text{A}})^2}\\
+\phantom{\text{AM}}
+= \ds\sqrt{(1-2)^2 + (2-4)^2 + (0-0)^2} = \ds\sqrt{5}\end{gathered}$
+
+L'aire de la base, c'est-à-dire AMM$'$ vaut $\dfrac{1}{2}\times\text{AM}\times \text{MM}' = \dfrac{\sqrt{5}\times \sqrt{6}}{2}=\dfrac{\sqrt{30}}{2}$.
+
+Le volume du tétraèdre vaut donc $\dfrac{1}{3}\times \dfrac{\sqrt{30}}{2}\times \ell = \dfrac{\ell\sqrt{30}}{6}$.
+
+		\item N$_1$ et N$_2$ sont deux points quelconques de la droite $d$.
+		
+La droite $d$ est strictement parallèle au plan $\mathcal{P}$ donc les distances de N$_1$ et N$_2$ au plan $\mathcal{P}$ sont égales.
+
+Les bases des  tétraèdres AN$_1$MM$'$ et AN$_2$MM$'$ sont identiques (le triangle AMM$'$).
+
+Donc les tétraèdres AN$_1$MM$'$ et AN$_2$MM$'$ ont le même volume.
+		
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

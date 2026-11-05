@@ -1,0 +1,150 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_10_sujet1_caledonie_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Principaux domaines abordés :} géométrie dans l'espace.
+
+\medskip
+
+Une maison est constituée d'un parallélépipède rectangle ABCDEFGH surmonté d'un prisme EFIHGJ dont une base est le triangle EIF isocèle en I.
+
+Cette maison est représentée ci-dessous.
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(12.2,6)
+\pspolygon(0.4,3.4)(0.4,1.5)(1.9,0.4)(1.9,2.3)
+\psline(1.9,0.4)(7.9,0.8)(7.9,2.7)(1.9,2.3)
+\psline[linestyle=dashed](0.4,1.5)(6.4,1.9)(6.4,3.8)(0.4,3.4)
+\psline[linestyle=dashed](7.9,0.8)(6.4,1.9)
+\pspolygon(7.9,2.7)(6.4,3.8)(3.4,5.5)(4.9,4.4)
+\psline(4.9,4.4)(1.9,2.3)
+\psline(3.4,5.5)(0.4,3.4)
+\psline[linewidth=1.5pt]{->}(1.9,0.4)(3.9,0.533)
+\psline[linewidth=1.5pt]{->}(1.9,0.4)(1.15,0.95)
+\psline[linewidth=1.5pt]{->}(1.9,0.4)(1.9,2.3)
+\psline(11.6,0.3)(7.9,1.2)
+\psline[linestyle=dashed](7.9,1.2)(7.15,1.35)
+\uput[d](1.9,0.4){A} \uput[dr](7.9,0.8){B} \uput[r](6.4,1.9){C} \uput[l](0.4,1.5){D}
+\uput[u](1.9,2.3){E} \uput[r](7.9,2.7){F} \uput[ur](6.4,3.8){G} \uput[ul](0.4,3.4){H}
+\uput[l](4.9,4.4){I} \uput[u](3.4,5.5){J} \uput[r](11.6,0.3){R} \uput[dl](1.7,0.6){$\vect{\jmath}$}
+\uput[dr](2.9,0.45){$\vect{\imath}$} \uput[r](1.9,1.35){$\vect{k}$}
+\psdots(11.6,0.3)
+\end{pspicture}
+\end{center}
+
+On a AB $= 3$,\quad AD $= 2$,\quad AE $= 1$.
+
+On définit les vecteurs $\vect{\imath}= \dfrac13\vect{\text{AB}},\:\vect{\jmath}= \dfrac12\vect{\text{AD}}, \:\vect{k} = \vect{\text{AE}}$.
+
+On munit ainsi l'espace du repère orthonormé $\left(\text{A}~;~\vect{\imath},~\vect{\jmath},~\vect{k}\right)$.
+
+\medskip
+
+\begin{enumerate}
+\item Donner les coordonnées du point G.
+\item Le vecteur $\vect{n}$ de coordonnées $(2~;~0~;~-3)$ est vecteur normal au plan (EHI).
+
+Déterminer une équation cartésienne du plan (EHI).
+\item Déterminer les coordonnées du point I.
+\item Déterminer une mesure au degré près de l'angle $\widehat{\text{EIF}}$.
+\item Afin de raccorder la maison au réseau électrique, on souhaite creuser une tranchée rectiligne depuis un relais électrique situé en contrebas de la maison.
+
+Le relais est représenté par le point R de coordonnées $(6~;~- 3~;~- 1)$.
+
+La tranchée est assimilée à un segment d'une droite $\Delta$ passant par R et dirigée par le vecteur $\vect{u}$ de coordonnées $(-3~;~4~;~1)$. On souhaite vérifier que la tranchée atteindra la maison au niveau de l'arête [BC].
+	\begin{enumerate}
+		\item Donner une représentation paramétrique de la droite $\Delta$.
+		\item On admet qu'une équation du plan (BFG) est $x = 3$.
+		
+Soit K le point d'intersection de la droite $\Delta$ avec le plan (BFG).
+
+Déterminer les coordonnées du point K.
+		\item Le point K appartient-il bien à l'arête [BC] ?
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

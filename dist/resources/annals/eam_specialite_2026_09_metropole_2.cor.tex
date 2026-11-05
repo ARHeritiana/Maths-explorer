@@ -1,0 +1,146 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specialite_2026_09_metropole_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\emph{Pour chaque affirmation, on indique si elle est vraie ou fausse en justifiant ; une
+réponse non justifiée n'est pas prise en compte. Les trois questions sont indépendantes.}
+
+\begin{enumerate}
+	\item \textbf{Affirmation fausse.}
+
+	Pour tout entier naturel $n$, avec $v_n = 3 \times \left(\dfrac{1}{4}\right)^n$ :
+	\[v_{n+1} - v_n = 3 \times \left(\dfrac{1}{4}\right)^{n+1} - 3 \times \left(\dfrac{1}{4}\right)^n
+	= 3 \times \left(\dfrac{1}{4}\right)^n \times \left(\dfrac{1}{4} - 1\right)
+	= -\dfrac{9}{4} \times \left(\dfrac{1}{4}\right)^n.\]
+	Or $\left(\dfrac{1}{4}\right)^n > 0$ et $-\dfrac{9}{4} < 0$, donc $v_{n+1} - v_n < 0$ : la suite est strictement
+	décroissante. 
+
+	$(v_n)$ est une suite géométrique de premier terme $3 > 0$ et de
+	raison $\dfrac{1}{4} \in \,]0 ; 1[$ : elle est \textbf{décroissante}.
+
+	\item \textbf{Affirmation vraie.}
+
+	On se ramène à une équation du second degré :
+	\[x(1-x) = 4 \iff x - x^2 = 4 \iff -x^2 + x - 4 = 0 \iff x^2 - x + 4 = 0.\]
+	$\Delta = (-1)^2 - 4 \times 1 \times 4 = 1 - 16 = -15 < 0$.
+
+	Comme $\Delta < 0$, l'équation $x^2 - x + 4 = 0$ n'a aucune
+	solution réelle. 
+	
+	Aucun réel $x$ ne vérifie $x(1-x) = 4$.
+
+	\item \textbf{Affirmation vraie.}
+
+	
+D'après la relation de Chasles :
+\[
+\overrightarrow{KD}=\overrightarrow{KA}+\overrightarrow{AD}
+\qquad\text{et}\qquad
+\overrightarrow{KL}=\overrightarrow{KB}+\overrightarrow{BL}.
+\]
+Par bilinéarité du produit scalaire :
+\begin{align*}
+\overrightarrow{KD}\cdot\overrightarrow{KL}
+&=\left(\overrightarrow{KA}+\overrightarrow{AD}\right)\cdot\left(\overrightarrow{KB}+\overrightarrow{BL}\right)\\
+&=\overrightarrow{KA}\cdot\overrightarrow{KB}
++\overrightarrow{KA}\cdot\overrightarrow{BL}
++\overrightarrow{AD}\cdot\overrightarrow{KB}
++\overrightarrow{AD}\cdot\overrightarrow{BL}.
+\end{align*}
+
+
+\begin{itemize}
+  \item $\overrightarrow{KA}$ et $\overrightarrow{KB}$ sont colinéaires et de sens contraires (car $K\in[AB]$) :
+        $\overrightarrow{KA}\cdot\overrightarrow{KB}=-KA\times KB=-3\times 1=-3$.
+  \item $(AB)\perp(BC)$ et $(AD)\perp(AB)$ car $ABCD$ est un rectangle, donc
+        $\overrightarrow{KA}\cdot\overrightarrow{BL}=0$ et $\overrightarrow{AD}\cdot\overrightarrow{KB}=0$.
+  \item $\overrightarrow{AD}$ et $\overrightarrow{BL}$ sont colinéaires et de même sens :
+        $\overrightarrow{AD}\cdot\overrightarrow{BL}=AD\times BL=3\times 2=6$.
+\end{itemize}
+
+
+\[
+\overrightarrow{KD}\cdot\overrightarrow{KL}=-3+0+0+6=3.
+\]
+\end{enumerate}
+
+\end{document}

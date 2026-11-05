@@ -1,0 +1,120 @@
+\medskip
+
+\emph{Cet exercice est un questionnaire à choix multiples. Pour chacune des questions suivantes, une seule des quatre réponses proposées est exacte.\\
+Une réponse fausse, une réponse multiple ou l'absence de réponse à une question ne rapporte ni n'enlève de point.\\
+Pour répondre, indiquer sur la copie le numéro de la question et la lettre de la réponse choisie. Aucune justification n'est demandée.}
+
+\medskip
+
+\begin{enumerate}
+\item On considère les suites $\left(a_n\right)$ et $\left(b_n\right)$ définie par $a_0 = 1$ et, pour tout entier naturel $n$,\: $a_{n+1} = 0,5a_n + 1$ et $b_n = a_n - 2$.
+
+On peut affirmer que:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~} $\left(a_n\right)$ est arithmétique ;&\textbf{b.~} $\left(b_n\right)$ est géométrique;\\
+\textbf{c.~} $\left(a_n\right)$ est géométrique;&\textbf{d.~} $\left(b_n\right)$ est arithmétique.
+\end{tabularx}
+\end{center}
+
+Dans les questions 2. et 3., on considère les suites $\left(u_n\right)$ et $\left(v_n\right)$ définies par :
+
+\[u_0 = 2,\: v_0 = 1 \:\: \text{et, pour tout entier naturel }\:\:n : \left\{\begin{array}{l c l}
+u_{n+1}&=&u_n + 3v_n\\
+v_{n+1}&=&u_n + v_n.
+\end{array}\right.\]
+
+\item On peut affirmer que :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~}$\left\{\begin{array}{l c l}
+u_2& =& 5\\ v_2 &=& 3
+\end{array}\right.$&\textbf{b.~} $u_2^2 - 3v_2^2 = - 2^2$&\textbf{c.~} $\dfrac{u_2}{v_2} = 1,75$&\textbf{d.~} $5u_1 = 3v_1$.\\
+\end{tabularx}
+\end{center}
+
+\item On considère le programme ci-dessous écrit en langage Python :
+
+\begin{center}
+\begin{tabular}{|>{\texttt}l|}\hline
+\texttt{def valeurs() :}\\
+\quad \texttt{u = 2}\\
+\quad \texttt{v = 1}\\
+\quad \texttt{for k in range(1,11)}\\
+\quad \quad \texttt{c = u}\\
+\quad \quad \texttt{u = u + 3*v}\\
+\quad \quad \texttt{v = c + v}\\
+\quad \texttt{return (u, v)}\\ \hline
+\end{tabular}
+\end{center}
+
+Ce programme renvoie :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~} $u_{11}$ et $v_{11}$ ;&
+\textbf{b.~} $u_{10}$ et $v_{11}$ ;&
+\textbf{c.~} les valeurs de $u_n$ et $v_n$ pour $n$ allant de 1 à 10 ;&
+\textbf{d.~} $u_{10}$ et $v_{10}$.
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+Pour les questions 4. et 5., on considère une fonction $f$ deux fois dérivable sur l'intervalle $[-4~;~2]$. On note $f'$ la fonction dérivée de $f$ et $f''$ la dérivée seconde de $f$.
+
+On donne ci-dessous la courbe représentative $\mathcal{C}'$ de la fonction dérivée $f'$ dans un repère du plan. On donne de plus les points A$(-2~;~0)$, B(1~;~0) et C(0~;~5).
+
+\begin{minipage}{0.52\linewidth}
+\begin{enumerate}[resume]
+\item La fonction $f$ est :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~} concave sur $[-2~;~1]$ ;	&\textbf{b.~} convexe sur $[-4~;~0]$;\\
+\textbf{c.~}convexe sur $[-2~;~1]$ ;&\textbf{d.~} convexe sur [0~;~2].
+\end{tabularx}
+\end{center}
+
+\item On admet que la droite (BC) est la tangente à la courbe $\mathcal{C}'$ au point B.
+On a :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~} $f'(1) < 0$ ;	&\textbf{b.~} $f'(1) = 5$ ;\\
+\textbf{c.~} $f''(1) > 0$;	&\textbf{d.~} $f''(1) = - 5$.
+\end{tabularx}
+\end{center}
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture*}(-4,-3)(2,6)
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10]{->}(0,0)(-4,-3)(2,6)
+\psaxes[linewidth=1.25pt](0,0)(1,1)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-4}{2}{x 2 add 1 x  sub mul 2.71828 x 0.5 mul exp mul}\uput[dr](-4,-1.5){\blue $\mathcal{C}'$}
+\psline(-4,0.1)(-4,-0.1)
+\uput[dr](-2,0){A} \uput[ur](1,0){B} \uput[l](0,5){C} 
+\psplot[plotpoints=2000,linewidth=1.25pt]{-4}{2}{5 5 x  mul sub}
+\uput[d](-4,0){$-4$}
+\end{pspicture*}
+\end{center}
+
+\end{minipage}
+
+\begin{enumerate}[resume,start=6]
+\item Soit $f$ la fonction définie sur $\R$ par $f(x) = \left(x^2 + 1\right)\text{e}^x$.
+
+La primitive $F$ de $f$ sur $\R$  telle que $F(0) = 1$ est définie par:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~} $F(x) = \left(x^2 - 2x +3\right)\text{e}^x$ ;&\textbf{b.~} $F(x) = \left(x^2 - 2x + 3\right)\text{e}^x - 2;$\\
+\textbf{c.~} $F(x) = \left(\dfrac13 x^3 + x\right)\text{e}^x + 1$ ;&\textbf{d.~} $F(x) = \left(\dfrac13 x^3 + x \right) \text{e}^x$.\\
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\bigskip

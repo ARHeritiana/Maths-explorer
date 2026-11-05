@@ -1,0 +1,179 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet30_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{1.}
+
+\begin{center}
+\begin{tikzpicture}[thick, scale=1.5]
+\node (P_-1_0) at (-2,-2.5) {$\phantom{A}$};
+\node (P_0_0) at (0,-0.5) {$S$};
+\draw (P_-1_0) -- (P_0_0) node[midway, above] {$\frac13$};
+\node (P_1_0) at (2,-0) {$B$};
+\draw (P_0_0) -- (P_1_0) node[midway, above] {$\frac12$};
+\node (P_2_0) at (2.8,-0) {$0$};
+
+\node (P_1_1) at (2,-1) {$\overline{B}$};
+\draw (P_0_0) -- (P_1_1) node[midway, below] {$\frac12$};
+\node (P_2_1) at (2.8,-1) {$-10$};
+
+\node (P_0_2) at (0,-2.5) {$C$};
+\draw (P_-1_0) -- (P_0_2) node[midway, above] {$\frac13$};
+\node (P_1_2) at (2,-2) {$B$};
+\draw (P_0_2) -- (P_1_2) node[midway, above] {$\frac34$};
+\node (P_2_2) at (2.8,-2) {$10$};
+
+\node (P_1_3) at (2,-3) {$\overline{B}$};
+\draw (P_0_2) -- (P_1_3) node[midway, below] {$\frac14$};
+\node (P_2_3) at (2.8,-3) {$-10$};
+
+\node (P_0_4) at (0,-4.5) {$M$};
+\draw (P_-1_0) -- (P_0_4) node[midway, below] {$\frac13$};
+\node (P_1_4) at (2,-4) {$B$};
+\draw (P_0_4) -- (P_1_4) node[midway, above] {$\frac14$};
+\node (P_2_4) at (2.8,-4) {$40$};
+
+\node (P_1_5) at (2,-5) {$\overline{B}$};
+\draw (P_0_4) -- (P_1_5) node[midway, below] {$\frac34$};
+\node (P_2_5) at (2.8,-5) {$-10$};
+
+\end{tikzpicture}
+\end{center}
+
+\subsection*{2.}
+
+D'après la loi des probabilités totales :
+\[
+P(B) = P(S \cap B) + P(C \cap B) + P(M \cap B),
+\]
+ce qui donne :
+\[
+P(B) = P(S) \times P_S(B) + P(C) \times P_C(B) + P(M) \times P_M(B),
+\]
+\[
+P(B) = \dfrac{1}{3} \times \dfrac{1}{2} + \dfrac{1}{3} \times \dfrac{3}{4} + \dfrac{1}{3} \times \dfrac{1}{4} = \dfrac{1}{6} + \dfrac{3}{12} + \dfrac{1}{12} = \dfrac{6}{12} = \dfrac{1}{2}.
+\]
+
+\subsection*{3.}
+
+On a :
+\[
+P(X = 40) = P(M \cap B) = P(M) \times P_M(B) = \dfrac{1}{3} \times \dfrac{1}{4} = \dfrac{1}{12}.
+\]
+
+\subsection*{4.}
+
+On a :
+\begin{itemize}
+    \item
+    \(P(X = -10) = P(\overline{B}) = P(S \cap \overline{B}) + P(C \cap \overline{B}) + P(M \cap \overline{B})\),
+
+\(P(X = -10) = \dfrac{1}{3} \times \dfrac{1}{2} + \dfrac{1}{3} \times \dfrac{1}{4} + \dfrac{1}{3} \times \dfrac{3}{4} = \dfrac{1}{6} + \dfrac{1}{12} + \dfrac{3}{12} = \dfrac{1}{2}\).
+    \item \(P(X = 0) = P(S \cap B) = \dfrac{1}{3} \times \dfrac{1}{2} = \dfrac{1}{6}\).
+    \item \(P(X = 10) = P(C \cap B) = \dfrac{1}{3} \times \dfrac{3}{4} = \dfrac{1}{4}\).
+    \item \(P(X = 40) = P(M \cap B) = \dfrac{1}{3} \times \dfrac{1}{4} = \dfrac{1}{12}\).
+\end{itemize}
+
+D'où le tableau de la loi de probabilités :
+
+\[
+\begin{array}{|c|c|c|c|c|}
+\hline
+X & -10 & 0 & 10 & 40 \\
+\hline
+P(X = x_i) & \dfrac{1}{2} & \dfrac{1}{6} & \dfrac{1}{4} & \dfrac{1}{12} \\
+\hline
+\end{array}
+\]
+
+\subsection*{5.}
+
+On a :
+\[
+E(X) = -10 \times \dfrac{1}{2} + 0 \times \dfrac{1}{6} + 10 \times \dfrac{1}{4} + 40 \times \dfrac{1}{12},
+\]
+\[
+E(X) = -5 + 0 + 2,5 + \dfrac{40}{12} = \dfrac{5}{6} \approx 0,83.
+\]
+L'espérance est positive, donc Jeanne peut jouer, mais elle gagnera en moyenne environ 0,83 € par partie.
+
+\end{document}

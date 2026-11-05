@@ -1,0 +1,62 @@
+\subsection*{1.}
+	
+	Diminuer de 2 \% revient à multiplier par \(1 - 0,02 = 0,98\).
+	
+	\[
+	120 \times 0,98 = 117,6 \, \text{kg} \quad \text{et} \quad 117,6 \times 0,98 = 115,248 \, \text{kg}.
+	\]
+	
+	\subsection*{2.}
+	\subsubsection*{a.}
+	Diminuer de 2 \% revient à multiplier par \(1 - 0,02 = 0,98\).
+	
+	On a donc pour tout \(n \in \mathbb{N}\), \(a_{n+1} = 0,98a_n\) : la suite \((a_n)\) est une suite géométrique de premier terme \(a_0 = 120\) et de raison 0,98.
+	
+	\subsubsection*{b.}
+	
+	On sait alors que quel que soit le naturel \(n\),
+	\[
+	a_n = a_0 \times 0,98^n = 120 \times 0,98^n.
+	\]
+	
+	\subsubsection*{c.}
+	
+	On rappelle que :
+	
+	Soit \((a_n)_{n \in \mathbb{N}}\) une suite géométrique de raison \(q\), \(q \neq 1\). La somme \(S\) de termes consécutifs est égale à
+	\[
+	S = u_1 + u_2 + \ldots + u_n = u_1 \times \dfrac{1 - q^n}{1 - q}.
+	\]
+	
+	En 2020, la famille A produira :
+	\[
+	S_{2020} = a_1 + a_2 + \ldots + a_{12} = 120 \times 0,98 + 120 \times 0,98^2 + \ldots + 120 \times 0,98^{12}.
+	\]
+	
+	Or
+	\[
+	0,98S_{2020} = 120 \times 0,98^2 + \ldots + 120 \times 0,98^{12} + 120 \times 0,98^{13}.
+	\]
+	
+	Par différence entre les deux lignes précédentes :
+	\[
+	0,02S_{2020} = 120 \times 0,98 - 120 \times 0,98^{13},
+	\]
+	
+	ou encore :
+	\[
+	0,02S_{2020} = 120 \times 0,98(1 - 0,98^{12}),
+	\]
+	
+	et
+	\[
+	S_{2020} = \dfrac{120 \times 0,98(1 - 0,98^{12})}{0,02} = 49 \times 120 (1 - 0,98^{12}) \approx 1265,8.
+	\]
+	
+	Donc \(S_{2020} \approx 1266 \, \text{kg}\) de déchets en 2020.
+	
+	\subsubsection*{d.}
+	
+
+	
+	S(6) donne la somme \(a_1 + a_2 + \ldots + a_6\), soit la somme des déchets de la famille du premier semestre 2020.

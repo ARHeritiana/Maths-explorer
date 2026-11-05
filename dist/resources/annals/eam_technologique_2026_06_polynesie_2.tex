@@ -1,0 +1,152 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_technologique_2026_06_polynesie_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Une personne souhaite emprunter \np{10000}~\euro{}, remboursables en six versements annuels.
+
+Un établissement de crédit propose les deux formules.
+
+\begin{itemize}[label={\textbullet}]
+\item \textbf{Formule 1 :} Le premier versement est \np{1025}~\euro{} et les versements annuels suivants augmentent de \np{400}~\euro{} chaque année par rapport au versement précédent.
+\item \textbf{Formule 2 :} le premier versement est \np{1550}~\euro{} et les versements annuels suivants augmentent de 10~\% chaque année par rapport au versement précédent.
+\end{itemize}
+
+\subsection*{Partie A}
+
+On se place dans le cas de la \textbf{formule 1}.
+
+Étant donné un entier naturel $n$, on appelle $u_n$ le versement, exprimé en euros, de l'année $2025+n$.
+
+On a \quad $u_0=\np{1025}$.
+
+\begin{enumerate}
+\item Calculer $u_1$.
+\item Donner la nature de la suite $(u_n)$ et donner sa raison.
+\item Donner la valeur du dernier versement $u_5$.
+\end{enumerate}
+
+\subsubsection*{Partie B}
+
+On se place dans le cas de la \textbf{formule 2}.
+
+Étant donné un entier naturel $n$, on appelle $v_n$ le versement, exprimé en euros, de l'année $2025+n$.
+
+On a \quad $v_0=\np{1550}$.
+
+\begin{enumerate}
+\item Quel calcul permet d'obtenir $v_1=\np{1705}$ ?
+\item Quelle est la nature de la suite $(v_n)$ et donner sa raison.
+\end{enumerate}
+
+\subsubsection*{Partie C}
+
+La feuille de calcul suivante présente, pour chaque année et pour chaque formule, le cumul des montants remboursés depuis le début du crédit.
+
+Le montant final en gras dans le tableau, en ligne 7, correspond à la somme des \np{10000}~\euro{} empruntés et des intérêts perçus par l'établissement de crédit.
+
+\begin{center}
+\helvbx
+\begin{tblr}{
+	colspec={c},
+	row{1} = {gray9,c},
+	column{1} = {gray9,c,5mm},
+	column{2} = {c,15mm},
+	column{3} = {c,25mm},
+	column{4} = {c,25mm},
+	hlines,vlines,
+	}
+ 	& 	A 	& 	B 								& 	C 								\\
+1	&	$n$	&	\textbf{Formule 1}				&	\textbf{Formule 2} 				\\
+2	&	0	&	\np{1025.00}~\euro{}				&	\np{1550.00}~\euro{}				\\
+3	&	1	&	\np{2450.00}~\euro{}				&	\np{3255.00}~\euro{}				\\
+4	&	2	&	\np{4275.00}~\euro{}				&	\np{5130.50}~\euro{}				\\
+5	&	3	&	\np{6500.00}~\euro{}				&	\np{7193.55}~\euro{}				\\
+6	&	4	&	\np{9125.00}~\euro{}				&	\np{9462.91}~\euro{}				\\
+7	&	5	&	\textbf{\np{12150.00}~\euro{}}	&	\textbf{\np{11959.20}~\euro{}}	\\
+\end{tblr}
+\end{center}
+
+Quelle est la formule la plus avantageuse pour la personne qui emprunte ?
+
+Justifier.
+
+\end{document}

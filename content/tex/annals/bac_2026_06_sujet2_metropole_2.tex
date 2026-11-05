@@ -1,0 +1,69 @@
+Un bassin destiné à l'élevage des truites contient \np{30000} litres d'eau, régulièrement renouvelée.
+
+	Pour vérifier la présence éventuelle de substances polluantes dans le bassin, on procède à des analyses régulières.
+
+	On étudie dans les deux parties ci-dessous un cas de contamination de l'eau par une substance polluante à l'aide de deux modèles différents.
+
+	Les deux parties sont indépendantes.
+
+	\subsection*{\centering Partie A : modèle discret}
+
+		On note $V_{n}$ le volume, en litre, de la substance polluante présente dans le bassin, $n$ heures après le début du phénomène de pollution.
+
+		On a ainsi \quad $V_{0}=0$.
+
+		On admet que pour tout entier naturel $n$,\quad $V_{n+1}=0,995 V_{n}+6$.
+
+		\begin{enumerate}
+			\item Calculer $V_{1}$ et $V_{2}$.
+
+			\item \begin{minipage}[t]{0.55\linewidth}
+				Recopier et compléter le programme ci-contre pour qu'il renvoie le volume en litre de substance polluante présente dans le bassin après $n$ heures.
+				\item Montrer par récurrence que pour tout entier naturel $n$,  $V_{n} \leqslant  V_{n+1} \leqslant  1200$.
+
+			\end{minipage}\hfill
+			\begin{tblr}[T]{colspec={X[font=\ttfamily,5cm]},vlines, hline{1,Z}={solid}, rowsep=0pt}
+				def volume(n):\\
+				\quad v = ...\\
+				\quad for k in range(n):\\
+				\quad \quad	v = ...\\
+				\quad return v\\
+			\end{tblr}
+
+
+			\item Justifier que la suite $(V_{n})$ converge, et calculer sa limite.
+		\end{enumerate}
+
+	\subsection*{\centering Partie B : modèle continu}
+
+		On note $v(t)$ le volume, en litre, de la substance polluante présente dans le bassin à l'instant $t$, en heure.
+
+		On admet que la fonction $v$ est définie et dérivable sur l'intervalle $[0 ;+\infty[$, et on note $v'$ sa fonction dérivée.
+
+		On considère que le phénomène de pollution débute au temps $t=0$; ainsi $v(0)=0$.
+
+		On admet que la fonction $v$ est solution de l'équation différentielle :
+		\[(E) : \quad y'=-0,005 y+6,\]
+		où $y$ est une fonction inconnue et où $y'$ est la fonction dérivée de $y$.
+
+		\begin{enumerate}
+			\item \begin{enumerate}
+				\item Déterminer les solutions de l'équation différentielle $(E)$ sur $[0 ;+\infty[$.
+
+				\item Montrer que pour tout réel $t$ appartenant à l'intervalle $[0 ;+\infty[$ :
+				\[v(t)=1200\left(1-\e^{-0,005 t}\right).\]
+
+				\item Calculer la limite de $v$ en $+\infty$.
+
+				\item Déterminer le sens de variation de la fonction $v$ sur l'intervalle $[0 ;+\infty[$.
+			\end {enumerate}
+
+			\item Un taux de substance polluante supérieur à $5\,\%$ du volume du bassin nécessite un nettoyage complet.
+			Selon ce modèle, le propriétaire devra-t-il procéder à ce nettoyage?
+
+			\item Pour pouvoir dépolluer rapidement le bassin et éviter de lourdes conséquences sur l'élevage, il est préconisé que le volume de la substance polluante ne dépasse pas 50 litres.
+
+			Déterminer la valeur exacte de l'instant au-delà duquel le volume de la substance dépasse 50 litres dans le bassin.
+
+			En donner la valeur en heure et minute, arrondie à la minute.
+		\end{enumerate}

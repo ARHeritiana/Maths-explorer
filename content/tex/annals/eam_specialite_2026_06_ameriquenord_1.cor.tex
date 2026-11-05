@@ -1,0 +1,151 @@
+\subsection*{Partie A}
+
+	Les boules sont indiscernables au toucher, donc on est en situation d'équiprobabilité. Les tirages se font avec remise, donc les probabilités d'obtenir une boule verte ou une boule rouge sont indépendants de l'ordre du tirage.
+
+	\begin{enumerate}
+		\item Arbre pondéré complété :
+
+		\begin{center}
+			\begin{tikzpicture}[xscale=1,yscale=1,baseline={(R.base)}]
+				\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+				\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+				\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+				\tikzstyle{etiquettea}=[pos=0.55,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+				\tikzstyle{etiquetteb}=[pos=0.75,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+				\def\DistanceInterNiveaux{3.5}
+				\def\DistanceInterFeuilles{1}
+				\def\NiveauA{(0)*\DistanceInterNiveaux}
+				\def\NiveauB{(1)*\DistanceInterNiveaux}
+				\def\NiveauC{(2)*\DistanceInterNiveaux}
+				\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+				\node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {};
+				\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$R_1$};
+				\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$R_2$};
+				\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{R_2}$};
+				\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\overline{R_1}$};
+				\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$R_2$};
+				\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{R_2}$};
+				\draw (R.east)--(Ra.west)   node[etiquette] {$\dfrac{1}{10}$};
+				\draw (Ra.east)--(Raa.west) node[etiquettea] {$\dfrac{1}{10}$};
+				\draw (Ra.east)--(Rab.west) node[etiquetteb] {$\dfrac{9}{10}$};
+				\draw (R.east)--(Rb.west)   node[etiquette] {$\dfrac{9}{10}$};
+				\draw (Rb.east)--(Rba.west) node[etiquettea] {$\dfrac{1}{10}$};
+				\draw (Rb.east)--(Rbb.west) node[etiquetteb] {$\dfrac{9}{10}$};
+			\end{tikzpicture}
+		\end{center}
+
+		\item \begin{enumerate}
+			\item Le joueur paie $1$~\euro{}, qui contribue donc négativement au gain algébrique de la partie.
+
+			Il peut recevoir $3$~\euro{} (deux rouges), $1$~\euro{} (deux vertes) ou $0$~\euro{} (sinon).
+
+			Le gain algébrique $X$ prend donc les valeurs :
+			\[X=3-1=2,\qquad X=1-1=0,\qquad X=0-1=-1.\]
+
+			\item $X=-1$ correspond à \og une rouge et une verte \fg{} (dans un ordre ou dans l'autre).
+
+			On a donc : \quad $\left\{X = -1\right\} = \left(R_1 \cap \overline{R_2}\right) \cup \left(\overline{R_1} \cap R_2\right)$.
+
+			Les événements que l'on réunit sont disjoints, donc :
+
+
+			$P(X=-1)=P\left(R_1 \cap \overline{R_2}\right) + P\left(\overline{R_1} \cap R_2\right)
+			= \dfrac{1}{10}\times\dfrac{9}{10}+\dfrac{9}{10}\times\dfrac{1}{10}
+			=\dfrac{9}{100}+\dfrac{9}{100}=\dfrac{18}{100}$.
+
+			On arrive bien à :\quad $P(X=-1)=\dfrac{18}{100}$.
+
+			\item $P(X=2)=P(R_1\cap R_2)=\dfrac{1}{10}\times\dfrac{1}{10}=\dfrac{1}{100}$ \quad et \quad
+			$P(X=0)=P\left(\overline{R_1} \cap \overline{R_2}\right) =  \dfrac{9}{10}\times\dfrac{9}{10}=\dfrac{81}{100}$.
+
+			\begin{center}
+				\begin{tblr}{colspec={X[2cm,c]X[c]X[c]X[c]},hlines,vlines,width=0.5\linewidth}
+					$x_k$ & $-1$ & $0$ & $2$ \\
+					$P(X=x_k)$ & $\dfrac{18}{100}$ & $\dfrac{81}{100}$ & $\dfrac{1}{100}$ \\
+				\end{tblr}
+			\end{center}
+
+			On peut se rassurer, en vérifiant : \quad $\dfrac{18}{100}+\dfrac{81}{100}+\dfrac{1}{100}=1$.
+
+			\item On a: \quad $\begin{aligned}[t]
+				E(X)&=x_1\times P(X = x_1) + x_2\times P(X = x_2) + x_3\times P(X = x_3)\\
+				&=(-1)\times\dfrac{18}{100}+0\times\dfrac{81}{100}+2\times\dfrac{1}{100}\\
+				&=\dfrac{-18 + 0 +2}{100}\\
+				&=\dfrac{-16}{100}=-0,16
+			\end{aligned}$.
+
+			\emph{Interprétation }: sur un grand nombre de parties, le joueur perd en moyenne $0,16$~\euro{} (soit $16$ centimes) par partie. Le jeu est défavorable au joueur (et donc favorable au forain).
+		\end{enumerate}
+	\end{enumerate}
+
+	\subsection*{Partie B}
+
+	On va reproduire le même raisonnement qu'à la partie A, avec un changement dans les probabilités, pour refléter la nouvelle répartition entre les boules vertes et les boucles rouges. L'arbre adapté est donc :
+
+	\begin{center}
+		\begin{tikzpicture}[xscale=1,yscale=1,baseline={(R.base)}]
+			\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+			\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+			\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+			\tikzstyle{etiquettea}=[pos=0.65,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+			\tikzstyle{etiquetteb}=[pos=0.65,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+			\def\DistanceInterNiveaux{3.5}
+			\def\DistanceInterFeuilles{1.2}
+			\def\NiveauA{(0)*\DistanceInterNiveaux}
+			\def\NiveauB{(1)*\DistanceInterNiveaux}
+			\def\NiveauC{(2)*\DistanceInterNiveaux}
+			\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+			\node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {};
+			\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$R_1$};
+			\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$R_2$};
+			\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{R_2}$};
+			\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\overline{R_1}$};
+			\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$R_2$};
+			\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{R_2}$};
+			\draw (R.east)--(Ra.west)   node[etiquette] {$\dfrac{n}{10}$};
+			\draw (Ra.east)--(Raa.west) node[etiquettea] {$\dfrac{n}{10}$};
+			\draw (Ra.east)--(Rab.west) node[etiquetteb] {$\dfrac{10-n}{10}$};
+			\draw (R.east)--(Rb.west)   node[etiquette] {$\dfrac{10-n}{10}$};
+			\draw (Rb.east)--(Rba.west) node[etiquettea] {$\dfrac{n}{10}$};
+			\draw (Rb.east)--(Rbb.west) node[etiquetteb] {$\dfrac{10-n}{10}$};
+		\end{tikzpicture}
+	\end{center}
+
+	\begin{enumerate}
+		\item Comme en partie A, $Y$ prend les valeurs $-1$, $0$ et $2$ avec :
+
+		$P(Y=2)=P(R_1\cap R_2)=\left(\dfrac{n}{10}\right)^{2}=\dfrac{n^{2}}{100}$
+
+		Puis,\quad $\begin{aligned}[t]
+			P(Y=-1)&=P\left(\overline{R_1} \cap R_2\right) + P\left(R_1 \cap \overline{R_2}\right) =\dfrac{n}{10}\times\dfrac{10-n}{10} + \dfrac{10-n}{10}\times\dfrac{n}{10}\\
+			&=2\times\dfrac{n}{10}\times\dfrac{10-n}{10}=\dfrac{2n(10-n)}{100}.
+		\end{aligned}$
+
+		On ne calcule pas $P(Y = 0)$, car dans le calcul de l'espérance, cette probabilité sera multipliée par la valeur 0, donc sans effet sur l'espérance.
+
+		D'où :\quad $\begin{aligned}[t]
+			E(Y)&=2\times P(Y=2)+0\times P(Y=0)+(-1)\times P(Y=-1)\\
+			&=\dfrac{2n^{2}}{100}-\dfrac{2n(10-n)}{100}
+			=\dfrac{2n^{2}-20n+2n^{2}}{100}
+			=\dfrac{4n^{2}-20n}{100}.
+		\end{aligned}$
+
+		On arrive bien à l'expression donnée dans le sujet.
+
+		\item Le jeu est équitable lorsque $E(Y)=0$.
+
+		On résout :\quad $\begin{aligned}[t]
+			\dfrac{4n^{2}-20n}{100}=0
+			&\iff 4n(n-5)=0
+			&\iff n=0 \text{ ou } n=5.
+		\end{aligned}$
+
+		Il y a donc deux situations où le jeu est équitable :
+		\begin{itemize}[left=5mm,label={\textbullet~}]
+			\item La valeur $n=0$ correspond à une urne sans boule rouge. Ce n'est pas très intéressant : on tire toujours deux vertes, ce n'est plus vraiment un jeu de hasard.
+
+			\item Le cas pertinent est donc pour $n=5$ boules rouges : avec $5$ boules rouges (et $5$ vertes), le jeu est équitable entre le joueur et le forain.
+		\end{itemize}
+
+		\emph{Remarque }: La question n'était pas posée, mais dans le calcul de l'espérance de $Y$, on voit que le numérateur est un polynome de degré 2, dont le coefficient dominant est 4 donc positif et les racines sont 0 et 5, donc on peut dire que pour $n$ compris strictement entre 0 et 4 (c'est à dire avec un nombre de boules rouges compris entre 1 et 4, puisque ce nombre doit être entier), alors le jeu a une espérance négative, et est favorable au forain, pour un nombre de boules rouges compris entre 6 et 10, il est favorable au joueur.
+	\end{enumerate}

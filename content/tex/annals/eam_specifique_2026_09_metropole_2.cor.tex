@@ -1,0 +1,28 @@
+\emph{$u_n$ désigne la valeur du téléphone, en euros, l'année $2025 + n$ ; $u_0 = \np{1060}$ et la
+valeur diminue de 100~\euro{} chaque année.}
+
+\begin{enumerate}
+	\item $u_1 = \np{1060} - 100 = 960$ \quad et \quad $u_2 = 960 - 100 = 860$.
+
+	Pour $n = 2$,\: $2025 + 2 = 2027$.
+	En 2027, le téléphone vaudra 860~\euro.
+
+	\item Chaque année, la valeur diminue de 100~\euro{} donc, pour tout entier naturel $n$ :
+	$u_{n+1} = u_n - 100$.
+
+	\item Pour tout entier naturel $n$, $u_{n+1} = u_n + (-100)$ : la suite $(u_n)$ est
+	\textbf{arithmétique} de raison $r = -100$ et de premier terme $u_0 = \np{1060}$.
+
+	\item Pour une suite arithmétique de premier terme $u_0$ et de raison $r$ :
+	$u_n = u_0 + nr$.
+
+	Pour tout entier naturel $n$, $u_n = \np{1060} - 100n$.
+
+	\item La moitié de la valeur initiale est $\dfrac{\np{1060}}{2} = 530$~\euro. Le téléphone a perdu plus
+	de la moitié de sa valeur lorsque $u_n < 530$.
+	\[u_n < 530 \iff \np{1060} - 100n < 530 \iff -100n < -530 \iff n > 5,3.\]
+	Le plus petit entier $n$ qui convient est $n = 6$.
+
+	C'est à partir de l'année $2025 + 6 = 2031$ que le téléphone aura perdu plus de
+	la moitié de sa valeur initiale.
+\end{enumerate}

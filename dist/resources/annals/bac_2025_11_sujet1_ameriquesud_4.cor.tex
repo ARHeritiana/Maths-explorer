@@ -1,0 +1,331 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet1_ameriquesud_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{center}
+\begin{pspicture}(-4,-2)(4,2.3)
+
+\psline(-4,-2)\psline(3.9,-0.7)\psline(0,2.3)
+\psline[linecolor=blue]{->}(-1.1,-0.55)\psline[linecolor=blue]{->}(1.7,-0.285)\psline[linecolor=blue]{->}(0,1.8)
+\pspolygon(-3.5,-1.73)(3.4,-0.6)(0,1.8)
+\psline(0,1.8)(1.55,-0.9)
+\uput[ul](-3.5,-1.73){A} \uput[ur](3.4,-0.6){B} \uput[ul](0,1.8){C} \uput[d](0,0){O} \uput[dr](1.55,-0.9){K}
+\uput[u](-0.5,-0.3){\blue $\vect{\imath}$} \uput[u](0.6,-0.1){\blue $\vect{\jmath}$} \uput[l](0,0.8){\blue $\vect{k}$}
+\end{pspicture}
+\end{center}
+
+\medskip
+
+L'espace est muni d'un repère orthonormé \Oijk.
+
+On considère les points
+A\,$\left(2\sqrt 3~;~0~;~0\right)$, B\,(0~;~2~;~0), C\,(0~;~0~;~1) et  K\,$\left(\frac{\sqrt 3}{2}~;~\frac32~;~0\right)$.
+
+
+
+
+\begin{enumerate}
+\item 
+La droite (CK) est l'ensemble des points M\,$\left (x\;,\; y \;,\; z\right )$ tels que $\vectt{CM}$ et $\vectt{CK}$ soient colinéaires, c'est-à-dire tels que $\vectt{CM} = t.\vectt{CK}$ où $t\in\R$.
+
+$\vectt{CM}$ a pour coordonnées  
+$\begin{pmatrix}
+x_{\text{M}} - x_{\text{C}} \\ y_{\text{M}} - y_{\text{C}} \\ z_{\text{M}} - z_{\text{C}}
+\end{pmatrix}
+=
+\begin{pmatrix}
+x\\ y \\ z -1
+\end{pmatrix}$
+et celles de $\vectt{CK}$ sont
+$\begin{pmatrix}
+x_{\text{K}} - x_{\text{C}} \\ y_{\text{K}} - y_{\text{C}} \\ z_{\text{K}} - z_{\text{C}}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\frac{\sqrt{3}}{2}\\[5pt] \frac{3}{2} \\[5pt] -1
+\end{pmatrix}$
+
+$\vectt{CM} = t.\vectt{CK}
+\iff
+\begin{pmatrix}
+x\\ y \\ z-1
+\end{pmatrix}
+=
+t.\begin{pmatrix}
+\frac{\sqrt{3}}{2}\\[5pt] \frac{3}{2} \\[5pt] -1
+\end{pmatrix}
+\iff
+\left \{
+\begin{array}{l !{=} l}
+x & \frac{\sqrt{3}}{2} t\\[5pt]
+y & \frac{3}{2} t\\[5pt]
+z & -t+1
+\end{array}
+\right .
+$
+
+La droite (CK) a donc pour représentation paramétrique 
+$\left\{\begin{array}{l !{=} l}
+x& \frac{\sqrt 3}{2}t\\[5pt]
+y& \frac32 t\\[5pt]
+y& - t + 1
+\end{array}\right. \: (t \in \R)$
+
+\item Soit M$(t)$ un point de la droite (CK) paramétrée par un réel $t$.
+Le point M a donc pour coordonnées $\left (\frac{\sqrt{3}}{2}t\;,\; \frac{3}{2}t\;,\; -t+1\right )$
+
+$\begin{aligned}
+\text{OM}(t)^2
+&  = \left ( x_{\text{M}} - x_{\text{O}}\right )^2 + \left ( y_{\text{M}} - y_{\text{O}}\right )^2 + \left ( z_{\text{M}} - z_{\text{O}}\right )^2 
+=\left ( \dfrac{\sqrt{3}}{2}t\right )^2 + \left (\dfrac{3}{2} t\right )^2 + \left (-t+1\right )^2\\
+& = \dfrac{3}{4}t^2 +\dfrac{9}{4}t^2 +t^2-2t+1
+= 4t^2 -2t +1
+\end{aligned}$
+
+Donc: OM$(t) = \sqrt{4t^2-2t+1}$.
+
+
+
+\item Soit $f$ la fonction définie et dérivable sur $\R$ par $f(t) = \text{OM}(t)$.
+	\begin{enumerate}
+		\item 
+$f(t)=\sqrt{4t^2-2t+1}$ donc $f'(t)=\dfrac{8t-2}{2\sqrt{4t^2-2t+1}}$		
+
+On étudie le signe de $f'(t)$ sur $\R$.
+		
+\[ \begin{tablvar}[intervalwidth=6em]{2}
+ \hline
+ t & -\infty & & \frac{1}{4} & & +\infty\\
+ \hline
+8t-2 & & - & \barre[0] & + & \\
+ \hline
+2\sqrt{4t^2-2t+1} & & + & \barre & + & \\
+ \hline
+f'(t) & & - & \barre[0] & + & \\
+ \hline
+ \end{tablvar}\]
+		
+Donc la fonction $f$ est strictement décroissante sur l'intervalle  $\left ] -\infty\;,\; \frac{1}{4}\right ]$, et strictement croissante sur l'intervalle $\left [ \frac{1}{4}\;,\; +\infty \right [$.		
+		
+		\item 
+On en déduit que $f$ atteint son minimum pour $t=\frac{1}{4}$.		
+		
+	\end{enumerate}
+	
+\item 
+Le projeté orthogonal du point O sur la droite (CK) est le point M de la droite (CK) tel que la distance OM soit minimale; le point de la droite (CK) réalisant ce minimum correspond donc à $t=\frac{1}{4}$.
+
+C'est donc le point de coordonnées $\left (\frac{\sqrt{3}}{2}\times \frac{1}{4}\;,\; \frac{3}{2}\times \frac{1}{4}\;,\; -\frac{1}{4}+1\right )$ soit $\left (\frac{\sqrt{3}}{8}\;,\; \frac{3}{8}\;,\; \frac{3}{4}\right )$ est le projeté orthogonal du point O sur la droite (CK); on l'appelle H.
+
+\item
+\begin{list}{\textbullet}{On montre que H appartient au plan (ABC).}
+\item 
+$\vectt{AK}$ a pour coordonnées  
+$\begin{pmatrix}
+\frac{\sqrt{3}}{2} - 2\sqrt{3}\\[5pt] \frac{3}{2}-0 \\[5pt] 0-0
+\end{pmatrix}
+=
+\begin{pmatrix}
+-\frac{3}{2}\sqrt{3} \\[5pt] \frac{3}{2} \\[5pt] 0-0
+\end{pmatrix}$
+et celles de $\vectt{AB}$ sont
+$\begin{pmatrix}
+0-2\sqrt{3} \\ 2-0 \\ 0-0
+\end{pmatrix}
+=
+\begin{pmatrix}
+-2\sqrt{3} \\ 2\\ 0
+\end{pmatrix}$
+
+Donc $\vectt{AK} = \frac{3}{4}\vectt{AB}$ donc les points A, K et B sont alignés donc $\text{K}\in \left (\text{AB}\right )$.
+
+\item On a:
+$\left .
+\begin{array}{r}
+\text{K} \in \text{(AB)}\\
+\text{(AB)} \subset \text{(ABC)}
+\end{array}
+\right \}
+\implies \text{K} \in  \text{(ABC)}
+\implies \text{(CK)} \subset  \text{(ABC)}$
+
+\item On a:
+$\left .
+\begin{array}{r}
+\text{H} \in \text{(CK)}\\
+\text{(CK)} \subset  \text{(ABC)}
+\end{array}
+\right \}
+\implies \text{H} \in  \text{(ABC)}$
+\end{list}
+
+Donc H est un point du plan (ABC).
+
+\begin{list}{\textbullet}{On montre que H est l'orthocentre du triangle ABC.}
+\item 
+$\vectt{CK}\cdot \vectt{AB} 
+= \frac{\sqrt{3}}{8}\times \left ( -2\sqrt{3}\right ) + \frac{3}{8}\times 2 + \left (-\frac{1}{4} \right ) \times 0
+= -\frac{3}{4}+\frac{3}{4}+0=0$
+donc $\vectt{CK}\perp \vectt{AB}$ donc $\text{(CK)} \perp \text{(AB)}$.
+
+Comme $\text{H} \in \text{(CK)}$, on en déduit que $\text{(CH)} \perp \text{(AB)}$.
+\item 
+$\vectt{AH}$ a pour coordonnées  
+$\begin{pmatrix}
+\frac{\sqrt{3}}{8} - 2\sqrt{3}\\[5pt] \frac{3}{8}-0 \\[5pt] \frac{3}{4}-0
+\end{pmatrix}
+=
+\begin{pmatrix}
+-\frac{15}{8}\sqrt{3} \\[5pt] \frac{3}{8} \\[5pt] \frac{3}{4}
+\end{pmatrix}$
+et celles de $\vectt{BC}$ sont
+$\begin{pmatrix}
+0-0 \\0- 2 \\ 1-0
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 \\ -2\\ 1
+\end{pmatrix}$
+
+$\vectt{AH}\cdot \vectt{BC}
+=  -\frac{15}{8}\sqrt{3} \times 0 +  \frac{3}{8} \times (-2)+  \frac{3}{4}\times 1
+= 0-\frac{3}{4}+ \frac{3}{4} =0$
+donc $\vectt{AH}\perp \vectt{BC}$ donc $\text{(AH)} \perp \text{(BC)}$.
+\end{list}
+
+(AH) et (CH) sont donc deux hauteurs du triangle (ABC) donc H est l'orthocentre de ce triangle.
+\item 
+	\begin{enumerate}
+		\item 
+\begin{list}{\textbullet}{On démontre que la droite (OH) est orthogonale au plan (ABC).}
+\item On sait que $\vectt{OH} \perp \vectt{CK}$.
+\item $\vectt{OH} \cdot \vectt{AB}
+= \dfrac{\sqrt{3}}{8}\times \left (-2\sqrt{3}\right ) + \dfrac{3}{8}\times 2 + \dfrac{1}{4}\times 0
+= -\dfrac{3}{4}+\dfrac{3}{4} + 0 = 0$ donc $\vectt{OH} \perp \vectt{AB}$.
+\item Les vecteurs $\vectt{CK}$ et $\vectt{AB}$ ne sont pas colinéaires donc ce sont deux vecteurs directeurs du plan (ABC).
+\end{list}		
+
+Le vecteur $\vectt{OH}$ est orthogonal à deux vecteurs directeurs du plan (ABC) donc c'est un vecteur normal au plan (ABC). Donc la droite (OH) est orthogonale au plan (ABC).
+		
+		\item
+D'après le cours, si le vecteur $\vect{v}$ de coordonnées $(a\,,\, b \,,\, c)$ est normal à un plan $\mathcal{P}$, alors ce plan a une équation cartésienne de la forme $ax+by+cz+d=0$.
+
+Le vecteur $\vectt{OH}\;\left ( \frac{\sqrt{3}}{8}\,,\,\frac{3}{8}\,,\, \frac{3}{4}\right )$ est un vecteur normal au plan (ABC), donc le plan (ABC) a une équation de la forme $ \frac{\sqrt{3}}{8}x + \frac{3}{8}y + \frac{3}{4}z +d=0$ c'est-à-dire $x\sqrt{3} + 3y +6z +8d =0$.
+
+On détermine la valeur de $d$ en exprimant que le point A appartient au plan (ABC).
+
+$\begin{aligned}
+\text{A}\in \text{(ABC)}
+& \iff
+x_{\text{A}}\sqrt{3}+3 y_{\text{A}} +6z_{\text{A}}+8d=0
+\iff
+2\sqrt{3}\times \sqrt{3} +3\times 0+6\times 0 + 8d=0\\
+& \iff
+6+8d=0
+\iff 8d=-6
+\end{aligned}$
+
+Le plan (ABC) a pour équation: $x\sqrt{3} + 3y +6z -6 =0$.
+	\end{enumerate}
+	\item 
+(CK) est une hauteur du triangle (ABC) donc l'aire de ce triangle est égale à $\frac{1}{2}\,\text{CK}\times \text{AB}$.
+
+\begin{list}{\textbullet}{}
+\item Le vecteur $\vectt{CK}$ a pour coordonnées $\left ( \frac{\sqrt{3}}{2}\,,\, \frac{3}{2}\,,\, -1\right )$ donc:
+
+$\vectt{CK}^2
+=\left ( \frac{\sqrt{3}}{2}\right )^2 + \left ( \frac{3}{2}\right )^2+\left ( -1\right )^2
+= \frac{3}{4} + \frac{9}{4} +1
+= 4$ donc $\text{CK}=2$.
+\item Le vecteur $\vectt{AB}$ a pour coordonnées $\left ( -2\sqrt{3}\,,\, 2\,,\, 0\right )$ donc:
+
+$\vectt{AB}^2
+=\left ( -2\sqrt{3}\right )^2 + \left ( 2\right )^2+\left (0\right )^2
+= 12+4+0
+= 16$ donc $\text{AB}=4$.
+\end{list}
+	
+L'aire du triangle (ABC) est donc égale, en unités d'aire, à: $\frac{1}{2}\times 2\times 4$ soit 4.
+\end{enumerate}
+
+\end{document}

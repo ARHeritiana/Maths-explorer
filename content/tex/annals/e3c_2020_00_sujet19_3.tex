@@ -1,0 +1,33 @@
+\medskip
+
+On considère la fonction $f$ définie sur l’intervalle $[-2~;~2]$ par 
+
+\[f(x) = 2x^3 + 2x^2 - 2x + 3\]
+
+Soit $\mathcal{C}$ sa représentation graphique dans le repère suivant.
+
+\psset{xunit=2.75cm,yunit=0.4cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-2.5,-4)(2.4,24)
+\multido{\n=-2+1}{5}{\psline[linewidth=0.25pt,linecolor=lightgray](\n,-3)(\n,22)}
+\multido{\n=-2+2}{13}{\psline[linewidth=0.25pt,linecolor=lightgray](-2.2,\n)(2.3,\n)}
+\psaxes[linewidth=0.95pt,Dy=2]{->}(0,0)(-2.2,-3)(2.5,23.4)
+\def\Func{x x x 1 add mul  1 sub 2 mul mul 3 add }
+\psplot[plotpoints=1000,linewidth=1.25pt,linecolor=red]{-2}{2}{\Func}
+\end{pspicture}
+\begin{enumerate}
+\item  On considère la droite $d$ d’équation $y = 2x+3$.
+\begin{enumerate}
+\item  Montrer que déterminer les abscisses des points d’intersection entre la droite $d$ et la courbe $\mathcal{C}$ revient à résoudre l’équation $2x(x^2+x-2)=0$ sur l’intervalle $[-2~;~2]$.
+\item Déterminer les coordonnées des points d’intersection entre $d$ et $\mathcal{C}$.
+\end{enumerate}
+\item On considère la droite $d'$ d'équation $y=2x+a$ où $a$ est un nombre réel.
+
+À l’aide du graphique, donner une valeur de $a$ pour laquelle la droite $d'$ et la courbe $\mathcal{C}$ ont un seul point d’intersection.
+\item On note $f'$ la fonction dérivée de $f$.
+\begin{enumerate}
+\item  Démontrer que, pour tout nombre réel $x$ appartenant à l’intervalle $[-2~;~2]$, \[f'(x)=6\left(x+1\right)\left(x-\frac{1}{3}\right).\]
+\item Étudier les variations de $f$ sur l’intervalle $[- 2~;~2]$. 
+\end{enumerate}
+\end{enumerate}
+
+\vspace{0,5cm}

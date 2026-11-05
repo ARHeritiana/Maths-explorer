@@ -1,0 +1,161 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet1_madagascar_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{tabularx}{\linewidth}{|X|}\hline
+\textbf{Principaux domaines abordés :} Probabilités\\ \hline
+\end{tabularx}
+
+\medskip
+
+Dans une station de ski, il existe deux types de forfait selon l'âge du skieur :
+
+\begin{itemize}
+\item un forfait JUNIOR pour les personnes de moins de 25 ans ;
+\item un forfait SENIOR pour les autres.
+\end{itemize}
+
+Par ailleurs, un usager peut choisir, en plus du forfait correspondant à son âge l'\emph{option  coupe-file} qui permet d'écourter le temps d'attente aux remontées mécaniques.
+
+On admet que:
+\begin{itemize}
+\item[$\bullet~~$] 20\,\% des skieurs ont un forfait JUNIOR ;
+\item[$\bullet~~$] 80\,\% des skieurs ont un forfait SENIOR ;
+\item[$\bullet~~$] parmi les skieurs ayant un forfait JUNIOR, 6\,\% choisissent l'option coupe-file ;
+\item[$\bullet~~$] parmi les skieurs ayant un forfait SENIOR, 12,5\,\% choisissent l'option coupe-file.
+\end{itemize}
+
+On interroge un skieur au hasard et on considère les évènements :
+
+\begin{itemize}
+\item[$\bullet~~$] $J$ : \og le skieur a un forfait JUNIOR \fg ;
+\item[$\bullet~~$] $C$ : \og le skieur choisit l'option coupe-file \fg.
+\end{itemize}
+
+\medskip
+
+\emph{Les deux parties peuvent être traitées de manière indépendante}
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item Traduire la situation par un arbre pondéré.
+\item Calculer la probabilité $P(J \cap C)$.
+\item Démontrer que la probabilité que le skieur choisisse l'option coupe-file est égale à $0,112$.
+\item Le skieur a choisi l'option coupe-file. Quelle est la probabilité qu'il s'agisse d'un
+skieur ayant un forfait SENIOR ? Arrondir le résultat à $10^{-3}$.
+\item Est-il vrai que les personnes de moins de vingt-cinq ans représentent moins de 15\,\% des skieurs ayant choisi l'option coupe-file ? Expliquer.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On rappelle que la probabilité qu'un skieur choisisse l'option coupe-file est égale à 0,112.
+
+On considère un échantillon de $30$ skieurs choisis au hasard.
+
+Soit $X$ la variable aléatoire qui compte le nombre des skieurs de l'échantillon ayant
+choisi t'option coupe-file.
+
+\medskip
+
+\begin{enumerate}
+\item On admet que la variable aléatoire $X$ suit une loi binomiale. 
+
+Donner les paramètres de cette loi.
+\item Calculer la probabilité qu'au moins un des $30$ skieurs ait choisi l'option coupe-file. Arrondir le résultat à $10^{-3}$.
+\item Calculer la probabilité qu'au plus un des $30$ skieurs ait choisi l'option coupe-file. Arrondir le résultat à $10^{-3}$.
+\item Calculer l'espérance mathématique de la variable aléatoire $X$.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

@@ -1,0 +1,200 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2025/tex/eam_specialite_2025_06_sujet0v1_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+On considère la figure suivante, représentée dans un repère orthonormé $\big(O;~\vec{\imath},~\vec{\jmath}\big)$.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5,>=latex,
+    vecteur/.style={very thick,-latex,blue},
+    every label/.append style={font=\scriptsize}]
+  
+  
+  \draw[->,thick] (-0.4,0) -- (4.7,0);
+  \draw[->,thick] (0,-0.4) -- (0,4.7);
+  
+  
+  \draw[vecteur,black] (0,0) -- (1,0) node [midway,below] {$\vec{\imath}$};
+  \draw[vecteur,black] (0,0) -- (0,1) node [midway,left] {$\vec{\jmath}$};
+  
+  
+  \coordinate[label=below left:{$O$}] (O) at (0,0);
+  \coordinate[label=above right:A] (A) at (4, 0);
+  \coordinate[label=above right:B] (B) at (4, 4);
+  \coordinate[label=above right:C] (C) at (0, 4);
+  \coordinate[label=right:I] (I) at (4, 3);
+  \coordinate[label=below:H] (H) at (1.92,1.44);
+  \coordinate[label=above:D] (D) at (2, 2);
+  \coordinate[label=above:$\varepsilon$] (De) at ($(D)+(60:0.75cm)$);
+  
+  
+  \draw[very thick,blue] (O) -- (A) -- (B) -- (C) -- cycle;
+  
+  
+  \draw[very thick,blue] (C) -- (H) -- (I);
+  
+  
+  \draw[blue] let \p1=($(I)-(H)$), \p2=($(C)-(H)$),
+    \n1={atan2(\y1,\x1)}, \n2={atan2(\y2,\x2)} in
+    (H) ++(\n1:4mm) -- ++(\n2:4mm) -- ++(\n1+180:4mm);
+  
+  
+  \draw[thick,red] (D) circle [radius=0.5];
+  
+  
+  \fill[red] (D) circle (2pt);
+  \fill[red] (A) circle (2pt);
+  \fill[red] (B) circle (2pt);
+  \fill[red] (C) circle (2pt);
+  \fill[red] (H) circle (2pt);
+  \fill[red] (I) circle (2pt);
+  
+  
+  \node[below] at (4,0) {$4$};
+  \node[left] at (0,4) {$4$};
+  
+\end{tikzpicture}
+\end{center}
+
+On dispose des données suivantes :
+\begin{itemize}
+    \item Le quadrilatère OABC est un carré de côté 4 ;
+    \item On a A$(4~;~0)$, B$(4~;~4)$, C$(0~;~4)$, I$(4~;~3)$ ;
+    \item Le point H est le projeté orthogonal du point C sur la droite (OI) ;
+    \item On note $\varepsilon$ le cercle de centre D$(2~;~2)$ et de rayon $0,5$.
+\end{itemize}
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+	\item Déterminer les coordonnées des vecteurs $\vect{\text{OI}}$ et $\vect{\text{OC}}$.
+	\item En déduire le produit scalaire $\vect{\text{OI}} \cdot \vect{\text{OC}}$.
+	\end{enumerate}
+
+\bigskip
+
+\item 
+	\begin{enumerate}
+	\item Exprimer le produit scalaire $\vect{\text{OI}} \cdot \vect{\text{OC}}$ en fonction des longueurs OH et OI.
+	\item Calculer la longueur OI.
+	\item En déduire que OH $= 2,4$.
+	\end{enumerate}
+\end{enumerate}
+
+\begin{center}
+\begin{minipage}{0.75\textwidth}
+\begin{enumerate}[start=3]
+\item 
+	\begin{enumerate}
+	\item Déterminer une équation cartésienne de la droite (CH).
+	\item Justifier qu'une équation du cercle $\varepsilon$ est :
+\[x^2 + y^2 - 4x - 4y + 7,75 = 0.\]
+	\item Le point M$(1,5~;~2)$ appartient-il à l'intersection du cercle $\varepsilon$ et de la droite (CH) ? Justifier.
+	\end{enumerate}
+\end{enumerate}
+\end{minipage}
+\hfill
+\fbox{
+\begin{minipage}{0.2\linewidth}
+\centering
+Aide au calcul.
+
+\smallskip
+
+$0,5^2 = 0,25$
+
+\smallskip
+
+$1,5^2 = 2,25$
+
+\smallskip
+
+$2,5^2 = 6,25$
+
+\smallskip
+
+$5 \times 2,4 = 12$
+\end{minipage}
+}
+\end{center}
+
+\end{document}

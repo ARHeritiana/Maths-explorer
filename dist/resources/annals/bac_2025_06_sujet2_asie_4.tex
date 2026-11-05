@@ -1,0 +1,168 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet2_asie_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Dans un laboratoire, on étudie une réaction chimique dans un réacteur fermé, sous certaines conditions. Le traitement numérique des données expérimentales a permis de modéliser l'évolution de la température de cette réaction chimique en fonction du temps.
+
+L'objectif de cet exercice est d'étudier cette modélisation.
+
+La température est exprimée en degré Celsius et le temps est exprimé en minute.
+
+Dans tout l'exercice, on se place sur l'intervalle de temps $[0~;~10]$.
+
+Les parties A et B peuvent être traitées de façon indépendante.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+Dans un repère orthogonal du plan, on donne ci-dessous la courbe représentative de la fonction température en fonction du temps sur l'intervalle $[0~;~10]$.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer, par lecture graphique, au bout de combien de temps la température redescend à sa valeur initiale à l'instant $t = 0$.
+\end{enumerate}
+
+\begin{center}
+\psset{xunit=1cm,yunit=0.1cm,arrowsize=2pt 3}
+\begin{pspicture}(-1,-5)(10,73)
+\multido{\n=0+1}{11}{\psline[linewidth=0.15pt](\n,0)(\n,70)}
+\multido{\n=0+10}{8}{\psline[linewidth=0.15pt](0,\n,)(10,\n)}
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle,Dy=10]{->}(0,0)(0,0)(10,70)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle,Dy=10](0,0)(0,0)(10,70)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0}{10}{60 x mul 40 add 2.71828 0.5 x mul exp div}
+\uput[u](9.5,0){$t$ (min)}\uput[r](0,71){$\degres$ C}
+\end{pspicture}
+\end{center}
+
+On appelle $f$ la fonction température représentée par la courbe ci-dessus.
+
+On précise que la fonction $f$ est définie et dérivable sur l'intervalle $[0~;~10]$.
+
+On admet que la fonction $f$ peut s'écrire sous la forme $f(t) = (at + b)\e^{-0,5 t}$ où $a$ et $b$ sont deux constantes réelles.
+
+\begin{enumerate}[start=2]
+	\item On admet que la valeur exacte de $f(0)$ est 40. En déduire la valeur de $b$.
+	\item On admet que $f$ vérifie l'équation différentielle $(\mathrm{E}): y'+ 0,5 y= 60 \e^{-0,5 t}$. Déterminer la valeur de $a$.
+\end{enumerate}
+\medskip 
+
+\textbf{Partie B : Étude de la fonction $f$}
+\medskip 
+
+On admet que la fonction $f$ est définie pour tout réel $t$ de l'intervalle $[0~;~10]$ par
+
+\[f(t) = (60 t+ 40)\e^{-0,5 t}\]
+
+\smallskip
+
+\begin{enumerate}
+\item Montrer que pour tout réel $t$ de l'intervalle $[0 ; 10]$, on a : $f'(t)=(40-30 t) \e^{-0,5 t}$.
+\item
+	\begin{enumerate}
+		\item Étudier le sens de variation de la fonction $f$ sur l'intervalle $[0 ; 10]$.
+
+
+Dresser le tableau de variations de la fonction $f$ en y faisant figurer les images des valeurs présentes dans le tableau.
+
+		\item Montrer que l'équation $f(t) = 40$ admet une unique solution $\alpha$ strictement positive sur l'intervalle $]0~;~10]$.
+		\item Donner une valeur approchée de $\alpha$ au dixième près et en donner une interprétation dans le contexte de l'exercice.
+	\end{enumerate}
+\item On définit la température moyenne, exprimée en degré Celsius, de cette réaction chimique entre deux temps $t_{1}$ et $t_{2}$, exprimés en minute, par
+
+\[\dfrac{1}{t_{2}-t_{1}} \int_{t_{1}}^{t_{2}} f(t)\,\rm{d} t\]
+
+	\begin{enumerate}
+		\item À l'aide d'une intégration par parties, montrer que
+
+\[\int_{0}^{4} f(t) \, \rm{d}t=320-\dfrac{800}{\e^{2}}\]
+
+		\item En déduire une valeur approchée, au degré Celsius près, de la température moyenne de cette réaction chimique au cours des 4 premières minutes.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

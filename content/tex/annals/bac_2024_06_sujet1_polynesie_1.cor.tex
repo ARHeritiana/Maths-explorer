@@ -1,0 +1,130 @@
+\medskip
+
+
+
+
+
+
+
+
+
+
+\begin{center}A$(2~;~1~;~-1)$, \quad B$(-1~;~2~;~1)$ et \quad C$(5~;~0~;~-3)$.\end{center}
+
+On note $\mathcal{P}$ le plan d'équation cartésienne:
+\[x + 5y - 2z + 3 = 0.\]
+
+On note $\mathcal{D}$ la droite de représentation paramétrique :
+
+\[\left\{\begin{array}{l c r}
+x&=&-t +3\\
+y&=&t+ 2\\
+z &=& 2t +1
+\end{array}\right., \: t \in \R.\]
+
+\medskip
+
+\textbf{Affirmation 1 :}
+
+
+On a $\vect{\text{OA}}\begin{pmatrix}2\\1\\-1\end{pmatrix}$ et $\vect{\text{OC}}\begin{pmatrix}5\\0\\-3\end{pmatrix}$ : ces vecteurs ne sont pas colinéaires donc les points O, A et C ne sont pas alignés et définissent bien un plan.
+
+D'autre part : $\vect{n} \cdot \vect{\text{OA}} = 2 + 0 - 2 = 0$ et $\vect{n} \cdot \vect{\text{OC}} = 5 + 0 - 6 = - 1$ ; conclusion le vecteur $\vect{n}$ est orthogonal au vecteur $\vect{\text{OA}}$ du plan (OAC) mais n'est pas orthogonal au vecteur $\vect{\text{OC}}$ de ce même plan ; il n'est donc pas normal au plan (OAC : l'affirmation 1 est fausse.
+\medskip
+
+\textbf{Affirmation 2 :}
+
+
+
+Représentation paramétrique de (AB) : on a :
+
+$M(x~;~y~;~z) \in (\text{AB}) \iff \vect{\text{A}M} = u\vect{\text{AB}}$, avec $u \in \R$.
+Comme $\vect{\text{AB}}\begin{pmatrix}-3\\1\\2\end{pmatrix}$ on obtient :
+
+$M(x~;~y~;~z) \in (\text{AB}) \iff \left\{\begin{array}{l c l}
+x - 2 &=& -3u\\
+y - 1&=&1u\\
+z + 1 &=&2u
+\end{array}\right., \: u \in \R \iff \left\{\begin{array}{l c l}
+x &=& 2  -3u\\
+y =& &1 + u\\
+z &=&- 1 + 2u
+\end{array}\right., \: u \in \R \iff$.
+
+Donc $M(x~;~y~;~z) \in (\text{AB}) \cap \mathcal{D} \iff \left\{\begin{array}{l c l}
+2 - 3u	&=&3 - t\\
+1 + u	&=&2 + t\\
+- 1 + 2u&=&1 + 2t
+\end{array}\right.$
+
+La deuxième équation donne $u = t + 1$ et  en remplaçant $u$ par $t + 1$ dans les deux autres on obtient le système :
+
+$\left\{\begin{array}{l c l}
+u 				&=& t + 1\\
+2 - 3(t + 1) 	&=& 3 - t\\
+- 1 + 2(1 + t) 	&=&1 + 2t
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+u 				&=& t + 1\\
+2 - 3t - 3 		&=& 3 - t\\
+- 1 + 2 + 2t 	&=&1 + 2t
+\end{array}\right.\iff
+\left\{\begin{array}{l c l}
+u 	&=& t + 1\\
+- 4	&=& 2t\\
+1 	&=& 1
+\end{array}\right.$ : d'où $t = - 2$ et $u = t + 1 = - 2 + 1$.
+
+Conclusion : l'affirmation 2 est vraie.
+
+\medskip
+
+\textbf{Affirmation 3 :}
+
+
+Si un point $M(x~;~y~;~z)$ est commun ) ma droite $\mathcal{D}$ et au plan $\mathcal{P}$ ses coordonnées vérifient l'équation paramétrique de $\mathcal{D}$ et l'équation cartésienne de $\mathcal{P}$, donc le système :
+
+$\left\{\begin{array}{l c l}
+x&=&-t +3\\
+y&=&t+ 2\\
+z &=& 2t +1\\
+x + 5y - 2z + 3&=&0
+\end{array}\right., \: t \in \R,$ d'où en remplaçant dans l'équation du plan $x, y$ et $z$ par leurs valeurs en fonction de $t$ :
+
+
+$- t + 3 + 5(t + 2) - 2(2t + 1)  + 3 = 0 \iff -t + 3 + 5t + 10 - 4t - 2 + 3 = 0 \iff 0t = - 14$  cette équation n'a pas de solution : $\mathcal{D}$ et $\mathcal{P}$ sont parallèles (strictement) ; l'affirmation 3 est vraie.
+\medskip
+
+\textbf{Affirmation 4 :}
+
+
+
+
+
+
+$\bullet~$Le milieu H de [BC] a pour coordonnées H$\left(\dfrac{-1 + 5}{2}~;~\dfrac{2 + 0}{2}~;~\dfrac{1 - 3}{2}\right)$, soit H$(2~;~1~;~-1)$.
+
+H $\in Q \iff 3 \times 2 - 1 - 2 \times (-1) - 7 = 0 \iff 6 - 1 + 2 - 7 = 0 \iff 0 = 0$ : Donc H $\in Q$.
+
+\vspace{0.5em}
+
+$\bullet~$Calculons le vecteur $\vec{BC}$ :\\
+$B(-1~;~2~;~1)$ et $C(5~;~0~;~-3)$, donc~:
+\[
+\vec{BC} = \begin{pmatrix} 5 - (-1) \\ 0 - 2 \\ -3 - 1 \end{pmatrix} = \begin{pmatrix} 6 \\ -2 \\ -4 \end{pmatrix}.
+\]
+
+Le vecteur normal du plan $Q$ est $\vec{n}_Q = \begin{pmatrix} 3 \\ -1 \\ -2 \end{pmatrix}$.
+
+Calculons le produit scalaire $\vec{BC} \cdot \vec{n}_Q$ :
+\[
+\vec{BC} \cdot \vec{n}_Q = 6 \times 3 + (-2) \times (-1) + (-4) \times (-2) = 18 + 2 + 8 = 28.
+\]
+
+Or, $28 \neq 0$ donc $\vec{BC}$ n'est pas orthogonal à $\vec{n}_Q$.
+
+\vspace{0.5em}
+
+\textbf{Conclusion :} Le point H appartient bien au plan $Q$, mais le vecteur $\vec{BC}$ n'est pas orthogonal au vecteur normal du plan. Le plan $Q$ n'est donc pas perpendiculaire à [BC], et par conséquent, ce n'est \textbf{pas} le plan médiateur du segment [BC] ; l'affirmation 4 est fausse.
+
+
+\medskip

@@ -1,0 +1,176 @@
+\begin{list}{\textbullet}{En France il y a deux formules pour obtenir le permis de conduire:}
+			\item Suivre à partir de 15 ans une formation de conduite accompagnée pendant 2 ans ;
+		\item Suivre la formation classique (sans conduite accompagnée) à partir de 17 ans.
+	\end{list}
+
+	
+
+	En France actuellement, parmi les jeunes qui suivent une formation au permis de con-duire, 16~\% choisissent la formation de conduite accompagnée, et parmi eux, 74,7~\% réussissent l'examen de conduite dès leur première tentative.
+	En suivant la formation classique, le taux de réussite dès la première tentative est seulement de 56,8~\%.
+	On choisit au hasard un jeune français qui a déjà passé l'examen de conduite et on considère les évènements $A$ et $R$ suivants :
+
+	\begin{list}{\textbullet}{}
+		\item $A$ : \og le jeune a suivi la formation de conduite accompagnée\fg{};
+		\item $R$ : \og le jeune a eu le permis dès sa première tentative \fg{}.
+	\end{list}
+
+
+
+
+
+
+
+	\subsection*{Partie A}
+
+		\begin{enumerate}
+			\item On dresse un arbre de probabilités modélisant cette situation.
+			
+\begin{center}
+\bigskip
+\psset{nodesepB=4pt,levelsep=35mm,treesep=10mm}
+\pstree[treemode=R,nrot=:U]{\TR{}}
+{\pstree[nodesepA=4pt]{\TR{$A$}\naput{\small $0,16$}}
+		{\TR{$R$}\naput{\small $0,747$}
+		\TR{$\overline{R}$}\nbput{\small $1-0,747=0,253$}
+		}
+\pstree[nodesepA=4pt]{\TR{$\overline{A}$}\nbput{\small $1-0,16=0,84$}}
+		{\TR{$R$}\naput{\small $0,568$}
+		\TR{$\overline{R}$}\nbput{\small $1-0,568 = 0,432$}
+		}
+	}
+	\bigskip
+\end{center}			
+			
+			\item \begin{enumerate}
+				\item 
+D'après la loi des probabilités totales:
+
+$\begin{aligned}
+P(R)
+& = P(A \cap R) + P\left(\overline{ A} \cap R\right) 
+= P(A) \times P_A(R) + P\left(\overline{A}\right) \times P_{\overline{A}}(R)\\
+& = 0,16 \times 0,747 + 0,84 \times 0,568 = \np{0,11952} + \np{0,47712}\\
+& = \np{0,59664}
+\end{aligned}$
+				
+			\end{enumerate}
+
+Dans la suite, on gardera la valeur $0,597$ arrondie à $10^{-3}$ près.
+
+			\begin{enumerate}[resume]
+				\item 
+Une probabilité de $0,597$ correspond à un pourcentage de $59,7\,\%$.
+
+Le pourcentage de réussite lors du premier passage du permis est de $59,7\,\%$, quel que soit le mode d'apprentissage.				
+			\end{enumerate}
+
+			\item On choisit un jeune ayant eu son permis dès sa première tentative. 
+
+La probabilité qu'il ait suivi la formation de conduite accompagnée est:
+
+$P_{R}(A)= \dfrac{P\left (A\cap R\right )}{P\left (R\right )} \approx \dfrac{0,16\times 0,747}{0,597} \approx 0,200$
+
+			\item On cherche la proportion $x$ de jeunes suivant la formation de conduite accompagnée pour que le taux de réussite global (quelle que soit la formation choisie) dès la première tentative à l'examen de conduite dépasse $70~\%$.
+			
+			L'arbre précédent devient:
+			
+\begin{center}
+\bigskip
+\psset{nodesepB=4pt,levelsep=35mm,treesep=10mm}
+\pstree[treemode=R]{\TR{}}
+{\pstree[nodesepA=4pt,nrot=:U]{\TR{$A$}\naput{\small $x$}}
+		{\TR{$R$}\naput{\small $0,747$}
+		\TR{$\overline{R}$}\nbput{\small $0,253$}
+		}
+\pstree[nodesepA=4pt,nrot=:U]{\TR{$\overline{A}$}\nbput{\small $1-x$}}
+		{\TR{$R$}\naput{\small $0,568$}
+		\TR{$\overline{R}$}\nbput{\small $0,432$}
+		}
+	}
+	\bigskip
+\end{center}		
+
+Le taux de réussite devient alors:
+
+$P(R) =x\times  0,747 + (1-x)\times 0,568 = 0,747x + 0,568 - 0,568x = 0,179x + 0,568$
+
+$P(R) > 0,70
+\iff 0,179x + 0,568 > 0,7 
+\iff 0,179x > 0,132 
+\iff x > \dfrac{0,132}{0,179}$
+
+Or $\dfrac{0,132}{0,179} \approx \np{0,737}$.
+
+Il faudrait donc qu'au moins $73,7\,\%$ des jeunes choisissent la conduite accompagnée pour dépasser un taux de réussite de 70\,\%.
+			
+		\end{enumerate}
+
+	\subsection*{Partie B}
+		Une auto-école présente pour la première fois à l'examen de conduite 10 candidats qui ont suivi la formation de conduite accompagnée. On modélise le fait de passer les examens de conduite par des épreuves aléatoires indépendantes.
+
+
+
+		On note $X$ la variable aléatoire donnant le nombre de ces 10 candidats qui auront leur permis dès la première tentative.
+
+
+		\begin{enumerate}
+			\item 
+L'expérience élémentaire consiste à choisir un candidat; il y a deux possibilités: il est reçu, avec une probabilité $p=0,747$, ou il ne l'est pas.
+
+On réalise 10 fois cette expérience et on suppose que les épreuves aléatoires sont indépendantes.
+
+Donc  la variable aléatoire $X$ donnant le nombre de ces 10 candidats qui auront leur permis dès la première tentative suit la loi binomiale de paramètres $n=10$ et $p=0,747$.
+
+			\item 
+$P(X \geqslant 6) = 1-  P(X \leqslant 5)$
+
+À la calculatrice on trouve  $P(X \leqslant 5) \approx 0,082$ donc $P(X \geqslant 6) \approx 0,918$.
+
+On peut donc estimer à $91,8\,\%$ le pourcentage de chances que sur 10 candidats, au moins 6 obtiennent le permis dès leur première tentative.
+
+			\item 
+$E(X)=np=10\times 0,747=7,47$ et $V(X)=np\left (1-p\right )=10\times 0,747 \times 0,253 \approx 1,890$
+
+			\item Il y a aussi 40 candidats qui n'ont pas suivi la formation de conduite accompagnée et qui se présentent pour la première fois à l'examen de conduite. De la même manière, on note $Y$ la variable aléatoire qui donne le nombre de ces candidats qui auront le permis à la première tentative. On admet que $Y$ est indépendante de la variable $X$ et qu'en fait $E(Y)=22,53$ et $V(Y)=9,81$.
+
+
+
+			On note alors $Z$ la variable aléatoire comptant le nombre total de candidats (parmi les 50) qui auront le permis de conduire dès la première tentative.
+
+
+
+			\begin{enumerate}
+				\item 
+D'après le texte: $Z=X+Y$ 
+
+D'après la linéarité de l'espérance: $E(Z)=E(X)+E(Y) = 7,47+ 22,53 = 30$.
+
+Les variables $X$ et $Y$ sont indépendantes, donc on peut utiliser l'additivité de la variance: $V(Z)=V(X)+V(Y) \approx 1,89 + 9,81 = 11,7$.
+
+	\item 
+	
+La variable aléatoire $Z$ a pour espérance $E(Z)$ et pour variance $V(Z)$ donc, d'après l'inégalité de Bienaymé-Tchebychev, on a:
+
+pour tout $\delta\in\, \left ]0\;;\;+\infty\strut \right [$, $P\left ( \left |Z-E(Z)\strut \right | \geqslant \delta \right ) \leqslant \dfrac{V(Z)}{\delta^2}$.
+
+$E(Z)=30$ et $V(Z)=11,7$ donc  l'inégalité de Bienaymé-Tchebychev devient:
+
+pour tout $\delta\in\, \left ]0\;;\;+\infty\strut \right [$, $P\left ( \left |Z-30\strut \right | \geqslant \delta \right ) \leqslant \dfrac{11,7}{\delta^2}$.
+
+On cherche la probabilité qu'il y ait moins de 20  ou plus de 40 candidats reçus.
+
+$ Z\leqslant 20 \iff Z-30 \leqslant -10$ et $Z \geqslant 40 \iff Z-30 \geqslant 10$
+
+$\left ( (Z-30 \leqslant -10) \text{ ou } (Z-30 \geqslant 10) \strut \right )\iff \left |Z-30 \strut \right | \geqslant 10$
+
+Pour $\delta=10$, l'inégalité de Bienaymé-Tchebychev devient:
+
+$P\left ( \left |Z-30\strut \right | \geqslant 10 \right ) \leqslant \dfrac{11,7}{10^2}$
+donc
+$P\left ( \left |Z-30\strut \right | \geqslant 10 \right ) \leqslant 0,117$
+
+donc la probabilité qu'il y ait au plus 20 ou au moins 40 candidats qui aient leur permis dès la première tentative est inférieure à 0,12.
+			\end{enumerate}
+		\end{enumerate}
+
+\bigskip

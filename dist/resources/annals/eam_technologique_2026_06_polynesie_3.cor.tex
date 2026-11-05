@@ -1,0 +1,148 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_technologique_2026_06_polynesie_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+	\item On développe l'expression factorisée proposée :
+
+	$(0,5x + 1,5)(-x+5) = 0,5x \times (-x) + 0,5x \times 5 + 1,5 \times (-x) + 1,5 \times 5 $
+
+	On réduit les produits :
+
+	$(0,5x + 1,5)(-x+5) = -0,5x^2 + 2,5x - 1,5x + 7,5 $
+
+	On réduit les sommes :
+
+	$(0,5x + 1,5)(-x+5) = -0,5x^2 + x + 7,5 $
+
+	On obtient bien l'expression de $f(x)$ donnée dans le sujet.
+
+	Pour tout $x$ appartenant à l'intervalle $[-4 ; 6]$,
+	\[
+	f(x)=(0,5x + 1,5)(-x+5) = -0,5x^2 +  x + 7,5.
+	\]
+
+	\item Le nombre dérivé en 3 est la pente de la tangente à la courbe au point d'abscisse 3.
+
+	Par lecture graphique, \quad $f'(3) = \dfrac{4 - 6}{4 - 3} = \dfrac{-2}{1} = -2$.
+
+	En donnant l'expression de la fonction dérivée : \quad $f'(x) = -0,5 \times (2x) + 1 = -x+1$.
+
+	On détermine \quad $f'(3) = -3  + 1 = -2$.
+
+
+	\item \begin{enumerate}
+		\item Graphiquement, les points de la courbe d'ordonnée inférieure ou égal à 0 sont les points d'abscisse appartenant à $\left[-4 ; -3\right]\cup\left[5 ; 6\right]$.
+
+		Algébriquement, on utilise la forme factorisée pour déterminer le signe.
+
+		$\begin{aligned}[t]
+			0,5x + 1,5 = 0
+			&\iff 0,5x = -1,5 \\
+			&\iff x = -3
+		\end{aligned}$
+		\quad et \quad
+		$\begin{aligned}[t]
+			0,5x + 1,5 > 0
+			&\iff 0,5x > -1,5 \\
+			&\iff x > -3
+		\end{aligned}$
+
+		$-x+5 = 0 \iff x = 5$\quad  et  \quad $\begin{aligned}[t]
+			-x+5 > 0 &\iff 5 > x \\&\iff x < 5.
+		\end{aligned}$
+
+	Sur l'intervalle $[-3 ; 5]$,\quad $0,5x + 1,5 \geqslant 0$ \quad  et \quad $-x+5 \geqslant 0$
+
+	donc le produit \quad $(0,5x + 1,5)(-x+5)$ \quad est positif.
+
+	\textbf{L'affirmation~a est fausse.}
+
+	\item Graphiquement, on voit que la fonction est décroissante sur l'intervalle $[1 ; 4]$, donc le nombre dérivé $f'(x)$ est négatif sur l'intervalle $[1 ; 4]$.
+
+	On a vu que \quad $f'(3) = -2$ \quad donc $f'(x)$ n'est pas positif sur l'intervalle $[1 ; 4]$.
+
+	\textbf{L'affirmation~b est fausse.}
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

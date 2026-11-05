@@ -1,0 +1,86 @@
+\medskip
+
+On considère la fonction $f$ définie sur $\R$ par:
+\[f(x) = \dfrac{1}{1 + \text{e}^{- 3x}}.\]
+
+On note $\mathcal{C}_f$ sa courbe représentative dans un repère orthogonal du plan.
+
+On nomme A le point de coordonnées $\left(0~;~\dfrac12\right)$ et B le point de coordonnées $\left(1~;~\dfrac54\right)$.
+
+On a tracé ci-dessous la courbe $\mathcal{C}_f$ et $\mathcal{T}$ la tangente à la courbe $\mathcal{C}_f$ au point d'abscisse $0$.
+
+\begin{center}
+\psset{xunit=1.25cm,yunit=2.5cm,arrowsize=2pt 3}
+\begin{pspicture*}(-2.5,-0.5)(3,1.5)
+\psgrid[subgriddiv=4](-3,-1)(3,2)
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10]{->}(0,0)(-2.5,-0.5)(3,1.5)
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10](0,0)(1.1,1.1)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-2.5}{3}{2.71828 x 3 mul exp 2.71828 x 3 mul exp 1 add div}
+\psplot[plotpoints=2000,linewidth=1.25pt]{-2.5}{3}{3 x mul 4 div 0.5 add}
+\uput[l](0,0.5){A}\uput[dr](1,1.25){B}
+\uput[dr](1,0){1}\uput[ul](0,1){1}
+\psdots[dotstyle=+,dotangle=45,dotscale=1.5](0,0.5)(1,1.25)
+\uput[d](2.8,0.9){\blue $\mathcal{C}_f$}\uput[r](-1.2,-0.4){$\mathcal{T}$}
+\end{pspicture*}
+\end{center}
+
+\textbf{Partie A : lectures graphiques}
+
+\medskip
+
+Dans cette partie, les résultats seront obtenus par lecture graphique. Aucune justification n'est demandée.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer l'équation réduite de la tangente $\mathcal{T}$.
+\item Donner les intervalles sur lesquels la fonction $f$ semble convexe ou concave.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B : étude de la fonction}
+
+\medskip
+
+\begin{enumerate}
+\item On admet que la fonction $f$ est dérivable sur $\R$.
+
+Déterminer l'expression de sa fonction dérivée $f'$.
+\item Justifier que la fonction $f$ est strictement croissante sur $\R$.
+\item
+	\begin{enumerate}
+		\item Déterminer la limite en $+ \infty$ de la fonction $f$.
+		\item Déterminer la limite en $- \infty$ de la fonction $f$.
+	\end{enumerate}
+\item Déterminer la valeur exacte de la solution $\alpha$ de l'équation $f(x) = 0,99$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie C : Tangente et convexité}
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer par le calcul une équation de la tangente $\mathcal{T}$ à la courbe $\mathcal{C}_f$ au point d'abscisse $0$.
+
+On admet que la fonction $f$ est deux fois dérivable sur $\R$. 
+
+On note $f''$ la fonction dérivée seconde de la fonction $f$.
+
+On admet que $f''$ est définie sur $\R$ par :
+\[f''(x) = \dfrac{9\text{e}^{-3x} \left(\text{e}^{-3x} - 1\right)}{\left(1 + \text{e}^{-3x} \right)^3}.\]
+
+\item Étudier le signe de la fonction $f''$ sur $\R$.
+\item 
+	\begin{enumerate}
+		\item Indiquer, en justifiant, sur quel(s) intervalle(s) la fonction $f$ est convexe.
+		\item Que représente le point A pour la courbe $\mathcal{C}_f$ ?
+\item  En déduire la position relative de la tangente $\mathcal{T}$ et de la courbe $\mathcal{C}_f$.
+
+Justifier la réponse.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip

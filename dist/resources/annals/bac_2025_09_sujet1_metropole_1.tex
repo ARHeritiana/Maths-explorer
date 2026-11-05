@@ -1,0 +1,166 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_09_sujet1_metropole_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On considère l'équation différentielle
+
+\[(E)\: \qquad y' + 0,4y = \e^{-0,4t}\]
+
+où $y$ est une fonction de la variable réelle $t$.
+
+On cherche l'ensemble des fonctions définies et dérivables sur $\R$ qui sont solutions
+de cette équation.
+
+\medskip
+
+\begin{enumerate}
+\item Soit $u$ la fonction définie sur $\R$ par : $u(t) = t\e^{-0,4t}$.
+
+Vérifier que $u$ est solution de $(E)$.
+\item Soit $f$ une fonction définie et dérivable sur $\R$.
+
+On note $g$ la fonction définie sur $\R$ par : $g(t) = f(t) - u(t)$.
+
+Soit $(H)$ l'équation différentielle $y' + 0,4y = 0$.
+	\begin{enumerate}
+		\item Démontrer que si la fonction $g$ est solution de l'équation différentielle $(H)$ alors la fonction $f$ est solution de l'équation différentielle $(E)$.
+	\end{enumerate}		
+		
+On admettra que la réciproque est vraie.
+
+	\begin{enumerate}[resume]
+		\item Résoudre l'équation différentielle $(H)$.
+		\item En déduire les solutions de $(E)$.
+		\item Déterminer la solution $f$ de $(E)$ telle que $f(0) = 1$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On s'intéresse à la glycémie chez une personne venant de prendre un repas.
+
+La glycémie en g.L$^{-1}$, en fonction du temps $t$, exprimé en heure, écoulé depuis la fin
+du repas, est modélisée par la fonction $f$ définie sur [0~;~6] par :
+
+\[f(t) = (t + 1)\e^{-0,4t}.\]
+
+\medskip
+
+\begin{enumerate}
+\item
+	\begin{enumerate}
+		\item Montrer que, pour tout $t \in [0~;~6],\: f'(t) = (- 0,4t + 0,6)\e^{-0,4t}$.
+		\item Étudier les variations de $f$ sur [0~;~6] puis dresser son tableau de variations sur cet intervalle.
+	\end{enumerate}
+\item Une personne est en hypoglycémie lorsque sa glycémie est inférieure à 0,7~g.L$^{-1}$.
+	\begin{enumerate}
+		\item Démontrer que sur l'intervalle [0~;~6] l'équation $f(t) = 0,7$ admet une unique
+solution que l'on notera $\alpha$.
+		\item Au bout de combien de temps après avoir pris son repas cette personne est-
+elle en hypoglycémie ?
+
+On exprimera ce temps à la minute près.
+	\end{enumerate}
+\item On souhaite déterminer la glycémie moyenne en g.L$^{-1}$ chez cette personne lors des six heures qui suivent le repas.
+	\begin{enumerate}
+		\item À l'aide d'une intégration par parties, montrer que:
+
+\[\displaystyle\int_0^6 f(t)\: \text{d}t = - 23,75\e^{-2,4} + 8,75.\]
+
+		\item Calculer la glycémie moyenne en g.L$^{-1}$ chez cette personne lors des six heures qui suivent le repas.
+		\item En remarquant que la fonction $f$ est solution de l'équation différentielle $(E)$, expliquer comment on aurait pu obtenir ce résultat autrement.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

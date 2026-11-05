@@ -1,0 +1,225 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet2_asie_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A :}
+
+\medskip
+
+\begin{enumerate}
+	\item $\bullet~$Limite en 0:
+
+$\lim\limits_{x\to 0} x^2 =0$ et, d'après la propriété des croissances comparées : \quad $\lim\limits_{x\to 0}x\ln(x)=0$
+
+Par limite de la somme,  on a donc :\quad $\lim\limits_{x\to 0} x^2-x\ln(x)=0$
+
+$\bullet~$Limite en $+\infty$:
+
+$f(x)=x^2-x\ln(x)=x^2 \left(1-\dfrac{\ln(x)}{x}\right)$
+
+	Par croissances comparées $\lim\limits_{x\to +\infty}\dfrac{\ln(x)}{x}=0$ donc, par limite de la somme, $\lim\limits_{x\to +\infty}\left( 1- \dfrac{\ln(x)}{x}\right)=1$
+
+	De plus $\lim\limits_{x\to +\infty} x^2 =+\infty$, donc, par limite du produit,  $\lim\limits_{x\to +\infty } x^2 \left(1-\dfrac{\ln(x)}{x}\right)=+\infty$
+
+	\item  Pour tout réel $x$ strictement positif, on a: $f'(x) =2x -1 \times \ln(x) -x \times \dfrac{1}{x}= 2x -1 -\ln(x)$.
+
+	\item  Pour tout réel $x$ strictement positif, on a: $f''(x) =2- 0 - \dfrac{1}{x}= \dfrac{2x}{x} -\dfrac{1}{x}= \dfrac{2x-1}{x}$.
+
+	\item  	Déterminons le signe de $2x-1$ :
+
+	$\begin{aligned}[t] 2x-1 >0 &\iff 2x > 1 \\
+	&\iff x>\dfrac{1}{2}\end{aligned}$
+
+	L'image pertinente est : (les limites aux bornes ne sont pas attendues)
+
+
+	$f'\left( \dfrac{1}{2}\right)= 2 \times \dfrac{1}{2}-1-\ln\left(\dfrac{1}{2} \right)= 1-1+\ln(2)=\ln(2)$
+
+	On a donc :
+
+	\begin{tikzpicture}
+		\tkzTabInit[lgt=3,espcl=4]{$x$/1,signe de $2x-1$/0.6,signe de $x$/0.6,signe de $f''(x)$/0.8,variations de $f'$/2}{0,{$\dfrac{1}{2}$},$+\infty$}
+		\tkzTabLine{t,-,z,+,}
+		\tkzTabLine{z,+,t,+,}
+		\tkzTabLine{d,-,z,+,}
+		\tkzTabVar{D+/,-/$\ln(2)$,+/}
+	\end{tikzpicture}
+
+	\item Le minimum  de la fonction $f'$ sur $]0~;~+\infty[$  est donc $\ln(2)$ qui est strictement positif,  donc, sur $]0~;~+\infty[$, $f'(x)>0$ et donc, la fonction $f$ est strictement croissante sur   $]0~;~+\infty[$.
+\end{enumerate}
+
+
+\textbf{Partie B :}
+
+\medskip
+
+\begin{enumerate}
+	\item Pour tout réel $x$ strictement positif, on a: $g'(x) =1 - \dfrac{1}{x}= \dfrac{x-1}{x}$.
+
+Déterminons le signe de $x-1$ :
+
+$ x-1 >0 \iff x > 1 $
+
+L'image pertinente est : (les limites aux bornes ne sont pas attendues)
+
+$g(1)= 1-\ln(1)=1-0=1$
+
+On a donc :
+	\begin{tikzpicture}
+		\tkzTabInit[lgt=3,espcl=4]{$x$/0.6,signe de $x-1$/0.6,signe de $x$/0.6,signe de $g'(x)$/0.8,variations de $g$/2}{0,1,$+\infty$}
+		\tkzTabLine{,-,z,+,}
+		\tkzTabLine{z,+,t,+,}
+		\tkzTabLine{d,-,z,+,}
+		\tkzTabVar{D+/,-/1,+/}
+	\end{tikzpicture}
+
+	\item $\begin{aligned}[t] f(x) = x &\iff x = x^2-x\ln(x) \\
+	&\iff 0 = x^2-x-x\ln(x) \\
+	&\iff 0 = x\left( x-1-\ln(x)\right)\\
+	&\iff 0 = x-1-\ln(x) \quad \text{car } x>0 \quad \text{ donc } x\neq0 \\
+	& \iff 1 = x-\ln(x)\\
+	&\iff 1 = g(x)\\
+	&\iff x = 1 \end{aligned}$
+
+L'équation $f(x)=x$ admet une unique solution sur $]0~;~+\infty[$, cette solution est $x=1$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C :}
+
+\medskip
+
+\begin{enumerate}
+	\item Montrons par récurrence que pour tout entier naturel  $n$, \quad$\dfrac{1}{2} \leqslant u_n \leqslant u_{n+1} \leqslant 1$.
+
+
+
+\emph{Initialisation :} Calculons $u_1$. $u_1 = f(u_0) = f\left(\dfrac{1}{2} \right) = \left(\dfrac{1}{2}\right)^2-\dfrac{1}{2}\ln \left(\dfrac{1}{2}\right)= \dfrac{1}{4} +\dfrac{\ln(2)}{2}\approx 0,597 $.
+
+On constate que l'inégalité est vraie pour $n = 0$, on a bien : \quad $ \dfrac{1}{2}\leqslant u_0 \leqslant u_1 \leqslant 1$.
+
+\smallskip
+
+\emph{Hérédité :} Soit $n \in \N$, tel que \quad $ \dfrac{1}{2}\leqslant u_n \leqslant u_{n+1} \leqslant 1$.
+
+Montrons que l'inégalité est vraie au rang suivant :
+
+Par hypothèse de récurrence on a :
+
+$ \begin{aligned}[t] \dfrac{1}{2}\leqslant u_n \leqslant u_{n+1} \leqslant 1
+&\implies f\left(\dfrac{1}{2}\right)\leqslant f(u_n) \leqslant f(u_{n+1}) \leqslant f(1)\\
+&\hphantom{\implies}\quad \text{car $f$ est strictement croissante sur }]0~;~+\infty[\\
+&\implies f\left(\dfrac{1}{2}\right)\ \leqslant u_{n+1 } \leqslant u_{n+2} \leqslant 1\\
+&\hphantom{\implies}\quad \text{car $f$ est la fonction de récurrence de la suite } (u_n)\\
+&\implies \dfrac{1}{2} \leqslant u_{n+1 } \leqslant u_{n+2} \leqslant 1\\
+&\hphantom{\implies}\quad \text{car } f\left(\dfrac{1}{2}\right)\ \approx 0,60 >\dfrac{1}{2} \\\end{aligned}$
+
+Ceci montre que les  inégalités sont vraies au rang $n + 1$.
+
+\smallskip
+
+\emph{Conclusion :} Les inégalités sont vraies au rang 0, et si elle sont vraies au rang $n$ naturel, elles sont vraies au rang suivant $n + 1$, donc, en vertu du principe de récurrence, on a :
+
+$\forall n \in \N,\quad \dfrac{1}{2} \leqslant u_{n} \leqslant u_{n+1} \leqslant 1$.
+
+	\item On a notamment :
+		\begin{itemize}
+			\item $\forall n \in \N,\quad u_{n} \leqslant u_{n+1}$. \quad La suite $(u_n)$ est donc  croissante.
+			\item $\forall n \in \N,\quad \dfrac{1}{2} \leqslant u_{n}\leqslant 1$. \quad La suite $\left(u_n\right)$ est donc bornée par $\dfrac{1}{2}$ et 1.
+		\end{itemize}
+
+La suite étant croissante et majorée, on en déduit qu'elle est convergente, vers une limite $\ell$ vérifiant $\dfrac{1}{2} \leqslant \ell \leqslant 1$
+		\item  La suite $\left(u_n\right)$ est une suite convergente, définie par récurrence par la relation $u_{n+1} = f\left(u_n\right)$, où la fonction $f$ est continue (car dérivable) sur $]0~;~+\infty[$, intervalle qui contient la limite $\ell$ de la suite.
+
+D'après le théorème \og du point fixe \fg{}, on en déduit que la limite ne peut être qu'une solution de l'équation $f(x) = x$ dans l'intervalle  $]0~;~+\infty[$.
+
+D'après la question \textbf{2.} de la \textbf{Partie B}, cette équation n'a qu'une solution dans  l'intervalle $]0~;~+\infty[$ :  1.
+
+La suite $\left(u_n\right)$ converge donc vers $\ell = 1$.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

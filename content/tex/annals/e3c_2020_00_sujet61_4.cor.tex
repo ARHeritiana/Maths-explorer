@@ -1,0 +1,51 @@
+\subsection*{1.}
+
+Avec \(x = 1\), on obtient :
+\[
+N(1) = 100\e^{-2} \approx 13{,}534,
+\]
+soit \(13{,}534\) millions de smartphones à mille près.
+
+\subsection*{2.}
+
+Avec \(x = 1\), on a vu que \(N(1) \approx 13{,}534\) et \(R(1) = 1 \times N(1) = N(1) \approx 13{,}534\).
+
+Puis \(C(1) = 0{,}4 \times N(1) \approx 5{,}413\).
+
+On a donc :
+\[
+B(1) = R(1) - C(1) \approx 13{,}534 - 5{,}413 = 8{,}121 \, \text{milliards d'euros}.
+\]
+
+\subsection*{3.}
+
+On a :
+\begin{align*}
+B(x) &= R(x) - C(x) \\
+&= xN(x) - 0{,}4N(x) \\
+&= (x - 0{,}4)N(x) \\
+&= (x - 0{,}4) \times 100\e^{-2x} \\
+&= (100x - 40)\e^{-2x}.
+\end{align*}
+
+\subsection*{4.}
+
+On sait que \(\e^{-2x} > 0\), quel que soit le réel \(x\), donc le signe de \(B'(x)\) est celui de \(180x - 200\).
+
+\begin{align*}
+&180x - 200 > 0 \\
+\iff &180x > 200 \\
+\iff &x > \dfrac{200}{180} \\
+\iff &x > \dfrac{10}{9}.
+\end{align*}
+
+Conclusion : \(B'(x) > 0\) sur \(\left[0{,}4 \,;\, \dfrac{10}{9}\right]\), la fonction \(B\) est croissante sur cet intervalle, et \(B'(x) < 0\) sur \(\left[\dfrac{10}{9} \,;\, 4\right]\), la fonction \(B\) est décroissante sur cet intervalle.
+
+\[
+B\left(\dfrac{10}{9}\right) = (100 \times \dfrac{10}{9} - 40)\e^{-2 \times \dfrac{10}{9}} = 210\e^{-5} \approx 7{,}706,
+\]
+est le maximum de la fonction \(B\) sur \([0{,}4 \,;\, 2]\).
+
+\subsection*{5.}
+
+D'après la question précédente, le bénéfice est maximal pour \( x = \dfrac{10}{9} \approx 1{,}11111 \) (soit \(1111{,}11\) €) et ce bénéfice est d'environ \(7{,}7\) milliards d'euros.

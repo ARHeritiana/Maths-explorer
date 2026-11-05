@@ -1,0 +1,157 @@
+\subsection*{Partie A : modèle discret}
+\begin{enumerate}
+	\item On applique la relation de récurrence donnée :\quad $V_1 = 0,995V_0 + 6 = 0 +6 = 6 $.
+
+	Au bout d'une heure, le modèle prévoit 6 litres de substance polluante dans le bassin.
+
+	$V_2 = 0,995V_1 + 6 = 5,97 + 6 = 11,97$.
+
+	Au bout de deux heures, le modèle prévoit $11,97$ litres de substance polluante dans le bassin.
+
+	\item Ici, il faut initialiser la variable \texttt{v} à 0, pour qu'elle contienne la valeur $V_0$.
+
+	Ensuite, la boucle \texttt{for} va s'ex"cuter $n$ fois, donc il faut que la variable \texttt{v} s'actualise en appliquant la relation de récurrence.
+
+	\begin{minipage}[t]{0.6\linewidth}
+
+
+	Ainsi, la relation aura été appliquée $n$ fois, et on sera passé de $V_0$ (avant l'entrée dans la boucle) à $V_n$ (après la dernière exécution de la boucle).
+
+	Cela donne donc la fonction ci-contre :
+	\end{minipage}
+	\hfill
+		\begin{tblr}[T]{colspec={X[font=\ttfamily,4.5cm]},vlines, hline{1,Z}={solid}, rowsep=0pt}
+			def volume(n):\\
+			\quad v = {\blue 0}\\
+			\quad for k in range(n):\\
+			\quad \quad	v = {\blue 0.995*x+6}\\
+			\quad return v\\
+		\end{tblr}
+
+	\item Pour tout entier naturel $n$, notons $I_n$ l'inégalité :\quad $V_n \leqslant V_{n+1} \leqslant \np{1200}$.
+
+	\begin{itemize}
+		\item \textbf{Initialisation :} $V_0 = 0$ est donné, et on a calculé $V_1 = 6$  précédemment.
+
+		On constate donc que l'inégalité $I_0$ est vraie.
+
+		\item \textbf{Hérédité :} Pour un entier $n$ naturel donné, si l'inégalité $I_n$ est vraie, on a :
+
+		$\begin{aligned}
+			V_n \leqslant V_{n+1} \leqslant \np{1200}
+				&\implies 0,995V_n \leqslant 0,995V_{n+1} \leqslant 0,995 \times \np{1200} \quad \text{car } 0,995 > 0\\
+				&\implies 0,995V_n \leqslant 0,995V_{n+1} \leqslant \np{1194}\\
+				&\implies 0,995V_n +6 \leqslant 0,995V_{n+1} +6\leqslant \np{1194}+6\\
+				&\implies V_{n + 1} \leqslant V_{n + 2} \leqslant \np{1200}\\
+		\end{aligned}$
+
+		Autrement dit, l'inégalité $I_n$ implique l'inégalité $I_{n+1}$.
+		\item \textbf{Conclusion :} L'inégalité est vraie pour $n = 0$ et si une inégalité est vraie au rang $n$, alors la suivante (au rang $n+1$) l'est aussi.
+
+		D'après le principe de récurrence, on peut en déduire que, pour tout entier naturel $n$, l'inégalité $I_n$ est vraie.
+
+		$\forall n \in \N,\quad V_n \leqslant V_{n+1} \leqslant \np{1200}$.
+	\end{itemize}
+
+	\item D'après la question précédente, on a :
+	\begin{itemize}
+		\item $\forall n \in \N,\quad V_n \leqslant V_{n+1}$ :\quad  la suite $(V_n)$ est croissante;
+		$\forall n \in \N,\quad V_n \leqslant \np{1200}$ : \quad la suite est majorée par \np{1200}.
+	\end{itemize}
+
+	D'après le théorème de convergence monotone, la suite $(V_n)$ est donc convergente vers une limite $\ell$ qui vérifie :\quad $\ell \leqslant \np{1200}$.
+
+	La suite est donc convergente, et définie par récurrence. La fonction de récurrence est : \quad $x \longmapsto 0,995x + 6$.
+
+	Cette fonction de récurrence est continue sur $\R$, c'est une fonction affine. Elle est donc notamment continue en $\ell$.
+
+	D'après le théorème du point fixe, on peut donc affirmer que la limite de $V_n$ est une solution de l'équation $x = 0,995x + 6$.
+
+	$\begin{aligned}
+		x = 0,995x + 6
+		&\iff 0,005x = 6\\
+		&\iff x = \dfrac{6}{0,005}\\
+		&\iff x = \np{1200}
+	\end{aligned}$
+
+	L'équation n'a qu'une unique solution, donc la limite de $(V_n)$ ne peut être que cette solution.
+
+	Ainsi, la suite converge vers \np{1200}.
+
+	\emph{Remarque :} Dans le contexte de l'exercice, cela signifie que la quantité de substance polluante se stabilise aux alentours de \np{1200} litres, d'après ce modèle.
+\end{enumerate}
+
+\subsection*{Partie B : modèle continu}
+\begin{enumerate}
+	\item \begin{enumerate}
+		\item On reconnaît une équation différentielle de la forme :\quad $y' = ay + b$,\quad où $a$ et $b$ sont des réels non nuls, ici $a = -0,005$ et $b = 6$.
+
+		Par propriété, on sait que les solutions à ces équations différentielles sont les fonctions de la forme :\quad $t \longmapsto C\e^{at} - \dfrac{b}{a}$, \quad où $C$ est un réel.
+
+		Concrètement, pour l'équation $(E)$, les solutions sont : \quad $t \longmapsto C\e^{-0,005t} - \dfrac{6}{-0,005}$, \quad où $C$ est un réel.
+
+		C'est-à-dire : \quad $t \longmapsto C\e^{-0,005t} +\np{1200}$, \quad où $C$ est un réel.
+
+		\item Puisque $v$ est une solution de $(E)$, on a sa forme générale, donnée précédemment.
+
+		Pour avoir la fonction particulière correspondant à $v$, on doit prendre en compte la condition initiale :\quad $v(0) = 0$\quad qui nous permettra d'identifier la constante $C$.
+
+		$\begin{aligned}
+			v(0) = 0
+			&\iff C\e^{-0,005\times 0} +\np{1200} = 0\\
+			&\iff C\e^{0} = -\np{1200} \\
+			&\iff C = -\np{1200}
+		\end{aligned}$
+
+		Ainsi, la fonction $v$ est bien définie par :
+
+		$v(t) = -\np{1200}\e^{-0,005t} +\np{1200} = \np{1200}\big(-\e^{-0,005t} + 1\big) = \np{1200}\big(1 -\e^{-0,005t}\big)$.
+
+		\item On a : \quad $\lim\limits_{t \to +\infty} -0,005t = - \infty$,\quad donc, par composition :\quad $\lim\limits_{t \to +\infty}\e^{-0,005t} = 0$.
+
+		Par limite de la somme, il vient :\quad $\lim\limits_{t \to +\infty} 1 - \e^{-0,005t} = 1$.
+
+		Puis, par limite du produit :\quad $\lim\limits_{t \to +\infty}\np{1200}\big(1-\e^{-0,005t}\big) = \np{1200}$.
+
+		\emph{Remarque :} Là encore, le modèle prévoit que la quantité de substance polluante se stabilise aux alentours de \np{1200} litres.
+
+		\item La fonction $v$ est dérivable sur $[0 ; +\infty[$.
+
+		$\forall x \in [0 ; +\infty[,\quad v'(x) = 1200 \times \big(0 - (-0,005)\e^{-0,005t}\big) = 6\e^{-0,005t}$.
+
+		Comme 6 est strictement positif et que la fonction exponentielle est à valeurs strictement positives, on en déduit que la fonction dérivée $v'$ est à valeurs strictement positives sur $[0 ; +\infty[$, et donc que la fonction $v$ est strictement croissante sur cet intervalle.
+	\end{enumerate}
+
+	\item Le volume total du bassin est de \np{30000} litres.
+
+	5\,\% de ce total, c'est :\quad $0,05\times \np{30000} = \np{1500}$ soit  $\np[L]{1500}$.
+
+	Comme la fonction $v$ tend vers $\np{1200}$ quand $x$ tend vers $+\infty$, tout en étant strictement croissante sur $[0 ; +\infty[$, cela implique que $v$ est majorée par \np{1200}.
+
+	Ainsi, selon ce modèle, la quantité de substance polluante ne dépassera jamais \np{1200} litres, et n'atteindra jamais le seuil qui impose un nettoyage complet.
+
+	\item On va donc résoudre l'équation :\quad $v(t) = 50$.
+
+	\begin{tblr}{X[t]|X[t]}
+		$\begin{aligned}[t]
+		v(t) = 50
+		&\iff \np{1200}\big(1 - \e^{-0,005t}\big)	= 50\\
+		&\iff 1 - \e^{-0,005t}	= \dfrac{50}{\np{1200}}\\
+		&\iff 1 - \e^{-0,005t}	= \dfrac{1}{24}\\
+		&\iff - \e^{-0,005t}	= \dfrac{-23}{24}\\
+		&\iff \e^{-0,005t}	= \dfrac{23}{24}\\
+	\end{aligned}$
+	&
+	$\begin{aligned}[t]
+		v(t) = 50
+		&\iff -0,005t	= \ln\left(\dfrac{23}{24}\right) \\
+		&\iff t	= \dfrac{\ln\left(\dfrac{23}{24}\right)}{-0,005}\\
+		&\iff t = -200\ln\left(\dfrac{23}{24}\right) \\
+		&\iff t = 200\ln\left(\dfrac{24}{23}\right)\\
+	\end{aligned}$
+	\end{tblr}
+
+	$200\ln\left(\dfrac{24}{23}\right)\approx 8,511$.
+
+	Le volume de la substance dépasse les 50 litres au bout de $200\ln\left(\dfrac{24}{23}\right)$, soit environ $8,511$ heures, soit environ 8 heures et 31 minutes (à la minute près).
+\end{enumerate}

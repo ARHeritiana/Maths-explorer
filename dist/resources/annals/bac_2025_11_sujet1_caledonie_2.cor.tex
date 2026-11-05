@@ -1,0 +1,181 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet1_caledonie_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\smallskip
+
+Dans l'espace rapporté à un repère orthonormé \Oijk, on considère les points :
+\begin{center}
+A$(4~;~-4~;~4)$, \quad B$(5~;~-3~;~2)$, \quad C$(6~;~- 2;~;~3)$, \quad D(5~;~1~;~1)
+\end{center}
+
+\begin{enumerate}
+	\item On a : $\vect{AB} = \begin{pmatrix}5-1\\-3-(-4)\\2-4\end{pmatrix} = \begin{pmatrix}1\\1\\-2\end{pmatrix}$ et $\vect{CB} = \begin{pmatrix}5-6\\-3-(-2)\\2-3\end{pmatrix} = \begin{pmatrix}-1\\-1\\-1\end{pmatrix}$.
+
+Donc :
+$\vect{AB} \cdot \vect{CB} = 1 \times (-1) + 1 \times (-1) - 2 \times (-1) = -1 -1 + 2 = 0.$
+
+\smallskip
+
+Puisque leur produit scalaire est nul, les vecteurs $\vect{AB}$ et $\vect{CB}$ sont orthogonaux, donc le triangle ABC est rectangle en B.
+
+	\item D'après la question précédente, les points A, B et C étant non alignés, ils définissent bien un plan. Leurs coordonnées vérifient donc toute équation cartésienne du plan ainsi défini.
+
+Or on a :
+$4-(-4)-8 = 4 + 4 - 8 = 0,$
+donc les coordonnées de A vérifient l'équation $x - y  - 8 = 0$.
+	
+De même
+$5 - (-3) - 8 = 5 + 3 - 8 = 0 \qquad \text{et} \qquad 6 - (-2) - 8 = 6 + 2 - 8 = 0,$
+donc les coordonnées de B et C vérifient également l'équation $x - y - 8 = 0$.
+
+Donc \quad $x - y - 8 = 0$ \quad est bien une équation cartésienne du plan (ABC).
+
+\item
+	\begin{enumerate}
+		\item On sait que si $\vectt{n} = \begin{pmatrix}a\\b\\c\end{pmatrix}$ est un vecteur normal à un plan, alors ce plan a une équation cartésienne de la forme $ax + by + cz + d = 0$. Or on a vu à la question précédente que $x - y - 8 = 0$ est une équation cartésienne du plan (ABC), donc $\vectt{n} = \begin{pmatrix}1\\-1\\0\end{pmatrix}$ est un vecteur normal au plan (ABC).
+
+Puisque $d$ est orthogonale au plan (ABC), le vecteur $\vectt{n} = \begin{pmatrix}1\\-1\\0\end{pmatrix}$ est un vecteur directeur de $d$. De plus, la droite $d$ passe par le point $\mathrm{D}\,(5~;~1~;~1)$. \\
+Donc une représentation paramétrique de $d$ est :
+
+\[\boxed{\left\{
+\begin{array}{rcl}
+x &=& 5 + t\\
+y &=& 1 - t\\
+z &=& 1
+\end{array}\right. \qquad t \in \R.}\]
+
+		\item Puisque la droite $d$ est orthogonale au plan (ABC) et passe par D, le projeté orthogonal H de D sur (ABC) est le point d'intersection de la droite $D$ et du plan (ABC). Les coordonnées $(x~;~y~;~z)$ du point H vérifient donc à la fois la représentation paramétrique de $d$ et l'équation cartésienne de (ABC). Elles sont donc solution du système :
+		\[\begin{array}{l}
+\left\{
+\begin{array}{rcl}
+x &=& 5 + t\\
+y &=& 1 - t\\
+z &=& 1\\
+x - y - 8 &=& 0
+\end{array}\right.\\
+\\
+\Longrightarrow 5 + t - (1 - t) - 8 = 0 \iff 2t - 4 = 0 \iff 2t = 4 \iff t = 2\\
+\\
+\left\{
+\begin{array}{rcl}
+x &=& 5 + 2 = 7\\
+y &=& 1 - 2 = -1\\
+z &=& 1
+\end{array}\right.\end{array}\]
+Les coordonnées du projeté orthogonal H de D sur (ABC) sont donc :
+
+\[\boxed{\mathrm{H}\,(7~;~-1~;~1)}\]
+
+		\item \quad $\mathrm{DH} = \sqrt{(7-5)^2 + (-1-1)^2 + (1 - 1)^2} = \sqrt{2^2 + (-2)^2 + 0^2} = \sqrt{4+4} = \sqrt{8} = \boxed{2\sqrt{2}}$
+	\end{enumerate}
+
+\item
+	\begin{enumerate}
+		\item La pyramide ABCD admet pour base le triangle ABC et pour hauteur le segment [DH].
+		
+		On a donc $V = \dfrac{1}{3} \times \text{aire}\,(\mathrm{ABC}) \times \mathrm{DH}$.
+
+Puisque ABC est rectangle en B, on a :
+\begin{eqnarray*}
+\text{aire}\,(\text{ABC}) &=& \dfrac{\mathrm{AB}\times\mathrm{CB}}{2} \\
+&=& \dfrac{\|\vect{AB}\| \times \|\vect{CB}\|}{2}\\
+&=& \dfrac{\sqrt{1^2 + 1^2 + (-2)^2} \times \sqrt{(-1)^2 + (-1)^2 + (-1)^2}}{2}\\
+&=& \dfrac{\sqrt{1+1+4}\times\sqrt{1+1+1}}{2} = \dfrac{\sqrt{6}\times\sqrt{3}}{2} = \dfrac{\sqrt{18}}{2}\\
+&=& \dfrac{3\sqrt{2}}{2}.
+\end{eqnarray*}
+On a donc :
+
+\[V = \dfrac{1}{\cancel{3}} \times \dfrac{\cancel{3}\sqrt{2}}{\cancel{2}} \times \cancel{2}\sqrt{2} = \boxed{2}\]
+
+Le volume de la pyramide ABCD est $2$.
+		\item La distance du point A au plan (BCD) est la longueur de la hauteur issue de A de la pyramide ABCD. Soit $x$ cette distance. On a alors $V = \dfrac{1}{3} \times \text{aire\,(BCD)} \times x$. Donc :
+
+\[\dfrac{1}{3} \times \dfrac{\sqrt{42}}{2} \times x = 2 \iff x\sqrt{42} = 2 \times 3 \times 2 \iff x = \dfrac{12}{\sqrt{42}} = \dfrac{2\times6}{\sqrt{6} \times \sqrt{7}} = \dfrac{2\sqrt{6}}{\sqrt{7}} = \boxed{\dfrac{2\sqrt{42}}{7}}\]
+La distance du point A au plan (BCD) est $\dfrac{2\sqrt{42}}{7}$.
+	\end{enumerate}
+\end{enumerate}
+
+
+\bigskip
+
+\end{document}

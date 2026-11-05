@@ -1,0 +1,39 @@
+\medskip
+
+Au cours de l'hiver, on observe dans une population, 12\,\% de personnes malades.
+
+Parmi les personnes malades, 36\,\% d'entre elles pratiquent une activité sportive régulièrement.
+
+Parmi les personnes non malades, 54\,\% d'entre elles pratiquent une activité sportive régulièrement.
+
+Une personne est choisie au hasard dans la population.
+
+On note $M$ l'évènement \og la personne est malade \fg{} et $S$ l'évènement \og la personne a une activité sportive régulière \fg.
+
+\emph{Dans cet exercice, les résultats approchés seront donnés à $10^{-3}$ près.}
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter l'arbre pondéré : \quad\pstree[treemode=R,nodesepA=0pt,nodesepB=3pt]{\TR{}}
+{
+\pstree{\TR{$M$~~}\taput{0,12}}
+	{\TR{$S$} \taput{0,36}
+	\TR{$\overline{S}$} \tbput{}
+	}
+\pstree{\TR{$\overline{M}$~~}\tbput{0,88}}
+	{\TR{$S$}
+	\TR{$\overline{S}$}
+	}
+}	
+
+\item  
+	\begin{enumerate}
+		\item Quelle est la probabilité que la personne soit malade et qu'elle pratique une activité sportive régulièrement ?
+		\item Montrer que la probabilité que la personne pratique une activité sportive régulièrement est égale à \np{0,5184}.
+	\end{enumerate}
+\item La personne choisie n'a pas d'activité sportive régulière. Quelle est la probabilité pour qu'elle soit malade ?	
+\item  Un journaliste annonce qu'une pratique régulière d'une activité sportive diminue par deux le risque de tomber malade. Que peut-on conclure sur la pertinence de cette annonce? Justifier.
+\end{enumerate}
+
+\bigskip

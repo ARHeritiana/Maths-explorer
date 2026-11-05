@@ -1,0 +1,156 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_06_polynesie_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+\item Par lecture graphique :
+	\begin{enumerate}
+		\item
+		$f(5)\approx 180$. \quad La cinquième semaine le nombre de malades est proche de 180.
+
+		\item
+		Le pic est atteint pour $x=8$, donc lors de la huitième semaine de l'épidémie.
+
+		Le nombre maximum de malades est entre 240 et 280, environ 260.
+	\end{enumerate}
+
+\item
+	\begin{enumerate}
+		\item
+		 $f(1) = - 1^{3} + 12\times 1^{2} + 4 = -1 + 12 + 4 = 15 $.
+
+		 Selon ce modèle, 15 personnes sont malades à la fin de la première semaine.
+
+		\item Pour tout réel $x$ de l'intervalle $[0 ; 12]$,
+		\quad$f'(x)= (-1) \times 3x^2 + 12\times 2x = -3x^2+24x$.
+
+		et \quad$3x (-x+8) = -3 x^2 + 24x$.
+
+		Ainsi $f'(x) = 3x (-x+8)$.
+
+		\item
+		$f(0) =-0^3 + 12\times 0^{2} + 4 = 4$
+
+		$f(12) =-12^3 + 12\times 12^{2} + 4 = -12^3 + 12^3 + 4 = 4$
+
+		Pour tout $x\in ]0 ; 12]$,\quad  $ 3x > 0 $
+
+		$\begin{aligned}[t]
+			-x+8 = 0 &\iff 8 = x \\
+			&\iff x = 8
+		\end{aligned}$
+		\quad et \quad
+		$\begin{aligned}[t]
+			-x+8 > 0 &\iff 8 > x \\&\iff x < 8
+		\end{aligned}$
+
+
+		\begin{center}
+			\begin{tikzpicture}
+					\tkzTabInit[lgt=3.5,espcl=4]
+					{	$x$/0.7,
+						Signe de $3x$/1.4,
+						Signe de $(-x+8)$/1.4,
+						Signe de $f'(x)$/1.4,
+						Variations de $f$/3.4
+					}
+					{$0$ ,8 , $12$}
+				\tkzTabLine{z,+,t,+,}
+				\tkzTabLine{t,+,z,-,}
+				\tkzTabLine{z,+,z,-,}
+				\tkzTabVar{-/4,+/$f(8)$,-/4}
+			\end{tikzpicture}
+		\end{center}
+
+
+		\item Déterminer la valeur exacte du nombre de malades la semaine où a eu lieu le pic de l'épidémie.
+
+		Le maximum est atteint pour $x=8$.
+
+		$f(8) = -8^3 + 12 \times 8^2 + 4 = -512 + 768 + 4 = 256 + 4 = 260$
+
+		Le maximum du nombre de malades est $f(8) = 260$
+
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

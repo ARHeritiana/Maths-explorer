@@ -1,0 +1,173 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet59_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Ce QCM comprend 5 questions indépendantes.}
+
+\emph{Pour chacune d'elles, une seule des réponses proposées est exacte.}
+ 
+\emph{Indiquer pour chaque question sur la copie la lettre correspondant à la réponse
+choisie. Aucune justification n'est demandée.}
+
+\emph{Chaque réponse correcte rapporte $1$ point. Une réponse incorrecte ou une absence de
+réponse n'apporte, ni ne retire de point.}
+
+\medskip
+
+ \textbf{Question 1}
+
+ \medskip
+
+ Soit la suite arithmétique $\left(u_n\right)$ de premier terme $u_0 = 2$ et de raison $0,9$. On a :
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $u_{50}= 47$ &\textbf{b.~~} $u_{50}= 100,9$&\textbf{c.~~}$u_{50}= -47$& \textbf{d.~~} $u_{50}= -100,9$.
+\end{tabularx}
+\end{center}
+
+\medskip
+
+ \textbf{Question 2}
+
+\medskip
+
+Soit la suite géométrique $\left(v_n\right)$ de premier terme $v_0 = 2$ et de raison 0,9.
+La somme des 37 premiers termes de la suite $\left(v_n\right)$ est :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $2 \times \dfrac{1-0,9^{38}}{1-0,9}$ &\textbf{b.~~} $2\times \frac{1-0,9^{37}}{1- 0,9}$&\textbf{c.~~}$ 0,9\times \dfrac{1-2^{38}}{1-2}$& \textbf{d.~~} $0,9 \times \dfrac{1-2^{37}}{1-2}$.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 3}
+
+ \medskip
+ Un programme en langage Python qui retourne la somme des entiers de 1 à 100 est :
+ 
+ \medskip
+
+\begin{center}
+ \begin{tabularx}{\linewidth}{*{4}{X}}
+ \begin{minipage}[]{3cm}\textbf{a.~~}Def Somme() :\\s=0 \\While s<100\\ \phantom{defdefw}s=s+1 \\return (s)\end{minipage}  &
+\begin{minipage}[]{3cm} \textbf{b.~~} Def Somme() :\\s=0\\ While s<100 \\\phantom{defdefw}s=2*s+1\\ return (s)\end{minipage} & 
+\begin{minipage}[]{3cm}\textbf{c.~~} Def Somme() :\\ s=0\\ for k in range 101\\\phantom{defdefw} s=s+k \\return(s)\end{minipage}& 
+\begin{minipage}[]{3cm}\textbf{d.~~}Def Somme() : \\s=0\\ for k in range 100\\\phantom{defdefw} s=s+k \\return(s)\end{minipage} .
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 4}
+
+ \medskip
+
+
+ On a $ x\in \left[-\dfrac{\pi}{2}~;~0\right]$ et $\cos x=0,8$ alors :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $\sin x=0,6$ &\textbf{b.~~} $\sin x=-0,6$&\textbf{c.~~}$\sin x=-0,2$& \textbf{d.~~} $ \sin x=0,2$.
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 5}
+
+\medskip
+
+Le nombre réel $\frac{13 \pi}{4}$ est associé au même point du cercle trigonométrique que le réel :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $-\dfrac{14 \pi}{4}$ &\textbf{b.~~}$-\dfrac{3\pi}{4}$ &\textbf{c.~~}$\dfrac{7 \pi}{4}$& \textbf{d.~~}$\dfrac{19\pi}{4}$ .
+\end{tabularx}
+\end{center}
+
+\vspace{0,5cm}
+
+\end{document}

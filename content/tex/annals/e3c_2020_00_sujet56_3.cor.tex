@@ -1,0 +1,66 @@
+\begin{center}
+\psset{labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-1,-0.5)(7.5,9.5)
+\pspolygon*[linewidth=1pt,linecolor=yellow,opacity=0.3](0,6)(8,0) 
+\multido{\n=0+1}{10}{\psline[linewidth=0.75pt,linecolor=lightgray](\n,0)(\n,7.2)}
+\multido{\n=0+0.2}{48}{\psline[linewidth=0.35pt,linecolor=lightgray](\n,0)(\n,7.2)}
+\multido{\n=0+1}{8}{\psline[linewidth=0.75pt,linecolor=lightgray](0,\n)(9.35,\n)}
+\multido{\n=0+0.2}{37}{\psline[linewidth=0.35pt,linecolor=lightgray](0,\n)(9.35,\n)}
+\psaxes[linewidth=0.95pt,]{->}(0,0)(0,0)(9.5,7.4)
+\psdots[dotstyle=+,dotscale =1.4,dotangle=45](4,3)(0,6)(8,0)
+ \uput[ur](4,3){E} \uput[ur](8,0){A} \uput[ur](0,6){B} \uput[ur](2.4,2.2){G}
+\psline(0,6)(8,0)
+\psset{arrowscale=2}
+\psline[linewidth=0.8pt,linecolor=darkgray]{->}(0,0)(0,1)\psline[linewidth=0.8pt,linecolor=darkgray]{->}(0,0)(1,0)
+\psline[linewidth=1pt,linecolor=red](0,0)(4,3)
+\psline[linewidth=1pt,linecolor=red](0,6)(4,0)
+\psline[linewidth=1pt,linestyle=dashed,linecolor=blue](0,2)(2.667,2)
+\psline[linewidth=1pt,linestyle=dashed,linecolor=blue](2.667,0)(2.667,2)
+\uput[dl](0,0){O}\uput[d](0.5,0){$\vec{\imath}$}\uput[l](0,0.5){$\vec{\jmath}$}
+\end{pspicture}
+\end{center}
+
+\subsection*{1.}
+
+\paragraph{a.} \( \overrightarrow{OA} \cdot \overrightarrow{OB} = 8 \times 0 + 0 \times 6 = 0 \).
+
+\paragraph{b.} Avec \( E(4 \,;\, 3) \) d'où \( \overrightarrow{OE} \begin{pmatrix} 4 \\ 3 \end{pmatrix} \), on a :
+\[
+\overrightarrow{OA} \cdot \overrightarrow{OE} = 8 \times 4 + 0 \times 3 = 32.
+\]
+
+\subsection*{2.}
+
+\paragraph{a.} Le milieu du côté opposé à \( B \) est celui de \([OA]\). Ses coordonnées sont \( (4 \,;\, 0) \).
+
+Or \( 1{,}5 \times 4 + 0 - 6 = 0 \iff 6 - 6 = 0 \) qui est vrai.
+
+De même pour \( B(0 \,;\, 6) : 1{,}5 \times 0 + 6 - 6 = 0 \) est vraie. Donc \( 1{,}5x + y - 6 = 0 \) est une équation cartésienne de la médiane issue du point \( B \) dans le triangle \( OAB \).
+
+\paragraph{b.} La médiane issue de \( O \) dans le triangle \( OAB \) contient \( O \) et le milieu \( I \) de \([AB]\) ; on a \( I(4 \,;\, 3) \).
+
+Puisque cette médiane contient \( O \), une de ses équations est \( y = \alpha x \).
+
+Donc en utilisant les coordonnées de \( I \) : \( 3 = \alpha 4 \iff \alpha = \dfrac{3}{4} = 0{,}75 \). Une équation de cette médiane est \( y = 0{,}75x \).
+
+\subsection*{3.}
+
+\( G \), étant commun aux trois médianes du triangle \( OAB \), est le point d'intersection des deux médianes issues de \( B \) et de \( O \). Les coordonnées de \( G \) vérifient donc les deux équations :
+\[
+\begin{cases}
+1{,}5x + y - 6 = 0 \\
+y = 0{,}75x
+\end{cases}
+\]
+D'où :
+\begin{align*}
+&1{,}5x + 0{,}75x - 6 = 0 \\
+\iff &2{,}25x = 6 \\
+\iff &x = \dfrac{8}{3},
+\end{align*}
+puis :
+\[
+y = 0{,}75x = 0{,}75 \times \dfrac{8}{3} = 2.
+\]
+
+Conclusion : \( G\left(\dfrac{8}{3} \,;\, 2\right) \).

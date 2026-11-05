@@ -1,0 +1,212 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet1_polynesie_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On munit le plan d'un repère orthonormé.
+
+Pour tout entier naturel $n$, on considère la fonction $f_n$ définie sur $[0~;~ +\infty[$ par :
+
+\[f_0(x) = \e^{- x}\quad \text{et, pour }\: n \geqslant 1, \: \: f_n(x) = x^n\e^{-x}.\]
+
+Pour tout entier naturel $n$, on note $\mathcal{C}_n$ la courbe représentative de la fonction $f_n$.
+
+\medskip
+
+\emph{Les parties {\rm A} et {\rm B} sont indépendantes.}
+
+\medskip
+
+\textbf{Partie A : Étude des fonctions \boldmath $f_n$ pour $n \geqslant 1$\unboldmath}
+
+\medskip
+
+On considère un entier naturel $n \geqslant 1$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item On admet que la fonction $f_n$ est dérivable sur $[0~;~+\infty[$.
+		
+Montrer que pour tout $x \geqslant 0$,
+
+\[f'_n(x) = (n - x)x^{n-1}\e^{-x}.\]
+
+		\item Justifier tous les éléments du tableau ci-dessous:
+
+\medskip
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(7,3.25)
+\psframe(7,3.25)\psline(0,2.25)(7,2.25)\psline(0,2.75)(7,2.75)
+\psline(1,0)(1,3.25)
+\uput[u](0.5,2.65){$x$}\uput[u](1.2,2.65){$0$}\uput[u](4,2.65){$n$}\uput[u](6.6,2.65){$+ \infty$}
+\rput(0.5,2.5){$f'_n(x)$}\rput[u](2.5,2.5){+}\rput(4,2.5){0}\rput(5.5,2.5){$-$}
+\uput[u](1.2,0){0}\uput[u](6.8,0){0}\uput[d](4,2.25){$\left(\frac{n}{\text{e}}\right)^n$}
+\psline{->}(1.5,0.4)(3.4,1.8)\psline{->}(4.4,1.8)(6.4,0.4)
+\rput(0.5,1.125){$f_n$}
+\end{pspicture}
+\end{center}
+	\end{enumerate}
+\item Justifier par le calcul que le point A$\left(1~;~\e^{-1}\right)$ appartient à la courbe $\mathcal{C}_n$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B : Étude des intégrales \boldmath $\displaystyle\int_0^1 f_n(x)\,\text{d}x$\unboldmath{} pour \boldmath $n \geqslant 0$\unboldmath}
+
+\medskip
+
+Dans cette partie, on étudie les fonctions $f_n$ sur [0~;1] et on considère la suite $(I_n)$ définie pour tout entier naturel $n$ par:
+
+\[I_n = \displaystyle\int_0^1 f_n(x)\,\text{d} x = \displaystyle\int_0^1 x^n \e^{-x}\,\text{d}x.\]
+
+\medskip
+
+\begin{enumerate}
+\item Sur le graphique ci-dessous, on a représenté les courbes $\mathcal{C}_0, \mathcal{C}_1, \mathcal{C}_2, \mathcal{C}_{10}$\: et \: $\mathcal{C}_{100}$.
+
+\psset{unit=10cm,arrowsize=2pt 3,comma=true}
+\begin{pspicture}(-0.1,-0.05)(1.05,1.1)
+\psaxes[linewidth=1.25pt,Dx=0.1,Dy=0.1]{->}(0,0)(0,0)(1.05,1.1)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0}{1}{2.71828 x neg exp}\uput[u](0.75,0.47){\red $\mathcal{C}_0$}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{1}{2.71828 x neg exp x mul}\uput[u](0.75,0.35){\blue $\mathcal{C}_1$}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=gray]{0}{1}{2.71828 x neg exp x  dup mul mul}\uput[u](0.75,0.27){\gray $\mathcal{C}_2$}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=magenta]{0}{1}{2.71828 x neg exp x 10 exp mul}\uput[u](0.75,0.06){\magenta $\mathcal{C}_{10}$}
+\psplot[plotpoints=3000,linewidth=1.25pt,linecolor=green]{0}{1}{2.71828 x neg exp x 100 exp mul}\uput[u](0.92,0.02){\green $\mathcal{C}_{100}$}
+\end{pspicture}
+	\begin{enumerate}
+		\item Donner une interprétation graphique de $I_0$.
+		\item Par lecture de ce graphique, quelle conjecture peut-on émettre sur la limite
+de la suite $(I_n)$ ?
+	\end{enumerate}
+\item Calculer $I_0$.
+\item 
+	\begin{enumerate}
+		\item Soit $n$ un entier naturel.
+		
+Démontrer que pour tout $x \in [0~;~1]$,\:
+
+\[0 \leqslant x^{n+1} \leqslant x^n.\]
+
+		\item En déduire que pour tout entier naturel $n$, on a :
+
+\[0 \leqslant I_{n+1} \leqslant I_n.\]
+	\end{enumerate}
+\item Démontrer que la suite $(I_n)$ est convergente, vers une limite positive ou nulle que l'on notera $\ell$.
+\item En utilisant une intégration par parties, démontrer que pour tout entier naturel $n$ on a :
+
+\[I_{n+1} = (n + 1)I_n - \dfrac{1}{\e}.\]
+\item
+	\begin{enumerate}
+		\item Démontrer que si $\ell > 0$, l'égalité de la question 5 conduit à une contradiction.
+		\item Démontrer que $\ell = 0$. On pourra utiliser la question 6. a.
+
+\medskip
+
+On donne ci-dessous le script de la fonction mystere, écrite en langage Python.
+
+On a importé la constante e.
+
+\begin{center}
+\begin{Verbatim}[frame=single]
+def mystere(n):
+  I = 1 - 1/e
+  L = [I]
+  for i in range(n):
+     I = (i + 1)*I - 1/e
+     L.append(I) 
+  return L
+\end{Verbatim}
+\end{center}
+	\end{enumerate}
+\item Que renvoie mystere(100) dans le contexte de l'exercice ?
+
+\end{enumerate}
+
+\bigskip
+
+\end{document}

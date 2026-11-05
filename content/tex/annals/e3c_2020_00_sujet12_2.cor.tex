@@ -1,0 +1,42 @@
+\subsection*{1. a. Calculer $u_1$ et $u_2$.}
+	
+	\[
+	u_1 = 300 \times 1,05 + 15 = 315 + 15 = 330
+	\]
+	\[
+	u_2 = 330 \times 1,05 + 15 = 346,5 + 15 = 361,5
+	\]
+	
+	\subsection*{b. Montrer que la suite $(u_n)$ ainsi définie, n'est ni arithmétique ni géométrique.}
+	
+	\[
+	u_1 - u_0 = 30 \quad \text{et} \quad u_2 - u_1 = 31,5 \quad \Rightarrow \quad \text{la suite n'est pas arithmétique.}
+	\]
+	\[
+	\dfrac{u_1}{u_0} = \dfrac{330}{300} = 1,1 \quad \text{et} \quad \dfrac{u_2}{u_1} = \dfrac{361,5}{330} \approx 1,095 \quad \Rightarrow \quad \text{la suite n'est pas géométrique.}
+	\]
+	
+
+	
+	\subsection*{2. On considère la suite $(v_n)$, définie pour tout entier naturel $n$, par : $v_n = u_n + 300$.}
+	
+	\subsubsection*{a. Calculer $v_0$, puis montrer que la suite $(v_n)$ est géométrique de raison $q = 1,05$.}
+	
+	\[
+	v_0 = u_0 + 300 = 300 + 300 = 600
+	\]
+	\[
+	v_{n+1} = u_{n+1} + 300 = 1,05u_n + 15 + 300 = 1,05u_n + 315 = 1,05(u_n + 300) = 1,05v_n
+	\]
+	
+	\subsubsection*{b. Pour tout entier naturel $n$, exprimer $v_n$ en fonction de $n$, puis montrer que $u_n = 600 \times 1,05^n - 300$.}
+	
+	L'égalité $v_{n+1} = 1,05v_n$ vraie pour tout naturel $n$, montre que la suite $(v_n)$ est géométrique de raison $q = 1,05$ de premier terme 600.
+	
+	On sait qu'alors, quel que soit $n \in \mathbb{N}$, $v_n = 600 \times 1,05^n$.
+	
+	\subsection*{3. Est-il correct d'affirmer que la surface envahie par les chardons aura doublé au bout de 8 semaines ? Justifier la réponse.}
+	
+	On a $v_8 = 600 \times 1,05^8 \approx 886,473$.
+	
+	Or $v_8 = u_8 + 300 \iff u_8 = v_8 - 300 \approx 886,473 - 300 \approx 536,5$ soit moins du double de la surface initiale.

@@ -1,0 +1,196 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet2_asie_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Les vecteurs $\overrightarrow{\text{AB}}$ et $\overrightarrow{\text{AC}}$ ont pour coordonnées :
+\[
+\begin{array}{rcl}
+\overrightarrow{\text{AB}} && \begin{pmatrix} -1 - 1 \\ 3 - 2 \\ 1 - 3 \end{pmatrix} = \begin{pmatrix} -2 \\ 1 \\ -2 \end{pmatrix} \\
+\overrightarrow{\text{AC}} && \begin{pmatrix} 2 - 1 \\ 1 - 2 \\ 6 - 3 \end{pmatrix} = \begin{pmatrix} 1 \\ -1 \\ 3 \end{pmatrix}
+\end{array}
+\]
+Leurs coordonnées ne sont pas proportionnelles. Les vecteurs ne sont pas colinéaires, les points A, B et C ne sont pas alignés et définissent donc un plan.
+
+		\item Calculons les produits scalaires :
+\[
+\begin{array}{rcl}
+\vect{n} \cdot \vect{\text{AB}} &=& 1 \times (-2) + 4 \times 1 + 1 \times (-2) = -2 + 4 - 2 = 0 \\
+\vect{n} \cdot \vect{\text{AC}} &=& 1 \times 1 + 4 \times (-1) + 1 \times 3 = 1 - 4 + 3 = 0
+\end{array}
+\]
+Le vecteur $\vect{n}$ est orthogonal à deux vecteurs non colinéaires du plan (ABC), il est donc normal à ce plan.
+
+\item Une équation du plan (ABC) est de la forme $x + 4 y + z + d = 0$. Le point A$(1~;~2~;~3)$ appartient au plan, donc :
+\[
+\begin{array}{rcl}
+1 + 4\times 2+ 3 + d &=& 0 \iff 12 + d = 0 \iff d = -12
+\end{array}
+\]
+Une équation cartésienne est : $x + 4y + z - 12 = 0$.
+\end{enumerate}
+\item 
+\begin{enumerate}
+\item La droite $(d)$ est dirigée par le vecteur normal $\vect{n}(1~;~4~;~1)$ et passe par D$(3~;~-2~;~-1)$. Une représentation paramétrique est :
+\[
+\left\{
+\begin{array}{rcr}
+x &=& 3 + \phantom{4}t \\
+y &=& -2 + 4t \\
+z &=& -1 + \phantom{4}t
+\end{array}
+\right. , t \in \mathbb{R}
+\]
+
+\item Le point H appartient à $(d)$, il existe donc $t \in \mathbb{R}$ tel que $\left\{ \begin{matrix} x_{\text{H}}&=&3+\phantom{4}t \\y_{\text{H}}&=& -2+4t \\ z_{\text{H}}&=& -1+\phantom{4}t \end{matrix} \right.$. De plus H appartient au plan (ABC), ses coordonnées vérifient donc l'équation du plan (ABC): $x_{\text{H}}+4y_{\text{H}}+z_{\text{H}}- 12 = 0$. On en déduit que $t$ est solution de :
+\[
+\begin{array}{rcl}
+(3 + t) + 4(-2 + 4t) + (-1 + t) - 12 &=& 0 \\
+3 + t - 8 + 16t - 1 + t - 12 &=& 0 \\
+18t - 18 &=& 0 \\
+t &=& 1
+\end{array}
+\]
+Les coordonnées de H sont donc $x_{\text{H}} = 3 + 1 = 4$, $y_{\text{H}} = -2 + 4(1) = 2$, $z_{\text{H}} = -1 + 1 = 0$. Soit H$(4~;~2~;~0)$.
+
+\item La distance de D au plan (ABC) correspond à la longueur DH :
+\[
+\begin{array}{rcl}
+\text{DH} &=& \sqrt{(4 - 3)^2 + (2 - (-2))^2 + (0 - (-1))^2} \\
+&=& \sqrt{1^2 + 4^2 + 1^2} \\
+&=& \sqrt{18} = 3\sqrt{2}
+\end{array}
+\]
+\end{enumerate}
+
+\item 
+\begin{enumerate}
+\item On sait que $\vect{\text{AB}} \cdot \vect{\text{AC}} = \text{AB} \times \text{AC} \times \cos(\widehat{\text{BAC}})$.
+
+\[
+\begin{array}{rcl}
+\overrightarrow{\text{AB}} \cdot \overrightarrow{\text{AC}} &=& -2(1) + 1(-1) - 2(3) = -9 \\
+\text{AB} &=& \sqrt{(-2)^2 + 1^2 + (-2)^2} = \sqrt{9} = 3 \\
+\text{AC} &=& \sqrt{1^2 + (-1)^2 + 3^2} = \sqrt{11} \\
+\end{array}
+\]
+D'où :
+\[
+\begin{array}{rcl}
+-9 &=& 3 \times \sqrt{11} \times \cos(\widehat{\text{BAC}}) \\
+\cos(\widehat{\text{BAC}}) &=& \dfrac{-9}{3\sqrt{11}} = \dfrac{-3}{\sqrt{11}} = \dfrac{-3\sqrt{11}}{11}
+\end{array}
+\]
+
+\item Sachant que $\cos^2(\widehat{\text{BAC}}) + \sin^2(\widehat{\text{BAC}}) = 1$ :
+\[
+\begin{array}{rcl}
+\sin^2(\widehat{\text{BAC}}) &=& 1 - \left(-\frac{3}{\sqrt{11}}\right)^2 \\
+&=& 1 - \frac{9}{11} = \dfrac{2}{11}
+\end{array}
+\]
+L'angle $\widehat{\text{BAC}}$ étant dans $[0~;~\pi]$, son sinus est positif : $\sin(\widehat{\text{BAC}}) = \dfrac{\sqrt{2}}{\sqrt{11}}$.
+
+\item L'aire du triangle ABC est donnée par :
+\[
+\begin{array}{rcl}
+\mathcal{A} &=& \frac{1}{2} \times \text{AB} \times \text{AC} \times \sin(\widehat{\text{BAC}}) \\
+&=& \frac{1}{2} \times 3 \times \sqrt{11} \times \dfrac{\sqrt{2}}{\sqrt{11}} \\
+&=& \dfrac{3\sqrt{2}}{2}
+\end{array}
+\]
+\end{enumerate}
+
+\item Le volume du tétraèdre ABCD est :
+\[
+\begin{array}{rcl}
+\mathcal{V} &=& \dfrac{1}{3} \times \mathcal{A}_{\text{ABC}} \times \text{DH} \\
+&=& \frac{1}{3} \times \dfrac{3\sqrt{2}}{2} \times 3\sqrt{2} \\
+&=& \frac{1}{3} \times \dfrac{18}{2} \\
+&=& 3
+\end{array}
+\]
+\end{enumerate}
+
+\end{document}

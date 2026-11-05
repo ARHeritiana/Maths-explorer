@@ -1,0 +1,182 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_etrangers_10_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A : Détermination d'une fonction $f$ et résolution d'une équation différentielle}
+
+\medskip
+
+
+
+\[f(x) = \e^x+ ax + b\e^{-x}\]
+
+
+
+
+
+\begin{center}
+\psset{unit=1.25cm}
+\begin{pspicture*}(-2.2,-0.6)(3.2,6.6)
+\psgrid[gridlabels=0pt,subgriddiv=5,gridwidth=0.25pt,subgridwidth=0.1pt]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-2.2,-0.4)(3.2,6.6)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-2}{2.5}{2.71828 x exp x sub 2 2.71828 x exp div add} \uput[r](2,5){\red $\mathcal{C}$}
+\psplot[linewidth=1.25pt]{-2}{2}{3 2 x mul sub}
+\end{pspicture*}
+\end{center}
+
+\smallskip
+
+\begin{enumerate}
+\item ~
+\starredbullet~$f(0) \approx 3$ ;
+
+\starredbullet~$f'(0) \approx - 2$ (coefficient directeur de la tangente)
+\item 
+On a $f(0) = 1 + b$. Or $1 + b = 3 \iff b = 2$.
+\item On admet que la fonction $f$ est dérivable sur $\R$ et on note $f'$ sa fonction dérivée. 
+	\begin{enumerate}
+		\item 
+Sur $\R$, \, $f'(x) = \e^x + a - b\e^{-x} = \e^x + a - 2\e^{-x}$.
+		\item 
+Donc $f'(0) = 1 + a - 2 = a - 1$.
+		\item 
+		On a vu que $f'(0) = - 2 = a - 1 \iff a = - 1$, donc finalement :
+		
+		\[f(x) = \e^x - x + 2\e^{-x}\]
+	\end{enumerate}
+\item 
+
+\[(E) : \quad  y' + y = 2\e^x - x - 1\]
+
+	\begin{enumerate}
+		\item 
+		
+\[g(x) = \e^x - x + 2\e^{-x}.\]
+
+$g$ étant une somme de fonctions dérivables sur $\R$, on a sur cet intervalle :
+
+$g'(x) = \e^x - 1 - 2\e^{-x}$, soit en remplaçant dans l'équation $(E)$ :
+
+$\e^x - 1 - 2\e^{-x} + \e^x - x + 2\e^{-x} = 2\e^x - x - 1$ égalité vraie : $g$ est donc une solution de l'équation différentielle $(E)$.
+
+
+		\item 
+$y' + y = 0 \iff y' = - y$ : on sait que les solutions de cette équation différentielle sont les fonctions définies par :
+
+\[ x \longmapsto f(x) = K \e^{- x},\, \text{avec } K \in \R.\]
+
+		\item 
+D'après les questions précédentes les solutions de l'équation $(E)$ sont les fonctions définies que $\R$ par :
+
+\[ x \longmapsto \e^x - x + 2\e^{-x} + K \e^{- x},\, \text{avec } K \in \R.\]
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B : Étude de la fonction $g$ sur $[1~;~+\infty[$}
+
+\medskip
+
+\begin{enumerate}
+\item 
+
+
+En posant $X = \e^x$, on a $X^2 - X - 2$ et ce trinôme a deux solutions évidentes $2$ et $- 1$.
+
+$X^2 - X - 2 = (X - 2)(X + 1)$, donc en revenant à l'écriture initiale :
+
+$\e^{2x} - \e^x - 2 = \left(\e^x - 2\right)\left(\e^x + 1\right)$ pour tout réel $x$.
+\item 
+$g'(x) = \e^x - 1 - 2\e^{-x} = \e^{-x}\left(\e^{2x} - \e^{x} - 2)\right)$, donc d'après la question précédente :
+
+$g'(x) = \e^{-x}\left(\e^x - 2\right)\left(\e^x + 1\right).$
+\item 
+Puisque $\e^x - 2 > 0$ (admis), $\e^x + 1 > 1 > 0$  et $\e^{-x} > 0$, donc leur produit $g'(x) > 0$.
+
+Il en résulte que la fonction $g$ est croissante sur $\R$, donc sur $[1~;~ +\infty[$.
+
+\end{enumerate}
+
+\end{document}

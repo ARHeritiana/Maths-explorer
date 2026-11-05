@@ -1,0 +1,47 @@
+Une maladie contagieuse se répand chez les bovins.
+
+Afin de détecter cette maladie, un laboratoire élabore un test de dépistage.
+
+Les essais de ce test sur un groupe témoin de \np{1000} bovins sont résumés dans le tableau suivant :
+
+\begin{center}
+	\begin{tblr}{hlines, vlines, colspec={l*{3}{X[c,40mm]}}}
+		& Test positif à la maladie & Test négatif à la maladie & Total \\
+		Malade & 180 & 20 & 200 \\
+		Non malade & 45 & 755 & 800 \\
+		Total & 225 & 775 & \np{1000} \\
+	\end{tblr}
+\end{center}
+
+On choisit au hasard un bovin ayant participé à l'essai et on note :
+\begin{itemize}
+	\item $M$ l'évènement \og le bovin est malade \fg{} ;
+	\item $T$ l'évènement \og le test est positif \fg.
+\end{itemize}
+
+On exprimera tous les résultats sous forme décimale.
+
+\begin{minipage}{0.7\linewidth}
+	\begin{enumerate}
+		\item Montrer que la probabilité de l'évènement $M$ est $0,2$.
+		\item Décrire par une phrase l'évènement $M \cap T$, puis calculer la probabilité de cet évènement.
+		\item Calculer la probabilité $P_M(T)$.
+	\end{enumerate}
+\end{minipage}
+\hfill
+\fbox{
+	\begin{minipage}{0.2\textwidth}
+		\textbf{Aide au calcul :}\\[0.5em]
+		$225 = 5 \times 45$
+	\end{minipage}
+}
+\begin{enumerate}[start=4]
+	\item Un test est dit fiable si la probabilité de ne pas être atteint par la maladie sachant que le test est positif est inférieure ou égale à $0,15$.
+
+	En se basant sur les résultats de cet essai, le test du laboratoire est-il fiable ? Justifier la réponse.
+	\item À présent, on choisit deux bovins parmi ceux ayant participé à l'essai. Le nombre de bovins est suffisamment grand pour considérer cette expérience comme un tirage avec remise. On souhaite déterminer la probabilité de l'évènement $A$ : \og les deux bovins sont malades \fg.
+	\begin{enumerate}
+		\item Représenter la situation par un arbre pondéré.
+		\item En déduire la probabilité de l'évènement $A$.
+	\end{enumerate}
+\end{enumerate}

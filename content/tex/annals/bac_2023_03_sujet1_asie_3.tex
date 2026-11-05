@@ -1,0 +1,75 @@
+\medskip
+
+Soit $k$ un réel strictement positif.
+
+Le but de cet exercice est de déterminer le nombre de solutions de l'équation 
+\[\ln (x) = kx\]
+ de paramètre $k$.
+ 
+\smallskip
+
+\begin{enumerate}
+\item \textbf{Conjectures graphiques :}
+
+\medskip
+
+On a représenté, ci-dessous, dans un repère orthogonal, la courbe d'équation $y = \ln (x)$, la droite d'équation $y = x$ ainsi que la droite d'équation $y = 0,2x$ :
+
+\begin{center}
+\psset{unit=0.8cm,arrowsize=2pt 3}
+\begin{pspicture*}(-1,-1.2)(16.5,9)
+\psaxes[linewidth=1.25pt]{->}(0,0)(0,-1)(16.5,9)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0.1}{16.5}{x ln}\uput[d](15,2.3){\red $y = \ln x$}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{16.5}{x 0.2 mul}\uput[4](14,3.3){\blue $y = 0,2 x$}
+\psplot[plotpoints=2000,linewidth=1.25pt]{0}{16.5}{x}\uput[ul](8.5,8.5){$y = x$}
+\end{pspicture*}
+\end{center}
+
+À partir du graphique ci-dessus, conjecturer le nombre de solutions de l'équation $\ln (x) = kx$ pour $k = 1$ puis pour $k = 0,2$.
+\item Étude du cas $k = 1$ :
+
+On considère la fonction $f$, définie et dérivable sur $]0~;~+\infty[$, par: 
+\[f(x) = \ln (x) - x.\]
+
+On note $f'$ la fonction dérivée de la fonction $f$.
+	\begin{enumerate}
+		\item Calculer $f'(x)$.
+		\item Étudier le sens de variation de la fonction $f$ sur $]0~;~+\infty[$.
+
+Dresser le tableau des variations de la fonction $f$ en y faisant figurer la valeur exacte des extremums s'il y en a.
+
+Les limites aux bornes de l'intervalle de définition ne sont pas attendues.
+		\item En déduire le nombre de solutions de l'équation $\ln (x) = x$.
+	\end{enumerate}	
+\item Étude du cas général :
+
+$k$ est un nombre réel strictement positif.
+
+On considère la fonction $g$ définie sur $]0~;~+\infty[$ par:
+\[g(x) = \ln (x) - kx.\]
+
+On admet que le tableau des variations de la fonction $g$ est le suivant :
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(7.5,2.5)
+\psframe(7.5,2.5)\psline(0,1.5)(7.5,1.5)
+\psline(1.5,0)(1.5,2.5)
+\uput[u](0.75,1.4){$x$} \uput[u](1.65,1.4){$0$} \uput[u](4.5,1.4){$\dfrac 1k$} 
+\uput[u](7,1.4){$+ \infty$}
+\rput(0.75,0.75){$g(x)$}\uput[u](2,0){$- \infty$}\uput[d](4.5,1.5){$g\left(\frac 1k\right)$}
+\uput[u](7,0){$- \infty$}
+\psline{->}(2,0.5)(4,1)\psline{->}(5,1)(7,0.5)
+\end{pspicture}
+\end{center}
+
+	\begin{enumerate}
+		\item Donner, en fonction du signe de $g\left(\dfrac 1k\right)$ le nombre de solutions de l'équation $g(x) = 0$.
+		\item Calculer $g\left(\dfrac 1k\right)$ en fonction du réel $k$.
+		\item Montrer que $g\left(\dfrac 1k\right) > 0$ équivaut à $\ln (k) < - 1$.
+		\item Déterminer l'ensemble des valeurs de $k$ pour lesquelles l'équation $\ln (x) = kx$ possède exactement deux solutions.
+		\item Donner, selon les valeurs de $k$, le nombre de solutions de l'équation $\ln (x) = kx$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip

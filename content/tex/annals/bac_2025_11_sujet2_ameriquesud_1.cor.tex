@@ -1,0 +1,173 @@
+\medskip
+
+\emph{Dans cet exercice, tous les résultats seront arrondis à $10^{-3}$ près en cas de besoin.\\
+Les deux parties de cet exercice sont indépendantes l'une de l'autre.}
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+Au tennis, le joueur qui est au service peut, en cas d'échec lors du premier service, servir une deuxième balle.
+
+En match, Abel réussit son premier service dans 70\,\% des cas. Lorsque le premier service est réussi, il gagne le point dans 80\,\% des cas.
+
+En revanche, après un échec à son premier service, Abel gagne
+le point dans 45\,\% des cas.
+
+
+
+Abel est au service.
+
+\begin{list}{\textbullet}{On considère les évènements suivants:}
+\item $S$ : \og Abel réussit son premier service \fg{};
+\item $G$ : \og Abel gagne le point \fg.
+\end{list}
+
+
+
+\begin{enumerate}
+\item $\overline{S}$ est l'événement: \og Abel ne réussit pas son premier service. \fg{}.
+
+On traduit la situation par un arbre pondéré.
+
+\begin{center}
+
+  \pstree[treemode=R,nodesepA=0pt,nodesepB=4pt,levelsep=2.5cm,treesep=1cm]{\TR{}}
+ {
+ 	\pstree[nodesepA=4pt]{\TR{$S$}\naput{$0,7$}}
+ 	  { 
+ 		  \TR{$G$}\naput{$0,8$}
+ 		  \TR{$\overline{G}$}\nbput{$0,2$}	   
+ 	  }
+ 	\pstree[nodesepA=4pt]{\TR{$\overline{S}$}\nbput{$0,3$}}
+ 	  {
+ 		  \TR{$G$}\naput{$0,45$}
+ 		  \TR{$\overline{G}$}\nbput{$0,55$}	   
+      }
+}
+
+\end{center}	
+
+\item $P\left (S \cap G\right ) = P\left (S\right ) \times P_{S}\left (G\right ) = 0,7\times 0,8 = 0,56$
+
+\item 
+$\left \{ S\,,\, \overline{S}\strut \right \}$ forme une partition de l'univers donc, d'après la formule des probabilités totales, on a:
+$P\left (G\right ) = P\left (S\cap G\right ) + P \left (\overline{S}\cap G\right )
+= 0,56 + 0,3\times 0,45 = 0,695$
+
+\item Abel a gagné le point. La probabilité qu'il ait réussi son premier service est:
+
+$P_{G}\left (S\right ) = \dfrac{P\left (S\cap G \right )}{P\left (G\right )}=\dfrac{0,56}{0,695}\approx 0,806$
+
+\item 
+\begin{list}{\textbullet}{On a:}
+\item $P\left (S\cap G\right )=0,56$
+\item $P\left (S\right )\times P\left (G\right ) = 0,7 \times 0,695 = \np{0,4865}$
+\end{list}
+
+$P\left (S\cap G\right ) \neq  P\left (S\right )\times P\left (G\right )$ donc les événements $S$ et $G$ ne sont pas indépendants.
+
+\end{enumerate}
+
+
+\textbf{Partie B}
+
+\medskip
+
+À la sortie d'une usine de fabrication de balles de tennis, une balle est jugée conforme dans 85\,\% des cas.
+
+
+
+\begin{enumerate}
+\item On teste successivement $20$~balles. On considère que le nombre de balles est suffisamment grand pour assimiler ces tests à un tirage avec remise. On note $X$ la variable aléatoire qui compte le nombre de balles conformes parmi les $20$ testées.
+	\begin{enumerate}
+		\item 
+L'épreuve élémentaire consiste à voir si une balle est conforme, avec une probabilité de $0,85$, ou si elle ne l'est pas.
+
+On exécute cette épreuve élémentaire 20 fois et on  considère que le nombre de balles est suffisamment grand pour assimiler ces tests à un tirage avec remise.
+
+Donc la variable aléatoire $X$ qui compte le nombre de balles conformes parmi les $20$ testées, suit la loi binomiale de paramètres $n=20$ et $p=0,85$.
+		
+		\item À la calculatrice,  $P\left (X \leqslant 18\right ) \approx 0,824$.
+		
+		\item La probabilité qu'au moins deux balles ne soient pas conformes parmi les $20$ balles testées est  égale à la probabilité qu'au plus 18 balles soient conformes, c'est-à-dire $P\left (X\leqslant18\right )$ soit environ $0,824$.
+		
+		
+		\item L'espérance de $X$ est $E(X)=np=20\times 0,85=17$.
+	\end{enumerate}
+	
+\item On teste maintenant $n$ balles successivement. On considère les $n$ tests comme un échantillon de $n$ variables aléatoires $X$ indépendantes suivant la loi de Bernoulli de paramètre $0,85$.
+	
+On considère la variable aléatoire
+	$M_n = \displaystyle\sum_{i=1}^n \dfrac{X_i}{n} = \dfrac{X_1}{n} + \dfrac{X_2}{n} + \dfrac{X_3}{n} + \ldots + \dfrac{X_n}{n}$
+
+	\begin{enumerate}
+		\item 
+D'après le cours, on peut dire que les  $n$ variables aléatoires $X$ indépendantes qui suivent la loi de Bernoulli de paramètre $p=0,85$ ont pour espérance $p=0,85$ et pour variance $p\left (1-p\right )=0,85\times 0,15=\np{0,1275}$.
+
+\begin{list}{\textbullet}{Soit $S_n$ la loi somme   définie par 	$S_n=X_1+X_2+X_3+ \cdots + X_n  = \ds\sum_{i=1}^n X_i$.}
+\item D'après la linéarité de l'espérance, on a:
+
+$E\left (S_n\right )= E\left (\ds\sum_{i=1}^n X_i \right ) = \ds\sum_{i=1}^n E\left (X_i\right ) = \ds\sum_{i=1}^n 0,85=0,85n$
+\item Les variables $X_i$ étant indépendantes, on utilise l'additivité de la variance:
+
+$V\left (S_n\right )= V\left (\ds\sum_{i=1}^n X_i \right ) = \ds\sum_{i=1}^n V\left (X_i\right ) = \ds\sum_{i=1}^n \np{0,1275}=\np{0,1275}n$
+\end{list}
+
+
+
+\begin{list}{\textbullet}{$M_n$ est la loi moyenne définie par $M_n=\dfrac{S_n}{n}$.}
+\item On sait que  $E(aX)=aE(X)$, donc:
+
+$E\left (M_n\right )=E\left (\dfrac{1}{n}S_n\right ) = \dfrac{1}{n} \; E\left (S_n\right ) = \dfrac{0,85n}{n}=0,85$.
+\item On sait que $V(aX)=a^2V(X)$ donc:
+
+$V\left (M_n\right )=V\left (\dfrac{1}{n}S_n\right ) = \dfrac{1}{n^2} \; V\left (S_n\right ) = \dfrac{\np{0,1275}n}{n^2}= \dfrac{\np{0,1275}}{n}$.
+\end{list}
+				
+		\item 
+Si $X$ est une variable aléatoire et $t$ un réel strictement positif, on a:
+
+$P\left ( \left | X-E(X)\strut \right | \geqslant t\right ) \leqslant \dfrac{V(X)}{t^2}$.
+C'est l'inégalité de Bienaymé-Tchebychev.
+
+On en déduit que: 	$P\left ( \left | X-E(X)\strut \right | < t\right ) \geqslant 1- \dfrac{V(X)}{t^2}$. Donc:
+		
+$\begin{aligned}
+P\left ( \left | X-E(X)\strut \right | < t\right ) \geqslant 1- \dfrac{V(X)}{t^2}
+& \iff
+P\left ( \left | M_n-E(M_n)\strut \right | < t\right ) \geqslant 1- \dfrac{V(M_n)}{t^2}\\
+& \iff
+P\left ( \left | M_n-0,85\strut \right | < t\right ) \geqslant 1- \dfrac{\np{0,1275}}{nt^2}
+\end{aligned}$
+
+\begin{list}{\textbullet}{On prend $t=0,1$. On a donc:}
+\item 
+$\begin{aligned}[t]
+\left | M_n-0,85\strut \right | < t
+& \iff \left | M_n-0,85\strut \right | < 0,1
+\iff -0,1 <  M_n-0,85< 0,1\\
+& \iff 0,75 < M_n < 0,95
+\end{aligned}$
+
+\item $1- \dfrac{\np{0,1275}}{nt^2} =  1- \dfrac{\np{0,1275}}{n\times 0,1^2} =  1- \dfrac{12,75}{n}$
+\end{list} 
+
+On déduit donc:
+$P(0,75 < M_n < 0,95) \geqslant  1 - \dfrac{12,75}{n}$.
+
+		\item Pour trouver un entier $n$ tel que la moyenne du nombre de balles conformes pour un échantillon de taille $n$ appartienne à l'intervalle ]0,75~;~0,95 [ avec une probabilité supérieure à $0,9$, il suffit que: $1 - \dfrac{12,75}{n}\geqslant 0,9$.
+On résout cette inéquation.
+
+$1 - \dfrac{12,75}{n}\geqslant 0,9
+ \iff 0,1\geqslant \dfrac{12,75}{n}
+\iff 0,1n \geqslant 12,75
+\iff n \geqslant 127,5$
+
+Donc il faut un échantillon de taille supérieure à $n=128$ pour  que  la moyenne du nombre de balles conformes  appartenant à l'intervalle $]0,75~;~0,95[$ ait une probabilité supérieure à $0,9$
+	\end{enumerate}
+\end{enumerate}
+
+\vspace{0,5cm}

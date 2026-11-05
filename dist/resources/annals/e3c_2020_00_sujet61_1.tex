@@ -1,0 +1,210 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet61_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Ce QCM comprend 5 questions. Pour chacune des questions, une seule des quatre réponses proposées est correcte. Les questions sont indépendantes.
+
+Pour chaque question, indiquer le numéro de la question et recopier sur la copie la lettre correspondante à la réponse choisie.
+
+Aucune justification n'est demandée mais il peut être nécessaire d'effectuer des recherches au brouillon pour aider à déterminer votre réponse.
+
+Chaque réponse correcte rapporte 1 point. Une réponse incorrecte ou une question sans réponse n'apporte, ni ne retire de point
+
+\medskip
+
+\textbf{Question 1}
+
+\medskip
+
+\begin{minipage}{8cm}
+{La courbe ci-contre $\mathcal{C}_f$ est la représentation graphique, dans un repère orthonormé, d'une fonction  $f$. Les droites $d$ et $d'$ sont respectivement les tangentes à la courbe  $\mathcal{C}_f$ aux points d'abscisses 1 et 2.
+
+Les équations réduites de $d$ et $d'$  sont respectivement : $d : y = 2x - 2$ et $d' : y = - x + 2$.}
+\end{minipage}\hspace{0,5cm}
+\begin{minipage}{8.75cm}
+{\psset{unit=1.2cm}
+\begin{pspicture*}(-0.6,-2.2)(4,2.2)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.15pt]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-0.6,-2.2)(4,2.2)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0.2}{4}{x 3 exp x dup mul 6 mul sub 11 x mul add 6 sub}
+\uput[ul](1,0){\small A} \uput[ur](2,0){\small B}
+\psline(-0.6,2.6)(4,-2)\psline(-0.6,-3.2)(4,6)
+\uput[dr](2,2){$d$}\uput[ur](0.2,1.8){$d'$}\uput[r](3.5,1.5){$\red \mathcal{C}_f$}
+\end{pspicture*}
+}\end{minipage}
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}X}
+\textbf{a.~~}$f'(1) = 0$ &\textbf{b.~~}$f'(2) = 2$ &\textbf{c.~~}$f'(2) = -1$ &\textbf{d.~~}$f'(1) = -2$ 
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 2}
+
+\medskip
+
+Soit $x \in \left[\dfrac{\pi}{2}~;~\dfrac{\pi}{2}\right]$ tel que $\sin x = \dfrac{1}{2}$.
+
+Parmi les propositions suivantes, laquelle est juste ?
+
+\begin{tabularx}{\linewidth}{*{4}X}
+\textbf{a.~~}$\cos x = - \dfrac{\sqrt{3}}{2}$ &\textbf{b.~~}$x = \dfrac{\pi}{6}$ &\textbf{c.~~}$\cos x =  \dfrac{\sqrt{3}}{2}$ &\textbf{d.~~}$x = -\dfrac{7\pi}{6}$ 
+\end{tabularx}
+\medskip
+
+\textbf{Question 3}
+
+\medskip
+
+
+\begin{minipage}{8.75cm}
+{Soit (O, I, J) un repère orthonormé du plan.
+
+Soit  A et B deux points de coordonnées respectives (3~;~4~) et (4~;~0).
+
+Parmi les propositions suivantes, laquelle est
+juste?}
+\end{minipage}\hspace{0.5cm}\begin{minipage}{8.75cm}
+{\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(-0.5,-0.5)(4.2,4.2)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.15pt]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle](0,0)(-0.5,-0.5)(4.2,4.2)
+\psaxes{->}(1,1)
+\pspolygon(3,4)(4,0)\psline(3,0)(3,4)
+\uput[ul](0,0){O}\uput[u](3,4){A}\uput[ur](4,0){B} \uput[ur](3,0){H}
+\psframe(3,0)(2.8,0.2)\uput[ul](1.5,2){5}\uput[u](1.5,0){4}\uput[ur](3.5,2){$\sqrt{17}$}
+\uput[dr](1,0){I}\uput[ul](0,1){J}
+\end{pspicture}
+}
+\end{minipage}
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{2}X}
+\textbf{Proposition A }: $\vect{\text{OA}} \cdot \vect{\text{OB}} = 20$&\textbf{Proposition B }: $\sin \widehat{\text{AOB}} = \dfrac{\sqrt{17}}{5}$\\
+\textbf{Proposition C }: $\cos \widehat{\text{AOB}} = \dfrac{4}{5}$&\textbf{Proposition D } : $\sin \widehat{\text{AOB}} = \dfrac{4}{5}$
+\end{tabularx}
+\medskip
+
+\textbf{Question 4}
+
+\medskip
+
+Soit (0, I, J) un repère orthonormé du plan.
+
+Soit $d$ une droite dont une équation cartésienne est : $3x + 2y - 10 = 0$.
+
+Une équation cartésienne de la droite $d'$ perpendiculaire à la droite $d$ et passant par le point A de coordonnées (1~;~2) est :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}X}
+\textbf{Proposition A }: $ 3x+2y- 7 = 0$&\textbf{Proposition B }: $2x +3y - 8= 0 $ \\
+\textbf{Proposition C }: $2x- 3y+4 = 0$	& \textbf{Proposition D }: $3x - 2y +1 = 0$
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 5}
+
+\medskip
+
+Soit (O, I, J) un repère orthonormé du plan.
+
+Soit A et B deux points de coordonnées respectives (1~;~2) et $(5~;~-2)$. 
+
+Une équation cartésienne du cercle $C$ de diamètre [AB] est :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}X}
+\textbf{Proposition A }: $ x^2+y^2 - 8x- 2y + 7 = 0$ 	&\textbf{Proposition B }: $(x- 1)^2+(y - 2)^2 = 32$\\ \textbf{Proposition C }: $x^2 + y^2 - 4x +2y - 5 = 0$	& \textbf{Proposition D }: $x^2+y^2 -6x + 1 = 0$
+\end{tabularx}
+\end{center}
+
+
+\vspace{0,5cm}
+
+\end{document}

@@ -1,0 +1,35 @@
+\medskip
+
+Le directeur d'une maternité en milieu rural a enregistré $900$ accouchements entre le 1\up{er}
+janvier 2019 et le 31 décembre 2019.
+
+Depuis déjà 10 ans, il constate que le nombre d'accouchements baisse d'environ 4\,\% chaque
+année par rapport à l'année précédente.
+
+En supposant que cette diminution se poursuive avec ce même taux les prochaines années, il
+modélise le nombre d'accouchements de cette maternité pour l'année $2019 + n$ à l'aide du
+$n$-ième terme d'une suite $\left(u_n\right)$. Il a ainsi $u_0 = 900$.
+
+\medskip
+
+\begin{enumerate}
+\item Montrer que la suite $\left(u_n\right)$ est une suite géométrique dont on précisera la raison.
+\item On considère la fonction Suite définie ci-dessous en langage Python.
+\begin{lstlisting}[style=python]
+1 def Suite(n):
+2 	  u=900
+3   for i in range(1,n+1):
+4 	  u=0.96*u
+5   return u 
+\end{lstlisting}
+
+Quelle sera la valeur obtenue pour Suite(5) ?
+\item Pour tout entier naturel $n$, exprimer $u_n$ en fonction de $n$.
+\item Le directeur sait que la maternité devra fermer dès le nombre d'accouchements
+deviendra inférieur à 600.
+
+Avec ce modèle, la maternité sera-t-elle fermée en 2030 ? Justifier.
+\item Selon ce modèle, en quelle année la maternité fermera-t-elle ses portes ?
+\end{enumerate}
+
+\vspace{0,5cm}

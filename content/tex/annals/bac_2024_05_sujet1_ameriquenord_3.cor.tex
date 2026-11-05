@@ -1,0 +1,133 @@
+\medskip
+
+Le but de cet exercice est d'étudier la fonction $f$ définie sur l'intervalle $]0~;~+\infty[$ par : 
+
+\[f(x) = x\ln \left(x^2\right) -\dfrac 1x.\]
+
+\smallskip
+
+\textbf{Partie A : lectures graphiques}
+
+\medskip
+
+On a tracé ci-dessous la courbe représentative $(\mathcal{C}_f)$ de la fonction $f$, ainsi que la droite $(T)$, tangente à la courbe $(\mathcal{C}_f)$ au point A de coordonnées $(1~;~-1)$.
+
+Cette tangente passe également par le point B$(0~;~-4)$.
+
+\begin{center}
+\psset{xunit=1.5cm,yunit=0.6cm,arrowsize=2pt 3}
+\begin{pspicture*}(-0.4,-7.2)(4,7.1)
+\multido{\n=1+1}{4}{\psline[linewidth=0.2pt](\n,-7)(\n,7)}
+\multido{\n=-7+1}{15}{\psline[linewidth=0.2pt](0,\n,)(4,\n)}
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle,showorigin=false]{->}(0,0)(-0.4,-7)(4,7)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0.1}{4}{x dup mul ln x mul 1 x div sub}
+\psplotTangent{1}{3}{x dup mul ln x mul 1 x div sub}
+\uput[l](3,6){\red $\mathcal{C}_f$}\uput[dr](3,5){$T$}
+\uput[dr](1,-1){A}\uput[dr](0,-4){B}
+\psline[linewidth=1.75pt,ArrowInside=->](1,-1)(2,-1)(2,2)
+\uput[d](1.5,-1){1}\uput[r](2,0.5){3}
+\end{pspicture*}
+\end{center}
+
+\begin{enumerate}
+\item 
+Le coefficient directeur de la tangente au point d'abscisse 1 est le nombre dérivé $f'(1)$ ; on lit sur le graphique $f'(1) =  \dfrac31 = 3$.
+
+L'ordonnée à l'origine est égale à $- 4$, donc l'équation réduite de la tangente $(T)$ est 
+
+\[M(x~;~y) \in (T) \iff y = 3x - 4.\] 
+\item 
+$\bullet~$ il semble que $f$ est concave sur ]0~;~1[ ;
+
+$\bullet~$ il semble que $f$ est convexe sur $]1~;~+ \infty[$.
+
+
+Le point A semble être un point d'inflexion de la courbe $(\mathcal{C}_f)$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B : étude analytique}
+
+\medskip
+
+\begin{enumerate}
+\item ~
+
+$\bullet~~$On a $\displaystyle\lim_{x \to + \infty} \dfrac 1x = 0, \: \displaystyle\lim_{x \to + \infty} x = + \infty$ et $\displaystyle\lim_{x \to + \infty} \ln \left(x^2\right) = + \infty$ ; donc par produit de limites $\displaystyle\lim_{x \to + \infty} f(x) = + \infty$.
+
+$\bullet~~$Avec $f(x) = 2x \ln x - \dfrac1x$, on sait que $\displaystyle\lim_{x \to 0} x \ln x = 0$ et $\displaystyle\lim_{x \to 0}\dfrac 1x = + \infty$, donc 
+
+$\displaystyle\lim_{x \to 0}f(x) = - \infty$ (l'axe des ordonnées est asymptote verticale de $(\mathcal{C}_f)$ au voisinage de zéro.
+\item On admet que la fonction $f$ est deux fois dérivable sur l'intervalle $]0~;~+\infty[$.
+	\begin{enumerate}
+		\item 
+Les fonctions $x \longmapsto x$, \: $x \longmapsto \ln \left(x^2 \right)$ et $x \longmapsto - \dfrac 1x$ sont dérivables sur $]0~;~+ \infty[$ et l'on a :
+
+$f'(x) = \ln \left(x^2 \right) + x \times \dfrac{2x}{x^2} + \dfrac{1}{x^2} = \ln \left(x^2 \right)+  2 +  \dfrac{1}{x^2}$ ou $f'(x) = 2\ln x + 2 + \dfrac{1}{x^2}$ sur $]0~;~+ \infty[$.
+		\item 
+
+
+En dérivant $f'(x)$ on obtient :
+
+$f''(x) = \dfrac2x - \dfrac{2x}{x^4} = \dfrac2x - \dfrac{2}{x^3} = \dfrac{2x^2 - 2}{x^3} = \dfrac{2\left(x^2 - 1\right)}{x^3} = \dfrac{2(x + 1)(x - 1)}{x^3}$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+		Comme $x^3 > 0$ sur $]0~;~+ \infty[$, le signe de $f''(x)$ est celui de $(x + 1)(x - 1)$ et comme $x + 1 > 1 > 0$, le signe de $f''(x)$ est celui de $x - 1$.
+
+Conclusion :
+
+$\bullet~~$Sur $]0~;~1[,\: x < 1, \: f''(x) < 0$ : la fonction est concave ;
+
+$\bullet~~$Sur $]1~;~+\infty[,\: x > 1, \: f''(x) > 0$ : la fonction est convexe ;
+
+$\bullet~~$pour $x = 1$, la dérivée seconde s'annule en changeant de signe : le point A est le point d'inflexion de $(\mathcal{C}_f)$.
+		\item 
+Du signe de $f''(x)$ on en déduit les variations de $f'$ qui est décroissante sur ]0~;~1[ puis croissante sur $[1~;~+ \infty[$, donc $f'(1) = 2 + 1 = 3$ (vu à la question \textbf{1.}).
+
+Comme 3 est le minimum de $f'$, on en déduit que $f'(x) > 0$ sur $]0~;~+ \infty[$ et par conséquent la fonction $f$ est  strictement croissante sur $\R_+^*$.
+		
+
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item 
+		
+Tableau de variations de $f$ :
+		
+\begin{center}
+\psset{unit=1.75cm,arrowsize=2pt 3}
+\begin{pspicture}(7,3.8)
+
+\psframe(7,3.8)\psline(0,2)(7,2)\psline(0,3)(7,3)\psline(0,3.5)(7,3.5)\psline(1,0)(1,3.8)
+\psline[linecolor=red](1.1,0)(1.1,3.5)\psline[linecolor=red](1.15,0)(1.15,3.5)
+\uput[u](0.5,3.5){$x$} \uput[u](1.125,3.5){$0$} \uput[u](3,3.5){$1$} \uput[u](5,3.5){$2$} \uput[u](6.7,3.5){$+\infty$} 
+\rput(0.5,3.25){$f''(x)$}\uput[u](2,3.1){$-$}\uput[u](3,3.1){$0$}\uput[u](4,3.1){$+$}\uput[u](6,3.1){$+$}\uput[u](3,2){3}
+\rput(0.5,2.5){$f'(x)$}\psline{->}(1.2,2.8)(2.75,2.1) \psline{->}(3.3,2.1)(6.8,2.8)
+\psline{->}(1.5,0.5)(6.5,1.5)\uput[u](1.4,0){$-\infty$}\uput[d](6.6,2){$+ \infty$}
+\rput(0.5,1){$f$}\rput(3,0.85){$-1$}\rput(5,1.2){$\approx 2,27$}
+\end{pspicture}
+\end{center}
+
+Sur l'intervalle ]1~;~2[ la fonction $f$ est continue (car dérivable) et strictement croissante avec $f(1) < 0$ et $f(2) > 0$ : d'après le théorème des valeurs intermédiaires il existe un nombre unique $\alpha \in ]1~;~2[$ tel que $f(\alpha) = 0$.
+
+		\item 
+		
+
+La calculatrice donne $f(1,3) \approx - 0,09$ et $f(1,4) \approx 0,23$ donc $1,3 < \alpha < 1,4$, puis $f(1,32) \approx -  0,02$ et $f(1,33) \approx 0,007$, d'où $1,32 < \alpha < 1,33$ et enfin 
+
+$f(1,327) \approx - 0,003$ et $f(1,328) \approx 0,0004$, donc $\alpha \approx 1,33$ au centième près.
+
+On sait que $\alpha$ est solution de $f(x) = 0 \iff x \ln \left(x^2 \right) - \dfrac1x = 0 \iff $
+
+$ x\ln \left(x^2 \right) = \dfrac{1}{x}  \iff \ln \left(x^2\right) = \dfrac{1}{x^2}$ et enfin par croissance de la fonction exponentielle :
+
+$\exp\left(\ln \left(x^2\right)\right) = \exp\left(\dfrac{1}{x^2}\right) \iff x^2 = \exp\left(\dfrac{1}{x^2}\right)$.
+
+$\alpha$ vérifie cette équation donc $\alpha^2 = \text{exp} \left(\dfrac{1}{\alpha^2}\right)$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

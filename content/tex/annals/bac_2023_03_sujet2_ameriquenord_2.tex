@@ -1,0 +1,63 @@
+\medskip
+
+On étudie un groupe de \np{3000} sportifs qui pratiquent soit l'athlétisme dans le club A, soit le basketball dans le club B.
+
+En 2023, le club A compte \np{1700} membres et le club B en compte \np{1300}.
+
+\smallskip
+
+On décide de modéliser le nombre de membres du club A et du club B respectivement par deux suites $\left(a_{n}\right)$ et $\left(b_{n}\right)$, où $n$ désigne le rang de l'année à partir de 2023.
+
+L'année 2023 correspond au rang 0. On a alors $a_{0}= \np{1700}$ et $b_{0} = \np{1300}$.
+
+Pour notre étude, on fait les hypothèses suivantes :
+\begin{itemize}
+\item durant l'étude, aucun sportif ne quitte le groupe ;
+\item chaque année, $15\,\%$ des sportifs du club A quittent ce club et adhèrent au club B ;
+\item chaque année, $10\,\%$ des sportifs du club B quittent ce club et adhèrent au club $A$.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Calculer les nombres de membres de chaque club en 2024.
+\item Pour tout entier naturel $n$, déterminer une relation liant $a_{n}$ et $b_{n}$.
+\item Montrer que la suite $\left(a_{n}\right)$ vérifie la relation suivante pour tout entier naturel $n$, on a : 
+\[a_{n+1}= 0,75 a_{n} + 300.\]
+
+\item 
+	\begin{enumerate}
+		\item Démontrer par récurrence que pour tout entier naturel $n$, on a :
+\[1200 \leqslant a_{n+1} \leqslant a_{n} \leqslant \np{1700}.\]
+		\item En déduire que la suite $\left(a_{n}\right)$ converge.
+	\end{enumerate}
+\item Soit $\left(v_{n}\right)$ la suite définie pour tout entier naturel $n$ par $v_{n}=a_{n}- \np{1200}$.
+	\begin{enumerate}
+		\item Démontrer que la suite $\left(v_{n}\right)$ est géométrique.
+		\item Exprimer $v_{n}$ en fonction de $n$.
+		\item En déduire que pour tout entier naturel $n, a_{n}= 500 \times 0,75^{n}+ \np{1200}$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Déterminer la limite de la suite $\left(a_{n}\right)$.
+		\item Interpréter le résultat de la question précédente dans le contexte de l'exercice.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Recopier et compléter le programme Python ci-dessous afin qu'il renvoie la plus petite valeur de n à partir de laquelle le nombre de membres du club A est strictement inférieur à \np{1280}.
+
+\begin{center}
+\psset{unit=1cm}
+\begin{tabular}{l l}
+\textbf{def}&seuil() :\\
+&n = 0\\&A = \np{1700}\\
+&\textbf{while ...} :\\
+&\qquad n=n+1\\
+&\qquad A = \ldots\\
+&\textbf{return}\ldots\\
+\end{tabular}
+
+\end{center}
+		\item Déterminer la valeur renvoyée lorsqu'on appelle la fonction seuil.
+	\end{enumerate}
+\end{enumerate}

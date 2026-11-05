@@ -1,0 +1,153 @@
+\medskip
+
+Voici la répartition des principaux groupes sanguins des habitants de France:
+
+\begin{center}
+\scalebox{0.7}{
+\psset{xunit=1.2cm,yunit=0.25cm}
+\begin{pspicture}(-2,0)(8.5,41)
+
+\uput[d](1,0){A+}\uput[d](2,0){O+}\uput[d](3,0){B+}\uput[d](4,0){A$-$}
+\uput[d](5,0){O$-$}\uput[d](6,0){AB+}\uput[d](7,0){B$-$}\uput[d](8,0){AB$-$}
+\multido{\n=0+5}{9}{
+\psline[linecolor=lightgray](0,\n)(8.5,\n)
+\uput[l](0,\n){\n\,\%}}
+\psaxes[linewidth=1.25pt,Dx=1,Dy=5,labels=none](0,0)(0,0)(8.5,40)
+\psframe[fillstyle=solid,fillcolor=lightgray](0.8,0)(1.2,38.2)\uput*[u](1,38.2){38,2\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](1.8,0)(2.2,36.5)\uput[u](2,36.5){36,5\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](2.8,0)(3.2,7.7)\uput[u](3,7.7){7,7\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](3.8,0)(4.2,6.8)\uput[u](4,6.8){6,8\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](4.8,0)(5.2,6.5)\uput[u](5,6.5){6,5\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](5.8,0)(6.2,2.5)\uput[u](6,2.5){2,5\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](6.8,0)(7.2,1.4)\uput[u](7,1.4){1,4\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](7.8,0)(8.2,0.4)\uput[u](8,0.4){0,4\,\%}
+\rput{90}(-1,20){Partie des Français}
+\end{pspicture}
+
+
+
+
+}
+\end{center}
+
+\bigskip
+
+
+
+
+Une expérience aléatoire consiste à choisir une personne au hasard dans la population française et à déterminer son groupe sanguin et son rhésus.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\textbf{Partie 1}
+
+
+
+
+
+\begin{enumerate}
+\item 
+Le pourcentage de personne ayant un rhésus positif est:
+$38,2+36,5+7,7+2,5$ soit $84,9\,\%$.
+Donc la probabilité $P\left (Rh+\right )$ que la personne choisie soit de rhésus positif est égale à $0,849$.
+
+\item
+On cherche $P_{Rh+}(A)= \dfrac{P\left (Rh+ \cap A\right )}{P\left (Rh+\right )}
+= \dfrac{P\left (A+\right )}{P\left (Rh+\right )}$
+
+Il y a $38,2\,\%$ de personnes A+ dans la population donc $P\left (A+\right )=0,382$.
+
+Donc $P_{Rh+}(A)= =\dfrac{0,382}{0,849}\approx 0,450$.
+
+\item Une personne se souvient que son groupe sanguin est AB mais a oublié son rhésus.
+
+La probabilité que son rhésus soit négatif est:
+$P_{AB}\left (Rh-\right ) = \dfrac{P\left (Rh- \cap AB\right )}{P\left (AB\right )}
+= \dfrac{P\left (AB-\right )}{P\left (AB\right )}.$
+
+Il y a $0,4\,\%$ de personnes AB-- dans la population donc $P\left (AB-\right )=0,004$.
+
+$2,5+0,4=2,9$ donc il y a $2,9\,\%$ de personnes AB dans la population donc $P\left (AB\right )=0,029$.
+
+$\dfrac{0,004}{0,029}\approx 0,138$ donc la probabilité  que son rhésus soit négatif est $0,138$  à $0,001$ près.
+
+
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2}
+
+\medskip
+
+
+
+
+
+Un donneur universel de sang est une personne de groupe sanguin O et de rhésus négatif. On rappelle que $6,5\,\%$ de la population française est de groupe O$-$ donc $P\left (O-\right )=0,065$.
+
+
+
+\begin{enumerate}
+\item On considère $50$ personnes choisies au hasard dans la population française et on note $X$ la variable aléatoire qui compte le nombre de donneurs universels.
+	\begin{enumerate}
+		\item 
+Le choix au hasard de 50 personnes peut être assimilé à un tirage avec remise donc la variable aléatoire $X$ qui compte le nombre de donneurs universels suit la loi binomiale de paramètres $n=50$ et $p=0,065$.
+
+La probabilité que 8 personnes soient des donneurs universels est donc:
+
+$P\left( X=8\right ) = \displaystyle\binom{50}{8}\times 0,065^{8}\times \left (1-0,065\right )^{50-8} \approx 0,010$.
+
+		\item On considère la fonction ci-dessous nommée \texttt{proba} d'argument \texttt{k} écrite en langage Python.
+		
+\begin{center}
+\ttfamily
+\begin{tabular}{|l|}
+\hline
+def proba(k):\\
+\quad p = 0\\
+\quad for i in range(k+1):\\
+\quad \quad p = p + binomiale(i , 50 , 0.065)\\ 
+\quad return p\\ 
+\hline
+\end{tabular}
+\end{center}
+
+Cette fonction utilise la fonction \texttt{binomiale} d'argument $i, n$ et $p$, créée pour l'occasion, qui renvoie la valeur de la probabilité $P(X = i)$ dans le cas où $X$ suit une loi binomiale de paramètres $n$ et $p$.
+
+
+
+La valeur numérique renvoyée par la fonction \texttt{proba} lorsqu'on saisit \texttt{proba(8)} dans la console Python correspond à $P\left ( X\leqslant 8 \right )$ et vaut environ $0,995$; cela veut dire qu'il y a une probabilité de $0,995$ que sur les 50 personnes, il y en ait au plus 8 de groupe O--..
+	\end{enumerate}
+	
+\item On veut déterminer le nombre minimal de personnes à choisir au hasard dans la population française pour que la probabilité qu'au moins une des personnes choisies soit donneur universel, soit supérieure à $0,999$.
+
+Autrement dit on cherche $n$ pour que $P\left (X\geqslant 1\right ) > 0,999$, donc en passant par l'événement contraire: $1-P\left (X=0\right ) > 0,999$.
+
+Pour une variable aléatoire $X$ qui suit la loi binomiale de paramètres $n$ et $p=0,065$, on a: $P\left (X=0\right ) = \displaystyle\binom{50}{0} \times 0,065^0 \times \left (1-0,06(\right )^{n}=0,935^n$.
+
+On résout l'inéquation: $1-0,935^n > 0,999$.
+
+$\begin{aligned}
+1-0,935^n > 0,999
+& \iff 1-0,999 > 0,935^n \iff 0,001 > 0,935^n\\
+& \iff \ln \left ( 0,001\right ) > \ln \left ( 0,935^n\right ) \quad (\text{croissance de la fonction ln})\\
+& \iff \ln \left ( 0,001\right ) > n\times \ln \left ( 0,935\right )\\
+& \iff \dfrac{\ln \left ( 0,001\right )}{\ln \left ( 0,935\right )} < n \quad (\text{car }\ln\left (0,935\right )<0)
+\end{aligned}$
+
+Or $\dfrac{\ln \left ( 0,001\right )}{\ln \left ( 0,935\right )} \approx 102,8$ donc  le nombre minimal de personnes à choisir au hasard dans la population française pour que la probabilité qu'au moins une des personnes choisies soit donneur universel, soit supérieure à $0,999$ est $n=103$.
+\end{enumerate}
+
+\bigskip

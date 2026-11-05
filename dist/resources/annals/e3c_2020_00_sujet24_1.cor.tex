@@ -1,0 +1,138 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet24_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Question 1}
+	
+	Un vecteur directeur de la droite est 
+	$\vec u\begin{pmatrix} -5 \\ 4 \end{pmatrix}$, donc un vecteur normal est par exemple $\vec{n}  \begin{pmatrix} 4 \\ 5 \end{pmatrix}$.
+	
+	\subsection*{Question 2}
+	
+	Le point $H(3 ; 4)$ appartient à la droite $(d)$ si et seulement si :
+	\[
+	4 \times 3 + 5 \times 4 - 32 = 0
+	\]
+	ce qui est vrai.
+	
+	De plus, le vecteur $\overrightarrow{AH} \begin{pmatrix} -4 \\ -5 \end{pmatrix}$ est bien orthogonal au vecteur directeur de la droite d'équation $4x + 5y - 32 = 0$, soit $\vec d \begin{pmatrix} -5 \\ 4 \end{pmatrix}$.
+	
+	Ainsi, le vecteur $\overrightarrow{AH} \begin{pmatrix} -4 \\ -5 \end{pmatrix}$ est un vecteur normal à la droite.
+	
+	\subsection*{Question 3}
+	
+	Le point $M(x ; y)$ appartient au cercle $\mathcal{C}(A, R = 2)$ si et seulement si :
+	\[
+	AM^2 = 2^2 \quad \text{soit} \quad (x - (-1))^2 + (y - 3)^2 = 4,
+	\]
+	ce qui équivaut à :
+	\[
+	(x + 1)^2 + (y - 3)^2 = 4.
+	\]
+	
+	\subsection*{Question 4}
+	
+	L'équation de la parabole est donnée par :
+	\[
+	y = 3x^2 - 9x + 5.
+	\]
+	On peut la réécrire sous forme canonique :
+	\[
+	y = 3 \left( x^2 - 3x \right) + 5 = 3 \left[ \left( x - \dfrac{3}{2} \right)^2 - \dfrac{9}{4} \right] + 5 = 3 \left( x - \dfrac{3}{2} \right)^2 - \dfrac{27}{4} + 5 = 3 \left( x - \dfrac{3}{2} \right)^2 - \dfrac{7}{4}.
+	\]
+	Cette forme montre que le minimum de la courbe est atteint pour $x = \dfrac{3}{2}$ et que le minimum vaut $f\left( \dfrac{3}{2} \right) = -\dfrac{7}{4}$.
+	
+	Ainsi, le sommet de la parabole est $S\left( \dfrac{3}{2} ; -\dfrac{7}{4} \right)$ et l'axe de symétrie a pour équation $x = \dfrac{3}{2}$.
+	
+	\subsection*{Question 5}
+	
+	Le trinôme $-3x^2 + 9x - 5$ a un discriminant :
+	\[
+	\Delta = 81 - 4 \times (-3) \times (-5) = 81 - 60 = 21.
+	\]
+	Comme $\Delta > 0$, le trinôme a deux racines :
+	\[
+	x_1 = \dfrac{-9 + \sqrt{21}}{-6} \approx 0,74 \quad \text{et} \quad x_2 = \dfrac{-9 - \sqrt{21}}{-6} \approx 2,26.
+	\]
+	Puisque $a = -3 < 0$, le trinôme est négatif sur les intervalles en dehors des racines, donc il est négatif sur l'intervalle $[x_1 ; x_2]$.
+
+\end{document}

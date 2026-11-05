@@ -1,0 +1,89 @@
+\subsection*{Partie A}
+On note $f$ la fonction définie sur l'intervalle $\left[2 ;+\infty\right[$ par \[f(x)=\ln \left(3 x^{2}+2 x\right).\]
+
+On admet que la fonction $f$ est dérivable sur l'intervalle $\left[2 ; +\infty \right[$ et on note $f'$ sa fonction dérivée.
+
+\begin{enumerate}
+	\item Démontrer que la fonction $f$ est strictement croissante sur l'intervalle $[2 ;+\infty[$.
+
+	\item On note $g$ la fonction définie sur l'intervalle $[2 ;+\infty[$ par :
+	\[g(x)=f(x)-x\]
+
+	On admet que la fonction $g$ est strictement décroissante sur l'intervalle $[2 ;+\infty[$
+
+	et que $\lim\limits_{x \to +\infty} g(x)=-\infty$.
+
+	\begin{enumerate}
+		\item Démontrer que l'équation $g(x)=0$ admet une unique solution $\alpha$ sur l'intervalle $[2 ;+\infty[$.
+
+		\item Donner la valeur de $\alpha$ arrondie au centième.
+
+		\item En déduire le tableau de signes de la fonction $g$ sur l'intervalle $[2 ;+\infty[$.
+	\end{enumerate}
+\end{enumerate}
+
+\subsection*{Partie B}
+Dans cette partie, les réponses pourront s'appuyer sur les résultats de la \textbf{partie A}.
+
+On définit une suite $(a_{n})$ par son premier terme $a_{0}>0$ et pour tout entier naturel $n$,
+\[a_{n+1}=\ln \left(3 {a_{n}}^{2}+2 a_{n}\right)\]
+
+On étudie le cas où \quad $2 \leqslant a_{0} \leqslant \alpha$, \quad où $\alpha$ est l'unique solution de l'équation $g(x)=0$.
+
+\begin{enumerate}
+	\item Démontrer que, pour tout entier naturel $n$, on a $2 \leqslant a_{n} \leqslant \alpha$.
+
+	\item Démontrer que la suite $(a_{n})$ est croissante.
+
+	\item Démontrer que la suite $(a_{n})$ converge.
+
+	\item Démontrer que la limite de la suite $(a_{n})$ est $\alpha$.
+\end{enumerate}
+
+\subsection*{Partie C}
+Dans cette partie, on prend $a_{0}=2$.
+
+La suite $(a_{n})$ est ainsi définie par $a_{0}=2$ et pour tout entier naturel $n$,
+\[a_{n+1}=\ln \left(3 {a_{n}}^{2}+2 a_{n}\right)\]
+
+On note $(b_{n})$ la suite définie par $b_{0}=10$ et pour tout entier naturel $n$,
+\[b_{n+1}=\ln \left(3 {b_{n}}^{2}+2 b_{n}\right)\]
+
+On admet que la suite $\left(b_{n}\right)$ est strictement décroissante et qu'elle converge vers $\alpha$.
+
+\begin{enumerate}
+	\item Justifier que, pour tout entier naturel $n$, on a \quad $a_{n} \leqslant b_{n}$.
+
+	\item On considère le script ci-dessous écrit en langage Python.
+
+\begin{center}
+	\begin{tblr}{colspec = {X[6cm,font=\ttfamily]},vlines, hline{1,Z}={solid},rowsep={0pt}}
+	from math import *\\
+	def algo(p):\\
+	\quad a = 2\\
+	\quad b = 10\\
+	\quad n = 0\\
+	\quad while b - a > 10**(-p):\\
+	\quad \quad a = log(3*a**2 + 2*a)\\
+	\quad \quad b = log(3*b**2 + 2*b)\\
+	\quad \quad n = n + 1\\
+	\quad return (n,a)\\
+\end{tblr}
+\end{center}
+
+On rappelle qu'en langage Python :
+
+	\begin{itemize}[label=\textbullet~]
+		\item la commande \texttt{log(c)} renvoie la valeur de $\ln (c)$;
+
+		\item la commande \texttt{a**2} renvoie la valeur de $a^{2}$.
+	\end{itemize}
+
+	\begin{enumerate}
+		\item Donner les valeurs renvoyées par l'instruction \texttt{algo(2)}.
+
+		\emph{On arrondira si besoin les valeurs au millième.}
+
+		\item Interpréter les valeurs renvoyées dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}

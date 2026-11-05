@@ -1,0 +1,100 @@
+\medskip
+\textbf{Partie A}
+
+\begin{enumerate}
+	\item  $f$ est de la forme $\sqrt{u}$ avec, pour tout $x$ réel positif :\quad  $u(x)= x+1$ \quad et \quad $u'(x)=1$.
+
+	Donc \quad $f'= \dfrac{u'}{2\sqrt{u}}$ \quad donc pour tout $x \in [0~;~+\infty[$,\quad  $f'(x) =   \dfrac{1}{2\sqrt{x+1}}$.
+
+	La fonction racine carrée étant à valeurs positives, pour tout $x \in [0~;~+\infty[$, $f'(x) \geqslant 0$  donc la fonction $f$ est croissante  sur l'intervalle $[0~;~~+\infty[$.
+
+	\item Soit $x$ un réel appartenant à l'intervalle $[0~;~+\infty[$ :
+
+	$f(x) - x =  \sqrt{x+1} -x =    \dfrac {   \left(  \sqrt{x+1} -x    \right) \times   \left(  \sqrt{x+1} +x    \right)  }    {  \sqrt{x+1} +x    }    =      \dfrac {   \left(  \sqrt{x+1}    \right) ^2- x^2  } {   \sqrt{x+1} +x     }     =      \dfrac{-x^2 + x + 1}{\sqrt{x + 1} + x}$.
+
+
+	\item  $\begin{aligned}[t] f(x) = x &\iff  \dfrac{-x^2 + x + 1}{\sqrt{x + 1} + x} = 0  \\
+	&\iff -x^2+x+1=0\end{aligned}$
+
+	Car sur $[0~;~+\infty[$, le dénominateur $\sqrt{x+1} + x$ est strictement positif, en tant que somme d'une expression strictement positive ($\sqrt{x+1}$) et d'une autre positive ($x$), donc ce dénominateur est non nul.
+
+	On a un polynome du second degré. Calculons le discriminant.
+
+	$\Delta = 1^2-4 \times (-1) \times 1= 5$
+
+	On a donc deux racines réelles distinctes :
+
+	$x_1 = \dfrac{-1-\sqrt{5}}{-2}= \dfrac{1 +\sqrt 5}{2}\geqslant 0$
+
+
+	$x_2= \dfrac{-1+\sqrt{5}}{-2}<0$ \quad donc n'est pas solution de l'équation sur $[0~;~+\infty[$
+
+
+	L'équation $f(x)=x$ admet donc une unique solution  sur l'intervalle $[0~;~+\infty[$ :
+
+	$\ell = \dfrac{1 +\sqrt 5}{2}$.
+
+	\emph{Remarque :} ce nombre est connu sous l'appellation \og nombre d'or\fg{}.
+
+\end{enumerate}
+
+\medskip
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+	\item \begin{itemize}
+		\item \emph{Initialisation :} pour  $n= 0$, on a $u_0 = 5$.
+
+$u_0 \in [0~;~+\infty[$, donc $f(u_0)$ est définie et $u_1 = f(u_0) = f(5) = \sqrt{5+1} = \sqrt{6} \approx 2,45$.
+
+L'inéquation $ \quad 1 \leqslant u_{0+1} \leqslant u_0$ \quad est bien vérifiée.
+
+		\item \emph{Hérédité :} Pour un naturel $n$, on suppose que l'inégalité est vraie au rang $n$, c'est-à-dire : \quad $1 \leqslant u_{n+1} \leqslant u_n$.
+
+En appliquant la fonction $f$ aux trois membres de cette inégalité, la croissance de $f$ sur $[0~;~+\infty[$ donne :
+
+$\begin{aligned} f(1 ) \leqslant f(u_{n+1})\leqslant f(u_n) &\implies \sqrt{2} \leqslant u_{n+2} \leqslant u_{n+1}\\
+&\implies 1 \leqslant u_{n+2} \leqslant u_{n+1},\quad \emph{car } \sqrt{2} \approx 1,4 \geqslant 1\end{aligned}$
+
+Cette conclusion est l'inégalité, au rang suivant.
+
+	\item \emph{Conclusion :} l'inégalité est vraie au rang 0, et sa véracité est héréditaire, pour tout entier naturel, donc, en vertu du principe de récurrence, pour tout entier naturel $n$, l'inégalité est vraie, soit : \quad $1 \leqslant u_{n+1} \leqslant u_{n}$.
+		\end{itemize}
+
+	\item La question précédente donne :
+\begin{itemize}[left=5mm]
+		\item $\forall n\in \N, \quad u_{n+1} \leqslant u_n$\quad la suite est donc décroissante;
+		\item $\forall n\in \N, \quad 1 \leqslant u_n$\quad la suite est donc minorée, par 1;
+	\end{itemize}
+
+La suite $\left(u_n\right)$ étant décroissante et minorée, elle est donc convergente, vers une limite qui doit être supérieure ou égale à 1 (et inférieure ou égale à $u_0$ car la suite est décroissante).
+
+	\item La suite $\left(u_n\right)$ est une suite convergente, définie par récurrence par la relation \linebreak $u_{n+1} = f(u_n)$, où la fonction $f$ est continue (car dérivable) sur $ [0 ~;~ +\infty[$, intervalle qui contient la limite de la suite.
+
+D'après le théorème \og du point fixe \fg{}, on en déduit que la limite ne peut être qu'une solution de l'équation $f(x) = x$ dans l'intervalle $ [0 ~;~ +\infty[ $.
+
+D'après la question \textbf{3.} de la \textbf{Partie A}, cette équation n'a qu'une solution dans \linebreak $ [0 ~;~ +\infty[ $ :\quad $\dfrac{1+\sqrt{5}}{2}$.
+
+On constate également que cette valeur satisfait les critères supplémentaires que l'on connaît pour cette limite (supérieure à 1 et inférieure à $u_0$).
+
+La suite $\left(u_n\right)$ converge donc vers $\ell = \dfrac{1+\sqrt{5}}{2}$.
+
+	\item La fonction \texttt{seuil} présentée initialise la variable \texttt{u} à 5, c'est-à-dire $u_0$ et la variable \texttt{i} à 0, c'est-à-dire l'indice de $u_0$.
+
+Tant que la valeur absolue de la différence entre $\ell$ et u est supérieure ou égale à $10^{-n}$, on remplace dans la variable \texttt{u} le terme de la suite par le terme suivant, et dans la variable \texttt{i} l'indice par l'indice suivant.
+
+		La boucle s'arrête donc dès que \texttt{u} contient un terme de la suite dont la distance à $\ell$ est strictement inférieure à $10^{-n}$ et renvoie l'indice de ce terme (qui est donc une valeur approchée à $10^{-n}$ près de la limite).
+		\begin{enumerate}
+			\item \texttt{seuil(2)} va donc renvoyer l'indice du premier terme qui est à moins d'un centième de la limite $\ell$.
+
+Par exploration à la calculatrice, on a $u_4 - \ell \approx 0,02 \geqslant 10^{-2}$ et 
+
+$u_5 - \ell \approx 0,007 < 10^{-2}$ donc la fonction renverra l'indice du premier terme pour lequel le test du \texttt{while} n'est pas satisfait : 5.
+
+			\item Si \texttt{seuil(4)} renvoie 9, c'est que le premier terme de la suite qui est une valeur approchée de $\ell$ à $10^{-4}$ près sera $u_9$.
+
+			\emph{Remarque :} comme la suite $\left(u_n\right)$ converge vers $\ell$ en décroissant, tous les ter-mes de la suite sont des valeurs approchées de $\ell$ par excès, l'utilisation de la fonction \texttt{abs}  dans la fonction Python n'était indispensable pour cette fonction de récurrence.
+	\end{enumerate}
+\end{enumerate}

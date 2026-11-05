@@ -1,0 +1,268 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_05_sujet1_ameriquenord_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A}
+
+	\medskip
+
+	\begin{enumerate}
+		\item Puisqu'on s'intéresse à une connexion au hasard, on est en situation d'équiprobabilité, et les proportions annoncées dans l'énoncé sont assimilables à des probabilités.
+
+Cela donne l'arbre pondéré ci-dessous :
+
+	
+	\begin{center}
+	
+	\begin{tikzpicture}[xscale=1,yscale=1]
+
+\tikzstyle{fleche}=[->,>=latex,thick]
+\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+
+\def\DistanceInterNiveaux{3}
+\def\DistanceInterFeuilles{0.75}
+
+\def\NiveauA{(0)*\DistanceInterNiveaux}
+\def\NiveauB{(1)*\DistanceInterNiveaux}
+\def\NiveauC{(2)*\DistanceInterNiveaux}
+\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+
+
+\node[noeud] (R) at ({\NiveauA},{(2.5)*\InterFeuilles}) {};
+\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$A$};
+\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$S$};
+\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{S}$};
+\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$B$};
+\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$S$};
+\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{S}$};
+\node[noeud] (Rc) at ({\NiveauB},{(4.5)*\InterFeuilles}) {$C$};
+\node[feuille] (Rca) at ({\NiveauC},{(4)*\InterFeuilles}) {$S$};
+\node[feuille] (Rcb) at ({\NiveauC},{(5)*\InterFeuilles}) {$\overline{S}$};
+
+\draw[fleche] (R.east)--(Ra.west) node[etiquette] {$0,25$};
+\draw[fleche] (Ra.east)--(Raa.west) node[etiquette] {$0,9$};
+\draw[fleche] (Ra.east)--(Rab.west) node[etiquette] {$0,1$};
+\draw[fleche] (R.east)--(Rb.west) node[etiquette] {$0,15$};
+\draw[fleche] (Rb.east)--(Rba.west) node[etiquette] {$0,8$};
+\draw[fleche] (Rb.east)--(Rbb.west) node[etiquette] {$0,2$};
+\draw[fleche] (R.east)--(Rc.west) node[etiquette] {$0,6$};
+\draw[fleche] (Rc.east)--(Rca.west) node[etiquette] {$0,85$};
+\draw[fleche] (Rc.east)--(Rcb.west) node[etiquette] {$0,15$};
+\end{tikzpicture}
+\end{center}
+
+
+-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item La probabilité que la connexion soit stable et passe par le serveur B est $P(S \cap B)$.
+
+$P(S \cap B) = P(B) \times P_B(S) = 0,15 \times 0,8 = 0,12$.
+
+\item De même :
+
+$P\left(C \cap \overline{S}\right) = P(C) \times P_C\left(\overline{S}\right) = 0,6 \times 0,15 = 0,09$.
+
+Cela signifie que 9~\% des connexions à distance de l'entreprise sont des connexions transitant via le serveur C et qui sont instables.
+
+\item Les évènements $A$, $B$ et $C$ forment une partition de l'univers, donc, d'après la formule des probabilités totales, on a :
+
+$\begin{aligned}
+P(S) &= P(A) \times P_A(S)+ P(B) \times P_B(S) + P(C) \times P_C(S)\\
+&= 0,25 \times 0,9 + 0,15 \times 0,8 + 0,6 \times 0,85 \\
+&= 0,225 + 0,12 + 0,51\\
+&= 0,855
+\end{aligned}$
+
+La probabilité de l'évènement $S$ est donc bien $P(S)=0,855$.
+
+\item La probabilité demandée est $P_S(B)$.
+Par définition, on a :
+
+$P_S(B) = \dfrac{P(S\cap B)}{P(S)} = \dfrac{0,12}{0,855} = \dfrac{8}{57}\approx \np{0,1403}$.
+
+La probabilité que la connexion ait transité par le serveur B, sachant qu'elle est stable est d'environ 0,140, au millième près.
+\end{enumerate}
+
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Les éléments suivants ne sont pas nécessaires, puisqu'on admet que $X$ suit une loi binomiale :
+
+\begin{itemize}
+\item Chaque connexion est vue comme une expérience aléatoire à deux issues : le succès \og la connexion est instable \fg{}, de probabilité $p$
+
+$p = P\left(\overline{S}\right) = 1-0,855 = 0,145$;
+\item cette épreuve est répétée $n = 50$ fois, de façon supposée identique et indépendante, puisque la constitution de l'échantillon est réputée assimilable à un tirage avec remise;
+\item $X$ est la variable aléatoire qui compte le nombre de succès, c'est-à-dire le nombre de connexions instables, sur ces 50 répétitions.
+\end{itemize}
+
+Donc $X$ suit la loi binomiale de paramètres $n = 50$ et $p = 0,145$.
+
+		\item La probabilité qu'au plus huit connexions soient instables est $P(X \leqslant 8)$.
+
+Avec la calculatrice, on a : $P(X \leqslant 8) \approx \np{0,7044}$, 
+
+Donc la probabilité qu'au plus huit connexions soient instables est  $0,704$ arrondi au millième.
+	\end{enumerate}
+
+\item
+	\begin{enumerate}
+		\item Puisque $X_n$ suit la loi binomiale de paramètres $n=50$ et $p = 0,145$, pour tout entier naturel $k$ inférieur ou égal à $n$, on aura :
+
+$P(X_n = k) = \displaystyle \binom{n}{k} \times 0,145^k \times 0,855^{n-k}$.
+
+L'évènement \og au moins une connexion de cet échantillon est instable\fg{} est l'évènement contraire de \og aucune connexion de cet échantillon n'est instable\fg{}, autrement dit $\left\{X = 0\strut \right\}$.
+
+Ainsi : $p_n = 1 - P(X_n = 0) = 1 - \displaystyle \binom{n}{0} \times 0,145^0 \times 0,855^{n-0} = 1 - 0,855^n$.
+
+\item Résolvons, pour $n$ entier naturel :
+
+$\begin{aligned}
+p_n \geqslant 0,99
+&\iff 1 - 0,855^{n} \geqslant 0,99\\
+&\iff  - 0,855^{n} \geqslant -0,01\\
+&\iff 0,855^{n} \leqslant 0,01\quad \text{car } -1<0\\
+&\iff \ln\left(0,855^{n}\right) \leqslant \ln(0,01) \quad \text{car ln est croissante sur }\R^{*+}\\
+	&\iff n\ln\left(0,855\right) \leqslant \ln(0,01)\\
+	&\iff n \geqslant \dfrac{\ln(0,01)}{\ln\left(0,855\right)} \quad \text{car } 0,855 <1 \text{ donc }\ln\left(0,855\right) < 0\\
+\end{aligned}$
+
+Or $\dfrac{\ln(0,01)}{\ln\left(0,855\right)} \approx 29,4$, donc c'est à partir de $n = 30$ que l'on a une probabilité $p_n$ supérieure ou égale à 0,99.
+\end{enumerate}
+
+\item 
+	\begin{enumerate}
+		\item Puisque $X_n$ suit la loi binomiale de paramètres $n$ et $0,145$, alors l'espérance de $X_n$ est, par propriété : $E(X_n) = np = 0,145n$.
+
+On a ensuite $F_n = \dfrac{1}{n} \times X_n$,
+
+donc, par linéarité de l'espérance : $E(F_n) = \dfrac{1}{n} E(X_n) = \dfrac{1}{n}\times 0,145n = 0,145$.
+
+On admet que $V\left(F_{n}\right)=\dfrac{\np{0,123975}}{n}$.
+
+		\item Écrivons l'inégalité de concentration pour la moyenne empirique $F_n$, avec une précision $t = 0,1$ :
+
+$\begin{aligned}
+P\left(\left|F_{n}-E(F_n)\right| \geqslant t\right) \leqslant \dfrac{V(F_n)}{t^2}
+	&\implies P\left(\left|F_{n}- 0,145\right| \geqslant 0,1\right) \leqslant \dfrac{~\dfrac{\np{0,123975}}{n}~}{0,1^2}\\
+	&\implies P\left(\left|F_{n}-0,145\right| \geqslant 0,1\right) \leqslant \dfrac{\np{0,123975}}{n}\times \dfrac{1}{0,01}\\
+	&\implies P\left(\left|F_{n}-0,145\right| \geqslant 0,1\right) \leqslant \dfrac{12,3975}{n}\\
+				&\implies P\left(\left|F_{n}-0,145\right| \geqslant 0,1\right) \leqslant \dfrac{12,5}{n}\\
+	& \qquad \text{car } \np{12,3975} < 12,5
+\end{aligned}$
+
+On a donc bien l'inégalité annoncée.
+
+		\item Si on étudie un échantillon de \np{1000} connexions et que l'on constate que pour cet échantillon $F_{\np{1000}}=0,3$, alors on a $0,3 - 0,145 = 0,155$ : cette conduite de l'expérience réalise l'évènement $\Big\{ \left|F_{\np{1000}} - 0,145\strut \right| \geqslant 0,1\Big\}$.
+
+D'après la question précédente, la probabilité de cet évènement est inférieure ou égale à $\dfrac{12,5}{\np{1000}} = \np{0,0125}$, il est donc hautement probable que les serveurs dysfonctionnent, car si la modélisation (basée sur un fonctionnement normal des serveurs) est fiable, une telle fréquence est très peu probable.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

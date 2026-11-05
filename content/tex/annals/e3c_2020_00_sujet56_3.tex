@@ -1,0 +1,48 @@
+\medskip
+
+Le plan est rapporté à un repère orthonormé \Oij. On considère le triangle OAB où O est l'origine du repère, A le point de coordonnées (8~;~0) et B celui de coordonnées (0~;~6).
+
+On considère le point E, milieu du segment [AB].
+
+La figure est donnée ci-dessous, elle sera complétée au fur et à mesure et sera rendue avec la copie.
+
+
+\begin{center}
+\psset{labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-1,-0.5)(7.5,9.5)
+\pspolygon*[linewidth=1pt,linecolor=yellow,opacity=0.3](0,6)(8,0) 
+\multido{\n=0+1}{10}{\psline[linewidth=0.75pt,linecolor=lightgray](\n,0)(\n,7.2)}
+\multido{\n=0+0.2}{48}{\psline[linewidth=0.35pt,linecolor=lightgray](\n,0)(\n,7.2)}
+\multido{\n=0+1}{8}{\psline[linewidth=0.75pt,linecolor=lightgray](0,\n)(9.35,\n)}
+\multido{\n=0+0.2}{37}{\psline[linewidth=0.35pt,linecolor=lightgray](0,\n)(9.35,\n)}
+\psaxes[linewidth=0.95pt,]{->}(0,0)(0,0)(9.5,7.4)
+\psdots[dotstyle=+,dotscale =1.4,dotangle=45](4,3)(0,6)(8,0)
+ \uput[ur](4,3){E} \uput[ur](8,0){A} \uput[ur](0,6){B} 
+\psline(0,6)(8,0)
+\psset{arrowscale=2}
+\psline[linewidth=0.8pt,linecolor=darkgray]{->}(0,0)(0,1)\psline[linewidth=0.8pt,linecolor=darkgray]{->}(0,0)(1,0)
+\uput[dl](0,0){O}\uput[d](0.5,0){$\vv{\imath}$}\uput[l](0,0.5){$\vv{\jmath}$}
+\end{pspicture}
+\end{center}
+
+
+On rappelle que dans un triangle, la médiane issue d'un sommet est la droite passant par ce sommet et par le milieu du côté opposé et que le centre de gravité d'un triangle est le point de concours de ses trois médianes.
+
+\medskip
+
+\begin{enumerate}
+\item  Calculer les deux produits scalaires suivants :
+	\begin{enumerate}
+		\item $\vv{\text{OA}}\cdot\vv{\text{OB}}$
+		\item $\vv{\text{OA}}\cdot\vv{\text{OE}}$
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item  Justifier que l'équation $1,5x + y - 6 = 0$ est une équation cartésienne de la médiane issue du point B dans le triangle OAB. Tracer cette médiane sur la figure ci-dessus.
+		\item Déterminer une équation de la médiane issue de O dans le triangle OAB.
+		\item Déterminer les coordonnées du point G, centre de gravité du triangle OAB.
+Placer le point G sur la figure ci-dessus.
+	\end{enumerate}
+\end{enumerate}
+
+\vspace{0,5cm}

@@ -1,0 +1,138 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet2_polynesie_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Pour chacune des affirmations suivantes, indiquer si elle est vraie ou fausse.\\
+Chaque réponse doit être justifiée. Une réponse non justifiée ne rapporte aucun point.}
+
+\medskip
+
+\begin{enumerate}
+\item Soient $E$ et $F$ les ensembles $E = \{1~;~2~;~3~;~4~;~5~;~6~;~7\}$ et 
+
+$F = \{0~;~1~;~2~;~3~;~ 4~;~5~;~6~;~7~;~8~;~9\}$.
+
+\smallskip
+
+\textbf{Affirmation \no 1 :} Il y a davantage de 3-uplets d'éléments distincts de $E$ que de combinaisons à 4 éléments de $F$.
+\end{enumerate}
+
+\begin{minipage}{0.65\linewidth}
+\begin{enumerate}[resume]
+\item Dans le repère orthonormé ci-contre, on a représenté la fonction carré, notée $f$, ainsi que le carré ABCD de côté 3.
+
+\textbf{Affirmation \no 2 :} La zone hachurée et le carré ABCD ont la même aire.
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.3\linewidth}
+\psset{unit=0.5cm,arrowsize=2pt 3}
+\begin{pspicture}(-4.5,-1)(4.5,10)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-4.5,0)(4.5,10)
+\psframe[linecolor=blue,linewidth=1.35pt](3,3)
+\pscustom[fillstyle=vlines]{\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0}{3.}{x dup mul}\psline(3,9)(3,0)(0,0)}
+\uput[dl](0,0){\blue \small A}\uput[dr](3,0){\blue \small B}\uput[ur](3,3){\blue \small C}\uput[ul](0,3){\blue \small D}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-3.1}{3.1}{x dup mul}
+\end{pspicture}
+\end{minipage}
+
+\begin{enumerate}[start=3]
+\item On considère l'intégrale $J$ ci-dessous : 
+
+\[J = \displaystyle\int_1^2 x \ln (x)\,\text{d}x.\]
+
+\textbf{Affirmation \no 3 :} Une intégration par parties permet d'obtenir: $J = \dfrac{7}{11}$.
+
+\item Sur $\R$, on considère l'équation différentielle 
+
+\[(E) :\quad  y' = 2y - \e^x.\]
+
+\textbf{Affirmation \no 4 :} La fonction $f$ définie sur $\R$ par $f(x) = \e^x + \e^{2x}$ est solution de l'équation différentielle $(E)$.
+\item  Soit $x$ donné dans [0~;~1[. On considère la suite $(u_n)$ définie pour tout entier naturel $n$ par:
+
+\[u_n = (x - 1)\e^n + \cos (n).\]
+
+\textbf{Affirmation \no 5 :} La suite $(u_n)$ diverge vers $-\infty.$
+\end{enumerate}
+
+\end{document}

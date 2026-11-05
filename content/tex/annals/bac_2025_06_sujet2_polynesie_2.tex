@@ -1,0 +1,49 @@
+\medskip
+
+On considère la fonction $f$ définie sur l'intervalle $]2~;~ +\infty[$ par 
+
+\[f(x) = x \ln (x - 2).\]
+
+Une partie de la courbe représentative $\mathcal{C}_f$ de la fonction $f$ est donnée ci-dessous.
+
+\medskip
+
+\begin{center}
+\psset{xunit=1cm,yunit=0.2cm,arrowsize=2pt 3}
+\begin{pspicture*}(-0.75,-17)(9,17)
+\psaxes[linewidth=1.25pt,Dy=5,labelFontSize=\scriptstyle]{->}(0,0)(0,-17)(9,17)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{2.0001}{9}{x 2 sub ln x mul}
+\uput[ul](8,13){\blue $\mathcal{C}_f$}
+\end{pspicture*}
+\end{center}
+
+\medskip
+
+\begin{enumerate}
+\item Conjecturer, à l'aide du graphique, le sens de variation de $f$ ses limites aux bornes
+de son ensemble de définition ainsi que les éventuelles asymptotes.
+\item Résoudre l'équation $f(x) = 0$ sur $]2~;~+\infty[$.
+\item Calculer $\begin{gathered}\displaystyle\lim_{\substack{x \to 2\\x > 2}} f(x)\end{gathered}$.
+
+Ce résultat confirme-t-il l'une des conjectures faites à la question 1. ?
+\item Démontrer que pour tout $x$ appartenant à $]2~;~+\infty[$ :
+
+\[f'(x) = \ln (x - 2) + \dfrac{x}{x - 2}.\]
+\item On considère la fonction $g$ définie sur l'intervalle $]2~;~+\infty[$ par $g(x) = f'(x)$.
+	\begin{enumerate}
+		\item Démontrer que pour tout $x$ appartenant à $]2~;~+\infty[$, on a:
+
+\[g'(x) = \dfrac{x - 4}{(x - 2)^2}.\]
+
+		\item On admet que $\begin{gathered}\displaystyle\lim_{\substack{x \to 2\\x>2}} g(x) = + \infty\end{gathered}$ et que $\displaystyle\lim_{x \to + \infty} g(x) = +\infty$.
+
+En déduire le tableau des variations de la fonction $g$ sur $]2~;~+\infty[$. On fera apparaître la valeur exacte de l'extremum de la fonction $g$.
+		\item En déduire que, pour tout $x$ appartenant à $]2~;~+\infty[$,\: $g(x) > 0$.
+		\item En déduire le sens de variation de la fonction $f$ sur $]2~;~+\infty[$.
+	\end{enumerate}
+\item Étudier la convexité de la fonction $f$ sur $]2~;~+\infty[$ et préciser les coordonnées d'un éventuel point d'inflexion de la courbe représentative de la fonction $f$.
+\item Combien de valeurs de $x$ existe-t-il pour lesquelles la courbe représentative de $f$
+admet une tangente de coefficient directeur égal à $3$ ?
+\end{enumerate}
+
+\bigskip

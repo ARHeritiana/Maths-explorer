@@ -1,0 +1,136 @@
+\medskip
+
+\textbf{Affirmation 1 : Vraie}
+
+$(d)$ est dirigée par le vecteur $\vect{u}\begin{pmatrix}-2\\0\\-6\end{pmatrix}$ et l'axe des ordonnées par $\vect{\jmath}$ de coordonnées $\begin{pmatrix} 0\\1\\0\end{pmatrix}$.
+
+Les deux droites ont des vecteurs directeurs non colinéaires (ils sont même orthogonaux) donc les droites ne sont ni parallèles, ni confondues.
+
+L'axe des ordonnées passe par l'origine du repère, de coordonnées $(0~;~0~;~0)$ et est dirigé par $\vect{\jmath}$ donc une représentation paramétrique de l'axe des ordonnées est :
+\[\left\{\begin{array}{l c l}
+x&=&0 \\
+y&=&0 + s \\
+z&=&0
+\end{array} \quad, \text { où } s \in \R\right.\]
+
+$(d)$ et l'axe des ordonnées seront donc coplanaires si et seulement si ces deux droites sont sécantes, c'est-à-dire si et seulement si le système suivant a une solution :
+
+$\begin{aligned}
+\left\{\begin{array}{lcl}
+3-2t&=&0 \\
+-1&=&s\\
+2-6t&=&0
+\end{array}\right.
+	&\iff
+\left\{\begin{array}{lcl}
+2t&=&3 \\
+6t&=&2
+\end{array}\right.
+	&\iff
+\left\{\begin{array}{lcl}
+t&=&1,5 \\
+s&=&-1\\
+t&=&\dfrac{1}{3}
+\end{array}\right.
+\end{aligned}$
+
+Le système n'admet pas de solution, donc les droites n'ont pas de point commun.
+
+Les droites ne sont ni parallèles, ni confondues, ni sécantes, par élimination, elles sont donc non coplanaires.
+
+\bigskip
+
+\textbf{Affirmation 2 : Vraie}
+
+Soit $\mathcal{Q}$  plan passant par A et orthogonal à la droite $(d)$.
+
+$(d)$ est dirigée par le vecteur $\vect{u}\begin{pmatrix}-2\\0\\-6\end{pmatrix}$
+
+$\vect{u}\begin{pmatrix}-2\\0\\-6\end{pmatrix}$ est donc un vecteur normal au plan $\mathcal{Q}$  et donc aussi $\vect{n} \begin{pmatrix} 1\\0\\3 \end{pmatrix}$ car $\vect{u}$ et $\vect{n}$ sont colinéaires et non nuls.
+
+Le plan $\mathcal{Q}$ admet donc une équation de la forme $x+ 0y + 3z + d = 0$ avec $d \in \R$. 
+
+De plus, le point A appartient au plan $\mathcal{Q}$ donc $x_{\mathrm{A}}+3z_{\mathrm{A}}+d=0$ soit $3 +3\times (-2) +d=0$.
+
+On a donc $d = -3 + 6 = 3$.
+
+Une équation cartésienne du plan passant par A et orthogonal à la droite $(d)$  est donc : $x+3 z+3=0$.
+
+\bigskip
+
+\textbf{Affirmation 3 : Fausse}
+
+Afin de déterminer l'angle $\widehat{\mathrm{BAC}}$ nous allons déterminer le produit scalaire $\vect {\mathrm{AB}} \cdot \vect {\mathrm{AC}}$
+
+Déterminons tout d'abord les coordonnées du point C :
+
+C est un point de $(d)$, il existe donc un réel $t$ tel que  : $\left\{\begin{array}{l}
+x_{\mathrm{C}}=3-2t \\
+y_{\mathrm{C}}=-1 \\
+z_{\mathrm{C}}=2-6t
+\end{array} \right.$
+
+Or C est le point d'abscisse 2, on  a donc $x_{\mathrm{C}}=2$ d'où  $\begin{aligned}[t] 3-2t=2 & \iff 1= 2t \\ & \iff t=\dfrac12\end{aligned}$.
+
+On a donc $z_{\mathrm{C}}=2- 6\times \dfrac{1}{2}= 2-3=-1$
+
+Les coordonnées du point C sont donc $(2~;~-1~;~-1)$.
+
+On peut donc calculer les coordonnées des vecteurs $\vect{\mathrm{AB}}$ et $\vect{\mathrm{AC}}$ : 
+
+$\vect{\mathrm{AB}}\begin{pmatrix}x_\mathrm{B} -x_\mathrm{A} \\ y_\mathrm{B}-y_\mathrm{A}\\z_\mathrm{B}-z_\mathrm{A}\end{pmatrix}$ c'est-à-dire $\vect{\mathrm{AB}}\begin{pmatrix}2 \\ -1\\1\end{pmatrix}$ 
+\quad de même : $\vect{\mathrm{AC}}\begin{pmatrix}-1 \\ 2\\1\end{pmatrix}$
+
+Nous sommes dans un repère orthonormé, nous avons donc :
+
+$\vect {\mathrm{AB}} \cdot \vect {\mathrm{AC}}= 2 \times (-1) + (-1) \times 2 + 1 \times 1 = -3$ 
+
+Calculons les normes des  vecteurs $\vect{\mathrm{AB}}$ et $\vect{\mathrm{AC}}$ :
+
+$\left\|\vect {\mathrm{AB}}\right\|^2=2^2+(-1)^2+1^2=6$, donc, comme une norme est positive $\left\|\vect {\mathrm{AB}}\right\|=\sqrt{6}$.
+
+$\left\|\vect {\mathrm{AC}}\right\|^2=(-1)^2+2^2+1^2=6$, donc, de même :
+$\left\|\vect {\mathrm{AC}}\right\|=\sqrt{6}$.
+
+Or $\vect {\mathrm{AB}} \cdot \vect {\mathrm{AC}}=\mathrm{AB} \times \mathrm{AC} \times \cos\left(\widehat{\mathrm{BAC}}\right)$
+
+on en déduit donc que :\quad $-1=\sqrt{6} \times  \sqrt{6} \times \cos \left(\widehat{\mathrm{BAC}}\right)$,
+
+soit \quad$\cos \left(\widehat{\mathrm{BAC}}\right)=\dfrac{-3}{\sqrt{6}\sqrt{6}}=-\dfrac{3}{6}=-\dfrac{1}{2}$
+
+et donc une mesure, exprimée en radian, de l'angle géométrique
+$\widehat{\mathrm{BAC}}$ est $\dfrac{2\pi}{3}$.
+
+\bigskip
+
+\textbf{Affirmation 4 : Vraie}
+
+Déterminons les coordonnées du point H.
+
+H est le projeté orthogonal du point B sur la plan $\mathcal{P}$, c'est donc l'intersection du plan $\mathcal{P}$ et de la droite $\Delta$ orthogonal au plan $\mathcal{P}$ passant par le point B.
+
+Le vecteur $\vect{u'}\begin{pmatrix}1\\0\\3\end{pmatrix}$ est un vecteur normal au plan $\mathcal{P}$, c'est donc un vecteur directeur de la droite $\Delta$.
+
+De plus le point B$(5~;~-4~;~-1)$ appartient à la droite $\Delta$, une représentation paramétrique de la droite $\Delta$ est donc :
+\[\left\{\begin{array}{lcr}
+x&=&\phantom{-}5+t \\
+y&=&-4 + 0t \\
+z&=&-1+3t
+\end{array} \quad, \text { où } t \in \R\right.\]
+
+L'intersection entre la droite $\Delta$ et le plan $\mathcal{P}$ donne l'équation en la variable $t$ :
+
+$\begin{aligned} (5+t)+3(-1+3t)-7=0 &\iff 5+t-3+9t-7=0\\
+	& \iff 10t=5\\
+	& \iff t=\dfrac{1}{2}
+\end{aligned}$
+
+Le point H d'intersection entre la droite $\Delta$ et $\mathcal{P}$ est le point de paramètre  $ t=\dfrac{1}{2}$ dans la représentation paramétrique de la droite $\Delta$.
+
+Il a comme coordonnées :\quad$\mathrm{H}\left(5 + \dfrac{1}{2}~;~-4~;~-1 + 3 \times\dfrac{1}{2}\right)$ soit $\mathrm{H}\left(\dfrac{11}{2}~;~-4~;~\dfrac{1}{2}\right)$.
+
+On a donc : $\vect{\mathrm{BH}}\begin{pmatrix}\frac{1}{2}\\0\\\frac{3}{2}\end{pmatrix}$
+
+d'où : $\left\|\vect {\mathrm{BH}}\right\|^2=\left(\dfrac{1}{2}\right)^2+0^2+\left(\dfrac{3}{2}\right)^2=\dfrac{1}{4}+\dfrac{9}{4}=\dfrac{10}{4}$, donc $\left\|\vect {\mathrm{BH}}\right\|=\sqrt{\dfrac{10}{4}}=\dfrac{\sqrt{10}}{2}$.
+
+La distance BH est égale à $\dfrac{\sqrt{10}}{2}$.

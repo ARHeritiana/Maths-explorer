@@ -1,0 +1,130 @@
+Soit $f$ la fonction définie sur $\R$ par $f(x)=x \e^{-2 x}$.
+
+On admet que $f$ est deux fois dérivable sur $\R$ et on note $f'$ la dérivée de la fonction $f$.
+
+On note $\mathcal{C}_{f}$ la courbe représentative de $f$ dans un repère orthonormé du plan.
+
+
+
+
+
+\bigskip
+
+\textbf{Affirmation 1.} Pour tout réel $x$, on a $f'(x)=(-2 x+1) \e^{-2 x}$.
+
+$f(x)=x \e^{-2x}$ donc $f'(x)=1 \times \e^{-2x} + x \times (-2)\e^{-2x} = \left (-2x+1\right )\e^{-2x}$.
+
+\hfill \textbf{Affirmation 1 vraie}
+
+\bigskip
+
+\textbf{Affirmation 2.} La fonction $f$ est une solution sur $\R$ de l'équation différentielle :
+ $y'+2 y=\e^{-2 x}$.
+
+$f'(x)+2f(x)= \left (-2x+1\right )\e^{-2x} +2x\e^{-2x} = -2x\e^{-2x} +\e^{-2x}+2x\e^{-2x}=\e^{-2x}$
+
+\hfill \textbf{Affirmation 2 vraie}
+
+\bigskip
+
+\textbf{Affirmation 3.} La fonction $f$ est convexe sur $]-\infty ~;~ 1]$.
+
+$f'(x)= \left (-2x+1\right )\e^{-2x}$ donc $f''(x)=(-2)\times \e^{-2x} + \left (-2x+1 \right )\times (-2)\e^{-2x} = \left (4x-4 \right ) \e^{-2x}$.
+
+On étudie le signe de $f''(x)$ sur $\R$.
+
+\[ \begin{tablvar}[intervalwidth=6em]{2}
+ \hline
+ x & -\infty & & 1 & & +\infty\\
+ \hline
+4x-4 & & - & \barre[0] & + & \\
+ \hline
+ \e^{-2x} & & + & \barre & + & \\
+ \hline
+f''(x) & & - & \barre[0] & + & \\
+ \hline
+f & & \text{concave} & \barre & \text{convexe} & \\
+ \hline
+ \end{tablvar}\]
+
+\hfill \textbf{Affirmation 3 fausse}
+
+	\bigskip
+
+	\textbf{Affirmation 4.} L'équation $f(x)=-1$ admet une unique solution sur $\R$.
+
+On détermine le signe de $f'(x) = \left (-2x+1\right )\e^{-2x}$ sur $\R$.
+
+\[ \begin{tablvar}[intervalwidth=6em]{2}
+ \hline
+ x & -\infty & & \frac{1}{2} & & +\infty\\
+ \hline
+-2x+1 & & + & \barre[0] & - & \\
+ \hline
+ \e^{-2x} & & + & \barre & + & \\
+ \hline
+f'(x) & & + & \barre[0] & - & \\
+ \hline
+ \end{tablvar}\]
+
+\begin{list}{\textbullet}{Valeurs remarquables}
+\item $\ds\lim_{x\to -\infty} x =-\infty$ et $\ds\lim_{x\to -\infty} \e^{-2x}=+\infty$ donc $\ds\lim_{x\to -\infty} f(x)=-\infty$.
+\item $f\left (\dfrac{1}{2}\right ) = \dfrac{1}{2} \e^{-2\times \frac{1}{2}} = \dfrac{1}{2}\e^{-1}>0$
+
+\item $f(x)=x\e^{-2x}= \dfrac{1}{2}\times \dfrac{2x}{\e^{2x}}$; par croissance comparée, on a $\ds\lim_{x\to +\infty} \frac{2x}{\e^{2x}}=0$ donc $\ds\lim_{x\to +\infty} f(x)=0$.
+\end{list}
+
+On établit le tableau des variations de $f$ sur $\R$.
+
+\[\begin{tablvar}[6em]{2}\hline
+x & -\infty && \frac{1}{2} && +\infty \\\hline
+f'(x) & & + & \barre[0] & - & \\\hline
+\variations{\mil{f} & \bas{-\infty} && \haut{\frac{1}{2}\e^{-1}} &&  \bas{0}} \hline
+\end{tablvar}\]
+
+\begin{list}{\textbullet}{}
+\item Sur l'intervalle $\left]-\infty\,;\,\frac{1}{2}\right]$, la fonction $f$ est continue et strictement croissante. De plus $\lim\limits_{x\to -\infty}f(x)=-\infty$ et $f\left(\frac{1}{2}\right)=\frac{1}{2}\e^{-1}>0$. Or $-1\in \left]-\infty\,;\,\frac{1}{2}\e^{-1}\right]$ donc, d'après le corollaire du théorème des valeurs intermédiaires, l'équation $f(x)=-1$ admet une unique solution sur $\left]-\infty\,;\,\frac{1}{2}\right]$.
+
+\item Sur l'intervalle $\left[\frac{1}{2}\,;\,+\infty\right[$, la fonction $f$ est strictement positive donc l'équation $f(x)=-1$ n'admet aucune solution sur cet intervalle.
+\end{list}
+
+Donc l'équation $f(x)=-1$ admet une unique solution sur $\R$.
+
+\hfill \textbf{Affirmation 4 vraie}
+
+\bigskip
+
+\textbf{Affirmation 5.} L'aire du domaine délimité par la courbe $\mathcal{C}_{f}$, l'axe des abscisses et les droites d'équation $x=0$ et $x=1$ est égale à $\dfrac{1}{4}-\dfrac{3 \e^{-2}}{4}$.
+
+L'aire du domaine est égale à $\mathcal{A} = \ds\int_{0}^{1}f(x) \d x = \ds \int_{0}^{1} x \e^{-2x} \d x$.
+
+On utilise une intégration par parties:
+$\ds\int_{a}^{b} u(x)v'(x)\d x =\left [ u(x)v(x)\strut \right ]_{a}^{b} -\int_{a}^{b} u'(x) v(x) \d x$.
+
+On pose
+$\left \{
+\begin{array}{l}
+u(x)=x\\
+v'(x)=\e^{-2x}
+\end{array}
+\right .$
+donc
+$\left \{
+\begin{array}{l}
+u'(x)=1\\
+v(x)= -\dfrac{1}{2} \e^{-2x}
+\end{array}
+\right .$
+
+$\begin{aligned}[t]
+\mathcal{A}
+& = \ds \int_{0}^{1} x \e^{-2x} \d x
+ = \left [x\times \left ( -\dfrac{1}{2}\e^{-2x} \right ) \right ]_{0}^{1}- \ds\int_{0}^{1} 1\times \left ( -\dfrac{1}{2}\e^{-2x} \right ) \d x
+ = \left [-\dfrac{x\e^{-2x} }{2} \right ]_{0}^{1}- \left [ \dfrac{1}{4}\e^{-2x} \right ]_{0}^{1}\\
+& = \left [ - \dfrac{\e^{-2}}{2} - 0 \right  ] - \left [ \dfrac{\e^{-2}}{4}  - \dfrac{\e^{0}}{4}\right ]
+= \dfrac{1}{4} - \dfrac{3\e^{-2}}{4}
+\end{aligned}$
+
+\hfill \textbf{Affirmation 5 vraie}
+
+\bigskip

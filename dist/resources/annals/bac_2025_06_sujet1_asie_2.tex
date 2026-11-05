@@ -1,0 +1,150 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet1_asie_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Une entreprise qui fabrique des jouets doit effectuer des contrôles de conformité avant leur commercialisation. Dans cet exercice, on s'intéresse à deux tests effectués par l'entreprise de jouets : un test \emph{de fabrication} et un test \emph{de sécurité}.
+
+\medskip
+
+À la suite d'un grand nombre de vérifications, l'entreprise affirme que:
+
+\begin{itemize}[label=$\bullet~$]
+\item 95\,\% des jouets réussissent le test de fabrication ;
+\item Parmi les jouets qui réussissent le test de fabrication, 98\,\% réussissent le test de sécurité ;
+\item 1\,\% des jouets ne réussissent aucun des deux tests.
+\end{itemize}
+
+On choisit au hasard un jouet parmi les jouets produits. On note:
+
+\begin{itemize}[label=$\bullet~$]
+\item $F$ l'évènement : \og le jouet réussit le test de fabrication \fg{} ;
+\item $S$ l'évènement : \og le jouet réussit le test de sécurité \fg.
+\end{itemize}
+
+\subsection*{Partie A}
+
+\begin{enumerate}
+\item À partir des données de l'énoncé, donner les probabilités $P(F)$ et $P_F(S)$.
+\item
+	\begin{enumerate}
+		\item Construire un arbre pondéré qui illustre la situation avec les données disponibles dans l'énoncé.
+		\item Montrer que $P_{\overline{F}}\left(\overline{S}\right) = 0,2$.
+\end{enumerate}
+\item Calculer la probabilité que le jouet choisi réussisse les deux tests.
+\item Montrer que la probabilité que le jouet réussisse le test de sécurité vaut 0,97 arrondi au centième.
+\item Lorsque le jouet a réussi le test de sécurité, quelle est la probabilité qu'il réussisse le test de fabrication? Donner une valeur approchée du résultat au centième.
+\end{enumerate}
+
+\subsection*{Partie B}
+
+On prélève au hasard dans la production de l'entreprise un lot de $n$ jouets, où $n$ est un entier strictement positif. On suppose que ce prélèvement se fait sur une quantité suffisamment grande de jouets pour être assimilé à une succession de $n$ tirages indépendants avec remise.
+
+On rappelle que la probabilité qu'un jouet réussisse le test de fabrication est égale à $0,95$.
+
+Soit $S_n$ la variable aléatoire qui compte le nombre de jouets ayant réussi le test de fabrication. On
+admet que $S_n$ suit la loi binomiale de paramètres $n$ et $p = 0,95$.
+
+\medskip
+
+\begin{enumerate}
+\item Exprimer l'espérance et la variance de la variable aléatoire $S_n$ en fonction de $n$.
+\item Dans cette question, on pose $n = 150$.
+	\begin{enumerate}
+		\item Déterminer une valeur approchée à $10^{-3}$ près de $P\left(S_{150} = 145\right)$. Interpréter ce résultat dans le contexte de l'exercice.
+		\item Déterminer la probabilité qu'au moins 94\,\% des jouets de ce lot réussissent le test de
+fabrication. Donner une valeur approchée du résultat à $10^{-3}$ près.
+	\end{enumerate}
+\item Dans cette question, l'entier naturel non nul $n$ n'est plus fixé.
+
+Soit $F_n$ la variable aléatoire définie par : $F_n = \dfrac{S_n}{n}$. La variable aléatoire $F_n$ représente la proportion des jouets qui réussissent le test de fabrication dans un lot de $n$ jouets prélevés.
+
+On note $E(F_n)$ l'espérance et $V(F_n)$ la variance de la variable aléatoire $F_n$.
+	\begin{enumerate}
+		\item Montrer que $E(F_n) = 0,95$ et que $V(F_n) = \dfrac{\np{0,0475}}{n}$.
+		\item On s'intéresse à l'évènement $I$ suivant: \og la proportion de jouets qui réussissent le test de fabrication dans un lot de $n$ jouets est strictement comprise entre 93\,\% et 97\,\% \fg.
+
+En utilisant l'inégalité de Bienaymé-Tchebychev, déterminer une valeur $n$ de la taille du lot
+de jouets à prélever, à partir de laquelle la probabilité de l'évènement $I$ est supérieure ou égale à $0,96$.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,224 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet2_metropole_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+	\item Déterminons les coordonnées des vecteurs :
+
+	$\vectt{AB} \begin{pmatrix}
+		x_{\mathrm{B}} - x_{\mathrm{A}}\\
+		y_{\mathrm{B}} - y_{\mathrm{A}}\\
+		z_{\mathrm{B}} - z_{\mathrm{A}} \end{pmatrix} $
+	\quad soit \quad $\vectt{AB} \begin{pmatrix} 3-2\\-2-1\\0-1 \end{pmatrix} $
+	\quad finalement :\quad $\vectt{AB} \begin{pmatrix} 1\\-3\\-1\end{pmatrix} $.
+	\quad De même, \quad $\vectt{AC} \begin{pmatrix} -2\\-2\\0 \end{pmatrix} $.
+
+	Ces vecteurs ont des coordonnées non proportionnelles, donc ils ne sont pas colinéaires.
+
+	Les points A, B et C ne sont pas alignés, donc ils définissent un plan.
+
+	\item \begin{enumerate}
+		\item On est dans un repère orthonormé, donc on peut utiliser la formule analytique du produit scalaire :
+
+		\begin{itemize}
+			\item $\vect{n} \cdot \vectt{AB} = 1 \times 1 -  1 \times  (-3) + 4  \times  (-1) = 1 + 3 - 4 = 0$;
+			\item $\vect{n} \cdot \vectt{AC} = 1 \times (-2) -  1 \times  (-2) + 4  \times  0 = -2 + 2 + 0 = 0$;
+			\item $\vectt{AB}$ et $\vectt{AC}$ sont deux vecteurs non colinéaires qui forment une base du plan (ABC).
+
+			$\vect{n}$ est orthogonal à ces deux vecteurs, donc c'est un vecteur normal du plan (ABC).
+		\end{itemize}
+		\item Si $\vect{n}\begin{pmatrix} 1\\-1\\4 \end{pmatrix}$ est normal à (ABC), alors, par propriété, une équation de (ABC) peut avoir la forme :\quad $1\times x + (-1) \times y + 4 \times z + d = 0$, \quad où $d$ est un réel.
+
+		Comme A est un point de (ABC), on doit avoir :\quad $x_{\mathrm{A}} - y_{\mathrm{A}} + 4z_{\mathrm{A}} + d =0$.
+
+		$\begin{aligned}
+			x_{\mathrm{A}} - y_{\mathrm{A}} + 4z_{\mathrm{A}} + d =0
+			&\iff 2 - 1 + 4\times 1 + d= 0\\
+			&\iff 5 + d = 0\\
+			&\iff d = -5
+		\end{aligned}		$
+
+		Une équation cartésienne de (ABC) est donc bien :\quad $x-y+4z - 5 = 0$.
+	\end{enumerate}
+
+	\item Si la droite $\Delta$ est orthogonale au plan (ABC), alors, par définition, elle doit être dirigée par un vecteur normal au plan (ABC), donc ici, on en déduit que le vecteur $\vect{n} \begin{pmatrix} 1\\-1\\4 \end{pmatrix}$ dirige la droite $\Delta$.
+
+	Comme la droite $\Delta$ passe par le point D$(0 ; 0 ; 2)$, une représentation paramétrique de la droite $\Delta$ est donnée par :\quad $\begin{cases}
+		x=x_{\mathrm{D}} + x_{\vect{n}}\times t\\
+		y=y_{\mathrm{D}} + y_{\vect{n}}\times t\\
+		z=z_{\mathrm{D}} + z_{\vect{n}}\times t
+	\end{cases}\text{avec } t \in \R$
+
+	En remplaçant par les valeurs connues, on a bien :\quad $\begin{cases}
+		x=t\\
+		y=-t\\
+		z=2+4t
+	\end{cases}\text{avec } t \in \R$
+
+	\item Le projeté orthogonal de D sur le plan (ABC) est l'intersection de la droite $\Delta$ et du plan (ABC).
+
+	Comme c'est un point de la droite $\Delta$, il existe un réel $t_0$ tel que les coordonnées de ce point sont $(t_0 ; -t_0 ; 2+4t_0)$.
+
+	C'est aussi un point de (ABC) sont ses coordonnées vérifient l'équation du plan.
+
+	Autrement dit, $t_0$ est solution de l'équation :
+
+	$\begin{aligned}[t]
+		t_0 - (-t_0) + 4(2 + 4t_0) - 5 = 0
+		&\iff t_0 + t_0 + 8 + 16t_0 - 5 = 0\\
+		&\iff 18t_0 = -3\\
+		&\iff t_0 = \dfrac{-1}{6}
+	\end{aligned}$
+
+	Le point H a donc pour coordonnées :\quad $\left(\dfrac{-1}{6} ; - \dfrac{-1}{6} ; 2 + 4\times \dfrac{-1}{6}\right)$\quad  soit $\mathrm{H}\left(-\dfrac{1}{6} ; \dfrac{1}{6} ; \dfrac{4}{3}\right) $.
+	\item \begin{enumerate}
+		\item Comme le repère est orthonormé :
+		\begin{itemize}
+			\item $\mathrm{AB} = \sqrt{(3 - 2)^2 + (-2 - 1)^2 + (0 - 1)^2} = \sqrt{1^2 + (-3)^2 + (-1)^2} = \sqrt{1 + 9 + 1} = \sqrt{11}$;
+			\item $\mathrm{CB} = \sqrt{(3 - 0)^2 + (-2 - (-1))^2 + (0 - 1)^2} = \sqrt{3^2 + (-1)^2 + (-1)^2} = \sqrt{ 9 + 1 + 1} = \sqrt{11}$;
+		\end{itemize}
+		Les longueurs sont égales, donc le triangle est bien isocèle en B.
+
+		\item \begin{itemize}
+			\item Dans un triangle isocèle, la hauteur issue du sommet principal est aussi une médiane (et une médiatrice).
+
+			La hauteur issue de B est donc le segment [BI], où I est le milieu de [AC].
+
+			I a donc pour coordonnées :\quad I$\left(\dfrac{x_{\mathrm{A}} + x_{\mathrm{C}}}{2} ; \dfrac{y_{\mathrm{A}} + y_{\mathrm{C}}}{2} ; \dfrac{z_{\mathrm{A}} + z_{\mathrm{C}}}{2}\right) $\quad soit \quad $(1 ; 0 ; 1)$.
+
+			\item L'aire d'un triangle est donnée par :\quad $\mathcal{A} = \dfrac{\text{base} \times \text{hauteur}
+			}{2}$.
+
+			Ici, on choisit comme base le segment [AC] et la hauteur correspondante, [BI].
+
+			\item La distance AC est :\quad $\mathrm{AC} = \sqrt{(0 - 2)^2 + (-1 - 1)^2 + (1 - 1)^2} = \sqrt{8} = 2\sqrt{2}$.
+
+			La distance BI est :\quad $\mathrm{BI} = \sqrt{(3 - 1)^2 + (-2 - 0)^2 + (0 - 1)^2} = \sqrt{9} = 3$.
+		\end{itemize}
+		On a donc : \quad $\mathcal{A}_{\mathrm{ABC}} = \dfrac{\mathrm{AC} \times \mathrm{BI}}{2} = \dfrac{2\sqrt{2} \times 3}{2} = 3\sqrt{2}$.
+	\end{enumerate}
+
+	\item \begin{enumerate}
+		\item Avec les questions précédentes, on a calculé l'aire du triangle ABC, qui est l'une des quatre bases possibles pour le tétraèdre.
+
+		Si on choisit ABC comme base de ABCD, alors la hauteur correspondante est la distance séparant le quatrième sommet (ici D), du plan contenant la base ABC, c'est-à-dire le plan (ABC).
+
+		Cette distance est donc la distance séparant D de son projeté orthogonal sur (ABC), c'est-à-dire H, dont on a déterminé les coordonnées à la question \textbf{4.}.
+
+		$\mathrm{DH} = \sqrt{\left(\dfrac{-1}{6}\right)^2 + \left(\dfrac{1}{6}\right)^2 + \left(\dfrac{4}{3} - 2\right) ^2 } = \sqrt{\dfrac{18}{36}} = \sqrt{\dfrac{1}{2}} = \dfrac{\sqrt{2}}{2}$.
+
+		On a donc : \quad $\mathcal{V}_{\mathrm{ABCD}} = \dfrac{1}{3} \times \mathcal{A}_{\mathrm{ABC}} \times \mathrm{DH} = \dfrac{1}{3} \times 3\sqrt{2} \times \dfrac{\sqrt{2}}{2} = \dfrac{1}{3} \times \dfrac{3 \times 2}{2} = 1$.
+
+		Le volume du tétraèdre est bien égal à 1.
+
+		\item En faisant le même raisonnement, mais avec la base BCD et la hauteur associée, issue de A, que l'on peut noter $h$, on en déduit :\quad $\mathcal{V}_{\mathrm{ABCD}} = \dfrac{1}{3} \times \mathcal{A}_{\mathrm{BCD}} \times h$.
+
+		En remplaçant par les valeurs connues, on a :\quad $1 = \dfrac{1}{3} \times \mathcal{A}_{\mathrm{BCD}} \sqrt{2} \iff \mathcal{A}_{\mathrm{BCD}} = \dfrac{1 \times 3}{\sqrt{2}} = \dfrac{3\sqrt{2}}{2}$.
+
+		L'aire du triangle BCD est donc égale à $\dfrac{3\sqrt{2}}{2}$.
+	\end{enumerate}
+
+	\item \begin{enumerate}
+		\item Avec $\mathrm{D}_k$ ayant pour coordonnées $(0 ; 0 ; k)$ (le point D du début de l'énoncé est donc $\mathrm{D}_2$).
+
+		On va chercher quand ces coordonnées vérifient l'équation du plan (ABC).
+
+		$\begin{aligned}
+			\mathrm{D}_k \in (\mathrm{ABC})
+				&\iff x_{\mathrm{D}_k} - y_{\mathrm{D}_k} + 4z_{\mathrm{D}_k} - 5 = 0\\
+				&\iff 0 - 0 +4k  - 5 = 0\\
+				&\iff k = \dfrac{5}{4}
+ 		\end{aligned}$
+
+ 		Seul le point $\mathrm{D}_{\frac54}$ est sur le plan (ABC).
+
+ 		Son projeté orthogonal sur (ABC) est alors lui-même, par  définition du projeté orthogonal.
+
+		\item Déterminons les coordonnées du vecteur $\vect{\mathrm{AD}_k}$ : \quad $\vect{\mathrm{AD}_k} \begin{pmatrix} -2\\-1\\k-1 \end{pmatrix} $.\quad On rappelle : \quad $\vect{n} \begin{pmatrix} 1\\-1\\4 \end{pmatrix}$.
+
+		Quelle que soit la valeur de $k$, ces vecteurs ne sont pas colinéaires : ils ont des ordonnées égales, mais des abscisses différentes.
+
+		Donc le vecteur $\vect{\mathrm{AD}_k}$ n'est jamais orthogonal au plan (ABC) et donc A n'est jamais le projeté orthogonal de $\mathrm{D}_k$ sur (ABC).
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,126 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_05_sujet2_ameriquenord_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+On considère le pavé droit ABCDEFGH tel que AB $= 3$ et AD = AE $= 1$ représenté ci-dessous.
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(9.4,6.3)
+\psframe(0.3,0.6)(7.8,4.3)
+\psline(7.8,0.6)(8.6,2.2)(8.6,5.9)(7.8,4.3)
+\psline(8.6,5.9)(1.1,5.9)(0.3,4.3)
+\psline[linestyle=dashed](0.3,0.6)(1.1,2.2)(8.6,2.2)
+\psline[linestyle=dashed](1.1,2.2)(1.1,5.9)
+\psdots[dotstyle=+,dotangle=45,dotscale=1.9](2.8,0.6)(4.85,2.2)\uput[d](2.8,0.6){I}
+\uput[dl](0.3,0.6){A} \uput[dr](7.8,0.6){B} \uput[r](8.6,2.2){C} \uput[ul](1.1,2.2){D}
+\uput[l](0.3,4.3){E} \uput[r](7.8,4.3){F} \uput[ur](8.6,5.9){G} \uput[ul](1.1,5.9){H}
+\uput[u](4.85,2.2){M}
+\end{pspicture}
+\end{center}
+
+On considère le point I du segment [AB] tel que $\vect{\text{AB}}= 3 \vect{\text{AI}}$ et on appelle $M$ le milieu du segment [CD].
+
+On se place dans le repère orthonormé $\left(\text{A}~;~ \vect{\text{AI}}, \vect{\text{AD}}, \vect{\text{AE}}\right)$.
+
+\medskip
+
+\begin{enumerate}
+\item Sans justifier, donner les coordonnées des points F{}, H et M.
+
+\item 
+	\begin{enumerate}
+		\item 	Montrer que le vecteur $\vect{n}\begin{pmatrix}2\\6\\ 3\end{pmatrix}$ est un vecteur normal au plan (HMF).
+		\item En déduire qu'une équation cartésienne du plan (HMF) est :
+
+\[2x + 6y + 3z - 9 = 0.\]
+
+		\item Le plan $\mathcal{P}$ dont une équation cartésienne est $5x + 15y - 3z + 7 = 0$ est-il parallèle au plan (HMF) ? Justifier la réponse.
+	\end{enumerate}
+\item Déterminer une représentation paramétrique de la droite (DG).
+\item On appelle $N$ le point d'intersection de la droite (DG) avec le plan (HMF).
+
+Déterminer les coordonnées du point N.
+\item Le point R de coordonnées $\left(3~;~\dfrac{1}{4}~;~\dfrac{1}{2}\right)$ est-il le projeté orthogonal du point G sur le plan (HMF) ? Justifier la réponse.
+\end{enumerate}
+
+\end{document}

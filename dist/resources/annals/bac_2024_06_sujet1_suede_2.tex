@@ -1,0 +1,133 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_suede_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Au cours d'une séance, un joueur de volley-ball s'entraîne à faire des services. La probabilité qu'il réussisse le premier service est égale à 0,85.
+
+On suppose de plus que les deux conditions suivantes sont réalisées:
+
+\begin{itemize}[label=$\bullet$]
+\item si le joueur réussit un service, alors la probabilité qu'il réussisse le suivant est égale à 0,6;
+\item si le joueur ne réussit pas un service, alors la probabilité qu'il ne réussisse pas le suivant est égale à 0,6.
+\end{itemize}
+
+Pour tout entier naturel $n$ non nul, on note $R_{n}$ l'évènement \og le joueur réussit le $n$-ième service \fg{} et $\overline{R_{n}}$ l'évènement contraire.
+
+\subsection*{Partie A}
+On s'intéresse aux deux premiers services de l'entraînement.
+
+\begin{enumerate}
+	\item Représenter la situation par un arbre pondéré.
+	\item Démontrer que la probabilité de l'évènement $R_{2}$ est égale à 0,57.
+	\item Sachant que le joueur a réussi le deuxième service, calculer la probabilité qu'il ait raté le premier.
+	\item Soit $Z$ la variable aléatoire égale au nombre de services réussis au cours des deux premiers services.
+	\begin{enumerate}
+		\item Déterminer la loi de probabilité de $Z$ (on pourra utiliser l'arbre pondéré de la question 1).
+		\item Calculer l'espérance mathématique $\mathrm{E}(Z)$ de la variable aléatoire $Z$.
+
+		Interpréter ce résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+\subsection*{Partie B}
+
+On s'intéresse maintenant au cas général.
+
+Pour tout entier naturel $n$ non nul, on note $x_{n}$ la probabilité de l'évènement $R_{n}$.
+
+\begin{enumerate}
+	\item \begin{enumerate}
+		\item Donner les probabilités conditionnelles $P_{R_{n}}\left(R_{n + 1}\right)$ et $P_{\overline{R_{n}}}\left(\overline{R_{n + 1}}\right)$.
+
+		\item Montrer que, pour tout entier naturel non nul $n$, on a : $x_{n + 1}=0,2 x_{n} + 0,4$.
+	\end{enumerate}
+
+	\item Soit la suite $\left(u_{n}\right)$ définie pour tout entier naturel $n$ non nul par :\quad $u_{n}=x_{n}-0,5$.
+
+	\begin{enumerate}
+		\item Montrer que la suite $\left(u_{n}\right)$ est une suite géométrique.
+		\item Déterminer l'expression de $x_{n}$ en fonction de $n$. En déduire la limite de la suite $\left(x_{n}\right)$.
+		\item Interpréter cette limite dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

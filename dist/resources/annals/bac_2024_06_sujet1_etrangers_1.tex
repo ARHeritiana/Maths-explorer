@@ -1,0 +1,167 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_etrangers_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On définit la fonction $f$ sur l'intervalle [0~;~1] par :
+\[f(x) = \dfrac{0,96x}{0,93x + 0,03}.\]
+
+\smallskip
+
+\begin{enumerate}
+\item Démontrer que, pour tout $x$ appartenant à l'intervalle [0~;~1], 
+\[f'(x) = \dfrac{\np{0,0288}}{(0,93x + 0,03)^2}.\]
+
+\item Déterminer le sens de variation de la fonction $f$ sur l'intervalle [0~;~1].
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+La lutte contre le dopage passe notamment par la réalisation de contrôles antidopage qui visent à déterminer si un sportif a fait usage de substances interdites.
+
+Lors d'une compétition rassemblant \np{1000} sportifs, une équipe médicale teste tous les concurrents. On propose d'étudier la fiabilité de ce test.
+
+On appelle $x$ le réel compris entre 0 et 1 qui désigne la proportion de sportifs dopés.
+
+Lors de l'élaboration de ce test, on a pu déterminer que :
+
+\begin{itemize}[label=$\bullet~$]
+\item la probabilité qu'un sportif soit déclaré positif sachant qu'il est dopé est égale
+à 0,96 ;
+\item  la probabilité qu'un sportif soit déclaré positif sachant qu'il n'est pas dopé est égale à 0,03.
+\end{itemize}
+
+On note :
+
+\begin{itemize}[label=$\bullet~$]
+\item $D$ l'évènement : \og le sportif est dopé \fg.
+\item $T$ l'évènement : \og le test est positif \fg.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter l'arbre de probabilité ci-dessous :
+
+\begin{center}
+\pstree[treemode=R,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$D~$}\taput{$x$}}
+	{\TR{$T$} \taput{\ldots}
+	\TR{$\overline{T}$} \tbput{\ldots}
+	}
+\pstree{\TR{$\overline{D}~$}\tbput{$1 - x$}}
+	{\TR{$T$} \taput{\ldots}
+	\TR{$\overline{T}$} \tbput{\ldots}
+	}
+}
+\end{center}
+
+\item Déterminer, en fonction de $x$, la probabilité qu'un sportif soit dopé et ait un test positif.
+\item Démontrer que la probabilité de l'évènement $T$ est égale à $0,93x + 0,03$.
+\item Pour cette question uniquement, on suppose qu'il y a $50$ sportifs dopés parmi les \np{1000} testés.
+
+La fonction $f$ désigne la fonction définie à la partie A.
+
+Démontrer que la probabilité qu'un sportif soit dopé sachant que son test est positif est égale à $f(0,05)$. \emph{En donner une valeur arrondie au centième}.
+\end{enumerate}
+\begin{enumerate}[resume]
+\item On appelle valeur prédictive positive d'un test la probabilité que le sportif soit réellement dopé lorsque le résultat du test est positif.
+	\begin{enumerate}
+		\item Déterminer à partir de quelle valeur de $x$ la valeur prédictive positive du test étudié sera supérieure ou égale à $0,9$. Arrondir le résultat au centième.
+		\item Un responsable de la compétition décide de ne plus tester l'ensemble des sportifs, mais de cibler les sportifs les plus performants supposés être plus fréquemment dopés.
+
+Quelle est la conséquence de cette décision sur la valeur prédictive positive du test ?
+
+\emph{Argumenter en utilisant un résultat de la partie }A.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\end{document}

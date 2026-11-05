@@ -1,0 +1,154 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet21_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{1.}
+	
+	Dans le service \(A\), il y a 450 personnes sur un effectif de 1 000, soit une proportion de
+	\[
+	p(A) = \dfrac{450}{1000} = 0,45.
+	\]
+	
+	Parmi ces personnes du service \(A\), 40 \% résident à moins de 30 minutes de l’entreprise, donc
+	\[
+	p_A(T) = \dfrac{40}{100} = 0,4.
+	\]
+	
+	\subsection*{2.}
+	
+	\begin{center}
+	\begin{tikzpicture}
+		[level 1/.style={level distance=3cm,
+			sibling distance=2.2cm},
+		level 2/.style={level distance=3cm,
+			sibling distance=1.5cm},
+		]
+		\node {} [grow'=right]
+		child {node {$A$}
+			child {node {$T$}
+				edge from parent node[above] {$0,4$}
+			}
+			child {node {$\overline T$}
+				edge from parent node[below] {$0,6$}
+			}
+			edge from parent node[left] {$0,45$}}
+		child {node {$B$}
+			child {node {$T$}
+				edge from parent node[above] {$0,2$}
+			}
+			child {node {$\overline T$}
+				edge from parent node[below] {$0,8$}
+			}
+			edge from parent node[above] {$0,23$}}
+		child {node {$C$}
+			child {node {$T$}
+				edge from parent node[above] {$0,8$}
+			}
+			child {node {$\overline T$}
+				edge from parent node[below] {$0,2$}
+			}	edge from parent node[left] {$0,32$}}
+		
+		;
+	\end{tikzpicture}
+\end{center}
+	
+	\subsection*{3.}
+	
+	Il faut trouver \(p(A \cap T) = p(A) \times p_A(T) = 0,45 \times 0,4 = 0,18\).
+	
+	\subsection*{4.}
+	
+	On a de même \(p(B \cap T) = p(B) \times p_B(T) = 0,23 \times 0,2 = 0,046\), puis
+	\[
+	p(C \cap T) = p(C) \times p_C(T) = 0,32 \times 0,8 = 0,256.
+	\]
+	
+	D’après la loi des probabilités totales :
+	\[
+	p(T) = p(A \cap T) + p(B \cap T) + p(C \cap T) = 0,18 + 0,046 + 0,256 = 0,482.
+	\]
+	
+	\subsection*{5.}
+	
+	Il faut trouver \(p_T(C) = \dfrac{p(T \cap C)}{p(T)} = \dfrac{p(C \cap T)}{p(T)} = \dfrac{0,256}{0,482} \approx 0,5311\), soit 0,531 au millième près.
+
+\end{document}

@@ -1,0 +1,132 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_09_sujet1_polynesie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Une concession automobile vend deux sortes de véhicules :
+
+
+\begin{itemize}[label=$\bullet~$]
+\item 60\,\% sont des véhicules tout-électrique ;
+\item 40\,\% sont des véhicules hybrides rechargeables.
+\end{itemize}
+
+\medskip
+
+75\,\% des acheteurs de véhicules tout-électrique et 52\,\% des acheteurs de véhicules hybrides ont la possibilité matérielle d'installer une borne de recharge à domicile.
+
+On choisit un acheteur au hasard et on considère les évènements suivants:
+
+\begin{itemize}[label=$\bullet~$]
+\item $E$ : \og l'acheteur choisit un véhicule tout-électrique \fg{} ;
+\item $B$ : \og l'acheteur a la possibilité d'installer une borne de recharge à son domicile \fg.
+\end{itemize}
+
+\medskip
+
+\emph{Dans l'ensemble de l'exercice, les probabilités seront arrondies au millième si nécessaire.}
+
+\medskip
+
+\begin{enumerate}
+\item Calculer la probabilité que l'acheteur choisisse un véhicule tout-électrique et qu'il ait la possibilité d'installer une borne de recharge à son domicile.
+
+\emph{On pourra s'appuyer sur un arbre pondéré.}
+\item Démontrer que $P(B) = 0,658$.
+\item Un acheteur a la possibilité d'installer une borne de recharge à son domicile. Quelle
+est la probabilité qu'il choisisse un véhicule tout-électrique ?
+\item On choisit un échantillon de $20$ acheteurs. On assimile ce prélèvement à un tirage avec remise.
+
+On note $X$ la variable aléatoire qui donne le nombre total d'acheteurs pouvant installer une borne de recharge à leur domicile parmi l'échantillon de $20$~acheteurs.
+	\begin{enumerate}
+		\item Déterminer la nature et les paramètres de la loi de probabilité suivie par $X$.
+		\item Calculer $P(X = 8)$.
+		\item Calculer la probabilité qu'au moins 10 acheteurs puissent installer une borne de recharge.
+		\item Calculer l'espérance de $X$.
+		\item La directrice de la concession décide d'offrir l'installation de la borne de recharge aux acheteurs ayant la possibilité d'en installer une à leur domicile. Cette installation coûte \np{1200}~\euro.
+		
+En moyenne, quelle somme doit-elle prévoir d'engager pour cette offre lors de la vente de $20$ ~véhicules?
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

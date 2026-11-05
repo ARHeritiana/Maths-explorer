@@ -1,0 +1,204 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_11_sujet1_amsud_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+\item On considère la suite $(u_n)$ définie pour tout $n$ non nul par 
+$u_n = \dfrac{25 + (- 1)^n}{n}.$
+
+\textbf{Affirmation 1 :} La suite $(u_n)$ est divergente.
+
+\medskip
+
+Pour tout $n$ non nul, on a:
+$ -1 \leqslant (-1)^n \leqslant +1$
+donc $ 25-1 \leqslant 25+(-1)^n \leqslant 25+1$
+donc $ 24 \leqslant 25+(-1)^n \leqslant 26$
+donc $ \dfrac{24}{n} \leqslant \dfrac{25+(-1)^n}{n} \leqslant \dfrac{26}{n}$
+donc $ \dfrac{24}{n} \leqslant u_n \leqslant \dfrac{26}{n}$
+
+Or $\ds\lim_{n\to +\infty} \dfrac{24}{n} = \ds\lim_{n\to +\infty} \dfrac{26}{n} = 0$ donc, d'après le théorème des gendarmes, on peut déduire que la suite $(u_n)$ est convergente et que $\ds\lim_{n\to +\infty} u_n=0$.
+
+\hfill \textbf{Affirmation 1 fausse}
+
+\medskip
+
+\item On considère la suite $(w_n)$ définie pour tout entier naturel $n$ par $\left\{\begin{array}{l !{=}  l}
+w_0&1\\w_{n+1}&\dfrac{w_n}{1 + w_n}
+\end{array}\right.$
+
+On admet que pour tout entier naturel $n,\; w_n > 0$n et on considère la suite $(t_n)$ définie pour tout entier naturel $n$ par $t_n =\dfrac{k}{w_n}$ où $k$ est un nombre réel strictement positif.
+
+\textbf{Affirmation 2 :} La suite $(t_n)$ est une suite arithmétique strictement croissante.
+
+\medskip
+
+Pour tout $n$, on a: $t_{n+1}
+= \dfrac{k}{w_{n+1}}
+= \dfrac{k}{\frac{w_n}{1+w_n}}
+= \dfrac{k\left (1+w_n\right )}{w_n}
+= \dfrac{k+kw_n}{w_n}
+=\dfrac{k}{w_n} +k
+=t_n+k$
+
+Donc la suite $(t_n)$ est arithmétique de raison $k$.
+
+De plus, $k>0$ donc la suite $(t_n)$ est strictement croissante.
+
+\hfill \textbf{Affirmation 2 vraie}
+
+\medskip
+
+\item On considère la suite $(v_n)$ définie pour tout entier naturel $n$ par 
+$\left\{\begin{array}{l !{=} l}
+v_0&1\\
+v_{n+1}&\ln \left(1 +  v_n\right)
+\end{array}\right.$
+
+On admet que pour tout entier naturel $n$, $v_n > 0$,
+
+\textbf{Affirmation 3 :} La suite $(v_n)$ est décroissante.
+
+\medskip
+
+Soit $\mathcal{P}_n$ la propriété: $v_n>v_{n+1}$.
+
+On va démontrer par récurrence que cette propriété est vraie pour tout $n$.
+
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+$v_0=1$ et $v_1=\ln\left (1+v_0\right ) = \ln\left (2\right ) \approx 0,69$; donc $v_0>v_1$.\\
+La propriété est vraie pour $n=0$.
+
+\item \textbf{Hérédité}
+
+On suppose que $v_n > v_{n+1}$; c'est l'hypothèse de récurrence.
+
+$v_n > v_{n+1}$ donc $1+v_n > 1+v_{n+1}$
+
+Or la fonction ln est  croissante sur $]0\,;\, +\infty[$ donc
+$\ln\left (1+v_n\right ) >\ln\left ( 1+v_{n+1}\right )$, ce qui veut dire que
+$v_{n+1} > v_{n+2}$.
+La propriété est donc héréditaire.
+
+\item \textbf{Conclusion}
+
+La propriété est vraie au rang 0. Elle est héréditaire pour tout $n\geqslant 0$. Donc, d'après le principe de récurrence, elle est vraie pour tout $n\geqslant 0$.
+\end{list}
+
+On a démontré que, pour tout $n\geqslant 0$, on avait: $v_{n} > v_{n+1}$; donc la suite $(v_n)$ est décroissante.
+
+\hfill \textbf{Affirmation 3 vraie}
+
+\medskip
+
+\item On considère la suite $(I_n)$ définie pour tout entier naturel $n$ par $I_n = \displaystyle\int_1^{\e} \left [\ln (x)\strut\right ]^n\,\d x$.
+
+\textbf{Affirmation 4 :} Pour tout entier naturel $n$, $I_{n+1} = \e - (n + 1) I_n$.
+
+\medskip
+
+$I_{n+1} = \displaystyle\int_1^{\e} \left [\ln (x)\strut \right ]^{n+1}\d x
+= \displaystyle\int_1^{\e} 1\times \left [\ln (x)\strut\right ]^{n+1}\d x$
+
+On va calculer $I_{n+1}$ au moyen d'une intégration par parties:\\
+$\ds\int_{a}^{b} u'(x)v(x) \d x = \left [u(x) v(x)\strut \right ]_{a}^{b} - \ds\int_{a}^{b} u(x) v'(x) \d x$
+
+On pose $u'(x)=1$ donc $u(x)=x$, et $v(x)= \left [\ln\left (x\right )\strut\right] ^{n+1}$ donc
+$v'(x)=\left (n+1\right ) \times \dfrac{1}{x} \times \left [\ln\left (x\right )\strut\right ]^n$.
+
+$\begin{aligned}[t]
+I_{n+1} & =  \left [ x\times \left [\ln\left (x\right )\strut\right ]^{n+1}\right ]_{1}^{\e}
+ - \ds\int_{1}^{\e} x\times (n+1) \times \dfrac{1}{x} \times \left [ \ln\left (x\right )\strut \right ]^n \d x\\
+ & = \left ( \e \left [ \ln \left (\e\right )\strut \right ]^{n+1} - 1 \left [ \ln \left (1\right )\strut \right ]^{n+1}\right ) - \left (n+1\right ) \ds\int_{1}^{\e} \left [\ln\left (x\right )\strut\right ]^{n} \d x\\
+&  = \e - \left (n+1\right ) I_n
+ \end{aligned}$
+
+\hfill \textbf{Affirmation 4 vraie}
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\end{document}

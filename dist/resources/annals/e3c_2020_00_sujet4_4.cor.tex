@@ -1,0 +1,129 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet4_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\section*{Exercice 4 (5 points)}
+	
+
+	
+	\subsection*{1. Calculer $y$ lorsque $x = 20$ cm}
+	
+	Le volume de la boîte est donc :
+	\[
+	V = 16xy
+	\]
+	Avec $V = 10000$ et $x = 20$, on a donc :
+	\[
+	10000 = 16 \times 20 \times y \iff 10000 = 320y \iff y = 31,25 \text{ cm}
+	\]
+	
+	\subsection*{2. Pour toute valeur de $x > 0$, on note $f(x)$ l’aire du parallélépipède rectangle. Démontrer que : pour tout $x > 0$,}
+	\[
+	f(x) = \dfrac{20000}{x} + 32x + 625
+	\]
+	
+	On a une base d’aire $xy$, deux côtés d’aire $16x$ et deux côtés d’aire $16y$.
+	
+	L’aire du parallélépipède rectangle est donc égale à :
+	\[
+	f(x) = xy + 32x + 32y \text{ et on sait que } 10000 = 16xy \iff y = \dfrac{625}{x}
+	\]
+	Donc
+	\[
+	f(x) = x \times \dfrac{625}{x} + 32x + 32 \times \dfrac{625}{x} = 625 + 32x + \dfrac{20000}{x} = \dfrac{20000}{x} + 32x + 625
+	\]
+	
+	\subsection*{3. Quelles dimensions doit-on donner à ces boîtes pour que leur surface ait une aire minimale ?}
+	
+	On a $f'(x) = -\dfrac{20000}{x^2} + 32$.
+
+	\begin{itemize}
+		\item $\dfrac{20000}{x^2} + 32 > 0  \iff 32 > \dfrac{20000}{x^2} \iff x^2 > \dfrac{20000}{32} \iff x^2 > 625 \iff x > 25$
+		\item $\dfrac{20000}{x^2} + 32 < 0  \iff 32 < \dfrac{20000}{x^2} \iff x^2 < \dfrac{20000}{32} \iff x^2 < 625 \iff x < 25$
+		\item $\dfrac{20000}{x^2} + 32 = 0  \iff 32 = \dfrac{20000}{x^2} \iff x^2 = \dfrac{20000}{32} \iff x^2 = 625 \iff x = 25$
+	\end{itemize}
+
+	Donc l’aire est décroissante sur $[0, 25]$, puis croissante pour $x > 25$ : le minimum de l’aire est donc obtenu pour $x = 25$. On aura $y = \dfrac{625}{25} = 25$.
+	
+	Les boîtes feront donc : $25 \times 25 \times 16$ cm.
+
+\end{document}

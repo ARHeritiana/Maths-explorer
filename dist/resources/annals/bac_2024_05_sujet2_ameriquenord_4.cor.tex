@@ -1,0 +1,170 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_05_sujet2_ameriquenord_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\[f(x) = a \ln (x).\]
+
+On note $\mathcal{C}$ sa courbe représentative dans un repère orthonormé.
+
+Soit $x_{0}$ un réel strictement supérieur à 1.
+
+\medskip
+
+\begin{enumerate}
+\item 
+On a $f(x) = 0 \iff a\ln x = 0 \iff \ln x = 0$ (car $a \ne 0$) et par croissance de la fonction exponentielle $\e^{\ln x} = \e^0 \iff x = 1$.
+\item 
+$F$ est une différence de fonctions dérivables sur $]0~;~+\infty[$, donc sur cet intervalle :
+
+$F'(x) = a\left[\ln (x) + x \times \dfrac 1x - 1\right] = a[\ln (x) + 1 - 1] = a\ln (x) = f(x)$, ce qui montre que $F$ est une primitive de $f$ sur $]0~;~+\infty[$.
+\item 
+On a vu que $\mathcal{C}$ coupe l'axe des abscisses en $x = 1$ donc la surface bleue correspond à des points où $x \geqslant 1$, soit $\ln (x) \geqslant 0 \Rightarrow a\ln (x) \geqslant 0$.
+
+Autrement dit  pour $x \geqslant 1$, la fonction $f$ est positive et on sait que sur un intervalle $[1~;~x_0]$ avec $x_0 \geqslant 1$, l'aire de la surface limitée par sa courbe représentative, l'axe des abscisses et les droites d'équations $x = 1$ et $x = x_0$ est égale à l'intégrale :
+\[\displaystyle\int_1^{x_0} f(x)\:\text{d}x = [F(x)]_1^{x_0} = F(x_0) - F(1) = a[x_0 \ln (x_0) - x_0] - a [1 \ln (1) - 1] =.\]
+
+l'aire bleutée est en unités d'aire : $ a [x_0 \ln (x_0) - x_0] + a = a\left[x_0 \ln (x_0) - x_0 + 1\right]$.
+\end{enumerate}
+
+\begin{center}
+\psset{unit=2cm,arrowsize=2pt 3}
+\begin{pspicture*}(-1,-1)(4.5,2)
+\psaxes[linewidth=1.25pt,Dx=5,Dy=5]{->}(0,0)(-1,-1)(4.5,2)
+\pscustom[fillstyle=solid,fillcolor=blue]{\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{1}{1.8}{x ln 1.3 mul}\psline(1.8,0.764)(1.8,0)(1,0)}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0.1}{4.5}{x ln 1.3 mul}
+\uput[dr](1,0){1}\uput[d](1.8,0){$x_0$}\uput[ul](1.8,0.764){$M$}
+\uput[dr](4,1.6){\blue $\mathcal{C}$}\uput[dl](0,0){O}
+\uput[d](4.4,0){$x$}\uput[l](0,1.9){$y$}
+\end{pspicture*}
+\end{center}
+
+On note $T$ la tangente à la courbe $\mathcal{C}$ au point $M$ d'abscisse $x_{0}$.
+
+On appelle $A$ le point d'intersection de la tangente $T$ avec l'axe des ordonnées et $B$ le projeté orthogonal de $M$ sur l'axe des ordonnées.
+
+\begin{center}
+\psset{unit=2cm,arrowsize=2pt 3}
+\begin{pspicture*}(-1,-1)(4.5,2)
+\psaxes[linewidth=1.25pt,Dx=5,Dy=5]{->}(0,0)(-1,-1)(4.5,2)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0.1}{4.5}{x ln 1.3 mul}
+\uput[dr](1,0){1}\uput[d](1.8,0){$x_0$}\uput[ul](1.8,0.764){$M$}
+\uput[dr](4,1.6){\blue $\mathcal{C}$}\uput[dl](0,0){O}
+\psline[linestyle=dashed](1.8,0.764)(1.8,0)
+\uput[d](4.4,0){$x$}\uput[l](0,1.9){$y$}
+\psplotTangent{1.8}{4}{x ln 1.3 mul}
+\psline(-1,0.764)(4.5,0.764)\uput[ul](0,0.764){B}\uput[ul](0, -0.5){A}
+\psframe(0,0.764)(0.1,0.664)\uput[ul](3.1,1.8){$T$}
+\psline[linewidth=1.5pt,linecolor=red](0,-0.5)(0,0.764)\uput[l](0,0.15){\red $a$}
+\psline[linewidth=1.5pt,linecolor=red](2.71828,0)(2.71828,1.3)\uput[r](2.71828,0.65){\red $a$}
+\uput[d](2.71828,0){e}
+\end{pspicture*}
+\end{center}
+
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item 
+
+
+On sait (équation de la tangente au point d'abscisse $x_0$) que :
+
+$M(x~;~y)\in T \iff y - f(x_0) = f'\left(x - x_0) \right)$.
+
+$\bullet~~$$f\left(x_0\right) = a\ln x_0$ ;
+
+$\bullet~~$$f$ est dérivable sur $]0~;~+ \infty[$ et sur cet intervalle $f'(x) = \dfrac ax$, donc $f'\left(x_0 \right) = \dfrac{a}{x_0}$.
+
+On obtient donc :
+
+$M(x~;~y)\in T \iff y - a\ln x_0 = \dfrac{a}{x_0} \times \left(x - x_0 \right) \iff y = a\ln x_0 + \dfrac{ax}{x_0} - a$.
+
+En particulier $T$ coupe l'axe des ordonnées si $x = 0$, d'où $y = a\ln x_0 - a$ (ordonnée de A).
+
+L'ordonnée de B est égale à $f\left(x_0\right) = a\ln \left(x_0\right)$.
+
+On a $\text{AB} = \left|y_{\text{B}} - y_{\text{A}} \right| = \left|a\ln \left(x_0\right) - \left(a\ln x_0 - a\right) \right| = \left|a \right| = a$ (car $a > 0$).
+
+\emph{Remarque} : On a $f(\e) = a \ln \e = a \times 1 = a$.
+
+$f(\e) = a$ : on a mis en évidence ceci sur le dessin ; le corollaire est que la tangente à la courbe au point d'abscisse e contient l'origine O !
+\end{enumerate}
+
+\end{document}

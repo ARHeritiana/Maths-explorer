@@ -1,0 +1,41 @@
+\medskip
+
+Un service de vidéos à la demande réfléchit au lancement d'une nouvelle série mise en ligne chaque semaine et qui aurait comme sujet le quotidien de jeunes gens favorisés.
+
+Le nombre de visionnages estimé la première semaine est de \np{120000}. Ce nombre augmenterait ensuite de 2\,\% chaque semaine.
+
+Les dirigeants souhaiteraient obtenir au moins \np{400000} visionnages par semaine.
+
+On modélise cette situation par une suite $\left(u_n\right)$ où $u_n$ représente le nombre de visionnages $n$ semaines après le début de la diffusion. On a donc $u_0 = \np{120000}$.
+
+\medskip
+
+\begin{enumerate}
+\item Calculer le nombre $u_1$ de visionnages une semaine après le début de la diffusion. 
+\item Justifier que pour tout entier naturel $n$ : $u_n = \np{120000} \times  1,02^n$.
+\item À partir de combien de semaines le nombre de visionnages hebdomadaire sera-t-il supérieur à \np{150000} ?
+\item Voici un algorithme écrit en langage Python:
+
+\begin{center}
+\begin{tabularx}{0.55\linewidth}{X}
+\texttt{def seuil():}\\
+\quad \texttt{u = 120000}\\
+\quad \texttt{n = 0}\\
+\quad \texttt{while u < 400000:}\\
+\qquad \texttt{n = n+1}\\
+\qquad \texttt{u = 1.02*u}\\
+\quad \texttt{return n}\\
+\end{tabularx}
+\end{center}
+
+Déterminer la valeur affichée par cet algorithme et interpréter le résultat précédent
+dans le contexte de l'exercice. 
+
+\item On pose pour tout entier naturel $n$ : $S_n = u_0 + \ldots + u_n$. Montrer que l'on a :
+
+\[S_n = \np{6000000} \times \left(1,02^{n+1} - 1\right).\]
+
+En déduire le nombre total de visionnages au bout de $52$ semaines (arrondir à
+l'unité).
+
+\end{enumerate}

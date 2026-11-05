@@ -1,0 +1,72 @@
+\medskip
+
+\emph{Dans cet exercice, pour tout évènement A, on note $\overline{A}$ son évènement contraire, $p(A)$ sa probabilité et, si $B$ est un évènement de probabilité non nulle, $p_B(A)$ la probabilité conditionnelle de $A$ sachant $B$.}
+
+\medskip
+
+Une entreprise a fabriqué en un mois \np{1500} chaudières, dont $900$~chaudières à
+cheminée et $600$~chaudières à ventouse.
+
+On a constaté, dans ce lot, que :
+
+\begin{itemize}
+\item 1\,\% des chaudières à cheminées ont un défaut
+\item 6\,\% des chaudières à ventouses ont un défaut.
+\end{itemize}
+
+On prélève au hasard le numéro de série d'une chaudière de la production de ce
+mois.
+
+On considère les évènements suivants :
+
+\begin{itemize}
+\item $C$ : \og Le numéro de série est celui d'une chaudière à cheminée \fg
+\item $V$ : \og Le numéro de série est celui d'une chaudière à ventouse \fg
+\item $D$ : \og Le numéro de série est celui d'une chaudière défectueuse \fg
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter sur la copie le tableau à double entrée suivant :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|m{3.3315cm}|*{3}{X|}}
+\cline{2-4}
+\multicolumn{1}{c|}{}&
+nombre de chaudières à cheminée & nombre de chaudières à ventouse &
+ \centering Total\tabularnewline\hline
+nombre de chaudières
+défectueuses
+&&&\\\hline
+nombre de chaudières non défectueuses
+&&&\\\hline
+ Total &\centering 900& \centering 600& \centering 1500\tabularnewline
+\hline
+\end{tabularx}
+
+\item Recopier et compléter l'arbre pondéré suivant :
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$C$~}\taput{$\np{0.6}$}}
+	{
+	\TR{$D$}\taput{$\dots$}
+	\TR{$\overline{D}$}\tbput{$\dots$}
+	}
+\pstree{\TR{$V$~}\tbput{$\dots$}}
+	{\TR{$D$}\taput{$\dots$}
+	\TR{$\overline{D}$}\tbput{$\dots$}
+	}
+}
+\end{center}
+
+\item Calculer la probabilité que le numéro de série soit celui d'une chaudière
+défectueuse.
+\item Déterminer $P_D(V)$. Interpréter le résultat dans le contexte de l'exercice.
+\item Les évènements $D$ et $V$ sont-ils indépendants ?
+\end{enumerate}
+
+\vspace{0,5cm}

@@ -1,0 +1,171 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet2_ameriquesud_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+
+On considère les suites $(v_n)$ et $(w_n)$ définies pour tout entier naturel $n$
+par :
+\[ \left\{\begin{array}{l c l}
+v_0 &=& \ln (4)\\
+v_{n+1} &=& \ln \left(- 1 +2\e^{v_n}\right)
+\end{array}\right. \qquad \text{et} \qquad w_n = - 1 + \e^{v_n}.\]
+
+On admet que la suite $(v_n)$ est bien définie et strictement positive.
+
+\medskip
+
+\begin{minipage}{0.6\linewidth}
+\begin{enumerate}
+\item Donner les valeurs exactes de $v_1$ et $w_0$.
+\item 
+	\begin{enumerate}
+		\item Une partie d'une feuille de calcul où figurent les indices et
+les termes des suites $(v_n)$ et $(w_n)$ est reproduite ci-contre.
+		
+Parmi les trois formules ci-dessous, choisir la formule qui,
+saisie dans la cellule B3 puis recopiée vers le bas, permettra
+d'obtenir les valeurs de la suite $(v_n)$ dans la colonne B.
+
+\begin{tabular}{|l |l|}\hline
+Formule 1 &LN($-1 + 2$ * EXP(B2))\\ \hline
+Formule 2 &= LN($-1 + 2$ * EXP(B2))\\ \hline
+Formule 3 &= LN($-1 + 2$ * EXP(A2))\\ \hline
+\end{tabular}
+		\item Conjecturer le sens de variation de la suite $(v_n)$.
+		\item À l'aide d'un raisonnement par récurrence, valider votre
+conjecture concernant le sens de variation de la suite $(v_n)$.
+	\end{enumerate}
+\end{enumerate}
+\end{minipage} \hfill 
+\begin{minipage}{0.36\linewidth}
+{\small\begin{tabular}{c |c|c|c}\hline
+	&A &B &C\\ \hline
+1 	&$n$&$v_n$& $w_n$\\ \hline
+2&0 & 1,38629436 &3\\ \hline
+3& 1& 1,94591015 &6\\ \hline
+4& 2& 2,56494936 &12\\ \hline
+5& 3& 3,21887582 &24\\ \hline
+6& 4& 3,8918203 &48\\ \hline
+7& 5& 4,57471098 &96\\ \hline
+8& 6& 5,26269019 &192\\ \hline
+9& 7& 5,95324333 &384\\ \hline
+10& 8& 6,6450909 7 &768\\ \hline
+11& 9& 7,33758774 &1536\\ \hline
+12& 10& 8,03040956 &3072\\ \hline
+13& 11& 8,72339402 &6144\\ \hline
+14& 12& 9,41645983 &12288\\ \hline
+15& 13& 10,1095663 &24576\\ \hline
+16& 14& 10,8026932 &49152\\ \hline
+17& 15& 11,4958302&98304\\ \hline
+18& 16& 12,1889723&196608\\ \hline
+19& 17&12,8821169& 393216\\ \hline
+\end{tabular}}
+\end{minipage}
+
+\begin{enumerate}[start=3]
+\item
+	\begin{enumerate}
+		\item Démontrer que la suite $(w_n)$ est géométrique.
+		\item En déduire que pour tout entier naturel $n, \: v_n = \ln \left(1 + 3 \times 2^n\right)$.
+		\item Déterminer la limite de la suite $(v_n)$.
+	\end{enumerate}
+\item Justifier que l'algorithme suivant écrit en langage Python renvoie un résultat quel que soit le choix de la valeur du nombre S.
+
+\begin{center}
+\begin{ttfamily}
+\begin{tabular}{|l|}\hline
+from math import*\\
+def seuil(S):\\
+\qquad V=ln(4)\\
+\qquad n=0\\
+\qquad while V < S :\\
+\qquad  \quad n=n+1\\
+\qquad  \quad V=ln(2*exp(V)-1)\\
+\qquad return(n)\\ \hline
+\end{tabular}
+\end{ttfamily}
+\end{center}
+\end{enumerate}
+
+\end{document}

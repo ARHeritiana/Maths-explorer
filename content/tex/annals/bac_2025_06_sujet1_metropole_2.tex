@@ -1,0 +1,93 @@
+\medskip
+
+On considère une fonction $f$ définie sur l'intervalle $]0~;~ +\infty[$. On admet~ qu'elle est deux fois dérivable sur l'intervalle $]0~;~ +\infty[$. On note $f'$ sa fonction dérivée et $f''$ sa
+fonction dérivée seconde.
+
+\smallskip
+
+Dans un repère orthogonal, on a tracé ci-dessous:
+
+\begin{itemize}[label=$\bullet~$]
+\item la courbe représentative de $f$, notée $\mathcal{C}_f$ sur l'intervalle ]0~;~3] ; 
+\item la droite $T_{\text{A}}$,tangente à $\mathcal{C}_f$ au point A(1~;~2) ;
+\item la droite $T_{\text{B}}$ tangente à $\mathcal{C}_f$ au point B(e~;~e).
+\end{itemize}
+
+\smallskip
+
+On précise par ailleurs que la tangente $T_{\text{A}}$ passe par le point C(3~;~0).
+
+\begin{center}
+\psset{xunit=3.75cm,yunit=3.75cm,arrowsize=2pt 3}
+\begin{pspicture*}(-0.2,-1.05)(3.3,3.3)
+\uput[ur](1,2){A}\uput[ul](2.71828,2.71828){B}\uput[ur](3,0){C}\uput[ur](-0.2,3.15){$T_{\text{A}}$}
+\uput[d](2.71828,0){e}\uput[l](0,2.71828){e}\uput[d](0.2,0){0,2}
+\uput[dr](3,3.2){$T_{\text{B}}$}\uput[u](0.2,2.45){\red $\mathcal{C}_f$}
+\multido{\n=0.0+0.2}{17}{\psline[linewidth=0.25pt](\n,-1)(\n,3.3)}
+\multido{\n=-1+1}{5}{\psline[linewidth=0.25pt](0,\n)(3.3,\n)}
+\psaxes[linewidth=1.25pt]{->}(0,0)(0,0)(3.3,3.3)
+\psaxes[linewidth=1.25pt](0,0)(0,0)(1,1)
+
+\psplotTangent[linewidth=1pt]{1}{3}{x ln dup mul 2 mul x ln 3 mul sub 2 add x mul}
+\psplotTangent[linewidth=1pt]{2.71828}{4}{x ln dup mul 2 mul x ln 3 mul sub 2 add x mul}
+\psdots(1,2)(2.71828,2.71828)
+\psline[linestyle=dashed,linewidth=1.5pt](0,2.7128)(2.71828,2.71828)(2.71828,0)
+\pscustom[fillstyle=vlines,hatchsep=8pt,hatchcolor=blue,linecolor=blue]{(\psline(2.71828,2.71828)(1,-0.718)(1,2)\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{1}{2.71828}{x ln dup mul 2 mul x ln 3 mul sub 2 add x mul}}
+\psplot[plotpoints=2000,linewidth=1.35pt,linecolor=red]{0.0025}{3.3}{x ln dup mul 2 mul x ln 3 mul sub 2 add x mul}
+\end{pspicture*}
+\end{center}
+
+\begin{center}\textbf{Partie A :} Lectures graphiques\end{center}
+
+On répondra aux questions suivantes en les justifiant à l'aide du graphique.
+
+\medskip
+\begin{enumerate}
+\item Déterminer le nombre dérivé $f'(1)$.
+\item Combien de solutions l'équation $f'(x) = 0$ admet-elle dans l'intervalle ]0~;~3] ?
+\item Quel est le signe de $f''(0,2)$ ?
+\end{enumerate}
+
+
+\begin{center}\textbf{Partie B :} étude de la fonction $f$\end{center}
+
+On admet dans cette partie que la fonction $f$ est définie sur l'intervalle $]0~;~ +\infty[$ par
+
+\[f(x) = x[2(\ln x)^2 - 3\ln x + 2 ]\]
+
+où $\ln$ désigne la fonction logarithme népérien.
+
+\medskip
+
+\begin{enumerate}
+\item Résoudre dans $\R$ l'équation $2X^2- 3X + 2 = 0$.
+
+En déduire que $\mathcal{C}_f$ ne coupe pas l'axe des abscisses.
+\item Déterminer, en justifiant, la limite de $f$ en $+\infty$.
+
+On admettra que la limite de $f$ en 0 est égale à 0.
+\item On admet que pour tout $x$ appartenant à $]0~;~ +\infty[$, \: $f'(x) = 2(\ln x)^2 + \ln x - 1$.
+	\begin{enumerate}
+		\item Montrer que pour tout $x$ appartenant à $]0~;~ +\infty[$,\: $f''(x)= \dfrac 1x(4\ln x + 1)$.
+		\item Étudier la convexité de la fonction $f$ sur l'intervalle $]0~;~ +\infty[$ et préciser la valeur exacte de l'abscisse du point d'inflexion.
+		\item Montrer que la courbe $\mathcal{C}_f$ est au-dessus de la tangente $T_{\text{B}}$ sur l'intervalle $]1~;~ +\infty[$.
+	\end{enumerate}
+\end{enumerate}
+
+\begin{center}\textbf{Partie C :} Calcul d'aire\end{center}
+
+\begin{enumerate}
+\item Justifier que la tangente $T_{\text{B}}$ a pour équation réduite $y = 2x - \e$.
+
+
+\item À l'aide d'une intégration par parties, montrer que
+
+\[\displaystyle\int_1^{\e} x\ln x\, \text{d}x = \dfrac{\e^2 + 1}{4}.\]
+\item On note $\mathcal{A}$ l'aire du domaine hachuré sur la figure, délimité par la courbe $\mathcal{C}_f$, la tangente $T_{\text{B}}$, et les droites d'équation $x = 1$ et $x = \e$.
+
+On admet que $\displaystyle\int_1^{\e} x(\ln x)^2\,\text{d}x = \dfrac{\e^2 - 1}{4}$.
+
+En déduire la valeur exacte de $\mathcal{A}$ en unité d'aire.
+\end{enumerate}
+
+\bigskip

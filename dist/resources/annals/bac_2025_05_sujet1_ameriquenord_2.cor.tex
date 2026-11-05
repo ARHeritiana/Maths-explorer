@@ -1,0 +1,212 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_05_sujet1_ameriquenord_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Pour cet exercice, on admet que les deux suites $\left(a_n\right)$ et $\left(u_n\right)$ sont bien définies, ce qui équivaut à admettre que les termes de la suite $(u_n)$ sont tous différents de $-2$ (pour que la suite $\left(u_n\right)$ soit bien définie) et de $1$ (pour que $\left(a_n\right)$ soit bien définie).
+
+\begin{enumerate}
+\item On a : $u_{1} = \dfrac{2u_0 + 1}{ u_0 + 2} = \dfrac{2\times 2 + 1}{2 + 2 } = \dfrac{5}{4} = 1,25$.
+\item 
+	\begin{enumerate}
+		\item On a : $a_{0} = \dfrac{u_0}{u_0 -1} = \dfrac{2}{2 - 1} = 2$
+
+et $a_{1} = \dfrac{u_1}{u_1 - 1} = \dfrac{1,25}{1,25-1} = \dfrac{1,25}{0,25} = 5$.
+		\item Soit $n$ un entier naturel.
+
+On a, d'une part :\quad
+	$\begin{aligned}[t]
+a_{n+1} &= \dfrac{u_{n+1}}{u_{n+1}-1} = \dfrac{\dfrac{2u_n + 1}{u_n + 2}}{\dfrac{2u_n + 1}{u_n + 2} - 1} = \dfrac{\dfrac{2u_n + 1}{u_n + 2}}{\dfrac{2u_n + 1}{u_n + 2} - \dfrac{u_n + 2}{u_n + 2}}\\
+	&=\dfrac{\dfrac{2u_n + 1}{u_n + 2}}{\dfrac{2u_n + 1- u_n - 2}{u_n + 2}} = \dfrac{2u_n + 1}{u_n + 2} \times \dfrac{u_n+2}{u_n -1}\\
+	&=\dfrac{2u_n + 1}{u_n-1}
+	\end{aligned}$
+
+et, d'autre part :\quad
+	$\begin{aligned}[t]
+	3a_{n}-1 &= 3\times \dfrac{u_n}{u_n-1} - 1 = \dfrac{3 u_n}{u_n-1} - \dfrac{u_n-1}{u_n-1} = \dfrac{3u_n - (u_n - 1)}{u_n-1}\\
+	&=\dfrac{2u_n + 1}{u_n-1}
+	\end{aligned}$
+
+On constate donc bien que, pour tout entier naturel $n$, $a_{n+1}=3 a_{n}-1$.
+
+\textbf{Autre méthode :}
+
+Soit $n$ un entier naturel.
+
+$\begin{aligned}[t]
+a_{n+1} & = \dfrac{u_{n+1}}{u_{n+1}-1}  =  \dfrac{u_{n+1}-1+1}{u_{n+1}-1}
+= 1+ \dfrac{1}{u_{n+1}-1}\\
+& = 1 + \dfrac{1}{\dfrac{2u_n + 1}{u_n + 2} - \dfrac{u_n + 2}{u_n + 2}} 
+= 1 + \dfrac{1}{\dfrac{2u_n + 1}{u_n + 2}}\\
+	& = 2+ \dfrac{u_n+2}{u_n -1} -1 \\
+	& = \dfrac{2 ( u_n-1) + u_n+2}{u_n -1} -1 
+	= \dfrac{2 u_n-2 + u_n+2}{u_n -1} -1\\
+	& = \dfrac{3u_n}{u_n-1} - 1\\
+	& = 3a_{n}-1
+\end{aligned}$
+
+\item Posons, pour tout entier naturel $n$ supérieur ou égal à 1, l'affirmation $P_n$ :
+
+\hfill~\og $a_{n} \geqslant 3n - 1$\fg{}.\hfill
+
+\emph{Initialisation :} On a calculé $a_1 = 5$ et donc on a bien $5 \geqslant 3\times 1 - 1 = 2$.
+
+L'affirmation $P_1$ est donc vraie.
+
+\emph{Hérédité :} Soit $n$ un entier naturel non nul. On suppose que l'affirmation $P_n$ est vraie, c'est-à-dire que $a_n \geqslant 3n-1$.
+
+Par hypothèse de récurrence, on a :
+
+$ \begin{aligned}[t]
+a_n \geqslant 3n-1
+	&\implies 3a_n \geqslant 3(3n-1) \quad \text{car } 3 > 0 \\
+	&\implies 3a_n -1 \geqslant 9n - 3 - 1\\
+	&\implies a_{n+1} \geqslant 9n-4 \quad \text{ d'après la question \textbf{2. b.} } 3an -1 = a_{n+1}\\
+	&\implies a_{n+1} \geqslant 3 n + 6n + 3 - 7\\
+	&\implies a_{n+1} \geqslant 3 (n+1) + 6k - 7\\
+	&\implies a_{n+1} \geqslant 3 (n+1) - 1 + 6n - 6\\
+	&\implies a_{n+1} \geqslant 3 (n+1) - 1 + 6(n-1)\\
+	&\implies a_{n+1} \geqslant 3 (n+1) - 1 \quad \text{car } 6(n-1)\geqslant0\\
+\end{aligned}$
+
+Si, pour un entier $n$ naturel non nul (ce qui garantit $(n-1) \geqslant 0$), $P_n$ est vraie, alors $P_{n+1}$ est vraie également.
+
+\emph{Conclusion :} L'affirmation $P_1$ est vraie, et, pour tout entier naturel non nul $n$, la véracité de l'affirmation est héréditaire : d'après le principe de récurrence, on en déduit que pour tout entier naturel non nul $n$, on a : $a_n \geqslant 3n - 1$.
+
+\item Comme $3>0$, on a : $\lim\limits_{n \to +\infty} 3n - 1 = +\infty$.
+
+Par comparaison, puisque pour tout $n$ non nul, on a $a_n \geqslant 3n-1$, on en déduit que la suite $(a_n)$ diverge vers $+\infty$.
+\end{enumerate}
+
+\item 
+	\begin{enumerate}
+		\item Soit $n$ un entier naturel.
+
+$\begin{aligned}
+a_n = \dfrac{u_n}{u_n - 1}
+&\iff a_n \times (u_n - 1) = u_n \quad \text{car } u_n - 1 \neq 0 \\
+&\iff a_n \times u_n - a_n - u_n = 0\\
+&\iff (a_n - 1) \times u_n - a_n = 0\\
+&\iff (a_n - 1) \times u_n = a_n\\
+&\iff u_{n}=\dfrac{a_{n}}{a_{n}-1}
+\end{aligned}$
+
+Pour la dernière étape, la division par $a_n - 1$ est légitime, puisque $a_n$ est un quotient de deux nombres différents, car le dénominateur est égal au numérateur moins 1, donc $a_n$ ne peut pas être égal à 1, donc $a_n - 1$ est non nul.
+
+Ainsi, on a bien exprimé $u_n$ en fonction de $a_n$ avec la relation annoncée dans le question.
+
+		\item Avec les questions \textbf{2. a.} on a $a_0 = 2$ et avec \textbf{2. c.}, pour $n$ naturel non nul, on a $a_n \geqslant 3n - 1 > 0$.
+
+Ainsi, pour tout entier naturel $n$, $a_n$ est non nul.
+
+On déduit donc de la question précédente que, pour tout $n$ naturel, on a : $u_n = \dfrac{a_n}{a_n -1} = \dfrac{1}{1 - \dfrac{1}{a_n}}$.
+
+Enfin, puisque $(a_n)$ diverge vers $+\infty$, par limite du quotient, on a : $\lim\limits_{n \to +\infty}~\dfrac{1}{a_n}~=~0$,
+
+puis, par limite de la somme $\lim\limits_{n \to +\infty} 1 - \dfrac{1}{a_n} = 1$,
+
+enfin, par limite du quotient : $\lim\limits_{n\to +\infty} u_n = \lim\limits_{n\to +\infty}\dfrac{1}{1-\dfrac{1}{a_n}} = 1$.
+
+La suite $\left(u_{n}\right)$ converge donc vers 1.
+	\end{enumerate}
+\item Puisqu'on admet que la suite $\left(u_{n}\right)$ est décroissante, cela signifie que la suite est minorée par sa limite et donc que pour tout entier naturel $n$, on a $u_n \geqslant 1$ donc $u_n - 1 \geqslant 0$.
+	\begin{enumerate}
+		\item Cette fonction python initialise la variable \texttt{u} à 2, ce qui est la valeur de $u_0$ et la variable \texttt{n} à 0, ce qui est l'indice correspondant.
+
+Puis, à chaque exécution de la boucle \texttt{while},  \texttt{u} se voit affecter le terme suivant dans la suite $(u_n)$ et \texttt{n} se voit affecter l'entier suivant, donc l'indice correspondant au terme dont la valeur est stockée dans la variable \texttt{u}.
+
+Cette boucle \texttt{while} tourne tant que l'écart entre le terme stocké dans la variable \texttt{u} et la limite 1 est strictement supérieur à la valeur \texttt{p}, qui est l'argument choisi pour invoquer la fonction.
+
+Les valeurs \texttt{n} et \texttt{u} renvoyées par l'appel de la fonction \texttt{algo(p)} correspondent donc respectivement à l'indice et à la valeur du premier terme de la suite pour lequel l'écart entre le terme et la limite de la suite est inférieur ou égal à la valeur \texttt{p} choisie.
+
+		\item On parcourt la suite à la calculatrice, et on constate que $u_5 \approx \np{1,0027}$, donc $u_5 - 1 > 0,001$ et $u_6 \approx \np{1,0009}$, donc $u_6 - 1 \leqslant 0,001$.
+
+La valeur de $n$ pour $p=0,001$ est donc 6 (et la valeur renvoyée pour \texttt{u} est donc une valeur approchée de $u_6$).
+
+On peut aussi programmer la fonction python sur la calculatrice et faire l'appel \texttt{algo(0.001)}, qui renvoie \texttt{(6, \np{1.000914913083257})}
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

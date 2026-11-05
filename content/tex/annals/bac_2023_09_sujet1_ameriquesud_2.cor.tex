@@ -1,0 +1,105 @@
+\medskip
+
+\begin{enumerate}
+\item 
+
+	\begin{enumerate}
+		\item 
+		On a $\dfrac{\np{4921}}{\np{18221965}} \approx \np{0,0161} \approx 1,6\,\%$.
+		\item 
+De même $\dfrac{\np{4921}}{\np{18221965}} \approx \np{0,0003}< 0,001$ soit moins de 0,1\,\%.
+
+
+
+
+
+
+
+
+
+
+
+
+
+	\end{enumerate}
+\item 
+
+
+
+
+	\begin{enumerate}
+		\item 
+Les 20 accouchements sont des évènements indépendants et la probabilité d'avoir une naissance est égale à 0,016, donc la variable $X$ suit une loi binomiale 
+
+$\mathcal{B}(20~;~0,016)$.
+
+On a $p(X = 1) = 20 \times 0,016 \times 0984^{19} \approx \np{0,2355}$ soit 0,236 au millième près.
+		\item 
+		
+On a $p(X \geqslant 1) = 1 - p(X = 0) = 1 - 0,984^n \times 0,016^0  = 1 - 0,984^n$.
+
+Il faut donc résoudre l'inéquation :
+
+$1 - 0,984^n \geqslant 0,99 \iff 0,01 \geqslant 0,984^n \iff$ (par croissance de la fonction logarithme népérien) $\ln 0,01 \geqslant n \ln 0,984 \iff n \geqslant \dfrac{\ln 0,01}{ \ln 0,984}$ soit $n \geqslant 285,5$. Donc en moyenne, sur 286 accouchements il y a un accouchement double.
+
+
+	\end{enumerate}
+\item Dans cette maternité, parmi les naissances double, on estime qu'il y a 30\,\% de jumeaux
+monozygotes (appelés \og  vrais jumeaux \fg{} qui sont obligatoirement de même sexe : deux garçons ou deux filles) et donc 70\,\% de jumeaux dizygotes (appelés \og  faux jumeaux \fg, qui
+peuvent être de sexes différents: deux garçons, deux filles ou un garçon et une fille).
+
+Dans le cas de naissances doubles, on admet que, comme pour les naissances ordinaires, la probabilité d'être une fille à la naissance est égale à $0,49$ et que celle d'être un garçon à la
+naissance est égale à $0,51$.
+
+Dans le cas d'une naissance double de jumeaux dizygotes, on admet aussi que le sexe du
+second nouveau--né des jumeaux est indépendant du sexe du premier nouveau-né.
+
+On choisit au hasard un accouchement double réalisé dans cette maternité et on considère les évènements suivants :
+
+\begin{itemize}
+\item[$\bullet~~$]$M$ : \og  les jumeaux sont monozygotes \fg{} ;
+\item[$\bullet~~$]$F_1$ : \og  le premier nouveau--né est une fille \fg{} ;
+\item[$\bullet~~$]$F_2$ : \og  le second nouveau--né est une fille \fg.
+\end{itemize}
+
+\emph{On notera $p(A)$ la probabilité de l'évènement $A$ et $\overline{A}$ l'évènement contraire de $A$.}
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$M$~~}\naput{0,3}}
+	{\pstree{\TR{$F_1$}\naput{0,49}}
+		{\TR{$F_2$}\naput{1}	
+		}
+	\pstree{\TR{$\overline{F_1}$~}\naput{0,51}}
+		{\TR{$\overline{F_2}$}\nbput{1}	
+		}
+	}
+\pstree{\TR{$\overline{M}$~~}\nbput{0,7}}
+	{\pstree{\TR{$F_{1}$~}\naput{0,49}}
+		{\TR{$F_2$}\naput{0,49}
+		\TR{$\overline{F_2}$}\nbput{0,51}
+		}
+	\pstree{\TR{$\overline{F_1}$~}\naput{0,51}}
+		{\TR{$F_2$}\naput{0,49}
+		\TR{$\overline{F_2}$}\nbput{0,51}
+		}
+	}
+}
+\end{center}
+\smallskip
+
+	\begin{enumerate}
+		\item 
+Voir ci-dessus
+		\item 
+On a en suivant les première et troisième branche de l'arbre pondéré :
+
+$p\left(F_1 \cap F_2 \right) = 0,3 \times 0,49 \times 1 + 0,7 \times 0,49 \times 0,49 = 0,147 + \np{0,16807} = \np{0,31507} \approx 0,316$.
+		\item 
+Sachant que les nouveaux-nés sont des jumelles, la probabilité qu'elles soient monozygotes est la probabilité conditionnelle :
+
+$p_{F_1 \cap F_2} (M) = \dfrac{p(M \cap (F_1 \cap F_2))}{p(F_1 \cap F_2)} = \dfrac{0,3 \times 0,49 \times 1}{\np{0,31507}} \approx \np{0,4665}$ soit 0,467 au millième près.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

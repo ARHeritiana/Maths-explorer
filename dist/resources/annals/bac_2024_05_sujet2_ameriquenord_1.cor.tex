@@ -1,0 +1,184 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_05_sujet2_ameriquenord_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Partie A}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item \phantom{21}  
+\begin{center}
+\pstree[treemode=R,levelsep = 3.5cm]{\TR{}}
+{\pstree{\TR{$N~~$}\taput{\np{0,2286}}}
+	{\TR{$R$}\taput{\np{0,0808}}
+	\TR{$\overline{R}$}\tbput{\red 0,9192}
+	}
+\pstree{\TR{$\overline{N}~~$}\tbput{\red\np{0,7714}}}
+	{\TR{$R$}\taput{\np{0,0127}}
+	\TR{$\overline{R}$}\tbput{\red 0,9873}
+	}
+}
+\end{center}
+
+\item 
+On calcule $p(N \cap R) = p(N) \times p_N(R) = \np{0,2286} \times \np{0,0808} = \np{0,018471}$ soit \np{0,0185} à $10^{-4}$ près.
+\item 
+On a de même $p\left(\overline{N} \cap R\right) = p\left(N\right) \times p_{\overline{N}}(R) = \np{0,7714} \times \np{0,0127} = \np{0,009797}$ soit \np{0,0098} à $10^{-4}$ près.
+
+D'après la loi des probabilités totales :
+
+$p(R) = p(N \cap R) + p\left(\overline{N} \cap R\right) \approx \np{0,0185} + \np{0,0098}$
+
+$p(R) \approx \np{0,0283}$.
+
+\item 
+On a $p_R(N) = \dfrac{p(R \cap N)}{p(R)} = \dfrac{p(N \cap R)}{p(R)} \approx \dfrac{\np{0,0185}}{\np{0,0283}} \approx \np{0,65371}$ soit \np{0,6537} à $10^{-4}$ près.
+\end{enumerate}
+
+\textbf{Partie B}
+
+\medskip
+
+
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+
+$X$ suit donc la loi binomiale $\mathcal{B}(n = 500, \: p = 0,65)$.
+\item 
+On calcule $\binom{500}{325} \times 0,65^{325} \times 0,35^{175} \approx \np{0,037384}$ soit \np{0,0374} à $10^{-4}$ près. (Utiliser la fonction binomiale de la calculatrice  si les capacités de calcul de celle-ci sont dépassées).
+\item 
+On a $p(X \geqslant 325) = 1 - p(X \leqslant 324)$ soit d'après la calculatrice \np{0,47944}, donc 
+
+$p(X \geqslant 325) \approx 1 - \np{0,4794} = \np{0,5206}$ à $10^{-4}$ près.
+\end{enumerate}
+
+\textbf{Partie C}
+
+\medskip
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+On a $p_n = (1 - 0,65)^n = 0,35^n$.
+
+\item On a $q_n = 1 - p_n$.
+
+On cherche donc $n$ tel que $1 - p_n \geqslant \np{0,9999} \iff p_n \leqslant \np{0,0001}$, soit par croissance de la fonction logarithme népérien :
+
+$n\ln 0,35 \leqslant \ln 0\np{0,0001} \iff n \geqslant \dfrac{\ln \np{0,0001}}{\ln 0,35}$ car $\dfrac{1}{\ln 0,35} < 0$.
+
+D'après la calculatrice $\dfrac{\ln \np{0,0001}}{\ln 0,35} \approx 8,8$.
+
+Il faut prendre au minimum $n = 9$.
+
+
+
+\end{enumerate}
+
+\end{document}

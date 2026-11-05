@@ -1,0 +1,186 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_metropole_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\medskip
+
+\textbf{PARTIE I}
+
+\medskip
+
+\begin{enumerate}
+\item On traduit la situation à l'aide d'un arbre pondéré:
+\begin{center}
+\pstree[treemode=R,nodesepB=3pt,levelsep=2.75cm]{\TR{}}
+{\pstree{\TR{$D$~~}\taput{0,05}}
+	{\TR{$T$}\taput{0,98}
+	\TR{$\overline{T}$}\tbput{0,02}
+	}
+\pstree{\TR{$\overline{D}$~~}\tbput{0,95}}
+	{\TR{$T$}\taput{0,03}
+	\TR{$\overline{T}$}\tbput{0,97}
+	}	
+}
+\end{center}
+
+\item \begin{enumerate}
+\item 
+On a: $P(D \cap T) = P(D) \times P_D(T) = 0,05 \times 0,98 = 0,049$.
+\item 
+On a de même : $P\left(\overline{D} \cap T\right) = P\left(\overline{D}\right)  \times P_{\overline{D}}(T) = 0,95 \times 0,3 = \np{0,0285}$.
+
+D'après la loi des probabilités totales :
+
+$P(T) = P(D \cap T) + P\left(\overline{D} \cap T\right) = 0,049 + \np{0,0285} = \np{0,0775}$.
+\end{enumerate}
+\item 
+
+
+La valeur prédictive positive du test est égale à :
+
+$P_T(D) = \dfrac{P(T \cap D)}{P(T)} = \dfrac{P(D \cap T)}{P(T)} = \dfrac{0,049}{\np{0,0775}} \approx \np{0,6322}$, soit 0,632 au millième près.
+
+Comme $0,632 < 0,95$ on peut en déduire que le test n'est pas efficace.
+\end{enumerate}
+\medskip
+
+\textbf{PARTIE II}
+
+\medskip
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+Le choix de l'échantillon étant assimilé à un tirage avec remise et avec une probabilité constante de choisir un produit défectueux égale à $ 0,05$, on peut donc dire que la variable aléatoire $X$ suit une loi binomiale de paramètres $n = 20$ et $p  = 0,05$.
+\item 
+
+
+On a: $p(X = 0) = 0,05^0 \times 0,95^{20}$.
+
+Donc la probabilité cherchée est $p(X \geqslant 1) = 1 -p(X =0) = 1 - 0,95^{20} \approx 0,642$, soit 0,64 au centième près.
+\item 
+On a: $E = n \times p = 20 \times 0,05 = 1$.
+
+Cela signifie que sur un grand nombre de tirages d'échantillons on trouvera 1 pièce défectueuse sur 20 pièces tirées.
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\end{document}

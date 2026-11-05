@@ -1,0 +1,55 @@
+\begin{enumerate}
+	\item \begin{enumerate}
+		\item En janvier 2026, il s'est passé un an, donc la valeur de la voiture a perdu 10\,\% de sa valeur initiale.
+
+		Appliquer une baisse de 10\,\%, c'est multiplier par :\quad $q = 1 - \dfrac{10}{100} = 1 - 0,1 = 0,9$.
+
+		$\np{10000} \times 0,9 = \np{9000}.$\quad	La valeur de la voiture en janvier 2026 est de \np[\euro]{9000}.
+
+		\item Pour l'année $n+1$, la valeur de la voiture ($u_{n+1}$) est égale à la valeur de l'année précédente ($u_n$), diminuée de 10\,\% (donc multipliée par $q = 0,9$),
+
+		donc on a bien :\quad $u_{n+1} = 0,9u_n$.
+	\end{enumerate}
+
+	\item La relation de récurrence ainsi établie est caractéristique d'une suite géométrique.
+
+	Ainsi, $(u_n)$ est une suite géométrique, de premier terme $u_0 = \np{10000}$ et de raison $q = 0,9$.
+
+	\item On applique la formule qui donne le terme général d'une suite géométrique.
+
+	Pour tout $n$ entier naturel, on a donc :\quad $u_n = u_0\times q^n$
+
+	Soit, ici:\quad $u_n = \np{10000}\times 0,9^n$.
+
+	\item On a :\quad $2030 = 2025 + 5$.
+
+	On cherche donc à calculer $u_5$.
+
+	On a donc :\quad $u_5 = \np{10000}\times 0,9^5 = \np{10000} \times \np{0,59049} = \np{5904,9}$.
+
+	En janvier 2030, la valeur de la voiture est de \np[\euro]{5904,9}.
+
+	\item Ici, la variable \texttt{U} contient la valeur \np{10000}, c'est-à-dire la valeur du terme d'indice 0 de la suite $(u_n)$, la variable \texttt{N} contient l'indice correspondant.
+
+	Tant que la valeur contenue dans \texttt{U} n'est pas strictement inférieure à \texttt{A}, c'est-à-dire tant que cette valeur est supérieure ou égale à \texttt{A}, alors on va remplacer dans \texttt{U} la valeur par la valeur du terme suivant dans la suite $(u_n)$, en appliquant la relation de récurrence, et on va mettre à jour l'indice correspondant.
+
+	On obtient ainsi le programme :
+
+\begin{lstlisting}[style=python,numbers=none,xleftmargin=5cm,xrightmargin=5cm]
+def seuil(A) :
+	N = 0
+	U = 10000
+	while U >= A :
+		U = 0.9*U
+		N = N+1
+	return N
+\end{lstlisting}
+
+	\item l'appel \texttt{seuil(5000)} renvoie 7. Cela signifie que la valeur de la voiture est strictement inférieure à \np[\euro]{5000} pour la première fois après 7 ans, c'est-à-dire en 2032.
+
+	\item Si la voiture perd plus des trois quarts de sa valeur, cela signifie qu'elle vaut désormais strictement moins d'un quart de sa valeur initiale de \np[\euro]{10000}, soit strictement moins de \np[\euro]{2500}.
+
+	D'après l'appel \texttt{seuil(2500)}, ceci arrivera 14 ans après 2025, c'est-à-dire en 2039.
+\end{enumerate}
+
+\needspace{10\baselineskip}

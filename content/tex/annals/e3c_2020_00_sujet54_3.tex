@@ -1,0 +1,37 @@
+\medskip
+
+Soit la fonction $f$ définie sur [0~;~3] par $f(x) = 4x\e^{-x}$.
+
+\medskip
+
+\begin{enumerate}
+\item On a tracé ci-dessous la courbe représentative de la fonction $f$ dans un repère
+orthonormé d'origine~\textbf{O}.
+
+\begin{center}
+\psset{xunit=2.75cm,yunit=2.75cm,showorigin=false,arrowsize=2pt 4}
+\begin{pspicture}(-0.5,-0.75)(3,2)
+\multido{\n=0.0+0.2}{16}{\psline[linewidth=0.75pt,linecolor=lightgray](\n,0)(\n,2)}
+\multido{\n=0+0.2}{11}{\psline[linewidth=0.75pt,linecolor=lightgray](0,\n)(3,\n)}
+\multido{\n=0+1}{4}{\psline[linewidth=0.75pt](\n,0)(\n,2)}
+\multido{\n=0+1}{2}{\psline[linewidth=0.75pt](0,\n)(3,\n)}
+\psaxes[linewidth=1.25pt]{->}(0,0)(0,0)(3.1,2)
+\uput[dl](0,0){\textbf{O}}
+\def\Func{2.71828 x neg exp x 4 mul mul}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{3}{\Func}
+\uput[u](2.3,1){\blue $\mathcal{C}_f$}
+\end{pspicture}
+\end{center}
+Conjecturer une valeur approchée du maximum de $f$ sur [0~;~3].
+\item La fonction $f$ est dérivable sur [0~;~3].
+
+Montrer que pour tout réel $x$ de l'intervalle [0~;~3], $f'(x) = 4(1 -x)\e^{-x}$.
+\item En déduire le tableau de signes de $f'(x)$ sur [0~;~3].
+\item En déduire le tableau des variations de $f$ sur [0~;~3] puis la valeur exacte du maximum de
+$f$ sur [0~;~3].
+\item Soit A le point d'abscisse 1 de $\mathcal{C}_f$ et soit $\mathcal{T}$ la tangente à $\mathcal{C}_f$ au point d'abscisse $0,5$.
+
+Qui, de la droite (AO) ou de la droite $\mathcal{T}$, a le plus grand coefficient directeur ? Justifier.
+\end{enumerate}
+
+\vspace{0,5cm}

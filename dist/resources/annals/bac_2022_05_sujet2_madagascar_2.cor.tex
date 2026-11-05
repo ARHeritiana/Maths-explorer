@@ -1,0 +1,135 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet2_madagascar_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On munit l'espace du repère orthonormé $\left(\text{A}~;~\vect{\text{AB}},\, \vect{\text{AD}},\, \vect{\text{AE}}\right)$. Dans ce repère, les points notés ont pour coordonnées :
+
+A$\left(0~;~0~;~0\right)$, B$\left(1~;~0~;~0\right)$, C$\left(1~;~1~;~0\right)$, D$\left(0~;~1~;~0\right)$, E$\left(0~;~0~;~1\right)$, F$\left(1~;~0~;~1\right)$, G$\left(1~;~1~;~1\right)$ et H$\left(0~;~1~;~1\right)$
+
+
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Les droites (AH) et (ED) sont les deux diagonales du carré ADHE. Ces diagonales  sont perpendiculaires. Donc (AH)$\perp$(ED).
+		\item CDHG est un carré donc (GH) est perpendiculaire à (DH) ;
+		
+EFGH est un carré donc (GH) est perpendiculaire à (EH).
+
+La droite (GH) perpendiculaire à deux droites sécantes du plan (EDH) est orthogonale à ce plan (EDH).
+		\item Nous savons d'une part, que les droites (ED) et (AH) sont perpendiculaires, et d'autre part que les droites (ED) et (HG) le sont aussi. De plus les droites (HG) et (AH) sont sécantes et non confondues, donc elles définissent deux direction distinctes du plan (AGH). Donc comme la droite (ED) est perpendiculaire à ces deux dernières droites, alors (ED) est perpendiculaire au plan (AGH) 
+	\end{enumerate}
+		\item $\vect{\text{ED}}\begin{pmatrix}0\\1\\-1\end{pmatrix}$. $\vect{\text{ED}}$ est normal au plan (AGH).
+		
+		Le plan (AGH) a pour équation cartésienne : $ax+by+cz+d=0$, où $(a~;~b~;~c)$ sont les cordonnées d'un vecteur normal au plan. En prenant comme vecteur normal le vecteur $\vect{n}$, on obtient : (ART) : $0x + y - z + d = 0$ soit $y - z + d = 0$. 
+
+		Or $\text{A}\in \text{(ART)}$ donc $0-0+d=0$ donc $d=0$. Donc (AGH) a pour équation $y - z = 0$.
+		\item \begin{enumerate}
+			\item $\vect{\text{EL}}\begin{pmatrix}\dfrac23\\1\\-1\end{pmatrix}$. La droite (EL) passant par E et de vecteur directeur $\vect{\text{EL}}$ a pour représentation cartésienne :
+			$\left\{\begin{array}{l c l}x&=&0+\dfrac23\times k\\y&=&0 +1\times k\\z &=&1+(-1)\times k \end{array}\right.,\: \text{avec }\:k$ soit $\left\{\begin{array}{l c r}x&=&\dfrac23 k\\y&=&k\\z &=&1- k \end{array}\right.,\: \text{avec }\:k \in \R.$
+			\item Les coordonnées du point d'intersection de (EL) et (AGH) sont les solutions du système : $\left\{\begin{array}{l}x=\dfrac23 k\\y=k\\z =1- k \\ y-z=0 \end{array}\right.$.En remplaçant $y$ et $z$ dans la troisième équation, nous obtenons :
+
+$y-z=0  \iff  k-(1-k)=0  \iff  2k-1=0 \iff k=\dfrac12$. 
+
+Donc $x=\dfrac23 \times \dfrac12=\dfrac13$, $y=\dfrac12$ et $z=1-\dfrac12=\dfrac12$.
+			
+Les coordonnées du point d'intersection de (EL) et (AGH) sont : $\left(\dfrac13~;~\dfrac12~;~\dfrac12\right)$.
+			\item K appartient au plan (AGH) : en effet $y - z=0$.
+			
+De plus  le vecteur $\vect{\text{LK}}$ a pour coordonnées $\begin{pmatrix}0\\-\dfrac12\\\dfrac12\end{pmatrix}$.
+			
+On remarque alors que $\vect{\text{LK}}=-\dfrac12\vect{\text{ED}}$ donc les vecteurs $\vect{\text{LK}}$ et $\vect{\text{ED}}$ sont colinéaires, donc le vecteur $\vect{\text{LK}}$ est normal au plan (AGH). K est donc le projeté orthogonal du point L sur le plan (AGH).
+			\item La distance du point L au plan AGH est égale à la distance LK :
+			
+$\text{LK} = \left\|\vect{\text{LK}}\right\| = \sqrt{0^2+\left(-\dfrac12\right)^2+\left(\dfrac12\right)^2}=\sqrt{\dfrac12}=\dfrac{\sqrt2}{2}$  unité de longueur.
+			\item Une hauteur de LAGH est [LK]. La base correspondante est AGH, triangle rectangle en H.  $\mathcal{V}_{\text{LAGH}}=\dfrac13\times \mathcal{A}_{\text{AGH}}\times \text{LK}$ avec $\mathcal{A}_{\text{AGH}}=\dfrac{\text{AH}\times \text{HG}}{2}$.
+
+De plus $\text{AH} =\sqrt{2}$ (diagonale d'un carré de côté 1) et $\text{HG} =1$. Donc $\mathcal{A}_{\text{AGH}}=\dfrac{1 \times \sqrt{2}}{2}=\dfrac{\sqrt2}{2}$ unité d'aire.
+
+Donc $\mathcal{V}_{\text{LAGH}}=\dfrac13\times \dfrac{\sqrt2}{2}\times \dfrac{\sqrt2}{2}=\dfrac{1}{6}$ unité de volume.
+		\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

@@ -1,0 +1,35 @@
+\medskip
+
+On considère la fonction $f$ définie sur l'intervalle $[-4~;~3]$ \footnote{Le texte donnait $[-4~;~4]$, en contradiction avec le graphique} par 
+
+\[f(x) = x^3 + 3x^2 - 9x - 20.\]
+
+On admet que la fonction $f$ est dérivable sur l'intervalle $[-4~;~3]$ et on note $f'$ sa fonction dérivée.
+
+La courbe représentative de la fonction $f$, notée $\mathcal{C}$, est tracée dans le repère ci-dessous.
+
+La droite $\mathcal{T}$ tracée dans le repère est la tangente à la courbe $\mathcal{C}$ au point d'abscisse 0.
+
+\begin{center}
+\psset{xunit=1.4cm,yunit=0.28cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-4.6,-28)(3.5,10)
+\multido{\n=-4+1}{8}{\psline[linewidth=0.45pt,linecolor=lightgray](\n,-26)(\n,9)}
+\multido{\n=-26+1}{36}{\psline[linewidth=0.45pt,linecolor=lightgray](-4.4,\n)(3.15,\n)}
+\psdots[dotstyle=BoldCircle,fillcolor=blue](-4,0)(3,7)
+\uput[ul](-4,0){$\mathcal{C}$}\uput[u](-3,8){$\mathcal{T}$}\uput[dl](0,0){O}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=orange,linestyle=dashed]{-3.2}{0.6}{x 9 neg  mul 20 sub}
+\psaxes[linewidth=1.25pt,Dy=2]{->}(0,0)(-4.4,-26.2)(3.3,9.4)
+\def\Func{ x x x 3 add mul 9 sub mul 20 sub }
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-4}{3}{\Func}
+\end{pspicture}
+\end{center}
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer graphiquement les extremums de la fonction $f$.
+\item Déterminer l'expression de $f'(x)$ sur $[-4~;~3]$.
+\item Étudier le signe de $3x^2 + 6x - 9$ en fonction de $x$ sur $[-4~;~3]$.
+\item En déduire le tableau de variations de $f$ sur $[-4~;~3]$ et retrouver les résultats de la question \textbf{1.}
+\item Déterminer l'équation réduite de la droite $\mathcal{T}$, tangente à la courbe $\mathcal{C}$ au point d'abscisse 0.
+\end{enumerate}

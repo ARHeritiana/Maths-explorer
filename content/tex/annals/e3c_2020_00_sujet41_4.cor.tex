@@ -1,0 +1,50 @@
+\( f(x) = \dfrac{x^2 - 4x + 8}{x - 2} \).
+
+\paragraph{1.} Sur l'intervalle \( ]-\infty \,;\, 2[ \), \( f(x) = 0 \iff x^2 - 4x + 8 = 0 \).
+\[
+\Delta = 16 - 4 \times 8 = 16 - 32 = -16 < 0.
+\]
+L'équation n'a pas de solutions réelles dans \( ]-\infty \,;\, 2[ \).
+
+\paragraph{2.}
+
+\paragraph{a.} Le dénominateur étant non nul, puisque \( x < 2 \), la fonction quotient est dérivable et :
+\begin{align*}
+f'(x) &= \dfrac{(2x - 4)(x - 2) - (x^2 - 4x + 8)}{(x - 2)^2} \\
+&= \dfrac{2x^2 - 4x - 4x + 8 - x^2 + 4x - 8}{(x - 2)^2} \\
+&= \dfrac{x^2 - 4x}{(x - 2)^2}.
+\end{align*}
+
+\paragraph{b.} Le dénominateur étant positif, le signe de \( f'(x) \) est celui de \( x^2 - 4x = x(x - 4) \).
+
+Ce trinôme a pour racines 0 et 4 et on sait que ce trinôme est positif, sauf sur \( ]0 \,;\, 4[ \).
+
+Dans notre cas \( f'(x) \) est positif sur \( ]-\infty \,;\, 0[ \) et négatif sur \( ]0 \,;\, 2[ \).
+
+La fonction \( f \) est donc croissante sur \( ]-\infty \,;\, 0[ \) et décroissante sur \( ]0 \,;\, 2[ \).
+
+\paragraph{3.} On sait qu'une équation de \( \mathcal{D} \) est :
+\[
+y - f(1) = f'(1)(x - 1).
+\]
+
+Avec \( f(1) = \dfrac{1 - 4 + 8}{1 - 2} = - 5 \) et \( f'(1) = \dfrac{1 - 4}{(-1)^2} = -3 \), l'équation devient :
+\begin{align*}
+y + 5 &= -3(x - 1) \\
+y &= -3x + 3 - 5 \\
+y &= -3x - 2.
+\end{align*}
+
+\paragraph{4.}
+
+\begin{center}
+\psset{unit=0.65cm}
+\begin{pspicture}(-10,-10)(10,3)
+\psaxes[linewidth=1.25pt,Dx=2,Dy=2]{->}(0,0)(-10,-10)(10,3)
+\def\Func{x 2 exp 4 x mul sub 8 add x 2 sub div}
+\psplot[plotpoints=2000,linewidth=0.85pt,linecolor=red]{-7.583}{1.583}{\Func}
+\def\FuncTwo{-3 x mul 2 sub}
+\psplot[plotpoints=2000,linewidth=0.85pt,linecolor=blue]{-1.667}{2.667}{\FuncTwo}
+\uput[u](-2,2){$\mathscr{D}$}
+\end{pspicture}
+\end{center}

@@ -1,0 +1,115 @@
+\textbf{Commun à tous les candidats}
+
+\medskip
+
+Dans cet exercice, les résultats des probabilités demandées seront, si nécessaire, arrondis au millième.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item On traduit la situation par un arbre pondéré.
+		
+\begin{center}
+\pstree[treemode=R,nodesepB=3pt,levelsep=2.75cm]{\TR{}}
+{\pstree{\TR{$M$~~}\taput{0,4}}
+	{\TR{$T$}\taput{0,9}
+	\TR{$\overline{T}$}\tbput{0,1}
+	}
+\pstree{\TR{$\overline{M}$~~}\tbput{0,6}}
+	{\TR{$T$}\taput{0,15}
+	\TR{$\overline{T}$}\tbput{0,85}
+	}	 
+}		
+\end{center}
+
+\medskip
+	
+		\item 
+Il faut trouver $P(M \cap T) = P(M) \times P_M(T) = 0,4 \times 0,9 = 0,36$.
+		\item 
+On a de même $P\left(\overline{M} \cap T\right) = P\left(\overline{M}\right) \times P_{\overline{M}}(T) = 0,6 \times  0,15 = 0,09$.
+
+D'après la loi des probabilités totales :
+
+$P(T) = P(M \cap T) + P\left(\overline{M} \cap T\right) = 0,36 + 0,09 = 0,45$.
+		\item 
+		Il faut trouver $P_T(M) = \dfrac{P(M \cap T)}{P(T)} = \dfrac{0,36}{0,45} = \dfrac{36}{45} = \dfrac{9 \times 4}{9 \times 5} = \dfrac{4}{5} = \dfrac{8}{10} = 0,8$.
+	\end{enumerate}
+\item 
+
+
+	\begin{enumerate}
+		\item 
+On suppose que le nombre de chats est assez important pour que l'on puisse assimiler le choix des 20 chats à un tirage avec remise.
+		
+La variable $X$ suit donc une loi binomiale de paramètres $n = 20$ et de probabilité $p = 0,45$ trouvé à la question \textbf{1. c.}.
+		\item 
+On a $p\left(X = 5\right) = \binom{20}{5} \times 0,45^5 \times (1 - 0,45)^{20-5} = \np{15504}\times 0,45^5  \times 0,55^{15} \approx \np{0,0365}$ soit environ 0,037.
+
+		\item 
+La calculatrice donne $P(X < 9) \approx 0,414$.
+		\item 
+On sait que l'espérance $E = n \times p = 20 \times 0,45 = 9$.
+		
+Cela signifie que sur un grand nombre d'échantillons il y aura en moyenne 9 chats positifs par échantillon de 20.
+	\end{enumerate}		
+\item 
+	\begin{enumerate}
+		\item 
+On a encore une loi binomiale de paramètres $n$ et de probabilité d'être positif de $0,45$.
+
+On a $P(X = 0) = \binom{n}{0}\times 0,45^0 \times 0,55^n = 0,55^n$.
+
+Donc $p_n = 1 - P(X = 0) =  1 - 0,55^n$.
+		\item
+
+
+
+
+
+
+
+
+
+
+
+
+En partant de $n=0$, le programme calcule $p_n$ et augmente la taille de l'échantillon de 1 tant que $p_n < 0,99$.
+
+		\item 
+		On cherche donc $n$ tel que $1 - 0,55^n \geqslant 0,99 \iff 0,01 \geqslant 0,55^n$, d'où par croissance de la fonction logarithme népérien : $\ln 0,01 \geqslant n \ln 0,55 \iff \dfrac{\ln 0,01}{\ln 0,55} \leqslant n$ (car $\ln 001 < 0$).
+		
+		Or $\dfrac{\ln 0,01}{\ln 0,55} \approx 7,7$.
+		
+Conclusion : le programme renvoie la valeur 8.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

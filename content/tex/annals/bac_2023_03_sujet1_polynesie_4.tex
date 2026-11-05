@@ -1,0 +1,43 @@
+\medskip
+
+Soit $\left(u_n\right)$ la suite définie par $u_0 = - 1$ et, pour tout entier naturel $n$ :
+\[u_{n+1} = 0,9u_n - 0,3.\]
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Démontrer par récurrence que, pour tout $n \in \N$,\: $u_n  = 2 \times 0,9^n - 3$.
+		\item En déduire que pour tout $n \in \N,\: \: - 3 < u_n \leqslant - 1$.
+		\item Démontrer que la suite $\left(u_n\right)$  est strictement décroissante.
+		\item Démontrer que la suite $\left(u_n\right)$ converge et préciser sa limite.
+	\end{enumerate}
+\item On se propose d'étudier la fonction $g$ définie sur $]-3~;~-1]$ par : 
+\[g(x) = \ln (0,5 x + 1,5) - x.\]
+
+	\begin{enumerate}
+		\item Justifier toutes les informations données par le tableau de variations de la fonction $g$ (limites, variations, image de $-1$)
+		
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 4}
+\begin{pspicture}(8.5,3.5)
+\psframe(8.5,3.5)\psline(0,3)(8.5,3)\psline(2.5,0)(2.5,3.5)
+\uput[u](1.25,2.9){$x$} \uput[u](2.7,2.9){$-3$} \uput[u](5.5,2.9){$-2$}\uput[u](8.2,2.9){$-1$} \uput[d](5.5,3){$g(-2)$}\uput[u](3.15,0){$- \infty$}\uput[u](8.3,0){$1$}
+\rput(1.25,1.5){Variations de $g$}
+\psline(2.65,0)(2.65,3)\psline(2.75,0)(2.75,3)
+\psline{->}(3.2,0.5)(5.2,2.5)\psline{->}(5.8,2.5)(8.2,0.5)
+\end{pspicture}
+\end{center}
+		\item En déduire que l'équation $g(x) = 0$ a exactement une solution que l'on
+notera $\alpha$ et dont on donnera un encadrement d'amplitude $10^{-3}$.
+	\end{enumerate}
+\item Dans la suite de l'exercice, on considère la suite $\left(v_n\right)$ définie pour tout $ \in \N$, par :
+\[v_n = \ln \left(0,5 u_n + 1,5\right).\]
+	\begin{enumerate}
+		\item En utilisant la formule donnée à la question \textbf{1. a.}, démontrer que la suite v est arithmétique de raison $\ln (0,9)$.
+		\item Soit $n$ un entier naturel.
+		
+Démontrer que $u_n = v_n$ si, et seulement si $g\left(u_n\right) = 0$.
+		\item Démontrer qu'il n'existe aucun rang $k \in \N$ pour lequel $u_k = \alpha$.
+		\item En déduire qu'il n'existe aucun rang $k \in \N$ pour lequel $v_k = u_k$.
+	\end{enumerate}
+\end{enumerate}

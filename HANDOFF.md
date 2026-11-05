@@ -511,3 +511,9 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 - Bilingual lesson work remains on standby and unfinished; retained English curriculum editions are not scanned or modified.
 
 - Current display instruction, 3 November 2026: keep target-skill metadata internal for now; do not display competency lists or exam-type labels on bank cards, printed sheets or LaTeX editions. The prerequisite diagnostics remain internal and advisory. Bilingual lesson work remains on standby.
+
+## Self-hosted Bac, EAM and E3C bank (5 November 2026)
+
+The GitHub Pages bank at #bank/annales contains 829 individual exercises (429 Bac, 120 EAM, 280 E3C), with 821 proposed source corrections. The eight unavailable corrections are labelled. Chapter bank pages include source-tagged matches; untagged exercises stay in the complete catalogue. Question hierarchy, maths, original diagrams and boxed answers are retained in local HTML/SVG, with folded corrections, filters, permalinks and printing. Six native-frame PDF books and complete LaTeX bundles are generated locally.
+
+Source and attribution: APMEP / CoopMaths, CC BY-SA, separate from the general site licence. Canonical metadata is manifest.annalsBank; imported source fragments are content/tex/annals/*.tex. See docs/ANNALS.md for producers and dependencies. The bilingual lesson goal remains on standby, unfinished.

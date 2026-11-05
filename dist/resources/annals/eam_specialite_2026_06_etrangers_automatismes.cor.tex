@@ -1,0 +1,326 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specialite_2026_06_etrangers_automatismes_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Correction du QCM}
+			
+			\medskip
+			Pour cette partie, une seule réponse est correcte pour chaque question.
+			
+			\medskip
+			\textbf{\underline{Question 1}}
+			
+			\medskip
+			On cherche la probabilité $P(\overline{A}\cap B)$.
+			
+			D'après l'arbre de probabilités, on lit :
+			\[
+			P(\overline{A})=0{,}6
+			\qquad\text{et}\qquad
+			P_{\overline{A}}(B)=0{,}7.
+			\]
+			
+			On utilise la formule :
+			\[
+			P(\overline{A}\cap B)=P(\overline{A})\times P_{\overline{A}}(B).
+			\]
+			
+			Ainsi :
+			\begin{align*}
+				P(\overline{A}\cap B)&=0{,}6\times 0{,}7\\
+				&=0{,}42.
+			\end{align*}
+			
+			\[
+			\boxed{\text{Réponse b. }0{,}42}
+			\]
+			
+			\medskip
+			\textbf{\underline{Question 2}}
+			
+			\medskip
+			On sait que $150$ élèves représentent $\dfrac35$ de l'ensemble des élèves de première générale.
+			
+			On note $N$ le nombre total d'élèves de première générale dans le lycée.
+			
+			On a donc :
+			\[
+			\frac35 N=150.
+			\]
+			
+			Ainsi :
+			\begin{align*}
+				N&=150\times \frac53\\
+				&=250.
+			\end{align*}
+			
+			\[
+			\boxed{\text{Réponse c. }250}
+			\]
+			
+			\medskip
+			\textbf{\underline{Question 3}}
+			
+			\medskip
+			On considère :
+			\[
+			A=\frac13
+			\qquad\text{et}\qquad
+			B=\frac56.
+			\]
+			
+			On calcule :
+			\begin{align*}
+				\frac{A}{B}+1
+				&=\frac{\frac13}{\frac56}+1\\
+				&=\frac13\times \frac65+1\\
+				&=\frac25+1\\
+				&=\frac25+\frac55\\
+				&=\frac75.
+			\end{align*}
+			
+			\[
+			\boxed{\text{Réponse a. }\dfrac75}
+			\]
+			
+			\medskip
+			\textbf{\underline{Question 4}}
+			
+			\medskip
+			La droite $d$ a pour équation réduite :
+			\[
+			y=\frac13x+1.
+			\]
+			
+			Son coefficient directeur est $\dfrac13$. Si on se décale de 3 unités horizontalement, on remonte d'une unité verticalement pour retomber sur la droite.
+			
+			Son ordonnée à l'origine est $1$. Elle passe donc par le point de coordonnées $(0\ ;\ 1)$.
+			
+			La droite de la proposition c.
+			
+			\[
+			\boxed{\text{Réponse c.}}
+			\]
+			
+			\medskip
+			\textbf{\underline{Question 5}}
+			
+			\medskip
+			On développe :
+			\[
+			(x^3-1)^2.
+			\]
+			
+			On utilise l'identité remarquable :
+			\[
+			(a-b)^2=a^2-2ab+b^2.
+			\]
+			
+			Ici, $a=x^3$ et $b=1$. Donc :
+			\begin{align*}
+				(x^3-1)^2
+				&=(x^3)^2-2\times x^3\times 1+1^2\\
+				&=x^6-2x^3+1.
+			\end{align*}
+			
+			\[
+			\boxed{\text{Réponse b. }x^6-2x^3+1}
+			\]
+			
+			\medskip
+			\textbf{\underline{Question 6}}
+			
+			\medskip
+			Une hausse de $20\ \%$ correspond au coefficient multiplicateur :
+			\[
+			1+\frac{20}{100}=1{,}2.
+			\]
+			
+			Une baisse de $50\ \%$ correspond au coefficient multiplicateur :
+			\[
+			1-\frac{50}{100}=0{,}5.
+			\]
+			
+			Le coefficient multiplicateur global est donc :
+			\begin{align*}
+				1{,}2\times 0{,}5&=0{,}6.
+			\end{align*}
+			
+			La valeur finale représente donc $60\ \%$ de la valeur initiale.
+			
+			L'évolution globale est donc une baisse de :
+			\[
+			100\ \%-60\ \%=40\ \%.
+			\]
+			
+			\[
+			\boxed{\text{Réponse c. }40\ \%}
+			\]
+			
+			\medskip
+			\textbf{\underline{Question 7}}
+			
+			\medskip
+			La classe compte $25$ élèves.
+			
+			Dans le tableau, on connaît déjà :
+			\[
+			8+7+4=19
+			\]
+			élèves.
+			
+			Il manque donc :
+			\[
+			25-19=6
+			\]
+			élèves dans la case correspondant aux élèves qui suivent la spécialité Mathématiques et qui ont plus de $16$ ans.
+			
+			Le tableau complété est donc :
+			
+			\begin{center}
+				\begin{tblr}{colspec={Q[c,m]Q[c,m]Q[c,m]},hlines,vlines,width=0.7\linewidth,
+						cell{1}{1}={white},cell{1}{2-3}={gray!45},cell{2-3}{1}={gray!45}}
+					& \textbf{16 ans ou moins} & \textbf{Plus de 16 ans} \\
+					\textbf{\shortstack{Suivent la spécialité\\ Mathématiques}} & 8 & 6 \\
+					\textbf{\shortstack{Ne suivent pas la spécialité\\ Mathématiques}} & 7 & 4 \\
+				\end{tblr}
+			\end{center}
+			
+			Parmi les élèves de plus de $16$ ans, il y a :
+			\[
+			6+4=10
+			\]
+			élèves.
+			
+			Parmi ces $10$ élèves, $6$ suivent la spécialité Mathématiques.
+			
+			La probabilité cherchée est donc :
+			\begin{align*}
+				\frac{6}{10}&=\frac35.
+			\end{align*}
+			
+			\[
+			\boxed{\text{Réponse d. }\dfrac35}
+			\]
+			
+			\medskip
+			\textbf{\underline{Question 8}}
+			
+			\medskip
+			On sait que $x$ et $y$ sont deux réels strictement positifs tels que :
+			\[
+			x=\frac{5}{2+y}.
+			\]
+			
+			On multiplie les deux membres par $2+y$ :
+			\[
+			x(2+y)=5.
+			\]
+			
+			On développe :
+			\[
+			2x+xy=5.
+			\]
+			
+			Donc :
+			\[
+			xy=5-2x.
+			\]
+			
+			Comme $x$ est strictement positif, on peut diviser par $x$ :
+			\begin{align*}
+				y&=\frac{5-2x}{x}\\
+				&=\frac5x-\frac{2x}{x}\\
+				&=\frac5x-2.
+			\end{align*}
+			
+			\[
+			\boxed{\text{Réponse d. }y=\dfrac5x-2}
+			\]
+			
+			
+			
+			
+			
+\clearpage
+
+\end{document}

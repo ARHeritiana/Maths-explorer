@@ -1,0 +1,354 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet2_etrangers_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Partie A}
+
+
+	$\mathcal{C}_{1}$ est la courbe représentative de $f$ ;
+
+	$\mathcal{C}_{2}$ est la courbe représentative de $f''$ ;
+
+	$\mathcal{C}_{3}$ est la courbe représentative de  $f'$ .
+
+	Justification :  (non demandées)
+
+	Le signe de $f''$ donne les variations de la fonction $f'$ et la convexité de la fonction $f$.
+
+	Le signe de $f'$ donne les variations de la fonction $f$.
+
+	On remarque que  :
+	\begin{itemize}
+		\item le sens de variation de la fonction représentée par la courbe $\mathcal{C}_{3}$ correspond  au signe de la fonction représentée par  la courbe $\mathcal{C}_{2}$ ;
+
+		\item le signe de la fonction représentée par la courbe $\mathcal{C}_{2}$ correspond à la convexité de la fonction représentée par la courbe $\mathcal{C}_{1}$ ;
+
+		\item  le sens de variation de la fonction représentée par la courbe $\mathcal{C}_{1}$ correspond  au signe de la fonction représentée par  la courbe $\mathcal{C}_{3}$.
+	\end{itemize}
+	d'où la réponse.
+
+
+
+	\subsection*{Partie B}
+
+
+	\begin{enumerate}
+		\item La fonction $g$ est dérivable sur $\R$ comme produit de fonctions dérivables sur $\R$.
+
+		$g$ est de la forme $u\times v$ avec $\begin{cases}u(x) = x^2-3x \\ v(x) =\e^{-x}  \end{cases}$. On a : $\begin{cases}u'(x) = 2x-3 \\ v'(x) =-\e^{-x}  \end{cases}$.
+
+		$g'= u'v + v'u$
+
+		donc, pour tout réel $x$, $\begin{aligned}[t] g'(x) &= (2x-3) \e^{-x}  - (x^2-3x) \e^{-x} \\
+			&= \e^{-x} \left( 2x-3-x^2+3x\right) \\
+			&= \left( -x^2 + 5x-3\right) \e^{-x}
+		\end{aligned}$.
+
+		On a donc, pour tout réel $x$ : $\begin{aligned}[t] g'(x) + g(x) & = \left( -x^2 + 5x-3\right) \e^{-x} + \left( x^2 - 3x\right) \e^{-x}\\
+			&= \left( -x^2 + 5x-3 +  x^2 - 3x\right) \e^{-x}\\
+			&= \left(  2x-3 \right) \e^{-x}
+		\end{aligned}$
+
+		Donc $g$ est une solution particulière de l'équation différentielle  $(E)$.
+
+		\item  $y' + y =0 \iff  y'= -y$
+
+		Cette équation est de la forme $y'=ay$ dont les solutions sont les fonctions $x \mapsto C \e^{ax}$ avec $C\in \R$.
+
+
+
+		Les solutions de l'équation différentielle \quad $y'+y=0$ sont donc les fonctions de la forme $x \mapsto C\e^{-x}$ avec $C \in \R$.
+
+		\item Les solutions de l'équation différentielle $(E)$ sont la somme d'une solution particulière de l'équation et des solutions de l'équation homogène associée.
+
+		Le solutions de l'équation différentielle $(E)$ sont donc les fonctions de la forme $x \mapsto C\e^{-x} +\left(  x^2- 3x \right) \e^{-x}$ avec $C\in \R$.
+
+		\item $f$ est solution de l'équation différentielle $(E)$  donc il existe un réel $C$ tel que, pour tout réel $x$, $f(x) = C\e^{-x} +\left(  x^2-3x \right) \e^{-x}$
+
+		Or $f(0)=2$ donc $\begin{aligned}[t] C\e^{-0} +\left(  0^2-3\times 0 \right) \e^{-0} = 2 &\iff C + 0=2 \\
+			&\iff C=2 \end{aligned}$
+
+		Donc, pour tout réel $x$, $f(x) = 2\e^{-x} +\left(  x^2- 3x \right) \e^{-x} = \left(x^{2}-3 x+2\right)\e^{-x}$
+
+	\end{enumerate}
+
+	\subsection*{Partie C}
+
+	\begin{enumerate}
+		\item  Une exponentielle est strictement positive donc  $f(x)$ est du signe  de $x^2-3x+2$.
+
+		Or $x^2-3x+2 = (x-2)(x-1)$ donc les racines sont 1 et 2.
+
+		Un polynôme du second degré est du signe du coefficient dominant ( $1>0$ ici) sauf entre les racines donc :
+
+		\hfill~
+		\begin{tikzpicture}
+			\tkzTabInit[lgt=3]{$x$/0.6,  signe de $f(x)$/0.6}
+			{$-\infty$,$1$, $2$,$+\infty$}
+			\tkzTabLine{,+,z,-,z,+}
+		\end{tikzpicture}
+		\hfill~
+
+
+
+
+		\item \begin{enumerate}
+			\item  $\lim\limits_{x \to - \infty} \e^{-x}= +\infty$ et $\lim\limits_{x \to -\infty} \left(x^{2}-3 x+2\right) = + \infty$
+
+			donc, par produit, $\lim\limits_{x \to - \infty} f(x)= +\infty$
+
+
+			\item  Pour tout réel $x$, $f(x) = \e^{-x}\left(x^{2}-3 x+2\right) = \dfrac{x^2}{\e^x} \left(1 - \dfrac{3}{x} +\dfrac{2}{x^2} \right)$
+
+			D'une part, par croissances comparées $ \lim\limits_{x \to + \infty} \dfrac{\e^{x}}{x^2} = +\infty$  donc,  par inverse, $ \lim\limits_{x \to + \infty} \dfrac{x^2}{\e^{x}} = 0$
+
+
+			D'autre part, $\begin{cases}
+				\lim\limits_{x \to +\infty } \dfrac{3}{x} =0\\
+				\lim\limits_{x \to +\infty } \dfrac{2}{x^2} =0\\
+			\end{cases}$ donc par somme, $ \lim\limits_{x \to + \infty}\left(1 - \dfrac{3}{x} +\dfrac{2}{x^2} \right) =1$
+
+			Donc, par produit, $\lim\limits_{x \to + \infty} f(x) =0$.
+
+
+		\end{enumerate}
+
+		\item
+
+		\begin{enumerate}
+			\item  $\displaystyle I=\int_{0}^{1} \e^{-x}\left(x^{2}-3 x+2\right)  \d x  $
+
+			$x \longmapsto \e^{-x}\left(x^{2}-3 x+2\right) $ \quad est de la forme $u_1 v_1'$ avec \quad $\begin{cases}u_1(x)=x^{2}-3 x+2 \\ v_1'(x)= \e^{-x}\end{cases}$
+
+			Ce qui implique : \quad $\begin{cases}u_1'(x)=2x-3 \\v_1(x)=-\e^{-x} \end{cases}$
+
+			Les fonctions $u_1$ et $v_1$ sont continues et dérivables sur $\R$ et les fonctions $u_1'$ et $v_1'$ sont continues sur $\R$, donc, d'après la formule d'intégration par parties :
+
+			$\displaystyle \int_{a}^{b} u_1(x)v_1'(x)\,    \d x= \Big [ u_1(x)v_1(x)\strut\Big]_{a}^{b} - \int_{a}^{b} u_1'(x)v_1(x) \, \mathrm{d}x$\
+
+			d'où $
+			\begin{aligned}[t]
+				I & =\Big[ -\e^{-x}\left(x^{2}-3 x+2\right)   \Big]_0^{1}-\int_0^{1}   -\e^{-x}(2x-3) \,    \d x\\
+				& =   -\e^{-1}\left(1^{2}-3 \times 1+2\right) + \e^{-0}\left(0^{2}-3 \times 0+2\right)    +\int_0^{1}(2x-3)\e^{-x}\,    \d x\\
+				& =   -\dfrac{1}{\e} \times 0 +2 +\int_0^{1}(2x-3)\e^{-x}\,    \d x\\
+				& =  2 +\int_0^{1}(2x-3)\e^{-x}\,    \d x
+			\end{aligned}	$
+
+
+			Soit $\displaystyle J= \int_0^{1}(2x-3)\e^{-x}\, \d x $
+
+			$x \longmapsto \e^{-x}\left(2 x-3\right) $ \quad est de la forme $u_2 v_2'$ avec \quad $\begin{cases}u_2(x)=2x-3 \\ v_2'(x)= \e^{-x}\end{cases}$
+
+			Ce qui implique : \quad $\begin{cases}u_2'(x)=2 \\v_2(x)=-\e^{-x} \end{cases}$
+
+			Les fonctions $u_2$ et $v_2$ sont continues et dérivables sur $\R$ et les fonctions $u_2'$ et $v_2'$ sont continues sur $\R$, donc, d'après la formule d'intégration par parties :
+
+			$\displaystyle \int_{a}^{b} u_2(x)v_2'(x)\,    \d x= \Big [ u_2(x)v_2(x)\strut\Big]_{a}^{b} - \int_{a}^{b} u_2'(x)v_2(x) \, \mathrm{d}x$\
+
+			d'où $
+			\begin{aligned}[t]
+				J & =\Big[ -\e^{-x}\left(2x-3\right)   \Big]_0^{1}-\int_0^{1}   -\e^{-x}\times 2 \,    \d x\\
+				& =   -\e^{-1}\left(2\times 1-3\right) + \e^{-0}\left(2 \times 0-3\right)    - 2 \Big[ \e^{-x} \Big]_0^1\\
+				& =   -\dfrac{1}{\e} \times (-1) -3 -2 \e^{-1} +2 \e^0 \\
+				& =  \dfrac{1}{\e} -3 -2 \dfrac{1}{\e} +2 \\
+				& = -1-\dfrac{1}{\e}
+			\end{aligned}	$
+
+			D'où $I = 2 + J = 2-1 -\dfrac{1}{\e} = 1-\dfrac{1}{\e}$.
+
+			\item  	D'après la question \textbf{Partie C 1. }, sur l'intervalle $[0;1]$ , $f(x) \geqslant 0$ .
+
+			donc $I$  est égale à l'aire, en unité d'aire, de la surface délimitée par :
+			\begin{itemize}[label=\textbullet]
+				\item la courbe $\mathcal{C}_{f}$ ;
+				\item l'axe des abscisses  ;
+				\item les droites d'équations $x=0$ et $x=1$.
+			\end{itemize}
+
+		\end{enumerate}
+	\end{enumerate}
+
+	\subsection*{Partie D}
+	
+	
+	
+
+	\begin{enumerate}
+		\item  L'équation réduite de la tangente à la courbe $\mathcal{C}_{f}$ au point d'abscisse $a$ a pour équation :
+
+		$y=f'(a) (x-a) +f(a) $ soit $y= f'(a) x -af'(a) +f(a)$.
+
+		L'ordonnée à l'origine est donc égale à $f(a) -af'(a)$.
+
+
+		$f$ est solution de l'équation différentielle (E)  donc, pour tout réel $x$, $f'(x) +f(x) = (2x-3) \e^{-x}$
+		soit $f'(x)=  (2x-3) \e^{-x} -f(x)$.
+
+		On a donc : $f'(x) = (2x-3) \e^{-x} - \left( x^2-3x+2\right) \e ^{-x} = \left( -x^2+5x-5\right) \e ^{-x}$
+
+		Remarque : on peut utiliser la formule usuel de la dérivée d'un produit pour déterminer la dérivée de la fonction $f$.
+
+		D'où $\begin{aligned}[t] f(a) - af' (a) &= \e^{-a} \left( a^2 -3a+2\right) -a \left( -a^2+5a-5\right) \e ^{-a}\\
+			&= \left( a^2 -3a +2 +a^3 -5a^2+5a\right) \e ^{-a}\\
+			&= \left(  a^3-4  a^2 +2a +2\right) \e ^{-a}\\
+		\end{aligned}$
+
+
+
+		Le point d'intersection de la tangente $(T_{a})$ et de l'axe des ordonnées a donc bien  pour ordonnée $\left(a^{3}-4 a^{2}+2 a+2\right) \e^{-a}$.
+
+		\item Une tangentes à la courbe $\mathcal{C}_{f}$ passe par l'origine du repère si et seulement si  l'ordonnée à l'origine de la tangente est nul, c'est à dire si et seulement si $\left(a^{3}-4 a^{2}+2 a+2\right) \e^{-a}=0$.
+
+		On cherche donc à déterminer le nombre de solutions de l'équation $\left(x^{3}-4 x^{2}+2 x+2\right) \e^{-x}=0$.
+
+		Pour tout réel $x$, $\e ^{-x} >0$ donc  $\left(x^{3}-4 x^{2}+2 x+2\right) \e^{-x}=0 \iff x^{3}-4 x^{2}+2 x+2=0$.
+
+		\bigskip
+
+		Soit $h$ la fonction définie sur $\R$ par $h(x) = x^{3}-4 x^{2}+2 x+2$.
+
+		Étudions la fonction $h$  pour déterminer ses racines.
+
+		\bigskip
+
+		Pour tout réel $x$, $h(x) = x^3 \left(1 - \dfrac{4}{x} + \dfrac{2}{x^2} +\dfrac{2}{x^3}\right)$
+
+		\medskip
+		$\begin{cases}
+			\lim\limits_{x \to -\infty} x^3 = -\infty \\
+			\lim\limits_{x \to -\infty }1 - \dfrac{4}{x} + \dfrac{2}{x^2} +\dfrac{2}{x^3} = 1
+		\end{cases}$ donc, par produit, $\lim\limits_{x \to -\infty} h(x) =-\infty$
+
+		\medskip
+		$\begin{cases}
+			\lim\limits_{x \to +\infty} x^3 = +\infty \\
+			\lim\limits_{x \to +\infty }1 - \dfrac{4}{x} + \dfrac{2}{x^2} +\dfrac{2}{x^3} = 1
+		\end{cases}$ donc, par produit, $\lim\limits_{x \to +\infty} h(x) =+\infty$
+
+		\bigskip
+		$h$ est dérivable sur $\R$ et pour tout réel $x$ on a : \quad $h'(x) = 3x^2 -8x +2$.
+
+		$h$ est une fonction polynôme du second degré.
+
+		Son discriminant est égal à :
+
+		$\Delta = (-8)^2-4 \times 3 \times 2 = 40 >0$
+
+		$h'(x)$  admet donc deux racines :
+
+		\hfill $x_1 = \dfrac { 8 -\sqrt{40}}{2 \times3} = \dfrac{4- \sqrt{10}}{3}$ \hfill et \hfill  $x_2 = \dfrac { 8 +\sqrt{40}}{2 \times3} = \dfrac{4+ \sqrt{10}}{3}$\hfill~
+
+		On en déduit le tableau de variations suivant pour la fonction $h$ :
+
+		\hfill~
+		\begin{tikzpicture}
+			\tkzTabInit[lgt=3]{$x$/0.6,  signe de $h'(x)$/0.6, variations de $h$/1.5}
+			{$-\infty $,$x_1$,$x_2$, $+\infty$}
+			\tkzTabLine{,+,z,-,z,+}
+			\tkzTabVar{-/$-\infty$,+ /$h(x_1)$,-/$h(x_2)$, +/$+\infty$}
+		\end{tikzpicture}
+		\hfill~
+
+		À l'aide de la calculatrice :
+
+		\quad $h(x_1) = \dfrac{20\sqrt{10}-2}{27}   >0$  \quad et \quad $h(x_2) =\dfrac{-20\sqrt{10}-2}{27}  <0$.
+
+		\bigskip
+
+		Sur l'intervalle $]-\infty ; x_1]$ :
+
+		La fonction $h$ est continue (car dérivable) sur $]-\infty ; x_1]$ , sur cet intervalle, elle est strictement croissante.
+
+		De plus, $\lim\limits_{x\to -\infty } = -\infty <0 $ et $f(x_1)>0$.
+
+		Donc, d'après le corollaire du théorème des valeurs intermédiaires, l'équation $h(x) = 0$ admet une unique solution dans l'intervalle $]-\infty ; x_1[$.
+
+		\medskip
+
+		De même, l'équation $h(x) = 0$ admet une unique solution dans l'intervalle $]x_1 ; x_2[$
+		et une unique solution dans l'intervalle $]x_2 ; +\infty[$.
+
+		L'équation $h(x)=0$ admet donc exactement 3 solutions sur $\R$ et il existe trois tangentes à la courbe $\mathcal{C}_f$ passant par l'origine du repère.
+
+	\end{enumerate}
+
+\end{document}

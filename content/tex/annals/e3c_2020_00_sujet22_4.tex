@@ -1,0 +1,58 @@
+\medskip
+
+\textbf{Les résultats seront donnés sous forme de fractions irréductibles.}
+
+Une enquête a été menée auprès de lycéens pour estimer la proportion de ceux qui ont déjà consommé du cannabis. Pour encourager les réponses sincères, on met en place le protocole suivant :
+
+Chaque adolescent lance d’abord un dé équilibré à 6 faces et l’enquêteur qui va l’interroger ne connaît pas le résultat du lancer. À la question « Avez-vous déjà consommé du cannabis ? », l’adolescent doit répondre :
+
+\begin{itemize}
+\item [\textbullet] \og non \fg{} si le résultat du lancer est 5, qu’il ait ou non déjà consommé du cannabis ;
+\item [\textbullet] \og oui \fg{} si le résultat du lancer est 6, qu’il ait ou non déjà consommé du cannabis ;
+\item [\textbullet] \og oui \fg{} ou « non » dans les autres cas, mais de façon sincère.
+\end{itemize}
+
+On note :
+
+\begin{itemize}
+\item [\textbullet] $N$ : l’évènement l’adolescent a répondu \og non \fg{} ;
+\item [\textbullet] $O$ : l’évènement l’adolescent a répondu \og oui \fg{} ;
+\item [\textbullet] $C$ : l’évènement l’adolescent a déjà consommé effectivement du cannabis ;
+\item [\textbullet] $\overline{C}$ : l’évènement l’adolescent n'a jamais consommé du cannabis.
+\end{itemize} 
+
+Sur les lycéens qui ont participé à cette enquête on constate que la probabilité qu’un adolescent ait répondu \og oui \fg{} est de $\frac{3}{5}$ , soit $p(0) = \frac{3}{5}$.
+
+On veut déterminer la probabilité, notée $p$, qu’un adolescent ait déjà consommé du cannabis.
+
+On a donc $p(C)= p$.
+
+\medskip
+
+\begin{enumerate}
+\item Justifier que la probabilité qu’un adolescent ait répondu « oui » sachant qu’il n’a jamais consommé de cannabis est $\frac{1}{6}$.
+\item On a représenté ci-dessous l’arbre de probabilités représentant la situation. Compléter cet arbre.
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=2cm,levelsep=3cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$C$~~}\taput{$p$}}
+	{
+	\TR{$O$}\taput{$\dots$}
+	\TR{$N$}\tbput{$\frac{1}{6}$}
+	}
+\pstree{\TR{$\overline{C}$~~}\tbput{$\dots$}}
+	{\TR{$O$}\taput{$\frac{1}{6}$}
+	\TR{$N$}\tbput{$\dots$}
+	}
+}
+\end{center}
+\item \begin{enumerate}
+\item Démontrer que la probabilité $p$ qu’un adolescent ait déjà consommé du cannabis vérifie l’équation :
+
+\[\frac{2}{3}p+\frac{1}{6}=\frac{3}{5}.\]
+
+\item En déduire la valeur de $p$.
+\end{enumerate}
+\item Sachant qu’un adolescent a répondu « non » pendant l’enquête, quelle est la probabilité qu’il n’ait jamais consommé de cannabis ?
+\end{enumerate}

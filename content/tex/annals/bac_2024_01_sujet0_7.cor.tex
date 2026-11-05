@@ -1,0 +1,101 @@
+On considère les fonctions $f_{k}$ définies sur $\R$ par 
+$f_{k}(x) = x + k \e^{-x},$
+ où $k$ est un réel strictement positif.
+
+	\begin{enumerate}
+		\item On s'intéresse dans cette question au cas $k = 0,5$, donc à la fonction $f_{0,5}$ définie sur $\R$ par : $f_{0,5}(x) = x + 0,5 \e^{-x}.$
+
+\smallskip
+	\begin{enumerate}
+		\item 
+$f'_{0,5}(x)=1+0,5\times(-1)\e^{-x}=1-0,5\e^{-x}$		
+		
+		\item 
+$\begin{gathered}f'_{0,5}(x) >0
+\iff
+1-0,5\e^{-x} >0
+\iff
+1>0,5\e^{-x}
+\iff
+\dfrac{1}{0,5}>\e^{-x}\\
+\phantom{f'_{0,5}(x) >0}
+\iff
+2>\e^{-x}
+\iff
+\ln(2)>-x
+\iff
+-\ln(2)<x
+\iff
+x>\ln\left (\dfrac{1}{2}\right )\\
+\phantom{f'_{0,5}(x) >0}
+\iff
+x>\ln(0,5)\end{gathered}$
+
+De même: $f'_{0,5}(x)=0 \iff x=\ln(0,5)$, et $f'_{0,5}(x)<0 \iff x<\ln(0,5)$.
+
+On en déduit que la fonction $f_{0,5}$ admet un minimum en $\ln(0,5)$.
+	\end{enumerate}
+\end{enumerate}
+
+Soit $k$ un réel strictement positif. On donne le tableau de variations de la fonction $f_{k}$.
+\medskip
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}  
+\def\esp{\hspace*{1.5cm}}
+\def\hauteur{0pt}
+$\begin{array}{|c| *4{c} c|}
+\hline
+ \text{Valeurs de } x & -\infty & \esp & \ln(k) & \esp & +\infty \\
+\hline
+  & \Rnode{max1}{+\infty}  &  &  &  & \Rnode{max2}{+\infty}   \\
+\text{Variations de } f_k & &  & & &  \rule{0pt}{\hauteur} \\
+ &  & &   \Rnode{min}{f_k(\ln k)} & & \rule{0pt}{\hauteur}
+\ncline{->}{max1}{min} \ncline{->}{min}{max2}\\
+\hline
+\end{array}$
+\renewcommand{\arraystretch}{1}}
+\end{center}
+
+	\begin{enumerate}
+		\setcounter{enumi}{1}
+		\item 
+$f_k(\ln k) = \ln(k)+ k\e^{-\ln(k)} = \ln(k) + \dfrac{k}{\e^{\ln(k)}} = \ln(k) + \dfrac{k}{k} = \ln(k) + 1$
+
+
+	\end{enumerate}
+
+On note $\mathcal{C}_{k}$ la courbe représentative de la fonction $f_{k}$ dans un plan muni d'un repère orthonormé.
+
+On note $\mathrm{A}_{k}$ le point de la courbe $\mathcal{C}_{k}$ d'abscisse $\ln k$.
+
+On a représenté ci-dessous quelques courbes $\mathcal{C}_{k}$ pour différentes valeurs de $k$.
+
+\begin{center}
+\psset{unit=1cm,algebraic}
+\def\xmin{-4.2} \def\xmax{9} \def\ymin{-1} \def\ymax{9}
+\begin{pspicture*}(\xmin,\ymin)(\xmax,\ymax)
+
+\psaxes[arrowsize=3pt 3, ticksize=-2pt 2pt]{->}(0,0)(\xmin,0)(\xmax,\ymax) 
+
+\multido{\n=0.5+0.5}{10}{
+\psplot[plotpoints=1000,linecolor=red]{\xmin}{\xmax}{x+\n*EXP(-x)}
+}
+\listplot[plotstyle=dots]{-0.693	0.307 0.000	1.000 0.405	1.405 0.693	1.693 0.916	1.916 1.099	2.099 1.253	2.253 1.386	2.386 1.504	2.504 1.609	2.609}
+{\footnotesize
+\uput[u](-0.693,0.307){A$_{0,5}$} \uput[r](0,1){A$_{1}$} 
+\uput[r](0.405,1.405){{A$_{1,5}$}}  \uput[u](1.609,2.609){A$_{5}$}}
+\psplot[linecolor=blue,linestyle=dashed]{-1}{5}{x+1}
+\uput[u]{45}(3,4){\blue $y=x+1$}
+\end{pspicture*}
+\end{center}
+
+\begin{enumerate}
+		\setcounter{enumi}{2}
+		\item 
+Le point A$_k$ a pour coordonnées $(\ln(k)\;;\; f_k(\ln(k)))$ soit $(\ln(k)\;;\; \ln(k)+1)$. Donc tous les points A$_k$ sont situés sur la droite d'équation $y=x+1$.
+
+L'affirmation : \og{}Pour tout réel $k$ strictement positif, les points A$_{0,5}$, A$_{1}$ et A$_{k}$ sont alignés. \fg{} est donc vraie.
+
+\end{enumerate}

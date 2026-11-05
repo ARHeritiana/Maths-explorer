@@ -1,0 +1,56 @@
+\medskip
+
+Un pépiniériste stocke un grand nombre d'arbustes de la famille des \emph{viburnum} en vue de les
+vendre. Ceux-ci sont de deux espèces différentes : les \emph{viburnum tinus} (nom commun : laurier
+tin) et les \emph{viburnum opulus} (nom commun : boule de neige). Il constate que :
+\begin{itemize}
+\item 80\,\% de ses arbustes sont des lauriers tins, les autres sont des boules de neige.
+\item Parmi les lauriers tins, 41\,\% mesurent \np[m]{1.10} ou plus.
+\item Parmi les boules de neige, 32\,\% mesurent \np[m]{1.10} ou plus.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+	\item Est-il vrai que moins de 15\,\% des \emph{viburnum} de ce pépiniériste sont des boules de neige de moins de \np[m]{1.10} ?
+\end{enumerate}
+
+On choisit au hasard un \emph{viburnum} chez ce pépiniériste et on considère les évènements
+suivants :
+
+\begin{itemize}
+\item $L$ : \og le \emph{viburnum} choisi est un laurier tin \fg
+\item $T$ : \og le \emph{viburnum} mesure plus de \np[m]{1.10}\fg.
+\end{itemize}
+
+\begin{enumerate}[resume]
+\item Décrire par une phrase la probabilité $p_L\left(\overline{T}\right)$.
+
+ Décrire également par une phrase l'évènement $\overline{L}\cap T$
+
+\item Recopier et compléter sur la copie l'arbre de probabilité ci-dessous traduisant les données de l'énoncé.
+
+\vspace{0,5cm}
+\begin{center}
+
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.75cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$L$~~}\taput{$\dots$}}
+	{
+	\TR{$T$}\taput{$\dots$}
+	\TR{$\overline{T}$}\tbput{$\dots$}
+	}
+\pstree{\TR{$\overline{L}$~~}\tbput{$\dots$}}
+	{\TR{$T$}\taput{$\dots$}
+	\TR{$\overline{T}$}\tbput{$\dots$}
+	}
+}
+\end{center}
+
+\medskip
+
+\item Montrer que la probabilité que le \emph{viburnum} mesure \np[m]{1.10} ou plus est égale à 0,392.
+\item Le \emph{viburnum} choisi a une taille inférieure à \np[m]{1.10}. Quelle est la probabilité que ce soit un boule de neige ? On arrondira le résultat à  $10^{-3}$.
+\end{enumerate}
+
+\vspace{0,5cm}

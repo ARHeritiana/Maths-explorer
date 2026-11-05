@@ -1,0 +1,176 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet1_etrangers_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}[itemsep=5mm]
+	\item On a
+	\[
+	f(x)=4\e^{-x}+\cos x+\sin x.
+	\]
+	Donc :
+	\[
+	f'(x)=-4\e^{-x}-\sin x+\cos x.
+	\]
+	Ainsi :
+	\[
+	f'(x)+f(x)=\left(-4\e^{-x}-\sin x+\cos x\right)+\left(4\e^{-x}+\cos x+\sin x\right)=2\cos x.
+	\]
+	La fonction $f$ est bien solution de l'équation différentielle $(E)$.
+
+	\medskip
+	\textbf{Affirmation 1 : vraie.}
+
+	\item Les points d'intersection des courbes vérifient :
+	\[
+	2x=\sin x.
+	\]
+	Posons $h(x)=2x-\sin x$.
+	Alors :
+	\[
+	h'(x)=2-\cos x.
+	\]
+	Or, pour tout réel $x$, $\cos x\leqslant 1$, donc :
+	\[
+	h'(x)=2-\cos x\geqslant 1>0.
+	\]
+	La fonction $h$ est donc strictement croissante sur $\R$.
+	De plus :
+	\[
+	h(0)=0.
+	\]
+	L'équation $h(x)=0$ admet donc une unique solution, à savoir $x=0$.
+	Les deux courbes ont donc un seul point d'intersection, le point de coordonnées $(0~;~0)$.
+
+	\medskip
+	\textbf{Affirmation 2 : vraie.}
+
+	\item Pour tout entier naturel $n$ :
+	\[
+	v_n=\dfrac{2n+\sin n}{n+1}.
+	\]
+	On écrit :
+	\[
+	v_n=\dfrac{n\left(2+\frac{\sin n}{n}\right)}{n\left(1+\frac{1}{n}\right)}
+	=\dfrac{2+\frac{\sin n}{n}}{1+\frac{1}{n}}.
+	\]
+	Comme $-1\leqslant \sin n\leqslant 1$, on a
+	\[
+	\lim\limits_{n\to +\infty}\dfrac{\sin n}{n}=0.
+	\]
+	Donc :
+	\[
+	\lim\limits_{n\to +\infty} v_n=\dfrac{2+0}{1+0}=2.
+	\]
+	La suite $(v_n)$ converge vers 2.
+
+	\medskip
+	\textbf{Affirmation 3 : fausse.}
+
+	\item Montrons par récurrence que, pour tout entier naturel $n\geqslant 1$, $u_n=n^2$.
+
+	\emph{Initialisation :} pour $n=1$, on a $u_1=1$ et $1^2=1$. La propriété est vraie au rang 1.
+
+	\emph{Hérédité :} supposons que, pour un entier $n\geqslant 1$, on ait $u_n=n^2$.
+	Alors :
+	\[
+	u_{n+1}=u_n+2n+1=n^2+2n+1=(n+1)^2.
+	\]
+	La propriété est donc héréditaire.
+
+	Par récurrence, pour tout entier naturel $n\geqslant 1$, on a $u_n=n^2$.
+
+	\medskip
+	\textbf{Affirmation 4 : vraie.}
+
+	\item La suite $(u_n)$ est géométrique de premier terme $u_0=1$ et de raison $\e^{-1}$.
+	Comme $0<\e^{-1}<1$, on a :
+	\[
+	\lim\limits_{n\to +\infty} S_n=\dfrac{u_0}{1-\e^{-1}}
+	=\dfrac{1}{1-\frac{1}{\e}}
+	=\dfrac{\e}{\e-1}.
+	\]
+
+	\medskip
+	\textbf{Affirmation 5 : vraie.}
+\end{enumerate}
+
+\end{document}

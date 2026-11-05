@@ -1,0 +1,133 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_technologique_2026_06_antilles_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Puisqu'on interroge une personne au hasard, on est en situation d'équiprobabilité, et les proportions sont donc assimilables à des probabilités.
+
+	\begin{enumerate}
+		\item Il y a au total 100 personnes, dont 35 ne vivant pas en couple et n'ayant pas d'enfant,
+
+ 		donc \mbox{$P\big(\overline{C}\cap\overline{E}\big) = \dfrac{35}{100} = \np{0.35}$.}
+
+		\item \mbox{$P\big(C\cap\overline{E}\big) = \dfrac{12}{100} = \np{0.12}$} : \quad la probabilité de choisir au hasard une personne vivant en couple et n'ayant pas d'enfant est \np{0.12}.
+
+		\item On cherche \mbox{$P_{E}\big(\overline{C}\big)$}.
+
+		Par définition des probabilités conditionnelles, \mbox{$P_{E}\big(\overline{C}\big) = \dfrac{P\big(E\cap\overline{C}\big)}{P\big(E\big)}$}.
+
+		53 personnes sur les 100 étudiées ont au moins un enfant, donc \mbox{$P\big(E\big) = \np{0.53}$}.
+
+		Parmi les personnes interrogées, 35 ne vivent pas en couple mais ont au moins un enfant, donc \mbox{$P\big(E\cap\overline{C}\big) = \np{0.35}$}
+
+		La probabilité que la personne ne vive pas en couple sachant qu'elle a au moins un enfant est donc \mbox{$P_{E}\big(\overline{C}\big) = \dfrac{35}{53}$.}
+
+		NB : on peut retrouver plus simplement ce résultat en observant que, parmi les 53 personnes ayant au moins un enfant, 35 ne vivent pas en couple.
+
+		\item \begin{enumerate}
+			\item Un logement peut donc avoir 1, 2, 3, 4 ou 5 pièces, et les probabilités sont les pourcentages respectifs.
+
+			On a donc la loi de probabilité de $X$ :
+
+			\begin{center}
+			\begin{tblr}{colspec={X[l,2cm]*{5}{X[c,1.5cm]}},hlines, vlines}
+				$x_i$        & $1$  & $2$ & $3$ & $4$  & $5$  \\
+				$P(X = x_i)$ & 0,07 & 0,2 & 0,4 & 0,25 & 0,08\\
+			\end{tblr}
+			\end{center}
+
+			\item \mbox{$P(X\geqslant 2)$} est l'évènement contraire de \mbox{$P(X = 1)$}, donc \quad \mbox{$P(X\geqslant 2) = 1-\np{0.07} = \np{0.93}$.}
+
+			cela signifie que la probabilité qu'un logement ait un nombre de pièces supérieur ou égal à 2 est \np{0.93}.
+
+			\item L'espérance de $X$ est égale à \quad $\ds \mathrm{E}(X) = \sum_{i = 1}^5 P(X = x_i)\times x_i$.
+
+			$\ds \mathrm{E}(X) = 0,07 \times 1 + 0,2 \times 2 + 0,4 \times 3 + 0,25 \times 4 + 0,08 \times 5 = 0,07 + 0,4 + 1,2 + 1 + 0,4 = 0,47 + 2,2 + 0,4 = 0,47 + 2,6 = 3,07$.
+
+			donc \mbox{$E(X) = \np{3.07}$}.
+
+			Cela signifie que les logements étudiés ont en moyenne 3,07 pièces.
+
+			\emph{Remarque :} Ici, le 3,07 s'interprète comme une moyenne, il n'y a donc pas de raison d'arrondir le résultat à un nombre entier.
+		\end{enumerate}
+	\end{enumerate}
+
+\end{document}

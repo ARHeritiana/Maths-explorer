@@ -1,0 +1,185 @@
+\medskip
+
+\textbf{PARTIE A}
+
+\medskip
+
+\textbf{Affirmation 1 : Vraie }
+
+\smallskip
+
+$\begin{aligned}\vect{\text{JH}} & = \vect{\text{JF}} +\vect{\text{FE}} +\vect{\text{EH}}\\
+  & = \dfrac{1}{2}\vect{\text{BF}}+ \vect{\text{BA}}+\vect{\text{BC}}\\
+  &=   \dfrac{1}{2}\vect{\text{DH}}+ 2\vect{\text{BI}}-\vect{\text{CB}}\\
+  &  =\vect{\text{DM}}  + 2\vect{\text{BI}} + - \vect{\text{CB}}
+  	\end{aligned}$
+
+\textbf{Affirmation 2 : Fausse }
+
+\smallskip
+
+$\vect{\text{AG}}=\vect{\text{AB}}+\vect{\text{BG}} = \vect{\text{AB}}+\vect{\text{AH}}$
+
+On peut exprimer $\vect{\mathrm{AG}}$ comme combinaison linéaire de $\vect{\mathrm{AB}}$ et $\vect{\mathrm{AH}}$ : les trois vecteurs sont coplanaires et donc le triplet de vecteurs $\left(\vect{\text{AB}}~,~\vect{\text{AH}}~,~ \vect{\text{AG}}\right)$ n'est pas  une base de l'espace.
+
+\textbf{Affirmation 3 : Vraie}
+
+\smallskip
+
+$\begin{aligned}
+	\vect{\text{IB}} \cdot \vect{\text{LM}} &= \vect{\text{IB}} \cdot \vect{\text{IK}}\quad \text{car }\vect{\mathrm{LM}} = \vect{\mathrm{IK}}\\
+	&= \vect{\text{IB}} \cdot \vect{\text{IA}}\quad \text{ car A est le projeté orthogonal de K sur la droite (AB)}\\
+	&= -{\text{IB}} \times {\text{IA}} \quad\text{ car les vecteurs sont colinéaires de sens contraire}\\
+	&= - \dfrac 12 \times \dfrac 12 \quad\text{car l'arête est de longueur 1 et I est le milieu de l'arête [AB]}\\
+	&= -\dfrac 14
+\end{aligned}$
+
+\bigskip
+
+\textbf{PARTIE B}
+
+\medskip
+
+
+
+
+
+
+
+
+\textbf{Affirmation 4 : Fausse}
+
+\smallskip
+
+$\vect{\mathrm{AB}}\begin{pmatrix}x_\mathrm{B} -x_\mathrm{A} \\ y_\mathrm{B}-y_\mathrm{A}\\z_\mathrm{B}-z_\mathrm{A}\end{pmatrix}$ c'est-à-dire $\vect{\mathrm{AB}}\begin{pmatrix}3 \\ -3\\8\end{pmatrix}$
+
+Le vecteur $\vect{\mathrm{AB}}$ est un vecteur directeur de la droite (AB).
+
+ Le plan $\mathcal{P}$ a pour équation cartésienne $2x - y + 3z + 6 = 0$, le vecteur $\vect{n}\begin{pmatrix}2\\-1\\3\end{pmatrix}$ est donc un vecteur normal au plan $\mathcal{P}$.
+
+On est dans un repère orthonormé donc :
+
+$\vect{\mathrm{AB}} \cdot \vect{n}= 3 \times 2 + (-3) \times (-1) + 8 \times 3 = 6+3+24 \neq 0$
+
+Le vecteur normal au plan et le vecteur directeur de la droite ne sont pas orthogonaux donc le plan $\mathcal{P}$ et la droite (AB) ne sont pas parallèles.
+
+\textbf{Affirmation 5 : Vraie}
+
+\smallskip
+
+\textbf{Méthode 1 :}
+
+Les plans $\mathcal{P}$ et $\mathcal{P}'$ sont parallèles donc le vecteur $\vect{n}\begin{pmatrix}2\\-1\\3\end{pmatrix}$ est aussi un vecteur normal au plan $\mathcal{P}'$.
+
+Une équation cartésienne du plan $\mathcal{P}'$ est donc de la forme : $2x - y +3z + d = 0$ avec $d\in \R$.
+
+De plus, le point B appartient au plan $\mathcal{P}'$ donc $2x_{\mathrm{B}} - y_{\mathrm{B}} +3z_{\mathrm{B}} + d= 0$
+
+D'où $2 \times 5 +3 +3 \times 7 +d=0$ donc $10+3+21+d = 0$ ce qui équivaut à $d=-34 $.
+
+Une équation cartésienne du plan $\mathcal{P}'$ est donc : $2x-y+3z-34=0$.
+
+En multipliant par $-1$ on obtient l'équation donnée.
+
+\smallskip
+
+\textbf{Méthode 2 :}
+
+Le plan $\mathcal{P}'$ a pour équation cartésienne $-2x + y - 3z + 34 = 0$, le vecteur $\vect{n'}\begin{pmatrix}-2\\1\\-3\end{pmatrix}$ est donc un vecteur normal au plan $\mathcal{P}'$.
+
+$\vect{n'}=-\vect{n}$ donc les vecteurs normaux aux plans $\mathcal{P}$ et $\mathcal{P}'$ sont colinéaires et donc les deux plans sont parallèles.
+
+Vérifions si le point B appartient au plan  $\mathcal{P}'$.
+
+$-2x_{\mathrm{B}} + y_{\mathrm{B}} - 3z_{\mathrm{B}} + 34 = -2 \times 5 -3 -3 \times 7 +34 = -10-3-21+34 = 0$
+
+Donc le point B appartient au plan  $\mathcal{P}'$.
+
+Donc le plan $\mathcal{P}'$ parallèle à $\mathcal{P}$ passant par B a bien pour équation cartésienne \linebreak$-2x + y - 3z + 34 = 0$.
+
+\textbf{Affirmation 6 : Vraie}
+
+ La distance du point A au plan $\mathcal{P}$ est égale à la distance AH avec H projeté orthogonal de A sur le plan $\mathcal{P}$ .
+
+Déterminons les coordonnées du point H.
+
+H est le projeté orthogonal du point A sur la plan $\mathcal{P}$, c'est donc l'intersection du plan $\mathcal{P}$ et de la droite $\Delta$ orthogonale au plan $\mathcal{P}$ passant par le point A.
+
+Le vecteur $\vect{n}\begin{pmatrix}2\\-1\\3\end{pmatrix}$ est un vecteur normal au plan $\mathcal{P}$, c'est donc un vecteur directeur de la droite $\Delta$.
+
+De plus le point A$(2~;~0~;~-1)$ appartient à la droite $\Delta$, une représentation paramétrique de la droite $\Delta$ est donc :
+\[\left\{\begin{array}{lcl}
+x&=&2+2t \\
+y&=&0 -t \\
+z&=&-1+3t
+\end{array} \quad, \text { où } t \in \R\right.\]
+
+L'intersection entre la droite $\Delta$ et le plan $\mathcal{P}$ donne l'équation en la variable $t$ :
+
+$\begin{aligned} 2(2+2t)- (-t)+3(-1+3t)+6=0 &\iff 4+4t+t-3+9t+6=0\\
+	& \iff 14t=-7\\
+	& \iff t=-\dfrac{1}{2}
+\end{aligned}$
+
+Le point H d'intersection entre la droite $\Delta$ et $\mathcal{P}$ est le point de paramètre  $ t=-\dfrac{1}{2}$ dans la représentation paramétrique de la droite $\Delta$.
+
+Il a comme coordonnées :\quad$\mathrm{H}\left(2 -2 \dfrac{1}{2}~;~\dfrac{1}{2}~;~-1 - 3 \times\dfrac{1}{2}\right)$ soit $\mathrm{H}\left(1~;~\dfrac{1}{2}~;~-\dfrac{5}{2}\right)$.
+
+On a donc :
+
+$\vect{\mathrm{AH}}\begin{pmatrix}-1\\ \dfrac{1}{2}\\ -\dfrac{3}{2}\end{pmatrix}$
+
+d'où : $\left\|\vect {\mathrm{AH}}\right\|^2=1^2+ \left(\dfrac{1}{2}\right)^2+\left(-\dfrac{3}{2}\right)^2=1+\dfrac{1}{4}+\dfrac{9}{4}=\dfrac{14}{4}$, donc $\left\|\vect {\mathrm{AH}}\right\|=\sqrt{\dfrac{14}{4}}=\dfrac{\sqrt{14}}{2}$.
+
+La distance du point A au plan $\mathcal{P}$ est égale à $\dfrac{\sqrt{14}}{2}$.
+
+\smallskip
+
+
+
+
+
+
+
+
+
+\textbf{Affirmation 7 : Fausse}
+
+$(d)$ est dirigée par le vecteur $\vect{u}\begin{pmatrix}2\\0\\-5\end{pmatrix}$ et la droite (AB) par $\vect{\mathrm{AB}}\begin{pmatrix}3 \\ -3\\8\end{pmatrix}$.
+
+Les deux droites ont des vecteurs directeurs non colinéaires  donc les droites ne sont ni parallèles, ni confondues.
+
+La droite (AB) passe par le point A et  est dirigée par $\vect{\mathrm{AB}}$ donc une représentation paramétrique de la droite (AB) est :
+\[\left\{\begin{array}{lcl}
+x&=&\phantom{-}2 +3t\\
+y&=&\phantom{-}0 -3 t\\
+z&=&-1+8t
+\end{array} \quad, \text { où } t \in \R\right.\]
+
+$(d)$ et (AB) seront donc coplanaires si et seulement si ces deux droites sont sécantes, c'est-à-dire si et seulement si le système suivant a une solution :
+
+$\begin{aligned}
+	\left\{\begin{array}{l}
+		2+3t=-12+2k\\
+		-3t=6 \\
+		-1+8t=3-5k
+	\end{array}\right.
+	&\iff
+	\left\{\begin{array}{l}
+		-4=-12+2k \\
+		t=-2\\
+		-17=3-5k
+	\end{array}\right.\\
+	&\iff
+	\left\{\begin{array}{l}
+		k=4 \\
+		t=-2\\
+		k=4
+	\end{array}\right.
+\end{aligned}$
+
+Le système admet une solution, donc les droites ont un point commun : le point de paramètre $t=-2$ de la droite (AB) ou le point de paramètre $k=4$ de $(d)$ c'est à dire le point C$(-4~;~6~;~-17)$.
+
+Les droites (AB) et $(d)$  sont donc sécantes et par conséquent coplanaires.
+
+\bigskip

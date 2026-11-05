@@ -1,0 +1,239 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet2_asie_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On considère la fonction $f$ définie sur $\R$ par 
+
+\[f(x) = \ln \left(\e^{2x}  - \e^x  + 1\right).\]
+
+On note $\mathcal{C}_f$ sa courbe représentative représentée ci-dessous.
+
+\begin{center}
+\psset{unit=1.35cm,arrowsize=2pt 3,comma=true}
+\begin{pspicture*}(-3.6,-2)(3,3)
+\psaxes[linewidth=1.25pt,Dx=0.5,Dy=0.5,labelFontSize=\scriptstyle]{->}(0,0)(-3.5,-1.95)(3,3)
+\psgrid[gridlabels=0pt,subgriddiv=2]
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-3.5}{2}{2.71828 x 2 mul exp 2.71828 x exp sub 1 add ln} \uput[dr](1.4,2.5){\blue $\mathcal{C}_f$}
+\end{pspicture*}
+\end{center}
+
+Un élève formule les conjectures suivantes à partir de cette représentation graphique :
+
+\smallskip
+
+\begin{tabularx}{\linewidth}{|X|}\hline
+\textbf{1.~~}L'équation $f(x) = 2$ semble admettre au moins une solution.\\
+\textbf{2.~~}Le plus grand intervalle sur lequel la fonction $f$ semble être croissante est $[- 0,5~;~+\infty[$.\\
+\textbf{3.~~}L'équation de la tangente au point d'abscisse $x = 0$ semble être: $y = 1,5x$.\\ \hline
+\end{tabularx}
+
+\medskip
+
+Le but de cet exercice est de valider ou rejeter les conjectures concernant la fonction $f$.
+
+\medskip
+
+\textbf{Partie A : Étude d'une fonction auxiliaire}
+
+\medskip
+
+On définit sur $\R$ la fonction $g$ définie par 
+\[g(x) = \e^{2x} - \e^x + 1.\]
+
+\begin{enumerate}
+\item 
+On a $\displaystyle\lim_{x \to - \infty}2x = X = - \infty$, donc $\displaystyle\lim_{x \to - \infty}\text{e}^X = 0$ ; d'autre part $\displaystyle\lim_{x \to - \infty}\text{e}^x = 0$, donc par somme de limites $\displaystyle\lim_{x \to - \infty}g(x) = 1$.
+\item 
+On peut écrire $g(x) = \text{e}^x \left(\text{e}^x - 1 + \text{e}^{-x} \right)$.
+
+Comme $\displaystyle\lim_{x \to - \infty}\text{e}^x = + \infty$ et $\displaystyle\lim_{x \to - \infty}\text{e}^{-x} = 0$, on a par somme de limites $\displaystyle\lim_{x \to - \infty}\text{e}^x - 1 + \text{e}^{-x}  = + \infty$ et enfin par produit de limites $\displaystyle\lim_{x \to - \infty}g(x) = + \infty$.
+\item 
+$g$ somme de fonctions dérivables sur $\R$ est dérivable sur cet intervalle et 
+
+$g'(x) = 2\text{e}^{2x} - \text{e}^{x} = \text{e}^{x}\left(2\text{e}^{x} - 1\right)$.
+\item 
+D'après la question précédente comme $\text{e}^{x} > 0$, quel que soit le réel $x$, le signe de $g'(x)$ est celui de $2\text{e}^{x} - 1$.
+
+$\bullet~~$$2\text{e}^{x} - 1 = 0 \iff 2\text{e}^{x} = 1 \iff \text{e}^{x} = \dfrac12 \iff x = \ln \dfrac12 = - \ln 2$  (par croissance de la fonction logarithme népérien);
+
+$\bullet~~$$2\text{e}^{x} - 1 > 0 \iff 2\text{e}^{x} > 1 \iff \text{e}^{x} >\dfrac12 \iff x > \ln \dfrac12 =- \ln 2$ ;
+
+$\bullet~~$$2\text{e}^{x} - 1 < 0 \iff 2\text{e}^{x} < 1 \iff \text{e}^{x} < \dfrac12 \iff x < \ln \dfrac12 = - \ln 2$.
+
+La fonction $g$ est donc décroissante sur $]- \infty~;~- \ln 2[$ et croissante sur $]- \ln 2~;~+\infty[$.
+
+Donc $g(- \ln 2) = \text{e}^{-2\ln 2} - \text{e}^{- \ln 2} + 1 1 = \dfrac{1}{\text{e}^{2\ln 2}} - \dfrac{1}{\text{e}^{\ln 2}} + 1 = \dfrac{1}{\text{e}^{\ln 4}} - \dfrac{1}{\text{e}^{\ln 2}} + 1 = \dfrac14 - \dfrac12 + 1 = \dfrac34$ est le minimum de la fonction $g$ sur $\R$.
+
+
+D'où le tableau de variations :
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(9,3)
+\psframe(9,3) \psline(0,2)(9,2) \psline(0,2.5)(9,2.5)\psline(1,0)(1,3)
+\uput[u](0.5,2.4){$x$} \uput[u](1.4,2.4){$- \infty$} \uput[u](5,2.4){$- \ln 2$} \uput[u](8.5,2.4){$+\infty$}
+\uput[u](0.5,1.9){$g'(x)$}\uput[u](2.5,1.9){$-$}\uput[u](5,1.9){0}\uput[u](7,1.9){$+$}
+\rput(0.5,1){$g(x)$}
+\uput[d](1.1,2){1}\uput[u](5,0){$\frac34$}\uput[d](8.6,2){$+ \infty$}
+\psline{->}(1.5,1.5)(4.5,0.5)\psline{->}(5.5,0.5)(8.5,1.5)
+\end{pspicture}
+\end{center}
+
+\item 
+Le minimum de la fonction $g$ est supérieur à zéro, donc quel que soit $x \in \R$, \, $g(x) > 0.$
+\item 
+
+
+En posant $X = \e^x$, $g(x) = g(X) = X^2 - X +1 = \left(X - \dfrac12 \right)^2 - \dfrac14 + 1 = \left(X - \dfrac12 \right)^2 + \dfrac34$.
+
+Sous cette écriture on voit que $g(X)$ est un trinôme somme de deux carrés dont l'un est supérieur à zéro, donc $g(X) > 0$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item 
+
+Quel que soit $x \in \R$, \: $f(x) = \ln g(x)$.
+
+Or on a vu dans la partie précédente que $g(x) > 0$, donc $f$ est définie sur $\R$.
+\item 
+
+
+$f(x) = \ln g(x)$ entraîne 
+
+$f'(x) = \dfrac{g'(x)}{g(x)} = \dfrac{2\text{e}^{2x} - \text{e}^x}{\text{e}^{2x} - \text{e}^x + 1}$.
+\item 
+Soit $\mathcal{T}_0$ la tangente au point d'abscisse $0$ :
+
+On a $M(x~;~y) \in \mathcal{T}_0 \iff y - f(0) = f'(0)(x - 0)$.
+
+$\bullet ~~$ $f(0) = \ln(1 - 1 + 1) = \ln 1 = 0$ ;
+
+$\bullet ~~$ $f'(0) = \dfrac{2 - 1}{1 - 1 + 1} = 1$, donc :
+
+$M(x~;~y) \in \mathcal{T}_0 \iff y - 0 = 1(x - 0) \iff y = x$.
+\item 
+On a vu que $f'(x) = \dfrac{2\text{e}^{2x} - \text{e}^x}{\text{e}^{2x} - \text{e}^x + 1} = \dfrac{g'(x)}{g(x)}$ et dans la partie que le dénominateur $g(x) > 0$ ; le signe de $f'(x)$ est donc celui de $g'(x)$ étudié dans la partie A.
+
+Donc $f'(x) < 0$ sur $]- \infty~;~- \ln 2[$, d'où la fonction $f$ est décroissante sur cet intervalle et $f'(x) > 0$ sur $]- \ln 2~;~+ \infty[$, d'où la fonction $f$ est croissante sur cet intervalle.
+\item 
+$\bullet~~$$f(-\ln 2) = \ln g(- \ln 2) =\ln \dfrac34 \approx- 0,29$ ;
+
+$\bullet~~$On a vu que $\displaystyle\lim_{x \to + \infty} g(x) = + \infty$, donc par composition 
+$\displaystyle\lim_{x \to + \infty} \ln g(x) = + \infty$.
+
+La fonction $f$ est continue car dérivable sur $]- \ln 2~;~+ \infty[$, strictement croissante de $f(- \ln 2) < 2$ à plus l'infini : d'après le théorème des valeurs intermédiaires il existe un réel unique 
+
+$\alpha \in ]- \ln 2~;~+ \infty[$ tel que $f(\alpha) = 0$.
+
+La calculatrice donne :
+
+$f(1) \approx 1,7$ et $f(2) \approx 3,8$, donc $1 < \alpha < 2$ ;
+
+$f(1,1) \approx 1,9$ et $f(1,2) \approx 2,2$, donc $1,1 < \alpha < 1,2$ ;
+
+$f(1,12) \approx 1,99$ et $f(1,13) \approx 2,01$, donc $1,12 < \alpha < 1,13$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C}
+
+\medskip
+
+
+\textbf{Conjecture 1} : d'après le résultat précédent elle est vraie ;
+
+\textbf{Conjecture 2} : elle est fausse $f$ est croissante sur $]- \ln 2~;~+ \infty[$ ;
+
+\textbf{Conjecture 3} : on a vu que l'équation de cette tangente est $y = x$ : la conjecture est fausse.
+
+\medskip
+
+\end{document}

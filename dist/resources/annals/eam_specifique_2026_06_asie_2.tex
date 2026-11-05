@@ -1,0 +1,153 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_06_asie_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Vous venez de commencer une nouvelle partie d'un jeu vidéo au cours de laquelle votre personnage gagne de l'expérience et obtient de la potion magique.
+
+\subsection*{Partie A -- Gain d'expérience}
+	Quand votre personnage passe d'un niveau au niveau supérieur, il gagne 80 points d'expérience.
+
+	Quand vous commencez, votre personnage est au niveau 0 et a 20 points d'expérience.
+
+	\begin{enumerate}
+		\item Combien votre personnage a-t-il de points d'expérience quand il est au niveau 1 ?
+
+		\item Montrer que, quand votre personnage est au niveau 10, il a plus de 800 points d'expérience.
+
+		\item À quel niveau votre personnage est-il s'il a 2020 points d'expérience?
+
+		\emph{Justifier par un calcul.}
+	\end{enumerate}
+
+
+
+\subsection*{Partie B -- Gain d'énergie magique}
+	À la fin de chaque niveau, votre personnage doit neutraliser un monstre. Cela lui rapporte de l'énergie sous forme de potion magique. Au niveau 0, le monstre neutralisé permet de récupérer 10 centilitres $(\mathrm{cl})$ de potion magique.
+
+	À chaque niveau, cette quantité augmente de $20\,\%$ par rapport au niveau précédent.
+
+	\medskip
+
+	\begin{minipage}{0.65\linewidth}
+	\emph{Arrondir les résultats, si nécessaire, au centilitre près.}
+
+	\medskip
+
+	Soit $n$ un entier naturel.
+
+	On note $v_{n}$ la quantité de potion magique (en cl ) récupérée pour le monstre neutralisé au niveau $n$.
+
+	\begin{enumerate}
+		\item Expliquer pourquoi $v_{0}=10$.
+
+		\item Justifier que $v_{n+1}=1,2 v_{n}$ pour tout entier naturel $n$.
+
+		\item En déduire la nature de la suite $\left(v_{n}\right)$ et préciser sa raison.
+
+		\item Exprimer $v_{n}$ en fonction de $n$, pour tout entier naturel $n$.
+
+		\item \begin{enumerate}
+			\item Montrer que $v_{5} \approx 25$.
+			\item Interpréter ce résultat dans le contexte de l'exercice.
+		\end{enumerate}
+
+		\item À partir de quel niveau la quantité de potion magique récupérée par monstre neutralisé dépasse-t-elle 0,6 litre?
+	\end{enumerate}
+	\end{minipage}
+	\hfill
+	\begin{tblr}{width=0.3\linewidth,colspec={X[c,1]X[c,2.5,cmd={\np}]},hlines, vlines}
+			\SetCell[c=2]{c} \textbf{Aide aux calculs} &\\
+			$1,2^{2}$ & 1,44 \\
+			$1,2^{3}$ & 1,728 \\
+			$1,2^{4}$ & 2,0736 \\
+			$1,2^{5}$ & 2,48832 \\
+			$1,2^{6}$ & 2,985984 \\
+			$1,2^{7}$ & 3,5831808 \\
+			$1,2^{8}$ & 4,29981696 \\
+			$1,2^{9}$ & 5,15978035 \\
+			$1,2^{10}$ & 6,19173642 \\
+			$1,2^{11}$ & 7,43008371 \\
+		\end{tblr}
+
+\needspace{15\baselineskip}
+
+\end{document}

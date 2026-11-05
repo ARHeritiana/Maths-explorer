@@ -1,0 +1,128 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet15_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{1.}
+	
+	Avec \(\overrightarrow{AB} \left( \begin{array}{c} 12 \\ 6 \end{array} \right)\) et \(\overrightarrow{HC} \left( \begin{array}{c} 6 \\ -12 \end{array} \right)\),\\
+	 on a \(\overrightarrow{AB} \cdot \overrightarrow{HC} = 12 \times 6 + 6 \times (-12) = 72 - 72 = 0\).
+	
+	De même avec \(\overrightarrow{AC} \left( \begin{array}{c} 12 \\ -12 \end{array} \right)\) et \(\overrightarrow{HB} \left( \begin{array}{c} 6 \\ 6 \end{array} \right)\), 
+	\\on a \(\overrightarrow{AC} \cdot \overrightarrow{HB} = 12 \times 6 + 6 \times (-12) = 72 - 72 = 0\).
+	
+	\subsection*{2.}
+	
+	On a donc (CH) est perpendiculaire à (AB) et (BH) est perpendiculaire à (AC). Les droites (CH) et (BH) sont donc deux hauteurs du triangle ABC : elles sont donc sécantes en H orthocentre du triangle et la troisième hauteur est la droite (CH).
+	
+	\subsection*{3.}
+	
+	On a \(KA^2 = 9^2 + (-3)^2 = 81 + 9 = 90\),\\
+	\(KB^2 = 3^2 + 9^2 = 9 + 81 = 90\),\\
+	\(KC^2 = (-3)^2 + (-9)^2 = 9 + 81 = 90\).
+	
+	Or \(KA^2 = KB^2 = KC^2 = 90\) entraîne \(KA = KB = KC = R\). \\
+	Le point K est équidistant de A, B et C : c’est donc le centre du cercle circonscrit au triangle ABC.
+	
+	\subsection*{4.}
+	
+	Avec \(M(8, 7)\) et avec \(G(g, g')\),
+	\[
+	\overrightarrow{AM} \left( \begin{array}{c} 12 \\ -3 \end{array} \right), \quad \overrightarrow{AM} \left( \begin{array}{c} 8 \\ -2 \end{array} \right).
+	\]
+	
+	On a donc
+	\[
+	\overrightarrow{AG} \left( \begin{array}{c} 8 \\ -2 \end{array} \right) = \overrightarrow{AG} \left( \begin{array}{c} g + 4 \\ g' - 10 \end{array} \right).
+	\]
+	
+	On en déduit que \(g = 8 - 4 = 4\) et \(g' = 10 - 2 = 8\). Donc \(G(4, 8)\).
+	
+	\subsection*{5.}
+	
+	On a
+	\[
+	\overrightarrow{GH} \left( \begin{array}{c} -2 \\ 2 \end{array} \right) \quad et \quad \overrightarrow{GK} \left( \begin{array}{c} 1 \\ 1 \end{array} \right).
+	\]
+	
+	On a donc de façon évidente \(\overrightarrow{GH} = 2 \overrightarrow{GK}\) : les vecteurs sont colinéaires, les droites (GH) et (GK) sont parallèles mais ont le point G commun, donc les points G, H et K sont alignés.
+
+\end{document}

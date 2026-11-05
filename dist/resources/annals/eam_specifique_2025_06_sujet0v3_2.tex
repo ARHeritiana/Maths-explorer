@@ -1,0 +1,148 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2025/tex/eam_specifique_2025_06_sujet0v3_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Victor sort un plat du four. La température du plat est alors égale à 180\ensuremath{^\circ} C. Il place ce plat dans une pièce dont la température est égale à 25\ensuremath{^\circ} C. Le plat refroidit. \\
+Le plat ne pourra être servi que lorsque sa température sera devenue inférieure ou égale à 40\ensuremath{^\circ} C.
+
+On étudie le refroidissement du plat selon deux modèles mathématiques.
+
+\subsubsection*{Partie A : Premier modèle.}
+On suppose que la baisse de la température du plat est \textit{proportionnelle} à la durée du refroidissement, c'est-à-dire au nombre de minutes écoulées depuis la sortie du four.
+
+On constate que 3 minutes après la sortie du four, la température du plat est égale à 105\ensuremath{^\circ} C.
+
+\begin{enumerate}
+\item De combien de degrés le plat a-t-il baissé en 3 minutes ? En 1 minute ?
+
+\item Vérifier que la température du plat, 5 minutes après la sortie du four, est égale à 55\ensuremath{^\circ} C.
+
+\item Selon ce modèle, quelle serait la température du plat, 8 minutes après la sortie du four ? Ce premier modèle semble-t-il pertinent ?
+\end{enumerate}
+
+\subsubsection*{Partie B : Second modèle.}
+On dispose toujours des données suivantes :
+\begin{itemize}
+\item la température de la pièce est égale à 25\ensuremath{^\circ} C
+\item la température du plat à la sortie du four est égale à 180\ensuremath{^\circ} C
+\item la température du plat, 3 minutes après la sortie du four, est égale à 105\ensuremath{^\circ} C
+\end{itemize}
+
+Pour tout entier naturel $n$ on note $U_n$, la différence entre la température du plat et la température de la pièce, $n$ minutes après la sortie du four.
+
+\underline{Exemple :} 3 minutes après la sortie du four, l'écart avec la température de la pièce est égal à $105 - 25 = 80$. On a donc $U_3 = 80$.
+
+\begin{enumerate}
+\item Justifier que $U_0 = 155$.
+
+\item On suppose que chaque minute la différence $U_n$ diminue de 20\%.
+\begin{enumerate}
+\item Justifier que, pour tout entier naturel $n$, on a $U_{n+1} = 0,8U_n$.
+\item En déduire la nature de la suite $(U_n)$ et donner sa raison.
+\item Exprimer $U_n$ en fonction de $n$, pour tout entier naturel $n$.
+\item On dispose des données suivantes :
+\end{enumerate}
+\end{enumerate}
+
+\vspace{-0.9\baselineskip}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$n$ & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\
+\hline
+$U_n$ & 80 & 64 & 51,2 & 41 & 32,8 & 26,2 & 21 & 16,8 & 13,4 & 10,7 & 8,6 & 6,9 & 5,5 \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{-0.9\baselineskip}
+\[U_n \text{ arrondi à } 10^{-1}\]
+
+\vspace{-0.5\baselineskip}
+\begin{itemize}
+    \item[]
+    \begin{itemize}
+    		\item[] Au bout de combien de minutes, Victor pourra-t-il servir le plat ?
+	\end{itemize}
+\end{itemize}
+
+\end{document}

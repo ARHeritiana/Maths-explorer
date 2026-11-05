@@ -1,0 +1,72 @@
+\medskip
+
+On dispose d'un paquet de cartes contenant un nombre identique de cartes de la catégorie \og Sciences\fg{} et de la catégorie \og Économie \fg. Une question liée à un de ces deux thèmes figure sur chaque carte.
+
+Les cartes sont mélangées et on en tire une au hasard dans le paquet. Ensuite, on essaye de répondre à la question posée.
+
+Un groupe de copains participe à ce jeu. Connaissant leurs points forts et leurs faiblesses, on estime qu'il a :
+
+$\bullet~~$ 3 chances sur 4 de donner la bonne réponse lorsqu'il est interrogé en sciences;
+
+$\bullet~~$ 1 chance sur 8 de donner la bonne réponse lorsqu'il est interrogé en économie.
+
+\smallskip
+
+On note $S$ l'évènement \og La question est dans la catégorie Sciences\fg{} et $B$ l'évènement \og La réponse donnée par le groupe est bonne \fg.
+
+\bigskip
+
+\textbf{Partie A :}
+
+\medskip
+
+\begin{enumerate}
+\item Calculer $P(B \cap S)$.
+\item Déterminer la probabilité que le groupe de copains réponde correctement à la
+question posée.
+\item Les évènements $S$ et $B$ sont-ils indépendants?
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B :}
+
+\medskip
+
+Pour participer à ce jeu, on doit payer 5~\euro{} de droit d'inscription. On recevra :
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet$~~] 10 \euro{} si on est interrogé en sciences et que la réponse est correcte ;
+\item[$\bullet$~~] 30 \euro{} si on est interrogé en économie et que la réponse est correcte ;
+\item[$\bullet$~~] rien si la réponse donnée est fausse.
+\end{itemize}
+\setlength\parindent{0cm}
+
+\smallskip
+
+Soit $X$ la variable aléatoire qui, à chaque partie jouée, associe son gain. On appelle gain la différence en euros entre ce qui est reçu et les $5$~\euro{} de droit d'inscription.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer la loi de probabilité de $X$.
+\item Que retourne la fonction Jeu écrite ci-dessous en langage Python
+avec les listes : 
+
+L =[-5~;~5~;~25] et G = [0,5625~;~0,375~;~\np{0,0625}] ?
+
+\begin{center}
+
+\begin{tabularx}{0.4\linewidth}{|X|}\hline
+def \texttt{Jeu(L,G):}\\
+\quad  \texttt{n = len(L)}\\
+\quad \texttt{E = 0}\\
+\quad \texttt{for i in range(n):}\\
+\qquad \texttt{E =E + L[i]*G[i]} \\
+\quad \texttt{return(E)}\\ \hline
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\bigskip

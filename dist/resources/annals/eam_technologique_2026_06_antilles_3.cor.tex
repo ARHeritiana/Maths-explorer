@@ -1,0 +1,148 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_technologique_2026_06_antilles_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}[itemsep = 5mm]
+		\item \textbf{Affirmation 1 : Fausse.}
+
+		On construit rapidement le tableau de signes de $f$ :
+		\begin{center}
+		\begin{tikzpicture}
+			\tkzTabInit[lgt = 3]
+				{$x$/0.85,signe de $x+1$/.85,signe de $x-3$/0.85,signe de $x-5$/0.85,signe de $f(x)$/0.85}
+				{$-\infty$,$-1$,$3$,$5$,$+\infty$}
+				\tkzTabLine{,-,z,+,t,+,t,+, }
+				\tkzTabLine{,-,t,-,z,+,t,+, }
+				\tkzTabLine{,-,t,-,t,-,z,+, }
+				\tkzTabLine{,-,z,+,z,-,z,+, }
+		\end{tikzpicture}
+		\end{center}
+		Donc $f$ est positive sur \mbox{$[-1;3]$}.
+
+		\item \begin{enumerate}
+			\item \textbf{Affirmation 2 : Vraie.}
+
+			Pour tout $x$ réel, on a :\quad \mbox{$h'(x) = -6x+12$},
+
+			donc \quad \mbox{$h'(1) = 6$} : \quad la pente  de la tangente est $6$.
+
+			Donc son équation est du type \quad \mbox{$y = 6x+b$}, \quad où $b$ désigne l'ordonnée à l'origine.
+
+			Comme \quad \mbox{$h(1) = 5$},\quad la tangente doit passer par ce point. On écrit \mbox{$6\times1+b = 5$}, donc \mbox{$b = -1$}.
+
+			L'équation de la tangente en $1$ est effectivement \mbox{$y = 6x-1$}.
+
+			\emph{Remarque :} On peut aussi utiliser directement la formule qui donne l'équation de la tangente : \quad $y = h'(a)(x - a) + h(a)$
+
+			Ici, on veut la tangente au point d'abscisse 1, donc $a = 1$.
+
+			$y = h'(1)(x - 1) + h(1)$.
+
+			En remplaçant les valeurs connues :\quad $y = 6(x - 1) + 5$
+
+			On simplifie : \quad $y = 6x - 6 + 5$\quad soit \quad $y = 6x - 1$.
+
+			\item \textbf{Affirmation 3 : Fausse.}
+
+			Sur $[2 ; +\infty[$, on a : \quad $\begin{aligned}[t]
+				x \geqslant 2
+				&\implies -6x \leqslant -12 \quad \text{car } -6 < 0\\
+				&\implies -6x + 12 \leqslant 0
+			\end{aligned}$
+
+			$h'$ change de signe en 2 : la dérivée de $h$ est négative sur \mbox{$[2;+\infty[$}, $h$ est donc décroissante sur cet intervalle (elle est même strictement décroissante sur l'intervalle, car la dérivée ne s'annule que pour $x = 2$), c'est la stricte décroissance qui garantit que la fonction n'est pas croissante.
+
+			\emph{Remarque :} On peut aussi ici justifier cela sans la fonction dérivée : on sait que la fonction $h$ a un coefficient dominant strictement négatif (c'est $-3$), et donc, par propriété du cours, on sait que la fonction sera d'abord croissante, puis décroissante, avec un changement de variation pour $x = \dfrac{-b}{2a} = \dfrac{-12}{2\times (-3)} = 2$.
+
+			Sans même savoir où la fonction va changer de sens, on peut dire que de toutes façons, sur un intervalle non majoré, la fonction ne peut pas être croissante sur l'intervalle, à cause du coefficient dominant négatif.
+		\end{enumerate}
+
+		\item \textbf{Affirmation 4 : Vraie.}
+
+		Puisque $2$ est une racine de $g$ et que l'axe de symétrie est la droite $x = \np{2.5}$, cela signifie que l'autre racine de $g$ est $3$ : en effet les deux racines sont à la même distance de l'axe de symétrie.
+
+
+		Donc \quad \mbox{$g(x) = (x-2)(x-3)$} \quad et \quad $g(0) = (-2)\times(-3) = 6$.
+
+	\end{enumerate}
+
+\end{document}

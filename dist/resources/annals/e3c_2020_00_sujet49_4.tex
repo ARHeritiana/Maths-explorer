@@ -1,0 +1,129 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet49_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On considère la fonction $f$ définie et dérivable sur $\R$ par 
+
+\[f(x) = (ax + b)\e^{-0,1x}\]
+
+où $a$ et $b$ sont des réels fixés.
+
+La courbe représentative $\mathcal{C}_f$ de la fonction $f$ est donnée ci-dessous, dans un repère orthogonal.
+
+\begin{figure}[b]
+\begin{center}
+\psset{xunit=0.3cm,yunit=0.3cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture*}(-5,-14)(43,24)
+\multido{\n=-4+2}{24}{\psline[linewidth=0.35pt,linecolor=lightgray](\n,-12)(\n,23.4)}
+\multido{\n=-12+2}{18}{\psline[linewidth=0.35pt,linecolor=lightgray](-5.8,\n)(43,\n)}
+\psaxes[linewidth=0.95pt,Dx=10,Dy=10]{->}(0,0)(-5,-12.5)(43.2,24)
+\def\Func{x 4 mul 5 add 2.71828 x 0.1 neg mul  exp mul }
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-3.5}{43}{\Func}
+\psdots[dotstyle=Mul,dotscale=1.9,linecolor=blue](0,5)(4,19)
+\uput[ul](0,5){A}\uput[dl](0,0){O}\uput[ur](4,19){B}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-4}{5.8}{x 3.5 mul 5 add}
+\rput(6,22.5){$\mathcal{T}$}
+\uput[u](25,8.3){\red $\mathcal{C}_f$}
+\end{pspicture*}
+\end{center}
+\end{figure}
+
+On a également représenté la tangente $\mathcal{T}$ à $\mathcal{C}_f$ au point A(0~;~5).
+
+On admet que cette tangente $\mathcal{T}$ passe par le point B(4~;~19).
+\begin{enumerate}
+\item  En exprimant $f(0)$, déterminer la valeur de $b$.
+\item 
+		\begin{enumerate}
+		\item  À l'aide des coordonnées des points A et B, déterminer une équation de la droite $\mathcal{T}$.
+		\item Exprimer, pour tout réel $x$, $f'(x)$ en fonction de $x$ et de $a$ et en déduire que pour tout réel $x$, $f(x)=(4x+5)\e^{-0,1x}$.
+		\end{enumerate}
+\item On souhaite déterminer le maximum de la fonction $f$ sur $\R$.
+	\begin{enumerate}
+		\item  Montrer que pour tout $x\in \R,\  f'(x)=(- 0,4x + 3,5)\e^{-0,1x}$.
+		\item Déterminer les variations de $f$ sur $\R$ et en déduire le maximum de $f$ sur $\R$. 
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

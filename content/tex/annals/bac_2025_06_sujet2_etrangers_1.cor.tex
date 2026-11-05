@@ -1,0 +1,100 @@
+\medskip
+
+\textbf{Partie A}
+
+\begin{enumerate}
+	\item $u_1= u_0\times 0,93= 6 \times 0,93 = 5,58$.
+	\item $(u_n)$ est une suite géométrique de premier terme $u_0 = 6$ et de raison $q=0,93$ donc pour tout entier naturel $n$,\: $u_n =u_0\times q^n=6\times 0,93^n$.
+	\item La raison $q$ vérifiant $q \in ]-1~;~1[$, on sait que $\ds \lim\limits_{n \to +\infty} 0,93^n = 0$ donc $\ds \lim\limits_{n \to +\infty} u_n = 0$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item Pour tout entier naturel $n$, $v_{n+1} = -0,05v_n^2+1,1v_n$.
+
+En particulier $v_1= - 0,05\times 6^2+ 1,1\times 6 = - 1,8 + 6,6 = 4,8$.
+	
+Il y aura donc \np{4800} individus au 1\up{er} janvier 2026.
+\end{enumerate}
+
+Soit $f$ la fonction définie sur l'intervalle $[0~;~+\infty[$ par$f(x) = -0,05x^2 + 1,1x$.
+
+\begin{enumerate}[resume]
+	\item La fonction $f$ est dérivable donc continue sur $[0~;~+\infty[$.
+	
+$\forall x \in [0~;~+\infty[$, $f'(x) = -0,1x + 1,1$.
+	
+$f'(x)\geqslant 0 \iff -0,1x + 1,1\geqslant 0 \iff x\leqslant \dfrac{1,1}{0,1} \iff x \leqslant 11$.
+	
+Donc la fonction $f$ est croissante sur l'intervalle $[0~;~11]$.
+	\item Nous savons que pour tout entier naturel $n$, $u_{n+1}=f(u_n)$. Montrons par récurrence que : $2 \leqslant v_{n+1} \leqslant v_n \leqslant 6$.
+	\begin{itemize}
+		\item\textbf{Initialisation :} $v_0 = 6$ et $v_1 = 4,8$ donc $2 \leqslant v_{1} \leqslant v_0 \leqslant 6$. La proposition est vraie au rang $0$.
+		\item\textbf{Hérédité :} on suppose que pour $n \in \N$,\: $2 \leqslant v_{n+1} \leqslant v_n \leqslant 6$.
+
+Comme $v_{n}\in [0~;~11]$, $v_{n+1}\in [0~;~11]$, et que $f$ est croissante sur $[0~;~11]$ d'après le résultat précédent, les images des quatre nombres de l'encadrement sont rangées dans le même ordre croissant, soit 
+
+$f(2) \leqslant f[v_{n+1}] \leqslant f[v_{n}] \leqslant f(6) \iff 2 \leqslant v_{n+2} \leqslant v_{n_1} \leqslant 4,8$.
+
+On a donc $2 \leqslant v_{n+2} \leqslant v_{n+1}  \leqslant 6$. La proposition est vraie au rang $n + 1$.
+		\item \textbf{Conclusion :} La proposition est vraie au rang $n = 0$ et si elle est vraie au rang $n \in \N$, elle l'est aussi au rang $n + 1$. D'après l'axiome de récurrence, pour tout entier naturel $n$,
+	
+\[2 \leqslant v_{n+1} \leqslant v_n \leqslant 6.\]
+	\end{itemize}
+\item Le résultat précédent montre deux résultats : pour tout entier naturel $n$,
+\begin{itemize}
+	\item $v_{n+1} \leqslant v_n$ donc la suite $(v_n)$ est décroissante ;
+	\item $2 \leqslant v_{n}$ donc la suite $(v_n)$ est minorée par 2.
+	\end{itemize}
+	
+D'après le théorème de la convergence monotone, la suite $(v_n)$ converge vers une limite $\ell \geqslant 2$.
+	\item \begin{enumerate}
+		\item La fonction $f$ est continue,  $(f\left([2~;~6]\right) \subset [2~;~6]$) et la suite $(v_n)$ converge, donc d'après le théorème du point fixe, $\ell$ est l'unique solution sur $[2~;~6]$ de l'équation $f(x) = x$.
+		\item On résout l'équation $\ell=f(\ell)$ :
+		
+		$\ell=f(\ell) \iff \ell=-0,05\ell^2+1,1\ell \iff 0,05\ell^2-0,1 \ell=0 \iff 0,05\ell(\ell-2)=0$
+		
+		On obtient deux solutions : $\ell=0 \notin [2~;~6]$ et $\ell=2$. Donc $\ds \lim\limits_{n \to +\infty} v_n=2$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie C}
+
+\medskip
+
+\begin{enumerate}
+	\item En milieu A, on utilise la suite $(u_n)$. On cherche à résoudre $u_n<3$.
+	
+	$u_n<3 \iff 6\times 0,93^n<3 \iff 0,93^n <\dfrac{1}{2}$. La fonction $x\mapsto \ln(x)$ est croissante sur $]0~;~+\infty[$ donc $\begin{gathered}0,93^n <\dfrac{1}{2} \iff \ln\left(0,93^n\right)<\ln\left(\dfrac{1}{2} \right) \iff n \times \ln(0,93) <-\ln(2)\\ \iff n>-\dfrac{\ln(2)}{\ln(0,93)}\end{gathered}$ car $\ln(0,93) < 0$.
+	
+Or $-\dfrac{\ln(2)}{\ln(0,93)}\approx 9,55$ donc $n\geqslant 10$ soit en 2035.
+
+À partir de 2035, le nombre d'individus en milieu A sera inférieur à \np{3000}.
+	\item On sait que $(v_n)$ est décroissante. Avec la calculatrice, on trouve $v_5\approx 3,14$ et 
+	
+$v_6\approx 2,96$. Donc pour $n\geqslant 6$.
+	
+Ce sera donc à partir de 2031.
+	\item La suite $(u_n)$ converge vers 0, et $(v_n)$ converge vers 2. Les deux suites étant décroissantes en partant de $u_0 = v_0=6$, il existera un rang $N$ tel que $v_N > u_N$.
+	\item Le script complété :
+	\begin{center}
+		\begin{tabular}{|l|}\hline
+			n=0 \\
+			u = 6\\
+			v = 6 \\
+			\textbf{while} \textbf{u >= v} :\\
+			\qquad u = \textbf{0.93*u}\\
+			\qquad v= \textbf{-0.05*v**2+1.1*v}\\
+			\qquad n = n+1\\
+			\textbf{print} (2025 + n)\\ \hline
+		\end{tabular}
+	\end{center}
+	\item Le script affiche 2038. Avec la calculatrice : $u_{12} \approx 2,51$ et $v_{12}\approx 2,41$ ; $u_{13} \approx 2,34$ et $v_{13}\approx 2,36$. Donc $N = 13$.
+\end{enumerate}

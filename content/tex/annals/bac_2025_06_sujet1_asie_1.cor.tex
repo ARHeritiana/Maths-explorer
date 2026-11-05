@@ -1,0 +1,72 @@
+\medskip
+
+\textbf{Affirmation 1 : Fausse.}
+
+Le vecteur $ \vect{\mathrm{AB}} $ a pour coordonnées $ \vect{\mathrm{AB}}\begin{pmatrix} 1 \\ 0 \\ 0\end{pmatrix} $ et $ \vect{\mathrm{AC}} $ a pour coordonnées : $ \vect{\mathrm{AC}}\begin{pmatrix} \alpha - 1 \\2\\\alpha \end{pmatrix} $.
+
+Quel que soit le réel $\alpha$, ces coordonnées ne sont pas proportionnelles, donc les vecteurs ne sont pas colinéaires, et ils définissent bien un plan.
+
+Cependant, le repère étant orthonormé, on peut utiliser les coordonnées pour calculer un produit scalaire : \quad
+$ \vect{\mathrm{AC}}\cdot\vect{\jmath} = (\alpha-1)\times 0 + 2 \times 1 + \alpha \times 0 = 2$.
+
+On constate que les vecteurs $ \vect{\jmath} $ et $ \vect{\mathrm{AC}} $ ne sont pas orthogonaux, donc $ \vect{\jmath} $ n'est pas un vecteur normal au plan (ABC) : cette partie de l'affirmation est donc fausse.
+
+\medskip
+
+\textbf{Affirmation 2 : Fausse.}
+
+En interprétant le système de représentation paramétrique, la droite $(d)$ est dirigée par $\vect{u} \begin{pmatrix}1 \\ 2  \\ -1 \end{pmatrix}$. On rappelle : $ \vect{\mathrm{AC}}\begin{pmatrix} \alpha - 1 \\2\\\alpha \end{pmatrix} $.
+
+Pour que les droites soient parallèles, il faudrait que les vecteurs $ \vect{u} $ et $ \vect{\mathrm{AC}} $ soient proportionnels, or, ici, ils ont la même ordonnée, donc ils devraient être égaux.
+
+Or, si on choisit $\alpha$ égal à 1, les altitudes seront égales, mais pas les abscisses, si on choisit $\alpha$ égal à 2, alors les abscisses seront égales, mais pas les altitudes, et, pour tout autre réel $\alpha$, les abscisses et altitudes seront différentes entre les deux vecteurs.
+
+Quel que soit le réel $\alpha$, les vecteurs $ \vect{u} $ et $ \vect{\mathrm{AC}} $ sont donc non colinéaires, et les droites ne sont pas parallèles : l'affirmation est donc fausse.
+
+\medskip
+
+\textbf{Affirmation 3 : Vraie.}
+
+O étant l'origine du repère, les coordonnées des vecteurs $ \vect{\mathrm{OA}} $ sont celles du point A, donc celles de $ \vect{\mathrm{AO}} $ sont : $ \begin{pmatrix}-1\\-1\\0\end{pmatrix}$. On rappelle $ \vect{\mathrm{AB}}\begin{pmatrix} 1 \\ 0 \\ 0\end{pmatrix} $.
+
+On a donc, dans le repère orthonormé : \quad$ \vect{\mathrm{AO}} \cdot \vect{\mathrm{AB}} = -1 \times 1 + (-1) \times 0 + 0 \times 0 = -1$.
+
+Par ailleurs, on a : \quad $ \mathrm{AO} = \sqrt{(-1)^2 + (-1)^2 + 0^2} = \sqrt{2} $, \quad et \quad $ \mathrm{AB} = \sqrt{1^2 + 0^2 + 0^2} = \sqrt{1} = 1$.
+
+On a donc aussi : \quad $ \vect{\mathrm{AO}} \cdot \vect{\mathrm{AB}} = \mathrm{AO} \times \mathrm{AB} \times \cos \left( \widehat{\mathrm{OAB}}\right) = \sqrt{2} \cos \left( \widehat{\mathrm{OAB}}\right)$.
+
+En égalant les deux expressions du produit scalaire, il vient :
+\quad $-1 = \sqrt{2}\cos \left(\widehat{\mathrm{OAB}}\right)$,
+
+ce qui équivaut à :\quad $\cos \left(\widehat{\mathrm{OAB}}\right) = \dfrac{-1}{\sqrt{2}} = \dfrac{-\sqrt{2}}{2}$.
+
+On reconnaît ici l'opposé du cosinus d'un angle de $ \dfrac{\pi}{4} $, ce qui est donc le cosinus d'un angle de mesure $\pi - \dfrac{\pi}{4} = \dfrac{3\pi}{4}$, soit effectivement 135\ensuremath{^\circ}.
+
+\medskip
+
+\textbf{Affirmation 4 : Fausse.}
+
+Avec les coordonnées données pour H et la représentation paramétrique de $(d)$, pour avoir $x_\mathrm{H} = 1 + t$, il faut avoir $t = 0$, et donc les ordonnées et altitudes ne correspondront pas : le point H n'est pas sur la droite $(d)$, donc il n'est pas le projeté orthogonal de A sur $(d)$.
+
+\medskip
+
+
+\textbf{Affirmation 5 : Vraie}
+
+Soit $t$ un réel quelconque et $M_t$ le point de paramètre $t$ sur la droite $(d)$.
+
+La distance $\mathrm{O}M_t$ est donnée par :
+
+$\mathrm{O}M_t = \sqrt{(1 + t)^2 + (2t)^2 + (-t)^2} = \sqrt{1 + 2t + t^2 + 4t^2 + t^2} = \sqrt{6t^2 + 2t + 1} $.
+
+On a donc : \quad $ \begin{aligned}[t] \mathrm{O}M_t = 1
+	&\iff \sqrt{6t^2 + 2t + 1} = 1\\
+	&\iff 6t^2 + 2t + 1 = 1 \\%\quad \text{car une distance est toujours positive}\\
+	&\iff 6t^2 + 2t = 0\\
+	&\iff 2t(3t + 1) = 0\\
+	&\iff 2t = 0 \quad \text{ou} \quad 3t + 1 = 0\\
+	&\iff t = 0 \quad \text{ou} \quad t = -\dfrac{1}{3}\\
+\end{aligned} $
+
+L'équation a deux solutions, il y a donc exactement deux points de la droite $(d)$ qui sont sur la sphère : les points de paramètre 0 et $ -\dfrac{1}{3} $, l'affirmation est vraie.
+\medskip

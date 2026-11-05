@@ -1,0 +1,182 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_11_sujet2_amsud_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Voici la répartition des principaux groupes sanguins des habitants de France:
+
+\begin{center}
+\psset{xunit=1.2cm,yunit=0.25cm}
+\begin{pspicture}(8.5,41)
+\psaxes[linewidth=1.25pt,Dx=10,Dy=100](0,0)(0,0)(8.5,40)
+\uput[d](1,0){A+}\uput[d](2,0){O+}\uput[d](3,0){B+}\uput[d](4,0){A$-$}
+\uput[d](5,0){O$-$}\uput[d](6,0){AB+}\uput[d](7,0){B$-$}\uput[d](8,0){AB$-$}
+\multido{\n=0+5}{9}{\uput[l](0,\n){\n\,\%}}
+\psframe[fillstyle=solid,fillcolor=lightgray](0.8,0)(1.2,38.2)\uput[u](1,38.2){38,2\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](1.8,0)(2.2,36.5)\uput[u](2,36.5){36,5\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](2.8,0)(3.2,7.7)\uput[u](3,7.7){7,7\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](3.8,0)(4.2,6.8)\uput[u](4,6.8){6,8\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](4.8,0)(5.2,6.5)\uput[u](5,6.5){6,5\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](5.8,0)(6.2,2.5)\uput[u](6,2.5){2,5\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](6.8,0)(7.2,1.4)\uput[u](7,1.4){1,4\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](7.8,0)(8.2,0.4)\uput[u](8,0.4){0,4\,\%}
+\end{pspicture}
+
+\medskip
+
+\emph{\scriptsize Source : https://fr.statista.com!statistiques/6 56036/ groupes-sanguins-repartition-rh- france/}
+
+\end{center}
+
+A+, O+, B+, A$-$, O$-$, AB+, B$-$ et AB$-$ sont les différents groupes sanguins combinés aux rhésus.
+
+Par exemple: A + est le groupe sanguin A de rhésus +.
+
+Une expérience aléatoire consiste à choisir une personne au hasard dans la population française et à déterminer son groupe sanguin et son rhésus.
+
+Dans l'exercice, on adopte les notations du type :
+
+$A$ + est l'évènement \og la personne est de groupe sanguin A et de rhésus + \fg 
+
+$A -$ est l'évènement \og la personne est de groupe sanguin A et de rhésus $-$ \fg
+
+$A$ est l'évènement \og la personne est de groupe sanguin A \fg
+
+\medskip
+
+Les parties 1 et 2 sont indépendantes.
+
+
+\textbf{Partie 1}
+
+\medskip
+
+On note $Rh$ + l'évènement \og La personne est de rhésus positif \fg.
+
+\begin{enumerate}
+\item Justifier que la probabilité que la personne choisie soit de rhésus positif est égale à 0,849.
+\item Démontrer à l'aide des données de l'énoncé que $P_{Rh+}(A) = 0,450$ à 0,001 près.
+\item Une personne se souvient que son groupe sanguin est AB mais a oublié son rhésus.
+
+Quelle est la probabilité que son rhésus soit négatif ? Arrondir le résultat à 0,001 près.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2}
+
+\medskip
+
+Dans cette partie, les résultats seront arrondis à $0,001$ près.
+
+\medskip
+
+Un donneur universel de sang est une personne de groupe sanguin O et de rhésus négatif. On rappelle que 6,5\,\% de la population française est de groupe O$-$.
+
+\medskip
+
+\begin{enumerate}
+\item On considère $50$ personnes choisies au hasard dans la population française et on note $X$ la variable aléatoire qui compte le nombre de donneurs universels.
+	\begin{enumerate}
+		\item Déterminer la probabilité que 8 personnes soient des donneurs universels. Justifier votre réponse.
+		\item On considère la fonction ci-dessous nommée \texttt{proba} d'argument k écrite en langage Python.
+		
+\begin{center}
+\begin{tabular}{|l|}\hline
+def proba(k):\\
+\quad p=0\\
+\quad for i in range(k+1):\\
+\quad \quad p = p + binomiale(i,50,0.065)\\ 
+\quad return p\\ \hline
+\end{tabular}
+\end{center}
+Cette fonction utilise la fonction binomiale d'argument $i, n$ et $p$, créée pour l'occasion, qui renvoie la valeur de la probabilité $P(X = i)$ dans le cas où $X$ suit une loi binomiale de paramètres $n$ et $p$.
+
+Déterminer la valeur numérique renvoyée par la fonction \texttt{proba} lorsqu'on saisit \texttt{proba(8)} dans la console Python. Interpréter ce résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\item Quel est le nombre minimal de personnes à choisir au hasard dans la population française pour que la probabilité qu'au moins une des personnes choisies soit donneur universel, soit supérieure à $0,999$.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

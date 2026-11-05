@@ -1,0 +1,171 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet1_polynesie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Les parties {\rm A} et {\rm B} peuvent être traitées indépendamment}
+
+\medskip
+
+Les utilisateurs de vélo d'une ville sont classés en deux catégories disjointes:
+
+\begin{itemize}
+\item[$\bullet~~$]ceux qui utilisent le vélo dans leurs déplacements professionnels ;
+\item[$\bullet~~$]ceux qui utilisent le vélo uniquement pour leurs loisirs.
+\end{itemize}
+
+\medskip
+
+Un sondage donne les résultats suivants:
+
+\begin{itemize}
+\item[$\bullet~~$]21\,\% des utilisateurs ont moins de 35 ans.
+
+Parmi eux, 68\,\% utilisent leur vélo uniquement pour leurs loisirs alors que les autres l'utilisent dans leurs déplacements professionnels ;
+\item[$\bullet~~$]parmi les 35 ans ou plus, seuls 20\,\% utilisent leur vélo dans leurs déplacements professionnels, les autres l'utilisent uniquement pour leurs loisirs.
+\end{itemize}
+
+On interroge au hasard un utilisateur de vélo de cette ville.
+
+Dans tout l'exercice on considère les évènements suivants:
+
+\begin{itemize}
+\item[$\bullet~~$]$J$ : \og la personne interrogée a moins de 35 ans \fg{} ;
+\item[$\bullet~~$]$T$ : \og la personne interrogée utilise le vélo dans ses déplacements professionnels \fg{} ;
+\item[$\bullet~~$]$\overline{J}$ et $\overline{T}$ sont les évènements contraires de $J$ et $T$.
+\end{itemize}
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item Calculer la probabilité que la personne interrogée ait moins de $35$~ans et utilise son vélo dans ses déplacements professionnels.
+
+\emph{On pourra s'appuyer sur un arbre pondéré.}
+\item Calculer la valeur exacte de la probabilité de $T$.
+\item On considère à présent un habitant qui utilise son vélo dans ses déplacements professionnels.
+
+Démontrer que la probabilité qu'il ait moins de 35 ans est $0,30$ à $10^{-2}$ près.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+Dans cette partie, on s'intéresse uniquement aux personnes utilisant leur vélo dans leurs déplacements professionnels.
+
+\medskip
+
+On admet que 30\,\% d'entre elles ont moins de $35$~ans.
+
+On sélectionne au hasard parmi elles un échantillon de $120$~personnes auxquelles on va soumettre un questionnaire supplémentaire. 
+
+On assimile la sélection de cet échantillon à un tirage aléatoire avec remise.
+
+\medskip
+
+On demande à chaque individu de cet échantillon son âge.
+
+\medskip
+
+X représente le nombre de personnes de l'échantillon ayant moins de $35$~ans.
+
+\medskip
+
+\emph{Dans cette partie, les résultats seront arrondis à $10^{-3}$ près.}
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer la nature et les paramètres de la loi de probabilité suivie par $X$.
+\item Calculer la probabilité qu'au moins $50$ utilisateurs de vélo parmi les $120$ aient moins de $35$~ans.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

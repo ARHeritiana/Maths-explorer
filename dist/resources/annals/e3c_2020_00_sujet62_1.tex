@@ -1,0 +1,145 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet62_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Ce QCM comprend 5 questions indépendantes.}
+
+\emph{Pour chacune d'elles, une seule des réponses proposées est exacte.}
+
+\emph{Indiquer pour chaque question sur la copie la lettre correspondant à la réponse
+choisie. Aucune justification n'est demandée.}
+
+\emph{Chaque réponse correcte rapporte $1$ point. Une réponse incorrecte ou une absence de
+réponse n'apporte, ni ne retire de point.}
+
+\medskip
+
+\begin{enumerate}
+\item  Soit $c$ un nombre réel strictement supérieur à 1. Sur l'ensemble des nombres réels, la
+fonction polynôme $f$ définie par $f(x) = x^2 + 2x + c$.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~}  change de signe exactement 2 fois &\textbf{b.~~}change de signe exactement une fois &\textbf{c.~~}est toujours positive& \textbf{d.~~}est toujours négative .
+\end{tabularx}
+\end{center}
+\item Si $x$ est un nombre réel appartenant à l'intervalle $[ - \pi ; 0] $ tel que $\cos x =\frac{3}{5}$
+ alors $\sin x$ a pour valeur 
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $\dfrac{4}{5}$ &\textbf{b.~~} $-\dfrac{4}{5}$&\textbf{c.~~}$ -\dfrac{2}{5}$& \textbf{d.~~}On ne peut pas savoir .
+\end{tabularx}
+\end{center}
+
+\item Le quadrilatère ABCD est un carré. On a :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $\vv{AB}\cdot\vv{AD}= 0$ &\textbf{b.~~} $\vv{AB}\cdot\vv{AC}= 0$&\textbf{c.~~}$ \vv{AB}\cdot\vv{AB}= 0$& \textbf{d.~~} $\vv{AB}\cdot\vv{DC} = 0$.
+\end{tabularx}
+\end{center}
+
+
+\item La droite d'équation $2x - y + 1 = 0$ coupe l'axe des abscisses au point A de
+coordonnées :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $A(0~;~1)$ &\textbf{b.~~} $A\left(\frac{1}{2}~;~0\right)$&\textbf{c.~~}$A(0~;~- 1)$& \textbf{d.~~} $A(-\frac{1}{2}~;~0)$.
+\end{tabularx}
+\end{center}
+
+\item Pour tout réel $x$, $\frac{\e^x}{ \e^{-x}}$ est égal à
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $- 1$ &\textbf{b.~~} $ \e^{-2x}$&\textbf{c.~~}$(\e^x)2$& \textbf{d.~~}$\e^0$.
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\end{document}

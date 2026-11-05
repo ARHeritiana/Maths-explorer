@@ -1,0 +1,105 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|X|}\hline
+\textbf{Principaux domaines abordés :} Probabilités\\ \hline
+\end{tabularx}
+
+\medskip
+
+Dans une station de ski, il existe deux types de forfait selon l'âge du skieur :
+
+\begin{itemize}
+\item un forfait JUNIOR pour les personnes de moins de 25 ans ;
+\item un forfait SENIOR pour les autres.
+\end{itemize}
+
+ Par ailleurs, un usager peut choisir, en plus du forfait correspondant à son âge l'\emph{option coupe-file} qui permet d'écourter le temps d'attente aux remontées mécaniques.
+
+On admet que:
+\begin{itemize}
+\item[$\bullet~~$] 20\,\% des skieurs ont un forfait JUNIOR ;
+\item[$\bullet~~$] 80\,\% des skieurs ont un forfait SENIOR ;
+\item[$\bullet~~$] parmi les skieurs ayant un forfait JUNIOR, 6\,\% choisissent l'option coupe-file ;
+\item[$\bullet~~$] parmi les skieurs ayant un forfait SENIOR, 12,5\,\% choisissent l'option coupe-file.
+\end{itemize}
+
+On interroge un skieur au hasard et on considère les évènements :
+
+\begin{itemize}
+\item[$\bullet~~$] $J$ : \og le skieur a un forfait JUNIOR \fg ;
+\item[$\bullet~~$] $C$ : \og le skieur choisit l'option coupe-file \fg.
+\end{itemize}
+
+\medskip
+
+\emph{Les deux parties peuvent être traitées de manière indépendante}
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item ~
+
+\begin{center}
+\pstree[treemode=R, nodesepB=3pt,levelsep=3cm]{\TR{}}
+{
+\pstree{\TR{$J~~$}\taput{0,2}}
+	{\TR{$C$} \taput{0,06}
+	\TR{$\overline{C}$}\tbput{0,94}
+	}
+	\pstree{\TR{$\overline{J}~~$}\tbput{0,8}}
+	{\TR{$C$} \taput{0,125}
+	\TR{$\overline{C}$}\tbput{0,875}
+	}
+}
+\end{center}
+\item 
+$P(J \cap C) = P(J) \times P_J(C) = 0,2 \times 0,06 = 0,012$.
+
+La probabilité de rencontrer un skieur de moins de 25 ans ayant le coupe-fil est égale à 0,012
+\item 
+On a aussi $P\left( \overline{J} \cap C\right) = P\left(\overline{J}\right) \times P_{\overline{J}}(C) = 0,8 \times 0,125 = 0,1$.
+
+D'après la loi des probabilités totales ; 
+
+$P(C) = P(J \cap C) + P\left( \overline{J} \cap C\right)  = 0,012 + 0,1 = 0,112$.
+\item 
+
+Il faut trouver $P_{C}\left( \overline{J}\right) = \dfrac{P(C \cap P\left( \overline{J}\right)}{P(C)} = \dfrac{0,1}{0,112} \approx \np{0,8928}$, soit 0,893 au millième près.
+\item 
+La probabilité d'interroger au hasard un skieur de moins de 25 ans ayant acheté le coups-file est égale à 0,012 sur une probabilité totale de 0,112 ce qui représente $\dfrac{0,012}{0,112} \approx 0,107$, soit moins de 11\,\%, donc moins de 15\,\% des titulaires du coups-file..
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On rappelle que la probabilité qu'un skieur choisisse l'option coupe-file est égale à 0,112.
+
+On considère un échantillon de $30$ skieurs choisis au hasard.
+
+Soit $X$ la variable aléatoire qui compte le nombre des skieurs de l'échantillon ayant
+choisi l'option coupe-file.
+
+\medskip
+
+\begin{enumerate}
+\item 
+On suppose qu'il y a assez de skieurs pour que chaque skieur ait une probabilité d'avoir choisi le coupe-file de 0,112 et que ces tirages sont indépendants. La variable aléatoire $X$ suit donc une loi binomiale de paramètres $n = 30$ et $p = 0,112$. 
+\item 
+On a $P(X \geqslant 1) = 1 - P(X = 0) = 1 - \binom{30}{0} \times 0,112^0 \times (1 - 0,112)^{30} = 1 - 0,888^{30} \approx \np{0,9716}$ soit 0,972 au millième près.
+\item 
+On a $P(X \leqslant 1) = P(X = 0) + P(X = 1) = 0,88^{30} + 30 \times 0,112 \times 0,888^{29} \approx \np{1355}$, soit 0136 au millième près.
+
+\item 
+On sait que E$(X) = n \times p = 30 \times 0,112 = 3,36$.
+
+En moyenne sur 30 skieurs rencontrés à peu près 3 ont pris le coupe-file.
+\end{enumerate}
+
+\bigskip

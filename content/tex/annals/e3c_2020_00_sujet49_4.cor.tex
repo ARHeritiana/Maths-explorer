@@ -1,0 +1,45 @@
+\( f(x) = (ax + b)\e^{-0{,}1x} \).
+
+\subsection*{1.}
+
+On calcule \( f(0) = (0 + b)\e^{-0{,}1 \times 0} = b\e^0 = b = 5 \) puisque \( A(0\,;\,5) \in \mathcal{C}_f \).
+
+\subsection*{2.}
+
+\paragraph{a.} Pour l'équation réduite de \( (AB) \), l'ordonnée à l'origine est 5 et le coefficient directeur de la droite est égal à :
+\[
+\dfrac{19 - 5}{4 - 0} = \dfrac{14}{4} = 3{,}5.
+\]
+L'équation réduite de la droite \( (AB) \) est donc \( y = 3{,}5x + 5 \).
+
+\paragraph{b.} On a \( f(x) = (ax + 5) \e^{-0{,}1x} \), \( f \) est un produit de fonctions dérivables sur \( \mathbb{R} \), donc en dérivant comme un produit \( ( (uv)' = u'v + uv' ) \) :
+\begin{align*}
+f'(x) &= a\e^{-0{,}1x} - 0{,}1(ax + 5)\e^{-0{,}1x} \\
+&= \e^{-0{,}1x} [a - 0{,}1(ax + 5)] \\
+&= \e^{-0{,}1x}(a - 0{,}1ax - 0{,}5).
+\end{align*}
+Or on sait que le coefficient directeur de la tangente à la courbe au point d'abscisse 0 est le nombre dérivé \( f'(0) \). Donc :
+\[
+f'(0) = \e^0(a - 0 - 0{,}5) = a - 0{,}5 = 3{,}5, \text{ d'où on déduit } a = 3{,}5 + 0{,}5 = 4.
+\]
+On a donc sur \( \mathbb{R} \), \( f(x) = (4x + 5)\e^{-0{,}1x} \).
+
+\subsection*{3.}
+
+\paragraph{a.} Avec l'expression trouvée pour \( f'(x) \) ci-dessus et en remplaçant \( a \) par 4, on obtient :
+\[
+f'(x) = \e^{-0{,}1x}(4 - 0{,}1 \times 4x - 0{,}5) = (-0{,}4x + 3{,}5)\e^{-0{,}1x}.
+\]
+
+\paragraph{b.} On sait que, quel que soit \( x \in \mathbb{R} \), \( \e^{-0{,}1x} > 0 \), donc le signe de \( f'(x) \) est celui de \( -0{,}4x + 3{,}5 \).
+\begin{align*}
+&-0{,}4x + 3{,}5 > 0  \\
+\iff &3{,}5 > 0{,}4x \\
+\iff &\dfrac{3{,}5}{0{,}4} > x \\
+\iff &x < 8{,}75
+\end{align*}
+\( f \) est croissante sur \( ] -\infty \,; 8{,}75[ \), puis décroissante sur \( ]8{,}75 \,; +\infty[ \), avec un maximum en :
+\[
+f(8{,}75) = (4 \times 8{,}75 + 5)\e^{-0{,}1 \times 8{,}75} \approx 16{,}675.
+\]
+(ce que confirme la figure)

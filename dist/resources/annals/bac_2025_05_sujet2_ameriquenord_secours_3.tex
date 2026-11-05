@@ -1,0 +1,173 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_05_sujet2_ameriquenord_secours_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Dans cet exercice, les réponses seront arrondies à $10^{-4}$ près.
+
+\bigskip
+
+Durant la saison hivernale, la circulation d'un virus a entraîné la contamination de $2\,\%$ de la population d'un pays. Dans ce pays, $90\,\%$ de la population a été vaccinée contre ce virus.
+
+On constate que $62\,\%$ des personnes contaminées avaient été vaccinées.
+
+
+\bigskip
+
+On interroge au hasard une personne, et on note les évènements suivants :
+
+\begin{description}
+\item[ ] $C$ : \og la personne a été contaminée\fg{}
+\item[ ] $V$ : \og la personne a été vaccinée\fg{}.
+\end{description}
+
+Les évènements contraires des évènements $C$ et $V$ sont notés respectivement $\overline{C}$ et $\overline{V}$.
+
+\medskip
+
+\begin{enumerate}
+\item À partir de l'énoncé, donner, sans calcul, les probabilités $P(C)$, $P(V)$ et 
+la probabilité conditionnelle $P_C(V)$.
+\item
+	\begin{enumerate}
+		\item Calculer $P(C \cap V)$.
+		\item En déduire $P\left(\overline{C} \cap V\right)$.
+	\end{enumerate}
+\item Recopier l'arbre des probabilités ci-dessous et le compléter.
+
+\begin{center}
+\begin{tikzpicture}[xscale=1,yscale=1,baseline={(R.base)}]
+
+\tikzstyle{fleche}=[->,>=latex,thick]
+\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+
+\def\DistanceInterNiveaux{3}
+\def\DistanceInterFeuilles{0.8}
+
+\def\NiveauA{(0)*\DistanceInterNiveaux}
+\def\NiveauB{(1)*\DistanceInterNiveaux}
+\def\NiveauC{(2)*\DistanceInterNiveaux}
+\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+
+\node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {};
+\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$C$};
+\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$V$};
+\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{V}$};
+\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\overline{C}$};
+\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$V$};
+\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{V}$};
+
+\draw[fleche] (R.east)--(Ra.west);
+\draw[fleche] (Ra.east)--(Raa.west);
+\draw[fleche] (Ra.east)--(Rab.west);
+\draw[fleche] (R.east)--(Rb.west);
+\draw[fleche] (Rb.east)--(Rba.west);
+\draw[fleche] (Rb.east)--(Rbb.west);
+\end{tikzpicture}
+\end{center}
+
+\item Calculer $P_V(C)$ et interpréter le résultat dans le contexte de l'exercice.
+\item Déterminer si les affirmations suivantes sont vraies ou fausses en justifiant votre réponse.
+	\begin{enumerate}
+		\item \og Parmi les personnes non contaminées, il y a dix fois plus de personnes vaccinées que de personnes non vaccinées.\fg
+
+		\item \og Plus de 98\,\% de la population vaccinée n'a pas été contaminée.\fg{}
+	\end{enumerate}
+\item On s'intéresse à un échantillon de $20$ personnes choisies au hasard dans la population.
+
+La population du pays est assez importante pour qu'on puisse assimiler ce choix à des tirages successifs avec remise.
+
+On note $X$ la variable aléatoire qui à chaque tirage associe le nombre de personnes contaminées.
+
+\emph{On rappelle que, pour une personne choisie au hasard, la probabilité d'être contaminée est} $p = 0,02$.
+	\begin{enumerate}
+		\item Quelle est la loi suivie par la variable aléatoire $X$ ? Justifier et donner ses paramètres.
+		\item Calculer, en rappelant la formule, la probabilité que 4 personnes exactement soient contaminées dans ce groupe de 20 personnes.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

@@ -1,0 +1,161 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet1_etrangers_groupe1_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+\item Dans le repère $\big(\mathrm{A}~;~\vect{i},\vect{j},\vect{k}\big)$, on a les coordonnées suivantes pour les sommets du prisme droit :
+
+	\hfill~A$(0~;~0~;~0)$ \hfill B$ (4~;~0~;~0) $ \hfill C$(4~;~4~;~0)$ \hfill D$(0~;~4~;~0)$\hfill~
+
+	\hfill~E$(0~;~0~;~8)$ \hfill F$ (4~;~0~;~4) $ \hfill G$(4~;~4~;~4)$ \hfill H$(0~;~4~;~8)$\hfill~
+
+	I étant le milieu de [EF], on a I$\left(\dfrac{x_\mathrm{E}+x_\mathrm{F}}{2}~;~\dfrac{y_\mathrm{E}+y_\mathrm{F}}{2}~;~\dfrac{z_\mathrm{E}+z_\mathrm{F}}{2}\right)$
+	, soit I$(2~;~0~;~6)$.
+
+	J étant le milieu de [AE], on a de même : J$(0~;~0~;~4)$.
+
+\item 
+	\begin{enumerate}
+		\item Si le plan est nommé (IGJ), cela signifie que les trois points I, G et J définissent le plan, et donc sont non alignés.
+
+		On a : $\vect{\mathrm{IG}}\begin{pmatrix} x_\mathrm{G}-x_\mathrm{I}\\y_\mathrm{G}-y_\mathrm{I}\\z_\mathrm{G}-z_\mathrm{I} \end{pmatrix} = \begin{pmatrix} 2\\4\\-2\end{pmatrix}$ \quad et de même : $\vect{\mathrm{IJ}} \begin{pmatrix} -2\\0\\-2\end{pmatrix}$ .
+
+		Comme le repère est orthonormé, on peut calculer les produits scalaires à l'aide des coordonnées :
+
+\begin{itemize}
+\item $ \vect{n}\cdot \vect{\mathrm{IG}} = -1\times 2 + 1 \times 4 + 1 \times (-2) = -2 + 4-2 = 0$ : $\vect{n}$ est orthogonal à $ \vect{\mathrm{IG}} $.
+\item $ \vect{n}\cdot \vect{\mathrm{IJ}} = -1\times (-2) + 1 \times 0 + 1\times (-2) = 2 + 0-2 = 0$ : $\vect{n}$ est orthogonal à $ \vect{\mathrm{IJ}} $.
+\end{itemize}
+
+Ainsi, $\vect{n}$ est orthogonal à deux vecteurs non colinéaires du plan (IGJ) : c'est donc un vecteur normal au plan.
+
+	\item Une équation cartésienne d'un plan dont $ \vect{n} $ est un vecteur normal est de la forme : \linebreak$-1\times x + 1 \times y + 1\times z + d =0$, soit $-x+y+z+d=0$, où $d$ est un réel quelconque.
+
+Comme G est un point du plan (IGJ), on en déduit que la constante $d$ dans ce cas doit être telle que :
+
+$\begin{aligned} -x_\mathrm{G} +y_\mathrm{G}+z_\mathrm{G} +d=0 &\iff -4+4+4+d = 0\\&\iff d = -4\\ \end{aligned}$
+
+Une équation de (IGJ) est donc : $-x + y + z - 4 = 0$.
+	\end{enumerate}
+\item Si $d$ est perpendiculaire à (IGJ), alors elle est dirigée par $\vect{n}$, comme elle passe par H, elle admet comme représentation paramétrique : $ \left\{\begin{array}{l} x=x_\mathrm{H} + tx_{\vect{n}}\\y=y_\mathrm{H} + ty_{\vect{n}}\\z=z_\mathrm{H} + tz_{\vect{n}} \end{array}\right. \quad t \in \R $, soit ici : $ \left\{\begin{array}{l} x=-t\\y=4 + t\\z=8+t \end{array}\right. \quad t \in \R $
+
+\item Si L est le projeté orthogonal de H sur (IGJ), cela veut dire que la droite (HL) est orthogonale au plan (et passe par H), et donc que la droite (HL) est la droite $d$. Comme L est un point du plan, c'est donc le seul point de $d$ sur le plan.
+
+Cherchons le paramètre $t$ tel qu'un point $M_t$ de paramètre $t$ dans la représentation de $d$ soit un point de (IGJ) :
+
+$\begin{aligned} M_t \in (\mathrm{IGJ}) &\iff -x_{M_t} + y_{M_t}+z_{M_t} - 4 = 0\\
+&\iff -(-t) + (4+t) + (8 + t) - 4 = 0\\
+&\iff 3t +8 = 0\\
+&\iff t = \dfrac{-8}{3}\\ \end{aligned}$
+
+L est donc $M_{\frac{-8}{3}}$ sur la droite $d$ : il a donc comme coordonnées L$\left(-\dfrac{-8}{3}~;~4 + \dfrac{-8}{3}~;~8 + \dfrac{-8}{3} \right)$.
+
+Cela confirme L$\left(\dfrac{8}{3}~;~\dfrac{12-8}{3} ~;~\dfrac{24-8}{3}\right) $
+
+Autrement dit, le point L est bien le point de coordonnées $ \left(\dfrac{8}{3}~;~\dfrac{4}{3}~;~\dfrac{16}{3}\right)  $.
+
+\item Par définition, la distance d'un point à un plan est la distance entre le point et son projeté orthogonal sur le plan, donc on cherche HL. Comme on travaille dans un repère orthonormé :
+
+$\mathrm{HL} = \sqrt{(x_\mathrm{L} - x_\mathrm{H})^2+(y_\mathrm{L} - y_\mathrm{H})^2+(z_\mathrm{L} - z_\mathrm{H})^2} = \sqrt{\left(\dfrac{8}{3}\right)^2+\left(\dfrac{8}{3}\right)^2+\left(\dfrac{8}{3}\right)^2 } = \sqrt{\dfrac{192}{9}}=\dfrac{8\sqrt{3}}{3}$.
+
+La distance de H au plan (IGJ) est donc de $ \dfrac{8\sqrt{3}}{3}$.
+
+\item Calculons : $\vect{\mathrm{IG}}\cdot\vect{\mathrm{IJ}} = 2\times (-2) + 4\times 0 +(-2)\times (-2) = -4 + 0 +4= 0$.
+
+Les vecteurs $\vect{\mathrm{IG}}$ et $\vect{\mathrm{IJ}}$ sont donc orthogonaux (et non nuls) donc les droites qu'ils dirigent, (IG) et (IJ) sont orthogonales (et perpendiculaires, car sécantes en I) : le triangle IGJ est donc rectangle en I.
+
+\item Pour calculer le volume, on choisira IGJ comme base (car le triangle étant rectangle, son aire est simple à calculer) et donc la hauteur correspondante est la distance du quatrième sommet (H) au plan (IGJ) (distance qui a été calculée à la question \textbf{5.}).
+
+$\mathrm{IG} = \sqrt{2^2 + 4^2 + (-2)^2} = \sqrt{24}=2\sqrt{6}$
+
+$ \mathrm{IJ} = \sqrt{(-2)^2 + 0 + 2^2} = \sqrt{8} = 2\sqrt{2}$
+
+L'aire du triangle IGJ est donc : $\mathcal{A}_{\mathrm{IGJ}} = \dfrac{\mathrm{IG}\times \mathrm{IJ}}{2} = \dfrac{2\sqrt{6}\times 2\sqrt{2}}{2} = 4\sqrt{3}$.
+
+Le volume du tétraèdre est donc : $V = \dfrac{1}{3} \times 4\sqrt{3} \times \dfrac{8\sqrt{3}}{3} = \dfrac{32}{3}$.
+
+Le volume du tétraèdre est de $V = \dfrac{32}{3}$ (soit environ 10,7, au dixième près).
+\end{enumerate}
+
+\bigskip
+
+\end{document}

@@ -1,0 +1,127 @@
+\medskip
+
+\emph{Principaux domaines abordés} : Suites numériques. Algorithmique et programmation.
+
+\medskip
+
+Un médicament est administré à un patient par voie intraveineuse. 
+
+\bigskip
+
+\textbf{Partie A : modèle discret de la quantité médicamenteuse}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+Au bout de 30 min, 10\,\% de 1 mg ont disparu : il en reste donc $0,9$ mg et on donne alors $0,25$ mg supplémentaires : on a donc $u_1 = 1,15$.
+\item 
+
+Si $u_n$ est la quantité de médicament présente au bout de $n$ périodes de 30 min, à la $(n + 1)$\up{e} période 10\,\% auront disparu ; il en restera donc $0,9u_n$ et on donne alors 0,25 mg de médicament supplémentaire ; on a donc $u_{n+1} = 0,9u_n + 0,25$.
+\item 
+	\begin{enumerate}
+		\item 
+		\emph{Initialisation} Pour $n = 0$.
+On a $u_0 = 1$ et $u_1 = 1,15$  soit $u_0 \leqslant u_1 < 5$ :l'encadrement est réalisé au rang $0$.
+
+\emph{Hérédité} : Soit $n \in \N$ et supposons que $u_n \leqslant  u_{n+1} < 5$.
+
+Alors en multipliant par 0,9 : $0,9u_n \leqslant 0,9u_{n+1} < 0,9 \times 5$ et en ajoutant 0,25 à chaque membre : $0,9u_n + 0,25 \leqslant 0,9u_{n+1} + 0,25  < 0,9 \times 5 + 0,25$, soit $u_{n+1} \leqslant u_{n+2} < 4,75 < 5$.
+
+On a donc : $u_{n+1} \leqslant u_{n+2} <  5$ : l'encadrement est vrai au rang $(n + 1)$.
+
+L'encadrement est vrai au rang $0$ et s'il est vrai au rang $n$, il l'est aussi au rang $n + 1$ : d'après le principe de récurrence : pour tout entier naturel $n,\: u_n \leqslant  u_{n+1} < 5$.
+		\item 
+La première partie du résultat précédent montre que la suite $\left(u_n\right)$ est croissante et la deuxième que cette suite est majorée par 5 : elle est donc convergente vers une limite $\ell \leqslant 5$.
+	\end{enumerate}
+\item 
+
+	\begin{enumerate}
+		\item Recopier et compléter le script écrit en langage Python suivant de manière à déterminer au bout de combien de périodes de trente minutes le médicament commence à être réellement efficace.
+\begin{center}
+\begin{tabular}{|l|}\hline
+\texttt{\textbf{def} efficace():}\\
+\quad \texttt{u=1}\\
+\quad \texttt{n=0}\\
+\quad \texttt{\textbf{while} {\red u < 1.8} :}\\
+\quad\qquad \texttt{u={\red 0.9*u+0.25}}\\
+\quad\qquad \texttt{n = n+1}\\
+\quad \texttt{\textbf{ return }n}\\ \hline
+\end{tabular}
+\end{center}
+
+		\item 
+		Le script renvoie $n = 8$,car $u_8 \approx 1,854 > 1,8$.
+		
+		Le médicament est réellement efficace après 4 heures.
+	\end{enumerate}		
+\item 
+	\begin{enumerate}
+		\item 
+		On a donc $v_{n+1} = 2,5 - u_{n+1} \iff u_{n+1} = 2,5 - v_{n+1} = 0,9u_n + 0,25$.
+		
+		Or $v_n = 2,5 - u_n \iff u_n = 2,5 - v_n$ ; l'égalité précédente devient donc :
+		
+		$2,5 - v_{n+1} = 0,9\left(2,5 - v_n \right) + 0,25 \iff 2,5 - v_{n+1} = 2,25 - 0,9v_n + 0,25 \iff v_{n+1} = 0,9v_n$ : cette égalité montre que la suite $\left(v_n\right)$ est une suite géométrique de raison 0,9 de premier terme $v_0 = 2,5 - u_0 = 2,5 - 1 = 1,5$.
+		\item 
+		On sait que quel que soit $n \in \N,\:, v_n = v_0 \times 0,9^n$, soit $v_n = 1,5 \times 0,9^n$, d'où puisque $u_n = 2,5 - v_n$ :
+		
+Quel que soit $n \in \N, \: u_n = 2,5 - 1,5 \times 0,9^n$.
+		\item 
+		
+
+On sait que quel que soit $n \in \N, \: 0,9^n < 1$, car $-1 < 0,9 < 1$, et $\displaystyle\lim_{n \to + \infty} 0,9^n = 0$, donc $\displaystyle\lim_{n \to + \infty}u_n =2,5 < 3$.
+
+Conclusion : à aucun moment le traitement ne sera dangereux pour le patient.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B : modèle continu de la quantité médicamenteuse}
+
+\medskip
+
+
+
+
+
+
+
+
+\[f(t) = 2,5 - 1,5\text{e}^{-0,2t},\]
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+ 3~h 45~min $= 3 + \dfrac{45}{60} = 3 + \dfrac{3}{4} = 3 + \dfrac{75}{100} = 3 + 0,75 = 3,75$.
+ 
+ On a donc $f(3,75) = 2,5 - 1,5\text{e}^{-0,2 \times 3,75} = 2,5 - 1,5 \times \text{e}^{-0,75} \approx \np{1,791} <  1,8$. Le traitement n'est pas efficace au bout de 3 h 45 min.
+\item 
+Il faut trouver $t$ tel que $f(t) \geqslant 1,8$, soit
+
+$2,5 - 1,5\text{e}^{-0,2t} \geqslant 1,8 \iff 0,7 \geqslant 1,5\text{e}^{-0,2t} \iff \frac{7}{15} \geqslant \text{e}^{-0,2t}$, soit par croissance du logarithme :
+
+$\ln \frac{7}{15} \geqslant - 0,2t \iff -5\ln \frac{7}{15} \leqslant -5 \times (- 0,2t)$ car $- 5 < 0$, soit enfin $t \geqslant  -5\ln \frac{7}{15}$.
+
+Or $ -5\ln \frac{7}{15} \approx \np{3,8107}$ soit 3 h et $\np{0,8107} \times 60 = 48,64$~min soit environ 3 h 49 min.
+\item 
+Ce temps est inférieur à celui de la question 4. b. La perfusion est donc plus rapidement efficace.
+\end{enumerate}
+
+\bigskip

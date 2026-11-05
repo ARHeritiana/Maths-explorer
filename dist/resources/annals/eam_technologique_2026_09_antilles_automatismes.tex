@@ -1,0 +1,288 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_technologique_2026_09_antilles_automatismes.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Pour cette première partie, aucune justification n'est demandée et une seule réponse est possible par question. Pour chaque question, reportez son numéro sur votre copie et indiquez votre réponse.}
+
+\needspace{10\baselineskip}
+\subsection*{Question 1}
+
+Un pantalon coûtant initialement 80~\euro{} est soldé à 25\,\%. Quel est le nouveau prix ?
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad 20~\euro &
+	\textbf{B.}\quad 25~\euro &
+	\textbf{C.}\quad 55~\euro &
+	\textbf{D.}\quad 60~\euro \\
+\end{tblr}
+
+\needspace{10\baselineskip}
+\subsection*{Question 2}
+
+Paul dépense 600~\euro{} dans la location de son appartement, ce qui représente 30\,\% de son salaire. Le salaire de Paul est de :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad 180~\euro &
+	\textbf{B.}\quad \np{1800}~\euro &
+	\textbf{C.}\quad \np{2000}~\euro &
+	\textbf{D.}\quad \np{4200}~\euro \\
+\end{tblr}
+
+\needspace{10\baselineskip}
+\subsection*{Question 3}
+
+La fréquentation d'une salle de cinéma au mois de juillet a diminué de 8\,\% par rapport au mois de juin. On a compté 532 spectateurs en juillet, le nombre de spectateurs en juin était donc de :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad $532 \times 0,92$ &
+	\textbf{B.}\quad $532 \div 0,92$ &
+	\textbf{C.}\quad $532 \times 1,08$ &
+	\textbf{D.}\quad $532 \div 1,08$ \\
+\end{tblr}
+
+\needspace{10\baselineskip}
+\subsection*{Question 4}
+
+Quelle est la plus petite de ces quatre fractions : $\dfrac{1}{4}$, $\dfrac{3}{4}$, $\dfrac{1}{8}$, $\dfrac{2}{15}$ ?
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad $\dfrac{1}{4}$ &
+	\textbf{B.}\quad $\dfrac{3}{4}$ &
+	\textbf{C.}\quad $\dfrac{1}{8}$ &
+	\textbf{D.}\quad $\dfrac{2}{15}$ \\
+\end{tblr}
+
+\needspace{10\baselineskip}
+\subsection*{Question 5}
+
+Parmi les nombres suivants, lequel est différent de 10,25 ?
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad $\np{0,1025} \times 10^{-2}$ &
+	\textbf{B.}\quad $\dfrac{\np{1025}}{100}$ &
+	\textbf{C.}\quad $\dfrac{205}{20}$ &
+	\textbf{D.}\quad $102,5 \times 10^{-1}$ \\
+\end{tblr}
+
+\needspace{10\baselineskip}
+\subsection*{Question 6}
+
+\begin{center}
+	\textbf{\footnotesize\scshape Graphique. Liens entre la pratique et l'âge}\\
+	{\footnotesize\scshape L'exemple des 8 activités issues des univers les plus prisés}
+
+	\medskip
+
+	\fbox{\sffamily\small\begin{tikzpicture}[y=0.09cm,x=1.15cm]
+		\def\cats{Football/16/3,Fitness/13/5,{Footing,\\jogging}/25/11,Tennis/8/4,VTT/11/6,{Nage,\\natation}/22/15,{Vélo sur\\route}/13/8,{Randonnée\\pédestre}/17/27}
+		\foreach [count=\i from 0] \nom/\jeune/\age in \cats{
+			\fill[teal] (\i,0) rectangle++ (0.35,\jeune);
+			\node[font=\tiny,above,inner sep=2pt] at (\i+0.175,\jeune) {\jeune\,\%};
+			\fill[orange] (\i+0.4,0) rectangle++ (0.35,\age);
+			\node[font=\tiny,above] at (\i+0.575,\age) {\age\,\%};
+			\node[font=\tiny,align=center,below] at (\i+0.4,-0.5) {\nom};
+		}
+		\node[font=\tiny] at (3.9,-10) {\textcolor{teal}{$\blacksquare$}~Moins de 40 ans \qquad \textcolor{orange}{$\blacksquare$}~40 ans et plus};
+	\end{tikzpicture}}
+
+	{\tiny\sffamily\textbf{Source} : INJEP, Ministère des sports, CRÉDOC : Baromètre national des pratiques sportives 2018}\\
+	{\tiny\sffamily\textbf{Champ} : ensemble de la population de 15 ans et plus résidant en France DROM compris}
+\end{center}
+
+D'après le graphique ci-dessus on peut affirmer que, parmi les sportifs de moins de 40 ans, 11\,\% pratiquent :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad le VTT &
+	\textbf{B.}\quad le footing-jogging &
+	\textbf{C.}\quad le vélo sur route &
+	\textbf{D.}\quad la randonnée pédestre \\
+\end{tblr}
+
+\needspace{10\baselineskip}
+\subsection*{Question 7}
+
+Une expression d'une fonction affine ayant le tableau de signes ci-dessous
+
+\begin{center}
+	\begin{tikzpicture}
+		\tkzTabInit[espcl=2.5]{$x$/0.8,signe de $f(x)$/1}{$-\infty$,$3$,$+\infty$}
+		\tkzTabLine{,-,z,+,}
+	\end{tikzpicture}
+\end{center}
+
+est :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad $f(x) = -3x+9$ &
+	\textbf{B.}\quad $f(x) = 2x-6$ &
+	\textbf{C.}\quad $f(x) = -x-3$ &
+	\textbf{D.}\quad $f(x) = 3x-10$ \\
+\end{tblr}
+
+\needspace{10\baselineskip}
+\subsection*{Question 8}
+
+\begin{minipage}[t]{0.52\linewidth}
+	On donne ci-contre la courbe représentative d'une fonction $f$ définie sur l'intervalle $[-4 ; 6]$. Choisir la bonne réponse.
+
+	\medskip
+	\begin{tblr}{colspec = {@{}X}}
+		\textbf{A.}\quad $f$ est positive sur l'intervalle $[4 ; 6]$ \\
+		\textbf{B.}\quad $f$ est croissante sur l'intervalle $[-5 ; 3,5]$ \\
+		\textbf{C.}\quad $f$ est positive sur l'intervalle $[2 ; 5]$ \\
+		\textbf{D.}\quad $f$ est croissante sur l'intervalle $[-4 ; -1]$ \\
+	\end{tblr}
+\end{minipage}
+\hfill
+\begin{tikzpicture}[x=0.5cm,y=0.5cm,>=stealth,baseline={(current bounding box.north)}]
+	\draw[step=1,gray!75,line width=0.5pt] (-5,-5.5) grid (6.5,4.5);
+	\draw[->,line width=1pt] (-5,0) -- (6.5,0);
+	\draw[->,line width=1pt] (0,-5.5) -- (0,4.5);
+	\foreach \x in {-5,-4,-3,-2,-1,1,2,3,4,5,6} \draw (\x,2pt) -- (\x,-2pt) node[below] {\scriptsize \np{\x}};
+	\foreach \y in {-5,-4,-3,-2,-1,1,2,3,4} \draw (2pt,\y) -- (-2pt,\y) node[left] {\scriptsize \np{\y}};
+	\draw[line width=1.2pt,red] plot[domain=-4:6,samples=100] (\x,{0.1*(\x+3)*(\x-2)*(\x-5)});
+\end{tikzpicture}
+
+\needspace{10\baselineskip}
+\subsection*{Question 9}
+
+La formule $E = mc^2$ établie par Albert Einstein en 1905, relie la vitesse de la lumière dans le vide $c$, l'énergie $E$ et la masse non nulle $m$ d'une particule.
+
+On peut aussi écrire que :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad $c = \dfrac{E}{m} \div 2$ &
+	\textbf{B.}\quad $m = E - c^2$ &
+	\textbf{C.}\quad $c = \sqrt{E-m}$ &
+	\textbf{D.}\quad $c = \sqrt{\dfrac{E}{m}}$ \\
+\end{tblr}
+
+\needspace{10\baselineskip}
+\subsection*{Question 10}
+
+En vous aidant d'un ordre de grandeur, choisir la bonne réponse.
+
+$289 \times 0,307 = $
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad \np{0,88723} &
+	\textbf{B.}\quad \np{8,8723} &
+	\textbf{C.}\quad \np{88,723} &
+	\textbf{D.}\quad \np{887,23} \\
+\end{tblr}
+
+\needspace{10\baselineskip}
+\subsection*{Question 11}
+
+$(2x-7)^2$ est égale à :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad $4x^2-28x+49$ &
+	\textbf{B.}\quad $4x^2+28x-49$ &
+	\textbf{C.}\quad $2x^2-28x+49$ &
+	\textbf{D.}\quad $2x^2+28x-49$ \\
+\end{tblr}
+
+\needspace{10\baselineskip}
+\subsection*{Question 12}
+
+La durée correspondant à 1,2~h est :
+
+\medskip
+\begin{tblr}{colspec = {@{}*{4}{X}}}
+	\textbf{A.}\quad 62 minutes &
+	\textbf{B.}\quad 72 minutes &
+	\textbf{C.}\quad 80 minutes &
+	\textbf{D.}\quad 120 minutes \\
+\end{tblr}
+
+\end{document}

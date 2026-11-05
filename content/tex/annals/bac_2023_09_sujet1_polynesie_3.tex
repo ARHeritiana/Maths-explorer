@@ -1,0 +1,58 @@
+\medskip
+
+On considère la fonction $f$ définie sur $\R$ par 
+
+\[f(x) = \dfrac34 x^2 - 2x + 3.\]
+
+\begin{enumerate}
+\item Dresser le tableau de variations de $f$ sur $\R$.
+\item En déduire, que pour tout $x$ appartenant à l'intervalle $\left[\dfrac43~;~2\right]$,\: $f(x)$ appartient à l'intervalle $\left[\dfrac43~;~2\right]$.
+\item Démontrer que pour tout $x$ réel, $x \leqslant f(x)$.
+
+Pour cela, on pourra démontrer que pour tout réel $x$ :
+
+\[f(x) - x = \dfrac34(x - 2)^2.\]
+
+\end{enumerate}
+
+On considère la suite $\left(u_n\right)$ définie par un réel $u_0$ et pour tout entier naturel $n$ :
+\[u_{n+1} = f\left(u_n\right).\]
+
+On a donc, pour tout entier naturel $n$,
+
+\[u_{n+1} = \dfrac34 u_n^2 - 2u_n + 3.\]
+
+\begin{enumerate}[resume]
+\item Étude du cas: $\dfrac43 \leqslant u_0 \leqslant  2$.
+	\begin{enumerate}
+		\item Démontrer par récurrence que, pour tout entier naturel $n$,
+\[u_n \leqslant u_{n+1} \leqslant 2.\]
+
+		\item En déduire que la suite $\left(u_n\right)$ est convergente.
+		\item Prouver que la limite de la suite est égale à 2.
+	\end{enumerate}
+\item Étude du cas particulier : $u_0 = 3$.
+
+On admet que dans ce cas la suite $\left(u_n\right)$ tend vers $+\infty$.
+
+Recopier et compléter la fonction \og \texttt{seuil} \fg{} suivante écrite en Python, afin qu'elle renvoie la plus petite valeur de $n$ telle que $u_n$ soit supérieur ou égal à 100.
+
+\begin{center}
+\texttt{
+\begin{tabular}{|l|}\hline
+def seuil() :\\
+\quad  u = 3\\
+\quad  n = 0\\
+\quad while \ldots\\
+\quad\qquad  u = \ldots\\
+\quad\qquad  n = \ldots\\
+\quad return n\\ \hline
+\end{tabular}}
+\end{center}
+
+\item Étude du cas : $u_0 > 2$.
+
+À l'aide d'un raisonnement par l'absurde, montrer que $\left(u_n\right)$ n'est pas convergente.
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,53 @@
+\smallskip
+
+\begin{enumerate}
+	\item Dans un cube toutes les faces sont des carrés de même côté, donc les diagonales de chaque face ont même longueur.
+
+Or dans le triangle HAC, chaque côté est une diagonale d'une face ([HA] est une diagonale de ADHE, [AC] est une diagonale de ABCD et [CH] est une diagonale de CDHG). Les trois côtés du triangle HAC ont donc même longueur $\sqrt2$
+, c'est donc un triangle équilatéral.
+
+Or les angles aux sommets d'un triangle équilatéral mesurent 60\ensuremath{^\circ}, donc HAC n'est pas rectangle.
+
+\smallskip
+
+L'affirmation 1 est \textbf{FAUSSE}.
+	\item Les droites (DH) et (BF) sont des arêtes opposées du cube, elles sont donc parallèles, et donc coplanaires. Donc (BF) est une droite du plan (DFH).
+
+Comme I est un point de (BF) il appartient au plan (DFH). Donc les droites (DI) et (HF) sont coplanaires.
+
+Puisque (BD) est la droite parallèle à (HF) passant par D (arêtes opposées), et que B et I sont distincts, d'après l'axiome d'Euclide, la droite (DI) n'est pas parallèle à (HF). Or si deux droites sont coplanaires, elles sont soit parallèles soit sécantes. Donc (DI) et (HF) sont sécantes.
+
+\smallskip
+	
+L'affirmation 2 est \textbf{VRAIE}.
+	\item Si le vecteur $\vect{u}$ est normal au plan (FAC) alors il est orthogonal à tout vecteur de ce plan.
+
+On calcule donc le produit scalaire $\vect{u} \cdot \vect{\text{FC}}$, puisque deux vecteurs sont orthogonaux si, et seulement si, leur produit scalaire est nul.
+	
+	$\vectt{FC} = \begin{pmatrix}1-1\\1-0\\0+1\end{pmatrix} = \begin{pmatrix}0\\1\\-1\end{pmatrix}$
+\begin{eqnarray*}
+\vect{u} \cdot \vectt{FC} &=& \sin(\alpha) \times 0 + \sin(\pi - \alpha) \times 1 + \sin(-\alpha) \times (-1)\\
+		&=& \sin(\pi - \alpha) - \sin(-\alpha)\\
+		&=& \sin(\alpha) + \sin(\alpha)\\
+		&=& \boxed{2\sin(\alpha) \neq 0} \quad \text{puisque} \:\alpha \ne 0
+	\end{eqnarray*}
+	Le vecteur $\vect{u}$ n'est donc pas orthogonal au vecteur $\vect{\text{FC}}$. Donc, puisqu'il existe un vecteur de (FAC) qui n'est pas orthogonal à $\vect{u}$, $\vect{u}$ n'est pas un vecteur normal à (FAC).
+
+\smallskip
+	
+L'affirmation 3 est \textbf{FAUSSE}.
+	\item Un cube possède \textbf{8 sommets}.
+	
+	Pour former un segment, on doit choisir 2 sommets distincts parmi ces 8 sommets. L'ordre n'a pas d'importance (le segment reliant A à B est le même que celui reliant B à A).
+	
+	On utilise donc une combinaison :
+	\[\binom{8}{2} = \dfrac{8\,!}{2\,!(8-2)\,!} = \dfrac{8 \times 7}{2 \times 1} = \dfrac{56}{2} = 28.\]
+	Il existe \textbf{28 segments} pouvant relier deux sommets distincts d'un cube.
+
+	\smallskip
+	
+	L'affirmation 4 est \textbf{FAUSSE}.
+\end{enumerate}
+
+
+\bigskip

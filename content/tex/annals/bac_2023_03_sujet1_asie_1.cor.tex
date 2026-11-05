@@ -1,0 +1,87 @@
+\medskip
+
+	\textbf{Partie A}
+
+	\medskip
+
+
+	\begin{enumerate}
+	\item \begin{enumerate}
+		\item Calculons : $u_1 = 0,9 \times u_0 + 60 = 0,9\times 400 + 60 = 420$
+
+		puis : $u_2= 0,9 \times u_1 + 60 = 0,9\times 420 + 60 = 438$.
+		\item Avec ces premiers termes calculés (et en regardant les termes suivants à la calculatrice), la suite $(u_n)_{n \in \N}$ semble être croissante.
+		\end{enumerate}
+	\item Pour tout entier naturel $n$, on nomme $I_n$ l'inégalité : \quad $0  \leqslant u_n  \leqslant u_{n+1} \leqslant  600$.
+
+	Démontrons par récurrence sa véracité :
+
+	\textbf{Initialisation :} pour $n = 0$, on a $u_0 = 400$ et $u_{0+1} = u_1 = 420$. À l'indice 0, on a donc effectivement : $0\leqslant u_0 \leqslant u_1 \leqslant 600 $ : l'inégalité $I_0$ est vraie.
+
+	\smallskip
+	\textbf{Hérédité :} Pour un entier naturel $n$ quelconque, on suppose que l'inégalité $I_n$ est vraie. On a :
+
+$\begin{aligned} I_n &\implies 0  \leqslant u_n  \leqslant u_{n+1} \leqslant  600\\
+		&\implies 0\times 0,9  \leqslant u_n \times 0,9 \leqslant u_{n+1}\times 0,9 \leqslant  600\times 0,9 \qquad \text{car }0,9>0\\
+		&\implies 0 + 60  \leqslant 0,9u_n + 60 \leqslant 0,9u_{n+1} + 60 \leqslant  540 + 60 \qquad \text{en ajoutant 60 à chaque membre}\\
+		&\implies 60 \leqslant u_{n + 1} \leqslant u_{n+2} \leqslant  600 \qquad \text{avec la relation de récurrence de la suite } (u_n)\\
+		&\implies 0 \leqslant u_{n + 1} \leqslant u_{n+2} \leqslant  600 \qquad \text{par transitivité, car } 0 \leqslant 60\\
+		&\implies I_{n+1} \\ \end{aligned} $
+
+La véracité de l'inégalité est donc héréditaire.
+
+\textbf{Conclusion :} L'inégalité est vraie à l'indice 0, et pour tout indice $n$ entier naturel, la véracité est héréditaire. En vertu du principe de récurrence, on peut donc conclure que, pour tout entier naturel $n$, on a : \quad $0  \leqslant u_n  \leqslant u_{n+1} \leqslant  600$.
+	\item
+		\begin{enumerate}
+			\item Tirons les conclusions de la question précédente pour la suite. On a :
+
+			\begin{itemize}
+				\item $\forall n \in \N, \quad u_n \leqslant u_{n+1}$. \quad Autrement dit : la suite est croissante.
+				\item $\forall n \in \N, \quad 0\leqslant u_n \leqslant 600$. \quad Autrement dit : la suite est bornée par 0 et 600.
+			\end{itemize}
+
+			La suite $(u_n)$ est donc croissante et majorée par 600, et donc, d'après le théorème de convergence monotone, elle est convergente, vers une limite $\ell$, qui vérifie ici : $0 \leqslant \ell \leqslant 600$.
+			\item Posons $f$, la fonction définie sur $\R$ par $f(x) = 0,9x + 60$.
+
+			La suite $(u_n)$ est donc définie par récurrence, et la fonction de récurrence est la fonction $f$, définie ci-dessus. Or, la suite est convergente (d'après la question précédente) et la fonction est continue sur $\R$ (c'est une fonction affine). En vertu du théorème du point fixe, la limite $\ell$ de la suite est une des solutions à l'équation $f(x) = x$.
+
+			Comme $f$ est une fonction affine, de coefficient directeur $0,9 \neq 1$, les droites d'équations $y = f(x)$ et $y=x$ sont donc sécantes, en un seul point, donc l'équation n'a qu'une seule solution, et on a déjà identifié une solution évidente : $f(600) = 600$, donc 600 est la seule solution de l'équation. Donc $\ell = 600$.
+
+			La suite $(u_n)$ converge vers 600.
+		\end{enumerate}
+	\item \emph{Remarque : }La justification ci-après est assez longue, elle vise à vous aider à comprendre la fonction "mystère". Autant de détail n'est pas attendu sur votre copie, rassurez-vous. Vous pouvez notamment programmer la fonction sur votre calculatrice et donner ce qu'elle renvoie.
+
+\medskip
+
+La fonction est ce que l'on appelle une fonction "seuil", c'est d'ailleurs le nom qui est donné à l'argument avec lequel on appelle la fonction.
+
+Le principe de cette fonction, c'est d'utiliser deux variables : n et u, qui contiennent respectivement un indice $n$ et la valeur du terme $u_n$ correspondant.
+
+Ainsi, dans la phase d'initialisation, on commence avec la variable n contenant l'indice 0, et la variable u contenant la valeur 400, c'est-à-dire $u_0$.
+
+Ensuite, dans la boucle \textbf{while}, à chaque exécution de cette boucle, pour la variable n, on passe d'un indice $n$ à l'indice suivant $n + 1$, et pour u, du terme $u_n$ à $0,9\times u_n + 60$, c'est-à-dire à $u_{n+1}$.
+
+Ceci va se poursuivre tant que le terme $u_n$ dont la valeur est stockée dans la variable u est inférieur ou égal au seuil. Autrement dit, on s'arrête dès que u contient un terme de la suite strictement supérieur au seuil.
+
+La fonction renvoie alors l'indice correspondant audit terme.
+
+Avec la commande mystere(500) dans la console Python, on a donc 7, car $u_6 \approx 494$ et $u_7 \approx 504$. (Ces valeurs sont obtenues à la calculatrice.)
+	\end{enumerate}
+
+	\medskip
+
+	\textbf{Partie B}
+
+	\medskip
+
+
+
+Puisque, chaque année l'arboriculteur vend 10\,\% des arbres de son verger, il lui en reste donc 90\,\% et puis il replante $60$ nouveaux arbres. Si on appelle $(u_n)$ une suite donnant le nombre d'arbres dans son verger, la suite aura la relation de récurrence $u_{n+1} = 0,9u_n + 60$, comme la suite qui a été étudiée dans la partie A.
+
+Le verger compte $400$ arbres en 2023, donc si on précise que $u_n$ représente le nombre d'arbre plantés dans le verger en $(2023 + n)$, alors on a $u_0 = 400$ et la suite est effectivement exactement la suite étudiée dans la partie A.
+
+S'il conserve ce rythme de plantation, alors notre étude dit que le nombre d'arbres dans son verger va croître et se stabiliser aux alentours de 600 arbres, c'est donc problématique, car il est limité à 500 arbres.
+
+	Notamment, à ce rythme, la fonction Python mystère nous a appris que à l'indice 7 c'est-à-dire en 2023 + 7 = 2030, le nombre d'arbres dans le verger serait strictement supérieur à 500 (environ 504 arbres), donc il devra modifier son rythme de plantation à ce moment là.
+
+\bigskip

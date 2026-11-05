@@ -1,0 +1,83 @@
+\medskip
+
+Un village propose aux participants de la fête du sport deux épreuves : une randonnée et un cross. Il n'est pas possible de s'inscrire aux deux épreuves à la fois.
+
+\begin{list}{\textbullet}{On dispose des informations suivantes:}
+\item $90\,\%$ des participants ont choisi la randonnée, parmi eux, $5\,\%$ sont licenciés dans un club.
+\item 10\,\% des participants ont choisi le cross, parmi eux, 40\,\% sont licenciés dans un club.
+\end{list}
+
+Un journaliste interroge un participant au hasard.
+
+\begin{list}{\textbullet}{On considère les évènements suivants:}
+\item $R:$ \og  Le participant a choisi la randonnée \fg{}
+\item $L:$ \og Le participant est licencié dans un club\fg{}.
+\end{list}
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+Parmi les participants qui ont choisi la randonnée, $5\,\%$ sont licenciés dans un club.		
+Donc la probabilité que le participant interrogé soit licencié dans un club sachant qu'il a choisi la randonnée est $\dfrac{5}{100}$.
+
+		\item 
+Parmi les participants qui ont choisi le cross, $40\,\%$ sont licenciés dans un club.		
+Donc la probabilité que le participant interrogé soit licencié dans un club sachant qu'il a choisi le cross est $\dfrac{40}{100}$.
+		
+\end{enumerate}
+\end{enumerate}
+
+\textit{En prenant connaissance de ces deux probabilités, le journaliste estime que s'il choisit un participant parmi ceux qui sont licenciés dans un club, la probabilité qu'il ait effectué le cross sera largement supérieure à $50 \%$. L'objectif des questions suivantes est de vérifier si cette intuition est correcte.}
+
+\begin{enumerate}[resume]
+\item On représente la situation par un arbre de probabilité.
+	
+\begin{center}
+
+  \pstree[treemode=R,nodesepA=0pt,nodesepB=4pt,levelsep=2cm,treesep=1.3cm]{\TR{}}
+ {
+ 	\pstree[nodesepA=4pt,levelsep=4cm]{\TR{$R$}\ncput*{$\frac{90}{100}$}}
+ 	  { 
+ 		  \TR{$L$}\ncput*{$\frac{5}{100}$}
+ 		  \TR{$\overline{L}$}\ncput*{\blue $1-\frac{5}{100}=\frac{95}{100}$}	   
+ 	  }
+ 	\pstree[nodesepA=4pt,levelsep=4cm]{\TR{$\overline{R}$}\ncput*{$\frac{10}{100}$}}
+ 	  {
+ 		  \TR{$L$}\ncput*{$\frac{40}{100}$}
+          \TR{$\overline{L}$}\ncput*{\blue $1-\frac{40}{100}= \frac{60}{100}$} 
+     }
+}
+
+\end{center}	
+	
+\item 
+	\begin{enumerate}
+		\item  La probabilité que le participant interrogé ait choisi le cross et soit licencié dans un club est
+$p\left (\overline{R}\cap L\right ) = \dfrac{10}{100}\times \dfrac{40}{100}=\dfrac{400}{\np{10000}}$.		
+		
+		\item 
+La probabilité que le participant interrogé soit licencié dans un club est $p(L)$.
+
+D'après la formule des probabilités totales:
+
+$\begin{aligned}[b]
+p(L) &= p\left (R\cap L\right ) + p\left (\overline{R}\cap L \right )\\
+& = \dfrac{90}{100}\times \dfrac{5}{100}+ \dfrac{400}{\np{10000}}
+= \dfrac{450}{\np{10000}} + \dfrac{400}{\np{10000}}
+= \dfrac{850}{\np{10000}}
+\end{aligned}$, soit $8,5\,\%$.
+		
+	\end{enumerate}
+\item  Le journaliste interroge un participant licencié dans un club. 
+
+
+La probabilité que ce participant ait choisi le cross est:
+
+$p_L\left (\overline{R}\right )=\dfrac{p\left (\overline{R} \cap L\right )}{p(L)}
+=\dfrac{\frac{400}{\np{10000}}}{\frac{850}{\np{10000}}} = \dfrac{400}{850}$.
+
+$\dfrac{400}{850}<0,5$ donc l'intuition du journaliste n'est pas correcte.
+\end{enumerate}
+
+\bigskip

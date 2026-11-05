@@ -1,0 +1,217 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_asie_10_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{tabular}{|l|}\hline
+\textbf{Principaux domaines abordés}\\
+-- Suites, étude de fonction\\
+-- Fonction logarithme\\ \hline
+\end{tabular}
+
+\medskip
+
+
+
+\[f(x) = x - \ln (x - 1).\]
+
+On considère la suite $\left(u_n\right)$ de terme initial $u_0 = 10$ et telle que $u_{n+1} = f\left(u_n\right)$ pour tout entier naturel $n$.
+
+\bigskip
+
+\textbf{Partie I :}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+Il faut écrire dans la cellule B3 : $\fbox{=B2 - ln(B2 - 1)}$.
+\item 
+On peut penser que la suite est décroissante et a pour limite $2$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie II :}
+
+\medskip
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+On a $\displaystyle\lim_{x \to 1} x - 1 = 0$, donc $\displaystyle\lim_{x \to 1} \ln (x - 1) = - \infty$ et enfin par somme de limites $\displaystyle\lim_{x \to 1} f(x) = + \infty$.
+
+\emph{Rem.} : la droite d'équation $x = 1$ est asymptote verticale à la représentation graphique de la fonction $f$.
+\item  
+	\begin{enumerate}
+		\item 
+		Sachant que $\left(\ln u\right)' = \dfrac{u'}{u}$, $u(x)$ étant une fonction de $x$ ne s'annulant pas sur l'intervalle $]1~;~ +\infty[$, on a donc :
+		
+$f'(x) = 1 - \dfrac{1}{x - 1} = \dfrac{x - 1 - 1}{x - 1} = \dfrac{x - 2}{x - 1}$ sur l'intervalle $]1~;~ +\infty[$.
+		\item 
+Sur l'intervalle $]1~;~ +\infty[$ on a bien entendu $ x > 1$, donc le signe de $f'(x)$ est celui du numérateur $x - 2$ :
+
+\starredbullet~$x - 2 > 0 \iff x > 2$ : $f'(x) > 0$ sur $]2~;~+ \infty[$ ; la fonction $f$ est croissante sur $]2~;~+ \infty[$ ;
+
+\starredbullet~$x - 2 < 0 \iff x < 2$ : $f'(x) < 0$ sur $]1~;~2[$ ; la fonction $f$ est décroissante sur $]1~;~2[$ ;
+
+\starredbullet~$x - 2 = 0 \iff x = 2$ : $f'(2) = 0$ la fonction $f$ a un minimum $f(2) = 2 - \ln 1 = 2 - 0 = 2$ sur $]1~;~+ \infty[$. D'où le tableau de variations :
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(6,3)
+\psframe(6,3)\psline(0,2)(6,2)\psline(0,2.5)(6,2.5)\psline(1,0)(1,3)
+\uput[u](0.5,2.4){$x$} \uput[u](2.25,2.4){$1$} \uput[u](3.5,2.4){$2$} \uput[u](5.5,2.4){$+ \infty$} 
+\uput[u](0.5,1.9){$f'(x)$} \uput[u](2.25,1.9){$-$} \uput[u](3.5,1.9){$0$} \uput[u](4.75,1.9){$+$} 
+\psline{->}(1.5,1.5)(3,0.5)\psline{->}(4,0.5)(5.5,1.5)
+\uput[d](1.5,2){$+\infty$}\uput[u](3.5,0){$2$}\uput[d](5.5,2){$+\infty$}
+\rput(0.5,1){$f$}
+\end{pspicture}
+\end{center}
+		\item 
+La question précédente a montré que $f(2)= 2$ est le minimum de la fonction $f$ sur l'intervalle $]1~;~+ \infty[$, donc a fortiori sur l'intervalle $]1~;~+ \infty[$.
+		
+On a donc pour tout $x \geqslant  2$,\,  $f(x) \geqslant  2$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie III :}
+
+\medskip
+
+\begin{enumerate}
+\item 
+\emph{Initialisation} : on a $u_0 = 10 \geqslant 2$
+ : la proposition est vraie au rang $0$.
+
+\emph{Hérédité} : supposons que pour $n \in \N$, on ait : $u_n \geqslant 2$.
+
+Par croissance de la fonction $f$, on a donc $f\left(u_n\right) \geqslant f(2)$, c'est-à-dire :
+
+$u_{n+1} \geqslant 2$ : la proposition est donc vraie au rang $n + 1$.
+
+Conclusion : La proposition est vraie au rang $0$ et si elle est vraie au rang $n \in \N$ elle est vraie au rang $n + 1$ : d'après le principe de récurrence la proposition :
+
+\og $u_n \geqslant  2$ pour tout entier naturel $n$\fg{} est vraie.
+ \item 
+Pour $n \in \N$, calculons $u_{n+1} - u_n  = f\left(u_n \right) - u_n = u_n - \ln \left(u_n - 1 \right) - u_n = - \ln \left(u_n - 1 \right)$.
+
+Or d'après la question précédente, quel que soit $n \in \N$, \, $u_n \geqslant 2$, donc $u_n - 1 \geqslant 2 - 1$, ou $u_n - 1 \geqslant 1$, donc $\ln \left(u_n - 1 \right) \geqslant 0$ et enfin $- \ln \left(u_n - 1 \right) \leqslant 0$.
+
+Conclusion : quel que soit $n \in \N$, \, $u_{n+1} - u_n \leqslant 0$ ou $_{n+1} \leqslant u_n$ : la suite $\left(u_n\right)$ est décroissante.
+\item 
+On a donc démontré dans les deux questions précédentes que la suite $\left(u_n\right)$ est décroissante et minorée par 2 : elle converge donc vers une limite $\ell$, telle $\ell \geqslant 2$.
+\item 
+$f(\ell) = \ell \iff \ell - \ln (\ell - 1) = \ell \iff 0 = \ln (\ell- 1) \iff 1 = \ell - 1$ (par croissance de la fonction logarithme népérien), d'où $2 = \ell$.
+
+La suite $\left(u_n\right)$ converge vers le nombre $2$.
+\end{enumerate}
+
+\end{document}

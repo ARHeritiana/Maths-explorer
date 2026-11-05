@@ -1,0 +1,203 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_technologique_2026_06_antilles_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{minipage}[t]{0.6\linewidth}
+	Au $1{ }^{\text {er }}$ janvier 2025, une famille installe des éoliennes domestiques qui produiront une quantité d'énergie de \np[kWh]{3000} en 2025.
+
+	On constate que chaque année, la quantité d'énergie produite par cette installation baisse de 5\,\%.
+
+	Pour tout entier $n \geqslant  0$, on note $u_{n}$ la quantité d'énergie (en kWh) produite par l'installation durant l'année $(2025+n)$.
+
+	On a donc $u_{0}=3000$.
+
+	\begin{enumerate}
+		\item \begin{enumerate}
+			\item Quelle sera la quantité d'énergie produite par l'installation durant l'année 2026 ?
+
+			Détailler les calculs.
+
+			\item Justifier que, pour tout entier naturel $n$,
+			\[u_{n+1}=0,95 \times u_{n}.\]
+
+			\item Quelle est la nature de la suite $(u_{n})$ ?
+
+			Préciser sa raison.
+		\end{enumerate}
+	\end{enumerate}
+
+	À l'aide d'un tableur, on a obtenu les valeurs successives des termes de la suite $(u_{n})$.
+
+	On donne ci-contre un extrait de la feuille de calculs.
+
+	\begin{enumerate}[resume]
+		\item Vous répondrez aux questions suivantes à l'aide du tableau ci-contre.
+
+		\begin{enumerate}
+			\item Déterminer à partir de quelle année la quantité d'énergie produite sera inférieure à \np[kWh]{1000}.
+
+			\item Après 25 ans de fonctionnement, le fabricant affirme que la quantité d'énergie produite s'élèvera à plus de $30\,\%$ de la quantité produite initialement.
+
+			Cette affirmation est-elle vraie ou fausse ?
+
+			Justifier.
+		\end{enumerate}
+	\end{enumerate}
+	\end{minipage}
+	\hfill
+	\begin{tblr}[T]{hlines, vlines, rowsep=0.5pt, columns={c,font=\sffamily},column{1}={wd=7mm,colsep=2pt},
+		row{1}={rowsep=0pt,bg=gray9,rowsep =0pt},
+		column{1}={colsep=0pt,7mm,bg=gray9},
+		cell{1}{1}={gray9,halign=r,valign=b,cmd={\tikz{\fill[gray!50] (0,0)--(0.4,0.4)--(0.4,0);\clip (0,0) rectangle (0.5,0.45);}}}}
+& A           & B                                   \\
+		1  & Valeur de n & Valeur de u\textsubscript{n} \\
+		2  & 0           & 3000,00                             \\
+		3  & 1           &                                     \\
+		4  & 2           & 2707,50                             \\
+		5  & 3           & 2572,13                             \\
+		6  & 4           & 2443,52                             \\
+		7  & 5           & 2321,34                             \\
+		8  & 6           & 2205,28                             \\
+		9  & 7           & 2095,01                             \\
+		10 & 8           & 1990,26                             \\
+		11 & 9           & 1890,75                             \\
+		12 & 10          & 1796,21                             \\
+		13 & 11          & 1706,40                             \\
+		14 & 12          & 1621,08                             \\
+		15 & 13          & 1540,03                             \\
+		16 & 14          & 1463,02                             \\
+		17 & 15          & 1389,87                             \\
+		18 & 16          & 1320,38                             \\
+		19 & 17          & 1254,36                             \\
+		20 & 18          & 1191,64                             \\
+		21 & 19          & 1132,06                             \\
+		22 & 20          & 1075,46                             \\
+		23 & 21          & 1021,68                             \\
+		24 & 22          & 970,60                              \\
+		25 & 23          & 922,07                              \\
+		26 & 24          & 875,97                              \\
+		27 & 25          & 832,17                              \\
+		28 & 26          & 790,56                              \\
+		29 & 27          & 751,03                              \\
+		30 & 28          & 713,48                              \\
+		31 & 29          & 677,81                              \\
+		32 & 30          & 643,92                              \\
+		33 & 31          & 611,72                              \\
+		34 & 32          & 581,13
+	\end{tblr}
+
+	\begin{enumerate}
+		\setcounter{enumi}{2}
+		\item On a représenté ci-dessous deux suites.
+
+		Indiquer le graphique correspondant à la représentation de la suite $\left(u_n\right) $.
+
+		Justifier votre réponse.
+
+		\begin{tikzpicture}[x = 4mm,y = 0.03mm,> =stealth]
+			\draw[->] (-8mm,0)--(32,0) ;
+			\foreach \x in {10,20,30}
+			{\draw (\x,2pt)--(\x,-2pt) node[below]{\np{\x}} ;}
+			\draw[->] (0,-8mm)--(0,3200);
+			\foreach \y in {500,1000,...,3000}
+			{\draw (2pt,\y)--(-2pt,\y) node[left]{\np{\y}} ;}
+			\node[below left] at (-2pt,-2pt) {0};
+			\foreach \n in {0,...,29}
+			{\node[red] at (\n,{3000-75*\n}) {\textbf{+}};}
+			\node[left] at(30,2400) {Graphique 1};
+		\end{tikzpicture}
+
+		\begin{tikzpicture}[x = 4mm,y = 0.03mm,> =stealth]
+			\draw[->] (-8mm,0)--(32,0) ;
+			\foreach \x in {10,20,30}
+			{\draw (\x,2pt)--(\x,-2pt) node[below]{\np{\x}} ;}
+			\draw[->] (0,-8mm)--(0,3200);
+			\foreach \y in {500,1000,...,3000}
+			{\draw (2pt,\y)--(-2pt,\y) node[left]{\np{\y}} ;}
+			\node[below left] at (-2pt,-2pt) {0};
+			\foreach \n in {0,...,29}
+			{\node[red] at (\n,{3000*0.95^\n}) {\textbf{+}};}
+			\node[left] at(30,2400) {Graphique 2};
+		\end{tikzpicture}
+	\end{enumerate}
+
+\end{document}

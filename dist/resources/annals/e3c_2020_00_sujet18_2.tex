@@ -1,0 +1,148 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet18_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Une banque propose un placement. Le compte est rémunéré et rapporte 5\,\% par an. La banque
+prend des frais de gestion qui se montent à 12 euros par an.
+
+Ainsi, chaque année la somme sur le compte augmente de 5\,\% puis la banque prélève 12 euros.
+
+Noémie place la somme de \np{1000} euros dans cette banque.
+
+On appelle $u_n$ la somme disponible sur le compte en banque de Noémie après $n$ années, où
+$n$ désigne un entier naturel.
+
+On a donc $u_0 = \np{1000}$ et pour tout entier naturel n, $u_{n+1} = 1,05 u_n-12$
+
+\begin{enumerate}
+\item  Avec un tableur on a calculé les premiers termes de la suite
+$\left(u_n\right)$ :
+
+\medskip
+
+\begin{minipage}[]{0.425\textwidth}
+\begin{enumerate}
+\item Quelle formule a-t-on entrée dans la cellule B3 avant de
+l’étirer pour obtenir ces résultats ?
+\item En utilisant les valeurs calculées de la suite, indiquer à
+Noémie combien de temps elle doit attendre pour que son
+placement lui rapporte 20\,\%.
+\end{enumerate}
+\end{minipage}
+\hspace{2cm}
+\begin{minipage}[]{8.97cm}
+\begin{tabularx}{0.445\textwidth}{|>{\columncolor{lightgray}}c|*{2}{>{\raggedleft \arraybackslash}X|}}
+\hline
+\rowcolor{lightgray}&\centering  A& \centering B\tabularnewline\hline
+1&\raggedright n&\raggedright u(n)\tabularnewline\hline
+2&0&\np{1000}\\\hline
+3&1&\np{1038.00}\\\hline
+4&2&\np{1077.90}\\\hline
+5&3&\np{1119.80}\\\hline
+6&4&\np{1163.78}\\\hline
+7&5&\np{1209.97}\\\hline
+8&6&\np{1258.47}\\\hline
+9&7&\np{1309.40}\\\hline
+10&8&\np{1362.87}\\\hline
+11&9&\np{1419.01}\\\hline
+12&10&\np{1477.96}\\\hline
+\end{tabularx}
+\end{minipage}
+
+\end{enumerate}
+
+\medskip
+
+On pose $\left(v_n\right)$ la suite définie, pour tout entier naturel $n$, par $v_n = u_n- 240$.
+
+\begin{enumerate}[resume]
+\item Montrer que la suite $\left(v_n\right)$ est géométrique de raison $1,05$.
+\item Exprimer $v_n$ puis $u_n$ en fonction de l’entier $n$.
+\item Calculer à partir de cette dernière formule la somme disponible sur le compte en banque de
+Noémie après 20 ans de placement.
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\end{document}

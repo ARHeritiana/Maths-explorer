@@ -1,0 +1,55 @@
+\medskip
+
+On considère les deux suites suivantes :
+
+\setlength\parindent{9mm}
+\begin{itemize}
+\item[$\bullet~~$]la suite $\left(u_n\right)$ définie pour tout entier $n$ par:
+
+\[u_n =  \dfrac{8n-4}{n+1}\]
+
+\item[$\bullet~~$]la suite $\left(u_n\right)$ définie par $v_0 = 0$ et $v_{n+1} = 0,5v_n +3,5$ pour tout entier $n$.
+\end{itemize}
+\setlength\parindent{0mm}
+
+\medskip
+
+\begin{enumerate}
+\item Calculer les termes d'indice 3 des suites $\left(u_n\right)$ et $\left(v_n\right)$.
+\item On s'intéresse aux variations de la suite $\left(u_n\right)$.
+ Pour cela, on considère la fonction $f$ définie sur $[0~;~+ \infty[$ par :
+ 
+ \[f(x) = \dfrac{8x- 4}{x + 1}\]
+ 
+	\begin{enumerate}
+		\item Démontrer que la fonction $f$ est croissante sur $[0~;~+ \infty[$.
+		\item En déduire la monotonie de la suite $\left(u_n\right)$.
+	\end{enumerate} 
+\item On considère l'affirmation suivante :
+
+\[\og \text{pour tout entier }\, n,\: u_n < v_n \fg.\]
+
+Camille pense que cette affirmation est vraie alors que Dominique pense le contraire.
+
+Pour les départager, on réalise le programme suivant écrit en langage Python:
+
+\begin{center}
+\begin{tabularx}{0.5\linewidth}{|X|}\hline
+\quad \texttt{def algo( )  :}\\
+\quad \texttt{n = 0}\\
+\quad \texttt{u = -4}\\
+\quad \texttt{v = 0}\\
+\quad \texttt{while u < v}\\
+\qquad \texttt{n = n+1}\\
+\qquad \texttt{u = (8*n - 4)/(n + 1)}\\ 
+\qquad \texttt{v = 0,5*v + 3,5}\\
+\quad \texttt{return(n)}\\ \hline
+\end{tabularx}
+\end{center}
+
+Le programme renvoie la valeur 11. Qui de Camille ou Dominique a raison ? 
+
+Expliquer.
+\end{enumerate}
+
+\bigskip

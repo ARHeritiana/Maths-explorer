@@ -1,0 +1,234 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet2_ameriquenord_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On étudie un groupe de \np{3000} sportifs qui pratiquent soit l'athlétisme dans le club A, soit le basketball dans le club B.
+
+En 2023, le club A compte \np{1700} membres et le club B en compte \np{1300}.
+
+
+
+On décide de modéliser le nombre de membres du club A et du club B respectivement par deux suites $\left(a_{n}\right)$ et $\left(b_{n}\right)$, où $n$ désigne le rang de l'année à partir de 2023.
+L'année 2023 correspond au rang 0. On a alors $a_{0}= \np{1700}$ et $b_{0} = \np{1300}$.
+
+Pour notre étude, on fait les hypothèses suivantes :
+\begin{itemize}
+\item durant l'étude, aucun sportif ne quitte le groupe ;
+\item chaque année, $15\,\%$ des sportifs du club A quittent ce club et adhèrent au club B ;
+\item chaque année, $10\,\%$ des sportifs du club B quittent ce club et adhèrent au club $A$.
+\end{itemize}
+
+
+
+\begin{enumerate}
+\item 
+\begin{list}{\textbullet}{D'après le texte:}
+\item $a_1 = a_0 - \dfrac{15}{100}a_0 + \dfrac{10}{100}b_0
+= \np{1700} - 255 + 130 = \np{1575}$
+\item $b_1 = b_0 - \dfrac{10}{100}b_0 + \dfrac{15}{100}a_0
+= \np{1300} - 130 + 255 = \np{1425}$
+\end{list}
+
+\item Comme on suppose que durant l'étude, aucun sportif ne quitte le groupe, on a, pour tout entier naturel $n$, $a_{n}+b_{n}=\np{3000}$.
+
+\item 
+D'après le texte, on a:
+$a_{n+1} = a_n - \dfrac{15}{100} a_n +\dfrac{10}{100} b_n$.
+
+Or $a_n+b_n=\np{3000}$ donc $b_n=\np{3000} - a_n$.
+On a alors:
+
+$\begin{gathered}a_{n+1} = a_n - \dfrac{15}{100} a_n +\dfrac{10}{100} \left (\np{3000}-a_n\right )
+= a_n - \dfrac{15}{100} a_n + \dfrac{10}{100}\times \np{3000} - \dfrac{10}{100}a_n\\
+\phantom{a_{n+1}}
+= a_n - \dfrac{25}{100}a_n + 300
+= \dfrac{75}{100}a_n + 300
+= 0,75 a_n +300\end{gathered}$
+
+\item 
+	\begin{enumerate}
+		\item Soit la propriété: $\np{1200} \leqslant a_{n+1} \leqslant a_{n} \leqslant \np{1700}$.
+		
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+$a_0=\np{1700}$ et $a_1=\np{1575}$ donc $\np{1200} \leqslant a_{1} \leqslant a_{0} \leqslant \np{1700}$
+
+Donc la propriété est vraie pour $n=0$.
+\item \textbf{Hérédité}
+
+On suppose la propriété vraie au rang $n$, soit $\np{1200} \leqslant a_{n+1} \leqslant a_{n} \leqslant \np{1700}$; c'est l'hypothèse de récurrence.
+
+$\begin{gathered}\np{1200} \leqslant a_{n+1} \leqslant a_{n} \leqslant \np{1700}\\
+\iff 0,75\times \np{1200} \leqslant 0,75\times a_{n+1} \leqslant 0,75\times a_{n} \leqslant 0,75\times \np{1700}\\
+\iff  \np{900} \leqslant 0,75\times a_{n+1} \leqslant 0,75\times a_{n} \leqslant  \np{1275}\\
+\iff \np{900} +300 \leqslant 0,75\times a_{n+1}  +300\leqslant 0,75\times a_{n}  +300\leqslant \np{1275} +300\\
+\iff \np{1200}  \leqslant a_{n+2} \leqslant a_{n+1}\leqslant \np{1575}\end{gathered}$
+
+Or $\np{1575}\leqslant \np{1700}$ donc $\np{1200}  \leqslant a_{n+2} \leqslant a_{n+1}\leqslant \np{1700}$. 
+
+La propriété est donc vraie au rang $n+1$ donc elle est héréditaire.
+\item \textbf{Conclusion}
+
+La propriété est vraie au rang 0 et elle est héréditaire pour tout $n\geqslant 0$; donc d'après le principe de récurrence, la propriété est vraie pour tout $n\geqslant 0$.
+\end{list}		
+
+On a donc démontré que, pour tout $n$, $\np{1200} \leqslant a_{n+1} \leqslant a_{n} \leqslant \np{1700}$.
+		
+		\item Étude de la convergence de la suite $\left(a_{n}\right)$.
+		
+\begin{list}{\textbullet}{}
+\item Pour tout $n\in\N$, $a_{n+1} \leqslant a_n$ donc la suite $(a_n)$ est décroissante.
+\item Pour tout $n\in\N$, $\np{1200} \leqslant a_n$ donc la suite $(a_n)$ est minorée.
+\end{list}		
+		
+La suite $(a_n)_{n\in\N}$ est décroissante et minorée donc, d'après le théorème de la convergence monotone, elle est convergente.		
+		
+	\end{enumerate}
+\item Soit $\left(v_{n}\right)$ la suite définie pour tout $n$ par $v_{n}=a_{n}- \np{1200}$; donc $a_n=v_n+\np{1200}$.
+	\begin{enumerate}
+		\item 
+$\begin{gathered}v_{n+1}	= a_{n+1} -\np{1200} = 0,75 a_n +300 -\np{1200}
+= 0,75\left (v_n+\np{1200}\right ) -900\\
+\phantom{v_{n+1}}
+= 0,75 v_n +900-900 = 0,75v_n\end{gathered}$	
+
+$v_0=a_0-\np{1200}=\np{1700} - \np{1200} = 500$
+
+Donc $(v_n)$ est la suite géométrique de premier terme $v_0=500$ et de raison $q=0,75$.		
+		\item 
+On en déduit que, pour tout $n$, on a: $v_n=v_0\times q^n = 500\times  0,75^n$.
+		
+		\item 
+On sait que, pour tout $n$, $a_n=v_n+\np{1200}$, donc 	$a_n=500\times 0,75^n+\np{1200}$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+$-1<0,75<1$ donc $\ds\lim_{n\to +\infty} 0,75^n=0$;
+on en déduit que $\ds\lim_{n\to +\infty}500\times 0,75^n=0$
+et donc que $\ds\lim_{n\to +\infty} a_n=\np{1200}$.
+				
+		\item
+On peut donc dire qu'à long terme, le nombre de sportifs dans le club A va tendre vers \np{1200}, et donc que le nombre de sportifs dans le club B va tendre vers $\np{3000}-\np{1200}=\np{1800}$.		
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item On complète le programme Python ci-dessous afin qu'il renvoie la plus petite valeur de $n$ à partir de laquelle le nombre de membres du club A est strictement inférieur à \np{1280}.
+
+
+\begin{center}
+\psset{unit=1cm}
+\fbox{
+\begin{tabular}{l l}
+\textbf{def}&seuil() :\\
+&n = 0\\&A = \np{1700}\\
+&\textbf{while \blue{}A>=1280} :\\
+&\qquad n=n+1\\
+&\qquad A = \blue{}0.75*A + 300\\
+&\textbf{return} n\\
+\end{tabular}
+}
+\end{center}
+
+		\item La valeur renvoyée lorsqu'on appelle la fonction seuil est la plus petite valeur de $n$ telle que $a_n<\np{1280}$. On résout cette inéquation.
+		
+$\begin{gathered}a_n<\np{1280}
+\iff 500\times 0,75^n + \np{1200} < \np{1280}
+\iff 500\times 0,75^n < 80\\
+\phantom{a_n<\np{1280}}
+\iff 0,75^n < \dfrac{80}{500}
+\iff \ln\left (0,75^n\right ) < \ln\left (0,16\right )
+\iff n\ln(0,75)<\ln(0,16)\\
+\phantom{a_n<\np{1280}}
+\iff n>\dfrac{\ln(0,16}{\ln(0,75)}\end{gathered}$
+
+Or $\dfrac{\ln(0,16}{\ln(0,75)} \approx 6,38$ donc la valeur de $n$ renvoyée par la fonction \texttt{seuil} est 7.
+		
+	\end{enumerate}
+\end{enumerate}	
+
+\bigskip
+
+\end{document}

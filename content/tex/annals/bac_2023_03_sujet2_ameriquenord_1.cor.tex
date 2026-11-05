@@ -1,0 +1,170 @@
+\medskip
+
+\textbf{\large Partie A}
+
+\medskip
+
+Le plan est muni d'un repère orthogonal.
+
+On considère une fonction $f$ définie et dérivable sur $\mathbb{R}$. On note $f'$ sa fonction dérivée. On donne ci-dessous la courbe représentative de la fonction dérivée $f'$.
+
+\begin{center}
+\scalebox{0.8}{
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture*}(-7,-8)(3,3)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-7,-7.95)(3,3)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.3pt,gridcolor=gray]
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-7}{3}{x dup mul 3 x mul sub 1 add 2.71828 x exp mul}
+\end{pspicture*}
+}
+\end{center}
+
+
+
+
+
+\begin{enumerate}
+\item Le sens de variation de la fonction $f$ sur $\mathbb{R}$ est donné par le signe de la dérivée $f'$.
+
+~~\textbullet~~Sur $]-\infty~;~0,4[$, $f'>0$ donc $f$ est strictement croissante.
+
+~~\textbullet~~Sur $]0,4~;~2,6[$, $f'<0$ donc $f$ est strictement décroissante.
+
+~~\textbullet~~Sur $]2,6~;~+\infty[$, $f'>0$ donc $f$ est strictement croissante.
+
+\item La fonction $f$ est convexe sur les intervalles sur lesquels la dérivée $f'$ est croissante, soit sur $]-\infty~;~-1[$ et sur $]2~;~+\infty[$.
+\end{enumerate}
+
+\medskip
+
+\textbf{\large Partie B}
+
+\medskip
+
+On admet que la fonction $f$ de la partie $\mathbf{A}$ est définie sur $\mathbb{R}$ par 
+$f(x)=\left(x^{2}- 5 x + 6\right) \mathrm{e}^{x}$.
+
+On note $\mathcal{C}$ la courbe représentative de la fonction $f$ dans un repère.
+
+
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item On détermine la limite de la fonction $f$ en $+\infty$.
+		
+$\left .
+\begin{array}{l}
+\ds\lim_{x\to +\infty} \left (x^2-5x+6\right ) = \ds\lim_{x\to +\infty} x^2 = +\infty\\
+\ds\lim_{x\to +\infty} \e^{x} = +\infty
+\end{array}
+\right \}		
+\implies
+\ds\lim_{x\to +\infty} \left (x^2-5x+6\right )\e^{x} = +\infty$
+
+donc
+$\ds\lim_{x\to +\infty} f(x)=+\infty$		
+		
+		\item On détermine la limite de la fonction $f$ en $-\infty$.
+		
+Pour $x\neq 0$, $f(x)=x^2\left (1-\dfrac{5}{x} +\dfrac{6}{x^2}\right )\e^{x}	
+= x^2\e^{x}\left (1-\dfrac{5}{x} +\dfrac{6}{x^2}\right )$
+
+$\left .
+\begin{array}{l}
+\ds\lim_{x\to -\infty} x^2 \e^{x} = 0\\
+\ds\lim_{x\to -\infty} \left (1-\dfrac{5}{x} +\dfrac{6}{x^2}\right )=1
+\end{array}
+\right \}		
+\implies
+\ds\lim_{x\to -\infty} x^2\e^{x}\left (1-\dfrac{5}{x} +\dfrac{6}{x^2}\right ) = 0$
+
+donc
+$\ds\lim_{x\to -\infty} f(x)=0$
+		
+	\end{enumerate}
+\item 
+La fonction $f$ est dérivable sur $\R$ et:
+
+$f'(x)=\left (2x-5\right )\e^{x} + \left (x^2-5x+6\right )\times \e^{x}
+= \left ( 2x-5+x^2-5x+6\right )\e^{x}
+= \left (x^2-3x+1\right )\e^{x}$
+
+
+\item Pour déterminer le sens de variation de la fonction $f$, on étudie le signe de $f'(x)$.
+
+Pour tout $x$, $\e^{x}>0$ donc $f'(x)$ est du signe de $x^2-3x+1$.
+
+$\Delta=(-3)^2-4\times 1 \times 1 = 5>0$;
+$x'=\dfrac{-(-3)-\sqrt{5}}{2\times 1} = \dfrac{3-\sqrt{5}}{2}$
+et $x''=\dfrac{3+\sqrt{5}}{2}$
+
+\begin{center}
+{
+\renewcommand{\arraystretch}{1.5}
+\def\esp{\hspace*{2cm}}
+$\begin{array}{|c | *{7}{c} |} 
+\hline
+x  & -\infty & \esp & \frac{3-\sqrt{5}}{2} & \esp & \frac{3+\sqrt{5}}{2} & \esp & +\infty \\
+\hline
+x^2-3x+1 &  & \pmb{+} &  \vline\hspace{-2.7pt}{0} & \pmb{-} & \vline\hspace{-2.7pt}{0} & \pmb{+} &\\
+\hline
+\e^x &  & \pmb{+} &  \vline\hspace{-2.7pt}{\phantom 0} & \pmb{+} & \vline\hspace{-2.7pt}{\phantom 0} & \pmb{+} &\\
+\hline
+f'(x) &  & \pmb{+} &  \vline\hspace{-2.7pt}{0} & \pmb{-} & \vline\hspace{-2.7pt}{0} & \pmb{+} & \\
+\hline
+f &  & \text{croissante} &  \vline\hspace{-2.7pt}{\phantom 0} & \text{décroissante} & \vline\hspace{-2.7pt}{\phantom 0} & \text{croissante} & \\
+\hline
+\end{array}$
+}
+\end{center}
+
+
+\item La tangente $(\mathcal{T})$ à la courbe $\mathcal{C}$ au point d'abscisse 0 a pour équation réduite: \\
+$y=f'(0)\left (x-0\right ) + f(0)$.
+
+~~\textbullet~~$f(x)=\left (x^2-5x+6\right )\e^{x}$ donc $f(0)=6\e^{0}=6$
+
+~~\textbullet~~$f'(x)=\left (x^2-3x+1\right )\e^{x}$ donc $f'(0)=1\e^{0}=1$
+
+$\mathcal{T}$ a pour équation réduite $y=1\left (x-0\right )+6$ soit $y=x+6$.
+
+\end{enumerate}
+
+On admet que la fonction $f$ est deux fois dérivable sur $\mathbb{R}$. On note $f''$ la fonction dérivée seconde de la fonction $f$. On admet que, pour tout réel $x$, on a $f''(x) = (x + 1)(x - 2) \mathrm{e}^{x}$.
+
+\begin{enumerate}[resume]
+\item 
+	\begin{enumerate}
+		\item Pour étudier la convexité de la fonction $f$ sur $\mathbb{R}$, on étudie le signe de $f''(x)$.
+		
+\begin{center}
+{
+\renewcommand{\arraystretch}{1.5}
+\def\esp{\hspace*{2cm}}
+$\begin{array}{|c | *{7}{c} |} 
+\hline
+x  & -\infty & \esp & -1 & \esp & 2 & \esp & +\infty \\
+\hline
+x+1 &  & \pmb{-} &  \vline\hspace{-2.7pt}{0} & \pmb{+} & \vline\hspace{-2.7pt}{\phantom 0} & \pmb{+} &\\
+\hline
+x-2 &  & \pmb{-} &  \vline\hspace{-2.7pt}{\phantom 0} & \pmb{-} & \vline\hspace{-2.7pt}{0} & \pmb{+} &\\
+\hline
+\e^x &  & \pmb{+} &  \vline\hspace{-2.7pt}{\phantom 0} & \pmb{+} & \vline\hspace{-2.7pt}{\phantom 0} & \pmb{+} &\\
+\hline
+f''(x) &  & \pmb{+} &  \vline\hspace{-2.7pt}{0} & \pmb{-} & \vline\hspace{-2.7pt}{0} & \pmb{+} & \\
+\hline
+f &  & \text{convexe} &  \vline\hspace{-2.7pt}{\phantom 0} & \text{concave} & \vline\hspace{-2.7pt}{\phantom 0} & \text{convexe} & \\
+\hline
+\end{array}$
+}
+\end{center}
+		
+		\item 
+Sur $[-1~;~2]$, la fonction $f$ est concave donc la courbe $\mathcal{C}$ est en dessous de ses tangentes, et en particulier en dessous de la tangente $\mathcal{T}$ car $0\in [-1~;~2]$.		
+		
+Donc, pour tout $x$ appartenant à l'intervalle $[-1~;~2]$, on a $f(x) \leqslant x + 6$.		
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

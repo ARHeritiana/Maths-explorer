@@ -1,0 +1,148 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet1_etrangers_groupe1_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\bigskip
+Pour ce QCM, aucune justification n'est demandée. On en fournit quand même dans ce corrigé.
+\begin{enumerate}
+	\item \textbf{Réponse c.}
+
+Pour tout entier naturel $n$, on a : $u_n = \dfrac{1 + 2^n}{3 + 5^n } = \dfrac{2^n \times \left(\frac{1}{2^n}+1\right)}{5^n\times \left(\frac{3}{5^n} + 1\right)  } = \left(\dfrac{2}{5}\right)^n \dfrac{1 + \left(\frac{1}{2}\right)^n}{1 + 3\left(\frac{1}{5}\right)^n}$
+
+Or, les nombres : $ \dfrac{2}{5} $; $ \dfrac{1}{2} $ et $ \dfrac{1}{5} $ étant tous strictement compris entre $-1$ et 1, on en déduit que les suites géométriques ayant ces nombres pour raison convergent vers 0.
+
+Par limite de somme et de quotient, on a alors : $ \lim\limits_{n \to +\infty} \dfrac{1 + \left(\frac{1}{2}\right)^n}{1 + \left(\frac{1}{5}\right)^n} = 1$, puis, par limite du produit : $\lim\limits_{n \to +\infty} u_n = \lim\limits_{n \to +\infty}  \left(\dfrac{2}{5}\right)^n \dfrac{1 + \left(\frac{1}{2}\right)^n}{1 + \left(\frac{1}{5}\right)^n}=0$
+
+	\item \textbf{Réponse b.}
+
+$f$ est dérivable sur $ ]0~;~+\infty[ $, en tant que produit de fonctions dérivables sur cet intervalle. Pour tout $x$ réel strictement positif, on a :
+
+$f'(x) = 2x \times \ln(x) + x^2 \times \dfrac{1}{x} = 2x\ln(x) + x = x\big(2\ln(x) + 1\big) $.
+
+	\item \textbf{Réponse a.}
+
+La stricte croissance de $h$ sur $\R$ et le fait que $h(1) = 0$ permettent de dire que :
+
+$\forall x \in \R, \quad x < 1 \implies h(x) < 0$.
+
+La fonction $H$ étant une primitive de $h$ sur $\R$, cela équivaut à dire que $h$ est la fonction dérivée de $H$, et donc $H$ a une dérivée négative sur $ ]-\infty~;~1[ $. $H$ est donc décroissante sur cet intervalle.
+
+Cela implique donc que, pour tout $x$ réel inférieur à 0, $x$ et $0$ seront dans $ ]-\infty~;~1[ $ et donc :
+
+$x \leqslant 0 \implies H(x) \geqslant H(0)$, or, comme $H$ s'annule en 0, cela signifie que $H(0) = 0$.
+
+Finalement, on a : $ x\leqslant 0 \implies H(x) \geqslant 0$ : $H$ est bien à valeurs positives sur $ ]-\infty~;~0[$.
+
+	\item \textbf{Réponse d.}
+
+On cherche la fonction qui met en \oe{}uvre l'algorithme de dichotomie.
+
+On peut tout de suite éliminer les propositions \textbf{b.} et \textbf{c.} : la valeur au centre de l'intervalle $ [a~;~b] $ n'est calculée qu'une fois, et n'est pas réactualisée.
+
+De plus, pour la proposition \textbf{c.}, le test de la boucle "while" est incorrect : il provoque un arrêt quand l'amplitude de l'intervalle d'encadrement dépasse 0,001.
+
+Reste à trancher entre les propositions \textbf{a.} et \textbf{d.}, qui sont quasi identiques, à l'exception des actualisations des variables $a$ et $b$.
+
+Reprenons la situation : $f$ est continue, et strictement croissante sur $ [a~;~b] $ et elle s'annule en un réel $\alpha$. On a donc par croissance de $f$ : $f(a) < 0$ et $f(b) > 0$.
+
+$m$ est la valeur au centre de l'intervalle $ [a~;~b] $, si on a $f(m) <0$, alors cela veut dire que $f(a)$ et $f(m)$ sont strictement négatifs tous les deux, et donc c'est sur l'intervalle $ [m~;~b] $ que l'on peut appliquer le corollaire au théorème des valeurs intermédiaires pour les fonctions strictement monotones, et donc le nombre $\alpha$ se trouve entre $m$ et $b$, donc l'étape suivante de l'algorithme doit se faire entre $m$ et $b$, donc on reprendra la même démarche, en gardant la valeur $b$ dans la variable b, et en mettant la valeur $m$ dans la variable a.
+
+C'est la proposition \textbf{d.} qui fait cela, et pas la proposition \textbf{a.}.
+
+	\item \textbf{Réponse d.}
+
+Ici, nous avons :
+\begin{itemize}
+\item une expérience à deux issues (choisir une boule dans l'urne), le succès est \og obtenir une boule verte\fg{}, de probabilité $p = \dfrac{3}{10}$;
+\item cette expérience est répétée trois fois (trois tirages) de façon identique et indépendante (tirages avec remise), donc $n=3$ répétitions;
+\item dans ce schéma de Bernoulli de paramètres $n=3$ et $p=\dfrac{3}{10}$, on note $X$ la variable aléatoire qui compte le nombre de succès.
+\end{itemize}
+
+Avec ces éléments, on peut dire que $X$ suit la loi binomiale $ \mathcal{B}\left(3 ~;~ \dfrac{3}{10}\right)$.
+
+L'évènement \og obtenir deux boules vertes\fg{} correspond à $(X = 2)$ dans ce contexte, et par propriété, on a :
+
+	$\displaystyle P(X = 2) = \binom{3}{2}\times p^2\times \left(1 - p\right)^{3-2} = \binom{3}{2}\times \left(\dfrac{3}{10}\right)^2\times \left(\dfrac{7}{10}\right) = \binom{3}{2}\left(\dfrac{7}{10}\right) \left(\dfrac{3}{10}\right)^2$.
+\end{enumerate}
+\bigskip
+
+\end{document}

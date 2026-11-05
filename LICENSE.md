@@ -17,3 +17,5 @@ icons.
 The site's program code (`site/js/`, `site/styles/`, `site/index.html`, `build/`, `scripts/`, `tests/` and the copies
 of the site files in `dist/`) is licensed under the **MIT License**: see `LICENSE-CODE`.
 
+
+The annales bank is adapted from APMEP / CoopMaths documents made available under CC BY-SA by CoopMaths (https://coopmaths.fr/www/about/). These statements, proposed corrections and figures, their adapted web editions and downloadable LaTeX retain that licence and attribution, separately from the other site content. Presentation and format have been adapted by Maths Explorer.

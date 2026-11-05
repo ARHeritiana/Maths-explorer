@@ -1,0 +1,151 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_08_sujet2_caledonie_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On considère la fonction $f$ définie sur $[0~;~ +\infty[$ par:
+\[f(x) = x\e^{-x}.\]
+On note $\mathcal{C}_f$ sa courbe représentative dans un repère orthonormé du plan.
+
+On admet que $f$ est deux fois dérivable sur $[0~;~ +\infty[$.
+
+On note $f'$ sa dérivée et $f''$ sa dérivée seconde.
+
+\medskip
+
+\begin{enumerate}
+\item En remarquant que pour tout $x$ dans $[0~;~ +\infty[$, on a 
+\[f(x) = \dfrac{x}{\e^x}.\]
+démontrer que la courbe $\mathcal{C}_f$ possède une asymptote en $+ \infty$ dont on donnera une équation.
+\item Démontrer que pour tout réel $x$ appartenant à $[0~;~ +\infty[$ : 
+\[f'(x) = (1 - x)\e^{-x}.\]
+\item Dresser le tableau de variations de $f$ sur $[0~;~ +\infty[$ , sur lequel on fera figurer les valeurs aux bornes ainsi que la valeur exacte de l'extremum.
+\item Déterminer, sur l'intervalle $[0~;~ +\infty[$, le nombre de solutions de l'équation 
+\[f(x) = \dfrac{367}{\np{1000}}.\]
+\item On admet que pour tout $x$ appartenant à $[0~;~ +\infty[$ : 
+\[f''(x) = \e^{-x}(x - 2).\]
+
+Étudier la convexité de la fonction $f$ sur l'intervalle $[0~;~ +\infty[$.
+
+\begin{minipage}{6cm}
+\item Soit $a$ un réel appartenant à $[0~;~ +\infty[$ et A le
+point de la courbe $\mathcal{C}_f$ d'abscisse $a$.
+
+On note $T_a$ la tangente à $\mathcal{C}_f$ en A.
+
+On note H$_a$ le point d'intersection de la droite $T_a$ et de l'axe des ordonnées.
+
+On note $g(a)$ l'ordonnée de H$_a$.
+
+La situation est représentée sur la figure ci-contre.
+\end{minipage}\hfill
+\begin{minipage}{7cm}
+\psset{xunit=1cm,yunit=8cm,arrowsize=2pt 3}
+\begin{pspicture}(-1,-0.1)(6,0.5)
+\psaxes[linewidth=1.15pt,Dx=10,Dy=10]{->}(0,0)(-1,0)(6,0.5)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0}{6}{x 2.71828 x exp div}
+\uput[u](4,0.073){\red $\mathcal{C}_f$}
+\psplotTangent{0.75}{1.25}{x 2.71828 x exp div}
+\uput[u](0.75,0.354){A}
+\psline[linestyle=dotted,linewidth=1.3pt](0.75,0)(0.75,0.354)
+\psline[linewidth=0.8pt]{->}(-0.3,0)(-0.3,0.265)
+\psline[linestyle=dotted,linewidth=1.3pt](0,0.265)(-0.3,0.265)
+\uput[l](-0.3,0.1325){$g(a)$}
+\uput[ul](0,0.265){H$_a$}
+\uput[d](0.75,0){$a$}\uput[u](2,0.4){$T_a$}
+\end{pspicture}
+\end{minipage}
+
+	\begin{enumerate}
+		\item Démontrer qu'une équation réduite de la tangente $T_a$ est:
+\[y = \left[(1- a)\e^{-a}\right]x + a^2\e^{-a}.\]
+		\item En déduire l'expression de $g(a)$.
+		\item Démontrer que $g(a)$ est maximum lorsque A est un point d'inflexion de la courbe $\mathcal{C}_f$.
+		
+\emph{Les traces de recherche, même incomplètes ou infructueuses, seront valorisées}.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

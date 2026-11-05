@@ -1,0 +1,136 @@
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On considère la fonction $g$ définie sur l'intervalle $]0~;~+\infty[$ par
+\[g(x) = \ln \left(x^2\right) + x - 2\]
+\begin{enumerate}
+\item ~
+$\bullet~~$On a $\displaystyle\lim_{x \to 0} \ln x^2 = - \infty$ et $\displaystyle\lim_{x \to 0} x = 0$, d'où par somme de limites : $\displaystyle\lim_{x \to 0} g(x) = - \infty$.
+
+$\bullet~~$$\displaystyle\lim_{x \to + \infty} \ln x^2  = + \infty$ et $\displaystyle\lim_{x \to + \infty} x  = + \infty$, d'où  par somme de limites : $\displaystyle\lim_{x \to + \infty} g(x) = + \infty$.
+\item 
+
+
+Sur $]0~;~+\infty[$, on a $g(x) = 2\ln x + x - 2$, d'où :
+
+$g'(x) = 2\times \dfrac1x + 1$.
+On a par composition de la dérivation :
+
+$g'(x) = 2 \times \dfrac1x + 1 = \dfrac{2 + x}{x}$.
+
+Comme $x > 0$, le signe de $g'(x)$ est celui de $2 + x$.
+
+Or $x > 0 \implies 2 + x > 2 > 0$, donc $g'(x) > 0$ sur l'intervalle $]0~;~+\infty[$.
+
+La fonction $g$ est donc croissante et d'après la question précédente de moins l'infini à plus l'infini.
+\item \begin{enumerate}
+\item 
+D'après la question précédente $g$ est continue car dérivable sur $]0~;~+\infty[$ et croit de moins l'infini à plus l'infini : d'après le théorème des valeurs intermédiaires il existe donc un réel unique $\alpha \in ]0~;~+\infty[$ tel que $g(\alpha) = 0$.
+\item ~
+La calculatrice donne :
+
+$g(1) = - 1$ et $g(2) \approx1,4$, donc $1 < \alpha < 2$ ;
+
+$g(1,3) \approx - 0,175$ et $g(1,4) \approx 0,07$, donc $1,3 < \alpha < 1,4$ ;
+
+$g(1,37) \approx - 0,0004$ et $g(1,38) \approx 0,02$, donc $1,37 < \alpha < 1,38$
+\end{enumerate}
+\item D'où le tableau de signe :
+
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(7,1)
+\psframe(7,1)\psline(0,0.5)(7,0.5)\psline(1,0)(1,1)
+\uput[u](0.5,0.4){$x$}\uput[u](1.15,0.4){0}\uput[u](4,0.4){$\alpha$}\uput[u](6.5,0.4){$+ \infty$}
+\uput[u](0.5,-0.1){$g(x)$}\uput[u](2.5,-0.1){$-$}\uput[u](4,-0.1){$0$}\uput[u](5.5,-0.1){$+$}
+\end{pspicture}
+\end{center}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On considère la fonction $f$ définie sur l'intervalle $]0~;~+\infty[$ par:
+\[f(x) = \dfrac{(x-2)}{x}\ln(x)\]
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+On a successivement :
+
+$\displaystyle\lim_{x \to 0} (x - 2) = - 2$ et $\displaystyle\lim_{x \to 0} x  = 0$, d'où par quotient de limites $\displaystyle\lim_{x \to 0} \dfrac{(x - 2)}{x} = - \infty$ ;
+
+D'autre part $\displaystyle\lim_{x \to 0} \ln x = - \infty$, donc par produit de limites : $\displaystyle\lim_{x \to 0} f(x) = + \infty.$
+		\item 
+		Géométriquement le résultat précédent montre que l'axe des ordonnées est asymptote verticale à la courbe $\mathcal{C}_f$.
+	\end{enumerate}
+\item 
+$\bullet~~$On a $\dfrac{x - 2}{x} = \dfrac{x\left(1 - \frac2x\right)}{x} = 1 - \frac2x$
+
+De $\displaystyle\lim_{x \to + \infty} \frac2x = 0$, il suit $\displaystyle\lim_{x \to + \infty}\dfrac{x - 2}{x} = 1$.
+
+$\bullet~~$D'autre part on sait que $\displaystyle\lim_{x \to + \infty}\ln x = + \infty$. 
+
+Donc par produit de limites, on a $\displaystyle\lim_{x \to + \infty}f(x) = + \infty$.
+\item On admet que la fonction $f$ est dérivable sur l'intervalle $]0~;~+\infty[$,
+
+
+Sur l'intervalle $]0~;~+\infty[$, on a par dérivation du produit :
+
+$f'(x) = \dfrac{1 \times x - 1 \times (x - 2)}{x^2}\ln x + \dfrac{x - 2}{x} \times \dfrac1x = \dfrac{x - x + 2}{x^2}\ln x + \dfrac{x - 2}{x^2} = \dfrac{2\ln x + x - 2}{x^2} = \dfrac{g(x)}{x^2}$.
+\item  
+Comme $x^2 > 0$ sur $]0~;~+\infty[$, le signe de $f'(x)$ sur cet intervalle est celui de $g(x)$.
+
+On a vu à la question A. 4. que :
+
+$\bullet~~$ :sur l'intervalle $]0~;~\alpha[, \: g(x) < 0$ : la fonction $f$ est donc décroissante sur $]0~;~\alpha[$ ;
+
+$\bullet~~$ :sur l'intervalle $]\alpha~;~+ \infty[, \: g(x) > 0$ : la fonction $f$ est donc croissante sur $]\alpha~;~\infty[$.
+\end{enumerate}
+\medskip
+\textbf{Partie C}
+\medskip
+
+
+\[d(x) = f(x) - \ln x = \dfrac{(x-2)}{x}\ln(x) - \ln x = \ln x\left[\dfrac{(x-2)}{x} - 1\right] = \ln x\left[\dfrac{x - 2 - x}{x}\right] = \dfrac{- 2}{x}\ln x.\]
+
+La position relative de la courbe $\mathcal{C}_f$ et de la courbe représentative de la fonction $\ln$ est donnée par le signe de la fonction $d$.
+
+Comme $x > 0$, le signe de $d(x)$ est celui du produit $- 2\ln x$.
+
+On dresse donc un tableau de signes :
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(8,2)
+\psframe(8,2)\psline(0,0.5)(8,0.5)\psline(2,0)(2,2)\psline(0,1)(8,1)\psline(0,1.5)(8,1.5)
+\psline(2.1,0)(2.1,1.5)\psline(2.2,0)(2.2,1.5)
+\uput[u](1,1.4){$x$}\uput[u](2.15,1.4){0}\uput[u](5,1.4){1}\uput[u](7.5,1.4){$+ \infty$}
+\uput[u](1,0.9){$- 2$}\uput[u](3.5,0.9){$-$}\uput[u](6.5,0.9){$-$}
+\uput[u](1,0.4){$\ln x$}\uput[u](3.5,0.4){$-$}\uput[u](5,0.4){$0$}\uput[u](6.5,0.4){$+$}
+\uput[u](1,-0.1){$- 2\ln x$}\uput[u](3.5,-0.1){$+$}\uput[u](5,-0.1){$0$}\uput[u](6.5,-0.1){$-$}
+
+\end{pspicture}
+\end{center}
+Conclusion : sur l'intervalle $]0~;~1[$, la courbe $\mathcal{C}_f$ est au dessus de la courbe logarithme népérien et,
+
+sur l'intervalle $]1~;~+ \infty[$ la courbe $\mathcal{C}_f$ est au dessous de la courbe logarithme népérien.
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture*}(-0.5,-2)(7,2)
+\psaxes[linewidth=1.25pt]{->}(0,0)(0,-2)(7,2)
+\psgrid(0,-2)(7,5)
+\psplot[plotpoints=2000,linecolor=red,linewidth=1.25pt]{0.1}{7}{x 2 sub x div x ln mul}\uput[dr](6,1.2){\red$\mathcal{C}$}
+\psplot[plotpoints=2000,linecolor=blue,linewidth=1.25pt]{0.1}{7}{x ln}\uput[u](4,1.4){\blue $y = \ln x$}
+\end{pspicture*}
+\end{center}
+\bigskip

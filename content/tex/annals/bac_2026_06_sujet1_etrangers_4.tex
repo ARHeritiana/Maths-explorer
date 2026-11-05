@@ -1,0 +1,92 @@
+On considère la fonction $f$ définie sur l'intervalle $] 0 ; +\infty[$ par \quad \[f(x)=\dfrac{\ln (x)}{x^{2}}\]
+	
+	On note $\mathcal{C}_{f}$ sa courbe représentative dans un repère orthonormé du plan.
+	
+	On admet que la fonction $f$ est deux fois dérivable sur l'intervalle $]0 ; +\infty[$.
+	
+	On note $f'$ sa fonction dérivée et $f''$ sa fonction dérivée seconde.
+	
+	\subsection*{Partie A}
+	\begin{enumerate}
+		\item \begin{enumerate}
+			\item Déterminer les limites de la fonction $f$ aux bornes de l'intervalle $] 0;+\infty[$.
+			
+			\item Interpréter graphiquement les résultats obtenus.
+		\end{enumerate}
+		
+		\item Pour tout réel strictement positif $x$, démontrer que \quad
+		\[f'(x)=\dfrac{1-2 \ln (x)}{x^{3}}\]
+		
+		\item Dresser le tableau de variation de la fonction $f$ en précisant les limites et les valeurs exactes des éventuels extremums de la fonction.
+		
+		\item Déterminer l'équation réduite de la droite $\Delta$, tangente à la courbe $\mathcal{C}_{f}$ au point A d'abscisse 1.
+		
+		\item Vérifier que pour tout réel strictement positif $x$, on a \quad \[f''(x)=\dfrac{-5+6 \ln (x)}{x^{4}}\]
+		
+		\item \begin{enumerate}
+			\item Étudier la convexité de la fonction $f$ en précisant les coordonnées des éventuels points d'inflexion.
+			
+			\item En déduire que, pour tout réel $x$ appartenant à $\left]0 ; \e^{\frac{5}{6}}\right]$, on a \quad
+			\[x-1 \geqslant \dfrac{\ln (x)}{x^{2}}\]
+		\end{enumerate}
+		
+		\item Justifier que, pour tout réel $x$ appartenant à $\left[\e^{\frac{5}{6}} ; +\infty\right[$, on a aussi
+		\[x-1 \geqslant  \dfrac{\ln (x)}{x^{2}}\]
+	\end{enumerate}
+	
+	\subsection*{Partie B}
+	On considère la suite $(I_{n})$ définie, pour tout entier naturel non nul $n$, par :
+	\[I_{n}=\int_{1}^{n} \dfrac{\ln (x)}{x^{2}} \d x\]
+	
+	\begin{enumerate}
+		\item Donner une interprétation graphique de $I_{n}$ pour $n$ un entier naturel non nul.
+		
+		\item Démontrer que la suite $(I_{n})$ est croissante.
+		
+		\item On souhaite calculer une approximation de \quad $\ds \int_{1}^{10} f(x) \d x$ \quad en déterminant la somme des aires des rectangles tracés dans le graphique ci-dessous.
+		
+		\begin{center}
+			\begin{tikzpicture}
+				\begin{axis}[/pgf/number format/.cd, use comma,
+					x={10mm}, y={20cm},
+					xmin = -0.9, xmax = 11.9,
+					ymin = -0.04, ymax = 0.28,
+					xtick distance=1,
+					ytick distance=0.05,
+					scaled ticks=false,
+					tick label style={/pgf/number format/fixed, /pgf/number format/precision=2,font=\footnotesize},
+					minor tick num = 0,
+					grid=major,axis lines=center]
+					\node[below left=2pt] at (axis cs: 0,0) {\footnotesize 0};
+					\node[red] at(axis cs: 10.5,0.035) {$ \mathcal{C}_f $};
+					\pgfplotsextra{
+						\foreach \x/\y in {1/0.184, 2/0.173, 3/0.122, 4/0.087, 5/0.064, 6/0.05, 7/0.04, 8/0.032, 9/0.027}
+						\draw[brown,thick,fill opacity=0.2,fill] (axis cs: \x,\y) rectangle (axis cs: {\x+1},0) ;
+					}
+					\draw[thick,blue,shift={(axis cs: 1.649,0.184)}] (3pt,3pt)--(-3pt,-3pt) (3pt,-3pt)--(-3pt,3pt) ;
+					\addplot [line width=1.2pt,color=teal,smooth,samples=100,domain= 0.8:12 ]{ln(x)/(x*x)};
+				\end{axis}
+			\end{tikzpicture}
+		\end{center}
+		
+		
+		Pour cela, on utilise le script suivant, écrit en langage Python.
+		
+		\begin{center}
+			\begin{tblr}{colspec={X[6cm,font=\ttfamily]},hline{1,Z}={solid}, vlines}
+				from math import *\\
+				\\
+				S=1/(2*exp(1))\\
+				for i in range (2,10):\\
+				\quad S =...\\
+				print(S)\\
+			\end{tblr}
+		\end{center}
+		
+		Recopier et compléter ce script afin qu'il réponde au problème posé.
+		
+		\item À l'aide d'une intégration par parties, démontrer que pour tout entier naturel non nul $n$,
+		\[I_{n}=\dfrac{n-1-\ln (n)}{n}\]
+		
+		\item Calculer la limite de la suite $(I_{n})$ quand $n$ tend vers $+\infty$.
+	\end{enumerate}

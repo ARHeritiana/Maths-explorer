@@ -1,0 +1,120 @@
+Une plateforme de diffusion musicale propose trois types d'abonnements : \og Étudiant\fg{}, \og Classique \fg{} et \og Famille \fg{}. Elle propose également une option \og Écoute hors-ligne \fg{} qu'on peut activer pour chaque type d'abonnement et qui permet de télécharger de la musique.
+
+\smallskip
+
+Une étude statistique menée sur les abonnés a permis d'établir que :
+\begin{itemize}
+\item $25\,\%$ des abonnés ont choisi l'abonnement \og Étudiant\fg{} et $15\,\%$ ont choisi l'abonnement \og  Famille \fg{};
+\item $45\,\%$ des abonnés \og Étudiant\fg{} ont activé l'option \og Écoute hors-ligne\fg{};
+\item $30\,\%$ des abonnés \og Classique\fg{} ont activé l'option \og Écoute hors-ligne\fg{};
+\item $12\,\%$ des abonnés ont choisi l'abonnement \og Famille\fg{} et ont activé l'option \og Écoute hors-ligne \fg{}.
+\end{itemize}
+
+\smallskip
+
+On prélève au hasard le profil d'un abonné et on considère les évènements suivants :
+
+\begin{itemize}
+\item $E$ : l'abonné a choisi l'abonnement \og Étudiant\fg{};
+\item $C$ : l'abonné a choisi l'abonnement \og Classique\fg{};
+\item $F$ : l'abonné a choisi l'abonnement \og Famille\fg{};
+\item $H$ : l'abonné a activé l'option \og Écoute hors-ligne\fg{}.
+\end{itemize}
+
+\textbf{Partie A}
+
+\begin{enumerate}
+\item Recopier l'arbre de probabilités suivant, en complétant les pointillés:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+\pstree[treemode=R,levelsep=3.5cm, treesep=0.7cm]{\TR{}}
+{\pstree{\TR{$E~$}\ncput*{\ldots}}
+	{\TR{$H$} \ncput*{\ldots}
+	\TR{$\overline{H}$} \ncput*{\ldots}
+	}
+\pstree{\TR{$C~$}\ncput*{\ldots}}
+	{\TR{$H$}\ncput*{\ldots}
+	\TR{$\overline{H}$} \ncput*{\ldots}
+	}
+\pstree{\TR{$F~$}\ncput*{\ldots}}
+	{\TR{$H$} 
+	\TR{$\overline{H}$}
+	}	
+}
+\end{center}
+
+\item Calculer la valeur exacte de $P(E \cap H)$.
+\item Démontrer que la probabilité qu'un abonné ait activé l'option \og Écoute hors-ligne\fg{} est de \np{0,4125}.
+\item Un abonné a activé l'option \og Écoute hors-ligne\fg{}. Déterminer la probabilité qu'il ait choisi l'abonnement \og Étudiant\fg{}. \emph{On arrondira le résultat au millième}.
+\end{enumerate}
+
+\textbf{Partie B}
+
+On choisit huit abonnés de cette plateforme, au hasard et de manière indépendante. On considère qu'il y a suffisamment d'abonnés pour que ce choix soit assimilé à un tirage avec remise.
+
+\smallskip
+
+On rappelle que la probabilité qu'un abonné ait activé l'option \og Écoute hors-ligne\fg{} est de 0,4125.
+
+\bigskip
+
+On note $X$ la variable aléatoire donnant le nombre d'abonnés ayant activé l'option \og Écoute hors-ligne \fg{}.
+
+\begin{enumerate}
+\item On admet que la variable aléatoire $X$ suit une loi binomiale. Préciser ses paramètres.
+\item Calculer la probabilité qu'aucun de ces huit abonnés n'ait activé l'option \og Écoute hors-ligne \fg{}. \emph{On arrondira le résultat au millième}.
+\item Dans cette question, $n$ est un entier naturel non nul.
+
+On s'intéresse à un échantillon de $n$ abonnés, qu'on assimile à un tirage avec remise.
+
+On note $q_{n}$ la probabilité qu'au moins un abonné de cet échantillon ait activé l'option \og Écoute hors-ligne\fg{}.
+
+	\begin{enumerate}
+		\item Démontrer que, pour tout $n$ entier naturel non nul,\quad $q_{n}=1- \np{0,5875}^{n}$.
+		\item Déterminer la plus petite valeur de $n$ telle que la probabilité qu'au moins un abonné de l'échantillon ait activé l'option \og Écoute hors-ligne\fg{} soit supérieure ou égale à $99,9\,\%$.
+	\end{enumerate}
+\end{enumerate}
+
+\textbf{Partie C}
+
+La plateforme propose les tarifs mensuels suivants :
+
+\begin{itemize}
+\item Abonnement \og Étudiant\fg{} : 5~\euro{} par mois ;
+\item Abonnement \og Classique\fg{} : 10~\euro{} par mois ;
+\item Abonnement \og Famille \fg{} : 16~\euro{} par mois ;
+\item Option \og Écoute hors-ligne\fg{} : 2~\euro{} de plus par mois, quel que soit l'abonnement choisi.
+\end{itemize}
+
+On note $Y$ la variable aléatoire égale au montant payé mensuellement par un abonné.
+
+\begin{enumerate}
+\item Donner les six valeurs possibles prises par la variable aléatoire $Y$.
+\item Dresser le tableau décrivant la loi de probabilité de la variable aléatoire $Y$.
+\item Démontrer que l'espérance mathématique de la variable aléatoire $Y$ vaut 10,475 et interpréter ce résultat dans le contexte.
+\item À l'aide de la calculatrice, donner la variance de la variable aléatoire $Y$, arrondie au centième.
+\item Une plateforme vidéo propose les mêmes types d'abonnements. On note $Z$ la variable aléatoire égale au montant payé mensuellement par un abonné à cette plateforme vidéo.
+
+On admet que l'espérance de la variable aléatoire $Z$ vaut 9 et son écart-type 2.
+	\begin{enumerate}
+		\item Calculer la variance de la variable aléatoire $Z$.
+		\item Un responsable affirme que, si on interroge un abonné de cette plateforme vidéo au hasard, il y a au moins $50\,\%$ de chances pour que le prix de son abonnement soit strictement compris entre 6 et 12 euros.
+
+		Justifier cette affirmation.
+	\end{enumerate}
+	\end{enumerate}

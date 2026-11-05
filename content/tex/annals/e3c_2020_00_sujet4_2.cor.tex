@@ -1,0 +1,39 @@
+\section*{Exercice 2 (5 points)}
+	
+	\subsection*{Partie A}
+	
+
+	\subsubsection*{1. Déterminer une forme explicite de la suite $(u_n)$}
+	
+	On sait que pour tout $n \in \mathbb{N}$, $u_n = 25000 \times 0,94^n$.
+	
+	\subsubsection*{2. Calculer la somme des sept premiers termes de la suite $(u_n)$}
+	
+	Avec $S_7 = u_0 + u_1 + \dots + u_6$,
+	
+$
+	0,94S_7 = u_1 + u_2 + \dots + u_7$, \\
+	 d’où par différence : $ 0,06S_7 = u_0 - u_7 = 25000 - 25000 \times 0,94^7$,\\ 
+	  d’où $	S_7 = 25000 \times \dfrac{1 - 0,94^7}{0,06} \approx 25000 \times \dfrac{0,351522}{0,06} \approx 146468$
+
+	
+	\subsubsection*{3. Comparer les termes $u_0$ et $v_0$ puis $u_{20}$ et $v_{20}$}
+	
+	\begin{itemize}
+		\item $u_0 = 25000$ et $v_0 = 50 \times 104 = 5200 : u_0 > v_0$
+		\item $u_{20} = 25000 \times 0,94^{20} \approx 7252,66$ \\
+		et $\begin{gathered}v_{20} = 50 \times (104 + 25 \times 20) = 50 \times 604 = 30200;\\ u_{20} < v_{20}\end{gathered}$
+	\end{itemize}
+	
+	\subsubsection*{4. Déterminer le plus petit entier naturel $n$ tel que $u_n < v_n$}
+	
+	Il faut résoudre dans $\mathbb{N}$ l’inéquation : $25000 \times 0,94^n < 50(104 + 25n)$.
+	
+	On a $u_8 = 15239,2$ et $v_8 = 50 \times (104 + 25 \times 8) = 15200$
+	
+	$u_9 = 14324,9$ et $v_9 = 50(104 + 25 \times 9) = 16450$
+	
+	9 est donc le nombre solution.
+	
+	\subsection*{Partie B}
+	 $u_n$ et $v_n$ représentent les nombres de voitures respectivement diesel et essence vendues à partir de 1995.\\ D’après le résultat précédent en 1995 + 9 = 2004, le nombre de véhicules diesel vendues sera inférieur à celui des véhicules essence.

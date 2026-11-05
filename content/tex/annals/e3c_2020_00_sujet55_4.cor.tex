@@ -1,0 +1,31 @@
+\subsection*{Partie A}
+
+\paragraph{1.} Si \( u_n \) est le nombre d'ouvrages de la médiathèque l'an \( 2020 + n \), on en jette \( 0{,}05u_n \), mais on en achète 6 000 neufs. On a donc :
+\[
+u_{n+1} = u_n - 0{,}05u_n + 6000 = 0{,}95u_n + 6000.
+\]
+
+\paragraph{2.} Ce programme donne en milliers le nombre d'ouvrages de la médiathèque l'année \( 2020 + n \).
+
+\subsection*{Partie B}
+
+\paragraph{1.a.} Quel que soit \( n \in \mathbb{N} \) :
+\begin{align*}
+w_{n+1} &= v_{n+1} - 80 \\
+&= 0{,}95 v_n + 4 - 80 \\
+&= 0{,}95 v_n - 76 \\
+&= 0{,}95 \left(v_n - \dfrac{76}{0{,}95}\right) \\
+&= 0{,}95(v_n - 80) \\
+&= 0{,}95w_n.
+\end{align*}
+
+L'égalité \( w_{n+1} = 0{,}95w_n \), vraie pour tout \( n \), montre que \( (w_n) \) est une suite géométrique de raison \( q = 0{,}95 \) et de premier terme \( w_0 = v_0 - 80 = 42 - 80 = -38 \).
+
+\paragraph{1.b.} On sait que, pour tout \( n \), \( w_n = -38 \times 0{,}95^n \).
+
+L'égalité \( w_n = v_n - 80 \) entraîne :
+\[
+v_n = 80 + w_n = 80 - 38 \times 0{,}95^n.
+\]
+
+\paragraph{2.} Ceci signifie que le nombre d'ouvrages atteindra 70 000 au bout de 27 ans, soit en 2047.

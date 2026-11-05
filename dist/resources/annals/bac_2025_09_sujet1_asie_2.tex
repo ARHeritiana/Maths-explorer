@@ -1,0 +1,150 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_09_sujet1_asie_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\og \emph{Dans un triangle non équilatéral, la droite d'Euler est la droite qui passe par les trois points suivants }:
+
+	\begin{itemize}[itemsep=0pt]
+		\item \emph{le centre du cercle circonscrit à ce triangle (cercle passant par les trois sommets de ce triangle).}
+		\item \emph{le centre de gravité de ce triangle situé à l'intersection des médianes de ce triangle.}
+		\item \emph{l'orthocentre de ce triangle situé à l'intersection des hauteurs de ce triangle \fg{}}.
+	\end{itemize}
+
+	\begin{minipage}[t]{0.5\linewidth}
+		Le but de l'exercice est d'étudier un exemple de droite d'Euler.
+
+	On considère un cube ABCDEFGH de côté une unité.
+
+	L'espace est muni du repère orthonormé $\left(\mathrm{A} ~;~ \vectt{AB} ~;~ \vectt{AD} ~;~ \vectt{AE}\right)$.
+
+	On note I le milieu du segment [AB] et J le milieu du segment [BG].
+	\end{minipage}
+	\hfill
+	\begin{tikzpicture}[x=(205:16mm),y=(0:32mm),z=(90:32mm),baseline={(E.base)}]
+		\draw [line width=1pt]
+		(1,0,0)node[below left]{B}--
+		(1,1,0)node[below right]{C}--
+		(1,1,1)node[below right]{G}--
+		(0,1,1)node[above right]{H}--
+		(0,0,1)node[above left](E){E}--
+		(1,0,1)node[below left]{F}--cycle
+		(1,0,1) --(1,1,1) (1,1,0)--(0,1,0)--(0,1,1);
+		\draw[line width=1pt,dashed] (0,0,0)node[above left]{A}--(0,1,0)node[above right]{D}
+		(0,0,0) -- (1,0,0) (0,0,0)--(0,0,1);
+	\end{tikzpicture}
+
+	\begin{enumerate}
+		\item Donner sans justification les coordonnées des points A, B, G, I et J.
+
+		\item \begin{enumerate}
+			\item Déterminer une représentation paramétrique de la droite (AJ).
+
+			\item Montrer qu'une représentation paramétrique de la droite (IG) est : \[\left\{\begin{array}{l}x=\dfrac{1}{2}+\dfrac{1}{2} t \\ y=\phantom{\dfrac{1}{2}+\dfrac{1}{2}}t \\ z=\phantom{\dfrac{1}{2}+\dfrac{1}{2}}t\end{array} \right.\quad\text{ avec }t \in \R.\]
+
+			\item Démontrer que les droites (AJ) et (IG) sont sécantes en un point S de coordonnées S$\left(\dfrac{2}{3} ~;~ \dfrac{1}{3} ~;~ \dfrac{1}{3}\right)$.
+		\end{enumerate}
+
+		\item \begin{enumerate}
+			\item Montrer que le vecteur $\vect{n}(0 ~;~-1 ~;~ 1)$ est normal au plan (ABG).
+
+			\item En déduire une équation cartésienne du plan (ABG).
+
+			\item On admet qu'une représentation paramétrique de la droite $(d)$ de vecteur directeur $\vect{n}$ et passant par le point K de coordonnées $\left(\dfrac{1}{2} ~;~ 0 ~;~ 1\right)$ est : \[\left\{\begin{array}{l}
+x=\dfrac{1}{2} \\
+ y= \phantom{\dfrac{1}{2}}- t \\
+  z=1+t\end{array} \right.\quad\text{ avec }t \in \R.\]
+
+			Montrer que cette droite $(d)$ coupe le plan (ABG) en un point L de coordonnées L$\left(\dfrac{1}{2} ~;~ \dfrac{1}{2} ~;~ \dfrac{1}{2}\right)$.
+
+			\item Montrer que le point L est équidistant des points A, B et G.
+		\end{enumerate}
+
+		\item Montrer que le triangle ABG est rectangle en B.
+
+		\item \begin{enumerate}
+			\item Identifier le centre du cercle circonscrit, le centre de gravité et l'orthocentre du triangle ABG (aucune justification n'est attendue).
+
+			\item Vérifier par un calcul que ces trois points sont effectivement alignés.
+		\end{enumerate}
+	\end{enumerate}
+
+\end{document}

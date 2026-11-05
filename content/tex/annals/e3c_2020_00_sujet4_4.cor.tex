@@ -1,0 +1,44 @@
+\section*{Exercice 4 (5 points)}
+	
+
+	
+	\subsection*{1. Calculer $y$ lorsque $x = 20$ cm}
+	
+	Le volume de la boîte est donc :
+	\[
+	V = 16xy
+	\]
+	Avec $V = 10000$ et $x = 20$, on a donc :
+	\[
+	10000 = 16 \times 20 \times y \iff 10000 = 320y \iff y = 31,25 \text{ cm}
+	\]
+	
+	\subsection*{2. Pour toute valeur de $x > 0$, on note $f(x)$ l’aire du parallélépipède rectangle. Démontrer que : pour tout $x > 0$,}
+	\[
+	f(x) = \dfrac{20000}{x} + 32x + 625
+	\]
+	
+	On a une base d’aire $xy$, deux côtés d’aire $16x$ et deux côtés d’aire $16y$.
+	
+	L’aire du parallélépipède rectangle est donc égale à :
+	\[
+	f(x) = xy + 32x + 32y \text{ et on sait que } 10000 = 16xy \iff y = \dfrac{625}{x}
+	\]
+	Donc
+	\[
+	f(x) = x \times \dfrac{625}{x} + 32x + 32 \times \dfrac{625}{x} = 625 + 32x + \dfrac{20000}{x} = \dfrac{20000}{x} + 32x + 625
+	\]
+	
+	\subsection*{3. Quelles dimensions doit-on donner à ces boîtes pour que leur surface ait une aire minimale ?}
+	
+	On a $f'(x) = -\dfrac{20000}{x^2} + 32$.
+
+	\begin{itemize}
+		\item $\dfrac{20000}{x^2} + 32 > 0  \iff 32 > \dfrac{20000}{x^2} \iff x^2 > \dfrac{20000}{32} \iff x^2 > 625 \iff x > 25$
+		\item $\dfrac{20000}{x^2} + 32 < 0  \iff 32 < \dfrac{20000}{x^2} \iff x^2 < \dfrac{20000}{32} \iff x^2 < 625 \iff x < 25$
+		\item $\dfrac{20000}{x^2} + 32 = 0  \iff 32 = \dfrac{20000}{x^2} \iff x^2 = \dfrac{20000}{32} \iff x^2 = 625 \iff x = 25$
+	\end{itemize}
+
+	Donc l’aire est décroissante sur $[0, 25]$, puis croissante pour $x > 25$ : le minimum de l’aire est donc obtenu pour $x = 25$. On aura $y = \dfrac{625}{25} = 25$.
+	
+	Les boîtes feront donc : $25 \times 25 \times 16$ cm.

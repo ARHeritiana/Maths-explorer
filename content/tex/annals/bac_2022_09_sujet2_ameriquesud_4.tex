@@ -1,0 +1,61 @@
+\bigskip
+
+\begin{minipage}{0.41\linewidth}
+Dans l'espace muni d'un repère orthonormé \Oijk, on considère les points 
+
+\[\text{A}(0~;~8~;~6),\quad  \text{B}(6~;~4~;~4 )\quad \text{et C}(2~;~4~;~0).\]
+
+\end{minipage}\hfill
+\begin{minipage}{0.55\linewidth}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(-1.8,-1.8)(5.4,3.8)
+\pspolygon[fillstyle=solid,fillcolor=lightgray](1.7,-0.6)(4.8,3)(0.4,0.4)
+\psaxes[linewidth=1.25pt,Dx=20,Dy=20]{->}(0,0)(0,0)(5.4,3.8)
+\psline[linewidth=1.25pt]{->}(0,0)(-1.8,-1.8)
+\multido{\n=0+-0.3}{7}{\psdots[dotstyle=+,dotangle=45](\n,\n)}
+\multido{\n=0+0.6}{9}{\psline(\n,-0.05)(\n,0.05)}
+\multido{\n=0+0.5}{8}{\psline(-0.05,\n)(0.05,\n)}
+\psline[linestyle=dashed](4.8,0)(4.8,3)(0,3)
+\psframe[linestyle=dashed](-1.8,-1.8)(0.4,0.4)
+\psframe[linestyle=dashed](2.4,2)
+\psline[linestyle=dashed](-1.8,0.4)(0,2)
+\psline[linestyle=dashed](0.4,-1.8)(2.4,0)
+\psline[linestyle=dashed](0.4,0.4)(2.4,2)
+\psline[linestyle=dashed](-0.6,-0.6)(1.8,-0.6)
+\uput[d](0,0){\small O} \uput[ul](-0.15,-0.2){\footnotesize $\vect{\imath}$}
+\uput[d](0.3,0){\footnotesize $\vect{\jmath}$}
+\uput[l](0,0.3){\footnotesize $\vect{k}$}
+\uput[l](-1.8,-1.8){$x$}\uput[d](5.3,0){$y$}\uput[l](0,3.7){$z$}
+
+\uput[ur](4.8,3){A} \uput[ul](0.4,0.4){B} \uput[dr](1.7,-0.6){C}
+\end{pspicture}
+\end{minipage}
+
+\bigskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Justifier que les points A, B et C ne sont pas alignés.
+		\item Montrer que le vecteur $\vect{n}(1~;~2~;~-1)$ est
+un vecteur normal au plan (ABC).
+		\item Déterminer une équation cartésienne du plan (ABC).
+	\end{enumerate}
+\item Soient D et E les points de coordonnées respectives (0~;~0~;~6) et (6~;~6~;~0).
+	\begin{enumerate}
+		\item Déterminer une représentation paramétrique de la droite (DE).
+		\item Montrer que le milieu I du segment [BC] appartient à la droite (DE).
+	\end{enumerate}	
+\item On considère le triangle ABC.
+	\begin{enumerate}
+		\item Déterminer la nature du triangle ABC.
+		\item Calculer l'aire du triangle ABC en unité d'aire.
+		\item Calculer $\vect{\text{AB}}  \cdot \vect{\text{AC}}$.
+		\item En déduire une mesure de l'angle $\widehat{\text{BAC}}$ arrondie à $0,1$ degré.
+	\end{enumerate}	
+\item On considère le point H de coordonnées $\left(\dfrac53~;~\dfrac{10}{3}~;~- \dfrac53\right)$.
+
+Montrer que H est le projeté orthogonal du point O sur le plan (ABC). 
+
+En déduire la distance du point O au plan (ABC).
+\end{enumerate}

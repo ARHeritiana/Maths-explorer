@@ -1,0 +1,118 @@
+\medskip
+
+On considère la suite $\left(u_n\right)$ telle que $u_0 = 0$ et pour tout entier naturel $n$  : 
+$u_{n+1} = \dfrac{-u_n - 4}{u_n + 3}$.
+
+On admet que $u_n$ est défini pour tout entier naturel $n$.
+
+
+
+\begin{enumerate}
+\item 
+$u_1=\dfrac{-u_0-4}{u_0+3} = \dfrac{0-4}{0+3}=-\dfrac{4}{3}$
+
+$u_2=\dfrac{-u_1-4}{u_1+3} =\dfrac{-\left (-\frac{4}{3}\right )-4}{-\frac{4}{3}+3} 
+= \dfrac{\frac{4}{3} - \frac{12}{3}}{-\frac{4}{3}+\frac{9}{3}}
+= \dfrac{-\frac{8}{3}}{\frac{5}{3}}
+= -\frac{8}{5}$
+
+\item On considère la fonction \texttt{terme} ci-dessous écrite de manière incomplète en langage Python; on la complète de sorte que, pour tout entier naturel $n$, l'instruction \texttt{terme (n)} renvoie la valeur de $u_n$.
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+\texttt{def terme (n) :}\\
+\hspace{0.75cm}\texttt{u = \blue 0}\\
+\hspace{0.75cm}\texttt{for i in range(n):}\\
+\hspace{1.25cm}\texttt{u = \blue (-u - 4) / (u + 3)}\\
+\hspace{0.75cm}\texttt{return(u)}\\ \hline
+\end{tabular}
+\end{center}
+
+
+\item Soit la fonction $f$ définie sur $]- 3~;~+\infty[$ par: $f(x) = \dfrac{- x - 4}{x+ 3}$.
+
+
+
+$f$ est une fonction rationnelle donc elle est dérivable sur son ensemble de définition donc sur $]- 3~;~+\infty[$.
+
+Sur $]- 3~;~+\infty[$, on a:
+$f'(x)=\dfrac{-1(x+3)-(-x-4)\times 1}{(x+3)^2}
+= \dfrac{-x-3+x+4}{(x+3)^2}
+=\dfrac{1}{(x+3)^2}>0$;
+donc  la fonction $f$ est strictement croissante sur $]- 3~;~+\infty[$.
+
+\item Soit $\mathcal{P}_n$ la propriété: $- 2 < u_{n+1} \leqslant u_n$.
+
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+Pour $n=0$, on a: $u_n=u_0=0$ et $u_{n+1}=u_1=-\frac{4}{3}$; donc on a;
+$-2 < u_1 \leqslant u_0$.
+
+La propriété est vraie au rang $0$.
+
+\item \textbf{Hérédité}
+
+On suppose la propriété vraie au rang $n\geqslant 0$, c'est-à-dire: $-2 < u_{n+1} \leqslant u_{n}$; c'est l'hypothèse de récurrence.
+
+Comme $-3<-2$ et que $-2 < u_{n+1} \leqslant u_{n}$, on se place ans l'intervalle $]- 3~;~+\infty[$. Sur cet intervalle, la fonction $f$ est strictement croissante donc:
+
+$-2 < u_{n+1} \leqslant u_{n} \implies f(-2) < f(u_{n+1}) \leqslant f(u_{n})$
+
+$f(-2)= \dfrac{-(-2)-4}{-2+3}=-2$; $f(u_{n+1})=u_{n+2}$ et $f(u_{n})=u_{n+1}$
+
+Donc $f(-2) < f(u_{n+1}) \leqslant f(u_{n})$ équivaut à $-2 < u_{n+2} \leqslant u_{n+1}$.
+
+On a donc démontré que la propriété était vraie au rang $n+1$.
+
+\item \textbf{Conclusion}
+
+La propriété est vraie au rang 0, et elle est héréditaire pour $n\geqslant 0$. D'après le principe de récurrence, on peut dire qu'elle est vraie pour tout entier naturel $n$.
+
+\end{list}
+
+Pour tout entier naturel $n$, on a donc: $- 2 < u_{n+1} \leqslant u_n$.
+
+\item 
+\begin{list}{\textbullet}{On a vu que:}
+\item pour tout $n$, $u_{n+1} \leqslant u_n$ donc la suite $(u_n)$ est décroissante;
+\item pour tout $n$, $-2< u_n$ donc la suite $(u_n)$ est minorée.
+\end{list}
+
+D'après le théorème de la convergence monotone, on peut en déduire que la suite $(u_n)$ est convergente.
+
+\item Soit la suite $\left(v_n\right)$ définie pour tout entier naturel $n$ par: $v_n = \dfrac{1}{u_n + 2}$.
+
+On remarque que, pour tout $n$, $u_n>-2$ entraîne $u_n+2>0$ donc $v_n = \dfrac{1}{u_n+2}$ existe pour tout $n$ et est strictement positive (donc non nulle).
+
+	\begin{enumerate}
+		\item $v_0 = \dfrac{1}{u_0+2} = \dfrac{1}{0+2} = \dfrac{1}{2}=0,5$
+		
+		\item 
+$v_{n+1} = \dfrac{1}{u_{n+1}+2} 
+= \dfrac{1}{\frac{-u_n-4}{u_n+3}+2}
+= \dfrac{1}{\frac{-u_n-4 +2u_n+6}{u_n+3}}		
+= \dfrac{u_n+3}{u_n+2}$
+
+$v_{n+1}-v_n = \dfrac{u_n+3}{u_n+2} - \dfrac{1}{u_n+2}
+=\dfrac{u_n+2}{u_n+2}=1$
+
+Donc la suite $(v_n)$ est arithmétique de raison $r=1$ et de premier terme $v_0=0,5$.
+			
+		\item 
+La suite $(v_n)$ est arithmétique de raison $r=1$ et de premier terme $v_0=0,5$ donc, pour tout $n$, $v_n=v_0+n\times r = 0,5 + n$.
+
+$v_n=\dfrac{1}{u_n+2}
+\iff
+\dfrac{1}{v_n} = u_n+2
+\iff
+u_n=\dfrac{1}{v_n}-2$ donc $u_n=\dfrac{1}{n+0,5}-2$, pour tout $n$.
+
+		\item 
+$\ds\lim_{n\to +\infty} (n+0,5)=+\infty$ donc
+$\ds\lim_{n\to +\infty} \dfrac{1}{n+0,5}=0$, et donc
+$\ds\lim_{n\to +\infty} u_n=-2$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

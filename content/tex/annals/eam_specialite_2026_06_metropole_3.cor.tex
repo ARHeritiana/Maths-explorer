@@ -1,0 +1,76 @@
+Dans le plan muni d'un repère orthonormal, on considère les points \mbox{P~$(4;0)$} et \mbox{K~$(1;0)$}.
+
+On considère le réel $x$ et on note M le point de coordonnées \mbox{$(x;3)$.}
+\begin{center}
+
+	\begin{tikzpicture}[xscale=1,yscale=1,rotate=0,every node/.style={scale=1,rotate=0}]
+	\clip(-0.6,-0.6)rectangle(4.6,3.6);
+
+	\draw[blue!30,thick](0,0)grid(4.6,3.6);
+	\draw[blue, line width=0.3mm,->, >=triangle 45](-0.6,0)--(4.6,0);
+	\draw[blue, line width=0.3mm,->, >=triangle 45](0,-0.6)--(0,3.6);
+	\foreach \i in {1,2,...,4}{\draw(\i,-0.2)node{\textbf{\i}};}
+		\foreach \j in {1,2,3}{\draw(-0.2,\j)node{\textbf{\j}};}
+		\draw(-0.2,-0.2)node{\textbf{0}};
+	\draw[fill=black](1,0)circle(0.04)node[above right]{\textbf{K}}(4,0)circle(0.04)node[above right]{\textbf{P}}(2.3,3)circle(0.04)node[above]{\textbf{M}};
+
+\end{tikzpicture}
+
+\end{center}
+\begin{enumerate}
+	\item Donner les coordonnées du vecteur \mbox{$\vect{\text{KP}}$} ainsi que sa norme.
+
+
+	\textcolor{red}{\textsc{Correction}}
+
+
+	Les coordonnées de $\vect{\text{KP}}$ sont 	\mbox{$(3;0)$}
+	 et sa norme est $3$.
+	\item Exprimer en fonction de $x$ les coordonnées du vecteur \mbox{$\vect{\text{KM}}$} ainsi que sa norme.
+
+
+
+
+	\textcolor{red}{\textsc{Correction}}
+
+
+	Les coordonnées de $\vect{\text{KM}}$ sont \mbox{$(x-1;3)$}
+
+	et sa norme est \quad \mbox{$\sqrt{(x-1)^2+3^2}=\sqrt{(x-1)^2+9}=\sqrt{x^2-2x+10}$}.
+
+	\item Montrer que le produit scalaire \mbox{$\vect{\text{KP}}\cdot\vect{\text{KM}}$} est égal à \mbox{$3x-3$.}
+
+		\textcolor{red}{\textsc{Correction}}
+
+		On connait les coordonnées des deux vecteurs : \quad \mbox{$\vect{\text{KP}}\cdot\vect{\text{KM}}=3(x-1)+0\times3=3x-3$}
+	\item Montrer que si l'angle \ensuremath{\widehat{\text{PKM}}} est égal à \mbox{$\dfrac\pi 3$}, alors le réel $x$ est solution de l'équation
+
+	\begin{center}
+		(\textit{E})\hspace{10mm}\mbox{$\sqrt{(x-1)^2+9}=2x-2$}
+	\end{center}
+
+
+
+	\textcolor{red}{\textsc{Correction}}
+
+	On sait aussi que\quad  \mbox{$\vect{\text{KP}}\cdot\vect{\text{KM}}=\left\|\overrightarrow{\text{KP}}\right\|\times\left\|\overrightarrow{\text{KM}}\right\|\times \cos(\widehat{\text{PKM}})$}.
+
+	Puisque \quad \mbox{$\cos\left(\dfrac\pi 3\right)=\dfrac12$}, \quad on peut donc écrire que \quad \mbox{$\vect{\text{KP}}\cdot\vect{\text{KM}}=\dfrac12\times3\times\sqrt{(x-1)^2+9}$.}
+
+	On a donc \quad \mbox{$\dfrac32 \sqrt{(x-1)^2+9}=3x-3\iff \sqrt{(x-1)^2+9}=2x-2$}
+
+	lorsque l'angle \ensuremath{\widehat{\text{PKM}}} est \mbox{$\dfrac\pi 3$}, $x$ est une solution de l'équation (\textit{E}).
+	\item Vérifier que le réel \mbox{$1+\sqrt3$} est solution de l'équation (\textit{E}).
+
+		\textcolor{red}{\textsc{Correction}}
+
+		Si $x$ est une solution de l'équation (\textit{E}), alors \quad \mbox{$(x-1)^2+9=(2x-2)^2$},
+
+		ce qui revient à \quad \mbox{$3x^2-6x-6=0$}.
+
+		On calcule \quad \mbox{$\Delta=36+72=108=3\times6^2$}.
+
+		L'équation a deux solutions qui sont \quad  \mbox{$\dfrac{6+6\sqrt3}{6}=1+\sqrt3$} \quad et \quad \mbox{$1-\sqrt3$}.
+
+		\mbox{$1+\sqrt3$} est une solution de l'équation (\textit{E}).
+\end{enumerate}

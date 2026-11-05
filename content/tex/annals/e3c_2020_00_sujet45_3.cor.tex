@@ -1,0 +1,48 @@
+\subsection*{1.}
+
+Pour tout naturel \(n\) :
+\begin{align*}
+v_{n+1} &= u_{n+1} - 6 \\
+&= 0{,}5u_n + 3 - 6 \\
+&= 0{,}5u_n - 3 \\
+&= 0{,}5(u_n - 6) \\
+&= 0{,}5v_n.
+\end{align*}
+La suite \((v_n)\) est donc une suite géométrique de raison \(q = 0{,}5\) et de premier terme \( v_0 = u_0 - 6 = 7 - 6 = 1 \).
+
+\subsection*{2.}
+
+On sait qu'alors, quel que soit \(n \in \mathbb{N} \) :
+\[
+v_n = 1 \times 0{,}5^n = \left(\dfrac{1}{2}\right)^2 = \dfrac{1}{2^n}.
+\]
+
+\subsection*{3.}
+
+\(v_n = u_n - 6 \quad \text{équivaut à} \quad u_n = v_n + 6 = 6 + \dfrac{1}{2^n}\).
+
+\subsection*{4.}
+
+\paragraph{a.} On a :
+\[
+S = v_0 + v_1 + \dots + v_{100} \quad (1)
+\]
+et :
+\[
+0{,}5S = v_1 + v_2 + \dots + v_{101} \quad (2).
+\]
+et par différence \((1) - (2)\) :
+\[
+0{,}5S = v_0 - v_{101},
+\]
+d'où :
+\[
+S = \dfrac{v_0 - v_{101}}{0,5} = \dfrac{1 - \dfrac{1}{2^{101}}}{0,5} \approx 2.
+\]
+
+\paragraph{b.} Si \( T = u_0 + u_1 + \dots + u_{100} \), alors \( T - 101 \times 6 = S \).
+
+Donc :
+\[
+T = S + 101 \times 6 = 606 + \dfrac{1 - \dfrac{1}{2^{101}}}{0,5} \approx 608.
+\]

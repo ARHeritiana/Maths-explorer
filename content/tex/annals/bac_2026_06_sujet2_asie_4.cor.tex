@@ -1,0 +1,72 @@
+\begin{enumerate}
+\item \textbf{Affirmation 1 : Fausse.}
+
+Calculons la dérivée seconde de $f(x) = (-0,5x + 3)^5$. (on rappelle que $(u^n)'=nu^{n-1}u'$)
+\[
+\begin{array}{rcl}
+f'(x) &=& 5 \times (-0,5) \times (-0,5x + 3)^4 = -2.5(-0,5x + 3)^4 \\
+f''(x) &=& -2,5 \times 4 \times (-0,5) \times (-0,5x + 3)^3 = 5(-0,5x + 3)^3
+\end{array}
+\]
+Pour $x = 10$, on a $f''(10) = 5(-5 + 3)^3 = 5(-8) = -40 < 0$. La dérivée seconde n'est pas positive sur tout $\mathbb{R}$, la fonction n'est donc pas convexe sur $\mathbb{R}$.
+
+\item \textbf{Affirmation 2 : Vraie.} 
+
+Il y a 4 multiples de 8 parmi les 32 jetons $\{8, 16, 24, 32\}$.
+Le nombre de tirages contenant au moins un multiple de 8 est le nombre total de tirages moins le nombre de tirages ne contenant aucun multiple de 8 (tirage parmi les 28 autres jetons).
+\[
+\begin{array}{rcl}
+\text{Nombre total} &=& \binom{32}{5} = 201376 \\
+\text{Sans multiple de 8} &=& \binom{28}{5} = \np{98280} \\
+\text{Au moins un} &=& \np{201376} - \np{98280} = \np{103096}
+\end{array}
+\]
+
+\item \textbf{Affirmation 3 : Fausse.} Complétons l'arbre fourni par l'énoncé.
+
+\begin{center}
+\begin{tikzpicture}[
+grow=right,
+level distance=4cm,
+level 1/.style={sibling distance=4cm},
+level 2/.style={sibling distance=1.5cm},
+every node/.style={ circle, inner sep=2pt}
+]
+\node[coordinate] {}
+child { node {$\overline{A}$}  
+ child { node {$\overline{B}$} edge from parent node[below] {$\frac7{10}$}}
+child { node {B} edge from parent node[above] {$\frac3{10}$ }}
+edge from parent node[below] {$\frac35$}
+}
+child { node {$A$}
+child { node {$\overline{B}$} edge from parent node[below] {$\frac34$}}
+child { node {B} edge from parent node[above] {$\frac14$ }}
+edge from parent node[above] {$\frac25$}};
+\end{tikzpicture}
+\end{center}
+On peut dans un premier temps calculer $p(B)$ par la formule de probabilités totales:\[
+p(B)= p(A \cap B) + p\left(\overline{A} \cap B\right) = \frac25 \times \frac14 + \frac35 \times \frac3{10} =\frac1{10}+\frac9{50}= \frac{14}{50}
+\]
+On en déduit que: \[
+p_B\left(\overline{A}\right)=\frac{p\left(\overline{A} \cap B\right)}{p(B)} =\frac{\frac9{50}}{\frac{14}{50}} = \frac9{14}
+\]
+
+
+\item \textbf{Affirmation 4 : Vraie.} \\
+Vérifions si $h(x) = \mathrm{e}^{-x}\sin(x)$ vérifie $h'(x) + h(x) = \mathrm{e}^{-x} \cos(x)$.
+\[
+\begin{array}{rcl}
+h'(x) &=& -\mathrm{e}^{-x}\sin(x) + \mathrm{e}^{-x}\cos(x) \\
+h'(x) + h(x) &=& \left( -\mathrm{e}^{-x}\sin(x) + \mathrm{e}^{-x}\cos(x) \right) + \mathrm{e}^{-x}\sin(x) \\
+h'(x) + h(x) &=& \mathrm{e}^{-x}\cos(x)
+\end{array}
+\]
+La fonction $h$ est bien une solution particulière.
+
+\item \textbf{Affirmation 5 : Fausse.} 
+
+Les solutions de $(E)$ sont la somme de la solution particulière $h(x)$ et des solutions de l'équation homogène associée $y' + y = 0$.
+Les solutions de l'équation homogène sont de la forme $C\mathrm{e}^{-x}$. 
+L'ensemble des solutions de $(E)$ est donc constitué des fonctions de la forme $y(x) = C\mathrm{e}^{-x} + \mathrm{e}^{-x}\sin(x)$, ce qui est différent de l'expression proposée.
+\end{enumerate}
+\label{LastPage}

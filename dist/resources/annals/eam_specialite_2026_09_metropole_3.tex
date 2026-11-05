@@ -1,0 +1,123 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specialite_2026_09_metropole_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{minipage}{0.52\linewidth}
+	Une montgolfière décolle d'un village de montagne.
+
+	L'évolution de l'altitude de cette montgolfière en fonction du temps peut être modélisée par la fonction $f$ définie sur l'intervalle $[0 ; 5]$ par
+	\[ f(t) = \dfrac{4t+1}{\mathrm{e}^t}, \]
+	où $f(t)$ désigne l'altitude, en kilomètres, par rapport au niveau de la mer, et $t$ désigne le temps, en heures, écoulé depuis le décollage.
+\end{minipage}
+\hfill
+\begin{tikzpicture}[scale=0.9,baseline={(current bounding box.center)}]
+	\tikzset{ondulation/.style args={#1et#2}{decorate,decoration={random steps, segment length=#1,amplitude=#2}}, ondulation/.default={1.25mm et 0.1mm}}
+	
+	\draw[line width=0.75mm,teal,ondulation={2.5mm et 0.5mm},line join=round] (3.1,0.75) -- (7.5,0.75);
+	\draw[line width=0.75mm,teal,ondulation={2.5mm et 0.5mm},line join=round] (3.25,0.5) -- (7.5,0.5);
+	\draw[line width=0.75mm,teal,ondulation={2.5mm et 0.5mm},line join=round] (3.35,0.25) -- (7.5,0.25);
+	
+	\draw[line width=1.125mm,ondulation,line join=round] plot[smooth] coordinates{(0,2.75)(1.25,3.5)(3.5,0)};
+	
+	\begin{scope}[shift={(1.05,3.6)}]
+		\draw[ultra thick,densely dashed] (0,0.25) -- (6,0.25);
+		\draw[ultra thick,<-,>=latex] (5,0.25) --++ (0,-3.25) node[midway,left] {$f(t)$};
+		\draw[darkgray,very thick] (-0.25,0.45) --++ (-0.25,0.5);
+		\draw[darkgray,very thick] (0.25,0.45) --++ (0.25,0.5);
+		\draw[very thick,red!50!black,top color=red,bottom color=red!25,shade] (0,1.65) circle[radius=0.9];
+		\draw[brown!50!black,ultra thick,fill=brown] (-0.25,0) rectangle++(0.5,0.5);
+	\end{scope}
+\end{tikzpicture}
+
+\begin{enumerate}
+	\item Déterminer l'altitude de la montgolfière au moment du décollage.
+	\item On admet que la fonction $f$ est dérivable sur l'intervalle $[0 ; 5]$ et on note $f'$ sa fonction dérivée. Montrer que, pour tout réel $t$ de l'intervalle $[0 ; 5]$, on a
+	\[ f'(t) = \dfrac{3-4t}{\mathrm{e}^t}. \]
+	\item Étudier le signe de $f'(t)$ sur l'intervalle $[0 ; 5]$.
+
+	En déduire que la fonction $f$ admet un maximum pour $t = \dfrac{3}{4}$.
+	\item On sait que la montgolfière a décollé à 10\,h\,50.
+
+	À quelle heure commence-t-elle à perdre de l'altitude ?
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,188 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet1_polynesie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Une école de surf travaille avec des planches en mousse pour les cours débutants, et d'autres en résine pour les cours de perfectionnement. Les planches en mousse représentent 80~\% du stock de l'école.
+
+La gérante observe qu'après chaque saison,
+\begin{itemize}[noitemsep]
+\item 75\,\% des planches en mousse sont en bon état et réutilisables la saison suivante. Les autres sont recyclées (et donc non réutilisables)~;
+\item 60\,\% des planches en résine sont en bon état, les autres sont soit consolidées, soit recyclées.
+\end{itemize}
+
+Après une saison, on choisit une planche au hasard et on s'intéresse aux évènements suivants~:
+\begin{itemize}[noitemsep]
+\item $M$ : \og La planche est en mousse \fg~;
+\item $B$ : \og La planche est en bon état \fg~;
+\item $R$ : \og La planche sera recyclée \fg~;
+\item $C$ : \og La planche sera consolidée \fg.
+\end{itemize}
+
+\subsection*{Partie A}
+
+\begin{enumerate}
+\item Recopier et compléter sur la copie l'arbre pondéré ci-dessous avec les données de l'énoncé.
+
+Il sera complété au fur et à mesure de l'exercice.
+
+\begin{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\pstree[levelsep=2.5,treesep=.7,treemode=R,nodesep=3pt]{\TR{}}
+{
+\pstree{\TR{$M$}}
+	{
+	\TR{$B$}
+	\TR{$R$}
+	}
+	\pstree{\TR{$\overline{M}$}}
+	{
+	\TR{$B$}
+	\TR{$R$}
+	\TR{$C$}
+	}
+}
+
+\end{center}
+
+\item On sait que $P\left(\overline{M} \cap R\right) = 0,05$.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Interpréter cette égalité dans le contexte de l'exercice.
+\item On a choisi une planche en résine. Démontrer que la probabilité que cette planche soit consolidée pour la saison suivante est $0,15$.
+\end{enumerate}
+\item La gérante affirme qu'après une saison, au moins $\dfrac{3}{4}$ des planches sont en bon état. A-t-elle raison~?
+\end{enumerate}
+
+\bigskip
+
+\subsection*{Partie B}
+
+La gérante du club de surf envisage de proposer à certains clients une remise pour la saison suivante.
+
+Pour cela, elle imagine le jeu suivant qui sera proposé à chaque client~:
+
+Une urne contient 5 boules noires et un nombre $n$ de boules rouges.
+
+Les boules sont indiscernables au toucher.
+
+Le client tire simultanément deux boules dans l'urne.
+
+Si les deux boules sont de même couleur, le client gagne une remise, sinon, il perd le jeu et n'obtient pas de remise.
+
+\begin{enumerate}
+\item Justifier que la probabilité $p$ de gagner une remise est~:
+\[
+p = \dfrac{\dbinom{5}{2} + \dbinom{n}{2}}{\dbinom{n+5}{2}}.
+\]
+\item En déduire que la probabilité $p$ peut s'écrire~:
+\[
+p = \dfrac{20 + n(n-1)}{(n+5)(n+4)}.
+\]
+\item La gérante souhaite s'assurer que la probabilité de gagner est inférieure à $\dfrac{1}{2}$.
+
+Déterminer pour cela l'ensemble des valeurs possibles du nombre $n$ de boules rouges qu'elle peut mettre dans l'urne.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

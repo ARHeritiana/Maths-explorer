@@ -1,0 +1,96 @@
+\medskip
+
+
+\begin{enumerate}
+\item \textbf{Conjectures graphiques :}
+
+Le nombre de solutions de l'équation $\ln (x) = kx$ :
+\begin{itemize}
+\item pour $k = 1$, l'équation ne semble pas avoir de solution, car il semble que la droite d'équation $y = x$ ne coupe pas la courbe représentative de la fonction ln;
+\item pour $k = 0,2$, l'équation semble avoir deux solutions, car la droite d'équation $y=0,2x$ semble couper la courbe représentative de la fonction ln en deux endroits distincts.
+\end{itemize}
+
+\item Étude du cas $k = 1$ :
+	\begin{enumerate}
+		\item $f$ est dérivable sur $\R^{*+}$, en tant que différence de deux fonctions dérivables sur cet intervalle. Pour tout réel $x$ strictement positif, on a :
+
+$f'(x) = \ln'(x) - 1 = \dfrac{1}{x} - 1 = \dfrac{1 - x}{x}$.
+
+		\item On va donc étudier le signe de $f'(x)$ et en déduire les variations, au sein d'un tableau. Comme les limites aux bornes de l'intervalle de définition ne sont pas attendues, on ne va pas les déterminer.
+
+Sur $\R^{*+}$, $x$ est strictement positif, donc le signe de $f'(x)$ est le signe de $1 - x$.
+
+$1 - x > 0 \iff x < 1$. \quad $f(1) = \ln(1) - 1 = 0-1 = -1$.
+
+On a donc :
+\begin{center}
+
+
+
+
+
+
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(8.8,3.5)
+\psframe(8.8,3.5)\psline(2.8,0)(2.8,3.5)\psline(0,2)(8.8,2)\psline(0,2.5)(8.8,2.5)
+\psline(0,3)(8.8,3)\psline(2.9,0)(2.9,3)\psline(2.95,0)(2.95,3)
+\uput[u](1.4,2.9){$x$} \uput[u](2.925,2.9){$0$} \uput[u](5.8,2.9){$1$} \uput[u](8.3,2.9){$+\infty$}
+\rput(1.4,2.75){$1 - x$}\rput(1.4,2.25){$f'(x)$}\rput(1.4,1){variations de $f$}
+\uput[u](4.4,2.4){+}\uput[u](5.8,2.4){0}\uput[u](7.3,2.4){$-$}
+\uput[u](4.4,1.9){+}\uput[u](5.8,1.9){0}\uput[u](7.3,1.9){$-$}
+\uput[d](5.8,2){$-1$}
+\psline{->}(3,0.5)(5.3,1.5)\psline{->}(6.3,1.5)(8.3,0.5)
+\end{pspicture}
+\end{center}
+
+\item On en déduit que sur son ensemble de définition, $f$ atteint un maximum égal à $-1$ pour $x = 1$, donc $f$ est à valeurs strictement négatives sur $\R^{*+}$.
+
+Il n'y a donc aucune solution à l'équation $f(x) = 0$, or $f(x) = 0 \iff \ln(x) = x$, donc l'équation $\ln (x) = x$ n'admet aucune solution.
+	\end{enumerate}
+\item Étude du cas général :
+	\begin{enumerate}
+		\item Discutons du nombre de solutions :
+\begin{itemize}
+\item Si $g\left(\dfrac 1k\right)< 0$, alors la fonction $g$ a pour maximum un nombre réel strictement négatif, donc l'équation $g(x) = 0$ n'admet aucune solution.
+\item Si $g\left(\dfrac 1k\right)= 0$, alors l'équation admet clairement $\dfrac{1}{k}$ comme solution et cette solution est la seule, car : $g$ étant strictement croissante sur $\left]0~;~\dfrac{1}{k}\right]$, $x < \dfrac{1}{k} \implies g(x) < g\left(\dfrac{1}{k}\right) $ et donc $g(x) < 0$.
+
+Et $g$ étant strictement décroissante sur $\left[\dfrac{1}{k}~;~+\infty\right[$, $x > \dfrac{1}{k} \implies g(x) < g\left(\dfrac{1}{k}\right) $ et donc $g(x) < 0$.
+
+Ainsi, l'équation admet une unique solution dans ce cas.
+
+\item Si $g\left(\dfrac 1k\right)>0$, alors :
+
+$f$ est continue (car dérivable) et strictement croissante sur $\left]0~;~\dfrac{1}{k}\right]$, et $0$ est une valeur intermédiaire entre $\lim\limits_{x \to 0}g = -\infty$ et $g\left(\dfrac{1}{k}\right)>0$, donc d'après le théorème de la bijection, l'équation $g(x) = 0$ admet une unique solution $\alpha$ sur cet intervalle.
+
+Puis, de façon analogue, on applique le même théorème sur $\left]\dfrac{1}{k}~;~+\infty \right[$, où $g$ est continue et strictement décroissante pour faire émerger une seconde solution $\beta$, la seule sur $\left]\dfrac{1}{k}~~;~~+\infty \right[$.
+
+Ainsi, l'équation $g(x) = 0$ admet exactement deux solutions dans ce cas.
+\end{itemize}
+
+		\item On rappelle que $k$ est un réel strictement positif, donc $\dfrac{1}{k}$ l'est aussi, et donc $\dfrac{1}{k}$ est dans l'ensemble de définition de $g$. On a $g\left(\dfrac 1k\right) = \ln\left(\dfrac 1k\right) - k\times \dfrac{1}{k} = -\ln(k) - 1$.
+
+\item On a :
+$\begin{aligned}[t] g\left(\dfrac 1k\right) > 0 &\iff -\ln(k) - 1 > 0\\
+&\iff -\ln (k) >  1\\
+&\iff \ln(k) < -1 \\ \end{aligned}$.
+
+Nous parvenons bien à l'équivalence demandée.
+
+\item On remarque que $g(x) = 0 \iff \ln(x) = kx$.
+
+L'ensemble des valeurs de $k$ pour lesquelles l'équation $\ln (x) = kx$ possède exactement deux solutions est donc constitué des nombres $k$ vérifiant $\ln(k) < -1$, d'après la question précédente.
+
+$\ln(k) < -1 \iff k < \e^{-1}$.
+
+L'ensemble des valeurs $k$ cherché est donc $\left]0~;~\e^{-1}\right[ $
+	\item En synthèse des questions précédentes, on peut donc dire que  l'équation $\ln (x) = kx$ :
+			\begin{itemize}
+				\item admet exactement deux solutions pour $ k\in \left]0~;~\e^{-1}\right[$;
+				\item admet une unique solution pour $ k = \e^{-1}$;
+				\item n'admet aucune solution pour $ k\in \left]\e^{-1}~;~+\infty\right[$;
+			\end{itemize}
+		\emph{Remarque :} Ce résultat confirme nos conjectures du début de problème, dans la mesure où $0,2 \in \left]0~;~\e^{-1}\right[$ et $1\in \left]\e^{-1}~;~+\infty\right[$ (en effet $\e^{-1}\approx 0,4)$.
+		\end{enumerate}
+	\end{enumerate}
+
+	\medskip

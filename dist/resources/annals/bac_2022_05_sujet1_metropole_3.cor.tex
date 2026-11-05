@@ -1,0 +1,157 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet1_metropole_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item L'énoncé nous indique que ce stage a été suivi par 25\,\% des salariés. Donc $p(S)=0,25$.
+		\item L'arbre complété avec les valeurs disponibles :
+		\begin{center}
+			\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep=1cm,levelsep=2.5cm]{\TR{}}
+			{\pstree{\TR{$F$~}\taput{0,52}}
+				{\TR{$S$}\taput{0,4}
+					\TR{$\overline{S}$}\tbput{0,6}
+				}
+				\pstree{\TR{$\overline{F}$~}\tbput{0,48}}
+				{\TR{$S$}
+					\TR{$\overline{S}$}
+				}
+			}
+		\end{center}
+		\item On calcule $p(F\cap S)$ : $p(F\cap S)=p_S(F)\times p(S)=0,4 \times 0,52 = 0,208$
+		\item On cherche calculer $p_S(F)$. D'après la formule de Bayes,
+		
+
+$p_S(F)=\dfrac{p(F\cap S)}{p(S)}=\dfrac{0,208}{0,25}=0,832$
+		\item Appliquons la formule des probabilités totales : $p(S)=p(S\cap F)+p(S\cap \overline{F})$.
+		
+Donc $p\left(S\cap \overline{F}\right)=p(S)-p(S\cap F)=0,25-0,208=0,042$.
+		
+Avec la formule de Bayes : $p_{\overline{F}}(S)=\frac{p\left(S\cap \overline{F}\right)}{p\left(\overline{F}\right)}=\dfrac{0,042}{0,48}= \np{0,0875} < 0,1$.
+		
+L'affirmation du directeur est donc exacte.
+	\end{enumerate}
+\item \begin{enumerate}
+	\item Il s'agit là d'un schéma de Bernoulli : la répétition de 20 expériences aléatoires n'ayant que deux issues, identiques et indépendantes entre elles. $X$ est la variable aléatoire qui compte les succès. $X$ suit donc une loi binomiale de paramètres $n = 20$ et $p = 0,25$ : $X \sim \mathcal{B}(20~;~0,25)$
+	\item $p(X=5)=\dbinom{20}{5}\times 0,25^5 \times (1-0,25)^{20-5}\approx 0,202$.
+	
+La probabilité qu'exactement 5 salariés suivent le stage est d'environ 0,202.
+	\item \og proba(5)\fg{} calcule pour $k$ allant de 0 à 5, la somme des probabilités $p(X=k)$,
+	
+Soit $p(X\leqslant5)$. À la calculatrice, $p(X\leqslant5)\approx 0,617$.\\ Cela signifie que la probabilité qu'au plus 5 salariés aient effectué le stage, est égale à 0,617.
+	 
+	 La probabilité qu'au moins 6 salariés suivent le stage est d'environ 0,617.
+	\item $p(X\geqslant 6)=1-p(X<6)=1-p(X\leqslant5)\approx 1-0,617\approx0,383$
+\end{enumerate}
+\item 
+
+
+
+$\bullet~~$Premier exemple : supposons qu'il y ait 25 salariés à \np{1000}~\euro{} et 75 à \np{1200}~\euro{}, les premiers ayant fait le stage.
+
+Le salaire moyen est égal à $\dfrac{25 \times \np{1000} + 75 \times \np{1200}}{100} = \np{1150}$~\euro.
+
+Après augmentation le salaire moyen passe à :
+
+$\dfrac{25 \times \np{1000} \times 1,05 + 75 \times\np{1200}\times 1,02}{100} = \np{1180,50}$~\euro.
+
+L'augmentation moyenne est donc égale à $\dfrac{\np{1180,5}}{\np{1150}}\approx \np{1,0265}$, soit une augmentation d'environ 2,65\,\%.
+
+$\bullet~~$Deuxième exemple : supposons qu'il y ait 25 salariés à \np{1200}~\euro{} et 75 à \np{1000}~\euro{}, les premiers ayant fait le stage.
+
+Le salaire moyen est égal à $\dfrac{25 \times \np{1200} + 75 \times \np{1000}}{100} = \np{1050}$~\euro.
+
+Après augmentation le salaire moyen passe à :
+
+$\dfrac{25 \times \np{1200} \times 1,05 + 75 \times\np{1000}\times 1,02}{100} = \np{1080}$~\euro.
+
+L'augmentation moyenne est donc égale à $\dfrac{\np{1080}}{\np{1050}}\approx 1,0285$, soit une augmentation d'environ 2,85\,\%.
+
+Conclusion : l'augmentation moyenne dépend de la répartition des salaires : on ne peut pas répondre à cette question.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

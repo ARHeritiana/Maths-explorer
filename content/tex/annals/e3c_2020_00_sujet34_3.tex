@@ -1,0 +1,42 @@
+\medskip
+
+\emph{Les deux parties suivantes sont indépendantes.}
+
+\medskip
+
+\textbf{Partie A.} 
+
+\medskip
+
+On considère la suite $\left(v_n\right)$ définie par $v_0=1$ et $v_{n+1} = \frac{2}{3}v_n$ pour tout entier naturel $n$.
+
+\medskip
+
+\begin{enumerate}
+\item Quelle est la nature de la suite $\left(v_n\right)$ ? En préciser les éléments caractéristiques.
+\item Donner, pour tout entier naturel $n$, une expression de $v_n$ en fonction de $n$.
+\item Calculer la somme $\mathscr{S}$ des dix premiers termes de la suite $\left(v_n\right)$.
+\end{enumerate}
+\medskip
+
+\textbf{Partie B.}
+
+\medskip
+
+On modélise une suite $\left(w_n\right)$ à l'aide de la fonction suivante écrite en langage Python :
+
+\begin{lstlisting}[style=python]
+def terme(n) :
+	w=4
+	for i in range(n) :
+		w=2*w- 3
+	return w
+   \end{lstlisting}
+
+\begin{enumerate}[resume]
+\item Que renvoie l'exécution de \verb|terme(5)| ?
+\item En s'inspirant de la fonction \verb|terme(n)|, proposer une fonction \verb|somme_termes(n)|, écrite en langage Python, qui renvoie la somme des $n$ premiers termes de la suite 
+$\left(w_n\right)$.
+\end{enumerate}
+
+\vspace{0,5cm}

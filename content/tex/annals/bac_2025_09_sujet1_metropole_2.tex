@@ -1,0 +1,88 @@
+\medskip
+
+\begin{minipage}{0.43\linewidth}
+On considère le cube ABCDEFGH.\\
+
+On place le point M tel que $\vectt{BM} = \vectt{AB}$.
+\end{minipage}
+\hfill
+\begin{minipage}{0.55\linewidth}
+\psset{unit=1cm}
+\begin{pspicture}(7,5.5)
+\pspolygon(0.3,0.8)(3.3,0.5)(3.3,3.5)(0.3,3.8)
+\psline(3.3,0.5)(6.3,0.2)(3.3,3.5)(5.5,4.7)(2.2,5)(0.3,3.8)
+\psline[linestyle=dashed](3.3,0.5)(5.5,1.7)(2.2,2)(0.3,0.8)
+\psline[linestyle=dashed](2.2,2)(2.2,5)
+\psline(5.5,1.7)(5.5,4.7)
+\psline(5.13,1.5)(5.5,1.7)(4.9,1.77)
+\uput[dl](0.3,0.8){A} \uput[d](3.3,0.5){B} \uput[dr](5.5,1.7){C}
+\uput[ur](2.2,2){D} \uput[l](0.3,3.8){E} \uput[u](3.3,3.5){F}
+\uput[ur](5.5,4.7){G} \uput[u](2.2,5){H} \uput[r](6.3,0.2){M}
+\end{pspicture}
+\end{minipage}
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item Montrer que les droites (FG) et (FM) sont perpendiculaires.
+\item Montrer que les points A, M, G et H sont coplanaires.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On se place dans le repère orthonormé $\left(\text{A} ; \vect{\text{AB}}, \vect{\text{AD}}, \vect{\text{AE}}\right)$.
+
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer les coordonnées des vecteurs $\vect{\text{GM}}$ et $\vect{\text{AH}}$ et montrer qu'ils ne sont pas colinéaires.
+\item
+	\begin{enumerate}
+		\item Justifier qu'une représentation paramétrique de la droite (GM) est :
+
+\[\left\{\begin{array}{l c l}
+x&=&1 + t\\
+y&=&1 - t\\
+z&=&1 - t
+\end{array}\right. \:\text{ avec}\: t \in \R.\]
+
+		\item On admet qu'une représentation paramétrique de la droite (AH) est :
+
+\[\left\{\begin{array}{l c l}
+x&=&0\\
+y&=&k\\
+z&=&k
+\end{array}\right. \:\text{ avec}\: k \in \R.\]
+
+Montrer que le point d'intersection de (GM) et (AH), que l'on nommera N, a pour
+coordonnées (0~;~2~;~2).
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item Montrer que le triangle AMN est un triangle rectangle en A.
+		\item Calculer l'aire de ce triangle.
+	\end{enumerate}
+\item Soit J le centre de la face BCGF{}.
+	\begin{enumerate}
+		\item Déterminer les coordonnées du point J.
+		\item Montrer que le vecteur $\vect{\text{FJ}}$ est un vecteur normal au plan (AMN).
+		\item Montrer que J appartient au plan (AMN). En déduire qu'il est le projeté orthogonal du point F sur le plan (AMN).
+	\end{enumerate}
+\item On rappelle que le volume $\mathcal{V}$ d'un tétraèdre ou d'une pyramide est donné par la formule :
+\[\mathcal{V} = \dfrac13 \times \mathcal{B} \times h,\]
+
+$\mathcal{B}$ étant l'aire d'une base et $h$ la hauteur relative à cette base.
+
+Montrer que le volume du tétraèdre AMNF est le double du volume de la pyramide BCGFM.
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,111 @@
+\medskip
+
+
+
+
+
+
+
+\[f(x) = x^2 - 6x + 4\ln (x).\]
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+On a $\displaystyle\lim_{x \to 0} x^2 = \displaystyle\lim_{x \to 0} - 6x = 0$ et $\displaystyle\lim_{x \to 0} \ln x = - \infty$, donc $\displaystyle\lim_{x \to 0} - 4\ln x = - \infty$ et par somme de limites : $\displaystyle\lim_{x \to 0} f(x) = - \infty$.
+	
+
+Graphiquement ce résultat montre que la droite d'équation $x = 0$ (axe des ordonnées est asymptotoe verticale à $\mathcal{C}_f$  au voisinage de 0.
+		\item 
+On a puisque $x > 0$, \: $x^2 - 6x = x^2\left(1 - \dfrac{6}{x}\right)$.
+
+$\bullet~$$\displaystyle\lim_{x \to + \infty} \dfrac{6}{x} = 0$, donc 
+
+$\bullet~$$\displaystyle\lim_{x \to + \infty} 1 - \dfrac{6}{x} = 1$ (par somme de limites), puis
+
+$\bullet~$$\displaystyle\lim_{x \to + \infty} x^2 = + \infty$, d'où
+
+$\bullet~$$\displaystyle\lim_{x \to + \infty}x^2\left(1 - \dfrac{6}{x}\right) = + \infty$ (par produit de limites) ; enfin 
+
+$\bullet~$$\displaystyle\lim_{x \to + \infty}\ln (x) = + \infty$, donc finalement :
+
+$\displaystyle\lim_{x \to + \infty}f(x) = + \infty$ (par somme de limites).
+	\end{enumerate}	
+\item
+	\begin{enumerate}
+		\item 
+Sur l'intervalle $]0~;~+ \infty[$, \: $f$ est dérivable et sur cet intervalle :
+
+$f'(x) = 2x - 6 + 4 \times \dfrac1x = \dfrac{2x^2 - 6x + 4}{x}$.
+		\item 
+Comme $x > 0$, le signe du quotient est celui du numérateur, donc du trinôme $2x^2 - 6x + 4$ ou plus simplement du trinôme $x^2 - 3x + 2$.
+
+Celui-ci a une racine évidente : 1 et l'autre 2 (puisque le produit des racines est 2).
+
+On alors que $f'(x)$ est positif sauf sur l'intervalle ]1~;~2[ où $f'(x) < 0$
+		
+
+La fonction $f$ est donc croissante sauf sur l'intervalle ]1~;~2[ où elle est décroissante.
+
+On a $f(1) = 1 - 6 + 4\ln 1 = 0 - 5 = - 5$ et $f(2) = 4 - 12 + 4\ln 2 = 4\ln 2 - 8 \approx - 5,23$.
+
+D'où le tableau de variations :
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(10,3)
+\psframe(10,3)\psline(0,2)(10,2)\psline(0,2.5)(10,2.5)
+\psline(1,0)(1,3)\psline(4,2)(4,2.5)\psline(7,2)(7,2.5)
+\uput[u](0.5,2.4){$x$} \uput[u](1.15,2.4){$0$} \uput[u](4,2.4){$1$} \uput[u](7,2.4){$2$} \uput[u](9.5,2.4){$+ \infty$} 
+\rput(0.5,2.25){$f'(x)$}\uput[u](2.5,1.9){$+$}\uput[u](4,1.9){$0$}\uput[u](5.5,1.9){$-$}\uput[u](7,1.9){$0$}\uput[u](8.5,1.9){$+$}
+\psline{->}(1.5,0.5)(3.5,1.5)\psline{->}(4.5,1.5)(6.5,0.5)\psline{->}(7.5,0.5)(9.5,1.5)
+\rput(0.5,1){$f$}
+\uput[u](1.5,0){$- \infty$}\uput[d](4,2){$-5$}\uput[u](7,0){$\ln (2) - 8$}\uput[d](9.5,2){$+ \infty$}
+\end{pspicture}
+\end{center}
+	\end{enumerate}
+\item 
+$\bullet~~$On a $f(4) = 16 - 24 + 4\ln 4 = - 8 + 8\ln 2 \approx - 2,45$ et $f(5) = 25 - 30 + 4\ln 25 = 4\ln 5 - 5 \approx 1,44$ ;
+
+$\bullet~~$Sur l'intervalle [4~;~5], la fonction est continue car dérivable et strictement croissante de $f(4) < 0$ à $f(5) > 0$, donc :
+
+d'après le théorème des valeurs intermédiaires, il existe un réel unique $\alpha \in ]4~;~5[$ tel que $f(\alpha) = 0$.
+\item 
+
+$f''(x) = \dfrac{2x^2 - 4}{x^2}$.
+
+	\begin{enumerate}
+		\item 
+		
+
+On a $2x^2 - 4 = 0 \iff 2\left(x^2 - 2 \right) = 0 \iff x^2 - 2 = 0 \iff \left(x + \sqrt 2 \right)\left(x - \sqrt 2 \right) = 0 \iff \left\{\begin{array}{l}x + \sqrt 2 = 0\\x - \sqrt 2= 0
+\end{array}\right. \iff \left\{\begin{array}{l}x  = -  \sqrt 2\\x = \sqrt 2
+\end{array}\right.$
+
+Le trinôme, donc $f''(x)$ est positif sauf sur l'intervalle $\left]-\sqrt 2~;~\sqrt{2}\right[$ ou ici puisque $x > 0, \: f''(x)$ est positif sauf sur l'intervalle $\left]0~;~\sqrt{2}\right[$. Conclusion :
+
+$\bullet~~$ Sur l'intervalle $\left]0~;~\sqrt 2\right]$, $f''(x) < 0$, la fonction $f$ est concave ;
+
+$\bullet~~$ Sur l'intervalle $\left]\sqrt 2~;~+ \infty\right]$, $f''(x) > 0$, la fonction $f$ est convexe ;
+
+$\bullet~~$$f''\left(\sqrt 2\right) = 0$ : le point d'abscisse $\sqrt 2$, donc d'ordonnée $f\left( \right) = 2 - 6\sqrt 2 + 4 \ln \sqrt 2 = 2 - 6\sqrt 2 + 4 \times \dfrac12\ln 2 = 2 - 6\sqrt 2 + 2\ln 2$ est le point d'inflexion de $\mathcal{C}_f$, car en ce point la dérivée seconde s'annule en changeant de signe.
+		\item 
+		
+
+
+
+$\bullet~~$Pour $k \in  ]0~;~\sqrt 2[$, [A$M_k]$ est une corde de la courbe d'une fonction concave donc [A$M_k$] est en dessous de $\mathcal{C}_f$.
+
+$\bullet~~$Pour $k \in ]\sqrt 2~;~ +\infty[$, [A$M_k$] est une corde de la courbe d'une fonction convexe donc [A$M_k$] est au-dessus de $\mathcal{C}_f$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

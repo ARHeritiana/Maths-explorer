@@ -1,0 +1,41 @@
+\medskip
+
+Le cube ABCDEFGH a pour arête 1 cm.
+
+Le point I est le milieu du segment [AB] et le point J est le milieu du segment [CG].
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(6,7)
+\psframe(0.3,0.3)(4.3,4.3)
+\psline(4.3,0.3)(5.3,2.3)(5.3,6.3)(4.3,4.3)
+\psline(5.3,6.3)(1.3,6.3)(0.3,4.3)
+\psline[linestyle=dashed](0.3,0.3)(1.3,2.3)(5.3,2.3)
+\psline[linestyle=dashed](1.3,2.3)(1.3,6.3)
+\uput[dl](0.3,0.3){A} \uput[dr](4.3,0.3){B} \uput[r](5.3,2.3){C} \uput[dr](1.3,2.3){D}
+\uput[l](0.3,4.3){E} \uput[ul](4.3,4.3){F} \uput[ur](5.3,6.3){G} \uput[u](1.3,6.3){H}
+\psdots[dotstyle=+,dotangle=45,dotscale=1.7](2.3,0.3)(5.3,4.3)
+\uput[d](2.3,0.3){I}\uput[r](5.3,4.3){J}
+\end{pspicture}
+\end{center}
+
+On se place dans le repère orthonormé $\left(\text{A}~;~\vect{\text{AB}},~\vect{\text{AD}},~~\vect{\text{AE}}\right)$.
+
+\medskip
+
+\begin{enumerate}
+\item Donner les coordonnées des points I et J.
+\item Montrer que le vecteur $\vect{\text{EJ}}$ est normal au plan (FHI).
+\item Montrer qu'une équation cartésienne du plan (FHI) est $- 2x - 2y + z + 1 = 0$.
+\item Déterminer une représentation paramétrique de la droite (EJ).
+\item 
+	\begin{enumerate}
+		\item On note K le projeté orthogonal du point E sur le plan (FHI). Calculer ses coordonnées.
+		\item  Montrer que le volume de la pyramide EFHI est $\dfrac16$~cm$^3$.
+		
+\emph{On pourra utiliser le point {\rm L}, milieu du segment {\rm [EF]}. On admet que ce point est le projeté orthogonal du point {\rm I} sur le plan} (EFH).
+		\item Déduire des deux questions précédentes l'aire du triangle FHI.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

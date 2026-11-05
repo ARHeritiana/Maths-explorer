@@ -1,0 +1,87 @@
+\medskip
+
+L'objectif de cet exercice est de conjecturer en partie A puis de démontrer en partie B le comportement d'une suite.
+
+Les deux parties peuvent cependant être traitées de manière indépendante.
+
+On considère la suite $\left(u_n\right)$ définie par $u_0 = 3$ et pour tout $n \in \N$ :
+
+\[u_{n+1} = \dfrac{4}{5 - u_n}.\]
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter la fonction Python suivante \texttt{suite(n)} qui prend comme
+paramètre le rang $n$ et renvoie la valeur du terme $u_n$.
+
+\begin{center}
+{\ttfamily
+\begin{tabular}{|l|}\hline
+\pmb{def} suite(n):\\
+\qquad u = \ldots\\
+\qquad \pmb{for} i \pmb{in} range(n) : \quad \\
+\qquad \qquad \ldots\\ 
+\qquad \pmb{return} u \\ \hline
+\end{tabular}
+}
+\end{center}
+
+\item L'exécution de \texttt{suite(2)} renvoie 1.3333333333333333. 
+
+Effectuer un calcul pour vérifier et expliquer cet affichage.
+\item À l'aide des affichages ci-dessous, émettre une conjecture sur le sens de variation et une conjecture sur la convergence de la suite $\left(u_n\right)$.
+
+\begin{center}
+{\ttfamily
+\begin{tabular}{|l|}\hline
+>> suite(2) \\
+1.3333333333333333\\
+>>  suite(5)\\
+1.0058479532163742\\
+>>  suite(10)\\
+1.0000057220349845\\
+>>  suite(20)\\
+1.000000000005457\\ \hline
+\end{tabular}
+}
+\end{center}
+
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On considère la fonction $f$ définie et dérivable sur l'intervalle $] -\infty~;~5[$ par:
+
+\[f(x) = \dfrac{4}{5 - x}.\]
+
+Ainsi, la suite $\left(u_n\right)$ est définie par $u_0 = 3$ et pour tout $n \in \N,\:\: u_{n+1}  = f\left(u_n\right)$.
+
+\medskip
+
+\begin{enumerate}
+\item Montrer que la fonction $f$ est croissante sur l'intervalle $]-\infty~;~5[$.
+\item Démontrer par récurrence que pour tout entier naturel $n$ on a : 
+\[1 \leqslant u_{n+1} \leqslant u_n \leqslant 4.\]
+\item 
+	\begin{enumerate}
+		\item Soit $x$ un réel de l'intervalle $]-\infty~;~5[$.
+
+Prouver l'équivalence suivante: 
+
+\[f(x) = x \iff x^2 - 5x + 4 = 0.\]
+		
+		\item Résoudre $f(x) = x$ dans l'intervalle $]-\infty~;~5[$.
+	\end{enumerate}	
+\item Démontrer que la suite $\left(u_n\right)$ est convergente.
+
+Déterminer sa limite.
+\item Le comportement de la suite serait-il identique en choisissant comme terme initial $u_0 = 4$ au lieu de $u_0 = 3$ ?
+\end{enumerate}

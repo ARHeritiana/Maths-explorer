@@ -1,0 +1,39 @@
+\medskip
+Le rectangle OABC ci-dessous représente une place touristique vue de dessus. Le plan est muni d'un repère orthonormé \Oij{} tel que $\vect{\text{OC}} = 24\vect{\imath}$ et $\vect{\text{OA}} = 35\vect{\jmath}$.
+
+Afin d'éclairer le plus grand nombre de monuments, on place au point O, un projecteur lumineux qui permet d'éclairer la partie du plan délimitée par les segments
+de droite [OK] et [OL] tels que K est le milieu de [AB] et $\vect{\text{CL}} = \dfrac{1}{5}\vect{\text{CB}}$.
+
+\begin{figure}
+\begin{center}
+\psset{unit=0.25cm,arrowsize=2pt 4}
+\begin{pspicture}(-2,-2)(30,38)
+\pspolygon[fillstyle=solid,fillcolor=blue](12,35)(0,0)(24,7)(24,35)
+\multido{\n=0+2}{16}{\psline[linewidth=0.2pt](\n,0)(\n,38)}
+\multido{\n=0+2}{20}{\psline[linewidth=0.2pt](0,\n)(30,\n)}
+\psaxes[linewidth=1.25pt,Dx=50,Dy=50]{->}(0,0)(0,0)(30,38)
+
+\psframe(24,35)
+\psline(12,35)(0,0)(24,7)
+\uput[ur](0,35){A} \uput[ur](24,35){B}\uput[ur](24,0){C}\uput[dl](0,0){O}
+\uput[u](12,35){K}\uput[r](24,7){L}
+\uput[u](29,0){$x$}\uput[r](0,37){$y$}\uput[d](24,0){24}\uput[l](0,35){35}
+\uput[d](0.5,0){$\vect{\imath}$}\uput[l](0,0.5){$\vect{\jmath}$}
+\end{pspicture}
+\end{center}
+\end{figure}
+
+\begin{enumerate}
+\item Déterminer par lecture graphique les coordonnées des points A, B, C, K et L.
+\item Un visiteur affirme : \og Moins de 70\,\% de la surface de la place est éclairée \fg.
+
+Cette affirmation est-elle exacte ?
+\item 
+	\begin{enumerate}
+		\item Donner les coordonnées des vecteurs $\vect{\text{OK}}$ et $\vect{\text{OL}}$.
+		\item Montrer que le produit scalaire $\vect{\text{OK}} \cdot \vect{\text{OL}}$ est égal à $533$.
+		\item En déduire la mesure, arrondie au degré, de l'angle $\widehat{\text{KOL}}$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

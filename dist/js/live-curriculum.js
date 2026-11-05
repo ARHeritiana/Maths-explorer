@@ -35,6 +35,7 @@ export function isLiveRoute({ page, id, tab }) {
   if (page === 'chapter') return chapterIds.has(id);
   if (page === 'library') return !id || libraryChapterIds.has(id) || id.startsWith('@');
   if (page === 'pack') return !id || isLiveLibraryCourse(id) || libraryChapterIds.has(id);
+  if (page === 'bank' && id === 'annales') return true;
   if (page === 'bank') return (!id || isLiveCourse(id)) && (!tab || chapters.some(c => c.id === tab && c.course === id));
   if (['lab', 'gallery', 'topics', 'basics', 'history', 'biographies', 'stories', 'challenges', 'olympiad'].includes(page)) return true;
   if (page === 'workshop') return id === 'quadratic';

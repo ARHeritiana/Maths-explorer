@@ -1,0 +1,29 @@
+\section*{Exercice 2 (5 points)}
+
+\subsection*{1. Justifier que pour tout réel $x$ appartenant à $[0 ; 9]$ : $V(x) = 4x^3 - 84x^2 + 432x$.}
+La longueur est égale à $24 - 2x$ et la largeur $18 - 2x$. La hauteur valant $x$, le volume de la boîte sans couvercle est égal à :
+\[V(x) = L \times l \times h = (24 - 2x)(18 - 2x) \times x = x(432 - 48x - 36x + 4x^2) = 4x^3 - 84x^2 + 432x	\]
+	
+\subsection*{2. On note $V'$ la fonction dérivée de $V$ sur $[0 ; 9]$. Donner l’expression de $V'(x)$ en fonction de $x$.}
+La fonction polynôme $V$ est dérivable sur $\mathbb{R}$ et donc sur $[0 ; 9]$,
+	\[	V'(x) = 12x^2 - 168x + 432 = 12(x^2 - 14x + 36)	\]
+	
+\subsection*{3. Dresser alors le tableau de variations de $V$ en détaillant la démarche.}
+Avec $\Delta = 14^2 - 4 \times 36 = 196 - 144 = 52$, le trinôme a deux racines :
+	\[
+	x_1 = \dfrac{14 + \sqrt{52}}{2} = 7 + \sqrt{13} \quad \text{et} \quad x_2 = \dfrac{14 - \sqrt{52}}{2} = 7 - \sqrt{13}
+	\]
+On sait que ce trinôme est positif sauf sur $]7 - \sqrt{13} ; 7 + \sqrt{13}[$. Comme $\sqrt{13} \approx 3,6$, $7 + \sqrt{13} \approx 10,6$. Donc :
+	\begin{itemize}
+		\item sur $]7 - \sqrt{13} ; 7 + \sqrt{13}[$, $V'(x) < 0$, donc $V$ est décroissante ;
+		\item sur $[0 ; 7 - \sqrt{13}]$ et sur $[7 + \sqrt{13} ; 9]$, $V'(x) > 0$, donc $V$ est croissante.
+	\end{itemize}
+	
+	\subsection*{4. Pour quelle(s) valeur(s) de $x$ la contenance de la boîte est-elle maximale ?}
+	
+	D’après la question précédente, $V(7 - \sqrt{13}) \approx 654,98 \approx 655 \text{ cm}^3$ est la contenance maximale de la boîte.
+	
+	\subsection*{5. L’industriel peut-il construire ainsi une boîte dont la contenance est supérieure ou égale à 650 cm$^3$ ? Justifier.}
+	
+	Oui, puisque la capacité maximale est proche de $655$.\\
+	 Pour avoir une capacité de $650$ cm$^3$, il faut prendre $x \approx 3,06$ cm.

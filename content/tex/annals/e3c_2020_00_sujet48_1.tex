@@ -1,0 +1,104 @@
+\medskip
+
+\begin{enumerate}
+\item On considère une fonction $f$ définie et dérivable sur l'intervalle $[-1~;~4]$.
+
+On a tracé sur la figure ci-dessous la courbe $\mathcal{C}_f$ et la tangente à cette courbe au point A de coordonnées (2~;~2).
+
+\begin{center}
+\psset{unit=0.75cm,arrowsize=2pt 3}
+\begin{pspicture*}(-2,-1)(6,5)
+\psgrid[gridlabels=0pt,subgriddiv=1]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-1.95,-0.95)(6,5)
+\psaxes[linewidth=1.25pt](0,0)(-1.95,-0.95)(5.99,4.99)
+\pscurve[linecolor=red,linewidth=1.25pt](-1,3)(0,2.5)(1,2)(2,2)(3,3.2)(4,4)
+\psplot[plotpoints=2000]{-1}{10}{x 2 sub 2 mul 3 div 2 add}
+\uput[u](3,3.2){\red $\mathcal{C}_C$}
+\uput[ul](2,2){A}
+\psdots(5,4)(4,4)(-1,3)(2,2)
+\end{pspicture*}
+\end{center}
+
+L'équation de la tangente à $\mathcal{C}_f$ au point A est:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+\textbf{Réponse a}& \textbf{Réponse b}& \textbf{Réponse c}& \textbf{Réponse d}\\ \hline
+$y = \dfrac{2}{3}(x - 2) + 2$&$y = 2(x - 2) + \dfrac{2}{3}$&$y  = \dfrac{2}{3}(x + 2) + 2$&$y = \dfrac{3}{2}(x - 2) + 2$\rule[-3mm]{0mm}{9mm}\\ \hline
+\end{tabularx}
+\end{center}
+\item ~
+
+\parbox{0.6\linewidth}{Dans un repère orthonormal \Oij, le point A, placé ci-contre sur le cercle trigonométrique de centre O, d'origine I, est associé au réel :} \hfill\parbox{0.3\linewidth}{
+\psset{unit=1.25cm}
+\begin{pspicture*}(-1.5,-1.5)(1.5,1.5)
+\psgrid[gridlabels=0pt,subgriddiv=2]
+\psaxes[linewidth=1.25pt,Dx=2,Dy=2]{->}(0,0)(-1.5,-1.5)(1.5,1.5)
+\pscircle[linewidth=1.25pt](0,0){1}
+\uput[ur](0,0){O}\uput[ur](1,0){I}\uput[ur](0,1){J}\uput[dl](-0.5,-0.866){A}
+\psdots(0,0)(1,0)(0,1)(-0.5,-0.866)
+\end{pspicture*}} 
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+\textbf{Réponse a}& \textbf{Réponse b}& \textbf{Réponse c}& \textbf{Réponse d}\\ \hline
+$\dfrac{11\pi}{6}$&$\dfrac{2\pi}{3}$&$- \dfrac{2\pi}{3}$&$-\dfrac{3\pi}{4}$\rule[-3mm]{0mm}{9mm}\\ \hline
+\end{tabularx}
+\end{center}
+
+\item On considère une fonction du second degré $f$ définie sur $\R$ par : 
+
+\[f(x) = ax^2 + bx\]
+
+où $a$ et $b$ sont deux nombres réels strictement positifs.
+
+Quelle est la courbe représentative de cette fonction dans un repère orthonormé ?
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+\textbf{Réponse a}& \textbf{Réponse b}& \textbf{Réponse c}& \textbf{Réponse d}\\ \hline
+\psset{unit=0.5cm}
+\begin{pspicture*}(-0.5,-1.5)(3,4)
+\psaxes[linewidth=1.25pt,Dx=5,Dy=5]{->}(0,0)(-0.5,-1.5)(3,4)
+\psplot[plotpoints=2000]{-1}{5}{2 1.414 x sub dup mul sub}
+\end{pspicture*}&
+\psset{unit=0.5cm}
+\begin{pspicture*}(-1.5,-1)(3,5)
+\psaxes[linewidth=1.25pt,Dx=5,Dy=5]{->}(0,0)(-1.5,-1)(3,5)
+\psplot[plotpoints=2000]{-1}{5}{x 1 sub dup mul}
+\end{pspicture*}&
+\psset{unit=0.5cm}
+\begin{pspicture*}(-3.5,-0.5)(1.5,4)
+\psaxes[linewidth=1.25pt,Dx=5,Dy=5]{->}(0,0)(-3.5,-0.5)(1.5,4)
+\psplot[plotpoints=2000]{-3}{5}{x 1 add dup mul 1. add}
+\end{pspicture*}&
+\psset{unit=0.5cm}
+\begin{pspicture*}(-3,-1.5)(2,4)
+\psaxes[linewidth=1.25pt,Dx=5,Dy=5]{->}(0,0)(-3,-1.5)(2,4)
+\psplot[plotpoints=2000]{-3}{2}{1.5 x add  x  mul}
+\end{pspicture*}\\ \hline
+\end{tabularx}
+\end{center}
+\item  Dans le plan muni d'un repère orthonormé une droite $D$ a pour équation : $x - 2y = 1$.
+
+Parmi les propositions suivantes, laquelle est correcte ?
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash \small}X|}}\hline
+\textbf{Réponse a}& \textbf{Réponse b}& \textbf{Réponse c}& \textbf{Réponse d}\\ \hline
+Le vecteur $\vect{u}\binom{1}{-2}$  est un vecteur directeur
+de la droite $D$.&Le vecteur $\vect{u}\binom{1}{-2}$  est un vecteur normal à la
+ droite $D$&Le point A de coordonnées $(1~;~-2)$ appartient à la droite $D$&L'ordonnée à l'origine de la droite $D$ est égale à $1$.\\ \hline
+\end{tabularx}
+\end{center}
+\item Un homme marche pendant $10$ jours. Le premier jour, il parcourt $12$~km. Chaque jour, il parcourt $500$~m de moins que la veille. Durant ces dix jours, il aura parcouru au total:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash }X|}}\hline
+\textbf{Réponse a}& \textbf{Réponse b}& \textbf{Réponse c} 19 km& \textbf{Réponse d} 84 km\\ \hline
+95 km&97,5 km&19 km&84 km\\ \hline
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\bigskip

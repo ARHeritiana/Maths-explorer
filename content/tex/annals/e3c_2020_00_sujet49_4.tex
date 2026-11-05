@@ -1,0 +1,44 @@
+\medskip
+
+On considère la fonction $f$ définie et dérivable sur $\R$ par 
+
+\[f(x) = (ax + b)\e^{-0,1x}\]
+
+où $a$ et $b$ sont des réels fixés.
+
+La courbe représentative $\mathcal{C}_f$ de la fonction $f$ est donnée ci-dessous, dans un repère orthogonal.
+
+\begin{figure}[b]
+\begin{center}
+\psset{xunit=0.3cm,yunit=0.3cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture*}(-5,-14)(43,24)
+\multido{\n=-4+2}{24}{\psline[linewidth=0.35pt,linecolor=lightgray](\n,-12)(\n,23.4)}
+\multido{\n=-12+2}{18}{\psline[linewidth=0.35pt,linecolor=lightgray](-5.8,\n)(43,\n)}
+\psaxes[linewidth=0.95pt,Dx=10,Dy=10]{->}(0,0)(-5,-12.5)(43.2,24)
+\def\Func{x 4 mul 5 add 2.71828 x 0.1 neg mul  exp mul }
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-3.5}{43}{\Func}
+\psdots[dotstyle=Mul,dotscale=1.9,linecolor=blue](0,5)(4,19)
+\uput[ul](0,5){A}\uput[dl](0,0){O}\uput[ur](4,19){B}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-4}{5.8}{x 3.5 mul 5 add}
+\rput(6,22.5){$\mathcal{T}$}
+\uput[u](25,8.3){\red $\mathcal{C}_f$}
+\end{pspicture*}
+\end{center}
+\end{figure}
+
+On a également représenté la tangente $\mathcal{T}$ à $\mathcal{C}_f$ au point A(0~;~5).
+
+On admet que cette tangente $\mathcal{T}$ passe par le point B(4~;~19).
+\begin{enumerate}
+\item  En exprimant $f(0)$, déterminer la valeur de $b$.
+\item 
+		\begin{enumerate}
+		\item  À l'aide des coordonnées des points A et B, déterminer une équation de la droite $\mathcal{T}$.
+		\item Exprimer, pour tout réel $x$, $f'(x)$ en fonction de $x$ et de $a$ et en déduire que pour tout réel $x$, $f(x)=(4x+5)\e^{-0,1x}$.
+		\end{enumerate}
+\item On souhaite déterminer le maximum de la fonction $f$ sur $\R$.
+	\begin{enumerate}
+		\item  Montrer que pour tout $x\in \R,\  f'(x)=(- 0,4x + 3,5)\e^{-0,1x}$.
+		\item Déterminer les variations de $f$ sur $\R$ et en déduire le maximum de $f$ sur $\R$. 
+	\end{enumerate}
+\end{enumerate}

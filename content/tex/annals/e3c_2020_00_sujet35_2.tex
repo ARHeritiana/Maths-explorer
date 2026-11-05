@@ -1,0 +1,46 @@
+\medskip
+
+Un organisme de vacances propose des séjours en France et à l'étranger pour des jeunes.
+ Ces derniers sont répartis en deux catégories suivant leur âge : adolescents ou jeunes enfants. 
+ \begin{itemize}
+\item 40\,\% des participants sont des adolescents et parmi eux, 70\,\% choisissent un séjour à l'étranger.
+\item Parmi les jeunes enfants, 90\,\% choisissent un séjour en France.
+\end{itemize}
+
+On interroge au hasard un participant à un séjour de cet organisme.
+
+On note :
+\begin{itemize}
+\item $A$ l'évènement \og le participant est un adolescent\fg,
+\item $F$ l'évènement \og le participant choisit un séjour en France \fg.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item  Recopier et compléter sur la copie les branches de l'arbre de probabilité ci-dessous pour qu'il représente la situation.
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.5cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$A$~~}\taput{}}
+	{
+	\TR{$F$}\taput{}
+	\TR{$\overline{F}$}\tbput{}
+	}
+\pstree{\TR{$\overline{A}$~~}\tbput{}}
+	{\TR{$F$}\taput{}
+	\TR{$\overline{F}$}\tbput{}
+	}
+}
+\end{center}
+
+\item Calculer la probabilité que le participant soit un adolescent et qu'il choisisse un séjour à l'étranger.
+\item Montrer que la probabilité qu'un participant choisisse un séjour à l'étranger est 0,34.
+\item Calculer la probabilité que le participant ne soit pas un adolescent, sachant qu'il part à l'étranger. Donner la valeur arrondie au centième de cette probabilité.
+\item On interroge au hasard, et de manière indépendante, deux participants à des séjours de cet organisme pour connaître s'ils ont choisi un séjour en France ou non. L'organisation de ce sondage est telle qu'une même personne peut être interrogée deux fois.
+
+ Calculer la probabilité qu'au moins un des deux participants ait choisi un séjour en France. Donner cette probabilité arrondie au centième.
+\end{enumerate}
+
+\vspace{0,5cm}

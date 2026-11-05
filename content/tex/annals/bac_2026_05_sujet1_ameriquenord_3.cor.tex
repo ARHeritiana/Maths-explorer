@@ -1,0 +1,139 @@
+\textbf{Partie A}
+
+\begin{enumerate}
+\item 
+
+Dans le repère $\left(\mathrm{O}; \vectt{OI}, \vectt{OJ}, \vectt{OK}\right)$ on a :\quad A$(-1~;~-1~;~0)$ \quad et \quad D$(1~;~-1~;~0)$.
+
+\item Étant données les coordonnées de S et C, on a donc :
+
+$\vectt{SC}\begin{pmatrix}	x_\mathrm{C}-x_\mathrm{S} \\ y_\mathrm{C}-y_\mathrm{S}\\ z_\mathrm{C}-z_\mathrm{S} \end{pmatrix}$ \quad soit \quad $\vectt{SC}\begin{pmatrix}	1-0 \\ 1-0\\ 0-2 \end{pmatrix}$ \quad finalement :\quad $\vectt{SC}\begin{pmatrix}	1 \\1\\-2 \end{pmatrix}$
+\quad et de même :\quad $\vectt{SB}\begin{pmatrix}	-1 \\1\\-2 \end{pmatrix}$
+
+On est dans un repère orthonormé donc :
+
+$\vectt{SC}\cdot\vectt{SB}= 1 \times (-1) + 1 \times 1 + (-2) \times (-2) = -1 +1+4=4$.
+
+\item On a SC$=\sqrt{ 1^2+1^2+(-2)^2} = \sqrt{6}$ \quad et \quad SB$=\sqrt{ (-1)^2+1^2+(-2)^2} = \sqrt{6}$
+
+$	\begin{aligned} \vectt{SC}\cdot\vectt{SB} = \mathrm{SC} \times \mathrm{SB} \times \cos\left(\widehat{\mathrm{BSC}}\right) & \iff 4 = \sqrt{6} \times \sqrt{6} \times \cos\left(\widehat{\mathrm{BSC}}\right) \\
+			& \iff \dfrac{4}{6} = \cos\left(\widehat{\mathrm{BSC}}\right) \\
+				& \iff \dfrac{2}{3} = \cos\left(\widehat{\mathrm{BSC}}\right) \\
+			\end{aligned} $
+
+	D'où \quad $\widehat{\mathrm{BSC}} = \arccos\left(\dfrac{2}{3}\right) \approx 48,1897$(\ensuremath{^\circ}) \quad soit \quad $\widehat{\mathrm{BSC}} \approx 48,2 $(\ensuremath{^\circ}),\quad arrondi au dixième de degré près.
+	\end{enumerate}
+
+	\textbf{Partie B}
+	
+	\begin{enumerate}
+	\item \begin{enumerate}
+		\item Les vecteurs $\vectt{SB}$ et $\vectt{SC}$ ne sont pas colinéaires.
+		(On peut le justifier par étude des coordonnées des vecteurs, ou parce que l'angle $\widehat{\mathrm{BSC}}$ n'est ni plat ni nul, ou parce que le plan étant nommé (SBC), cela implique que les points S, B et C ne sont pas alignés).
+
+		De plus : \quad $\vect{n} \cdot \vectt{SB} = 0 \times (-1) + 2 \times 1 +1 \times (-2) = 0 +2-2=0$
+
+		et \quad $\vect{n} \cdot \vectt{SC} = 0 \times (1) + 2 \times 1 +1 \times (-2) = 0 +2-2=0$
+
+		Le vecteur $\vect{n}$ est donc orthogonal à deux vecteurs non colinéaires du plan (SBC) donc le vecteur $\vect{n}$ est normal au plan (SBC).
+
+		\item Le vecteur $\vect{n}$ étant normal au plan (SBC), une équation cartésienne de ce plan est de la forme :\quad $0x+2y+z+d=0$ \quad avec $d \in \R$.
+
+		$S(0~;~0~;~2) \in (\mathrm{SBC})$ \quad donc \quad $0+2\times 2+d=0 \iff d=-2$.
+
+		Donc une équation cartésienne du plan (SBC) est \quad $2 y+z-2=0$.
+
+\end{enumerate}
+\item
+	\begin{enumerate}
+			\item H est le projeté orthogonal du point O sur le plan (SBC) donc la droite (OH) est orthogonale au plan (SBC). Un vecteur normal au plan (SBC) sera donc un vecteur directeur de la droite (OH).
+
+Un vecteur directeur de la droite (OH) est donc le vecteur $\vect{n}\begin{pmatrix} 0\\ 2\\ 1\\ \end{pmatrix}$.
+
+De plus le point O, de coordonnées $(0~;~0~;~0)$ appartient à la droite (OH) donc une représentation de la droite (OH) est :\quad
+$\begin{cases}
+x =x_{\text{O}} + x_{\vect{n}}t\\
+y =y_{\text{O}} + y_{\vect{n}}t\\
+z =z_{\text{O}} + z_{\vect{n}}t\\
+	\end{cases}\text{ avec } t \in \R$ \quad soit \quad
+	$\begin{cases}
+x =0\\
+y =2 t\\
+z =t\\
+\end{cases}\text{ avec } t~\in~\R.$
+		\item H est le projeté orthogonal de O sur (SBC), alors $\mathrm{H} = (\mathrm{OH}) \cap \mathrm{(SBC)}$.
+
+Donc H est le point de (OH) dont le paramètre fait que les coordonnées paramétriques vérifient l'équation de (SBC).
+
+On résout donc : 
+\quad $\begin{aligned}[t]
+	4t+t-2= 0 & \iff 5t = 2\\
+	& \iff t = \dfrac{2}{5}
+	\end{aligned}$
+
+H est donc le point de paramètre $t = \dfrac{2}{5}$ sur (OH),
+
+donc ses coordonnées sont : \quad $\mathrm{H} \left(0 ~;~ \dfrac{4}{5} ~;~ \dfrac{2}{5}\right)$.
+
+\item La distance OH vaut donc : \quad $\begin{aligned}[t]
+	\mathrm{OH} &= \sqrt{(0-0)^2 + \left(\dfrac{4}{5}-0 \right)^2 + \left(\dfrac{2}{5} -0 \right)^2}\\
+			& =\sqrt{\dfrac{16}{25} + \dfrac{4}{25}}=\sqrt{\dfrac{20}{25}}=\sqrt{\dfrac{4 \times 5}{5^2}}\\
+			&=\dfrac{2\sqrt{5}}{5}
+		\end{aligned}$
+
+	La distance du point O au plan (SBC), c'est-à-dire la distance de O à son projeté orthogonal sur (SBC), est donc bien égale à $\dfrac{2 \sqrt{5}}{5}$~(cm).
+		\end{enumerate}
+	\end{enumerate}
+
+\textbf{Partie C}
+
+\begin{enumerate}
+\item
+	\begin{enumerate}
+			\item La base de la pyramide SABCD est le carré ABCD, de côté 2~cm et sa hauteur associé est le segment [SO], de longueur 2~cm.
+
+Donc $V= \dfrac{1}{3} \times 2^2\times 2 = \dfrac{8}{3}$~(cm\up{3}.
+
+Son volume est donc égal à \quad $\dfrac{8}{3}$~(cm\up{3}).
+
+			\item La base de la pyramide OCBS est le triangle OCB et sa hauteur associé est le segment [SO].
+
+L'aire du triangle OCB est égale au quart de l'aire du carré ABCD car O est le centre du carré ABCD.
+
+La hauteur étant la même, le volume de la pyramide OCBS est égal au quart du volume de la pyramide SABCD.
+
+$V'= \dfrac{1}{4} V = \dfrac{1}{4} \times \dfrac{8}{3} = \dfrac{2}{3}$.
+
+Donc le volume de la pyramide OCBS est bien égal à $\dfrac{2}{3}$~(cm\up{3}).
+	\end{enumerate}
+
+		\item Dans le triangle SBC, on a : \quad $\mathrm{SB} = \mathrm{SC} = \sqrt{6}$ \quad donc SBC est un triangle isocèle en S.
+
+J étant le milieu du segment [BC], le segment [SJ] est la hauteur issue de S dans le triangle SBC.
+
+Le triangle JSB est rectangle en J donc, d'après le théorème de Pythagore,
+
+$\begin{aligned} \mathrm{SB}^2 = \mathrm{SJ}^2+ \mathrm{BJ}^2 & \iff
+\mathrm{SJ}^2 = \mathrm{SB}^2- \mathrm{BJ}^2 \\
+	& \iff \mathrm{SJ}^2 = \left(\sqrt{6}\right)^2- 1^2= 6-1=5\\
+	& \iff	\mathrm{SJ}=\sqrt{5} \quad \text{ car une longueur est positive}
+\end{aligned}$
+
+Soit $A$ l'aire du triangle SBC.
+
+On a : \quad $A= \dfrac{\text{longueur de la base} \times \text{hauteur}}{2} = \dfrac{2 \times \sqrt{5}}{2}= \sqrt{5}$
+
+L'aire du triangle SBC est donc $\sqrt{5}$~(cm\up{2}).
+
+		\item Calculons le volume de la pyramide OCBS en prenant le triangle SBC comme base. La hauteur associée sera donc le segment [OH] car H est le projeté orthogonal de O sur le plan (SBC).
+
+On a donc : \quad $ V_{\mathrm{OCBS}} = \dfrac{1}{3} \times \sqrt{5} \times \mathrm{OH}$
+
+Or, d'après la question \textbf{1. b.} de la \textbf{Partie C}, \quad$ V_{\mathrm{OCBS}} = \dfrac{2}{3}$~(cm\up{3}).
+
+Donc \quad $\dfrac{2}{3}= \dfrac{\sqrt{5}}{3} \mathrm{OH} \iff \mathrm{OH} = \dfrac{2}{3} \times \dfrac{3}{\sqrt{5}} = \dfrac{2}{\sqrt{5}} = \dfrac{2 \sqrt{5}}{\sqrt{5}\times \sqrt{5}}x= \dfrac{2\sqrt{5}}{5}$.
+
+Donc la distance du point O au plan (SBC), c'est-à-dire la distance de O à son projeté orthogonal sur (SBC), est bien égale à $\dfrac{2 \sqrt{5}}{5}$~(cm).
+
+Cela confirme bien le résultat de la \textbf{Partie B}.
+	\end{enumerate}

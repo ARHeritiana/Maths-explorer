@@ -1,0 +1,89 @@
+On s'intéresse à l'ensemble des spectateurs d'un cinéma.
+
+On désigne par le terme \emph{JEUNE} un spectateur âgé de 18 ans ou moins.
+
+On désigne par le terme \emph{ABONNÉ} un spectateur ayant souscrit un abonnement à ce cinéma.
+
+Une étude a permis d'établir les résultats suivants :
+
+\begin{itemize}[label*=\textbullet~]
+	\item 60\,\% des spectateurs sont abonnés ;
+	\item parmi les spectateurs abonnés, 40\,\% sont jeunes ;
+	\item parmi les spectateurs n'étant pas abonnés, 20\,\% sont jeunes.
+\end{itemize}
+
+On interroge au hasard un spectateur et on considère les événements suivants :
+\begin{itemize}[label*=\textbullet~]
+	\item $A$ : \og \emph{le spectateur est abonné} \fg{} ;
+	\item $J$ : \og \emph{le spectateur est jeune} \fg.
+\end{itemize}
+
+\begin{enumerate}
+	\item Reproduire et compléter l'arbre pondéré ci-dessous décrivant la situation.
+
+	
+	\begin{center}
+		\begin{tikzpicture}[yscale=-1,
+			grow = right,
+			level distance=2.5cm,
+			level 1/.style={sibling distance=1.6cm},
+			level 2/.style={sibling distance=0.8cm},
+			edge from parent/.style={draw},
+			edge from parent path=
+			{(\tikzparentnode.east)--(\tikzchildnode.west)},
+			every node/.style={fill=white}]
+		\node {}
+		child {
+				node {$A$}
+					child { node {$J$} edge from parent node {\dots} }
+					child { node {$\overline{J}$} edge from parent node {\dots} }
+				edge from parent node {\dots}
+				}
+		child {
+				node {$\overline{A}$}
+					child { node {$J$} edge from parent node {\dots} }
+					child { node {$\overline{J}$} edge from parent node {\dots} }
+				edge from parent node {\dots}
+				};
+		\end{tikzpicture}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	\end{center}
+
+	\item Calculer la probabilité $P(A \cap J)$ et interpréter le résultat dans le contexte de l'exercice.
+
+	\item Démontrer que $P(J) = 0,32$.
+
+	\item On considère l'affirmation suivante :
+
+	\begin{quote}
+		« \textit{Si on interroge un spectateur jeune au hasard, il y a plus d'une chance sur deux qu'il soit abonné.} »
+	\end{quote}
+
+	Cette affirmation est-elle exacte ? Justifier.
+
+	\item Le prix d'une place de cinéma est fixé selon les règles suivantes :
+	\begin{itemize}[label*=\textbullet~]
+		\item un spectateur non abonné paie sa place 5 euros, quel que soit son âge ;
+		\item un spectateur abonné et n'étant pas jeune paie sa place 2 euros ;
+		\item un spectateur abonné et jeune ne paie pas sa place : c'est gratuit.
+	\end{itemize}
+
+	On note $X$ la variable aléatoire qui, à un spectateur choisi au hasard, donne le prix qu'il doit payer pour sa place de cinéma.
+
+	\begin{enumerate}
+		\item Déterminer la loi de probabilité de la variable aléatoire $X$.
+		\item Calculer l'espérance de la variable aléatoire $X$ et interpréter le résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}

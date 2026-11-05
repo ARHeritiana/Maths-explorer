@@ -1,0 +1,166 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet2_ameriquesud_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A : dénombrement}
+
+On considère l'ensemble des nombres entiers relatifs \textbf{non nuls} compris entre $- 30$ et $30$ ; cet ensemble peut s'écrire ainsi : \{$- 30~;~- 29~;~- 28~;~ ... - 1~;~1~;~ ... ~;~ 28~;~29~;~30$\}. Il comporte 60 éléments.
+
+On choisit dans cet ensemble successivement et sans remise un entier relatif $a$ puis un entier relatif $c$.
+
+\medskip
+
+\begin{enumerate}
+\item Combien de couples $(a~;~ c)$ différents peut-on ainsi obtenir ?
+\end{enumerate}
+
+On considère l'évènement $M$ : \og l'équation $ax^2 + 2x + c = 0$ possède deux solutions réelles distinctes \fg, où $a$ et $c$ sont les entiers relatifs précédemment choisis.
+
+\begin{enumerate}[resume]
+\item Montrer que l'évènement $M$ a lieu si et seulement si $ac < 1$.
+\item Expliquer pourquoi l'évènement contraire $\overline{M}$ comporte \np{1740} issues.
+\item Quelle est la probabilité de l'évènement $M$ ? On arrondira le résultat à $10^{-2}$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B : équation différentielle}
+
+\medskip
+
+On considère l'équation différentielle 
+
+\begin{center}$(E) :\quad  y' + 10y = \left(30x^2 + 22x - 8\right)\e^{-5x+1}$\quad avec \quad $x \in \R$\end{center}
+
+où $y$ est une fonction définie et dérivable sur $\R$.
+
+\medskip
+
+\begin{enumerate}
+\item Résoudre sur $\R$ l'équation différentielle : $y' + 10y = 0$.
+\item Soit la fonction $f$ définie sur $\R$ par 
+
+\[f(x) = (6x^2 + 2x - 2)\e^{-5x+ 1}.\]
+
+On admet que $f$ est dérivable sur $\R$ et on note $f'$ la fonction dérivée de la fonction $f$.
+
+Justifier que $f$ est une solution particulière de $(E)$.
+\item Donner l'expression de toutes les solutions de $(E)$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C : étude de fonction}
+
+\medskip
+
+On propose d'étudier dans cette partie la fonction $f$ rencontrée à la partie B question 2. 
+
+On rappelle que, pour tout réel $x\:, f(x) = \left(6x^2 + 2x - 2\right)\e^{-5x+ 1}$.
+
+On note $f'$ la fonction dérivée de la fonction $f$. On appelle $\mathcal{C}_f$ la courbe représentative de $f$ dans un repère du plan.
+
+\medskip
+
+\begin{enumerate}
+\item On admet que $\displaystyle\lim_{x \to + \infty} f(x) = 0$.
+
+Déterminer la limite de la fonction $f$ en $- \infty$
+\item En utilisant la partie A, montrer que $\mathcal{C}_f$ coupe l'axe des abscisses en deux points (les coordonnées de ces points ne sont pas attendues).
+\item En utilisant les parties A et B, montrer que $\mathcal{C}_f$ possède deux tangentes horizontales.
+\item Dresser le tableau de variation complet de la fonction $f$.
+\item Déterminer en justifiant le nombre de solution(s) de l'équation $f(x)= 1$.
+\item Pour tout réel $m$ strictement supérieur à $0,2$, on définit $I_m$ par $I_m = \displaystyle\int_{0,2}^m f(x)\:\text{d}x$.
+	\begin{enumerate}
+		\item Vérifier que la fonction $F$ définie sur $\R$ par
+
+\[F(x) = \left(-\dfrac65 x^2 - \dfrac{22}{25}x + \dfrac{28}{125}\right)\e^{-5x+ 1}\]
+est une primitive de la fonction $f$ sur $\R$.
+		\item Existe-t-il une valeur de $m$ pour laquelle $I_m = 0$ ? 
+
+Interpréter graphiquement ce résultat.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

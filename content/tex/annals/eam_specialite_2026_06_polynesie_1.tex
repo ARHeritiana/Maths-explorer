@@ -1,0 +1,132 @@
+\subsection*{Partie A}
+Un club de vacances propose deux types d'activités à ses clients : des randonnées le matin et des activités nautiques l'après-midi.
+
+\vspace{5mm}
+On sait que
+\begin{itemize}[label=$\bullet$]
+	\item un quart des clients participent aux randonnées;
+
+	\item parmi les clients ayant choisi de faire une randonnée le matin, la moitié s'inscrit aussi aux activités nautiques de l'après-midi;
+
+	\item parmi les clients n'ayant pas choisi de faire une randonnée le matin, un tiers s'inscrit aux activités nautiques de l'après-midi.
+\end{itemize}
+
+On choisit un client du club de vacances au hasard et on note :
+\begin{itemize}[label=$\bullet$]
+\item \textit{R} l'événement: \og{}le client participe à la randonnée\fg{};
+
+\item \textit{N} l'événement : \og{}le client participe aux activités nautiques\fg{}.
+\end{itemize}
+\begin{enumerate}
+	\item Recopier et compléter l'arbre de probabilité représentant la situation.
+
+\begin{center}
+			\begin{tikzpicture}[xscale=1,yscale=1,rotate=0,every node/.style={scale=1,rotate=0}]
+			\node(n0)at(0,0){};
+			\node(n1_1)at(3,1){$R$};
+			\node(n1_2)at(3,-1){$\overline{R}$};
+			\node(n2_1)at(6,1.5){$N$};
+			\node(n2_2)at(6,0.5){$\overline{N}$};
+			\node(n2_3)at(6,-0.5){$N$};
+			\node(n2_4)at(6,-1.5){$\overline{N}$};
+			\draw(n0.east)--(n1_1)node[pos=0.6,fill=white]{\dots};
+			\draw(n0.east)--(n1_2)node[pos=0.4,fill=white]{\dots};
+			\draw(n2_1)--(n1_1.east)node[pos=0.6,fill=white]{\dots};
+			\draw(n2_2)--(n1_1.east)node[pos=0.4,fill=white]{\dots};
+			\draw(n2_3)--(n1_2.east)node[pos=0.6,fill=white]{\dots};
+			\draw(n2_4)--(n1_2.east)node[pos=0.4,fill=white]{\dots};
+
+		\end{tikzpicture}
+
+\end{center}
+		\item Montrer que la probabilité que le client participe aux activités nautiques est de \mbox{$\dfrac38$}.
+\item Sachant que le client a participé aux activités nautiques de l'après-midi, quelle est la probabilité qu'il ait fait la randonnée du matin ?
+		\item Les événements \textit{R} et \textit{N} sont-ils indépendants ?
+
+		Justifier.
+	\end{enumerate}
+\subsection*{Partie B}
+En 2025, le club a accueilli 400 clients.
+
+Son directeur projette la fréquentation du club dans les années à venir en modélisant le nombre de clients du club les années suivantes par la suite \mbox{$(u_n)$} définie par :
+
+\begin{center}
+	\mbox{$u_0=400$} \quad et, pour tout entier naturel $n$, \quad \mbox{$u_{n+1}=\np{1.025}u_n$}
+\end{center}
+
+où $u_n$ représente le nombre de clients du club pour l'année \mbox{$2025+n$}
+\begin{enumerate}
+	\item Donner la nature de la suite $(u_n)$ en précisant sa raison.
+	\item Selon ce modèle; quel est le taux d'évolution annuel de la fréquentation de ce club de vacances ?
+	\item
+	 \begin{enumerate}
+	\item
+	\begin{minipage}[t]{0.66\linewidth}\vspace{0mm}
+		Recopier et compléter la fonction \texttt{seuil}, codée en python, afin qu'elle renvoie la plus petite valeur de $n$ telle que $u_n$ soit supérieure ou égale à $k$, où $k$ est un entier naturel non nul.
+
+\end{minipage}
+\hspace{0.05\linewidth}
+	\begin{minipage}[t]{0.33\linewidth}\vspace{0cm}
+\begin{ttfamily}
+\begin{tblr}{hline{1,Z}={solid}, vlines,colspec={X},rowsep=0pt}
+	def seuil (k) :\\
+	\qquad u = 400\\
+	\qquad n = 0\\
+	\qquad while  \dots :\\
+	\qquad\qquad  n = \dots\\
+	\qquad\qquad  u= \dots\\
+	\qquad return \dots\\
+\end{tblr}
+\end{ttfamily}
+\end{minipage}
+
+	\item \begin{minipage}[t]{0.45\linewidth}
+Le tableau ci-contre a été extrait d'une feuille automatisée de calcul donnant les valeurs arrondies au centième de \mbox{$\np{1.025}^n$} pour certaines valeurs de $n$.
+
+	\bigskip
+
+	Déterminer la valeur renvoyée par \texttt{seuil(600)}, où \texttt{seuil} est la fonction codée en python donnée en \textbf{3.a.}.
+
+	\bigskip
+
+	Interpréter ce résultat dans le contexte de l'exercice.
+
+	\bigskip
+
+	\hfill~\fcolorbox{black}{white}{
+		\begin{minipage}[t]{0.5\linewidth}\vspace{0cm}
+			\textsc{Aide aux calculs}
+
+			\mbox{$400\times\np{1.5}=600$}
+		\end{minipage}
+	}\hfill~
+	\end{minipage}\hfill~
+		\begin{tikzpicture}[baseline={(current bounding box.north)},xscale=1,yscale=1,rotate=0,every node/.style={scale=1,rotate=0}]
+			\tableur*[23]{A/10mm,	B/15mm}
+\celtxt*[c,width=10mm]{A}{1}{n}	\celtxt*[r,width=15mm]{B}{1}{1,025\textasciicircum n}
+\celtxt*[c,width=10mm]{A}{2}{0}	\celtxt*[r,width=15mm]{B}{2}{1,00}
+\celtxt*[c,width=10mm]{A}{3}{1}	\celtxt*[r,width=15mm]{B}{3}{1,03}
+\celtxt*[c,width=10mm]{A}{4}{2}	\celtxt*[r,width=15mm]{B}{4}{1,05}
+\celtxt*[c,width=10mm]{A}{5}{3}	\celtxt*[r,width=15mm]{B}{5}{1,08}
+\celtxt*[c,width=10mm]{A}{6}{4}	\celtxt*[r,width=15mm]{B}{6}{1,10}
+\celtxt*[c,width=10mm]{A}{7}{5}	\celtxt*[r,width=15mm]{B}{7}{1,13}
+\celtxt*[c,width=10mm]{A}{8}{6}	\celtxt*[r,width=15mm]{B}{8}{1,16}
+\celtxt*[c,width=10mm]{A}{9}{7}	\celtxt*[r,width=15mm]{B}{9}{1,19}
+\celtxt*[c,width=10mm]{A}{10}{8}	\celtxt*[r,width=15mm]{B}{10}{1,22}
+\celtxt*[c,width=10mm]{A}{11}{9}	\celtxt*[r,width=15mm]{B}{11}{1,25}
+\celtxt*[c,width=10mm]{A}{12}{10}	\celtxt*[r,width=15mm]{B}{12}{1,28}
+\celtxt*[c,width=10mm]{A}{13}{11}	\celtxt*[r,width=15mm]{B}{13}{1,31}
+\celtxt*[c,width=10mm]{A}{14}{12}	\celtxt*[r,width=15mm]{B}{14}{1,34}
+\celtxt*[c,width=10mm]{A}{15}{13}	\celtxt*[r,width=15mm]{B}{15}{1,38}
+\celtxt*[c,width=10mm]{A}{16}{14}	\celtxt*[r,width=15mm]{B}{16}{1,41}
+\celtxt*[c,width=10mm]{A}{17}{15}	\celtxt*[r,width=15mm]{B}{17}{1,45}
+\celtxt*[c,width=10mm]{A}{18}{16}	\celtxt*[r,width=15mm]{B}{18}{1,48}
+\celtxt*[c,width=10mm]{A}{19}{17}	\celtxt*[r,width=15mm]{B}{19}{1,52}
+\celtxt*[c,width=10mm]{A}{20}{18}	\celtxt*[r,width=15mm]{B}{20}{1,56}
+\celtxt*[c,width=10mm]{A}{21}{19}	\celtxt*[r,width=15mm]{B}{21}{1,60}
+\celtxt*[c,width=10mm]{A}{22}{20}	\celtxt*[r,width=15mm]{B}{22}{1,64}
+\celtxt*[c,width=10mm]{A}{23}{21}	\celtxt*[r,width=15mm]{B}{23}{1,68}
+		\end{tikzpicture}
+\hfill~
+	\end{enumerate}
+\end{enumerate}

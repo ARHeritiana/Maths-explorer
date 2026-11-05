@@ -1,0 +1,154 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet1_polynesie_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Soit $\left(u_n\right)$ la suite définie par $u_0 = 1$ et pour tout entier naturel $n$, \: 
+$u_{n+1} = \dfrac{u_n}{1 + u_n}$.
+
+\begin{enumerate}
+
+\item 
+	\begin{enumerate}
+		\item $u_1=u_{n+1} = \dfrac{u_0}{1 + u_0}=\dfrac{1}{2}$, $u_2 = \dfrac{u_1}{1 + u_1}=\dfrac{1}{3}$  et $u_3 = \dfrac{u_2}{1 + u_2} = \dfrac{1}{4}$.
+
+
+		\item On complète les lignes 3 et 6 du script python ci-dessous pour que liste(k) prenne en paramètre un entier naturel k et renvoie la liste des premières valeurs de la suite $\left(u_n\right)$ de $u_0$ à $u_k$.
+
+\begin{center}
+\begin{tabularx}{0.5\linewidth}{|l|X|}\hline
+1.&def liste(k) :\\
+2.&\qquad L = []\\
+3.&\qquad u = {\blue 1}\\
+4.&\qquad for i in range(0, k+1) :\\
+5.&\quad \qquad L.append(u)\\
+6.&\quad \qquad u = {\blue u/(1+u)}\\
+7.&\qquad return(L)\\ \hline
+\end{tabularx}
+\end{center}
+	\end{enumerate}
+\item On admet que, pour tout entier naturel $n$, $u_n$ est strictement positif.
+
+$u_{n+1} - u_n= \dfrac{u_n}{1 + u_n}-u_n=\dfrac{u_n-u_n(1+u_n)}{1+u_n}=\dfrac{-u_n^2}{1+u_n}<0$ car $u_n$ est strictement positif.
+
+La suite $(u_n)$ est donc décroissante.
+
+\item 
+$\left(u_n\right) $ est décroissante et minorée par $0$; d'après le théorème de la convergence monotone, la suite  $(u_n)$ est convergente vers une limite $\ell$ positive ou nulle.
+
+\item 
+On considère la fonction $f(x)=\dfrac{x}{1+x}$ , on a alors $u_{n+1} = f\left(u_n\right)$.
+
+La fonction $f$ est continue, car dérivable sur $\R^+$, donc la limite $\ell$ vérifie  l'égalité $f(\ell) = \ell$.
+
+On résout l'équation: $\dfrac{\ell}{1+\ell}= \ell \iff \ell = \ell(1 + \ell) \iff 0= \ell ^2 \iff \ell = 0$.
+
+Donc la suite $(u_n)$ a pour limite 0.
+
+\item 
+	\begin{enumerate}
+		\item 
+Au vu des premiers termes, on peut conjecturer que pour $n \in \N$, on a $u_n = \dfrac{1}{n+1}$
+				
+		\item On démontre par récurrence la conjecture précédente.
+Soit $P_n$ la propriété: $u_n=\dfrac{1}{n+1}$.
+		
+$\bullet~~$Initialisation :
+		
+pour $n=0$, $u_0=\dfrac{1}{0+1}=1$ donc $P_0$ est vraie.
+
+$\bullet~~$Hérédité : 
+		
+Supposons que $P_n$ est vraie pour $n \in \N$, on a donc $u_n=\dfrac{1}{n+1}$.
+		
+On a alors $u_{n+1}=\dfrac{u_n}{1+u_n}=\dfrac{\dfrac{1}{n+1}}{1+\dfrac{1}{n+1}}=\dfrac{\dfrac{1}{n+1}}{\dfrac{n+1+1}{n+1}}=\dfrac{1}{1+(n+1)}$ : la relation est vraie au rang $(n + 1)$.
+
+$P_{n+1}$ est donc vraie.
+		
+Comme $P_0$ est vraie, et que pour $n \in \N$,\: $P_n$ vraie entraîne $P_{n+1}$ vraie, d'après le principe de récurrence  on peut dire que pour tout $n \in \N$, $P_n$ est vraie.
+	\end{enumerate}
+\end{enumerate}
+
+\vspace{1cm}
+
+\end{document}

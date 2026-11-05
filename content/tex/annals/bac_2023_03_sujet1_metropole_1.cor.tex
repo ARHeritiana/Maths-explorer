@@ -1,0 +1,158 @@
+Un technicien contrôle les machines équipant une grande entreprise. Toutes ces machines sont identiques.
+
+On sait que :
+
+\begin{itemize}
+\item[$\bullet~~$]20\,\% des machines sont sous garantie;
+\item[$\bullet~~$]0,2\,\% des machines sont à la fois défectueuses et sous garantie;
+\item[$\bullet~~$]8,2\,\% des machines sont défectueuses.
+\end{itemize}
+
+\smallskip
+
+Le technicien teste une machine au hasard.
+
+
+
+
+On considère les évènements suivants :
+\begin{itemize}
+\item[$\bullet~~$]$G$: \og la machine est sous garantie \fg{} ;
+\item[$\bullet~~$]$D$: \og la machine est défectueuse\fg{} ;
+\item[$\bullet~~$]$\overline{G}$ et $\overline{D}$ désignent respectivement les évènements contraires de $G$ et $D$.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item La probabilité $p_G(D)$ de l'évènement $D$ sachant que $G$ est réalisé est égale à :
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~}0,002 &\textbf{b.~~} 0,01 &\textbf{c.~~} 0,024 & \textbf{d.~~} 0,2
+\end{tabularx}
+\end{center}
+
+
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+20\,\% des machines sont sous garantie donc $p(G)=0,2$.
+
+0,2\,\% des machines sont à la fois défectueuses et sous garantie donc $p(G\cap D)=0,002$.
+
+$p_{G}(D) = \dfrac{p(G\cap D)}{p(G)}
+= \dfrac{0,002}{0,2}=0,01$
+\hfill\textbf{Réponse b.}
+\end{tabular}
+
+\item La probabilité $p\left(\overline{G} \cap D\right)$ est égale à :
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~}0,01 &b. 0,08 &\textbf{c.~~} 0,1  &\textbf{d.~~} 0,21
+\end{tabularx}
+\end{center}
+
+
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+8,2\,\% des machines sont défectueuses donc $p(D)=0,082$.
+
+D'après la formule des probabilités totales:
+$p(D)= p(G\cap D) + p\left(\overline{G} \cap D\right)$. Donc:
+
+$p\left(\overline{G} \cap D\right) 
+= p(D) - p(G\cap D) = 0,082 - 0,002 = 0,08$
+\hfill\textbf{Réponse b.}
+\end{tabular}
+
+\item La machine est défectueuse. La probabilité qu'elle soit sous garantie est
+environ égale, à $10^{-3}$ près, à : 
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~}0,01  &\textbf{b.~~} 0,024  &\textbf{c.~~} 0,082 &\textbf{d.~~} 0,1
+\end{tabularx}
+\end{center}
+
+
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+On cherche:
+$p_{D}(G)=\dfrac{p(G\cap D)}{p(D)}=\dfrac{0,002}{0,082}\approx 0,024$
+\hfill\textbf{Réponse b.}
+\end{tabular}
+
+\end{enumerate}
+
+Pour les questions 4 et 5, on choisit au hasard et de façon indépendante $n$ machines de l'entreprise, où $n$ désigne un entier naturel non nul. 
+
+On assimile ce choix à un tirage avec remise, et on désigne par $X$ la variable aléatoire qui associe à chaque lot de $n$ machines le nombre de machines défectueuses dans ce lot.
+
+On admet que $X$ suit la loi binomiale de paramètres $n$ et $p = 0,082$.
+
+\begin{enumerate}[resume]
+\item Dans cette question, on prend $n =50$.
+
+La valeur de la probabilité $p(X > 2)$, arrondie au millième, est de : 
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~}0,136 &\textbf{b.~~} 0,789 &\textbf{c.~~} 0,864 &d. 0,924
+\end{tabularx}
+\end{center}
+
+
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+$p(X>2) = 1-p(X\leqslant 2)\approx 1-0,2114 \approx 0,789$
+\hfill\textbf{Réponse b.}
+\end{tabular}
+
+\item On considère un entier $n$ pour lequel la probabilité que toutes les machines d'un lot de taille $n$ fonctionnent correctement est supérieure à $0,4$. 
+
+La plus grande valeur possible pour $n$ est égale à :
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~}5 &\textbf{b.~~} 6 &\textbf{c.~~} 10 &d. 11
+\end{tabularx}
+\end{center}
+
+
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+Si toutes les machines fonctionnent, le nombre de machines défectueuses est 0; donc on cherche le plus grand $n$ tel que $p(X=0)>0,4$.
+
+$p(X=0) = \ds\binom{10}{0}\times 0,082^0 \times (1-0,082)^n = 0,918^n$
+
+$p(X=0)>0,4
+\iff
+0,918^n > 0,4
+\iff
+\ln\left (0,918^n\right ) > \ln(0,4)$
+
+$\phantom{p(X=0)>0,4}
+\iff
+n\times \ln(0,918) > \ln (0,4)
+\iff
+n < \dfrac{\ln(0,4)}{\ln(0,918)}$
+
+$\dfrac{\ln(0,4)}{\ln(0,918)} \approx 10,71$ donc le plus grand entier $n$ inférieur à $\dfrac{\ln(0,4)}{\ln(0,918)}$ est 10.
+\hfill\textbf{Réponse c.}
+
+\end{tabular}
+
+\end{enumerate}
+
+\bigskip

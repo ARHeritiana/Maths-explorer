@@ -62,7 +62,7 @@ with sync_playwright() as p:
     assert page.locator('.slides-page [data-course]').count() == 5
     scoped_links()
     go('#bank')
-    assert page.locator('.res-rail a[href^="#bank/"]').count() == 5
+    assert set(page.locator('.res-rail a[href^="#bank/"]').evaluate_all('(nodes) => nodes.map(n => n.getAttribute("href"))')) == {'#bank/' + course for course in COURSES + ['annales']}
     scoped_links()
     go('#pack')
     page.locator('[name=course]').first.wait_for()

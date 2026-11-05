@@ -1,0 +1,183 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet2_asie_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Principaux domaines abordés} : Suites numériques.
+Algorithmique et programmation.
+
+\bigskip
+
+
+
+Dans cet exercice, on modélise le développement d'une bactérie avec les hypothèses suivantes : cette bactérie a une probabilité $0,3$ de mourir sans descendance et une probabilité $0,7$ de se diviser en deux bactéries filles.
+
+
+
+Pour tout entier naturel $n$, on appelle $p_n$ la probabilité d'obtenir au plus $n$ descendances pour une bactérie. 
+
+On admet que, d'après ce modèle, la suite $\left(p_n\right)$ est définie de la façon suivante :
+
+$p_0 = 0,3$ et, pour tout entier naturel $n$, $p_{n+1} = 0,3 + 0,7p_n^2$.
+
+
+\begin{enumerate}
+\item La feuille de calcul ci-dessous donne des valeurs approchées de la suite $\left(p_n\right)$
+	\begin{enumerate}
+		\item 
+$\bullet~~$ $p_1 = 0,3 + 0,7 \times 0,3^2 = 0,3 + 0,7 \times 0,09 = 0,3 + 0,063 = 0,363$ ;
+
+$\bullet~~$ $p_2 = 0,3 + 0,7 \times 0,363^2 = 0,3 + 0,7 \times \np{0,131769} = 0,3 + \np{0,0922383} = \np{0,3922383}$.
+
+		\item 
+		La probabilité d'obtenir au moins 11 générations de bactéries à partir d'une bactérie de ce type est égale à $1 - p_{10} \approx 1 - \np{0,42802018} \approx \np{0,571980} \approx 0,572$ au millième près.
+		
+		\item 
+D'après le tableau la suite $\left(p_n\right)$ semble être croissante et semble aussi avoir une limite puisque les quatre derniers résultats commencent par \np{0,4285}...
+	\end{enumerate}
+
+\item 
+	\begin{enumerate}
+		\item On veut démontrer par récurrence sur $n$ que, pour tout entier naturel $n,\: 0 \leqslant p_n \leqslant p_{n+1} \leqslant0,5$.
+		
+\emph{Initialisation}  : On a $0 \leqslant 0,3 \leqslant 0,363 \leqslant 0,5$, soit $0 \leqslant p_0 \leqslant p_1 \leqslant 0,5$ : la relation est vraie au rang 0.
+
+\emph{Hérédité} : soit $n \in \N$ et supposons que $0 \leqslant p_n \leqslant p_{n+1} \leqslant 0,5$.
+
+Si ces nombres positifs sont rangés dans dans cet ordre, leurs carrés aussi, soit 
+
+$0 \leqslant p_n^2 \leqslant p_{n+1}^2 \leqslant 0,5^2$, puis en multipliant par 0,7 :
+
+$0 \leqslant 0,7 \times p_n^2 \leqslant 0,7 \times p_{n+1}^2 \leqslant 0,7 \times 0,5^2$ et enfin en ajoutant à chaque membre 0,3 :
+
+$0,3 \leqslant 0,3 + 0,7 \times p_n^2 \leqslant 0,3 + 0,7 \times p_{n+1}^2 \leqslant 0,3 + 0,7 \times 0,5^2$, soit 
+
+$0,3 \leqslant p_{n+1} \leqslant p_{n+2} \leqslant 0,475$. On peut donc écrire :
+
+$0 \leqslant p_{n+1} \leqslant p_{n+2} \leqslant 0,5$ : la relation est vraie au rang $n + 1$.
+
+\emph{Conclusion} : la relation est vraie au rang 0 et si elle vraie au rang $n \in \N$, elle est encore vraie au rang $n + 1$ : d'après la principe de récurrence, pour tout entier naturel $n$, on a  $0 \leqslant p_n \leqslant p_{n+1} \leqslant0,5$
+		\item 
+Le résultat précédent montre que la suite $\left(p_n\right)$ est croissante et majorée par 0,5 : elle est donc convergente vers une limite $L$ telle que $L \leqslant 0,5$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+		
+
+Puisque $\displaystyle\lim_{n \to + \infty} p_n = \displaystyle\lim_{n \to + \infty} p_{n+1} = L$, la relation de récurrence donne :
+
+\[L = 0,3 + 0,7L^2 \iff 0,7L^2 - L + 0,3 = 0\]
+
+$L$ est solution de l'équation $0,7x^2 - x  + 0,3 = 0$.
+		\item 
+		On a $\Delta = 1 - 4 \times 0,7 \times 0,3 = 1 - 0,84 = 0,16 = 0,4^2 > 0$. Il y a donc deux solutions :
+		
+\[L_1 = \dfrac{1 + 0,4}{2\times 0,7} = 1, \quad \text{et}\quad L_2 = \dfrac{1 - 0,4}{2\times 0,7} = \frac{0,6}{1,4} = \dfrac{6}{14} = \dfrac37 \approx \np{0,43}\]
+		
+On ne peut retenir la solution $L_1$ puisque $\left(p_n\right)$ est majorée par 0,5. Il reste donc $L_2$ : 
+$\displaystyle\lim_{n \to + \infty} p_n = \dfrac37$.
+	\end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}[resume]
+\item La fonction suivante, écrite en langage Python, a pour objectif de renvoyer les $n$ premiers termes de la suite $\left(p_n\right)$.
+
+On complète, les lignes 2, 4 et 5 de cette fonction de façon à ce que la fonction \texttt{suite (n)} retourne, sous forme de liste, les $n$ premiers termes de la suite.
+
+\begin{center}
+\begin{tabularx}{0.4\linewidth}{c |l|}\cline{2-2}
+1 &\texttt{\textbf{def} suite(n) :}\\
+2 &\quad \texttt{p = {\blue 0.3}}\\
+3 &\quad \texttt{s = [p]}\\
+4 &\quad \texttt{for i in range ({\blue n - 1})}\\
+5 &\quad \qquad \texttt{p = {\blue 0.3+0.7*p**2}}\\
+6 &\quad \qquad \texttt{s.append(p)}\\
+7 &\quad \texttt{\textbf{return} (s)}\\ \cline{2-2}
+\end{tabularx}
+\end{center}
+
+
+\end{enumerate}
+
+\end{document}

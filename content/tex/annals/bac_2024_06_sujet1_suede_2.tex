@@ -1,0 +1,48 @@
+Au cours d'une séance, un joueur de volley-ball s'entraîne à faire des services. La probabilité qu'il réussisse le premier service est égale à 0,85.
+
+On suppose de plus que les deux conditions suivantes sont réalisées:
+
+\begin{itemize}[label=$\bullet$]
+\item si le joueur réussit un service, alors la probabilité qu'il réussisse le suivant est égale à 0,6;
+\item si le joueur ne réussit pas un service, alors la probabilité qu'il ne réussisse pas le suivant est égale à 0,6.
+\end{itemize}
+
+Pour tout entier naturel $n$ non nul, on note $R_{n}$ l'évènement \og le joueur réussit le $n$-ième service \fg{} et $\overline{R_{n}}$ l'évènement contraire.
+
+\subsection*{Partie A}
+On s'intéresse aux deux premiers services de l'entraînement.
+
+\begin{enumerate}
+	\item Représenter la situation par un arbre pondéré.
+	\item Démontrer que la probabilité de l'évènement $R_{2}$ est égale à 0,57.
+	\item Sachant que le joueur a réussi le deuxième service, calculer la probabilité qu'il ait raté le premier.
+	\item Soit $Z$ la variable aléatoire égale au nombre de services réussis au cours des deux premiers services.
+	\begin{enumerate}
+		\item Déterminer la loi de probabilité de $Z$ (on pourra utiliser l'arbre pondéré de la question 1).
+		\item Calculer l'espérance mathématique $\mathrm{E}(Z)$ de la variable aléatoire $Z$.
+
+		Interpréter ce résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+\subsection*{Partie B}
+
+On s'intéresse maintenant au cas général.
+
+Pour tout entier naturel $n$ non nul, on note $x_{n}$ la probabilité de l'évènement $R_{n}$.
+
+\begin{enumerate}
+	\item \begin{enumerate}
+		\item Donner les probabilités conditionnelles $P_{R_{n}}\left(R_{n + 1}\right)$ et $P_{\overline{R_{n}}}\left(\overline{R_{n + 1}}\right)$.
+
+		\item Montrer que, pour tout entier naturel non nul $n$, on a : $x_{n + 1}=0,2 x_{n} + 0,4$.
+	\end{enumerate}
+
+	\item Soit la suite $\left(u_{n}\right)$ définie pour tout entier naturel $n$ non nul par :\quad $u_{n}=x_{n}-0,5$.
+
+	\begin{enumerate}
+		\item Montrer que la suite $\left(u_{n}\right)$ est une suite géométrique.
+		\item Déterminer l'expression de $x_{n}$ en fonction de $n$. En déduire la limite de la suite $\left(x_{n}\right)$.
+		\item Interpréter cette limite dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}

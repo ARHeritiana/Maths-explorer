@@ -1,0 +1,132 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet2_asie_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+	\item \textbf{Affirmation 1 : VRAIE.}
+
+	En effet, pour tout $n$ entier naturel non nul, on a :
+
+	$\dfrac{3n^2+4n+7}{6n^2+1}= \dfrac{n^2 \left(3+\dfrac{4}{n}+\dfrac{7}{n^2}\right)}{n^2 \left(6+\dfrac{1}{n^2}\right)}= \dfrac{3+\dfrac{4}{n}+\dfrac{7}{n^2}}{6+\dfrac{1}{n^2}}$
+
+	$\lim\limits_{n\to +\infty} \dfrac{1}{n}=\lim\limits_{n\to +\infty} \dfrac{1}{n^2}=0$
+
+	donc par limite de la somme :\quad $\lim\limits_{n \to +\infty} 3+\dfrac{4}{n}+\dfrac{7}{n^2}=3$\quad et\quad $\lim\limits_{n \to +\infty} 6+\dfrac{1}{n^2}=6$
+
+	et donc par limite du quotient \quad$\lim\limits_{n\to +\infty } \dfrac{3+\dfrac{4}{n}+\dfrac{7}{n^2}}{6+\dfrac{1}{n^2}} = \dfrac{3}{6}=\dfrac{1}{2}$
+
+	D'autre part :\quad $\lim\limits_{n\to +\infty} \dfrac{1}{2}=\dfrac{1}{2}$.
+
+	La suite $\left(u_n\right)$ est donc encadrée par deux suites ayant pour limite $\dfrac{1}{2}$ donc, d'après le théorème des gendarmes, $\lim\limits_{n\to +\infty} u_n=\dfrac{1}{2}$.
+
+	\emph{Remarque :} il ne faut pas se laisser déstabiliser par le fait que tous les termes de la suite sont \textbf{strictement} supérieurs à $\dfrac{1}{2}$, quand on \og passe à la limite\fg{}, les inégalités deviennent large. Par exemple, la suite de terme général $\dfrac{1}{n}$ a des termes tous strictement plus grands que 0, et pourtant, sa limite est 0.
+
+
+	\item  \textbf{Affirmation 2 : FAUSSE.}
+
+Sur $[-1~;~3]$, la fonction dérivée $h'$ n'est pas croissante, la fonction $h$ n'est donc pas convexe sur $[-1~;~3]$.
+
+	\item \textbf{Affirmation 3 : VRAIE.}
+
+Il y a $10 \times 10 \times 10 \times 10 \times 3 \times 2 = \np{60000}$ codes possibles.  (10 valeurs possibles pour chacun des chiffres et 3 valeurs possibles pour la première lettre et deux valeurs possible pour la deuxième car elles doivent être distinctes.)
+
+Déterminons le nombre de code ne contenant pas de 0 :
+
+Il y a $9\times 9 \times 9 \times 9 \times 3 \times 2 = \np{39366}$ codes ne contenant pas de 0. (9 valeurs possibles pour chacun des chiffres et 3 valeurs possibles pour la première lettre et deux valeurs possible pour la deuxième car elles doivent être distinctes.)
+
+Il y a donc $\np{60000} -\np{39366}=\np{20634}$ codes contenant au moins un zéro.
+
+	\item \textbf{Affirmation 4 : VRAIE.}
+
+
+$f$ est dérivable sur $]0~;~+\infty[$ comme produit de fonctions dérivables sur cet intervalle et pour tout réel $x$ strictement positif en dérivant ce produit  on a : 
+
+$f'(x) = 1 \times \ln(x) + x\times \dfrac{1}{x}= \ln(x) + 1$, donc
+
+$xf'(x) - f(x)= x \left(\ln(x) + 1\right) - x\ln(x) = x\ln(x) + x - x\ln(x) = x$.
+
+Conclusion : $f$ est bien solution sur $]0~;~+\infty[$ de l'équation différentielle $xy' - y = x$.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

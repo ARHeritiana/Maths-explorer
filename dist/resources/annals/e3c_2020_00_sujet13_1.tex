@@ -1,0 +1,239 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet13_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Cet exercice est un questionnaire à choix multiple (QCM) comportant cinq questions.
+
+Pour chacune des questions, une seule des quatre réponses proposées est correcte.
+Les questions sont indépendantes.
+
+Pour chaque question, indiquer le numéro de la question et recopier sur la copie la lettre correspondante à la réponse choisie.
+
+Aucune justification n'est demandée mais il peut être nécessaire d'effectuer des recherches au brouillon pour aider à déterminer la réponse.
+
+Chaque réponse correcte rapporte $1$ point. Une réponse incorrecte ou une question sans réponse n'apporte ni ne retire de point.
+
+\bigskip
+
+\textbf{Question 1}
+
+
+
+
+
+
+
+
+
+\medskip
+
+\parbox{0.55\linewidth}{Soit $a$,\, $b$ et $c$ trois réels tels que $a \ne 0$ et soit $g$ la fonction définie sur $\R$ par:
+
+\[g(x)= ax^2 + bx+ c.\]
+
+Soit $\Delta$ son discriminant.
+
+La représentation graphique de la fonction $g$ dans un repère orthonormé est donnée ci-contre.
+
+Alors on peut affirmer que: 
+
+\textbf{a.}  $a>0$ et $\Delta > 0$
+
+\textbf{b.} $a > 0$ et $\Delta < 0$ 
+
+\textbf{c.} $a<0$ et $\Delta > 0$ 
+
+\textbf{d.} $a<0$ et $\Delta < 0$}\hfill
+\parbox{0.45\linewidth}{\psset{unit=0.8cm}
+\begin{pspicture}(-1,-4)(6,5)
+\psgrid[gridlabels=0pt,subgriddiv=1,griddots=10]
+\psaxes[linewidth=1.25pt]{->}(0,0)(-1,-4)(6,5)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0.25}{5.75}{4 x 3 sub dup mul sub}
+\uput[ul](2,3){\red $\mathcal{C}_g$}
+\end{pspicture}}
+
+\bigskip
+
+\textbf{Question 2}
+
+\medskip
+
+On considère la fonction $f$ dont la fonction dérivée est la fonction $g$ considérée dans la question~1.
+
+Le tableau des variations de $f$ est :
+
+\parbox{0.48\linewidth}{\textbf{a.~~}
+
+\psset{unit=1cm}
+\begin{pspicture}(6,2)
+\psframe(6,2)\psline(2,0)(2,2) \psline(0,1.5)(6,1.5)
+\uput[u](1,1.4){$x$}\uput[u](2.3,1.4){$- \infty$}\uput[u](4,1.4){$3$}\uput[u](5.6,1.4){$+\infty$}
+\rput(1,1){Variations}\rput(1,0.5){de $f$}
+\psline{->}(2.5,0.4)(3.5,1)\psline{->}(4.5,1)(5.5,0.4)
+\end{pspicture}}\hfill
+\parbox{0.48\linewidth}{\textbf{b.~~}
+
+\psset{unit=1cm}
+\begin{pspicture}(6,2)
+\psframe(6,2)\psline(2,0)(2,2) \psline(0,1.5)(6,1.5)
+\uput[u](1,1.4){$x$}\uput[u](2.3,1.4){$- \infty$}\uput[u](4,1.4){$3$}\uput[u](5.6,1.4){$+\infty$}
+\rput(1,1){Variations}\rput(1,0.5){de $f$}
+\psline{->}(2.5,1)(3.5,0.4)\psline{->}(4.5,0.4)(5.5,1)
+\end{pspicture}}
+
+\textbf{c.~~}
+
+\psset{unit=1cm}
+\begin{pspicture}(8,2)
+\psframe(8,2)\psline(2,0)(2,2) \psline(0,1.5)(8,1.5)
+\uput[u](1,1.4){$x$}\uput[u](2.3,1.4){$- \infty$}\uput[u](4,1.4){$1$}\uput[u](6,1.4){$5$}\uput[u](7.6,1.4){$+\infty$}
+\rput(1,1){Variations}\rput(1,0.5){de $f$}
+\psline{->}(2.5,1)(3.5,0.4)\psline{->}(4.5,0.4)(5.5,1)\psline{->}(6.5,1)(7.5,0.4)
+\end{pspicture}
+
+\textbf{d.~~}
+
+\psset{unit=1cm}
+\begin{pspicture}(8,2)
+\psframe(8,2)\psline(2,0)(2,2) \psline(0,1.5)(8,1.5)
+\uput[u](1,1.4){$x$}\uput[u](2.3,1.4){$- \infty$}\uput[u](4,1.4){$1$}\uput[u](6,1.4){$5$}\uput[u](7.6,1.4){$+\infty$}
+\rput(1,1){Variations}\rput(1,0.5){de $f$}
+\psline{->}(2.5,0.4)(3.5,1)\psline{->}(4.5,1)(5.5,0.4)\psline{->}(6.5,0.4)(7.5,1)
+\end{pspicture}
+
+\bigskip
+
+\textbf{Question 3}
+
+\medskip
+
+On considère à nouveau la fonction $f$ dont la fonction dérivée est la fonction $g$ considérée dans la question 1. On sait de plus que $f(3) = 7$.
+
+La tangente à la courbe représentative de $f$ au point d'abscisse 3 a pour équation réduite:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}$-2x + 3y + 11 = 0$&\textbf{b.~~}$3x - 2y - 9 = 0$&\textbf{c.~~}$x - 3y - 10 = 0$&\textbf{d.~~}$3x +2y +3 = 0$\\ \hline
+\end{tabularx}
+\end{center} 
+
+\bigskip
+
+\textbf{Question 4}
+
+\medskip
+
+Dans un repère orthonormé, on considère les points A$(5~;~-1)$, B(3~;~2) et C$(1~;~-3)$.
+
+Une équation cartésienne de la droite perpendiculaire à (AB) et passant par C est :
+ 
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}$-2x + 3y + 11 = 0$&\textbf{b.~~}$3x - 2y - 9 = 0$&\textbf{c.~~}$x - 3y - 10 = 0$&\textbf{d.~~}$3x +2y +3 = 0$\\ \hline
+\end{tabularx}
+\end{center} 
+Le vecteur $\vect{\text{AB}}\binom{-2}{3}$ est normal à tout vecteur directeur de la droite perpendiculaire. Une équation de cette droite est donc :
+
+$3x + 2y + c = 0$ et comme le couple (1~;~-3) vérifie cette équation on a $3 - 6 = c = 0 \iff c  = 3$.
+
+On a finalement $3x + 2y + 3 = 0$. 
+\bigskip
+
+\textbf{Question 5}
+
+\medskip
+
+Dans un repère orthonormé, on considère les points A$(5~;~-1)$, B(3~;~2) et C$(1~;~-3)$.
+
+Une mesure, arrondie au degré, de l'angle $\widehat{\text{ABC}}$, est:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}11&\textbf{b.~~}25&\textbf{c.~~}55&\textbf{d.~~}88\\ \hline
+\end{tabularx}
+\end{center} 
+
+\bigskip
+
+\end{document}

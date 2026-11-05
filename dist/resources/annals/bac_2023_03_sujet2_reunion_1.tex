@@ -1,0 +1,174 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet2_reunion_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Un commerçant vend deux types de matelas: matelas RESSORTS et matelas MOUSSE. 
+
+On suppose que chaque client achète un seul matelas.
+
+On dispose des informations suivantes :
+\begin{itemize}
+\item[$\bullet~~$] 20\,\% des clients achètent un matelas RESSORTS.
+
+Parmi eux, 90\,\% sont satisfaits de leur achat.
+\item[$\bullet~~$] 82\,\% des clients sont satisfaits de leur achat.
+\end{itemize}
+
+\emph{Les deux parties peuvent être traitées de manière indépendante.}
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On choisit au hasard un client et on note les évènements :
+
+\begin{itemize}
+\item[$\bullet~~$]$R$ : \og le client achète un matelas RESSORTS \fg,
+\item[$\bullet~~$]$S$ : \og le client est satisfait de son achat \fg.
+\end{itemize}
+
+On note $x = P_{\overline{R}}(S)$, où $P_{\overline{R}}(S)$ désigne la probabilité de $S$ sachant que $R$ n'est pas réalisé.
+
+\medskip
+
+\begin{minipage}{0.58\linewidth}
+\begin{enumerate}
+\item Recopier et compléter l'arbre pondéré ci-contre décrivant la situation.
+\item Démontrer que $x = 0,8$.
+\item On choisit un client satisfait de son achat.
+
+Quelle est la probabilité qu'il ait acheté un matelas RESSORTS ?
+
+On arrondira le résultat à $10^{-2}$.
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.38\linewidth}
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$R$~~}\taput{\ldots}}
+{\TR{$S$}\taput{\ldots}
+\TR{$\overline{S}$}\tbput{\ldots}
+}
+\pstree{\TR{$\overline{R}$~~}\tbput{\ldots}}
+{\TR{$S$}\taput{$x$}
+\TR{$\overline{S}$}\tbput{\ldots}
+}}
+\end{center}
+\end{minipage}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item On choisit 5 clients au hasard. 
+
+On considère la variable aléatoire $X$ qui donne le
+nombre de clients satisfaits de leur achat parmi ces 5 clients.
+	\begin{enumerate}
+		\item On admet que $X$ suit une loi binomiale. Donner ses paramètres.
+		\item Déterminer la probabilité qu'au plus trois clients soient satisfaits de leur achat.
+		
+On arrondira le résultat à $10^{-3}$.
+	\end{enumerate}
+\item Soit $n$ un entier naturel non nul.
+
+On choisit à présent $n$ clients au hasard. Ce choix peut être assimilé à un tirage au sort avec remise.
+	\begin{enumerate}
+		\item On note $p_n$ la probabilité que les $n$ clients soient tous satisfaits de leur achat.
+		
+Démontrer que $p_n = 0,82^n$.
+		\item Déterminer les entiers naturels $n$ tels que $p_n < 0,01$. 
+		
+Interpréter dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

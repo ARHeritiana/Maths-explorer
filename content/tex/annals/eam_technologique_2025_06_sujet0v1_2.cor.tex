@@ -1,0 +1,40 @@
+\medskip
+
+\textbf{Premier modèle}
+
+\medskip
+
+\begin{enumerate}
+\item Effectuer une baisse de 10\,\% revient à multiplier par $1 - \dfrac{10}{100} = \dfrac{90}{100} = 0,9$.
+
+Il y aura un an plus tard en 2026 : $\np{1000} \times 0,9 = 900$~(singes).
+\item
+	\begin{enumerate}
+		\item $u_2$ est égal au nombre de singes en $2025 + 2$.
+
+Comme $u_2 = u_1 \times 0,9$ et que $u_1 = 900$, on a $u_2 = 900 \times 0,9 = 810$~(singes).
+		\item On a donc d'une année $2025 + n$ à l'année suivante $2025 + n + 1$ :
+
+$u_{n+1} = 0,9 u_n$ : cette égalité montre que la suite $(u_n)$ est une suite géométrique de raison 0,9 et de premier terme \np{1000}.
+		\item Comme $0 < 0,9 < 1$, la suite $(u_n)$ est décroissante.
+	\end{enumerate}
+\item La suite est décroissante et chaque année 10\,\% de la population disparait : à terme la population va diminuer (de plus en plus lentement) mais sera de moins de 1 : la population est menacée d'extinction. 
+\end{enumerate}
+
+\medskip
+
+\textbf{Second modèle}
+
+\medskip
+
+\begin{enumerate}
+\item la population en 2026 est :
+
+$v_2 = 0,9 \times v_1 + 150 = 0,9 \times \np{1000} + 150 = 900 + 150 = \np{1050}$~(singes).
+\item On saisit dans la case B3 : $\fbox{0.9*B2+150}$.
+\item On lit dans le tableau $v_{17} \approx \np{1417} > \np{1400}$.
+
+La population devrait dépasser \np{1400} individus en $2025 + 17 = \np{2042}$.
+\end{enumerate}
+
+\bigskip

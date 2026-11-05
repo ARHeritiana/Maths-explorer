@@ -84,6 +84,8 @@ def build_tex(courses, force=False):
 
 
 CHECKS = [
+    ('self-hosted annales structure and sources', [PY, 'scripts/build-annals.py', '--check']),
+    ('native annales books and sources', [PY, 'scripts/build-annals-pdf.py', '--check']),
     ('prerequisite report generation (advisory)', ['node', 'scripts/check-prerequisites.mjs']),
     ('Fourier sources and editions', [PY, 'scripts/build-fourier.py', '--check']),
     ('content dependencies and linked views', [PY, '-m', 'mxbuild.refresh', '--check']),

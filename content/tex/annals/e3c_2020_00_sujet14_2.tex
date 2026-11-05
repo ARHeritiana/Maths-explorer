@@ -1,0 +1,37 @@
+\medskip
+
+La courbe ci-dessous représente dans un repère du plan une fonction $f$ définie et dérivable sur l'ensemble des nombres réels.
+
+Les points G$(-2~;~5)$ et H $(0~;~1)$ appartiennent à la courbe représentative de la fonction $f$ et les tangentes à la courbe aux points G et H sont horizontales.
+
+\begin{center}
+\psset{xunit=1.5cm,yunit=0.75cm,comma=true,arrowsize=2pt 4}
+\begin{pspicture*}(-3.5,-3)(1.5,6)
+\psaxes[linewidth=1.25pt,Dx=0.5,labelFontSize=\scriptstyle]{->}(0,0)(-3.5,-2.9)(1.5,6)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-3.5}{1}{x 3 exp x dup mul 3 mul add 1 add}
+\psplotTangent[arrows=<->]{0}{0.75}{x 3 exp x dup mul 3 mul add 1 add}
+\psplotTangent[arrows=<->]{-2}{0.75}{x 3 exp x dup mul 3 mul add 1 add}
+\uput[dr](0,1){H}\uput[u](-2,5){G}
+\end{pspicture*}
+\end{center}
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer $f(0),\, f(-2), f'(0)$ et $f'( -2)$.
+\item  On admet que pour tout réel $x$\,, $f(x)$ peut s'écrire sous la forme :
+
+\[f(x) = ax^3 +bx^2 +cx +d,\]
+
+où \: $a,\, b,\, c$ \: et\: $d$\: désignent des nombres réels 
+
+	\begin{enumerate}
+		\item Donner une expression de $f'(x)$.
+		\item Déterminer les valeurs des réels $c$ et $d$.
+		\item Déterminer deux équations que vérifient les réels $a$ et $b$.
+
+		\item En déduire que $f(x) = x^3 + 3x^2 + 1$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

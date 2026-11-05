@@ -1,0 +1,93 @@
+\medskip
+
+\emph{Pour chacune des cinq questions de cet exercice, une seule des quatre réponses proposées est exacte.\\Le candidat indiquera sur sa copie le numéro de la question et la réponse choisie.\\
+Aucune justification n'est demandée.\\
+Une réponse fausse, une réponse multiple ou l'absence de réponse à une question ne rapporte ni n'enlève de point.}
+
+\medskip
+
+On considère L une liste de nombres constituée de termes consécutifs d'une suite arithmétique de premier terme 7 et de raison 3, le dernier nombre de la liste est \np{2023} soit: 
+
+\begin{center}L = [7, 10, \ldots , \np{2023}].\end{center}
+
+\textbf{Question 1 :} Le nombre de termes de cette liste est :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+Réponse A &Réponse B & Réponse C&Réponse D\\ 
+\np{2023}& 673& 672&\np{2016}\\ \hline
+\end{tabularx}
+\end{center}
+\medskip
+
+\textbf{Question 2 :} On choisit au hasard un nombre dans cette liste. La probabilité de tirer un nombre pair est:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+Réponse A &Réponse B& Réponse C&Réponse D\\
+$\dfrac12$&$\dfrac{34}{673}$&$\dfrac{336}{673}$&$\dfrac{337}{673}$\rule[-4mm]{0mm}{9mm}\\ \hline
+\end{tabularx}
+\end{center}
+\medskip
+
+On rappelle qu'on choisit au hasard un nombre dans cette liste. 
+
+On s'intéresse aux évènements suivants :
+\begin{itemize}
+\item[$\bullet~~$]Évènement $A$ : \og obtenir un multiple de 4 \fg
+\item[$\bullet~~$]Évènement $B$ : \og obtenir un nombre dont le chiffre des unités est 6 \fg
+\end{itemize}
+
+Pour répondre aux questions suivantes on pourra utiliser l'arbre pondéré ci-dessous et on donne
+$p(A \cap B) = \dfrac{34}{673}$.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$A$~~}\taput{\small$\dfrac{168}{673}$}}
+{\TR{$B$~~}\taput{}
+\TR{$\overline{B}$}\tbput{}
+}
+\pstree{\TR{$\overline{A}$~~}\tbput{}}
+{\TR{$B$~~}\taput{\small $\dfrac{33}{505}$}
+\TR{$\overline{B}$}\tbput{}
+}
+}
+\end{center}
+
+\medskip
+
+\textbf{Question 3 :}
+
+La probabilité d'obtenir un multiple de 4 ayant 6 comme chiffre des unités est:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+Réponse A &Réponse B& Réponse C&Réponse D\\
+$\dfrac{168}{673} \times \dfrac{34}{673}$&$\dfrac{34}{673}$&$\dfrac{17}{84}$&$\dfrac{168}{34}$\rule[-4mm]{0mm}{9mm}\\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 4 :} $P_B(A)$ est égale à :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+Réponse A &Réponse B& Réponse C&Réponse D\\
+$\dfrac{36}{168}$&$\dfrac12$&$\dfrac{33}{168}$&$\dfrac{34}{67}$\rule[-4mm]{0mm}{9mm}\\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 5:} On choisit, au hasard, successivement, $10$ éléments de cette liste. 
+
+Un élément peut être choisi plusieurs fois. La probabilité qu'aucun de ces $10$ nombres ne soit un multiple de 4 est:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+Réponse A &Réponse B& Réponse C&Réponse D\\
+$\left(\dfrac{505}{673}\right)^{10}$&$1 - \left(\dfrac{505}{673}\right)^{10}$&$\left(\dfrac{168}{673}\right)^{10}$&
+$1 - \left(\dfrac{168}{673}\right)^{10}$\rule[-4mm]{0mm}{9mm}\\ \hline
+\end{tabularx}
+\end{center}

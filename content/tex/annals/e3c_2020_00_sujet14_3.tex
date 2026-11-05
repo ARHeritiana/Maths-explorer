@@ -1,0 +1,44 @@
+\medskip
+
+Dans une usine, un four cuit des céramiques à la température de \np{1000}~\ensuremath{^\circ} C.
+À la fin de la cuisson, on éteint le four et commence alors la phase de refroidissement. Pour un nombre entier naturel $n$,on note $T_n$ la température en degré Celsius du four au bout de $n$ heures écoulées à partir de l'instant où il a été éteint. 
+
+On a donc $T_0 = \np{1000}$.
+
+La température $T_n$ est calculée grâce à l'algorithme suivant :
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+$T \gets \np{1000}$\\
+Pour $i$ allant de 1 à $n$\\
+\quad $T \gets  0,82\times T + 3,6$\\
+Fin pour\\ \hline
+\end{tabular}
+\end{center}
+
+\medskip
+
+\begin{enumerate}
+\item Quelle est la température du four après une heure de refroidissement ?
+\item Exprimer $T_{n+1}$ en fonction de $T_n$ ;
+\item Déterminer la température du four arrondie à l'unité après 4 heures de refroidissement.
+\item La porte du four peut être ouverte sans risque pour les céramiques dès que sa
+température est inférieure à 70~\ensuremath{^\circ} C. Afin de déterminer le nombre d'heures au bout duquel le four peut être ouvert sans risque, on définit une fonction \og froid \fg{} en langage Python.
+
+\begin{center}
+\begin{tabular}{|c l|}\hline
+1&\texttt{def froid() :~\quad~}\\
+2&\quad\texttt{T= \np{1000}}\\
+3&\quad\texttt{n=0 }\\
+4&\quad\texttt{while \ldots}\\
+5&\qquad \texttt{T= \ldots}\\
+6 &\qquad \texttt{n=n+1} \\
+7&\quad\texttt{return n}\\ \hline
+\end{tabular}
+\end{center}
+
+Recopier et compléter les instructions 4 et 5.
+\item Déterminer le nombre d'heures au bout duquel le four peut être ouvert sans risque pour les céramiques.
+\end{enumerate}
+
+\bigskip

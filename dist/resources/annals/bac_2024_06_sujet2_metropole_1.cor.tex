@@ -1,0 +1,201 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet2_metropole_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Puisque l'on interroge un étudiant au hasard, on est en situation d'équiprobabilité, et les proportions sont assimilables à des probabilités.
+
+\begin{enumerate}
+	\item Comme 91,7\,\% des étudiants ont répondu oui, on a donc $P(Q) = 0,917$.
+
+	Et $P_{\overline{R}}\big( \overline{Q}\big) = 0,65$, cela correspond à la probabilité que le candidat interrogé ait répondu \og non\fg{}, sachant qu'il a échoué à l'examen.
+
+	\item \begin{enumerate}
+		\item L'arbre pondéré complété est :
+
+		\begin{center}
+			\begin{tikzpicture}[xscale=1,yscale=1,baseline={(R.base)}]
+				
+				\tikzstyle{fleche}=[-,>=latex,thick]
+				\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+				\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+				\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+				
+				\def\DistanceInterNiveaux{3}
+				\def\DistanceInterFeuilles{0.8}
+				
+				\def\NiveauA{(0)*\DistanceInterNiveaux}
+				\def\NiveauB{(1)*\DistanceInterNiveaux}
+				\def\NiveauC{(2)*\DistanceInterNiveaux}
+				\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+				
+				\node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {};
+				\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$R$};
+				\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$Q$};
+				\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{Q}$};
+				\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\overline{R}$};
+				\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$Q$};
+				\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{Q}$};
+				
+				\draw[fleche] (R.east)--(Ra.west)node[etiquette] {$x$};
+				\draw[fleche] (Ra.east)--(Raa.west) node[etiquette] {$0,98 $};
+				\draw[fleche] (Ra.east)--(Rab.west) node[etiquette] {$0,02 $};
+				\draw[fleche] (R.east)--(Rb.west) node[etiquette] {$1-x $};
+				\draw[fleche] (Rb.east)--(Rba.west) node[etiquette] {$0,35 $};
+				\draw[fleche] (Rb.east)--(Rbb.west) node[etiquette] {$0,65 $};
+			\end{tikzpicture}
+		\end{center}
+
+		\item On sait que $P(Q)=0,917$, or, comme $R$ et $\overline{R}$ partitionnent l'univers, en vertu de la loi des probabilités totales, on a également :
+
+		$\begin{aligned} P(Q) &= P\big(Q \cap R\big) + P\left(Q \cap \overline{R}\right)\\
+		&= x\times 0,98 + (1 -x) \times 0,35\\
+		&= 0,98x + 0,35 - 0,35x\\
+		&= 0,63x + 0,35		\end{aligned}$
+
+		Puisque la probabilité de $Q$ est unique, on peut donc écrire, puis résoudre l'équation :
+		\quad
+		$\begin{aligned}[t] 0,63x + 0,35 = 0,917 &\iff 0,63x = 0,567\\
+		&\iff x = \dfrac{0,567}{0,63}\\
+		&\iff x = 0,9\end{aligned}$
+
+La solution de l'équation est donc 0,9 : la probabilité que l'étudiant ait réussi son examen est donc de 0,9 (ou bien : 90\,\% des étudiants ont réussi leur examen).
+	\end{enumerate}
+
+	\item Pour cette question, on doit calculer $P_Q(R)$.
+
+	On a :\quad $P_Q(R) = \dfrac{P(Q \cap R)}{P(Q)} = \dfrac{0,9 \times 0,98}{0,917}=\dfrac{0,882}{0,917}=\dfrac{126}{131}\approx0,962$
+
+Si l'étudiant interrogé a répondu \og oui\fg{}  à la question, la probabilité qu'il ait réussi l'examen est d'environ 0,962 (à $10^{-3}$ près).
+
+C'est-à-dire qu'environ 96,2\,\% des étudiants ayant répondu \og oui\fg{} ont effectivement réussi l'examen.
+
+	\item Par exploration à la calculatrice, avec une loi binomiale de paramètres $(20~;~0,615)$, on a :\quad
+	$P(N\geqslant 11)\approx 0,797$, \quad et \quad $P(N \geqslant 12) \approx 0,649$.
+
+En choisissant de récompenser les candidats dont la note est supérieure ou égale à 11, la directrice récompensera environ 80\,\% d'eux.
+
+	\item Comme les dix variables aléatoires suivent la même loi binomiale de paramètres 20 et 0,615, chacune de ces variables aléatoires a
+
+	\begin{itemize}[label=\textbullet]
+		\item pour espérance : \quad $E(N_i) = n \times p = 20 \times 0,615 = 12,3$;
+		\item et pour variance : \quad $V(N_i) = n \times p \times (1-p) = 20 \times 0,615 \times 0,385 = 4,7355$.
+	\end{itemize}
+
+$S$ étant la somme de ces dix variables aléatoires, on a :
+
+	\begin{itemize}
+		\item $E(S) = E(N_1) + E(N_2) + \dots + E(N_{10}) = 12,3 + 12,3 + ... + 12,3 = 123$;
+		\item comme les variables aléatoires sont indépendantes,
+
+		$V(S) =  V(N_1) + V(N_2) + \dots + V(N_{10}) = 10 \times 4,7355 = 47,355$	.
+\end{itemize}
+
+	\item
+	\begin{enumerate}
+		\item  La variable aléatoire $M$ donne la moyenne des notes obtenues par un groupe (un échantillon) de 10 étudiants choisis au hasard.
+
+		\item On a bien
+		\begin{itemize}
+			\item $E(M)= \dfrac{1}{10}\times E(S) = \dfrac{1}{10}\times 123 = 12,3$;
+			\item $V(M)=\left(\dfrac{1}{10}\right)^2\times V(S) = \dfrac{1}{100}\times 47,355 =  \np{0,47355}$.
+		\end{itemize}
+		\item On remarque que l'intervalle de notes considéré : $]10,3 ~;~ 14,3[$ est un intervalle centré sur l'espérance de $M$, autrement dit, la probabilité qui nous intéresse est celle de l'évènement :
+		\quad $A = \big\{|M - E(M)| < 2\big\} $.
+
+		L'évènement contraire de cet évènement est : 		\quad $\overline{A} = \big\{|M - E(M)| \geqslant 2\big\} $.
+
+		L'inégalité de Bienaymé-Tchebychev affirme que :
+
+		$\begin{aligned}[t] P\big( |M - E(M)| \geqslant 2 \big) \leqslant \dfrac{V(M)}{2^2 } &\iff P\big( |M -12,3| \geqslant 2 \big) \leqslant \dfrac{0,47355}{4}\\
+		&\iff P\big( |M -12,3| \geqslant 2 \big) \leqslant 0,1183875 \\
+		&\iff P\big( |M -12,3| <  2 \big) \geqslant 1 - 0,1183875\\
+		&\iff P\big( |M -12,3| <  2 \big) \geqslant 0,8816125  \end{aligned}$
+
+		L'affirmation \og La probabilité que la moyenne des notes de dix étudiants pris au hasard soit strictement comprise entre 10,3 et 14,3 est d'au moins $80\,\%$ \fg{} est donc bien correcte, la probabilité que cet évènement soit réalisé étant supérieure à 0,88, elle est aussi supérieure à 0,8 qui correspond à 80\,\%.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\end{document}

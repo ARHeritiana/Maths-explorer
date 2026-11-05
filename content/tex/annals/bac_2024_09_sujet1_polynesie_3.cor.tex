@@ -1,0 +1,109 @@
+\medskip
+
+On considère une pyramide à base carrée formée de boules identiques empilées les unes sur les autres:
+
+\begin{list}{\textbullet}{}
+\item le 1\up{er} étage, situé au niveau le plus haut, est composé de 1 boule ;
+\item le 2\up{e} étage, niveau juste en dessous, est composé de 4 boules ;
+\item le 3\up{e} étage possède 9 boules ;
+\item \ldots
+\item le $n$-ième étage possède $n^2$ boules.
+\end{list}
+
+\medskip
+
+Pour tout entier $n \geqslant 1$, on note $u_n$ le nombre de boules qui composent le $n$-ième étage en partant du haut de la pyramide. Ainsi, $u_n = n^2$.
+
+\begin{enumerate}
+\item Le nombre total de boules d'une pyramide de 4 étages est:\\
+$u_1+u_2+u_3+u_4=1^2+2^2+3^2+4^2=1+4+9+16=30$.
+
+\item On considère la suite $\left(S_n\right)$ définie pour tout entier $n \geqslant 1$ par 
+$S_n = u_1 + u_2 + \ldots + u_n.$
+
+	\begin{enumerate}
+		\item $S_5 = u_1+u_2+u_3+u_4+u_5  = \left ( u_1+u_2+u_3+u_4 \strut\right ) +u_5 30+5^2 = 55$
+		
+Le nombre total de boules d'une pyramide de 5 étages est: $S_5=55$.
+		 		 
+		\item
+		
+On complète la fonction \texttt{pyramide} ci-dessous de sorte que, pour tout entier naturel non nul $n$, l'instruction \texttt{pyramide(n)} renvoie le nombre de boules composant une pyramide de $n$ étages.
+
+\begin{center}
+\ttfamily
+\begin{tabular}{|l|}\hline
+def pyramide(n) :\\
+\qquad S = 0\\
+\qquad for i in range(1,~n+1) :\\
+\qquad \qquad S =  \blue S + i**2\\
+\qquad return \blue S\\ \hline
+\end{tabular}
+\end{center}
+
+		\item 
+\begin{list}{\textbullet}{Pour tout entier naturel $n$ :}
+\item 
+$\begin{aligned}[t]
+\dfrac{n(n+1)(2n+1)}{6} + (n+1)^2 
+& = \dfrac{(n+1)(2n^2+n)}{6} + \dfrac{6(n+1)^2}{6}\\
+& = \dfrac{(n+1)(2n^2+n+6n+6)}{8}\\
+ & = \dfrac{(n+1)(2n^2+7n+6)}{6}
+ \end{aligned}$
+\item 
+$\begin{aligned}[t]
+\dfrac{(n + 1)(n +2)[2(n + 1) + 1]}{6}
+& = \dfrac{(n+1)(n+2)(2n+3)}{6}
+= \dfrac{(n+1)(2n^2+3n+4n+6)}{6}\\
+& = \dfrac{(n+1)(2n^2+7n+6)}{6}
+ \end{aligned}$
+\end{list}		
+		
+Donc $\dfrac{n(n+1)(2n+1)}{6} + (n+1)^2 = \dfrac{(n + 1)(n +2)[2(n + 1) + 1]}{6}$
+
+		\item On démontre par récurrence que pour tout entier $n \geqslant 1$ : 
+$S_n = \dfrac{n(n + 1)(2n + 1)}{6}$.
+
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+Pour $n=1$, on a $S_1=1$ et $\dfrac{n(n + 1)(2n + 1)}{6} = \dfrac{1(1 + 1)(2\times 1 + 1)}{6} = \dfrac{1\times 2\times 3}{6} =1$
+
+Donc la propriété est vraie au rang 1.
+
+\item \textbf{Hérédité}
+
+On suppose la propriété vraie au rang $n$, avec $n \geqslant 1$, c'est-à-dire $S_n = \dfrac{n(n + 1)(2n + 1)}{6}$. C'est l'hypothèse de récurrence.
+
+$\begin{aligned}[t]
+S_{\blue n+1} 
+& = u_1+u_2+\cdots +u_n+u_{n+1} =  \left (u_1+u_2+\cdots +u_n \strut\right )+u_{n+1} \\
+& = S_n+(n+1)^2 =  \dfrac{n(n + 1)(2n + 1)}{6}+(n+1)^2 \\
+& = \dfrac{(n + 1)(n +2)[2(n + 1) + 1]}{6} \text{ (d'après la question précédente)}\\
+& = \dfrac{({\blue n + 1})[({\blue n + 1}) + 1][2({\blue n + 1}) + 1]}{6}
+\end{aligned}$
+
+Donc la propriété est vraie au rang ${\blue n + 1}$.
+
+\item \textbf{Conclusion}
+
+La propriété est vraie au rang 1, et elle est héréditaire pour tout $n\geqslant 1$. \\
+Donc, d'après le principe de récurrence, la propriété est vraie pour tout $n\geqslant 1$.
+\end{list}
+
+On a donc démontré par récurrence que pour tout entier $n \geqslant 1$ : 
+$S_n = \dfrac{n(n + 1)(2n + 1)}{6}$.
+	\end{enumerate}
+	
+\item Un marchand souhaite disposer des oranges en pyramide à base carrée. Il possède $200$~oranges.
+
+Il faut donc trouver le plus grand entier $n$ tel que $S_n \leqslant 200$.
+
+On calcule:
+$S(7)=\dfrac{7(7+1)(2\times 7+1}{6}=140<200$ et
+$S(8)=\dfrac{8(8+1)(2\times 8+1)}{6}=204>200$.
+
+Le marchand utilise donc 140 oranges pour construire une pyramide à 7 étages.
+\end{enumerate}
+
+\bigskip

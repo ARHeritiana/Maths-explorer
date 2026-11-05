@@ -1,0 +1,104 @@
+\medskip
+
+\emph{Principaux domaines abordés}: Manipulation des vecteurs, des droites et des plans de l'espace. Orthogonalité et distances dans l'espace.
+Représentations paramétriques et équations cartésiennes.
+
+\bigskip
+
+Dans un repère orthonormé \Oijk{} de l'espace,
+on considère les points 
+
+\[\text{A}(-3~;~1~;~3), \text{B}(2~;~2~;~3), \text{C}(1~;~7~;~-1), \text{D}(-4~;~6~;~-1)\: \text{et 
+K}(-3~;~14~;~14).\]
+
+
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+On a $\vect{\text{AB}}\begin{pmatrix}5\\1\\0\end{pmatrix}, \: \vect{\text{DC}}\begin{pmatrix}5\\1\\0\end{pmatrix}$ et $\vect{\text{AD}}\begin{pmatrix}-1\\5\\-4\end{pmatrix}$.
+		\item
+D'après la question précédente, $\vectt{AB}=\vectt{DC}$ donc ABCD est un parallélogramme.
+
+De plus le produit scalaire $\vect{\text{AB}} \cdot \vect{\text{AD}} = 5\times(-1) + 1\times 5 + 0\times(-4) = 0$.
+
+Le parallélogramme ABCD ayant deux côtés consécutifs perpendiculaires est un rectangle.
+
+		\item 
+On a AB$^2 = 25 + 1 = 26$, d'où AB $= \sqrt{26}$ ; \\
+de même AD$^2 =  1  + 25 + 16= 42$, d'où AD $= \sqrt{42}$.
+
+L'aire du rectangle ABCD est égale à \\
+$\text{AB} \times \text{AD} = \sqrt{26 }\times\sqrt{42} = \sqrt{26 \times 42} = \sqrt{2 \times 13 \times 2 \times 21} = 2\sqrt{13 \times 21} = 2\sqrt{273}$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+D'après la question 1., les vecteurs $\vect{\text{AB}}$ et $\vect{\text{AD}}$ ne sont pas colinéaires, donc les points A, B et D ne sont pas alignés : ils définissent donc bien un plan.
+		\item Soit le vecteur $\vect{n}(-2~;~10~;~13)$.
+		
+$\vect{n} \cdot \vect{\text{AB}} = - 10 + 10 + 0 = 0$ et $\vect{n} \cdot \vect{\text{AD}} = 2 + 50 - 52 = 0$.
+
+Conclusion : le vecteur $\vect{n}$, orthogonal à deux vecteurs non colinéaires du plan (ABD), est normal à ce plan.
+		\item 
+Le résultat précédent montre que le plan (ABD) a une équation de la forme\\
+$-2x + 10y + 13z = d$, avec $d \in \R$.
+
+Or par exemple $\text{B}(2~;~2~;~3) \in (\text{ABD})$ donc \\
+$-2 \times 2  + 10 \times 2  + 13\times 3 = d \iff - 4 + 20 + 39 = d \iff d = 55$.
+
+Donc le plan (ABD) a pour équation $ -2x + 10y + 13z = 55$.
+	\end{enumerate}
+	
+\item
+	\begin{enumerate}
+		\item 
+Si $\Delta$ est orthogonale au plan (ABD) elle a pour vecteur directeur le vecteur $\vect{n}$. Comme elle contient K, on a donc :
+
+$M(x~,~y~;~z) \in \Delta \iff \vect{\text{K}M} = t\vect{n}$, \: $t \in \R$. 
+
+Avec $\vect{\text{K}M}\begin{pmatrix}x - (-3)\\y - 14\\z - 14\end{pmatrix}$ ceci se traduit par le système :
+
+$\left\{\begin{array}{l c l}
+x + 3&=&- 2t\\
+y - 14&=&10t\\
+z - 14&=&13t
+\end{array}\right., t \in \R \iff \left\{\begin{array}{l c r}
+x &=&- 2t - 3\\
+y &=&10t + 14\\
+z &=&13t + 14
+\end{array}\right., t \in \R $
+		\item 
+Si I est le projeté orthogonal de K sur le plan (ABD), le point I est un point de $\Delta$; comme c'est aussi un point de (ABD) ; ses coordonnées vérifient  le système
+
+$\left\{\begin{array}{l c r}
+x &=&- 2t - 3\\
+y &=&10t + 14\\
+z &=&13t + 14\\
+- 2x + 10y + 13z &=& 55
+\end{array}\right., t \in \R $.
+
+En remplaçant dans la dernière équation $x,\:y$ et $z$ par leurs expressions en fonction de $t$, on obtient :
+
+$\begin{gathered}- 2(- 2t - 3) + 10(10t + 14) + 13(13t + 14) = 55 \\
+\iff 4t + 6 + 100t + 140 + 169t + 182 = 55 \iff 273t = - 273 \iff t = - 1\end{gathered}$.
+
+Les premières équations donnent alors\\
+ $x = 2 - 3 = - 1$, \: $y = - 10 + 14 = 4$ et $z = - 13 + 14 = 1$. 
+
+Le point I a donc pour coordonnées $(- 1~;~4~;~1)$.
+
+
+		\item 
+ABCD étant un rectangle le point D appartient au plan (ABD). Donc la hauteur  de la pyramide KABCD de base ABCD est [KI].
+
+$\vect{\text{KI}}\begin{pmatrix}2\\-10\\-13\end{pmatrix}$ donne KI$^2 = 4 + 100 + 169 = 273$ et enfin KI $= \sqrt{273}$.
+	\end{enumerate}
+\item 
+
+
+
+
+On a $V = \dfrac13 \times \mathcal{A}(\text{ABCD}) \times \text{KI} = \dfrac13 \times 2\sqrt{273} \times \sqrt{273} = \dfrac{2 \times 273}{3} = \dfrac{2 \times 3 \times 91}{3} = 182$.
+\end{enumerate}

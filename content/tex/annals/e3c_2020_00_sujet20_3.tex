@@ -1,0 +1,64 @@
+\medskip
+
+La famille A décide de diminuer de 2\,\% par mois sa quantité de déchets produits par mois à partir du 1\up{er} janvier 2020.
+
+Au mois de décembre 2019, elle a produit $120$~kg de déchets.
+
+\medskip
+
+\begin{enumerate}
+\item Justifier qu'au bout de 2 mois, la famille A aura produit environ $115$~kg de déchets.
+\end{enumerate}
+
+On admet que la quantité de déchets produits chaque mois conserve la même évolution toute l'année.
+
+On modélise l'évolution de la production de déchets de la famille A par la suite de terme général $a_n$, où $a_n$ représente la quantité, en kg, de déchets produits par la famille A $n$ mois après décembre 2019.
+
+Ainsi, $a_0$ représente la quantité de déchets produits durant le mois de décembre 2019, $a_1$ représente la quantité de déchets produits durant le mois de janvier 2020, etc.
+
+\begin{enumerate}[resume]
+\item  
+	\begin{enumerate}
+		\item Déterminer la nature de la suite $\left(a_n\right)$.
+		\item Pour tout entier naturel $n$, exprimer $a_n$ en fonction de $n$.
+		\item Déterminer la quantité totale de déchets que produira la famille A durant l'année
+2020.
+
+On arrondira le résultat à l'unité.
+
+On rappelle que :
+
+Soit $\left(a_n\right)_{n\in \N}$ une suite géométrique de raison $q$,\,$ q \ne 1$. La somme $S$ de termes consécutifs est égale à $S = u_1 + u_2 +\ldots + u_n = u_1 \times \dfrac{1 - q^n}{1 - q}$.
+		\item On donne le programme ci-dessous.
+		
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+\begin{center}
+\begin{tabular}{c l}
+\texttt 1 & \texttt{{\blue def} S(n) :}\\
+\texttt 2 &  \vline \quad \texttt{U = 120}\\
+\texttt 3 &  \vline \quad \texttt{S = 0}\\
+\texttt 4 &  \vline \quad \texttt{{\blue for} k {\blue in} range (n) :}\\
+\texttt 5 &  \vline \quad \vline \quad \texttt{U = 0.98 * U}\\
+\texttt 6 &  \vline \quad \vline \quad \texttt{S = S + U}\\
+\texttt 7 &  \vline \quad \texttt{{\blue return} (S)}\\
+\texttt 8 & 
+\end{tabular}
+\end{center} 
+ 
+Que représente le résultat renvoyé par la fonction si on entre l'instruction S(6) ?
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

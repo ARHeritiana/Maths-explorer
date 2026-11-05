@@ -1,0 +1,37 @@
+\subsection*{1.}
+
+On a :
+\[
+a_1 = 0{,}80 \times a_0 + 400 = 0{,}8 \times 2500 + 400 = 2000 + 400 = 2400,
+\]
+et de même :
+\[
+a_2 = 0{,}8 \times a_1 + 400 = 0{,}8 \times 2400 + 400 = 2320.
+\]
+
+\subsection*{2.}
+
+\paragraph{a.} Pour passer de \(a_n\) à \(a_{n+1}\), on multiplie par 0{,}8 puis on ajoute 400.  
+
+Donc, pour tout entier naturel \(n\) : \(a_{n+1} = 0{,}8 a_n + 400\).
+
+Pour tout entier naturel \(n\), \(v_{n+1} = a_{n+1} - 2000\), soit :
+\[
+v_{n+1} = 0{,}8 a_n + 400 - 2000 = 0{,}8 a_n - 1600 = 0{,}8(a_n - 2000),
+\]
+soit finalement : \( v_{n+1} = 0{,}8 v_n.\)
+
+Cette égalité montre que la suite \((v_n)\) est géométrique de raison 0{,}8 et de premier terme \(v_0 = a_0 - 2000 = 2500 - 2000 = 500\).
+
+\paragraph{b.} On sait que, pour tout entier naturel \(n\) : \(v_n = v_0 \times 0{,}8^n = 500 \times 0{,}8^n\).
+
+\paragraph{c.} Or, \(v_n = a_n - 2000 \iff a_n = 2000 + v_n = 2000 + 500 \times 0{,}8^n\).
+
+\paragraph{d.} Il faut trouver le plus petit entier \(n\) tel que \(a_n \leqslant 2010\), soit :
+\begin{align*}
+&2000 + 500 \times 0{,}8^n \leqslant 2010 \\
+\iff &500 \times 0{,}8^n \leqslant 10 \\
+\iff &0{,}8^n \leqslant \dfrac{10}{500} \\
+\iff &0{,}8^n \leqslant 0{,}02.
+\end{align*}
+La calculatrice donne \(n = 18\), pour lequel \(a_{18} \approx 2009{,}01\), soit en 2031.

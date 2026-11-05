@@ -1,0 +1,111 @@
+\medskip
+
+Soit $k$ un nombre réel.
+
+On considère la suite $\left(u_n\right)$ définie par son premier terme $u_0$ et pour tout entier naturel $n$,
+
+\[u_{n+1} = ku_n\left(1- u_n\right).\]
+
+Les deux parties de cet exercice sont indépendantes. 
+
+On y étudie deux cas de figure selon les valeurs de $k$.
+
+\bigskip
+
+\textbf{Partie 1}
+
+\medskip
+
+Dans cette partie, $k = 1,9$ et $u_0 = 0,1$.
+
+On a donc,  pour tout entier naturel $n$,\: $u_{n+1} = 1,9u_n\left(1 - u_n\right)$.
+
+\medskip
+
+\begin{enumerate}
+\item On considère la fonction $f$ définie sur [0~;~1] par $f(x) = 1,9x(1 - x)$.
+	\begin{enumerate}
+		\item Étudier les variations de $f$ sur l'intervalle [0~;~1].
+		\item En déduire que si $x \in [0~;~1]$ alors $f(x) \in [0~;~1]$.
+	\end{enumerate}	
+\item Ci-dessous sont représentés les premiers termes de la suite $\left(u_n\right)$ construits à partir de la courbe $\mathcal{C}_f$ de la fonction $f$ et de la droite $D$ d'équation $y = x$.
+
+Conjecturer le sens de variation de la suite $\left(u_n\right)$ et sa limite éventuelle.
+
+\medskip
+
+
+\psset{unit=10cm,arrowsize=2pt 3,comma=true}
+\def\xmin{-0.3} \def\xmax{1.05}
+\def\ymin{-0.2} \def\ymax{0.65} 
+\begin{pspicture*}(\xmin,\ymin)(\xmax,\ymax)
+
+
+\psgrid[unit=1cm,gridlabels=0,subgriddiv=1,gridcolor=gray](0,0)(1,1)
+
+\psaxes[linewidth=1.5pt,Dx=0.1,Dy=0.1,labelFontSize=\scriptstyle]{->}(0,0)(0,0)(\xmax,\ymax)
+
+\uput[dl](0,0){O}
+
+\def\f{1.9 x mul  1 x sub mul}
+
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{1}{\f}
+
+\uput[10](0.8,0.3){\blue $\mathscr{C}_f$}
+
+\psplot[plotpoints=1000,linecolor=red]{0}{1}{x}
+\uput[d]{45}(0.65,0.65){\red $D : y=x$}
+
+\psFixpoint[linecolor=red,ArrowInside=-<]{0.1}{\f}{3}
+\psline[linestyle=dashed](0.1,0.171)(0,0.171)\uput[l](0,0.171){\small $u_1 = f\left(u_0\right)$}
+\uput[d](0.1,-0.075){\small $u_0$}
+\psline[linestyle=dashed](0.171,0.171)(0.171,0)\uput[d](0.171,-0.075){\small $u_1$}
+\psline[linestyle=dashed](0.269,0.269)(0.269,0)\uput[d](0.269,-0.075){\small $u_2$}
+\psline[linestyle=dashed](0.374,0.374)(0.374,0)\uput[d](0.374,-0.075){\small $u_3$}
+\psline[linecolor=red](0.374,0.374)(0.374,0.445)
+\end{pspicture*}
+
+\item 
+	\begin{enumerate}
+		\item En utilisant les résultats de la question 1, démontrer par récurrence que pour tout entier naturel $n$ :
+		
+\[0 \leqslant u_n \leqslant u_{n+1} \leqslant \dfrac12.\]
+
+		\item En déduire que la suite $\left(u_n\right)$ converge.
+		\item Déterminer sa limite.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2}
+
+\medskip
+
+ Dans cette partie, $k= \dfrac12$  et $u_0 = \dfrac14$.
+
+On a donc, pour tout entier naturel $n$,\: $u_{n+1} = \dfrac12 u_n \left(1 - u_n\right)$ et $u_0 = \dfrac14$.
+
+On admet que pour tout entier naturel $n$ :\: $0 \leqslant u_n \leqslant \left(\dfrac12\right)^n$.
+
+\medskip
+
+\begin{enumerate}
+\item Démontrer que la suite $\left(u_n\right)$ converge et déterminer sa limite.
+\item On considère la fonction Python \texttt{algo (p)} où \texttt{p} désigne un entier naturel non nul:
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+\texttt{def algo(p) :}\\
+\quad  \texttt{u =1/4}\\
+\quad \texttt{n = 0}\\
+\quad \texttt{while u > 10**(-p):}\\
+\quad \quad \texttt{u = 1/2*u*(1 - u)}\\
+\quad \quad \texttt{n = n+1}\\
+\quad \texttt{ return(n)}\\ \hline
+\end{tabular}
+\end{center}
+Expliquer pourquoi, pour tout entier naturel non nul \texttt{p}, la boucle while ne tourne pas indéfiniment, ce qui permet à la commande \texttt{algo (p)} de renvoyer une valeur.
+\end{enumerate}
+
+\bigskip

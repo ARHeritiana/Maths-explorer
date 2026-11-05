@@ -1,0 +1,160 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_09_sujet2_metropole_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Les parties B et C sont indépendantes}
+
+\medskip
+
+On considère la fonction $f$  définie sur $]0~;~+\infty[$ par
+
+\[f(x) = x - x \ln x,\]
+
+où ln désigne la fonction logarithme népérien.
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer la limite de $f(x)$ quand $x$ tend vers $0$.
+\item Déterminer la limite de $f(x)$ quand $x$ tend vers $+\infty$.
+\item On admet que la fonction $f$ est dérivable sur $]0~;~+\infty[$ et on note $f'$ sa fonction dérivée.
+	\begin{enumerate}
+		\item Démontrer que, pour tout réel $x > 0$, on a : $f'(x) = - \ln x$.
+		\item En déduire les variations de la fonction $f$ sur $]0~;~+\infty[$ et dresser son tableau de variations.
+	\end{enumerate}
+\item Résoudre l'équation $f(x) = x$ sur $]0~;~+\infty[$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+Dans cette partie, on pourra utiliser avec profit certains résultats de la partie A.
+
+On considère la suite $\left(u_n\right)$ définie par:
+
+\[\left\{\begin{array}{l c l}
+u_0 &=& 0,5\\
+u_{n+1} &=& u_n - u_n \ln u_n \:\text{ pour tout entier naturel } n,
+\end{array}\right.\]
+
+Ainsi, pour tout entier naturel $n$, on a : $u_{n+1} = f\left(u_n\right)$.
+
+\medskip
+
+\begin{enumerate}
+\item On rappelle que la fonction $f$ est croissante sur l'intervalle [0,5~;~1].
+
+Démontrer par récurrence que, pour tout entier naturel $n$, on a : $0,5 \leqslant  u_n \leqslant u_{n+1} \leqslant 1$.
+\item 
+	\begin{enumerate}
+		\item Montrer que la suite $\left(u_n\right)$ est convergente.
+		\item On note $\ell$ la limite de la suite $\left(u_n\right)$. Déterminer la valeur de $\ell$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie C}
+
+\medskip
+
+Pour un nombre réel $k$ quelconque, on considère la fonction $f_k$ définie sur $]0~;~+\infty[$ par:
+
+\[f_k(x) = kx - x \ln x.\]
+
+\begin{enumerate}
+\item Pour tout nombre réel $k$, montrer que $f_k$ admet un maximum $y_k$ atteint en $x_k = \text{e}^{k- 1}$.
+\item  Vérifier que, pour tout nombre réel $k$, on a : $x_k = y_k$.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

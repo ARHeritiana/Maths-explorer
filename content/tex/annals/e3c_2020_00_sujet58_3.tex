@@ -1,0 +1,27 @@
+\medskip
+
+Soit $h$ la fonction définie sur $[-6~;~26]$ par :
+\[h(x)=-x^3+30x^2-108x-490.\]
+
+\begin{enumerate}
+\item  Soit $h'$ la fonction dérivée de $h$. Exprimer $h'(x)$ en fonction de $x$.
+\item On note $\mathcal{C}$ la courbe représentative de $h$ et $\mathcal{C}'$ celle de $ h'$.
+\begin{enumerate}
+\item  Identifier $\mathcal{C}$ et $\mathcal{C}'$ sur le graphique orthogonal ci-dessous parmi les trois courbes $\mathcal{C}_1$,$\mathcal{C}_2$ et $\mathcal{C}_3$ proposées.
+\item Justifier le choix pour $\mathcal{C}'$.
+\end{enumerate}
+
+\psset{xunit=0.3cm,yunit=0.003cm,labelFontSize=\scriptstyle,labelsep=0.1pt}
+\begin{pspicture}(-11,-800)(35,1625)
+\psaxes[linewidth=0.95pt,Dx=2,Dy=200]{->}(0,0)(-10,-800)(31.5,1625)
+\def\Func{ x x x neg 30 add mul  108 sub  mul 490 sub }
+\psplot[plotpoints=1000,linewidth=1.25pt,linecolor=blue]{-6}{26}{\Func}
+\psplot[plotpoints=1000,linewidth=1.25pt,linecolor=blue,linestyle=dashed]{-6}{26}{x x 3 neg mul 60 add mul 108 sub}
+\psplot[plotpoints=1000,linewidth=2pt,linecolor=blue, linestyle=dotted]{-6}{26}{x x 3  mul 60 sub mul 108 add}
+\uput[ul](26.5,640){$\mathcal{C}_3$} \uput[u](12.,940){$\mathcal{C}_2$} \uput[ur](-6,-450){$\mathcal{C}_1$}
+\end{pspicture}
+\item Soit ($\mathcal{T}$) la tangente à $\mathcal{C}$ au point A d'abscisse 0. Déterminer son équation réduite.
+\item Étudier le signe de $h'(x)$ puis dresser le tableau de variation de la fonction $h$ sur $[-6~;~26]$. 
+\end{enumerate}
+
+\emph{\footnotesize L'intervalle d'études a été changé  car les graphiques ne correspondaient pas aux intervalles donnés $[0~;~26]$ ou $[0~;~30]$}

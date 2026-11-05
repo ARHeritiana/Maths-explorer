@@ -1,0 +1,42 @@
+\medskip
+
+On appelle pourcentage de compression d'une image, le pourcentage de réduction de sa taille en ko (kilo-octets) après compression.
+
+Une image a une taille initiale de 800 ko. Après une première compression, sa taille est de 664 ko.
+
+\medskip
+
+\begin{enumerate}
+\item Calculer le pourcentage de réduction associé à cette première compression.
+\end{enumerate}
+
+Dans la suite de l'exercice, on fixe le pourcentage de réduction à 17\,\%. On effectue $n$ compressions successives.
+
+Pour tout entier naturel $n$, on note $t_n$ la taille de l'image en ko après $n$ compressions.
+
+On a donc $t_0 = 800$.
+\begin{enumerate}[resume]
+\item  Pour tout entier naturel $n$, exprimer $t_{n+1}$ en fonction de $t_n$ et en déduire la nature de la suite $\left(t_n\right)$.
+\item  Pour tout entier naturel $n$, exprimer $t_n$  en fonction de $n$.
+
+Afin de déterminer le nombre minimal $n$ de compressions successives à effectuer pour que cette image ait une taille finale inférieure à $50$ ko, on considère la fonction Python suivante:
+
+\begin{center}
+\fbox{
+\begin{tabularx}{0.45\linewidth}{X}
+\texttt{def nombreCompressions(A):} \\
+\qquad \texttt{t = 800}\\
+\qquad \texttt{n = 0}\\
+\qquad \texttt{While t > A:}\\
+\qquad \qquad \texttt{t = t*0,83}\\
+\qquad \qquad \texttt{n = n+1} \\
+\qquad \texttt{return n}\\% \hline
+\end{tabularx}
+}
+\end{center}
+
+\item Préciser, en justifiant, le nombre A de sorte que l'appel \texttt{nombreCompressions(A)} renvoie le nombre de compressions successives à effectuer que l'on cherche à déterminer.
+\item Quel est le nombre minimal de compressions successives à effectuer pour que ce fichier ait une taille finale inférieure à $50$ ko ?
+\end{enumerate}
+
+\bigskip

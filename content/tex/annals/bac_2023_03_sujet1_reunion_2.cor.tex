@@ -1,0 +1,160 @@
+\medskip
+
+On considère la fonction $f$ définie sur $]0~;~+\infty[$ par: $f(x) = 3x + 1 - 2x \ln (x)$.
+
+On admet que la fonction $f$ est deux fois dérivable sur $]0~;~+\infty[$. 
+On note $f'$ sa dérivée et $f''$ sa dérivée seconde.
+On note $\mathcal{C}_f$ sa courbe représentative dans un repère du plan.
+
+
+
+\begin{enumerate}
+\item On cherche les limites de la fonction $f$ en 0 et en $+\infty$.
+
+\begin{list}{\textbullet}{}
+\item On sait que $\ds\lim_{x\to 0 \atop x>0} x\ln(x)=0$ donc $\ds\lim_{x\to 0 \atop x>0} \left (3x+1 -2x\ln(x)\right )=1$ et donc $\ds\lim_{x\to 0 \atop x>0} f(x)=1$.
+\item $f(x)=x\left ( 3-2\ln(x)\right ) +1$.
+
+$\ds\lim_{x\to +\infty} \ln(x)=+\infty$ donc $\ds\lim_{x\to +\infty} \left (3-2\ln(x)\right )=-\infty$.
+
+On en déduit que $\ds\lim_{x\to +\infty} x\left (3-2\ln(x)\right )=-\infty$ et donc que $\ds\lim_{x\to +\infty} f(x)=-\infty$.
+\end{list}
+\item 
+	\begin{enumerate}
+		\item 
+Sur $]0~;~+\infty[$, $f'(x)=	3+0-2\times\ln(x) -2x\times \dfrac{1}{x}=3-2\ln(x)-2 = 1-2\ln(x)$.
+		
+		\item On étudier le signe de $f'$  sur l'intervalle $]0~;~+\infty[$.
+		
+
+
+$f'(x)>0 \iff 1-2\ln(x)>0 \iff \dfrac{1}{2}>\ln(x) \iff x<\e^{\frac{1}{2}}$
+
+$f\left (\e^{\frac{1}{2}}\right ) = 3 \e^{\frac{1}{2}} +1 -2 \e^{\frac{1}{2}} \times \ln\left (\e^{\frac{1}{2}}\right ) = 3 \e^{\frac{1}{2}} +1 -2 \e^{\frac{1}{2}} \times \dfrac{1}{2} =
+3 \e^{\frac{1}{2}} +1 -  \e^{\frac{1}{2}} = 2  \e^{\frac{1}{2}} +1 \approx 4,3$.
+
+On en déduit le tableau des variations de $f$ sur l'intervalle $]0~;~+\infty[$.
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}
+\def\esp{\hspace*{0.8cm}}
+\def\hauteur{20pt}
+$\begin{array}{|c|l*6{c}|}
+\hline
+x & 0  & \esp \esp & \e^{\frac{1}{2}} & \esp &  & \esp & +\infty \\ 
+\hline
+\text{ Signe de $f'$ } & \vline\;\vline  &   \pmb{+}   &   \vline\hspace{-2.7pt}0 &  & \pmb{-} &  &\\ 
+\hline
+ &\vline\;\vline  & & \Rnode{max}{2\e^{\frac{1}{2}}+1} &&  &   &     \\  
+\text{ Variations de $f$ } & \vline\;\vline  && & &  &  &  \rule{0pt}{\hauteur} \\ 
+ & \vline\;\vline  ~\Rnode{min1}{1}&   &  &  &   & &  \Rnode{min2}{-\infty}  \rule{0pt}{\hauteur}    
+ \ncline{->}{min1}{max}   \ncline{->}{max}{min2}
+ \\ 
+\hline
+\end{array} $
+}
+\end{center}
+	\end{enumerate}	
+
+\item
+	\begin{enumerate}
+		\item 
+Le maximum de la fonction $f$ vaut $2 \e^{\frac{1}{2}} +1>0$; on complète le tableau des variations de $f$.
+		
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}
+\def\esp{\hspace*{0.8cm}}
+\def\hauteur{20pt}
+$\begin{array}{|c|l*6{c}|}
+\hline
+x & 0  & \esp \esp & \e^{\frac{1}{2}} & \esp & \Rnode{alpha}{\blue\alpha} & \esp & +\infty \\ 
+\hline
+ &\vline\;\vline  & & \Rnode{max}{2\e^{\frac{1}{2}}+1} &&  &     &   \\  
+\text{ Variations de $f$ } & \vline\;\vline  && & &\Rnode{zero1}{\blue{}0}   &  &  \rule{0pt}{\hauteur} \\ 
+ & \vline\;\vline  ~\Rnode{min1}{1}&   &  &  &   & &  \Rnode{min2}{-\infty}  \rule{0pt}{\hauteur}    
+ \ncline{->}{min1}{max} 
+  \ncline{max}{zero1}  \ncline{->}{zero1}{min2}
+  \ncline[linecolor=blue,linestyle=dashed]{zero1}{alpha}
+ \\ 
+\hline
+\end{array} $
+}
+\end{center}
+
+La fonction $f$ est dérivable sur $\left ] 0\;;\;+\infty\right [$ donc continue sur cet intervalle.
+		
+\begin{list}{\textbullet}{}
+\item Sur l'intervalle $\left ] -\infty~,~\e^{\frac{1}{2}}\right [$, la fonction $f$ est strictement positive donc l'équation $f(x)=0$ n'a pas de solution.
+\item Sur l'intervalle $\left ] \e^{\frac{1}{2}}\;;\;+\infty\right [$, la fonction $f$ est continue et strictement décroissante; elle passe d'une valeur positive à une valeur négative donc, d'après le corollaire du théorème des valeurs intermédiaires, l'équation $f(x)=0$ admet une solution unique sur cet intervalle. On l'appelle $\alpha$.
+\end{list}
+
+On en déduit que l'équation $f(x)=0$ admet une solution unique $\alpha$ sur $]0\;;\;+\infty[$, et que cette solution appartient à l'intervalle $\left ] \e^{\frac{1}{2}}\;;\;+\infty\right [$.
+		
+		\item Le signe de la fonction $f$ sur $]0~;~+\infty[$ est donné par le tableau:
+		
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}
+\def\esp{\hspace*{0.8cm}}
+\def\hauteur{20pt}
+$\begin{array}{|c|l*6{c}|}
+\hline
+x & 0  & \esp \esp & \e^{\frac{1}{2}} & \esp & \Rnode{alpha}{\blue\alpha} & \esp & +\infty \\ 
+\hline
+ &\vline\;\vline  & & \Rnode{max}{2\e^{\frac{1}{2}}+1} &&  &     &   \\  
+\text{ Variations de $f$ } & \vline\;\vline  && & &\Rnode{zero1}{\blue{}0}   &  &  \rule{0pt}{\hauteur} \\ 
+ & \vline\;\vline  ~\Rnode{min1}{1}&   &  &  &   & &  \Rnode{min2}{-\infty}  \rule{0pt}{\hauteur}    
+ \ncline{->}{min1}{max} 
+  \ncline{max}{zero1}  \ncline{->}{zero1}{min2}
+  \ncline[linecolor=blue,linestyle=dashed]{zero1}{alpha}
+ \\ 
+ \hline
+\text{ Signe de $f$ } & \vline\;\vline &  &   \pmb{+} & & \vline\hspace{-2.7pt}0 &  \pmb{-}  &\\ 
+\hline
+\end{array} $
+}
+\end{center}
+
+Donc $f(x)>0$ sur $]0\;;\;\alpha[$, $f(\alpha)=0$ et $f(x)<0$ sur $]\alpha\;;\;+\infty[$.
+		
+		
+	\end{enumerate}	
+\item On considère une primitive quelconque de la fonction $f$ sur
+l'intervalle $]0~;~+\infty[$. On la note $F$.
+
+
+
+La fonction $F$ a pour dérivée la fonction $f$ qui est positive sur $\left[\e^{\frac12}~;~\alpha\right[$; donc $F$ est croissante sur cet intervalle, ce qui contredit l'affirmation proposée.
+\item
+	\begin{enumerate}
+		\item Pour étudier la convexité de la fonction $f$ sur $]0~;~+\infty[$, on calcule la dérivée seconde $f''$:
+		
+$f''(x)=0-2\times \dfrac{1}{x}=-\dfrac{2}{x}<0$ sur $]0~;~+\infty[$; on en déduit que la fonction $f$ est concave sur $]0~;~+\infty[$ et que sur cet intervalle,  la courbe $\mathcal{C}_f$ est située au dessous des ses tangentes.
+		\item Soit $T$ la tangente à la courbe $\mathcal{C}_f$ au point d'abscisse 1.
+
+$T$ a pour équation $y=f'(1)\left (x-1\right ) + f(1)$.
+
+~~\textbullet~~$f(x)=3x+1-2x\ln(x)$ donc $f(1)=3\times 1 +1 -2\times 1 \times \ln(1)=4$
+
+~~\textbullet~~$f'(x)=1-2\ln(x)$ donc $f'(1)=1-2\times\ln(1)=1$
+
+Donc $T$ a pour équation $y=1\left (x-1\right ) +4$ soit $y=x+3$.
+		
+		\item 
+La courbe $\mathcal{C}$ est en dessous de ses tangentes donc de la tangente $T$ et donc, pour tout $x$ de $]0\;;\;+\infty[$, on a $f(x)\leqslant x+3$.
+
+$\begin{gathered}f(x)\leqslant x+3
+\iff 3x+1-2x\ln(x) \leqslant x+3
+\iff 2x-2 \leqslant 2x\ln(x)
+\iff \dfrac{2x}{2x} - \dfrac{2}{2x} \leqslant \ln(x)\\
+\phantom{f(x)\leqslant x+3}
+\iff 1-\dfrac{1}{x} \leqslant \ln(x)\end{gathered}$
+
+Donc, pour tout  $x$ de $]0\;;\;+\infty[$, on a: $\ln(x)\geqslant 1-\dfrac{1}{x}$.
+		
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

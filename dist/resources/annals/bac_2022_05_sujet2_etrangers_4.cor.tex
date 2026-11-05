@@ -1,0 +1,159 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet2_etrangers_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+	\item On note par 
+	\begin{itemize}
+		\item $B$ l'évènement : \og on tire un jeton de couleur blanche \fg{} ;
+		\item $N$ l'évènement : \og on tire un jeton de couleur noire \fg{}.
+	\end{itemize}
+	Ainsi, $p(B)=\dfrac35$ et $p(N)=\dfrac25$
+	\begin{enumerate}
+			\item L'arbre complété :
+\begin{center}
+			\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep=1cm,levelsep=2.5cm]{\TR{}}
+				{\pstree{\TR{$B$~}\taput{$\frac35$}}
+					{\TR{$B$}\taput{$\frac35$}
+					\TR{$N$}\tbput{$\frac25$}
+					}
+				\pstree{\TR{$N$~}\tbput{$\frac25$}}
+					{\TR{$B$}\taput{$\frac35$}
+					\TR{$N$}\tbput{$\frac25$}
+					}
+				}
+\end{center}
+			\item Pour perdre 9 euros, il faut avoir tiré deux jetons blancs.
+			
+Sachant qu'il s'agit de deux tirages successifs avec remise, et en notant $X$ la variable aléatoire donnant le gain du joueur, on a : $p(X = - 9) = \left(\dfrac35\right)^2=\dfrac{9}{25}$
+	\end{enumerate}
+\item 
+\begin{enumerate}
+	\item On considère à présent qu'il y a $3$ jetons blancs et $N$ jetons noirs, pour un total de $N+3$ jetons. On effectue toujours deux tirages avec remise d'un jeton. On note par $X$ la variable aléatoire donnant le gain du joueur. Donc $X\in\lbrace-9~;~-1~;~5\rbrace$
+	
+	\begin{itemize}
+		\item Pour perdre 9 euros, il faut tirer deux jetons blancs : $P(X=-9)=\left(\dfrac{3}{N+3}\right)^2=\dfrac{9}{(N + 3)^2}$
+		\item Pour perdre un euro il faut tirer deux jetons noirs : $P(X=-1)=\left(\dfrac{N}{N+3}\right)^2=\dfrac{N^2}{(N + 3)^2}$
+		\item pour gagner cinq euros, il faut tirer un jeton de chaque couleur (B + N ou N + B) :\\ $P(X=5)=2\times \dfrac{3}{N + 3} \times \dfrac{N}{N + 3}=\dfrac{6N}{(N + 3)^2}$
+	\end{itemize}
+La loi de probabilités est donc :
+\begin{center}
+\begin{tabular}{|l|c|c|c|}\hline
+$X=x_i$&$- 9$&$-1$&5 \\ \hline
+$P(X=x_i)$&$\dfrac{9}{(N+3)^2}$&$\dfrac{N^2}{(N+3)^2}$&$\dfrac{6N}{(N+3)^2}$ \\ \hline
+\end{tabular}
+\end{center}
+\item $-x^2 + 30x - 81 > 0 \iff x^2-30x+81<0$. Les racines du trinôme $x^2-30x+81$ sont $x=3$ et $x=27$. Donc en utilisant les signes du trinôme du second degré, $-x^2+30x-81>0 \iff x\in ]3~;~27[$.
+\item Calculons l'espérance de cette loi de probabilité :
+
+ $E(X)=(-9)\times \dfrac{9}{(N+3)^2} + (-1)\times \dfrac{N^2}{(N+3)^2}+5 \times \dfrac{6N}{(N+3)^2}=\dfrac{-N^2+30N-81}{(N+3)^2}$.
+
+Le jeu est favorable au joueur si et seulement si $E(X)>0$.
+
+$E(X)>0 \iff -N^2+30N-81>0 \iff N\in ]3~;~27[$ donc $4\leqslant N \leqslant 26$ ($N \in \llbracket4~;~26 \rrbracket$) : il faut donc entre 4 et 26 jetons noirs (4 et 26 compris) pour que le jeu soit favorable au joueur.
+\item Le gain moyen (ou l'espérance) est maximal lorsque la fonction $f~:~N\mapsto \dfrac{-N^2 + 30N - 81}{(N + 3)^2}$ est maximale, c'est-a-dire lorsque $f'(N) = 0$.
+
+La fonction $f$ est continue et dérivable sur $[0~;~+\infty[$. Pour $N\in [0~;~+\infty[$ :
+
+ $f'(N)=\dfrac{(-2N + 30)\times (N + 3)^2-2(N + 3)\times (-N^2 + 30N - 81)}{\left((N+3)^2\right)^2}=$
+
+$\dfrac{(-2N + 30)(N + 3)-2(-N^2 + 30N - 81)}{(N+3)^3}
+ =\dfrac{-2N^2 - 6N + 30N + 90 + 2N^2 - 60N + 162}{(N + 3)^3}=$
+
+$\dfrac{-36N + 252}{(N + 3)^2}=\dfrac{-36(N - 7)}{(N + 3)^2}$
+
+ $f'(N)=0 \iff N=7$.
+
+ Le gain moyen du joueur est maximal lorsque dans l'urne il y a 7 jetons noirs et 3 jetons blancs.
+\end{enumerate}
+\item Dans l'urne il y a 7 jetons noirs ($N=7$) et 3 jetons blancs, pour un total de 10 jetons. La probabilité de gagner 5 euros est égale à $p=\dfrac{6\times7}{10^2}=\dfrac{21}{50}=0,42$.
+
+On répète ce jeu pour 10 personnes. On note par $Y$ la variable aléatoire donnant le nombre de personnes gagnant 5 euros. Ainsi $Y \in \llbracket0~;~10 \rrbracket$. $Y$ suit une loi binomiale (expérience de Bernoulli n'ayant que deux issues et se répétant indépendamment et à l'identique $n$ fois) de paramètres $n=10$ et $p=\dfrac{21}{50}$ : $Y \sim \mathcal{B}\left(10~;~\dfrac{21}{50}\right)$
+
+$P(Y\geqslant0)=1-P(Y<1)=1-P(Y=0)=1-\left(\dfrac{29}{50}\right)^{10}\approx 0,996$
+
+Donc la probabilité d'avoir au moins un gagnant à 5 euros est d'environ 0,996. C'est donc un évènement (presque) certain.
+\end{enumerate}
+
+\end{document}

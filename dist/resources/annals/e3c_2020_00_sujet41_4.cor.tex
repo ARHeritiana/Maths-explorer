@@ -1,0 +1,135 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet41_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\( f(x) = \dfrac{x^2 - 4x + 8}{x - 2} \).
+
+\paragraph{1.} Sur l'intervalle \( ]-\infty \,;\, 2[ \), \( f(x) = 0 \iff x^2 - 4x + 8 = 0 \).
+\[
+\Delta = 16 - 4 \times 8 = 16 - 32 = -16 < 0.
+\]
+L'équation n'a pas de solutions réelles dans \( ]-\infty \,;\, 2[ \).
+
+\paragraph{2.}
+
+\paragraph{a.} Le dénominateur étant non nul, puisque \( x < 2 \), la fonction quotient est dérivable et :
+\begin{align*}
+f'(x) &= \dfrac{(2x - 4)(x - 2) - (x^2 - 4x + 8)}{(x - 2)^2} \\
+&= \dfrac{2x^2 - 4x - 4x + 8 - x^2 + 4x - 8}{(x - 2)^2} \\
+&= \dfrac{x^2 - 4x}{(x - 2)^2}.
+\end{align*}
+
+\paragraph{b.} Le dénominateur étant positif, le signe de \( f'(x) \) est celui de \( x^2 - 4x = x(x - 4) \).
+
+Ce trinôme a pour racines 0 et 4 et on sait que ce trinôme est positif, sauf sur \( ]0 \,;\, 4[ \).
+
+Dans notre cas \( f'(x) \) est positif sur \( ]-\infty \,;\, 0[ \) et négatif sur \( ]0 \,;\, 2[ \).
+
+La fonction \( f \) est donc croissante sur \( ]-\infty \,;\, 0[ \) et décroissante sur \( ]0 \,;\, 2[ \).
+
+\paragraph{3.} On sait qu'une équation de \( \mathcal{D} \) est :
+\[
+y - f(1) = f'(1)(x - 1).
+\]
+
+Avec \( f(1) = \dfrac{1 - 4 + 8}{1 - 2} = - 5 \) et \( f'(1) = \dfrac{1 - 4}{(-1)^2} = -3 \), l'équation devient :
+\begin{align*}
+y + 5 &= -3(x - 1) \\
+y &= -3x + 3 - 5 \\
+y &= -3x - 2.
+\end{align*}
+
+\paragraph{4.}
+
+\begin{center}
+\psset{unit=0.65cm}
+\begin{pspicture}(-10,-10)(10,3)
+\psaxes[linewidth=1.25pt,Dx=2,Dy=2]{->}(0,0)(-10,-10)(10,3)
+\def\Func{x 2 exp 4 x mul sub 8 add x 2 sub div}
+\psplot[plotpoints=2000,linewidth=0.85pt,linecolor=red]{-7.583}{1.583}{\Func}
+\def\FuncTwo{-3 x mul 2 sub}
+\psplot[plotpoints=2000,linewidth=0.85pt,linecolor=blue]{-1.667}{2.667}{\FuncTwo}
+\uput[u](-2,2){$\mathscr{D}$}
+\end{pspicture}
+\end{center}
+
+\end{document}

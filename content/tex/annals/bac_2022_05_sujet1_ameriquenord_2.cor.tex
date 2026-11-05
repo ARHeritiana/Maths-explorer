@@ -1,0 +1,52 @@
+\bigskip
+
+On considère la suite $\left(T_n\right)$ définie par : $T_0 = 180$ et $\forall n \in \N,~T_{n+1} = 0,955T_n + 0,9$
+
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Montrons par récurrence que $\forall n \in \N$, $T_n \geqslant20$.
+
+		\textit{Initialisation :} $T_0=180\geqslant 20$. L'initialisation est vérifiée.
+
+		\textit{Hérédité :} Soit  $n \in \N$, et supposons que $T_n \geqslant 0$. Montrons que $T_{n+1}\geqslant 20$.
+
+$\begin{gathered}T_n \geqslant 20 \iff 0,955 \times T_n\geqslant 0,955\times 20\iff 0,955 T_n\geqslant 19,1 \\
+		\iff 0,955 T_n + 0,9 \geqslant 19,1+0,9 \iff 0,955 T_n + 0,9 \geqslant 20\end{gathered}$. Donc $T_{n+1}\geqslant 20$. L'hérédité est démontrée.
+
+\textit{Conclusion : }  La proposition est vraie au rang $0$ et si elle est vraie au rang $n$, elle l'est aussi au rang $n + 1$.	D'après l'axiome de récurrence, $\forall n \in \N$, $T_n\geqslant 20$.
+		\item $\forall n \in \N$, $\begin{gathered}T_{n+1}- T_n= 0,955~T_n+ 0,9 - T_n = - 0,045~T_n+0,9=-0,045\left(T_n-\dfrac{0,9}{0,045}\right)\\
+	=-0,045(T_n-20)\end{gathered}$.
+
+Or d'après la question précédente, $\forall n \in \N$, $T_n\geqslant 20$ donc $T_n - 20 \geqslant 0$.
+
+Donc $\forall n \in \N$, $T_{n+1}-T_n \leqslant0$. La suite $(T_n)_{n\in \N}$ est donc décroissante.
+		\item La suite $(T_n)_{n\in \N}$ est donc décroissante et minorée par 20. Donc d'après le théorème de convergence monotone, la suite $(T_n)_{n\in \N}$ converge vers une limite finie supérieure ou égale à 20.
+	\end{enumerate}
+	\item On note $\forall n \in \N$, $u_n=T_n-20$.
+	\begin{enumerate}
+		\item $\forall n\in \N$, $\begin{gathered}u_{n+1}=T_{n+1}-20=0,955\times T_n+0,9-20=0,955~T_n-19,1=0,955\left(T_n-\dfrac{19,1}{0,955}\right)\\=0,955(T_n-20)=0,955~u_n\end{gathered}$.
+
+		Donc $\forall n\in \N$, $u_{n+1}=0,955u_n$ donc la suite $\left(u_n\right)$  est géométrique de raison 0,955 et de premier terme $u_0=T_0-20=160$.
+		\item $\forall n\in \N$, $u_n=u_0 \times q^n=160 \times 0,955^n$.
+	
+	De plus  $\forall n\in \N$, $u_n=T_n-20$ donc $T_n=u_n+20=160\times 0,955^n+20$.
+		\item $\displaystyle\lim\limits_{n \rightarrow +\infty} 0,955^n=0$ car $0,955\in ]-1~;~1[$. Donc $\displaystyle\lim\limits_{n \rightarrow +\infty} T_n=20$.
+		\item $\begin{gathered}T_n\leqslant 120 \iff 160\times 0,955^n+20\leqslant 120 \iff 160\times 0,955^n \leqslant 120-20 \iff 160\times 0,955^n \leqslant 100 \\
+		\iff 0,955^n \leqslant \dfrac{100}{160} \iff 0,955^n \leqslant \dfrac58\end{gathered}$.
+
+		Sachant que la fonction $f:x\mapsto \ln(x)$ est strictement croissante sur $]0~;~+\infty[$, on obtient :
+
+$\ln\left(0,955^n\right)\leqslant \ln\left(\dfrac58\right) \iff  n \times \ln(0,955) \leqslant \ln\left(\dfrac58\right)$. Or $\ln(0,955)<0$ donc,
+
+$n\geqslant \dfrac{\ln\left(\dfrac58\right)}{\ln(0,955)}$. À la calculatrice, $\dfrac{\ln\left(\dfrac58\right)}{\ln(0,955)} \approx 10,21$ donc $n\geqslant 11$.
+	\end{enumerate}
+\item 
+\begin{enumerate}
+	\item Lorsque le gâteau est sorti du four, il va céder son énergie (sa chaleur) à l'extérieur (environnement ambiant). Sa masse étant très faible par rapport à celle de l'extérieur, il va diminuer sa température pour atteindre celle de l'extérieur, soit $20 \degres$ C.
+	\item La fonction Python décrite est un algorithme de seuil : on cherche à partir de quand, la température devient inférieure ou égale au seuil fixé (ici l'argument de la fonction \textit{seuil()} qui est $x$). La valeur renvoyée sera le premier entier vérifiant $T_n\leqslant x$.
+
+\textit{temp}(120) fournira le premier nombre entier $n$ tel que $T_n\leqslant 120$, soit d'après la question précédente, $n=11$. Dans le contexte de l'exercice, il faudra donc 11 minutes avant que la température du plat soit inférieure ou égale à $120 \degres$ C
+\end{enumerate}
+\end{enumerate}
+\pagebreak

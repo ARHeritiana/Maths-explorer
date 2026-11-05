@@ -1,0 +1,253 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_11_sujet1_amsud_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{PARTIE A}
+
+\medskip
+
+On considère l'équation différentielle 
+$(E) : \quad y' +\dfrac14y = 20\e^{-\frac14 x},$
+
+d'inconnue $y$, fonction définie et dérivable sur l'intervalle $[0~;~ +\infty[$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+Soit $g$ la fonction  définie sur l'intervalle $[0~;~+\infty[$ par $g(x) = ax\e^{-\frac14 x}$.
+
+La fonction linéaire $u$ définie par $u(x) = - \dfrac14 x$ est dérivable sur $\R$ et sur cet intervalle $u'(x) = - \dfrac14$.
+
+La fonction composée $g(u(x)) = ax\e^{u(x)}$ est elle aussi dérivable sur $\R$ et sur cet intervalle, $g'(u) = a\e^{u(x)} + axu' \times \e^{u(x)} = a\e^{-\frac14 x} + ax \times \left(- \dfrac14 \right)\e^{-\frac14 x} = \e^{-\frac14 x}\left(a - \dfrac{ax}{4}\right)$.
+
+Or $g'(x) + \dfrac14g(x) = \e^{-\frac14 x}\left(a - \dfrac{ax}{4}\right) + \dfrac14 \times ax\e^{-\frac14 x} = \e^{-\frac14 x}\left(a - \dfrac{ax}{4} + \dfrac{ax}{4} \right) = a\e^{-\frac14 x}$.
+
+Donc $g$ est solution de l'équation différentielle sur $[0~;~ +\infty[$, si sur cet intervalle :
+
+$a\e^{-\frac14 x} = 20\e^{-\frac14 x} \iff a = 20$, car quel que soit $x$ réel, $\e^{-\frac14 x} \ne 0$.
+
+La fonction $g : x \longmapsto 20x \e^{-\frac14 x}$ définie sur l'intervalle $[0~;~ +\infty[$ est une solution particulière de l'équation $(E)$.
+
+\item On considère l'équation différentielle 
+$(E') : \quad y' +\dfrac14 y = 0,$
+
+d'inconnue $y$, fonction définie et dérivable sur l'intervalle $[0~;~ +\infty[$.
+
+
+L'équation $(E')$ peut s'écrire $y' = - \dfrac14y$ et on sait que les solutions de cette équation $(E')$ sont les fonctions $f$ définies par:
+
+$f(x) = K\e^{-\frac14 x}$, avec $K \in \R$.
+
+\item 
+Les solutions $f$ de l'équation $(E)$ sont telles que pour $x \in [0~;~+ \infty[$, 
+
+$f'(x) + \dfrac14f(x) = 20\e^{- \frac14 x}$ ou d'après la question 1. :
+
+$f'(x) + \dfrac14f(x) = g'(x) + \dfrac14g(x) \iff f'(x) - g'(x) = \dfrac14[f(x) - g(x)]$ soit par linéarité de la dérivation :
+
+$(f - g)'(x) + \dfrac14[(f - g ](x) = 0$ : ceci signifie que la fonction $f - g$ est solution de $(E')$ c'est-à)dire que 
+
+$f(x) - g(x) = K\e^{-\frac14 x} \iff f(x) = K\e^{-\frac14 x} + g(x)$ ou enfin 
+$f(x) = K\e^{-\frac14 x} + 20x\e^{-\frac14 x}\iff f(x) = (20x + K)\e^{-\frac14 x}$, avec $K \in \R$.
+
+Les solutions de $(E)$ sur l'intervalle $[0~;~ +\infty[$ sont donc les fonctions $f$ définies par:\\
+$f(x) = \e^{-\frac14 x}(20x + K)$, avec  $K \in \R$.
+
+\item 
+On a $f(0) = 8 \iff (20 \times 0 + K)\e^{0} = 8 \iff K = 8$, donc :
+
+$f(x) = (20x + 8)\e^{-\frac14 x} = 4\left (5x + 2\right )\e^{-\frac14 x}$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{PARTIE B}
+
+\medskip
+
+On considère la fonction $f$ définie sur $[0~;~ +\infty[$ par 
+$f(x) = (20x + 8)\e^{-\frac14 x}$.
+
+
+
+
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+
+
+La fonction $f$ est la fonction trouvée à la fin de la partie A : elle est donc dérivable et vérifie l'équation $(E)$, soit 
+
+$f'(x) + \dfrac14 f(x) = 20\e^{-\frac14 x}$ donc \\
+$f'(x) = 20\e^{-\frac14 x} - \dfrac14 \times 4(5x + 2)\e^{-\frac14 x} = \e^{-\frac14 x}(20 - 5x - 2) = (18 - 5x)\e^{-\frac14 x}$.
+
+		\item 
+		Comme quel que soit $x$, \, $\e^{-\frac14 x} > 0$, le signe de $f'(x)$ est celui de $18 - 5x$ :
+		
+$\bullet~$ $18 - 5x > 0 \iff \dfrac{18}{5} > x$ : sur l'intervalle $\left[0~;~\dfrac{18}{5}\right], \, f'(x) > 0$ : la fonction $f$ est croissante ;
+
+$\bullet~$ $18 - 5x < 0 \iff \dfrac{18}{5} < x$ : sur l'intervalle $\left[\dfrac{18}{5}~;~+ \infty\right], \, f'(x) < 0$ : la fonction $f$ est décroissante ;
+
+$f'\left(\dfrac{18}{5}\right) = 0$, donc $f\left(\dfrac{18}{5}\right)$ est le maximum de la fonction $f$ sur l'intervalle $[0~;~ +\infty[$.
+
+On a $f\left(\dfrac{18}{5}\right) = (72 + 8)\e^{-\frac14 \times \frac{18}{5}} = 80\e^{-\frac{9}{10}} \approx 32,53$.
+
+On a vu à la partie A que $f(0) = 8$, et on admet que $\displaystyle\lim_{x \to + \infty}f(x) = 0$. 
+
+D'où le tableau de variations :
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}
+\def\esp{\hspace*{2.5cm}}
+\def\hauteur{20pt}
+$\begin{array}{|c|*5{c}|}
+\hline
+x & 0  & \esp & \frac{18}{5} & \esp & +\infty \\ 
+\hline
+f'(x) &  &   \pmb{+} & \vline\hspace{-2.7pt}0 & \pmb{-} & \\ 
+\hline
+ & &  &   \Rnode{max}{80 \e^{-\frac{9}{10}}}  &  &   \\  
+f & &     &  &  &  \rule{0pt}{\hauteur} \\ 
+ & \Rnode{min1}{8} &   &  &  &   \Rnode{min2}{0} \rule{0pt}{\hauteur}    
+ \ncline{->}{min1}{max} 
+ \ncline{->}{max}{min2} 
+ \\ 
+\hline
+\end{array} $
+}
+\end{center}	
+
+	\end{enumerate}
+\item Dans cette question on s'intéresse à l'équation $f(x) = 8$.
+	\begin{enumerate}
+		\item 
+		On a $f(14) = 288\e^{-3,5} \approx 8,7$ et $f(15) = 300\e^{-3.75} \approx 7,2$.
+		
+Sur l'intervalle [14~;~15], la fonction $f$ est continue car dérivable sur $[0~;~+ \infty[$, donc sur [14~;~15] et elle est strictement décroissante; comme $8 \in [f(15)~;~f(14)]$, il existe d'après le corollaire du théorème des valeurs intermédiaires un réel unique $\alpha$ telle que $f(\alpha) = 8$.
+		\item On complète le tableau ci-dessous en faisant tourner étape par étape la fonction \texttt{solution\_equation} écrite en langage Python
+
+
+\begin{center}
+\begin{tabularx}{0.8\linewidth}{|c|c|*{4}{>{\centering \arraybackslash}X|}}
+\hline
+	$a$		&14		&14		&14,25	&14,375	&14,4375\\ \hline
+	$b$		&15		&14,5	&14,5	&14,5	&14,5\\ \hline
+	$b - a$	&1		&0,5	&0,25	&0,125	&0,0625\\ \hline
+	$m$		&14,5	&14,25	&14,375	&14,4375	&\cellcolor[gray]{0.5}\\ \hline
+\parbox{2cm}{\centering{}Condition\\ $f(m) > 8$} \rule[-12pt]{0pt}{30pt} &FAUX	&VRAI	&VRAI	&VRAI	&\cellcolor[gray]{0.5}\\ \hline
+\end{tabularx}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		\item 
+L'objectif de la fonction \texttt{solution\_equation} est de déterminer, par dichotomie, un encadrement d'amplitude $0,1$ de la solution de l'équation $f(x)=8$ dans l'intervalle [14\, ;\,15].
+	\end{enumerate}
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\end{document}

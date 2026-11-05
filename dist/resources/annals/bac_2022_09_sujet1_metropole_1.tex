@@ -1,0 +1,186 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_09_sujet1_metropole_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Cet exercice est un questionnaire à choix multiples.\\
+Pour chacune des questions suivantes, une seule des quatre réponses proposées est exacte. Une réponse fausse, une réponse multiple ou l'absence de réponse à une question ne rapporte ni n'enlève de point.\\
+Pour répondre, indiquer sur la copie le numéro de la question et la lettre de la réponse choisie. Aucune justification n'est demandée.}
+
+\medskip
+
+\begin{enumerate}
+\item On considère la fonction $g$ définie sur $\R$ par : 
+
+\[ g(x) = \dfrac{2\text{e}^x}{\text{e}^x +1}.\]
+
+\smallskip
+
+La courbe représentative de la fonction $ g$ admet pour asymptote en $+ \infty$ la droite d'équation :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{X X X X}
+\textbf{a.~} $x = 2$ ;&\textbf{b.~} $y = 2$ ;&\textbf{c.~} $y = 0$ ;&\textbf{d.~} $x = - 1$\\
+\end{tabularx}
+\end{center}
+\item ~
+
+\begin{minipage}{0.38\linewidth}
+On considère une fonction $f$ définie et deux fois dérivable sur $\R$.
+
+On appelle $\mathcal{C}$ sa représentation graphique.
+
+On désigne par $f''$ la dérivée seconde de $f$.
+
+On a représenté sur le graphique ci-contre la courbe de $f''$, notée 
+$\mathcal{C}''$.
+\end{minipage}\hfill
+\begin{minipage}{0.58\linewidth}
+\begin{center}
+\psset{unit=0.8cm,arrowsize=2pt 3}
+\begin{pspicture*}(-7,-6.02)(3.02,4)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.15pt]
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10]{->}(0,0)(-7,-6)(3,4)
+\multido{\n=-1+1}{4}{\uput[d](\n,0){\small \n}}
+\uput[l](0,1){1}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-7}{2.25}{x 1 add 2.71828 x exp mul x 2 sub mul}
+\uput[ul](-5,0.25){\red $\mathcal{C}''$}
+\end{pspicture*}
+\end{center}
+\end{minipage}
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~} $\mathcal{C}$ admet un unique point d'inflexion ; &\textbf{b.~} $f$ est convexe sur l'intervalle $[- 1~;~2 ]$ ; \\
+\textbf{c.~} $f$ est convexe sur $]- \infty~;~- 1$] et sur $[2~;~+ \infty[$ ;&\textbf{d.~} $f$ est convexe sur $\R$.\\
+\end{tabularx}
+\end{center}
+
+\item On donne la suite $\left(u_n\right)$ définie par : $u_0 = 0$ et pour tout entier naturel $n,\: u_{n+1} = \dfrac12 u_n + 1$.
+
+La suite $\left(v_n\right)$, définie pour tout entier naturel $n$ par $v_n = u_n  - 2$, est :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~} arithmétique de raison $- 2$ ;&\textbf{b.~} géométrique de raison $- 2$ ;\\
+\textbf{c.~} arithmétique de raison 1 ;&\textbf{d.~}géométrique de raison  $\dfrac12$.\\
+\end{tabularx}
+\end{center}
+
+\item  On considère une suite $\left(u_n\right)$ telle que, pour tout entier naturel, on a :
+
+\[1  + \left(\dfrac14\right)^n \leqslant u_n \leqslant 2 - \dfrac{n}{n+1}\]
+
+On peut affirmer que la suite $\left(u_n\right)$ :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~} converge vers 2 ; &\textbf{b.~} converge vers 1 ;\\
+\textbf{c.~} diverge vers $+ \infty$ ;&\textbf{d.~} n'a pas de limite.\\
+\end{tabularx}
+\end{center}
+
+\item Soit $f$ la fonction définie sur $]0~;~+\infty[$ par $f(x) = x^2 \ln x$. 
+
+Une primitive $F$ de $f$ sur $]0~;~+\infty[$ est définie par :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~} $F(x) = \dfrac13 x^3 \left(\ln x - \dfrac13 \right)$ ;&\textbf{b.~} $F(x) = \dfrac13 x^3 (\ln x - 1)$ ;\\[8pt]
+\textbf{c.~} $F(x) = \dfrac13 x^2$ ;&\textbf{d.~} $F(x) = \dfrac13 x^2 (\ln x - 1)$.\\
+\end{tabularx}
+\end{center}
+
+\item Pour tout réel $x$, l'expression $2 + \dfrac{3\text{e}^{-x} - 5}{\text{e}^{-x} + 1}$ est égale à : 
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~} $\dfrac{5 - 3\text{e}^x}{1 + \text{e}^x}$ ;&\textbf{b.~} $\dfrac{5 + 3\text{e}^x}{1 - \text{e}^x}$ ;\\[8pt]
+\textbf{c.~} $\dfrac{5 + 3\text{e}^x}{1 + \text{e}^x}$ ;&\textbf{d.~} $\dfrac{5 - 3\text{e}^x}{1 - \text{e}^x}$.
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

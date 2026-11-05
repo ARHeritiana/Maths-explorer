@@ -1,0 +1,44 @@
+\subsection*{1.}
+
+Prendre 150 \% de quelque chose, c'est le multiplier par \(\dfrac{150}{100} = 1{,}5\).
+
+Donc :
+\begin{align*}
+&u_1 = 2, \\
+&u_2 = 2 \times 1{,}5 = 3, \\
+&u_3 = 3 \times 1{,}5 = 4{,}5, \\
+&u_4 = 4{,}5 \times 1{,}5 = 6{,}75.
+\end{align*}
+
+\subsection*{2.}
+
+On a vu que, quel que soit \(n \in \mathbb{N}, n \geqslant 1\), \(u_{n+1} = 1{,}5 u_n\).
+  
+Cette relation montre que la suite \((u_n)\) est géométrique de raison \(q = 1{,}5\), de premier terme \(u_1 = 2\).
+
+\subsection*{3.}
+
+On sait que, pour \(n \in \mathbb{N}, n \geqslant 1\), \(u_n = u_1 \times q^{n-1}\), soit \(u_n = 2 \times 1{,}5^{n-1}\).
+
+\subsection*{4.}
+
+\begin{lstlisting}[style=python]
+	i = 1
+	u = 2
+	longueur = 2
+	while longueur < 1000 :
+		i = i + 1
+		u = 1.5 * u
+		longueur = longueur + u
+	print(i)
+\end{lstlisting}
+
+Il faut calculer : \(L = u_1 + u_2 + \dots + u_{14} (1)\).  
+
+Or : \(1{,}5 L = u_2 + u_3 + \dots + u_{15} (2)\),
+
+et par différence : \(0{,}5 L = u_{15} - u_1\),
+
+d'où : \(L = 2(u_{15} - u_1) = 2(2 \times 1{,}5^{14} - 2) \approx 1163{,}7\) (mm),
+
+soit effectivement environ 1{,}164 m au mm près.

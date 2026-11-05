@@ -1,0 +1,160 @@
+\medskip
+
+
+
+
+
+
+L'espace est rapporté à un repère orthonormé \Oijk.
+
+\medskip
+
+\begin{list}{\textbullet}{On considère:}
+\item les points A$(-1~;~-2~;~3)$, B$(1~;~-2~;~7)$ et C$(1~;~0~;~2)$;
+\item la droite $\Delta$ de représentation paramétrique : \quad $\left\{\begin{array}{l}x=1-t \\ y=2 \\ z=-4+3 t\end{array}\right.$, où $t \in \R$;
+\item le plan $\mathcal{P}$ d'équation cartésienne :\quad $3 x+2 y+z-4=0$;
+\item le plan $\mathcal{Q}$ d'équation cartésienne : \quad $-6 x-4 y-2 z+7=0$.
+\end{list}
+
+\begin{enumerate}[itemsep=5mm]
+	\item Lequel des points suivants appartient au plan $\mathcal{P}$ ?
+
+	\begin{tabularx}{\linewidth}{*{4}{>{\bfseries}p{5mm}@{}X}}
+		a.& $R(1~;~-3~;~1)$;&
+		b.& $S(1~;~2~;~-1)$;&
+		c.& $T(1~;~0~;~1)$;&
+		d.& $U(2~;~-1~;~1)$.\\
+	\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+$3x_{\text T} +2y_{\text T} +z_{\text T}-4
+= 3+0+1-4=0$ donc $\text T \in \mathcal{P}$
+\hfill\textbf{Réponse c.}
+\end{tabular}
+
+
+
+	\item Le triangle ABC est :
+
+	\begin{tabularx}{\linewidth}{*{2}{>{\bfseries}p{5mm}@{}X}}
+		a.& équilatéral ;&
+		b.& rectangle isocèle ;\\
+		c.& isocèle non rectangle ;&
+		d.& rectangle non isocèle.\\
+	\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+Les vecteurs $\vectt{AB}$ et $\vectt{AC}$ ont respectivement pour coordonnées
+$\begin{pmatrix}
+2\\0\\4
+\end{pmatrix}$
+et
+$\begin{pmatrix}
+2\\2\\-1
+\end{pmatrix}$.
+
+Donc $\vectt{AB}\cdot\vectt{AC} = 2\times 2+0\times 2+4\times (-1)=0$ donc $\vectt{AB}\perp \vectt{AC}$ donc ABC est rectangle en A.
+
+$\text{AB}^2=2^2+0^2+4^2=20$ et $\text{AC}^2=2^2+2^2+(-1)^2=9$, donc $\text{AB}\neq \text{AC}$
+
+Le triangle ABC n'est pas isocèle.
+\hfill\textbf{Réponse d.}
+\end{tabular}
+
+\medskip
+
+	\item La droite $\Delta$ est :
+
+	\begin{tabularx}{\linewidth}{*{2}{>{\bfseries}p{5mm}@{}X}}
+		a.& orthogonale au plan $\mathcal{P}$ ;&
+		b.& sécante au plan $\mathcal{P}$ ;\\
+		c.& incluse dans le plan $\mathcal{P}$ ;&
+		d.& strictement parallèle au plan $\mathcal{P}$.\\
+	\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+La droite $\Delta$ a pour vecteur directeur
+$\vect v
+\begin{pmatrix}
+-1\\0\\3
+\end{pmatrix}$,
+et le plan $\mathcal{P}$ a pour vecteur normal
+$\vect n
+\begin{pmatrix}
+3\\2\\1
+\end{pmatrix}$.
+
+$\vect v\cdot \vect n = -1\times 3 +0\times 2+3\times 1 = 0$ donc $\vect v\perp \vect n$, et donc $\Delta$ est parallèle à $\mathcal{P}$.
+
+Le point H de coordonnées $(1\;;\;2\;;\;-4)$ appartient à $\Delta$.
+
+$3x_{\text H} +2y_{\text H} +z_{\text H}-4 
+=3\times 1 + 2\times 2 -4-4=-1\neq 0$ donc $\text H \notin\mathcal{P}$.
+
+La droite $\Delta$ n'est pas incluse dans le plan $\mathcal{P}$.
+\hfill\textbf{Réponse d.}
+\end{tabular}
+
+\medskip
+
+	\item On donne le produit scalaire $\vect{\mathrm{BA}} \cdot \vect{\mathrm{BC}}=20$.
+
+	Une mesure au degré près de l'angle $\widehat{\mathrm{ABC}}$ est :
+
+	\begin{tabularx}{\linewidth}{*{4}{>{\bfseries}p{5mm}@{}X}}
+		a.& $34^{\circ}$;&
+		b.& $120^{\circ}$;&
+		c.& $90^{\circ}$;&
+		d.& $0^{\circ}$.\\
+	\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+Le triangle ABC est rectangle en A donc l'angle $\widehat{\mathrm{ABC}}$ est un angle aigu. 
+\hfill\textbf{Réponse a.}
+\end{tabular}
+
+\medskip
+
+	\item L'intersection des plans $\mathcal{P}$ et $\mathcal{Q}$ est :
+
+	\begin{tabularx}{\linewidth}{*{2}{>{\bfseries}p{5mm}@{}X}}
+		a.& un plan ;&
+		b.& l'ensemble vide ;   \\
+		c.& une droite ;&
+		d.& réduite à un point.\\
+	\end{tabularx}
+	
+\medskip
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+Le plan $\mathcal{P}$ a pour vecteur normal
+$\vect n
+\begin{pmatrix}
+3\\2\\1
+\end{pmatrix}$
+et le plan $\mathcal{Q}$ a pour vecteur normal
+$\vect{n'}
+\begin{pmatrix}
+-6\\-4\\-2
+\end{pmatrix}$.
+$\vect{n'}=-2\vect n$ donc les plans sont parallèles.
+
+Le point T appartient à $\mathcal{P}$.
+
+$-6x_{\text T} -4y_{\text T} -2z_{\text T} +7
+= -6\times 1 -4\times 0 -2\times 1+7
+=-1\neq 0$ donc $\text T \notin \mathcal{Q}$
+
+Les deux plans sont donc strictement parallèles.
+\hfill\textbf{Réponse b.}
+\end{tabular}
+
+\end{enumerate}

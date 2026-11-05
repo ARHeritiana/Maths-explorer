@@ -1,0 +1,56 @@
+\medskip
+
+Un fermier souhaite réaliser un enclos rectangulaire pour des poules et des poussins, adossé à un mur de sa ferme afin d'économiser du grillage. Ainsi, il ne grillagera que 3 côtés de son enclos.
+
+Il possède $28$~mètres de grillage. Il souhaite construire un enclos d'aire maximale.
+
+On appelle $x$ la longueur du côté de l'enclos perpendiculaire au mur.
+
+\begin{center}
+\begin{pspicture}(7,3)
+\psline(0,0)(5,0)\psline(1,1.2)(6,1.2)\psline(0,0)(1,1.2)\psline(5,0)(6,1.2)
+\psline(0,0)(0,0.6)\psline(1,1.2)(1,1.8)\psline(5,0)(5,0.6)\psline(6,1.2)(6,1.8)
+\psframe[fillstyle=crosshatch](5,0.6)\psline(0,0.6)(1,1.8)\psline(5,0.6)(6,1.8)
+\psframe(0,1.2)(7,2.1)\pspolygon[fillstyle=crosshatch](0,0)(0,0.6)(1,1.8)(1,1.2)
+\pspolygon[fillstyle=crosshatch](5,0)(5,0.6)(6,1.8)(6,1.2)
+\psline[linestyle=dashed] {<->}(5.6,0)(6.5,1.2)
+\uput[r](6,0.7){$x$}
+\end{pspicture}
+\end{center}
+
+On appelle $\mathcal{A}$ la fonction qui à un nombre $x$ associe $\mathcal{A}(x)$ l'aire de l'enclos. La fonction $\mathcal{A}$ est ainsi définie sur 
+l'intervalle $[0~;~14]$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+\begin{enumerate}
+\item Vérifier que l'aire $\mathcal{A}(x)=-2x^2+28x$.
+\item Montrer que la forme canonique de $\mathcal{A}(x)$ est $-2(x-7)^2+98$.
+
+\end{enumerate}
+\item Quatre courbes ont été tracées sur le graphique ci-dessous. Identifier celle qui représente la fonction $\mathcal{A}$.
+
+\begin{center}
+\psset{xunit=0.1cm,yunit=0.05cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-1,-2)(120,200)
+\multido{\n=0+10}{12}{\psline[linewidth=0.75pt,linecolor=lightgray](\n,0)(\n,190)}
+\multido{\n=0+2}{58}{\psline[linewidth=0.5pt,linecolor=lightgray](\n,0)(\n,190)}
+\multido{\n=0+20}{10}{\psline[linewidth=0.75pt,linecolor=lightgray](0,\n)(114,\n)}
+\multido{\n=0+4}{48}{\psline[linewidth=0.5pt,linecolor=lightgray](0,\n)(114,\n)}
+ \psaxes[linewidth=0.95pt,Dx=10,Dy=20,]{->}(0,0)(114,195)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{14}{x x mul  2 neg mul x 28 mul add}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{14}{ x x mul  2 neg mul x 28 mul add neg 196 add}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{56}{84}{ x 56 sub x 84 sub  mul 0.5 neg mul}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{84.5}{111.5}{x 98 sub 2  exp 7 add}
+\uput[r](12,54){\blue $\mathcal{C}_2$}\uput[r](12,154){\blue $\mathcal{C}_1$}\uput[r](52,34){\blue $\mathcal{C}_3$}\uput[r](104.5,54){\blue $\mathcal{C}_4$}
+\uput[dl](0,0){O}
+\end{pspicture}
+\end{center}
+
+\item Dresser le tableau de variation de la fonction $\mathcal{A}$.
+\item Pour quelle valeur de $x$ l'aire de l'enclos est-elle maximale ? Donner la valeur de cette aire.
+\end{enumerate}
+
+\vspace{0.75cm}

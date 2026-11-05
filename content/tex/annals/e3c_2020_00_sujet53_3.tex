@@ -1,0 +1,36 @@
+\medskip
+
+L'évolution d'une population de bactéries dépend de l'environnement dans lequel ces bactéries sont placées. Cette population peut être modélisée par la suite $(P_n)$ définie, pour tout entier naturel $n$, par : $P_{n+1}= (1+\alpha)P_n+\beta$, où $\alpha$ et $\beta$ sont des paramètres liés à l'environnement, notamment à la température et à l'humidité.
+
+$P_n$ modélise alors le nombre de bactéries, en milliers, qui composent cette population $n$ jours après les avoir introduites dans un certain environnement.
+
+\medskip
+
+\begin{enumerate}
+\item  Une population, initialement composée de 500 mille bactéries, est étudiée dans un
+environnement pour lequel $\alpha=0,2$ et $\beta=70$.
+\begin{enumerate}
+\item  Combien y a-t-il de bactéries dans cet environnement au bout de deux jours ?
+\item Recopier et compléter le programme suivant, écrit en langage Python, pour que la
+fonction Nombrebacteries renvoie le nombre de bactéries présentes dans cet environnement au bout de N jours.
+
+\begin{center}
+\begin{tabular}[]{|l}
+def Nombrebacteries(N):\\
+	p=500\\
+	for i in range(0,N):\\
+	\phantom{xxx}		P = $\dots$\\
+	return $\dots$\\
+\end{tabular}
+\end{center}
+\end{enumerate}
+\item Une autre population, initialement composée de $500$ mille bactéries, est étudiée dans un
+nouvel environnement. On constate que le nombre de bactéries de cette population augmente de 9\,\% par jour.
+	\begin{enumerate}
+		\item Déterminer les valeurs des paramètres $\alpha$ et $\beta$ pour cet environnement.
+		\item Quelle est, dans ce cas, la nature de la suite $\left(P_n\right)$ ?
+		\item Justifier qu'après 9 jours dans cet environnement, le nombre de bactéries de cette population
+a doublé.
+	\end{enumerate}
+\end{enumerate}
+\vspace{0,5cm}

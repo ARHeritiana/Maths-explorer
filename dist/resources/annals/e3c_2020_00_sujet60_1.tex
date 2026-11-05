@@ -1,0 +1,210 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet60_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Cet exercice est un QCM en 5 questions. Pour chacune des questions, une seule des quatre réponses proposées est correcte. Les questions sont \textbf{indépendantes}.
+
+Pour chaque question, indiquer le numéro de la question et recopier sur la copie la lettre correspondante à la réponse choisie. Aucune justification n'est demandée, cependant des traces de recherche au brouillon peuvent aider à trouver la bonne réponse.
+Chaque réponse correcte rapporte 1 point. Une réponse incorrecte ou une question sans réponse n'apporte, ni ne retire de point.
+
+\medskip
+
+\textbf{Question 1}
+
+Dans le repère orthogonal suivant on a tracé quatre courbes, chacune associée à une
+fonction de variable réelle $x$ et d'expression $\text{e}^{\lambda x}$ où $\lambda$ est un paramètre réel.
+
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture*}(-3.1,-0.25)(3,5)
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10]{->}(0,0)(-3,-0)(3,5)
+\psplot[plotpoints=2000,linewidth=1.25pt]{-3}{3}{2.71828 x 1.8 div neg exp}\uput[l](-2.5,4){\small$\mathcal{C}_f$}
+\psplot[plotpoints=2000,linewidth=1.25pt]{-3}{3}{2.71828  x 1.1 div neg exp}\uput[l](-1.6,4){\small$\mathcal{C}_g$}
+\psplot[plotpoints=2000,linewidth=1.25pt]{-3}{3}{2.71828 2 x mul exp}\uput[l](0.7,4){\small$\mathcal{C}_h$}
+\psplot[plotpoints=2000,linewidth=1.25pt]{-3}{3}{2.71828  x   exp}\uput[r](1.4,4){\small$\mathcal{C}_k$}
+\end{pspicture*}
+\end{center}
+
+Quelle courbe possède le plus petit paramètre $\lambda$ ? 
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+\textbf{a.~~}$\mathcal{C}_f$&\textbf{b.~~}$\mathcal{C}_g$&\textbf{c.~~}$\mathcal{C}_h$&\textbf{d.~~}$\mathcal{C}_k$\\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 2}
+
+On choisit au hasard un couple ayant deux enfants et on note $X$ la variable aléatoire égale au nombre de filles du couple. On admet que la probabilité qu'un enfant soit une fille est égale à 0,5 et qu'il y a indépendance du sexe de l'enfant entre deux naissances.
+
+Déterminer $P(X \geqslant 1)$.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+\textbf{a.~~} 0,25&\textbf{b.~~} 0,5&\textbf{c.~~} $\dfrac{1}{3}$&\textbf{d.~~} 0,75\rule[-3mm]{0mm}{9mm}\\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 3}
+
+\medskip
+
+On a représenté ci-dessous la courbe $\mathcal{C}$ de la fonction sinus dans un repère orthogonal.
+
+\begin{center}
+\psset{trigLabels,labelFontSize=\scriptstyle,xunit=0.75cm}
+\begin{pspicture*}(-4.8,-1.25)(14,1.25)
+\psgrid[gridlabels=0pt,subgriddiv=1,xunit=\psPiH,gridwidth=0.15pt]
+\psaxes[dx=\psPiH,linewidth=1.25pt,trigLabelBase=2](0,0)(-4.8,-1.25)(14,1.25)
+\psplot[xunit=0.75cm,plotpoints=2000,linewidth=1.25pt]{-4.8}{14}{x RadtoDeg sin}
+\psline[linewidth=0.2pt](-4.8,0.4)(14,0.4)
+\psdots(-3.55,0.4)(0.42,0.4)(2.7,0.4)(6.675,0.4)(13.,0.4)
+\uput[ur](-3.55,0.4){$A_1$}\uput[ul](0.42,0.4){$A_0$}
+\uput[ur](2.7,0.4){$A_2$}\uput[ul](6.675,0.4){$A_3$}
+\uput[ul](13,0.4){$A_4$}
+\uput[dr](11.5,-.8){$\mathcal{C}$}
+\end{pspicture*}
+\end{center}
+
+$A_0,\, A_1,\, A_2,\, A_3$ et $A_4$ sont des points de $\mathcal{C}$ et ils ont tous la même ordonnée. 
+
+Parmi les segments suivants, lequel a pour longueur la période de la fonction sinus ?
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+\textbf{a.~~}$\left[A_0~;~A_1 \right]$&\textbf{b.~~}$\left[A_0~;~A_2 \right]$&\textbf{c.~~}$\left[A_0~;~A_3 \right]$&\textbf{d.~~}$\left[A_0~;~A_4 \right]$\\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 4}
+
+\medskip
+
+Soit la fonction $f$ définie sur $\R$ par $f(x) = 0,5x^2 - 2x + 1$.
+
+On considère l'équation $f(x) = 0$, d'inconnue $x \in \R$.
+
+ L'ensemble des solutions de cette équation est:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+\textbf{a.~~}$\emptyset$&\textbf{b.~~}$\left\{2 - \sqrt{2}~;~2 + \sqrt{2}\right\}$&\textbf{c.~~}$\left\{2 - \sqrt{6}~;~2 + \sqrt{6}\right\}$&\textbf{d.~~}$\left\{4 - 2\sqrt{2}~;~4 + 2\sqrt{2}\right\}$\rule[-3mm]{0mm}{9mm}\\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 5}
+
+\medskip
+
+ABC est un triangle tel que: AB = 5, BC = 2, $\widehat{\text{ABC}} = 60\degres$. 
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-6,-0.5)(0.5,2)
+\pspolygon(0,0)(2;120)(5;180)
+\psarc(0,0){0.4}{120}{180}
+\uput[r](0,0){B}\uput[u](2;120){C}\uput[l](5;180){A}
+\end{pspicture}
+\end{center}
+
+La longueur AC est égale à :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+\textbf{a.~~}$\sqrt{19}$ &\textbf{b.~~}$\sqrt{21}$ & \textbf{c.~~}$\sqrt{28}$ &\textbf{d.~~}$\sqrt{29}$\rule[-3mm]{0mm}{9mm}\\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\end{document}

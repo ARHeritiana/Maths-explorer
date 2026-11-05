@@ -1,0 +1,145 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet42_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Partie A}
+
+Le discriminant de \( P(x) = -10x^2 - 40x + 120 \) est donné par :
+\[
+\Delta = (-40)^2 - 4 \times (-10) \times 120 = 1600 + 4800 = 6400 = 80^2.
+\]
+Ce polynôme a deux racines réelles distinctes :
+\[
+x_1 = \frac{40 - 80}{-20} = 2 \quad \text{et} \quad x_2 = \frac{40 + 80}{-20} = -6.
+\]
+
+\( P(x) = 0 \) pour \( x = -6 \) et \( x = 2 \).
+
+Le coefficient du terme en \( x^2 \) est négatif, ce qui indique que \( P(x) < 0 \) sauf sur l'intervalle \( ]-6\,;\,2[ \) où \( P(x) > 0 \).
+
+\subsection*{Partie B}
+
+L'aire du rectangle ABDE est donnée par :
+\begin{align*}
+\mathcal{A}_{ABDE} &= AB \times AE \\
+&= (8 - x)\left( \dfrac{10x + 4}{x + 2} - 0 \right) \\
+&= \dfrac{(8 - x)(10x + 4)}{x + 2}
+\end{align*}
+
+\paragraph{1.} Lorsque \( x = 0 \) :
+\[
+\mathcal{A}_{ABDE} = \dfrac{(8 - 0)(10 \times 0 + 4)}{0 + 2} = \frac{32}{2} = 16,
+\]
+donc de 16 unités d'aire.
+
+\paragraph{2.} Lorsque \( x = 4 \) :
+\[
+\mathcal{A}_{ABDE} = \dfrac{(8 - 4)(10 \times 4 + 4)}{4 + 2} = \frac{176}{6} \approx 29{,}33,
+\]
+donc environ de 29{,}33 unités d'aire.
+
+\paragraph{3.}
+
+\begin{align*}
+f'(x) &= \frac{(-20x + 76)(x + 2) - (-10x^2 + 76x + 32) \times 1}{(x + 2)^2} \\
+&= \frac{-20x^2 + 36x + 152 - (-10x^2 + 76x + 32)}{(x + 2)^2} \\
+&= \frac{-10x^2 - 40x + 120}{(x + 2)^2}.
+\end{align*}
+On déduit de la partie A :
+\begin{center}
+\begin{tikzpicture}
+\tkzTabInit[lgt=4, espcl=3.5]{$x$ / 1, {$(x + 2)^2$} / 1, {$-10x^2 - 40x + 120$} / 1, {Signe de $f'(x)$} / 1, {$f$} / 2}{${0}$, ${2}$, ${8}$}
+\tkzTabLine{,+,,+,}
+\tkzTabLine{,+,0,-,}
+\tkzTabLine{,+,0,-,}
+\tkzTabVar{-/{$$},+/{$36$},-/{$$}}{/}
+\end{tikzpicture}
+\end{center}
+\begin{align*}
+f(2) &= \frac{-10 \times 2^2 + 76 \times 2 + 32}{2 + 2} \\
+&= \frac{-40 + 152 + 32}{4} \\
+&= \frac{144}{4} \\
+&= 36.
+\end{align*}
+\( f(x) \) atteint son maximum pour \( x = 2 \), avec une aire maximale de \( f(2) = 36 \) unités d'aire.
+
+\end{document}

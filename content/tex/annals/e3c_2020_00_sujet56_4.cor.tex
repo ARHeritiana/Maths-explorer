@@ -1,0 +1,46 @@
+\subsection*{1.}
+
+L'augmentation en pourcentage de 2016 à 2017 est égale à :
+\[
+\dfrac{13{,}7 - 12}{12} \times 100 = \dfrac{1{,}7}{12} \times 100 \approx 14{,}17 \, \%.
+\]
+
+\subsection*{2.}
+
+De 2016 à 2019, le taux d'évolution a été de : \(\dfrac{18{,}2}{12} \approx 1{,}51667\).
+
+Si \( t \) est le taux moyen sur ces trois ans, on a \( t^3 = 1{,}51667 \).
+
+La calculatrice donne \( t \approx 1{,}14894 \), soit une augmentation moyenne annuelle de 14,89 \% au centième près.
+
+\subsection*{3.}
+
+Augmenter de 15 \% revient à multiplier par \( 1 + \dfrac{15}{100} = 1 + 0{,}15 = 1{,}15 \).
+
+Si \( u_n \) désigne le nombre d'abonnés l'année \( 2016 + n \), on a donc avec \( u_0 = 12 \), quel que soit \( n \in \mathbb{N} \), \( u_{n+1} = 1{,}15 u_n \) : ceci montre que la suite \( (u_n) \) est une suite géométrique de raison \(q = 1,15\) et de premier terme \( u_0 = 12 \).
+
+\subsection*{4.}
+
+On sait que, quel que soit \( n \in \mathbb{N} \), \( u_n = 12 \times 1{,}15^n \).
+
+2020 correspond à \( n = 4 \), d'où :
+\[
+u_4 = 12 \times 1{,}15^4 \approx 20{,}988,
+\]
+soit \(20{,}99\) au centième près.
+
+\subsection*{5.}
+
+\begin{center}
+\begin{lstlisting}[style=python]
+def Seuil() :
+    n = 2016
+    A = 12
+    while A < 40 :
+        A = A * 1.15
+        n = n + 1
+    return n
+\end{lstlisting}
+\end{center}
+
+\(\textit{Remarque : }\) En faisant tourner cet algorithme on constate qu'il s'arrête pour \( n = 9 \), soit en 2025.

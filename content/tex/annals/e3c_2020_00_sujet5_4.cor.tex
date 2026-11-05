@@ -1,0 +1,49 @@
+\subsection*{1.}
+	
+	
+	\begin{itemize}
+		\item \(u_0 = \dfrac{2}{1} = 2\);
+		\item \(u_1 = \dfrac{3}{2} = 1,5\);
+		\item \(u_2 = \dfrac{4}{3}\);
+		\item \(u_{99} = \dfrac{101}{100} = 1,01\).
+	\end{itemize}
+	
+	\subsection*{2.}
+	
+	\subsubsection*{a.}
+	
+
+	Quel que soit \(n \in \mathbb{N}\),
+	
+	\[ u_n - 1 = \dfrac{n+2}{n+1} - 1 = \dfrac{n+2}{n+1} - \dfrac{n+1}{n+1} = \dfrac{n+2 - n - 1}{n+1} = \dfrac{1}{n+1} \]
+	
+	\subsubsection*{b.}
+	
+
+	
+	\[ u_{n+1} - u_n = \dfrac{n+3}{n+2} - \dfrac{n+2}{n+1} \]
+	
+	\[ = \dfrac{(n+3)(n+1) - (n+2)^2}{(n+1)(n+2)} \]
+	
+	\[ = \dfrac{n^2 + n + 3n + 3 - n^2 - 4n - 4}{(n+1)(n+2)} \]
+	
+	\[ = \dfrac{-1}{(n+1)(n+2)} \]
+	
+	\subsubsection*{c.}
+	
+
+	Comme \(n+1 > 1 > 0\) et de même \(n+2 > 2 > 0\), le signe de la différence est celui de \(-1\).\\
+	Conclusion : \(u_{n+1} - u_n < 0\) montre que la suite \((u_n)\) est décroissante à partir de \(n = 2\).
+	
+	\subsection*{3.}
+\begin{center}
+		\begin{minipage}{7cm}
+		\begin{verbatim}
+			Def seuil(a) :
+				n = 0
+				while (n+2) / (n+1) > a : 
+					n = n+1
+				return n 
+		\end{verbatim}
+	\end{minipage}
+\end{center}

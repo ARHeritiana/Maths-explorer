@@ -1,0 +1,275 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet1_etrangers_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Dans le repère orthonormal $\left(\mathrm{A};\vectt{AB},\vectt{AD},\vectt{AE}\right)$, on a :
+\[
+A(0~;~0~;~0),\quad B(1~;~0~;~0),\quad D(0~;~1~;~0),\quad E(0~;~0~;~1).
+\]
+
+\begin{enumerate}
+	\item Comme I est le milieu de $[EF]$, J le milieu de $[EH]$ et K le milieu de $[AE]$, on obtient :
+	\[
+	I\left(\dfrac12~;~0~;~1\right),\qquad
+	J\left(0~;~\dfrac12~;~1\right),\qquad
+	K\left(0~;~0~;~\dfrac12\right).
+	\]
+
+	\item \begin{enumerate}
+		\item On a :
+		les vecteurs $\vectt{AI}$ et $\vectt{AJ}$ ont respectivement pour coordonnées :
+		\[
+		\begin{pmatrix}\dfrac12\\0\\1\end{pmatrix}
+		\quad\text{et}\quad
+		\begin{pmatrix}0\\\dfrac12\\1\end{pmatrix}.
+		\]
+		Donc :
+		\[
+		\vectt{AI}\cdot\vectt{AJ}
+		=\dfrac12\times 0+0\times\dfrac12+1\times 1=1.
+		\]
+
+		\item On a :
+		\[
+		\|\vectt{AI}\|=\sqrt{\left(\dfrac12\right)^2+1^2}=\dfrac{\sqrt5}{2}
+		\]
+		et, de même,
+		\[
+		\|\vectt{AJ}\|=\dfrac{\sqrt5}{2}.
+		\]
+		Ainsi :
+		\[
+		\cos\left(\widehat{\mathrm{IAJ}}\right)
+		=\dfrac{\vectt{AI}\cdot\vectt{AJ}}{\|\vectt{AI}\|\times \|\vectt{AJ}\|}
+		=\dfrac{1}{\frac{\sqrt5}{2}\times \frac{\sqrt5}{2}}
+		=\dfrac45.
+		\]
+		Donc :
+		\[
+		\widehat{\mathrm{IAJ}}\approx 36,9^\circ.
+		\]
+	\end{enumerate}
+
+	\item \begin{enumerate}
+		\item On a :
+		le vecteur $\vectt{KC}$ a pour coordonnées :
+		\[
+		\begin{pmatrix}1\\1\\-\dfrac12\end{pmatrix}.
+		\]
+		Or :
+		\[
+		\vectt{KC}\cdot\vectt{AI}
+		=1\times\dfrac12+1\times 0-\dfrac12\times 1=0
+		\]
+		et
+		\[
+		\vectt{KC}\cdot\vectt{AJ}
+		=1\times 0+1\times\dfrac12-\dfrac12\times 1=0.
+		\]
+		Le vecteur $\vectt{KC}$ est orthogonal à deux vecteurs non colinéaires du plan $(AIJ)$.
+		Il est donc normal au plan $(AIJ)$.
+
+		\item Comme le vecteur $\vectt{KC}$ a pour coordonnées $\begin{pmatrix}1\\1\\-\dfrac12\end{pmatrix}$ et est un vecteur normal au plan $(AIJ)$, une équation cartésienne de ce plan est de la forme :
+		\[
+		x+y-\dfrac12 z+d=0.
+		\]
+		Le point $A(0~;~0~;~0)$ appartient au plan, donc $d=0$.
+		Ainsi, une équation cartésienne du plan $(AIJ)$ est :
+		\[
+		x+y-\dfrac12 z=0.
+		\]
+	\end{enumerate}
+
+	\item \begin{enumerate}
+		\item Le point L est le projeté orthogonal de C sur le plan $(AIJ)$.
+		La droite perpendiculaire au plan passant par C a pour vecteur directeur $\vectt{KC}$.
+		Comme $C(1~;~1~;~0)$, une représentation paramétrique de cette droite est :
+		\[
+		\begin{cases}
+		x=1+t\\
+		y=1+t\\
+		z=-\dfrac12t
+		\end{cases}
+		\quad t\in\R.
+		\]
+		Le point L appartient aussi au plan $(AIJ)$, donc :
+		\[
+		(1+t)+(1+t)-\dfrac12\left(-\dfrac12t\right)=0.
+		\]
+		Ainsi :
+		\[
+		2+2t+\dfrac14t=0,
+		\]
+		d'où
+		\[
+		2+\dfrac94t=0
+		\quad\text{et donc}\quad
+		t=-\dfrac89.
+		\]
+		Par conséquent :
+		\[
+		L\left(1-\dfrac89~;~1-\dfrac89~;~-\dfrac12\times\left(-\dfrac89\right)\right),
+		\]
+		soit :
+		\[
+		L\left(\dfrac19~;~\dfrac19~;~\dfrac49\right).
+		\]
+
+		\item La distance du point C au plan $(AIJ)$ est la longueur $CL$.
+		On a :
+		le vecteur $\vectt{CL}$ a pour coordonnées :
+		\[
+		\begin{pmatrix}-\dfrac89\\-\dfrac89\\\dfrac49\end{pmatrix}.
+		\]
+		Donc :
+		\[
+		CL=\sqrt{\left(-\dfrac89\right)^2+\left(-\dfrac89\right)^2+\left(\dfrac49\right)^2}
+		=\sqrt{\dfrac{64}{81}+\dfrac{64}{81}+\dfrac{16}{81}}
+		=\sqrt{\dfrac{144}{81}}
+		=\dfrac43.
+		\]
+		La distance du point C au plan $(AIJ)$ est donc égale à $\dfrac43$.
+	\end{enumerate}
+
+	\item \begin{enumerate}
+		\item On a :
+		\[
+		I\left(\dfrac12~;~0~;~1\right)
+		\quad\text{et}\quad
+		M(1~;~m~;~1).
+		\]
+		Donc :
+		le vecteur $\vectt{IM}$ a pour coordonnées :
+		\[
+		\begin{pmatrix}\dfrac12\\m\\0\end{pmatrix}.
+		\]
+		Une représentation paramétrique de la droite $(IM)$ est donc :
+		\[
+		\begin{cases}
+		x=\dfrac12+\dfrac12s\\
+		y=ms\\
+		z=1
+		\end{cases}
+		\quad s\in\R.
+		\]
+
+		\item La droite $(KC)$ a pour représentation paramétrique :
+		\[
+		\begin{cases}
+		x=t\\
+		y=t\\
+		z=\dfrac12-\dfrac12t
+		\end{cases}
+		\quad t\in\R.
+		\]
+		Les droites $(IM)$ et $(KC)$ ne sont pas parallèles, car leurs vecteurs directeurs
+		$\begin{pmatrix}\dfrac12\\m\\0\end{pmatrix}$ et $\begin{pmatrix}1\\1\\-\dfrac12\end{pmatrix}$ ne peuvent pas être colinéaires.
+
+		Elles sont donc coplanaires si et seulement si elles sont sécantes.
+		Cherchons une éventuelle intersection. Il faut résoudre :
+		\[
+		\begin{cases}
+		\dfrac12+\dfrac12s=t\\
+		ms=t\\
+		1=\dfrac12-\dfrac12t.
+		\end{cases}
+		\]
+		La troisième équation donne $t=-1$.
+		La première donne alors :
+		\[
+		\dfrac12+\dfrac12s=-1,
+		\]
+		donc $s=-3$.
+		La deuxième équation devient :
+		\[
+		-3m=-1,
+		\]
+		donc :
+		\[
+		m=\dfrac13.
+		\]
+		Les droites $(IM)$ et $(KC)$ sont coplanaires uniquement lorsque $m=\dfrac13$.
+		On ne peut donc pas affirmer qu'elles sont coplanaires quelle que soit la valeur de $m$.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

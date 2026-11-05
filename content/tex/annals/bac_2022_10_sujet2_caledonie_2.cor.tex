@@ -1,0 +1,113 @@
+\textbf{Principaux domaines abordés :} fonctions, fonction logarithme.
+
+\medskip
+
+Soit $f$ la fonction définie sur l'intervalle $]0~;~+\infty[$ par :
+
+\[f(x) = x \ln (x) - x - 2.\]
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+		Somme de produits de fonctions dérivables sur $]0~;~+\infty[$, \: $f$ est dérivable et sur cet intervalle :
+		
+		$f'(x) = \ln x + x \times \dfrac1x - 1 = \ln x + 1 - 1 = \ln x$.
+		\item 
+On a $f(\text{e}) = \e \ln \e - \e - 2 = - 2$.
+
+De plus $f'(\e) = \ln \e = 1$.
+
+On sait que $M(x~;~y) \in (T) \iff y - (- 2) = 1(x - \e) \iff y = x - 2 - \e$.
+		\item 
+De $f'(x) = \ln x$, on en déduit que $f''(x) = \dfrac1x$.
+
+Comme $x > 0$, on a donc $f''(x) > 0$ sur $]0~;~+\infty[$ : la fonction $f$ est donc convexe sur cet intervalle.
+		\item 
+		Le résulta précédent montre que la courbe $\mathcal{C}_f$ est au dessus de la tangente $T$.
+	\end{enumerate}	
+\item 
+	\begin{enumerate}
+		\item 
+On sait que $\displaystyle\lim_{x \to 0} x \ln x = 0$, que $\displaystyle\lim_{x \to 0} x  = 0$, donc par somme de limites $\displaystyle\lim_{x \to 0} f(x) = - 2$
+		\item 
+On a pour tout réel $x \in ]0~;~+ \infty[$, on peut écrire :
+
+$f(x) = x\left[\ln (x) - 1\right] - 2$.
+
+Comme $\displaystyle\lim_{x \to + \infty} \ln x - 1 = + \infty$ et $\displaystyle\lim_{x \to + \infty} x = + \infty$, on a par produit de limites : $\displaystyle\lim_{x \to + \infty} f(x) = + \infty$.
+	\end{enumerate}
+\item 
+On a $f'(x) = \ln x$. On sait que :
+
+$\bullet~~$sur $]0~;~1[, \: \ln x < 0$ : donc $f$ décroit sur cet intervalle ;
+
+$\bullet~~$sur $]1~;~+\infty[, \: \ln x > 0$ : donc $f$ croit sur cet intervalle ;
+
+$\bullet~~$$f(1) = - 1 - 2 = - 3$ est donc le minimum de $f$ sur $]0~;~+ \infty[$.
+
+D'où le tableau de variations :
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(7,3)
+\psframe(7,3)\psline(0,2)(7,2)\psline(0,2.5)(7,2.5)\psline(1,0)(1,3)
+\psline(1.15,0)(1.15,2.5)\psline(1.2,0)(1.2,2.5)
+\uput[u](0.5,2.4){$x$}\uput[u](1.15,2.4){$0$}\uput[u](4,2.4){$1$}\uput[u](6.5,2.4){$+\infty$}
+\rput(0.5,2.25){$f'(x)$}\rput(2.5,2.25){$-$}\rput(4,2.25){0}\rput(5.5,2.25){$+$}
+\uput[d](1.4,2){$-2$}\uput[u](4,0){$-3$}\uput[d](6.5,2){$+ \infty$}
+\psline{->}(1.5,1.5)(3.5,0.5)\psline{->}(4.5,0.5)(6.5,1.5)
+\rput(0.5,1){$f$}
+\end{pspicture}
+
+\end{center}
+\item
+	\begin{enumerate}
+		\item 
+
+Le tableau de variations montre que sur l'intervalle $]1~;~+ \infty[$, $f$ est strictement croissante de $- 3$ à plus l'infini.
+
+$f$ étant continue car dérivable, le théorème des valeurs intermédiaires montre qu'il existe un réel unique $\alpha$ de $]1~;~+ \infty[$ tel que $f(\alpha) = 0$.
+		\item 
+		On a $f(4,3) \approx - 0,028$ et $f(4,4) \approx 0,119$.
+		
+D'après le même théorème ceci montre que $\alpha \in ]4,3~;~4,4[$.
+		\item 
+		Conclusion :
+		
+$\bullet~~$sur $]0~;~\alpha[, \: f(x) < 0$ ;
+
+$\bullet~~$sur $]\alpha~;~+ \infty[, \: f(x) > 0$ ;
+
+$\bullet~~$$f(\alpha) = 0$.
+	\end{enumerate}
+\item 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+La fonction \texttt{seuil(0.01)} renvoie la valeur 4,32.
+
+
+Ceci donne l'encadrement de $\alpha$ au centième près :
+$4,31 < \alpha < 4,32$.
+\end{enumerate}
+
+\bigskip

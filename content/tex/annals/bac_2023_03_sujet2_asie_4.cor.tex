@@ -1,0 +1,113 @@
+\medskip
+
+\emph{Pour chacune des cinq questions de cet exercice, une seule des quatre réponses proposées est exacte.\\Le candidat indiquera sur sa copie le numéro de la question et la réponse choisie.\\
+Aucune justification n'est demandée.\\
+Une réponse fausse, une réponse multiple ou l'absence de réponse à une question ne rapporte ni n'enlève de point.}
+
+\medskip
+
+
+
+
+
+\textbf{Question 1 :} Le nombre de termes de cette liste est : 673 : en effet,
+
+le $n$-ième terme de la liste est $7 + 3(n - 1)$ ; il faut donc résoudre l'équation :
+
+$\np{2023} = 7 + 3(n - 1) \iff \np{2016} = 3(n - 1) \iff 3 \times 672 = 3(n - 1) \iff 672 = n - 1 \iff n = 673$.
+
+
+
+
+
+
+
+
+\textbf{Question 2 :} On choisit au hasard un nombre dans cette liste. La probabilité de tirer un nombre pair est:
+
+
+
+
+
+
+
+Il faut trouver $n$ tel que $7 + 3(n - 1) = 2k$, avec $k \in \N$,soit $7 + 3n - 3 = 2k \iff 4 + 3n = 2k$.
+
+Il faut que la somme $4 + 3n$ soit paire ; comme 4 est pair il faut donc que $3n$ soit pair et comme 3 est impair il faut que $n$ soit pair.
+
+Sur les 673 nombres de la liste le premier et le dernier nombre de la liste sont impairs ; il y a donc 336 nombres pairs. Réponse C
+\medskip
+
+On rappelle qu'on choisit au hasard un nombre dans cette liste. 
+
+On s'intéresse aux évènements suivants :
+\begin{itemize}
+\item[$\bullet~~$]Évènement $A$ : \og obtenir un multiple de 4 \fg
+\item[$\bullet~~$]Évènement $B$ : \og obtenir un nombre dont le chiffre des unités est 6 \fg
+\end{itemize}
+
+Pour répondre aux questions suivantes on pourra utiliser l'arbre pondéré ci-dessous et on donne
+$p(A \cap B) = \dfrac{34}{673}$.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$A$~~}\taput{\footnotesize$\dfrac{168}{673}$}}
+{\TR{$B$~~}\taput{\footnotesize $\dfrac{17}{84}$}
+\TR{$\overline{B}$}\tbput{\footnotesize $\dfrac{67}{84}$}
+}
+\pstree{\TR{$\overline{A}$~~}\tbput{\footnotesize$\dfrac{505}{673}$}}
+{\TR{$B$~~}\taput{\footnotesize $\dfrac{33}{505}$}
+\TR{$\overline{B}$}\tbput{\footnotesize $\dfrac{472}{505}$}
+}
+}
+\end{center}
+
+\medskip
+
+\textbf{Question 3 :}
+
+La probabilité d'obtenir un multiple de 4 ayant 6 comme chiffre des unités est donnée par 
+
+$p(A \cap B) = \dfrac{34}{673}$ ! Réponse B
+
+
+
+
+
+
+
+\medskip
+
+\textbf{Question 4 :} $P_B(A)$ est égale à :
+
+$P_B(A) = \dfrac{P(B \cap A)}{P(B)}$.
+
+Or $P(B) = P(A \cap B) + P\left(\overline{A} \cap B \right) = \dfrac{34}{673} + \dfrac{505}{673} \times
+\dfrac{33}{505} = \dfrac{34}{673} + \dfrac{33}{673}  = \dfrac{67}{673}$.
+
+Donc $P_B(A) = \dfrac{\dfrac{34}{673}}{\dfrac{67}{673}} = \dfrac{34}{67}$. Réponse D
+
+
+
+
+
+
+
+
+\medskip
+
+\textbf{Question 5:} On choisit, au hasard, successivement, $10$ éléments de cette liste. 
+
+Un élément peut être choisi plusieurs fois. La probabilité qu'aucun de ces $10$ nombres ne soit un multiple de 4 est:
+
+
+
+
+
+
+
+
+La probabilité de ne pas tirer un multiple de 4 est égale à $\dfrac{505}{673}$.
+
+La probabilité qu'aucun des 10 nombres tirés ne soit un multiple de 4 est égale à $\left(\dfrac{505}{673}\right)^{10} \approx 0,057$.
+Réponse A

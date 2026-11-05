@@ -1,0 +1,66 @@
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+Soit $\left(u_{n}\right)$ la suite définie par $u_{0}=30$ et, pour tout entier naturel $n, u_{n+1}=\dfrac{1}{2} u_{n}+10$.\\
+Soit $\left(v_{n}\right)$ la suite définie pour tout entier naturel $n$ par $v_{n}=u_{n}-20$.
+
+\begin{enumerate}
+\item Calculer les valeurs exactes de $u_{1}$ et $u_{2}$.
+\item Démontrer que la suite $\left(v_{n}\right)$ est géométrique de raison $\dfrac12$,
+\item Exprimer $v_{n}$ en fonction de $n$ pour tout $n$ entier naturel.
+\item En déduire que, pour tout entier naturel $n,\,  u_{n}=20+10\left(\dfrac{1}{2}\right)^{n}$.
+\item Déterminer la limite de la suite $\left(u_{n}\right)$. Justifier la réponse.
+\end{enumerate}
+
+\textbf{Partie B}
+
+\medskip
+
+Soit $\left(w_{n}\right)$ la suite définie pour tout entier naturel $n$ par :
+
+\[
+\begin{cases}
+w_{0}=45 \\
+w_{n+1}=\dfrac{1}{2} w_{n}+\dfrac{1}{2} u_{n}+7
+\end{cases}
+\]
+
+\begin{enumerate}
+\item Montrer que $w_{1} = 44,5$.
+\end{enumerate}
+
+On souhaite écrire une fonction suite, en langage Python, qui renvoie la valeur du terme $w_{n}$ pour une valeur de $n$ donnée. On donne ci-dessous une proposition pour cette fonction suite.
+
+\begin{center}
+
+\begin{tabular}{c| l|}\cline{2-2}
+1&def suite(n):\\
+2&\quad U=30\\
+3&\quad W=45\\
+4&\quad for i in range (1,n+1):\\
+5&\quad\quad   U=U/2+10\\
+6&\quad\quad  W=W/2+U/2+7\\
+7&\quad return W\\ \cline{2-2}
+
+\end{tabular}
+\end{center}
+
+\begin{enumerate}[resume]
+
+\item L'exécution de suite(1) ne renvoie pas le terme $w_{1}$. Comment modifier la fonction suite afin que l'exécution de suite(n) renvoie la valeur du terme $w_{n}$ ?
+\item 
+\begin{enumerate}
+	\item Montrer, par récurrence sur $n$, que pour tout entier naturel $n$ on a :
+
+\[w_{n}=10 n\left(\dfrac{1}{2}\right)^{n}+11\left(\dfrac{1}{2}\right)^{n}+ 34\]
+
+\item  On admet que pour tout entier naturel $n \geqslant 4$, on a : $0 \leqslant 10 n\left(\dfrac{1}{2}\right)^{n} \leqslant \dfrac{10}{n}$.
+
+Que peut-on en déduire quant à la convergence de la suite $\left(w_{n}\right)$ ?
+\end{enumerate}
+\end{enumerate}
+
+\bigskip

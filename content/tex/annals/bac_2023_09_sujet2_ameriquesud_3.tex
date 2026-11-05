@@ -1,0 +1,61 @@
+\medskip
+
+Soit la suite $\left(u_n\right)$ définie par $u_0 = 0$ et, pour tout $n \in \N$, 
+\[u_{n+1} = 5u_n - 8n + 6.\]
+
+\smallskip
+
+\begin{enumerate}
+\item Calculer $u_1$ et $u_2$.
+\item Soit $n$ un entier naturel.
+
+Recopier et compléter la fonction {\ttfamily suite\_u} d'argument {\ttfamily n}  ci-dessous, écrite en langage Python, afin qu'elle retourne la valeur de $u_n$.
+
+\begin{center}
+\begin{tabular}{>{\ttfamily}l}
+def suite\_u(n) : \\
+\qquad u = \ldots\\
+\qquad for i in range(1,n+1) :\\
+\qquad \vline \qquad u = \ldots\\
+\qquad return u
+\end{tabular}
+\end{center}
+\item
+	\begin{enumerate}
+		\item Démontrer par récurrence que, pour tout $n \in \N ,\quad  u_n \geqslant 2n$.
+		\item En déduire la limite de la suite $\left(u_n\right)$.
+		\item Soit $p \in \N^*$. Pourquoi peut-on affirmer qu'il existe au moins un entier $n_0$ tel que,  pour tout entier naturel $n$ vérifiant, $n \geqslant n_0$,\: $u_n \geqslant  10^p$ ?
+\end{enumerate}
+\item Démontrer que la suite $\left(u_n\right)$ est croissante.
+\item On considère la suite $\left(v_n\right)$, définie pour tout $n \in  \N$, par $v_n = u_n - 2n + 1$.
+	\begin{enumerate}
+		\item En dessous de la fonction {\ttfamily suite\_u} précédente, on a écrit la fonction {\ttfamily suite\_v} ci-dessous :
+\begin{center}
+\begin{tabular}{>{\ttfamily}l}
+def suite\_v(n):\\
+\qquad L = []\\
+\qquad  for i in range(n+1) :\\
+\qquad \vline \qquad L.append(suite\_u(i) - 2*i + 1)\\
+\qquad return L
+\end{tabular}
+\end{center}
+
+\emph{La commande \og L.append \fg permet de rajouter, en dernière position, un élément dans la liste L.}
+
+Lorsqu'on saisit {\ttfamily suite\_v(5)} dans la console, on obtient l'affichage suivant :
+
+\begin{center}
+\begin{tabular}{>{\ttfamily} l}
+$>>>$ suite\_v(5)\\
+$[1,\: 5,\: 25,\: 125,\: 625,\: 3125]$\\
+\end{tabular}
+\end{center}
+
+Conjecturer, pour tout entier naturel $n$, l'expression de $v_{n+1}$ en fonction de $v_n$.
+
+Démontrer cette conjecture.
+		\item En déduire, pour tout entier naturel $n$, la forme explicite de $u_n$ en fonction de $n$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

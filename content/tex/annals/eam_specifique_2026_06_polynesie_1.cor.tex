@@ -1,0 +1,59 @@
+\subsection*{Partie A}
+\begin{enumerate}
+  \item
+Les points représentés par des croix sont alignés, ce qui caractérise une progression arithmétique. C'est-à-dire l'ajout d'une même quantité ($-15$) pour obtenir un terme à partir du précédent.
+
+  \item
+Au rang 4, la croix est au-dessus du point. Donc à partir de 2024 ($2020+4$), l'entreprise B produit moins de déchets plastiques que l'entreprise A.
+
+  \item
+L'année 2030 correspond au rang 10. On lit pour le rang $10$, l'ordonnée du point (croix) environ 350, en tout cas supérieure à 250, la moitié de 500. L'objectif de l'entreprise A n'est pas atteint.
+
+
+\end{enumerate}
+
+\subsection*{Partie B}
+
+\begin{enumerate}
+\item
+	\begin{enumerate}
+		\item
+
+		$u_{1} = u_{0} - 15 = 500 - 15 = 485 $
+
+		Selon le modèle, en 2021, l'entreprise A produit 485 tonnes de déchets.
+
+
+		\item
+$u_{n+1}$ est la quantité en tonnes de déchets produits par l'entreprise A une année après qu'elle en a produit  $u_{n}$, soit suivant le modèle : $u_{n+1} = u_{n} - 15$. Cette relation de récurrence caractérise une suite arithmétique de raison $-15$.
+
+
+	\end{enumerate}
+
+	\begin{enumerate}[resume]
+		\item
+		On doit saisir «\textsf{=C3\,-\,15}».
+
+
+		\item
+En 2037, la quantité de déchets devient inférieure à 250 tonnes (la moitié de 500), soit au bout de 17 ans.
+
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item
+		$v_{n+1}$ est obtenu en réduisant $v_{n}$ de 8~\%. Réduire de 8~\%, c'est multiplier par \np{0.92}. Soit $v_{n+1}=0,92 v_{n}$.
+
+		\item
+		La relation de récurrence $v_{n+1}=0,92 v_{n}$ caractérise une suite géométrique de raison $0,92$.
+
+		\item
+		$v_{n} = v_{0}\times 0,92^{n}$
+
+		\item
+			Il faut déterminer $n$ tel que $0,92^{n} < \np{0.5}$. On lit dans le tableau que cela correspond à $n=9$.
+
+			L'entreprise B aura atteint son objectif de réduire au moins de moitié ses déchets plastiques en 2029 ($2020+9$).
+
+	\end{enumerate}
+\end{enumerate}

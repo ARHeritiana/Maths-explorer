@@ -1,0 +1,149 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet2_polynesie_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Les parties {\rm A} et {\rm B} peuvent être traitées indépendamment}
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+Le plan  est ramené à un repère orthogonal.
+
+On a représenté ci-dessous la courbe d'une fonction $f$ définie et deux fois dérivable sur $\R$, ainsi que celle de sa dérivée $f'$ et de sa dérivée seconde $f''$.
+
+\begin{center}
+\psset{xunit=1.5cm,yunit=1.0cm,algebraic=true,dimen=middle,dotstyle=o,dotsize=5pt 0,linewidth=2.pt,arrowsize=2pt 3}
+\begin{pspicture*}(-0.5,-4.05)(8,5.2)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.2pt](0,-4)(8,5)
+\psaxes[labelFontSize=\scriptstyle,xAxis=true,yAxis=true,,ticksize=-2pt 0,subticks=2]{->}(0,0)(0,-3.95)(8,5)
+\psline[linewidth=4.pt](-3.320081944682136,4.772338854767012)(-1.5600159659972166,4.772338854767012)
+\psplot[linewidth=1.25pt,linecolor=red,plotpoints=2000]{0}{8}{4.0/(1.0+2.718281828^(-3.0*x+12.0))}\uput[r](5,3.6){\red $\mathcal{C}_2$}
+\psplot[linewidth=1.25pt,linecolor=blue,plotpoints=2000]{0}{8}{4.0*3.0*2.71828^(-3.0*x+12.0)/(2.0*2.71828^(-3.0*x+12.0)+(2.71828^(-3.0*x+12.0))^(2.0)+1.0)}\uput[r](5,0.6){\blue $\mathcal{C}_3$}
+\psplot[linewidth=1.25pt,plotpoints=2000]{0}{8}{(-4.0*3.0^(2.0)*2.71828^(-3.0*x+12.0)+4.0*3.0^(2.0)*(2.71828^(-3.0*x+12.0))^(2.0))/(3.0*2.71828^(-3.0*x+12.0)+(2.71828^(-3.0*x+12.0))^(3.0)+3.0*(2.71828^(-3.0*x+12.0))^(2.0)+1.0)}\uput[r](5,-1.6){$\mathcal{C}_1$}
+\end{pspicture*}
+\end{center}
+
+\begin{enumerate}
+\item Déterminer, en justifiant votre choix, quelle courbe correspond à quelle fonction.
+\item Déterminer, avec la précision permise par le graphique, le coefficient directeur de la tangente à la courbe $\mathcal{C}_2$ au point d'abscisse 4.
+\item Donner avec la précision permise par le graphique, l'abscisse de chaque point d'inflexion de la courbe $\mathcal{C}_1$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+Soit un réel $k$ strictement positif.
+
+On considère la fonction $g$ définie sur $\R$ par:
+\[g(x) = \dfrac{4}{1 + \text{e}^{- kx}}.\]
+
+\smallskip
+
+\begin{enumerate}
+\item  Déterminer les limites de $g$ en $+ \infty$ et en $-\infty$,
+\item  Prouver que $g'(0) = k$.
+\item  En admettant le résultat ci-dessous obtenu avec un logiciel de calcul formel,
+prouver que la courbe de $g$ admet un point d'inflexion au point d'abscisse 0.
+\begin{center}
+\begin{tabular}{|c l|}\hline
+\multicolumn{2}{|l|}{$\triangleright$ Calcul formel}\\ \hline
+&g(x) =4/(1 + e{}\^{}(-kx))\\
+1&\\
+&$\to g(x) = \dfrac{4}{\text{e}^{-kx} + 1}$\\ \hline
+&Simplifier$(g''(x))$\\
+2&\\
+&$\to g''(x) = - 4\text{e}^{kx}\left(\text{e}^{kx} - 1\right)\dfrac{k^2}{\left(\text{e}^{kx} + 1 \right)^3}$\\ \hline
+\end{tabular}
+\end{center}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

@@ -1,0 +1,193 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_asie_9_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{tabular}{|l|}\hline
+\textbf{Principaux domaines abordés}\\
+-- Suites\\
+-- Équations différentielles\\ \hline
+\end{tabular}
+
+
+
+
+
+
+
+\bigskip
+
+\textbf{Partie I : modèle discret}
+
+\medskip
+
+
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+On a pour $n = 0$, \, $u_1 = u_0 + 0,05(20 - u_0) = 1 + 0,05 \times 19 = 1 + 0,95 = 1,95$.
+\item 
+	\begin{enumerate}
+		\item 
+Pour tout naturel $n$, \, $u_{n+1} = u_n + 0,05\left(20 - u_n\right) = u_n  + 1 - 0,05u_n = u_n(1 - 0,05) + 1 = 0,95u_n + 1$.
+		\item 
+		
+
+Pour tout naturel $n$, \, $v_{n+1} = 20 - u_{n+1} = 20 - \left(0,95u_n + 1\right) = 20 - 0,95u_n - 1 = $
+
+$19 - 0,95u_n = 0,95 \times  20 - 0,95u_n = 0,95\left(20 - u_n \right) = 0,95v_n$.
+
+Conclusion : pour tout naturel $n$,\, $v_{n+1} = 0,95v_n$ : cette égalité montre que la suite $\left(v_n\right)$ est une suite géométrique de terme initial $v_0 =  20 - u_0 =  20 - 1 = 19$ et de raison 0,95.
+		\item 
+On sait que pour tout $n \in n\N$, \, $v_n = v_0 \times q^n$, $q$ étant la raison, soit $v_n = 19  \times 0,95^n$.
+
+Or $v_n = 20 - u_n \iff u_n = 20 - v_n = 20 - 19 \times 0,95^n$.
+	\end{enumerate}
+\item 
+On vient de démontrer que pour tout naturel $n$, \, $u_n = 20 - 19\times 0,95^n$.
+
+Comme $0 < 0,95 < 1$, on sait que $\displaystyle\lim_{n \to + \infty} 0,95^n = 0$, d'où par somme de limites :
+
+\[\displaystyle\lim_{n \to + \infty} u_n = 20.\]
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie II : modèle continu}
+
+\medskip
+
+
+
+
+
+\[(E) \qquad y' = 0,05(20 - y)\]
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+$L$ est la somme  de fonctions dérivables sur $[0~;~+\infty[$ et sur cet intervalle :
+
+$L'(t) = - 0,05 \times \left(- 19\e^{-0,05t}\right) = 0,95\e^{-0,05t}$.
+
+Donc $L$ est solution de $(E)$ si :
+
+$y' = 0,05(20 - y) \iff 0,95\e^{-0,05t} = 0,05\left(20 - (\left(20 - 19\e^{-0,05t}\right)\right) \iff  0,95\e^{-0,05t}  = 0,05\left (19\e^{-0,05t}\right) \iff  0,95\e^{-0,05t}  =  0,95\e^{-0,05t}$ qui est vraie.
+
+De plus $L(0) = 20 - 19\e^{-0,05\times 0} = 20 - 19\times 1 = 1$.
+\item 
+	\begin{enumerate}
+		\item 
+		
+\starredbullet~$L'(0) = 0,95\e^{-0,05\times 0} =  0,95 \times 1 =  0,95$.
+
+\starredbullet~$L'(5) = 0,95\e^{-0,05\times 5} =  0,95 \times \e^{-0,25}  \approx  0,74$.
+
+Donc $L'(0) > L'(5)$.
+		\item 
+		
+
+On sait que $\displaystyle\lim_{t \to + \infty} \e^{-0,05t} = 0$, donc $\displaystyle\lim_{t \to + \infty} L'(t) = 0$.
+
+Ce résultat est bien en cohérence avec la description du modèle de croissance du bambou : celui-ci a une taille croissante ($L'(t) > 0$) de 1~m (taille initiale)  à 20~m (taille finale), la dérivée  donc la vitesse de croissance se rapprochant de zéro.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

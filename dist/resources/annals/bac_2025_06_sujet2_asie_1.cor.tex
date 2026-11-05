@@ -1,0 +1,190 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet2_asie_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A : Étude d'un exemple}
+
+\begin{enumerate}
+    \item D'après l'énoncé : $    P_M(T) = 0,999 \quad \text{et} \quad P_{\overline{M}}(T) = 0,005$
+
+    \item  270\,000 personnes ont été infectées sur 750\,000 donc $ P(M) = \dfrac{270\,000}{750\,000} = 0,36$
+
+    \item Voici l'arbre pondéré complété : 
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(0.68,2.16) rectangle (8,6.);
+\draw [line width=1.pt] (1.,4.)-- (3.,4.6);
+\draw [line width=1.pt] (1.,4.)-- (3.,3.4);
+\draw [line width=1.pt] (3.7,4.75)-- (5.7,5.35);
+\draw [line width=1.pt] (3.7,4.75)-- (5.7,4.35);
+\draw [line width=1.pt] (3.7,3.25)-- (5.7,3.65);
+\draw [line width=1.pt] (3.7,3.25)-- (5.7,2.65);
+\draw (3.1,5) node[anchor=north west] {$M$};
+\draw (3.1,3.6) node[anchor=north west] {$\overline M$};
+\draw (5.8,5.75) node[anchor=north west] {$T$};
+\draw (5.8,4.65) node[anchor=north west] {$\overline T  $};
+\draw (5.8,3.) node[anchor=north west] {$\overline T  $};
+\draw (5.8,4.) node[anchor=north west] {$T$};
+\draw (1.7,5) node[anchor=north west] {$0,36$};
+\draw (1.7,3.5) node[anchor=north west] {$0,64$};
+\draw (4.2,5.7) node[anchor=north west] {$0,999$};
+\draw (4.2,4.5) node[anchor=north west] {$0,001$};
+\draw (4 ,2.8) node[anchor=north west] {$0,995$};
+\draw (4.2,4) node[anchor=north west] {$0,005$};
+\end{tikzpicture}
+
+    \item $P(M \cap T) = P(M) \times P_M(T) = 0,36 \times 0,999 = 0,35964$
+
+donc la probabilité que l'individu soit atteint et que le test soit positif est $0,36$ à $10^{-3}$ près.
+
+    \item $M$ et $\overline{M}$ constituent une partition de l'univers donc d'après la loi des probabilités totales : 
+
+$P(T) = P(M \cap T) + P(\overline{M} \cap T) = 0,36 \times 0,999 + 0,64 \times 0,005 = 0,35964 + 0,0032 = 0,36284$
+
+donc la probabilité que l'individu ait un test positif est $0,363$ à $10^{-3}$ près.
+    \item $    P_T(M) = \dfrac{P(M \cap T)}{P(T)} = \dfrac{0,35964}{0,36284} \approx 0,991$
+
+    \item Puisque $P_T(M) \approx 0,991 > 0,95$, le test est considéré comme fiable.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B : Dépistage sur une population cible}
+
+\begin{enumerate}
+    \item Voici l'arbre pondéré complété : 
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(0.68,2.16) rectangle (8,6.);
+\draw [line width=1.pt] (1.,4.)-- (3.,4.6);
+\draw [line width=1.pt] (1.,4.)-- (3.,3.4);
+\draw [line width=1.pt] (3.7,4.75)-- (5.7,5.35);
+\draw [line width=1.pt] (3.7,4.75)-- (5.7,4.35);
+\draw [line width=1.pt] (3.7,3.25)-- (5.7,3.65);
+\draw [line width=1.pt] (3.7,3.25)-- (5.7,2.65);
+\draw (3.1,5) node[anchor=north west] {$M$};
+\draw (3.1,3.6) node[anchor=north west] {$\overline M$};
+\draw (5.8,5.75) node[anchor=north west] {$T$};
+\draw (5.8,4.65) node[anchor=north west] {$\overline T  $};
+\draw (5.8,3.) node[anchor=north west] {$\overline T  $};
+\draw (5.8,4.) node[anchor=north west] {$T$};
+\draw (1.7,5) node[anchor=north west] {$p$};
+\draw (1.7,3.5) node[anchor=north west] {$1-p$};
+\draw (4.2,5.7) node[anchor=north west] {$0,999$};
+\draw (4.2,4.5) node[anchor=north west] {$0,001$};
+\draw (4 ,2.8) node[anchor=north west] {$0,995$};
+\draw (4.2,4) node[anchor=north west] {$0,005$};
+\end{tikzpicture}
+
+
+    \item $M$ et $\overline{M}$ constituent une partition de l'univers donc d'après la loi des probabilités totales : 
+
+$P(T) = P(M \cap T) + P(\overline{M} \cap T)  = p \times 0,999 + (1 - p) \times 0,005 = 0,999p + 0,005 - 0,005p = 0,994p + 0,005$
+
+    \item $P_T(M) = \dfrac{P(M \cap T)}{P(T)} = \dfrac{p \times 0,999}{0,994p + 0,005}$
+
+    \item Le test est fiable si $P_T(M) > 0,95$ :
+
+$\dfrac{0,999p}{0,994p + 0,005} > 0,95 \iff 0,999p > 0,95(0,994p + 0,005) \iff 0,999p > 0,9443p + 0,00475 \iff  0,0547p > 0,00475 \iff  p > \dfrac{0,00475}{0,0547} \approx 0,087$ donc, le test est fiable si $p > 0,087$ (soit 8,7\%).
+
+\end{enumerate}
+
+\textbf{Partie C : Étude sur un échantillon}
+
+$X$ suit une loi binomiale de paramètres $n$ et $p=0,36$.
+
+ On cherche le plus petit $n$ tel que $P(X \geqslant 1) > 0,99$
+
+
+$P(X \geq 1) > 0,99 \iff 1 - P(X = 0) > 0,99 \iff -P(X = 0) >- 0,01 \iff P(X = 0) < 0,01$
+
+or  $P(X = 0) = (1 - 0,36)^n = 0,64^n$ donc  $P(X \geq 1) > 0,99 \iff 0,64^n < 0,01\iff  \ln(0,64^n) < \ln(0,01)$ car la fonction $\ln$ est croissante sur $]\,0\,,\,+\infty[$
+
+$\iff  n \ln(0,64) < \ln(0,01) \iff n > \dfrac{\ln(0,01)}{\ln(0,64)} $ car $\ln(0,64)<0$ or $\dfrac{\ln(0,01)}{\ln(0,64)}\approx 10,32$
+
+donc Il faut interroger au moins 11 individus pour que la probabilité qu'au moins l’un d’eux soit atteint dépasse 99\,\%.
+
+\bigskip
+
+\end{document}

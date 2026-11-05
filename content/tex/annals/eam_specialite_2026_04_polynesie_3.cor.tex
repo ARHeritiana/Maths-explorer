@@ -1,0 +1,54 @@
+\emph{Chaque année, 80\,\% des donateurs de l'année précédente renouvellent leur don et
+300 nouveaux donateurs s'ajoutent. $u_n$ désigne le nombre de donateurs de l'année
+$2025 + n$, avec $u_0 = \np{1000}$.}
+
+\subsection*{Partie A}
+
+\begin{enumerate}
+	\item
+	\begin{enumerate}
+		\item $u_1 = \np{1000} \times 0,8 + 300 = 800 + 300 = \np{1100}$.
+
+		En 2026, l'association comptera \np{1100} donateurs.
+
+		\item D'une année à la suivante, on conserve 80\,\% des donateurs (on multiplie donc par $0,8$)
+		et on ajoute les 300 nouveaux donateurs. Pour tout entier naturel $n$ :
+		$u_{n+1} = 0,8u_n + 300$.
+	\end{enumerate}
+
+	\item $u_5$ concerne l'année $2025 + 5 = 2030$ : d'après ce modèle, l'association comptera environ \np{1336} donateurs en 2030.
+
+	\item
+	\begin{lstlisting}[style=python,xleftmargin=4.5cm,xrightmargin=4.5cm,numbers=none]
+u = 1000
+i = 0
+while u <= 1400 :
+    u = 0.8 * u + 300
+    i = i + 1
+\end{lstlisting}
+
+	La boucle s'arrête dès que $u_i > \np{1400}$ : on a $u_7 \approx \np{1395} \leqslant \np{1400}$ et $u_8 \approx \np{1416} > \np{1400}$.
+
+	$i = 8$ signifie que c'est en
+	$2025 + 8 = 2033$ que le nombre de donateurs dépassera pour la première fois
+	\np{1400}.
+\end{enumerate}
+
+\subsection*{Partie B}
+
+\emph{Pour tout entier naturel $n$, $v_n = u_n - \np{1500}$.}
+
+\begin{enumerate}
+	\item Pour tout entier naturel $n$ :
+	\[v_{n+1} = u_{n+1} - \np{1500} = 0,8u_n + 300 - \np{1500} = 0,8u_n - \np{1200}
+	= 0,8u_n - 0,8 \times \np{1500} = 0,8\left(u_n - \np{1500}\right) = 0,8v_n.\]
+	$v_0 = u_0 - \np{1500} = \np{1000} - \np{1500} = -500$.
+
+La suite $(v_n)$ est géométrique de raison $q = 0,8$ et de premier terme $v_0 = -500$.
+	\item
+	\begin{enumerate}
+		\item Pour tout entier naturel $n$ : $v_n = v_0 \times q^n = -500 \times 0,8^n$.
+
+		\item $u_n = v_n + \np{1500}$ donc, pour tout entier naturel $n$ : $u_n = \np{1500} - 500 \times 0,8^n$.
+	\end{enumerate}
+\end{enumerate}

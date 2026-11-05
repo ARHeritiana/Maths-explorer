@@ -1,0 +1,259 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet1_metropole_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Partie A}
+
+	\begin{enumerate}
+		\item \begin{enumerate}
+			\item Comme on choisit au hasard une famille, on est en situation d'équiprobabilité, et les proportions sont assimilables à des probabilités.
+
+			Comme 75\,\% des familles réservent une cabine, cela se traduit par :\quad $P(C)=0,75$.
+
+			\item Voici l'arbre complété avec les valeurs disponibles dans l'énoncé, et les probabilité des événements contraires donnés dans l'énoncé :
+
+		\hfill~
+		
+		\begin{tikzpicture}[xscale=1,yscale=1,baseline={(Raa.base)}]
+			
+			\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+			\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+			\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+			
+			\def\DistanceInterNiveaux{2.5}
+			\def\DistanceInterFeuilles{0.7}
+			
+			\def\NiveauA{(0)*\DistanceInterNiveaux}
+			\def\NiveauB{(1)*\DistanceInterNiveaux}
+			\def\NiveauC{(2)*\DistanceInterNiveaux}
+			\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+			
+			\node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {};
+			\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$V$};
+			\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$C$};
+			\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{C}$};
+			\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\overline{V}$};
+			\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$C$};
+			\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{C}$};
+			
+			\draw (R.east)--(Ra.west) node[etiquette] {$0,3$};
+			\draw (Ra.east)--(Raa.west) node[etiquette] {$0,8$};
+			\draw (Ra.east)--(Rab.west) node[etiquette] {$0,2$};
+			\draw (R.east)--(Rb.west) node[etiquette] {$0,7$};
+			\draw (Rb.east)--(Rba.west);
+			\draw (Rb.east)--(Rbb.west);
+		\end{tikzpicture}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		\hfill~
+		\end{enumerate}
+
+		\item La probabilité qu'une famille réserve un emplacement pour un véhicule et une cabine est :
+
+		$P(V \cap C) = P(V) \times P_{V}(C) = 0,3 \times 0,8 = 0,24$.
+
+		\item La probabilité qu'une famille réserve un emplacement pour un véhicule, sachant qu'elle a réservé une cabine est :\quad $ P_{C}(V)$.
+
+		$ P_{C}(V) = \dfrac{P(C \cap V)}{P(C)} = \dfrac{0,24}{0,75} = \dfrac{24}{75} = 0,32$.
+
+		\item Les évènements $V$ et $\overline{V}$ forment une partition de l'univers.
+
+		D'après la loi des probabilités totales, on en déduit :
+
+		$P\big(C\big) = P\big(C \cap V\big) + P\big(C \cap \overline{V}\,\big) \iff P\big(C \cap \overline{V}\,\big) = P\big(C\big) - P\big(C \cap V\big)$.
+
+		En remplaçant par les valeurs connues : \quad $P\big(C \cap \overline{V}\,\big) = 0,75 - 0,24 = 0,51$.
+
+		Finalement, en revenant à la question posée :\quad $P_{\overline{V}}(C) = \dfrac{P\big(\,\overline{V} \cap C\big)}{P\big(\,\overline{V}\big)} = \dfrac{0,51}{0,7} = \dfrac{51}{70} \approx 0,729$
+
+		$P_{\overline{V}}(C) \approx 0,73$ à $10^{-2}$ près.
+
+		Dans le contexte de l'exercice, cela signifie qu'environ 73\,\% des familles n'ayant pas réservé d'emplacement pour un véhicule ont réservé une cabine.
+	\end{enumerate}
+
+	\subsection*{Partie B}
+
+	\begin{enumerate}
+		\item On va donner les calculs pour l'espérance et la variance de $X$ :
+
+		$\begin{aligned}
+			\mathrm{E}(X)&= x_1 \times P(X = x_1) +x_2 \times P(X = x_2) +x_3 \times P(X = x_3) +x_4 \times P(X = x_4)\\
+				&=0 \times 0,19 + 70 \times 0,06 + 100 \times 0,51 + 170  \times 0,24\\
+				&= 0 + 4,2 + 51 + 40,8 = 96.
+		\end{aligned}$
+
+		$\begin{aligned}
+			\mathrm{V}(X) & = \big(x_1-\mathrm{E}(X)\big)^2  \times P(X = x_1) + \big(x_2-\mathrm{E}(X)\big)^2 \times P(X = x_2) + \dots 
+			 + \big(x_4-\mathrm{E}(X)\big)^2 \times P(X = x_4)\\
+			&=(0 - 96)^2 \times 0,19 + (70-96)^2 \times 0,06 + (100 - 96)^2 \times 0,51 + (170-96)^2  \times 0,24\\
+			&= \np{1751,04} + 40,56 + 8,16 + \np{1314,24}=\np{3114}
+		\end{aligned}$
+
+		On trouve bien les deux valeurs annoncées dans l'énoncé.
+
+		\item \begin{enumerate}
+			\item $X + Y$ est la variable aléatoire qui donne la somme du prix des suppléments et du prix des extras, sans réduction.
+
+			Comme la compagnie propose une remise de 40\,\% sur ces extras et suppléments, cela signifie que les familles vont payer un prix qui aura été multiplié par :\quad $1 - \dfrac{40}{100} = 0,6$
+
+			Ainsi, la variable aléatoire donnant le montant total des suppléments et extras, après réduction est bien : \quad $Z = 0,6(X + Y)$.
+
+			\item Par linéarité de l'espérance :\quad $\mathrm{E}(Z)= 0,6 \big(\mathrm{E}(X) + \mathrm{E}(Y)\big) = 0,6\big(96 + 104\big) = 0,6 \times 200 = 120$
+
+			Comme les variables aléatoires $X$ et $Y$ sont indépendantes, on a :\quad $\mathrm{V}(X + Y) = \mathrm{V}(X) + \mathrm{V}(Y)$.
+
+			Par propriété de la variance :
+
+			$\mathrm{V}(Z)=0,6^2 \times \mathrm{V}(X + Y) = 0,36\big(\mathrm{V}(X) + \mathrm{V}(Y)\big) = 0,36 \times (\np{3114} + \np{1686}) = 0,36 \times \np{4800} = \np{1728}$.
+		\end{enumerate}
+
+		\item \begin{enumerate}
+			\item $M_{n}$ est la moyenne empirique de l'échantillon de taille $n$.
+
+			Par linéarité de l'espérance, on a :
+
+			$\mathrm{E}\big(M_{n}\big) = \dfrac{1}{n} \big(\mathrm{E}(Z_1) + \mathrm{E}(Z_2) + \dots + \mathrm{E}(Z_n)\big) = \dfrac{1}{n}\big(120 + 120 + \dots + 120\big) = \dfrac{120n}{n} = 120$.
+
+			Comme les variables aléatoires sont indépendantes :
+
+			$\mathrm{V}\big(M_{n}\big) = \left(\dfrac{1}{n}\right)^2 \times \big(\mathrm{V}(Z_1) + \mathrm{V}(Z_2) + \dots + \mathrm{V}(Z_n)\big) = \dfrac{1}{n^2}\big(\np{1728} + \np{1728} + \dots + \np{1728}\big) = \dfrac{\np{1728}n}{n^2} = \dfrac{\np{1728}}{n}$.
+
+			\emph{Remarque :} en disant explicitement que $M_n$ est la moyenne empirique d'un échantillon de taille $n$ de variables aléatoires indépendantes suivant la loi de probabilité de $Z$, on peut aussi dire, par propriété que :
+			\quad
+			$\mathrm{E}\big(M_{n}\big) = \mathrm{E}(Z)= 120$ \quad et \quad $\mathrm{V}\big(M_{n}\big) = \dfrac{\mathrm{V}(Z)}{n}= \dfrac{\np{1728}}{n}$.
+
+			\item On a :\quad $\begin{aligned}[t]
+				P\big(114 < M_n < 126\big)
+					&= P\big(114 - 120 < M_n - 120 < 126 - 120\big) \\
+					&= P\big(-6 < M_n - \mathrm{E}(M_n) < 6\big)\quad \text{ car } \mathrm{E}(M_n)= 120\\
+					&= P\big(\big|M_n - \mathrm{E}(M_n)\big| < 6\big)\\
+					&= 1 - P\big(\big|M_n - \mathrm{E}(M_n)\big| \geqslant 6\big) \quad \text{ via l'évènement contraire}
+			\end{aligned}$
+
+			D'après l'inégalité de Bienaymé-Tchebychev, pour tout réel $t$ strictement positif :
+
+			$P\big(\big|M_n - \mathrm{E}(M_n)\big| \geqslant t\big) \leqslant \dfrac{\mathrm{V}(M_n)}{t^2}$.
+
+			Notamment, pour $t = 6$ :
+
+			$P\big(\big|M_n - \mathrm{E}(M_n)\big| \geqslant 6\big) \leqslant \dfrac{~~\dfrac{\np{1728}}{n}~~}{6^2}$.
+
+			Or :\quad $\dfrac{~~\dfrac{\np{1728}}{n}~~}{6^2} = \dfrac{\np{1728}}{36n^2} = \dfrac{48}{n}$.
+
+			On a donc :\quad $\begin{aligned}[t]
+				P\big(\big|M_n - \mathrm{E}(M_n)\big| \geqslant 6\big) \leqslant \dfrac{48}{n}
+					&\iff 1 - P\big(\big|M_n - \mathrm{E}(M_n)\big| \geqslant 6\big) \geqslant 1 - \dfrac{48}{n} \\
+					&\iff P\big(114 < M_n < 126\big) \geqslant 1 - \dfrac{48}{n}
+			\end{aligned}$
+
+			Ainsi, \quad $1 - \dfrac{48}{n} \geqslant 0,85 \implies \mathrm{P}\big(114<M_{n}<126\big) \geqslant 0,85$.
+
+			Résolvons :\quad $ \begin{aligned}[t]
+				1 - \dfrac{48}{n} \geqslant 0,85
+					&\iff 0,15 \geqslant \dfrac{48}{n}\\
+					&\iff 0,15 n \geqslant 48\quad \text{car } n \in \N^{*} \quad\text{ donc } n>0\\
+					&\iff n \geqslant \dfrac{48}{0,15}\quad \text{car } 0,15>0\\
+					&\iff n \geqslant 320\\
+			\end{aligned}$
+
+			Les solutions de cette inéquation sont les entiers supérieurs ou égaux à 320.
+
+			Le plus petit entier permettant d'affirmer $\mathrm{P}\big(114<M_{n}<126\big) \geqslant 0,85$ est donc 320.
+
+			Dans le contexte de l'exercice, cela signifie que l'affirmation \og le coût moyen payé par les familles pour les suppléments et extras, après réduction de 60\,\% est strictement compris entre 114 et 126 euros\fg{} est vraie au risque de 15\,\% (ou avec une confiance de 85\,\%) à partir de 320 familles à bord du bateau.
+
+		\end{enumerate}
+	\end{enumerate}
+
+\end{document}

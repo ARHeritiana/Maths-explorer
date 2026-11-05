@@ -1,0 +1,59 @@
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+Le but de la partie A est d'étudier le comportement de la suite $\left(u_n\right)$ définie par $u_0 =  0,3$ et par la relation de récurrence, pour tout entier naturel $n$ :
+\[u_{n+1} =  2u_n\left(1 - u_n\right).\]
+
+Cette relation de récurrence s'écrit $u_{n+1} =  f\left(u_n\right)$, où $f$ est la fonction définie sur $\R$ par : 
+\[f(x) = 2x\left (1 - x\right ).\]
+
+\smallskip
+\begin{enumerate}
+\item Démontrer que la fonction $f$ est strictement croissante sur l'intervalle $\left[0~;~\dfrac12\right]$.
+\item On admet que pour tout entier naturel $n$, $0 \leqslant u_n \leqslant \dfrac12$.
+
+Calculer $u_1$ puis effectuer un raisonnement par récurrence pour démontrer que pour tout rentier naturel $n,\: u_n \leqslant u_{n+1}$.
+\item En déduire que la suite $\left(u_n\right)$ est convergente.
+\item Justifier que la limite de la suite $\left(u_n\right)$ est égale à $\dfrac12$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+Le but de cette partie est d'étudier un modèle d'évolution d'une population.
+
+En 2022, cette population compte \np{3000} individus.
+
+\smallskip
+
+On note $P_n$ l'effectif en milliers de la population l'année $2022 + n$. Ainsi $P_0 = 3$.
+
+Selon un modèle inspiré du modèle de Verhulst, mathématicien belge du XIX\up{e} siècle, on considère que, pour tout entier naturel $n$ :
+
+\begin{center}$P_{n+1} -  P_n = P_n\left(1 -  b \times P_n\right)$, où $b$ est un réel strictement positif.\end{center}
+
+Le réel $b$ est un facteur de freinage qui permet de tenir compte du caractère limité des
+ressources du milieu dans lequel évoluent ces individus.
+
+\medskip
+
+\begin{enumerate}
+\item Dans cette question $b  = 0$.
+	\begin{enumerate}
+		\item Justifier que la suite $\left(P_n\right)$ est une suite géométrique dont on précisera la raison.
+		\item Déterminer la limite de $P_n$.
+	\end{enumerate}
+\item Dans cette question $b = 0,2$.
+	\begin{enumerate}
+		\item Pour tout entier naturel $n$, on pose $v_n = 0,1 \times P_n$.
+
+Calculer $v_0$ puis montrer que, pour tout entier naturel $n$,\:$v_{n+1} = 2v_n\left(1 - v_n \right)$.
+		\item Dans ce modèle, justifier que la population se stabilisera autour d'une valeur que l'on précisera.
+	\end{enumerate}
+\end{enumerate}

@@ -1,0 +1,72 @@
+On s'intéresse à l'évolution de la valeur d'une voiture.
+
+En janvier 2025, la valeur de la voiture est égale à 10\,000 euros.
+
+On suppose qu'ensuite, chaque année, la valeur diminue de 10\,\%.
+
+Pour tout entier naturel $n$, on note $u_n$ la valeur de la voiture, en euros, au mois de janvier de l'année $2025 + n$.
+
+On a donc $u_0 = \np{10000}$.
+
+\begin{enumerate}
+	\item \begin{enumerate}
+		\item Calculer la valeur de la voiture en janvier 2026.
+		\item Justifier que pour tout entier naturel $n$, on a
+		\[u_{n+1} = 0,9\, u_n.\]
+	\end{enumerate}
+
+	\item En déduire la nature de la suite $(u_n)$ et préciser sa raison.
+
+	\item \begin{minipage}[t]{0.75\linewidth}
+		\begin{enumerate}
+			\item Pour tout entier naturel $n$, exprimer le terme $u_n$ en fonction de $n$.
+
+			\item En déduire la valeur de la voiture en janvier 2030.
+
+			\emph{On pourra s'aider de l'aide au calcul ci-contre.}
+		\end{enumerate}
+	\end{minipage}
+	\hfill
+	\begin{tblr}[t]{|X[3.5cm]|}\hline
+		Aide au calcul\\
+		$0,9^4 = 0,6561$\\
+		$0,9^5 = 0,59049$\\
+		$0,9^6 = 0,531441$\\ \hline
+	\end{tblr}
+
+	\item \begin{minipage}[t]{0.62\linewidth}
+		On considère le programme Python ci-contre.
+
+		Recopier et compléter ce programme afin qu'il renvoie, après exécution, la plus petite valeur de $n$ telle que \quad$u_n < A$,\quad où $A$ est un nombre réel strictement positif.
+	\end{minipage}\hfill
+	\begin{minipage}[t]{5.5cm}
+		\begin{lstlisting}[style=python,numbers=none,xleftmargin=0mm,xrightmargin=0mm]
+def seuil(A) :
+	N = 0
+	U = 10000
+	while ......... :
+		U = .......
+		N = N+1
+	return N
+\end{lstlisting}
+	\end{minipage}
+
+	\item L'exécution de ce programme, pour plusieurs valeurs de $A$, donne les résultats suivants :
+
+\begin{lstlisting}[style=python,xleftmargin=5cm,xrightmargin=5cm,numbers=none]
+>>> seuil(7500)
+  3
+>>> seuil(5000)
+  7
+>>> seuil(2500)
+  14
+>>> seuil(2000)
+  16
+\end{lstlisting}
+
+	\begin{enumerate}
+		\item Interpréter, dans le contexte de l'exercice, le résultat obtenu lors de l'appel \texttt{seuil(5000)}.
+
+		\item Déterminer, en expliquant la démarche, l'année à partir de laquelle la voiture aura perdu plus des trois quarts de sa valeur initiale.
+	\end{enumerate}
+\end{enumerate}

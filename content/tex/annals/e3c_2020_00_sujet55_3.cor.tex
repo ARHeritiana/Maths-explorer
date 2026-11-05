@@ -1,0 +1,43 @@
+\subsection*{1.}
+
+\begin{align*}
+&M(x\,;\,y) \in d_1 \\
+\iff &\overrightarrow{CM} \cdot \overrightarrow{AB} = 0 \\
+\iff &0 \times (x - 1) + 6(y - 1) = 0 \\
+\iff &y - 1 = 0.
+\end{align*}
+
+\subsection*{2.}
+
+La droite contenant un sommet et perpendiculaire au côté opposé est une hauteur.
+
+\subsection*{3.}
+
+\begin{align*}
+&M(x\,;\,y) \in d_2 \\
+\iff &\overrightarrow{BM} \cdot \overrightarrow{AC} = 0 \\
+\iff &-6(x - 7) + 3(y - 4) = 0 \\
+\iff &-6x + 3y + 42 - 12 = 0 \\
+\iff &-2x + y + 10 = 0.
+\end{align*}
+
+\subsection*{4.}
+
+Si \( H \) est le point d'intersection de deux hauteurs, c'est donc l'orthocentre, point commun aux trois hauteurs. La troisième hauteur est donc \( (AH) \), qui est perpendiculaire à \( (BC) \). Les vecteurs \( \overrightarrow{AH} \) et \( \overrightarrow{BC} \) sont donc orthogonaux, et leur produit scalaire est donc nul.
+
+\begin{center}
+\psset{xunit=0.5cm,yunit=0.5cm,labelsep=0.1pt,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-2,-4.5)(11,8)
+ \multido{\n=-1+1}{13}{\psline[linewidth=0.75pt,linecolor=lightgray](\n,-4)(\n,7.5)}
+ \multido{\n=-4+1}{12}{\psline[linewidth=0.75pt,linecolor=lightgray](-1.5,\n)(11.2,\n)}
+ \psaxes[linewidth=0.95pt]{->}(0,0)(-1.5,-4)(11,7.5)
+\uput[dl](0,-0.2){\footnotesize O}\uput[l](6.8,-2.5){A}\uput[l](6.8,4.5){B}\uput[l](0.8,0.5){C}\uput[l](5.2,1.4){H}
+\psdots[dotstyle=+,dotscale =1.4,dotangle=45](1,1)(7,4)(7,-2)
+\psline[linewidth=1pt](7,-2)(7,4)
+\psline[linewidth=1pt](7,4)(1,1)
+\psline[linewidth=1pt](1,1)(7,-2)
+\psline[linewidth=1pt,linecolor=blue](1,1)(8,1)
+\psline[linewidth=1pt,linecolor=red](8,-4)(4,4)
+\psline[linewidth=1pt,linecolor=blue](4,-2)(8,6)
+\end{pspicture}
+\end{center}

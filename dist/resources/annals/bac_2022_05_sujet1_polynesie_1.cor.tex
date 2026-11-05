@@ -1,0 +1,186 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet1_polynesie_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+
+
+
+
+
+
+\begin{enumerate}
+\item On considère  la fonction $g$ définie et dérivable sur $]0~;~+ \infty[$ par :
+$g(x) = \ln \left(x^2 + x + 1\right).$
+
+La fonction $g$ est dérivable comme composée de fonctions dérivables.
+
+$x^2+x+1$ est une fonction positive sur $]0~;~+\infty[$ comme somme de fonctions positives.
+
+On pose $u(x)=x^2+x+1$ et on a $u'(x)=2x+1$.
+
+La fonction  dérivée de $\ln (u(x))$ est la fonction $\dfrac{u'(x)}{u(x)}$ : $g'(x) = \dfrac{2x + 1}{x^2 + x + 1}$\hfill\textbf{Réponse d}
+
+\item 
+Pour déterminer si $f(x)=\ln(x)$ admet pour primitive l'une des fonctions citées, il suffit de les dériver.
+
+Soit $g(x) = x\ln (x)- x$.
+La fonction $g$ est dérivable comme somme et produit de fonctions dérivables sur $]0~;~+ \infty[$ et on a $g'(x)=1\times \ln(x)+x\times \dfrac{1}{x} - 1= \ln (x) + 1- 1 = \ln(x) = f(x)$.
+
+La fonction $g$ est donc une primitive de $f$. \hfill \textbf{Réponse c}
+
+\item On considère la suite $\left(a_n\right)$ définie  pour tout $n$ dans $\N$ par :
+
+\[a_n = \dfrac{1 - 3^n}{1 + 2^n}=\dfrac{3^n\left(\dfrac{1}{3^n}-1\right)}{2^n\left(\dfrac{1}{2^n}+1\right)}=\left(\dfrac{3}{2}\right)^n \dfrac{\dfrac{1}{3^n}-1}{\dfrac{1}{2^n}+1}\]
+
+On a 
+$\displaystyle\lim_{n \to + \infty} \dfrac{1}{3^n}-1=-1$ car$\displaystyle\lim_{n \to + \infty}\dfrac{1}{3^n}=0$ ; $\displaystyle\lim_{n \to + \infty} \dfrac{1}{2^n}+1=1$ car$\displaystyle\lim_{n \to + \infty}\dfrac{1}{2^n}=0$, donc $\displaystyle\lim_{n \to + \infty}\dfrac{\dfrac{1}{3^n} - 1}{\dfrac{1}{2^n} + 1} = - 1$.
+
+D'autre part  $\displaystyle\lim_{n \to + \infty} \left(\dfrac{3}{2}\right)^n=+\infty$ car  $\dfrac{3}{2}> 1$, donc finalement par produit de limites, la limite de la suite $\left(a_n\right)$ est égale à $-\infty$.\hfill\textbf{Réponse a}
+
+\item 
+On considère une fonction $f$ définie et dérivable sur $[-2~;~2]$. Le tableau de variations de la fonction $f'$ dérivée de la fonction $f$ sur l'intervalle $[2~;~2]$ est donné par :
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.2}
+\psset{nodesep=3pt,arrowsize=2pt 3}  
+\def\esp{\hspace*{1.5cm}}
+\def\hauteur{0pt}
+$\begin{array}{|c| *4{c} c|}
+\hline
+ x & -2 & \esp & 0 & \esp & 2 \\
+\hline
+  & \Rnode{max1}{1}  &  &  &  & \Rnode{max2}{-1}   \\
+\text{variations de }f' & &  & & &  \rule{0pt}{\hauteur} \\
+ &  & &   \Rnode{min}{-2} & & \rule{0pt}{\hauteur}
+\ncline{->}{max1}{min} \ncline{->}{min}{max2}
+\rput*(-3.7,0.6){\Rnode{zero}{0}}
+\rput(-3.7,1.85){\Rnode{alpha}{-1}}
+\\
+\hline
+\end{array}$
+}
+\end{center}
+
+La fonction $f$ est :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{X X}
+\textbf{a.~~} convexe sur $[- 2~;~- 1]$&\textbf{b.~~} concave sur [0~;~1]\\
+\textbf{c.~~} convexe sur $[- 1~;~2]$&\textbf{d.~~}concave sur $[-2~;~0]$
+\end{tabularx}
+\end{center}
+
+Les variations de la dérivée donnent la convexité de la fonction; si $f'$ est décroissante alors la fonction est concave.
+
+Comme $f'$ est décroissante sur $[-2~;~0]$,  $f$ est donc concave sur cet intervalle.
+\hfill \textbf{Réponse d}
+
+\item On donne ci-dessus la courbe représentant la dérivée $f'$ d'une fonction $f$ définie sur l'intervalle $[-2~;~4]$.
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture*}(-2.2,-3.2)(4.2,3.2)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridcolor=lightgray]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-2.2,-3.2)(4.2,3.2)
+\psbcurve[plotpoints=5000,linewidth=1.25pt,linecolor=blue](-2,-3)(-1,0)(0,1)L(0.1,1)(1,0)L(1.5,-1)(2,-1)L(2.1,-1)(3,0)(4,3)
+
+\end{pspicture*}
+\end{center}
+
+Le signe de la dérivée donne les variations de la fonction $f$.
+
+En $1$, $f'(x)$ s'annule en changeant de signe et en passant du positif au négatif, la fonction $f$ va donc admettre un maximum en 1.
+\hfill\textbf{Réponse c}
+
+\item Une action est cotée à 57 \euro. Sa valeur augmente de 3\,\% tous les mois.
+
+Pour que la fonction seuil fonctionne, il faut que la boucle while s'exécute tant que $v<200$ et que le nombre de mois soit augmenté de 1 à chaque exécution de la boucle. \hfill \textbf{Réponse a}
+
+
+
+\end{enumerate}
+
+\vspace{1cm}
+
+\end{document}

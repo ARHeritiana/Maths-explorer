@@ -1,0 +1,97 @@
+\medskip
+
+On considère la fonction $f$ définie sur ]0~;~8] par 
+
+\[f(x) = \dfrac{10\ln \left(- x^2 + 7x + 9\right)}{x}\]
+
+Soit $C_f$ la représentation graphique de la fonction $f$ dans un repère orthonormé \Oij.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item Résoudre dans $\R$ l’inéquation $- x^2 + 7x + 8 \geqslant 0$.
+\item En déduire que pour tout $x \in ]0~;~8]$, on a $f(x) \geqslant 0$.
+\item Interpréter graphiquement ce résultat.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+La courbe $C_f$ est représentée ci-dessous.
+
+Soit $M$ le point de $C_f$ d’abscisse $x$ avec $x \in ]0~;~8]$.
+
+On appelle $N$ et $P$ les projetés orthogonaux du point $M$ respectivement sur l’axe des abscisses et sur l’axe des ordonnées.
+
+Dans cette partie, on s’intéresse à l’aire $\mathcal{A}(x)$ du rectangle O$NMP$.
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(-0.5,-0.5)(8.5,10)
+\uput[ur](4,7.6){\red $(C_f)$}
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle,labels=none](0,0)(8.5,10)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle,labels=none]{->}(1,1)
+\psframe[linewidth=1.5pt](6.8,3.438)\psframe(6.8,0)(6.6,0.2)\psframe(0,3.438)(0.2,3.238)
+\uput[dl](0,0){O}\uput[l](0,3.438){$P$}\uput[ur](6.8,3.438){$M$}\uput[d](6.8,0){$N$}
+\psgrid[subgriddiv=1,gridwidth=0.3pt,labels=none](0,0)(8,10)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{3}{8}{7 x mul 9 add x dup mul sub ln 10 mul x div}
+\uput[d](0.5,0){\small $\vect{\imath}$}\uput[l](0,0.5){\small $\vect{\jmath}$}
+\end{pspicture}
+\end{center}
+\medskip
+
+\begin{enumerate}
+\item Donner les coordonnées des points $N$ et $P$ en fonction de $x$.
+\item Montrer que pour tout $x$ appartenant à l’intervalle ]0~;~8],
+
+\[\mathcal{A}(x) = 10 \ln \left(-x^2 + 7x + 9\right)\]
+
+\item Existe-t-il une position du point $M$ pour laquelle l’aire du rectangle O$NMP$ est
+maximale ? Si elle existe, déterminer cette position.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C}
+
+\medskip
+
+On considère un réel strictement positif $k$.
+
+On souhaite déterminer la plus petite valeur de $x$, approchée au dixième, appartenant à [3,5~;~8] pour laquelle l’aire $\mathcal{A}(x)$ devient inférieure ou égale à $k$.
+
+Pour ce faire, on considère l’algorithme ci-dessous.
+
+Pour rappel, en langage Python, $\ln (x)$ s’écrit log ($x$).
+
+\begin{center}
+\begin{ttfamily}
+\begin{tabular}{c l}
+1&from math import *\\
+2&\\
+3&def A(x) :\\
+4&\quad return 10*log (- 1* x**2 + 7*x + 9)\\
+5&\quad \\
+6&def pluspetitevaleur(k) :\\
+7&\quad x = 3.5\\
+8&\quad while A(x).......... :\\
+9& \qquad x = x + 0.1\\
+10&\quad return ...........
+\end{tabular}
+\end{ttfamily}
+\end{center}
+
+\smallskip
+
+\begin{enumerate}
+\item Recopier et compléter les lignes 8 et 10 de l’algorithme.
+\item Quel nombre renvoie alors l’instruction \texttt{pluspetitevaleur}(30) ?
+\item Que se passe-t-il lorsque $k = 35$ ? Justifier.
+\end{enumerate}
+
+\medskip

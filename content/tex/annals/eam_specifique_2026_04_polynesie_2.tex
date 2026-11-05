@@ -1,0 +1,40 @@
+Un magasin d'ameublement interroge \np{1000} clients ayant réalisé un achat au cours des 12 derniers mois, soit en magasin, soit sur internet (un seul mode d'achat par client).
+
+\medskip
+
+Parmi les \np{1000} clients, 400 ont acheté sur internet.
+
+90\,\% des acheteurs sur internet sont satisfaits et 20\,\% des acheteurs en magasin ne sont pas satisfaits.
+
+\medskip
+
+On choisit au hasard un client et on considère les évènements :
+\begin{itemize}[left=5mm]
+	\item $I$ : \og le client a acheté sur internet \fg ;
+	\item $S$ : \og le client est satisfait \fg ;
+\end{itemize}
+$\overline{I}$ et $\overline{S}$ sont les évènements contraires respectifs de $I$ et de $S$.
+
+\begin{enumerate}
+	\item Compléter le tableau ci-dessous représentant la situation.
+	
+\begin{center}
+	\begin{tblr}{
+			colspec = {Q[c,m,1.8in] | Q[c,m,1.8in] | Q[c,m,1.8in] | Q[c,m,1.2in]},
+			hlines, vlines,
+			row{1} = {font=\bfseries, bg=gray!15},
+			column{1} = {font=\bfseries, bg=gray!15}
+		}
+		& Achat sur internet $\big(I\big)$ & Achat en magasin $\big(\overline{I}\big)$ & Total \\
+		Satisfait $\big(S\big)$ & & & \\
+		Non satisfait $\big(\overline{S}\big)$ & & & \\
+		Total & 400 & & \np{1000} \\
+	\end{tblr}
+\end{center}	
+	
+	\item Calculer la probabilité que le client ait acheté en magasin et soit satisfait.
+	\item Sachant que le client n'est pas satisfait, calculer la probabilité qu'il ait fait son achat sur internet.
+	\item Une stratégie d'amélioration sera mise en place si plus de 10\,\% des clients ne sont pas satisfaits de leur achat.
+
+	Cette stratégie sera-t-elle mise en place ? Justifier.
+\end{enumerate}

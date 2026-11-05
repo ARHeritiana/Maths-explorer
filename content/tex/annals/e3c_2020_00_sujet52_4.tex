@@ -1,0 +1,51 @@
+\medskip
+
+Le 1\up{er} janvier 2019, le propriétaire d'un appartement a fixé à 650 euros le montant des loyers mensuels pour l'année 2019. Chaque 1\up{er} janvier, le propriétaire augmente de 1,52\,\% le loyer mensuel.
+
+On modélise l'évolution du montant des loyers mensuels par une suite $\left(u_n\right)$. L'arrondi à l'unité du terme $u_n$ représente le montant, en euros, du loyer mensuel fixé le 1\up{er} janvier de l'année $(2019+n)$, pour $n$ entier naturel. Ainsi $u_0 = 650$ euros.
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Calculer le montant du loyer mensuel fixé le 1\up{er} janvier 2020.
+		\item Quelle est la nature de la suite $\left(u_n\right)$ ? Préciser sa raison et son premier terme.
+		\item Calculer le montant du loyer mensuel qui, selon ce modèle, sera fixé pour l'année 2027.
+	\end{enumerate}
+\item Pour calculer la somme totale des loyers perçus par le propriétaire durant les années 2019
+à 2019+A, on utilise la fonction ci-dessous, écrite en langage Python.
+
+\begin{lstlisting}[style=python]
+1 def somme(A):
+2 	S=0
+3 	n=0
+4 	while n<=A:
+5		S=S+7800*1.0152**n
+6 		n = n + 1
+7 	return S
+\end{lstlisting}
+
+L'exécution de ce programme pour quelques valeurs de A donne les résultats ci-dessous :
+
+\begin{center}
+
+\begin{tabular}[]{|l}
+>\! >\! > somme(\textcolor{blue}{0})\\
+\textcolor{blue}{7800.0}\\
+>\! >\! > somme(\textcolor{blue}{1})\\
+\textcolor{blue}{15718.560000000001}\\
+>\! >\! > somme(\textcolor{blue}{2})\\
+\textcolor{blue}{23757.482112000005}\\
+>\! >\! > somme(\textcolor{blue}{3})\\
+\textcolor{blue}{31918.595440102407}\\
+>\! >\! > somme(\textcolor{blue}{8})\\
+\textcolor{blue}{74623.04180934158}\\
+\end{tabular}
+\end{center}
+	\begin{enumerate}
+		\item Interpréter, dans le contexte de l'exercice, le résultat obtenu lors de l'appel somme(1).
+		\item Déterminer la somme totale des loyers perçus par le propriétaire durant les années
+2022 à 2027 incluses. On arrondira le résultat à l'unité.
+	\end{enumerate}
+\end{enumerate}

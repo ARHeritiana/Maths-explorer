@@ -1,0 +1,153 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_11_sujet2_ameriquesud_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Cet exercice est un questionnaire à choix multiple. Pour chaque question, une seule des trois propositions est exacte.
+
+Indiquer sur la copie le numéro de la question et la lettre de la proposition
+choisie.
+
+Aucune justification n'est demandée.
+
+\medskip
+
+\emph{Pour chaque question, une réponse exacte rapporte un point.\\
+Une réponse fausse, une réponse multiple ou l'absence de réponse ne rapporte ni n'enlève de point.}
+
+\medskip
+
+Dans toutes les questions suivantes, l'espace est rapporté à un repère orthonormé.
+
+\medskip
+
+\begin{enumerate}
+\item On considère la droite $\Delta_1$ de représentation paramétrique 
+$\left\{\begin{array}{l c l}
+x &=& 1 - 3t\\
+y &=& 4 + 2t\\
+z &=&\phantom{4 +2}t
+\end{array}\right.$, où $t \in  \R$
+ainsi que la droite $\Delta_2$ de représentation paramétrique 
+$\left\{\begin{array}{l c l}
+x& =& -4 + \phantom{2}s\\
+y& =& \phantom{-}2 + 2s\\
+z& =& - 1 + \phantom{2}s
+\end{array}\right.$, où $s \in \R$.
+\begin{enumerate}
+\item Les droites $\Delta_1$ et $\Delta_2$ sont parallèles.
+\item Les droites $\Delta_1$ et $\Delta_2$ sont orthogonales.
+\item Les droites $\Delta_1$ et $\Delta_2$ sont sécantes.
+\end{enumerate}
+\item On considère la droite $d$ de représentation paramétrique $\left\{\begin{array}{l c l}x&=&1 + \phantom{2}t\\
+y &=& 3 - \phantom{2}t\\
+z &=& 1 + 2t
+\end{array}\right.$, où $t \in \R$,
+et le plan $P$ d'équation cartésienne : $4x + 2y - z + 3 = 0.$
+	\begin{enumerate}
+		\item La droite $d$ est incluse dans le plan $P$.
+		\item La droite $d$ est parallèle strictement au plan $P$.
+		\item La droite $d$ est sécante au plan $P$.
+	\end{enumerate}
+\item On considère les points A(3~;~2~;~1), B(7~;~3 ~;~1), C$(-1~;~4~;~5)$ et D$(- 3~;~3~;~5)$.
+	\begin{enumerate}
+		\item Les points A, B, C et D ne sont pas coplanaires.
+		\item Les points A, B et C sont alignés.
+		\item $\vect{\text{AB}}$ et $\vect{\text{CD}}$ sont colinéaires.
+	\end{enumerate}
+\item On considère les plans $Q$ et $Q'$ d'équation cartésienne respective $3x - 2y + z + 1 = 0$ et $4x + y - z + 3 = 0$.
+	\begin{enumerate}
+		\item Le point R$(1~;~1~;~-2)$ appartient aux deux plans.
+		\item Les deux plans sont orthogonaux.
+		\item Les deux plans sont sécants avec pour intersection la droite de représentation
+paramétrique $\left\{\begin{array}{l c l}
+x&=& \phantom{17}t\\
+y& =& \phantom{1}7t + 4 \\
+z& =& 11t + 7
+\end{array}\right.$, où $t \in \R$.
+		\end{enumerate}
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\end{document}

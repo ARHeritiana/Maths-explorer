@@ -1,0 +1,107 @@
+\medskip
+
+On considère le cube ABCDEFGH.
+
+On note I le milieu du segment[EH] et on considère le triangle CFI.
+
+L'espace est muni du repère orthonormé $\left(\text{A}~;~ \vect{\text{AB}},\: \vect{\text{AD}},\: \vect{\text{AE}}\right)$ et on admet que le point I a
+pour coordonnées $\left(0~;~\dfrac12;~1\right)$ dans ce repère.
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(7.4,8)
+\pspolygon(0.2,0.8)(4.6,0.2)(4.6,4.6)(0.2,5.2)
+\psline(4.6,0.2)(7.2,2.6)(7.2,7)(4.6,4.6)
+\psline(7.2,7)(2.8,7.6)(0.2,5.2)
+\psline[linestyle=dashed](0.2,0.8)(2.8,3.2)(7.2,2.6)
+\psline[linestyle=dashed](2.8,3.2)(2.8,7.6)
+\psline(5,7.3)(0.2,5.2)(4.6,0.2)
+\psline[linestyle=dashed](5,7.3)(4.6,0.2)
+\psdots(2.8,3.2)(0.2,0.8)(4.6,0.2)(7.2,2.6)(2.8,7.6)(0.2,5.2)(4.6,4.6)(7.2,7)(5,7.3)(2.4,4.9)
+\uput[l](2.8,3.2){A} \uput[l](0.2,0.8){B} \uput[dr](4.6,0.2){C} \uput[r](7.2,2.6){D}
+\uput[u](2.8,7.6){E} \uput[l](0.2,5.2){F} \uput[dl](4.6,4.6){G} \uput[ur](7.2,7){H}
+\uput[u](5,7.3){I} \uput[u](2.4,4.9){J}
+\end{pspicture}
+\end{center}
+\smallskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Donner sans justifier les coordonnées des points C, F et G.
+		\item Démontrer que le vecteur $\vect{n}\begin{pmatrix}1\\2\\2\end{pmatrix}$ est normal au plan (CFI).
+		\item Vérifier qu'une équation cartésienne du plan (CFI) est : $x + 2y + 2z - 3 = 0$.
+	\end{enumerate}	
+\item  On note $d$ la droite passant par G et orthogonale au plan (CFI).
+	\begin{enumerate}
+		\item Déterminer une représentation paramétrique de la droite $d$.
+		\item Démontrer que le point K$\left(\dfrac79~;~\dfrac59~;~\dfrac59\right)$ est le projeté orthogonal du point G sur le plan (CFI).
+		\item Déduire des questions précédentes que la distance du point G au plan (CFI) est
+égale à $\dfrac23$.
+	\end{enumerate}
+\item On considère la pyramide GCFI.
+
+\emph{On rappelle que le volume $V$ d'une pyramide est donné par la formule} 
+
+\[V = \frac13 \times b \times h,\]
+
+\emph{où $b$ est l'aire d'une base et $h$ la hauteur associée à cette base}.
+	\begin{enumerate}
+		\item Démontrer que le volume de la pyramide GCFI est égal à $\dfrac16$, exprimé en unité de volume.
+		\item En déduire l'aire du triangle CFI, en unité d'aire.
+	\end{enumerate}
+\end{enumerate}
+
+
+
+
+
+
+\newcounter{INDICE} 
+\newcommandtwoopt{\SuiteRec}[5][u][0]{
+\getcoor 
+\infixtoRPN{#4} 
+\psplot{\xmin}{\xmax}{\RPN} 
+\SpecialCoor 
+
+
+\psline[linestyle=dashed](\xmin,\xmin)(\xmax,\xmax)  
+\pstVerb{ /x #3 def } 
+\psline[ArrowInside=->,ArrowInsideNo=1](! x 0 )(! x \RPN ) 
+\psline[ArrowInside=->,ArrowInsideNo=1](! x \RPN )(! \RPN\space dup) 
+\psline{-}(! x 0.03 )(! x 0.03 neg) 
+\rput(!x 0.08 neg ){$#1_{#2}$} 
+\pstVerb{ /x \RPN\space def} 
+\setcounter{INDICE}{#2} 
+\addtocounter{INDICE}{1} 
+\multido{\I=\theINDICE+1}{#5}{
+\psline{-}(! x 0.03 )(! x 0.03 neg) 
+\rput(!x 0.08 neg ){$#1_{\I}$} 
+\psline[linestyle=dotted](! x 0 )(! x x) 
+\psline[ArrowInside=->,ArrowInsideNo=1](! x x )(! x \RPN ) 
+\psline[ArrowInside=->,ArrowInsideNo=1](! x \RPN )(! \RPN\space dup) 
+\pstVerb{ /x \RPN\space def} 
+}
+}
+\newcommandtwoopt{\SuiteRecbis}[5][u][0]{
+\getcoor 
+\infixtoRPN{1.9 x mul 1 x sub mul} 
+\SpecialCoor 
+\psline[linestyle=dashed](\xmin,\xmin)(\xmax,\xmax)  
+\pstVerb{ /x #3 def } 
+\psline[ArrowInside=->,ArrowInsideNo=1](! x 0 )(! x \RPN ) 
+\psline[ArrowInside=->,ArrowInsideNo=1](! x \RPN )(! \RPN\space dup) 
+\psline{-}(! x 0.03 )(! x 0.03 neg) 
+\rput(!x 0.08 neg ){$#1_{#2}$} 
+\pstVerb{ /x \RPN\space def} 
+\setcounter{INDICE}{#2} 
+\addtocounter{INDICE}{1} 
+\multido{\I=\theINDICE+1}{4}{
+\psline{-}(! x 0.03 )(! x 0.03 neg) 
+\rput(!x 0.08 neg ){$#1_{\I}$} 
+\psline[linestyle=dotted](! x 0 )(! x x) 
+\psline[ArrowInside=->,ArrowInsideNo=1](! x x )(! x \RPN ) 
+\psline[ArrowInside=->,ArrowInsideNo=1](! x \RPN )(! \RPN\space dup) 
+\pstVerb{ /x \RPN\space def} 
+}
+}

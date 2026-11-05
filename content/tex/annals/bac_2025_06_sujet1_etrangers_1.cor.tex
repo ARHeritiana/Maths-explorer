@@ -1,0 +1,130 @@
+\medskip
+
+\textbf{Partie A : }
+
+\
+\begin{enumerate}
+\item Un arbre pondéré représentant la situation est : 
+
+\hfill~
+\begin{tikzpicture}[xscale=1,yscale=1,baseline={(R.base)}]
+\tikzstyle{fleche}=[->,>=latex,thick]
+\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+\def\DistanceInterNiveaux{3}
+\def\DistanceInterFeuilles{0.9}
+\def\NiveauA{(0)*\DistanceInterNiveaux}
+\def\NiveauB{(1)*\DistanceInterNiveaux}
+\def\NiveauC{(2)*\DistanceInterNiveaux}
+\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+
+\node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {};
+\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$T$};
+\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$E$};
+\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{E}$};
+\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\overline{T}$};
+\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$E$};
+\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{E}$};
+
+\draw[fleche] (R.east)--(Ra.west) node[etiquette] {$0,1$};
+\draw[fleche] (Ra.east)--(Raa.west) node[etiquette] {$0,3$};
+\draw[fleche] (Ra.east)--(Rab.west) node[etiquette] {$0,7$};
+\draw[fleche] (R.east)--(Rb.west) node[etiquette] {$0,9$};
+\draw[fleche] (Rb.east)--(Rba.west) node[etiquette] {$0,15$};
+\draw[fleche] (Rb.east)--(Rbb.west) node[etiquette] {$0,85$};
+\end{tikzpicture} \hfill~
+
+$P\left(\overline{T} \cap E\right) = P\left(\overline{T} \right)\times P_{\overline{T}}(E)= 0,9 \times 0,15 = 0,135$.
+\item Les évènements $T$ et $\overline{T}$ forment une partition de l'univers, donc, d'après la formule des probabilités totales : \quad $P(E) = P\big(\,T\cap E\big) + P\big(\,\overline{T}\cap E\big) $
+
+On a donc : \quad $P(E) = 0,1 \times 0,3 + 0,135 = 0,165$.
+
+La probabilité qu'une erreur soit détectée lors du contrôle est égale à $0,165$.
+
+\item $P_{E}(T)= \dfrac{P(T\cap E)}{P(E)} = \dfrac{0,1 \times 0,3}{0,165}\approx \np{0,1818}$.
+
+La probabilité qu'un contrôle total ait été effectué, sachant qu'une erreur a été détectée vaut  environ $0,18$, arrondie au centième.
+\end{enumerate}
+
+\textbf{Partie B :}
+Sur une journée donnée, une caisse automatique déclenche 15 contrôles. La probabilité qu'un contrôle mette en évidence une erreur est $p=0,165$. La détection d'une erreur lors d'un contrôle est indépendante des autres contrôles.
+
+On note $X$ la variable aléatoire égale au nombre d'erreurs détectées lors des contrôles de cette journée.
+
+\begin{enumerate}
+\item Sur une journée donnée, une caisse automatique déclenche 15 contrôles. La probabilité qu'un contrôle mette en évidence une erreur est $p=0,165$ donc $X$ suit une loi binomiale de paramètres $n=15$ et $p=0,165$. 
+\item $\begin{aligned}[t] P\left(X=5\right)
+& = \displaystyle \binom{15}{5}\times 0,165^{5}\times 0,835^{15 - 5}\\
+& = \np{3003}\times 0,165^{5} \times 0,835^{10} \\
+& \approx \np{0,0605}
+\end{aligned}$.
+
+Finalement, avec les consignes d'arrondi : \quad $P\left(X=5\right) \approx 0,06$
+
+La probabilité qu'exactement 5 erreurs soient détectées vaut $0,06$.
+
+\item  $P(X\geqslant 1)=1-P(X=0)= 1- 0,835^
+{15} \approx \np{0,9331}$.
+
+La probabilité qu'au moins une erreur soit détectée vaut $0,93$.
+
+\item Soit $n$ le nombre de contrôles effectués chaque jour.
+
+Soit $Y$ la variable aléatoire égale au nombre d'erreurs détectées lors des contrôles de cette journée.
+
+$Y$ suit une loi binomiale de paramètres $n$ et $p=0,165$.
+
+$P(Y\geqslant 1)=1-P(Y=0)= 1- 0,835^n$
+
+On souhaite que la probabilité qu'au moins une erreur soit détectée chaque jour soit supérieure à 99 \%.
+
+On veut donc que $1- 0,835^n \geqslant 0,99$.
+
+$\begin{aligned} 1- 0,835^n \geqslant 0,99 & \iff 0,01 \geqslant 0,835^n\\
+& \iff \ln(0,01)\geqslant \ln \left(0,835^n\right) \, \text{car la fonction logarithme est strictement}\\
+& \qquad \text{croissante sur } ]0~;~+\infty[\\
+ &\iff \ln (0,01)\geqslant n \ln \left(0,835\right)\\
+& \iff \dfrac{\ln(0,01)}{\ln(0,835)} \leqslant n \text{ car } \ln(0,935)<0\\
+\end{aligned}$
+
+or $ \dfrac{\ln(0,01)}{\ln(0,835)} \approx 25,5$
+
+Il faut déclencher 26 contrôles chaque jour.
+\end{enumerate}
+
+\textbf{Partie C : }
+
+Le magasin comporte trois caisses automatiques identiques qui, lors d'une journée, ont chacune déclenché 20 contrôles. On note $X_{1}, X_{2}$ et $X_{3}$ les variables aléatoires associant à chacune des caisses le nombre d'erreurs détectées lors de cette journée.
+
+On admet que les variables aléatoires $X_{1}, X_{2}$ et $X_{3}$ sont indépendantes entre elles et suivent chacune une loi binomiale $\mathcal{B}(20~;~0,165)$.
+
+\begin{enumerate}
+\item  $X_1$ suit une loi binomiale de paramètres $n=20$ et $p=0,175$. 
+
+Donc $E\left( X_1\right) = n\times p = 20 \times 0,165 = 3,3$ 
+
+et $V\left( X_1\right) = n\times p \times (1-p) = 20 \times 0,165 \times 0,835 = \np{2,7555}$ 
+
+\item $E(S)=E\left(X_{1}+X_{2}+X_{3}\right) = E\left( X_1\right) +E\left( X_2\right)+E\left( X_3\right) = 3 \times E\left( X_1\right) = 3 \times 3,3 = 9,9$ 
+
+Les variables $X_{1}, X_{2}$ et $X_{3}$ sont indépendantes donc : 
+
+$V(S)=V\left(X_{1}+X_{2}+X_{3}\right) = V\left( X_1\right) +V\left( X_2\right)+V\left( X_3\right) = 3 \times V\left( X_1\right) = 3 \times 2,7555 =\np{8,2665}$.
+\item L'évènement \og $6 <S< 14$ \fg{} revient à $\big|S - 10\big| < 4$ et
+
+$P\Big(\big|S- 10 \big| < 4\Big) = 1 - P\Big(\big|S - 10 \big| \geqslant 4\Big)$.
+
+Or, pour tout réel $t>0$, d'après l'inégalité de Bienaymé-Tchebychev, on a :
+
+$P\Big(\big|S-E\big(\,S\big)\big| \geqslant t\Big) \leqslant \dfrac{V\big(\,S\big)}{t^2}$
+
+Pour $t = 4$ on obtient : $P\Big(\big|S-10\big| \geqslant 4\Big)\leqslant \dfrac{8,2665}{4^2}$.
+
+D'où $P\Big(\big|S- 10 \big| < 4\Big) = 1 - P\Big(\big|S - 10 \big| \geqslant 4\Big) \geqslant 1- \dfrac{8,2665}{16}$.
+
+Or $1 - \dfrac{8,2665}{16} \approx \np{0,4833}$
+
+donc la probabilité que le nombre total d'erreurs sur la journée soit strictement compris entre 6 et 14 est bien supérieure à $0,48$.
+\end{enumerate}
+\medskip

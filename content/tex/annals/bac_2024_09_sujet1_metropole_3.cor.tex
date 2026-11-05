@@ -1,0 +1,148 @@
+\smallskip
+
+
+
+\begin{enumerate}
+\item On considère une suite $\left(t_n\right)$ vérifiant la relation de récurrence : \\
+pour tout entier naturel $n$, $t_{n+1}= - 0,8t_n + 18.$
+
+	\textbf{Affirmation 1} : La suite $\left(w_n\right)$ définie pour tout entier naturel $n$ par $w_n = t_n - 10$ est géométrique.
+
+\smallskip
+	
+Pour tout $n$: 
+$\begin{aligned}[t]
+w_{n  +1} & =t_{n+1}-10 = -0,8 t_n +18 - 10 = -0,8t_n +8 = -0,8\left ( t_n-10\right)\\
+&  = -0,8 w_n
+\end{aligned}$
+
+Donc la suite $(w_n)$ est géométrique de raison $-0,8$.
+	
+\hfill{\blue\bf Affirmation 1 vraie}	
+	
+\item Soit la suite $\left(S_n\right)$ qui vérifie pour tout $n\in \N^*$: $3n - 4 \leqslant S_n \leqslant 3n + 4.$
+
+	La suite $\left(u_n\right)$ est définie, pour tout entier naturel $n$ non nul, par : $u_n=\dfrac{S_n}{n}$.
+	
+	\textbf{Affirmation 2} : La suite $\left(u_n\right)$ converge.
+	
+	\smallskip
+
+$n>0$ donc \\
+$3n - 4 \leqslant S_n \leqslant 3n + 4.$ entraîne $\dfrac{3n - 4}{n} \leqslant \dfrac{S_n}{n} \leqslant \dfrac{3n + 4}{n}$ c'est-à-dire
+$3-\dfrac{4}{n} \leqslant u_n \leqslant 3+\dfrac{4}{n}$.
+
+\begin{list}{\textbullet}{}
+\item $\ds\lim_{n\to +\infty} \dfrac{4}{n}=0$ donc $\ds\lim_{n\to +\infty} 3-\dfrac{4}{n}=3$
+\item $\ds\lim_{n\to +\infty} \dfrac{4}{n}=0$ donc $\ds\lim_{n\to +\infty} 3+\dfrac{4}{n}=3$
+\item Pour tout $n>0$: $3-\dfrac{4}{n} \leqslant u_n \leqslant 3+\dfrac{4}{n}$
+\end{list}
+
+Donc, d'après le théorème des gendarmes, on peut déduire que la suite $(u_n)$ est convergente et que $\ds\lim_{n\to +\infty} u_n=3$.
+
+\hfill{\blue\bf Affirmation 2 vraie}	
+
+\item Soit la suite $\left(v_n\right)$ définie par :
+$ v_1=2 \text{ et pour tout entier naturel } n\geqslant1,~v_{n+1}=2-\dfrac{1}{v_n}. $
+	
+\textbf{Affirmation 3} : Pour tout entier naturel $n \geqslant 1$, $v_{n}=\dfrac{n+1}{n}$.
+	
+\smallskip
+	
+On va démontrer cette propriété par récurrence.
+
+\begin{list}{\textbullet}{}
+\item  \textbf{Initialisation}
+
+Pour $n=1$: $v_1=2$ et $\dfrac{n+1}{n}=\dfrac{1+1}{1}=2$. Donc la propriété est vraie au rang 1.
+
+\item \textbf{Hérédité}
+
+On suppose la propriété vraie au rang $n$, c'est-à-dire $v_n=\dfrac{n+1}{n}$ (hypothèse de récurrence).
+
+$\begin{aligned}
+v_{n+1} & = 2-\dfrac{1}{v_n} = 2 - \dfrac{1}{\frac{n+1}{n}} = 2- \dfrac{n}{n+1} = \dfrac{2(n+1)-n}{n+1} = \dfrac{2n+2-n}{n+1} = \dfrac{n+2}{n+1}\\
+&  = \dfrac{(n+1)+1}{n+1}
+\end{aligned}$
+
+Donc la propriété est vraie au rang $n+1$.
+
+\item \textbf{Conclusion}
+
+La propriété est vraie au rang 1, et elle est héréditaire pour tout $n\geqslant 1$. Donc, d'après le principe de récurrence, la propriété est vraie pour tout $n\geqslant 1$.
+\end{list}	
+	
+\hfill{\blue\bf Affirmation 3 vraie}		
+	
+\item On considère la suite $\left(u_n\right)$ définie pour tout entier naturel $n$ par $u_n = \e^n-n$.
+	
+	\textbf{Affirmation 4} : La suite $\left(u_n\right)$ converge.
+	
+	\smallskip
+	
+Soit $f$ la fonction définie sur $\R$ par: $f(x)= \e^{x}-x$. Donc $u_n=f(n)$ pour tout $n$.
+
+Pour $x>0$, $f(x)=x \left ( \dfrac{\e^{x}}{x} - 1 \right )$.
+
+On sait que $\ds\lim_{x\to +\infty} \dfrac{\e^{x}}{x} = +\infty$ donc $\ds\lim_{x\to +\infty} \dfrac{\e^{x}}{x} -1 = +\infty$ et donc $\ds\lim_{x\to +\infty} x\left ( \dfrac{\e^{x}}{x}-1 \right ) = +\infty$.
+
+On a alors $\ds\lim_{x\to +\infty} f(x) = +\infty$n ce qui entraîne que $\ds\lim_{n\to +\infty} u_n = +\infty$.
+
+\hfill{\blue\bf Affirmation 4 fausse}		
+	
+\item On considère la suite $\left(u_n\right)$ définie à l'aide du script écrit ci-dessous en langage \textsf{Python}, qui renvoie la valeur de $u_n$.
+	
+\texttt{\begin{center}
+\begin{tabular}{|l|}\hline
+\textbf{def} u(n) :\\
+\qquad valeur = 2\\
+\qquad \textbf{for} k \textbf{in range}(n) :\\
+\qquad \qquad valeur = 0.5 * (valeur + 2/valeur)\\
+\qquad \textbf{return} valeur\\ \hline
+\end{tabular}
+\end{center}
+}
+
+On admet que $\left(u_n\right)$ est décroissante et vérifie pour tout $n$ :
+$\sqrt{2} \leqslant u_n \leqslant 2.$
+
+\textbf{Affirmation 5} : La suite $\left(u_n\right)$ converge vers $\sqrt{2}$.
+
+\smallskip
+
+D'après le script Python, $(u_n)$ est définie par:
+$\left \{
+\begin{array}{l !{=} l}
+u_0 & 2\\
+u_{n+1} & 0,5 \left (u_n + \frac{2}{u_n} \right) \text{ pour tout }n
+\end{array}
+\right .$
+
+\begin{list}{\textbullet}{}
+\item La suite $(u_n)$ est décroissante.
+\item Pour tout $n$, on a: $\sqrt{2} \leqslant u_n \leqslant 2$ donc la suite est minorée par $\sqrt{2}$.
+\item D'après le théorème de la convergence monotone, on peut dire que la suite $(u_n)$ converge vers un réel $\ell$ tel que $\ell \geqslant \sqrt{2}$.
+\end{list}
+
+$\ds\lim_{n\to + \infty} u_n = \ell$ et $\ds\lim_{n\to + \infty} u_{n+1} = \ell$
+
+De l'égalité $u_{n+1} = 0,5 \left ( u_n + \dfrac{2}{u_n} \right )$, on déduit:
+$\ell = 0,5 \left ( \ell + \dfrac{2}{\ell} \right )$. 
+
+On résout cette équation.
+
+$\ell = 0,5 \left ( \ell + \dfrac{2}{\ell}\right )
+\iff
+2\ell = \ell + \dfrac{2}{\ell}
+\iff
+\ell=\dfrac{2}{\ell}
+\iff
+\ell^2=2
+\iff
+\ell=\sqrt{2} \text{ ou } \ell=-\sqrt{2}$
+
+On a vu que $\ell\geqslant \sqrt{2}$ donc $\ell=\sqrt{2}$.
+
+\hfill{\blue\bf Affirmation 5 vraie}		
+
+\end{enumerate}

@@ -1,0 +1,139 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet24_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Question 1}
+
+La tangente en $A$ est horizontale, donc $f'(-1) = 0$.
+
+\subsection*{Question 2}
+
+On lit sur le graphe que $f'(x) \leq 0$ sur $[-4 ; -1]$ et sur $[1,5 ; 2]$.
+
+\subsection*{Question 3}
+
+On admet que la fonction $f$ est définie sur $[-4 ; 2]$ \\
+par $f(x) = (-x^2 + 2,5x - 1)e^x$.\\
+La fonction $f$ est un produit de fonctions dérivables sur $[-4 ; 2]$, donc sur cet intervalle :
+\begin{align*}
+	f'(x) &= (-2x + 2,5)e^x + (-x^2 + 2,5x - 1)e^x \\
+	&= e^x \left( -2x + 2,5 - x^2 + 2,5x - 1 \right) \\
+	&= e^x (-x^2 + 0,5x + 1,5).
+\end{align*}
+
+\subsection*{Question 4}
+
+Le signe de $f'(x)$ dépend du signe du trinôme $-x^2 + 0,5x + 1,5$.\\
+Le discriminant de ce trinôme est :
+\begin{align*}
+	\Delta &= 0,5^2 + 4 \times 1,5 \\
+	&= 0,25 + 6 = 6,25 > 0.
+\end{align*}
+Ce trinôme a donc deux racines :
+\begin{align*}
+	x_1 &= \frac{-0,5 + 2,5}{-2} = -1, \\
+	x_2 &= \frac{-0,5 - 2,5}{-2} = 1,5.
+\end{align*}
+Le trinôme est négatif sur $[-4 ; -1[$ et sur $[1,5 ; 2]$ et positif sur $[-1 ; 1,5]$.
+
+Ainsi :
+\begin{itemize}
+	\item $f'(x) < 0$ sur $[-4 ; -1[$ et sur $[1,5 ; 2]$, donc la fonction $f$ est décroissante sur ces intervalles ;
+	\item $f'(x) > 0$ sur $[-1 ; 1,5]$, donc la fonction $f$ est croissante sur cet intervalle ;
+	\item $f'(-1) = 0$ et $f'(1,5) = 0$, donc $f(-1)$ et $f(1,5)$ sont les extremums de $f$ sur $[-4 ; 2]$.
+\end{itemize}
+
+\subsection*{Question 5}
+
+D'après la question précédente, on a le tableau de variations suivant :
+
+\begin{center}
+\begin{tikzpicture}
+	\tkzTabInit[lgt=3, espcl=3]
+	{$x$/1, $f'(x)$/1, $f(x)$/2}
+	{$-4$, $-1$, $1.5$, $2$}
+	\tkzTabLine{,-,z,+,z,-}
+	\tkzTabVar{+/$-27\e^{-4}$, -/$-4.5\e^{-1}$, +/$0.5\e^{4}$, -/$0$}
+\end{tikzpicture}
+\end{center}
+
+\end{document}

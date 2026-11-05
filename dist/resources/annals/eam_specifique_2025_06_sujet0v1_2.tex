@@ -1,0 +1,140 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2025/tex/eam_specifique_2025_06_sujet0v1_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{minipage}[t]{0.65\textwidth}
+Albert a acquis un étang d'une surface de 2\,000 m$^2$.
+
+Le jour de son anniversaire, un dimanche, il installe des nénuphars sur une surface de 200 m$^2$.
+
+\begin{enumerate}
+\item Le dimanche d'après, la surface des nénuphars a augmenté de 40 m$^2$.
+\begin{enumerate}
+\item Quel pourcentage d'augmentation cela représente-t-il ?
+\item Quelle est à présent la surface occupée par les nénuphars ?
+\end{enumerate}
+\end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.3\textwidth}
+\vspace{0pt}
+\begin{center}
+\begin{tikzpicture}[scale=0.75]
+\draw[fill=cyan!60, draw=black, line width=1pt] (0,0) ellipse (2.5cm and 1.5cm);
+\draw[fill=green!70!black, draw=black, line width=1pt] (1.5,0) ellipse (1cm and 0.5cm);
+\draw[-{Triangle[length=3mm,width=3mm]}, line width=1.25mm, black] (-1.5,1.6) -- (0,0.75);
+\draw[-{Triangle[length=3mm,width=3mm]}, line width=1.25mm, black] (2.2,1.6) -- (1.5,0);
+\node[above] at (-1.5,1.6) {Etang};
+\node[above] at (2.2,1.6) {Nénuphars};
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\begin{enumerate}[resume]
+\item Dans cette question, on suppose que la surface occupée par les nénuphars augmente de 40 m$^2$ chaque semaine, depuis la date de l'anniversaire, tant que cela est possible.
+\begin{enumerate}
+\item Quelle sera la surface occupée par les nénuphars 10 semaines après l'anniversaire ?
+\item Est-il possible qu'un dimanche, la surface occupée par les nénuphars soit égale à 580 m$^2$ ? Justifier.
+\item Au bout de combien de semaines, l'étang sera-t-il entièrement recouvert de nénuphars ?
+\end{enumerate}
+
+\item Dans cette question, on suppose que la surface occupée par les nénuphars augmente de 20\% chaque semaine, depuis la date de l'anniversaire, tant que cela est possible.
+\begin{enumerate}
+\item Quelle sera la surface occupée par les nénuphars 2 semaines après l'anniversaire ?
+\item On considère un entier naturel $n$. Déterminer, en fonction de $n$, la surface occupée par les nénuphars $n$ semaines après l'anniversaire ?
+\item Au bout de combien de semaines, l'étang sera-t-il entièrement recouvert par les nénuphars ? On pourra s'aider du tableau ci-dessous.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$n = $ & 0 & 1 & 2 & 5 & 10 & 12 & 13 & 14 & 15 \\
+\hline
+$1,2^n \approx $ & 1 & 1,2 & 1,44 & 2,49 & 6,19 & 8,92 & 10,70 & 12,84 & 15,40 \\
+\hline
+\end{tabular}
+\end{center}
+\end{enumerate}
+
+\item Réaliser sur votre copie un \textit{schéma} sur lequel apparaissent l'allure des nuages de points traduisant la progression de la surface occupée par les nénuphars, aussi bien dans le cas de la question 2 que dans le cas de la question 3, et faire figurer le moment où, dans chacun des cas, l'étang est recouvert par les nénuphars.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,97 @@
+\medskip
+
+Voici la répartition des principaux groupes sanguins des habitants de France:
+
+\begin{center}
+\psset{xunit=1.2cm,yunit=0.25cm}
+\begin{pspicture}(8.5,41)
+\psaxes[linewidth=1.25pt,Dx=10,Dy=100](0,0)(0,0)(8.5,40)
+\uput[d](1,0){A+}\uput[d](2,0){O+}\uput[d](3,0){B+}\uput[d](4,0){A$-$}
+\uput[d](5,0){O$-$}\uput[d](6,0){AB+}\uput[d](7,0){B$-$}\uput[d](8,0){AB$-$}
+\multido{\n=0+5}{9}{\uput[l](0,\n){\n\,\%}}
+\psframe[fillstyle=solid,fillcolor=lightgray](0.8,0)(1.2,38.2)\uput[u](1,38.2){38,2\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](1.8,0)(2.2,36.5)\uput[u](2,36.5){36,5\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](2.8,0)(3.2,7.7)\uput[u](3,7.7){7,7\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](3.8,0)(4.2,6.8)\uput[u](4,6.8){6,8\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](4.8,0)(5.2,6.5)\uput[u](5,6.5){6,5\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](5.8,0)(6.2,2.5)\uput[u](6,2.5){2,5\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](6.8,0)(7.2,1.4)\uput[u](7,1.4){1,4\,\%}
+\psframe[fillstyle=solid,fillcolor=lightgray](7.8,0)(8.2,0.4)\uput[u](8,0.4){0,4\,\%}
+\end{pspicture}
+
+\medskip
+
+\emph{\scriptsize Source : https://fr.statista.com!statistiques/6 56036/ groupes-sanguins-repartition-rh- france/}
+
+\end{center}
+
+A+, O+, B+, A$-$, O$-$, AB+, B$-$ et AB$-$ sont les différents groupes sanguins combinés aux rhésus.
+
+Par exemple: A + est le groupe sanguin A de rhésus +.
+
+Une expérience aléatoire consiste à choisir une personne au hasard dans la population française et à déterminer son groupe sanguin et son rhésus.
+
+Dans l'exercice, on adopte les notations du type :
+
+$A$ + est l'évènement \og la personne est de groupe sanguin A et de rhésus + \fg 
+
+$A -$ est l'évènement \og la personne est de groupe sanguin A et de rhésus $-$ \fg
+
+$A$ est l'évènement \og la personne est de groupe sanguin A \fg
+
+\medskip
+
+Les parties 1 et 2 sont indépendantes.
+
+
+\textbf{Partie 1}
+
+\medskip
+
+On note $Rh$ + l'évènement \og La personne est de rhésus positif \fg.
+
+\begin{enumerate}
+\item Justifier que la probabilité que la personne choisie soit de rhésus positif est égale à 0,849.
+\item Démontrer à l'aide des données de l'énoncé que $P_{Rh+}(A) = 0,450$ à 0,001 près.
+\item Une personne se souvient que son groupe sanguin est AB mais a oublié son rhésus.
+
+Quelle est la probabilité que son rhésus soit négatif ? Arrondir le résultat à 0,001 près.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2}
+
+\medskip
+
+Dans cette partie, les résultats seront arrondis à $0,001$ près.
+
+\medskip
+
+Un donneur universel de sang est une personne de groupe sanguin O et de rhésus négatif. On rappelle que 6,5\,\% de la population française est de groupe O$-$.
+
+\medskip
+
+\begin{enumerate}
+\item On considère $50$ personnes choisies au hasard dans la population française et on note $X$ la variable aléatoire qui compte le nombre de donneurs universels.
+	\begin{enumerate}
+		\item Déterminer la probabilité que 8 personnes soient des donneurs universels. Justifier votre réponse.
+		\item On considère la fonction ci-dessous nommée \texttt{proba} d'argument k écrite en langage Python.
+		
+\begin{center}
+\begin{tabular}{|l|}\hline
+def proba(k):\\
+\quad p=0\\
+\quad for i in range(k+1):\\
+\quad \quad p = p + binomiale(i,50,0.065)\\ 
+\quad return p\\ \hline
+\end{tabular}
+\end{center}
+Cette fonction utilise la fonction binomiale d'argument $i, n$ et $p$, créée pour l'occasion, qui renvoie la valeur de la probabilité $P(X = i)$ dans le cas où $X$ suit une loi binomiale de paramètres $n$ et $p$.
+
+Déterminer la valeur numérique renvoyée par la fonction \texttt{proba} lorsqu'on saisit \texttt{proba(8)} dans la console Python. Interpréter ce résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\item Quel est le nombre minimal de personnes à choisir au hasard dans la population française pour que la probabilité qu'au moins une des personnes choisies soit donneur universel, soit supérieure à $0,999$.
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,84 @@
+\medskip
+
+En 2020, une ville comptait 10 000 habitants
+
+On modélise l'évolution du nombre d'habitants de cette ville par la suite $(u_n)$ définie ainsi : 
+\[\left\{\begin{array}{l c l}
+u_0&=&\np{10000}\\
+u_{n+1}&=&1,08u_n - 300,\quad n \in \N 
+\end{array}\right.\]
+
+où $u_n$ représente le nombre d'habitants pour l'année $2020 + n$.
+
+
+
+\begin{enumerate}
+\item
+$u_1$  représente le nombre d'habitants pour l'année $2020 + 1$ soit le nombre d'habitants en 2021.
+
+$u_{1}=1,08 u_0 - 300 = 1,08\times \np{10000}-300 = \np{10800}-300=\np{10500}$
+
+\item On considère la suite $(v_n)$ définie pour tout entier naturel $n$ par $v_n = u_n  - \np{3750}$. 
+	\begin{enumerate}
+		\item 
+$v_0=u_0 - 	\np{3750} = \np{10000} - \np{3750} = \np{6250}$
+		
+		\item 
+Pour tout entier naturel $n$, on a $v_n=u_n-\np{3750}$ donc $u_n=v_n+\np{3750}$.
+
+$\begin{aligned}
+v_{n+1}
+& =u_{n+1}-\np{3750}
+ = 1,08u_n -300 -\np{3750}
+= 1,08\left ( v_n +\np{3750} \right ) -300 - \np{3750}\\
+& =1,08 v_n + \np{4050} - \np{4050}
+= 1,08 v_n
+\end{aligned}$
+
+		\item
+Donc la suite $(v_n)$ est géométrique de raison $q=1,08$ et de premier terme $v_0 = \np{6250}$.
+
+		\item On en déduit que, pour tout entier naturel $n$, on a 
+$v_n=v_0\times q^n = \np{6250}\times 1,08^n$.		
+		
+		\item 
+Pour tout $n$ on a $v_n= \np{6250}\times 1,08^n$ et $u_n=v_n+\np{3750}$ donc on peut en déduire que $u_n = \np{6250}\times 1,08^n +\np{3750}$.
+	\end{enumerate}
+	
+\item ~
+
+\begin{minipage}{0.66\linewidth}
+Le tableau ci-contre, extrait d'une feuille automatisée de calcul, a été obtenu par recopie vers le bas après avoir saisi la formule suivante dans la cellule B2 :
+
+\begin{center}
+\fbox{\texttt{= 6250*1,08\^{}A2 + 3750}}
+\end{center}
+
+La municipalité envisage d'ouvrir une nouvelle école
+ maternelle dès que la population atteindra \np{19000} habitants.\\
+
+\end{minipage}
+\hfill
+\begin{minipage}{0.3\linewidth}
+$\begin{array}{|>{\cellcolor{lightgray}}c|c|c|}\hline
+\rowcolor{lightgray}&\text{A}&\text{B}\\ \hline
+1&\text{n}& \text{Un}\\ \hline
+2&0&\np{10000}\\ \hline
+3&1&\np{10500}\\ \hline
+\cdots & \cdots & \cdots \\ \hline
+13&11&\np{18322,74373}\\ \hline
+14&12&\np{19488,56323}\\ \hline
+15&13&\np{20747,64829}\\ \hline
+\cdots & \cdots & \cdots \\ \hline
+\end{array}$
+\end{minipage}
+
+\medskip
+
+La population dépasse $\np{19000}$ habitants pour $n=12$ soit en 2032.
+
+La construction d'un tel établissement nécessite deux ans; il faut donc commencer les travaux en 2030.
+
+\end{enumerate}
+
+\bigskip

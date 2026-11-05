@@ -1,0 +1,57 @@
+\medskip
+Un cafetier propose à ses clients des cookies au chocolat ou aux noisettes en s'approvisionnant dans trois boulangeries. Un client prend un cookie au hasard.
+
+On note:
+
+$C$ l'évènement \og le cookie est au chocolat \fg,
+
+$N$ l'évènement \og le cookie est aux noisettes \fg,
+
+$B_1$ l'évènement \og le cookie provient de la boulangerie 1 \fg, 
+
+$B_2$ l'évènement \og le cookie provient de la boulangerie 2 \fg,
+
+$B_3$ l'évènement \og le cookie provient de la boulangerie 3 \fg.
+
+On suppose que :
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item la probabilité que le cookie provienne de la boulangerie 1 est de 0,49 ;
+\item la probabilité que le cookie provienne de la boulangerie 2 est de 0,36 ;
+\item  $P_{B_2}(C) = 0,4$ où $P_{B_2}(C)$ est la probabilité conditionnelle de $C$ sachant $B_2$ ;
+\item la probabilité que le cookie soit aux noisettes sachant qu'il provient de la troisième boulangerie est de $0,3$.
+\end{itemize}
+\setlength\parindent{0cm}
+
+L'arbre pondéré ci-dessous correspond à la situation et donne une information
+supplémentaire : le nombre $0,6$ sur la branche de $B_1$ à $C$.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=3pt]{\TR{}}
+{\pstree{\TR{$B_1$~~}\naput{\ldots}}
+	{\TR{$C$} \naput{0,6}
+	\TR{$N$}\tbput{\ldots}
+	}
+\pstree{\TR{$B_2$~~}\naput{\ldots}}
+	{\TR{$C$} \taput{\ldots}
+	\TR{$N$}\tbput{\ldots}
+	}
+\pstree{\TR{$B_3$~~}\nbput{\ldots}}
+	{\TR{$C$}\taput{\ldots} 
+	\TR{$N$}\tbput{\ldots}
+	}	
+}
+\end{center}
+
+\smallskip
+
+\begin{enumerate}
+\item Exprimer par une phrase l'information donnée par le nombre 0,6 sur la branche de $B_1$ à $C$.
+\item Recopier et compléter sur la copie l'arbre pondéré ci-dessus.
+\item Définir par une phrase l'évènement $B_1 \cap C$ et calculer sa probabilité.
+\item Montrer la probabilité $P(C)$ d'avoir un cookie au chocolat est égale à $0,543$.
+\item Calculer la probabilité d'avoir un cookie provenant de la boulangerie 2 sachant qu'il est au chocolat. On donnera le résultat arrondi au millième.
+\end{enumerate}
+
+\bigskip

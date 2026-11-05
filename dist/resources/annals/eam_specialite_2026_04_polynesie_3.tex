@@ -1,0 +1,151 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specialite_2026_04_polynesie_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Les activités d'une association sont financées grâce à des donateurs.
+
+On réalise une estimation du nombre de donateurs de la manière suivante.
+
+Chaque année,
+\begin{itemize}[left=5mm]
+	\item 80\,\% des donateurs de l'année précédente renouvellent leur don;
+	\item 300 nouveaux donateurs effectuent un don.
+\end{itemize}
+
+En 2025, l'association comptait \np{1000} donateurs.
+
+Pour tout entier naturel $n$, on modélise par $u_{n}$ le nombre de donateurs pour l'année $2025+n$.
+
+Ainsi, on a $u_{0}=1000$.
+
+\subsection*{Partie A}
+
+\begin{enumerate}
+	\item \begin{enumerate}
+		\item Déterminer le nombre de donateurs prévu en 2026.
+
+		\item Justifier que pour tout entier naturel $n$, on a :\quad $u_{n+1}=0,8 u_{n}+300$.
+	\end{enumerate}
+
+	\item On donne $u_{5} \approx \np{1336}$. Que représente cette valeur dans le contexte de l'exercice ?
+
+	\item On considère la suite d'instructions Python ci-dessous :
+
+\begin{lstlisting}[style=python,xleftmargin=5cm,xrightmargin=5cm,numbers=none]
+u=1000
+i=0
+while u<=1400:
+	u=0.8*u + 300
+	i=i+1
+\end{lstlisting}
+
+	À la fin de l'exécution de ce script, la variable i contient la valeur 8.\\
+	Comment peut-on l'interpréter dans le cadre de l'exercice?
+\end{enumerate}
+
+\subsection*{Partie B}
+
+\begin{minipage}{11cm}
+	On considère la suite $\left(v_{n}\right)$ définie sur $\N$ par \quad $v_{n}=u_{n}-\np{1500}$.
+
+\begin{enumerate}
+	\item Démontrer que $\left(v_{n}\right)$ est une suite géométrique.
+
+	Préciser sa raison et son premier terme.
+\end{enumerate}
+\end{minipage}
+\hfill
+\begin{tblr}{colspec={X[c,4cm]},hlines, vlines}
+	Aide au calcul :
+	\[\dfrac{1200}{0,8}=\np{1500}\]
+	\[0,8 \times \np{1500}=\np{1200}\]
+\end{tblr}
+
+\begin{enumerate}[start=2]
+	\item \begin{enumerate}
+		\item Exprimer $v_{n}$ en fonction de $n$.
+
+		\item En déduire, pour tout entier naturel $n$, que : \quad $u_{n}=\np{1500}-500 \times 0,8^{n}$.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

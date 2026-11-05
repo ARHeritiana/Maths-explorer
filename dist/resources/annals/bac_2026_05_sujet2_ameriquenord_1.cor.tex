@@ -1,0 +1,294 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_05_sujet2_ameriquenord_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Un supermarché dispose d'un stock de tomates provenant de deux fournisseurs A et B.
+
+II a été constaté que :
+
+\begin{itemize}[label=$\bullet~$]
+\item 91\,\% du stock de tomates est commercialisable ;
+\item 60\,\% du stock de tomates provient du fournisseur A ;
+\item parmi les tomates provenant du fournisseur A, la proportion de tomates commercialisables
+est de 95\,\%.
+\end{itemize}
+
+On choisit au hasard une tomate dans le stock.
+
+On désigne par :
+\begin{itemize}[label=$\bullet~$]
+\item $A$ l'évènement \og La tomate provient du fournisseur A \fg ;
+\item $B$ l'évènement \og La tomate provient du fournisseur B \fg ;
+\item $C$ l'évènement \og La tomate est commercialisable \fg.
+\end{itemize}
+
+Pour un évènement quelconque $E$, on note $P(E)$ la probabilité de $E$.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item On complète l'arbre ci-dessous.
+
+
+\begin{center}
+\pstree[treemode=R,levelsep=3.5cm, treesep=0.7cm,nodesepA=0pt,nodesepB=4pt,nrot=:U]{\TR{}}
+{\pstree[nodesepA=4pt]{\TR{$A$}\naput{\blue$0,60$}}
+	{\TR{$C$} \naput{\blue$0,95$}
+	\TR{$\overline{C}$} \nbput{\blue$1-0,95=0,05$}
+	}
+\pstree[nodesepA=4pt]{\TR{$B$}\nbput{\blue$1-0,60=0,40$}}
+	{\TR{$C$} 
+	\TR{$\overline{C}$} 
+	}
+}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item
+	\begin{enumerate}
+		\item La probabilité que la tomate choisie soit commercialisable et provienne du fournisseur A est
+$P\left (A\cap C\right ) = P\left (A\right ) \times P_{A}\left (C\right ) = 0,60\times 0,95=0,57$.
+		
+		\item On cherche  $P_B\left (C\right )$.
+D'après le texte: $P\left (C\right ) = 0,91$.
+
+D'après la formule des probabilités totales, on a:
+
+$P\left (C\right )=P\left (A\cap C\right )+P\left (B\cap C\right )$ donc $P\left (C\right )= P\left (A\cap C\right )+P\left (B\right )\times P_{B}\left (C\right )$.
+
+Donc: $0,91=0,57+0,40\times P_{B}\left (C\right )$, 
+soit $0,34=0,40\times P_{B}\left (C\right )$,
+et donc: $P_{B}\left (C\right ) = \dfrac{0,34}{0,40}=0,85$.
+		
+		\item La tomate choisie est non commercialisable. Le responsable des achats estime qu'il y a deux fois moins de chance qu'elle provienne du fournisseur A que du fournisseur B.
+		
+Il faut donc comparer $P_{\overline{C}}\left (A\right )$ et  $P_{\overline{C}}\left (B\right )$.
+
+$P_{\overline{C}}\left (A\right ) = \dfrac{P\left ( A \cap \overline{C}\right )}{P\left (\overline{C}\right )}
+= \dfrac{0,60\times 0,05}{1-0,91} = \dfrac{0,03}{0,09}= \dfrac{1}{3}$ 
+
+$P_{\overline{C}}\left (B\right ) = \dfrac{P\left ( B \cap \overline{C}\right )}{P\left (\overline{C}\right )}
+= \dfrac{0,40\times \left (1-0,85\right )}{0,09} = \dfrac{0,06}{0,09}= \dfrac{2}{3}$ 
+
+$P_{\overline{C}}\left (A\right ) = \dfrac{1}{2}\times P_{\overline{C}}\left (B\right )$ donc le responsable commercial a raison.
+
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On rappelle que 9\,\% des tomates du stock ne sont pas commercialisables.
+
+\medskip
+
+\begin{enumerate}
+\item On prend $15$ tomates dans le stock au hasard et de manière indépendante. On considère que le stock est suffisamment important pour qu'on puisse assimiler ce prélèvement à un tirage aléatoire avec remise.
+On note $X$ la variable aléatoire égale au nombre de tomates non commercialisables dans cet échantillon de $15$~tomates.
+
+	\begin{enumerate}
+		\item On admet que la variable aléatoire $X$ suit une loi binomiale; ses paramètres sont $n=15$ et $p=0,09$.
+		
+		\item La probabilité qu'exactement deux tomates soient non commercialisables est:
+		
+		$P\left (X=2\right ) = \ds\binom{15}{2}\times 0,09^{2}\times \left (1-0,09\right )^{15-2}$ qui a pour arrondi au millième $0,250$.
+
+
+
+		\item La probabilité qu'au plus deux tomates soient non commercialisables est:
+		
+		$P\left (X \leqslant 2\right ) \approx 0,853$ (à la calculatrice).
+
+
+	\end{enumerate}
+\item On constitue désormais un échantillon de $n$ tomates, toujours dans les mêmes conditions, où $n$ désigne un entier naturel non nul.
+
+On note $X_n$, la variable aléatoire égale au nombre de tomates non commercialisables et $F_n$ la variable aléatoire égale à la fréquence de tomates non commercialisables dans cet échantillon de $n$ tomates.
+
+On a donc $F_n = \dfrac{X_n}{n}$.
+
+On admet que la variable aléatoire $X_n$, suit la loi binomiale de paramètres $n$ et $0,09$.
+
+	\begin{enumerate}
+		\item 
+		\begin{list}{\textbullet}{}
+		\item Puisque $X_n$ suit la loi binomiale de paramètres $n$ et $0,09$, alors l'espérance de $X_n$ est, par propriété : $E(X_n) = np = 0,09n$.
+
+On a ensuite $F_n = \dfrac{1}{n} \times X_n$,
+
+donc, par linéarité de l'espérance : $E(F_n) = \dfrac{1}{n} E(X_n) = \dfrac{1}{n}\times 0,09n = 0,09$.
+
+\item Puisque $X_n$ suit la loi binomiale de paramètres $n$ et $0,09$, alors la variance de $X_n$ est, par propriété : $V(X_n) = np(1-p) = 0,09\times (1-0,09)\times n = 0,0819n$.
+
+D'après la formule: $V(aX) = a^2V(X)$, on a:
+$V\left (F_n\right ) = V\left ( \dfrac{X_n}{n} \right ) = V\left (\dfrac{1}{n} X_n\right ) = \dfrac{V\left (X_n\right )}{n^2}$.
+
+Donc $V\left (F_n\right )= \dfrac{V\left (X_n\right )}{n^2}	= \dfrac{0,0819n}{n^2}=\dfrac{0,0819}{n}$.
+		\end{list}
+
+		\item On veut démontrer que $P\left (0,04 < F_n < 0,14\right ) \geqslant 1 - \dfrac{32,76}{n}$.
+
+$\begin{aligned}
+0,04 < F_n < 0,14
+& \iff 0,09-0,05 < F_n < 0,09+0,05
+\iff -0,05 < F_n-0,09 < 0,05\\
+& \iff \left | F_n-0,09 \right | < 0,05
+\end{aligned}$
+
+donc 
+$P\left (0,04 < F_n < 0,14\right ) = P\left (\left | F_n-0,09 \right | < 0,05\right ) = 1-P \left (\left | F_n-0,09 \right |\geqslant 0,05\right ) $
+
+La variable aléatoire $F_n$ a pour espérance $E\left (F_n\right )$ et pour variance $V\left (F_n\right )$ donc, d'après l'inégalité de Bienaymé-Tchebychev, on a:
+
+pour tout $\delta\in\, \left ]0\;;\;+\infty\strut \right [$, 
+$P\left (\left |F_n-E\left (F_n\right)\strut \right | \geqslant \delta \right ) \leqslant \dfrac{V\left (F_n\right  )}{\delta^2}$.
+
+$E\left (F_n\right )=0,09$ et $V\left (F_n\right )= \dfrac{0,0819}{n}$ donc  l'inégalité de Bienaymé-Tchebychev devient:
+
+pour tout $\delta\in\, \left ]0\;;\;+\infty\strut \right [$, 
+$P\left ( \left |F_n-0,09\strut \right | \geqslant \delta \right ) \leqslant \dfrac{\frac{0,0819}{n}}{\delta^2}$.
+
+Pour $\delta=0,05$, l'inégalité:
+$P\left ( \left |F_n-0,09\strut \right | \geqslant 0,05 \right ) \leqslant \dfrac{\frac{0,0819}{n}}{0,05^2}$,
+soit
+$P\left ( \left |F_n-0,09\strut \right | \geqslant 0,05 \right ) \leqslant \dfrac{32,76}{n}$		
+		
+$P\left (0,04 < F_n < 0,14\right ) =  1-P \left (\left | F_n-0,09 \right | \geqslant 0,05\right )$	
+
+$P\left ( \left |F_n-0,09\strut \right | \geqslant 0,05 \right ) \leqslant \dfrac{32,76}{n}$
+donc
+$-P\left ( \left |F_n-0,09\strut \right | \geqslant 0,05 \right ) \geqslant -\dfrac{32,76}{n}$
+
+donc
+$1-P\left ( \left |F_n-0,09\strut \right | \geqslant 0,05 \right ) \geqslant 1 -\dfrac{32,76}{n}$
+et donc
+$P\left (0,04 < F_n < 0,14\right ) \geqslant 1 -\dfrac{32,76}{n}$
+
+		\item Le responsable des achats prélève dans le stock un échantillon de $500$ tomates. Il s'aperçoit que $55$ tomates ne sont pas commercialisables.
+
+
+
+\begin{list}{\textbullet}{Pour $n=500$:}
+\item La fréquence de tomates non commercialisables est $F=\dfrac{55}{500}=0,11$; on remarque que $0,04 \leqslant F \leqslant 0,14$
+\item $1-\dfrac{32,76}{n}= 1- \dfrac{32,76}{500} = \np{0,93448}$
+\end{list}
+
+On a donc $P\left (0,04 \leqslant F_{500} \leqslant 0,14\right ) \geqslant \np{0,93448}$.
+
+Il y a donc une probabilité supérieure à $93,448$\,\% que la fréquence de tomates non commercialisables soit comprise entre $0,04$ et $0,14$.
+
+Comme $0,11$ est compris  entre $0,04$ et $0,14$, le résultat est conforme à ce qu'attendait le responsable.
+
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\end{document}

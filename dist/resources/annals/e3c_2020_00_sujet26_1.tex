@@ -1,0 +1,163 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet26_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Ce QCM comprend 5 questions. 
+
+Pour chacune des questions, une seule des quatre réponses proposées est correcte. 
+
+Les questions sont indépendantes.
+
+Pour chaque question, indiquer le numéro de la question et recopier sur la copie la lettre correspondante à la réponse choisie.
+
+Aucune justification n'est demandée mais il peut être nécessaire d'effectuer des recherches au brouillon pour aider à déterminer votre réponse.
+
+Chaque réponse correcte rapporte 1 point. Une réponse incorrecte ou une question sans réponse n'apporte ni ne retire de point.
+
+\medskip
+\textbf{Question 1}
+\medskip 
+
+Pour tout réel $x,\dfrac{\e^{2x}}{\e^{x+1}}$ est égale à :
+
+\medskip 
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $\e^{x-1} $ &\textbf{b.~~} $\e^{3x+1} $&\textbf{c.~~}$\dfrac{2x}{x+1} $& \textbf{d.~~} $ \e $.
+\end{tabularx}
+
+\medskip
+\textbf{Question 2}
+\medskip 
+
+Dans le plan muni d'un repère, les courbes représentatives des fonctions
+\[x \mapsto 15x^2 + 10x - 1 \ \text{et  }\ x\mapsto  19x^2 - 22x + 10\] ont :
+
+\medskip 
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~}  aucun point
+d'intersection &\textbf{b.~~} un seul point d'intersection &\textbf{c.~~}deux points d'intersection& \textbf{d.~~}quatre points
+d'intersection.
+
+\end{tabularx}
+
+\medskip
+\textbf{Question 3}
+\medskip 
+
+Le plan est rapporté à un repère orthonormé. Le cercle de centre A de
+coordonnées $(3~;~- 1)$ et de rayon 5 a pour équation cartésienne :
+
+\medskip 
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $(x + 3)^2 + ( y - 1)^2 = 25$&\textbf{b.~~} $( x - 3)^2 + ( y + 1)^2 = 5 $\\\textbf{c.~~}$(x + 3)^2 + ( y - 1)^2 = 5 $& \textbf{d.~~} $( x - 3)^2 + ( y + 1)^2 = 25  $.
+\end{tabularx}
+
+\medskip
+\textbf{Question 4}
+\medskip 
+
+Dans un repère orthonormé, la droite $d$ d'équation cartésienne
+$3 x + 2 y + 4 = 0$ admet un vecteur normal de coordonnées :
+
+\medskip 
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $\binom{\phantom{-}2}{-3}$ &\textbf{b.~~}$\binom{-3}{\phantom{-}2}$&\textbf{c.~~}$\binom{3}{2}$& \textbf{d.~~}$\binom{2}{3}$ .
+\end{tabularx}
+
+\medskip
+\textbf{Question 5}
+\medskip 
+
+Le plus petit entier naturel $n$ tel que la somme $1 + 2 + 3 + 4 + \dots + n$ soit
+supérieure à \np{5000} est égal à :
+
+\medskip 
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $\np{1000} $ &\textbf{b.~~} $ 500 $&\textbf{c.~~}$ 200$& \textbf{d.~~} $100  $.
+\end{tabularx}
+
+\vspace{0,5cm}
+
+\end{document}

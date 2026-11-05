@@ -1,0 +1,46 @@
+\section*{Exercice 3 (5 points)}
+	
+	\subsection*{Partie A}
+	\subsubsection*{1.}
+	On sait que pour une suite géométrique de premier terme $u_0$ et de raison $q$, le terme général de rang $n$, s’écrit $u_n = u_0 \times q^n$.
+	\[
+	u_8 = 0,2 \times 2^{18} = 0,2 \times 262144 = 52428,8.
+	\]
+	\[
+	u_{50} = 0,2 \times 2^{50} \approx 2,25 \times 10^{14}.
+	\]
+	
+	\subsubsection*{2.}
+	$S = u_0 + u_1 + u_2 + u_3 + u_4 + \ldots + u_{18} = 0,2 + 0,4 + 0,8 + 1,6 + \ldots + 52428,8$.
+	\[
+	2S = 0,4 + 0,8 + 52428,8 + 104857,6.
+	\]
+	Par différence (deuxième ligne moins première ligne) :
+	\[
+	S = 104857,6 - 0,2 = 104857,4.
+	\]
+	
+	\subsubsection*{3.}
+\begin{center}
+	$\begin{array}{|l|}\hline
+		U \gets  0,2\\
+		S \gets 0,2\\
+		N \gets 0\\
+		~\\
+		\text{Tant que }\ldots\;\ldots\\
+		\quad U ← U * 2\\
+		\quad S ← S + U\\
+		\quad N \gets N + 1\\
+		~\\
+		\text{Fin tant que}~~~~~~~\\
+		\text{Afficher}\: N\\ \hline
+	\end{array}$
+\end{center}
+
+	
+		
+
+	
+	\subsection*{Partie B}
+
+	On retrouve dans les sommes versées par Claude exactement les premiers termes de la suite de la partie A et le total des sommes versées d’après le résultat de la question 3 de la partie A est 104857,40 €. Camille pourra donc acheter l’appartement.

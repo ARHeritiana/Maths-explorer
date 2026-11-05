@@ -1,0 +1,54 @@
+On considère la fonction $f$ définie et dérivable sur $[-4 ; 6]$ par
+\[f(x) = -0,5x^2 +  x + 7,5.\]
+
+On note $f'$ la fonction dérivée de $f$.
+
+Dans le repère ci-dessous, on a tracé la courbe représentative de la fonction $f$ et sa tangente au point d'abscisse 3 qui passe par les points de coordonnées $(3 ; 6)$, $(4 ; 4)$ et $(6 ; 0)$.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[/pgf/number format/.cd, use comma,1000 sep={\,},
+				width=13cm,height=10cm,
+				xmin=-4.2,xmax=7.2,ymin=-4.5,ymax=8.2,
+				xtick={-4,-3,...,7},
+				minor x tick num =0,
+				ytick={-5,-4,...,8},
+				minor y tick num =0,
+				tick label style={font=\small},
+				grid=both, axis lines=center,
+				grid style={gray!35,line width=0.3pt},
+				minor grid style={gray!20,line width=0.2pt},
+				enlargelimits=false]
+	\addplot[color=blue,domain=-4:8,smooth,samples=200,line width=1.2pt] {(-0.5*x^2+ x + 7.5)};
+	\addplot[color=red,domain=-4:8,smooth,samples=2,line width=1.2pt] {-2*(x-6)};
+	\node[draw,cross out, line width=1.1pt,minimum width=3pt, minimum height = 3pt] at (axis cs:3,6){};
+	\node[draw,cross out, line width=1.1pt,minimum width=3pt, minimum height = 3pt] at (axis cs:4,4){};
+	\node[draw,cross out, line width=1.1pt,minimum width=3pt, minimum height = 3pt] at (axis cs:6,0){};
+	\node[below left] at (axis cs:0,0){\small 0};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+\item Montrer que, pour tout $x$ appartenant à l'intervalle $[-4 ; 6]$,
+\[
+f(x)=(0,5x + 1,5)(-x+5)
+\]
+\end{enumerate}
+
+\textbf{\emph{Les justifications demandées pour les trois questions suivantes peuvent se faire par des calculs ou par des lecture graphiques.}}
+
+
+\begin{enumerate}[resume]
+\item Déterminer le nombre dérivé en 3.
+\item Pour chacune des affirmations suivantes, indiquer si elle est vraie ou fausse.
+
+Chaque réponse doit être justifiée.
+
+Une réponse non justifiée ne rapporte aucun point.
+\begin{enumerate}
+\item \textbf{Affirmation a.} : les solutions de l'inéquation $f(x)\leqslant 0$ sur $[-4 ; 6]$ sont les nombres réels appartenant à l'intervalle $[-3 ; 5]$.
+
+
+\item \textbf{Affirmation b.} : $f'(x)$ est positif sur l'intervalle $[1 ; 4]$.
+\end{enumerate}
+\end{enumerate}

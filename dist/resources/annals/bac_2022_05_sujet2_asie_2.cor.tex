@@ -1,0 +1,219 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet2_asie_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Principaux domaines abordés}: Étude des fonctions.
+Fonction logarithme.
+
+\bigskip
+
+\textbf{Partie A}
+
+\begin{center}
+\psset{unit=0.6cm,arrowsize=2pt 3}
+\begin{pspicture*}(-4,-5)(15.5,8)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.15pt]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-4,-5)(15.5,8)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{3.001}{15.5}{x dup mul x sub 6 sub ln}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red,linestyle=dashed]{3.001}{15.5}{x 2 mul 1 sub x dup mul x sub 6 sub div}
+\uput[r](3.1,7.7){\red $\mathcal{C}_2$}\uput[r](3.1,-4){\blue $\mathcal{C}_1$}
+\psline[ArrowInside=->](0,3)(5.63,3)(5.62,0)
+\end{pspicture*}
+\end{center}
+
+Dans le repère orthonormé ci-dessus, sont tracées les courbes représentatives d'une fonction $f$ et de sa fonction dérivée, notée $f'$, toutes deux définies sur $]3~;~+\infty[$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+Si $\mathcal{C}_1$ était la représentation de la dérivée, celle-ci serait négative puis positive , donc la fonction serait décroissante puis croissante ce qui n'est pas le cas de la fonction représente par la courbe  $\mathcal{C}_2$.
+
+Donc $\mathcal{C}_2$ est la représentation de la fonction dérivée et $\mathcal{C}_1$ celle de la fonction.
+\item 
+On lit approximativement $f(5,6) \approx 3$. 
+\item 
+$f$ semble concave sur $]3~;~+\infty[$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item 
+$\bullet~~$ $x^2 - x - 6 = \left(x - \frac12\right)^2 - \frac14 - 6 = \left(x - \frac12\right)^2 - \frac{25}{4} = \left(x - \frac12\right)^2 - \left(\frac{5}{2}\right)^2 = \left(x - \frac12 + \frac52 \right)\left(x - \frac12 - \frac52 \right) = (x + 2)(x - 3)$.
+
+On sait que ce trinôme est positif sauf sur l'intervalle $[-2~;~3]$. Donc $\ln \left(x^2- x- 6\right)$ est bien définie sur $I = ]3~;~+ \infty[$ ;
+
+$\bullet~~$On peut calculer $\Delta = 1 + 24 = 25 = 5^2$ et en déduire les racines du trinôme $x^2- x- 6$ : $x_1 = \dfrac{1 + 5}{2} = 3$ et $x_2 = \dfrac{1-5}{2} = - 2$ et faire ensuite la même conclusion.
+\item On admet que la fonction $f$ de la Partie A est définie par $f(x) = \ln \left(x^2- x- 6\right)$ sur $I$.
+
+
+
+
+$\bullet~~$Limite en $+ \infty$  : $\ln \left(x^2- x- 6\right) = \ln x^2\left(1 - \dfrac{1}{x} - \dfrac{6}{x^2} \right)$.
+
+On a $\displaystyle\lim_{x \to + \infty} \dfrac{1}{x} = \displaystyle\lim_{x \to + \infty} \dfrac{6}{x^2} = 0$, donc 
+
+$\displaystyle\lim_{x \to + \infty} 1 - \dfrac{1}{x} - \dfrac{6}{x^2} = 1$.
+
+Comme $\displaystyle\lim_{x \to + \infty} x^2 = + \infty$, par composition de la fonction logarithme $\displaystyle\lim_{x \to + \infty} f(x) = + \infty$.
+
+$\bullet~~$Limite en 3 : $f(x) = \ln (x + 2)(x - 3)$.
+
+On a $\displaystyle\lim_{x \to + 3}(x + 2)(x - 3) = 5 \times 0 = 0$, donc $\displaystyle\lim_{x \to + 3} \ln (x + 2)(x - 3) = - \infty$. Ceci signifie que la droite verticale d'équation $x = 3$ est asymptote à courbe représentative de la fonction $f$ sur $I$ (soit $\mathcal{C}_1$)
+\item 
+	\begin{enumerate}
+		\item 
+		Sur $I$, on a vu que $x^2 - x - 6 > 0$, donc la fonction $f$ est dérivable et sur $I$, on a $f'(x) = \dfrac{2x - 1}{x^2 - x - 6}$.
+		\item 
+$f'(x)$ a le signe du numérateur $2x - 1$ :
+
+pour $x>3$, on a $2x-1>5$ donc $2x-1>0$ et donc $f'(x>0$.
+
+Donc la fonction $f$ est strictement croissante sur $I$ de moins l'infini à plus l'infini.	
+
+On dresse le tableau des variations de la fonction $f$.
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+     
+\psset{nodesep=3pt,arrowsize=2pt 3}
+     
+\def\esp{\hspace*{3cm}}
+     
+\def\hauteur{0pt}
+     
+$\begin{array}{|c| l *2{c}|}
+\hline
+ x & 3   & \esp & +\infty \\
+ \hline
+f'(x) & \vline\;\vline  & \pmb{+} & \\  
+\hline
+  & \vline\;\vline  &    & \Rnode{max}{+\infty}   \\
+f(x) & \vline\;\vline&  &  \rule{0pt}{\hauteur} \\
+ &\vline\;\vline     \Rnode{min}{~-\infty} & & \rule{0pt}{\hauteur}
+\ncline{->}{min}{max}\\
+\hline
+\end{array}$
+}
+\end{center}
+
+
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+		La fonction $f$ est strictement croissante sur $I$ et en particulier sur ]5~;~6[.
+		
+De plus $f(5) = \ln (25 - 5 - 6) = \ln 14 \approx 2,64<3$ et $f(6) = \ln (36 - 6 - 6) = \ln 24 \approx 3,18>3$.
+
+La fonction $f$ étant continue car dérivable sur l'intervalle ]5~;~6[, d'après la propriété des valeurs intermédiaires il existe un réel unique $\alpha$ tel que $f(\alpha) = 3$, avec $5 < \alpha < 6$.
+
+		\item 
+		La calculatrice donne :
+		
+$f(5,6) \approx 2,984$ et $f(5,7) \approx 3,035$, donc $5,6 < \alpha < 5,7$ puis 
+
+$f(5,63) \approx 2,999$ et $f(5,64) \approx 3,004$ donc $5,63 < \alpha < 5,64$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+		La fonction $f'$ quotient de fonctions dérivables sur $I$, le dénominateur ne s'annulant pas est elle-même dérivable sur $I$ et sur cet intervalle :
+		
+		$f''(x) = \dfrac{2\left (x^2 - x - 6\right) - (2x - 1)(2x - 1)}{\left (x^2 - x - 6\right)^2} = \dfrac{2x^2  - 2x - 12 - 4x^2 - 1 - 4x}{\left (x^2 - x - 6\right)^2}  = \dfrac{- 2x^2 + 2x - 13}{\left(x^2 - x - 6\right)^2}$.
+		\item 
+Le signe de la dérivée seconde est celui du numérateur puisque $\left(x^2 - x - 6\right)^2 > 0$.
+
+Or ce trinôme $- 2x^2 + 2x - 13$ n'a pas de racine ($\Delta = 4 - 8 \times 13 = - 100 < 0$), donc est négatif en particulier sur $I$.
+
+Sur $I$, $f''(x) < 0$ : la fonction est concave sur cet intervalle.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

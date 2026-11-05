@@ -1,0 +1,88 @@
+\medskip
+
+\emph{Les probabilités demandées seront exprimées sous forme de fractions irréductibles}
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On lance trois fois de suite une pièce de monnaie bien équilibrée. On note $X$ la variable aléatoire qui compte le nombre de fois, sur les trois lancers, où la pièce est retombée du côté \og Face \fg.
+
+\medskip
+
+\begin{enumerate}
+\item Préciser la nature et les paramètres de la loi de probabilité suivie par $X$.
+
+
+
+\item Recopier et compléter le tableau suivant donnant la loi de probabilité de $X$
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{5}{>{\centering \arraybackslash}X|}}\hline
+
+$k$& 0 & 1 & 2& 3 \\ \hline
+$P(X = k)$&&&&\\ \hline
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+Voici les règles d'un jeu où le but est d'obtenir trois pièces du côté \og Face \fg{} en un ou deux essais :
+
+\begin{itemize}[label=$\bullet~$]
+\item On lance trois pièces équilibrées :
+	\begin{itemize}[label=$\circ~$]
+	\item Si les trois pièces sont tombées du côté \og Face \fg, la partie est gagnée ;
+	\item Sinon, les pièces tombées du côté \og Face\fg{} sont conservées et on relance
+celles tombées du côté \og Pile \fg.
+	\end{itemize}
+\item La partie est gagnée si on obtient trois pièces du côté \og Face \fg, sinon elle est
+perdue.
+\end{itemize}
+
+On considère les évènements suivants :
+\begin{itemize}[label=$\bullet~$]
+\item $G$ : \og la partie est gagnée \fg.
+
+Et pour tout entier $k$ compris entre 0 et 3, les évènements:
+\item $A_k$ : \og $k$ pièces sont tombées du côté \og Face\fg{} au premier lancer \fg.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Démontrer que $P_{A_1}(G) = \dfrac14$.
+\item Recopier et compléter l'arbre pondéré ci-dessous:
+
+\begin{center}
+\pstree[treemode=R,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$A_0~~$}\taput{$\frac18$}}
+	{\TR{$G$}
+	\TR{$\overline{G}$}
+	}
+	\pstree{\TR{$A_1~~$}\taput{$\frac38$}}
+	{\TR{$G$}
+	\TR{$\overline{G}$}
+	}
+	\pstree{\TR{$A_2~~$}\taput{$\frac38$}}
+	{\TR{$G$}
+	\TR{$\overline{G}$}
+	}
+	\pstree{\TR{$A_3~~$}\tbput{$\frac18$}}
+	{\TR{$G$}	
+	}
+}
+\end{center}
+
+\item Démontrer que la probabilité $p$ de gagner à ce jeu est $p = \dfrac{27}{64}$
+\item La partie a été gagnée. Quelle est la probabilité qu'exactement une pièce soit tombée du côté \og Face \fg{} à la première tentative ?
+\item Combien de fois faut-il jouer à ce jeu pour que la probabilité de gagner au moins une partie dépasse $0,95$ ?
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,55 @@
+Dans un lycée, on peut s'inscrire à deux clubs qui proposent des activités artistiques ou sportives.
+
+On constate que :
+\begin{itemize}[label=$\bullet$]
+	\item 40\,\% des élèves inscrits aux clubs ont choisi des activités artistiques;
+	\item parmi les élèves ayant choisi des activités artistiques, 20\,\% ont aussi choisi des activités sportives;
+	\item parmi les élèves n'ayant pas choisi des activités artistiques, 40\,\% ont choisi de faire des activités sportives.
+\end{itemize}
+
+Parmi l'ensemble des élèves inscrits à ces clubs, on choisit un élève au hasard.
+
+On note les événements suivants :
+
+\begin{itemize}[label=$\bullet$]
+\item $A$ : \og{}l'élève choisi est inscrit à une activité artistique\fg{};
+
+\item $S$ :  \og{}l'élève choisi est inscrit à une activité sportive\fg{};
+\end{itemize}
+
+\emph{Pour un événement quelconque ~$E$,~ on note ~$\overline{E}$~ l'événement contraire de ~$E$,~ $P(E)$~ la probabilité de ~$E$~ et ~$P_F (E)$~ la probabilité de ~$E$~ sachant l'événement ~$F$.}
+
+\begin{enumerate}
+	\item Déterminer \mbox{$P_A(S)$} et \mbox{$P_{\overline{A}} (S)$}.
+	\item Recopier et compléter sur votre copie l'arbre de probabilité suivant :
+
+
+\begin{center}
+			\begin{tikzpicture}
+			\node(n0)at(0,0){};
+			\node(n1_1)at(3,1){$A$};
+			\node(n1_2)at(3,-1){$\overline{A}$};
+			\node(n2_1)at(6,1.5){$S$};
+			\node(n2_2)at(6,0.5){$\overline{S}$};
+			\node(n2_3)at(6,-0.5){$S$};
+			\node(n2_4)at(6,-1.5){$\overline{S}$};
+			\draw(n0.east)--(n1_1)node[pos=0.6,fill=white]{\np{0.4}};
+			\draw(n0.east)--(n1_2)node[pos=0.4,fill=white]{\dots};
+			\draw(n2_1)--(n1_1.east)node[pos=0.6,fill=white]{\dots};
+			\draw(n2_2)--(n1_1.east)node[pos=0.4,fill=white]{\dots};
+			\draw(n2_3)--(n1_2.east)node[pos=0.6,fill=white]{\dots};
+			\draw(n2_4)--(n1_2.east)node[pos=0.4,fill=white]{\dots};
+
+		\end{tikzpicture}
+
+\end{center}
+		\item Calculer \mbox{$P(A\cap S)$} et \mbox{$P(\overline{A}\cap S)$}.
+	\end{enumerate}
+	On admet que \mbox{$P(S)=\np{0.32}$}.
+\begin{enumerate}\setcounter{enumi}{3}
+	\item Calculer \mbox{$P_S(A)$}.
+
+	Interpréter la réponse.
+
+	\item Les événements $A$ et $S$ sont-ils indépendants ?
+\end{enumerate}

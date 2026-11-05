@@ -1,0 +1,165 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet1_etrangers_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+\item \textbf{Les droites (AB) et $(d)$ sont: sécantes non perpendiculaires.}
+
+\medskip 
+
+Un vecteur directeur de la droite (AB) est  le vecteur $\vect{\mathrm{AB}} \begin{pmatrix}  4\\4\\-2
+\end{pmatrix}$.  Le vecteur $\vect{u} \begin{pmatrix}  2\\2\\-1
+\end{pmatrix}$  est donc aussi un vecteur directeur de la droite (AB).
+
+Un vecteur directeur de la droite $(d)$ est $\vect{u'} \begin{pmatrix}
+3\\0\\- 5
+\end{pmatrix}$.
+
+Les vecteurs $\vect{u}$ et $\vect{u'}$ ne sont pas colinéaires donc les droites (AB) et $(d)$ ne sont pas parallèles.
+
+Le repère est orthonormé, on peut donc utiliser les coordonnées des vecteurs pour calculer le produit scalaire.
+
+ $\vect{u} \cdot \vect{u'} =2 \times 3 + 0 \times 2 - 1 \times (-5) = 11 \neq 0$
+
+donc  les droites (AB) et $(d)$ ne sont pas perpendiculaires.
+
+Une équation paramétrique de la droite (AB) de vecteur directeur $\vect{u}$ et passant par le point A$(-3;1;4)$ est :
+
+$\begin{cases}x=-3+2 s\\ y=1 +2s \\ z=4-s\end{cases} \quad \text{ où } s \in \R$.
+
+Les deux droites sont sécantes si et seulement si le système suivant admet une unique solution :
+
+$\begin{aligned} \begin{cases}- 3 + 2 s=-6+3t\\ 1 + 2s=1 \\ 4-s =9-5t\end{cases} & \iff \begin{cases}2 s -3t =-3\\ s=0 \\ s-5t=-5\end{cases} &
+& \iff \begin{cases}-3t =-3\\ s=0 \\ -5t=-5\end{cases}
+& \iff\begin{cases}t =1\\ s=0 \\ t=1\end{cases}\\
+\end{aligned}$
+
+Le système admet une unique solution donc les droites sont sécantes. 
+
+\item \textbf{La droite(AB) est orthogonale au plan $\mathcal{P}$.}
+
+Un vecteur normal au plan $\mathcal{P}$ est $\vect{n}\begin{pmatrix}4\\4\\-2\end{pmatrix}$ soit le vecteur $\vect{AB}$.
+
+La droite (AB) est donc orthogonal au plan $\mathcal{P}$.
+
+\item \textbf{Les plans $\mathcal{P}$ et $\mathcal{P}'$ sont perpendiculaires.}
+
+Un vecteur normal au plan $\mathcal{P'}$ est $\vect{n'}\begin{pmatrix}
+2\\1\\6
+\end{pmatrix}$.
+
+Les vecteurs $\vect{n}$ et $\vect{n'}$ ne sont pas colinéaires donc les plans ne sont pas parallèles.
+
+On est dans un repère orthonormé, on peut donc utiliser les coordonnées pour calculer le produit scalaire.
+
+$\vect{n} \cdot \vect{n'} = 4  \times 2+ 4\times 1-2 \times (-6) = 8+4-12=0$
+
+Les vecteurs normaux sont orthogonaux donc les plans sont perpendiculaires.
+\item  \textbf{La valeur de l'angle $\widehat{\mathrm{B A C}}$ arrondie au degré est  $51\degres$.}
+
+On a : $\vect{\mathrm{AC}} \begin{pmatrix}
+	3 \\ 0 \\ -5
+\end{pmatrix}$ et $\vect{\mathrm{AB}} \begin{pmatrix}  4\\4\\-2
+\end{pmatrix}$.
+
+On est dans un repère orthonormé donc on peut utiliser les coordonnées pour calculer les longueurs et le produit scalaire.
+
+Calculons le produit scalaire de ces deux vecteurs de deux manières différentes :
+
+d'une part : $\vect{\mathrm{AC}}\cdot \vect{\mathrm{AB}} = 3\times4 + 0 \times 4 -5 \times (-2)= 22$
+
+d'autre part :
+
+AC$=\sqrt{(-3)^2+0^2+ (-5)^2}=\sqrt{34}$ et AB$=\sqrt{4^2+4^2+(-2)^2} =\sqrt{36} = 6$
+
+On a donc  $\vect{\mathrm{AC}}\cdot \vect{\mathrm{AB} }= \text{AB} \times \text{AC} \times \cos \left(\widehat{\text{BAC}} \right)= 6\sqrt{34} \cos \left(\widehat{\text{BAC}} \right)$
+
+D'où : $ 22 = 6\sqrt{34} \cos \left(\widehat{\text{BAC}}\right)$, 
+donc $ \cos \left(\widehat{\text{BAC}} \right) =\dfrac{22}{6\sqrt{34}} $
+
+D'où $ \widehat{\text{BAC}} \approx 51\degres$
+\end{enumerate}
+\medskip
+
+\end{document}

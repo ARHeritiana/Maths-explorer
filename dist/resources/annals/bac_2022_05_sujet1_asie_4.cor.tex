@@ -1,0 +1,224 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet1_asie_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Principaux domaines abordés}: Étude de fonctions. Fonction logarithme.
+
+\bigskip
+
+Soit $f$ une fonction définie et dérivable sur $\R$. On considère les points A(1~;~3) et B(3~;~5).
+
+On donne ci-dessous $\mathcal{C}_f$ la courbe représentative de $f$ dans un repère orthogonal du plan, ainsi que la tangente (AB) à la courbe $\mathcal{C}_f$ au point A.
+
+\medskip
+
+\begin{center}
+\psset{unit=0.8cm,arrowsize=2pt 3}
+\begin{pspicture*}(-7,-2.25)(8,6.25)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.15pt]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-7,-2.25)(8,6.25)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-7}{8}{x dup mul 1 add ln 3 add 2 ln sub}
+\psplot[linestyle=dashed]{-7}{8}{x 2 add}
+\uput[dr](1,3){A}\uput[ul](3,5){B}
+\psdots[dotstyle=+,dotangle=45,dotscale=1.5](1,3)(3,5)
+\uput[d](-5.5,5.75){\red $\mathcal{C}_f$}
+\end{pspicture*}
+\end{center}
+
+\emph{Les trois parties de l'exercice peuvent être traitées de manière indépendante.}
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item 
+On lit sur le graphique : $f(1) = 3$ et $f'(1) = 1$ (nombre dérivé égal au coefficient directeur de la droite (AB)).
+\item 
+	\begin{enumerate}
+		\item 
+		Comme $a \geqslant 0$ et $x^2 \geqslant 0$, on a $ax^2 \geqslant 0$, donc $ax^2 + 1 \geqslant 1 > 0$ : la fonction $f$ est donc dérivable sur $\R$ et sur cet intervalle $f'(x) = \dfrac{2ax}{ax^2 + 1}$.
+		\item 
+		Les résultats du 1. peuvent s'écrire :
+		
+$\left\{\begin{array}{l c l}
+f(1)&=&3\\
+f'(1)&=&1
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+\ln (a + 1) + b&=&3\\
+\dfrac{2a}{a + 1}&=&1
+\end{array}\right.$.
+
+La deuxième équation donne $2a = a + 1 \iff a = 1$ et en reportant dans la première :
+
+$\ln (1 + 1) + b = 3 \iff b = 3 - \ln 2$.
+
+On a donc sur $\R, \: f(x) = \ln \left(x^2 + 1 \right) + 3 - \ln 2$.
+
+	\end{enumerate}
+\end{enumerate} 
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On admet que la fonction $f$ est définie sur $\R$ par
+
+\[f(x) = \ln \left(x^2 + 1\right) + 3 - \ln (2).\]
+
+\medskip
+
+\begin{enumerate}
+\item 
+Quel que soit le réel $x, \: f(- x) = \ln \left[(- x)^2 + 1\right] + 3 - \ln 2 = \ln \left(x^2 + 1\right) + 3 - \ln (2) = f(x)$. La fonction $f$ est donc paire (la représentation graphique de $f$ est donc symétrique autour de l'axe des ordonnées).
+\item 
+On a $\displaystyle\lim_{x \to + \infty} x^2 = + \infty$ d'où $\displaystyle\lim_{x \to + \infty} x^2 + 1  = + \infty$ et par composition $\displaystyle\lim_{x \to + \infty} \ln \left(ax^2 + 1 \right) = + \infty$ et enfin $\displaystyle\lim_{x \to + \infty} f(x) = + \infty$.
+
+La fonction étant paire $\displaystyle\lim_{x \to - \infty} f(x) = \displaystyle\lim_{x \to + \infty} f(x) = + \infty$.
+\item 
+Comme $x^2 + 1 > 0$ quel que soit le réel $x$, la fonction $f$ est dérivable sur $\R$ et sur cet intervalle : $f'(x) = \dfrac{2x}{x^2 + 1}.$
+
+Le dénominateur étant supérieur à zéro le signe de $f('x)$ est donc celui de $2x$, donc :
+
+$f'(x) < 0$ sur $\R_{-}^*$ et $f'(x) > 0$ sur $\R_{+}^*$.
+Conclusion $f$ est décroissante sur $\R_{-}^*$ et croissante sur $\R_{+}^*$.
+
+Le nombre $f(0) = \ln 1 + 3 - \ln 2 = 3 - \ln 2$ est donc le minimum de la fonction sur $\R$. D'où le tableau de variations :
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(7,3)
+\psframe(7,3)\psline(0,2)(7,2)\psline(0,2.5)(7,2.5)\psline(1,0)(1,3)
+\uput[u](0.5,2.4){$x$} \uput[u](1.5,2.4){$- \infty$} \uput[u](4,2.4){$0$} \uput[u](6.5,2.4){$+\infty$} 
+\uput[u](0.5,1.9){$f'(x)$}\uput[u](2.5,1.9){$-$}\uput[u](4,1.9){$0$}\uput[u](5.5,1.9){$+$}
+\uput[d](1.5,2){$+ \infty$}\uput[d](6.5,2){$+ \infty$}\uput[u](4,0){$3 - \ln 2$}
+\rput(0.5,1){$f(x)$}
+\psline{->}(2,1.5)(3.5,0.5) \psline{->}(4.5,0.5)(6.5,1.5)
+\end{pspicture}
+\end{center}
+
+
+
+
+\item 
+D'après le tableau de variations l'équation $f(x) = k$ admet deux solutions si $k > 3 - \ln 2$.
+\item 
+$f(x) = 3 + \ln 2 \iff \ln \left(x^2 + 1\right) + 3 - \ln (2) = 3 + \ln (2) \iff \ln \left(x^2 + 1\right) = 2\ln (2) \iff \ln \left(x^2 + 1\right) = \ln 4 \iff x^2 + 1 = 4$ (par croissance de la fonction logarithme), soit $x^2 = 3$, d'où deux solutions $S = \left\{- \sqrt{3}~;~ \sqrt{3}\right\}$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie C}
+
+\medskip
+
+On rappelle que la fonction $f$ est définie sur $R$ par $f(x) = \ln \left(x^2 + 1\right) + 3 - \ln (2)$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+
+Il semble qu'il y ait deux points d'inflexion aux points d'abscisses $- 1$ et 1.
+\item 
+Comme $f'(x) = \dfrac{2x}{x^2 + 1}$ soit le quotient de deux fonctions dérivables sur $\R$, le dénominateur étant non nul ; $f'$ est donc dérivable sur $\R$ et :
+
+$f''(x) = \dfrac{2\left(x^2 + 1\right) - 2x \times 2x}{\left(x^2 + 1\right)^2} = \dfrac{2x^2 + 2 - 4x^2}{\left(x^2 + 1\right)^2} = \dfrac{2\left(1 - x^2\right)}{\left(x^2 + 1\right)^2}$.
+\item 
+On a donc $f''(x) = 0 \iff 1 - x^2 = 0 \iff \left\{\begin{array}{l c  l}
+1 +x&=&0\\
+1 - x&=&
+\end{array}\right.\iff \left\{\begin{array}{l c l}
+x&=&- 1\\
+x&=&1
+\end{array}\right.$ Donc $S = \{-1~;~1\}$.
+
+La dérivée seconde est positive quand le trinôme $1 - x^2$ est positif soit sur l'intervalle $]-1~;~1[$. Donc la fonction $f$ est convexe sur $]-1~;~1[$.
+\end{enumerate}
+
+\end{document}

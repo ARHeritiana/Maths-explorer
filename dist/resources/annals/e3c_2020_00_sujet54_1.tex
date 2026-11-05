@@ -1,0 +1,209 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet54_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Ce QCM comprend 5 questions indépendantes. Pour chacune d'elles, une seule des réponses proposées est exacte.}
+
+\emph{Indiquer pour chaque question sur la copie la lettre correspondant à la réponse choisie.}
+
+ \emph{Aucune justification n'est demandée.}
+
+\emph{Chaque réponse correcte rapporte 1 point. Une réponse incorrecte ou une absence de réponse n'apporte ni ne retire de point.}
+
+\begin{enumerate}
+\item Si $\sin x=\dfrac{1}{3}$ alors
+
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $ \sin(x+\pi)=-\frac{1}{3}$ &\textbf{b.~~} $\sin(x-\pi)=\dfrac{1}{3}$&\textbf{c.~~}$\cos(x)=\dfrac{2}{3}$& \textbf{d.~~} $\sin(x+15\pi)=\frac{1}{3}$.
+\end{tabularx}
+ 
+\item Parmi les paraboles ci-dessous laquelle représente une fonction qui n'admet aucune racine ?
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}
+
+\psset{xunit=0.8cm,yunit=0.8cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-4.4,-2)(2.2,2.6)
+\multido{\n=-4.2+0.2}{31}{\psline[linewidth=0.35pt,linecolor=lightgray](\n,-2)(\n,2.4)}
+\multido{\n=-2+0.2}{22}{\psline[linewidth=0.35pt,linecolor=lightgray](-4.4,\n)(2.2,\n)}
+\multido{\n=-4+1}{7}{\psline[linewidth=0.45pt](\n,-2)(\n,2.4)}
+\multido{\n=-2+1}{5}{\psline[linewidth=0.45pt](-4.4,\n)(2.2,\n)}
+\psaxes[linewidth=0.95pt]{->}(0,0)(-4.4,-2)(2.1,2.4)
+\def\Func{x 3 add x 1 sub mul 0.4 mul }
+\psplot[plotpoints=2000,linewidth=0.85pt,linecolor=red]{-4.2}{2.1}{\Func}
+\uput[dl](0,0){O}
+\end{pspicture}
+&\textbf{b.~~} 
+ 
+\psset{xunit=0.8cm,yunit=0.8cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-4.4,-3.8)(0.4,1)
+\multido{\n=-4.2+0.2}{23}{\psline[linewidth=0.35pt,linecolor=lightgray](\n,-3.6)(\n,0.8)}
+\multido{\n=-3.6+0.2}{23}{\psline[linewidth=0.35pt,linecolor=lightgray](-4.4,\n)(0.2,\n)}
+\multido{\n=-4+1}{5}{\psline[linewidth=0.45pt](\n,-3.6)(\n,0.8)}
+\multido{\n=-3+1}{4}{\psline[linewidth=0.45pt](-4.4,\n)(0.2,\n)}
+\psaxes[linewidth=0.95pt]{->}(0,0)(-4.4,-3.62)(0.2,1)
+\def\Func{x 3 add x 2 add mul 0.8 neg mul }
+\psplot[plotpoints=2000,linewidth=0.85pt,linecolor=green]{-4.4}{-0.4}{\Func}
+\uput[dl](0,0){O}
+\end{pspicture}
+\\
+\textbf{c.~~}
+
+\psset{xunit=1cm,yunit=0.8cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-1,-0.6)(3.2,3.4)
+\multido{\n=-0.8+0.2}{21}{\psline[linewidth=0.35pt,linecolor=lightgray](\n,-0.4)(\n,3.2)}
+\multido{\n=-0.4+0.2}{19}{\psline[linewidth=0.35pt,linecolor=lightgray](-0.8,\n)(3.2,\n)}
+\multido{\n=0+1}{4}{\psline[linewidth=0.45pt](\n,-0.4)(\n,3.2)}
+\multido{\n=0+1}{4}{\psline[linewidth=0.45pt](-0.8,\n)(3.2,\n)}
+\psaxes[linewidth=0.95pt]{->}(0,0)(-0.8,-0.4)(3.4,3.2)
+\def\Func{x 1 sub x 1 sub mul 2 mul }
+\psplot[plotpoints=2000,linewidth=0.85pt,linecolor=red]{-0.24}{2.29}{\Func}
+\uput[dl](0,0){O}
+\end{pspicture}
+
+& \textbf{d.~~} 
+
+\psset{unit=1.2cm,labelFontSize=\scriptstyle,showorigin=false,comma=true}
+\begin{pspicture}(-0.4,-1)(3.2,2.6)
+\multido{\n=0+0.1}{30}{\psline[linewidth=0.35pt,linecolor=lightgray](\n,-0.4)(\n,2.4)}
+\multido{\n=-0.4+0.1}{28}{\psline[linewidth=0.35pt,linecolor=lightgray](0,\n)(3,\n)}
+\multido{\n=0+0.5}{6}{\psline[linewidth=0.45pt](\n,-0.4)(\n,2.4)}
+\multido{\n=0+0.5}{5}{\psline[linewidth=0.45pt](0,\n)(3,\n)}
+\psaxes[linewidth=0.95pt,Dx=0.5,labels=x]{->}(0,0)(0,-0.5)(3,2.4)
+\def\Func{x 1.5 sub x 1.5 sub mul  0.75 add }
+\psplot[plotpoints=2000,linewidth=0.85pt,linecolor=blue]{0.2}{2.7}{\Func}
+\uput[dl](0,0){O}
+\end{pspicture}
+
+\end{tabularx}
+\item Soit la fonction $f$ définie sur l'intervalle $]0~;~+\infty[$ par $f(x)= 2x- \dfrac{1}{x}$
+
+Le coefficient directeur de la tangente à la courbe représentative de $f$ au point d'abscisse 1 est :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $1$ &\textbf{b.~~} $3$&\textbf{c.~~}$-1$& \textbf{d.~~} $0$.
+\end{tabularx}
+
+\item Dans le plan muni d'un repère orthonormé, l'ensemble des points $M(x~;~y)$ tels que
+
+$x^2-2x+y^2+6y+2=0$ est :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~}une parabole  &
+\textbf{b.~~}\begin{minipage}[t]{2.89cm}
+{\footnotesize le cercle de centre $\Omega$ de coordonnées} \mbox{$(-1~;~3)$} et de rayon 8.\end{minipage} &
+\textbf{c.~~}\begin{minipage}[t]{2.89cm}
+{\footnotesize  le cercle de centre $\Omega$ de coordonnées} \mbox{$(1~;~-3)$} et de rayon $2\sqrt{2}$.\end{minipage}&
+ \textbf{d.~~} une droite.
+\end{tabularx}
+ 
+\item La loi de probabilité d'une variable aléatoire $X$ donnant le gain en euros, d'un joueur, à un jeu, est donnée par le tableau suivant :
+
+\begin{center}
+\begin{tabularx}{0.5\linewidth}{|m{1.4cm}|*{3}{>{\centering \arraybackslash}X|}}
+\hline
+\centering $x_i$& $-10$ &6& 10\\
+\hline
+$P(X=x_i)$&$\dfrac{1}{4}$&$\dfrac{3}{8}$&$\dfrac{3}{8}$\rule[-3mm]{0mm}{9mm}\\
+\hline
+\end{tabularx}
+\end{center}
+
+Sur un grand nombre de parties, le gain moyen que peut espérer le joueur est :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} 3,5 euros &\textbf{b.~~}4 euros &\textbf{c.~~}2 euros& \textbf{d.~~6 euros} .
+\end{tabularx}
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\end{document}

@@ -1,0 +1,57 @@
+\subsection*{Question 1}
+
+Une équation de la tangente à la courbe représentative de \(g\) au point d'abscisse 2 est :
+\[
+y - g(2) = g'(2)(x - 2).
+\]
+Avec \(g'(x) = 4x + 5\), \(g'(2) = 8 + 5 = 13\) et \(g(2) = 8 + 10 - 4 = 14\), l'équation devient :
+\begin{align*}
+y - 14 &= 13(x - 2) \\
+y &= 13x - 26 + 14 \\
+y &= 13x - 12.
+\end{align*}
+
+\subsection*{Question 2}
+
+Avec \(\overrightarrow{AD} \begin{pmatrix} -2 \\ 3 \end{pmatrix}\) et \(\overrightarrow{BD} \begin{pmatrix} -7 \\ 5 \end{pmatrix}\), on a :
+\[
+\overrightarrow{AD} \cdot \overrightarrow{BD} = 14 + 15 = 29.
+\]
+
+\subsection*{Question 3}
+
+Une équation de la parallèle \( \mathcal{D}' \) à \( \mathcal{D} \) contenant \( A \) est de la forme :
+\[
+M(x\,;\,y) \in \mathcal{D}' \iff 3x - 4y + c = 0.
+\]
+Or :
+\[
+A(4\,;\,8) \in \mathcal{D}' \iff 3 \times 4 - 4 \times 8 + c = 0,
+\]
+d'où  \(c = 20\).
+
+Une équation de \( \mathcal{D}' \) est donc \( 3x - 4y + 20 = 0 \).
+
+\subsection*{Question 4}
+
+On sait que pour tout entier naturel \( n \), \( u_n = u_0 \times q^n = 10 \times (-1{,}2)^n \).
+
+En particulier :
+\[
+u_{3000} = 10 \times (-1{,}2)^{3000} \approx 3 \times 10^{238} > 1000.
+\]
+
+\subsection*{Question 5}
+
+\begin{center}
+\begin{lstlisting}[style=python]
+def algo() :
+    V = 1
+    n = 0
+    while V < 100000 :
+        n = n + 1
+        V = 4 * V + 2
+    return(n)
+\end{lstlisting}
+\end{center}
+Le programme donnera \( n = 8 \).

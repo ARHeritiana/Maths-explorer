@@ -1,0 +1,68 @@
+\medskip
+
+Un restaurant propose à sa carte deux types de dessert : un assortiment de macarons et une part de tarte tatin. Des études statistiques montrent que:
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item l'assortiment de macarons est choisi par 50\,\% des clients;
+\item la part de tarte tatin, est choisie par 30\,\% des clients;
+\item 20\,\% des clients ne prennent pas de dessert;
+\item aucun client ne prend plusieurs desserts.
+\end{itemize}
+\setlength\parindent{0cm}
+
+Le restaurateur a remarqué que:
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item parmi les clients ayant pris un assortiment de macarons, 80\,\% prennent un café;
+\item parmi les clients ayant pris une part de tarte tatin, 60\,\% prennent un café;
+\item parmi les clients n'ayant pas pris de dessert, 90\,\% prennent un café.
+\end{itemize}
+\setlength\parindent{0cm}
+
+On interroge au hasard un client de ce restaurant. 
+
+On note les évènements suivants:
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item $M$ : \og Le client prend un assortiment de macarons \fg{};
+\item $T$ : \og Le client prend une part de tarte tatin \fg{} ;
+\item $P$ :\og Le client ne prend pas de dessert\fg{} ;
+\item $C$ : \og Le client prend un café\fg{} et $\overline{C}$ l'évènement contraire de $C$.
+\end{itemize}
+\setlength\parindent{0cm}
+
+\medskip
+
+\begin{enumerate}
+\item En utilisant les données de l'énoncé, préciser la valeur de $P(T)$ probabilité de $T$ et celle de $P_T(C)$ probabilité de l'évènement $C$ sachant que $T$ est réalisé.
+\item  Recopier et compléter l'arbre ci-dessous :
+
+\begin{center}
+\pstree[treemode=R,nodesepB=3pt,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$M$~~}\taput{0,5}}
+	{\TR{$C$} \taput{}
+	\TR{$\overline{C}$} \tbput{}
+	}
+\pstree{\TR{$T$~~}\taput{}}
+	{\TR{$C$} \taput{}
+	\TR{$\overline{C}$} \tbput{}
+	}
+\pstree{\TR{$P$~~}\tbput{}}
+	{\TR{$C$} \taput{}
+	\TR{$\overline{C}$} \tbput{}
+	}
+}
+\end{center}
+
+\item  
+	\begin{enumerate}
+		\item Exprimer par une phrase ce que représente l'évènement $M \cap C$ puis calculer $P(M \cap C)$.
+		\item Montrer que $P(C) = 0,76$.
+	\end{enumerate}
+\item  Quelle est la probabilité que le client prenne un assortiment de macarons sachant qu'il prend un café ? (On donnera le résultat arrondi au centième).
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,85 @@
+\textbf{Affirmation 1 : Fausse.}\quad
+En effet :
+
+Dérivons la fonction $f$ (qui est dérivable sur $\R$, en tant que somme d'une fonction polynôme, définie et dérivable sur $\R$, et d'une fonction composée d'une fonction linéaire suivie de la fonction exponentielle, toutes deux définies et dérivables sur $\R$).
+
+$\forall x \in \R,\quad f'(x) = 2\e^{2x} - 6$.
+
+Donc :\quad $\begin{aligned}[t] \forall x\in \R,\quad f'(x) - 2f(x)
+	&	= \big(2\e^{2x} - 6\big) - 2\big(\e^{2x} - 6x + 1\big)\\
+	&	= 2\e^{2x} - 6 - 2\e^{2x} + 12x -2 \quad\text{en distribuant le }- 2\\
+	&	= 12x -8\\	\end{aligned}$
+
+Ainsi, on a \quad $f' - 2f$\quad qui est la fonction \quad $x \longmapsto 12x - 8$,\quad qui est différente de la fonction \quad $x \longmapsto -6x + 1$,\quad donc $f$ n'est pas une solution de l'équation différentielle (E).
+
+\medskip
+
+\textbf{Affirmation 2 : Fausse}\quad 	En effet :
+
+En posant la suite $\left(v_n\right)$, suite géométrique de premier terme $v_0 = 1$ et de raison $q = \dfrac{3}{4}$, on a donc :\quad
+	$\forall n \in \N, \quad v_n = 1\times \left(\dfrac{3}{4}\right)^n = \left(\dfrac{3}{4}\right)^n$
+
+Et donc  : \quad $\forall n \in \N,\quad u_n = v_0 + v_1 + v_2 + \dots +v_n$.
+
+En utilisant la formule connue pour déterminer la somme des $(n+1)$ premiers termes d'une suite géométrique, on a :
+
+$\forall n \in \N,\quad u_n = v_0 \times \dfrac{1 - q^{n+1}}{1 - q} = 1\times \dfrac{1 - \left(\dfrac{3}{4}\right)^{n+1}}{1 - \dfrac{3}{4}} = \dfrac{1 - \left(\dfrac{3}{4}\right)^{n+1}}{\dfrac{1}{4}} = 4\left(1 - \left(\dfrac{3}{4}\right)^{n+1}\right)$.
+
+Comme on a :\quad $0< \dfrac{3}{4} < 1$, \quad on en déduit : \quad$\lim\limits_{n \to +\infty} \left(\dfrac{3}{4}\right)^{n+1} = 0$.
+
+Puis, par limite de la somme, on a : \quad$\lim\limits_{n \to +\infty} 1 - \left(\dfrac{3}{4}\right)^{n+1} = 1$.
+
+Et, enfin, par limite du produit :\quad$\lim\limits_{n \to +\infty} 4\left( 1-\left(\dfrac{3}{4}\right)^{n+1}\right) = 4$.
+
+La limite de la suite est donc finie (et vaut 4).
+
+\medskip
+
+\textbf{Affirmation 3 : Fausse}.\quad En effet :
+
+La fonction \texttt{suite()} part d'une variable \texttt{S} qui prend une valeur égale à 0, puis effectue une boucle \texttt{for}, qui va ajouter à ce 0 des puissances de $\dfrac{3}{4}$ (l'instruction \texttt{a**b} signifie $a^b$).
+
+Il y a ici deux problèmes dans cette fonction pour que \texttt{suite(50)} renvoie la valeur $u_{50}$.
+
+\begin{itemize}[label=$\bullet$]
+	\item La première erreur, est qu'au lieu d'ajouter des puissances successives de $\dfrac{3}{4}$, on ajoute toujours la même puissance de $\dfrac{3}{4}$. L'appel \texttt{suite(50)} ajoute $\left(\dfrac{3}{4}\right)^{50}$ à chaque exécution de la boucle \texttt{for}, au lieu d'ajouter $\left(\dfrac{3}{4}\right)^{0}$, puis $\left(\dfrac{3}{4}\right)^{1}$, puis $\left(\dfrac{3}{4}\right)^{2}$ et ainsi de suite jusqu'à $\left(\dfrac{3}{4}\right)^{50}$.
+	\item 	La seconde erreur est que le nombre $u_{50}$ est la somme des 51 premières puissances de $\dfrac{3}{4}$ (de la puissance 0 à la puissance 50), et la boucle \texttt{for} ici s'exécutera 50 fois seulement, et pas 51 fois.
+	\end{itemize}
+
+	Pour que l'appel \texttt{suite(50)} renvoie $u_{50}$, il faudrait une fonction comme celle-ci :
+
+\begin{center}
+\begin{ttfamily}
+\begin{tabularx}{8cm}{c|X|}\cline{2-2}
+	1&def suite(k):\\
+	2&\quad S=0\\
+	3&\quad for i in range({\red{k+1}}):\\
+	4&\qquad S=S+(3/4)**{\red i}\\
+	5&\quad return S\\ \cline{2-2}
+\end{tabularx}
+\end{ttfamily}
+\end{center}
+
+La ligne 3 modifiée permet d'exécuter la boucle \texttt{for} 51 fois (la variable \texttt{i} commencera à la valeur 0, puis augmentera d'unité en unité jusqu'à atteindre la valeur strictement inférieure à \texttt{k+1}, donc d'atteindre la valeur \texttt{k}).
+
+La ligne 4 modifiée fait qu'à chaque exécution de la boucle for, on va ajouter une puissance différente de la raison, avec un exposant de plus en plus élevé.
+
+\emph{Remarques :} l'instruction \texttt{range(k+1)} a exactement le même effet que \texttt{range(0,k+1)}.
+
+On peut aussi trouver d'autres fonctions, avec un code différent qui auront le même effet. Il n'est pas nécessaire pour répondre à la question de donner une fonction correcte : pointer l'une des deux erreurs commises suffit à montrer que l'appel \texttt{suite(50)} ne produit pas l'effet escompté.
+
+\medskip
+
+\textbf{Affirmation 4 : Vraie.} \quad En effet :
+
+Quel que soit le réel $a$, la fonction $f$ est définie et dérivable sur $]0~;~+\infty[ $, en tant que somme d'une fonction linéaire et du produit de la fonction ln par un réel, toutes fonctions définies et dérivables sur l'intervalle considéré.
+
+Soit $a$ un réel :
+
+On a :\quad $\forall x \in ]0 ; +\infty[, \quad f'(x) = a\times \dfrac{1}{x} - 2 = \dfrac{a}{x} - 2$.
+
+Notamment, pour $x = 1 $\quad $f'(1) = \dfrac{a}{1} - 2 = a-2$.
+
+La tangente à $C$ au point d'abscisse 1 est parallèle à l'axe des abscisses si et seulement si $f'(1) = 0$, c'est-à-dire si et seulement si $a = 2$.
+
+Il existe donc une (unique) valeur de $a$ telle que la tangente à $C$ au point d'abscisse 1 est parallèle à l'axe des abscisses.

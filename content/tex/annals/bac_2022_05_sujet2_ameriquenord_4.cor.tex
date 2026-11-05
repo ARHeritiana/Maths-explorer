@@ -1,0 +1,51 @@
+\medskip
+
+\begin{enumerate}
+	\item $a = \ln (9) + \ln \left(\dfrac{\sqrt{3}}{3} \right)  + \ln \left(\dfrac19 \right)=\ln\left(3^2\right)+\ln\left(\sqrt{3}\right)-\ln(3) -\ln\left(3^2\right)=1\dfrac12\ln(3)-\ln(3)=-\dfrac12\ln(3)$
+	
+	\hfill \fbox{\textbf{Réponse d}}
+	\item Donnons en premier le domaine de définition. Il faut que $x> 0$ et $x>10$. Donc 
+	$\mathcal{D}_f = ]10~;~+\infty[$.
+	
+Dans $\mathcal{D}_f, \: \ln(x) + \ln (x - 10) = \ln(3) + \ln(7) \iff \ln\left(x(x - 10)\right)= \ln(3 \times 7) \iff x(x-10) = 21$  (par croissance de la fonction logarithme népérien) ou 
+
+$x^2 - 10x - 21 = 0$. $\Delta=184 > 0$, donc ce trinôme admet deux solutions. Or $\sqrt{\Delta}=\sqrt{184} = \sqrt{4 \times 46} = 2\sqrt{46}$.
+
+Les deux solution sont : $x_1= \dfrac{10 -2\sqrt{46}}{2}=5 -\sqrt{46}$ et $x_2=\dfrac{10+2\sqrt{46}}{2}=5+\sqrt{46}$.
+
+Or $5^2 = 25 < 46$, donc $5 < \sqrt{46} \iff 5 - \sqrt{46}< 0$ et $5 - \sqrt{46} \notin \mathcal{D}_f$.
+
+Par contre $\sqrt{46} > 5 \Rightarrow 5 + \sqrt{46} > 5 + 5 = 10$, donc $x_2 \in \mathcal{D}_f$.
+
+La seule solution réelle est donc $5 + \sqrt{46}$.
+\hfill \fbox{\textbf{Réponse c}}.
+	 \item La fonction $f$ est définie sur l'intervalle $]0~;~+ \infty[$ par l'expression $f(x) = x^2(- 1 + \ln(x))$. Elle est continue et dérivable sur $]0~;~+ \infty[$.
+
+	 $\forall x \in ]0~;~+ \infty[$, $f'(x)=2x\times (- 1 + \ln(x))+x^2\times \dfrac1x=-2x+2x\ln(x)+x=-x+2x\ln(x)=x(2\ln(x)-1)$.
+
+	 $f'(x)=0 \iff x(2\ln(x)-1)=0 \iff 2\ln(x)-1 \iff \ln(x)=\dfrac{1}{2} \iff x=\e^{\frac12}=\sqrt{\e}$.
+	 La tangente au point d'abscisse $a=\sqrt{\e}$ est horizontale. Son équation est donnée par : $y=f'(a)(x-a)+f(a)$.
+	 Sachant que $f'\left(\sqrt{\e}\right)=0$ et que $f\left(\sqrt{\e}\right)= \sqrt{\e}^2\left(-1+\ln(\sqrt{\e})\right)=\e\left(-1+\dfrac12\right)= -\dfrac12\e$.
+	 L'équation de cette tangente horizontale est donc : $y = -\dfrac12\e$.
+
+\hfill \fbox{\textbf{Réponse d}}
+	 \item Un sac contient 20 jetons jaunes et 30 jetons bleus. On tire successivement et avec remise 5 jetons du sac.
+
+Il s'agit là d'un schéma de Bernoulli : la répétition de 5 expériences aléatoires n'ayant que deux issues, identiques et indépendantes entre elles. Si on note par $X$ la variable aléatoire donnant le nombre de jetons jaune tirés, alors $X$ suit donc une loi binomiale de paramètres $n = 5$ et $p = \dfrac{20}{50}=\dfrac25$ : $X \sim \mathcal{B}\left(5~;~\dfrac25\right)$
+
+Ainsi $p(X=2)=\dbinom{5}{2}\times \left(\dfrac25\right)^2 \times \left(1-\dfrac25\right)^{5-2}=0,3456\approx 0,346$.
+
+\hfill \fbox{\textbf{Réponse b}}
+\item On reprend les conditions précédentes : un sac contient 20 jetons jaunes et 30 jetons bleus. On tire successivement et avec remise 5 jetons du sac. $X$ est la variable aléatoire donnant le nombre de jetons jaune tirés et $X$ suit donc une loi binomiale de paramètres $n=5$ et $p=\dfrac{20}{50}=\dfrac25$ : $X \sim \mathcal{B}\left(5~;~\dfrac25\right)$.
+
+$p(X\geqslant 1)=1-p(X<1)=1-p(X=0)=1-\left(\dfrac35\right)^5\approx0,922$.
+
+\hfill \fbox{\textbf{Réponse d}}
+	\item On reprend les conditions précédentes : un sac contient 20 jetons jaunes et 30 jetons bleus. On tire successivement et avec remise 5 jetons du sac. $X$ est la variable aléatoire donnant le nombre de jetons jaune tirés et $X$ suit donc une loi binomiale de paramètres $n=5$ et $p=\dfrac{20}{50}=\dfrac25$ : $X \sim \mathcal{B}\left(5~;~\dfrac25\right)$.
+
+L'espérance d'une loi binomiale est égale à : $E(X) = np$.
+
+Ici, $E(x)=5\times \dfrac25=2$.
+
+\hfill \fbox{\textbf{Réponse c}}
+\end{enumerate}

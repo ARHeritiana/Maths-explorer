@@ -1,0 +1,161 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_metropole_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Commun à tous les candidats}
+\medskip
+
+Une chaîne de fabrication produit des pièces mécaniques. On estime que 5\,\% des pièces
+produites par cette chaîne sont défectueuses.
+
+Un ingénieur a mis au point un test à appliquer aux pièces. Ce test a deux résultats possibles :
+
+\og positif \fg{} ou bien \og négatif \fg.
+
+On applique ce test à une pièce choisie au hasard dans la production de la chaîne.
+
+On note $p(E)$ la probabilité d'un évènement $E$.
+
+On considère les évènements suivants :
+
+\begin{itemize}
+\item $D$ : \og la pièce est défectueuse \fg{} ;
+\item $T$ : \og la pièce présente un test positif \fg {};
+\item $\overline{D}$ et $\overline{T}$ désignent respectivement les évènements contraires de $D$ et $T$.
+\end{itemize}
+
+Compte tenu des caractéristiques du test, on sait que :
+\begin{itemize}
+\item La probabilité qu'une pièce présente un test positif sachant qu'elle est défectueuse est égale à $0,98$ ;
+\item la probabilité qu'une pièce présente un test négatif sachant qu'elle n'est pas
+défectueuse est égale à $0,97$.
+\end{itemize}
+\medskip
+\begin{center}
+\textbf{Les parties I et II peuvent être traitées de façon indépendante.}
+\end{center}
+
+\medskip
+
+\textbf{PARTIE I}
+
+\medskip
+
+\begin{enumerate}
+\item Traduire la situation à l'aide d'un arbre pondéré.
+\item \begin{enumerate}
+\item Déterminer la probabilité qu'une pièce choisie au hasard dans la production de la
+chaîne soit défectueuse et présente un test positif.
+\item Démontrer que: $p(T) = \np{0.0775}$.
+\end{enumerate}
+\item On appelle \textbf{valeur prédictive positive} du test la probabilité qu'une pièce soit
+défectueuse sachant que le test est positif. On considère que pour être efficace, un
+test doit avoir une valeur prédictive positive supérieure à $0,95$.
+
+Calculer la valeur prédictive positive de ce test et préciser s'il est efficace.
+\end{enumerate}
+\medskip
+
+\textbf{PARTIE II}
+
+\medskip
+
+On choisit un échantillon de $20$ pièces dans la production de la chaîne, en assimilant
+ce choix à un tirage avec remise. On note $X $ la variable aléatoire qui donne le nombre
+de pièces défectueuses dans cet échantillon.
+
+On rappelle que: $p(D) = 0,05$.
+
+\medskip
+
+\begin{enumerate}
+\item  Justifier que $X$ suit une loi binomiale et déterminer les paramètres de cette loi.
+\item Calculer la probabilité que cet échantillon contienne au moins une pièce défectueuse.
+
+On donnera un résultat arrondi au centième.
+\item Calculer l'espérance de la variable aléatoire $X$ et interpréter le résultat obtenu.
+
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\end{document}

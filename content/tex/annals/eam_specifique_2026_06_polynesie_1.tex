@@ -1,0 +1,141 @@
+Deux entreprises A et B souhaitent réduire leurs déchets plastiques.
+
+\begin{itemize}[label={\textbullet~}]
+\item L'entreprise A réduit ses déchets de 15 tonnes chaque année.
+
+Elle produit 500 tonnes de déchets en 2020.
+
+\item L'entreprise B réduit ses déchets de $8\,\%$ chaque année.
+
+Elle produit 600 tonnes de déchets en 2020.
+\end{itemize}
+
+\subsection*{Partie A}
+On a représenté ci-dessous les quantités annuelles estimées de déchets plastiques des entreprises A et B entre 2020 et 2030, en prenant l'année 2020 comme année de rang 0 .
+
+\begin{center}
+\psset{xunit=1cm,yunit=0.01cm,arrowsize=2pt 3}
+\begin{pspicture*}(-1,-20)(10.5,750)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle,Dy=100]{->}(0,0)(0,0)(10.5,750)
+\multido{\n=0+1}{11}{\psline[linewidth=0.15pt](\n,0)(\n,700)}
+\multido{\n=0+100}{8}{\psline[linewidth=0.15pt](0,\n)(10,\n)}
+\psdots(0,600)(1,550)(2,505)(3,475)(4,430)(5,398)(6,370)(7,340)(8,300)(9,285)(10,270)
+\psdots[dotstyle=+,dotangle=45,dotscale=1.5,linewidth=1.5pt](0,500)(1,485)(2,470)(3,455)(4,440)(5,425)(6,410)(7,395)(8,380)(9,365)(10,350)
+\uput[u](9,0){Rang de l'année}\uput[r](0,730){Quantité de déchets (en tonnes)}
+\end{pspicture*}
+\end{center}
+
+\medskip
+
+\begin{enumerate}
+  \item Justifier que la quantité de déchets produits par l'entreprise A est représentée par les points marqués d'une croix.
+  \item Déterminer graphiquement à partir de quelle année l'entreprise $B$ produit moins de déchets que l'entreprise A.
+  \item L'entreprise A atteindra-t-elle son objectif de réduire au moins de moitié ses déchets plastiques en 2030 ?
+\end{enumerate}
+
+\subsection*{Partie B}
+
+\begin{enumerate}
+\item On note $u_{n}$ la quantité de déchets plastiques, en tonnes, produits par l'entreprise A lors de l'année $2020+n$, où $n$ est un entier naturel.
+
+Ainsi,\quad $u_{0}=500$.
+	\begin{enumerate}
+		\item Calculer $u_{1}$.
+
+		Interpréter ce résultat dans le contexte de l'exercice.
+
+		\item Justifier que la suite $(u_{n})$ est arithmétique.
+
+		Préciser sa raison.
+
+	\end{enumerate}
+		On a utilisé un tableur pour calculer les termes de la suite $(u_{n})$.
+
+		Un extrait de la feuille de calcul est donné ci-dessous.
+
+\begin{center}
+
+\begin{tabular}{|l|c|c|c|}
+\hline
+ & A & B & C \\
+\hline
+1 & \multicolumn{3}{|c|}{Déchets produits par l'entreprise A} \\
+\hline
+2 & Année & Rang $n$ & Quantité de déchets $u_{s}$ (en tonnes) \\
+\hline
+3 & 2020 & 0 & 500 \\
+\hline
+4 & 2021 & 1 & 485 \\
+\hline
+5 & 2022 & 2 & 470 \\
+\hline
+6 & 2023 & 3 & 455 \\
+\hline
+7 & 2024 & 4 & 440 \\
+\hline
+8 & 2025 & 5 & 425 \\
+\hline
+9 & 2026 & 6 & 410 \\
+\hline
+10 & 2027 & 7 & 395 \\
+\hline
+11 & 2028 & 8 & 380 \\
+\hline
+12 & 2029 & 9 & 365 \\
+\hline
+13 & 2030 & 10 & 350 \\
+\hline
+14 & 2031 & 11 & 335 \\
+\hline
+15 & 2032 & 12 & 320 \\
+\hline
+16 & 2033 & 13 & 305 \\
+\hline
+17 & 2034 & 14 & 290 \\
+\hline
+18 & 2035 & 15 & 275 \\
+\hline
+19 & 2036 & 16 & 260 \\
+\hline
+20 & 2037 & 17 & 245 \\
+\hline
+21 & 2038 & 18 & 230 \\
+\hline
+22 & 2039 & 19 & 215 \\
+\hline
+23 & 2040 & 20 & 200 \\
+\hline
+\end{tabular}
+\end{center}
+	\begin{enumerate}[resume]
+		\item  Dans la cellule \textsf{C4}, quelle formule doit-on saisir puis recopier vers le bas, afin d'obtenir les termes de la suite $\left(u_{n}\right)$ ?
+		\item  Déterminer au bout de combien d'années l'entreprise A atteindra son objectif de réduire au moins de moitié ses déchets plastiques.
+	\end{enumerate}
+\item On note $v_{n}$ la quantité de déchets plastiques, en tonnes, produits par l'entreprise B lors de l'année $2020+n$, où $n$ est un entier naturel.
+
+Ainsi, \quad $v_{0}=600$.
+	\begin{enumerate}
+		\item Justifier que pour tout entier naturel $n$,
+		\[v_{n+1}=0,92 v_{n}.\]
+
+		\item La suite $\left(v_{n}\right)$ est-elle arithmétique ou géométrique?
+
+		Préciser sa raison.
+
+		\item Exprimer $v_{n}$ en fonction de $n$.
+
+		\item Au bout de combien d'années l'entreprise B aura-t-elle atteint son objectif de réduire au moins de moitié ses déchets plastiques ?
+
+		Justifier votre réponse à l'aide du tableau ci-dessous.
+
+			\begin{tblr}{|X[l,2.5cm,m]|*{10}{X[c]|}}
+				\hline
+				$n$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+				\hline
+				\small $0,92^{n}$ (arrondi au
+				centième)& 0,92 & 0,85 & 0,78 & 0,72 & 0,66 & 0,61 & 0,56 & 0,51 & 0,47 & 0,43 \\
+				\hline
+			\end{tblr}
+
+	\end{enumerate}
+\end{enumerate}

@@ -1,0 +1,177 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet2_metropole_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Affirmation 1 : Vraie}
+
+Ici, il y a deux éléments à justifier : d'une part A, C et D définissent un plan et d'autre part, ce plan a bien l'équation annoncée.
+\begin{itemize}[label=\textbullet]
+	\item On a :\quad $\vect{\mathrm{AC}}\begin{pmatrix} 4 - 2\\4 - 0\\1-0 \end{pmatrix} = \begin{pmatrix} 2\\4\\1 \end{pmatrix}$\quad et \quad $\vect{\mathrm{AD}}\begin{pmatrix} -2\\0\\4\end{pmatrix}$.
+
+	Avec $x_{\vect{\mathrm{AD}}} = -x_{\vect{\mathrm{AC}}}$ mais $y_{\vect{\mathrm{AD}} }\neq -y_{\vect{\mathrm{AC}}}$, il est évident que les vecteurs $\vect{\mathrm{AC}}$ et $\vect{\mathrm{AD}}$ ne sont pas colinéaires, donc que les points A, C et D ne sont pas alignés, et donc :
+
+	A, C et D définissent un plan;
+
+	\item le plan d'équation $8x-5y+4z-16=0$ admet pour vecteur normal $\vect{n_1}$, de coordonnées $\begin{pmatrix}8\\-5\\4\end{pmatrix}$.
+
+	On a : \quad $\vect{n_1}\cdot\vect{\mathrm{AC}} = 8\times 2 - 5 \times 4 + 4 \times 1 = 16 - 20 + 4 = 0$
+
+	 et \quad $\vect{n_1}\cdot\vect{\mathrm{AD}} = 8\times (-2) - 5 \times 0 + 4 \times 4 = -16 - 0 + 16 = 0$
+
+	 $\vect{n_1}$ est donc bien orthogonal à deux vecteurs non colinéaires du plan (ACD), donc $\vect{n_1}$ est orthogonal au plan (ACD).
+
+	 Le plan dont on a l'équation partage un vecteur normal avec (ACD) : ces deux plans sont parallèles.
+
+	 Comme, de plus, \quad $8x_\mathrm{A}-5y_\mathrm{A}+4z_\mathrm{A}-16 = 8\times 2 - 5 \times 0 +4\times 0 - 16 = 16 - 16 = 0$
+
+	 on en déduit que les coordonnées de A vérifient l'équation donnée, et donc que A est dans le plan dont on a l'équation, ce plan est donc confondu avec (ACD).
+\end{itemize}
+
+Finalement, on a bien confirmé que les points A, C et D définissent un plan $\mathcal{P}$ d'équation $8 x-5 y+4 z-16=0$.
+
+\emph{Remarque :} pour le deuxième point de cette question, on pouvait aussi vérifier que A, C et D avaient des coordonnées vérifiant l'équation donnée, cela revenait au même.
+
+\medskip
+
+\textbf{Affirmation 2 : Fausse}
+
+Puisque l'on sait que A, C et D définissent le plan $\mathcal{P}$ d'équation $8x-5y+4z-16 = 0$, alors on a :
+les points A, B, C et D sont coplanaires $\begin{aligned}[t] &\iff \mathrm{B} \in \mathcal{P}\\
+&\iff 8x_\mathrm{B}-5y_\mathrm{B}+4z_\mathrm{B}-16 =0\\
+&\iff 8\times 0 - 5\times 4 + 4\times 3 - 16 = 0\\
+&\iff 0 - 20 + 12 - 16 = 0\\
+&\iff -24 = 0\end{aligned}$
+
+Comme $-24\neq 0$, on en déduit que B n'appartient pas à $\mathcal{P}$, et donc que les points A, B, C et D ne sont pas coplanaires.
+
+\medskip
+
+\textbf{Affirmation 3 : Vraie}
+
+les droites (AC) et (BH) sont dirigées par $\vect{\mathrm{AC}}  \begin{pmatrix} 2\\4\\1 \end{pmatrix}$ et $\vect{\mathrm{BH}} \begin{pmatrix} -1\\-3\\-1 \end{pmatrix}$ respectivement. Comme ces vecteurs sont visiblement non colinéaires, les droites sont soit sécantes, soit non coplanaires.
+
+Pour chercher un éventuel point d'intersection, on a donné des représentations paramétriques des deux droites :
+
+$(\mathrm{AC}) \begin{cases} x = 2+2s\\y = 4s\\z = s \end{cases}$ où $s\in \R$\qquad $(\mathrm{BH})\begin{cases} x =  - t\\y = 4 - 3t\\z=3 - t\end{cases}$ où $t\in \R$.
+
+Si on considère $M_s$ le point de paramètre $s$ sur la droite (AC) et $N_t$ le point de paramètre $t$ sur (BH), alors :
+
+$\begin{aligned} M_s = N_t &\iff \begin{cases} 2+2s =  - t\\4s = 4 - 3t\\s=3 - t\end{cases}\\
+&\iff \begin{cases} 2+2(3-t) =  - t\\4(3-t) = 4 - 3t\\s=3 - t\end{cases}\\
+&\iff \begin{cases} 2+6-2t =  - t\\12-4t = 4 - 3t\\s=3 - t\end{cases}\\
+&\iff \begin{cases} 8 =  -t+2t\\12-4 =  - 3t+4t\\s=3 - t\end{cases}\\
+&\iff \begin{cases} t=8\\t=8\\s=3 - 8\end{cases}\\
+&\iff \begin{cases} t=8\\t=8\\s=-5\end{cases}\\
+\end{aligned}$
+
+Le système a une unique solution, donc les deux droites ont un unique point commun, c'est $M_{-5}$, qui est confondu avec $N_8$, autrement dit, le point de coordonnées : $(-8~;~ -20~;~-5)$.
+
+Les droites sont bien sécantes.
+\medskip
+
+
+
+
+
+\textbf{Affirmation 4 : Vraie}
+
+Il y a deux éléments à vérifier ici pour répondre positivement : le point H est-il un point du plan (ABC), et le vecteur $\vect{\mathrm{DH}}$ est-il normal au plan?
+
+\begin{itemize}
+	\item On a :\quad $x_\mathrm{H} - y_{\mathrm{H}} +2z_{\mathrm{H}} - 2 = -1 - 1 + 2\times 2 - 2 = -2 + 4 - 2 = 0$
+
+	Les coordonnées de H vérifient l'équation donnée pour (ABC), donc H est bien un point du plan (ABC);
+
+	\item On a :\quad $\vect{\mathrm{DH}}\begin{pmatrix} -1\\1\\-2	\end{pmatrix}$.
+	\qquad
+	D'après l'équation donnée pour (ABC), un vecteur normal à (ABC) est :
+	\quad
+	$\vect{n_2} \begin{pmatrix} 1\\-1\\2	\end{pmatrix}$.
+
+	Comme on a :\quad $\vect{n_2} = -\vect{\mathrm{DH}}$, \quad on en déduit que les vecteurs sont colinéaires, donc que $\vect{\mathrm{DH}}$ est normal au plan (ABC).
+\end{itemize}
+
+En conclusion, H est un point de (ABC) tel que (DH) est orthogonale à (ABC) : H est bien le projeté orthogonal de D sur (ABC).
+
+\end{document}

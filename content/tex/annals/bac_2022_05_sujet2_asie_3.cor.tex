@@ -1,0 +1,136 @@
+\medskip
+
+\emph{Principaux domaines abordés}: Probabilités conditionnelles et indépendance. Variables aléatoires.
+
+\bigskip
+
+\begin{center}\emph{Les deux parties de cet exercice sont indépendantes.}\end{center}
+
+\textbf{Partie 1}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+S'il a pris le bus il est à l'heure pour son vol, donc $P_B(V) = 1$.
+
+\item On représente la situation par un arbre pondéré.
+
+\begin{center}
+\pstree[treemode=R,nodesepB=3pt,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$B$~~} \taput{$0,2$}}
+	{\TR{$V$}\taput{1}
+	\TR{$\overline{V}$}\tbput{0}
+	}
+\pstree{\TR{$\overline{B}$~~} \tbput{$0,8$}}
+	{\TR{$V$}\taput{0,5}
+	\TR{$\overline{V}$}\tbput{0,5}
+	}	
+}
+\end{center}
+
+\item 
+D'après la loi des probabilités totales :
+
+$P(V) = P(B \cap V) + P\left(\overline{B} \cap V\right) = 0,2 \times 1 + 0,8 \times 0,5 = 0,2 + 0,4 = 0,6$.
+
+\item 
+On calcule $P_V(B) = \dfrac{P(V \cap B)}{P(V)} = \dfrac{P(B \cap V)}{P(V)} = \dfrac{0,2}{0,6} = \dfrac13$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2}
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+La présence à l'embarquement de chaque passager est indépendante des autres et chaque passager a la même probabilité 0,95 d'être présent, donc la variable aléatoire $X$ suit la loi binomiale de paramètres $n = 206$ et $p = 0,95$.
+\item 
+On a E $ = n \times p = 206 \times 0,95 = 195,7 \approx 196$.
+
+En moyenne sur 206 titulaires d'un billet à peu près 196 vont se présenter.
+\item 
+On a $P(X = 201) = \binom{206}{201} \times 0,95^{201} \times 0,05^{5} \approx \np{0,03063}$, soit 0,031 au millième près.
+\item 
+La calculatrice donne $P(X \leqslant 200) \approx \np{0,9477}$, soit 0,948 au millième près.
+
+ Il est donc à peu près certain que l'avion sera au mieux juste rempli.
+\item 
+
+
+
+
+
+
+
+
+
+
+
+
+On admet que $Y$ suit la loi de probabilité donnée par le tableau suivant:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|c|*{7}{>{\centering \arraybackslash}X|}}\hline
+$y_i$					&0	&1	&2	&3	&4	&5	&6\\ \hline
+$P\left(Y = y_i\right)$	&\np{0,94775}&\np{0,03063}&\np{0,01441}&\np{0,00539}&\np{0,00151}&\np{0,00028}&$\blue\np{0,00003}$\\ \hline
+$c_i$&$\blue\np{51500}$&$\blue\np{50650}$&$\blue\np{49800}$&$\blue\np{48950}$&$\blue\np{48100}$&$\blue\np{47250}$&$\blue\np{46400}$\\ \hline
+\end{tabularx}
+\end{center}
+
+	\begin{enumerate}
+		\item 
+En complétant à 1 la somme des probabilités données dans le tableau on trouve:\\
+ $P(Y = 6) =1 - \left ( P(Y=0) + P(Y=1) + \cdots + P(Y=5)\strut\right )= \np{0,00003}$.
+ 
+		\item 
+La compagnie a encaissé $206 \times 250 = \np{51500}$~\euro{} et elle devra rembourser 850~\euro{} à chaque client ne pouvant embarquer, donc $C = \np{51500} - 850Y$
+		\item 
+Voir le tableau ci-dessus.
+
+
+On a E$(C) = \np{51500} \times \np{0,94775} + \ldots \np{46400} \times \np{0,00003} \approx \np{51429,2}$, soit \np{51429}~\euro{} à l'euro près
+
+		\item 
+En vendant exactement 200 billets, la compagnie fera un chiffre d'affaires de $200\times 250$ soit $\np{50000}$ euros.
+
+En pratiquant le surbooking, la compagnie peut espérer un chiffre d'affaires de \np{51429} euros.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,83 @@
+\medskip
+
+\begin{center}\textbf{Partie A : étude d'une fonction} \end{center}
+
+On considère la fonction $f$ définie sur $\R$ par 
+\[f(x) = x - \ln \left(x^2 + 1\right),\]
+
+où ln désigne la fonction logarithme népérien.
+
+\medskip
+
+\begin{enumerate}
+\item On admet que $f$ est dérivable sur $\R$ et on note $f'$ sa fonction dérivée.
+	\begin{enumerate}
+		\item Montrer que pour tout nombre réel $x$, on a :
+\[f'(x) = \dfrac{(x - 1)^2}{ x^2 + 1}.\]
+
+		\item En déduire le sens de variation de la fonction $f$ sur $\R$.
+	\end{enumerate}
+\item Montrer que pour tout nombre réel $x > 0$, on a :
+\[f(x) = x - 2\ln (x) - \ln \left(1 + \dfrac{1}{x^2}\right).\]
+
+\item Calculer la limite de la fonction $f$ en $+\infty$.
+\end{enumerate}
+
+\begin{center}\textbf{Partie B : étude d'une suite}
+ \end{center}
+
+On considère la suite $\left(u_n\right)$ définie par : 
+\[\left\{\begin{array}{r c l}
+u_0& =&7\\
+u_{n+1} = f\left(u_n\right)& =&u_n - \ln\left(u_n^2 + 1\right)\:\text{pour tout }\:n \in \N
+\end{array}\right.\]
+
+\begin{enumerate}
+\item Montrer, en utilisant un raisonnement par récurrence, que pour tout entier naturel $n$ :
+$u_n \geqslant 0$.
+\item Montrer que la suite $\left(u_n\right)$ est décroissante.
+\item En déduire la convergence de la suite $\left(u_n\right)$.
+\item On note $\ell$ la limite de la suite $\left(u_n\right)$. Déterminer la valeur de $\ell$. \item
+	\begin{enumerate}
+		\item Recopier et compléter le script ci-dessous écrit en langage Python afin qu'il
+renvoie la plus petite valeur de l'entier $n$ à partir de laquelle $u_n \leqslant h$, où $h$ est un nombre réel strictement positif.
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+from math import log as ln\\
+\#permet d'utiliser la fonction ln \\
+\#Le Logarithme népérien\\
+~\\
+def seuil(h):\\
+\quad n = 0\\
+\quad u =7\\
+\quad while \ldots :\\
+\qquad n = n+1\\
+\qquad u = \ldots\\
+\quad return n\\ \hline
+\end{tabular}
+\end{center}
+
+		\item Déterminer la valeur renvoyée lorsqu'on saisit seuil(0.01) dans la console Python. Justifier la réponse.
+		\end{enumerate}
+\end{enumerate}
+
+\begin{center}\textbf{Partie C : calcul intégral}\end{center}
+
+\begin{enumerate}
+\item Étudier le signe de la fonction $f$ sur $[0~;~+\infty[$.
+\item Interpréter graphiquement l'intégrale:
+
+\[I = \displaystyle\int_2^4 f(x)\:\text{d}x.\]
+
+\item On admet dans cette question que, pour tout nombre réel $x \in [2~;~4]$, on a
+l'encadrement:
+
+\[0,5x -1 \leqslant f(x) \leqslant 0,25x + 0,25.\]
+
+En déduire l'encadrement :
+
+\[ 1 \leqslant I \leqslant 2.\]
+\end{enumerate}
+
+\bigskip

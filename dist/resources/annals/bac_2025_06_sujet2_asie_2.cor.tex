@@ -1,0 +1,149 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet2_asie_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A}
+v
+ \begin{enumerate}
+    \item $ u_1 = \dfrac{1}{2}u_0 + 10= \dfrac{1}{2} \times 30 + 10 = 15 + 10 = 25$ et $ u_2 = \dfrac{1}{2}u_1 + 10=  \dfrac{1}{2} \times 25 + 10 = 12,5 + 10 = 22,5.$
+
+    \item Pour tout \( n \in \mathbb{N} \), $v_{n+1} = u_{n+1} - 20 = \left( \dfrac{1}{2}u_n + 10 \right) - 20 = \dfrac{1}{2}u_n - 10 = \dfrac{1}{2} \left( u_n - 20\right) = \dfrac{1}{2}v_n$.
+
+
+donc la suite \( (v_n) \) est géométrique de raison \( q=\dfrac{1}{2} \) et de premier terme $v_0=u_0-20=30-20=10$.
+
+    \item Pour tout entier $n$, $v_n=v_0 \times q^n =   10 \times \left( \dfrac{1}{2} \right)^n$
+
+    \item Pour tout entier $n$,  $u_n = v_n + 20 = 10 \times \left( \dfrac{1}{2} \right)^n + 20 = 20 + 10 \times \left( \dfrac{1}{2} \right)^n$
+
+    \item $\lim\limits_{n \to +\infty} \left( \dfrac{1}{2} \right)^n=0$ ( $q^n$ , avec $0<q<1$ ) donc par produit $\lim\limits_{n \to +\infty}  10 \times\left( \dfrac{1}{2} \right)^n=0$ et donc par somme  $\lim\limits_{n \to +\infty} u_n=20$ 
+ 
+\end{enumerate}
+
+\textbf{Partie B}
+ 
+\begin{enumerate}
+    \item $w_1= \dfrac{1}{2} \times u_0 + \dfrac{1}{2} \times 30 + 7 = \dfrac{1}{2} \times 45 + 15 + 7 = 22,5 +22 = 44,5$
+
+    \item La fonction Python donnée ne calcule pas correctement \( w_1 \) car elle calcule $u_1$ avant de calculer $w_1$ il faut modifier l’ordre des opérations :
+ 
+\begin{verbatim}
+def suite(n):
+    U = 30
+    W = 45
+    for i in range(1, n+1):
+        W = W/2 + U/2 + 7
+        U = U/2 + 10
+    return W
+\end{verbatim}
+
+    \item (a) Montrons par récurrence  que pour tout entier naturel $n$ , 
+   $ w_n = 10n \left( \dfrac{1}{2} \right)^n + 11 \left( \dfrac{1}{2} \right)^n + 34$
+
+    \textbf{Initialisation :} Pour \( n = 0 \),
+    $ w_0 =45 $et $  10 \times 0 \times \left( \dfrac{1}{2} \right)^0 + 11 \times \left( \dfrac{1}{2} \right)^0 + 34 =11+34= 45$
+
+donc l'égalité est initialisée pour $n=0$.
+
+ \textbf{Hérédité :} On suppose qu'il existe un entier $k$ tel que $w_k = 10k \left( \dfrac{1}{2} \right)^k + 11 \left( \dfrac{1}{2} \right)^k + 34$ , montrons que  $w_{k+1} = 10(k+1) \left( \dfrac{1}{2} \right)^{k+1} + 11 \left( \dfrac{1}{2} \right)^{k+1} + 34$
+
+$ w_{k+1} = \dfrac{1}{2}w_k + \dfrac{1}{2}u_k + 7 = \dfrac{1}{2} \left[ 10k \left( \dfrac{1}{2} \right)^k + 11 \left( \dfrac{1}{2} \right)^k + 34 \right] + \dfrac{1}{2} \left[ 20 + 10 \left( \dfrac{1}{2} \right)^k \right] + 7$
+
+donc $ w_{k+1} = 10k \left( \dfrac{1}{2} \right)^{k+1} + 11 \left( \dfrac{1}{2} \right)^{k+1} + 17 +10 +   \left( \dfrac{1}{2} \right)^{k+1}+ 7 = 10(k+1) \left( \dfrac{1}{2} \right)^{k+1} + 11 \left( \dfrac{1}{2} \right)^{k+1} + 34$
+
+donc l'égalité est héréditaire.
+
+\textbf{Conclusion}: l'égalité est initialisée pour $n=0$ et elle est héréditaire donc d'après le principe de récurrence, elle est vraie pour tout entier $n$.
+
+pour tout entier naturel $n$ , $ w_n = 10n \left( \dfrac{1}{2} \right)^n + 11 \left( \dfrac{1}{2} \right)^n + 34$
+ (b)  $\lim\limits_{n \to +\infty} \dfrac{10}{n}=0$ et pour tout entier $n \geqslant 4$ , $0 \leqslant 10n \left( \dfrac{1}{2} \right)^n \leqslant \frac{10}{n}$ donc d'après le théorème d'encadrement $\lim\limits_{n \to +\infty}10n \left( \dfrac{1}{2} \right)^n=0$ 
+
+de plus $\lim\limits_{n \to +\infty}  \left( \dfrac{1}{2} \right)^n =0$ ( $q^n$ avec $0<q<1$ donc par produit $\lim\limits_{n \to +\infty} 11 \times  \left( \dfrac{1}{2} \right)^n =0$
+
+donc par somme $\lim\limits_{n \to +\infty} w_n=34$
+\end{enumerate}
+
+\bigskip
+
+\end{document}

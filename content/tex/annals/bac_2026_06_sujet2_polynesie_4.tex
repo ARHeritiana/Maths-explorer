@@ -1,0 +1,65 @@
+Pour chacune des affirmations suivantes, indiquer si elle est vraie ou fausse.
+
+\emph{Justifier chaque réponse. Une réponse non justifiée ne rapporte aucun point.}
+
+\medskip
+
+\begin{enumerate}
+\item On considère la fonction $f$ définie pour tout $x \in \mathbb{R}$ par $f(x) = x \e^{(x^2)}$.
+
+\textbf{Affirmation 1} : $f$ est concave sur $]-\infty~;~0]$.
+
+\item Un refuge spécialisé accueille 24 rapaces numérotés de 1 à 24. Le refuge travaille avec trois vétérinaires. Afin d'administrer un soin à tous les oiseaux, le directeur veut donc former trois groupes, numérotés de 1 à 3, constitués chacun de 8 rapaces.
+
+\textbf{Affirmation 2} : Le nombre de façons de répartir les rapaces dans les groupes 1 à 3 est :
+
+\[\frac{24!}{(8!)^3}.\]
+
+\item Soit $f$ une fonction définie et dérivable sur $\mathbb{R}$, solution de l'équation différentielle :
+
+\[y' = -y + 1 \text{ sur } \mathbb{R}.\]
+
+\textbf{Affirmation 3} : La fonction $g$ définie pour tout $x \in \mathbb{R}$ par $g(x) = f(x) - 1$ vérifie
+
+\[g' = -g.\]
+
+\item La suite $(u_n)$ est définie pour tout entier naturel $n$ non nul par :
+
+\[u_n = \frac{\sin(n)}{n}.\]
+
+\textbf{Affirmation 4} : La suite $(u_n)$ n'admet pas de limite.
+
+\item On a tracé ci-dessous la parabole d'équation $y = -x^2 + 4x + 1$ et la droite d'équation $y = x + 1$.
+
+\begin{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture*}(-1.1,-1.5)(5.5,5.5)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-1,-1.5)(5.5,5.5)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-0.5}{4.5}{4 x mul 1 add x dup mul sub}
+\psplot[plotpoints=500,linewidth=1.25pt,linecolor=blue]{-1}{5}{x  1 add}
+\pscustom[fillstyle=solid,fillcolor=lightgray]{\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0}{3}{4 x mul 1 add x dup mul sub}\psline(3,4)(0,1)}
+\psgrid[gridlabels=0pt,subgriddiv=2,gridwidth=0.2pt,subgridwidth=0.1pt]
+\end{pspicture*}
+
+\end{center}
+
+\textbf{Affirmation 5} : L'aire du domaine grisé est égale à $6{,}5$ unités d'aire.
+\end{enumerate}

@@ -1,0 +1,338 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2025/tex/eam_specifique_2025_06_sujet0v1_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+\item L'opération qui permet de calculer 25\,\% de 480 est:
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~} $\dfrac{480}{25 \times 100}$&\textbf{b.~} $25 \times 480 \times 0,1$&
+\textbf{c.~} $\dfrac{480 \times 100}{25}$&\textbf{d.~} $\dfrac 14 \times 480$
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+L'opération qui permet de calculer 25\,\% de 480 est
+$480\times \dfrac{25}{100}$ soit $480\times \dfrac{1}{4}$.
+
+\hfill\textbf{Réponse d.}
+\end{tabular}
+
+\bigskip
+
+\item Voici trois nombres :
+
+\begin{tabularx}{\linewidth}{*{3}{X}}
+$A =\dfrac 15$& $B = \dfrac{19}{100}$& $C = 0,21$.
+\end{tabularx}
+
+Le classement par ordre croissant de ces trois nombres est :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~}$A < B < C$ &\textbf{b.~} A < C < B&\textbf{c.~} $B < A< C$&\textbf{d.~} $C < B < A$\\
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+$A=\dfrac{1}{5}=0,20$; $B=\dfrac{19}{100}=0,19$ et $C=0,21$
+
+$0,19<0,20<0,21$ donc $B<A<C$
+\hfill\textbf{Réponse c.}
+\end{tabular}
+
+\bigskip
+
+\item Voici quatre nombres :
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+$A = \left(\dfrac 15\right)^2$ & $B = \left (\dfrac{1}{2}\right )^5$ & $C = 0,05$& $D = \left(\dfrac 13\right)^3$
+\end{tabularx}
+
+Le plus grand de ces quatre nombres est:
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~} $A$&\textbf{b.~} $B$&\textbf{c.~} $C$&\textbf{d.~} $D$
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+$A=\left (\dfrac{1}{5}\right )^2= \dfrac{1}{5^2} =\dfrac{1}{25}$; $B=\left (\dfrac{1}{2}\right )^5=\dfrac{1}{2^5}=\dfrac{1}{32}$; $C=0,05 = \dfrac{5}{100}=\dfrac{1}{20}$ et
+
+$D=\left (\dfrac{1}{3}\right )^3=\dfrac{1}{27}$
+Toutes les fractions ont le même numérateur, donc la plus grande est celle qui a le plus petit dénominateur.
+\hfill\textbf{Réponse c.}
+\end{tabular}
+
+\bigskip
+
+\item Un article augmente de 10\,\% puis il augmente encore de 10\,\%.
+
+Après ces deux augmentations il a augmenté de :
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~} $(10\,\%)^2$ &\textbf{b.~} 19\,\% &\textbf{c.~} 20\,\% &\textbf{d.~} 21\,\%
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+Augmenter de 10\,\%, c'est multiplier par $1+\dfrac{10}{100}=1,1$; augmenter deux fois de 10\,\%, c'est multiplier par $1,1\times 1,1=1,21$.
+
+$1,21=1+\dfrac{21}{100}$ donc ça correspond à une augmentation de 21\,\%.
+
+\hfill\textbf{Réponse d.}
+\end{tabular}
+
+\bigskip
+
+\item Le tiers d'un quart correspond à la fraction :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~} $\dfrac 17$&\textbf{b.~} $\dfrac 34$& \textbf{c.~} $\dfrac 13 \times 4$& \textbf{d.~} $\dfrac{1}{12}$
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+Le tiers d'un quart correspond à la fraction $\dfrac{1}{3}\times \dfrac{1}{4}=\dfrac{1}{12}$.
+\hfill\textbf{Réponse d.}
+\end{tabular}
+
+\bigskip
+
+\item On considère $A = 10 + 0,1 + \dfrac{1}{1000}$. On a : 
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~} $A= \dfrac{20^{-1}}{\np{1000}}$&\textbf{b.~} $A = \dfrac{1}{\np{1000}}$&\textbf{c.~} $A = 10,101$ &\textbf{d.~} $A = 10,110$ 
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+$A = 10 + 0,1 + \dfrac{1}{1000} = 10+0,1+0,001=10,101$
+\hfill\textbf{Réponse c.}
+\end{tabular}
+
+\bigskip
+
+\item On considère $A = 10^{10} + 10^{-10}$. $A$ est environ égal à : 
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~}$10^0$&\textbf{b.~} 0&\textbf{c.~} $10^{10}$&$100^0$
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+$10^{-10}$ es proche de 0 donc $A\approx 10^{10}$.
+\hfill\textbf{Réponse c.}
+\end{tabular}
+
+\bigskip
+
+\item Une durée de 100 minutes correspond à :
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~} 1 heure &\textbf{b.~} 1,40 heure &\textbf{c.~} $\dfrac 53$ heure&\textbf{d.~} 2 heures
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+$\dfrac{1}{3}$ heure correspond à 20 minutes, $\dfrac{2}{3}$ heure à 40 minutes.
+
+$\dfrac{3}{3}$ heure correspondent à 60 minutes.
+\hfill\textbf{Réponse c.}
+\end{tabular}
+\end{enumerate}
+
+\medskip
+
+\begin{minipage}{0.65\linewidth}
+\begin{enumerate}[resume]
+\item On considère une droite $D$ représentée ci-contre.
+
+La seule équation pouvant correspondre à l'équation réduite
+de la droite $D$ est :
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~} $y = x+3$ &\textbf{b.~} $y = x - 3$\\
+\textbf{c.~} $y = -x + 3$ &\textbf{d.~} $y = - x - 3$
+\end{tabularx}
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.33\linewidth}
+\psset{xunit=0.5cm,yunit=0.3cm,arrowsize=2pt 3}
+\begin{pspicture*}(-3,-4)(6,3)
+\psaxes[linewidth=1.25pt,Dx=20,Dy=20]{->}(0,0)(-3,-4.5)(6,3)
+\psplot[plotpoints=600,linewidth=1.25pt,linecolor=red]{-3}{6}{x 3 sub}
+\uput[u](5.8,0){$x$} \uput[r](0,2.6){$y$}\uput[dr](5.8,2.8){\red $D$}
+\end{pspicture*}
+\end{minipage}
+
+\medskip
+
+\begin{enumerate}[label=]
+\item \begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+La droite a un coefficient directeur positif et une ordonnée à l'origine négative.
+
+\hfill\textbf{Réponse b.}
+\end{tabular}
+\end{enumerate}
+
+\medskip
+
+\begin{enumerate}[start=10]
+\item On considère la fonction $f$ définie pour tout réel $x$ par $f(x) = 7 - \dfrac 12 (x - 3)^2$.
+
+L'image de 3 par la fonction $f$ est égale à :
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~} $7 - \dfrac 12$ &\textbf{b.~} $7 - \dfrac 12(9 + 9)$ &\textbf{c.~} $7$&\textbf{d.~} 0
+\end{tabularx}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+$f(3)=7-\dfrac{1}{2}\left (3-3\right )^2=7-0=7$
+\hfill\textbf{Réponse c.}
+\end{tabular}
+
+\bigskip
+
+\item Quand on développe $(x - 3)^2$ on obtient:
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~} $x^2 + 9$ &\textbf{b.~} $x^2 - 9$ &\textbf{c.~} $x^2 + 6x + 9$&\textbf{d.~} $x^2 - 6x + 9$
+\end{tabularx}
+
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+$(a-b)^2=a^2-2ab+b^2$
+\hfill\textbf{Réponse d.}
+\end{tabular}
+
+\bigskip
+
+\item Voici deux séries de valeurs :
+
+Série A : 1 ; 2 ; 3 \qquad Série B : 0,5 ; 2 ; 100
+
+Une seule de ces affirmations est exacte :
+
+\begin{tabular}{l}
+\textbf{a.~} Les deux séries ont la même moyenne et la même médiane.\\
+\textbf{b.~} Les deux séries ont la même moyenne mais pas la même médiane.\\
+\textbf{c.~} Les deux séries ont la même médiane mais pas la même moyenne.\\
+\textbf{d.~} Les deux séries n'ont ni la même moyenne ni la même médiane.
+\end{tabular}
+
+\medskip
+
+\begin{tabular}{@{\hspace{0.03\linewidth}} | p{0.95\linewidth}}
+\begin{list}{\textbullet}{On regarde moyenne et médiane de chaque série.}
+\item $1+2+3=6$ et $0,5+2+100=102,5$ donc les deux séries n'ont pas la même moyenne.
+\item Les deux séries comportent 3 nombres donc leur médiane est le 2\ieme{} nombre, c'est-à-dire 2; les deux séries ont la même médiane.
+\end{list}
+\hfill\textbf{Réponse c.}
+\end{tabular}
+
+
+\end{enumerate}
+
+
+\medskip
+
+\end{document}

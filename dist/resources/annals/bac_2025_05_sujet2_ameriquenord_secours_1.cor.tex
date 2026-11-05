@@ -1,0 +1,236 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_05_sujet2_ameriquenord_secours_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A : Étude de la fonction $\boldsymbol{f}$}
+
+\begin{enumerate}
+\item
+\begin{itemize}
+\item Déterminons la limite quand $x$ tend vers $-\infty$:
+
+$\forall x \in \R$, \quad $f(x) = x\big(\e^{-x} + 2\big) - 1$.
+
+Avec $y = -x$, par composition, on a :\quad $\lim\limits_{x \to -\infty} \e^{-x}= \lim\limits_{y \to +\infty} \e^{y} = +\infty$.
+
+Donc, par limite de la somme : \quad $\lim\limits_{x \to -\infty} \e^{-x} + 2 = +\infty$.
+
+Par limite du produit, il vient : \quad $\lim\limits_{x \to -\infty} x\big(\e^{x} + 2\big) = -\infty$.
+
+Enfin, par limite de la somme : \quad $\lim\limits_{x \to -\infty} f(x) = \lim\limits_{x \to -\infty} x\big(\e^{-x} + 2\big) - 1 = -\infty$.
+
+\item Déterminons la limite quand $x$ tend vers $+\infty$:
+
+D'après la propriété des croissances comparées : \quad$ \lim\limits_{x \to +\infty} \dfrac{\e^{x}}{x} = +\infty$.
+
+Par limite de l'inverse :\quad$\lim\limits_{x \to +\infty} \dfrac{x}{\e^{x}} = 0$\quad donc $\lim\limits_{x \to +\infty} x\e^{-x} = 0$.
+
+Par ailleurs, 2 étant positif : \quad $\lim\limits_{x \to +\infty}2x-1 = +\infty$.
+
+Par limite de la somme on en déduit :\quad $\lim\limits_{x \to +\infty} f(x) = \lim\limits_{x \to +\infty} x\e^{-x} + 2 x-1 = +\infty$.
+\end{itemize}
+
+\item On a admis que la fonction est dérivable sur $\R$. $f$ est la somme d'une fonction affine et d'un produit de deux fonctions dérivables sur $\R$.
+
+Pour tout réel $x$, on a :
+
+$f'(x) = 1 \times \e^{-x} + x \times \big(-\e^{-x}\big) + 2 = (1 - x)\e^{-x} + 2$.
+
+\item On a admis que $f'$ est dérivable :
+
+Pour tout réel $x$, on a :
+
+$f''(x)=-1 \times \e^{-x} + (1-x) \times \big(- \e^{-x}\big) + 0 = \big(-1 - (1-x)\big)\e^{-x} = (x - 2)\e^{-x}$.
+
+On arrive bien à l'expression annoncée.
+
+\item La fonction exponentielle est à valeurs strictement positives sur $\R$, donc $f''(x)$ est du signe de $(x - 2)$.
+
+\begin{itemize}
+\item Sur l'intervalle $]-\infty ~;~ 2]$, $(x - 2) \leqslant 0$, donc $f''$ est à valeurs négatives et donc $f$ est \textbf{concave} sur $]-\infty ~;~ 2]$.
+\item Sur l'intervalle $[2 ~;~ +\infty[$, $(x - 2) \geqslant 0$, donc $f''$ est à valeurs positives et donc $f$ est \textbf{convexe} sur $[2 ~;~ +\infty[$.
+\end{itemize}
+
+\item 
+\begin{itemize}
+\item Sur l'intervalle $]-\infty ~;~ 2]$, $f$ est concave, donc $f'$ est décroissante.
+\item Sur l'intervalle $[2 ~;~ +\infty[$, $f$ est convexe, donc $f'$ est croissante.
+\end{itemize}
+
+$f'$ atteindra donc un minimum pour $x = 2$. On a :
+
+$f'(2) = (1 - 2)\e^{-2} + 2 = 2 - \e^{-2}$
+
+On peut donc établir le tableau de variations (sans limites, car non attendues ici) de $f'$.
+
+
+\begin{tikzpicture}
+	\tkzTabInit[lgt=4]{$x$/0.7, signe de $f''(x)$/0.7, variations de $f'$/2}
+	{$-\infty$, 2 ,$+\infty$ }
+	\tkzTabLine{,-,z,+,}
+	\tkzTabVar{+/~,-/$2-\e^{-2}$,+/~}
+	\end{tikzpicture}
+
+
+		\item Comme on a $-2< 0$, on en déduit, par croissance de la fonction exponentielle : \quad $\e^{-2} \leqslant \e^{0}$.
+
+$\begin{aligned}
+\e^{-2} \leqslant \e^{0}
+&\implies \e^{-2} \leqslant 1\\
+&\implies -\e^{-2} \geqslant -1\quad \text{car }-1 < 0\\
+&\implies 2-\e^{-2} \geqslant 2-1\\
+&\implies 2-\e^{-2} \geqslant 1\\
+\end{aligned}$
+
+Le minimum de $f'$ est donc un réel supérieur à 1, donc strictement positif.
+
+On en déduit que $f'$ est donc une fonction à valeurs strictement positives sur $\R$, en conséquence, $f$ est effectivement une fonction strictement croissante sur $\R$.
+
+\item $f$ est une fonction \textbf{continue} (car dérivable) et \textbf{strictement croissante} sur $\R$. De plus 0 est une \textbf{valeur intermédiaire} entre $\lim\limits_{-\infty} f = -\infty$ et $\lim\limits_{+\infty} f = +\infty$.
+
+En vertu du corollaire au théorème des valeurs intermédiaires appliqué aux fonctions strictement monotones, on en déduit qu'il existe un unique réel $\alpha$ tel que $f(\alpha)=0$.
+
+Par exploration à la calculatrice, on peut donner pour $\alpha$ l'encadrement au centième près suivant :\quad $0,37 < \alpha < 0,38$.
+
+\item Pour tout $x$ réel, on a :
+
+$f(x) - (2x-1) = x\e^{-x}$.
+
+Comme la fonction exponentielle est  à valeurs strictement positives sur $\R$, on en déduit que cette différence entre l'ordonnée $f(x)$ d'un point sur $C_f$ et celle $2x - 1$ du point partageant la même abscisse sur $\Delta$ est du signe de $x$.
+
+Sur $\R^-$, la différence est donc négative, et on en déduit que la courbe $C_f$ est \textbf{au-dessous} de la droite $\Delta$.
+
+Sur $\R^+$, au contraire, la différence est positive, et donc la courbe $C_f$ est \textbf{au-dessus} de la droite $\Delta$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B : Calcul d'aire}
+
+\medskip
+
+\begin{enumerate}
+\item Pour tout $x$ réel, on pose : \quad $u'(x) = \e^{-x}$\quad et \quad$v(x) = x$.
+
+On a donc, pour tout $x$ réel :\quad $v'(x) = 1$ \quad et, par exemple : \quad$u(x) = -\e^{-x}$.
+
+$\begin{aligned} \displaystyle
+I_{n}&= \int_{1}^{n} x\e^{x} ~\mathrm{d} x   \\
+	&=\int_{1}^{n} v(x)\times u'(x)  ~\mathrm{d} x\\
+	&= \Big[u(x) \times v(x)\Big]_1^n - \int_{1}^{n} v'(x)\times u(x) ~\mathrm{d} x\quad \text{c'est la formule d'intégration par parties}\\
+	&= \Big[-\e^{-x} \times x\Big]_1^n - \int_{1}^{n} 1\times \big(-\e^{-x}\big) ~\mathrm{d} x\\
+	&= \Big(-n\e^{-n}\Big)-\Big(-\e^{-1}\Big) + \int_{1}^{n} \e^{-x} ~\mathrm{d} x\quad \text{par linéarité de l'intégrale.}\\
+	&= \e^{-1} -n\e^{-n} + \Big[-\e^{-x}\Big]_1^n\\
+	&= \e^{-1} -n\e^{-n} + \Big(-\e^{-n} - \big(-\e^{-1}\big)\Big)\\
+	&= 2\e^{-1} - (n+1)\e^{-n}
+\end{aligned}$
+
+On arrive donc à l'expression : \quad $I_n = 2\e^{-1} - (n+1)\e^{-n}$.
+\item 
+	\begin{enumerate}
+		\item Le domaine décrit est donc situé entre la courbe $C_f$ et la droite $\Delta$, pour les abscisses comprises entre 1 et $n$. Le nombre $n$ étant choisi entier naturel non nul, l'ensemble des abscisses concernées est donc inclus dans $\R^{+}$, où la courbe $C_f$ est au-dessus de la droite $\Delta$, d'après la question \textbf{A. 8.}, c'est-à-dire que :
+
+$\forall x \in [1 ~;~n], \quad 2x - 1 \leqslant f(x)$.
+
+Pour obtenir l'aire de $D_n$, il faut donc intégrer la différence $f(x) - (2x - 1)$, entre $1$ et $n$ (car $1 \leqslant n$).
+
+Comme, pour tout $x$ réel, on a :\quad $f(x) - (2x-1) = x\e^{-x}$, \quad l'aire de $D_n$ (exprimée en unité d'aire) est donc bien égale à $I_n$.
+
+		\item On a, pour tout $n$ entier naturel :\quad $I_n = 2\e^{-1} - (n+1)\e^{-n} = 2\e^{-1} - n\e^{-n} -\e^{-n}$.
+
+Avec le même raisonnement que celui tenu à la question \textbf{A. 1.}, on a :
+
+$\lim\limits_{n\to +\infty} n\e^{-n} = 0$.
+
+On a également :\quad $\lim\limits_{n\to +\infty} \e^{-n} = \lim\limits_{n\to +\infty} \dfrac{1}{\e^{n}} = 0$.
+
+On a donc, par limite de la somme : \quad $\lim\limits_{n \to +\infty} I_n = 2\e^{-1}$.
+
+On est donc dans la situation d'un domaine dont le périmètre tend vers $+\infty$, puisqu'il s'étend sur une amplitude en abscisse qui tend vers $+\infty$, mais dont la surface reste majorée.
+		\end{enumerate}
+	\end{enumerate}
+
+\bigskip
+
+\end{document}

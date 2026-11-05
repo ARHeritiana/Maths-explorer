@@ -1,0 +1,31 @@
+\subsection*{1.}
+	Diminuer de 1,5\%, c'est multiplier par \(1 - \dfrac{1,5}{100} = 0,985\).
+	
+	Donc \(d_1 = 400 \times 0,985 = 394\).
+	
+	Après une baisse de 1,5\%, la moyenne de déchets sera en 2019 de 394 kg.
+	
+	\subsection*{2.a}
+	
+	D'une année sur l'autre, on multiplie la quantité de déchets d'une année par \( 0,985 \).
+	
+	On a donc, pour tout entier naturel \( n \), \( d_{n+1} = 0,985 \, d_n \), égalité qui montre que la suite \( (d_n) \) est une suite géométrique de raison \( 0,985 \) et de premier terme \( d_0 = 400 \).
+	
+	\subsection*{2.b}
+	
+	On sait que, pour tout entier naturel \( n \), \( d_n = d_0 \times 0,985^n = 400 \times 0,985^n \).
+	
+	\subsection*{3.a}
+	
+	On obtient une masse inférieure à 365 kg pour \( n = 7 \), soit en 2025.
+	
+	\subsection*{3.b}
+	\begin{lstlisting}[style=python]
+def dechet(m) :
+	d = 400
+	n = 0
+	while d > m :
+		d = d * 0.985
+		n = n + 1
+	return (2018 + n)
+	\end{lstlisting}

@@ -1,0 +1,41 @@
+\medskip
+
+\parbox{0.62\linewidth}{Un artisan commence la pose d'un carrelage dans une grande pièce.
+
+Le carrelage choisi a une forme hexagonale.
+
+L'artisan pose un premier carreau au centre de la pièce puis procède en étapes successives de la façon suivante :
+
+\begin{itemize}[label=\textbullet]
+\item à l'étape 1, il entoure le carreau central, à l'aide de $6$ carreaux et obtient une première forme.
+\item à l'étape 2 et aux étapes suivantes, il continue ainsi la pose en entourant de carreaux la forme précédemment construite.
+\end{itemize}}\hfill
+\parbox{0.36\linewidth}{\psset{unit=0.5cm,hatchwidth=0.5pt,hatchsep=1.5pt}
+\def\exag2{\pspolygon[fillstyle= solid,fillcolor=lightgray](1;30)(1;90)(1;150)(1;210)(1;270)(1;330)}
+\begin{pspicture}(-4.5,-4.5)(4,4)
+\pspolygon[fillstyle=solid,fillstyle=hlines](1;30)(1;90)(1;150)(1;210)(1;270)(1;330)
+\multido{\n=0+60}{6}{\rput(1.732;\n){\pspolygon(1;30)(1;90)(1;150)(1;210)(1;270)(1;330)}}
+\multido{\n=0+60}{6}{\rput(3.47;\n){\exag2}}
+\multido{\n=30+60}{6}{\rput(3;\n){\exag2}}
+\end{pspicture}
+}
+
+On note $u_n$ le nombre de carreaux ajoutés par l'artisan pour faire la $n$-ième étape $(n \geqslant 1)$. 
+
+Ainsi $u_1 = 6$ et $u_2 = 12$.
+
+\medskip
+
+\begin{enumerate}
+\item Quelle est la valeur de $u_3$ ?
+\item On admet que la suite $\left(u_n\right)$ est arithmétique de raison 6. Exprimer $u_n$ en fonction de $n$.
+\item Combien l'artisan a-t-il ajouté de carreaux pour faire l'étape 5 ? 
+
+Combien a-t-il alors posé de carreaux au total lorsqu'il termine l'étape 5 (en comptant le carreau central initial) ?
+\item On pose $S_n = u_1 + u_2 + \ldots + u_n$. Montrer que $S_n = 6(1 + 2 + 3 + \ldots + n)$ puis que $S_n = 3n^2 + 3n$.
+\item Si on compte le premier carreau central, le nombre total de carreaux posés par l'artisan depuis le début, lorsqu'il termine la $n$-ième étape, est donc $3n^2 + 3n + 1$. 
+
+À la fin de sa semaine, l'artisan termine la pose du carrelage en collant son \np{2977}\up{e} carreau. Combien a-t-il fait d'étapes ?
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,131 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet24_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Durant le mois de janvier 2020, une entreprise produit \np{2500} flacons de parfum ce qui correspond exactement au nombre de flacons commandés. Le propriétaire de l’entreprise décide d’augmenter chaque mois la production de 108 flacons et il espère que le nombre de flacons commandés augmentera chaque mois de 3,8 \,\%.
+
+On considère la suite ($f_n)$ où pour tout entier naturel $n$, $f_n$ modélise le nombre de flacons produits lors du mois de rang $n$ après janvier 2020 ; ainsi $f_0$ est le nombre de flacons produits en janvier 2020, $f_1$ le nombre de flacons produits en février 2020, etc.
+
+De la même manière, on considère la suite $(c_n)$ où pour tout entier naturel $n$, $c_n$ modélise le nombre potentiel de flacons commandés lors du mois de de rang $n $ après janvier 2020.
+
+On a donc $f_0 = c_0 = \np{2 500}$.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer, en expliquant les calculs effectués, le nombre de flacons produits et le nombre potentiel de flacons commandés en février 2020.
+\item Déterminer la nature des suites $(f_n)$ et $(c_n)$.
+\item Exprimer, pour tout entier $n$, $f_n$ et $c_n$ en fonction de $n$.
+\item On admet que, selon ce modèle, au bout d’un certain nombre de mois le nombre potentiel de flacons commandés dépassera le nombre de flacons produits.
+
+\begin{minipage}[b]{8.7 cm}
+Reproduire et compléter sur la copie l’algorithme ci-contre, écrit en Python, afin qu’après son exécution la variable $n$ contienne le nombre de mois à attendre après le mois de janvier 2020 pour que le nombre potentiel de flacons commandés dépasse le nombre de flacons produits.
+\end{minipage}\hspace{1.28cm}
+\begin{minipage}[b]{4cm}
+\begin{tabular}[]{|m{2.5cm}|}
+\hline
+n = 0\\
+f = \np{2500}\\
+c = \np{2500}\\
+while $\dots$ :\\
+\hspace{1.8em}n = $\dots$\\
+\hspace{1.8em}f = $\dots$\\
+\hspace{1.8em}c = $\dots$\\
+\hline
+\end{tabular}
+\end{minipage}
+
+\item De début janvier 2020 à fin décembre 2020, la production globale dépassera-t-elle le nombre de commandes potentielles ? Expliquer votre démarche.
+\end{enumerate}
+
+On rappelle que :
+\begin{itemize}
+\item Si $(u_n)$ est une suite arithmétique de premier terme $u_0$, alors, pour tout entier naturel $n$,
+\[u_0+ u_1+\dots+u_n=\dfrac{(n+1)(u_0+u_n)}{2}\]
+ \item Si $(v_n)$ est une suite géométrique de raison $q\not= 1$, alors, pour tout entier naturel $n$,
+ 
+\[v_0+v_1+\dots+v_n=v_0\dfrac{1-q^{n+1}}{1-q}\] 
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,189 @@
+\medskip
+
+Des biologistes étudient l'évolution d'une population d'insectes dans un jardin botanique. 
+
+Au début de l'étude la population est de \np{100000}~insectes.
+
+Pour préserver l'équilibre du milieu naturel le nombre d'insectes ne doit pas dépasser \np{400000}.
+
+\bigskip
+
+\textbf{Partie A : Étude d'un premier modèle en laboratoire}
+
+\medskip
+
+L'observation de l'évolution de ces populations d'insectes en laboratoire, en l'absence de tout prédateur, montre que le nombre d'insectes augmente de 60\,\% chaque mois.
+
+En tenant compte de cette observation, les biologistes modélisent l'évolution de la population d'insectes à l'aide d'une suite $\left(u_n\right)$ où, pour tout entier naturel $n$, $u_n$ modélise le nombre d'insectes, exprimé en millions, au bout de $n$ mois. 
+On a donc $u_0 = 0,1$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+Augmenter de 60\,\%, c'est multiplier par $1+\dfrac{60}{100}=1,6$.
+La suite $(u_n)$ est donc géométrique de raison $q=1,6$.
+
+La forme explicite d'une suite géométrique de raison $q$ et de premier terme $u_0$ est: $u_n=u_0\times q^n$ donc $u_n = 0,1 \times 1,6^n$ pour tout $n$ de $\N$.
+
+\item 
+$1,6>1$ donc $\ds\lim_{n\to +\infty} 1,6^n = +\infty$
+
+On en déduit que $\ds\lim_{n\to +\infty} 0,1\times 1,6^n = +\infty$ et donc que $\ds\lim_{n\to +\infty} u_n = +\infty$.
+
+\item On résout l'inéquation $u_n > 0,4$.
+
+$\begin{gathered}u_n>0,4
+\iff
+0,1\times 1,6^n >0,4
+\iff
+1,6^n >4
+\iff
+\ln\left (1,6^n\right ) > \ln(4)
+\iff
+n\times \ln(1,6)>\ln(4)\\
+\phantom{u_n>0,4}
+\iff
+n>\dfrac{\ln(4)}{\ln(1,6)}\end{gathered}$
+
+Or $\dfrac{\ln(4)}{\ln(1,6)}\approx 2,95$, donc le plus petit entier naturel $n$ à partir duquel $u_n>0,4$ est 3.
+
+\item 
+$u_3>0,4$ signifie que le nombre d'insectes dépasse \np{400000} dès le 3\ieme{} mois; selon ce modèle le milieu naturel n'est donc pas préservé.
+
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B : Étude d'un second modèle}
+
+\medskip
+
+En tenant compte des contraintes du milieu naturel dans lequel évoluent les insectes, les biologistes choisissent une nouvelle modélisation.
+Ils modélisent le nombre d'insectes à l'aide de la suite $\left(v_n\right)$, définie par :
+$v_0 = 0,1$  et, pour tout entier naturel $n,\: v_{n+1} = 1,6v_n - 1,6v_n^2$,
+où, pour tout entier naturel $n,\: v_n$ est le nombre d'insectes, exprimé en millions, au bout de $n$ mois.
+
+\medskip
+
+\begin{enumerate}
+\item $v_1=1,6v_0 - 1,6 v_0^2 = 1,6\times 0,1 - 1,6\times 0,1^2 = 0,144$.
+
+Le nombre d'insectes au bout d'un mois est donc égal à \np{144000}.
+
+\item On considère la fonction $f$ définie sur l'intervalle $\left[0~;~\dfrac12\right]$ par
+$f(x) = 1,6x - 1,6x^2$.
+
+	\begin{enumerate}
+		\item On résout l'équation $f(x) = x$.
+
+$\begin{gathered}f(x)=x
+\iff
+1,6x-1,6x^2=x
+\iff
+0,6x - 1,6x^2=0
+\iff
+x\left (0,6-1,6x\right )=0\\
+\phantom{f(x)=x}
+\iff
+x=0 \text{ ou }	0,6-1,6x=0
+\iff
+x=0 \text{ ou } x=\dfrac{0,6}{1,6}
+\iff
+x=0 \text{ ou } x=\dfrac{3}{8}\end{gathered}$
+
+Les deux solutions appartiennent à l'intervalle $\left[0~;~\dfrac12\right]$, donc l'équation $f(x)=x$ admet deux solutions dans cet intervalle: 0 et $\dfrac{3}{8}$.
+		
+		\item 
+$f'(x)=1,6\times 1 - 1,6\times 2x = 1,6\left (1-2x\right )$
+
+$x\in\left[0~;~\dfrac12\right]$ donc $x\leqslant \dfrac{1}{2}$ et donc $1-2x\geqslant 0$.
+
+Sur $\left[0~;~\dfrac12\right]$, $f'(x)\geqslant 0$ donc $f$ est croissante.
+			\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item On va montrer par récurrence que la propriété $n$, $0 \leqslant v_n  \leqslant  v_{n+1} \leqslant  \dfrac12$ est vraie pour tout entier naturel $n$.
+		
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+$v_0 = 0,1$ et $v_1=\dfrac{3}{8}$; on a donc $0 \leqslant v_0 \leqslant v_1 \leqslant \dfrac{1}{2}$.
+
+La propriété est donc vraie au rang 0.
+\item \textbf{Hérédité}
+
+On suppose la propriété vraie au rang $n$, c'est-à-dire $0 \leqslant v_n  \leqslant v_{n+1} \leqslant  \dfrac12$; c'est l'hypothèse de récurrence.
+
+On a: $0 \leqslant v_n  \leqslant  v_{n+1} \leqslant  \dfrac12$ et on sait que la fonction $f$ est croissante sur $\left[0~;~\dfrac12\right]$; on en déduit que:
+$f(0) \leqslant f(v_n)  \leqslant  f(v_{n+1}) \leqslant  f\left (\dfrac12\right )$.
+
+$f(0)=0$; $f\left(v_n\right)=v_{n+1}$; $f\left(v_{n+1}\right)=v_{n+2}$ et $f\left (\dfrac{1}{2}\right )=1,6\times \dfrac{1}{2}-1,6\times \left (\dfrac{1}{2}\right )2=0,4$
+
+Donc $f(0) \leqslant f(v_n)  \leqslant  f(v_{n+1}) \leqslant  f\left(\dfrac12\right )$ équivaut à $0 \leqslant v_{n+1}  \leqslant v_{n+2} \leqslant 0,4$
+ce qui entraine $0 \leqslant v_{n+1} \leqslant v_{n+2} \leqslant \dfrac{1}{2}$.
+
+La propriété est donc vraie au rang $n+1$.
+\item \textbf{Conclusion}
+
+La propriété est vraie au rang 0 et elle est héréditaire pour tout $n \in \N$; d'après le principe de récurrence, elle est vraie pour tout $n \in \N$.
+\end{list}
+
+On a donc démontré que, pour tout $n$, on a: $0 \leqslant v_n  \leqslant v_{n+1} \leqslant  \dfrac12$.
+		
+		\item 
+\begin{list}{\textbullet}{On sait que:}
+\item $v_n \leqslant v_{n+1}$ pour tout $n$, donc la suite $\left(v_n\right)$ est croissante;
+\item $v_n\leqslant \dfrac{1}{2}$ pour tout $n$, donc la suite $\left(v_n\right)$ est majorée par $\dfrac{1}{2}$.
+\end{list}
+
+La suite $\left(v_n\right)$ est croissante et majorée donc, d'après le théorème de la convergence monotone, on peut dire que la suite $\left(v_n\right)$ est convergente.
+
+On note $\ell$ la valeur de sa limite. On admet que $\ell$ est solution de l'équation $f(x) = x$.
+
+		\item 
+La suite $(v_n)$ est croissante et admet pour limite $\ell$; donc pour tout $n$, on aura $v_n \leqslant \ell$. En particulier $v_1\leqslant \ell$ donc $\ell\geqslant 0,1$.
+
+La limite $\ell$ est solution de l'équation $f(x) = x$ donc c'est soit $0$, soit $\dfrac{3}{8}$. Mais $\ell\geqslant 0,1$ donc $\ell$ ne peut être égale à 0.
+Donc $\ell=\dfrac{3}{8}=0,375$.		
+		
+Pour tout $n$, on aura $v_n\leqslant \ell$, donc $v_n \leqslant 0,375$; il y aura donc toujours moins de \np{375000} insectes. Donc, selon ce modèle,  l'équilibre du milieu naturel sera préservé.
+	\end{enumerate}	
+\end{enumerate}
+
+\begin{enumerate}[resume]
+\item  On donne ci-contre la fonction \texttt{seuil}, écrite en langage Python.
+
+\begin{minipage}{0.6\linewidth}
+	\begin{enumerate}
+		\item 
+La fonction \texttt{seuil(a)} donne la première (et plus petite) valeur de \texttt{n} telle que \texttt{v>=a}, c'est-à-dire telle que $v_n\geqslant a$.
+
+On a vu que $v_n\leqslant 0,375$ pour tout $n$; il n'y a donc pas de valeur de $n$ pour laquelle $v_n\geqslant 0,4$.
+
+Le programme ne s'arrête jamais.
+	\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.36\linewidth}
+\begin{tabularx}{\linewidth}{|X|}\hline
+def seuil(a) :\\
+\qquad v=0.1\\
+\qquad n=0\\
+\qquad while v<a :\\
+\qquad \qquad v=1.6*v-1.6*v*v\\
+\qquad \qquad n=n+1\\
+\qquad return n\\ \hline
+\end{tabularx}
+\end{minipage}
+
+\begin{enumerate}[resume]
+		\item 
+À la calculatrice, on trouve $v_5\approx 0,338 <0,35$ et $v_6\approx 0,358 \geqslant 0,35$; donc la valeur renvoyée par \texttt{seuil(0.35)} est 6.
+		
+
+Cela signifie qu'à partir du 6\ieme{} mois, il y aura plus de \np{350000} insectes.
+\end{enumerate}	
+
+\end{enumerate}	
+
+\bigskip

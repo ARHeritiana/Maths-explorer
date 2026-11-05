@@ -1,0 +1,182 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet49_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Ce QCM comprend 5 questions indépendantes.
+
+Pour chacune d'elles, une seule des affirmations proposées est exacte.
+ 
+Indiquer pour chaque question sur la copie la lettre correspondant à la réponse choisie.
+
+ Aucune justification n'est demandée.
+ 
+Chaque réponse correcte rapporte 1 point. Une réponse incorrecte ou une absence de réponse n'apporte ni ne retire de point.
+
+\begin{enumerate}
+\item On considère la droite $d$ dont une équation cartésienne dans un repère orthonormé est $2x-3y+4=0$.
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} Un vecteur directeur de $d$ est $\vv{u} \binom{-6}{4}$. &\textbf{b.~~} Un vecteur normal de $d$ est $\vv{n}\binom{-12}{18}$. \\
+\textbf{c.~~} Le point $ C(-5~;~2)$ appartient à la droite $d$.& \textbf{d.~~} La droite $d$ coupe la droite d'équation 
+
+$-x+3y-2=0$ au point F (1~;~2).
+\end{tabularx}
+
+\item Dans un repère orthonormé le cercle $\mathcal{C}$ a pour équation $x^2-2x+y^2+y=3$ 
+
+et la droite $\mathcal{D}$ pour équation $y=1$.
+
+
+\begin{tabularx}{\linewidth}{*{1}{X}}
+\textbf{a.~~} $\mathcal{C}$ et $\mathcal{D}$ n'ont aucun point d'intersection.\\
+\textbf{b.~~} $\mathcal{C}$ et $\mathcal{D}$ ont un seul point d'intersection.\\
+\textbf{c.~~} $\mathcal{C}$ et $\mathcal{D}$ ont deux points d'intersection.\\
+\textbf{d.~~}On ne peut pas savoir combien $\mathcal{C}$ et $\mathcal{D}$ ont de points d'intersection.\\
+\end{tabularx}
+
+\item La fonction $f$ est la fonction définie sur l'ensemble des réels par $f(x)= \cos(2x)$.
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}$f $est paire.  &\textbf{b.~~}$f$ est impaire. \\\textbf{c.~~}$f$ n'est ni paire ni impaire.& \textbf{d.~~}$f$ a pour période $\dfrac{\pi}{2}$ .
+\end{tabularx}
+
+\item Soit la suite $\left(u_n\right)$ définie par $u_0=1$ et pour tout entier naturel $n$ par $u_{n+1}=\dfrac{1}{2}\left(u_n + \dfrac{2}{u_n}\right)$.
+
+On définit en langage Python une fonction \og suite \fg{} pour calculer $u_n$ connaissant $n$.
+
+\begin{tabular}{*{2}{lr}}
+\textbf{a.~~} 
+\begin{minipage}[]{0.4\linewidth}
+\begin{lstlisting}[style=python]
+ def suite(n):
+	u=0 
+	for i in range (1,n+1):
+		u=1/2*(u+2/u) 
+	return u
+ \end{lstlisting}
+\end{minipage} 
+ &
+\textbf{b.~~}
+\begin{minipage}[]{0.4\linewidth}
+\begin{lstlisting}[style=python]
+ def suite(n):
+	u=1 
+	for i in range (1,n+1):
+		u=1/2*(u+2/u)
+	return n
+\end{lstlisting}
+\end{minipage}\\
+
+\textbf{c.~~}
+\begin{minipage}[]{0.4\linewidth}
+\begin{lstlisting}[style=python]
+ def suite(n):
+	u=1
+	for i in range (1,n+1):
+		u=1/2*u+2/u 
+	return u
+\end{lstlisting}
+\end{minipage}&
+\textbf{d.~~}
+\begin{minipage}[]{0.4\linewidth}
+\begin{lstlisting}[style=python]
+ def suite(n):
+	u=1 
+	for i in range (1,n+1):
+		u=1/2*(u+2/u)
+	return u 
+\end{lstlisting}
+\end{minipage}
+\end{tabular}
+
+\item L'équation $\e^x=1$ :
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}n'a pas de solution.  &\textbf{b.~~}a pour solution le nombre 1. \\\textbf{c.~~}a pour solution le nombre 0.& \textbf{d.~~} a pour solution le nombre $\e$.
+\end{tabularx}
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\end{document}

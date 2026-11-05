@@ -1,0 +1,50 @@
+\medskip
+
+Un fromager fait l'inventaire des produits qu'il a en cave. 
+
+Le graphique ci-dessous indique la répartition de ses trois types de fromages : au lait de chèvre, au lait de vache ou au lait de brebis.
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-2,-2)(2,3)
+\rput(0,2.8){\large Répartition des types de fromage}
+\pscircle(0,0){2}
+\pswedge(0,0){2}{0}{54}\rput(1.6;35){\footnotesize fromage au }\rput(1.5;20){\footnotesize lait de brebis}
+\pswedge(0,0){2}{54}{144}\rput(1.6;90){\footnotesize fromage au lait}\rput(1.3;85){\footnotesize de chèvre}
+\pswedge(0,0){2}{144}{360}\rput(1.3;270){fromage au lait}\rput(1.6;270){de vache}
+\end{pspicture}
+\end{center}
+
+Chacun de ses trois types de fromages se partage en deux catégories: frais ou affiné. Le tableau suivant donne la répartition des fromages de chaque catégorie suivant leur affinage:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|m{3cm}|*{2}{>{\centering \arraybackslash}X|}}\hline
+&frais &affiné\\ \hline
+Lait de vache & 20\,\% &80\,\% \\ \hline
+Lait de chèvre&40\,\%& 60\,\%\\ \hline
+Lait de brebis&70\,\% &30\,\%\\ \hline
+\end{tabularx}
+\end{center}
+
+Le fromager prend un fromage au hasard. On note les évènements suivants :
+
+\setlength\parindent{1cm}
+\begin{itemize}[label=\textbullet]
+\item $V$ : \og le fromage est fait avec du lait de vache \fg{};
+\item $C$ : \og le fromage est fait avec du lait de chèvre \fg{} ;
+\item $B$ : \og le fromage est fait avec du lait de brebis \fg{} ;
+\item $F$ : \og le fromage est frais \fg{} ;
+\item $A$ : \og le fromage est affiné \fg.
+\end{itemize}
+\setlength\parindent{0cm}
+
+\medskip
+
+\begin{enumerate}
+\item Donner les probabilités $P_C(A)$ et $P(B)$.
+\item Démontrer que $P(A) = 0,675$.
+\item Le fromager prend au hasard un fromage affiné. Quelle est la probabilité qu'il
+s'agisse d'un fromage au lait de vache? On donnera le résultat à $10^{-3}$ près.
+\end{enumerate}
+
+\bigskip

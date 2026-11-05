@@ -1,0 +1,61 @@
+\emph{Pour chaque affirmation, on indique si elle est vraie ou fausse en justifiant ; une
+réponse non justifiée n'est pas prise en compte. Les trois questions sont indépendantes.}
+
+\begin{enumerate}
+	\item \textbf{Affirmation fausse.}
+
+	Pour tout entier naturel $n$, avec $v_n = 3 \times \left(\dfrac{1}{4}\right)^n$ :
+	\[v_{n+1} - v_n = 3 \times \left(\dfrac{1}{4}\right)^{n+1} - 3 \times \left(\dfrac{1}{4}\right)^n
+	= 3 \times \left(\dfrac{1}{4}\right)^n \times \left(\dfrac{1}{4} - 1\right)
+	= -\dfrac{9}{4} \times \left(\dfrac{1}{4}\right)^n.\]
+	Or $\left(\dfrac{1}{4}\right)^n > 0$ et $-\dfrac{9}{4} < 0$, donc $v_{n+1} - v_n < 0$ : la suite est strictement
+	décroissante. 
+
+	$(v_n)$ est une suite géométrique de premier terme $3 > 0$ et de
+	raison $\dfrac{1}{4} \in \,]0 ; 1[$ : elle est \textbf{décroissante}.
+
+	\item \textbf{Affirmation vraie.}
+
+	On se ramène à une équation du second degré :
+	\[x(1-x) = 4 \iff x - x^2 = 4 \iff -x^2 + x - 4 = 0 \iff x^2 - x + 4 = 0.\]
+	$\Delta = (-1)^2 - 4 \times 1 \times 4 = 1 - 16 = -15 < 0$.
+
+	Comme $\Delta < 0$, l'équation $x^2 - x + 4 = 0$ n'a aucune
+	solution réelle. 
+	
+	Aucun réel $x$ ne vérifie $x(1-x) = 4$.
+
+	\item \textbf{Affirmation vraie.}
+
+	
+D'après la relation de Chasles :
+\[
+\overrightarrow{KD}=\overrightarrow{KA}+\overrightarrow{AD}
+\qquad\text{et}\qquad
+\overrightarrow{KL}=\overrightarrow{KB}+\overrightarrow{BL}.
+\]
+Par bilinéarité du produit scalaire :
+\begin{align*}
+\overrightarrow{KD}\cdot\overrightarrow{KL}
+&=\left(\overrightarrow{KA}+\overrightarrow{AD}\right)\cdot\left(\overrightarrow{KB}+\overrightarrow{BL}\right)\\
+&=\overrightarrow{KA}\cdot\overrightarrow{KB}
++\overrightarrow{KA}\cdot\overrightarrow{BL}
++\overrightarrow{AD}\cdot\overrightarrow{KB}
++\overrightarrow{AD}\cdot\overrightarrow{BL}.
+\end{align*}
+
+
+\begin{itemize}
+  \item $\overrightarrow{KA}$ et $\overrightarrow{KB}$ sont colinéaires et de sens contraires (car $K\in[AB]$) :
+        $\overrightarrow{KA}\cdot\overrightarrow{KB}=-KA\times KB=-3\times 1=-3$.
+  \item $(AB)\perp(BC)$ et $(AD)\perp(AB)$ car $ABCD$ est un rectangle, donc
+        $\overrightarrow{KA}\cdot\overrightarrow{BL}=0$ et $\overrightarrow{AD}\cdot\overrightarrow{KB}=0$.
+  \item $\overrightarrow{AD}$ et $\overrightarrow{BL}$ sont colinéaires et de même sens :
+        $\overrightarrow{AD}\cdot\overrightarrow{BL}=AD\times BL=3\times 2=6$.
+\end{itemize}
+
+
+\[
+\overrightarrow{KD}\cdot\overrightarrow{KL}=-3+0+0+6=3.
+\]
+\end{enumerate}

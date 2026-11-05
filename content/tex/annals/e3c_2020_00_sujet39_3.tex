@@ -1,0 +1,36 @@
+\medskip
+
+Une balle est lâchée d'une hauteur de 3 mètres au-dessus du sol. Elle touche le sol et rebondit. À chaque rebond, la balle perd 25\,\% de sa hauteur précédente.
+
+On modélise la hauteur de la balle par une suite $\left(h_n\right)$ où $h_n$ désigne la hauteur maximale de la balle, en mètres, après le $n$-ième rebond. 
+
+On a donc $h_0=3$.
+
+\medskip
+
+\begin{enumerate}
+\item  Calculer $h_1$ et $h_2$.
+\item La suite $\left(h_n\right)$ est-elle arithmétique ? Justifier.
+\item Donner la nature de la suite $\left(h_n\right)$ en précisant ses éléments caractéristiques.
+\item Déterminer la hauteur, arrondie au cm, de la balle après 6 rebonds.
+\item La fonction \og seuil \fg{} est définie ci-dessous en langage Python.
+
+\begin{center}
+\renewcommand\arraystretch{0.95}
+\begin{tabular}[]{|c m{3.5cm}|}
+\hline
+1&def seuil():\\
+2&\hspace{2em} h=3\\
+3& \hspace{2em}n=0\\
+4& \hspace{2em}while \dotfill :\\
+5& \hspace{3.75em}h=\dotfill\\
+6& \hspace{3.75em}n=n+1\\
+7&\hspace{2em} return n\\\hline
+\end{tabular}
+\end{center}
+
+
+Recopier et compléter les lignes 4 et 5 pour que cette fonction renvoie le nombre de rebonds à partir duquel la hauteur maximale de la balle sera inférieure ou égale à 10 centimètres.
+\end{enumerate}
+
+\vspace{0,5cm}

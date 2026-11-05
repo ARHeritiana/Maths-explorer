@@ -1,0 +1,170 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_06_asie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Dans un lycée, des élèves de première souhaitent installer des vélos générateurs d'électricité dans la cafétéria pour recharger des téléphones portables.
+
+	À l'aide des quatre documents ci-dessous, indiquer si chacune des affirmations suivantes est vraie ou fausse. \textbf{Chaque réponse devra être justifiée}.
+
+	\bigskip
+
+	\textbf{Affirmation 1 :} Le budget du lycée permet de financer cinq vélos générateurs d'électricité (vélo, chargeur et livraison).
+
+	\bigskip
+
+	\textbf{Affirmation 2 :} Il faut pédaler pendant 24 minutes à intensité modérée pour recharger un téléphone portable à l'aide d'un vélo générateur d'électricité.
+
+	\bigskip
+
+	\textbf{Affirmation 3 :} On choisit au hasard un élève du lycée.
+
+	La probabilité que l'élève choisi soit un élève de première en sachant qu'il est favorable au projet est supérieure à un quart.
+
+	\bigskip
+
+	\textbf{Affirmation 4 :} Le projet des élèves de première va pouvoir être lancé.
+
+	\subsection*{Documents}
+	\textbf{Document 1 : Fiche d'un vélo générateur d'électricité}
+
+	\begin{center}
+	\fbox{\begin{minipage}{0.9\linewidth}
+		\textbf{Tarifs pour l'installation de vélos générateurs d'électricité}
+		\begin{itemize}[left=5mm]
+			\item Coût d'un vélo sans chargeur : 300 €
+			\item Coût du chargeur, pour chaque vélo : 45 €
+			\item Coût de livraison par vélo : 60 €
+		\end{itemize}
+
+		\textbf{Énergie produite par un vélo générateur d'électricité}
+
+		Lorsqu'une personne pédale à intensité modérée pendant une heure, le dispositif permet de récupérer 100 kJ (kilojoules).
+	\end{minipage}}
+	\end{center}
+
+	\textbf{Document 2 : Énergie nécessaire pour charger quelques appareils}
+	\begin{center}
+		\begin{tblr}{width=0.9\linewidth,colspec={X[c,2.5]*4{X[c]}},hlines, vlines, column{1} = {bg=gray!30},rows={m}}
+			Appareils électroniques & Ordinateur portable & Casque audio & Téléphone portable & Montre connectée \\
+			Énergie moyenne nécessaire pour une charge complète
+			 & 200 kJ & 18 kJ & 40 kJ & 5 kJ \\
+		\end{tblr}
+	\end{center}
+
+	\needspace{4\baselineskip}
+	\textbf{Document 3 : Résultats du sondage réalisé auprès des élèves du lycée sur les vélos générateurs d'électricité}
+	\begin{center}
+		\begin{tblr}{width=0.9\linewidth,colspec={*4{X[c,m]}},column{1}={bg=gray!30},row{1}={bg=gray!30},cell{1}{1}={bg=white},hline{1}={2-Z}{solid},hline{2-Z}={solid},vline{1}={2-Z}{solid},vline{2-Z}={solid}}
+			          & Favorable & Défavorable & Total \\
+			Seconde   & 260       & 170         & 430   \\
+			Première  & 180       & 120         & 300   \\
+			Terminale & 120       & 150         & 270   \\
+			Total     & 560       & 440         & 1000
+		\end{tblr}
+	\end{center}
+
+	\textbf{Document 4 : Message de la proviseure du lycée aux élèves porteurs du projet}
+
+	\begin{center}
+	\fbox{\begin{minipage}{0.9\linewidth}
+	\textbf{Objet : Lancement du projet "vélos générateurs d'électricité" -- conditions à
+	remplir}
+
+	Chers élèves de première,
+
+	Ce projet ne pourra être lancé que si les \textbf{deux critères suivants sont remplis} :
+
+	\begin{itemize}
+		\item \textbf{plus de la moitié des élèves du lycée} doivent se déclarer favorables à cette initiative ;
+
+		\item \textbf{au moins $60\,\%$ des élèves de première} doivent également y être \textbf{favorables}.
+
+		Dans le cas où le projet serait validé, \textbf{le budget du lycée sera fixé à \np[\euro]{2000}} pour financer l'achat des vélos et des chargeurs ainsi que la livraison des vélos.
+	\end{itemize}
+
+	Bien cordialement,
+
+	La Proviseure
+	\end{minipage}}
+	\end{center}
+
+\end{document}

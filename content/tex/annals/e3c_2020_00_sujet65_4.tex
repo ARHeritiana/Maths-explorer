@@ -1,0 +1,45 @@
+\medskip
+
+La gestionnaire d'un cinéma s'intéresse à la catégorie des films vus par ses spectateurs, ainsi qu'à leur consommation au rayon \og friandises\fg. Une étude sur plusieurs mois a montré que 40\,\% des spectateurs sont allés voir un film d'action, $35$\,\% un dessin animé et les autres une comédie.
+
+Parmi les spectateurs allant voir un film d'action, la moitié achètent des friandises, alors qu'ils sont 80\,\% pour ceux allant voir un dessin animé et $70$\,\% pour ceux allant voir une comédie.
+
+On interroge au hasard un spectateur sortant du cinéma et on note :
+\begin{description}
+\item[]$A$ l'évènement : \og le spectateur a vu un film d'action\fg,
+\item[]$D$ l'évènement : \og le spectateur a vu un dessin animé\fg,
+\item[]$C$ l'évènement : \og le spectateur a vu une comédie\fg,
+\item[]$F$ l'évènement : \og le spectateur a acheté des friandises\fg.
+\end{description}
+\begin{enumerate}
+\item  Reproduire et compléter sur la copie l'arbre de probabilité ci-dessous représentant la situation.
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$A$~~}\taput{}}
+	{
+	\TR{$F$}\taput{}
+	\TR{$\overline{F}$}\tbput{}
+	}
+\pstree{\TR{$D$~~}\tbput{}}
+	{\TR{$F$}\taput{}
+	\TR{$\overline{F}$}\tbput{}
+	}
+\pstree{\TR{$C$~~}\tbput{}}
+	{\TR{$F$}\taput{}
+	\TR{$\overline{F}$}\tbput{}
+	}
+}
+\end{center}
+
+\item Démontrer que $p(F) = 0,655$.
+\item On interroge au hasard un spectateur ayant acheté des friandises. Quelle est la probabilité qu'il ait vu un dessin animé ? On donnera l'arrondi à $10^{-3}$.
+\item Une place de cinéma coûte 10 \euro. On considérera que si un spectateur achète des friandises, il dépense 18 \euro{} pour sa place de cinéma et ses friandises.
+
+On note $X$ la variable aléatoire donnant le coût d'une sortie au cinéma pour un spectateur.
+\begin{enumerate}
+\item  Déterminer la loi de probabilité de $X$.
+\item En déduire le coût moyen par spectateur d'une sortie dans ce cinéma.
+\end{enumerate}
+\end{enumerate}

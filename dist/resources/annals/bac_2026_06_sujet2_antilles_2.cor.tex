@@ -1,0 +1,290 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet2_antilles_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Partie A}
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+			\item 
+			
+			
+			Comme le repère est orthonormé :
+			\begin{itemize}
+				\item $\mathrm{AC} = \sqrt{\left(\dfrac{9}{4}-0\right)^2 + (3-0)^2 + (0 - 0)^2} =\sqrt{\dfrac{81}{16}+ 9} =\sqrt{ \dfrac{81}{16} + \dfrac{144 }{16}} = \sqrt{\dfrac{225}{16}}=\dfrac{15}{4} $;
+				\item $\mathrm{CB} = \sqrt{\left(\dfrac{9}{4}-\dfrac{9}{2}\right)^2 + (3-0)^2 + (0 - 0)^2} =\sqrt{\left(-\dfrac{9}{4}\right)^2+ 9} =\sqrt{ \dfrac{81}{16} + \dfrac{144 }{16}} = \sqrt{\dfrac{225}{16}}=\dfrac{15}{4} $;
+			\end{itemize}
+			
+			Les longueurs sont égales, donc le triangle est bien isocèle en C.
+			
+			\item  \begin{itemize}
+				\item  Dans un triangle isocèle, la hauteur issue du sommet principal est aussi une médiane (et une médiatrice).
+			
+			La hauteur issue de C est donc le segment [CI], où I est le milieu de [AB].
+			
+			I a donc pour coordonnées :\quad I$\left(\dfrac{x_{\mathrm{A}} + x_{\mathrm{B}}}{2} ; \dfrac{y_{\mathrm{A}} + y_{\mathrm{B}}}{2} ; \dfrac{z_{\mathrm{A}} + z_{\mathrm{B}}}{2}\right) $\quad soit \quad $\left(\dfrac{9}{4} ; 0 ; 0\right)$.
+			
+			\item L'aire d'un triangle est donnée par :\quad $\mathcal{A} = \dfrac{\text{base} \times \text{hauteur}
+			}{2}$.
+			
+			Ici, on choisit comme base le segment [AB] et la hauteur correspondante, [CI].
+			
+			\item La distance AB est :\quad $\mathrm{AB} = \sqrt{\left(\dfrac{9}{2}-0\right)^2 + (0-0)^2 + (0 - 0)^2} =\dfrac{9}{2} $;
+			
+			La distance CI est :\quad $\mathrm{CI} = \sqrt{\left(\dfrac{9}{4}-\dfrac{9}{4}\right)^2 + (3-0)^2 + (0 - 0)^2} =\sqrt{ 9} =3$;
+			\end{itemize}
+			On a donc : \quad $\mathcal{A}_{\mathrm{ABC}} = \dfrac{\mathrm{AB} \times \mathrm{CI}}{2} = \dfrac{1}{2}  \times \dfrac{9}{2} \times 3 = \dfrac{27}{4} = 6,75$.
+			
+			
+			
+			L'aire du triangle  ABC est bien égale à $\np[m^2]{6,75}$.
+		\end{enumerate}
+
+	\item \begin{enumerate}
+		\item On a : $\vectt{AB} \begin{pmatrix} \dfrac{9}{2}\\0\\0\end{pmatrix} $.
+		et  \quad $\vectt{AC} \begin{pmatrix}\dfrac{9}{4} \\ 3\\0 \end{pmatrix} $.
+		
+		Ces vecteurs ont des coordonnées non proportionnelles, donc ils ne sont pas colinéaires.
+		
+		Les points A, B et C ne sont pas alignés, donc ils définissent un plan.
+		
+		De plus $z_{\mathrm{A}}=z_{\mathrm{B}}=z_{\mathrm{C}}=0$ 
+		
+		
+	donc une équation cartésienne du plan (ABC) est bien :\quad $z=0$.
+		
+		\item  H est le projeté orthogonal du point D sur le plan (ABC) si et seulement si 
+		
+		$\begin{cases}
+			H \in (\mathrm{ABC})\\
+			\text{ la droite (HD) est orthogonale au plan (ABC)} \end{cases}$. 
+			
+			\begin{itemize}
+				\item $z_{\mathrm{H}}=0$  donc $H \in (\mathrm{ABC})$
+				
+				\item  	$\vectt{HD} \begin{pmatrix}
+					x_{\mathrm{D}} - x_{\mathrm{H}}\\
+					y_{\mathrm{D}} - y_{\mathrm{H}}\\
+					z_{\mathrm{D}} - z_{\mathrm{H}} \end{pmatrix} $
+				\quad soit \quad $\vectt{HD} \begin{pmatrix} \dfrac{3}{2}-\dfrac{3}{2}\\1-1\\3-0 \end{pmatrix} $
+				\quad finalement :\quad $\vectt{HD} \begin{pmatrix} 0\\0\\3\end{pmatrix} $.
+				
+				Or, une équation cartésienne du plan (ABC) étant $z=0$, un vecteur normal au plan (ABC) est  $\vect{m}\begin{pmatrix} 0\\0\\1 \end{pmatrix}$
+				
+				Les vecteurs $\vect{m}$ et $\vectt{HD}$ sont colinéaires, donc la droite (HD) est orthogonale au plan (ABC).
+				
+			\end{itemize} 
+		
+		
+		Donc le point H$\left(\dfrac{3}{2} ; 1 ; 0\right)$ est le projeté orthogonal du point D sur le plan (ABC).
+	\end{enumerate}
+	\item  Avec les questions précédentes, on a calculé l'aire du triangle ABC, qui est l'une des quatre bases possibles pour le tétraèdre.
+	
+	Si on choisit ABC comme base de ABCD, alors la hauteur correspondante est la distance séparant le quatrième sommet (ici D), du plan contenant la base ABC, c'est-à-dire le plan (ABC).
+	
+	Cette distance est donc la distance séparant D de son projeté orthogonal sur (ABC), c'est-à-dire H, dont on a déterminé les coordonnées à la question \textbf{2 b.}.
+	
+	$\mathrm{DH} = \sqrt{0^2 + 0^2 + 3 ^2 } = 3$.
+	
+	On a donc : \quad $\mathcal{V}_{\mathrm{ABCD}} = \dfrac{1}{3} \times \mathcal{A}_{\mathrm{ABC}} \times \mathrm{DH} = \dfrac{1}{3} \times 6,75 \times 3 = 6,75$.
+	
+	Le volume du module est égal  à  $\np[m^3]{6,75}$.
+
+\end{enumerate}
+
+
+\subsection*{Partie B}
+\begin{enumerate}
+ \item 
+	\begin{enumerate}
+		\item 
+		Déterminons les coordonnées des vecteurs :
+		
+		$\vectt{BC} \begin{pmatrix}
+			x_{\mathrm{C}} - x_{\mathrm{B}}\\
+			y_{\mathrm{C}} - y_{\mathrm{B}}\\
+			z_{\mathrm{C}} - z_{\mathrm{B}} \end{pmatrix} $
+		\quad soit \quad $\vectt{BC} \begin{pmatrix}\dfrac{9}{4} - \dfrac{9}{2} \\3-0\\0-0 \end{pmatrix} $
+		\quad finalement :\quad $\vectt{BC} \begin{pmatrix} -\dfrac{9}{4}\\3\\0\end{pmatrix} $.
+		\quad De même, \quad $\vectt{BD} \begin{pmatrix}  -3\\1\\3 \end{pmatrix} $.
+		
+		Ces vecteurs ont des coordonnées non proportionnelles, donc ils ne sont pas colinéaires.
+		
+		Les points B, C et D ne sont pas alignés, donc ils définissent un plan.
+		
+		On est dans un repère orthonormé, donc on peut utiliser la formule analytique du produit scalaire :
+		
+		\begin{itemize}
+			\item $\vect{n} \cdot \vectt{BC} = 4 \times \dfrac{-9}{4} + 3 \times  3 + 3  \times  0 = -9 + 9 +0 = 0$;
+			\item $\vect{n} \cdot \vectt{BD} = 4 \times (-3) +3 \times  1 + 3  \times  3 = -12 + 3 + 9 = 0$;
+			\item $\vectt{BC}$ et $\vectt{BD}$ sont deux vecteurs non colinéaires qui forment une base du plan (BCD).
+				\end{itemize}
+			$\vect{n}$ est orthogonal à ces deux vecteurs, donc c'est un vecteur normal du plan (BCD).
+			
+		
+		\item Si $\vect{n}\begin{pmatrix} 4\\3\\3 \end{pmatrix}$ est un vecteur normal au plan  (BCD), alors, par propriété, une équation du plan  (BCD) peut avoir la forme :\quad $4\times x + 3 \times y + 3 \times z + d = 0$, \quad où $d$ est un réel.
+		
+		Comme B est un point de (BCD), on doit avoir :\quad $4x_{\mathrm{B}} +3 y_{\mathrm{B}} + 3z_{\mathrm{B}} + d =0$.
+		
+		$\begin{aligned}
+			4x_{\mathrm{B}} +3 y_{\mathrm{b}} + 3z_{\mathrm{B}} + d =0
+			&\iff 4 \times \dfrac{9}{2} +3 \times 0 +3\times 0 +  d= 0\\
+			&\iff 18 + d = 0\\
+			&\iff d = -18
+		\end{aligned}		$
+		
+		Une équation cartésienne de (BCD) est donc bien :\quad $4x+3y+3z - 18 = 0$.
+
+		
+		\item 
+		Si la droite $\Delta$ est orthogonale au plan (BCD), alors, par définition, elle doit être dirigée par un vecteur normal au plan (BCD), donc ici, on en déduit que le vecteur $\vect{n} \begin{pmatrix} 4\\3\\3 \end{pmatrix}$ dirige la droite $\Delta$.
+		
+		Comme la droite $\Delta$ passe par le point D$\left(\dfrac{3}{2} ; 1 ; 3\right)$, une représentation paramétrique de la droite $\Delta$ est donnée par :\quad $\begin{cases}
+			x=x_{\mathrm{D}} + x_{\vect{n}}\times t\\
+			y=y_{\mathrm{D}} + y_{\vect{n}}\times t\\
+			z=z_{\mathrm{D}} + z_{\vect{n}}\times t
+		\end{cases}\text{avec } t \in \R$
+		
+		En remplaçant par les valeurs connues, on a :\quad $\begin{cases}
+			x=\dfrac{3}{2} +4 t\\
+			y=1 +3t\\
+			z=3+3t
+		\end{cases}\text{avec } t \in \R$
+		
+		
+		
+	\end{enumerate}
+	
+	
+	\item Le point L  est l'intersection de la droite $\Delta$ et du plan (ABC).
+	
+	Comme c'est un point de la droite $\Delta$, il existe un réel $t_0$ tel que les coordonnées de ce point sont $\left( \dfrac{3}{2} + 4t_0 ; 1+3t_0 ; 3+3t_0 \right) $.
+	
+	C'est aussi un point de (ABC) dont ses coordonnées vérifient l'équation du plan.
+	
+	Autrement dit, $t_0$ est solution de l'équation :
+	
+	$\begin{aligned}[t]
+		 3 + 3t_0  = 0
+		&\iff 3t_0 = -3 \\
+		&\iff t_0 = -1
+	\end{aligned}$
+	
+	Le point L a donc pour coordonnées :\quad $\left( \dfrac{3}{2} - 4  ; 1-3  ; 3-3  \right) $ \quad  soit $\mathrm{L}\left(-\dfrac{5}{2} ; -2 ; 0\right) $.
+
+	
+	\item  Afin de déterminer l'angle $\widehat{\mathrm{LDH}}$, calculons le produit scalaire $\vectt{DL} \cdot \vectt{DH}$ de deux manières différentes. 
+	
+On a  $\vectt{DH} \begin{pmatrix} 0 \\ 0\\ -3\end{pmatrix} $.
+	\quad et  \quad $\vectt{DL} \begin{pmatrix} -4  \\ -3\\ -3 \end{pmatrix} $.
+	
+	
+	
+	Nous sommes dans un repère orthonormé, nous pouvons utiliser la formule analytique : 
+	
+	$\begin{aligned}  \vectt{DH} \cdot \vectt{DL} &= x_{\mathrm{DH}}\times x_{\mathrm{DL}} + y_{\mathrm{DH}}\times y_{\mathrm{DL}} +z_{\mathrm{DH}}\times z_{\mathrm{DL}}\\
+		&= 0\times (-4) + 0 \times (-3) -3 \times (-3)\\
+		&= 9
+		\end{aligned}$. 
+		
+		
+		
+		
+		On a aussi : 
+$	\vectt{DH} \cdot \vectt{DL}=\left\|\vectt{DH}\right\|\times\left\|\vectt{DL}\right\|\times \cos(\widehat{\mathrm{LDH}})$
+
+Calculons la longueur  DL : $\mathrm{DL} = \sqrt{ (-4)^2+3^2+3^2} =\sqrt{ 16+9+9} = \sqrt{34} $ 
+
+En remplaçant dans la formule précédente on obtient : 
+
+
+$9 =3 \times \sqrt{34} \times \cos(\widehat{\mathrm{LDH}})$
+
+D'où : $ \cos(\widehat{\mathrm{LDH}}) = \dfrac{9} {3\sqrt{34}}= \dfrac{3 \sqrt{34}}{34}$
+
+
+donc $\widehat{\mathrm{LDH}} \approx  59,04$\,\textdegree{}.
+
+ L'angle $\widehat{\mathrm{LDH}}$ est strictement inférieur à $60$\,\textdegree{} donc le module est bien  adapté aux débutants. 
+\end{enumerate}
+
+\end{document}

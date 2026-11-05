@@ -1,0 +1,90 @@
+Dans cet exercice, les parties A et B sont indépendantes.
+
+\subsection*{Partie A}
+
+On considère la fonction $f$ définie pour tout $x \in [4~;~10]$ par $f(x) = \ln(8x^3 - 1)$.
+
+On admet que la fonction $f$ est dérivable sur $[4~;~10]$ et on note $f'$ sa fonction dérivée.
+
+\medskip
+
+\begin{enumerate}
+\item Montrer pour tout $x \in [4~;~10]$, on a :
+
+\[f'(x) = \frac{24x^2}{(2x-1)(4x^2+2x+1)}.\]
+
+\item[2.] 
+	\begin{enumerate}[label=\alph*.]
+		\item En déduire que $f$ est croissante sur $[4~;~10]$.
+		\item Montrer que, pour tout $x \in [4~;~10]$, on a :
+
+\[4 \leqslant f(x) \leqslant 10.\]
+
+	\end{enumerate}
+\item[3.] On définit la fonction $g$ définie pour tout $x \in [4~;~10]$ par $g(x) = f(x) - x$.
+
+On admet que $g$ est strictement décroissante sur son ensemble de définition.
+
+\medskip
+
+\begin{enumerate}[label=\alph*.]
+\item Montrer que, sur l'intervalle $[4~;~10]$, l'équation $g(x) = 0$ admet une unique solution $\alpha$.
+\item Déterminer un encadrement à $10^{-3}$ près de $\alpha$.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Partie B}
+
+On admet qu'on peut définir la suite $(u_n)$ par $u_0 = 5$ et pour tout entier naturel $n$, par $u_{n+1} = f(u_n)$, où $f$ est la fonction étudiée à la partie A.
+
+\medskip
+
+\begin{enumerate}
+\item Donner une valeur approchée de $u_1$ à $10^{-1}$ près.
+\item[2.] 
+	\begin{enumerate}[label=\alph*.]
+		\item Montrer, à l'aide d'un raisonnement par récurrence que, pour tout $n \in \mathbb{N}$, on a :
+		
+\[4 \leqslant u_n \leqslant u_{n+1} \leqslant 10.\]
+		\item En déduire que la suite $(u_n)$ converge.
+	\end{enumerate}
+\item[3.] Montrer que la suite $(u_n)$ converge vers le nombre $\alpha$, défini dans la partie A.
+\end{enumerate}
+
+\subsection*{Partie C}
+
+Dans cette partie, on admet que $8{,}4 \leqslant \alpha \leqslant 8{,}5$.
+
+On a créé, en langage Python, la fonction \texttt{alpha} suivante.
+
+On précise qu'en langage Python, l'instruction \texttt{log} correspond à $\ln$.
+
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+\texttt{def f(x) :}\\
+\quad \texttt{return log(8*x**3 - 1)}\\
+~\\
+\texttt{def alpha(a):}\\
+\quad \texttt{n = 0}\\
+\quad \texttt{u = 5}\\
+\quad \texttt{while u < a:}\\
+\quad \quad \texttt{u = f(u)}\\
+\quad \quad \texttt{n = n + 1}\\
+\quad \texttt{return n}\\ \hline
+\end{tabular}
+\end{center}
+
+
+\medskip
+
+\begin{enumerate}
+\item On admet que \texttt{alpha(8.499)} renvoie la valeur 11.
+
+Interpréter ce résultat dans le contexte de l'exercice.
+\item Un utilisateur exécute \texttt{alpha(8.6)}.
+
+Expliquer pourquoi aucune valeur n'est alors renvoyée.
+\end{enumerate}
+
+\bigskip

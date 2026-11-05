@@ -1,0 +1,75 @@
+\medskip
+
+On administre à un patient un médicament par injection intraveineuse.
+
+La première injection est de \np[ml]{10}, puis toutes les heures on lui en injecte \np[ml]{1} .
+
+On étudie l’évolution de la quantité de médicament présente dans le sang en prenant le modèle suivant :
+
+\begin{itemize}
+\item  on estime que 20\,\% de la quantité de médicament présente dans le sang est éliminée chaque heure ;
+ 
+ \item pour tout entier naturel $n$, on note $U_n$ la quantité de médicament en ml présente dans le sang au bout de $n$ heures.
+\end{itemize}
+Ainsi, $U_0=10$.
+\begin{enumerate}
+\item  Justifier que $U_1=9$.
+\item Montrer que, pour tout entier naturel $n$, $U_{n+1}=0,8 U_{n}+1$.
+
+On donne ci-dessous la représentation graphique de la suite $\left(U_n\right)$ :
+
+\psset{xunit=0.10cm,yunit=0.7cm,labelFontSize=\scriptstyle,showorigin=false,dotstyle=Mul}
+\begin{pspicture}(-5.26,-1)(112,12.6)
+
+
+
+
+\psaxes[linewidth=0.95pt,Dx=10]{->}(0,0)(-5,-0.5)(110,12)
+\def\Func{0.8 x exp 5 mul 5 add }
+\psplot[plotpoints=100, plotstyle=dots,dotsize=3pt,linecolor=red]{0}{100}{\Func}
+\end{pspicture}
+
+\item Conjecturer la limite de la suite $(U_n)$.
+
+On considère l’algorithme suivant :
+\begin{center}
+\begin{tabular}[]{|l|}
+\hline
+$U\leftarrow 10$\\
+$N\leftarrow 0$\\
+Tant que $U > 5,1$ faire\\
+\hspace{1.5em}$U\leftarrow 0,8*U+1$\\
+\hspace{1.5em}$N\leftarrow N+1$\\
+Fin du tant que\\
+Afficher $N$ \\
+\hline
+\end{tabular}
+\end{center}
+\item À quoi sert cet algorithme ?
+
+\item À l’aide de l’extrait du tableau de valeurs de la suite $\left(U_n\right)$ donné ci-dessous, donner la valeur de $N$ à l’issue de l’exécution de cet algorithme.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{8}{>{\centering \arraybackslash} X|}} \hline
+$n$&8&9&10&11&12&13&14\\\hline
+$U_n$&\np{5,838861}&\np{5,671089}&\np{5,536871}&\np{5,429497}&\np{5,343597}&\np{5,274878}&\np{5,219902}\\\hline
+\end{tabularx}
+
+\bigskip
+
+\begin{tabularx}{\linewidth}{|*{8}{>{\centering \arraybackslash} X|}} \hline
+$n$&15&16&17&18&19&20&21 \\\hline
+$U_n$&\np{5,175922}&\np{5,140737}&\np{5,11259}&\np{5,090072}&\np{5,072058}&\np{5,057646}&\np{5,046117} \\\hline
+ \end{tabularx}
+ 
+\bigskip
+
+\begin{tabularx}{\linewidth}{|*{8}{>{\centering \arraybackslash} X|}} \hline
+$n$&22&23&24&25&26&27&28\\
+ \hline
+$U_n$&\np{5,036893}&\np{5,029515}&\np{5,023612}&\np{5,018889}&\np{5,015112}&\np{5,012089}&\np{5,009671}\\\hline
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\vspace{0,5cm}

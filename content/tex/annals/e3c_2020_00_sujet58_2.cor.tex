@@ -1,0 +1,45 @@
+\subsection*{1.}
+
+Augmenter de 2 \% revient à multiplier par \(1 + \dfrac{2}{100} = 1 + 0{,}02 = 1{,}02\).
+
+Donc :
+\[
+u_1 = 4600 \times 1{,}02 = 4692 \quad \text{(habitants en 2011 dans la ville A)},
+\]
+\[
+v_1 = 5100 + 110 = 5210 \quad \text{(habitants en 2011 dans la ville B)}.
+\]
+
+\subsection*{2.}
+
+On a pour tout naturel \(n\), \(u_{n+1} = 1{,}02u_n\) : la suite \((u_n)\) est donc une suite géométrique de raison \(q = 1{,}02\) et de premier terme \(u_0 = 4600\).
+
+On a pour tout naturel \(n\), \(v_{n+1} = v_n + 110\) : la suite \((v_n)\) est donc une suite arithmétique de raison \(r = 110\) et de premier terme \(v_0 = 5100\).
+
+\subsection*{3.}
+
+On sait que, pour tout naturel \(n\), \(u_n = 4600 \times 1{,}02^{n - 1}\).
+
+Pour \(n = 10\), \(u_{10} = 4600 \times 1{,}02^{10 - 1} = 4600 \times 1{,}02^9 \approx 5497\).
+
+\subsection*{4.}
+
+On sait que, pour tout naturel \(n\), \(v_n = 5100 + 110n\).
+
+Pour \(n = 10\), \(v_{10} = 5100 + 110 \times 10 = 5100 + 1100 = 6210\).
+
+\subsection*{5.}
+
+\begin{center}
+\begin{lstlisting}[style=python]
+def année() :
+    u = 4600
+    v = 5100
+    n = 0
+    while u < v :
+        u = u * 1.02
+        v = v + 110
+        n = n + 1
+    return n
+\end{lstlisting}
+\end{center}

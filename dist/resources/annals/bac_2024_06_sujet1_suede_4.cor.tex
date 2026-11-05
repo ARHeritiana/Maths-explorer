@@ -1,0 +1,131 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_suede_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+\item L'avion n\up{o} 1 parcourt la distance AO.
+
+Comme le repère est orthonormé, d'unité graphique 1 mètre, on a :
+
+$\mathrm{AO} = \sqrt{(x_\mathrm{A} - x_{\mathrm{O}})^2+(y_\mathrm{A} - y_{\mathrm{O}})^2+(z_\mathrm{A} - z_{\mathrm{O}})^2} = \sqrt{0^2 +200^2 + 0^2 } = 200$ m.
+
+On a par ailleurs : \quad $\mathrm{BC} = \sqrt{(87 - (-33))^2 + (75 - 75)^2 + (-116 - 44)^2}$
+
+$\mathrm{BC}  = \sqrt{120^2 + 0^2 + (-160)^2}= \sqrt{\np{40000}} = 200$ m.
+
+Les deux avions parcourent donc la même distance (200 m), ils le font à la même vitesse (\np[m/s]{200}), et donc ils vont mettre le même temps à le faire (1 s).
+
+\item Donnons une représentation paramétrique des segments [OA] et [BC]
+
+On a :\quad O$(0~;~0~;~0)$ et $\vect{\mathrm{OA}} \begin{pmatrix} 0\\200\\0\end{pmatrix}$,
+
+donc une représentation paramétrique de [OA] est  :
+\quad
+$\begin{cases} x = 0\\y = 200t \\z = 0\end{cases} \quad t \in [0 ; 1]$
+
+Par ailleurs :\quad B$(-33~;~75~;~44)$ et $\vect{\mathrm{BC}} \begin{pmatrix} 120\\0\\-160\end{pmatrix}$,
+
+donc une représentation paramétrique de [BC] est  :
+\quad
+$\begin{cases} x = -33 + 120s\\y = 75 \\z = 44 -160s\end{cases} \quad s \in [0 ; 1]$
+
+Les segments ont un point commun si le système :\quad $\begin{cases}
+0 = -33 + 120s\\200t = 75\\0 = 44 - 160s\end{cases}$\quad a une solution.
+
+$\begin{aligned} \begin{cases}	0 = -33 + 120s\\200t = 75\\0 = 44 - 160s\end{cases}
+&\iff \begin{cases}	120s = 33\\t = \dfrac{75}{200}\\160s = 44\end{cases}\\
+&\iff \begin{cases}	s = \dfrac{33}{120}\\t = \dfrac{3}{8}\\s = \dfrac{44}{160}\end{cases} \\
+&\iff \begin{cases}	s = \dfrac{11}{40}\\t = \dfrac{3}{8}\\s = \dfrac{11}{40}\end{cases} \\ \end{aligned}$
+
+Le système a effectivement une unique solution, les deux trajectoires ont donc bien un point commun, qui est le point de paramètre $t = \dfrac{3}{8}$ sur [0A], qui est aussi le point de paramètre $s = \dfrac{11}{40}$ sur [BC], c'est le point de coordonnées $(0~;~75~;~0)$.
+
+
+\item Les représentations paramétriques choisies sont aussi les équations horaires des deux avions (pour $t = 0$, on obtient le point de coordonnées $(50~;~0~;~0)$ sur le segment [OA], c'est le point O, donc le départ de l'avion 1. Pour $t = 1$, on obtient le point de coordonnées $(0~;~200~;~0)$, c'est-à-dire A, auquel l'avion arrive après 1 seconde.
+
+De même pour $s = 0$, l'avion \no 2 est en B, et pour $s=1$, l'avion arrive en C, là aussi après une seconde.
+
+Les deux avions n'arriveront pas au point commun de leurs trajectoires au même moment : l'avion \no 1 y arrive au bout de $\dfrac{3}{8}$ s, quand l'avion \no 2 y arrive au bout de $\dfrac{11}{40}$ s, soit $\dfrac{1}{10}$ de seconde après, en effet $\dfrac{3}{8} - \dfrac{11}{40} = \dfrac{15}{40} - \dfrac{11}{40} = \dfrac{4}{40} = \dfrac{1}{10}$.
+
+En un dixième de seconde, l'avion \no 1 sera donc déjà 20 m plus loin, il est donc raisonnable de penser que les avions ne se percuteront pas (les avions de voltige aérienne ne sont pas de gros avions, généralement), mais ils passeront très proches l'un de l'autre (ce qui est le principe des démonstrations de voltige aérienne).
+\end{enumerate}
+
+\end{document}

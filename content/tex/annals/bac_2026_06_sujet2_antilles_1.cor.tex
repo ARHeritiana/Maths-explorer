@@ -1,0 +1,195 @@
+\subsection*{Partie A}
+
+
+
+	\begin{enumerate}
+		\item L'arbre pondéré  représentant la situation est : 
+		
+	\hfill 	\begin{tikzpicture}[xscale=1,yscale=1,baseline={(R.base)}]
+			
+			\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+			\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+			\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+			
+			\def\DistanceInterNiveaux{2.8}
+			\def\DistanceInterFeuilles{0.8}
+			
+			\def\NiveauA{(0)*\DistanceInterNiveaux}
+			\def\NiveauB{(1)*\DistanceInterNiveaux}
+			\def\NiveauC{(2)*\DistanceInterNiveaux}
+			\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+			
+			\node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {};
+			\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$A_1$};
+			\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$A_2$};
+			\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{A_2}$};
+			\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\overline{A_1}$};
+			\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$A_2$};
+			\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{A_2}$};
+			
+			\draw (R.east)--(Ra.west) node[etiquette] {$0,96$};
+			\draw (Ra.east)--(Raa.west) node[etiquette] {$0,94$};
+			\draw (Ra.east)--(Rab.west) node[etiquette] {$0,06$};
+			\draw (R.east)--(Rb.west) node[etiquette] {$0,04$};
+			\draw (Rb.east)--(Rba.west) node[etiquette] {$0,35$};
+			\draw (Rb.east)--(Rbb.west) node[etiquette] {$0,65$};
+		\end{tikzpicture}\hfill~
+		
+		
+		\item Les événements $A_1$ et $\overline{A_1}$ forment une partition de l'univers, donc, d'après la loi des probabilités totales on a :
+		
+		$\begin{aligned} P\big( A_2 \big)& = P\big( A_1 \cap A_2 \big)  + P  \big( \overline{A_1} \cap A_2 \big) \\
+			&= P\big( A_1 \big) \times P_{A_1}\big( A_2 \big) + P\big(\overline{A_1}\big) \times P_{\overline{A_1}}\big(A_2\big)\\
+			&= 0,96 \times 0,94 + 0,04 \times 0,35 \\ 
+			&= \np{0,9164}
+			\end{aligned}$ 
+		
+	On a donc bien :  $P\left(A_{2}\right)=\np{0,9164}$.
+		
+		\item      $\begin{aligned}[t] P_{A_{2}}\big( \,\overline{A_{1}}\,\big)&= \dfrac{P  \big( \overline{A_1} \cap A_2 \big) }{P\left(A_{2}\right)}\\
+			&= \dfrac{ 0,04 \times 0,35}{0,9164}\\
+			&\approx 0,015277
+			\end{aligned}$.
+		
+		Donc $P_{A_{2}}\big(\,\overline{A_{1}}\,\big)  \approx 0,0153 $,  arrondi  à $10^{-4}$.
+		
+	Dans le contexte de	l'exercice, la probabilité que le message reçu par le premier relai soit avec erreur sachant que le message reçu par le deuxième relai était sans erreur est égale à $\np{0,0153}$. 
+	\end{enumerate}
+
+
+\subsection*{Partie B}
+
+
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Pour déterminer la probabilité que 4 tests soient positifs dans cet échantillon, il faut calculer $P(X=4)$. 
+		
+		$X$ suit une loi binomiale de paramètres $n=50$ et $p=0,04$ donc : 
+		
+		$P(X=4) = \ds \binom{50}{4}  \times 0,04 ^{4} \times (1-0,04)^{50-4}\approx 0,090159 $
+		
+		La probabilité que 4 tests soient positifs dans cet échantillon est égale à $0,09$, arrondi  à $10^{-2}$.
+		
+		\item La probabilité qu'au moins un test soit positif dans cet échantillon est égale à $P(X\geqslant 1)$. 
+		
+		À l'aide de la calculatrice on trouve : $P(X\geqslant 1) \approx 0,8701$. 
+		
+		
+		La probabilité qu'au moins un test soit positif dans cet échantillon est égale à $0,87$, arrondi à $10^{-2}$.
+		\item  La variable aléatoire $X$ suit une loi binomiale de paramètres $n=50$ et $p=0,04$.
+		
+		Donc : 
+		
+		$\mathrm{E}(X)=n \times p = 50 \times 0,04 = 2$ 
+		
+		$\mathrm{V}(X) = n \times p \times (1-p)= 50 \times 0,04 \times (1-0,04) = 1,92$.
+		
+		L'espérance  de la variable aléatoire $X$ est égale à 2 et sa variance  est égale à 1,92. 
+	\end{enumerate}
+	
+\item 
+
+	\begin{enumerate}
+		\item $M=\dfrac{X_{1}+X_{2}+\cdots+X_{25}}{25}$ est la variable aléatoire  moyenne de 25 variables aléatoires indépendantes de même loi que $X$ on a donc :
+		
+		
+		
+		$\mathrm{E}\left(M\right) = \mathrm{E}\left(X\right) = 2$
+		
+		et   $\begin{aligned}[t] \mathrm{V} \left(M\right) &= \dfrac {\mathrm{V}(X)}{25}\\
+			&= \dfrac{1,92}{25}\\
+			&=\np{0,0768}
+		\end{aligned} $
+		
+		
+		
+	On a bien :  $\mathrm{E}(M)=2$ et  $\mathrm{V}(M)=\np{0,0768}$.
+		
+		\item La probabilité que la moyenne des tests positifs soit strictement inférieure à 7 est égale à 
+		
+		$P(M<7)$.
+		
+		On a  : $P(M<7) = P(-3<M<7)= P(-5< M-2<5) = 1- P\Big(\big|M-2\big| \geq 5\Big)$
+		
+		Or, d'après l'inégalité de Bienaymé-Tchebychev :
+		
+		$\forall t \in \R^{*+}, \quad P\Big(\big|M - E(M)\big| \geq t\Big) \leq  \dfrac{V(M)}{t^2 } $.
+		
+		Avec $t= 5$  on  a : $P\Big(\big|M- 2\big| \geq 5\Big) \leq  \dfrac{0,0768}{  5^2 } $
+		
+		soit  $ P\Big(\big|M-2\big| \geq 5 \Big) \leq 0,003072$
+		
+		On a donc :  $1- P\Big(\big|M-2\big| \geq 5 \Big) \geq 1- 0,003072$
+		
+		D'où : $P(M<7) \geq  0,996928 \geq 0,99$
+		
+		
+	La probabilité que la moyenne des tests positifs soit strictement inférieure à 7 est donc  supérieure à 0,99.
+		
+	\end{enumerate}
+\end{enumerate}
+
+\subsection*{Partie C}
+
+
+\begin{enumerate}
+	\item Pour tout entier naturel  $n \geqslant 1$, posons $P_n$ l'affirmation :\quad \og $p_{n+1} \leqslant p_{n}$. \fg{}.
+	
+	Démontrons par récurrence que les affirmations $P_n$ sont toutes vraies.
+	
+	\begin{itemize}[label={\textbullet~}]
+		\item \textbf{Initialisation :} 
+		
+		$p_2= 0,59 p_{1}+0,35 = 0,59 \times 0,96 + 0,35 = 0,9164$. 
+		
+		On a donc $p_2 \leqslant p_1$
+		
+		Donc que l'affirmation $P_1$ est vraie.
+		
+		\item \textbf{Hérédité :} Soit $n$ un entier naturel non nul. On suppose que l'affirmation $P_n$ est vraie, c'est à dire $p_{n+1} \leqslant p_n  $\fg{}., montrons que l'affirmation $P_{n+1}$ est vraie, c'est à dire $p_{n+2} \leqslant p_{n+1}$\fg{}.
+		
+		$\begin{aligned}
+			P_n \text{ est vraie}
+			&\implies p_{n+1} \leqslant p_n \\
+			&\implies  0,59 \times p_{n+1} \leqslant 0,59 \times  p_n \quad \text{car } 0,59>0 \\
+			&\implies  0,59 \times p_{n+1} + 0,35  \leqslant 0,59 \times  p_n + 0,35  \\
+			&\implies p_{n+2} \leqslant p_{n+1}  \\
+			&\implies P_{n+1}\text{ est vraie.}
+		\end{aligned}$
+		
+		\item \textbf{Conclusion :} On a montré que l'affirmation $P_1$ est vraie, et que pour un $n$ entier naturel non nul, si $P_n$ est vraie, alors $P_{n+1}$ est vraie.
+		
+		En vertu du principe de récurrence, on en déduit que, pour tout entier naturel non nul $n$, l'affirmation est vraie, et donc pour tout entier naturel $n \geqslant 1 $, on a $p_{n+1} \leqslant p_{n}$.
+		
+	\end{itemize}
+	
+	
+	
+	
+	\item D'après la question précédente, pour tout entier naturel $n \leqslant 1 $, on a $p_{n+1} \leqslant p_{n}$ donc la suite $(p_{n})$ est décroissante. 
+	
+	De plus, $p_n$ est égal une  probabilité donc $p_n \geqslant 0$, la suite $(p_{n})$ est donc minorée par 0. 
+	
+Donc la suite $(p_{n})$ est convergente vers une limite $\ell$. 
+	
+	\item   Soit $f$ la fonction définie sur $\R$ par $f(x) =0,59x+0,35$. 
+	
+	On a donc, pour tout entier naturel non nul  $n$, $p_{n+1}=f(p_n)$.
+	
+	La suite $(p_{n})$ est donc définie par une relation de récurrence  avec $f$  une fonction continue.
+	
+	De plus, la suite $(p_{n})$ est convergente vers une limite $\ell$.
+	
+	D'après le théorème du point fixe, la limite $\ell$ est donc solution de l'équation $f(x)=x$. 
+	
+	
+	$\begin{aligned}  f(x)=x &\iff 0,59 x +0,35 = x \\
+		&\iff 0,35 = 0,41x \\
+	&	\iff x= \dfrac{0,35}{0,41}\\
+	&\iff x = \dfrac{35}{41}
+		\end{aligned}$
+	
+	
+	$(p_n)$ est donc convergente vers  $\dfrac{35}{41}$. 
+\end{enumerate}

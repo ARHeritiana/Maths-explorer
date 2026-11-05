@@ -1,0 +1,152 @@
+\medskip
+
+Dans la figure ci-dessous, ABCDEFGH est un parallélépipède rectangle tel que 
+
+AB $= 5$, AD $= 3$ et AE $= 2$.
+
+L'espace est muni d'un repère orthonormé d'origine A dans lequel les points B, D et E ont respectivement pour coordonnées (5~;~0~;~0), (0~;~3~;~0) et (0~;~0~;~2).
+
+Le repère est donc:
+$\left (\text{A}\;; \dfrac{1}{5}\vectt{AB},\; \dfrac{1}{3}\vectt{AD},\; \dfrac{1}{2}\vectt{AE} \right )$.
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(9,5)
+
+\psframe(0.2,0.2)(7.2,3)
+\psline(7.2,0.2)(8.4,1.6)(8.4,4.4)(7.2,3)
+\psline(8.4,4.4)(1.6,4.4)(0.2,3)
+\psline[linestyle=dashed](0.2,0.2)(1.6,1.6)(8.4,1.6)
+\psline[linestyle=dashed](1.6,1.6)(1.6,4.4)
+\pspolygon[linestyle=dotted,linewidth=1.5pt](0.2,0.2)(8.4,1.6)(3,4.4)
+\uput[dl](0.2,0.2){A} \uput[dr](7,0.2){B} \uput[r](8.4,1.6){C}
+\uput[ur](1.6,1.6){D} \uput[l](0.2,3){E} \uput[ul](7.2,3){F}
+\uput[ur](8.4,4.4){G} \uput[ul](1.6,4.4){H} \uput[u](3,4.4){M}
+\end{pspicture}
+\end{center}
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+$\vectt{AH}= \vectt{AD} + \vectt{AE}$ donc le point H a pour coordonnées $(0\;; 3\;; 2)$.
+		
+$\vectt{AG}=  \vectt{AB} + \vectt{AD} + \vectt{AE}$ donc le point G a pour coordonnées $(5\;; 3\;; 2)$.		
+
+		\item
+La droite (GH) a pour vecteur directeur $\vectt{HG}$ de coordonnées $(5\;; 0\;; 0)$.
+
+De plus, elle passe par le point G donc elle a pour représentation paramétrique:
+
+$\left \{
+\begin{array}{l !{=} l}
+x & 5 +5t\\
+y & 3\\
+z & 2
+\end{array}		
+\right . \text{ avec } t\in\R$.		
+	\end{enumerate}	
+	
+\item Soit M un point du segment [GH] tel que $\vect{\text{HM}} =k\vect{\text{HG}}$ avec $k$ un nombre réel de l'intervalle [0~;~1].
+	\begin{enumerate}
+		\item 
+$\vectt{HM} = k \vectt{HG}
+\iff
+\left \{
+\begin{array}{l !{=} l}
+x_{\text M} -0& 5k\\
+y_{\text M} -3& 0\\
+z_{\text M} -2& 0
+\end{array}		
+\right .		
+\iff
+\left \{
+\begin{array}{l !{=} l}
+x_{\text M} & 5k\\
+y_{\text M} & 3\\
+z_{\text M} & 2
+\end{array}		
+\right .	$
+		
+Donc  les coordonnées de M sont $(5k~;~3~;~2)$.	
+		
+		\item 
+Les coordonnées de $\vectt{AM}$ sont celles de M donc: $(5k~;~3~;~2)$.	
+		
+Les coordonnées de C sont $(5\;; 3\;; 0)$, donc celles de $\vectt{CM}$ sont $(5	k-5\;; 3-3\;; 2-0)$ soit $(5k-5\;; 0\;; 2)$.
+
+$\vect{\text{AM}} \cdot \vect{\text{CM}}
+= 5k \times (5k-5) + 3 \times 0 + 2\times 2
+ = 25k^2  - 25k + 4$
+	
+		\item 
+Le triangle AMC est rectangle en M si et seulement si $\vect{\text{AM}} \perp \vect{\text{CM}}$, c'est-à-dire $\vect{\text{AM}} \cdot \vect{\text{CM}}$ ou encore $25k^2-25k+4=0$.		
+		
+On résout cette équation.
+$\Delta = (-25)^2-4\times 25\times 4 = 225 = 15^{2}$
+
+L'équation admet deux solutions 
+$k'=\dfrac{25+15}{2\times 25} = \dfrac{40}{50}=\dfrac{4}{5}$
+et
+$k''=\dfrac{25-15}{2\times 25} = \dfrac{10}{50}=\dfrac{1}{5}$
+
+Donc pour $k=\dfrac{1}{5}$ ou $k=\dfrac{4}{5}$, le triangle AMC est rectangle en M.
+		
+	\end{enumerate}
+\end{enumerate}	
+
+Dans toute la suite de l'exercice, on considère que le point M a pour coordonnées (1~;~3~;~2).
+
+On admet que le triangle AMC est rectangle en M.
+
+
+
+\begin{enumerate}[resume]
+\item On considère le point K de coordonnées (1~;~3~;~0).
+	\begin{enumerate}
+		\item
+Le plan (ACD) a pour vecteurs directeurs $\vectt{AB}$ et $\vectt{AD}$, donc il a pour équation cartésienne $z=0$.
+		
+		\item 
+$z_{\text K}=0$ donc le point K appartient au plan (ACD).
+
+$\vectt{MK}$ a pour coordonnées $(0\;; 0\;; -2)$, donc \\
+$\bullet~~\vectt{MK}\cdot\vectt{AB} = 0$ donc $\vectt{MK}\perp\vectt{AB}$;\\
+$\bullet~~\vectt{MK}\cdot\vectt{AC} = 0$ donc $\vectt{MK}\perp\vectt{AC}$.
+
+On en déduit que $\vectt{MK}$ est orthogonal au plan (ACD), et donc que K est le projeté orthogonal du point M sur le plan (ACD).
+	
+		\item Le volume du tétraèdre MACD est:
+$\dfrac{1}{3}\times \text{Aire de ACD} \times \text{MK}$.
+
+$\vectt{MK}$ a pour coordonnées $(0\;; 0\;; -2)$, donc MK $=2$.
+
+Le triangle ACD est rectangle en D donc a pour aire 
+$\dfrac{\text{AD}\times\text{DC}}{2}=\dfrac{ 3\times 5}{2}=\dfrac{15}{2}$.
+
+Le volume du tétraèdre MACD est donc, en unités de volume:
+$\dfrac{1}{3} \times \dfrac{15}{2} \times 2 = 5$.
+
+\end{enumerate}	
+	
+\item On note P le projeté orthogonal du point D sur le plan (AMC).
+
+
+
+Si on considère D comme sommet du tétraèdre MACD, la base est le triangle AMC, et la hauteur est DP.
+
+Le triangle AMC est rectangle en M donc son aire est:
+$\dfrac{\text{AM} \times \text{MC}}{2}$.
+
+$\text{AM} = \ds\sqrt{(1-0)^2+(3-0)^2+(2-0)^2} = \ds\sqrt{14}$
+
+$\text{CM} = \ds\sqrt{(1-5)^2+(3-3)^2+(2-0)^2}= \ds\sqrt{20}$
+
+L'aire de AMC vaut: $\dfrac{\ds\sqrt{14}\times \sqrt{20}}{2}=\ds\sqrt{70}$.
+
+Le tétraèdre MACD a donc pour volume: $\dfrac{1}{3}\times\ds\sqrt{70}\times\text{DP}$ soit: $\dfrac{\text{DP} \ds\sqrt{70}}{3}$.
+
+On sait que ce volume vaut 5, donc: 
+$\dfrac{\text{DP} \ds\sqrt{70}}{3} = 5$ donc:
+$\text{DP}= \dfrac{15}{\ds\sqrt{70}} \approx 1,8$.
+\end{enumerate}

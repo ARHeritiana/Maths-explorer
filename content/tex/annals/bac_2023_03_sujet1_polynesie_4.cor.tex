@@ -1,0 +1,100 @@
+\medskip
+
+Soit $\left(u_n\right)$ la suite définie par $u_0 = - 1$ et, pour tout entier naturel $n$ :
+\[u_{n+1} = 0,9u_n - 0,3.\]
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Démonstration par récurrence :
+		
+\emph{Initialisation} : On a bien $u_0 = 2 \times 0,9^0 - 3 = 2 - 3 = - 1$ : la relation est vraie au rang $0$ ;
+		
+\emph{Hérédité} : On suppose que pour $n \in \N$, \: $u_n  = 2 \times 0,9^n - 3$. 
+
+Alors par définition de la suite $u_{n+1} = 0,9u_n - 0,3$ ou $u_{n+1} = 0,9\left(2 \times 0,9^n - 3\right) - 0,3 = 2 \times 0,9^{n+1} - 2,7 - 0,3 = 2 \times 0,9^{n+1} - 3$.
+
+La relation est vraie au rang $n + 1$.
+
+Conclusion : la relation est vraie au rang 0 et si elle est vraie $n \in \N$ elle l'est aussi au rang $n + 1$.
+
+D'après le principe de récurrence :
+\[u_n  = 2 \times 0,9^n - 3, \:	n \in \N.\]
+\item On sait que $0 < 0,9 < 1$ implique que $0 < 0,9^n \leqslant 1$ puis en multipliant par $2 > 0$,
+
+$0 < 2 \times 0,9^n \leqslant 2$ et enfin  en ajoutant à chaque membre le nombre $- 3$ :
+
+$- 3 < 0,9^n - 3 \leqslant - 1$, soit $- 3 < u_n \leqslant - 1$.
+		\item Quel que soit $n \in \N$, \: $u_n+1 - u_n = 0,9u_n - 0,3 - u_n = - 0,1u_n - 0,3$.
+		
+Or l'encadrement trouvé précédemment $- 3 < u_n < - 1$ donne par produit par $- 0,1$, 
+		
+$ 0,1 < - 0,1u_n < 0,3$ et en retranchant $0,3, \: -0,2 - 0,1u_n - 0,3  < 0$.
+		
+Conclusion : quel que soit le naturel $n$, \: $u_{n+1} - u_n < 0$ : la suite $\left(u_n\right)$ est donc décroissante.
+		\item 	La suite $\left(u_n\right)$ décroissante et minorée par $-3$ converge vers une limite $\ell$, avec $\ell\geqslant - 3$.
+		
+D'autre part de l'égalité $u_n  = 2 \times 0,9^n - 3$, sachant que $\displaystyle\lim_{n \to + \infty} 0,9^n = 0$, on déduit que 
+
+$\displaystyle\lim_{n \to + \infty}u_n = -3$.
+La suite $\left(u_n\right)$ converge vers $- 3$.
+	\end{enumerate}
+\item On se propose d'étudier la fonction $g$ définie sur $]-3~;~-1]$ par :
+\[g(x) = \ln (0,5 x + 1,5) - x.\]
+	\begin{enumerate}
+		\item Justifications:
+		
+$\bullet~~$ $- 3 < x \leqslant - 1 \Rightarrow - 1,5 < 0,5x \leqslant - 0,5 \Rightarrow 0 < 0,5x + 1,5 \leqslant 1 $. Donc la fonction est définie sur $]- 3~;~- 1]$
+
+$\bullet~~$ La fonction $g$ est dérivable sur $]- 3~;~- 1]$ et sur cet intervalle :
+
+$g'(x) = \dfrac{0,5}{0,5x + 1,5} - 1 = \dfrac{0,5 - 0,5x - 1,5}{0,5x + 1,5} = \dfrac{-0,5x - 1}{0,5x + 1,5}$.
+
+On a vu ci-dessus que $0,5x + 1,5 > 0$, le signe de $g'(x)$ est donc celui de $-0,5x - 1$ :
+
+\begin{itemize}
+\item $g'(x) = 0 \iff -0,5x - 1 = 0 \iff - 1 = 0,5x \iff - 2 = x$ ;
+\item $g'(x) > 0 \iff -0,5x - 1 > 0 \iff - 1 > 0,5x \iff - 2 > x$ ;
+\item $g'(x) < 0 \iff -0,5x - 1 < 0 \iff - 1 <0,5x \iff - 2 < x$ ;
+\end{itemize}
+
+Conclusion : la fonction est croissante sur $]-3~;~-2]$ et décroissante sur $[- 2~;~-1]$.
+
+$\bullet~~$ On a $\displaystyle\lim_{x \to - 3} \ln (0,5 x + 1,5) = - \infty$, d'où $\displaystyle\lim_{x \to - 3}g(x) = - \infty$
+
+$\bullet~~$$g(- 1) = \ln (-0,5 + 1,5) - (- 1) = 0 + 1 = 1$ ;
+
+$\bullet~~$$g(-2) = \ln (- 1+ 1,5) - (- 2) = 2 + \ln 0,5 = 2 + \ln \dfrac12 = 2 - \ln 2 \approx 1,31$.
+		\item D'après le théorème des valeurs intermédiaires sur l'intervalle $]- 3~;~- 2]$, la fonction $g$ est strictement croissante de moins l'infini à $g(-2) > 0$ et est continue sur cet intervalle : il existe donc un réel unique 
+
+$\alpha \in ]- 3~;~-2]$ tel que $f(\alpha) = 0$.
+
+La calculatrice donne :
+
+$g(-2,9) \approx \np{- 0,957}$ et $g(-2,8) \approx \np{0,4974}$, d'où $-2,9 < \alpha < -2,8$ ;
+
+$g(-2,89) \approx \np{-0,01}$ et $g(-2,88) \approx 0,067$, d'où $-2,89 < \alpha < -2,88$ ;
+
+$g(-2,889) \approx \np{-0,002}$ et $g(-2,888) \approx 0,006$, d'où $-2,889 < \alpha < -2,888$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Que que soit $n \in \N$, \: $v_n = \ln \left(0,5 u_n + 1,5\right)$ et en utilisant la formule du \textbf{1. a.}, $v_n = \ln \left(0,5 \left(2 \times 0,9^n - 3\right) + 1,5\right) = \ln \left(0,9^n - 1,5 + 1,5\right) = \ln 0,9^n = n \ln 0,9$.
+
+L'égalité $v_n = n \ln 0,9$, montre que la suite $\left(v_n\right)$ est une suite arithmétique  de raison $\ln 0,9$.
+		\item On a $u_n = v_n \iff u_n = \ln \left(0,5 u_n + 1,5\right) \iff \ln \left(0,5 u_n + 1,5\right) - u_n = 0 \iff g\left(u_n\right) = 0$.
+		\item On a donc $g\left(u_n\right) = 0 \iff u_n = \alpha$, soit $2 \times 0,9^n - 3 = \alpha$.
+		
+Or on a vu que  $-2,889 < \alpha < -2,888$  : on en déduit que $-2,889 < 2 \times 0,9^n - 3 < -2,888$, soit en ajoutant 3 :
+
+$0,111 < 2 \times 0,9^n < 0,112 \iff \np{0,0555} < 0,9^n < \np{0,0556}$ soit par croissance du logarithme népérien $\ln \np{0,0555} < n \ln 0,9 < \ln \np{0,0556}$ et enfin 
+$\dfrac{\ln \np{0,0556}}{\ln 0,9}< n < \dfrac{\ln \np{0,0555}}{\ln 0,9}$ (car $\ln 0,9 < 0$).
+
+Or $\dfrac{\ln \np{0,0556}}{\ln 0,9} \approx 27,4$ et $\dfrac{\ln \np{0,0555}}{\ln 0,9} \approx 27,5$.
+
+On aurait donc un entier $n$ tel que $27,4 < n < 27,5$. Donc $n$ ne peut être un naturel.
+
+Conclusion : il n'existe pas $k$ tel que $u_k = \alpha$.
+\item On a vu que $u_n = \alpha \iff g\left(u_n\right) = 0 \iff u_n = v_n$. On vient de voir que ceci n'est pas possible : il n'existe pas $k \in \N$ tel que $v_k = u_k$.
+	\end{enumerate}
+\end{enumerate}

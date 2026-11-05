@@ -1,0 +1,55 @@
+\subsection*{1.}
+	
+	\noindent
+	\textbf{--- Premier modèle :}
+	
+	On fait l'hypothèse que ce nombre augmente de 21 \% par an. On définit alors une suite \((u_n)\) où, selon ce modèle, \(u_n\) est le nombre (en milliers) de voitures électriques immatriculées en France l'année \(2015+n\) avec \(n \in \mathbb{N}\). Ainsi, on a \(u_0 = 17,3\).
+	
+	\noindent
+	\textbf{--- Second modèle :}
+	
+	On définit la suite \((v_n)\) par \(v_0 = 17,3\) et pour tout entier naturel \(n\), \(v_{n+1} = 0,7v_n +10\). D'après ce modèle et pour tout entier naturel \(n\), \(v_n\) est le nombre (en milliers) de voitures électriques immatriculées en France l'année \(2015+n\).
+	
+	\subsection*{a.}
+	
+	Ajouter 21 \%, c'est multiplier par \(1 + \dfrac{21}{100} = 1 + 0,21 = 1,21\). Donc :
+	
+	\begin{itemize}
+		\item $u_1 = u_0 \times 1,21 = 17,3 \times 1,21 \approx 20,9$
+		\item $u_2 \approx 25,3$
+		\item $u_3 \approx 30,6$.
+	\end{itemize}
+	et :
+	\begin{itemize}
+		\item $v_1 = 0,7 \times 17,3 + 10 \approx 22,1$
+		\item $v_2 \approx 25,5$
+		\item $v_3 \approx 27,8$.
+	\end{itemize}
+	
+	\subsection*{b.}
+	
+	Le second modèle donne des nombres plus proches de la réalité des ventes.
+	
+	\subsection*{2.}
+	
+	\subsubsection*{a.}
+	
+	On a vu que, quel que soit le naturel \(n\), \(u_{n+1} = 1,21u_n\) : ceci montre que la suite \((u_n)\) est une suite géométrique de raison 1,21 et de premier terme \(17,3\).
+	
+	\subsubsection*{b.}
+	
+	On sait que, quel que soit le naturel \(n\), \(u_n = 17,3 \times 1,21^n\).
+	
+	\subsubsection*{c.}
+	
+	On considère l'algorithme en langage Python ci-dessous.
+	
+	\begin{lstlisting}[style=python]
+	u = 17.3
+	n = 0
+	while u < 50 :
+		u = 1.21 * u
+		n = n + 1
+	\end{lstlisting}
+	
+	L'algorithme va donner \(n = 5\) pour s'arrêter avant que \(u\) ne dépasse 50, soit 50 000 voitures électriques.

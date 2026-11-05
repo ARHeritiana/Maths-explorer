@@ -1,0 +1,219 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet1_antilles_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\subsection*{Partie A}
+
+L'agence de sûreté nucléaire ASNR contrôle les installations des centrales nucléaires afin de garantir leur sécurité et leur conformité. La fréquence des contrôles dépend de l'état du réacteur.
+
+On considère que dans le parc nucléaire français~:
+\begin{itemize}[noitemsep]
+\item 20~\% des réacteurs sont en arrêt pour maintenance~;
+\item 5~\% des réacteurs fonctionnent au ralenti~;
+\item le reste des réacteurs du parc nucléaire est en état de fonctionnement normal.
+\end{itemize}
+
+On considère également que parmi les réacteurs en arrêt, 85\,\% sont contrôlés et que parmi les réacteurs fonctionnant au ralenti, 60\,\% sont contrôlés.
+
+On choisit au hasard un réacteur dans le parc nucléaire français, et on note~:
+\begin{itemize}[noitemsep]
+\item $A$ l'évènement \og Le réacteur est en arrêt \fg~;
+\item $R$ l'évènement \og Le réacteur fonctionne au ralenti \fg~;
+\item $N$ l'évènement \og Le réacteur fonctionne normalement \fg~;
+\item $C$ l'évènement \og Le réacteur subit un contrôle \fg.
+\end{itemize}
+
+Pour un évènement quelconque $E$, on désigne par $\overline{E}$ son évènement contraire et par $P(E)$ sa probabilité.
+
+On note $x$ la probabilité que le réacteur subisse un contrôle sachant qu'il fonctionne normalement, c'est--à--dire $x = P_N(C)$.
+
+\medskip
+
+\begin{minipage}{0.57\linewidth}
+\begin{enumerate}
+\item Recopier l'arbre des probabilités ci-contre en complétant les pointillés à l'aide des données de l'énoncé.
+\item Calculer la probabilité que le réacteur soit en arrêt et qu'il subisse un contrôle.
+\end{enumerate}
+
+On sait de plus que la probabilité qu'un réacteur du parc nucléaire soit contrôlé est égale à $0,35$.
+
+\begin{enumerate}[resume]
+\item Montrer que la probabilité $x$ est égale à $0,2$.
+\item Le réacteur choisi subit un contrôle. Déterminer la probabilité qu'il fonctionne normalement.
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}
+
+\pstree[levelsep=2.5,treesep=.7,treemode=R,nodesep=3pt]{\TR{}}
+{
+\pstree{\TR{$A$}\taput{\ldots}}
+	{
+	\TR{$C$}\taput{\ldots}
+	\TR{$\overline{C}$}\tbput{\ldots}
+	}
+	\pstree{\TR{$R$}\taput{$\ldots$}}
+	{
+	\TR{$C$}\taput{\ldots}
+	\TR{$\overline{C}$}\tbput{\ldots}
+	}
+	\pstree{\TR{$N$}\taput{$\ldots$}}
+		{
+	\TR{$C$}\taput{$x$}
+	\TR{$\overline{C}$}\tbput{\ldots}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{minipage}
+
+
+\subsection*{Partie B}
+
+Dans le Sud de la France, on compte 12 réacteurs nucléaires qu'on numérote de 1 à 12.
+
+On sait que lorsque le réacteur fonctionne normalement, sa production journalière est égale à 16~GWh (gigawattheure), lorsque le réacteur fonctionne au ralenti, sa production journalière est réduite à 10~GWh et enfin lorsque le réacteur est à l'arrêt, sa production journalière est nulle.
+
+\medskip
+
+On rappelle que $P(N) = 0,75$, $P(R) = 0,05$ et $P(A) = 0,20$.
+
+\begin{enumerate}
+\item On désigne par $X$ la variable aléatoire qui modélise la production journalière en GWh d'un réacteur.
+
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Recopier le tableau ci-dessous et compléter les pointillés donnant la loi de probabilité de la variable aléatoire $X$. On notera $k$ les valeurs prises par la variable aléatoire $X$ et $p_k$ les probabilités égales à $P(X=k)$.
+
+\begin{center}
+\begin{tabularx}{0.8\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\hline
+$k$ & $0$ & $\ldots$ & $\ldots$ \\ \hline
+$p_k$ & $0,20$ & $\ldots$ & $\ldots$ \\ \hline
+\end{tabularx}
+\end{center}
+
+\item Montrer que l'espérance $E(X)$ de la variable aléatoire $X$ est égale à $12,5$ et que sa variance $V(X)$ est égale à $40,75$.
+\end{enumerate}
+
+\item Pour tout entier naturel $i$ compris entre 1 et 12, on note $X_i$ la variable aléatoire qui modélise la production journalière en GWh du $i$-ème réacteur.
+
+Ainsi, par exemple, $X_2$ désigne la variable aléatoire qui modélise la production journalière en GWh du 2-ième réacteur.
+
+On suppose que les variables $X_1, X_2, \ldots, X_{12}$ suivent la même loi de probabilité que la variable aléatoire $X$, et qu'elles sont indépendantes.
+
+On considère la variable aléatoire $S$ qui donne la production totale journalière des 12 réacteurs. On a ainsi $S = X_1 + X_2 + \cdots + X_{12}$.
+
+On note $E(S)$ l'espérance de la variable aléatoire $S$ et $V(S)$ sa variance.
+
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Montrer que $E(S) = 150$ et $V(S) = 489$.
+\item Afin d'éviter le risque de surcharge du réseau et de couvrir l'ensemble des besoins en électricité, la production totale journalière des 12 réacteurs doit être comprise strictement entre 100~GWh et 200~GWh.
+
+Peut-on affirmer que la probabilité d'éviter le risque de surcharge et de couvrir l'ensemble des besoins en électricité est supérieure à $0,80$~? Justifier.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}

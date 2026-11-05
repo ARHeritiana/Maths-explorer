@@ -1,0 +1,52 @@
+\(g(x) = \e^x - x + 1\).
+
+\subsection*{1.}
+
+La fonction \(g\) est la somme de fonctions dérivables sur \(\mathbb{R}\), elle est donc dérivable sur \(\mathbb{R}\), et sa dérivée est :
+\[
+g'(x) = \e^x - 1.
+\]
+
+\subsection*{2.}
+
+\begin{align*}
+&\e^x - 1 > 0 \\
+\iff &\e^x > 1 \\
+\iff &x > 0.
+\end{align*}
+On en déduit que la fonction est :
+\begin{itemize}[label=-]
+    \item décroissante sur \([-5\,;\,0]\) de \(g(-5) = \e^{-5} - (-5) + 1 = \e^{-5} + 6\) à \(g(0) = 1 - 0 + 1 = 2\),
+    \item croissante sur \([0\,;\,5]\) de \(g(0)\) à \(g(5) = \e^{5} - 5 + 1 = \e^{5} - 4\).
+\end{itemize}
+
+\subsection*{3.}
+
+La question précédente a montré que le minimum de la fonction \(g\) sur l'intervalle \([-5\,;\,5]\) est \(2\), donc sur \([-5\,;\,5]\), \(g(x) \geqslant 2 > 0\).
+
+\subsection*{4.}
+
+On a, pour tout \(x \in [-5\,;\,5]\) :
+\begin{align*}
+f'(x) &= 1 + \dfrac{1 \times \e^x - x \times \e^x}{(\e^x)^2} \\
+&= 1 + \dfrac{\e^x(1 - x)}{(\e^x)^2} \\
+&= \dfrac{(\e^x)^2 + \e^x(1 - x)}{(\e^x)^2} \\
+&= \dfrac{\e^x(e^x + 1 - x)}{(\e^x)^2} \\
+&= \dfrac{e^x + 1 - x}{\e^x} \\
+&= \dfrac{1}{\e^x} \times g(x).
+\end{align*}
+
+Le signe de \(f'(x)\) est donc celui de \(g(x)\). Or, on a vu que sur \([-5\,;\,5]\), \(g(x) > 0\), donc \(f'(x) > 0\) : la fonction \(f\) est donc strictement croissante de \(f(0) = 1\) à plus l'infini.
+
+\subsection*{5.}
+
+Si \(T_0\) est cette tangente, on sait qu'une équation de \(T_0\) est :
+\[
+M(x\,;\,y) \in T_0 \iff y - f(0) = f'(0)(x - 0).
+\]
+Avec \(f(0) = 1\) et \(f'(0) = \dfrac{g(0)}{\e^0}= g(0) = 2\), l'équation devient :
+\begin{align*}
+&M(x\,;\,y) \in T_0 \\
+\iff &y - 1 = 2(x - 0) \\
+\iff &y = 2x + 1.
+\end{align*}

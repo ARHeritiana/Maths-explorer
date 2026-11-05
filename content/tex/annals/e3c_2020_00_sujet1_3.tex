@@ -1,0 +1,38 @@
+\medskip
+
+Lors du lancement d'un hebdomadaire, \np{1200} exemplaires ont été vendus.
+
+Une étude de marché prévoit une progression des ventes de 2\,\% chaque semaine.
+
+On modélise le nombre d'hebdomadaires vendus par une suite $\left(u_n\right)$ où $u_n$ représente le nombre de journaux vendus durant la $n$-ième semaine après le début de l'opération.
+
+On a donc $u_0 = \np{1200}$.
+
+\medskip
+
+\begin{enumerate}
+\item Calculer le nombre $u_2$. Interpréter ce résultat dans le contexte de l'exercice. 
+\item Écrire, pour tout entier naturel $n$, l'expression de $u_n$ en fonction de $n$.
+\item Voici un programme rédigé en langage Python :
+
+\begin{center}
+\begin{tabularx}{0.45\linewidth}{|X|}\hline
+\texttt{def suite ( ) :}\\
+\quad \texttt{u = 1200} \\
+\quad \texttt{S = 1200}\\
+\quad \texttt{n=0}\\
+\quad \texttt{while S < 30000}\\
+\qquad \texttt{n = n+1}\\
+\qquad  \texttt{u = u*1,02}\\
+\qquad  \texttt{S=S+u}\\
+\quad \texttt{return(n)}\\ \hline
+\end{tabularx}
+\end{center}
+
+Le programme retourne la valeur $20$.
+
+Interpréter ce résultat dans le contexte de l'exercice.
+\item Déterminer le nombre total d'hebdomadaires vendus au bout d'un an.
+\end{enumerate}
+
+\bigskip

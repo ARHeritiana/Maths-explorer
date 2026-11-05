@@ -1,0 +1,151 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_09_sujet1_ameriquesud_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Soit $g$ la fonction définie sur l'intervalle $]0~;~+\infty[$ par 
+
+\[g(x) = 1+ x^2[1 - 2 \ln (x)].\]
+
+La fonction $g$ est dérivable sur l'intervalle $]0~;~+\infty[$ et on note $g'$ sa fonction dérivée.
+
+On appelle $\mathcal{C}$ la courbe représentative de la fonction $g$ dans un repère orthonormé du plan.
+
+\medskip
+
+\textbf{PARTIE A}
+
+\medskip
+
+\begin{enumerate}
+\item Justifier que $g(\text{e})$ est strictement négatif.
+\item Justifier que $\displaystyle\lim_{x \to + \infty} g(x) = - \infty$.
+\item 
+	\begin{enumerate}
+		\item Montrer que, pour tout $x$ appartenant à l'intervalle $]0~;~+\infty[$,\: $g'(x) = -4x \ln (x)$.
+		\item Étudier le sens de variation de la fonction $g$ sur l'intervalle $]0~;~+\infty[$ 
+		\item Montrer que l'équation $g(x) = 0$ admet une unique solution, notée $\alpha$, sur l'intervalle $[1~;~+\infty[$.
+		\item Donner un encadrement de $\alpha$ d'amplitude $10^{-2}$
+	\end{enumerate}
+\item Déduire de ce qui précède le signe de la fonction $g$ sur l'intervalle $[1~;~+\infty[$.
+\end{enumerate}
+
+\medskip
+
+\textbf{PARTIE B}
+
+\medskip
+
+\begin{enumerate}
+\item On admet que, pour tout $x$ appartenant à l'intervalle $[1~;~\alpha]$, $g''(x) = - 4[\ln (x) + 1]$.
+
+Justifier que la fonction $g$ est concave sur l'intervalle $[1~;~\alpha]$.
+\end{enumerate}
+
+\begin{minipage}{0.48\linewidth}
+\begin{enumerate}[resume]
+\item Sur la figure ci-contre, A et B sont les points de la
+courbe $\mathcal{C}$ d'abscisses respectives 1 et $\alpha$.
+	\begin{enumerate}
+		\item Déterminer l'équation réduite de la droite (AB).
+		\item En déduire que pour tout réel $x$ appartenant à
+l'intervalle $[1~;~\alpha]$,\: $g(x) \geqslant \dfrac{- 2}{\alpha - 1} x + \dfrac{2\alpha}{\alpha - 1}$.
+	\end{enumerate}
+\end{enumerate}
+\end{minipage} \hfill
+\begin{minipage}{0.48\linewidth}
+\begin{center}
+\psset{unit=1.3cm,arrowsize=2pt 3}
+\begin{pspicture}(-0.2,-0.2)(2.5,3)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.15pt]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(0,0)(2.5,3)
+\psplot[plotpoints=1000,linewidth=1.25pt,linecolor=red]{1}{1.9}{1 x ln 2 mul sub x dup mul mul 1 add}
+\uput[ul](1,2){\red A}\uput[ur](1.9,0){\red B}\uput[d](1.9,0.05){$\alpha$}
+\uput[ur](1.5,1.5){\red $\mathcal{C}$}
+\end{pspicture}
+\end{center}
+\end{minipage}
+
+\bigskip
+
+\end{document}

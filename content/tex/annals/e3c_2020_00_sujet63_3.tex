@@ -1,0 +1,59 @@
+\medskip
+
+Une petite entreprise de textile commercialise des nappes et des lots de serviettes assorties. Un client achète au plus une nappe et au plus un lot de serviettes.
+
+En consultant le fichier des ventes de l'entreprise, on constate que :
+
+\setlength\parindent{9mm}
+\begin{itemize}
+\item[$\bullet~~$] 20\,\% des clients achètent une nappe ;
+\item[$\bullet~~$] Parmi les clients ayant acheté une nappe, 70\,\% ont acheté un lot de serviettes;
+\item[$\bullet~~$] Parmi les clients n'ayant pas acheté de nappe, 10\,\% ont tout de même acheté un lot de serviettes.
+\end{itemize}
+\setlength\parindent{0mm}
+
+\smallskip
+
+On choisit au hasard un client de cette entreprise.
+
+ 
+Pour tout évènement $A$,on note $\overline{A}$ l'évènement contraire de $A$ et $P(A)$ la probabilité de l'évènement $A$.
+ 
+On note les évènements suivants:
+
+\setlength\parindent{9mm}
+\begin{itemize}
+\item[$\bullet~~$]$N$ \og le client achète une nappe \fg{} ;
+\item[$\bullet~~$]$S$ \og le client achète un lot de serviettes \fg.
+\end{itemize}
+\setlength\parindent{0mm}
+
+\medskip
+
+\begin{enumerate}
+\item Reproduire sur la copie et compléter l'arbre pondéré ci-dessous décrivant la situation:
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=3pt]{\TR{}}
+{\pstree{\TR{$N$~~} \ncput*[nrot=:U]{\ldots}}
+	{\TR{$S$} \ncput*[nrot=:U]{\ldots}
+	\TR{$\overline{S}$} \ncput*[nrot=:U]{\ldots}
+	}
+\pstree{\TR{$\overline{N}~~$} \ncput*[nrot=:U]{\ldots}}
+	{\TR{$S$} \ncput*[nrot=:U]{\ldots}
+	\TR{$\overline{S}$} \ncput*[nrot=:U]{\ldots}
+	}
+}
+\end{center}
+
+\item  Calculer la probabilité que le client achète une nappe et un lot de serviettes.
+\item  Montrer que la probabilité de l'évènement $S$ est égale à $0,22$.
+\item  Calculer la probabilité que le client achète une nappe sachant qu'il a acheté une serviette.
+\item  Une nappe est vendue $45$~\euro{} et un lot de serviettes $25$~\euro.
+
+On appelle $D$ la variable aléatoire donnant la dépense effectuée par un client.
+
+Calculer l'espérance mathématique de $D$ et donner une interprétation de ce nombre dans le contexte de l'exercice.
+\end{enumerate}
+
+\bigskip

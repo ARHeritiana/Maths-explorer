@@ -1,0 +1,190 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_metropole_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Une agence de marketing a étudié la satisfaction des clients concernant le service clientèle à l'occasion de l'achat d'un téléviseur. Ces achats ont été réalisés soit sur internet, soit dans une chaîne de magasins d'électroménager, soit dans une enseigne de grandes surfaces.
+
+Les achats sur internet représentent $60\,\%$ des ventes, les achats en magasin d'électroménager $30 \%$ des ventes et ceux en grandes surfaces $10\,\%$ des ventes.
+
+Une enquête montre que la proportion des clients satisfaits du service clientèle est de :
+\begin{itemize}
+	\item $75\,\%$ pour les clients sur internet ;
+	\item $90\,\%$ pour les clients en magasin d'électroménager ;
+	\item $80\,\%$ pour les clients en grande surface.
+\end{itemize}
+
+On choisit au hasard un client ayant acheté le modèle de téléviseur concerné.
+
+On définit les évènements suivants :
+
+\begin{itemize}
+	\item $I$ : \og le client a effectué son achat sur internet\fg{};
+	\item $M$ : \og le client a effectué son achat en magasin d'électroménager\fg{};
+	\item $G$ : \og le client a effectué son achat en grande surface\fg{};
+	\item $S$ : \og le client est satisfait du service clientèle\fg{}.
+\end{itemize}
+
+Si $A$ est un évènement quelconque, on notera $\overline{A}$ son évènement contraire et $P(A)$ sa probabilité.
+
+\begin{enumerate}
+	\item Reproduire et compléter l'arbre ci-contre.
+
+
+	\begin{center}
+		\begin{tikzpicture}[xscale=1,yscale=1,baseline=(R)]
+		
+		\tikzstyle{fleche}=[-,>=latex,thick]
+		\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+		\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+		\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+		
+		\def\DistanceInterNiveaux{3}
+		\def\DistanceInterFeuilles{0.7}
+		
+		\def\NiveauA{(0)*\DistanceInterNiveaux}
+		\def\NiveauB{(1)*\DistanceInterNiveaux}
+		\def\NiveauC{(2)*\DistanceInterNiveaux}
+		\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+		
+		\node[noeud] (R) at ({\NiveauA},{(2.5)*\InterFeuilles}) {};
+		\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$I$};
+		\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$S$};
+		\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{S}$};
+		\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$M$};
+		\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$S$};
+		\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{S}$};
+		\node[noeud] (Rc) at ({\NiveauB},{(4.5)*\InterFeuilles}) {$G$};
+		\node[feuille] (Rca) at ({\NiveauC},{(4)*\InterFeuilles}) {$S$};
+		\node[feuille] (Rcb) at ({\NiveauC},{(5)*\InterFeuilles}) {$\overline{S}$};
+		
+		\draw[fleche] (R.east)--(Ra.west) node[etiquette] {$\ldots$};
+		\draw[fleche] (Ra.east)--(Raa.west) node[etiquette] {$\ldots$};
+		\draw[fleche] (Ra.east)--(Rab.west) node[etiquette] {$\ldots$};
+		\draw[fleche] (R.east)--(Rb.west) node[etiquette] {$\ldots$};
+		\draw[fleche] (Rb.east)--(Rba.west) node[etiquette] {$\ldots$};
+		\draw[fleche] (Rb.east)--(Rbb.west) node[etiquette] {$\ldots$};
+		\draw[fleche] (R.east)--(Rc.west) node[etiquette] {$\ldots$};
+		\draw[fleche] (Rc.east)--(Rca.west) node[etiquette] {$\ldots$};
+		\draw[fleche] (Rc.east)--(Rcb.west) node[etiquette] {$\ldots$};
+	\end{tikzpicture}
+	\end{center}
+
+
+
+
+	\item Calculer la probabilité que le client ait réalisé son achat sur internet et soit satisfait du service clientèle.
+
+	\item Démontrer que $P(S)=0,8$.
+
+	\item Un client est satisfait du service clientèle. Quelle est la probabilité qu'il ait effectué son achat sur internet ? On donnera un résultat arrondi à $10^{-3}$ près.
+
+	\item Pour réaliser l'étude, l'agence doit contacter chaque jour 30 clients parmi les acheteurs du téléviseur. On suppose que le nombre de clients est suffisamment important pour assimiler le choix des 30 clients à un tirage avec remise. On note $X$ la variable aléatoire qui, à chaque échantillon de 30 clients, associe le nombre de clients satisfaits du service clientèle.
+
+	\begin{enumerate}
+		\item Justifier que $X$ suit une loi binomiale dont on précisera les paramètres.
+		\item Déterminer la probabilité, arrondie à $10^{-3}$ près, qu'au moins 25 clients soient satisfaits dans un échantillon de 30 clients contactés sur une même journée.
+	\end{enumerate}
+
+	\item En résolvant une inéquation, déterminer la taille minimale de l'échantillon de clients à contacter pour que la probabilité qu'au moins l'un d'entre eux ne soit pas satisfait soit supérieure à $0,99$.
+
+	\item Dans les deux questions \textbf{a.} et \textbf{b.} qui suivent, on ne s'intéresse qu'aux seuls achats sur internet.\\
+	Lorsqu'une commande de téléviseur est passée par un client, on considère que le temps de livraison du téléviseur est modélisé par une variable aléatoire $T$ égale à la somme de deux variables aléatoires $T_{1}$ et $T_{2}$.
+
+	La variable aléatoire $T_{1}$ modélise le nombre entier de jours pour l'acheminement du téléviseur depuis un entrepôt de stockage vers une plateforme de distribution. La variable aléatoire $T_{2}$ modélise le nombre entier de jours pour l'acheminement du téléviseur depuis cette plateforme jusqu'au domicile du client.
+
+	On admet que les variables aléatoires $T_{1}$ et $T_{2}$ sont indépendantes, et on donne :
+	\begin{itemize}
+		\item L'espérance $E\left(T_{1}\right)=4$ et la variance $V\left(T_{1}\right)=2$;
+		\item L'espérance $E\left(T_{2}\right)=3$ et la variance $V\left(T_{2}\right)=1$.
+	\end{itemize}
+
+	\begin{enumerate}
+		\item Déterminer l'espérance $E(T)$ et la variance $V(T)$ de la variable aléatoire $T$.
+		\item Un client passe une commande de téléviseur sur internet. Justifier que la probabilité qu'il reçoive son téléviseur entre 5 et 9 jours après sa commande est supérieure ou égale à $\dfrac{2}{3}$.
+	\end{enumerate}
+
+\end{enumerate}
+\medskip
+
+\end{document}

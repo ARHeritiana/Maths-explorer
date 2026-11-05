@@ -1,0 +1,192 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_11_sujet1_amsud_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+L'objectif de cet exercice est de déterminer la distance entre deux droites non coplanaires.
+
+
+
+
+
+Soit $(d_1)$ la droite passant par A$(1~;~2~;~-1)$ de vecteur directeur $\vect{u_1}\begin{pmatrix}1\\2\\0\end{pmatrix}$ et $(d_2)$ la droite dont une représentation paramétrique est : 
+$\left\{\begin{array}{l c l}
+x&=&0\\y &=& 1 + t\\z &=& 2 + t\\
+\end{array}\right.,\: t  \in \R.$
+
+\medskip
+
+\begin{enumerate}
+\item 
+
+On a $M(x~;~y~;~z) \in (d_1) \iff \text{il existe }\, t' \in \R, \, \text{tel que } \, \vect{\text{A}M} = t'\vect{u_1} \iff $
+
+$\left\{\begin{array}{l c l}
+x- 1&=&1t'\\
+y - 2&=&2t'\\
+z-(-1)&=&0t'
+\end{array}\right.\, t \in \R \iff \left\{\begin{array}{l c l}
+x &=&1 + t'\\
+y &=&2 + 2t'\\
+z&=&- 1
+\end{array}\right.\, t \in \R $.
+
+\item On démontre que les droites $(d_1)$ et $(d_2)$ sont non coplanaires.
+
+$\bullet~$ $(d_2)$ a pour vecteur directeur le vecteur $\vect{u_2}\begin{pmatrix}0\\1\\1\end{pmatrix}$ et ce vecteur n'est pas colinéaire à $\vect{u_1}$ : les droites $(d_1)$ et $(d_2)$ ne sont pas parallèles.
+
+$\bullet~$ $(d_1)$ et $(d_2)$ sont sécantes s'il existe $t$ et $t'$ deux réels tels que :
+
+$\left\{\begin{array}{l c l}
+0&=&1 + t'\\
+1 + t&=&1 + t'\\
+2 + t &=&-1 \\
+\end{array}\right.\iff \left\{\begin{array}{l c l}
+-1&=& t'\\
+t & =&t'\\
+t &=&-3 \\
+\end{array}\right.$ : ce système n'a pas de solution.
+
+Conclusion : les deux droites ne sont ni parallèles ni sécantes, elles sont donc non coplanaires.
+\item Soit $\mathcal{P}$ le plan passant par A et dirigé par les vecteurs non colinéaires $\vect{u_1}$ et $\vect{w}\begin{pmatrix}2\\-1\\1\\\end{pmatrix}$.
+
+On va justifier qu'une équation cartésienne du plan $\mathcal{P}$ est : $-2x + y + 5z + 5 = 0$.
+
+Si un point $M(x~;~y~;~z)$ appartient au plan défini par le point A et les deux vecteurs $\vect{u_1}$ et $\vect{w}$, on sait que il existe $\alpha$ et $\beta$ tels que :
+$\vect{\text{A}M} = \alpha\vect{u_1} + \beta\vect{w}$,
+
+soit avec les coordonnées :
+$\left\{\begin{array}{l c l}
+x - 1&=&1\alpha + 2\beta\\
+y - 2&=&2\alpha - 1\beta\\
+z + 1&=&0\alpha + 1\beta
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+x &=&\alpha + 2\beta + 1\\
+y &=&2\alpha - \beta + 2\\
+z&=&\beta - 1
+\end{array}\right.$
+
+Or quels que soient $\alpha$ et $\beta$ :
+
+${\red - 2}(\alpha + 2\beta + 1) + {\red 1}(2\alpha - \beta + 2) + {\red 5}(\beta - 1)+ {\red 5} =  -2\alpha - 4\beta - 2 + 2\alpha - \beta + 2 + 5\beta - 5 + 5 = 0$.
+
+Donc une équation cartésienne du plan est ${\red -2}x + {\red 1}y + {\red 5}z + {\red 5} = 0$.
+
+\item
+	\begin{enumerate}
+		\item 
+
+On a vu que $(d_1)$ et $(d_2)$ ne sont pas coplanaires donc $(d_1)$ ne peut appartenir au plan précédent et $(d_1)$ et $(d_2)$ ne sont pas parallèles donc la droite  $(d_2)$ est sécante au plan $\mathcal{P}$.
+		\item On note F le point d'intersection de la droite $(d_2)$ et du plan $\mathcal{P}$.
+
+
+Si F est commun à $(d_2)$ et au plan $\mathcal{P}$ ses coordonnées vérifient le système :
+
+$\left\{\begin{array}{r c l}
+x&=&0\\
+y &=& 1 + t\\
+z &=& 2 + t\\
+-2x + y + 5z + 5 &=& 0\\
+\end{array}\right.$, d'où en remplaçant dans la dernière équation :
+
+$-2\times 0 + 1 + t + 5(2 + t) + 5 = 0 \iff 1 + t + 10 + 5t + 5 = 0\iff 6t + 16 = 0 \iff t = - \dfrac83$, d'où en remplaçant dans $x,\,y,\,$ et $z$, on obtient   F\:$\left(0~;~- \dfrac53~;~-\dfrac23\right)$.
+
+Soit $(\delta)$ la droite passant par F et de vecteur directeur $\vect{w}$. On admet que les droites $(\delta)$ et $(d_1)$ sont sécantes en un point E de coordonnées $\left( -\dfrac23~;~- \dfrac43~;~-1\right)$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+Des coordonnées du vecteur $\vect{\text{EF}}\begin{pmatrix}\dfrac23\\-\dfrac13\\\dfrac13\end{pmatrix}$ on  déduit que :
+
+$\vect{\text{EF}} \cdot \vect{u_1} = \dfrac23 - \dfrac23 + 0 = 0$ et 
+$\vect{\text{EF}} \cdot \vect{u_2} = 0  - \dfrac23 + \dfrac23 = 0$.
+
+Conclusion : $\vect{\text{EF}}$ est orthogonal aux vecteurs directeurs des deux droites $(d_1)$ et $(d_2)$, $\text{E} \in (d_1)$ et $\text{F} \in (d_2)$ donc EF est bien la distance entre les droites $(d_1)$ et $(d_2)$.
+		\item 
+		On a EF$^2 = \left(\dfrac23\right)^2 +  \left(-\dfrac13\right)^2 +  \left(\dfrac13 \right)^2  = \dfrac49 + \dfrac19 + \dfrac19 = \dfrac69$.
+		
+		Conclusion : EF $ = \sqrt{\dfrac69} = \dfrac{\sqrt{6}}{3}$.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

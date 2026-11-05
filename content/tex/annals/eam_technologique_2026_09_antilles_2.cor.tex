@@ -1,0 +1,38 @@
+\emph{Premier étang : $u_0 = \np{3000}$, perte de 10\,\% du volume chaque année. Second étang :
+$v_0 = \np{4000}$, perte de 20\,\% du volume chaque année, compensée par un apport
+de 140~m$^3$ par an.}
+
+\begin{enumerate}
+	\item \textbf{Affirmation fausse.}
+
+	Perdre 10\,\% de son volume chaque année revient à multiplier le volume de l'année
+	précédente par $0,90$. La formule doit donc faire référence à la valeur de $u_n$ de la
+	ligne précédente (colonne B), et non à la colonne A qui contient
+	les valeurs de $n$. La formule correcte est \texttt{= 0,90 * B2}.
+
+	\item \textbf{Affirmation fausse.}
+
+	 $u_1 - u_0 = \np{2700} - \np{3000} = -300$.
+
+	 $u_2 - u_1 = \np{2430} - \np{2700} =  -270$.
+
+La différence de deux termes consécutifs n'est pas constante donc la suite $(u_n)$ n'est pas arithmétique.
+
+	\item \textbf{Affirmation vraie.}
+
+	Perdre 20\,\% du volume revient à multiplier par $0,8$ ; l'apport annuel de 140~m$^3$
+	s'ajoute ensuite :
+	\[v_1 = 0,8 \times v_0 + 140 = 0,8 \times \np{4000} + 140 = \np{3200} + 140 = \np{3340}.\]
+
+	\item \textbf{Affirmation vraie.}
+
+	Pour le premier étang : $u_{10} \approx \np{1046} \geqslant \np{1000}$ et
+	$u_{11} \approx 941 < \np{1000}$.
+
+	Pour le second étang : $v_{10} \approx \np{1054} \geqslant \np{1000}$
+	et $v_{11} \approx 983 < \np{1000}$.
+
+	Dans les deux cas, c'est au rang $n = 11$, c'est-à-dire à partir
+	de l'année $2025 + 11 = 2036$, que le volume d'eau passe sous
+	\np{1000}~m$^3$.
+\end{enumerate}

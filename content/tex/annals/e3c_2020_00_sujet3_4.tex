@@ -1,0 +1,43 @@
+\medskip
+
+\parbox{0.38\linewidth}{Le logo d'une entreprise est constitué d'un carré, d'un cercle et d'un triangle.
+Il a été représenté ci-contre dans un repère orthonormé \Oij.
+
+On donne les coordonnées des sommets du carré :
+
+A$(-3~;~3)$, B(3~;~3), C$(3~;~-3)$,
+
+ D$(-3~;~-3)$.
+
+On considère le point E$\left(-2~;~3 + \sqrt{5}\right)$.
+
+On admettra que E est situé sur le cercle de diamètre [AB].
+
+On note I le milieu de [AB].}\hfill
+\parbox{0.58\linewidth}{\psset{unit=1cm}
+\begin{pspicture*}(-4,-4)(4.1,7.5)
+\pspolygon[fillstyle=solid,fillcolor=lightgray](3,3)(-2,5.236)(-3,-3)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle](0,0)(-4,-3.98)(4,7.5)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(1,1)
+\psline(3,3)(3,-3)(-3,-3)(-3,3)(-2.3,3)\uput[l](-3,3){A}\uput[r](3,3){B}\uput[u](-2,5.236){E}
+\uput[d](1.6,1.6){H}\uput[ul](0,0){O}
+\psline[linestyle=dashed](-2,5.236)(5.236,-2)\uput[r](3,-3){C}
+\uput[l](-3,-3){D}
+\pscircle(0,3){3}
+\psline[linestyle=dashed](-3,3)(3,3)
+\end{pspicture*}}
+
+\medskip
+
+\begin{enumerate}
+\item Donner une équation cartésienne de la droite (BD) et une équation du cercle de diamètre [AB].
+\item Montrer que la hauteur du triangle BDE issue de E admet pour équation cartésienne
+
+\[x + y - \left(1 +\sqrt{5}\right) = 0.\]
+
+\item Déterminer les coordonnées du projeté orthogonal H du point E sur la droite (BD).
+\item Calculer l'aire du triangle BDE (en unités d'aire).
+\item Montrer que $\vect{\text{DB}} \cdot \vect{\text{DE}}= 42 + 6\sqrt{5}$. 
+
+On admet que $\left\|\vect{\text{DE}}\right\|= \sqrt{42+12\sqrt{5}}$ ; en déduire la mesure de l'angle $\widehat{\text{BDE}}$ au degré près.
+\end{enumerate}

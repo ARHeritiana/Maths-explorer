@@ -1,0 +1,132 @@
+\medskip
+
+\textbf{Partie 1}
+
+\medskip
+
+On considère la fonction $f$ définie sur l'ensemble des nombres réels $\R$ par :
+\[f(x) = \left(x^2 - 4\right)\e^{-x}.\]
+
+
+
+\begin{enumerate}
+\item Limites :
+
+$\bullet~$ : en $- \infty$ : de $\displaystyle\lim_{x \to - \infty}x^2 = + \infty$ d'où 
+$\displaystyle\lim_{x \to - \infty}x^2 - 4 = + \infty$ et $\displaystyle\lim_{x \to - \infty}\e^{-x} =
+ + \infty$ on en déduit par produit de limites que $\displaystyle\lim_{x \to - \infty} f(x) = + \infty$ ;
+
+$\bullet~$ : en $+ \infty$ $f(x) = x^2\e^{-x} - 4\e^{-x}$ : on sait que 
+
+$\displaystyle\lim_{x \to + \infty}4\e^{-x} = 0$ et que $\displaystyle\lim_{x \to + \infty}x^2\e^{-x} = \displaystyle\lim_{x \to + \infty}\dfrac{x^2}{\e^x} =  0$ (puissances comparées), donc :
+
+$\displaystyle\lim_{x \to + \infty} f(x) = 0$.
+\item 
+$f$ est dérivable comme produit de deux fonctions dérivables sur $\R$. Sur cet intervalle :
+
+$f'(x) = 2x\e^{-x} + \left(x^2 - 4\right) \times (- 1)\e^{-x} = \e^{-x}(2x - x^2 + 4) = \left(- x^2 + 2x + 4\right)\e^{-x}$.
+\item 
+On sait que quel que soit $x \in\R,\, \e^{-x} > 0$, donc le signe de $f'(x)$ est celui du trinôme $- x^2 + 2x + 4$.
+
+On a $- x^2 + 2x + 4 = -\left(x^2 - 2x - 4\right) = -\left[(x - 1)^2 - 1 - 4\right] = -\left[(x - 1)^2 - 5\right] =$
+
+$- x^2 + 2x + 4 = - \left(x - 1 + \sqrt 5\right)\left(x - 1 - \sqrt 5\right)$ : ce trinôme a deux racines $1 - \sqrt 5$ et $1 + \sqrt 5$.
+
+On sait que le trinôme a le signe de $a = -1$, donc est négatif sauf sur l'intervalle 
+
+$\left[1 - \sqrt 5~;~1 + \sqrt 5\right]$ où il est positif.
+
+On a donc le tableau de variations :
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(10,3)
+\psframe(10,3)\psline(0,2)(10,2)\psline(0,2.5)(10,2.5)\psline(1,0)(1,3)
+\uput[u](0.5,2.4){$x$} \uput[u](1.4,2.4){$-\infty$} \uput[u](4,2.4){\footnotesize$1 - \sqrt 5$} \uput[u](5.5,2.4){$0$} \uput[u](7,2.4){\footnotesize$1 + \sqrt 5$} \uput[u](9.6,2.4){$+ \infty$} 
+\rput(0.5,2.25){$f'(x)$}\rput(0.5,1){$f$}
+\psline{->}(1.5,1.5)(3.5,0.5)\psline{->}(4.5,0.5)(6.5,1.5)\psline{->}(7.5,1.5)(9.5,0.5)
+\rput(2.5,2.25){$-$}\rput(5.5,2.25){$+$}\rput(8.5,2.25){$-$}
+\rput(5.5,1){$-4$}\uput[d](1.4,2){$+ \infty$}\uput[u](4,0){$\approx -8,5$}\uput[d](7,2){$\approx 0,25$}
+\uput[u](9.4,0){$0$}
+\end{pspicture}
+\end{center}
+
+On a $f\left(1 - \sqrt 5\right) = \left(2 - 2\sqrt 5 \right)\e^{\sqrt 5 - 1} \approx - 8,5$ ;
+
+$f\left(1 + \sqrt 5\right) = \left(2 + 2\sqrt 5 \right)\e^{\sqrt 5 -+ 1} \approx 0,25$ ;
+
+$f(0) = - 4$
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2}
+
+\medskip
+
+On considère la suite $(I_n)$ définie pour tout entier naturel $n$ par $I_n = \displaystyle\int_{-2}^0 x^n\e^{-x}\, \text{d}x$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+$I_0 = \displaystyle\int_{-2}^0 \e^{-x}\, \text{d}x = \left[- \e^{-x}\right]_{-2}^0 = - \e^{0} - \e^{2} = \e^2 - 1$.
+\item 
+On calcule $I_n$ en faisant une intégration par partie : on a 
+
+$\left\{\begin{array}{l c l l c l}
+u(x) &=& \e^{-x}&u'(x) &=& - \e^{-x}\\
+v'(x)&=&x^n&v(x) &=&\dfrac{x^{n+1}}{n+1}\\
+\end{array}\right.$ on a 
+
+$I_n = \left[\e^{-x} \times \dfrac{x^{n+1}}{n+1}\right]_{-2}^0
+ - \displaystyle\int_{-2}^0 - \e^{-x} \times \dfrac{x^{n+1}}{n+1}\, \text{d}x = 0 - \dfrac{(-2)^{n+1}\e^{2}}{n + 1} + \dfrac{I_{n+1}}{n + 1} \iff $
+ 
+ $(n + 1)I_n = -(- 2)^{n+1}\e^2 + I_{n+1} \iff I_{n+1} = (- 2)^{n+1} \text{e}^2 + (n + 1)I_n.$
+
+
+\item
+L'égalité précédente donne avec :
+
+$\bullet~n = 0 :\, I_{1} = (- 2)^{1}\text{e}^2 + I_0 = - 2\e^{2} + \e^{2} - 1 = -\e^{2} - 1$,
+
+$\bullet~n = 1 :\, I_{2} = (- 2)^{2} \text{e}^2 + I_1 = 4 \text{e}^2  - 2\e^{2} - 2 = 2\text{e}^2 - 2$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie 3}
+
+\medskip
+
+\begin{enumerate}
+\item 
+$f$ a le signe du trinôme $x^2 - 4$ car quel que soit $x \in \R$, \, $\e^{- x} > 0$.
+
+Comme $x^2 - 4 = (x + 2)(x - 2)$ ce trinôme a le signe de $a = 1$ donc est positif, sauf sur l'intervalle borné par les deux racines soit sur l'intervalle $]-2~;~2[$ où $f'x) < 0$.
+
+Donc sur l'intervalle $]-2~;~2[, \, f(x) < 0$ et sur $]- \infty~;~-2[ \cup ]2~;~+ \infty[, \, f(x) > 0$.
+\item 
+
+
+
+
+$\mathcal{C}_f$ coupe l'axe des abscisses  au point d'abscisse $- 2$ t on vient de voir que sur l'intervalle $]-2~,~0[, \, f(x) < 0$, donc l'aire $S$ du domaine $D$ est égale à l'opposé de l'intégrale de la fonction $d$ de $x = - 2$ à $x = 0$.
+
+$\text{aire}(D) = - \displaystyle\int_{-2}^0 f(x)\:\text{d}x = - \displaystyle\int_{-2}^0 \left(x^2 - 4\right)\e^{-x}\:\text{d}x = - \displaystyle\int_{-2}^0 x^2\e^{-x}  + 4\displaystyle\int_{-2}^0 \e^{-x} = - I_2 + 4I_0 = 4\left(-\e^{2} - 1\right) - \left(2\e^2 - 2\right) = 2\e^2 - 2 \approx 12,78$ (ce que l'on peut conforter avec la figure).
+\end{enumerate}
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture*}(-3,-9)(5,3)
+\psgrid[gridlabels=0,subgriddiv=1,gridwidth=0.2pt](-2,-9)(0,0)
+\psline{->}(0,0)(1,0)\psline{->}(0,0)(0,1)\uput[d](1,0){\scriptsize $\vect{\imath}$}
+\uput[l](0,1){\scriptsize $\vect{\jmath}$}
+\psaxes[Dx=10,Dy=20]{->}(0,0)(-3,-9)(5,3)
+\psplot[plotpoints=2000,linewidth=1.pt,linecolor=red]{-3}{6}{x dup mul 4 sub 2.71828 x exp div}
+\pscustom[fillstyle=hlines,linecolor=red]{\psplot[plotpoints=2000,linewidth=1.2pt,linecolor=red]{-2}{0}{x 2 exp  4 sub 2.71828 x exp div}\psline[linewidth=0.2pt](0,-4)(0,0)(-2,0)}\uput[dl](0,0){\small O}
+\uput[r](-2,2){\red $\mathcal{C}_f$}\rput(-1,-3){$D$}
+\end{pspicture*}
+\end{center}
+
+\bigskip

@@ -1,0 +1,58 @@
+\medskip
+
+Un apiculteur souhaite étendre son activité de production de miel à une nouvelle région.
+
+Au printemps 2019, il achète $300$ colonies d'abeilles qu'il installe dans cette région.
+
+Il consulte les services spécialisés de la région et s'attend à perdre 8\,\% des colonies
+chaque hiver. Pour maintenir son activité et la développer, il prévoit d'installer 50
+nouvelles colonies chaque printemps, à partir de l'année suivante.
+
+\begin{enumerate}
+\item  On donne le programme suivant écrit en langage Python :
+\begin{lstlisting}[style=python]
+def algo( ) :
+	C = 300
+	N = 0
+	while C < 400 :
+		C = C*0.92+50
+		N = N+1
+	return(N)
+\end{lstlisting}
+
+	\begin{enumerate}
+		\item  Recopier et compléter en ajoutant des colonnes, le tableau ci-dessous qui
+reproduit l'avancement du programme pas à pas :
+
+Les valeurs seront arrondies à l'entier le plus proche.
+
+\smallskip
+
+\begin{tabular}[]{|*{4}{>{\centering \arraybackslash}m{1.92cm}|}m{1.92cm}}
+\hline
+C 					&300	& 326	& \dotfill 	& \\\hline
+\og C < 400 \fg{} ?	& oui	& oui 	& \dotfill	&\\\hline
+\end{tabular}
+\smallskip
+
+		\item Quelle est la valeur de N renvoyée par le programme ?
+
+Interpréter cette valeur dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+Le nombre de colonies est modélisée par une suite. On note $C_n$ une estimation du
+nombre de colonies au printemps de l'année 2019 + $n$.
+
+Ainsi $C_0 = 300$ est le nombre de colonies au printemps 2019.
+
+On admet que pour tout entier naturel $n$, on a :
+
+\[C_{n+1} = 0,92C_n + 50\]
+
+\begin{enumerate}[resume]
+\item La suite $\left(C_n\right)$, est-elle arithmétique ? La suite $\left(C_n\right)$ est-elle géométrique ?
+\item On admet que $C_n = 625 - 325 \times 0,92^n $ pour tout entier naturel $n$.
+
+L'apiculteur pourra-t-il atteindre les $700$ colonies ?
+\end{enumerate}

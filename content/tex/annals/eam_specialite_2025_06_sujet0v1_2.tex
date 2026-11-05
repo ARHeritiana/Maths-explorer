@@ -1,0 +1,115 @@
+On considère la figure suivante, représentée dans un repère orthonormé $\big(O;~\vec{\imath},~\vec{\jmath}\big)$.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5,>=latex,
+    vecteur/.style={very thick,-latex,blue},
+    every label/.append style={font=\scriptsize}]
+  
+  
+  \draw[->,thick] (-0.4,0) -- (4.7,0);
+  \draw[->,thick] (0,-0.4) -- (0,4.7);
+  
+  
+  \draw[vecteur,black] (0,0) -- (1,0) node [midway,below] {$\vec{\imath}$};
+  \draw[vecteur,black] (0,0) -- (0,1) node [midway,left] {$\vec{\jmath}$};
+  
+  
+  \coordinate[label=below left:{$O$}] (O) at (0,0);
+  \coordinate[label=above right:A] (A) at (4, 0);
+  \coordinate[label=above right:B] (B) at (4, 4);
+  \coordinate[label=above right:C] (C) at (0, 4);
+  \coordinate[label=right:I] (I) at (4, 3);
+  \coordinate[label=below:H] (H) at (1.92,1.44);
+  \coordinate[label=above:D] (D) at (2, 2);
+  \coordinate[label=above:$\varepsilon$] (De) at ($(D)+(60:0.75cm)$);
+  
+  
+  \draw[very thick,blue] (O) -- (A) -- (B) -- (C) -- cycle;
+  
+  
+  \draw[very thick,blue] (C) -- (H) -- (I);
+  
+  
+  \draw[blue] let \p1=($(I)-(H)$), \p2=($(C)-(H)$),
+    \n1={atan2(\y1,\x1)}, \n2={atan2(\y2,\x2)} in
+    (H) ++(\n1:4mm) -- ++(\n2:4mm) -- ++(\n1+180:4mm);
+  
+  
+  \draw[thick,red] (D) circle [radius=0.5];
+  
+  
+  \fill[red] (D) circle (2pt);
+  \fill[red] (A) circle (2pt);
+  \fill[red] (B) circle (2pt);
+  \fill[red] (C) circle (2pt);
+  \fill[red] (H) circle (2pt);
+  \fill[red] (I) circle (2pt);
+  
+  
+  \node[below] at (4,0) {$4$};
+  \node[left] at (0,4) {$4$};
+  
+\end{tikzpicture}
+\end{center}
+
+On dispose des données suivantes :
+\begin{itemize}
+    \item Le quadrilatère OABC est un carré de côté 4 ;
+    \item On a A$(4~;~0)$, B$(4~;~4)$, C$(0~;~4)$, I$(4~;~3)$ ;
+    \item Le point H est le projeté orthogonal du point C sur la droite (OI) ;
+    \item On note $\varepsilon$ le cercle de centre D$(2~;~2)$ et de rayon $0,5$.
+\end{itemize}
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+	\item Déterminer les coordonnées des vecteurs $\vect{\text{OI}}$ et $\vect{\text{OC}}$.
+	\item En déduire le produit scalaire $\vect{\text{OI}} \cdot \vect{\text{OC}}$.
+	\end{enumerate}
+
+\bigskip
+
+\item 
+	\begin{enumerate}
+	\item Exprimer le produit scalaire $\vect{\text{OI}} \cdot \vect{\text{OC}}$ en fonction des longueurs OH et OI.
+	\item Calculer la longueur OI.
+	\item En déduire que OH $= 2,4$.
+	\end{enumerate}
+\end{enumerate}
+
+\begin{center}
+\begin{minipage}{0.75\textwidth}
+\begin{enumerate}[start=3]
+\item 
+	\begin{enumerate}
+	\item Déterminer une équation cartésienne de la droite (CH).
+	\item Justifier qu'une équation du cercle $\varepsilon$ est :
+\[x^2 + y^2 - 4x - 4y + 7,75 = 0.\]
+	\item Le point M$(1,5~;~2)$ appartient-il à l'intersection du cercle $\varepsilon$ et de la droite (CH) ? Justifier.
+	\end{enumerate}
+\end{enumerate}
+\end{minipage}
+\hfill
+\fbox{
+\begin{minipage}{0.2\linewidth}
+\centering
+Aide au calcul.
+
+\smallskip
+
+$0,5^2 = 0,25$
+
+\smallskip
+
+$1,5^2 = 2,25$
+
+\smallskip
+
+$2,5^2 = 6,25$
+
+\smallskip
+
+$5 \times 2,4 = 12$
+\end{minipage}
+}
+\end{center}

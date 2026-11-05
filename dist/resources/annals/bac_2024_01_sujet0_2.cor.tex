@@ -1,0 +1,208 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_01_sujet0_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\noindent {\Large \textbf{Partie 1}}
+
+\medskip
+
+Pour tout entier $n\geqslant 1$, on désigne par $f_{n}$ la fonction définie sur $[0~;~1]$ par :
+$f_{n}(x) = x^{n} \e^{x}$.
+
+On note $\mathcal{C}_{n}$ la courbe représentative de la fonction $f_{n}$ dans un repère \Oij{} du plan.
+
+On désigne par $\left(I_{n}\right)$ la suite définie pour tout entier $n\geqslant 1$ par :
+$I_{n} =\ds \int_{0}^{1} x^{n} \e^{x} \mathrm{~d} x.$
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item On désigne par $F_{1}$ la fonction définie sur $[0 ; 1]$ par : $F_{1}(x) = (x-1) \e^{x}.$
+
+$F'_1(x)=1\times \e^{x} + (x-1)\times \e^{x} = x\e^{x}$
+
+Donc $F_{1}$ est une primitive de la fonction $f_{1}$.
+
+		\item $I_{1} = \ds \int_{0}^{1} x \e^{x} \d x = \left [ F_1(x)\strut\right ]_{0}^{1}= F_1(1)-F_1(0) = 0- \left (-1\e^{0}\right )=1$
+		
+	\end{enumerate}
+	
+\item 
+$I_{n+1}=\ds\int_{0}^{1} x^{n+1}\e^{x}\d x$
+
+On pose $u(x)=x^{n+1}$ et $v'(x)=\e^{x}$; donc $u'(x)=(n+1)x^n$ et $v(x)=\e^{x}$.
+
+D'après la formule d'intégration par parties:\\
+$\ds\int_{0}^{1} u(x)v'(x) \d x =  \left [ u(x)v(x)\strut \right ]_{0}^{1} - \ds\int_{0}^{1} u'(x)v(x)\d x$
+
+On en déduit que:
+
+$\begin{gathered}I_{n+1}=\ds\int_{0}^{1} x^{n+1}\e^{x} \d x =  \left [ x^{n+1}\e^{x}\strut \right ]_{0}^{1} - \ds\int_{0}^{1} (n+1)x^n \e^{x}\d x
+= (\e - 0) - (n+1) \ds\int_{0}^{1} x^n \e^{x} \d x\\
+\phantom{I_{n+1}}
+= \e -(n+1) I_{n}\end{gathered}$
+
+\item Pour $n=1$: $I_{2} = \e - 2I_1= \e-2$.
+
+\item On considère la fonction \texttt{mystere} écrite dans le langage Python :
+
+\begin{center}
+
+	\texttt{\begin{tabular}{l}
+			def mystere(n):\\
+			\qquad a = 1\\
+			\qquad L = [a]\\
+			\qquad for i in range(1,n):\\
+			\qquad\qquad a = e - (i + 1)*a\\
+			\qquad\qquad L.append(a)\\
+			\qquad return L\\
+	\end{tabular}}
+
+\end{center}
+
+
+L'appel \texttt{ mystere(5)} va donner la liste $\left [I_1\;;\;I_2\;;\;I_3\;;\;I_4\;;\;I_5\strut\right ]$ ($I_1$ est mise au départ dans L et la boucle tournant de 1 à 4 va donner les quatre autres intégrales)
+
+\end{enumerate}
+
+\medskip
+
+\noindent {\Large \textbf{Partie 2}}
+
+\medskip
+
+
+\begin{enumerate}
+	\item Sur le graphique ci-dessous, on a représenté les courbes $\mathcal{C}_{1}, \mathcal{C}_{2}, \mathcal{C}_{3}, \mathcal{C}_{10}, \mathcal{C}_{20}$ et $\mathcal{C}_{30}$.
+
+\begin{center}
+\psset{xunit=10cm,yunit=2cm,comma,algebraic}
+\def\xmin{-0.1} \def\xmax{1.1} \def\ymin{-0.5} \def\ymax{3}
+\begin{pspicture*}(\xmin,\ymin)(\xmax,\ymax)
+\psgrid[unit=1cm,subgriddiv=5, gridlabels=0, gridcolor=lightgray,subgridcolor=lightgray!50](-1,-1)(11,6) 
+\psaxes[labelFontSize=\scriptstyle,ticksize=-2pt 2pt,Dx=0.1,Dy=0.5](0,0)(-0.099,-0.499)(\xmax,2.99) 
+\uput{8pt}[dl](0,0){\footnotesize $0$}
+
+
+\multido{\i=1+1}{3}{
+\psplot[plotpoints=1000,linecolor=red]{0}{1}{(x^\i)*EXP(x)}}
+\multido{\i=10+10}{3}{
+\psplot[plotpoints=1000,linecolor=red]{0}{1}{(x^(\i))*EXP(x)}}
+\uput[ul](0.5,0.8){\red $\mathcal{C}_{1}$}
+\uput[l](0.6,0.8){\red $\mathcal{C}_{2}$}
+\uput[dr](0.6,0.4){\red $\mathcal{C}_{3}$}
+\uput[ul](0.85,0.5){\red $\mathcal{C}_{10}$}
+\uput[l](0.9,0.3){\red $\mathcal{C}_{20}$}
+\uput[r](0.92,0.2){\red $\mathcal{C}_{30}$}
+\end{pspicture*}
+\end{center}
+			
+	\begin{enumerate}
+		\item 
+Sur $\left [0\;;\;1\strut\right]$, $x^n\e^{x}\geqslant 0$ donc l'intégrale $I_n$ représente l'aire de la portion de plan comprise entre la courbe $\mathcal{C}_n$, l'axe des abscisses, et les droites d'équations $x = 0$ et $x=1$.
+		\item D'après l'allure des courbes tracées, on peut conjecturer que la suite $\left(I_{n}\right)$ tend vers 0.
+	\end{enumerate}
+	
+\item 
+\begin{list}{\textbullet}{}
+\item $x^n\e^{x} \geqslant 0$  sur $\left [0\;;\;1\strut\right ]$, donc $\ds\int_{0}^{1}x^n\e^{x}\d x \geqslant0$ donc $I_n\geqslant 0$.
+
+\item La fonction exponentielle est strictement croissante sur $\R$, donc si $0\leqslant x \leqslant 1$, on a $\e^{0} \leqslant\e^{x} \leqslant \e^{1}$ donc $\e^{x}\leqslant \e$. 
+
+Sur $\left [0\;;\;1\strut\right ]$, on a $x^n\geqslant 0$ donc $x^n \e^{x} \leqslant \e x^n$.
+
+D'après la positivité de l'intégration, $\ds\int_{0}^{1} x^n \e^{x} \d x \leqslant \ds\int_{0}^{1} x^n \e \d x$, ce qui veut dire: $I_n \leqslant \e \ds\int_{0}^{1} x^n \d x$.
+\end{list} 
+
+On a donc démontré que: $0\leqslant I_n \leqslant  \e \ds\int_{0}^{1} x^n \d x$.
+
+		\item 
+$\ds\int_{0}^{1} x^n \d x = \left [ \dfrac{x^{n+1}}{n+1} \right ]_{0}^{1}=\dfrac{1}{n+1}$
+donc $0\leqslant I_n \leqslant  \e \ds\int_{0}^{1} x^n \d x$ équivaut à $0\leqslant I_n \leqslant\dfrac{\e}{n+1}$.
+
+$\ds\lim_{n\to +\infty} \dfrac{\e}{n+1}=0$ et $\ds\lim_{n\to +\infty} 0=0$ donc, d'après le théorème des gendarmes, on peut dire que la suite $(I_n)$ converge et que $\ds\lim_{n\to +\infty} I_n=0$.
+		
+	\end{enumerate}
+
+\end{document}

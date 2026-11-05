@@ -1,0 +1,162 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_09_sujet1_metropole_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+L'espace est rapporté à un repère orthonormé \Oijk.
+
+On considère les points 
+\begin{center}A$(1~;~0~;~-1)$,\quad  B$(3~;~-1~;~2)$, \quad C$(2~;~-2~;~ -1)$ \quad et \quad D$(4~;~-1~;~-2)$.\end{center}
+
+On note $\Delta$ la droite de représentation paramétrique 
+\[\left\{\begin{array}{l c l}
+x &=&\phantom{-}0\\
+y &=&\phantom{-}2 + t\\
+z &=& -1 + t
+\end{array}\right.\:,\:\: \text{avec } t\in \R.\]
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+
+On a $\vect{\text{AB}}\begin{pmatrix}2\\-1\\3\end{pmatrix}$ et $\vect{\text{AC}}\begin{pmatrix}1\\-2\\0\end{pmatrix}$ : ces deux vecteurs ne sont pas colinéaires (en comparant les premières coordonnées, s'il l'étaient on aurait $\vect{\text{AB}} = 2\vect{\text{AC}}$, ce qui est faux), donc les points A, B et C ne sont pas alignés et définissent donc un plan unique $\mathcal{P}$.
+		\item 
+On a $\vect{\text{CD}}\begin{pmatrix}2\\1\\-1 \end{pmatrix}$, puis 
+
+$\bullet~~$ $\vect{\text{CD}} \cdot \vect{\text{AB}} = 4 - 1 - 3 = 0$ ;
+
+$\bullet~~$ $\vect{\text{CD}} \cdot \vect{\text{AC}} = 2 - 2 + 0 = 0$.
+
+Le vecteur $\vect{\text{CD}}$ est donc orthogonal à deux vecteurs non colinéaires du plan $\mathcal{P}$, c'est donc un vecteur normal à ce plan.
+
+
+Puisque $\vect{\text{CD}} \cdot \vect{\text{AC}}  = 0$ les droites (CD) et (AC) sont perpendiculaires en C, donc C est le projeté orthogonal de D sur le plan $\mathcal{P}$.
+		\item 
+		Puisque $\vect{\text{CD}}$ est un vecteur normal au plan $\mathcal{P}$, on sait que ses cordonnées sont dans l'ordre les coefficients $a, \: b,\:c$ de $x,\:y,\:z$, soit :
+		
+$M(x~;~y~;~z) \in \mathcal{P} \iff 2x + 1y - 1z + d = 0$.
+
+En particulier C$(2~;~-2~;~ -1) \in \mathcal{P} \iff 2\times 2  + 1\times (- 2)  - 1\times (- 1) + d = 0 \iff 4 - 2 + 1 + d = 0 \iff d = - 3$.
+
+Finalement : $M(x~;~y~;~z) \in \mathcal{P} \iff 2x + y - z - 3 = 0$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+On a grâce aux coordonnées du vecteur $\vect{\text{CD}}$, \:CD$^2 = 4 + 1 + 1 = 6$, d'où CD $ = \sqrt 6$.
+		\item 
+Puisque C est le projeté orthogonal de D sur le plan $\mathcal{P}$, ce point est celui qui est à la plus courte distance du point D, soit $\sqrt 6$ : il n'existe donc pas d'autre point de $\mathcal{P}$ situé à cette distance $\sqrt 6$ de D;
+
+Ou encore : la sphère de centre D et de rayon $\sqrt 6$ est tangente en C au plan $\mathcal{P}$, donc quel que soit M dans $\mathcal{P}$, le triangle DCM est rectangle en C, d'hypoténuse [DM] et l'on sait qu'alors DM > DC $= \sqrt 6$ : tout point M du plan aurez que C est donc à une distance supérieure à $\sqrt 6$ de D.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+Si $M(x~;~y~;~z)$ est commun à $\Delta$ et à $\mathcal{P}$ ses coordonnées vérifient le système :
+
+$\left\{\begin{array}{l c l}
+x &=&\phantom{-}0\\
+y &=&\phantom{-}2 + t\\
+z &=& -1 + t\\
+2x + y - z - 3 &=& 0
+\end{array}\right.\:,\:\: \text{avec } t\in \R \Rightarrow 2 \times 0  + 2 + t  - (- 1 + t) - 3 = 0 \iff 0 = 0$ : ceci signifie que tout point de $\Delta$ appartient à $\mathcal{P}$ donc que $\Delta$ est incluse dans le plan $\mathcal{P}$.
+
+Soit H le projeté orthogonal du point D sur la droite $\Delta$.
+		\item 
+Un vecteur directeur de la droite $\Delta$ est $\delta\begin{pmatrix}0\\1\\1\end{pmatrix}$ et avec H$(0~;~2 + t~;~- 1 + t)$, on a $\vect{\text{DH}}\begin{pmatrix}4\\3 + t\\1 + t\end{pmatrix}$.
+
+Or (DH) $\perp \Delta \Rightarrow \delta \cdot \vect{\text{DH}} = 0 \iff 0 + 3 + t + 1 + t = 0 \iff 4 + 2t = 0 \iff 2t = - 4 \iff t = - 2$.
+
+On a donc H$(0~;~0~;~- 3) \in \Delta$.
+		\item 
+On a donc $\vect{\text{DH}}\begin{pmatrix}4\\3 - 2\\1 - 2\end{pmatrix}$, soit $\vect{\text{DH}}\begin{pmatrix}4\\1\\- 1\end{pmatrix}$ ; il en résulte que DH$^2 = 4^2 +1^2 + (- 1)^2 = 18$.
+		
+Finalement DH $= \sqrt{18} = \sqrt{9 \times 2} = \sqrt 9 \times \sqrt 2 = 3\sqrt 2$.
+	\end{enumerate}
+\end{enumerate}
+
+
+\bigskip
+
+\end{document}

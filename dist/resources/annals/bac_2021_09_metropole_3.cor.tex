@@ -1,0 +1,225 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_09_metropole_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+
+
+Les parties I et II peuvent être abordées de façon indépendante.
+
+\begin{center}\textbf{Partie I : Effet de l'introduction d'une nouvelle espèce.}\end{center}
+
+
+
+
+
+
+Soit $f$ la fonction définie pour   $t \in [0~;~120]$ par:
+
+\[f(t) = \left(0,04t^2 - 8t + 400\right)\text{e}^{\frac{t}{50}} + 40.\]
+
+La variable $t$ représente le temps écoulé, en jour, à partir de l'introduction à l'instant $t = 0$ des truites dans le lac, et $f(t)$ modélise le nombre de crapauds à l'instant $t$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+Pour $t = 0$,\, $f(0) = 400 \e^{0} + 40 = 440$~(crapauds)
+\item 
+
+
+
+Sur l'intervalle [0~;~120] en dérivant le produit :
+
+$\begin{gathered}f'(t) = (0,08t - 8)\text{e}^{\frac{t}{50}} + \dfrac{1}{50}\left(0,04t^2 - 8t + 400\right)\text{e}^{\frac{t}{50}} = \text{e}^{\frac{t}{50}}\left[(0,08t - 8) + \dfrac{1}{50}\left(0,04t^2 - 8t + 400\right)\right]\\
+\phantom{f'(t)} 
+= \text{e}^{\frac{t}{50}}\left(0,08t - 8 + \np{0,0008}t^2 - 0,16 t + 8 \right)
+= \text{e}^{\frac{t}{50}}\left(-0,08t + \np{0,0008}t^2\right) \\
+\phantom{f'(t)} 
+= \np{0,0008}\left(t^2 - 100t\right)\text{e}^{\frac{t}{50}} 
+= t(t - 100)\text{e}^{\frac{t}{50}} \times 8 \times 10^{-4}.\end{gathered}$
+
+
+
+\item 
+On sait que quel que soit $t \in [0~;~120]$, $\text{e}^{\frac{t}{50}} > 0$ : le signe de $f'(t)$ est donc celui du trinôme $t(t - 100)$ qui est positif sauf sur l'intervalle $]0~;~100[$ (entre les racines du trinôme). 
+
+$f(0) = 480$, $f(100) = (400 - 800 + 400)\text{e}^{\frac{100}{50}}  + 40 = 0 + 40 = 40$ et \\
+$f(120) = 576  - 960 + 400)\text{e}^{\frac{120}{50}} + 40 = 16 \text{e}^{2,4} + 40 \approx 216,37$.
+
+On dresse le tableau de variations de $f$ sur l'intervalle $[0~;~120]$:
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}  
+\def\esp{\hspace*{1.5cm}}
+\def\hauteur{0pt}
+$\begin{array}{|c|l *3{c} c|}
+\hline
+ t & 0 & \esp & 100 & \esp & 120 \\
+ \hline
+t(t-100) & 0 &  \pmb{-} & \vline\hspace{-2.7pt}0 & \pmb{+} & \\  
+ \hline
+f'(t) &  0 &  \pmb{-} & \vline\hspace{-2.7pt}0 & \pmb{+} & \\  
+\hline
+  & \Rnode{max1}{440}  &  &  &  & \Rnode{max2}{216,37}   \\
+f & &  & & &  \rule{0pt}{\hauteur} \\
+ &  & &   \Rnode{min}{40} & & \rule{0pt}{\hauteur}
+\ncline{->}{max1}{min} \ncline{->}{min}{max2}\\
+\hline
+\end{array}$
+}
+\end{center}
+
+
+ \item Selon cette modélisation:
+	\begin{enumerate}
+		\item 
+On a vu dans la question précédente que $f(100) = 40$ est le minimum de la fonction $f$, on a donc $J = 100$.
+		\item 
+		On a aussi vu que de 100 jours à 120 jours le nombre de crapauds croît strictement de 40 à environ 216 : il dépassera donc 140 individus.
+		\item 
+		
+Soit $J_{140}$ la durée en jour à partir de laquelle le nombre de crapauds dépassera $140$ individus. La calculatrice donne :
+		
+		$f(115) \approx 130<140$ et $f(116) \approx 144>140$, donc $J_{140} = 116$.
+	\end{enumerate}
+\end{enumerate}
+
+
+\begin{center}\textbf{Partie II : Effet de la Chytridiomycose sur une population de têtards}\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item On complète l'arbre de probabilité suivant en utilisant les données de l'énoncé:
+
+\begin{center}
+\pstree[treemode=R,nodesepB=3pt,levelsep=2.75cm]{\TR{}}
+{\pstree{\TR{$L$~~}\taput{0,25}}
+	{\TR{$T$}\taput{0,74}
+	\TR{$\overline{T}$}\tbput{0,24}
+	}
+\pstree{\TR{$\overline{L}$~~}\tbput{0,75}}
+	{\TR{$T$}\taput{0}
+	\TR{$\overline{T}$}\tbput{1}
+	}	
+}
+\end{center}
+
+\item 
+D'après la loi des probabilités totales : 
+
+$P(T) = P(L \cap T) + P\left(\overline{L} \cap T\right) 
+= P(L) \times P_L(T) + P\left(\overline{L}\right) \times P_{\overline{L}}(T) 
+= 0,25 \times 0,74 + 0,75 \times 0 
+= 0,185$
+
+\item Le têtard n'est pas contaminé. La probabilité que le lac soit infecté est:
+
+$P_{\overline{T}}(L) 
+ = \dfrac{P\left(L \cap \overline{T}\right)}{P\left(\overline{T}\right)} = \dfrac{0,25 \times 0,26}{1 - 0,185} = \dfrac{0,065}{0,815}  \approx 0,0797$, soit $0,080$ au millième près.
+\end{enumerate}
+
+\medskip
+
+\end{document}

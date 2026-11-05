@@ -1,0 +1,76 @@
+Dominique répond à un QCM comportant 10 questions.
+Pour chaque question, il est proposé 4 réponses dont une seule est exacte.
+Dominique répond au hasard à chacune des 10 questions en cochant, pour chaque question, exactement une case parmi les 4.
+Pour chacune des questions, la probabilité qu'il réponde correctement est donc $\frac{1}{4}$.
+
+On note $X$ la variable aléatoire qui compte le nombre de bonnes réponses à ce QCM.
+
+\begin{enumerate}
+\item 
+Pour chaque question, il y a deux issues possibles: Dominique donne la bonne réponse, avec une probabilité $p=\frac{1}{4}$, ou Dominique donne une mauvaise réponse.
+
+On effectue cette expérience élémentaire 10 fois et de façon indépendante.
+
+La variable aléatoire $X$ qui compte le nombre de bonnes réponses à ce QCM suit donc la loi binomiale de paramètres $n=10$ et $p=\frac{1}{4}$.
+
+\item 
+La probabilité que Dominique obtienne exactement 5 bonnes réponses est :
+
+$P\left (X=5\right ) = \binom{10}{5} \times \left (\frac{1}{4}\right )^5 \times \left (1-\frac{1}{4}\right )^{10-5}\approx \np{0,0584}$
+
+\item 
+L'espérance de $X$ est $E(X)=np = 10\times \frac{1}{4}= 2,5$.
+
+En procédant comme Dominique, un élève aura en moyenne $2,5$ bonnes réponses.
+
+\item On suppose dans cette question qu'une bonne réponse rapporte un point et qu'une mauvaise réponse fait perdre $0,5$ point. La note finale peut donc être négative.
+
+On note $Y$ la variable aléatoire qui donne le nombre de points obtenus.
+
+	\begin{enumerate}
+		\item 
+Pour réaliser l'évènement $(Y=10)$, il faut que toutes les réponses soient justes donc:
+$P\left (Y = 10\right )=P\left (X = 10\right ) = \left (\frac{1}{4}\right )^{10}$.		
+				
+		\item 
+\begin{list}{\textbullet}{On peut calculer la valeur de $Y$ en fonction de celle de $X$}
+\item On a vu que $(Y = 10)$ équivalait à $(X=10)$.
+\item Si $X = 9$, il y a 9 bonnes réponses qui rapportent 9 points, et une mauvaise réponse qui en retire un demi; donc $Y=8,5$.
+\item Si $X = 8$, il y a 8 bonnes réponses qui rapportent 8 points, et deux mauvaises réponses qui retirent deux demi-points; donc $Y=7$.
+\item Etc.
+\end{list}
+
+On regroupe tous les résultats possibles dans un tableau.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{| *{12}{>{\centering\arraybackslash} X|}}
+\hline
+$X$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10\\
+\hline
+$Y$ & $-5$ & $-3,5$ & $-2$ & $-0,5$ & $1$ & $2,5$ & $4$ & $5,5$ & $7$ & $8,5$ & $10$ \\
+\hline
+\end{tabularx}
+\end{center}
+
+Donc la note finale de Dominique est positive à partir de 4 bonnes réponses.
+
+		\item 
+D'après le tableau précédent, $P\left (Y\leqslant 0\right )=P\left (X\leqslant 3\right )$.
+
+Donc $P\left (Y\leqslant 0\right ) \approx 0,78$.
+
+		\item
+$X$ prend toutes les valeurs entières entre 0 et 10. 
+
+Pour $X$ bonnes réponses qui rapportent $X$ points, il y en a $10-X$ mauvaises qui retirent $0,5\left (10-X\right )$ points.
+
+Donc $Y=X-0,5\left (10-X\right )=X-5+0,5X=1,5X-5$.
+
+		\item 
+D'après la linéarité de l'espérance mathématique, on a:
+
+$E\left (Y\right ) = E\left (1,5X-5\right )=1,5\times E\left (X\right ) - 5 = 1,5\times 2,5 - 5 = -1,25$.		
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

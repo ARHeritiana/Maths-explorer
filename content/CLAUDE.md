@@ -39,3 +39,5 @@ Fourier sequence titles, summaries and prerequisites are derived from the origin
 `tex/mada/`: chapter sources of the Malagasy books (T10, T11 S), copied from the owner's Mada-Boky repository for the slide decks; rewritten by `build/mxbuild/mada.py` (PDFs: `scripts/build-mada.py`, see `docs/CURRICULUM.md`).
 
 `data/prerequisites.json`: internal concept vocabulary/DAG, course entry assumptions and introduction placements, per-question requirement contracts with source fingerprints. The manifest owns chapter identity/order. Audit reports are not deployed. See `docs/PREREQUISITES.md`.
+
+`tex/annals/*.tex`: attributed Bac/EAM/E3C exercise and correction units, with source metadata and chapter links in manifest `annalsBank`; `data/annals-build.json` is the generated integrity receipt.

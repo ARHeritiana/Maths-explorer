@@ -1,0 +1,169 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet1_etrangers_groupe2_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item Une primitive de la fonction $f$, définie sur $\R$ par $f(x) =x\text{e}^x$, est la fonction $F$, définie sur $\R$, par :
+
+
+
+
+
+
+Avec $F(x) = (x - 1)\text{e}^x$, on a $F'(x) = 1\text{e}^x + (x - 1)\text{e}^x = \text{e}^x(1 + x - 1) = x\text{e}^x$. Réponse \textbf{b.}
+
+\item On considère la fonction $g$ définie par $g(x) = \ln \left(\dfrac{x - 1}{2x+ 4}\right).$
+
+
+
+
+
+
+
+
+
+La fonction est définie quand l'argument du logarithme est supérieur à zéro donc quand 
+
+$\dfrac{x - 1}{2x+ 4} > 0$ ou ce qui revient au même quand $(x - 1)(2x + 4) = 0$.
+
+Or ce trinôme du second degré a deux zéros$- 2$ et 1 et son coefficient dominant est $+ 2$, donc ce trinôme est positif sauf entre les racines $- 2$ et 1. Réponse \textbf{c.}
+\item  La fonction $h$ définie sur $\R$ par $h(x)= (x + 1)\text{e}^{x}$ est :
+
+
+
+
+
+
+
+On peut calculer $h'(x) = (x + 2)\text{e}^x$, puis $h''(x) = (x + 3)\text{e}^x$.
+
+Comme $\text{e}^x > 0$ quel que soit le réel $x$ le signe de $h''(x)$ est celui de $x + 3$ qui est positif sur 
+
+$]-3~;~+ \infty[$. Sur cet intervalle la fonction est convexe. Réponse \textbf{d.}
+
+\item Une suite $\left(u_n\right)$ est minorée par 3 et converge vers un réel $\ell$.
+
+
+
+
+
+
+
+
+La limite est supérieure ou égale à 3. Réponse \textbf{b.}
+
+\item  La suite $\left(w_n\right)$ est définie par $w_1 = 2$ et pour tout entier naturel $n$ strictement positif, 
+
+$w_{n+1} = \dfrac1n w_n$.
+
+
+
+
+
+
+On peut démontrer rapidement par récurrence de :
+
+$w_1 = 2$, \quad $w_2 = \dfrac{2}{1} = 2$, \quad $w_3 = 1, \quad w_4 = \dfrac{1}{3}w_3 = \dfrac13 = \dfrac{2}{2 \times 3} = \dfrac{2}{(4 - 1)!}$, ...
+
+que $w_n = \dfrac{2}{(n-1)!}$, avec $n! = 1 \times 2 \times 3 \times \ldots \times n$.
+
+Or $\displaystyle\lim_{n \to + \infty}\dfrac{2}{(n- 1)!} = 0$. Réponse \textbf{d.}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

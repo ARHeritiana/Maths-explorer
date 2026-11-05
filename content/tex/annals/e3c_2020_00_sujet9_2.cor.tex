@@ -1,0 +1,28 @@
+\section*{Exercice 2 (5 points)}
+	\subsection*{1. Montrer que $u_1 = 5150$ et $u_2 = 5304,5$.}
+	
+Ajouter 3\% d’intérêts c’est multiplier par $1 + 0,03 = 1,03$, donc :
+	
+	\[
+	u_1 = 5000 \times 1,03 = 5150
+	\]
+	\[
+	u_2 = 5150 \times 1,03 = 5304,50
+	\]
+	
+	\subsection*{2. a. Pour tout entier naturel $n$, exprimer $u_{n+1}$ en fonction de $u_n$. En déduire la nature de la suite $(u_n)$ en précisant sa raison et son premier terme.}
+On a vu que $u_{n+1} = 1,03u_n$ : \\
+La suite $(u_n)$ est donc géométrique de raison $1,03$ et de premier terme $5 000$.
+	
+	\subsection*{b. Pour tout entier naturel $n$, exprimer $u_n$ en fonction de $n$.}
+On sait que $u_n = 5000 \times 1,03^n$.
+	
+	\subsection*{3. Calculer le capital acquis par Lisa à l’âge de 18 ans. Arrondir au centième.}
+On a $u_{18} = 5000 \times 1,03^{18} \approx 8512,17$.
+	
+	\subsection*{4. Si Lisa n’utilise pas le capital dès ses 18 ans, quel âge aura-t-elle quand celui-ci dépassera 10 000 euros ?}
+Il faut donc trouver $n$ tel que :
+	\[
+	5000 \times 1,03^n > 10000 \iff 1,03^n > 2
+	\]
+La calculatrice donne $n > 23$. Lisa aura 23 ans lorsque son capital aura doublé.

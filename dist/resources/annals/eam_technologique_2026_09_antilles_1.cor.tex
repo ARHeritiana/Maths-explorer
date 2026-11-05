@@ -1,0 +1,143 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_technologique_2026_09_antilles_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Partie A}
+
+\begin{enumerate}
+	\item $\mathcal{C}_R$ est une droite passant par l'origine : $R$ est donc une fonction linéaire, de la forme $R(x) = ax$.
+
+	D'après les deux points de coordonnées $(20~;~\np{6000})$ et $(40~;~\np{12000})$ marqués sur le graphique :
+	\[a = \dfrac{\np{12000} - \np{6000}}{40 - 20} = \dfrac{\np{6000}}{20} = 300.\]
+	
+Pour tout $x$ de $[0~;~40]$ : $R(x) = 300x$.
+
+	\item L'entreprise réalise un bénéfice lorsque la recette dépasse le coût, c'est-à-dire lorsque
+	$\mathcal{C}_R$ est au-dessus de $\mathcal{C}_C$.
+
+	Par lecture graphique, $\mathcal{C}_R$ est au-dessus de $\mathcal{C}_C$ entre les deux
+	points d'intersection des courbes, d'abscisses environ 18 et 39.
+	L'entreprise réalise donc un bénéfice pour $x$ compris entre environ
+	18 et 39 tonnes.
+
+	\item Le bénéfice est maximal lorsque l'écart vertical
+	entre $\mathcal{C}_R$ (au-dessus) et $\mathcal{C}_C$ (en dessous) est le plus grand.
+
+	Avec la précision permise par le graphique, cet écart est maximal pour
+	$x \approx 30$ ; le bénéfice maximal est alors d'environ \np{3400}~\euro.
+\end{enumerate}
+
+\subsection*{Partie B}
+
+\emph{Pour $x \in [0~;~40]$, $B(x) = -x^3+54x^2-540x-\np{2000}$.}
+
+\begin{enumerate}
+	\item Pour tout réel $x$ de $[0~;~40]$ :
+	\[B'(x) = -3x^2 + 54 \times 2x - 540 = -3x^2 + 108x - 540.\]
+	D'autre part :
+	\[(-3x+18)(x-30) = -3x^2 - 90x + 18x - 540 = -3x^2 + 108x - 540.\]
+	Donc, pour tout $x$ de $[0 ; 40]$, $B'(x) = (-3x+18)(x-30)$.
+
+	\item $-3x + 18 = 0 \iff x = 6$ (coefficient $-3 < 0$ : positif avant, négatif après) ;
+
+	$x - 30 = 0 \iff x = 30$ (coefficient $1 > 0$ : négatif avant, positif après).
+
+	\begin{center}
+		\begin{tikzpicture}
+			\tkzTabInit[lgt=3.4,espcl=2.6]
+			{$x$/1,$-3x+18$/1,$x-30$/1,$B'(x)$/1,$B$/2}{$0$,$6$,$30$,$40$}
+			\tkzTabLine{,+,z,-,,-,}
+			\tkzTabLine{,-,,,z,+,}
+			\tkzTabLine{,-,z,+,z,-,}
+			\tkzTabVar{+/{$-\np{2000}$},-/{$-\np{3512}$},+/{$\np{3400}$},-/{$-\np{1200}$}}
+		\end{tikzpicture}
+	\end{center}
+
+La fonction $B$ est décroissante sur $[0~;~6]$, croissante sur
+	$[6~;~30]$, puis décroissante sur $[30~;~40]$.
+
+	\item D'après le tableau de variations, le bénéfice est maximal pour $x = 30$ tonnes de compote produites et vendues. Il vaut alors $B(30) = \np{3400}$~(\euro).
+\end{enumerate}
+
+\medskip
+
+\end{document}

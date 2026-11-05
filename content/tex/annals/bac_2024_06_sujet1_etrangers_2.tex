@@ -1,0 +1,53 @@
+\medskip
+
+On considère la fonction $f$ définie sur l'intervalle [0~;~1] par 
+\[f(x) = 2x\e^{-x}.\]
+
+On admet que la fonction $f$ est dérivable sur l'intervalle [0~;~1]. 
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Résoudre sur l'intervalle [0~;~1] l'équation $f(x) = x$.
+		\item Démontrer que, pour tout $x$ appartenant à l'intervalle [0~;~1], 
+		\[f'(x) = 2(1 - x)\e^{-x}.\]
+		
+		\item Donner le tableau de variations de la fonction $f$ sur l'intervalle [0~;~1].
+		
+On considère la suite $\left(u_n\right)$ définie par $u_0 = 0,1$ et pour tout entier naturel $n$,
+\[u_{n+1} = f\left(u_n\right).\]
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Démontrer par récurrence que, pour tout $n$ entier naturel,
+		\[0 \leqslant u_n < u_{n+1} \leqslant 1.\]
+		
+		\item En déduire que la suite $\left(u_n\right)$ est convergente.
+	\end{enumerate}
+\item Démontrer que la limite de la suite $\left(u_n\right)$ est $\ln (2)$.
+\item 
+	\begin{enumerate}
+		\item Justifier que pour tout entier naturel $n,\: \ln (2) - u_n$ est positif.
+		\item On souhaite écrire un script Python qui renvoie une valeur approchée de $\ln(2)$ par défaut à $10^{-4}$ près, ainsi que le nombre d'étapes pour y parvenir.
+		
+Recopier et compléter le script ci-dessous afin qu'il réponde au problème posé.
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+\textbf{def} seuil() :\\
+\qquad n = 0\\
+\qquad u = 0.1\\
+\qquad \textbf{while} ln (2) $-$ u \ldots 0.0001 :\\
+\qquad \qquad n=n+1\\
+\qquad \qquad u= \ldots\\
+\qquad \textbf{return} (u,~n)\\ \hline
+\end{tabular}
+\end{center}
+
+		\item Donner la valeur de la variable $n$ renvoyée par la fonction seuil ().
+	\end{enumerate}
+\end{enumerate}
+
+\medskip

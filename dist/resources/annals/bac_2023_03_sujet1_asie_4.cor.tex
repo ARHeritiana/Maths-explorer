@@ -1,0 +1,143 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet1_asie_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+	Pour ce QCM, aucune justification n'est attendue, dans ce corrigé, on en donne quand même.
+
+	Pour ce problème il convient de bien visualiser la situation. Nous avons des billes prélevées au hasard dans l'urne, et les billes sont indiscernables au toucher, donc nous sommes dans une situation d'équiprobabilité : chaque bille a une probabilité égale à $\dfrac{1}{15}$ d'être choisie dans l'urne.
+
+	On peut donc avoir la visualisation suivante :
+
+	\begin{footnotesize}
+	\begin{tabularx}{\linewidth}{|l| *{15}{>{\centering \arraybackslash}X|}} \hline
+		n\up{o} bille&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15\\ \hline
+		couleur &$R$&$B$&$B$&$B$&$B$&$V$&$V$&$V$&$V$&$V$&$V$&$V$&$V$&$V$&$V$\\ \hline
+		$G=$&$-10$&$-4$&$-1$&2&5&$-4$&$-3$&$-2$&$-1$&0&1&2&3&4&5\\ \hline
+	\end{tabularx}
+	\end{footnotesize}
+
+
+	Chaque colonne de ce tableau a une probabilité de $\dfrac{1}{15}$.
+
+	\medskip
+
+	\textbf{Question 1 : réponse B}
+
+	\smallskip
+
+	Pour que la bille tirée soit bleue ou numérotée d'un nombre pair, il faut avoir choisi une bille dont le numéro est dans $\{2~;~3~;~4~;~5~;~6~;~8~;~10~;~12~;~14\}$, il y a donc 9 issues favorables, parmi 15 issues possibles, la probabilité est de $\dfrac{9}{15}$.
+
+	\medskip
+
+	\textbf{Question 2 : Réponse C}
+
+	\smallskip
+
+	Il y a une seule bille verte portant le numéro 7, et il y a dix billes vertes, donc la probabilité est $\dfrac{\frac1{15}}{\frac{10}{15} } = \dfrac{1}{10}$.
+
+	\medskip
+
+	\textbf{Question 3 : réponse B}
+
+	\smallskip
+
+	L'événement (G = 5) est réalisé par un choix de bille portant le numéro 5 (bille bleue donc on a : \linebreak$G = 3\times 5 - 10 = 5$) ou le numéro 15 (bille verte donc $G = 15 - 10 = 5$). Il y a donc deux issues favorables sur 15 issues possibles : la probabilité est de $\dfrac{2}{15}$.
+
+	\medskip
+
+	\textbf{Question 4 : Réponse A}
+
+	\smallskip
+
+	L'événement $(G=0)$ est réalisé uniquement par le choix de la bille numérotée 10.
+
+	Comme cette bille est verte, cela implique que l'événement $(G = 0) \cap R$ est impossible, donc sa probabilité est nulle et donc, en divisant ce 0 par $P(R)$, on obtient encore 0.
+
+	\medskip
+
+	\textbf{Question 5 : Réponse C}
+
+	L'événement $(G = - 4)$ est réalisé par les billes numérotées 2 et 6, la première est bleue et la seconde est verte, donc $P_{(G =-4)}(V) = \dfrac{\frac{1}{15}}{\frac{2}{15}} = \dfrac{1}{2}$.
+
+\end{document}

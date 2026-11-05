@@ -1,0 +1,169 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet1_metropole_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Le directeur d'une grande entreprise a proposé à l'ensemble de ses salariés un stage de formation à l'utilisation d'un nouveau logiciel.
+
+Ce stage a été suivi par 25\,\% des salariés.
+
+\medskip
+
+\begin{enumerate}
+\item Dans cette entreprise, 52\,\% des salariés sont des femmes, parmi lesquelles 
+40\,\% ont suivi le stage.
+
+On interroge au hasard un salarié de l'entreprise et on considère les évènements:
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet~~$] $F$ : \og le salarié interrogé est une femme \fg,
+\item[$\bullet~~$] $S$ : \og le salarié interrogé a suivi le stage \fg.
+\end{itemize}
+\setlength\parindent{0cm}
+
+$\overline{F}$ et $\overline{S}$ désignent respectivement les évènements contraires des évènements $F$ et $S$.
+\end{enumerate}
+
+\begin{minipage}{0.6\linewidth} 
+\textbf{a.~~}Donner la probabilité de l'évènement $S$.
+
+\textbf{b.~~}Recopier et compléter les pointillés de l'arbre pondéré ci-contre sur
+les quatre branches indiquées.
+
+\textbf{c.~~}Démontrer que la probabilité que la personne interrogée soit une femme ayant suivi le stage est égale à $0,208$.
+
+\textbf{d.~~}On sait que la personne interrogée a suivi le stage. Quelle est la probabilité que ce soit une femme ?
+
+\textbf{e.~~}Le directeur affirme que, parmi les hommes salariés de l'entreprise, moins de 10\,\% ont suivi le stage.
+		
+Justifier l'affirmation du directeur.
+\end{minipage} \hfill
+\begin{minipage}{0.4\linewidth} 
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep=1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$F$~}\taput{\ldots}}
+	{\TR{$S$}\taput{\ldots}
+	\TR{$\overline{S}$}\tbput{\ldots}
+	}
+\pstree{\TR{$\overline{F}$~}\tbput{\ldots}}
+	{\TR{$S$}
+	\TR{$\overline{S}$}
+	}
+}
+\end{center}
+\end{minipage}
+\begin{enumerate}[resume]
+\item On note $X$ la variable aléatoire qui à un échantillon de $20$ salariés de cette entreprise choisis au hasard associe le nombre de salariés de cet échantillon ayant suivi le stage. On suppose que l'effectif des salariés de l'entreprise est suffisamment important pour assimiler ce choix à un tirage avec  remise.
+	\begin{enumerate}
+		\item Déterminer, en justifiant, la loi de probabilité suivie par la variable aléatoire $X$.
+		\item Déterminer, à $10^{-3}$ près, la probabilité que $5$ salariés dans un échantillon de $20$ aient suivi le stage.
+		\item Le programme ci-dessous, écrit en langage Python, utilise la fonction \textbf{binomiale$(i, n, p)$} créée pour l'occasion qui renvoie
+la valeur de la probabilité $P(X = i)$ dans le cas où la variable aléatoire $X$ suit une loi binomiale de paramètres $n$ et $p$.
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+def proba(k):\\
+\quad  P=0\\
+\quad for i in range(0,k+1) :\\
+\qquad P=P+binomiale(i,20,0.25)\\
+\quad return P\\ \hline
+\end{tabular}
+\end{center}
+
+Déterminer, à $10^{-3}$ près, la valeur renvoyée par ce programme lorsque l'on saisit proba(5) dans la console Python. 
+
+Interpréter cette valeur dans le contexte de l'exercice.
+		\item Déterminer, à $10^{-3}$ près, la probabilité qu'au moins $6$ salariés dans un échantillon de $20$ aient suivi le stage.
+		\end{enumerate}	
+\item Cette question est indépendante des questions 1 et 2.
+
+Pour inciter les salariés à suivre le stage, l'entreprise avait décidé d'augmenter les salaires des salariés ayant suivi le stage de 5\,\%, contre 2\,\% d'augmentation pour les salariés n'ayant pas suivi le stage. 
+
+Quel est le pourcentage moyen d'augmentation des salaires de cette entreprise dans ces conditions ?
+
+\end{enumerate}
+
+\bigskip
+
+\end{document}

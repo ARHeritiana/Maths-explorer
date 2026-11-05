@@ -1,0 +1,178 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_09_sujet2_metropole_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+		\item \textbf{Affirmation 1} :
+
+		$f$ est dérivable  et, pour tout $x$ réel : \quad $f(x) = (x - 2)\e^x$
+
+		donc, pour tout $x$ réel :\quad $f'(x)=1\times \e^x + (x-2)\times \e^x = ( x-1)\e^x$.
+
+		Ainsi, pour tout réel $x$,\quad $\begin{aligned}[t]
+		f'(x)-2f(x) & =(x-1)\e^x-2(x-2)\e^x \\
+		& =(-x+3)\e^x \\
+		& = -(x-3)\e^x
+		\end{aligned}$
+
+		L'affirmation est \textbf{fausse}.
+
+		\item \textbf{Affirmation 2} :
+
+		On pose, pour tout $x$ réel, \quad $v(x)=2x+1$ \quad et \quad $u'(x)=\cos x$.
+
+		On a alors, pour tout $x$ réel :\quad $v'(x)=2$ \quad  et on peut choisir \quad $u(x)=\sin x$.
+
+		Par intégration par parties, on a :\quad
+		$\begin{aligned}[t]
+		\displaystyle\int_0^{\pi} f(x)\:\text{d}x &= \bigg[ (2x+1) \sin x \bigg]_0^{\pi} - \displaystyle \int_0^{\pi} 2 \sin x \d x\\
+		&= \bigg( (2 \pi +1) \sin \pi - \sin 0 \bigg) - \bigg[-2 \cos x \bigg]_0^{\pi} \\
+		&= 0 + 2 \cos \pi -2 \cos 0 \\
+		&= -4
+		\end{aligned}$
+
+		L'affirmation est \textbf{fausse}.
+
+		\item \textbf{Affirmation 3} :
+
+		\begin{itemize}
+			\item La fonction du second degré \quad $x \longmapsto 2x^2-6x-56$\quad admet deux racines :\quad $-4$ et 7.
+
+			Le coefficient du terme de degré 2 est \quad $a=2$\quad  donc cette fonction est strictement positive sur $]7 ; +\infty[$.
+
+			\item La fonction affine \quad $x \longmapsto 4x-8$\quad  est strictement positive sur $]2 ;+\infty[$.
+		\end{itemize}
+
+		On peut résoudre l'inéquation sur l'intervalle $]7 ; +\infty[$, et on a :
+
+		$\begin{aligned}[t] \forall x \in ]7 ;+\infty[, \quad
+		\ln \left(2x^2 - 6x - 56\right) \geqslant \ln(4x - 8)
+		& \iff 2x^2 - 6x - 56 \geqslant 4x - 8 \quad &\text{car la fonction ln est}\\
+		&&\text{croissante sur }\R^{*+}\\
+		& \iff 2x^2 - 10x - 48 \geqslant 0 \\
+		& \iff x^2-5x-24 \geqslant 0&\text{car }2 >0
+		\end{aligned}$
+
+		Le discriminant est :\quad $\Delta = b^2-4ac = 121$,\quad donc la fonction du second degré \quad $x \longmapsto x^2-5x-24$ \quad admet deux racines :\quad $-3$ et 8.
+
+		Le coefficient du terme de degré 2 est $a=1$, donc cette fonction est positive sur $]-\infty  ; -3] \cup [8 ;+\infty[$.
+
+		Sur $]7  ; + \infty[$, l'inéquation a pour ensemble de solutions l'intervalle $[8 ; +\infty[$.
+
+		L'affirmation est \textbf{vraie}.
+
+		\item \textbf{Affirmation 4} :
+
+		Soit $n$ un entier naturel :
+
+		$v_{n+1} = \dfrac{2}{u_{n+1}} = \dfrac{2}{~\dfrac{3u_n}{5u_n+3}~} = 2\times \dfrac{5u_n + 3}{3u_n} = 2\times \left(\dfrac{5u_n}{3u_n} + \dfrac{3}{3u_n}\right) = 2\times \left(\dfrac{5}{3} + \dfrac{1}{u_n}\right) = \dfrac{10}{3} + \dfrac{2}{u_n} = \dfrac{10}{3} + v_n$.
+
+		On reconnaît la relation de récurrence d'une suite arithmétique, de raison $r = \dfrac{10}{3}$.
+
+		L'affirmation est \textbf{vraie}.
+
+		\item \textbf{Affirmation 5} :
+
+		On considère l'expérience aléatoire "obtenir un 6 en lançant un dé équilibré à 6 face numéroté de 1 à 6" a deux issues : le succès de probabilité $\dfrac16$ et l'échec de probabilité $\dfrac56$. Il s'agit donc d'une épreuve de Bernoulli.
+
+		La variable aléatoire qui compte le nombre de succès (les apparitions du 6) quand on répète \np{3600} fois cette épreuve suit la loi binomiale de paramètre $p=\dfrac16$ et $n=\np{3600}$.
+
+		On a alors \quad $E(X)=\dfrac16 \times 3600 = 600$, \quad et \quad $V(X)=\dfrac16 \times \dfrac56 \times 3600=500$.
+
+		D'après l'inégalité de Bienaymé-Tchebytchev, pour tout $t >0$, on a :\quad $P \bigg( \big\vert X-600 \big\vert \geqslant t \bigg) \leqslant \dfrac{500}{t^2}$.
+
+		Or \quad $P \bigg( 450 < X < 750 \bigg) = P \bigg( \big\vert X-600 \big\vert < 150 \bigg) =1- P \bigg( \big\vert X-600 \big\vert \geqslant 150 \bigg)$.
+
+		En appliquant l'inégalité de Bienaymé-Tchebytchev pour $t=150$, on obtient donc :
+
+		$P \bigg( \big\vert X-600 \big\vert \geqslant 150 \bigg) \leqslant \dfrac{500}{150^2}$
+
+		On en déduit que \quad $P \bigg( 450 < X < 750 \bigg)  \geqslant 1-\dfrac{500}{150^2}$.
+
+		Or, \quad $1-\dfrac{500}{150^2} \approx 0,978$.
+
+		On peut donc conclure : \quad $P \bigg( 450 < X < 750 \bigg) \geqslant \np{0,97}$.
+
+		L'affirmation est \textbf{vraie}.
+	\end{enumerate}
+
+\end{document}

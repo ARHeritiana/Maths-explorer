@@ -1,0 +1,186 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet25_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Soit $f$ la fonction définie sur $[0 ; +\infty[$ par :
+	\[
+	f(x) = -x^2 + 2x + 4.
+	\]
+	Dans le plan muni d'un repère orthonormé, on note $C$ sa courbe représentative.
+	
+	\subsection*{Question 1}
+	
+	La fonction $f$ est dérivable sur $\mathbb{R}$, donc en particulier sur $[0 ; +\infty[$. Calculons sa dérivée :
+	\[
+	f'(x) = -2x + 2 = 2(1 - x).
+	\]
+	
+	Étudions le signe de $f'(x)$ :
+	\begin{itemize}
+		\item $f'(x) > 0$ si $1 - x > 0$, soit $x < 1$ : la fonction $f$ est donc croissante sur $[0 ; 1]$ ;
+		\item $f'(x) < 0$ si $1 - x < 0$, soit $x > 1$ : la fonction $f$ est décroissante sur $[1 ; +\infty[$ ;
+		\item $f'(x) = 0$ si $1 - x = 0$, soit $x = 1$.
+	\end{itemize}
+	\begin{center}
+		\begin{tikzpicture}
+			\tkzTabInit[lgt=3, espcl=3]
+			{$x$/1, $f'(x)$/1, $f(x)$/2}
+			{$0$, $1$, $+\infty$}
+			\tkzTabLine{,+,z,-}
+			\tkzTabVar{-/$4$, +/$5$, -/}
+		\end{tikzpicture}
+	\end{center}
+	On a donc un maximum local en $x = 1$ :
+	\[
+	f(1) = -(1)^2 + 2 \times 1 + 4 = 5.
+	\]
+	Le maximum de la fonction $f$ sur $[0 ; +\infty[$ est donc $f(1) = 5$.
+	
+	\subsection*{Question 2}
+	
+	Cherchons les points d'intersection de $C$ avec l'axe des abscisses, c'est-à-dire les solutions de l'équation $f(x) = 0$ :
+	\[
+	-x^2 + 2x + 4 = 0.
+	\]
+	
+	Calculons le discriminant :
+	\[
+	\Delta = 2^2 - 4 \times (-1) \times 4 = 4 + 16 = 20.
+	\]
+	Comme $\Delta > 0$, l'équation admet deux solutions réelles :
+	\[
+	x_1 = \frac{-2 - \sqrt{20}}{-2}, \quad x_2 = \frac{-2 + \sqrt{20}}{-2}.
+	\]
+	La première racine, $x_1$, est négative, donc seule $x_2 = 1 + \sqrt{5}$ est valable dans l'intervalle $[0 ; +\infty[$.\\
+	Le point d'intersection $A$ a donc pour coordonnées $(1 + \sqrt{5} ; 0)$.
+	
+	\subsection*{Question 3}
+	
+	L'équation réduite de la tangente $T$ à la courbe $C$ au point d'abscisse $2$ est donnée par :
+	\[
+	y - f(2) = f'(2)(x - 2).
+	\]
+	Calculons $f(2)$ et $f'(2)$ :
+	\[
+	f(2) = -(2)^2 + 2 \times 2 + 4 = 4, \quad f'(2) = 2 \times (1 - 2) = -2.
+	\]
+	L'équation de la tangente est donc :
+	\[
+	y - 4 = -2(x - 2) \quad \text{soit} \quad y = -2x + 8.
+	\]
+	
+	\subsection*{Question 4}
+	
+	Voici une représentation schématique de la courbe $C$ et de sa tangente en $x = 2$ :
+\begin{center}
+	\begin{tikzpicture}[scale=0.7]
+	
+	\foreach \x in {0,1,...,4} {
+		\draw[very thin, gray] (\x, 0.2) -- (\x, 8.4);
+		\node[below] at (\x, 0) {\x};  
+	}
+	\foreach \y in {0,1,...,8} {
+		\draw[very thin, gray] (0, \y) -- (4.4, \y);
+		\node[left] at (0, \y) {\y};  
+	}
+	
+	
+	\draw[thick,->] (-0.4, 0) -- (4.4, 0) node[right] {$x$};
+	\draw[thick,->] (0, -0.2) -- (0, 8.4) node[above] {$y$};
+	
+	
+	\draw[domain=0:3.3361, samples=200, smooth, thick, blue] plot (\x, {(\x)*(\x)*(-1) + 2*(\x) + 4});
+	
+	
+	\draw[domain=0:4, samples=200, smooth, thick, red] plot (\x, {-2*\x + 8}) ;
+		\node[right,red] at (1,6.5) {$T : y = -2x + 8$};
+	
+	\node[below right] at (3.2361,0) {A};
+	\fill[blue] (3.2361, 0) circle (2pt);
+	\node[below left] at (0, 0) {O};
+	
+	
+	\node[blue] at (0.75, 5) {$\mathcal{C}_f$};
+\end{tikzpicture}
+\end{center}
+
+\end{document}

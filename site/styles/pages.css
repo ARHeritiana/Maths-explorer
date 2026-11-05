@@ -1602,3 +1602,20 @@ input[type="range"]::-moz-range-thumb { background: var(--accent); border-color:
 .mb-parameter label { flex:1 1 120px; }
 #mb-orbit { width:100%; height:auto; border:1px solid var(--line); border-radius:8px; background:var(--surface); }
 @media (max-width:800px) { .mb-explorer,.mb-linked { grid-template-columns:1fr; } }
+
+/* Attributed annales use the same bank typography and solution controls. */
+.annals-bank { margin-block: 2rem; }
+.annal-ex > summary { cursor: pointer; padding: 1rem; min-height: 44px; }
+.annal-ex > summary .bank-meta { display: block; margin-top: .4rem; }
+.annal-content { padding: 0 1rem 1rem; overflow-wrap: anywhere; }
+.annal-content img, .annal-print img { display: block; max-width: 100%; height: auto; margin: 1rem auto; background: #fff; }
+.annal-content table, .annal-print table { max-width: 100%; border-collapse: collapse; margin-block: 1rem; }
+.annal-content td, .annal-content th, .annal-print td, .annal-print th { border: 1px solid var(--line); padding: .4rem; overflow-wrap: anywhere; }
+.annal-content pre { overflow-x: auto; padding: .75rem; background: var(--sunken); }
+.annal-content .math.display { display: block; max-width: 100%; overflow-x: auto; }
+.annal-content ol { padding-inline-start: 1.6rem; }
+.annal-content li { margin-block: .6rem; }
+.annal-content .bank-sol { margin-block: 1rem; }
+.annals-bank [data-annal-more] { margin-block: 1rem; }
+
+.annal-content blockquote, .annal-print blockquote { border-left: 3px solid var(--accent, #176654); padding: .6rem .9rem; margin: .8rem 0; }

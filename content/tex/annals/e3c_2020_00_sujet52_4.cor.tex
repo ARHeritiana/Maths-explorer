@@ -1,0 +1,40 @@
+\subsection*{1.}
+
+\paragraph{a.} Augmenter de \(1{,}52 \, \%\), c'est multiplier par \(1 + \dfrac{1,52}{100} = 1 + 0{,}0152 = 1{,}0152\).
+
+On a donc au 1er janvier 2020 un loyer de :
+\[
+u_1 = 650 \times 1{,}0152 = 659{,}88 \, \text{(€)}.
+\]
+
+\paragraph{b.} On multiplie chaque montant du loyer \( u_n \) par \( 1{,}0152 \), donc quel que soit \( n \in \mathbb{N} \) :
+\[
+u_{n+1} = 1{,}0152 u_n,
+\]
+ce qui montre que la suite \( (u_n) \) est une suite géométrique de raison \( q = 1{,}0152 \) et de premier terme \( u_0 = 650 \).
+
+\paragraph{c.} 2027 correspond à \( n = 8 \) et :
+\[
+u_8 = u_0 \times 0{,}0152^8 = 650 \times 0{,}0152^8 \approx 733{,}38 \, \text{(€)}.
+\]
+
+\subsection*{2.}
+
+\paragraph{a.} \texttt{somme(0)} représente le total des loyers perçus en 2019 \( (12 \times 650 = 7800) \) ;
+
+\texttt{somme(1)} représente le total des loyers perçus de 2019 à 2020.
+
+\paragraph{b.} 2027 correspond à A = 8.
+
+On a :
+
+\(\begin{gathered}\texttt{somme(0)} = 7 800 \\
+\texttt{somme(1)} \approx 15 178{,}56 \\
+\texttt{somme(2)} \approx 23 757{,}48 \\
+\texttt{somme(8)} \approx 74 623{,}04\end{gathered}\)
+
+Donc le total des loyers encaissés de 2022 à 2027 est :
+\[
+\texttt{somme(8)} - \texttt{somme(2)} \approx 74623{,}04 - 23757{,}48 \approx 50865{,}60,
+\]
+soit environ \(50866\) € à l'euro près.

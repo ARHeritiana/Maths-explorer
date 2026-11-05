@@ -1,0 +1,33 @@
+\subsection*{1.}
+
+Ajouter 3\%, c'est multiplier par \(1 + \dfrac{3}{100} = 1 + 0,03 = 1,03\).
+
+Donc :
+
+\(u_1 = u_0 \times 1,03 = 600 \times 1,03 = 618\) (€),
+
+\(u_2 = u_1 \times 1,03 = 618 \times 1,03 = 636,54\) (€).
+
+\subsection*{2.}
+
+On a, quel que soit le naturel \(n\), \(u_{n+1} = 1,03 u_n\). Ceci montre que la suite \((u_n)\) est une suite géométrique de raison \(1,03\) et de premier terme \(u_0 = 600\).
+
+\subsection*{3.}
+
+On sait que, quel que soit le naturel \(n\), \(u_n = u_0 \times 1,03^n = 600 \times 1,03^n\).
+
+\subsection*{4.}
+
+\begin{lstlisting}[style=python]
+def nombreAnnees() :
+	n = 0
+	u = 600
+	while u <= 1000 :
+		n = n + 1
+		u = u * 1.03
+	return n
+\end{lstlisting}
+
+\subsection*{5.}
+
+Pour dépasser \(1000\) euros, il faut attendre 18 ans (prix : \(\approx 1021,46\) ).

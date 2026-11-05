@@ -1,0 +1,71 @@
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item On complète le tableau des effectifs :
+
+\begin{center}
+\begin{tabularx}{0.5\linewidth}{|l|*{3}{>{\centering \arraybackslash}X|}}\cline{2-4}
+\multicolumn{1}{c|}{~} & Fille & Garçon&Total \\ \hline
+Anglais & 712 & 728&\np{1440} \\ \hline
+Autre LV1 & 288 & 272&\np{560} \\ \hline
+Total&\np{1000}&\np{1000}&\np{2000} \\ \hline
+\end{tabularx}
+\end{center}
+
+Il y a donc autant de filles que de garçons.
+\item 712 filles ont choisi l'Anglais, donc $p(A \cap F) = \dfrac{712}{\np{2000}}$.
+\item On a $p_F(A) = \dfrac{p(F \cap A)}{p(F)} = \dfrac{p(A \cap F)}{p(F)} = \dfrac{\dfrac{712}{\np{2000}}}{\dfrac{1000}{\np{2000}}} = \dfrac{712}{\np{1000}}$.
+\item On a $p(A) \times p(F) = \dfrac{712}{\np{2000}} \times \dfrac12 = \dfrac{712}{\np{4000}} = \dfrac{356}{\np{2000}}$.
+
+Donc $p(A) \times p(F) \ne p(A \cap F)$ : les évènements $A$ et $F$ ne sont pas indépendants.
+\item 728 élèves garçons ont choisi l'anglais et 272 ne l'ont pas choisi : or $728 \ne 3 \times 272$ car ce produit se termine par un 6.
+
+L'affirmation est fausse.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item On a $p(P) = \dfrac{1}{4}$, donc $p(F) = 1 - p(P) = 1 - \dfrac{1}{4} = \dfrac34$.
+\item~
+
+\begin{center}
+\pstree[treemode=R,nodesep=1ex,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$P~~$}\taput{\small $\frac14$}}
+		{\pstree{\TR{$P~~$}\taput{\small $\frac14$}}
+			{\TR{$P~~$}\taput{\small $\frac14$}
+			\TR{$F~~$}\tbput{\small $\frac34$}
+			}
+		\pstree{\TR{$F~~$}\tbput{\small $\frac34$}}
+			{\TR{$P~~$}\taput{\small $\frac14$}
+			\TR{$F~~$}\tbput{\small $\frac34$}
+			}
+		}
+\pstree{\TR{$F~~$}\tbput{\small $\frac34$}}
+		{\pstree{\TR{$P~~$}\taput{\small $\frac14$}}
+			{\TR{$P~~$}\taput{\small $\frac14$}
+			\TR{$F~~$}\tbput{\small $\frac34$}
+			}
+		\pstree{\TR{$F~~$}\tbput{\small $\frac34$}}
+			{\TR{$P~~$}\taput{\small $\frac14$}
+			\TR{$F~~$}\tbput{\small $\frac34$}
+			}
+	}
+}
+\end{center}
+
+\item La probabilité d'obtenir une fois Pile est :
+
+$p(PFF) + p(FPF) + p(FFP) = \frac14 \times \frac34 \times \frac34 + \frac34 \times \frac14 \times \frac34 + \frac34 \times \frac34 \times \frac14 = \frac{9}{64} + \frac{9}{64} + \frac{9}{64} = \dfrac{27}{64}$.
+\item La probabilité de ne jamais obtenir pile est égale à :
+
+$p(FFF) = \dfrac34 \times \dfrac34 \times \dfrac34 = \dfrac{27}{64}$ (branche du bas).
+\end{enumerate}

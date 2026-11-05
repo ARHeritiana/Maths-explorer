@@ -1,0 +1,318 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_09_sujet1_metropole_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{center}
+	\textbf{Partie A}
+\end{center}
+
+Un artisan crée des bonbons au chocolat dont la forme rappelle le profil de la montage locale représentée en \textbf{Figure 1}. La base d'un tel bonbon est modélisée par la surface grisée, définie ci-dessous dans un repère orthonormé d'unité 2~cm (\textbf{Figure 2}).
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{>{\centering \arraybackslash}X}}
+\psset{unit=2.cm,arrowsize=2pt 3}
+\begin{pspicture}(-1.2,-0.2)(1.4,1.6)
+
+\def\fond{\psplot[plotpoints=2000,linewidth=1.25pt]{0.414214}{1}{1 x dup mul sub 2.71828 x exp mul}}
+\rput(0.42,0.3){\fond}
+\psplot[plotpoints=2000,linewidth=1.25pt]{-1}{1}{1 x dup mul sub 2.71828 x exp mul}
+\rput(0,0.){\pscustom[fillstyle=solid,fillcolor=lightgray]{\psplot[plotpoints=2000,linewidth=1.25pt]{-1}{1}{1 x dup mul sub 2.71828 x exp mul}\psline(1,0)(-1,0)}}
+\psline(1,0)(1.45,0.3) \psline(0.35,1.24)(0.85,1.56)
+\psline{<->}(1.2,0)(1.65,0.3) \uput[r](1.42,0.1){3 cm}
+\end{pspicture}
+&
+\psset{unit=2.cm,arrowsize=2pt 3}
+\begin{pspicture*}(-1.2,-0.5)(1.4,1.4)
+\pscustom[fillstyle=solid,fillcolor=lightgray]{\psplot[plotpoints=2000,linewidth=1.25pt]{-1}{1}{1 x dup mul sub 2.71828 x exp mul}\psline(1,0)(-1,0)}
+\psplot[plotpoints=2000,linewidth=1.5pt]{-1}{1}{1 x dup mul sub 2.71828 x exp mul}
+\uput[ur](0.7,1){$\mathcal{C}_f$}
+\psgrid[subgriddiv=5,  gridlabels=0, gridcolor=lightgray] 
+\psaxes[linewidth=1.25pt]{->}(0,0)(-1.2,0)(1.4,1.4)
+\end{pspicture*}\\
+\textbf{Figure 1}&\textbf{Figure 2}\\
+\end{tabularx}
+\end{center}
+
+Cette surface est délimitée par l'axe des abscisses et la représentation graphique notée $\mathcal{C}_f$ de la fonction $f$ définie sur $[-1~;~1]$ par :
+$f(x) = \left(1 - x^2\right)\e^x.$
+
+L'objectif de cette partie est de calculer le volume de chocolat nécessaire à la fabrication d'un bonbon au chocolat.
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+Pour tout réel $x$, on a $\e^{x}>0$, et si $x\in 	[-1~;~1]$, on a $1-x^2\geqslant 0$. 
+
+Donc pour tout $x$ de $[-1~;~1]$, on a $f(x)\geqslant 0$.
+		
+		\item 
+Soit $I= \ds\int_{-1}^1 f(x) \d x$.
+
+On pose $u(x)=1-x^2$ et $v'(x)=\e^{x}$. Donc $u'(x)=-2x$ et $v(x)=\e^{x}$.
+
+Par intégration par parties: $\ds\int_{a}^{b} u(x)v'(x) \d x = \left [ u(x)v(x)\strut\right ]_{a}^{b} - \ds\int_{a}^{b} u'(x)v(x) \d x$.
+
+Donc $I= \left [ (1-x^2)\e^{x} \strut \right ]_{-1}^{1} - \ds\int_{-1}^{1} (-2x)\e^{x} \d x
+= 0+2 \ds\int_{-1}^{1} x\e^{x} \d x =  2\ds\int_{-1}^{1} x\e^{x} \d x$
+	\end{enumerate}
+	
+\item Le volume $\mathcal{V}$ de chocolat, en cm\up{3}, nécessaire à la fabrication d'un bonbon est donné par :
+$\mathcal{V} = 3 \times S$
+où $S$ est l'aire, en cm\up{2}, de la surface colorée (\textbf{Figure 2}).
+
+
+
+On calcule $\ds\int_{-1}^{1} x\e^{x} \d x$ par une intégration par parties.
+
+On pose $u(x)=x$ et $v'(x)=\e^{x}$. Donc $u'(x)=1$ et $v(x)=\e^{x}$.
+
+$\begin{aligned}
+\ds\int_{-1}^{1} x\e^{x} \d x
+& = \left [ x \e^{x} \strut \right ]_{-1}^{1} - \ds\int_{-1}^{1} 1\times \e^{x} \d x
+= \left [ x \e^{x} \strut \right ]_{-1}^{1} - \left [  \e^{x} \strut \right ]_{-1}^{1}
+= \left [ 1 \e^{1} - (-1)\e^{-1} \strut \right ] -  \left [ \e^{1} - \e^{-1} \strut \right ]\\
+& = \e + \e^{-1} -\e +\e^{-1} = 2 \e^{-1}
+\end{aligned}$ 
+
+Donc $S = \ds\int_{-1}^{1} f(x) \d x = 2 \ds\int_{-1}^{1} x\e^{x} \d x = 4 \e^{-1}$.
+
+$\mathcal{V} = 3 \times S = 12\e^{-1}$ donc $\mathcal{V} \approx 4,4$ cm$^3$.
+\end{enumerate}
+
+\smallskip
+
+\begin{center}
+\textbf{Partie B}
+\end{center}
+
+On s'intéresse maintenant au bénéfice réalisé par l'artisan sur la vente de ces bonbons au chocolat en fonction du volume hebdomadaire des ventes.
+
+
+
+Ce bénéfice peut être modélisé par la fonction $B$ définie sur l'intervalle $[0,01~;~+\infty[$ par :  $B(q) = 8q^2 [2 -3\,\ln q] - 3.$
+
+Le bénéfice est exprimé en dizaines d'euros et la quantité $q$ en centaines de bonbons.
+
+On admet que la fonction $B$ est dérivable sur $[0,01~;~+\infty[$. On note $B'$ sa fonction dérivée. 
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item
+\begin{list}{\textbullet}{}
+\item $\ds\lim_{q \to +\infty} \ln q = +\infty$ donc $\ds\lim_{q \to +\infty} 2- 3\,\ln q = -\infty$
+\item $\ds\lim_{q \to +\infty} q^2 = +\infty$
+\item Donc $\ds\lim_{q \to +\infty} 8q^2 [2 -3\,\ln(q)] = -\infty$ et donc $\ds\lim_{q \to +\infty} 8q^2 [2 -3\,\ln(q)]-3 = -\infty$
+\end{list}
+
+On a donc démontré que $\ds\lim_{q \to +\infty} B(q)=-\infty$.
+
+		\item Pour tout $q \geqslant 0,01$: 
+$\begin{aligned}[t]
+B'(q) 
+& = 8\times 2q\left (2-3\,\ln q\right ) +8q^2\left (0 -\dfrac{3}{q}\right ) - 0\\
+& = 8q\left (4 - 6\,\ln q\right ) + 8q\left (-3\right )
+= 8q \left (1 - 6\,\ln q\right )
+\end{aligned}$
+		
+		\item 
+$q>0$ donc $B'(q)$ est du signe de $1- 6\,\ln q$.
+
+$1- 6\,\ln q>0
+\iff
+1> 6\,\ln q
+\iff
+\dfrac{1}{6} > \ln q
+\iff
+\e^{\frac{1}{6}} > q$
+
+$\e^{\frac{1}{6}} \approx 1,2$ : $B\left (\e^{\frac{1}{6}} \right ) \approx 13,7$;
+$B(0,01) \approx -3$
+
+On dresse le tableau de variation complet de la fonction $B$.
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}
+\def\esp{\hspace*{2.5cm}}
+\def\hauteur{0pt}
+$\begin{array}{|c| l *4{c}|}
+\hline
+q & 0,01  & \esp & \e^{\frac{1}{6}}\approx 1,2 & \esp & +\infty \\ 
+\hline
+B'(q) &  &   \pmb{+} & \vline\hspace{-2.7pt}0 & \pmb{-} & \\ 
+\hline
+ & &  &   \Rnode{max}{\approx 13,7}  &  &   \\  
+B(q) & &     &  &  &  \rule{0pt}{\hauteur} \\ 
+ & \Rnode{min1}{\approx -3} &   &  &  &   \Rnode{min2}{-\infty} \rule{0pt}{\hauteur}    
+ \ncline{->}{min1}{max} 
+ \ncline{->}{max}{min2} 
+ \\ 
+\hline
+\end{array} $
+}
+\end{center}	
+		\item 
+Le maximum de la fonction $B$ est $B\left (\e^{\frac{1}{6}} \right ) \approx 13,7$, donc le bénéfice maximum que peut espérer l'artisan est de 137~\euro.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+\begin{list}{\textbullet}{Sur l'intervalle $[1,2~;~+\infty[$:}
+\item La fonction $B$ est dérivable, donc continue, et strictement décroissante.		
+\item Elle décroît de $13,7$ à $-\infty$.
+\end{list}
+
+Donc, d'après le corollaire des valeurs intermédiaires, l'équation $B(q)=10$ admet une solution unique sur l'intervalle $[1,2~;~+\infty[$. On l'appelle $\beta$.
+
+
+
+$\left .
+\begin{array}{l}
+B(1) = 13 >10\\
+B(2 \approx -5,5   <10
+\end{array}
+\right \}
+\implies \beta \in [1 ~;~2]$
+\hfill
+$\left .
+\begin{array}{l}
+B(1,5) \approx 11,1 >10\\
+B(1,6 \approx 9,1   <10
+\end{array}
+\right \}
+\implies \beta \in [1,5 ~;~1,6]$
+
+$\left .
+\begin{array}{l}
+B(1,55) \approx 10,17 >10\\
+B(1,56 \approx 9,97   <10
+\end{array}
+\right \}
+\implies \beta \in [1,55 ~;~1,56]$
+
+$\left .
+\begin{array}{l}
+B(1,558) \approx 10,007 >10\\
+B(1,559 \approx 9,986   <10
+\end{array}
+\right \}
+\implies \beta \in [1,558 ~;~1,559]$
+
+Donc $\beta$ a pour valeur approchée $1,558$ à $10^{-3}$ près.
+
+		\item On admet que l'équation $B(q)= 10$ admet une unique solution $\alpha$ sur $[0,01~;~1,2[$.
+		
+On donne $\alpha \approx 0,757$, et on complète le tableau de variation de $B$.
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}
+\def\esp{\hspace*{2.5cm}}
+\def\hauteur{20pt}
+$\begin{array}{|c|*5{c}|}
+\hline
+q & 0,01  & \esp & 1,2 & \esp & +\infty \\ 
+\hline
+ & &  &   \Rnode{max}{13,7}  &  &   \\  
+B(q) & &     &  &  &  \rule{0pt}{\hauteur} \\ 
+ & \Rnode{min1}{-3} &   &  &  &   \Rnode{min2}{-\infty} \rule{0pt}{\hauteur}    
+ \ncline{->}{min1}{max} 
+ \ncline{->}{max}{min2} 
+ \rput*(-6.1,0.95){\Rnode{zero}{\blue 10}}
+\rput(-6.1,2.5){\Rnode{alpha}{\blue \alpha}}
+\ncline[linestyle=dotted, linecolor=blue]{alpha}{zero}
+\rput*(-2,0.95){\Rnode{zero2}{\red 10}}
+\rput(-2,2.5){\Rnode{beta}{\red \beta}}
+\ncline[linestyle=dotted, linecolor=red]{beta}{zero2}
+ \\ 
+\hline
+\end{array} $
+}
+\end{center}	
+		
+Pour réaliser un bénéfice supérieur à $100$~euros, le nombre minimal de bonbons au chocolat à vendre correspond à $\alpha$ centaines, soit environ 76, et le nombre maximal de bonbons au chocolat à vendre correspond à $\beta$ centaines, soit environ 156.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

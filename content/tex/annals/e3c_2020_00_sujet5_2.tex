@@ -1,0 +1,43 @@
+\medskip
+
+\emph{Dans tout l'exercice, les résultats seront arrondis, si nécessaire, au dix millième.}
+
+\medskip
+
+On étudie un test de dépistage pour une certaine maladie dans une population donnée. On sait que 1\,\% de la population est atteint de la maladie. Des études ont montré que si une personne est malade, alors le test se révèle positif dans 97\,\% des cas et si une personne n'est pas malade, le test est négatif dans 98\,\% des cas.
+
+Pour une personne à qui on fait passer le test de dépistage on associe les évènements :
+
+\setlength\parindent{9mm}
+\begin{itemize}
+\item[$\bullet~~$] $M$ : la personne est malade,
+\item[$\bullet~~$] $T$ : le test est positif.
+\end{itemize}
+\setlength\parindent{0mm}
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter sur la copie l'arbre de probabilité suivant en utilisant les données de l'exercice.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=3pt]{\TR{}}
+{\pstree{\TR{$M~~$}}
+	{\TR{$T~~$}
+	\TR{$\overline{T}~~$}
+	}
+\pstree{\TR{$\overline{M}~~$}}
+	{\TR{$T~~$}
+	\TR{$\overline{T}~~$}
+	}
+}
+\end{center}
+
+
+\item Justifier que $P\left (\overline{M} \cap T\right ) = \np{0,0198}$.
+\item Montrer que  $P(T) = \np{0,0295}$.
+\item Calculer $P_T(M)$.
+\item Une personne dont le test se révèle positif est-elle nécessairement atteinte par cette maladie?
+\end{enumerate}
+
+\bigskip

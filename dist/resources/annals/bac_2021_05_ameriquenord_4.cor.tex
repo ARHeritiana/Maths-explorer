@@ -1,0 +1,153 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_05_ameriquenord_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\smallskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+\medskip
+
+\textbf{Affirmation 1 :} Pour tous réels $a$ et $b$,\, $\left(\text{e}^{a+b}\right)^2 =
+ \text{e}^{2(a + b)} =  \text{e}^{2a + 2b} = \text{e}^{2a} \times \text{e}^{2b}$. Donc l'affirmation est fausse.
+
+\smallskip
+\textbf{Affirmation 2 :}  
+Une équation de la tangente $t$ au point A d'abscisse 0 à la courbe représentative de la fonction $f$ définie sur $\R$ par $f(x) = - 2 + (3 - x)\text{e}^x$ est :
+
+$M(x~;~y) \in t \iff y - f(0) = f'(0)(x - 0)$.
+
+Or $f(0) = - 2 + 3\text{e}^0 = - 2 + 3 = 1$ et 
+
+$f'(x) = -\text{e}^x + (3 - x)\text{e}^x = (2 - x)\text{e}^x$, d'où $f'(0) = 2\text{e}^0 = 2$.
+
+Donc $M(x~;~y) \in t \iff y - 1 = 2(x - 0) \iff y = 2x + 1$. L'affirmation est vraie.
+
+\smallskip
+
+\textbf{Affirmation 3 :} 
+On a quel que soit le réel $x$ : $\text{e}^{2x} - \text{e}^{x} + \dfrac{3}{x}= \text{e}^{x}\left(\text{e}^{x} - 1 + \dfrac{3}{x\text{e}^{x}}\right)$.
+
+On a $\displaystyle\lim_{x \to + \infty} x\text{e}^{x} = + \infty$, donc $\displaystyle\lim_{x \to + \infty} \dfrac{3}{x\text{e}^{x}} = 0$.
+
+Par somme de limites $\displaystyle\lim_{x \to + \infty}\text{e}^{x} - 1 + \dfrac{3}{x\text{e}^{x}} = + \infty$ et par produit de limites :
+
+$\displaystyle\lim_{x \to + \infty}\text{e}^{x}\left(\text{e}^{x} - 1 + \dfrac{3}{x\text{e}^{x}}\right) = + \infty$. L'affirmation est fausse.
+
+\smallskip
+
+\textbf{Affirmation 4 :} 
+Soit la fonction $f$ définie sur $\R$ par $f(x) = 1 - x + \text{e}^{-x}$
+
+$f$ somme de fonctions dérivables sur $\R$ est dérivable et sur cet intervalle :
+
+$f'(x) = - 1 - \text{e}^{-x} = - \left(1 + \text{e}^{-x} \right) < 0$ car quel que soit le réel $x$, \, $\text{e}^{-x}  > 0$, donc $1 + \text{e}^{-x} > 1$ puis $- \left(1 + \text{e}^{-x} \right) < - 1 < 0$.
+
+La fonction $f$ est strictement décroissante sur $\R$.
+
+
+
+On a $\displaystyle\lim_{x \to - \infty} \text{e}^{-x} = + \infty$, et $\displaystyle\lim_{x \to - \infty} - x = + \infty$\, donc par somme de limites  $\displaystyle\lim_{x \to - \infty} f(x) = + \infty$.
+
+De même $\displaystyle\lim_{x \to + \infty} - x = - \infty$ et $\displaystyle\lim_{x \to + \infty} \text{e}^{- x} = 0$, d'où par somme de limites : $\displaystyle\lim_{x \to + \infty} f(x) = - \infty$.
+
+D'après le théorème des valeurs intermédiaires il existe donc $x_0 \in \R$ tel que $f\left(x_0\right) = 0$.
+
+Comme $f(0) = 1 + 1 = 2 > 0$ et $f(2) = 1 - 2 + \text{e}^{-2} \approx - 0,86 < 0$, on a bien $0 < x_0 < 2$. L'affirmation est vraie.
+\smallskip
+
+\textbf{Affirmation 5 :} 
+On a $g'(x) = 2x - 5 + \text{e}^x$ et $g''(x) = 2 + \text{e}^x > 0$ comme somme de deux termes supérieurs à zéro. la fonction $g$ est donc convexe sur $\R$. L'affirmation est vraie.
+
+\bigskip
+
+\end{document}

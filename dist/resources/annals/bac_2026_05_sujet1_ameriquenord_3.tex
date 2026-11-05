@@ -1,0 +1,187 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_05_sujet1_ameriquenord_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Dans cet exercice l'unité est le centimètre.
+
+On considère une pyramide à base carrée SABCD comme dans la figure ci-dessous.
+
+\begin{center}
+\begin{tikzpicture}[x=(225:20mm),y=(0:29mm),z=(90:30mm)]
+	\coordinate (A) at (-1,-1,0);\node[above right] at (A) {A};
+	\coordinate (B) at (-1,1,0); \node[above right] at (B) {B};
+	\coordinate (C) at (1,1,0); \node[below right] at (C) {C};
+	\coordinate (D) at (1,-1,0); \node[below left] at(D) {D};
+	\coordinate (S) at (0,0,2); \node[above] at(S) {S};
+	\coordinate (O) at (0,0,0); \node[above right] at(O) {O};
+	\coordinate (I) at (1,0,0); \node[below left] at(I) {I};
+	\coordinate (J) at (0,1,0); \node[right=2mm] at(J) {J};
+	\coordinate (K) at (0,0,1); \node[above left] at(K) {K};
+	\draw[dashed] (D)--(A)--(B)--cycle
+	(C)--(A)--(S);
+	\draw (D)--(C)--(B)--(S)--cycle
+	(S)--(C);
+	\draw[->,line width=1pt] (O)--(I);
+	\draw[->,line width=1pt] (O)--(J);
+	\draw[->,line width=1pt] (O)--(K);
+	\end{tikzpicture}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dans cette figure :
+
+\begin{itemize}
+\item AB = BC = CD = DA = OS = 2~cm ;
+\item I est le milieu de [CD], J le milieu de [BC] et K le milieu de [OS].
+\end{itemize}
+
+L'espace est muni du repère orthonormé $\left(\mathrm{O}; \vectt{OI}, \vectt{OJ}, \vectt{OK}\right)$.
+
+On admet que B$(-1~;~1~;~0)$, C$(1~;~1~;~0)$, et S$(0~;~0~;~2)$.
+
+\medskip
+
+Les \textbf{parties A} et \textbf{B} sont indépendantes.
+
+\textbf{Partie A}
+
+\begin{enumerate}
+\item Donner les coordonnées des points A et D.
+\item Calculer le produit scalaire $\vectt{SC}\cdot\vectt{SB}$.
+\item En déduire la mesure de l'angle $\widehat{\mathrm{BSC}}$ arrondie au dixième de degré près.
+\end{enumerate}
+
+\textbf{Partie B}
+
+On se propose dans cette partie de déterminer la distance du point O au plan (SBC).
+
+\begin{enumerate}
+\item Soit $\vect{n}$ le vecteur de coordonnées $\begin{pmatrix} 0\\ 2\\ 1\\ \end{pmatrix}$.
+	\begin{enumerate}
+		\item Justifier que le vecteur $\vect{n}$ est normal au plan (SBC).
+		\item En déduire qu'une équation cartésienne du plan (SBC) est \quad $2 y+z-2=0$.
+	\end{enumerate}
+	\item On note H le projeté orthogonal du point O sur le plan (SBC).
+		\begin{enumerate}
+			\item a. Justifier qu'une représentation paramétrique de la droite (OH) est :
+			\[\begin{cases}
+			x =0\\
+			y =2t\\
+			z =t\\
+			\end{cases}\text{ avec } t \in \R.\]
+			\item Calculer les coordonnées du point H.
+			\item En déduire que la distance du point O au plan (SBC) est égale à $\dfrac{2 \sqrt{5}}{5}$~cm.
+		\end{enumerate}
+	\end{enumerate}
+
+\textbf{Partie C}
+
+On se propose ici de retrouver le résultat de la \textbf{partie B} par une autre méthode.
+
+\begin{enumerate}
+\item On rappelle que le volume d'une pyramide est donné par :
+
+\[V =\dfrac{1}{3} \times \text{ aire de la base} \times \text{hauteur}\]
+
+	\begin{enumerate}
+		\item Calculer le volume de la pyramide SABCD.
+		\item En déduire que le volume de la pyramide OCBS est égal à $\dfrac{2}{3}$~cm\up{3}.
+	\end{enumerate}
+\item Déterminer l'aire du triangle SBC.
+\item Déduire des questions précédentes que la distance du point O au plan (SBC) est égale à $\dfrac{2 \sqrt{5}}{5}$~cm.
+\end{enumerate}
+
+\end{document}

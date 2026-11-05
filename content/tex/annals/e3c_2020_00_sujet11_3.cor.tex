@@ -1,0 +1,21 @@
+\begin{enumerate}
+\item 
+\begin{enumerate}
+	\item  	Baisser de 14\%, c'est multiplier par $1 - \dfrac{14}{100} = 1 - 0,14 = 0,86$. La suite $(P_n)$ est donc une suite géométrique de premier terme $P_0 = 10500$ et de raison 0,86.
+		
+		\item 	La valeur en 2010 est $P_8 = 10500 \times 0,86^8 \approx 3141,79$ €.
+		\end{enumerate}
+		\item 	\begin{enumerate}
+				\item 			
+\begin{lstlisting}[style=python]
+def algo():
+	P = 10500
+	n = 2002
+	while P > 1500:
+		P = 0,86 * P
+	n = n + 1
+	return n
+\end{lstlisting}
+			\item	La valeur renvoyée est 2015.
+		\end{enumerate}
+	\end{enumerate}

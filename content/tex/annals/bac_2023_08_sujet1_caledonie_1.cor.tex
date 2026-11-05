@@ -1,0 +1,66 @@
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+	\item\
+	\begin{center}
+	\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+	{\pstree{\TR{$V$~~}\naput{\np{0.6}}}
+		{\TR{$L$}\naput{\np{0.2}}
+		\TR{$\overline{L}$}\nbput{\np{0.8}}
+	}
+	\pstree{\TR{$\overline{V}$~~}\nbput{\np{0.4}}}
+		{\TR{$L$}\taput{$x$}
+		\TR{$\overline{L}$}\nbput{$1-x$}
+	}}
+	\end{center}
+    \item La probabilité qu'un client choisisse un bateau à voile et qu'il ne prenne pas l'option PILOTE est $P\left(V \cap \overline{L}\right)$.
+	
+	\[P\left(V \cap \overline{L}\right) = P(V) \times P_{V}\left(\overline{L}\right) = \np{0.6} \times \np{0.8} = \boxed{\np{0.48}}\]
+	\item Les évènements $V$ et $\overline{V}$ forment une partition de l'univers, donc, d'après la formule des probabilités totales, on a :
+	\[P(L) = P\left(V \cap L\right) + P\left(\overline{V} \cap L\right)\]
+	On a $P\left(V \cap L\right) = \np{0.6} \times \np{0.2} = \np{0.12}$.
+	
+	Posons $P\left(\overline{V}\cap L\right) = p$. On a :
+	\[P(L) = \np{0.12} + p \iff \np{0.42} = \np{0.12} + p \iff p = \np{0.42}-\np{0.12} = \boxed{\np{0.3}}\]
+	On a donc bien $P\left(\overline{V} \cap L\right) = \np{0.3}$.
+	\item D'après la formule des probabilités conditionnelles :
+	\[P_{\overline{V}}(L) = \dfrac{P\left(\overline{V} \cap L\right)}{P\left(\overline{V}\right)} = \dfrac{\np{0.3}}{\np{0.4}} = \boxed{\dfrac{3}{4} = \np{0.75}}\]
+	\item La probabilité qu'un client ait choisi un voilier, sachant qu'il a pris l'option PILOTE est, d'après la formule des probabilités conditionnelles :
+	\[P_{L}(V) = \dfrac{P\left(V \cap L\right)}{P(L)} = \dfrac{\np{0.12}}{\np{0.42}} = \boxed{\dfrac{2}{7} \approx \np{0.29}}\]
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+	\item \[P\left(L \cap A\right) = P(L) \times P_{L}(A) = \np{0.42} \times \np{0.005} = \boxed{\np{0.0021}}\]
+	\smallskip
+	
+	\[P\left(\overline{L} \cap A\right) = P\left(\overline{L}\right) \times P_{\overline{V}}(A) = (1-\np{0.42}) \times \np{0.12} = \boxed{\np{0.0696}}\]
+	\item Les évènements $L$ et $\overline{L}$ forment une partition de l'univers, donc, d'après la formule des probabilités totales, on a :
+	\[P(A) = P\left(L \cap A\right) + P\left(\overline{L} \cap A\right) = \np{0.0021} + \np{0.0696} = \np{0.0717}\]
+La probabilité que le bateau loué par un client choisi au hasard subisse une avarie est donc \np{0.0717}.
+	
+Puisque l'entreprise loue \np{1000} bateaux, elle peut s'attendre à 72 avaries.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C}
+
+\medskip
+
+\begin{enumerate}
+	\item Les paramètres de la loi binomiale suivie par $X$ sont $\boxed{n=40}$ et $\boxed{p=\np{0.42}}$.
+	\item À l'aide de la calculatrice, on calcule $P(X \geqslant 15)$ :
+	\[\boxed{P(X \geqslant 15) \approx \np{0.768}}\]
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,262 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_09_sujet1_metropole_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+On considère la fonction $f$ définie sur l'intervalle $[1~;~+\infty[$ par 
+
+\[f(x) = \dfrac{\ln x}{x},\]
+
+où $\ln$ désigne la fonction logarithme népérien.
+
+\medskip
+
+\begin{enumerate}
+\item 
+On sait que $\displaystyle\lim_{x \to + \infty} \dfrac{\ln x}{x} = 0$, donc $\displaystyle\lim_{x \to + \infty} f(x) = 0$.
+
+L'axe des abscisses est asymptote horizontale au graphe de la fonction$f$ au voisinage de plus l'infini.
+\item On admet que la fonction $f$ est dérivable sur l'intervalle $[1~;~+\infty[$ et on note $f'$ sa fonction dérivée.
+	\begin{enumerate}
+		\item 
+En dérivant $f(x)$ comme un quotient, on obtient pour $x \geqslant 1$ :
+		
+$f'(x) = \dfrac{\dfrac{1}{x} \times x - 1 \times \ln x}{x^2} = \dfrac{1 - \ln x}{x^2}$.
+
+		\item~ 
+Quel que soit $x$,\: $x^2 \geqslant 0$, le signe de $f'(x)$ est donc celui du numérateur $1 - \ln x$ :
+
+$\bullet~~$ $1 - \ln x > 0 \iff 1 > \ln x \iff \text{e} > x$ : $f'(x) > 0$ sur l'intervalle $[1~;~\text{e}]$ ;
+
+$\bullet~~$ $1 - \ln x < 0 \iff 1 < \ln x \iff \text{e} < x$ : $f'(x) < 0$ sur l'intervalle $[\text{e}~;~+ \infty[$.
+
+$\bullet~~$ $1 - \ln x = 0 \iff 1 = \ln x \iff \text{e} = x$.
+
+On a donc le tableau de signes de $f'(x)$:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\def\esp{\hspace*{1.5cm}}
+$\begin{array}{|c | *{5}{c} |} 
+\hline
+x  & 1 & \esp & \text e & \esp  & +\infty \\
+\hline
+f'(x) &  & \pmb{+} &  \vline\hspace{-2.7pt}{0} & \pmb{-} &    \\
+\hline
+\end{array}$
+\renewcommand{\arraystretch}{1}
+\end{center}
+
+		\item $f(1)=0$ et $f(\text e) = \dfrac{1}{\text e}$; on dresse le tableau de variations  de la fonction $f$ sur $[1~;~+\infty[$.
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.1}
+\psset{nodesep=3pt,arrowsize=2pt 3}
+\def\esp{\hspace*{2.5cm}}
+\def\hauteur{0pt}
+$\begin{array}{|c|*5{c}|}
+\hline
+x & 1  & \esp & \text e & \esp & +\infty \\ 
+\hline
+f'(x) &  &   \pmb{+} & \vline\hspace{-2.7pt}0 & \pmb{-} & \\ 
+\hline
+ & &  &   \Rnode{max}{\frac{1}{\text e}}  &  &   \\  
+f(x) & &     &  &  &  \rule{0pt}{\hauteur} \\ 
+ & \Rnode{min1}{0} &   &  &  &   \Rnode{min2}{0} \rule{0pt}{\hauteur}    
+ \ncline{->}{min1}{max} 
+ \ncline{->}{max}{min2} 
+ \\ 
+\hline
+\end{array} $
+}
+\end{center}	
+
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+D'après le tableau de variations sur l'intervalle [1~;~e], la fonction est strictement croissante de $0$ à $\dfrac{1}{\text{e}}$ : l'équation $f(x) = k$ avec $0 \leqslant k \leqslant \dfrac{1}{\text{e}}$ a donc d'après le corollaire du théorème des valeurs intermédiaires une solution unique.
+
+		\item 
+
+
+D'après le tableau de variations $f(x) \leqslant \dfrac{1}{\text{e}}$ (maximum de $f$) : l'équation $f(x) = k$ avec $k > \dfrac{1}{\text{e}}$ n'a donc pas de solution.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+Soit $g$ la fonction définie sur $\R$ par : 
+$g(x) = \text{e}^{\frac{x}{4}}.$
+
+On considère la suite $\left(u_n\right)$ définie par $u_0 = 1$ et, pour tout entier naturel $n$ :
+
+$u_{n+1} = \text{e}^{\frac{u_n}{4}}$ c'est-à-dire : $u_{n+1} = g\left(u_n\right)$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+La fonction $g$ est dérivable sur $\R$ et sur cet intervalle :
+
+$g'(x) = \dfrac14 \text{e}^{\frac{x}{4}}$ : produit de deux facteurs supérieurs à zéro, cette dérivée est supérieure à zéro, donc $g$ est croissante sur $\R$.
+\item 
+Soit $\mathcal{P}_n$ la propriété $u_n \leqslant  u_{n+1} \leqslant \text{e}$.
+
+\begin{list}{\textbullet}{}
+
+
+\item\emph{Initialisation}
+
+$u_0 = 1$ et $u_1 = \text{e}^{\frac{u_0}{4}} = \text{e}^{\frac{1}{4}} < \text{e}$.
+On a bien : $u_0 \leqslant u_1 \leqslant \text e$; la propriété est vraie pour $n=0$.
+
+\item\emph{Hérédité}
+
+Supposons que pour $n \in \N$, on ait $u_n \leqslant  u_{n+1} \leqslant \text{e}$.
+
+Par croissance de la fonction $g$,
+on a: $g\left(u_n\right) \leqslant  g\left(u_{n+1}\right) \leqslant g\left(\text{e}\right)$ soit 
+
+$u_{n+1} \leqslant u_{n+2} \leqslant g\left(\text{e}\right)$
+
+Or $g\left(\text{e}\right) = \text{e}^{\frac{\text{e}}{4}} \approx 1,97$ ; donc $g\left(\text{e}\right) \leqslant \text{e}$ et l'encadrement précédent devient :
+
+$u_{n+1} \leqslant u_{n+2} \leqslant \text{e}$ : la propriété est vraie au rang $n + 1$.
+
+\item\emph{Conclusion}
+
+L'encadrement est vrai au rang 0 et s'il est vrai au rang $n \in \N$, il est vrai au rang $n + 1$; d'après le principe de récurrence :
+quel que soit $n \in \N$, \: $u_n \leqslant  u_{n+1} \leqslant \text{e}$.
+\end{list}
+
+\item 
+L'encadrement précédent montre :
+
+\begin{itemize}
+\item que la suite $\left(u_n\right)$ est croissante ;
+\item que la suite $\left(u_n\right)$ est majorée par $\text{e}$.
+\end{itemize}
+
+Donc, d'après le théorème de la convergence monotone,  la suite $\left(u_n\right)$ est convergente vers une limite inférieure ou égale à $\text{e}$.
+
+\end{enumerate}
+
+On note $\ell$ la limite de la suite $\left(u_n\right)$ et on admet que $\ell$ est solution de l'équation :
+$\text{e}^{\frac{x}{4}} = x.$
+
+\begin{enumerate}[resume]
+\item 
+Quel que soit $x > 0$, \:$\text{e}^{\frac{x}{4}} = x \iff \dfrac{x}{4} = \ln x$, par croissance de la fonction ln.
+
+Or $\dfrac{x}{4} = \ln x \iff \dfrac14 = \dfrac{\ln x}{x}$, soit finalement :
+$f(x) = \dfrac14$ avec $f$ fonction définie dans la partie A.
+
+\item 
+
+On a: $\text e <4$ donc $\dfrac{1}{4} < \dfrac{1}{\text e}$ donc $0\leqslant \dfrac{1}{4} \leqslant \dfrac{1}{\text e}$.
+
+D'après la question \textbf{3.\:a.} de la partie A, l'équation $f(x) = \dfrac14$ a donc une solution unique sur l'intervalle [1~;~e].
+
+La calculatrice donne : $f(1) = 0$ et $f(2) = \dfrac{\ln 2}{2} \approx 0,346$ ;
+
+$f(1,4) \approx 0,24$ et $f(1,5) \approx 0,27$, donc $1,4 < \ell < 1,5$ ;
+
+$f(1,42) \approx 0,247$ et $f(1,43) \approx 0,251$, donc $1,42 < \ell < 1,43$ ;
+
+$f(1,429) \approx \np{0,2498}$ et $f(1,430) \approx \np{0,2501}$, donc $1,429 < \ell < 1,430$ ;
+
+Finalement $\ell \approx 1,43$ au centième près.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

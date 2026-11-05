@@ -1,0 +1,201 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet64_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Cet exercice est un QCM et comprend cinq questions. Les questions sont indépendantes.}
+
+\emph{Pour chacune d'elles, une seule des réponses proposées est exacte.}
+
+\emph{Pour chaque question, indiquer le numéro de la question et recopier sur la copie la lettre
+correspondant à la réponse choisie.}
+\emph{Aucune justification n'est demandée, mais il peut être nécessaire d'effectuer des recherches au brouillon pour aider à déterminer votre réponse.}
+\emph{Chaque réponse correcte rapporte $1$ point. Une réponse incorrecte ou une absence de
+réponse n'apporte, ni ne retire de point.}
+
+\medskip
+
+\textbf{Question 1}
+
+
+\begin{minipage}[]{3.3cm}
+On donne ci-contre la courbe représentative
+$\mathcal{C}_f$ d'une fonction $f$.
+Cette courbe a une tangente $\mathcal{T}$ au point
+$A(-3~;~3)$.
+\end{minipage}\hfill
+\begin{minipage}[]{11.75cm}
+\psset{xunit=1.3cm,yunit=0.25cm,labelFontSize=\scriptstyle}
+\begin{pspicture}(-4.5,-6.5)(4.5,21)
+ \multido{\n=-4+1}{9}{\psline[linewidth=0.75pt,linecolor=lightgray,linestyle=dashed](\n,-6)(\n,20.2)}
+\multido{\n=-6+1}{27}{\psline[linewidth=0.75pt,linecolor=lightgray,linestyle=dashed](-4.1,\n)(4.2,\n) }
+\psaxes[linewidth=0.95pt,Dy=5]{->}(0,0)(-4.2,-6)(4.3,20.6)
+\psplot[linewidth=1.25pt,linecolor=blue,plotpoints=5000]{-4}{4}{x  x mul  0.33333 mul  4 sub x mul}
+\psplot[linewidth=1.25pt,linecolor=red,plotpoints=5000]{-4}{0.2}{x  5 mul  18 add}
+\uput[ul](-3,3){A}\psdot[dotstyle=+,dotscale =1.74,dotangle=45](-3,3)
+\uput[dl](3.8,5){\blue $\mathcal{C}_f$}\uput[ur](0.2,18){$\mathcal{T}$}
+\end{pspicture}
+\end{minipage}
+
+L'équation réduite de cette tangente est :
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $y =\dfrac{1}{5}x - 3,7$ &\textbf{b.~~} $ y =\dfrac{1}{5} x + 18$&\textbf{c.~~}$y = 5x + 18$& \textbf{d.~~} $y = 5x -3,7$.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 2}
+\medskip 
+
+On reprend la fonction $f$ de la question précédente. La représentation graphique de sa
+fonction dérivée est :
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}
+\psset{xunit=0.5cm,yunit=0.25cm,labelFontSize=\scriptstyle}
+\begin{pspicture}(-4.5,-5)(4.5,5.5)
+\psaxes[linewidth=0.95pt,labels=x,Dy=10]{->}(0,0)(-4.2,-6)(4.3,6)
+\psplot[linewidth=0.8pt,linecolor=blue,plotpoints=5000]{-4}{4}{x  x mul  0.33333 neg mul  4 add x mul }
+\end{pspicture}
+&\textbf{b.~~}
+\psset{xunit=0.5cm,yunit=0.25cm,labelFontSize=\scriptstyle}
+\begin{pspicture}(-4.5,-4.5)(4.5,5.5)
+\psaxes[linewidth=0.95pt,labels=x,Dy=10]{->}(0,0)(-4.2,-4.6)(4.3,4.6)
+\psplot[linewidth=0.8pt,linecolor=blue,plotpoints=5000]{-3}{3}{x  x mul  4 sub  }
+\end{pspicture}
+\\\hline
+\textbf{c.~~}
+\psset{xunit=0.5cm,yunit=0.25cm,labelFontSize=\scriptstyle}
+\begin{pspicture}(-4.5,-2.5)(4.5,2.5)
+\psaxes[linewidth=0.95pt,labels=x,Dy=10]{->}(0,0)(-4.2,-2)(4.3,5)
+\psplot[linewidth=0.8pt,linecolor=blue,plotpoints=5000]{-2}{2}{x  x mul    1 sub }
+\end{pspicture}
+& \textbf{d.~~}
+\psset{xunit=0.5cm,yunit=0.25cm,labelFontSize=\scriptstyle}
+\begin{pspicture}(-4.5,-4.5)(4.5,5.5)
+\psaxes[linewidth=0.95pt,labels=x,Dy=10]{->}(0,0)(-4.2,-4.6)(4.3,4.6)
+\psplot[linewidth=0.8pt,linecolor=blue,plotpoints=5000]{-3}{3}{x  x mul   neg   4 add  }
+\end{pspicture}
+\\\hline
+\end{tabularx}
+
+\medskip
+\textbf{Question 3}
+\medskip 
+
+L'expression $\cos(x + \pi) + \sin (x +\frac{\pi}{2})$ est égale à :
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $-2 \cos(x)$ &\textbf{b.~~} $0 $&\textbf{c.~~}$\cos(x) + \sin (x)$& \textbf{d.~~} $2\cos(x)$.
+\end{tabularx}
+ 
+\medskip
+\textbf{Question 4}
+\medskip 
+
+On considère la fonction polynôme du second degré $f$ définie sur $\R$ par
+$f (x) = -2x^2 + 4x + 6$.
+
+Cette fonction est strictement positive sur l'intervalle :
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $] -\infty ; -1[\cup ]3; +\infty[$ &\textbf{b.~~}$] -1 ; 3[ $&\textbf{c.~~}$] - \infty; -3[ \cup  ]1; +\infty[$& \textbf{d.~~}$] - 3 ; 1[$ .
+\end{tabularx}
+
+
+\medskip
+\textbf{Question 5}
+\medskip 
+
+On considère la fonction $h$ définie sur $\R$ par $h(x) = (2x -1)\e^x$ .
+
+La fonction dérivée de la fonction $h$ est définie sur $\R$ par :
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $h'(x) = 2\e^x$  &\textbf{b.~~}$h'(x) = (2x + 1)\e^x$ &\textbf{c.~~}$ h'(x) = (2x -1)e^x$& \textbf{d.~~} $h'(x) = -e^x$.
+\end{tabularx}
+
+\vspace{1cm}
+
+\end{document}

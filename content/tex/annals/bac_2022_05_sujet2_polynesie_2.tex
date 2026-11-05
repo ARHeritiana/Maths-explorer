@@ -1,0 +1,60 @@
+\medskip
+
+Les douanes s'intéressent aux importations de casques audio portant le logo d'une certaine marque. Les saisies des douanes permettent d'estimer que:
+
+\setlength\parindent{10mm}
+\begin{itemize}
+\item[$\bullet~~$] 20\,\% des casques audio portant le logo de cette marque sont des contrefaçons ;
+\item[$\bullet~~$] 2\,\% des casques non contrefaits présentent un défaut de conception ;\item[$\bullet~~$] 10\,\% des casques contrefaits présentent un défaut de conception.
+\end{itemize}
+\setlength\parindent{0mm}
+
+L'agence des fraudes commande au hasard sur un site internet un casque affichant le logo de la marque. On considère les évènements suivants:
+
+\setlength\parindent{10mm}
+\begin{itemize}
+\item[$\bullet~~$] $C$: \og le casque est contrefait \fg{} ;
+\item[$\bullet~~$] $D$: \og le casque présente un défaut de conception \fg{} ;
+\item[$\bullet~~$] $\overline{C}$ et $\overline{D}$ désignent respectivement les évènements contraires de $C$ et $D$.
+\end{itemize}
+\setlength\parindent{0mm}
+
+Dans l'ensemble de l'exercice, les probabilités seront arrondies à $10^{-3}$ si nécessaire.
+
+\bigskip
+
+\textbf{Partie 1}
+
+\medskip
+
+\begin{enumerate}
+\item Calculer $P(C \cap D)$. On pourra s'appuyer sur un arbre pondéré.
+\item Démontrer que $P(D) = 0,036$.
+\item Le casque a un défaut. Quelle est la probabilité qu'il soit contrefait ?
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2}
+
+\medskip
+
+On commande $n$ casques portant le logo de cette marque. On assimile cette expérience à
+un tirage aléatoire avec remise. On note $X$ la variable aléatoire qui donne le nombre de casques présentant un défaut de conception dans ce lot.
+
+\medskip
+
+\begin{enumerate}
+\item Dans cette question, $n = 35$.
+	\begin{enumerate}
+		\item Justifier que $X$ suit une loi binomiale $\mathcal{B}(n,~p)$ où $n = 35$ et $p = 0,036$.
+		\item Calculer la probabilité qu'il y ait parmi les casques commandés, exactement un casque présentant un défaut de conception.
+		\item Calculer $P(X \leqslant 1)$.
+	\end{enumerate}	
+\item Dans cette question, $n$ n'est pas fixé.
+
+Quel doit être le nombre minimal de casques à commander pour que la probabilité 
+ qu'au moins un casque présente un défaut soit supérieur à $0,99$ ?
+\end{enumerate}
+
+\bigskip

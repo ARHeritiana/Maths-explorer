@@ -1,0 +1,178 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_09_metropole_5.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{tabular}{|l|}\hline
+Principaux domaines abordés:\\
+Fonction logarithme.\\ \hline
+\end{tabular}
+
+\bigskip
+
+\textbf{Partie I}
+
+\medskip
+
+On considère la fonction $h$ définie sur l'intervalle $]0~;~ +\infty[$ par:
+
+\[h(x) = 1 + \dfrac{\ln (x)}{x}.\]
+
+\smallskip
+
+\begin{enumerate}
+\item Déterminer la limite de la fonction $h$ en $0$.
+\item Déterminer la limite de la fonction $h$ en $+\infty$.
+\item On note $h'$ la fonction dérivée de $h$. Démontrer que, pour tout nombre réel $x$ de $]0~;~ +\infty[$, on a:
+
+\[h'(x) = \dfrac{1 - \ln (x)}{x^2}.\]
+
+\smallskip
+
+\item Dresser le tableau de variations de la fonction $h$ sur l'intervalle $]0~;~ +\infty[$.
+\item Démontrer que l'équation $h(x) = 0$ admet une unique solution $\alpha$ dans $]0~;~ +\infty[$. 
+
+Justifier que l'on a : $0,5 < \alpha < 0,6$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie II}
+
+\medskip
+
+Dans cette partie, on considère les fonctions $f$ et $g$ définies sur $]0~;~ +\infty[$ par : 
+
+\[f(x) = x \ln (x) - x ;\qquad  g(x) = \ln (x).\]
+
+On note $\mathcal{C}_f$ et $\mathcal{C}_g$ les courbes représentant respectivement les fonctions $f$ et $g$ dans un repère orthonormé \Oij.
+
+Pout tout nombre réel $a$ strictement positif, on appelle:
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet~~$] $T_a$ la tangente à $\mathcal{C}_f$ en son point d'abscisse $a$ ;
+\item[$\bullet~~$] $D_a$ la tangente à $\mathcal{C}_g$ en son point d'abscisse $a$.
+\end{itemize}
+\setlength\parindent{0cm}
+
+Les courbes  $\mathcal{C}_f$ et $\mathcal{C}_g$ ainsi que deux tangentes $T_a$ et $D_a$ sont représentées ci-dessous.
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture*}(-0.6,-2)(7,6)
+\psgrid[gridlabels=0,subgriddiv=1,gridwidth=0.06pt]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle](0,0)(0,-2)(6.9,5.9)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(1,1)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0.01}{7}{x ln x mul x sub}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0.01}{7}{x ln}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red,linestyle=dashed]{0.01}{7}{1.833 x mul 6.254 sub}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue,linestyle=dashed]{0.01}{7}{0.162 x mul 0.833 add}
+\uput[u](1,1){\blue $D_a$}\uput[r](2.9,-1){\red $T_a$}\uput[l](4.3,2){\red $\mathcal{C}_f$ }
+\uput[r](0.2,-1.8){\blue $\mathcal{C}_g$}
+
+
+\psline[linestyle=dotted,linewidth=1.25pt](6.25,0)(6.25,5.204)
+\uput[d](6.25,0){$a$}
+\end{pspicture*}
+\end{center}
+
+On recherche d'éventuelles valeurs de $a$ pour lesquelles les droites $T_a$ et $D_a$ sont perpendiculaires. 
+
+Soit $a$ un nombre réel appartenant à l'intervalle $]0~;~ +\infty[$.
+
+
+\medskip
+
+\begin{enumerate}
+\item Justifier que la droite $D_a$ a pour coefficient directeur $\dfrac{1}{a}$.
+\item Justifier que la droite $T_a$ a pour coefficient directeur $\ln (a)$.
+\end{enumerate}
+
+On rappelle que dans un repère orthonormé, deux droites de coefficients directeurs respectifs $m$ et $m'$sont perpendiculaires si et seulement si $mm' = -1$.
+
+\begin{enumerate}[resume]
+\item Démontrer qu'il existe une unique valeur de $a$, que l'on identifiera, pour laquelle les droites $T_a$ et $D_a$ sont perpendiculaires.
+\end{enumerate}
+
+\end{document}

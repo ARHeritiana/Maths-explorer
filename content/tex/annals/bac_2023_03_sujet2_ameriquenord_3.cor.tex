@@ -1,0 +1,208 @@
+\medskip
+
+Dans l'espace muni d'un repère orthonormé d'unité $1 \mathrm{~cm}$, on considère les points
+
+\[\mathrm{D}(3~;~1~;~5), \qquad 
+\mathrm{E}(3~;~-2~;~-1), \qquad 
+\mathrm{F}(-1~;~2~;~1), \qquad 
+\mathrm{G}(3~;~2~;~-3)\]
+
+
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Le vecteur $\overrightarrow{\text{EF}}$ a pour coordonnées
+$\begin{pmatrix}
+-1-3 \\ 2-(-2) \\ 1-(-1)
+\end{pmatrix}
+=
+\begin{pmatrix}
+-4 \\ 4 \\ 2
+\end{pmatrix}$
+		
+		
+ Le vecteur $\overrightarrow{\text{FG}}$ a pour coordonnées
+$\begin{pmatrix}
+3-(-1) \\ 2-2 \\ -3-1
+\end{pmatrix}
+=
+\begin{pmatrix}
+4 \\ 0 \\-4
+\end{pmatrix}$
+
+		\item 
+$-4\times (-1)=4$ et $4\times (-1)=-4\neq 0$ donc les vecteurs $\vectt{EF}$ et $\vectt{FG}$ ne sont pas colinéaires; on en déduit que les points E, F et G ne sont pas alignés.		
+		
+		
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+La droite (FG) passe par le point F et a pour vecteur directeur $\vectt{FG}$; elle a donc pour représentation paramétrique:
+
+$\left \{
+\begin{array}{l !{=} l l}
+x & x_{\text F} + 4t\\
+y & y_{\text F} +0t & t\in\R\\
+z & z_{\text F} + (-4)t
+\end{array}
+\right .	$ soit
+$\left \{
+\begin{array}{l !{=} l l}
+x & -1 + 4t\\
+y & \phantom{-}2 & t\in\R\\
+z & \phantom{-}1-4t
+\end{array}
+\right.$
+
+		\item On appelle $\mathrm{H}$ le point de coordonnées $(2~;~2~;~-2)$.
+
+$\mathrm{H}$ est le projeté orthogonal de E sur la droite (FG) si H appartient à la droite (FG) et si les vecteurs $\vectt{EH}$ et $\vectt{FG}$ sont orthogonaux.
+
+\begin{list}{\textbullet}{}
+\item Le point H appartient à la droite (FG) si on peut trouver une valeur de $t$ telle que:
+$\left \{
+\begin{array}{l !{=}  l}
+x_{\text H} & -1 + 4t\\
+y_{\text H} & \phantom{-}2 \\
+z_{\text H} & \phantom{-}1-4t
+\end{array}
+\right .	$
+c'est-à-dire
+$\left \{
+\begin{array}{r !{=}  l}
+2 & -1 + 4t\\
+2 & \phantom{-}2 \\
+-2 & \phantom{-}1-4t
+\end{array}
+\right .	$
+
+La valeur $t=\dfrac{3}{4}$ convient donc le point H appartient à la droite (FG).
+
+\item Le vecteur $\overrightarrow{\text{EH}}$ a pour coordonnées
+$\begin{pmatrix}
+2-3 \\ 2-(-2) \\ -2-(-1)
+\end{pmatrix}
+=
+\begin{pmatrix}
+-1 \\ 4 \\-1
+\end{pmatrix}$
+et $\vectt{FG}$ a pour coordonnées
+$\begin{pmatrix}
+4 \\ 0 \\ -4
+\end{pmatrix}$
+
+$\vectt{EH}\cdot\vectt{FG} = (-1)\times 4 + 4\times 0 + (-1)\times (-4)=0$ donc $\vectt{EH}\perp\vectt{FG}$
+\end{list}
+
+Le point H est donc le projeté orthogonal du point E sur la droite (FG).
+
+		\item 
+D'après les questions précédentes, [EH] est la hauteur du triangle EFG correspondant à la base [FG]; donc l'aire du triangle EFG vaut, en cm$^2$:
+
+$\mathcal{A}=\dfrac{\text{EH}\times \text{FG}}{2}$.		
+
+\begin{list}{\textbullet}{}
+\item $\vectt{EH}\;\begin{pmatrix}
+-1 \\ 4 \\-1
+\end{pmatrix}$
+donc
+$\text{EH}=\ds\sqrt{(-1)^2+4^2+(-1)^2} = \ds\sqrt{18}=3\sqrt{2}$
+\item $\vectt{FG}\;\begin{pmatrix}
+4 \\ 0 \\-4
+\end{pmatrix}$
+donc
+$\text{FG}=\ds\sqrt{4^2+0^2+(-4)^2} = \ds\sqrt{32}=4\sqrt{2}$
+\end{list}
+
+Donc l'aire du triangle est en cm$^2$: 
+$\mathcal{A}= \dfrac{3\sqrt{2}\times 4\sqrt{2}}{2}=12$.
+
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item Le vecteur $\vec{n}\begin{pmatrix}2 \\ 1 \\ 2\end{pmatrix}$ est un vecteur normal au plan (EFG) s'il est orthogonal à $\vectt{EF}$ et à $\vectt{FG}$.
+		
+\begin{list}{\textbullet}{}
+\item $\vect{n}\cdot\vectt{EF} = 2\times(-4) + 1\times 4 +2\times 2=0$ donc $\vect{n}\perp\vectt{EF}$
+\item $\vect{n}\cdot\vectt{FG} = 2\times 4 + 1\times 0 +2\times (-4)=0$ donc $\vect{n}\perp\vectt{FG}$
+\end{list}
+
+Le vecteur $\vec{n}\begin{pmatrix}2 \\ 1 \\ 2\end{pmatrix}$ est donc un vecteur normal au plan (EFG).
+		\item
+$\vec{n}\begin{pmatrix}2 \\ 1 \\ 2\end{pmatrix}$ est  un vecteur normal au plan (EFG), donc le plan (EFG) a une équation de la forme $2x+y+2z+d=0$ où $d$ est un réel à déterminer.
+
+F est un point de (EFG) donc
+$2x_{\text F} + y_{\text F} +2z_{\text F}+d=0$
+c'est-à-dire\\
+$2\times (-1) + 2 +2\times 1+d=0$ ce qui donne $d=-2$.
+
+Le plan (EFG) a donc pour équation $2x+y+2z-2=0$.
+
+		\item La droite $(d)$ passant par le point $\mathrm{D}$ et orthogonale au plan (EFG)  a pour vecteur directeur tout vecteur normal au plan (EFG) donc en particulier le vecteur $\vect{n}$. Elle a donc pour représentation paramétrique;
+
+$\left \{
+\begin{array}{l !{=} l l}
+x & x_{\text D} + x_{\vec n}t\\
+y & y_{\text D} +y_{\vec n}t & t\in\R\\
+z & z_{\text D} + z_{\vec n}t
+\end{array}
+\right .	$	
+c'est-à-dire
+$\left \{
+\begin{array}{l !{=} l l}
+x & 3 + 2t\\
+y & 1 +t & t\in\R\\
+z & 5 + 2t
+\end{array}
+\right.$
+
+		\item On note K le projeté orthogonal du point D sur le plan (EFG). Le point K appartient donc à la droite $(d)$ et au plan (EFG) donc ses coordonnées sont solutions du système:
+$\left \{
+\begin{array}{r !{=}  l}
+x & 3 + 2t\\
+y & 1 +t \\
+z & 5 + 2t\\
+2x+y+2z-2 & 0
+\end{array}
+\right.$
+
+On a donc $t$ tel que $2\left (3+2t\right ) + \left (1+t\right ) + 2\left (5+2t\right ) -2=0$, 
+soit\\
+$6+4t+1+t+10+4t-2 = 0$
+ou encore
+$9t+15 = 0$; ce qui donne $t=-\dfrac{15}{9}=-\dfrac{5}{3}$.
+		
+On a donc:
+$x_{\text K} =3+2t=3+2\left (-\dfrac{5}{3}\right ) = -\dfrac{1}{3}$,
+$y_{\text K} = 1+t=1+\left (-\dfrac{5}{3}\right )=-\dfrac{2}{3}$ et
+$z_{\text K} = 5+2t = 5+2\left (-\dfrac{5}{3}\right )=\dfrac{5}{3}$
+
+Donc le point K a pour coordonnées $\left ( -\dfrac{1}{3}~,~ -\dfrac{2}{3} ~,~\dfrac{5}{3} \right )$.
+
+
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+$\begin{gathered}\text{DK}^2
+= \left (-\dfrac{1}{3}-3 \right )^2 +\left (-\dfrac{2}{3}-1 \right )^2 +\left (\dfrac{5}{3}-5 \right )^2
+= \left (-\dfrac{10}{3} \right )^2 +\left (-\dfrac{5}{3} \right )^2 +\left (-\dfrac{10}{3} \right )^2\\[7pt]
+\phantom{\text{DK}^2}
+=  \dfrac{100}{9} + \dfrac{25}{9}+\dfrac{100}{9} = \dfrac{225}{9}=25\end{gathered}$
+
+Donc la distance DK est égale à 5~cm.
+		
+		\item Le volume du tétraèdre DEFG est donné par la formule:
+$ \dfrac{\text{aire de la base}\times\text{hauteur}}{3}$.
+
+Une base du tétraèdre est le triangle EFG d'aire 12,
+et la hauteur relative à cette base est [DK] de longueur 5.				
+
+Le volume du tétraèdre DEFG est donc, en cm$^3$:
+$\dfrac{12\times 5}{3}=20$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

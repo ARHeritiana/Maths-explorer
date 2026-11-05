@@ -1,0 +1,133 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet8_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\section*{Exercice 4 (5 points)}
+	
+	\subsection*{1. Déterminer les coordonnées du point $B$ d’abscisse 7 appartenant à la droite $(d)$.}
+	
+$x - 3y - 4 = 0$ peut s’écrire $3y = x - 4$, donc si $x = 7$, $3y = 7 - 4 = 3$ et $y = 1$. $B(7, 1)$.
+	
+	\subsection*{2. Donner un vecteur normal à la droite $(d)$.}
+	
+On sait que le vecteur $\overrightarrow{n} \left( \begin{array}{c} 3 \\ 1 \end{array} \right)$ est un vecteur normal à la droite $(d)$.
+	
+	\subsection*{3. Déterminer une équation de la droite $(\Delta)$ perpendiculaire à la droite $(d)$ passant par le point $A$.}
+	
+Le vecteur $\overrightarrow{u} \left( \begin{array}{c} 1 \\ -3 \end{array} \right)$ est un vecteur directeur de la droite $(d)$. On a donc $M(x, y) \in (\Delta) \Leftrightarrow \overrightarrow{AM} \cdot \overrightarrow{u} = 0 \Leftrightarrow 3(x - 3) + 1(y - 1) = 0 \Leftrightarrow 3x - 9 + y - 1 = 0 \Leftrightarrow 3x + y - 10 = 0$.
+	
+	\subsection*{4. Calculer les coordonnées du projeté orthogonal $H$ du point $A$ sur la droite $(d)$.}
+	
+Puisque $A$ appartient à la perpendiculaire à la droite $(d)$, son projeté sur $(d)$ est le point d’intersection de $(d)$ et de cette perpendiculaire.\\
+Ses coordonnées vérifient donc le système :
+	\[
+	\begin{cases}
+		x - 3y - 4 = 0 \\
+		3x + y - 10 = 0
+	\end{cases}
+	\]
+En multipliant la première équation par 3 et en la soustrayant de la deuxième, on obtient :
+	\[
+	\begin{cases}
+		-3x + 9y + 12 = 0 \\
+		3x + y - 10 = 0
+	\end{cases}
+	\]
+D'où :
+	\[
+	10y + 2 = 0 \Leftrightarrow y = -\dfrac{1}{5}, \quad \text{puis} \quad x = 3y + 4 = -\dfrac{3}{5} + 4 = -\dfrac{3}{5} + \dfrac{20}{5} = \dfrac{17}{5}
+	\]
+	
+	$H \left( \dfrac{17}{5}, -\dfrac{1}{5} \right)$.
+	
+	\subsection*{5. Calculer la distance $AH$ et en donner une interprétation.}
+On a :
+	\[
+	AH^2 = \left( \dfrac{17}{5} - 3 \right)^2 + \left( -\dfrac{1}{5} - 1 \right)^2 = \left( \dfrac{17}{5} - \dfrac{15}{5} \right)^2 + \left( -\dfrac{1}{5} - \dfrac{5}{5} \right)^2 = \left( \dfrac{2}{5} \right)^2 + \left( -\dfrac{6}{5} \right)^2 = \dfrac{4}{25} + \dfrac{36}{25} = \dfrac{40}{25}
+	\]
+Donc
+	\[
+	AH = \sqrt{\dfrac{40}{25}} = \dfrac{\sqrt{40}}{5} = \dfrac{2\sqrt{10}}{5} \approx 1,265
+	\]
+Cette distance est la distance (la plus petite) du point $A$ à la droite $(d)$.
+
+\end{document}

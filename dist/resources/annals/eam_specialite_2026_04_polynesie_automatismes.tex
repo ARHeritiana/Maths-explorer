@@ -1,0 +1,240 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specialite_2026_04_polynesie_automatismes.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Pour cette première partie, aucune justification n'est demandée et une seule réponse est possible par question. Pour chaque question, reportez son numéro sur votre copie et indiquez votre réponse.}
+
+Une réponse fausse ou l'absence de réponse n'enlève aucun point.
+
+\subsection*{Question 1}
+	On note $S$ l'ensemble des solutions dans $\R$ de l'équation : \quad $(2 x-6)(x+4)=0$. \quad On a :
+
+\medskip
+\begin{tblr}{colspec = {*4{X}}}
+\textbf{A.}\quad $S=\{4 ; 6\}$
+&
+\textbf{B.}\quad $S=\{-4 ; 6\}$
+&
+\textbf{C.}\quad $S=\{3 ; 4\}$
+&
+\textbf{D.}\quad $S=\{-4 ; 3\}$
+\\
+\end{tblr}
+
+\subsection*{Question 2}
+	On lance un dé cubique équilibré numéroté de 1 à 6. Quelle est la probabilité d'obtenir un nombre strictement supérieur à 4 ?
+
+\medskip
+\begin{tblr}{colspec = {*4{X}}}
+\textbf{A.}\quad $\dfrac{1}{2}$
+&
+\textbf{B.}\quad $\dfrac{1}{3}$
+&
+\textbf{C.}\quad $\dfrac{1}{4}$
+&
+\textbf{D.}\quad $\dfrac{1}{5}$
+\\
+\end{tblr}
+
+\subsection*{Question 3}
+	La seule égalité vraie est :
+
+\medskip
+\begin{tblr}{colspec = {*4{X}}}
+\textbf{A.}\quad $3^{-5} \times 6^{-5}=18^{-10}$
+&
+\textbf{B.}\quad $\left(3^{-5}\right)^{2}=3^{-3}$
+&
+\textbf{C.}\quad $\dfrac{3}{3^{5}}=3^{-4}$
+&
+\textbf{D.}\quad $\dfrac{3^{-2}}{3^{8}}=3^{-6}$
+\\
+\end{tblr}
+
+\needspace{10\baselineskip}
+\subsection*{Question 4}
+	On a représenté ci-dessous quatre droites dans un repère orthonormé.
+
+	\begin{center}
+	\begin{tikzpicture}[x =0.9cm,y=0.9cm,>=stealth]
+		\draw[gray!75,line width=0.4pt,xstep=1, ystep=1] (-8.4,-4.5) grid (8.2,7.9) ;
+		\draw[->, line width=1.2pt] (-8.4,0)--(8.2,0) ;
+		\draw[->, line width=1.2pt] (0,-4.5)--(0,7.9) ;
+		\foreach \x in {-8,...,-1,1,2,...,8}
+			\draw[thick] (\x,2pt)--(\x,-2pt) node[below]{$\np{\x}$} ;
+		\foreach \y in {-4,...,-1,1,2,...,7}
+			\draw[thick] (2pt,\y)--(-2pt,\y) node[left]{$\np{\y}$} ;
+		\node[below left] at (-2pt,-2pt) {0};
+		\draw[line width=1.4pt,red] (3,7.9)--(3,-4.5) node[pos=0.1,left] {$\mathrm{D}_1$} ;
+		\draw[line width=1.4pt,teal] (-7.9,7.9)--(4.5,-4.5) node[pos=0.15,above right] {$\mathrm{D}_2$} ;
+		\draw[line width=1.4pt,blue5] (-8.4,3)--(8.2,3) node[pos=0.05,above] {$\mathrm{D}_3$} ;
+		\draw[line width=1.4pt,purple5] (-5.5,-4.5)--(6.9,7.9) node[pos=0.11,above left] {$\mathrm{D}_4$} ;
+	\end{tikzpicture}
+	\end{center}
+
+	Parmi les quatre affirmations suivantes, laquelle est vraie ?
+
+\medskip
+\begin{tblr}{colspec = {*2{X}}}
+\textbf{A.}\quad La droite $\mathrm{D}_{1}$ a pour équation $y=3$
+&
+\textbf{B.}\quad La droite $\mathrm{D}_{2}$ a pour coefficient directeur 1
+\\
+\textbf{C.}\quad La droite $\mathrm{D}_{3}$ a pour coefficient directeur 3
+&
+\textbf{D.}\quad La droite $\mathrm{D}_{4}$ a pour équation $y=x+1$
+\\
+\end{tblr}
+
+\subsection*{Question 5}
+	Soit $\mathcal{C}_{f}$ la courbe représentative de la fonction $f$ définie sur $\R$ par \quad $f(x)=2 x^{2}-3 x+1$.
+
+	Parmi les quatre points suivants, lequel appartient à $\mathcal{C}_{f}$ ?
+
+\medskip
+\begin{tblr}{colspec = {*4{X}}}
+\textbf{A.}\quad E$(-1 ; 2)$
+&
+\textbf{B.}\quad H$(-3 ; 28)$
+&
+\textbf{C.}\quad G$(2 ; 1)$
+&
+\textbf{D.}\quad K$(3 ; 4)$
+\\
+\end{tblr}
+
+\subsection*{Question 6}
+	On considère le nombre \quad $E=\left(\dfrac{1}{2}+\dfrac{1}{3}\right) \times \dfrac{2}{5}$. \quad Une écriture simplifiée de $E$ est :
+
+\medskip
+\begin{tblr}{colspec = {*4{X}}}
+\textbf{A.}\quad $\dfrac{4}{25}$
+&
+\textbf{B.}\quad $\dfrac{1}{3}$
+&
+\textbf{C.}\quad $\dfrac{2}{30}$
+&
+\textbf{D.}\quad $\dfrac{4}{5}$
+\\
+\end{tblr}
+
+\needspace{5\baselineskip}
+\subsection*{Question 7}
+	Le prix d'un pantalon a augmenté de $10\,\%$ puis a baissé de $20\,\%$.
+
+	Quelle évolution globale a subi le prix du pantalon ?
+
+\medskip
+\begin{tblr}{colspec = {*2{X}}}
+\textbf{A.}\quad une baisse de 15\,\%
+&
+\textbf{B.}\quad une augmentation de 8,8\,\%
+\\
+\textbf{C.}\quad une baisse de 12\,\%
+&
+\textbf{D.}\quad une baisse de 10\,\%
+\\
+\end{tblr}
+
+\subsection*{Question 8}
+	L'accélération gravitationnelle $g$ (en $\mathrm{m} / \mathrm{s}^{2}$) d'un astre est donnée par la formule
+	\[g=\dfrac{G m}{r^{2}}\]
+	où $G$ est la constante gravitationnelle universelle (en $\mathrm{N}\cdot \mathrm{m}^{2} / \mathrm{kg}^{2}$),\\
+	$m$ est la masse de l'astre (en kg) et $r$ le rayon de l'astre (en m).
+
+	L'expression permettant, à partir de cette formule, d'exprimer le rayon $r$ est :
+
+\medskip
+\begin{tblr}{colspec = {*4{X}}}
+\textbf{A.}\quad $ r=\dfrac{G m}{g^{2}} $
+&
+\textbf{B.}\quad $ r=\sqrt{G m g} $
+&
+\textbf{C.}\quad $ r=\sqrt{\dfrac{G m}{g}} $
+&
+\textbf{D.}\quad $ r=\sqrt{\dfrac{g}{G m}} $
+\\
+\end{tblr}
+
+\needspace{10\baselineskip}
+
+\end{document}

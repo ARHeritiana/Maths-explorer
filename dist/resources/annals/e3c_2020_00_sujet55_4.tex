@@ -1,0 +1,154 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet55_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+La bibliothèque municipale étant devenue trop petite, une commune a décidé d'ouvrir une médiathèque qui pourra contenir \np{100000} ouvrages au total. Pour l'ouverture prévue le 1\up{er} janvier 2020, la médiathèque dispose du stock de \np{35000} ouvrages de l'ancienne bibliothèque, augmenté de \np{7000} ouvrages supplémentaires neufs offerts par la commune.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+Chaque année, le bibliothécaire est chargée de supprimer 5\,\% des ouvrages, trop vieux ou abîmés, et d'acheter \np{6 000} ouvrages neufs.
+
+On appelle $u_n$ le nombre, en milliers, d'ouvrages disponibles le 1\up{er} janvier de l'année (2020+$n$).
+
+On donne $u_0 = 42$.
+
+\medskip
+ 
+\begin{enumerate}
+\item  Justifier que, pour tout entier naturel n, on a $u_{n+1} = u_n\times  0,95+6$.
+\item On propose ci-dessous un programme en langage Python :
+\begin{lstlisting}[style=python]
+def suite(n) :
+u=42
+for i in range(n) :
+	u=0.95*u+6
+return u
+\end{lstlisting}
+
+Expliquer ce que permet de déterminer ce programme.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+La commune doit finalement revoir ses dépenses à la baisse, elle ne pourra financer que \np{4000} nouveaux ouvrages par an au lieu des \np{6000} prévus.
+
+On appelle $v_n$ le nombre, en milliers, d'ouvrages disponibles le 1\up{er} janvier de l'année (2020+$n$).
+
+\medskip
+
+\begin{enumerate}
+\item  On admet que $v_{n+1} = 0,95\times v_n + 4$ pour tout entier naturel $n\geqslant 0$ avec $v_0 = 42$.
+
+On considère la suite $(w_n)$ définie, pour tout entier naturel $n$, par $w_n= v_n-80$.
+	\begin{enumerate}
+		\item Montrer que $\left(w_n\right)$ est une suite géométrique de raison $q = 0,95$ et préciser son premier terme $w_0$.
+		\item En déduire l'expression de $w_n$ puis de $ v_n$ en fonction de $n$.
+
+	\end{enumerate}
+\item On donne ci-dessous un programme en langage Python.
+
+\begin{center}
+\begin{lstlisting}[style=python]
+def objet(A) :
+v=42
+n=0
+while v<A :
+	v=0.95*v+4
+	n=n+1
+return n 
+\end{lstlisting}
+\end{center}
+
+L'appel à la fonction objet(70) renvoie 27. Interpréter ce résultat dans le contexte de l'exercice.
+\end{enumerate}
+
+\end{document}

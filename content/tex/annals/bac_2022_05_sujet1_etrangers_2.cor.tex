@@ -1,0 +1,108 @@
+\medskip
+
+Dans l'espace, rapporté à un repère orthonormé \Oijk, on considère les points : 
+
+\[\text{A}(2~;~0~;~3),\: \text{B}(0~;~2~;~1), \text{C}(-1~;~-1~;~2)\:\: \text{et D}(3~;~-3~;~ -1).\]
+\smallskip
+
+\begin{enumerate}
+\item \textbf{Calcul d'un angle}
+	\begin{enumerate}
+		\item 
+$\vect{\text{AB}}\begin{pmatrix}-2\\2\\-2\end{pmatrix}$ et $\vect{\text{AC}}\begin{pmatrix}-3\\-1\\-1\end{pmatrix}$ ; or ces coordonnées ne sont pas proportionnelles $\dfrac{-2}{-3} \ne \dfrac{2}{-1} \ne \dfrac{-2}{-1}$, donc il n'existe pas de réel $\alpha \in \R$ tel que $\vect{\text{AB}} = \alpha\vect{\text{AC}}$ : ces vecteurs ne sont pas colinéaires donc les points A, B et C ne sont pas alignés.
+		\item 
+$\bullet~~$$\text{AB}^2 = 4 + 4 + 4 = 3 \times 4$, donc $\text{AB} = 2\sqrt{3}$ :
+
+$\bullet~~$$\text{AC}^2 = 9 + 1 + 1 = 11$, donc $\text{AC} = \sqrt{11}$.
+		\item 
+
+$\bullet~~$D'une part $\vect{\text{AB}}\cdot \vect{\text{AC}} = 6 - 2 + 2 = 6$ ;
+
+$\bullet~~$D'autre part $\vect{\text{AB}}\cdot \vect{\text{AC}} = \text{AB} \times \text{AC} \times \cos \widehat{\text{BAC}}$.
+
+On a donc $6 = 2\sqrt{3} \times \sqrt{11} \times \cos \widehat{\text{BAC}} \iff \cos \widehat{\text{BAC}} = \dfrac{6}{2\sqrt{3} \times \sqrt{11}} = \dfrac{3}{\sqrt{33}}$.
+
+La calculatrice donne $\widehat{\text{BAC}} \approx 58,51$, soit $58,5\degres$ au dixième près.
+	\end{enumerate}
+\item \textbf{Calcul d'une aire}
+	\begin{enumerate}
+		\item 
+		Soit $M(x~;~y~;~z)$ un point de $\mathcal{P}$. On a $M(x~;~y~;~z) \in\mathcal{P} \iff \vect{\text{C}M} \cdot \vect{\text{AB}} = 0$. 
+		
+Avec $\vect{\text{C}M}\begin{pmatrix}x + 1\\y + 1\\z - 2\end{pmatrix}$, on obtient :
+
+$-2(x + 1) + 2(y + 1) -2(z - 2) = 0 \iff -(x + 1) + (y + 1) - (z - 2) = 0 \iff - x + y - z + 2 = 0$.
+		\item 
+		En prenant le vecteur $\dfrac{1}{2}\vect{\text{AB}}$ comme vecteur directeur de la droite (AB), soit $\dfrac12\vect{\text{AB}}\begin{pmatrix}-1\\1\\-1\end{pmatrix}$ on a :
+		
+$M(x~;~y~;~z) \in (\text{AB}) \iff \vect{\text{A}M} = t\times \dfrac12\vect{\text{AB}} \iff \left\{\begin{array}{l c l}
+x - 2&=&t \times (- 1)\\
+y - 0 &=&t \times 1\\
+z - 3&=&t \times (-1)
+\end{array}\right., t \in \R \iff$
+
+$ \left\{\begin{array}{l c r}
+x &=& 2 - t\\
+y &=&t \\
+z &=& 3 - t 
+\end{array}\right., t \in \R$.
+		\item 
+
+E projeté orthogonal de C sur (AB) appartient au plan $\mathcal{P}$ et à la droite (AB) ; ses coordonnées vérifient donc l'équation de $\mathcal{P}$ et les équations paramétriques de (AB), donc le système :
+
+$\left\{\begin{array}{l c l}
+- x + y - z + 2 &=& 0\\
+x &=& 2 - t\\
+y &=&t \\
+z &=& 3 - t 
+\end{array}\right., t \in \R$ ; en remplaçant $x$, $y$ et $z$ par leurs expressions en fonction de $t$ dans l'équation de $\mathcal{P}$ on obtient :
+
+$- 2 + t  + t - 3 + t + 2 = 0\iff 3t - 3 = 0 \iff t = 1$.
+
+On a donc E(1~;~1~;~2).
+		\item 
+On a $\vect{\text{BC}}\begin{pmatrix}-1\\-3\\1\end{pmatrix}$, d'où BC$^2 = 1 + 9 + 1 = 11$ et BC $ = \sqrt{11}$.
+		
+	Comme AC = $\text{BC} = \sqrt{11}$, le triangle ABC est isocèle en C ; or on a vu que E est le projeté de C sur la droite (AB), donc dans le triangle isocèle (ABC), [CE] est la hauteur relative à la base [AB].
+	
+On a $\vect{\text{CE}}\begin{pmatrix}2\\2\\0\end{pmatrix}$, d'où CE$^2 = 1 + 4 = 8$ et CE $ = 2\sqrt{2}$.
+
+ L'aire du triangle (ABC) est donc égale à :
+	
+$\mathcal{A}(\text{ABC}) = \dfrac{\text{AB} \times \text{CE}}{2} = \dfrac{2\sqrt{3} \times 2\sqrt{2}}{2} = 2 \sqrt{6}$.
+		
+	\end{enumerate}
+\item \textbf{Calcul d'un volume}
+	\begin{enumerate}
+		\item 
+F $\in (\text{ABC}) \iff $ il existe $\alpha \in \R, \: \beta \in \R$, tels que :
+$\vect{\text{AF}} = \alpha \vect{\text{AB}} + \beta\vect{\text{AC}} \iff$\\
+
+$  \left\{\begin{array}{l c l}
+- 1 &=&- 2\alpha -3 \beta\\
+- 1&=&\phantom{-}2\alpha - \beta\\
+0 &=&- 2\alpha - \beta 
+\end{array}\right.$. En ajoutant membre à membre les deux dernières équations on obtient $- 1 = - 2\beta \iff \beta =  \dfrac12$ et en remplaçant $\beta$ par $ \dfrac12$ dans la première équation $- 1 = - 2\alpha + \dfrac32 \iff 2\alpha = 1  - \dfrac32 = - \dfrac12 \iff \alpha = - \dfrac14$.
+
+Donc $\vect{\text{AF}} = - \dfrac14 \vect{\text{AB}} + \dfrac12\vect{\text{AC}}$ : les quatre points A, B, C et F sont coplanaires.
+		\item 
+Avec $\vect{\text{FD}}\begin{pmatrix}2\\-2\\-4\end{pmatrix}$, on peut calculer :
+		
+$\vect{\text{FD}}\cdot \vect{\text{AB}} = - 2 - 2 + 4 = 0$ et 
+
+$\vect{\text{FD}}\cdot \vect{\text{AC}} = - 6 + 2 + 4 = 0$.
+
+Le vecteur $\vect{\text{FD}}$ est donc orthogonal à deux vecteurs non colinéaires du plan (ABC) : il est donc orthogonal à ce plan, ou encore la droite (FD) est orthogonale au plan (ABC).
+		\item 
+
+Si l'on choisit comme base le triangle (ABC), la hauteur de ce tétraèdre est donc [FD] et la volume est égal à :
+
+$\mathcal{V}(\text{ABCD}) = \dfrac13 \times \mathcal{A}(\text{ABC}) \times \text{FD}$
+
+Avec FD$^2 = 4 + 4 + 16 = 24$, on trouve FD $ = \sqrt{24} = \sqrt{4 \times 6} = 2\sqrt{6}$, d'où :
+
+$\mathcal{V}(\text{ABCD}) = \dfrac13 \times 2 \sqrt{6} \times 2\sqrt{6} = \dfrac{4 \times 6}{3} = 8$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

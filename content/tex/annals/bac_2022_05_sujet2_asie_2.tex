@@ -1,0 +1,63 @@
+\medskip
+
+\emph{Principaux domaines abordés}: Étude des fonctions.
+Fonction logarithme.
+
+\bigskip
+
+\textbf{Partie A}
+
+\begin{center}
+\psset{unit=0.6cm,arrowsize=2pt 3}
+\begin{pspicture*}(-4,-5)(15.5,8)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.15pt]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-4,-5)(15.5,8)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{3.001}{15.5}{x dup mul x sub 6 sub ln}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red,linestyle=dashed]{3.001}{15.5}{x 2 mul 1 sub x dup mul x sub 6 sub div}
+\uput[r](3.1,7.7){\red $\mathcal{C}_2$}\uput[r](3.1,-4){\blue $\mathcal{C}_1$}
+\end{pspicture*}
+\end{center}
+
+Dans le repère orthonormé ci-dessus, sont tracées les courbes représentatives d'une fonction $f$ et de sa fonction dérivée, notée $f'$, toutes deux définies sur $]3~;~+\infty[$.
+
+\medskip
+
+\begin{enumerate}
+\item Associer à chaque courbe la fonction qu'elle représente. Justifier.
+\item Déterminer graphiquement la ou les solutions éventuelles de l'équation $f(x) = 3$. 
+\item Indiquer, par lecture graphique, la convexité de la fonction $f$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item Justifier que la quantité $\ln \left(x^2- x- 6\right)$ est bien définie pour les valeurs $x$ de l'intervalle $]3~;~ +\infty[$, que l'on nommera $I$ dans la suite.
+\item On admet que la fonction $f$ de la Partie A est définie par $f(x) = \ln \left(x^2- x- 6\right)$ sur $I$. 
+
+Calculer les limites de la fonction $f$ aux deux bornes de l'intervalle $I$.
+
+En déduire une équation d'une asymptote à la courbe représentative de la fonction $f$ sur $I$.
+\item 
+	\begin{enumerate}
+		\item Calculer $f'(x)$ pour tout $x$ appartenant à $I$.
+		\item Étudier le sens de variation de la fonction $f$ sur $I$.
+		
+Dresser le tableau des variations de la fonction $f$ en y faisant figurer les limites aux bornes de $I$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Justifier que l'équation $f(x) = 3$ admet une unique solution $\alpha$ sur l'intervalle ]5~;~ 6[.
+		\item Déterminer, à l'aide de la calculatrice, un encadrement de $\alpha$ à $10^{-2}$ près.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Justifier que $f''(x) = \dfrac{- 2x^2 + 2x - 13}{\left(x^2 - x - 6\right)^2}$.
+		\item Étudier la convexité de la fonction $f$ sur $I$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

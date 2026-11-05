@@ -1,0 +1,63 @@
+En 2025, une étude démographique indique qu'il y a eu \np{60000} naissances et \np{40000} décès dans une population donnée. Les spécialistes modélisent que le nombre de naissances diminuera de 2\,\% chaque année, tandis que le nombre de décès augmentera de 900 par an.
+
+\medskip
+
+Soit $n$ un entier naturel. On note :
+\begin{itemize}[left=5mm]
+	\item $u_{n}$ le nombre de naissances prévues l'année $2025+n$ ;
+	\item $v_{n}$ le nombre de décès prévus l'année $2025+n$.
+\end{itemize}
+
+On a donc $u_{0}=\np{60000}$ et $v_{0}=\np{40000}$.
+
+\begin{enumerate}
+	\item
+	\begin{enumerate}
+		\item Déterminer le nombre de naissances prévues l'année 2026.
+		\item Déterminer le nombre de décès prévus l'année 2026.
+	\end{enumerate}
+
+	\item
+	\begin{enumerate}
+		\item Justifier que pour tout entier naturel $n$, $u_{n+1}=0{,}98\,u_{n}$.
+		\item La suite $(u_{n})$ est-elle arithmétique ou géométrique ? Préciser sa raison.
+		\item Pour tout entier naturel $n$, exprimer $u_{n}$ en fonction de $n$.
+	\end{enumerate}
+
+	\item
+	\begin{enumerate}
+		\item Justifier que la suite $(v_{n})$ est arithmétique. Préciser sa raison.
+		\item Pour tout entier naturel $n$, exprimer $v_{n}$ en fonction de $n$.
+	\end{enumerate}
+
+	\item La feuille de calcul ci-dessous donne les valeurs successives de $u_{n}$ et de $v_{n}$ (les valeurs sont évidemment arrondies à l'unité).
+
+	\begin{center}
+		\begin{tblr}[T]
+			{hlines, vlines, columns={c}, column{1-2}={wd=1.5cm}, column{3-4}={wd=2.5cm},
+				cells={font=\sffamily},
+				row{1}={rowsep=0pt,ht=7mm, bg=gray9},row{2-Z}={m},
+				column{1}={colsep=0pt,7mm,bg=gray9},
+				cell{1}{1}={gray9,cmd={\tikz[baseline={(0,0.05)}]{\clip(0,0) rectangle (0.6,0.5) ;\fill[gray!50] (0,0)--(0.5,0.5)--(0.5,0);}}} }
+			& A & B & C \\
+			1  & n & $u_n$ & $v_n$ \\
+			2  & 0 & \np{60000} & \np{40000} \\
+			3  & 1 & \np{58800} & \np{40900} \\
+			\vdots  & \vdots & \vdots & \vdots \\
+			11 & 9 & \np{50025} & \np{48100} \\
+			12 & 10 & \np{49024} & \np{49000} \\
+			13 & 11 & \np{48044} & \np{49900} \\
+			14 & 12 & \np{47083} & \np{50800} \\
+			15 & 13 & \np{46141} & \np{51700} \\
+		\end{tblr}
+	\end{center}
+
+	\begin{enumerate}
+		\item Quelle formule doit-on saisir dans la cellule \textsf{C3} de sorte que, recopiée vers le bas, elle permette d'afficher les valeurs de la suite $(v_{n})$ ?
+		\item Justifier, par un calcul, pourquoi \np{49000} est affiché dans la cellule \textsf{C12}.
+	\end{enumerate}
+
+	\item On appelle solde naturel annuel la différence entre le nombre de naissances et le nombre de décès de l'année. Ainsi le solde naturel en 2025 est \np{20000}.
+
+	À l'aide de la feuille de calcul ci-dessus, déterminer à partir de quelle année le solde naturel de cette population devient négatif.
+\end{enumerate}

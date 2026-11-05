@@ -1,0 +1,180 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_06_antilles_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Dans un lycée, on peut s'inscrire à deux clubs qui proposent des activités artistiques ou sportives.
+
+On constate que :
+\begin{itemize}[label=$\bullet$]
+	\item 40\,\% des élèves inscrits aux clubs ont choisi des activités artistiques;
+	\item parmi les élèves ayant choisi des activités artistiques, 20\,\% ont aussi choisi des activités sportives;
+	\item parmi les élèves n'ayant pas choisi des activités artistiques, 40\,\% ont choisi de faire des activités sportives.
+\end{itemize}
+
+Parmi l'ensemble des élèves inscrits à ces clubs, on choisit un élève au hasard.
+
+On note les événements suivants :
+
+\begin{itemize}[label=$\bullet$]
+	\item $A$ : \og{}l'élève choisi est inscrit à une activité artistique\fg{};
+	
+	\item $S$ :  \og{}l'élève choisi est inscrit à une activité sportive\fg{};
+\end{itemize}
+
+\emph{Pour un événement quelconque ~$E$,~ on note ~$\overline{E}$~ l'événement contraire de ~$E$,~ $P(E)$~ la probabilité de ~$E$~ et ~$P_F (E)$~ la probabilité de ~$E$~ sachant l'événement ~$F$.}
+
+\begin{enumerate}
+	\item Déterminer \mbox{$P_A(S)$} et \mbox{$P_{\overline{A}}(S)$}
+
+
+
+	\textcolor{red}{\textsc{Correction}}\\
+	\mbox{$P_A(S)$} est la probabilité qu'un élève, parmi ceux inscrits à une activité artistique, fasse aussi du sport : ils sont 20\,\% dans ce cas, donc \mbox{$P_A(S)=\np{0.2}$}.
+
+		\mbox{$P_{\overline{A}} (S)$} est la probabilité qu'un élève, parmi ceux ne faisant pas d'activité artistique, fasse du sport : ils sont 40\,\% dans ce cas, donc \mbox{$P_{\overline{A}} (S)=\np{0.4}$}.
+	\item Recopier et compléter sur votre copie l'arbre de probabilité suivant :
+
+
+	\textcolor{red}{\textsc{Correction}}\\
+
+\begin{minipage}[t]{0.45\linewidth}\vspace{0mm}
+On détermine les valeurs manquantes :
+
+\mbox{$P(\overline{A})=1-P(A)=\np{0.6}$}
+
+\mbox{$P_A(\overline{S})=1-P_A(S)=\np{0.8}$}
+
+et enfin \mbox{$P_{\overline{A}} (\overline{S})=1-P_{\overline{A}} (S)=\np{0.6}$}
+\end{minipage}\hspace{0.05\linewidth}\begin{minipage}[t]{0.45\linewidth}\vspace{0mm}
+
+
+			\begin{tikzpicture}[xscale=1,yscale=1,rotate=0,every node/.style={scale=1,rotate=0}]
+			\node(n0)at(0,0){};
+			\node(n1_1)at(3,1){$A$};
+			\node(n1_2)at(3,-1){$\overline{A}$};
+			\node(n2_1)at(6,1.5){$S$};
+			\node(n2_2)at(6,0.5){$\overline{S}$};
+			\node(n2_3)at(6,-0.5){$S$};
+			\node(n2_4)at(6,-1.5){$\overline{S}$};
+			\draw[blue](n0)--(n1_1)node[pos=0.6,fill=white]{\np{0.4}};
+			\draw[blue](n0)--(n1_2)node[pos=0.4,fill=white]{\np{0.6}};
+			\draw[blue](n2_1)--(n1_1)node[pos=0.6,fill=white]{\np{0.2}};
+			\draw[blue](n2_2)--(n1_1)node[pos=0.4,fill=white]{\np{0.8}};
+			\draw[blue](n2_3)--(n1_2)node[pos=0.6,fill=white]{\np{0.4}};
+			\draw[blue](n2_4)--(n1_2)node[pos=0.4,fill=white]{\np{0.6}};
+
+		\end{tikzpicture}
+\end{minipage}
+
+
+		\item Calculer \mbox{$P(A\cap S)$} et \mbox{$P(\overline{A}\cap S)$}.
+
+
+
+		\textcolor{red}{\textsc{Correction}}\\
+		La probabilité d'un chemin de l'arbre est le produit des probabilités des branches.
+
+		 \mbox{$P(A\cap S)=\np{0.4}\times\np{0.2}=\np{0.08}$}. La probabilité qu'un élève choisi au hasard ait une activité artistique ET fasse du sport est \np{0.08}.
+
+		De même \mbox{$P(\overline{A}\cap S)=\np{0.6}\times\np{0.4}=\np{0.24}$} : la probabilité qu'un élève choisi au hasard n'ait pas d'activité artistique mais fasse du sport est \np{0.24}.
+	\end{enumerate}
+	On admet que \mbox{$P(S)=\np{0.32}$}.
+\begin{enumerate}\setcounter{enumi}{3}
+	\item 	Calculer \mbox{$P_S(A)$}. Interpréter la réponse.
+
+
+	\textcolor{red}{\textsc{Correction}}\\
+	Règle des probabilités conditionnelles : \mbox{$P_S (A)=\dfrac{P(A\cap S)}{P(S)}=\dfrac{\np{0.08}}{\np{0.32}}=\dfrac{8}{32}=\dfrac14$}.
+
+	Cela signifie que, parmi les élèves qui ont une activité sportive, un quart a également une activité artistique.
+	\item 		Les événements \textit{A} et \textit{S} sont-ils indépendants ?
+
+
+\textcolor{red}{\textsc{Correction}}\\
+Deux événements $A$ et $S$ sont indépendants si et seulement si \mbox{$P(A\cap S)=P(A)\times P(S)$}.
+
+Or \mbox{$P(A)\times P(S)=\np{0.4}\times\np{0.32}=\np{0.128}$}, tandis que \mbox{$P(A\cap S)=\np{0.08}$} : les deux événements ne sont donc pas indépendants.
+
+\textit{Variante} : ici, il est sans doute plus habile de comparer \mbox{$P_A(S)=\np{0.2}$}, et \mbox{$P_{\overline{A}}  (S)=\np{0.4}$}, ce qui suffit pour conclure à la non indépendance des deux événements.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,47 @@
+\subsection*{Partie A -- Gain d'expérience}
+\begin{enumerate}
+	\item Au niveau 0, le personnage a 20~points, il en gagne 80 lorsqu'il change de niveau, donc au niveau~1, le personnage a $20+80 = 100$ points d'expérience.
+
+	\item Lorsque le personnage est au niveau 10, il a changé 10 fois de niveau, donc acquis $10\times80 = 800$ points d'expérience, qui s'ajoutent aux 20 du début de la partie.
+
+	Arrivé au niveau 10, le personnage a donc plus de 800 points d'expérience, 820 pour être précis.
+
+	\item Si le personnage a \np{2020} points d'expérience, cela signifie qu'il a \np{2000} points de plus qu'au début de la partie.
+
+	Si on appelle $n$ le niveau atteint, il a changé $n$ fois de niveau, et on sait que \quad $n\times 80 = \np{2000}$, \quad donc $n = \dfrac{\np{2000}}{80} = \dfrac{200}{8} = \dfrac{100}{4} = 25$.
+
+	Si le personnage a \np{2020} points d'expérience, il est donc au niveau 25.
+\end{enumerate}
+
+\subsection*{Partie B -- Gain d'énergie magique}
+\begin{enumerate}
+	\item Au niveau~0, le monstre neutralisé permet de récupérer 10~centilitres (cl) de potion magique, donc $v_0 = 10$.
+
+	\item À chaque niveau, cette quantité augmente de 20~\% par rapport au niveau précédent.
+
+	Augmenter une quantité de 20~\% revient à la multiplier par $\dfrac{100+20}{100} = \np{1.2}$.
+
+	Donc, si $v_n$ est la quantité de potion magique récupérée au niveau $n$, \quad $v_{n+1} = \np{1.2} v_n$,\quad pour tout entier naturel $n$.
+
+	\item $(v_n)$ est donc une suite géométrique de raison \np{1.2} et de premier terme $v_0 = 10$.
+
+	\item L'expression explicite d'une suite géométrique $(v_n)$ de premier terme $v_0$ et de raison $q$ est :
+
+	$\forall n \in \N$,\quad $v_n = v_0~q^n$,
+
+	donc l'expression de $(v_n)$ en fonction de $n$ est $ v_n = 10 \times \np{1.2}^n$, pour tout entier naturel $n$.
+
+	\item \begin{enumerate}
+		\item On sait que \quad $v_5 = 10\times \np{1.2}^5 = \np{24,8832}$,
+
+		donc $v_5\approx25$, arrondi à l'unité.
+
+		\item Cela signifie que le monstre neutralisé à la fin du niveau 5 permettra au personnage de récupérer environ 25~cl de potion magique.
+	\end{enumerate}
+
+	\item $\np[~litre]{0.6} = \np[~cl]{60}$, donc on cherche pour quelle valeur de $n$ $v_n$ dépassera 60.
+
+	Puisque $ v_n = 10 \times \np{1.2}^n$,\quad $v_n$ dépasse 60 si $\np{1.2}^n$ est plus grand que 6 : il faut donc attendre le niveau 10 pour que la quantité de potion magique dépasse \np{0.6}~litre.
+\end{enumerate}
+
+\needspace{10\baselineskip}

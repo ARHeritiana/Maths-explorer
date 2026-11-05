@@ -1,0 +1,348 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet1_etrangers_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+On considère la fonction $f$ définie sur $]0~;~+\infty[$ par :
+\[
+f(x)=\dfrac{\ln x}{x^2}.
+\]
+
+\subsection*{Partie A}
+
+\begin{enumerate}
+	\item \begin{enumerate}
+			\item Lorsque $x$ tend vers $0$ par valeurs positives, on a :
+			\[
+			\lim\limits_{x\to 0^+}\ln x=-\infty
+			\quad\text{et}\quad
+			\lim\limits_{x\to 0^+}x^2=0^+.
+			\]
+			Comme $x^2>0$ sur $]0~;~+\infty[$, on obtient :
+			\[
+			\lim\limits_{x\to 0^+} f(x)=-\infty.
+			\]
+			Lorsque $x$ tend vers $+\infty$, on utilise la croissance comparée :
+			\[
+			\lim\limits_{x\to +\infty}\dfrac{\ln x}{x^2}=0.
+			\]
+			Ainsi :
+			\[
+			\lim\limits_{x\to +\infty} f(x)=0.
+			\]
+
+		\item Graphiquement, la droite d'équation $x=0$ est une asymptote verticale à la courbe $\mathcal C_f$.
+		De plus, la droite d'équation $y=0$ est une asymptote horizontale à $\mathcal C_f$ au voisinage de $+\infty$.
+	\end{enumerate}
+
+	\item Pour tout $x>0$, on peut écrire :
+	\[
+	f(x)=\ln x\times x^{-2}.
+	\]
+	Donc :
+	\[
+	f'(x)=\dfrac1x\times x^{-2}+\ln x\times\left(-2x^{-3}\right).
+	\]
+	Ainsi :
+	\[
+	f'(x)=x^{-3}-2\ln x\,x^{-3}=\dfrac{1-2\ln x}{x^3}.
+	\]
+
+	\item Comme $x^3>0$ pour tout $x>0$, le signe de $f'(x)$ est celui de $1-2\ln x$.
+	On résout :
+	\[
+	1-2\ln x=0
+	\quad\Longleftrightarrow\quad
+	\ln x=\dfrac12
+	\quad\Longleftrightarrow\quad
+	x=\sqrt{\e}.
+	\]
+	Ainsi $f'(x)>0$ sur $]0~;~\sqrt\e[$ et $f'(x)<0$ sur $]\sqrt\e~;~+\infty[$.
+	De plus :
+	\[
+	f(\sqrt\e)=\dfrac{\ln(\sqrt\e)}{(\sqrt\e)^2}
+	=\dfrac{\frac12}{\e}
+	=\dfrac{1}{2\e}.
+	\]
+
+		On obtient le tableau de variation suivant :
+
+		\begin{center}
+		\renewcommand{\arraystretch}{1.4}
+		\begin{tabular}{|c|ccc|}
+		\hline
+		$x$ & $0$ & $\sqrt\e$ & $+\infty$ \\
+		\hline
+		Signe de $f'(x)$ & $+$ & $0$ & $-$ \\
+		\hline
+		Variations de $f$ &
+		$\lim\limits_{x\to 0^+} f(x)=-\infty$
+		& $\dfrac{1}{2\e}$
+		& $\lim\limits_{x\to +\infty} f(x)=0$ \\
+		\hline
+		\end{tabular}
+		\end{center}
+
+	\item On cherche l'équation de la tangente à la courbe $\mathcal C_f$ au point d'abscisse 1.
+	On a :
+	\[
+	f(1)=\dfrac{\ln 1}{1^2}=0
+	\]
+	et
+	\[
+	f'(1)=\dfrac{1-2\ln 1}{1^3}=1.
+	\]
+	L'équation de la tangente est donc :
+	\[
+	y=f'(1)(x-1)+f(1),
+	\]
+	soit :
+	\[
+	\Delta : y=x-1.
+	\]
+
+	\item Pour tout $x>0$ :
+	\[
+	f'(x)=(1-2\ln x)x^{-3}.
+	\]
+	Donc :
+	\[
+	f''(x)=\left(-\dfrac2x\right)x^{-3}+(1-2\ln x)(-3x^{-4}).
+	\]
+	Ainsi :
+	\[
+	f''(x)=-2x^{-4}-3(1-2\ln x)x^{-4}
+	=\left(-2-3+6\ln x\right)x^{-4}.
+	\]
+	Finalement :
+	\[
+	f''(x)=\dfrac{-5+6\ln x}{x^4}.
+	\]
+
+	\item \begin{enumerate}
+		\item Comme $x^4>0$ pour tout $x>0$, le signe de $f''(x)$ est celui de $-5+6\ln x$.
+		On résout :
+		\[
+		-5+6\ln x=0
+		\quad\Longleftrightarrow\quad
+		\ln x=\dfrac56
+		\quad\Longleftrightarrow\quad
+		x=\e^{\frac56}.
+		\]
+		Ainsi :
+		\[
+		f''(x)<0 \text{ sur } ]0~;~\e^{\frac56}[
+		\quad\text{et}\quad
+		f''(x)>0 \text{ sur } ]\e^{\frac56}~;~+\infty[.
+		\]
+		La fonction $f$ est donc concave sur $]0~;~\e^{\frac56}]$ et convexe sur $[\e^{\frac56}~;~+\infty[$.
+
+		Le point d'inflexion a pour abscisse $\e^{\frac56}$ et pour ordonnée :
+		\[
+		f\left(\e^{\frac56}\right)
+		=\dfrac{\frac56}{\left(\e^{\frac56}\right)^2}
+		=\dfrac{\frac56}{\e^{\frac53}}
+		=\dfrac{5}{6\e^{\frac53}}.
+		\]
+		Le point d'inflexion est donc :
+		\[
+		\left(\e^{\frac56}~;~\dfrac{5}{6\e^{\frac53}}\right).
+		\]
+
+		\item Sur l'intervalle $]0~;~\e^{\frac56}]$, la fonction $f$ est concave.
+		Or, pour une fonction concave, la courbe représentative est située en dessous de ses tangentes.
+		La tangente à $\mathcal C_f$ au point d'abscisse 1 a pour équation $y=x-1$.
+		Donc, pour tout $x\in ]0~;~\e^{\frac56}]$ :
+		\[
+		f(x)\leqslant x-1.
+		\]
+		Autrement dit :
+		\[
+		x-1\geqslant \dfrac{\ln x}{x^2}.
+		\]
+	\end{enumerate}
+
+	\item Posons $a=\e^{\frac56}$.
+	D'après la question précédente, on a :
+	\[
+	a-1\geqslant f(a).
+	\]
+	De plus, comme $a=\e^{\frac56}>\sqrt\e$, la fonction $f$ est décroissante sur $[a~;~+\infty[$.
+	Ainsi, pour tout $x\geqslant a$ :
+	\[
+	f(x)\leqslant f(a).
+	\]
+	Par ailleurs, pour tout $x\geqslant a$ :
+	\[
+	x-1\geqslant a-1.
+	\]
+	On en déduit :
+	\[
+	x-1\geqslant a-1\geqslant f(a)\geqslant f(x).
+	\]
+	Donc, pour tout $x\in\left[\e^{\frac56}~;~+\infty\right[$ :
+	\[
+	x-1\geqslant \dfrac{\ln x}{x^2}.
+	\]
+\end{enumerate}
+
+\subsection*{Partie B}
+
+Pour tout entier naturel non nul $n$, on pose :
+\[
+I_n=\int_1^n\dfrac{\ln x}{x^2}\,\d x.
+\]
+
+\begin{enumerate}
+	\item Pour $n\geqslant 1$, l'intégrale $I_n$ représente l'aire, exprimée en unités d'aire, du domaine compris entre la courbe $\mathcal C_f$, l'axe des abscisses, et les droites d'équations $x=1$ et $x=n$.
+	En effet, pour $x\geqslant 1$, on a $\ln x\geqslant 0$, donc $f(x)\geqslant 0$.
+
+	\item Pour tout entier naturel non nul $n$ :
+	\[
+	I_{n+1}-I_n=\int_1^{n+1}f(x)\,\d x-\int_1^n f(x)\,\d x
+	=\int_n^{n+1} f(x)\,\d x.
+	\]
+	Or, pour tout $x\geqslant n\geqslant 1$, on a $f(x)\geqslant 0$.
+	Donc :
+	\[
+	I_{n+1}-I_n\geqslant 0.
+	\]
+	La suite $(I_n)$ est donc croissante.
+
+	\item Les rectangles représentés ont une largeur égale à 1.
+	Le premier rectangle, sur l'intervalle $[1~;~2]$, a pour hauteur le maximum de $f$ sur cet intervalle, c'est-à-dire $f(\sqrt\e)=\dfrac{1}{2\e}$.
+	Pour les rectangles suivants, sur les intervalles $[i~;~i+1]$ avec $2\leqslant i\leqslant 9$, la hauteur est $f(i)=\dfrac{\ln i}{i^2}$.
+
+	Un script possible est donc :
+
+	\begin{center}
+	\begin{tblr}{colspec={X[8cm,font=\ttfamily]},hline{1,Z}={solid}, vlines}
+from math import *\\
+\\
+S=1/(2*exp(1))\\
+for i in range(2,10):\\
+\quad S = S + log(i)/(i*i)\\
+print(S)
+	\end{tblr}
+	\end{center}
+
+	\item On calcule $I_n$ par intégration par parties.
+	On pose :
+	\[
+	u(x)=\ln x
+	\quad\text{et}\quad
+	v'(x)=\dfrac1{x^2}.
+	\]
+	Alors :
+	\[
+	u'(x)=\dfrac1x
+	\quad\text{et}\quad
+	v(x)=-\dfrac1x.
+	\]
+	Donc :
+	\[
+	\begin{aligned}
+	I_n
+	&=\left[-\dfrac{\ln x}{x}\right]_1^n-\int_1^n\left(-\dfrac1x\right)\times\dfrac1x\,\d x\\
+	&=-\dfrac{\ln n}{n}+\dfrac{\ln 1}{1}+\int_1^n\dfrac1{x^2}\,\d x\\
+	&=-\dfrac{\ln n}{n}+\left[-\dfrac1x\right]_1^n\\
+	&=-\dfrac{\ln n}{n}-\dfrac1n+1\\
+	&=\dfrac{n-1-\ln n}{n}.
+	\end{aligned}
+	\]
+
+	\item On a :
+	\[
+	I_n=\dfrac{n-1-\ln n}{n}=1-\dfrac1n-\dfrac{\ln n}{n}.
+	\]
+	Or :
+	\[
+	\lim\limits_{n\to +\infty}\dfrac1n=0
+	\quad\text{et}\quad
+	\lim\limits_{n\to +\infty}\dfrac{\ln n}{n}=0.
+	\]
+	Donc :
+	\[
+	\lim\limits_{n\to +\infty} I_n=1.
+	\]
+\end{enumerate}
+
+\end{document}

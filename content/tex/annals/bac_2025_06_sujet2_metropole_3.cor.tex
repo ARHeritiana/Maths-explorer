@@ -1,0 +1,53 @@
+\medskip
+
+\begin{enumerate}
+\item La suite $(u_n)$ est définie pour tout entier naturel $n$ par
+\[u_n = \dfrac{1 + 5^n}{2 +3^n}.\]
+
+\textbf{Affirmation 1 :} La suite $(u_n)$ converge vers $\dfrac 53$. FAUSSE
+
+En écrivant $u_n = \dfrac{1 + 5^n}{2 +3^n} = \dfrac{\frac{1}{5^n} + 1}{\frac{2}{5^n} + \left(\frac 35 \right)^n}$ et en remarquant que :
+
+$\bullet $$\displaystyle\lim_{n \to + \infty} \frac{1}{5^n} = 0$  ;
+
+$\bullet $$\displaystyle\lim_{n \to + \infty} \frac{2}{5^n} = 0$  ;
+
+$\bullet $$\displaystyle\lim_{n \to + \infty} \left(\dfrac 35 \right)^n = 0$ car $0 < \dfrac 35 < 1$ ;
+
+Donc par somme de limites, on a $\displaystyle\lim_{n \to + \infty}\frac{1}{5^n} + 1 = 1$ et $\displaystyle\lim_{n \to + \infty}\frac{2}{5^n} + \left(\frac 35 \right)^n = 0$, donc $\displaystyle\lim_{n \to + \infty} u_n = + \infty$.
+\item On considère la suite $(w_n)$ définie par:
+
+\begin{center}$w_0 = 0$\: et, pour tout entier naturel\: $n, w_{n+1} = 3w_n - 2n + 3$.\end{center}
+
+\textbf{Affirmation 2 :} Pour tout entier naturel $n,\: w_n \geqslant n$.
+
+Raisonnement par récurrence :
+
+\emph{Initialisation} : $w_0 = 0 \geqslant 0$  : l'inégalité est vraie au rang 0 ;
+
+\emph{Hérédité} : Soit $n \in \N$ tel que $w_n \geqslant n$, alors 
+
+$3w_n \geqslant 3n \iff 3w_n - 2n \geqslant 3n - 2n$ ou $3w_n - 2n \geqslant n$ et enfin $3w_n - 2n + 3 \geqslant n + 3$.
+
+Or $n + 3 = n + 1 + 2$, donc $n + 3 > n + 1$ et $3w_n - 2n + 3 = w_{n+1}$.
+
+On a donc $w_{n+1}\geqslant n + 3 > n + 1$, soit par transitivité : $w_{n+1}\geqslant n + 1$ : l'inégalité est vraie au rang $n + 1$.
+
+\textbf{Conclusion :} l'inégalité est vraie au rang 0 et si elle est vraie à un rang $n$, elle l'est aussi au rang $n + 1$ ; d'après le principe de récurrence pour tout entier naturel $n,\: w_n \geqslant n$ : l'affirmation 2 est vraie.
+\item L'affirmation est fausse car si $f$ était convexe sur $]0~;~+ \infty[$, elle le serait au point d'abscisse 8 et sa courbe représentative serait au dessus de sa tangente au  point A. C'est le contraire d'après le graphique :. Affirmation 3 : fausse.
+\item Soit $f$ la fonction définie sur $]0~;~+ \infty[$ par $f(x) = \ln (x) - x + 1$.
+
+Comme somme de fonctions dérivables sur $]0~;~+ \infty[$, $f$ est dérivable sur cet =intervalle et $f'(x) = \dfrac 1x - 1 = \dfrac{1 - x}{x}$.
+
+On a de façon immédiate :
+
+$\bullet~$$f'(x) = 0 \iff x = 1$ ;
+
+$\bullet~$$f'(x) > 0 \iff x < 1$, donc sur ]0~;~1[, \: $f$ est croissante de moins l'infini à $f(1) = \ln 1 - 1 + 1 = 0$.
+
+$\bullet~f'(x) < 0 \iff x > 1$, donc $f$ est décroissante sur $]1~;~+ \infty[$ de 0 à moins l'infini.
+
+Donc cette fonction est négative puisque son maximum est 0 en $x = 1$ : l'affirmation 4 est vraie.
+\end{enumerate}
+
+\medskip

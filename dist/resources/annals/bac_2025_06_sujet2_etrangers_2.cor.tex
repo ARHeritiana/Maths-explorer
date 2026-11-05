@@ -1,0 +1,157 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet2_etrangers_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Partie A}
+\medskip
+
+\begin{enumerate}
+\item 1970 - 1960 = 10. Donc on lit $f(10)$.
+
+\begin{center}
+\psset{xunit=0.25cm,yunit=5cm,arrowsize=2pt 3,comma,algebraic}
+\begin{pspicture*}(-4,-0.1)(33,1.1)
+\psaxes[linewidth=1.25pt,Dx=5,Dy=0.5,labelFontSize=\scriptstyle]{->}(0,0)(0,0)(33,1.1)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{33}{1/(1+2.71828^(-0.2*x))}
+
+\uput[dr](0,0.5){A}
+
+\psline[linestyle=dashed,ArrowInside=->](10,0)(10,0.88)
+\psline[linestyle=dashed,,ArrowInside=->](10,0.88)(0,0.88)
+\uput[d](-1.7,0.95){\red $0,9$}
+\uput[d](30,1){\blue $\mathcal{C}_f$}
+\end{pspicture*}
+\end{center}
+
+Dans la limite de précision du graphique, $f(10) \approx 0,9$.
+\item Si $\displaystyle\lim_{t \to + \infty} f(t) = 1$ alors $\mathcal{C}_f$ admet une asymptote horizontale d'équation $y=1$ au voisinage de $+\infty$.
+\item $f(0)=\dfrac{1}{2}$ donc $\dfrac{1}{a+1}=\dfrac{1}{2} \iff a + 1 = 2 \iff a = 1$.
+\item Soit $m$ ce coefficient directeur. $m =\dfrac{y_B-y_A}{x_B-x_A} = \dfrac{0,5}{10}= 0,05$.
+\item 
+	\begin{enumerate}
+		\item La fonction $f$ est continue et dérivable sur $[0~;~+\infty[$. $f(t)$ est de la forme $\dfrac{1}{u(t)}$, de dérivée $-\dfrac{u'(t)}{u^2(t)}$ Donc en posant $u(t)=a+ \e^{-bt}$, $u'(t)=-b\e^{-bt}$
+
+Donc $\forall t \in [0~;~+\infty[$, $f'(t)=-\dfrac{-b\e^{-bt}}{\left(1+ \e^{-bt}\right)^2}=\dfrac{b\e^{-bt}}{\left(1+ \e^{-bt}\right)^2}$.
+		\item Le nombre dérivée de $f$ en 0 est égale à la pente de la droite $(AB)$, tangente à $\mathcal{C}_f$ au point d'abscisse 0. Donc $f'(0)= 0,05$ donc $\dfrac{b}{2^2}=0,05$ donc $b = 4 \times 0,05 = 0,2$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On admet, dans la suite de l'exercice, que le taux d'équipement en réfrigérateurs est représenté par la fonction $f$ définie sur l'intervalle $[0~;~+\infty[$ par : $f(t) = \dfrac{1}{1+ \e^{-0,2t}}$.
+
+\begin{enumerate}
+	\item $\displaystyle\lim_{t \to + \infty} \e^{-0,2t} = 0$ (par composition). Donc $\displaystyle\lim_{t \to + \infty} f(t)=1$.
+	\item La fonction $f$ est continue et dérivable sur $[0~;~+\infty[$, de la forme $\dfrac{1}{u(t)}$, de dérivée $-\dfrac{u'(t)}{u^2(t)}$.
+
+Donc en posant $u(t)=1+ \e^{-0,2t}$, $u'(t)=-0,2\e^{-0,2t}$, $\forall t \in [0~;~+\infty[$, $f'(t)=\dfrac{\e^{-0,2t}}{\left(1+ \e^{-0,2t}\right)^2}$.
+
+$\forall t \in [0~;~+\infty[$, $\e^{-0,2t}>0$ et $\left(1+ \e^{-0,2t}\right)^2>0$ donc $f'(t) > 0$ donc $f$ est croissante sur $[0~;~+\infty[$.
+	\item On a $f(0)= \dfrac{1}{2}$ et $\displaystyle\lim_{t \to + \infty} f(t)=1$.
+
+La fonction $f$ est continue strictement croissante sur $[0~;~+\infty[$ à valeurs dans $\left[\dfrac{1}{2}~;~1\right[$. Or $0,97 \in \left[\dfrac{1}{2}~;~1\right[$, donc d'après le corollaire du théorème des valeurs intermédiaires, l'équation $f(x) = 0,97$ admet une unique solution $\alpha$ dans l'intervalle  $[0~;~+\infty[$.
+	\item Avec la calculatrice $\alpha \approx 17,4$ donc $\alpha \in ]17~;~18[$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C}
+
+\medskip
+
+\begin{enumerate}
+	\item $\forall t \in [0~;~+\infty[$, $f(t) = \dfrac{1}{1+ \e^{-0,2t}}$. En multipliant numérateur et dénominateur par $\e^{0,2t}$, on obtient : $f(t)=\dfrac{\e^{0,2t}}{\e^{0,2t}(1+ \e^{-0,2t})}= \dfrac{\e^{0,2t}}{\e^{0,2t} + 1} = \dfrac{\e^{0,2t}}{1 + \e^{0,2t}}$.
+	\item $f$ est de la forme $\dfrac{u'(t)}{u(t)}$, de primitive $\ln(u(t))$ (avec $u$ fonction strictement positive car les deux termes du quotient sont strictement positifs) en posant $u(t)=\e^{0,2t}$ et $u'(t)= 0,2\e^{0,2t}$.
+
+En écrivant $f(t)=\dfrac{\e^{0,2t}}{1 + \e^{0,2t}}=\dfrac{1}{0,2}\times \dfrac{0,2\e^{0,2t}}{1 + \e^{0,2t}}=5\times \dfrac{0,2\e^{0,2t}}{1 + \e^{0,2t}}$,
+
+on détermine la fonction $F$, une primitive de $f$ : $F(t)= 5\ln\left(1 + \e^{0,2t}\right)$ pour $t \in [0~;~+\infty[$.
+	\item $I = \dfrac{1}{40}\displaystyle\int_0^{40} \dfrac{1}{1 + \e^{0,2t}}\,\text{d}t = \dfrac{1}{40}\displaystyle\int_0^{40} \dfrac{\e^{0,2t}}{1 + \e^{0,2t}} \,\text{d}t =\dfrac{1}{40}\left[5\ln\left(1 + \e^{0,2t}\right)\right]_0^{40}=$
+
+$\begin{gathered}\dfrac{5}{40}\left(\ln\left(\e^8+1\right)-\ln(2)\right)\\=\dfrac{1}{8}\left(\ln\left(\e^8+1\right)-\ln(2)\right)=\dfrac{1}{8} \ln\left(\dfrac{\e^8+1}{2}\right)\approx 0,913\end{gathered}$
+\end{enumerate}
+
+\end{document}

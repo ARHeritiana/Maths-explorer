@@ -1,0 +1,230 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_05_sujet2_ameriquenord_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+L'espace est muni d'un repère orthonormé \Oijk.
+
+On considère :
+
+\begin{itemize}[label=$\bullet~$]
+\item les points A(4~;~2~;~2), B$(5~;~-2~;~3)$ et C(1~;~1~;~1) ;
+\item la droite $\Delta$ dont une représentation paramétrique est donnée par
+
+\[\left\{\begin{array}{l c l}
+x &=& 1 + 2t\\
+y &=&1+ \phantom{2}t\\
+z &=& 1 +2t\\
+\end{array}\right. \text{avec}\: t \in \R\]
+	
+	\item le plan $\mathcal{P}$ passant par le point A et perpendiculaire à la droite $\Delta$.
+	\end{itemize}
+	
+	\medskip
+	
+	\begin{enumerate}
+		\item \begin{itemize} \item Pour $t=0$ on trouve: 
+
+			$\begin{cases}  x= 1+2\times 0 =1 =x_C \\ y=1 +0 =1=y_C\\ z=1 +2\times 0 =1=z_C \end{cases}$ 
+
+			donc le point C appartient à la droite $\Delta$. 
+
+			\item Le point A appartient à la droite $\Delta$  si et seulement si il existe un réel $t$ tel que $\begin{cases} x_A=1+2t \\ y_A=1+t \\ z_A=1+2t \end{cases} $ 
+
+c'est à dire si et seulement si le système  $\begin{cases} 4=1+2t \\ 2=1+t \\ 2=1+2t \end{cases}$ admet une unique solution.
+
+Or la première équation donne $t=\dfrac{3}{2}$ et la deuxième $t=1$, ce système n'admet donc pas de solution d'où la droite $\Delta$ ne passe pas par le point A.
+		\end{itemize} 
+		\item
+		\begin{enumerate}
+			\item Le plan $\mathcal{P}$  perpendiculaire à la droite $\Delta$, un vecteur directeur de la droite $\Delta$ est donc un vecteur normal à $\mathcal{P}$. 
+			
+			La représentation paramétrique de $\Delta$ nous  donne $\vect{n}\begin{pmatrix} 2 \\1\\2 \end{pmatrix}$. 
+			
+			Une équation cartésienne du plan $\mathcal{P}$ est donc de la forme $2x+y+2x+d=0$ avec $d\in \R$. 
+			
+			De plus, le plan $\mathcal{P}$ passe  par le point A donc : 
+			
+			$2x_A+y_A+z_A+d=0 \Longleftrightarrow 2 \times 4 +2 +2 \times 2 +d=0 \Longleftrightarrow 8 +2 +4 +d=0 \Longleftrightarrow d=-14$
+
+			Une équation cartésienne de $\mathcal{P}$ est donc bien :   $2x + y + 2z - 14 = 0$.
+			\item  Un point appartient à un plan si et seulement si ses coordonnées vérifient une équation de ce plan.
+
+			$2x_B+y_B+z_B-14 = 2 \times 5 -2 +2 \times 3 -14 =10-2+6-14 =0 $ 
+
+			donc le point B appartient au plan $\mathcal{P}$.
+			
+			$2x_C+y_C+z_C-14 = 2 \times 1 +1 +2 \times 1 -14 = 2+1+2-14=-9 \neq 0 $ 
+			
+			donc le point C n'appartient pas au plan $\mathcal{P}$. 
+			
+		\end{enumerate}
+		\item 
+		\begin{enumerate}
+			\item    Le point D est le projeté orthogonal du point C sur le plan $\mathcal{P}$ si et seulement si le point D appartient au plan $\mathcal{P}$ et si la droite (DC) est orthogonale au plan $\mathcal{P}$.
+
+On a $\vectt{CD} \begin{pmatrix} 2\\1\\2  \end{pmatrix}$ et on sait que $\vect{n}\begin{pmatrix} 2 \\1\\2 \end{pmatrix}$ est un vecteur normal au plan $\mathcal{P}$.
+
+Les vecteurs $\vectt{CD}$ et $\vect{n}$ sont égaux donc la droite (CD) est orthogonale au plan $\mathcal{P}$
+
+De plus : $2x_D+y_D+z_D-14 = 2 \times 3 +2 +2 \times 3 -14 =6 +2+6-14 =0 $
+
+donc le point D appartient au plan $\mathcal{P}$.
+
+Donc le point D est le projeté orthogonal du point C sur le plan $\mathcal{P}$.
+	\item  Par définition du point A, il appartient au plan $\mathcal{P}$. 
+
+D'après la question 2.b., le point B appartient au plan $\mathcal{P}$
+
+D est le projeté du point C sur le plan $\mathcal{P}$, donc il appartient au plan $\mathcal{P}$.
+
+Les points A, B  et D  appartiennent donc tous les trois au plan $\mathcal{P}$  donc $\mathcal{P} = (ABD)$
+	
+or le point C n'appartient pas au plan  $\mathcal{P}$ d'après la question 2. b., donc les points A, B, C et D ne sont pas coplanaires.
+			
+			\item On a $\vectt{AB} \begin{pmatrix} 1\\-4\\1  \end{pmatrix}$ et $\vectt{AD} \begin{pmatrix} -1\\0\\1 \end{pmatrix}$
+
+On est dans un repère orthonormé donc : 
+
+$\vect{\text{AB}} \cdot \vect{\text{AD}}= 1 \times (-1) -4 \times 0 + 1 \times 1 =0$.
+		\item Le produit scalaire $\vect{\text{AB}} \cdot \vect{\text{AD}}$ est nul donc ABD est un triangle rectangle en A.
+
+			Soit $\mathcal{A}$ l'aire du triangle ABD. 
+
+			On a $\begin{aligned}[t] \mathcal{A} &= \dfrac{\mathrm{AB} \times \mathrm{BD}}{2}\\ 
+	& = \dfrac{ \sqrt{1^2+4^2+1ˆ2}\times \sqrt{(-1)^2+0^2+1^2}}{2}\\
+	& = \dfrac{\sqrt{18} \times \sqrt{2}}{2}\\
+	& = \dfrac{\sqrt{2 \times 9 \times 2}}{2}\\
+	&= 3 
+	\end{aligned} $.
+
+Dans la pyramide ABCD, la hauteur associé à la base ABD sera le segment [CD] car le point D est le projeté orthogonal du point C sur le plan (ABD). 
+
+D'où $\begin{aligned}[t]
+V&= \dfrac{1}{3} \times 3 \times \mathrm{CD}\\
+&= \sqrt{2^2+1^2+2^2}\\
+&=\sqrt{9}=3
+\end{aligned}$ 
+
+Le volume de la pyramide ABCD est 3 unités de volume. 
+		\end{enumerate}
+					\item H est le projeté orthogonal du point A sur la droite (BC) si et seulement H appartient à la droite (BC) et les droites (BC) et (AH) sont perpendiculaires.
+
+\begin{itemize}
+\item Soit $X\left(\dfrac{73}{29}~;~\dfrac{- 4}{29}~;~\dfrac{51}{29} \right)$.
+
+On a $\vectt{BC} \begin{pmatrix} -4 \\3 \\ -2 \end{pmatrix}$ et $\vectt{\text{AX}} \begin{pmatrix} -\frac{43}{29} \\ -\frac{62}{29} \\ \frac{-7}{29} \end{pmatrix}$ 
+
+Le repère étant orthonormé on peut calculer le produit scalaire :
+
+$\vectt{\text{AX}} \cdot \vectt{\text{BC}} =  \dfrac{172}{29} - \dfrac{186}{29}+ \dfrac{14}{29} = \dfrac{186}{29} - \dfrac{186}{29} = 0$ donc les vecteurs $\vectt{\text{AX}}$ et $\vectt{\text{BC}}$ sont orthogonaux.
+
+D'autre part $\vectt{\text{BX}} = \begin{pmatrix} -\dfrac{72}{29} \\\dfrac{54}{29}\\ -\dfrac{72}{29} \end{pmatrix}$ et on constate que $\vectt{\text{BX}} = \dfrac{18}{29}\vectt{\text{BC}}$.
+
+Conclusion les vecteurs $\vectt{\text{BX}}$ et $\vectt{\text{BC}}$ sont colinéaires ou encore X appartient à la droite (BC).
+
+X est donc le projeté orthogonal de A sur (BC) ; les coordonnées de H sont bien $\left(\dfrac{73}{29}~;~\dfrac{- 4}{29}~;~\dfrac{21}{29} \right)$.
+\end{itemize}
+
+Donc le point H est le projeté orthogonal du point A sur la droite (BC).
+	\item Le segment [AH] est donc la hauteur issue de A dans le triangle ABC. 
+L'aire du triangle ABC est  donc $\mathcal{A}'= \dfrac{\mathrm{BC} \times \mathrm{AH}}{2}$.
+
+$\mathrm{AH}^2 =  \left(-\dfrac{43}{29} \right)^2 + \left(-\dfrac{62}{29}\right)^2 +  \left(-\dfrac{7}{29}\right) ^2 = \dfrac{5742}{29^2} = \dfrac{198}{29} $ 
+
+$\mathrm{BC}^2= (-4)^2+3^2+(-2)^2= 16+9+4=29$
+
+D'où $\mathcal{A}'= \dfrac{ 1}{2} \times \sqrt{\dfrac{198}{29}} \times  \sqrt{29} = \dfrac{\sqrt{198}}{2}=   \dfrac{\sqrt{22 \times 9 }}{2}=\dfrac{3\sqrt{22}}{2}$.
+
+	\item Soit $h$ la distance du point D au plan (ABC). 
+
+$h$ sera la hauteur associé à la base (ABC) dans la pyramide ABCD. 
+	
+On a donc $V = \dfrac{1}{3} \times \mathcal{A}' \times h$
+	
+D'où $3 = \dfrac{1}{3} \times  \dfrac{3\sqrt{22}}{2}\times h $ donc $h = \dfrac{3 \times 2}{\sqrt{22}}= \dfrac{3\sqrt{22}}{11}$
+
+La distance du point D au plan (ABC) est donc égale à $\dfrac{3\sqrt{22}}{11}$.
+\end{enumerate}
+
+\medskip
+
+\end{document}

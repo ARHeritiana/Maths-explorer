@@ -1,0 +1,76 @@
+\medskip
+
+Soit $a$ un nombre réel strictement supérieur à 1.
+
+On considère la suite $\left(u_n\right)$ définie par $u_0 = a$ et, pour tout entier naturel $n$ : \[u_{n+1} = u_n^2 - 2u_n + 2.\]
+
+On admet que pour tout entier naturel $n$,\: $u_n > 1$.
+
+L'objectif de cet exercice est d'étudier la suite $\left(u_n\right)$ pour différentes valeurs du nombre réel $a$.
+
+\bigskip
+
+\textbf{Partie A : étude de la suite \boldmath $\left(u_n\right)$ \unboldmath dans le cas }\boldmath$1 < a < 2$\unboldmath 
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Montrer que, pour tout entier naturel $n$, on a : $u_{n+1} - 2 = u_n\left(u_n - 2\right)$.
+		\item Montrer que, pour tout entier naturel $n$, on a : $u_{n+1} - u_n = \left(u_n - 1\right)\left(u_n - 2\right)$.
+	\end{enumerate}
+\item Dans cette question, on pourra utiliser les égalités établies dans la question précédente.
+	\begin{enumerate}
+		\item En utilisant un raisonnement par récurrence démontrer que, pour tout entier naturel $n : u_n < 2$.
+		\item Montrer que la suite $\left(u_n\right)$ est convergente et déterminer sa limite. 
+	\end{enumerate}
+\end{enumerate}
+	
+	
+\textbf{Partie B : étude dans le cas particulier }\boldmath $a = 2$\unboldmath
+
+\medskip
+
+\begin{enumerate}
+\item ~\\[-25pt]
+
+\begin{minipage}{0.5\linewidth}
+On donne ci-contre la fonction \texttt{u} écrite en langage Python.
+
+Déterminer les valeurs renvoyées par le programme lorsque l'on saisit \texttt{u(2,1)} et \texttt{u(2,2)} dans la console Python.
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\linewidth}
+{\ttfamily
+\begin{tabular}{|l|}\hline
+\pmb{def} u(a,n) : \\
+\qquad u=a\\
+\qquad \pmb{for} k \pmb{in} range(n) :\\
+\qquad \quad  u=u**2-2*u+2\\
+\qquad \pmb{return} u\\ \hline
+\end{tabular}
+}
+\end{minipage}
+
+\item Quelle conjecture peut-on formuler concernant la suite $\left(u_n\right)$ dans le cas où $a = 2$ ? 
+
+On admettra ce résultat sans démonstration.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie C : étude dans le cas général}
+
+\medskip
+
+\begin{enumerate}
+\item On considère la suite $\left(v_n\right)$ définie, pour tout entier naturel $n$, par $v_n = \ln \left(u_n - 1\right)$.
+	\begin{enumerate}
+		\item Montrer que la suite $\left(v_n\right)$ est une suite géométrique de raison 2 dont on précisera le premier terme en fonction de $a$.
+		\item En déduire que, pour tout entier naturel $n,\: u_n = 1 + \e^{2^n \times \ln (a-1)}$.
+	\end{enumerate}
+\item Déterminer, suivant les valeurs du réel $a$ strictement supérieur à 1, la limite de la suite $\left(u_n\right)$.
+\end{enumerate}
+
+\bigskip

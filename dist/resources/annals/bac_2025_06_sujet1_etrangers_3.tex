@@ -1,0 +1,167 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet1_etrangers_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Partie A}
+
+On considère la fonction $f$ définie sur l'intervalle $] - 1~;~+\infty[$ par 
+
+\[f(x) = 4\ln(x + 1) - \dfrac{x^2}{25}\]
+
+On admet que la fonction $f$ est dérivable sur l'intervalle $] - 1~;~+\infty[$.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer la limite de la fonction $f$ en $-1$.
+\item Montrer que, pour tout $x$ appartenant à l'intervalle $]- 1~;~+\infty[$ , on a :
+ \[f'(x) = \dfrac{100- 2x - 2x^2}{25(x+1)}\]
+
+\item Étudier les variations de la fonction $f$ sur l'intervalle $] - 1~;~+\infty[$ puis en déduire que la fonction $f$ est strictement croissante sur l'intervalle [2~;~6,5].
+\item On considère $h$ la fonction définie sur l'intervalle [2~;~6,5] par $h(x) = f(x) - x$.
+
+On donne ci-dessous le tableau de variations de la fonction $h$ :
+
+\begin{center}
+\psset{unit=1cm,arrowsize=2pt 3}
+\begin{pspicture}(11,2.5)
+\psframe(11,2.5)\psline(0,2)(11,2) \psline(1,0)(1,2.5)
+\uput[u](0.5,1.9){$x$}\uput[u](1.2,1.9){$2$}\uput[u](6,1.9){$m\approx 2,364$}\uput[u](10.75,1.9){$6,5$}
+\rput(0.5,1){$h(x)$}\uput[u](1.4,0){$h(2)$}\uput[d](6,2){$M \approx 2,265$}\uput[u](10.5,0){$h(6,5)$}
+\psline{->}(1.8,0.4)(4.9,1.6)\psline{->}(6.9,1.6)(10,0.4)
+\end{pspicture}
+\end{center}
+Montrer que l’équation $h(x) = 0$ admet une unique solution $\alpha \in [2~;~6,5]$.
+
+\item On considère le script suivant, écrit en langage Python:
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+\quad \textbf{from} math \textbf{import *}\\
+~\\
+\quad \textbf{def} f(x):\\
+\quad \qquad\textbf{return} 4*log(1+x)-(x**2)/25\\
+~\\
+\quad \textbf{def} bornes(n):\\
+\quad \qquad p = 1/10**n\\
+\quad \qquad x = 6\\
+\quad \qquad \textbf{while} f(x)-x > 0:\\
+\quad \qquad\qquad x = x + p\\
+\quad \qquad\textbf{return} (x-p, x)\\\hline
+\end{tabular}
+\end{center}
+
+On rappelle qu'en langage Python:
+
+
+\begin{itemize}[label=$\bullet~$]
+\item la commande $\text{log} (x)$ renvoie la valeur $\ln x$ ; 
+\item la commande c$**$d renvoie la valeur de $\text{c}^{\text{d}}$.
+\end{itemize}
+
+	\begin{enumerate}
+		\item Donner les valeurs renvoyées par la commande bornes(2).
+		
+On donnera les valeurs arrondies au centième.
+		\item Interpréter ces valeurs dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+\subsection*{Partie B}
+
+\emph{Dans cette partie, on pourra utiliser les résultats obtenus dans la partie A.}
+
+On considère la suite $(u_n)$ définie par $u_0 = 2$, et, pour tout entier naturel $n,\: u_{n+1} = f\left(u_n\right)$
+
+\begin{enumerate}
+\item Montrer par récurrence que pour tout $n$ entier naturel,
+
+\[2 \leqslant u_n \leqslant u_{n+1} < 6,5.\]
+\item En déduire que la suite $(u_n)$ converge vers une limite $\ell$.
+\item On rappelle que le réel $\alpha$, défini dans la partie A, est la solution de l'équation $h(x)~=~0$ sur l'intervalle [2~;~6,5].
+
+Justifier que $\ell = \alpha$.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

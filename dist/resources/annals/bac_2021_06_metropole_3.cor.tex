@@ -1,0 +1,219 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_metropole_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Commun à tous les candidats}
+
+
+
+
+
+
+
+
+\begin{center}
+\textbf{I~-- Premier modèle}
+\end{center}
+
+
+
+
+ 
+
+En 10 minutes la température a augmenté de $1,3 - ( - 19) = 1,3 + 19 = 20,3$ soit une augmentation de $2,03$~\textcelsius.
+
+Selon ce premier modèle l'augmentation de la  température serait au bout de 25 minutes de $25 \times 2,03 = 50,75$(\textcelsius).
+
+Les gâteaux seraient donc à une température de $- 19 + 50,75 = 31,75$(\textcelsius) alors que la température ambiante est de 25\textcelsius : c'est impossible, donc ce modèle n'est pas pertinent.
+
+\begin{center}
+\textbf{II~-- Second modèle}
+\end{center}
+
+On note $T_n$ la température des gâteaux  en degré Celsius, au bout de $n$ minutes après leur sortie du congélateur ; ainsi $T_0= - 19$.
+  On admet que pour modéliser l'évolution de la température, on doit avoir la relation suivante:
+ $\text{pour tout } n,\ T_{n+1}-T_n=-\np{0.06}\times \left(T_n - 25\right).$
+
+\begin{enumerate}
+\item 
+On a: $\begin{gathered}T_{n+1}-T_n=-\np{0.06}\times \left(T_n - 25\right) \iff T_{n+1}-T_n = -0,06T_n  + 1,5 \\
+\hspace*{1cm}\iff T_{n+1} =  T_n - 0,06T_n  + 1,5 \iff T_{n+1} =  0,94T_n  + 1,5\end{gathered}$.
+\item ~
+\starredbullet ~ Avec $n = 0$, la relation  donne $T_1 = 0,94 \times (- 19) + 1,5 = 1,5 - 17,86 = -16,36$ ;
+
+\starredbullet ~ Avec $n = 1$, la relation  donne $T_2 = 0,94 \times (- 16,36) + 1,5 = 1,5 - \np{15,3784} = -\np{13,8784}$.
+\item On démontre par récurrence que, pour tout entier naturel $n$, on a $T_n\leqslant 25$.
+
+
+\emph{Initialisation} - $T_0 = - 19 \leqslant 25$; l'inégalité est vraie au rang $0$.
+
+\emph{Hérédité} - Supposons que pour $n \in \N$, \, $T_n\leqslant 25$ alors en multipliant par 0,94 :
+
+$0,94T_n \leqslant 0,94 \times 25$, soit $0,94T_n \leqslant  23,5$.
+
+D'où en en ajourant à chaque membre 1,5 :
+
+$0,94T_n  + 1,5 \leqslant 23,5 + 1,5$, soit finalement $T_{n+1} \leqslant 25$ : l'inégalité est vraie au rang $n$.
+
+Conclusion : l'inégalité est vraie au rang $0$ et si elle est vraie au rang $n$, elle l'est aussi au rang $n + 1$.
+
+D'après le principe de récurrence : quel que soit $n \in \N$, \, $T_n \leqslant 25$.
+
+Ceci correspond à une évidence : la température des gâteaux ne peut dépasser la température ambiante.
+\item 
+On sait que quel que soit $n \in \N$, \, $T_{n+1}-T_n = -\np{0.06}\times \left(T_n - 25\right)$.
+
+D'après la question précédente $T_n \leqslant 25$ soit en multipliant par 0,06 :
+
+$0,06T_n \leqslant 0,06 \times 25$, ou $0,06T_n \leqslant 1,5$
+
+et en prenant les opposés : $- 1,5 \leqslant - 0,06T_n$ et enfin en ajoutant à chaque membre 1,5 :
+
+$0 \leqslant - 0,6T_n + 1,5$.
+
+On a donc démontré que quel que soit $n \in \N$, \, $T_{n+1}-T_n  \geqslant 0$ : la suite $\left(T_n\right)$ est donc croissante.
+\item 
+On a donc démontré que la suite $\left(T_n\right)$ est croissante et majorée par 25 : d'après le théorème de la convergence monotone, cette suite converge vers une limite $\ell$ telle que $\ell \leqslant 25$.
+\item On pose pour tout entier naturel $n$, $U_n = T_n - 25$.
+\begin{enumerate}
+\item 
+Quel que soit $n \in \N$, $U_{n+1} = T_{n+1} - 25 = 0,94T_n + 1,5 - 25$ ou encore 
+
+$U_{n+1} = 0,94T_n - 23,5 = 0,94\left(T_n - \dfrac{23,5}{0,94} \right) = 0,94\left(T_n - 25 \right)$, soit finalement $T_{n+1} = 0,94U_n$: cette égalité montre que la suite $\left(U_n\right)$ est une suite géométrique de raison 0,94 et de premier terme $U_0 = T_0 - 25 = - 19 - 25 = - 44$.
+\item 
+On sait que quel soit $n \in \N$, \, $U_n = U_0 \times 0,94^n$ ou 
+$U_n = - 44 \times 0,94^n$.
+
+Or $U_n = T_n - 25 \iff T_n = U_n + 25$ ou encore $T_n = - 44 \times 0,94^n + 25$, soit finalement :
+
+\[T_n = 25 - 44 \times 0,94^n, \text{quel que soit }\, n \in \N\]
+
+\item 
+Comme $0 < 0,94 < 1$, on sait que $\displaystyle\lim_{n \to + \infty} 0,94^n = 0$, d'où par somme de limites :
+
+\[\displaystyle\lim_{n \to + \infty} T_n = \ell = 25.\]
+
+\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+		 
+
+On a: $T_{30} = 25 - 44 \times 0,94^{30} \approx 18,12$ soit environ 18\textcelsius au degré près.
+		\item 
+		
+
+La calculatrice donne $T_{17} \approx 9,63$ et $T_{18} \approx 10,55$, donc 
+Cécile devra déguster son gâteau entre la 17\up{e} et la 18\up{e} minute après sa sortie.
+\item On complète le programme suivant, écrit en langage Python, qui doit renvoyer après son exécution la plus petite valeur de l'entier $n$ pour laquelle $T_n \geqslant 10$.
+
+
+
+
+\begin{center}
+\fbox{
+\begin{tabular}[]{p{4.5cm}}
+
+def seuil() :\\
+\hspace{1.2em}n = 0\\
+\hspace{1.2em}T = $\blue - 19$\\
+\hspace{1.2em}while T $\blue < 10$\\
+\hspace{4em}T = $\blue25 - 0,94\text{T}$\\
+\hspace{4em}n = n+1\\
+\hspace{1.2em}return\\
+
+\end{tabular}
+}
+\end{center}
+
+
+
+
+
+
+
+
+
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

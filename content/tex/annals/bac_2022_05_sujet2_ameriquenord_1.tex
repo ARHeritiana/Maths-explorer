@@ -1,0 +1,91 @@
+\medskip
+
+Dans une région touristique, une société propose un service de location de vélos pour la journée.
+
+\smallskip
+
+La société dispose de deux points de location distinctes, le point A et le point B. Les vélos peuvent être empruntés et restitués indifféremment dans l'un où l'autre des deux points de location.
+
+\smallskip
+
+On admettra que le nombre total de vélos est constant et que tous les matins, à l'ouverture du service, chaque vélo se trouve au point A ou au point B.
+
+\smallskip
+
+D'après une étude statistique :
+
+\smallskip
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet~~$] Si un vélo se trouve au point A un matin, la probabilité qu'il se trouve au point A le matin suivant est égale à $0,84$ ;
+\item[$\bullet~~$] Si un vélo se trouve au point B un matin la probabilité qu'il se trouve au point B le matin suivant est égale à $0,76$.
+\end{itemize}
+\setlength\parindent{0cm}
+
+À l'ouverture du service le premier matin, la société a disposé la moitié de ses vélos au point A, l'autre moitié au point B.
+
+\smallskip
+
+On considère un vélo de la société pris au hasard.
+
+\smallskip
+
+Pour tout entier naturel non nul $n$, on définit les évènements suivants :
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet~~$]$A_n$ : \og le vélo se trouve au point A le $n$-ième matin \fg{}
+\item[$\bullet~~$]$B_n$ : \og le vélo se trouve au point B le $n$-ième matin \fg.
+\end{itemize}
+\setlength\parindent{0cm}
+
+Pour tout entier naturel non nul $n$, on note $a_n$ la probabilité de l'évènement $A_n$ et $b_n$ la probabilité de l'évènement $B_n$. Ainsi $a_1 = 0,5$ et $b_1 =  0,5$.
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter l'arbre pondéré ci-dessous qui modélise la situation pour les deux premiers matins :
+
+\begin{center}
+\pstree[treemode=R,nodesepB=3pt,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$A_1~~$}\taput{\ldots}}
+	{\TR{$A_2$}\taput{\ldots}
+	\TR{$B_2$}\tbput{\ldots}
+	}
+\pstree{\TR{$B_1~~$}\tbput{\ldots}}
+	{\TR{$A_2$}\taput{\ldots}
+	\TR{$B_2$}\tbput{\ldots}
+	}	
+}
+\end{center}
+
+\item
+	\begin{enumerate}
+		\item Calculer $a_2$.
+		\item Le vélo se trouve au point A le deuxième matin. Calculer la probabilité qu'il se soit trouvé au point B le premier matin. La probabilité sera arrondie au millième.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item Recopier et compléter l'arbre pondéré ci-dessous qui modélise la situation pour les $n$-ième et $n + 1$-ième  matins.
+		
+\begin{center}
+\pstree[treemode=R,nodesepB=3pt,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$A_n~~$}\taput{$a_n$}}
+	{\TR{$A_{n+1}$}\taput{\ldots}
+	\TR{$B_{n+1}$}\tbput{\ldots}
+	}
+\pstree{\TR{$B_n~~$}\tbput{\ldots}}
+	{\TR{$A_{n+1}$}\taput{\ldots}
+	\TR{$B_{n+1}$}\tbput{\ldots}
+	}	
+}
+\end{center}
+		\item Justifier que pour tout entier naturel non nul $n$,\: $a_{n+1} = 0,6a_n + 0,24$.
+	\end{enumerate}
+\item Montrer par récurrence que, pour tout entier naturel non nul $n$, \: $a_n = 0,6 - 0,1 \times 0,6^{n - 1}$.
+\item Déterminer la limite de la suite $\left(a_n\right)$ et interpréter cette limite dans le contexte de l'exercice. 
+\item Déterminer le plus petit entier naturel $n$ tel que $a_n \geqslant 0,599$ et interpréter le résultat obtenu dans le contexte de l'exercice.
+\end{enumerate}
+
+\bigskip

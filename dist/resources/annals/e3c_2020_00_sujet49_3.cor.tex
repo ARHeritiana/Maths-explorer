@@ -1,0 +1,168 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet49_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{1.}
+
+On a donc \( u_2 = 200 + 5 = 205 \) et \( u_3 = u_2 + 5 = 205 + 5 = 210 \).
+
+De même, on a :
+\[
+v_2 = 200 \times \left(1 + \dfrac{2}{100}\right) = 200 \times 1{,}02 = 204 \quad \text{et} \quad v_3 = v_2 \times 1{,}02 = 208{,}80 \text{ (en euros)}.
+\]
+
+\subsection*{2.}
+
+\paragraph{a.}
+\begin{center}
+\begin{lstlisting}[style=python]
+u = 200
+v = 200
+n = int(input("Saisir une valeur de n :"))
+for i in range(1,n) :
+    u = u + 5 
+    v = v * 1.02
+print("Pour n =",n,"on a","u =",u,"et v =",v)
+\end{lstlisting}
+\end{center}
+
+\paragraph{b.} On a :
+\[
+u_4 = u_3 + 5 = 215 \quad \text{et} \quad v_4 = v_3 \times 1{,}02 \approx 110{,}98.
+\]
+
+\subsection*{3.}
+
+Quel que soit le naturel \( n \), \( n \geq 1 \), on a :
+\begin{itemize}
+    \item \( u_{n+1} = u_n + 5 \) : la suite \( (u_n) \) est une suite arithmétique de premier terme 200 et de raison 5, donc \( u_n = 200 + 5(n - 1) \).
+    \item \( v_{n+1} = v_n \times 1{,}02 \) : la suite \( (v_n) \) est une suite géométrique de premier terme 200 et de raison 1{,}02, donc \( v_n = 200 \times 1{,}02^{n-1} \).
+\end{itemize}
+
+\subsection*{4.}
+
+3 ans correspondent à \( 3 \times 12 = 36 \) mois de loyers.
+
+\begin{itemize}
+    \item Avec le premier contrat :
+    \[
+    S_{36} = u_1 + u_2 + \dots + u_{36},
+    \]
+    que l'on peut écrire :
+    \[
+    S_{36} = 200 + 205 + \dots + 200 + 5 \times 35,
+    \]
+    ou encore :
+    \[
+    S_{36} = 200 + 5 \times 35 + \dots + 205 + 200,
+    \]
+    et en sommant membres à membres :
+    \[
+    2S_{36} = 36 \times (200 + 200 + 5 \times 35) = 36 \times 575 = 20700,
+    \]
+   	d'où \(S_{36} = 10350\) (euros).
+
+    \item Avec le second contrat :
+    \[
+    T_{36} = v_1 + v_2 + \dots + v_{36},
+    \]
+    que l'on peut écrire :
+    \[
+    T_{36} = 200 + 200 \times 1{,}02 + \dots + 200 \times 1{,}02^{35} \quad (1),
+    \]
+    d'où, par produit par 1{,}02 :
+    \[
+    1{,}02 T_{36} = 200 \times 1{,}02 + 200 \times 1{,}02^2 + \dots + 200 \times 1{,}02^{36} \quad (2),
+    \]
+    et par différence \((2) - (1)\) :
+    \[
+    0{,}02 T_{36} = 200 \times 1{,}02^{36} - 200,
+    \]
+    d'où :
+    \[
+    T_{36} = \dfrac{200 \times 1{,}02^{36} - 200}{0{,}02} \approx 10398{,}87 \text{ (euros)}.
+    \]
+\end{itemize}
+
+C'est donc le premier contrat qui reviendra le moins cher (de peu!).
+
+\end{document}

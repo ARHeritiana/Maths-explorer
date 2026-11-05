@@ -1,0 +1,186 @@
+On considère la fonction $f$ définie sur $[0~;~+\infty[$ par:
+$f(x) = \ln\left (3x^2 + 1\right )$.
+
+On admet que la fonction $f$ est croissante sur $[0~;+\infty[$.
+
+\subsection*{Partie A}
+
+On considère la suite $(u_n)$ définie par~:
+$u_0 = 2 \quad \text{et } \forall\, n \geqslant 0,\quad u_{n+1} = \ln \left(3u_n^2 + 1\right).$
+
+\begin{enumerate}
+\item $u_1 = \ln\left (3u_0^2+1\right )=\ln\left (3\times 2^2+1\right )=\ln\left (13\right )$
+
+\item La suite $(u_n)$ est représentée ci-dessous. 
+
+Au vu de la représentation graphique de la suite, on peut conjecturer qu'elle est croissante, et qu'elle est convergente vers une limite inférieure ou égale à 4.
+
+\begin{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\psset{xunit=0.8cm,yunit=1.6cm,arrowsize=2pt 3}
+\begin{pspicture*}(-0.7,-0.4)(13,4.5)
+\psgrid[xunit=1.6cm,gridlabels=0pt,subgriddiv=5,gridwidth=0.15pt,subgridcolor=lightgray!50,gridcolor=lightgray](0,0)(7,5)
+\psaxes[linewidth=1.25pt,Dx=2]{->}(0,0)(0,0)(13,4.5)
+\psdots(0,2)(1,2.565)(2,3.032)(3,3.353)(4,3.547)(5,3.657)(6,3.717)
+(7,3.748)(8,3.765)(9,3.773)(10,3.778)(11,3.780)(12,3.781)(13,3.782)
+\uput[u](12.8,0){$n$}\uput[r](0,4.4){$u_n$}
+\end{pspicture*}
+
+
+\end{center}
+
+\item On va démontrer par récurrence que pour tout $n\in\N$:
+$2 \leqslant u_n \leqslant u_{n+1} \leqslant 4$.
+
+On appelle $\mathcal{P}_n$ cette propriété.
+
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+Pour $n=0$, on a $u_0=2$ et $u_1=\ln\left (13\right )\approx 2,56$.
+
+Donc $2 \leqslant u_0 \leqslant u_1 \leqslant 4$; $\mathcal{P}_0$ est vraie.
+\item \textbf{Hérédité}
+
+On suppose $\mathcal{P}_n$ vraie, c'est-à-dire: $2 \leqslant u_n \leqslant u_{n+1} \leqslant 4$.
+ 
+ \begin{tabular}{l l }
+& $2 \leqslant u_n \leqslant u_{n+1} \leqslant 4$  \\
+$\iff$ & $2^2 \leqslant u_n^2 \leqslant u_{n+1}^2 \leqslant 4^2$\\
+& \qquad car la fonction carré est strictement croissante sur $\R_{+}$\\
+$\iff$ & $3\times 2^2 \leqslant 3 u_n^2 \leqslant 3 u_{n+1}^2 \leqslant 3\times 4^2$ \qquad on multiplie par 3 \\
+$\iff$ & $12 \leqslant 3 u_n^2 \leqslant 3 u_{n+1}^2 \leqslant 48$  \\
+$\iff$ & $13 \leqslant 3 u_n^2 +1 \leqslant 3 u_{n+1}^2  +1 \leqslant 49$ \qquad on ajoute 1\\
+$\iff$ & $\ln\left (13\right ) \leqslant \ln\left (3 u_n^2 +1\right ) \leqslant \ln\left (3 u_{n+1}^2  +1\right ) \leqslant \ln\left (49\right )$\\
+ & \qquad car la fonction ln est strictement croissante sur $\R_+^*$\\
+$\iff$ & $\ln\left (13\right ) \leqslant u_{n+1} \leqslant u_{n+2}\leqslant \ln\left (49\right )$
+ \end{tabular}
+
+$\ln\left (13\right )\approx 2,56 \geqslant 2$ et $\ln\left (49\right )\approx 3,85 \leqslant 4$ donc on a:
+$2\leqslant u_{n+1} \leqslant u_{n+2} \leqslant 4$ 
+
+ce qui veut dire que la propriété est vraie au rang $n+1$ donc $\mathcal{P}_n \implies \mathcal{P}_{n+1}$.
+
+\item \textbf{Conclusion}
+
+La propriété est vraie pour $n=0$. Elle est héréditaire pour tout $n\geqslant 0$. Donc, d'après le principe de récurrence, la propriété est vraie pour tout $n\geqslant 0$.
+\end{list}
+
+On a donc démontré que pour tout $n\in\N$:
+$2 \leqslant u_n \leqslant u_{n+1} \leqslant 4$.
+
+\item 
+\begin{list}{\textbullet}{D'après la question précédente:}
+\item $u_{n}\leqslant u_{n+1}$ pour tout $n$, donc la suite $(u_n)$ est croissante;
+\item $u_n \leqslant 4$ pour tout $n$, donc la suite $(u_n)$ est majorée.
+\end{list}
+
+La suite $(u_n)$ est croissante majorée donc, d'après le théorème de la convergence monotone, la suite $(u_n)$ est convergente.
+
+Si on appelle $\ell$ la limite de la suite $(u_n)$, d'après la question précédente, on peut déduire que $2\leqslant \ell \leqslant 4$.
+
+\end{enumerate}
+
+\subsection*{Partie B}
+
+
+
+
+
+On considère la fonction $g$ définie et dérivable sur $[0~;~+\infty[$ par~:
+$g(x) = \ln(3x^2+1) - x.$
+
+\begin{enumerate}
+\item 
+
+
+
+
+Pour tout réel $x \in [0~;~+\infty[$, on a:
+
+$g'(x)=\dfrac{6x}{3x^2+1} -1 = \dfrac{6x -3x^2-1}{3x^2+1} = \dfrac{ -3x^2 +6x -1}{3x^2+1}$
+
+\item 
+On détermine le signe de $g'(x)$.
+
+$3x^2+1>0$ donc $g'(x)$ est du signe de $-3x^2+6x-1$. On étudie le signe de ce trinôme.
+
+$\Delta = 6^2 - 4\times (-3)\times (-1) = 36-12=24>0$ donc ce trinôme admet deux racines:
+
+$x'=\dfrac{-6+\sqrt{24}}{2\times (-3)}=\dfrac{-6+\sqrt{24}}{-6}=\dfrac{6-\sqrt{24}}{6}\approx 0,18$ 
+et $x''=\dfrac{-6-\sqrt{24}}{2\times (-3)}=\dfrac{6+\sqrt{24}}{6} \approx 1,82$
+
+On en déduit le signe du trinôme donc de $g'(x)$.
+
+\begin{center}
+$ \begin{tablvar}[intervalwidth=6em,stretch=1.2]{3}
+ \hline
+ x & -\infty &  & x' & & x'' &  & +\infty\\
+ \hline
+ax^2+bx+c & & \text{signe de } a & \barre[0] & \text{signe de } -a  & \barre[0] & \text{signe de } a  & \\
+ \hline
+-3x^2+6x-1  & & - & \barre[0] & +  & \barre[0] & - & \\
+ \hline
+ g'(x)  & & - & \barre[0] & +  & \barre[0] & - & \\
+ \hline 
+ \end{tablvar}$
+\end{center}
+
+Sur l'intervalle $]x''\;;\;+\infty[$, $g'(x)<0$ donc $g$ est strictement décroissante. \\
+Or $x''\approx 1,82<2$. \\
+Donc l'intervalle $[2\;;\;4]$ est inclus dans  $]x''\;;\;+\infty[$, donc $g'(x)<0$ sur cet intervalle.
+
+On peut donc conclure que $g$ est strictement décroissante sur l'intervalle $[2\;;\;4]$.
+
+\item 
+\begin{list}{\textbullet}{On a:}
+\item $g(2)\approx 0,56>0$;
+\item $g(4)\approx -0,11 <0$;
+\item $g$ est strictement décroissante sur $[2\;;\;4]$.
+\end{list}
+
+Donc, d'après le corollaire du théorème des valeurs intermédiaires, on peut conclure que l'équation $g(x)=0$ admet une solution unique dans l'intervalle $[2\;;\;4]$.
+
+On appelle $\alpha$ cette solution. À la calculatrice on trouve $\alpha\approx 3,78$.
+
+
+\item
+La suite $(u_n)$ est définie par la relation de récurrence: $u_{n+1}=f\left (u_n\right )$ pour tout $n\geqslant 0$.
+
+La fonction $f$ est dérivable donc continue.
+
+$\ds\lim_{n\to +\infty} u_n=\ell$ donc $\ds\lim_{n\to +\infty} f\left (u_n\right )=f\left (\ell\right )$ et donc $\ds\lim_{n\to +\infty} u_{n+1}=f\left (\ell\right )$
+
+Or la limite d'une suite est unique donc $\ds\lim_{n\to +\infty} u_{n+1}= \ds\lim_{n\to +\infty} u_{n}$.
+
+On en déduit que $f\left (\ell\right ) = \ell$ et donc que $\ell$ est une solution de l'équation $f(x)=x$ c'est-à-dire $f(x)-x=0$ ou encore $g(x)=0$.
+
+On a noté plus haut que $2 \leqslant \ell \leqslant 4$ donc $\ell$ est une solution de l'équation $g(x)=0$ appartenant à l'intervalle $[2\;;\;4]$.
+
+On en déduit donc que $\ell=\alpha$.
+
+\end{enumerate}
+
+\bigskip

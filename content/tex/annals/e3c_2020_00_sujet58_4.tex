@@ -1,0 +1,42 @@
+\medskip
+
+Une entreprise qui fabrique des aiguilles dispose de deux sites de production, le site A et le site B. Le site A produit les trois-quarts des aiguilles, le site B l'autre quart. Certaines aiguilles peuvent présenter un défaut. Une étude de contrôle de qualité a révélé que :
+\begin{itemize}
+\item 2\,\% des aiguilles du site A sont défectueuses ;
+\item 4\,\% des aiguilles du site B sont défectueuses.
+\end{itemize}
+Les aiguilles provenant des deux sites sont mélangées et vendues ensemble par lots.
+
+On choisit une aiguille au hasard dans un lot et on considère les évènements suivants :
+\begin{itemize}
+\item $A$ : l'aiguille provient du site A ;
+\item $B$ : l'aiguille provient du site B ;
+\item $D$ : l'aiguille présente un défaut.
+\end{itemize}
+
+L'évènement contraire de $D$ est noté $\overline{D}$
+
+\medskip
+
+\begin{minipage}[]{7cm}
+\begin{enumerate}
+\item D'après les données de l'énoncé, donner la valeur de la probabilité de l'évènement $A$ que l'on notera $p(A)$.
+\item Recopier et compléter sur la copie l'arbre de probabilités ci-dessous en indiquant les probabilités sur les branches.
+\item Quelle est la probabilité que l'aiguille ait un défaut et provienne du site A ?
+\item Montrer que $p(D)=0,025$.
+\item Après inspection, l'aiguille choisie se révèle défectueuse. Quelle est la probabilité qu'elle ait été produite sur le site A ?
+\end{enumerate}
+\end{minipage}
+\hspace{10em}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$A$~~}\taput{$\dots$}}
+	{
+	\TR{$D$}\taput{$\dots$}
+	\TR{$\overline{D}$}\tbput{$\dots$}
+	}
+\pstree{\TR{$B$~~}\tbput{$\dots$}}
+	{\TR{$D$}\taput{$\dots$}
+	\TR{$\overline{D}$}\tbput{$\dots$}
+	}
+}

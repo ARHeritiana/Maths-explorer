@@ -1,0 +1,79 @@
+\medskip
+
+\begin{center}\textbf{Partie A } \end{center}
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+La variable aléatoire $X$ suit d'après les conditions de l'énoncé une loi binomiale de paramètres $n = 10$ de probabilité $p = 0,25$.
+
+\item 
+On a $P(X \leqslant 3) \approx \np{0.7758}$, d'où $P(X > 3) \approx \np{0,2242}$ soit environ 0,224 au millième près.
+
+\item 
+$E(X) = n \times p = 10 \times 0,25 = 2,5$.\\
+Sur un grand nombre de tirages  25 clients sur 100 passeront moins de 12 minutes à la station.
+\end{enumerate}
+
+\begin{center}\textbf{Partie B } \end{center}
+
+Un client arrive à la station et se dirige vers une pompe. Il constate que deux voitures sont
+devant lui, la première accédant à la pompe au moment de son arrivée.
+
+On désigne par $T_1,\: T_2,\: T_3$ les variables aléatoires qui modélisent les temps passés en minute par chacun des trois clients, dans leur ordre d'arrivée, pour alimenter son véhicule entre l'instant où la pompe est disponible pour lui et celui où il la libère.
+
+On suppose que $T_1$, $T_2$ et $T_3$ sont des variables aléatoires indépendantes de même espérance égale à $6$ et de même variance égale à 1.
+
+On note $S$ la variable aléatoire correspondant au temps d'attente total passé à la station du troisième client entre son arrivée à la station et son départ de la pompe après avoir alimenté son véhicule.
+
+\medskip
+
+\begin{enumerate}
+\item
+La variable aléatoire $T_1$ correspond au temps d'attente passé par le premier client à la station; comme ce premier client n'a personne devant lui, la variable aléatoire correspondant au temps d'attente total passé à la station par le premier client est $T_1$.
+
+La variable aléatoire $T_2$ correspond au temps d'attente passé par le deuxième client à la station; comme ce deuxième client avait le premier client devant lui, la variable aléatoire correspondant au temps d'attente total passé à la station par le deuxième client est $T_1+T_2$.
+
+La variable aléatoire $T_3$ correspond au temps d'attente passé par le troisième client à la station; comme ce troisième client avait deux autres clients devant lui, la variable aléatoire correspondant au temps d'attente total passé à la station par le troisième client est $T_1+T_2+T_3$.
+
+Donc $S=T_1+T_2+T_3$.
+
+\item 
+	\begin{enumerate}
+		\item 
+L'espérance est linéaire donc:\\
+$E(S)=E\left (T_1+T_2+T_3\right ) = E\left (T_1\right )+ E\left (T_2\right )+ E\left (T_3\right ) =6+6+6=18$.
+
+Cela signifie que le temps moyen d'attente à la station d'un client qui a deux personnes devant lui est de 18 minutes.
+		
+		\item 
+Les 3 variables aléatoires $T_1$, $T_2$ et $T_2$ sont indépendantes, donc on peut utiliser l'additivité de la variance:\\
+$V(S)=V\left (T_1+T_2+T_3\right ) = V\left (T_1\right )+ V\left (T_2\right )+ V\left (T_3\right ) =1+1+1=3$.
+	\end{enumerate}
+	
+\item
+La variable aléatoire $S$ a pour espérance $E(S)=18$ et pour variance $V(S)=3$ donc, d'après l'inégalité de Bienaymé-Tchebychev, on a:
+
+pour tout $\delta\in\, \left ]0\;;\;+\infty\strut \right [$, $P\left ( \left |S-E(S)\strut \right | \geqslant \delta \right ) \leqslant \dfrac{V(S)}{\delta^2}$,
+c'est-à-dire: $P\left ( \left |S-18\strut \right | \geqslant \delta \right ) \leqslant \dfrac{3}{\delta^2}$.
+
+En prenant l'événement contraire, on a donc:
+$P\left ( \left |S-18\strut \right | < \delta \right ) > 1- \dfrac{3}{\delta^2}$.
+
+La probabilité que le troisième client passe un temps strictement compris entre $14$ et $22$ minutes à la station est:
+$P(14<S<22)$, soit: $P(18-4<S<18+4)$, ou encore: $P(-4<S-18<4)$, c'est-à-dire:
+$P\left ( \left | S-18 \strut \right | <4\right )$.
+
+En prenant $\delta=4$, on a donc;
+$P\left ( \left |S-18\strut \right | < 4 \right ) >1- \dfrac{3}{16}$
+donc $P\left ( \left |S-18\strut \right | < 4 \right ) > 0,8125$.
+
+On en déduit que la probabilité que le troisième client passe un temps strictement compris entre $14$ et $22$ minutes à la station est supérieure ou égale à $0,81$.
+\end{enumerate}
+
+\bigskip

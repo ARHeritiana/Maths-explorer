@@ -1,0 +1,87 @@
+On compte le nombre d'arbres de deux forêts où de nouveaux arbres sont plantés chaque année.
+
+\subsubsection*{Partie A\hspace{10mm}Première forêt}
+
+Dans cette forêt, au 1\up{er} janvier 2010, on dénombrait \np{1200}~arbres.
+
+On suppose que le nombre d'arbres augmente de \np{100} par an.
+
+On modélise cette évolution par une suite \mbox{$(u_n)$}, où $u_n$ représente le nombre d'arbres dans cette forêt au 1\up{er}~janvier de l'année \mbox{$2010+n$} pour tout entier naturel $n$.
+
+Ainsi, on a \mbox{$u_0=\np{1200}$}
+\begin{enumerate}
+	\item Calculer $u_1$ et $u_2$. Interpréter $u_2$ dans le contexte de l'exercice.
+
+
+	\textcolor{red}{\textsc{Correction}}\\
+	Le nombre d'arbres augmente de 100 par an, donc \mbox{$u_1=\np{1200}+100=\np{1300}$}  et \mbox{$u_2=\np{1300}+100=\np{1400}$}.
+
+	Dans le contexte de l'exercice, cela signifie que la forêt comptera \np{1400}~arbres en 2012.
+	\item Exprimer \mbox{$u_{n+1}$} en fonction de $u_n$ pour tout entier naturel $n$. En déduire la nature de la suite $(u_n)$ et préciser sa raison $r$.
+
+
+	\textcolor{red}{\textsc{Correction}}\\
+	Chaque année le nombre d'arbres augmente de 100, donc \mbox{$\forall n \in \N,~ u_{n+1}=u_n + 100$}.
+
+	La suite $(u_n)$ est donc une suite arithmétique, de raison 100 et de premier terme \mbox{$u_0=\np{1200}$}.
+		\item Exprimer $u_n$ en fonction de $n$.
+
+
+		\textcolor{red}{\textsc{Correction}}\\
+		L'expression explicite de $(u_n)$ est donc  \mbox{$\forall n \in \N,~ u_n=u_0 +r\times n= \np{1200} + 100~n$}
+	\item D'après ce modèle, à partir de quelle année la forêt comptera-t-elle plus de \np{2950}~arbres ?
+
+		\textcolor{red}{\textsc{Correction}}\\
+		Comme le nombre d'arbres est toujours un multiple de 100, la forêt comptera plus de \np{2950}~arbres\dots lorsqu'elle en aura \np{3000}.
+
+		\mbox{$u_n=\np{3000}\iff \np{1200}+100~n=\np{3000}\iff 100~n=\np{1800}$}, donc il faut que \mbox{$n=18$} : c'est à partir de 2028 que la forêt dépassera \np{2950}~arbres.
+\end{enumerate}
+
+\subsubsection*{Partie B\hspace{10mm}Seconde forêt}
+
+
+Dans cette forêt, au 1\up{er} janvier 2010, on dénombrait \np{1000}~arbres.
+
+On suppose que le nombre d'arbres augmente de 5\% par an.
+
+On modélise cette évolution par une suite \mbox{$(v_n)$}, où $v_n$ représente le nombre d'arbres dans cette forêt au 1\up{er}~janvier de l'année \mbox{$2010+n$} pour tout entier naturel $n$.
+
+Ainsi, on a \mbox{$v_0=\np{1000}$}
+
+\begin{enumerate}
+	\item Calculer le nombre d'arbres au 1\up{er}~janvier 2011.
+
+
+		\textcolor{red}{\textsc{Correction}}\\
+		Le nombre d'arbres augmente de 5\,\% par an, et 5\,\% de \np{1000} c'est 50.
+
+		Donc au 1\up{er} janvier 2011, il y aura dans cette forêt \np{1050}~arbres.
+	\item Déterminer la nature de la suite \mbox{$(v_n)$} et préciser sa raison $r$.
+
+		\textcolor{red}{\textsc{Correction}}\\
+		Chaque année, le nombre d'arbres augmente de 5\,\%, ce qui revient à multiplier la quantité de l'année précédente par \np{1,05}.
+
+		$(v_n)$ est donc une suite géométrique, de raison \np{1,05} et de premier terme \np{1000}.
+	\item D'après ce modèle, on estime qu'au 1\up{er}~janvier 2030, il y aura environ \np{2653}~arbres sur la parcelle. Quel terme de la suite a-t-on calculé? Quel a été le calcul effectué ?
+
+		\textcolor{red}{\textsc{Correction}}\\
+		L'année 2030 correspond à \mbox{$v_{20}$}, car \mbox{$2030=2010+20$.}
+
+
+		L'expression explicite de la suite \mbox{$(v_n)$} est \mbox{$v_n=v_0\times q^n= \np{1000}\times \np{1.05}^n$}, donc on a effectué le calcul \mbox{$\np{1000}\times\np{1.05}^{20}$} pour trouver ce résultat.
+\end{enumerate}
+\subsubsection*{Partie C\hspace{10mm}Comparaison des évolutions}
+Grâce à l'extrait de tableur ci-dessous, on visualise le nombre d'arbres arrondi à l'unité dans les deux forêts.
+\begin{center}
+	\begin{tblr}{|X[8mm]|*{9}{X[c]|}}\hline
+		$n$&	0&	1&	2&	3&	\dots&	26&	27&	28&	\textbf{29}\\\hline
+		$u_n$&	\np{1200}&	\np{1300}&	\np{1400}&	\np{1500}&	\dots&	\np{3800}&	\np{3900}&	\np{4000}&	\textbf{\np{4100}}\\\hline
+		$v_n$&	\np{1000}&	\np{1050}&	\np{1103}&	\np{1158}&	\dots&	\np{3556}&	\np{3733}&	\np{3920}&\textbf{	\np{4116}}\\\hline
+	\end{tblr}
+	\end{center}
+Interpréter dans le contexte de l'exercice les résultats de la dernière colonne.
+
+	\textcolor{red}{\textsc{Correction}}\\
+	Dans la dernière colonne, on observe que \mbox{$v_{29} > u_{29}$}, alors que pour tous les termes précédents, on  avait~\mbox{$u_n> v_n$}.
+
+	On peut en déduire qu'à partir de 2039, la forêt n°2 aura un plus grand nombre d'arbres que la forêt~n°1.

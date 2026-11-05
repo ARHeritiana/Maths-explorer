@@ -1,0 +1,99 @@
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+
+\[f(x) = x - \ln (1 + x).\]
+
+\begin{enumerate}
+\item 
+$\ln u$ est défini si $u > 0$, soit $1 + x > 0 \iff x > - 1$.
+
+La fonction $f$ est définie sur l'intervalle $]-1~;~+ \infty[$.
+\item 
+
+
+En posant $u(x) = 1 + x$ et donc $u'(x) = 1$, on a alors  si $f'(x) = 1 - \frac{u'(x)}{u(x)} = 1 - \dfrac{1}{1 + x} = \dfrac{1 + x - 1}{1 + x} = \dfrac{x}{1 + x}$ sur $]-1~;~+ \infty[$.
+\item 
+	\begin{enumerate}
+		\item 
+On sait que $1 + x > 0$, donc le signe de la dérivée est celui de $x$ :
+		
+$\bullet~~f'(x) = 0 \iff x = 0$ ;
+
+$\bullet~~f'(x) > 0 \iff x > 0$  : la fonction est croissante sur $[0~;~+ \infty[$ ;
+
+$\bullet~~f'(x) < 0 \iff x < 0$ ; la fonction est décroissante sur $]-1~;~0[$.
+		\item 
+La fonction $f$ est décroissante sur $]-1~;~0[$ puis croissante sur $[0~;~+ \infty[$ : elle a donc un minimum en $x = 0, \: f(0 ) = 0 - 0 = 0$. 
+
+Son minimum étant nul, on a donc sur $]-1~;~+ \infty[, f(x) \geqslant 0$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+On sait que quel que soit le réel $x$, $x = \ln \text{e}^x$. On peut donc écrire :
+
+
+$f(x) = \ln \text{e}^x - \ln (1 + x) = \ln \left(\dfrac{\text{e}^x}{1 + x}\right)$ par propriété de la fonction logarithme népérien :
+
+ $\ln a - \ln b = \ln \dfrac ab$
+
+
+		\item 
+En posant $u = 1 + x \iff x = u - 1$, on a $f(x) = \ln \left(\dfrac{\text{e}^x}{1 + x}\right) = \ln \left(\dfrac{\text{e}^{u - 1}}{u}\right) = \ln \left(\dfrac{\text{e}^{u}\times \text{e}^{-1}}{u}\right) = \ln \left(\dfrac{1}{\text{e}}\dfrac{\text{e}^{u}}{u}\right)$.
+		
+Or $x \to + \infty \implies x + 1 = u \to + \infty$ et on sait que $\displaystyle\lim_{u \to + \infty} \dfrac{\text{e}^u}{u} = + \infty$, donc $\displaystyle\lim_{u \to + \infty} \left(\dfrac{1}{\text{e}}\dfrac{\text{e}^{u}}{u}\right) = + \infty$ et enfin $\displaystyle\lim_{u \to + \infty} f(u) = + \infty$ ou $\displaystyle\lim_{x \to + \infty} f(x) = + \infty$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On considère la suite $\left(u_n\right)$ définie par $u_0 = 10$ et, pour tout entier naturel $n$,
+
+\[u_{n+1} = u_n - \ln \left(1 + u_n\right).\]
+
+
+
+\medskip
+
+\begin{enumerate}
+\item Avec $n = 0$, la relation de récurrence donne :
+$u_1 = u_0 - \ln (1 + u_0) = 10 - \ln (1 + 10) = 10 - \ln 11 \approx 7,602$.
+
+
+\item 
+
+\emph{Initialisation } : on a $u_0 = 10 \geqslant 0$ : l'inégalité est vraie au rang 0.
+
+\emph{Hérédité } : Soit $n \in \N$ tel que $u_n \geqslant 0$ : d'après la question \textbf{3. a.} la fonction est croissante sur $[0~;~+ \infty[$, et $u_{n+1} = f\left(u_n\right) \geqslant 0$, donc $0 \leqslant u_{n+1}$ : l'inégalité est vraie au rang $n + 1$.
+
+\emph{Conclusion } : l'inégalité est vraie au rang 0 et si elle est vraie au rang $n$, elle l'est aussi au rang $n + 1$ : d'après le principe de récurrence :
+
+pour tout entier naturel $n$, on a $u_n \geqslant 0$.
+\item 
+On a $u_{n+1} = u_n - \ln \left(1 + u_n\right) \iff u_{n+1} - u_n = - \ln \left(1 + u_n\right)$.
+
+Or on vient de démontrer que pour tout $n \in \N$, \: $u_n \geqslant 0 \implies 1 + u_n \geqslant 1$ puis par croissance de la fonction logarithme népérien $\ln (1 + u_n) \geqslant \ln 1$, soit  $\ln (1 + u_n) \geqslant 0 \iff - \ln (1 + u_n) \leqslant 0$.
+
+Donc $u_{n+1} - u_n \leqslant 0$ montre que la suite $\left(u_n\right)$ est décroissante.
+\item 
+
+La suite $\left(u_n\right)$ étant décroissante et minorée par $0$ converge vers une limite $\ell$ telle que $\ell \geqslant 0$
+\item 
+On a $u_{n+1} = f\left(u_n\right)$. On a vu que cette fonction est dérivable donc continue sur $]- 1~;~+ \infty[$ ; de plus la suite $\left(u_n\right)$ converge vers $\ell$, donc à la limite :
+
+$\ell = \ell - \ln \left(1 + \ell\right) \iff \ln \left(1 + \ell\right) = 0$ ou $\ln \left(1 + \ell\right) = \ln 1 \iff 1 + \ell = 1 \iff \ell = 0$.
+
+Conclusion : $\displaystyle\lim_{n \to + \infty} u_n = 0$.
+\end{enumerate}
+
+\medskip
+
+\medskip

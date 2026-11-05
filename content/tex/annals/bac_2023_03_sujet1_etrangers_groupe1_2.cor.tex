@@ -1,0 +1,176 @@
+\bigskip
+\textbf{Partie A}
+
+Interprétons l'énoncé :
+
+si $n$ est un entier naturel, la phrase \og lorsque la trottinette est en bon état un lundi, la probabilité qu'elle  soit encore en bon état le lundi suivant est 0,9\fg{} correspond à : $P_{B_n}(B_{n+1}) = 0,9$.
+
+la phrase suivante se traduit par : $P_{\overline{B_n}}(B_{n+1}) = 0,4$.
+
+\begin{enumerate}
+\item On a donc $p_1 = P(B_1) = P(B_0) \times P_{B_0}(B_{1}) = 1 \times 0,9 = 0,9$. On a $p_1 = 0,9$.
+
+	Pour déterminer $p_2$, traçons un arbre :
+	
+	\hfill~
+		
+		\begin{tikzpicture}[xscale=1,yscale=1,baseline=(R)]
+			
+			\tikzstyle{fleche}=[->,>=latex,thick]
+			\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+			\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+			\tikzstyle{etiquette}=[midway,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+			
+			\def\DistanceInterNiveaux{3}
+			\def\DistanceInterFeuilles{0.8}
+			
+			\def\NiveauA{(0)*\DistanceInterNiveaux}
+			\def\NiveauB{(1)*\DistanceInterNiveaux}
+			\def\NiveauC{(2)*\DistanceInterNiveaux}
+			\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+			
+			\node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {$$};
+			\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$B_1$};
+			\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$B_2$};
+			\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{B_2}$};
+			\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\overline{B_1}$};
+			\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$B_2$};
+			\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{B_2}$};
+			
+			\draw[fleche] (R.east)--(Ra.west) node[etiquette] {$p_1 = 0,9$};
+			\draw[fleche] (Ra.east)--(Raa.west) node[etiquette] {$0,9$};
+			\draw[fleche] (Ra.east)--(Rab.west) node[etiquette] {$0,1$};
+			\draw[fleche] (R.east)--(Rb.west) node[etiquette] {$0,1$};
+			\draw[fleche] (Rb.east)--(Rba.west) node[etiquette] {$0,4$};
+			\draw[fleche] (Rb.east)--(Rbb.west) node[etiquette] {$0,6$};
+		\end{tikzpicture}
+	\hfill~
+	
+
+Les évènements $B_1$ et $\overline{B_1}$ partitionnant l'univers, la loi des probabilités totales donne :
+
+$p_2 = P(B_2) = P\Big(B_1 \cap B_2\Big) + P\Big(\overline{B_1} \cap B_2 \Big) = 0,9 \times 0,9 + 0,1 \times 0,4 = 0,81 + 0,04 = 0,85$.
+
+Ce calcul confirme bien que l'on a : $p_2 = 0,85$.
+
+	\item On va donc avoir un arbre très similaire au précédent : les probabilités conditionnelles restant les mêmes.
+
+	\hfill~
+			
+			\begin{tikzpicture}[xscale=1,yscale=1,baseline=(R)]
+				
+				\tikzstyle{fleche}=[->,>=latex,thick]
+				\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+				\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+				\tikzstyle{etiquette}=[midway,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+				
+				\def\DistanceInterNiveaux{3}
+				\def\DistanceInterFeuilles{0.8}
+				
+				\def\NiveauA{(0)*\DistanceInterNiveaux}
+				\def\NiveauB{(1)*\DistanceInterNiveaux}
+				\def\NiveauC{(2)*\DistanceInterNiveaux}
+				\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+				
+				\node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {};
+				\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$B_n$};
+				\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$B_{n+1}$};
+				\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{B_{n+1}}$};
+				\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\overline{B_n}$};
+				\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$B_{n+1}$};
+				\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{B_{n+1}}$};
+				
+				\draw[fleche] (R.east)--(Ra.west) node[etiquette] {$p_n$};
+				\draw[fleche] (Ra.east)--(Raa.west) node[etiquette] {$0,9$};
+				\draw[fleche] (Ra.east)--(Rab.west) node[etiquette] {$0,1$};
+				\draw[fleche] (R.east)--(Rb.west) node[etiquette] {$1 - p_n$};
+				\draw[fleche] (Rb.east)--(Rba.west) node[etiquette] {$0,4$};
+				\draw[fleche] (Rb.east)--(Rbb.west) node[etiquette] {$0,6$};
+			\end{tikzpicture}
+	\hfill~
+		
+
+	\item Là encore, les évènements $B_n$ et $\overline{B_n}$ partitionnent l'univers, la loi des probabilités totales donne :
+
+$p_{n+1} = P(B_{n+1}) = P\Big(B_n \cap B_{n+1}\Big) + P\Big(\overline{B_n} \cap B_{n+1} \Big) = p_n \times 0,9 + (1-p_n) \times 0,4 = 0,9p_n + 0,4 - 0,4p_n $
+
+Donc on a bien $p_{n+1} = 0,5p_n + 0,4$ : on a donc bien établi la relation de récurrence annoncée.
+
+\item 
+	\begin{enumerate}
+		\item \emph{Initialisation :} à l'indice $n=0$, on a $p_0 = 1$ donc l'inégalité $p_0 \geqslant 0,8$ est vraie pour $n = 0$.
+
+\emph{Hérédité :} supposons que, pour un entier naturel $n$, l'inégalité $p_n \geqslant 0,8$ est vraie.
+
+Par hypothèse de récurrence : $\begin{aligned}[t] p_n \geqslant 0,8 &\implies 0,5p_n \geqslant 0,4 \quad \text{ car } 0,5 > 0\\
+				&\implies 0,5p_n + 0,4 \geqslant 0,4 + 0,4\\
+				&\implies p_{n+1} \geqslant 0,8\\ \end{aligned}$
+
+Si l'inégalité est vérifiée à l'indice $n$, alors, elle l'est aussi au rang suivant.
+
+
+\emph{Conclusion :} l'inégalité est vérifiée à l'indice 0 et sa véracité est héréditaire pour tout indice $n$ naturel, donc, par principe de récurrence, on a :
+
+$\forall n \in \N, \quad p_n \geqslant 0,8$.
+
+Autrement dit, on vient d'établir que la suite est minorée par 0,8.
+
+		\item En assimilant les probabilités à des proportions, l'entreprise peut communiquer en annonçant qu'au moins 80\,\% de son parc de trottinettes est toujours en bon état.
+\end{enumerate}
+\item 
+		\begin{enumerate}
+			\item Établissons la relation de récurrence de la suite $\left(u_n\right)$. Soit $n$ un entier naturel :
+
+$\begin{aligned} u_{n+1} &= p_{n+1} - 0,8 \quad \text{par définition de la suite } (u_n)\\
+&= (0,5p_n + 0,4) - 0,8 \quad \text{par la relation de récurrence de la suite } (p_n)\\
+&= 0,5p_n - 0,4\\
+&= 0,5(p_n - 0,8)\\
+&= 0,5u_n \quad \text{par définition de la suite } \left(u_n\right)\\ \end{aligned}$
+
+La relation de récurrence de la suite $\left(u_n\right)$ est donc bien celle d'une suite géométrique, de raison $q = 0,5$. 
+
+Le premier terme de la suite est $u_0 = p_0 - 0,8 = 1 - 0,8 = 0,2$.
+
+		\item On peut donc donner la forme explicite du terme général de la suite géométrique :
+
+$\forall n \in \N, \quad u_n = u_0 \times q^n = 0,2\times 0,5^n$.
+
+On en déduit : $u_n = p_n - 0,8 \iff p_n = u_n + 0,8 = 0,2\times 0,5^n + 0,8$.
+
+		\item La raison de la suite géométrique $u$ est comprise entre $- 1$ et 1, strictement, donc la suite $\left(u_n\right)$ converge vers 0.
+
+Par limite de la somme, on en déduit que la suite $p$ converge vers $0,8$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+\textbf{Partie B}
+\medskip
+
+	\begin{enumerate}
+		\item 	Ici, nous avons :
+		\begin{itemize}
+			\item une expérience à deux issues (choisir une trottinette dans le parc de l'entreprise), le succès est \og choisir une trottinette en bon état \fg{}, de probabilité $p = 0,8$;
+			\item cette expérience est répétée quinze fois (on constitue un lot de 15 trottinettes) d'une façon assimilable à une répétition identique et indépendante (le prélèvement des 15 trottinettes est assimilable à un tirage avec remise), donc $n=15$ répétitions;
+			\item dans ce schéma de Bernoulli de paramètres $n=15$ et $p=0,8$, on note $X$ la variable aléatoire qui compte le nombre de succès (le nombre de trottinettes en bon état dans le lot).
+		\end{itemize}
+Avec ces éléments, on peut dire que $X$ suit la loi binomiale $ \mathcal{B}\left(15 ~;~ 0,8\right) $.
+
+	\item La probabilité demandée est $P(X = 15)$. Par propriété, on a :
+
+$\displaystyle P(X=15) = \binom{15}{15} \times 0,8^{15} \times 0,2^0 = 0,8^{15}$.
+
+La probabilité que les quinze trottinettes soient en bon état est donc de $0,8^{15}$ (ici, le sujet ne précise pas de consigne d'arrondi, donc on donne la valeur exacte. La valeur approchée au dix-millième près est 0,0352).
+
+	\item La probabilité demandée est $P(X \geqslant 10)$.
+
+Selon le modèle de calculatrice, on peut obtenir une valeur approchée de ce résultat directement, ou alors on a recours à : $P(X \geqslant 10) = 1 - P(X <10) = 1 - P(X \leqslant 9)$.
+
+La calculatrice donne une valeur approchée au dix-millième près qui est 0,9389.
+
+	\item Pour une variable aléatoire suivant la loi binomiale, on a $E(X) = np = 15 \times 0,8 = 12$ (cette justification n'était pas attendue, ici).
+
+Cela s'interprète en disant qu'en moyenne, sur un lot de quinze trottinettes choisies dans le parc de cette entreprise, douze d'entre elles seront en bon état.
+\end{enumerate}
+
+\bigskip

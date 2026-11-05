@@ -1,0 +1,123 @@
+\medskip
+
+
+
+
+
+
+\begin{enumerate}
+\item On considère la fonction $f$ définie sur $\R$ par $f(x) = 2x\e^x$.
+
+
+La fonction $f$ produit de fonctions dérivables sur $\R$ est dérivable et pour tout réel : $f'(x) = 2\e^x + 2x\e^x = 2\e^x(1 + x)$. Cette dérivée est du signe de $1 + x$.
+
+On a donc $f'(x) < 0 \iff x < - 1$ : la fonction est décroissante sur $]- \infty~;~- 1]$.
+
+On sait que $\displaystyle\lim_{x \to -\infty} x\e^x = 0$, donc $\displaystyle\lim_{x \to -\infty}f(x) = 0$ et $f(-1) = 2 \times (- 1) \times \e{-1} = - 2\e^{-1} \approx - 0,74$.
+
+De même $f'(x) >  \iff x > - 1$ : la fonction est croissante sur $[- 1~;~+ \infty[$.
+
+Or  $\displaystyle\lim_{x \to +\infty}f(x) = + \infty$.
+
+Sur l'intervalle $[- 1~;~+ \infty[$, la fonction $f$ croit de $f(-1) < -0,73$ à plus l'infini.
+
+La fonction $f$ étant continue car dérivable et strictement croissante prend donc une seule fois la valeur $-0,73$ d'après le théorème des valeurs intermédiaires. Réponse \textbf{c.}
+
+
+
+
+
+
+\item 
+\[g(x) = \dfrac{x+ 1}{\e^x}.\]
+
+
+
+
+
+
+
+
+On a $g(x) = (x + 1) \times \dfrac{1}{\e^x}$. Or :
+
+$\displaystyle\lim_{x \to -\infty}x + 1= - \infty$ et 
+
+$\displaystyle\lim_{x \to -\infty}\dfrac{1}{\e^x} = + \infty$, donc par produit de limites : $\displaystyle\lim_{x \to -\infty}g(x) = - \infty$. Réponse \textbf{a.}
+
+\item 
+\[h(x) = (4x - 16)\e^{2x}.\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+La fonction $h$ produit de fonctions dérivables sur $\R$ est dérivable et pour tout réel :
+
+$h'(x) = 4\e^{2x} + 2(4x - 16)\e^{2x} = \e^{2x}(4 + 8x - 32) = \e^{2x}(8x - 28)$.
+
+$h''(x) = 8\e^{2x} + 2(8x - 28)\e^{2x} = \e^{2x}(8 + 16x  - 56) = \e^{2x}(16x - 48) = 16\e^{2x}(x - 3)$.
+
+Comme $4\e^{2x} > 0$ quel que soit le réel $x$, le signe de $h''(x)$ est celui de $x - 3$.
+
+Donc la dérivée seconde s'annule en $x = 3$ en changeant de signe, donc le point de coordonnées $\left(3~;~-4\text{e}^{6}\right)$ est le seul point d'inflexion de la courbe $\mathcal{C}_h$. Réponse \textbf{b.}
+
+\item 
+\[k(x) = 3 \ln (x) - x.\]
+
+
+
+
+
+Une équation de $T$ est : $M(x~;~y) \in (T) \iff y - k(\e) = f'(\e)(x- \e)$.
+
+Avec $k(\e) = 3\ln \e - \e = 3 - \e$ et 
+
+$k'(x) = \dfrac 3x - 1$, d'où $k'(\e) = \dfrac{3}{\e} - 1 = \dfrac{3 - \e}{\e}$, on obtient donc :
+
+$M(x~;~y) \in (T) \iff y - (3 - \e) = \dfrac{3 - \e}{\e}(x- \e) \iff y  = \dfrac{3 - \e}{\e}x - 3 + \e  + 3 - \e \iff y = \dfrac{3 - \e}{\e}x$ (cette droite contient l'origine). Réponse \textbf{b.}
+
+
+
+
+
+
+
+\item 
+$[\ln (x)]^2 + 10 \ln (x) + 21 = 0$, avec $x \in ]0~;~+\infty[$.
+
+
+
+
+
+
+
+En posant $X = \ln x$, l'équation devient : $X^2 + 10X + 21 = 0$.
+
+Avec $\Delta = 10^2 - 4\times 21 = 100 - 84 = 16 = 4^2$, les solutions sont :
+
+$\left\{\begin{array}{l c l}
+X_1 &=&\dfrac{-10 - 4}{2}\\
+X_2&=&\dfrac{-10 + 4}{2}
+\end{array}\right. \iff 
+\left\{\begin{array}{l c l}
+X_1 &=&- 7\\
+X_2&=&- 3
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+\ln x_1 &=&-7\\
+\ln x_2&=&-3
+\end{array}\right. \iff 
+\left\{\begin{array}{l c l}
+x_1 &=&\e^{-7}\\
+x_2&=&\e^{-3}
+\end{array}\right.$
+
+Cette équation a donc deux solutions. Réponse \textbf{c.}
+\end{enumerate}

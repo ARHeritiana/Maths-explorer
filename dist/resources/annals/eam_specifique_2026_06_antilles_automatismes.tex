@@ -1,0 +1,204 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_06_antilles_automatismes.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Pour cette première partie, aucune justification n'est demandée et une seule réponse est possible par question.\\
+	Pour chaque question, reportez son numéro sur votre copie et indiquez votre réponse.}
+
+	Une réponse fausse ou l'absence de réponse n'enlève aucun point.
+
+\subsubsection*{Question 1}
+\mbox{$\dfrac25-\dfrac{3}{10}=$}
+		\begin{enumerate}[label=\textbf{\alph*)}]
+\begin{multicols}{4}
+			\item \mbox{$-\dfrac{3}{25}$}
+			\item \mbox{$-\dfrac15$}
+			\item \mbox{$\dfrac{1}{10}$}
+			\item \mbox{$\dfrac15$}
+				\end{multicols}
+		\end{enumerate}
+
+		\subsubsection*{Question 2}
+
+Laquelle de ces fonctions est représentée graphiquement par une droite ?
+
+		\begin{tblr}{colspec={XXXX},leftsep=5mm}
+			\textbf{a) ~} \mbox{$f(x)=\dfrac52 x-5$}&
+			\textbf{b) ~} \mbox{$g(x)=x^3$}&
+			\textbf{c) ~} \mbox{$h(x)=-\dfrac1 x +3$}&
+			\textbf{d) ~}\mbox{$i(x)=2x^2+3x+1$}
+		\end{tblr}
+
+\subsubsection*{Question 3}
+	Dans le repère ci-dessous sont tracées les droites $(d_1)$, $(d_2)$, $(d_3)$ et $(d_4)$.
+
+	La droite ayant pour équation réduite \quad\mbox{$y=-\dfrac12 x +1$} \quad est :
+	\begin{enumerate}[label=\textbf{\alph*)}]
+		\begin{multicols}{4}
+			\item $(d_1)$
+			\item $(d_2)$
+			\item $(d_3)$
+			\item $(d_4)$
+		\end{multicols}
+	\end{enumerate}
+
+	\begin{tikzpicture}[xscale=0.9,yscale=0.9]
+		\clip(-6.4,-3.8)rectangle(10.4,5.4);
+		\draw[blue!30,thick](-6.4,-3.8)grid(10.4,5.4);
+		\draw[line width=0.3mm,->, >=triangle 45](-6.4,0)--(10.4,0);
+		\draw[line width=0.3mm,->, >=triangle 45](0,-3.8)--(0,5.4);
+		\foreach \i in {-6,-5,...,-1,1,2,...,10}
+		{\draw(\i,0)node[below]{\np{\i}}(0,\i)node[left]{\np{\i}};}
+		\draw(-0.2,-0.2)node{\np{0}};
+		\draw[red, line width=0.5mm](-6.4,-2.2)--(10.4,6.2)node[pos=0.83, below]{$(d_1)$};
+		\draw[teal, line width=0.5mm](-6.4,-3.7)--(10.4,4.7)node[pos=0.83, below]{$(d_2)$};
+		\draw[purple, line width=0.5mm](-6.4,-0.5)--(10.4,-0.5)node[pos=0.83, below]{$(d_3)$};
+		\draw[olive, line width=0.5mm](-6.4,4.2)--(10.4,-4.2)node[pos=0.83, above]{$(d_4)$};
+	\end{tikzpicture}
+
+
+\subsubsection*{Question 4}
+Un automobiliste roule à 60~km/h de moyenne pendant 2~h~30~min.
+
+La distance parcourue est :
+\begin{enumerate}[label=\textbf{\alph*)}]
+	\begin{multicols}{4}
+		\item 150~km
+		\item 140~km
+		\item 130~km
+		\item 120~km
+	\end{multicols}
+\end{enumerate}
+
+\subsubsection*{Question 5}
+Un article à 200~\euro{} coûtera après une augmentation de 20\,\,\% :
+\begin{enumerate}[label=\textbf{\alph*)}]
+	\begin{multicols}{4}
+		\null \vfill\item \mbox{$200+\np{0.2}$} \vfill \null
+		\columnbreak
+		\null \vfill\item \mbox{$200\times \dfrac{20}{100}$} \vfill \null
+		\columnbreak
+		\null \vfill\item \mbox{$200\times\np{1.2}$} \vfill \null
+		\columnbreak
+		\null \vfill\item \mbox{$100\times\np{0.20}+200$} \vfill \null
+
+	\end{multicols}
+\end{enumerate}
+\subsubsection*{Question 6}
+On développe \quad \mbox{$(2x-5)^2$}.
+
+L'expression développée et réduite est :
+
+\begin{enumerate}[label=\textbf{\alph*)}]
+	\begin{multicols}{4}
+		\item \mbox{$2x^2-10+25$}
+		\item \mbox{$4x^2-20x-25$}
+		\item \mbox{$4x^2-20x+25$}
+		\item \mbox{$4x^2-25$}
+		\end{multicols}
+\end{enumerate}
+
+\subsubsection*{Question 7}
+	La résistance $R$ (en ohms) d'un appareil est donnée par la formule \quad \mbox{$R=\dfrac{U^2}{P}$}\quad où $U$ est la tension (en volts) et $P$ la puissance (en watts).
+
+	Quelle est la résistance d'un appareil lorsque la tension est de 20~volts et la puissance de 80~watts?
+	\begin{tblr}{colspec={XXXX},leftsep=5mm}
+		\textbf{a) ~} $\dfrac12$ &
+		\textbf{b) ~} $2$&
+		\textbf{c) ~} $\dfrac15$ &
+		\textbf{d) ~} $5$
+	\end{tblr}
+
+\subsubsection*{Question 8}
+On considère les nombres suivants : \quad \mbox{$A=\dfrac18$},\quad \mbox{$B=\dfrac19$},\quad \mbox{$C=\dfrac{1}{12}$}\quad et \quad \mbox{D$=\np{0.1}$}.
+
+Le plus petit de ces nombres est :
+\begin{enumerate}[label=\textbf{\alph*)}]
+	\begin{multicols}{4}
+		\item $A$
+		\item $B$
+		\item $C$
+		\item $D$
+		\end{multicols}
+\end{enumerate}
+
+\end{document}

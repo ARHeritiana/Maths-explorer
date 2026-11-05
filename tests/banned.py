@@ -6,7 +6,7 @@ compared. Personal-space links and e-mail addresses are matched by pattern.
 
 Usage as a script: python3 tests/banned.py [paths...]  (default: tracked text files and PDF text under dist/)
 """
-import hashlib, json, re, subprocess, sys, unicodedata
+import hashlib, json, re, subprocess, sys, unicodedata, zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -43,6 +43,37 @@ def pdf_text(path):
         return '\n'.join(p.get_text() for p in d) + json.dumps(d.metadata)
 
 
+def publication_text(path):
+    """Inspect archive members as documents; compressed bytes are not publication text."""
+    if path.suffix == '.pdf':
+        return pdf_text(path)
+    if path.suffix == '.zip':
+        parts = []
+        binary = {'.png', '.jpg', '.jpeg', '.gif', '.ico', '.woff', '.woff2', '.ttf', '.otf'}
+        with zipfile.ZipFile(path) as archive:
+            for entry in archive.infolist():
+                if entry.is_dir():
+                    continue
+                parts.append(entry.filename)
+                suffix = Path(entry.filename).suffix.lower()
+                if suffix in binary:
+                    continue
+                data = archive.read(entry)
+                if suffix == '.pdf':
+                    import pymupdf
+                    with pymupdf.open(stream=data, filetype='pdf') as doc:
+                        parts.append('\n'.join(p.get_text() for p in doc) + json.dumps(doc.metadata))
+                        parts.append(doc.get_xml_metadata())
+                        parts.append(json.dumps(doc.get_toc(False), default=str))
+                        parts.extend(json.dumps(link, default=str) for page in doc for link in page.get_links())
+                elif suffix == '.zip':
+                    raise ValueError('Nested publication archive needs explicit inspection')
+                else:
+                    parts.append(data.decode('utf-8', errors='replace'))
+        return '\n'.join(parts)
+    return path.read_text(errors='replace')
+
+
 def main(argv):
     if argv:
         paths = [Path(a) for a in argv]
@@ -53,7 +84,7 @@ def main(argv):
     bad = 0
     for p in paths:
         try:
-            text = pdf_text(p) if p.suffix == '.pdf' else p.read_text(errors='replace')
+            text = publication_text(p)
         except Exception as e:
             print(f'{p}: unreadable ({e})'); bad += 1; continue
         f = findings(text)

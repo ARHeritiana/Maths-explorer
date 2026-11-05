@@ -1,0 +1,146 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_metropole_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+\item Voici l'arbre pondéré :
+
+\begin{center}
+\pstree[treemode=R,levelsep=3.25cm]{\TR{}}
+{\pstree{\TR{$I~$} \taput{0,6}}
+	{\TR{$S$}\taput{0,75}
+	\TR{$\overline{S}$}\tbput{0,25}	
+	}
+\pstree{\TR{$M~$} \taput{0,3}}
+	{\TR{$S$}\taput{0,9}
+	\TR{$\overline{S}$}\tbput{0,1}	
+	}
+	\pstree{\TR{$G~$} \tbput{0,1}}
+	{\TR{$S$}\taput{0,8}
+	\TR{$\overline{S}$}\tbput{0,2}	
+	}	
+}
+\end{center}
+
+\item La probabilité cherchée est $p(I \cap S) = p(I) \times p_{I}(S) = 0,6 \times 0,75 = 0,45$.
+\item On a de même $p(M \cap S) = p(M) \times p_{M}(S) = 0,3 \times 0,9 = 0,27$.
+
+$p(G \cap S) = p(G) \times p_{G}(S) = 0,1 \times 0,8 = 0,08$.
+
+D'après la loi des probabilités totale :
+
+$p(S) = p(I \cap S) + p(M \cap S) + p(G \cap S) = 0,45 + 0,27 + 0,08 = 0,45 + 0,35 = 0,8$.
+\item on a $p_S(I) = \dfrac{p(S \cap I)}{p(S)} = \dfrac{p(I \cap S)}{p(S)} = \dfrac{0,45}{0,8} = \dfrac{45}{80} = \dfrac{9}{16} = \np{0,5625}$, soit 0,563 au millième près.
+\item 
+	\begin{enumerate}
+		\item Les conditions de l'étude sont telles que la variable aléatoire $X$ suit une loi binomiale de paramètres $n = 30$ et $p = 0,8$.
+		\item D'après la calculatrice $p(X \geqslant 25) = 1 - p(X \leqslant 24)\approx 1 - \np{0,5725}$ soit environ 0,4275, donc 0,428 au millième près.
+	\end{enumerate}
+\item Il faut trouver $n \in \N$ tel que $p(X \geqslant n) > 0,99 $, donc tel que $1 - 0,8^n > 0,99 \iff 0,8^n < 0,01 \iff n \ln 0,8 < \ln 0,01 \iff n > \dfrac{\ln 0,01}{\ln 0,8}$
+
+Or $\dfrac{\ln 0,1}{\ln 0,8} \approx 20,6$.
+
+Il faut donc interroger au moins 21 personnes.
+\item 
+	\begin{enumerate}
+		\item ~
+
+$\bullet~~E(T) = E(T_1) + E(T_2) = 4 + 3 = 7$ et $T_1$ et $T_2$ sont deux variables indépendantes, donc 
+
+$\bullet~~V(T) = V(T_1) + V(T_2) = 2 + 1 = 3$.
+		\item Il faut trouver : $p(5\leqslant T \leqslant 9)$.
+\begin{align*} P(5 \leqslant T \leqslant 9) &= P(4 < T < 10) \\ &= P(4 - E(T) < T - E(T) < 10 - E(T)) \\ &= P(-3 < T - E(T) < 3) \\ &= P(|T - E(T)| < 3) \\ &= 1 - P(|T - E(T)| \geqslant 3) \end{align*}
+
+Or, d'après l'inégalité de Bienaymé-Tchebychev : $ P(|T - E(T)| \geqslant 3)\leqslant \dfrac{V(T)}{3^2}$
+
+Ainsi $p(5\leqslant T \leqslant 9) \geqslant 1 - \dfrac{V(T)}{3^2}$, soit $p(5\leqslant T \leqslant 9) \geqslant 1 - \dfrac39$ et finalement :
+
+$p(5\leqslant T \leqslant 9) \geqslant \dfrac23$.
+
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

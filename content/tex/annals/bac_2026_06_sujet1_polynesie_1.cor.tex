@@ -1,0 +1,209 @@
+\medskip
+
+Une école de surf travaille avec des planches en mousse pour les cours débutants, et d'autres en résine pour les cours de perfectionnement. Les planches en mousse représentent 80~\% du stock de l'école.
+
+\begin{list}{\textbullet}{La gérante observe qu'après chaque saison,}
+\item 75\,\% des planches en mousse sont en bon état et réutilisables la saison suivante. Les autres sont recyclées (et donc non réutilisables)~;
+\item 60\,\% des planches en résine sont en bon état, les autres sont soit consolidées, soit recyclées.
+\end{list}
+
+Après une saison, on choisit une planche au hasard et on s'intéresse aux évènements suivants~:
+
+\begin{tabular}{@{~~\textbullet~~} l @{~~~~\textbullet~~} l}
+$M$ : \og La planche est en mousse \fg~;&
+$B$ : \og La planche est en bon état \fg~;\\
+$R$ : \og La planche sera recyclée \fg~;&
+$C$ : \og La planche sera consolidée \fg.\\
+\end{tabular}
+
+\subsection*{Partie A}
+
+\begin{enumerate}
+\item On complète l'arbre pondéré ci-dessous avec les données de l'énoncé.
+
+
+
+\begin{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\pstree[levelsep=3.5,treesep=.7,treemode=R,nodesepB=3pt,nodesepA=0pt,nrot=:U]{\TR{}}
+{
+	\pstree[nodesepA=3pt]{\TR{$M$}\naput{$0,8$}}
+	{
+	\TR{$B$}\naput{$0,75$}
+	\TR{$R$}\nbput{$1-0,75=0,25$}
+	}
+	\pstree[nodesepA=3pt]{\TR{$\overline{M}$}\nbput{$1-0,8=0,2$}}
+	{
+	\TR{$B$}\naput{$0,6$}
+	\TR{$R$}
+	\TR{$C$}
+	}
+}
+
+\end{center}
+
+\item On sait que $P\left(\overline{M} \cap R\right) = 0,05$.
+
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item
+Cela signifie que la probabilité que la planche choisie au hasard soit en résine et à recycler est égale à $0,05$.
+
+\item On a choisi une planche en résine. 
+La probabilité que cette planche soit consolidée pour la saison suivante est: $P_{\overline{M}}\left (C\right )$.
+
+On sait que $P\left(\overline{M} \cap R\right) = 0,05$.
+Mais $P\left(\overline{M} \cap R\right) = P\left (\overline{M}\right )\times P_{\overline{M}}\left (R\right )$, 
+
+donc $P_{\overline{M}}\left (R\right ) = \dfrac{P\left(\overline{M} \cap R\right)}{P\left (\overline{M}\right ).} = \dfrac{0,05}{0,2}= 0,25$.
+
+D'après les propriétés des probabilités, on a:
+
+$P_{\overline{M}} \left (B\right ) +P_{\overline{M}} \left (R\right )  +P_{\overline{M}} \left (C\right )  =1$ donc 
+$0,6 + 0,25 + P_{\overline{M}} \left (C\right )  =1$
+
+et donc $P_{\overline{M}} \left (C\right ) =1-0,6-0,25=0,15$.
+\end{enumerate}
+
+ On peut donc compléter l'arbre pondéré.
+ 
+ \begin{center}
+ \pstree[levelsep=3.5,treesep=.7,treemode=R,nodesepB=3pt,nodesepA=0pt,nrot=:U]{\TR{}}
+{
+	\pstree[nodesepA=3pt]{\TR{$M$}\naput{$0,8$}}
+	{
+	\TR{$B$}\naput{$0,75$}
+	\TR{$R$}\nbput{$1-0,75=0,25$}
+	}
+	\pstree[nodesepA=3pt]{\TR{$\overline{M}$}\nbput{$1-0,8=0,2$}}
+	{
+	\TR{$B$}\naput{$0,6$}
+	\TR{$R$}\ncput*{\blue $0,25$}
+	\TR{$C$}\ncput*{\blue $0,15$}
+	}
+}
+\end{center}
+
+\item La gérante affirme qu'après une saison, au moins $\dfrac{3}{4}$ des planches sont en bon état.
+
+
+Il faut donc chercher $P\left (B\right )$.
+D'après la formule des probabilités totales:
+
+$P\left (B\right ) = P\left (M \cap B\right ) + P\left (\overline{M} \cap B\right ) = 0,8\times 0,75 + 0,2 \times 0,6=0,72<0,75$
+
+Donc la gérante a tort.
+
+\end{enumerate}
+
+\bigskip
+
+\subsection*{Partie B}
+
+La gérante du club de surf envisage de proposer à certains clients une remise pour la saison suivante.
+
+Pour cela, elle imagine le jeu suivant qui sera proposé à chaque client~:
+
+Une urne contient 5 boules noires et un nombre $n$ de boules rouges.
+Les boules sont indiscernables au toucher.
+Le client tire simultanément deux boules dans l'urne.
+Si les deux boules sont de même couleur, le client gagne une remise, sinon, il perd le jeu et n'obtient pas de remise.
+
+\begin{enumerate}
+\item 
+
+
+Le client obtient une remise dans deux cas disjoints: il tire deux boules noires, ou il tire deux boules rouges (si $n\geqslant 2$).
+
+\begin{list}{\textbullet}{}
+\item Il y a $n+5$ boules en tout: le nombre de façons de tirer simultanément 2 boules parmi $n+5$ est $\binom{n+5}{2}$.
+
+\item Il y a $5$ boules noires: le nombre de façons de tirer simultanément 2 boules noires parmi $5$ est $\binom{5}{2}$.
+
+Les boules sont indiscernables au toucher donc il y a équiprobabilité; la probabilité de tirer 2 boules noires est donc $p_1=\dfrac{\binom{5}{2}}{\binom{n+5}{2}}$.
+
+\item Il y a $n$ boules rouges: le nombre de façons de tirer simultanément 2 boules rouges parmi $n$ est $\binom{n}{2}$.
+
+Les boules sont indiscernables au toucher donc il y a équiprobabilité; la probabilité de tirer 2 boules rouges est donc $p_2=\dfrac{\binom{n}{2}}{\binom{n+5}{2}}$.
+\end{list}
+
+Les évènements \og tirer 2 boules noires \fg{} et \og tirer 2 boules rouges\fg{}  sont disjoints donc la probabilité de tirer 2 boules de même couleur est:
+
+$p=p_1+p_2= \dfrac{\binom{5}{2}}{\binom{n+5}{2}} + \dfrac{\binom{n}{2}}{\binom{n+5}{2}} = \dfrac{\binom{5}{2} +\binom{n}{2}}{\binom{n+5}{2}}$.
+
+\item 
+
+
+On sait que $\ds\binom{n}{p} = \dfrac{n\,!}{p\,! \times (n-p)\,!}$.
+
+On en déduit que:
+$\ds\binom{5}{2}=\dfrac{5\,!}{3\,! \times 2\,!}= \dfrac{5\times 4}{2}=10$,
+que: $\ds\binom{n}{2}=\dfrac{n\,!}{\left (n-2\right )\,! \times 2\,!}= \dfrac{n\left (n-1\right )}{2}$,\\
+et que: $\ds\binom{n+5}{2}=\dfrac{(n+5)\,!}{\left (n+3\right )\,! \times 2\,!}= \dfrac{\left (n+5\right )\left (n+4\right )}{2}$.
+
+Donc
+$p= \dfrac{10 + \frac{n\left (n-1\right )}{2}}{\frac{\left (n+5\right )\left (n+4\right )}{2}}
+= \dfrac{\frac{20}{2} + \frac{n\left (n-1\right )}{2}}{\frac{\left (n+5\right )\left (n+4\right )}{2}}
+=\dfrac{20+n\left (n-1\right )}{\left (n+5\right )\left (n+4\right )}$.
+
+\item La gérante souhaite s'assurer que la probabilité de gagner est inférieure à $\dfrac{1}{2}$.
+
+
+
+On cherche donc $n$ tel que $p<\dfrac{1}{2}$; on résout cette inéquation.
+
+$\begin{aligned}
+p<\dfrac{1}{2}
+& \iff \dfrac{20+n\left (n-1\right )}{\left (n+5\right )\left (n+4\right )}<\dfrac{1}{2}
+ \iff \dfrac{20+n\left (n-1\right )}{\left (n+5\right )\left (n+4\right )} - \dfrac{1} {2} <0\\
+ & \iff \dfrac{2\left (20+n\left (n-1\right )\right ) - \left (n+5\right )\left (n+4\right )}{2\left (n+5\right )\left (n+4\right )}<0
+\iff \dfrac{40+2n^2-2n-n^2-5n-4n-20}{2\left (n+5\right )\left (n+4\right )} < 0\\
+& \iff \dfrac{n^2-11n +20}{2\left (n+5\right )\left (n+4\right )} < 0
+ \iff n^2-11n+20<0 \text{~~car~~} 2\left (n+5\right )\left (n+4\right )>0
+\end{aligned}$
+
+On étudie le signe du trinôme $x^2-11x+20$.
+
+$\Delta = (-11)^2-4\times 1 \times 20=121-80=41>0$;
+donc ce trinôme admet deux racines:
+
+$x'=\dfrac{-(-11) -\sqrt{41}}{2\times 1}= \dfrac{11-\sqrt{41}}{2}\approx 2,3$ et $x''= \dfrac{11+\sqrt{41}}{2}\approx 8,7$ 
+
+On en déduit le signe du trinôme.
+
+\begin{center}
+$ \begin{tablvar}[intervalwidth=7em,stretch=1.2]{3}
+ \hline
+ x & -\infty &  & x' & & x'' &  & +\infty\\
+ \hline
+ax^2+bx+c & & \text{signe de } a & \barre[0] & \text{signe de } -a  & \barre[0] & \text{signe de } a  & \\
+ \hline
+x^2-11x+20  & & + & \barre[0] & -  & \barre[0] & + & \\
+ \hline
+ \end{tablvar}$
+
+\end{center}
+L'ensemble des valeurs possibles du nombre $n$ de boules rouges qu'elle peut mettre dans l'urne pour que la probabilité de remise est donc l'ensemble des nombres entiers entre $x'\approx 2,3$ et $x''\approx 8,7$; c'est donc l'ensemble $\left \{ 3\::\: 4 \::\: 5 \::\: 6 \::\: 7 \::\: 8\strut \right \}$.
+
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,167 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet2_metropole_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+\item Voici l'arbre des probabilités pondéré par les éléments de l'énoncé :
+
+\begin{center}
+\pstree[treemode=R,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$A~$}\taput{0,6}}
+	{\TR{$B$} \taput{0,7}
+	\TR{$\overline{B}$} \tbput{0,3}
+	}
+\pstree{\TR{$\overline{A}~$}\tbput{0,4}}
+	{\TR{$B$} \taput{0,4}
+	\TR{$\overline{B}$} \tbput{0,6}
+	}
+}
+\end{center}
+\item On sait que $P\left(\overline{A}\ \cap \overline{B}\ \right) = P\left(\overline{A}\right)  \times P_{\overline{A}}\left(\overline{B} \right) = 0,4 \times 0,6 = 0,24$.
+
+La probabilité qu'une personne ne chute pas lors des deux premières séances est égale à 0,24.
+\item $\left\{A~;~\overline{A}\right\}$ est un système complet d'évènements, donc d'après la formule des probabilités totales :
+
+$P(B) = P(A \cap B) + P\left(\overline{A} \cap B\right) = P(A) \times P_A(B) + P\left(\overline{A}\right) \times P_{\overline{A}}(B)$, soit 
+
+$P(B) = 0,6 \times 0,3 + 0,4 \times 0,4 = 0,18 + 0,16 = 0,34$.
+\item D'après la formule de la probabilité conditionnelle :
+
+$P_{\overline{B}}(\overline{A}) = \dfrac{P\left(\overline{A} \cap \overline{B}\right)}{P\left(\overline{B}\right)} = \dfrac{P\left(\overline{A} \cap \overline{B}\right)}{1 - P(B)} = \dfrac{0,24}{1 - 0,34} = \dfrac{0,24}{0,66} = \dfrac{24}{66} = \dfrac{4}{11}$ ou encore :
+
+$P_{\overline{B}}\left(\overline{A}\right) \approx \np{0,3636}$, soit 0,364 au millième près.
+\item 
+	\begin{enumerate}
+		\item On répète $100$ fois de façon identique et indépendante l'expérience de Bernoulli dont la probabilité de succès (ne pas avoir chuté lors des deux premières séances) est égale à 0,24.
+		
+La variable aléatoire $X$ suit donc la loi binomiale de paramètres $n = 100$ et $p = 0,24$.
+		\item On a $P(X \geqslant 20) = 1 - P(X < 20) = 1 - P(X \leqslant 19)$ soit d'après la calculatrice 
+		
+$\approx 1 - 0,145$, d'où
+
+		$P(X \geqslant 20) \approx 0,855$ au millième près.
+		\item On sait qu'alors $E(X) = n \times p = 100 \times 0,24 = 24$.
+
+Ceci signifie qu'en moyenne sur 100 personnes, 24 ne chuteront lors des deux premières séances.
+		
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\begin{enumerate}
+\item Puisque $T = T_1 + T_2$, par linéarité de l'espérance :
+
+$E(T) = E(T_1 + T_2) = E(T_1) + E(T_2) = 40 + 60 = 100$.
+
+Il faut donc attendre en moyenne 100 minutes sur les deux jours.
+
+Les variables aléatoires $T_1$ et $T_2$ étant indépendantes on a de même :
+
+$V(T) = V(T_1 + T_2) = V(T_1) + V(T_2)$
+
+Comme $V(T_1) = \sigma(T_1)^2 = 10^2 = 100$ et que $V(T_2) = \sigma(T_2)^2 = 16^2 = 256$, on a donc 
+
+$V(T) = 100 + 256 = 356$.
+\item Soit $60 < T < 140$ soit en centrant sur l'espérance :
+
+$60 - 100 < T - 100 < 140 - 100 \iff - 40 < T - 100 < 40 \iff |T - 100| < 40$ ou encore $|T - E(T)| < 40$.
+
+D'après l'inégalité de Bienaimé-Tchebychev : 
+
+$P(|T - E(T)| \geqslant 40) \leqslant \dfrac{V(T)}{40^2} \iff P(|T - E(T)| \geqslant 40) \leqslant \dfrac{V(T)}{40^2} \iff $
+
+$P(|T - E(T)| < 40) \geqslant 1 - \dfrac{356}{\np{1600}} \iff P(|T - E(T)|  < 40) \geqslant \dfrac{\np{1244}}{\np{1600}}$.
+
+Comme $\dfrac{\np{1244}}{\np{1600}} \approx \np{0,7775}$ qui est supérieur à 0,77, on a finalement :
+
+\[P(60 < T < 140) > 0,77.\]
+
+\end{enumerate}
+
+\medskip
+
+\end{document}

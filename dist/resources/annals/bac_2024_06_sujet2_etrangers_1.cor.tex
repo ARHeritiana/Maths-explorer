@@ -1,0 +1,165 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet2_etrangers_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+\begin{enumerate}
+\item Un tirage est donc un triplet (c'est-à-dire une 3-liste ou un 3-uplet) ordonné d'éléments choisis dans un ensemble $E$ de cardinal $\mathrm{Card}(E) =8$ (il y a 8 jetons), qui ne s'amenuise pas (car on remet le jeton avant de tirer le suivant, et donc les répétitions sont possibles.)
+
+Le nombre de tirages possibles est donc de : \quad $\mathrm{Card}(E)^3 = 8^3 = 512$.
+
+Il y a 512 tirages possibles.
+
+\item \begin{enumerate}
+	\item Si on souhaite un tirage sans répétition de numéro, alors, c'est comme si on avait fait un tirage sans remise (un numéro déjà choisi ne peut pas être choisi à nouveau), et donc un triplet ordonné d'éléments choisis dans un ensemble qui s'amenuise.
+
+	Il y a donc $\dfrac{8!}{(8-3)!} = 8 \times 7 \times 6 = 336$ tirages possibles sans numéro répété.
+
+	\emph{Remarque :} On peut parler d'arrangement, même si ce mot n'est pas explicitement à connaître en terminale.
+
+	On peut aussi voir cette valeur comme étant : 8 choix possibles pour le premier numéro du triplet, puis 7 choix possibles pour le deuxième numéro, sachant qu'il doit être différent du premier et enfin 6 choix possibles pour le dernier numéro, qui doit être différent des deux précédents.
+
+	\item Le nombre de tirages avec au moins une répétition de numéro est donc la différence des deux résultats précédents : $512 - 336 = 176$.
+
+	En effet, l'ensemble des tirages possibles est la réunion de deux ensembles disjoints : les tirages sans aucune répétition de numéro et les tirages avec au moins une répétition de numéro.
+
+	\emph{Remarque :} On pouvait aussi compter le nombre de tirages avec deux numéros identiques : $8 \times \displaystyle \binom{3}{2} \times 7= 168$ (huit choix pour le numéro répété, multiplié par $\displaystyle \binom{3}{2}$ façons de placer ces deux numéros identiques dans le triplet, multiplié par sept choix pour le numéro différent des deux premiers) et l'ajouter au nombre de tirages avec trois numéros identiques : $8$ (huit choix possibles pour le numéro qui sera répété trois fois), mais dans ce cas, on obtient 176 sans le déduire des questions précédentes.
+\end{enumerate}
+
+\item Le sac étant opaque et les jetons indiscernables au toucher, chaque sélection d'un jeton dans le sac est une situation d'équiprobabilité, et donc on a une loi équirépartie.
+
+On peut donc présenter la loi de probabilité de la variable aléatoire $X_1$ sous la forme du tableau suivant :
+
+\renewcommand\arraystretch{2}
+\begin{tabularx}{\linewidth}{|l|*{8}{>{\centering \arraybackslash}X|}} \hline
+	$x_i$ & 1&2&3&4&5&6&7&8\\ \hline
+	$P(X_1 = x_i)$&$ \dfrac{1}{8} $&$ \dfrac{1}{8} $&$ \dfrac{1}{8} $&$ \dfrac{1}{8} $&$ \dfrac{1}{8} $&$ \dfrac{1}{8} $&$ \dfrac{1}{8} $&$ \dfrac{1}{8} $\\ \hline
+\end{tabularx}
+\renewcommand\arraystretch{1}
+\item L'espérance de la variable aléatoire $X_1$ est donc donnée par :
+
+$\begin{aligned}[t] E(X_1) &= x_1 \times P(X_1 = x_1) + x_2 \times P(X_1 = x_2) + ... x_8 \times P(X_1 = x_8) \\
+&= \big(x_1 + x_2 + ... + x_8\big) \times\dfrac{1}{8}\quad \text{car la loi est équirépartie}\\
+&= \big(1 + 2 + ... + 8\big) \times\dfrac{1}{8}\\
+&= \dfrac{1 + 8}{2}\times 8 \times \dfrac{1}{8}\quad \text{avec la formule de la somme des premiers termes d'une}\\
+&\hphantom{\dfrac{1 + 8}{2}\times 8 \times \dfrac{1}{8}}\qquad\text{ suite arithmétique}\\
+&= 4,5\end{aligned}$
+
+\item On a $E(S) = E(X_1 + X_2 + X_3)= E(X_1) + E(X_2) + E(X_3)$, et puisque $X_1$, $X_2$ et $X_3$ suivent la même loi de probabilité, alors on en déduit :
+
+$E(S) = 3\times E(X_1) = 3\times 4,5 = 13,5$
+
+\item L'évènement $\{S = 24\}$ n'est réalisé que par le tirage $(8~;~8~;~8)$, donc sur les 512 issues possibles de l'expérience aléatoire, une seule est favorable à l'évènement : la probabilité est donc de $\dfrac{1}{512}$ (puisque l'on est en situation d'équiprobabilité).
+
+\emph{Remarque :} On peut aussi dire que l'évènement $\{S = 24\}$ est égal à l'évènement $\{X_1 = 8\} \cap\{X_2 = 8\} \cap\{X_3 = 8\}$.
+
+Et comme les variables aléatoires $X_1$, $X_2$ et $X_3$ sont indépendantes :
+
+$\begin{aligned}[t] P(S = 24) &= P \big(\{X_1 = 8\} \cap\{X_2 = 8\} \cap\{X_3 = 8\}\big) = P(X_1 = 8) \times P(X_2 = 8) \times P(X_3 = 8)\\
+&= \left(\dfrac{1}{8}\right)^3 = \dfrac{1}{512}\end{aligned}$
+\item \begin{enumerate}
+		\item \begin{itemize}
+			\item Le nombre 24 ne peut être obtenu que par la somme 8 + 8 + 8, qui ne procède que d'un seul tirage (le tirage $(8~;~8~;~8)$).
+
+			\item Le nombre 23 ne peut être obtenu que par la somme 7 + 8 + 8, cette somme est constituée d'un doublon (le 8) et d'un entier présent une seule fois (le 7).
+
+			Elle peut procéder de trois tirages différents, car il y a $ \displaystyle \binom{3}{2} = 3$ façons de placer les deux entiers identiques dans un triplet.
+
+			Les trois triplets conduisant à $\{S = 23\}$ sont : $ (7~;~8~;~8) $~;~ $ (8~;~7;8) $ et $ (8~;~8~;~7)$.
+
+			\item Le nombre 22 peut être obtenu comme somme de trois entiers naturels entre 1 et 8 en faisant : 6 + 8 + 8, ou bien en faisant 7 + 7 + 8.
+
+			Chacune de ces sommes est constitué d'un doublon  et d'un troisième entier différent, et est donc le résultat de trois tirages différents.
+
+			Il y a donc six tirages donnant 22 (les tirages $(6~;~8~;~8)$; $ (8~;~6~;~8)$ ; $(8~;~8~;~6)$ ; $ (8~;~7~;~7)$ ; $ (7~;~8;7)$ et $ (7~;~7~;~8)$).
+		\end{itemize}
+
+On a donc bien finalement $1 + 3 + 6 = 10$ tirages conduisant au gain d'un lot.
+
+
+		\item On est en situation d'équiprobabilité pour les 512 tirages possibles (nombre déterminé à la question \textbf{1.}), donc, avec 10 tirages favorables à l'évènement \og gagner un lot\fg{}, la probabilité de gagner un lot est donc de $ \dfrac{10}{512} = \dfrac{5}{256} $.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\end{document}

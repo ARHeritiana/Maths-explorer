@@ -1,0 +1,160 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet2_polynesie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Les parties {\rm A} et {\rm B} peuvent être traitées indépendamment}
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+Chaque jour, un athlète doit sauter une  haie en fin d'entraînement. Son entraîneur estime, au vu de la saison précédente que
+
+\begin{itemize}
+\item[$\bullet~~$]si l'athlète franchit la haie un jour,  alors il la franchira dans $90\,\%$ des cas le jour suivant ;
+\item[$\bullet~~$]si l'athlète ne franchit pas la haie un jour, alors dans $70\,\%$ des cas il ne la franchira pas non plus le lendemain.
+\end{itemize}
+
+On note pour tout entier naturel $n$ :
+
+\begin{itemize}
+\item[$\bullet~~$]$R_n$ l'évènement : \og L'athlète réussit à franchir la haie lors de la $n$-ième séance \fg,
+\item[$\bullet~~$]$p_n$ la probabilité de l'évènement $R_n$. On considère que $p_0 = 0,6$.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Soit $n$ un entier naturel, recopier l'arbre pondéré ci-dessous et compléter les
+pointillés.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$R_n$~}\taput{$p_n$}}
+{\TR{$R_{n+1}$}\taput{\ldots}
+\TR{$\overline{R_{n+1}}$}\tbput{\ldots}
+}
+\pstree{\TR{$\overline{R_n}$~}\tbput{$1 - p_n$}}
+{\TR{$R_{n+1}$}\taput{\ldots}
+\TR{$\overline{R_{n+1}}$}\tbput{\ldots}
+}
+}
+\end{center}
+\item Justifier en vous aidant de l'arbre que, pour tout entier naturel $n$, on a :
+\[p_{n+1} = 0,6p_n + 0,3.\]
+
+\item On considère la suite $\left(u_n\right)$ définie, pour tout entier naturel $n$, par $u_n = p_n - 0,75$.
+
+	\begin{enumerate}
+		\item Démontrer que la suite $\left(u_n\right)$ est une suite géométrique dont on précisera la raison et le premier terme.
+		\item Démontrer que, pour tout entier $n$ naturel $n$ :
+		\[p_n = 0,75 - 0,15 \times  0,6^n.\]
+		
+		\item En déduire que la suite $\left(p_n\right)$ est convergente et déterminer sa limite $\ell$.
+		\item Interpréter la valeur de $\ell$ dans le cadre de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+Apres de nombreuses séances d'entraînement, l'entraineur estime maintenant que l'athlète franchit chaque haie avec une probabilité de $0,75$ et ce indépendamment d'avoir franchi ou non les haies précédentes.
+
+On note $X$ la variable aléatoire qui donne le nombre de haies franchies par l'athlète à l'issue d'un $400$~mètres haies qui comporte $10$~haies,
+
+\medskip
+
+\begin{enumerate}
+\item Préciser la nature et les paramètres de la loi de probabilité suivie par $X$.
+\item Déterminer, à $10^{-3}$ près, la probabilité que l'athlète franchisse les $10$~haies.
+\item Calculer $p(X \geqslant 9)$, à $10^{-3}$ près,
+\end{enumerate}
+
+\bigskip
+
+\end{document}

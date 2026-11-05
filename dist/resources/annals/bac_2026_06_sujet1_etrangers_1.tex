@@ -1,0 +1,215 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet1_etrangers_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+La fédération internationale d'escrime établit des normes de fabrication sur les lames des armes des tireurs afin de garantir au maximum leur sécurité.
+	
+	
+	Pour tester la conformité de l'acier employé, la lame est pliée puis redressée toutes les secondes jusqu'à la rupture.
+	
+	La lame est conforme si la rupture intervient après plus de cinq heures de test.
+	
+	\medskip
+	
+	Un équipementier d'escrime se fournit auprès de trois fabricants de lames.
+	
+	Son stock est composé de 60~\% de lames du fournisseur A, de 12~\% de lames du fournisseur B, le reste venant du fournisseur C.
+	
+	\medskip
+	
+	Une étude qualité a montré que :
+	\begin{itemize}[label={\textbullet~}]
+		\item 90~\% des lames du fournisseur A étaient conformes;
+		\item 95~\% des lames du fournisseur B étaient conformes;
+		\item 85~\% des lames du fournisseur C étaient conformes.
+	\end{itemize}
+	
+	\subsection*{Partie A}
+	Un contrôle est déclenché sur une des lames vendues par l'équipementier.
+	
+	\medskip
+	
+	On considère les évènements suivants :
+	\begin{itemize}[label={\textbullet~}]
+		\item $A$ : \og La lame testée provient du fournisseur A \fg{};
+		\item $B$ : \og La lame testée provient du fournisseur B \fg{};
+		\item $C$ : \og La lame testée provient du fournisseur C \fg{};
+		\item $T$: \og La lame testée est conforme \fg{}.
+	\end{itemize}
+	
+	On note $\overline{T}$ l'évènement contraire de $T$.
+	
+	\begin{enumerate}
+		\item Recopier et compléter l'arbre de probabilité ci-dessous représentant la situation.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}[xscale=1,yscale=1]
+				
+				\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+				\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+				\tikzstyle{etiquette}=[midway,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+				
+				\def\DistanceInterNiveaux{3}
+				\def\DistanceInterFeuilles{1}
+				
+				\def\NiveauA{(0)*\DistanceInterNiveaux}
+				\def\NiveauB{(1)*\DistanceInterNiveaux}
+				\def\NiveauC{(2)*\DistanceInterNiveaux}
+				\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+				
+				\node[noeud] (R) at ({\NiveauA},{(2.5)*\InterFeuilles}) {$$};
+				\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$A$};
+				\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$T$};
+				\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{T}$};
+				\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$B$};
+				\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$T$};
+				\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{T}$};
+				\node[noeud] (Rc) at ({\NiveauB},{(4.5)*\InterFeuilles}) {$C$};
+				\node[feuille] (Rca) at ({\NiveauC},{(4)*\InterFeuilles}) {$T$};
+				\node[feuille] (Rcb) at ({\NiveauC},{(5)*\InterFeuilles}) {$\overline{T}$};
+				
+				\draw (R.east)--(Ra.west) node[etiquette] {$\dots$};
+				\draw (Ra.east)--(Raa.west) node[etiquette] {$\dots$};
+				\draw (Ra.east)--(Rab.west) node[etiquette] {$\dots$};
+				\draw (R.east)--(Rb.west) node[etiquette] {$\dots$};
+				\draw (Rb.east)--(Rba.west) node[etiquette] {$\dots$};
+				\draw (Rb.east)--(Rbb.west) node[etiquette] {$\dots$};
+				\draw (R.east)--(Rc.west) node[etiquette] {$\dots$};
+				\draw (Rc.east)--(Rca.west) node[etiquette] {$\dots$};
+				\draw (Rc.east)--(Rcb.west) node[etiquette] {$\dots$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\item Déterminer $P\big(A \cap \overline{T}\,\big)$ et interpréter ce résultat dans le contexte de l'exercice.
+		
+		\item Démontrer que la probabilité que la lame testée soit conforme est de 0,892.
+		
+		\item Sachant que la lame testée n'est pas conforme, déterminer la probabilité qu'elle provienne du fournisseur B. \emph{On donnera la valeur arrondie au millième.}
+	\end{enumerate}
+	
+	\subsection*{Partie B}
+	D'après la \textbf{partie A}, la probabilité qu'une lame de l'équipementier ne soit pas conforme est égale à 0,108.
+	
+	Lors d'une compétition d'escrime, l'équipementier apporte un échantillon de 75 lames provenant de son stock.
+	
+	On considère qu'il les a choisies au hasard et de manière indépendante.
+	
+	De plus son stock de lames est suffisamment grand pour que ce choix puisse être assimilé à un tirage avec remise.
+	
+	On désigne par $X$ la variable aléatoire égale au nombre de lames non conformes dans cet échantillon.
+	
+	\begin{enumerate}
+		\item On admet que la variable aléatoire $X$ suit une loi binomiale.
+		
+		Préciser ses paramètres.
+		
+		\item Calculer la probabilité que 6 lames exactement soient non conformes dans cet échantillon. \emph{On arrondira le résultat au millième.}
+		
+		\item L'équipementier affirme que la probabilité qu'il y ait strictement plus de 8 lames non conformes dans cet échantillon est inférieure à 50~\%.
+		
+		A-t-il raison ?
+	\end{enumerate}
+	
+	\subsection*{Partie C}
+	Soit $n$ un entier strictement positif désignant le nombre de compétitions durant lesquelles l'équipementier est présent.
+	
+	Il apporte à chaque fois un échantillon de 75 lames.
+	
+	Les variables aléatoires $X_{1}$, \ldots, $X_{n}$\,, que l'on considère indépendantes, donnent pour chaque échantillon le nombre de lames non conformes.
+	
+	\smallskip
+	
+	On pose \quad $M_{n}=\dfrac{X_{1}+X_{2}+\cdots+X_{n}}{n}$.
+	
+	\begin{enumerate}
+		\item Déterminer l'espérance $\mathrm{E}\left(M_{n}\right)$ et la variance $\mathrm{V}\left(M_{n}\right)$ de la variable aléatoire $M_{n}$\,.
+		
+		\item Justifier l'inégalité suivante, pour tout entier naturel $n$ non nul :
+		\[P\left(\left|\strut M_{n}-8,1\right| \geqslant  2\right) \leqslant  \dfrac{\np{1,8063}}{n}.\]
+		
+		\item Déterminer une valeur de l'entier $n$ à partir de laquelle \quad $P\left(\left|\strut M_{n}-8,1\right|<2\right) \geqslant  0,95$.
+		
+		Interpréter ce résultat dans le contexte de l'exercice.
+	\end{enumerate}
+
+\end{document}

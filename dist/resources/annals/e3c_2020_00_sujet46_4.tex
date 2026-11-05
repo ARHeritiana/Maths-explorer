@@ -1,0 +1,146 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet46_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Des pucerons envahissent une roseraie.
+
+On introduit alors des coccinelles, prédatrices des pucerons, à l'instant $t = 0$, et on s'intéresse à l'évolution du nombre de pucerons à partir de cet instant et sur une période de $20$ jours.
+
+\bigskip
+
+\textbf{Partie A :}
+
+\medskip
+
+Dans le repère ci-dessous, on a tracé :
+
+\begin{itemize}[label=\textbullet]
+\item La courbe $\mathcal{C}$ représentant le nombre de milliers de pucerons en fonction du nombre de jours écoulés depuis l'introduction des coccinelles.
+\item La tangente $T$ à la courbe $\mathcal{C}$ au point d'abscisse 0 passe par les points A(0~;~2,1) et B(2~;~4,3).
+\end{itemize}
+
+\begin{center}
+\psset{unit=0.6cm}
+\begin{pspicture}(-1,-0.75)(22,7)
+\psgrid[gridlabels=0pt,subgriddiv=5](0,0)(22,7)
+\psaxes[linewidth=1.25pt,labelFontSize=\displaystyle]{->}(0,0)(0,0)(22,7)
+\def\F{x 3 exp 0.003 mul x dup mul 0.12 mul sub 1.1 x mul add 2.1 add}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0}{20}{x 3 exp 0.003 mul x dup mul 0.12 mul sub 1.1 x mul add 2.1 add}
+\uput[ur](16,1.25){\red $\mathcal{C}$}\uput[u](20,0){\small $t$, nombre de jours}\uput[r](0,6.7){\small  $f(t)$ nombre de pucerons en milliers}
+
+\psline[linewidth=1.25pt]{->}(0,2.1)(2,4.3)
+\uput[ul](2,4.3){$T$}
+\end{pspicture}
+\end{center}
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer par lecture graphique le nombre de pucerons à l'instant où l'on introduit les coccinelles puis le nombre maximal de pucerons sur la période de $20$ jours.
+\item On assimile la vitesse de prolifération des pucerons à l'instant $t$ au nombre dérivé $f'(t)$.
+
+Déterminer graphiquement la vitesse de prolifération des pucerons à l'instant $t = 0$.
+\end{enumerate}
+
+\textbf{Partie B :}
+
+\medskip
+
+On modélise l'évolution du nombre de pucerons par la fonction $f$ définie, pour tout $t$ appartenant à l'intervalle [0~;~20], par:
+
+\[f(t) = 0,003t^3 - 0,12t^2 + 1,1t + 2,1\]
+
+où $t$ représente le nombre de jours écoulés depuis l'introduction des coccinelles et
+$f(t)$ le nombre de pucerons en milliers.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer $f'(t)$ pour tout $t$ appartenant à l'intervalle [0~;~20] où $f'$ désigne la
+dérivée de la fonction $f$.
+\item Dresser le tableau de signes de $f'(t)$ sur l'intervalle [0~;~20].
+\item En déduire le tableau des variations de la fonction $f$ sur l'intervalle [0~;~20]. Préciser les images des valeurs de $t$ apparaissant dans le tableau.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,36 @@
+Lors du lancement d’un hebdomadaire, 1200 exemplaires ont été vendus. Une étude de marché prévoit une progression des ventes de 2 \% chaque semaine. On modélise le nombre d’hebdomadaires vendus par une suite $(u_n)$ où $u_n$ représente le nombre de journaux vendus durant la $n$-ième semaine après le début de l’opération. On a donc $u_0 = 1200$.
+
+\begin{enumerate}
+	\item 	Augmenter de 2 \% revient à multiplier par $\left(1 + \dfrac{2}{100}\right) = 1 + 0,02 = 1,02$.\\
+	 La suite $(u_n)$ est donc une suite géométrique de premier terme $u_0 = 1200$ et de raison $1,02$.\\
+	  Donc $u_1 = u_0 \times 1,02 = 1224$ et $u_2 = u_1 \times 1,02 = 1248,48$, soit 1248 à l’unité près.
+	
+	\item	On sait que $u_n = u_0 \times 1,02^n = 1200 \times 1,02^n$.
+	
+	\item	Voici un programme rédigé en langage Python :
+	
+	\begin{verbatim}
+		def suite():
+		u = 1200
+		S = 1200
+		n = 0
+		while S < 30000:
+		n = n + 1
+		u = u * 1.02
+		S = S + u
+		return(n)
+	\end{verbatim}
+	
+	Le programme retourne la valeur 20.
+	
+	Interpréter ce résultat dans le contexte de l’exercice. 20 signifie que la somme $u_0 + u_1 + \ldots + u_{20}$ dépasse 30000.
+	
+	\item 	Déterminer le nombre total d’hebdomadaires vendus au bout d’un an.\\
+	Le nombre total d’hebdomadaires vendus au bout d’un an (soit 52 semaines) est égal à :
+	
+	\[
+	u_0 + u_1 + u_{51} = 1200 \times \dfrac{1 - 1,02^{52}}{1 - 1,02} = 1200 \times \dfrac{1,02^{52} - 1}{0,02} = 50 \times 1200 \times (1,02^{52} - 1) \approx 108020
+	\]
+	
+	Soit environ 108020 exemplaires.
+\end{enumerate}

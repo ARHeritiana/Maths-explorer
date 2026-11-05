@@ -1,0 +1,135 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_04_polynesie_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Le nombre hebdomadaire de consultations lors d'une épidémie de grippe saisonnière, pendant 10 semaines consécutives, est modélisé par la fonction $f$, définie sur l'intervalle $[0 ; 10]$ par :
+
+$f(t)=-25t^{2}+300t+400$ où $t$ représente le nombre de semaines écoulées depuis le début de l'épidémie.
+
+La courbe représentative $\mathcal{C}_{f}$ de la fonction $f$ est donnée ci-dessous dans un repère du plan.
+
+\begin{figure}
+	\begin{center}
+		\begin{tikzpicture}[x=1.2cm, y=0.0075cm]
+			
+			\draw[gray!30, line width=0.3pt] (0,0) grid[xstep=0.2, ystep=20] (10.2,1420);
+			
+			\draw[gray!60, line width=0.6pt] (0,0) grid[xstep=1, ystep=100] (10.2,1420);
+
+			
+			\draw[line width=1pt, ->, >=stealth] (0,0) -- (10.6,0) node[below left, font=\small\bfseries] at (10,-50){nombre de semaines};
+			\draw[line width=1pt, ->, >=stealth] (0,0) -- (0,1450) node[below right, font=\small\bfseries] at (0.1,1410){Nombre de consultations};
+
+			
+			\foreach \x in {0,1,...,10}
+			\draw (\x,10) -- (\x,-10) node[below, font=\small]{$\np{\x}$};
+
+			
+			\foreach \y in {0,100,...,1400}
+			\draw (0.08,\y) -- (-0.08,\y) node[left, font=\small]{$\np{\y}$};
+
+			
+			\draw[red!70!black, line width=1.2pt] plot[smooth, domain=0:10, samples=100] (\x, {-25*\x*\x + 300*\x + 400});
+			\node[above right, font=\large] at (8.8, 920) {$\mathcal{C}_f$};
+		\end{tikzpicture}
+	\end{center}
+\end{figure}
+
+\subsection*{Partie A : lecture graphique}
+
+En utilisant le graphique ci-dessus :
+\begin{enumerate}
+	\item Déterminer le nombre de consultations 2 semaines après le début de l'épidémie.
+	\item Déterminer l'intervalle de temps pour lequel le nombre de consultations dépasse \np{1200}.
+	\item Au bout de combien de semaines après le début de l'épidémie le nombre de consultations est-il maximal ? Quelle est cette valeur maximale ?
+\end{enumerate}
+
+\subsection*{Partie B : Étude de la fonction $f$}
+
+\begin{enumerate}
+	\item Calculer $f(0)$. Interpréter le résultat dans le contexte de l'exercice.
+	\item Justifier que, pour tout réel $t$ de l'intervalle $[0~;~10]$, $f'(t) = -50t + 300$.
+	\item Résoudre dans l'intervalle $[0~;~10]$ l'équation $f'(t)=0$.
+	\item Étudier le signe de $f'(t)$, puis dresser le tableau de variation de la fonction $f$ sur l'intervalle $[0~;~10]$. On donne $f(6)=\np{1300}$.
+\end{enumerate}
+
+\end{document}

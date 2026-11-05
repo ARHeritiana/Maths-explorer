@@ -1,0 +1,199 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet2_polynesie_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Dans tout l'exercice, les probabilités seront, si nécessaire, arrondies à $10^{-3}$ près.
+
+Une donnée binaire est une donnée qui ne peut prendre que deux valeurs:  0 ou 1.
+
+Une donnée de ce type est transmise successivement d'une machine à une autre.
+
+Chaque machine transmet la donnée reçue soit de manière fidèle, c'est-à-dire en
+transmettant l'information telle qu'elle l'a reçue (1 devient 1 et 0 devient 0), soit de façon
+contraire (1 devient 0 et 0 et devient 1).
+
+La transmission est fidèle dans 90\,\% des cas, et donc contraire dans 10\,\% des cas.
+
+Dans tout l'exercice, la première machine reçoit toujours la valeur 1.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+Pour tout entier naturel $n \geqslant 1$, on note :
+
+\begin{itemize}[label=$\bullet~$]
+\item $V_n$ l'évènement : \og la $n$-ième machine détient la valeur 1 \fg{};
+\item $\overline{V_n}$ l'évènement : \og la $n$-ième machine détient la valeur 0 \fg{}.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Recopier et compléter l'arbre de probabilité ci-dessous.
+
+\medskip
+
+\begin{center}
+\pstree[treemode=R,levelsep=3cm]{\TR{$V_1$~}}
+{\pstree{\TR{$V_2~$}\taput{\ldots}}
+	{\TR{$V_3$} \taput{\ldots}
+	\TR{$\overline{V_3}$} \tbput{\ldots}
+	}
+\pstree{\TR{$\overline{V_2}~$}\tbput{\ldots}}
+	{\TR{$V_3$} \taput{\ldots}
+	\TR{$\overline{V_3}$} \tbput{\ldots}
+	}
+}
+\end{center}
+
+		\item Démontrer que $P(V_3) = 0,82$ et interpréter ce résultat dans le contexte de l'exercice.
+		\item Sachant que la troisième machine a reçu la valeur 1, calculer la probabilité que la deuxième machine ait aussi reçu la valeur 1.
+	\end{enumerate}
+\item Pour tout entier naturel $n \geqslant 1$, on note $p_n = P(V_n)$.
+
+La première machine a reçu la valeur 1, on a donc $p_1 = 1$.
+	\begin{enumerate}
+		\item Démontrer que pour tout entier naturel $n \geqslant 1$ :
+		
+\[p_{n+1} = 0,8p_n + 0,1.\]
+
+		\item Démontrer par récurrence que pour tout entier naturel $n \geqslant 1$,
+
+\[p_n = 0,5 \times 0,8^{n-1} + 0,5.\]
+
+		\item Calculer la limite de $p_n$ lorsque $n$ tend vers l'infini. Interpréter ce résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+
+\textbf{Partie B}
+
+\medskip
+
+Pour modéliser en langage Python la transmission de la donnée binaire décrite en début d'exercice, on considère la fonction \texttt{simulation} qui prend en paramètre un entier naturel $n$ qui représente le nombre de transmissions réalisées d'une machine à une autre, et qui renvoie la liste des valeurs successives de la donnée binaire.
+
+On donne ci-dessous le script incomplet de cette fonction.
+
+On rappelle que l'instruction \texttt{rand()} renvoie un nombre aléatoire de l'intervalle [0~;~1[.
+
+
+\[
+\begin{array}{l}
+\texttt{def simulation(n):}\\
+\texttt{\hspace{1em}donnee = 1}\\
+\texttt{\hspace{1em}liste = [donnee]}\\
+\texttt{\hspace{1em}for k in range(n):}\\
+\texttt{\hspace{2em}if rand() < 0.1:}\\
+\texttt{\hspace{3em}donnee = 1 - donnee}\\
+\texttt{\hspace{2em}liste.append(donnee)}\\
+\texttt{\hspace{1em}return liste}
+\end{array}
+\]
+
+\medskip
+
+Par exemple, \texttt{simulation(3)} peut renvoyer [1,\: 0,\: 0,\: 1].Cette liste traduit :
+
+\begin{itemize}[label=$\bullet~$]
+\item qu'une donnée binaire a été successivement transmise trois fois entre quatre machines;
+\item la première machine qui détient la valeur 1 a transmis de façon contraire cette donnée à la deuxième machine ;
+\item la deuxième machine a transmis la donnée qu'elle détient de façon fidèle à la troisième ;
+\item la troisième machine a transmis de façon contraire la donnée qu'elle détient à la quatrième.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer le rôle des instructions des lignes 5 et 6 de l'algorithme ci-dessus.
+\item Calculer la probabilité que simulation(4) renvoie la liste [1,\:1,\:1,\:1,\:1] et la probabilité que \texttt{simulation(6)} renvoie la liste [1,\: 0,\:1,\:0,\:0,\:1,\:1].
+\end{enumerate}
+
+\bigskip
+
+\end{document}

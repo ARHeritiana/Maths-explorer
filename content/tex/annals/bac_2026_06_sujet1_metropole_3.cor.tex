@@ -1,0 +1,171 @@
+\subsection*{Partie A : Phase de chauffage}
+		\begin{enumerate}
+			\item On a une équation différentielle de la forme \quad $y' = a y + b$,\quad où $a$ et $b$ sont des réels non nuls.
+
+			La solution particulière constante de l'équation $(E)$ est :\quad $t \longmapsto \dfrac{-b}{a}$.
+
+			Or \quad $\dfrac{-0,91}{-0,035} = 26$.
+
+			La solution particulière constante de $(E)$ sur $[0 ; +\infty[$ est donc :\quad $t \longmapsto 26$.
+
+			Par propriété, les solutions générales de $(E)$ sur $[0 ; +\infty[$ sont de la forme :\quad $t \longmapsto C\e^{-0,035t} + 26$,
+
+			où $C$ est un réel quelconque.
+
+			\item La fonction $T$ est donc une de ces solutions, donc on connaît sa forme générale, établie ci-avant.
+
+			Pour déterminer la constante $C$, on va utiliser la condition initiale :\quad $T(0) = 18$.
+
+			$\begin{aligned}
+				T(0) = 18
+					&\iff C\e^{-0,035\times 0} + 26 = 18\\
+					&\iff C\e^{0} = 18 - 26\\
+					&\iff C\times 1 = -8\\
+					&\iff C = -8\\
+			\end{aligned}$
+
+			Cela confirme bien que, pour tout nombre réel $t$ appartenant à l'intervalle $[0 ;+\infty[$, on a :
+			\[ T(t)=26-8 \e^{-0,035 t}.\]
+
+			\item Selon ce modèle, le temps au bout duquel la pièce atteindra la température de 20\,\textdegree{}C est la solution de l'équation :\quad $T(t) = 20$.
+
+			Résolvons cette équation : \quad$\begin{aligned}[t]
+				T(t) = 20
+					&\iff 26 - 8\e^{-0,035t} = 20\\
+					&\iff -8\e^{-0,035t} = - 6\\
+					&\iff \e^{-0,035t} = 0,75\\
+					&\iff -0,035t = \ln(0,75)\\
+					&\iff t = \dfrac{\ln(0,75)}{-0,035}
+				\end{aligned}$
+
+			$\dfrac{\ln(0,75)}{-0,035} \approx 8,22$.
+
+			Le temps est exprimé en dizaine de minutes. 8,22 dizaines de minutes, correspondent, à la minute près à 82 minutes, soit 1 heure et 22 minutes.
+
+			À la minute près, il faut donc 1 heure et 22 minutes pour que la température atteigne les 20\,\textdegree{}C.
+
+			\item Pour les équations différentielles de la forme \quad $y' = ay + b$ \quad avec un coefficient $a$ strictement négatif (ce qui est le cas ici, $a = -0,035$), on sait par propriété que les courbes de fonctions vont admettre comme asymptote horizontale au voisinage de $+\infty$ la droite représentant la solution particulière constante, soit ici la droite d'équation $y = 26$.
+
+			De plus, on sait aussi que les solutions sont strictement monotones.
+
+			Or, ici, on a\quad $T(0) = 18 < \lim\limits_{t \to +\infty}T(t) = 26$
+
+			donc la fonction $T$ est strictement monotone et ne peut pas être décroissante : elle est croissante (logique, en phase de chauffage, la température monte).
+
+			$T$ est donc une fonction strictement croissante, tendant vers 26 : elle est donc majorée par 26.
+
+			Si une panne du système de chauffage l'empêche de s'éteindre lorsque la température de la pièce atteint 20\,\textdegree{}C, la température de la pièce ne pourra donc pas dépasser 26\,\textdegree{}C, et donc encore moins 28\,\textdegree{}C.
+
+			\emph{Remarque :} On peut aussi, plus simplement dire que la fonction exponentielle est à valeurs strictement positives et donc, pour tout réel $t$ positif :
+
+			$\begin{aligned}
+				\e^{-0,035t} > 0
+					&\implies -8\e^{-0,035t} < 0\quad \text{car } -8<0\\
+					&\implies 26 -8\e^{-0,035t} < 26\\
+					&\implies T(t) < 26
+			\end{aligned}$
+
+			Et donc la température est majorée par 26\,\textdegree{}C, ce qui permet de conclure aussi.
+		\end{enumerate}
+
+	\subsection*{Partie B: Phase de refroidissement}
+		\begin{enumerate}
+			\item D'après la relation de récurrence, appliquée avec $n = 0$ :
+
+			$u_{1}=u_{0 + 1} = 0,965u_0 + 0,35 + 0,07\e^{-0,1\times 0} = 0,965 \times 20 + 0,35 + 0,07\times 1 = 19,3 + 0,35 + 0,07 = 19,72$.
+
+			\item Pour tout entier naturel $n$, on pose $P_n$ l'affirmation :\quad \og $u_{n}>10$\fg{}.
+
+			\begin{itemize}[label=\textbullet~]
+				\item \textbf{Initialisation :} Pour $n= 0$, on a $u_0 = 20 > 10$.
+
+				L'affirmation $P_0$ est vraie.
+
+				\item \textbf{Hérédité :} soit $n$ un entier naturel ($n \geqslant 0$), on suppose que pour cet entier $n$, l'affirmation $P_n$ est vraie.
+
+				$\begin{aligned}
+					P_n \text{ est vraie}
+						&\implies u_n > 10\\
+						&\implies 0,965 u_n > 9,65 \quad \text{car } \quad 0,965 > 0\\
+						&\implies 0,965 u_n + 0,35 > 9,65 + 0,35\\
+						&\implies 0,965 u_n + 0,35 > 10\\
+						&\implies 0,965 u_n + 0,35 + 0,07\e^{-0,1n}> 10\quad \text{car } \quad 0,07\e^{-0,1n} > 0\\
+						&\implies u_{n+1} > 10\\
+						&\implies P_{n+1} \text{ est vraie}
+				\end{aligned}$
+				\item \textbf{Conclusion :} la propriété $P_0$ est vraie, et pour $n$ entier naturel, elle est héréditaire, donc par principe de récurrence :
+
+				Pour tout entier naturel $n$, $P_n$ est vraie, c'est-à-dire :\quad $u_n > 10$.
+			\end{itemize}
+
+			Autrement dit la suite $(u_n)$ est strictement minorée par 10.
+
+			\item La suite est décroissante (admis) et minorée par 10, donc d'après le théorème de convergence monotone, la suite $(u_{n})$ est convergente vers une limite supérieure ou égale à 10, notée $\ell$.
+
+			\item \begin{enumerate}
+				\item On a donc :\quad $\lim\limits_{n \to +\infty} u_n = \ell$.
+
+				La suite de terme général $(u_{n+1})$, avec les mêmes termes, mais décalés d'un rang, aura la même limite $\ell$.
+
+				Mais comme pour tout $n$ naturel, on a:\quad $u_{n+1} = 0,965u_n + 0,35 + 0,07\e^{-0,1n}$, on a aussi :
+
+				\begin{itemize}[label=\textbullet~]
+					\item Par limite du produit et de la somme : $\lim\limits_{n \to +\infty} 0,965u_n + 0,35 = 0,965\ell + 0,35$;
+					\item $\lim\limits_{n \to +\infty} -0,1n = -\infty$\quad et donc, par composition :\quad $\lim\limits_{n \to +\infty} \e^{-0,1n} = \lim\limits_{y \to -\infty} \e^{y} = 0$;
+				\end{itemize}
+
+				Ainsi, par limite de la somme :\quad $\lim\limits_{n \to +\infty} 0,965u_n + 0,35 +0,07\e^{-0,1n} = 0,965\ell + 0,35$.
+
+				Soit \quad $\lim\limits_{n \to +\infty} u_{n+1} = 0,965\ell + 0,35$.
+
+				Or on a aussi \quad $\lim\limits_{n \to +\infty} u_{n+1} = \ell$.
+
+				Par unicité de la limite, on doit donc avoir :\quad $\ell = 0,965\ell + 0,35$.
+
+				La limite $\ell $ est donc solution de l'équation \quad $x=0,965 x+0,35$.
+
+				\emph{Remarque :} ici, on a l'esprit du théorème du point fixe, mais on ne peut pas l'appliquer directement, car la relation de récurrence de la suite $(u_n)$ fait intervenir à la fois le terme précédent, mais aussi son indice.
+
+				Il n'y a donc pas une fonction $f$ unique qui permettrait d'écrire $u_{n+1} = f(u_n)$, cette fonction dépendant aussi de $n$.
+
+				\item Résolvons l'équation :\quad $\begin{aligned}[t]
+					x = 0,965x + 0,35
+						&\iff x - 0,965x = 0,35\\
+						&\iff 0,035x = 0,35\\
+						&\iff x = \dfrac{0,35}{0,035}\\
+						&\iff x = 10
+				\end{aligned}$
+
+				L'équation n'a qu'une solution, 10, donc la suite tend vers 10.
+
+				Dans le contexte de l'exercice, cela signifie qu'avec une durée sans chauffage très longue, la température de la pièce se rapproche de et se stabilise aux environs de 10\,\textdegree{}C.
+			\end{enumerate}
+
+			\item \begin{enumerate}
+				\item Le programme va utiliser la variable \texttt{n} pour stocker les indices et \texttt{u} pour stocker le terme correspondant de la suite $(u_n)$.
+
+				Tant que le terme est supérieur strictement à 18, alors la température ne nécessite pas de remettre en route le chauffage, et donc on calcule le terme et l'indice suivant.
+
+				Cela donne :
+
+				\begin{center}
+				\begin{tblr}[T]{vline{1,3}={solid}, hline{1,Z}={solid},colspec={X[r,3mm] X[8cm,font=\ttfamily]},rowsep=0pt,column{1}={bg=gray9}}
+					1.& def marche() :\\
+					2.& \quad n = 0\\
+					3.& \quad u = 20\\
+					4.& \quad while u > 18 :\\
+					5.& \quad \quad u = 0.965*u+0.35 + 0.07*exp(-0.1*n)\\
+					6.& \quad \quad n = n+1\\
+					7.& \quad return n\\
+				\end{tblr}
+				\end{center}
+
+				\emph{Remarque :} pour que ce programme fonctionne, il faut d'abord invoquer la fonction exponentielle, fournie par la librairie \texttt{math}, avec la ligne \texttt{from math import exp}.
+
+				\item On explore à la calculatrice les premiers termes de la suite.
+
+				On constate que $u_8 \approx 17,87$ quand les termes précédents sont tous strictement supérieurs à 18.
+
+				La fonction va renvoyer 8, donc il faudra huit dizaines de minutes (arrondi par excès) pour que le système de chauffage se remettra en marche.
+			\end{enumerate}
+		\end{enumerate}

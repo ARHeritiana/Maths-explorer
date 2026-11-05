@@ -1,0 +1,101 @@
+\begin{enumerate}
+	\item On détermine les coordonnées des vecteurs $\vect{\mathrm{AB}}$ et $\vect{\mathrm{AC}}$ : \quad $\vect{\mathrm{AB}}\begin{pmatrix}-2\\1\\5 \end{pmatrix}$
+	 et $\vect{\mathrm{AC}}\begin{pmatrix}-1\\-2\\0 \end{pmatrix}$.
+
+	 Ces vecteurs ont des coordonnées qui sont clairement non proportionnelles, donc les vecteurs ne sont pas colinéaires, et donc les trois points A, B et C ne sont pas alignés : ils déterminent bien un plan.
+
+	 \item Comme le repère est orthonormal, en utilisant les coordonnées des vecteurs précédents, qui sont non nuls, on va calculer le produit scalaire des vecteurs $\vect{\mathrm{AB}}$ et $\vect{\mathrm{AC}}$ :
+
+$\vect{\mathrm{AB}}\cdot\vect{\mathrm{AC}} = -2 \times (-1) + 1  \times  (-2) + 5  \times 0 = 2 + -2 + 0 = 0$.
+
+Les vecteurs $\vect{\mathrm{AB}}$ et $\vect{\mathrm{AC}}$ sont non nuls, mais leur produit scalaire l'est, donc les droites (AB) et (AC) sont orthogonales, et donc le triangle ABC est bien rectangle en A.
+
+	\item 
+		\begin{enumerate}
+		\item Calculons le produit scalaire de $\vect{u}$ avec $\vect{\mathrm{AB}}$ et $\vect{\mathrm{AC}}$, ces deux vecteurs formant une base du plan (ABC).
+
+\begin{itemize}
+\item $\vect{u}\cdot \vect{\mathrm{AB}} = 2  \times (-2) + (-1) \times 1 + 1  \times 5 = -4 - 1 + 5 = 0$;
+\item $\vect{u}\cdot \vect{\mathrm{AC}} = 2  \times (-1) + (-1) \times (-2) + 1  \times 0 = -2 + 2 + 0 = 0$;
+\end{itemize}
+
+ $\vect{u}$ est donc orthogonal à deux vecteurs formant une base de (ABC), il est donc orthogonal à (ABC).
+
+ 		Toute droite dirigée par $\vect{u}$, et donc $\Delta$, est donc orthogonale à (ABC).
+
+ 		\item $\vect{u}$ est donc un vecteur normal au plan (ABC), d'après la question précédente.
+
+Par propriété, on en déduit qu'une équation de (ABC) est de la forme :
+
+$2x - y + z + d = 0$\quad où $d$ est un réel.
+
+ $\begin{aligned}
+ \mathrm{A} \in (\mathrm{ABC})
+ &\iff 2x_{\mathrm{A}} - y_{\mathrm{A}} + z_{\mathrm{A}} + d = 0\\
+ &\iff 2\times 1 - 3 + 0 + d = 0\\
+ &\iff -1 + d = 0\\
+ &\iff d = 1
+\end{aligned}$
+
+Une équation de (ABC) est donc bien \quad $2x - y + z + 1 = 0$.
+
+ 		\item $\Delta$ contient $\mathrm{D}(-2~;~2~;~1)$ et est dirigée par $\vect{u}$, donc, par propriété, une représentation paramétrique de $\Delta$ est :\quad $\begin{cases}
+ 			x=-2 + 2t\\
+ 			y= 2 - t\\
+ 			z= 1 + t\\
+ 		\end{cases}$\quad avec $t \in \R$
+	 \end{enumerate}
+ \item Considérons $M_t$, le point de paramètre $t$ sur la droite $\Delta$.
+
+ $\begin{aligned}
+		M_t \in (\mathrm{ABC})
+		&\iff 2x_{M_t} - y_{M_t} + z_{M_t} + 1 = 0\\
+		&\iff 2(-2+2t) - (2 - t) + (1 + t) + 1 = 0\\
+		&\iff -4 + 4t - 2 + t + 1 + t + 1 = 0\\
+		&\iff 6t - 4 = 0\\
+		&\iff t = \dfrac{4}{6} = \dfrac{2}{3}
+ \end{aligned}$
+
+$\Delta$ n'a qu'un seul point sur (ABC) (c'est normal, comme elle est orthogonale au plan, elle est sécante au plan), c'est le point de paramètre $\dfrac{2}{3}$ dans la représentation, c'est-à-dire que c'est le point de coordonnées $\left(-2 + 2\times \dfrac{2}{3}~;~2 - \dfrac{2}{3} ; 1 + \dfrac{2}{3}\right)$, soit $\left(-\dfrac{2}{3}~;~\dfrac{4}{3}~;~\dfrac{5}{3}\right)$.
+
+On reconnaît les coordonnées du point H. H est donc l'intersection de $\Delta$ et (ABC), c'est donc l'intersection du plan (ABC) avec la droite passant par D et orthogonale à (ABC) : H est le projeté orthogonal de D sur (ABC).
+
+	\item 
+		\begin{enumerate}
+		\item On est dans un repère orthonormé :
+
+$\begin{aligned}
+	\mathrm{DH} &= \sqrt{\left(-\dfrac{2}{3} - (-2)\right)^2+\left(\dfrac{4}{3} - 2\right)^2+\left(\dfrac{5}{3} - 1\right)^2 } = \sqrt{\left(\dfrac{4}{3}\right)^2+\left(\dfrac{-2}{3}\right)^2+\left(\dfrac{2}{3}\right)^2 } \\
+	&= \sqrt{\dfrac{16}{9} + \dfrac{4}{9} + \dfrac{4}{9}} = \sqrt{\dfrac{24}{9}} = \dfrac{\sqrt{24}}{3} = \dfrac{\sqrt{4\times 6}}{3} = \dfrac{2\sqrt{6}}{3}
+\end{aligned}$
+
+		On arrive bien à la distance annoncée : \quad $\mathrm{DH} = \dfrac{2\sqrt{6}}{3}$.
+
+		\item Pour le tétraèdre ABCD, on va choisir comme base le triangle ABC, rectangle en A, et la hauteur correspondante, est donc la distance de H au plan (ABC), c'est-à-dire la distance DH.
+
+		Pour calculer $B$, l'aire de la base, on va utiliser comme base de ABC la longueur AB, et comme hauteur correspondante, la longueur AC (car ABC est rectangle en A).
+
+		Donc :\quad $\begin{aligned}[t]
+			B &= \dfrac{\mathrm{AB} \times \mathrm{AC}}{2} = \dfrac{\sqrt{(-2)^2 + 1^2 + 5^2}\times \sqrt{(-1)^2 + (-2)^2 + 0^2}}{2} = \dfrac{\sqrt{30}\times \sqrt{5}}{2}= \dfrac{\sqrt{6\times5^2}}{2}\\
+			&=\dfrac{5\sqrt{6}}{2}
+		\end{aligned}$
+
+		Le volume du tétraèdre est donc :\quad $\begin{aligned}[t]
+			V &= \dfrac{1}{3}\times B \times h = \dfrac{1}{3} \times \dfrac{5\sqrt{6}}{2}\times \dfrac{2\sqrt{6}}{3} \\
+			&= \dfrac{5\times2\times6}{3\times6} = \dfrac{10}{3}
+		\end{aligned}$
+
+		Le volume du tétraèdre est donc de $\dfrac{10}{3} \approx 3,3$.
+		\end{enumerate}
+
+	\item Par lecture de la représentation paramétrique de $d$, on peut dire que la droite $d$ est dirigée par : $\vect{u'}\begin{pmatrix} -2 \\ -3 \\ 1\end{pmatrix}$.
+
+	Comme le repère est orthonormé, on a :\quad $\begin{aligned}[t]
+		\vect{u} \cdot \vect{u'} &= 2 \times (-2) + (- 1) \times -3 + 1  \times 1\\
+		& = -4 + 3 + 1 = 0
+	\end{aligned}$
+
+	$\vect{u'}$ est orthogonal à $\vect{u}$ qui est lui-même un vecteur normal à (ABC). On en déduit que $\vect{u'}$ est un vecteur du plan (ABC). Ainsi, la droite $d$ est une droite parallèle au plan (ABC).
+
+	\emph{Remarque :} bien que ça ne soit pas demandé ici, on peut préciser : $d$ passe par le point E de coordonnées $(1 ; 0 ; 1)$. Ces coordonnées ne vérifiant pas l'équation de (ABC), on en déduit que E n'appartient pas au plan, et donc que $d$ est strictement parallèle à (ABC) (elle n'est pas incluse dans le plan).
+	\end{enumerate}

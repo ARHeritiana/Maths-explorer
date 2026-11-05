@@ -1,0 +1,259 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_asie_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{tabular}{|l|}\hline
+\textbf{Principaux domaines abordés}\\
+-- convexité\\
+-- fonction logarithme\\ \hline
+\end{tabular}
+
+\bigskip
+
+\textbf{Partie I : lectures graphiques}
+
+\medskip
+
+$f$ désigne une fonction définie et dérivable sur $\R$.
+
+On donne ci-dessous la courbe représentative de la fonction dérivée $f'$.
+
+\begin{center}
+\psset{xunit=0.9cm,yunit=3cm}
+\begin{pspicture}(-7,-0.8)(7,1.2)
+\multido{\n=-7+1}{15}{\psline[linestyle=dashed,linewidth=0.1pt](\n,-0.8)(\n,1.2)}
+\multido{\n=-0.8+0.2}{11}{\psline[linestyle=dashed,linewidth=0.1pt](-7,\n)(7,\n)}
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-7,-0.8)(7,1.2)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-7}{7}{x 2 mul 1 add x dup mul x add 2.5 add div}
+\uput[u](0,1){\red Courbe de la fonction dérivée $f'$}
+\end{pspicture}
+\end{center}
+
+\medskip
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+On lit $f'(0) = 0,4 = \dfrac{2}{5}$. 
+\item 
+	\begin{enumerate}
+		\item 
+D'après la figure :
+		
+\starredbullet~$f'(x)$ est croissante si  $x \in [-2~;~1]$;
+
+\starredbullet~$f'(x)$ est décroissante si $x < - 2$ et si $x > 1$.
+
+
+		\item 
+\starredbullet~$f'\left(- \dfrac{1}{2}\right) = 0$.
+
+Donc $f''(x) > 0$ sur l'intervalle $[-2~;~1]$ ; la fonction $f$ est convexe sur l'intervalle $[-2~;~1]$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie II : étude de fonction}
+
+\medskip
+
+La fonction $f$ est définie sur $\R$ par 
+
+\[f(x) = \ln \left(x^2 + x + \dfrac{5}{2}\right).\]
+
+\medskip
+
+\begin{enumerate}
+\item 
+\starredbullet~On a $\displaystyle\lim_{x \to + \infty} x^2 + x + \dfrac{5}{2} = + \infty$, d'où par composition de limites $\displaystyle\lim_{x \to + \infty} f(x) = + \infty$.
+
+\starredbullet~On a $x^2 + x + \dfrac{5}{2} = x^2\left(1 + \dfrac{1}{x} + \dfrac{5}{2x^2}\right)$.
+
+Donc $f(x) = \ln x^2\left(1 + \dfrac{1}{x} + \dfrac{5}{2x^2}\right) = \ln x^2 + \ln \left(1 + \dfrac{1}{x} + \dfrac{5}{2x^2}\right)$.
+
+Or $\displaystyle\lim_{x \to - \infty}\dfrac{1}{x} = \displaystyle\lim_{x \to - \infty}\dfrac{5}{2x^2x} = 0$, donc 
+$\displaystyle\lim_{x \to - \infty}1 + \dfrac{1}{x} + \dfrac{5}{2x^2} = 1$ et $\displaystyle\lim_{x \to - \infty}\ln \left(1 + \dfrac{1}{x} + \dfrac{5}{2x^2}\right) = \ln 1 = 0$.
+
+Finalement :
+
+$\displaystyle\lim_{x \to - \infty}f(x) = \displaystyle\lim_{x \to - \infty}\ln x^2 = + \infty$.
+\item 
+On a $f(x) = \ln u(x)$, avec $u(x) = x^2 + x + \dfrac{5}{2}$.
+
+$u$ étant dérivable sur $\R$ et pour le trinôme $x^2 + x + \dfrac{5}{2}$, \, $\Delta = 1 - 10 = - 9 < 0$, donc 
+
+$x^2 + x + \dfrac{5}{2} > 0$ quel que soit le réel $x$.
+
+La fonction $\ln u$ est donc dérivable sur $\R$ et sur cet intervalle :
+
+$\left(\ln u \right)' = \dfrac{u'(x)}{u(x)} = \dfrac{2x + 1}{x^2 + x + \dfrac{5}{2}}$.
+
+Conclusion : quel que soit $x \in \R$, \, $f'(x) = \dfrac{2x + 1}{x^2 + x + \dfrac{5}{2}}$.
+\item 
+On a vu que $x^2 + x + \dfrac{5}{2} > 0$ sur $\R$ ; le signe de $f'(x)$ est donc celui de $2x + 1$ :
+
+\starredbullet $f'(x) > 0 \iff 2x + 1 > 0 \iff x > - \dfrac{1}{2}$ : la fonction $f$ est croissante sur $\left]- \dfrac{1}{2}~;~+ \infty\right[$ ;
+
+\starredbullet $f'(x) < 0 \iff 2x + 1 < 0 \iff x < - \dfrac{1}{2}$ : la fonction $f$ est décroissante sur $\left]- \infty~;~-\dfrac{1}{2} \right[$. 
+
+On a $f\left(-\dfrac{1}{2}\right) = \ln \left(\left(- \dfrac{1}{2}\right)^2 - \dfrac{1}{2} + \dfrac{5}{2} \right) = \ln \left(\dfrac{1}{4} - \dfrac{1}{2} + \dfrac{5}{2}\right) = \ln \dfrac{9}{4}$.
+
+D'où le tableau de variations de $f$ :
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(7,3)
+\psframe(7,3)\psline(0,2)(7,2)\psline(0,2.5)(7,2.5)\psline(1,0)(1,3)
+\uput[u](0.5,2.4){$x$} \uput[u](1.5,2.4){$- \infty$} \uput[u](4,2.4){$- \frac{1}{2}$} \uput[u](6.5,2.4){$+ \infty$} 
+\uput[d](1.5,2){$+ \infty$}\uput[u](4,0){$\ln \dfrac{9}{4}$}\uput[d](6.5,2){$+ \infty$}
+\rput(0.5,1){$f$}
+\psline{->}(1.5,1.5)(3.5,0.5)\psline{->}(4.5,0.5)(6.5,1.5)
+\end{pspicture}
+\end{center}
+\item 
+	\begin{enumerate}
+		\item 
+		
+Dans la tableau précédent $f\left(-\dfrac{1}{2}\right) =\ln \dfrac{9}{4} \approx 0,81$.
+
+Sur l'intervalle $\left[-\dfrac{1}{2}~;~+ \infty\right[$ la fonction $f$ est continue car dérivable et comme $2 \in \left[\ln \frac{9}{4}~;~+ \infty\right[$, il existe d'après le théorème des valeurs intermédiaires un réel unique $\alpha \in \left[-\dfrac{1}{2}~;~+ \infty\right[$ tel que $f(\alpha) = 2$.
+		\item 
+La calculatrice donne :
+
+$f(1) \approx 1,5$ et $f(2) \approx 2,14$, donc $\alpha \in ]1~;~2[$ ;
+
+$f(1,7) \approx 1,96$ et $f(1,8) \approx 2,02$, donc $\alpha \in ]1,7~;~1,8[$ ;
+
+$f(1,76) \approx 1,995$ et $f(1,77) \approx 2,002$, donc $\alpha \in ]1,76~;~1,77[$.
+
+Conclusion $\alpha \approx 1,8$ à $10^{-1}$ près.
+ 	\end{enumerate}
+\item ~
+
+
+
+
+La fonction a un point d'inflexion si en ce point sa dérivée seconde s'annule en changeant de signe.
+
+On a $f'(x) = \dfrac{2x + 1}{x^2 + x + \dfrac52}$ : cette fonction est dérivable car le dénominateur ne s'annule pas, donc sur $\R$ :
+
+$f''(x) = \dfrac{2\left(x^2 + x +  \frac52\right) - (2x + 1)(2x + 1)}{\left(x^2 + x + \frac52\right)^2} =
+\dfrac{2x^2 + 2x + 5 - 4x^2 - 4x - 1}{\left(x^2 + x + \frac52\right)^2} =$
+
+$\dfrac{- 2x^2 - 2x + 4}{\left(x^2 + x + \frac52\right)^2} = \dfrac{-2\left(x^2 + x - 2 \right)}{\left(x^2 + x + \frac52\right)^2} ;
+f''(x) = \dfrac{-2\left[\left( x + \frac12\right) - \frac14 - 2 \right]}{\left(x^2 + x + \frac52\right)^2} = $
+
+$\dfrac{- 2\left[\left(x + \frac12\right)^2 - \frac94 \right]}{\left(x^2 + x + \frac52\right)^2} =\dfrac{- 2\left(x + \frac12 + \frac32 \right)\left(x + \frac12 - \frac32 \right)}{\left(x^2 + x + \frac52\right)^2} =
+\dfrac{-2(x + 2)(x - 1)}{\left(x^2 + x + \frac52\right)^2}$.
+
+Comme $\left(x^2 + x + \frac{5}{2}\right)^2 > 0$, quel que soit le réel $x$, le signe de $f''(x)$ est celui du numérateur $-2(x + 2)(x - 1) = 2(x + 2)(1 - x)$, soit celui du trinôme $(x + 2)(1 - x)$. On en déduit le 
+
+Tableau de signes :
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-1,0)(7,2)
+\psframe(-1,0)(7,2)\psline(-1,0.5)(7,0.5)\psline(-1,1)(7,1)\psline(-1,1.5)(7,1.5)\psline(1,0)(1,2)
+\psline(-1,0)(7,0)
+\uput[u](0,1.4){$x$} \uput[u](1.5,1.4){$-\infty$} \uput[u](3,1.4){$-2$} \uput[u](5,1.4){$1$} \uput[u](6.5,1.4){$+\infty$} 
+\uput[u](0,0.9){$x+2$} \uput[u](2,0.9){$-$} \uput[u](3,0.9){$0$}  \uput[u](4,0.9){$+$}\uput[u](6,0.9){$+$}
+\uput[u](0,0.4){$1 - x$} \uput[u](2,0.4){$+$} \uput[u](4,0.4){$+$}\uput[u](5,0.4){$0$} \uput[u](6,0.4){$-$} 
+\uput[u](0,-0.1){\small $(x+2)(1 - x)$} \uput[u](2,-0.1){$-$} \uput[u](3,-0.1){$0$} \uput[u](4,-0.1){$+$}\uput[u](5,-0.1){$0$}\uput[u](6,-0.1){$-$}
+
+\end{pspicture}
+\end{center}
+\end{enumerate}
+
+
+
+
+On constate que la dérivée seconde s'annule en changeant de signe en $- 2$ et en 1. La courbe a donc deux points d'inflexion.
+
+\bigskip
+
+\end{document}

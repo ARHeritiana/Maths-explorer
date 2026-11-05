@@ -1,0 +1,37 @@
+\medskip
+À partir d'un premier segment de \qty{2}{\mm}, on ajoute successivement un nouveau segment mesurant \qty{150}{\percent}
+de la longueur du précédent.
+
+Pour tout entier naturel $n\geqslant1$, on désigne par $u_n$ la longueur, en mm, du $n$-ième segment.
+
+Ainsi $u_1=2$ et $u_2=3$.
+\begin{enumerate}
+\item Déterminer $u_3$ et $u_4$.
+\item Pour tout entier naturel $n$ supérieur à 1, exprimer $u_{n+1}$ en fonction de $u_n$.\\
+En déduire la nature de la suite $(u_n)$.
+\item Pour tout entier naturel $n\geqslant1$, exprimer $u_n$ en fonction de $n$.
+\item On cherche à déterminer à partir de combien de segments la longueur totale dépasse 1~mètre.\hspace*{-8.5pt}\\
+On réalise pour cela un programme écrit en langage \textsf{Python}.\\
+Recopier et compléter sur la copie ce programme pour qu'il affiche le nombre attendu de segments.
+
+\begin{center}
+\begin{tabular}[]{|l|}
+\hline
+i = 1\\
+u = 2\\
+longueur = 2\\
+while longueur < 1000:\\
+\hspace{1.3em}	i = $\dots$\\
+\hspace{1.3em}	u = $\dots$\\
+\hspace{1.3em}	longueur = $\dots$\\
+print(i)\\
+\hline
+\end{tabular}
+\end{center}
+
+\item Ce programme affiche 14.\\
+Déterminer, par le calcul, la longueur de la spirale formée des 14 premiers segments. Arrondir le
+résultat au mm.
+\end{enumerate}
+
+\medskip

@@ -1,0 +1,100 @@
+\begin{enumerate}
+\item Affirmation 1 : Vraie
+
+Pour tout $x$ réel strictement supérieur à 1, on a : $x-1>0\Longrightarrow (x-1)=\sqrt{(x-1)^2}$.
+
+On en déduit :
+\[
+\begin{aligned}
+\forall x\in ]1~;+\infty[,\quad f(x)&=\dfrac{x-1}{\sqrt{x^2-1}}=\dfrac{\sqrt{(x-1)^2}}{\sqrt{x^2-1}}=\sqrt{\dfrac{(x-1)^2}{x^2-1}}\\
+&=\sqrt{\dfrac{(x-1)(x-1)}{(x-1)(x+1)}}=\sqrt{\dfrac{x-1}{x+1}}=\sqrt{\dfrac{x\left(1-\frac1x\right)}{x\left(1+\frac1x\right)}}=\sqrt{\dfrac{1-\frac1x}{1+\frac1x}}.
+\end{aligned}
+\]
+Par limites usuelles, on a : $\displaystyle\lim_{x\to +\infty}\dfrac1x=0$.
+
+Par limite de la somme on en déduit : $\displaystyle\lim_{x\to +\infty}1-\dfrac1x=1$ et $\displaystyle\lim_{x\to +\infty}1+\dfrac1x=1$.
+
+Par limite du quotient, on a ensuite :
+\[
+\lim_{x\to +\infty}\dfrac{1-\frac1x}{1+\frac1x}=\dfrac11=1.
+\]
+Et enfin, par composition :
+\[
+\lim_{x\to +\infty}f(x)=\lim_{x\to +\infty}\sqrt{\dfrac{1-\frac1x}{1+\frac1x}}=\lim_{y\to 1}\sqrt{y}=\sqrt1=1.
+\]
+La fonction $f$ admet bien 1 pour limite en $+\infty$.
+
+\item Affirmation 2 : Vraie
+
+Pour tout entier naturel $n$, posons $P_n$ l'affirmation : « $w_n=(n+1)^2$ ».
+
+Démontrons par récurrence que les affirmations $P_n$ sont toutes vraies.
+
+\begin{itemize}
+\item Initialisation : On a d'une part : $w_0=1$;
+
+et d'autre part : $(0+1)^2=1$.
+
+On constate donc que l'affirmation $P_0$ est vraie.
+
+\item Hérédité : Soit $n$ un entier naturel. On suppose que l'affirmation $P_n$ est vraie.
+\[
+\begin{aligned}
+P_n \text{ est vraie }&\Longrightarrow w_n=(n+1)^2\\
+&\Longrightarrow w_n+2n+3=(n+1)^2+2n+3\\
+&\Longrightarrow w_{n+1}=(n+1)^2+2n+3 \quad \text{en utilisant la relation de récurrence de }(w_n)\\
+&\Longrightarrow w_{n+1}=n^2+2n+1+2n+3\\
+&\Longrightarrow w_{n+1}=n^2+4n+4\\
+&\Longrightarrow w_{n+1}=(n+2)^2\\
+&\Longrightarrow P_{n+1}\text{ est vraie.}
+\end{aligned}
+\]
+
+\item Conclusion : On a montré que l'affirmation $P_0$ est vraie, et que pour un $n$ entier naturel, si $P_n$ est vraie, alors $P_{n+1}$ est vraie.
+\end{itemize}
+
+En vertu du principe de récurrence, on en déduit que, pour tout entier naturel $n$, l'affirmation est vraie, et donc on a établi une expression explicite du terme général de la suite $(w_n)$ :
+\[
+\forall n\in\N,\quad w_n=(n+1)^2.
+\]
+
+\item Affirmation 3 : Vraie
+
+Soit $p$ un nombre réel tel que $0<p<1$, et $X$ une variable aléatoire qui suit la loi binomiale de paramètres 3 et $p$.
+
+On a, par propriété :
+\[
+\begin{aligned}
+P(X=1)&=\binom31\times p^1\times (1-p)^{3-1}\\
+&=3\times p\times (1-p)^2\\
+&=3p(1-2p+p^2)\\
+&=3p-6p^2+3p^3.
+\end{aligned}
+\]
+La probabilité de l'évènement $(X=1)$ est bien : $P(X=1)=3p-6p^2+3p^3$.
+
+\item Affirmation 4 : Fausse
+
+Soit $n$ un entier naturel $n$ non nul.
+
+Une primitive sur $[0~;~1]$ de $x\longmapsto \e^{nx}$ est : $x\longmapsto \dfrac1n\e^{nx}$.
+
+On a donc :
+\[
+v_n=\int_0^1 \e^{nx}\,\mathrm{d}x=\left[\dfrac1n\e^{nx}\right]_0^1=\dfrac1n\e^{n\times 1}-\dfrac1n\e^{n\times 0}=\dfrac{\e^n-1}{n}\neq \dfrac{\e^n}{n}.
+\]
+
+\item Affirmation 5 : Fausse
+
+Chacune des 16 cases est coloriée, donc à condition de numéroter les 16 cases, en associant à chaque case la couleur utilisée, cela revient à associer aux entiers de 1 à 16 une couleur.
+
+Chaque coloriage est ainsi assimilable à une 16-liste d'éléments choisis dans l'ensemble des couleurs, qui est de cardinal 3 (puisque trois couleurs sont à notre disposition). Les éléments peuvent se répéter, puisque nous devons colorier 16 cases avec trois couleurs, donc on devra utiliser la même couleur plusieurs fois.
+
+Le nombre de $k$-listes d'éléments d'un ensemble de cardinal $n$ est : $n^k$.
+
+Il y a donc $3^{16}=43\,046\,721$ coloriages différents possibles.
+
+$\binom{16}{3}=560\neq 43\,046\,721$. Ce nombre pourrait correspondre au nombres de façons qu'il y a de choisir 3 cases parmi les 16 cases du quadrillage.
+
+Remarque : On peut aussi raisonner en disant qu'on a 3 choix de couleur pour la première case, à multiplier par 3 choix pour la deuxième case, et ainsi de suite, on retrouve bien $3^{16}$ choix possibles pour colorier nos 16 cases.
+\end{enumerate}

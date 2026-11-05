@@ -1,0 +1,199 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_09_sujet1_metropole_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Le but de cet exercice est d'étudier les convergences de deux suites vers une même limite.
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On considère la fonction $f$ définie sur $[2~;~+\infty[$ par 
+
+\[f(x) = \sqrt{3x - 2}.\]
+
+\medskip
+
+\begin{enumerate}
+\item Justifier les éléments du tableau de variations ci-dessous :
+
+
+
+
+
+
+
+
+
+
+
+\[\begin{tablvar}[stretch=1.2,intervalwidth=8em]{1}
+\hline
+x & 2 && +\infty\\
+\hline
+\variations{\mil{f(x)} & \bas{2} && \haut{+\infty}}
+\hline
+\end{tablvar}\]
+
+On admet que la suite $\left(u_n\right)$ vérifiant $u_0 = 6$ et, pour tout $n$ entier naturel, $u_{n+1} = f\left(u_n\right)$ est bien définie.
+\item 
+	\begin{enumerate}
+		\item Démontrer par récurrence que, pour tout $n$ entier naturel : $2 \leqslant u_{n+1} \leqslant u_n \leqslant 6$.
+		\item En déduire que la suite $\left(u_n\right)$ converge.
+	\end{enumerate}
+\item On appelle $\ell$ la limite de $\left(u_n\right)$.
+
+On admet qu'elle est solution de l'équation $f(x) = x$. Déterminer la valeur de $\ell$.
+
+\item On considère la fonction \texttt{rang} écrite ci-dessous en langage Python.
+
+On rappelle que sqrt($x$) renvoie la racine carrée du nombre $x$.
+
+\begin{center}
+\begin{ttfamily}
+\begin{tabular}{>{\cellcolor{lightgray!50}}c l}
+1&from math import *\\
+2&\\
+3&def rang(a) :\\
+4&\quad  u = 6\\
+5&\quad n=0\\
+6& \quad while u > = a :\\
+7&\qquad u = sqrt(3*u - 2)\\
+8&\qquad n = n+1\\
+9& \quad return n\\
+\end{tabular}
+\end{ttfamily}
+\end{center}
+
+	\begin{enumerate}
+		\item Pourquoi peut-on affirmer que \texttt{rang}(2.000001) renvoie une valeur ?
+		\item Pour quelles valeurs du paramètre $a$ l'instruction \texttt{rang}($a$) renvoie-t-elle un résultat ?
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On admet que la suite $\left(v_n\right)$ vérifiant $v_0 = 6$ et, pour tout $n$, entier naturel, $v_{n+1} = 3 - \dfrac{2}{v_n}$ est bien définie.
+
+\medskip
+
+\begin{enumerate}
+\item Calculer $v_1$.
+\item Pour tout $n$ entier naturel, on admet que $v_n \ne 2$ et on pose :
+
+\[w_n = \dfrac{v_n - 1}{v_n - 2}\]
+
+	\begin{enumerate}
+		\item Démontrer que la suite $\left(w_n\right)$ est géométrique de raison 2 et préciser son premier terme $w_0$.
+		\item On admet que, pour tout $n$ entier naturel,
+
+\[w_n - 1 = \dfrac{1}{v_n - 2}.\]
+
+En déduire que, pour tout $n$ entier naturel,
+
+\[v_n = 2 + \dfrac{1}{1,25 \times 2^n - 1}\]
+
+		\item Calculer la limite de $\left(v_n\right)$.
+	\end{enumerate}
+\item Déterminer le plus petit entier naturel $n$ pour lequel $v_n < 2,01$ en résolvant
+l'inéquation.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie C}
+
+\medskip
+
+À l'aide des parties précédentes, déterminer le plus petit entier $N$ tel que pour tout $n \geqslant N$, les termes $v_n$ et $u_n$ appartiennent à l'intervalle ]1,99~;~2,01[.
+
+\bigskip
+
+\end{document}

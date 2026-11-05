@@ -1,0 +1,131 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet25_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Le principe d'un Escape Game est le suivant : une équipe de participants est enfermée à l'intérieur d'une salle à thème et doit réussir à en sortir en moins d'une heure (on parle alors de partie réussie). Au-delà d'une heure, les participants sont libérés et la partie est perdue.
+
+Un exploitant d'Escape Game propose à ses participants de faire deux parties à la suite : la première partie se déroule dans la salle à thème \og Espion \fg, la seconde partie dans la salle à thème \og Musée \fg{}. Il dispose des données suivantes :
+\begin{itemize}
+\item lorsqu'une équipe joue dans la salle à thème \og Espion \fg{}, la probabilité qu'elle réussisse sa partie \og Espion \fg{} est égale à 0,5 ;
+\item lorsqu'une équipe a réussi la partie \og Espion\fg, la probabilité qu'elle réussisse sa partie \og Musée \fg{} est égale à 0,6 ;
+\item lorsqu'une équipe n'a pas réussi la partie \og Espion \fg, la probabilité qu'elle réussisse sa partie \og Musée \fg{} est égale à 0,45.
+\end{itemize}
+ 
+Une équipe est choisie au hasard. On note les événements suivants :
+\begin{itemize}
+\item $E$ : \og l'équipe réussit la partie \og Espion \fg{} ;
+\item $M$ : \og l'équipe réussit la partie \og Musée \fg.
+\end{itemize} 
+
+\medskip
+
+\begin{enumerate}
+\item Sur la copie, recopier et compléter l'arbre de probabilités suivant :
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.5cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$E$~~}\taput{$\dots$}}
+	{
+	\TR{$M$}\taput{$\dots$}
+	\TR{$\overline{M}$}\tbput{$\dots$}
+	}
+\pstree{\TR{$\overline{E}$~~}\tbput{$\dots$}}
+	{\TR{$M$}\taput{$\dots$}
+	\TR{$\overline{M}$}\tbput{$\dots$}
+	}
+}
+\end{center}
+
+\item Déterminer la probabilité que l'équipe réussisse les deux parties.
+\item Montrer que la probabilité que l'équipe réussisse la partie \og Musée \fg{} est égale à 0,525.
+\item Quelle est la probabilité qu'une équipe échoue à la partie \og Espion \fg{} sachant qu'elle a réussi la partie \og Musée \fg{} ? On donnera la réponse arrondie à $10^{-2}$.
+\item Pour chacune des deux parties qui sont gagnées, une équipe reçoit 2 \euro{} de réduction pour une prochaine visite. Elle peut donc recevoir 0, 2 ou 4 \euro{} de réduction.
+
+Si un très grand nombre d'équipes jouent les deux parties, quel est le montant moyen de la réduction obtenue à la fin des deux parties ? Expliquer la démarche.
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\end{document}

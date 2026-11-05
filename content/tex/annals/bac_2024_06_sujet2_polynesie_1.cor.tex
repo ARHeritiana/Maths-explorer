@@ -1,0 +1,103 @@
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+	\item 
+	
+
+D'après l'énoncé $P(J) = 0,6$ et $P_J(S) = \dfrac89$.
+
+On a donc $P(J \cap S) = P(J) \times P_J(S) = 0,6 \times \dfrac89 = \dfrac{4,8}{9} = \dfrac{3 \times 1,6}{3 \times 3} = \dfrac{1,6}{3}  = \dfrac{5 \times 1,6}{5 \times 3}  = \dfrac{8}{15}$.
+\end{enumerate}
+
+
+
+\begin{enumerate}[resume]
+\item 
+	\begin{enumerate}
+		\item 
+On sait que $P(S) = \dfrac23$.
+
+On commence l'arbre de probabilités pondéré suivant :
+
+\begin{center}
+\pstree[treemode=R,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$J~$}\taput{0,6}}
+	{
+	\TR{$S$} \taput{$\frac89$}
+	\TR{$\overline{S}$} \tbput{$\frac19$}
+	}
+\pstree{\TR{$\overline{J~}$}\tbput{0,4}}
+	{\TR{$S$} \taput{$x$}
+	\TR{$\overline{S}$} \tbput{$1 - x$}
+	}
+}
+\end{center}
+
+D'après la loi des probabilités totales :
+
+$P(S) = P(J \cap S) + P\left(\overline{J} \cap S \right)$, soit $\dfrac23 = \dfrac{8}{15} + 
+P\left(\overline{J} \cap S \right) \iff P\left(\overline{J} \cap S\right)  = \dfrac23 -  \dfrac{8}{15} =$
+
+$\dfrac{10}{15} - \dfrac{8}{15} = \dfrac{2}{15}$.
+
+La probabilité que la personne choisie n'a pas l'intention de regarder les JO à la télévision et a une activité sportive régulière est égale à $\dfrac{2}{15}$;
+		\item 
+		
+On a  $P_{\overline{J}}(S) = \dfrac{P\left(\overline{J} \cap S\right)}{P\left(\overline{J}\right)} = \dfrac{\frac{2}{15}}{0,4} = \dfrac{\frac{2}{15}}{\frac{2}{5}}  = \dfrac{2}{15} \times \dfrac{5}{2} = \dfrac13 = x$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+
+
+\begin{enumerate}[resume]
+\item 
+	
+
+	
+
+	\begin{enumerate}
+		\item 
+Les personnes sont choisies au hasard et chacune d'elles a une pratique sportive régulière avec une probabilité de $\dfrac23$.
+
+La variable aléatoire $X$ suit donc une loi binomiale de paramètres $n = 30$ et 
+
+$p = \dfrac23$.
+		\item 
+		On a $P(X = 16) = \displaystyle\binom{30}{16} \left(\dfrac23\right)^{16}\times \left(1 - \dfrac23\right)^{30 - 16} = \displaystyle\binom{30}{16} \left(\dfrac23\right)^{16}\times \left(\dfrac13\right)^{14} \approx 0,0462$ soit 0,046 au millième près à la calculatrice.
+		\item 
+		
+
+		
+
+On a $\dfrac{\np{10000}}{380}\approx 26,3$ : on peut donc offrir 26 entrées gratuites au maximum.
+
+La calculatrice donne $P(X \leqslant 26) \approx 0,9967$ soit environ 0,997.
+La probabilité que le budget soit insuffisant est donc égale à environ $1 - 0,997$ soit environ 0,003 ou trois millièmes.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

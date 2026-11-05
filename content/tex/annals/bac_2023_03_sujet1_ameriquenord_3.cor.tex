@@ -1,0 +1,93 @@
+\medskip
+
+\emph{Cet exercice est un questionnaire à choix multiples. Aucune justification n'est attendue pour cet exercice, on en fournit quand même dans ce corrigé.}
+
+\medskip
+
+\begin{enumerate}
+	\item \textbf{Réponse A.}
+
+Ici, les quatre propositions peuvent se vérifier avec les longueurs des côtés du triangle ABC. On va donc les déterminer. Comme le repère est orthonormé, on a :
+
+$\mathrm{AB} = \sqrt{(x_\mathrm{B} - x_\mathrm{A})^2+(y_\mathrm{B} - y_\mathrm{A})^2+(z_\mathrm{B} - z_\mathrm{A})^2} = \sqrt{(3 + 1)^2 + (6-2)^2 + (3 - 5)^2} = \sqrt{36}=6$
+
+$\mathrm{BC} = \sqrt{(x_\mathrm{C} - x_\mathrm{B})^2+(y_\mathrm{C} - y_\mathrm{B})^2+(z_\mathrm{C} - z_\mathrm{B})^2} = \sqrt{(3-3)^2 + (0-6)^2 + (9-3)^2} = \sqrt{72}=6\sqrt{2}$
+
+$\mathrm{AC} = \sqrt{(x_\mathrm{C} - x_\mathrm{A})^2+(y_\mathrm{C} - y_\mathrm{A})^2+(z_\mathrm{C} - z_\mathrm{A})^2} = \sqrt{(3 + 1)^2 + (0-2)^2 + (9 - 5)^2} = \sqrt{36}=6$
+
+ABC est donc clairement un triangle isocèle en A, (et on peut vérifier rapidement que le carré du côté opposé à A est égal à la somme des carrés des deux autres côtés, et donc que le triangle est aussi rectangle en A).
+
+\emph{Remarque :} si on a confiance en ses calculs, une fois qu'on a calculé AB et BC, on peut s'arrêter : on voit clairement que le triangle ne sera pas équilatéral, et donc il sera rectangle et isocèle, car c'est un point commun aux trois autres propositions et le côté [BC] étant plus long que AB, cela signifie que [BC] est l'hypoténuse, et donc que le sommet principal du triangle est A.
+
+	\item \textbf{Réponse C.}
+
+Ici, il faut s'armer de patience et vérifier si les coordonnées des points B, C et D vérifient les équations proposées. (On peut aussi chercher à trouver une équation du plan, mais c'est plutôt plus compliqué).
+
+Pour la proposition \textbf{a.}, les coordonnées de D ne vérifient pas l'équation : elle est incorrecte.
+
+Pour la proposition \textbf{b.}, les coordonnées de C et de D ne vérifient pas l'équation.
+
+Pour la proposition \textbf{d.}, aucunes des coordonnées des points B, C et D ne vérifient pas l'équation.
+
+Par contre, pour l'équation de la proposition \textbf{c.}, on a :
+
+$4 x_\mathrm{B}+y_\mathrm{B}+z_\mathrm{B}-21=4\times 3 + 6 + 3 - 21 = 12 + 9 - 21 =0$ donc B appartient à ce plan.
+
+$4 x_\mathrm{C}+y_\mathrm{C}+z_\mathrm{C}-21=4\times 3 + 0 + 9 - 21 = 12 + 9 -21 =0$ donc C appartient à ce plan.
+
+$4 x_\mathrm{D}+y_\mathrm{D}+z_\mathrm{D}-21=4\times 8 - 3 - 8 - 21 = 32 - 11 - 21 = 0$ donc D appartient à ce plan.
+
+Ainsi, l'équation de la proposition \textbf{c.} décrit un plan qui contient les points B, C et D : c'est le plan (BCD).
+
+	\item \textbf{Réponse B.}
+
+Ici, on peut procéder par tests successifs : vérifier parmi les coordonnées proposées quelles sont celles qui vérifient l'équation du plan (ABC) puis pour celles qui vérifient l'équation du plan (c'est-à-dire quand le point donné est bien sur le plan) si le vecteur $\vect{\mathrm{DH}}$ obtenu est bien un vecteur normal au plan.
+
+Dans ce corrigé, on va appliquer la démarche qui sert à trouver les coordonnées de H.
+
+Comme le plan (ABC) a pour équation cartésienne $x-2 y-2 z+15=0$, cela signifie que le vecteur $\vect{u} \begin{pmatrix}1\\-2\\-2\end{pmatrix}$ est un vecteur normal au plan. Comme H est le projeté orthogonal de D sur (ABC), H est l'intersection du plan (ABC) avec la droite $d$, passant par D et dirigée par $\vect{u}$.
+
+Du coup, la droite $d$ admet une représentation paramétrique qui est : $\left\{\begin{array}{l} x=8+k\\y=-3-2k\\z=-8-2k \end{array}\right. \quad k \in \R$
+
+Si on appelle $M_k$ le point de paramètre $k$ sur la droite $d$, on va chercher pour quel paramètre $M_k$ est sur le plan (ABC) :
+
+$\begin{aligned} M_k \in (\mathrm{ABC}) &\iff (8+k) -2(-3-2k) - 2--8-2k)+15=0\\
+&\iff 8+k+6+4k+16+4k+15 = 0\\
+&\iff 9k + 45 = 0\\
+&\iff k = -5\\ \end{aligned}$
+
+H est donc le point $M_{-5}$ qui a comme coordonnées : $(8+(-5)~;~-3-2\times (-5)~;~-8-2\times (-5))$, soit $(3 ~;~ 7 ~;~ 2)$.
+	\item \textbf{Réponse D.}
+
+La représentation paramétrique de $\Delta$ donne un vecteur directeur de $\Delta$ qui est $\vect{v}$, de coordonnées $\begin{pmatrix}1\\-1\\3\end{pmatrix}$ alors que le vecteur $\vect{\mathrm{BC}}$ a pour coordonnées $\vect{\mathrm{BC}}\begin{pmatrix}0\\-6\\6\end{pmatrix}$. Ces vecteurs sont clairement non colinéaires, donc on peut affirmer que les droites se sont ni confondues ni strictement parallèles.
+
+Il faut donc déterminer si elles ont un point commun pour trancher entre sécantes et non coplanaires.
+
+La droite (BC) passe par B et est dirigée notamment par $\dfrac{1}{6}\vect{\mathrm{BC}}$, elle admet pour représentation paramétrique : $\left\{\begin{array}{l} x=3\\y=6-s\\z=3+s \end{array}\right. \quad k \in \R$
+
+Le point de paramètre $t$ sur $\Delta$ est confondu avec celui de paramètre $s$ sur (BC) si et seulement si $s$ et $t$ sont les solutions du système $(S)$ suivant :
+
+\setlength{\columnseprule}{0.8pt}
+\begin{multicols}{2}
+$(S) : \left\{\begin{array}{l} 3 = 5+t\\6-s=3-t\\3+s=-1+3t \end{array}\right.
+\iff \left\{\begin{array}{l} t = -2\\6-s=5\\3+s=-7 \end{array}\right.	$
+
+$(S) \iff  \left\{\begin{array}{l} t = -2\\s=1\\s=-10 \end{array}\right.$
+	\end{multicols}
+
+Ce système n'a pas de solution, donc les droites n'ont aucun point commun et ne sont pas parallèles : elles sont donc non coplanaires.
+
+\item \textbf{Réponse B.}
+
+Le plan $\mathcal{P}$ d'équation cartésienne $2 x-y+2 z-6=0$ admet $\vect{n_1} \begin{pmatrix}	2\\-1\\2\end{pmatrix}$ comme vecteur normal.
+
+(ABC) d'équation cartésienne $x-2 y-2 z+15=0$ admet $\vect{n_2} \begin{pmatrix}1\\-2\\-2\end{pmatrix}$ comme vecteur normal.
+
+Ces vecteurs sont clairement non colinéaires, donc les plans ne sont pas parallèles. On peut même calculer le produit scalaire $\vect{n_1}\cdot\vect{n_2}$ pour constater qu'ils sont orthogonaux, et donc que les plans sont perpendiculaires. Cela élimine la proposition \textbf{a.}
+
+Reste à trancher entre les trois autres propositions.
+
+On pourrait résoudre le système formé par les deux équations de plan pour trouver une représentation paramétrique de leur intersection : ce serait lourd en calcul. Ici, il est plus simple de tester l'appartenance des points A, B et C au plan $\mathcal{P}$. En remplaçant $x$, $y$ et $z$ par les coordonnées des points dans l'équation de $\mathcal{P}$, on trouve que les points A, et B appartiennent à $\mathcal{P}$, mais pas C, donc les plans sont sécants et leur intersection est la droite (AB).
+	\end{enumerate}
+
+\bigskip

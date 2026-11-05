@@ -1,0 +1,35 @@
+\medskip
+
+Durant l'été, une piscine extérieure perd chaque semaine 4\,\% de son volume d'eau par évaporation. On étudie ici un bassin qui contient 80 m$^3$ après son remplissage.
+
+\medskip
+
+\begin{enumerate}
+\item Montrer par un calcul que ce bassin contient $76,8$~m$^3$ d'eau une semaine après son remplissage.
+\item  On ne rajoute pas d'eau dans le bassinet l'eau continue à s'évaporer. On modélise le volume d'eau contenue dans la piscine par une suite $\left(V_n\right)$ : pour tout entier naturel $n$, on note $V_n$ la quantité d'eau en m$^3$ contenue dans la piscine $n$ semaines après son remplissage. Ainsi
+$V_0 = 80$.
+	\begin{enumerate}
+		\item Justifier que pour tout entier naturel $n$,\: $V_{n+1} = 0,96 V_n$ et préciser la nature de la suite $\left(V_n\right)$ ainsi définie.
+		\item Donner une expression de $V_n$ en fonction de $n$.
+		\item Quelle quantité d'eau contient le bassin au bout de $7$ semaines ?
+	\end{enumerate}
+\item  Pour compenser en partie les pertes d'eau provoquées par l'évaporation, on décide de rajouter 2~m$^3$ d'eau chaque semaine dans le bassin. 
+
+On souhaite déterminer au bout de combien de semaines, le volume d'eau contenu dans la piscine devient inférieur à $70$~m$^3$. 
+
+Compléter la fonction Python suivante afin que l'appel nombreJour(70) renvoie le nombre de semaines à partir duquel le volume d'eau de la piscine sera inférieur à $70$~m$^3$.
+
+\begin{center}
+\begin{tabularx}{0.4\linewidth}{|X|}\hline
+\texttt{def nombreJour(U) :}\\
+\quad \texttt{N=0}\\
+\quad \texttt{V= 80}\\
+\quad \texttt{while \ldots  $\geqslant$ \ldots}\\
+\qquad \texttt{N=N+1}\\
+\qquad \texttt{V = \ldots}\\
+\quad return \ldots\\ \hline
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\bigskip

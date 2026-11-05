@@ -1,0 +1,140 @@
+\medskip
+
+Soit $a$ un nombre réel strictement supérieur à 1.
+
+On considère la suite $\left(u_n\right)$ définie par $u_0 = a$ et, pour tout entier naturel $n$ : \[u_{n+1} = u_n^2 - 2u_n + 2.\]
+
+On admet que pour tout entier naturel $n$,\: $u_n > 1$.
+
+L'objectif de cet exercice est d'étudier la suite $\left(u_n\right)$ pour différentes valeurs du nombre réel $a$.
+
+\bigskip
+
+\textbf{Partie A : étude de la suite \boldmath $\left(u_n\right)$ \unboldmath dans le cas }\boldmath$1 < a < 2$\unboldmath 
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+D'après la définition : pour tout entier naturel $n$
+		
+$u_{n+1} = u_n^2 - 2u_n + 2 \iff u_{n+1}- 2 = u_n^2 - 2u_n  \iff u_{n+1}- 2 = u_n\left(u_n - 2\right)$.
+		\item 
+\emph{Méthode} 1 : d'après la définition : pour tout entier naturel $n$
+		
+$u_{n+1} = u_n^2 - 2u_n + 2 \iff u_{n+1} = \left(u_n - 1\right)^2 - 1 + 2 \iff u_{n+1} = \left(u_n - 1\right)^2  + 1 \iff  u_{n+1} - u_n = \left(u_n - 1\right)^2  + 1 - u_n \iff u_{n+1} - u_n = \left(u_n - 1\right)^2  - 1\left(u_n - 1\right) \iff  u_{n+1} - u_n = \left(u_n - 1\right)\left(u_n - 1 - 1)\iff \right] \iff u_{n+1} - u_n = \left(u_n - 1\right)\left(u_n - 2\right)$
+
+\emph{Méthode} 2 : Soit $P_n = u_{n+1} - u_n = u_n^2 - 2u_n + 2 - u_n = u_n^2 - 3u_n + 2$ ; en posant $u_n = x$, on obtient 
+
+$P_n = x^2 - 3x + 2$ : ce trinôme a deux racines (car $\Delta = 3^2 - 4 \times 2 = 1$) :
+
+$x_1 = \dfrac{3 + 1}{2} = 2$ et $x_2 = \dfrac{3 - 1}{2} = 1$.
+
+Donc $P_n = (x - 1)(x - 2) = \left(u_n - 1\right)\left(u_n - 2\right)$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+		\emph{Initialisation} : $u_0 = a$ et $1 < a < 2$, donc $u_0 < 2$ : l'inégalité est vraie au rang 0 ;
+
+		\emph{Hérédité} : soit $n \in \N$ tel que $u_n < 2$.
+
+$u_n < 2 \iff u_n - 2 < 0$ et on a admis que $u_n > 1 \iff u_n - 1 > 0$, donc d'après le \textbf{1 b.} 	$\left(u_n - 1\right)\left(u_n - 2\right) < 0$ c'est-à-dire $u_{n+1} - u_n  < 0\iff u_{n+1} < u_n < 2$, d'où par transitivité : $u_{n+1} < 2$ : l'inégalité est vraie au rang $n + 1$.
+
+\emph{Conclusion} : l'inégalité est vraie au rang 0 et si elle est vraie au rang $n$, elle l'est aussi au rang $n + 1$, donc par le principe de récurrence :
+
+pour tout naturel $n \in \N, \:\: 1< u_n < 2$.
+		\item 
+On a vu dans la question précédente que $1 < u_{n+1} < u_n < 2$ qui montre :
+		
+		$\bullet~$ que la suite $\left(u_n\right)$ est décroissante ;
+		
+		$\bullet~$ que la suite $\left(u_n\right)$ est minorée par 1.
+		
+		La suite  $\left(u_n\right)$ est monotone décroissante et minorée par le 1 : elle converge donc vers un réel $\ell \geqslant 1$.
+		
+		Par continuité de la fonction polynôme $x \longmapsto x^2 - 2x + 2$, la relation de récurrence donne à la limite en plus l'infini :
+		
+		$\ell = \ell^2 - 2\ell + 2 \iff \ell^2 - 3\ell + 2  = 0 \iff \left\{\begin{array}{l c l}
+\ell - 1&=&0\\
+&\text{ou}&\\
+\ell - 2&=&0\\
+\end{array}\right. \iff \left\{\begin{array}{l c l}
+\ell &=&1\\
+&\text{ou}&\\
+\ell &=&2\\
+\end{array}\right. $
+
+$\ell = 2$ n'est pas possible puisque $\left(u_n\right)$ étant strictement décroissante : 
+
+$\ell < u_0 = a < 2$, d'où $\ell < 2$, \:donc $\ell = 1$.
+	\end{enumerate}
+\end{enumerate}
+	
+	\bigskip
+	
+\textbf{Partie B : étude dans le cas particulier }\boldmath $a = 2$\unboldmath
+
+\medskip
+
+\begin{enumerate}
+\item u(2,1) renvoie 2 et u(2,2) renvoie 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item 
+
+
+
+On peut conjecturer que la suite $\left(u_n\right)$ est constante : $u_n = 2$ quel que soit $n \in \N$
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie C : étude dans le cas général}
+
+\medskip
+
+\begin{enumerate}
+\item On considère la suite $\left(v_n\right)$ définie, pour tout entier naturel $n$, par $v_n = \ln \left(u_n - 1\right)$.
+	\begin{enumerate}
+		\item 
+Quel que soit $n \in \N, \: v_{n+1} = \ln \left(u_{n+1} - 1\right) = \ln \left(u_n^2 - 2u_n + 2 - 1\right) = \ln \left[\left(u_n - 1\right)^2\right] = 2\ln \left(u_n - 1\right)$ car on sait que $u_n > 1 \iff u_n - 1 > 0$.
+
+Finalement : $v_{n+1} = 2\ln \left(u_n - 1\right) = 2v_n$.
+
+L'égalité $v_{n+1} = 2v_n$ vraie pour tout $n \in \N$ montre que la suite $\left(v_n\right)$ est une suite géométrique de raison 2 de premier terme $v_0 = \ln a - 1)$
+		\item 
+On sait que quel que soit $n \in \N, \: v_n = v_0 \times 2^n = 2^n\ln (a - 1)$.
+
+On peut écrire  $v_n = \ln (a - 1)^{2^n} = \ln \left(u_n - 1\right)$ soit par croissance de la fonction logarithme népérien :
+
+$(a - 1)^{2^n} = u_n - 1 \iff u_n = 1 + (a - 1)^{2^n} = 1 + \e^{2^n \ln (a - 1)}$.
+	\end{enumerate}
+\item ~
+
+$\bullet~~$Si $1 < a < 2$, alors $0 < a - 1 < 1 \Rightarrow \ln (a - 1) < 0$ (par croissance de la fonction logarithme népérien).
+
+On a donc $2^n \ln (a - 1) < 0$ et on sait que $\displaystyle\lim_{n \to + \infty} \e^{2^n \ln (a - 1)} = 0$, donc $\displaystyle\lim_{n \to + \infty}u_n = 1$.
+
+$\bullet~~$Si $a = 2, \: \ln (a - 1) = \ln 1 = 0$, donc $2^n \ln (a - 1) = 0$ et $u_n = 1 + 1 = 2$. $u$ est constante et on peut écrire $\displaystyle\lim_{n \to + \infty}u_n = 2$.
+
+$\bullet~~$ Si $a > 2, \: a - 1 > 1$, donc $\ln (a - 1) > 0$ et $\displaystyle\lim_{n \to + \infty} \e^{2^n \ln (a - 1)} = + \infty$, donc $\displaystyle\lim_{n \to + \infty}u_n = + \infty$. La suite est divergente.
+\end{enumerate}
+
+\bigskip

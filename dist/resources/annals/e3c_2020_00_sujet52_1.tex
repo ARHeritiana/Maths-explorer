@@ -1,0 +1,213 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet52_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Ce QCM comprend 5 questions indépendantes. Pour chacune d'elles, une seule des réponses
+proposées est exacte.
+
+Indiquer pour chaque question sur la copie la lettre correspondant à la réponse choisie.
+Aucune justification n'est demandée.
+
+Chaque réponse correcte rapporte 1 point. Une réponse incorrecte ou une absence de
+réponse n'apporte ni ne retire de point.
+
+\medskip
+
+\textbf{Question 1}
+
+\medskip 
+
+Pour tout entier naturel $n$, on définit la suite $\left(u_n\right)$ par : $u_n= 3 \times \dfrac{10^n}{2^{n+1}}$
+
+La suite $\left(u_n\right)$ est une suite :
+
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{A.~~} arithmétique de
+raison 3.&\textbf{B.~~} géométrique de
+raison 3.\\\textbf{C.~~}arithmétique de
+raison 5.& \textbf{D.~~}géométrique de
+raison 5. .
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 2}
+
+\medskip 
+
+Dans un repère orthonormé \Oij{} du plan, on considère les points $A(-2~;~ 1)$ et $B(2; 4)$.
+
+La droite $\Delta$ passe par le point $C(-1~;~1)$ et admet le vecteur $\vv{AB}$ pour vecteur normal.
+
+La droite $\Delta$ admet pour équation cartésienne :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{A.~~} $3x - 4y + 7 = 0$ &\textbf{B.~~} $ 4x + 3y + 1 = 0$&\textbf{C.~~}$ 3x - 4y - 1 = 0$& \textbf{D.~~} $4x + 3y + 7 = 0$.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 3}
+
+\medskip 
+
+Dans l'intervalle $\left[0~;~\dfrac{\pi}{2}\right]$, l'unique solution de l'équation : $2\cos (x + \pi) + 1 = 0$ est :
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{A.~~} $\dfrac{\pi}{3}$ &\textbf{B.~~} $-\dfrac{5\pi}{3}$&\textbf{C.~~}$\dfrac{\pi}{6}$& \textbf{ D.~~} $\dfrac{2\pi}{3}$.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 4}
+
+\medskip 
+
+On considère la fonction $f$ définie et dérivable sur $\R$ par : $f(x)=\dfrac{\e^x}{ 1+\e^x}$
+
+La fonction dérivée $f'$ de la fonction $f$ est définie par :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{A.~~} $f'(x)=\dfrac{\e}{1+\e}$ &\textbf{B.~~} $f'(x)=\dfrac{\e^x}{(1+\e^x)^2}$&\textbf{C.~~}$f'(x)=1$& \textbf{D.~~} $f'(x)=\dfrac{-\e^x}{(1+\e^x)^2}$.
+\end{tabularx}
+
+\medskip
+
+\textbf{Question 5}
+
+\medskip 
+
+On considère la fonction $f$ définie sur $R$ par : $f(x) = -0,5(x + 2)^2 + 4,5$.
+
+On peut affirmer que :
+
+\begin{center}
+A.
+\end{center}
+
+Le tableau de variations de la fonction $f$ est donné ci-dessous :
+
+\begin{center}
+\begin{pspicture}(6.75,1.8)
+\psframe(6.65,1.7)
+\psline(0,1.24)(6.65,1.24)  \psline(1.2,0)(1.2,1.7)
+\uput[u](0.7,1.2){$x$} \uput[u](1.58,1.2){$-\infty$}\uput[u](4.15,1.2){$2$}\uput[u](6.3,1.2){$+\infty$}
+\uput[d](0.7,0.9){$f(x)$}\uput[d](4.1,1.2){4,5}
+\psline{->}(2,0.2)(3.4,0.85)\psline{->}(4.65,0.85)(5.8,0.2)
+\end{pspicture}
+\end{center}
+
+\begin{center}
+B.
+\end{center}
+
+La courbe représentative de la fonction $f$ admet un sommet de coordonnées $(4,5~;~-2)$.
+
+\begin{center}
+C.
+\end{center}
+Le signe de $f(x)$ est donné ci-dessous :
+
+\smallskip
+\begin{center}
+\begin{tabular}{|c|l m{0.5cm}c m{0.5cm}c m{0.5cm} r|}
+\hline
+$x$&$-\infty$& &$-5$&&1&&$+\infty$\\ \hline
+$f(x)$&&\centering $-$&&\centering +&&\centering $-$&\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+D.
+\end{center}
+La fonction $f$ admet un minimum en $-2$ égal à 4,5.
+
+\vspace{0,5cm}
+
+\end{document}

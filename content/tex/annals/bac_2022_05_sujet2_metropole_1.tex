@@ -1,0 +1,87 @@
+\medskip
+
+Le coyote est un animal sauvage proche du loup, qui vit en Amérique du Nord.
+
+Dans l'état d'Oklahoma, aux États-Unis, 70\,\% des coyotes sont touchés par une maladie appelée ehrlichiose.
+
+Il existe un test aidant à la détection de cette maladie. Lorsque ce test est appliqué à un coyote, son résultat est soit positif, soit négatif, et on sait que :
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet~~$] Si le coyote est malade, le test est positif dans 97\,\% des cas.
+\item[$\bullet~~$] Si le coyote n'est pas malade, le test est négatif dans 95\,\% des cas.
+\end{itemize}
+\setlength\parindent{0cm}
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+Des vétérinaires capturent un coyote d'Oklahoma au hasard et lui font subir un test pour l'ehrlichiose.
+
+On considère les évènements suivants :
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet~~$]$M$: \og le coyote est malade \fg;
+\item[$\bullet~~$]$T$: \og le test du coyote est positif \fg.
+\end{itemize}
+\setlength\parindent{0cm}
+
+On note $\overline{M}$ et $\overline{T}$ respectivement les évènements contraires de $M$ et $T$.
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter l'arbre pondéré ci-dessous qui modélise la situation.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep=1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$M$~}\taput{\ldots}}
+	{\TR{$T$}\taput{\ldots}
+	\TR{$\overline{T}$}\tbput{\ldots}
+	}
+\pstree{\TR{$\overline{M}$~}\tbput{\ldots}}
+	{\TR{$T$}\taput{\ldots}
+	\TR{$\overline{T}$}\tbput{\ldots}
+	}
+}
+\end{center}
+
+\item Déterminer la probabilité que le coyote soit malade et que son test soit positif.
+\item Démontrer que la probabilité de $T$ est égale à $0,694$.
+\item On appelle \og valeur prédictive positive du test \fg{} la probabilité que le coyote soit effectivement malade sachant que son test est positif.
+
+Calculer la valeur prédictive positive du test. On arrondira le résultat au millième.
+\item  
+\begin{enumerate}
+\item Par analogie avec la question précédente, proposer une définition de la \og valeur prédictive négative du test \fg{} et calculer cette valeur en arrondissant au millième.
+\item Comparer les valeurs prédictives positive et négative du test, et interpréter.
+	\end{enumerate}	
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On rappelle que la probabilité qu'un coyote capturé au hasard présente un test positif est de $0,694$.
+
+\medskip
+
+\begin{enumerate}
+\item Lorsqu'on capture au hasard cinq coyotes, on assimile ce choix à un tirage avec remise.
+
+On note $X$ la variable aléatoire qui à un échantillon de cinq coyotes capturés au hasard associe le nombre de coyotes dans cet échantillon ayant un test positif.
+\begin{enumerate}
+\item Quelle est la loi de probabilité suivie par $X$ ? Justifier et préciser ses paramètres.
+\item Calculer la probabilité que dans un échantillon de cinq coyotes capturés au hasard, un seul ait un test positif. On arrondira le résultat au centième.
+\item Un vétérinaire affirme qu'il y a plus d'une chance sur deux qu'au moins quatre coyotes sur cinq aient un test positif : cette affirmation est-elle vraie ? Justifier la réponse.
+	\end{enumerate}	
+\item Pour tester des médicaments, les vétérinaires ont besoin de disposer d'un coyote présentant un test positif. Combien doivent-ils capturer de coyotes pour que la probabilité qu'au moins l'un d'entre eux présente un test positif soit supérieure à $0,99$ ?
+\end{enumerate}
+
+\bigskip

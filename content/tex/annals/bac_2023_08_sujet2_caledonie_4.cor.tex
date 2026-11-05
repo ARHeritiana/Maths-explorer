@@ -1,0 +1,140 @@
+\begin{center}
+\textbf{L'énoncé ci-dessous est commun aux questions 1. et 2.}\end{center}
+
+Les $200$ adhérents d'un club sont des filles ou des garçons. Ces adhérents pratiquent l'aviron ou le basket selon la répartition figurant dans le tableau ci-dessous.
+
+\begin{center}
+\begin{tabularx}{0.75\linewidth}{|*{4}{>{\centering \arraybackslash}X|}}\cline{2-4}
+\multicolumn{1}{c|}{~}&\textbf{Aviron} &\textbf{Basket}&\textbf{Total}\\ \hline
+\textbf{Filles} &25& 80 &105\\ \hline
+\textbf{Garçons}& 50 &45& 95\\ \hline
+\textbf{Total}& 75& 125& 200\\ \hline
+\end{tabularx}
+\end{center}
+
+On choisit un adhérent au hasard et on considère les évènements suivants:
+
+\begin{description}
+\item[ ] $F$ : l'adhérent est une fille ;
+\item[ ] $A$ : l'adhérent pratique l'aviron.
+\end{description}
+
+\medskip
+
+\begin{enumerate}
+\item La probabilité de $F$ sachant $A$ est égale à :
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~}$\dfrac{25}{100}$&\textbf{b.~~}$\dfrac{25}{75}$&\textbf{c.~~}$\dfrac{25}{105}$&\textbf{d.~~}$\dfrac{75}{105}$
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+Il y a 75 adhérents pratiquant l'aviron dont 25 filles ; la probabilité de $F$ sachant A est donc $\dfrac{25}{75} = \dfrac13$ !
+
+\hfill\textbf{Réponse b.}
+\end{tabular}
+
+\medskip
+
+\item La probabilité de l'évènement $A \cup  F$ est égale à :
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~}$\dfrac{9}{10}$&\textbf{b.~~}$\dfrac{1}{8}$&\textbf{c.~~}$\dfrac{31}{40}$&\textbf{d.~~}$\dfrac{5}{36}$
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+Sur 200 adhérents, il y en a $80+25+50=155$ qui sont des filles ou qui pratiquent l'aviron. La probabilité de $A\cup F$ est donc $\dfrac{155}{200}=\dfrac{31}{40}$.
+
+\hfill\textbf{Réponse c.}
+\end{tabular}
+
+\medskip
+
+\begin{center} \textbf{L'énoncé ci-dessous est commun aux questions 3. et 4.}\end{center}
+
+Pour se rendre à son travail, Albert peut utiliser au choix le bus ou le train.
+
+\begin{center}
+\begin{pspicture}(-3,-1)(3,1)
+\rput(-3,0){\rnode{A}{\psframebox{Maison}}}
+\rput(3,0){\rnode{B}{\psframebox{Travail}}}
+\rput(0,1){\rnode{C}{\psframebox{Bus}}}
+\rput(0,-1){\rnode{D}{\psframebox{Train}}}
+\ncarc[linewidth=2pt,arcangle=20]{->}{A}{C}\ncarc[linewidth=2pt,arcangle=-20]{->}{A}{D}
+\ncarc[linewidth=2pt,arcangle=20]{->}{C}{B}\ncarc[linewidth=2pt,arcangle=-20]{->}{D}{B}
+\end{pspicture}
+\end{center}
+
+La probabilité que le bus soit en panne est égale à $b$.
+La probabilité que le train soit en panne est égale à $t$.
+Les pannes de bus et de train surviennent de façon indépendante.
+
+\item La probabilité $p_1$ que le bus ou le train soient en panne est égale à :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $p_1 = bt$ &\textbf{b.~~} $p_1 = 1 - bt$ &\textbf{c.~~} $p_1 = b + t$ &\textbf{d.~~} $p_1 = b + t - bt$
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+On appelle $B$ l'événement: \og le bus est en panne \fg{} et $T$ l'événement \og le train est en panne \fg{} .
+
+Les pannes de bus et de train surviennent de façon indépendante donc \\
+$P(B\cap T)=P(B)\times P(T)=bt$.
+
+$p_1=P(B\cup T)= P(B) + P(T) - P(B\cap T) = b+t-bt$.
+
+\hfill\textbf{Réponse d.}
+\end{tabular}
+
+\medskip
+
+\item La probabilité $p_2$ que Albert puisse se rendre à son travail est égale à :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~}$p_2 = bt$ &\textbf{b.~~} $p_2 = 1 - bt$ &\textbf{c.~~} $p_2 = b + t $&\textbf{d.~~} $p_2 = b + t - bt$
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+Pour que Albert puisse se rendre à son travail, il ne faut pas que le bus et le train soient en panne en même temps. Autrement dit, on cherche la probabilité du contraire de $B\cap T$ donc la probabilité de $\overline{B\cap T}$.
+
+$p_2= P\left (\overline{B\cap T} \right ) = 1- P\left (B\cap T \right ) = 1-bt$
+
+\hfill\textbf{Réponse b.}
+\end{tabular}
+
+\medskip
+
+\item On considère une pièce de monnaie pour laquelle la probabilité d'obtenir FACE est égale à $x$. On lance la pièce $n$ fois. Les lancers sont indépendants.
+
+La probabilité $p$ d'obtenir au moins une fois FACE sur les $n$ lancers est égale à 
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~}$p = x^n$&\textbf{b.~~} $p = (1 - x)^n$& \textbf{c.~~}$p = 1 - x^n$& \textbf{d.~~}$p = 1 - (1 - x)^n$
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+La probabilité d'obtenir zéro fois FACE est la probabilité de n'obtenir que des PILE, soit $(1-x)^n$. Donc la probabilité d'obtenir au moins une fois FACE est 
+
+$1-(1-x)^n$.
+
+\hfill\textbf{Réponse d.}
+\end{tabular}
+\end{enumerate}

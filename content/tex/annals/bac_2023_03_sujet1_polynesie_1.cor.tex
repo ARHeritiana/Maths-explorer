@@ -1,0 +1,48 @@
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+La situation peut se traduire par l'arbre pondéré suivant :
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$J$~}\taput{0,21}}
+	{\TR{$T$}\taput{0,32}
+	\TR{$\overline{T}$}\tbput{0,68}
+	}
+\pstree{\TR{$\overline{J}$~}\tbput{0,79}}
+	{\TR{$T$}\taput{0,20}
+	\TR{$\overline{T}$}\tbput{0,80}
+	}
+}
+\end{center}
+
+\begin{enumerate}
+\item On calcule : $p(J \cap T) = p(J) \times p_J(T) = 0,21 \times 0,32 = \np{0,0672}$.
+\item On a de même $p\left(\overline{J} \cap T \right) = p\left(\overline{J}\right) \times p_{\overline{J}}(T) = 0,79 \times 0,20 = 0,158$.
+
+
+D'après la loi des probabilités totales :
+
+$p(T) = p(J \cap T) + p\left(\overline{J} \cap T \right) = \np{0,0672} + 0,158 = \np{0,2252}$.
+\item Il faut trouver la probabilité conditionnelle :
+
+$p_T(J) = \dfrac{p(T \cap J)}{p(T)} = \dfrac{p(J \cap T)}{p(T)} = \dfrac{\np{0,0672}}{0\np{0,2252}} \approx 0,298$, soit 0,30 au centième près.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item On suppose que la population de la ville est assez importante pour que la sélection de 120 personnes puisse être assimilé à un tirage avec remise de 120 personnes chacune d'elles ayant une probabilité d'avoir moins de 35 ans de 0,30.
+
+La loi de probabilité de $X$ suit donc une loi binomiale $\mathcal{B}(120~;~0,30)$.
+\item La calculatrice donne $p(X \geqslant 50) = 1 - p(X \leqslant 49) \approx \np{0,0044}$.
+\end{enumerate}
+
+\bigskip

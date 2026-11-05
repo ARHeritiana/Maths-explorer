@@ -1,0 +1,118 @@
+\medskip
+
+\begin{minipage}{0.6\linewidth}
+On considère un cube ABCDEFGH
+et on appelle K le milieu du segment [BC].
+
+On se place dans le repère 
+$\left(\text{A}~;~\vect{\text{AB}},~\vect{\text{AD}},~\vect{\text{AE}}\right)$ 
+et on considère  le tétraèdre EFGK.
+
+On rappelle que le volume d'un tétraèdre est donné par: 
+
+\[V = \dfrac13 \times \mathcal{B} \times h\]
+
+où $\mathcal{B}$ désigne l'aire d'une base et $h$ la hauteur relative à cette base.
+\end{minipage} \hfill
+\begin{minipage}{0.35\linewidth}
+\psset{unit=1cm}
+\begin{pspicture}(5.5,5.8)
+\psframe(0.2,0.2)(3.7,3.7)
+\psline(3.7,0.2)(5,1.9)(5,5.4)(3.7,3.7)
+\psline(5,5.4)(1.5,5.4)(0.2,3.7)
+\psline[linestyle=dashed](0.2,0.2)(1.5,1.9)(5,1.9)
+\psline[linestyle=dashed](1.5,1.9)(1.5,5.4)
+\pspolygon[linestyle=dotted,linewidth=1.25pt](0.2,3.7)(5,5.4)(4.35,1.05)
+\uput[dl](0.2,0.2){\small A}\uput[dr](3.7,0.2){\small B}\uput[r](5,1.9){\small C}
+\uput[dr](1.5,1.9){\small D}\uput[l](0.2,3.7){\small E}\uput[r](3.7,3.7){\small F}
+\uput[ur](5,5.4){\small G}\uput[ul](1.5,5.4){\small H}\uput[dr](4.35,1.05){\small K}
+\psdots(2.6,4.55)(2.275,2.375)(4.675,3.225)
+\uput[u](2.6,4.55){\blue P} \uput[ur](2.275,2.375){\blue M} \uput[l](4.675,3.225){\blue N} 
+\end{pspicture}
+\end{minipage}
+
+\medskip
+
+\begin{enumerate}
+\item Préciser les coordonnées des points E, F{}, G et K.
+
+E(0~;~0~;~1), \quad F(1~;~0~;~1), \quad G(1~;~1~;~1), \quad K$\left(1~;~\frac12~;~0\right)$.
+\item Montrer que le vecteur $\vect{n}\begin{pmatrix}\phantom{-}2\\-2\\\phantom{-}1\end{pmatrix}$ est orthogonal au plan (EGK).
+
+D'après la question précédente : $\vect{\text{EG}}\begin{pmatrix}1\\1\\0 \end{pmatrix}$ et $\vect{\text{EK}}\begin{pmatrix}1\\\dfrac12\\- 1 \end{pmatrix}$.
+
+D'où $\vect{n} \cdot \vect{\text{EG}} = 2 - 2 + 0 = 0$ : ces deux vecteurs sont orthogonaux ;
+
+$\vect{n} \cdot \vect{\text{EK}} = 2 - 1 - 1 = 0$ : ces deux vecteurs sont orthogonaux.
+
+Le vecteur $\vect{n}$ orthogonal à deux vecteurs non colinéaires du plan (EGK) est orthogonal à ce plan.
+\item Démontrer que le plan (EGK) admet pour équation cartésienne : $2x - 2y + z - 1 = 0.$
+
+Le résultat précédent montre qu'une équation du plan (EGK) est $2x - 2y + z = d$, avec $d \in \R$.
+
+En particulier E$(0~;~0~;~1) \in (\text{EGK}) \iff 0 - 0 + 1 = d \iff d = 1$.
+
+On a donc $M(x~;~y~;~z) \in (\text{EGK}) \iff 2x - 2y + z = 1$.
+\item Déterminer une représentation paramétrique de la droite $(d)$ orthogonale au plan (ECK)
+passant par F{}.
+
+La droite $(d)$ étant orthogonale au plan (ECK), on peut prendre comme vecteur directeur de cette droite le vecteur $\vect{n}$. Elle contient F, donc :
+
+$M(x~;~y~;~z) \in (d) \iff \vect{\text{F}M} = t\vect{n} \iff \left\{\begin{array}{l c l}
+x - 1&=&t \times 2\\
+y - 0&=&t \times (- 2)\\
+z - 1&=&t \times 1
+\end{array}\right., t \in \R \iff 
+\left\{\begin{array}{l c l}
+x &=& 1 + 2t\\
+y &=&\phantom{1}- 2t\\
+z &=&1 + t
+\end{array}\right., t \in \R$.
+\item Montrer que le projeté orthogonal L de F sur le plan (EGK) a pour coordonnées $\left(\frac59~;~\frac49~;~\frac79\right)$.
+
+L étant le projeté orthogonal de F sur le plan (EGK), L est un point de la droite $(d)$ et du plan (EGK) : ses coordonnées vérifient donc les équations de $(d)$ et du plan (EGK), donc le système :
+
+$\left\{\begin{array}{l c l}
+x &=& 1 + 2t\\
+y &=&\phantom{1}- 2t\\
+z &=&1 + t\\
+2x - 2y + z&=&1
+\end{array}\right., t \in \R$
+
+En remplaçant $x$, \: $y$,\: et $z$ par leurs expressions en fonction de $t$ dans la dernière équation on obtient :
+
+$2(1 + 2t) - 2\times (- 2t) + 1 + t = 1\iff 2 + 4t + 4t +t + 1 = 1\iff 9t = - 2\iff t = - \dfrac29$.
+On a donc : $x = 1 + 2\times \left(- \dfrac29\right) = 1 - \dfrac{4}{9} = \dfrac{5}{9}$ ;
+
+$y = - 2 \times \left(- \dfrac29\right)  = \dfrac49$ ;
+
+$z = 1 - \dfrac29 = \dfrac79$.
+
+Conclusion : L$\left(\dfrac59~;~\dfrac49~;~\dfrac79\right)$.
+\item Justifier que la longueur LF est égale à $\dfrac23$.
+
+Avec L$\left(\frac59~;~\frac49~;~\frac79\right)$ et F(1~;~0~;~1), on a $\vect{\text{LF}}\begin{pmatrix}\frac49\\-  \frac49\\\frac29 \end{pmatrix}$.
+
+Donc LF$^2 = \left(\frac49\right)^2 + \left(\frac49\right)^2 + \left(\frac29\right)^2  = \frac{16}{81} + \frac{16}{81} + \frac{4}{81} = \frac{36}{81}$, d'où LF $= \frac69 = \frac23$.
+\item Calculer l'aire du triangle EFG. En déduire que le volume du tétraèdre EFGK est égal à $\dfrac16$.
+
+Le triangle (EFG) est rectangle en F, donc :
+
+$\bullet~~$On a $\mathcal{A}(\text{EFG}) = \text{EF} \times \text{FG} \times \dfrac12 = 1 \times 1 \times \frac12 = \frac12$.
+
+$\bullet~~$$\mathcal{V}(\text{EFGK}) = \dfrac13 \times \mathcal{A}(\text{EFG}) \times \text{BF} = \frac13 \times \frac12 \times 1 = \frac16$.
+\item Déduire des questions précédentes l'aire du triangle EGK.
+
+On a aussi $\mathcal{V}(\text{EFGK}) = \dfrac13 \times \mathcal{A}(\text{EGK}) \times \text{LF}$, soit $\dfrac16 = \dfrac13 \times \mathcal{A}(\text{EGK}) \times \dfrac23$ ou encore
+
+$\dfrac16 = \dfrac29 \times \mathcal{A}(\text{EGK})$, d'où $\mathcal{A}(\text{EGK}) = \dfrac{\frac16}{\frac29} = \dfrac16 \times \dfrac92 = \dfrac{9}{12} = \dfrac34$.
+\item On considère les points P milieu du segment [EG], M milieu du segment [EK] et N milieu du segment[GK]. Déterminer le volume du tétraèdre FPMN.
+
+D'après le théorème de la droite des milieux les côtés du triangle (PMN) ont une longueur moitié de celles du triangle (EGK). L'aire du triangle (PMN) est donc égale à $\dfrac12 \times \dfrac12 = \dfrac14$ fois celle du triangle (EGK), donc $\mathcal{A}(\text{PMN}) = \dfrac14 \times \dfrac34 = \dfrac{3}{16}$.
+
+Comme les trois points P, M et N appartiennent au plan (EGK) le triangle (PMN) appartient au plan (EGK) : la hauteur du tétraèdre FPMN est donc la même que celle du tétraèdre (EFGK) soit LF.
+
+On a donc $\mathcal{V}(\text{FPMN}) = \dfrac13 \times \mathcal{A}(\text{PMN}) \times \text{LF} = \dfrac13 \times \dfrac{3}{16} \times \dfrac{2}{3} = \dfrac{1}{24}$.
+\end{enumerate}
+
+\bigskip

@@ -1,0 +1,89 @@
+\subsection*{Partie A}
+
+Une joueuse de basket constate qu'elle réussit 60\,\% de ses lancers francs au cours d'une séance d'entraînement.
+
+En se basant sur ces statistiques, on modélise la situation comme une succession
+d'épreuves aléatoires indépendantes.
+
+\medskip
+
+\begin{enumerate}
+	\item Cette joueuse effectue cinq lancers consécutifs.
+	\begin{enumerate}
+		\item Soit $X$ la variable aléatoire donnant le nombre de lancers réussis.
+
+		Justifier que $X$ suit une loi binomiale dont on précisera les paramètres.
+		\item Donner une valeur approchée à $10^{-2}$ près de $P(X \geqslant 4)$.
+
+		Interpréter ce résultat dans le contexte de l'exercice.
+	\end{enumerate}
+	\item On suppose maintenant que cette sportive doit effectuer $n$ lancers, où $n$ est un entier naturel non nul.
+
+	Soit $Y$ la variable aléatoire donnant le nombre de lancers réussis.
+
+	On admet que la variable aléatoire $Y$ suit la loi binomiale de paramètres $n$ et $p = 0,6$.
+	\begin{enumerate}
+		\item Montrer que $P(Y \geqslant 1)=1 - 0,4^n$.
+		\item En déduire le nombre $n$ de lancers à partir duquel la probabilité d'en
+		réussir au moins un dépasse \np{0,9999}.
+		\item Recopier et compléter le script de la fonction Python suivante afin qu'elle
+		permette de retrouver le résultat de la question \textbf{2. b.}
+	\end{enumerate}
+\end{enumerate}
+
+\begin{lstlisting}[style=python,xleftmargin=0.3\linewidth,xrightmargin=0.3\linewidth,numbers=none]
+def basket ():
+	p = 0.6
+	n = 1
+	while ..... :
+		n = n + 1
+		p = .....
+	return ...
+\end{lstlisting}
+
+\subsection*{Partie B}
+
+Pour un autre joueur, on remarque que :
+\begin{itemize}
+	\item lorsqu'il a réussi un lancer franc, il réussit le suivant avec une probabilité de $0,7$.
+	\item lorsqu'il a raté un lancer franc, il réussit le suivant avec une probabilité de $0,4$.
+\end{itemize}
+
+On considère que la probabilité de réussir son premier lancer est de  0,5
+
+On note $G_1$ l'évènement : \og le joueur réussit son premier lancer franc \fg.
+
+On a donc $P(G_1) = 0,5$.
+
+On note $G_2$ l'évènement : \og le joueur réussit son deuxième lancer franc \fg .
+
+\medskip
+
+\begin{enumerate}
+	\item Calculer $P(G_2)$.
+
+	On pourra utiliser un arbre de probabilité.
+\end{enumerate}
+
+Soit $n$ un entier naturel non nul.
+
+On note $G_n$ l'évènement \og le joueur réussit le $n$-ième lancer franc \fg{} et $p_n$, la
+probabilité de $G_n$.
+
+On définit ainsi une suite $(p_n)$ de réels.
+
+On admet que pour tout $n \geqslant 1,\: p_{n+1} = 0,3p_n + 0,4$.
+\begin{enumerate}[resume]
+	\item
+	\begin{enumerate}
+		\item En utilisant un raisonnement par récurrence, démontrer que
+
+		\begin{center}pour tout $n \geqslant 1,\quad p_n \leqslant p_{n+1}$ \end{center}
+
+		\item Quel argument permet d'affirmer que la suite $(p_n)$ est majorée ?
+		\item En déduire que la suite $(p_n)$ est convergente.
+	\end{enumerate}
+	\item On admet que la limite de $(p_n)$ quand $n$ tend vers $+\infty$ est $\dfrac47$.
+
+	Interpréter cette valeur dans le contexte de l'exercice.
+\end{enumerate}

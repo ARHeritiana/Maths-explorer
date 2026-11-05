@@ -1,0 +1,51 @@
+\subsection*{1.}
+
+\begin{center}
+\psset{xunit=0.04cm,yunit=0.04cm,labelFontSize=\scriptstyle}
+\begin{pspicture}(-130,-130)(130,130)
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10,labels=none]{->}(0,0)(-120,-120)(120,120)
+\psset{unit=0.04cm}
+\pscircle[linewidth=1.25pt,linecolor=blue](0,0){110}
+\uput[dl](0,0){0}\uput[d](10,0){10}
+\uput[l](0,10){10}\uput[d](115,0){$x$}
+\uput[l](0,115){$y$}\uput[u](-100,-90){\blue \large\boldmath{$\mathcal{C}$}}
+\end{pspicture}
+\end{center}
+
+\paragraph{a.}
+\begin{align*}
+&M(x\,;\,y) \in \mathcal{C} \\
+\iff &OM^2 = 110 \\
+\iff &(x - 0)^2 + (y - 0)^2 = 110^2 \\
+\iff &x^2 + y^2 = 12100.
+\end{align*}
+
+\paragraph{b.} On a \(\overrightarrow{OA} \begin{pmatrix} -30 \\ 15 \end{pmatrix}\) et \(\overrightarrow{OD} \begin{pmatrix} 80 \\ -40 \end{pmatrix}\).
+
+Comme :
+\[
+\det(\overrightarrow{OA} \,;\, \overrightarrow{OD}) = (-30)(-40) - 15 \times 80 = 1200 - 1200 = 0,
+\]
+les vecteurs sont colinéaires donc les points \(O\), \(A\) et \(D\) sont alignés.
+
+\subsection*{2.}
+
+\paragraph{a.} Avec \(\overrightarrow{AG} \begin{pmatrix} 20 \\ -25 \end{pmatrix}\), on a :
+\[
+\overrightarrow{AG} \cdot \overrightarrow{AO} = 20 \times 30 + (-25) \times (-15) = 600 + 375 = 975.
+\]
+
+\paragraph{b.} L'équation réduite de la droite \((AD)\) est \( y = -\dfrac{1}{2}x \).
+
+Soit \(H\) le projeté orthogonal de \(G\) sur la droite \((AD)\). Quel que soit le point \(M(x\,;\,y)\) de la droite \((AD)\), le triangle \(GHM\) est rectangle en \(H\) et on a \(GH < GM\) (l'hypoténuse est le côté le plus grand) : le point \(H\) est donc le point de \((AD)\) le plus proche de \(G\).
+
+Avec \(H(x\,;\,-\dfrac{1}{2}x)\), on a :
+\begin{align*}
+&\overrightarrow{\text{GH}} \cdot \overrightarrow{\text{OA}} = 0 \\
+\iff &(x + 10) \times (-30) + \left( -\frac{1}{2}x + 10 \right) \times 15 = 0 \\
+\iff &-30x - 300 - 7{,}5x + 150 = 0 \\
+\iff &-150 = 37{,}5x \\
+\iff &x = -\frac{150}{37{,}5} = -4.
+\end{align*}
+
+Le point de \( (AD) \) le plus proche de \( G \) est donc \( H(-4 \,;\, 2) \) : ce n'est pas \( O \).

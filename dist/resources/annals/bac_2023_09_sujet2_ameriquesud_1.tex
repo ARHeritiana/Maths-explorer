@@ -1,0 +1,189 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_09_sujet2_ameriquesud_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+Un jeu proposé dans une fête foraine consiste à effectuer trois tirs successivement sur une cible mouvante.
+
+On a constaté que :
+\begin{itemize}
+\item[$\bullet~~$] Si le joueur atteint la cible lors d'un tir alors il ne l'atteint pas lors du tir suivant dans 65\,\% des cas ;
+\item[$\bullet~~$] Si le joueur n'atteint pas la cible lors d'un tir alors il l'atteint lors du tir suivant dans 50\,\% des cas.
+\end{itemize}
+
+La probabilité qu'un joueur atteigne la cible lors de son premier tir est de $0,6$.
+
+\emph{Pour tout évènement $A$, on note $p(A)$ sa probabilité et $\overline{A}$ l'évènement contraire de $A$.}
+
+On choisit au hasard un joueur à ce jeu de tirs.
+
+On considère les évènements suivants:
+\begin{itemize}
+\item[$\bullet~~$] $A_1$ : \og Le joueur atteint la cible lors du 1\up{er} tir \fg
+\item[$\bullet~~$] $A_2$ : \og Le joueur atteint la cible lors du 2\up{e} tir \fg
+\item[$\bullet~~$] $A_3$ : \og Le joueur atteint la cible lors du 3\up{e} tir \fg.
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter, avec les probabilités correspondantes sur chaque branche, l'arbre pondéré ci-dessous modélisant la situation.
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 0.75cm,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$A_1$~~}\taput{$0,6$}}
+	{\pstree{\TR{$A_{2}$~~}}
+		{
+		\TR{$A_{3}~~$}
+		\TR{$\overline{A_{3}~~}$}
+		}
+	\pstree{\TR{$\overline{A_{2}~~}$}}
+		{
+		\TR{$A_{3}~~$}
+		\TR{$\overline{A_{3}~~}$}
+		}
+	}
+\pstree{\TR{$\overline{A_1}$~~}}
+	{\pstree{\TR{$A_{2}$~~}}
+		{
+		\TR{$A_{3}~~$}
+		\TR{$\overline{A_{3}~~}$}
+		}
+	\pstree{\TR{$\overline{A_{2}}$~~}}
+		{
+		\TR{$A_{3}$~~}
+		\TR{$\overline{A_{3}~~}$}
+		}
+	}
+}
+\end{center}
+
+Soit $X$ la variable aléatoire qui donne le nombre de fois où le joueur atteint sa cible au cours
+des trois tirs.
+\item Montrer que la probabilité que le joueur atteigne exactement deux fois la cible au cours des trois tirs est égale à \np{0,4015}.
+\item L'objectif de cette question est de calculer l'espérance de la variable aléatoire $X$, notée $E(X)$.
+	\begin{enumerate}
+		\item Recopier et compléter le tableau ci-dessous donnant la loi de probabilité de la variable aléatoire $X$.
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{5}{>{\centering \arraybackslash}X|}}\hline
+$X = x_i$				&0	&1	&2	&3\\ \hline
+$p\left(X = x_i\right)$	&0,1&	&	& \np{0,0735}\\ \hline
+\end{tabularx}
+\end{center}
+		\item Calculer $E(X)$.
+		\item Interpréter le résultat précédent dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+On considère $N$, un entier naturel supérieur ou égal à 1.
+
+Un groupe de $N$ personnes se présente à ce stand pour jouer à ce jeu dans des conditions identiques et indépendantes. 
+
+Un joueur est déclaré gagnant lorsqu'il atteint trois fois la cible.
+
+On note $Y$ la variable aléatoire qui compte parmi les $N$ personnes le nombre de joueurs déclarés gagnants.
+
+\medskip
+
+\begin{enumerate}
+\item Dans cette question, $N = 15$.
+	\begin{enumerate}
+		\item Justifier que $Y$ suit une loi binomiale dont on déterminera les paramètres.
+		\item Donner la probabilité, arrondie à $10^{-3}$, qu'exactement 5 joueurs soient gagnants à ce jeu.
+	\end{enumerate}
+\item Par la méthode de votre choix, que vous expliciterez, déterminer le nombre minimum de personnes qui doivent se présenter à ce stand pour que la probabilité qu'il y ait au moins un joueur gagnant soit supérieure ou égale à $0,98$.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

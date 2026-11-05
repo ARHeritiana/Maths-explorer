@@ -1,0 +1,67 @@
+\medskip
+
+\textbf{Partie 1}
+
+\medskip
+
+On considère la fonction $f$ définie sur l'ensemble des nombres réels $\R$ par :
+\[f(x) = \left(x^2 - 4\right)\e^{-x}.\]
+
+On admet que la fonction $f$ est dérivable sur $\R$ et on note $f'$ sa fonction dérivée.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer les limites de la fonction $f$ en $-\infty$ et en $+\infty$.
+\item Justifier que pour tout réel $x,\, f'(x) = \left(-x^2 + 2x + 4\right)\e^{-x}$.
+\item En déduire les variations de la fonction $f$ sur $\R$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2}
+
+\medskip
+
+On considère la suite $(I_n)$ définie pour tout entier naturel $n$ par $I_n = \displaystyle\int_{-2}^0 x^n\e^{-x}\, \text{d}x$.
+
+\medskip
+
+\begin{enumerate}
+\item Justifier que $I_0 = \e^2 - 1$.
+\item En utilisant une intégration par partie, démontrer l'égalité :
+
+\[I_{n+1} = (- 2)^{n+1} \text{e}^2 + (n + 1)I_n.\]
+
+\item En déduire les valeurs exactes de $I_1$ et de $I_2$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie 3}
+
+\medskip
+
+\begin{minipage}{0.55\linewidth}
+\begin{enumerate}
+\item Déterminer le signe sur $\R$ de la fonction $f$ définie dans la partie 1.
+\item On a représenté ci-contre la courbe $\mathcal{C}_f$ de la fonction $f$ dans un repère orthonormé \Oij.
+
+Le domaine $D$ du plan hachuré ci-contre est délimité par la courbe $\mathcal{C}_f$, l'axe des abscisses et l'axe des ordonnées.
+
+Calculer la valeur exacte, en unité d'aire, de l'aire $S$ du domaine $D$.
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.43\linewidth}
+\psset{unit=0.5cm}
+\begin{pspicture*}(-3,-9)(5,3)
+\psline{->}(0,0)(1,0)\psline{->}(0,0)(0,1)\uput[d](1,0){\scriptsize $\vect{\imath}$}
+\uput[l](0,1){\scriptsize $\vect{\jmath}$}
+\psaxes[Dx=10,Dy=20]{->}(0,0)(-3,-9)(5,3)
+\psplot[plotpoints=2000,linewidth=1.pt,linecolor=red]{-3}{6}{x dup mul 4 sub 2.71828 x exp div}
+\pscustom[fillstyle=hlines,linecolor=red]{\psplot[plotpoints=2000,linewidth=1.2pt,linecolor=red]{-2}{0}{x 2 exp  4 sub 2.71828 x exp div}\psline[linewidth=0.2pt](0,-4)(0,0)(-2,0)}\uput[dl](0,0){\small O}
+\uput[r](-2,2){\red $\mathcal{C}_f$}\rput(-1,-3){$D$}
+\end{pspicture*}
+\end{minipage}
+
+\bigskip

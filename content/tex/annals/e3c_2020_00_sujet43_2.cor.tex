@@ -1,0 +1,48 @@
+\subsection*{1.}
+
+Salaires annuels de Camille et de Dominique en 2012 :
+\begin{itemize}
+    \item Camille : \(14400 + 600 + 600 = 15600\) (€) ;
+    \item Dominique : \(13200 \times 1{,}04^2 = 14277{,}12\) (€).
+\end{itemize}
+
+\subsection*{2.}
+
+\paragraph{a.} On a, pour tout entier naturel \( n \), \( u_{n+1} = u_n + 600 \) : la suite \( (u_n) \) est donc une suite arithmétique de raison \(r = 600\).
+
+\paragraph{b.} On sait que, pour tout entier naturel \( n \), \( u_n = u_0 + 600n \).
+
+Il faut donc résoudre dans \( \mathbb{N} \) l'inéquation :
+\begin{align*}
+&14400 + 600n > 20000 \\
+\iff &600n > 5600 \\
+\iff &n > \dfrac{5600}{600} \text{ avec } \dfrac{5600}{600} \approx 9{,}3.
+\end{align*}
+
+Le salaire annuel de Camille dépassera les 20000 € pour la première fois après \(n = 10\) ans, soit en 2020.
+
+\paragraph{c.} D'une année à la suivante, le salaire est multiplié par 1{,}04.
+
+Donc, pour tout entier naturel \( n \), \( v_{n+1} = v_n \times 1{,}04 \), ce qui montre que la suite \( (v_n) \) est une suite géométrique de raison \(q = 1{,}04\) et de premier terme \( v_0 = 13200 \).
+
+\paragraph{d.} On sait que, pour tout entier naturel \( n \), \( v_n = 13200 \times 1{,}04^n \).
+
+Donc, pour \( n = 10 \), \( v_{10} = 13200 \times 1{,}04^{10} \approx 19539{,}22 \), soit environ 19539 €.
+
+\subsection*{3.}
+
+\begin{center}
+\begin{lstlisting}[style=python]
+def algo() :
+    A = 14400
+    B = 13200
+    n = 0
+    while A >= B :
+        A = A + 600
+        B = B * 1.04
+        n = n + 1
+    return n
+\end{lstlisting}
+\end{center}
+
+Ce programme retourne \( n = 14 \), donc le salaire de Dominique dépassera celui de Camille en 2024.

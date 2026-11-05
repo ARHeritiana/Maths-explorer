@@ -1,0 +1,131 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_09_sujet2_metropole_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{enumerate}
+	\item $\binom{14}{2}\times \binom{10}{2} = \np{4095} \neq 272$. 
+
+\emph{L'énoncé indique \og{}~est-il possible~\fg{} et ne fait pas intervenir le nombre maximum de groupes composés de deux filles et deux garçons.
+}
+Comme $272 < \np{4095}$, \textbf{l'affirmation est vraie.}
+	
+	\item $f$ est dérivable comme composée de fonctions dérivables. 
+
+$\forall x \in \R,~ f'(x) = 6\times \cos(2x+\pi)$	
+
+$f'\left(\dfrac{\pi}{2}\right) = 6\times \cos\left(2\times\dfrac{\pi}{2} +\pi\right) = 6$
+
+$f\left(\dfrac{\pi}{2}\right) = 3\times \sin\left(2\times\dfrac{\pi}{2} +\pi\right) = 0$
+	
+	L'équation de la tangente au point d'abscisse $\dfrac{\pi}{2}$ est donnée par :
+	
+	$y = \left(x - \dfrac{\pi}{2}\right)\times f'\left(\dfrac{\pi}{2}\right) + f\left(\dfrac{\pi}{2}\right)$
+	
+	$y = 6x- 6\times\dfrac{\pi}{2} $
+	
+	$y= 6x- 3\pi$
+	
+	\textbf{L'affirmation est vraie.}
+	
+	\item $\forall x\in ]0~;~+\infty[, F'(x) = \dfrac{2 x \ln x+2 x+1}{x}$, en particulier $F'(1) = \dfrac{3}{2}$ et $f(1) = 2$. $f$ n'est pas la dérivée de $F$. Ainsi on montre que $F$ n'est pas une primitive de $f$.
+	
+	\textbf{L'affirmation est fausse.}
+	
+	\item $g(0) =  45 \times \e^{0} +20 = 65$
+	
+	$\forall t \in \R\quad g'(t) +\np{0.06}\times g(t) = 45\times \np{0.06}\times \e^{ \np{0.06}t} + \np{0.06}\times\left(45\times\e^{ \np{0.06}t}+20\right) =  \np{5.4}\times\e^{ \np{0.06}t}+\np{1.2}$
+	$g$ n'est pas solution de $(E)$.
+	
+	\textbf{L'affirmation est fausse.}
+	
+	\item Soit $y$ une solution positive de $\left(E_2\right)$ on peut écrire $\forall x \in \R\quad y'(x) = y(x) + 3\e^{\np{0.4}x}$, comme $\forall x \in \R\quad y(x)\geqslant 0\text{ et } 3\e^{\np{0.4}x}\geqslant 0$, alors  $\forall x \in \R\quad y'(x)\geqslant 0$.
+	
+	On dérive l'équation différentielle :
+	
+	$\forall x \in \R\quad y''(x) = y'(x) + \np{1.2}\e^{\np{0.4}x}$. Comme $\forall x \in \R\quad y'(x)\geqslant 0\text{ et } \np{1.2}\e^{\np{0.4}x}\geqslant 0$, alors  $\forall x \in \R\quad y''(x)\geqslant 0$.
+	
+	$\forall x \in \R\quad y''(x)\geqslant 0$ donc $y$ est convexe sur $\R$.
+	
+	\textbf{L'affirmation est vraie} : les solutions positives de $\left(E_2\right)$ sont des fonctions convexes sur $\R$.
+\end{enumerate}
+
+\end{document}

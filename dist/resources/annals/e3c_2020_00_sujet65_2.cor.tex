@@ -1,0 +1,151 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet65_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\( f(x) = \dfrac{0{,}5x^3 - 3x^2 + x + 16}{x} \).
+
+\subsection*{1.}
+
+Il faut calculer :
+\begin{align*}
+f(2) &= \dfrac{0{,}5 \times 2^3 - 3 \times 2^2 + 2 + 16}{2} \\
+&= \dfrac{4 - 12 + 2 + 16}{2} = \dfrac{10}{2} = 5 \text{ (milliers d'euros)}.
+\end{align*}
+
+\subsection*{2.}
+
+\( f \) est le quotient de deux fonctions dérivables sur \([1 \,;\, 5]\), et comme la dérivée de \( \dfrac{u}{v} \) est \( \dfrac{u' v - u v'}{v^2} \), on a :
+
+\begin{align*}
+f'(x) &= \dfrac{x \left( 1{,}5x^2 - 6x + 1 \right) - 1 \left( 0{,}5x^3 - 3x^2 + x + 16 \right)}{x^2} \\
+&= \dfrac{1{,}5x^3 - 0{,}5x^3 - 6x^2 + 3x^2 + x - x - 16}{x^2} \\
+&= \dfrac{x^3 - 3x^2 - 16}{x^2}.
+\end{align*}
+
+\subsection*{3.}
+
+On a, quel que soit le réel \(x\) :
+\[
+(x - 4)(x^2 + x + 4) = x^3 + x^2 + 4x - 4x^2 - 4x - 16 = x^3 - 3x^2 - 16.
+\]
+
+\subsection*{4.}
+
+D'après le résultat précédent :
+\[
+f'(x) = \dfrac{(x - 4)(x^2 + x + 4)}{x^2},
+\]
+sur \([1 \,;\, 5]\).
+
+Comme \( x^2 > 0 \), pour \( 1 \leqslant x \leqslant 5 \), le signe de \( f'(x) \) est celui du numérateur \( (x - 4)(x^2 + x + 4) \).
+
+Le signe de \( x - 4 \) est aisé à trouver sur \( [1 \, ; 5] \) ;
+
+Signe du trinôme \( x^2 + x + 4 \) : on a \( \Delta = 1^2 - 4 \times 4 = -16 \).
+
+Le trinôme n'a pas de racines, et il a le signe du coefficient de \( x^2 \), donc positif pour tout réel, donc en particulier sur \( [1 \, ; 5] \).
+
+Finalement, le signe de \( f'(x) \) est celui de \( x - 4 \).
+
+D'où le tableau de variations avec :
+\[
+f(1) = 0{,}5 - 3 + 1 + 16 = 14{,}5,
+\] 
+\[
+f(4) = \dfrac{32 - 48 + 4 + 16}{4} = 1 \quad \text{et} \quad f(5) = \dfrac{62{,}5 - 75 + 5 + 16}{5} = \dfrac{8{,}5}{5} = 1{,}7.
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\tkzTabInit[lgt=3.5, espcl=4]{$x$ / 1, {Signe de $f'(x)$} / 1, {$f(x)$} / 2}{${1}$, ${4}$, ${5}$}
+\tkzTabLine{,-,0,+,}
+\tkzTabVar{+/{$14{,}5$},-/{$1$},+/{$5$}}{/}
+\end{tikzpicture}
+\end{center}
+
+\subsection*{5.}
+
+D'après le tableau de variations précédent, le minimum de la fonction \( f \) est \( f(4) = 1 \).
+
+Il faut donc produire 4\,000 pièces pour avoir un coût minimum de 1\,000 euros correspondant à cette production.
+
+\end{document}

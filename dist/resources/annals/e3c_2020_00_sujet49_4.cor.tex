@@ -1,0 +1,130 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet49_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\( f(x) = (ax + b)\e^{-0{,}1x} \).
+
+\subsection*{1.}
+
+On calcule \( f(0) = (0 + b)\e^{-0{,}1 \times 0} = b\e^0 = b = 5 \) puisque \( A(0\,;\,5) \in \mathcal{C}_f \).
+
+\subsection*{2.}
+
+\paragraph{a.} Pour l'équation réduite de \( (AB) \), l'ordonnée à l'origine est 5 et le coefficient directeur de la droite est égal à :
+\[
+\dfrac{19 - 5}{4 - 0} = \dfrac{14}{4} = 3{,}5.
+\]
+L'équation réduite de la droite \( (AB) \) est donc \( y = 3{,}5x + 5 \).
+
+\paragraph{b.} On a \( f(x) = (ax + 5) \e^{-0{,}1x} \), \( f \) est un produit de fonctions dérivables sur \( \mathbb{R} \), donc en dérivant comme un produit \( ( (uv)' = u'v + uv' ) \) :
+\begin{align*}
+f'(x) &= a\e^{-0{,}1x} - 0{,}1(ax + 5)\e^{-0{,}1x} \\
+&= \e^{-0{,}1x} [a - 0{,}1(ax + 5)] \\
+&= \e^{-0{,}1x}(a - 0{,}1ax - 0{,}5).
+\end{align*}
+Or on sait que le coefficient directeur de la tangente à la courbe au point d'abscisse 0 est le nombre dérivé \( f'(0) \). Donc :
+\[
+f'(0) = \e^0(a - 0 - 0{,}5) = a - 0{,}5 = 3{,}5, \text{ d'où on déduit } a = 3{,}5 + 0{,}5 = 4.
+\]
+On a donc sur \( \mathbb{R} \), \( f(x) = (4x + 5)\e^{-0{,}1x} \).
+
+\subsection*{3.}
+
+\paragraph{a.} Avec l'expression trouvée pour \( f'(x) \) ci-dessus et en remplaçant \( a \) par 4, on obtient :
+\[
+f'(x) = \e^{-0{,}1x}(4 - 0{,}1 \times 4x - 0{,}5) = (-0{,}4x + 3{,}5)\e^{-0{,}1x}.
+\]
+
+\paragraph{b.} On sait que, quel que soit \( x \in \mathbb{R} \), \( \e^{-0{,}1x} > 0 \), donc le signe de \( f'(x) \) est celui de \( -0{,}4x + 3{,}5 \).
+\begin{align*}
+&-0{,}4x + 3{,}5 > 0  \\
+\iff &3{,}5 > 0{,}4x \\
+\iff &\dfrac{3{,}5}{0{,}4} > x \\
+\iff &x < 8{,}75
+\end{align*}
+\( f \) est croissante sur \( ] -\infty \,; 8{,}75[ \), puis décroissante sur \( ]8{,}75 \,; +\infty[ \), avec un maximum en :
+\[
+f(8{,}75) = (4 \times 8{,}75 + 5)\e^{-0{,}1 \times 8{,}75} \approx 16{,}675.
+\]
+(ce que confirme la figure)
+
+\end{document}

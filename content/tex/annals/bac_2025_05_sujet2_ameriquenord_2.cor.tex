@@ -1,0 +1,116 @@
+On désigne par $\left(u_{n}\right)$ la suite définie par :
+
+\[u_{0}=2 \quad \text { et, pour tout entier naturel } n,\quad  u_{n+1}=\sqrt{u_{n}}\]
+
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item
+	\begin{enumerate}
+		\item 
+
+$u_1=\sqrt{u_0}=\sqrt{2}$
+
+$u_2=\sqrt{u_1} =\sqrt{\sqrt{2}}$.
+		\item À l'aide de la calculatrice, on peut conjecturer que la suite est décroissante et converge vers 1.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item Posons, pour tout entier naturel $n$, l'affirmation $P_n$ :~\og $1 \leqslant u_{n+1} \leqslant u_{n}$\fg{}.\hfill
+
+\emph{Initialisation :} On a calculé $u_1 = \sqrt{2} \approx 1,414$ et $u_0=2$
+
+On a donc bien $1 \leqslant u_1 \leqslant u_0$.
+
+L'affirmation $P_0$ est donc vraie.
+
+\emph{Hérédité :} Soit $n$ un entier naturel non nul. On suppose que l'affirmation $P_n$ est vraie, c'est-à-dire que $1 \leqslant u_{n+1} \leqslant u_{n}$.
+
+Montrons que l'affirmation $P_{n+1}$ est vraie, c'est à dire que $1 \leqslant u_{n+2} \leqslant u_{n+1}$
+
+Par hypothèse de récurrence, on a :
+
+$ \begin{aligned}[t]
+1 \leqslant u_{n+1} \leqslant u_n
+	&\implies \sqrt{1} \leqslant \sqrt{u_{n+1}} \leqslant \sqrt{u_n}\\
+	&\qquad \text{car  la fonction racine carrée est croissante sur } \R^+ \\
+	&\implies 1 \leqslant u_{n+2} \leqslant u_{n+1}
+\end{aligned}$
+
+Si, pour $n$ naturel, $P_n$ est vraie, alors $P_{n+1}$ est vraie également.
+
+\emph{Conclusion :} L'affirmation $P_0$ est vraie, et, pour tout entier naturel non nul $n$, la véracité de l'affirmation est héréditaire : d'après le principe de récurrence, on en déduit que pour tout entier naturel non nul $n$, on a : $1 \leqslant u_{n+1} \leqslant u_{n}$.
+	\item D'après la question précédente, pour tout entier $n$, $1\leqslant u_n$ donc la suite $\left(u_n\right)$ est minorée par 1.
+
+Et pour tout entier $n$, $u_{n+1}\leqslant u_n$ donc la suite $\left( u_n\right)$ est décroissante.
+
+Or toute suite décroissante et minorée est convergente donc, la suite $\left( u_n\right)$ est convergente vers une limite $\ell \geqslant 1$.
+	\item Soit $x \in [0~;~+\infty[$ :
+
+$\begin{aligned}\sqrt{x} =x &\iff x =x^2 \text { car }x\geqslant 0 \\
+	&\iff x^2-x=0\\
+	& \iff x(x-1)=0\\
+	&\iff x=0 \text{ ou } x=1
+\end{aligned}$.
+
+L'équation $\sqrt{x}=x$ admet deux solutions sur $[0~;~+\infty[$ : 0 et 1.
+	\item La suite $\left(u_{n}\right)$ est convergente vers $\ell$ et est définie par récurrence par :
+
+$\forall n \in \N, \quad u_{n+1}=f(u_n)$ \quad où  $f$ est la fonction racine carrée qui est continue sur $[0~;~+\infty[$.
+
+D'après le théorème du point fixe, $\ell$ est solution de l'équation $f(x) = x$.
+
+Nous avons résolu cette équation à la question précédente, les solutions sont 0 et 1, or d'après la question \textbf{A. 1. b.}, $\ell \geqslant 1$ donc $\ell =1$.
+
+donc : $\lim\limits_{n\to +\infty} u_n = 1$
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B}
+
+\medskip
+
+\begin{enumerate}
+\item
+	\begin{enumerate}
+		\item Soit $n \in \N$ : $\begin{aligned}[t] v_{n+1}& =\ln \left(u_{n+1}\right)\\
+	&= \ln \left( \sqrt{u_{n}}\right)\\
+	& = \dfrac{1}{2}\ln\left(u_n\right)\\
+	&= \dfrac{1}{2}v_n
+\end{aligned}$
+
+La suite $\left(v_{n}\right)$ est donc géométrique de raison $q=\dfrac{1}{2}$ et de premier terme \linebreak $v_0=\ln\left(u_0\right)=\ln(2)$.
+		\item On a donc, pour tout entier naturel $n$, $v_n=v_0\times q^n=\ln(2)\left(\dfrac{1}{2}\right)^n=\dfrac{\ln(2)}{2^n}$.
+		\item  Or, pour tout entier naturel $n$,  $v_n=\ln \left(u_{n}\right)$ donc $\dfrac{\ln\left( 2 \right)}{2^n}= \ln \left(u_{n}\right)$ c'est à dire : $\ln(2)=2^n\ln\left(u_n\right)$.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item À l'aide de la calculatrice on trouve que pour tout $k<7$, $u_k > 1,01$ et \linebreak $u_{7}\approx \np{1,00543}$ donc $k=7$.
+		\item On décide de prendre $x - 1$ comme approximation de $\ln (x)$ lorsque $x$ appartient à l'intervalle $]0,99~;~1,01[$ donc $\ln\left(u_{7}\right)\approx u_{7} - 1 \approx \np{0,00543}$.
+\item D'après les questions \textbf{1. c.} et \textbf{2. b.} de la \textbf{partie B} une approximation de $\ln (2)$ est $2^7\ln\left(u_7\right)$ soit $2^7 \times \np{0,00543}$ c'est à dire $\np{0,695}$.
+	\end{enumerate}
+\item On généralise la méthode précédente à tout réel $a$ strictement supérieur à 1.
+
+\begin{center}
+\begin{ttfamily}
+\begin{tabularx}{8cm}{|X|}\hline
+\textbf{from} math \textbf{import}*\\
+\textbf{def} Briggs(a):\\
+\quad n = 0\\
+\quad \textbf{while} a >= 1.01:\\
+\quad \quad a = \textbf{sqrt}(a)\\
+\quad \quad n = n+1\\
+\quad L =2**n *(a-1) \\
+\textbf{return} L\\ \hline
+\end{tabularx}
+\end{ttfamily}
+\end{center}
+\end{enumerate}
+
+\bigskip

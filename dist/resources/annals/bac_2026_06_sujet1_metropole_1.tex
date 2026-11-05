@@ -1,0 +1,242 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_06_sujet1_metropole_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Un navire assure la liaison entre deux ports de la Méditerranée.
+
+	Lors d'une traversée, une famille a la possibilité de réserver une cabine ainsi qu'un emplacement pour un véhicule.
+
+	\subsection*{Partie A}
+
+	Parmi l'ensemble des familles effectuant la traversée, on constate que $30\,\%$ réservent un emplacement pour un véhicule et, parmi ces dernières, $80\,\%$ réservent une cabine.
+
+	On sait par ailleurs que $75\,\%$ des familles effectuant la traversée réservent une cabine.
+
+	\medskip
+
+	On choisit au hasard une famille effectuant la traversée, et on considère les évènements suivants :
+
+	\begin{itemize}[label={\textbullet~}]
+		\item $V$ : \og  la famille réserve un emplacement pour un véhicule \fg{};
+
+		\item $C$ : \og  la famille réserve une cabine \fg{} .
+	\end{itemize}
+
+	Pour un évènement quelconque $E$, on désigne par $\overline{E}$ son évènement contraire et par $P(E)$ sa probabilité.
+
+	\begin{enumerate}
+		\item \begin{minipage}[t]{0.5\linewidth}
+			\begin{enumerate}
+			\item Donner $P(C)$.
+
+			\item Reproduire l'arbre ci-contre et compléter les quatre pointillés.
+		\end{enumerate}
+		\end{minipage}
+		\hfill
+		
+		\begin{tikzpicture}[xscale=1,yscale=1,baseline={(Raa.base)}]
+			
+			\tikzstyle{noeud}=[fill=white,circle,inner sep=2pt]
+			\tikzstyle{feuille}=[fill=white,circle,inner sep=2pt]
+			\tikzstyle{etiquette}=[pos=0.6,fill=white, inner xsep=3pt, inner ysep=1.5pt]
+			
+			\def\DistanceInterNiveaux{2.5}
+			\def\DistanceInterFeuilles{0.7}
+			
+			\def\NiveauA{(0)*\DistanceInterNiveaux}
+			\def\NiveauB{(1)*\DistanceInterNiveaux}
+			\def\NiveauC{(2)*\DistanceInterNiveaux}
+			\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+			
+			\node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {};
+			\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$V$};
+			\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$C$};
+			\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{C}$};
+			\node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\overline{V}$};
+			\node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$C$};
+			\node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{C}$};
+			
+			\draw (R.east)--(Ra.west) node[etiquette] {$\dots$};
+			\draw (Ra.east)--(Raa.west) node[etiquette] {$\dots$};
+			\draw (Ra.east)--(Rab.west) node[etiquette] {$\dots$};
+			\draw (R.east)--(Rb.west) node[etiquette] {$\dots$};
+			\draw (Rb.east)--(Rba.west);
+			\draw (Rb.east)--(Rbb.west);
+		\end{tikzpicture}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		\hfill~
+
+		\item Calculer la probabilité qu'une famille réserve un emplacement pour un véhicule et une cabine.
+
+		\item Une famille a réservé une cabine.
+
+		Déterminer la probabilité qu'elle réserve un emplacement pour un véhicule.
+
+		\item Déterminer $P_{\overline{V}}(C)$.
+
+		On arrondira le résultat à $10^{-2}$.
+
+		Interpréter le résultat dans le contexte de l'exercice.
+	\end{enumerate}
+
+	\subsection*{Partie B}
+	Sur ce trajet, la réservation d'une cabine et d'un emplacement pour un véhicule sont facturés en supplément du coût de la traversée.
+
+	Ces suppléments sont d'un montant de :
+
+	\begin{itemize}[label={\textbullet~}]
+		\item 100~\euro{} pour une cabine ;
+		\item 70~\euro{} pour l'emplacement d'un véhicule.
+	\end{itemize}
+
+	On suppose qu'une famille peut réserver au maximum une cabine et au maximum un emplacement pour un véhicule.
+
+	À ces suppléments peuvent s'ajouter le prix payé pour des extras (repas, boissons, etc.).
+
+	On note $X$ la variable aléatoire qui associe, à chaque famille effectuant la traversée, le prix qu'elle paie, en euro, pour les suppléments.
+
+	On donne ci-dessous la loi de probabilité de $X$.
+
+	\medskip
+
+	\begin{tblr}{colspec={c *{4}{X[c]}},hlines, vlines}
+	$x_{i}$ & 0 & 70 & 100 & 170 \\
+	$P\left(X=x_{i}\right)$ & 0,19 & 0,06 & 0,51 & 0,24 \\
+	\end{tblr}
+
+	\medskip
+
+	On note $Y$ la variable aléatoire qui associe, à chaque famille effectuant la traversée, le prix qu'elle paie, en euro, pour les extras.
+
+	On admet que la variable aléatoire $Y$ a pour espérance $\mathrm{E}(Y)=104$ et pour variance $\mathrm{V}(Y)=\np{1686}$.
+
+	\medskip
+
+	On suppose que les variables $X$ et $Y$ sont indépendantes.
+
+	\begin{enumerate}
+		\item Justifier que \quad $\mathrm{E}(X)=96$ \quad et que \quad $\mathrm{V}(X)=\np{3114}$.
+
+		\item À titre exceptionnel, la compagnie propose une remise de $40\,\%$ sur les suppléments et les extras.
+
+		On note $Z$ la variable aléatoire qui, à chaque famille effectuant la traversée, associe le montant total pour les suppléments et les extras, en euro, payé par cette famille après réduction.
+
+		\begin{enumerate}
+			\item Justifier que \quad $Z = 0,6(X + Y)$.
+			\item En déduire que \quad $\mathrm{E}(Z)=120$ \quad et que \quad $\mathrm{V}(Z)=\np{1728}$,
+
+			où $\mathrm{E}(Z)$ est l'espérance de la variable aléatoire $Z$ et $\mathrm{V}(Z)$ sa variance.
+		\end{enumerate}
+
+		\item On note $n$ un entier naturel non nul et on choisit au hasard un échantillon de $n$ familles effectuant cette traversée bénéficiant de la réduction exceptionnelle définie en question \textbf{2.}
+
+		On admet que ce choix peut être assimilé à un tirage avec remise.
+
+		On désigne par $Z_{1}$ la variable aléatoire égale au prix total pour les suppléments et les extras payé par la première famille, $Z_{2}$ la variable aléatoire égale au prix total pour les suppléments et les extras payé par la deuxième famille et ainsi de suite, $Z_{n}$ la variable aléatoire égale au prix total pour les suppléments et les extras payé par la $n$-ième famille.
+
+		On considère la variable aléatoire \quad $M_{n}=\dfrac{Z_{1}+Z_{2}+\ldots+Z_{n}}{n}$ \quad donnant le prix total moyen pour les suppléments et les extras, payé par ces familles.
+
+		On admet que les variables $Z_{1}$\,, $Z_{2}$\,, \ldots, $Z_{n}$ sont indépendantes et suivent la même loi de probabilité que la variable aléatoire $Z$.
+
+		\begin{enumerate}
+			\item Montrer que l'espérance $\mathrm{E}\big(M_{n}\big)$ de la variable $M_{n}$ est égale à 120, et que sa variance $\mathrm{V}\big(M_{n}\big)$ est égale à $\dfrac{\np{1728}}{n}$.
+
+			\item Déterminer le plus petit entier $n$ pour lequel l'inégalité de Bienaymé-Tchebychev permet d'affirmer que \[\mathrm{P}\big(114<M_{n}<126\big) \geqslant 0,85.\]
+
+			Interpréter le résultat dans le contexte de l'exercice.
+		\end{enumerate}
+	\end{enumerate}
+
+\end{document}

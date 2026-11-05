@@ -1,0 +1,47 @@
+\subsection*{1. Calculer $u_2$ et $v_2$.}
+	
+	\begin{itemize}
+		\item $u_1 = 0,9 \times 400 + 60 = 360 + 60 = 420$.
+		\item $u_2 = 0,9 \times 420 + 60 = 378 + 60 = 438$.
+		\item $v_1 = -200 \times 0,9 = -180$.
+		\item $v_2 = -180 \times 0,9 = -162$.
+	\end{itemize}
+	
+	\subsection*{2. Calculer la somme des 20 premiers termes de la suite $(v_n)$.}
+	
+	Soit $V_{20} = v_0 + v_1 + \ldots + v_{19}$ ;
+	\[
+	V_{20} = -200 - 200 \times 0,9 - \ldots - 200 \times 0,9^{19} \quad \text{et} \quad 0,9V_{20} = -200 \times 0,9 - \ldots - 200 \times 0,9^{20}
+	\]
+	
+	D'où par différence :
+	\[
+	-0,1V_{20} = -200 \times 0,9^{20} + 200 = 200 \left( -0,9^{20} + 1 \right)
+	\]
+	
+	Donc
+	\[
+	S_{20} = 200 \times \dfrac{-0,9^{20} + 1}{-0,1} = 2000 \left( 0,9^{20} - 1 \right) \approx \numprint{-1756.85}.
+	\]
+	
+	\subsection*{3. La suite $(u_n)$ est-elle arithmétique ? La suite $(u_n)$ est-elle géométrique ?}
+	
+	La suite $(u_n)$ n'est ni arithmétique (la différence des termes consécutifs n'est pas constante), ni géométrique car $u_1 = 1,05u_0 = 420$ et $1,05u_1 = 1,05 \times 420 = 441 \neq 438$.
+	
+	\subsection*{4. Recopier et compléter la fonction \texttt{Suite} suivante écrite en Python qui permet de calculer la somme $S$ des 20 premiers termes de la suite $(u_n)$.}
+	
+	\begin{lstlisting}[style=python]
+def Suite():
+	U = 400
+	S = 0
+	for i in range(20):
+		S = S + U
+		U = U * 0.9 + 60
+	return S
+		
+print(Suite())
+	\end{lstlisting}
+	
+	\subsection*{5. On admet que $u_n = v_n + 600$. En déduire $u_{20}$.}
+	
+	On a $v_{20} = -200 \times 0,9^{20}$, donc $u_{20} = 600 - 200 \times 0,9^{20} \approx \numprint{572.983}$.

@@ -1,0 +1,61 @@
+Aide au calcul pour cet exercice : $8^{3}= 512 ~;~ 12 \times 8^{2}= 768$
+
+\medskip
+
+Dans une ville, l'évolution d'une épidémie en fonction du temps écoulé $x$, exprimé en semaines depuis le début de l'épidémie, est modélisée par une fonction $f$ définie sur l'intervalle $[0~;~12]$.
+
+Pour tout nombre réel $x$ compris entre 0 et $12,\: f(x)$ désigne le nombre de malades observés à l'instant $x$.
+
+La courbe représentative de $f$, notée $\mathcal{C}_f$, est donnée dans le repère du plan ci-dessous.
+
+\begin{center}
+\psset{xunit=0.85cm,yunit=0.027cm,arrowsize=2pt 3}
+\begin{pspicture*}(-0.9,-40)(13,290)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle,Dy=40]{->}(0,0)(0,0)(13,290)
+\multido{\n=0+1}{14}{\psline[linewidth=0.15pt](\n,0)(\n,280)}
+\multido{\n=0+40}{8}{\psline[linewidth=0.15pt](0,\n)(13,\n)}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{0}{12.024}{x dup mul 12 mul x 3 exp sub 4 add}
+\uput[ul](6.5,240){\red $\mathcal{C}_f$}
+\uput[d](10,-15){Temps écoulé (en semaines)}\uput[r](0,285){Nombre de malades}
+\end{pspicture*}
+\end{center}
+
+\begin{enumerate}
+\item Lecture graphique
+	\begin{enumerate}
+		\item Avec la précision permise par le graphique, lire $f(5)$.
+
+		Interpréter ce résultat dans le contexte de l'exercice.
+
+		\item Déterminer graphiquement la semaine où a eu lieu le pic de l'épidémie.
+
+		Avec la précision permise par le graphique, déterminer le nombre de malades cette semaine-là.
+	\end{enumerate}
+
+\item On admet que la fonction $f$ représentée ci-dessus est définie par :
+\[f(x)=-x^3+12 x^{2}+4\]
+
+	\begin{enumerate}
+		\item Calculer $f(1)$.
+
+		Interpréter ce résultat dans le contexte de l'exercice.
+
+		\item Vérifier que pour tout réel $x$ de l'intervalle $[0~;~12]$,
+		\[f'(x)= 3 x(- x + 8).\]
+		\item Compléter le tableau donné ci-dessous.
+		
+		
+\begin{center}
+\begin{tblr}{|l|p{7cm}|}\hline
+\centering$x$ & 0  \hfill12 \\ \hline
+Signe de $3 x$ &  \\\hline
+Signe de $(-x + 8)$ &  \\\hline
+Signe de $f'(x)$ &  \\ \hline
+~&~\\
+Variations de $f$ &  \\
+~&~\\ \hline
+\end{tblr}
+\end{center}
+		\item Déterminer la valeur exacte du nombre de malades la semaine où a eu lieu le pic de l'épidémie.
+	\end{enumerate}
+\end{enumerate}

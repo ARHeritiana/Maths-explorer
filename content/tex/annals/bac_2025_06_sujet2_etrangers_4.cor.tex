@@ -1,0 +1,53 @@
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+	\item $\vect{AB}\begin{pmatrix}-3\\1\\-1\end{pmatrix}$ et $\vect{AC}\begin{pmatrix}-1\\3\\-1\end{pmatrix}$. Ces deux vecteurs ne sont pas colinéaires car $\dfrac{-3}{-1}\neq \dfrac{1}{3}$. Les points $A$, $B$ et $C$ ne sont pas alignés.
+	\item D'après la question précédente, les vecteurs $\vect{AB}$ et $\vect{AC}$ forment une base du plan $(ABC)$.
+	Avec $\vect{n}\begin{pmatrix}-1\\1\\4\end{pmatrix}$, on calcule $\vect{n}\cdot\vect{AB}$ et $\vect{n}\cdot\vect{AC}$ :
+	
+	$\vect{n}.\vect{AB}=3+1-4=0$ et $\vect{n}.\vect{AC}=1+3-4=0$. $\vect{n}$ est donc orthogonal à deux vecteurs non colinéaires du plan $(ABC)$ donc il est normal à ce plan $(ABC)$.
+	\item $\vect{n}$ étant normal au plan $(ABC)$, une équation cartésienne de ce plan est de la forme : $-x+y+4z+d=0$ avec $d \in \R$.
+
+$A(1~;~0~;~3) \in (ABC)$ donc $-1+0+12+d=0 \iff d=-11$.
+
+Donc $(ABC)$ : $-x+y+4x-11=0$.
+	\end{enumerate}
+\end{enumerate}
+
+On considère le plan $\mathcal{P}$ d'équation cartésienne $3x - 3y + 2z - 9 = 0$ et le plan $\mathcal{P}'$ d'équation cartésienne $x - y- z + 2 = 0$.
+
+\begin{enumerate}[resume]
+	\item 
+	\begin{enumerate}
+		\item Le vecteur $\vect{n_1}\begin{pmatrix}3\\-3\\2\end{pmatrix}$ est normal au plan $\mathcal{P}$, le vecteur $\vect{n_2}\begin{pmatrix}1\\-1\\-1\end{pmatrix}$ est normal au plan $\mathcal{P}'$ . Les vecteurs $\vect{n_1}$ et $\vect{n_2}$ ne sont pas colinéaires car $\dfrac{3}{1}\neq \dfrac{2}{-1}$. Donc les plans $\mathcal{P}$ et $\mathcal{P}'$ ne sont ni parallèles ni confondus. Ils sont donc sécants. Leur intersection est donc une droite $(d)$.
+		\item $\vect{n_1}\cdot \vect{n_2}=3+3-2=4\neq 0$ donc les plans ne sont pas perpendiculaires.
+\end{enumerate}
+	\item Soit une droite dirigée par le vecteur $\vect{u}\begin{pmatrix}1\\1\\0\end{pmatrix}$. Vérifions si $\vect{u}$ est normal aux vecteurs normaux des plans $\mathcal{P}$ et $\mathcal{P}'$.
+	
+	$\vect{n_1}.\vect{u}=3-3+0=0$ et $\vect{n_2}.\vect{u}=1-1+0=0$ donc cette droite est parallèle à la fois au plan $\mathcal{P}$ et au plan $\mathcal{P}'$. Donc il existe une droite $(d_1)$ appartenant à $\mathcal{P}$ et une droite $(d_1)$ appartenant à $\mathcal{P}'$ qui sont parallèles de vecteur directeur $\vect{n}$.
+	Citons le théorème du toit : s'il existe deux droites parallèles $(d_1)$ et $(d_2)$, contenues respectivement dans deux plans $\mathcal{P}_1$ et $\mathcal{P}_2$, alors la droite, intersection des plans $\mathcal{P}_1$ et $\mathcal{P}_2$ est parallèle à $(d_1)$ et $(d_2)$.
+	
+Donc $(d)$ est parallèle à cette droite. Un vecteur directeur de $(d)$ est donc $\vect{n}$.
+	\item On remplace les coordonnées de $M$ dans les deux équations de plans :
+\begin{itemize}
+\item $6-3+6-9=12-12=0$ donc $M\in \mathcal{P}$ ;
+\item $2-1-3+2=4-4=0$ donc $M\in \mathcal{P}'$.
+\end{itemize}
+
+La droite $(d)$ passe donc par $M$ et a pour vecteur directeur $(d)~:~\vect{u}$ donc 
+
+$\begin{cases} x=2+t\\y=1+t\\z=3\end{cases},~t\in \R$
+
+	\item On cherche l'intersection de $(ABC)$ et de $(d)$. On résout le système : 
+
+$\begin{cases} x=2+t\\y=1+t\\z=3\\-x+y+4z-11=0\end{cases}$. S'il admet une infinité de solutions alors $(d)\subset (ABC)$.
+
+	On remplace $x$, $y$ et $z$ dans la dernière équation : 
+
+	$-x+y+4z-11=0 \Rightarrow -(2+t)+1+t+4\times 3-11=0 \iff 0=0$. La dernière équation est vérifiée quelque soit la valeur de $t$. Donc ce système admet une infinité de solutions. $(d)\subset (ABC)$
+
+	Donc la droite $(d)$ appartient aux trois plans $(ABC)$, $\mathcal{P}$ et $\mathcal{P}'$.
+	Reprenons les trois vecteurs normaux des trois plans : $\vect{n}\begin{pmatrix}-1\\1\\4\end{pmatrix}$, $\vect{n_1}\begin{pmatrix}3\\-3\\2\end{pmatrix}$ et $\vect{n_2}\begin{pmatrix}1\\-1\\-1\end{pmatrix}$.
+	
+	$\vect{u}$ et $\vect{n_1}$ ne sont pas colinéaires, de même pour $\vect{u}$ et $\vect{n_2}$. Le plan $(ABC)$ n'est donc  confondu ni avec $\mathcal{P}$  ni avec $\mathcal{P}'$. Ces trois plans sont simplement sécants, d'intersections $(d)$.
+\end{enumerate}

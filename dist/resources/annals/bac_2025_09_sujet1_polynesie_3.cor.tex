@@ -1,0 +1,288 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_09_sujet1_polynesie_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+	On considère la suite $(u_{n})$ définie par $u_{0}=5$ et, pour tout $n$ :
+$u_{n+1}=2+\ln \left(u_{n}^{2}-3\right)$
+
+
+
+	\subsection*{Partie A : Exploitation de programmes Python}
+
+	\begin{enumerate}
+		\item On complète le script Python ci-dessous pour que \texttt{suite(k)}  renvoie la liste des $k$ premières valeurs de la suite $(u_{n})$.
+
+
+
+
+
+		\begin{center}
+		\begin{ttfamily}
+		\begin{tabularx}{0.6\linewidth}{|X|}\hline
+			def suite(k):\\
+			\quad	L = []\\
+			\quad	u = 5\\
+			\quad	for i in range({\blue k}):\\
+			\qquad	L.append(u)\\
+			\qquad	u = \blue 2 + log( u**2 - 3\\
+			\quad	return({\blue L})\\ \hline
+		\end{tabularx}
+		\end{ttfamily}
+		\end{center}
+		
+		\item On a exécuté \texttt{suite(9)} ci-dessous. 
+		
+
+
+\begin{center}
+\begin{ttfamily}
+		
+\begin{tabularx}{\linewidth}{|X|}\hline
+>{}>{}>{} suite(9) \\
+$\left[\right.$ 5, 5.091042453358316, 5.131953749864703,\\
+5.150037910978289, 5.157974010229213, 5.1614456706362954,\\
+5.162962248594583, 5.163624356938671, 5.163913344065642$\left.\right]$\\ \hline
+
+\end{tabularx}
+\end{ttfamily}
+\end{center}
+
+La suite $(u_n)$ semble croissante, mais on ne peut pas se prononcer sur sa limite.
+
+		\item On a ensuite créé la fonction \texttt{mystere(n)} donnée ci-dessous et exécuté \linebreak \texttt{mystere(10000)}, ce qui a renvoyé \texttt{1}.
+
+
+
+\begin{center}
+		\begin{ttfamily}
+
+\begin{tabularx}{\linewidth}{|X|}\hline
+			def mystere(n):\\
+			\quad L = suite(n)\\
+			\quad	c = 1\\
+			\quad	for i in range(n - 1):\\
+			\qquad	if L[i] $>$ L[i + 1]:\\
+			\qquad \quad c = 0\\
+			\quad return c\\ \hline
+
+\end{tabularx}
+		\end{ttfamily}
+		\end{center}
+
+La fonction \texttt{mystere} renvoie 0 s'il existe un indice $i$ pour lequel \texttt{L[i] > L[i+1]}, c'est-à-dire $u_{n}>u_{n+1}$. Comme \texttt{mystere(10000)} renvoie 1, cela veut dire que pour tout $i\leqslant \np{9999}$, on a: $u_{i} \leqslant u_{i+1}$.
+
+Cela ne contredit pas la conjecture faite sur la croissance de la suite $(u_n)$.
+
+
+
+
+
+
+
+
+
+
+
+
+	\end{enumerate}
+
+\subsection*{Partie  B : Étude de la convergence de la suite ( $\boldsymbol{u}_{\boldsymbol{n}}$ )}
+
+On considère la fonction $g$ définie sur $[2 ~;~+\infty [$ par :
+$g(x)=2+\ln \left(x^{2}-3\right)$.
+
+
+
+\begin{enumerate}
+	\item 
+$g'(x)= 0+ \dfrac{2x}{x^2-3} = \dfrac{2x}{x^2-3}$
+
+Sur  $[2 ~;~+\infty[$, $2x>0$ et $x^2>4$ donc $x^2-3>1>0$;
+donc $g'(x)>$ sur 	$[2 ~;~+\infty[$, ce qui prouve que la fonction $g$ est croissante sur $[2 ~;~+\infty[$.
+	
+	\item 
+		\begin{enumerate}
+		\item On démontre par récurrence que la propriété $4 \leqslant u_{n} \leqslant u_{n+1} \leqslant 6$ est vraie pour tout  entier naturel $n$.
+
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+$u_0=5$ et $u_1=2+\ln\left (5^2-3\right ) = 2+\ln(22) \approx 5,09$
+
+Donc $4 \leqslant u_{0} \leqslant u_{1} \leqslant 6$; la propriété est vraie au rang 0.
+\item \textbf{Hérédité}
+
+On suppose la propriété vraie au rang $n$, c'est-à-dire $4 \leqslant u_{n} \leqslant u_{n+1} \leqslant 6$.
+
+D'après la définition de la fonction $g$, on a $u_{n+1}=g(u_n)$ pour tout $n$.
+
+On sait que la fonction $g$ est croissante sur $[2\;;\;+\infty[$; donc de l'inégalité  $4 \leqslant u_{n} \leqslant u_{n+1} \leqslant 6$, on déduit $g(4) \leqslant g\left (u_{n}\right ) \leqslant g\left (u_{n+1}\right ) \leqslant g(6)$.
+
+$g(4)\approx 4,56$; $g\left (u_n\right )=u_{n+1}$; $g\left (u_{n+1}\right )=u_{n+2}$
+et $g(6)\approx 5,5$
+
+On a donc $4,5 \leqslant u_{n+1} \leqslant u_{n+2} \leqslant 5,5$,
+ce qui entraine $4 \leqslant u_{n+1} \leqslant u_{n+2} \leqslant 6$.
+
+La propriété est donc héréditaire.
+\item \textbf{Conclusion}
+
+La propriété est vraie au rang 0 et elle est héréditaire pour tout $n\geqslant 0$ donc, d'après le principe de récurrence, elle est vraie pour tout entier naturel $n$.
+\end{list}
+
+On a donc  démontré  que, pour tout $n$ : $4 \leqslant u_{n} \leqslant u_{n+1} \leqslant 6$.
+
+		\item 
+\begin{list}{\textbullet}{D'après la question précédente, pour tout $n$, on a:}
+\item $u_{n}\leqslant u_{n+1}$ donc la suite $(u_n)$ est croissante;
+\item $u_n \leqslant 6$ donc la suite $(u_n)$ est majorée.
+\end{list}		
+
+La suite $(u_n)$ est croissante et majorée donc, d'après le théorème de la convergence monotone, elle est convergente.
+		
+		
+		\end{enumerate}
+	\end{enumerate}
+
+\subsection*{Partie C : Étude de la valeur de la limite}
+
+On considère la fonction $f$ définie sur [ 2 ; $+\infty$ [ par :
+$f(x)=2+\ln \left(x^{2}-3\right)-x$.
+
+
+
+On donne le tableau de variations de $f$ suivant. 
+
+\[\begin{tablvar}[6em]{2}
+\hline
+x & 2 && 3 && +\infty\\
+\hline
+\variations{\mil{f(x)} & \bas{0} && \haut{\ln(6)-1} &&  \bas{-\infty}} 
+\hline
+\end{tablvar}\]
+
+	\begin{enumerate}
+		\item \begin{enumerate}
+			\item 
+D'après le tableau de variations de $f$, on voit que $f(2)=0$. \\
+On complète le tableau:
+
+\[\begin{tablvar}[6em]{2}
+\hline
+x & \vr{2} && 3 & \vr{\beta} & +\infty\\
+\hline
+\variations{\mil{f(x)} & \posvr{3}{0} && \haut{\ln(6)-1} & \vr{0}&  \bas{-\infty}} 
+\hline
+\end{tablvar}\]
+
+Donc l'équation $f(x)=0$ admet exactement deux solutions sur l'intervalle $[2 ~;~+\infty[$ que l'on notera $\alpha=2$ et $\beta \in \left [ 3\;; +\infty \strut\right [$
+
+			\item 
+On a vu que $\alpha=2$.
+
+\begin{list}{\textbullet}{À la calculatrice, on trouve successivement:}
+\item $f(5)<0<f(6)$ donc $\beta \in \left [ 5\;; 6 \strut\right ]$;
+\item $f(5,1)<0<f(5;2)$ donc $\beta \in \left [ 5,1\;; 5,2 \strut\right ]$;
+\item $f(5,16)<0<f(5;17)$ donc $\beta \in \left [ 5,16\;; 5,17 \strut\right ]$;
+\item $f(5,164)<0<f(5;165)$ donc $\beta \in \left [ 5,164\;; 5,165 \strut\right ]$.
+\end{list}			
+
+Donc $5,164$  une valeur approchée à $10^{-3}$ près de $\beta$.
+		\end{enumerate}
+
+		\item On note $\ell$ la limite de la suite $(u_{n})$.
+
+
+$f(x)=g(x) - x$ donc $g(x)=x \iff f(x)=0$
+
+Pour tout $n$, on a $g\left (u_n\right )=u_{n+1}$ donc, par passage à la limite on a $g(\ell)=\ell$, ce qui équivaut à $f(\ell) = 0$.
+
+$u_0 = 5$ et la suite $(u_n)$ est croissante donc $\ell\geqslant 5$.
+
+$\ell\geqslant 5$ et $\ell$ vérifie $f(\ell) = 0$; d'après les questions précédentes, on peut en déduire que $\ell = \beta$.
+
+	\end{enumerate}
+
+\bigskip
+
+\end{document}

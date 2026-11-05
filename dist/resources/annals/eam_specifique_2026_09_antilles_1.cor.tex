@@ -1,0 +1,120 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_09_antilles_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\emph{On note $A$ l'évènement \og Pierre joue la manche en premier \fg{} et $G$ l'évènement \og Pierre gagne la manche \fg. On a
+$P(A) = P\left(\overline{A}\right) = \dfrac{1}{2}$, $P_A(G) = \dfrac{2}{3}$ et $P_{\overline{A}}(G) = \dfrac{2}{5}$.}
+
+\begin{enumerate}
+	\item La somme des probabilités issues d'un même n{\oe}ud vaut 1 :
+	$P_A\left(\overline{G}\right) = 1 - \dfrac{2}{3} = \dfrac{1}{3}$ et
+	$P_{\overline{A}}\left(\overline{G}\right) = 1 - \dfrac{2}{5} = \dfrac{3}{5}$.
+
+	\begin{center}
+		\begin{tikzpicture}[x=2.8cm, y=1cm]
+			
+			\node (root) at (0,0) {};
+			\node (A) at (1,1.3) {$A$};
+			\node (Ab) at (1,-1.3) {$\overline{A}$};
+			\node (G1) at (2,2.1) {$G$};
+			\node (G1b) at (2,0.5) {$\overline{G}$};
+			\node (G2) at (2,-0.5) {$G$};
+			\node (G2b) at (2,-2.1) {$\overline{G}$};
+			
+			\draw (root.east) -- (A) node[pos=0.5,above] {$\frac{1}{2}$};
+			\draw (root.east) -- (Ab) node[pos=0.5,below] {$\frac{1}{2}$};
+			
+			\draw (A.east) -- (G1) node[pos=0.5,above] {$\frac{2}{3}$};
+			\draw (A.east) -- (G1b) node[pos=0.5,below] {$\frac{1}{3}$};
+			\draw (Ab.east) -- (G2) node[pos=0.5,above] {$\frac{2}{5}$};
+			\draw (Ab.east) -- (G2b) node[pos=0.5,below] {$\frac{3}{5}$};
+		\end{tikzpicture}
+	\end{center}
+
+	\item D'après l'énoncé : $P_A(G) = \dfrac{2}{3}$ et $P_{\overline{A}}(G) = \dfrac{2}{5}$.
+
+	\item $P(A \cap G) = P(A) \times P_A(G) = \dfrac{1}{2} \times \dfrac{2}{3} = \dfrac{2}{6} = \dfrac{1}{3}$.
+
+	La probabilité que Pierre joue la manche en premier et qu'il la gagne est égale à $\dfrac{1}{3}$.
+\end{enumerate}
+
+\end{document}

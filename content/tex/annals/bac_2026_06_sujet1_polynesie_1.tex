@@ -1,0 +1,103 @@
+\medskip
+
+Une école de surf travaille avec des planches en mousse pour les cours débutants, et d'autres en résine pour les cours de perfectionnement. Les planches en mousse représentent 80~\% du stock de l'école.
+
+La gérante observe qu'après chaque saison,
+\begin{itemize}[noitemsep]
+\item 75\,\% des planches en mousse sont en bon état et réutilisables la saison suivante. Les autres sont recyclées (et donc non réutilisables)~;
+\item 60\,\% des planches en résine sont en bon état, les autres sont soit consolidées, soit recyclées.
+\end{itemize}
+
+Après une saison, on choisit une planche au hasard et on s'intéresse aux évènements suivants~:
+\begin{itemize}[noitemsep]
+\item $M$ : \og La planche est en mousse \fg~;
+\item $B$ : \og La planche est en bon état \fg~;
+\item $R$ : \og La planche sera recyclée \fg~;
+\item $C$ : \og La planche sera consolidée \fg.
+\end{itemize}
+
+\subsection*{Partie A}
+
+\begin{enumerate}
+\item Recopier et compléter sur la copie l'arbre pondéré ci-dessous avec les données de l'énoncé.
+
+Il sera complété au fur et à mesure de l'exercice.
+
+\begin{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\pstree[levelsep=2.5,treesep=.7,treemode=R,nodesep=3pt]{\TR{}}
+{
+\pstree{\TR{$M$}}
+	{
+	\TR{$B$}
+	\TR{$R$}
+	}
+	\pstree{\TR{$\overline{M}$}}
+	{
+	\TR{$B$}
+	\TR{$R$}
+	\TR{$C$}
+	}
+}
+
+\end{center}
+
+\item On sait que $P\left(\overline{M} \cap R\right) = 0,05$.
+\begin{enumerate}[label=\textbf{\alph*.}]
+\item Interpréter cette égalité dans le contexte de l'exercice.
+\item On a choisi une planche en résine. Démontrer que la probabilité que cette planche soit consolidée pour la saison suivante est $0,15$.
+\end{enumerate}
+\item La gérante affirme qu'après une saison, au moins $\dfrac{3}{4}$ des planches sont en bon état. A-t-elle raison~?
+\end{enumerate}
+
+\bigskip
+
+\subsection*{Partie B}
+
+La gérante du club de surf envisage de proposer à certains clients une remise pour la saison suivante.
+
+Pour cela, elle imagine le jeu suivant qui sera proposé à chaque client~:
+
+Une urne contient 5 boules noires et un nombre $n$ de boules rouges.
+
+Les boules sont indiscernables au toucher.
+
+Le client tire simultanément deux boules dans l'urne.
+
+Si les deux boules sont de même couleur, le client gagne une remise, sinon, il perd le jeu et n'obtient pas de remise.
+
+\begin{enumerate}
+\item Justifier que la probabilité $p$ de gagner une remise est~:
+\[
+p = \dfrac{\dbinom{5}{2} + \dbinom{n}{2}}{\dbinom{n+5}{2}}.
+\]
+\item En déduire que la probabilité $p$ peut s'écrire~:
+\[
+p = \dfrac{20 + n(n-1)}{(n+5)(n+4)}.
+\]
+\item La gérante souhaite s'assurer que la probabilité de gagner est inférieure à $\dfrac{1}{2}$.
+
+Déterminer pour cela l'ensemble des valeurs possibles du nombre $n$ de boules rouges qu'elle peut mettre dans l'urne.
+\end{enumerate}
+
+\bigskip

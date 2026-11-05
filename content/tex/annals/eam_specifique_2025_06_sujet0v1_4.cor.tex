@@ -1,0 +1,32 @@
+\medskip
+
+\begin{itemize}[label=\textbullet]
+\item Sur un axe gradué en mètres, on organise une course entre une tortue et un escargot.
+\item La tortue part du point d'abscisse $x = 0$. \\
+Elle se déplace vers la droite à une vitesse de $2$~mètres par minute.
+\item L'escargot part du point d'abscisse $x = 12$. \\
+Il se déplace vers la droite à une vitesse de $50$~centimètres par minute.
+\item Les deux concurrents partent en même temps.
+\end{itemize}
+
+
+
+
+
+\begin{center}
+\psset{unit=0.8cm,arrowsize=2pt 3}
+\begin{pspicture}(-1,-0.4)(15,0.5)
+\psline[linewidth=1.25pt]{->}(-1,0)(15,0)
+\multido{\n=0+1}{15}{\psline(\n,-0.1)(\n,0) \uput[d](\n,0){\n}}
+\uput[u](0,0){T}\uput[u](12,0){E}
+\end{pspicture}
+\end{center}
+
+\begin{tabular}{@{} ll}
+D'après les données: & \textbullet~~l'abscisse de T au bout de $x$ minutes est $2x$;\\
+& \textbullet~~l'abscisse de E au bout de $x$ minutes est $12+0,5x$.
+\end{tabular}
+
+La tortue rejoint l'escargot quand $2x=12+0,5x$, soit $2x-0,5x=12$ soit $1,5x=12$ ou encore $x=\dfrac{12}{1,5}$, c'est-à-dire pour $x=8$. La distance parcourue alors est de $2\times 8=16$.
+
+La tortue rattrape l'escargot au bout de 8 minutes, donc au point d'abscisse  16.

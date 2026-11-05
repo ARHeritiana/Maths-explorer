@@ -1,0 +1,203 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet2_madagascar_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Cet exercice est un questionnaire à choix multiples.\\
+Pour chacune des questions suivantes, une seule des quatre réponses proposées est exacte.\\
+Une réponse fausse, une réponse multiple ou l'absence de réponse à une question ne rapporte ni n'enlève de point.\\
+Pour répondre, indiquer sur la copie le numéro de la question et la lettre de la réponse choisie.\\Aucune justification n'est demandée.}
+
+\medskip
+
+\begin{enumerate}
+\item Soit $g$ la fonction définie sur $\R$ par $g(x) = x^{\np{1000}} + x$. 
+
+On peut affirmer que :
+	\begin{enumerate}
+		\item la fonction $g$ est concave sur $\R$.
+		\item la fonction $g$ est convexe sur $\R$.
+		\item la fonction $g$ possède exactement un point d'inflexion.
+		\item la fonction $g$ possède exactement deux points d'inflexion.
+	\end{enumerate}
+\item On considère une fonction $f$ définie et dérivable sur $\R$. 
+
+\begin{minipage}{0.48\linewidth}
+On note $f'$ sa fonction dérivée.
+
+On note $\mathcal{C}$ la courbe représentative de $f$.
+
+On note $\Gamma$ la courbe représentative de $f'$.
+
+On a tracé ci-contre la courbe $\Gamma$.
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}
+\psset{unit=1.2cm}
+\begin{pspicture*}(-1.8,-1.6)(3.2,1.4)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.15pt]
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle]{->}(0,0)(-1.8,-1.6)(3.2,1.4)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-1.8}{3.2}{x 1 add 2.71828 x exp div}
+\uput[ur](2,0.45){\red $\Gamma$}
+\end{pspicture*}
+\end{minipage}
+
+On note $T$ la tangente à la courbe $\mathcal{C}$ au point d'abscisse 0 .
+
+On peut affirmer que la tangente $T$ est parallèle à la droite d'équation : 
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}$y =x$ &\textbf{b.~~}$y = 0$\\
+\textbf{c.~~}$y = 1$&\textbf{d.~~}$x = 0$
+\end{tabularx}
+\end{center}
+\item On considère la suite $\left(u_n\right)$ définie pour tout entier naturel $n$ par $u_n = \dfrac{(-1)^n}{n+1}$.
+
+On peut affirmer que la suite $\left(u_n\right)$ est : 
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}majorée et non minorée.&\textbf{b.~~}minorée et non majorée.\\
+\textbf{c.~~}bornée.				&\textbf{d.~~}non majorée et non minorée.
+\end{tabularx}
+\end{center}
+
+\item Soit $k$ un nombre réel non nul.
+
+Soit $\left(v_n\right)$  une suite définie pour tout entier naturel $n$.
+
+On suppose que $v_0 = k$ et que pour tout $n$, on a $v_n \times v_{n+1} < 0$.
+
+On peut affirmer que $v_{10}$ est :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}positif. &\textbf{a.~~} négatif.\\
+\textbf{c.~~}du signe de $k$.&\textbf{d.~~}du signe de $- k$.
+\end{tabularx}
+\end{center}
+\item On considère la suite $\left(w_n\right)$ définie pour tout entier naturel $n$ par : 
+
+\[w_{n+1} = 2w_n - 4\quad \text{et}\quad  w_2 = 8.\]
+
+On peut affirmer que:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}$w_0 = 0$&\textbf{b.~~} $w_0 = 5$.\\
+\textbf{c.~~}$w_0 = 10$.&\textbf{d.~~}Il n'est pas possible de calculer $w_0$.
+\end{tabularx}
+\end{center}
+
+\item \footnote{Cette question ne fait pas partie du sujet donné à Madagascar} On considère la suite $\left(a_n\right)$ définie pour tout entier naturel $n$ par :
+
+\[a_{n+1} = \dfrac{\text{e}^n}{\text{e}^n + 1}a_n\quad \text{et} \quad a_0 = 1.\]
+
+On peut affirmer que :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} la suite $\left(a_n\right)$ est strictement croissante.&\textbf{b.~~}la suite $\left(a_n\right)$ est strictement décroissante.\\
+\textbf{c.~~} la suite $\left(a_n\right)$ n'est pas monotone.&\textbf{d.~~} la suite $\left(a_n\right)$ est constante.
+\end{tabularx}
+\end{center}
+\item Une cellule se reproduit en se divisant en deux cellules identiques, qui se divisent à leur tour, et ainsi de suite. 
+
+On appelle temps de génération le temps nécessaire pour qu'une cellule donnée se divise en deux cellules.
+
+On a mis en culture 1 cellule. Au bout de 4 heures, il y a environ \np{4000} cellules.
+
+On peut affirmer que le temps de génération est environ égal à :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}moins d'une minute.&\textbf{b.~~}12 minutes.\\
+\textbf{c.~~}20 minutes.		&\textbf{d.~~}1 heure.
+\end{tabularx}
+\end{center}
+
+\end{enumerate}
+
+\bigskip
+
+\end{document}

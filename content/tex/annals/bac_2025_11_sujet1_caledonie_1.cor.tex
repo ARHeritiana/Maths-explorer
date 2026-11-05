@@ -1,0 +1,109 @@
+\smallskip
+
+\begin{enumerate}
+\item On complète l'arbre représentant la situation.
+
+\begin{center}
+\medskip
+\psset{treemode=R,nodesepB=3pt,nodesepA=0pt,treesep=1cm,levelsep=2.5cm,nrot=:U}
+\pstree{\TR{}}{
+	\pstree[nodesepA=4pt]{\TR{$A$}\naput{$0,25$}}{
+		\TR{$C$}\naput{$0,6$}
+		\TR{$\overline{C}$}\nbput{$0,4$}}
+	\pstree[nodesepA=4pt]{\TR{$\overline{A}$}\nbput{$0,75$}}{
+		\TR{$C$}\naput{$0,25$}
+		\TR{$\overline{C}$}\nbput{$0,75$}}}
+\medskip		
+\end{center}
+
+	\item L'évènement \og Le joueur obtient une boule avec la lettre A et un billet de 50 euros \fg{} est $\left\{A \cap C\right\}$.
+	\[P\left(A \cap C\right) = P(A) \times P_{A}(C) = 0,25 \times 0,6 = \boxed{0,15}\]
+
+	\item Les évènements $A$ et $\overline{A}$ forment une partition de l'univers, donc, d'après la formule des probabilités totales, on a :
+	
+\begin{eqnarray*}
+P(C)&=& P\left(A \cap C\right) + P\left(\overline{A} \cap C\right) = P(A) \times P_{A}(C) + P\left(\overline{A}\right) \times P_{\overline{A}}(C)\\
+	&=& 0,15 + 0,75 \times 0,25 = 0,15 + \np{0,1875}\\
+	&=& \boxed{\np{0,3375}}
+\end{eqnarray*}
+
+	\item On doit calculer la probabilité $P_{\overline{C}}\left(\overline{A}\right)$ :
+
+	\[P_{\overline{C}}\left(\overline{A}\right) = \dfrac{P\left(\overline{A}\cap \overline{C}\right)}{P\left(\overline{C}\right)} = \dfrac{P\left(\overline{A}\right) \times P_{\overline{A}}\left(\overline{C}\right)}{1 - P(C)} = \dfrac{0,75 \times 0,75}{1 - \np{0,3375}} = \dfrac{\np{0,5625}}{\np{0,6625}} = \dfrac{45}{53} \approx 0,85.\]
+La probabilité que le joueur ait pris une boule avec la lettre B sachant qu'il a obtenu un billet de 10 euros est environ 85\,\%. L'affirmation est donc vraie.
+
+	\item La loi de probabilité de $X_{1}$ est donnée par le tableau suivant :
+
+\begin{center}
+\begin{tabularx}{.5\textwidth}{|>{$}c<{$}|*{2}{>{\centering\arraybackslash$}X<{$}|}}\hline
+k_{i} & 10 & 50 \\ \hline
+P\left(X_{1} = k_{i}\right) & \np{0,6625} & \np{0,3375} \\ \hline
+\end{tabularx}
+\end{center}
+
+L'espérance de $X_{1}$ est donc :
+\[E\left(X_{1}\right) = 10 \times \np{0,6625} + 50 \times \np{0,3375} = 6,625 + 16,875 = \boxed{23,5}.\]
+
+\smallskip
+
+La variance de $X_{1}$ est donc :
+
+\[\begin{aligned}
+V\left(X_{1}\right)
+& = E\left(X_{1}^{2}\right) - \left[E\left(X_{1}\right)\right]^{2} = \left (100 \times \np{0,6625} + \np{2500}\times \np{0,3375} \right )- 23,5^{2}\\
+& = 66,25 + 843,75 - 552,25 = \boxed{357,75}.
+\end{aligned}\]
+
+\item
+	\begin{enumerate}
+		\item On sait que l'espérance d'une somme de variables aléatoires est égale à la somme des espérances; or $X_{1}$ et $X_{2}$ suivent la même loi, donc :
+
+		\[E(Y) = 2 \times E\left(X_{1}\right) = 2 \times 23,5 = \boxed{47}.\]
+
+		\item Puisque la boule et le billet ont été remis, les deux tirages sont indépendants, donc les variables aléatoires $X_{1}$ et $X_{2}$ sont indépendantes. Or on sait que la variance de la somme de deux variables aléatoires indépendantes est égale à la somme de leurs variances (propriété de l'additivité). On a donc :
+
+\[\boxed{V(Y) = V\left(X_{1}\right) + V\left(X_{2}\right)} \text{~~et donc~~} \boxed{V(Y)=2\times 357,75 = 715,5}\]
+	\end{enumerate}
+
+\item Le joueur joue de même une troisième, une quatrième,\ldots, une centième partie.
+
+On définit donc de la même façon les variables aléatoires $X_3$, $X_4$,\ldots, $X_{100}$.
+
+On note $Z$ la variable aléatoire définie par $Z = X_1 + X_2 + \ldots + X_{100}$.
+
+\begin{list}{\textbullet}{Pour les mêmes raisons que dans la question précédente, on a:}
+\item
+$ E\left (Z\right ) 
+= E\left (\ds\sum_{k=1}^{100} X_k \right ) 
+= \ds\sum_{k=1}^{100} \left (E\left (X_k\right )\right ) 
+= 100\times 23,5 = \np{2350}$
+\item
+$ V\left (Z\right ) 
+= V\left (\ds\sum_{k=1}^{100} X_k \right ) 
+= \ds\sum_{k=1}^{100} \left (V\left (X_k\right )\right ) 
+= 100\times 357,75 = \np{35775}$	
+\end{list}
+
+Pour tout réel $t$  strictement positif, on a:
+$P\left ( \left | Z-E(Z)\strut \right | \geqslant t\right ) \leqslant \dfrac{V(Z)}{t^2}$.\\
+C'est l'inégalité de Bienaymé-Tchebychev.
+
+On en déduit que: 	$P\left ( \left | Z-E(Z)\strut \right | < t\right ) \geqslant 1- \dfrac{V(Z)}{t^2}$. Donc:
+$P\left ( \left | Z- \np{2350}\strut \right | < t\right ) \geqslant 1- \dfrac{\np{35775}}{t^2}$
+
+$\left | Z- \np{2350}\strut \right | < t
+\iff \np{2350}-t < Z < \np{2350}+ t$
+
+Or on cherche $P\left ( Z \in\, \left ] \np{1950}\;;\; \np{2750}\strut \right [\right )$ donc on prendra $t=400$.
+
+On aura donc:
+$P\left ( Z \in\, \left ] \np{1950}\;;\; \np{2750}\strut \right [\right )
+\geqslant 1- \dfrac{\np{35775}}{400^2}$.
+
+$1- \dfrac{\np{35775}}{400^2} \approx 0,776 \geqslant 0,75$.
+Donc la probabilité que $Z$ appartienne à l'intervalle $]\np{1950}~;~\np{2750}[$ 
+ est supérieure ou égale à $0,75$.
+\end{enumerate}
+
+
+\bigskip

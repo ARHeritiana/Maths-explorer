@@ -1,0 +1,133 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet59_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\( f(x) = (x^2 - 2{,}5x + 1) \e^x \).
+
+\subsection*{1.}
+
+\paragraph{a.} \(f\) est dérivable sur \( \mathbb{R} \) comme produit de fonctions dérivables sur cet intervalle :
+\begin{align*}
+f'(x) &= (2x - 2{,}5) \e^x + (x^2 - 2{,}5x + 1) \e^x \\
+&= \e^x (2x - 2{,}5 + x^2 - 2{,}5x + 1) \\
+&= \e^x (x^2 - 0{,}5x - 1{,}5).
+\end{align*}
+
+\paragraph{b.} On sait que \( \e^x > 0 \) quel que soit le réel \( x \), donc \( f'(x) \) a le signe du trinôme \( x^2 - 0{,}5x - 1{,}5 \).
+
+On a :
+\[
+\Delta = 0{,}5^2 - 4 \times (-1{,}5) = 0{,}25 + 6 = 6{,}25 = (2{,}5)^2.
+\]
+L'équation \( x^2 - 0{,}5x - 1{,}5 = 0 \) a donc deux racines :
+\[
+x_1 = \dfrac{0{,}5 + 2{,}5}{2} = 1{,}5 \quad \text{et} \quad x_2 = \dfrac{0{,}5 - 2{,}5}{2} = -1.
+\]
+
+On sait de plus que ce trinôme est positif sauf sur l'intervalle \( \,] -1 \,;\, 1{,}5[ \).
+
+La fonction \(f\) est donc croissante sauf sur l'intervalle \( \,] -1 \,;\, 1{,}5[ \).
+
+\subsection*{2.}
+
+\paragraph{a.} On a :
+\[
+M(x \,;\, y) \in \mathcal{T} \iff y - f(0) = f'(0)(x - 0).
+\]
+
+Avec \(f(0) = 1 \times \e^0 = 1\) et \(f'(0) = -1{,}5 \times \e^0 = -1{,}5\), on a donc :
+\[
+M(x \,;\, y) \in \mathcal{T} \iff y - 1 = -1{,}5(x - 0) \text{ ou encore } y = -1{,}5x + 1.
+\]
+
+\paragraph{b.} Le point d'abscisse \(a\) appartenant à la fois à la courbe \(\mathcal{C}_f\) et à la tangente \(\mathcal{T}\), cette abscisse vérifie à la fois l'équation de \(f\) et celle de \(\mathcal{T}\), soit :
+\[
+(a^2 - 2{,}5a + 1) \e^a = -1{,}5a + 1 \text{ ou } (a^2 - 2{,}5a + 1) \e^a + 1{,}5a - 1 = 0.
+\]
+
+On peut entrer sur la calculatrice la fonction \( x \longmapsto g(x) = (x^2 - 2{,}5x + 1) \e^x + 1{,}5x - 1 \) et essayer de chercher pour quelle valeur cette fonction s'annule (en dehors de 0). On a \( g(1{,}7) \approx -0{,}42 \) et \( g(1{,}8) \approx 0{,}13 \). Donc \( 1{,}7 < a < 1{,}8 \).
+
+\( g(1{,}77) \approx -0{,}0599 \) et \( g(1{,}78) \approx 0{,}0002 \), donc \( 1{,}77 < a < 1{,}78 \).
+
+Donc \( a \approx 1{,}8 \) au dixième près.
+
+\end{document}

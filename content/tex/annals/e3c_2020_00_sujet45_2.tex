@@ -1,0 +1,40 @@
+\medskip
+
+Une urne contient deux boules rouges et trois boules noires toutes indiscernables au toucher.
+
+On tire au hasard une première boule en notant sa couleur puis on la remet dans l'urne.
+
+On tire ensuite toujours au hasard une deuxième boule en notant sa couleur.
+
+On note $R$ l'évènement \og tirer une boule rouge \fg{} et $N$ l'évènement \og tirer une boule noire \fg.
+
+\medskip
+
+\begin{enumerate}
+\item Recopier et compléter sur la copie l'arbre pondéré ci-dessous associé à cette expérience. 
+
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=3pt,levelsep=2.5cm]{\TR{}}
+{
+\pstree{\TR{$R$~~}\taput{\ldots}}
+	{\TR{$R$} \taput{\ldots}
+	\TR{$N$} \tbput{\ldots}
+	}
+\pstree{\TR{$N$~~}\tbput{\ldots}}
+	{\TR{$R$}\taput{\ldots}
+	\TR{$N$}\tbput{\ldots}
+	}
+}
+\end{center}
+	
+\item Quelle est la probabilité de tirer deux boules rouges ?
+\item Si un joueur tire une boule rouge, il gagne $20$ euros. S'il tire une boule noire, il perd $10$ euros.
+
+On note $X$ la variable aléatoire égale au gain algébrique du joueur, en euros, à l'issue des deux tirages successifs.
+
+Déterminer la loi de probabilité de la variable aléatoire $X$.
+\item Calculer la probabilité que le joueur gagne de l'argent.
+\item Calculer l'espérance de la variable aléatoire $X$ et en donner une interprétation.
+\end{enumerate}
+
+\bigskip

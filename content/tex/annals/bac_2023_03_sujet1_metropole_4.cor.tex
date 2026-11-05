@@ -1,0 +1,145 @@
+\medskip
+
+\begin{minipage}{0.48\linewidth}
+On considère le cube ABCDEFGH d'arête 1.
+
+On appelle I le point d'intersection du plan (GBD) avec la droite (EC).
+
+L'espace est rapporté au repère orthonormé $\left(\text{A}~;~\vect{\text{AB}},~\vect{\text{AD}},~\vect{\text{AE}}\right)$.
+\end{minipage} \hfill
+\begin{minipage}{0.48\linewidth}
+\psset{unit=1cm}
+\begin{pspicture}(7.3,5.7)
+\psframe(0.8,0.3)(4.8,4.3)
+\psline(4.8,0.3)(6.3,1.3)(6.3,5.3)(4.8,4.3)
+\psline(6.3,5.3)(2.3,5.3)(0.8,4.3)
+\psline(4.8,0.3)(6.3,5.3)
+\psline[linestyle=dashed](0.8,0.3)(2.3,1.3)(6.3,1.3)
+\psline[linestyle=dashed](2.3,1.3)(2.3,5.3)
+\psline[linestyle=dotted,linewidth=1.2pt](4.8,0.3)(2.3,1.3)(6.3,5.3)
+\psline[linestyle=dotted,linewidth=1.2pt](0.8,4.3)(6.3,1.3)
+\uput[d](0.8,0.3){A} \uput[d](4.8,0.3){B} \uput[dr](6.3,1.3){C} \uput[d](2.3,1.3){D}
+\uput[u](0.8,4.3){E} \uput[u](4.8,4.3){F} \uput[u](6.3,5.3){G} \uput[u](2.3,5.3){H}
+\uput[dl](4.5,2.27){I} \uput[dl](3.55,0.8){J}
+\psdots(4.5,2.27)(3.55,0.8)
+\end{pspicture}
+\end{minipage}
+
+\medskip
+
+\begin{enumerate}
+\item 
+On a:
+E\;$\begin{pmatrix} 0\\0\\1\end{pmatrix}$,
+C\;$\begin{pmatrix} 1\\1\\0\end{pmatrix}$ et
+G\;$\begin{pmatrix} 1\\1\\1\end{pmatrix}$.
+
+\item La droite (EC) a pour vecteur directeur 
+$\vectt{EC}\;\begin{pmatrix} 1-0\\1-0\\0-1\end{pmatrix}$
+soit $\begin{pmatrix} 1\\1\\-1\end{pmatrix}$.
+
+Donc la droite (EC) a pour représentation paramétrique;
+
+$\left\{
+\begin{array}{l !{=} l l}
+x & x_{\text E} + 1\times t\\
+y & y_{\text E} + 1\times t & t\in\R\\
+z & z_{\text E} + (-1)\times t
+\end{array}
+\right.$
+soit
+$\left\{
+\begin{array}{l !{=} r l}
+x & t\\
+y & t & t\in\R\\
+z & 1- t
+\end{array}
+\right.$
+
+\item 
+Les points G, B et D ne sont pas alignés donc (GDB) est un plan de vecteurs directeurs $\vectt{GB}$ et $\vectt{BD}$.
+
+$\vectt{GB}$ a pour coordonnées
+$\begin{pmatrix} 1-1\\0-1\\0-1 \end{pmatrix}
+=
+\begin{pmatrix}0\\-1\\-1 \end{pmatrix}$
+et
+$\vectt{BD}$ a pour coordonnées
+$\begin{pmatrix} 0-1\\1-0\\0-0 \end{pmatrix}
+=
+\begin{pmatrix}-1\\1\\0 \end{pmatrix}$.
+
+$\vectt{EC}.\vectt{GB}=1\times 0 + 1\times (-1) + (-1)\times (-1)=0-1+1=0$ donc $\vectt{EC}\perp\vectt{GB}$
+
+$\vectt{EC}.\vectt{BD}=1\times (-1) + 1\times 1 + (-1)\times 0=-1+1+0=0$ donc $\vectt{EC}\perp\vectt{BD}$
+
+Le vecteur $\vectt{EC}$ est orthogonal à deux vecteurs directeurs du plan (GDB) donc la droite (EC) est orthogonale au plan (GDB).
+
+\item 
+	\begin{enumerate}
+		\item 
+La droite (EC) est orthogonale au plan (GDB) donc tout vecteur directeur de la droite (EC) est un vecteur normal au plan (GDB), en particulier le vecteur $\vectt{EC}$ de coordonnées $(1\;;\;1\;;\;-1)$.
+Donc le plan (GDB) a une équation de la forme $x+y-z+d=0$ où $d$ est un réel à déterminer.
+
+Le point B appartient au plan (GDB) donc $x_{\text B} + y_{\text B} -z_{\text B}+d=0$; autrement dit: $1+0-0+d=0$ donc $d=-1$.
+
+Le plan (GDB) a donc pour équation: $x+y-z-1=0$.
+			
+		\item 
+On appelle I le point d'intersection du plan (GBD) avec la droite (EC).
+
+Donc les coordonnées de I sont solutions du système:
+$\left \{
+\begin{array}{r !{=} l}
+x	& t\\
+y & t\\
+z & 1-t\\
+x+y-z-1 & 0
+\end{array}
+\right .$
+
+On a donc: $t+t-(1-t)-1=0$ donc $t=\dfrac{2}{3}$.
+
+On en déduit les coordonnées de I:
+$x_{\text I}=t=\dfrac{2}{3}$, $y_{\text I}=t=\dfrac{2}{3}$ et $z_{\text I}=1-t=\dfrac{1}{3}$,
+soit $\left( \dfrac{2}{3}\;;\;\dfrac{2}{3}\;;\;\dfrac{1}{3}\right )$. 
+		
+		\item 
+La droite (EC) est orthogonale au plan (GDB) donc la distance du point E au plan (GDB) est la longueur EI.
+
+$\text{EI}^2 = \left ( \dfrac{2}{3} - 0\right )^2 + \left ( \dfrac{2}{3} - 0\right )^2 + \left ( \dfrac{1}{3} - 1\right )^2 = \dfrac{4}{9}+\dfrac{4}{9}+\dfrac{4}{9}=\dfrac{12}{9}$;
+donc $\text{EI} = \ds\sqrt{\dfrac{12}{9}} = \dfrac{\ds\sqrt{12}}{3}=\dfrac{2\sqrt{3}}{3}$
+
+La distance du point I au plan (GDB) est donc de $\dfrac{2\sqrt{3}}{3}$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item
+Les côtés [BD], [DG] et [GB] du triangle BDG sont les diagonales respectives des carrés ABCD, CDHG et BCGF qui sont superposables; donc leurs diagonales ont la même longueur. Ce qui veut dire que le triangle BDG est équilatéral.
+
+		\item 
+		On appelle J le milieu du segment [BD]; donc le segment [GJ] est la médiane issue de G dans le triangle BDG. Or ce triangle est équilatéral donc [GJ] est la hauteur issue de G dans ce triangle.
+L'aire du triangle BDG est donc:
+$\mathcal A = \dfrac{\text{BD}\times \text{GJ}}{2}$.
+
+B\;$\begin{pmatrix} 1\\ 0\\ 0\\\end{pmatrix}$
+et
+D\;$\begin{pmatrix} 0\\ 1\\ 0\\\end{pmatrix}$
+donc
+J\;$\begin{pmatrix} \frac{1}{2}\\ \frac{1}{2}\\ 0\\\end{pmatrix}$
+
+$\text{GJ}^2 = \left ( \dfrac{1}{2} -1\right )^2 + \left ( \dfrac{1}{2}-1 \right )^2 + \left (0-1 \right )^2 = \dfrac{1}{4}+\dfrac{1}{4}+1 = \dfrac{6}{4}$ donc $\text{GJ}=\dfrac{\sqrt{6}}{2}$
+
+[BD] est la diagonale du carré ABCD de côté 1 donc $\text{BD}=\sqrt{2}$.
+
+L'aire de BDG est donc: $\mathcal A= \dfrac{\sqrt{2}\times \frac{\sqrt{6}}{2}}{2}=\dfrac{\sqrt{12}}{4}=\dfrac{\sqrt{3}}{2}$.
+	\end{enumerate}
+
+\item 
+Le volume du tétraèdre EGBD est:
+$\dfrac{1}{3} \left (\mathcal A \times \text{EI} \right )
+= \dfrac{1}{3}\left ( \dfrac{\sqrt{3}}{2}\times \dfrac{2\sqrt{3}}{3}\right )
+=\dfrac{1}{3}$
+
+
+\end{enumerate}

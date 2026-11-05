@@ -1,0 +1,139 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_05_sujet1_ameriquenord_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Pour tout entier naturel $n$, on considère les intégrales suivantes :
+
+\[I_n = \displaystyle\int_0^{\pi} \text{e}^{- nx}\sin (x)\:\text{d}x, \quad  J_n = \displaystyle\int_0^{\pi} \text{e}^{-nx}\cos (x)\:\text{d}x.\]
+
+\medskip
+
+\begin{enumerate}
+\item Calculer $I_0$.
+\item 
+	\begin{enumerate}
+		\item Justifier que, pour tout entier naturel $n$ , on a $I_n \geqslant 0$.
+		\item Montrer que, pour tout entier naturel $n$ , on a $I_{n+1} - I_n \leqslant 0$.
+		\item Déduire des deux questions précédentes que la suite $\left(I_n\right)$ converge.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item Montrer que, pour tout entier naturel $n$ , on a : 
+		\[I_n \leqslant \displaystyle\int_0^{\pi} \text{e}^{- nx}\:\text{d}x.\]
+		
+
+		\item Montrer que, pour tout entier naturel $n \geqslant 1$, on a : 
+		\[\displaystyle\int_0^{\pi} \text{e}^{- nx}\:\text{d}x = \dfrac{1 - \e^{-n \pi}}{n}.\]
+		
+		\item Déduire des deux questions précédentes la limite de la suite $\left(I_n\right)$.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item En intégrant par parties l'intégrale $I_n$ de deux façons différentes, établir les deux relations suivantes, pour tout entier naturel $n \geqslant 1$ :
+
+\begin{center}$I_n = 1 + \e^{-n\pi} - nJ_n$ \quad et\quad  $I_n = \dfrac 1n J_n$\end{center}
+
+		\item En déduire que, pour tout entier naturel $n \geqslant 1$, on a 
+		\[I_n = \dfrac{1 + \e^{-n \pi}}{n^2 + 1}\]
+	\end{enumerate}
+\item On souhaite obtenir le rang $n$ à partir duquel la suite $\left(I_n\right)$ devient inférieure à 0,1.
+
+Recopier et compléter la cinquième ligne du script Python ci-dessous avec la
+commande appropriée.
+\begin{center}
+\begin{tabular}{|l l|}\hline
+1 &\textbf{from} math \textbf{import *}\\
+2 &def seuil() :\\
+3 &\quad n = 0\\
+4 &\quad I = 2\\
+5 &\quad \ldots\\
+6 &\quad \qquad n=n+1\\
+7 &\quad \qquad I=(1+exp(-n*pi))/(n*n+1)\\
+8 & \textbf{return} n\\ \hline
+\end{tabular}
+\end{center}
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,45 @@
+\medskip
+
+On donne ci-dessous les représentations graphiques respectives $\mathcal{C}_f$ et $\mathcal{C}_g$ de deux fonctions $f$ et $g$ définies sur $\R$ l’ensemble des nombres réels.
+
+\begin{center}
+\psset{xunit=1cm,yunit=0.25cm,labelFontSize=\scriptstyle,showorigin=false,labelsep=0.1pt}
+\begin{pspicture}(-8,-13)(5,35)
+\multido{\n=-7+1}{12}{\psline[linewidth=0.75pt,linecolor=lightgray](\n,-12.5)(\n,32.6)}
+\multido{\n=-12+1}{45}{\psline[linewidth=0.75pt,linecolor=lightgray](-7,\n)(4,\n)}
+\psaxes[linewidth=0.95pt,Dy=2]{->}(0,0)(-7,-12.5)(4,33)
+\uput[ur](0.2,0.5){O}
+\def\Func{x x x 3 add mul 9 sub mul 1 sub}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-5.2}{3.2}{\Func}
+
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-2}{1.21}{x x 10 mul 8 add mul 8 add}
+\uput[ul](-4.2,16){\blue $\mathcal{C}_f$}
+\uput[ur](1.2,30){\red $\mathcal{C}_g$}
+
+\end{pspicture}
+\end{center}
+
+\smallskip
+
+\begin{enumerate}
+\item La fonction $f$ est définie sur $\R$ par 
+
+\[f(x) = x^3 + 3x^2 - 9x - 1.\]
+On admet qu’elle est dérivable sur $\R$ et on note $f'$ [\cancel{désigne}] sa fonction dérivée.
+	\begin{enumerate}
+		\item Calculer $f'(x)$.
+		\item Déterminer le signe de $f'(x)$ en fonction du réel $x$.
+
+En déduire le tableau de variation de la fonction $f$.
+		\item Déterminer une équation de la droite $T$ tangente à $\mathcal{C}_f$ au point d’abscisse $-1$.
+	\end{enumerate}
+\item La fonction $g$ est une fonction polynôme du second degré, il existe donc trois réels $a$, $b$ et $c$
+tels que : $g(x) = ax^2 + bx + c$ pour tout réel $x$ . On note $\Delta$ son discriminant.
+	\begin{enumerate}
+		\item Déterminer, à l’aide du graphique, le signe de $a$ et le signe de $\Delta$.
+		\item La fonction $g$ est définie, pour tout réel $x$, par $g(x) = 10x^2 + 8x + 8$.
+
+Démontrer que les courbes $\mathcal{C}_f$ et $\mathcal{C}_g$  ont un point commun d’abscisse $-1$ et qu’en ce
+point elles ont la même tangente.
+	\end{enumerate}
+\end{enumerate}

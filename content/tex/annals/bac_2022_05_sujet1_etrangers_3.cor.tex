@@ -1,0 +1,124 @@
+\bigskip
+
+\textbf{Partie A :}
+
+\medskip
+
+Soit $h$ la fonction définie sur $\R$ par
+
+\[h(x) = \text{e}^x - x\]
+
+\smallskip
+
+\begin{enumerate}
+\item 
+
+$\bullet~~$$\displaystyle\lim_{x \to - \infty} \text{e}^x = 0$ et $\displaystyle\lim_{x \to - \infty} - x = + \infty$, donc par somme de limites : $\displaystyle\lim_{x \to - \infty} h(x) = + \infty$.
+
+$\bullet~~$Pour $x \ne 0$, \: $h(x) = x\left(\dfrac{\text{e}^x}{x} - 1\right)$.
+
+Or $\displaystyle\lim_{x \to + \infty} \dfrac{\text{e}^x}{x} = + \infty$, d'où $\displaystyle\lim_{x \to + \infty}\dfrac{\text{e}^x}{x} - 1 = + \infty$ et par produit de limites :
+
+$\displaystyle\lim_{x \to + \infty} h(x) = + \infty$ ; 
+
+\item 
+
+Somme de fonctions dérivables sur $\R$, $h$ est dérivable sur $\R$ et sur cet intervalle :
+
+$h'(x) =  \text{e}^x - 1$.
+
+$\bullet~~$$h'(x) > 0 \iff \text{e}^x - 1 > 0 \iff \text{e}^x > 1 \iff \text{e}^x > \text{e}^0 \iff x > 0$ ;
+
+$\bullet~~$$h'(x) < 0 \iff \text{e}^x - 1 < 0 \iff \text{e}^x < 1 \iff \text{e}^x < \text{e}^0 \iff x < 0$.
+
+La fonction $h$ est donc décroissante sur $\R_{-}$ de plus l'infini à $h(0) = \text{e}^0 - 0 = 1$, puis croissante sur $\R_{+}$ de $h(0) = 1$ à plus l'infini.
+\item 
+
+
+$h$ étant croissante sur $\R_{+}$, \: $0 < a < b \Rightarrow h(0) < h(a) < h(b)$.
+
+Comme $h(0) = 1$, on a donc $1 < h(a) < h(b) \Rightarrow h(a) - h(b) < 0$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B :}
+
+\medskip
+
+Soit $f$ la fonction définie sur $\R$ par
+
+\[f(x) = \text{e}^x\]
+
+On note $\mathcal{C}_f$ sa courbe représentative dans un repère \Oij.
+
+\medskip
+
+\begin{enumerate}
+\item 
+On a $M(x~;~y) \in T \iff y - f(0) = f'(0)(x - 0)$.
+
+On a $f'(x) = f(x) = \text{e}^x$ d'où $f'(0) = \text{e}^0  = 1$ et $f(0) = \text{e}^0  = 1$.
+
+$M(x~;~y) \in T \iff y - 1 = 1 (x - 0) \iff y = x + 1$.
+\end{enumerate}
+
+Dans la suite de l'exercice on s'intéresse à l'écart entre $T$ et $\mathcal{C}_f$ au voisinage de $0$. 
+
+Cet écart est défini comme la différence des ordonnées des points de $T$ et $\mathcal{C}_f$ de même abscisse.
+
+On s'intéresse aux points d'abscisse $\dfrac{1}{n}$, avec $n$ entier naturel non nul.
+
+On considère alors la suite $\left(u_n\right)$ définie pour tout entier naturel non nul $n$ par : 
+
+\[u_n = \text{exp} \left(\dfrac{1}{n}\right) - \dfrac{1}{n} - 1\]
+
+\begin{enumerate}[resume]
+\item 
+On a $\displaystyle\lim_{n \to + \infty} \dfrac{1}{n} = 0$, d'où $\displaystyle\lim_{n \to + \infty} \text{e}^{\frac1n} = \text{e}^0 = 1$ et enfin $\displaystyle\lim_{n \to + \infty} u_n = 1 - 0 - 1 = 0$.
+\item 
+	\begin{enumerate}
+		\item 
+		
+
+
+
+On a pour tout $n \in \N$, \: $u_{n+1} - u_n = \text{exp} \left(\dfrac{1}{n+1}\right) - \dfrac{1}{n+1} - 1 - \left(\text{exp} \left(\dfrac{1}{n}\right) - \dfrac{1}{n} - 1 \right) =$
+
+$ \text{exp} \left(\dfrac{1}{n+1}\right) - \dfrac{1}{n+1} - 1 - \text{exp} \left(\dfrac{1}{n}\right) + \dfrac{1}{n} + 1 = \text{exp} \left(\dfrac{1}{n+1}\right) - \dfrac{1}{n+1}  - \text{exp} \left(\dfrac{1}{n}\right) + \dfrac{1}{n}  =$
+
+$\text{exp} \left(\dfrac{1}{n+1}\right) - \dfrac{1}{n+1}  - \left[\text{exp} \left(\dfrac{1}{n}\right) - \dfrac{1}{n}\right] =  h\left(\dfrac{1}{n + 1}\right) - h\left(\dfrac{1}{n}\right)$.
+		\item 
+		
+On a $n$ non nul, donc $0 < n < n + 1 \Rightarrow 0< \dfrac{1}{n+1} < \dfrac{1}{n} \Rightarrow h\left(\dfrac{1}{n+1}\right) < h\left(\dfrac{1}{n}\right) \Rightarrow$
+		
+		$ h\left(\dfrac{1}{n + 1}\right) - h\left(\dfrac{1}{n}\right) < 0$.
+		
+		Finalement pour $n$ non nul, $u_{n+1} - u_n < 0$ ce qui montre que la suite $\left(u_n\right)$ est décroissante.
+	\end{enumerate}
+\item 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Le tableau montre que $u_8 \approx 0,008 < 10^{-2}$.
+
+Donc pour $x = \dfrac{1}{8}$, l'écart entre la courbe et la tangente est inférieur à un centième.
+
+\end{enumerate}
+
+\bigskip

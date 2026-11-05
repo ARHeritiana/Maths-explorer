@@ -1,0 +1,91 @@
+\medskip
+
+Victor sort un plat du four. La température du plat est alors égale à $180~\degres$C. II place ce plat dans une pièce dont la température est égale à $25~\degres$C. Le plat refroidit.
+
+Le plat ne pourra être servi que lorsque sa température sera devenue inférieure ou égale à $40~\degres$C.
+
+On étudie le refroidissement du plat selon deux modèles mathématiques.
+
+\bigskip
+
+\textbf{Partie A : Premier modèle}
+
+\medskip
+
+On suppose que la baisse de la température du plat est \textit{proportionnelle} à la durée du refroidissement, c'est-à-dire au nombre de minutes écoulées depuis la sortie du four.
+
+On constate que 3 minutes après la sortie du four, la température du plat est égale à $105~\degres C$.
+
+\begin{enumerate}
+\item 
+$180-105=75$ donc en 3 minutes, la température du plat a baissé de 75~$\degres$C.
+
+La baisse de la température du plat est proportionnelle à la durée du refroidissement, donc en 1 minute, la température du plat a baissé de $\dfrac{75}{3}$, soit 25~$\degres$C.
+
+\item 
+$5\times 25=125$ donc après 5 minutes, la température du plat a baissé de 125~$\degres$C.
+
+$180-125=55$; après 5 minutes, elle est donc de 55~$\degres$C.
+
+\item 
+$8\times 25=200$ donc après 8 minutes, la température du plat aurait baissé de 200~$\degres$C, ce qui n'est pas possible puisque la température de départ était de 180~$\degres$C.
+
+Ce premier modèle ne semble pas pertinent.
+
+\end{enumerate}
+
+
+\textbf{Partie B : Second modèle}
+
+\medskip
+
+\begin{list}{\textbullet}{On dispose toujours des données suivantes:}
+\item la température de la pièce est égale à $25~\degres$C.
+\item la température du plat à la sortie du four est égale à $180~\degres$C.
+\item la température du plat, 3 minutes après la sortie du four, est égale à $105~\degres$C.
+\end{list}
+
+Pour tout entier naturel $n$ on note $U_{n}$, la différence entre la température du plat et la température de la pièce, $n$ minutes après la sortie du four.
+
+\emph{Exemple} : 3 minutes après la sortie du four, l'écart avec la température de la pièce est égal à $105 - 25 = 80$. On a donc $U_{3} = 80$.
+
+\begin{enumerate}
+\item 
+À la sortie du four, pour $n=0$, le plat est à 180~$\degres$C et la pièce est à 25~$\degres$C.
+
+$180-25=155$ donc $U_0=155$.
+
+\item On suppose que chaque minute la différence $U_{n}$ diminue de $20\,\%$.
+
+\begin{enumerate}
+\item
+Diminuer de 20\,\%, c'est multiplier par $1-\dfrac{20}{100}$, soit $0,8$.
+
+Donc, pour tout entier naturel $n$, on a $U_{n+1}= 0,8 U_{n}$.
+
+\item 
+$U_0=155$ et, pour tout $n$, on a $U_{n+1}=0,8U_n$, donc la suite $\left (U_n\right )$ est géométrique de premier terme $U_0=155$ et de raison $q=0,8$.
+
+\item
+On en déduit que, pour tout $n$, on a:
+$U_n=U_0\times q^n=155\times 0,8^n$.
+
+\item On dispose des données suivantes :
+
+\begin{center}
+\begin{tabular}{| m{1cm} |*{13}{>{\scriptsize} c|}}\hline
+$n$ & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\ \hline
+$U_{n}$ \scriptsize arrondi à $10^{-1}$ & 80 & 64 & 51,2 & 41 & 32,8 & 26,2 & 21 & 16,8 & 13,4 & 10,7 & 8,6 & 6,9 & 5,5 \\
+\hline
+\end{tabular}
+\end{center}
+
+La température du plat doit être inférieure à 40~$\degres$C soit 15~$\degres$C au dessus de la température de la pièce. Il faut donc trouver la plus petite valeur de $n$ telle que $U_n<15$.
+
+Victor pourra servir le plat au bout de 11 minutes.
+
+
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

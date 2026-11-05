@@ -1,0 +1,163 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2025/tex/eam_specialite_2025_06_sujet0v2_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\begin{center}
+Le plan est muni d'un repère orthogonal.
+\end{center}
+
+\subsubsection*{Partie A}
+On considère la fonction $P$ définie sur l'intervalle $[-5~;~3]$ par :
+\[P(x) = 2x^2 + x - 10.\]
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+	\item Déterminer les racines de $P$.
+	\item En déduire l'axe de symétrie de la parabole d'équation $y = P(x)$.
+\end{enumerate}
+
+\item Établir le tableau de signe de la fonction $P$ sur l'intervalle $[-5~;~3]$.
+\end{enumerate}
+
+\subsubsection*{Partie B}
+On considère la fonction $f$ définie et dérivable sur l'intervalle $[-5~;~3]$ dont on donne ci-dessous la courbe représentative $C_f$.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-5.3, xmax=3.5,
+    ymin=-13, ymax=22,
+    samples=200,
+    domain=-5:3,
+    axis lines=middle,
+    axis line style={thick},
+    xtick distance=0.5,
+    ytick distance=5,
+    tick label style={font=\scriptsize},
+    x tick label style={
+        /pgf/number format/.cd,
+        fixed,
+        fixed zerofill,
+        precision=1,
+        /tikz/.cd,
+        /pgf/number format/zerofill=false
+    },
+    xticklabel={
+        \pgfmathprintnumber{\tick}
+    },
+    x=1.5cm,
+    grid=both,
+    major grid style={gray!50, thick},
+    minor grid style={gray!20, thin},
+    minor x tick num=4,
+    minor y tick num=4,
+]
+\addplot[red, very thick, restrict y to domain=-13:22] {(4*x^2 - 14*x + 8)*exp(0.5*x)};
+\node[font=\scriptsize, below left] at (axis cs:0,0) {0};
+\node[above left, color=red] at (axis cs:-4.5,16) {$C_f$};
+\addplot[blue, mark=x, mark size=3pt] coordinates {(2,{(4*2^2 - 14*2 + 8)*exp(0.5*2)})};
+\node[blue, below] at (axis cs:2,{(4*2^2 - 14*2 + 8)*exp(0.5*2)}) {A};
+\pgfmathsetmacro{\yA}{(4*2^2 - 14*2 + 8)*exp(0.5*2)}
+\addplot[blue, very thick] coordinates {(-5.3, \yA) (3.5, \yA)};
+\node[blue, above] at (axis cs:-4.5,-11) {T};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+La tangente $T$ à la courbe $C_f$ au point A d'abscisse 2 est horizontale.
+
+\begin{enumerate}
+\item Donner la valeur du nombre dérivé $f'(2)$.
+
+\item Résoudre, avec la précision permise par le graphique, l'inéquation $f'(x) < 0$.
+
+\item On sait que la fonction $f$ a pour expression sur l'intervalle $[-5~;~3]$ :
+\[f(x) = (4x^2 - 14x + 8)\e^{0,5x}.\]
+
+Démontrer que, pour tout $x$ appartenant à l'intervalle $[-5~;~3]$, on a :
+\[f'(x) = P(x)\e^{0,5x}.\]
+
+\item En utilisant les résultats de la \textbf{partie A}, dresser le tableau de variation de la fonction $f$ sur l'intervalle $[-5~;~3]$. \textit{(Il n'est pas demandé de calculer les images)}.
+\end{enumerate}
+
+\end{document}

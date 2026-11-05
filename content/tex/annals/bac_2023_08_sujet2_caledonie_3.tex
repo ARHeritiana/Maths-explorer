@@ -1,0 +1,51 @@
+\medskip
+
+On considère la suite $\left(u_n\right)$ telle que $u_0 = 0$ et pour tout entier naturel $n$  : 
+\[u_{n+1} = \dfrac{-u_n - 4}{u_n + 3}.\]
+
+On admet que $u_n$ est défini pour tout entier naturel $n$.
+
+\medskip
+
+\begin{enumerate}
+\item Calculer les valeurs exactes de $u_1$ et $u_2$.
+\item On considère la fonction \texttt{terme} ci-dessous écrite de manière incomplète en langage Python :
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+\texttt{def terme (n) :}\\
+\hspace{0.75cm}\texttt{u = \ldots}\\
+\hspace{0.75cm}\texttt{for i in range(n):}\\
+\hspace{1.25cm}\texttt{u = \ldots}\\
+\hspace{0.75cm}\texttt{return(u)}\\ \hline
+\end{tabular}
+\qquad 
+\begin{tabular}{p{5cm}}
+On rappelle qu'en langage Python, \og \texttt{i in range (n)} \fg{} signifie
+que $i$ varie de $0$ à $n - 1$.
+\end{tabular}
+\end{center}
+
+Recopier et compléter le cadre ci-dessus de sorte que, pour tout entier naturel $n$, l'instruction \texttt{terme (n)} renvoie la valeur de $u_n$.
+\item Soit la fonction $f$ définie sur $]- 3~;~+\infty[$ par:
+\[f(x) = \dfrac{- x - 4}{x+ 3}.\]
+
+Ainsi, pour tout entier naturel $n$, on a $u_{n+1} = f\left(u_n\right)$.
+
+Démontrer que la fonction $f$ est strictement croissante sur $]- 3~;~+\infty[$.
+\item Démontrer par récurrence que pour tout entier naturel $n$ :
+\[- 2 < u_{n+1} \leqslant u_n.\]
+\item En déduire que la suite $\left(u_n\right)$ est convergente.
+\item Soit la suite $\left(v_n\right)$ définie pour tout entier naturel $n$ par:
+\[v_n = \dfrac{1}{u_n + 2}.\]
+
+	\begin{enumerate}
+		\item Donner $v_0$.
+		\item Démontrer que la suite $\left(v_n\right)$ est arithmétique de raison 1.
+		\item En déduire que pour tout entier naturel $n \geqslant 1 :$
+\[u_n = \dfrac{1}{n + 0,5}  - 2.\]
+		\item Déterminer la limite de la suite $\left(u_n\right)$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

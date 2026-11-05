@@ -1,0 +1,68 @@
+\medskip
+
+\emph{Les parties A et B peuvent être traitées indépendamment}
+
+\medskip
+\textbf{Partie A}
+\medskip
+
+On considère la fonction $f$ définie sur $\R$ par
+
+\[f(x) = \left(x + \dfrac12\right)\e^{-x} + x.\]
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer les limites de $f$ en $- \infty$ et en $+ \infty$.
+\item On admet que $f$ est deux fois dérivable sur $\R$.
+	\begin{enumerate}
+		\item Démontrer que, pour tout $x \in \R$,
+		
+\[f''(x) = \left(x - \dfrac32\right) \e^{-x}.\]
+
+		\item En déduire les variations et le minimum de la fonction $f'$ sur $\R$.
+		\item Justifier que pour tout $x \in \R,\: f'(x) > 0$.
+		\item En déduire que l'équation $f(x) = 0$ admet une unique solution sur $\R$.
+		\item Donner une valeur arrondie à $10^{-3}$ de cette solution.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+\textbf{Partie B}
+\medskip
+
+On considère une fonction $h$, définie et dérivable sur $\R$, ayant une expression de la forme 
+
+\begin{center}$h(x)= (ax + b)\e^{-x} + x$, \:où $a$ et $b$\: sont deux réels.\end{center}
+
+Dans un repère orthonormé ci-après figurent:
+
+\begin{itemize}
+\item[$\bullet$~~]la courbe représentative $\mathcal{C}_h$ de la fonction $h$ ;
+\item[$\bullet$~~]les points A et B de coordonnées respectives $(-2~;~-2,5)$ et (2~;~3,5).
+\end{itemize}
+
+\begin{center}
+\psset{unit=0.8cm}
+\begin{pspicture*}(-5.9,-4.9)(5.9,5.9)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle](0,0)(-5.9,-4.9)(5.9,5.9)
+\psplot[plotpoints=500,linewidth=1.25pt]{-4}{4}{1.5 x mul 0.5 add}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=cyan]{-4}{4}{x 0.5 add 2.71828 x exp div x add}
+\psdots(-2,-2.5)(2,3.5)
+\uput[r](-2,-2.5){A}\uput[r](2,3.5){B}\uput[dr](3.8,4){\cyan $\mathcal{C}_h$}
+\end{pspicture*}
+\end{center}
+
+\begin{enumerate}
+\item Conjecturer, avec la précision permise par le graphique, les abscisses des éventuels points d'inflexion de la courbe représentative de la fonction $h$.
+\item Sachant que la fonction $h$ admet sur $\R$ une dérivée seconde d'expression
+
+\[h''(x) = - \dfrac32 \e^{- x} + x\e^{- x}.\]
+
+valider ou non la conjecture précédente.
+\item Déterminer une équation de la droite (AB).
+\item Sachant que la droite (AB) est tangente à la courbe représentative de la fonction
+$h$ au point d'abscisse 0, en déduire les valeurs de $a$ et $b$.
+\end{enumerate}
+
+\bigskip

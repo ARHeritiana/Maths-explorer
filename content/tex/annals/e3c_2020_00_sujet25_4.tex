@@ -1,0 +1,86 @@
+\medskip
+
+Soit $f$ la fonction définie sur $[0~;~+\infty[$ par 
+
+\[f(x)= -x^2 +2x + 4.\]
+
+Dans le plan muni d'un repère orthonormé, on note $\mathcal{C}$  sa courbe représentative.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer les variations de la fonction $f$ sur $[0~;~+\infty[$ .
+\item Déterminer la valeur exacte de l'abscisse du point A, intersection de la courbe $\mathcal{C}$ et de l'axe des abscisses, puis en donner une valeur approchée à $10^{-2}$ près.
+\item On note $\mathcal{T}$ la tangente à la courbe $\mathcal{C}$ au point B d'abscisse 2.
+Déterminer l'équation réduite de la droite $\mathcal{T}$
+\item Tracer la droite $\mathcal{T}$ sur le graphique suivant.
+
+\begin{center}
+
+ \textbf{À rendre avec la copie}
+ 
+ \vspace{1.5cm}
+ 
+\psset{unit=1.5cm,labelFontSize=\scriptstyle,showorigin=false}
+\begin{pspicture}(-0.8,-0.9)(5,9)
+\multido{\n=0+1}{5}{\psline[linewidth=0.45pt](\n,0.2)(\n,8.4)}
+\multido{\n=0+1}{9}{\psline[linewidth=0.45pt](0,\n)(4.4,\n)}
+\psaxes[linewidth=0.95pt]{->}(0,0)(-0.44,-0.2)(4.4,8.4)
+\def\Func{x x neg 2 add  mul 4 add }
+\psplot[plotpoints=2000,linewidth=0.65pt,linecolor=blue,linewidth=1.25pt]{0}{3.3361}{\Func}
+\uput[dl](-0.2,-0.2){O}\uput[ur](3.2361,0){A}
+\psdot[dotstyle=Mul,dotscale=1.6,linecolor=blue](3.2361,0)
+\uput[u](0.75,5){\blue $\mathcal{C}_f$}
+\end{pspicture}
+\end{center}
+
+\item On admet que la courbe $\mathcal{C}$ est toujours en-dessous de la droite $\mathcal{T}$.
+
+La société Logo reçoit une commande de l'entreprise RapidResto, qui lui demande de confectionner des logos dans des plaques rectangulaires de largeur \np[dm ]{4} et de hauteur \np[dm]{8}  selon le modèle ci-dessous.
+
+Le bord supérieur du logo est modélisé par la courbe $\mathcal{C}$ tracée dans le repère orthonormé figurant sur le graphique précédent dont l'unité graphique est le décimètre (dm).
+
+\emph{ Les figures ci-dessous ne sont pas à l'échelle}.
+
+\begin{center}
+\begin{tabular}[]{|l|r|} 
+\hline
+\psset{xunit=0.7cm,yunit=0.7cm,labelFontSize=\scriptstyle,labelsep=0.1pt}
+\begin{pspicture}(-0.4,-0.94)(5.6,8.6)
+\multido{\n=-0.4+0.2}{24}{\psline[linewidth=0.35pt,linecolor=lightgray](\n,-0.6)(\n,8.4)}
+\multido{\n=-0.6+0.2}{44}{\psline[linewidth=0.35pt,linecolor=lightgray](-0.4,\n)(4.2,\n)}
+\multido{\n=0+1}{5}{\psline[linewidth=0.45pt](\n,-0.6)(\n,8.4)}
+\multido{\n=0+1}{9}{\psline[linewidth=0.45pt](-0.4,\n)(4.2,\n)}
+\psaxes[linewidth=0.95pt]{->}(0,0)(4.2,8.4)
+\def\Func{x x neg 2 add  mul 4 add }
+\psplot[plotpoints=1000,linewidth=0.85pt,linecolor=red]{0}{3.2361}{\Func}
+\psdots[dotstyle=Mul,dotscale=1.6,linecolor=blue](0,8)(4,8)(4,0)(0,0)(3.2361,0)(1,5)(0,4)
+\uput[ur](0,8){Q}\uput[ur](4,8){P}\uput[u](4,0){M}\uput[ur](0,0){O}\uput[ur](3.2361,0){A}\uput[u](1,5){C}\uput[l](0,4){D} 
+\pscustom[fillstyle=solid,fillcolor=blue,linecolor=blue]
+{
+\psplot[plotpoints=3000,linewidth=1.25pt,linecolor=blue]{0}{3.2361}{\Func}
+\lineto(3.2361,0)\lineto(0,0)
+\closepath 
+}
+\uput[r](0.5,2){\textbf{\footnotesize RapidResto}}
+\end{pspicture}
+&
+\psset{xunit=0.7cm,yunit=0.7cm}
+\begin{pspicture}(-1,-1)(6,9)
+\psframe(0,0)(4,8)
+\psline(0,8)(4,0)
+\uput[dr](0.5,8){\emph{\scriptsize découpe dans}}
+\uput[dr](0.6,7.61){\emph{\scriptsize la diagonale}}
+\uput[dr](0.7,7.185){\emph{\scriptsize de la plaque}}
+\psline{->}(1.8,6.65)(1.8,4.5)
+\psline{<->}(-0.4,8)(-0.4,0)\psline{<->}(0,-0.4)(4,-0.4)
+\uput[d](2,-0.5){\scriptsize\np[dm]{4}}\uput[l](-0.35,4){\scriptsize\np[dm]{8}}
+\end{pspicture}\\
+Logo à réaliser &Découpe selon la diagonale \\\hline
+\end{tabular}
+\end{center}
+
+Dans un souci d'économie, l'entreprise Logo espère pouvoir réaliser deux logos identiques dans une seule plaque, en la coupant dans sa diagonale.
+
+ Est-ce possible ? Justifier à l'aide des questions précédentes.
+ \end{enumerate}

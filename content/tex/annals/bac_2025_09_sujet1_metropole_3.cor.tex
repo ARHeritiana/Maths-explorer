@@ -1,0 +1,181 @@
+\medskip
+
+	\textbf{Partie A}
+
+	\medskip
+
+	\begin{enumerate}
+		\item Pour $x \geqslant 2$ :\quad $3x - 2 \geqslant 4 > 0$ donc $f$ est bien définie et dérivable.
+
+		$\forall x \in [2 ~;~+\infty [,\quad f'(x) = \dfrac{3}{2\sqrt{3x-2}} > 0$
+
+		$f'$ est à valeurs strictement positives sur $[2~;~+\infty[$, donc $f$ est strictement croissante sur cet intervalle.
+
+		On a :\quad $f(2) = \sqrt{3\times 2 - 2} = \sqrt{4} = 2$
+
+		Et :\quad $\lim\limits_{x \to +\infty} 3x + 2 = +\infty$,
+
+		donc, par composition (avec $y = 3x + 2$) :\quad $\lim\limits_{x \to +\infty} f(x) = \lim\limits_{x \to +\infty} \sqrt{3x - 2} = \lim\limits_{y \to +\infty} \sqrt{y} = +\infty$.
+
+		\item
+		\begin{enumerate}
+			\item \emph{Initialisation :} Pour $n = 0$,\quad $u_0 = 6 \geqslant 2$.
+
+			de plus :\quad $u_1 = f(6) = \sqrt{3\times 6 - 2} = \sqrt{16} = 4 \geqslant 2$.
+
+			Donc on a bien :\quad $2 \leqslant u_1 \leqslant u_0 \leqslant 6$ : l'inégalité est vraie pour $n =0$.
+
+			\emph{Hérédité :} Supposons que, pour un entier $n$ naturel donné, l'inégalité est vraie, c'est-à-dire : \quad $2 \leqslant u_{n+1} \leqslant u_n \leqslant 6$.
+
+
+			Montrons que l'inégalité suivante est vraie, c'est-à-dire :\quad $2 \leqslant u_{n+2} \leqslant u_{n+1}\leqslant 6$.
+
+			Par hypothèse de récurrence : \quad $2 \leqslant u_{n+1} \leqslant u_n \leqslant 6$.
+
+			Comme $f$ est croissante sur $[2 ~;~ + \infty[$ :\quad $f(2) \leqslant f(u_{n+1}) \leqslant f(u_n)\leqslant f(6)$
+
+			D'après la relation de récurrence de $(u_n)$ :\quad $\sqrt{3\times 2 - 2} \leqslant u_{n+2} \leqslant u_{n+1}\leqslant \sqrt{3\times 6 - 2}$.
+
+			En effectuant les calculs :\quad $2 \leqslant u_{n+2} \leqslant u_{n+1}\leqslant 4$.
+
+			Enfin, comme $4 \leqslant 6$, ce qui précède implique :\quad $2 \leqslant u_{n+2} \leqslant u_{n+1}\leqslant 6$.
+
+			Si l'inégalité est vraie pour un entier naturel $n$ donné, alors on prouve qu'elle est aussi vraie pour l'indice suivant, $n+1$.
+
+			\emph{Conclusion :} L'inégalité est vraie pour l'indice $n=0$, et pour tout $n$ entier naturel, elle est héréditaire. Par application du principe de récurrence, on peut affirmer que, pour tout $n$ entier naturel, on a :\quad $2 \leqslant u_{n+1} \leqslant u_{n}\leqslant 6$.
+
+			\item De la question précédente on tire :
+			\begin{itemize}
+				\item $\forall n \in \N,\quad u_{n+1} \leqslant u_n$:\quad la suite $(u_n)$ est décroissante;
+				\item $\forall n \in \N,\quad 2 \leqslant u_n$:\quad la suite $(u_n)$ est minorée par 2;
+			\end{itemize}
+			$(u_n)$ est décroissante et minorée par 2, donc elle converge vers une limite $\ell$ qui vérifie :\quad $2 \leqslant \ell$.
+		\end{enumerate}
+
+		\item Soit $x$ un réel supérieur à 2 :
+
+		$\begin{aligned}
+			f(x) = x &\iff \sqrt{3x-2} = x \\
+			&\iff 3x - 2 = x^2\quad \text{car $x \geqslant 2$ donc } 3x - 2 \geqslant 0\\
+			&\iff x^2 - 3x + 2 = 0\\
+			&\iff (x-1)(x-2) = 0
+		\end{aligned}$
+
+		Le trinôme du second degré a donc deux racines $1$ et $2$.
+
+		Comme $\ell$ vérifie $\ell \geqslant 2$, seule la racine 2 peut être égale à $\ell$.
+
+		On a donc $\ell = 2$.
+
+		\item
+		\begin{enumerate}
+			\item La suite $(u_n)$ converge vers 2, donc tout intervalle ouvert contenant 2 contient tous les termes de la suite à partir d'un certain rang. Un intervalle ouvert contenant 2 est de la forme $]b ~;~ a[$, avec $a > 2$, ou $a$ qui est $+\infty$. Donc pour tout $a > 2$, il existe un rang $N_0$ à partir duquel $u_n < a$.
+
+			La boucle \texttt{while} se termine donc après $N_0$ itérations, et \texttt{rang}(2.000001) renvoie la valeur $N_0$.
+
+			Le seul risque que l'algorithme ne se termine pas avec un $a > 2$ serait que le réel $a$ soit trop proche de 2, et que les algorithmes utilisés par python donnent une valeur approchée trop peu précise des différents termes $u_n$ pour que la boucle se termine.
+
+			\item D'après ce que l'on a expliqué précédemment, l'instruction renvoie un résultat si et seulement si $a > \ell = 2$.
+
+			Donc pour $a > 2$.
+		\end{enumerate}
+	\end{enumerate}
+
+	\bigskip
+
+	\textbf{Partie B}
+
+	\medskip
+
+	\begin{enumerate}
+		\item On a :\quad $v_1 = 3 - \dfrac{2}{v_0} = 3 - \dfrac{2}{6} = 3 - \dfrac{1}{3} = \dfrac{8}{3}$.
+
+		\item
+		\begin{enumerate}
+			\item Soit $n$ un entier naturel quelconque. Déterminons la relation de récurrence de la suite $(w_n)$.
+
+			\begin{multicols}{2}
+				$\begin{aligned}
+				w_{n+1} &= \dfrac{v_{n+1} - 1}{v_{n+1} - 2} \\
+				&= \dfrac{~~3 - \dfrac{2}{v_n} - 1~~}{3 - \dfrac{2}{v_n} - 2}\\
+				&= \dfrac{~~2 - \dfrac{2}{v_n}~~}{1 - \dfrac{2}{v_n}}\\
+			\end{aligned}$
+
+			$\begin{aligned}
+				w_{n+1} &= \dfrac{~~\dfrac{2v_n - 2~~}{v_n}}{\dfrac{v_n - 2}{v_n}} \\
+				&= \dfrac{~~2v_n - 2~~}{v_n - 2} \\
+				&= \dfrac{2(v_n - 1)}{v_n - 2} \\
+				&= 2w_n
+			\end{aligned}$
+			\end{multicols}
+
+			Au vu de sa relation de récurrence, $(w_n)$ est géométrique de raison 2.
+
+			Son premier terme est :\quad $w_0 = \dfrac{v_0 - 1}{v_0 - 2} = \dfrac{6 - 1}{6 - 2} = \dfrac{5}{4} = 1,25$.
+
+			\item Puisque $(w_n)$ est géométrique, de premier terme $w_0 = 1,25 $ et de raison $q = 2$, par propriété, on en déduit que, pour tout entier $n$ naturel, on a : \quad $w_n = 1,25 \times 2^n$.
+
+			On admet la relation \quad $w_n - 1 = \dfrac{1}{v_n - 2}$.
+
+			Avec un premier terme strictement positif et une raison strictement supérieure à 1, la suite $(w_n)$ est strictement croissante, et donc elle est minorée par son premier terme : 1,25. Le nombre $w_n - 1$ sera donc toujours non nul.
+
+			Donc en inversant la relation admise, on a :\quad $v_n - 2 = \dfrac{1}{w_n - 1} = \dfrac{1}{1,25 \times 2^n - 1}$.
+
+			Ce qui implique : \quad $v_n = 2 + \dfrac{1}{1,25 \times 2^n - 1}$.
+
+			\item Comme $w_0 = 1,25 > 0$ et $q = 2 > 1$, par propriété :\quad $\lim\limits_{n \to +\infty} 1,25 \times 2^n = +\infty$.
+
+			Par limite de la somme :\quad $\lim\limits_{n \to +\infty} 1,25 \times 2^n - 1 = +\infty$.
+
+			Puis, par limite de l'inverse :\quad $\lim\limits_{n \to +\infty} \dfrac{1}{1,25 \times 2^n -1} = 0$.
+
+			Finalement, par limite de la somme :\quad $\lim\limits_{n \to +\infty} v_n = 2$.
+		\end{enumerate}
+
+		\item Résolvons : $v_n < 2,01$ :
+
+		$\begin{aligned}[t]
+			v_n < 2,01 &\iff 2 + \dfrac{1}{1,25 \times 2^n - 1} < 2,01\\
+			&\iff \dfrac{1}{1,25 \times 2^n - 1} < 0,01\\
+			&\iff 1 < 0,01(1,25 \times 2^n - 1)\quad \text{car, pour tout $n$ naturel, on a :}\quad 1,25\times 2^n - 1 > 0\\
+			&\iff 1 < 0,0125 \times 2^n - 0,01\\
+			&\iff 1,01 < 0,0125 \times 2^n\\
+			&\iff \dfrac{1,01}{0,0125} < 2^n\quad \text{car } 0,0125 > 0\\
+			&\iff 80,8 < 2^n\\
+			&\iff \ln(80,8) < n\ln(2)\quad \text{car la fonction ln est strictement croissante sur }\R^{*+}\\
+			&\iff \dfrac{\ln(80,8)}{\ln(2)} < n\quad \text{car }\ln(2) > 0\\
+			&\iff n > \dfrac{\ln(80,8)}{\ln(2)}\end{aligned}$
+
+		$\dfrac{\ln(80,8)}{\ln(2)} \approx 6,34$. \quad
+		Le plus petit entier $n$ vérifiant $v_n < 2,01$ est donc $n = 7$.
+	\end{enumerate}
+
+	\bigskip
+
+	\textbf{Partie C}
+
+	\medskip
+
+	Comme on a démontré dans la \textbf{partie A} que la suite $(u_n)$ est décroissante et minorée par 2, on explore les premiers termes de la suite à la calculatrice. On constate que $u_{16} \approx 2,012 \geqslant 2,01$, alors que $u_{17}\approx 2,009 < 2,01$.
+
+	On a donc, pour tout entier $n$ supérieur ou égal à 17 :\quad $ 1,99 < 2 < u_n \leqslant u_{17} < 2,01$
+
+	et donc, en particulier : \quad $n\geqslant 17 \implies u_n \in ]1,99~;~2,01[$.
+
+	D'après la \textbf{partie B}, on a pour tout $n$ entier naturel :
+
+	$1,25\times 2^n \geqslant 1,25$, \quad donc \quad $1,25 \times 2^n - 1 \geqslant 0,25 > 0$,
+	\quad on en déduit :\quad $\dfrac{1}{1,25\times 2^n - 1} > 0$.
+
+	Finalement, on a :\quad $v_n = 2 + \dfrac{1}{1,25\times 2^n - 1} > 2$.
+
+	D'après la dernière question de la \textbf{partie B}, on a :\quad $n \geqslant 7 \implies v_n < 2,01$.
+
+	Ainsi, on a : $n \geqslant 7 \implies 1,99 < 2 < v_n < 2,01$.
+
+	Donc les termes de la suite $(v_n)$ appartiennent à l'intervalle à partir de l'indice 7.
+
+	Pour que les deux conditions soient réunies, il faut donc que l'indice soit simultanément supérieur à 7 et à 17, donc, en conclusion, c'est à partir de l'indice $N = 17$ que les termes $v_n$ et $u_n$ sont dans l'intervalle $]1,99 ~;~ 2,01[$.
+
+
+	\bigskip

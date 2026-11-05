@@ -1,0 +1,240 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_06_sujet1_polynesie_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\subsection*{Partie A : Étude des fonctions \boldmath$f_n$\unboldmath pour \boldmath$n \geqslant 1$\unboldmath}
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item On dérive un produit de deux fonctions dérivables sur $[0 ; +\infty[$. Soit $x$ un réel positif :
+
+$\begin{aligned}
+f_n'(x) &= nx^{n-1} \times \e^{-x} + x^{n} \times \big(-\e^{-x}\big) = \big(nx^{n-1} - x^{n}\big)\e^{-x} \\
+			&= \big(n \times x^{n-1} - x \times x^{n-1}\big)\e^{-x} = \big(n - x\big)x^{n-1}\e^{-x}
+		\end{aligned}$.
+
+	\item La fonction exponentielle est à valeurs strictement positives sur $\R$, donc
+
+$\forall x \in [0 ; +\infty[,\quad \e^{-x} > 0$;
+
+Sur $[0~;~+\infty[$, $x$ est donc positif, et donc $x^{n-1}$ est positif aussi;
+
+Ainsi, $f_n'(x)$ est du signe du facteur $(n- x)$.
+
+On a \quad $n - x > 0\iff n > x$,\quad donc c'est pour cela que l'on a bien $f_n'(x) > 0$ sur $[0~;~n[$, de façon immédiate, $f'_n(n) = 0$ et, par élimination, $f_n'(x) < 0$ sur $]n ~;~+\infty[$.
+
+Le signe de $f_n'(x)$ est donc justifié.
+
+Par conséquent, on en déduit les variations de $f_n$ : sur $[0~;~n]$, $f_n'$ est à valeurs positives, ne s'annulant que de façon isolée (pour $x=n$), donc $f_n$ est strictement croissante sur $[0~;~n]$.
+
+Sur $[n~;~+\infty[$, $f_n'$ est à valeurs négatives, ne s'annulant que de façon isolée (pour $x = n$), donc $f_n$ est strictement décroissante sur $[n~;~+\infty[$.
+
+On calcule les images de $0$ et $n$ par $f_n$ :
+
+$\bullet~$$f_n(0) = 0^{n}\times \e^{-0} = 0 \times 1 = 0$ ;
+
+$\bullet~$$f_n(n) = n^{n}\times \e^{-n} = n^n \times \dfrac{1}{\e^n} = \left(\dfrac{n}{\e}\right)^n $;
+
+Enfin, calculons la limite de $f_n$ quand $x$ tend vers $+\infty$ :
+
+$\forall x \in ]0~;~+\infty[,\quad f_n(x) = x^{n}\e^{-x} = \dfrac{x^{n}}{\e^{x}} = \dfrac{1}{~\dfrac{\e^{x}}{x^{n}}}$
+
+La propriété des croissances comparées dit que, pour tout $n$ naturel non nul :\quad $\lim\limits_{x \to +\infty} \dfrac{\e^{x}}{x^n} = +\infty$;
+
+Par limite du quotient, on en déduit :\quad $ \lim\limits_{x \to +\infty} f_n(x) = \lim\limits_{x \to+\infty} \dfrac{1}{~\dfrac{\e^{x}}{x^{n}}~} = 0$.
+
+La courbe $\mathcal{C}_n$ admet donc une asymptote horizontale d'équation $y = 0$ au voisinage de $+\infty$.
+
+On a ainsi justifié tous les éléments de ce tableau de variations.
+	\end{enumerate}
+
+\item Pour $n$ entier naturel non nul, on a : \quad $f_n(1) = 1^{n}\times \e^{-1} = 1\times \e^{-1} = \e^{-1}$.
+
+Cela confirme que la courbe $\mathcal{C}_n$ contient bien le point A$\left(1~;~\e^{-1}\right)$.
+\end{enumerate}
+
+\subsection*{Partie B : Étude des intégrales \quad \boldmath$\displaystyle \int_{0}^{1}f_n(x) ~\mathrm{d}x$\unboldmath \quad pour \quad \boldmath$n \geqslant 0$\unboldmath}
+
+\begin{enumerate}
+	\item \begin{enumerate}
+		\item La fonction $f_0$ est à valeurs positives sur $[0 ; 1]$, donc $I_0$ correspond à l'aire, exprimée en unités d'aire, de la surface délimitée par : la courbe $\mathcal{C}_0$, l'axe des abscisses, et les deux droites verticales d'équation $x = 0$ et $x = 1$.
+
+		\item De la même façon, chaque intégrale $I_n$ est la surface délimitée par la courbe $\mathcal{C}_n$, l'axe des abscisses, et les deux droites verticales d'équation $x = 0$ et $x = 1$.
+
+		Graphiquement, on conjecture que chacune de ces surface est incluse dans celles correspondant à un entier $n$ plus petit, donc les aires sont de plus en plus petites, et la suite $(I_n)$ semble décroître, en étant minorée par 0, la suite serait convergente, vers une limite positive, proche de 0, ou vers 0, en effet, l'aire sous la courbe $\mathcal{C}_{100}$ est déjà très faible.
+	\end{enumerate}
+
+	\item On a : \quad
+	$\displaystyle \begin{aligned}[t]
+		I_0
+		& = \int_{0}^{1} \e^{-x} ~\mathrm{d}x
+		= \Big[-\e^{-x}\Big]_0^1\\
+		& = \big(-\e^{-1}\big) - \big(-\e^{-0}\big)
+		= -\e^{-1} + \e^{0}\\
+		& = 1 - \e^{-1}
+	\end{aligned}$
+
+	\item
+	\begin{enumerate}
+		\item Soit $n$ un entier naturel.
+
+		$\begin{aligned}
+			x \in [0~;~1] &\implies 0 \leqslant x \leqslant 1\\
+			&\implies 0\times x^n \leqslant x \times x^n \leqslant 1 \times x^n,\quad \text{ car } x^n \geqslant 0\\
+			&\implies 0 \leqslant x^{n+1} \leqslant x^n
+		\end{aligned}$
+
+		On arrive bien à l'inégalité demandée.
+
+		\item Soient $n$ un entier naturel et $x$ un réel de $[0~;~1]$. En multipliant l'inégalité précédente par $\e^{-x}$, qui est un nombre réel supérieur à zéro, il vient : \quad  $0 \leqslant x^{n+1} \e^{-x} \leqslant x^n \e^{-x}$\quad soit \quad$0 \leqslant f_{n+1}(x) \leqslant f_n(x)$.
+
+Comme on intègre entre 0 et 1, avec $0 < 1$, par positivité de l'intégrale, on en déduit :
+
+$\displaystyle \int_{0}^{1} 0 ~\mathrm{d}x \leqslant \int_{0}^{1} f_{n+1}(x)~\mathrm{d}x \leqslant \int_{0}^{1}f_n(x)~\mathrm{d}x$\quad soit \quad $0 \leqslant I_{n+1} \leqslant I_n$.
+	\end{enumerate}
+
+	\item D'après la question précédente, on a, pour tout entier naturel $n$, simultanément :
+	\begin{itemize}
+		\item $0 \leqslant I_n$, \quad donc la suite $(I_n)$ est minorée par 0;
+		\item $I_{n+1} \leqslant I_n$, \quad donc la suite $(I_n)$ est décroissante;
+	\end{itemize}
+
+La suite étant décroissante et minorée par 0, elle est donc convergente, vers une limite $\ell$ supérieure ou égale à 0.
+
+	\item Soit $n$ un entier naturel $n$.
+
+On pose : \quad $\begin{cases}
+u(x) = x^{n+1} \\
+v(x) = -\e^{-x}
+\end{cases}$\quad et \quad $\begin{cases}
+u'(x) = (n+1) x^{n} \\
+v'(x) = \e^{-x}
+\end{cases}$
+
+Toutes ces fonctions étant continues car dérivables sur [0~;~1], on a :
+
+$\begin{aligned}[t] \displaystyle
+I_{n+1} &= \int_{0}^{1} f_{n+1}(x) ~\mathrm{d}x
+		= \int_{0}^{1} x^{n+1}\e^{-x} ~\mathrm{d}x
+		= \int_{0}^{1} u(x)\times v'(x) ~\mathrm{d}x\\
+		&= \Big[u(x) \times v(x) \Big]_0^1 - \int_{0}^{1} u'(x)\times v(x) ~\mathrm{d}x\quad \text{formule d'intégration par parties}\\
+		&= \Big[x^{n+1} \times \big(-\e^{-x}\big)\Big]_0^1 - \int_{0}^{1} (n+1)x^{n} \times \big(-\e^{-x}\big)~\mathrm{d}x	\\
+		&=\big(-1^{n+1}\times \e^{-1}\big) - \big(-0^{n+1}\times \e^{-0}\big) +(n+1)\int_{0}^{1} x^{n} \e^{-x}~\mathrm{d}x\quad\text{ par linéarité}\\
+		&=(n+1)I_n - \dfrac{1}{\e}
+\end{aligned}$
+
+On arrive bien à la relation de récurrence annoncée.
+
+\item 
+	\begin{enumerate}
+		\item Supposons que la limite $\ell$ est supérieure à zéro.
+
+Alors, par limite du produit, on a :\quad $\lim\limits_{n \to +\infty} (n+1)I_n = +\infty$
+
+		Puis par limite de la somme :\quad $\lim\limits_{n \to +\infty} (n+1)I_n - \dfrac{1}{\e}= +\infty$.
+
+Soit \quad $\lim\limits_{n \to +\infty} I_{n + 1} =+\infty$, \quad autrement dit, la suite de terme général $I_{n+1}$ \textbf{diverge} vers $+\infty$.
+
+Or la suite de terme général $I_{n+1}$ a la même limite que la suite de terme général $I_n$, qui elle \textbf{converge} vers un réel positif $\ell$ (dont on peut dire qu'il est inférieur à $I_0 = 1 - \e^{-1}$).
+
+L'unicité de la limite est donc en contradiction avec ces résultats.
+
+		\item Dans la question précédente, on a fait une supposition non étayée : on a supposé $\ell > 0$. Cette supposition conduisant à une contradiction, cela démontre, par l'absurde que l'on a $\ell \leqslant 0$.
+
+Comme on savait, depuis la question \textbf{4.}, que $\ell$ est un réel positif, on peut donc en déduire que l'on a :\quad$\ell = 0$.
+
+La suite $(I_n)$ converge donc vers 0.
+	\end{enumerate}
+	\item Ici, l'appel \texttt{mystère(100)} renvoie une liste (stockée dans la variable \texttt{L}) contenant les valeurs (approchées) des 101 premiers termes de la suite, de $I_0$ à $I_{100}$.
+
+En effet, \text{I} est initialisée (ligne 2) à la valeur $I_0$, puis \text{L} est initialisée (ligne 3) en tant que liste contenant la valeur $I_0$.
+
+Ensuite, on rentre dans un boucle à $\texttt{n} = 100$ répétitions (pour \texttt{i} allant de 0 à 99), et dans chaque exécution, la variable \texttt{I} est mise à jour (ligne 5) en utilisant la relation de récurrence de la suite $(I_n)$, donc passe de la valeur d'un terme à la valeur du terme suivant dans la suite $(I_n)$. Cette nouvelle valeur est ensuite ajoutée à la fin de la liste \texttt{L} (ligne 7).
+
+En sortie de boucle, on a donc appliqué 100 fois la relation de récurrence, donc la variable \texttt{I} contient bien la valeur (approchée de) $I_{0 + 100} = I_{100}$, qui a été la dernière ajoutée à la liste \text{L}.
+\end{enumerate}
+\medskip
+
+\end{document}

@@ -1,0 +1,118 @@
+\subsection*{Partie A : lecture graphique}
+
+On considère une fonction $f$ définie et deux fois dérivable sur l'intervalle $\left]\dfrac{1}{2}~;~+\infty\right[$.
+On note $f'$ sa fonction dérivée et $f''$ sa fonction dérivée seconde.
+
+On a tracé, dans un repère orthogonal, la courbe de la fonction $f$, notée $\mathcal{C}$, ainsi que la tangente $T$ à $\mathcal{C}$ au point A(1~;~0). On précise que $T$ passe par le point B$(0~;~-2)$.
+
+On répondra aux questions suivantes en les justifiant à l'aide du graphique.
+
+\begin{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\psset{yunit=0.8cm,xunit=2.25cm,arrowsize=2pt 3}
+\begin{pspicture*}(-0.25,-3)(4.25,6.5)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.2pt]
+\psaxes[linewidth=1.25pt, Dx=10,Dy=10]{->}(0,0)(-0.25,-3)(4.25,6.5)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0.501}{4}{2 x mul 1 sub ln x mul}
+\psplotTangent[linestyle=dashed]{1}{5}{2 x mul 1 sub ln}
+\uput[ul](1,0){A}\uput[d](1,0){1}\uput[l](0,1){1}
+\uput[ul](3.2,5.5){\blue $\mathcal{C}$}\uput[r](3.8,5.2){$T$}\uput[ul](0,-2){B}\uput[dl](0,0){O}
+\end{pspicture*}
+
+\end{center}
+
+\begin{enumerate}
+\item Déterminer $f'(1)$.
+\item La fonction $f$ est-elle concave sur $\left]\dfrac{1}{2}~;+\infty\right[$~?
+\item Déterminer $f''(1)$.
+\end{enumerate}
+
+
+\subsection*{Partie B : étude de fonction}
+
+On admet que la fonction représentée graphiquement dans la partie A est définie sur l'intervalle $\left]\dfrac{1}{2}~;~+\infty\right[$ par~:
+
+\[f(x) = x\ln(2x-1)\]
+où $\ln$ désigne la fonction logarithme népérien.
+
+On rappelle que~:
+\begin{itemize}[noitemsep]
+\item la fonction $f$ est deux fois dérivable sur l'intervalle $\left]\dfrac{1}{2}~;+\infty\right[$, que $f'$ désigne sa fonction dérivée et $f''$ sa fonction dérivée seconde~;
+\item $\mathcal{C}$ désigne la courbe représentative de la fonction $f$ sur l'intervalle $\left]\dfrac{1}{2}~;~+\infty\right[$.
+\end{itemize}
+
+\begin{enumerate}
+\item Déterminer, en justifiant, la limite de la fonction $f$ en $\dfrac{1}{2}$. En déduire une interprétation graphique.
+\item Résoudre l'équation $f(x) = 0$ sur l'intervalle $\left]\dfrac{1}{2}~;~+\infty\right[$.
+\item On admet que pour tout réel $x$ appartenant à l'intervalle $\left]\dfrac{1}{2}~;+\infty\right[$~:
+
+\[f'(x) = \ln(2x-1) + \dfrac{2x}{2x-1}.\]
+
+	\begin{enumerate}[label=\textbf{\alph*.}]
+		\item Montrer que pour tout réel $x$ appartenant à l'intervalle $\left]\dfrac{1}{2}~;+\infty\right[$~:
+
+\[f''(x) = \dfrac{4(x-1)}{(2x-1)^2}.\]
+
+		\item Montrer que $\mathcal{C}$ admet un unique point d'inflexion et que ce point est l'intersection de $\mathcal{C}$ avec l'axe des abscisses.
+	\end{enumerate}
+\item
+	\begin{enumerate}[label=\textbf{\alph*.}]
+		\item Montrer que la fonction $f$ est positive sur l'intervalle $[1~;~2]$.
+		\item On admet que pour tout $x$ appartenant à l'intervalle $\left]\dfrac{1}{2}~;~+\infty\right[$, on a~:
+		
+\[\dfrac{x^2}{2x-1} = \dfrac{1}{2}x + \dfrac{1}{4} + \dfrac{1}{8}\times\dfrac{2}{2x-1}.\]
+
+Montrer que~:
+
+\[\displaystyle\int_{1}^{2} \dfrac{x^2}{2x-1}\, \text{d}x = 1 + \dfrac{1}{8}\ln (3).\]
+
+\item On note $\mathcal{A}$ l'aire du domaine délimité par la courbe $\mathcal{C}$, l'axe des abscisses et les droites d'équation $x=1$ et $x=2$.
+
+En vous aidant d'une intégration par parties, déterminer la valeur exacte de l'aire $\mathcal{A}$ en unité d'aire.
+	\end{enumerate}
+\end{enumerate}
+
+
+\subsection*{Partie C : généralisation}
+
+On désigne par $a$ un réel strictement positif et par $f_a$ la fonction définie sur l'intervalle $\left]\dfrac{1}{a}~;~+\infty\right[$ par~:
+
+\[f_a(x) = x\ln(ax - 1).\]
+
+On admet que $f_a$ est deux fois dérivable sur l'intervalle $\left]\dfrac{1}{a}~;~+\infty\right[$. On note $f_a'$ sa fonction dérivée, $f_a''$ sa fonction dérivée seconde, et $\mathcal{C}_a$ sa représentation graphique.
+
+On admet que pour tout $x$ appartenant à l'intervalle $\left]\dfrac{1}{a}~;~+\infty\right[$:
+
+\[f_a''(x) = \dfrac{a(ax-2)}{(ax-1)^2}.\]
+
+\begin{enumerate}
+\item Montrer que pour tout réel $a$ strictement positif, la courbe $\mathcal{C}_a$ admet un unique point d'inflexion A$_a$.
+\item Montrer que les points A$_a$ sont alignés, $a$ appartenant à l'intervalle $]0~;~+\infty[$.
+\end{enumerate}

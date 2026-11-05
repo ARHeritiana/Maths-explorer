@@ -1,0 +1,132 @@
+\medskip
+
+\textbf{Partie A : étude de la fonction} \boldmath $f$\unboldmath.
+
+\medskip
+
+\[f(x)  = x - 2 + \dfrac12 \ln x,\quad \text{sur}\:]0~;~+ \infty[\]
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item ~
+		
+$\bullet~$Limite en 0  : On sait que $\displaystyle\lim_{x \to 0^+} x - 2 = - 2$ et que $\displaystyle\lim_{x \to 0^+} \ln x = - \infty$, donc par somme de limites $\displaystyle\lim_{x \to 0^+} f(x) = - \infty$.
+
+$\bullet~$Limite en plus l'infini : 
+
+On a $\displaystyle\lim_{x \to + \infty} x = \displaystyle\lim_{x \to + \infty} \ln x = + \infty$, d'où par somme de limites : $\displaystyle\lim_{x \to + \infty} f(x) = + \infty$.
+		\item Sur l'intervalle de définition $f$ est une somme de fonctions dérivables et sur cet intervalle : 
+		
+$f'(x) = 1 + \dfrac12 \times \dfrac 1x = 1 + \dfrac {1}{2x} = \dfrac{2x + 1}{2x}$.
+		\item On a successivement : $0 < x \Rightarrow 0 < 2x < 2x + 1$ et 
+		
+		$2x + 1 > 2x > 0 \Rightarrow \dfrac{2x + 1}{2x} > 1 > 0 $: donc $f'(x) > 1 > 0$ : $f'(x) > 0$ donc $f$ est croissante sur $]0~;~+ \infty[$ de moins l'infini à plus l'infini.
+		\item $f'$ est elle-même dérivable sur $]0~;~+ \infty[$ et sur cet intervalle, en dérivant le quotient :
+		
+$f''(x) = \dfrac{1 \times x - 1 \times (x + 1)}{x^2} = \dfrac{x - x - 1}{x^2} = - \dfrac{1}{x^2}$.
+		
+Or $x > 0 \Rightarrow x^2 > 0 \Rightarrow \dfrac{1}{x^2} > 0$ et enfin $f''(x) < 0$.
+		
+Conclusion : la fonction $f$ est concave sur $]0~;~+ \infty[$
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item  Sur l'intervalle $]0~;~+ \infty[$, la fonction $f$ est continue car dérivable sur cet intervalle et strictement croissante de moins à plus l'infini : d'après le théorème des valeurs intermédiaires, il existe un réel unique $\alpha \in]0~;~+ \infty[$ tel que $f(\alpha) = 0$.
+		
+Comme $f(1) = 1 - 2 + 0,5\times \ln 1 = -1$ et 
+
+\phantom{Comme}$f(2) = 2 - 2  + \dfrac{\ln 2}{2} = \dfrac{\ln 2}{2} > 0$, le même théorème appliqué à l'intervalle [1~;~2] montre que $\alpha \in [1~;~2]$.
+		\item On a donc :
+		
+$\bullet~f(x) < 0$ sur $]0~;~\alpha[$ ;  
+		
+$\bullet~f(x) > 0$ sur $]\alpha~;~+ \infty[$ ;
+
+$\bullet~f(\alpha)  = 0$.
+		\item Le dernier résultat s'écrit :
+		
+$\alpha - 2 +\dfrac12 \ln \alpha = 0 \iff \dfrac12 \ln \alpha = 2 - \alpha \iff \ln \alpha = 2(2 - \alpha)$
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B étude de la fonction}{} \boldmath $g$\unboldmath 
+
+Sur ]0~;~1], \quad $g(x) = - \dfrac78 x^2 + x - \dfrac14 x^2\ln x$.
+
+\medskip
+
+\begin{enumerate}
+\item $g$ est une somme de produits de fonctions dérivable sur ]0~;~1], elle est donc dérivable sur cet intervalle et 
+
+$g'(x) = - 2 \times \dfrac78 x + 1 - \dfrac14\left(2x \ln x + x^2 \times \dfrac 1x \right) = 
+- \dfrac74 x + 1 - \dfrac12 x \ln x - x\dfrac14 = - \dfrac84 x + 1 - \dfrac 1 2 x \ln x =$
+
+$  1 - 2x - \dfrac{x\ln x}{2}$.
+
+Puisque $x \ne 0$, on peut factoriser $x$ et $g'(x) = x\left(\dfrac 1x - 2 - \ln x\dfrac12 \right)$.
+
+Posons $X = \dfrac 1x \iff x = \dfrac 1X$ ; en remarquant que $X = \dfrac 1x \Rightarrow \ln X = \ln \left(\dfrac 1x\right) = - \ln x$, on peut écrire :
+
+$g'(x) = \dfrac 1X \left(X - 2 + \dfrac12 \ln X \right)$, soit $g'(x) = xf\left(\dfrac 1x \right)$
+\item 
+	\begin{enumerate}
+		\item On a vu dans la partie A que $0 < x < \alpha \Rightarrow f(x) < 0$, soit en prenant les inverses de ces nombres positifs :
+		
+$ \dfrac{1}{\alpha} <  \dfrac 1x \Rightarrow f\left(\dfrac 1x \right) > 0$.
+		\item D'après le tableau de signes admis comme $0< x \leqslant 1$ on en déduit par produit que :
+		
+$\bullet~$ $g'(x) > 0$ sur $\left]0~;~\dfrac{1}{\alpha}\right[$ ; $g$ est croissante sur cet intervalle
+
+$\bullet~$ $g'(x) < 0$ sur $\left]\dfrac{1}{\alpha}~;~1\right[$ ; $g$ est décroissante sur cet intervalle
+
+$\bullet~$ $g'\left(\frac{1}{\alpha}\right) = 0$ ; $g\left(\frac{1}{\alpha}\right)$ est un maximum de $g$ sur l'intervalle [0~;~1].
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie C : un calcul d'aire}
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item On sait que sur l'intervalle ]0~;~1], $\ln x \leqslant  0$ et comme $x^2 \geqslant 0$, on conclut que $- \dfrac14 x^2 \ln x \geqslant 0$.
+
+Conclusion : sur l'intervalle ]0~;~1], $- \dfrac78 x^2 + x \leqslant - \dfrac78 x^2 + x - \dfrac14 x^2 \ln x$ ce qui signifie géométriquement que sur cet intervalle l'arc de la parabole est en dessous de la représentation graphique de $g$.
+		\item Ne connaissant pas de primitive évidente de la fonction $x \longmapsto x^2 \ln x$, on effectue une intégration par parties en posant 
+		
+$\begin{array}{l c l}
+u(x)&=&\ln x\\
+v'(x)&=&x^2
+\end{array}$ d'où $\begin{array}{l c l}
+u'(x)&=&\dfrac 1x\\
+v(x)&=&\dfrac{x^3}{3}
+\end{array}$.
+
+Les fonctions $u$ et $v$ sont dérivables sur l'intervalle $\left[\dfrac{1}{\alpha}~;~1\right]$ et leurs dérivées sont continues sur ce même intervalle,
+
+donc $\displaystyle\int_{\frac{1}{\alpha}}^1 x^2 \ln x\:\text{d}x = \left[\dfrac{x^3}{3}\ln x \right]_{\frac{1}{\alpha}}^1 - \displaystyle\int_{\frac{1}{\alpha}}^1 \dfrac{x^2}{3}\:\text{d}x = \left[\dfrac{x^3}{3}\ln x - \dfrac{x^3}{9}\right]_{\frac{1}{\alpha}}^1 =$
+
+$- \dfrac19 - \left(\dfrac{1}{3\alpha^3}\ln \dfrac{1}{\alpha} - \dfrac{1}{9\alpha^3} \right) = - \dfrac19 - \dfrac{1}{3\alpha^3}\left(- \ln \alpha - \dfrac13 \right)$, 
+
+soit en remplaçant $\ln \alpha$ par $2(2 - \alpha)$,
+
+$\displaystyle\int_{\frac{1}{\alpha}}^1 x^2 \ln x\:\text{d}x = - \dfrac19 - \dfrac{1}{3\alpha^3}\left(- 4 + 2\alpha - \dfrac13\right) = - \dfrac19 + \dfrac{4}{3\alpha^3} - \dfrac{2}{3\alpha^2} + \dfrac{1}{9\alpha^3} =$
+
+$ \dfrac{- \alpha^3 + 12 - 6\alpha + 1}{9\alpha^3} = \dfrac{- \alpha^3 - 6\alpha + 13}{9\alpha^3}$.
+	\end{enumerate}
+\item L'aire de la partie hachurée est égale la différence des intégrales :
+
+$\mathcal{A} = \displaystyle\int_\frac{1}{\alpha}^1 \left(- \dfrac78 x^2 + x - \dfrac14 x^2 \ln x\right)\:\text{d}x - \displaystyle\int_\frac{1}{\alpha}^1 \left(- \dfrac78 x^2 + x \right)\:\text{d}x$, soit par linéarité de l'intégrale :
+
+$\mathcal{A} = \displaystyle\int_\frac{1}{\alpha}^1 \left( - \dfrac14 x^2 \ln x\right)\:\text{d}x = - \dfrac14 \displaystyle\int_\frac{1}{\alpha}^1 \left(x^2 \ln x\right)\:\text{d}x$,
+
+soit d'après le calcul précédent :
+
+$\mathcal{A} = - \dfrac14  \times \dfrac{- \alpha^3 - 6\alpha + 13}{9\alpha^3} = \dfrac{\alpha^3 + 6\alpha - 13}{36\alpha^3} \approx 0,07$.
+\end{enumerate}

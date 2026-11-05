@@ -1,0 +1,76 @@
+\medskip
+
+On considère le cube ABCDEFGH d'arête de longueur 1.
+
+L'espace est muni du repère orthonormé $\left(\text{A}~;\, \vect{\text{AB}}, \vect{\text{AD}}, \vect{\text{AE}}\right)$. Le point I est le milieu du
+segment [EF], K le centre du carré ADHE et O le milieu du segment [AG].
+
+\begin{center}
+\psset{unit=0.9cm,radius=0pt}
+\begin{pspicture}(0,-1)(9,7)
+
+\Cnode*(0.5,0.4){A} \Cnode*(5.5,0){B} 
+\Cnode*(7.5,1.4){C} \Cnode*(2.5,1.8){D}
+\Cnode*(0.5,5.4){E} \Cnode*(5.5,5){F} 
+\Cnode*(7.5,6.4){G} \Cnode*(2.5,6.8){H}
+\Cnode*[radius=2pt](3,5.2){I}
+\Cnode*[radius=2pt](1.5,3.6){K}
+\Cnode*[radius=2pt](4,3.4){O}
+
+\uput[dl](A){A} \uput[dr](B){B} \uput[r](C){C} 
+\uput[ur](D){D} \uput[ul](E){E} \uput[u](F){F} 
+\uput[ur](G){G} \uput[u](H){H} \uput[u](I){I}
+\uput[dr](O){O}
+\uput[l](K){K}
+
+\pspolygon(A)(B)(F)(E)
+\psline(B)(C)(G)(F)
+\psline(G)(H)(E)
+\psline(A)(I)(G)
+\psline[linestyle=dashed](A)(G)
+\psline[linestyle=dashed](A)(D)(H)
+\psline[linestyle=dashed](D)(C)
+\end{pspicture}
+\end{center}
+
+\emph{Le but de l'exercice est de calculer de deux manières différentes, la distance du point B au plan (AIG).}
+
+\bigskip
+
+\textbf{Partie 1. Première méthode}
+
+\medskip
+
+\begin{enumerate}
+\item Donner, sans justification, les coordonnées des points A, B, et G. 
+
+On admet que les points I et K ont pour coordonnées I$\left(\dfrac{1}{2}~;~0~;~1\right)$ et K$\left(0~;~\dfrac{1}{2}~;~\dfrac{1}{2}\right)$.
+\item Démontrer que la droite (BK) est orthogonale au plan (AIG).
+\item Vérifier qu'une équation cartésienne du plan (AIG) est : $2x - y - z = 0$.
+\item Donner une représentation paramétrique de la droite (BK).
+\item En déduire que le projeté orthogonal L du point B sur le plan (AIG) a pour
+coordonnées L$\left(\dfrac{1}{3}~;~\dfrac{1}{3}~;~\dfrac{1}{3}\right)$.
+\item Déterminer la distance du point B au plan (AIG).
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2. Deuxième méthode}
+
+\medskip
+
+\emph{On rappelle que le volume $V$ d'une pyramide est donné par la formule $V = \dfrac{1}{3} \times  b \times h$, où $b$ est l'aire d'une base et $h$ la hauteur associée à cette base.}
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Justifier que dans le tétraèdre ABIG, [GF] est la hauteur relative à la base AIB. 
+		\item En déduire le volume du tétraèdre ABIG.
+	\end{enumerate}
+\item On admet que AI = IG $= \dfrac{\sqrt{5}}{2}$ et que AG $= \sqrt 3$.
+
+Démontrer que l'aire du triangle isocèle AIG est égale à $\dfrac{\sqrt{6}}{4}$ unité d'aire.
+\item En déduire la distance du point B au plan (AIG).
+\end{enumerate}

@@ -1,0 +1,124 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_09_antilles_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+On modélise l'altitude d'un projectile en fonction du temps $t$ exprimé en secondes par la fonction $f$ définie sur l'intervalle $[0~;~+\infty[$ par :
+\[ f(t) = (2-0,5t)(7t+1) \]
+où $f(t)$ est la hauteur, exprimée en mètres.
+
+\begin{enumerate}
+	\item
+	\begin{enumerate}
+		\item Vérifier que $f(t) = -3,5t^2 + 13,5t + 2$, pour tout $t$ appartenant à l'intervalle $[0 ; +\infty[$.
+		\item Calculer $f(0)$ et interpréter $f(0)$ dans le contexte de l'énoncé.
+	\end{enumerate}
+
+	\item Ci-dessous, on donne une représentation graphique partielle de la fonction $f$ et son tableau de variation.
+
+	\begin{center}
+		\begin{tikzpicture}[x=2.8cm,y=0.28cm,>=stealth]
+			\draw[xstep=0.1,ystep=1,gray!30,line width=0.3pt] (0,0) grid (4.3,17);
+			\draw[xstep=0.5,ystep=5,gray!75,line width=0.5pt] (0,0) grid (4.3,17);
+			\draw[->,line width=1pt] (0,0) -- (4.3,0);
+			\draw[->,line width=1pt] (0,0) -- (0,17);
+			\foreach \x in {0.5,1,1.5,2,2.5,3,3.5,4} \draw (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize \np{\x}};
+			\foreach \y in {5,10,15} \draw (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize \np{\y}};
+			\draw (-2pt,-2pt) node[below left] {\footnotesize 0};
+			\draw[line width=1.2pt,red] plot[domain=0:3,samples=60] (\x,{-3.5*\x*\x+13.5*\x+2});
+			\draw[line width=1.2pt,red,densely dotted] plot[domain=3:3.5,samples=20] (\x,{-3.5*\x*\x+13.5*\x+2});
+		\end{tikzpicture}
+
+		\medskip
+
+		\begin{tikzpicture}
+			\tkzTabInit[lgt=3,espcl=2.5]{$t$/0.75,$f$/1.5}{$0$,$\frac{27}{14}$,$+\infty$}
+			\tkzTabVar{-/{$2$},+/{},-/{}}
+		\end{tikzpicture}
+	\end{center}
+
+	\begin{enumerate}
+		\item Avec la précision permise par le graphique, déterminer l'intervalle de temps sur lequel la hauteur du projectile est supérieure ou égale à 12~m.
+		\item À quel instant $t$ le projectile touchera-t-il le sol ? Justifier.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

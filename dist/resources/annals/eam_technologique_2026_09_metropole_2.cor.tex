@@ -1,0 +1,149 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_technologique_2026_09_metropole_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Partie A}
+
+\emph{Pour tout réel $x$, $f(x) = (12x - 480)(x - 10)$.}
+
+$12x - 480 = 0 \iff x = \dfrac{480}{12} = 40$ \quad et \quad $x - 10 = 0 \iff x = 10$.
+
+Les deux coefficients de $x$ (12 et 1) sont positifs : chaque
+facteur est négatif avant sa racine et positif après.
+
+\begin{center}
+	\begin{tikzpicture}
+		\tkzTabInit[lgt=3.4,espcl=2.6]
+		{$x$/1,$12x-480$/1,$x-10$/1,$f(x)$/1}{$-\infty$,$10$,$40$,$+\infty$}
+		\tkzTabLine{,-,t,-,z,+,}
+		\tkzTabLine{,-,z,+,t,+,}
+		\tkzTabLine{,+,z,-,z,+,}
+	\end{tikzpicture}
+\end{center}
+
+
+\subsection*{Partie B}
+
+\emph{Pour $x \in [0 ; 18]$, $B(x) = 4x^3 - 300x^2 + \np{4800}x - \np{10000}$, où $x$ est le nombre de
+tracteurs vendus par mois et $B(x)$ le bénéfice en centaines d'euros.}
+
+\begin{enumerate}
+	\item $B(0) = 4 \times 0 - 300 \times 0 + \np{4800} \times 0 - \np{10000} = -\np{10000}$.
+
+	Si l'usine ne vend aucun tracteur dans le mois, elle subit une perte
+	de \np{10000} centaines d'euros, soit \np{1000000}~\euro.
+
+	\item Lorsque l'usine vend 18 tracteurs dans le mois, elle réalise un bénéfice de \np{2528}
+	centaines d'euros, soit \np{252800}~\euro.
+
+	\item
+	\begin{enumerate}
+		\item Pour tout réel $x$ de $[0~;~18]$ :
+		\[B'(x) = 4 \times 3x^2 - 300 \times 2x + \np{4800} = 12x^2 - 600x + \np{4800}.\]
+		D'autre part :
+		\[f(x) = (12x - 480)(x - 10) = 12x^2 - 120x - 480x + \np{4800} = 12x^2 - 600x + \np{4800}.\]
+
+Donc, pour tout réel $x$ de $[0 ; 18]$, $B'(x) = f(x)$.
+
+		\item Le signe de $B'(x) = f(x)$ se lit dans le tableau de la partie A, restreint à
+		l'intervalle $[0 ; 18]$ : seule la racine 10 s'y trouve ($40 > 18$).
+
+		$B(10) = \np{4000} - \np{30000} + \np{48000} - \np{10000} = \np{12000}$.
+
+		\begin{center}
+			\begin{tikzpicture}
+				\tkzTabInit[lgt=3.4,espcl=2.8]
+				{$x$/1,$B'(x)$/1,$B$/2}{$0$,$10$,$18$}
+				\tkzTabLine{,+,z,-,}
+				\tkzTabVar{-/$-\np{10000}$,+/$\np{12000}$,-/$\np{2528}$}
+			\end{tikzpicture}
+		\end{center}
+
+		\item D'après le tableau de variations, $B$ atteint son maximum pour $x = 10$ : l'entreprise
+		doit produire et vendre \textbf{10 tracteurs} par mois. Le bénéfice maximal est alors
+		$B(10) = \np{12000}$ centaines d'euros, soit \np{1200000}~\euro.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\end{document}

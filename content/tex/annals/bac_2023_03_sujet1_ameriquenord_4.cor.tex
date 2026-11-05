@@ -1,0 +1,128 @@
+\medskip
+
+\textbf{Partie A - Étude de la suite \boldmath{$\left(u_{n}\right)$}}
+
+\medskip
+
+\begin{enumerate}
+\item Calculons $u_{1}$ :\quad $u_1 = \dfrac{1}{2}\left(u_0 + \dfrac{11}{u_0}\right) = \dfrac{1}{2}\left(5 + \dfrac{11}{5}\right) = \dfrac{1}{2}\times \dfrac{25 + 11}{5} = \dfrac{18}{5}$.
+
+\hphantom{Calculons $u_{1}$ :\quad} $u_2 = \dfrac{1}{2}\left(u_1 + \dfrac{11}{u_1}\right) = \dfrac{1}{2}\left(\dfrac{18}{5} + \dfrac{11}{\frac{18}{5}}\right) = \dfrac{1}{2}\times \left(\dfrac{18}{5}+\dfrac{55}{18}\right)  = \dfrac{599}{180}$.
+
+\item La fonction $f$ est dérivable sur son ensemble de définition (c'est une fraction rationnelle).
+
+Pour tout réel strictement positif, on a:
+
+$f'(x) = \dfrac{1}{2}\left(1 + 11\times \dfrac{-1}{x^2}\right) = \dfrac{1}{2}\times \dfrac{x^2 - 11}{x^2} = \dfrac{x^2-11}{2x^2}$
+
+Pour tout $x$ dans l'intervalle $\left[\sqrt{11} ~;~+\infty\right[$, on a :
+
+$\begin{aligned} x \geqslant \sqrt{11} &\implies x^2 \geqslant 11 \qquad\text{ car la fonction carré est croissante sur }\R^+\\
+&\implies x^2 - 11 \geqslant 0\\
+&\implies \dfrac{x^2-11}{2x^2} \geqslant 0 \qquad \text{car, pour tout réel non nul, } 2x^2>0 \\
+&\implies f'(x) \geqslant 0\\ \end{aligned}$
+
+Sur l'intervalle $\left[\sqrt{11} ~;~+\infty\right[$, $f'$ est à valeurs positives, donc $f$ est croissante.
+
+\item \emph{Remarque :} on constate que la fonction $f$ est telle que, pour tout entier naturel $n$, on a :
+
+$u_{n+1} = f(u_n)$, et par ailleurs, on va calculer $f\left(\sqrt{11}\right) = \dfrac{1}{2}\left(\sqrt{11} + \dfrac{11}{\sqrt{11}}\right)  = \dfrac{1}{2}\left(\sqrt{11} + \sqrt{11}\right) = \sqrt{11}$
+
+Pour tout entier naturel $n$, on s'intéresse à l'inégalité : $ u_{n} \geqslant u_{n+1} \geqslant \sqrt{11}$.
+
+\emph{Initialisation :} Pour $n = 0$, on a $u_n = 5$ et $u_{n+1} = u_1 = \dfrac{18}{5} = 3,6$ et par ailleurs, on a $\sqrt{11}\approx 3,32$ donc on a bien $u_0\geqslant u_1 \geqslant\sqrt{11}$. L'inégalité est vraie à l'indice 0.
+
+		\emph{Hérédité :} Pour un entier naturel $n$ quelconque fixé, on suppose que l'inégalité est vraie pour l'indice $n$, c'est-à-dire que l'on a : $ u_{n} \geqslant u_{n+1} \geqslant \sqrt{11}$.
+
+		 $\begin{aligned} u_{n} \geqslant u_{n+1} \geqslant \sqrt{11}
+		 	&\implies f(u_n) \geqslant f(u_{n+1}) \geqslant f\left(\sqrt{11}\right) \qquad \text{car  }f\text{ est croissante sur }\left[\sqrt{11}~;~+\infty \right[\\
+		 	&\implies u_{n+1}\geqslant u_{n+2} \geqslant \sqrt{11} \qquad \text{grâce aux éléments de la remarque}\\ \end{aligned}$
+
+\emph{Conclusion :} On a montré que l'inégalité est vraie pour l'indice 0, et que, pour tout entier naturel $n$ la véracité est héréditaire de l'indice $n$ à l'indice $(n+1)$. En vertu du principe de récurrence, on peut en déduire que :
+
+Pour tout $n$ naturel, on a : $u_{n} \geqslant u_{n+1} \geqslant \sqrt{11}$.
+
+\item On a notamment :
+\begin{itemize}
+\item $\forall n \in \N, \quad u_n\geqslant \sqrt{11}$ : la suite $(u_n)$ est minorée par $\sqrt{11}$.
+
+\item $\forall n \in \N, \quad u_n\geqslant u_{n+1}$ : la suite $(u_n)$ est décroissante.
+\end{itemize}
+
+D'après le théorème de convergence monotone, la suite est donc convergente vers une limite $a$, telle que $a \geqslant\sqrt{11}$.
+
+	\item $u$ est une suite convergente vers une limite réelle $a$ et $u$ a une relation de récurrence de la forme :
+
+$\forall n \in \N, \quad u_{n+1}=f(u_n)$
+
+où $f$ est une fonction continue sur $\R^{*+}$, ensemble qui contient tous les termes de la suite (car celle-ci est minorée par $\sqrt{11}>0$).
+
+D'après le théorème du point fixe, on en déduit que la limite $a$ de la suite doit être une solution de l'équation $f(x) = x$.
+
+Résolvons cette équation dans $\R^{*+}$ :
+
+$\begin{aligned}  f(x) = x &\iff \dfrac{1}{2}\left(x + \dfrac{11}{x}\right) = x\\
+&\iff x+ \dfrac{11}{x} = 2x\\
+&\iff -x + \dfrac{11}{x} = 0\\
+&\iff -x^2 + 11 = 0 \qquad \text{car sur }\R^{*+}, \quad x>0\\
+&\iff x^2 = 11\\
+&\iff x = \sqrt{11} \qquad \text{car on résout sur }\R^{*+}		\\ \end{aligned}$
+
+L'équation n'a qu'une unique solution sur $\R^{*+}$, c'est $\sqrt{11}$
+
+On en conclut donc que la suite ne peut converger que vers $\sqrt{11}$.
+
+On a donc $\lim\limits_{n \to +\infty} u_n = \sqrt{11}$.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B - Application géométrique}
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Le rectangle $R_0$ a pour aire 11 et pour longueur $L_0 = 5$, donc sa largeur $\ell_{0}$ est telle que $L_0 \times \ell_0 = 11 \iff \ell_0 = \dfrac{11}{L_0}$
+
+On a donc bien $\ell_{0}=\dfrac{11}{5} = 2,2$.
+
+		\item De façon général, pour tout $n$ entier naturel :
+
+		Le rectangle $R_n$ a pour aire 11 et pour longueur $L_n$, donc sa largeur $\ell_{n}$ est telle que $L_n \times \ell_n = 11 \iff \ell_n = \dfrac{11}{L_n}$.
+
+	\end{enumerate}
+\item On sait que pour tout $n$ naturel : $L_{n+1} = \dfrac{L_n + \ell_n}{2} = \dfrac{1}{2}\left(L_n + \ell_n\right)  = \dfrac{1}{2}\left(L_n + \dfrac{11}{L_n}\right)$.
+
+La relation de récurrence vérifiée par la suite $(L_n)$ est donc la même que celle vérifiée par la suite $(u_n)$ dans la \textbf{partie A}. Comme de plus $L_0 = u_0 = 5$, les deux suites sont donc rigoureusement égales.
+	\item À la \textbf{partie A}, question \textbf{3.}, on a établi que la suite $(u_n)$, donc la suite $(L_n)$ est minorée par $\sqrt{11}$.
+
+On a donc $\sqrt{11}\leqslant L_n$. De plus :
+
+$\begin{aligned}[t] \sqrt{11}\leqslant L_n &\implies \dfrac{1}{\sqrt{11}} \geqslant \dfrac{1}{L_n} \qquad\text{car la fonction inverse est strictement décroissante sur }\R^{*+}\\
+&\implies \dfrac{11}{\sqrt{11}} \geqslant \dfrac{11}{L_n} \qquad \text{car } 11>0\\
+&\implies \sqrt{11}\geqslant\ell_n\\
+\\ \end{aligned}$
+
+En prenant cette inégalité et celle dont on est parti, on a bien : $\ell_n \leqslant\sqrt{11} \leqslant L_n$.
+
+\item On admet que les suites $\left(L_{n}\right)$ et $\left(\ell_{n}\right)$ convergent toutes les deux vers $\sqrt{11}$.
+
+Géométriquement, cela veut dire que notre rectangle $R_n$ a des dimensions qui tendent vers $\sqrt{11}$, donc le rectangle tend vers un carré de côté $\sqrt{11}$.
+
+item Ce script renvoie un encadrement de $\sqrt{11}$ par les valeurs $\ell_n$ et $L_n$, arrondies au millionième près, où $n$ est l'argument d'appel de la fonction.
+
+	\begin{enumerate}
+		\item Pour l'appel \texttt{heron(3)} le retour de la fonction sera donc $\ell_3$ et $L_3$, arrondis au millionième près.
+
+on obtient donc les valeurs suivantes : \np{3,316606} , \np{3,316643}
+
+		\item Une interprétation de ces deux valeurs, c'est donc que le nombre $\sqrt{11}$ est compris entre \np{3,316606} et \np{3,316643}, soit un encadrement d'un amplitude inférieure à $4\times 10^{-5}$, soit une précision importante, avec seulement trois itérations de notre algorithme.
+		\end{enumerate}
+
+	\end{enumerate}
+\emph{Remarque :} Ici, la fonction python a été appelée \texttt{heron} en référence à Héron d'Alexandrie (qui a vécu sans doute au cours du Ier siècle après JC.).
+
+La méthode de Héron ou méthode babylonienne est une méthode efficace d'extraction de racine carrée, c’est-à-dire de résolution de l'équation $x^2 = a$, avec $a$ positif. Elle porte le nom du mathématicien Héron d'Alexandrie, qui l'expose dans le tome I de son ouvrage Metrica (Les métriques), découvert seulement en 1896 mais certains calculs antérieurs, notamment égyptiens, semblent prouver que la méthode est plus ancienne.
+\hfill(source : wikipedia)

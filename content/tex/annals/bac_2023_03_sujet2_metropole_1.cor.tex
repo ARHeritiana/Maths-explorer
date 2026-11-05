@@ -1,0 +1,113 @@
+\medskip
+
+
+
+
+
+
+
+
+Un jeu vidéo possède une vaste communauté de joueurs en ligne. Avant de débuter une partie, le joueur doit choisir entre deux \og mondes \fg : soit le monde A, soit le monde B.
+On choisit au hasard un individu dans la communauté des joueurs.
+
+Lorsqu'il joue une partie, on admet que:
+\begin{itemize}
+\item[$\bullet~~$] la probabilité que le joueur choisisse le monde A est égale à $\dfrac25$ ;
+\item[$\bullet~~$] si le joueur choisit le monde A, la probabilité qu'il gagne la partie est de $\dfrac{7}{10}$ ;
+\item[$\bullet~~$] la probabilité que le joueur gagne la partie est de $\dfrac{12}{25}$.
+\end{itemize}
+
+On considère les évènements suivants : 
+
+\begin{itemize}
+\item[$\bullet~~$] $A$ : \og Le joueur choisit le monde A \fg{}; 
+\item[$\bullet~~$] $B$ : \og Le joueur choisit le monde B \fg{} ;
+\item[$\bullet~~$] $G$ : \og Le joueur gagne la partie \fg.
+\end{itemize}
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+On sait donc que $P(A)=\dfrac{2}{5}$, $P_{A}(G)=\dfrac{7}{10}$ et $P(G)=\dfrac{12}{25}$.
+\end{tabular}
+
+\begin{enumerate}
+\item La probabilité que le joueur choisisse le monde A et gagne la partie est égale à :
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{>{\centering \arraybackslash}X}}
+\textbf{a.~~} $\dfrac{7}{10}$&\textbf{b.~~} $\dfrac{3}{25}$&\textbf{c.~~} $\dfrac{7}{25}$&\textbf{d.~~} $\dfrac{24}{125}$
+\end{tabularx}
+\end{center}
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+$P(A\cap G)=P(A)\times P_{A}(G)=\dfrac{2}{5}\times \dfrac{7}{10}=\dfrac{7}{25}$
+\hfill\textbf{Réponse c.}
+\end{tabular}
+
+\item La probabilité $P_B(G)$ de l'évènement $G$ sachant que $B$ est réalisé est égale à :
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{>{\centering \arraybackslash}X}}
+\textbf{a.~~} $\dfrac{1}{5}$&\textbf{b.~~} $\dfrac{1}{3}$&\textbf{c.~~} $\dfrac{7}{15}$&\textbf{d.~~} $\dfrac{5}{12}$
+\end{tabularx}
+\end{center}
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+$P(B)=1-P(A)=1-\dfrac{2}{5}=\dfrac{3}{5}$
+
+D'après la formule des probabilités totales:
+$P(G)=P(A\cap G)+P(B\cap G)$ donc $P(B\cap G)=P(G)-P(A\cap G)=\dfrac{12}{25}-\dfrac{7}{25}=\dfrac{5}{25}=\dfrac{1}{5}$.
+
+$P_{B}(G) = \dfrac{P(B\cap G)}{P(B)}
+=\dfrac{\frac{1}{5}}{\frac{3}{5}} = \dfrac{1}{3}$
+\hfill\textbf{Réponse b.}
+\end{tabular}
+
+\end{enumerate}
+
+Dans la suite de l'exercice, un joueur effectue 10 parties successives. 
+On assimile cette situation à un tirage aléatoire avec remise. 
+On rappelle que la probabilité de gagner une partie est de $\dfrac{12}{25}$.
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+Soit $X$ la variable aléatoire qui donne le nombre de succès sur 10 parties; la variable aléatoire $X$ suit la loi binomiale de paramètres $n=10$ et $p=\dfrac{12}{25}$.
+\end{tabular}
+
+\begin{enumerate}[resume]
+\item La probabilité, arrondie au millième, que le joueur gagne exactement $6$ parties est égale à : 
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{>{\centering \arraybackslash}X}}
+\textbf{a.~~} $0,859$&\textbf{b.~~}0,671&\textbf{c.~~}0,188&\textbf{d.~~}  0,187
+\end{tabularx}
+\end{center}
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+$P(X=6)=\ds\binom{10}{6}\times \left ( \dfrac{12}{25}\right )^{6}\times \left (1-\dfrac{12}{25}\right )^{10-6} \approx 0,188$
+\hfill\textbf{Réponse c.}
+\end{tabular}
+
+\item On considère un entier naturel $n$ pour lequel la probabilité, arrondie au millième, que le joueur gagne au plus $n$ parties est de $0,207$. Alors :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{>{\centering \arraybackslash}X}}
+\textbf{a.~~} $n = 2$&\textbf{b.~~} $n = 3$&\textbf{c.~~} $n = 4$&\textbf{d.~~} $n = 5$
+\end{tabularx}
+\end{center}
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+On cherche $n$ tel que $P(X\leqslant n) \approx 0,207$; à la calculatrice, on trouve $n=3$.
+\hfill\textbf{Réponse b.}
+\end{tabular}
+
+\item La probabilité que le joueur gagne au moins une partie est égale à :
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{>{\centering \arraybackslash}X}}
+\textbf{a.~~} $1 - \left(\dfrac{12}{25}\right)^{10}$&\textbf{b.~~} $\left(\dfrac{13}{25}\right)^{10}$&\textbf{c.~~} $\left(\dfrac{12}{25}\right)^{10}$&\textbf{d.~~}$1 - \left(\dfrac{13}{25}\right)^{10}$
+\end{tabularx}
+\end{center}
+
+\begin{tabular}{@{\hspace*{0.05\linewidth}} || p{0.93\linewidth}}
+$P(X\geqslant 1) = 1-P(X=0) = 1-\ds\binom{10}{0}\left (\dfrac{12}{25}\right )^{0}\left (1-\dfrac{12}{25}\right )^{10-0}=1-\left (\dfrac{13}{25}\right )^{10}$
+\hfill\textbf{Réponse d.}
+\end{tabular}
+
+\end{enumerate}
+
+\bigskip

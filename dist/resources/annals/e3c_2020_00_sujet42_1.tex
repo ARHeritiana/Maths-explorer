@@ -1,0 +1,194 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet42_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Ce QCM comprend 5 questions.
+
+Pour chacune des questions, une seule des quatre réponses proposées est correcte.
+
+Les questions sont indépendantes.
+
+Pour chaque question, indiquer le numéro de la question et recopier sur la copie la lettre correspondante à la réponse choisie.
+
+Aucune justification n'est demandée mais il peut être nécessaire d'effectuer des recherches au brouillon pour aider à déterminer votre réponse.
+
+Chaque réponse correcte rapporte $1$ point. Une réponse incorrecte ou une question sans réponse n'apporte ni ne retire de point.
+
+\medskip
+
+\textbf{Question 1}
+
+\medskip
+
+On considère la fonction $g$ définie sur $\R$ par $g(x) = 2x^2 + 5x - 4$.
+
+La tangente à la courbe représentative de $g$ au point d'abscisse $2$ a pour équation:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}$y = 14x + 14$ &\textbf{b.~~}$y = 14x -14$&\textbf{c.~~}$y = 13x - 15$&\textbf{d.~~}$y = 13x - 12$\\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 2}
+
+\medskip
+
+On se place dans un plan muni d'un repère orthonormé. On considère les points A(4~;~8), 
+B(9~;~6) et D(2~;~11). Alors $\vect{\text{AD}} \cdot \vect{\text{BD}}$ est égal à :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}$-1$ &\textbf{b.~~}$11$&\textbf{c.~~}$-31$&\textbf{d.~~}$29$\\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 3}
+
+\medskip
+
+Dans un plan muni d'un repère orthonormé, on considère la droite $D$ d'équation
+$3x - 4y + 5 = 0$. La droite parallèle à $D$ et passant par A(4~;~8) a pour équation :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}$4x +3y - 40 = 0$ &\textbf{b.~~}$3x - 4y - 5 = 0$&\textbf{c.~~}$3x - 4y +20 = 0$&\textbf{d.~~}$4x +3y +6 = 0$\\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 4}
+
+\medskip
+
+Soit $\left(u_n\right)$ la suite géométrique de raison $q = - 1,2$ et de terme initial $u_0 = 10$. 
+
+Alors :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}$0< u_{\np{3000}} < \np{1000}$ &\textbf{b.~~}$u_{\np{3000}} = \np{- 3590}$&\textbf{c.~~}$u_{\np{3000}} > \np{1000}$&\textbf{d.~~}$u_{\np{3000}} = - \np{36000}$\\ \hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+\textbf{Question 5}
+
+\medskip
+
+Soit $\left(v_n\right)$ la suite définie par : $v_0 = 1$ et $v_{n+1} = 4v_n +2$ pour tout entier $n$.
+
+On veut déterminer la plus petite valeur de $n$ telle que $v_n$ est supérieur ou égal
+à \np{100000}. On réalise pour cela le programme incomplet ci-dessous écrit en langage
+Python :
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+\texttt{def algo( ) : }\\
+\qquad \texttt{V = 1}\\
+\qquad \texttt{n = 0}\\
+\qquad \texttt{while \ldots \ldots :}\\
+\qquad \qquad \texttt{n = n + 1}\\
+\qquad \qquad \texttt{V =4 * V + 2}\\
+\qquad  \texttt{return(n)}\\ \hline
+\end{tabular}
+\end{center}
+
+Pour que le programme retourne la valeur demandée, il faut compléter la partie en pointillé par:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|*{4}{X|}}\hline
+\textbf{a.~~}$V = = \np{100000}$ &\textbf{b.~~}$V!= \np{100000}$&\textbf{c.~~}$V > \np{100000}$&\textbf{d.~~}$ V < \np{100000}$\\ \hline
+\end{tabularx}
+\end{center}
+
+\bigskip
+
+\end{document}

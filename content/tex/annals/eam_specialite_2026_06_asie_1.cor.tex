@@ -1,0 +1,66 @@
+\subsection*{Partie A -- Étude d'un modèle discret}
+
+	\begin{enumerate}
+		\item $1\%$ de \np{1100} c'est $11$, donc on a {$u_1=\np{1100}-11=\np{1089}$.}
+
+		Cela signifie que, selon ce modèle, le niveau du lac sera de \np[~m]{1089} au-dessus du niveau de la mer en 2021.
+
+		\item
+		\begin{enumerate}
+			\item Diminuer une quantité de 1\% revient à multiplier celle-ci par \np{0.99}.
+
+			Puisque pour tout entier $n$, le niveau à l'année $n+1$ est 1\% en dessous de celui à l'année $n$, la relation de récurrence de la suite {$(u_n)$} est :\quad {$\forall n \in \N, u_{n+1}=\np{0.99}u_n$}.
+
+			\item La relation de récurrence est multiplicative, {$(u_n)$} est donc une suite géométrique, de raison \np{0.99}.
+
+			\item On connaît l'expression explicite d'une suite géométrique :
+			\quad {$\forall n \in \N, u_n=\np{1100}\times\np{0.99}^n$}.
+		\end{enumerate}
+
+		\item Selon ce modèle, le niveau atteint en 2028 sera égal à {$\np{1100}\times\np{0.99}^8$}.
+
+		\emph{Remarque :} Avec une calculatrice, on arrive à environ \np[~m]{1015} : ce lac risque d'être complètement asséché, puisque son niveau aura diminué de 85~m, ce qui est la profondeur maximale estimée d'un des plus grands lacs de retenue d'Europe, le barrage de Serre-Ponçon dans les Hautes-Alpes.
+
+		\item Ici, on cherche donc l'indice $n$ du premier terme de la suite $\big(u_n\big)$ qui sera \og en dessous de \np[m]{1020}\fg{}.
+
+		On va choisir d'interpréter \og en dessous de \np[m]{1020}\fg{} comme signifiant \og inférieur ou égal à \np[m]{1020} \fg{}.
+
+		Le programme est initialisé avec les variables \texttt{u} et \texttt{n} contenant respectivement $u_0$ et $0$.
+
+		Tant que le terme stocké dans la variable \texttt{u} n'est pas inférieur ou égal à \np{1020}, autrement dit, tant qu'il est strictement supérieur à \np{1020}, on va passer à l'indice suivant (c'est la ligne \texttt{n = n + 1}), et au terme suivant, en appliquant la relation de récurrence.
+
+		Voici le programme complété :
+\begin{lstlisting}[style=python,xleftmargin=4.5cm,xrightmargin=4.5cm,numbers=none]
+u = 1100
+n = 0
+while u > 1020:
+	n = n + 1
+	u = u*0.99
+print(n)
+\end{lstlisting}
+	\end{enumerate}
+
+\subsection*{Partie B -- Étude d'un modèle continu}
+	\begin{enumerate}
+		\item 2020 correspond à l'année 0, on calcule $f(0)$ :
+
+		{$f(0) = \np{1050}\,\e^{-0,01\times0} + 50=\np{1050}\,\e^{0} + 50=\np{1050}\times1+50=\np{1100}$}.
+
+		Ce modèle donne un niveau calculé à \np[~m]{1100} en 2020, ce qui est cohérent avec l'observation.
+
+		\item On sait que la dérivée d'une fonction de la forme \quad {$x \longmapsto \e^{ax}$},\quad  où $a$ est un réel est \quad {$x \longmapsto a\e^{ax}$}.
+
+		On a donc, pour tout réel positif $t$ :\quad  {$f'(t)=\np{1050}\times(-\np{0.01})\times \e^{-\np{0.01}t}+0$}
+
+		soit, après simplification,\quad {$f'(t)=-\np{10.5}\,\e^{-\np{0.01}t}$}.
+
+		\item La fonction exponentielle est à valeurs strictement positives, donc pour tout $t$ de l'intervalle {$[0;+\infty[$}, \quad {$f'(t)<0$}.
+
+		La fonction $f$ est donc strictement décroissante sur {$[0;+\infty[$.}
+
+		\item La production est impossible si le niveau du lac s'abaisse en-dessous de \np[~m]{1020} d'altitude.
+
+		C'est ce qui se produira, selon ce modèle, à partir de 2028 (année 8 sur le graphique).
+	\end{enumerate}
+
+\needspace{10\baselineskip}

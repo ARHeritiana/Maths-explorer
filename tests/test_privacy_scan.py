@@ -2,6 +2,7 @@
 import json
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 from unittest.mock import patch
 
@@ -75,6 +76,25 @@ class PublicationPrivacyTests(unittest.TestCase):
             (root / 'private-fixture.html').write_text('Clean content')
             with patch.object(privacy_scan.banned, 'findings', side_effect=lambda text: ['banned phrase'] if 'private-fixture' in text else []):
                 self.assertEqual(privacy_scan.scan(root)['records'][0]['findings'][0]['reasons'], ['banned phrase'])
+
+    def test_source_archives_inspect_decompressed_content_and_filenames(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / 'sources.zip'
+            address = 'reader' + '@' + 'mail.invalid'
+            with zipfile.ZipFile(path, 'w', zipfile.ZIP_DEFLATED) as archive:
+                archive.writestr('unit.tex', 'A mathematical source. ' + address)
+            text = privacy_scan.banned.publication_text(path)
+            self.assertIn('unit.tex', text)
+            self.assertIn('e-mail address', privacy_scan.banned.findings(text))
+
+    def test_binary_archive_members_are_not_decoded_as_text(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / 'sources.zip'
+            address = ('reader' + '@' + 'mail.invalid').encode()
+            with zipfile.ZipFile(path, 'w') as archive:
+                archive.writestr('font.woff2', address)
+                archive.writestr('unit.tex', 'A mathematical source.')
+            self.assertEqual(privacy_scan.banned.findings(privacy_scan.banned.publication_text(path)), [])
 
 
 if __name__ == '__main__':

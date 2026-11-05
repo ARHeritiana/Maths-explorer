@@ -1,0 +1,78 @@
+On considère $n$ un entier naturel non nul.
+
+On considère la fonction $f_n$ définie sur l’intervalle $[0~;~1]$ par :
+
+\[f_n(x) = x^n \e^{1 - x}.\]
+
+On admet que la fonction $f_n$ est dérivable sur $[0~;~1]$ et on note $f'_n$ sa fonction dérivée.
+
+\subsection*{Partie A}
+
+Dans cette partie on étudie le cas où $n = 1$.
+
+On étudie donc la fonction $f_1$ définie sur $[0~;~1]$ par :
+
+\[f_1(x) = x\e^{1 - x}.\]
+
+\begin{enumerate}
+\item Montrer que $f'_1(x)$ est strictement positive pour tout réel $x$ de $[0~;~1[$.
+\item En déduire le tableau de variations de la fonction $f_1$ sur l'intervalle $[0~;~1]$.
+\item En déduire que l'équation $f_1(x)= 0,1$ admet une unique solution dans l'intervalle $[0~;~1]$.
+\end{enumerate}
+
+\subsection*{Partie B}
+
+On considère la suite $(u_n)$ définie pour tout entier naturel $n$ non nul par 
+
+\begin{center}$u_n = \displaystyle\int_0^1 f_n(x) \:\text{d}x$ \quad  c'est-à-dire \quad $u_n = \displaystyle\int_0^1 x^n \e^{1-x} \: \text{d}x$.\end{center}
+
+On admet que $u_1 = \e - 2$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Justifier que pour tout $x \in [0~;~1]$ et pour tout entier naturel $n$ non nul,
+		
+		\[0 \leqslant x^{n+1} \leqslant x^n\].
+		\item En déduire que pour tout entier naturel $n$ non nul,
+		
+		\[0 \leqslant u_{n+1} \leqslant u_n.\]
+			
+		\item Montrer que la suite $(u_n)$ est convergente.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item À l’aide d’une intégration par parties, démontrer que pour tout entier naturel $n$ non nul on a :
+
+\[u_{n+1} = (n + 1)u_n - 1.\]
+
+\item On considère le script Python ci-dessous définissant la fonction \texttt{suite()} :
+
+\begin{center}
+\begin{ttfamily}
+\begin{tabular}{|l|}\hline
+from math import exp\\
+~\\
+def suite():\\
+\quad u = \ldots\\
+\quad for n in range (1, \ldots):\\
+\quad \quad \quad u = \ldots\\
+\quad return\\ \hline
+\end{tabular}
+\end{ttfamily}
+\end{center}
+
+Recopier et compléter le script Python ci-dessus pour que la fonction \texttt{suite()} renvoie la valeur de $\displaystyle\int_0^1 x^8 \e^{1-x} \, \text{d}x$.
+	\end{enumerate}
+
+\item 
+	\begin{enumerate}
+		\item Démontrer que pour tout entier naturel $n$ non nul on a :
+
+\[u_{n} \leqslant \frac{\e}{n+1}.\]
+
+		\item En déduire la limite de la suite $(u_n)$.
+	\end{enumerate}
+\end{enumerate}

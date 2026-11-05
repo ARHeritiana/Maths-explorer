@@ -1,0 +1,204 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_asie_5_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{tabular}{|l|}\hline
+\textbf{Principaux domaines abordés}\\
+-- Étude de fonction, fonction exponentielle\\
+-- Équations différentielles\\ \hline
+\end{tabular}
+
+\bigskip
+
+\textbf{Partie I}
+
+\medskip
+
+
+
+\[y'= -0,4y + 0,4\]
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+$y = K$, avec $K \in \R$ est solution de l'équation, si, avec $y' = 0$,
+		
+$0 = -0,4K + 0,4 \iff 0,4K = 0,4 \iff K = 1$
+		\item 
+\starredbullet~On sait que les solutions de l'équation différentielle $y' = - 0,4y$ sont les fonctions définies par : $t \longmapsto y = C\text{e}^{-0,4t}$, avec $C \in \R$ ;
+		
+\starredbullet~Les solutions de l'équation $y' = - 0,4u + 0,4$ sont donc les fonctions :
+
+\[t \longmapsto y = 1 + C\text{e}^{-0,4t},\, \text{avec }\,  C \in \R.\]
+
+\item 
+$g$ définie par $g(t) = 1 + C\text{e}^{-0,4t}$ vérifie :
+
+$g(0) = 10 \iff 1 + C\text{e}^{-0,4\times 0} = 10 \iff 1 + C = 10 \iff C = 9$.
+
+On a donc $g(t) = 1 + 9\text{e}^{-0,4t}$
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie II}
+
+\medskip
+
+
+
+
+
+\smallskip
+
+\begin{enumerate}
+\item 
+On sait que $\displaystyle\lim_{t \to + \infty} \e^{-0,4t} = 0$, donc $\displaystyle\lim_{t \to + \infty} p(t) = 1$. 
+\item 
+$g$ somme de fonctions dérivables sur $\R$ est dérivable et sur cet intervalle :
+
+$g'(t) = - 0,4 \times 9\e^{-0,4t} = - 3,6\e^{-0,4t}$.
+
+Or $p(t) = \dfrac{1}{g(t)} \Rightarrow p'(t) = - \dfrac{g'(t)}{(g(t))^2} = - \dfrac{- 3,6\e^{-0,4t}}{\left(1 + 9\e^{-0,4t} \right)^2} = \dfrac{3,6\e^{-0,4t}}{\left(1 + 9\e^{-0,4t} \right)^2}$  pour tout $t \in  [0~;~+ \infty[$.
+\item  
+	\begin{enumerate}
+		\item 
+Le résultat précédent montre que, comme $3,6 > $,\, $\e^{-0,4t} > $ quel que soit le réel $y$, \, $\left(1 + 9\e^{-0,4t} \right)^2 > 0$, \, $p'(t) > 0$ sur $[0~;~+ \infty[$ : la fonction $p$ est strictement croissante sur cet intervalle.
+
+Or $p(0) = \dfrac{1}{1 + 9} = \dfrac{1}{10} = 0,1$ ,  et $\displaystyle\lim_{t \to + \infty} p(t) = \dfrac{1}{1} = 1$.
+
+Par application du théorème des valeurs intermédiaires comme $\dfrac{1}{2} \in [0~;~1]$, il existe un réel unique $\alpha \in [0~;~+ \infty[$ tel que $p(\alpha) = \dfrac{1}{2}$.
+		\item 
+La calculatrice donne :
+
+$p(5) \approx 0,45$ et $p(6) \approx 0,55$, donc $5 < \alpha < 6$ ;
+
+$p(5,4) \approx 0,491$ et $p(5,5) \approx 0,501$, donc $5,4 < \alpha < 5,5$ ;
+
+$p(5,49) \approx 0,499$ et $p(5,50) \approx 0,501$, donc $5,49 < \alpha < 5,50$.
+
+Conclusion $\alpha \approx 5,5$ à $10^{-1}$ près.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie III}
+
+\medskip
+
+\begin{enumerate}
+\item 
+
+
+
+
+\starredbullet~$p'(t) = \dfrac{3,6\e^{-0,4t}}{\left(1 + 9\e^{-0,4t} \right)^2}$ d'après la question 2.
+
+\starredbullet~$0,4p(t)(1 - p(t)) = 0,4 \times \dfrac{1}{1 + 9\text{e}^{-0,4t}} \times \left(1 - \dfrac{1}{1 + 9\text{e}^{-0,4t}} \right)^2 = 0,4\times \dfrac{9\text{e}^{-0,4t}}{1 + 9\text{e}^{-0,4t}} = \dfrac{3,6\e^{-0,4t}}{\left(1 + 9\e^{-0,4t} \right)^2}$, donc $p$ est solution de l'équation différentielle.
+
+De plus on a vu que $p(0) = \dfrac{1}{10}$.
+\item 
+
+
+
+
+
+
+
+
+$\bullet~~$$\displaystyle\lim_{t \to + \infty} p(t) = 1$ signifie qu'à long terme toutes les écoles auront accès à internet.
+
+$\bullet~~$$\alpha \approx 5,5$ signifie qu'au bout de 5 ans et demi la moitié des écoles aura accès à internet.
+
+$\bullet~~$$p(0) = 0,1$ signifie qu'en 2020, 10\,\% des écoles ont accès à internet.
+\end{enumerate}
+
+\end{document}

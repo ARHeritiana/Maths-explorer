@@ -1,0 +1,239 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_11_sujet2_amsud_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+L'espace est muni d'un repère orthonormé \Oijk.
+
+On considère les trois points A(3~;~0~;~0), B(0~;~2~;~0) et C(0~;~0~;~2).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bigskip
+
+\textbf{Partie 1 : Distance du point O au plan (ABC)}
+
+\medskip
+
+\begin{enumerate}
+\item Soit le vecteur $\vect{n}(2~;~3~;~3)$.
+
+\begin{list}{\textbullet}{}
+\item Le vecteur $\vectt{AB}$ a pour coordonnées $\left ( -3\,;\, 2 \,;\, 0\right )$.
+
+$\vectt{AB}\cdot\vect{n}=-3 \times 2 + 2\times 3 + 0 \times 3 = 0$ donc $\vectt{AB} \perp \vect{n}$
+\item Le vecteur $\vectt{AC}$ a pour coordonnées $\left ( -3\,;\, 0 \,;\, 2\right )$.
+
+$\vectt{AC}\cdot\vect{n}=-3 \times 2 + 0\times 3 + 2 \times 3 = 0$ donc $\vectt{AC} \perp \vect{n}$
+\end{list}
+
+Le vecteur $\vect{n}$ est donc orthogonal aux deux vecteurs $\vectt{AB}$ et $\vectt{AC}$ non colinéaires, donc il est normal au plan (ABC).
+
+\item
+Le plan (ABC) est l'ensemble des points M de coordonnées $\left ( x\,;\, y \,;\, z\right )$ tels que $\vectt{AM} \perp \vect{n}$.
+
+Le vecteur $\vectt{AM}$ a pour coordonnées $\left ( x-3\,;\, y \,;\, z\right )$.
+
+$\vectt{AM} \perp \vect{n}
+\iff \vectt{AM} \cdot \vect{n} = 0
+\iff 2\left (x-3\right ) + 3y + 3z=0
+\iff 2x +3y +3z -6=0$
+
+Le plan (ABC) a donc pour équation cartésienne:
+
+\[M(x~;~y~;~z) \in \text{ABC} \iff 2x +3y +3z -6  = 0.\]
+
+\item La droite $d$ passant par O et de vecteur directeur $\vect{n}$ est l'ensemble des points M de coordonnées $\left ( x\,;\, y \,;\, z\right )$ tels que $\vectt{OM}$ et $\vect{n}$ soient colinéaires, c'est-à-dire tels que \\
+$\vectt{OM}=t.\vect{n}$ où $t\in\R$.
+
+Le vecteur $\vectt{OM}$ a pour coordonnées $\left ( x\,;\, y \,;\, z\right )$.
+Or
+$\vectt{OM}=t.\vect{n}
+\iff 
+\left \{
+\begin{array}{l !{=} l}
+x & 2t\\
+y & 3t\\
+z & 3t
+\end{array}
+\right . $
+
+La droite $d$ passant par O et de vecteur directeur $\vect{n}$ a donc pour représentation paramétrique:
+$\left \{
+\begin{array}{l !{=} l}
+x & 2t\\
+y & 3t\\
+z & 3t
+\end{array}
+\right . \quad t\in\R$
+
+\item On note H le point d'intersection de la droite $d$ et du plan (ABC).
+
+Les coordonnées de H vérifient le système
+$\left \{
+\begin{array}{r !{=} l}
+x & 2t\\
+y & 3t\\
+z & 3t\\
+2x+3y+3z-6& 0
+\end{array}
+\right . $
+
+On a donc: $2\left (2t\right )+3\left (3t\right )+3\left (3t\right )-6= 0$, donc 
+$22t=6$ donc $t=\dfrac{3}{11}$.
+
+Les coordonnées de H sont donc: $\left (\dfrac{6}{11}\,;\, \dfrac{9}{11}\,;\, \dfrac{9}{11} \right )$.
+
+
+\item La distance du point O au plan (ABC) est OH.
+
+$\text{OH}^2=\left (\dfrac{6}{11} \right )^2 + \left (\dfrac{9}{11} \right )^2 + \left (\dfrac{9}{11} \right )^2 = \dfrac{36+81+81}{11^2}=\dfrac{198}{11^2}$
+donc $\text{OH} = \dfrac{\sqrt{198}}{11}=\dfrac{3\sqrt{22}}{11}$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2 : Démonstration de la propriété}
+
+
+
+\begin{enumerate}
+\item
+En prenant pour base le triangle OAB et pour hauteur OC, le volume du tétraèdre OABC vaut $\dfrac{\text{OC}\times \text{aire(OAB)}}{3}$.
+
+$\text{OC}=2$ et $\text{aire(OAB)} = \dfrac{\text{OA} \times \text{OB}}{2}=\dfrac{3\times 2}{3}=3$
+
+Le volume du tétraèdre OABC  est donc égal à $\dfrac{2\times 3}{3}=2$.
+
+\item 
+En prenant pour base le triangle ABC et pour hauteur OH, le volume du tétraèdre OABC vaut $\dfrac{\text{OH}\times \text{aire(ABC)}}{3}$.
+
+Ce volume vaut 2 et $\text{OH} =\dfrac{3\sqrt{22}}{11}$,
+donc $2=\dfrac{\frac{3\sqrt{22}}{11} \times \text{aire(ABC)}}{3}$.
+
+On en déduit que:
+$\text{aire(ABC)} 
+= \dfrac{6}{\text{OH}}
+= \dfrac{6}{\frac{3\sqrt{22}}{11}}
+= \dfrac{6\times 11}{3\sqrt{22}}
+= \dfrac{22}{\sqrt{22}}
+= \sqrt{22}$.
+
+\item Soit la propriété: pour le tétraèdre OABC, \og le carré de l'aire du triangle ABC est égal à la somme des carrés des aires des trois autres faces du tétraèdre \fg.
+
+
+
+\begin{list}{\textbullet}{}
+\item $\text{aire(OAB)} = 3$ donc $\left (\text{aire(OAB)}\right )^2 = 9$
+
+\item $\text{aire(OAC)} = \dfrac{\text{OA} \times \text{OC}}{2}=\dfrac{3\times 2}{2}=3$ donc $\left (\text{aire(OAC)}\right )^2 = 9$
+
+\item $\text{aire(OBC)} = \dfrac{\text{OB} \times \text{OC}}{2}=\dfrac{2\times 2}{2}=2$  donc $\left (\text{aire(OBC)}\right )^2 = 4$
+\end{list}
+Donc $\left (\text{aire(OAB)}\right )^2 + \left (\text{aire(OAC)}\right )^2 + \left (\text{aire(OBC)}\right )^2 = 9+9+4=22$.
+
+Comme $\text{aire(OABC)} = \sqrt{22}$, on a:\\
+ $\left (\text{aire(OABC)}\right )^2=22=\left (\text{aire(OAB)}\right )^2 + \left (\text{aire(OAC)}\right )^2 + \left (\text{aire(OBC)}\right )^2$.
+
+La propriété est vérifiée.
+\end{enumerate}
+
+\end{document}

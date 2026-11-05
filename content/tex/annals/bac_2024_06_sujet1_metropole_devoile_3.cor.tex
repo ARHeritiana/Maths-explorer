@@ -1,0 +1,144 @@
+\medskip
+
+\begin{center}\textbf{Partie A : étude d'une fonction} \end{center}
+
+On considère la fonction $f$ définie sur $\R$ par 
+$f(x) = x - \ln \left(x^2 + 1\right),$
+
+où ln désigne la fonction logarithme népérien.
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+En posant $u(x) = x^2 + 1$ et avec $u'(x) = 2x$, on obtient :
+
+$\left [\ln (u)\strut \right ]' = \dfrac{u'}{u}$ donc $\left [\ln (x^2+1)\strut \right ]' = \dfrac{2x}{x^2+ 1}$, et donc :
+
+pour tout nombre réel $x, \: f'(x) = 1 - \dfrac{2x}{x^2+ 1} = \dfrac{x^2 + 1 - 2x}{x^2 + 1} =  \dfrac{(x - 1)^2}{ x^2 + 1}$.
+
+		\item 
+Pour tout réel $x$, on a $x^2 \geqslant 0$ donc $x^2 + 1\geqslant 1$ donc $x^2 + 1 > 0$.
+
+Comme $(x - 1)^2 \geqslant 0$ quel que soit $x \in \R$, on a par quotient $f'(x) \geqslant 0$ : la fonction $f$ est croissante sur $\R$.
+	\end{enumerate}
+\item 
+
+Pour tout nombre réel  $x > 0$n on a:
+
+$f(x) =  x - \ln \left[x^2\left(1 + \dfrac{1}{x^2}\right)\right] = x - \ln (x^2) - \ln \left(1 + \dfrac{1}{x^2}\right) = x - 2 \ln(x) - \ln \left(1 + \dfrac{1}{x^2}\right)$. 
+
+\item 
+\begin{list}{\textbullet}{On a:}
+\item $\displaystyle\lim_{x \to + \infty} \dfrac{1}{x^2} = 0$, donc $\displaystyle\lim_{x \to + \infty} 1 + \dfrac{1}{x^2} = 1$, puis par composition\\
+ $\displaystyle\lim_{x \to + \infty} \ln \left(1 + \dfrac{1}{x^2}\right) = \ln 1 = 0$.
+
+\item $x - 2\ln (x) = x \left( 1 - 2 \dfrac{\ln (x)}{x}\right)$.
+
+On sait (puissances comparées) que $\displaystyle\lim_{x \to + \infty} \dfrac{\ln (x)}{x} = 0$, donc\\
+ $\displaystyle\lim_{x \to + \infty} x - 2\ln (x) = \displaystyle\lim_{x \to + \infty} x  = + \infty$.
+\end{list}
+
+Conclusion : $\displaystyle\lim_{x \to + \infty}f(x) = + \infty$.
+\end{enumerate}
+
+\begin{center}\textbf{Partie B : étude d'une suite}
+\end{center}
+
+On considère la suite $\left(u_n\right)$ définie par : 
+\[\left\{\begin{array}{r !{=} l}
+u_0& 7\\
+u_{n+1} = f\left(u_n\right) &  u_n - \ln\left(u_n^2 + 1\right)\:\text{pour tout }\:n \in \N
+\end{array}\right.\]
+
+\begin{enumerate}
+\item 
+Soit la propriété \og $u_n\geqslant 0$ \fg{}.
+
+\emph{Initialisation } On a $u_0 = 7 \geqslant 0$ : la propriété est vraie au rang 0 ;
+
+\emph{Hérédité} Soit $n \in \N$, tel que $u_n \geqslant 0$ : la fonction $f$ étant croissante on a donc 
+$u_n \geqslant 0 \Rightarrow f(u_n) \geqslant f(0)$; or  $f(u_n)=u_{n+1}$ et $f(0)=0$, donc $u_{n+1} \geqslant 0$.
+
+\emph{Conclusion} : la propriété est vraie au rang 0 et si elle est vraie au rang $n \in \N$ elle l'est aussi au rang $n + 1$ : d'après le principe de récurrence $u_n \geqslant 0$, quel que soit $n \in \N$.
+
+\item 
+De la relation de récurrence : $u_{n+1}  = u_n - \ln\left(u_n^2 + 1\right)$ on déduit :
+
+$u_{n+1} - u_n = - \ln  \left(u_n^2 + 1 \right)$.
+
+$u_n^2 \geqslant 0 \Rightarrow u_n^2 +1  \geqslant 1 \Rightarrow \ln \left(u_n^2 + 1\right) \geqslant \ln (1)0$ par croissance de la fonction logarithme népérien sur $\R^*$.
+
+$\ln(1)=0$ donc $\ln\left(u_n^2 + 1\right) \geqslant  0$ et donc $- \ln\left(u_n^2 + 1\right) \leqslant  0$.
+
+On a donc pour tout $n \in \N,\: u_{n+1} - u_n \leqslant 0 \iff u_{n+1} \leqslant u_n$ : la suite $\left(u_n\right)$ est décroissante. 
+
+\item 
+La suite $\left(u_n\right)$ est décroissante et minorée par zéro; d'après le théorème de la convergence monotone, elle converge  vers une limite $\ell \geqslant 0$.
+
+\item 
+La fonction $f$ est continue car dérivable sur $\R^*$, donc la relation de récurrence donne par limite en plus l'infini :
+
+$\ell = \ell - \ln \left(\ell^2 + 1\right) \iff \ln \left(\ell^2 + 1\right) = 0  \iff \ell^2 + 1 = 1\iff \ell^2 = 0 \iff \ell = 0$
+
+\item
+	\begin{enumerate}
+		\item On complète le script ci-dessous écrit en langage Python: afin qu'il
+
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+from math import log as ln\\
+\#permet d'utiliser la fonction ln \\
+\#Le Logarithme népérien\\
+~\\
+def seuil(h):\\
+\quad n = 0\\
+\quad u = 7\\
+\quad while {\red u > h} :\\
+\qquad n = n + 1\\
+\qquad u = {\red u -- ln(u**2+1)}\\
+\quad return n\\ \hline
+\end{tabular}
+\end{center}
+
+		\item 
+		La calculatrice donne $u_{96} \approx \np{0,01003}$ et $u_{97} \approx \np{0,0099}$
+		
+Le programme Python renverra la valeur 97 ; à partir du 98\up{e} les termes seront inférieurs à un centième.
+		\end{enumerate}
+\end{enumerate}
+
+\begin{center}\textbf{Partie C : calcul intégral}\end{center}
+
+\begin{enumerate}
+\item 
+$f$ est croissante sur $[0~;~+ \infty[$, donc, pour tout $x\geqslant 0$, $f(x)\geqslant f(0)$.\\ Or $f(0)=0$ donc  $f(x) \geqslant 0$ sur $[0~;~+\infty[$.
+
+\item Soit l'intégrale:
+$I = \displaystyle\int_2^4 f(x)\:\text{d}x.$
+
+$f$ étant positive sur $\R^+$ l'est sur l'intervalle [2~;~4], donc $I$ est égale (en unités d'aire) à l'aire de la surface limitée par la représentation graphique de $f$, l'axe des abscisses et les droites verticales d'équations  $x = 2$ et $x = 4$.
+
+\item On admet dans cette question que, pour tout nombre réel $x \in [2~;~4]$, on a
+l'encadrement:
+$0,5x - 1 \leqslant f(x) \leqslant 0,25x + 0,25.$
+
+
+
+
+Sur l'intervalle $[2\;;\;4]$, l'intégration conserve l'ordre donc:
+
+$\begin{aligned}
+0,5x - 1 \leqslant f(x) \leqslant 0,25x + 0,25
+& \Longrightarrow \ds\int_2^4 (0,5x - 1) \d x \leqslant \ds\int_2^4 f(x) \d x \leqslant \ds\int_2^4(0,25x + 0,25) \d x\\
+& \Longrightarrow\left[\dfrac{x^2}{4}  - x\right]^4_2 \leqslant I \leqslant \left[\dfrac{x^2}{8} + 0,25x  \right]^4_2\\
+& \Longrightarrow 4 - 4 - (1 - 2) \leqslant I \leqslant 2 + 1 - \left(\dfrac12 + \dfrac12\right)\\
+& \Longrightarrow 1 \leqslant I \leqslant 2
+\end{aligned}$
+
+\end{enumerate}
+
+\bigskip

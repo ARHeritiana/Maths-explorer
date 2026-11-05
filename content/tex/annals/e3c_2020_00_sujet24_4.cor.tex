@@ -1,0 +1,74 @@
+\subsection*{Question 1}
+
+On a :
+\begin{align*}
+	f_1 &= f_0 + 108 \\
+	&= 2500 + 108 = 2608.
+\end{align*}
+
+Augmenter de 3,8\%, c'est multiplier par :
+\begin{align*}
+	1 + \frac{3,8}{100} &= 1 + 0,038 = 1,038.
+\end{align*}
+Ainsi, 
+\begin{align*}
+	c_1 &= c_0 \times 1,038 = 2500 \times 1,038 = 2595.
+\end{align*}
+
+\subsection*{Question 2}
+
+La suite $(f_n)$ est une suite arithmétique de raison $108$ et de premier terme $f_0 = 2500$, donc :
+\begin{align*}
+	f_{n+1} &= f_n + 108.
+\end{align*}
+
+La suite $(c_n)$ est une suite géométrique de raison $1,038$ et de premier terme $c_0 = 2500$, donc :
+\begin{align*}
+	c_{n+1} &= c_n \times 1,038.
+\end{align*}
+
+\subsection*{Question 3}
+
+On a les expressions suivantes pour $n \in \mathbb{N}$ :
+\begin{align*}
+	f_n &= 2500 + 108n, \\
+	c_n &= 2500 \times 1,038^n.
+\end{align*}
+
+\subsection*{Question 4}
+
+On complète l'algorithme pour déterminer le nombre de mois à attendre pour que le nombre potentiel de flacons commandés dépasse celui des flacons produits :
+\begin{lstlisting}[style=python]
+	n = 0
+	f = 2500
+	c = 2500
+	
+	while f > c:
+		n = n + 1
+		f = f + 108
+		c = c * 1.038
+\end{lstlisting}
+
+\subsection*{Question 5}
+
+Il faut comparer $F_{12}$ et $C_{12}$, les sommes cumulées des flacons produits et commandés après 12 mois.
+
+On calcule $F_{12}$ :
+\begin{align*}
+	F_{12} &= f_0 + f_1 + \dots + f_{11} \\
+	&= 12 \times \left( \frac{f_0 + f_{11}}{2} \right) \\
+	&= 12 \times \left( \frac{2500 + (2500 + 11 \times 108)}{2} \right) \\
+	&= 12 \times (2500 + 594) = 12 \times 3094 = 37128.
+\end{align*}
+
+Pour $C_{12}$, on a une suite géométrique de raison $1,038$ :
+\begin{align*}
+	C_{12} &= c_0 + c_1 + \dots + c_{11}.
+\end{align*}
+En utilisant la somme des termes d'une suite géométrique, on a :
+\begin{align*}
+	C_{12} &= 2500 \times \frac{1,038^{12} - 1}{1,038 - 1} \\
+	&\approx 37136.
+\end{align*}
+
+Ainsi, à la fin de l'année, le nombre total de flacons commandés ($37136$) sera légèrement supérieur à celui des flacons produits ($37128$), ce qui confirme que le modèle prédit une insuffisance de production.

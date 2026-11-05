@@ -1,0 +1,36 @@
+\medskip
+
+\begin{enumerate}
+	\item Soit $f$ définie sur $\R$ par $f(x)=\dfrac{-2x^2+3x-1}{x^2+1}$.\\
+	Pour $x\neq 0$, $f(x)=\dfrac{x^2\left(-2+\dfrac{3}{x}-\dfrac{1}{x^2}\right)}{x^2\left(1+\dfrac{1}{x^2}\right)}=\dfrac{-2+\dfrac{3}{x}-\dfrac{1}{x^2}}{1+\dfrac{1}{x^2}}$ donc $\displaystyle\lim\limits_{x \rightarrow +\infty} f(x)=-2$.\\ Donc la droite horizontale d'équation $y=-2$ est une asymptote à la courbe représentative de la fonction $f$. \hfill \fbox{\textbf{Réponse c}}
+	
+	\item La fonction $f$ est continue sur $\R$ donc admet des primitives. Soit $F$ une primitive de $f$.
+	
+$\forall x \in \R$, $f(x)$ est de la forme $u'(x)\times \e^{u(x)}$, et admet pour primitives les fonctions $x\mapsto\e^{u(x)}+k$, $k\in\R$.
+
+En posant $u(x) = x^2$ et $u'(x)=2x$, et en remarquant que $f(x)=\dfrac{1}{2}\times 2x~\e^{x^2}$, on peut donc écrire :
+
+$\forall x \in \R$, $F(x)=\dfrac{1}{2}\times \e^{x^2}+k$.
+	
+	Sachant que $F(0)=1$ on en déduit que : $\dfrac{1}{2}+k=1$ donc $k=\dfrac{1}{2}$.
+
+	Donc $\forall x \in \R$, $F(x)=\dfrac{1}{2}~\e^{x^2}+\dfrac{1}{2}$  \hfill \fbox{\textbf{Réponse d}}
+	\item La courbe représentative est celle de la fonction $f'$. Avec la précision permise par le graphique, on peut affirmer que la fonction $f'$ est croissante sur $]-\infty~;~3]$ et décroissante sur $[3~;~+\infty[$. $[0~;~2] \subset ]-\infty~;~3]$, donc $f'$ est croissante $[0~;~2]$.\\
+La fonction est donc convexe sur $[0~;~2]$. \hfill \fbox{\textbf{Réponse c}}
+	\item La fonction $f$ définie sur $\R$ par $f(x)=3\e^{-x^2}+2$ est continue et dérivable. $\forall x \in \R$, $f(x)>0$.
+	
+Les primitives de la fonction $f$, ont pour dérivée $f$, qui est positive sur $\R$.
+
+Donc les fonctions $F$ sont croissantes sur $\R$. \hfill \fbox{\textbf{Réponse a}}
+	\item $\forall x \in ]0~;~+ \infty[$, $f(x)=\dfrac{2\ln(x)}{3x^2+1}= \dfrac23\dfrac{x^2\times \dfrac{\ln(x)}{x^2}}{x^2\left(1+\dfrac{1}{3x^2}\right)}= \dfrac23~\dfrac{\dfrac{\ln(x)}{x^2}}{1+\dfrac{1}{3x^2}}$.
+
+Nous savons que : $\displaystyle\lim\limits_{x \rightarrow +\infty} \dfrac{\ln(x)}{x^2}= 0$ (croissances comparées) et
+$\displaystyle\lim\limits_{x \rightarrow +\infty} 1+ \dfrac{1}{3x^2}= 1$
+
+donc $\displaystyle\lim\limits_{x \rightarrow +\infty} f(x)= 0$ \hfill \fbox{\textbf{Réponse d}}
+\item $\forall x \in \R$,  $(E)~~\e^{2x}+\e^x-12=0 \iff \left(\e^x\right)^2+\e^x-12=0$.
+
+On pose comme changement de variable : $X=\e^x$ : $(E) \iff X^2+X-12=0$. Cette équation a pour solutions $X=-4$ et $X= 3$.
+
+Or $X=\e^x>0$ donc l'unique solution sera celle de l'équation $X=\e^x=3\iff x=\ln(3)$. \hfill \fbox{\textbf{Réponse c}}
+\end{enumerate}

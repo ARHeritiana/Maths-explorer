@@ -1,0 +1,231 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet2_etrangers_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Cet exercice est un questionnaire à choix multiples. Pour chacune des questions suivantes, une seule des quatre réponses proposées est exacte.}
+
+\medskip
+
+\emph{Une réponse incorrecte, une réponse multiple ou l'absence de réponse à une question ne rapporte ni n'enlève de point. Pour répondre, indiquer sur la copie le numéro de la question et la lettre de la réponse choisie.\\
+Aucune justification n'est demandée.}
+
+\medskip
+
+\begin{enumerate}
+\item Soit $f$ la fonction définie sur $\R$ par
+
+\[f(x) =\dfrac{x}{\text{e}^x}\]
+
+On suppose que $f$ est dérivable sur $\R$ et on note $f'$ sa fonction dérivée. 
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}$f'(x) = \text{e}^{-x}$& \textbf{b.~~} $f'(x) = x\text{e}^{-x}$\\
+\textbf{c.~~}$f'(x) = (1- x)\text{e}^{-x}$& \textbf{d.~~} $f'(x) = (1+x) \text{e}^{-x}$
+\end{tabularx}
+\end{center}
+
+\item Soit $f$ une fonction deux fois dérivable sur l'intervalle $[-3~;~1]$. On donne ci-dessous la représentation graphique de sa fonction dérivée seconde $f''$.
+
+\begin{center}
+\psset{xunit=1.5cm,yunit=0.75cm}
+\begin{pspicture*}(-3.5,-3.5)(1.5,3.5)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.2pt]
+\psaxes[linewidth=1.25pt]{->}(0,0)(-3.5,-3.5)(1.5,3.5)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-3}{1}{x 3 exp x dup mul 3 mul add x sub 3 sub}
+\end{pspicture*}
+
+\end{center}
+
+On peut alors affirmer que:
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}La fonction $f$ est convexe sur l'intervalle $[-1~;~1]$&\textbf{b.~~} La fonction $f$ est concave sur l'intervalle $[- 2~;~0]$\\
+\textbf{c.~~}La fonction $f'$ est décroissante sur l'intervalle $[-2~;~0]$&\textbf{d.~~}
+La fonction $f'$ admet un maximum en 
+
+$x = -1$
+\end{tabularx}
+\end{center}
+
+
+\item On considère la fonction $f$ définie sur $\R$ par:
+
+\[f(x) = x^3\text{e}^{-x^2}\]
+
+Si $F$ est une primitive de $f$ sur $\R$, 
+
+\begin{center}
+\renewcommand\arraystretch{1.9}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}$F(x) = - \dfrac16\left(x^3 + 1\right)\text{e}^{-x^2}$ &
+\textbf{b.~~}$F(x) = - \dfrac14 x^4\text{e}^{-x^2}$\\
+\textbf{c.~~}$F(x)=-\dfrac12\left(x^2 + 1\right)\text{e}^{-x^2}$&
+\textbf{d.~~}$F(x)= x^2\left(3 - 2x^2\right)\text{e}^{-x^2}$
+\end{tabularx}
+\renewcommand\arraystretch{1}
+\end{center}
+
+\item Que vaut :
+
+\[\displaystyle\lim_{x \to + \infty} \dfrac{\text{e}^x + 1}{\text{e}^x - 1}\]
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} $-1$&\textbf{b.~~}  1\\
+\textbf{c.~~} $+ \infty$&\textbf{d.~~} n'existe pas
+\end{tabularx}
+\end{center}
+
+\item On considère la fonction $f$ définie sur $\R$ par $f(x) = \text{e}^{2x +1}$.
+
+La seule primitive $F$ sur $\R$ de la fonction $f$ telle que $F(0) = 1$ est la fonction :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}$x \longmapsto  2\text{e}^{2x+1} - 2\text{e} + 1$&\textbf{b.~~}$x \longmapsto  2\text{e}^{2x+1} - \text{e}$\\
+\textbf{c.~~} $x \longmapsto \dfrac12\text{e}^{2x+1} - \dfrac12 \text{e} + 1$&\textbf{d.~~}$x \longmapsto \text{e}^{x^2 + x}$
+\end{tabularx}
+\end{center}
+
+\item ~
+
+\begin{minipage}{0.46\linewidth}
+Dans un repère, on a tracé ci-contre la courbe représentative d'une fonction $f$ définie et deux fois dérivable sur $[- 2 ~;~4]$
+\end{minipage} \hfill \begin{minipage}{0.48\linewidth}
+\psset{unit=0.9cm}
+\begin{pspicture}(-3,-2)(5,3)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.2pt]
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10]{->}(0,0)(-3,-2)(5,3)
+\psaxes[linewidth=1.25pt](0,0)(1,0)(0,1)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red]{-2}{4}{x 3 exp 3 div x dup mul sub 8 3 div add  3 mul 8 div}
+\uput[d](4.6,0){$x$}\uput[l](0,2.6){$y$}
+\end{pspicture}
+
+\end{minipage}
+
+Parmi les courbes suivantes, laquelle représente la fonction $f''$,
+dérivée seconde de $f$ ? 
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~} \psset{unit=0.6cm}
+\begin{pspicture}(-3,-3)(5,3)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.2pt]
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10]{->}(0,0)(-3,-3)(5,3)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-2}{4}{x 1 sub }
+\psaxes[linewidth=1.25pt](0,0)(1,0)(0,1)
+\uput[d](4.6,0){$x$}\uput[l](0,2.6){$y$}
+\end{pspicture}&\textbf{b.~~} \psset{unit=0.6cm}
+\begin{pspicture}(-3,-3)(5,3)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.2pt]
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10]{->}(0,0)(-3,-3)(5,3)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-2}{4}{1 x sub}
+\psaxes[linewidth=1.25pt](0,0)(1,0)(0,1)
+\uput[d](4.6,0){$x$}\uput[l](0,2.6){$y$}
+\end{pspicture}\\
+\textbf{c.~~} \psset{unit=0.6cm}
+\begin{pspicture}(-3,-2)(5,4)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.2pt]
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10]{->}(0,0)(-3,-2)(5,4)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-2}{4}{x 3  div x 2 sub mul}
+\psaxes[linewidth=1.25pt](0,0)(1,0)(0,1)
+\uput[d](4.6,0){$x$}\uput[l](0,3.6){$y$}
+\end{pspicture}& \textbf{d.~~}
+\psset{unit=0.6cm}
+\begin{pspicture}(-3,-2)(5,4)
+\psgrid[gridlabels=0pt,subgriddiv=1,gridwidth=0.2pt]
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10]{->}(0,0)(-3,-2)(5,4)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{-1.8}{3.8}{x 1  sub dup mul  2 div}
+\psaxes[linewidth=1.25pt](0,0)(1,0)(0,1)
+\uput[d](4.6,0){$x$}\uput[l](0,3.6){$y$}
+\end{pspicture}
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

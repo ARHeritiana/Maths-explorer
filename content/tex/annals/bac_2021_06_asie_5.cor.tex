@@ -1,0 +1,119 @@
+\medskip
+
+\begin{tabular}{|l|}\hline
+\textbf{Principaux domaines abordés}\\
+-- Étude de fonction, fonction exponentielle\\
+-- Équations différentielles\\ \hline
+\end{tabular}
+
+\bigskip
+
+\textbf{Partie I}
+
+\medskip
+
+
+
+\[y'= -0,4y + 0,4\]
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item 
+$y = K$, avec $K \in \R$ est solution de l'équation, si, avec $y' = 0$,
+		
+$0 = -0,4K + 0,4 \iff 0,4K = 0,4 \iff K = 1$
+		\item 
+\starredbullet~On sait que les solutions de l'équation différentielle $y' = - 0,4y$ sont les fonctions définies par : $t \longmapsto y = C\text{e}^{-0,4t}$, avec $C \in \R$ ;
+		
+\starredbullet~Les solutions de l'équation $y' = - 0,4u + 0,4$ sont donc les fonctions :
+
+\[t \longmapsto y = 1 + C\text{e}^{-0,4t},\, \text{avec }\,  C \in \R.\]
+
+\item 
+$g$ définie par $g(t) = 1 + C\text{e}^{-0,4t}$ vérifie :
+
+$g(0) = 10 \iff 1 + C\text{e}^{-0,4\times 0} = 10 \iff 1 + C = 10 \iff C = 9$.
+
+On a donc $g(t) = 1 + 9\text{e}^{-0,4t}$
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie II}
+
+\medskip
+
+
+
+
+
+\smallskip
+
+\begin{enumerate}
+\item 
+On sait que $\displaystyle\lim_{t \to + \infty} \e^{-0,4t} = 0$, donc $\displaystyle\lim_{t \to + \infty} p(t) = 1$. 
+\item 
+$g$ somme de fonctions dérivables sur $\R$ est dérivable et sur cet intervalle :
+
+$g'(t) = - 0,4 \times 9\e^{-0,4t} = - 3,6\e^{-0,4t}$.
+
+Or $p(t) = \dfrac{1}{g(t)} \Rightarrow p'(t) = - \dfrac{g'(t)}{(g(t))^2} = - \dfrac{- 3,6\e^{-0,4t}}{\left(1 + 9\e^{-0,4t} \right)^2} = \dfrac{3,6\e^{-0,4t}}{\left(1 + 9\e^{-0,4t} \right)^2}$  pour tout $t \in  [0~;~+ \infty[$.
+\item  
+	\begin{enumerate}
+		\item 
+Le résultat précédent montre que, comme $3,6 > $,\, $\e^{-0,4t} > $ quel que soit le réel $y$, \, $\left(1 + 9\e^{-0,4t} \right)^2 > 0$, \, $p'(t) > 0$ sur $[0~;~+ \infty[$ : la fonction $p$ est strictement croissante sur cet intervalle.
+
+Or $p(0) = \dfrac{1}{1 + 9} = \dfrac{1}{10} = 0,1$ ,  et $\displaystyle\lim_{t \to + \infty} p(t) = \dfrac{1}{1} = 1$.
+
+Par application du théorème des valeurs intermédiaires comme $\dfrac{1}{2} \in [0~;~1]$, il existe un réel unique $\alpha \in [0~;~+ \infty[$ tel que $p(\alpha) = \dfrac{1}{2}$.
+		\item 
+La calculatrice donne :
+
+$p(5) \approx 0,45$ et $p(6) \approx 0,55$, donc $5 < \alpha < 6$ ;
+
+$p(5,4) \approx 0,491$ et $p(5,5) \approx 0,501$, donc $5,4 < \alpha < 5,5$ ;
+
+$p(5,49) \approx 0,499$ et $p(5,50) \approx 0,501$, donc $5,49 < \alpha < 5,50$.
+
+Conclusion $\alpha \approx 5,5$ à $10^{-1}$ près.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie III}
+
+\medskip
+
+\begin{enumerate}
+\item 
+
+
+
+
+\starredbullet~$p'(t) = \dfrac{3,6\e^{-0,4t}}{\left(1 + 9\e^{-0,4t} \right)^2}$ d'après la question 2.
+
+\starredbullet~$0,4p(t)(1 - p(t)) = 0,4 \times \dfrac{1}{1 + 9\text{e}^{-0,4t}} \times \left(1 - \dfrac{1}{1 + 9\text{e}^{-0,4t}} \right)^2 = 0,4\times \dfrac{9\text{e}^{-0,4t}}{1 + 9\text{e}^{-0,4t}} = \dfrac{3,6\e^{-0,4t}}{\left(1 + 9\e^{-0,4t} \right)^2}$, donc $p$ est solution de l'équation différentielle.
+
+De plus on a vu que $p(0) = \dfrac{1}{10}$.
+\item 
+
+
+
+
+
+
+
+
+$\bullet~~$$\displaystyle\lim_{t \to + \infty} p(t) = 1$ signifie qu'à long terme toutes les écoles auront accès à internet.
+
+$\bullet~~$$\alpha \approx 5,5$ signifie qu'au bout de 5 ans et demi la moitié des écoles aura accès à internet.
+
+$\bullet~~$$p(0) = 0,1$ signifie qu'en 2020, 10\,\% des écoles ont accès à internet.
+\end{enumerate}

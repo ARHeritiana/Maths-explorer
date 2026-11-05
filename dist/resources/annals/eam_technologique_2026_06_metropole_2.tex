@@ -1,0 +1,172 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_technologique_2026_06_metropole_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+Une salle de sport propose deux offres d'abonnement :
+
+Abonnement n°1 : 250 \euro{} en 2026 puis une augmentation de 30 \euro{} par an.
+
+Abonnement n°2 : 200 \euro{} en 2026 puis une augmentation de 10\% par an.
+
+\textbf{Les parties A et B sont indépendantes.}
+
+
+\subsection*{PARTIE A : Abonnement n°1.}
+
+Pour tout entier naturel $n$, on note $a_n$ le montant de l'abonnement n°1 pour l'année $2026+n$.
+
+On a ainsi $a_0=250$.
+\begin{enumerate}
+\item
+\begin{enumerate}[label=\alph*)]
+\item Calculer le montant de l'abonnement pour 2027.
+\item Calculer $a_2$ et interpréter le résultat dans le contexte de l'exercice.
+\end{enumerate}
+\item Exprimer, pour tout entier naturel $n$, $a_{n+1}$ en fonction de $a_n$.
+\item En déduire la nature de la suite $(a_n)$ et 
+préciser sa raison.
+\end{enumerate}
+
+\bigskip
+
+\subsection*{PARTIE B : Abonnement n°2.}
+
+Pour tout entier naturel $n$, on note $b_n$ le montant de l'abonnement n°2 pour l'année $2026+n$.
+
+On a ainsi $b_0=200$.
+\begin{enumerate}
+\item Justifier que le montant de l'abonnement en 2027 s'élève à 220 \euro{}.
+\item Exprimer, pour tout entier naturel $n$, $b_{n+1}$ en fonction de $b_n$.
+\item En déduire la nature de la suite $(b_n)$ et préciser sa raison.
+\end{enumerate}
+
+\bigskip
+
+\begin{minipage}{.60\linewidth}
+\subsection*{PARTIE C : Comparaison des offres}
+
+\bigskip
+
+Pour tout entier naturel $n$ on note $c_n=a_n-b_n$.
+
+\medskip
+
+Les premiers termes des suites $(a_n)$, $(b_n)$ et $(c_n)$ sont donnés sur la feuille de calcul ci-contre.
+
+\medskip
+
+\begin{enumerate}
+\item Quelle formule, destinée à être étirée vers le bas, doit-on écrire dans la cellule {\helvbx D2} ?
+\item À partir de quelle année le montant de l'abonnement n°2 devient-il plus élevé que le montant de l'abonnement n°1 ?
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{.35\linewidth}\scriptsize\renewcommand{\arraystretch}{1.15}
+\helvbx
+\begin{tblr}{
+
+	row{1} = {gray9,c},
+	row{2} = {c},
+	row{3-16} = {r},
+	column{1} = {gray9,c},
+	hlines,vlines,
+	}
+ & \hfill~A\hfill~ & \hfill~B\hfill~ & \hfill~C\hfill~ & \hfill~D\hfill~\\
+1&$n$&\hfill~$a_n$\hfill~&\hfill~$b_n$\hfill~&\hfill~$c_n$\hfill~\\
+2&0&250 \euro{}&200 \euro{}&50 \euro{}\\
+3&1&280 \euro{}&220 \euro{}&60 \euro{}\\
+4&2&310 \euro{}&242,00 \euro{}&68 \euro{}\\
+5&3&340 \euro{}&266,20 \euro{}&73,80 \euro{}\\
+6&4&370 \euro{}&292,82 \euro{}&77,18 \euro{}\\
+7&5&400 \euro{}&322,10 \euro{}&77,90 \euro{}\\
+8&6&430 \euro{}&354,31 \euro{}&75,69 \euro{}\\
+9&7&460 \euro{}&389,74 \euro{}&70,26 \euro{}\\
+10&8&490 \euro{}&428,72 \euro{}&61,28 \euro{}\\
+11&9&520 \euro{}&471,59 \euro{}&48,41 \euro{}\\
+12&10&550 \euro{}&518,75 \euro{}&31,25 \euro{}\\
+13&11&580 \euro{}&570,62 \euro{}&9,38 \euro{}\\
+14&12&610 \euro{}&627,69 \euro{}&$-17,69$ \euro{}\\
+15&13&640 \euro{}&690,45 \euro{}&$-50,45$ \euro{}\\
+16&14&670 \euro{}&759,50 \euro{}&$-89,50$ \euro{}\\
+\end{tblr}
+\end{minipage}
+
+\end{document}

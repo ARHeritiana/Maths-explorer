@@ -1,0 +1,40 @@
+\medskip
+
+On applique une tension sinusoïdale $u$ aux bornes d'un circuit électrique comportant en série une résistance et une diode idéale.
+
+Le temps $t$ est exprimé en seconde.
+
+La tension est donnée par la fonction $u$ définie pour tout réel $t \geqslant 0$ par:
+
+\[u(t) = \sqrt{3}\sin \left(100\pi t + \dfrac{\pi}{3}\right).\]
+
+La diode est non passante si $u(t) \leqslant \dfrac{\sqrt{3}}{2}$ et elle est passante si $u(t) > \dfrac{\sqrt{3}}{2}$.
+
+\medskip
+
+\begin{enumerate}
+\item La diode est-elle passante à l'instant $t = 0$ ?
+\item Calculer $u\left(\dfrac{1}{100}\right)$. Interpréter le résultat.
+\item On admet que $u\left(t + \dfrac{2}{100}\right) = u(t)$ pour tout $t \geqslant 0$. 
+
+En déduire une propriété de la fonction $u$.
+\item On donne ci-dessous la courbe représentative de la fonction $u$ sur l'intervalle [0~;~ 0,02] :
+
+\begin{center}
+\psset{xunit=500cm,yunit=1cm,algebraic=true,comma=true}
+\begin{pspicture}(-0.0001,-2)(0.02,2)
+\multido{\n=0.000+0.001}{21}{\psline[linewidth=0.2pt](\n,-2)(\n,2)}
+\multido{\n=-2.0+0.5}{9}{\psline[linewidth=0.2pt](0,\n)(0.02,\n)}
+\psaxes[linewidth=1.25pt,Dx=0.005,labelFontSize=\scriptstyle]{->}(0,0)(0,-2)(0.02,2)
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=blue]{0}{0.02}{1.73205*sin(314.159*x+1.0472)}
+\end{pspicture})
+\end{center}
+On cherche à savoir au bout de combien de temps la diode devient non
+passante pour la première fois.
+	\begin{enumerate}
+		\item Conjecturer la solution du problème à l'aide du graphique.
+		\item Calculer $u(0,005)$ et conclure.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip

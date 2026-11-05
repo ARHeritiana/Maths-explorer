@@ -1,0 +1,147 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specialite_2026_06_asie_automatismes_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\subsection*{Question 1}
+	La représentation graphique de $f$ a trois points d'intersection avec la droite d'équation {$y=-1$}, l'équation {$f(x)=-1$} a donc trois solutions.
+
+	\textbf{réponse D}.
+
+\subsection*{Question 2}
+
+	Multiplier par {$\np{0.6}=\dfrac{60}{100}=\dfrac{100-40}{100}$} revient bien à diminuer la quantité de départ de 40\,\%.
+
+	\textbf{réponse C}.
+
+\subsection*{Question 3}
+
+	La droite passe par les points {$(0;2)$} et {$(6;0)$}, donc son ordonnée à l'origine est $2$, et sa pente {$\dfrac{0-2}{6-0}=-\dfrac13$}.
+
+	\textbf{réponse C}.
+
+\subsection*{Question 4}
+
+	Il y a 130 enfants, dont 80 pratiquent le volley-ball, donc {$P_E(V)=\dfrac{80}{130}=\dfrac{8}{13}$}.
+
+	\textbf{réponse A}.
+
+\subsection*{Question 5}
+
+	$A$ et $\overline{A}$ partitionnent l'univers. D'après la loi des probabilités totales, on a :
+
+	{$P(B)=P(A\cap B)+P(\overline{A}\cap B)=\np{0.4}\times\np{0.3}+\np{0.6}\times\np{0.1}=\np{0.12}+\np{0.06}=\np{0.18}$}.
+
+	\textbf{réponse B}.
+
+\subsection*{Question 6}
+	Comme on sait que $f$ est une fonction affine, elle est représentée par une droite, et comme $g$ est une fonction polynôme du second degré, elle est représentée par une parabole, ce qui permet d'identifier les fonctions et leurs courbes représentatives.
+
+	La droite représentant $f$ est au-dessous de la parabole représentant $g$ pour des valeurs de $x$ inférieures à $-2$ ou bien supérieures à $2$, donc la solution de l'inéquation {$f(x)<g(x)$} est {$S=\,]-\infty ; -2[\,\cup\,]2 ; +\infty[$}.
+
+	\textbf{réponse B}.
+
+\subsection*{Question 7}
+	$x$ ne peut pas être égal à $3$ car la fonction inverse ne s'annule jamais.
+
+	{$\begin{aligned}[t]
+			x=3+\dfrac5 y
+			&\iff x-3=\dfrac 5 y\\
+			&\iff \dfrac{1}{x-3}=\dfrac y 5\\
+			&\iff y=\dfrac{5}{x-3}
+		\end{aligned}$}.
+
+	\textbf{réponse D}.
+
+\subsection*{Question 8}
+	Additionnons les effectifs : \quad $3 + 1 + 2 + 2 + 2 = 10$.
+
+	Il y a 10 valeurs, donc la médiane est entre les 5\up{e} et 6\up{e} valeurs, qui sont toutes deux 20 : en clair, $\textit{Me} =20 $.
+
+	Ici, on n'a même pas besoin de calculer exactement la moyenne (mais on pourrait le faire, la division par 10 est simple).
+
+	Toutes les valeurs sont positives et il y a deux valeurs qui valent 100, donc la somme de toutes les valeurs est strictement supérieure à 200, et la moyenne est donc strictement supérieure à 20.
+
+	En conclusion, \quad {$\textit{Me} < \overline{x}$}.
+
+	\textbf{réponse C}.
+
+\end{document}

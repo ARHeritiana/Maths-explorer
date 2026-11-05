@@ -1,0 +1,204 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_09_sujet1_polynesie_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+Parmi les angines, un quart nécessite la prise d'antibiotiques, les autres non.
+
+Afin d'éviter de prescrire inutilement des antibiotiques, les médecins disposent d'un test de diagnostic ayant les caractéristiques suivantes :
+
+\begin{itemize}
+\item[$\bullet~~$]lorsque l'angine nécessite la prise d'antibiotiques, le test est positif dans 90\,\% des cas;
+\item[$\bullet~~$]lorsque l'angine ne nécessite pas la prise d'antibiotiques, le test est négatif dans 95\,\% des cas.
+\end{itemize}
+
+
+
+
+
+\bigskip
+
+\textbf{Partie 1}
+
+\medskip
+
+Un patient atteint d'angine et ayant subi le test est choisi au hasard. 
+
+On considère les évènements suivants :
+
+\begin{itemize}
+\item[$\bullet~~$]$A$ : « le patient est atteint d'une angine nécessitant la prise d'antibiotiques »{} ; 
+\item[$\bullet~~$]$T$ : « le test est positif »{} ;
+\item[$\bullet~~$]$\overline{A}$ et $\overline{T}$ sont respectivement les évènements contraires de $A$ et $T$.
+\end{itemize}
+
+
+
+\begin{enumerate}
+\item On résume la situation par un arbre pondéré.
+
+\begin{center}
+\bigskip
+\pstree[treemode=R,nodesepA=0pt,nodesepB=4pt,levelsep=3.5cm,nrot=:U]{\TR{}}
+{
+\pstree[nodesepA=4pt]{\TR{$A$}\naput{$0,25$}}
+{
+\TR{$T$}\naput{$0,90$}
+\TR{$\overline{T}$}\nbput{\blue $1-0,90=0,10$}
+}
+\pstree[nodesepA=4pt]{\TR{$\overline{A}$}\nbput{\blue $1-0,25=0,75$}}
+{
+\TR{$T$}\naput{\blue $1-0,95=0,05$}
+\TR{$\overline{T}$}\nbput{$0,95$} 
+}
+}
+\bigskip
+\end{center}
+
+$P(A \cap T) = P(A)\times P_{A}(T)=0,25\times 0,90 = 0,225$
+
+\item 
+D'après la formule des probabilités totales:
+
+$P(T)= P(A\cap T) + P\left (\overline{A}\cap T\right ) = 0,225 + 0,75\times 0,05 = \np{0,2625}$
+
+\item On choisit un patient ayant un test positif. La probabilité qu'il soit atteint d'une angine nécessitant la prise d'antibiotiques est:
+
+$P_{T}(A)= \dfrac{P(A\cap T)}{P(T)}=\dfrac{0,225}{\np{0,2625}}\approx \np{0,8571}$
+
+\item
+	\begin{enumerate}
+		\item Les évènements correspondant à un résultat erroné du test sont:  $\overline{A} \cap T$ et $A \cap \overline{T}$
+		.
+		\item On définit l'évènement $E$ : \og le test fournit un résultat erroné \fg.
+		
+
+
+$P(E) = P\left (\overline{A} \cap T\right )+P\left (A \cap \overline{T}\right )
+= 0,25\times 0,10 + 0,75\times 0,05 = \np{0,0625}$
+
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie 2}
+
+\medskip
+
+On sélectionne au hasard un échantillon de $n$ patients qui ont été testés.
+On admet que l'on peut assimiler ce choix d'échantillon à un tirage avec remise.
+On note $X$ la variable aléatoire qui donne le nombre de patients de cet échantillon ayant un test erroné.
+
+
+
+\begin{enumerate}
+\item On suppose que $n = 50$.
+	\begin{enumerate}
+		\item 
+On a une répétition de 50 épreuves indépendantes et identiques n'ayant que deux issues et dont le succès a pour probabilité $p=\np{0,0625}$; donc la variable aléatoire $X$ qui donne le nombre de succès suit la loi binomiale $\mathcal{B}(n,\: p)$ de paramètres $n = 50$ et $p = \np{0,0625}.$
+		
+		\item $P(X = 7) = \ds\binom{50}{7}\times \np{0,0625}^{7}\times (1-\np{0,0625})^{50-7}\approx \np{0,0237}$
+		
+		\item La probabilité qu'il y ait au moins un patient dans l'échantillon dont le test est erroné est:
+		
+$P(X\geqslant 1) = 1-P(X=0) = 1- \ds\binom{50}{0}\times \np{0,0625}^0\times (1-\np{0,0625})^{50}\approx \np{0,9603}$		
+		
+	\end{enumerate}	
+\item On cherche la taille de l'échantillon faut-il choisir pour que $P(X \geqslant 10)$ soit supérieure à $0,95$.
+
+$P(X \geqslant 10)>0,95 \iff P(X < 10) \leqslant 0,05 \iff P(X \leqslant 9) \leqslant 0,05$
+
+À la calculatrice, par essais successifs, on trouve:
+
+~~\textbullet~~pour $n=247$, $P(X\leqslant 9) \approx \np{0,0514}$;
+
+~~\textbullet~~pour $n=248$, $P(X\leqslant 9) \approx \np{0,0498}$.
+
+Il faut donc un échantillon de taille au moins 248 pour que $P(X\geqslant 10)\geqslant 0,95$.
+
+\end{enumerate}
+
+\bigskip
+
+\end{document}

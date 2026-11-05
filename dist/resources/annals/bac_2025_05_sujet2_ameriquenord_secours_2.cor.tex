@@ -1,0 +1,185 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_05_sujet2_ameriquenord_secours_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+\item \textbf{Affirmation : Vraie}
+
+Par simple lecture des systèmes de représentation paramétrique, on peut dire que D est dirigée par $\vect{u}\begin{pmatrix}-1\\3\\4\end{pmatrix}$ et D$'$ par $\vect{u'}\begin{pmatrix} 2\\-6\\-8	\end{pmatrix}$.
+
+On remarque que :\quad $\vect{u'} = -2\vect{u}$\quad donc les vecteurs directeurs sont colinéaires, et donc les deux droites sont parallèles entre elles.
+
+\item \textbf{Affirmation : Fausse}
+
+De façon générale, si A, B et C définissent un plan, alors D sera orthogonale au plan (ABC) si et seulement si son vecteur directeur $\vect{u}$ est orthogonal à deux vecteurs non colinéaires du plan, classiquement $\vect{\mathrm{AB}}$ et $\vect{\mathrm{AC}}$.
+
+La \textbf{méthode classique} serait donc de déterminer les coordonnées de ces vecteurs, et d'en faire le produit scalaires avec $\vect{u}$.
+
+Cela donne : \quad $\vect{\mathrm{AB}} \begin{pmatrix}1 - (-2)\\3 - 3\\-4 - 1\end{pmatrix}$ donc $\vect{\mathrm{AB}} \begin{pmatrix}3\\0\\-5\end{pmatrix}$.
+
+On a (avec les coordonnées de $\vect{u}$ déterminées à la question \textbf{1.}) le produit scalaire qui se calcule au moyen des coordonnées (on suppose que le repère est orthonormé).
+
+$\vect{\mathrm{AB}}\cdot\vect{u} = 3\times (-1) + 0 \times 3 + (-5) \times 4 = -23 \neq 0$.
+
+Comme ce produit scalaire n'est pas nul, pas besoin de calculer le second : on peut affirmer que D n'est pas orthogonale à (ABC), car elle n'est pas orthogonale à (AB) qui est une droite du plan (ABC).
+
+Ici, on peut cependant adopter une \textbf{méthode différente} : on repère que les trois points A, B et C partagent la même ordonnée : 3, et sont réputés non alignés, donc le plan ABC est le plan d'équation $y = 3$, et un vecteur normal à (ABC) est le vecteur $\vect{j}$. Comme $\vect{j}$ est clairement non colinéaire à $\vect{u}$, alors on peut en déduire que D n'est pas orthogonale à (ABC).
+\item \textbf{Affirmation : Fausse}
+
+D est dirigée par $\vect{u}\begin{pmatrix}-1\\3\\4\end{pmatrix}$ et $\Delta$ est dirigée par $\vect{u''} \begin{pmatrix}2\\-3\\1\end{pmatrix}$, qui est clairement non colinéaire à $\vect{u}$: les droites ne sont donc pas parallèles. Elles peuvent être soit sécantes, soit non coplanaires.
+
+Pour trancher, cherchons s'il existe un couple de paramètres $(t~;~t')$ tel que le point de paramètre $t$ sur D serait confondu avec le point de paramètre $t'$ sur $\Delta$, autrement dit : s'il existe un point commun aux deux droites.
+
+On résout le système :
+
+$\begin{aligned}
+\begin{cases}
+3-t = -4+2t'\\
+-2+3t = 1 - 3t'\\
+1+4t = 2+t'
+\end{cases} &\iff
+\begin{cases}
+-t = -7+2t'\\
+-3+3t+3t' = 0\\
+-1+4t-t' = 0
+\end{cases}
+\end{aligned}$
+
+$\begin{aligned}
+\begin{cases}
+t = 7-2t'\\
+-3+3(7-2t')+3t' = 0\\
+-1+4(7-2t')-t' = 0
+\end{cases}
+ &\iff
+\begin{cases}
+t = 7-2t'\\
+-3 + 21 - 6t'+3t'=0\\
+-1+28-8t'-t' = 0
+\end{cases}\\
+\end{aligned}$
+
+$\begin{aligned}
+\begin{cases}
+t = 7-2t'\\
+3t' = 18\\
+9t' = 27
+\end{cases}
+&\iff
+\begin{cases}
+t = 7-2t'\\
+t' = 6\\
+t' = 3
+\end{cases}\\
+\end{aligned}$
+
+Les équations du système sont incompatibles, donc le système n'a pas de solution, et les droites D et $\Delta$ n'ont aucun point commun : elle ne sont donc pas sécantes.
+
+\item \textbf{Affirmation : Vraie}
+
+Le point F$(-3 ;-3 ; 3)$ appartient au plan P car ses coordonnées vérifient l'équation du plan, en effet :
+
+$2x_{\mathrm{F}} -3y_{\mathrm{F}}+z_{\mathrm{F}}-6 = 2\times (-3) - 3\times (-3) + 3 - 6 = -6 + 9 + 3 - 6 = 0$.
+
+De plus, $\vect{\mathrm{EF}}$ a pour coordonnées $\begin{pmatrix}-3 - (-5) \\ -3 - 0\\3 - 2\end{pmatrix} = \begin{pmatrix}2\\-3\\1\end{pmatrix}$. Ce vecteur a les même coordonnées que le vecteur normal du plan que l'on peut obtenir par lecture de l'équation de $P$.
+
+Ainsi, la droite (EF) est une droite orthogonale au plan $P$, telle que $\mathrm{F} \in P$, donc F est bien le projeté orthogonal du point E$(-5 ; 0 ; 2)$ sur le plan $P$.
+
+\item \textbf{Affirmation : Fausse}
+
+Par lecture de l'équation de $P'$, celui-ci admet comme vecteur normal le vecteur $\vect{n}\begin{pmatrix}-3\\1\\-a^2\end{pmatrix}$. La droite D est toujours dirigée par $\vect{u}\begin{pmatrix}-1\\3\\4\end{pmatrix}$.
+
+Le produit scalaire $\vect{n}\cdot\vect{u}$ vaut :\quad $\vect{n}\cdot\vect{u} = -3\times (-1) + 1 \times 3 + (-a^2 )\times 4 = 6-4a^2$.
+
+D est parallèle à $P'$ si et seulement si le vecteur directeur de D est un vecteur directeur de $P'$, c'est-à-dire si et seulement si le vecteur directeur de D est orthogonal à un vecteur normal à $P'$.
+
+Autrement dit, D est parallèle à $P'$ si et seulement si $\vect{n}\cdot\vect{u} = 0$ donc si et seulement si $ 6-4a^2 = 0$ c'est à dire $a^2=\dfrac{6}{4}$ soit $ a= \dfrac{\sqrt{6}}{2}$ ou $a=-\dfrac{\sqrt{6}}{2}$
+
+Il  existe donc deux valeurs du paramètre réel $a$ telle que le plan $P'$ d'équation $-3 x+y-a^{2} z+3=0$ soit parallèle à la droite D.
+		\end{enumerate}
+
+
+\medskip
+
+\end{document}

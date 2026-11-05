@@ -1,0 +1,93 @@
+\medskip
+
+Une équipe de biologistes étudie l'évolution de la superficie recouverte par une algue marine appelée posidonie, sur le fond de la baie de l'Alycastre, près de l'île de Porquerolles.
+
+La zone étudiée est d'une superficie totale de 20 hectares (ha), et au premier juillet 2024, la posidonie recouvrait 1 ha de cette zone.
+
+\begin{center}\textbf{Partie A :} étude d'un modèle discret\end{center}
+
+Pour tout entier naturel $n$, on note $u_n$ la superficie de la zone, en hectare, recouverte
+par la posidonie au premier juillet de l'année $2024 + n$. Ainsi, $u_0 = 1$.
+
+\smallskip
+
+Une étude conduite sur cette superficie a permis d'établir que pour tout entier
+naturel $n$ :
+
+\[u_{n+1} = - 0,02u_n^2 + 1,3u_n.\]
+
+\smallskip
+
+\begin{enumerate}
+\item Calculer la superficie que devrait recouvrir la posidonie au premier juillet 2025 d'après ce modèle.
+\item On note $h$ la fonction définie sur [0~;~20] par 
+
+\[h(x) = - 0,02x^2 + 1,3x.\]
+
+On admet que $h$ est croissante sur [0~;~20].
+	\begin{enumerate}
+		\item Démontrer que pour tout entier naturel $n,\: 1 \leqslant u_n  \leqslant u_{n+1} \leqslant 20$.
+		\item En déduire que la suite $\left(u_n\right)$ converge. On note $L$ sa limite.
+		\item Justifier que $L = 15$.
+	\end{enumerate}
+\end{enumerate}
+\begin{minipage}{0.65\linewidth}
+\begin{enumerate}[resume]
+\item Les biologistes souhaitent savoir au bout de combien de temps la surface recouverte par la
+posidonie dépassera les 14 hectares.
+	\begin{enumerate}
+		\item Sans aucun calcul, justifier que, d'après ce modèle, cela se produira.
+		\item Recopier et compléter l'algorithme suivant pour qu'en fin d'exécution, il affiche la réponse à la question des biologistes.
+	\end{enumerate}
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}{0.3\linewidth}
+\begin{Verbatim}[frame=single]
+def seuil():
+  n=0
+  u= 1
+  while ...... :
+    n=......
+    u=......
+  return n
+\end{Verbatim}
+\end{minipage}
+
+\begin{center} \textbf{Partie B :} étude d'un modèle continu\end{center}
+
+On souhaite décrire la superficie de la zone étudiée recouverte par la posidonie au cours du temps avec un modèle continu.
+
+Dans ce modèle, pour une durée $t$, en année, écoulée à partir du premier juillet 2024, la superficie de la zone étudiée recouverte par la posidonie est donnée par
+$f(t)$, où $f$ est une fonction définie sur $[0~;~ +\infty[$ vérifiant :
+
+\begin{itemize}[label=$\bullet~$]
+\item $f(0) = 1$ ;
+\item $f$ ne s'annule pas sur $[0~;~ +\infty[$ ;
+\item $f$ est dérivable sur $[0~;~ +\infty[$ ;
+\item $f$ est solution sur $[0~;~ +\infty[$ de l'équation différentielle 
+
+\[(E_1) : \quad y' =0,02y(15 - y).\]
+
+\end{itemize}
+
+On admet qu'une telle fonction $f$ existe; le but de cette partie est d'en déterminer une expression.
+
+On note $f'$ la fonction dérivée de $f$.
+
+\medskip
+
+\begin{enumerate}
+\item Soit $g$ la fonction définie sur $[0~;~ +\infty[$ par $g(t) = \dfrac{1}{f(t)}$.
+
+Montrer que $g$ est solution de l'équation différentielle 
+
+\[(E_2) : \quad y' = - 0,3y + 0,02.\]
+
+\item Donner les solutions de l'équation différentielle $(E_2)$.
+\item En déduire que pour tout $t \in  [0~;~ +\infty[$ :
+
+\[f(t)=  \dfrac{15}{14\e^{-0,3t} + 1}.\]
+
+\item Déterminer la limite de $f$ en $+\infty$.
+\item Résoudre dans l'intervalle $[0~;~ +\infty[$ l'inéquation $f(t) > 14$. Interpréter le résultat dans le contexte de l'exercice.
+\end{enumerate}

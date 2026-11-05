@@ -1,0 +1,111 @@
+\medskip
+
+El Niño est un phénomène océanique à grande échelle du Pacifique équatorial qui affecte le régime des vents, la température de la mer et les précipitations sur l’ensemble du globe. Certaines années, ce phénomène est dit \og dominant \fg. Les scientifiques cherchent à modéliser l’apparition de ce phénomène.
+
+\begin{center}\emph{Dans cet exercice, les parties A et B sont indépendantes}\end{center}
+
+\medskip
+
+\textbf{Partie A - Premier modèle}
+
+\medskip
+
+À partir d’un échantillon de données, on considère une première modélisation :
+
+\begin{itemize}
+\item chaque année, la probabilité que le phénomène El Niño soit dominant est égale à $0,4$ ;
+\item la survenue du phénomène El Niño se fait de façon indépendante d’une année sur
+l’autre.
+\end{itemize}
+
+On note $X$ la variable aléatoire qui, sur une période de 10 ans, associe le nombre d’années où El Niño est dominant.
+
+\medskip
+
+\begin{enumerate}
+\item Justifier que $X$ suit une loi binomiale et préciser les paramètres de cette loi.
+\item 
+	\begin{enumerate}
+		\item Calculer la probabilité que, sur une période de 10 ans, le phénomène El Niño soit dominant exactement 2 années.
+		\item Calculer $P(X \leqslant 2)$. Que signifie ce résultat dans le contexte de l’exercice ?
+	\end{enumerate}
+\item Calculer $E(X)$. Interpréter ce résultat.
+\end{enumerate}
+
+\medskip
+
+\textbf{Partie B - Second modèle}
+
+\medskip
+
+Après une étude d’un recueil de données plus important sur les 50 dernières années, une autre modélisation apparait plus pertinente :
+
+\begin{itemize}
+\item si le phénomène El Niño est dominant une année, alors la probabilité qu’il le soit
+encore l’année suivante est $0,5$
+\item par contre, si le phénomène El Niño n’est pas dominant une année, alors la
+probabilité qu’il soit dominant l’année suivante est $0,3$.
+\end{itemize}
+
+On considère que l’année de référence est 2023.
+
+On note pour tout entier naturel $n$ :
+
+\begin{itemize}[label=$\bullet~$]
+\item $E_n$ l’évènement \og le phénomène El Niño est dominant l’année $2023 + n$ \fg ;
+\item $p_n$ la probabilité de l’évènement $E_n$.
+\end{itemize}
+
+En 2023, El Niño n’était pas dominant. On a ainsi $p_0 = 0$.
+
+\medskip
+
+\begin{enumerate}
+\item Soit $n$ un entier naturel. Recopier et compléter l’arbre pondéré suivant :
+
+\begin{center}
+\pstree[treemode=R,levelsep=3cm]{\TR{}}
+{\pstree{\TR{$E_n~$}\taput{$p_n$}}
+	{\TR{$E_{n+1}$} \taput{\ldots}
+	\TR{$\overline{E_{n+1}}$} \tbput{\ldots}
+	}
+\pstree{\TR{$\overline{E_n}~$}\tbput{\ldots}}
+	{\TR{$E_{n+1}$} \taput{\ldots}
+	\TR{$\overline{E_{n+1}}$} \tbput{\ldots}
+	}
+}
+\end{center}
+\item Justifier que $p_1 = 0,3$.
+\item En vous aidant de l’arbre, montrer que, pour tout entier naturel $n$, on a :
+
+\[p_{n+1} = 0,2p_n + 0,3\]
+\end{enumerate}
+
+On cherche à prévoir l’évolution de l’apparition du phénomène El Niño.
+
+\begin{enumerate}[resume]
+\item
+	\begin{enumerate}
+		\item Conjecturer les variations et la limite éventuelle de la suite $(p_n)$.
+		\item Montrer par récurrence que, pour tout entier naturel $n$, on a : $p_n \leqslant \dfrac38$.
+		\item Déterminer le sens de variation de la suite $(p_n)$.
+		\item En déduire la convergence de la suite $(p_n)$. 
+	\end{enumerate}
+\end{enumerate}
+
+On cherche à déterminer la limite de la suite $(p_n)$.
+
+\begin{enumerate}[resume]
+\item Soit $(u_n)$ la suite définie par $u_n = p_n - \dfrac38$ pour tout entier naturel $n$.
+	\begin{enumerate}
+		\item Montrer que la suite $(u_n)$ est géométrique de raison 0,2 et préciser son premier terme.
+		\item Montrer que, pour tout entier naturel $n$, on a :
+		
+		\[p_n = \dfrac38\left(1 - 0,2^n\right).\]
+		
+		\item Calculer la limite de la suite $(p_n)$.
+		\item Interpréter ce résultat dans le contexte de l’exercice.
+		\end{enumerate}
+\end{enumerate}
+
+\medskip

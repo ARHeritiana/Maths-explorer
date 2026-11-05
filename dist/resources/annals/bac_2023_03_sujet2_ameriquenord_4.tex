@@ -1,0 +1,167 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet2_ameriquenord_4.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Cet exercice est un questionnaire à choix multiple. \\Pour chaque question, une seule des quatre réponses proposées est exacte.\\Le candidat indiquera sur sa copie le numéro de la question et la réponse choisie.\\Aucune justification n'est demandée.\\
+Une réponse fausse, une réponse multiple ou l'absence de réponse à une question ne rapporte ni n'enlève de point.\\Les cinq questions sont indépendantes.}
+
+\medskip
+
+\begin{enumerate}
+\item On considère la fonction $f$ définie sur l'intervalle $]1~;~+\infty[$ par 
+\[f(x)= 0,05 - \dfrac{\ln x}{x - 1}.\]
+
+La limite de la fonction $f$ en $+\infty$ est égale à :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{4}{X}}
+\textbf{a.~~} $+\infty$&\textbf{b.~~}0,05&\textbf{c.~~}$-\infty$&\textbf{d.~~}0
+\end{tabularx}
+\end{center}
+
+\item On considère une fonction $h$ continue sur l'intervalle $[-2 ; 4]$ telle que :
+
+\[h(-1)=0, \qquad h(1) = 4, \qquad h(3) = -1.\]
+
+On peut affirmer que :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{X}
+\textbf{a.~~} la fonction $h$ est croissante sur l'intervalle $[-1~;~1]$.\\
+\textbf{b.~~} la fonction $h$ est positive sur l'intervalle $[-1~;~1]$.\\
+\textbf{c.~~} il existe au moins un nombre réel $a$ dans l'intervalle $[1~;~3]$ tel que $h(a) = 1$.\\
+\textbf{d.~~} l'équation $h(x)=1$ admet exactement deux solutions dans l'intervalle 
+
+$[-2~;~4]$.
+\end{tabularx}
+\end{center}
+
+\item On considère deux suites $\left(u_{n}\right)$ et $\left(v_{n}\right)$ à termes strictement positifs telles que 
+
+$\displaystyle\lim _{n \rightarrow+\infty} u_{n}=+\infty$ et $\left(v_{n}\right)$ converge vers 0 .
+
+On peut affirmer que :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}la suite $\left(\frac{1}{v_{n}}\right)$ converge.&
+\textbf{b.~~} la suite $\left(\frac{v_{n}}{u_{n}}\right)$ converge.\\
+\textbf{c.~~} la suite $\left(u_{n}\right)$ est croissante.&
+\textbf{d.~~} $\displaystyle\lim _{n \rightarrow+\infty}\left(-u_{n}\right)^{n}=-\infty$
+\end{tabularx}
+\end{center}
+
+\item Pour participer à un jeu, un joueur doit payer $4$ \euro.
+
+Il lance ensuite un dé équilibré à six faces :
+
+\begin{itemize}
+\item s'il obtient 1, il remporte $12$ \euro{};
+\item s'il obtient un nombre pair, il remporte $3$\euro{};
+\item sinon, il ne remporte rien.
+\end{itemize}
+
+En moyenne, le joueur :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}gagne $3,50$ \euro&\textbf{b.~~}perd $3$ \euro.\\
+\textbf{c.~~}perd $1,50$ \euro&\textbf{d.~~}perd $0,50$ \euro.
+\end{tabularx}
+\end{center}
+
+\item On considère la variable aléatoire $X$ suivant la loi binomiale $\mathcal{B}(3~;~p)$.
+
+On sait que $P(X = 0) = \dfrac{1}{125}$. On peut affirmer que :
+
+\begin{center}
+\renewcommand\arraystretch{1.9}
+\begin{tabularx}{\linewidth}{*{2}{X}}
+\textbf{a.~~}$p = \dfrac{1}{5}$&\textbf{b.~~}$P(X = 1) =\dfrac{124}{125}$\\
+\textbf{c.~~}$p = \dfrac{4}{5}$&\textbf{d.~~}$P(X= 1) =\dfrac{4}{5}$
+\end{tabularx}
+\end{center}
+\end{enumerate}
+
+\end{document}

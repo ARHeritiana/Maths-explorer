@@ -1,0 +1,202 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet2_polynesie_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{enumerate}
+\item Affirmation 1 : Vraie
+
+Pour tout entier naturel $n$ : $n\geqslant 0 \Longrightarrow n+1 \geqslant 1 \Longrightarrow \dfrac{1}{n+1} \leqslant 1$  et  $-\dfrac{1}{n+1} \geqslant -1$.
+
+De plus,  pour tout entier naturel $n$, $-1 \leqslant (-1)^n \leqslant 1 $.
+
+D'où $ \dfrac{-1}{n+1} \leqslant \dfrac{(-1)^n}{n+1} \leqslant \dfrac{1}{n+1}$ car $n+1 >0$
+
+finalement on a : $-1 \leqslant \dfrac{-1}{n+1} \leqslant \dfrac{(-1)^n}{n+1} \leqslant \dfrac{1}{n+1}\leqslant 1$.
+
+La suite $u$ est bornée par -1 et 1.
+
+\item Affirmation 2 : Fausse
+
+Pour montrer qu'une affirmation est fausse, il suffit de donner un contre-exemple :
+
+Considérons la suite $u$ définie sur $\N$ par $u_n= (-1)^n$.
+
+Cette suite est bornée par $-1$ et 1 mais elle n'est pas convergente.
+
+\item Affirmation 3 : Fausse
+
+Pour montrer qu'une affirmation est fausse, il suffit de donner un contre-exemple :
+
+Considérons la suite $u$ définie sur $\N$ par $u_n=-\dfrac{1}{n}$.
+
+Cette suite est croissante et converge vers 0.
+
+\item Affirmation 4 : Fausse 
+
+Pour étudier la convexité d'une fonction,  il faut déterminer le signe de sa dérivée seconde. 
+
+$f$ est dérivable sur $\R$ comme composée de fonctions dérivables.
+
+$f$ est de la forme $\ln(u)$ avec $u(x)=x^2+2x+2$.  On a $u'(x)=2x+2$.
+
+$f'=\dfrac{u'}{u}$ donc, pour tout réel $x$, $f'(x)=\dfrac{2x+2}{x^2+2x+2}$.
+
+$f'$ est de la forme $\dfrac{v}{w}$ avec $v(x)=2x+2$ et $w(x)=x^2+2x+2$.
+
+On a $v'(x)=2$ et $w'(x)=2x+2$.
+
+$f''= \dfrac{v'\times w - w'\times v}{w^2}$  donc,  pour tout réel $x$,  $f''(x) =\dfrac { 2\times (x^2+2x+2)- (2x+2)\times(2x+2)    }{ {\left( x^2+2x+2 \right)}^2}$ 
+
+$f''(x)=\dfrac {  2x^2+4x+4-4x^2-8x-4  }{ {\left( x^2+2x+2 \right)}^2} =\dfrac {  -2x^2-4x  }{ {\left( x^2+2x+2 \right)}^2} =\dfrac{-2x(x+2)}{ {\left( x^2+2x+2 \right)}^2}$.
+
+Un carré est toujours strictement positif, $f''(x)$ est donc du signe de $-2x(x+2)$ qui est une fonction polynôme du second degré avec un coefficient dominant négatif (-2) et qui a pour racines 0 et -2.
+
+On a donc le tableau de signe suivant :
+
+
+\begin{center}
+\begin{tikzpicture}[scale=0.875]
+
+\tikzstyle{cadre}=[thin]
+\tikzstyle{fleche}=[->,>=latex,thin]
+\tikzstyle{nondefini}=[lightgray]
+
+\def\Lrg{1.5}
+\def\HtX{1}
+\def\HtY{0.5}
+
+\def\lignex{-0.5*\HtX}
+\def\lignef{-1.5*\HtX}
+\def\separateur{-0.5*\Lrg}
+
+\def\gauche{-1.5*\Lrg}
+\def\droite{6.5*\Lrg}
+
+\def\haut{0.5*\HtX}
+\def\bas{-2.5*\HtX-2*\HtY}
+
+\node at (-1*\Lrg,0) {$x$};
+\node at (0*\Lrg,0) {$-\infty$};
+\node at (2*\Lrg,0) {$-2$};
+\node at (4*\Lrg,0) {$0 $};
+\node at (6*\Lrg,0) {$+\infty$};
+
+\node at (-1*\Lrg,-1*\HtX) {$f''(x)$};
+\node at (0*\Lrg,-1*\HtX) {$$};
+\node at (1*\Lrg,-1*\HtX) {$-$};
+\node at (2*\Lrg,-1*\HtX) {$0$};
+\node at (3*\Lrg,-1*\HtX) {$+$};
+\node at (4*\Lrg,-1*\HtX) {$0$};
+\node at (5*\Lrg,-1*\HtX) {$-$};
+\node at (6*\Lrg,-1*\HtX) {$$};
+
+
+\draw[cadre] (\separateur,\haut) -- (\separateur, \lignef);
+\draw[cadre] (\gauche,\haut) rectangle  (\droite, \lignef);
+\draw[cadre] (\gauche,\lignex) -- (\droite,\lignex);
+\end{tikzpicture}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+On a déduit que $f$ est concave sur $]-\infty~;~-2]$ et sur $[0~;~+\infty[$,  et elle est convexe sur $[-2~;~0]$.
+
+Elle n'est donc pas convexe sur $[-3~;~1]$.
+
+\item  Affirmation 5 :  vraie
+
+On initialise $M$ avec le premier terme de la suite, puis l'algorithme  va comparer chaque terme de la liste à $M$,  si un terme est supérieur à $M$, il va remplacer $M$.
+
+Cet algorithme donne donc la valeur maximale des termes de la suite, soit 7 dans notre cas.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,71 @@
+\medskip
+
+Une fleuriste met en vente quatre sortes de bouquets dont les tarifs et la composition sont
+indiqués dans le tableau ci-dessous :
+
+\medskip
+\begin{center}
+\begin{tabularx}{0.85\linewidth}{|*{2}{X|}}\hline
+Bouquet de tulipes orange : 10,50 \euro  & Bouquet de roses orange : 23,50 \euro\\\hline
+Bouquet de tulipes blanches : 11,60 \euro& Bouquet de roses blanches : 25,50 \euro\\\hline
+\end{tabularx}
+\end{center}
+\medskip
+
+\begin{itemize}
+\item 72\,\% des bouquets mis en vente ne contiennent que des roses.
+\item Les autres bouquets mis en vente ne contiennent que des tulipes.
+\item 20\,\% des bouquets de tulipe mis en vente ne contiennent que des tulipes orange.
+\item 36\,\% des bouquets mis en vente ne contiennent que des roses blanches.
+\end{itemize}
+Un client achète au hasard un bouquet parmi ceux mis en vente par la fleuriste. On note :
+
+\begin{itemize}
+\item $R$ l'évènement : \og Le bouquet acheté par ce client est composé de roses.\fg
+\item $B$ l'évènement : \og Le bouquet acheté par ce client est composé de fleurs blanches. \fg
+\end{itemize}
+Les évènements contraires des évènements $R$ et $B$ sont notés respectivement $\overline{R}$ et $\overline{B}$.
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Donner, sans justifier, la probabilité $p(R \cap B)$.
+		\item Recopier et compléter le plus possible l'arbre de probabilité ci-dessous en
+traduisant uniquement les données de l'énoncé.
+\begin{center}
+
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.5cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{}\taput{}}
+	{
+	\TR{}\taput{}
+	\TR{}\tbput{}
+	}
+\pstree{\TR{~}\tbput{}}
+	{\TR{}\taput{}
+	\TR{}\tbput{}
+	}
+}
+\end{center}
+
+		\item Montrer que $p(B) = 0,584$.
+	\end{enumerate}
+\item On note $X$ la variable aléatoire qui donne le prix d'un bouquet acheté par un client.
+	\begin{enumerate}
+		\item  Recopier et compléter le tableau ci-dessous donnant, pour chaque valeur $x_i$ de $X$,
+la probabilité de l'évènement $\{X = x_i \}$. Justifier.
+
+\begin{center}
+\begin{tabularx}{0.6\linewidth}{|m{1.82cm}|*{4}{>{\centering \arraybackslash}X|}}\hline
+\centering $x_i$		&	&	&	& \\\hline
+\centering $p(X = x_i)$ &	&	&	&\\\hline
+\end{tabularx}
+\end{center}
+
+		\item Calculer l'espérance de la variable aléatoire $X$. \emph{On arrondira le résultat au centième.}
+	\end{enumerate}
+\end{enumerate}
+
+\vspace{0,5cm}

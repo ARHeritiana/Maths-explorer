@@ -1,0 +1,146 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/e3c/2020/tex/e3c_2020_00_sujet58_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\(h(x) = -x^3 + 30x^2 - 108x - 490\).
+
+\subsection*{1.}
+
+\(h(x)\) est un polynôme dérivable sur \(\mathbb{R}\), donc sur \([-6 \,;\, 26]\), et sur cet intervalle :
+\[
+h'(x) = -3x^2 + 2 \times 30x - 108 = -3x^2 + 60x - 108.
+\]
+
+\subsection*{2.}
+
+\paragraph{a.} \(\mathcal{C}'\) est la représentation graphique d'une fonction trinôme : c'est donc une parabole tournée vers le bas : c'est donc \(\mathcal{C}_1\).
+
+Comme \(h'(x) \geqslant 0\) sur \([2 \,;\, 18]\), \(h\) est croissante sur cet intervalle et sa représentation n'est pas \(\mathcal{C}_3\) ; c'est donc \(\mathcal{C}_2\).
+
+\paragraph{b.} On a :
+\begin{align*}
+h'(x) &= -3 \left( x^2 - 20x + 36 \right) \\
+&= -3 \left[ (x - 10)^2 - 100 + 36 \right] \\
+&= -3 \left[ (x - 10)^2 - 64 \right] \\
+&= -3 \left[ (x - 10)^2 - 8^2 \right] \\
+&= -3 (x - 10 + 8)(x - 10 - 8) \\
+&= -3 (x - 2)(x - 18).
+\end{align*}
+\(h'(x) = 0\) pour \(x = 2\) et \(x = 18\), mais \(h(10) = -3 \times 8 \times (-8) = 252\) : c'est donc \(\mathcal{C}_1\).
+
+\begin{center}
+\psset{xunit=0.3cm,yunit=0.003cm,labelFontSize=\scriptstyle,labelsep=0.1pt}
+\begin{pspicture}(-11,-800)(35,1625)
+\psaxes[linewidth=0.95pt,Dx=2,Dy=200]{->}(0,0)(-10,-800)(31.5,1625)
+\def\Func{ x x x neg 30 add mul  108 sub  mul 490 sub }
+\psplot[plotpoints=1000,linewidth=1.25pt,linecolor=blue]{-6}{26}{\Func}
+\psplot[plotpoints=1000,linewidth=1.25pt,linecolor=blue,linestyle=dashed]{-6}{26}{x x 3 neg mul 60 add mul 108 sub}
+\psplot[plotpoints=1000,linewidth=2pt,linecolor=blue, linestyle=dotted]{-6}{26}{x x 3  mul 60 sub mul 108 add}
+\psplot[plotpoints=1000,linewidth=1.25pt,linecolor=red]{-6}{2.87}{-108 x mul -490 add}
+\uput[ul](26.5,640){$\mathcal{C}_3$} \uput[u](12.,940){$\mathcal{C}_2$} \uput[ur](-6,-450){$\mathcal{C}_1$} \uput[ur](2.87,-750){$\mathcal{T}$}
+\end{pspicture}
+\end{center}
+
+\subsection*{3.}
+
+\begin{align*}
+&M(x \,;\, y) \in \mathcal{T} \\
+\iff &y - h(0) = h'(0)(x - 0) \\
+\iff &y - (-490) = -108x \\
+\iff &y = -108x - 490.
+\end{align*}
+
+\subsection*{4.}
+
+On a vu que \(h'(x) = -3(x - 2)(x - 18)\) : ce trinôme est négatif sauf entre les racines 2 et 18.
+
+La fonction \(h\) est donc décroissante sauf sur l'intervalle \([2 \,;\, 18]\), où elle est croissante.
+
+\begin{center}
+\begin{tikzpicture}
+\tkzTabInit[lgt=3.5, espcl=3.5]{$x$ / 1, {Signe de $h'(x)$} / 1, {$h(x)$} / 2}{${-6}$, ${2}$, ${18}$, ${26}$}
+\tkzTabLine{,-,0,+,0,-,}
+\tkzTabVar{+/{$1454$},-/{$-594$},+/{$1454$},-/{$-594$}}{/}
+\end{tikzpicture}
+\end{center}
+
+\end{document}

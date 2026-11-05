@@ -27,3 +27,5 @@ Read one only when the task router in `MAP.md` sends you here.
 | `future-work/seeded-exercises-first-slice.patch` | superseded first version of seeded exercises (a quadratic generator with its own page `#exercises`, HTML sheet, print, single-file student/teacher TeX export, 9 tests), kept as reference after the bank in `site/js/exercises/` covered it; `git apply --stat` shows the files, it applies to the tree before commit `68c84ba` |
 | `future-work/malagasy-t12-cd-audit.md` | audit and integration plan of the T12 séries C et D book (chapters, C/D split, Bac corrections, converter gaps, anonymity, owner decisions); task 1 of the T12 integration |
 | `history/` | superseded plans and reports; do not read unless asked |
+
+ANNALS.md: source rights, imported-fragment format, chapter integration, local typesetting pipeline and rebuild requirements for the self-hosted annales bank.

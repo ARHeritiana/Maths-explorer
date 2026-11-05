@@ -1,0 +1,148 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet2_asie_3.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\emph{Marie Sklodowska-Curie ($1867-1934$) est une physicienne (mais aussi chimiste et mathématicienne), polonaise naturalisée française.\\
+Deux Prix Nobel lui ont été décernés: un en Physique (partagé avec son mari et Henri Becquerel) en $1903$ et un en Chimie en $1911$ pour la découverte de deux nouveaux éléments, le polonium (nom donné en hommage à ses origines) et le radium}.
+
+\medskip
+
+On décide d'étudier le rayonnement radioactif du polonium lors de la désintégration des noyaux atomiques au cours du temps.
+
+Au début de l'expérience, on dispose d'un morceau de $2$~g de polonium.
+
+On sait que $1$~g de polonium contient $3 \times 10^{21}$ noyaux atomiques.
+
+On admet que, au bout de 24 heures, $0,5\,\%$ des noyaux se sont désintégrés et que, pour compenser cette disparition, on ajoute alors $0,005$ g de polonium.
+
+On modélise la situation à l'aide d'une suite $\left(v_n\right)_{n \in \N}$ ; on note $v_0$ le nombre de noyaux contenus dans le polonium au début de l'expérience. 
+
+Pour $n \geqslant 1,\: v_n$ désigne le nombre de noyaux contenus dans le polonium au bout de $n$ jours écoulés.
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Vérifier que $v_0 = 6\times 10^{21}$.
+		\item Expliquer que, pour tout nombre entier naturel $n$, on a 
+		\[v_{n+1} = 0,995v_n + 1,5 \times  10^{19}.\]
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Démontrer, par récurrence sur $n$, que $0 \leqslant v_{n+1}  \leqslant v_n$.
+		\item En déduire que la suite $\left(v_n\right)_{n\in \N}$ est convergente.
+	\end{enumerate}
+\item On considère la suite $\left(u_n\right)_{n \in \N}$ définie, pour tout entier naturel $n$, par: \[u_n = v_n - 3 \times 10^{21}.\]
+	\begin{enumerate}
+		\item Montrer que la suite $\left(u_n\right)_{n \in \N}$ est géométrique de raison $0,995$.
+		\item En déduire que, pour tout entier naturel $n,\: v_n = 3 \times 10^{21}\left(0,995^n + 1\right)$.
+		\item En déduire la limite de la suite $\left(v_n\right)_{n \in \N}$ et interpréter le résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\item Déterminer, par le calcul, au bout de combien de jours le nombre de noyaux de polonium sera inférieur à $4,5 \times 10^{21}$. Justifier la réponse.
+\item On souhaite disposer de la liste des termes de la suite $\left(v_n\right)_{n \in \N}$. 
+
+Pour cela, on utilise une fonction appelée noyaux programmée en langage Python et retranscrite partiellement ci-après.
+
+\begin{center}
+\begin{tabular}{l |l|}\cline{2-2}
+1 &def noyaux (n) :\\
+2 &\qquad V =6*10**21\\
+3&\qquad L=[V]\\
+4&\qquad for k in range (n):\\
+5&\qquad \qquad V= ...\\
+6&\qquad \qquad L.append(V)\\
+7&\qquad return L\\ \cline{2-2}
+\end{tabular}
+\end{center}
+
+	\begin{enumerate}
+		\item À la lecture des questions précédentes, proposer deux solutions différentes pour compléter la ligne 5 de la fonction noyaux afin qu'elle réponde au problème.
+		\item Pour quelle valeur de l'entier n la commande noyaux(n) renverra-t-elle les relevés quotidiens du nombre de noyaux contenus dans l'échantillon de polonium pendant 52 semaines d'étude ?
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\end{document}

@@ -36,6 +36,8 @@ def inputs():
              'content/data/glossary.json', COURSES.get(course, ['unsupported'])[0], 'build/mxbuild/tex.py',
              'build/mxbuild/twin.py', 'build/mxbuild/books.py'],
             {'book': book, 'chapters': [c for c in manifest['catalog']['chapters'] if c['course'] == course]})
+    if 'annalsBank' in manifest:
+        result['annals'] = fingerprint(['content/tex/annals/**/*', 'content/tex/core/*', 'scripts/build-annals.py', 'scripts/build-annals-pdf.py'], manifest['annalsBank'])
     result['static-site'] = fingerprint(['site/**/*'])
     result['fourier'] = fingerprint(['content/university/fourier/**/*','scripts/build-fourier.py'],[s for s in manifest['university']['sections'] if s['id']=='fourier'])
     result['foundations'] = fingerprint(
@@ -84,6 +86,10 @@ def run_job(key):
             raise ValueError(f'No PDF builder configured for {course}; configure it before publication')
         if pipeline.build_tex([course], force=True):
             raise RuntimeError('Course build failed: ' + course)
+    elif key == 'annals':
+        for script in ('build-annals.py', 'build-annals-pdf.py'):
+            if subprocess.run([sys.executable, 'scripts/' + script, '--check'], cwd=ROOT, capture_output=True).returncode:
+                command(sys.executable, 'scripts/' + script)
     elif key == 'static-site':
         # site.write() below copies source and updates linked catalogue metadata.
         return

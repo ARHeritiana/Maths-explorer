@@ -1,0 +1,30 @@
+\medskip
+
+Une note de musique est émise en pinçant la corde d'une guitare électrique. La puissance du son émis, initialement de 120 watts, diminue en fonction du temps écoulé après pincement de la corde.
+
+Soit $f$ la fonction définie pour tout réel $t\geqslant 0$ par :\[f(t)= 120\e^{-0,14t}\]
+On admet que $f(t)$ modélise la puissance du son, exprimée en watt, à l'instant $t$ où $t$ est le temps écoulé, exprimé en seconde, après pincement de la corde.
+
+On désigne par $f'$ la fonction dérivée de $f$.
+
+\medskip
+
+\begin{enumerate}
+\item Calculer $f'(t$).
+\item Dresser le tableau de variations de la fonction $f$ sur $[0 ; +\infty[$ et interpréter ce résultat dans le contexte de l'exercice.
+\item Quelle sera la puissance du son, trois secondes après avoir pincé la corde ? Arrondir au dixième.
+\item On considère la fonction seuil ci-dessous :
+\begin{lstlisting}[style=python]
+def seuil():
+    t = 0
+    puissance = 120
+    while puissance >= 60:
+        t = t + 0.1
+        puissance = 120 * exp(-0.14 * t)
+    return t
+\end{lstlisting}
+
+Que renvoie cette fonction seuil() ?
+\end{enumerate}
+
+\vspace{0,5cm}

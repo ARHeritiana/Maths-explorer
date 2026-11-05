@@ -1,0 +1,169 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_06_ameriquenord_1.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+En juin 2019, une population de 200 marmottes a été introduite dans un massif montagneux où cette espèce était absente. Un zoologue en charge de ce projet souhaite modéliser l'évolution de cette population en fonction du temps.
+	
+	Il constate qu'entre juin 2019 et juin 2020, la population a augmenté de 20 individus.
+	
+	\subsection*{Partie A : Premier modèle}
+	
+	Le zoologue propose un premier modèle où la population augmente de 20 individus tous les ans.
+	
+	On note alors $u_{n}$ la population de marmottes que l'on peut estimer à l'aide de ce modèle en juin $2019+n$. On a donc $u_{0}=200$.
+	
+	\begin{enumerate}
+		\item Quelle est la nature de la suite $\left(u_{n}\right)$ ? Préciser sa raison.
+		
+		\item À combien peut-on estimer le nombre de marmottes en juin 2025 ?
+		
+		\item En juin 2025, un nouveau décompte a permis de savoir que la population était de 355 individus. Ce premier modèle semble-t-il être adapté à la situation ?
+	\end{enumerate}
+	
+	\subsection*{Partie B : Second modèle}
+	
+	\begin{enumerate}
+		\item On rappelle que la population de marmottes était de 200 individus en juin 2019 et de 220 individus en juin 2020.
+		
+		De quel pourcentage la population a-t-elle augmenté entre ces deux dates ?
+		
+		\medskip
+		
+		Le zoologue propose un second modèle où la population augmente de ce même pourcentage tous les ans. Dans ce modèle, on représente la population de marmottes en juin $2019+n$ par $v_{n}$ tel que, pour tout entier naturel $n$,\quad $v_{n+1}=1,1\times v_{n}$.
+		
+		\item \begin{enumerate}
+			\item Quelle est la nature de la suite $\left(v_{n}\right)$ ? Préciser sa raison et son premier terme.
+			
+			\item Exprimer $v_{n}$ en fonction de $n$.
+		\end{enumerate}
+		
+		\item On utilise un tableur pour calculer les termes de la suite $\left(v_{n}\right)$.
+		
+
+
+
+
+
+
+
+
+\begin{center}
+\tabcolwidth{1cm} 
+\begin{tikzpicture}
+\tableur[2]{A-L}
+\celtxt*[align=center]{A}{1}{$ n $}
+\celtxt*[align=center]{B}{1}{0}
+\celtxt*[align=center]{C}{1}{1}
+\celtxt*[align=center]{D}{1}{2}
+\celtxt*[align=center]{E}{1}{3}
+\celtxt*[align=center]{F}{1}{4}
+\celtxt*[align=center]{G}{1}{5}
+\celtxt*[align=center]{H}{1}{6}
+\celtxt*[align=center]{I}{1}{7}
+\celtxt*[align=center]{J}{1}{8}
+\celtxt*[align=center]{K}{1}{9}
+\celtxt*[align=center]{L}{1}{10}
+\celtxt*[align=center]{A}{2}{$ v(n) $}
+\celtxt*[align=center]{B}{2}{200}
+\celtxt*[align=center]{C}{2}{220}
+\celtxt*[align=center]{D}{2}{242}
+\celtxt*[align=center]{E}{2}{266}
+\celtxt*[align=center]{F}{2}{293}
+\celtxt*[align=center]{G}{2}{322}
+\celtxt*[align=center]{H}{2}{354}
+\celtxt*[align=center]{I}{2}{390}
+\celtxt*[align=center]{J}{2}{429}
+\celtxt*[align=center]{K}{2}{472}
+\celtxt*[align=center]{L}{2}{519}
+\end{tikzpicture}
+\end{center}	
+
+		\begin{enumerate}
+			\item Selon ce nouveau modèle, à combien peut-on estimer le nombre de marmottes en juin 2025 ?
+			
+			\item En utilisant la donnée fournie dans la question \textbf{3} de la partie \textbf{A}, ce nouveau modèle semble-t-il pertinent ?
+			
+			\item Au mois de juin de quelle année la population de marmottes de ce massif montagneux aura-t-elle dépassé 400 individus, selon ce modèle ?
+		\end{enumerate}
+	\end{enumerate}
+
+\end{document}

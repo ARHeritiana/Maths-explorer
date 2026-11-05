@@ -1,0 +1,69 @@
+\medskip
+
+Une entreprise fabrique des jeux en bois. Avant sa commercialisation, chaque jeu est soumis
+à deux contrôles : un contrôle de peinture et un contrôle de solidité.
+
+Après un très grand nombre de vérifications, on constate que :
+
+\begin{itemize}
+\item  8\,\% des jeux ont un défaut de peinture,
+\item parmi les jeux qui n'ont pas de défaut de peinture, 5\,\% ont un défaut de solidité,
+\item 2\,\% des jeux présentent les deux défauts.
+\end{itemize}
+On choisit au hasard un jeu parmi ceux fabriqués par l'entreprise. On note :
+\begin{itemize}
+\item $T$ l'évènement : \og le jeu a un défaut de peinture. \fg
+\item $S$ l'évènement : \og le jeu a un défaut de solidité. \fg
+\end{itemize}
+
+\medskip
+
+\begin{enumerate}
+\item Démontrer que $p_T(S) = 0,25$.
+\item Recopier et compléter l'arbre pondéré de probabilité ci-dessous traduisant les données de
+l'énoncé.
+
+\begin{center}
+\psset{nodesepA=0pt,nodesepB=3pt,treesep=0.75,labelsep=0.1pt,levelsep=2.5cm}
+\pstree[treemode=R]{\TR{}}
+{\pstree{\TR{$T$~~}\taput{}}
+	{
+	\TR{$S$}\taput{$\np{0.25}$}
+	\TR{$\overline{S}$}\tbput{}
+	}
+\pstree{\TR{$\overline{T}$~~}\tbput{}}
+	{\TR{$S$}\taput{}
+	\TR{$\overline{S}$}\tbput{}
+	}
+}
+\end{center}
+
+\item Démontrer que la probabilité que le jeu choisi au hasard n'ait pas de défaut de solidité est
+égale $0,934$.
+\item Les jeux qui présentent un défaut de solidité sont détruits. Dans cette question, on leur
+attribuera un prix de vente de 0 \euro.
+
+Les jeux ne présentant aucun défaut sont vendus $14$ \euro{} chacun.
+
+Les autres jeux sont vendus 9 \euro{} chacun.
+
+On note $X$ la variable aléatoire qui donne le prix de vente, en euros, d'un jeu.
+
+	\begin{enumerate}
+		\item  Recopier et compléter le tableau ci-dessous donnant, pour chaque valeur $x_i$ de $X$,
+la probabilité de l'évènement $ \{X=x_i\}$.
+
+\begin{center}
+\begin{tabularx}{0.5\linewidth}{|m{1.4cm}|*{3}{>{\centering \arraybackslash}X|}}
+\hline
+\centering $x_i$& 0 &9	& 14\\\hline
+$P(X=x_i)$		&	&	&\\\hline
+\end{tabularx}
+\end{center}
+	\item Quel est le prix de vente moyen d'un jeu fabriqué par cette entreprise ?
+
+\emph{On arrondira le résultat au centime d'euro.}
+	\end{enumerate}
+\end{enumerate}
+
+\vspace{0,5cm}

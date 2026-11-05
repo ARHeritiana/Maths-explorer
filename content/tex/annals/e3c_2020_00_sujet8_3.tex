@@ -1,0 +1,32 @@
+\medskip
+
+Un médicament contre la douleur est administré par voie orale. La concentration du produit actif dans le sang, en milligramme par litre de sang, est modélisé par la fonction $f$ qui, au temps écoulé $x$ en heure, $x$ étant compris entre 0 et 6, associe:
+
+\[f(x) = x^3 -12x^2 + 36x \quad \text{où} \quad x \in  [0~;~6].\]
+
+Le produit actif est efficace si sa concentration dans le sang est supérieure ou égale à $5$ mg/L.
+
+\medskip
+
+\begin{enumerate}
+\item En exécutant le script Python ci-dessous, on obtient la liste $[0,\, 1,\,  1,\,  1,\,  1,\,  1,\, 0]$.
+
+\begin{center}
+\begin{tabularx}{0.6\linewidth}{c X}
+1& \texttt{liste=[0, 0, 0, 0, 0, 0, 0]}\\ 
+2& \texttt{{\blue for} x {\blue in range}(0,7) :}\\
+3& $\vline$\quad\texttt{{\blue if} x$**$3-12$*$x$**$2+36$*$x>=5:} \\
+4&$\vline$\quad$\vline$\quad\texttt{liste[x]= l}\\
+5&\texttt{{\blue print}(liste)}\\ 
+\end{tabularx}
+\end{center}
+
+À l'aide de ce résultat, indiquer l'intervalle de temps en unité d'heures sur lequel le
+médicament est efficace.
+\item On admet que la fonction $f$ est dérivable sur l'intervalle [0~;~6], calculer sa fonction dérivée.
+\item Justifier que la tangente $T$ à la courbe représentative de la fonction $f$  au point A d'abscisse 4 admet pour équation réduite $y = -12x + 64$.
+\item Démontrer que $f(x) - (-12x + 64) = (x - 4)^3$.
+\item En déduire la position relative de la courbe représentative de la fonction $f$ par rapport à la tangente T au point A.
+\end{enumerate}
+
+\bigskip

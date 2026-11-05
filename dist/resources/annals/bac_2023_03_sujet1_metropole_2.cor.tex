@@ -1,0 +1,255 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet1_metropole_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On considère la fonction $f$ définie sur $]0~;~+\infty[$ par 
+$f(x) = x^2 - 8\ln (x)$,
+où ln désigne la fonction logarithme népérien.
+
+On admet que $f$ est dérivable sur $]0~;~+\infty[$, on note $f'$ sa fonction dérivée. 
+
+\medskip
+
+\begin{enumerate}
+\item On détermine $\displaystyle\lim_{x \to 0} f(x)$.
+
+$\left .
+\begin{array}{l}
+\ds\lim_{x \to 0} x^2 =0\\
+\ds\lim_{x \to 0 \atop x>0} \ln(x)=-\infty
+\end{array}
+\right \}
+\text{ donc }
+\ds\lim_{x \to 0\atop x>0} x^2 -8\ln(x)=+\infty
+\text{ et donc }
+\ds\lim_{x \to 0\atop x>0} f(x)=+\infty$
+
+
+\item On admet que, pour tout $x > 0$,\: $f(x) = x^2\left(1 - 8\dfrac{\ln (x)}{x^2}\right)$.
+
+
+$\left .
+\begin{array}{l}
+\ds\lim_{x \to +\infty} \dfrac{\ln(x)}{x} =0\\
+\ds\lim_{x \to +\infty} \dfrac{1}{x}=0 
+\end{array}
+\right \}
+\text{ donc }
+\ds\lim_{x \to +\infty} \dfrac{\ln(x)}{x^2} =0
+\text{ et donc }
+\ds\lim_{x \to +\infty} \left ( 1-\dfrac{\ln(x)}{x^2}\right ) =1$
+
+$\left .
+\begin{array}{l}
+\ds\lim_{x \to +\infty}  \left ( 1-\dfrac{\ln(x)}{x^2}\right ) =1\\
+\ds\lim_{x \to +\infty} x^2=+\infty
+\end{array}
+\right \}
+\text{ donc }
+\ds\lim_{x \to +\infty}  x^2\left ( 1-\dfrac{\ln(x)}{x^2}\right ) =+\infty
+\text{ et donc }
+\ds\lim_{x \to +\infty}  f(x) =+\infty$
+
+\item 
+Calcul de la dérivée sur $]0~;~+\infty[$:
+
+$f'(x)=2x -8\times \dfrac{1}{x}=\dfrac{2x^2-8}{x}=\dfrac{2\left (x^2-4\right )}{x}
+=\dfrac{2(x-2)(x+2)}{x}$
+
+\item Pour étudier les variations de $f$ sur $]0~;~+\infty[$, on cherche le signe de $f'(x)$.
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.5}
+\def\esp{\hspace*{3cm}}
+$\begin{array}{|c |l *{4}{c} |} 
+\hline
+x  & 0 & \esp & 2 & \esp  & +\infty \\
+\hline
+x-2 &  & \pmb{-} &  \vline\hspace{-2.7pt}{0} & \pmb{+} &   \\
+\hline
+x+2 &  & \pmb{+} &  \vline\hspace{-2.7pt}{\phantom 0} & \pmb{+} &   \\
+\hline
+x &0  & \pmb{+} &  \vline\hspace{-2.7pt}{\phantom 0} & \pmb{+} &   \\
+\hline
+f'(x) &\vline\;\vline  & \pmb{-} &  \vline\hspace{-2.7pt}{0} & \pmb{+} &   \\
+\hline
+\end{array}$
+}
+\end{center}
+
+$f(2)=4-8\ln(2)$
+On en déduit le tableau des  variations de la fonction $f$  sur $]0~;~+\infty[$.
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}
+\def\esp{\hspace*{0.8cm}}
+\def\hauteur{20pt}
+$\begin{array}{|c|l*8{c}|}
+\hline
+x & 0  & \esp &  & \esp & 2 & \esp &  & \esp & +\infty \\ 
+\hline
+\text{ Signe de $f'$ } &\vline\;\vline  & &   \pmb{-}  & & \vline\hspace{-2.7pt}0   &&  \pmb{+} &&\\ 
+\hline
+ & \vline\;\vline \Rnode{max1}{~+\infty} & &&&&  &     &  & \Rnode{max2}{+\infty}   \\  
+\text{ Variations de $f$ } & \vline\;\vline &  &   && & &   &  &  \rule{0pt}{\hauteur} \\ 
+ & \vline\;\vline &   &  &  &  \Rnode{min}{4-8\ln(2)} & & & &  \rule{0pt}{\hauteur}    
+\ncline{->}{max1}{min} \ncline{->}{min}{max2}
+ \\ 
+\hline
+\end{array} $
+}
+\end{center}
+
+
+\item 
+$4-8\ln(2) \approx -1,55 <0$ donc on complète le tableau de variations.
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}
+\def\esp{\hspace*{0.8cm}}
+\def\hauteur{20pt}
+$\begin{array}{|c|l*8{c}|}
+\hline
+x & 0  & \esp & \Rnode{alpha}{\alpha} & \esp & 2 & \esp & & \esp & +\infty \\ 
+\hline
+ & \vline\;\vline \Rnode{max1}{~+\infty} & &&&&  &     &  & \Rnode{max2}{+\infty}   \\  
+\text{ Variations de $f$ } & \vline\;\vline &  &  \Rnode{zero1}{0} && & &   &  &  \rule{0pt}{\hauteur} \\ 
+ & \vline\;\vline &   &  &  &  \Rnode{min}{4-8\ln(2)} & & & &  \rule{0pt}{\hauteur}    
+ \ncline{max1}{zero1}  \ncline{->}{zero1}{min}
+  \ncline{min}{max2}
+  \ncline[linecolor=red,linestyle=dashed]{zero1}{alpha}
+ \\ 
+\hline
+\end{array} $
+}
+\end{center}
+
+La fonction $f$ est dérivable sur $]0\;;\;+\infty[$ donc continue sur cet intervalle, donc continue sur $]0\;;\;2[$.
+Sur l'intervalle $]0\;;\;2[$, la fonction $f$ est continue et strictement décroissante; elle passe d'une valeur positive à une valeur négative donc, d'après le corollaire du théorème des valeurs intermédiaires, l'équation $f(x)=0$ admet une solution unique dans $]0\;;\;2[$. 
+On l'appelle $\alpha$.
+
+
+\item On admet que, sur l'intervalle $[2~;~ +\infty[$, l'équation $f(x) = 0$ admet une solution unique $\beta$. On complète le tableau de variations de $f$ et on en déduit le signe de $f$ sur $]0\;;\;+\infty[$.
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}
+\def\esp{\hspace*{0.8cm}}
+\def\hauteur{20pt}
+$\begin{array}{|c|l*8{c}|}
+\hline
+x & 0  & \esp & \Rnode{alpha}{\alpha} & \esp & 2 & \esp & \Rnode{beta}{\beta} & \esp & +\infty \\ 
+\hline
+ & \vline\;\vline \Rnode{max1}{~+\infty} & &&&&  &     &  & \Rnode{max2}{+\infty}   \\  
+\text{ Variations de $f$ } & \vline\;\vline &  &  \Rnode{zero1}{0} && & &\Rnode{zero2}{0}   &  &  \rule{0pt}{\hauteur} \\ 
+ & \vline\;\vline &   &  &  &  \Rnode{min}{4-8\ln(2)} & & & &  \rule{0pt}{\hauteur}    
+ \ncline{max1}{zero1}  \ncline{->}{zero1}{min}
+  \ncline{min}{zero2}  \ncline{->}{zero2}{max2}
+  \ncline[linecolor=red,linestyle=dashed]{zero1}{alpha}
+    \ncline[linecolor=red,linestyle=dashed]{zero2}{beta}
+ \\ 
+\hline
+\text{ Signe de $f$ } & \vline\;\vline & \pmb{+} & \vline\hspace{-2.7pt}0 & &  \pmb{-} &  &\vline\hspace{-2.7pt}0 &  \pmb{+} &\\ 
+\hline
+\end{array} $
+}
+\end{center}
+
+
+\item Pour tout réel $k$, on considère la fonction $g_k$ définie sur $]0~;~+\infty[$ par:
+$g_k(x) = x^2 - 8\ln (x) + k$; donc $g_k(x)=f(x)+k$.
+
+La fonction $g_k$ a donc les mêmes variations que $f$ et elle a donc pour minimum sur $]0~,~+\infty[$ le nombre $4-8\ln(2)+k$.
+Pour que $g_k$ soit positive ou nulle, il faut que ce minimum soit positif ou nul, donc $4-8\ln(2)+k\geqslant 0$ soit $k\geqslant 8\ln(2)-4$.
+
+Donc $8\ln(2)-4$ est la plus petite valeur de $k$ telle que $g_k\geqslant 0$ sur $]0\;;\;+\infty[$.
+
+
+\end{enumerate}
+
+\bigskip
+
+\end{document}

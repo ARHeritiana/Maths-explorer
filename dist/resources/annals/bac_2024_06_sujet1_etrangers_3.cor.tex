@@ -1,0 +1,165 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2024/tex/bac_2024_06_sujet1_etrangers_3_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+		\begin{enumerate}
+			\item Soit $f(x)=k$ une fonction constante définie sur $\R$ solution de $\left( E_0\right)$.
+
+On a donc $f'=f$ soit $0=k$.
+
+L'unique fonction constante solution de l'équation différentielle $\left(E_{0}\right)$ est donc la fonction nulle.
+
+			\item Les solutions de l'équation différentielle $\left(E_{0}\right)$ sont les fonctions de la forme 
+
+$f(x)=C\e^x$ avec $C \in \R$.
+
+
+
+		\item
+
+
+Pour tout réel $x$ on a : \quad $h'(x) =-2\sin(x) +\cos(x)$.
+
+D'autre part : \quad $h(x)-\cos (x)-3 \sin (x)= 2 \cos (x)+\sin (x)- \cos (x)-3 \sin (x) =$
+
+$ \cos(x)-2\sin(x)$
+
+d'où pour tout réel $x$,  \quad$h'(x) = h(x) -\cos (x)-3 \sin (x)$,  c'est à dire, $h$ est solution de l'équation différentielle $(E)$.
+
+			\item Supposons que  $f$ soit une solution de $(E)$.
+
+Pour tout réel $x$ on a :
+
+$\begin{aligned}[t] (f-h)'(x)=f'(x)-h'(x) &\implies (f-h)'(x)= f(x) -\cos (x)-3 \sin (x) - \left( h(x) -\cos (x)-3 \sin (x) \right)\\
+&\qquad \text{  car $f$ et $h$ sont solutions de $(E)$}\\
+&  \Longrightarrow (f-h)'(x)= f(x) -\cos (x)-3 \sin (x) - h(x) +\cos (x)+3 \sin (x) \\
+&  \Longrightarrow (f-h)'(x)= f(x)  - h(x)   = (f-h)(x)\end{aligned}$
+
+Donc $f-h$ est solution de $\left(E_{0}\right)$
+\smallskip
+
+Réciproquement : supposons que $f-h$ soit solution de $\left(E_{0}\right)$
+
+On a donc $(f-h)'(x) = f(x)  - h(x)  $ soit $f'(x) -h'(x)= f(x) -h(x)$
+
+D'où : $f'(x) = f(x) -h(x) +h'(x) = f(x) -h(x) + h(x) -\cos (x)-3 \sin (x)$ car $h$ est solution de $(E)$
+
+Donc : $f'(x) =  f(x) -\cos (x)-3 \sin (x)$ c'est à dire $f$ est solution de $(E)$.
+
+\emph{Conclusion :} $f$ est solution de $(E)$ si et seulement si $f-h$ est solution de $(E_0)$.
+		\item
+
+On a donc $f(x)-h(x)= C\e^x$ avec $C \in \R$
+
+Toutes les solutions de l'équation différentielle $(E)$ sont donc les fonctions
+
+$f(x)=C\e^x +2\cos(x)+\sin(x)$ avec $C \in \R$
+
+\item $g$ est solution de l'équation différentielle $(E)$  donc il existe un réel $C$ tel que
+
+$g(x)=C\e^x +2\cos(x)+\sin(x)$.
+
+De plus  $g(0)=0$ donc $g(0)=C\e^0 +2\cos(0)+\sin(0)=0$.
+
+D'où $C\times 1 +2\times 1 + 0 =0 \Longleftrightarrow C=-2$
+
+On a donc :\quad $g(x)=-2\e^x +2\cos(x)+\sin(x)$.
+
+		\item
+Calculons : \quad$\displaystyle
+I = \int_{0}^{\frac{\pi}{2}}\left(-2 \e^{x}+\sin (x)+2 \cos (x)\right)\,  \mathrm{d} x = \int_{0}^{\frac{\pi}{2}} g(x)\,  \mathrm{d} x $
+
+
+$\displaystyle
+I = 	\int_{0}^{\frac{\pi}{2}}\left(-2 \e^{x}+\sin (x)+2 \cos (x)\right)\,  \mathrm{d} x = \Big[ -2\e^{x} -\cos(x) +2\sin(x) \Big]_0^ {\frac{\pi}{2}}$
+
+$I= -2\e^{\frac{\pi}{2}} -\cos\left(  {\dfrac{\pi}{2}}\right) +2\sin\left(  {\dfrac{\pi}{2}}\right)  - \left(  -2\e^{0} -\cos(0) +2\sin(0)  \right) $
+
+$I= -2\e^{\frac{\pi}{2}} -0+2\times 1 - \left( -2 -1+2\times 0\right) =  -2\e^{\frac{\pi}{2}}+ 2 +3  = -2\e^{\frac{\pi}{2}}+ 5  $
+
+		\end{enumerate}
+
+\medskip
+
+\end{document}

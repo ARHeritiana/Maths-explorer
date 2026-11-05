@@ -1,0 +1,200 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2021/tex/bac_2021_06_metropole_7_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Commun à tous les candidats}
+
+\medskip
+
+Dans cet exercice, les résultats des probabilités demandées seront, si nécessaire, arrondis au millième.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item On traduit la situation par un arbre pondéré.
+		
+\begin{center}
+\pstree[treemode=R,nodesepB=3pt,levelsep=2.75cm]{\TR{}}
+{\pstree{\TR{$M$~~}\taput{0,4}}
+	{\TR{$T$}\taput{0,9}
+	\TR{$\overline{T}$}\tbput{0,1}
+	}
+\pstree{\TR{$\overline{M}$~~}\tbput{0,6}}
+	{\TR{$T$}\taput{0,15}
+	\TR{$\overline{T}$}\tbput{0,85}
+	}	 
+}		
+\end{center}
+
+\medskip
+	
+		\item 
+Il faut trouver $P(M \cap T) = P(M) \times P_M(T) = 0,4 \times 0,9 = 0,36$.
+		\item 
+On a de même $P\left(\overline{M} \cap T\right) = P\left(\overline{M}\right) \times P_{\overline{M}}(T) = 0,6 \times  0,15 = 0,09$.
+
+D'après la loi des probabilités totales :
+
+$P(T) = P(M \cap T) + P\left(\overline{M} \cap T\right) = 0,36 + 0,09 = 0,45$.
+		\item 
+		Il faut trouver $P_T(M) = \dfrac{P(M \cap T)}{P(T)} = \dfrac{0,36}{0,45} = \dfrac{36}{45} = \dfrac{9 \times 4}{9 \times 5} = \dfrac{4}{5} = \dfrac{8}{10} = 0,8$.
+	\end{enumerate}
+\item 
+
+
+	\begin{enumerate}
+		\item 
+On suppose que le nombre de chats est assez important pour que l'on puisse assimiler le choix des 20 chats à un tirage avec remise.
+		
+La variable $X$ suit donc une loi binomiale de paramètres $n = 20$ et de probabilité $p = 0,45$ trouvé à la question \textbf{1. c.}.
+		\item 
+On a $p\left(X = 5\right) = \binom{20}{5} \times 0,45^5 \times (1 - 0,45)^{20-5} = \np{15504}\times 0,45^5  \times 0,55^{15} \approx \np{0,0365}$ soit environ 0,037.
+
+		\item 
+La calculatrice donne $P(X < 9) \approx 0,414$.
+		\item 
+On sait que l'espérance $E = n \times p = 20 \times 0,45 = 9$.
+		
+Cela signifie que sur un grand nombre d'échantillons il y aura en moyenne 9 chats positifs par échantillon de 20.
+	\end{enumerate}		
+\item 
+	\begin{enumerate}
+		\item 
+On a encore une loi binomiale de paramètres $n$ et de probabilité d'être positif de $0,45$.
+
+On a $P(X = 0) = \binom{n}{0}\times 0,45^0 \times 0,55^n = 0,55^n$.
+
+Donc $p_n = 1 - P(X = 0) =  1 - 0,55^n$.
+		\item
+
+
+
+
+
+
+
+
+
+
+
+
+En partant de $n=0$, le programme calcule $p_n$ et augmente la taille de l'échantillon de 1 tant que $p_n < 0,99$.
+
+		\item 
+		On cherche donc $n$ tel que $1 - 0,55^n \geqslant 0,99 \iff 0,01 \geqslant 0,55^n$, d'où par croissance de la fonction logarithme népérien : $\ln 0,01 \geqslant n \ln 0,55 \iff \dfrac{\ln 0,01}{\ln 0,55} \leqslant n$ (car $\ln 001 < 0$).
+		
+		Or $\dfrac{\ln 0,01}{\ln 0,55} \approx 7,7$.
+		
+Conclusion : le programme renvoie la valeur 8.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\end{document}

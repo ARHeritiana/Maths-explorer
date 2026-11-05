@@ -1,0 +1,121 @@
+\medskip
+
+Soit la suite $\left(u_n\right)$ définie par $u_0 = 0$ et, pour tout $n \in \N$, 
+$u_{n+1} = 5u_n - 8n + 6$.
+
+
+
+\begin{enumerate}
+\item
+\begin{list}{\textbullet}{}
+\item Pour $n=0$ on a:
+$u_1=u_{0+1}=5u_0 -8\times 0 +6=0-0+6=6$
+\item Pour $n=1$ on a: $u_2=u_{1+1}=5u_1 -8\times 1 +6= 5\times 6 -8+6=28$
+\end{list}
+
+\item Soit $n$ un entier naturel.
+On complète la fonction {\ttfamily suite\_u} d'argument {\ttfamily n}  ci-dessous, écrite en langage Python, afin qu'elle retourne la valeur de $u_n$.
+
+\begin{center}
+\begin{tabular}{>{\ttfamily}l}
+def suite\_u(n) : \\
+\qquad u = \blue 0\\
+\qquad for i in range(1,n+1) :\\
+\qquad \vline \qquad u = \blue 5*u - 8*(i-1) + 6\\
+\qquad return u
+\end{tabular}
+\end{center}
+
+\emph{Rem}: il aurait sans doute été plus simple de donner comme algorithme:
+
+\begin{center}
+\begin{tabular}{>{\ttfamily}l}
+def suite\_u(n) : \\
+\qquad u = \blue 0\\
+\qquad for i in \red range(0,n) :\\
+\qquad \vline \qquad u = \blue 5*u - 8*i + 6\\
+\qquad return u
+\end{tabular}
+\end{center}
+
+\item
+	\begin{enumerate}
+		\item Soit $\mathcal{P}_n$ la propriété:  $u_n \geqslant 2n$.
+
+\begin{list}{\textbullet}{}
+\item \textbf{Initialisation}
+
+Pour $n=0$, on a: $u_0=0$ et $2n=0$; donc $\mathcal{P}_0$ est vraie.
+\item \textbf{Hérédité}
+
+On suppose que $u_n \geqslant 2n$ pour $n\geqslant 0$; c'est l'hypothèse de récurrence.
+
+$u_{n+1}=5u_n -8n+6 \geqslant 5\times (2n) -8n+6 = 2n+6 = 2(n+1)+4 \geqslant 2(n+1)$
+
+Donc $\mathcal{P}_{n+1}$ est vérifiée.
+\item \textbf{Conclusion} 
+
+La propriété est vraie au rang 0, et elle est héréditaire pour tout $n\geqslant 0$, donc, d'après le principe de récurrence, elle est vraie pour tout $n$.
+\end{list}		
+
+On a donc démontré que, pour tout entier naturel $n$, on a: $u_n\geqslant 2n$.		
+		
+		\item
+$\ds\lim _{n\to +\infty} 2n=+\infty$ et $u_n\geqslant 2n$ donc $\ds\lim _{n\to +\infty} u_n = +\infty$.
+		
+		\item Soit $p \in \N^*$.
+		
+$\ds\lim _{n\to +\infty} u_n = +\infty$ donc, d'après la définition de la limite vers $+\infty$ d'une suite, pour tout réel $A>0$, il existe un rang $n_0$ à partir duquel tous les termes de la suite sont supérieurs à $A$; donc il existe un rang $n_0$ tel que si $n\geqslant n_0$, alors $u_{n_0}\geqslant 10^p$.
+\end{enumerate}
+
+\item 
+Pour tout $n$, on a:
+$u_{n+1}-u_n=5u_n-8n+6 -u_n = 4u_n - 8n +6$;
+or $u_n\geqslant 2n$ donc $4u_n-8n\geqslant 0$ et donc $u_{n+1}-u_n\geqslant 6$.
+
+On en déduit que la suite $(u_n)$ est croissante.
+
+\item On considère la suite $\left(v_n\right)$, définie pour tout $n \in  \N$, par $v_n = u_n - 2n + 1$.
+	\begin{enumerate}
+		\item En dessous de la fonction {\ttfamily suite\_u} précédente, on a écrit la fonction {\ttfamily suite\_v} ci-dessous :
+\begin{center}
+\begin{tabular}{>{\ttfamily}l}
+def suite\_v(n):\\
+\qquad L = []\\
+\qquad  for i in range(n+1) :\\
+\qquad \vline \qquad L.append(suite\_u(i) - 2*i + 1)\\
+\qquad return L
+\end{tabular}
+\end{center}
+
+
+
+Lorsqu'on saisit {\ttfamily suite\_v(5)} dans la console, on obtient l'affichage suivant :
+
+\begin{center}
+\begin{tabular}{>{\ttfamily} l}
+$>>>$ suite\_v(5)\\
+$[1,~5,~25,~125,~625,~3125]$\\
+\end{tabular}
+\end{center}
+
+
+
+On peut conjecturer que, pour tout $n$, on a: $v_{n+1}=5v_n$.
+
+
+
+$\begin{gathered}v_{n+1}=u_{n+1}-2(n+1)+1 = 5u_n -8n +6 -2n-2+1=5u_n-10n+5= 5(u_n-2n+1)\\
+\phantom{v_{n+1}}
+=5v_n\end{gathered}$
+
+		\item 
+On déduit de la question précédente que  la suite $(v_n)$ est géométrique de raison $q=5$, et de premier terme $v_0=u_0-2\times 0+1=1$. 
+
+On a donc, pour tout $n$: $v_n = v_0\times q^n = 5^n$.
+
+Pour tout $n$, $v_n=u_n-2n+1$ donc $u_n=v_n+2n-1$ et donc $u_n= 5^n +2n-1$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

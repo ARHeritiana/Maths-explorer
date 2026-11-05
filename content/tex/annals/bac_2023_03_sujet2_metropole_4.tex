@@ -1,0 +1,54 @@
+\medskip
+
+On considère la fonction $f$ définie sur $\R$ par 
+\[f(x) = \ln \left(1 + \text{e}^{-x}\right),\]
+
+où ln désigne la fonction logarithme népérien.
+ 
+On note $\mathcal{C}$ sa courbe représentative dans un repère orthonormé \Oij. 
+
+La courbe $\mathcal{C}$ est tracée ci-dessous.
+
+\begin{center}
+\psset{unit=2.25cm,yunit=2.25cm,arrowsize=2pt 3}
+\begin{pspicture*}(-3,-0.8)(2.4,2.6)
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10]{->}(0,0)(-3,-0.8)(2.4,2.6)
+\psaxes[linewidth=1.25pt](0,0)(1,1)
+\psplot[plotpoints=2000,linecolor=red,linewidth=1.25pt]{-3}{2.4}{2.71828 x neg exp 1 add ln}
+\psplotTangent[linestyle=dashed]{0}{4}{2.71828 x neg exp 1 add ln}
+\psline[linestyle=dashed](-3,2.7)(3.4,-0.45)
+\psdots(-2.2,2.3)(2.3,0.1)
+\uput[u](-2.2,2.3){$M_a$}\uput[u](2.3,0.1){$N_a$}
+\uput[dl](-1.6,1.8){\red $\mathcal{C}$}\uput[d](2.3,-0.43){$T_0$}
+\end{pspicture*}
+\end{center}
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Déterminer la limite de la fonction $f$ en $-\infty$.
+		\item Déterminer la limite de la fonction $f$ en $+ \infty$.
+		
+Interpréter graphiquement ce résultat.
+		\item On admet que la fonction $f$ est dérivable sur $\R$ et on note $f'$ sa fonction dérivée.
+		
+Calculer $f'(x)$ puis montrer que, pour tout nombre réel $x$,\: $f'(x) = \dfrac{-1}{1 + \text{e}^x}$.
+		\item Dresser le tableau de variations complet de la fonction $f$ sur $\R$.
+	\end{enumerate}	
+\item On note $T_0$ la tangente à la courbe $\mathcal{C}$ en son point d'abscisse $0$.
+	\begin{enumerate}
+		\item Déterminer une équation de la tangente $T_0$.
+		\item Montrer que la fonction $f$ est convexe sur $\R$.
+		\item En déduire que, pour tout nombre réel $x$, on a : 
+		\[f(x) \geqslant  - \dfrac12x + \ln (2).\]
+		\end{enumerate}	
+\item Pour tout nombre réel $a$ différent de 0, on note $M_a$ et $N_a$ les points de la courbe $\mathcal{C}$ d'abscisses respectives $-a$ et $a$. 
+
+On a donc : $M_a\left(-a~;~ f(-a)\right)$ et $N_a\left(a~;~ f(a)\right)$.
+	\begin{enumerate}
+		\item Montrer que, pour tout nombre réel $x$, on a : $f(x) - f(-x) = - x$.
+		\item En déduire que les droites $T_0$ et $\left(M_aN_a\right)$ sont parallèles.
+	\end{enumerate}
+\end{enumerate}

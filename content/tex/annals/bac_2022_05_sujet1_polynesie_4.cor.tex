@@ -1,0 +1,104 @@
+\medskip
+
+L'espace est rapporté un repère orthonormal où l'on considère :
+
+\setlength\parindent{1cm}
+\begin{itemize}
+\item[$\bullet~~$]les points A$(2~;~-1~;~0)$ B$(1~;~0~;~- 3)$, C$(6~;~6~;~1)$  et E$(1~;~2~;~4)$ ;
+\item[$\bullet~~$]Le plan $\mathcal{P}$ d'équation cartésienne $2x - y - z + 4 = 0$.
+\end{itemize}
+\setlength\parindent{0cm}
+
+\medskip
+
+\begin{enumerate}
+\item
+	\begin{enumerate}
+		\item On veut démontrer que le triangle ABC est rectangle en A; on a 
+$\vect{\text{AB}}\begin{pmatrix}-1\\1\\-3 \end{pmatrix}$ et $\vect{\text{AC}}\begin{pmatrix}4\\7\\1 \end{pmatrix}$.
+		
+$\vect{\text{AB}} \cdot \vect{\text{AC}}=-4 +7-3=0$ donc   $\vect{\text{AB}}$ et $\vect{\text{AC}}$ sont orthogonaux et le triangle ABC est donc rectangle en A.
+
+		\item $\vect{\text{BC}}\begin{pmatrix}5\\6\\4 \end{pmatrix}$
+donc $\vect{\text{BA}} \cdot \vect{\text{BC}}=5-6+12=11$.
+
+$\text{BA}= \sqrt{1^2+(-1)^2+3^2}=\sqrt{11}$ et $\text{BC}=\sqrt{5^2+6^2+4^2} =\sqrt{77}$
+
+		\item On cherche la mesure en degrés de l'angle $\widehat{\text{ABC}}$ arrondie au degré.
+
+On a alors
+\begin{align*}
+\vect{\text{BA}} \cdot \vect{\text{BC}}= \text{BA}\times\text{BC}\times \cos\left(\widehat{\text{ABC}}\right)&\iff 11=\sqrt{11}\times \sqrt{77} \times \cos\left(\widehat{\text{ABC}}\right)\\
+&\iff 11=\sqrt{11}\times \sqrt{11}\times \sqrt{7}\times \cos\left(\widehat{\text{ABC}}\right) \\
+&\iff \cos\left(\widehat{\text{ABC}}\right) = \dfrac{1}{\sqrt{7}}
+\end{align*}
+
+La calculatrice donne $\widehat{\text{ABC}} \approx 68\degres$ au degré près.
+	\end{enumerate}
+	
+\item
+	\begin{enumerate}
+		\item On veut démontrer que le plan $\mathcal{P}$ est parallèle au plan (ABC).
+
+Un vecteur normal du plan $\mathscr{P}$ est le vecteur $\vect{n}\begin{pmatrix}2\\-1\\-1\end{pmatrix}$.
+
+Les vecteurs $\vect{\text{AB}}$ et $\vect{\text{AC}}$ ne sont pas colinéaires car ABC est un triangle rectangle.
+
+De plus $\vect{n} \cdot \vect{\text{AB}}=2\times (-1) -1\times 1 - 1\times (-3) =-2-1+3 = 0$
+
+et
+
+$\vect{n} \cdot \vect{\text{AC}}=2\times 4-1\times 7-1\times 1 = 8 - 7 - 1 = 0$
+
+$\vect{n}$ est donc un vecteur normal à deux vecteurs non colinéaires du plan (ABC), c'est donc un vecteur normal de ce plan et du plan $\mathscr{P}$.
+
+Les plans $\mathscr{P}$ et (ABC) sont donc parallèles.
+
+		\item On déduit une équation cartésienne du plan (ABC).
+
+Le plan (ABC) a donc une équation de la forme $2x - y - z + d = 0$, comme A appartient à ce plan,  on a: $5 + d = 0$ soit $d = -5$.
+		
+Une équation de (ABC) est donc $2x - y - z - 5 = 0$.
+
+		\item On détermine une représentation paramétrique de la droite $\mathcal{D}$ orthogonale au plan (ABC) et passant par le point E.
+		
+Un vecteur directeur de la droite $\mathcal{D}$ est donc le vecteur $\vect{n}$ 
+		
+
+On a donc $M(x~;~y~;~z) \in \mathcal{D} \iff \vect{\text{E}M} = t \vect{n}$, avec $t \in \R$, soit
+
+$\left\{\begin{array}{l c l}
+x - 1&=&2t\\
+y - 2&=&- t,\\
+z - 4&=&-t
+\end{array}\right. t \in \R \iff \left\{\begin{array}{l c l}
+x &=& 1 +2t\\
+y &=& 2 - t,\\
+z &=&4 -t
+\end{array}\right. t \in \R$.
+
+		\item On démontre que le projeté orthogonal H  du point E sur le plan (ABC) a pour coordonnées $\left(4~;~\dfrac{1}{2}~;~\dfrac{5}{2}\right)$.
+		
+		H correspond à l'intersection du plan (ABC) avec la droite perpendiculaire à (ABC) qui passe par E soit la droite $\mathcal{D}$, les coordonnées de H seront donc solutions du système suivant  :
+		
+\begin{align*}
+\begin{cases} x=1+2t\\y=2-t\\z=4-t\\2x-y-z-5=0\end{cases}& \iff\begin{cases} x=1+2t\\y=2-t\\z=4-t\\2(1+2t)-(2-t)-(4-t)-5=0\end{cases} \\
+&\iff \begin{cases} x=1+2t\\y=2-t\\z=4-t\\6t-9=0\end{cases} 
+&\iff \begin{cases} t=\frac{3}{2}\\x=4\\y = \frac{1}{2}\\z=\frac{5}{2}\end{cases}
+\end{align*}
+	\end{enumerate}
+\item On rappelle que le volume d'une pyramide est donné par $\mathcal{V} = \dfrac13 \mathcal{B}h$ où $\mathcal{B}$ désigne l'aire d'une base et $h$  la hauteur de la pyramide associée à cette base.
+
+On va calculer l'aire du triangle ABC puis démontrer que le volume de la pyramide  ABCE est égal à $16,5$ unités de volume.
+
+$\text{AC}=\sqrt{4^2+7^2+1^2}=\sqrt{66}$ et donc $\mathscr{B}=\dfrac{\text{AB}\times \text{AC}}{2} = \dfrac{\sqrt{11}\times \sqrt{66}}{2}=\dfrac{11\sqrt{6}}{2}$
+
+HE est la hauteur de la pyramide et $\vect{\text{HE}}\begin{pmatrix}-3\\\frac{3}{2}\\\frac{3}{2} \end{pmatrix}$
+
+On a par suite HE $=\sqrt{(-3)^2+\left(\dfrac{3}{2}\right)^2+\left(\dfrac{3}{2}\right)^2}=\sqrt{\dfrac{27}{2}}$ puis
+
+$ \mathscr{V}=\dfrac{1}{3}\times \dfrac{11\sqrt{6}}{2}\times \sqrt{\dfrac{27}{2}} 
+=\dfrac{11\times \sqrt{2}\times \sqrt{3}\times 3\sqrt{3}}{3\times 2 \times \sqrt{2}}
+=\dfrac{33}{2}
+= 16,5$ 
+\end{enumerate}

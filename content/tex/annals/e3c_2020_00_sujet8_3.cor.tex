@@ -1,0 +1,47 @@
+\section*{Exercice 3 (5 points)}
+	
+	
+	\subsection*{1. En exécutant le script Python ci-dessous, on obtient la liste [0, 1, 1, 1, 1, 1, 0].}
+	
+Le médicament est efficace de la première à la cinquième heure.
+	
+	\subsection*{2. On admet que la fonction $f$ est dérivable sur l’intervalle $[0; 6]$, calculer sa fonction dérivée.}
+	
+La fonction polynôme $f$ est dérivable sur $\mathbb{R}$, donc sur $[0; 6]$ :
+	\[
+	f'(x) = 3x^2 - 24x + 36 = 3(x^2 - 8x + 12)
+	\]
+	
+	\subsection*{3. Justifier que la tangente $T$ à la courbe représentative de la fonction $f$ au point $A$ d’abscisse 4 admet pour équation réduite $y = -12x + 64$.}
+	
+On a $f(4) = 16$ et $f'(4) = -12$.\\
+Une équation de la tangente au point de coordonnées $(4, 16)$ est donc :
+	\[
+	y - 16 = -12(x - 4) \quad \text{ou} \quad y = 16 - 12x + 48 \quad \text{et finalement} \quad y = -12x + 64
+	\]
+	
+	\subsection*{4. Démontrer que $f(x) - (-12x + 64) = (x - 4)^3$.}
+	
+	On a :
+	\[
+	f(x) - (-12x + 64) = x^3 - 12x^2 + 36x - (-12x + 64) = x^3 - 12x^2 + 36x + 12x - 64
+	\]
+	
+	Or
+	\[
+	(x - 4)^3 = (x - 4)^2 (x - 4) = (x^2 + 16 - 8x) (x - 4) = x^3 - 4x^2 + 16x - 64 - 8x^2 + 32x = x^3 - 12x^2 + 48x - 64
+	\]
+	
+	Donc
+	\[
+	f(x) - (-12x + 64) = (x - 4)^3
+	\]
+	
+	\subsection*{5. En déduire la position relative de la courbe représentative de la fonction $f$ par rapport à la tangente $T$ au point $A$.}
+	
+	Comme $(x - 4)^3 = (x - 4)^2 (x - 4)$ et que $(x - 4)^2 > 0$ quel que soit le réel $x$, le signe de $(x - 4)^3$ est celui de $(x - 4)$. Donc
+	\begin{itemize}
+		\item Sur $[0; 4[$, $x - 4 < 0$, donc $f(x) - (-12x + 64) < 0$ ce qui signifie géométriquement que la courbe est en dessous de sa tangente ;
+		\item Sur $]4; 6[$, $x - 4 > 0$, donc $f(x) - (-12x + 64) > 0$ ce qui signifie géométriquement que la courbe est au-dessus de sa tangente ;
+		\item Pour $x = 4$, la courbe et sa tangente ont la même ordonnée.
+	\end{itemize}

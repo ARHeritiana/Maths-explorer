@@ -1,0 +1,156 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2026/tex/bac_2026_05_sujet1_ameriquenord_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+La perche-soleil est une espèce de poisson envahissante. Un plan de lutte contre la prolifération de cette espèce est mis en place et on étudie dans cet exercice deux modèles d'évolution de la population de perches-soleil dans un étang naturel. On estime que, dans cet étang, le nombre de perches-soleil s'élève à \np{4000} individus au 1\up{er} janvier 2025.
+
+\textbf{Partie A : étude d'un modèle discret}
+
+Dans cette partie, on modélise le nombre de perches-soleil dans l'étang par une suite $(u_n)$.
+
+Pour tout entier naturel $n$, $u_{n}$ désigne le nombre de perches-soleil, exprimé en millier, dans l'étang au 1\up{er} janvier de l'année $2025+n$.
+
+La suite $(u_n)$ est définie par :
+
+\begin{itemize}
+\item $u_{0}=4$.
+\item pour tout entier naturel $n$ :\quad $u_{n+1}=4-\dfrac{4}{u_{n}}$.
+\end{itemize}
+
+On admet que cette suite est bien définie et qu'en particulier pour tout entier $n$,\quad $u_{n}>0$.
+
+\begin{enumerate}
+\item Calculer le nombre de perches-soleil au 1\up{er} janvier 2026 donné par ce modèle.
+\item On note $h$ la fonction définie sur l'intervalle $] 0;+\infty[$ par  \quad $h(x)=4-\dfrac{4}{x}$.
+	\begin{enumerate}
+		\item Justifier que la fonction $h$ est croissante sur l'intervalle $] 0;+\infty[$.
+		\item Démontrer que pour tout entier naturel $n$ :
+\[ 2 \leqslant u_{n+1} \leqslant u_{n} \leqslant 4 \]
+
+		\item En déduire que la suite $\left(u_{n}\right)$ est convergente. On note $\ell$ sa limite.
+		\item Justifier que $\ell = 2$.
+		\item Ce modèle prévoit-il une élimination à long terme de l'espèce envahissante ?
+	\end{enumerate}
+
+\item On considère le script Python ci-dessous.
+	\begin{enumerate}
+		\item Soit $s$ un réel appartenant à l'intervalle $] 2; 4[$.
+		
+Recopier et compléter ce script de sorte qu'il renvoie, après exécution, le plus petit entier $n$ tel que $u_{n}<s$.
+
+\begin{center}
+\begin{ttfamily}
+\begin{tblr}{colspec={X[6cm]},hline{1,8}={solid},
+	vlines,rows={rowsep=0pt}}
+	def population(s) :\\
+	\quad u=4\\
+	\quad n=0\\
+	\quad while... :\\
+	\quad \quad u=...\\
+	\quad \quad n=...\\
+	\quad return n
+	\end{tblr}
+	\end{ttfamily}
+\end{center}
+		\item Quelle valeur renvoie la commande \texttt{population(2.2)} ?
+
+		Interpréter ce résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+\textbf{Partie B : étude d'un modèle continu}
+
+On note $t$ le temps écoulé, exprimé en année, à partir du 1\up{er} janvier 2025. L'évolution du nombre de perches-soleil, exprimé en millier, est modélisée par la fonction $p$ telle que :
+
+\begin{itemize}
+\item la fonction $p$ est définie et dérivable sur l'intervalle $[0;+\infty[$;
+\item $p(0)=4$;
+\item la fonction $p$ est solution de l'équation différentielle $(E) \quad y'+y=2$ \quad où $y$ est une fonction de la variable réelle $t$.
+\end{itemize}
+
+\begin{enumerate}
+\item Donner l'ensemble des solutions de l'équation $(E)$.
+\item En déduire que l'expression de la fonction $p$ sur l'intervalle $[0;+\infty[$ est \quad $p(t)=2 \e^{-t}+2$.
+\item Ce modèle prévoit-il une élimination à long terme de l'espèce envahissante ?
+\end{enumerate}
+
+\end{document}

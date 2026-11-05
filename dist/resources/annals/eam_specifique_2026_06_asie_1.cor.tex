@@ -1,0 +1,129 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_06_asie_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Affirmation 1 : Fausse.}
+
+	Le budget total pour un vélo est égal à $300+45+60 = 405$~\euro (document n°1), soit plus de 400~\euro.
+
+	Donc, pour cinq vélos, le montant serait \np[\euro]{2025}, supérieur à \np{2000}~\euro, qui est le montant maximum prévu par la proviseure (document n°4).
+
+	On ne pourra pas installer cinq vélos avec ce budget, l'affirmation est fausse.
+
+\vspace{5mm}
+\textbf{Affirmation 2 : Vraie.}
+
+	En pédalant pendant une heure (60 minutes), on récupère \np[~kJ]{100} (document n°1).
+
+	Il y a une relation de proportionnalité entre la durée du pédalage et l'énergie récupérée.
+
+	Pour charger un téléphone portable, il faut \np[~kJ]{40} (document n°2):
+
+	\begin{tabular}{c|c|c}
+		durée&60  &$x$ \\\hline
+		énergie&100  & 40 \\
+	\end{tabular}\quad
+	Il faut $\dfrac{40\times60}{100} = \dfrac{\np{2400}}{100} = 24$ minutes de pédalage pour récupérer \np[~kJ]{40}, et ainsi pouvoir charger un téléphone portable, donc l'affirmation est vraie.
+
+\vspace{5mm}
+\textbf{Affirmation 3 : Vraie.}
+
+	Comme on choisit un élève au hasard, on est en situation d'équiprobabilité, donc les proportions sont assimilables à des probabilités.
+
+	Parmi les 560 élèves favorables au projet, 180 sont des élèves de première (document n°3), donc la probabilité recherchée est $\dfrac{180}{560} = \dfrac{18}{56} = \dfrac{9}{28}$.
+
+	On se souvient que $7\times4 = 28$ : le quart de 28 est donc 7, et donc $\dfrac{9}{28}$ est plus grand qu'un quart, l'affirmation est vraie.
+
+\vspace{5mm}
+\textbf{Affirmation 4 :}
+
+	Deux conditions doivent être remplies pour que le projet soit lancé (document n°4):
+	\begin{itemize}
+		\item plus de la moitié des élèves du lycée doivent se déclarer favorables à cette initiative : c'est le cas, car le nombre d'élèves favorables est 560, ce qui est plus de la moitié des \np{1000} élèves du lycée (document n°3);
+
+		\item au moins 60~\% des élèves de première doivent également y être favorables : c'est aussi le cas puisqu'il y a 300 élèves de première, dont 180 soit exactement 60~\% sont favorables au projet (document n°3), en effet, 60\,\% de 100 élèves, c'est 60 élèves, donc 60\,\% de 300 élèves, c'est le triple, soit $60 \times 3 = 180$.
+	\end{itemize}
+	Les deux conditions sont remplies, le projet pourra être lancé et l'affirmation est vraie.
+
+\needspace{10\baselineskip}
+
+\end{document}

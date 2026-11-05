@@ -1,0 +1,213 @@
+\medskip
+
+\textbf{Partie A}
+
+\medskip
+
+On considère la fonction $f$ définie sur $\R$ par
+$f(x) = \left(x + \dfrac12\right)\e^{-x} + x.$
+
+
+
+\begin{enumerate}
+\item On détermine les limites de $f$ en $- \infty$ et en $+ \infty$.
+
+\begin{list}{\textbullet}{}
+\item Limite en $-\infty$
+
+$\left .
+\begin{array}{r}
+\left .
+\begin{array}{l}
+\ds\lim_{x\to -\infty} \left (x+\dfrac{1}{2}\right )=-\infty\\
+\ds\lim_{x\to -\infty} \e^{-x} = +\infty\\
+\end{array}
+\right \}
+\ds\lim_{x\to -\infty} \left (x+\dfrac{1}{2}\right ) \e^{-x}=-\infty\\
+\ds\lim_{x\to -\infty} x = -\infty
+\end{array}
+\right \}
+\text{ donc }\ds\lim_{x\to -\infty} f(x)=-\infty$
+
+\item Limite en $+\infty$
+
+$f(x)= x\e^{-x} + \dfrac{1}{2}\e^{-x} +x$.
+On sait que $\ds\lim_{x\to +\infty} \e^{-x}=0$ et que\\
+
+$\ds\lim_{x\to +\infty}  \dfrac{\e^{x}}{x}=+\infty$ donc $\ds\lim_{x\to +\infty}  \dfrac{x}{\e^{x}}=0$ donc $\ds\lim_{x\to +\infty}  x\e^{-x}=0$.
+
+$\left .
+\begin{array}{l}
+\ds\lim_{x\to +\infty} x \e^{-x}=0\\
+\ds\lim_{x\to +\infty} \dfrac{1}{2}\e^{-x} = 0\\
+\ds\lim_{x\to +\infty} x = +\infty
+\end{array}
+\right \}
+\text{ donc }\ds\lim_{x\to +\infty} f(x)=+\infty$
+\end{list}
+
+\item On admet que $f$ est deux fois dérivable sur $\R$.
+	\begin{enumerate}
+		\item 
+Pour tout $x$ de $\R$, $f(x)= \left (x+\dfrac{1}{2}\right )\e^{-x}  +x$ donc
+
+$f'(x)=1\times \e^{-x} + \left (x+\dfrac{1}{2}\right )\times (-1) \e^{-x} + 1
+= \left ( -x +\dfrac{1}{2}\right )\e^{-x}+1$, et donc
+
+$f''(x)= -1\times \e^{-x} + \left (-x+\dfrac{1}{2}\right )\times (-1) \e^{-x}
+= \left ( x-\dfrac{3}{2}\right )\e^{-x}$. 
+
+		\item 
+Le signe de $f''$ donne les variations de $f'$.
+
+Pour tout $x$, $\e^{-x}>0$ donc $f''(x)$ est du 	signe de $\left (x-\dfrac{3}{2}\right )$.
+
+\begin{list}{\textbullet}{}
+\item Si $x<\dfrac{3}{2}$, $f''(x)<0$ donc $f'$ est décroissante;
+\item Si $x>\dfrac{3}{2}$, $f''(x)>0$ donc $f'$ est croissante;
+\item Si $x=\dfrac{3}{2}$, $f''(x)=0$ donc $f'$ admet un minimum égal à \\
+$f'\left (\dfrac{3}{2}\right ) = \left (-\dfrac{3}{2} + \dfrac{1}{2}\right )\e^{-\frac{3}{2}}+1=1-\e^{-\frac{3}{2}}$.
+\end{list}
+
+		\item 
+La fonction $f'$ admet pour minimum
+
+$f'\left (\dfrac{3}{2}\right ) =1-\e^{-\frac{3}{2}} \approx 0,78>0$; donc   pour tout $x \in \R,\: f'(x) > 0$.
+		
+		\item 
+\begin{list}{\textbullet}{}
+\item La fonction $f$ est dérivable sur $\R$ donc continue sur $\R$.
+\item Pour tout réel $x$, $f'(x)>0$ donc la fonction $f$ est strictement croissante sur $\R$.
+\item $\ds\lim_{x\to -\infty} f(x)=-\infty$
+\item $\ds\lim_{x\to +\infty} f(x)=+\infty$
+\end{list}		
+
+Donc, d'après le corollaire du théorème des valeurs intermédiaires, l'équation $f(x) = 0$ admet une solution unique dans $\R$.
+		
+		\item 
+On appelle $\alpha$ la solution de l'équation $f(x) = 0$.
+
+$\left .
+\begin{array}{l}
+f(-1)\approx -2,36<0\\
+f(0)=0,5>0
+\end{array}
+\right \}
+\text{ donc } \alpha\in \left [-1\;;\;0\strut\right ]$
+		
+$\left .
+\begin{array}{l}
+f(-0,3)\approx -0,03<0\\
+f(-0,2)\approx 0,17>0
+\end{array}
+\right \}
+\text{ donc } \alpha\in \left [-0,3\;;\;-0,2\strut\right ]$
+
+$\left .
+\begin{array}{l}
+f(-0,29)\approx -0,009<0\\
+f(-0,28)\approx 0,011>0
+\end{array}
+\right \}
+\text{ donc } \alpha\in \left [-0,29\;;\;-0,28\strut\right ]$
+		
+$\left .
+\begin{array}{l}
+f(-0,286)\approx -0,001<0\\
+f(-0,285)\approx \np{0,0009}>0
+\end{array}
+\right \}
+\text{ donc } \alpha\in \left [-0,286\;;\;-0,285\strut\right ]$		
+
+Donc $-0,285$ est une valeur approchée à $10^{-3}$ de la solution de l'équation $f(x)=0$.
+		
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+\textbf{Partie B}
+\medskip
+
+On considère une fonction $h$, définie et dérivable sur $\R$, ayant une expression de la forme 
+
+\hfill$h(x)= (ax + b)\e^{-x} + x$, \:où $a$ et $b$\: sont deux réels.\hfill\null
+
+\begin{list}{\textbullet}{Dans un repère orthonormé ci-après figurent:}
+\item la courbe représentative $\mathcal{C}_h$ de la fonction $h$ ;
+\item les points A et B de coordonnées respectives $(-2~;~-2,5)$ et $(2~;~3,5)$.
+\end{list}
+
+\begin{center}
+\psset{unit=0.8cm}
+\begin{pspicture*}(-5.9,-4.9)(5.9,5.9)
+\psaxes[linewidth=1.25pt,labelFontSize=\scriptstyle](0,0)(-5.9,-4.9)(5.9,5.9)
+\psplot[plotpoints=500,linewidth=1.25pt]{-4}{4}{1.5 x mul 0.5 add}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=cyan]{-4}{5}{x 0.5 add 2.71828 x exp div x add}
+\psdots(-2,-2.5)(2,3.5)
+\uput[r](-2,-2.5){A}\uput[r](2,3.5){B}\uput[dr](3.8,4){\cyan $\mathcal{C}_h$}
+\psplot[plotpoints=2000,linewidth=1.25pt,linecolor=red,linestyle=dashed]{-4}{5}{x 0.816 mul 0.736 add}
+\psline[linecolor=red,linestyle=dashed,showpoints](1.5,0)(1.5,1.95)
+\uput[d](1.5,0){\red $1,5$}
+\end{pspicture*}
+\end{center}
+
+\begin{enumerate}
+\item Avec la précision permise par le graphique, on peut conjecturer que la courbe représentative de la fonction $h$ admet un unique point d'inflexion d'abscisse  $1,5$.
+
+\item On admet que $h''(x) = - \dfrac32 \e^{- x} + x\e^{- x}$.
+
+$h''(x)=0
+\iff
+-\dfrac{3}{2}\e^{-x}+x\e^{-x}=0
+\iff
+\left (x-\dfrac{3}{2}\right )\e^{-x}=0
+\iff
+x-\dfrac{3}{2}=0
+\iff
+x=1,5$
+
+La conjecture est donc vérifiée.
+
+\item Déterminer une équation de la droite (AB) c'est chercher l'ensemble des points de coordonnées $(x~;~y)$ tels que:
+$\dfrac{y-y_{\text A}}{x-x_{\text A}} = \dfrac{y_{\text B}-y_{\text A}}{x_{\text B}-x_{\text A}}$.
+
+$\begin{gathered}\dfrac{y-y_{\text A}}{x-x_{\text A}} = \dfrac{y_{\text B}-y_{\text A}}{x_{\text B}-x_{\text A}}
+\iff
+\dfrac{y+2,5}{x+2} = \dfrac{3,5 + 2,5}{2 + 2}
+\iff
+\dfrac{y+2,5}{x+2} = \dfrac{6}{4}
+\iff
+y+2,5 = \dfrac{6}{4}\left (x+2\right )\\
+\phantom{\dfrac{y-y_{\text A}}{x-x_{\text A}} = \dfrac{y_{\text B}-y_{\text A}}{x_{\text B}-x_{\text A}}}
+\iff
+y=\dfrac{3}{2}x +3-2,5
+\iff
+y=1,5x + 0,5\end{gathered}$
+
+La droite (AB) a pour équation: $y =1,5x + 0,5$.
+
+\item La droite (AB) est tangente à la courbe représentative de la fonction $h$ au point d'abscisse 0, donc $h'(0)=1,5$.
+
+$h'(x)=a\times \e^{-x} +  (ax+b)\times (-1)\e^{-x}+1
+=  (-ax+a-b )\e^{-x}+1$
+
+$h'(0)=1,5
+\iff
+(a-b)\e^{0}+1=1,5
+\iff
+a-b=0,5$
+
+La droite (AB) coupe l'axe des ordonnées au point d'ordonnée $0,5$ donc $h(0)=0,5$.
+
+$h(0)=0,5
+\iff
+(0+b)\e^{0}+0=0,5
+\iff
+b=0,5$
+
+Comme $a-b=0,5$, on en déduit que $a=1$.
+
+Donc $h(x)=(x+0,5)\e^{-x}+x=f(x)$.
+\end{enumerate}
+
+\bigskip

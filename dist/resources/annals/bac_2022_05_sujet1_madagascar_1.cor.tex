@@ -1,0 +1,190 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_05_sujet1_madagascar_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+\begin{tabularx}{\linewidth}{|X|}\hline
+\textbf{Principaux domaines abordés :} Probabilités\\ \hline
+\end{tabularx}
+
+\medskip
+
+Dans une station de ski, il existe deux types de forfait selon l'âge du skieur :
+
+\begin{itemize}
+\item un forfait JUNIOR pour les personnes de moins de 25 ans ;
+\item un forfait SENIOR pour les autres.
+\end{itemize}
+
+ Par ailleurs, un usager peut choisir, en plus du forfait correspondant à son âge l'\emph{option coupe-file} qui permet d'écourter le temps d'attente aux remontées mécaniques.
+
+On admet que:
+\begin{itemize}
+\item[$\bullet~~$] 20\,\% des skieurs ont un forfait JUNIOR ;
+\item[$\bullet~~$] 80\,\% des skieurs ont un forfait SENIOR ;
+\item[$\bullet~~$] parmi les skieurs ayant un forfait JUNIOR, 6\,\% choisissent l'option coupe-file ;
+\item[$\bullet~~$] parmi les skieurs ayant un forfait SENIOR, 12,5\,\% choisissent l'option coupe-file.
+\end{itemize}
+
+On interroge un skieur au hasard et on considère les évènements :
+
+\begin{itemize}
+\item[$\bullet~~$] $J$ : \og le skieur a un forfait JUNIOR \fg ;
+\item[$\bullet~~$] $C$ : \og le skieur choisit l'option coupe-file \fg.
+\end{itemize}
+
+\medskip
+
+\emph{Les deux parties peuvent être traitées de manière indépendante}
+
+\bigskip
+
+\textbf{Partie A}
+
+\medskip
+
+\begin{enumerate}
+\item ~
+
+\begin{center}
+\pstree[treemode=R, nodesepB=3pt,levelsep=3cm]{\TR{}}
+{
+\pstree{\TR{$J~~$}\taput{0,2}}
+	{\TR{$C$} \taput{0,06}
+	\TR{$\overline{C}$}\tbput{0,94}
+	}
+	\pstree{\TR{$\overline{J}~~$}\tbput{0,8}}
+	{\TR{$C$} \taput{0,125}
+	\TR{$\overline{C}$}\tbput{0,875}
+	}
+}
+\end{center}
+\item 
+$P(J \cap C) = P(J) \times P_J(C) = 0,2 \times 0,06 = 0,012$.
+
+La probabilité de rencontrer un skieur de moins de 25 ans ayant le coupe-fil est égale à 0,012
+\item 
+On a aussi $P\left( \overline{J} \cap C\right) = P\left(\overline{J}\right) \times P_{\overline{J}}(C) = 0,8 \times 0,125 = 0,1$.
+
+D'après la loi des probabilités totales ; 
+
+$P(C) = P(J \cap C) + P\left( \overline{J} \cap C\right)  = 0,012 + 0,1 = 0,112$.
+\item 
+
+Il faut trouver $P_{C}\left( \overline{J}\right) = \dfrac{P(C \cap P\left( \overline{J}\right)}{P(C)} = \dfrac{0,1}{0,112} \approx \np{0,8928}$, soit 0,893 au millième près.
+\item 
+La probabilité d'interroger au hasard un skieur de moins de 25 ans ayant acheté le coups-file est égale à 0,012 sur une probabilité totale de 0,112 ce qui représente $\dfrac{0,012}{0,112} \approx 0,107$, soit moins de 11\,\%, donc moins de 15\,\% des titulaires du coups-file..
+\end{enumerate}
+
+\bigskip
+
+\textbf{Partie B}
+
+\medskip
+
+On rappelle que la probabilité qu'un skieur choisisse l'option coupe-file est égale à 0,112.
+
+On considère un échantillon de $30$ skieurs choisis au hasard.
+
+Soit $X$ la variable aléatoire qui compte le nombre des skieurs de l'échantillon ayant
+choisi l'option coupe-file.
+
+\medskip
+
+\begin{enumerate}
+\item 
+On suppose qu'il y a assez de skieurs pour que chaque skieur ait une probabilité d'avoir choisi le coupe-file de 0,112 et que ces tirages sont indépendants. La variable aléatoire $X$ suit donc une loi binomiale de paramètres $n = 30$ et $p = 0,112$. 
+\item 
+On a $P(X \geqslant 1) = 1 - P(X = 0) = 1 - \binom{30}{0} \times 0,112^0 \times (1 - 0,112)^{30} = 1 - 0,888^{30} \approx \np{0,9716}$ soit 0,972 au millième près.
+\item 
+On a $P(X \leqslant 1) = P(X = 0) + P(X = 1) = 0,88^{30} + 30 \times 0,112 \times 0,888^{29} \approx \np{1355}$, soit 0136 au millième près.
+
+\item 
+On sait que E$(X) = n \times p = 30 \times 0,112 = 3,36$.
+
+En moyenne sur 30 skieurs rencontrés à peu près 3 ont pris le coupe-file.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

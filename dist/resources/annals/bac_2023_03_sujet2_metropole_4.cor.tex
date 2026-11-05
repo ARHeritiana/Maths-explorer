@@ -1,0 +1,210 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_03_sujet2_metropole_4_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On considère la fonction $f$ définie sur $\R$ par 
+$f(x) = \ln \left(1 + \text{e}^{-x}\right)$,
+où ln désigne la fonction logarithme népérien.
+ 
+On note $\mathcal{C}$ sa courbe représentative dans un repère orthonormé \Oij. 
+
+
+
+\begin{center}
+\psset{unit=2.25cm,yunit=2.25cm,arrowsize=2pt 3}
+\begin{pspicture*}(-3,-0.8)(2.4,2.6)
+\psaxes[linewidth=1.25pt,Dx=10,Dy=10]{->}(0,0)(-3,-0.8)(2.4,2.6)
+\psaxes[linewidth=1.25pt](0,0)(1,1)
+\psplot[plotpoints=2000,linecolor=red,linewidth=1.25pt]{-3}{2.4}{2.71828 x neg exp 1 add ln}
+\psplotTangent[linestyle=dashed]{0}{4}{2.71828 x neg exp 1 add ln}
+\psline[linestyle=dashed](-3,2.7)(3.4,-0.45)
+\psdots(-2.2,2.3)(2.3,0.1)
+\uput[u](-2.2,2.3){$M_a$}\uput[u](2.3,0.1){$N_a$}
+\uput[dl](-1.6,1.8){\red $\mathcal{C}$}\uput[d](2.3,-0.43){$T_0$}
+\end{pspicture*}
+\end{center}
+
+\medskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item On détermine la limite de la fonction $f$ en $-\infty$.
+		
+$\ds\lim_{x\to -\infty} -x = +\infty$ et $\ds\lim_{X\to +\infty} \e^{X}=+\infty$ donc $\ds\lim_{x\to -\infty} \e^{-x}=+\infty$ et donc $\ds\lim_{x\to -\infty} 1+\e^{-x}=+\infty$.
+
+$\ds\lim_{x\to -\infty} 1+\e^{-x}=+\infty$ et $\ds\lim_{X\to +\infty} \ln(X)=+\infty$ donc $\ds\lim_{x\to -\infty} \ln\left (1+\e^{-x}\right )=+\infty$.
+
+Donc $\ds\lim_{x\to -\infty} f(x)=+\infty$.
+		
+		\item On détermine la limite de la fonction $f$ en $+\infty$.
+		
+$\ds\lim_{x\to +\infty} \e^{-x} = 0$ donc $\ds\lim_{x\to +\infty} 1+\e^{-x} = 1$ .
+
+$\ds\lim_{X\to 1} \ln(X)= \ln(1) = 0$ donc $\ds\lim_{x\to +\infty} \ln\left (1+\e^{-x}\right ) = 0$.
+
+Donc $\ds\lim_{x\to +\infty} f(x)=0$.
+
+
+
+On en déduit que la droite d'équation $y=0$, c'est-à-dire l'axe des abscisses, est asymptote horizontale à la courbe $\mathcal{C}$ en $+\infty$.
+
+		\item On admet que la fonction $f$ est dérivable sur $\R$ et on note $f'$ sa fonction dérivée.
+
+$f(x)$ est de la forme $\ln(u(x))$ avec $u(x)=1+\e^{-x}$.
+Sa dérivée est de la forme $\dfrac{u'(x)}{u(x)}$ donc
+
+$f'(x)= \dfrac{-\e^{-x}}{1+\e^{-x}} =  \dfrac{-\e^{-x}\times \e^{x}}{\left (1+\e^{-x}\right )\times \e^{x}} = \dfrac{-1}{\e^{x}+1}=\dfrac{-1}{1+\e^{x}}$
+		
+
+		\item Pour tout réel $x$, on a $\e^{x}>0$ donc $f'(x)<0$.
+		
+On dresse le tableau de variations complet de la fonction $f$ sur $\R$.
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\psset{nodesep=3pt,arrowsize=2pt 3}  
+\def\esp{\hspace*{4cm}}
+\def\hauteur{20pt}
+$\begin{array}{|c| *3{c}|}
+\hline
+ x & -\infty   & \esp & +\infty \\
+ \hline
+f'(x) &   & \pmb{-} & \\  
+\hline
+  &  \Rnode{max}{+\infty} &    &    \\
+f(x) & &  &  \rule{0pt}{\hauteur} \\
+ &      & & \Rnode{min}{0} \rule{0pt}{\hauteur}
+\ncline{->}{max}{min}
+\\
+\hline
+\end{array}$
+}
+\end{center}
+
+	\end{enumerate}	
+\item On note $T_0$ la tangente à la courbe $\mathcal{C}$ en son point d'abscisse $0$.
+	\begin{enumerate}
+		\item La tangente $T_0$ a pour équation $y=f'(0)\left (x-0\right )+f(0)$.		
+
+$f(0) = \ln\left (1+\e^{0}\right )=\ln(2)$ et $f'(0) = \dfrac{-1}{1+\e^{0}} = -\dfrac{1}{2}$
+
+$T_0$ a donc pour équation: $y=-\dfrac{1}{2}x + \ln(2)$.
+		
+		\item 
+$f'(x)=\dfrac{-1}{1+\e^{x}}$ donc $f''(x)= \dfrac{0 - (-1)\times \e^{x}}{(1+\e^{x})^2}
+= \dfrac{\e^{x}}{(1+\e^{x})^2}$
+
+Pour tout réel $x$, $\e^{x}>0$ donc $f''(x)>0$. donc la fonction $f$ est convexe sur $\R$.		
+				
+		\item 
+La fonction $f$ est convexe, donc  la courbe $\mathcal{C}$ est située au dessus de toutes ses tangentes, en particulier $T_0$.
+Donc pour tout réel $x$, on a $f(x) \geqslant -\dfrac{1}{2} x + \ln(2)$.
+		\end{enumerate}	
+		
+\item Pour tout nombre réel $a$ différent de 0, on note $M_a$ et $N_a$ les points de la courbe $\mathcal{C}$ d'abscisses respectives $-a$ et $a$. 
+On a donc : $M_a\left(-a~;~ f(-a)\right)$ et $N_a\left(a~;~ f(a)\right)$.
+
+	\begin{enumerate}
+		\item 
+$f(x)-f(-x)=\ln \left (1+\e^{-x}\right ) - \ln \left (1+\e^{x}\right )
+= \ln \left ( \dfrac{1+\e^{-x}}{1+\e^{x}}\right )
+= \ln \left ( \dfrac{\e^{-x}\left (\e^{x}+1\right )}{1+\e^{x}}\right )
+= \ln \left (\e^{-x}\right )= -x$		
+		
+		\item
+La droite $\left(M_aN_a\right)$ a pour coefficient directeur:
+$\dfrac{y_{N_a}-y_{M_a}}{x_{N_a}-x_{M_a}}
+= \dfrac{f(a)-f(-a)}{a-(-a)}
+= \dfrac{-a}{2a}=-\dfrac{1}{2}$
+
+La droite $T_0$ a pour coefficient directeur $-\dfrac{1}{2}$.
+
+Les droites $T_0$ et $\left(M_aN_a\right)$ ont le même coefficient directeur donc elles sont parallèles.
+		
+
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,82 @@
+\emph{Cet exercice est constitué de trois parties indépendantes}
+
+\medskip
+
+Un magasin est équipé de caisses automatiques en libre-service où le client scanne lui- même ses articles. Le logiciel d'une caisse déclenche régulièrement des demandes de vérification. Un employé du magasin effectue alors un contrôle.
+
+\subsection*{Partie A}
+
+Le contrôle peut être
+
+\begin{itemize}[label=$\bullet~$]
+\item soit \og total \fg{} : l'employé du magasin scanne alors à nouveau l'ensemble des
+articles du client ;
+\item soit \og partiel\fg{} : l'employé choisit alors un ou plusieurs articles du client pour vérifier
+qu'ils ont bien été scannés.
+\end{itemize}
+
+Si un contrôle est déclenché, il s'agit une fois sur dix d'un contrôle total.
+
+Lorsqu'un contrôle total est déclenché, une erreur du client est détectée dans 30\,\% des cas.
+
+Lorsqu'un contrôle partiel est effectué, dans $85\,\%$ des cas, il n'y a pas d'erreur.
+
+\medskip
+
+Un contrôle est déclenché à une caisse automatique. 
+
+On considère les évènements suivants:
+
+\begin{itemize}[label=$\bullet~$]
+\item $T$ : \og Le contrôle est un contrôle total \fg ;
+\item $E$ : \og Une erreur est détectée lors du contrôle\fg.
+\end{itemize}
+
+On notera $\overline{T}$ et $\overline{E}$ les évènements contraires de $T$ et $E$.
+
+\medskip
+
+\begin{enumerate}
+\item Construire un arbre pondéré représentant la situation puis déterminer $P\left(\overline{T} \cap E\right)$.
+\item Calculer la probabilité qu'une erreur soit détectée lors d'un contrôle.
+\item Déterminer la probabilité qu'un contrôle total ait été effectué, sachant qu'une erreur
+a été détectée. \emph{On donnera la valeur arrondie au centième}.
+\end{enumerate}
+
+\subsection*{Partie B}
+
+Sur une journée donnée, une caisse automatique déclenche $15$ contrôles. La probabilité qu'un contrôle mette en évidence une erreur est $p = 0,165$. La détection d'une erreur lors d'un contrôle est indépendante des autres contrôles.
+
+On note $X$ la variable aléatoire égale au nombre d'erreurs détectées lors des contrôles de cette journée.
+
+\medskip
+
+\begin{enumerate}
+\item On admet que la variable aléatoire $X$ suit une loi binomiale. Préciser ses paramètres.
+\item Déterminer la probabilité qu'exactement 5 erreurs soient détectées. \emph{On donnera la valeur arrondie au centième}.
+\item Déterminer la probabilité qu'au moins une erreur soit détectée. \emph{On donnera la valeur arrondie au centième}.
+\item On souhaite modifier le nombre de contrôles déclenchés par la caisse de manière à ce que la probabilité qu'au moins une erreur soit détectée chaque jour soit supérieure à $99\,\%$.
+
+Déterminer le nombre de contrôles que doit déclencher la caisse chaque jour pour que cette contrainte soit respectée.
+\end{enumerate}
+
+\subsection*{Partie C}
+
+Le magasin comporte trois caisses automatiques identiques qui, lors d'une journée, ont chacune déclenché $20$ contrôles. On note $X_1,\: X_2$ et $X_3$ les variables aléatoires associant à chacune des caisses le nombre d'erreurs détectées lors de cette journée.
+
+On admet que les variables aléatoires $X_1,\: X_2$ et $X_3$ sont indépendantes entre elles et suivent chacune une loi binomiale $\mathcal{B}(20~;~0,165)$.
+
+\medskip
+
+\begin{enumerate}
+\item Déterminer les valeurs exactes de l'espérance et de la variance de la variable aléatoire $X_1$.
+\item On définit la variable aléatoire $S$ par $S = X_1 + X_2 + X_3$.
+
+Justifier que $E(S) = 9,9$ et que $V(S) = \np{8,2665}$.
+
+Pour cette question, on utilisera 10 comme valeur de $E(S)$.
+
+À l'aide de l'inégalité de Bienaymé-Tchebychev, montrer que la probabilité que le nombre total d'erreurs sur la journée soit strictement compris entre 6 et 14 est supérieure à $0,48$.
+\end{enumerate}
+
+\bigskip

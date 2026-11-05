@@ -1,0 +1,282 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2025/tex/bac_2025_09_sujet1_polynesie_2_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On étudie l'évolution de la population d'une espèce animale au sein d'une réserve naturelle.
+Les effectifs de cette population ont été recensés à différentes années. Les données collectées sont présentées dans le tableau suivant :
+
+\begin{center}
+	\begin{tabularx}{0.9\linewidth}{|l|*{4}{>{\centering \arraybackslash}X|}} \hline
+		Année              & 2000 & 2005 & 2010 & 2015 \\ \hline
+		Nombre d'individus & 50   & 64   & 80   & 100  \\	\hline
+	\end{tabularx}
+\end{center}
+
+
+Pour anticiper l'évolution de cette population, la direction de la réserve a choisi de modéliser le nombre d'individus en fonction du temps.
+Pour cela, elle utilise une fonction, définie sur l'intervalle $[0 ~;~ +\infty [$, dont la variable $x$ représente le temps écoulé, en année, à partir de l'année 2000.
+Dans son modèle, l'image de 0 par cette fonction vaut 50, ce qui correspond au nombre d'individus en l'an 2000.
+
+	\subsection*{Partie A. Modèle 1}
+
+	Dans cette partie, la direction de la réserve fait l'hypothèse que la fonction cherchée satisfait l'équation différentielle suivante :
+$y'=0,05 y-0,5 \quad\left(E_{1}\right)$
+
+	\begin{enumerate}
+		\item 
+\begin{list}{\textbullet}{On résout l'équation différentielle $\left(E_{1}\right)$ avec la condition initiale $y(0)=50$.}
+\item L'équation différentielle $y=ay$ a pour solutions les fonctions $y$ vérifiant\\ $y(x)=C\e^{ax}$ où $C$ est un réel quelconque.
+
+Donc l'équation différentielle $y=0,05 y$ a pour solutions les fonctions $y$ vérifiant $y(x)=C\e^{0,05 x}$ où $C$ est un réel quelconque.
+
+\item On cherche une solution particulière constante $k$ à l'équation $\left (E_1\right )$.
+
+On a donc $0=0,05k-0,5$ donc $k=10$.
+\item Les solutions de l'équation $\left (E_1\right )$ sont donc les fonctions $y$ définies par\\ $y(x)=C\e^{-0,05x}+10$ où $C\in\R$.
+\item On cherche la solution vérifiant la condition initiale $y(0)=50$.
+
+On a donc $C\e^{0}+10=50$ donc $C=40$.
+\end{list}
+
+La solution de l'équation différentielle $\left (E_1\right )$ vérifiant $y(0)=50$ est la fonction $y$ définie par $y(x)=40\e^{0,05x}+10$.
+
+		\item On compare les résultats du tableau avec ceux que l'on obtiendrait avec ce modèle.
+		
+\begin{center}
+	\begin{tabularx}{0.9\linewidth}{|c|*{4}{>{\centering \arraybackslash}X|}} \hline
+		Année              & 2000 & 2005 & 2010 & 2015 \\ \hline
+		Nombre d'individus & 50   & 64   & 80   & 100  \\	\hline
+		$x$ & 0 & 5 & 10 & 15 \\ \hline
+		$y(x)$ & $50$ & $61,36$ & $75,95$ & $94,68$ \\ \hline
+	\end{tabularx}
+\end{center}		
+		
+	\end{enumerate}
+
+	\subsection*{Partie B. Modèle 2}
+
+	Dans cette partie, la direction de la réserve fait l'hypothèse que la fonction cherchée satisfait l'équation différentielle suivante :
+$y'=0,05 y \left (1-0,00125 y\right ) \quad (E_2)$.
+
+On note $f$ la fonction définie sur $[0 ~;~ +\infty[$ par :
+$f(x)=\dfrac{800}{1+15 \e^{-0,05 x}}$,
+
+	et $\mathcal{C}$ sa courbe représentative dans un repère orthonormé.
+
+	\medskip
+
+	À l'aide d'un logiciel de calcul formel, on a obtenu les résultats suivants.
+
+
+
+	\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|l|l|>{\centering \arraybackslash}X|} 
+\hline
+  & Instruction & Résultat \\	
+\hline
+1 & $f(x):=\dfrac{800}{1+15 \e^{-0,05 x}}$	& $f(x)=\dfrac{800}{1+15 \e^{-0,05 x}}$  \rule[-13pt]{0pt}{30pt}\\	
+\hline
+2 & $f'(x):=$ Dérivée $(f(x))$ & $f'(x)=\dfrac{600 \e^{-0,05 x}}{\left(1+15 \e^{-0,05 x}\right)^{2}}$ \rule[-15pt]{0pt}{35pt} \\ 
+\hline
+3 & $f''(x):=$ Dérivée ( $f'(x)$ ) & $f''(x)=\dfrac{30 \e^{-0,05 x}}{\left(1+15 \e^{-0,05 x}\right)^{3}}\left(15 \e^{-0,05 x}-1\right)$ \rule[-15pt]{0pt}{35pt} \\ 
+\hline
+4 & Résoudre ( $15 \e^{-0,05 x}-1 \geqslant 0$ )  & $x \leqslant 20 \ln (15)$  \\		
+\hline
+\end{tabularx}
+\renewcommand{\arraystretch}{1}
+	\end{center}
+
+	\begin{enumerate}
+		\item 
+On a d'une part:		$f(0)=\dfrac{800}{1+15 \e^{0}} = \dfrac{800}{16}=50$
+		
+\begin{list}{\textbullet}{D'autre part:}
+\item $0,05f(x)= \dfrac{0,05\times 800}{1+15\e^{-0,05x}} = \dfrac{40}{1+15\e^{-0,05x}}$
+\item $\np{0,00125} f(x) = \dfrac{\np{0,00125}\times 800}{1+15\e^{-0,05x}}= \dfrac{1}{1+15\e^{-0,05x}}$
+\item $1- \np{0,00125} f(x) = 1- \dfrac{1}{1+15\e^{-0,05x}}= \dfrac{1+15\e^{-0,05x}-1}{1+15 \e^{-0,05x}} = \dfrac{15 \e^{-0,05x}}{1+15 \e^{-0,05x}}$
+\item 
+$\begin{aligned}[t]
+0,05f(x) \left (1- \np{0,00125} f(x)  \right ) 
+& = \dfrac{40}{1+15\e^{-0,05x}} \times \dfrac{15 \e^{-0,05x}}{1+15 \e^{-0,05x}} 
+= \dfrac{40\times 15 \e^{-0,05x}}{\left (1+15 \e^{-0,05x}\right )^2} \\
+& = \dfrac{600 \e^{-0,05x}}{\left (1+15 \e^{-0,05x}\right )^2}
+= f'(x) \text{ d'après le tableau}
+\end{aligned}$
+\end{list}
+
+On admet que cette fonction $f$ est l'unique solution de $(E_{2})$ prenant la valeur initiale de 50 en 0.
+
+		\item Avec ce nouveau modèle $f$,  l'effectif de cette population en 2050 peut être estimé à $f(50)$ soit environ 358.
+		
+
+
+		\item 
+$\ds\lim_{x\to +\infty} -0,05x = -\infty$ et
+$\ds\lim_{X\to -\infty} \e^{X}=0$ donc 
+$\ds\lim_{x\to +\infty} \e^{-0,05x} = 0$
+
+On en déduit  que 
+$\ds\lim_{x\to +\infty} 1+15\e^{-0,05x} = 1$ et que
+$\ds\lim_{x\to +\infty} \dfrac{800}{1+15\e^{-0,05x}} = 800$.
+
+Donc $\ds\lim_{x\to +\infty} f(x)=800$, ce qui prouve que la courbe $\mathcal{C}$ admet la droite d'équation $y=800$ comme asymptote horizontale en $+\infty$.
+		
+		\item 
+Sur $[0 ~;~+\infty[$,  $f'(x)=\dfrac{600 \e^{-0,05 x}}{\left(1+15 \e^{-0,05 x}\right)^{2}}$.
+
+Or pour tout réel $X$, on sait que $\e^{X}>0$, donc $\e^{-0,05x}>0$ pour tout $x$.
+
+$\left (1+15\e^{-0,05x}\right )^2>0$ donc $f'(x)>0$.
+
+On en conclut que la fonction $f$ est croissante sur $[0 ~;~+\infty[$.
+
+		\item 
+On résout l'inéquation $15 \e^{-0,05 x}-1 \geqslant 0$.
+
+$\begin{aligned}
+15 \e^{-0,05 x}-1 \geqslant 0
+& \iff 15 \e^{-0,05 x} \geqslant 1
+ \iff  \e^{-0,05 x} \geqslant \dfrac{1}{15}
+ \iff  -0,05 x \geqslant \ln\left (\dfrac{1}{15}\right )\\
+& \iff  x \leqslant \dfrac{ \ln\left (\frac{1}{15}\right )}{-0,05}
+ \iff  x \leqslant \dfrac{ -\ln\left (15 \right )}{-0,05}
+ \iff  x \leqslant 20\,\ln\left (15 \right )
+\end{aligned}$
+
+		\item On admet que la vitesse de croissance de la population de cette espèce, exprimée en nombre d'individus par an, est modélisée par la fonction $f'$.
+		\begin{enumerate}
+			\item
+Pour étudier la convexité de la fonction $f$ sur l'intervalle $[0 ~;~ +\infty[$, on détermine le signe de la dérivée seconde $f''(x)$.
+
+D'après le tableau: $f''(x)=\dfrac{30 \e^{-0,05 x}}{\left(1+15 \e^{-0,05 x}\right)^{3}}\left(15 \e^{-0,05 x}-1\right)$.
+
+D'après ce qui a été vu précédemment, $f''(x)$ est du signe de $\left(15 \e^{-0,05 x}-1\right)$.
+
+\[ \begin{tablvar}[8em]{2}
+ \hline
+ x & 0 & & 20\,\ln(15) & & +\infty\\
+ \hline
+15 \e^{-0,05 x}-1 & & + & \barre[0] & - & \\
+ \hline
+f''(x) & & + & \barre[0] & - & \\
+ \hline
+  & & f \text{ convexe} & \barre & f \text{ concave} & \\
+ \hline
+ \end{tablvar}\]
+ 
+En $x=20\,\ln(15)$, $f''(x)$ s'annule et change de signe, donc la courbe $\mathcal{C}$ admet un point d'inflexion.
+
+Si $x=20\,\ln(15)$, $15\e^{-0,05x}-1=0$ donc $15\e^{-0,05\times 20\ln(15)}=1$
+
+$f\left (20\ln(15)\right )
+= \dfrac{800}{1+ 15\e^{-0,05\times 20\ln(15)}}
+= \dfrac{800}{1+1} = 400$
+
+Donc le point de coordonnées $(20\,\ln(15)\,,\, 400)$ est le seul point d'inflexion de la courbe $\mathcal{C}$.
+ 
+			\item La direction de la réserve affirme :
+			\og Au vu de ce modèle, la vitesse de croissance de la population de cette espèce va augmenter pendant un peu plus de cinquante ans, puis va diminuer \fg{}. 
+			
+
+
+On établit le tableau de variations de la fonction $f'$ qui modélise  la vitesse de croissance de la population de cette espèce, exprimée en nombre d'individus par an.
+
+\[ \begin{tablvar}[8em]{2}
+ \hline
+ x & 0 & & 20\,\ln(15) & & +\infty\\
+ \hline
+f''(x) & & + & \barre[0] & - & \\
+ \hline
+\variations{\mil{f'} & \bas{} && \haut{} &&  \bas{}} 
+\hline
+\end{tablvar}\]
+
+Or $20\,\ln(15) \approx 54,2$ donc la direction a raison.
+		\end{enumerate}
+	\end{enumerate}
+
+\bigskip
+
+\end{document}

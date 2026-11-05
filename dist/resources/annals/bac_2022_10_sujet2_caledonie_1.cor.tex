@@ -1,0 +1,177 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2022/tex/bac_2022_10_sujet2_caledonie_1_cor.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\textbf{Principaux domaines abordés :} Probabilités
+
+\medskip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate}
+\item 
+
+
+
+
+
+
+
+	\begin{enumerate}
+		\item ~
+\begin{center}
+\pstree[treemode=R,nodesepA=0pt,nodesepB=2.5pt,treesep = 1cm,levelsep=2.5cm]{\TR{}}
+{\pstree{\TR{$D$~}\taput{0,25}}
+{\TR{$R$}\taput{0,6}
+\TR{$\overline{R}$}\tbput{0,4}
+}
+\pstree{\TR{$\overline{D}$~}\tbput{0,75}}
+{\TR{$R$}\taput{0,35}
+\TR{$\overline{R}$}\tbput{0,65}
+}}
+\end{center}
+		\item 
+$p\left(\overline{D} \cap R\right) = p\left(\overline{D}\right) \times p_{\overline{D}}\left(R \right) = 0,75 \times 0,35 = \np{0,2625}$.
+
+		\item 
+On a de même $p(D \cap R) = p(D) \times p_D(R) = 0,25 \times 0,6 = 0,15$.
+
+D'après la loi des probabilités totales : 
+
+$p(R) = p(D \cap R) + p\left(\overline{D} \cap R\right) =   0,15 + \np{0,2625} = \np{0,4125}$.
+		\item 
+		Il faut trouver $p_R\left(\overline{D}\right) = \dfrac{p\left(R \cap \overline{D}\right)}{p(R)} = \dfrac{\np{0,2625}}{\np{0,4125}}\approx \np{0,6364}$, soit 0,64 au centième près.
+	\end{enumerate}	
+\item 
+
+
+
+
+	\begin{enumerate}
+		\item 
+Les tirs sont indépendants et à chaque tir la probabilité de le réussir est égale à 0,35 : la variable aléatoire $X$ égale au nombre de réussites suit donc une loi binomiale de paramètres $n = 10$ et $p  = 0,35$.
+		\item 
+		On a $E = np = 10 \times 0,35 = 3,5$ : en moyenne sur $20$ tirs Stéphanie en réussira $7$.
+		\item 
+		La calculatrice donne $p(X \leqslant 6) \approx 0,97$.
+		\item 
+		On a de même $p(X \geqslant 6) \approx 0,095$.
+	\end{enumerate}
+\item 
+
+
+
+
+
+
+La probabilité de rater $n$ tirs à 3 points est égale à $0,65^n$, donc elle d'en réussir un est $1 - 0,65^n$.
+
+Il faut donc résoudre dans $\N$, l'inéquation $1 - 0,65^n \geqslant 0,99 \iff 0,01 \geqslant 0,65^n$, soit par croissance de la fonction logarithme népérien:
+
+$\ln 0,01 \geqslant n\ln 0,62 \iff \dfrac{\ln 0,01}{\ln 0,65} \leqslant n$ (car $\ln 0,65 < 0$).
+
+Or $\dfrac{\ln 0,01}{\ln 0,65} \approx 10,69$ ; le plus petit naturel solution est donc 11 : Stéphanie doit tenter 11 tirs.
+\end{enumerate}
+
+\bigskip
+
+\end{document}

@@ -1,0 +1,161 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/bac/2023/tex/bac_2023_08_sujet1_caledonie_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+\medskip
+
+On considère la suite $\left(u_n\right)$ définie par $u_0 = 3$ et, pour tout entier naturel $n$, par:
+\[u_{n+1} = 5u_n - 4n - 3.\]
+
+\smallskip
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Démontrer que $u_1 = 12$.
+		\item Déterminer $u_2$ en détaillant le calcul.
+		\item À l'aide de la calculatrice, conjecturer le sens de variation ainsi que la limite de la suite $\left(u_n\right)$.
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Démontrer par récurrence que, pour tout entier naturel $n$, on a : \[u_n\geqslant n + 1.\]
+		\item En déduire la limite de la suite $\left(u_n\right)$.
+	\end{enumerate}
+\item On considère la suite $\left(v_n\right)$ définie pour tout entier naturel $n$ par: \[v_n = u_n - n - 1.\]
+	\begin{enumerate}
+		\item Démontrer que la suite $\left(v_n\right)$ est géométrique.
+		
+Donner sa raison et son premier terme $v_0$.
+		\item En déduire, pour tout entier naturel $n$, l'expression de $v_n$ en fonction de $n$.
+		\item En déduire que pour tout entier naturel $n$ :
+\[u_n = 2 \times 5^n + n + 1.\]
+		\item En déduire le sens de variation de la suite $\left(u_n\right)$.
+	\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item 
+\begin{minipage}[t]{0.68\linewidth}
+On considère la fonction ci-contre, écrite de manière incomplète en langage Python et destinée à renvoyer le plus petit entier naturel $n$
+tel que $u_n \geqslant 10^7$.
+\begin{enumerate}
+		\item Recopier le programme et compléter les deux instructions manquantes.
+		\item Quelle est la valeur renvoyée par cette fonction ?
+	\end{enumerate}
+\end{minipage}	
+\hfill
+\begin{minipage}[t]{0.27\linewidth}
+\begin{tabular}[t]{|l|}\hline
+def suite() :\\
+\hspace{0.75cm} u = 3\\
+\hspace{0.75cm} n = 0 \\
+\hspace{0.75cm} while \ldots :\hspace*{0.5cm}\\
+\hspace{1.25cm} \quad u = \ldots \\
+\hspace{1.25cm} \quad n = n + 1\\
+\hspace{0.75cm} return n\\ \hline
+\end{tabular}
+\end{minipage}
+	
+\end{enumerate}
+
+\bigskip
+
+\end{document}

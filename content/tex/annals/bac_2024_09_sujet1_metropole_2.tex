@@ -1,0 +1,104 @@
+\medskip
+
+\textit{Les deux parties sont indépendantes.}
+
+\begin{center}
+	\textbf{Partie A}
+\end{center}
+
+Un artisan crée des bonbons au chocolat dont la forme rappelle le profil de la montage locale représentée en \textbf{Figure 1}. La base d'un tel bonbon est modélisée par la surface grisée, définie ci-dessous dans un repère orthonormé d'unité 2~cm (\textbf{Figure 2}).
+
+\begin{center}
+\begin{tabularx}{\linewidth}{*{2}{>{\centering \arraybackslash}X}}
+\psset{unit=2.cm,arrowsize=2pt 3}
+\begin{pspicture}(-1.2,-0.2)(1.4,1.6)
+
+\def\fond{\psplot[plotpoints=2000,linewidth=1.25pt]{0.414214}{1}{1 x dup mul sub 2.71828 x exp mul}}
+\rput(0.42,0.3){\fond}
+\psplot[plotpoints=2000,linewidth=1.25pt]{-1}{1}{1 x dup mul sub 2.71828 x exp mul}
+\rput(0,0.){\pscustom[fillstyle=solid,fillcolor=lightgray]{\psplot[plotpoints=2000,linewidth=1.25pt]{-1}{1}{1 x dup mul sub 2.71828 x exp mul}\psline(1,0)(-1,0)}}
+\psline(1,0)(1.45,0.3) \psline(0.35,1.24)(0.85,1.56)
+\psline{<->}(1.2,0)(1.65,0.3) \uput[r](1.42,0.1){3 cm}
+\end{pspicture}
+&
+\psset{unit=2.cm,arrowsize=2pt 3}
+\begin{pspicture*}(-1.2,-0.5)(1.4,1.4)
+\pscustom[fillstyle=solid,fillcolor=lightgray]{\psplot[plotpoints=2000,linewidth=1.25pt]{-1}{1}{1 x dup mul sub 2.71828 x exp mul}\psline(1,0)(-1,0)}
+\psplot[plotpoints=2000,linewidth=1.5pt]{-1}{1}{1 x dup mul sub 2.71828 x exp mul}
+\uput[ur](0.7,1){$\mathcal{C}_f$}
+\psgrid[subgriddiv=5,  gridlabels=0, gridcolor=lightgray] 
+\psaxes[linewidth=1.25pt]{->}(0,0)(-1.2,0)(1.4,1.4)
+\end{pspicture*}\\
+\textbf{Figure 1}&\textbf{Figure 2}\\
+\end{tabularx}
+\end{center}
+
+
+Cette surface est délimitée par l'axe des abscisses et la représentation graphique notée $\mathcal{C}_f$ de la fonction $f$ définie sur $[-1~;~1]$ par :
+
+\[f(x) = \left(1 - x^2\right)\e^x.\]
+
+L'objectif de cette partie est de calculer le volume de chocolat nécessaire à la fabrication d'un bonbon au chocolat.
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Justifier que pour tout $x$ appartenant à l'intervalle $[-1~;~1]$ on a $f(x) \geqslant 0$.
+		\item Montrer à l'aide d'une intégration par parties que :
+		
+\[ \int_{-1}^1 f(x) \text{d}x = 2 \int_{-1}^1 x\,\e^{x} \text{d}x. \]
+
+	\end{enumerate}
+\item Le volume $\mathcal{V}$ de chocolat, en cm\up{3}, nécessaire à la fabrication d'un bonbon est donné par :
+
+\[ \mathcal{V} = 3 \times S \]
+
+où $S$ est l'aire, en cm\up{2}, de la surface colorée (\textbf{Figure 2}).
+
+En déduire que ce volume $\mathcal{V}$, arrondi à $0,1$~cm\up{3} près, est égal à $4,4$~cm\up{3}.
+\end{enumerate}
+
+\bigskip
+
+\begin{center}
+\textbf{Partie B}
+\end{center}
+
+On s'intéresse maintenant au bénéfice réalisé par l'artisan sur la vente de ces bonbons au chocolat en fonction du volume hebdomadaire des ventes.
+
+\smallskip
+
+Ce bénéfice peut être modélisé par la fonction $B$ définie sur l'intervalle $[0,01~;~+\infty[$ par : 
+
+\[B(q) = 8q^2 [2 -3\,\ln(q)] - 3.\]
+
+Le bénéfice est exprimé en dizaines d'euros et la quantité $q$ en centaines de bonbons.
+
+\medskip
+
+On admet que la fonction $B$ est dérivable sur $[0,01~;~+\infty[$. On note $B'$ sa fonction dérivée. 
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Déterminer $\displaystyle\lim_{q \to +\infty}B(q)$.
+		\item Montrer que, pour tout $q \geqslant 0,01$,\: $B'(q) = 8q(1 - 6\,\ln (q))$.
+		\item Étudier le signe de $B'(q)$, et en déduire le sens de variation de $B$ sur $[0,01~;~+\infty[$.
+
+Dresser le tableau de variation complet de la fonction $B$.
+		\item Quel est le bénéfice maximal, à l'euro près, que peut espérer l'artisan ?
+	\end{enumerate}
+\item 
+	\begin{enumerate}
+		\item Montrer que l'équation $B(q)= 10$ admet une unique solution $\beta$ sur l'intervalle $[1,2~;~+\infty[$.
+		
+		Donner une valeur approchée de $\beta$ à $10^{-3}$ près.
+		\item On admet que l'équation $B(q)= 10$ admet une unique solution $\alpha$ sur $[0,01~;~1,2[$.
+		
+On donne $\alpha \approx 0,757$.
+		
+		En déduire le nombre minimal et le nombre maximal de bonbons au chocolat à vendre pour réaliser un bénéfice supérieur à $100$~euros.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip

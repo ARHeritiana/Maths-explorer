@@ -1,0 +1,52 @@
+\medskip
+
+Une personne souhaite louer une maison à partir du 1\up{er} janvier 2020 et a le choix entre deux formules de contrat :
+
+\begin{itemize}[label=\textbullet]
+\item Contrat \no 1 : le loyer augmente chaque année de 200 €.
+\item Contrat \no 2 : le loyer augmente chaque année de 5\,\%.
+\end{itemize}
+
+Pour tout entier naturel $n$, on note :
+
+\begin{itemize}[label=\textbullet]
+\item $u_n$ le loyer annuel de l'année $2020 + n$ pour le contrat \no 1.
+\item $v_n$ le loyer annuel de l'année $2020 + n$ pour le contrat \no 2.
+\end{itemize}
+
+Dans les deux cas, le loyer annuel initial est de \np{3600}~\euro. 
+
+On a donc $u_0 = v_0 = \np{3600}$.
+
+\medskip
+
+\begin{enumerate}
+\item Étude de la suite $\left(u_n\right)$
+	\begin{enumerate}
+		\item Déterminer le loyer annuel de l'année 2021 pour le contrat n°l.
+		\item Déterminer l'expression de $u_n$ en fonction de $n$ puis en déduire le loyer annuel de
+l'année 2030.
+	\end{enumerate}
+\item Étude de la suite $\left(v_n\right)$
+	\begin{enumerate}
+		\item Déterminer le loyer annuel de l'année 2021 pour le contrat \no 2.
+		\item Déterminer l'expression de $v_n$ en fonction de $n$ puis en déduire le loyer annuel de l'année 2030.
+	\end{enumerate}
+\item On considère le script suivant, écrit en langage Python :
+
+\begin{center}
+\begin{tabular}{|l|}\hline
+\texttt{u = \np{3600}}\\
+\texttt{v = \np{3600}}\\
+\texttt{n = 0}\\
+\texttt{while u > = v}\\
+\qquad \texttt{u = u + 200}\\
+\qquad \texttt{v = 1,05*v}\\
+\qquad \texttt{n = n + 1}\\ \hline
+\end{tabular}
+\end{center}
+
+Après exécution, la variable $n$ contient la valeur 6. Donner une interprétation de ce résultat dans le contexte de l'exercice.
+\end{enumerate}
+
+\bigskip

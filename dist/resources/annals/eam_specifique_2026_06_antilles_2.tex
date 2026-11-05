@@ -1,0 +1,142 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
+\usepackage{geometry}
+\geometry{a4paper,margin=2cm}
+\usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
+\usepackage{pstricks,pstricks-add,pst-plot,pst-tree,pst-node,pst-text,pst-func,pst-math,pst-bspline,pst-3dplot,pst-eucl,pst-solides3d}
+\let\pscalculate\undefined
+\usepackage{pst-bezier}
+\usepackage{tikz,pgfplots,tkz-tab}
+\usetikzlibrary{arrows,arrows.meta,patterns,calc,positioning,trees,decorations.markings,shapes.geometric,shapes.misc,shapes.arrows,intersections,decorations.pathmorphing,decorations.pathreplacing,backgrounds,shadows,babel}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[np]{numprint}
+\usepackage{listings,makecell,pas-tableur,twoopt}
+\let\barre\undefined
+\usepackage[pstricks]{tablvar}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\providecommand{\red}{\color{red}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\green}{\color{green}}
+\providecommand{\black}{\color{black}}
+\providecommand{\white}{\color{white}}
+\providecommand{\gray}{\color{gray}}
+\providecommand{\cyan}{\color{cyan}}
+\providecommand{\magenta}{\color{magenta}}
+\providecommand{\yellow}{\color{yellow}}
+\providecommand{\violet}{\color{violet}}
+\providecommand{\orange}{\color{orange}}
+\providecommand{\euro}{\texteuro}
+\providecommand{\EUR}{\texteuro}
+\providecommand{\ieme}{\textsuperscript{e}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\degree}{\ensuremath{^\circ}}
+\providecommand{\vv}[1]{\overrightarrow{#1}}
+\providecommand{\Coord}[1]{#1}
+\providecommand{\decosix}{}
+\providecommand{\starredbullet}{\ensuremath{\bullet}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\usepackage{adjustbox}\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\e}{{\mathrm{e}}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vectt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\vvt}[1]{\overrightarrow{\mathrm{#1}}}
+\providecommand{\np}[2][]{{#2~#1}}
+\providecommand{\vv}[1]{{\overrightarrow{#1}}}
+\renewcommand{\d}{{\mathrm{d}}}
+\providecommand{\degres}{{^\circ}}
+\providecommand{\degre}{{^\circ}}
+\providecommand{\blue}{\color{blue}}
+\providecommand{\red}{\color{red}}
+\providecommand{\enskip}{\quad}
+\providecommand{\llbracket}{\lbrack\!\lbrack}
+\providecommand{\rrbracket}{\rbrack\!\rbrack}
+\providecommand{\euro}{{\text{€}}}
+\providecommand{\no}{{\text{n°}}}
+\providecommand{\interval}[2]{{[#1;#2]}}
+\providecommand{\intervFO}[2]{{[#1;#2[}}
+\providecommand{\dotfill}{\ldots}
+
+\providecommand{\ds}{\displaystyle}
+\providecommand{\textding}[1]{#1}
+\providecommand{\Oij}{\(\mathrm{O};\vec{\imath},\vec{\jmath}\)}
+\providecommand{\Oijk}{\(\mathrm{O};\vec{\imath},\vec{\jmath},\vec{k}\)}
+\providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
+\providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
+\renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
+\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
+% Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.
+% CC BY-SA : https://coopmaths.fr/www/about/
+% https://coopmaths.fr/alea/static/eam/2026/tex/eam_specifique_2026_06_antilles_2.tex
+\begin{document}
+\noindent\textit{APMEP / CoopMaths. CC BY-SA. Présentation adaptée par Maths Explorer.}\par\medskip
+On compte le nombre d'arbres de deux forêts où de nouveaux arbres sont plantés chaque année.
+
+\subsection*{Partie A :\quad Première forêt}
+
+Dans cette forêt, au 1\up{er} janvier 2010, on dénombrait \np{1200}~arbres.
+
+On suppose que le nombre d'arbres augmente de \np{100} par an.
+
+On modélise cette évolution par une suite \mbox{$(u_n)$}, où $u_n$ représente le nombre d'arbres dans cette forêt au 1\up{er}~janvier de l'année \mbox{$2010+n$} pour tout entier naturel $n$.
+
+Ainsi, on a \mbox{$u_0=\np{1200}$}
+\begin{enumerate}
+	\item Calculer $u_1$ et $u_2$.
+
+	Interpréter $u_2$ dans le contexte de l'exercice.
+	\item Exprimer \mbox{$u_{n+1}$} en fonction de $u_n$ pour tout entier naturel $n$.
+
+	En déduire la nature de la suite $(u_n)$ et préciser sa raison $r$.
+
+	\item Exprimer $u_n$ en fonction de $n$.
+
+	\item D'après ce modèle, à partir de quelle année la forêt comptera-t-elle plus de \np{2950}~arbres ?
+\end{enumerate}
+
+\subsection*{Partie B : \quad Seconde forêt}
+
+
+Dans cette forêt, au 1\up{er} janvier 2010, on dénombrait \np{1000}~arbres.
+
+On suppose que le nombre d'arbres augmente de 5\,\% par an.
+
+On modélise cette évolution par une suite \mbox{$(v_n)$}, où $v_n$ représente le nombre d'arbres dans cette forêt au 1\up{er}~janvier de l'année \mbox{$2010+n$} pour tout entier naturel $n$.
+
+Ainsi, on a \mbox{$v_0=\np{1000}$}
+
+\begin{enumerate}
+	\item Calculer le nombre d'arbres au 1\up{er}~janvier 2011.
+	\item Déterminer la nature de la suite \mbox{$(v_n)$} et préciser sa raison $r$.
+	\item D'après ce modèle, on estime qu'au 1\up{er}~janvier 2030, il y aura environ \np{2653}~arbres sur la parcelle.
+
+	Quel terme de la suite a-t-on calculé?
+
+	Quel a été le calcul effectué ?
+\end{enumerate}
+
+\subsection*{Partie C : \quad Comparaison des évolutions}
+Grâce à l'extrait de tableur ci-dessous, on visualise le nombre d'arbres arrondi à l'unité dans les deux forêts.
+
+\begin{center}
+	\begin{tblr}{|X[8mm]|*{9}{X[c]|}}\hline
+$n$&	0&	1&	2&	3&	\dots&	26&	27&	28&	\textbf{29}\\\hline
+$u_n$&	\np{1200}&	\np{1300}&	\np{1400}&	\np{1500}&	\dots&	\np{3800}&	\np{3900}&	\np{4000}&	\textbf{\np{4100}}\\\hline
+$v_n$&	\np{1000}&	\np{1050}&	\np{1103}&	\np{1158}&	\dots&	\np{3556}&	\np{3733}&	\np{3920}&\textbf{	\np{4116}}\\\hline
+\end{tblr}
+
+\end{center}
+Interpréter dans le contexte de l'exercice les résultats de la dernière colonne.
+
+\end{document}
