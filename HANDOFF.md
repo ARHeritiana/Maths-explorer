@@ -32,6 +32,19 @@ teaching tools are grouped under a disclosure. Source: `site/js/welcome.js`,
 `site/styles/home.css`; the app owns figure cleanup and theme changes.
 The bilingual lesson goal remains on standby, unfinished.
 
+## Algorithms and program rendering (5 November 2026)
+
+The annales HTML converter now protects literal listings and table/minipage-based
+programs before prose and figure conversion. Indentation, line numbers, blank
+lines, literal operators, completion placeholders and candidate labels remain
+visible. Mathematical pseudocode retains MathJax notation. Program candidates
+wrap into individual columns/cards on phones; code scrolls within its own block.
+Printing reuses the same markup. Existing source values and program logic are
+retained. `scripts/annals-code.py` owns the conversion; regressions are in
+`tests/test_annals_code.py` and `tests/annals-bank.test.mjs`. The PDF books are
+retained only after comparing every archived typesetting input and output hash.
+The bilingual lesson goal remains on standby, unfinished.
+
 ## Exercise navigation (5 November 2026)
 
 The bank now separates chapter practice from exam annales with visible collection

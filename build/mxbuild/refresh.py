@@ -37,7 +37,7 @@ def inputs():
              'build/mxbuild/twin.py', 'build/mxbuild/books.py'],
             {'book': book, 'chapters': [c for c in manifest['catalog']['chapters'] if c['course'] == course]})
     if 'annalsBank' in manifest:
-        result['annals'] = fingerprint(['content/tex/annals/**/*', 'content/tex/core/*', 'scripts/build-annals.py', 'scripts/build-annals-pdf.py'], manifest['annalsBank'])
+        result['annals'] = fingerprint(['content/tex/annals/**/*', 'content/tex/core/*', 'scripts/build-annals.py', 'scripts/annals-code.py', 'scripts/build-annals-pdf.py'], manifest['annalsBank'])
     result['static-site'] = fingerprint(['site/**/*'])
     result['fourier'] = fingerprint(['content/university/fourier/**/*','scripts/build-fourier.py'],[s for s in manifest['university']['sections'] if s['id']=='fourier'])
     result['foundations'] = fingerprint(

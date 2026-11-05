@@ -146,3 +146,5 @@ general collections. The DOM smoke covers all experiments, gallery routes and ch
 interactions. Additional collection browser scripts remain available.
 
 `annals-bank.test.mjs`: attributed source units, valid chapter links, live bank routes, combined exam/year/topic search and lazy local loading, corrections, paging and reset.
+
+`test_annals_code.py`: literal listing whitespace and HTML escaping, numbered table programs and blank lines, parallel programs, untouched data tables and TeX code typography.

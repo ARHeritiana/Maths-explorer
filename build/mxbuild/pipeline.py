@@ -84,6 +84,7 @@ def build_tex(courses, force=False):
 
 
 CHECKS = [
+    ('algorithm and program conversion', [PY, 'tests/test_annals_code.py']),
     ('self-hosted annales structure and sources', [PY, 'scripts/build-annals.py', '--check']),
     ('native annales books and sources', [PY, 'scripts/build-annals-pdf.py', '--check']),
     ('prerequisite report generation (advisory)', ['node', 'scripts/check-prerequisites.mjs']),

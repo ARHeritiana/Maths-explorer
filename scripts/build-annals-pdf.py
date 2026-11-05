@@ -94,6 +94,33 @@ def build():
   z.write(ROOT/'build/out/annals/figures-pdf/pyramide.pdf','assets/pyramide.pdf')
  files={p.relative_to(ROOT/'dist').as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in DEST.iterdir() if p.is_file()}
  RECEIPT.write_text(json.dumps({'sourceDigest':fingerprint(),'files':files},indent=2)+'\n')
+def reuse_inputs():
+ """Reuse compiled books only after verifying every typesetting input is identical.
+
+ HTML conversion changes share a helper module with the PDF builder. Comparing
+ the portable bundle's actual inputs avoids recompiling unchanged book editions.
+ """
+ rec=json.loads(RECEIPT.read_text())
+ for name,sha in rec['files'].items():
+  if hashlib.sha256((ROOT/'dist'/name).read_bytes()).hexdigest()!=sha:raise ValueError('Changed book output: '+name)
+ config=json.loads((ROOT/'content/data/manifest.json').read_text())['annalsBank']
+ with zipfile.ZipFile(DEST/'sources.zip') as z:
+  if json.loads(z.read('index.json'))!=config:raise ValueError('Annales catalogue changed')
+  for p in SOURCE.glob('*.tex'):
+   body,_=helpers['graphics'](p.read_text(),p.stem)
+   body=body.replace('./resources/annals/figures/','figures/').replace('.svg}', '.pdf}').replace(r'\includegraphics{figures/',r'\includegraphics[max width=\linewidth]{figures/')
+   if z.read('units/'+p.name).decode()!=body:raise ValueError('Changed PDF unit: '+p.name)
+  for p in CORE.glob('*'):
+   if p.is_file() and z.read('core/'+p.name)!=p.read_bytes():raise ValueError('Changed PDF style: '+p.name)
+  for p in (SOURCE/'assets').glob('*'):
+   if p.is_file() and z.read('assets/'+p.name)!=p.read_bytes():raise ValueError('Changed PDF asset: '+p.name)
+  for p in DEST.glob('*.tex'):
+   if not p.read_text().startswith(preamble()):raise ValueError('Changed book preamble: '+p.name)
+   if z.read(p.name)!=p.read_bytes():raise ValueError('Changed book source: '+p.name)
+ rec['sourceDigest']=fingerprint()
+ RECEIPT.write_text(json.dumps(rec,indent=2)+'\n')
+ print('All book typesetting inputs and outputs are identical; compiled PDFs retained.')
+
 def check():
  r=json.loads(RECEIPT.read_text())
  if r['sourceDigest']!=fingerprint():raise ValueError('Annales PDF sources changed')
@@ -102,4 +129,4 @@ def check():
   if not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest()!=sha:raise ValueError('Stale annales PDF: '+name)
  print('Native annales books and complete LaTeX sources match.')
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('--check',action='store_true');p.add_argument('--diagnose',action='store_true');a=p.parse_args();check() if a.check else build()
+ p=argparse.ArgumentParser();p.add_argument('--check',action='store_true');p.add_argument('--diagnose',action='store_true');p.add_argument('--reuse-inputs',action='store_true');a=p.parse_args();check() if a.check else reuse_inputs() if a.reuse_inputs else build()

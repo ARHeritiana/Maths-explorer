@@ -117,3 +117,25 @@ test('typeset statements retain boxed answers and every diagram is hosted locall
   dom.window.close();
  }
 });
+
+test('programs preserve source indentation, literal operators and line numbers',()=>{
+ const content=id=>JSON.parse(fs.readFileSync(path.join(root,'dist/resources/annals',id+'.json')));
+ const numbered=new JSDOM(content('bac_2025_06_sujet1_asie_3').question).window.document;
+ const lines=[...numbered.querySelectorAll('.annal-code-line')];
+ assert.deepEqual(lines.map(l=>l.dataset.line),['1','2','3','4','5','6','7']);
+ assert.equal(lines[3].textContent,'    while s < k:');
+ assert.equal(lines[5].textContent,'            s = 10 - 40/n + (40*0.8**n)/n');
+ assert.equal(numbered.querySelector('.annal-code .math'),null);
+ const native=new JSDOM(content('bac_2026_06_sujet1_asie_1').question).window.document;
+ assert.match(native.querySelector('.annal-code').textContent,/\n        p = \.{9}/);
+ const parallel=new JSDOM(content('bac_2025_11_sujet1_ameriquesud_1').question).window.document;
+ assert.equal(parallel.querySelectorAll('.annal-code').length,3);
+ assert.match(parallel.body.textContent,/Programme 1/);assert.match(parallel.body.textContent,/Programme 3/);
+ const pseudo=new JSDOM(content('e3c_2020_00_sujet10_1').question).window.document;
+ assert.ok(pseudo.querySelector('.annal-algorithm .math'));
+ assert.match(pseudo.querySelector('.annal-algorithm').textContent,/\u00a0{8}A/);
+ for(const r of ANNALS){
+  const data=content(r.id);
+  assert.ok(!/MXANNALCODE\d+END/.test(data.question+data.solution),r.id);
+ }
+});

@@ -1640,3 +1640,21 @@ input[type="range"]::-moz-range-thumb { background: var(--accent); border-color:
 }
 .resource-page .workshops > summary { flex-wrap: wrap; overflow-wrap: anywhere; }
 .deck-card .deck-actions a { white-space: normal; overflow-wrap: anywhere; max-width: 100%; }
+
+/* Source programs keep their line breaks, indentation and literal operators. */
+.annal-code { max-width: 100%; min-width: 0; overflow-x: auto; padding: 12px 16px; background: var(--sunken); color: var(--ink); text-align: left; white-space: pre; tab-size: 4; font: 0.9rem/1.65 ui-monospace, Consolas, monospace; }
+.annal-code code { font: inherit; white-space: inherit; }
+.annal-code-line::before { content: attr(data-line); display: inline-block; width: 3ch; margin-right: 2ch; color: var(--muted); text-align: right; user-select: none; }
+.annal-algorithm { max-width: 100%; overflow-x: auto; margin-block: 1rem; padding: 12px 16px; border-left: 3px solid var(--line-strong); background: var(--sunken); color: var(--ink); text-align: left; font: 0.9rem/1.65 ui-monospace, Consolas, monospace; }
+.annal-algorithm p { margin: 0; white-space: pre; }
+.annal-algorithm code { font: inherit; }
+@media print {
+  .annal-code, .annal-algorithm p { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .annal-code, .annal-algorithm { overflow: visible; background: none; color: inherit; }
+}
+.annal-program-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; margin-block: 1rem; }
+.annal-program-options > section { min-width: 0; }
+.annal-program-options h3 { margin: 0 0 8px; font-size: 1rem; }
+.annal-program-options .annal-code { margin: 0; }
+/* Keep the screen-reader MathML available without widening long formula lines. */
+.annal-content mjx-assistive-mml, .annal-print mjx-assistive-mml { width: 1px !important; height: 1px !important; }

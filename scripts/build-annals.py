@@ -7,13 +7,14 @@ No upstream document is embedded or fetched by the reader. Build outputs are cac
 by source bytes; --check verifies every published output against the build receipt.
 """
 from pathlib import Path
-import argparse, concurrent.futures, hashlib, html, json, os, re, shutil, subprocess, sys, zipfile
+import argparse, concurrent.futures, hashlib, html, json, os, re, shutil, subprocess, sys, zipfile, runpy
 import pymupdf
 ROOT=Path(__file__).resolve().parents[1]
 SOURCE=ROOT/'content/tex/annals'
 OUT=ROOT/'build/out/annals'
 DEST=ROOT/'dist/resources/annals'
 RECEIPT=ROOT/'content/data/annals-build.json'
+CODE=runpy.run_path(str(ROOT/'scripts/annals-code.py'))
 MACROS=r'''\newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -102,6 +103,7 @@ ENV=re.compile(r'\\(begin|end)\{([^}]+)\}')
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def source_digest():
  h=hashlib.sha256(Path(__file__).read_bytes())
+ h.update((ROOT/'scripts/annals-code.py').read_bytes())
  for p in sorted(p for p in SOURCE.rglob('*') if p.is_file()):h.update(p.name.encode());h.update(p.read_bytes())
  h.update(json.dumps(json.loads((ROOT/'content/data/manifest.json').read_text())['annalsBank'],sort_keys=True).encode())
  return h.hexdigest()
@@ -159,6 +161,7 @@ def graphics(text,ident):
    if found is None:continue
    start=stack[found][1];stack=stack[:found]
    chunk=text[start:m.end()]
+   if 'MXANNALCODE' in chunk:continue
    if name in {'array','tablvar'} and any(parent in CONTAINERS for parent,_ in stack):continue
    if name in GRAPH or (name in CONTAINERS and re.search(r'\\(?:pstree|ps(?:line|dots|plot|Cancel)|[Rr]node|ncline|multicolumn|rowcolor)|\\begin\{(?:pspicture\*?|tikzpicture|tblr|tablvar)\}',chunk)):
     end=m.end()
@@ -208,7 +211,7 @@ def unwrap_tables(text):
     depth+=1 if text[i]=='{' else -1
    i+=1
   body=text[m.end():i-1]
-  if '\\begin{tabular}' in body:text=text[:m.start()]+body+text[i:]
+  if re.search(r'\\begin\{(?:tabular|tabularx|tblr|center)\}',body):text=text[:m.start()]+body+text[i:]
  return text
 
 def strip_twoopt(text):
@@ -280,6 +283,7 @@ def to_html(job):
  ident,question,solution=job;result={'id':ident};tasks=[]
  for key,text in [('question',question),('solution',solution)]:
   if not text:result[key]='';continue
+  text,code=CODE['protect_code'](unwrap_tables(text))
   text,figs=graphics(text,ident);tasks+=figs
   run=subprocess.run(['pandoc','-f','latex','-t','html5','--mathjax','--wrap=none'],input=MACROS+TEXT_MACROS+prepare_tex(text),text=True,capture_output=True)
   if run.returncode:
@@ -293,6 +297,8 @@ def to_html(job):
     if not tag.get('src','').startswith('./resources/annals/figures/'):raise ValueError(ident+': unexpected image source')
     tag['alt']='Figure ou tableau du sujet original';tag['loading']='lazy'
    # Pandoc's layout groups sometimes leave their width argument as a standalone number.
+  try:CODE['restore_code'](soup,code)
+  except ValueError as error:raise ValueError(ident+' '+key+': '+str(error)) from error
   result[key]=str(soup)
  return result,tasks
 
@@ -380,6 +386,37 @@ def build():
  files={p.relative_to(ROOT/'dist').as_posix():digest(p) for p in DEST.rglob('*') if p.is_file() and 'books' not in p.relative_to(DEST).parts}
  RECEIPT.write_text(json.dumps({'sourceDigest':source_digest(),'files':files},indent=2)+'\n')
  print('Published',len(records),'locally typeset exercises;',len(set(t['key'] for t in tasks)),'graphics',flush=True)
+def build_html():
+ """Refresh semantic HTML while reusing the already published vector figures."""
+ config=json.loads((ROOT/'content/data/manifest.json').read_text())['annalsBank']
+ expected={**config,'records':[{**r,'content':'./resources/annals/'+r['id']+'.json'} for r in config['records']]}
+ if json.loads((DEST/'index.json').read_text())!=expected:raise ValueError('Catalogue changed; run a full annales build')
+ for source in SOURCE.glob('*.tex'):
+  published=DEST/source.name
+  if not published.exists() or not published.read_text().endswith(source.read_text()+'\n\\end{document}\n'):
+   raise ValueError('Typesetting source changed; run a full annales build: '+source.name)
+ previous=json.loads(RECEIPT.read_text())
+ for name,sha in previous['files'].items():
+  if digest(ROOT/'dist'/name)!=sha:raise ValueError('Changed published annales output: '+name)
+ records=[]
+ def convert(r):
+  path=SOURCE/(r['id']+'.cor.tex')
+  return to_html((r['id'],(SOURCE/(r['id']+'.tex')).read_text(),path.read_text() if path.exists() else ''))
+ with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+  for result,tasks in pool.map(convert,config['records']):
+   if result.get('errors'):raise ValueError(result['errors'])
+   for task in tasks:
+    if not (DEST/'figures'/(task['key']+'.svg')).exists():raise ValueError('New figure requires a full annales build: '+task['key'])
+   records.append(result)
+ # Do not partially publish a conversion that failed or requires new graphics.
+ for result in records:
+  (DEST/(result['id']+'.json')).write_text(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n')
+ rec=json.loads(RECEIPT.read_text())
+ rec['sourceDigest']=source_digest()
+ rec['files']={name:digest(ROOT/'dist'/name) for name in rec['files']}
+ RECEIPT.write_text(json.dumps(rec,indent=2)+'\n')
+ print('Refreshed HTML for',len(records),'exercises; vector figures and source downloads retained.')
+
 def check():
  rec=json.loads(RECEIPT.read_text())
  if rec['sourceDigest']!=source_digest():raise ValueError('Annales sources changed; rebuild')
@@ -388,7 +425,8 @@ def check():
   if not path.is_file() or digest(path)!=sha:raise ValueError('Stale annales output: '+name)
  print('Annales sources, structure and all local downloads match.')
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('--check',action='store_true');p.add_argument('--figures-only',action='store_true');args=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--check',action='store_true');p.add_argument('--figures-only',action='store_true');p.add_argument('--html-only',action='store_true');args=p.parse_args()
  if args.check:check()
+ elif args.html_only:build_html()
  elif args.figures_only:compile_figures(json.loads((OUT/'figures.json').read_text()))
  else:build()

@@ -21,3 +21,5 @@ Then follow `release.md`.
 - Foundations resources: `site/resources/basics/fractions.html` and `site/resources/basics/fractions.en.html` (bilingual fractions workbench; scripts must match outside the language table), `site/js/app.js` `basicsLessons` / `basicsPage` / `bindBasics`, and `site/js/discovery.js` `FOUNDATION_LESSONS`. Check host theme, iframe height, keyboard controls and phone layout.
 
 - Exercise collections and class navigation: `site/js/bank-page.js`, `site/js/annals-bank.js`, `site/js/slides-page.js`; shared live scope in `site/js/live-curriculum.js`; regressions in `tests/annals-bank.test.mjs`.
+
+- Annales program rendering: `scripts/annals-code.py` and `scripts/build-annals.py`; rebuild HTML with `--html-only`, verify retained PDF inputs with `scripts/build-annals-pdf.py --reuse-inputs`, then `make site`. Regressions: `tests/test_annals_code.py`, `tests/annals-bank.test.mjs`.
