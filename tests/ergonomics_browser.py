@@ -2,7 +2,7 @@
 import os,shutil
 from playwright.sync_api import sync_playwright
 BASE=os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173').rstrip('/')
-ROUTES=['home','resources/premiere','slides/premiere','bank/premiere','bank/seconde/seconde-01','chapter/premiere-02/cours','chapter/premiere-02/documents','topics','topics/analysis','lab','gallery','gallery/fourier','challenges','challenges/gauss-sum','biographies','stories','errors','errors/square-of-sum','olympiad','basics','automatismes','sheets']
+ROUTES=['home','resources/premiere','slides/premiere','bank/premiere','bank/annales','bank/seconde/seconde-01','chapter/premiere-02/cours','chapter/premiere-02/documents','topics','topics/analysis','lab','gallery','gallery/fourier','challenges','challenges/gauss-sum','biographies','stories','errors','errors/square-of-sum','olympiad','basics','automatismes','sheets']
 with sync_playwright() as p:
  browser=p.chromium.launch(headless=True,executable_path=os.environ.get('PLAYWRIGHT_CHROMIUM_PATH') or shutil.which('chromium'))
  context=browser.new_context(locale='fr-FR',reduced_motion='reduce',viewport={'width':1440,'height':1000});page=context.new_page();errors=[]
@@ -23,6 +23,17 @@ with sync_playwright() as p:
  page.locator('.export-options > summary').click()
  with page.expect_download() as download:page.locator('[data-act="tex-student"]').click()
  assert download.value.suggested_filename.endswith('.tex')
+ go('bank/annales')
+ assert page.locator('.annal-filters [name="course"]').count()==0
+ year=page.locator('.annal-filters [name="year"]');notion=page.locator('.annal-filters [name="topic"]')
+ assert not year.is_visible() and not notion.is_visible()
+ page.select_option('.annal-filters [name="family"]','BAC')
+ assert year.is_visible() and notion.is_visible()
+ assert all('BAC' in text for text in page.locator('.annal-ex > summary strong').all_text_contents())
+ year.select_option('2022');page.select_option('.annal-filters [name="family"]','E3C')
+ assert year.input_value()==''
+ page.locator('.annal-filters [type="reset"]').click()
+ assert not year.is_visible() and not notion.is_visible()
  go('gallery/fourier');assert page.locator('.entry-chooser').get_attribute('open') is None
  page.locator('.entry-chooser > summary').click();assert page.locator('.entry-chooser .lab-link').count()>20
  for collection in ['gallery','challenges','biographies','stories','errors']:
@@ -38,6 +49,7 @@ with sync_playwright() as p:
  checked=0;overflows=[]
  for route in ROUTES:
   go(route)
+  if route=='bank/annales':page.select_option('.annal-filters [name="family"]','BAC')
   if route.startswith('slides'):page.locator('.deck-card').first.wait_for()
   if route.startswith('chapter/'):page.locator('#chapter-sequence[aria-busy="false"]').wait_for()
   for width in [320,390,768,1440]:

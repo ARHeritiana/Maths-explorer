@@ -72,8 +72,32 @@ test('lazy loading, folded correction, filters, reset and paging use local conte
   const preserved=document.querySelector('[data-annal]');preserved.open=true;
   document.querySelector('[data-annal-more]').click();assert.equal(document.querySelectorAll('[data-annal]').length,60);
   assert.equal(document.querySelector('[data-annal]'),preserved);assert.ok(preserved.open);
-  const cls=document.querySelector('[name="course"]');cls.value='premiere';cls.dispatchEvent(new dom.window.Event('input',{bubbles:true}));
-  assert.ok([...document.querySelectorAll('[data-annal]')].every(el=>ANNALS.find(r=>r.id===el.dataset.annal).cls==='premiere'));
+  assert.equal(document.querySelector('[name="course"]'),null);
+  const family=document.querySelector('[name="family"]'),year=document.querySelector('[name="year"]'),topic=document.querySelector('[name="topic"]');
+  const choose=(select,value)=>{select.value=value;select.dispatchEvent(new dom.window.Event('input',{bubbles:true}));};
+  assert.ok(year.disabled&&topic.disabled);
+  assert.ok(year.closest('label').hidden&&topic.closest('label').hidden);
+  choose(family,'BAC');
+  assert.ok(!year.disabled&&!topic.disabled&&!year.closest('label').hidden&&!topic.closest('label').hidden);
+  const bac=ANNALS.filter(r=>r.family==='BAC');
+  assert.deepEqual(new Set([...year.options].slice(1).map(o=>o.value)),new Set(bac.map(r=>String(r.year))));
+  assert.deepEqual(new Set([...topic.options].slice(1).map(o=>o.value)),new Set(bac.flatMap(r=>r.tags)));
+  const sample=bac.find(r=>r.tags.length);
+  choose(year,String(sample.year));choose(topic,sample.tags[0]);
+  const expected=selectAnnals(ANNALS,{family:'BAC',year:sample.year,topic:sample.tags[0]});
+  assert.deepEqual([...document.querySelectorAll('[data-annal]')].map(el=>el.dataset.annal),expected.slice(0,30).map(r=>r.id));
+  // Changing exam cannot leave an unavailable year or notion selected.
+  const absentYear=[...year.options].find(o=>o.value&&!ANNALS.some(r=>r.family==='E3C'&&String(r.year)===o.value));
+  assert.ok(absentYear);choose(year,absentYear.value);choose(family,'E3C');
+  assert.equal(year.value,'');
+  assert.ok([...year.options].slice(1).every(o=>ANNALS.some(r=>r.family==='E3C'&&String(r.year)===o.value)));
+  choose(family,'');
+  assert.ok(year.disabled&&topic.disabled&&year.closest('label').hidden&&topic.closest('label').hidden);
+  assert.equal(year.value,'');assert.equal(topic.value,'');
+  assert.equal(document.querySelectorAll('[data-annal]').length,30);
+  choose(family,'EAM');document.querySelector('form').reset();await new Promise(resolve=>queueMicrotask(resolve));
+  assert.equal(family.value,'');assert.ok(year.disabled&&topic.disabled);
+
  }finally{stop?.();Object.assign(globalThis,old);dom.window.close();}
 });
 

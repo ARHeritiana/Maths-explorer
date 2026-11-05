@@ -1,5 +1,14 @@
 # Handoff
 
+## Exam archive filters (5 November 2026)
+
+The annales index starts with exam and search. The redundant class selector is
+removed. Existing year and notion selectors appear only after an exam is chosen;
+their options come from that exam, and unavailable selections clear on a switch.
+The existing chapter entry remains unchanged; no extra topic selector was added.
+Reset restores the compact initial form. The bilingual lesson goal remains on
+standby, unfinished.
+
 ## Site-wide ergonomics (5 November 2026)
 
 The homepage approach now extends to catalogues, collections and classroom tools.
