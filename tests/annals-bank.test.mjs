@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {JSDOM} from 'jsdom';
 import {ANNALS,annalsFor,selectAnnals,annalsMarkup,bindAnnals} from '../dist/js/annals-bank.js';
-import {bankPage,isBankRoute} from '../dist/js/bank-page.js';
+import {bankPage,isBankRoute,bankCount} from '../dist/js/bank-page.js';
 import {isLiveRoute} from '../dist/js/live-curriculum.js';
 const root=path.resolve(import.meta.dirname,'..');
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'content/data/manifest.json')));
@@ -31,13 +31,26 @@ test('bank and visibility policy accept the new index and stable exercise permal
  assert.match(bankPage(t,'annales'),/data-annals/);
  const chapter=ANNALS.find(r=>r.chapters.length).chapters[0];
  assert.ok(annalsFor(chapter).length>0);
- assert.match(bankPage(t,chapter.split('-')[0],chapter),/data-annals/);
+ const page=new JSDOM(bankPage(t,chapter.split('-')[0],chapter)).window.document;
+ assert.ok(page.querySelector('.bank-annals [data-annals]'));
+ assert.equal(page.querySelector('.bank-annals').open,false);
+ assert.equal(bankCount(chapter),page.querySelectorAll('.bank-list > .bank-ex').length);
+ assert.equal(page.querySelector('.annal-books'),null);
+ assert.ok(!bankPage(t,'terminale').includes('Programme français'));
+ const index=new JSDOM(bankPage(t,'annales')).window.document;
+ assert.equal(index.querySelector('.bank-sections [aria-current]').getAttribute('href'),'#bank/annales');
+ const detail=new JSDOM(bankPage(t,'annales',ANNALS[0].id)).window.document;
+ assert.equal(detail.querySelector('.annal-filters'),null);
+ assert.equal(detail.querySelector('.annal-books'),null);
 });
 test('filters combine exam, year, topic and accent-folded search',()=>{
  const sample=ANNALS.find(r=>r.family==='BAC'&&r.tags.includes('Probabilités conditionnelles'));
  const found=selectAnnals(ANNALS,{family:'BAC',year:sample.year,topic:'Probabilités conditionnelles',search:'probabilites'});
  assert.ok(found.length);assert.ok(found.every(r=>r.family==='BAC'&&r.year===sample.year));
  assert.equal(selectAnnals(ANNALS,{family:'E3C',year:2026}).length,0);
+ const classMatches=selectAnnals(ANNALS,{course:sample.cls,family:'BAC',year:sample.year});
+ assert.ok(classMatches.length);assert.ok(classMatches.every(r=>r.cls===sample.cls));
+ assert.ok(selectAnnals(ANNALS,{search:String(sample.year)}).includes(sample));
 });
 test('lazy loading, folded correction, filters, reset and paging use local content',async()=>{
  const dom=new JSDOM('<main>'+annalsMarkup()+'</main>',{url:'https://example.org/Maths-explorer/#bank/annales'});
@@ -56,7 +69,11 @@ test('lazy loading, folded correction, filters, reset and paging use local conte
   const search=document.querySelector('[name="search"]');search.value='no matching source';search.dispatchEvent(new dom.window.Event('input',{bubbles:true}));
   assert.equal(document.querySelectorAll('[data-annal]').length,0);
   document.querySelector('form').reset();await new Promise(resolve=>queueMicrotask(resolve));assert.equal(document.querySelectorAll('[data-annal]').length,30);
+  const preserved=document.querySelector('[data-annal]');preserved.open=true;
   document.querySelector('[data-annal-more]').click();assert.equal(document.querySelectorAll('[data-annal]').length,60);
+  assert.equal(document.querySelector('[data-annal]'),preserved);assert.ok(preserved.open);
+  const cls=document.querySelector('[name="course"]');cls.value='premiere';cls.dispatchEvent(new dom.window.Event('input',{bubbles:true}));
+  assert.ok([...document.querySelectorAll('[data-annal]')].every(el=>ANNALS.find(r=>r.id===el.dataset.annal).cls==='premiere'));
  }finally{stop?.();Object.assign(globalThis,old);dom.window.close();}
 });
 

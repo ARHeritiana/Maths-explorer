@@ -1,5 +1,16 @@
 # Handoff
 
+## Exercise navigation (5 November 2026)
+
+The bank now separates chapter practice from exam annales with visible collection
+links. Practice counts exclude past papers; chapter cards show annales separately.
+Chapter annales are folded into their own section, and the annales index filters
+by class as well as exam, year and topic. Direct links omit catalogue filters;
+loading more results preserves opened exercises. Exercises without a source
+correction are labelled before opening. The redundant French curriculum heading
+is removed from bank, courses and slides; phone class links wrap into visible rows.
+The bilingual lesson goal remains on standby, unfinished.
+
 ## Curriculum visibility corrected (4 November 2026)
 
 The owner clarified: hide the other curricula only. Galleries, curiosities, all

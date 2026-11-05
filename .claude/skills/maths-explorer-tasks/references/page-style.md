@@ -19,3 +19,5 @@ Then follow `release.md`.
 - History atlas: `site/js/history.js`, `site/js/history-layout.js`, `site/js/history-images.js`, `site/styles/history.css`; image files in `site/data/history/`. Preserve source/creator/licence metadata and distinguish documentary dates from lifetimes.
 
 - Foundations resources: `site/resources/basics/fractions.html` and `site/resources/basics/fractions.en.html` (bilingual fractions workbench; scripts must match outside the language table), `site/js/app.js` `basicsLessons` / `basicsPage` / `bindBasics`, and `site/js/discovery.js` `FOUNDATION_LESSONS`. Check host theme, iframe height, keyboard controls and phone layout.
+
+- Exercise collections and class navigation: `site/js/bank-page.js`, `site/js/annals-bank.js`, `site/js/slides-page.js`; shared live scope in `site/js/live-curriculum.js`; regressions in `tests/annals-bank.test.mjs`.

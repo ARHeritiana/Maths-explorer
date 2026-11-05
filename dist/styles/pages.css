@@ -1619,3 +1619,24 @@ input[type="range"]::-moz-range-thumb { background: var(--accent); border-color:
 .annals-bank [data-annal-more] { margin-block: 1rem; }
 
 .annal-content blockquote, .annal-print blockquote { border-left: 3px solid var(--accent, #176654); padding: .6rem .9rem; margin: .8rem 0; }
+
+/* Exercise collections remain visible before choosing a class. */
+.bank-sections { display: flex; flex-wrap: wrap; gap: 8px; margin-block: 20px; }
+.bank-sections a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px; border: 1.5px solid var(--line-strong); color: var(--ink); text-decoration: none; font-weight: 700; }
+.bank-sections a[aria-current="page"] { background: var(--accent-soft); border-color: var(--accent); }
+.bank-sections small { color: var(--muted); }
+.bank-annals { margin-top: 28px; border-top: 2px solid var(--line-strong); }
+.bank-annals > summary { min-height: 44px; padding-block: 12px; cursor: pointer; font-weight: 800; }
+.annal-filters { grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); align-items: end; }
+.annal-filters label:first-child { grid-column: 1 / -1; }
+.annal-ex { padding: 0; margin-block: 12px; }
+.annal-ex > summary { overflow-wrap: anywhere; }
+@media (max-width: 960px) {
+  .res-rail { display: grid; gap: 16px; overflow: visible; padding-bottom: 12px; }
+  .res-rail .pw-family { display: block; min-width: 0; }
+  .res-rail .pw-family-name { margin: 0 0 6px; }
+  .res-rail .pw-family ul { display: flex; flex-wrap: wrap; gap: 4px; }
+  .res-rail .pw-pick { white-space: normal; margin: 0; }
+}
+.resource-page .workshops > summary { flex-wrap: wrap; overflow-wrap: anywhere; }
+.deck-card .deck-actions a { white-space: normal; overflow-wrap: anywhere; max-width: 100%; }

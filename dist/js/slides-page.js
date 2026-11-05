@@ -6,9 +6,6 @@ import { errorsFor } from './errors-model.js';
 // deck counts only); the decks of the chosen level fill the panel, in the HTML (explore) or PDF (lecture) edition.
 const P = (fr, en) => [fr, en];
 const E = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const FAMILIES = [
-  ['fr', 'books', P('Programme français', 'French curriculum')],
-];
 const SHORT = { seconde: P('Seconde', 'Seconde'), premiere: P('Première spécialité', 'Première'), terminale: P('Terminale spécialité', 'Terminale'), expertes: P('Maths expertes', 'Further maths'), stmg: P('Terminale STMG', 'Terminale STMG'), t10: P('T10', 'T10'), t11s: P('T11 série S', 'T11 S') };
 const slideCourses = () => courses.filter(c => c.curriculum === 'fr' || c.curriculum === 'mg');
 const chosen = () => {
@@ -21,11 +18,11 @@ const chosen = () => {
 export function slidesPage(t) {
   const L = t(['0', '1']) === '1' ? 1 : 0;
   const pick = c => `<li><button type="button" class="pw-pick" data-course="${E(c.id)}" aria-pressed="false"><span>${E((SHORT[c.id] || c.title)[L])}</span><small data-deck-count="${E(c.id)}"></small></button></li>`;
-  const families = FAMILIES.map(([k, ic, name]) => `<div class="pw-family"><p class="pw-family-name">${icon(ic, 18)}${name[L]}</p><ul>${slideCourses().filter(c => c.curriculum === k).map(pick).join('')}</ul></div>`).join('');
+  const families = `<div class="pw-family"><ul>${slideCourses().map(pick).join('')}</ul></div>`;
   return `<main id="main" tabindex="-1" class="page slides-page"><div class="res-top"><div><h1>${P('Diaporamas pour la classe', 'Classroom slides')[L]}</h1>
   <p class="page-intro">${P('Un diaporama par chapitre : notions, exemples, erreurs fréquentes, activités et canevas interactifs à manipuler en direct. Flèches pour avancer, R pour la réponse, G pour le plan, F pour le plein écran.', 'One deck per chapter: notions, worked examples, common mistakes, activities and interactive canvases to manipulate live. Arrow keys to move, R for the answer, G for the outline, F for full screen.')[L]}</p></div>
   <div class="slide-type-toggle" role="group" aria-label="${P('Usage du diaporama', 'Slide purpose')[L]}"><button type="button" data-slide-type="explore" aria-pressed="true"><strong>${P('Explorer · HTML', 'Explore · HTML')[L]}</strong><span>${P('Manipuler, essayer, conjecturer', 'Manipulate, test, conjecture')[L]}</span></button><button type="button" data-slide-type="lecture" aria-pressed="false"><strong>${P('Présenter · PDF', 'Lecture · PDF')[L]}</strong><span>${P('Cours, démonstrations et exemples', 'Definitions, proofs and examples')[L]}</span></button></div></div>
-  <div class="pw-layout res-layout"><nav class="pw-rail res-rail" aria-label="${P('Programmes et niveaux', 'Curricula and levels')[L]}">${families}</nav>
+  <div class="pw-layout res-layout"><nav class="pw-rail res-rail" aria-label="${P('Classes', 'Classes')[L]}">${families}</nav>
   <section class="pw-panel" id="slides-list" aria-live="polite"><p>${P('Chargement…', 'Loading…')[L]}</p></section></div></main>`;
 }
 
