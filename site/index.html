@@ -9,11 +9,40 @@
       content="Des chapitres du programme français, des galeries, des curiosités et des expériences pour explorer les mathématiques."
     />
     <title>Maths Explorer · Laboratoire de mathématiques</title>
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Crect%20width%3D%2240%22%20height%3D%2240%22%20rx%3D%2210%22%20fill%3D%22%230a0a0a%22%2F%3E%3Cpath%20d%3D%22M9%2011Q20%2043%2031%2011%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2220%22%20r%3D%223.2%22%20fill%3D%22%23d90012%22%2F%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2220%22%20r%3D%223.2%22%20fill%3D%22%23ffffff%22%2F%3E%3C%2Fsvg%3E"
-    />
+    <link rel="icon" type="image/svg+xml" />
+    <script>
+      // Reuse the actual SVG in the site header, including its computed colours.
+      document.addEventListener("DOMContentLoaded", () => {
+        const favicon = document.querySelector('link[rel="icon"]');
+        const app = document.querySelector("#app");
+        if (!favicon || !app) return;
+        const syncFavicon = () => {
+          const mark = app.querySelector(".brandmark");
+          if (!mark) return;
+          const copy = mark.cloneNode(true);
+          copy.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+          const sourceNodes = [mark, ...mark.querySelectorAll("*")];
+          const copyNodes = [copy, ...copy.querySelectorAll("*")];
+          sourceNodes.forEach((node, i) => {
+            const style = getComputedStyle(node);
+            const target = copyNodes[i];
+            target.removeAttribute("class");
+            target.removeAttribute("aria-hidden");
+            target.removeAttribute("focusable");
+            for (const prop of ["fill", "stroke", "stroke-width", "stroke-linecap"]) {
+              target.setAttribute(prop, style.getPropertyValue(prop));
+            }
+          });
+          favicon.href = "data:image/svg+xml," +
+            encodeURIComponent(new XMLSerializer().serializeToString(copy));
+        };
+        syncFavicon();
+        new MutationObserver(syncFavicon).observe(app, { childList: true });
+        new MutationObserver(syncFavicon).observe(document.documentElement, {
+          attributes: true, attributeFilter: ["data-theme"]
+        });
+      });
+    </script>
     <script>
       /* Apply the saved theme before first paint (no flash). Storage may be blocked. */
       try {
