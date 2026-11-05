@@ -1,5 +1,16 @@
 # Handoff
 
+## Approved homepage ergonomics (5 November 2026)
+
+The home keeps the existing design and now guides students from class to chapter.
+It uses actual live chapter destinations, remembers the class on this device,
+reuses the last-chapter link and searches chapter titles with accents and synonyms.
+Large card grids and duplicate entry buttons are removed. One fixed manipulable
+parabola replaces the five-scene slideshow; discovery links are secondary and
+teaching tools are grouped under a disclosure. Source: `site/js/welcome.js`,
+`site/styles/home.css`; the app owns figure cleanup and theme changes.
+The bilingual lesson goal remains on standby, unfinished.
+
 ## Exercise navigation (5 November 2026)
 
 The bank now separates chapter practice from exam annales with visible collection

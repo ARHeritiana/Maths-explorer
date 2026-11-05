@@ -33,8 +33,9 @@ with sync_playwright() as p:
         assert not bad, bad
 
     go('#home')
-    assert page.locator('.idea-card[href="#gallery/fourier"]').count() == 1
-    assert page.locator('.home-reading a').count() == 2
+    assert page.locator('#home-class option').count() == 6
+    assert page.locator('.secondary-entry a').count() == 3
+    assert page.locator('.figure-tab').count() == 0
     assert page.locator('.mainnav a').count() == 3
     assert page.locator('.home-resume').count() == 0
     page.locator('#home-query').fill('dérivée')

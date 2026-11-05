@@ -1,60 +1,64 @@
-import {liveDiscovery} from './live-curriculum.js';
-// Useful home entrances reuse the shared discovery catalogue and mathematical previews.
-import {filterDiscovery, FORMAT_LABELS} from './discovery-index.js';
-import {previewSVG} from './discovery.js';
+// The home guides students from a class to a chapter; the gallery retains its shared drawings.
+import {liveCourses} from './live-curriculum.js';
+import {discoveryChapters} from './catalogue-data.js';
 import {icon} from './icons.js';
-import {discoveryChapters, courses, university} from './catalogue-data.js';
-import {slidesFigure} from './home-slides.js';
-const languageLabel = item => {
- const chapter=discoveryChapters.find(c=>item.route==='#chapter/'+c.id||item.route==='#library/'+c.id);
- if(chapter)return (courses.find(c=>c.id===chapter.course)?.contentLanguage||'fr').toUpperCase();
- if(item.route.startsWith('#university/'))return (university.sections.find(s=>s.sequences.some(q=>item.route==='#university/'+q.id))?.language||'fr').toUpperCase();
- return 'FR / EN';
-};
+import {FigureEngine,readouts} from './figure-engine.js';
+import {makeParabola} from './figure-scenes.js';
 const E=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const TOOLS=[
-['quadratic',['Explorer une fonction','Explore a function'],['Change les coefficients et observe la parabole.','Change coefficients and observe the parabola.'],['Tracer une parabole','Plot a parabola']],
-['derivative',['Comprendre une dérivée','Understand a derivative'],['Rapproche deux points pour observer la tangente.','Bring two points closer to observe the tangent.'],['Explorer la tangente','Explore the tangent']],
-['integral',['Comprendre une intégrale','Understand an integral'],['Compare les rectangles et l’aire sous une courbe.','Compare rectangles and the area under a curve.'],['Approcher une aire','Approximate an area']],
-['probability',['Simuler le hasard','Simulate chance'],['Répète une expérience et compare les fréquences.','Repeat an experiment and compare frequencies.'],['Lancer une simulation','Run a simulation']],
-['sequences',['Étudier une suite','Explore a sequence'],['Observe les termes et fais varier les paramètres.','Observe terms and vary the parameters.'],['Explorer les termes','Explore the terms']],
-['space-lines',['Manipuler la géométrie dans l’espace','Explore spatial geometry'],['Fais tourner une figure et observe droites et plans.','Rotate a figure and inspect lines and planes.'],['Ouvrir la figure 3D','Open the 3D figure']]
-];
+const homeChapters=index=>{
+ const routes=new Set(index.map(x=>x.route));
+ return discoveryChapters.filter(c=>liveCourses.some(course=>course.id===c.course)&&routes.has('#chapter/'+c.id));
+};
 export function homePage({pair,t,link,index=[],last=''}) {
- index=liveDiscovery(index);
- const featured=['fourier','mandelbrot','platonic'].map(id=>index.find(x=>x.route==='#gallery/'+id)).filter(Boolean);
- const resume=index.find(x=>x.route==='#chapter/'+last);
- return `<main id="main" class="page entrance home-discovery" tabindex="-1">
- <section class="entrance-intro"><div><p class="home-greeting"><span lang="mg">Tonga soa</span><span>${pair("Bienvenue", "Welcome")}</span></p>
- <h1>${pair('Comprendre les maths','Understand maths')} <span class="home-highlight">${pair('en les explorant.','through exploration.')}</span></h1>
- <p>${pair('Des cours, des figures à manipuler et des exercices pour passer de l’intuition au raisonnement.','Lessons, hands-on figures and exercises to move from intuition to reasoning.')}</p>
- <form id="home-search" role="search"><label for="home-query">${pair('Que veux-tu comprendre ?','What would you like to understand?')}</label><div class="home-search-row"><input id="home-query" type="search" autocomplete="off" placeholder="${pair('Une idée : dérivée, hasard, géométrie…','An idea: derivative, chance, geometry…')}"><button class="btn btn-primary" type="submit">${pair('Rechercher','Search')}</button></div></form>
- <div class="entrance-actions"><a class="btn btn-primary" href="${link('resources')}">${pair('Trouver un cours','Find a lesson')}</a><a class="btn btn-secondary" href="${link('lab')}">${pair('Explorer les outils','Explore the tools')}</a></div>
- ${resume?`<a class="home-resume" href="${E(resume.route)}">${pair('Reprendre :','Continue:')} ${E(t(resume.title))}</a>`:''}
- </div>${slidesFigure({pair})}</section>
- <section id="home-search-panel" hidden aria-label="${pair('Résultats de recherche','Search results')}"><p id="home-search-count" role="status" aria-live="polite"></p><div id="home-results" class="home-results"></div></section>
- <section id="home-tools" class="entrance-section"><h2>${pair('Les outils pour comprendre','Tools for understanding')}</h2><p>${pair('Une question, une figure, à toi d’essayer.','A question, a figure, your turn to try.')}</p><div class="tool-grid">${TOOLS.filter(([id])=>index.some(x=>x.route==='#lab/'+id)).map(([id,title,description,action])=>`<a class="tool-card" href="#lab/${id}">${previewSVG(index.find(x=>x.route==='#lab/'+id),t)}<div><h3>${E(t(title))}</h3><p>${E(t(description))}</p><span class="task-link">${E(t(action))} →</span></div></a>`).join('')}</div><a class="text-link" href="#lab">${pair('Tous les outils','All tools')} →</a></section>
- <section class="entrance-section"><h2>${pair('Explorer une idée','Explore an idea')}</h2><div class="idea-grid">${featured.map(x=>`<a class="idea-card" href="${E(x.route)}">${previewSVG(x,t)}<h3>${E(t(x.title))}</h3><span class="task-link">${pair('Voir et manipuler','View and explore')} →</span></a>`).join('')}</div></section>
- <section class="home-reading"><h2>${pair('Les idées ont une histoire','Ideas have a history')}</h2><p>${pair('Relie les découvertes aux personnes et aux questions qui les ont fait naître.','Connect discoveries to the people and questions behind them.')}</p><a class="text-link" href="#history">${pair('Parcourir les chronologies','Browse the timelines')} →</a><a class="text-link" href="#stories">${pair('Lire une histoire mathématique','Read a mathematical story')} →</a></section>
- </main>`;
+ const resume=homeChapters(index).find(c=>c.id===last);
+ return `<main id="main" class="page entrance home-simple" tabindex="-1"><div class="opening"><p class="greeting"><span lang="mg">Tonga soa</span><span>${pair("Bienvenue","Welcome")}</span></p><h1><span>${pair("Comprendre les maths","Understand maths")}</span><br><span class="home-highlight">${pair("en les explorant.","through exploration.")}</span></h1><p class="opening-text">${pair("Choisis ta classe, puis ton chapitre. Le cours, les exercices et les figures sont réunis au même endroit.","Choose your class, then your chapter. Lessons, exercises and figures are brought together in one place.")}</p></div>
+<div class="home-layout"><section class="study-entry" aria-labelledby="start-heading"><h2 id="start-heading">${pair("Sur quoi travailles-tu ?","What are you working on?")}</h2><div class="finder"><div class="class-field"><label for="home-class">${pair("Ta classe","Your class")}</label><select id="home-class" data-resume-course="${E(resume?.course||'')}"><option value="">${pair("Choisir ma classe","Choose my class")}</option>${liveCourses.map(c=>`<option value="${E(c.id)}">${E(c.title[0])}</option>`).join('')}</select></div><div class="query-field"><label for="home-query">${pair("Ou cherche une notion","Or search for a topic")}</label><div class="search-wrap">${icon("magnifying-glass",20)}<input id="home-query" type="search" placeholder="${pair("Dérivée, vecteurs, probabilités…","Derivative, vectors, probability…")}" autocomplete="off" aria-controls="home-chapters" aria-describedby="home-result-status"></div></div></div>
+${resume?`<p class="home-resume" id="home-resume">${pair("Reprendre :","Continue:")} <a href="${link('chapter',resume.id)}">${E(resume.title[0])}</a></p>`:''}<div class="list-heading"><h3 id="home-list-title">${pair("Les chapitres","Chapters")}</h3><p id="home-result-status" role="status" aria-live="polite"></p></div><p class="choice-hint" id="home-choice-hint">${pair("Commence par choisir ta classe pour afficher les chapitres.","Choose your class to see its chapters.")}</p><ul id="home-chapters" class="chapter-list" aria-label="${pair("Chapitres","Chapters")}"></ul><div id="home-empty" hidden><p>${pair("Aucun chapitre ne correspond à cette recherche.","No chapters match this search.")}</p><button class="text-button" id="home-reset-search">${pair("Effacer la recherche","Clear the search")}</button></div></section>
+<aside class="quiet-figure" aria-labelledby="figure-heading"><p class="small-label">${pair("En attendant, une idée à manipuler","Meanwhile, an idea to explore")}</p><figure class="home-plate"><figcaption class="plate-top"><b id="figure-heading">${pair("Et si tu déplaçais le sommet ?","What if you moved the vertex?")}</b></figcaption><div class="figure-stage" id="home-figure-stage"><span class="figure-hint">${pair("Glisse un point pour transformer la parabole.","Drag a point to transform the parabola.")}</span></div><div class="figure-numbers" id="home-figure-numbers"></div></figure><p class="figure-description">${pair("Observe ce qui change, puis essaie de l’expliquer.","Observe what changes, then try to explain it.")}</p><a class="text-link quiet-link" href="${link("lab/quadratic")}"><span>${pair("Poursuivre dans le laboratoire","Continue in the laboratory")}</span> →</a><p class="figure-status sr-only" role="status" aria-live="polite"></p></aside></div>
+<section class="secondary-entry" aria-labelledby="beyond-heading"><div><h2 id="beyond-heading">${pair("Envie de découvrir autre chose ?","Want to discover something else?")}</h2><p>${pair("Des idées à manipuler, des problèmes à chercher et des histoires à lire.","Ideas to explore, problems to solve and stories to read.")}</p></div><nav aria-label="${pair("Découvertes","Discoveries")}"><a href="${link("topics")}"><span>${pair("Explorer les domaines","Explore topics")}</span> →</a><a href="${link("challenges")}"><span>${pair("Chercher un défi","Try a challenge")}</span> →</a><a href="${link("stories")}"><span>${pair("Lire une histoire","Read a story")}</span> →</a></nav></section>
+<details class="teacher-entry"><summary>${pair("Pour préparer une séance","Preparing a lesson")}</summary><p>${pair("Les outils de classe, regroupés ici.","Classroom tools, together in one place.")}</p><nav><a href="${link("automatismes")}">${pair("Automatismes","Starters")}</a><a href="${link("sheets")}">${pair("Fiches et évaluations","Worksheets and tests")}</a><a href="${link("slides")}">${pair("Diaporamas","Slides")}</a><a href="${link("bank/annales")}">${pair("Annales","Past papers")}</a></nav></details></main>`;
 }
+
+// Store only the chosen class on this device. Invalid or unavailable storage never blocks navigation.
+const HOME_CLASS='mx-home-course';
+const normalize=x=>x.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/œ/g,'oe');
 export function bindHome(root,index,t) {
- index=liveDiscovery(index);
- root.querySelectorAll('.tool-card svg path:not(.preview-axis), .idea-card svg path:not(.preview-axis)').forEach(path=>path.setAttribute('pathLength','1'));
- const form=root.querySelector('#home-search'),input=form.querySelector('input'),panel=root.querySelector('#home-search-panel'),results=root.querySelector('#home-results'),count=root.querySelector('#home-search-count');
+ const chapters=homeChapters(index),select=root.querySelector('#home-class'),input=root.querySelector('#home-query');
+ const results=root.querySelector('#home-chapters'),heading=root.querySelector('#home-list-title'),status=root.querySelector('#home-result-status');
+ const hint=root.querySelector('#home-choice-hint'),empty=root.querySelector('#home-empty'),reset=root.querySelector('#home-reset-search');
+ const storage=()=>root.ownerDocument.defaultView.localStorage;
+ let remembered='';try{remembered=storage().getItem(HOME_CLASS)||'';}catch{}
+ let course=liveCourses.some(c=>c.id===remembered)?remembered:select.dataset.resumeCourse||'';
+ if(!liveCourses.some(c=>c.id===course))course='';
+ select.value=course;
  const update=()=>{
- const query=input.value.trim();panel.hidden=!query;
- if(!query){results.replaceChildren();count.textContent='';return;}
- const aliases={hasard:'probabil',chance:'probabil',parabole:'quadratic',parabola:'quadratic',trinome:'quadratic',quadratics:'quadratic',derivee:'deriv',integrale:'integral'};
- const key=query.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
- const found=filterDiscovery(index,{query:aliases[key]||query});
- count.textContent=t([`${found.length} résultats`,`${found.length} results`]);
- results.innerHTML=found.length?found.map(x=>`<a class="home-result" href="${E(x.route)}"><strong>${E(t(x.title))}</strong><span>${E(t(FORMAT_LABELS[x.format]))} · ${E(t(x.level))} · ${languageLabel(x)}</span></a>`).join(''):`<p>${t(['Aucun résultat. Essaie un autre mot ou parcours les domaines.','No results. Try another word or browse the topics.'])} <a class="text-link" href="#topics">${t(['Voir les domaines','Browse topics'])}</a></p>`;
+  const raw=normalize(input.value.trim()),aliases={hasard:'probabil',chance:'probabil',parabole:'second degre',trinome:'second degre',quadratics:'second degre',derivee:'deriv',integrale:'integral'};
+  const words=(aliases[raw]||raw).split(/\s+/).filter(Boolean),active=Boolean(course||raw);
+  const found=chapters.filter(c=>(!course||c.course===course)&&words.every(w=>normalize(c.title.join(' ')+' '+c.topic).includes(w)))
+   .sort((a,b)=>liveCourses.findIndex(c=>c.id===a.course)-liveCourses.findIndex(c=>c.id===b.course)||a.number-b.number);
+  const selected=liveCourses.find(c=>c.id===course);
+  heading.textContent=selected?selected.title[0]:t(['Les chapitres','Chapters']);
+  status.textContent=active?`${found.length} ${t(found.length===1?['chapitre','chapter']:['chapitres','chapters'])}`:'';
+  hint.hidden=active;empty.hidden=!active||found.length>0;
+  results.innerHTML=active?found.map(c=>`<li><a class="home-result" href="#chapter/${E(c.id)}"><span class="chapter-number">${String(c.number).padStart(2,'0')}</span><span class="chapter-name">${E(c.title[0])}${!course?`<small>${E(liveCourses.find(x=>x.id===c.course).title[0])}</small>`:''}</span><span class="arrow" aria-hidden="true">→</span></a></li>`).join(''):'';
+  const resume=root.querySelector('#home-resume');if(resume)resume.hidden=Boolean(course&&course!==select.dataset.resumeCourse);
  };
- const submit=e=>{e.preventDefault();update();panel.scrollIntoView({block:'nearest'});};
- form.addEventListener('submit',submit);input.addEventListener('input',update);
- return ()=>{form.removeEventListener('submit',submit);input.removeEventListener('input',update);};
+ const choose=()=>{course=select.value;try{storage().setItem(HOME_CLASS,course);}catch{}input.value='';update();};
+ const clear=()=>{input.value='';update();input.focus();};
+ select.addEventListener('change',choose);input.addEventListener('input',update);reset.addEventListener('click',clear);update();
+ return ()=>{select.removeEventListener('change',choose);input.removeEventListener('input',update);reset.removeEventListener('click',clear);};
 }
+// One fixed, directly manipulable scene. No slideshow or competing figure selectors.
+export function mountHomeFigure(root,{lang='fr',reduced=false}={}) {
+ const stage=root.querySelector('#home-figure-stage');if(!stage)return {destroy(){},retheme(){}};
+ const update=readouts(root.querySelector('#home-figure-numbers'));
+ return FigureEngine(stage,makeParabola(lang==='en'?1:0),{
+  reduced,
+  label:lang==='en'?'Interactive parabola. H selects a point, arrows move it, plus and minus zoom, zero recentres.':'Parabole interactive. H sélectionne un point, les flèches le déplacent, plus et moins zooment, zéro recentre.',
+  say:m=>root.querySelector('.figure-status').textContent=m,onScene:update,onFrame:update,
+ });
+}
+
 const card = (l, href, t, pair, link) => { const name = E(t(l.short || l.title)); return `<a class="wonder" href="${link(href,l.id)}"><canvas data-art="${l.id}" role="img" aria-label="${name}"></canvas><span class="wonder-body"><strong>${name}</strong><span>${E(t(l.intro))}</span><span class="wonder-go">${pair("Explorer","Explore")} →</span></span></a>`; };
 export function galleryPage({ pair, t, link, labs }) {
   const items = labs.filter((l) => l.custom);

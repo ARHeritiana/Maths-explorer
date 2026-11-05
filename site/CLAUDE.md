@@ -33,7 +33,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `styles/timeline-standalone.css` | standalone mathematicians timeline: shared site chrome, Jour/Nuit tokens, readable portrait lanes and mobile scrolling |
 | `styles/topics.css` | the topics browser (`#topics`): field menu with figures, landing tiles and the "where to start" selection (issue #22); cards stay in `pages.css` |
 | `styles/exhibit.css` | the gallery exhibit layout (stage first with chips, tools, hint and zoom over the canvas, readout and legend, tabbed side panel), first used by the mirrored rooms; entries with `layout: 'exhibit'` get the full workbench width |
-| `styles/home.css` | scoped opening layout (the Fourier hero preview is no longer on the home page); search and discovery entrances retained |
+| `styles/home.css` | compact class-to-chapter homepage, one quiet interactive figure and grouped secondary entrances |
 
 ## Content data
 
@@ -69,8 +69,8 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/object-kit.js` | canvas sizing, `palette()` from CSS tokens, sliders, loop |
 | `js/mandelbrot-preview.js` | fixed screen-resolution, antialiased GPU card preview; blended repeating zoom, reduced-motion and CPU still fallback |
 | `js/home-art.js` | live drawings of the home page and the gallery cards |
-| `js/welcome.js` | home page and gallery index (the "Curiosités" tab of "Lire") |
-| `js/home-slides.js` | the animated plate of the home page: five live figures one after the other, tabs with a progress rule, pause, reduced motion (design v6) |
+| `js/welcome.js` | class-to-chapter homepage, remembered class, chapter search, fixed interactive figure, and gallery index (the "Curiosités" tab of "Lire") |
+| `js/home-slides.js` | retained five-scene slideshow component; the home now mounts one fixed figure through welcome.js |
 | `js/figure-engine.js` | canvas engine of those figures: free handles, spring easing, pan, Ctrl-wheel and pinch zoom, soft magnet, keyboard; `readouts` |
 | `js/figure-scenes.js` | the five scenes (parabola, unit circle, secant to tangent, left Riemann sum, logistic cobweb), pure and tested; `SLIDES` texts in both languages |
 

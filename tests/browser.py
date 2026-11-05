@@ -80,17 +80,18 @@ with sync_playwright() as p:
     assert page.goto(BASE, wait_until='domcontentloaded').status == 200
     check_home_chapter(page, BASE, 'test-results')
     page.goto(BASE)
-    # The home is neutral and offers useful direct course and experiment entrances.
+    # Class then chapter: one direct destination, with quieter secondary entrances.
     page.wait_for_selector('#home-query')
-    home = page.locator('.entrance').inner_text()
-    assert 'Tonga soa' in home and not any(w in home for w in ['Seconde', 'Première', 'Terminale', 'lycée', 'Bac'])
-    assert page.locator('.entrance-actions a[href="#resources"]').count() == 1
-    assert page.locator('.tool-card').count() == 6
-    page.locator('.entrance-actions a[href="#lab"]').click()
-    page.wait_for_url('**/#lab')
-    assert page.locator('.lab2-card-link').count() == 42   # every experiment of site/js/lab/registry.js (37 before the Monte Carlo and Ferris wheel experiments)
+    assert 'Tonga soa' in page.locator('.entrance').inner_text()
+    assert page.locator('#home-class option').count() == 6
+    assert page.locator('.tool-card, .idea-card, .figure-tab').count() == 0
+    page.locator('#home-class').select_option('premiere')
+    action = page.locator('.home-result[href="#chapter/premiere-02"]')
+    action.click()
+    page.wait_for_url('**/#chapter/premiere-02')
     page.goto(BASE)
     page.locator('#home-query').wait_for()
+    page.locator('#home-class').select_option('')
     page.locator('#home-query').fill('derivee')
     assert page.locator('.home-result').count() > 0
     page.locator('#home-query').fill('zzzz-no-result')

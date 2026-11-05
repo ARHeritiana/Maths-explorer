@@ -78,3 +78,13 @@ Every challenge has an activity placed between the statement and the answer box.
 - Contrast: body 7:1 or better, large text and controls 3:1 or better in both themes (checked by script).
 - Full keyboard path on every page; figure handles move with arrow keys.
 - Transfer size of the home page without PDFs stays small (no images, 5 font files).
+
+## Approved homepage ergonomics, 5 November 2026
+
+Keep the current visual design. The home directs students through one main task:
+choose a class, then open a chapter with its course, exercises and figures. Show
+compact chapter rows rather than large cards. Search is an alternative entrance,
+not a second catalogue. Remember the class on this device and reuse the existing
+last-chapter link. One fixed manipulable figure keeps experimentation visible
+without slideshow controls. Discovery links are secondary; teaching tools are
+grouped under one disclosure. Avoid duplicate destinations and scattered buttons.

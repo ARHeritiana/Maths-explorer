@@ -43,7 +43,7 @@ really need them.
 | the error correction collection ("Erreurs": false claims, counterexamples, repairs, flawed derivations) | `site/js/errors-data.js` (the records; add an error here), `site/js/errors-model.js` (computed checks, `errorsFor`), `site/js/errors.js` (page); `tests/errors.test.mjs` | goals 4 and 5 of `docs/IMPROVEMENT_GOALS.md`; links to chapters are `links` of each record and appear back on chapter pages, the slides index and in discovery; coverage: `content/data/error-coverage.json`, then `node scripts/error-coverage.mjs` |
 | an Olympiad strategy (idea, example, problems, hints, solutions, links) | `site/js/olympiad-content.js`; page `site/js/olympiad.js`; figures `site/js/olympiad-widgets.js`; `tests/olympiad.test.mjs` | bilingual (owner rule: Olympiad is its own category) |
 | one challenge | its folder `site/js/challenges/<id>/` (index in `site/js/challenges/CLAUDE.md`) | new challenge: recipe `challenge` |
-| the home page | `site/js/welcome.js`, live drawings `site/js/home-art.js` | |
+| the home page | `site/js/welcome.js`, `site/styles/home.css`; interactive scene `site/js/figure-scenes.js`, engine `site/js/figure-engine.js` | |
 | course catalogue entries, titles, chapters, language of a course | `content/data/manifest.json` | `make site` |
 | internal prerequisite/order/scope diagnostics | `docs/PREREQUISITES.md`, `content/data/prerequisites.json`, `scripts/prerequisite-model.mjs`, `scripts/check-prerequisites.mjs` | `npm run check:prerequisites` (advisory) |
 | a course PDF (text, exercise, figure) | the `.fr.tex` unit under `content/tex/courses/<course>/` (+ `.en.json` table) | `content/CLAUDE.md`, `make tex COURSE=<course>` |
@@ -92,7 +92,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | Route | Nav label | Page module |
 |---|---|---|
 | `#topics[/<topic>[/<subtopic>]]` | Explorer > Domaines | `discovery.js`, `discovery-index.js`, `topic-registry.js` (field figures, starters, difficulty bands), `styles/topics.css` |
-| `#home` (default) | logo | `welcome.js` `homePage`, drawings `home-art.js` |
+| `#home` (default) | logo | `welcome.js` `homePage` / `bindHome` / `mountHomeFigure`, class-to-chapter flow |
 | `#basics[/place-value|addition|subtraction|multiplication|division|sets|fractions]` | Apprendre > Bases | `app.js` `basicsPage` / `bindBasics`, `site/resources/basics/place-value.html, site/resources/basics/place-value.en.html`, `site/resources/basics/addition.html, site/resources/basics/addition.en.html` and `site/resources/basics/subtraction.html, site/resources/basics/subtraction.en.html`, `site/resources/basics/multiplication.html, site/resources/basics/multiplication.en.html` and `site/resources/basics/division.html, site/resources/basics/division.en.html` and `site/resources/basics/sets.html, site/resources/basics/sets.en.html` and `site/resources/basics/fractions.html, site/resources/basics/fractions.en.html` (discovery record `FOUNDATION_LESSONS` in `discovery.js`) |
 | `#resources[/<course>]` | Programme français > Cours | `resource-library.js` `libraryPage` / `bindLibrary` (rail of curricula and levels beside the chapter grid; classroom tools in the rail) |
 | `#chapter/<id>[/<tab>]` | (Cours) | `resource-library.js` `chapterPage` → `chapter-sequence.js` |
