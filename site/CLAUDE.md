@@ -13,12 +13,14 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `index.html` | page skeleton, theme bootstrap, generated import map (do not edit the map) |
 | `js/app.js` | router and page shell: `route()`, `link()`, `header()` (nav), `footer()`, `render()` (route validity and dispatch), `bindCommon()`; experiment pages mount `js/lab/` (`render()` dispatch, `mountExperiment`); the gallery page of one exhibit (`galleryDetail`, `bindGallery`), challenge and pathway pages |
 | `js/pathways-view.js` | `#pathways` page: curriculum rail, level tabs, topic filters and tile grid (`pathwayPage`, `bindPathways`); data stays in `js/content.js` `pathways` |
+| `js/navigation-state.js` | one validated, device-local class preference shared across home, courses, practice, slides and classroom generators |
+| `js/page-ergonomics.js` | native disclosures group classroom chapter choices, advanced settings and secondary exports without replacing controls |
 | `js/ui.js` | theme choice, full-screen presenting |
 | `js/icons.js` | Phosphor icon paths, `icon(name, size)` |
 | `js/motion.js` | interface motion (`installInterfaceMotion`, `celebrate`, `illuminateFeedback`) |
 | `js/device-capability.js` | what this device can afford: facts that forbid (data saver, battery, phone, no worker, no float GPU buffer), a short benchmark of the real work, memory; returns a tier (`basic` to `extreme`) with ceilings (rays, bounces, segments, trials per second); cached per session; the heavy exhibits offer choices up to the ceilings and nothing above |
 | `js/illumination-farm.js`, `js/illumination-worker.js` | mirrored rooms at scale: `traceChunk` (pure), a farm of Web Workers (or inline slices) that streams chunks of segments, with a segment cap and cancellation |
-| `js/entry-nav.js` | `withEntryNav`: the same list sidebar as the gallery (sticky column, chip strip on phones) around any page of a collection: challenges, biographies, stories, errors |
+| `js/entry-nav.js` | `withEntryNav`: compact previous/next navigation and a folded complete chooser for galleries, challenges, biographies, stories and errors |
 | `js/scroll-memory.js` | scrollable lists (gallery sidebar, timelines, strips) keep their scroll position across the rebuild of a page of the same kind, and the current entry is scrolled into view of its list |
 | `js/control-policy.js` | selectors with one choice become labels |
 | `js/resource-editions.js` | exact language edition selection, available language labels and complete pack checks |
@@ -33,6 +35,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `styles/timeline-standalone.css` | standalone mathematicians timeline: shared site chrome, Jour/Nuit tokens, readable portrait lanes and mobile scrolling |
 | `styles/topics.css` | the topics browser (`#topics`): field menu with figures, landing tiles and the "where to start" selection (issue #22); cards stay in `pages.css` |
 | `styles/exhibit.css` | the gallery exhibit layout (stage first with chips, tools, hint and zoom over the canvas, readout and legend, tabbed side panel), first used by the mirrored rooms; entries with `layout: 'exhibit'` get the full workbench width |
+| `styles/ergonomics.css` | compact catalogues, grouped secondary tools, collection navigation and responsive layouts, using the existing visual tokens |
 | `styles/home.css` | compact class-to-chapter homepage, one quiet interactive figure and grouped secondary entrances |
 
 ## Content data

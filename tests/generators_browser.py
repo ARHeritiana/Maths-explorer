@@ -43,6 +43,7 @@ with sync_playwright() as p:
 
     # ---- automatismes: answers list (questions and answers) for several series of every class
     page.goto(f'{BASE}/#automatismes'); page.wait_for_selector('#gen-form')
+    page.locator('.advanced-settings > summary').click()
     for cls in CLASSES:
         assert page.evaluate(SET_FIELD, ['cls', cls]), ('no class control', cls)
         page.evaluate(SET_FIELD, ['count', '20'])
@@ -64,6 +65,7 @@ with sync_playwright() as p:
 
     # ---- sheets: the three kinds, marking scheme on, every class, several series
     page.goto(f'{BASE}/#sheets'); page.wait_for_selector('#gen-form')
+    page.locator('.advanced-settings > summary').click()
     for cls in CLASSES:
         page.evaluate(SET_FIELD, ['cls', cls])
         for kind in ['sheet', 'interro', 'devoir']:

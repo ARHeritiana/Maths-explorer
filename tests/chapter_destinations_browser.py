@@ -42,7 +42,10 @@ with sync_playwright() as p:
     page.goto(f'{BASE}/#chapter/{CHAPTER}/cours/errors'); loaded(page)
     page.wait_for_function("document.querySelector('#chapter-errors-title').getBoundingClientRect().top < 300")
     page.goto(f'{BASE}/#slides/seconde')
-    page.wait_for_selector('#slides-list .deck-source[href$="/cours/errors"]')
+    source=page.locator('#slides-list .deck-source[href$="/cours/errors"]').first
+    source.wait_for(state='attached')
+    source.locator('xpath=ancestor::details[1]').locator('summary').click()
+    assert source.is_visible()
     page.goto(f'{BASE}/#errors/square-inequality'); page.wait_for_selector('.error-bench')
     assert 'x < y' in page.locator('#err-verdict').inner_text() or page.locator('#err-verdict').inner_text(), 'hypothesis message or verdict'
     page.goto(f'{BASE}/#chapter/{CHAPTER}/cours'); loaded(page)

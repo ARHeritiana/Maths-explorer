@@ -219,7 +219,7 @@ test('field menu figures, difficulty bands and the landing selection',async()=>{
   assert.ok(new Set(starters.map(x=>x.format)).size>=4);
   // Landing: fields first, then the selection, then the full list; a field page has no selection.
   const T=x=>x[1], landing=discoveryPage(index,'','',T), field=discoveryPage(index,'probability','',T);
-  assert.ok(landing.indexOf('topic-menu-landing')<landing.indexOf('topics-starters')&&landing.indexOf('topics-starters')<landing.indexOf('discovery-filters'));
+  assert.ok(landing.indexOf('topic-menu-landing')<landing.indexOf('discovery-filters')&&landing.indexOf('discovery-filters')<landing.indexOf('topics-starters'));
   assert.equal((landing.match(/class="topic-figure"/g)||[]).length,TOPICS.length);
   assert.ok(!field.includes('topics-starters')&&!field.includes('topic-menu-landing')&&field.includes('topic-figure'));
   for(const html of [landing,field]) assert.ok(html.includes('name="difficulty"'));

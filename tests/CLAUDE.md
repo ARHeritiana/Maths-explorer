@@ -8,6 +8,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 
 | Test | Covers |
 |---|---|
+| `navigation-ergonomics.test.mjs` | cross-page class persistence, blocked storage, generator controls retained under disclosures and complete collection navigation |
 | `home.test.mjs` | Class-to-chapter homepage, actual live destinations, remembered/resumed classes, blocked storage, accent and synonym searches, empty results, focus and curriculum language policy |
 | `challenge-backlog.test.mjs` | Knight graph/tour validation and bounded search; exhaustive Eulerian multigraph trails; BigInt factorial valuations and arbitrary-base zeros independently checked against direct factorials |
 | `math.test.mjs` | `math.js`, lab definitions in `content.js` |
@@ -59,7 +60,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `illumination-farm.test.mjs` | the ray farm: chunks equal the single-ray tracer, any worker count, the segment cap, cancellation, the 2000-bounce limit |
 | `device_scale_browser.py` | the "as far as the device allows" modes: the mirrored rooms offer 100,000 rays and 500 reflections only on a device measured as extreme (workers trace chunks, a float density map is drawn, the page keeps answering) and Monte Carlo offers a very fast speed and up to 10 million trials only where measured fast enough; a basic device is offered neither; also the 1,000,000-experiment series (probability), the finest solver tolerance (double pendulum) and the huge Galton drop, present only on a capable device (run by `run_browser.py`) |
 | `room_browser.py` | Playwright: the unilluminable room (`#gallery/mirrored-rooms`): four Penrose pockets of about 0.8 u² in the readout and chips, lamp moved with the arrow keys, a room drawn by clicks, closed, curved and undone, light reflection by reflection under reduced motion, the L-room challenge, 390 and 1440 px in both themes without overflow (run by `run_browser.py`) |
-| `ergonomics_browser.py` | Playwright: the gallery sidebar (and the other long sidebars) keep their scroll position when a neighbouring entry is opened, and the current entry is visible in its list, also on a direct arrival (run by `run_browser.py`) |
+| `ergonomics_browser.py` | Playwright: shared class context, complete collection choosers and previous/next links, optional settings, downloads, and responsive layouts with doubled text (run by `run_browser.py`) |
 | `fourier-default.test.mjs` | the Fourier circles exhibit never opens on one circle (24 for Madagascar, at least 12 for the others) and never falls back to one by itself |
 | `generators_browser.py` | Playwright: `#automatismes` and `#sheets` for the five French classes, several series each and the three kinds of sheet: every formula typeset by MathJax without an error box or raw TeX, the projection stage steps and reveals, and gives the page back when full screen ends (Escape is kept by the browser); no overflow at 390 px (run by `run_browser.py`) |
 | `chapter_destinations_browser.py` | Playwright: the chapter page opens on Cours with four destination links (no numbered rail, no next-step bar), the six old stage names resolve to them, direct links to an idea (`cours/<n>`) and an exercise (`exercices/<n>`) scroll to it, practice cards link to the exact idea, documents in one tap, Back restores the destination, 320 px without overflow (run by `run_browser.py`) |
@@ -136,6 +137,8 @@ honest rounding, shared-slide control visibility, root-mode fallback, slider ran
 `prerequisites.test.mjs`: adversarial scope and order fixtures, transitive prerequisites, explicit inheritance, same-sequence unit order, question scaffolding, source staleness, lexical hint/solution detection, malformed declarations and advisory/strict CLI integration.
 
 `live-curriculum.test.mjs`: French-only live course and resource scope, preserved complete catalogues, hidden curriculum routes, restored general collections, search and reciprocal recommendations.
+`ergonomics_browser.py`: shared class context, preserved downloads, grouped optional settings, collection navigation and 352 responsive page/theme/text-size cases.
+
 `live_curriculum_browser.py`: live French home, stored hidden selections, all course selectors, searches, downloads, route redirects, chapter activities, phone layouts and both themes.
 
 The default browser runner checks French-only curriculum visibility alongside restored

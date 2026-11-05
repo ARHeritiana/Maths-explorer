@@ -1,3 +1,4 @@
+import {currentCourse,rememberCourse} from './navigation-state.js';
 // Online exercise bank (#bank[/<course>[/<chapter>]]): worked exercises to do on screen, chapter by chapter, with hints
 // and corrections revealed on demand, seeded problems whose numbers can be renewed, and a quick series of generated
 // questions. Data: js/exercises/bank.js (generators, authored exercises, seeded problems) and js/exercises/bank-mada.js
@@ -45,7 +46,7 @@ function quickSeries(chapter, seed, t) {
 }
 function rail(course, t) {
   const pick = (c) => `<li><a class="pw-pick" href="#bank/${c.id}" ${c.id === course ? 'aria-current="page" aria-pressed="true"' : 'aria-pressed="false"'}><span>${E(t(SHORT[c.id] || c.title))}</span><small>${chaptersOf(c.id).reduce((a, ch) => a + bankCount(ch.id), 0)}</small></a></li>`;
-  return `<nav class="pw-rail res-rail" aria-label="${t(P('Niveaux', 'Levels'))}"><div class="pw-family"><ul>${courses.filter((c) => c.curriculum === 'fr').map(pick).join('')}</ul></div><div class="pw-family"><p class="pw-family-name">${icon('presentation-chart', 18)}${t(P('Générer', 'Generate'))}</p><ul><li><a class="pw-pick res-go" href="#automatismes">${icon('lightbulb', 18)}<span>${t(P('Automatismes', 'Starters'))}</span></a></li><li><a class="pw-pick res-go" href="#sheets">${icon('pencil-simple-line', 18)}<span>${t(P('Fiches, interros, devoirs', 'Worksheets, quizzes, tests'))}</span></a></li></ul></div></nav>`;
+  return `<nav class="pw-rail res-rail" aria-label="${t(P('Niveaux', 'Levels'))}"><div class="pw-family"><ul>${courses.filter((c) => c.curriculum === 'fr').map(pick).join('')}</ul></div></nav>`;
 }
 function chapterIndex(course, t) {
   return `<div class="res-head"><h2>${E(t(primaryCourses.find((c) => c.id === course).title))}</h2><span class="pw-count">${t(P('Choisis un chapitre', 'Pick a chapter'))}</span></div><ol class="bank-chapters">${chaptersOf(course).map((c) => { const n = bankCount(c.id), g = generatorsOf(c.id).length, a = annalsFor(c.id).length; return `<li><a href="#bank/${course}/${c.id}"><span class="bank-ch-no">${String(c.number).padStart(2, '0')}</span><span class="bank-ch-title">${E(t(c.title))}</span><span class="bank-ch-meta">${n} ${t(n > 1 ? P('exercices corrigés', 'worked exercises') : P('exercice corrigé', 'worked exercise'))}${g ? ` · ${t(P('entraînement express', 'quick practice'))}` : ''}${a ? `<br>${a} ${t(P('exercices d’annales', 'past-paper exercises'))}` : ''}</span></a></li>`; }).join('')}</ol>`;
@@ -55,7 +56,7 @@ function chapterView(course, chapter, seed, t) {
   const prev = chapters[i - 1], next = chapters[i + 1];
   return `<nav class="discovery-breadcrumb" aria-label="${t(P('Fil d’Ariane', 'Breadcrumb'))}"><a href="#bank">${t(P('Banque d’exercices', 'Exercise bank'))}</a> / <a href="#bank/${course}">${E(t(SHORT[course]))}</a></nav>
   <div class="res-head"><h2>${t(P('Chapitre', 'Chapter'))} ${c.number} · ${E(t(c.title))}</h2><nav class="res-quick"><a href="#chapter/${chapter}">${icon('books', 16)}${t(P('Le cours', 'The lesson'))}</a><a href="#slides/${course}">${icon('presentation-chart', 16)}${t(P('Diaporama', 'Slides'))}</a></nav></div>
-  <div class="bank-tools" role="toolbar" aria-label="${t(P('Affichage', 'Display'))}"><div class="bank-filter" role="group" aria-label="${t(P('Niveau', 'Level'))}">${[0, 1, 2, 3].map((l) => `<button type="button" class="filter" data-level-filter="${l}" aria-pressed="${l === 0}">${l ? t(LEVEL[l]) : t(P('Tous les niveaux', 'All levels'))}</button>`).join('')}</div><button type="button" class="filter" data-open-all>${t(P('Déplier toutes les corrections', 'Show every solution'))}</button><button type="button" class="filter" data-print="student">${t(P('Imprimer l’énoncé', 'Print the questions'))}</button><button type="button" class="filter" data-print="teacher">${t(P('Imprimer avec corrections', 'Print with solutions'))}</button></div>
+  <div class="bank-tools" role="toolbar" aria-label="${t(P('Affichage', 'Display'))}"><div class="bank-filter" role="group" aria-label="${t(P('Niveau', 'Level'))}">${[0, 1, 2, 3].map((l) => `<button type="button" class="filter" data-level-filter="${l}" aria-pressed="${l === 0}">${l ? t(LEVEL[l]) : t(P('Tous les niveaux', 'All levels'))}</button>`).join('')}</div><details class="secondary-tools bank-print-options"><summary>${t(P('Imprimer / afficher les corrections','Print / show solutions'))}</summary><div class="secondary-tools-body"><button type="button" class="filter" data-open-all>${t(P('Déplier toutes les corrections', 'Show every solution'))}</button><button type="button" class="filter" data-print="student">${t(P('Imprimer l’énoncé', 'Print the questions'))}</button><button type="button" class="filter" data-print="teacher">${t(P('Imprimer avec corrections', 'Print with solutions'))}</button></div></details></div>
   <section aria-labelledby="bank-ex-title"><h2 id="bank-ex-title" class="sr-only">${t(P('Exercices corrigés', 'Worked exercises'))}</h2>${list.length ? `<div class="bank-list">${list.map((e, k) => exerciseCard(e, k + 1, seed, t)).join('')}</div>` : `<p class="pw-empty">${t(P('Les exercices corrigés de ce chapitre sont en préparation. L’entraînement express ci-dessous est déjà disponible.', 'The worked exercises of this chapter are being written. The quick practice below is already available.'))}</p>`}</section>
   ${annalsFor(chapter).length ? `<details class="bank-annals"><summary>${t(P('Annales de ce chapitre', 'Past papers for this chapter'))} (${annalsFor(chapter).length})</summary>${annalsMarkup(annalsFor(chapter), {books:false})}</details>` : ""}<div id="bank-quick">${quickSeries(chapter, seed, t)}</div>
   <nav class="bank-pager">${prev ? `<a href="#bank/${course}/${prev.id}">${icon('caret-left', 16)} ${E(t(prev.title))}</a>` : '<span></span>'}${next ? `<a href="#bank/${course}/${next.id}">${E(t(next.title))} ${icon('caret-right', 16)}</a>` : ''}</nav>`;
@@ -67,7 +68,7 @@ function bankNav(t, annals) {
 
 export function bankPage(t, course, chapter) {
   if(course==='annales')return `<main id="main" tabindex="-1" class="page bank-page"><a class="backlink" href="#bank">Banque d’exercices</a><h1>Annales d’examens</h1>${bankNav(t,true)}${annalsMarkup(ANNALS,{detail:chapter||''})}</main>`;
-  let saved = ''; try { saved = sessionStorage.getItem('mx-course') || ''; } catch { /* storage blocked */ }
+  let saved = ''; try { saved = currentCourse(); } catch { /* storage blocked */ }
   const id = course || (courses.some((c) => c.id === saved) ? saved : courses[0].id);
   return `<main id="main" tabindex="-1" class="page bank-page"><div class="res-top"><div><h1>${t(P('Banque d’exercices', 'Exercise bank'))}</h1><p class="page-intro">${t(P('Choisis ta classe et ton chapitre. Cherche, demande un indice, puis ouvre la correction. Pour préparer un examen, retrouve les sujets dans les annales.', 'Choose your class and chapter. Try, ask for a hint, then open the solution. To prepare for an exam, browse the past papers.'))}</p></div></div>
   ${bankNav(t,false)}<div class="pw-layout res-layout">${rail(id, t)}<section class="pw-panel" id="bank-panel">${chapter ? chapterView(id, chapter, 'bank', t) : chapterIndex(id, t)}</section></div></main>`;
@@ -77,7 +78,7 @@ export function bindBank(root, t, course, chapter) {
   const stopAnnals=bindAnnals(root,chapter&&course!=='annales'?annalsFor(chapter):ANNALS);
   if(course==='annales')return stopAnnals;
   const panel = root.querySelector('#bank-panel');
-  if (course) try { sessionStorage.setItem('mx-course', course); } catch { /* storage blocked */ }
+  if (course) try { rememberCourse(course); } catch { /* storage blocked */ }
   typeset(panel);
   if (!chapter) return stopAnnals;
   let quick = 1;

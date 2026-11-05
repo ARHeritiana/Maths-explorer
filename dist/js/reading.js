@@ -39,10 +39,10 @@ export function readAlso(hash, own, t) {
   const seen = new Set([hash]), items = [];
   for (const h of [...(own || []), ...relatedTo(hash)]) { const d = !seen.has(h) && describe(h); seen.add(h); if (d) items.push([h, d]); }
   if (!items.length) return "";
-  return `<section class="read-also" aria-labelledby="read-also-title"><h2 id="read-also-title">${t(["À lire, à essayer", "Read and try next"])}</h2><ul>${items.map(([h, d]) => `<li><a href="${h}"><span class="read-kind">${t(d.kind)}</span><span>${esc(t(d.title))}</span></a></li>`).join("")}</ul></section>`;
+  return `<details class="read-also secondary-tools" aria-labelledby="read-also-title"><summary id="read-also-title">${t(["À lire, à essayer", "Read and try next"])}</summary><ul>${items.map(([h, d]) => `<li><a href="${h}"><span class="read-kind">${t(d.kind)}</span><span>${esc(t(d.title))}</span></a></li>`).join("")}</ul></details>`;
 }
 
-const sourcesList = (list, t) => `<section class="read-sources"><h2>${t(["Sources", "Sources"])}</h2><ul>${list.map(([url, label]) => `<li><a href="${url}" target="_blank" rel="noopener noreferrer">${esc(t(label))} <span class="sr-only">${t(["(nouvel onglet)", "(new tab)"])}</span></a></li>`).join("")}</ul></section>`;
+const sourcesList = (list, t) => `<details class="read-sources secondary-tools"><summary>${t(["Sources et références", "Sources and references"])}</summary><ul>${list.map(([url, label]) => `<li><a href="${url}" target="_blank" rel="noopener noreferrer">${esc(t(label))} <span class="sr-only">${t(["(nouvel onglet)", "(new tab)"])}</span></a></li>`).join("")}</ul></details>`;
 const body = (sections, t) => sections.map(([h, ps]) => `<section><h2>${t(h)}</h2>${ps.map((p) => `<p>${esc(t(p))}</p>`).join("")}</section>`).join("");
 const plate = (name) => `<span class="read-plate" aria-hidden="true">${esc(initials(name))}</span>`;
 

@@ -1,3 +1,4 @@
+import {currentCourse,rememberCourse} from './navigation-state.js';
 import { liveCourses as courses } from './live-curriculum.js';
 import { assetHref, fetchJSON } from './data-loader.js';
 import { icon } from './icons.js';
@@ -11,7 +12,7 @@ const slideCourses = () => courses.filter(c => c.curriculum === 'fr' || c.curric
 const chosen = () => {
   const id = location.hash.split('/')[1];
   if (slideCourses().some(c => c.id === id)) return id;
-  try { const saved = sessionStorage.getItem('mx-course'); if (slideCourses().some(c => c.id === saved)) return saved; } catch { /* storage blocked */ }
+  try { const saved = currentCourse(); if (slideCourses().some(c => c.id === saved)) return saved; } catch { /* storage blocked */ }
   return slideCourses()[0].id;
 };
 
@@ -20,7 +21,7 @@ export function slidesPage(t) {
   const pick = c => `<li><button type="button" class="pw-pick" data-course="${E(c.id)}" aria-pressed="false"><span>${E((SHORT[c.id] || c.title)[L])}</span><small data-deck-count="${E(c.id)}"></small></button></li>`;
   const families = `<div class="pw-family"><ul>${slideCourses().map(pick).join('')}</ul></div>`;
   return `<main id="main" tabindex="-1" class="page slides-page"><div class="res-top"><div><h1>${P('Diaporamas pour la classe', 'Classroom slides')[L]}</h1>
-  <p class="page-intro">${P('Un diaporama par chapitre : notions, exemples, erreurs fréquentes, activités et canevas interactifs à manipuler en direct. Flèches pour avancer, R pour la réponse, G pour le plan, F pour le plein écran.', 'One deck per chapter: notions, worked examples, common mistakes, activities and interactive canvases to manipulate live. Arrow keys to move, R for the answer, G for the outline, F for full screen.')[L]}</p></div>
+  <p class="page-intro">${P('Choisis ta classe, puis ouvre un diaporama. Les téléchargements sont disponibles à côté du lien d’ouverture.', 'Choose your class, then open a deck. Downloads stay beside the opening link.')[L]}</p></div>
   <div class="slide-type-toggle" role="group" aria-label="${P('Usage du diaporama', 'Slide purpose')[L]}"><button type="button" data-slide-type="explore" aria-pressed="true"><strong>${P('Explorer · HTML', 'Explore · HTML')[L]}</strong><span>${P('Manipuler, essayer, conjecturer', 'Manipulate, test, conjecture')[L]}</span></button><button type="button" data-slide-type="lecture" aria-pressed="false"><strong>${P('Présenter · PDF', 'Lecture · PDF')[L]}</strong><span>${P('Cours, démonstrations et exemples', 'Definitions, proofs and examples')[L]}</span></button></div></div>
   <div class="pw-layout res-layout"><nav class="pw-rail res-rail" aria-label="${P('Classes', 'Classes')[L]}">${families}</nav>
   <section class="pw-panel" id="slides-list" aria-live="polite"><p>${P('Chargement…', 'Loading…')[L]}</p></section></div></main>`;
@@ -55,16 +56,16 @@ export async function bindSlides(t) {
           main = `<span class="deck-title">${E(title)}</span>`; actions = `<span class="deck-meta">${P('Édition HTML indisponible dans cette langue', 'HTML edition unavailable in this language')[L]}</span>`;
         } else {
           main = `<a class="deck-title" href="${E(assetHref('./slides/player.html'))}&amp;deck=${E(d.id)}&amp;lang=${E(lang)}">${E(title)}</a>`;
-          actions = `<a class="deck-play" href="${E(assetHref('./slides/player.html'))}&amp;deck=${E(d.id)}&amp;lang=${E(lang)}">${icon('presentation-chart', 16)}${P('Présenter', 'Present')[L]}</a><a href="${E(assetHref('./slides/export/' + d.id + '.html'))}" download="${E(d.id)}.html" aria-label="${P('Télécharger en HTML : ', 'Download as HTML: ')[L]}${E(title)}">${icon('download-simple', 16)}HTML</a>${errors ? `<a class="deck-source" href="#chapter/${E(d.id)}/cours/errors">${P('Erreurs fréquentes', 'Common errors')[L]} (${errors})</a>` : ''}`;
+          actions = `<a href="${E(assetHref('./slides/export/' + d.id + '.html'))}" download="${E(d.id)}.html">${icon('download-simple',16)}HTML</a>${errors?`<a class="deck-source" href="#chapter/${E(d.id)}/cours/errors">${P('Erreurs fréquentes','Common errors')[L]} (${errors})</a>`:''}`;
         }
-        return `<li class="deck-card"><span class="deck-no">${String(d.number).padStart(2, '0')}</span>${main}<div class="deck-actions">${actions}</div></li>`;
+        return `<li class="deck-card"><span class="deck-no">${String(d.number).padStart(2, '0')}</span>${main}<details class="deck-downloads secondary-tools"><summary>${P('Télécharger / autres supports','Downloads / other resources')[L]}</summary><div class="deck-actions">${actions}</div></details></li>`;
       };
-      host.innerHTML = `<div class="res-head"><h2>${E(c.title[L])}</h2><span class="pw-count">${decks.length} ${P('diaporamas', 'decks')[L]}</span><nav class="res-quick"><a href="#resources">${icon('books', 16)}${P('Chapitres', 'Chapters')[L]}</a><a href="#bank/${E(course)}">${icon('seal-check', 16)}${P('Exercices corrigés', 'Worked exercises')[L]}</a></nav></div>${decks.length ? `<ol class="deck-grid">${decks.map(card).join('')}</ol>` : `<p class="pw-empty">${P('Pas encore de diaporama pour ce niveau.', 'No deck for this level yet.')[L]}</p>`}`;
+      host.innerHTML = `<div class="res-head"><h2>${E(c.title[L])}</h2><span class="pw-count">${decks.length} ${P('diaporamas', 'decks')[L]}</span></div>${decks.length ? `<ol class="deck-grid">${decks.map(card).join('')}</ol>` : `<p class="pw-empty">${P('Pas encore de diaporama pour ce niveau.', 'No deck for this level yet.')[L]}</p>`}`;
     };
     const root = document.querySelector('.slides-page');
     root.addEventListener('click', e => {
       const pick = e.target.closest('[data-course]');
-      if (pick) { course = pick.dataset.course; try { sessionStorage.setItem('mx-course', course); } catch { /* storage blocked */ } history.replaceState(null, '', '#slides/' + course); paint(); return; }
+      if (pick) { course = pick.dataset.course; try { rememberCourse(course); } catch { /* storage blocked */ } history.replaceState(null, '', '#slides/' + course); paint(); return; }
       const type = e.target.closest('[data-slide-type]');
       if (type) { mode = type.dataset.slideType; root.querySelectorAll('[data-slide-type]').forEach(b => b.setAttribute('aria-pressed', String(b === type))); paint(); }
     });

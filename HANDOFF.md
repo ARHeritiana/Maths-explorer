@@ -1,5 +1,17 @@
 # Handoff
 
+## Site-wide ergonomics (5 November 2026)
+
+The homepage approach now extends to catalogues, collections and classroom tools.
+Shared class memory lives in `navigation-state.js`; `page-ergonomics.js` groups
+optional generator settings without replacing controls. Compact course, practice
+and slide lists retain every resource. Downloads and sources are disclosed on
+demand; collections have previous/next and a folded complete chooser. Discovery
+starts with a domain or a search. The main navigation preserves class context.
+Mathematical models, activity controls and content are retained. Styles use the
+existing tokens in `styles/ergonomics.css`.
+The bilingual lesson goal remains on standby, unfinished.
+
 ## Approved homepage ergonomics (5 November 2026)
 
 The home keeps the existing design and now guides students from class to chapter.

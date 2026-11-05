@@ -1,3 +1,5 @@
+import {currentCourse,rememberCourse} from './navigation-state.js';
+import {organizePage} from './page-ergonomics.js';
 import {isLiveRoute, isLiveHash, liveDiscovery, livePathways} from './live-curriculum.js';
 import {galleryContext} from './gallery/gallery-context.js';
 import {installControlPolicy} from "./control-policy.js";
@@ -109,10 +111,10 @@ const brandMark = `<svg class="brandmark" viewBox="0 0 40 40" aria-hidden="true"
 // The main bar names the sections; a row of tabs under it names the pages of the current section.
 const SECTIONS = [
   ["learn", "Apprendre", "Learn", "books", [
-    ["basics", "Bases", "Foundations", "books"],
     ["resources", "Cours", "Lessons", "books"],
-    ["slides", "Diaporamas", "Slides", "presentation-chart"],
     ["bank", "Exercices", "Exercises", "seal-check"],
+    ["slides", "Diaporamas", "Slides", "presentation-chart"],
+    ["basics", "Bases", "Foundations", "books"],
     ["automatismes", "Automatismes", "Starters", "lightbulb"],
     ["sheets", "Fiches", "Worksheets", "pencil-simple-line"],
   ]],
@@ -124,9 +126,9 @@ const SECTIONS = [
     ["errors", "Erreurs", "Errors", "warning"],
   ]],
   ["read", "Lire", "Read", "book-open", [
-    ["history", "Chronologies", "Timelines", "scroll"],
-    ["biographies", "Biographies", "Biographies", "user"],
     ["stories", "Histoires", "Stories", "scroll"],
+    ["biographies", "Biographies", "Biographies", "user"],
+    ["history", "Chronologies", "Timelines", "scroll"],
     ["gallery", "Curiosités", "Curiosities", "sparkle"],
   ]],
 ];
@@ -137,10 +139,11 @@ function header(page) {
   const section = SECTIONS.find(([, , , , tabs]) => tabs.some(([id]) => id === tab));
   const dark = currentTheme() === "nuit";
   const themeLabel = dark ? pair("Passer au thème clair", "Switch to light theme") : pair("Passer au thème sombre", "Switch to dark theme");
+  const destination=id=>['resources','bank','slides'].includes(id)&&currentCourse()?link(id,currentCourse()):link(id);
   const sectionLinks = SECTIONS.map(([id, fr, en, ic, tabs]) =>
-    `<a href="#${tabs[0][0]}" data-section="${id}" ${section?.[0] === id ? 'aria-current="true"' : ""}>${icon(ic, 20)}<span>${pair(fr, en)}</span></a>`).join("");
-  const subnav = section ? `<nav class="subnav" aria-label="${pair(section[1], section[2])}"><div class="subnav-inner">${section[4].map(([id, fr, en, ic]) =>
-    `<a href="#${id}" ${tab === id ? 'aria-current="page"' : ""}>${icon(ic, 18)}<span>${pair(fr, en)}</span></a>`).join("")}</div></nav>` : "";
+    `<a href="${destination(tabs[0][0])}" data-section="${id}" ${['resources','bank','slides'].includes(tabs[0][0])?`data-course-page="${tabs[0][0]}"`:''} ${section?.[0] === id ? 'aria-current="true"' : ""}>${icon(ic, 20)}<span>${pair(fr, en)}</span></a>`).join("");
+  const subnav = section ? `<nav class="subnav" aria-label="${pair(section[1], section[2])}"><div class="subnav-inner">${section[4].filter(([id])=>!['automatismes','sheets'].includes(id)).map(([id, fr, en, ic]) =>
+    `<a href="${destination(id)}" ${['resources','bank','slides'].includes(id)?`data-course-page="${id}"`:''} ${tab === id ? 'aria-current="page"' : ""}>${icon(ic, 18)}<span>${pair(fr, en)}</span></a>`).join("")}${section[0]==='learn'?`<details class="section-tools secondary-tools" ${['automatismes','sheets'].includes(page)?'open':''}><summary>${pair('Pour enseigner','For teaching')}</summary><div><a href="#automatismes" ${page==='automatismes'?'aria-current="page"':''}>${pair('Automatismes','Starters')}</a><a href="#sheets" ${page==='sheets'?'aria-current="page"':''}>${pair('Fiches et évaluations','Worksheets and tests')}</a><a href="#pack">${pair('Dossier sur mesure','Custom pack')}</a><a href="#workshop/quadratic">${pair('Atelier du second degré','Quadratic workshop')}</a></div></details>`:''}</div></nav>` : "";
   return `<header class="topbar"><a class="brand" href="#home" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">${pair("Menu","Menu")}</button><nav id="primary-nav" class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${sectionLinks}</nav><div class="tools"><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" ${(["chapter","university","workshop"].includes(route().page)||(route().page==="library"&&route().id))?"hidden":""} role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>${subnav}`;
 }
 function footer() {
@@ -191,6 +194,9 @@ function render() {
     r.page === "university" || (r.page === "resources" && isLiveRoute(r)) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
+  if(['resources','slides','bank'].includes(page))rememberCourse(r.id);
+  if(page==='chapter')rememberCourse(resourceCatalog.chapters.find(c=>c.id===r.id)?.course);
+  document.body.dataset.page=page;
   $("#app").innerHTML =
     header(page) +
     (page === "basics" ? basicsPage(r.id) : page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "bank" ? bankPage(t, r.id, r.tab) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
@@ -263,12 +269,16 @@ function render() {
   if (page === 'history') stopChapter = bindHistory($('#main'),r.id,t,discovery);
   stopViews.push(observeSvgNavigation($("#main"), "svg.act-svg, #quadratic-graph svg",lang));
   if (page === "library") mountLibrary($("#main"), {lang,id:r.id});
+  stopViews.push(organizePage($("#main"),t));
   installPresenting();
   // the lists of the previous page of the same kind keep their scroll position (gallery sidebar, timelines, strips)
   restoreScrolls($("#app"), cameFrom === page ? keptScrolls : null);
   lastPage = page;
 }
 function bindCommon() {
+ const syncCourseLinks=()=>document.querySelectorAll('[data-course-page]').forEach(a=>{const c=currentCourse();a.href=link(a.dataset.coursePage,c);});
+ window.addEventListener('mx-course-change',syncCourseLinks);
+ stopViews.push(()=>window.removeEventListener('mx-course-change',syncCourseLinks));
  const navButton=$(".nav-toggle"), nav=$("#primary-nav");
  const closeMenu=()=>{navButton.setAttribute("aria-expanded","false");nav.classList.remove("is-open");};
  navButton.addEventListener("click",()=>{const open=navButton.getAttribute("aria-expanded")!=="true";navButton.setAttribute("aria-expanded",String(open));nav.classList.toggle("is-open",open);});
@@ -301,11 +311,12 @@ function galleryDetail(id) {
   const pool = labs.filter((x) => x.custom), lab = pool.find((x) => x.id === id) || pool[0];
   currentLab = lab.id;
   const s = state(lab);
-  return `<div class="lab-layout"><aside class="sidebar" aria-label="${pair("Galerie", "Gallery")}"><label class="mobile-lab-picker" for="lab-picker">${pair("Choisir une merveille", "Choose a wonder")}<select id="lab-picker">${pool.map(x => `<option value="${x.id}" ${x.id === lab.id ? "selected" : ""}>${t(x.short)}</option>`).join("")}</select></label><div class="side-title">${pair("La galerie", "The gallery")} <span>${String(pool.length).padStart(2, "0")}</span></div><div class="lab-links">${pool.map((x, i) => `${i === 0 || t(x.group) !== t(pool[i - 1].group) ? `<p class="group-label">${t(x.group)}</p>` : ""}<a href="${link("gallery", x.id)}" class="lab-link ${x.id === lab.id ? "selected" : ""}" ${x.id === lab.id ? 'aria-current="page"' : ""}><span class="lab-symbol" aria-hidden="true">${glyph(x.symbol)}</span><span>${t(x.short)}</span>${completed.has(x.id) ? '<span class="check" aria-label="' + pair("Question réussie", "Check completed") + '">✓</span>' : ""}</a>`).join("")}</div><div class="side-note"><span aria-hidden="true">✧</span><p>${pair("Une question est un bon point de départ.", "A question is a good place to start.")}</p></div></aside>
- <main id="main" class="lab-main" tabindex="-1"><div class="breadcrumb">${pair("La galerie", "The gallery")}<span>/</span>${t(lab.group)}</div><div class="lab-heading"><div><h1>${t(lab.title)}</h1><p>${t(lab.intro)}</p></div><span class="level">${t(lab.level)}</span></div>
+  const content = ` <main id="main" class="lab-main" tabindex="-1"><div class="breadcrumb">${pair("La galerie", "The gallery")}<span>/</span>${t(lab.group)}</div><div class="lab-heading"><div><h1>${t(lab.title)}</h1><p>${t(lab.intro)}</p></div><span class="level">${t(lab.level)}</span></div>
  <div class="workbench${lab.layout === "exhibit" ? " workbench-exhibit" : ""}"><section class="experiment" data-fs-target aria-label="${pair("Expérience interactive", "Interactive experiment")}"><div class="experiment-top"><span class="eyebrow">${pair("À toi d’expérimenter", "Your turn to experiment")}</span><span class="experiment-actions">${fullscreenButton(pair)}<button id="reset" class="text-button">${pair("Réinitialiser", "Reset")}</button></span></div>${relatedChapters(lab.id, t)}<div id="object-stage" class="object-stage" data-object="${lab.id}"></div></section>
  <aside class="learning"><div class="learning-label"><span aria-hidden="true">◷</span> ${pair("Temps d’apprentissage", "Learning time")} <span>${lab.duration} min</span></div><h2>${pair("De l’intuition à l’idée", "From intuition to insight")}</h2><p class="prereq"><strong>${pair("Avant de commencer", "Before you begin")}</strong><br>${t(lab.prereq)}</p><p class="muted">${pair("Les mesures affichées sont arrondies. Des essais suggèrent une conjecture ; un argument général établit une preuve.", "Displayed measurements are rounded. Examples suggest a conjecture; a general argument establishes a proof.")}</p><ol class="steps">${lab.steps.map((x) => `<li>${t(x)}</li>`).join("")}</ol>${lab.reasoning ? `<div class="reasoning"><details><summary>${pair("Comparer avec un argument", "Compare with an argument")}</summary><p><strong>${pair("Conjecture", "Conjecture")}</strong> ${t(lab.reasoning.conjecture)}</p><p><strong>${pair("Justification", "Justification")}</strong> ${t(lab.reasoning.proof)}</p><p>${t(lab.reasoning.transfer)}</p></details></div>` : ""}<div class="checkpoint"><span class="eyebrow">${pair("Le petit déclic", "Check your understanding")}</span>${Object.keys(lab.quizState || {}).length ? `<button id="quiz-preset" class="secondary">${pair("Régler l’expérience pour cette question", "Set the experiment for this question")}</button>` : ""}<form id="lab-quiz"><label for="quiz-answer">${t(lab.quiz)}</label><div class="answer-row"><input id="quiz-answer" name="answer" type="text" inputmode="text" autocomplete="off" placeholder="${pair("Ta réponse", "Your answer")}" required value="${esc(s.answer)}"><button class="primary" type="submit">${pair("Vérifier", "Check")}</button></div></form><p id="quiz-feedback" class="feedback ${s.result === true ? "success" : ""}" role="status">${s.result === true ? pair("Bien vu ! ", "That’s right! ") + t(lab.explain) : s.result === false ? pair("Pas encore. Reprends l’expérience et essaie à nouveau.", "Not yet. Revisit the experiment and try again.") : ""}</p><details><summary>${pair("Comprendre la réponse", "Understand the answer")}</summary><p>${t(lab.explain)}</p></details></div></aside></div>
- <section class="history"><div class="history-icon" aria-hidden="true">H</div><div class="history-title"><span class="eyebrow">${pair("Repère historique", "History box")}</span><h2>${t(lab.history)}</h2></div><div><p>${t(lab.story)}</p><a href="${lab.source}" target="_blank" rel="noopener noreferrer">${lab.sourceLabel ? t(lab.sourceLabel) : lab.source.includes("mathshistory.st-andrews.ac.uk") ? pair("En savoir plus · MacTutor (anglais)", "Read more · MacTutor") : pair("Source et explications", "Source and explanation")} <span class="sr-only">${pair("(nouvel onglet)", "(new tab)")}</span></a></div></section>${galleryContext(lab.id, pair)}${readAlso(link("gallery", lab.id), lab.links, t)}</main></div>`;
+ <section class="history"><div class="history-icon" aria-hidden="true">H</div><div class="history-title"><span class="eyebrow">${pair("Repère historique", "History box")}</span><h2>${t(lab.history)}</h2></div><div><p>${t(lab.story)}</p><a href="${lab.source}" target="_blank" rel="noopener noreferrer">${lab.sourceLabel ? t(lab.sourceLabel) : lab.source.includes("mathshistory.st-andrews.ac.uk") ? pair("En savoir plus · MacTutor (anglais)", "Read more · MacTutor") : pair("Source et explications", "Source and explanation")} <span class="sr-only">${pair("(nouvel onglet)", "(new tab)")}</span></a></div></section>${galleryContext(lab.id, pair)}${readAlso(link("gallery", lab.id), lab.links, t)}</main>`;
+  const groups=[...new Set(pool.map(x=>t(x.group)))].map(label=>({label:[label,label],items:pool.filter(x=>t(x.group)===label).map(x=>({id:x.id,href:link('gallery',x.id),title:x.short||x.title}))}));
+  return withEntryNav(content,{t,label:['Curiosités','Curiosities'],title:['La galerie','The gallery'],groups,current:lab.id});
 }
 // The vector symbol (combining arrow) is missing from the maths font: show a plain arrow.
 const glyph = (symbol) => (symbol.includes("\u20d7") ? "→" : symbol);
@@ -501,7 +512,7 @@ const basicsLessons = [
    frameTitle: ["Laboratoire interactif des fractions", "Interactive fractions lab"]},
 ];
 function basicsPage(id) {
-  if (!id) return '<main id="main" class="page" tabindex="-1"><div class="section-kicker">'+pair("Apprendre", "Learn")+'</div><h1>'+pair("Les bases des mathématiques", "Mathematical foundations")+'</h1><p class="page-intro">'+pair("Pour comprendre les idées de départ en manipulant, avant de mémoriser les règles.", "Explore starting ideas with your hands before memorising rules.")+'</p><div class="pathway-grid" style="margin-top:24px">'+basicsLessons.map(l=>'<article class="pathway-card"><div class="section-kicker">'+l.number+' · '+t(l.kind||["Nombres", "Numbers"])+'</div><h2><a href="#basics/'+l.id+'">'+t(l.title)+'</a></h2><p>'+t(l.description)+'</p><a class="btn btn-primary" href="#basics/'+l.id+'">'+pair("Explorer la leçon", "Open the lesson")+'</a></article>').join("")+'</div></main>';
+  if (!id) return `<main id="main" class="page foundations-page" tabindex="-1"><h1>${pair('Les bases des mathématiques','Mathematical foundations')}</h1><p class="page-intro">${pair('Choisis une idée à comprendre en manipulant.','Choose an idea to understand through exploration.')}</p><ol class="foundation-list">${basicsLessons.map(l=>`<li><a href="#basics/${l.id}"><span class="chapter-row-number">${l.number}</span><span><strong>${t(l.title)}</strong><small>${t(l.description)}</small></span><span class="chapter-row-arrow" aria-hidden="true">→</span></a></li>`).join('')}</ol></main>`;
   const lesson = basicsLessons.find(l=>l.id===id);
   if (!lesson) return "";
   const related = id === "fractions"

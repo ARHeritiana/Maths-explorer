@@ -1,70 +1,58 @@
-"""Browser checks of list ergonomics, for every collection of the site (gallery, challenges, biographies, stories, errors):
- - each open entry has the list of its collection beside it (a sticky column on wide screens, a strip of chips on phones);
- - the list keeps its scroll position when a neighbouring entry is opened and shows the current entry, also on a direct arrival;
- - this holds whatever the length of the collection: the desktop check uses a short window so that even a short list must scroll,
-   and a collection with no list, or a list that cannot be reached, fails (nothing is skipped silently).
-Run through tests/run_browser.py, or alone: MATHS_EXPLORER_URL=http://localhost:4173 python tests/ergonomics_browser.py"""
-import os
+"""Site-wide practical navigation, native disclosures and responsive page families."""
+import os,shutil
 from playwright.sync_api import sync_playwright
-
-BASE = os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173')
-COLLECTIONS = {'gallery': 'galton', 'challenges': None, 'biographies': None, 'stories': None, 'errors': None}
-LINKS = 'aside.sidebar a.lab-link'
-VISIBLE_Y = """el => { const b = el.getBoundingClientRect(), t = el.querySelector('[aria-current]'); if (!t) return null; const r = t.getBoundingClientRect(); return r.top >= b.top - 1 && r.bottom <= b.bottom + 1; }"""
-VISIBLE_X = """el => { const b = el.getBoundingClientRect(), t = el.querySelector('[aria-current]'); if (!t) return null; const r = t.getBoundingClientRect(); return r.left >= b.left - 1 && r.right <= b.right + 1; }"""
-
-def goto(page, route):
-    page.goto(f'{BASE}/#{route}'); page.wait_for_timeout(400)
-
-def first_entry(page, name):
-    """Open the index of a collection and return the href of its first entry (the entry pages carry the list)."""
-    goto(page, name); page.wait_for_selector('main a[href^="#%s/"]' % name)
-    return page.locator('main a[href^="#%s/"]' % name).first.get_attribute('href')
-
+BASE=os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173').rstrip('/')
+ROUTES=['home','resources/premiere','slides/premiere','bank/premiere','bank/seconde/seconde-01','chapter/premiere-02/cours','chapter/premiere-02/documents','topics','topics/analysis','lab','gallery','gallery/fourier','challenges','challenges/gauss-sum','biographies','stories','errors','errors/square-of-sum','olympiad','basics','automatismes','sheets']
 with sync_playwright() as p:
-    options = {'headless': True}
-    if os.environ.get('PLAYWRIGHT_CHROMIUM_PATH'): options['executable_path'] = os.environ['PLAYWRIGHT_CHROMIUM_PATH']
-    browser = p.chromium.launch(**options)
-    errors = []
-
-    def new_page(width, height):
-        page = browser.new_page(viewport={'width': width, 'height': height}); page.on('pageerror', lambda e: errors.append(str(e))); return page
-
-    for name in COLLECTIONS:
-        # ---- wide screen, short window: the sticky column scrolls by itself
-        page = new_page(1280, 420)
-        entry = first_entry(page, name); page.goto(f'{BASE}/{entry}'); page.wait_for_selector(LINKS)
-        count = page.locator(LINKS).count(); assert count >= 4, (name, 'the list of the collection is missing or too short', count)
-        side = page.locator('aside.sidebar')
-        assert side.evaluate('el => el.scrollHeight > el.clientHeight + 20'), (name, 'a list must scroll by itself in a short window')
-        side.evaluate('el => { el.scrollTop = el.scrollHeight; }'); before = side.evaluate('el => el.scrollTop'); assert before > 50, (name, before)
-        target = page.locator(LINKS).nth(count - 3); href = target.get_attribute('href')
-        target.scroll_into_view_if_needed(); before = side.evaluate('el => el.scrollTop')   # measured after the click's own scroll
-        target.click(); page.wait_for_function('h => location.hash === h', arg=href[href.index('#'):]); page.wait_for_timeout(500)
-        after = page.locator('aside.sidebar').evaluate('el => el.scrollTop')
-        assert after > before * 0.8, (name, 'the list jumped back to the top', before, after)
-        assert page.locator('aside.sidebar').evaluate(VISIBLE_Y), (name, 'the current entry is hidden in its list')
-        # direct arrival on the last entry
-        last = page.locator(LINKS).nth(count - 1).get_attribute('href'); page.goto(f'{BASE}/{last[last.index("#"):]}'); page.wait_for_selector('aside.sidebar [aria-current]'); page.wait_for_timeout(500)
-        assert page.locator('aside.sidebar').evaluate(VISIBLE_Y), (name, 'a direct arrival must show the current entry in the list')
-        page.close()
-
-        # ---- phone: the strip of chips scrolls sideways and keeps its position
-        page = new_page(390, 800)
-        entry = first_entry(page, name); page.goto(f'{BASE}/{entry}'); page.wait_for_selector(LINKS)
-        strip = page.locator('aside.sidebar .lab-links'); count = page.locator(LINKS).count()
-        assert strip.evaluate('el => getComputedStyle(el).overflowX') in ('auto', 'scroll'), (name, 'the list is a scrollable strip on phones')
-        assert strip.evaluate('el => el.scrollWidth > el.clientWidth + 20'), (name, 'a strip of', count, 'entries must scroll sideways at 390 px')
-        strip.evaluate('el => { el.scrollLeft = el.scrollWidth; }'); before = strip.evaluate('el => el.scrollLeft'); assert before > 50, (name, before)
-        target = page.locator(LINKS).nth(count - 3); href = target.get_attribute('href')
-        target.scroll_into_view_if_needed(); before = strip.evaluate('el => el.scrollLeft')
-        target.click(); page.wait_for_function('h => location.hash === h', arg=href[href.index('#'):]); page.wait_for_timeout(500)
-        after = page.locator('aside.sidebar .lab-links').evaluate('el => el.scrollLeft')
-        assert after > before * 0.8, (name, 'the strip jumped back to its first chip', before, after)
-        assert page.locator('aside.sidebar .lab-links').evaluate(VISIBLE_X), (name, 'the current chip is hidden in the strip')
-        last = page.locator(LINKS).nth(count - 1).get_attribute('href'); page.goto(f'{BASE}/{last[last.index("#"):]}'); page.wait_for_selector('aside.sidebar [aria-current]'); page.wait_for_timeout(500)
-        assert page.locator('aside.sidebar .lab-links').evaluate(VISIBLE_X), (name, 'a direct arrival must show the current chip')
-        page.close()
-    assert not errors, errors
-    browser.close()
-print('PASS: every collection keeps its list beside the open entry, with its scroll position, on wide screens and on phones')
+ browser=p.chromium.launch(headless=True,executable_path=os.environ.get('PLAYWRIGHT_CHROMIUM_PATH') or shutil.which('chromium'))
+ context=browser.new_context(locale='fr-FR',reduced_motion='reduce',viewport={'width':1440,'height':1000});page=context.new_page();errors=[]
+ page.on('pageerror',lambda e:errors.append(str(e)))
+ def go(route):
+  page.goto(BASE+'/#'+route);page.locator('main').wait_for();page.wait_for_timeout(120)
+ go('home');page.select_option('#home-class','stmg');assert page.locator('.mainnav [data-section="learn"]').get_attribute('href')=='#resources/stmg'
+ page.locator('.mainnav [data-section="learn"]').click();page.locator('.res-rail [data-course="premiere"]').click()
+ assert page.locator('.subnav [data-course-page="bank"]').get_attribute('href')=='#bank/premiere'
+ page.locator('.subnav [data-course-page="bank"]').click();page.wait_for_url('**/#bank/premiere')
+ page.locator('.subnav [data-course-page="slides"]').click();page.locator('.deck-card').first.wait_for()
+ page.locator('[data-course="expertes"]').click();assert page.locator('.subnav [data-course-page="resources"]').get_attribute('href')=='#resources/expertes'
+ go('chapter/premiere-02/cours');page.locator('#chapter-sequence[aria-busy="false"]').wait_for();go('sheets')
+ assert page.locator('[name="cls"]').input_value()=='premiere'
+ page.select_option('[name="cls"]','seconde');assert page.locator('.subnav [data-course-page="resources"]').get_attribute('href')=='#resources/seconde'
+ page.locator('.chapter-options > summary').click();page.locator('[name="chapter"]').first.check();assert page.locator('.chapter-options > summary').inner_text().startswith('Chapitres : 1')
+ page.locator('.advanced-settings > summary').click();page.fill('[name="seed"]','same-sheet');page.check('[name="two"]');assert page.locator('[data-subject="A"]').is_visible();assert page.locator('[data-subject="B"]').is_visible()
+ page.locator('.export-options > summary').click()
+ with page.expect_download() as download:page.locator('[data-act="tex-student"]').click()
+ assert download.value.suggested_filename.endswith('.tex')
+ go('gallery/fourier');assert page.locator('.entry-chooser').get_attribute('open') is None
+ page.locator('.entry-chooser > summary').click();assert page.locator('.entry-chooser .lab-link').count()>20
+ for collection in ['gallery','challenges','biographies','stories','errors']:
+  go(collection);entry=page.locator(f'main a[href^="#{collection}/"]').first.get_attribute('href');go(entry[1:])
+  chooser=page.locator('.entry-chooser');assert chooser.get_attribute('open') is None
+  chooser.locator('summary').click();items=chooser.locator('.lab-link');assert items.count()>=4
+  target=items.last.get_attribute('href');items.last.click();page.wait_for_function('(h)=>location.hash===h',arg=target)
+  page.locator('.entry-chooser > summary').wait_for();assert page.locator('.entry-chooser').get_attribute('open') is None
+  assert page.locator('.entry-chooser [aria-current="page"]').get_attribute('href')==target
+  assert page.locator('.entry-steps [rel="prev"]').count()==1
+ go('topics');assert not page.locator('#discovery-results').is_visible();page.fill('[name="query"]','dériv');assert page.locator('#discovery-results').is_visible();assert page.locator('.discovery-card').count()>0
+ go('lab');page.select_option('#lab-field','analysis');assert page.locator('.lab2-card-link:visible').count()<42
+ checked=0;overflows=[]
+ for route in ROUTES:
+  go(route)
+  if route.startswith('slides'):page.locator('.deck-card').first.wait_for()
+  if route.startswith('chapter/'):page.locator('#chapter-sequence[aria-busy="false"]').wait_for()
+  for width in [320,390,768,1440]:
+   page.set_viewport_size({'width':width,'height':900})
+   for theme in ['jour','nuit']:
+    page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme)
+    for size in ['100%','200%']:
+     page.evaluate('(s)=>document.documentElement.style.fontSize=s',size)
+     if page.evaluate('document.documentElement.scrollWidth>innerWidth+2'):overflows.append((route,width,theme,size))
+     checked+=1
+   page.evaluate("document.documentElement.style.fontSize='100%'")
+  if route in ['sheets','automatismes']:
+   page.set_viewport_size({'width':320,'height':900})
+   page.locator('.advanced-settings > summary').click();page.locator('.export-options > summary').click();page.locator('.chapter-options > summary').click()
+   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2'),(route,'expanded options')
+ assert not errors,errors
+ assert not overflows,overflows
+ browser.close();print(f'Ergonomics passed: shared class context, real downloads, collection chooser, filters and {checked} responsive page/theme combinations.')

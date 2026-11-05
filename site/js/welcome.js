@@ -1,5 +1,6 @@
 // The home guides students from a class to a chapter; the gallery retains its shared drawings.
 import {liveCourses} from './live-curriculum.js';
+import {rememberCourse} from './navigation-state.js';
 import {discoveryChapters} from './catalogue-data.js';
 import {icon} from './icons.js';
 import {FigureEngine,readouts} from './figure-engine.js';
@@ -43,7 +44,7 @@ export function bindHome(root,index,t) {
   results.innerHTML=active?found.map(c=>`<li><a class="home-result" href="#chapter/${E(c.id)}"><span class="chapter-number">${String(c.number).padStart(2,'0')}</span><span class="chapter-name">${E(c.title[0])}${!course?`<small>${E(liveCourses.find(x=>x.id===c.course).title[0])}</small>`:''}</span><span class="arrow" aria-hidden="true">→</span></a></li>`).join(''):'';
   const resume=root.querySelector('#home-resume');if(resume)resume.hidden=Boolean(course&&course!==select.dataset.resumeCourse);
  };
- const choose=()=>{course=select.value;try{storage().setItem(HOME_CLASS,course);}catch{}input.value='';update();};
+ const choose=()=>{course=select.value;rememberCourse(course,root.ownerDocument.defaultView);input.value='';update();};
  const clear=()=>{input.value='';update();input.focus();};
  select.addEventListener('change',choose);input.addEventListener('input',update);reset.addEventListener('click',clear);update();
  return ()=>{select.removeEventListener('change',choose);input.removeEventListener('input',update);reset.removeEventListener('click',clear);};
@@ -59,7 +60,7 @@ export function mountHomeFigure(root,{lang='fr',reduced=false}={}) {
  });
 }
 
-const card = (l, href, t, pair, link) => { const name = E(t(l.short || l.title)); return `<a class="wonder" href="${link(href,l.id)}"><canvas data-art="${l.id}" role="img" aria-label="${name}"></canvas><span class="wonder-body"><strong>${name}</strong><span>${E(t(l.intro))}</span><span class="wonder-go">${pair("Explorer","Explore")} →</span></span></a>`; };
+const card = (l, href, t, pair, link) => { const name = E(t(l.short || l.title)); return `<a class="wonder" href="${link(href,l.id)}"><canvas data-art="${l.id}" role="img" aria-label="${name}"></canvas><span class="wonder-body"><strong>${name}</strong><span>${E(t(l.intro))}</span></span></a>`; };
 export function galleryPage({ pair, t, link, labs }) {
   const items = labs.filter((l) => l.custom);
   return `<main id="main" class="page gallery-page" tabindex="-1">

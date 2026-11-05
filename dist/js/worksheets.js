@@ -15,7 +15,7 @@ export function sheetsPage(t) {
   const s = loadSettings(KEY, DEFAULTS);
   const kinds = [['sheet', P('Fiche d’exercices', 'Worksheet')], ['interro', P('Interrogation', 'Short quiz')], ['devoir', P('Devoir surveillé', 'Supervised test')]];
   return `<main id="main" tabindex="-1" class="page gen-page" data-gen="sheet"><h1>${t(P('Fiches, interros et devoirs', 'Worksheets, quizzes and tests'))}</h1>
-<p class="page-intro">${t(P('Compose un document prêt à imprimer à partir de la banque d’exercices : exercices rédigés avec correction complète et exercices à nombres tirés au sort. Tu obtiens une version élèves et une version professeur, avec un barème si tu le souhaites, et le code LaTeX du document.', 'Build a print-ready document from the exercise bank: written exercises with a full correction and exercises with randomised numbers. You get a student version and a teacher version, a marking scheme if you wish, and the LaTeX source.'))}</p>
+<p class="page-intro">${t(P('Choisis ta classe et le type de fiche. Vérifie l’aperçu, puis imprime ; les corrigés et les autres téléchargements sont regroupés à côté.', 'Choose your class and worksheet type. Check the preview, then print; solutions and other downloads are grouped alongside.'))}</p>
 <div class="gen-layout">
 <form class="gen-form" id="gen-form" aria-label="${t(P('Réglages du document', 'Document settings'))}" onsubmit="return false">
 <div class="gen-row">
@@ -31,7 +31,7 @@ export function sheetsPage(t) {
 <label class="gen-check"><input type="checkbox" name="bareme"${s.bareme ? ' checked' : ''}> ${t(P('Afficher un barème', 'Show a marking scheme'))}</label>
 <label class="gen-field gen-total"><span>${t(P('Total des points', 'Total points'))}</span><input type="number" name="total" min="1" max="100" value="${s.total}"></label>
 <label class="gen-check"><input type="checkbox" name="two"${s.two ? ' checked' : ''}> ${t(P('Deux sujets (A et B) pour limiter la copie', 'Two subjects (A and B) to limit copying'))}</label>
-<div class="gen-row"><label class="gen-field"><span>${t(P('Graine', 'Seed'))}</span><input type="text" name="seed" value="${esc(s.seed)}" maxlength="24" autocomplete="off" spellcheck="false"></label><button type="button" class="btn btn-secondary" id="gen-new">${t(P('Nouvelle variante', 'New variant'))}</button><button type="button" class="btn btn-secondary" id="gen-prev" aria-label="${t(P('Variante précédente', 'Previous variant'))}">←</button><button type="button" class="btn btn-secondary" id="gen-next" aria-label="${t(P('Variante suivante', 'Next variant'))}">→</button></div>
+<div class="gen-row"><label class="gen-field"><span>${t(P('Code de la variante', 'Variant code'))}</span><input type="text" name="seed" value="${esc(s.seed)}" maxlength="24" autocomplete="off" spellcheck="false"></label><button type="button" class="btn btn-secondary" id="gen-new">${t(P('Nouvelle variante', 'New variant'))}</button><button type="button" class="btn btn-secondary" id="gen-prev" aria-label="${t(P('Variante précédente', 'Previous variant'))}">←</button><button type="button" class="btn btn-secondary" id="gen-next" aria-label="${t(P('Variante suivante', 'Next variant'))}">→</button></div>
 <p class="muted">${t(P('La même graine redonne exactement le même document ; n’importe quel texte est une graine, donc le nombre de variantes est illimité.', 'The same seed gives exactly the same document; any text is a seed, so the number of variants is unlimited.'))}</p>
 </form>
 <section class="gen-output" aria-label="${t(P('Document généré', 'Generated document'))}">
@@ -79,7 +79,7 @@ export function bindSheets(root, t, { chapterTitle = (id) => id } = {}) {
     root.querySelector('[data-subject="B"]').hidden = !o.two;
     root.querySelector('.gen-total').hidden = !o.bareme;
     const d = docs.A;
-    $('#gen-summary').textContent = d.exercises.length ? `${d.exercises.length} ${t(P('exercices', 'exercises'))} · ${t(P('durée indicative', 'estimated time'))} ${d.minutes} min${o.bareme ? ` · ${t(P('barème sur', 'marked out of'))} ${d.total}` : ''} · ${t(P('graine', 'seed'))} ${o.seed}` : '';
+    $('#gen-summary').textContent = d.exercises.length ? `${d.exercises.length} ${t(P('exercices', 'exercises'))} · ${t(P('durée indicative', 'estimated time'))} ${d.minutes} min${o.bareme ? ` · ${t(P('barème sur', 'marked out of'))} ${d.total}` : ''}` : '';
     show();
   }
 

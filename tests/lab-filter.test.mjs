@@ -26,15 +26,15 @@ test('every experiment appears under All and under at least one field', () => {
 
 test('a field shows exactly its experiments, and All restores the rest', () => {
   const root = mount();
-  for (const btn of root.querySelectorAll('.domain-filter button[data-field]:not([data-field=""])')) {
-    btn.click();
-    const expected = EXPERIMENTS.filter((e) => fieldsOf(e).has(btn.dataset.field)).map((e) => e.id).sort();
-    const shown = visible(root).map((a) => a.getAttribute('href').split('/').pop()).sort();
-    assert.deepEqual(shown, expected, btn.dataset.field);
-    assert.equal(btn.getAttribute('aria-pressed'), 'true');
-    for (const g of root.querySelectorAll('.lab2-group')) assert.equal(g.hidden, ![...g.querySelectorAll('.lab2-card-link')].some((a) => !(a.closest('.lab2-sub') || a).hidden));
+  const select=root.querySelector('#lab-field');
+  for (const option of [...select.options].filter(o=>o.value)) {
+    select.value=option.value;select.dispatchEvent(new dom.window.Event('change'));
+    const expected=EXPERIMENTS.filter(e=>fieldsOf(e).has(option.value)).map(e=>e.id).sort();
+    const shown=visible(root).map(a=>a.getAttribute('href').split('/').pop()).sort();
+    assert.deepEqual(shown,expected,option.value);
+    for(const g of root.querySelectorAll('.lab2-group'))assert.equal(g.hidden,![...g.querySelectorAll('.lab2-card-link')].some(a=>!(a.closest('.lab2-sub')||a).hidden));
   }
-  root.querySelector('.domain-filter button[data-field=""]').click();
+  select.value='';select.dispatchEvent(new dom.window.Event('change'));
   assert.equal(visible(root).length, EXPERIMENTS.length);
   assert.equal(root.querySelector('#domain-count').textContent, '');
 });

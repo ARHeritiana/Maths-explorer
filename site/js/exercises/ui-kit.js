@@ -1,3 +1,4 @@
+import {currentCourse,rememberCourse} from '../navigation-state.js';
 // Shared pieces of the two generator pages (#automatismes, #sheets): form controls, settings kept on the device,
 // maths typesetting, file download and printing. Plain DOM, no framework.
 import { CLASSES, DOMAINS, LEVELS, chaptersOf, domainsOf } from './bank.js';
@@ -7,8 +8,8 @@ const P = (fr, en) => [fr, en];
 export { P };
 
 // ---- settings kept on this device (a convenience, never sent anywhere) ----
-export const loadSettings = (key, fallback) => { try { return { ...fallback, ...JSON.parse(localStorage.getItem(key) || '{}') }; } catch { return { ...fallback }; } };
-export const saveSettings = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* storage may be blocked */ } };
+export const loadSettings = (key, fallback) => { let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')||{};}catch{}const settings={...fallback,...saved};if('cls' in settings)settings.cls=currentCourse(settings.cls)||settings.cls;return settings; };
+export const saveSettings = (key, value) => { if(value.cls)rememberCourse(value.cls); try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* storage may be blocked */ } };
 
 // ---- maths ----
 let mathPromise = null;

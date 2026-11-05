@@ -88,3 +88,15 @@ not a second catalogue. Remember the class on this device and reuse the existing
 last-chapter link. One fixed manipulable figure keeps experimentation visible
 without slideshow controls. Discovery links are secondary; teaching tools are
 grouped under one disclosure. Avoid duplicate destinations and scattered buttons.
+
+## Site-wide ergonomics, 5 November 2026
+
+The approved homepage approach applies across the site: preserve the current
+visual identity, but make the useful next action obvious. Courses, practice and
+slides share the same device-local class preference. Chapter catalogues use
+compact rows. Opening a resource is primary; downloads, sources, print options
+and advanced settings are grouped in labelled native disclosures. Collections
+offer previous/next navigation and a folded complete chooser. Discovery starts
+with a field or a search rather than an unfiltered wall of cards. Classroom
+generators expose class, chapter choice and size first, while retaining every
+setting and export. Keep mathematical activities and their direct controls visible.

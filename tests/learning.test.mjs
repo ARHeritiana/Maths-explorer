@@ -27,7 +27,7 @@ test('all chapter sections render in both languages and resolve their experiment
  for(const c of resourceCatalog.chapters){const g=guides[c.topic];assert.ok(scenes[g.scene]);if(g.lab)assert.ok(labs.some(l=>l.id===g.lab));
  for(const lang of [0,1])for(const tab of ['cours','manipuler','exercices','documents','understand','experiment','practice','prepare','review']){const html=chapterPage(c.id,tab,p=>{assert.equal(p.length,2);assert.ok(p.every(x=>typeof x==='string'&&x));return p[lang]},labs);assert.ok(!/NaN|[="'>]undefined["<]|\.\/undefined/.test(html),c.id+' '+tab);assert.ok(html.includes(`chapter/${c.id}/documents`));if(tab==='documents')for(const f of c.files)assert.ok(html.includes('./'+assetHref((lang&&f.englishPath)||f.path)+'#page='));/* a French-only course (Malagasy curriculum) links its French edition */}
  }
- assert.equal(matchingChapters('all','arithmetique').length,1);assert.equal(matchingChapters('stmg','logarithme').length,1);assert.equal(matchingChapters('all','never_a_chapter').length,0);assert.equal(matchingSupplements('terminale','algorithms').length,1);assert.ok(libraryPage(t).includes('58'));
+ assert.equal(matchingChapters('all','arithmetique').length,1);assert.equal(matchingChapters('stmg','logarithme').length,1);assert.equal(matchingChapters('all','never_a_chapter').length,0);assert.equal(matchingSupplements('terminale','algorithms').length,1);assert.ok(libraryPage(t).includes('href="#chapter/seconde-01"'));
 });
 test('every visual model stays finite across its declared parameter domain and produces an accessible diagram',()=>{
  function finite(o){for(const x of Object.values(o))if(Array.isArray(x))x.forEach(v=>assert.ok(Number.isFinite(v)));else if(typeof x==='number')assert.ok(Number.isFinite(x));}

@@ -32,15 +32,15 @@ export function indexPage(ctx) {
 // Domain filter: topics are a way to look at the laboratory, not a separate place to go.
 function filter({ t, pair }) {
   const used = new Set(EXPERIMENTS.flatMap(fieldsOf));
-  const chips = TOPICS.filter((x) => used.has(x.id)).map((x) => `<button type="button" aria-pressed="false" data-field="${x.id}">${esc(t(x.title))}</button>`).join("");
-  return `<div class="domain-filter" role="group" aria-label="${pair("Filtrer par domaine", "Filter by field")}"><button type="button" aria-pressed="true" data-field="">${pair("Tous", "All")}</button>${chips}<a class="domain-all" href="#topics">${pair("Tous les domaines et ressources", "All fields and resources")}</a></div><p class="domain-count" id="domain-count" role="status"></p>`;
+  const options=TOPICS.filter(x=>used.has(x.id)).map(x=>`<option value="${x.id}">${esc(t(x.title))}</option>`).join('');
+  return `<div class="domain-filter"><label>${pair('Choisir un domaine','Choose a field')}<select id="lab-field"><option value="">${pair('Toutes les expériences','All experiments')}</option>${options}</select></label><a class="domain-all" href="#topics">${pair('Explorer les domaines','Browse fields')} →</a></div><p class="domain-count" id="domain-count" role="status"></p>`;
 }
 
 export function bindLabIndex(root, pair) {
   const bar = root.querySelector(".domain-filter"), status = root.querySelector("#domain-count");
   if (!bar) return;
   const apply = (field) => {
-    bar.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.field === field)));
+
     let shown = 0;
     root.querySelectorAll(".lab2-card-link").forEach((a) => {
       const on = !field || a.dataset.fields.split(" ").includes(field);
@@ -49,7 +49,9 @@ export function bindLabIndex(root, pair) {
     root.querySelectorAll(".lab2-group").forEach((g) => { g.hidden = ![...g.querySelectorAll(".lab2-card-link")].some((a) => !(a.closest(".lab2-sub") || a).hidden); });
     status.textContent = field ? pair(`${shown} expérience${shown > 1 ? "s" : ""}`, `${shown} experiment${shown > 1 ? "s" : ""}`) : "";
   };
-  bar.addEventListener("click", (e) => { const b = e.target.closest("button[data-field]"); if (b) apply(b.dataset.field); });
+  const select=bar.querySelector("select");
+  const change=()=>apply(select.value);select.addEventListener("change",change);
+  return ()=>select.removeEventListener("change",change);
 }
 
 export function experimentPage(exp, { t, pair, link, completed, mission = "" }) {

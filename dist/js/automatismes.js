@@ -13,7 +13,7 @@ const newSeed = () => Math.random().toString(36).slice(2, 8);
 export function automatismesPage(t, pair) {
   const s = loadSettings(KEY, DEFAULTS);
   return `<main id="main" tabindex="-1" class="page gen-page" data-gen="starter"><h1>${t(P('Automatismes', 'Fluency starters'))}</h1>
-<p class="page-intro">${t(P('Une série courte de questions de routine, adaptée à ta classe, à projeter en début de séance ou à imprimer. Choisis la classe, les chapitres, les thèmes, les niveaux et la durée : la série est recalculée à chaque changement. Les réponses sont calculées par le programme.', 'A short series of routine questions for your class, to project at the start of a lesson or to print. Choose the class, chapters, topics, levels and duration: the series is rebuilt at each change. Answers are computed by the program.'))}</p>
+<p class="page-intro">${t(P('Choisis ta classe et la durée, puis projette la série. Tu peux préciser les chapitres et ajuster les réglages si nécessaire.', 'Choose your class and duration, then project the series. You can select chapters and adjust settings if needed.'))}</p>
 <div class="gen-layout">
 <form class="gen-form" id="gen-form" aria-label="${t(P('Réglages de la série', 'Series settings'))}" onsubmit="return false">
 <label class="gen-field"><span>${t(P('Classe', 'Class'))}</span><select name="cls">${classOptions(s.cls)}</select></label>
@@ -24,7 +24,7 @@ export function automatismesPage(t, pair) {
 <label class="gen-field"><span>${t(P('Ordre', 'Order'))}</span><select name="order"><option value="progressive"${s.order === 'progressive' ? ' selected' : ''}>${t(P('Progressif (du plus simple au plus dur)', 'Progressive (easiest first)'))}</option><option value="mixed"${s.order === 'mixed' ? ' selected' : ''}>${t(P('Mélangé', 'Mixed'))}</option></select></label>
 </div>
 <label class="gen-check"><input type="checkbox" name="fast"${s.fast ? ' checked' : ''}> ${t(P('Questions courtes seulement (adaptées à un automatisme)', 'Short questions only (suited to a starter)'))}</label>
-<div class="gen-row"><label class="gen-field"><span>${t(P('Graine de la série', 'Series seed'))}</span><input type="text" name="seed" value="${esc(s.seed)}" maxlength="24" autocomplete="off" spellcheck="false"></label><button type="button" class="btn btn-secondary" id="gen-new">${t(P('Nouvelle série', 'New series'))}</button><button type="button" class="btn btn-secondary" id="gen-prev" aria-label="${t(P('Série précédente', 'Previous series'))}">←</button><button type="button" class="btn btn-secondary" id="gen-next" aria-label="${t(P('Série suivante', 'Next series'))}">→</button></div>
+<div class="gen-row"><label class="gen-field"><span>${t(P('Code de la série', 'Series code'))}</span><input type="text" name="seed" value="${esc(s.seed)}" maxlength="24" autocomplete="off" spellcheck="false"></label><button type="button" class="btn btn-secondary" id="gen-new">${t(P('Nouvelle série', 'New series'))}</button><button type="button" class="btn btn-secondary" id="gen-prev" aria-label="${t(P('Série précédente', 'Previous series'))}">←</button><button type="button" class="btn btn-secondary" id="gen-next" aria-label="${t(P('Série suivante', 'Next series'))}">→</button></div>
 <p class="muted">${t(P('La même graine redonne exactement la même série ; n’importe quel texte est une graine, donc le nombre de séries est illimité. Les flèches passent à la série précédente ou suivante (graine terminée par -2, -3…).', 'The same seed gives exactly the same series; any text is a seed, so the number of series is unlimited. The arrows move to the previous or next series (seed ending -2, -3…).'))}</p>
 </form>
 <section class="gen-output" aria-label="${t(P('Série générée', 'Generated series'))}">
@@ -94,7 +94,7 @@ export function bindAutomatismes(root, t, { chapterTitle = (id) => id } = {}) {
     if (!keepPosition) i = 0;
     showAnswer = false; left = doc.secondsPerItem || 0;
     const sum = $('#gen-summary');
-    sum.textContent = doc.empty ? '' : `${doc.items.length} ${t(P('questions', 'questions'))} · ${doc.minutes} min · ${doc.secondsPerItem} s ${t(P('par question', 'per question'))} · ${t(P('graine', 'seed'))} ${doc.seed}`;
+    sum.textContent = doc.empty ? '' : `${doc.items.length} ${t(P('questions', 'questions'))} · ${doc.minutes} min · ${doc.secondsPerItem} s ${t(P('par question', 'per question'))}`;
     const list = $('#gen-list');
     list.innerHTML = doc.items.map((it) => `<li><div>${html(it.q)}</div><div class="gen-answer"><span class="muted">${t(P('Réponse', 'Answer'))} :</span> ${html(it.a)}${it.s ? ` <em class="muted">${html(it.s)}</em>` : ''}</div></li>`).join('');
     typeset(list);
