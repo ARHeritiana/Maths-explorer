@@ -2,6 +2,7 @@
 // levels, number of questions and total time; the series can be projected from the page, printed (students, teacher),
 // or exported as LaTeX source or as a standalone projection page. Same seed, same series.
 import { CLASSES, buildStarter, describeLevels } from './exercises/bank.js';
+import { starterFigureHtml } from './exercises/starter-visual.js';
 import { html, esc, starterHtml, starterTex, projectionHtml } from './exercises/export.js';
 import { P, loadSettings, saveSettings, typeset, download, printMarkup, stamp, classOptions, chapterChips, domainChips, levelChips, checked } from './exercises/ui-kit.js';
 import { fullscreenButton } from './visual-lessons.js';
@@ -64,7 +65,7 @@ export function bindAutomatismes(root, t, { chapterTitle = (id) => id } = {}) {
     const stage = $('#auto-stage');
     if (!doc || doc.empty) { $('#st-q').textContent = t(P('Aucune question ne correspond à ces réglages : élargis les chapitres, thèmes ou niveaux.', 'No question matches these settings: widen the chapters, topics or levels.')); $('#st-a').textContent = ''; $('#st-count').textContent = ''; $('#st-timer').textContent = ''; $('#st-level').textContent = ''; return; }
     const it = doc.items[i];
-    $('#st-q').innerHTML = `<strong>${it.n}.</strong> ${html(it.q)}`;
+    $('#st-q').innerHTML = `<strong>${it.n}.</strong> ${html(it.q)}${starterFigureHtml(it.figure)}`;
     $('#st-a').innerHTML = showAnswer ? html(it.a) : '';
     $('#st-count').textContent = `${t(P('Question', 'Question'))} ${it.n} / ${doc.items.length}`;
     $('#st-timer').textContent = clock(left);
@@ -96,7 +97,7 @@ export function bindAutomatismes(root, t, { chapterTitle = (id) => id } = {}) {
     const sum = $('#gen-summary');
     sum.textContent = doc.empty ? '' : `${doc.items.length} ${t(P('questions', 'questions'))} · ${doc.minutes} min · ${doc.secondsPerItem} s ${t(P('par question', 'per question'))}`;
     const list = $('#gen-list');
-    list.innerHTML = doc.items.map((it) => `<li><div>${html(it.q)}</div><div class="gen-answer"><span class="muted">${t(P('Réponse', 'Answer'))} :</span> ${html(it.a)}${it.s ? ` <em class="muted">${html(it.s)}</em>` : ''}</div></li>`).join('');
+    list.innerHTML = doc.items.map((it) => `<li><div>${html(it.q)}${starterFigureHtml(it.figure)}</div><div class="gen-answer"><span class="muted">${t(P('Réponse', 'Answer'))} :</span> ${html(it.a)}${it.s ? ` <em class="muted">${html(it.s)}</em>` : ''}</div></li>`).join('');
     typeset(list);
     drawStage();
     return o;

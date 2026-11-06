@@ -92,6 +92,7 @@ Seeded and limitless: any text is a seed, the same seed gives the same series. F
 | `js/bank-page.js` | `#bank[/<course>[/<chapter>]]`: the online exercise bank (rail of levels, chapter index, worked exercises with hints and folded corrections, renewable seeded problems, quick practice from the generators, print with or without corrections) |
 | `js/exercises/bank-mada.js` | exercises of the Malagasy books (T10, T11 S) for the online bank, same shape as `authored.js` |
 | `js/exercises/bank.js` | registry, `instance`, `buildStarter`, `buildSheet`, marking scheme (`scalePoints`) |
+| `js/exercises/starter-visual.js` | short graphical starters, seeded vector/line/parabola and scatter plots, accessible SVG and TikZ for projection and print |
 | `js/exercises/export.js` | HTML, LaTeX and projection-page builders (one source string serves all three) |
 | `js/exercises/ui-kit.js` | form chips, settings kept on the device, MathJax loading, download, print, `stepSeed` |
 | `styles/generator.css` | forms, projection stage, paper preview and print rules |

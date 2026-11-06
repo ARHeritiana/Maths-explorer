@@ -1,6 +1,7 @@
 // The exercise bank: registry of templates and authored exercises, and the two composers used by the pages
 // (buildStarter: short automatismes; buildSheet: worksheets, quizzes, supervised tests). Pure, seeded, no DOM.
 import { rng, hashSeed } from './engine.js';
+import { visualStartersFor } from './starter-visual.js';
 import { seconde } from './templates-seconde.js';
 import { seconde2 } from './templates-seconde-2.js';
 import { seconde3 } from './templates-seconde-3.js';
@@ -42,7 +43,7 @@ const nearest = (t, level) => supports(t).reduce((best, l) => (Math.abs(l - leve
 export function instance(t, level, seed) {
   const lv = nearest(t, level);
   const out = t.make(rng(`${seed}|${t.id}|${lv}`), lv);
-  return { id: t.id, cls: t.cls, chapter: t.chapter, domain: t.domain, skill: t.skill, level: lv, q: out.q, a: out.a, s: out.s || '' };
+  return { id: t.id, cls: t.cls, chapter: t.chapter, domain: t.domain, skill: t.skill, activity: t.activity || 'calcul', level: lv, q: out.q, a: out.a, s: out.s || '', ...(out.figure ? { figure: out.figure } : {}) };
 }
 
 const match = (item, o) => (!o.chapters?.length || o.chapters.includes(item.chapter)) && (!o.domains?.length || o.domains.includes(item.domain));
@@ -52,25 +53,35 @@ const allowedLevels = (o) => { const l = (o.levels?.length ? [...o.levels] : [1,
 export function buildStarter(o) {
   const count = Math.max(1, Math.min(40, o.count || 10)), seed = o.seed ?? 'starter';
   const levels = allowedLevels(o);
-  let pool = templatesFor(o.cls).filter((t) => match(t, o));
+  let pool = [...templatesFor(o.cls), ...visualStartersFor(o.cls)].filter((t) => match(t, o));
   const fast = pool.filter((t) => t.fast);
   if (o.fastOnly !== false && fast.length) pool = fast;
   const base = { kind: 'starter', cls: o.cls, seed: String(seed), minutes: o.minutes || 5, levels, items: [] };
   if (!pool.length) return { ...base, empty: true, secondsPerItem: 0 };
   const r = rng(`${seed}|starter|${o.cls}`);
-  let order = r.shuffle(pool), cursor = 0;
+  let regular = r.shuffle(pool.filter(t => !t.visual)), illustrated = r.shuffle(pool.filter(t => t.visual));
+  let regularCursor = 0, illustratedCursor = 0;
+  const quota = regular.length && illustrated.length ? Math.min(illustrated.length, Math.max(1, Math.round(count * 0.3))) : illustrated.length ? count : 0;
+  const illustratedPositions = new Set(Array.from({ length: quota }, (_, j) => Math.floor((j + 0.5) * count / quota)));
+  const nextTemplate = (index) => {
+    if (illustrated.length && (!regular.length || illustratedPositions.has(index))) {
+      if (illustratedCursor >= illustrated.length) { illustrated = r.shuffle(illustrated); illustratedCursor = 0; }
+      return illustrated[illustratedCursor++];
+    }
+    if (regularCursor >= regular.length) { regular = r.shuffle(regular); regularCursor = 0; }
+    return regular[regularCursor++];
+  };
   const seen = new Set();
   for (let i = 0; i < count; i++) {
     const target = o.order === 'mixed' ? r.pick(levels) : levels[Math.min(levels.length - 1, Math.floor((i * levels.length) / count))];
     let item = null;
     for (let attempt = 0; attempt < 12 && !item; attempt++) {
-      if (cursor >= order.length) { order = r.shuffle(pool); cursor = 0; }
-      const t = order[cursor++];
+      const t = nextTemplate(i);
       const cand = instance(t, target, `${seed}|${i}|${attempt}`);
-      if (!seen.has(cand.q) || attempt === 11) item = cand;
+      if (!seen.has(cand.q + JSON.stringify(cand.figure || null)) || attempt === 11) item = cand;
     }
-    seen.add(item.q);
-    base.items.push({ n: i + 1, ...item });
+    seen.add(item.q + JSON.stringify(item.figure || null));
+    base.items.push({ n: i + 1, ...item, q: item.q.replace(/\s+Justifier\./gi, '') });
   }
   base.secondsPerItem = Math.round((base.minutes * 60) / count);
   return base;
