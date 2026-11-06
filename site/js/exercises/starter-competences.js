@@ -80,7 +80,7 @@ export const COMPETENCE_STARTERS = [
 
   // Terminale spécialité.
   T('cs-t-power-rank','terminale','terminale-03','suites','chercher','Rechercher un rang exponentiel',r=>{
-    const a=r.pick([2,3,4,5]),n=r.int(2,7);return answer(`Trouver ${M('n')} tel que ${M(`${a}^{n}=${a**n}`)}.`,M(`n=${n}`),()=>a**n===Number(`${a**n}`));
+    const a=r.pick([2,3,4,5,6]),n=r.int(2,a===2?9:a===3?6:a===4?5:a===5?4:3);return answer(`Trouver ${M('n')} tel que ${M(`${a}^{n}=${a**n}`)}.`,M(`n=${n}`),()=>a**n===Number(`${a**n}`));
   }),
   T('cs-t-choose-primitive','terminale','terminale-10','analyse','chercher','Reconnaître une primitive',r=>{
     const n=r.int(2,8),a=r.int(2,9),coeff=a*(n+1);
