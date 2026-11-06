@@ -44,7 +44,7 @@ const nearest = (t, level) => supports(t).reduce((best, l) => (Math.abs(l - leve
 export function instance(t, level, seed) {
   const lv = nearest(t, level);
   const out = t.make(rng(`${seed}|${t.id}|${lv}`), lv);
-  return { id: t.id, cls: t.cls, chapter: t.chapter, domain: t.domain, skill: t.skill, activity: t.activity || 'calcul', competence: starterCompetence(t), level: lv, q: out.q, a: out.a, s: out.s || '', ...(out.figure ? { figure: out.figure } : {}) };
+  return { id: t.id, cls: t.cls, chapter: t.chapter, domain: t.domain, skill: t.skill, activity: t.activity || starterCompetence(t), competence: starterCompetence(t), level: lv, q: out.q, a: out.a, s: out.s || '', ...(out.figure ? { figure: out.figure } : {}) };
 }
 
 const match = (item, o) => (!o.chapters?.length || o.chapters.includes(item.chapter)) && (!o.domains?.length || o.domains.includes(item.domain));
