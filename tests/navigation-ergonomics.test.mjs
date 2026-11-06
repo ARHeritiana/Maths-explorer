@@ -31,7 +31,8 @@ for(const kind of ['sheet','starter'])test(`optional ${kind} settings retain rea
  for(const node of exports)assert.ok(root.contains(node));exports.at(-1).click();assert.equal(clicks,1);
  assert.equal(form.elements.cls.closest('.advanced-settings'),null);
  assert.equal(form.elements.count.closest('.advanced-settings'),null);
- assert.ok(seed.closest('.advanced-settings'));assert.equal(seed.closest('details').open,false);
+ assert.equal(seed.closest('.advanced-settings'),null,'series code remains visible');
+ assert.equal(root.querySelector('#gen-new').closest('details'),null,'new random variant remains visible');
  assert.ok(root.querySelector('[data-act="print-student"]:not(details *)'));
  if(kind==='sheet'){
   assert.equal(root.querySelector('[data-subject="A"]').hidden,true,'single subject has no redundant selector');

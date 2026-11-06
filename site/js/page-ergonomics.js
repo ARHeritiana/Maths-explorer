@@ -1,4 +1,4 @@
-// Group optional classroom settings without replacing controls or their existing event handlers.
+// Group optional classroom settings, keeping the new-series controls visible and usable.
 export function organizePage(root,t) {
  const form=root?.querySelector('#gen-form');if(!form)return ()=>{};
  const doc=root.ownerDocument;
@@ -15,7 +15,7 @@ export function organizePage(root,t) {
  const extra=[form.querySelector('#gen-domains'),form.querySelector('#gen-levels'),
   form.elements.order?.closest('label'),form.elements.parts?.closest('label'),
   ...form.querySelectorAll(':scope > .gen-check'),form.querySelector('.gen-total'),
-  form.elements.seed?.closest('.gen-row'),...form.querySelectorAll(':scope > p.muted')];
+  ...form.querySelectorAll(':scope > p.muted')];
  group(form,t(['Réglages avancés','More settings']),extra,'advanced-settings');
  const actions=root.querySelector('.gen-actions');
  if(actions)group(actions,t(['Autres impressions et téléchargements','More printing and downloads']),

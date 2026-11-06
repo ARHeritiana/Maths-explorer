@@ -10,12 +10,16 @@ with sync_playwright() as p:
  def go(route):
   page.goto(BASE+'/#'+route);page.locator('main').wait_for();page.wait_for_timeout(120)
  go('home');page.select_option('#home-class','stmg');assert page.locator('.mainnav [data-section="learn"]').get_attribute('href')=='#resources/stmg'
- page.locator('.mainnav [data-section="learn"]').click();page.locator('.res-rail [data-course="premiere"]').click()
+ page.locator('.mainnav [data-section="learn"]').click();
+ assert page.locator('.subnav a[href="#automatismes"]').is_visible(), 'Automatismes must be visible in Apprendre'
+ assert page.locator('.subnav a[href="#sheets"]').is_visible(), 'Fiches must be visible in Apprendre'
+ page.locator('.res-rail [data-course="premiere"]').click()
  assert page.locator('.subnav [data-course-page="bank"]').get_attribute('href')=='#bank/premiere'
  page.locator('.subnav [data-course-page="bank"]').click();page.wait_for_url('**/#bank/premiere')
  page.locator('.subnav [data-course-page="slides"]').click();page.locator('.deck-card').first.wait_for()
  page.locator('[data-course="expertes"]').click();assert page.locator('.subnav [data-course-page="resources"]').get_attribute('href')=='#resources/expertes'
  go('chapter/premiere-02/cours');page.locator('#chapter-sequence[aria-busy="false"]').wait_for();go('sheets')
+ assert page.locator('#gen-new').is_visible(), 'New worksheet variant must be visible without opening settings'
  assert page.locator('[name="cls"]').input_value()=='premiere'
  page.select_option('[name="cls"]','seconde');assert page.locator('.subnav [data-course-page="resources"]').get_attribute('href')=='#resources/seconde'
  page.locator('.chapter-options > summary').click();page.locator('[name="chapter"]').first.check();assert page.locator('.chapter-options > summary').inner_text().startswith('Chapitres : 1')
@@ -23,6 +27,8 @@ with sync_playwright() as p:
  page.locator('.export-options > summary').click()
  with page.expect_download() as download:page.locator('[data-act="tex-student"]').click()
  assert download.value.suggested_filename.endswith('.tex')
+ go('automatismes')
+ assert page.locator('#gen-new').is_visible(), 'New starter series must be visible without opening settings'
  go('bank/annales')
  assert page.locator('.annal-filters [name="course"]').count()==0
  year=page.locator('.annal-filters [name="year"]');notion=page.locator('.annal-filters [name="topic"]')
