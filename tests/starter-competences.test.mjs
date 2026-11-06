@@ -4,6 +4,7 @@ import {rng} from '../site/js/exercises/engine.js';
 import {COMPETENCES, COMPETENCE_STARTERS, starterCompetence} from '../site/js/exercises/starter-competences.js';
 import {TEMPLATES, CLASSES, buildStarter} from '../site/js/exercises/bank.js';
 import {VISUAL_STARTERS} from '../site/js/exercises/starter-visual.js';
+import {starterHtml, starterTex, projectionHtml} from '../site/js/exercises/export.js';
 
 // These five labels are internal metadata. The sixth maths competency (communiquer)
 // belongs to other activities, not to short automatisms.
@@ -59,4 +60,16 @@ test('chapter and domain filters always take precedence over balancing',()=>{
   assert.ok(data.items.every(x=>x.domain==='stats-proba'));
   const single=buildStarter({cls:'premiere',chapters:['premiere-09'],count:10,seed:'exp'});
   assert.ok(single.items.every(x=>x.chapter==='premiere-09'));
+});
+test('all exports preserve questions while hiding internal competency metadata',()=>{
+  for(const cls of CLASSES) {
+    const doc=buildStarter({cls:cls.id,count:10,minutes:5,seed:'export-competences'});
+    const output=[starterHtml(doc),starterHtml(doc,{teacher:true}),starterTex(doc),starterTex(doc,{version:'teacher'}),projectionHtml(doc)];
+    for(const markup of output) {
+      assert.doesNotMatch(markup,/Compétences visées|compétence\s*:/i);
+      assert.doesNotMatch(markup,/Justifier la réponse|Démontrer votre réponse/i);
+    }
+    assert.match(output[2],/\\begin\{document\}/);
+    assert.match(output[4],/application\/json/);
+  }
 });
