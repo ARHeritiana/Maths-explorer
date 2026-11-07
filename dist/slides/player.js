@@ -24,7 +24,9 @@ const UI = {
   answer: ["Voir la réponse", "Show the answer"], hide: ["Masquer la réponse", "Hide the answer"], answerLab: ["Réponse", "Answer"],
   lang: ["English", "Français"], list: ["Plan", "Outline"], full: ["Plein écran", "Full screen"],
   download: ["Télécharger HTML", "Download HTML"], downloadTip: ["Télécharger ce diaporama en un seul fichier HTML", "Download this deck as a single HTML file"],
-  home: ["Toutes les séries", "All decks"], loadErr: ["Série introuvable.", "Deck not found."],
+  home: ["Toutes les séries", "All decks"], back: ["Retour", "Back"], site: ["Accueil", "Home"],
+  backName: ["Retour à la liste des diaporamas", "Back to the list of slide decks"], siteName: ["Accueil de Maths Explorer", "Maths Explorer home"],
+  toNight: ["Passer au thème sombre", "Switch to dark theme"], toDay: ["Passer au thème clair", "Switch to light theme"], theme: ["Thème", "Theme"], loadErr: ["Série introuvable.", "Deck not found."],
   hint: ["Flèches : étapes et diapositives · R réponse · G plan · F plein écran", "Arrows: steps and slides · R answer · G outline · F full screen"],
   slides: ["diapositives", "slides"], liveLab: ["Valeurs en direct", "Live values"],
   explore: ["Explorer le chapitre", "Explore the chapter"], figure: ["Figure", "Figure"],
@@ -33,6 +35,36 @@ const UI = {
   noMath: ["Les formules n’ont pas pu se charger : une connexion internet est nécessaire.", "Formulas could not load: an internet connection is required."],
 };
 const t = k => UI[k][lang];
+// ---- leaving the player. The site lives one level above this page (site/index.html, hash routes); an exported standalone deck has no
+// site next to it, so it gets no Back / Home (they would lead nowhere offline).
+const SITE = "../index.html";
+const homeHref = () => `${SITE}#home`;
+const backHref = () => `${SITE}#slides${deck?.course ? "/" + encodeURIComponent(deck.course) : ""}`;
+const framed = (() => { try { return window.self !== window.top; } catch { return true; } })();
+// Opened from a page of the site in this tab (same origin, a history entry to return to): Back is the browser's back, which restores
+// the list where the visitor left it. A new tab, an iframe or a direct link has nothing to go back to: Back is the explicit route.
+const cameFromSite = () => {
+  try { const r = new URL(document.referrer); return !framed && history.length > 1 && r.origin === location.origin && !/\/slides\/player\.html$/.test(r.pathname); } catch { return false; }
+};
+const themeKey = "maths-explorer-theme";
+const savedTheme = () => { try { const v = localStorage.getItem(themeKey); return v === "nuit" || v === "jour" ? v : null; } catch { return null; } };
+const systemTheme = () => (matchMedia("(prefers-color-scheme: dark)").matches ? "nuit" : "jour");
+const currentTheme = () => (document.documentElement.dataset.theme === "nuit" ? "nuit" : "jour");
+function applyTheme(name) { document.documentElement.dataset.theme = name; paintTheme(); }
+function paintTheme() {
+  const b = $("#theme"); if (!b) return;
+  const night = currentTheme() === "nuit", label = t(night ? "toDay" : "toNight");
+  b.setAttribute("aria-label", label); b.title = label; b.innerHTML = night ? ICON.sun : ICON.moon;
+}
+const ICON = {
+  back: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 5l-7 7 7 7"/></svg>',
+  home: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 9.5V21h5v-6h4v6h5V9.5"/></svg>',
+  moon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>',
+  sun: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>',
+};
+applyTheme(savedTheme() || systemTheme());
+addEventListener("storage", e => { if (e.key === themeKey && (e.newValue === "nuit" || e.newValue === "jour")) applyTheme(e.newValue); });
+matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => { if (!savedTheme()) applyTheme(systemTheme()); });
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 const COURSE = { stmg: "Terminale STMG", premiere: "Première", seconde: "Seconde", terminale: "Terminale", expertes: "Maths expertes" };
 const SIZE_NARROW = 1500;
@@ -49,11 +81,15 @@ function toast(message) {
   clearTimeout(toastTimer); toastTimer = setTimeout(() => { el.hidden = true; }, 5000);
 }
 
+function barMarkup() {
+  const site = EXPORT ? "" : `<a class="b" id="back" href="${backHref()}"${framed ? ' target="_top"' : ""} aria-label="${t("backName")}" title="${t("backName")}">${ICON.back}<span class="lbl">${t("back")}</span></a><a class="b" id="home" href="${homeHref()}"${framed ? ' target="_top"' : ""} aria-label="${t("siteName")}" title="${t("siteName")}">${ICON.home}<span class="lbl">${t("site")}</span></a>`;
+  return `<header id="bar" role="banner">${site}<div id="bar-title"><span id="bar-deck"></span></div><button class="b" id="theme" type="button"></button></header>`;
+}
 function shell() {
-  $("#stage").innerHTML = `<div id="col"><div id="flow" tabindex="-1"></div><div id="live" hidden><div class="hd" id="live-lab"></div><div id="readout"></div></div></div>
+  $("#stage").innerHTML = `${barMarkup()}<div id="col"><div id="flow" tabindex="-1"></div><div id="live" hidden><div class="hd" id="live-lab"></div><div id="readout"></div></div></div>
 <div id="rt"></div>
 <div id="r1"><button class="b" id="step-prev">◀</button><span id="step-count"></span><button class="b" id="step-next">▶</button><button class="b" id="all-steps">Tout</button><span class="gap"></span><button class="b" id="pv">‹</button><span class="count" id="count"></span><button class="b" id="nx">›</button></div>
-<div id="r2">${EXPORT ? "" : `<a class="b" id="home" href="../index.html#slides">${t("home")}</a>`}<button class="b" id="tg" hidden></button><button class="b" id="rev" hidden></button><button class="b" id="lst" aria-pressed="false"></button><button class="b" id="fs" title="Plein écran">⛶</button></div>
+<div id="r2"><button class="b" id="tg" hidden></button><button class="b" id="rev" hidden></button><button class="b" id="lst" aria-pressed="false"></button><button class="b" id="fs" title="Plein écran"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div>
 <div id="prog"><i></i></div><nav id="drawer" hidden></nav><div id="toast" hidden></div>`;
 }
 
@@ -65,14 +101,16 @@ async function load() {
       if (!r.ok) throw new Error(r.status);
       deck = await r.json();
     } catch {
-      $("#stage").innerHTML = `<div id="col" class="wide"><h2 class="tt">${t("loadErr")}</h2><p><a class="b" href="../index.html#slides">${t("home")}</a></p></div>`;
+      $("#stage").innerHTML = `${barMarkup()}<div id="col" class="wide"><h2 class="tt">${t("loadErr")}</h2><p><a class="b" href="${SITE}#slides">${t("home")}</a></p></div>`;
+      bindBar();
       return;
     }
   }
   const selected = selectDeckEdition(deck, params.get('lang'), lang ? 'en' : 'fr');
   if (!selected) {
     const available = deckLanguages(deck);
-    $("#stage").innerHTML = `<div id="col" class="wide"><h2 class="tt">${lang ? 'This language edition is unavailable.' : 'Cette édition linguistique est indisponible.'}</h2><p>${lang ? 'Available editions' : 'Éditions disponibles'} : ${available.map(code => `<a class="b" href="?${EXPORT ? '' : 'deck=' + encodeURIComponent(deckId) + '&amp;'}lang=${code}">${code.toUpperCase()}</a>`).join(' ')}</p></div>`;
+    $("#stage").innerHTML = `${barMarkup()}<div id="col" class="wide"><h2 class="tt">${lang ? 'This language edition is unavailable.' : 'Cette édition linguistique est indisponible.'}</h2><p>${lang ? 'Available editions' : 'Éditions disponibles'} : ${available.map(code => `<a class="b" href="?${EXPORT ? '' : 'deck=' + encodeURIComponent(deckId) + '&amp;'}lang=${code}">${code.toUpperCase()}</a>`).join(' ')}</p></div>`;
+    bindBar();
     return;
   }
   deck = selected; lang = selected.selectedLanguage === 'en' ? 1 : 0;
@@ -190,7 +228,7 @@ async function render() {
     flow.innerHTML = `<div class="hd">${esc(label)}</div><h2 class="tt">${title}</h2><pre>${s.b[lang]}</pre>`;
   } else {
     const cls = sizeClass(rawBody + ans);
-    flow.innerHTML = `<div class="hd ${k === "error" ? "red" : ""}"><span>${esc(label)}</span><span class="deckname">${esc(deck.title[lang])}</span></div><h2 class="tt">${title}</h2>${s.h?.[lang] ? `<div class="sub">${esc(s.h[lang])}</div>` : ""}<div class="steps text ${cls}">${revealMarkup(rawBody)}</div>${ans ? `<div class="answer text ${cls}" id="ans" ${revealed ? "" : "hidden"}><div class="hd green">${t("answerLab")}</div>${ans}</div>` : ""}`;
+    flow.innerHTML = `<div class="hd ${k === "error" ? "red" : ""}"><span>${esc(label)}</span></div><h2 class="tt">${title}</h2>${s.h?.[lang] ? `<div class="sub">${esc(s.h[lang])}</div>` : ""}<div class="steps text ${cls}">${revealMarkup(rawBody)}</div>${ans ? `<div class="answer text ${cls}" id="ans" ${revealed ? "" : "hidden"}><div class="hd green">${t("answerLab")}</div>${ans}</div>` : ""}`;
   }
 
   if (mode === "fig") rt.innerHTML = `<div class="figcol">${figs}</div>`;
@@ -251,6 +289,7 @@ function needsWidth() {
 function chrome() {
   const s = deck.slides[index], n = deck.slides.length;
   $("#count").textContent = `${index + 1} / ${n}`;
+  $("#bar-deck").textContent = plain(deck.title[lang]);
   $("#pv").disabled = index === 0; $("#nx").disabled = index === n - 1;
   $("#pv").setAttribute("aria-label", t("prev")); $("#nx").setAttribute("aria-label", t("next"));
   $("#step-prev").setAttribute("aria-label", t("stepPrev")); $("#step-next").setAttribute("aria-label", t("stepNext"));
@@ -282,7 +321,21 @@ function toggleAnswer() {
 }
 
 
+// The bar belongs to every state of the player, including the error pages.
+function bindBar() {
+  $("#back")?.addEventListener("click", e => {
+    if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !cameFromSite()) return;
+    e.preventDefault(); history.back();
+  });
+  $("#theme")?.addEventListener("click", () => {
+    const next = currentTheme() === "nuit" ? "jour" : "nuit";
+    try { localStorage.setItem(themeKey, next); } catch { /* storage blocked: the choice lasts for this page */ }
+    applyTheme(next);
+  });
+  paintTheme();
+}
 function bind() {
+  bindBar();
   $("#nx").onclick = () => go(index + 1); $("#pv").onclick = () => go(index - 1);
   $("#step-next").onclick = () => advance(1); $("#step-prev").onclick = () => advance(-1);
   $("#all-steps").onclick = () => { step = blocks().length; paintSteps(); };

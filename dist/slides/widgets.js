@@ -4,7 +4,21 @@ import { canvasNavigation } from "../js/canvas-navigation.js";
 import { W2 } from "./widgets-2d.js";
 import { W3 } from "./widgets-3d.js";
 
-export const C = { bg: "#13243b", grid: "#24364f", axis: "#8fa6c4", ink: "#f4f1ea", muted: "#8fa6c4", acc: "#e8a33d", warn: "#ff7a7a", blue: "#8fb7ff" };
+// Colours come from the CSS tokens of the page (player.css: the site's Jour / Nuit), read again whenever the theme changes, so
+// every canvas follows both themes. C is mutated in place: widgets keep reading C.acc, C.warn ... at every frame.
+// acc = the object studied (and the focus), blue = a second object, warn = warning, pos = valid, ink / muted / axis / grid = chrome.
+export const C = { bg: "#ffffff", grid: "#ececec", axis: "#6e6e6e", ink: "#000000", muted: "#595959", acc: "#d90012", warn: "#b3000f", blue: "#2563eb", pos: "#0a7a43", posSoft: "#e1f3ea" };
+const cssVar = n => (typeof document === "undefined" || typeof getComputedStyle !== "function" ? "" : getComputedStyle(document.documentElement).getPropertyValue(n).trim());
+export function readPalette() {
+  const v = (n, d) => cssVar(n) || d;
+  Object.assign(C, { bg: v("--surface", C.bg), grid: v("--grid", C.grid), axis: v("--line-strong", C.axis), ink: v("--ink", C.ink), muted: v("--muted", C.muted), acc: v("--accent", C.acc), warn: v("--neg", C.warn), blue: v("--c1", C.blue), pos: v("--pos", C.pos), posSoft: v("--pos-soft", C.posSoft) });
+  return C;
+}
+const rgbOf = c => { const m = /^#([0-9a-f]{6})$/i.exec(c); return m ? [0, 2, 4].map(i => parseInt(m[1].slice(i, i + 2), 16)) : null; };
+// A palette colour at a given opacity, or mixed with another one (canvas fills).
+export const fade = (c, a) => { const k = rgbOf(c); return k ? `rgba(${k[0]},${k[1]},${k[2]},${a})` : c; };
+export const mix = (c1, c2, t) => { const a = rgbOf(c1), b = rgbOf(c2); return a && b ? `rgb(${a.map((x, i) => Math.round(x + (b[i] - x) * t)).join(",")})` : c1; };
+readPalette();
 export const SERIF = '"STIX Two Text","Latin Modern Roman",Georgia,serif';
 
 // ---- mathematics: every formula is TeX, typeset by MathJax (tex-svg), never Unicode look-alikes.
@@ -88,11 +102,17 @@ export const tlin = (n, N) => { let s = ""; n.forEach((c, i) => { if (!c) return
 export const sgn = c => (c < 0 ? "-" : "+");
 
 // ---- laboratory experiments in a slide: { type: "lab", ref: "quadratic/vertex" } (docs/LAB_DESIGN.md section 6). The experiment
-// draws in the widget host with the player's dark palette, its unlocked controls and mission stepper go to the controls area,
+// draws in the widget host with the palette of the page (a function: it follows the theme), its unlocked controls and mission stepper go to the controls area,
 // the formula and readout to the readout area and the mission prompt to the hint line. Loaded on demand (an export bundles it
 // only for the decks that use it).
-export const LAB_PALETTE = { bg: C.bg, surface: C.bg, sunken: "#0f1b2d", ink: C.ink, muted: C.muted, line: C.axis, grid: C.grid,
-  accent: C.acc, obj2: C.blue, obj3: "#c9a0ff", pos: "#5fd0a0", neg: C.warn, c: [C.acc, C.blue, "#5fd0a0", "#c9a0ff", C.warn, "#7fd6e8", "#f2c94c", "#ff9ec7"] };
+let labPalette = null, labPaletteKey = "";
+export const LAB_PALETTE = () => {
+  const key = document.documentElement.dataset.theme || "";
+  if (labPalette && key === labPaletteKey) return labPalette;
+  labPaletteKey = key; readPalette();
+  const v = n => cssVar(n);
+  return (labPalette = { ink: v("--ink"), muted: v("--muted"), line: v("--line-strong"), surface: v("--surface"), sunken: v("--sunken"), accent: v("--accent"), obj2: v("--obj2"), obj3: v("--obj3"), pos: v("--pos"), neg: v("--neg"), grid: v("--grid"), c: [1, 2, 3, 4, 5, 6, 7, 8].map(i => v(`--c${i}`)) });
+};
 const loadLab = () => import("../js/lab/mount.js");
 // The laboratory writes its numbers with Unicode (x², uₙ, ≈, √3/2, 35°); the player typesets every formula with MathJax, so the
 // text of an experiment is turned into the same \( ... \) markup before it is shown (words and plain numbers stay text).
@@ -129,7 +149,10 @@ export function mount(spec, ctx) {
   if (spec.type === "lab") return mountLab(spec, ctx);
   const f = W2[spec.type] || W3[spec.type];
   if (!f) { ctx.host.textContent = "?"; return { destroy() {} }; }
+  readPalette();
   const cv = canvas(ctx.host,ctx); repaint = () => cv.redraw();
+  const themeWatch = typeof MutationObserver === "function" ? new MutationObserver(() => { readPalette(); cv.redraw(); }) : null;
+  themeWatch?.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
   const api = Object.assign(cv, { ...ctx, spec, L: ctx.lang, num: n => fmt(n, ctx.lang), tn: (n, d) => tnum(n, ctx.lang, d), pair: (fr, en) => (ctx.lang ? en : fr) });
   ctx.hint.textContent = api.pair(spec.hintFr || "Interactif : glissez les points.", spec.hintEn || "Interactive: drag the points.");
   const inst = f(api) || {};
@@ -143,7 +166,7 @@ export function mount(spec, ctx) {
     cv.c.onkeydown=e=>{if(e.key.toLowerCase()==='h'){selected=(selected+1)%handles().length;cursor=null;e.preventDefault();e.stopPropagation();cv.c.setAttribute('aria-label',api.pair('Point ','Point ')+(selected+1));return;}const deltas={ArrowLeft:[-14,0],ArrowRight:[14,0],ArrowUp:[0,-14],ArrowDown:[0,14]};if(deltas[e.key]){e.preventDefault();e.stopPropagation();const d=deltas[e.key],k=e.shiftKey?3:1;move(d[0]*k,d[1]*k);}};
 
   }
-  return { destroy() { cv.stop(); ctx.controls.innerHTML = ""; ctx.readout.innerHTML = ""; } };
+  return { destroy() { themeWatch?.disconnect(); cv.stop(); ctx.controls.innerHTML = ""; ctx.readout.innerHTML = ""; } };
 }
 
 // Coordinates and intervals follow the language convention, as the TeX class does: (x ; y) and [a ; b[ in French,
