@@ -1,0 +1,105 @@
+% beamerthememx.sty -- the "Cahier" look for 16:9 slides: white paper, black ink, one red accent, sharp corners, rules instead
+% of shadows. Portable profile: XeTeX, OpenType fonts loaded by file name from \mxcorepath fonts/ (the same files and
+% setup as mx-math.sty, which is not loaded here because it pulls the notation machinery the slides do not use).
+% Usage: \def\mxcorepath{<folder of the core>/} before \documentclass, then \usetheme{mx}.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthememx}[2026/11/07 Maths Explorer slides (Cahier)]
+\providecommand{\mxcorepath}{}
+% Palette (the same values as mx-figures.sty)
+\providecolor{mxink}{HTML}{000000}
+\providecolor{mxmuted}{HTML}{595959}
+\providecolor{mxline}{HTML}{CDCDCD}
+\providecolor{mxlinestrong}{HTML}{6E6E6E}
+\providecolor{mxpaper}{HTML}{F2F2F2}
+\providecolor{mxaccent}{HTML}{D90012}
+\providecolor{mxaccentsoft}{HTML}{FFF0F1}
+% Fonts: STIX Two (text and maths), Schibsted Grotesk (headings), Latin Modern Mono (code).
+\RequirePackage{fontspec}
+\RequirePackage{unicode-math}
+\defaultfontfeatures{Path=\mxcorepath fonts/,Ligatures=TeX}
+\setmainfont{STIXTwoText}[Extension=.otf,UprightFont=*-Regular,ItalicFont=*-Italic,BoldFont=*-Bold,BoldItalicFont=*-BoldItalic]
+\setsansfont{SchibstedGrotesk}[Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Regular,
+  ItalicFeatures={FakeSlant=.17},BoldItalicFont=*-Bold,BoldItalicFeatures={FakeSlant=.17}]
+\setmonofont{lmmono10-regular}[Extension=.otf,UprightFont=*,ItalicFont=lmmono10-italic,BoldFont=lmmono10-regular,
+  BoldFeatures={FakeBold=1.5},BoldItalicFont=lmmono10-italic,Scale=.94]
+\setmathfont{STIXTwoMath-Regular}[Extension=.otf]
+\def\square{\mdlgwhtsquare}
+\def\llbracket{\lBrack}\def\rrbracket{\rBrack}
+\usefonttheme{professionalfonts}
+\usefonttheme{serif}
+\renewcommand{\familydefault}{\rmdefault}
+% Colours
+\setbeamercolor{normal text}{fg=mxink,bg=white}
+\setbeamercolor{structure}{fg=mxink}
+\setbeamercolor{alerted text}{fg=mxaccent}
+\setbeamercolor{example text}{fg=mxink}
+\setbeamercolor{frametitle}{fg=mxink,bg=white}
+\setbeamercolor{title}{fg=mxink,bg=white}
+\setbeamercolor{subtitle}{fg=mxmuted}
+\setbeamercolor{item}{fg=mxink}
+\setbeamercolor{block title}{fg=mxink,bg=mxpaper}
+\setbeamercolor{block title alerted}{fg=mxaccent,bg=mxpaper}
+\setbeamercolor{block title example}{fg=mxmuted,bg=mxpaper}
+\setbeamercolor{footline}{fg=mxmuted,bg=white}
+\setbeamerfont{normal text}{size=\normalsize}
+\setbeamerfont{frametitle}{family=\sffamily,series=\bfseries,size=\large}
+\setbeamerfont{title}{family=\sffamily,series=\bfseries,size=\fontsize{26}{28}\selectfont}
+\setbeamerfont{subtitle}{family=\sffamily,size=\large}
+\setbeamerfont{block title}{family=\sffamily,series=\bfseries,size=\small}
+\setbeamerfont{footline}{family=\sffamily,size=\fontsize{6}{7}\selectfont}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{background canvas}[default]
+\setbeamersize{text margin left=1.3cm,text margin right=1.3cm}
+% Lists: square bullets, en dash, bold sans numbers
+\setbeamertemplate{itemize item}{\raisebox{.2ex}{\rule{.36em}{.36em}}}
+\setbeamertemplate{itemize subitem}{\textendash}
+\setbeamertemplate{itemize subsubitem}{\textendash}
+\setbeamertemplate{enumerate item}{\sffamily\bfseries\insertenumlabel.}
+\setbeamertemplate{enumerate subitem}{\sffamily\bfseries\insertenumlabel.}
+\setbeamertemplate{itemize body begin}{\setlength{\itemsep}{.1em}\setlength{\parsep}{0pt}\setlength{\parskip}{.2em}}
+\setbeamertemplate{enumerate body begin}{\setlength{\itemsep}{.1em}\setlength{\parsep}{0pt}\setlength{\parskip}{.2em}}
+% Frame title: short red bar, title in Schibsted Grotesk bold, thin black rule under it
+\setbeamertemplate{frametitle}{%
+  \vskip.7em
+  {\color{mxaccent}\rule{1.6em}{2.6pt}}\par\vskip.2em
+  {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\par}%
+  \vskip.3em{\color{mxink}\rule{\textwidth}{.5pt}}\par\vskip.1em}
+% Footer: wordmark (red square, name) at the left, page / total at the right, hairline above
+\newcommand{\mx@wordmark}{Maths Explorer}
+\setbeamertemplate{footline}{%
+  \leavevmode\hskip\beamer@leftmargin
+  \begin{beamercolorbox}[wd=\dimexpr\paperwidth-2.6cm\relax,ht=2.6ex,dp=1.2ex,leftskip=0pt,rightskip=0pt]{footline}
+    {\color{mxline}\rule{\linewidth}{.4pt}}\par\vskip.5ex
+    \hbox to\linewidth{\textcolor{mxaccent}{\rule{4pt}{4pt}}\hspace{.5em}\usebeamerfont{footline}\textcolor{mxmuted}{\mx@wordmark}\hfil
+      \usebeamerfont{footline}\textbf{\color{mxink}\insertframenumber}\,\textcolor{mxmuted}{/ \inserttotalframenumber}}%
+  \end{beamercolorbox}\vskip.8ex}
+\makeatletter
+% Blocks: 2.6pt left rule on a light fill; rule colour carries the meaning (ink, red for alert, grey for example)
+\newsavebox{\mx@blockbox}
+\newcommand{\mx@blockbegin}[1]{%
+  \par\vskip.6em\noindent\begin{lrbox}{\mx@blockbox}\begin{minipage}{\dimexpr\linewidth-1.2em-2.6pt\relax}%
+  \vskip.5ex\raggedright\ifx\insertblocktitle\@empty\else{\usebeamercolor[fg]{#1}\usebeamerfont{block title}\insertblocktitle\par\vskip.3ex}\fi\usebeamercolor[fg]{normal text}\usebeamerfont{normal text}}
+\newcommand{\mx@blockend}[1]{%
+  \vskip.5ex\end{minipage}\end{lrbox}%
+  \usebeamercolor[fg]{#1}\noindent\setlength{\fboxsep}{0pt}%
+  \colorbox{mxpaper}{\color{.}\vrule width 2.6pt height\ht\mx@blockbox depth\dp\mx@blockbox\hspace{.6em}\usebox{\mx@blockbox}\hspace{.6em}}\par\vskip.4em}
+\setbeamertemplate{block begin}{\mx@blockbegin{block title}}
+\setbeamertemplate{block end}{\mx@blockend{block title}}
+\setbeamertemplate{block alerted begin}{\mx@blockbegin{block title alerted}}
+\setbeamertemplate{block alerted end}{\mx@blockend{block title alerted}}
+\setbeamertemplate{block example begin}{\mx@blockbegin{block title example}}
+\setbeamertemplate{block example end}{\mx@blockend{block title example}}
+% Title frame
+\newcommand{\mxtitleframe}{%
+  \begin{frame}[plain]
+    \vfill
+    {\color{mxaccent}\rule{2.4em}{3.2pt}}\par\vskip.8em
+    {\usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle\par}%
+    \vskip.6em
+    {\usebeamercolor[fg]{subtitle}\usebeamerfont{subtitle}\insertsubtitle\par}%
+    \vskip1em{\color{mxink}\rule{\textwidth}{.5pt}}\par
+    \vskip.5em{\usebeamerfont{footline}\textcolor{mxmuted}{\mx@wordmark}}
+    \vfill
+  \end{frame}}
+\makeatother
+\mode<all>

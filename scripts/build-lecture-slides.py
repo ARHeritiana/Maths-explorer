@@ -1,4 +1,4 @@
-"""Build lecture editions as actual 16:9 Metropolis Beamer documents, never browser printouts.
+"""Build lecture editions as actual 16:9 Beamer (Cahier theme, content/tex/core/beamer/beamerthememx.sty) documents, never browser printouts.
 
 The HTML decks retain manipulable figures. Lecture editions retain definitions, proofs, methods,
 questions and worked answers. Interactive-only scenes are deliberately omitted. Long material is
@@ -13,7 +13,15 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'build'))
 from mxbuild.notation import mathjax, BRACKETS
 from mxbuild.slide_editions import languages, for_language
-DATA=ROOT/'dist/slides/data'; OUT=ROOT/'dist/slides/lectures'; SOURCE=ROOT/'content/tex/lectures'; BUILD=ROOT/'build/out/lectures'
+DATA=ROOT/'dist/slides/data'; OUT=ROOT/'dist/slides/lectures'; SOURCE=ROOT/'content/tex/lectures'; CORE=ROOT/'content/tex/core'; BUILD=ROOT/'build/out/lectures'
+# What a published source archive carries: the theme. The fonts are shared by every deck, course and book, so they are NOT copied
+# into each archive (145 decks x 2.4 MB would triple the site): they are published once, in dist/sources/core/fonts.
+THEME_FILES=['beamer/beamerthememx.sty']
+FONTS_README=("The fonts this theme loads by file name (STIX Two text and maths, Schibsted Grotesk, Latin Modern Mono) are shared by all Maths Explorer\n"
+ "sources and published once at sources/core/fonts/ on the site (with their licences). Copy that folder to core/fonts/ next to the\n"
+ "main file before compiling with XeTeX (xelatex -no-shell-escape), or set \\mxcorepath to a folder that contains fonts/.\n").encode()
+def theme_entries():
+    out={'core/'+n:(CORE/n).read_bytes() for n in THEME_FILES}; out['core/fonts/README.txt']=FONTS_README; return out
 PUNCT={'−':'-','–':'-','—':'-','…':r'\ldots{}','→':r'\ensuremath{\to}','↦':r'\ensuremath{\mapsto}','⇒':r'\ensuremath{\Rightarrow}','⇔':r'\ensuremath{\iff}','≤':r'\ensuremath{\leq}','≥':r'\ensuremath{\geq}','≠':r'\ensuremath{\ne}','≈':r'\ensuremath{\approx}','∞':r'\ensuremath{\infty}','ℝ':r'\ensuremath{\mathbb{R}}','ℕ':r'\ensuremath{\mathbb{N}}','ℤ':r'\ensuremath{\mathbb{Z}}','ℚ':r'\ensuremath{\mathbb{Q}}','ℂ':r'\ensuremath{\mathbb{C}}','∈':r'\ensuremath{\in}','∉':r'\ensuremath{\notin}','∩':r'\ensuremath{\cap}','∪':r'\ensuremath{\cup}','∅':r'\ensuremath{\varnothing}','×':r'\ensuremath{\times}','·':r'\ensuremath{\cdot}','²':r'\textsuperscript{2}','³':r'\textsuperscript{3}','°':r'\textdegree{}','α':r'\ensuremath{\alpha}','β':r'\ensuremath{\beta}','Δ':r'\ensuremath{\Delta}','θ':r'\ensuremath{\theta}','π':r'\ensuremath{\pi}','σ':r'\ensuremath{\sigma}','μ':r'\ensuremath{\mu}','√':r'\ensuremath{\sqrt{\phantom{x}}}','′':"'",'″':"''",'₀':r'\textsubscript{0}','₁':r'\textsubscript{1}','₂':r'\textsubscript{2}','₃':r'\textsubscript{3}','₄':r'\textsubscript{4}'}
 
 def escape(s):
@@ -45,21 +53,21 @@ def convert(fragment):
 
 def weight(html_text):
     # characters of text, plus a line's worth for each table row (a variation table is short in characters, tall on the page)
-    return len(re.sub('<[^>]*>','',html_text))+80*html_text.count('<tr')
+    return len(re.sub('<[^>]*>','',html_text))+80*html_text.count('<tr')+30*html_text.count('<li')
 def chunks(fragment,limit=540):
     # Keep displayed maths and list items intact. A lecture page has a reading order, no live control instructions.
-    pieces=re.split(r'(?:<br\s*/?>\s*){2,}|(?<=</p>)\s*|(?=<(?:ul|ol)>)|(?<=</ul>)|(?<=</ol>)',fragment)
+    pieces=re.split(r'(?:<br\s*/?>\s*){2,}|(?<=</p>)\s*|(?=<(?:ul|ol)[ >])|(?<=</ul>)|(?<=</ol>)',fragment)
     out=[];current=''
     for piece in pieces:
         if not piece.strip():continue
         if weight(current+piece)>limit and current:out.append(current);current=''
         # An oversized list is split item-by-item while retaining its list semantics.
-        if len(re.sub('<[^>]*>','',piece))>limit and re.fullmatch(r'\s*<(ul|ol)>[\s\S]*</\1>\s*',piece):
+        if weight(piece)>limit and re.fullmatch(r'\s*<(ul|ol)(?: [^>]*)?>[\s\S]*</\1>\s*',piece):
             node=dom.fragment_fromstring(piece);tag=node.tag
-            start=1
+            start=int(node.get('start','1') or 1)
             for child in node:
                 item=dom.tostring(child,encoding='unicode')
-                if len(re.sub('<[^>]*>','',current+item))>limit and current:out.append(f'<{tag}'+(f' start="{start}"'if tag=='ol'else '')+f'>{current}</{tag}>');start+=current.count('<li');current=''
+                if weight(current+item)>limit and current:out.append(f'<{tag}'+(f' start="{start}"'if tag=='ol'else '')+f'>{current}</{tag}>');start+=current.count('<li');current=''
                 current+=item
             if current:out.append(f'<{tag}'+(f' start="{start}"'if tag=='ol'else '')+f'>{current}</{tag}>');start+=current.count('<li');current=''
         else:current+=(('<br><br>' if current else '')+piece)
@@ -71,16 +79,12 @@ def preamble(title,lang):
     for key,value in mathjax().items():
         body,n=(value[0],value[1])if isinstance(value,list)else(value,0)
         macros.append('\\providecommand{\\'+key+'}'+('['+str(n)+']' if n else '')+'{'+body+'}')
-    return r'''\documentclass[aspectratio=169,10pt]{beamer}
-\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
-\usepackage{fontspec}
-\setsansfont{Latin Modern Sans}
-\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
-\usepackage{polyglossia}
-\setdefaultlanguage{'''+('french' if lang=='fr' else 'english')+r'''}
-\setbeamertemplate{navigation symbols}{}
-\setbeamerfont{frametitle}{size=\large}
-\setbeamerfont{normal text}{size=\normalsize}
+    return r'''% GENERATED by scripts/build-lecture-slides.py; do not edit. Portable profile: XeTeX, theme and fonts from the core.
+\makeatletter\IfFileExists{core/beamer/beamerthememx.sty}{\def\mxcorepath{core/}\def\input@path{{core/beamer/}{core/}}}{\def\mxcorepath{../core/}\def\input@path{{../core/beamer/}{../core/}}}\makeatother
+\documentclass[aspectratio=169,10pt,t]{beamer}
+\usetheme{mx}
+\usepackage{graphicx,booktabs}
+\usepackage[''' + ('french' if lang=='fr' else 'english') + r''']{babel}
 \setlength{\parskip}{.45em}
 \hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={'''+escape(title)+r'''}}
 '''+ '\n'.join(macros)+r'''
@@ -91,15 +95,7 @@ def preamble(title,lang):
 \date{}
 \author{}
 \begin{document}
-\begin{frame}[plain]
-\vfill
-{\usebeamerfont{title}\inserttitle\par}
-\medskip
-{\usebeamerfont{subtitle}\insertsubtitle\par}
-\medskip
-{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
-\vfill
-\end{frame}
+\mxtitleframe
 '''
 
 def figure(deck,slide,lang,work):
@@ -155,7 +151,9 @@ def build_one(item):
     deck,lang=item;key=f'{deck["id"]}-{lang}';work=BUILD/key;work.mkdir(parents=True,exist_ok=True)
     tex=tex_for(deck,lang,work);source=SOURCE/(key+'.tex');source.parent.mkdir(parents=True,exist_ok=True);source.write_text(tex)
     path=work/'main.tex';path.write_text(tex)
-    digest=hashlib.sha256((tex+'metropolis-lecture-v1').encode()+b''.join(p.read_bytes()for p in sorted((work/'figures').glob('*.pdf')))).hexdigest();cache=work/'source.sha256'
+    link=work/'core'
+    if not link.is_symlink():link.symlink_to(CORE)
+    digest=hashlib.sha256((tex+'mx-lecture-v1').encode()+b''.join(p.read_bytes()for p in sorted((work/'figures').glob('*.pdf')))+b''.join(theme_entries().values())).hexdigest();cache=work/'source.sha256'
     out=OUT/(key+'.pdf');OUT.mkdir(parents=True,exist_ok=True)
     if not out.exists()or not cache.exists()or cache.read_text()!=digest:
         for run in range(2):
@@ -166,7 +164,7 @@ def build_one(item):
     shutil.copyfile(source,OUT/(key+'.tex'))
     zpath=OUT/(key+'-source.zip')
     # An archive with the same entries is kept: rewriting it would only change timestamps and the site's cache versions.
-    entries={'main.tex':source.read_bytes(),**{'figures/'+f.name:f.read_bytes() for f in sorted((work/'figures').glob('*.pdf'))}}
+    entries={'main.tex':source.read_bytes(),**{'figures/'+f.name:f.read_bytes() for f in sorted((work/'figures').glob('*.pdf'))},**theme_entries()}
     same=False
     if zpath.exists():
         with zipfile.ZipFile(zpath)as archive:same=sorted(archive.namelist())==sorted(entries) and all(archive.read(n)==b for n,b in entries.items())
@@ -204,6 +202,7 @@ def main():
                 assert all(abs(p.rect.width/p.rect.height-16/9)<.005 for p in doc),key
             with zipfile.ZipFile(OUT/edition['source'])as archive:
                 assert archive.read('main.tex').decode()==expected,key
+                for n,data in theme_entries().items():assert archive.read(n)==data, 'stale theme in archive: '+key+'/'+n
                 for f in re.findall(r'\\includegraphics\[[^]]*\]\{([^}]+)\}',expected):
                     assert f in archive.namelist(),(key,f)
                     assert archive.read(f)==(BUILD/key/f).read_bytes(), 'stale lecture figure: '+key+'/'+f
