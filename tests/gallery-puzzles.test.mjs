@@ -99,3 +99,25 @@ test("opaque square: preset barriers and their lengths; gaps agree with a direct
   let seg = 0, sq = 0; const N = 20000; for (let k = 0; k < N; k++) { const th = (Math.PI * (k + 0.5)) / N; seg += Math.abs(Math.cos(th)); sq += Math.abs(Math.cos(th)) + Math.abs(Math.sin(th)); }
   assert.ok(Math.abs(seg / N - 2 / Math.PI) < 1e-6 && Math.abs(sq / N - 4 / Math.PI) < 1e-6);
 });
+
+test("moving sofa: resolve is bounded in time and never ends in a wall, even for targets far inside the walls", () => {
+  const poly = S.hammersley(S.HAMMERSLEY_R);
+  let pose = S.hammersleyPose(S.HAMMERSLEY_R, 1.4, 1.5), worst = 0, seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 400; i++) {
+    // a pointer that runs wildly ahead of a blocked sofa: targets up to 2 units away, any angle
+    const target = { x: pose.x + (rnd() - 0.5) * 4, y: pose.y + (rnd() - 0.5) * 4, a: pose.a + (rnd() - 0.5) * 1.5 };
+    const t0 = performance.now(); const next = S.resolve(poly, pose, target, { eps: 1e-5 }); worst = Math.max(worst, performance.now() - t0);
+    assert.ok(S.fits(poly, next, 1e-5), `step ${i}: sofa ended in a wall`);
+    pose = next;
+  }
+  assert.ok(worst < 60, `slowest resolve ${worst.toFixed(1)} ms`);
+});
+test("moving sofa: pushOut gives up within its evaluation budget", () => {
+  const poly = S.hammersley(S.HAMMERSLEY_R); let calls = 0;
+  const wrapped = new Proxy(poly, {}); void wrapped;
+  const t0 = performance.now();
+  for (let i = 0; i < 200; i++) { calls++; S.pushOut(poly, { x: -0.3, y: 0.9 + i * 0.01, a: 0.3 }, { maxEvals: 20 }); }
+  assert.ok(performance.now() - t0 < 500 && calls === 200);
+  assert.equal(S.pushOut(poly, { x: 0.5, y: 3, a: 0 }, { maxEvals: 3 }), null);
+});
