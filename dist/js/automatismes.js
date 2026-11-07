@@ -3,7 +3,7 @@
 // or exported as LaTeX source or as a standalone projection page. Same seed, same series.
 import { CLASSES, buildStarter, describeLevels } from './exercises/bank.js';
 import { html, esc, starterHtml, starterTex, projectionHtml } from './exercises/export.js';
-import { P, stepSeed, loadSettings, saveSettings, typeset, download, printMarkup, stamp, classOptions, chapterChips, domainChips, levelChips, checked } from './exercises/ui-kit.js';
+import { P, loadSettings, saveSettings, typeset, download, printMarkup, stamp, classOptions, chapterChips, domainChips, levelChips, checked } from './exercises/ui-kit.js';
 import { fullscreenButton } from './visual-lessons.js';
 
 const KEY = 'maths-explorer-automatismes-v1';
@@ -24,8 +24,8 @@ export function automatismesPage(t, pair) {
 <label class="gen-field"><span>${t(P('Ordre', 'Order'))}</span><select name="order"><option value="progressive"${s.order === 'progressive' ? ' selected' : ''}>${t(P('Progressif (du plus simple au plus dur)', 'Progressive (easiest first)'))}</option><option value="mixed"${s.order === 'mixed' ? ' selected' : ''}>${t(P('Mélangé', 'Mixed'))}</option></select></label>
 </div>
 <label class="gen-check"><input type="checkbox" name="fast"${s.fast ? ' checked' : ''}> ${t(P('Questions courtes seulement (adaptées à un automatisme)', 'Short questions only (suited to a starter)'))}</label>
-<div class="gen-row"><label class="gen-field"><span>${t(P('Code de la série', 'Series code'))}</span><input type="text" name="seed" value="${esc(s.seed)}" maxlength="24" autocomplete="off" spellcheck="false"></label><button type="button" class="btn btn-secondary" id="gen-new">${t(P('Nouvelle série', 'New series'))}</button><button type="button" class="btn btn-secondary" id="gen-prev" aria-label="${t(P('Série précédente', 'Previous series'))}">←</button><button type="button" class="btn btn-secondary" id="gen-next" aria-label="${t(P('Série suivante', 'Next series'))}">→</button></div>
-<p class="muted">${t(P('La même graine redonne exactement la même série ; n’importe quel texte est une graine, donc le nombre de séries est illimité. Les flèches passent à la série précédente ou suivante (graine terminée par -2, -3…).', 'The same seed gives exactly the same series; any text is a seed, so the number of series is unlimited. The arrows move to the previous or next series (seed ending -2, -3…).'))}</p>
+<div class="gen-row"><label class="gen-field"><span>${t(P('Code de la série', 'Series code'))}</span><input type="text" name="seed" value="${esc(s.seed)}" maxlength="24" autocomplete="off" spellcheck="false"></label><button type="button" class="btn btn-secondary" id="gen-new">${t(P('Nouvelle série', 'New series'))}</button></div>
+<p class="muted">${t(P('La même graine redonne exactement la même série ; n’importe quel texte est une graine, donc le nombre de séries est illimité.', 'The same seed gives exactly the same series; any text is a seed, so the number of series is unlimited.'))}</p>
 </form>
 <section class="gen-output" aria-label="${t(P('Série générée', 'Generated series'))}">
 <div class="gen-actions" role="group" aria-label="${t(P('Exports', 'Exports'))}">
@@ -110,8 +110,6 @@ export function bindAutomatismes(root, t, { chapterTitle = (id) => id } = {}) {
   form.elements.minutes.addEventListener('input', () => rebuild());
   form.elements.seed.addEventListener('input', () => rebuild());
   $('#gen-new').addEventListener('click', () => { form.elements.seed.value = newSeed(); rebuild(); });
-  $('#gen-prev').addEventListener('click', () => { form.elements.seed.value = stepSeed(form.elements.seed.value.trim() || s.seed, -1); rebuild(); });
-  $('#gen-next').addEventListener('click', () => { form.elements.seed.value = stepSeed(form.elements.seed.value.trim() || s.seed, 1); rebuild(); });
   $('#st-prev').addEventListener('click', () => go(i - 1));
   $('#st-next').addEventListener('click', () => go(i + 1));
   $('#st-reveal').addEventListener('click', () => { showAnswer = !showAnswer; drawStage(); });
