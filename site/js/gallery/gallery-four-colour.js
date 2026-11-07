@@ -107,6 +107,7 @@ export function fourColours(root, opts) {
     if (d) { e.preventDefault(); selected = (selected + d + map.length) % map.length; o.redraw(); }
   });
   load();
+  o.once = true;   // every change goes through o.redraw(); the loop only draws the first frame and after a resize or a theme change
   o.animate(() => {
     const C = background(o), bad = conflicts(edges, col);
     map.forEach((poly, i) => {

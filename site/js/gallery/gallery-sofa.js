@@ -31,7 +31,7 @@ export function movingSofa(root,opts){
   o.on(kindSel,'change',()=>{kind=kindSel.value;if(kind==='own'&&!own){drawing=[];drawBtn.textContent=t('Dessine dans le couloir…','Draw in the hallway…');}shapeChanged();});
   bind(root,'so-r',v=>{r=v;shapeChanged();},v=>v.toFixed(2));bind(root,'so-w',v=>{w=v;shapeChanged();},v=>v.toFixed(2));bind(root,'so-l',v=>{len=v;shapeChanged();},v=>v.toFixed(2));
   o.on(drawBtn,'click',()=>{drawing=[];drawBtn.textContent=t('Dessine dans le couloir…','Draw in the hallway…');dirty=true;});
-  o.on(playBtn,'click',()=>{play=play===null?0:null;auto=true;dirty=true;});
+  o.on(playBtn,'click',()=>{play=play===null?0:null;auto=true;dirty=true;o.wake(100);});
   o.on(root.querySelector('#so-reset'),'click',()=>{pose=start();shown={...pose};want=null;play=null;dirty=true;});
   o.touchHit(at=>{if(drawing)return true;const p=W(at),h=handle(),poly=place(hit,pose);if(Math.hypot(p[0]-h[0],p[1]-h[1])<.3)return true;let yes=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;});
   o.on(o.cv,'pointerdown',e=>{const p=W(o.point(e));play=null;
@@ -58,6 +58,7 @@ export function movingSofa(root,opts){
     if(d){e.preventDefault();play=null;moveTo({...pose,x:pose.x+d[0]*.05,y:pose.y+d[1]*.05});}else if(e.key==='['||e.key===']'){e.preventDefault();play=null;moveTo(turnAbout(pose,c0,pose.a+(e.key===']'?-1:1)*Math.PI/90));}});
   shapeChanged();
   root.__sofa=()=>({pose:{...pose},handle:handle(),centre:centre(),kind});   // read by the browser tests
+  o.onResize=()=>{dirty=true;};o.busy=()=>play!==null||!!want;
   o.animate(dt=>{
     // frame time, or real elapsed time under reduced motion (the motion runs only when asked)
     const now=performance.now(),real=dt||Math.min(.1,(now-(o.last||now))/1000);o.last=now;
@@ -66,7 +67,7 @@ export function movingSofa(root,opts){
     // the drawn pose eases toward the true one (about 25 ms), which hides the small jumps of a sliding contact
     const gap=Math.hypot(pose.x-shown.x,pose.y-shown.y)+Math.abs(pose.a-shown.a);
     if(gap>0){if(opts.reduced()||gap>1.2||play!==null)shown={...pose};else{const k=1-Math.exp(-real*45);shown={x:shown.x+(pose.x-shown.x)*k,y:shown.y+(pose.y-shown.y)*k,a:shown.a+(pose.a-shown.a)*k};if(Math.hypot(pose.x-shown.x,pose.y-shown.y)+Math.abs(pose.a-shown.a)<2e-4)shown={...pose};}dirty=true;}
-    if(!dirty)return;dirty=false;
+    if(!dirty)return false;dirty=false;
     const C=palette(),ok=fits(poly,pose,EPS),done=ok&&through(poly,pose),A=kind==='gerver'?GERVER.area:kind==='hammersley'?hammersleyArea(r):area(poly);if(done&&!auto)best=Math.max(best,A);
     g.clearRect(0,0,o.W,o.H);g.fillStyle=C.line;g.globalAlpha=.35;g.fillRect(-2000,-2000,4640,4440);g.globalAlpha=1;
     g.fillStyle=C.sunken;g.fillRect(-2000,Y(1),X(1)+2000,S);g.fillRect(X(0),Y(1),S,3000);

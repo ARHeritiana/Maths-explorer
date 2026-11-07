@@ -88,7 +88,7 @@ export function equidecomposition(root,opts){
     const now=performance.now(),real=dt||Math.min(.1,(now-(o.last||now))/1000);o.last=now;
     if(playing){T=Math.min(STAGES,T+real/3.2);if(T>=STAGES)setPlaying(false);ver++;}
     const step=Math.min(STAGES-1,Math.floor(T));
-    if(idle(false,`${ver}`))return;
+    if(idle(false,`${ver}`))return false;
     const C=C0(),fr=frame(CH,T);
     g.clearRect(0,0,o.W,o.H);g.fillStyle=C.sunken;g.fillRect(-2000,-2000,4640,4440);g.lineJoin='round';
     const trace=poly=>{g.beginPath();poly.map(X).forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();};
