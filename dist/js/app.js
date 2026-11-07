@@ -113,6 +113,7 @@ const SECTIONS = [
   ["learn", "Apprendre", "Learn", "books", [
     ["resources", "Cours", "Lessons", "books"],
     ["bank", "Exercices", "Exercises", "seal-check"],
+    ["bank/annales", "Annales", "Past papers", "scroll"],
     ["slides", "Diaporamas", "Slides", "presentation-chart"],
     ["basics", "Bases", "Foundations", "books"],
     ["automatismes", "Automatismes", "Starters", "lightbulb"],
@@ -136,7 +137,7 @@ const SECTIONS = [
 // pages reached from a tab count as that tab
 const TAB_OF = { chapter: "resources", library: "resources", workshop: "resources", pack: "resources", sources: "resources", university: "pathways" };
 function header(page) {
-  const tab = TAB_OF[page] || page;
+  const tab = page === "bank" && route().id === "annales" ? "bank/annales" : TAB_OF[page] || page;
   const section = SECTIONS.find(([, , , , tabs]) => tabs.some(([id]) => id === tab));
   const dark = currentTheme() === "nuit";
   const themeLabel = dark ? pair("Passer au thème clair", "Switch to light theme") : pair("Passer au thème sombre", "Switch to dark theme");

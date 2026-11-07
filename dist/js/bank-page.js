@@ -67,7 +67,7 @@ function bankNav(t, annals) {
 }
 
 export function bankPage(t, course, chapter) {
-  if(course==='annales')return `<main id="main" tabindex="-1" class="page bank-page"><a class="backlink" href="#bank">Banque d’exercices</a><h1>Annales d’examens</h1>${bankNav(t,true)}${annalsMarkup(ANNALS,{detail:chapter||''})}</main>`;
+  if(course==='annales')return `<main id="main" tabindex="-1" class="page bank-page"><h1>Annales d’examens</h1><p class="page-intro">Sujets de bac, E3C et EAM avec leurs corrigés : cherche une notion ou filtre par examen.</p>${bankNav(t,true)}${annalsMarkup(ANNALS,{detail:chapter||''})}</main>`;
   let saved = ''; try { saved = currentCourse(); } catch { /* storage blocked */ }
   const id = course || (courses.some((c) => c.id === saved) ? saved : courses[0].id);
   return `<main id="main" tabindex="-1" class="page bank-page"><div class="res-top"><div><h1>${t(P('Banque d’exercices', 'Exercise bank'))}</h1><p class="page-intro">${t(P('Choisis ta classe et ton chapitre. Cherche, demande un indice, puis ouvre la correction. Pour préparer un examen, retrouve les sujets dans les annales.', 'Choose your class and chapter. Try, ask for a hint, then open the solution. To prepare for an exam, browse the past papers.'))}</p></div></div>
