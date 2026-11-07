@@ -1,9 +1,6 @@
-\makeatletter\def\input@path{{core/}}\makeatother
+\makeatletter\def\input@path{{core/}}\makeatother\def\mxcorepath{core/}
 \documentclass[lang=fr,edition=teacher,layout=sheet]{mxbook}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb,mathrsfs,mathpazo}
 \usepackage{graphicx,array,tabularx,tabularray,colortbl,multirow,multicol,booktabs,enumitem,pifont,ulem,fancybox,diagbox,cancel}
 \let\pscalculate\undefined
 \usepackage{tikz,pgfplots,tkz-tab}
@@ -68,10 +65,10 @@
 \providecommand{\Ouv}{\(\mathrm{O};\vec{u},\vec{v}\)}
 \providecommand{\intervFF}[2]{\ensuremath{[#1;#2]}}
 \renewcommand{\euro}{\ifmmode\text{\texteuro}\else\texteuro\fi}
-\DeclareUnicodeCharacter{00B0}{\ifmmode^{\circ}\else\textdegree\fi}
-\DeclareUnicodeCharacter{20AC}{\ifmmode\text{\texteuro}\else\texteuro\fi}
-\microtypesetup{expansion=false}
-\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}\graphicspath{{assets/}}
+
+
+
+\graphicspath{{assets/}}
 \begin{document}
 \chapter*{Banque E3C : énoncés}
 Énoncés : Éducation nationale. Transcription et corrigés : APMEP, Denis Vergès et contributeurs. Découpage et classement : CoopMaths, Sébastien Lozano, Éric Elter et contributeurs. Adaptation de la présentation : Maths Explorer.\par\medskip

@@ -95,6 +95,11 @@ def main():
         (OUT / 'core').mkdir(parents=True, exist_ok=True); shutil.copy2(p, OUT / 'core' / p.name)
         core_files.append({'path': f'core/{p.name}', 'bytes': p.stat().st_size, 'kind': 'style' if p.suffix != '.tex' else 'tex',
                            'lang': 'en' if '.en.' in p.name else 'fr'})
+    # The OpenType fonts the style loads by file name travel with it, so a downloaded archive compiles without installing anything.
+    for p in sorted((CORE / 'fonts').glob('*')):
+        (OUT / 'core' / 'fonts').mkdir(parents=True, exist_ok=True); shutil.copy2(p, OUT / 'core' / 'fonts' / p.name)
+        core_files.append({'path': f'core/fonts/{p.name}', 'bytes': p.stat().st_size, 'kind': 'font' if p.suffix in {'.otf', '.ttf'} else 'licence',
+                           'lang': 'fr'})
     for c in courses:
         if c['id'] in migrated: c['files'] += core_files
     if problems:
@@ -105,8 +110,8 @@ def main():
         'figures and style files. English twins carry the suffix `-en` (translated prose, identical mathematics).\n\n'
         '```sh\n'
         'cd premiere\n'
-        'pdflatex -no-shell-escape eleve.tex && pdflatex -no-shell-escape eleve.tex            # French, student\n'
-        'pdflatex -no-shell-escape professeur.tex && pdflatex -no-shell-escape professeur.tex  # French, teacher\n'
+        'xelatex -no-shell-escape eleve.tex && xelatex -no-shell-escape eleve.tex            # French, student\n'
+        'xelatex -no-shell-escape professeur.tex && xelatex -no-shell-escape professeur.tex  # French, teacher\n'
         '```\n\n'
         'Engine and preamble are those of each source (pdfLaTeX unless stated; enrichment workshops use XeLaTeX).\n'
         'Shell escape is never needed.\n\n'

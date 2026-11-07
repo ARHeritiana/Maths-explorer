@@ -1,6 +1,6 @@
 """TeX compilation: one driver for every builder, and the per-course cache used by `mxbuild tex`.
 
-compile() runs pdfLaTeX (or another engine) without shell escape and with -halt-on-error, reruns while LaTeX asks for
+compile() runs XeTeX (the portable profile; or another engine) without shell escape and with -halt-on-error, reruns while LaTeX asks for
 it, and reports pages, undefined references and overfull boxes. Builders decide what to do with the result.
 """
 import hashlib, json, re, subprocess, time
@@ -54,7 +54,7 @@ def _aux_state(outdir, jobname):
     return h.hexdigest()
 
 
-def compile(src_dir, tex_input, jobname, outdir, engine='pdflatex', max_runs=4):
+def compile(src_dir, tex_input, jobname, outdir, engine='xelatex', max_runs=4):
     """Compile `tex_input` (a file name, or TeX code such as \\def\\x{1}\\input{main}) from `src_dir` into `outdir`.
     Reruns while LaTeX asks for it or while the auxiliary files (.aux, .toc, ...) still change: a table of contents
     changes without any "Rerun" warning, so the warning alone leaves stale page numbers."""

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Compile native-frame annales books and their complete, portable LaTeX source bundle."""
+# The figure PDFs bundled in sources.zip are exactly those the books use (build/out/annals/figures-pdf must hold nothing else).
 import argparse,concurrent.futures,hashlib,json,os,runpy,shutil,subprocess,zipfile
 from pathlib import Path
 import pymupdf
@@ -19,9 +20,10 @@ def fingerprint():
 def preamble():
  parts=[]
  for line in helpers['PREAMBLE'].splitlines():
-  if any(k in line for k in ['{pstricks,','{pst-bezier}','[pstricks]{tablvar}','documentclass','{geometry}','\\geometry','\\pagestyle','\\setlength{\\parindent}']):continue
+  if any(k in line for k in ['{fontenc}','{inputenc}','mathpazo','{pstricks,','{pst-bezier}','[pstricks]{tablvar}','documentclass','{geometry}','\\geometry','\\pagestyle','\\setlength{\\parindent}']):continue
   parts.append(line)
- return r'\makeatletter\def\input@path{{core/}}\makeatother'+'\n'+r'\documentclass[lang=fr,edition=teacher,layout=sheet]{mxbook}'+'\n'+'\n'.join(parts)+'\n'+r'\usepackage[tikz]{tablvar}\usepackage[export]{adjustbox}'+r'\providecommand{\psset}[1]{}'+'\n'+(helpers['MACROS']+helpers['TEXT_MACROS']).replace(r'\newcommand',r'\providecommand')+helpers['TEX_PATCHES']+r'\microtypesetup{expansion=false}'+'\n'+r'\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}'+r'\graphicspath{{assets/}}'+'\n'
+ out=r'\makeatletter\def\input@path{{core/}}\makeatother\def\mxcorepath{core/}'+'\n'+r'\documentclass[lang=fr,edition=teacher,layout=sheet]{mxbook}'+'\n'+'\n'.join(parts)+'\n'+r'\usepackage[tikz]{tablvar}\usepackage[export]{adjustbox}'+r'\providecommand{\psset}[1]{}'+'\n'+'\n'.join(l for l in (helpers['MACROS']+helpers['TEXT_MACROS']).split('\n') if 'DeclareUnicodeCharacter' not in l).replace(r'\newcommand',r'\providecommand')+helpers['TEX_PATCHES']+'\n'+r'\DeclareUnicodeCharacter{2236}{:}\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}'+r'\graphicspath{{assets/}}'+'\n'
+ return __import__('re').sub(r'\\DeclareUnicodeCharacter\{[0-9A-F]+\}\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}','',out)
 def build_one(job):
  family,correction,records,config,chapters=job
  name=family.lower()+('-corriges' if correction else '-enonces');work=OUT/name;work.mkdir(parents=True,exist_ok=True)
@@ -32,6 +34,8 @@ def build_one(job):
     if folder=='units':
      body,_=helpers['graphics'](p.read_text(),p.stem);body=body.replace('./resources/annals/figures/','figures/').replace('.svg}', '.pdf}').replace(r'\includegraphics{figures/',r'\includegraphics[max width=\linewidth]{figures/');(work/folder/p.name).write_text(body)
     else:shutil.copy2(p,work/folder/p.name)
+ (work/'core'/'fonts').mkdir(parents=True,exist_ok=True)
+ for p in (CORE/'fonts').glob('*'):shutil.copy2(p,work/'core'/'fonts'/p.name)
  (work/'figures').mkdir(exist_ok=True)
  for p in (ROOT/'build/out/annals/figures-pdf').glob('*.pdf'):shutil.copy2(p,work/'figures'/p.name)
  (work/'assets').mkdir(exist_ok=True)
@@ -50,7 +54,7 @@ def build_one(job):
   text+='\\begingroup\\input{units/'+r['id']+('.cor' if correction else '')+'.tex}\\endgroup\n\\par\\bigskip\n'
  text+='\\end{document}\n';(work/(name+'.tex')).write_text(text)
  for passno in ([1] if DIAGNOSE else [1,2]):
-  run=subprocess.run(['pdflatex','-interaction=nonstopmode',* ([] if DIAGNOSE else ['-halt-on-error']),'-no-shell-escape',name+'.tex'],cwd=work,capture_output=True,text=True,errors='replace')
+  run=subprocess.run(['xelatex','-interaction=nonstopmode',* ([] if DIAGNOSE else ['-halt-on-error']),'-no-shell-escape',name+'.tex'],cwd=work,capture_output=True,text=True,errors='replace')
   if run.returncode:
    (work/'build-error.txt').write_text(run.stdout+run.stderr)
    if DIAGNOSE:print(name,'diagnostic log written',flush=True);return name
@@ -83,13 +87,14 @@ def build():
  if DIAGNOSE:return
  with zipfile.ZipFile(DEST/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
   z.writestr('index.json',json.dumps(config,ensure_ascii=False,indent=2))
-  z.writestr('ATTRIBUTION.txt',config['credit']+'\nCC BY-SA\n'+config['terms']+'\nCompiler avec pdfLaTeX ; les figures originales sont fournies au format vectoriel PDF.\n')
+  z.writestr('ATTRIBUTION.txt',config['credit']+'\nCC BY-SA\n'+config['terms']+'\nCompiler avec XeLaTeX ; les figures originales sont fournies au format vectoriel PDF.\n')
   for name in names:z.write(DEST/(name+'.tex'),name+'.tex')
   for source in sorted(SOURCE.glob('*.tex')):
    p=OUT/names[0]/'units'/source.name;z.write(p,'units/'+p.name)
   for p in (ROOT/'build/out/annals/figures-pdf').glob('*.pdf'):z.write(p,'figures/'+p.name)
   for p in CORE.glob('*'):
    if p.is_file():z.write(p,'core/'+p.name)
+  for p in (CORE/'fonts').glob('*'):z.write(p,'core/fonts/'+p.name)
   for p in (SOURCE/'assets').glob('*'):z.write(p,'assets/'+p.name)
   z.write(ROOT/'build/out/annals/figures-pdf/pyramide.pdf','assets/pyramide.pdf')
  files={p.relative_to(ROOT/'dist').as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in DEST.iterdir() if p.is_file()}
@@ -112,6 +117,8 @@ def reuse_inputs():
    if z.read('units/'+p.name).decode()!=body:raise ValueError('Changed PDF unit: '+p.name)
   for p in CORE.glob('*'):
    if p.is_file() and z.read('core/'+p.name)!=p.read_bytes():raise ValueError('Changed PDF style: '+p.name)
+  for p in (CORE/'fonts').glob('*'):
+   if z.read('core/fonts/'+p.name)!=p.read_bytes():raise ValueError('Changed PDF font: '+p.name)
   for p in (SOURCE/'assets').glob('*'):
    if p.is_file() and z.read('assets/'+p.name)!=p.read_bytes():raise ValueError('Changed PDF asset: '+p.name)
   for p in DEST.glob('*.tex'):

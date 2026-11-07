@@ -3,28 +3,8 @@
 % \Needspace; chapters start on a new page through the class.
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{mx-layout}[2026/10/12 Maths Explorer native document layout]
-\RequirePackage{geometry,fancyhdr,titlesec,needspace,microtype,enumitem,booktabs,array,tabularx,longtable,multicol,eso-pic}
+\RequirePackage{geometry,fancyhdr,titlesec,needspace,enumitem,booktabs,array,tabularx,longtable,multicol,eso-pic}
 \def\mx@booklet{booklet}\def\mx@figs{slide-figs}
-% Print palette formerly applied to PDF drawing operators after compilation. Figure exports retain their original
-% palette; documents now produce the print colours directly, without editing PDF streams.
-\ifx\mx@layout\mx@figs\else
-  \definecolor{mxink}{rgb}{.09,.40,.33}
-  \definecolor{mxmint}{rgb}{.09,.40,.33}
-  \definecolor{mxmintpale}{rgb}{.94,.96,.98}
-  \definecolor{mxteacher}{rgb}{.22,.32,.52}
-  \definecolor{mxwarn}{rgb}{.64,.26,.35}
-  \definecolor{mxmuted}{rgb}{.09,.40,.33}
-\fi
-\definecolor{mxband}{HTML}{0B1224}
-\definecolor{mxbandaccent}{HTML}{75EFC9}
-\definecolor{mxbandlanguage}{HTML}{B5A5FF}
-\definecolor{mxfooter}{rgb}{.32,.38,.47}
-\definecolor{mxfootrule}{rgb}{.8,.85,.9}
-% Pale fills were neutral enough that the former stream mapper left them alone. Keep those original tints even
-% though their saturated accent inks now use the print palette above.
-\definecolor{mxkeyfill}{rgb}{.92765,.97000,.95412}
-\definecolor{mxpitfallfill}{rgb}{.98510,.96843,.95980}
-\definecolor{mxsolutionfill}{rgb}{.97020,.97694,.98541}
 % Page-local frame, shared by books and the cached empty pages used when the builders assemble excerpts. Absolute
 % sheet counts are independent of front/main-matter numbering. Reading the total from the aux file settles on rerun.
 \providecommand{\mxdocumentpages}{?}
@@ -32,17 +12,18 @@
 \newcommand{\mx@put}[3]{\put(\LenToUnit{#1},\LenToUnit{#2}){#3}}
 \AddToHook{enddocument/afterlastpage}{%
   \immediate\write\@auxout{\string\gdef\string\mxdocumentpages{\the\ReadonlyShipoutCounter}}}
+% Page frame (header and footer), drawn on every page: a red square and the wordmark, the language at the right, a black
+% rule; below, a light rule, the tagline and the page count. Sharp corners, no fill, no shadow (site tokens "Cahier").
 \newcommand{\mxpageframe}{%
   \AtPageUpperLeft{%
-    \mx@put{0bp}{-34bp}{\color{mxband}\rule{\paperwidth}{34bp}}%
-    \mx@put{23bp}{-35.75bp}{\color{mxbandaccent}\rule{\dimexpr\paperwidth-46bp\relax}{1.5bp}}%
-    \mx@put{23bp}{-23bp}{\makebox(0,0)[lb]{\sffamily\bfseries\fontsize{10bp}{12bp}\selectfont\color{mxbandaccent}MATHS EXPLORER}}%
-    \mx@put{\dimexpr\paperwidth-42bp\relax}{-23bp}{\makebox(0,0)[lb]{\sffamily\fontsize{8bp}{10bp}\selectfont\color{mxbandlanguage}\mxtr{FR}{EN}}}}%
+    \mx@put{23bp}{-27bp}{\color{mxaccent}\rule{6bp}{6bp}}%
+    \mx@put{33bp}{-27.4bp}{\makebox(0,0)[lb]{\sffamily\bfseries\fontsize{7.6bp}{9bp}\selectfont\color{mxink}MATHS EXPLORER}}%
+    \mx@put{\dimexpr\paperwidth-23bp-5.2em\relax}{-27.4bp}{\makebox(0,0)[lb]{\sffamily\fontsize{7.6bp}{9bp}\selectfont\color{mxmuted}\mxtr{FR}{EN}}}%
+    \mx@put{23bp}{-31bp}{\color{mxink}\rule{\dimexpr\paperwidth-46bp\relax}{.6bp}}}%
   \AtPageLowerLeft{%
-    \mx@put{0bp}{0bp}{\color{white}\rule{\paperwidth}{38bp}}%
-    \mx@put{23bp}{26.75bp}{\color{mxfootrule}\rule{\dimexpr\paperwidth-46bp\relax}{.5bp}}%
-    \mx@put{23bp}{14bp}{\makebox(0,0)[lb]{\sffamily\fontsize{7bp}{9bp}\selectfont\color{mxfooter}\mxtr{Observer. Conjecturer. Démontrer.}{Observe. Conjecture. Prove.}}}%
-    \mx@put{\dimexpr\paperwidth-64bp\relax}{14bp}{\makebox(0,0)[lb]{\sffamily\fontsize{7bp}{9bp}\selectfont\color{mxfooter}\number\numexpr\ReadonlyShipoutCounter-\mx@framestart\relax\ / \mxdocumentpages}}}}
+    \mx@put{23bp}{26.75bp}{\color{mxline}\rule{\dimexpr\paperwidth-46bp\relax}{.5bp}}%
+    \mx@put{23bp}{14bp}{\makebox(0,0)[lb]{\sffamily\fontsize{7bp}{9bp}\selectfont\color{mxmuted}\mxtr{Observer. Conjecturer. Démontrer.}{Observe. Conjecture. Prove.}}}%
+    \mx@put{\dimexpr\paperwidth-23bp-3.2em\relax}{14bp}{\makebox(0,0)[lb]{\sffamily\bfseries\fontsize{7bp}{9bp}\selectfont\color{mxink}\number\numexpr\ReadonlyShipoutCounter-\mx@framestart\relax\ \textcolor{mxmuted}{/ \mxdocumentpages}}}}}
 \ifx\mx@layout\mx@figs\else
   \AddToShipoutPictureBG{\mxpageframe}
 \fi
@@ -64,10 +45,12 @@
 \hfuzz=0.5pt   % an excess under 0.5 pt (0.18 mm) is invisible and not reported as overfull
 \setlength{\parskip}{4pt plus 1pt}
 \renewcommand{\familydefault}{\rmdefault}
-\titleformat{\chapter}[display]{\sffamily\bfseries\color{mxink}}{\large\color{mxmint}\MakeUppercase{\chaptername}~\thechapter}{4pt}{\huge}[{\color{mxmint}\titlerule[1.2pt]}]
-\titlespacing*{\chapter}{0pt}{0pt}{14pt}
-\titleformat{\section}{\needspace{5\baselineskip}\Large\sffamily\bfseries\color{mxink}}{\thesection}{.7em}{}
-\titleformat{\subsection}{\needspace{4\baselineskip}\large\sffamily\bfseries\color{mxink}}{\thesubsection}{.6em}{}
+\linespread{1.06}
+\newcommand{\mx@chaprule}{\vspace{9pt}\noindent\makebox[0pt][l]{\color{mxaccent}\rule[-.9pt]{26mm}{2.6pt}}{\color{mxink}\rule{\linewidth}{.6pt}}}
+\titleformat{\chapter}[display]{\sffamily\bfseries\color{mxink}}{\small\color{mxaccent}\MakeUppercase{\chaptername}~\thechapter}{5pt}{\fontsize{26}{30}\selectfont}[\mx@chaprule]
+\titlespacing*{\chapter}{0pt}{0pt}{16pt}
+\titleformat{\section}{\needspace{5\baselineskip}\Large\sffamily\bfseries\color{mxink}}{\color{mxaccent}\thesection}{.7em}{}
+\titleformat{\subsection}{\needspace{4\baselineskip}\large\sffamily\bfseries\color{mxink}}{\color{mxaccent}\thesubsection}{.6em}{}
 \pagestyle{fancy}\fancyhf{}
 \renewcommand{\headrulewidth}{.3pt}
 \fancyhead[LE,RO]{\small\sffamily\color{mxmuted}\leftmark}
@@ -85,7 +68,7 @@
   \renewcommand{\tableofcontents}{\section*{\contentsname}\@starttoc{toc}}
   \makeatother
   \setlength{\parskip}{0pt}
-  \titleformat{\section}{\needspace{5\baselineskip}\Large\sffamily\bfseries\color{mxink}}{\thesection}{.7em}{}[\vspace{-2pt}{\color{mxline}\titlerule}]
+  \titleformat{\section}{\needspace{5\baselineskip}\Large\sffamily\bfseries\color{mxink}}{\color{mxaccent}\thesection}{.7em}{}[\vspace{-2pt}{\color{mxline}\titlerule}]
   \titlespacing*{\section}{0pt}{12pt}{6pt}
   % ragged right, hyphenation strongly discouraged: short items, line counts close between French and English
   \AtBeginDocument{\raggedright\hyphenpenalty=2000\exhyphenpenalty=2000}

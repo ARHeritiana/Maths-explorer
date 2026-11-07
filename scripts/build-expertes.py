@@ -66,7 +66,7 @@ def headings(doc, a, b, lang):
             for line in block.get('lines', []):
                 text = re.sub(r'\s+', ' ', ''.join(s['text'] for s in line['spans'])).strip()
                 size = max(s['size'] for s in line['spans'])
-                if text in wanted and 13 < size < 13.5 and wanted[text] not in found: found[wanted[text]] = i
+                if text in wanted and 13 < size < 15 and wanted[text] not in found: found[wanted[text]] = i
     missing = [k for k in HEADINGS[lang] if k not in found]
     if missing: sys.exit(f'{lang} pages {a + 1}-{b}: section headings not found: {missing}')
     order = [found[k] for k in HEADINGS[lang]]

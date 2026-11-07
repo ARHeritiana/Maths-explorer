@@ -26,7 +26,7 @@ def build_languages(course, requested=None):
 def main_text(course, lang, edition, core_path):
     b = spec(course)
     lines = ['% GENERATED from content/data/manifest.json (books) by mxbuild.books; do not edit.',
-             r'\makeatletter\def\input@path{{%s/}}\makeatother' % core_path.rstrip('/'),
+             r'\makeatletter\def\input@path{{%s/}}\makeatother\def\mxcorepath{%s/}' % (core_path.rstrip('/'), core_path.rstrip('/')),
              r'\documentclass[course=%s,lang=%s,edition=%s,layout=%s%s]{mxbook}' % (
                  course, lang, edition, b['layout'], ''.join(f',{k}={b[k]}' for k in ('unit', 'sections') if b.get(k))),
              r'\begin{document}']
