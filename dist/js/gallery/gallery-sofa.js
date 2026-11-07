@@ -4,6 +4,7 @@
 import {exhibit,button,field,bind,palette} from './gallery-kit.js';
 import {hammersley,hammersleyArea,HAMMERSLEY_R,rectangle,area,place,fits,through,hammersleyPose,gerverPose,hammersleyTurn,gerverTurn,fromStroke,centroid,turnAbout,resolve,RECORDS} from './gallery-sofa-model.js';
 import {GERVER} from './gallery-sofa-gerver.js';
+const FRAME_MS=12;   // the walls get at most this long per frame (after the first step); the rest waits for the next frame
 const S=52,OX=450,OY=40,EPS=1e-5;   // world (y up) to canvas: X = OX + S x, Y = OY + S (1 - y)
 export function movingSofa(root,opts){
   const {t,lang}=opts,num=(v,d=3)=>lang==='fr'?v.toFixed(d).replace('.',','):v.toFixed(d);
@@ -46,9 +47,9 @@ export function movingSofa(root,opts){
   function follow(){
     if(!want)return;const w=want;let moved=false;
     if(w.rotate!==undefined){const da=Math.atan2(Math.sin(w.rotate-pose.a),Math.cos(w.rotate-pose.a)),part=Math.max(-.4,Math.min(.4,da)),n=Math.min(14,Math.max(1,Math.ceil(Math.abs(part)/.03))),before=pose.a;
-      for(let i=0;i<n;i++)moveTo(turnAbout(pose,c0,pose.a+part/n));moved=Math.abs(pose.a-before)>1e-7;}
+      const t0=performance.now();for(let i=0;i<n&&(i===0||performance.now()-t0<FRAME_MS);i++)moveTo(turnAbout(pose,c0,pose.a+part/n));moved=Math.abs(pose.a-before)>1e-7;}
     else{const dx=w.x-pose.x,dy=w.y-pose.y,dist=Math.hypot(dx,dy);if(dist<1e-9){want=null;return;}const k=Math.min(0.5,dist)/dist,n=Math.min(14,Math.max(1,Math.ceil(Math.min(.5,dist)/.04)));
-      const x0=pose.x,y0=pose.y;for(let i=0;i<n;i++)moveTo({...pose,x:pose.x+dx*k/n,y:pose.y+dy*k/n});moved=Math.hypot(pose.x-x0,pose.y-y0)>1e-7;}
+      const x0=pose.x,y0=pose.y,t0=performance.now();for(let i=0;i<n&&(i===0||performance.now()-t0<FRAME_MS);i++)moveTo({...pose,x:pose.x+dx*k/n,y:pose.y+dy*k/n});moved=Math.hypot(pose.x-x0,pose.y-y0)>1e-7;}
     if(!moved)want=null;   // blocked: wait for the next pointer movement
   }
   const up=()=>{follow();want=null;if(drag?.draw&&drawing.length>8){const s=fromStroke(drawing);if(s&&area(s.poly)>.02){own=s.poly;own.pose={x:s.at[0],y:s.at[1],a:0};kind='own';kindSel.value='own';shapeChanged();}}if(drag?.draw){drawing=null;drawBtn.textContent=t('Dessiner mon canapé','Draw my sofa');show();}drag=null;dirty=true;};

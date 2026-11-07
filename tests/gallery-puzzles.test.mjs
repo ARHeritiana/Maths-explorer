@@ -111,7 +111,7 @@ test("moving sofa: resolve is bounded in time and never ends in a wall, even for
     assert.ok(S.fits(poly, next, 1e-5), `step ${i}: sofa ended in a wall`);
     pose = next;
   }
-  assert.ok(worst < 60, `slowest resolve ${worst.toFixed(1)} ms`);
+  assert.ok(worst < 250, `slowest resolve ${worst.toFixed(1)} ms`);
 });
 test("moving sofa: pushOut gives up within its evaluation budget", () => {
   const poly = S.hammersley(S.HAMMERSLEY_R); let calls = 0;

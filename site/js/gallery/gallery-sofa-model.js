@@ -124,7 +124,7 @@ export function penetration(poly, pose, step = 0.03, bound = Infinity) {
 // The walls push a sofa out: keep the angle of the pose and look for the nearby shift that brings the penetration to
 // zero (a pattern search with a shrinking step, from the requested position). Returns the pose that fits, or null
 // when no nearby position fits at that angle (the sofa is stuck).
-export const PUSH_BUDGET = { evals: 400, ms: 8, coarse: 0.04 };
+export const PUSH_BUDGET = { evals: 400, ms: 40, coarse: 0.04 };
 export function pushOut(poly, pose, { eps = 1e-5, start = 0.04, reach = 0.25, maxEvals = PUSH_BUDGET.evals, maxMs = PUSH_BUDGET.ms, coarse = PUSH_BUDGET.coarse } = {}) {
   // The search is bounded in evaluations and in wall-clock time (a pointer far ahead of a blocked sofa must not freeze the page);
   // it uses a coarse boundary sampling and stops evaluating a candidate once it cannot beat the current pose. Only the final
