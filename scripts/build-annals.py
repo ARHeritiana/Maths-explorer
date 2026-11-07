@@ -254,6 +254,64 @@ def expand_boxes(text):
   if len(args)==count:text=text[:m.start()]+'\n'+r'\begin{quote}'+'\n'+args[-1]+'\n'+r'\end{quote}'+'\n'+text[cursor:]
  return text
 
+def _group(text,i):
+ """End index (exclusive) of the balanced {...} group starting at text[i]."""
+ depth=0
+ for j in range(i,len(text)):
+  if text[j]=='{' and text[j-1:j]!='\\':depth+=1
+  elif text[j]=='}' and text[j-1:j]!='\\':
+   depth-=1
+   if depth==0:return j+1
+ return -1
+
+def generic_lists_to_itemize(text):
+ out=[];pos=0;key='\\begin{list}'
+ while True:
+  k=text.find(key,pos)
+  if k<0:break
+  a=k+len(key);b=_group(text,a) if text[a:a+1]=='{' else -1
+  c=_group(text,b) if b>0 and text[b:b+1]=='{' else -1
+  if c<0:out.append(text[pos:a]);pos=a;continue
+  intro=re.sub(r'\\(?:setlength|addtolength)\{[^{}]*\}\{[^{}]*\}|\\(?:itemsep|leftmargin|labelsep|topsep|parsep|partopsep|labelwidth|rightmargin|itemindent|listparindent)\S*|\\(?:hspace|vspace)\*?\{[^{}]*\}','',text[b+1:c-1]).strip()
+  if not re.search(r'[A-Za-zÀ-ÿ]{3,}',re.sub(r'\\[A-Za-z]+','',intro)):intro=''
+  out.append(text[pos:k]+(intro+'\n\n' if intro else '')+'\\begin{itemize}');pos=c
+ out.append(text[pos:])
+ return ''.join(out).replace('\\end{list}','\\end{itemize}')
+
+def simplify_column_specs(text):
+ """Pandoc leaves the cells empty when an X column carries a >{...} prefix: keep only the alignment."""
+ out=[];pos=0;key='\\begin{tabularx}'
+ while True:
+  k=text.find(key,pos)
+  if k<0:break
+  a=k+len(key)
+  if text[a:a+1]!='{':out.append(text[pos:a]);pos=a;continue
+  b=_group(text,a)
+  if b<0 or text[b:b+1]!='{':out.append(text[pos:a]);pos=a;continue
+  c=_group(text,b)
+  if c<0:out.append(text[pos:a]);pos=a;continue
+  spec=text[b+1:c-1]
+  def strip(sp):
+   res='';n=0
+   while n<len(sp):
+    if sp[n]=='>' and sp[n+1:n+2]=='{':
+     e=_group(sp,n+1);prefix=sp[n+2:e-1]
+     if '$' in prefix:res+=sp[n:e];n=e;continue
+     n=e
+     nxt=sp[n:n+1]
+     if nxt in ('X','l','c','r'):
+      res+=('l' if 'raggedright' in prefix else 'r' if 'raggedleft' in prefix else 'c') if nxt=='X' else nxt;n+=1
+     continue
+    if sp[n]=='*' :
+     m=re.match(r'\*(\d+)\{',sp[n:])
+     if m:
+      e=_group(sp,n+m.end()-1);res+=strip(sp[n+m.end():e-1])*int(m[1]);n=e;continue
+    res+=sp[n];n+=1
+   return res
+  out.append(text[pos:b+1]+strip(spec)+'}');pos=c
+ out.append(text[pos:])
+ return ''.join(out)
+
 def prepare_tex(text):
  text=expand_boxes(strip_twoopt(text))
  for a,b in reversed(math_ranges(text)):
@@ -275,6 +333,9 @@ def prepare_tex(text):
  text=re.sub(r'\\begin\{color\}\{[^}]*\}|\\end\{color\}','',text)
  text=text.replace('\\numprint','\\np')
  text=re.sub(r'\\includegraphics(?:\[[^\]]*\])?\{pyramide\}',r'\\includegraphics{./resources/annals/figures/pyramide.svg}',text)
+ # Pandoc silently drops the content of a generic list nested in an item: make it a plain itemize.
+ text=generic_lists_to_itemize(text)
+ text=simplify_column_specs(text)
  text=unwrap_tables(text)
  return text
 
