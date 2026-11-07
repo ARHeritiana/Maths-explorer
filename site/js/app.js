@@ -124,7 +124,7 @@ const SECTIONS = [
     ["topics", "Domaines", "Topics", "magnifying-glass"],
     ["lab", "Laboratoire", "Laboratory", "flask"],
     ["challenges", "Défis", "Challenges", "puzzle-piece"],
-    ["olympiad", "Olympiades", "Olympiads", "trophy"],
+    ...(FULL_EDITION ? [["olympiad", "Olympiades", "Olympiads", "trophy"]] : []),
     ["errors", "Erreurs", "Errors", "warning"],
   ]],
   ["read", "Lire", "Read", "book-open", [

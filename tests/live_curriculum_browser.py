@@ -90,7 +90,7 @@ with sync_playwright() as p:
     for route, selector in [('#gallery', '.wonder-grid'), ('#gallery/fourier', '#object-stage'),
                             ('#lab', '.lab2-card-link'), ('#topics', '.discovery-page'),
                             ('#basics', 'main'), ('#challenges', 'main'),
-                            ('#olympiad', 'main'), ('#stories', 'main'), ('#biographies', 'main')]:
+                            ('#stories', 'main'), ('#biographies', 'main')]:
         go(route)
         page.locator(selector).first.wait_for()
         assert page.evaluate('location.hash') == route, route

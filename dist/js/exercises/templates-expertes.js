@@ -61,7 +61,7 @@ export const expertes = [
     make(r, level) {
       if (level < 3) {
         const b2 = r.int(-4, 4), m = level === 1 ? r.pick([1, 4, 9, 16]) : r.pick([2, 3, 5, 6, 7, 8, 12, 18]), [k, mr] = sqrtParts(m), b = 2 * b2, c = b2 * b2 + m;
-        const roots = `${-b2 === 0 ? '' : -b2}${-b2 === 0 ? '' : '\\pm '}${mr === 1 ? (k === 1 ? '' : k) : (k === 1 ? '' : k) + `\\sqrt{${mr}}`}i`;
+        const roots = `${-b2 === 0 ? '' : -b2}${'\\pm '}${mr === 1 ? (k === 1 ? '' : k) : (k === 1 ? '' : k) + `\\sqrt{${mr}}`}i`;
         return { q: `Résoudre dans ${M('\\mathbb{C}')} : ${M(`z^{2}${b === 0 ? '' : sgn(b) + 'z'}${sgn(c)}=0`.replace('+1z', '+z').replace('-1z', '-z'))}.`, a: M(`\\Delta=${-4 * m}\\ ;\\ z=${roots.replace(/^\\pm/, '\\pm')}`), s: M(`\\Delta=${b * b - 4 * c}<0`), ok: () => { const [re, im] = [-b2, Math.sqrt(m)]; return near(re * re - im * im + b * re + c, 0, 1e-9) && near(2 * re * im + b * im, 0, 1e-9); } };
       }
       const a = r.pick([2, 3, -2]), b = r.int(-6, 6); let c = Math.floor((b * b) / (4 * a)) + 1; if (a < 0) c = Math.ceil((b * b) / (4 * a)) - 1; else c = Math.floor((b * b) / (4 * a)) + r.int(1, 4);
