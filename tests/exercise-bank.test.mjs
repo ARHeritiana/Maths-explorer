@@ -184,9 +184,12 @@ for (const language of [0, 1]) test(`pages: automatismes and sheets under jsdom,
     const form = root.querySelector('#gen-form');
     assert.ok(root.querySelectorAll(list).length >= 1, 'a series is built on load');
     const before = root.querySelector(listSel).textContent;
-    root.querySelector('#gen-next').click();
-    assert.notEqual(root.querySelector(listSel).textContent, before, 'the next series is different');
-    assert.match(form.elements.seed.value, /-2$/);
+    const next = root.querySelector('#gen-next');   // the fluency randomizer has no stepping arrows (owner, 6 Nov); worksheets keep them
+    if (next) {
+      next.click();
+      assert.notEqual(root.querySelector(listSel).textContent, before, 'the next series is different');
+      assert.match(form.elements.seed.value, /-2$/);
+    }
     form.elements.cls.value = 'stmg'; form.elements.cls.dispatchEvent(new win.Event('change', { bubbles: true }));
     assert.ok(root.querySelectorAll('#gen-chapters input').length >= 5 && [...root.querySelectorAll('#gen-chapters input')].every((i) => i.value.startsWith('stmg')));
     const first = root.querySelector('#gen-chapters input'); first.checked = true; first.dispatchEvent(new win.Event('change', { bubbles: true }));

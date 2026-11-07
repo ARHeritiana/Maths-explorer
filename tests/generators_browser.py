@@ -52,7 +52,7 @@ with sync_playwright() as p:
             settle(page, '#gen-list')
             n = page.locator('#gen-list > li').count(); assert n >= 10, (cls, 'too few questions', n)
             checked += check_math(page, '#gen-list', f'automatismes {cls} series {k}')
-            page.click('#gen-next'); page.wait_for_timeout(300)
+            page.click('#gen-new'); page.wait_for_timeout(300)
         # projection stage: next and reveal
         page.click('[data-act="project"]'); page.wait_for_timeout(1200)   # full screen transition
         first = page.inner_text('#st-q'); page.keyboard.press('ArrowRight'); page.wait_for_timeout(300)
