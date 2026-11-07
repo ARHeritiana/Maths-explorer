@@ -5,6 +5,9 @@ import { seconde } from './templates-seconde.js';
 import { seconde2 } from './templates-seconde-2.js';
 import { seconde3 } from './templates-seconde-3.js';
 import { premiere } from './templates-premiere.js';
+import { premiere2 } from './templates-premiere-2.js';
+import { premiere3 } from './templates-premiere-3.js';
+import { premiere4 } from './templates-premiere-4.js';
 import { terminale } from './templates-terminale.js';
 import { expertes } from './templates-expertes.js';
 import { stmg } from './templates-stmg.js';
@@ -14,6 +17,8 @@ import { problems } from './problems.js';
 import { authoredSeconde } from './authored-seconde.js';
 import { problemsSeconde } from './problems-seconde.js';
 import { problemsSeconde2 } from './problems-seconde-2.js';
+import { problemsPremiere } from './problems-premiere.js';
+import { robust } from './premiere-kit.js';
 
 export const CLASSES = [
   { id: 'seconde', label: 'Seconde' },
@@ -27,8 +32,8 @@ export const DOMAINS = {
   'stats-proba': 'Statistiques et probabilités', complexes: 'Nombres complexes', arithmetique: 'Arithmétique', matrices: 'Matrices', graphes: 'Graphes',
 };
 export const LEVELS = [[1, 'Niveau 1 : routine'], [2, 'Niveau 2 : standard'], [3, 'Niveau 3 : exigeant']];
-export const TEMPLATES = [...seconde, ...seconde2, ...seconde3, ...premiere, ...terminale, ...expertes, ...stmg];
-export const AUTHORED = [...authored, ...authoredExams, ...authoredSeconde, ...problems, ...problemsSeconde, ...problemsSeconde2];   // fixed exercises, then seeded problems (those have make(r))
+export const TEMPLATES = [...seconde, ...seconde2, ...seconde3, ...premiere, ...robust(premiere2), ...robust(premiere3), ...robust(premiere4), ...terminale, ...expertes, ...stmg];
+export const AUTHORED = [...authored, ...authoredExams, ...authoredSeconde, ...problems, ...problemsSeconde, ...problemsSeconde2, ...problemsPremiere];   // fixed exercises, then seeded problems (those have make(r))
 export const MINUTES = { 1: 2, 2: 4, 3: 6 };           // estimated minutes of a generated part, by level
 
 export const templatesFor = (cls) => TEMPLATES.filter((t) => t.cls === cls);

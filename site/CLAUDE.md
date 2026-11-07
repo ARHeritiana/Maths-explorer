@@ -87,6 +87,7 @@ Seeded and limitless: any text is a seed, the same seed gives the same series. F
 | `js/worksheets.js` | `#sheets` page: worksheet, quiz (interro) or supervised test (devoir); marking scheme, subjects A and B, student and teacher versions |
 | `js/exercises/engine.js` | seeded random numbers, exact fractions, LaTeX helpers (`polyTex`, `numTex`, `sqrtTex`...) |
 | `js/exercises/templates-<class>.js` | the generators of `seconde`, `premiere`, `terminale`, `expertes`, `stmg`: `make(r, level)` returns statement, answer and `ok()` that recomputes the answer another way; chapter ids are those of `manifest.json` |
+| `js/exercises/templates-premiere-2.js`, `-3.js`, `-4.js`, `premiere-kit.js`, `problems-premiere.js` | the second Première bank (chapters 01 to 10, at least eight generators each): four-choice questions with one typical error per wrong option (`mcq`), true/false (`tf`), find-the-error (`spot`), tables of variations, contexts, level-3 exam-style items, ten seeded problems; registered in `bank.js` (`robust` redraws the rare four-choice question with two identical wrong options) |
 | `js/exercises/authored.js` | fixed multi-part exercises with a full correction (`ok()` checks the quoted numbers) |
 | `js/exercises/problems.js` | the same kind of problem, with numbers drawn from the seed |
 | `js/bank-page.js` | `#bank[/<course>[/<chapter>]]`: the online exercise bank (rail of levels, chapter index, worked exercises with hints and folded corrections, renewable seeded problems, quick practice from the generators, print with or without corrections) |
