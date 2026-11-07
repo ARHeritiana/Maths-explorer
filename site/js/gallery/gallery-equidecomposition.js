@@ -82,7 +82,7 @@ export function equidecomposition(root,opts){
     pts.push(unX(o.point(e)));msg='';ver++;});
   o.cancelDrag=()=>{tap=null;};
   rebuild();setPlaying(!reduced());
-  const idle=idleGuard(o);
+  const idle=idleGuard(o);o.busy=()=>playing;
   o.animate(dt=>{
     // frame time, or real elapsed time under reduced motion (nothing starts by itself, but Play still plays)
     const now=performance.now(),real=dt||Math.min(.1,(now-(o.last||now))/1000);o.last=now;

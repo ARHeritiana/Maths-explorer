@@ -33,6 +33,7 @@ export function squarePacking(root,opts){
   o.on(o.cv,'keydown',e=>{if(e.shiftKey)return;const sq=squares[selected],d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];
     if(d){e.preventDefault();sq.x+=d[0]*.02;sq.y+=d[1]*.02;o.redraw();}else if(e.key==='['||e.key===']'){e.preventDefault();sq.a+=(e.key===']'?1:-1)*Math.PI/180;o.redraw();}});
   layout();load(squares);
+  o.once=true;   // every change goes through o.redraw(); the loop only draws the first frame and after a resize or a theme change
   o.animate(()=>{
     const C=palette(),bad=overlaps(squares),hit=new Set(bad.flat()),[fx,fy,side]=frame(squares),rec=RECORDS[n];
     g.clearRect(0,0,o.W,o.H);g.fillStyle=C.sunken;g.fillRect(-2000,-2000,4640,4440);

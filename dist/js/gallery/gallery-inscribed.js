@@ -15,7 +15,7 @@ export function inscribedSquare(root,opts){
   const g=o.g,pointSel=root.querySelector('#is-point'),sidesBtn=root.querySelector('#is-sides');
   const X=([x,y])=>[OX+S*x,OY+S*y],W=([px,py])=>[(px-OX)/S,(py-OY)/S];
   function rebuild(search=true){pts=curve(ctrl,{corners,n:corners?40:24});crossing=selfCrossing(pts);pointSel.max=ctrl.length;sidesBtn.setAttribute('aria-pressed',String(corners));found=[];pick=0;dirty=true;
-    if(search&&!crossing){clearTimeout(pending);pending=setTimeout(()=>{found=inscribed(pts,{angle:2*Math.atan(1/ratio)});pick=0;dirty=true;},30);}}
+    if(search&&!crossing){clearTimeout(pending);pending=setTimeout(()=>{found=inscribed(pts,{angle:2*Math.atan(1/ratio)});pick=0;dirty=true;o.wake();},30);}}
   function load(k){preset=k;ctrl=PRESETS[k].ctrl.map(p=>[...p]);corners=!!PRESETS[k].corners;rebuild();}
   o.on(root.querySelector('#is-preset'),'change',e=>load(e.target.value));
   o.on(root.querySelector('#is-draw'),'click',()=>{stroke=[];dirty=true;});
@@ -37,8 +37,9 @@ export function inscribedSquare(root,opts){
   o.cancelDrag=()=>{drag=null;};
   o.on(o.cv,'keydown',e=>{if(e.shiftKey)return;if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();removePoint();return;}if(e.key==='n'||e.key==='N'){e.preventDefault();sel=(sel+1)%ctrl.length;pointSel.value=sel+1;root.querySelector('#is-point-out').textContent=sel+1;dirty=true;return;}const d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(d){e.preventDefault();ctrl[sel]=[ctrl[sel][0]+d[0]*.1,ctrl[sel][1]+d[1]*.1];rebuild();}});
   load(preset);
+  o.onResize=()=>{dirty=true;};
   o.animate(()=>{
-    if(!dirty)return;dirty=false;const C=palette();
+    if(!dirty)return false;dirty=false;const C=palette();
     g.clearRect(0,0,o.W,o.H);g.fillStyle=C.sunken;g.fillRect(-2000,-2000,4640,4440);
     if(stroke){g.strokeStyle=C.obj2;g.lineWidth=2.5;g.beginPath();stroke.forEach((p,i)=>i?g.lineTo(...X(p)):g.moveTo(...X(p)));g.stroke();}
     else{

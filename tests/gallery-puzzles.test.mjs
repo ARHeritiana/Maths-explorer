@@ -42,12 +42,12 @@ test("moving sofa: Gerver's sofa from Romik's equations; every sofa can be taken
   assert.ok(Array.from({ length: 301 }, (_, i) => S.fits(big, S.gerverPose(GERVER.path, (3 * i) / 300), 1e-5)).includes(false), "0.3 % bigger gets stuck");
   // a user: push right, press ] (2° a turn) 45 times, push down; the half disc and Hammersley's sofa by the walls
   // alone, Gerver's with its own motion as guide
-  const r = S.HAMMERSLEY_R;
+  const r = S.HAMMERSLEY_R, push = { maxMs: Infinity };   // the time cap is a safety net; the test must not depend on machine load
   for (const [name, poly, start, guide] of [["half disc", S.hammersley(0), S.hammersleyPose(0, 0, 1.5), null], ["Hammersley", S.hammersley(r), S.hammersleyPose(r, 0, 1.5), null], ["Gerver", GERVER.outline, S.gerverPose(GERVER.path, 0), (a) => S.gerverTurn(GERVER.path, a)]]) {
     let pose = { ...start }; const cen = S.centroid(poly);
-    for (let i = 0; i < 40; i++) pose = S.resolve(poly, pose, { ...pose, x: pose.x + 0.05 }, { guide });
-    for (let i = 0; i < 45; i++) pose = S.resolve(poly, pose, S.turnAbout(pose, cen, pose.a - Math.PI / 90), { guide });
-    for (let i = 0; i < 120; i++) pose = S.resolve(poly, pose, { ...pose, y: pose.y - 0.05 }, { guide });
+    for (let i = 0; i < 40; i++) pose = S.resolve(poly, pose, { ...pose, x: pose.x + 0.05 }, { guide, push });
+    for (let i = 0; i < 45; i++) pose = S.resolve(poly, pose, S.turnAbout(pose, cen, pose.a - Math.PI / 90), { guide, push });
+    for (let i = 0; i < 120; i++) pose = S.resolve(poly, pose, { ...pose, y: pose.y - 0.05 }, { guide, push });
     assert.ok(S.fits(poly, pose, 1e-5) && S.through(poly, pose) && Math.abs(pose.a + Math.PI / 2) < 1e-6, name);
   }
   // a 1 × 1.8 rectangle cannot turn: it stays in the horizontal arm, and never in a wall

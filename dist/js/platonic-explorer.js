@@ -71,6 +71,6 @@ export function mountPlatonic(root,{t,reduced},solids,names,schlafli,angle,verdi
   for(const ev of ['pointercancel','view-gesture','lostpointercapture'])o.cv.addEventListener(ev,()=>drag=null);
   o.cv.addEventListener('keydown',e=>{const d={ArrowLeft:[-.1,0],ArrowRight:[.1,0],ArrowUp:[0,.08],ArrowDown:[0,-.08]}[e.key];if(d){e.preventDefault();yaw+=d[0];pitch=Math.max(-1.45,Math.min(1.45,pitch+d[1]));draw();}});
   o.cv.setAttribute('aria-label',t('Solide et patron 3D. Flèches pour tourner ; plus et moins pour zoomer.','3D solid and net. Arrow keys rotate; plus and minus zoom.'));o.cv.style.cursor='grab';
-  o.redraw=()=>draw();fo.redraw=fan;sync();fan();draw();const stop=loopFor(dt=>{let moving=false;if(!drag&&!reduced()){if(Math.abs(vyaw)>.02||Math.abs(vpitch)>.02){const k=Math.exp(-dt*2.2);yaw+=vyaw*dt;pitch=Math.max(-1.45,Math.min(1.45,pitch+vpitch*dt));vyaw*=k;vpitch*=k;moving=true;}else if(spin){yaw+=dt*.45;moving=true;}}if(playing||moving)draw(dt);},reduced);
+  o.redraw=()=>draw();fo.redraw=fan;sync();fan();draw();const stop=loopFor(dt=>{let moving=false;if(!drag&&!reduced()){if(Math.abs(vyaw)>.02||Math.abs(vpitch)>.02){const k=Math.exp(-dt*2.2);yaw+=vyaw*dt;pitch=Math.max(-1.45,Math.min(1.45,pitch+vpitch*dt));vyaw*=k;vpitch*=k;moving=true;}else if(spin){yaw+=dt*.45;moving=true;}}if(playing||moving){draw(dt);return;}return false;},reduced,o.cv);
   return()=>{stop();o.navigation?.destroy();fo.navigation?.destroy();};
 }

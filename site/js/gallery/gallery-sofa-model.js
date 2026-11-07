@@ -155,11 +155,11 @@ const PUSH_DIRS = Array.from({ length: 8 }, (_, k) => [Math.cos((k * Math.PI) / 
 // them, and turning in the corner moves it as needed), if that stays close to the target; otherwise keep the largest
 // part of the move that fits.
 // `guide(a)`, when given, is a pose at angle a known to fit (the motion of Hammersley or Gerver): it is used when close.
-export function resolve(poly, pose, target, { eps = 1e-5, reach = 0.25, guide = null } = {}) {
+export function resolve(poly, pose, target, { eps = 1e-5, reach = 0.25, guide = null, push = {} } = {}) {
   if (!fits(poly, pose, eps) || fits(poly, target, eps)) return target;
   const g = guide?.(target.a);
   if (g && Math.hypot(g.x - target.x, g.y - target.y) < reach && fits(poly, g, eps)) return g;
-  const pushed = pushOut(poly, target, { eps });
+  const pushed = pushOut(poly, target, { eps, ...push });
   if (pushed && Math.hypot(pushed.x - target.x, pushed.y - target.y) < reach) return pushed;
   let lo = 0, hi = 1;
   for (let i = 0; i < 12; i++) { const m = (lo + hi) / 2, p = { x: pose.x + (target.x - pose.x) * m, y: pose.y + (target.y - pose.y) * m, a: pose.a + (target.a - pose.a) * m }; if (fits(poly, p, eps)) lo = m; else hi = m; }

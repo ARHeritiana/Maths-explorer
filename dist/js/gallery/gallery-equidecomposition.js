@@ -82,13 +82,13 @@ export function equidecomposition(root,opts){
     pts.push(unX(o.point(e)));msg='';ver++;});
   o.cancelDrag=()=>{tap=null;};
   rebuild();setPlaying(!reduced());
-  const idle=idleGuard(o);
+  const idle=idleGuard(o);o.busy=()=>playing;
   o.animate(dt=>{
     // frame time, or real elapsed time under reduced motion (nothing starts by itself, but Play still plays)
     const now=performance.now(),real=dt||Math.min(.1,(now-(o.last||now))/1000);o.last=now;
     if(playing){T=Math.min(STAGES,T+real/3.2);if(T>=STAGES)setPlaying(false);ver++;}
     const step=Math.min(STAGES-1,Math.floor(T));
-    if(idle(false,`${ver}`))return;
+    if(idle(false,`${ver}`))return false;
     const C=C0(),fr=frame(CH,T);
     g.clearRect(0,0,o.W,o.H);g.fillStyle=C.sunken;g.fillRect(-2000,-2000,4640,4440);g.lineJoin='round';
     const trace=poly=>{g.beginPath();poly.map(X).forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();};

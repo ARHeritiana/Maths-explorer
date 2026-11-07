@@ -31,11 +31,12 @@ export function gameOfLife(root,opts){
   o.on(o.cv,'pointerup',()=>{paint=null;});o.cancelDrag=()=>{paint=null;};
   o.on(o.cv,'keydown',e=>{if(e.shiftKey)return;const d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];
     if(d){e.preventDefault();cursor=[cursor[0]+d[0],cursor[1]+d[1]];dirty=true;}else if(e.key===' '||e.key==='Enter'){e.preventDefault();toggle(cursor);}});
+  o.onResize=()=>{dirty=true;};o.busy=()=>playing;
   o.animate(dt=>{
     // real elapsed time: the simulation runs only when asked, so it also runs under reduced motion
     const now=performance.now(),real=Math.min(.1,(now-(o.last||now))/1000);o.last=now;
     if(playing){acc+=real*speed;let n=0;while(acc>=1&&n<4){advance();acc-=1;n++;}if(n===4)acc=0;}
-    if(!dirty&&dt)return;dirty=false;
+    if(!dirty&&dt)return false;dirty=false;
     const C=palette(),cam=o.navigation?.camera,sc=cam?cam.scale:1;
     g.clearRect(0,0,o.W,o.H);
     const [x0,y0]=cam?cam.unproject([0,0]):[0,0],[x1,y1]=cam?cam.unproject([o.W,o.H]):[o.W,o.H];

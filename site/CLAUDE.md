@@ -18,6 +18,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/ui.js` | theme choice, full-screen presenting |
 | `js/icons.js` | Phosphor icon paths, `icon(name, size)` |
 | `js/motion.js` | interface motion (`installInterfaceMotion`, `celebrate`, `illuminateFeedback`) |
+| `js/visible-loop.js` | the one animation loop for figures (`animationLoop`, used by `object-kit.js` `loopFor`, the exhibit kit and the mirrored room): no frames offscreen, in a hidden tab or under reduced motion; a frame returning `false` sleeps until an interaction |
 | `js/device-capability.js` | what this device can afford: facts that forbid (data saver, battery, phone, no worker, no float GPU buffer), a short benchmark of the real work, memory; returns a tier (`basic` to `extreme`) with ceilings (rays, bounces, segments, trials per second); cached per session; the heavy exhibits offer choices up to the ceilings and nothing above |
 | `js/illumination-farm.js`, `js/illumination-worker.js` | mirrored rooms at scale: `traceChunk` (pure), a farm of Web Workers (or inline slices) that streams chunks of segments, with a segment cap and cancellation |
 | `js/entry-nav.js` | `withEntryNav`: compact previous/next navigation and a folded complete chooser for galleries, challenges, biographies, stories and errors |

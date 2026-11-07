@@ -32,10 +32,11 @@ export function soapFilm(root,opts){
     const d=[0,0,0];d[axis]=(e.key===e.key.toLowerCase()?1:-1)*.05;nudge(sel,d);});
   o.on(root.querySelector('#sf-restore'),'click',()=>reset());
   let lastView='';
+  o.onResize=()=>{dirty=true;};
   o.animate(dt=>{
     if(running&&dt)step(2);
-    const key=`${view.yaw},${view.pitch},${o.navigation.camera.scale},${o.navigation.camera.x},${o.navigation.camera.y},${document.documentElement.dataset.theme}`;
-    if(!dirty&&key===lastView)return;lastView=key;dirty=false;
+    const key=`${o.cv.width},${view.yaw},${view.pitch},${o.navigation.camera.scale},${o.navigation.camera.x},${o.navigation.camera.y},${document.documentElement.dataset.theme}`;
+    if(!dirty&&key===lastView)return running?undefined:false;lastView=key;dirty=false;
     const C=background(o),P=mesh.pts.map(project),faces=mesh.faces.map(f=>({f,z:f.reduce((s,i)=>s+P[i][2],0)})).sort((a,b)=>a.z-b.z);
     for(const {f}of faces){path(g,f.map(i=>P[i]),{close:true,fill:side(f,P)?C.accent:C.obj3,alpha:.34});path(g,f.map(i=>P[i]),{close:true,stroke:C.line,width:.35,alpha:.42});}
     for(const wire of mesh.wires)path(g,wire.map(i=>P[i]),{close:wire.length>2,stroke:C.ink,width:4});

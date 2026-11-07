@@ -22,7 +22,7 @@ export function voronoiWorld(root,opts){
   o.on(o.cv,'keydown',e=>{if(e.shiftKey)return;if(e.key==='Enter'&&seeds.length<24){e.preventDefault();const candidates=Array.from({length:48},(_,i)=>[40+(i%8)*80,35+Math.floor(i/8)*74]);candidates.sort((a,b)=>Math.min(...seeds.map(p=>Math.hypot(b[0]-p[0],b[1]-p[1])))-Math.min(...seeds.map(p=>Math.hypot(a[0]-p[0],a[1]-p[1]))));seeds.push(candidates[0]);selected=seeds.length-1;relax=false;growth=1;update();o.redraw();return;}const d={ArrowLeft:[-5,0],ArrowRight:[5,0],ArrowUp:[0,-5],ArrowDown:[0,5]}[e.key];if(d){e.preventDefault();seeds[selected]=[clamp(seeds[selected][0]+d[0],12,628),clamp(seeds[selected][1]+d[1],12,428)];relax=false;update();o.redraw();}else if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();remove();}else if(e.key===']'||e.key==='['){selected=(selected+(e.key===']'?1:seeds.length-1))%seeds.length;update();o.redraw();}});
   let frame=0;const idle=idleGuard(o);
   o.animate(dt=>{if(playing){growth=opts.reduced()?1:Math.min(1,growth+dt*.36);if(growth===1)playing=false;}
-    if(idle(relax||playing,JSON.stringify([seeds,selected,growth]))&&cells.length)return;
+    if(idle(relax||playing,JSON.stringify([seeds,selected,growth]))&&cells.length)return false;
     cells=voronoiCells(seeds,[0,0,640,440]);if(relax&&dt){const centres=cells.map(polygonCentroid);seeds=seeds.map((s,i)=>s.map((v,k)=>v+(centres[i][k]-v)*Math.min(1,dt*2)));}
     const C=background(o),colors=[C.accent,C.obj2,C.obj3,C.pos,C.neg];
     cells.forEach((p,i)=>{g.save();if(growth<1){g.beginPath();g.arc(...seeds[i],growth*800,0,2*Math.PI);g.clip();}path(g,p,{close:true,fill:colors[i%5],alpha:.16});path(g,p,{close:true,stroke:C.line,width:1.5});g.restore();});

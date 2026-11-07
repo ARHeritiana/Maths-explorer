@@ -192,6 +192,7 @@ function galton(root, { t, reduced, lang }) {
       g.fillStyle = C.c[b.bin % 8]; g.strokeStyle = C.ink; g.lineWidth = 0.8; g.beginPath(); g.arc(x, y, R * 0.92, 0, TAU); g.fill(); g.stroke();
     }
     const text = stats(); if (text !== lastText && (!balls.length || total % 5 === 0)) { read.innerHTML = text; lastText = text; }
+    if (!balls.length && !continuous && !bigRun) return false;   // nothing falls: sleep until the next interaction
   }
   const lerp = (a, b, k) => a + (b - a) * k;
   bind(root, "gb-rows", (v) => { rows = v; reset(); lastText = ""; });
@@ -220,7 +221,7 @@ function galton(root, { t, reduced, lang }) {
   o.cv.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();drop(false);}});
   o.cv.setAttribute('aria-label',t('Planche de Galton : toucher ou Entrée pour lâcher une bille.','Galton board: tap or press Enter to drop a ball.'));
   reset(); o.redraw = () => draw(0);
-  const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced);
+  const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced, o.cv);
   return () => { gone = true; clearTimeout(bigRun); stop(); o.navigation?.destroy(); };
 }
 
@@ -254,7 +255,7 @@ function reuleauxLab(root, { t, reduced, lang }) {
   const idle = idleGuard(o);
   let lastDeg = -1;
   function draw(dt) {
-    if (idle(playing, `${n}|${w}|${mode}|${psi}`)) return;
+    if (idle(playing, `${n}|${w}|${mode}|${psi}`)) return false;
     const C = palette(); if (playing) { psi = (psi + dt * speed * 60 * (Math.PI / 180)) % TAU; const deg = Math.round((psi * 180) / Math.PI) % 360; if (deg !== lastDeg) { lastDeg = deg; root.querySelector("#rl-psi").value = deg; root.querySelector("#rl-psi-out").textContent = deg; } }
     g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
     const S = 250;
@@ -298,7 +299,7 @@ function reuleauxLab(root, { t, reduced, lang }) {
   for(const ev of ['pointerup','pointercancel','lostpointercapture','view-gesture'])o.cv.addEventListener(ev,()=>dragging=false);
   o.cv.style.cursor='grab';o.redraw=()=>draw(0);
   draw(0);
-  const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced);
+  const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced, o.cv);
   return () => { stop(); o.navigation?.destroy(); };
 }
 
@@ -342,7 +343,7 @@ function chaos(root, { t, reduced, lang }) {
   let lastRead = "";
   const setRead = (h) => { if (h !== lastRead) { lastRead = h; read.innerHTML = h; } };
   function draw() {
-    if (idle(playing && mode === "game" && !reduced(), `${mode}|${level}|${k}|${ratio}|${pts.length}|${blank}|${verts.join()}`)) return;
+    if (idle(playing && mode === "game" && !reduced(), `${mode}|${level}|${k}|${ratio}|${pts.length}|${blank}|${verts.join()}`)) return false;
     const C = palette(); g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
     if (mode === "game") {
       // A move of a vertex (or of r, or of the number of vertices) empties the layer: refill it at once with a burst of
@@ -373,7 +374,7 @@ function chaos(root, { t, reduced, lang }) {
   o.cv.addEventListener("keydown",e=>{if(e.shiftKey||mode!=="game")return;if(e.key==='['||e.key===']'){selectedVertex=(selectedVertex+(e.key===']'?1:k-1))%k;e.preventDefault();return;}const d={ArrowLeft:[-5,0],ArrowRight:[5,0],ArrowUp:[0,-5],ArrowDown:[0,5]}[e.key];if(!d)return;e.preventDefault();selectedVertex%=k;verts[selectedVertex]=[clampN(verts[selectedVertex][0]+d[0],10,o.W-10),clampN(verts[selectedVertex][1]+d[1],10,o.H-10)];layer=null;blank=false;pts=[];cur=[o.W/2,o.H/2];draw();});
   o.cv.setAttribute('aria-label',t('Sommets : [ et ] pour choisir, flèches pour déplacer.','Vertices: [ and ] select, arrow keys move.'));
   layout(); o.redraw = () => draw();
-  const stop = loopFor(() => draw(), reduced);
+  const stop = loopFor(() => draw(), reduced, o.cv);
   return () => { closed = true; stop(); o.navigation?.destroy(); };
 }
 

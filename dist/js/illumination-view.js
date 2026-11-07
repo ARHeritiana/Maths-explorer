@@ -13,6 +13,7 @@ import { createDensityMap } from './illumination-gl.js';
 import { createFarm, moduleWorker, inlineWorker, traceChunk } from './illumination-farm.js';
 import { capability, LIMITS } from './device-capability.js';
 import { assetHref } from './data-loader.js';
+import { animationLoop } from './visible-loop.js';
 
 // A night scene in both themes (a picture of a dark room), with its own contrast-checked colours.
 export const NIGHT = { outside: '#0f1217', floor: '#1d2431', light: '#f6d36b', direct: '#fff1b8', ray: '#ff7a2f', rayDark: '#ffb24a', wall: '#e9edf3', bad: '#ff4d5e',
@@ -36,7 +37,8 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
   cv.setAttribute('aria-label', label || t('Pièce de miroirs. Flèches : déplacer la lampe ou le point choisi ; N : point suivant ; Suppr : retirer un sommet ; Ctrl+Z : annuler ; + et − : zoom ; 0 : vue entière.', 'Mirrored room. Arrows: move the lamp or the chosen point; N: next point; Delete: remove a vertex; Ctrl+Z: undo; + and −: zoom; 0: whole view.'));
   host.append(cv);
   const g = cv.getContext('2d'), listeners = [], on = (el, type, fn, o = false) => { el.addEventListener(type, fn, o); listeners.push([el, type, fn, o]); };
-  let W = 640, H = 440, dpr = 1, alive = true, raf = 0, dirty = true;
+  let W = 640, H = 440, dpr = 1, alive = true, loop = null, dirty = true;
+  function invalidate() { dirty = true; loop?.wake(0); }
   const view = { tool: 'lamp', light: true, rays: true, snap: true, upTo: Infinity, cam: { s: 1, x: 0, y: 0 } };
   let selected = { type: 'lamp' }, drag = null, hover = null, history = [], future = [], elapsed = Infinity, lastT = 0, lightTimer = 0, playTimer = 0;
   // ---- geometry: room units to canvas pixels
@@ -44,7 +46,7 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
   const screen = (p, f = fit()) => [W / 2 + view.cam.x + (p[0] - f.cx) * f.S, H / 2 + view.cam.y + (p[1] - f.cy) * f.S];
   const world = (q, f = fit()) => [(q[0] - W / 2 - view.cam.x) / f.S + f.cx, (q[1] - H / 2 - view.cam.y) / f.S + f.cy];
   const pointer = (e) => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height]; };
-  const resize = () => { const r = host.getBoundingClientRect(); const w = Math.max(200, Math.round(r.width)), h = Math.max(160, Math.round(r.height)); dpr = Math.min(2.5, globalThis.devicePixelRatio || 1); if (w === W && h === H && cv.width === Math.round(w * dpr)) return; W = w; H = h; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); dirty = true; };
+  const resize = () => { const r = host.getBoundingClientRect(); const w = Math.max(200, Math.round(r.width)), h = Math.max(160, Math.round(r.height)); dpr = Math.min(2.5, globalThis.devicePixelRatio || 1); if (w === W && h === H && cv.width === Math.round(w * dpr)) return; W = w; H = h; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); invalidate(); };
   const ro = typeof ResizeObserver === 'function' ? new ResizeObserver(() => { resize(); }) : null; ro?.observe(host); resize();
   // ---- the room in the state
   const edgesOf = (s) => boundary(s);
@@ -61,7 +63,7 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
   // ---- undo
   const snapshot = () => { const s = get(); return { room: s.room, vertices: s.vertices.map((p) => [...p]), bends: s.bends.map((p) => p && [...p]), closed: s.closed, frame: s.frame, sx: s.sx, sy: s.sy }; };
   const remember = () => { history.push(snapshot()); if (history.length > 80) history.shift(); future = []; };
-  const apply = (snap) => { set({ ...snap, playing: false, unfolding: false }); dirty = true; };
+  const apply = (snap) => { set({ ...snap, playing: false, unfolding: false }); invalidate(); };
   const roomFor = (bends) => (bends.some(Boolean) ? 'curved' : 'polygon');
   // ---- the light: beams in a worker at rest, a coarse version here while dragging
   let light = null, lightKey = '', lightJob = 0, worker = null, workerFailed = false, computing = false, stats = null, raster = null;
@@ -70,11 +72,11 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
     if (coarse) return { rays: COARSE.rays, bounces: Math.min(lightBounces(s), COARSE.bounces), angle: s.angle, depth: COARSE.depth, budget: COARSE.budget, gap: diag / 30 };
     return { rays: 720, bounces: lightBounces(s), angle: s.angle, depth: 8, budget: LIGHT[device.tier] || LIGHT.basic, gap: diag / 110 };
   };
-  const makeWorker = () => { if (workerFailed || typeof Worker !== 'function') return null; try { const w = new Worker(assetHref('./js/illumination-light-worker.js'), { type: 'module' }); w.onerror = () => { workerFailed = true; w.terminate(); worker = null; if (computing) { lightKey = ''; dirty = true; } }; return w; } catch { workerFailed = true; return null; } };
+  const makeWorker = () => { if (workerFailed || typeof Worker !== 'function') return null; try { const w = new Worker(assetHref('./js/illumination-light-worker.js'), { type: 'module' }); w.onerror = () => { workerFailed = true; w.terminate(); worker = null; if (computing) { lightKey = ''; invalidate(); } }; return w; } catch { workerFailed = true; return null; } };
   function requestLight(s, edges, key) {
     const id = ++lightJob, options = lightOptions(s, false, edges), source = [s.sx, s.sy];
     computing = true;
-    const done = (r) => { if (!alive || id !== lightJob) return; light = { grid: r.grid, level: r.level, traced: r.traced, exhausted: r.exhausted, bounces: r.bounces, coarse: false, key }; computing = false; raster = null; dirty = true; };
+    const done = (r) => { if (!alive || id !== lightJob) return; light = { grid: r.grid, level: r.level, traced: r.traced, exhausted: r.exhausted, bounces: r.bounces, coarse: false, key }; computing = false; raster = null; invalidate(); };
     if (!worker) worker = makeWorker();
     if (worker) { worker.onmessage = (e) => { if (e.data.id === id) done(e.data); }; worker.postMessage({ id, edges, source, options, res: RES }); }
     else setTimeout(() => { if (id === lightJob) done(lightMap(edges, source, options, RES)); }, 0);
@@ -119,8 +121,8 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
       if (!farm) farm = createFarm({ make: makeFarmWorker, workers: Math.max(1, device.workers) });
       const mine = jobKey, area = Math.abs(roomArea(m.edges) * affine.sx * affine.sy);
       farm.run({ edges: m.edges, source: m.source, angle: s.angle, rays, bounces, segmentCap: device.limits.segments,
-        onChunk: (c) => { if (mine !== farmKey || !alive) return; chunks.push(c.segments); density.add({ segments: c.segments, count: c.count, size: [W, H], world: affine }); for (const k of ['rays', 'corners', 'tangents', 'length']) farmStats[k] += c[k]; farmStats.segments += c.count; farmStats.area = area; dirty = true; },
-        onDone: (st) => { if (mine !== farmKey || !alive) return; farmStats.capped = st.capped; farmDone = true; dirty = true; } });
+        onChunk: (c) => { if (mine !== farmKey || !alive) return; chunks.push(c.segments); density.add({ segments: c.segments, count: c.count, size: [W, H], world: affine }); for (const k of ['rays', 'corners', 'tangents', 'length']) farmStats[k] += c[k]; farmStats.segments += c.count; farmStats.area = area; invalidate(); },
+        onDone: (st) => { if (mine !== farmKey || !alive) return; farmStats.capped = st.capped; farmDone = true; invalidate(); } });
     } else if (aKey !== affineKey) { affineKey = aKey; if (density.reset(cv.width, cv.height)) for (const c of chunks) density.add({ segments: c, count: c.length / 4, size: [W, H], world: affine }); }
     const fs = farmStats, expected = fs.rays ? fs.length / fs.rays * rays * Math.abs(affine.sx) / Math.max(1, fs.area || 1) : 1;
     const img = density.present({ color: rgb(NIGHT.rayDark), gain: Math.min(40, Math.max(0.0005, 2.2 / Math.max(1e-6, expected))) });
@@ -129,7 +131,7 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
   const roomArea = (edges) => { const q = M.flatten(edges); let a = 0; for (let i = 0; i < q.length; i++) { const p = q[i], r = q[(i + 1) % q.length]; a += p[0] * r[1] - r[0] * p[1]; } return Math.abs(a) / 2; };
   // ---- device measurement (once per session, shared with the laboratory)
   const probeWork = () => { const p = PRESETS.tokarsky; return traceChunk(p.edges, p.source, 0.1, 24, 0, 24, 80).count; };
-  capability({ kind: 'illumination', work: probeWork }).then((r) => { if (!alive) return; Object.assign(device, { tier: r.tier, limits: r.limits, workers: r.workers, reasons: r.reasons, ready: true }); lightKey = ''; dirty = true; api.onDevice?.(); }).catch(() => { device.ready = true; });
+  capability({ kind: 'illumination', work: probeWork }).then((r) => { if (!alive) return; Object.assign(device, { tier: r.tier, limits: r.limits, workers: r.workers, reasons: r.reasons, ready: true }); lightKey = ''; invalidate(); api.onDevice?.(); }).catch(() => { device.ready = true; });
   // ---- drawing
   const hatch = (() => { const c = document.createElement('canvas'); c.width = c.height = 12; const h = c.getContext('2d'); h.fillStyle = 'rgba(105,210,255,0.22)'; h.fillRect(0, 0, 12, 12); h.strokeStyle = NIGHT.dark; h.lineWidth = 2.2; h.beginPath(); for (const d of [-12, 0, 12]) { h.moveTo(d, 12); h.lineTo(d + 12, 0); } h.stroke(); return c; })();
   const tmp = document.createElement('canvas');
@@ -151,12 +153,13 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
     return out;
   }
   const same = (a, b) => a && b && a.type === b.type && (a.i ?? -1) === (b.i ?? -1);
-  function frame(now) {
-    if (!alive) return; raf = requestAnimationFrame(frame);
-    const dt = Math.min(0.05, (now - lastT) / 1000 || 0); lastT = now; const s = get();
+  // one frame of the shared loop (visible-loop.js): sleeps when nothing changed, and wakes on any interaction or invalidate()
+  function frame(dt) {
+    const s = get();
     if (s.playing) { if (reduced()) { set({ playing: false }); elapsed = Infinity; } else { elapsed += dt * s.speed; dirty = true; } }
     const key = JSON.stringify(s); if (key !== frame.key) { frame.key = key; dirty = true; }
-    if (!dirty || document.hidden) return; dirty = false; draw(s);
+    if (!dirty) return s.playing ? undefined : false;
+    dirty = false; draw(s);
   }
   function draw(s) {
     const f = fit(), v = validation(s), edges = v.edges, custom = isCustom(s), inRoom = v.ok && lampIn(s, edges);
@@ -240,7 +243,7 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
   function closeRoom() {
     const s = get(); remember(); set({ closed: true });
     const v = validation(get()); if (v.ok && !lampIn(get(), v.edges)) { const p = interiorPoint(v.edges); set({ sx: Math.round(p[0] * 100) / 100, sy: Math.round(p[1] * 100) / 100 }); }
-    void s; dirty = true;
+    void s; invalidate();
   }
   const snapped = (p, e) => (view.snap && !e?.shiftKey ? snapTo(p, SNAP) : p);
   function startCustom(fromPreset) {
@@ -248,7 +251,7 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
     const b = PRESETS[s.room]?.bounds || frameOf(s), verts = fromPreset && !isCustom(s) && !PRESETS[s.room].edges.some((e) => e.type !== 'line') ? PRESETS[s.room].edges.map((e) => [...e.a]) : null;
     if (verts) set({ room: 'polygon', vertices: verts, bends: verts.map(() => null), closed: true, frame: b, playing: false, unfolding: false });
     else set({ room: 'polygon', vertices: [], bends: [], closed: false, frame: PRESETS.polygon.bounds, playing: false, unfolding: false, sx: 0, sy: 0 });
-    view.tool = 'draw'; selected = { type: 'lamp' }; dirty = true; api.onTool?.(view.tool);
+    view.tool = 'draw'; selected = { type: 'lamp' }; invalidate(); api.onTool?.(view.tool);
   }
   on(cv, 'pointerdown', (e) => {
     if (e.button > 0) return; cv.focus({ preventScroll: true }); e.preventDefault();
@@ -270,30 +273,30 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
       else if (view.cam.s > 1) drag = { pan: q, cam: { ...view.cam }, pointerId: e.pointerId };
     } else if (view.cam.s > 1) drag = { pan: q, cam: { ...view.cam }, pointerId: e.pointerId };
     if (drag) { cv.setPointerCapture?.(e.pointerId); e.preventDefault(); }
-    dirty = true; api.onAction?.();
+    invalidate(); api.onAction?.();
   });
   function moveHandle(h, p, e) {
     const s = get();
     if (h.type === 'lamp') set({ sx: p[0], sy: p[1] });
     else if (h.type === 'vertex') { const vertices = s.vertices.map((r) => [...r]); vertices[h.i] = snapped(p, e); set({ vertices, playing: false }); }
     else { const bends = s.bends.map((r) => r && [...r]); bends[h.i] = p; set({ bends, room: 'curved', playing: false }); }
-    dirty = true;
+    invalidate();
   }
   on(cv, 'pointermove', (e) => {
     const q = pointer(e);
-    if (drag?.pan) { view.cam.x = drag.cam.x + q[0] - drag.pan[0]; view.cam.y = drag.cam.y + q[1] - drag.pan[1]; dirty = true; return; }
+    if (drag?.pan) { view.cam.x = drag.cam.x + q[0] - drag.pan[0]; view.cam.y = drag.cam.y + q[1] - drag.pan[1]; invalidate(); return; }
     if (drag) { if (!drag.moved) { remember(); drag.moved = true; } moveHandle(drag.h, world(q), e); return; }
-    if (view.tool === 'draw') { hover = snapped(world(q), e); dirty = true; }
+    if (view.tool === 'draw') { hover = snapped(world(q), e); invalidate(); }
     const h = hit(get(), q, 16); cv.style.cursor = h ? 'grab' : view.tool === 'draw' ? 'crosshair' : view.cam.s > 1 ? 'move' : 'default';
   });
-  const end = () => { if (drag) { drag = null; lightKey = ''; dirty = true; api.onAction?.(); } };
-  on(cv, 'pointerup', end); on(cv, 'pointercancel', end); on(cv, 'lostpointercapture', end); on(cv, 'pointerleave', () => { hover = null; dirty = true; });
+  const end = () => { if (drag) { drag = null; lightKey = ''; invalidate(); api.onAction?.(); } };
+  on(cv, 'pointerup', end); on(cv, 'pointercancel', end); on(cv, 'lostpointercapture', end); on(cv, 'pointerleave', () => { hover = null; invalidate(); });
   on(cv, 'dblclick', (e) => {
     const s = get(), h = hit(s, pointer(e), 18); if (!h) return;
-    if (h.type === 'vertex') { selected = h; api.removeVertex(); } else if (h.type === 'bend' && s.bends[h.i]) { remember(); const bends = s.bends.slice(); bends[h.i] = null; set({ bends, room: roomFor(bends) }); dirty = true; }
+    if (h.type === 'vertex') { selected = h; api.removeVertex(); } else if (h.type === 'bend' && s.bends[h.i]) { remember(); const bends = s.bends.slice(); bends[h.i] = null; set({ bends, room: roomFor(bends) }); invalidate(); }
   });
   on(cv, 'wheel', (e) => { if (!e.ctrlKey && !e.metaKey) return; e.preventDefault(); zoomAt(pointer(e), e.deltaY < 0 ? 1.15 : 1 / 1.15); }, { passive: false });
-  function zoomAt(q, k) { const s0 = view.cam.s, s1 = Math.max(1, Math.min(12, s0 * k)), r = s1 / s0; view.cam.x = (view.cam.x + W / 2 - q[0]) * r + q[0] - W / 2; view.cam.y = (view.cam.y + H / 2 - q[1]) * r + q[1] - H / 2; view.cam.s = s1; if (s1 === 1) { view.cam.x = 0; view.cam.y = 0; } dirty = true; }
+  function zoomAt(q, k) { const s0 = view.cam.s, s1 = Math.max(1, Math.min(12, s0 * k)), r = s1 / s0; view.cam.x = (view.cam.x + W / 2 - q[0]) * r + q[0] - W / 2; view.cam.y = (view.cam.y + H / 2 - q[1]) * r + q[1] - H / 2; view.cam.s = s1; if (s1 === 1) { view.cam.x = 0; view.cam.y = 0; } invalidate(); }
   on(cv, 'keydown', (e) => {
     const s = get(), mod = e.ctrlKey || e.metaKey;
     if (mod && e.key.toLowerCase() === 'z') { e.preventDefault(); e.shiftKey ? api.redo() : api.undo(); return; }
@@ -303,7 +306,7 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
     if (e.key === '-') { zoomAt([W / 2, H / 2], 0.8); e.preventDefault(); return; }
     if (e.key === '0') { api.resetView(); e.preventDefault(); return; }
     const hs = handles(s), at = Math.max(0, hs.findIndex((h) => same(h, selected)));
-    if (e.key.toLowerCase() === 'n' || e.key.toLowerCase() === 'h') { selected = { ...hs[(at + 1) % hs.length] }; delete selected.p; dirty = true; e.preventDefault(); return; }
+    if (e.key.toLowerCase() === 'n' || e.key.toLowerCase() === 'h') { selected = { ...hs[(at + 1) % hs.length] }; delete selected.p; invalidate(); e.preventDefault(); return; }
     if (['Delete', 'Backspace'].includes(e.key) && selected.type === 'vertex') { api.removeVertex(); e.preventDefault(); return; }
     if (e.key === 'Insert' || e.key.toLowerCase() === 'i') { api.insertVertex(); e.preventDefault(); return; }
     if (e.key.toLowerCase() === 'c' && isCustom(s) && !s.closed) { api.close(); e.preventDefault(); return; }
@@ -313,30 +316,30 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
   // ---- the API the panels use
   const api = {
     canvas: cv, get stats() { return stats; }, get view() { return { ...view, cam: { ...view.cam } }; },
-    setTool(tool) { view.tool = tool; const s = get(); if (tool !== 'lamp' && !isCustom(s)) startCustom(true); if (tool === 'curve' && !get().closed) view.tool = 'draw'; selected = { type: 'lamp' }; dirty = true; api.onTool?.(view.tool); },
-    setLayer(name, on) { view[name] = !!on; dirty = true; },
-    setSnap(on) { view.snap = !!on; dirty = true; },
+    setTool(tool) { view.tool = tool; const s = get(); if (tool !== 'lamp' && !isCustom(s)) startCustom(true); if (tool === 'curve' && !get().closed) view.tool = 'draw'; selected = { type: 'lamp' }; invalidate(); api.onTool?.(view.tool); },
+    setLayer(name, on) { view[name] = !!on; invalidate(); },
+    setSnap(on) { view.snap = !!on; invalidate(); },
     newRoom() { startCustom(false); }, editPreset() { startCustom(true); },
     canEditPreset() { const s = get(); return !isCustom(s) && !PRESETS[s.room].edges.some((e) => e.type !== 'line'); },
     close() { const s = get(); if (isCustom(s) && !s.closed && s.vertices.length >= 3) closeRoom(); },
-    removeVertex() { const s = get(); if (selected.type !== 'vertex' || !isCustom(s)) return; if (s.closed && s.vertices.length <= 3) return; remember(); const vertices = s.vertices.filter((_, i) => i !== selected.i), bends = s.bends.filter((_, i) => i !== selected.i).map((b, i) => (i === selected.i - 1 ? null : b)); set({ vertices, bends, room: roomFor(bends), closed: s.closed && vertices.length >= 3 }); selected = vertices.length ? { type: 'vertex', i: Math.min(selected.i, vertices.length - 1) } : { type: 'lamp' }; dirty = true; },
-    insertVertex() { const s = get(); if (!isCustom(s) || s.vertices.length < 2 || s.vertices.length >= MAX_VERTICES) return; const i = selected.type === 'vertex' ? selected.i : s.vertices.length - 1, a = s.vertices[i], b = s.vertices[(i + 1) % s.vertices.length]; remember(); const vertices = s.vertices.map((r) => [...r]), bends = s.bends.slice(); vertices.splice(i + 1, 0, snapTo([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], view.snap ? SNAP / 2 : 0)); bends[i] = null; bends.splice(i + 1, 0, null); set({ vertices, bends, room: roomFor(bends) }); selected = { type: 'vertex', i: i + 1 }; dirty = true; },
-    straighten() { const s = get(); if (!s.bends.some(Boolean)) return; remember(); set({ bends: s.bends.map(() => null), room: 'polygon' }); dirty = true; },
+    removeVertex() { const s = get(); if (selected.type !== 'vertex' || !isCustom(s)) return; if (s.closed && s.vertices.length <= 3) return; remember(); const vertices = s.vertices.filter((_, i) => i !== selected.i), bends = s.bends.filter((_, i) => i !== selected.i).map((b, i) => (i === selected.i - 1 ? null : b)); set({ vertices, bends, room: roomFor(bends), closed: s.closed && vertices.length >= 3 }); selected = vertices.length ? { type: 'vertex', i: Math.min(selected.i, vertices.length - 1) } : { type: 'lamp' }; invalidate(); },
+    insertVertex() { const s = get(); if (!isCustom(s) || s.vertices.length < 2 || s.vertices.length >= MAX_VERTICES) return; const i = selected.type === 'vertex' ? selected.i : s.vertices.length - 1, a = s.vertices[i], b = s.vertices[(i + 1) % s.vertices.length]; remember(); const vertices = s.vertices.map((r) => [...r]), bends = s.bends.slice(); vertices.splice(i + 1, 0, snapTo([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], view.snap ? SNAP / 2 : 0)); bends[i] = null; bends.splice(i + 1, 0, null); set({ vertices, bends, room: roomFor(bends) }); selected = { type: 'vertex', i: i + 1 }; invalidate(); },
+    straighten() { const s = get(); if (!s.bends.some(Boolean)) return; remember(); set({ bends: s.bends.map(() => null), room: 'polygon' }); invalidate(); },
     undo() { const last = history.pop(); if (!last) return; future.push(snapshot()); apply(last); selected = { type: 'lamp' }; },
     redo() { const next = future.pop(); if (!next) return; history.push(snapshot()); apply(next); selected = { type: 'lamp' }; },
     get canUndo() { return history.length > 0; }, get canRedo() { return future.length > 0; },
     remember,
-    zoom(k) { zoomAt([W / 2, H / 2], k); }, resetView() { view.cam = { s: 1, x: 0, y: 0 }; dirty = true; },
+    zoom(k) { zoomAt([W / 2, H / 2], k); }, resetView() { view.cam = { s: 1, x: 0, y: 0 }; invalidate(); },
     // the light reflection by reflection: 0, 1, 2... then all (a step each press under reduced motion)
-    playLight() { clearInterval(playTimer); view.upTo = 0; dirty = true; if (reduced()) return; playTimer = setInterval(() => { const K = light?.bounces ?? 0; if (view.upTo >= K) { clearInterval(playTimer); view.upTo = Infinity; } else view.upTo++; dirty = true; api.onAction?.(); }, 600); },
-    stepLight() { clearInterval(playTimer); const K = light?.bounces ?? 0; view.upTo = !Number.isFinite(view.upTo) ? 0 : view.upTo + 1 > K ? Infinity : view.upTo + 1; dirty = true; },
-    stopLight() { clearInterval(playTimer); view.upTo = Infinity; dirty = true; },
-    playRays() { const s = get(); if (reduced()) { elapsed = Infinity; set({ playing: false }); } else { if (!s.playing && (!Number.isFinite(elapsed) || elapsed > 400)) elapsed = 0; set({ playing: !s.playing }); } dirty = true; },
-    stepRays() { elapsed = Number.isFinite(elapsed) ? elapsed + 1 : 1; set({ playing: false }); dirty = true; },
-    showAllRays() { elapsed = Infinity; set({ playing: false }); dirty = true; },
-    redraw() { dirty = true; }, resetHistory() { history = []; future = []; },
-    destroy() { alive = false; cancelAnimationFrame(raf); clearTimeout(lightTimer); clearInterval(playTimer); listeners.forEach(([el, type, fn, o]) => el.removeEventListener(type, fn, o)); ro?.disconnect(); worker?.terminate(); farm?.destroy(); density?.destroy(); },
+    playLight() { clearInterval(playTimer); view.upTo = 0; invalidate(); if (reduced()) return; playTimer = setInterval(() => { const K = light?.bounces ?? 0; if (view.upTo >= K) { clearInterval(playTimer); view.upTo = Infinity; } else view.upTo++; invalidate(); api.onAction?.(); }, 600); },
+    stepLight() { clearInterval(playTimer); const K = light?.bounces ?? 0; view.upTo = !Number.isFinite(view.upTo) ? 0 : view.upTo + 1 > K ? Infinity : view.upTo + 1; invalidate(); },
+    stopLight() { clearInterval(playTimer); view.upTo = Infinity; invalidate(); },
+    playRays() { const s = get(); if (reduced()) { elapsed = Infinity; set({ playing: false }); } else { if (!s.playing && (!Number.isFinite(elapsed) || elapsed > 400)) elapsed = 0; set({ playing: !s.playing }); } invalidate(); },
+    stepRays() { elapsed = Number.isFinite(elapsed) ? elapsed + 1 : 1; set({ playing: false }); invalidate(); },
+    showAllRays() { elapsed = Infinity; set({ playing: false }); invalidate(); },
+    redraw() { invalidate(); }, resetHistory() { history = []; future = []; },
+    destroy() { alive = false; loop?.stop(); clearTimeout(lightTimer); clearInterval(playTimer); listeners.forEach(([el, type, fn, o]) => el.removeEventListener(type, fn, o)); ro?.disconnect(); worker?.terminate(); farm?.destroy(); density?.destroy(); },
   };
-  void fmt; raf = requestAnimationFrame(frame);
+  void fmt; loop = animationLoop(host, frame, { reduced, scope: host.closest('main') || host });
   return api;
 }

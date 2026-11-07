@@ -39,11 +39,12 @@ export function opaqueSquare(root,opts){
   o.on(o.cv,'keydown',e=>{if(e.shiftKey)return;if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();remove();return;}
     const d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]}[e.key];if(d&&segs[sel]){e.preventDefault();segs[sel].forEach(q=>{q[0]+=d[0]*.01;q[1]+=d[1]*.01;});preset='';changed();}
     if((e.key==='n'||e.key==='N')&&segs.length){e.preventDefault();sel=(sel+1)%segs.length;dirty=true;}});
+  o.onResize=()=>{dirty=true;};o.busy=()=>sweep;
   o.animate(dt=>{
     // frame time, or real elapsed time under reduced motion (the motion runs only when asked)
     const now=performance.now(),real=dt||Math.min(.1,(now-(o.last||now))/1000);o.last=now;
     if(sweep){setTheta((theta+real*.35)%Math.PI);}
-    if(!dirty)return;dirty=false;
+    if(!dirty)return false;dirty=false;
     const C=palette(),open=gaps(segs,theta),nx=-Math.sin(theta),ny=Math.cos(theta),cs=[[0,0],[1,0],[1,1],[0,1]].map(([x,y])=>x*nx+y*ny),lo=Math.min(...cs),hi=Math.max(...cs);
     g.clearRect(0,0,o.W,o.H);g.fillStyle=C.sunken;g.fillRect(-2000,-2000,4640,4440);
     g.fillStyle=C.surface;g.strokeStyle=C.line;g.lineWidth=1.5;g.setLineDash([5,4]);g.beginPath();[[0,0],[1,0],[1,1],[0,1]].forEach((p,i)=>i?g.lineTo(...X(p)):g.moveTo(...X(p)));g.closePath();g.fill();g.stroke();g.setLineDash([]);

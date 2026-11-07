@@ -42,10 +42,11 @@ export function knotsInSpace(root,opts){
     for(const c of projection.crossings.slice().sort((a,b)=>a.depth-b.depth)){const center=at(c.over),parts=[center];for(const direction of [-1,1]){const side=[];let length=0,previous=center;for(let k=1;k<30&&length<17;k++){const p=at(c.over+direction*k*.15);length+=Math.hypot(p[0]-previous[0],p[1]-previous[1]);side.push(p);previous=p;}if(direction<0)parts.unshift(...side.reverse());else parts.push(...side);}path(g,parts,{stroke:C.sunken,width:16});path(g,parts,{stroke:color(projection.arcAt(c.over)),width:7});}
   }
   sync();
+  o.onResize=()=>{dirty=true;};
   o.animate(dt=>{
     if(playing&&dt){phase=Math.min(1,phase+dt/6);dirty=true;colors=[];if(phase===1){playing=false;sync();}}
-    const key=[entry.id,mode,mirror,example,phase,yaw,tilt,o.navigation.camera.scale,o.navigation.camera.x,o.navigation.camera.y,document.documentElement.dataset.theme].join(',');
-    if(!dirty&&key===lastKey)return;dirty=false;lastKey=key;
+    const key=[o.cv.width,entry.id,mode,mirror,example,phase,yaw,tilt,o.navigation.camera.scale,o.navigation.camera.x,o.navigation.camera.y,document.documentElement.dataset.theme].join(',');
+    if(!dirty&&key===lastKey)return playing?undefined:false;dirty=false;lastKey=key;
     const C=background(o),points=knotDeformation(base,example,phase),P=cameraKnot(points,mode==='projection'?0:yaw,mode==='projection'?0:tilt,mirror);
     if(mode==='space'){
       drawKnotStrand(g,P.map(screen),{ink:C.accent,background:C.sunken,width:7,gap:3});
