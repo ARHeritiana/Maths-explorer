@@ -40,12 +40,13 @@ export function fromDiagonal(p, q, angle = Math.PI / 2) {
 // Search: every pair of samples as a diagonal, keep the pairs whose two other corners are near the curve, polish them
 // by a small descent along the curve, keep those within `tol` (relative to the size of the curve), drop duplicates.
 // A curve with straight parallel sides has whole families of squares: at most `limit` are kept.
-export function inscribed(pts, { angle = Math.PI / 2, samples = 160, tol = 2e-3, minSide = 0.04, limit = 40 } = {}) {
+// The search as a generator that yields after each row of the (u, v) grid, so that a caller can run it in slices (inscribedSliced).
+function* inscribedSteps(pts, { angle = Math.PI / 2, samples = 160, tol = 2e-3, minSide = 0.04, limit = 40 } = {}) {
   const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]), size = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)) || 1;
   const L = measure(pts), field = distanceField(pts, size / 24), coarse = 1.2 * L.at(-1) / samples;
   const err = (u, v) => { const r = fromDiagonal(at(pts, L, u), at(pts, L, v), angle); return Math.hypot(field(r[1], size), field(r[3], size)); };
   const found = [];
-  for (let i = 0; i < samples; i++) for (let j = i + 1; j < samples; j++) {
+  for (let i = 0; i < samples; i++, (yield)) for (let j = i + 1; j < samples; j++) {
     const u = i / samples, v = j / samples, r = fromDiagonal(at(pts, L, u), at(pts, L, v), angle);
     if (field(r[1], coarse) === Infinity || field(r[3], coarse) === Infinity) continue;
     if (found.length >= limit || found.some((f) => r.every((p) => f.corners.some((q) => Math.hypot(p[0] - q[0], p[1] - q[1]) < 0.03 * size)))) continue;
@@ -61,6 +62,20 @@ export function inscribed(pts, { angle = Math.PI / 2, samples = 160, tol = 2e-3,
     found.push({ corners: sq, centre: c, side, error: be / size });
   }
   return found.sort((a, b) => b.side - a.side);
+}
+export function inscribed(pts, options = {}) {
+  const run = inscribedSteps(pts, options); let r;
+  while (!(r = run.next()).done);
+  return r.value;
+}
+// The same search in slices of about `ms` milliseconds between timers, so that the page keeps answering: calls onDone(found) at the end and
+// returns a cancel function (a newer curve cancels the older search).
+export function inscribedSliced(pts, options, onDone, ms = 8) {
+  const run = inscribedSteps(pts, options), now = () => globalThis.performance.now();
+  let timer = 0, dead = false;
+  const slice = () => { const t0 = now(); let r; do { r = run.next(); } while (!r.done && now() - t0 < ms); if (dead) return; if (r.done) onDone(r.value); else timer = setTimeout(slice, 0); };
+  timer = setTimeout(slice, 0);
+  return () => { dead = true; clearTimeout(timer); };
 }
 
 // Starting curves (control points in a 10 × 7 box).

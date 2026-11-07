@@ -121,3 +121,11 @@ test("moving sofa: pushOut gives up within its evaluation budget", () => {
   assert.ok(performance.now() - t0 < 500 && calls === 200);
   assert.equal(S.pushOut(poly, { x: 0.5, y: 3, a: 0 }, { maxEvals: 3 }), null);
 });
+
+test("inscribed squares: the sliced search finds exactly what the synchronous one finds, and can be cancelled", async () => {
+  const P = I.PRESETS.blob, pts = I.curve(P.ctrl, { corners: P.corners, n: P.corners ? 40 : 24 }), want = I.inscribed(pts);
+  const got = await new Promise((res) => I.inscribedSliced(pts, {}, res, 1));
+  assert.equal(got.length, want.length); assert.deepEqual(got.map((f) => f.side), want.map((f) => f.side));
+  let called = false; const cancel = I.inscribedSliced(pts, {}, () => { called = true; }, 1); cancel();
+  await new Promise((r) => setTimeout(r, 50)); assert.equal(called, false);
+});

@@ -1,11 +1,11 @@
 // The inscribed square problem: draw a closed curve or reshape one, and the exhibit searches for squares (or rectangles
 // of a chosen shape) with their four corners on it (gallery exhibit; maths in gallery/gallery-inscribed-model.js).
 import {exhibit,button,field,bind,palette} from './gallery-kit.js';
-import {curve,selfCrossing,inscribed,randomCurve,insertionIndex,PRESETS} from './gallery-inscribed-model.js';
+import {curve,selfCrossing,inscribed,inscribedSliced,randomCurve,insertionIndex,PRESETS} from './gallery-inscribed-model.js';
 const S=60,OX=20,OY=10;
 export function inscribedSquare(root,opts){
   const {t,lang}=opts,num=(v,d=2)=>lang==='fr'?v.toFixed(d).replace('.',','):v.toFixed(d);
-  let preset='blob',ctrl=PRESETS.blob.ctrl.map(p=>[...p]),corners=false,ratio=1,pts=[],found=[],pick=0,crossing=false,drag=null,stroke=null,dirty=true,pending=0;
+  let preset='blob',ctrl=PRESETS.blob.ctrl.map(p=>[...p]),corners=false,ratio=1,pts=[],found=[],pick=0,crossing=false,drag=null,stroke=null,dirty=true,cancelSearch=()=>{};
   const names={blob:t('Une forme quelconque','Any shape'),ellipse:t('Ellipse','Ellipse'),acute:t('Triangle acutangle','Acute triangle'),obtuse:t('Triangle obtusangle','Obtuse triangle'),star:t('Étoile','Star'),spiral:t('Spirale carrée','Square spiral')};
   const o=exhibit(root,opts,t('Toute courbe fermée qui ne se croise pas contient-elle les quatre sommets d’un carré ? Dessine une courbe d’un seul trait, tire une courbe au hasard, ou déplace ses points ronds ; touche la courbe pour ajouter un point, Suppr efface le point choisi. La recherche se relance et montre les carrés trouvés. Au clavier, N choisit le point suivant et les flèches le déplacent.','Does every closed curve that does not cross itself contain the four corners of a square? Draw a curve in one stroke, pick a random curve, or move its round points; touch the curve to add a point, Delete removes the selected point. The search runs again and shows the squares found. With the keyboard, N selects the next point and arrow keys move it.'),
     `<label class="act-field exhibit-select"><span class="act-label">${t('Courbe','Curve')}</span><select id="is-preset">${Object.entries(names).map(([k,v])=>`<option value="${k}" ${k===preset?'selected':''}>${v}</option>`).join('')}</select></label>`+
@@ -15,7 +15,7 @@ export function inscribedSquare(root,opts){
   const g=o.g,pointSel=root.querySelector('#is-point'),sidesBtn=root.querySelector('#is-sides');
   const X=([x,y])=>[OX+S*x,OY+S*y],W=([px,py])=>[(px-OX)/S,(py-OY)/S];
   function rebuild(search=true){pts=curve(ctrl,{corners,n:corners?40:24});crossing=selfCrossing(pts);pointSel.max=ctrl.length;sidesBtn.setAttribute('aria-pressed',String(corners));found=[];pick=0;dirty=true;
-    if(search&&!crossing){clearTimeout(pending);pending=setTimeout(()=>{found=inscribed(pts,{angle:2*Math.atan(1/ratio)});pick=0;dirty=true;o.wake();},30);}}
+    if(search&&!crossing){cancelSearch();cancelSearch=inscribedSliced(pts,{angle:2*Math.atan(1/ratio)},list=>{found=list;pick=0;dirty=true;o.wake();});}else cancelSearch();}   // sliced: no long task
   function load(k){preset=k;ctrl=PRESETS[k].ctrl.map(p=>[...p]);corners=!!PRESETS[k].corners;rebuild();}
   o.on(root.querySelector('#is-preset'),'change',e=>load(e.target.value));
   o.on(root.querySelector('#is-draw'),'click',()=>{stroke=[];dirty=true;});
@@ -52,5 +52,5 @@ export function inscribedSquare(root,opts){
     o.read(stroke?t('Dessine une courbe fermée d’un seul trait.','Draw a closed curve in one stroke.'):crossing?t('La courbe se croise : ce n’est plus une courbe de Jordan. Déplace un point.','The curve crosses itself: it is no longer a Jordan curve. Move a point.'):
       found.length?`${found.length}${found.length>=40?'+':''} ${t(many?what+'s trouvés':what+' trouvé',many?what+'s found':what+' found')} · ${t('côté du '+what+' affiché :','side of the one shown:')} ${num(found[pick].side)} · ${t('écart à la courbe <','distance to the curve <')} ${num(Math.max(found[pick].error,1e-4)*100,2)} %`:t('Recherche… ou aucun trouvé : déplace un point.','Searching… or none found: move a point.'));
   });
-  const stop=o.stop;return ()=>{clearTimeout(pending);stop();};
+  const stop=o.stop;return ()=>{cancelSearch();stop();};
 }

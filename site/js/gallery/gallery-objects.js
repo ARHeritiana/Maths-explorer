@@ -183,7 +183,13 @@ function mandelbrotLab(root, { t, reduced, lang }) {
     c2.putImageData(img, 0, 0); o.g.imageSmoothingEnabled = true; o.g.drawImage(off, 0, 0, o.W, o.H);
     marker();
   }
+  // The Julia panel does not depend on the Mandelbrot view: while the main view is dragged or flown it is left as it is (it is only redrawn
+  // when its own view, c, the palette, the iteration limit, the quality or the canvas size changes).
+  let juliaKey = "";
   function renderJulia() {
+    const key = [jx, jy, jw, cSel[0], cSel[1], maxJulia(), paletteId, phase, hq, j.cv.width, j.cv.height, glJulia ? 1 : 0].join();
+    if (key === juliaKey) return;
+    juliaKey = key;
     if (glJulia && !glJulia.lost) {
       const [pw, ph] = glSize(j, hq ? 1 : 0.75), h = (jw * j.H) / j.W, img = glJulia.render({ width: pw, height: ph, kind: "julia", cx: jx, cy: jy, w: jw, h, c: cSel, max: maxJulia(), samples: hq ? 2 : 1, palette: paletteId, phase });
       if (img) { j.g.imageSmoothingEnabled = true; j.g.imageSmoothingQuality = "high"; j.g.drawImage(img, 0, 0, j.W, j.H); return; }

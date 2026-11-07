@@ -14,6 +14,8 @@ test('Game of Life, square packing, moving sofa, inscribed and opaque squares mo
   w.Element.prototype.getBoundingClientRect=()=>({left:0,top:0,width:640,height:440});
   w.HTMLCanvasElement.prototype.getContext=function(){return new Proxy({},{get:(target,p)=>target[p]||((...args)=>args.forEach(x=>{if(typeof x==='number')assert.ok(Number.isFinite(x));})),set:(target,p,v)=>(target[p]=v,true)});};
   let now=0;const tick=(n=1)=>{for(let i=0;i<n;i++){const work=[...frames.values()];frames.clear();now+=40;work.forEach(fn=>fn(now));}};
+  // the inscribed-square search runs in slices between timers: wait (up to 5 s) for the frame that shows its result
+  const until=async ok=>{for(let i=0;i<100&&!(tick(),ok());i++)await new Promise(r=>setTimeout(r,50));};
   const read=root=>root.querySelector('.exhibit-readout').textContent;
   const pointer=(el,type,x,y)=>el.dispatchEvent(new w.MouseEvent(type,{clientX:x,clientY:y,bubbles:true}));
   for(const lang of ['fr','en'])for(const id of ['life','square-packing']){
@@ -45,10 +47,10 @@ test('Game of Life, square packing, moving sofa, inscribed and opaque squares mo
       k.value='own';k.dispatchEvent(new w.Event('change'));pointer(cv,'pointerdown',100,120);for(let a=0;a<=40;a++)pointer(cv,'pointermove',100+30*Math.cos(a*Math.PI/20),120+20*Math.sin(a*Math.PI/20));pointer(cv,'pointerup',130,120);tick();assert.match(read(root),/0[.,]6/);
     }
     if(id==='inscribed-square'){
-      await new Promise(r=>setTimeout(r,80));tick();assert.match(read(root),/1/);
-      const sel=root.querySelector('#is-preset');sel.value='acute';sel.dispatchEvent(new w.Event('change'));await new Promise(r=>setTimeout(r,80));tick();assert.match(read(root),/^3 /);
+      await until(()=>/1/.test(read(root)));assert.match(read(root),/1/);
+      const sel=root.querySelector('#is-preset');sel.value='acute';sel.dispatchEvent(new w.Event('change'));await until(()=>/^3 /.test(read(root)));assert.match(read(root),/^3 /);
       root.querySelector('#is-next').click();tick();
-      root.querySelector('#is-random').click();await new Promise(r=>setTimeout(r,120));tick();assert.match(read(root),/\d/);
+      root.querySelector('#is-random').click();await until(()=>/\d/.test(read(root)));assert.match(read(root),/\d/);
       const before=root.querySelector('#is-point').max;pointer(cv,'pointerdown',20+60*5,10+60*3.5);pointer(cv,'pointerup',20+60*5,10+60*3.5);
       cv.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Delete',bubbles:true}));tick();assert.equal(Number(root.querySelector('#is-point').max),Number(before)-1,'Delete removes the selected point');
       sel.value='blob';sel.dispatchEvent(new w.Event('change'));pointer(cv,'pointerdown',20+60*2,10+60*2);pointer(cv,'pointermove',20+60*8,10+60*6.5);pointer(cv,'pointerup',20+60*8,10+60*6.5);tick();
