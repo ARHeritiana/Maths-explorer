@@ -1,5 +1,8 @@
 // Fixed-resolution decorative preview. Its bounded zoom needs direct float iteration,
 // not the activity's deep-zoom perturbation renderer. No runtime dependencies.
+// The still picture (reduced motion, no WebGL2, a card that does not move) shows the whole set; deeper in the zoom the view is a thin band
+// along the real axis that reads as a flat strip at thumbnail size.
+export const STILL_T = 0;
 export function previewCamera(t) {
   const w = 3.4 * Math.exp(Math.log(.063 / 3.4) * t / 22);
   const u = Math.min(1, Math.max(0, (t - 2) / 10)), e = u * u * (3 - 2 * u);
@@ -64,7 +67,7 @@ function renderer(canvas) {
 function drawStill(canvas,w,h){
   canvas.width=w;canvas.height=h;
   const g=canvas.getContext('2d');if(!g)return;
-  const image=g.createImageData(w,h),c=previewCamera(15),height=c.w*h/w;
+  const image=g.createImageData(w,h),c=previewCamera(STILL_T),height=c.w*h/w;
   for(let j=0;j<h;j++)for(let i=0;i<w;i++){
     const cr=c.x+((i+.5)/w-.5)*c.w,ci=(.5-(j+.5)/h)*height;
     let x=0,y=0,n=0;
@@ -94,7 +97,7 @@ export function mountMandelbrotPreview(canvas,{reduced=()=>false}={}) {
     if(size!==lastSize){lastSize=size;dirty=true;}
     if(!isStill()){time+=dt*.99;if(time>=24)time-=22;}
     if(dirty||!isStill()&&now-lastDraw>=1000/30){
-      if(gpu)gpu.draw(w,h,isStill()?15:time);else drawStill(canvas,w,h);
+      if(gpu)gpu.draw(w,h,isStill()?STILL_T:time);else drawStill(canvas,w,h);
       lastDraw=now;dirty=false;
     }
     if(!isStill())schedule();

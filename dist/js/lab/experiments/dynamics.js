@@ -17,7 +17,9 @@ function diagnostic(model){return {x:[0,20],y:[0,8],share:.65,xTicks:[0,5,10,15,
     if(s.system==='pendulum'){const a=D.pendulumPoints(m.params,q.y)[1],b=D.pendulumPoints(m.params,other.y)[1];distance=Math.hypot(a[0]-b[0],a[1]-b[1]);}
     else distance=Math.hypot(...q.y.filter((_,i)=>i%4<2).map((v,i)=>v-other.y[Math.floor(i/2)*4+i%2]));
     return [q.t,distance];});
-  return {polys:[{pts:points,color:'neg',close:false,width:2}],texts:[{at:[.3,7.3],text:fmt.t(P('Distance entre les deux trajectoires','Distance between trajectories')),color:'muted',size:13}]};
+  // before Play there is only the t = 0 sample (one point draws nothing): show where the curve starts, with the initial separation as a guide
+  const last=points.at(-1),guide=points.length<2&&last?[{a:[0,last[1]],b:[20,last[1]],color:'muted',dash:[3,5],width:1.5}]:[];
+  return {polys:[{pts:points,color:'neg',close:false,width:2}],lines:guide,points:last?[{at:last,r:4.5,color:'neg'}]:[],texts:[{at:[.3,7.3],text:fmt.t(P('Distance entre les deux trajectoires','Distance between trajectories')),color:'muted',size:13}]};
 }};}
 function readout(model){return(s,{fmt})=>{const m=model(s);return [[P('Temps effectivement calculé','Actual calculated time'),fmt.read(m.now.t,2)],[P('Énergie mécanique','Mechanical energy'),fmt.read(m.energy,6)],[P(s.system==='pendulum'&&s.damping?'Variation relative d’énergie, frottement inclus':'Écart relatif d’énergie',s.system==='pendulum'&&s.damping?'Relative energy change, including damping':'Relative energy deviation'),fmt.read(m.drift,8)],[P('Distance des trajectoires','Trajectory distance'),fmt.read(m.divergence,6)],[P('État du calcul','Computation status'),m.status==='complete'?fmt.t(P('Précision locale contrôlée','Local precision controlled')):fmt.t(P('Arrêt : rencontre proche ou limite numérique','Stopped: close encounter or numerical limit'))],...(s.system==='gravity'?[[P('Écart relatif du moment cinétique','Relative angular momentum deviation'),fmt.read(m.angularDrift,8)]]:[])];};}
 const pendulumState={system:'pendulum',a:2,b:1.9,u:0,v:0,l1:1,l2:1,m1:1,m2:1,g:9.81,damping:0,time:0,delta:.00001,speed:1,tolerance:1e-8};
