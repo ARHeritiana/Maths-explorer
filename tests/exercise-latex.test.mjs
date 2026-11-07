@@ -17,7 +17,7 @@ const KNOWN = new Set(('Delta Omega approx arg bar begin cap cdot circ cos cup d
   + 'right sim sin sqrt text theta times to varnothing vec frac tfrac binom quad qquad leq geq le ge ne cdots ldots mid nmid '
   + 'alpha beta gamma delta lambda sigma varepsilon epsilon rho tau phi varphi Rightarrow Leftrightarrow forall exists notin '
   + 'subset cap cup emptyset tan exp max min sum prod lfloor rfloor operatorname boxed underbrace overbrace hat widehat pmod bmod '
-  + 'mathbf mathit texttt ne not lvert rvert vert Vert big Big bigg Bigg displaystyle textstyle limits div nearrow searrow parallel').split(' '));
+  + 'leftarrow mapsto mathbf mathit texttt ne not lvert rvert vert Vert big Big bigg Bigg displaystyle textstyle limits div nearrow searrow parallel').split(' '));
 const texts = (it) => [it.q, it.a, it.s, it.intro, ...(it.parts || []).flatMap((p) => [p.q, p.a])].filter(Boolean);
 const commands = (s) => [...String(s).replace(/\\\\/g, ' ').matchAll(/\\([A-Za-z]+)/g)].map((m) => m[1]);
 
