@@ -1,4 +1,4 @@
-% mxbook.cls -- Maths Explorer document class (pdfLaTeX, mathpazo).
+% mxbook.cls -- Maths Explorer document class (XeTeX or LuaTeX; fonts shipped in core/fonts, see mx-math.sty).
 % Options (key=value):
 %   course=<id>                    course identifier, used in running heads and labels (default: none)
 %   lang=fr|en                     language of labels, hyphenation and number formatting (default: fr)
@@ -40,6 +40,12 @@
 \RequirePackage{mx-env}      % canonical environments (keypoint, method, example, exercise, ...)
 \RequirePackage{mx-code}     % Python listings
 \RequirePackage[hidelinks,unicode]{hyperref}   % last, as hyperref requires
+% Bookmarks and the contents list are PDF strings: the maths symbols that titles use are given as Unicode characters
+% (with unicode-math the symbols are not plain macros that hyperref can turn into text).
+\pdfstringdefDisableCommands{\def\mapsto{↦}\def\longmapsto{⟼}\def\to{→}\def\rightarrow{→}\def\Rightarrow{⇒}\def\Leftrightarrow{⇔}%
+  \def\leqslant{⩽}\def\geqslant{⩾}\def\leq{≤}\def\geq{≥}\def\neq{≠}\def\infty{∞}\def\times{×}\def\cdot{·}\def\pm{±}%
+  \def\sqrt{√}\def\pi{π}\def\theta{θ}\def\alpha{α}\def\beta{β}\def\lambda{λ}\def\Delta{Δ}\def\in{∈}\def\cup{∪}\def\cap{∩}\def\ln{ln}%
+  \def\R{ℝ}\def\N{ℕ}\def\Z{ℤ}\def\Q{ℚ}\def\C{ℂ}\def\e{e}\def\dd{d}\def\vect#1{#1}\def\num#1{#1}\def\pc#1{#1 \%}}
 
 % ---- French/English page balance -----------------------------------------------------------------------------------
 % Every block (a unit, or a session in session books) records its first page in \jobname.mxb. The build compares the

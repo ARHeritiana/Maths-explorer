@@ -16,11 +16,11 @@ PROBE = [r'\num{0,5}', r'\num{12500}', r'\num{1500,25}', r'\num{3}', r'\pc{12,5}
 
 
 def compile_text(body, lang):
-    tex = ('\\makeatletter\\def\\input@path{{%s/}}\\makeatother\\documentclass[lang=%s,edition=teacher]{mxbook}\n'
-           '\\begin{document}\n%s\n\\end{document}\n') % (ROOT / 'content/tex/core', lang, body)
+    tex = ('\\makeatletter\\def\\input@path{{%s/}}\\makeatother\\def\\mxcorepath{%s/}\\documentclass[lang=%s,edition=teacher]{mxbook}\n'
+           '\\begin{document}\n%s\n\\end{document}\n') % (ROOT / 'content/tex/core', ROOT / 'content/tex/core', lang, body)
     with tempfile.TemporaryDirectory() as d:
         (Path(d) / 'p.tex').write_text(tex)
-        r = subprocess.run(['pdflatex', '-interaction=nonstopmode', '-halt-on-error', 'p.tex'], cwd=d, capture_output=True, text=True)
+        r = subprocess.run(['xelatex', '-interaction=nonstopmode', '-halt-on-error', 'p.tex'], cwd=d, capture_output=True, text=True)
         if r.returncode: raise AssertionError(r.stdout[-1500:])
         import pymupdf
         with pymupdf.open(Path(d) / 'p.pdf') as doc:

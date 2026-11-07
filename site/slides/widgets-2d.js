@@ -1,4 +1,4 @@
-import { C, view, axes, curve, dot, text, slider, choice, snap, clamp, fmt, inl, rich, tpt, tiv, tpoly, tshift, tpar, sgn } from "./widgets.js";
+import { C, fade, view, axes, curve, dot, text, slider, choice, snap, clamp, fmt, inl, rich, tpt, tiv, tpoly, tshift, tpar, sgn } from "./widgets.js";
 
 const set = (o, html) => rich(o.readout, html);
 const lines = (...a) => a.filter(Boolean).join("<br>");
@@ -94,8 +94,8 @@ export const W2 = {
       draw(g) {
         const V = v(), N = o.tn, r = rank(); axes(g, V, { lang: o.L, sx: 5, sy: mode === "inf" ? 20 : 2 }); const rk = r === null ? "?" : r;
         g.save(); g.beginPath(); g.rect(V.pad, V.pad, o.W - 2 * V.pad, o.H - 2 * V.pad); g.clip();
-        if (mode === "inf") { g.fillStyle = "rgba(111,211,176,.12)"; g.fillRect(V.X(-.5), V.Y(100), V.X(M + .5) - V.X(-.5), V.Y(A) - V.Y(100)); curve(g, V, () => A, -.5, M + .5, C.acc, 2); }
-        else { g.fillStyle = "rgba(111,211,176,.14)"; g.fillRect(V.X(-.5), V.Y(l + eps), V.X(M + .5) - V.X(-.5), V.Y(l - eps) - V.Y(l + eps)); curve(g, V, () => l, -.5, M + .5, C.acc, 2); }
+        if (mode === "inf") { g.fillStyle = fade(C.pos, .14); g.fillRect(V.X(-.5), V.Y(100), V.X(M + .5) - V.X(-.5), V.Y(A) - V.Y(100)); curve(g, V, () => A, -.5, M + .5, C.acc, 2); }
+        else { g.fillStyle = fade(C.pos, .16); g.fillRect(V.X(-.5), V.Y(l + eps), V.X(M + .5) - V.X(-.5), V.Y(l - eps) - V.Y(l + eps)); curve(g, V, () => l, -.5, M + .5, C.acc, 2); }
         if (r !== null && r <= M) { g.strokeStyle = C.blue; g.setLineDash([6, 5]); g.lineWidth = 1.5; g.beginPath(); g.moveTo(V.X(r), V.Y(V.y0)); g.lineTo(V.X(r), V.Y(V.y1)); g.stroke(); g.setLineDash([]); text(g, inl("N"), V.X(r) + 6, V.pad + 18, C.blue, 16); }
         for (let n = 0; n <= M; n++) { const y = u(n), inside = mode === "inf" ? y > A : Math.abs(y - l) < eps; g.fillStyle = inside ? C.acc : C.warn; g.beginPath(); g.arc(V.X(n), V.Y(y), 4.5, 0, 7); g.fill(); }
         g.restore();
@@ -312,7 +312,7 @@ export const W2 = {
       draw(g) {
         const V = v(), N = o.tn, r = Math.hypot(...a), t = Math.atan2(a[1], a[0]), rho = r ** (1 / n); axes(g, V, { lang: o.L });
         const z = Array.from({ length: n }, (_, k) => [rho * Math.cos((t + 2 * k * Math.PI) / n), rho * Math.sin((t + 2 * k * Math.PI) / n)]);
-        ring(g, V, rho, C.muted); g.save(); g.strokeStyle = C.blue; g.fillStyle = "rgba(143,183,255,.14)"; g.lineWidth = 2; g.beginPath(); z.forEach((p, k) => (k ? g.lineTo(V.X(p[0]), V.Y(p[1])) : g.moveTo(V.X(p[0]), V.Y(p[1])))); g.closePath(); g.fill(); g.stroke(); g.restore();
+        ring(g, V, rho, C.muted); g.save(); g.strokeStyle = C.blue; g.fillStyle = fade(C.blue, .16); g.lineWidth = 2; g.beginPath(); z.forEach((p, k) => (k ? g.lineTo(V.X(p[0]), V.Y(p[1])) : g.moveTo(V.X(p[0]), V.Y(p[1])))); g.closePath(); g.fill(); g.stroke(); g.restore();
         z.forEach((p, k) => dot(o, V.X(p[0]), V.Y(p[1]), C.blue, k ? "" : inl("z_0"), "default", false));
         arrowTo(g, V, [0, 0], a, C.acc); dot(o, V.X(a[0]), V.Y(a[1]), C.acc, inl("a"));
         const s = angTeX(t, N), ks = o.L ? `k\\in\\{0,\\ldots,${n - 1}\\}` : `k\\in\\llbracket 0\\,;${n - 1}\\rrbracket`;
@@ -349,7 +349,7 @@ export const W2 = {
           const fermat = isPrime && a % n ? o.pair(`${inl(String(n))} est premier : ${inl(`${a}^{${n - 1}}\\equiv${powmod(a, n - 1, n)}\\pmod{${n}}`)} (petit théorème de Fermat)`, `${inl(String(n))} is prime: ${inl(`${a}^{${n - 1}}\\equiv${powmod(a, n - 1, n)}\\pmod{${n}}`)} (Fermat's little theorem)`) : "";
           set(o, lines(o.pair(`Puissances de ${inl(String(a))} modulo ${inl(String(n))} :`, `Powers of ${inl(String(a))} modulo ${inl(String(n))}:`), inl(shown), period, fermat));
         } else {
-          for (let k = 1; k < n; k++) if (k * a % n !== k) chord(k, k * a % n, d === 1 ? "rgba(232,163,61,.55)" : "rgba(255,122,122,.55)");
+          for (let k = 1; k < n; k++) if (k * a % n !== k) chord(k, k * a % n, d === 1 ? fade(C.acc, .6) : fade(C.warn, .6));
           dot(o, ...G.at(a), C.warn, inl("a"));
           let r0 = n, r1 = a, u0 = 0, u1 = 1; while (r1) { const q = Math.floor(r0 / r1); [r0, r1] = [r1, r0 - q * r1]; [u0, u1] = [u1, u0 - q * u1]; }
           const u = ((u0 % n) + n) % n, vco = (1 - a * u) / n;

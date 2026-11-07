@@ -1,23 +1,37 @@
-% mx-figures.sty -- colours (named palette matching the site tokens; no raw RGB in units), TikZ and pgfplots styles.
-% Palette (site light theme, site/styles): ink, mint (the single accent), pale mint, teacher blue, warning orange.
+% mx-figures.sty -- colours (named palette matching the site tokens "Cahier", light theme; no raw RGB in units), TikZ
+% and pgfplots styles. Print palette: black ink on white paper, one red accent for the object studied, green for what
+% is correct (teacher answers), dark red for warnings. Colour carries meaning only; borders, not shadows.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{mx-figures}[2026/10/11 Maths Explorer figures]
+\ProvidesPackage{mx-figures}[2026/11/07 Maths Explorer figures]
 \RequirePackage[table]{xcolor}
-\definecolor{mxink}{HTML}{18333A}
-\definecolor{mxmint}{HTML}{176754}
-\definecolor{mxmintpale}{HTML}{D6EEE5}
-\definecolor{mxteacher}{HTML}{416CA2}
-\definecolor{mxwarn}{HTML}{B35E32}
-\definecolor{mxline}{HTML}{DCE4E1}
-\definecolor{mxmuted}{HTML}{647579}
-\definecolor{mxpaper}{HTML}{F5F7F6}
+\definecolor{mxink}{HTML}{000000}
+\definecolor{mxinktwo}{HTML}{1F1F1F}
+\definecolor{mxmuted}{HTML}{595959}
+\definecolor{mxline}{HTML}{CDCDCD}
+\definecolor{mxlinestrong}{HTML}{6E6E6E}
+\definecolor{mxpaper}{HTML}{F2F2F2}
+\definecolor{mxaccent}{HTML}{D90012}
+\definecolor{mxaccentsoft}{HTML}{FFF0F1}
+\definecolor{mxpos}{HTML}{0A7A43}
+\definecolor{mxpossoft}{HTML}{E1F3EA}
+\definecolor{mxneg}{HTML}{B3000F}
+\definecolor{mxnegsoft}{HTML}{FBE7E5}
+\definecolor{mxmark}{HTML}{FFE14D}
+% Names used by the units and older styles keep working: mint = the accent, teacher = what is correct, warn = a warning.
+\colorlet{mxmint}{mxaccent}
+\colorlet{mxmintpale}{mxaccentsoft}
+\colorlet{mxteacher}{mxpos}
+\colorlet{mxwarn}{mxneg}
+\colorlet{mxkeyfill}{mxpaper}
+\colorlet{mxpitfallfill}{mxnegsoft}
+\colorlet{mxsolutionfill}{mxpossoft}
 \RequirePackage{graphicx}
 \RequirePackage{tikz}
 \usetikzlibrary{arrows.meta,calc,positioning,patterns,decorations.pathreplacing,trees,shapes.geometric,angles,quotes,3d}
 \RequirePackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usepgfplotslibrary{fillbetween}
-\tikzset{mxcurve/.style={mxmint,thick}, mxaux/.style={mxmuted,dashed}, mxpoint/.style={circle,fill=mxink,inner sep=1.3pt}, mxaxisline/.style={->,mxmuted}}
+\tikzset{mxcurve/.style={mxaccent,thick}, mxaux/.style={mxmuted,dashed}, mxpoint/.style={circle,fill=mxink,inner sep=1.3pt}, mxaxisline/.style={->,mxmuted}}
 \pgfplotsset{mxaxis/.style={axis lines=middle,grid=major,grid style={mxline},tick label style={font=\footnotesize},
   every axis plot/.append style={thick}}}
 % Square-grid axes for function graphs (former Seconde style "coursaxe").

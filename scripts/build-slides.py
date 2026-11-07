@@ -282,7 +282,7 @@ def compile_figs(course, lang, jobs):
     if not jobs: return set()
     base = SRC / course
     # shared class, bare page; teacher edition so that every figure exists
-    head = ('\\makeatletter\\def\\input@path{{%s/}}\\makeatother\\documentclass[lang=%s,edition=teacher,layout=slide-figs]{mxbook}\n' % (CORE, lang))
+    head = ('\\makeatletter\\def\\input@path{{%s/}}\\makeatother\\def\\mxcorepath{%s/}\\documentclass[lang=%s,edition=teacher,layout=slide-figs]{mxbook}\n' % (CORE, CORE, lang))
     build = ROOT / 'build/tex/figs'; build.mkdir(parents=True, exist_ok=True)
     figdir = OUT.parent / 'fig'; figdir.mkdir(parents=True, exist_ok=True)
     done = set()
@@ -301,7 +301,7 @@ def compile_figs(course, lang, jobs):
         source.write_text(tex, encoding='utf8')
         pdf = source.with_suffix('.pdf')
         pdf.unlink(missing_ok=True)
-        result = subprocess.run(['pdflatex', '-no-shell-escape', '-interaction=nonstopmode', '-output-directory=' + str(build), str(source)], cwd=base, capture_output=True, text=True, errors='replace')
+        result = subprocess.run(['xelatex', '-no-shell-escape', '-interaction=nonstopmode', '-output-directory=' + str(build), str(source)], cwd=base, capture_output=True, text=True, errors='replace')
         source.unlink()
         pdf = source.with_suffix('.pdf')
         return pdf if result.returncode==0 and pdf.exists() else None
