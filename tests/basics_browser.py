@@ -10,7 +10,8 @@ import re
 from playwright.sync_api import sync_playwright
 
 BASE = os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173')
-IDS = ['place-value', 'addition', 'subtraction', 'multiplication', 'division', 'sets', 'fractions']
+IDS = ['place-value', 'addition', 'subtraction', 'multiplication', 'division', 'sets', 'fractions',
+       'logic-propositions', 'logic-implication', 'logic-quantifiers', 'logic-reasoning']
 FRENCH = re.compile(r"\b(jetons?|numération|retenues?|emprunts?|dizaines?|centaines?|unités|réinitialiser|vérifier|"
                     r"ensembles?|bravo|essaie|réponse|chiffres?|colonne|partage|suivant|précédent)\b", re.I)
 

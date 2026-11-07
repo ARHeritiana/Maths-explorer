@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Implication et équivalence</title>
+<link rel="stylesheet" href="logic-lesson.css">
+</head>
+<body>
+<main>
+<div class="motif" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<h1 data-i="title"></h1>
+<p class="lead" data-i="lead"></p>
+<div class="tabs" role="tablist" data-ia="tabs">
+<button class="tab" role="tab" id="tab-explore" aria-controls="panel-explore" data-i="tab.explore"></button>
+<button class="tab" role="tab" id="tab-converse" aria-controls="panel-converse" data-i="tab.converse"></button>
+<button class="tab" role="tab" id="tab-practice" aria-controls="panel-practice" data-i="tab.practice"></button>
+<button class="tab" role="tab" id="tab-recap" aria-controls="panel-recap" data-i="tab.recap"></button>
+</div>
+
+<section id="panel-explore" role="tabpanel" aria-labelledby="tab-explore" tabindex="0">
+<h2 data-i="explore.title"></h2><p class="muted" data-i="explore.caption"></p>
+<div class="grid2">
+<div class="card"><h3 data-i="pr.title"></h3><p data-i="pr.story"></p><div class="togs" id="togs"></div><div id="pr-verdict" aria-live="polite"></div></div>
+<div class="card"><h3 data-i="tt.title"></h3><div class="scroll" id="tt"></div><p class="note" data-i="pr.note"></p></div>
+</div>
+<div class="card"><h3 data-i="test.title"></h3><p class="muted" data-i="test.sub"></p>
+<div class="grid2 wide"><div><div class="svg-holder" id="venn-svg"></div></div>
+<div><h4 data-i="vn.p"></h4><div class="chips" id="ppick" role="group" data-ia="ppick"></div><h4 data-i="vn.q"></h4><div class="chips" id="qpick" role="group" data-ia="qpick"></div></div></div>
+<div id="test-read" aria-live="polite"></div>
+<h4 data-i="test.tiles"></h4><div class="tiles" id="tiles" role="group" data-ia="tiles"></div>
+<div id="tile-read" aria-live="polite" class="muted"></div>
+</div>
+</section>
+
+<section id="panel-converse" role="tabpanel" aria-labelledby="tab-converse" tabindex="0">
+<h2 data-i="conv.title"></h2><p class="muted" data-i="conv.caption"></p>
+<div class="card"><h3 data-i="conv.choose"></h3><h4 data-i="vn.p"></h4><div class="chips" id="ppick2" role="group" data-ia="ppick"></div><h4 data-i="vn.q"></h4><div class="chips" id="qpick2" role="group" data-ia="qpick"></div></div>
+<div class="card"><h3 data-i="conv.four"></h3><div class="stmts" id="stmts"></div><div id="conv-read" aria-live="polite"></div></div>
+<div class="card"><h3 data-i="conv.equiv"></h3><div id="equiv"></div></div>
+</section>
+
+<section id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" tabindex="0">
+<h2 data-i="practice.title"></h2><p class="muted" data-i="practice.caption"></p>
+<div class="card" id="quiz"></div>
+</section>
+
+<section id="panel-recap" role="tabpanel" aria-labelledby="tab-recap" tabindex="0">
+<h2 data-i="recap.title"></h2><p class="muted" data-i="recap.caption"></p>
+<div class="card"><div class="scroll"><table class="mini"><thead><tr><th data-i="recap.h1"></th><th data-i="recap.h2"></th><th data-i="recap.h3"></th></tr></thead><tbody id="recap-rows"></tbody></table></div></div>
+<div class="card"><h3 data-i="daily.title"></h3><p data-i="daily.body"></p></div>
+<div class="card"><h3 data-i="recap.ideas"></h3><div id="ideas"></div></div>
+<p class="muted" data-i="recap.next"></p>
+</section>
+</main>
+<script src="logic-lesson.js"></script>
+<script>
+/* TEXT-BEGIN: every sentence of this edition. The code below this block is identical in both editions. */
+const T = {
+ "vf": [
+  "F",
+  "V"
+ ],
+ "vt": [
+  "fausse (F)",
+  "vraie (V)"
+ ],
+ "vtrue": "Vraie",
+ "vfalse": "Fausse",
+ "togLabel": "{0} : {1}. Appuie pour changer.",
+ "ttCaption": "Table de vérité de P ⇒ Q",
+ "cellLabel": "{0} : valeur {1}",
+ "story": {
+  "p": "Tu as 100 % au contrôle.",
+  "q": "Tu reçois un bonbon."
+ },
+ "verdict": {
+  "10": "Promesse rompue : tu as eu 100 % et pas de bonbon.",
+  "11": "Promesse tenue : tu as eu 100 % et un bonbon.",
+  "01": "La promesse ne dit rien ici : tu n’as pas eu 100 %, elle n’est pas mise à l’épreuve (le bonbon est un cadeau en plus).",
+  "00": "La promesse ne dit rien ici : tu n’as pas eu 100 %, donc pas de bonbon ne la rompt pas."
+ },
+ "onU": " sur U.",
+ "ifThen": "Si {0}, alors {1}.",
+ "iff": "{0} si et seulement si {1}.",
+ "pred": {
+  "even": [
+   "est pair",
+   "est impair"
+  ],
+  "odd": [
+   "est impair",
+   "est pair"
+  ],
+  "m3": [
+   "est un multiple de 3",
+   "n’est pas un multiple de 3"
+  ],
+  "m4": [
+   "est un multiple de 4",
+   "n’est pas un multiple de 4"
+  ],
+  "m6": [
+   "est un multiple de 6",
+   "n’est pas un multiple de 6"
+  ],
+  "m23": [
+   "est un multiple de 2 et de 3",
+   "n’est pas un multiple à la fois de 2 et de 3"
+  ],
+  "prime": [
+   "est premier",
+   "n’est pas premier"
+  ],
+  "gt10": [
+   "est supérieur à 10",
+   "est inférieur ou égal à 10"
+  ],
+  "lt5": [
+   "est inférieur à 5",
+   "est supérieur ou égal à 5"
+  ]
+ },
+ "status": {
+  "free": "hypothèse fausse, non concerné",
+  "ok": "hypothèse et conclusion vraies",
+  "ko": "contre-exemple",
+  "freeLong": "P est fausse : n’est pas concerné par l’implication.",
+  "okLong": "P et Q sont vraies : n est un exemple qui confirme.",
+  "koLong": "P est vraie et Q est fausse : n est un contre-exemple."
+ },
+ "tilesHint": "Appuie sur un nombre pour voir ce qu’il apporte à l’implication.",
+ "tileRead": "Pour n = {0} : P est {1}, Q est {2}. {3}",
+ "vennBad": "Diagramme de Venn : la zone rouge contient les contre-exemples {0}.",
+ "vennOk": "Diagramme de Venn : aucune zone P sans Q, donc P est incluse dans Q.",
+ "testBad": "Il y a des contre-exemples : {0} (par exemple n = {1}). Ils sont dans la zone rouge : P est vraie sans que Q le soit.",
+ "testOk": "Aucun élément de U n’est dans P sans être dans Q : l’ensemble des n qui vérifient P est inclus dans celui des n qui vérifient Q.",
+ "kind": {
+  "imp": "Implication",
+  "conv": "Réciproque",
+  "contra": "Contraposée",
+  "inv": "Implication des négations"
+ },
+ "counter": "Contre-exemple : n = {0}",
+ "sameContra": "La contraposée a <strong>toujours</strong> la même valeur de vérité que l’implication : changez P et Q, les deux lignes restent d’accord. L’implication des négations a, elle, la même valeur que la réciproque.",
+ "convDiffers": "Ici, la réciproque n’a pas la même valeur que l’implication : démontrer « si P alors Q » ne dit rien sur « si Q alors P ».",
+ "equivYes": "P ⇔ Q est vraie : P et Q sont équivalentes sur U, on dit « P si et seulement si Q ».",
+ "equivNo": "P ⇔ Q est fausse : l’une des deux implications est fausse.",
+ "suff": "P ⇒ Q est vraie : P est une <strong>condition suffisante</strong> pour Q.",
+ "nec": "Q ⇒ P est vraie : P est une <strong>condition nécessaire</strong> pour Q.",
+ "facts": {
+  "true": [
+   "2 est pair",
+   "12 est un multiple de 3",
+   "7 est un nombre premier",
+   "10 est supérieur à 4"
+  ],
+  "false": [
+   "5 est pair",
+   "9 est un nombre premier",
+   "10 est un multiple de 3",
+   "3 est supérieur à 8"
+  ]
+ },
+ "recap": [
+  [
+   "P ⇒ Q",
+   "si P alors Q",
+   "fausse seulement si P est vraie et Q est fausse"
+  ],
+  [
+   "Q ⇒ P",
+   "réciproque",
+   "n’a pas la valeur de P ⇒ Q en général"
+  ],
+  [
+   "¬Q ⇒ ¬P",
+   "contraposée",
+   "toujours équivalente à P ⇒ Q"
+  ],
+  [
+   "P ⇔ Q",
+   "P si et seulement si Q",
+   "(P ⇒ Q) ∧ (Q ⇒ P)"
+  ],
+  [
+   "P ⇒ Q vraie",
+   "P suffisante, Q nécessaire",
+   "« il suffit de P pour avoir Q » ; « sans Q, pas de P »"
+  ],
+  [
+   "A ⊂ B",
+   "inclusion",
+   "P ⇒ Q signifie : l’ensemble de P est inclus dans celui de Q"
+  ]
+ ],
+ "ideas": "<p><strong>Une implication fausse a un seul visage :</strong> un cas où P est vraie et Q est fausse, le contre-exemple.</p><p><strong>Si P est fausse, P ⇒ Q est vraie.</strong> On dit qu’elle est vraie « par défaut » : rien n’est à vérifier.</p><p><strong>Contraposée ≠ réciproque.</strong> Contraposer garde la valeur de vérité ; inverser l’implication ne la garde pas.</p><p><strong>Pour une équivalence, deux implications à démontrer :</strong> P ⇒ Q et Q ⇒ P.</p>",
+ "c": {
+  "c1": {
+   "q": "On pose P : « {0} » et Q : « {1} ». L’implication P ⇒ Q est…",
+   "why": "P est {0} et Q est {1} : P ⇒ Q est {2}. Une implication n’est fausse que si P est vraie et Q est fausse.",
+   "hint": "Cherche la ligne de la table de P ⇒ Q qui correspond."
+  },
+  "conv": {
+   "q": "Quelle est la <strong>réciproque</strong> de l’énoncé « {0} » ?",
+   "why": "La réciproque échange l’hypothèse et la conclusion : « {0} ».",
+   "hint": "La réciproque ne nie rien : elle lit l’implication à l’envers."
+  },
+  "contra": {
+   "q": "Quelle est la <strong>contraposée</strong> de l’énoncé « {0} » ?",
+   "why": "La contraposée échange <em>et</em> nie : « {0} ». Elle est vraie exactement quand l’énoncé de départ est vrai.",
+   "hint": "Pour la contraposée, on échange les deux morceaux et on nie chacun."
+  },
+  "c4": {
+   "q": "L’énoncé « {0} » est faux pour les entiers de 1 à 20. Trouve un contre-exemple : un nombre qui vérifie l’hypothèse mais pas la conclusion.",
+   "found": "Oui : {0} est un contre-exemple.",
+   "notConcerned": "{0} ne vérifie pas l’hypothèse : il n’est pas concerné, il ne peut pas contredire l’énoncé.",
+   "holdsHere": "{0} vérifie l’hypothèse et la conclusion : il confirme l’énoncé au lieu de le contredire.",
+   "why": "Les contre-exemples sont : {0}. Un seul suffit pour montrer qu’une implication est fausse.",
+   "hint": "Il faut P vraie <em>et</em> Q fausse en même temps."
+  },
+  "c5": {
+   "q": "Pour les entiers de 1 à {2}, avec P : « n {0} » et Q : « n {1} », indique si chaque énoncé est vrai (V) ou faux (F), puis vérifie.",
+   "fill": "Choisis V ou F pour les quatre énoncés.",
+   "wrong": "À revoir : {0}.",
+   "why": "Valeurs attendues : {0}. La contraposée a la valeur de l’implication ; la réciproque a celle de l’implication des négations.",
+   "hint": "Commence par chercher un contre-exemple de P ⇒ Q, puis de Q ⇒ P. Ensuite, pense à la contraposée."
+  },
+  "c6": {
+   "q": "Pour affirmer que P ⇒ Q et Q ⇒ P sont vraies toutes les deux, on écrit…",
+   "opts": [
+    "P ⇔ Q, qui se lit « P si et seulement si Q »",
+    "P ⇒ Q suffit, la réciproque vient toute seule",
+    "P ∧ Q",
+    "P ∨ Q"
+   ],
+   "why": "Une équivalence P ⇔ Q regroupe les deux implications. P ∧ Q dit seulement que P et Q sont vraies à la fois.",
+   "hint": "Une équivalence est une implication dans les deux sens."
+  },
+  "c7": {
+   "q": "Un théorème « si P alors Q » est démontré. Sa réciproque est…",
+   "opts": [
+    "toujours vraie",
+    "toujours fausse",
+    "parfois vraie, parfois fausse : il faut la démontrer ou trouver un contre-exemple"
+   ],
+   "why": "« Si n est multiple de 6, alors n est pair » est vraie, sa réciproque est fausse (n = 2). « Si n est pair, alors n² est pair » est vraie et sa réciproque aussi.",
+   "hint": "Pense à deux exemples : n multiple de 6 puis pair, et n pair puis n² pair."
+  }
+ },
+ "ui": {
+  "title": "Implication et équivalence",
+  "lead": "« Si P alors Q » : une phrase de tous les jours, mais le sens mathématique est précis. Teste-la sur des exemples, retourne-la, contrapose-la et vois quand deux énoncés disent la même chose.",
+  "tab.explore": "Explorer",
+  "tab.converse": "Réciproque et contraposée",
+  "tab.practice": "Défis",
+  "tab.recap": "À retenir",
+  "explore.title": "Quand une implication est-elle vraie ?",
+  "explore.caption": "D’abord une promesse pour comprendre la table de vérité, puis des tests sur les nombres de 1 à 20 pour voir une implication comme une inclusion d’ensembles.",
+  "pr.title": "1. Une promesse",
+  "pr.story": "« Si tu as 100 % au contrôle, alors tu recevras un bonbon. » Choisis ce qui s’est passé.",
+  "tt.title": "2. La table de P ⇒ Q",
+  "pr.note": "<strong>Le point délicat :</strong> si P est fausse, la promesse n’est jamais rompue, donc P ⇒ Q est vraie. Dans la vie courante, « si » veut souvent dire « si et seulement si » ; en mathématiques, non.",
+  "test.title": "3. Tester sur des exemples",
+  "test.sub": "Choisis deux propriétés P(n) et Q(n) et regarde si « si P(n) alors Q(n) » est vraie pour tous les entiers de 1 à 20.",
+  "test.tiles": "Chaque entier de 1 à 20",
+  "vn.p": "P(n) : n…",
+  "vn.q": "Q(n) : n…",
+  "conv.title": "Retourner une implication",
+  "conv.caption": "Les quatre énoncés que l’on peut former avec P et Q, évalués sur les entiers de 1 à 20.",
+  "conv.choose": "1. Choisir P et Q",
+  "conv.four": "2. Quatre énoncés",
+  "conv.equiv": "3. Équivalence et conditions",
+  "practice.title": "Défis guidés",
+  "practice.caption": "Sept questions : évaluer une implication, écrire réciproque et contraposée, chercher un contre-exemple, juger quatre énoncés.",
+  "recap.title": "À retenir",
+  "recap.caption": "Notation du lycée.",
+  "recap.h1": "Écriture",
+  "recap.h2": "Se lit",
+  "recap.h3": "À savoir",
+  "daily.title": "Le « si » de tous les jours et celui des mathématiques",
+  "daily.body": "« Si tu finis ta soupe, tu auras un dessert » laisse entendre que sans soupe, pas de dessert : c’est une équivalence. En mathématiques, « si P alors Q » ne dit rien quand P est fausse. Pour une équivalence, on dit « si et seulement si ».",
+  "recap.ideas": "Quatre idées",
+  "recap.next": "Suite : <a href=\"../../#basics/logic-quantifiers\" target=\"_top\">les quantificateurs ∀ et ∃</a>. Retour : <a href=\"../../#basics/logic-propositions\" target=\"_top\">propositions et connecteurs</a>."
+ },
+ "ia": {
+  "tabs": "Sections de la leçon",
+  "ppick": "Propriété P",
+  "qpick": "Propriété Q",
+  "tiles": "Entiers de 1 à 20"
+ },
+ "q": {
+  "step": "Défi {0} sur {1}",
+  "next": "Défi suivant",
+  "last": "Voir le bilan",
+  "good": "Bien vu.",
+  "bad": "Pas encore.",
+  "solution": "Voir la solution",
+  "solutionShown": "Voici la solution.",
+  "again": "Recommencer",
+  "title": "Bilan",
+  "result": "{0} réponse(s) juste(s) du premier coup sur {1}.",
+  "group": "Réponses possibles",
+  "check": "Vérifier"
+ }
+};
+/* TEXT-END */
+'use strict';
+const $=LX.$,fmt=LX.fmt,vf=LX.vf;
+const show=LX.init(T,['explore','converse','practice','recap']);
+// ---- Pure logic (language free)
+const imp=(p,q)=>!p||q;
+const isPrime=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};
+const U=Array.from({length:20},(_,i)=>i+1);
+const PRED=[
+{id:'even',f:n=>n%2===0},{id:'odd',f:n=>n%2===1},{id:'m3',f:n=>n%3===0},{id:'m4',f:n=>n%4===0},{id:'m6',f:n=>n%6===0},
+{id:'m23',f:n=>n%2===0&&n%3===0},{id:'prime',f:isPrime},{id:'gt10',f:n=>n>10},{id:'lt5',f:n=>n<5}
+];
+const predById=id=>PRED.find(x=>x.id===id);
+const lit=(f,neg)=>neg?(n=>!f(n)):f;
+// The four statements built from "if P then Q": a = hypothesis, b = conclusion, na/nb = negated or not.
+const kinds=(p,q)=>[
+{id:'imp',ha:p,hb:q,na:false,nb:false,sym:'P ⇒ Q'},
+{id:'conv',ha:q,hb:p,na:false,nb:false,sym:'Q ⇒ P'},
+{id:'contra',ha:q,hb:p,na:true,nb:true,sym:'¬Q ⇒ ¬P'},
+{id:'inv',ha:p,hb:q,na:true,nb:true,sym:'¬P ⇒ ¬Q'}
+].map(k=>({...k,a:predById(k.ha).f,b:predById(k.hb).f}));
+const counters=k=>U.filter(n=>lit(k.a,k.na)(n)&&!lit(k.b,k.nb)(n));
+const holds=k=>counters(k).length===0;
+const roster=a=>'{'+a.join(' ; ')+'}';
+// Sentences built from the text of a predicate: [affirmative, negative].
+const clause=(id,neg)=>'n '+T.pred[id][neg?1:0];
+const ifThen=(a,na,b,nb)=>fmt(T.ifThen,clause(a,na),clause(b,nb));
+
+// ---- Explore: the promise
+let P=true,Q=false;
+function renderPromise(){
+ $('togs').innerHTML=[['p',P,T.story.p],['q',Q,T.story.q]].map(([k,v,s])=>`<button type="button" class="tog" role="switch" aria-checked="${v}" data-var="${k}" aria-label="${fmt(T.togLabel,s,T.vt[+v])}"><span class="nm">${k.toUpperCase()}</span><span>${s}</span><span class="val">${T.vt[+v]}</span></button>`).join('');
+ const v=imp(P,Q);
+ $('pr-verdict').innerHTML=`<p class="fb ${v?'good':'bad'}">${T.verdict[LX.regionOf(P,Q)]} <strong>P ⇒ Q : ${vf(v)}</strong></p>`;
+ $('tt').innerHTML=`<table class="tt"><caption class="sr">${T.ttCaption}</caption><thead><tr><th scope="col">P</th><th scope="col">Q</th><th scope="col">P ⇒ Q</th></tr></thead><tbody>${[[true,true],[true,false],[false,true],[false,false]].map(([p,qq])=>`<tr class="${p===P&&qq===Q?'cur':''}"><td class="${p?'y':'n'}">${vf(p)}</td><td class="${qq?'y':'n'}">${vf(qq)}</td><td class="${imp(p,qq)?'y':'n'}">${vf(imp(p,qq))}</td></tr>`).join('')}</tbody></table>`;
+}
+$('togs').addEventListener('click',e=>{const b=e.target.closest('[data-var]');if(!b)return;if(b.dataset.var==='p')P=!P;else Q=!Q;LX.keepFocus(renderPromise);});
+
+// ---- Explore and converse: the same pair of properties P(n), Q(n) on U = {1 ; ... ; 20}
+let vp='m6',vq='even',picked=null;
+function pickers(){
+ const html=k=>PRED.map(p=>`<button type="button" class="chip" data-${k}="${p.id}" aria-pressed="${p.id===(k==='p'?vp:vq)}">n ${T.pred[p.id][0]}</button>`).join('');
+ ['','2'].forEach(s=>{$('ppick'+s).innerHTML=html('p');$('qpick'+s).innerHTML=html('q');});
+}
+function renderTest(){
+ const Pf=predById(vp).f,Qf=predById(vq).f,items={'10':[],'01':[],'11':[],'00':[]};
+ U.forEach(n=>items[LX.regionOf(Pf(n),Qf(n))].push(n));
+ const bad=items['10'];
+ $('venn-svg').innerHTML=LX.venn2({sel:new Set(bad.length?['10']:[]),expected:new Set(),checked:true,items,ring:picked,aria:bad.length?fmt(T.vennBad,roster(bad)):T.vennOk});
+ $('test-read').innerHTML=bad.length?`<p class="fb bad"><strong>P ⇒ Q : ${vf(false)}.</strong> ${fmt(T.testBad,roster(bad),bad[0])}</p>`:`<p class="fb good"><strong>P ⇒ Q : ${vf(true)}${T.onU}</strong> ${T.testOk}</p>`;
+ $('tiles').innerHTML=U.map(n=>{const p=Pf(n),qq=Qf(n),cls=!p?'hid':qq?'ok':'ko',glyph=!p?'○':qq?'✓':'✗';
+  return `<button type="button" class="tile ${cls}${n===picked?' cur':''}" data-n="${n}" aria-pressed="${n===picked}" aria-label="${n} : ${T.status[!p?'free':qq?'ok':'ko']}">${n}<small>${glyph}</small></button>`;}).join('');
+ $('tile-read').innerHTML=picked===null?T.tilesHint:fmt(T.tileRead,picked,vf(Pf(picked)),vf(Qf(picked)),T.status[!Pf(picked)?'freeLong':Qf(picked)?'okLong':'koLong']);
+}
+function renderConverse(){
+ const ks=kinds(vp,vq),res=ks.map(k=>({k,ok:holds(k),c:counters(k)}));
+ $('stmts').innerHTML=res.map(({k,ok,c})=>`<div class="stmt ${ok?'t':'f2'}"><div><span class="nm">${T.kind[k.id]}</span><span class="f">${k.sym}</span><div>${ifThen(k.ha,k.na,k.hb,k.nb)}</div></div><div><span class="badge ${ok?'t':'f'}">${vf(ok)}</span>${ok?'':' <span class="muted">'+fmt(T.counter,c[0])+'</span>'}</div></div>`).join('');
+ const sameContra=res[0].ok===res[2].ok,sameInv=res[1].ok===res[3].ok,diff=res[0].ok!==res[1].ok;
+ $('conv-read').innerHTML=`<p>${T.sameContra}</p>`+(diff?`<p class="note">${T.convDiffers}</p>`:'');
+ const both=res[0].ok&&res[1].ok;
+ $('equiv').innerHTML=`<div class="math">P ⇔ Q</div><p><span class="badge ${both?'t':'f'}">${vf(both)}</span> ${both?T.equivYes:T.equivNo}</p>`+
+  (res[0].ok?'<p>'+T.suff+'</p>':'')+(res[1].ok?'<p>'+T.nec+'</p>':'');
+}
+function pairClick(e){
+ const b=e.target.closest('[data-p],[data-q]');if(!b)return;
+ if(b.dataset.p)vp=b.dataset.p;else vq=b.dataset.q;
+ picked=null;
+ LX.keepFocus(()=>{pickers();renderTest();renderConverse();});
+}
+$('panel-explore').addEventListener('click',pairClick);
+$('panel-converse').addEventListener('click',pairClick);
+$('tiles').addEventListener('click',e=>{const b=e.target.closest('[data-n]');if(!b)return;picked=picked===+b.dataset.n?null:+b.dataset.n;LX.keepFocus(renderTest);});
+
+// ---- Challenges
+function itemValue(){
+ const tr=T.facts.true,fa=T.facts.false,p=Math.random()<.5,qq=Math.random()<.5,c=T.c.c1;
+ const ps=LX.pickOne(p?tr:fa),qs=LX.pickOne(qq?tr:fa),res=imp(p,qq);
+ return LX.choice({q:fmt(c.q,ps,qs),opts:[T.vtrue,T.vfalse],correct:res?0:1,why:fmt(c.why,vf(p),vf(qq),vf(res)),hint:c.hint});
+}
+const GOODPAIRS=[['m6','even'],['m4','even'],['m6','m3'],['even','m4'],['prime','odd'],['gt10','odd'],['m3','m6'],['lt5','prime']];
+function pairItem(kind){
+ const [a,b]=LX.pickOne(GOODPAIRS),c=T.c[kind];
+ const s0=ifThen(a,false,b,false);
+ const conv=ifThen(b,false,a,false),contra=ifThen(b,true,a,true),inv=ifThen(a,true,b,true),iff=fmt(T.iff,clause(a,false),clause(b,false));
+ const right=kind==='conv'?conv:contra,other=kind==='conv'?contra:conv;
+ return LX.choice({q:fmt(c.q,s0),opts:[right,other,inv,iff],correct:0,why:fmt(c.why,right),hint:c.hint});
+}
+function itemCounter(){
+ const bads=GOODPAIRS.filter(([a,b])=>counters({a:predById(a).f,b:predById(b).f,na:false,nb:false}).length);
+ const [a,b]=LX.pickOne(bads),Pf=predById(a).f,Qf=predById(b).f,c=T.c.c4,wanted=U.filter(n=>Pf(n)&&!Qf(n));
+ return {hint:c.hint,why:fmt(c.why,roster(wanted)),
+ reveal(){$('quiz').querySelectorAll('[data-n]').forEach(t=>{t.disabled=true;if(wanted.includes(+t.dataset.n))t.classList.add('ko');});},
+ render(body,api){
+  body.innerHTML=`<p>${fmt(c.q,ifThen(a,false,b,false))}</p><div class="tiles" role="group" aria-label="${T.ia.tiles}">${U.map(n=>`<button type="button" class="tile" data-n="${n}">${n}</button>`).join('')}</div>`;
+  body.addEventListener('click',e=>{const t=e.target.closest('[data-n]');if(!t||t.disabled)return;const n=+t.dataset.n,p=Pf(n),qq=Qf(n);
+   if(p&&!qq){t.classList.add('ko');body.querySelectorAll('[data-n]').forEach(x=>{x.disabled=true;});api.answer(true,fmt(c.found,n)+' ');}
+   else{t.disabled=true;t.classList.add('hid');api.answer(false,fmt(!p?c.notConcerned:c.holdsHere,n)+' ');}
+  });
+ }};
+}
+function itemGrid(){
+ const [a,b]=LX.pickOne(GOODPAIRS),ks=kinds(a,b),want=ks.map(holds),c=T.c.c5;
+ const st=[null,null,null,null];
+ return {hint:c.hint,why:fmt(c.why,want.map((v,i)=>ks[i].sym+' : '+vf(v)).join(' ; ')),
+ reveal(){$('quiz').querySelectorAll('[data-g]').forEach((b2,i)=>{st[i]=want[i];b2.textContent=vf(want[i]);b2.disabled=true;});},
+ render(body,api){
+  const text=ks.map(k=>ifThen(k.ha,k.na,k.hb,k.nb));
+  body.innerHTML=`<p>${fmt(c.q,T.pred[a][0],T.pred[b][0],U.length)}</p><div class="stmts">${ks.map((k,i)=>`<div class="stmt"><div><span class="nm">${T.kind[k.id]}</span><span class="f">${k.sym}</span><div>${text[i]}</div></div><button type="button" class="chip" data-g="${i}" aria-label="${fmt(T.cellLabel,k.sym,'?')}">?</button></div>`).join('')}</div><div class="row"><button type="button" class="btn" id="c5-check">${T.q.check}</button></div>`;
+  body.querySelectorAll('[data-g]').forEach(btn=>btn.addEventListener('click',()=>{const i=+btn.dataset.g;st[i]=st[i]===null?true:!st[i];btn.textContent=vf(st[i]);btn.setAttribute('aria-label',fmt(T.cellLabel,ks[i].sym,vf(st[i])));btn.closest('.stmt').className='stmt';}));
+  $('c5-check').addEventListener('click',()=>{
+   if(st.some(v=>v===null)){api.answer(false,c.fill+' ');return;}
+   const bad=st.map((v,i)=>v===want[i]?-1:i).filter(i=>i>=0);
+   body.querySelectorAll('.stmt').forEach((s,i)=>{s.className='stmt '+(st[i]===want[i]?'t':'f2');});
+   api.answer(!bad.length,bad.length?fmt(c.wrong,bad.map(i=>ks[i].sym).join(', '))+' ':'');
+  });
+ }};
+}
+function itemIff(){const c=T.c.c6;return LX.choice({q:c.q,opts:c.opts,correct:0,why:c.why,hint:c.hint});}
+function itemTheorem(){const c=T.c.c7;return LX.choice({q:c.q,opts:c.opts,correct:2,why:c.why,hint:c.hint});}
+const makeQuiz=()=>[itemValue(),pairItem('conv'),pairItem('contra'),itemCounter(),itemGrid(),itemIff(),itemTheorem()];
+
+// ---- Static content
+$('recap-rows').innerHTML=T.recap.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+$('ideas').innerHTML=T.ideas;
+pickers();renderPromise();renderTest();renderConverse();LX.quiz('quiz',makeQuiz);
+LX.notifySize();
+
+</script>
+</body>
+</html>

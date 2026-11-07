@@ -21,9 +21,9 @@ test('both fractions editions have identical engines, table keys and published s
   assert.equal(readFileSync(new URL('../dist/resources/basics/fractions'+(lang==='en'?'.en':'')+'.html',import.meta.url),'utf8'),html);
   assert.match(html,new RegExp('<html lang="'+lang+'"'));assert.doesNotMatch(html,/<script[^>]+src=|https?:\/\/|[—–]/);
  }
- const app=readFileSync(new URL('../site/js/app.js',import.meta.url),'utf8');
- assert.match(app,/id: "fractions", number: "07", title: \["Le laboratoire des fractions", "The fractions lab"\]/);
- assert.match(app,/#basics\/fractions/);
+ const app=readFileSync(new URL('../site/js/basics-page.js',import.meta.url),'utf8');
+ assert.match(app,/L\("fractions", \["Le laboratoire des fractions", "The fractions lab"\]/);
+ assert.match(app,/id: "fractions"/);
 });
 for(const [lang,html] of [['fr',french],['en',english]]){
 const check=(name,fn)=>test(name+' ('+lang+')',fn);

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quantifiers: ∀ and ∃</title>
+<link rel="stylesheet" href="logic-lesson.css">
+</head>
+<body>
+<main>
+<div class="motif" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<h1 data-i="title"></h1>
+<p class="lead" data-i="lead"></p>
+<div class="tabs" role="tablist" data-ia="tabs">
+<button class="tab" role="tab" id="tab-explore" aria-controls="panel-explore" data-i="tab.explore"></button>
+<button class="tab" role="tab" id="tab-two" aria-controls="panel-two" data-i="tab.two"></button>
+<button class="tab" role="tab" id="tab-negate" aria-controls="panel-negate" data-i="tab.negate"></button>
+<button class="tab" role="tab" id="tab-game" aria-controls="panel-game" data-i="tab.game"></button>
+<button class="tab" role="tab" id="tab-recap" aria-controls="panel-recap" data-i="tab.recap"></button>
+</div>
+
+<section id="panel-explore" role="tabpanel" aria-labelledby="tab-explore" tabindex="0">
+<h2 data-i="explore.title"></h2><p class="muted" data-i="explore.caption"></p>
+<div class="grid2">
+<div class="card"><h3 data-i="ex.prop"></h3><div class="chips" id="qpick" role="group" data-ia="qpick"></div>
+<h3 data-i="ex.quant"></h3><div class="seg" id="qsel" role="group" data-ia="qsel"></div></div>
+<div class="card"><h3 data-i="ex.univ"></h3><p class="muted" data-i="ex.univSub"></p><div class="chips" id="presets" role="group" data-ia="presets"></div><div class="tiles" id="board" role="group" data-ia="board"></div></div>
+</div>
+<div class="card"><h3 data-i="ex.state"></h3><div id="xread" aria-live="polite"></div></div>
+</section>
+
+<section id="panel-two" role="tabpanel" aria-labelledby="tab-two" tabindex="0">
+<h2 data-i="two.title"></h2><p class="muted" data-i="two.caption"></p>
+<div class="grid2">
+<div class="card"><h3 data-i="two.rel"></h3><div class="chips" id="rpresets" role="group" data-ia="rpresets"></div><div class="scroll" id="relgrid"></div></div>
+<div class="card"><h3 data-i="two.states"></h3><div id="tworead" aria-live="polite"></div></div>
+</div>
+<p class="note" data-i="two.note"></p>
+</section>
+
+<section id="panel-negate" role="tabpanel" aria-labelledby="tab-negate" tabindex="0">
+<h2 data-i="neg.title"></h2><p class="muted" data-i="neg.caption"></p>
+<div class="grid2">
+<div class="card"><h3 data-i="neg.pick"></h3><div class="pickers" id="spick" role="group" data-ia="spick"></div><div id="sbase" class="tiles" role="group" data-ia="sbase"></div></div>
+<div class="card"><h3 data-i="neg.build"></h3><p class="muted" data-i="neg.buildSub"></p><div id="nstate"></div>
+<h4 data-i="neg.q"></h4><div class="seg" id="nq" role="group" data-ia="nq"></div><h4 data-i="neg.p"></h4><div class="seg" id="np" role="group" data-ia="np"></div><div id="nread" aria-live="polite"></div></div>
+</div>
+</section>
+
+<section id="panel-game" role="tabpanel" aria-labelledby="tab-game" tabindex="0">
+<h2 data-i="game.title"></h2><p class="muted" data-i="game.caption"></p>
+<div class="card" id="game"></div>
+</section>
+
+<section id="panel-recap" role="tabpanel" aria-labelledby="tab-recap" tabindex="0">
+<h2 data-i="recap.title"></h2><p class="muted" data-i="recap.caption"></p>
+<div class="card"><div class="scroll"><table class="mini"><thead><tr><th data-i="recap.h1"></th><th data-i="recap.h2"></th><th data-i="recap.h3"></th></tr></thead><tbody id="recap-rows"></tbody></table></div></div>
+<div class="card"><h3 data-i="recap.ideas"></h3><div id="ideas"></div></div>
+<p class="muted" data-i="recap.next"></p>
+</section>
+</main>
+<script src="logic-lesson.js"></script>
+<script>
+/* TEXT-BEGIN: every sentence of this edition. The code below this block is identical in both editions. */
+const T = {
+ "vf": [
+  "F",
+  "T"
+ ],
+ "qname": {
+  "all": "for all",
+  "ex": "there exists"
+ },
+ "pred": {
+  "even": [
+   "is even",
+   "is odd"
+  ],
+  "gt3": [
+   "is greater than 3",
+   "is at most 3"
+  ],
+  "sqgt": [
+   "satisfies n² > n",
+   "satisfies n² ≤ n"
+  ],
+  "lt5": [
+   "is less than 5",
+   "is at least 5"
+  ],
+  "lt10": [
+   "is less than 10",
+   "is at least 10"
+  ],
+  "prime": [
+   "is prime",
+   "is not prime"
+  ],
+  "m3": [
+   "is a multiple of 3",
+   "is not a multiple of 3"
+  ],
+  "sq50": [
+   "satisfies n² < 50",
+   "satisfies n² ≥ 50"
+  ]
+ },
+ "sent": {
+  "all": "For every n in {E}, n {0}.",
+  "ex": "There is an n in {E} such that n {0}."
+ },
+ "presets": {
+  "all": "0 to 12",
+  "none": "Empty",
+  "even": "Even",
+  "odd": "Odd",
+  "prime": "Primes",
+  "fromTwo": "2 to 12"
+ },
+ "tileIn": {
+  "ok": "in the universe, the property is true",
+  "ko": "in the universe, the property is false"
+ },
+ "tileOut": "outside the universe",
+ "empty": {
+  "all": "The universe is empty: “for all” is true (no counterexample is possible), “there exists” would be false (no witness).",
+  "ex": "The universe is empty: “there exists” is false (no witness), “for all” would be true."
+ },
+ "ev": {
+  "allTrue": "No counterexample: every element of the universe satisfies the property.",
+  "allFalse": "Counterexample: n = {0}. A single one makes “for all” false.",
+  "exTrue": "Witness: n = {0}. A single one makes “there exists” true.",
+  "exFalse": "No witness: no element of the universe satisfies the property."
+ },
+ "expand": "Written out, “for all” is a big “and” and “there exists” a big “or”:",
+ "rels": {
+  "eq": "y = x",
+  "gt": "y > x",
+  "ge": "y ≥ x",
+  "sum": "x + y = 5",
+  "div": "x divides y",
+  "all": "All true",
+  "none": "All false"
+ },
+ "relCaption": "Relation R(x, y): tick the cells where it is true. Last row: does one same y work for every x?",
+ "witY": "A y",
+ "none": "none",
+ "colAll": "∀x ?",
+ "cellState": [
+  "false",
+  "true"
+ ],
+ "reads": {
+  "ae": "For each x we can find a y (which may depend on x).",
+  "ea": "One single y works for all the x at once.",
+  "neg": "The negation of ∀x ∃y R: there is an x for which no y works."
+ },
+ "res": {
+  "aeTrue": "Every row has at least one ✓: ∀x ∃y is true.",
+  "aeFalse": "The row x = {0} has no ✓: ∀x ∃y is false, and this x is a counterexample.",
+  "eaTrue": "The column y = {0} has only ✓: ∃y ∀x is true.",
+  "eaFalse": "No column is fully ticked: ∃y ∀x is false.",
+  "negOf": "The first two statements do not say the same thing, and the third is always the opposite of the first.",
+  "implies": "When ∃y ∀x is true, ∀x ∃y is too: a y that works for everyone works for each one."
+ },
+ "g": {
+  "g1": {
+   "s": "For every integer n from 1 to 12, n² > n.",
+   "x": "For n = 1, 1² = 1, so n² > n is false."
+  },
+  "g2": {
+   "s": "For every integer n from 2 to 15, if n is prime then n is odd.",
+   "x": "The number 2 is prime and even: the classic counterexample."
+  },
+  "g3": {
+   "s": "For every integer n from 0 to 39, n² + n + 41 is a prime number.",
+   "x": "Euler noticed that this polynomial gives a prime for these 40 values. Here the set is finite and every case has been checked."
+  },
+  "g4": {
+   "s": "For every integer n from 0 to 44, n² + n + 41 is a prime number.",
+   "x": "Careful: 40² + 40 + 41 = 41². Forty cases checked do not prove the next one."
+  },
+  "g5": {
+   "s": "There is an integer n from 1 to 20 such that n² = 3n + 10.",
+   "x": "For n = 5: 25 = 15 + 10."
+  },
+  "g6": {
+   "s": "There is an integer n from 1 to 12 such that 2ⁿ = n².",
+   "x": "For n = 2: 2² = 4 = 2². For n = 4: 2⁴ = 16 = 4²."
+  },
+  "g7": {
+   "s": "For every integer n from 1 to 12, 2ⁿ > n².",
+   "x": "For n = 2, 2² = 4 = 2²; for n = 3, 8 < 9; for n = 4, 16 = 16."
+  },
+  "g8": {
+   "s": "For every integer n from 1 to 12, n(n + 1) is even.",
+   "x": "Among two consecutive integers one is even (we will prove it with a proof by cases)."
+  },
+  "g9": {
+   "s": "There is an integer n from 1 to 15 such that n² = 2n − 3.",
+   "x": "We have n² − 2n + 3 = (n − 1)² + 2, which is always strictly positive."
+  },
+  "g10": {
+   "s": "For every integer n from 2 to 12, if n is prime then 2ⁿ − 1 is prime.",
+   "x": "For n = 11: 2¹¹ − 1 = 2047 = 23 × 89."
+  },
+  "g11": {
+   "s": "For every integer n from 1 to 30, if n is divisible by 4 and by 6, then n is divisible by 24.",
+   "x": "For n = 12: 12 is divisible by 4 and by 6, but not by 24."
+  }
+ },
+ "game": {
+  "allTrue": "The statement is true: none of the {0} integers is a counterexample. (On a finite set one could test them all.)",
+  "allFalse": "The statement is false: counterexample(s) n = {0}.",
+  "exTrue": "The statement is true: one witness is enough, for instance n = {0}.",
+  "exFalse": "The statement is false: no integer in the set is a witness.",
+  "hintAll": "To show that a “for all” is false, look for a counterexample: test some numbers.",
+  "hintEx": "A “there exists” is true as soon as a witness is found; if there is none, it is false.",
+  "tiles": "Press a number to test the property, then declare the statement true or false.",
+  "testLabel": "Test n = {0}",
+  "count": "Numbers tested: {0}",
+  "declareTrue": "The statement is true",
+  "declareFalse": "The statement is false",
+  "wrongTrue": "It is not true.",
+  "wrongFalse": "It is not false.",
+  "rightTests": "You tested {0} number(s)."
+ },
+ "recap": [
+  [
+   "∀x ∈ E, P(x)",
+   "for all x in E, P(x)",
+   "false as soon as there is a counterexample"
+  ],
+  [
+   "∃x ∈ E, P(x)",
+   "there exists x in E such that P(x)",
+   "true as soon as a witness is shown"
+  ],
+  [
+   "¬(∀x, P(x)) ⇔ ∃x, ¬P(x)",
+   "negation of a “for all”",
+   "change ∀ into ∃ and negate P"
+  ],
+  [
+   "¬(∃x, P(x)) ⇔ ∀x, ¬P(x)",
+   "negation of a “there exists”",
+   "change ∃ into ∀ and negate P"
+  ],
+  [
+   "∀x ∃y ≠ ∃y ∀x",
+   "order matters",
+   "in ∃y ∀x, one single y serves all the x"
+  ],
+  [
+   "∃! x, P(x)",
+   "there is a unique x",
+   "one witness, and only one"
+  ]
+ ],
+ "ideas": "<p><strong>An example does not prove a “for all”, but a counterexample refutes it.</strong> For “there exists” it is the other way round: one example is enough.</p><p><strong>Always state the set:</strong> n² > n is false for n = 1 but true if we restrict to n ≥ 2.</p><p><strong>To negate, change the quantifier and negate the property.</strong> Negating the quantifier alone is not enough.</p><p><strong>The order of quantifiers changes the meaning:</strong> “every pupil has a friend” is not “one pupil is everybody’s friend”.</p>",
+ "q": {
+  "step": "Challenge {0} of {1}",
+  "next": "Next challenge",
+  "last": "See the summary",
+  "good": "Well spotted.",
+  "bad": "Not yet.",
+  "solution": "Show the solution",
+  "solutionShown": "Here is the solution.",
+  "again": "Start again",
+  "title": "Summary",
+  "result": "{0} answer(s) right at the first try out of {1}.",
+  "group": "Possible answers",
+  "check": "Check"
+ },
+ "neg": {
+  "stmt": "Starting statement",
+  "cand": "Your proposal:",
+  "onBase": "On E = {0}, the statement is {1} and your proposal is {2}.",
+  "good": "It is indeed the negation.",
+  "goodWhy": "In every possible universe, one is true exactly when the other is false.",
+  "bad": "It is not a negation.",
+  "badWhy": "In the universe {0}, the statement is {1} and your proposal is {2}: they have the same value, whereas a negation must always give the opposite."
+ },
+ "ui": {
+  "title": "Quantifiers: ∀ and ∃",
+  "lead": "“For all” and “there exists” give mathematical statements their strength. Test them on sets you change, learn to negate them, then hunt for counterexamples.",
+  "tab.explore": "Explore",
+  "tab.two": "Two quantifiers",
+  "tab.negate": "Negate",
+  "tab.game": "Counterexample game",
+  "tab.recap": "Key points",
+  "explore.title": "A statement, a universe",
+  "explore.caption": "Choose a property and a quantifier, then add or remove numbers from the universe: the truth value changes with it.",
+  "ex.prop": "1. A property P(n)",
+  "ex.quant": "2. A quantifier",
+  "ex.univ": "3. The universe E",
+  "ex.univSub": "Press a number to add or remove it. ✓: P(n) is true, ✗: P(n) is false, dashed: outside E.",
+  "ex.state": "4. The statement and its value",
+  "two.title": "Two quantifiers side by side",
+  "two.caption": "Tick the pairs (x, y) for which R(x, y) is true, with x and y in {1 ; 2 ; 3 ; 4}. Compare “for all x there is a y” and “there is a y for all x”.",
+  "two.rel": "The relation R(x, y)",
+  "two.states": "What the statements say",
+  "two.note": "<strong>Try this:</strong> choose “y = x”. For every x, y = x works, so ∀x ∃y is true. But no y works for all x, so ∃y ∀x is false.",
+  "neg.title": "Writing a negation",
+  "neg.caption": "Choose a statement, then build its negation with a quantifier and a property. The lesson checks your proposal against every possible universe.",
+  "neg.pick": "1. A statement (on E = {1 ; … ; 6})",
+  "neg.build": "2. Its negation",
+  "neg.buildSub": "Choose the quantifier and the property of your negation.",
+  "neg.q": "Quantifier",
+  "neg.p": "Property",
+  "neg.stmt": "Starting statement",
+  "game.title": "Counterexample game",
+  "game.caption": "Six statements drawn at random: some are true, some false. Test numbers, then declare your verdict.",
+  "recap.title": "Key points",
+  "recap.caption": "The notation ∀, ∃ and their negations.",
+  "recap.h1": "Notation",
+  "recap.h2": "Reads",
+  "recap.h3": "Worth knowing",
+  "recap.ideas": "Four ideas",
+  "recap.next": "Next: <a href=\"../../#basics/logic-reasoning\" target=\"_top\">types of reasoning</a>. Back: <a href=\"../../#basics/logic-implication\" target=\"_top\">implication and equivalence</a>."
+ },
+ "ia": {
+  "tabs": "Lesson sections",
+  "qpick": "Choice of property",
+  "qsel": "Choice of quantifier",
+  "presets": "Preset universes",
+  "board": "Integers from 0 to 12: membership of the universe",
+  "rpresets": "Preset relations",
+  "spick": "Choice of statement",
+  "sbase": "Values of P on E",
+  "nq": "Quantifier of the negation",
+  "np": "Property of the negation",
+  "gtiles": "Integers to test"
+ }
+};
+/* TEXT-END */
+'use strict';
+const $=LX.$,fmt=LX.fmt,vf=LX.vf;
+const show=LX.init(T,['explore','two','negate','game','recap']);
+// ---- Pure logic (language free)
+const isPrime=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};
+const PRED=[
+{id:'even',f:n=>n%2===0},{id:'gt3',f:n=>n>3},{id:'sqgt',f:n=>n*n>n},{id:'lt5',f:n=>n<5},
+{id:'lt10',f:n=>n<10},{id:'prime',f:isPrime},{id:'m3',f:n=>n%3===0},{id:'sq50',f:n=>n*n<50}
+];
+const predById=id=>PRED.find(x=>x.id===id);
+const range=(a,b)=>Array.from({length:b-a+1},(_,i)=>a+i);
+// A quantified statement over a finite universe E (an array): ∀ is "every", ∃ is "some". Empty universe: ∀ true, ∃ false.
+const holds=(quant,f,E)=>quant==='all'?E.every(f):E.some(f);
+const roster=a=>'{'+a.join(' ; ')+'}';
+const sym=quant=>quant==='all'?'∀':'∃';
+// Candidate negation: quantifier cq with the property kept or negated. It is a negation of the statement exactly when, in
+// EVERY non-empty universe contained in the base, the two have opposite truth values.
+function universes(base){const r=[];for(let m=1;m<1<<base.length;m++)r.push(base.filter((_,i)=>m>>i&1));return r;}
+const candidate=(cq,cneg,f)=>cneg?(n=>!f(n)):f;
+function negationTest(st,cq,cneg,base){
+ const f=predById(st.pred).f,g=candidate(cq,cneg,f);
+ for(const S of universes(base)){const a=holds(st.q,f,S),b=holds(cq,g,S);if(a===b)return {valid:false,S,a,b};}
+ return {valid:true};
+}
+const NUMS=range(0,12);
+
+// ---- Explore
+let pid='sqgt',quant='all',inE=new Set(range(1,8));
+const PRESETS={all:()=>NUMS,none:()=>[],even:()=>NUMS.filter(n=>n%2===0),odd:()=>NUMS.filter(n=>n%2===1),prime:()=>NUMS.filter(isPrime),fromTwo:()=>range(2,12)};
+function renderExplore(){
+ const f=predById(pid).f,E=NUMS.filter(n=>inE.has(n)),vals=E.map(f),res=holds(quant,f,E);
+ $('qpick').innerHTML=PRED.map(p=>`<button type="button" class="chip" data-p="${p.id}" aria-pressed="${p.id===pid}">n ${T.pred[p.id][0]}</button>`).join('');
+ $('qsel').innerHTML=['all','ex'].map(k=>`<button type="button" data-q="${k}" aria-pressed="${k===quant}">${sym(k)} <span class="muted">${T.qname[k]}</span></button>`).join('');
+ $('presets').innerHTML=Object.keys(PRESETS).map(k=>`<button type="button" class="chip" data-preset="${k}">${T.presets[k]}</button>`).join('');
+ $('board').innerHTML=NUMS.map(n=>{const on=inE.has(n),ok=f(n);return `<button type="button" class="tile ${on?(ok?'ok':'ko'):'out'}" data-n="${n}" aria-pressed="${on}" aria-label="${n} : ${on?(ok?T.tileIn.ok:T.tileIn.ko):T.tileOut}">${n}<small>${on?(ok?'✓':'✗'):'·'}</small></button>`;}).join('');
+ const sentence=fmt(T.sent[quant],T.pred[pid][0]);
+ let evidence;
+ if(!E.length)evidence=T.empty[quant];
+ else if(quant==='all')evidence=res?T.ev.allTrue:fmt(T.ev.allFalse,E.find(n=>!f(n)));
+ else evidence=res?fmt(T.ev.exTrue,E.find(f)):T.ev.exFalse;
+ $('xread').innerHTML=`<div class="math">${sym(quant)}n ∈ ${roster(E)}, P(n)</div><p>${sentence.replace('{E}',roster(E))}</p><p><span class="badge ${res?'t':'f'}">${vf(res)}</span> ${evidence}</p>`+
+  (E.length?`<p class="muted">${T.expand} ${vals.map(vf).join(quant==='all'?' ∧ ':' ∨ ')} = <strong>${vf(res)}</strong></p>`:'');
+}
+$('panel-explore').addEventListener('click',e=>{
+ const b=e.target.closest('[data-p],[data-q],[data-n],[data-preset]');if(!b)return;
+ if(b.dataset.p)pid=b.dataset.p;else if(b.dataset.q)quant=b.dataset.q;
+ else if(b.dataset.preset)inE=new Set(PRESETS[b.dataset.preset]());
+ else{const n=+b.dataset.n;inE.has(n)?inE.delete(n):inE.add(n);}
+ LX.keepFocus(renderExplore);
+});
+
+// ---- Two quantifiers
+const XY=[1,2,3,4];
+const RELS={eq:(x,y)=>x===y,gt:(x,y)=>y>x,ge:(x,y)=>y>=x,sum:(x,y)=>x+y===5,div:(x,y)=>y%x===0,all:()=>true,none:()=>false};
+let rel=XY.map(x=>XY.map(y=>RELS.eq(x,y)));
+const forallExists=m=>m.every(row=>row.some(Boolean));
+const existsForall=m=>XY.some((_,j)=>m.every(row=>row[j]));
+const existsForallNot=m=>m.some(row=>row.every(v=>!v));
+function renderTwo(){
+ $('rpresets').innerHTML=Object.keys(RELS).map(k=>`<button type="button" class="chip" data-rp="${k}">${T.rels[k]}</button>`).join('');
+ const wit=rel.map(row=>row.indexOf(true));
+ const cols=XY.map((_,j)=>rel.every(row=>row[j]));
+ $('relgrid').innerHTML=`<p class="muted">${T.relCaption}</p><table class="rel"><thead><tr><th scope="col"></th>${XY.map(y=>`<th scope="col">y = ${y}</th>`).join('')}<th scope="col">${T.witY}</th></tr></thead><tbody>${rel.map((row,i)=>`<tr><th scope="row">x = ${XY[i]}</th>${row.map((v,j)=>`<td class="${cols[j]?'mark':''}"><button type="button" class="cell" data-x="${i}" data-y="${j}" aria-pressed="${v}" aria-label="x = ${XY[i]}, y = ${XY[j]} : ${T.cellState[+v]}">${v?'✓':'✗'}</button></td>`).join('')}<td class="${wit[i]<0?'n':'y'}">${wit[i]<0?T.none:'y = '+XY[wit[i]]}</td></tr>`).join('')}</tbody><tfoot><tr><th scope="row">${T.colAll}</th>${cols.map(c=>`<td class="${c?'y':'n'}">${c?'✓':'✗'}</td>`).join('')}<td></td></tr></tfoot></table>`;
+ const a=forallExists(rel),b=existsForall(rel),c=existsForallNot(rel);
+ const x0=rel.findIndex(row=>row.every(v=>!v)),y0=XY.findIndex((_,j)=>cols[j]);
+ $('tworead').innerHTML=`<div class="stmts">
+ <div class="stmt ${a?'t':'f2'}"><div><span class="f">∀x ∃y, R(x, y)</span><div class="muted">${T.reads.ae}</div></div><span class="badge ${a?'t':'f'}">${vf(a)}</span></div>
+ <div class="stmt ${b?'t':'f2'}"><div><span class="f">∃y ∀x, R(x, y)</span><div class="muted">${T.reads.ea}</div></div><span class="badge ${b?'t':'f'}">${vf(b)}</span></div>
+ <div class="stmt ${c?'t':'f2'}"><div><span class="f">∃x ∀y, ¬R(x, y)</span><div class="muted">${T.reads.neg}</div></div><span class="badge ${c?'t':'f'}">${vf(c)}</span></div></div>
+ <p>${a?T.res.aeTrue:fmt(T.res.aeFalse,XY[x0])}</p><p>${b?fmt(T.res.eaTrue,XY[y0]):T.res.eaFalse}</p><p class="muted">${T.res.negOf}</p>`+(b&&!a?'':'')+(b?'<p class="muted">'+T.res.implies+'</p>':'');
+}
+$('panel-two').addEventListener('click',e=>{
+ const b=e.target.closest('[data-rp],[data-x]');if(!b)return;
+ if(b.dataset.rp){const f=RELS[b.dataset.rp];rel=XY.map(x=>XY.map(y=>f(x,y)));}
+ else{const i=+b.dataset.x,j=+b.dataset.y;rel[i][j]=!rel[i][j];}
+ LX.keepFocus(renderTwo);
+});
+
+// ---- Negation
+const BASE=[1,2,3,4,5,6];
+const STATEMENTS=[{id:'s1',q:'all',pred:'even'},{id:'s2',q:'ex',pred:'m3'},{id:'s3',q:'all',pred:'sqgt'},{id:'s4',q:'ex',pred:'prime'},{id:'s5',q:'all',pred:'lt5'},{id:'s6',q:'ex',pred:'gt3'}];
+let sid='s1',cq='ex',cneg=false;
+const stmtText=(st,neg,q2)=>fmt(T.sent[q2||st.q],T.pred[st.pred][neg?1:0]).replace('{E}','E');
+function renderNeg(){
+ const st=STATEMENTS.find(s=>s.id===sid),f=predById(st.pred).f,g=candidate(cq,cneg,f);
+ $('spick').innerHTML=STATEMENTS.map(s=>`<button type="button" class="pick" data-s="${s.id}" aria-current="${s.id===sid}">${sym(s.q)}n ∈ E, P(n) : ${stmtText(s,false)}</button>`).join('');
+ $('sbase').innerHTML=BASE.map(n=>`<div class="tile ${f(n)?'ok':'ko'}" role="img" aria-label="${n} : ${f(n)?T.tileIn.ok:T.tileIn.ko}">${n}<small>${f(n)?'✓':'✗'}</small></div>`).join('');
+ $('nstate').innerHTML=`<p><span class="muted">${T.neg.stmt}</span><br><strong>${sym(st.q)}n ∈ E, P(n)</strong> : ${stmtText(st,false)}</p>`;
+ $('nq').innerHTML=['all','ex'].map(k=>`<button type="button" data-nq="${k}" aria-pressed="${k===cq}">${sym(k)} <span class="muted">${T.qname[k]}</span></button>`).join('');
+ $('np').innerHTML=[false,true].map(k=>`<button type="button" data-np="${+k}" aria-pressed="${k===cneg}">${k?'¬P(n)':'P(n)'}</button>`).join('');
+ const r=negationTest(st,cq,cneg,BASE),a=holds(st.q,f,BASE),b=holds(cq,g,BASE);
+ const cand=`<strong>${sym(cq)}n ∈ E, ${cneg?'¬P(n)':'P(n)'}</strong> : ${stmtText(st,cneg,cq)}`;
+ $('nread').innerHTML=`<p>${T.neg.cand} ${cand}</p><p class="muted">${fmt(T.neg.onBase,roster(BASE),vf(a),vf(b))}</p>`+(r.valid?`<p class="fb good"><strong>${T.neg.good}</strong> ${T.neg.goodWhy}</p>`:`<p class="fb bad"><strong>${T.neg.bad}</strong> ${fmt(T.neg.badWhy,roster(r.S),vf(r.a),vf(r.b))}</p>`);
+}
+$('panel-negate').addEventListener('click',e=>{
+ const b=e.target.closest('[data-s],[data-nq],[data-np]');if(!b)return;
+ if(b.dataset.s)sid=b.dataset.s;else if(b.dataset.nq)cq=b.dataset.nq;else cneg=b.dataset.np==='1';
+ LX.keepFocus(renderNeg);
+});
+
+// ---- The counterexample game
+const CLAIMS=[
+{id:'g1',kind:'all',lo:1,hi:12,f:n=>n*n>n},
+{id:'g2',kind:'all',lo:2,hi:15,f:n=>!isPrime(n)||n%2===1},
+{id:'g3',kind:'all',lo:0,hi:39,f:n=>isPrime(n*n+n+41)},
+{id:'g4',kind:'all',lo:0,hi:44,f:n=>isPrime(n*n+n+41)},
+{id:'g5',kind:'ex',lo:1,hi:20,f:n=>n*n===3*n+10},
+{id:'g6',kind:'ex',lo:1,hi:12,f:n=>2**n===n*n},
+{id:'g7',kind:'all',lo:1,hi:12,f:n=>2**n>n*n},
+{id:'g8',kind:'all',lo:1,hi:12,f:n=>(n*(n+1))%2===0},
+{id:'g9',kind:'ex',lo:1,hi:15,f:n=>n*n===2*n-3},
+{id:'g10',kind:'all',lo:2,hi:12,f:n=>!isPrime(n)||isPrime(2**n-1)},
+{id:'g11',kind:'all',lo:1,hi:30,f:n=>!(n%4===0&&n%6===0)||n%24===0}
+];
+const claimTruth=g=>holds(g.kind,g.f,range(g.lo,g.hi));
+function claimWhy(g){
+ const dom=range(g.lo,g.hi),G=T.g[g.id],truth=claimTruth(g),G2=T.game;
+ let s;
+ if(g.kind==='all')s=truth?fmt(G2.allTrue,dom.length):fmt(G2.allFalse,dom.filter(n=>!g.f(n)).slice(0,5).join(', '));
+ else s=truth?fmt(G2.exTrue,dom.filter(g.f).slice(0,5).join(', ')):G2.exFalse;
+ return s+' '+G.x;
+}
+function claimItem(g){
+ const dom=range(g.lo,g.hi),truth=claimTruth(g),tested=new Set(),c=T.game;
+ return {hint:g.kind==='all'?c.hintAll:c.hintEx,why:claimWhy(g),
+ reveal(){$('game').querySelectorAll('[data-n]').forEach(t=>{const n=+t.dataset.n;t.disabled=true;t.className='tile '+(g.f(n)?'ok':'ko');t.querySelector('small').textContent=g.f(n)?'✓':'✗';});},
+ render(body,api){
+  body.innerHTML=`<p class="math">${sym(g.kind)}n ∈ ⟦${g.lo} ; ${g.hi}⟧, P(n)</p><p>${T.g[g.id].s}</p><p class="muted">${c.tiles}</p><div class="tiles" role="group" aria-label="${T.ia.gtiles}">${dom.map(n=>`<button type="button" class="tile hid" data-n="${n}" aria-label="${fmt(c.testLabel,n)}">${n}<small>?</small></button>`).join('')}</div><p class="muted" id="g-count" aria-live="polite">${fmt(c.count,0)}</p><div class="row"><button type="button" class="btn" data-v="1">${c.declareTrue}</button><button type="button" class="btn alt" data-v="0">${c.declareFalse}</button></div>`;
+  body.addEventListener('click',e=>{
+   const t=e.target.closest('[data-n]');
+   if(t&&!t.disabled){const n=+t.dataset.n,ok=g.f(n);tested.add(n);t.className='tile '+(ok?'ok':'ko');t.querySelector('small').textContent=ok?'✓':'✗';t.setAttribute('aria-label',n+' : '+(ok?T.tileIn.ok:T.tileIn.ko));$('g-count').textContent=fmt(c.count,tested.size);return;}
+   const v=e.target.closest('[data-v]');if(!v)return;
+   const said=v.dataset.v==='1';
+   if(said!==truth){api.answer(false,(said?c.wrongTrue:c.wrongFalse)+' ');return;}
+   body.querySelectorAll('[data-n],[data-v]').forEach(x=>{x.disabled=true;});
+   api.answer(true,fmt(c.rightTests,tested.size)+' ');
+  });
+ }};
+}
+const makeQuiz=()=>LX.shuffle(CLAIMS).slice(0,6).map(claimItem);
+
+// ---- Static content
+$('recap-rows').innerHTML=T.recap.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+$('ideas').innerHTML=T.ideas;
+renderExplore();renderTwo();renderNeg();LX.quiz('game',makeQuiz);
+LX.notifySize();
+
+</script>
+</body>
+</html>

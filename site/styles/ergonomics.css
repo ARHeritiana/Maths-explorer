@@ -153,6 +153,19 @@
 .foundation-list a{display:grid;grid-template-columns:30px minmax(0,1fr) 18px;gap:16px;align-items:center;min-height:64px;padding:16px 0;border-bottom:1px solid var(--line)}
 .foundation-list strong{font:600 1.08rem var(--ui)}
 .foundation-list small{display:block;font-size:.9rem;color:var(--muted);margin-top:5px}
+.foundation-list a:hover{background:var(--sunken)}
+.foundation-group{margin:36px 0 0;max-width:1000px}
+.foundation-group h2{font-size:1.35rem;margin:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 14px}
+.foundation-count{font:400 .85rem var(--ui);color:var(--muted)}
+.foundation-group-desc{margin:6px 0 0;max-width:62ch;font-size:.95rem;color:var(--ink-2)}
+.foundation-group .foundation-list{margin:8px 0 0}
+.foundation-list .foundation-does{font-size:.85rem;color:var(--ink-2)}
+.foundation-does b{color:var(--ink);font-weight:700}
+.foundation-crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;color:var(--muted);font-size:.9rem}
+.foundation-crumbs .backlink{margin-bottom:0}
+.foundation-steps{display:flex;flex-wrap:wrap;gap:0 20px;margin:2px 0 12px;font-size:.9rem;color:var(--muted)}
+.foundation-steps a{display:inline-block;padding:10px 0;color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+.foundations-lesson iframe+.foundation-steps{margin:12px 0 0}
 .entry-layout .entry-sidebar{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .entry-sidebar .entry-steps{flex:1;min-width:0}
 .entry-sidebar .entry-chooser{margin:0;max-width:42%;min-width:220px;align-self:start}

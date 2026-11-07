@@ -12,9 +12,11 @@ const lessons={
  sets:['Sets and operations','Ensembles']
 };
 test('Foundations iframe follows website language',async()=>{
- const app=await read('../dist/js/app.js');
- assert.ok(app.includes('lesson.id+(lang==="en"?".en":"")'));
- assert.ok(app.includes('<iframe id="basics-frame" lang='));
+ const page=await read('../site/js/basics-page.js');
+ assert.ok(page.includes('lesson.id + (lang === "en" ? ".en" : "")'));
+ assert.ok(page.includes('<iframe id="basics-frame" lang='));
+ const app=await read('../site/js/app.js');
+ assert.ok(app.includes('from "./basics-page.js"')&&!app.includes('const basicsLessons'));
 });
 for(const [id,[enTitle,frTitle]] of Object.entries(lessons)){
  test(id+' both language editions are published and integrated',async()=>{
@@ -51,12 +53,12 @@ for(const id of ['addition','subtraction']){
 }
 
 test('multiplication and division are reachable in the foundations progression',async()=>{
- const app=await read('../dist/js/app.js');
+ const {basicsLesson,isBasicsRoute}=await import('../site/js/basics-page.js');
  for(const [id,num] of [['multiplication','04'],['division','05']]){
-  assert.ok(app.includes('r.id === "'+id+'"'));
-  assert.ok(app.includes('id: "'+id+'", number: "'+num+'"'));
-  assert.ok(app.includes('#basics/'+id));
+  assert.ok(isBasicsRoute(id));
+  assert.equal(basicsLesson(id).number,num);
  }
+ assert.equal(basicsLesson('division').next,'fractions');
 });
 test('new lesson sources retain the arithmetic models and animations',async()=>{
  for(const id of ['multiplication','division']){
@@ -78,10 +80,10 @@ test('multiplication explains regrouping hundreds into thousands',async()=>{
 });
 
 test('the sets lesson is reachable: route, card, neighbours and discovery topic',async()=>{
- const app=await read('../dist/js/app.js');
- assert.ok(app.includes('r.id === "sets"'));
- assert.ok(app.includes('id: "sets", number: "06"'));
- assert.ok(app.includes('#basics/sets'));
- const discovery=await read('../dist/js/discovery.js');
+ const {basicsLesson,isBasicsRoute}=await import('../site/js/basics-page.js');
+ assert.ok(isBasicsRoute('sets'));
+ assert.equal(basicsLesson('sets').number,'07');
+ assert.equal(basicsLesson('sets').next,'logic-propositions');
+ const discovery=await read('../site/js/discovery.js');
  assert.ok(discovery.includes("topics:['foundations/sets']"));
 });

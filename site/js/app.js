@@ -28,6 +28,7 @@ import { mountLibrary } from "./library.js";
 import { icon } from "./icons.js";
 import { VARIANTS, HINT_ACTIONS, hasVariants, defaults as variantDefaults, randomParams, normalise as normaliseVariant, mountActivity, hasActivity, challengeIcon, originalOf, mountSolution, hasSolution } from "./challenges/registry.js";
 import { fullscreenButton } from "./visual-lessons.js";
+import { basicsPage, bindBasics, isBasicsRoute } from "./basics-page.js";
 import { currentTheme, toggleTheme, installPresenting } from "./ui.js";
 import { assetHref } from "./data-loader.js";
 import { illuminateFeedback } from "./motion.js";
@@ -192,7 +193,7 @@ function render() {
     (r.page === "errors" && isErrorRoute(r.id)) ||
     (r.page === "olympiad" && isOlympiadRoute(r.id)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction" || r.id === "multiplication" || r.id === "division" || r.id === "sets" || r.id === "fractions")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab)) ||
+    (r.page === "home" && !r.id) || (r.page === "basics" && isBasicsRoute(r.id)) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab)) ||
     r.page === "university" || (r.page === "resources" && isLiveRoute(r)) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
@@ -201,7 +202,7 @@ function render() {
   document.body.dataset.page=page;
   $("#app").innerHTML =
     header(page) +
-    (page === "basics" ? basicsPage(r.id) : page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "bank" ? bankPage(t, r.id, r.tab) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
+    (page === "basics" ? basicsPage(r.id, { t, pair, lang, assetHref }) : page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "bank" ? bankPage(t, r.id, r.tab) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "university" ? universityPage(lang)
       : page === "topics" ? discoveryPage(discovery,r.id,r.tab,t)
       : page === "history" ? historyPage(r.id,r.tab,t,discovery)
@@ -248,7 +249,7 @@ function render() {
   if (page === "errors") stopChapter = bindErrors($("#main"), t, r.id);
   if (page === "olympiad") stopChapter = bindOlympiad($("#main"), lang);
   if (page === "home") stopChapter = bindHome($("#main"),discovery,t);
-  if (page === "basics" && r.id) stopChapter = bindBasics();
+  if (page === "basics" && r.id) stopChapter = bindBasics({ $, currentTheme });
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
   if (page === "pathways") stopChapter = bindPathways({ root: $("#main"), pathways: livePathways, labs, t, pair, link, glyph, completed });
   if (page === "pack") bindPack(t);
@@ -489,59 +490,6 @@ function bindChallenges() {
   });
   return stop;
 }
-// Foundation lessons are deliberately distinct from official curriculum chapters.
-const basicsLessons = [
-  {id: "place-value", number: "01", title: ["Numération et regroupements", "Place value and grouping"],
-   description: ["Construire les nombres avec des jetons, échanger les unités contre des dizaines et découvrir les bases.", "Build numbers with counters, group place values, and explore different bases."],
-   frameTitle: ["Activité interactive sur la numération", "Interactive place-value activity"]},
-  {id: "addition", number: "02", title: ["Addition et retenues", "Addition and carrying"],
-   description: ["Additionner colonne par colonne, puis comprendre la retenue comme un regroupement, même dans d’autres bases.", "Add column by column and see how regrouping creates a carry in different bases."],
-   frameTitle: ["Activité interactive sur l’addition et les retenues", "Interactive addition and carrying activity"]},
-  {id: "subtraction", number: "03", title: ["Soustraction et emprunts", "Subtraction and borrowing"],
-   description: ["Retirer des jetons colonne par colonne et comprendre les emprunts comme des dégroupements, même dans d’autres bases.", "Subtract counters column by column and understand borrowing as ungrouping in different bases."],
-   frameTitle: ["Activité interactive sur la soustraction et les emprunts", "Interactive subtraction and borrowing activity"]},
-  {id: "multiplication", number: "04", title: ["Multiplication par regroupements", "Multiplication as grouping"],
-   description: ["Construire les produits avec des jetons, puis comprendre les produits partiels et les retenues.", "Use counters to understand partial products, place value, and carrying."],
-   frameTitle: ["Activité interactive sur la multiplication", "Interactive multiplication activity"]},
-  {id: "division", number: "05", title: ["Division par partage", "Division as sharing"],
-   description: ["Partager les jetons équitablement, échanger les restes et découvrir le quotient et le reste.", "Share counters equally, trade leftovers, and discover the quotient and remainder."],
-   frameTitle: ["Activité interactive sur le partage et la division", "Interactive division and sharing activity"]},
-  {id: "sets", number: "06", kind: ["Ensembles", "Sets"], title: ["Ensembles", "Sets and operations"],
-   description: ["Manipuler des ensembles avec des diagrammes de Venn, découvrir réunion, intersection, différence et complémentaire, puis s’exercer.", "Explore sets with Venn diagrams: union, intersection, difference and complement, then practise."],
-   frameTitle: ["Activité interactive sur les ensembles et leurs opérations", "Interactive sets and operations activity"]},
-  {id: "fractions", number: "07", title: ["Le laboratoire des fractions", "The fractions lab"],
-   description: ["Construire, comparer et calculer avec des fractions : barres, droite graduée, aires et six défis guidés.", "Build, compare and calculate with fractions using bars, a number line, areas and six guided challenges."],
-   frameTitle: ["Laboratoire interactif des fractions", "Interactive fractions lab"]},
-];
-function basicsPage(id) {
-  if (!id) return `<main id="main" class="page foundations-page" tabindex="-1"><h1>${pair('Les bases des mathématiques','Mathematical foundations')}</h1><p class="page-intro">${pair('Choisis une idée à comprendre en manipulant.','Choose an idea to understand through exploration.')}</p><ol class="foundation-list">${basicsLessons.map(l=>`<li><a href="#basics/${l.id}"><span class="chapter-row-number">${l.number}</span><span><strong>${t(l.title)}</strong><small>${t(l.description)}</small></span><span class="chapter-row-arrow" aria-hidden="true">→</span></a></li>`).join('')}</ol></main>`;
-  const lesson = basicsLessons.find(l=>l.id===id);
-  if (!lesson) return "";
-  const related = id === "fractions"
-    ? '<p class="muted"><a href="#basics/sets">'+pair("Leçon précédente : ensembles", "Previous lesson: sets")+'</a> · <a href="#basics/division">'+pair("Revoir le partage et la division", "Review sharing and division")+'</a></p>'
-    : id === "sets"
-    ? '<p class="muted"><a href="#basics/division">'+pair("Leçon précédente : division", "Previous lesson: division")+'</a> · <a href="#basics/fractions">'+pair("Leçon suivante : fractions", "Next lesson: fractions")+'</a></p>'
-    : id === "division"
-    ? '<p class="muted"><a href="#basics/multiplication">'+pair("Leçon précédente : multiplication", "Previous lesson: multiplication")+'</a> · <a href="#basics/sets">'+pair("Leçon suivante : ensembles", "Next lesson: sets and operations")+'</a></p>'
-    : id === "multiplication"
-    ? '<p class="muted"><a href="#basics/subtraction">'+pair("Leçon précédente : soustraction", "Previous lesson: subtraction")+'</a> · <a href="#basics/division">'+pair("Leçon suivante : division", "Next lesson: division")+'</a></p>'
-    : id === "subtraction"
-    ? '<p class="muted"><a href="#basics/addition">'+pair("Revoir l’addition et les retenues", "Review addition and carrying")+'</a> · <a href="#basics/multiplication">'+pair("Leçon suivante : multiplication", "Next lesson: multiplication")+'</a></p>'
-    : id === "addition"
-      ? '<p class="muted"><a href="#basics/place-value">'+pair("Revoir d’abord les regroupements et la numération", "Review place value and grouping first")+'</a> · <a href="#basics/subtraction">'+pair("Leçon suivante : soustraction et emprunts", "Next lesson: subtraction and borrowing")+'</a></p>'
-      : '<p class="muted"><a href="#basics/addition">'+pair("Leçon suivante : addition et retenues", "Next lesson: addition and carrying")+'</a></p>';
-  return '<main id="main" class="page" tabindex="-1"><a class="backlink" href="#basics">'+pair("Toutes les bases", "All foundations")+'</a>'+related+'<iframe id="basics-frame" lang="'+(lesson.language||lang)+'" title="'+t(lesson.frameTitle)+'" src="'+assetHref("./resources/basics/"+(lesson.language?lesson.id:lesson.id+(lang==="en"?".en":""))+".html")+'" style="width:100%;display:block;border:1px solid var(--line);background:var(--surface);min-height:560px" scrolling="no" allow="fullscreen"></iframe></main>';
-}
-function bindBasics(){
-  const frame=$("#basics-frame"); if(!frame)return ()=>{};
-  let alive=true;
-  const sync=()=>{try{const d=frame.contentDocument;if(!d)return;d.documentElement.dataset.theme=currentTheme()==="nuit"?"dark":"light";const h=d.documentElement.scrollHeight;if(h>0&&Math.abs(h-frame.getBoundingClientRect().height)>3)frame.style.height=h+"px";}catch{}};
-  const message=e=>{if(e.origin!==location.origin||e.source!==frame.contentWindow||e.data?.type!=="mx-basics-size")return;if(alive&&Number.isFinite(e.data.height)&&e.data.height>0&&e.data.height<20000)frame.style.height=e.data.height+"px";};
-  const load=()=>sync();frame.addEventListener("load",load);window.addEventListener("message",message);
-  const obs=typeof MutationObserver==="undefined"?null:new MutationObserver(sync);obs?.observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
-  return ()=>{alive=false;window.removeEventListener("message",message);frame.removeEventListener("load",load);obs?.disconnect();};
-}
-
 // Pathways page: curriculum rail, level tabs, topic filters and tile grid (js/pathways-view.js).
 function pathwayPage() { return pathwayPageView({ pathways: livePathways, labs, t, pair, icon }); }
 
