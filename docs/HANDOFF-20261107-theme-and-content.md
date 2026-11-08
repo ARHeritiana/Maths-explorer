@@ -1,6 +1,6 @@
 # Handoff, 7 November 2026: portable PDF theme and content round
 
-Branch `wip/theme-content-20261107` (pushed, NOT merged, NOT verified). `main` = `81141760` plus Matematika sync `7d08f5a` (repo Heritiana-Ankatso/Matematika). Everything below is in the WIP branch unless marked done on main.
+Branch `wip/theme-content-20261107` (pushed, NOT merged, NOT verified). `main` = `81141760` plus Matematika sync `7d08f5a` (the Matematika repo). Everything below is in the WIP branch unless marked done on main.
 
 ## Done on main and live (both repos)
 - Annales web edition no longer drops nested-list content / X-column table cells (`458c269a`).
