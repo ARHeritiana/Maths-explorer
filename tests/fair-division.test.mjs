@@ -47,7 +47,7 @@ test('every mission is finite in both languages and direct manipulation changes 
  for(const e of [cake,goods])for(const mission of e.missions){const s={...e.state,...mission.set};
   for(const language of ['fr','en']){const ctx={fmt:makeFormat(language),unlocked:()=>true};assert.ok(!/NaN|undefined/.test(e.views.formula(s,ctx)));assert.ok(e.views.figure.scene(s,ctx));assert.ok(e.views.readout(s,ctx).length);}
  }
- const changed=cake.controls.density.drag(cake.state,6,4);assert.equal(changed.values[0][1],4);assert.equal(cake.state.values[0][1],1);
+ const changed=cake.controls.density.drag(cake.state,6,4);assert.equal(changed.values[0][1],4);assert.equal(cake.state.values[0][1],3);   // the uniform start is 3, 3, 3 (mid-height of the 0 to 6 density scale; values are normalised, so it is still 1/3 each)
  const patch=goods.controls.good0.drag(goods.state,2,6);assert.deepEqual(patch.owners,[1,0,1]);
  const value=goods.controls.value.nudge(goods.state,0,1);assert.equal(value.values[0][0],4);
 });

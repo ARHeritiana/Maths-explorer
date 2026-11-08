@@ -53,6 +53,8 @@ export function centerOfMassFrame(p, y) { const inv = gravityInvariants(p, y), m
 export const GRAVITY_PRESETS = {
   figure8: { masses: [1, 1, 1], y: [-.97000436, .24308753, .466203685, .43236573, .97000436, -.24308753, .466203685, .43236573, 0, 0, -.93240737, -.86473146] },
   hierarchical: { masses: [1, .02, .001], y: [0, 0, 0, 0, 1, 0, 0, 1, 3, 0, 0, .58] },
+  // the figure-eight positions with other velocities (zero total momentum): an unstable start, where a gap of 1e-5 reaches about 1 within t = 20
+  chaotic: { masses: [1, 1, 1], y: [-.97000436, .24308753, -.14, .309, .97000436, -.24308753, -.246, -.251, 0, 0, .386, -.058] },
   scattering: { masses: [1, 1, .1], y: [-.6, 0, 0, -.6, .6, 0, 0, .6, -3, 1, 1.4, -.1] },
 };
 export function simulateDynamics(kind, params, initial, duration, options = {}) {
