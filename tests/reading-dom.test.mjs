@@ -36,6 +36,7 @@ test('Game of Life, square packing, moving sofa, inscribed and opaque squares mo
     }
     assert.ok(!/NaN|undefined|Infinity/.test(root.textContent),`${id} content is finite`);stop();assert.equal(frames.size,0,`${id}: unmount cancels frames`);root.remove();
   }
+  // the sofa view opens zoomed x 1.75 on the corner: a stroke drawn in canvas pixels is 1.75 times larger than the same stroke at the old scale
   for(const lang of ['fr','en'])for(const id of ['moving-sofa','inscribed-square','opaque-square']){
     const root=w.document.createElement('section');w.document.body.append(root);
     const stop=mountObject(id,root,{lang,reduced:false});tick(2);const cv=root.querySelector('canvas');assert.ok(cv);
@@ -44,7 +45,7 @@ test('Game of Life, square packing, moving sofa, inscribed and opaque squares mo
       const k=root.querySelector('#so-kind');k.value='rect';k.dispatchEvent(new w.Event('change'));tick();assert.match(read(root),/1[.,]800/);
       cv.dispatchEvent(new w.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}));cv.dispatchEvent(new w.KeyboardEvent('keydown',{key:']',bubbles:true}));tick();
       k.value='gerver';k.dispatchEvent(new w.Event('change'));tick();assert.match(read(root),/2[.,]2195/);root.querySelector('#so-play').click();for(let i=0;i<200;i++){now+=60;tick();}assert.match(read(root),/90°/);
-      k.value='own';k.dispatchEvent(new w.Event('change'));pointer(cv,'pointerdown',100,120);for(let a=0;a<=40;a++)pointer(cv,'pointermove',100+30*Math.cos(a*Math.PI/20),120+20*Math.sin(a*Math.PI/20));pointer(cv,'pointerup',130,120);tick();assert.match(read(root),/0[.,]6/);
+      k.value='own';k.dispatchEvent(new w.Event('change'));pointer(cv,'pointerdown',100,120);for(let a=0;a<=40;a++)pointer(cv,'pointermove',100+52.5*Math.cos(a*Math.PI/20),120+35*Math.sin(a*Math.PI/20));pointer(cv,'pointerup',130,120);tick();assert.match(read(root),/0[.,]6/);
     }
     if(id==='inscribed-square'){
       await until(()=>/1/.test(read(root)));assert.match(read(root),/1/);

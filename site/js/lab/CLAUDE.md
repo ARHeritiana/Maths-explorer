@@ -66,6 +66,7 @@ The quadratic model also supplies vertex/root input conversions and independent 
 Optional `presentationControls` adds an experiment's parameter controls to the shared slide widget. A slider's optional
 `range(state)` is applied before its value, and expands to include the current value when another parameter changes it.
 
+| `experiments/fair-scenes.js` | pure scenes of the two fair-division figures (cake strip split by the cuts, density of the chosen person, matrix of every person's value of every piece, verdict in words; goods rows, coloured items with values, envy arrows), tested against the model in `tests/visuals2.test.mjs` |
 | `models/fair-division.js`, `experiments/fair-division.js` | additive cake valuations, draggable cuts and preferences, discrete allocations, proportionality, envy, EF1 and sincere round robin; exports cake and goods experiments |
 
 `experiments/inference.js` registers secretary, tank, Benford, baker, birthday and Monty missions. `templates/inference.js` renders native interactive cards/doors and accessible frequency tables with the shared shell lifecycle; mathematical models remain in `models/inference.js`.

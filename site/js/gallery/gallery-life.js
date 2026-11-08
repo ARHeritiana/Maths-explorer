@@ -81,7 +81,7 @@ export function gameOfLife(root,opts){
     g.restore();
     g.save();g.setTransform(o.scale,0,0,o.scale,0,0);
     g.font='600 13px "IBM Plex Sans",sans-serif';g.textBaseline='top';g.textAlign='left';
-    const label=`${t('Génération','Generation')} ${gen} · ${t('population','population')} ${cells.size}`,lw=g.measureText(label).width;g.fillStyle=C.surface;g.fillRect(6,6,lw+12,22);g.strokeStyle=C.line;g.lineWidth=1;g.strokeRect(6.5,6.5,lw+11,21);g.fillStyle=C.ink;g.fillText(label,12,11);
+    const label=`${t('Génération','Generation')} ${gen} · ${t('population','population')} ${cells.size}`,lw=(g.measureText(label)||{}).width||label.length*7;g.fillStyle=C.surface;g.fillRect(6,6,lw+12,22);g.strokeStyle=C.line;g.lineWidth=1;g.strokeRect(6.5,6.5,lw+11,21);g.fillStyle=C.ink;g.fillText(label,12,11);
     curve(C);g.restore();
     o.read(`${t('Génération','Generation')} ${gen} · ${t('cellules vivantes :','live cells:')} ${cells.size} · ${t('maximum atteint :','peak so far:')} ${Math.max(0,...pops)}${cells.size===0&&gen>0?' · '+t('tout est mort','everything has died'):''}`);
     return moving;
