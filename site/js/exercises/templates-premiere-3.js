@@ -196,7 +196,7 @@ export const premiere3 = [
         let a, b, k; do { a = r.int(-6, 4); b = a + r.int(1, 7); k = r.pick([1, 2, 3, -1, -2, -3]); } while (false);
         const sg = (x) => Math.sign(k * (x - a) * (x - b)), right = [sg(a - 1), sg((a + b) / 2), sg(b + 1)];
         const segs = [`]-\\infty\\,;\\,${a}]`, `[${a}\\,;\\,${b}]`, `[${b}\\,;\\,+\\infty[`];
-        const txt = (p) => M(p.map((s, i) => `${s > 0 ? '\\nearrow' : '\\searrow'}\\ ${segs[i]}`).join('\\ ;\\ '));
+        const txt = (p) => p.map((s, i) => M(`${s > 0 ? '\\nearrow' : '\\searrow'}\\ ${segs[i]}`)).join(' ; ');
         const pats = [[right, `${M('f\'')} est du signe de ${M('k')} à l’extérieur des racines ${M(a)} et ${M(b)} et du signe opposé entre elles.`], [right.map((s) => -s), 'inverse le sens de variation : oublie le signe du coefficient ' + M(k) + '.'], [[right[0], right[0], right[0]], 'ne tient pas compte des racines de ' + M("f'") + '.'], [[right[0], right[0], -right[0]], 'ne change de sens qu’une fois, alors que ' + M("f'") + ' s’annule et change de signe deux fois.'], [[-right[0], right[0], right[0]], 'se trompe de signe sur le premier intervalle.']];
         return mcq(r, `${M("f'(x)=" + (k === 1 ? '' : k === -1 ? '-' : k) + xm(a) + xm(b))} pour tout réel ${M('x')}. Les variations de ${M('f')} sont (${M('\\nearrow')} croissante, ${M('\\searrow')} décroissante) :`, opt(txt(pats[0][0]), pats[0][1], { p: pats[0][0] }), pats.slice(1).map(([p, w]) => opt(txt(p), w, { p })), (o) => o.p.every((s, i) => s === right[i]));
       }

@@ -21,6 +21,13 @@
 .inference-data-label { display: block; font-size: .85rem; }
 .inference-data { width: 100%; box-sizing: border-box; min-height: 88px; font: inherit; color: var(--ink); background: var(--surface); }
 .inference-input-error { color: var(--neg); }
+.inference-plot { display: block; width: 100%; height: auto; max-height: 260px; margin: .4rem 0; background: var(--sunken); border: 1px solid var(--line); }
+.inference-axis { stroke: var(--line-strong); stroke-width: 1.5; }
+.inference-col { fill: var(--obj2); transform-box: fill-box; transform-origin: 50% 100%; transition: transform .35s ease-out; }
+.inference-curve { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; }
+.inference-dot { fill: var(--surface); stroke: var(--accent); stroke-width: 2; }
+.inference-tick { fill: var(--muted); font: 11px system-ui, sans-serif; }
+@media (prefers-reduced-motion: reduce) { .inference-col { transition: none; } }
 .inference-stage [hidden] { display: none !important; }
 @media (max-width: 390px) { .inference-stage { padding: .5rem; } .inference-bin { font-size: .65rem; } }
 
