@@ -5,6 +5,8 @@ create or push other branches (including session or `ccr-*` branches), and do no
 asks. If the session starts on another branch, switch to `main` (`git fetch origin main && git checkout main`) before
 committing. Obsolete branches are removed once their content is in `main` or judged superseded.
 
+**Edition rule (owner, 8 November 2026, hard rule): Maths-explorer is the limited edition of Matematika, so Matematika has to have everything Maths-explorer has, and more.** Never publish to Maths-explorer without syncing Matematika in the same round, and never let Matematika lag or lose anything. Sync recipe: set `FULL_EDITION = true` in `site/js/live-curriculum.js`, `make site`, rsync `dist/` into a clone of Heritiana-Ankatso/Matematika (excluding LICENSE*, README.md, .nojekyll), commit with that repo's author identity, push, then restore the flag (`git checkout site dist content/data/build-state.json && make site`).
+
 **Language rule (owner, 25 October 2026, until the owner says otherwise):** French and Malagasy curricula in French only,
 the international curriculum in English only, university resources in the language they were started in, Olympiad as its own category, bilingual by default. The bilingual
 goal for lessons is on standby (details: `PROJECT_BRIEF.md` section 3). Whenever the owner asks for a map of the site or a
