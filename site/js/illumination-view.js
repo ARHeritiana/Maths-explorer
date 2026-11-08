@@ -151,8 +151,10 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
     return out;
   }
   const same = (a, b) => a && b && a.type === b.type && (a.i ?? -1) === (b.i ?? -1);
+  let onScreen = true; const io = typeof IntersectionObserver === 'function' ? new IntersectionObserver((e) => { onScreen = e[e.length - 1].isIntersecting; if (onScreen) dirty = true; }) : null; io?.observe(cv);
   function frame(now) {
     if (!alive) return; raf = requestAnimationFrame(frame);
+    if (document.hidden || !onScreen || !cv.isConnected) { lastT = now; return; }   // nothing is drawn or computed off screen or in a hidden tab
     const dt = Math.min(0.05, (now - lastT) / 1000 || 0); lastT = now; const s = get();
     if (s.playing) { if (reduced()) { set({ playing: false }); elapsed = Infinity; } else { elapsed += dt * s.speed; dirty = true; } }
     const key = JSON.stringify(s); if (key !== frame.key) { frame.key = key; dirty = true; }
@@ -335,7 +337,7 @@ export function createRoomView(host, { t, fmt, get, set, reduced = () => false, 
     stepRays() { elapsed = Number.isFinite(elapsed) ? elapsed + 1 : 1; set({ playing: false }); dirty = true; },
     showAllRays() { elapsed = Infinity; set({ playing: false }); dirty = true; },
     redraw() { dirty = true; }, resetHistory() { history = []; future = []; },
-    destroy() { alive = false; cancelAnimationFrame(raf); clearTimeout(lightTimer); clearInterval(playTimer); listeners.forEach(([el, type, fn, o]) => el.removeEventListener(type, fn, o)); ro?.disconnect(); worker?.terminate(); farm?.destroy(); density?.destroy(); },
+    destroy() { alive = false; cancelAnimationFrame(raf); clearTimeout(lightTimer); clearInterval(playTimer); listeners.forEach(([el, type, fn, o]) => el.removeEventListener(type, fn, o)); ro?.disconnect(); io?.disconnect(); worker?.terminate(); farm?.destroy(); density?.destroy(); },
   };
   void fmt; raf = requestAnimationFrame(frame);
   return api;

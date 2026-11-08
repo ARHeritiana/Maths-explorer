@@ -20,6 +20,18 @@ export function mount({exp,stage,fmt,getState,setState,advance}){
  const pairs=Array.from({length:8},()=>{const dt=el('dt',''),dd=el('dd','');stats.append(dt,dd);return [dt,dd];});
  const bins=Array.from({length:90},()=>{const row=el('div','inference-bin'),label=el('span','inference-bin-label'),tracks=el('span','inference-tracks'),observed=el('i','inference-observed'),theory=el('i','inference-theory'),value=el('span','inference-bin-value');row.setAttribute('role','row');label.setAttribute('role','rowheader');tracks.setAttribute('aria-hidden','true');value.setAttribute('role','cell');tracks.append(observed,theory);row.append(label,tracks,value);chart.append(row);return {row,label,observed,theory,value};});
  const note=el('p','inference-plot-note');chart.before(note);
+ // The picture of the same numbers: columns for what was observed, a line with dots for the theoretical calculation (theme tokens, no animation under reduced motion).
+ const NS='http://www.w3.org/2000/svg',svgEl=(tag,attrs={})=>{const n=document.createElementNS(NS,tag);for(const k in attrs)n.setAttribute(k,attrs[k]);return n;};
+ const plot=svgEl('svg',{viewBox:'0 0 640 230',class:'inference-plot','aria-hidden':'true',preserveAspectRatio:'xMidYMid meet'});
+ const axis=svgEl('line',{class:'inference-axis',x1:30,x2:630,y1:196,y2:196}),cols=svgEl('g'),curve=svgEl('polyline',{class:'inference-curve'}),dotsG=svgEl('g'),ticks=svgEl('g'),top=svgEl('text',{class:'inference-tick',x:26,y:20,'text-anchor':'end'});
+ plot.append(axis,cols,curve,dotsG,ticks,top);premise.after(plot);
+ const drawPlot=(observed,theory,labels)=>{const n=labels.length,max=Math.max(0.01,...observed,...theory),w=600/Math.max(1,n),H=170;
+  while(cols.childNodes.length<n){cols.append(svgEl('rect',{class:'inference-col'}));dotsG.append(svgEl('circle',{class:'inference-dot',r:3.5}));ticks.append(svgEl('text',{class:'inference-tick','text-anchor':'middle',y:214}));}
+  [...cols.childNodes].forEach((r,i)=>{const on=i<n;r.style.display=dotsG.childNodes[i].style.display=ticks.childNodes[i].style.display=on?'':'none';if(!on)return;const h=H*(observed[i]||0)/max,bw=Math.max(1,Math.min(56,w*.7));
+   r.setAttribute('x',30+i*w+(w-bw)/2);r.setAttribute('width',bw);r.setAttribute('y',196-H);r.setAttribute('height',H);r.style.transform='scaleY('+(h/H||0)+')';
+   const d=dotsG.childNodes[i];d.setAttribute('cx',30+i*w+w/2);d.setAttribute('cy',196-H*(theory[i]||0)/max);d.style.display=theory.length?'':'none';
+   const tk=ticks.childNodes[i];tk.setAttribute('x',30+i*w+w/2);tk.style.display=i%Math.ceil(n/10)===0?'':'none';write(tk,String(labels[i]));});
+  curve.setAttribute('points',theory.length?theory.slice(0,n).map((v,i)=>(30+i*w+w/2)+','+(196-H*v/max)).join(' '):'');curve.style.display=theory.length?'':'none';write(top,percent(max));};
  function button(text,fn){const b=el('button','btn btn-secondary',t(text));b.type='button';on(b,'click',fn);surface.append(b);return b;}
  const cells=el('div','inference-cells');surface.append(cells);
  const cards=Array.from({length:100},(_,i)=>{const n=el('span','inference-cell');cells.append(n);return n;});
@@ -46,8 +58,8 @@ export function mount({exp,stage,fmt,getState,setState,advance}){
  const percent=x=>x===null?t(['Pas encore','Not yet']):fmt.read(100*x,2)+' %';
  function showStats(rows){pairs.forEach(([a,b],i)=>{a.hidden=b.hidden=i>=rows.length;if(i<rows.length){write(a,t(rows[i][0]));write(b,String(rows[i][1]));}});}
  function showCards(values,duplicate=false){cards.forEach((n,i)=>{n.hidden=i>=values.length;if(i<values.length){write(n,String(values[i]));n.dataset.match=String(duplicate&&values.indexOf(values[i])!==values.lastIndexOf(values[i]));}});}
- function bars(observed,theory,labels,caption){const hasTheory=theory.length>0;const max=Math.max(0.01,...observed,...theory);bins.forEach((b,i)=>{b.row.hidden=i>=labels.length;if(i<labels.length){write(b.label,String(labels[i]));b.observed.style.width=(100*(observed[i]||0)/max)+'%';b.theory.style.width=(100*(theory[i]||0)/max)+'%';b.theory.hidden=!hasTheory;write(b.value,percent(observed[i]||0)+(hasTheory?' / '+percent(theory[i]||0):''));}});write(note,hasTheory?t(['Plein : observé. Contour : calcul théorique.','Filled: observed. Outline: theoretical calculation.']):t(['Fréquences observées par classe.','Observed frequencies by bin.']));chart.setAttribute('aria-label',caption);}
- const hideChart=()=>{chart.hidden=note.hidden=true;};
+ function bars(observed,theory,labels,caption){const hasTheory=theory.length>0;const max=Math.max(0.01,...observed,...theory);bins.forEach((b,i)=>{b.row.hidden=i>=labels.length;if(i<labels.length){write(b.label,String(labels[i]));b.observed.style.width=(100*(observed[i]||0)/max)+'%';b.theory.style.width=(100*(theory[i]||0)/max)+'%';b.theory.hidden=!hasTheory;write(b.value,percent(observed[i]||0)+(hasTheory?' / '+percent(theory[i]||0):''));}});write(note,hasTheory?t(['Plein : observé. Contour : calcul théorique.','Filled: observed. Outline: theoretical calculation.']):t(['Fréquences observées par classe.','Observed frequencies by bin.']));chart.setAttribute('aria-label',caption);drawPlot(observed,theory,labels);plot.style.display='';}
+ const hideChart=()=>{chart.hidden=note.hidden=true;plot.style.display='none';};
  const histogram=(values,min,max,count=15)=>{const out=Array(count).fill(0);for(const v of values){const j=Math.min(count-1,Math.max(0,Math.floor((v-min)/(max-min)*count)));out[j]++;}return out.map(v=>values.length?v/values.length:0);};
  let previous='',growth=0,alive=true;
  const stopGrowth=()=>{if(growth)cancelAnimationFrame(growth);growth=0;};

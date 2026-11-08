@@ -33,3 +33,5 @@ relative to `site/js/gallery/`. Imports between these files use `./`; shared mod
 | `gallery-fair-division.js` | mounts the cake and goods laboratories (content in `site/js/fair-division-content.js`) |
 | `gallery-topology.js` | reuses the guided topology laboratories (content in `site/js/topology-content.js`) |
 | `gallery-dynamics.js` | mounts the pendulum, three-body and logistic simulations in gallery entries (content in `site/js/dynamics-content.js`) |
+
+Frame loops: every animated exhibit runs through `frameLoop` in `../object-kit.js` (via `loopFor` or `exhibit().animate`): paused when the tab is hidden or the canvas is off screen, stopped when the node leaves the page, dt = 0 under reduced motion. The six inference exhibits draw a themed SVG columns-and-curve plot (`../lab/templates/inference.js`).
