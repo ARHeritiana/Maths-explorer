@@ -24,7 +24,8 @@
 .gen-sep { width: 1px; align-self: stretch; background: var(--line); margin: 0 8px; }
 .gen-answers { margin-top: 18px; border: 2px solid var(--line); padding: 4px 14px; background: var(--surface); }
 .gen-answers summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 700; }
-.gen-list { padding-left: 1.4rem; display: grid; gap: 10px; }
+.gen-list { padding-left: 1.4rem; display: grid; gap: 10px; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.gen-list > li { min-width: 0; }
 .gen-answer { margin-top: 2px; }
 .gen-preview { overflow-x: auto; }
 
