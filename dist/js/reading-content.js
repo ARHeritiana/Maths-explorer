@@ -225,17 +225,6 @@ BIOGRAPHIES.push(
     sources: [['https://mathshistory.st-andrews.ac.uk/Biographies/Liu_Hui/', P('Liu Hui · MacTutor (anglais)', 'Liu Hui · MacTutor')]]
   },
   {
-    id: 'hypatia', name: 'Hypatie', dates: 'IVe et Ve siècles / 4th and 5th centuries',
-    places: P('Alexandrie', 'Alexandria'),
-    dek: P('Une enseignante de mathématiques et de philosophie dans l’Alexandrie de l’Antiquité tardive.', 'A teacher of mathematics and philosophy in late antique Alexandria.'),
-    facts: [['Vers 400 / Around 400', P('Enseigne à Alexandrie.', 'Teaches in Alexandria.')], ['415', P('Mort à Alexandrie.', 'Dies in Alexandria.')]],
-    sections: [[P('Enseignement et transmission', 'Teaching and transmission'), [
-      P('Hypatie enseigne les mathématiques et la philosophie à Alexandrie. Elle travaille dans une tradition de commentaires savants, notamment avec son père Théon, lui-même mathématicien et astronome. Ses élèves lui écrivent et gardent trace de son enseignement.', 'Hypatia teaches mathematics and philosophy in Alexandria. She works in a tradition of scholarly commentary, including work with her father Theon, himself a mathematician and astronomer. Her students write to her and preserve traces of her teaching.'),
-      P('Les sources anciennes sont fragmentaires et les œuvres conservées ne permettent pas toujours de distinguer précisément les contributions de chacun. Certaines attributions restent discutées. Cette incertitude invite à lire sa vie sans transformer les lacunes en anecdotes assurées.', 'Ancient sources are fragmentary, and surviving works do not always allow each person’s contribution to be distinguished precisely. Some attributions remain disputed. This uncertainty invites us to read her life without turning gaps into certain anecdotes.')
-    ]]], links: ['#history/people/hypatia'],
-    sources: [['https://mathshistory.st-andrews.ac.uk/Biographies/Hypatia/', P('Hypatie · MacTutor (anglais)', 'Hypatia · MacTutor')]]
-  },
-  {
     id: 'germain', name: 'Sophie Germain', dates: '1776-1831',
     places: P('France', 'France'),
     dek: P('Une chercheuse en théorie des nombres et en élasticité, malgré les obstacles à la formation des femmes.', 'A researcher in number theory and elasticity despite barriers to women’s education.'),
