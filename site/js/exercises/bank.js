@@ -4,6 +4,11 @@ import { rng, hashSeed } from './engine.js';
 import { seconde } from './templates-seconde.js';
 import { seconde2 } from './templates-seconde-2.js';
 import { seconde3 } from './templates-seconde-3.js';
+import { seconde4 } from './templates-seconde-4.js';
+import { seconde5 } from './templates-seconde-5.js';
+import { seconde6 } from './templates-seconde-6.js';
+import { seconde7 } from './templates-seconde-7.js';
+import { seconde8 } from './templates-seconde-8.js';
 import { premiere } from './templates-premiere.js';
 import { premiere2 } from './templates-premiere-2.js';
 import { premiere3 } from './templates-premiere-3.js';
@@ -14,13 +19,23 @@ import { terminale3 } from './templates-terminale-3.js';
 import { terminale4 } from './templates-terminale-4.js';
 import { terminale5 } from './templates-terminale-5.js';
 import { expertes } from './templates-expertes.js';
+import { expertes2 } from './templates-expertes-2.js';
+import { expertes3 } from './templates-expertes-3.js';
+import { expertes4 } from './templates-expertes-4.js';
+import { expertes5 } from './templates-expertes-5.js';
 import { stmg } from './templates-stmg.js';
+import { stmg2 } from './templates-stmg-2.js';
+import { stmg3 } from './templates-stmg-3.js';
+import { stmg4 } from './templates-stmg-4.js';
 import { authored } from './authored.js';
 import { authoredExams } from './authored-exams.js';
 import { problems } from './problems.js';
 import { authoredSeconde } from './authored-seconde.js';
 import { problemsSeconde } from './problems-seconde.js';
 import { problemsSeconde2 } from './problems-seconde-2.js';
+import { problemsSeconde3 } from './problems-seconde-3.js';
+import { problemsStmg } from './problems-stmg.js';
+import { problemsExpertes } from './problems-expertes.js';
 import { problemsPremiere } from './problems-premiere.js';
 import { problemsTerminale } from './problems-terminale.js';
 import { robust } from './premiere-kit.js';
@@ -38,8 +53,8 @@ export const DOMAINS = {
   'stats-proba': 'Statistiques et probabilités', complexes: 'Nombres complexes', arithmetique: 'Arithmétique', matrices: 'Matrices', graphes: 'Graphes',
 };
 export const LEVELS = [[1, 'Niveau 1 : routine'], [2, 'Niveau 2 : standard'], [3, 'Niveau 3 : exigeant']];
-export const TEMPLATES = [...seconde, ...seconde2, ...seconde3, ...premiere, ...robust(premiere2), ...robust(premiere3), ...robust(premiere4), ...terminale, ...tidy(terminale2), ...tidy(terminale3), ...tidy(terminale4), ...tidy(terminale5), ...expertes, ...stmg];
-export const AUTHORED = [...authored, ...authoredExams, ...authoredSeconde, ...problems, ...problemsSeconde, ...problemsSeconde2, ...problemsPremiere, ...problemsTerminale];   // fixed exercises, then seeded problems (those have make(r))
+export const TEMPLATES = [...seconde, ...seconde2, ...seconde3, ...tidy(seconde4), ...tidy(seconde5), ...tidy(seconde6), ...tidy(seconde7), ...tidy(seconde8), ...premiere, ...robust(premiere2), ...robust(premiere3), ...robust(premiere4), ...terminale, ...tidy(terminale2), ...tidy(terminale3), ...tidy(terminale4), ...tidy(terminale5), ...expertes, ...tidy(expertes2), ...tidy(expertes3), ...tidy(expertes4), ...tidy(expertes5), ...stmg, ...tidy(stmg2), ...tidy(stmg3), ...tidy(stmg4)];
+export const AUTHORED = [...authored, ...authoredExams, ...authoredSeconde, ...problems, ...problemsSeconde, ...problemsSeconde2, ...problemsSeconde3, ...problemsPremiere, ...problemsTerminale, ...problemsStmg, ...problemsExpertes];   // fixed exercises, then seeded problems (those have make(r))
 export const MINUTES = { 1: 2, 2: 4, 3: 6 };           // estimated minutes of a generated part, by level
 
 export const templatesFor = (cls) => TEMPLATES.filter((t) => t.cls === cls);

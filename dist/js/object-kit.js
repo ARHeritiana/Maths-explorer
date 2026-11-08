@@ -23,7 +23,29 @@ export function canvasIn(host, aspect, options = {}) {
 }
 export const field = (id, label, min, max, step, value) => `<label class="act-field" for="${id}"><span class="act-label">${label} <output id="${id}-out"></output></span><input id="${id}" type="range" min="${min}" max="${max}" step="${step}" value="${value}"></label>`;
 export const bind = (root, id, fn, fmt = (v) => v) => { const el = root.querySelector(`#${id}`), out = root.querySelector(`#${id}-out`); const run = () => { out.textContent = fmt(Number(el.value)); fn(Number(el.value)); }; el.addEventListener("input", run); out.textContent = fmt(Number(el.value)); return el; };
-export const loopFor = (draw, reduced) => { let raf = 0, last = 0, alive = true; const tick = (now) => { if (!alive) return; const dt = Math.min(0.05, (now - last) / 1000 || 0); last = now; draw(dt, now / 1000); raf = requestAnimationFrame(tick); }; raf = requestAnimationFrame(tick); void reduced; return () => { alive = false; cancelAnimationFrame(raf); }; };
+// One frame loop for every animated exhibit. It runs only while the canvas is on screen, the tab is visible and the node is still in the page
+// (a page change that forgot to call the stop function cannot leak a loop); under reduced motion it keeps ticking with dt = 0, so sliders and clicks
+// still redraw at once but nothing moves. `target` is the canvas (or its host); without one only the tab state is used.
+export const frameLoop = (draw, { reduced = () => false, target = null, maxDt = 0.05 } = {}) => {
+  let raf = 0, last = 0, alive = true, visible = true;
+  const run = () => !!(alive && visible && !document.hidden);
+  const tick = (now) => {
+    raf = 0; if (!alive) return;
+    if (target && !target.isConnected) { alive = false; return; }
+    if (!run()) return;
+    const dt = reduced() ? 0 : Math.max(0, Math.min(maxDt, (now - last) / 1000 || 0)); last = now; draw(dt, now / 1000);
+    raf = requestAnimationFrame(tick);
+  };
+  const wake = () => { if (!raf && run()) { last = performance.now(); raf = requestAnimationFrame(tick); } };
+  const sleep = () => { if (raf) { cancelAnimationFrame(raf); raf = 0; } };
+  const onVis = () => (document.hidden ? sleep() : wake());
+  document.addEventListener("visibilitychange", onVis);
+  const io = target && typeof IntersectionObserver === "function" ? new IntersectionObserver((e) => { visible = e[e.length - 1].isIntersecting; visible ? wake() : sleep(); }) : null;
+  io?.observe(target);
+  wake();
+  return () => { alive = false; sleep(); io?.disconnect(); document.removeEventListener("visibilitychange", onVis); };
+};
+export const loopFor = (draw, reduced, target = null) => frameLoop(draw, { reduced, target });
 
 
 // Idle guard for canvases that redraw on a timer: `idle(busy, key)` is true when nothing is moving (busy false) and the picture would be

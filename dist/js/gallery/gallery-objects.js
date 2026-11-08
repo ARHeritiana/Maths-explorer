@@ -96,7 +96,7 @@ function fourierLab(root, { t, reduced, lang }) {
     g.globalAlpha = 1; const [tx, ty] = toScreen(tip[0], tip[1]); g.fillStyle = C.neg; g.beginPath(); g.arc(tx, ty, 5, 0, TAU); g.fill();
     void lastCount;
   }
-  const stop = loopFor((dt) => frame(reduced() ? 0 : dt), reduced);
+  const stop = loopFor((dt) => frame(reduced() ? 0 : dt), reduced, o.cv);
   o.redraw = () => frame(0);
   // controls
   slider.addEventListener("input", () => { count = Number(slider.value); auto = false; trail = []; update(); });
@@ -219,7 +219,7 @@ function mandelbrotLab(root, { t, reduced, lang }) {
       hq = false; dirty = true; if (flying.t >= 1) { flying = null; hq = true; }
     }
     draw();
-  }, () => false);
+  }, () => false, o.cv);
   o.redraw = () => { dirty = true; }; j.redraw = () => { dirty = true; };
   const setSel = (c) => { cSel = c; root.querySelector('#mb-real').value=String(c[0]); root.querySelector('#mb-imag').value=String(c[1]); dirty = true; };
   const mainSlot=root.querySelector('#mb-stage').parentElement, secondarySlot=root.querySelector('#mb-julia').parentElement;

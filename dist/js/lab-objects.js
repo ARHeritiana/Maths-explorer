@@ -220,7 +220,7 @@ function galton(root, { t, reduced, lang }) {
   o.cv.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();drop(false);}});
   o.cv.setAttribute('aria-label',t('Planche de Galton : toucher ou Entrée pour lâcher une bille.','Galton board: tap or press Enter to drop a ball.'));
   reset(); o.redraw = () => draw(0);
-  const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced);
+  const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced, o.cv);
   return () => { gone = true; clearTimeout(bigRun); stop(); o.navigation?.destroy(); };
 }
 
@@ -298,7 +298,7 @@ function reuleauxLab(root, { t, reduced, lang }) {
   for(const ev of ['pointerup','pointercancel','lostpointercapture','view-gesture'])o.cv.addEventListener(ev,()=>dragging=false);
   o.cv.style.cursor='grab';o.redraw=()=>draw(0);
   draw(0);
-  const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced);
+  const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced, o.cv);
   return () => { stop(); o.navigation?.destroy(); };
 }
 
@@ -373,7 +373,7 @@ function chaos(root, { t, reduced, lang }) {
   o.cv.addEventListener("keydown",e=>{if(e.shiftKey||mode!=="game")return;if(e.key==='['||e.key===']'){selectedVertex=(selectedVertex+(e.key===']'?1:k-1))%k;e.preventDefault();return;}const d={ArrowLeft:[-5,0],ArrowRight:[5,0],ArrowUp:[0,-5],ArrowDown:[0,5]}[e.key];if(!d)return;e.preventDefault();selectedVertex%=k;verts[selectedVertex]=[clampN(verts[selectedVertex][0]+d[0],10,o.W-10),clampN(verts[selectedVertex][1]+d[1],10,o.H-10)];layer=null;blank=false;pts=[];cur=[o.W/2,o.H/2];draw();});
   o.cv.setAttribute('aria-label',t('Sommets : [ et ] pour choisir, flèches pour déplacer.','Vertices: [ and ] select, arrow keys move.'));
   layout(); o.redraw = () => draw();
-  const stop = loopFor(() => draw(), reduced);
+  const stop = loopFor(() => draw(), reduced, o.cv);
   return () => { closed = true; stop(); o.navigation?.destroy(); };
 }
 
