@@ -173,13 +173,12 @@ export const ADVANCES=[
 // Some contemporary sources give research dates without verified life dates. Never label those as births.
 // People with a full biography (#biographies/<id>, site/js/biographies-major.js and reading-content.js); the timeline entry
 // links to it and the biography links back. tests/history.test.mjs checks that both lists agree.
-export const BIOGRAPHY_PEOPLE=new Set(['gauss','von-neumann','erdos','galois','liu-hui','germain','mirzakhani',
+export const BIOGRAPHY_PEOPLE=new Set(['gauss','von-neumann','erdos','galois','liu-hui','hypatia','germain','mirzakhani',
  'euclid','archimedes','aryabhata','brahmagupta','al-khwarizmi','ibn-al-haytham','khayyam','fibonacci','madhava','cardano',
  'descartes','fermat','pascal','huygens','newton','leibniz','jacob-bernoulli','johann-bernoulli','euler','lagrange',
  'legendre','fourier','cauchy','mobius','abel','klein','poincare','hilbert','voronoi','noether','ramanujan','steinhaus','banach',
  'tarski','ulam','turing','shannon','hammersley','penrose','conway',
  'weierstrass','riemann','dedekind','cantor','kovalevskaya','lebesgue','kolmogorov','godel','serre','grothendieck','uhlenbeck','wiles','haken']);
-// Hypatia: a short timeline profile, no separate biography (owner decision of 31 October 2026).
 for(const p of PEOPLE) if(BIOGRAPHY_PEOPLE.has(p.id)&&!p.links.includes('#biographies/'+p.id)) p.links.unshift('#biographies/'+p.id);
 const documentaryPeople=new Set(['may']);
 for(const p of PEOPLE) p.dateType=documentaryPeople.has(p.id)?'documentary':'lifetime';
