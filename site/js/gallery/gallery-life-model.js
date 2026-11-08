@@ -78,3 +78,18 @@ export function soup(w, h, density, rnd = Math.random) {
   for (let x = 0; x < w; x++) for (let y = 0; y < h; y++) if (rnd() < density) cells.push([x - Math.floor(w / 2), y - Math.floor(h / 2)]);
   return fromCells(cells);
 }
+
+// The view that frames a live pattern: its bounding box plus a margin of whole cells, as large as fits (cells between minCell and
+// maxCell logical pixels wide), centred. An empty pattern gets a calm default view on the origin. Pure, so it is tested.
+export function fitView(box, W, H, { margin = 3, minCell = 2, maxCell = 36, empty = 14 } = {}) {
+  if (!box) return { cx: 0, cy: 0, cs: empty };
+  const [x0, y0, x1, y1] = box, bw = x1 - x0 + 1 + 2 * margin, bh = y1 - y0 + 1 + 2 * margin;
+  const cs = Math.max(minCell, Math.min(maxCell, W / bw, H / bh));
+  return { cx: (x0 + x1 + 1) / 2, cy: (y0 + y1 + 1) / 2, cs };
+}
+// Cells that were alive within the last `depth` generations but are dead now (the trail), with their age (1 = just died).
+export function trailAges(lastAlive, gen, depth = 10) {
+  const out = [];
+  for (const [k, g] of lastAlive) { const age = gen - g; if (age >= 1 && age <= depth) out.push([k, age]); }
+  return out;
+}
