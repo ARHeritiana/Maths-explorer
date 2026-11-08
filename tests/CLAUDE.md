@@ -109,6 +109,7 @@ honest rounding, shared-slide control visibility, root-mode fallback, slider ran
 | `fair-division.test.mjs` | independent quadrature, full enumeration of discrete allocations, cut-and-choose guarantees, EF1 and editable lab controls |
 
 `inference-dom.test.mjs`: six inference surfaces in both languages, hidden information, choices and reveals, input validation, seeded populations, sample growth with reduced motion, reciprocal content paths and navigation cleanup through the shared laboratory mount.
+`inference-figure.test.mjs`: the data behind the chance pictures (collision curve against the closed form, selection shift of the baker, Monty tally 2/3 and 1/3, tank bias, Benford presets, p(r) optimum) and the drawing code of all six figures against a no-op canvas, both languages, cleanup.
 
 `illumination.test.mjs`: independent reflection invariants, exact curve intersections, ellipse focal property, boundary validation, unfolding collinearity and original preset geometry.
 
