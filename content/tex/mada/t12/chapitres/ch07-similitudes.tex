@@ -1,0 +1,559 @@
+% T12 C/D, chapitre 7 : Similitudes planes. Source : le livre « Terminales scientifiques » (Similitude/Lesona, Similitude/Exo).
+% Les exercices tirés d’autres ouvrages ne sont pas repris (décision du 2 novembre 2026).
+
+\TCDLessonStyleOn
+\providecommand{\Plan}{\mathscr{P}}
+\providecommand{\Id}{\mathrm{Id}}
+\providecommand{\Droite}{(\mathscr{D})}
+\providecommand{\DroiteP}{(\mathscr{D}')}
+\providecommand{\Arg}[1]{\mathrm{Arg}\left( #1 \right)}
+\chapter{Similitude plane}
+\index{Similitude plane}
+      \section{G\'en\'eralit\'e}
+            Une similitude plane $S$ est tout transformation g\'eom\'etrique du plan v\'erifiant :
+                  \[
+                        \forall M \in \Plan , \forall N \in \Plan
+                  \]
+                  en posant $M' = S(M)$ et $N' = S(N)$, il existe un r\'eel $k>0$ tel que :
+                  \[
+                        MM' = k MN.
+                  \]
+            Le r\'eel $k$ est appel\'e le \emph{rapport} de la similitude $S$.
+\index{Similitude plane!rapport}
+            Toutes isom\'etrie est une similitude de rapport $1$.
+            Une homoth\'etie est une similitude de rapport $|k|$.
+            %
+            \begin{thm}
+                  Toutes similitude $S$ de rapport $k (>0)$ peut s'\'ecrire sous la forme $S = h \circ f$
+                  o\`u $h$ est une homoth\'etie de rapport $k$ et $f$ une isom\'etrie.
+                  %
+                  \begin{proof}
+                        Soit $S$ une similitude de rapport $k$.
+                        Soit $h$ l'homoth\'etie de centre $I$ et de rapport $k$.
+                        On a $h^{-1} = h\left(I ; \frac{1}{k}\right)$.
+                        On pose $f = h^{-1} \circ S$.
+                        
+                        Montrons que $f$ est une isom\'etrie : \newline
+                              Soient $M$ et $N$ deux points, posons $M' = f(M)$ et $N' = f(N)$.
+                              On a alors 
+                              \begin{align*}
+                                    M' & = h^{-1} \left[ S(M) \right]       & N' & = h^{-1} \left[ S(N) \right]      \\
+                                       & = h^{-1} (M_1)                     &    & = h^{-1} (N_1)                    \\
+                              \end{align*}
+                              et donc $M_1 N_1 = k MN$.
+                              Ainsi, $M'N' = \frac{1}{k} M_1 N_1 = \frac{1}{\not k} \not k MN$.
+                              On d\'eduit que $M'N' = MN$, et par cons\'equent, que $f$ est une isom\'etrie.
+                              
+                        Montrons que $S = h\circ f$ : \newline
+                              \[
+                                    f = h^{-1} \circ S 
+                                          \Rightarrow 
+                                                h \circ f = \underbrace{h \circ h^{-1}}_{\Id} \circ S
+                                                      \Rightarrow
+                                                            h \circ f = S.
+                              \]
+                  \end{proof}
+                  \begin{itemize}
+                        \item Si $f$ est un d\'eplacement alors $S$ est une similitude plane directe.
+\index{Similitude plane!directe}
+                        \item Si $f$ est un antid\'eplacement alors $S$ est une similitude plane indirecte.
+\index{Similitude plane!indirecte}
+                  \end{itemize}
+            \end{thm}
+            %
+            \begin{prop}
+                  \begin{enumerate}
+                        \item Toutes similitudes est une application affine bijective.
+                        \item La composition de $2$ similitudes est une similitude.
+                              Si
+                              \begin{itemize}
+                                    \item $S$ est une similitude de rapport $k$,
+                                    \item $S'$ une similitude de rapport $k'$,
+                              \end{itemize}
+                              alors $S \circ S'$ est une similitude de rapport $kk'$.
+                        \item Une similitude de rapport $k$ multiplie les distances par $k$ et les aires par $k^2$.
+                        \item Une similitude conserve le parall\'elisme et l'orthogonalit\'e.
+                  \end{enumerate}
+            \end{prop}
+            %
+      \section{Similitude plane directe}
+\index{Similitude plane!directe!forme loko1uite@forme r\'eduite}
+            Une similitude plane directe $S$ est soit une translation
+            soit la composition d'une homoth\'etie et d'une rotation de m\^eme centre :
+            c'est la forme r\'eduite.
+            
+            Une similitude plane directe $S$ a pour expression complexe $z' = az + b \quad (a \in \mathbb{C})$.
+            \begin{itemize}
+                  \item $|a| = k$ est le rapport,
+                  \item $\Arg{a} = \alpha$ est l'angle,
+                  \item $I\left(\frac{b}{1-a}\right)$ est le centre (si $a\neq 1$).
+            \end{itemize}
+            
+	            Une similitude plane directe est d\'efinie analytiquement par un syst\`eme du type :
+	            \[
+	                  \left\lbrace
+	                  \begin{array}{l}
+	                        x' = a x - b y + x_0, \\
+	                        y' = b x + a y + y_0.
+	                  \end{array}
+	                  \right.
+	            \]
+	            o\`u $a^2 + b^2 = k^2$.
+      %
+      \section{Similitude plane indirecte}
+\index{Similitude plane!indirecte}
+      %
+      \subsection{Forme}
+      Une similitude plane indirecte $f$ est la compos\'ee d'une homoth\'etie et d'un antid\'eplacement.
+      Le rapport $k$ de $f$ est celle de l'homoth\'etie.
+      \begin{description}
+            \item[Si $k=1$ :] $f$ est un antid\'eplacement.
+                  L'ensemble des points invariants de $f$ est soit vide soit une droite.
+                  \begin{itemize}
+                        \item Si $f$ n'a pas de point invariant, alors $f$ est la compos\'ee d'une sym\'etrie
+                              orthogonale et d'une translation de vecteur non nul.
+                        \item Si l'ensemble des points invariants est une droite $\Droite$, alors 
+                              $f$ la sym\'etrie orthogonale d'axe $\Droite$.
+                  \end{itemize}
+            \item[Si $k\neq 1$ :] $f$ admet un seul point invariant $\Omega$.
+                  Il existe une droite $\Droite$ passant par $\Omega$ tel que 
+                  $f = h(\Omega,k) \circ S_{\Droite} = S_{\Droite} \circ h(\Omega,k)$.
+                  
+                  La droite $\Droite$ est l'ensemble des points $M$ tels que 
+                  $\overrightarrow{\Omega M'} = k \cdot \overrightarrow{\Omega M}$,
+\index{Similitude plane!indirecte!Premiere droite globalement invariante@Premi\`ere droite globalement invariante}
+                  c'est la \emph{premi\`ere droite globalement invariante} par $f$.
+                  
+                  La droite $\DroiteP = \{ M \mid \overrightarrow{\Omega M'} = -k \cdot \overrightarrow{\Omega M} \}$
+\index{Similitude plane!indirecte!Deuxieme droite globalement invariante@Deuxi\`eme droite globalement invariante}
+                  est la \emph{deuxi\`eme droite globalement invariante} par $f$.
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Io ambony io ihany no lazaina eto fa toa misy diso (tsy ampy)
+%            Une similitude plane indirecte $S$ est la composition d'une homoth\'etie et d'un antid\'eplacement.
+%            
+%            Un antid\'eplacement est soit une r\'eflexion, 
+%            soit une symm\'etrie gliss\'ee ($t_{\vec{u}} \circ S_{\Droite}$ o\`u 
+%            $\vec{u}$ est un vecteur directeur de $\Droite$).
+%            \begin{itemize}
+%                  \item Si $f = S_{\Droite}$, $S = h \circ S_{\Droite}$
+%                  \item si $f = t_{\vec{u}} \circ S_{\Droite}$ donc
+%                        $S = \underbrace{h \circ t_{\vec{u}} }_{H} \circ S_{\Droite}$ et 
+%                        $S = H \circ S_{\Droite}$, o\`u $H$ est une homoth\'etie.
+%            \end{itemize}
+%            Toute similitude plane indirecte est la composition d'une homoth\'etie et d'une r\'eflexion :
+%\index{Similitude plane!indirecte!forme loko1uite@forme r\'eduite}
+%            c'est la forme r\'eduite. \mybox{$S = h \circ S_{\Droite} = S_{\Droite} \circ h$.}
+%            
+%            Une similitude plane indirecte admet un seul point invariant $I$ : c'est le centre.
+%\index{Similitude plane!indirecte!centre}
+%\index{Similitude plane!indirecte!point invariant}
+%            Il existe une droite $\Droite$ passant par $I$ globalement invariant pas $S$
+%            ($M \in \Droite \text{ et } M' = S(M) \Rightarrow \overrightarrow{IM'} = k \overrightarrow{IM}$ ) :
+%\index{Similitude plane!indirecte!axe}
+%            c'est l'\emph{axe}.
+%            
+%            \nota{
+%                  La droite $(\Delta)$, passant par $I$ et perpandiculaire \`a $\Droite$ 
+%                  est aussi globalement invariant par $S$ mais ce n'est pas l'axe : 
+%                  c'est la \emph{deuxi\`eme droite globalement invariante par $S$}.
+%\index{Similitude plane!indirecte!deuxieme droite globalement invariante@deuxi\`eme droite globalement invariante}
+%            }
+%      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+      \subsection{Expression analytique}
+\index{Similitude plane!indirecte!expression analytique}
+            Soit $f$ une similitude plane indirecte de rapport $k$.
+            La similitude $f$ est alors d\'efinie analytiquement par un syst\`eme du type :
+            $\left\lbrace \begin{array}{l} x' = a x + b y + x_0 \\ y' = b x - a y + y_0 \end{array} \right.$
+            o\`u $a^2 + b^2 = k^2$.
+      %
+      \subsection{Expression complexe}
+            Soit $S$ la similitude plane directe qui \'egal \`a $h \circ S_{\Droite}$.
+            Soient 
+            \[
+                  \begin{array}{l}
+                        h : z' = k z + b \\
+                        S_{\Droite} : z' = a \bar{z} + c 
+                  \end{array}
+            \]
+            les expressions complexes de $h$ et $S_{\Droite}$.
+            
+            On a alors, $S : z' = k \left( a \bar{z} + c \right) + b = k a \bar{z} + k c + b$.
+\index{Similitude plane!indirecte!expression complexe}
+            De plus, on v\'erifie que $|k a| = |k| \cdot |a| = |k|$ ($S_{\Droite}$ \'etant une isom\'etrie, $|a| = 1$).
+            
+            Une similitude plane indirecte a une expression complexe de la forme \thmbox{$a \bar{z} + b$}
+\index{Similitude plane!indirecte!rapport}
+            tel que \thmbox{$|a| = k$} : c'est le \emph{rapport}.
+            
+            \paragraph{Le point invariant $I$}
+            Toute similitude plane indirecte de rapport $k \neq 1$ admet un point invariant $I$ qu'on appelle le \emph{centre}.
+\index{Similitude plane!indirecte!centre}
+                  \[
+                        \left.
+                              \begin{array}{l}
+                                    z_I = a \overline{z_I} + b \\
+                                    \overline{z_I} = \bar{a} z_I + \bar{b} 
+                              \end{array}
+                        \right\rbrace
+                              \Rightarrow 
+                        z_I = a (\bar{a} z_I + \bar{b} ) + b.
+                  \]
+            Donc $z_I = a \bar{a} z_I + a \bar{b} + b$.
+            Il vient que $(1-a\bar{a}) z_I = a\bar{b} + b$ et donc que
+            \thmbox{
+                  \[
+                        z_I = \frac{a\bar{b}+b}{1 - a \bar{a}} (|a| \neq 1)
+                  \]
+            }
+            est l'affixe du centre $I$.
+            %
+            \begin{ex}
+                  Soit $S$ la transformation g\'eom\'etrique d'expression complexe $z'=2\bar{z}+3i$.
+                  Quel est la nature de $S$\,? d\'eterminer ses \'el\'ements caract\'eristiques.
+                  
+                  Construire ensuite le transform\'e du cercle $(\mathscr{C})$ de centre $A(1-i)$ et de rayon 1 par $S$.
+                  Ecrire l'\'equation de ce cercle.
+                  \begin{valiny}
+                  %
+                  \begin{minipage}{.5\actualtextwidth}
+                        \paragraph{Nature et \'el\'ements caract\'eristiques de $S$ :}
+                              Comme $a = 2$, $|a| = 2 \neq 1$ donc $S$ est une similitude plane indirecte.
+                              \begin{description}
+                                    \item[Rapport :] $k = 2$.
+                                    \item[Centre :] $z_I = \frac{-2 \cdot 3i + 3i}{1 - 2 \cdot 2} = \frac{-3i}{-3} = i$.
+                                    \item[Axe :] $\Droite = \{ M \mid \overrightarrow{IM'} = 2 \overrightarrow{IM} \}$.
+                                          \begin{align*}
+                                                \overrightarrow{IM'} & = 2 \overrightarrow{IM} \\
+                                                z' - i               & = 2 ( z - i )           \\
+                                                2 \bar{z} + 3i - i   & = 2 z - 2 i             \\
+                                                2 \bar{z} + 2 i      & = 2 z - 2 i             \\
+                                                2 (z - \bar{z})      & = 4 i                   \\
+                                                z - \bar{z}          & = 2 i                   \\
+                                                x + i y - x + i y    & = 2 i                   \\
+                                                2 i y                & = 2 i                   \;.
+                                          \end{align*}
+                                          Donc $\Droite : y = 1$.
+                              \end{description}
+                        \paragraph{Transform\'e de $(\mathscr{C})$ :}
+                                    $A'(2+5i)$ et $(\mathscr{C}') : (x-2)^2 + (y-5)^2 = 4$.
+                  \end{minipage}
+                  %
+                  \begin{minipage}{.4\actualtextwidth}
+                              \resizebox{\linewidth}{!}{%
+                              \begin{tikzpicture}[line cap=round,line join=round,>=stealth,x=1cm,y=1cm]
+                              \draw [color=black!10, xstep=0.1cm,ystep=0.1cm,line width=.1, opacity=.3] 
+                                    (-1,-3) grid (5,8);
+                              \draw [color=black!50, xstep=0.5cm,ystep=0.5cm,line width=.2, opacity=.3] 
+                                    (-1,-3) grid (5,8);
+                              \draw [color=black!100, xstep=1.0cm,ystep=1.0cm,line width=.5, opacity=.3] 
+                                    (-1,-3) grid (5,8);
+                              \draw[->,color=black] (-1,0) -- (5,0);
+                              \foreach \x in {-1,1,2,3,4}
+                              \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+                              \draw[->,color=black] (0,-3) -- (0,8);
+                              \foreach \y in {-3,-2,-1,1,2,3,4,5,6,7}
+                              \draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+                              \draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+                              \clip(-1,-3) rectangle (5,8);
+                              \draw[loko1] (1,-1) circle (1);
+                              \draw [domain=-1:5,loko2] plot(\x,{(-1-0*\x)/-1});
+                              \draw[loko1] (2,5) circle (2);
+                              \begin{scriptsize}
+                              \fill [color=loko1] (1,-1) circle (1.5pt);
+                              \draw[color=loko1] (1.16,-0.74) node {$A$};
+                              \draw[color=loko1] (1.54,-0.4) node {$(\mathscr{C})$};
+                              \fill [color=black] (0,1) circle (1.5pt);
+                              \draw[color=black] (0.1,1.26) node {$I$};
+                              \fill [color=loko1] (2,5) circle (1.5pt);
+                              \draw[color=loko1] (2.18,5.26) node {$A'$};
+                              \draw[color=loko1] (1.58,6.54) node {$(\mathscr{C}')$};
+                              \end{scriptsize}
+                              \end{tikzpicture}
+                              }
+                  \end{minipage}
+                  %
+                  \end{valiny}
+            \end{ex}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\TCDLessonStyleOff
+\clearpage
+% Similitudes %
+\providecommand{\Cercle}{(\mathscr{C})}
+\providecommand{\CercleP}{(\mathscr{C}')}
+\providecommand{\Droite}{(\mathscr{D})}
+\providecommand{\DroiteP}{(\mathscr{D}')}
+\providecommand{\Plan}{\mathscr{P}}
+\providecommand{\mes}[2]{\mathrm{mes}\left( \widehat{ \overrightarrow{#1} , \overrightarrow{#2} } \right)}
+\section{Exercices}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo} % Maths Jokers Ex 122
+      Dans le plan orient\'e, $ABC$ est un triangle rectangle isoc\`ele en $A$.
+      Soient $I$, $J$ et $K$ les milieux respectifs des c\^ot\'es $AB$, $BC$ et $AC$.
+      Soient les transformations suivantes :
+      $r_1 = r(A ; \frac{\pi}{2})$, $r_2 = r(B ; -\frac{\pi}{2})$ et $t = t_{\overrightarrow{BC}}$.
+      \begin{enumerate}
+            \item Faire une figure que l'on compl\'etera au fur et \`a mesure de la progression de l'\'enonc\'e.
+                  (On prend $AB = 6~\mathrm{cm}$.)
+            \item \begin{enumerate}
+                        \item D\'eterminer l'image du point $B$ par $r_1 \circ r_2$.
+                        \item En d\'eduire la nature et les \'el\'ements caract\'eristiques de $r_1 \circ r_2$.
+                        \item En utilisant la decomposition en produits de deux sym\'etries axiales d'une rotation ;
+                              retrouver la nature et les \'el\'ements caract\'eristiques de $r_1 \circ r_2$.
+                  \end{enumerate}
+            \item Soit $f$ la transformation d\'efinie par $f = t_{\overrightarrow{BC}} \circ s_{(AB)}$
+                  o\`u $s_{(AB)}$ est la sym\'etrie axiale d'axe $(AB)$.
+                  \begin{enumerate}
+                        \item Montrer qu'une droite $\Droite$ que l'on pr\'ecisera telle que :
+                              $t_{\overrightarrow{AC}} = s_{\Droite} \circ s_{(AB)}$.
+                        \item En remarquant que $\overrightarrow{BC} = \overrightarrow{BA} + \overrightarrow{AC}$
+                              $t_{\overrightarrow{BC}} = t_{\overrightarrow{BA}}  \circ t_{\overrightarrow{AC}}$ ;
+                              montrer que $f = t_{\overrightarrow{BA}} \circ s_{(JK)}$.
+                  \end{enumerate}
+      \end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo} % Maths Jokers Ex 127 : A & E
+      \begin{description}
+            \item[A.]
+                  Le plan complexe est muni d'un rep\`ere orthonormal direct $(O;\vec{u},\vec{v})$.
+                  On consid\`ere la transformation $f$ qui, \`a tout point $M(x,y)$ 
+                  associe le point $M'(x',y')$ tel que :
+                  $\displaystyle{ \left\lbrace \begin{array}{l} x' = -x-y+2 \\ y' = x-y-1 \end{array} \right. }$.
+                  \begin{enumerate}
+                        \item D\'eterminer l'affixe $z'$ de $M'$ en fonction de l'affixe $z$ de $M$.
+                        \item D\'emontrer que $f$ est une similitude plane directe dont on pr\'ecisera ses 
+                              \'el\'ements g\'eom\'etriques.
+                        \item D\'eterminer l'image par $f$ :
+                              \begin{enumerate}
+                                    \item du cercle de centre $K(1-3i)$ et de rayon 1.
+                                    \item de la droite $\Droite : 2x-y+5=0$.
+                              \end{enumerate}
+                  \end{enumerate}
+            \item[B.]
+                  Soit $f$ la transformation du plan d\'efinie par : 
+                  $f : \left\lbrace \begin{array}{l} x' = x + y + 2 \\ y' = -x + y +\frac{3}{2} \end{array} \right.$.
+                  \begin{enumerate}
+                        \item Donner l'\'ecriture complexe de $f$.
+                              En d\'eduire sa nature et ses \'el\'ements caract\'eristiques.
+                        \item D\'eterminer et construire l'ensemble des points $M(z)$ tels que 
+                              $| (1-i)z + 2 + \frac{3}{2}i | = 4$ par la m\'ethode g\'eom\'etrique.
+                  \end{enumerate}
+      \end{description}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo} % Atsimondrano 2016 - 2017 Partie A
+      Soit $ABO$ un triangle \'equilat\'eral d'un plan orient\'e tel que $\congru{\mes{AB}{AO}}{\frac{\pi}{3}}{2\pi}$.
+      On pose $H$ le milieu de $[AO]$, $J$ celui de $[AB]$ et $(\Delta)$ la m\'ediatrice de $[AB]$.
+      Soit $s$ la similitude plane directe de centre $O$ et transformant $A$ en $I$.
+      $M$ d\'esigne un point quelconque du plan et $M'$ d\'esigne son image par $s$.
+      \begin{enumerate}
+            \item \begin{enumerate}
+                        \item D\'eterminer l'angle et le rapport de $s$.
+                        \item Construire le point $C$ du plan tel que $s(C) = A$.
+                              (On justifiera soigneusement la construction.)
+                        \item Exprimer $AM'$ en fonction de $CM$.
+                  \end{enumerate}
+            \item On note $M''$ l'image du point $M$ par la r\'eflexion d'axe $(\Delta)$ et on se propose
+                  de d\'eterminer l'ensemble $(\Gamma)$ des points $M$ du plan tels que $A$ 
+                  soit \'equidistant de $M'$ et $M''$.
+                  \begin{enumerate}
+                        \item Montrer que $AM = BM$.
+                        \item Montrer que $M$ appartient \`a $(\Gamma)$ si et seulement si $CM = 2 BM$.
+                        \item Montrer que $CM = 2 BM$ si et seulement si 
+                              $(\overrightarrow{CM}-2\overrightarrow{BM})\cdot(\overrightarrow{CM}+2\overrightarrow{BM})=0$.
+                        \item En d\'eduire la nature de $(\Gamma)$ et construire $(\Gamma)$.
+                  \end{enumerate}
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo} % Atsimondrano 2016 - 2017 Partie B
+      Le plan est rapport\'e \`a un rep\`ere orthonormal $(O;\vec{u},\vec{v})$ et 
+      $f$ est la transformation du plan qui, \`a tout point $M(z)$ associe le point $M'(z')$ tel que 
+      $z' = (1+i\sqrt{3}) \bar{z} + \sqrt{3} - i (2 + \sqrt{3})$.
+      \begin{enumerate}
+            \item Pr\'eciser la nature , le rapport $\lambda$ et l'affixe $\omega$ du centre $\Omega$ de $f$.
+            \item Donner l'expression complexe de l'homoth\'etie $h$ de centre $\Omega$ et de rapport $\frac{1}{\lambda}$.
+            \item Caracteriser $f \circ h$ et $f$.
+            \item D\'eterminer et construire l'image $\CercleP$ du cercle $\Cercle$ d'\'equation 
+                  $x^2 + y^2 - 2x - 2y = 0$.
+      \end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+      \begin{description}
+            \item[I.]
+                  Dans le plan orient\'e $\Plan$, $a$ \'etant un nombre r\'eel strictement positif,
+                  On consid\`ere un triangle \'equilat\'eral $ABC$ de centre $D$ tels que :
+                        $\|\overrightarrow{AB}\|=\|\overrightarrow{BC}\|=\|\overrightarrow{CA}\|=a$.
+                  \begin{enumerate}
+                        \item D\'eterminer le point $G$, barycentre des points $A$, $B$ et $C$
+                              respectivement affect\'es des coefficients $2$, $1$ et $1$.
+                              Pr\'eciser sur une figure la position du point $G$.
+                              (On compl\'etera la figure au fur et \`a mesure.)
+                        \item On consid\`ere l'application $f$ de $\Plan$ dans $\Plan$ qui 
+                              au point $M$ associe le point $M'$ tel que :
+                              $\overrightarrow{MM'} = 2 \overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC}$.
+                              Pr\'eciser la nature de $f$ et les \'el\'ements qui la caract\'erisent.
+                        \item D\'eterminer l'ensemble $\mathcal{E}$ des points $M$ de $\Plan$ v\'erifiant :
+                              $2 \overrightarrow{MA}^2 + \overrightarrow{MB}^2 + \overrightarrow{MC}^2 = 2 a^2$.
+                              (On pourra remarquer que $A$ est un \'el\'ement de $\mathcal{E}$.)
+                        \item D\'eterminer l'ensemble $\Delta$ des points $M$ de $\Plan$ v\'erifiant :
+                              $\overrightarrow{MB}^2 + \overrightarrow{MC}^2 - 2 \overrightarrow{MA}^2 = 2 a^2$.
+                              (On pourra remarquer que $A$ est un \'el\'ement de $\Delta$.)
+                  \end{enumerate}
+            \item[II.] 
+                  Dans le plan $\Plan$, soient $I$, $J$ et $K$ les milieux respectifs de
+                  $[BC]$, $[CA]$ et $[AB]$.
+                  Le point $E$ est le sym\'etrique de $K$ par rapport \`a $I$.
+                  \begin{enumerate}
+                        \item \begin{enumerate}
+                                    \item Montrer qu'il existe une unique rotation $r_1$ qui transforme 
+                                          $B$ en $I$ et $J$ en $A$.
+                                    \item D\'eterminer les \'el\'ements caract\'eristiques de $r_1$.
+                              \end{enumerate}
+                        \item Soit $t$ la translation de vecteur $\overrightarrow{AJ}$.
+                              On pose : $r_2 = t \circ r_1$ et $f = s_{(JC)} \circ s_{(JE)} \circ s_{(KE)}$.
+                              \begin{enumerate}
+                                    \item D\'eterminer $r_2 (J)$ et caract\'eriser $r_2$.
+                                    \item D\'eterminer deux droites $\Delta_1$ et $\Delta_2$ telles que
+                                          $r_1 = s_{(KC)} \circ s_{\Delta_1}$ et $r_2 = s_{(JC)} \circ s_{\Delta_2}$.
+                                    \item En d\'eduire que $f = t_{\overrightarrow{AJ}} \circ s_{(KC)}$.
+                                    \item D\'eterminer l'image du triangle $BIK$ par $f$.
+                                          Justifier que $f$ est une sym\'etrie glissante et d\'eterminer sa forme r\'eduite.
+                              \end{enumerate}
+                  \end{enumerate}
+            \item[III.]
+                  Le plan est muni d'un rep\`ere orthonorm\'e direct $(A;\vec{u},\vec{v})$ avec
+                  $\vec{u} = \frac{1}{2} \overrightarrow{AB}$, $\|\vec{u}\| = \|\vec{v}\|$ et $a = 4~\mathrm{cm}$.
+                  \begin{enumerate}
+                        \item \begin{enumerate}
+                                    \item D\'eterminer l'\'ecriture complexe de $t_{\overrightarrow{AJ}}$ et $s_{(KC)}$.
+                                    \item En d\'eduire l'expression analytique de $f$.
+                              \end{enumerate}
+                        \item D\'eterminer l'ecriture complexe et les \'el\'ements g\'eom\'etriques
+                              de la similitude plane directe $s$ qui transforme $E$ en $I$ et $C$ en $D$.
+                  \end{enumerate}
+      \end{description}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+      Dans le plan orient\'e $\mathscr{P}$, on consid\`ere un triangle isoc\`ele $ABC$ tel que $AB = AC = a$, 
+      o\`u $a$ est un r\'eel strictement positif, et $ \left( \overrightarrow{AB},\overrightarrow{AC} \right) = \frac{\pi}{2} \quad [2 \pi]$.
+      On note $D$ le sym\'etrique de $A$ par rapport \`a $B$, $O$ le milieu de $[CD]$ et 
+      $(\Gamma)$ le cercle de diam\`etre $[CD]$. 
+      Placer sur une figure les points $A$, $B$, $C$, $D$, $O$ et le cercle $(\Gamma)$.       
+      %
+      \begin{description}
+            \item[Partie A.]
+                  \begin{enumerate}
+                        \item D\'eterminer le barycentre $G$ du syst\`eme de points pond\'er\'es 
+                              $\left\lbrace (A,-1) , (B , 2) , (C , 1) \right\rbrace$.
+	                        \item D\'eterminer et construire l'ensemble 
+	                              \[
+	                              \mathscr{C} = \left\lbrace M \in \mathscr{P} \;\middle|\; \left\| - 
+	                              \overrightarrow{MA} + 2 \; \overrightarrow{MB} + \overrightarrow{MC} \right\| = a \right\rbrace.
+	                              \]
+	                        \item D\'eterminer et construire l'ensemble 
+	                              \[
+	                              \mathscr{C}' = \left\lbrace M \in \mathscr{P} \mid 
+	                              -{MA}^2 + 2 \; {MB}^2 + {MC}^2 = a^2 \right\rbrace.
+	                              \]
+                        \item Montrer que pour tout point $M$ du plan 
+                              $\mathscr{P}$, $-\overrightarrow{MA} + 2 \; \overrightarrow{MB} - \overrightarrow{MC}$ 
+	                              est un vecteur constant $\overrightarrow{W}$ que l'on pr\'ecisera.
+                  \end{enumerate}
+            \item[Partie B]
+                  On d\'esigne par $s$ la similitude directe qui transforme $D$ en $B$ et $B$ en $C$. 
+                  On se propose de d\'eterminer, par deux mani\`eres ind\'ependantes, 
+                  les \'el\'ements caract\'eristiques de $s$, notamment son centre $I$.
+                  
+                  \textbf{I. M\'ethode g\'eom\'etrique}
+                  
+                  \begin{enumerate}
+                        \item D\'eterminer le rapport $k$ et l'angle $\alpha$ de la similitude $s$. 
+                        \item Montrer que : 
+                              \begin{equation} \label{eq:angle}
+                                    (\overrightarrow{ID}, \overrightarrow{IC}) = -\frac{\pi}{2} \quad [2 \pi] \;,
+                              \end{equation}
+                              %
+                              et
+                              %
+                              \begin{equation} \label{eq:rapport}
+                                    IC = 2 \; ID \;.
+                              \end{equation}
+                        \item A l'aide de (\ref{eq:angle}), prouver que $I$ appartient au cercle $(\Gamma)$ ; 
+                              puis, en utilisant (\ref{eq:rapport}), que $ID = a$.
+                              Etablir enfin que $BI = BC$.
+                        \item Prouver que la droite $(OB)$ est la m\'ediatrice de $[IC]$.
+                              Pr\'eciser la nature du quadrilat\`ere $CADI$. Placer le point $I$.
+                  \end{enumerate}
+                  
+                  \textbf{II. Utilisation des nombres complexes}
+                  
+                  On pose $\vec{u} = \frac{1}{a} \overrightarrow{AB}$ et on rapporte le 
+                  plan complexe au rep\`ere orthonormal $(A, \vec{u}, \vec{v})$.
+                  On on note $z_0$ l'affixe de $I$.
+                  \begin{enumerate}
+                        \item D\'eterminer les affixes des points $B$, $C$ et $D$.
+                        \item D\'eterminer l'\'ecriture complexe de la similitude $s$.
+                              D\'eterminer $z_0$ et pr\'eciser la position de $I$.
+                  \end{enumerate}
+                  
+                  \textbf{III.} 
+                        Soit $f$ la similitude plane indirecte de centre $A$ qui transforme $C$ en $D$.       
+                        D\'eterminer l'\'ecriture complexe de $f$ et donner ses \'el\'ements caract\'eristiques.
+      \end{description}
+\end{exo}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

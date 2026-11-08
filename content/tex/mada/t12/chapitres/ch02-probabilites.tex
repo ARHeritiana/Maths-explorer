@@ -1,0 +1,996 @@
+% T12 C/D, chapitre 2 : Probabilités. Source : le livre « Terminales scientifiques » (Proba/Lesona, Proba/Fiche, Proba/Exo).
+% Les exercices tirés d’autres ouvrages ne sont pas repris (décision du 2 novembre 2026).
+
+\TCDLessonStyleOn
+\chapter{Probabilit\'e}
+\newcommand{\card}[1]{\text{Card }#1}
+\newcommand{\A}[2]{A_{#1}^{#2}}
+\newcommand{\C}[2]{C_{#1}^{#2}}
+      \section{D\'enombrement}
+            %
+            \begin{defi}[Cardinal d'un ensemble fini]
+\index{Cardinal}
+            On appelle \emph{cardinal} d'un ensemble fini le nombre de ses \'el\'ements.
+            Si $X$ est un ensemble alors nous noterons par $Card(X)$ le cardinal de $X$.
+            Si on se place dans un ensemble $E$ et si $A$ est un sous-ensemble de $E$, alors on note par $\bar{A}$ le compl\'ementaire de $A$ dans $E$, c'est-\`a-dire l'ensemble des \'el\'ements de $E$ qui ne sont pas dans $A$. 
+            \end{defi}
+            %
+            \begin{prp}
+            Soient $A$ et $B$ deux ensembles finis. On a alors :
+            \begin{itemize}
+                  \item Si $A$ et $B$ sont deux ensembles disjoints, alors $Card(A \cup B) = Card(A) + Card(B)$.
+                  \item $Card(A \cup B) = Card(A) + Card(B) - Card(A \cap B)$.
+                  \item Si $\bar{A}$ d\'esigne le compl\'ementaire de $A$ dans $E$, alors $Card(\bar{A}) = Card(E) - Card(A)$.
+            \end{itemize}
+            \end{prp}
+            %
+            Soient $E$ et $F$ deux ensembles finis non-vides \`a $p$ et $n$ \'el\'ements respectivement.
+            Notons par $e_1,\ e_2,\ \ldots\ ,\ e_p$ les \'el\'ements de $E$ 
+            et par  $f_1,\ f_2,\ \ldots\ ,\ f_n$ les \'el\'ements de $F$. 
+            %
+            \subsection{Nombre d'applications de $E$ vers $F$}
+            Si $\varphi : E \rightarrow F $ 
+            est une application, alors :
+            \begin{itemize}
+                  \item il y a $n$ possibilit\'es pour $\varphi(e_1)$,
+                  \item il y a $n$ possibilit\'es pour $\varphi(e_2)$,
+                  \item et ainsi de suite,
+                  \item il y a $n$ possibilit\'es pour $\varphi(e_p)$.
+            \end{itemize}
+            Ainsi, il y a exactement \propbox{$n^p$} applications possibles de $E$ dans $F$.
+            %
+            \begin{figure}[h!]
+            \centering
+                  \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+                  \clip(-2.7,0.26) rectangle (5.44,5.32);
+                  \draw [rotate around={89.01:(-1.56,2.7)}] (-1.56,2.7) ellipse (1.38cm and 0.74cm);
+                  \draw [rotate around={89.16:(4.25,2.72)}] (4.25,2.72) ellipse (2.27cm and 1cm);
+                  \draw [->] (-1.82,3.63) -- (4.64,3.75);
+                  \draw [->] (-1.37,1.57) -- (4.64,3.75);
+                  \draw [->] (-1.42,3) -- (4.43,2.6);
+                  \draw [->] (-1.81,2.24) -- (4.44,1.05);
+                  \begin{scriptsize}
+                  \fill [color=black] (-1.82,3.63) circle (1.5pt);
+                  \draw[color=black] (-1.67,3.77) node {$e_1$};
+                  \fill [color=black] (-1.42,3) circle (1.5pt);
+                  \draw[color=black] (-1.27,3.13) node {$e_2$};
+                  \fill [color=black] (-1.81,2.24) circle (1.5pt);
+                  \draw[color=black] (-1.64,2.37) node {$e_3$};
+                  \fill [color=black] (-1.37,1.57) circle (1.5pt);
+                  \draw[color=black] (-1.25,1.75) node {$e_4$};
+                  \fill [color=black] (3.98,4.42) circle (1.5pt);
+                  \draw[color=black] (4.11,4.56) node {$f_1$};
+                  \fill [color=black] (4.64,3.75) circle (1.5pt);
+                  \draw[color=black] (4.79,3.88) node {$f_2$};
+                  \fill [color=black] (3.66,3.09) circle (1.5pt);
+                  \draw[color=black] (3.8,3.23) node {$f_3$};
+                  \fill [color=black] (4.43,2.6) circle (1.5pt);
+                  \draw[color=black] (4.46,2.79) node {$f_4$};
+                  \fill [color=black] (3.89,1.71) circle (1.5pt);
+                  \draw[color=black] (4.03,1.85) node {$f_5$};
+                  \fill [color=black] (4.44,1.05) circle (1.5pt);
+                  \draw[color=black] (4.58,1.19) node {$f_6$};
+                  \end{scriptsize}
+                  \end{tikzpicture}
+                  \caption{
+                           Exemple d'application d'un ensemble $E$ de $4$ \'el\'ements 
+                           vers un ensemble $F$ de $6$ \'el\'ements.
+                           }
+            \end{figure}
+            \subsection{Arrangements dans un ensemble fini}
+\index{Arrangement}
+                  \begin{defi}
+                        Soient $E$ un ensemble fini \`a $n$ \'el\'ements et $p$ un nombre entier inf\'erieur ou \'egal \`a $n$.
+                        On appelle \emph{arrangement de $p$ \'el\'ements de $E$}, et on note 
+                        \defbox{$\displaystyle{\Arr{n}{p}}$}, le nombre de mani\`eres d'ordonner $p$ \'el\'ements de $E$.
+                  \end{defi}
+                  %
+                  	\begin{prop}
+                  			\propbox{
+                 				\[
+                  					\Arr{n}{p} = \frac{n!}{(n-p)!}
+                  				\]}
+                  	\end{prop}
+						%
+						\begin{ex}
+							Consid\'erons quatre personnes num\'erot\'ees de 1 \`a 4
+							ainsi que six chaises marqu\'ees par les lettres a, b, \ldots, f.
+							%
+							On veut conna\^itre le nombre de fa\c{c}ons dont ces quatre personnes
+							peuvent s'asseoir sur les six chaises ;
+							on ne tol\`ere pas que deux personnes s'assoient sur la m\^eme chaise.
+							\begin{valiny}
+								Pour cel\`a, posons	$E = \{ 1 ,\ 2,\ 3,\ 4 \}$ et 
+															$F = \{ a,\ b,\ c,\ d,\ e,\ f \}$.
+								\begin{itemize}
+									\item La personne num\'ero $1$ a $6$ choix possibles et, apr\`es qu'elle a pris sa place,
+									\item la personne num\'ero $2$ a $5$ choix possibles,
+									\item la personne num\'ero $3$ a $4$ choix possibles,
+									\item la personne num\'ero $4$ a $3$ choix possibles.
+								\end{itemize}
+								En tout, cel\`a fait $6\times 5 \times 4 \times \cdots \times 3 = 360$ possibilit\'es.
+								%
+									Ce nombre peut aussi se calculer par la formule
+								$\A{6}{2} 
+									= \frac{6!}{2!} 
+									= \frac{6\times 5 \times 4 \times \cdots \times 3 \times 2 \times 1}{2 \times 1}
+									= 360
+								$.
+							\end{valiny}
+						\end{ex}
+					%
+            \subsection{Permutation dans un ensemble fini}
+\index{Permutation}
+                  Si on prend $E = F$ dans le cas pr\'ec\'edent, alors on se retrouve avec ce que l'on appelle
+                  \emph{permutation de $E$}.
+                  Le nombre de permutations d'un ensemble \`a $n$ \'el\'ements est $n!$.
+                  \begin{ex}
+                        Consid\'erons une course avec six participants. 
+                        A l'issue de la course, on suppose qu'il n'y a pas d'ex aequo.
+                        On veut d\'eterminer le nombre de possibilit\'es de r\'esultats pour une telle course.
+                     \begin{valiny}
+                        \begin{itemize}
+                              \item Il y a $6$ possibilit\'es pour la premi\`ere place,
+                              \item il y a $5$ possibilit\'es pour la seconde place,
+                              \item $\vdots$ 
+                              \item il y a $1$ possibilit\'e pour la derni\`ere place.
+                        \end{itemize}
+                        Ainsi, il y a $6 \times 5 \times \cdots \times 1$ issues possibles.
+                        Ce nombre est $6! = 720$.
+                     \end{valiny}
+                  \end{ex}
+				\subsection{Combinaison dans un ensemble fini}
+\index{Combinaison}
+					\begin{defi}
+						Soient $E$ un ensemble fini \`a $n$ \'el\'ements et $p$ un nombre entier naturel inf\'erieur ou \'egal \`a $n$.
+						On appelle \emph{nombre de combinaisons de $p$ \'el\'ements de $E$} le nombre, not\'e 
+						\defbox{$\displaystyle{\Comb{n}{p}}$},
+							de mani\`eres de choisir $p$ \'el\'ements de $E$.
+					\end{defi}
+					%
+                  	\begin{prop}~\\[-1\baselineskip]
+								\propbox{
+									\[
+										\Comb{n}{p} = \frac{n!}{p!\;(n-p)!}
+									\]
+								}
+ 						\end{prop}
+ 					%
+ 					\begin{ex}
+	 						On dispose d'un d\'e cubique \`a six faces, num\'erot\'ees de $1$ \`a $6$.
+ 						On veut colorer deux des faces de ce d\'e, de mani\`ere \`a cacher les num\'eros y figurant.
+ 						De combien de mani\`eres peut-on le faire\,?
+ 						\begin{valiny}
+	 						Il suffit de << choisir >> deux faces parmi les 6.
+ 							Il y a, par cons\'equent, 
+ 							$\Comb{6}{2} = \frac{6!}{2! \; (6-2)!} = 15$ fa\c{c}ons de colorer deux faces d'un d\'e cubique.
+ 						\end{valiny}
+ 					\end{ex}
+%
+      \section{Notion de probabilit\'e}
+            \begin{defi}[\'Epreuve ou exp\'erience al\'eatoire]
+\index{Epreuve@\'Epreuve}
+\index{Experience aleatoire@Exp\'erience al\'eatoire}
+                  Une \emph{exp\'erience al\'eatoire} est une exp\'erience renouvelable
+                  dont le r\'esultat ne peut \^etre pr\'evu, et qui, renouvel\'ee dans des conditions identiques
+                  ne donne pas forc\'ement le m\^eme r\'esultat \`a chaque renouvellement.
+                  \begin{ex}
+                        \begin{itemize}
+                              \item Lancement d'un d\'e,
+                              \item tirage de boules dans une urne.
+                        \end{itemize}
+                  \end{ex}
+            \end{defi}
+            %
+            \begin{defi}[Univers, \'eventualit\'es, \'ev\`enement]
+\index{Univers des eventualite@Univers des \'eventualit\'es}
+                  L'ensemble de tous les r\'esultats possibles est appel\'e \emph{univers des \'eventualit\'es}.
+                  L'univers est souvent not\'e $\Omega$.
+                  %
+                  Les \'el\'ements de $\Omega$ sont appel\'es \emph{\'eventualit\'es}.
+\index{Eventualite@\'Eventualit\'e}
+                  On appelle \emph{\'ev\`enement} tout ensemble d'\'eventualit\'es, c'est-\`a-dire toute partie de $\Omega$.
+\index{Evenements@\'Ev\`enements}
+                  Si $A$ est un \'ev\`enement, on note par $\bar{A}$ le compl\'ementaire de $A$ dans $\Omega$,
+                  $\bar{A}$ est appel\'e l'\emph{\'ev\`enement contraire de $A$}.
+\index{Evenements@\'Ev\`enements!contraires}
+                  Deux \'ev\`enements $A$ et $B$ sont dits \emph{incompatibles} si $A\cap B = \emptyset$.
+\index{Evenements@\'Ev\`enements!incompatibles}
+                  \begin{ex}
+                        Consid\'erons les \'epreuves suivantes :
+                        \begin{enumerate}
+                              \item Lancer d'un d\'e \`a six faces.
+                                    L'univers des possibilit\'es est 
+                                    $\Omega = \{ 1,\ 2,\ 3,\ 4,\ 5,\ 6 \}$.
+                              \item Lancer de deux pi\`eces de monnaie distinctes.
+                                    L'univers des possibilit\'es est
+                                    \[
+                                      \Omega = \left\{
+                                        \begin{array}{cc}
+                                          (\text{Pile},\text{Pile}), & (\text{Pile},\text{Face}), \\
+                                          (\text{Face},\text{Pile}), & (\text{Face},\text{Face})
+                                        \end{array}
+                                      \right\}.
+                                    \]
+                        \end{enumerate}
+                  \end{ex}
+                  %
+                  \begin{ex}
+                        On lance un d\'e cubique dont les six faces sont num\'erot\'ees par les nombres 
+                        1, 2, 3, 4, 5 et 6.
+                        
+                        \begin{enumerate}
+                              \item L'univers est : $\Omega = \{1,\ 2,\ 3,\ 4,\ 5,\ 6 \}$.
+                              \item Consid\'erons les \'ev\`enements : 
+                                    \begin{align*}
+                                    A &: \text{<< Obtenir un nombre pair >>} \\
+                                    B &: \text{<< Obtenir un nombre inf\'erieur ou \'egal \`a 3 >>} .
+                                    \end{align*}
+                                    On a donc $A = \{ 2,\ 4,\ 6 \}$ et $B = \{ 1,\ 2,\ 3 \}$.
+                              \item L'\'ev\`enement << $A$ ou $B$ >> est $A \cup B = \{ 1,\ 2,\ 3,\ 4,\ 6 \}$.
+                              \item L'\'ev\`enement << $A$ et $B$ >> est $A \cap B = \{ 2 \}$, 
+                                    c'est un \emph{\'ev\`enement \'el\'ementaire}.
+                              \item $\bar{A} = \{ 1,\ 3,\ 5 \}$ et $\bar{B} = \{ 4,\ 5,\ 6 \} $.
+                              \item $A$ et $\bar{A}$ sont incompatibles.
+                                    En fait, quel que soit l'\'ev\`enement $X$, $X$ et $\bar{X}$ sont toujours incompatibles.
+\index{Evenements@\'Ev\`enements!elementaires@\'el\'ementaires}
+                        \end{enumerate}
+                  \end{ex}
+            \end{defi}
+      Consid\'erons un univers fini $\Omega = \{ \omega_1,\ \omega_2,\ \ldots ,\omega_n \}$.
+      \begin{defi}[Probabilit\'e]
+\index{Probabilite@Probabilit\'e}
+            On appelle \emph{probabilit\'e} sur $\Omega$ toute application 
+            de l'ensemble des \'ev\`enements dans $[0 ; 1]$ telle que : 
+            \begin{itemize}
+                  \item la somme des probabilit\'es des \'ev\`enements \'el\'ementaires est \'egale \`a $1$,
+                  \item la probabilit\'e d'un \'ev\`enement est \'egale \`a la somme des probabilit\'es
+                        des \'ev\`enements \'el\'ementaires qui le constituent.
+            \end{itemize}
+      \end{defi}
+      %
+      \begin{prop}
+            Soient $\Omega$ l'univers et $A$ et $B$ deux \'ev\`enements.
+            Soit $P$ une probabilit\'e sur $\Omega$. On a :
+            \begin{itemize}
+                  \item $P(\emptyset ) = 0$ et $P(\Omega ) = 1$,
+                  \item $P(\bar{A}) = 1 - P(A)$,
+                  \item $P(A\cup B) = P(A) + P(B) - P(A\cap B)$.
+                        Si $A$ et $B$ sont incompatibles, alors $P(A\cup B) = P(A) + P(B)$.
+                  \item Si $A\subseteq B$ alors $P(A) \leq P(B)$.
+            \end{itemize}
+      \end{prop}
+      %
+      \subsection*{Le cas \'equiprobable}
+\index{Equiprobabile@\'Equiprobable}
+            On dit qu'il y a \emph{\'equiprobabilit\'e} lorsque tous les \'ev\`enements 
+            \'el\'ementaires ont la m\^eme probabilit\'e.
+            Dans le cas \'equiprobable, si $\omega$ est un \'ev\`enement \'el\'ementaire, alors
+                  $P(\omega) = \frac{1}{\card{\Omega}}$.
+            Si $A$ est un \'ev\`enement quelconque, alors 
+            \thmbox{
+                  $$P(A) = \frac{\card{A}}{\card{\Omega}} 
+                        = \frac{\text{Nombre de cas favorables}}{\text{Nombre de cas possibles}}.$$}
+            \begin{exe}
+                        On consid\`ere un lancer de d\'e non truqu\'e.
+                        La probabilit\'e de chaque \'ev\`enement \'el\'ementaire est \'egale \`a $\frac{1}{6}$.
+                        Soient les \'ev\`enements : 
+                              \begin{enumerate}
+                                    \item A : << Obtenir un nombre pair. >>
+                                    \item B : << Obtenir un nombre inf\'erieur ou \'egal \`a 3. >>
+                              \end{enumerate}
+                        Calculer les probabilit\'es : $P(A)$, $P(B)$, $P(A\cap B)$ et $P(A \cup B)$.
+            \end{exe}
+            %
+            \begin{exe}
+                        On consid\`ere maintenant un d\'e truqu\'e de sorte que 
+                              la probabilit\'e d'obtenir $6$ soit deux fois la probabilit\'e d'obtenir $1$,
+                              la probabilit\'e d'obtenir $1$ \'etant la m\^eme que celle d'obtenir $2$, $3$, $4$ ou $5$.
+                              \begin{enumerate}
+                                    \item Calculer la probabilit\'e de chaque \'ev\`enement \'el\'ementaire.
+                                    \item Calculer la probabilit\'e des \'ev\`enements :
+                                          \begin{enumerate}
+                                                \item A : << Obtenir un nombre pair. >>
+                                                \item B : << Obtenir un nombre inf\'erieur ou \'egal \`a 3. >>
+                                          \end{enumerate}
+                              \end{enumerate}
+            \end{exe}
+            %
+            \begin{exe}
+                        Dans une urne contenant 10 boules num\'erot\'ees de 0 \`a 9,
+                        on tire successivement et avec remise 3 boules.
+                        \begin{enumerate}
+                              \item Calculer le nombre de tirages possible.
+                              \item Calculer le nombre de tirages telle que 
+                                    la premi\`ere boule ne soit pas celle num\'erot\'ee 0.
+                              \item Calculer la probabilit\'e que les num\'eros tir\'es dans l'ordre
+                                    forment un nombre de trois chiffres
+                                    (c'est-\`a-dire ne commen\c{c}ant pas par 0).
+                        \end{enumerate}
+                        (On admet que toutes les boules ont la m\^eme probabilit\'e d'\^etre tir\'ee.)
+            \end{exe}
+            %
+            \begin{exe}
+                        On consid\`ere un urne contenant 26 boules,
+                        chacune marqu\'ee d'une lettre de l'alphabet (fran\c{c}aise) diff\'erente.
+                        On tire successivement et sans remise cinq boules de l'urne.
+                        \begin{enumerate}
+                              \item Calculer le nombre de tirages possible.
+                              \item Calculer la probabilit\'e d'obtenir les cinq lettres `M A T H S' dans cet ordre.
+                              \item Calculer la probabilit\'e d'obtenir les cinq lettres `A H M S T',
+                                    pas n\'ecessairement dans cet ordre.
+                              \item Calculer la probabilit\'e d'obtenir cinq voyelles.
+                        \end{enumerate}
+            \end{exe}
+            %
+            \begin{exe}
+                        Dans un jeu de 52 cartes, on tire 13 cartes simultan\'ement.
+                        Calculer la probabilit\'e d'avoir : 
+                        \begin{enumerate}
+                              \item Exactement un as,
+                              \item exactement deux as,
+                              \item exactement trois as,
+                              \item exactement quatre as,
+                              \item exactement cinq as,
+                              \item uniquement des tr\`efles.
+                        \end{enumerate}
+            \end{exe}
+      %
+      %
+      \section{Probabilit\'e conditionnelle}
+\index{Probabilite@Probabilit\'e!conditionnelle}
+            \subsection{Probabilit\'e conditionnelle}
+            Consid\'erons un univers $\Omega$ et soient $A$ et $B$ deux \'ev\`enements.
+            Soit $P$ une probabilit\'e.
+            On suppose que $P(B) \neq 0$.
+            La \emph{probabilit\'e de $A$ sachant $B$} est 
+                  \defbox{
+                              \[
+                                    P(A|B) = \frac{P(A\cap B)}{P(B)}.
+                              \]
+                         }
+            \begin{ex}
+                  Une urne contient neuf boules indiscernables au toucher.
+                  Les boules sont num\'erot\'ees de 1 \`a 9.
+                  On tire une boule au hasard.
+                  Soient les \'ev\`enements : 
+                  \begin{enumerate}
+                        \item A : << Le num\'ero tir\'e est pair. >>
+                        \item B : << Le num\'ero tir\'e est un multiple de 3. >>
+                  \end{enumerate}
+                  
+                  On a $ \Omega = \{ 1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7,\ 8,\ 9 \}$,
+                       $ A = \{ 2,\ 4,\ 6,\ 8 \}$ et
+                       $ B = \{ 3,\ 6,\ 9 \}$.
+                  Il suit que $A \cap B = \{ 6 \}$.
+                  Ainsi, $P(A) = \frac{4}{9}$, $P(B) = \frac{3}{9} = \frac{1}{3}$ et $P(A\cap B) = \frac{1}{9}$.
+                  
+                  Supposons qu'on sait qu'on a obtenu un multiple de 3.
+                  Quelle est alors la probabilit\'e pour que ce soit un num\'ero pair\,?
+                  
+                  Il suffit de calculer 
+                        \[
+                        P(A|B) = \frac{P(A\cap B)}{P(B)} = \frac{\frac{1}{9}}{\frac{1}{3}} = \frac{1}{3}.
+                        \]
+            \end{ex}
+            \smallnota{
+            La probabilit\'e de $A$ sachant $B$ est aussi parfois not\'e $P_B (A)$.
+            }
+            %
+            \begin{exe}
+                  On vous propose de jouer \`a un jeu.
+                  On pose devant vous cinq paniers clos ; 
+                  l'un d'eux contient une pi\`ece de monnaie tandis que
+                  les quatre autre sont vides.
+                  %
+                  Votre objectif est de trouver la pi\`ece de monnaie.
+                  
+                  Vous avez le droit de choisir un panier, 
+                  vous n'avez aucun moyen de d\'ecider d'une mani\`ere rationnelle quel panier choisir.
+                  %
+                  Apr\`es que vous avez fait votre choix, on ouvre trois des paniers qui s'av\`erent \^etre vides ;
+                  votre panier reste clos.
+                  %
+                  Il reste donc deux paniers clos : le v\^otre et un autre.
+                  
+                  On vous demande ensuite votre d\'ecision finale : 
+                        allez-vous changer votre choix et miser sur l'autre panier ou
+                        allez-vous garder votre choix initial\,?
+                        
+                        \paragraph{Illustration}
+                              Supposons que les cinq paniers sont num\'erot\'es de 1 \`a 5.
+                              
+                                    \begin{tikzpicture}[scale=2]
+                                    \foreach \x in {1,2,3,4,5}
+                                          \draw[pattern=checkerboard,pattern color=loko2] 
+                                                (\x-.3,.3) -- (\x+.3,.3) 
+                                                {[rounded corners = 10] -- (\x+.3,-.3) -- (\x-.3,-.3) -- (\x-.3,.3)}
+                                                (\x,0) node[fill=white]{\x}
+ ;
+                                    \end{tikzpicture}
+                                    
+                              Disons que vous avez choisi le panier 1.
+                              
+                                    \begin{tikzpicture}[scale=2]
+                                    \foreach \x in {1,2,3,4,5}
+                                          \draw[pattern=checkerboard,pattern color=loko2] 
+                                                (\x-.3,.3) -- (\x+.3,.3) 
+                                                {[rounded corners = 10] -- (\x+.3,-.3) -- (\x-.3,-.3) -- (\x-.3,.3)}
+                                                (\x,0) node[fill=white]{\x}
+ ;
+                                          \draw[color=loko1] (1,0) circle (.5);
+                                    \end{tikzpicture}
+                                    
+                              On ouvre ensuite les paniers 2, 3 et 4 qui s'av\`erent \^etre vides.
+                              
+                                    \begin{tikzpicture}[scale=2]
+                                    \foreach \x in {1,2,3,4,5}
+                                          \draw[pattern=checkerboard,pattern color=loko2] 
+                                                (\x-.3,.3) -- (\x+.3,.3) 
+                                                {[rounded corners = 10] -- (\x+.3,-.3) -- (\x-.3,-.3) -- (\x-.3,.3)}
+                                                (\x,0) node[fill=white]{\x}
+ ;
+                                          \draw[color=loko1] (1,0) circle (.5);
+                                    \foreach \x in {2,3,4}
+                                          \draw[line width=5,color=loko1,opacity=.5] 
+                                                (\x+.3,.3) -- (\x-.3,-.3) 
+                                                (\x+.3,-.3) -- (\x-.3,.3)
+ ;
+                                    \end{tikzpicture}
+                                    
+                              Il reste alors deux paniers clos : les num\'eros 1 et 5.
+                              
+                                    \begin{tikzpicture}[scale=2]
+                                    \foreach \x in {1,5}
+                                          \draw[pattern=checkerboard,pattern color=loko2] 
+                                                (\x-.3,.3) -- (\x+.3,.3) 
+                                                {[rounded corners = 10] -- (\x+.3,-.3) -- (\x-.3,-.3) -- (\x-.3,.3)}
+                                                (\x,0) node[fill=white]{\x}
+ ;
+                                    \foreach \x in {1,5}
+                                          \draw[opacity=.5] 
+                                                (\x,0) node[fill=white]{{\fontsize{40}{40} \selectfont\,?} }
+ ;
+                                    \end{tikzpicture}
+                                    
+                              Allez-vous changer votre choix et miser sur le num\'ero 5
+                              ou allez-vous rester ferme \`a votre intuition initiale et garder le num\'ero 1\,?
+            \end{exe}
+            %
+            \subsection{\'Ev\`enements ind\'ependants}
+\index{Evenements@\'Ev\`enements!independants@ind\'ependants}
+            Deux \'ev\`enements $A$ et $B$ sont dits \emph{ind\'ependants} si 
+                        \defbox{$$P(A\cap B) = P(A) \cdot P(B).$$}
+            Si deux \'ev\`enements $A$ et $B$ sont ind\'ependants, on a :
+                  \begin{displaymath}
+                        P(A|B) = \frac{P(A\cap B)}{P(B)} = \frac{P(A) \cdot P(B)}{P(B)} = P(A).
+                  \end{displaymath}
+            %
+            \begin{ex}
+                  On dispose d'une pi\`ece de monnaie non truqu\'ee.
+                  On proc\`ede \`a deux lancers successifs.
+                  Calculer la probabilit\'e d'obtenir pile puis face.
+                  \begin{valiny}
+                        Soient les deux \'ev\`enements : 
+                              \begin{itemize}
+                                    \item A : << Le premier lancer donne pile. >>
+                                    \item B : << Le second lancer donne face. >>
+                              \end{itemize}
+                        Ces deux \'ev\`enements sont ind\'ependants --- 
+                        le r\'esultat de la premi\`ere n'affecte pas celui de la seconde.
+                        On cherche $P(A\cap B)$.
+                        On sait que 
+                        $P(A\cap B) = P(A) \cdot P(B) = \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}$.
+                  \end{valiny}
+            \end{ex}
+            %
+	\section{\'Epreuve de Bernoulli et distribution binomiale}
+                  \subsection{\'Epreuve de Bernoulli}
+\index{Bernoulli}
+                        Dans certaines exp\'eriences al\'eatoires, 
+                        on s'interesse \`a la r\'ealisation d'un \'ev\`enement.
+                        On parlera de << \emph{succ\`es} >> si l'\'ev\`enement se r\'ealise
+\index{succes@succ\`es}
+                        et d'<<~\emph{\'echec} >> sinon.
+\index{echec@\'echec}
+                        Ce type d'exp\'erience est appel\'e \emph{\'epreuve de Bernoulli}.
+\index{Bernoulli!epreuve de@\'epreuve de}
+                        On appelle << \emph{sch\'ema de Bernoulli} >> une succession d'\'epreuves ind\'ependantes de ce type.
+\index{Bernoulli!schema de@sch\'ema de}
+                        %
+                        \begin{ex}
+                              On lance $n$ fois une pi\`ece,
+                              on consid\`ere comme un succ\`es le fait d'obtenir pile
+                              (et donc comme \'echec si on obtient face).
+                              
+                              Le tirage successif et avec remise d'une boule dans une urne.
+                              Le succ\`es peut \^etre d\'efini comme l'obtention d'un certain type de boule.
+                        \end{ex}
+                  \subsection{Distribution binomiale}
+                        Consid\'erons un sch\'ema de Bernoulli qui 
+                        consiste \`a la succession de $n$ \'epreuves identiques et ind\'ependantes.
+                        Soient $p$ la probabilit\'e d'un succ\`es et $q ( = 1-p)$ la probabilit\'e d'un \'echec.
+                        Soit $k$ un nombre entier naturel compris entre $0$ et $n$.
+                        On veut conna\^itre la probabilit\'e d'avoir $k$ succ\`es au cours des $n$ lancers.
+                        
+                        La probabilit\'e d'avoir 
+                        uniquement des succ\`es au cours des $k$ premiers lancers
+                        et uniquement des \'echecs au cours des $n-k$ autres lancers est : 
+                              \begin{displaymath}
+                                    p^k \cdot (1-p)^{n-k}.
+                              \end{displaymath}
+                        Il y a $\C{n}{k}$ mani\`eres de r\'epartir les $k$ succ\`es parmi les $n$ \'epreuves.
+                        La probabilit\'e d'obtenir $k$ succ\`es est donc 
+                                    \thmbox{$$ \C{n}{k}\ p^k \cdot (1-p)^{n-k}. $$}
+                        %
+                        \begin{ex}
+                              On jette 100 fois une pi\`ece de monnaie truqu\'ee de mani\`ere \`a ce que 
+                              la probabilit\'e d'obtenir face soit trois fois celle d'obtenir pile. \newline
+                              Calculer la probabilit\'e d'avoir 25 fois pile.
+                              %
+                              \begin{valiny}
+                                    Soient $p$ la probabilit\'e d'obtenir pile et $q = 1-p$ 
+                                    la probabilit\'e d'obtenir face.
+                                    On a $q = 3 p $ c'est-\`a-dire $1-p = 3p$.
+                                    En r\'esolvant, on a $p = \frac{1}{4}$ et $q = \frac{3}{4}$.
+                                    Les r\'esultats de chaque lancer sont ind\'ependants.
+                                    \footnote{Quand l'\'enonc\'e ne pr\'ecise pas,
+                                    il est sous-entendu que les lancers sont ind\'ependants.}
+                                    On est donc en pr\'esence d'un sch\'ema de Bernoulli.
+                                    La probabilit\'e cherch\'ee est :
+                                    \begin{displaymath}
+                                          P(k = 25) 
+                                                = \C{100}{25}\ \left(\frac{1}{4}\right)^{25} \cdot \left(\frac{3}{4}\right)^{75}
+                                                = \C{100}{25} \frac{3^{75}}{4^{100}}.
+                                    \end{displaymath}
+                              \end{valiny}
+                        \end{ex}
+      \section{Variable al\'eatoire}
+            \subsection{Notion de variable al\'eatoire}
+                  \begin{ex}
+                        Consid\'erons l'\'epreuve qui consiste \`a lancer une pi\`ece trois fois successivement.
+                        On note par $p$ la probabilit\'e d'obtenir pile.
+                        Soit $X$ le nombre de piles obtenues lors des trois lancers.
+                        On appelle $X$ une variable al\'eatoire et on a :
+                              \begin{align*}
+                                    P(X = 0) & = \C{3}{0}\ p^0 \cdot (1-p)^3 \\
+                                    P(X = 1) & = \C{3}{1}\ p^1 \cdot (1-p)^2 \\
+                                    P(X = 2) & = \C{3}{2}\ p^2 \cdot (1-p)^1 \\
+                                    P(X = 3) & = \C{3}{3}\ p^3 \cdot (1-p)^0 .
+                              \end{align*}
+                  \end{ex}
+                  
+                  Plus g\'en\'eralement, si $\Omega$ est l'univers, 
+                  une variable al\'eatoire est une application qui \`a chaque \'eventualit\'e associe un nombre r\'eel.
+                  
+                  L'\emph{univers image} de la variable al\'eatoire $X$ est 
+\index{Univers image}
+                  l'ensemble des images des \'el\'ements de $\Omega$ par $X$.
+                  
+                  Pour tout \'el\'ement $k$ de l'univers image, l'ensemble des ant\'ec\'edents de $k$
+                  (c'est-\`a-dire l'ensemble des $\omega \in \Omega$ tels que $X(\omega) = k$)
+                  par $X$ forme un \'ev\`enement qu'on note $X=k$.
+                  
+                  La loi de probabilit\'e de $X$ est la donn\'ee des probabilit\'es de tous les \'ev\`enements $(X=k)$.
+\index{Loi de probabilite@Loi de probabilit\'e}
+                  %
+                  \subsection{Fonction de r\'epartition}
+\index{Fonction de repartition@Fonction de r\'epartition}
+                        Soit $X$ une variable al\'eatoire sur un univers $\Omega$.
+                        La \emph{fonction de r\'epartition} $F$ de $X$ est la fonction qui 
+                        \`a tout r\'eel $x$ associe $F(x) = P(X \leq x)$.
+                        \begin{ex}
+                              Consid\'erons l'\'epreuve qui consiste \`a lancer trois fois successivement une pi\`ece normale.
+                              Soit $X$ la variable al\'eatoire qui \`a chaque \'eventualit\'e associe le 
+                              nombre de piles obtenues.
+                              On a alors : 
+                              \[
+                                    \begin{array}{|c|c|c|c|c|}
+                                          \hline
+                                          k       &       0       &       1       &       2       &       3       \\
+                                          \hline
+                                          P(X=k)  &  \frac{1}{8}  &  \frac{3}{8}  &   \frac{3}{8} &  \frac{1}{8}  \\
+                                           \hline
+                                    \end{array}
+                              \]
+                              ce qui nous donne
+                              \[
+                                    \begin{array}{|c|c|c|c|c|c|}
+                                          \hline
+                                          x    & ]-\infty ; 0[ & [0;1[       & [1;2[       & [2;3[       & [3;+\infty[       \\
+                                          \hline
+                                          F(x) &       0       & \frac{1}{8} & \frac{1}{2} & \frac{7}{8} &       1           \\
+                                          \hline
+                                    \end{array}
+                              \]
+                              \begin{figure}[H]
+                              \centering
+                                    \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=5.0cm]
+                                    \draw [color=black, xstep=1.0cm,ystep=1.0cm, line width=.4, opacity=.4] 
+                                          (-2.41,-0.1) grid (6.52,1.12);
+                                    \draw [color=black, xstep=0.5cm,ystep=0.5cm, line width=.2, opacity=.2] 
+                                          (-2.41,-0.1) grid (6.52,1.12);
+                                    \draw [color=black, xstep=0.1cm,ystep=0.1cm, line width=.15, opacity=.15] 
+                                          (-2.41,-0.1) grid (6.52,1.12);
+                                    \draw[->,color=black] (-2.41,0) -- (6.52,0);
+                                    \foreach \x in {-2,-1,1,2,3,4,5,6}
+                                    \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+                                    \draw[->,color=black] (0,-0.1) -- (0,1.12);
+                                    \foreach \y in {,0.2,0.4,0.6,0.8,1}
+                                    \draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+                                    \draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+                                    \clip(-2.41,-0.1) rectangle (6.52,1.12);
+                                    \draw [line width=2pt,domain=-2.4088237372410504:0.0] plot(\x,{(-0-0*\x)/-2});
+                                    \draw [line width=2pt] (0,0.13)-- (1,0.13);
+                                    \draw [line width=2pt] (1,0.5)-- (2,0.5);
+                                    \draw [line width=2pt] (2,0.88)-- (3,0.88);
+                                    \draw [line width=2pt,domain=3.0:6.518929819346457] plot(\x,{(--1-0*\x)/1});
+                                    \begin{scriptsize}
+                                    \draw [color=black, fill=white] (0,0) circle (1.5pt);
+                                    \fill [color=black] (0,0.13) circle (1.5pt);
+                                    \draw [color=black, fill=white] (1,0.13) circle (1.5pt);
+                                    \fill [color=black] (1,0.5) circle (1.5pt);
+                                    \draw [color=black, fill=white] (2,0.5) circle (1.5pt);
+                                    \fill [color=black] (2,0.88) circle (1.5pt);
+                                    \draw [color=black, fill=white] (3,0.88) circle (1.5pt);
+                                    \fill [color=black] (3,1) circle (1.5pt);
+                                    \end{scriptsize}
+                                    \end{tikzpicture}
+                                 \caption{Repr\'esentation graphique de la fonction de r\'epartition.}
+                              \end{figure}
+                              On constate que :
+                              \begin{itemize}
+                                    \item $F$ est croissante,
+                                    \item $F$ est une fonction en escalier,
+                                    \item $\lim_{x\rightarrow-\infty} F(x) = 0$ et $\lim_{x\rightarrow+\infty} F(x) = 1$.
+                              \end{itemize}
+                        \end{ex}
+                  %
+                  \subsection{Caract\'eristiques d'une variable al\'eatoire}
+                        \subsubsection{\'Esp\'erance math\'ematique}
+\index{Esperance mathematique@\'Esp\'erance math\'ematique}
+                              Soit $X$ une variable al\'eatoire prenant les valeurs 
+                              $x_1,\ x_2,\ \ldots ,\ x_n$ avec les probabilit\'es 
+                              $p_1,\ p_2,\ \ldots ,\ p_n$.
+                              L'\emph{\'esp\'erance math\'ematique} de $X$ est
+                              \par\smallskip\noindent
+                                    \defbox{
+                                          $\displaystyle
+                                          \begin{aligned}
+                                                E[X] &= \sum_{i=1}^{n} x_i\cdot p_i \\
+                                                     &= x_1\cdot p_1 + x_2\cdot p_2 + \cdots + x_n\cdot p_n.
+                                          \end{aligned}$
+                                    }
+                              \par\smallskip
+                              %
+                              \begin{ex}
+                                    Dans l'exemple pr\'ec\'edent :
+                                    $E[X] =  0 \cdot \frac{1}{8}
+                                           + 1 \cdot \frac{3}{8}
+                                           + 2 \cdot \frac{3}{8}
+                                           + 3 \cdot \frac{1}{8}
+                                          = \frac{3}{8} + \frac{6}{8} + \frac{3}{8}
+                                          = \frac{3}{2}.
+                                    $
+                              \end{ex}
+                              %
+                              \begin{ex}
+                                    On lance un d\'e non truqu\'e.
+                                    Soit $X$ la variable al\'eatoire qui est \'egale \`a $-1$
+                                    si le r\'esultat est diff\'erent de $6$
+                                    et $3$ si le r\'esultat est \'egal \`a $6$.
+                                    On a :
+                                    $E[X] = -1 \cdot \frac{5}{6} + 3 \cdot \frac{1}{6}
+                                          = -\frac{5}{6} + \frac{3}{6}
+                                          = -\frac{1}{3}.
+                                    $
+                              \end{ex}
+                        %
+                        \subsubsection{Variance et \'ecart-type}
+\index{Variance}
+\index{Ecart-type@\'Ecart-type}
+                        Soit $X$ une variable al\'eatoire.
+                        On d\'efinit la \emph{variance} de $X$ par
+                        \par\smallskip\noindent
+                        \defbox{$\displaystyle
+                              \begin{aligned}
+                                    Var(X)=V(X)&=E\left[(X-E[X])^2\right] \\
+                                               &=E[X^2]-\left(E[X]\right)^2,
+                              \end{aligned}$}
+                        \par\smallskip
+                        et l'\emph{\'ecart-type} par
+                        \par\smallskip\noindent
+                        \defbox{$\sigma(X)=\sqrt{V(X)}$}.
+                        \par\smallskip
+                        
+                        Si la variable al\'eatoire $X$ prend les valeurs 
+                        $x_1,\ x_2,\ \ldots,\ x_n$ avec les probabilit\'es 
+                        $p_1,\ p_2,\ \ldots,\ p_n$, en notant $\bar{x} = E[X]$,
+                        on a :
+                        \par\smallskip\noindent
+                        \propbox{$\displaystyle
+                              \begin{aligned}
+                              V(X)={}&(x_1-\bar{x})^2p_1+(x_2-\bar{x})^2p_2 \\
+                                    &+\cdots+(x_n-\bar{x})^2p_n.
+                              \end{aligned}$}
+                        \par\smallskip
+                        %
+                  \subsection{Loi binomiale $B(n;p)$}
+\index{Binomiale!Loi}
+                  On consid\`ere $n$ \'epreuves de Bernoulli avec une probabilit\'e $p$ de succ\`es.
+                  Soit $X$ la variable al\'eatoire correspondant au nombre de succ\`es.
+                  L'univers image de $X$ est alors 
+                  $\{ 0,\ 1,\ \ldots,\ n\}$.
+                  On sait que $P(X = k) = \C{n}{k}\ p^k \cdot (1-p)^{n-k}$.
+                  
+                  On a 
+                  \begin{align*}
+                        E[X] & = \sum_{k=0}^{n} k \cdot P(X=k)                                                
+                               = \sum_{k=0}^{n} k \C{n}{k} \cdot p^k \cdot (1-p)^{n-k}                        \\
+                             & = \sum_{k=1}^{n} k \cdot \frac{n!}{k! (n-k)!} p^k (1-p)^{n-k}                  \\
+                             & = \sum_{k=1}^{n} \frac{n \cdot (n-1)!}{(k-1)! \left[ (n-1) - (k-1) \right]!} 
+                                       p \cdot p^{k-1} \cdot (1-p)^{(n-1) - (k-1)}                            \\
+                             & = n p \sum_{k=1}^{n} \frac{(n-1)!}{(k-1)! \left[ (n-1) - (k-1) \right]!}
+                                               p^{k-1} \cdot (1-p)^{(n-1) - (k-1)}                            \\
+                             & = n p \sum_{\ell=0}^{m} \frac{m!}{\ell! (m-\ell)!} p^{\ell} \cdot (1-p)^{m-\ell}               
+                               = n p \left(p+(1-p)\right)^{m}                                                 
+                               = n p \cdot 1^{m}                                                              \;.
+                  \end{align*}
+                  \thmbox{$E[X] = n p $}.
+                  
+                  On peut aussi d\'emontrer que 
+                  \thmbox{$V(X) = n p (1 - p) $} et donc \thmbox{$ \sigma (X) = \sqrt{n p (1 - p)}$}.
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\TCDLessonStyleOff
+\begin{fiche}
+	\begin{prop}
+		\begin{itemize}
+			\item Dans le cas o\`u on a \'equiprobabilit\'e, la probabilit\'e d'un \'ev\`enement est
+				\thmbox{$\frac{\text{nombre de cas possibles}}{\text{nombre de cas favorables}}$}.
+%				\begin{ex}
+%					On consid\`ere un d\'e icosa\`edrique (\`a 20 faces) non-truqu\'e dont les faces sont num\'erot\'ees de 1 \`a 20.
+%					On lance une fois ce d\'e, on consid\`ere les \'ev\`enements :
+%					\begin{description}
+%						\item $A$ : << Avoir un nombre premier >>,
+%						\item $B$ : << Avoir un nombre inf\'erieur ou \'egal \`a 15 >>.
+%					\end{description}
+%					%
+%					\begin{valiny}
+%						\begin{description}
+%							\item Les nombres premiers inf\'erieurs \`a 20 sont : 2, 3, 5, 7, 11, 13, 17 et 19 ; il y en a 8.
+%								Ainsi, $P(A) = \frac{8}{20} = \frac{2}{5}$.
+%							\item $P(B) = \frac{15}{20} = \frac{3}{4}$.
+%						\end{description}
+%					\end{valiny}
+%				\end{ex}
+			\item 
+				La probabilit\'e d'un \'ev\`enement est \'egal \`a la somme des \'ev\`enements \'el\'ementaires qui le constituent :
+				$\displaystyle{P(A) = \sum_{a \in A} P({a})}$.
+%					\begin{ex}
+%						On consid\`ere un d\'e cubique t\'etra\`edrique (\`a 4 faces) truqu\'e de mani\`ere \`a ce que : 
+%							$p_1 = \frac{1}{2}$, $p_2 = \frac{1}{3}$, $p_3 = \frac{1}{6}$ et $p_4 = 0$ ;
+%							$p_i$ d\'esigne la probabilit\'e que la face num\'erto\'ee $i$ soit cach\'ee.
+%						Soient les \'ev\`enements : 
+%						\begin{description}
+%							\item $A$ : << Le nombre cach\'e est pair >>.
+%							\item $B$ : << Le nombre cach\'e est premier >>.
+%						\end{description}
+%						%
+%						\begin{valiny}
+%							Alors 
+%							\begin{description}
+%								\item $P(A) = p_2 + p_4 = \frac{1}{3} + 0 = \frac{1}{3}$,
+%								\item $P(B) = p_2 + p_3 = \frac{1}{3} + \frac{1}{6} = \frac{1}{2}$.
+%							\end{description}
+%						\end{valiny}
+%					\end{ex}
+			\item 
+				$\displaystyle{P(\overline{A})} = 1 - P(A)$,
+%				\begin{ex}
+%					On lance un d\'e cubique dont les faces sont num\'erot\'es de 1 \`a 6.
+%					Le d\'e est truq\'e de mani\`ere \`a ce que : 
+%					$p_1 = \frac{1}{4}$, 
+%					$p_2 = \frac{1}{4}$,
+%					$p_3 = \frac{1}{8}$,
+%					$p_4 = \frac{1}{8}$,
+%					$p_5 = \frac{1}{8}$,
+%					$p_6 = \frac{1}{8}$,
+%					Soient les \'ev\`enements : 
+%					\begin{description}
+%						\item $A$ : << Avoir un num\'ero sup\'erieur ou \'egal \`a 2 >>,
+%						\item $B$ : << Avoir un num\'ero inf\'erieur \`a 6 >>.
+%					\end{description}
+%					%
+%					\begin{valiny}
+%					Consid\'erons les \'ev\`enements contraires : 
+%						\begin{description}
+%							\item $\overline{A}$ : << Obtenir le num\'ero 1 >>,
+%							\item $\overline{B}$ : << Obtenir le num\'ero 6 >>.
+%						\end{description}
+%					Comme 
+%						\begin{description}
+%							\item $P(\overline{A}) = \frac{1}{4}$, alors $P(A) = 1 - \frac{1}{4} = \frac{3}{4}$,
+%							\item $P(\overline{B}) = \frac{1}{8}$, alors $P(B) = 1 - \frac{1}{8} = \frac{7}{8}$.
+%						\end{description}
+%					\end{valiny}	
+%				\end{ex}
+			\item Si $A$ et $B$ sont ind\'ependants, alors 
+				\thmbox{$P(A \cap B) = P(A) \times P(B)$}.
+%				\begin{ex}
+%					On dispose d'un d\'e octa\`edrique (\`a 8 faces) normal dont les faces sont num\'erot\'es de 1 \`a 8.
+%					On lance ce d\'e deux fois de suite et de mani\`ere ind\'ependantes.
+%					
+%					D\'eterminer la probabilit\'e des \'ev\`enements : 
+%					\begin{description}
+%						\item $A$ : << Avoir 1 au premier tirage et un nombre impair au second tirage >>,
+%						\item $B$ : << Avoir un nombres premier au second tirage >>.
+%					\end{description}
+%					%
+%					\begin{valiny}
+%						\begin{description}
+%							\item Pour l'\'ev\`enement $A$ :
+%								La probabilit\'e d'avoir 1 au premier tirage est $\frac{1}{8}$ tandis que 
+%								la probabilit\'e d'avoir un nombre impair au second tirage est $\frac{4}{8} = \frac{1}{2}$.
+%								Les deux tirages \'etant ind\'ependants :
+%								$P(A) = \frac{1}{8} \times \frac{1}{2} = \frac{1}{16}$.
+%							\item Pour l'\'ev\`enement $B$ :
+%								Il suffit juste d'avoir un nombre au premier tirage, c'est \`a dire avec probabilit\'e $1$.
+%								La probabilit\'e d'avoir un nombre premier au second tirage est $\frac{4}{8} = \frac{1}{2}$.
+%								$P(B) = 1 \times \frac{1}{2} = \frac{1}{2}$.
+%						\end{description}
+%					\end{valiny}
+%				\end{ex}
+		\end{itemize}
+	\end{prop}
+\end{fiche}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\TCDLessonStyleOff
+\clearpage
+\section{Exercices}
+
+\providecommand{\EUR}[1]{#1~\texteuro}
+
+\subsection*{Vocabulaire}
+\begin{exo}
+Dans chacune des situations décrites ci-dessous, énoncer l’événement contraire de l’événement donné.
+\begin{enumerate}
+\item Dans une classe, on choisit deux élèves au hasard. $A$ : <<~Les deux élèves sont des filles~>>.
+\item Dans un groupe de Chinois et d'Indiens, on discute avec une personne. $B$ : <<~La personne est une femme chinoise~>>.
+\item Au restaurant, Luc prend un plat et un dessert. $C$ : <<~Luc prend une viande et une glace~>>.
+\item À une loterie, Élise achète 3 billets.
+      $D$ : <<~L’un des billets au moins est gagnant~>> , $E$ : <<~Deux billets au maximum sont gagnants~>>.
+\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+Une urne contient des boules blanches, noires et rouges. On tire une boule de l’urne. On note : \\
+$A$ : <<~Tirer une boule blanche~>>.                  \\
+$B$ : <<~Tirer une boule ni blanche ni rouge~>>.      \\
+$C$ : <<~Tirer une boule noire ou une boule rouge~>>. 
+\begin{enumerate}
+\item $A$ et $B$ sont-ils incompatibles\,?
+\item $B$ et $C$ sont-ils incompatibles\,?
+\item Traduire par une phrase ne comportant pas de négation $\bar{A}$ et $\bar{B}$ .
+\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+Lors d’un jet de deux dés cubiques, on s’intéresse aux événements suivants : \\
+$A$ : <<~La somme obtenue est au moins égale à 5~>>.                  \\
+$B$ : <<~La somme obtenue est au plus égale à 5~>>.                   \\
+$C$ : <<~La somme obtenue est strictement inférieure à 3~>>. 
+\begin{enumerate}
+\item $A$ et $B$ sont-ils contraires\,?
+\item $\bar{B}$ et $C$ sont-ils incompatibles\,?
+\item Traduire par une phrase $\bar{C}$.
+\item $A$ et $\bar{C}$ sont-ils incompatibles\,?
+\end{enumerate}
+\end{exo}
+%
+\subsection*{D\'enombrement et probabilit\'e}
+\begin{exo}
+On choisit une carte au hasard dans un jeu de 32 cartes. On note : \newline
+$A$ l'événement : <<~La carte choisie est un pique~>>.                     \\
+$B$ l'événement : <<~La carte choisie est rouge (cœur ou carreau)~>>.      \\
+$C$ l'événement : <<~La carte choisie est une figure (valet, dame, roi)~>>.
+\begin{enumerate}
+\item Présenter un modèle mathématique décrivant l’expérience aléatoire 
+      (D\'eterminer $\Omega$ et $\card{\Omega}$ ; y a-t-il \'equiprobabilit\'e\,?). \\
+\item Déterminer les probabilités des évènements $A$, $B$, $C$, $A\cap B$, $B\cap C$, $A\cup B$, $A\cup C$.
+\item Déterminer la probabilité de l'événement $D$ <<~La carte choisie n'est ni un pique ni une figure~>>.
+\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+On jette une pièce de monnaie 3 fois de suite.
+\begin{enumerate}
+\item Donner la liste de tous les résultats possibles en notant $P$ pour Pile et $F$ pour Face (exemple : $PPF$).
+\item Donner la probabilité des événements suivants : \newline
+      $A$ <<~le tirage ne comporte que des Piles~>>.       \\
+      $B$ <<~le tirage comporte au moins une fois Face~>>. 
+\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+Dans une assemblée de 250 personnes, on remarque que certains hommes portent une cravate et certains hommes ont les yeux marrons. Il y a 120 hommes qui portent une cravate, 85 hommes qui ont les yeux marrons, dont 50 portent une cravate.
+On discute avec une personne choisie au hasard dans cette assemblée.
+\begin{enumerate}
+\item Quelle est la probabilité que ce soit un homme portant une cravate\,?
+\item Quelle est la probabilité que ce soit un homme aux yeux marrons et portant une cravate\,?
+\item Quelle est la probabilité que ce soit un homme aux yeux marrons ou portant une cravate\,?
+\item Quelle est la probabilité de discuter avec une personne qui n’est ni un homme aux yeux marrons, ni un homme portant une cravate\,?
+\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+Lors d’un référendum, deux questions étaient posées.
+65 \% des personnes ont répondu <<~oui~>> à la première question, 51 \% ont répondu <<~oui~>> à la seconde question, et 46 \%
+ont répondu <<~oui~>> aux deux questions.
+\begin{enumerate}
+\item Quelle est la probabilité qu’une personne ait répondu <<~oui~>> à l’une ou l’autre des questions\,?
+\item Quelle est la probabilité qu’une personne ait répondu <<~non~>> aux deux questions\,?
+\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+On lance un dé à 6 faces. On note $p_i$ la probabilité de sortie de la face marquée $i$. 
+Ce dé est truqué de telle sorte que les probabilités de sortie des faces sont :
+       $p_1 = 0,1$ ; $p_2 = 0, 2$ ; $p_3 = 0,3$ ; $p_4 = 0,1$ ; $p_5 = 0,15$. \newline
+Quelle est la probabilité de sortie de la face marquée 6\,? \\
+Quelle est la probabilité d’obtenir un nombre pair\,?
+\end{exo}
+%
+\begin{exo}
+On lance un dé à 6 faces. 
+On suppose que la probabilité d’apparition de chaque face est proportionnelle au numéro inscrit sur elle 
+(c'est-\`a-dire que la probabilit\'e d'obtenir la face $i$ est \'egale \`a $k \cdot i$ pour un certain $k$ ne d\'ependant pas de $i$).
+Calculer la probabilité d’apparition de chaque face.
+Calculer la probabilité d’obtenir un nombre pair.
+\end{exo}
+%
+\subsection*{Probabilité conditionnelles.}
+%
+\subsection*{Loi binomiale}
+%
+\subsection*{Variable al\'eatoire}
+

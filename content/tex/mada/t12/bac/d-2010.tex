@@ -1,0 +1,146 @@
+% Baccalauréat malgache, série D, 2010 : énoncé.
+\TCDBacAttribution{D}{2010}
+\providecommand{\Courbe}{(\mathscr{C})}
+\providecommand{\D}{(\mathscr{D})}
+\providecommand{\Plan}{(\mathscr{P})}
+\providecommand{\Ouv}{(O ; \vec{u} , \vec{v})}
+%\providecommand{\Oij}{(O ; \vec{\imath} , \vec{\jmath})}
+\providecommand{\cm}{~\mathrm{cm}}
+\providecommand{\dx}{~\mathrm{d}x}
+\providecommand{\Arg}[1]{\mathrm{Arg}\left( #1 \right)}
+
+\noindent \underline{\textsc{Exercice I}} (5 points) \newline
+      Le plan complexe $\Plan$ est muni d'un rep\`ere orthonorm\'e directe $\mathfrak{R} = \Ouv$ d'unit\'e $2\cm$.
+      \begin{enumerate}
+            \item On consid\`ere les points $S$, $R$ et $D$ d'affixes respectives $(-4)$, $(1-i)$ et $(3i)$.
+                  Repr\'esenter, dans $\mathfrak{R}$, l'image du triangle $SRD$, par la similitude plane directe 
+                  de centre $R$, d'angle $-\frac{\pi}{2}$ et de rapport $\frac{1}{2}$.
+                  \pnt{0,5}
+            \item Soit $\psi$ le nombre complexe d\'efini par $\psi = \frac{z-3i}{z+4}$.
+                  \begin{enumerate}
+                        \item Interpr\'eter g\'eom\'etriquement $\psi$.
+                              \point{0,25}{0,25}
+                        \item $M$ \'etant le point d'affixe $z$, pr\'eciser la nature de chacun des ensembles $(\Delta)$
+                              et $(\Sigma)$ d\'efinis respectivement par : 
+                              $
+                                    (\Delta) = \left\lbrace M \in \Plan \mid |\psi| = 1 \right\rbrace
+                              $
+                              et 
+                              $ 
+                                    (\Sigma) = \left\lbrace M \in \Plan \mid \Arg{\psi} = \frac{\pi}{2} \right\rbrace
+                                    .
+                              $
+                              \Points{0,5}{0,5}{0,25}
+                              On justifiera que $(\Sigma)$ ne passe pas par l'origine des axes.
+                        \item Construire, dans $\mathfrak{R}$, $(\Delta)$ et $(\Sigma)$.
+                              \pnt{1}
+                  \end{enumerate}
+            \item On donne le polyn\^ome $Q$, de la variable complexe $z$, d\'efini par : 
+                  $Q(z) = z^4 - 3i z^3 + 8iz + 24$.
+                  \begin{enumerate}
+                        \item Calculer $Q(3i)$.
+                              \pnt{0,5}
+                        \item Ecrire sous forme trigonom\'etrique les solutions, dans $\mathbb{C}$, de l'\'equation $Q(z)=0$.
+                              \pnts{1,25}
+                  \end{enumerate}
+      \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%                   %%%%%%%%%%%%%%%%%%%                   %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{Exercice II}} (5 points) 
+      \begin{enumerate}
+            \item A l'issue d'une exp\'erience al\'eatoire, on d\'efinit une variable al\'eatoire $X$ par le tableau suivant :
+                  $$
+                  \begin{array}{|c|c|c|c|c|}
+                  \hline 
+                  x & -1 & 2 & 3 & 4 \\ 
+                  \hline 
+                  p(X = x) & \frac{1}{16} & \frac{5}{16} & \frac{3}{16} & \frac{7}{16} \\ 
+                  \hline 
+                  \end{array} 
+                  $$
+                  \begin{enumerate}
+                        \item D\'efinir la fonction de r\'epartition $F$ de $X$. \pnt{1}
+                        \item Repr\'esenter graphiquement $F$ dans un rep\`ere orthogonal $(O;\vec{\imath},\vec{\jmath})$
+                              tel que $\| \vec{\imath} \| = 2 \cm$ et $\| \vec{\jmath} \| = 8 \cm$.
+                              \pnt{1}
+                        \item Calculer l'esp\'erance math\'ematique et la variance de $X$.
+                              \point{0,5}{0,5}
+                  \end{enumerate}
+            \item Une soubique contient des poussins jaunes et des poussins gris.
+                  Un enfant prend au hasard et simultan\'ement deux poussins de la soubique.
+                  Il y a 3 fois plus de chances, pour lui, de prendre deux gris que deux jaunes.
+                  La probabilit\'e de prendre deux poussins de couleurs diff\'erentes est 
+                  le double de celle de prendre deux poussins gris.
+                  \begin{enumerate}
+                        \item Prouver que la probabilit\'e pour l'enfant de prendre deux poussins gris est \'egale \`a $0,3$.
+                              \pnts{1,5}
+                        \item D\'eterminer la probabilit\'e pour l'enfant de prendre au moins un poussin gris. 
+                              \pnt{0,5}
+                  \end{enumerate}
+      \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%                   %%%%%%%%%%%%%%%%%%%                   %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{Probleme}} \newline
+      On consid\`ere la fonction num\'erique $f$ d\'efinie par : 
+      \[
+            \begin{multiform}
+                  f(0) = 0 \\
+                  f(x) = - x \ln (x) - (1-x) \ln (1-x) \text{ si } 0 < x < 1 \\
+                  f(1) = 0 \;.
+            \end{multiform}
+      \]
+      \begin{enumerate}
+            \item Pr\'eciser l'ensemble de d\'efinition de $f$.
+                  \pnt{0,25}
+            \item Prouver que $f$ est continue en $0$ et en $1$.
+                  \pnt{1}
+            \item Justifier que l'on a : 
+                  \[
+                        \lim_{x\rightarrow 0^+} \frac{f(x) - f(0)}{x - 0} = +\infty
+                        \text{ et } 
+                        \lim_{x\rightarrow 1^-} \frac{f(x) - f(1)}{x - 1} = -\infty \;.
+                  \]
+                  \point{0,5}{0,5}
+                  Que peut-on d\'eduire pour la d\'erivabilit\'e de $f$ en $0$ et en $1$, 
+                  puis pour les tangentes \`a la courbe repr\'esentative de $f$ aux points 
+                  $O(0;0)$ et $P(1;0)$\,?
+                  \POINT{0,25}{0,25}{0,25}{0,25}
+            \item \begin{enumerate}
+                        \item Calculer $f'(x)$ pour tout r\'eel $x$ de l'intervalle $]0;1[$.
+                              \pnt{0,75}
+                        \item R\'esoudre, dans $]0;1[$, l'in\'equation : $\ln (1-x) - \ln (x) \leq 0$.
+                              \pnt{0,5}
+                        \item Dresser le tableau de variation de $f$.
+                              \pnt{0,75}
+                  \end{enumerate}
+            \item Tracer la courbe repr\'esentative de $f$ et ses tangentes, dans le m\^eme rep\`ere orthonorm\'e 
+                  \Oij{} d'unit\'e $10\cm$.
+                  \pnts{1,75}
+                  
+                  (On prend $\ln (2) \simeq 0,7$)
+            \item Soient $u$ et $v$ les fonctions num\'eriques d\'efinies respectivement sur $]0;1[$ par : 
+                  \[
+                        u(x) = \frac{x^2}{2} \ln (x) - \frac{x^2}{4}
+                        \text{ et }
+                        v(x) = \frac{(x-1)^2}{2} \ln (1-x) - \frac{x^2 - 2x}{4} \;.
+                  \]
+                  \begin{enumerate}
+                        \item Calculer $u'(x)$ et $v'(x)$.
+                              \point{0,5}{0,5}
+                        \item D\'eterminer la primitive sur $]0;1[$ de $f$ qui prend la valeur $-\frac{3}{4}$ en $\frac{1}{2}$.
+                              \pnts{2}
+                  \end{enumerate}
+      \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+

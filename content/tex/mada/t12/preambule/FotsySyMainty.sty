@@ -1,0 +1,929 @@
+% Package noforoniko
+\ProvidesPackage{FotsySyMainty}
+\RequirePackage{mathtools}
+\RequirePackage{varwidth}
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{wasysym,pifont} % symbol (ilay tanana kely io ohatra)
+\RequirePackage{array,tabularx}
+\RequirePackage{enumitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{backcol}{RGB}{20,20,20}            % Izay rehetra mila backgroud color.
+\definecolor{frontcol}{RGB}{255,255,255}           % Izay rehetra milay front color.
+
+\definecolor{col0}{RGB}{255,255,255}
+\definecolor{col1}{RGB}{150,150,150}
+\definecolor{col2}{RGB}{170,170,170}
+\definecolor{col3}{RGB}{150,150,150}
+\definecolor{col4}{RGB}{0,0,0}
+
+\definecolor{bgloko}{RGB}{50,50,50} % Loko ho ampiasaina amin'ny theme-n'ilay boky, background
+\definecolor{bgloko1}{RGB}{0,0,0} % Loko ho ampiasaina amin'ny theme-n'ilay boky, background
+\definecolor{fgloko}{RGB}{255,255,255} % Loko ho ampiasaina amin'ny theme-n'ilay boky, foreground
+\definecolor{fgloko1}{RGB}{255,255,0} % Loko ho ampiasaina amin'ny theme-n'ilay boky, foreground
+\definecolor{loko1}{RGB}{70,70,70}
+\definecolor{loko2}{RGB}{50,50,50}
+\definecolor{loko3}{RGB}{100,100,100}
+\definecolor{loko3b}{RGB}{70,70,70}
+\definecolor{loko4}{RGB}{190,190,190}
+\definecolor{loko4b}{RGB}{80,80,80}
+\definecolor{loko5}{RGB}{190,190,190}
+\definecolor{loko5b}{RGB}{80,80,80}
+\definecolor{loko6}{RGB}{190,190,190}
+\definecolor{loko6b}{RGB}{80,80,80}
+
+\definecolor{linkcol}{RGB}{0,0,0} % Ito no ho lokon'ny liens anaty text
+
+\definecolor{mycol}{RGB}{150, 150, 150}
+\definecolor{shade}{RGB}{25,25,25}
+\definecolor{propcol}{RGB}{0, 0, 0}
+\definecolor{defcol}{RGB}{20, 20, 20}
+\definecolor{rmkcol}{RGB}{0, 0, 0}
+\definecolor{thmcol}{RGB}{50,50, 50}
+\definecolor{hypothesecol}{RGB}{22, 22, 22}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\warning}[1]{
+	\begin{frame}
+		\if@twocolumn
+		      \setlength{\pict}{4.5\baselineskip}
+		      \setlength{\boxlen}{0.475\textwidth}
+		      \setlength{\ligne}{\boxlen-\pict}
+		\else
+		      \setlength{\pict}{4.5\baselineskip}
+		      \setlength{\boxlen}{\textwidth-4ex}
+		      \setlength{\ligne}{\boxlen-\pict}
+		\fi
+		%
+		~\newline
+		\noindent
+		\shadowbox{%
+		      \parbox{\boxlen}{%
+		      \vspace{.25\baselineskip}
+		            \makebox{{\fontsize{2.5\baselineskip}{2.5\baselineskip} \selectfont \exclamation}}
+		            \vspace{-3\baselineskip}\\
+		                  \begin{minipage}{\ligne}
+		                        \raggedright
+		                        \parshape=4    % This command shapes the paragraph to the wished form: ie
+		                        \pict \ligne   % Those are the form of the paragraph: the indentation and then the length of a line.
+		                        \pict \ligne   % --------------------------------------- || ---------------------------------------
+		                        \pict \ligne   % --------------------------------------- || ---------------------------------------
+		                        0pt \boxlen    % And then, back to normal: 0 indentation and a full lenghth line.
+		                              \WarningFont{%
+		                                          \raggedright%
+		                                    #1%
+		                               }%
+		                  \end{minipage}
+		            }
+		      }
+		\vspace{-1\baselineskip}
+	\end{frame}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\arraystretch}{1.2} % Mba hitarina kely ilay arrays fa mifanetihety loatra
+\newcolumntype{I}{!{\vrule width 2pt}} % Fanaovana line matevina be amin'ilay tsipika amin'ny tabular, atao solon'ilay | ilay I.
+\newlength\savedwidth      % Nalaina avy tao amin'ny The LaTeX companion, novaina 2pt ilay 3pt tao.
+\newcommand\whline{%       % Ahafahana manao line matevina kokoa, solon'ilay \hline dia atao \whline
+      \noalign{%           % Dia mahazo line matevina kokoa (2pt no hateviny).
+	            \global\savedwidth\arrayrulewidth
+			\global\arrayrulewidth 2pt%
+		}%
+	\hline
+	\noalign{%
+		      \global\arrayrulewidth\savedwidth%
+	      }%
+	}
+\newcolumntype{Y}{>{\small\centering\arraybackslash}X} % Resaka columtype amin'ny tabularx
+\newcolumntype{e}{@{\extracolsep{\fill}}} % Karazana separator amin'ny tabular sy ny array: avelany banga be eo fotsiny
+\newcommand{\headingstyleko}{% Style amin'ny first row of a table
+%                        \rowcolor[gray]{0.8}%
+%                              \color{black}%
+            }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Rehefa mametraka notes ho an'ilay sujets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\pnt}[1]{\relax}
+\newcommand{\pnts}[1]{\relax}
+\newcommand{\point}[2]{\relax}
+\newcommand{\points}[2]{\relax}
+\newcommand{\Point}[3]{\relax}
+\newcommand{\Points}[3]{\relax}
+\newcommand{\POINT}[4]{\relax}
+%\newcommand{\POINTS}[4]{\relax}
+%\newcommand{\notesize}[1]{\footnotesize{#1}}
+%\newcommand{\pnt}[1]{\marginpar{\notesize{#1}}}
+%\newcommand{\pnts}[1]{\marginpar{\notesize{#1}}}
+%\newcommand{\point}[2]{{\marginpar{\notesize{#1+#2}}}}
+%\newcommand{\points}[2]{{\marginpar{\notesize{#1+#2}}}}
+%\newcommand{\Point}[3]{{\marginpar{\notesize{#1+#2+#3}}}}
+%\newcommand{\Points}[3]{{\marginpar{\notesize{#1+#2+#3}}}}
+%\newcommand{\POINT}[4]{{\marginpar{\notesize{#1+#2+#3+#4}}}}
+%\newcommand{\POINTS}[4]{{\marginpar{\notesize{#1+#2+#3+#4}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Karazana boxes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[framemethod=TikZ]{mdframed} % This package is used for the purpose of the mdframed command.
+% Resaka fonts ilay raha %
+\newcommand{\NotaFont}{\rm}
+\newcommand{\WarningFont}{\rm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand{\mybox}[2]{\colorbox{mycol}{\parbox{#1}{#2}}}
+%\newcommand{\shadedbox}[2]{\colorbox{shade}{\parbox{#1}{#2}}}
+%\newcommand{\propbox}[2]{\colorbox{propcol}{\parbox{#1}{#2}}}
+%\newcommand{\defbox}[2]{\colorbox{defcol}{\parbox{#1}{#2}}}
+%\newcommand{\thmbox}[2]{\colorbox{thmcol}{\parbox{#1}{#2}}}
+% Example of use of the command \mybox : \mybox{5cm}{$$ \int_{-\infty}^{+\infty} e^{-x^2} \text{dx} = \sqrt{\pi} $$}
+% \newcommand{\invertbox}[2]{\colorbox{black}{\parbox{#1}{\textcolor{white}{\textbf{#2}}}}}
+% Example of use of the command \invertbox : Error 404 : Example not found!!!
+
+% Alternative definitions of the commands : \mybox , \shadedbox , \propbox , \defbox , \thmbox
+%%%%
+\newcommand{\boxeo}[1]{%
+      \begin{varwidth}{1\actualtextwidth}%
+      \centering
+      #1%
+      \end{varwidth}%
+   }%
+%%%%
+\newcommand{\mybox}[1]{%
+   \colorbox{mycol}{%
+      \begin{varwidth}{2\textwidth}%
+      \raggedright
+      #1%
+      \end{varwidth}%
+   }%
+}%
+%%%%
+\newcommand{\shadedbox}[1]{%
+   \colorbox{shade}{%
+      \begin{varwidth}{1\actualtextwidth}%
+      #1%
+      \end{varwidth}%
+   }%
+}%
+%%%%
+\newcommand{\propbox}[1]{%
+   \fbox{%
+      \begin{varwidth}{1\actualtextwidth}%
+      #1%
+      \end{varwidth}%
+   }%
+}%
+%%%%
+\newcommand{\defbox}[1]{%
+   \colorbox{defcol}{%
+      \begin{varwidth}{1\actualtextwidth}%
+      #1%
+      \end{varwidth}%
+   }%
+}%
+%%%%
+\newcommand{\rmkbox}[1]{%
+   \colorbox{rmkcol}{%
+      \begin{varwidth}{1\actualtextwidth}%
+                  #1%
+      \end{varwidth}%
+   }%
+}%
+%%%%
+\newcommand{\hypothesebox}[1]{%
+   \colorbox{hypothesecol}{%
+      \begin{varwidth}{1\actualtextwidth}%
+      #1%
+      \end{varwidth}%
+   }%
+}%
+%%%%
+\newcommand{\thmbox}[1]{%
+   \colorbox{thmcol}{%
+      \begin{varwidth}{1\actualtextwidth}%
+      #1%
+      \end{varwidth}%
+   }%
+}%
+%%%%
+\newcommand{\invertbox}[1]{%
+   \colorbox{black}{%
+         \begin{varwidth}{1\actualtextwidth}%
+               \textcolor{white}{%
+                     \textbf{%
+                           #1%
+                     }%
+               }%
+         \end{varwidth}%
+   }%
+}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MILA FANAMBOARANA KELY IREO BOXES IREO SATRIA HO AVOAKA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\mybox}[1]{%
+   \fbox{%
+      \begin{varwidth}{1\actualtextwidth}%
+      \raggedright
+      #1%
+      \end{varwidth}%
+   }%
+}%
+%%%%%
+\newcommand{\deftext}[1]{%
+   \textcolor{defcol}{%
+   		\emph{%
+	      #1%
+      }%
+   }%
+}%
+%%%%%
+\renewcommand{\defbox}[1]{%
+   \textcolor{defcol}{%
+	      #1%
+   }%
+}%
+%%%%%
+\newcommand{\hypothesetext}[1]{%
+   \textcolor{hypothesecol}{%
+   		\emph{%
+	      #1%
+      }%
+   }%
+}%
+%%%%%
+\renewcommand{\hypothesebox}[1]{%
+   \textcolor{hypothesecol}{%
+   		\emph{%
+	      #1%
+      }%
+   }%
+}%
+%%%%%
+\renewcommand{\thmbox}[1]{%
+   \textcolor{thmcol}{%
+	      #1%
+   }%
+}%
+%%%%%
+%%%%%
+\newcommand{\thmtext}[1]{%
+   \textcolor{thmcol}{%
+   		\emph{%
+	      #1%
+      }%
+   }%
+}%
+%\renewcommand{\hypothesebox}[1]{%
+%   \colorbox{gray!50!white}{%
+%      \begin{varwidth}{1\actualtextwidth}%
+%      #1%
+%      \end{varwidth}%
+%   }%
+%}%
+%%%%%
+%\renewcommand{\propbox}[1]{%
+%   \colorbox{black}{%
+%         \begin{varwidth}{1\actualtextwidth}%
+%               \textcolor{white}{%
+%                     \textbf{%
+%                           #1%
+%                     }%
+%               }%
+%         \end{varwidth}%
+%   }%
+%}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tsy dia tena mahalaza azy loatra ireo (ilay roa voalohany ao ihany) fa mba anarana tiako hampiasaiana fotsiny. 
+\newcommand{\SansSerifFont }[1]{\fontfamily{phv}\selectfont #1}      % Karazana Sans serif
+\newcommand{\TypewriterFont }[1]{\fontfamily{pcr}\selectfont #1}     % Karazana Typewriter font
+\newcommand{\RomanFont}[1]{\fontfamily{cmdh}\selectfont #1}          % Roman font misy zesta kely izay
+\newcommand{\ItalicFont}[1]{\fontfamily{pzc}\selectfont #1}          % Zesta be, somary mitailana ilay izy
+
+%
+\newcommand{\vln}[1]{{\bfseries #1} \newline}
+\newcommand{\ansbox}[1]{\fbox{%
+      \begin{varwidth}{.8\actualtextwidth}%
+      \raggedright
+      #1%
+      \end{varwidth}%
+}}
+
+\newtheorem{exe}{Exercice}
+\newtheorem{pbm}{Probl\`eme}[chapter]
+\newtheorem*{pbm*}{Probl\`eme}
+\newenvironment{sujetD}{%
+                        \newpage
+                        \dingline{235}
+                        \setcounter{exe}{0}%
+                        }{%
+                               \rotatebox{180}{
+                                     \parbox{\actualtextwidth}{
+                                           \dingline{235}
+                                     }
+                               }
+                         }
+\newenvironment{sujetC}{
+                        \newpage
+                        \dingline{235}
+                        \setcounter{pbm}{0}%
+                        }{%
+                               \rotatebox{180}{
+                                     \parbox{\actualtextwidth}{
+                                           \dingline{235}
+                                     }
+                               }
+}
+
+%\newenvironment{valiny}{%
+%                             %\vspace{-1\baselineskip}
+%%                             \begin{flushright}\begin{minipage}{.95\actualtextwidth}
+%                              
+%                              \noindent
+%                              \textbf{R\'eponse :}\\%[-1\baselineskip]%
+%%                             \raggedright%
+%                             \RomanFont%
+%                       }%
+%                        %
+%                       {%
+%%                              \end{minipage}%
+%%                              \end{flushright}%
+%                       }
+
+\newenvironment{valiny}{%
+                             %\vspace{-1\baselineskip}
+%                             \begin{flushright}\begin{minipage}{.95\actualtextwidth}
+                              
+                              \noindent
+%                              \textbf{R\'eponse :}\\%[-1\baselineskip]%
+%                             \raggedright%
+                              \sf
+                              %\color{blue}
+                       }%
+                        %
+                       {%
+%                              \end{minipage}%
+%                              \end{flushright}%
+                       }
+
+\newenvironment{fanitsiana}{%
+                 \textsc{Correction :}
+                 \begin{flushright}\begin{minipage}{1\actualtextwidth}\ItalicFont%
+                   }{%
+                     \end{minipage}\end{flushright}%
+                       }
+
+
+\newenvironment{fiche}{% Raha vao tsy `fancy' intsony izao no pagestyle ampiasaina dia hanahirana io ambany io.
+                        \clearpage
+                        \pagestyle{emptystyleko}
+                        \begin{center}
+                        \section*{\`A retenir}
+                        \end{center}
+                       }{%
+                        \newpage
+                        \pagestyle{fancy}
+                         }
+
+% Copy paste avy ao amin'ny `The LaTeX Companion'
+      \newlength\mylen
+\newenvironment{tabularc}[1]
+                  {\setlength\mylen
+                              {\linewidth/(#1)-\tabcolsep*2-\arrayrulewidth*(#1+1)/(#1)}%
+                        \par\noindent      % new paragraph, flush left start
+                        \begin{tabular*}{\linewidth}%
+                              {*{#1}{|>{\centering\hspace{0pt}} p{\the\mylen}}|}}
+                  {\end{tabular*}\par}
+% Fanaovana fonction definie amina formes samihafa, na suite definie par premier terme sy relation, sns
+\newenvironment{multiform}{%
+                          \left\lbrace
+                                \begin{array}{l}
+                         }{%
+                               \end{array}
+                         \right.
+                        }
+
+\newenvironment{mitanisa}{%
+                         \begin{tabular}[t]{l}
+                         }{%
+                         \end{tabular}
+                        }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% New environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{defi}[chapter]
+\setcounter{defi}{0}
+\newcommand{\Deffont}[1]{\noindent{\fontfamily{phv}\bfseries\selectfont #1}}
+\newcommand{\deffont}{\noindent\fontfamily{ppl}\selectfont\it}
+\newenvironment{defi}[1][]{%
+
+								\addtocounter{defi}{1}
+								\@ifempty{#1}{%
+										\Deffont{D\'efinition~\thedefi}\newline%
+									}{%
+										\Deffont{D\'efinition~\thedefi} {\deffont(#1)}\newline%
+									}
+								\deffont									
+							}{%
+							
+								\noindent
+								\rule{\actualtextwidth}{2pt}
+
+							}
+\newcounter{rmk}[chapter]
+\setcounter{rmk}{0}
+\newcommand{\Rmkfont}[1]{\noindent{\fontfamily{phv}\bfseries\selectfont #1}}
+\newcommand{\rmkfont}{\noindent\fontfamily{ppl}\selectfont\it}
+\newenvironment{rmk}[1][]{%
+
+								\addtocounter{rmk}{1}
+								\@ifempty{#1}{%
+										\Rmkfont{Remarque~\thermk}\newline%
+									}{%
+										\Rmkfont{Remarque~\thermk} {\rmkfont(#1)}\newline%
+									}
+								\deffont									
+							}{%
+							
+								\noindent
+								\rule{\actualtextwidth}{2pt}
+
+							}
+\newcounter{ex}[chapter]
+\setcounter{ex}{0}
+\newcommand{\Exfont}[1]{\noindent{\fontfamily{phv}\bfseries\selectfont #1}}
+\newcommand{\exfont}{\noindent\fontfamily{cmtt}\selectfont}
+\newenvironment{ex}{%
+
+								\addtocounter{ex}{1}
+								\noindent
+								%\rule{\actualtextwidth}{2pt}
+								\Exfont{Exemple~\theex}
+								\newline\exfont
+							}{%
+							
+								\noindent
+%								\rule{\actualtextwidth}{2pt}
+
+							}
+\newcounter{prop}[chapter]
+\setcounter{prop}{0}
+\newcommand{\Propfont}[1]{\noindent{\fontfamily{phv}\bfseries\selectfont #1}}
+\newcommand{\propfont}{\noindent\fontfamily{phv}\selectfont}
+\newenvironment{prop}[1][]{%
+
+								\addtocounter{prop}{1}
+								\@ifempty{#1}{%
+										\Propfont{Propri\'et\'es~\theprop}\newline%
+									}{%
+										\Propfont{Propri\'et\'es~\theprop} {\propfont(#1)}\newline%
+									}
+								\propfont									
+							}{%
+							
+								\noindent
+								\rule{\actualtextwidth}{2pt}
+
+							}
+%\newcounter{prp}[chapter]
+%\setcounter{prp}{0} % Aleo ny an'ito atao mitovy amin'ilay prop ihany
+\newcommand{\Prpfont}[1]{\noindent{\fontfamily{phv}\bfseries\selectfont #1}}
+\newcommand{\prpfont}{\noindent\fontfamily{phv}\selectfont}
+\newenvironment{prp}[1][]{%
+
+								\addtocounter{prop}{1}
+								\@ifempty{#1}{%
+										\Prpfont{Propriété~\theprop}\newline%
+									}{%
+										\Prpfont{Propriété~\theprop} {\propfont(#1)}\newline%
+									}
+								\prpfont								
+							}{%
+							
+								\noindent
+								\rule{\actualtextwidth}{2pt}
+
+							}
+\newcounter{lem}[chapter]
+\setcounter{lem}{0}
+\newcommand{\Lemfont}[1]{\noindent{\fontfamily{phv}\bfseries\selectfont #1}}
+\newcommand{\lemfont}{\noindent\fontfamily{phv}\selectfont}
+\newenvironment{lem}[1][]{%
+
+								\addtocounter{thm}{1}
+								\@ifempty{#1}{%
+										\Lemfont{Lemme~\thelem} \newline%
+									}{%
+										\Lemfont{Lemme~\thelem} (#1)\newline%
+									}
+								\lemfont
+							}{%
+							
+								\noindent
+								\rule{\actualtextwidth}{2pt}
+
+							}
+\newcounter{thm}[chapter]
+\setcounter{thm}{0}
+\newcommand{\Thmfont}[1]{\noindent{\fontfamily{phv}\bfseries\selectfont #1}}
+\newcommand{\thmfont}{\noindent\fontfamily{phv}\selectfont}
+\newenvironment{thm}[1][]{%
+
+								\addtocounter{thm}{1}
+								\@ifempty{#1}{%
+										\Thmfont{Th\'eor\`eme~\thethm} \newline%
+									}{%
+										\Thmfont{Th\'eor\`eme~\thethm} (#1)\newline%
+									}
+								\thmfont
+							}{%
+							
+								\noindent
+								\rule{\actualtextwidth}{2pt}
+
+							}
+\newcounter{cor}[chapter]
+\setcounter{cor}{0}
+\newcommand{\Corfont}[1]{\noindent{\fontfamily{phv}\bfseries\selectfont #1}}
+\newcommand{\corfont}{\noindent\fontfamily{phv}\selectfont}
+\newenvironment{cor}[1][]{%
+
+								\addtocounter{cor}{1}
+								\@ifempty{#1}{%
+										\Corfont{Corollaire~\thethm} \newline%
+									}{%
+										\Corfont{Corollaire~\thethm} (#1)\newline%
+									}
+								\corfont
+							}{%
+							
+								\noindent
+								\rule{\actualtextwidth}{2pt}
+
+							}
+\newcounter{exo}[chapter]
+\setcounter{exo}{0}
+\newcommand{\Exofont}[1]{\noindent{\fontfamily{phv}\bfseries\selectfont #1}}
+\newcommand{\exofont}{\noindent\fontfamily{cmr}\selectfont}
+%\newenvironment{exo}[1][]{%
+%								\addtocounter{exo}{1}
+%								\@ifempty{#1}{%
+%										\Exofont{Exercice~\theexo} \newline%
+%									}{%
+%										\Exofont{Exercice~\theexo} (#1)\newline%
+%									}
+%								\exofont
+%							}{%
+%							
+%							}
+\newenvironment{exo}[1][]{%
+
+								\addtocounter{exo}{1}
+								\@ifempty{#1}{%
+										\vspace{\baselineskip}
+										\noindent
+										\boxeo{
+											\noindent
+											\raggedright
+											\rule{\actualtextwidth}{.5\baselineskip}\vspace{-1.5\baselineskip}
+											\Exofont{\fcolorbox{black}{white}{Exercice~\theexo}}%
+											\newline\vspace{\baselineskip}
+										}
+									}{%
+										\vspace{\baselineskip}
+										\noindent
+										\boxeo{
+											\noindent
+											\raggedright
+											\rule{\actualtextwidth}{.35\baselineskip}\vspace{-1.65\baselineskip}
+											\Exofont{\fcolorbox{black}{white}{Exercice~\theexo}%
+												\fcolorbox{black}{black}{\textcolor{white}{(#1)}}}%
+											\newline\vspace{\baselineskip}
+										}
+									}
+								\exofont
+							}{%
+
+							}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% New commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\floor}[1]{%
+								\left\lfloor
+									#1
+								\right\rfloor
+							}
+\newcommand{\ceil}[1]{%
+								\left\lceil
+									#1
+								\right\rceil
+							}
+\newcommand{\ivec}{\vec{\imath}}
+\newcommand{\jvec}{\vec{\jmath}}
+%\newcommand{\mathbold}[1]{\text{\boldmath{$#1$}}} % Fanaovana bold anaty maths
+\renewcommand{\Re}[1]{\mathfrak{Re}\left( #1 \right)}
+\renewcommand{\Im}[1]{\mathfrak{Im}\left( #1 \right)}
+\newcommand{\entiere}[1]{\mathrm{E}\!\left(#1\right)}
+%\renewcommand{\bar}{\overline}
+%\renewcommand{\vec}{\overrightarrow}
+\newcommand{\expo}[1]{\mathrm{e}^{#1}}
+\newcommand{\Arg}[1]{\mathrm{Arg}\left( #1 \right)}
+\newcommand{\Comb}[2]{C_{#1}^{#2}}
+\newcommand{\Arr}[2]{A_{#1}^{#2}}
+
+\theoremstyle{definition}
+%\newtheorem{defi}{D\'efinition}[chapter]
+%\newtheorem{lem}{Lemme}[chapter]
+%\newtheorem{thm}{Th\'eor\`eme}[chapter]
+%\newtheorem{prop}{Proposition}[chapter]
+%\newtheorem{prp}{Propri\'et\'e}[chapter]
+\newtheorem{dem}{Preuve}[chapter]
+%\newtheorem{ex}{Exemple}[chapter]
+%\newtheorem{rmk}{Remarque}[chapter]
+%\newtheorem{exo}{Exercice}[chapter]
+%\newtheorem{pbm}{Probl\`eme}[chapter]
+%\newtheorem*{exe}{Exercice}
+\newtheorem{sol}{Solution}[chapter]
+%\newtheorem{cor}{Corollaire}[chapter]
+\newcommand{\cqfd}{\begin{flushright}$\blacksquare$\end{flushright}}
+%
+\DeclarePairedDelimiter{\VecNorm}{\lVert}{\rVert}      % Declares a paired delimiter :p (Obvious! Isn't it?)
+\newcommand{\norm}[1]{\VecNorm*{ \vec{#1}}}
+%
+\newcommand{\important}[1]{
+      \hspace{-20pt}
+      \shadedbox{\actualtextwidth}{
+      \begin{minipage}{\actualtextwidth}
+            \begin{center}
+                  \mybox{1\actualtextwidth}{
+                        #1
+                  }
+            \end{center}
+      \end{minipage}
+      }
+}
+%
+\newcommand{\veccor}[2]{\left( \begin{matrix} #1 \\ #2 \end{matrix} \right)} % Mamoaka coordinates ho lasa form of a vector
+                                                                             % Hanahirana raha hanoratra an'io isaky ny mandeha
+                                                                             % oh: \veccor{2}{3} mba hilazana hoe 
+                                                                             % 2 sy 3 ny coordonn\'es an'ilay vecteur
+% The \textwidth command in twocolumn mode gives the full width of the text along the wholse page.
+% If one wants to have the `actual' text width, then it'll have to be reduced.
+% I don't know wether if there is already an apporpriate command. 
+% I don't even know how much exactly I have to reduce it. 
+% But it poses problem and this is the way I found to fix it.
+\newlength{\actualtextwidth}
+\if@twocolumn
+      \setlength{\actualtextwidth}{0.5\textwidth - \columnsep - 0.5\columnseprule}
+\else
+      \setlength{\actualtextwidth}{\textwidth}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength{\ligne}                  % Halavan'ny andalana amin'ito warning ito
+\newlength{\pict}                   % Velaran'ny sary amin'ito warning ito
+\newlength{\fihisany}               % Toerana banga hasiana an'ilay sary amin'ito warning ito
+\newlength{\boxlen}                 % Halavan'ilay box
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\providecommand{\exclamation}{% We provide the command first. If the smiley package is already loaded this command doesn't apply.
+	\begin{tikzpicture}[scale=.035ex]
+	\clip (-1.6,-1.35) rectangle (1.6,1.5) ;
+	\filldraw[draw=gray!50!black,line width=.2ex,smooth,rounded corners=.1em] (-1.566,-1.2) -- (1.566,-1.2) -- (0,1.5) -- cycle;
+	\filldraw[draw=white,line width=.1ex,fill=gray,smooth,rounded corners=.1em] (-1.566,-1.2) -- (1.566,-1.2) -- (0,1.5) -- cycle;
+	\fill[color=white] (0,-.75) circle (.125);
+	\fill[color=white, smooth] (-.1,-.4) arc(180:360:.1) to[out=90,in=270] (.2,.5) arc(0:180:.2) to[out=270,in=90] (-.1,-.3);
+	\end{tikzpicture}
+	\hspace{-1.2ex} % Removes the extra-space left after (I don't know why there is).
+}
+\renewcommand{\exclamation}{% We renew the command. This changes the command from the smiley command if already loaded.
+									% If not loaded, we just provided it.
+	\begin{tikzpicture}[scale=.035ex]
+	\clip (-1.6,-1.35) rectangle (1.6,1.5) ;
+	\filldraw[draw=gray!50!black,line width=.2ex,smooth,rounded corners=.1em] (-1.566,-1.2) -- (1.566,-1.2) -- (0,1.5) -- cycle;
+	\filldraw[draw=white,line width=.1ex,fill=gray,smooth,rounded corners=.1em] (-1.566,-1.2) -- (1.566,-1.2) -- (0,1.5) -- cycle;
+	\fill[color=white] (0,-.75) circle (.125);
+	\fill[color=white, smooth] (-.1,-.4) arc(180:360:.1) to[out=90,in=270] (.2,.5) arc(0:180:.2) to[out=270,in=90] (-.1,-.3);
+	\end{tikzpicture}
+	\hspace{-1.2ex} % Removes the extra-space left after (I don't know why there is).
+}
+\providecommand{\warning}[1]{
+	\if@twocolumn
+	\setlength{\pict}{4.5\baselineskip}
+	\setlength{\boxlen}{0.475\textwidth}
+	\setlength{\ligne}{\boxlen-\pict}
+\else
+	\setlength{\pict}{4.5\baselineskip}
+	\setlength{\boxlen}{\textwidth-4ex}
+	\setlength{\ligne}{\boxlen-\pict}
+\fi
+%
+~\newline
+\noindent
+\shadowbox{%
+      \parbox{\boxlen}{%
+      \vspace{.25\baselineskip}
+            \makebox{{\fontsize{2.5\baselineskip}{2.5\baselineskip} \selectfont \exclamation}}
+            \vspace{-3\baselineskip}\\
+                  \begin{minipage}{\ligne}
+                        \raggedright
+                        \parshape=4    % This command shapes the paragraph to the wished form: ie
+                        \pict \ligne   % Those are the form of the paragraph: the indentation and then the length of a line.
+                        \pict \ligne   % --------------------------------------- || ---------------------------------------
+                        \pict \ligne   % --------------------------------------- || ---------------------------------------
+                        0pt \boxlen    % And then, back to normal: 0 indentation and a full lenghth line.
+                              \WarningFont{%
+                                          \raggedright%
+                                    #1%
+                               }%
+                  \end{minipage}
+            }
+      }
+\vspace{-1\baselineskip}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\nota}[1]{
+% We could have used the \actualtextwidth length defined above.
+\if@twocolumn
+      \setlength{\pict}{4.5\baselineskip}
+      \setlength{\boxlen}{0.475\textwidth}
+      \setlength{\ligne}{\boxlen-\pict}
+\else
+      \setlength{\pict}{15ex}
+      \setlength{\boxlen}{\textwidth-2ex}
+      \setlength{\ligne}{\boxlen-\pict}
+\fi
+%
+      \vspace{\baselineskip} 
+\noindent
+\shadowbox{%
+      \parbox{\boxlen}{%
+            \makebox{{\fontsize{60}{60} \selectfont\Pisymbol{mvs}{98}} }
+            \vspace{-2.75\baselineskip}\\
+                  \begin{minipage}{\ligne}
+                        \raggedright
+                        \parshape=4    % This command shapes the paragraph to the wished form: ie
+                        \pict \ligne   % It starts leaves some space for the picture and the length of the line is \ligne
+                        \pict \ligne   % -------------------------------------- || --------------------------------------
+                        \pict \ligne   % -------------------------------------- || --------------------------------------
+                        0pt \boxlen
+                              \NotaFont{%
+                                        \raggedright%
+                                    #1%
+                              }%
+                  \end{minipage}
+            }
+      }
+}
+\newcommand{\smallnota}[1]{%
+            {\LARGE\Pisymbol{mvs}{98} }%
+            \NotaFont{%
+            #1%
+            }%
+}
+\newcommand{\congru}[3]{#1 \equiv #2 \quad \mathrm{mod}\ #3}
+\newcommand{\pgcd}[2]{PGCD(#1,#2)}
+\newcommand{\Pgcd}[3]{PGCD(#1,#2,#3)}
+\newcommand{\base}[2]{\overline{#1}^{_{(#2)}}} % Fanoratana nombre #1 en base #2. En maths mode vao mandeha.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% RESAKA TikZ INDRAY ILAY RAHA: TikZ node, lasa node TikZ ilay izy.
+\tikzstyle{every picture}+=[remember picture] % Ahafahana mampiasa tikz ivelan'ny \begin{tikzpicture} sy ny \end{tikzpicture}
+% Azo tondroina na avy aiza na avy aiza :) 
+\newcommand{\tikznode}[2]{ \tikz[baseline,inner sep=0] \node[anchor=base] (#1) {#2}; } % First argument is the name of the node, the second argument is the caption to refer to.
+
+
+%% Fomba fampiasana azy : 
+%Mety atao na aiza na aiza tiana hasiana .
+%\tikznode{First}{azy};  % Mamoaka soratra 'azy'
+%Dia eto izany misy soratra ohatra.
+%Dia tiana 
+%\tikznode{Second}{hotondroina};  % Mamoaka soratra 'hotondroina'
+%amin'izay ilay izy avy eo.
+%% Io code io no manondro azy.
+%\begin{tikzpicture}[remember picture,overlay]
+%\draw[->,very thick] (Second) to[out=-90,in=-90] (First);
+%\end{tikzpicture}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Zavatra ilaiko amin'ny fanaovako sujets
+\providecommand{\Lim}{\displaystyle \lim}
+\providecommand{\dx}{~\mathrm{d}x}
+\providecommand{\Re}[1]{\mathrm{Re}\left( #1 \right)}
+\providecommand{\Im}[1]{\mathrm{Im}\left( #1 \right)}
+\providecommand{\dt}{\mathrm{d}t}
+\providecommand{\Ouv}{(O;\vec{u},\vec{v})}
+\providecommand{\Oij}{$(O;\vec{\imath},\vec{\jmath})$}
+\providecommand{\mes}[2]{\mathrm{mes}\left( \widehat{ \overrightarrow{#1} ; \overrightarrow{#2} } \right)}
+\providecommand{\Mes}[2]{\mathrm{mes}\left( \widehat{ #1 ; #2 } \right)}
+\providecommand{\D}{(\mathscr{D})}
+\providecommand{\Courbe}{(\mathscr{C})}
+\providecommand{\congru}[3]{#1 \equiv #2 \quad \left[ \mathrm{mod}~#3\right]}
+%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Custumization of the enumitem commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlist{noitemsep}
+\setlist[enumerate, 1]{label=\arabic*.}
+\setlist[enumerate, 2]{label=\alph*)}
+\setlist[enumerate, 3]{label=\roman*.}
+%
+\setlist[itemize, 1]{label=\textbullet}
+\setlist[itemize, 2]{label=$\circ$}
+\setlist[itemize, 3]{label=\Pisymbol{mvs}{'267}}
+\setlist[itemize, 4]{label=\Pisymbol{mvs}{'132}}
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\boitetitre}
+\newlength{\largeurboitetitre}
+\newlength{\hauteurboitetitre}
+\newenvironment{methode}[1][]{%
+							\begin{figure}
+							\centering
+								\begin{minipage}{\actualtextwidth}
+									\noindent%
+										\fcolorbox{black}{propcol!50!black}{
+											\begin{minipage}{\actualtextwidth-\fboxrule*5-\fboxsep}%
+																						%Tsy haiko hoe fa maninona no mila atao -\fboxrule*5-\fboxsep
+																						%fa dia io aloha no mampety azy :/ 
+												\centering
+												\textcolor{white}{%
+													\Large\sf\bfseries
+														\@ifempty{#1}{Bo\^ite \`a m\'ethode}{#1}
+													}
+											\end{minipage}
+										}%
+									\\[-1\lineskip]%
+									\begin{lrbox}{\boitetitre}
+										\begin{minipage}{\actualtextwidth}
+											\begin{flushleft}
+								}{%
+											\end{flushleft}%
+										\end{minipage}%
+									\end{lrbox}%
+											\fcolorbox{black}{propcol!25!white}{\usebox{\boitetitre}}
+								\end{minipage}
+							\end{figure}
+								}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newcommand{\application}[5]{%
+										\begin{IEEEeqnarray*}{rCrCl}
+											#1	&	:	&	#2	&	\rightarrow	&	#3	\\
+												&		&	#4	&	\mapsto		&	#5
+										\end{IEEEeqnarray*}
+									 }
+
+
+
+
+
+\providecommand{\Milimetre}[2]{%
+									\clip #1 rectangle #2;
+									\draw [xstep=0.1cm,ystep=0.1cm,opacity=.05,line width=.05] #1 grid #2;
+									\draw [xstep=0.5cm,ystep=0.5cm,opacity=0.1,line width=0.1] #1 grid #2;
+									\draw [xstep=1.0cm,ystep=1.0cm,opacity=0.2,line width=0.2] #1 grid #2;
+									}
+
+
+
+
+
+
+
+
+
+
+
+% Zavatra mety miasa anaty TikZ
+%				\Milimetre{-5,-5}{5,5}
+%				\foreach \x in {-4,-3,...,4}
+%					\ifthenelse{\x=0}{}{
+%						\draw[thick] (\x,.1) -- (\x,-.1) node[below] {$\x$}};
+%				\foreach \y in {-4,-3,...,4}
+%					\ifthenelse{\y=0}{}{
+%						\draw[thick] (.1,\y) -- (-.1,\y) node[left] {$\y$}};
+%				\draw (0,0) node[below left] {$O$};

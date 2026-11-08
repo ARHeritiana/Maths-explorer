@@ -1,0 +1,238 @@
+% Baccalauréat malgache, série C, 2007 : énoncé.
+\TCDBacAttribution{C}{2007}
+\providecommand{\dx}{\mathrm{d}x}
+\providecommand{\Re}[1]{\mathrm{Re}\left( #1 \right)}
+\providecommand{\Im}[1]{\mathrm{Im}\left( #1 \right)}
+\providecommand{\dt}{\mathrm{d}t}
+\providecommand{\Ouv}{(O;\vec{u},\vec{v})}
+\providecommand{\mes}[2]{\mathrm{mes}\left( \widehat{ \overrightarrow{#1} ; \overrightarrow{#2} } \right)}
+\providecommand{\D}{(\mathscr{D})}
+\providecommand{\Courbe}{(\mathscr{C})}
+\providecommand{\Courben}{(\mathscr{C}_n)}
+\providecommand{\CourbeD}{(\mathscr{C}_2)}
+\providecommand{\congru}[3]{#1 \equi #2 \quad \left[ \mathrm{mod}~#3\right]}
+\providecommand{\Angl}[2]{\left( \widehat{ \overrightarrow{#1} , \overrightarrow{#2} } \right)}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{Exercice}}} (4 points)
+      \begin{description}
+            \item[I. ]
+                  \begin{enumerate}
+                        \item Montrer par r\'ecurrence que $9^n - 2^n$ est divisible par $7$ pour tout $n\in\mathbb{N}$.
+                        \item Montrer que, pour tout entier naturel non nul, $3n-2$ et $5n-3$ sont premiers entre eux.
+                        \item On consid\`ere dans $\mathbb{Z}/7\mathbb{Z}$, l'\'equation
+                              \begin{equation}
+                                    \TCDtag{E}
+                                          x^2 - x + \dot{1} = \dot{0} \;.
+                                    \label{eq:Bac C 2007 arithm}
+                              \end{equation}
+                              \begin{enumerate}
+                                    \item V\'erifier que $\dot{5}$ est une solution de \eqref{eq:Bac C 2007 arithm}.
+                                    \item D\'emontrer que l'\'equation \eqref{eq:Bac C 2007 arithm} est \'equivalente \`a :
+                                          $(x-\dot{4})^2 = \dot{1}$.
+                                    \item En d\'eduire l'ensemble $S$ des entiers relatifs $x$ v\'erifiant : 
+                                          \[
+                                                \begin{multiform}
+                                                      |x| < 7 \\
+                                                      x^2 - x + \dot{1} = \dot{0} \;.
+                                                \end{multiform}
+                                          \]
+                              \end{enumerate}
+                  \end{enumerate}
+            \item[II. ]
+                  Une urne contient : 
+                  \begin{mitanisa}
+                        \textbullet\ dix boules blanches num\'erot\'ees de 1 \`a 10,            \\
+                        \textbullet\ six boules noires num\'erot\'ees de 11 \`a 16              \\
+                        \textbullet\ et quatre boules vertes num\'erot\'ees de 17 \`a 20.
+                  \end{mitanisa}
+                  \begin{enumerate}
+                        \item On tire au hasard et successivement sans remise deux boules de l'urne ;
+                              calculer la probabilit\'e des \'ev\`enements suivants :
+                              \begin{itemize}
+                                    \item $A$ : << Les deux boules tir\'ees sont de m\^eme couleur >>.
+                                    \item $B$ : << Les num\'eros des boules tir\'ees sont des nombres premiers >>.
+                              \end{itemize}
+                        \item On tire au hasard et successivement avec remise deux boules de l'urne ;
+                              calculer la probabilit\'e des \'ev\`enements suivants :
+                              \begin{itemize}
+                                    \item $C$ : << Une au moins des boules est blanche >>.
+                                    \item $D$ : << Les num\'eros des boules tir\'ees sont divisible par 7 >>.
+                              \end{itemize}
+                  \end{enumerate}
+                  %
+                  \begin{center}
+                        (\textbf{N.B :} Mettre les r\'esultats sous forme de fractions irr\'eductibles.)
+                  \end{center}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME I}}} (7 points) \newline
+      Dans le plan orient\'e $\Plan$, on consid\`ere le carr\'e $ABCD$ de centre $O$ tel que 
+      la mesure de l'angle $\Angl{DA}{DC} = \frac{\pi}{2}$.
+      Soit $E$ le milieu du segment $[CD]$.
+      On consid\`ere le carr\'e $DEFG$ de centre $O'$ tel que la mesure de l'angle $\Angl{DE}{DG} = \frac{\pi}{2}$.
+      On note respectivement $(\Gamma)$ et $(\Gamma ')$ les cercles circonscrits aux carr\'es $ABCD$ et $DEFG$.
+      
+      \begin{description}
+            \item[Partie A]
+                  \begin{enumerate}
+                        \item Faire une figure avec $AB = 6\cm$.
+                        \item Soit $S$ la similitude plane directe de centre $D$ qui transforme $A$ en $B$.
+                              \begin{enumerate}
+                                    \item D\'eterminer le rapport et l'angle de $S$.
+                                    \item Pr\'eciser l'image du point $E$ par $S$ et en d\'eduire une mesure de l'angle 
+                                          $\Angl{AE}{BF}$.
+                              \end{enumerate}
+                        \item On note $I$ le point d'intersection des droites $(AE)$ et $(BF)$.
+                              \begin{enumerate}
+                                    \item Placer le point $I$ sur la figure.
+                                    \item Montrer que le point $I$ est l'intersection des cercles $(\Gamma)$ et $(\Gamma ')$.
+                                          \newline
+                                          (\textbf{On rappelle que :} quatre points distincts $A$, $B$, $C$ et $D$
+                                          appartiennent \`a un m\^eme cercle si et seulement si 
+                                          $\mes{CA}{CB} = \mes{DA}{DB} \quad [\pi] $.)
+                                    \item En d\'eduire que les droites $(ID)$ et $(BF)$ sont perpendiculaires.
+                              \end{enumerate}
+                        \item On consid\`ere la sym\'etrie orthogonale $S_{\Delta}$ d'axe $(\Delta) = (OO')$.
+                              Montrer que $S_{\Delta} (D) = I$.
+                  \end{enumerate}
+            \item[Partie B]
+                  Le plan $\Plan$ est rapport\'e \`a un rep\`ere orthonorm\'e direct $(D ; \vec{e_1} , \vec{e_2})$
+                  avec $\vec{e_1} = \frac{1}{6} \overrightarrow{DA}$ et $\vec{e_2} = \frac{1}{6} \overrightarrow{DC}$.
+                  \begin{enumerate}
+                        \item Donnes les affixes des points $A$, $B$, $C$, $D$ et $G$.
+                        \item \begin{enumerate}
+                                    \item Ecrire l'expression complexe de la similitude plane directe $S$ de centre $D$
+                                          qui transforme $A$ en $B$.
+                                    \item En d\'eduire les \'el\'ements caract\'eristiques de $S$.
+                              \end{enumerate}
+                        \item On consid\`ere l'application $f : \Plan \rightarrow \Plan$, qui \`a tout point $M$ d'affixe
+                              $z = x + i y$ associe le point $M'$ d'affixe $z' = x' + i y'$ ;
+                              $x$, $y$, $x'$, $y'$ $\in \mathbb{R}$, tel que 
+                              $z' = 
+                              \left( \frac{4}{5} + \frac{3}{5} i \right) \bar{z} + \left( -\frac{6}{5} + \frac{18}{5} i \right)$.
+                              \begin{enumerate}
+                                    \item D\'eterminer la nature et les \'el\'ements g\'eom\'etriques de $f$.
+                                    \item Exprimer $x'$ et $y'$ en fonction de $x$ et $y$.
+                                    \item D\'eterminer l'affixe $z_I$ du point $I$ tel que $f(D) = I$.
+                                    \item V\'erifier que les points $G$, $I$ et $C$ sont align\'es.
+                              \end{enumerate}
+                  \end{enumerate}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME II}}} (9 points) \newline
+      \begin{description}
+            \item[Partie A :]
+                  \begin{description}
+                        \item[I. ] \label{quest: Bac 2007 Fonction I}
+                              On consid\`ere la fonction $g$ d\'efinie sur $[0;+\infty[$ par : 
+                              $g(x) = \ln (x+1) - x + \frac{x^2}{2} - \frac{x^3}{3}$.
+                              \begin{enumerate}
+                                    \item Etudier la variation de $g$, puis en d\'eduire le signe de $g(x)$ pour tout $x \geq 0$.
+                                    \item Montrer que pour tout $x \geq 0$ on a : \label{quest: Bac 2007 Fonction II 2/}
+                                          $\ln (1+x) - x + \frac{x^2}{2} \geq 0$ puis d\'eduire des questions pr\'ec\'edentes que
+                                          $-\frac{1}{2} \leq \frac{\ln (1+x) - x}{x^2} \leq -\frac{1}{2} + \frac{x}{3}$.
+                              \end{enumerate}
+                        \item[II. ]
+                              Soit la fonction $f$ d\'efinie sur $[0;+\infty[$ par : 
+                              \[
+                                    \begin{multiform}
+                                          f(0) = 1 \\
+                                          f(x) = \frac{\ln (1+x)}{x} , \text{ si } x \neq 0 \;.
+                                    \end{multiform}
+                              \]
+                              \begin{enumerate}
+                                    \item \begin{enumerate}
+                                                \item Etudier la continuit\'e et la d\'erivabilit\'e de $f$, \`a droite 
+                                                      au point d'abscisse $0$.
+                                                \item Donner l'\'equation de la tangente $(T)$ \`a la courbe de $f$ au 
+                                                      point d'abscisse $0$.
+                                                \item Etudier les variations de la fonction $h$ d\'efinie sur $[0;+\infty[$ par :
+                                                      $h(x) = x - (x+1) \ln (x+1)$.
+                                                      En d\'eduire le signe de $h$ pour tout $x \geq 0$.
+                                                \item D\'eterminer la fonction d\'eriv\'ee $f'$ de $f$ et en d\'eduire son signe.
+                                                \item Dresser le tableau de variation de $f$ et tracer sa courbe
+                                                      repr\'esentative $\Courbe$ avec la tangente $(T)$, dans le plan 
+                                                      muni d'un rep\`ere \Oij{} avec d'unit\'e $2\cm$.
+                                          \end{enumerate}
+                                    \item Soit $F$ la fonction d\'efinie par
+                                          $F(x) = \int_{0}^{x} f(t) \dt$, avec $x \geq 0$.
+                                          Montrer que $\frac{3}{4} \leq F(1) \leq \frac{31}{36}$.
+                                          (On pourra utiliser la question 
+                                          \ref{quest: Bac 2007 Fonction I} \ref{quest: Bac 2007 Fonction II 2/}%
+                                          )
+                                          Que peut-on conclure\,?
+                              \end{enumerate}
+                  \end{description}
+            \item[Partie B :]
+                  \begin{description}
+                        \item[I. ]
+                              \begin{enumerate}
+                                    \item Montrer que l'image par $f$ de l'intervalle $I = [0;1]$ est incluse dans lui-m\^eme.
+                                    \item Montrer que l'\'equation $f(x) = x$ admet une solution unique $\alpha \in I$.
+                                    \item Soit la fonction $k$ d\'efinie sur $[0;+\infty[$ par : 
+                                          $k(x) = x^3 + x^2 + 2x - 2 (x+1) \ln (x+1)$.
+                                          Calculer la d\'eriv\'ee $k'(x)$ de $k(x)$ pour tout $x \geq 0$ et montrer que 
+                                          $k'$ est croissante sur $[0;+\infty[$.
+                                          En d\'eduire le signe de $k'(x)$ et de $k(x)$ pour tout $x \geq 0$.
+                                    \item Montrer alors que pour tout $x \geq 0$, $f'(x) + \frac{1}{2} \geq 0$,
+                                          puis en d\'eduire que pour tout $x \in I$, $|f'(x)| \leq \frac{1}{2}$.
+                              \end{enumerate}
+                        \item[II. ]
+                              On consid\`ere la suite $(U_n)_{n\in\mathbb{N}}$ d\'efinie par : 
+                              \[
+                                    \begin{multiform}
+                                          U_0 = 0 \\
+                                          U_{n+1} = f(U_n),\ n \in \mathbb{N} \;.
+                                    \end{multiform}
+                              \]
+                              \begin{enumerate}
+                                    \item Montrer par r\'ecurrence que pour tout $n\in\mathbb{N}$, $U_n \in I$.
+                                    \item Montrer, en appliquant le th\'eor\`eme des in\'egalit\'e des accroissements finis,
+                                          que pour tout entier naturel $n$,
+                                          \[
+                                                | U_{n+1} - \alpha | \leq \frac{1}{2} | U_n - \alpha | \;.
+                                          \]
+                                    \item En d\'eduire que pour tout entier naturel $n$, $|U_n - \alpha| \leq \frac{1}{2^n}$.
+                                    \item Calculer la limite de $U_n$ quand $n$ tend vers $+\infty$.
+                              \end{enumerate}
+                  \end{description}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

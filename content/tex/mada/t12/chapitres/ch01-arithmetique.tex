@@ -1,0 +1,1706 @@
+% T12 C/D, chapitre 1 : Arithmétique. Source : le livre « Terminales scientifiques » (Arithmetique/Lesona, Arithmetique/Exo, Arithmetique/Valiny).
+% Les exercices tirés d’autres ouvrages ne sont pas repris (décision du 2 novembre 2026).
+
+\TCDLessonStyleOn
+\providecommand{\congru}[3]{#1 \equiv #2 \quad \mathrm{mod}\ #3}
+
+\chapter{Arithm\'etique}
+\begin{defi}[Divisibilit\'e] 
+\index{Divisibilite@Divisibilit\'e}
+Soient $a$ et $b$ deux entiers naturels.
+On dit que \emph{$a$ divise $b$} ou que \emph{$a$ est un diviseur de $b$} s'il existe un entier naturel $q$ tel que $b = aq$.
+On dit aussi que \emph{$b$ est un multiple de $a$} ou encore que \emph{$b$ est divisible par $a$}.
+
+L'ensemble des diviseurs de $a$ est not\'e $D_{(a)}$ ou $D_a$.
+\index{Divisibilite@Divisibilit\'e!Diviseur}
+\end{defi}
+            %
+      \section{Nombres premiers}
+\index{Nombres premiers}
+            \begin{defi}[Nombre premier]
+\index{Premiers entre eux}
+                  \begin{enumerate}
+                        \item Un nombre $n\in\mathbb{N}^*$ est dit \emph{premier} 
+                              s'il admet exactement deux diviseurs positifs.
+                        \item Deux nombres entiers relatifs $a$ et $b$ sont dits \emph{premiers entre eux} s'ils
+                              n'ont pas de diviseur commun positif autre que $1$.
+                              %si $\pgcd{a}{b} = 1$.
+                  \end{enumerate}
+            \smallnota{Le nombre $1$ \textbf{n'}est \textbf{pas} premier,
+                        le plus petit nombre premier est $2$.}
+            \end{defi}
+            %
+            \begin{prop}
+                  \begin{itemize}
+                        \item Tout nombre entier naturel $n > 1$ qui n'est pas premier 
+                              admet au moins un diviseur premier $p \leq \sqrt{n}$.
+                        \item Tout nombre entier naturel peut se d\'ecomposer en produit de facteurs premiers,
+                              cette d\'ecomposition est unique \`a l'ordre pr\`es.
+                  \end{itemize}
+            %
+                  \begin{ex}
+                        D\'ecomposer $90$ et $140$ en produits de facteurs premiers.
+                        \[
+                                    \begin{array}{r|l}
+                                           90 & 2 \\
+                                           45 & 3 \\
+                                           15 & 3 \\
+                                            5 & 5 \\
+                                            1 &   \\
+                                    \end{array}
+                                    \qquad
+                                    \begin{array}{r|l}
+                                          140 & 2 \\
+                                           70 & 2 \\
+                                           35 & 5 \\
+                                            7 & 7 \\
+                                            1 &   \\
+                                    \end{array}
+                        \]
+                                    Ainsi, $90 = 2 \cdot 3^2 \cdot 5$ et $140 = 2^2 \cdot 5 \cdot 7$.
+                  \end{ex}
+            %
+            Etant donn\'e un nombre entier naturel $n > 2$,
+            pour savoir si $n$ est premier,
+            il n'est pas n\'ecessaire de v\'erifier qu'aucun nombre $q < n$ ne divise $n$.
+            Il suffit de faire la v\'erification pour les nombres premiers inf\'erieurs ou \'egaux \`a $\sqrt{n}$.
+            %
+                  \begin{ex}
+                        V\'erifions si $139$ est premier.
+                        
+                        Commen\c{c}ons par trouver $\sqrt{139} \simeq 11,8$.
+                        Listons tous les nombres premiers inf\'erieurs \`a $11,8$ : 
+                              2, 3, 5, 7 et 11.
+                        En effectuant la division de $139$ par ces nombres, on constate qu'aucun d'eux ne divise $139$.
+                        On conclut que $139$ est premier.
+                  \end{ex}
+            %
+                  \begin{exe}
+                        Lesquels des nombres suivants sont premiers : 
+                              527, 769, 1249 et 
+                              57.
+%                              \footnote{
+%                                          Le cel\`ebre math\'ematicien Alexander Grothendieck,
+%                                          lors d'une conf\'erence,
+%                                          exposa de mani\`ere un peut trop th\'eorique comme \`a son habitude.
+%                                          Un membre de l'audience demanda alors un exemple concret,
+%                                          c'est-\`a-dire utilisant un nombre.
+%                                          Grothendieck proposa alors de prendre ``un nombre premier,
+%                                          disons 57 \ldots ''.
+%                                          }
+                  \end{exe}
+            \end{prop}
+            %
+            \begin{thm}
+                  Il y a une infinit\'e de nombres premiers.
+            \end{thm}
+            %
+            \subsection*{Crible d'Eratosthenes}
+\index{Eratosthenes!Crible d'}
+                  \begin{figure}[h!]
+                  \centering
+                        \begin{tikzpicture}[scale=.8]
+\clip[draw] (0,-2) rectangle (10,10);
+%
+\begin{scope}[opacity=.25]
+%
+\foreach \x in {2,4,...,10}
+      \filldraw[color = loko1] (\x-1,10) rectangle (\x,9);
+\foreach \x in {12,14,...,20}
+      \filldraw[color = loko1] (\x-11,9) rectangle (\x-10,8);
+\foreach \x in {22,24,...,30}
+      \filldraw[color = loko1] (\x-21,8) rectangle (\x-20,7);
+\foreach \x in {32,34,...,40}
+      \filldraw[color = loko1] (\x-31,7) rectangle (\x-30,6);
+\foreach \x in {42,44,...,50}
+      \filldraw[color = loko1] (\x-41,6) rectangle (\x-40,5);
+\foreach \x in {52,54,...,60}
+      \filldraw[color = loko1] (\x-51,5) rectangle (\x-50,4);
+\foreach \x in {62,64,...,70}
+      \filldraw[color = loko1] (\x-61,4) rectangle (\x-60,3);
+\foreach \x in {72,74,...,80}
+      \filldraw[color = loko1] (\x-71,3) rectangle (\x-70,2);
+\foreach \x in {82,84,...,90}
+      \filldraw[color = loko1] (\x-81,2) rectangle (\x-80,1);
+\foreach \x in {92,94,...,100}
+      \filldraw[color = loko1] (\x-91,1) rectangle (\x-90,0);
+\foreach \x in {102,104,...,110}
+      \filldraw[color = loko1] (\x-101,0) rectangle (\x-100,-1);
+\foreach \x in {112,114,...,120}
+      \filldraw[color = loko1] (\x-111,-1) rectangle (\x-110,-2);
+%
+\foreach \x in {3,6,...,10}
+      \filldraw[color = loko3] (\x-1,10) rectangle (\x,9);
+\foreach \x in {12,15,...,20}
+      \filldraw[color = loko3] (\x-11,9) rectangle (\x-10,8);
+\foreach \x in {21,24,...,30}
+      \filldraw[color = loko3] (\x-21,8) rectangle (\x-20,7);
+\foreach \x in {30,33,...,40}
+      \filldraw[color = loko3] (\x-31,7) rectangle (\x-30,6);
+\foreach \x in {42,45,...,50}
+      \filldraw[color = loko3] (\x-41,6) rectangle (\x-40,5);
+\foreach \x in {51,54,...,60}
+      \filldraw[color = loko3] (\x-51,5) rectangle (\x-50,4);
+\foreach \x in {60,63,...,70}
+      \filldraw[color = loko3] (\x-61,4) rectangle (\x-60,3);
+\foreach \x in {72,74,...,80}
+      \filldraw[color = loko3] (\x-71,3) rectangle (\x-70,2);
+\foreach \x in {81,84,...,90}
+      \filldraw[color = loko3] (\x-81,2) rectangle (\x-80,1);
+\foreach \x in {90,93,...,100}
+      \filldraw[color = loko3] (\x-91,1) rectangle (\x-90,0);
+\foreach \x in {102,105,...,110}
+      \filldraw[color = loko3] (\x-101,0) rectangle (\x-100,-1);
+\foreach \x in {111,114,...,120}
+      \filldraw[color = loko3] (\x-111,-1) rectangle (\x-110,-2);
+%
+\foreach \x in {5,10}
+      \filldraw[color = loko2] (\x,10) rectangle (\x-1,9);
+\foreach \x in {15,20}
+      \filldraw[color = loko2] (\x-10,9) rectangle (\x-11,8);
+\foreach \x in {25,30}
+      \filldraw[color = loko2] (\x-20,8) rectangle (\x-21,7);
+\foreach \x in {35,40}
+      \filldraw[color = loko2] (\x-30,7) rectangle (\x-31,6);
+\foreach \x in {45,50}
+      \filldraw[color = loko2] (\x-40,6) rectangle (\x-41,5);
+\foreach \x in {55,60}
+      \filldraw[color = loko2] (\x-50,5) rectangle (\x-51,4);
+\foreach \x in {65,70}
+      \filldraw[color = loko2] (\x-60,4) rectangle (\x-61,3);
+\foreach \x in {75,80}
+      \filldraw[color = loko2] (\x-70,3) rectangle (\x-71,2);
+\foreach \x in {85,90}
+      \filldraw[color = loko2] (\x-80,2) rectangle (\x-81,1);
+\foreach \x in {95,100}
+      \filldraw[color = loko2] (\x-90,1) rectangle (\x-91,0);
+\foreach \x in {105,110}
+      \filldraw[color = loko2] (\x-100,0) rectangle (\x-101,-1);
+\foreach \x in {115,120}
+      \filldraw[color = loko2] (\x-110,-1) rectangle (\x-111,-2);
+%
+\foreach \x in {14}
+      \filldraw[color = loko5] (\x-10,9) rectangle (\x-11,8);
+\foreach \x in {21,28}
+      \filldraw[color = loko5] (\x-20,8) rectangle (\x-21,7);
+\foreach \x in {35}
+      \filldraw[color = loko5] (\x-30,7) rectangle (\x-31,6);
+\foreach \x in {42,49}
+      \filldraw[color = loko5] (\x-40,6) rectangle (\x-41,5);
+\foreach \x in {56}
+      \filldraw[color = loko5] (\x-50,5) rectangle (\x-51,4);
+\foreach \x in {63,70}
+      \filldraw[color = loko5] (\x-60,4) rectangle (\x-61,3);
+\foreach \x in {77}
+      \filldraw[color = loko5] (\x-70,3) rectangle (\x-71,2);
+\foreach \x in {84}
+      \filldraw[color = loko5] (\x-80,2) rectangle (\x-81,1);
+\foreach \x in {91,98}
+      \filldraw[color = loko5] (\x-90,1) rectangle (\x-91,0);
+\foreach \x in {105}
+      \filldraw[color = loko5] (\x-100,0) rectangle (\x-101,-1);
+\foreach \x in {112,119}
+      \filldraw[color = loko5] (\x-110,-1) rectangle (\x-111,-2);
+%
+\end{scope}
+%
+\textbf{
+%
+\foreach \x in {1,2,...,10}
+      \draw[] (\x-.5,9.5) node{\x};
+\foreach \x in {11,12,...,20}
+      \draw (\x-10.5,8.5) node{\x};
+\foreach \x in {21,22,...,30}
+      \draw (\x-20.5,7.5) node{\x};
+\foreach \x in {31,32,...,40}
+      \draw (\x-30.5,6.5) node{\x};
+\foreach \x in {41,42,...,50}
+      \draw (\x-40.5,5.5) node{\x};
+\foreach \x in {51,52,...,60}
+      \draw (\x-50.5,4.5) node{\x};
+\foreach \x in {61,62,...,70}
+      \draw (\x-60.5,3.5) node{\x};
+\foreach \x in {71,72,...,80}
+      \draw (\x-70.5,2.5) node{\x};
+\foreach \x in {81,82,...,90}
+      \draw (\x-80.5,1.5) node{\x};
+\foreach \x in {91,92,...,100}
+      \draw (\x-90.5,.5) node{\x};
+\foreach \x in {101,102,...,110}
+      \draw (\x-100.5,-.5) node{\x};
+\foreach \x in {111,112,...,120}
+      \draw (\x-110.5,-1.5) node{\x};
+%
+}
+%
+\filldraw[opacity=.25] (0,10) rectangle (1,9);
+%\filldraw[] (.5,9.5) node[] {1};
+\filldraw[color = loko1] (1,10) rectangle (2,9);
+\filldraw[] (1.5,9.5) node[fill=white] {2};
+\filldraw[color = loko3] (2,10) rectangle (3,9);
+\filldraw[] (2.5,9.5) node[fill=white] {3};
+\filldraw[color = loko2] (4,10) rectangle (5,9);
+\filldraw[] (4.5,9.5) node[fill=white] {5};
+\filldraw[color = loko5] (6,10) rectangle (7,9);
+\filldraw[] (6.5,9.5) node[fill=white] {7};
+%
+\draw[line width=1] (0,-2) grid (10,10);
+\end{tikzpicture}
+                  \caption{Crible d'Eratosthenes pour les nombres de $1$ \`a $120$.
+%                           Les nombres premiers entre $1$ et $120$ sont : 
+%                           2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 
+%                           61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109 et 113.
+                              }
+                  \label{fig: Eratosthenes}
+                  \end{figure}
+            Le crible d'Eratosthenes est une m\'ethode pour trouver tous les nombres premiers jusqu'\`a un rang $n$ donn\'e.
+            On commence par \'ecrire tous les nombres entiers de $1$ \`a $n$ dans une table 
+            contenant $\lfloor \sqrt{n} \rfloor$%
+            \footnote{ $\lfloor X \rfloor$ ou $\mathrm{E}\left( X \right)$ signifie 
+                       \emph{partie enti\`ere de $X$} ;
+\index{Partie entiere@Partie enti\`ere}
+                       c'est-\`a-dire le plus grand entier inf\'erieur ou \'egal \`a $X$.
+%                       Par exemple :
+%                       \begin{align*}
+%                             \lfloor 4,42 \rfloor  & = 4 &
+%                             \lfloor \pi \rfloor  & = 3 \\
+%                             \lfloor - 4,42 \rfloor  & = -5 \text{ (car $-5 \leq -4,42 < -4$) }   &
+%                             \lfloor - \pi \rfloor & = -4 \text{ (car $-4 \leq -\pi < -3$) }      \;.
+%                       \end{align*}
+                     }
+            colonnes.
+            On raye le nombre $1$ puisqu'il n'est pas premier.
+            Le prochain nombre non-ray\'es est premier, on le prend et on raye tous ses multiples.
+            On recommence le proc\'ed\'e sur toute la premi\`ere ligne.
+            \`A la fin de l'algorithme, tout les nombres restant sont premiers.
+%                  
+\section{Diviseurs et multiples d'un nombre entier relatif}
+\begin{defi}[Divisibilit\'e] 
+\index{Divisibilite@Divisibilit\'e!divise}
+Soient $a$ et $b$ deux nombres entiers relatifs.
+On dit que \emph{$a$ divise $b$}, et on note \defbox{$a | b$}, s'il existe un nombre entier relatif $q$ tel que $b = q a$.
+On dit aussi que \emph{$b$ est un multiple de $a$}; \index{multiple}
+le nombre $q$ est appel\'e \emph{quotient} de $b$ par $a$.
+\end{defi}
+%
+\begin{prop}
+\label{prop:divisibilite}
+Soient $a$, $b$ et $c$ trois nombres entiers relatifs non-nuls.
+      \begin{enumerate}
+      \item Si $a|b$ et $b|a$ alors $a = b$ ou $a = -b$.
+      \item \begin{enumerate}
+            \item $a|a$,
+            \item $(a|b \text{ et } b|c) \Rightarrow a|c$,
+            \item $(a|b \text{ et } b|a) \Rightarrow |a| = |b|$.
+            \end{enumerate}
+      \item \begin{enumerate}
+            \item Si $a|b$ alors $a|bc$,
+            \item si $a|b$ alors $ac|bc$,
+            \item si $a|b$ et $a|c$ alors $a|(\beta b + \gamma c)$, pour tout $(\beta, \gamma) \in \mathbb{Z}^2$.
+            \end{enumerate}
+      \item $1|a$ et $a|0$.
+      \item $b|a \text{ et } a\neq 0 \Rightarrow 0 < |b| \leq |a|$.
+      \end{enumerate}
+%
+%\begin{proof}
+%Voir preuve~\ref{prop:divisibilite}
+%\end{proof}
+\end{prop}
+
+\paragraph{Division euclidienne dans $\mathbb{Z}$} 
+\index{Division euclidienne}
+\begin{thm}[Admis]
+\label{thm:division euclidienne}
+Soit $(a,b) \in \mathbb{Z} \times \mathbb{Z}^*$.
+\par\smallskip
+Il existe alors un unique couple d'entiers relatifs $(q,r)$ tel que
+\par\noindent
+      \thmbox{
+      $ a = b q + r \text{ et } 0 \leq r < |b|      \;. $
+      }
+\begin{description}
+      \item[$q$] est le quotient de la division de $a$ par $b$,      \index{Division euclidienne!quotient}
+      \item[$r$] est le reste de la division de $a$ par $b$.      \index{Division euclidienne!reste}
+\end{description}
+$b|a$ si et seulement si $r=0$.
+      %
+      \begin{ex}
+      Prenons $a = -17$ et $b = -4$; on a $q = 5$ et $r = 3$.
+            On v\'erifie que $-17 = (-4) \cdot 5 + 3$.
+      \end{ex}
+\end{thm}
+%
+\section{Num\'eration \`a base $b$}
+\index{Numeration@Num\'eration}
+      Rappelons que dans l'\'ecriture usuelle d'un nombre entier, on utilise la base $10$.
+      On se sert des symboles : $0$, $1$, $2$, $3$, $4$, $5$, $6$, $7$, $8$ et $9$ (il y a dix symboles).
+      
+      Soit $N$ un entier naturel et
+            \defbox{$ a_n a_{n-1} \dots a_2 a_1 a_0 $}
+      o\`u $a_i \in \{ 0, 1, 2, \dots , 9 \}$ est son \'ecriture d\'ecimale (c'est-\`a-dire usuelle).
+      Cette \'ecriture signifie que 
+            \begin{align*}
+            N & = a_{n} \cdot 10^{n} + a_{n-1} \cdot 10^{n-1} + \cdots 
+                  + a_{2} \cdot 10^{2} + a_{1} \cdot 10^{1} + a_{0} \cdot 10^{0}            \\
+              & = \sum_{i=0}^{n} a_{i} \cdot 10^{i}
+            \end{align*}
+      \begin{ex}
+            Consid\'erons le nombre $N = 9\;235\;819$.
+            On a alors 
+            $N = 9\cdot 10^{6} + 2\cdot 10^{5} + 3\cdot 10^{4} + 5\cdot 10^{3} + 8\cdot 10^{2} + 1\cdot 10^{1} + 9\cdot 10^{0}$.
+      \end{ex}
+      
+      Pour \'ecrire un nombre entier naturel $N$ en base $b$ (o\`u $b\geq 2$), on se sert de $b$ symboles.
+      Si l'\'ecriture en base $b$ de $N$ est 
+            $ a_n a_{n-1} \dots a_2 a_1 a_0 $
+      alors 
+            \begin{align*}
+            N & = a_{n} \cdot b^{n} + a_{n-1} \cdot b^{n-1} + \cdots 
+                  + a_{2} \cdot b^{2} + a_{1} \cdot b^{1} + a_{0} \cdot b^{0}            \\
+              & = \sum_{i=0}^{n} a_{i} \cdot b^{i}                                       .
+            \end{align*}
+      Pour indiquer que l'\'ecriture est en base $b$, on note \defbox{$ \overline{a_n a_{n-1} \dots a_2 a_1 a_0}^{(b)}$}.
+      \begin{conversionexample}
+      \'Ecrivons les nombres 13 et 41 en base 2 (\'ecriture binaire).
+\index{Numeration@Num\'eration!binaire}
+\index{Numeration@Num\'eration!base 2}
+            \par
+            \TCDConversionPair{%
+            \begin{tikzpicture}[x=1.5em,y=1.2em,>=stealth]
+                  \draw (-1.35,-.37) node {$13$};
+                  \draw [rounded corners = 4,color=loko2,->,line width=3,opacity=.3] 
+                        (1.65,-3.25) -- (0.7,-4.45) -- (-1.3,-2.25);
+                  \foreach \x in {0,1,2}
+                        \draw (\x-.75,-\x-.1) -- ++(0,-.75) -- ++(.75,0) ++(-.35,.5) node{$2$};
+                  \foreach \x/\y/\z in {0/6/12,1/3/6,2/\textcolor{loko1}{1}/2}
+                        \draw (\x-.35,-\x-1.35) node{$\y$} (\x-1.35,-\x-1.32) node {$\z$};
+                  \foreach \x/\y in {0/{\phantom{0}1},1/0,2/1}
+                        \draw (\x-1.65,-\x-1.8) -- (\x-1,-\x-1.8) 
+                              (\x-1.3,-\x-2.3) node{\textcolor{loko1}{$\y$}};
+            \end{tikzpicture}
+            }{Ainsi, $13 = \overline{1101}^{_{(2)}}$.}{%
+            \begin{tikzpicture}[x=1.5em,y=1.2em,>=stealth]
+                  \draw (-1.35,-.37) node {$41$};
+                  \draw [rounded corners = 4,color=loko2,->,line width=3,opacity=.3] 
+                        (3.65,-5.25) -- (2.7,-6.45) -- (-1.3,-2.25);
+                  \foreach \x in {0,1,2,3,4}
+                        \draw (\x-.75,-\x-.1) -- ++(0,-.75) -- ++(.75,0) ++(-.35,.5) node{$2$};
+                  \foreach \x/\y/\z in {0/20/40,1/10/20,2/5/10,3/2/4,4/\textcolor{loko1}{1}/2}
+                        \draw (\x-.35,-\x-1.35) node{$\y$} (\x-1.35,-\x-1.32) node {$\z$};
+                  \foreach \x/\y in {0/{\phantom{0}1},1/0,2/0,3/1,4/0}
+                        \draw (\x-1.65,-\x-1.8) -- (\x-1,-\x-1.8) 
+                              (\x-1.3,-\x-2.3) node{\textcolor{loko1}{$\y$}};
+            \end{tikzpicture}
+            }{Ainsi, $41 = \overline{101001}^{_{(2)}}$.}
+      \end{conversionexample}
+      %
+      \begin{conversionexample}
+            \'Ecrivons les nombres 957 et 188899 en base 8 :
+            \par
+            \TCDConversionPair{%
+            \begin{tikzpicture}[x=2em,y=1.1em,>=stealth]
+                  \draw (-1.35,-.37) node {$957$};
+                  \draw [rounded corners = 4,color=loko2,->,line width=3,opacity=.3] 
+                        (1.65,-3.25) -- (0.7,-4.45) -- (-1.3,-2.25);
+                  \foreach \x in {0,1,2}
+                        \draw (\x-.75,-\x-.1) -- ++(0,-.75) -- ++(.75,0) ++(-.35,.5) node{$8$};
+                  \foreach \x/\y/\z in {0/119/952,1/14/112,2/\textcolor{loko1}{1}/{\phantom{0}8}}
+                        \draw (\x-.35,-\x-1.35) node{$\y$} (\x-1.35,-\x-1.32) node {$\z$};
+                  \foreach \x/\y in {0/{\phantom{00}5},1/{\phantom{00}7},2/{\phantom{0}6}}
+                        \draw (\x-1.65,-\x-1.8) -- (\x-1,-\x-1.8) 
+                              (\x-1.35,-\x-2.3) node{\textcolor{loko1}{$\y$}};
+            \end{tikzpicture}
+            }{Ainsi, $957 = \overline{1675}^{_{(8)}}$.}{%
+            \begin{tikzpicture}[x=3.5em,y=1.1em,>=stealth]
+                  \draw (-1.35,-.37) node {$188899$};
+                  \draw [rounded corners = 4,color=loko2,->,line width=3,opacity=.3] 
+                        (3.65,-5.25) -- (2.7,-6.45) -- (-1.2,-2.25);
+                  \foreach \x in {0,1,2,3,4}
+                        \draw (\x-.75,-\x-.1) -- ++(0,-.75) -- ++(.75,0) ++(-.35,.5) node{$8$};
+                  \foreach \x/\y/\z in {0/23612/188896,1/2951/23608,2/368/2944,3/46/368,4/\textcolor{loko1}{5}/40}
+                        \draw (\x-.35,-\x-1.35) node{$\y$} (\x-1.35,-\x-1.32) node {\underline{$\z$}};
+                  \foreach \x/\y in {0/{\phantom{0000}3},1/{\phantom{000}4},2/{\phantom{00}7},3/{\phantom{0}0},4/{6}}
+                        \draw (\x-1.3,-\x-2.3) node{\textcolor{loko1}{$\y$}};
+            \end{tikzpicture}
+            }{Ainsi, $188899 = \overline{560743}^{_{(8)}}$.}
+      \end{conversionexample}
+      %
+      \begin{conversionexample}
+            \'Ecrivons les nombres 18 647 et 1 304 748 en base 12, pour cel\`a, 
+            on aura besoin d'ajouter les symboles $A$ et $B$ pour les <<chiffres>> dix et onze respectivement.
+            \par
+            \TCDConversionPair{%
+            \begin{tikzpicture}[x=3em,y=1.1em,>=stealth]
+                  \draw (-1.35,-.37) node {$18 647$};
+                  \draw [rounded corners = 4,color=loko2,->,line width=3,opacity=.3] 
+                        (1.7,-3.25) -- (0.8,-4.45) -- (-1.2,-2.25);
+                  \foreach \x in {0,1,2}
+                        \draw (\x-.75,-\x-.1) -- ++(0,-.75) -- ++(.75,0) ++(-.35,.5) node{$12$};
+                  \foreach \x/\y/\z in {0/1553/18636,1/129/1548,2/\textcolor{loko1}{10}/{120}}
+                        \draw (\x-.35,-\x-1.35) node{$\y$} (\x-1.35,-\x-1.32) node {\underline{$\z$}};
+                  \foreach \x/\y in {0/{\phantom{000}11},1/{\phantom{000}5},2/{\phantom{00}9}}
+                        \draw (\x-1.35,-\x-2.3) node{\textcolor{loko1}{$\y$}};
+            \end{tikzpicture}
+            }{Ainsi, $18\,647 = \overline{A95B}^{_{(12)}}$.}{%
+            \begin{tikzpicture}[x=4em,y=1.1em,>=stealth]
+                  \draw (-1.35,-.37) node {$1 304 748$};
+                  \draw [rounded corners = 4,color=loko2,->,line width=3,opacity=.3] 
+                        (3.65,-5.25) -- (2.7,-6.45) -- (-1.2,-2.25);
+                  \foreach \x in {0,1,2,3,4}
+                        \draw (\x-.75,-\x-.1) -- ++(0,-.75) -- ++(.75,0) ++(-.35,.5) node{$12$};
+                  \foreach \x/\y/\z in {0/108729/1304748,1/9060/108720,2/755/9060,3/62/744,4/\textcolor{loko1}{5}/60}
+                        \draw (\x-.35,-\x-1.35) node{$\y$} (\x-1.35,-\x-1.32) node {\underline{$\z$}};
+                  \foreach \x/\y in
+                           {0/{\phantom{00000}0},1/{\phantom{0000}9},2/{\phantom{00}0},3/{\phantom{!}11},4/{\phantom{.}2}}
+                        \draw (\x-1.3,-\x-2.3) node{\textcolor{loko1}{$\y$}};
+            \end{tikzpicture}
+            }{Ainsi, $1\,304\,748 = \overline{52B090}^{_{(12)}}$.}
+      \end{conversionexample}
+      %
+      \begin{exe}
+            \'Ecrire les nombres suivants en base dix (num\'eration d\'ecimale) :
+\index{Numeration@Num\'eration!decimale@d\'ecimale}
+\index{Numeration@Num\'eration!base 10}
+            $ \overline{101110}^{_{(2)}} $, $ \overline{756}^{_{(8)}} $, $ \overline{B00A16}^{_{(12)}} $.
+      \end{exe}
+      %
+      \warning{%
+            Il existe d'autres notations pour les nombres en base autres que dix.
+            Le nombre $42$ peut par exemple \^etre not\'e 
+                  $ \overline{101100}^{_{(2)}} $,
+                  $ \overline{101100}^{_{2}} $,
+                  $ (\overline{101100})_{2} $,
+                  $ {101100}_{2} $, 
+                  \ldots.
+            On choisira, dans ce cours, d'\^etre consistent et utiliser la notation $ \overline{101100}^{_{(2)}} $.
+            \newline
+            Pour les base sup\'erieurs \`a dix,
+            on ajoute souvent des lettres de l'alphabet latin dans l'ordre.
+            On peut utiliser des lettres minuscules aussi bien que capitales.
+      }
+\section{Congruence}
+\index{Congruence}
+      \begin{defi}
+            Soient $(x,y) \in \mathbb{Z}^2$ et $n\in\mathbb{N}$.
+            On dit que \emph{$x$ congru \`a $y$ modulo $n$} si 
+            \emph{$n$ divise $x-y$}. 
+            On note \defbox{$x \equiv y \quad \mathrm{mod}\ n$} ou \defbox{$x \equiv y \ [n]$}.
+            %On note $\congru{x}{y}{n}$.
+                  \begin{IEEEeqnarray*}{rCl}
+                        \congru{x}{y}{n} & \iff & n | x - y                                     \\
+                                         & \iff & x - y = k \cdot n \quad (k\in\mathbb{Z})      \\
+                                         & \iff & x = y + k \cdot n \quad (k\in\mathbb{Z})      
+                  \end{IEEEeqnarray*}
+            \smallnota{La congruence modulo $0$ est l'\'egalit\'e.}
+      \end{defi}
+      %
+      \begin{thm}
+            Soit $n$ un entier naturel.
+            \begin{enumerate}
+                  \item La congruence modulo $n$ est une relation d'\'equivalence, 
+                        c'est-\`a-dire que, pour tous entiers relatifs $x$, $y$ et $z$, on a :
+\index{Congruence!relation d'equivalence@relation d'\'equivalence}
+                        \begin{description}
+                              \item[Reflexivit\'e :] 
+                                    $\congru{x}{x}{n}$,
+                              \item[Sym\'etrie :] 
+                                    $\congru{x}{y}{n} \iff \congru{y}{x}{n}$,
+                              \item[Transitivit\'e :] 
+                                    $\left( \congru{x}{y}{n} \text{ et } \congru{y}{z}{n} \right) \Rightarrow \congru{x}{z}{n}$.
+                        \end{description}
+                  \item La congruence modulo $n$ est compatible avec l'addition et la multiplication, 
+                        c'est-\`a-dire que, pour tous entiers relatifs $x_1$, $x_2$, $y_1$ et $y_2$, on a :
+\index{Congruence!compatibilite avec l'addition@compatibilit\'e avec l'addition}
+\index{Congruence!compatibilite avec la multiplication@compatibilit\'e avec la multiplication}
+                        \begin{displaymath}
+                              \left.
+                                    \begin{array}{l}
+                                          \congru{x_1}{y_1}{n} \\
+                                          \congru{x_2}{y_2}{n}
+                                    \end{array}
+                              \right\rbrace
+                              \Rightarrow
+                              \left\lbrace
+                                    \begin{array}{l}
+                                          \congru{x_1 + x_2}{y_1 + y_2}{n}             \\
+                                          \congru{x_1 \cdot x_2}{y_1 \cdot y_2}{n}     \\
+                                    \end{array}
+                              \right.
+                        \end{displaymath}
+                        et par cons\'equent, pour tout $k\in\mathbb{N}^*$, on a :
+                              $\congru{x}{y}{n} \Rightarrow \congru{x^k}{y^k}{n}$.
+            \end{enumerate}
+      \end{thm}
+      %
+      \begin{prop}
+            \begin{enumerate}
+                  \item Si $d|n$ et $\congru{x}{y}{n}$, alors $\congru{x}{y}{d}$.
+                  \item Soit $n\in\mathbb{N}$.
+                        Pour tout $x\in\mathbb{Z}$, il existe un unique $r\in\mathbb{N}$ tel que
+                        $0\leq r < n$ et $\congru{x}{r}{n}$.
+            \end{enumerate}
+      \end{prop}
+      %
+      \begin{ex}
+            On veut d\'eterminer le reste de la division euclidienne de $7^{100}$ par $5$.
+            
+            On a $7^{100} = (7^2)^{50} = 49^{50}$.
+            Comme $49 = 50 - 1 = 5 \cdot 10 - 1$,
+            alors  $\congru{49}{-1}{5}$ ; c'est-\`a-dire $\congru{7^2}{-1}{5}$.
+            Il vient que $\congru{(7^2)^{50}}{(-1)^{50}}{5}$ et donc $\congru{7^{100}}{1}{5}$.
+            Ainsi, le reste de la division euclidienne de $7^{100}$ par $5$ est $1$.
+      \end{ex}
+      %
+      \begin{exe}
+            \begin{enumerate}
+                  \item D\'eterminer le reste de la division euclidienne de $5^{2018}$ par $13$.
+                  \item D\'eterminer le reste de la division euclidienne de $2^{2019}$ par $7$.
+                  \item D\'eterminer le reste de la division euclidienne de $5^{4037}$ par $7$.
+            \end{enumerate}
+      \end{exe}
+      %
+      \begin{ex}
+\index{Critere de divisibilite par 9@Crit\`ere de divisibilit\'e par $9$}
+            On veut d\'eterminer un crit\`ere de divisibilit\'e par $9$.
+            
+            Soit $N$ un nombre entier naturel et soit $a_n a_{n-1} \ldots a_2 a_1 a_0$ son \'ecriture en base 10.
+            On a alors $N = a_n \cdot 10^n + a_{n-1} \cdot 10^{n-1} + \cdots + a_1 \cdot 10 + a_0$.
+            
+            Montrons, d'abord, que pour tout $p\in\mathbb{N}$, on a $\congru{10^p}{1}{9}$ :
+                  \begin{align*}
+                        10 & = 9 \cdot 1 + 1     \\
+                        \congru{10 & }{1}{9}     \\
+                        \congru{10^p & }{1^p}{9} \\
+                        \congru{10^p & }{1}{9}   \;.
+                  \end{align*}
+                  
+            Ainsi, pour tout $p\in\mathbb{N}$, on a :
+                  \begin{align*}
+                        \congru{10^p & }{1}{9}                   \\
+                        \congru{a_p \cdot 10^p & }{a_p}{9}       \;.
+                  \end{align*}
+            En prenant la somme pour $p$ allant de $0$ \`a $n$, on a :
+                  \begin{align*}
+                        \congru{a_n10^n+a_{n-1}10^{n-1}+\cdots+a_110+a_0}{a_n+a_{n-1}+\cdots+a_1+a_0}{9}      \;.
+                  \end{align*}
+            Ainsi, $\congru{N}{\sum_{p=0}^n a_p}{9}$.
+            Comme $9|N \iff \congru{N}{0}{9}$, alors $9|N \iff \congru{\sum_{p=0}^n a_p}{0}{9}$.
+            Ainsi, $N$ est un multiple de $9$ si et seulement si la somme de ces chiffres est un multiple de $9$.
+      \end{ex}
+      %
+      \begin{exe}
+            Soit $N$ un nombre entier naturel et soit $a_n a_{n-1} \ldots a_2 a_1 a_0$ son \'ecriture en base 10.
+            \begin{enumerate}
+                  \item Montrer que $N$ est divisible par $2$ si et seulement si $\congru{a_0}{0}{2}$.
+                  \item Montrer que $N$ est divisible par $5$ si et seulement si $\congru{a_0}{0}{5}$.
+                  \item Montrer que $3|N \iff \congru{\sum_{p=0}^n a_p}{0}{3}$.
+            \end{enumerate}
+      \end{exe}
+      %
+      \section{Anneau $\mathbb{Z}/n\mathbb{Z}$}
+\index{Anneau}
+\index{Z/nZ@$\mathbb{Z}/n\mathbb{Z}$}
+      Soient $n\in\mathbb{N}$ et $r\in\mathbb{Z}$.
+      On d\'efinit la classe d'\'equivalence de $r$ comme \'etant 
+      l'ensemble des $x\in\mathbb{Z}$ tel que $\congru{x}{r}{n}$, 
+      on la note par \defbox{$\bar{r}$} ou \defbox{$\dot{r}$}.
+      Ainsi,
+      \defbox{$\bar{r} = \left\lbrace x\in\mathbb{Z} \mid \congru{x}{r}{n} \right\rbrace$}.
+\index{Classe d'equivalence@Classe d'\'equivalence}
+      %
+      Bien qu'une classe d'\'equivalence peut avoir plusieurs repr\'esentants, 
+      on pr\'ef\`ere prendre $ r \in \llbracket 0 ; n-1 \rrbracket$.
+      %
+      On note par $\mathbb{Z}/n\mathbb{Z}$ l'ensemble 
+      $\left\lbrace \bar{0},\ \bar{1},\ \ldots ,\ \bar{n-1} \right\rbrace$.
+      %
+      On d\'efinit l'addition et la multiplication dans $\mathbb{Z}/n\mathbb{Z}$ par :       
+      \begin{align*}
+            \bar{a} + \bar{b} & = \bar{a+b}       & \bar{a} \cdot \bar{b} = \bar{a\cdot b} \;.
+      \end{align*}
+      Muni de ces deux op\'erations, $\mathbb{Z}/n\mathbb{Z}$ \`a une structure d'anneau, 
+\index{Anneau}
+      c'est-\`a-dire que pour tout $\bar{a}$, $\bar{b}$ et $\bar{c}$ de $\mathbb{Z}/n\mathbb{Z}$, on a :
+            \begin{itemize}
+                  \item $\bar{a} + \bar{b}$ et $\bar{a} \cdot \bar{b}$ sont bien d\'efinie dans $\mathbb{Z}/n\mathbb{Z}$,
+                  \item $(\bar{a} + \bar{b}) + \bar{c} = \bar{a} + (\bar{b} + \bar{c})$,
+                  \item $\bar{a} + \bar{b} = \bar{b} + \bar{a}$,
+                  \item $\bar{a} + \bar{0} = \bar{a}$,
+                  \item il existe un \'el\'ement, not\'e $-\bar{a}$ tel que $\bar{a} + (-\bar{a}) = 0$,
+                  \item $(\bar{a} \cdot \bar{b}) \cdot \bar{c} = \bar{a} \cdot (\bar{b} \cdot \bar{c})$,
+                  \item $\bar{a} \cdot (\bar{b} + \bar{c}) = \bar{a} \cdot \bar{b} + \bar{a} \cdot \bar{c}$,
+                  \item $(\bar{b} + \bar{c}) \cdot \bar{a} = \bar{b} \cdot \bar{a} + \bar{c} \cdot \bar{a}$.
+            \end{itemize}
+      %
+      \begin{ex}
+            $\mathbb{Z}/5\mathbb{Z} = \left\lbrace \bar{0},\ \bar{1},\ \bar{2},\ \bar{3},\ \bar{4} \right\rbrace$.
+            Dans ce cas, 
+            \begin{align*}
+                  \bar{0} & = \left\lbrace \ldots ,\ -15,\ -10,\ -5,\ 0,\ 5,\ 10,\ 15,\ \ldots \right\rbrace ,\\
+                  \bar{1} & = \left\lbrace \ldots ,\ -14,\ -9,\ -4,\ 1,\ 6,\ 11,\ 16,\ \ldots \right\rbrace  ,\\
+                  \bar{2} & = \left\lbrace \ldots ,\ -13,\ -8,\ -3,\ 2,\ 7,\ 12,\ 17,\ \ldots \right\rbrace  ,\\
+                  \bar{3} & = \left\lbrace \ldots ,\ -12,\ -7,\ -2,\ 3,\ 8,\ 13,\ 18,\ \ldots \right\rbrace  ,\\
+                  \bar{4} & = \left\lbrace \ldots ,\ -11,\ -6,\ -1,\ 4,\ 9,\ 14,\ 19,\ \ldots \right\rbrace  .
+            \end{align*}
+            On a les tables d'additions et de multiplications suivantes :
+                  \[
+                  \begin{array}{|c|c|c|c|c|c|}
+                  \hline 
+                  + & \bar{0} & \bar{1} & \bar{2} & \bar{3} & \bar{4} \\ 
+                  \hline 
+                  \bar{0} & \bar{0} & \bar{1} & \bar{2} & \bar{3} & \bar{4} \\ 
+                  \hline 
+                  \bar{1} & \bar{1} & \bar{2} & \bar{3} & \bar{4} & \bar{0} \\ 
+                  \hline 
+                  \bar{2} & \bar{2} & \bar{3} & \bar{4} & \bar{0} & \bar{1} \\ 
+                  \hline 
+                  \bar{3} & \bar{3} & \bar{4} & \bar{0} & \bar{1} & \bar{2} \\ 
+                  \hline 
+                  \bar{4} & \bar{4} & \bar{0} & \bar{1} & \bar{2} & \bar{3} \\ 
+                  \hline 
+                  \end{array}
+                  \qquad
+                  \begin{array}{|c|c|c|c|c|c|}
+                  \hline 
+                  \times & \bar{0} & \bar{1} & \bar{2} & \bar{3} & \bar{4} \\ 
+                  \hline 
+                  \bar{0} & \bar{0} & \bar{0} & \bar{0} & \bar{0} & \bar{0} \\ 
+                  \hline 
+                  \bar{1} & \bar{0} & \bar{1} & \bar{2} & \bar{3} & \bar{4} \\ 
+                  \hline 
+                  \bar{2} & \bar{0} & \bar{2} & \bar{4} & \bar{1} & \bar{3} \\ 
+                  \hline 
+                  \bar{3} & \bar{0} & \bar{3} & \bar{1} & \bar{4} & \bar{2} \\ 
+                  \hline 
+                  \bar{4} & \bar{0} & \bar{4} & \bar{3} & \bar{2} & \bar{1} \\ 
+                  \hline 
+                  \end{array}
+                  .
+                  \] 
+      \end{ex}
+      %
+      \smallnota{Au lieu de $\mathbb{Z}/n\mathbb{Z}$, on utilise parfois $\mathbb{Z}_n$.}
+      %
+      \begin{ex}                  
+            R\'esolvons dans $\mathbb{Z}/5\mathbb{Z}$ l'\'equation $x+\bar{3} = \bar{2}$.
+            Pour cel\`a, additionnons $\bar{2}$ dans chaque membre de l'\'egalit\'e, on a alors 
+                  $x + \bar{3} + \bar{2} = \bar{2} + \bar{2} \Rightarrow x = \bar{4}$.
+            On aurait aussi pu utiliser la m\'ethode usuelle et trouver $ x = \bar{-1} = \bar{4}$.
+            
+            R\'esolvons dans $\mathbb{Z}/5\mathbb{Z}$ l'\'equation $\bar{3}\, x+\bar{3} = \bar{2}$.
+            On sait d\'ej\`a (en utilisant ce qui pr\'ec\`ede) que $\bar{3} x = \bar{4}$.
+            En multipliant l'\'egalit\'e par $\bar{2}$, on obtient 
+                  $\bar{2} \cdot \bar{3} \cdot x = \bar{2} \cdot \bar{4}$
+                  et donc $x = \bar{3}$.
+            
+            R\'esolvons dans $\mathbb{Z}/5\mathbb{Z} \times \mathbb{Z}/5\mathbb{Z}$ le syst\`eme d'\'equations :
+            \[
+            \left\lbrace
+                  \begin{array}{l}
+                        \bar{3}\, x + \bar{2}\, y = \bar{1} \\
+                        \bar{2}\, x + \bar{4}\, y = \bar{0} \;.
+                  \end{array}
+            \right.
+            \]
+            On peut additionner les deux \'equations pour avoir 
+                $ ( \bar{3} + \bar{2} ) \, x + ( \bar{2} + \bar{4} ) \, y = \bar{1} + \bar{0} $.
+                Ainsi, $y = \bar{1}$.
+            Pour trouver la valeur de $x$, on peut commencer par multiplier la premi\`ere \'equation par $\bar{3}$,
+            \[
+            \left\lbrace
+                  \begin{array}{l}
+                        \bar{4}\, x + \bar{1}\, y = \bar{3} \\
+                        \bar{2}\, x + \bar{4}\, y = \bar{0} \\
+                  \end{array}
+            \right.
+            \]
+            et ensuite additionner les deux \'equations pour avoir 
+                  $ x = \bar{3}$.            
+      \end{ex}
+      %
+      \begin{exe}
+            \begin{enumerate}
+            \item R\'esoudre dans $\mathbb{Z}/7\mathbb{Z}$ les \'equations suivantes : 
+                  \begin{enumerate}
+                        \item $\bar{3}\, x + \bar{4} = \bar{5}$,
+                        \item $\bar{2}\, x + \bar{6} = \bar{3}$,
+                        \item $\bar{6}\, x + \bar{5} = \bar{1}$.
+                  \end{enumerate}
+            \item R\'esoudre dans
+                  $\mathbb{Z}/7\mathbb{Z}\times \mathbb{Z}/7\mathbb{Z}$
+                  les syst\`emes d'\'equations suivants :
+                  \begin{enumerate}
+                        \item
+                              $\left\lbrace
+                                    \begin{array}{l}
+                                          \bar{2}x + \bar{5}y = \bar{3} \\
+                                          \bar{3}x + \bar{2}y = \bar{1} \,;
+                                    \end{array}
+                               \right.$
+                        \item
+                              $\left\lbrace
+                                    \begin{array}{l}
+                                                  x + \bar{2}y = \bar{6} \\
+                                          \bar{2}x + \bar{3}y = \bar{4} \,;
+                                    \end{array}
+                               \right.$
+                        \item
+                              $\left\lbrace
+                                    \begin{array}{l}
+                                          \bar{5}x +         y = \bar{3} \\
+                                          \bar{3}x + \bar{2}y = \bar{0} \,;
+                                    \end{array}
+                               \right.$
+                        \item
+                              $\left\lbrace
+                                    \begin{array}{l}
+                                          \bar{2}x + \bar{3}y = \bar{1} \\
+                                          \bar{3}x +         y = \bar{5} \,.
+                                    \end{array}
+                               \right.$
+                  \end{enumerate}
+            \end{enumerate}
+      \end{exe}
+      %
+\section{PPCM et PGCD}
+      \subsection{PPCM}
+      \begin{defi}
+\index{PPCM}
+      Soient $a$ et $b$ deux entiers naturels.
+      On appelle \textbf{P}lus \textbf{P}etit \textbf{C}ommun \textbf{M}ultiple 
+      --- en abr\'eg\'e \emph{PPCM} --- de $a$ et $b$ le nombre 
+            \defbox{$PPCM(a;b) := \min \left( a\mathbb{N}^* \cap b\mathbb{N}^* \right)$}
+            o\`u $x\mathbb{N}^* := \left\lbrace x \cdot n \mid n \in \mathbb{N}^* \right\rbrace$.
+      
+      \smallnota{%
+                  Le PPCM de $a$ et $b$ est aussi parfois not\'e $a \vee b$ ou $[a;b]$.
+                 }
+                 
+      Si $a$ et $b$ sont deux entiers relatifs, 
+      on peut d\'efinir le PPCM de $a$ et $b$ comme \'etant le PPCM de $|a|$ et $|b|$.
+      Si $a$ et $b$ sont deux entiers relatifs non-nuls, on a aussi :
+            \defbox{$PPCM(a;b) := \min \left( \left\lbrace m\in\mathbb{N}^* \mid a|m \text{ et } b|m \right\rbrace \right)$.}
+      \end{defi}
+      %
+      \begin{prop}
+            Soient $a$ et $b$ deux entiers naturels non-nuls.
+            \begin{itemize}
+                  \item Si $a|b$ alors $PPCM(a;b) = b$,
+                  \item si $k\in\mathbb{N}^*$ alors $PPCM(ka;kb) = k \cdot PPCM(a;b)$,
+                  \item si $c\in\mathbb{N}$, $PPCM(a;b;c) = PPCM(PPCM(a;b);c) = PPCM(a;PPCM(b;c))$
+                        (on peut \'etendre \`a un nombre arbitraire d'\'el\'ements).
+            \end{itemize}
+      \end{prop}
+      %
+      \subsection*{Recherche du PPCM}
+            Pour trouver le PPCM de deux --- ou de plusieurs --- nombres, 
+            on peut d\'ecomposer chacun des nombres en produits de facteurs premiers.
+\index{Decomposition en produits de facteurs premiers@D\'ecomposition en produits de facteurs premiers}
+            Il suffit ensuite de prendre, pour chaque facteur premier pr\'esent, la plus grande puissance.
+            
+            \begin{ex}
+                  Cherchons $PPCM(28;24;36)$.
+                  
+                  Comme 
+                  $
+                  \left\lbrace
+                  \begin{array}{l}
+                        28 = 2^2 \cdot 7 \\
+                        24 = 2^3 \cdot 3 \\
+                        36 = 2^2 \cdot 3^2 \\
+                  \end{array}
+                  \right.
+                  $
+                  le PPCM de ces trois nombres est $2^3 \cdot 3 \cdot 7 = 168$.
+            \end{ex}
+
+      \subsection{PGCD}
+      \begin{defi}
+\index{PGCD}
+      Soient $a$ et $b$ deux entiers naturels.
+      On appelle \textbf{P}lus \textbf{G}rand \textbf{C}ommun \textbf{D}iviseur
+      --- en abr\'eg\'e \emph{PGCD} --- de $a$ et $b$ le nombre 
+            \defbox{$\pgcd{a}{b} := \max \left( D_a \cap D_b \right)$}.
+      
+      \nota{%
+                  Le PGCD de $a$ et $b$ est aussi parfois not\'e $\pgcd{a}{b}$, $a \wedge b$ ou $(a;b)$. \newline
+                  On trouve parfois l'acronyme PGDC 
+                  (\textbf{P}lus \textbf{G}rand \textbf{D}iviseur \textbf{C}ommun)
+\index{PGDC}
+                  mais la version la plus r\'epandue est PGCD.
+                 }
+      
+      Deux nombres $a$ et $b$ sont dits \emph{premiers entre eux} si $\pgcd{a}{b} = 1$.
+\index{Premiers entre eux}
+      \end{defi}
+      \begin{rmk}
+            On a $\pgcd{0}{0}=0$.
+      \end{rmk}
+      %
+      \begin{prop}
+            Soient $a$ et $b$ deux entiers naturels non-nuls.
+            \begin{itemize}
+                  \item Si $a|b$ alors $\pgcd{a}{b} = a$,
+                  \item si $k\in\mathbb{N}^*$ alors $\pgcd{ka}{kb} = k \cdot \pgcd{a}{b}$,
+                  \item si $c\in\mathbb{N}$, $\mathrm{PGCD}(a,b,c) = \pgcd{\pgcd{a}{b}}{c} = \pgcd{a}{\pgcd{b}{c}}$
+                        (on peut \'etendre \`a un nombre arbitraire d'\'el\'ements).
+            \end{itemize}
+      \end{prop}
+      %
+      \begin{thm}
+            Soient $a$ et $b$ deux nombres entiers naturels non-nuls.
+            Soit $r$ le reste de la division de $b$ par $a$.
+            %
+            Alors $\pgcd{a}{b}$ divise $r$.
+            
+            \smallnota{En fait, on a un r\'esultat plus fort : \thmbox{$\pgcd{a}{b} = \pgcd{b}{r}$}.}
+      \end{thm}
+      %
+      \begin{thm}
+            Soient $a$ et $b$ deux entiers naturels non-nuls.
+            On a
+            \[
+                  \thmbox{PPCM(a;b)\cdot\pgcd{a}{b}=a\cdot b}.
+            \]
+      \end{thm}
+      %
+      \subsection*{Recherche du PGCD}
+            Pour trouver le PGCD de deux --- ou de plusieurs --- nombres, 
+            on peut d\'ecomposer chacun des nombres en produits de facteurs premiers.
+\index{Decomposition en produits de facteurs premiers@D\'ecomposition en produits de facteurs premiers}
+            Il suffit ensuite de prendre, pour chaque facteur premier pr\'esent, la plus petite puissance
+            (\'eventuellement $0$).
+            
+            \begin{ex}
+                  Cherchons $\pgcd{36}{56}$.
+                  
+                  Comme 
+                  $
+                  \left\lbrace
+                  \begin{array}{l}
+                        36 = 2^2 \cdot 3^2 \\
+                        56 = 2^3 \cdot 7 \\
+                  \end{array}
+                  \right.
+                  $
+                  le PGCD de ces deux nombres est $2^2 = 4$.
+            \end{ex}
+      \subsection*{Algorithme d'Euclide}
+\index{Algorithme d'Euclide}
+\index{Euclide!Algorithme de}
+            Il existe un algorithme --- celui d'Euclide --- permettant de trouver le PGCD de deux nombres entiers naturels.
+            
+            Soient $a$ et $b$ deux entiers naturels non-nuls tels que $a>b$.
+            On pose $a_0=a$, $a_1=b$ et, pour tout entier naturel $n$,
+            \[
+              \begin{aligned}
+                a_n &= q_n a_{n+1}+r_n,
+                & 0 &\leq r_n<a_{n+1}, \\
+                a_{n+2} &= r_n.
+              \end{aligned}
+            \]
+            Les nombres $q_n$ et $r_n$ sont respectivement le quotient et le
+            reste de la division de $a_n$ par $a_{n+1}$.
+                  
+            On peut dresser le tableau suivant
+            \[
+            \begin{array}{|c|c|c|c|c|}
+            \hline 
+              & q_0 & q_1 & q_2 & q_3 \\ 
+            \hline 
+            a_0 = a & a_1 = b & a_2 = r_0 & a_3 = r_1  & \cdots \\ 
+            \hline 
+            r_0 = r & r_1 = a_1 - a_2 \cdot q_1 & r_2 = a_2 - a_3 \cdot q_2 & \cdots & \cdots \\ 
+            \hline 
+            \end{array} 
+            \]
+            et le dernier reste (c'est dans la derni\`ere ligne) non-nul est le PGCD de $a$ et $b$.
+            
+            \begin{ex}
+            \label{ex:Algorithme d'Euclide: 36,200}
+                  Cherchons le PGCD de $36$ et $200$.
+                  \[
+                  \begin{array}{|c|c|c|c|c|}
+                  \hline 
+                           & q_0 = 5  & q_1 = 1   & q_2 = 1 & q_3 = 4 \\ 
+                  \hline 
+                  200      &      36  &      20   &      16 &       4 \\ 
+                  \hline 
+                  r_0 = 20 & r_1 = 16 & r_2 = 4   &       0 &         \\ 
+                  \hline 
+                  \end{array} 
+                  \]
+                  Le dernier reste non-nul est $4$, donc $\pgcd{36}{200} = 4$.
+            \end{ex}
+            %
+            \begin{exe}
+                  Calculer :
+                  \begin{enumerate}[label=\alph*)]
+                        \item $\pgcd{51\,959}{47\,897}$ ;
+                        \item $\pgcd{23\,213}{24\,881}$ ;
+                        \item $\pgcd{47\,027}{62\,651}$.
+                  \end{enumerate}
+            \end{exe}
+            %
+            \begin{thm}[Identit\'e de B\'ezout]
+\index{Bezout@B\'ezout!Identite de@Identit\'e de}
+%\index{Bezout@B\'ezout!Theoreme de@Th\'eor\`eme de}
+%\index{Bezout@B\'ezout!Egalite de@\'Egalit\'e de}
+                  Soient $a$ et $b$ deux entiers relatifs non-nuls et notons par $d$ le PGCD de $a$ et $b$.
+                  On a alors :
+                  \begin{itemize}
+                        \item Il existe deux entiers $u$ et $v$ v\'erifiant : $a u + b v = d$,
+                        \item pour tous entiers $u$ et $v$, le nombre $a u + b v$ est un multiple de $d$.
+                  \end{itemize}
+                  Les nombres $u$ et $v$ sont appel\'es \emph{coefficients de B\'ezout},
+                  ils ne sont pas uniques.
+\index{Bezout@B\'ezout!coefficients de}
+\index{coefficients de B\'ezout@coefficients de Bezout}
+            \end{thm}
+            %
+%            \begin{thm}[B\'ezout]
+%                  Soient $a$ et $b$ deux nombre entiers relatifs non-nuls.
+%                  Alors il existe $(u,v) \in \mathbb{Z} \times \mathbb{Z}$ tels que 
+%                  \thmbox{$au+bv=\pgcd{a}{b}$}.
+%            \end{thm}
+            %
+            \begin{ex}
+                  On sait que $\pgcd{200}{36} = 4$.
+                  Cherchons deux entiers relatifs $u$ et $v$ tels que $200 u + 36 v = 4$.
+                  
+                  \begin{displaymath}
+                        \begin{array}{|r@{\ =\ }l|r@{\ =\ }l|r@{\ =\ }l|}
+                              \hline
+                              \multicolumn{2}{|c|}{\text{Division}} &
+	                                     \multicolumn{2}{|c|}{\text{\'Ecriture num\'erique} } & 
+	                                           \multicolumn{2}{|c|}{\text{\'Ecriture litt\'erale} } \\
+                              \hline
+                              200 & 5 \cdot 36 + 20 & 20 & 200 - 5 \cdot 36       & r_0  & a   - 5 \cdot b    \\
+                              \hline
+                              36  & 1 \cdot 20 + 16 & 16 & 36  - 1 \cdot 20       & r_1  & b   - 1 \cdot r_0  \\
+                              \hline
+                              20  & 1 \cdot 16 + 4  & 4  & 20  - 1 \cdot 16       & r_2  & r_0 - 1 \cdot r_1  \\
+                              \hline
+                              16  & 4 \cdot 4  + 0  & \multicolumn{2}{|c|}{}      & \multicolumn{2}{|c|}{}  \\
+                              \hline
+                        \end{array}
+                  \end{displaymath}
+                  Ainsi, on a 
+                        \begin{align*}
+                              r_2 & = (a-5b) - (b-r_0)       \\
+                                  & = (a-5b) - (b-(a-5b))    \\
+                                  & = a-5b-b+a-5b            \\
+                                  & = 2a - 11 b              \;.
+                        \end{align*}
+                 D'o\`u $4 = 2 \cdot 200 - 11 \cdot 36$.
+            \end{ex}
+            %
+            \begin{exe}
+                  Pour chacun des couples $(a,b)$ suivants trouver $\pgcd{a}{b}$ :
+                  %
+                  \begin{enumerate}
+                        \item $(a;b) = (615\,627 ; 36\,183)$, \label{item:1st gcd}
+                        \item $(a;b) = (210\,573 ; 9\,099)$, \label{item:2nd gcd}
+                        \item $(a;b) = (12\,325 ; 4\,207)$,
+                        \item $(a;b) = (13\,567 ; 23\,369)$.
+                  \end{enumerate}
+                  %
+                  Pour \ref{item:1st gcd} et \ref{item:2nd gcd}, trouver deux entiers $u$ et $v$ tels que
+                  $au + bv = \pgcd{a}{b}$.
+            \end{exe}
+%
+		\subsection*{Algorithme d'Euclide \'etendue}
+\index{Algorithme d'Euclide!etendu@\'etendu}
+\index{Euclide!Algorithme etendue d'@Algorithme \'etendu d'}
+		Il existe une version ``\emph{\'etendue}'' de l'algorithme d'Euclide.
+		Elle permet, en m\^eme temps que de conna\^itre le PGCD de deux nombres $a$ et $b$, 
+		de trouver les coefficients de B\'ezout $u$ et $v$.
+		
+		Il est identique au pr\'ec\'edent, il faut juste ajouter deux lignes.
+		\[
+			\begin{array}{|c|c|c|c|c|}
+				\hline 
+					& q_0 & q_1 & q_2 & \cdots \\ 
+				\hline 
+					a_0 = a & a_1 = b & a_2 = r_0 & a_3 = r_1  & \cdots \\ 
+				\hline 
+					r_0 = r & r_1 = a_1 - a_2 \cdot q_1 & r_2 = a_2 - a_3 \cdot q_2 & r_3 = a_3 - a_4 \cdot q_3 & \cdots \\ 
+				\hline
+					\mathbold{u_0 = 1} & \mathbold{u_1 = 0} & u_2 = u_0 - (q_0 \cdot u_1) & u_3 = u_1 - (q_1 \cdot u_2) & \cdots\\
+				\hline
+					\mathbold{v_0 = 0} & \mathbold{v_1 = 1} & v_2 = v_0 - (q_0 \cdot v_1) & v_3 = v_1 - (q_1 \cdot v_2) & \cdots\\
+				\hline
+			\end{array} 
+		\]
+		Les derniers \'el\'ements des deux derni\`eres lignes sont les coefficients $u$ et $v$ qu'on cherche.
+		
+		En fait, \`a chaque \'etape, on a
+		$
+			r_{n-2} = a_{n} = u_{n} \; a + v_{n} \; b
+		$.
+		
+		\begin{ex}
+		Revenons \`a l'exemple pr\'ec\'edent.%~\ref{ex:Algorithme d'Euclide: 36,200}.
+		On sait que $\pgcd{200}{36} = 4$.
+		On veut utiliser l'algorithme d'Euclide pour trouver les nombres $u$ et $v$ tels que 
+		$200 \, u + 36 \, v = 4$.
+		
+			\begin{tabular}{|r|r|r|r|r|}			\hline
+					& $5$	& $1$	& $1$	& $4$		\\ \hline
+			$200$	& $36$	& $20$	& $16$	& $4$		\\ \hline
+			$20$	& $16$	& $4$	& $0$	&			\\ \hline
+			$1$		& $0$	& $1$	& $-1$	& $2$		\\ \hline
+			$0$		& $1$	& $-5$	& $6$	& $-11$	\\ \hline
+			\end{tabular}
+		
+		Ainsi, on retrouve bien $200 \; 2 - 36 \; 11 = 4$.
+		\end{ex}
+            %
+            \begin{thm}[Lemme de Gauss]
+                  Soient $a$, $b$ et $c$ trois entiers relatifs tels que $\pgcd{a}{c} = 1$.
+                  Alors, \thmbox{$a|bc \Rightarrow a | b$}.
+            \end{thm}
+            %
+            \begin{ex}
+                  On se propose de r\'esoudre dans $\mathbb{Z}\times\mathbb{Z}$ l'\'equation : 
+                  $35 x + 38 y = 1$.
+                  
+                  Commen\c{c}ons par dresser l'algorithme d'Euclide pour trouver $\pgcd{38}{35}$ : \ 
+                  \begin{tabular}{|l|l|l|l|l|} 
+                  \hline
+                             & $1$  & $11$ & $1$ & $2$ \\ 
+                  \hline
+                        $38$ & $35$ & $3$  & $2$ & $1$ \\ 
+                  \hline
+                        $3$  & $2$  & $1$  & $0$ &     \\
+                  \hline
+                  \end{tabular} .
+                  
+                  On peut alors chercher deux entiers $u$ et $v$ tels que $38 u + 35 v = 1$.
+                                    \begin{displaymath}
+                        \begin{array}{|r@{\ =\ }l|r@{\ =\ }l|r@{\ =\ }l|}
+                              \hline
+                              \multicolumn{2}{|c|}{\text{Division}} &
+                                     \multicolumn{2}{|c|}{\text{Ecriture num\'erique} } & 
+                                           \multicolumn{2}{|c|}{\text{\'Ecriture litt\'erale} } \\
+                              \hline
+                              38  & 1 \cdot 35 + 3 & 3 & 38 - 1 \cdot 35       & r_0  & a   - 1 \cdot b    \\
+                              \hline
+                              35  & 11 \cdot 3 + 2 & 2 & 35  - 11 \cdot 3      & r_1  & b   - 11 \cdot r_0 \\
+                              \hline
+                              3   & 1 \cdot 2 + 1  & 1  & 3  - 1 \cdot 2       & r_2  & r_0 - 1 \cdot r_1  \\
+                              \hline
+                              2  & 2 \cdot 1  + 0  & \multicolumn{2}{|c|}{}      & \multicolumn{2}{|c|}{}  \\
+                              \hline
+                        \end{array}
+                  \end{displaymath}
+                  Ainsi, on a : 
+                        \begin{align*}
+                              r_2 & = (a - b ) - (b - 11 \cdot r_0) \\
+                                  & = a - b - b + 11 (a - b)        \\
+                                  & = a - 2 b + 11 a - 11 b         \\
+                                  & = 12 a - 13 b                   \;.
+                        \end{align*}
+                  
+                  On aurait aussi peu utiliser l'algorithme d'Euclide \'etendu :
+                  \begin{center}
+							\begin{tabular}{|r|r|r|r|r|} \hline
+							  & $1$ & $11$ & $1$ & $2$ \\ \hline
+							$38$ & $35$ & $3$ & $2$ & $1$ \\ \hline
+							$3$ & $2$ & $1$ & $0$ &   \\ \hline
+							$1$ & $0$ & $1$ & $-11$ & $12$ \\ \hline
+							$0$ & $1$ & $-1$ & $12$ & $-13$ \\ \hline
+							\end{tabular}
+                  \end{center}
+                  
+                  On a donc une solution particuli\`ere : $12 \cdot 38 - 13 \cdot 35 = 1$.
+                  Si $u$ et $v$ sont deux solutions, on a : 
+                        \begin{align*}
+                        &
+                              \left\lbrace
+                                    \begin{array}{l}
+                                          38 \cdot  u + 35 \cdot v  = 1 \\
+                                          38 \cdot 12 - 35 \cdot 13 = 1 \\
+                                    \end{array}
+                              \right.
+                        \Rightarrow
+                        &     
+                                    38 (u - 12) + 35 (v + 13) = 0      \;.
+                        \end{align*}
+                        Ainsi,
+                              \begin{equation}
+                                    35 \, (v + 13) = 38 (12 - u) \label{eq:Bezout ex 1}
+                              \end{equation}
+                        et donc $38 | 35 \, (v + 13)$.
+                        Mais comme $\pgcd{38}{5} = 1$, d'apr\`es le Lemme~de~Gauss, $38 | (v + 13)$.
+                        D'o\`u, il existe un entier $k$ tel que $v + 13 = 38 \, k$, ou encore $v = 38\,k - 13$.
+                        En portant cette valeur dans l'\'equation~\eqref{eq:Bezout ex 1}, on a 
+                              $38 \, (12 - u) = 35 \cdot 38 \cdot k$ et donc 
+                              $u = - 35 \, k + 12$.
+                        Ainsi, l'ensemble des solutions est 
+                              $\left\lbrace (-35\,k-12 ; 38\,k-13) \mid k \in \mathbb{Z} \right\rbrace$.
+            \end{ex}
+
+
+\TCDLessonStyleOff
+\clearpage
+\providecommand{\congru}[3]{#1 \equiv #2 \quad \mathrm{mod}\ #3}
+\providecommand{\base}[2]{\overline{#1}^{_{(#2)}}} % Fanoratana nombre #1 en base #2. En maths mode vao mandeha.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercices}
+%
+\begin{exo}
+	Pour chacun des couples $(a,b)$ suivants, effectuer la division euclidienne de $a$ par $b$ :
+		\begin{enumerate}
+			\item $(a,b) = (22,4)$,
+			\item $(a,b) = (37,-5)$,
+			\item $(a,b) = (-28,3)$,
+			\item $(a,b) = (-93,-8)$,
+			\item $(a,b) = (122,13)$,
+			\item $(a,b) = (72,-11)$,
+			\item $(a,b) = (-30,2)$,
+			\item $(a,b) = (-45,-7)$.
+		\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+	\begin{enumerate}
+		\item Convertir le nombre $\base{100}{2}$ en base $ 10 $.
+		\item Convertir le nombre $\base{1011}{2}$ en base $ 10 $.
+		\item Convertir le nombre $\base{110010}{2}$ en base $ 10 $.
+		\item Convertir le nombre $\base{1000101}{2}$ en base $ 10 $.
+		\item Convertir le nombre $\base{12}{10}$ en base $ 2 $.
+		\item Convertir le nombre $\base{237}{10}$ en base $ 2 $.
+		\item Convertir le nombre $\base{154}{10}$ en base $ 2 $.
+		\item Convertir le nombre $\base{73}{10}$ en base $ 2 $.
+	\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+	\begin{enumerate}
+		\item Convertir le nombre $\base{1222}{3}$ en base $ 10 $.
+		\item Convertir le nombre $\base{1133}{5}$ en base $ 10 $.
+		\item Convertir le nombre $\base{4035}{6}$ en base $ 10 $.
+		\item Convertir le nombre $\base{11321}{8}$ en base $ 10 $.
+		\item Convertir le nombre $\base{56}{10}$ en base $ 4 $.
+		\item Convertir le nombre $\base{316}{10}$ en base $ 6 $.
+		\item Convertir le nombre $\base{3317}{10}$ en base $ 7 $.
+		\item Convertir le nombre $\base{9715}{10}$ en base $ 9 $.
+	\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+	\begin{enumerate}
+		\item Convertir le nombre $\base{122}{3}$ en base $ 5 $.
+		\item Convertir le nombre $\base{31130}{4}$ en base $ 3 $.
+		\item Convertir le nombre $\base{134334}{5}$ en base $ 7 $.
+		\item Convertir le nombre $\base{203102}{6}$ en base $ 9 $.
+		\item Convertir le nombre $\base{35006}{7}$ en base $ 6 $.
+		\item Convertir le nombre $\base{7215}{8}$ en base $ 4 $.
+	\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      \begin{enumerate}
+            \item D\'emontrer que la somme de trois entiers relatifs cons\'ecutifs est divisible par $3$.
+            \item D\'emontrer que le produit de trois entiers relatifs cons\'ecutifs est divisible par $3$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      Montrer que tout nombre premier sup\'erieur \`a $4$ est 
+      soit de la forme $6 k + 1$ soit de la forme $6 k -1$ o\`u $k\in\mathbb{Z}$.
+\end{exo}
+%
+\begin{exo}
+      \begin{enumerate}
+            \item D\'eterminer les entiers naturels non nuls $n$ dont 
+                  la division par 16 donne un reste \'egal au carr\'e du quotient.
+            \item D\'eterminer les entiers naturels non nuls $n$ dont
+                  la division par 125 donne un reste \'egal au cube du quotient.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      \begin{enumerate}
+            \item Soit $n$ un entier naturel sup\'erieur ou \'egal \`a 3. 
+                  D\'eterminer le reste de la division de $n^3 - 2 $ par $n-2$.
+            \item D\'eterminer les entiers naturels $n$ sup\'erieurs ou \'egal \`a 3 tel que $n -2 $ divise $n^3 - 2$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      Soit $n$ un entier naturel et soit $r$ le reste de la division de $2^n $ par 7.
+      \begin{enumerate}
+            \item D\'eterminer le reste de la division de $2^{n+3}$ par 7 et en d\'eduire en fonction de $n$, 
+                  le reste de la division de $2^n$ par 7.
+            \item D\'eterminer le reste de la division de $23^{41}$ par 7.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      \begin{enumerate}
+            \item D\'eterminer le reste de la division de $2^n$ par 7 pour $n \in \{ 1, \ 2, \ 3, \ 4, \ 5, \ 6 \}$.
+            \item Montrer que 7 divise $2^{n+3} - 2^n$. 
+                  En d\'eduire les valeurs de $n$ pour lesquelles la division de $2^n$ par 7 donne un reste \'egal \`a 1.
+            \item Montrer que $9^n$ et $2^n$ ont m\^eme reste par la division par 7.
+            \item Quel est le reste de la division de $2^{999} \cdot 9^{222}$ par 7\,?
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      Soit $E$ l'ensemble des nombres entiers naturels $N$ qui s'\'ecrit 
+      sous la forme $N = \bar{ababab}$ en base 10 avec $a$ non nul.
+      \begin{enumerate}
+            \item Combien y a-t-il de nombre $N$ dans $E$\,? 
+            \item Montrer que tout les nombres de $E$ sont multiples de $10101$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      \begin{enumerate}
+            \item Calculer pour $p = 0$, puis pour $p$ entier strictement positif, le reste de la division de $10^p$ par 6.
+            \item Soit $n$ un entier sup\'erieur ou \'egal \`a 1. 
+                  Un entier $x$ s'\'ecrit $\bar{a_n \, a_{n-1} \, \dots \, a_1 \, a_0} $ 
+                  dans le syst\`eme d'\'enum\'eration en base 10.
+                  D\'emontrer que 6 divise $x$ si et seulement si 6 divise $4 \; (a_n + a_{n-1} + \cdots + a_2 + a_1 ) + a_0$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      \begin{enumerate}
+            \item Soit $N$ un entier relatif impair. 
+                  En \'ecrivant $N = 2\ k + 1 \ (k \in \mathbb{Z})$, d\'eterminer le reste de la division de $N^2$ par 8.
+            \item R\'esoudre dans $\mathbb{Z} \times \mathbb{Z}$ 
+                  l'\'equation $x^2 = 8 \, y + 1$ o\`u $x$ et $y$ sont les inconnues. 
+            \item En d\'eduire que la parabole $(P)$ d\'equation $y = \frac{x^2 - 1}{8}$ 
+                  passe par une infinit\'e de points de coordonn\'ees enti\`eres.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      Soit $\{0,\ 1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7,\ 8,\ 9,\ a,\ b \}$ 
+      l'ensemble des `chiffres' qu'on utilise dans l'\'ecriture en base 12 des nombres.
+      Un nombre $N$ s'\'ecrit $N = \bar{a_n \, a_{n-1} \, \dots \, a_1 \, a_0}$ en base 12 $(n \geq 1)$.
+      \begin{enumerate}
+            \item Montrer que $\congru{N}{a_n + a_{n-1} + \cdots + a_2 + a_1  + a_0}{11}$.
+            \item En d\'eduire une crit\`ere de divisibilit\'e par 11 de ce nombre $N$ en base 12.
+            \item Un nombre $N$ s'\'ecrit $\bar{xy4}$ en base 12 et $\bar{3yx}$ en base 10.
+                  De plus, $N$ est divisible par 11.
+                  D\'eterminer $N$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      \begin{enumerate}
+            \item V\'erifier que 7 divise les nombres $2^6 -1$ , $3^6 - 1$, $4^6 - 1$ et $5^6 - 1$.
+            \item Pour tout entier naturel $n$, on d\'efinit le nombre $A_n$ par $A_n = 2^n + 3^n + 4^n + 5^n$.
+                  Montrer que $A_{n+6} - A_n$ est divisible par 7.
+            \item Soit $n$ un entier naturel, soient $q$ et $r$ son quotient et son reste respectivement par la division par 6.
+                  Montrer que $A_n$ et $A_r$ ont m\^eme reste par la division par 7.
+            \item D\'eterminer les valeurs de $n$ pour lesquels $A_n$ est divisible par 7.
+      \end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+      Trouver le PGCD de chacun des couples $(a;b)$ suivants :
+      \begin{enumerate}
+            \item $(a;b) = (499877;797111)$,
+            \item $(a;b) = (97771;87567)$,
+            \item $(a;b) = (27122;10097)$,
+            \item $(a;b) = (15155;12958) $,
+            \item $(a;b) = (15454;11345) $.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      Pour chacun des couples $(a;b)$ suivant, d\'eterminer un couple $(u;v)$ tels que
+      $a\,u + b\,v = \pgcd{a}{b}$.
+      \begin{enumerate}
+            \item $(a;b) = (699 ; 624)$,
+            \item $(a;b) = (972 ; 962)$,
+            \item $(a;b) = (875 ; 788)$,
+            \item $(a;b) = (934 ; 414)$,
+            \item $(a;b) = (872 ; 432)$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      R\'esoudre dans $\mathbb{Z}^2$ les \'equations suivantes : 
+      \begin{enumerate}
+            \item $3 u + 5 v = 1$,
+            \item $13 u + 21 v = 1$,
+            \item $37 u + 45 v = 1$,
+            \item $3 u + 5 v = 2$,
+            \item $13 u + 21 v = 3$,
+            \item $37 u + 45 v = 4$,
+            \item $6 u + 10 v = 6$,
+            \item $39 u + 63 v = 6$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      Soient $a$ et $b$ deux entiers relatifs non nuls et $n$ un entier naturel sup\'erieur \`a $1$.
+      \begin{enumerate}
+            \item Montrer que si $a$ et $b$ sont premiers entre eux alors $5a + 3b$ et $3a + 2b$ sont aussi premiers entre eux.
+            \item Montrer que $n^2 + 1$ et $n+1$ sont premiers entre eux.
+      \end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}% ~ \newline
+\begin{enumerate}
+\item D\'eterminer l'ensemble des entiers relatifs $x$ tels que : $123 \cdot x \equiv 456 \quad [7]$.
+\item \begin{enumerate}
+      \item D\'ecomposer 78 et 14 en produit de facteurs premiers.
+      \item En d\'eduire dans $\mathbb{N}$ l'ensemble des diviseurs de 78 et l'ensemble des diviseurs de 14.
+      \item D\'eterminer alors $g = PGCD (78 , 14)$ et $m = PPCM (78 , 14)$.
+      \end{enumerate}
+\end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}%~\newline
+\begin{enumerate}
+\item Trouver tous les nombres entiers naturels ayant 3 chiffres et divisibles \`a la fois par 14 et par 34.
+\item Trouver deux entiers naturels $a$ et $b$ tels que : 
+      $$
+      \left\lbrace
+      \begin{array}{l}
+      PGCD (a,b) = 6 \\
+      a \cdot b = 2700      .
+      \end{array}
+      \right.
+      \;
+      $$
+      En d\'eduire le $PPCM$ de $a$ et $b$.
+\end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+      \begin{enumerate}
+            \item Montrer par r\'ecurrence que $9^n - 2^n$ est divisible par $7$ pour tout $n \in \mathbb{N}^*$.
+            \item Montrer que, pour tout entier naturel $n$ non-nul, $3n-2$ et $5n-3$ sont premiers entre eux.
+            \item On consid\`ere dans $\mathbb{Z} / 7 \mathbb{Z}$, l'\'equation : 
+                  \begin{equation}
+                  \TCDtag{E}
+                        x^2 - x + 1  = 0 .
+                  \label{eq:E arithm}
+                  \end{equation}
+                  \begin{enumerate}
+                        \item V\'erifier que $5$ est une solution de \eqref{eq:E arithm}.
+                        \item D\'emontrer que \eqref{eq:E arithm} est \'equivalente \`a : 
+                              $(x-4)^2 = 1$.
+                        \item En d\'eduire l'ensemble $S$ des solutions de \eqref{eq:E arithm}.
+                  \end{enumerate}
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      \begin{enumerate}
+            \item Calculer $PGCD(319,232,145)$ puis r\'esoudre dans $\mathbb{Z} \times \mathbb{Z}$
+                  l'\'equation $319 x + 232 y = 145$.
+            \item R\'esoudre l'\'equation $13x - 7 y = 11$,
+                  d'inconnues $(x,y) \in \mathbb{N} \times \mathbb{N}$.
+      \end{enumerate}
+\end{exo}
+
+\begin{exo}
+	Montrer que $n^2 + n + 2$ n'est jamais divisible par $3$.
+\end{exo}
+%
+\begin{exo}[Bac 2004]
+      \begin{enumerate}
+            \item \begin{enumerate}
+                        \item Convertir en base 10 l'entier $x$ qui s'\'ecrit dans le syst\`eme binaire :
+                              $x = \overline{10101}_2$.
+                        \item Convertir en binaire l'entier $y$ qui s'\'ecrit $y = 23$ dans la base 10.
+                  \end{enumerate}
+            \item \begin{enumerate}
+                        \item Dresser la table de multiplication et la table d'addition dans $\mathbb{Z}/2\mathbb{Z}$.
+                        \item R\'esoudre dans $\mathbb{Z}/2\mathbb{Z}$ l'\'equation \`a une inconnue $x$ :
+                              $x^2 + x + \bar{2} = \bar{0}$.
+                        \item R\'esoudre dans $\mathbb{Z}/2\mathbb{Z}$ le syst\`eme de deux \'equations \`a 
+                              deux inconnues $x$ et $y$ : 
+                              \[
+                                    \left\lbrace
+                                          \begin{array}{l}
+                                                \bar{2} x + y = \bar{0} \\
+                                                x + \bar{3} y = \bar{0} \;.
+                                          \end{array}
+                                    \right.
+                              \]
+                  \end{enumerate}
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}[Bac 2003]
+      \begin{enumerate}
+            \item Pour tout $x\in\mathbb{Z}/6\mathbb{Z}$, donner la valeur de $x^2$.
+            \item Donner alors toutes les \'el\'ements de $\mathbb{Z}/6\mathbb{Z}$ v\'erifiant 
+                  l'\'equation $x^2 = x$.
+            \item Montrer que pour tout $x\in\mathbb{Z}/6\mathbb{Z}$.
+            \item En d\'eduire que pour tout entier naturel $n$, $n^3 - n$ est divisible par $6$.
+      \end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+	On dispose de deux r\'ecipients : l'un peut mesurer 5 litres tandis que l'autre peut en mesurer 3.
+	Peut-on, \`a l'aide de ces deux r\'ecipients, mesurer 1 litre\,? Si oui, comment\,?
+\end{exo}
+%
+\begin{exo}
+	Andry poss\`ede un tas de pi\`eces de 4~Ar et Bema poss\`ede un tas de pi\`eces de 10~Ar.
+	\begin{enumerate}
+		\item Serait-il possible pour Andry de donner 18~Ar \`a Bema\,?
+		\item Serait-il possible pour Bema de donner 25~Ar \`a Andry\,?
+	\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+	Sauriez-vous me dire quel est le dernier chiffre de chacun des nombres suivants\,?
+		\[ 
+			10^{10}			,\qquad
+			5^{5^{5}}			,\qquad
+			2^{3^{4^{5}}} 	.
+		\]
+\end{exo}
+%
+\begin{exo}
+	Quel est le plus grand diviseur commun de chacun des couples de nombres suivants :
+	\[
+		(4,12)				,\qquad
+		(60,24)			,\qquad
+		(9379,8039)		.
+	\]
+\end{exo}
+%
+\begin{exo}
+	\begin{enumerate}
+		\item 
+				Jean le Baptiste partit dans le d\'esert un dimanche.
+			Il y resta 40 jours.
+			Quel jour de la semaine Jean est-il revenu du d\'esert\,?
+			
+				Quel jour de la semaine Jean serait-il revenu s'il y \'etait rest\'e 40~000 jours\,? 40~000~000 de jours\,?
+		\item 
+			Un dimanche, un visiteur frappa \`a ma porte.
+				Il me raconta qu'il revenait d'un voyage de 50 jours.
+				Quel jour de la semaine avait-il commenc\'e son voyage\,?
+			
+				Quel jour aurait-ce \'et\'e s'il revenait d'un voyage de 50~000 jours\,? De 50~000~000 de jours\,?
+	\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+		Rakoto se trouve incapable de payer son loyer du mois de janvier.
+		Il poss\`ede cependant une barre d'argent de 31~cm de long.
+		Il alla parler au propri\'etaire et ils trouv\`erent un arrangement :
+		\`a la fin de chaque jour du mois de janvier, le propri\'etaire devra d\'etenir, comme gage,
+		une longueur totale d'argent \'egale au num\'ero du jour.
+	De cette mani\`ere, au $n$-ième jour du mois de janvier, le propri\'etaire aura re\c{c}u $n$~cm d'argent.
+		Ils continueront ainsi tout au long du mois, jusqu'\`a ce que Rakoto trouve un moyen de payer son loyer.
+	
+		Il se trouve que Rakoto ne veut pas diviser sa barre en trop de morceaux ;
+	il cherche \`a le diviser au plus petit nombre possible qui lui permettrait de satisfaire son engagement.
+		Comment Rakoto doit-il diviser sa barre d'argent\,?
+%	
+%	\noindent\textsc{Exemple :}\newline
+%		Il peut le diviser en morceaux de longueurs respectifs : 1~cm, 2~cm, 3~cm, 4~cm, 4~cm, 5~cm, 6~cm et 7~cm ;
+%		soit 8 morceaux.
+%		\begin{enumerate}
+%			\item Au premier jour, il donnera le morceau de 1~cm,
+%			\item le second jour, il reprendra le morceau de 1~cm et donnera le morceau de 2~cm,
+%			\item il continuera de m\^eme jusqu'au setpi\`eme jours.
+%			\item Au huiti\`eme jour, il ajoutera le morceau de 1~cm au morceau de 7~cm qu'il ne reprendra pas,
+%			\item et ainsi de suite.
+%		\end{enumerate}
+\end{exo}
+
+\begin{exo}[IMO 1959 1.]
+		Prouver que la fraction $\frac{21n+4}{14n+3}$ est irr\'eductible pour tout entier naturel $n$.
+\end{exo}
+
+\begin{exo}[IMO 1962 1.]
+	Trouver le plus petit entier naturel $n$ ayant les propri\'et\'es suivantes :
+	\begin{enumerate}
+			\item son \'ecriture d\'ecimale se termine par $6$,
+		\item si on d\'eplace ce chiffre au d\'ebut, on obtient un nombre 4 fois plus grand.
+	\end{enumerate}
+\end{exo}
+
+\begin{exo}[IMO 1964 1.]
+	\begin{enumerate}
+		\item Trouver tous les nombres entiers naturels $n$ tels que $2^n - 1$ est divisible par $7$.
+		\item Prouver que pour tout entier naturel $n$ le nombre $2^n + 1$ n'est pas divisible par $7$.
+	\end{enumerate}
+\end{exo}
+
+\begin{exo}[Training of the USA IMO team]
+	Soient $1$, $4$, \ldots{} et $9$, $16$, \ldots{} deux progressions arithm\'etiques.
+	L'ensemble $S$ est l'union des 2004 premiers termes de chaque suite.
+	Combien de nombres distincts y a-t-il dans $S$\,?
+\end{exo}
+
+\begin{exo}[Training of the USA IMO team]
+		\'Etant donn\'ee une suite strictement croissante de six nombres entiers naturels positifs telle que 
+		chaque nombre (except\'e le premier) est un multiple de celui qui le pr\'ec\`ede et que la somme 
+	des six nombres est 79, quel est le plus grand nombre de la suite\,?
+\end{exo}
+
+\begin{exo}[Training of the USA IMO team]
+	Quel est le plus grand entier naturel $n$ pour lequel $n^3 + 100$ est divisible par $n + 100$\,?
+\end{exo}
+
+\begin{exo}[Training of the USA IMO team]
+	\begin{enumerate}
+		\item Soit $n$ un nombre entier sup\'erieur \`a 2.
+				Montrer que parmi les fractions 
+			\[
+				\frac{1}{n},\ \frac{2}{n},\	\ldots ,\ \frac{n-1}{n}
+			\]
+				le nombre de fractions irr\'eductibles est pair.
+		\item Montrer que la fraction 
+			\[
+				\frac{12 n + 1}{30 n + 2}
+			\]
+				est irr\'eductible pour tout entier positif $n$.
+	\end{enumerate}
+\end{exo}
+
+\begin{exo}[Nombres de Mersenne]
+	On appelle \emph{nombre de Mersenne} les nombres de la forme $2^n - 1$ o\`u $n \in \mathbb{N}$.
+	\begin{enumerate}
+		\item D\'emontrer que $2^q - 1$ divise $2^{pq} - 1$ pour tout $(p,q) \in \mathbb{N}^2$.
+		\item En d\'eduire que si $2^n - 1$ est premier alors $n$ est premier.
+		\item Trouver un nombre premier $p$ tel que $2^p - 1$ n'est pas premier.
+	\end{enumerate}
+\end{exo}
+% IO AMBONY IHANY ITO
+%\begin{exo}
+%	Pour chaucune des propositions suivantes, dire si elle est vraie ou fausse ; justifier votre r\'eponse dans chaque cas.
+%	\begin{itemize}
+%		\item Si $n$ est premier alors nombre $2^n - 1$ est premier.
+%		\item Si $n$ est n'est pas premier alors nombre $2^n - 1$ n'est pas premier.
+%	\end{itemize}
+%	Note : Le nombre $n$ consid\'er\'e est suppos\'e entier naturel non-nul.
+%\end{exo}
+%
+\begin{exo}[Propri\'et\'es des nombres de Fermat]
+\index{Fermat!nombre de}
+	On d\'efinit le \emph{nombre de Fermat} de rang $n$ par $F_n := 2^{2^n} + 1$ o\`u $n \in \mathbb{N}$.
+	\begin{enumerate}
+		\item
+			\begin{enumerate}
+				\item D\'emontrer que $\prod_{k = 0}^{n -1} F_k := F_0 \cdot F_1 \cdots F_{n-1}$ 
+					est \'egal \`a $F_n - 2$ pour tout $n\in\mathbb{N}^*$.
+				\item En d\'eduire que les nombres de Fermat sont deux \`a deux premiers entre eux.
+			\end{enumerate}
+		\item Montrer que $F_n$ divise $2^{F_n} - 2$ pour tout $n$.
+	\end{enumerate}
+%	
+%	Pierre de Fermat (1601 -- 1665) \'etait un magistrat fran\c{c}ais et math\'ematicien amateur.
+%	Fermat, apr\`es avoir v\'erifi\'e que $F_i$ \'etait premier pour $i \in \{ 0,\ 1,\ 2,\ 3 ,\ 4 \}$,
+%	conjecturat que $F_n$ \'etait premier pour tout $n$.
+%	Leonhard Euler (1707 -- 1783), l'illustre math\'ematicien suisse, d\'emontrat que $F_5$ est divisible par $641$, 
+%	et par cons\'equent n'est pas premier.
+\end{exo}
+
+\begin{exo}
+	\begin{enumerate}
+		\item 
+			\begin{enumerate}
+				\item Montrer que pour tout nombre pair $a \geq 0$, $3^a \equiv 1 \ [4]$.
+					\label{quest: Arithm Exo a}
+				\item Montrer que $2^{4k} \equiv 1 \ [5]$, pour tout $k \in \mathbb{N}^*$.
+					\label{quest: Arithm Exo b}
+				\item D\'eduire des questions \ref{quest: Arithm Exo a} et \ref{quest: Arithm Exo b} que 
+					pour tout nombre pair $a \geq 0$, $2^{3^a} \equiv 2 \ [10]$.
+				\item Utiliser ce dernier r\'esultat pour donner le dernier chiffre de l'\'ecriture d\'ecimale du nombre
+					$2^{3^{4^5}}$.
+			\end{enumerate}
+		\item Donner les deux derniers chiffres de l'\'ecriture d\'ecimale du nombre $7^{7^{7^{7^{7^{7^7}}}}}$.
+		\item Quels sont les trois derniers chiffres de l'\'ecriture d\'ecimale du nombre : 
+			$\displaystyle 2^{3^{4^{5}}} \times 5^{4^{3^{2}}}$. \trollface
+	\end{enumerate}
+\end{exo}
+
+\begin{exo}
+	Montrer qu'il existe (au moins) un terme de la suite :
+		\[
+			3			\, ;\ 
+			33			\, ;\ 
+			333			\, ;\ 
+			3\,333		\, ;\ 
+			\ldots
+		\]
+		qui est divisible par $2\,019$.
+\end{exo}
+
+\begin{exo}[Ne pensez pas trop loin \trollface]
+	Donner \emph{tous} les couples de nombres premiers $( x,y )$, $x < y$, tels que $x + y = 2\,019$.
+\end{exo}
+
+\begin{exo}
+	\begin{enumerate}
+		\item Soit $P(n) = n^2 + n + 41$.
+			Donner cinq entiers naturels $n_1$, $n_2$, $n_3$, $n_4$ et $n_5$ tels 
+			qu'aucun des nombres $P(n_1)$, $P(n_2)$, $P(n_3)$, $P(n_4)$ et $P(n_5)$ n'est premier.
+		\item D\'emontrer que si $p$ est un nombre premier sup\'erieur \`a $4$ alors $p^2 \equiv 1 \quad [24]$.
+	\end{enumerate}
+\end{exo}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{corrige}
+\section{Solutions des exercices et preuves des th\'eor\`emes}
+\begin{proof}
+(Preuve de la Propri\'et\'e~\ref{prop:divisibilite}.)
+\begin{enumerate}
+\item Supposons que $a|b$ et $b|a$.
+      Il suit qu'il existe $q \in \mathbb{Z}$ tel que $b = q a $ et 
+      $q' \in \mathbb{Z}$ tel que $a = q' b$.
+      En combinant ces deux \'equations, on obtient : $b  = q ( q' b) = (q q') b$.
+      Il suit que $qq' = 1$.
+      Comme $q$ et $q'$ sont des entiers, alors il y a deux possibilit\'es :
+            $q = q' = 1$ ou $q = q' = -1$.
+      Dans le premier cas, on a $b = a$ ; dans le second cas, on a $b = - a$.
+\item \begin{enumerate}
+      \item $a | b$ signifie qu'il existe un entier $k$ tel que $b = ak$.
+            En multipliant cette derni\`ere \'egalit\'e par $c$, on a $b c = a k c$.
+            En posant $k' = kc$, on a $bc = a k'$ o\`u $k' \in \mathbb{Z}$
+            ce qui prouve que $a | bc$.
+      \item $a | b$ signifie qu'il existe un entier $k$ tel que $b = ak$.
+            En multipliant cette derni\`ere \'egalit\'e par $c$, on a $b c = a k c$.
+            En r\'earrangeant les termes, on a $(bc) = (ac) k$; ce qui montre que $ac | bc$.
+      \item Supposons que $a | b $ et que $b | c$.
+            En appliquant la d\'efinition, on sait qu'il existe deux entiers $k$ et $k'$ tels que 
+            $b = ak$ et $c = bk'$.
+            En rempla\c{c}ant le $b$ de la seconde \'equation avec sa valeur dans la premi\`ere, on obtient
+            $c = (ak)k' = a(kk')$.
+            On peut alors poser $K = kk'$ et obtenir $c = aK$ ce qui prouve que $a | c$.
+      \end{enumerate}
+\end{enumerate}
+\end{proof}
+\end{corrige}
+

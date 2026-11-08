@@ -256,6 +256,24 @@ def unwrap_intertext(s):
         s = s[:m.start()] + '\\\\ \\text{' + s[m.end():j - 1] + '} \\\\' + s[j:]
 
 
+def hoist_proofs(s):
+    """A proof written inside its theorem box (T12: \\begin{prp} ... \\begin{proof} ... \\end{proof} \\end{prp}) moves just after
+    the box: the slide parser reads one level of boxes, so a nested proof gave no proof slide and leaked into the theorem's text."""
+    out, pos = [], 0
+    for m in re.finditer(r'\\begin\{(theorem|definition|keypoint)\}', s):
+        if m.start() < pos: continue
+        name = m.group(1); depth, j = 0, m.start()
+        for e in re.finditer(r'\\(begin|end)\{' + name + r'\}', s[m.start():]):
+            depth += 1 if e.group(1) == 'begin' else -1
+            if depth == 0: j = m.start() + e.end(); break
+        else: continue
+        box = s[m.start():j]
+        proofs = re.findall(r'\\begin\{proof\}.*?\\end\{proof\}', box, flags=re.S)
+        if proofs: box = re.sub(r'\\begin\{proof\}.*?\\end\{proof\}', '', box, flags=re.S) + '\n' + '\n'.join(proofs) + '\n'
+        out.append(s[pos:m.start()] + box); pos = j
+    return ''.join(out) + s[pos:]
+
+
 def prepare(src, defs, number, title):
     """One chapter of a book -> canonical TeX: a title unit, then its sections."""
     s = re.sub(r'(?<!\\)%.*', '', src)                          # comments
@@ -279,6 +297,7 @@ def prepare(src, defs, number, title):
     # \begin{methode}{title} (T11 S, mandatory title) -> optional title
     s = re.sub(r'\\begin\{methode\}\{([^}]*)\}', r'\\begin{methode}[\1]', s)
     for a, b in RENAME.items(): s = re.sub(r'\\(begin|end)\{' + a + r'\}', r'\\\1{' + b + '}', s)
+    s = hoist_proofs(s)
     s = safe_titles(s)
     # tabularx (width, X columns) -> tabular, the only table the slide builder converts
     s = tabularx(s)

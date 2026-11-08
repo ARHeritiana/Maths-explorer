@@ -1,0 +1,1149 @@
+\chapter{Annexes}
+      \section{Trigonom\'etrie}
+            \subsection{Radian}
+\index{Radian}
+            \newcommand{\rad}{\mathrm{rad}}
+                  Il existe plusieurs unit\'es d'angle. 
+                  Celle qu'on utilise le plus souvent est le \emph{radian} ($\rad$)
+                  qui est aussi l'Unit\'e du Syst\`eme International.
+                  Un tour complet correspond \`a $2\pi~\rad$ (\`a peu pr\`es $6.283\,185\,307~\rad$).
+                  \begin{figure}[hb]
+                  \centering
+                        \begin{tikzpicture}[scale=3, >=stealth]
+                              %
+                              \clip (-1.5,-1.5) rectangle (2,1.65);
+                              %
+                              \filldraw[fill=loko3!50!white, opacity=.5] (0,0) -- (0:1) arc (0:180/3.14159265358:1) -- cycle;
+                              \filldraw[fill=loko3!, opacity=.5]
+                                     (0,0) -- (0:.3) arc (0:180/3.14159265358:.3) -- cycle;
+                              %
+                              \draw[->, line width=1.] (0,-1.5) -- (0,1.5);
+                              %
+                              \draw [color=black, xstep=.1,ystep=.1, opacity=.2, line width=.2] (-2,-2) grid (2,2);
+                              \draw [color=black, xstep=.5,ystep=.5, opacity=.3, line width=.3] (-2,-2) grid (2,2);
+                              \draw [color=black, xstep=1,ystep=1, opacity=.5, line width=.5] (-2,-2) grid (2,2);
+                              %
+                              \draw[line width=1.] (0,0) circle (1);
+                              %
+                              \draw[->, line width=1.25, rotate=30] 
+                                          (1.25,0) arc(0:30:1.25) ;
+                              \filldraw[fill=white] (45:1.4) circle(.1) node[] {$+$};
+                              \draw[->, line width=1.25, rotate=-30] 
+                                          (1.25,0) arc(0:-30:1.25) ;
+                              \filldraw[fill=white] (-45:1.4) circle(.1) node[] {$-$};
+                              %
+                              \draw[] (0:1.1) node[above right, fill=white] {$0^\circ = 360^\circ$};
+                                    \draw[white] (0:1.1) node[below right, fill=loko1] {$0~\rad = 2\pi~\rad$};
+                              \draw[] (90:1.05) node[above, fill=white] {$90^\circ$};
+                                    \draw[white] (90:1.2) node[above, fill=loko1] {$\frac{\pi}{2}~\rad$};
+                              \draw[] (180:1.1) node[below left, fill=white] {$180^\circ$};
+                                    \draw[white] (180:1.1) node[above left, fill=loko1] {$\pi~\rad$};
+                              \draw[] (270:1.05) node[below, fill=white] {$270^\circ$};
+                                    \draw[white] (270:1.2) node[below, fill=loko1] {$\frac{3\pi}{2}~\rad$};
+                              %
+                              \draw[->, line width=1.] (-1.5,0) -- (1.5,0);
+                              %
+                              \draw (35:.4) node[] {$\theta$};
+                        \end{tikzpicture}
+                  \end{figure}
+            \subsection{Longueur d'un arc}
+            \index{arc}
+                  Consid\'erons un cercle de rayon $r$.
+                  La longueur d'un arc du cercle faisant un angle de $\theta~\rad$ est \thmbox{$\theta \cdot r$}.
+
+            \section{Fonctions trigonom\'etriques}
+                  \subsection{Dans un triangle rectangle}
+                  \begin{figure}[h!]
+                  \centering
+                        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.75cm,y=.75cm]
+                        \draw[color=loko1] (-4,0) -- (2,0) -- (2,3) -- cycle;
+                        \draw[color=loko3!20!black,fill=loko3,fill opacity=0.1] 
+                              (2,0.51) -- (1.49,0.51) -- (1.49,0) -- (2,0) -- cycle; 
+                        \draw [shift={(-4,0)},color=loko3!20!black,fill=loko3,fill opacity=0.1] 
+                              (0,0) -- (0:0.72) arc (0:26.57:0.72) -- cycle;
+                        \draw [color=loko1] (-4,0)-- (2,0);
+                        \draw [color=loko1] (2,0)-- (2,3);
+                        \draw [color=loko1] (2,3)-- (-4,0);
+                        \fill [color=loko2] (-4,0) circle (1.5pt);
+                        \draw[color=loko2] (-4.03,0.46) node {$A$};
+                        \fill [color=loko2] (2,0) circle (1.5pt);
+                        \draw[color=loko2] (2.2,0.31) node {$B$};
+                        \fill [color=loko2] (2,3) circle (1.5pt);
+                        \draw[color=loko2] (2.2,3.31) node {$C$};
+                        \draw[color=loko3!20!black] (-3,0.25) node {$\alpha$};
+                        \end{tikzpicture}
+                  \end{figure}
+                  %
+                  \begin{align*}
+                        \sin \alpha & = \frac{BC}{AC}       &
+                        \cos \alpha & = \frac{AB}{AC}       &
+                        \tan \alpha & = \frac{BC}{AB}       \\
+                        \sin \alpha & = \frac{\text{c\^ot\'e oppos\'e}}{\text{hypot\'enuse}}       &
+                        \cos \alpha & = \frac{\text{c\^ot\'e adjacent}}{\text{hypot\'enuse}}       &
+                        \tan \alpha & = \frac{\text{c\^ot\'e oppos\'e}}{\text{c\^ot\'e adjacent}}       \\
+                  \end{align*}
+                  %
+		      \warning{      
+		                        Pour tout $\alpha \in \mathbb{R}$ : \newline
+		                        $-1 \leq \sin \alpha \leq 1 \phantom{\;.}$ \newline
+		                        $-1 \leq \cos \alpha \leq 1$.
+		            }
+                  %
+            \subsection{Formules d'additions}
+                  Pour tout r\'eels $a$ et $b$, on a : 
+                  \begin{itemize}
+                        \item \thmbox{$\cos^2 \theta + \sin^2 \theta = 1$},
+                        \item \thmbox{$\cos (a+b) = \cos a \cdot \cos b - \sin a \cdot \sin b$},
+                        \item $\cos (a-b) = \cos a \cdot \cos b + \sin a \cdot \sin b$,
+                        \item \thmbox{$\sin (a+b) = \sin a \cdot \cos b + \cos a \cdot \sin b$},
+                        \item $\sin (a-b) = \sin a \cdot \cos b - \cos a \cdot \sin b$,
+%                        \item $\displaystyle{\tan (a+b) = \frac{\tan a + \tan b}{1 - \tan a \cdot \tan b}}$,
+%                        \item $\displaystyle{\tan (a-b) = \frac{\tan a - \tan b}{1 + \tan a \cdot \tan b}}$.
+                  \end{itemize}
+
+
+      \section{Cercle trigonom\'etrique}
+            \subsection{Caract\'eristique}
+                  \begin{figure}[h]
+                  \centering
+			\begin{tikzpicture}
+			[scale=2.75,line cap=round,
+			% Styles
+			axes/.style=,
+			important line/.style={very thick},
+			information text/.style={rounded corners,fill=loko1!10,inner sep=1ex},
+			>=stealth,
+			x = 1cm, y = 1cm]
+			% Local definitions
+			\def\costhirty{0.8660256}
+			% Colors
+			\colorlet{anglecolor}{loko3b}
+			\colorlet{sincolor}{loko1}
+			\colorlet{tancolor}{loko1!50!loko5}
+			\colorlet{coscolor}{loko2}
+                              %
+                              \clip (-1.25,-1.25) rectangle (1.85,1.75);
+%                              \draw [color=black, xstep=.1,ystep=.1, opacity=.2, line width=.2] (-2,-2) grid (2,2);
+                              \draw [color=black, xstep=.5,ystep=.5, opacity=.3, line width=.3] (-2,-2) grid (2,2);
+                              \draw [color=black, xstep=1,ystep=1, opacity=.5, line width=.5] (-2,-2) grid (2,2);
+                              %
+			% The graphic
+			%\draw[help lines,step=0.5cm] (-1.4,-1.4) grid (1.4,1.4);
+			\draw (0,0) circle (1cm);
+			\begin{scope}[axes]
+                              %
+                              \draw[->, line width=1.] (-1.5,0) -- (1.5,0) node[right, fill=white] {$\cos$} coordinate(x axis);
+                              \draw[->, line width=1.] (0,-1.5) -- (0,1.5) node[above, fill=white] {$\sin$} coordinate(y axis);
+                              %
+			%\draw[->] (-1.5,0) -- (1.5,0) node[right] {$\cos$} coordinate(x axis);
+			%\draw[->] (0,-1.5) -- (0,1.5) node[above] {$\sin$} coordinate(y axis);
+			\foreach \x/\xtext in {-1, -.5/-\frac{1}{2}, 1}
+			\draw[xshift=\x cm] (0pt,1pt) -- (0pt,-1pt) node[below,fill=white] {$\xtext$};
+			\foreach \y/\ytext in {-1, -.5/-\frac{1}{2}, .5/\frac{1}{2}, 1}
+			\draw[yshift=\y cm] (1pt,0pt) -- (-1pt,0pt) node[left,fill=white] {$\ytext$};
+			\end{scope}
+			\filldraw[fill=loko3!20,draw=anglecolor] (0,0) -- (3mm,0pt) arc(0:30:3mm);
+			\draw (15:2mm) node[anglecolor] {$\alpha$};
+			\draw[important line,sincolor]
+			(30:1cm) -- node[left=1pt,fill=white] {$\sin \alpha$} (30:1cm |- x axis);
+			\draw[important line,coscolor]
+			(30:1cm |- x axis) -- node[below=2pt,fill=white] {$\cos \alpha$} (0,0);
+			\path [name path=upward line] (1,0) -- (1,1);
+			\path [name path=sloped line] (0,0) -- (30:1.5cm);
+			\draw [name intersections={of=upward line and sloped line, by=t}]
+				[very thick,loko1!50!loko5] (1,0) -- node [right=1pt,fill=white]
+			{$\displaystyle \tan \alpha \color{black}=
+			\frac{{\color{loko1}\sin \alpha}}{\color{loko2}\cos \alpha}$} (t);
+			\draw (0,0) -- (t);
+			\end{tikzpicture}
+                  \end{figure}
+                  
+                  \nota{%
+                        La mesure d'un angle est d\'efinie modulo $2\pi$.
+                        Ainsi, $\theta$ et $\theta + 2\pi$ repr\'esentent les m\^emes angles.
+						Parmi toutes les valeurs d'un angle, 
+                        celle qui appartient \`a $]-\pi ; \pi]$ est appel\'ee \emph{mesure principale}.
+                  }
+            %
+            \subsection{\'Egalit\'e de deux angles}
+                  \begin{itemize}
+                        \item $\cos x = \cos \theta \iff 
+                              \exists k \in \mathbb{Z},\ 
+                              \thmbox{x = \pm \theta + 2k\pi}$.
+                        \item $\sin x = \sin \theta \iff
+                              \exists k \in \mathbb{Z},\ 
+                              \thmbox{( x = \theta + 2k\pi \text{ ou } x = \pi - \theta + 2k\pi)}$.
+                        \item $\cos x = \sin \left( x + \frac{\pi}{2} \right)$, pour tout $x$.
+                  \end{itemize}
+            %
+            \subsection{Angles remarquables}
+                  \begin{figure}[h!]
+                  \centering
+                        \begin{tikzpicture}[x = 4cm, y = 4cm, >=triangle 45]
+                              %\clip (-1.3,-1.3) rectangle (1.3,1.3);
+                              \draw (0,0) circle (1);
+                              \draw[->] (-1.3,0) -- (1.3,0) node[right] {$\cos$};
+                              \draw[->] (0,-1.3) -- (0,1.3) node[above] {$\sin$};
+                              %
+                              \foreach \x/\xtext in {0, 30/$\frac{\pi}{6}$,60/$\frac{\pi}{3}$, 
+                                                     90/$\frac{\pi}{2}$, 120/$\frac{2\pi}{3}$,
+                                                     150/$\frac{5\pi}{6}$, 180/$\pi$,
+                                                     210/$\frac{7\pi}{6}$, 240/$\frac{4\pi}{3}$,
+                                                     270/$\frac{3\pi}{2}$, 300/$\frac{5\pi}{3}$,
+                                                     330/$\frac{11\pi}{6}$
+                                                     }
+                                    \draw[color=loko2!75!black] (0,0) -- ({cos(\x)},{sin(\x)}) 
+                                          ({1.1*cos(\x)},{1.1*sin(\x)})  node[fill=white] {\xtext};
+                              %
+                              \foreach \x/\xtext in {45/$\frac{\pi}{4}$, 90/$\frac{\pi}{2}$, 
+                                                     135/$\frac{3\pi}{4}$, 180/$\pi$, 
+                                                     225/$\frac{5\pi}{4}$, 270/$\frac{3\pi}{2}$, 
+                                                     315/$\frac{7\pi}{4}$
+                                                     }
+                                    \draw[color=loko1!75!black] (0,0) -- ({cos(\x)},{sin(\x)}) 
+                                          ({1.1*cos(\x)},{1.1*sin(\x)})  node[fill=white] {\xtext};
+                               %
+                               \draw[dashed, color=loko2] (30:1) -- (150:1) -- (210:1) -- (330:1) -- cycle;
+                               \draw[dashed, color=loko2] (60:1) -- (120:1) -- (240:1) -- (300:1) -- cycle;
+                               \draw[dashed, color=loko1] (45:1) -- (135:1) -- (225:1) -- (315:1) -- cycle;
+                               %
+                               \foreach \x/\xtext in {-0.866025404/$-\frac{\sqrt{3}}{2}$,
+                                                      -0.5/$-\frac{1}{2}$,
+                                                       0.866025404/$\frac{\sqrt{3}}{2}$,
+                                                       0.5/$\frac{1}{2}$}
+                                     \draw[very thick,color=loko2!75!black]
+                                                      (\x,.03) -- (\x,-.03) node[fill=white, below] 
+                                                                            {\footnotesize{\xtext}}
+                                                      (.03,\x) -- (-.03,\x) node[fill=white, left] 
+                                                                            {\footnotesize{\xtext}};
+                               \foreach \x/\xtext in {-0.707106781/$-\frac{\sqrt{2}}{2}$,
+                                                       0.707106781/$\frac{\sqrt{2}}{2}$}
+                                     \draw[very thick,color=loko1!75!black] 
+                                                       (\x,-.03) -- (\x,.03) node[fill=white, above] {\footnotesize{\xtext}}
+                                                       (-.03,\x) -- (.03,\x) node[fill=white, right] {\footnotesize{\xtext}};
+                               %
+                               \draw[->, line width=1.25, rotate=30] 
+                                           (1.25,0) arc(0:30:1.25) ;
+                               \filldraw[fill=white] (45:1.4) circle(.1) node[] {\LARGE{$+$}};
+                               \draw[->, line width=1.25, rotate=-30] 
+                                           (1.25,0) arc(0:-30:1.25) ;
+                               \filldraw[fill=white] (-45:1.4) circle(.1) node[] {\LARGE{$-$}};
+                        \end{tikzpicture}
+                  \end{figure}
+                  %
+                  \begin{table}[h!]
+                  \centering
+                        \begin{tabular}{|c|c|c|c|c|c|}
+                        \hline 
+                               \raisebox{-8pt}{$\rule{0pt}{22pt}$}
+                               & $\displaystyle{0}$                  & $\displaystyle{\frac{\pi}{6}}$      
+                               & $\displaystyle{\frac{\pi}{4}}$      & $\displaystyle{\frac{\pi}{3}}$      
+                               & $\displaystyle{\frac{\pi}{2}}$      \\ 
+                        \hline 
+                        $\displaystyle{\sin}$ \raisebox{-9pt}{$\rule{0pt}{27pt}$}
+                               & $\displaystyle{0}$                  & $\displaystyle{\frac{1}{2}}$        
+                               & $\displaystyle{\frac{\sqrt{2}}{2}}$ & $\displaystyle{\frac{\sqrt{3}}{2}}$ 
+                               & $\displaystyle{1}$                  \\
+                        \hline 
+                        $\displaystyle{\cos}$ \raisebox{-9pt}{$\rule{0pt}{27pt}$}
+                               & $\displaystyle{1}$                  & $\displaystyle{\frac{\sqrt{3}}{2}}$ 
+                               & $\displaystyle{\frac{\sqrt{2}}{2}}$ & $\displaystyle{\frac{1}{2}}$        
+                               & $\displaystyle{0}$                  \\ 
+                        \hline 
+                        \end{tabular} 
+                  \caption{Valeurs de $\sin x$ et de $\cos x$ pour des valeurs remarquables de $x$.}
+                  \end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\providecommand{\Cercle}{(\mathscr{C})}
+\providecommand{\DroiteU}{(\mathscr{D}_1)}
+\providecommand{\DroiteD}{(\mathscr{D}_2)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Cercles et angles}
+	%
+		\subsection{Equation d'un cercle}
+\index{Cercle!Equation}
+			Soient $I(a,b)$ un point et $r$ un nombre r\'eel positif.
+				L'ensemble $\Cercle$ des points $M(x,y)$ v\'erifiant l'\'equation :
+			\begin{center}
+				\thmbox{
+					$\displaystyle{
+							(x-a)^2 + (y-b)^2 = r^2
+					}$
+				}
+			\end{center}
+			est le cercle de centre $I$ et de rayon $r$.
+	%
+		\subsection{Cercle et angle droit}
+\index{Cercle!triangle rectangle inscrit}
+			\begin{prop}
+				Soient $A$ et $B$ deux points.
+				L'ensemble des points $M$ du plan v\'erifiant $\congru{\mes{MA}{MB}}{\frac{\pi}{2}}{\pi}$
+				est le cercle de diam\`etre $[AB]$, priv\'e des points $A$ et $B$.
+				
+				\begin{figure}[H]
+					\centering
+					\begin{subfigure}[b]{0.45\actualtextwidth}
+						\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=.6]
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(3.55,2.65) -- (3.89,2.13) -- (4.41,2.48) -- (4.06,3) -- cycle; 
+							\draw [color=loko1] (1.52,1.28)-- (6.72,-0.94);
+							\draw(4.12,0.17) circle (2.83);
+							\draw [color=loko1] (1.52,1.28)-- (6.72,-0.94);
+							\draw [color=loko2] (6.72,-0.94)-- (4.06,3);
+							\draw [color=loko2] (4.06,3)-- (1.52,1.28);
+							\begin{scriptsize}
+								\fill [color=loko1] (1.52,1.28) circle (1.5pt) node[left] {$A$};
+								\fill [color=loko1] (6.72,-0.94) circle (1.5pt) node[right] {$B$};
+								\fill [color=gray!50!white] (4.12,0.17) circle (1.5pt);
+								\fill [color=loko2!50!white] (4.06,3) circle (1.5pt) node[above] {$M$};
+							\end{scriptsize}
+						\end{tikzpicture}
+					\end{subfigure}
+					%
+					\begin{subfigure}[b]{0.45\actualtextwidth}
+						\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=.6]
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(2.25,-1.15) -- (2.22,-0.53) -- (1.6,-0.56) -- (1.63,-1.18) -- cycle; 
+							\draw [color=loko1] (1.52,1.28)-- (6.72,-0.94);
+							\draw(4.12,0.17) circle (2.83);
+							\draw [color=loko1] (1.52,1.28)-- (6.72,-0.94);
+							\draw [color=loko2] (6.72,-0.94)-- (1.63,-1.18);
+							\draw [color=loko2] (1.63,-1.18)-- (1.52,1.28);
+							\begin{scriptsize}
+								\fill [color=loko1] (1.52,1.28) circle (1.5pt) node[left] {$A$};
+								\fill [color=loko1] (6.72,-0.94) circle (1.5pt) node[right] {$B$};
+								\fill [color=gray] (4.12,0.17) circle (1.5pt);
+								\fill [color=loko2!50!white] (1.63,-1.18) circle (1.5pt) node[below left] {$M$};
+							\end{scriptsize}
+						\end{tikzpicture}
+					\end{subfigure}
+				\end{figure}
+			\end{prop}
+	%
+		\subsection{Cocyclicit\'e de quatre points}
+\providecommand{\mes}[2]{\mathrm{mes}\left( \widehat{ \overrightarrow{#1}, \overrightarrow{#2} } \right)}
+\providecommand{\Angle}[2]{\left( \widehat{ \overrightarrow{#1}, \overrightarrow{#2} } \right)}
+			\begin{prop}
+					Quatre points $A$, $B$, $C$ et $D$ sont cocycliques si
+					\[
+					\congru{\mes{AC}{AD}}{\mes{BC}{BD}}{\pi}.
+					\]
+				
+				\begin{figure}[H]
+					\centering
+					\begin{tikzpicture}[line cap=round,line join=round,>=stealth,scale=.6]
+						\clip(-2.96,-3.28) rectangle (12.36,4.72);
+						\draw [shift={(-0.84,2.95)},color=loko3b,fill=loko3b,fill opacity=0.1] 
+							(0,0) -- (-58.99:0.6) arc (-58.99:-0.34:0.6) -- cycle;
+						\draw [shift={(-1.63,-0.8)},color=loko3b,fill=loko3b,fill opacity=0.1] 
+							(0,0) -- (-19.3:0.6) arc (-19.3:39.35:0.6) -- cycle;
+						\draw [shift={(8,3.74)},color=loko3b,fill=loko3b,fill opacity=0.1] 
+							(0,0) -- (-122.33:0.6) arc (-122.33:-51.6:0.6) -- cycle;
+						\draw [shift={(8.4,-2.11)},color=loko3b,fill=loko3b,fill opacity=0.1] 
+							(0,0) -- (-224.33:0.6) arc (-224.33:26.39:0.6) -- cycle;
+						\draw(1.02,0.6) circle (3);
+						\draw[loko1] (-0.84,2.95)-- (2.22,-2.15);
+						\draw[loko1] (-0.84,2.95)-- (2.91,2.93);
+						\draw[loko2] (-1.63,-0.8)-- (2.22,-2.15);
+						\draw[loko2] (-1.63,-0.8)-- (2.91,2.93);
+						\draw [shift={(-0.84,2.95)},->,color=loko3b] 
+							(-58.99:0.6) arc (-58.99:-0.34:0.6);
+						\draw [shift={(-1.63,-0.8)},->,color=loko3b] 
+							(-19.3:0.6) arc (-19.3:39.35:0.6);
+						\draw(8.82,0.86) circle (3);
+						\draw[loko1] (8,3.74)-- (5.86,0.37);
+						\draw[loko1] (8,3.74)-- (11.44,-0.6);
+						\draw[loko2] (8.4,-2.11)-- (5.86,0.37);
+						\draw[loko2] (8.4,-2.11)-- (11.44,-0.6);
+						\draw [shift={(8,3.74)},->,color=loko3b] 
+							(-122.33:0.6) arc (-122.33:-51.6:0.6);
+						\draw [shift={(8.4,-2.11)},->,color=loko3b] 
+							(-224.33:0.6) arc (-224.33:26.39:0.6);
+						%
+						%\fill [color=loko2] (1.02,0.6) circle (1.5pt);% node[above] {$I$};
+						\fill [color=loko1] (-0.84,2.95) circle (1.5pt) node[above left] {$A$};
+						\fill [color=loko2] (-1.63,-0.8) circle (1.5pt) node[below left] {$B$};
+						\fill [color=loko1!50!loko2] (2.22,-2.15) circle (1.5pt) node[below right] {$C$};
+						\fill [color=loko1!50!loko2] (2.91,2.93) circle (1.5pt) node[above right] {$D$};
+						%\fill [color=loko2] (8.82,0.86) circle (1.5pt);% node[above] {$I$};
+						\fill [color=loko1] (8,3.74) circle (1.5pt) node[above left] {$A$};
+						\fill [color=loko2] (8.4,-2.11) circle (1.5pt) node[above] {$B$};
+							\fill [color=loko1!50!loko2] (5.86,0.37) circle (1.5pt) node[left] {$C$};
+						\fill [color=loko1!50!loko2] (11.44,-0.6) circle (1.5pt) node[below right] {$D$};
+					\end{tikzpicture}
+				\end{figure}
+			\end{prop}
+	%
+			\subsection{Angles inscrits et au centre}
+\index{Cercle!angles inscrits et au centre}
+			Soit $\Cercle$ un cercle de centre $O$ et soient $A$, $B$ et $C$ trois points de son circonf\'erence.
+			Alors
+			\[
+			  \congru{\mes{OA}{OB}}{2\cdot \mes{CA}{CB}}{2\pi}.
+			\]
+			\begin{figure}[h!]
+				\centering
+				\begin{tikzpicture}[x=2.0cm,y=2.0cm]
+					\begin{scope}[xshift=-3cm]
+						\draw [shift={(0,0)},color=loko1,fill=loko1,fill opacity=0.1] 
+							(0,0) -- (-86.98:0.23) arc (-86.98:-15.5:0.23);
+						\draw [shift={(-0.84,0.55)},color=loko2,fill=loko2,fill opacity=0.1] 
+							(0,0) -- (-60.1:0.17) arc (-60.1:-24.37:0.17);
+						\draw(0,0) circle (1);
+						\draw [color=loko2] (-0.84,0.55)-- (0.05,-1);
+						\draw [color=loko1] (0.05,-1)-- (0,0);
+						\draw [color=loko1] (0,0)-- (0.96,-0.27);
+						\draw [color=loko2] (0.96,-0.27)-- (-0.84,0.55);
+						\draw [shift={(0,0)},color=loko1] (-86.98:0.23) arc (-86.98:-15.5:0.23);
+						\draw [shift={(0,0)},color=loko1] (-86.98:0.2) arc (-86.98:-15.5:0.2);
+						\begin{scriptsize}
+							\fill [] (0,0) circle (1.5pt) node[left] {$O$};
+							\fill [] (0.05,-1) circle (1.5pt) node[below] {$A$};
+							\fill [] (0.96,-0.27) circle (1.5pt) node[below right] {$B$};
+							\fill [] (-0.84,0.55) circle (1.5pt) node[above left] {$C$};
+						\end{scriptsize}
+					\end{scope}
+					%
+					\begin{scope}[xshift=3cm]
+						\draw [shift={(0,0)},color=loko1,fill=loko1,fill opacity=0.1] 
+							(0,0) -- (-152.3:0.23) arc (-152.3:-93.75:0.23) -- cycle;
+						\draw [shift={(1,-0.05)},color=loko2,fill=loko2,fill opacity=0.1] 
+							(0,0) -- (-167.71:0.17) arc (-167.71:-138.43:0.17) -- cycle;
+						\draw(0,0) circle (1);
+						\draw [color=loko2] (1,-0.05)-- (-0.89,-0.46);
+						\draw [color=loko1] (-0.89,-0.46)-- (0,0);
+						\draw [color=loko1] (0,0)-- (-0.07,-1);
+						\draw [color=loko2] (-0.07,-1)-- (1,-0.05);
+						\draw [shift={(0,0)},color=loko1] (-152.3:0.23) arc (-152.3:-93.75:0.23);
+						\draw [shift={(0,0)},color=loko1] (-152.3:0.2) arc (-152.3:-93.75:0.2);
+						\begin{scriptsize}
+							\fill [] (0,0) circle (1.5pt) node[right] {$O$};
+							\fill [] (-0.89,-0.46) circle (1.5pt) node[left] {$A$};
+							\fill [] (-0.07,-1) circle (1.5pt) node[below] {$B$};
+							\fill [] (1,-0.05) circle (1.5pt) node[right] {$C$};
+						\end{scriptsize}
+					\end{scope}
+				\end{tikzpicture}
+			\end{figure}
+	%
+			\subsection{Angles de m\^eme mesure}
+			\begin{figure}[h!]
+				\centering
+					\begin{tikzpicture}[x=1.0cm,y=1.0cm]
+						\clip(-0.28,-4.7) rectangle (10.76,3.84);
+						\draw [shift={(7.1,1.08)},line width=1.6pt,color=loko2,fill=loko2,fill opacity=0.2] 
+							(0,0) -- (5.96:0.75) arc (5.96:37.39:0.75);
+						\draw [shift={(7.1,1.08)},line width=1.6pt,color=loko2,fill=loko2,fill opacity=0.2] 
+							(0,0) -- (-174.04:0.75) arc (-174.04:-142.61:0.75);
+						\draw [shift={(3.28,-1.84)},line width=1.6pt,color=loko2,fill=loko2,fill opacity=0.2] 
+							(0,0) -- (5.96:0.75) arc (5.96:37.39:0.75);
+						\draw [shift={(3.28,-1.84)},line width=1.6pt,color=loko2,fill=loko2,fill opacity=0.2] 
+							(0,0) -- (-174.04:0.75) arc (-174.04:-142.61:0.75);
+						\draw [shift={(7.1,1.08)},color=loko1,fill=loko1,fill opacity=0.1] 
+							(0,0) -- (37.39:0.8) arc (37.39:185.96:0.8);
+						\draw [shift={(7.1,1.08)},color=loko1,fill=loko1,fill opacity=0.1] 
+							(0,0) -- (-142.61:0.8) arc (-142.61:5.96:0.8);
+						\draw [shift={(3.28,-1.84)},color=loko1,fill=loko1,fill opacity=0.1] 
+							(0,0) -- (37.39:0.8) arc (37.39:185.96:0.8);
+						\draw [shift={(3.28,-1.84)},color=loko1,fill=loko1,fill opacity=0.1] 
+							(0,0) -- (-142.61:0.8) arc (-142.61:5.96:0.8) -- cycle;
+						\draw [domain=-0.28:10.76] plot(\x,{(--1.56--0.48*\x)/4.6});
+						\draw (0.5,.75) node {$\DroiteU$};
+						\draw [domain=-0.28:10.76] plot(\x,{(-10.04--0.48*\x)/4.6});
+						\draw (.75,-1.75) node {$\DroiteD$};
+						\draw [domain=-0.28:10.76] plot(\x,{(--16.61-2.92*\x)/-3.82});
+						\draw [shift={(7.1,1.08)},color=loko1] (37.39:0.8) arc (37.39:185.96:0.8);
+						\draw [shift={(7.1,1.08)},color=loko1] (37.39:0.7) arc (37.39:185.96:0.7);
+						\draw [shift={(7.1,1.08)},color=loko1] (-142.61:0.8) arc (-142.61:5.96:0.8);
+						\draw [shift={(7.1,1.08)},color=loko1] (-142.61:0.7) arc (-142.61:5.96:0.7);
+						\draw [shift={(3.28,-1.84)},color=loko1] (37.39:0.8) arc (37.39:185.96:0.8);
+						\draw [shift={(3.28,-1.84)},color=loko1] (37.39:0.7) arc (37.39:185.96:0.7);
+						\draw [shift={(3.28,-1.84)},color=loko1] (-142.61:0.8) arc (-142.61:5.96:0.8);
+						\draw [shift={(3.28,-1.84)},color=loko1] (-142.61:0.7) arc (-142.61:5.96:0.7);
+					\end{tikzpicture}
+					\caption{Les droites $ \DroiteU $ et $ \DroiteD $ sont parall\`eles.}
+			\end{figure}
+
+
+
+
+
+
+
+
+
+
+\providecommand{\rad}{\mathrm{rad}}
+\section{Polygones}
+	%
+		\subsection{Somme des angles d'un polygone}
+\index{Polygone!somme des angles}
+		\begin{itemize}
+			\item La somme des angles d'un triangle est de $180^\circ$ ou $\pi~\rad$.
+\index{Triangle!somme des angles}
+			\item La somme des angles d'un quadrilat\`ere est de $360^\circ$ ou $2\pi~\rad$.
+\index{somme des angles!quadrilatere@quadrilat\`ere}
+\index{Quadrilatere@Quadrilat\`ere!somme des angles}
+			\item La somme des angles d'un $n$-gone est de $180(n-2)^\circ$ ou $(n-2)\pi~\rad$.
+		\end{itemize}
+	%
+		\subsection{Quadrilat\`eres}
+		%
+			\subsubsection{Identification d'un parall\'elogramme}
+\index{Quadrilatere@Quadrilat\`ere!parallelogramme@parall\'elogramme}
+			Un quadrilat\`ere donn\'e est un parall\'elogramme si : 
+			\begin{itemize}
+				\item ses c\^ot\'es oppos\'es sont deux \`a deux parall\`eles,
+				\item ses c\^ot\'es oppos\'es sont deux \`a deux de m\^eme longueur,
+				\item il poss\`ede deux c\^ot\'es parall\`eles et de m\^eme longueur,
+				\item ses diagonales se coupent en leur milieu,
+				\item ses angles oppos\'es sont deux \`a deux de m\^eme mesure.
+			\end{itemize}
+			Un quadrilat\`ere $ABCD$ est un parall\'elogramme si \thmbox{$\overrightarrow{AB} = \overrightarrow{DC}$}.
+		%
+			\subsubsection{Identification d'un rectangle}
+\index{Quadrilatere@Quadrilat\`ere!rectangle}
+			Un quadrilat\`ere donn\'e est un rectangle si : 
+			\begin{itemize}
+				\item c'est un parall\'elogramme ayant un angle droit,
+				\item il poss\`ede trois angles droits,
+				\item ses diagonales sont de m\^eme longueur et se coupent en leur milieu,
+					\item il poss\`ede deux c\^ot\'es oppos\'es de m\^eme longueur et deux angles droits.
+			\end{itemize}
+		%
+			\subsubsection{Identification d'un losange}
+\index{Quadrilatere@Quadrilat\`ere!losange}
+				Un quadrilat\`ere donn\'e est un losange si :
+			\begin{itemize}
+					\item ses quatre c\^ot\'es sont de m\^eme longueur,
+				\item ses diagonales se coupent en leur milieu et sont perpendiculaires.
+			\end{itemize}
+		%
+			\subsubsection{Identification d'un carr\'e}
+\index{Quadrilatere@Quadrilat\`ere!carre@carr\'e}
+			Un quadrilat\`ere donn\'e est un carr\'e si : 
+			\begin{itemize}
+				\item c'est \`a la fois un losange et un rectangle,
+				\item c'est un rectangle ayant trois c\^ot\'es de m\^eme longueur,
+				\item il poss\`ede quatre c\^ot\'es de m\^eme longueur et un angle droit.
+			\end{itemize}
+		%
+			\subsubsection{Diagramme}
+				\begin{figure}[H]
+					\centering
+						\begin{tikzpicture}[line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
+							\draw (0,7) node{parall\'elogramme};
+							\draw (-1,-1) node{carr\'e};
+							\draw (-4.5,3) node{rectangle};
+							\draw (4,3) node{losange};
+							\draw[line width=1ex,->] (-2,7) to[out=180,in=90] 
+								node[fill=white,near end] {avec angle droit} 
+								(-4.5,4.5);
+							\draw[line width=1ex,->] (2,7) to[out=0,in=90] 
+								node[fill=white,near end] {quatre c\^ot\'es \'egaux} 
+								(4,4.5);
+							\draw[line width=1ex,->] (-4.5,1.5) to[out=270,in=180] 
+								node[fill=white,near start] {quatre c\^ot\'es \'egaux} 
+								(-2.5,-1);
+							\draw[line width=1ex,->] (4,1.5) to[out=270,in=0] 
+								node[fill=white,near start] {avec angle droit} 
+								(.5,-1);
+							\draw[fill=black,fill opacity=0.1] (-3.38,4) -- (-3.38,3.62) -- (-3,3.62) -- (-3,4) -- cycle; 
+							\draw[fill=black,fill opacity=0.1] (-3,2.38) -- (-3.38,2.38) -- (-3.38,2) -- (-3,2) -- cycle; 
+							\draw[fill=black,fill opacity=0.1] (-5.62,2) -- (-5.62,2.38) -- (-6,2.38) -- (-6,2) -- cycle; 
+							\draw[fill=black,fill opacity=0.1] (-6,3.62) -- (-5.62,3.62) -- (-5.62,4) -- (-6,4) -- cycle; 
+							\draw[fill=black,fill opacity=0.1] (-0.38,0) -- (-0.38,-0.38) -- (0,-0.38) -- (0,0) -- cycle; 
+							\draw[fill=black,fill opacity=0.1] (-1.62,-2) -- (-1.62,-1.62) -- (-2,-1.62) -- (-2,-2) -- cycle; 
+							\draw[fill=black,fill opacity=0.1] (0,-1.62) -- (-0.38,-1.62) -- (-0.38,-2) -- (0,-2) -- cycle; 
+							\draw[fill=black,fill opacity=0.1] (-2,-0.38) -- (-1.62,-0.38) -- (-1.62,0) -- (-2,0) -- cycle; 
+							\draw (-1,8)-- (2,8);
+							\draw (0.5,8.08) -- (0.5,7.92);
+							\draw (2,8)-- (1,6);
+							\draw (1.59,6.99) -- (1.44,7.06);
+							\draw (1.56,6.94) -- (1.41,7.01);
+							\draw (1,6)-- (-2,6);
+							\draw (-0.5,5.92) -- (-0.5,6.08);
+							\draw (-2,6)-- (-1,8);
+							\draw (-1.59,7.01) -- (-1.44,6.94);
+							\draw (-1.56,7.06) -- (-1.41,6.99);
+							\draw (-6,4)-- (-3,4);
+							\draw (-4.5,4.08) -- (-4.5,3.92);
+							\draw (-3,4)-- (-3,2);
+							\draw (-2.92,3.03) -- (-3.08,3.03);
+							\draw (-2.92,2.97) -- (-3.08,2.97);
+							\draw (-3,2)-- (-6,2);
+							\draw (-4.5,1.92) -- (-4.5,2.08);
+							\draw (-6,2)-- (-6,4);
+							\draw (-6.08,2.97) -- (-5.92,2.97);
+							\draw (-6.08,3.03) -- (-5.92,3.03);
+							\draw (2,3)-- (4,4);
+							\draw (2.94,3.56) -- (3.01,3.41);
+							\draw (2.99,3.59) -- (3.06,3.44);
+							\draw (4,4)-- (6,3);
+							\draw (5.01,3.59) -- (4.94,3.44);
+							\draw (5.06,3.56) -- (4.99,3.41);
+							\draw (6,3)-- (4,2);
+							\draw (5.06,2.44) -- (4.99,2.59);
+							\draw (5.01,2.41) -- (4.94,2.56);
+							\draw (4,2)-- (2,3);
+							\draw (2.99,2.41) -- (3.06,2.56);
+							\draw (2.94,2.44) -- (3.01,2.59);
+							\draw (-2,-2)-- (-2,0);
+							\draw (-2.08,-1.03) -- (-1.92,-1.03);
+							\draw (-2.08,-0.97) -- (-1.92,-0.97);
+							\draw (-2,0)-- (0,0);
+							\draw (-1.03,0.08) -- (-1.03,-0.08);
+							\draw (-0.97,0.08) -- (-0.97,-0.08);
+							\draw (0,0)-- (0,-2);
+							\draw (0.08,-0.97) -- (-0.08,-0.97);
+							\draw (0.08,-1.03) -- (-0.08,-1.03);
+							\draw (0,-2)-- (-2,-2);
+							\draw (-0.97,-2.08) -- (-0.97,-1.92);
+							\draw (-1.03,-2.08) -- (-1.03,-1.92);
+							\begin{scriptsize}
+							\fill [color=black] (-1,8) circle (1.5pt);
+							\fill [color=black] (2,8) circle (1.5pt);
+							\fill [color=black] (1,6) circle (1.5pt);
+							\fill [color=black] (-2,6) circle (1.5pt);
+							\fill [color=black] (-6,4) circle (1.5pt);
+							\fill [color=black] (-3,4) circle (1.5pt);
+							\fill [color=black] (-3,2) circle (1.5pt);
+							\fill [color=black] (-6,2) circle (1.5pt);
+							\fill [color=black] (2,3) circle (1.5pt);
+							\fill [color=black] (4,4) circle (1.5pt);
+							\fill [color=black] (6,3) circle (1.5pt);
+							\fill [color=black] (4,2) circle (1.5pt);
+							\fill [color=black] (-2,-2) circle (1.5pt);
+							\fill [color=black] (-2,0) circle (1.5pt);
+							\fill [color=black] (0,0) circle (1.5pt);
+							\fill [color=black] (0,-2) circle (1.5pt);
+							\end{scriptsize}
+						\end{tikzpicture}
+				\end{figure}
+				
+				\begin{figure}[H]
+					\centering
+						\begin{tikzpicture}[line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
+							\draw[line width=1ex,->] (-2,7) to[out=180,in=90] 
+								node[fill=white,near end] {m\^eme longueur} 
+								(-4.5,4.5);
+							\draw[line width=1ex,->] (2,7) to[out=0,in=90] 
+								node[fill=white,near end] {perpendiculaires}
+								(4,4.5);
+							\draw[line width=1ex,->] (-4.5,1.5) to[out=270,in=180] 
+								node[fill=white,near start] {perpendiculaire}
+								(-2.5,-1);
+							\draw[line width=1ex,->] (4,1.5) to[out=270,in=0] 
+								node[fill=white,near start] {m\^eme longueur} 
+								(.5,-1);
+							\draw[fill=black,fill opacity=0.1] (4.4,3) -- (4.4,3.4) -- (4,3.4) -- (4,3) -- cycle; 
+							\draw[fill=black,fill opacity=0.1] (-0.72,-1.28) -- (-0.43,-1) -- (-0.72,-0.72) -- (-1,-1) -- cycle; 
+							\draw (-1,8)-- (2,8);
+							\draw (2,8)-- (1,6);
+							\draw (1,6)-- (-2,6);
+							\draw (-2,6)-- (-1,8);
+							\draw (-6,4)-- (-3,4);
+							\draw (-3,4)-- (-3,2);
+							\draw (-3,2)-- (-6,2);
+							\draw (-6,2)-- (-6,4);
+							\draw (2,3)-- (4,4);
+							\draw (4,4)-- (6,3);
+							\draw (6,3)-- (4,2);
+							\draw (4,2)-- (2,3);
+							\draw (-2,-2)-- (-2,0);
+							\draw (-2,0)-- (0,0);
+							\draw (0,0)-- (0,-2);
+							\draw (0,-2)-- (-2,-2);
+							\draw (-1,8)-- (0,7);
+							\draw (-0.46,7.58) -- (-0.58,7.46);
+							\draw (-0.42,7.54) -- (-0.54,7.42);
+							\draw (1,6)-- (0,7);
+							\draw (0.46,6.42) -- (0.58,6.54);
+							\draw (0.42,6.46) -- (0.54,6.58);
+							\draw (2,8)-- (0,7);
+							\draw (1.04,7.42) -- (0.96,7.58);
+							\draw (-2,6)-- (0,7);
+							\draw (-1.04,6.58) -- (-0.96,6.42);
+							\draw (4,4)-- (4,3);
+							\draw (4.09,3.53) -- (3.91,3.53);
+							\draw (4.09,3.47) -- (3.91,3.47);
+							\draw (4,2)-- (4,3);
+							\draw (3.91,2.47) -- (4.09,2.47);
+							\draw (3.91,2.53) -- (4.09,2.53);
+							\draw (2,3)-- (4,3);
+							\draw (3,3.09) -- (3,2.91);
+							\draw (6,3)-- (4,3);
+							\draw (5,2.91) -- (5,3.09);
+							\draw (0,-2)-- (-1,-1);
+							\draw (-0.54,-1.58) -- (-0.42,-1.46);
+							\draw (-0.58,-1.54) -- (-0.46,-1.42);
+							\draw (-2,-2)-- (-1,-1);
+							\draw (-1.58,-1.46) -- (-1.46,-1.58);
+							\draw (-1.54,-1.42) -- (-1.42,-1.54);
+							\draw (-2,0)-- (-1,-1);
+							\draw (-1.46,-0.42) -- (-1.58,-0.54);
+							\draw (-1.42,-0.46) -- (-1.54,-0.58);
+							\draw (0,0)-- (-1,-1);
+							\draw (-0.42,-0.54) -- (-0.54,-0.42);
+							\draw (-0.46,-0.58) -- (-0.58,-0.46);
+							\draw (-6,4)-- (-4.5,3);
+							\draw (-5.23,3.59) -- (-5.32,3.45);
+							\draw (-5.18,3.55) -- (-5.27,3.41);
+							\draw (-6,2)-- (-4.5,3);
+							\draw (-5.32,2.55) -- (-5.23,2.41);
+							\draw (-5.27,2.59) -- (-5.18,2.45);
+							\draw (-3,2)-- (-4.5,3);
+							\draw (-3.77,2.41) -- (-3.68,2.55);
+							\draw (-3.82,2.45) -- (-3.73,2.59);
+							\draw (-3,4)-- (-4.5,3);
+							\draw (-3.68,3.45) -- (-3.77,3.59);
+							\draw (-3.73,3.41) -- (-3.82,3.55);
+							\begin{scriptsize}
+							\fill [color=black] (-1,8) circle (1.5pt);
+							\fill [color=black] (2,8) circle (1.5pt);
+							\fill [color=black] (1,6) circle (1.5pt);
+							\fill [color=black] (-2,6) circle (1.5pt);
+							\fill [color=black] (-6,4) circle (1.5pt);
+							\fill [color=black] (-3,4) circle (1.5pt);
+							\fill [color=black] (-3,2) circle (1.5pt);
+							\fill [color=black] (-6,2) circle (1.5pt);
+							\fill [color=black] (2,3) circle (1.5pt);
+							\fill [color=black] (4,4) circle (1.5pt);
+							\fill [color=black] (6,3) circle (1.5pt);
+							\fill [color=black] (4,2) circle (1.5pt);
+							\fill [color=black] (-2,-2) circle (1.5pt);
+							\fill [color=black] (-2,0) circle (1.5pt);
+							\fill [color=black] (0,0) circle (1.5pt);
+							\fill [color=black] (0,-2) circle (1.5pt);
+							\fill [color=black] (0,7) circle (1.5pt);
+							\fill [color=black] (4,3) circle (1.5pt);
+							\fill [color=black] (-1,-1) circle (1.5pt);
+							\fill [color=black] (-4.5,3) circle (1.5pt);
+							\end{scriptsize}
+						\end{tikzpicture}
+					\caption{Propri\'et\'es des diagonales}
+				\end{figure}
+				
+		\subsection{Triangles}
+			%
+			\subsubsection{Centre du cercle circonscrit}
+\index{Triangle!cercle!circonscrit}
+\index{Cercle!circonscrit}
+				\begin{figure}[H]
+					\centering
+					\begin{tikzpicture}[x=2.0cm,y=2.0cm]
+						\begin{scope}[xshift=-5cm,yshift=1.2269503546099292cm,scale=0.7092198581560284]
+							\clip(.5,-3.5) rectangle (4.5,0);
+							\fill[color=loko1,fill=loko1,fill opacity=0.1] 
+								(1.29,-2.48) -- (3.89,-1.81) -- (1.75,-0.52) -- cycle;
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(1.47,-1.71) -- (1.68,-1.76) -- (1.73,-1.55) -- (1.52,-1.5) -- cycle; 
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(2.71,-1.35) -- (2.89,-1.46) -- (3,-1.28) -- (2.82,-1.16) -- cycle; 
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(2.8,-2.09) -- (2.74,-1.88) -- (2.53,-1.94) -- (2.59,-2.15) -- cycle; 
+							\draw [color=loko1] (1.29,-2.48)-- (3.89,-1.81);
+							\draw [color=loko1] (3.89,-1.81)-- (1.75,-0.52);
+							\draw [color=loko1] (1.75,-0.52)-- (1.29,-2.48);
+							\draw [domain=-2.95:8.38, dashed] plot(\x,{(--2.25--0.46*\x)/-1.96});
+							\draw [domain=-2.95:8.38, dashed] plot(\x,{(-7.52--2.14*\x)/1.29});
+							\draw [domain=-2.95:8.38, dashed] plot(\x,{(--5.27-2.6*\x)/0.67});
+							\draw(2.48,-1.73) circle (1.41);
+							\begin{scriptsize}
+								\fill [color=loko2] (1.29,-2.48) circle (1.5pt) node[below left] {$A$};
+								\fill [color=loko2] (3.89,-1.81) circle (1.5pt) node[below right] {$B$};
+								\fill [color=loko2] (1.75,-0.52) circle (1.5pt) node[above left] {$C$};
+								\fill [] (2.48,-1.73) circle (1.5pt) node[above left] {$G$};
+							\end{scriptsize}
+							\draw[color=loko1] (1.6,-.95) -- (1.7,-1.05);
+							\draw[color=loko1] (1.35,-1.95) -- (1.45,-2.05);
+							\draw[color=loko1] (2.35,-.8) -- (2.25,-.9);
+							\draw[color=loko1] (3.35,-1.4) -- (3.25,-1.5);
+							\draw[color=loko1,shift={(.03,-.03)}] (2.35,-.8) -- (2.25,-.9);
+							\draw[color=loko1,shift={(.03,-.03)}] (3.35,-1.4) -- (3.25,-1.5);
+							\draw[color=loko1] (2.,-2.23) -- (2.,-2.37);
+							\draw[color=loko1] (3.2,-1.93) -- (3.2,-2.07);
+							\draw[color=loko1,shift={(.04,.01)}] (2.,-2.23) -- (2.,-2.37);
+							\draw[color=loko1,shift={(.04,.01)}] (3.2,-1.93) -- (3.2,-2.07);
+							\draw[color=loko1,shift={(.04,.01)},shift={(.04,.01)}] (2.,-2.23) -- (2.,-2.37);
+							\draw[color=loko1,shift={(.04,.01)},shift={(.04,.01)}] (3.2,-1.93) -- (3.2,-2.07);
+						\end{scope}
+						\begin{scope}[xshift=2cm,yshift=1.0965909090909092cm,scale=0.5681818181818182]
+							\clip(-0.26,-4.02) rectangle (4.11,0.15);
+							\fill[color=loko1,fill=loko1,fill opacity=0.1] 
+								(3.55,-1.3) -- (2.65,-0.34) -- (3.13,-3.2) -- cycle;
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(3.39,-2.04) -- (3.17,-1.99) -- (3.13,-2.2) -- (3.34,-2.25) -- cycle; 
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(2.95,-0.66) -- (2.79,-0.81) -- (2.94,-0.97) -- (3.1,-0.82) -- cycle; 
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(2.68,-1.8) -- (2.71,-2.02) -- (2.93,-1.98) -- (2.89,-1.77) -- cycle; 
+							\draw [color=loko1] (3.55,-1.3)-- (2.65,-0.34);
+							\draw [color=loko1] (2.65,-0.34)-- (3.13,-3.2);
+							\draw [color=loko1] (3.13,-3.2)-- (3.55,-1.3);
+							\draw [dashed,domain=-0.26:4.11] plot(\x,{(-2.87-0.42*\x)/1.9});
+							\draw [dashed,domain=-0.26:4.11] plot(\x,{(--6.45-0.48*\x)/-2.86});
+							\draw [dashed,domain=-0.26:4.11] plot(\x,{(-3.57--0.9*\x)/0.96});
+							\draw(1.91,-1.93) circle (1.76);
+							\begin{scriptsize}
+								\fill [color=loko2] (3.55,-1.3) circle (1.5pt) node[right] {$A$};
+								\fill [color=loko2] (2.65,-0.34) circle (1.5pt) node[above right] {$B$};
+								\fill [color=loko2] (3.13,-3.2) circle (1.5pt) node[below right] {$C$};
+								\fill [] (1.91,-1.93) circle (1.5pt) node[above] {$G$};
+							\end{scriptsize}
+							\draw[color=loko1] (2.75,-1.2) -- (2.85,-1.2);
+							\draw[color=loko1] (2.95,-2.4) -- (3.05,-2.4);
+							\draw[color=loko1,shift={(.01,-.05)}] (2.75,-1.2) -- (2.85,-1.2);
+							\draw[color=loko1,shift={(.01,-.05)}] (2.95,-2.4) -- (3.05,-2.4);
+							\draw[color=loko1,shift={(.01,-.05)},shift={(.01,-.05)}] (2.75,-1.2) -- (2.85,-1.2);
+							\draw[color=loko1,shift={(.01,-.05)},shift={(.01,-.05)}] (2.95,-2.4) -- (3.05,-2.4);
+							\draw[color=loko1] (3.4,-1.8) -- (3.5,-1.8);
+							\draw[color=loko1] (3.2,-2.6) -- (3.3,-2.6);
+							\draw[color=loko1,shift={(-.01,-.05)}] (3.4,-1.8) -- (3.5,-1.8);
+							\draw[color=loko1,shift={(-.01,-.05)}] (3.2,-2.6) -- (3.3,-2.6);
+							\draw[color=loko1] (2.825,-.6) -- (2.925,-.55);
+							\draw[color=loko1] (3.2,-1) -- (3.3,-.95);
+						\end{scope}
+					\end{tikzpicture}
+					\caption{Le centre du cercle circonscrit est l'intersection des trois {m\'ediatrices}.}
+				\end{figure}
+			%
+			\subsubsection{Centre du cercle inscrit}
+\index{Triangle!cercle!inscrit}
+\index{Cercle!inscrit}
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}[x=1.5cm,y=1.5cm]
+					\clip(-2.75,-.25) rectangle (2.75,3);
+					\begin{scope}[rotate=122]
+						\fill[color=loko1,fill=loko1,fill opacity=0.1] 
+							(-0.97,-2.12) -- (1.43,1.8) -- (2.76,-0.39) -- cycle;
+						\draw [shift={(1.43,1.8)},color=loko3b,fill=loko3b,fill opacity=0.1] 
+							(0,0) -- (-121.52:0.41) arc (-121.52:-90.15:0.41) -- cycle;
+						\draw [shift={(1.43,1.8)},color=loko3b,fill=loko3b,fill opacity=0.1] 
+							(0,0) -- (-90.15:0.41) arc (-90.15:-58.77:0.41) -- cycle;
+						\draw [shift={(2.76,-0.39)},color=loko3b,fill=loko3b,fill opacity=0.1] 
+							(0,0) -- (121.23:0.41) arc (121.23:163.09:0.41) -- cycle;
+						\draw [shift={(2.76,-0.39)},color=loko3b,fill=loko3b,fill opacity=0.1] 
+							(0,0) -- (163.09:0.41) arc (163.09:204.95:0.41) -- cycle;
+						\draw [shift={(-0.97,-2.12)},color=loko3b,fill=loko3b,fill opacity=0.1] 
+							(0,0) -- (24.95:0.41) arc (24.95:41.71:0.41) -- cycle;
+						\draw [shift={(-0.97,-2.12)},color=loko3b,fill=loko3b,fill opacity=0.1] 
+							(0,0) -- (41.71:0.41) arc (41.71:58.48:0.41) -- cycle;
+						\draw [color=loko1] (-0.97,-2.12)-- (1.43,1.8);
+						\draw [color=loko1] (1.43,1.8)-- (2.76,-0.39);
+						\draw [color=loko1] (2.76,-0.39)-- (-0.97,-2.12);
+						\draw [dashed,domain=-1.22:3.26] plot(\x,{(-0.94--0.67*\x)/0.75});
+						\draw [dashed] (1.43,-2.7) -- (1.43,2.3);
+						\draw [dashed,domain=-1.22:3.26] plot(\x,{(-0.43--0.29*\x)/-0.96});
+						\draw(1.43,0.02) circle (0.93);
+						\draw [shift={(1.43,1.8)},color=loko3b] (-121.52:0.41) arc (-121.52:-90.15:0.41);
+						\draw[color=loko3b] (1.33,1.44) -- (1.31,1.36);
+						\draw [shift={(1.43,1.8)},color=loko3b] (-90.15:0.41) arc (-90.15:-58.77:0.41);
+						\draw[color=loko3b] (1.53,1.44) -- (1.55,1.36);
+						\draw [shift={(2.76,-0.39)},color=loko3b] (121.23:0.41) arc (121.23:163.09:0.41);
+						\draw[color=loko3b] (2.45,-0.18) -- (2.38,-0.14);
+						\draw[color=loko3b] (2.48,-0.14) -- (2.42,-0.09);
+						\draw [shift={(2.76,-0.39)},color=loko3b] (163.09:0.41) arc (163.09:204.95:0.41);
+						\draw[color=loko3b] (2.39,-0.44) -- (2.31,-0.45);
+						\draw[color=loko3b] (2.39,-0.39) -- (2.3,-0.39);
+						\draw [shift={(-0.97,-2.12)},color=loko3b] (24.95:0.41) arc (24.95:41.71:0.41);
+						\draw[color=loko3b] (-0.67,-1.92) -- (-0.6,-1.87);
+						\draw[color=loko3b] (-0.66,-1.93) -- (-0.59,-1.89);
+						\draw[color=loko3b] (-0.67,-1.91) -- (-0.61,-1.86);
+						\draw [shift={(-0.97,-2.12)},color=loko3b] (41.71:0.41) arc (41.71:58.48:0.41);
+						\draw[color=loko3b] (-0.74,-1.84) -- (-0.68,-1.78);
+						\draw[color=loko3b] (-0.73,-1.85) -- (-0.67,-1.79);
+						\draw[color=loko3b] (-0.75,-1.83) -- (-0.7,-1.77);
+						\begin{scriptsize}
+							\fill [color=loko2] (-0.97,-2.12) circle (1.5pt) node[above left] {$A$};
+							\fill [color=loko2] (1.43,1.8) circle (1.5pt) node[above right] {$B$};
+							\fill [color=loko2] (2.76,-0.39) circle (1.5pt) node[above right] {$C$};
+							\fill [] (1.43,0.02) circle (1.5pt) node[below right] {$G$};
+						\end{scriptsize}
+					\end{scope}
+				\end{tikzpicture}
+				\caption{Le centre du cercle inscrit est l'intersection des trois bissectrices.}
+			\end{figure}
+			%
+			\subsubsection{Centre de gravit\'e}
+\index{Triangle!centre de gravite@centre de gravit\'e}
+\index{centre de gravite@centre de gravit\'e!triangle}
+				\begin{figure}[H]
+					\centering
+					\begin{tikzpicture}[x=1.0cm,y=1.0cm]
+						\clip(-3.16,-2.38) rectangle (4.34,2.16);
+						\fill[color=loko1,fill=loko1,fill opacity=0.1] (-2.54,-1.72) -- (3.78,-1.04) -- (0.6,1.6) -- cycle;
+						\draw [dashed,domain=-3.16:4.34] plot(\x,{(-3.06--2*\x)/4.73});
+						\draw [dashed,domain=-3.16:4.34] plot(\x,{(--1.24--0.98*\x)/-4.75});
+						\draw [dashed,domain=-3.16:4.34] plot(\x,{(--1.82-2.98*\x)/0.02});
+						\draw [color=loko1] (0.62,-1.38)-- (-2.54,-1.72);
+						\draw [color=loko1] (-0.95,-1.64) -- (-0.97,-1.46);
+						\draw [color=loko1] (0.62,-1.38)-- (3.78,-1.04);
+						\draw [color=loko1] (2.19,-1.12) -- (2.21,-1.3);
+						\draw [color=loko1] (2.19,0.28)-- (3.78,-1.04);
+						\draw [color=loko1] (3.02,-0.29) -- (2.9,-0.43);
+						\draw [color=loko1] (3.07,-0.33) -- (2.95,-0.47);
+						\draw [color=loko1] (2.19,0.28)-- (0.6,1.6);
+						\draw [color=loko1] (1.36,0.85) -- (1.48,0.99);
+						\draw [color=loko1] (1.31,0.89) -- (1.43,1.03);
+						\draw [color=loko1] (-0.97,-0.06)-- (0.6,1.6);
+						\draw [color=loko1] (-0.3,0.78) -- (-0.17,0.66);
+						\draw [color=loko1] (-0.25,0.83) -- (-0.12,0.71);
+						\draw [color=loko1] (-0.2,0.88) -- (-0.07,0.76);
+						\draw [color=loko1] (-0.97,-0.06)-- (-2.54,-1.72);
+						\draw [color=loko1] (-1.64,-0.9) -- (-1.77,-0.78);
+						\draw [color=loko1] (-1.69,-0.95) -- (-1.82,-0.83);
+						\draw [color=loko1] (-1.74,-1) -- (-1.87,-0.88);
+						\begin{scriptsize}
+							\fill [color=loko2] (-2.54,-1.72) circle (1.5pt) node[above] {$A$};
+							\fill [color=loko2] (3.78,-1.04) circle (1.5pt) node[above] {$B$};
+							\fill [color=loko2] (0.6,1.6) circle (1.5pt) node[above] {$C$};
+							\fill [color=loko3b] (2.19,0.28) circle (1.5pt);% node[above] {$D$};
+							\fill [color=loko3b] (-0.97,-0.06) circle (1.5pt);% node[above] {$E$};
+							\fill [color=loko3b] (0.62,-1.38) circle (1.5pt);% node[above left] {$F$};
+							\fill [color=black] (0.61,-0.39) circle (1.5pt) node[above left] {$G$};
+						\end{scriptsize}
+					\end{tikzpicture}
+					\caption{Le centre de gravit\'e est l'intersection des trois m\'edianes.}
+				\end{figure}
+			%
+			\subsubsection{Orthocentre}
+\index{Triangle!orthocentre}
+\index{orthocentre}
+				\begin{figure}[H]
+					\centering
+					\begin{tikzpicture}[x=.8cm,y=.8cm]
+						\begin{scope}[xshift=-2.4cm]
+							\clip(-6.8,-3.82) rectangle (-1.28,2.06);
+							\fill[color=loko1,fill=loko1,fill opacity=0.1] 
+								(-6.12,-0.32) -- (-2.1,-3.3) -- (-2.7,1.42) -- cycle;
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(-2.59,0.56) -- (-3.01,0.5) -- (-2.96,0.08) -- (-2.54,0.14) -- cycle; 
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(-4.4,-1.59) -- (-4.15,-1.25) -- (-4.49,-1) -- (-4.75,-1.34) -- cycle; 
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(-4.51,0.5) -- (-4.32,0.12) -- (-3.94,0.31) -- (-4.13,0.69) -- cycle; 
+							\draw [color=loko1] (-6.12,-0.32)-- (-2.1,-3.3);
+							\draw [color=loko1] (-2.1,-3.3)-- (-2.7,1.42);
+							\draw [color=loko1] (-2.7,1.42)-- (-6.12,-0.32);
+							\draw [dashed,domain=-6.8:-1.28] plot(\x,{(-2.16-0.6*\x)/-4.72});
+							\draw [dashed,domain=-6.8:-1.28] plot(\x,{(-12.92-3.42*\x)/1.74});
+							\draw [dashed,domain=-6.8:-1.28] plot(\x,{(--15.09--4.02*\x)/2.98});
+							\begin{scriptsize}
+								\fill [color=loko2] (-6.12,-0.32) circle (1.5pt) node[above] {$A$};
+								\fill [color=loko2] (-2.1,-3.3) circle (1.5pt) node[above right] {$B$};
+								\fill [color=loko2] (-2.7,1.42) circle (1.5pt) node[above left] {$C$};
+								\fill [] (-3.77,-0.02) circle (1.5pt) node[below] {$G$};
+							\end{scriptsize}
+						\end{scope}
+						\begin{scope}[xshift=2.4cm]
+							\clip(-6.8,-3.98) rectangle (-1.02,2.54);
+							\fill[color=loko1,fill=loko1,fill opacity=0.1] 
+								(-5.88,-0.26) -- (-2.1,-3.3) -- (-3.64,-0.28) -- cycle;
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(-4.3,1.02) -- (-4.68,0.83) -- (-4.49,0.45) -- (-4.11,0.64) -- cycle; 
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(-4.18,-1.63) -- (-3.91,-1.3) -- (-4.24,-1.03) -- (-4.51,-1.36) -- cycle; 
+							\draw[color=loko3b,fill=loko3b,fill opacity=0.1] 
+								(-2.5,-0.29) -- (-2.5,-0.71) -- (-2.08,-0.72) -- (-2.07,-0.29) -- cycle; 
+							\draw [thin,color=loko3b,domain=-6.8:-1.02] plot(\x,{(-18.86-3.04*\x)/3.78});
+							\draw [thin,color=loko3b,domain=-6.8:-1.02] plot(\x,{(--11.42--3.02*\x)/-1.54});
+							\draw [thin,color=loko3b,domain=-6.8:-1.02] plot(\x,{(--0.7--0.02*\x)/-2.24});
+							\draw [color=loko1, opacity=.75] (-5.88,-0.26)-- (-2.1,-3.3);
+							\draw [color=loko1, opacity=.75] (-2.1,-3.3)-- (-3.64,-0.28);
+							\draw [color=loko1, opacity=.75] (-3.64,-0.28)-- (-5.88,-0.26);
+							\draw [dashed,domain=-6.8:-1.02] plot(\x,{(-8.27-1.54*\x)/-3.02});
+							\draw [dashed,domain=-6.8:-1.02] plot(\x,{(-4.64-2.24*\x)/-0.02});
+							\draw [dashed,domain=-6.8:-1.02] plot(\x,{(--12.91--3.78*\x)/3.04});
+							\begin{scriptsize}
+								\fill [color=loko2] (-5.88,-0.26) circle (1.5pt) node[above] {$A$};
+								\fill [color=loko2] (-2.1,-3.3) circle (1.5pt) node[right] {$B$};
+								\fill [color=loko2] (-3.64,-0.28) circle (1.5pt) node[above] {$C$};
+								\fill [] (-2.06,1.69) circle (1.5pt) node[above left] {$G$};
+							\end{scriptsize}
+						\end{scope}
+					\end{tikzpicture}
+					\caption{L'orthocentre est l'intersection des trois hauteurs.}
+				\end{figure}
+
+				
+	
+
+\section{Coefficients binomiaux}
+\index{Identite remarquable@Identit\'e remarquable}
+	\subsection{Formules du bin\^ome}
+\index{binome@bin\^ome!formules du}
+		\begin{prop}
+			Pour tout $n \in \mathbb{N}^*$, on a :
+			\begin{align*}
+				(a+b)^n & = \sum_{i=0}^{n} \Comb{n}{i} a^{n-i} \; b^{i}						\\
+				(a-b)^n & = \sum_{i=0}^{n} \Comb{n}{i} (-1)^{i} \; a^{n-i} \; b^{i}		
+			\end{align*}
+			o\`u $\Comb{n}{i}$ d\'esigne le nombre de \emph{combinaisons de $i$ \'el\'ements parmi $n$}.
+		\end{prop}
+	\subsection{Triangle de Pascal}
+\index{Pascal!triangle de}
+	\begin{defi}
+			Le triangle de Pascal est un triangle qui repr\'esente les coefficients du
+			d\'eveloppement de $(a+b)^n$ o\`u $n\in \mathbb{N}$.
+			
+			\begin{center}
+				\begin{tabular}{ccccccccc}
+				1	&	&		&		&		&		&	&	&  \\ 
+				1	& 1	&		&		&		&		&	&	&	\\ 
+				1	& 2	& 1		&		&		&		&	&  &	\\ 
+				1	& 3	& 3		& 1		&		&		&	&  &	\\ 
+				1	& 4	& 6		& 4		& 1		&		&	&  &	\\ 
+				1	& 5	& 10	& 10	& 5		& 1		&	&  &	\\ 
+				1	& 6	& 15	& 20	& 15	& 6		& 1	&  &	\\ 
+				1	& 7	& 21	& 35	& 35	& 21	& 7	& 1&	\\ 
+				$\vdots$ & $\vdots$ & $\vdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\ddots$ & $\ddots$ & $\ddots$ \\ 
+			\end{tabular} 
+			\end{center}
+			\begin{center}
+			 	\begin{tikzpicture}[x=1.2cm,y=1cm,>=stealth]
+		 		\draw (0,2) rectangle (2,1);
+		 		\draw (1,2) rectangle (2,0);
+		 		\draw[->,rounded corners = 2ex, very thick] (.5,1.25) -- (1.5,1.25) -- (1.5,.75);
+		 		\draw (.5,1.5) node[fill=white] {$x$};
+		 		\draw (1.5,1.5) node[fill=white] {$y$};
+		 		\draw (1.5,.5) node[fill=white] {$x+y$};
+				\end{tikzpicture}
+			\end{center}
+		%
+	\end{defi}
+	%
+	\begin{ex}
+		\begin{align*}
+			(a+b)^0 & = \textcolor{loko1}{1}		\\
+			(a+b)^1 & = \textcolor{loko1}{1} \cdot a + \textcolor{loko1}{1} \cdot b		\\
+			(a+b)^2 & = \textcolor{loko1}{1} \cdot a^2 + \textcolor{loko1}{2} \cdot a \; b + \textcolor{loko1}{1} \cdot b^2		\\
+			(a+b)^3 & = \textcolor{loko1}{1} \cdot a^3 
+							+ \textcolor{loko1}{3} \cdot a^2 \; b 
+							+ \textcolor{loko1}{3} \cdot a\; b^2 
+							+ \textcolor{loko1}{1} \cdot b^3 		\\
+			(a+b)^4 & = \textcolor{loko1}{1} \cdot a^4 
+							+ \textcolor{loko1}{4} \cdot a^3 \; b 
+							+ \textcolor{loko1}{6} \cdot a^2 \; b^2 
+							+ \textcolor{loko1}{4} \cdot a\; b^3 
+							+ \textcolor{loko1}{1} \cdot b^4 		\;.
+		\end{align*}
+	\end{ex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Propri\'et\'e des coefficients binomiaux}
+\index{binome@bin\^ome!formules du}
+	Les \'el\'ements du triangle de Pascal sont les coefficients binomiaux ; 
+	c'est-\`a-dire les coefficients du d\'eveloppement de $(a+b)^n$.
+	On remarque donc que : 
+	\begin{itemize}
+		\item $\Comb{n}{0} = \Comb{n}{n} = 1$ pour tout $n\in\mathbb{N}$,
+		\item $\Comb{n}{k} = \Comb{n}{n-k}$, $0 \leq k \leq n$,
+		\item $\Comb{n-1}{k-1} + \Comb{n-1}{k} = \Comb{n}{k}$, $0 \leq k \leq n$.
+	\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Autre produit remarquable} 
+\index{Identit\'e remarquable@Identite remarquable}
+La forme $a^n - b^n$ est aussi une identit\'e remarquable. On a 
+      \[
+            a^n - b^n = (a-b) \cdot (a^{n-1} + a^{n-2}\, b + a^{n-3}\, b^2 + \cdots + a^2\, b^{n-3} + a\, b^{n-2} + b^{n-1} )
+            \;.
+      \]
+
+\section{Op\'erations alg\'ebriques}
+	\subsection{R\`egles sur les racines carr\'ees}
+			Soient $a$ et $b$ deux r\'eels positifs : \newline
+			\begin{minipage}[b]{.45\actualtextwidth}
+				\begin{itemize}
+					\item $\sqrt{a b} = \sqrt{a} \times \sqrt{b}$,
+					\item si $a\in\mathbb{R}$ alors $\sqrt{a^2} = |a| $,
+				\end{itemize}
+			\end{minipage}
+			%
+			\begin{minipage}[b]{.45\actualtextwidth}
+				\begin{itemize}
+					\item $\displaystyle \sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}$,
+					\item $\sqrt{a} = 0 $ si et seulement si $a = 0$.
+				\end{itemize}
+			\end{minipage}
+	
+	\subsection{R\`egles sur les puissances}
+			Soient $n$ et $p$ deux entiers naturels et soit $a$ un nombre r\'eel non nul : \newline
+			\begin{minipage}[b]{.45\actualtextwidth}
+				\begin{itemize}
+					\item $a^n \cdot a^p = a^{n+p}$,
+					\item $\frac{a^n}{a^p} = a^{n-p}$,
+				\end{itemize}
+			\end{minipage}
+			%
+			\begin{minipage}[b]{.45\actualtextwidth}
+				\begin{itemize}
+					\item $(a^n)^p = a^{n \times p}$,
+						\item si $n\neq 0$ alors $0^n = 0$.
+				\end{itemize}
+			\end{minipage}
+
+	\subsection{R\`egles sur les in\'egalit\'es}
+		Soit $a$, $b$ et $c$ trois nombres r\'eels. \newline
+			\begin{minipage}[b]{.45\actualtextwidth}
+				\begin{itemize}
+					\item Si $a < b$ alors $a + c < b + c$,
+					\item si $0 < a < b$ alors $\frac{1}{a} > \frac{1}{b}$,
+				\end{itemize}
+			\end{minipage}
+			%
+			\begin{minipage}[b]{.45\actualtextwidth}
+				\begin{itemize}
+					\item Si $ a < b $ et $c > 0$ alors $a c < b c$,
+					\item si $ a < b $ et $c < 0$ alors $a c > b c$.
+				\end{itemize}
+			\end{minipage}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

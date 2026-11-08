@@ -1,0 +1,2266 @@
+% T12 C/D, chapitre 4 : Nombres complexes. Source : le livre « Terminales scientifiques » (Complexe/Lesona, Complexe/Fiche, Complexe/Exo, Complexe/Valiny).
+% Les exercices tirés d’autres ouvrages ne sont pas repris (décision du 2 novembre 2026).
+
+\TCDLessonStyleOn
+\newcommand{\Reel}[1]{\mathfrak{Re}(#1)}
+\newcommand{\Imag}[1]{\mathfrak{Im}(#1)}
+
+\begin{chapter}{Ensemble des nombres complexes}
+\section{Nombres complexes}
+Dans l'ensemble des nombres r\'eels, certaines \'equations polynomiales telles $x^2 + 1 = 0$ n'admettent pas de solutions. 
+Pour rem\'edier \`a ce probl\`eme, on introduit un nouveau \emph{nombres imaginaire} $i$ v\'erifiant $i^2 = -1$.
+On obtient ainsi un nouvel ensemble qu'on d\'enote usuellement par $\mathbb{C}$. 
+Cet ensemble $\mathbb{C}$ est appel\'e le corps des nombres complexes. 
+Il est constitu\'e des nombres de la forme $a + i b$ o\`u $a$ et $b$ sont deux nombres r\'eels et $i$ l'unit\'e imaginaire.
+%
+\subsection{Forme alg\'ebrique d'un nombre complexe}
+%
+\index{Nombres complexes!Forme algebrique@Forme alg\'ebrique}
+%
+Si $z$ est un \'el\'ement de $\mathbb{C}$, alors $z$ s'\'ecrit de mani\`ere unique sous la forme \defbox{$a + i b$ \label{eq:forme alg}}.
+Cette forme est appel\'ee la \emph{forme alg\'ebrique} de $z$.
+Le r\'eel $a$ est appel\'e \emph{partie r\'eelle de $z$} et est not\'e $\Reel{z}$.
+Le r\'eel $b$ est appel\'e \emph{partie imaginaire de $z$} et est not\'e $\Imag{z}$. \\
+Un nombre complexe dont la partie r\'eelle est nulle est qualifi\'e d'\emph{imaginaire pur}.
+
+\subsection{Op\'erations dans $\mathbb{C}$}
+%
+\index{Nombres complexes!operations@op\'erations}
+%
+Soient $z_1 = a_1 + i b_1$ et $z_2 = a_2 + i b_2$ deux nombres complexes.
+\begin{itemize}
+\item $z_1 = z_2 $ si et seulement si $(a_1, b_1) = (a_2, b_2)$,
+\item $z_1 + z_2 = (a_1 + i b_1) + (a_2 + i b_2) = (a_1 + a_2 ) + i (b_1 + b_2) $,
+\item $z_1 \cdot z_2 = (a_1 + i b_1) \cdot (a_2 + i b_2) = a_1 a_2 + i a_1 b_2 + i b_1 a_2 + i^2 b_1 b_2$.
+      Utilisant le fait que $i^2 = -1$ on a:
+      $z_1 \cdot z_2 = (a_1 a_2 - b_1 b_2) + i (a_1 b_2 + b_1 a_2)$.
+\end{itemize}
+En pratique, toutes les op\'erations se font de la m\^eme fa\c{c}on que dans $\mathbb{R}$ (on peut m\^eme diviser par tout nombre complexe non nul).
+
+\begin{exe}
+Mettre les nombres complexes suivants sous la forme alg\'ebrique : \\
+$z_1 = (1-i)^2 (3 + 2i)$, $z_2 = \frac{10-20i}{1-3i}$ et $z_3 = \frac{(10+15i)(10-20i)}{(3+i)^2} $. \\
+Dans chaque cas, donner la partie r\'eelle et la partie imaginaire.
+\label{exe:mettre sous forme algebrique}
+\end{exe}
+
+\subsection{Conjugu\'e d'un nombre complexe}
+\index{Nombres complexes!conjugue@conjugu\'e}
+%
+\begin{defi}
+Pour un nombre complexe $z = a + i b$ donn\'e, on d\'efinit \emph{le conjugu\'e} de $z$ comme \'etant le nombre complexe
+\defbox{$\bar{z} = a - i b$}.
+\end{defi}
+%
+\begin{prop}
+      \label{prp:proprietes du conjugue}
+      %
+	Si $z$, $z_1$ et $z_2$ sont trois nombres complexes, on a : 
+	%
+	\renewcommand{\bar}{\overline}
+	%
+	\begin{enumerate}
+		\item $\bar{\bar{z}} = z$,
+		\item $\bar{z_1 + z_2} = \bar{z_1} + \bar{z_2}$,
+		\item $\bar{z_1 \cdot z_2} = \bar{z_1} \cdot \bar{z_2}$,
+		      \label{prp:proprietes du conjugue, multiplication}
+		\item $\bar{\frac{1}{z}} = \frac{1}{\bar{z}}$,
+		\item $\bar{z^n} = \bar{z}^n$.
+	\end{enumerate}
+\end{prop}
+%
+% La preuve est laiss\'e \`a l'\'etudiant \`a titre d'exercices.
+%
+\subsection{Module d'un nombre complexe}
+%
+\index{Nombres complexes!module}
+%
+\begin{defi}
+Soit $z = a + i b$ un nombre complexe.
+On appelle \emph{module de $z$} le nombre r\'eel not\'e $| z |$ et d\'efini par 
+\defbox{$|z| = \sqrt{z \bar{z}} = \sqrt{a^2 + b^2}$}.
+\end{defi}
+%
+\begin{prop}
+	\label{prp:proprietes du module}
+	Soient $z = a + i b$ et $z'$ deux nombres complexes. On a:
+	\begin{enumerate}
+		\item $|z| = |\bar{z}|$,
+		\item $|z| = 0 \iff z = 0$,
+		\item $|z z'| = |z| |z'|$,
+		\item $|\frac{1}{z}| = \frac{1}{|z|}$,
+		\item $|z+z'| \leq |z| + |z'|$.
+		      \label{prp:proprietes du module, inegalite triangulaire}
+	\end{enumerate}
+\end{prop}
+%
+\begin{exe}
+\label{exe:forme algebrique et modules}
+Ecrire les nombres complexes suivants sous forme alg\'ebrique et donner leurs modules:
+$ z_1 = \overline{- (1 - 2 i)^2} $ et
+$ z_2 = \overline{\left( \frac{1}{3 + 4i} \right) }$.
+
+\end{exe}
+%
+\section{Point de vue g\'eometrique des nombres complexes}
+\index{Nombres complexes!Representation geometrique@Repr\'esentation g\'eometrique}
+\subsection{Repr\'esentation dans le plan complexe}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{wrapfigure}{l}{0.5\actualtextwidth}
+\begin{figure}
+      \centering
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+			\clip (-1,-1) rectangle (5,5);
+			\draw[->,color=black] (-1,0) -- (5,0);
+			\foreach \x in {-1,1,2,3,4}
+			\draw[shift={(\x,0)},color=black] (0pt,-2pt);
+			\draw[color=black] (4.,0) node [anchor=north] { Axe r\'eel};
+			\draw[->,color=black] (0,-1) -- (0,5);
+			\foreach \y in {-1,-1,1,2,3,4}
+			\draw[color=black] (0.06,4.77) node [anchor=west] { Axe imaginaire};
+			\clip(-3,-2) rectangle (5,5);
+			\draw [->] (0,0) -- (0,1);
+			\draw [->] (0,0) -- (1,0);
+			\draw [->] (0,0) -- (3.22,2.22);
+			\draw [dashed,loko2] (3.22,2.22)-- (3.21,0);
+			\draw [dashed,loko1] (3.22,2.22)-- (0,2.19);
+			\draw [color=black] (0,0) circle (1.5pt);
+			\draw[color=black] (-0,-0) node[below left] {$O$};
+			\draw[color=black] (-0.0,0.5) node[left] {$\vec{v}$};
+			\draw[color=black] (0.5,-0.0) node[below] {$\vec{u}$};
+			\fill [color=black] (3.22,2.22) circle (1.5pt);
+			\draw[color=black] (3.8,2.5) node[above] {\parbox{6em}{$M (a,b)$ \\ $z = a+ib$}};
+			\fill [color=black] (3.21,0) circle (0.5pt);
+			\draw[loko2, very thick] (0,0) -- (3.23,0);
+			\draw[color=loko2] (3.35,0.) node[above right] {$a$};
+			\fill [color=black] (0,2.19) circle (0.5pt);
+			\draw[loko1, very thick] (0,0) -- (0,2.2);
+			\draw[color=loko1] (0,2.3) node[above right] {$b$};
+		\end{tikzpicture}
+	\label{fig:conjugue geom}
+	\caption{Repr\'esentation d'un nombre dans le plan complexe.}
+%\end{wrapfigure}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+L'ensemble $\mathbb{C}$ des nombres complexes peut ais\'ement \^etre identifi\'e au plan $\mathbb{R}^2$.
+\`A chaque nombre complexe $z = a + i b$, on associe le point $M(a,b)$ de $\mathbb{R}^2$.
+On pourra ainsi parler de \emph{plan complexe}, en r\'ef\'erence \`a cette repr\'esentation dans un rep\`ere orthonorm\'e $(O,\vec{u},\vec{v})$.
+\paragraph{Terminologie}
+Avec cette repr\'esentation, on dit que:
+\begin{itemize}
+\item $M$ est l'image de $z$,
+\item $z$ est l'affixe du point $M$,
+\item l'axe des abscisses est l'axe r\'eel,
+\item l'axe des ordonn\'ees est l'axe imaginaire.
+\end{itemize}
+%
+De m\^eme que pour un point, on d\'efinit l'affixe d'un vecteur $\vec{u} \left( \begin{matrix} a \\ b \end{matrix} \right)$
+comme \'etant le nombre complexe $z = a + i b$.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Le module du nombre complexe $z$ prend alors sens comme \'etant la distance Euclidienne entre l'origine et son image: le point $M$.
+Autrement dit, il s'agit de la norme du vecteur $\overrightarrow{OM}$. 
+
+\subsection{Interpr\'etation g\'eometrique de la somme} 
+%
+\index{Nombres complexes!Representation geometrique@Repr\'esentation g\'eometrique!somme}
+%
+L'addition de deux nombres complexes se traduit alors comme l'addition de deux vecteurs du plan. (Voir Fig \ref{fig:complex_sum}) \\
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=.75]
+\draw[->,color=black] (-1.51,0) -- (9.07,0);
+\foreach \x in {-1,1,2,3,4,5,6,7,8,9}
+\draw[shift={(\x,0)},color=black] (0pt,-2pt);
+\draw[color=black] (8.11,0.06) node [anchor=south] { {Axe r\'eel}};
+\draw[->,color=black] (0,-1.45) -- (0,6.91);
+\foreach \y in {-1,1,2,3,4,5,6}
+\draw[color=black] (0.08,6.6) node [anchor=west] { {Axe imaginaire}};
+\clip(-1.51,-1.45) rectangle (9.07,6.91);
+\draw [->] (0,0) -- (0,1);
+\draw [->] (0,0) -- (1,0);
+\draw [->,loko2] (0,0) -- (4.56,0.9);
+\draw [->,loko1] (0,0) -- (1.21,4.26);
+\draw [->] (0,0) -- (5.77,5.16);
+\draw [dashed,loko2] (1.21,4.26)-- (5.77,5.16);
+\draw [dashed,loko1] (4.56,0.9)-- (5.77,5.16);
+\draw[color=black] (0,0.5) node[left] {$\vec{v}$};
+\draw[color=black] (.5,0) node[below] {$\vec{u}$};
+\begin{scriptsize}
+\draw [color=black] (0,0) circle (1.5pt);
+\draw[color=black] (-0.25,-0.2) node {$O$};
+\fill [color=black] (4.56,0.9) circle (1.5pt);
+\draw[color=loko2] (5.3,1.2) node {$M (a,b)$};
+\draw[color=loko2] (5.5,0.8) node {$z = a+ib$};
+\fill [color=black] (1.21,4.26) circle (1.5pt);
+\draw[color=loko1] (2.,4.1) node {$M' (a',b')$};
+\draw[color=loko1] (2.,3.8) node {$z' = a' + i b'$};
+\fill [color=black] (5.77,5.16) circle (1.5pt);
+\draw[color=black] (7.1,5.5) node[above] {$M'' (a + a' , b + b')$};
+\draw[color=black] (7.5,5.1) node[above] {$z'' = (a+a') + i (b+b')$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption{Repr\'esentation de la somme de deux nombres complexes en tant que somme de deux vecteurs du plan complexe}
+\label{fig:complex_sum}
+\end{figure}
+
+Soient $z = a+ib$ et $z' = a'+ib'$ deux nombres complexes. 
+Soient $M (a,b)$ et $M'(a',b')$ leurs images respectifs.
+Consid\'erons les vecteurs $\overrightarrow{OM}$ et $\overrightarrow{OM'}$, soit $M''$ le point du plan complexe tel que 
+$
+\overrightarrow{OM''} = \overrightarrow{OM} + \overrightarrow{OM'}
+$.
+On sait que $\overrightarrow{OM''}$ a pour coordonn\'ees $\left( \begin{matrix} a+a' \\ b+b' \end{matrix} \right)$.
+On v\'erifie qu'il s'agit de l'image de $z'' = z + z'$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Interpr\'etation g\'eometrique du conjugu\'e}
+%
+\index{Nombres complexes!Representation geometrique@Repr\'esentation g\'eometrique!conjugue@conjugu\'e}
+%
+\begin{figure}
+\centering
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=.9]
+\draw[->,color=black] (-1,0) -- (4,0);
+\foreach \x in {-1,1,2,4}
+\draw[color=black] (4,0) node [anchor=south] {$x$};
+\draw[->,color=black] (0,-3) -- (0,3);
+\foreach \y in {-3,-2,-1,1,2}
+\clip(-1,-3) rectangle (4,3);
+\draw[] (1.85,0.3) -- (2.15,0.3) -- (2.15,0) -- (1.85,0) -- cycle; 
+\draw [gray,->] (0,0) -- (0,1);
+\draw [gray,->] (0,0) -- (1,0);
+\draw (1.85,2.48)-- (1.85,-2.48);
+% Itony ilay hahitana hoe mitovy halava ilay tsipika roa
+\draw[color=black] (1.85,1.42) node {$ \smallsetminus $};
+\draw[color=black] (1.85,1.5) node {$ \smallsetminus $};
+\draw[color=black] (1.85,-1.4) node {$ \smallsetminus $};
+\draw[color=black] (1.85,-1.5) node {$ \smallsetminus $};
+% Izay ihany 
+\draw [] (0,0) circle (1.5pt) node[below left] {$O$};
+\draw[color=black] (0.25,0.5) node {$\vec{v}$};
+\draw[color=black] (0.5,-0.25) node {$\vec{u}$};
+\fill [color=loko2] (1.85,2.48) circle (1.5pt);
+\draw[color=loko2] (2.75,2.75) node {$M(a,b)$};
+\draw[color=loko2] (3,2.35) node {$z = a+ib$};
+\fill [color=loko2] (1.85,-2.48) circle (1.5pt);
+\draw[color=loko2] (3,-2.75) node {$\overline{M}(a,-b)$};
+\draw[color=loko2] (3,-2.25) node {$\bar{z} = a - i b$};
+\end{tikzpicture}
+\caption{Repr\'esentation du conjugu\'e d'un nombre complexe}
+\label{fig:conjugue}
+\end{figure}
+
+Si $z = a + i b$ alors $\bar{z} = a - i b$; ainsi, l'image de $z$ a pour coordonn\'ees $(a,b)$ et celle de $\bar{z}$ a pour coordonn\'ees $(a,-b)$.
+On constate alors que l'image de $\bar{z}$ n'est autre que l'image de l'image de $z$ par la sym\'etrie d'axe $O\vec{u}$ (Voir Fig \ref{fig:conjugue}).
+
+\section{Forme trigonom\'etrique d'un nombre complexe}
+\subsection{Argument d'un nombre complexe}
+%
+\index{Nombres complexes!argument}
+%
+Dans le plan complexe muni d'un rep\`ere orthonorm\'e $(O,\vec{u},\vec{v})$, consid\'erons le point $M(x,y)$ d'affixe $z$ non nul\footnote{$0$ n'a pas d'argument}.
+On appelle \emph{argument de $z$}, et on note par $\arg(z)$, la mesure de l'angle form\'e par $\overrightarrow{OM}$ avec $\vec{u}$.
+
+Pour tout nombre complexe $z$ diff\'erent de $0$, on peut d\'efinir le nombre $z' = \frac{z}{|z|}$ qui a pour module $1$ \footnote{\`a v\'erifier}.
+Ainsi, la distance entre l'origine et l'image $M'$ de $z'$ est \'egale \`a $1$ ; autrement dit, $M'$ appartient au cercle unit\'e.
+On sait alors qu'il existe un angle $\theta$ tel que $\Reel{z} = \cos \theta $ et $\Imag{z} = \sin \theta$.
+L'angle $\theta$ ainsi d\'efini est un argument de $z'$.
+Puisque $\overrightarrow{OM} = |z| \overrightarrow{OM'}$, les deux vecteurs sont colin\'eaires ; il s'ensuit que l'angle form\'e par $\overrightarrow{OM}$ avec $\vec{u}$ est le m\^eme que celui form\'e par $\overrightarrow{OM'}$ avec $\vec{u}$ (\`a un multiple de $2\pi$ pr\`es).
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw[->,color=black] (-1.25,0) -- (2.5,0);
+\foreach \x in {-1,-0.5,0.5,1,1.5,2}
+\draw[->,color=black] (0,-1.25) -- (0,1.5);
+\foreach \y in {-1,-0.5,0.5,1}
+\clip(-1.25,-1.25) rectangle (2.5,1.5);
+\draw [shift={(0,0)},line width=1.2pt,color=loko3,fill=loko3,fill opacity=0.1] (0,0) -- (0:0.24) arc (0:39.73:0.24) -- cycle;
+\draw(0,0) circle (3cm);
+\draw (0,0)-- (1.26,1.05);
+\draw [dashed, color=loko1] (0,0.64)-- (0.77,0.64);
+\draw [dashed, color=loko2] (0.77,0.64)-- (0.77,0);
+\fill [color=black] (0,0) circle (1.5pt);
+\draw[color=black] (-0.1,-0.1) node {$O$};
+\fill [color=black] (1.26,1.05) circle (1.5pt);
+\draw[color=black] (1.7,1.1) node {$M \text{ d'affixe } z$};
+\fill [color=black] (0.77,0.64) circle (1.5pt);
+\draw[color=black] (1.25,0.6) node {$M' \text{ d'affixe } \frac{z}{|z|}$};
+\draw[color=loko3] (0.3,0.1) node {$\theta$};
+\fill [color=black] (0.77,0) circle (1.5pt);
+\draw [color=loko2,very thick] (0,0) -- (0.75,0);
+\draw[color=loko2] (0.75,-0.1) node {$\cos \theta$};
+\fill [color=black] (0,0.64) circle (1.5pt);
+\draw [color=loko1,very thick] (0,0) -- (0,0.64);
+\draw[color=loko1] (-0.15,0.7) node {$\sin \theta$};
+\end{tikzpicture}
+\caption{Repr\'esentation d'un nombre complexe}
+\label{fig:complex_trigo}
+\end{figure}
+
+On constate que le point $M'$ a pour affixe $\cos \theta + i \sin \theta$.
+De l\`a, on aboutit \`a la conclusion que $M$ a pour affixe $|z|(\cos \theta + i\sin \theta)$.
+Si on pose $r = |z|$ alors on a \defbox{$z = r (\cos \theta + i \sin \theta)$ \label{eq:forme trigo}}.
+Cette expression est la \emph{forme trigonom\'etrique} de $z$.
+%
+\index{Nombres complexes!Forme trigonometrique@Forme trigonom\'etrique}
+%
+Le m\^eme nombre complexe $z$ peut aussi \^etre d\'esign\'e par le couple \defbox{$[r,\theta]$ \label{eq:forme pol}}.
+Cette derni\`ere expression est appel\'ee la \emph{forme polaire} du nombre complexe $z$.
+
+\begin{exe}
+	\label{exe:trigo-alg}
+	\begin{enumerate}
+				\item D\'eterminer la forme trigonom\'etrique, le module et un argument
+				      de chacun des nombres complexes suivants :
+	            		\[
+	            		\begin{gathered}
+	            		z_1=1,\quad z_2=i,\\
+	            		z_3=2+2i,\quad z_4=1+\sqrt{3}i.
+	            		\end{gathered}
+	            		\]
+		\item Pour chacun des nombres complexes suivants, 
+		      donner le module et l'argument puis mettre sous forme alg\'ebrique :
+		      \[ z'_1 = 2 \left(\cos \frac{\pi}{3} - \sin \frac{\pi}{3} \ i \right) \ , \quad 
+		      z'_2 = \sqrt{3} \left(\cos \frac{\pi}{6} + \sin \frac{\pi}{6} \ i \right) \;. \]
+	\end{enumerate}
+\end{exe}
+%
+
+\begin{rmk}
+Pour passer de la forme trigonom\'etrique \`a la forme alg\'ebrique, il suffit de developper l'expression. 
+En effet, si $z = r (\cos \theta + i \sin \theta)$ alors 
+la partie r\'eelle de $z$ n'est autre que $r \cos \theta$ et la partie imaginaire est $r \sin \theta$. 
+L'expression alg\'ebrique est alors $z = r \cos \theta + r \sin \theta i$. \\
+Pour passer de la forme alg\'ebrique \`a la forme trigonom\'etrique, on peut d'abord commencer par normaliser le nombre. 
+C'est-\`a-dire qu'on le divise par son module. 
+On sait que le nombre $\frac{z}{|z|}$ appartient au cercle unit\'e.
+Il existe alors un angle $\theta$ v\'erifiant $\frac{z}{|z|} = \cos \theta + i \sin \theta$.
+Finalement, l'expression trigonom\'etrique sera $z = |z| (\cos \theta + i \sin \theta)$.
+\end{rmk}
+
+\subsection{Quelques propri\'et\'es}
+\begin{prop}
+	\label{prop:argument}
+	Soient $z$ et $z'$ deux nombres complexes non nuls. On a alors :
+	\begin{itemize}
+		\item $\arg(z z') = \arg(z) + \arg(z')$ et $\arg(z^n) = n \, \arg(z)$,
+		\item $\arg \left(\frac{1}{z} \right) = - \arg(z)$ 
+		      et $\arg\left(\frac{z}{z'}\right) = \arg(z) - \arg(z')$,
+		\item $\arg(\bar{z}) = - \arg(z)$.
+		\item Si $z \in \mathbb{R}^*$ alors 
+		      $\arg(z) = 
+		            \begin{multiform}
+		                  0 \text{ si } z > 0 \\
+		                  \pi \text{ si } z < 0 \;.
+		            \end{multiform}
+		      $
+		\item Si $z = \lambda i$ avec $\lambda \in \mathbb{R}^*$ alors 
+		      $\arg(z) = 
+		            \begin{multiform}
+		                  \frac{\pi}{2} \text{ si } \lambda > 0 \\
+		                  \frac{3\pi}{2} \text{ si } \lambda < 0 \;.
+		            \end{multiform}
+		      $
+	\end{itemize}
+\end{prop}
+
+\begin{thm}[Formule de MOIVRE]
+	%
+	\index{Moivre!Formule de}
+	%
+	\label{thm:Moivre}
+	Soit $n$ un nombre entier relatif. On a
+	$$ (\cos \theta + i \sin \theta)^n = \cos n \theta + i \sin n \theta .$$
+\end{thm}
+
+\section{Notation exponentielle d'un nombre complexe}
+%
+\index{Nombres complexes!Forme exponentielle}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thm}[Formules d'Euler]
+\label{thm:Expo-trigo}
+Pour tout nombre r\'eel $\theta$ on a
+\thmbox{$$ \expo{i \, \theta} = \cos \theta + i \sin \theta .$$}
+
+A partir de cette formule, on peut en obtenir d'autres: \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{minipage}{0.45 \actualtextwidth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{align*}
+\expo{i \, \theta }   & = \cos \theta + i \sin \theta \\
+\expo{- i \, \theta } & = \cos \theta - i \sin \theta \\
+\intertext{et on additionne pour avoir}
+\expo{i \, \theta } + \expo{ -i \, \theta } & = 2 \cos \theta \\
+\end{align*}
+On a alors: \\
+\thmbox{$$ \cos \theta  = \frac{\expo{i \, \theta } + \expo{ -i \, \theta }}{2} .$$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{minipage}[c][][c]{.02\actualtextwidth}
+      \rule{.4pt}{10\baselineskip}
+\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{minipage}{0.45 \actualtextwidth}
+\begin{align*}
+\expo{i \, \theta }   & = \cos \theta + i \sin \theta \\
+\expo{- i \, \theta } & = \cos \theta - i \sin \theta \\
+\intertext{et on soustrait pour avoir}
+\expo{i \, \theta } - \expo{ -i \, \theta } & = 2 \, i \sin \theta \\
+\end{align*}
+et \\
+\thmbox{$$ \sin \theta = \frac{\expo{i \, \theta } - \expo{ -i \, \theta }}{2 \, i} .$$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{thm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Lin\'earisation de fonctions trigonom\'etriques}
+%
+\index{Fonctions trigonometriques@Fonctions trigonom\'etriques!linearisation@lin\'earisation}
+%
+Les formules vues dans la section pr\'ec\'edente peuvent servir \`a lin\'eariser les fonctions trigonom\'etriques.
+En effet, pour lin\'eariser les expressions de la forme $\cos ^n \theta$, on utilise la formule exponentielle de la fonction cosinus.
+L'expression $\cos ^n \theta$ devient alors $\left( \frac{ \expo{i \theta} + \expo{-i \theta} }{ 2 } \right)^n$ et on peut utiliser la formule du bin\^ome pour la d\'evelopper.
+Puis on regroupe les termes et on les identifie \`a des fonctions trigonom\'etriques connues. \\
+Voyons cela par un exemple :
+\begin{ex}
+	      Lin\'earisons l'expression $\cos ^3 \theta$.
+	      Pour cela, on utilise la formule d'Euler correspondante :
+      \begin{align*}
+            \cos ^3 \theta & = \left( \frac{\expo{i \theta } + \expo{- i \theta }}{2} \right)^3                            
+                             = \frac{1}{2^3} \left( \expo{i \theta} + \expo{ - i \theta} \right)^3                         \\
+                           & = \frac{1}{8} \left[ (\expo{i \theta})^3 + 3 (\expo{i \theta})^2 \expo{-i \theta} 
+                                 + 3 \expo{ i \theta} (\expo{-i \theta})^2 + (\expo{-i \theta})^3 \right]                  \\
+                           & = \frac{1}{8} (\expo{3i \theta} + 3 \expo{i \theta} + 3 \expo{-i \theta} + \expo{-3i \theta}) 
+                             = \frac{1}{4} \left[ \frac{\expo{i 3\theta} + \expo{-i 3\theta}}{2} 
+                                 + 3 \frac{ \expo{i \theta} + \expo{-i \theta} }{2} \right]                                \,.
+      \end{align*}
+      \mybox{$$ \cos ^3 \theta = \frac{1}{4} \left[ \cos 3\theta + 3 \cos \theta \right] .$$}
+\end{ex}
+
+La lin\'earisation de $\sin ^n \theta$ se fait de mani\'ere analogue.
+
+\section{Equations du second degr\'e dans $\mathbb{C}$}
+%
+\index{Polynomes@Polyn\^omes!du second degre@du second degr\'e!dans C@dans $\mathbb{C}$}
+%
+Comme on l'a vu en introduction, certaines \'equations polynomiales dans $\mathbb{R}$ n'admettent pas de racine.
+On sait d\'ej\`a comment r\'esoudre les \'equations du second degr\'e dans $\mathbb{R}$, cette m\^eme m\'ethode peut \^etre appliqu\'ee dans $\mathbb{C}$.
+On va voir dans cette section comment \'etendre cette m\'ethode aux nombres complexes.
+%
+\subsection{Equations du second degr\'e \`a coefficients r\'eels}
+%
+\index{Polynomes@Polyn\^omes!du second degre@du second degr\'e!a coefficients reels@\`a coefficients r\'eels}
+%
+Consid\'erons l'\'equation $a z^2 + b z + c = 0$, avec $a\neq0$, o\`u $z$ est l'inconnue.
+On se propose de r\'esoudre cette \'equation dans $\mathbb{C}$, c'est-\`a-dire qu'on cherche les nombres complexes qui la v\'erifient.
+Posons $\Delta = b^2 - 4 a c$.
+On distingue alors 3 cas:
+\begin{itemize}
+\item Si $\Delta>0$:
+     L'\'equation admet deux racines r\'eelles distinctes: $z' = \frac{-b - \sqrt{\Delta}}{2a}$ et $z'' = \frac{-b + \sqrt{\Delta}}{2a}$.
+\item Si $\Delta=0$:
+     L'\'equation admet une racine r\'eelle double: $z' = z'' = \frac{-b}{2a}$.
+\item Si $\Delta<0$:
+     On sait que l'\'equation n'admet pas de racines r\'eelles.
+\end{itemize}
+Dans ce dernier cas, il nous faut alors chercher des solutions complexes.
+Puisque $b^2 - 4 ac<0$, alors $4ac - b^2$ est strictement positif.
+On peut alors r\'eecrire $\Delta$ sous la forme $b^2 - 4ac = - (4ac - b^2) = i^2 (4ac - b^2)$.
+Puisque $4ac - b^2$ est positif, on peut prendre sa racine carr\'ee et ainsi \'ecrire $\Delta = (i \cdot \sqrt{4ac - b^2} )^2$.
+Ainsi, on obtient deux nombres complexes $i \cdot \sqrt{4ac - b^2}$ et $-i \cdot \sqrt{4ac - b^2}$ dont les carr\'es sont \'egaux \`a $\Delta$.
+En prenant \mybox{$z' = \frac{-b -i \cdot \sqrt{4ac - b^2} }{2a}$} et \mybox{$z'' = \frac{-b + i \cdot \sqrt{4ac - b^2} }{2a}$}, on v\'erifie bien que $z'$ et $z''$ sont racines de l'\'equation $a z^2 + b z + c = 0$.
+
+\begin{exe}
+\label{exe:santatra second degre}
+	R\'esoudre dans $\mathbb{C}$ les \'equations:
+	\begin{itemize}
+	\item $ z^2 - 2 z + 5 = 0 $,
+	\item $ z^2 - 4 z + 5 = 0 $,
+	\item $ 4 z^2 - 8 z + 5 = 0 $.
+	\end{itemize}
+\end{exe}
+%
+\begin{rmk}
+      Les racines complexes d'un polyn\^ome \`a coefficients r\'eels sont deux \`a deux conjugu\`es.
+      Autrement dit, si $P$ est un polyn\^ome \`a coefficients r\'eels et que $z_0$ est une racine de $P$,
+      alors $\bar{z_0}$ est aussi une racine de $P$.
+\end{rmk}
+%
+\subsection{Equations du second degr\'e \`a coefficients complexes}
+%
+\index{Polynomes@Polyn\^omes!du second degre@du second degr\'e!a coefficients complexes@\`a coefficients complexes}
+%
+Les \'equations du second degr\'e \`a coefficients complexes se r\'esolvent de la m\^eme mani\`ere que celles \`a coefficients r\'eels.
+Consid\'erons l'\'equation $a z^2 + b z + c = 0$ o\`u, cette fois, $a$, $b$ et $c$ sont des nombres complexes avec $a\neq0$.
+On prend toujours $\Delta = b^2 - 4ac$, et on distingue deux cas:
+\begin{itemize}
+\item Si $\Delta = 0$:
+     L'\'equation admet une racine double \thmbox{$z' = z'' = \frac{-b}{2a}$}.
+\item Si $\Delta \neq 0$:
+	     Dans ce cas, il existe deux nombres complexes $\delta$ et $-\delta$ tels que $\delta ^2 = (- \delta)^2 = \Delta$.
+	     L'\'equation admet deux racines complexes distinctes : \thmbox{$z'=\frac{-b-\delta}{2a}$} et \thmbox{$z''=\frac{-b+\delta}{2a}$}.
+\end{itemize}
+%
+\begin{methode}[Racines carr\'es d'un nombre complexe]
+      Soit $Z=X+iY$, on veut chercher un nombre $z=x+iy$ tel que $z^2 = Z$.
+      Comme $z^2 = (x+iy)^2 = x^2 - y^2 + 2ixy = X + iY$, 
+            $
+                  \left\lbrace
+                        \begin{array}{l}
+                              x^2 - y^2 = X \\
+                              2xy = Y       
+                        \end{array}
+                  \right. 
+            $.
+      De plus, $|z^2| = |Z|$, donc $x^2 + y^2 = \sqrt{X^2 + Y^2}$.
+      
+      On peut alors r\'esoudre le syst\`eme suivant pour trouver $z$ :
+            \[
+                  \left\lbrace
+                        \begin{array}{l}
+                              x^2 + y^2 = |Z|           \\
+                              x^2 - y^2 = \Reel{Z}      \\
+                              2 x y     = \Imag{Z}      \;.
+                        \end{array}
+                  \right. 
+            \]
+      Les solutions de ce syst\`eme sont :
+			\[
+				\begin{multiform}
+					x = \pm \sqrt{\frac{|Z| + \Reel{Z}}{2}}		\\
+					y = \pm \sqrt{\frac{|Z| - \Reel{Z}}{2}}		
+				\end{multiform}
+			\]
+			o\`u $x$ et $y$ sont de m\^eme signes si $\Imag{Z} > 0$ et de signe contraire si $\Imag{Z} < 0$.
+\end{methode}
+%
+\begin{exe}
+\label{exe:second degre complexe}
+      R\'esoudre dans $\mathbb{C}$ les \'equations suivantes: 
+      \begin{itemize}
+            \item $z^2 - (1 + 2i) z - 1 + i = 0$,
+            \item $i z^2 + 2 z - 2 i = 0$,
+            \item $z^2 - (1+3i) z - (4 - 3i) = 0$,
+            \item $z^2 + (1-2i) z - 3 - i = 0$.
+      \end{itemize}
+\end{exe}
+
+\section{Racine $n^{\text{i\`eme}}$ d'un nombre complexe}
+\index{Nombres complexes!racine nieme@racine $n^{\text{i\`eme}}$}
+%
+\begin{defi}[Racine $n^{\text{i\`eme}}$]
+\index{Racine nieme@Racine $n^{\text{i\`eme}}$}
+      Soient $Z$ un nombre complexe et $n$ un nombre entier naturel sup\'erieure \`a 1.
+      On appelle \emph{racine $n^{\text{i\`eme}}$} de $Z$ tout nombre complexe $z$ v\'erifiant
+            \defbox{$z^n = Z$}.
+\end{defi}
+%
+\subsection{Racine $n^{\text{i\`eme}}$ de l'unit\'e}
+\index{Nombres complexes!racine nieme@racine $n^{\text{i\`eme}}$!de l'unite@de l'unit\'e}
+%
+Les racines $n^{\text{i\`eme}}$ de l'unit\'e sont les nombres complexes $z$ v\'erifiant $z^n=1$.
+Ce sont les nombres $\left(u_k = \left[ 1,\frac{2k\pi}{n} \right] \right)_{0\leq k <n}$.
+\begin{ex}\vspace{-1\baselineskip}
+      \begin{description}
+            \item[$n=2$ :] $u_0 = 1$ et $u_1 = -1$.
+            \item[$n=3$ :] $u_0 = 1$, $u_1 = j$ et $u_2 = \bar{j}$ o\`u $j = -\frac{1}{2}+i\frac{\sqrt{3}}{2}$.
+            \item[$n=4$ :] $u_0 = 1$, $u_1 = i$, $u_2 = -1$ et $u_3 = -i$.
+      \end{description}
+\end{ex}
+
+\subsection{Racine $n^{\text{i\`eme}}$ d'un nombre complexe}
+%
+Soient $[R,\Phi]$ et $[\rho,\varphi]$ les representations polaires de $Z$ et $z$.
+Rappelons que l'argument d'un nombre complexe est d\'efini \`a un multiple de $2 \pi$ pr\`es.
+Donc pour que $z^n$ soit \'egal \`a $Z$ il faut que $ [\rho^n,n \varphi] $ soit \'egal \`a $[R,\Phi]$ et donc que:
+\begin{itemize}
+\item $\rho^n = R$
+\item $n \varphi = \Phi + 2k \pi $ pour un certain $k \in \mathbb{Z}$
+\end{itemize}
+Ainsi, $\rho = \sqrt[n]{R}$ et $\varphi = \frac{\Phi + 2 k \pi}{n}$.
+Les possibilit\'es pour $z$ sont alors:
+\[
+      \left[ \sqrt[n]{R} , \frac{\Phi}{n} \right],
+      \left[ \sqrt[n]{R} , \frac{\Phi + 2 \pi}{n} \right],
+      \dots,
+      \left[ \sqrt[n]{R} , \frac{\Phi + 2 k \pi}{n} \right],
+      \dots,
+      \left[ \sqrt[n]{R} , \frac{\Phi + 2(n-1) \pi}{n} \right].
+      \]
+Toute autre valeur de $k$ donnerait l'une de ces valeurs \`a un multiple de $2 \pi$ pr\`es.
+Cela nous m\`ene au th\'eor\`eme suivant : 
+\begin{thm}
+Soit $n$ un entier naturel non nul et $z = [r,\theta]$ un nombre complexe non nul.
+Alors $z$ admet $n$ racines $n^{\text{i\`eme}}$ qui sont :
+$$
+z_k = \sqrt[n]{r} \left[ \cos \left( \frac{\theta + 2k \pi}{n} \right) + i \sin \left( \frac{\theta + 2k \pi}{n} \right) \right] \text{ avec } 0 \leq k < n
+$$
+\end{thm}
+%
+\begin{rmk}
+Repr\'esent\'ees g\'eom\'etriquement dans le plan complexe, ces racines $n^{\text{i\`eme}}$ forment les sommets d'un polyg\^one r\'egulier centr\'e en l'origine.
+\end{rmk}
+%
+\begin{exe}
+\label{exe:racines de l'unite}
+%
+\index{Nombres complexes!racine nieme@racine $n^{\text{i\`eme}}$!de l'unite@de l'unit\'e}
+%
+Donner les racines cubiques et racine quatri\`eme de l'unit\'e.
+
+\end{exe}
+%
+\begin{exe}
+\label{exe:racine nieme}
+Donner les racines $5^{\text{i\`eme}}$ de $1+ \sqrt{3} i$. \\
+\end{exe}
+%
+\section{Transformation de $a \cos x + b \sin x$}
+%
+\index{Fonctions trigonometriques@Fonctions trigonom\'etriques!Transformation de a cos x + b sin x@Transformation de $a \cos x + b \sin x$}
+%
+On se propose de r\'esoudre l'\'equation 
+\begin{equation}
+a \cos x + b \sin x = c
+\label{eq:a cos x + b sin x}
+\end{equation}
+o\`u $a$, $b$ et $c$ sont des nombres r\'eels.
+Posons $z = a+ i b $ et soient $r$ son module et $\theta$ son argument.
+On sait que $ a = r \cos \theta$ et $b = r \sin \theta$ avec $r = \sqrt{a^2 + b^2}$.
+Ainsi, l'expression $a \cos x + b \sin x $ devient
+$$
+r \cos \theta \, \cos x + r \sin \theta \, \sin x = r \left( \cos \theta \, \cos x + \sin \theta \, \sin x \right) \; .
+$$
+Faisant usage de formule trigonom\'etrique connue \footnote{$\cos( u - v ) = \cos u \, \cos v - \sin u \, \sin v$}, et de l'\'equation $r = \sqrt{a^2 + b^2}$, on obtient
+$$
+a \, \cos x + b \, \sin x = \sqrt{a^2 + b^2} \; \cos (\theta - x) \; .
+$$
+Ainsi, l'Equation \ref{eq:a cos x + b sin x} devient 
+\begin{equation}
+\cos (\theta - x) = \frac{c}{\sqrt{a^2 + b^2}} \; .
+\label{eq:cos (theta - x) = c/r}
+\end{equation}
+On distingue alors $2$ cas : 
+\begin{itemize}
+\item \textbf{ Si $ \left| \frac{c}{\sqrt{a^2 + b^2}} \right| > 1$ : } \newline
+      Alors l'\'equation n'admet pas de solution.
+\item \textbf{ Si $ \left| \frac{c}{\sqrt{a^2 + b^2}} \right| \leq 1$ : } \newline
+      Alors il existe $\alpha$ tel que $\cos \alpha =  \frac{c}{\sqrt{a^2 + b^2}} $.
+      Les solutions sont alors les $x$ tels que 
+      \begin{align*}
+      \theta - x = \alpha + 2 k \pi 
+      \quad \text{ ou } \quad
+      x - \theta = \alpha + 2 k \pi
+      \end{align*}
+      Ainsi, l'ensemble des solutions est
+      \[
+      \left\lbrace \theta - \alpha + 2 k \pi \mid k \in \mathbb{Z} \right\rbrace 
+      \cup 
+      \left\lbrace \theta + \alpha + 2 k \pi \mid k \in \mathbb{Z} \right\rbrace
+      .
+      \]
+\end{itemize}
+%
+\begin{ex}
+On veut r\'esoudre l'\'equation 
+\begin{equation}
+\cos x + \sqrt{3} \sin x = \sqrt{2} \; .
+\label{eq:ex: cos x + sin x}
+\end{equation}
+Posons $z = 1 + i \sqrt{3}$; on a alors $z = 2 e^{i \frac{\pi}{3}}$.
+Ainsi, $1 = 2 \cos \frac{\pi}{3}$ et $\sqrt{3} = 2 \sin \frac{\pi}{3}$.
+L'Equation \ref{eq:ex: cos x + sin x} devient alors 
+\begin{align*}
+2 \left[ \cos \frac{\pi}{3} \; \cos x + \sin \frac{\pi}{3} \; \sin x \right] & = \sqrt{2} \\
+\cos \left( \frac{\pi}{3} - x \right) & = \frac{\sqrt{2}}{2} \\
+\frac{\pi}{3} - x = \frac{\pi}{4} + 2 k \pi \quad \text{ ou } \quad x - \frac{\pi}{3} = \frac{\pi}{4} + 2 k \pi \\
+\end{align*}
+ce qui nous donne comme solutions : 
+$
+\left\lbrace \frac{\pi}{12} + 2 k \pi \mid k \in \mathbb{Z} \right\rbrace 
+\cup 
+\left\lbrace \frac{7 \pi }{12} + 2 k \pi \mid k \in \mathbb{Z} \right\rbrace
+$.
+\end{ex}
+%
+\section{Utilisation en g\'eom\'etrie}
+%
+\index{Nombres complexes!Utilisation en geometrie@Utilisation en g\'eom\'etrie}
+%
+On rapporte le plan complexe \`a un rep\`ere orthonorm\'e direct $(O,\vec{e_1},\vec{e_2})$.
+Soit $f$ une transformation du plan qui au point $M$ d'affixe $z$ associe le point $M'$ d'affixe $z'$.
+La relation qui exprime $z'$ en fonction de $z$ est appel\'ee \emph{\'ecriture complexe} de $f$.
+%
+\subsection{Translation}
+\index{Nombres complexes!Utilisation en geometrie@Utilisation en g\'eom\'etrie!Translation}
+%
+\begin{figure}[h!]
+\centering
+%      \begin{wrapfigure}{r}{0.35\actualtextwidth}
+            \begin{tikzpicture}[scale=1.2,>=stealth]
+            \clip (-.5,-1.5) rectangle (2.5,2);
+            \draw [color=black, xstep=.1,ystep=.1, opacity=.1, line width=.1] (-1.5,-1.5) grid (3.5,2.5);
+            \draw [color=black, xstep=.5,ystep=.5, opacity=.2, line width=.2] (-1.5,-1.5) grid (3.5,2.5);
+            \draw [color=black, xstep=1,ystep=1, opacity=.5, line width=.5] (-1.5,-1.5) grid (3.5,2.5);
+            \draw[->,color=black,thick] (-1.5,0) -- (2.5,0);
+            \foreach \x in {-1,1,2,3}
+                  \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\tiny $\x$};
+            \draw[->,color=black,thick] (0,-1.5) -- (0,2);
+            \foreach \y in {-1,1}
+                  \draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\tiny $\y$};
+            \draw[color=black] (0pt,0pt) node[above right] {\tiny $0$};
+            \begin{scriptsize}
+                  \fill[loko1] (0.5,-1) circle (1pt) node[below] {$M$} ;
+                  \fill[loko1] (2,1.5) circle (1pt) node[above] {$M'$} ;
+            \end{scriptsize}
+            \draw[->,thick,color=loko2] (0.5,-1) -- node[left] {$\vec{v}$} (2,1.5);            
+            \end{tikzpicture}
+%      \end{wrapfigure}
+	\caption{Le point $M'$ est le translat\'e du point $M$ par le vecteur $\vec{v}$.}
+\end{figure}
+%
+      Soit $M (z_M)$ un point du plan complexe et $\overrightarrow{V}$ un vecteur d'affixe $z_{\overrightarrow{V}}$.
+      Le translat\'e de $M$ par le vecteur $\overrightarrow{V}$ est le point $M'$ d'affixe $z_M + z_{\overrightarrow{V}}$.
+      
+      En effet, comme $z_M$ est l'affixe de $\overrightarrow{OM}$ et que $z_{\overrightarrow{V}}$ est l'affixe de $\overrightarrow{V}$ 
+      alors l'affixe du vecteur $\overrightarrow{OM} + \overrightarrow{V}$ est $z_M + z_{\overrightarrow{V}}$ 
+      ce qui doit correspondre \`a l'affixe de $\overrightarrow{OM'}$.
+      En identifiant les points aux vecteurs, on r\'ealise que l'affixe du point $M'$ est $z_M + z_{\overrightarrow{V}}$.
+
+\subsection{Homoth\'etie}
+Soient $P$ un point du plan d'affixe $z_P$ et $k\in\mathbb{R}^*$.
+Soient $h$ l'homoth\'etie de centre $P$ et de rapport $k$ et $M'$ l'image de $M$ par $h$.
+On a alors $z' - z_P = k (z - z_P) $.
+
+L'\'ecriture complexe de $h$ est donc \thmbox{$ z' = k \cdot z + (1-k) z_P $}.
+%
+\subsection{Angle entre deux vecteurs}
+\index{Nombres complexes!Utilisation en geometrie@Utilisation en g\'eom\'etrie!Angle entre deux vecteurs}
+%
+      Soient $A$, $B$ et $C$ trois points du plan complexe d'affixes respectifs $z_A$, $z_B$ et $z_C$.
+      L'affixe du vecteur $\overrightarrow{AB}$ est alors $z_B - z_A$ et l'affixe du vecteur $\overrightarrow{AC}$ est $z_C - z_A$.
+      D\'esignons par $\vec{u}$ le vecteur d'affixe $1$.
+%
+		\begin{figure}[h!]
+			\centering
+			\begin{tikzpicture}[line cap=round,line join=round,>=stealth,x=0.15\actualtextwidth,y=0.15\actualtextwidth]
+				\clip(-0.5,-1) rectangle (2.5,2.5);
+					\draw [color=gray,line width=.5, xstep=1.,ystep=1., opacity=.5] (-0.5,-1) grid (2.5,2.5);
+					\draw [color=gray,line width=.3, xstep=.5,ystep=.5, opacity=.3] (-0.5,-1) grid (2.5,2.5);
+					\draw [color=gray,line width=.2, xstep=.1,ystep=.1, opacity=.2] (-0.5,-1) grid (2.5,2.5);
+					\draw[->,color=black] (-0.5,0) -- (2.5,0);
+					\draw[->,color=black] (0,-1) -- (0,2.5);
+					\draw [shift={(0.5,0.5)},color=loko3!20!black,fill=loko3!20!black,fill opacity=0.1] 
+						(0,0) -- (-63.43:0.26) arc (-63.43:0:0.26) -- cycle;
+					\draw [shift={(0.5,0.5)},color=loko1,fill=loko1,fill opacity=0.1] 
+						(0,0) -- (0:0.28) arc (0:56.31:0.28) -- cycle;
+					\draw [shift={(0.5,0.5)},color=loko1] (0:0.28) arc (0:56.31:0.28);
+					\draw [shift={(0.5,0.5)},color=loko1] (0:0.23) arc (0:56.31:0.23);
+					\begin{footnotesize}
+						\fill [color=loko2] (0.5,0.5) circle (1.5pt);
+						\draw[color=loko2] (0.3,0.65) node {$A$};
+						\fill [color=loko2] (1,-0.5) circle (1.5pt);
+						\draw[color=loko2] (0.85,-0.65) node {$B$};
+						\fill [color=loko2] (1.5,2) circle (1.5pt);
+						\draw[color=loko2] (1.35,2.15) node {$C$};
+						\draw[color=black] (1.55,0.5) node {$\vec{u}$};
+						\draw[color=loko3!20!black] (1.25,0.25) node {$\left( \overrightarrow{AB} , \vec{u} \right)$};
+						\draw[color=loko1] (1.25,0.75) node {$\left( \vec{u} , \overrightarrow{AC} \right)$};
+					\end{footnotesize}
+					\draw [->] (0.5,0.5) -- (1,-0.5);
+					\draw [->] (0.5,0.5) -- (1.5,2);
+					\draw [->] (0.5,0.5) -- (1.5,0.5);
+			\end{tikzpicture}
+		\end{figure}
+%
+      On sait que $\Mes{\vec{u}}{\overrightarrow{AB}} = \arg(z_B - z_A)$ et 
+      $\Mes{\vec{u}}{\overrightarrow{AC}} = \arg(z_C - z_A)$.
+      Il suit que 
+      $\mes{AB}{AC} = \arg(z_C-z_A)-\arg(z_B-z_A)=\arg\frac{z_C - z_A}{z_B - z_A}$.
+\begin{exe}
+Soient $A (-1 - i)$, $B (2 + 2 i)$ et $C (-5 + i ) $ trois points du plan.
+Calculer la mesure de l'angle $\hat{A}$ du triangle $ABC$.
+\end{exe}
+%
+\subsection{Rotations}
+%
+\index{Nombres complexes!Utilisation en geometrie@Utilisation en g\'eom\'etrie!Rotations}
+%
+Soient $P$ un point du plan complexe et $\theta$ un nombre r\'eel.
+On d\'esigne par $r$ la rotation de centre $P$ et d'angle $\theta$.
+Soit $M$ un point du plan distinct de $P$ et soit $M'$ son image par $r$.
+On sait alors que 
+\begin{equation}
+\norm{PM} = \norm{PM'} 
+\label{eq:1}
+\end{equation}
+et 
+\begin{equation}
+\mathrm{mes}\left(\overrightarrow{PM} , \overrightarrow{PM'} \right) = \theta \; .
+\label{eq:2}
+\end{equation}
+Notons par $z_P$, $z_M$ et $z_{M'}$ les affixes de $P$, $M$ et $M'$ respectivement.
+En utilisant les affixes, on a alors 
+$
+\left\lbrace
+\begin{matrix}
+| z_{M'} - z_P | = | z_M - z_P | \\
+\text{arg} \left( \frac{z_{M'} - z_P}{z_M - z_P } \right) = \theta
+\end{matrix}
+\right.
+$
+et donc 
+$
+\left\lbrace
+\begin{matrix}
+\frac{| z_{M'} - z_P |}{| z_M - z_P |} = 1 \\
+\text{arg} \left( \frac{z_{M'} - z_P}{z_M - z_P } \right) = \theta
+\end{matrix}
+\right.
+$
+. 
+
+En posant $Z = \frac{z_{M'} - z_P}{z_M - z_P}$, on a $|Z| = 1$ et $\text{arg} (Z) = \theta$, ce qui entra\^ine que 
+$Z = \cos \theta + i \sin \theta$. 
+Cela nous permet d'\'ecrire $( z_{M'} - z_P ) = ( \cos \theta + i \sin \theta) \; ( z_M - z_P )$ et donc 
+\mybox{$ z_{M'}  = ( \cos \theta + i \sin \theta) \; ( z_M - z_P ) + z_P $}.
+Ainsi, l'\'ecriture complexe de $r$ est : 
+\begin{center}
+\thmbox{$ z' = \expo{i\theta} (z - z_P) + z_P$}.
+\end{center}
+%
+\begin{exe}
+Soient $A (2 + i ) $ et $B (3 - 2 i)$ deux points du plan. 
+D\'eterminer l'image de $B$ par la rotation de centre $A$ et d'angle $\frac{\pi}{3}$.
+D\'eterminer l'image de $B$ par la rotation de centre $A$ et d'angle $-\frac{\pi}{3}$.
+\end{exe}
+%
+\subsection{Similitudes planes directes}
+      \begin{defi}[Similitude plane directe]
+      \index{Transformation du plan!Similitude plane directe}
+      On appelle \emph{similitude plane directe} toute transformation du plan qui conserve les angles orient\'es
+      et qui multiplie les distances par une constante non nulle.
+      \end{defi}
+      %
+      \begin{thm}
+      Une similitude plane directe appartient \`a l'une des deux cat\'egories suivantes :
+            \begin{itemize}
+                  \item translation,
+                  \item composition d'une rotation et d'une homoth\'etie de m\^eme centre.
+            \end{itemize}
+      \end{thm}
+      %
+      \begin{prop}
+      Une similitude plane directe est caract\'eris\'ee par : 
+            \begin{itemize}
+                  \item son centre,
+                  \item son angle,
+                  \item son rapport.
+            \end{itemize}
+      \end{prop}
+      %
+      \begin{prop}[\'Ecriture complexe]
+            Soient $P$, d'affixe $z_P$, un point, $\theta$ un nombre r\'eel et $k$ un nombre r\'eel strictement positif.
+            Notons par $S$ la similitude plane directe de centre $P$, d'angle $\theta$ et de rapport $k$.
+            
+            Pour tout point $M$ d'affixe $z$, on note par $M'$ son image par $S$ et par $z'$ l'affixe de $M'$.            
+            On a alors :
+                  \begin{displaymath}
+                        \left\lbrace
+                              \begin{array}{l}
+                                    PM' = k\, PM \\
+                                    \mathrm{mes} \left( \overrightarrow{PM} ; \overrightarrow{PM'} \right) = \theta
+                              \end{array}
+                        \right.
+                  \end{displaymath}
+            Avec ces notations, l'\'ecriture complexe de $S$ est \thmbox{$ z' = k \expo{i\theta} (z - z_P) + z_P $}.
+      \end{prop}
+      %
+            \subsection*{Classification des similitudes planes directes}
+            L'expression complexe d'une similitude plane directe est de la forme $z'=a\,z+b$.
+            \begin{figure}[h!]
+            \centering
+            \resizebox{\linewidth}{!}{%
+            \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=.055\actualtextwidth,y=.075\textheight]
+            \clip(-9,-1.5) rectangle (11,6.5);
+            \draw (0,6) node[ ] {\fbox{$ z' = a\,z+b $}};
+            \draw (-4,4.5) node[ ] {\fbox{$ a \in \mathbb{R_+} $}};
+            \draw (4,4.5) node[ ] {\fbox{$ a \not \in \mathbb{R_+} $}};
+            \draw (-6,3) node[ ] { \fbox{$a = 1 $}};
+            \draw (-2,3) node[ ] { \fbox{$a \neq 1$} };
+            \draw (2,3) node[ ] { \fbox{$|a| = 1$} };
+            \draw (6,3) node[ ] { \fbox{$|a| \neq 1$} };
+            %
+            \draw [->] (0,5.75) to[out=-90,in=90] (-4,4.75);
+            \draw [->] (0,5.75) to[out=-90,in=90] (4,4.75);
+            \draw [->] (-4,4.25) to[out=-90,in=90] (-6,3.25);
+            \draw [->] (-4,4.25) to[out=-90,in=90] (-2,3.25);
+            \draw [->] (4,4.25) to[out=-90,in=90] (6,3.25);
+            \draw [->] (4,4.25) to[out=-90,in=90] (2,3.25);
+            %
+            \draw (-6,2.5) node[below] {\fbox{\parbox{.2\actualtextwidth}{\raggedright %
+                  Translation de vecteur $\vec{u}$ d'affixe $b$.}}};
+            \draw (-2,1) node[below] %
+                  {\fbox{\parbox{.2\actualtextwidth}{\raggedright %
+                        Homoth\'etie de centre $I$ d'affixe $\frac{b}{1-a}$ de rapport $a$.}}};
+            \draw (2,2.5) node[below] %
+                  {\fbox{\parbox{.29\actualtextwidth}%
+                  {\raggedright %
+                   Rotation de centre $I$ d'affixe $\frac{b}{1-a}$ d'angle $\theta = \text{arg} (a) \qquad [2\;\pi]$.}}};
+            \draw (6,1) node[below] %
+                  {\fbox{\parbox{.35\actualtextwidth}%
+                  {\raggedright Similitude plane directe de centre $I$ d'affixe $\frac{b}{1-a}$, %
+                  de rapport $k =|a|$ et d'angle $\theta = \text{arg}(a) \qquad [2\,\pi]$.}}};
+            %
+            \draw [->] (-6,2.75) to[out=-90,in=90] (-6,2.5);
+            \draw [->] (-2,2.75) to[out=-90,in=90] (-2,1);
+            \draw [->] (2,2.75) to[out=-90,in=90] (2,2.5);
+            \draw [->] (6,2.75) to[out=-90,in=90] (6,1);
+            \end{tikzpicture}
+            }
+            \caption{Classification des similitudes planes directes.}
+            \label{fig:classification similitudes planes directes}
+            \end{figure}
+\end{chapter}
+
+\TCDLessonStyleOff
+\providecommand{\Reel}[1]{\mathfrak{Re}\left(#1\right)}
+\providecommand{\Imag}[1]{\mathfrak{Im}\left(#1\right)}
+\providecommand{\argmt}[1]{\mathrm{arg}\left( #1 \right)}
+\providecommand{\mes}[2]{\mathrm{mes}\left( \widehat{ \overrightarrow{#1} , \overrightarrow{#2} } \right)}
+\providecommand{\AngleEgal}[3]{#1 = #2 \quad \left[ #3 \right] }
+\begin{fiche}
+      \subsection*{Diff\'erentes formes d'un nombre complexe}~\\[-2.5\baselineskip]
+\index{Nombre complexe!formes}
+            \[
+                  \begin{array}{|c|c|c|}
+                        \hline
+                        \rowcolor[gray]{0.8}
+                              \color{black}
+                              \text{Forme algébrique} & \text{Forme trigonométrique}        & \text{Forme exponentielle} \\[2pt]
+                        \hline
+                              z = a + i b             & z = r (\cos \theta + i \sin \theta) & z = r \expo{i\theta}       \\
+                        \hline
+                              \displaystyle{
+                                 \left\lbrace
+                                    \begin{array}{l}
+                                       a = r \cos \theta \\
+                                       b = r \sin \theta 
+                                    \end{array}
+                                 \right.
+                              }
+                                                      & 
+                                                  \multicolumn{2}{c|}{
+                                                     r = \sqrt{a^2 + b^2}
+                                                     \quad \text{ et } \quad 
+                                                     \displaystyle{
+                                                         \left\lbrace
+                                                            \begin{array}{l}
+                                                               \cos \theta = \frac{a}{r} \\
+                                                               \sin \theta = \frac{b}{r} 
+                                                            \end{array}
+                                                         \right.
+                                                      }
+                                                                    }
+                                                                                                                         \\
+                        \hline
+                  \end{array}
+            \]
+      %
+      ~\\[-2\baselineskip]
+      %
+      \subsection*{Propri\'et\'es}
+\index{Nombre complexe!Proprietes@Propri\'et\'es}
+                  \subsubsection*{Sur les conjugu\'es} ~\\[-1.5\baselineskip]
+\index{Nombre complexe!Proprietes@Propri\'et\'es!conjugues@conjug\'es}
+                              \begin{itemize}
+                                    \item $\overline{a+ib} = \overline{a-ib}$,
+                                    \item $\bar{\bar{z}} = z$,
+                                    \item $z \cdot \bar{z} = |z|^2$,
+                                    \item $\overline{z_1 + z_2} = \bar{z_1} + \bar{z_2}$,
+                                    \item $\overline{z_1 \cdot z_2} = \bar{z_1} \cdot \bar{z_2}$,
+                                    \item $\overline{\left(\frac{z_1}{z_2}\right)} = \displaystyle{\frac{\bar{z_1}}{\bar{z_2}}}$.
+                              \end{itemize}
+                  \subsubsection*{Sur les modules} ~\\[-1.5\baselineskip]
+\index{Nombre complexe!Proprietes@Propri\'et\'es!modules}
+%                  \begin{minipage}{.4\actualtextwidth}
+                        \begin{itemize}
+                              \item $|z_1 \cdot z_2| = |z_1| \cdot |z_2|$,
+                              \item $\left| \frac{z_1}{z_2} \right| = \frac{|z_1|}{|z_2|}$,
+                              \item $|z^n| = |z|^n$,
+                              \item $|\bar{z}| = |z|$,
+                              \item $|z_1 + z_2| \leq |z_1| + |z_2|$.
+                        \end{itemize}
+%                  \end{minipage}
+                  \subsubsection*{Sur les arguments} ~\\[-1.5\baselineskip]
+\index{Nombre complexe!Proprietes@Propri\'et\'es!arguments}
+%                  \begin{minipage}{.4\actualtextwidth}
+                        \begin{itemize}
+                              \item $\argmt{z_1 \cdot z_2} = \argmt{z_1} + \argmt{z_2}$,
+                              \item $\argmt{\frac{1}{z}} = -\argmt{z}$,
+                              \item $\argmt{\frac{z_1}{z_2}} = \argmt{z_1} - \argmt{z_2}$,
+                              \item $\argmt{z^n} = n \cdot \argmt{z}$,
+                              \item $\argmt{\bar{z}} = -\argmt{z}$.
+                        \end{itemize}
+%                  \end{minipage}
+                  \subsection*{Utilisant les affixes} ~\\[-1.5\baselineskip]
+\index{Nombre complexe!Proprietes@Propri\'et\'es!angle entre deux vecteurs}
+                        Soient $A$, $B$, $C$ et $D$ quatre points d'affixes respectifs $a$, $b$, $c$ et $d$.
+                        On a alors : 
+                              \[
+                              \mes{AB}{CD} = \argmt{\frac{d - c}{b - a} }\;.
+                              \]
+                        
+\index{Nombre complexe!Proprietes@Propri\'et\'es!identification de parallelogramme@identification de parall\'elogramme}
+                        Le quadrilat\`ere $ABCD$ est un parall\'elogramme si et seulement si : 
+                              $a-b = d-c$.
+      \subsection*{Ensembles de points}
+\index{Ensemble de points!sous condition sur les angles}
+            \subsubsection*{D\'efini par l'argument}
+                  \begin{itemize}
+	                        \item L'ensemble des points $M(z)$ v\'erifiant
+	                              \[
+	                                    \AngleEgal{\argmt{\frac{z-z_A}{z-z_B}}}{0}{2\pi}
+	                                          \iff
+	                                    \AngleEgal{\mes{BM}{AM}}{0}{2\pi}
+	                              \]
+                              est
+                              $(AB) \setminus ]AB]$ ;
+	                        \item l'ensemble des points $M(z)$ v\'erifiant
+	                              \[
+	                                    \AngleEgal{\argmt{\frac{z-z_A}{z-z_B}}}{0}{\pi}
+	                                          \iff
+	                                    \AngleEgal{\mes{BM}{AM}}{0}{\pi}
+	                              \]
+                              est
+                              $(AB) \setminus \{B\}$ ;
+	                        \item l'ensemble des points $M(z)$ v\'erifiant
+	                              \[
+	                                    \AngleEgal{\argmt{\frac{z-z_A}{z-z_B}}}{\pi}{2\pi}
+	                                          \iff
+	                                    \AngleEgal{\mes{BM}{AM}}{\pi}{2\pi}
+	                              \]
+                              est 
+                              $[AB[$ ;
+	                        \item l'ensemble des points $M(z)$ v\'erifiant
+	                              \[
+	                                    \AngleEgal{\argmt{\frac{z-z_A}{z-z_B}}}{\frac{\pi}{2}}{\pi}
+	                                          \iff
+	                                    \AngleEgal{\mes{BM}{AM}}{\frac{\pi}{2}}{\pi}
+	                              \]
+                              est
+                              le cercle de diam\`etre $[AB]$ priv\'e du point $B$ ;
+	                        \item l'ensemble des points $M(z)$ v\'erifiant
+	                              \[
+	                                    \AngleEgal{\argmt{\frac{z-z_A}{z-z_B}}}{\frac{\pi}{2}}{2\pi}
+	                                          \iff
+	                                    \AngleEgal{\mes{BM}{AM}}{\frac{\pi}{2}}{2\pi}
+	                              \]
+                              est
+                              l'ensemble $\mathscr{E}$ repr\'esent\'e ci-dessous ($B\not\in\mathscr{E}$).
+                              
+                              \begin{tikzpicture}[scale=.75]
+                              \draw [dotted] (-0.9,1.58) circle (2);
+                              \draw [dash pattern=on 2pt off 2pt] (-2.86,1.19)-- (1.06,1.97);
+                              \draw [shift={(-0.9,1.58)},line width=1.2pt,color=loko1,smooth]  
+                                    plot[domain=-2.95:0.19,variable=\t]
+                                          ({1*2*cos(\t r)+0*2*sin(\t r)},{0*2*cos(\t r)+1*2*sin(\t r)});
+                              \fill [color=black] (-0.9,1.58) circle (1.0pt);
+                              \fill [color=loko1] (-2.86,1.19) circle (1.5pt) node[left] {$A$};
+                              \draw [color=black,fill=white] (1.06,1.97) circle (1.5pt) node[right] {$B$};
+                              \draw[color=loko1] (0.54,-0.12) node {$\mathscr{E}$};
+                              \end{tikzpicture}
+                  \end{itemize}
+                  %
+                  \subsubsection*{D\'efini par le module}
+\index{Ensemble de points!sous condition sur les distances}
+                        Soient $A(a)$ et $B(b)$ deux points.
+                        L'ensemble des points $M(z)$ v\'erifiant
+                        $|z-a| = |z-b|$ (c'est-\`a-dire v\'erifiant $AM = BM$)
+                        est la \emph{m\'ediatrice de $[AB]$}.
+                  
+                  %
+                  \subsubsection*{Sous condition sur la partie réelle ou imaginaire}
+\index{Ensemble de points!sous condition sur la partie reelle@sous condition sous la partie r\'elle}
+\index{Ensemble de points!sous condition sur la partie imaginaire}
+                        Pour trouver l’ensemble des points $M(z)$ tels que $\Reel{f (z)} = 0$ ou $\Imag{f (z)} = 0$, 
+                        il faut souvent remplacer $z$ par $x + iy$ dans $f (z)$.
+                        \begin{ex}
+                              Soit $f$ l'application d\'efinie sur $\mathbb{C}^*$ par
+                              $\displaystyle{ f(z) = \frac{1}{iz} }$.
+                              
+                              On veut trouver l'ensemble des points $M(z)$ du plan tels que $f(z)$ est r\'eel.
+                              On pose alors $z = x + i y$ et on a 
+                              \begin{align*}
+                                    f(z) & = \frac{1}{i(x+iy)}                        
+                                           = \frac{1}{-y+ix}                          
+                                           = \frac{-y-ix}{y^2 + x^2}                  \\
+                                         & = -\frac{y}{x^2+y^2}-\frac{x}{x^2+y^2}i    \;.
+                              \end{align*}
+                              Pour que $f(z)$ soit r\'eel, il faut que $-\frac{x}{x^2+y^2}$ soit nul
+                              et donc que $x$ soit \'egal \`a $0$.
+                              
+                              Ainsi, l'ensemble des points $M(z)$ tels que $f(z)$ soit r\'eel est 
+                              la droite d'\'equation $x=0$ priv\'e du point $O$ (car $z=0$ est exclut).
+                        \end{ex}
+      %
+      \subsection*{Pour trouver une racine carr\'ee d'un nombre complexe}
+\index{Nombre complexe!racines carree@racines carr\'ees}
+            Soit $\Delta\in\mathbb{C}$, on cherche $\delta = x+iy$ v\'erifiant $\delta^2 = \Delta$.
+            Les r\'eels $x$ et $y$ v\'erifient 
+            \[
+                  \left\lbrace
+                        \begin{array}{l}
+                              x^2 + y^2 = |\Delta|       \\
+                              x^2 - y^2 = \Reel{\Delta}  \\
+                              2 x y     = \Imag{\Delta}  
+                        \end{array}
+                  \right.
+            \]
+            ce qui donne
+            \[
+					\delta = \sqrt{\frac{|\Delta| + \Reel{\Delta}}{2}} \pm \sqrt{\frac{|\Delta| - \Reel{\Delta}}{2}} \; i
+            \]
+            o\`u on a <<~$+$~>> si $\Imag{\Delta} > 0$ et <<~$-$~>> si $\Imag{\Delta} < 0$.
+            
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+\end{fiche}
+
+\TCDLessonStyleOff
+\clearpage
+\providecommand{\Arg}[1]{\mathrm{Arg}\left( #1 \right)}
+\section{Exercices}
+%
+\begin{exo}
+      On consid\`ere les nombres complexes suivants :
+            \[
+                  z_1 = (1+i) (\sqrt{3}-i)
+ ; \quad
+                  z_2 = (1+i)^4 \cdot (\sqrt{3}-i)^3
+ ; \quad
+                  z_3 = \frac{1+i}{\sqrt{3}-i}
+                  .
+            \]
+      \begin{enumerate}
+            \item Ecrire chacun d'eux sous forme alg\'ebrique.
+                  En d\'eduire leurs parties r\'eelles et imaginaires.
+            \item D\'eterminer le module et un argument de chacun des nombres complexes $1+i$ et $\sqrt{3}-i$
+                  puis donner la forme trigonom\'etrique de $z_1$, $z_2$ et $z_3$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      On pose $z=2\sqrt{3} + 2i$, $z' = 1 + \sqrt{3} + (1-\sqrt{3})i$ et $z'' = \frac{z}{z'}$.
+      \begin{enumerate}
+            \item Donner la forme alg\'ebrique de $z''$.
+            \item Donner la forme trigonom\'etrique de $z''$ et de $z$.
+            \item En d\'eduire $|z'|$, $\arg z'$, $\cos \frac{\pi}{12}$, $\sin \frac{\pi}{12}$ et $\tan \frac{\pi}{12}$.
+      \end{enumerate}
+\end{exo}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% Begin exo tany amin'i Mr Ranto %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+	On consid\`ere les nombres complexes $u = 1 - i \sqrt{3}$ et $v = 1 - i$.
+	Donner la forme trigonom\'etrique de chacun des nombres suivants :
+	\[
+		u 						\ ; \
+		u^3						\ ; \
+		v						\ ; \
+		a = \frac{1}{v}		\ ; \
+		b = \frac{u}{v}		\ ; \
+		c = a \, b^2			.
+	\]
+\end{exo}
+%
+\begin{exo}
+	D\'emontrer les propri\'et\'es suivantes : 
+	\begin{itemize}
+		\item $|z \cdot z'| = |z| \cdot |z'|$ et $\arg{z \cdot z'} = \arg{z} + \arg{z'}$.
+		\item $|z^n| = |z|^n$ et $\arg{z^n} = n \cdot \arg{z}$.
+		\item $\left| \frac{z}{z'} \right| = \frac{|z|}{|z'|}$ et $\arg{\frac{z}{z'}} = \arg{z} - \arg{z'}$.
+	\end{itemize}
+\end{exo}
+%
+\begin{exo}
+	Montrer que :
+	\begin{itemize}
+ 		\item $|z + z'| \leq |z| + |z'|$.
+		\item $ \left| |z| - |z'| \right| \leq |z - z'|$.
+	\end{itemize}
+\end{exo}
+%
+\begin{exo}
+	D\'emontrer que si $|u| = 1$ alors $\frac{z - u \bar{z}}{1 - u}$ est r\'eel.
+	Etudier la r\'eciproque.
+\end{exo}
+%
+\begin{exo}
+	Soit $f$ la fonction \`a variable complexe d\'efinie par $f(z) = \frac{z}{z^2 + 1}$.
+	\begin{enumerate}
+		\item Donner le domaine de d\'efinition de $f$.
+		\item Montrer que $f(z) = f(z')$ si et seulement si $z = z'$ ou $z \, z' = 1$.
+		\item Soient $z$ et $z'$ deux nombres complexes tels que $|z| < 1$ et $|z'| < 1$.
+			Montrer que si $f(z) = f(z')$ alors $z = z'$.
+	\end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%% End exo tany amin'i Mr Ranto %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+      On consid\`ere le nombre complexe $u=1+i$.
+      \begin{enumerate}
+            \item Ecrire $u$ et $\bar{u}$ sous forme trigonom\'etrique.
+                  \label{item:1}
+            \item Soit $n$ un entier naturel.
+                  On pose $S_n = u^n + \bar{u}^n$.
+                  D\'eduire de \ref{item:1} que $S_n = \lambda_n \cos \left( n \frac{\pi}{4} \right)$
+                  o\`u $\lambda_n$ est un r\'eel \`a pr\'eciser en fonction de $n$.
+            \item Pour quelles valeurs de $n$ a-t-on $S_n = 0$\,?
+            \item Prouver que si $n$ est pair, $S_n$ est un entier relatif.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      On pose $u=-1 + i \sqrt{3}$.
+      \begin{enumerate}
+            \item Donner la forme trigonom\'etrique des nombres :
+                  $u$, $\bar{u}$, $-2u$, $iu$, $\frac{1}{u}$, $\frac{-i}{u^2}$
+                  et construire leurs images dans le plan complexe.
+            \item R\'esoudre dans $\mathbb{C}$ l'\'equation : $z^2 - 2i z - i\sqrt{3} = 0$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      R\'esoudre dans $\mathbb{C}$ les \'equations suivantes : 
+      \begin{enumerate}
+            \item $z^{2} - 2 \, z + 5 = 0$,
+            \item $z^{2} - 4 \, z + 6 = 0$,
+            \item $z^{2} - \left(1 + i\right) \, z + 5 i = 0$,
+            \item $z^{2} + \left(1 + 3 i\right) \, z - 4 + 3 i = 0$,
+            \item $z^{2} - ( 3 +  2 i \, \sqrt{2} )z + 3 i \, \sqrt{2} = 0$,
+            \item $2 \, z^{2} - \left(6 - 5i\right) \, z + 7 - 4 i = 0$,
+            \item $z^{2} - \left(3 - 4 i\right) \, z - 1 - 7 i = 0$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      En utilisant la formule de Moivre et la formule du bin\^ome, exprimer $\cos 3\theta$ en fonction de $\cos \theta$,
+      puis $\sin 3\theta$ en fonction de $\sin \theta$.
+      
+      M\^eme questions pour $\cos 5\theta$ et $\sin 5\theta$.
+\end{exo}
+%
+\begin{exo}
+      On pose $z = \cos \theta + i \sin \theta$.
+      \begin{enumerate}
+            \item Calculer $z + \frac{1}{z}$, $z - \frac{1}{z}$, 
+                  $z^n + \frac{1}{z^n}$ et $z^n - \frac{1}{z^n}$ ($n\in\mathbb{Z}$)
+                  en fonction de $\theta$.
+            \item D\'evelopper 
+                  $\left( z + \frac{1}{z} \right)^3$,
+                  $\left( z - \frac{1}{z} \right)^3$,
+                  $\left( z + \frac{1}{z} \right)^4$ et
+                  $\left( z - \frac{1}{z} \right)^4$ ; 
+                  puis lin\'eariser $\cos^3 \theta$, $\sin^3 \theta$, $\cos^4 \theta$ et $\sin^4 \theta$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      \begin{enumerate}
+            \item Lin\'eariser : $\cos ^2 x$, $\sin^3 x$, $\cos^4 x \cdot \sin x$ en utilisant les formules d'Euler.
+            \item M\^eme question pour : $\cos^4 x$, $\sin^4 x$, $\cos^5 x$, $\sin^5 x$, $\cos^6 x$ et $\sin^6 x$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      R\'esoudre dans $\mathbb{C}^2$ les syst\`emes : 
+            \begin{enumerate}						
+                  \item $\displaystyle{ \left\lbrace \begin{array}{l} 
+                              (1-i) x + (2-i) y = 6 + i \\
+                              (2+i) x - (1+i) y = 5 - 8 i \;.
+                         \end{array} \right. }$
+                  \item $\displaystyle{ \left\lbrace \begin{array}{l} 
+                              2ix + (1-3i) y = 7 - 3i \\
+                              (1-i) \bar{x} - (5+2i) \bar{y} = -10 + i \;.
+                         \end{array} \right. }$
+                  \item $\displaystyle{ \left\lbrace \begin{array}{l} 
+                              (1+i) x + 2 i y = -2 - 2i \\
+                              (3-i) \bar{x} + (1+3i) \bar{y} = 3 - 11 i \;.
+                         \end{array} \right. }$
+						\item $\displaystyle{
+									\begin{multiform}
+										\left(2 + i\right) \, \bar{x} + \left(3 - 2 i\right) \, \bar{y} = 9 + 8 i			\\
+										\left(4 - 3 i\right) \, x - \left(2 - 3 i\right) \, y = 7 - 12 i		.
+									\end{multiform}	 
+													}$
+                  \item $\displaystyle{ \left\lbrace \begin{array}{l} 
+                              (2+i) x + (2-i) \bar{y} = -12-4i \\
+                              (3+2i) x - (3-2i) \bar{y} = 8-4i  \;.
+                         \end{array} \right. }$
+            \end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% Begin exo tany amin'i Mr Ranto %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+	R\'esoudre dans $\mathbb{C}$ les \'equations suivantes : 
+	\begin{enumerate}
+		\item $z^2 - (4 - i) z + 3 - 3i = 0$,
+		\item $z^2 - (3 +2i) z + 5 +  i = 0$,
+		\item $z^2 + (1 - i) z + 6 + 2i = 0$,
+		\item $z^2 - 2 z + 17 = 0$,
+		\item $z^2 - 2 \sqrt{3} i z -4 = 0$.
+	\end{enumerate}
+\end{exo}	
+%
+\begin{exo}
+	\begin{enumerate}
+		\item Donner les racines cubiques de $42 - 42 \sqrt{3} i$.
+		\item Donner les racines quatri\`emes de $- 16$.
+		\item R\'esoudre les \'equations suivantes : 
+			\begin{enumerate}
+				\item $z^2 - 2 i \sqrt{3} + 2 = 0$,
+				\item $z^3 - \sqrt{3} + 3i = 0$,
+				\item $z^5 - 9 \sqrt{3} = 0$.
+			\end{enumerate}
+	\end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%% End exo tany amin'i Mr Ranto %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+      \begin{enumerate}
+            \item R\'esoudre dans $\mathbb{C}$ l'\'equation : $z^2 - (5+4i\sqrt{3}) z + 9 = 0$.
+            \item On d\'esigne par $z'$ la racine ayant le plus grand module.
+                  Calculer les modules et un argument de chacune des racines $z'$ et $z''$ 
+                  ainsi que de $\frac{z'}{z''}$ et $z' z''$.
+            \item Trouver les nombres complexes $Z$ v\'erifiant $Z^2 = z'$.
+                  Exprimer les solutions sous forme alg\'ebrique, trigonom\'etrique puis polaire.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      \begin{enumerate}
+            \item Calculer $(1-2i)^3$ et $(2-i)^4$.
+            \item En d\'eduire les solutions des \'equations : 
+                  \begin{enumerate}
+                        \item $z^3 = - 11 + 2i$
+                        \item $z^4 + 7 + 24 i = 0$.
+                  \end{enumerate}
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      R\'esoudre dans $\mathbb{C}$ les \'equations suivantes : 
+      \begin{enumerate}
+            \item $z^3 + z^2 + z + 1 = 0$,
+            \item $\left(\frac{z-i}{z+i}\right)^3+\left(\frac{z-i}{z+i}\right)^2+\left(\frac{z-i}{z+i}\right)+1 = 0$,
+            \item $1-z+z^2-z^3 = 0$,
+            \item $z^4 = 2 - 2 i \sqrt{3}$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      On consid\`ere le polyn\^ome $P(z) = 2\, z^3 - (5+6i)\, z^2 + 9i\, z + 1 - 3i$.
+      \begin{enumerate}
+            \item Trouver le r\'eel $\alpha$ tel que $P(\alpha) = 0$.
+            \item R\'esoudre dans $\mathbb{C}$ l'\'equation $P(z) = 0$.
+      \end{enumerate}
+      M\^eme questions pour le polyn\^ome $Q(z) = z^3 - (4+5i) z^2 - (1-19i) z + 12 - 12 i$.
+      En d\'eduire les solutions de l'\'equation $z^3 - (4-5i) z^2 - (1+19i) z + 12 + 12 i = 0 $.
+\end{exo}
+%
+\begin{exo}
+      On consid\`ere le polyn\^ome $P(z) = z^3 - (3+2i)z^2 + (3+5i) z - (2+6i)$.
+      \begin{enumerate}
+            \item Trouver le r\'eel $\alpha$ tel que $P(i\alpha) = 0$.
+            \item R\'esoudre dans $\mathbb{C}$ l'\'equation $P(z) = 0$.
+      \end{enumerate}
+      M\^eme questions pour les polyn\^omes
+      $Q(z) = 2 \, z^{3} - 3 i \, z^{2} + \left(10 + 24 i\right) \, z + 36 - 15 i$
+      et 
+      $R(z) = 3 \, z^{3} - \left(3 + 5 i\right) \, z^{2} - \left(2 - 17 i\right) \, z + 10$.
+\end{exo}
+%
+\begin{exo}
+      On consid\`ere le polyn\^ome 
+      $P(z) = \left(1-i\right) \, z^{3} + \left(1 + 3 i\right) \, z^{2} - \left(4 - 2 i\right) \, z + 12 - 4 i$.
+      \begin{enumerate}
+            \item Trouver le r\'eel $\alpha$ tel que $P(\alpha - i\alpha) = 0$.
+            \item R\'esoudre dans $\mathbb{C}$ l'\'equation $P(z) = 0$.
+      \end{enumerate}
+      M\^eme questions pour le polyn\^ome
+      $Q(z) = \left(1-i\right) \, z^{3} - \left(3-5 i\right) \, z^{2} + 18 \, z - 44 + 12 i$.
+\end{exo}
+%
+\begin{exo}
+      On pose $P(z) = z^4 - i z^3 - 3 (1-i) z^2 + 4 i z - 12 i - 4 $.
+      \begin{enumerate}
+            \item D\'emontrer que $P$ admet deux racines r\'eelles que l'on d\'eterminera.
+            \item R\'esoudre dans $\mathbb{C}$ l'\'equation $P(z) = 0$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      R\'esoudre dans $\mathbb{C}$ les \'equations 
+      \begin{enumerate}
+            \item $ (2z^2-3x+2)^2 + i(z^2-3z+2)^2 = 0 $,
+            \item $ (z^2 + 4z + 1)^2 + (3z-5)^2 = 0 $,
+            \item $ z^2 + 4z + 1 + i (3z - 5) = 0 $.
+      \end{enumerate}
+      (Remarquer que $a^2 + b^2 = (a+ib)(a-ib)$).
+\end{exo}
+%
+\begin{exo}
+      On pose $P(z) = z^4 - z^2 + 1$.
+      \begin{enumerate}
+            \item R\'esoudre dans $\mathbb{C}$ l'\'equation $P(z) = 0$.
+            \item Montrer $P(z)$ peut s'\'ecrire sous forme d'un produit de 
+                  deux polyn\^omes du second degr\'e \`a coefficients r\'eels.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      R\'esoudre dans $\mathbb{C}$ l'\'equation : $z^6 - (1-i) z^3 - i = 0$.
+      Construire les images des solutions dans le plan complexe.
+\end{exo}
+%
+\begin{exo}
+      \begin{enumerate}
+            \item D\'eterminer les modules et les arguments des solutions dans $\mathbb{C}$ de l'\'equation $x^5+1=0$.
+            \item D\'emontrer que l'on peut \'ecrire : 
+                  \[
+                  x^5+1= (x+1) \left( x^2-2x\cos \frac{\pi}{5} +1 \right) \left( x^2 - 2x\cos \frac{3\pi}{5} +1 \right) .
+                  \]
+            \item En d\'eduire les valeurs de $\cos \frac{\pi}{5}$ et $\cos \frac{3\pi}{5}$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      On consid\`ere dans $\mathbb{C}$ la suite de terme g\'en\'eral $z_n$, 
+      d\'efinie par son premier terme $z_0 = 1$ et par la relation de r\'ecurrence $2z_{n+1} = z_n + i$.
+      \begin{enumerate}
+            \item D\'emontrer que : $\forall n \in\mathbb{N}^*, |z_n|<1$.
+            \item On pose $z_n = x_n + i y_n$ o\`u $x_n$ et $y_n$ sont r\'eels et $u_n = z_n - i$.
+                  \begin{enumerate}
+                        \item Trouver une relation entre $u_{n+1}$ et $u_n$.
+                        \item En d\'eduire que la suite de terme g\'en\'eral 
+                              $x_n$ est une suite g\'eom\'etrique qui converge vers $0$ 
+                              et que les suite de termes g\'en\'eraux $y_n$ et $|z_n|$ convergent vers $1$.                  
+                  \end{enumerate}
+            \item Calculer le plus petit entier $n_0$ tel que : $\forall n \geq n_0,\ |z_n - i| < 10^{-5}$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      On consid\`ere la suite de nombre complexe d\'efinie par : 
+            \[
+                  z_0 = 0 ; z_1 = i ; z_n - z_{n-1} = i (z_{n-1} - z_{n-2} ) \quad (n\geq 2)
+            \]
+      \begin{enumerate}
+            \item Exprimer $z_n - z_{n-1}$ en fonction de $i$ et de $n$.
+            \item Etablir : $z_n = \frac{1-i}{2} (i^n - 1)$.
+            \item D\'emontrer que cette suite est p\'eriodique.
+            \item Repr\'esenter dans le plan complexe les points $M_{2017}$, $M_{2018}$, $M_{2019}$ et $M_{2020}$ 
+                  d'affixes respectifs  $z_{2017}$, $z_{2018}$, $z_{2019}$ et $z_{2020}$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      On consid\`ere la suite de nombres complexes d\'efinie par son premier terme $z_0=8$ et la relation de r\'ecurrence :
+            \[
+                  z_{n+1} = \frac{\sqrt{2}+i\sqrt{6}}{4} \cdot z_n      .
+            \]
+      Dans le plan complexe muni d'un rep\`ere orthonormal direct $(O,\vec{\imath},\vec{\jmath})$,
+      on d\'esigne par $M_n$ le point d'affixe $z_n$.
+      \begin{enumerate}
+            \item Donner la forme trigonom\'etrique et la forme alg\'ebrique des nombres       
+                  $z_0$, $z_1$, $z_2$, $z_3$, $z_4$ et $z_5$
+                  puis construire les points 
+                  $M_0$, $M_1$, $M_2$, $M_3$, $M_4$ et $M_5$.
+            \item Exprimer $z_n$ en fonction de $n$.
+                  Montrer que les modules des nombres complexes $z_n$ forment une suite g\'eom\'etrique.
+                  Que peut-on dire des arguments de $z_n$\,?
+            \item D\'eterminer le plus petit entier $n$ tel que $|z_n| < 10^{-2}$.
+                  Quel est le nombre $z_n$ correspondant\,?
+                  Quelle est la limite de $z_n$ quand $n$ tend vers l'infini\,?
+                  Que peut-on dire des points $M_n$\,?
+            \item Comparer $OM_n$ et $OM_{n+1}$ puis calculer la mesure de l'angle 
+                  $ \left( \overrightarrow{OM}_n,\overrightarrow{OM}_{n+1} \right)$.
+                  En d\'eduire une construction de $M_{n+1}$ connaissant $M_n$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      Dans le plan complexe muni d'un rep\`ere orthonorm\'e direct $(O,\vec{u},\vec{v})$ d'unit\'e 2~cm,
+      on consid\`ere les points $A$, $B$, $C$ et $D$ d'affixes respectifs 
+            $z_A = -i$, $z_B = 3$, $z_C = 2+3i$ et $z_D = -1+2i$.
+      \begin{enumerate}
+            \item Placer sur une figure les points $A$, $B$, $C$ et $D$.
+            \item \begin{enumerate}
+                        \item Interpr\'eter g\'eom\'etriquement le module et l'argument du nombre complexe 
+                              $\displaystyle{ \frac{z_C - z_A}{z_D - z_B} }$.
+                        \item Calculer ce nombre complexe.
+                        \item Que peut-on conclure concernant les segments $[AC]$ et $[BD]$\,?
+                  \end{enumerate}
+            \item \begin{enumerate}
+                        \item Quelle est la nature du quadrilat\`ere $ABCD$\,? Justifier.
+                        \item Calculer l'aire $s_0$ du quadrilat\`ere $ABCD$.
+                  \end{enumerate}
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      Soit $P(z) = z^3 - (6+9i) z^2 + (-9+45i) z + 54 - 54 i$.
+      \begin{enumerate}
+            \item Montrer que l'\'equation $P(z) = 0$ admet une racine r\'eelle $z_0$ que l'on d\'eterminera.
+                  En d\'eduire une factorisation de $P(z)$.
+            \item D\'eterminer toutes les solutions de l'\'equation $P(z) = 0$.
+                  On appellera $z_2$ la solution imaginaire pure, $z_0$ la solution r\'eelle et $z_1$ l'autre.
+                  Pour chacune d'elles, pr\'eciser le module et l'argument.
+            \item Montrer que $z_0$, $z_1$ et $z_2$ sont les trois premiers termes d'une suite g\'eom\'etrique
+                  $(z_n)_{n\in\mathbb{N}}$ dont on pr\'ecisera la raison.
+                  Calculer $z_n$ en fonction de $n$.
+            \item Montrer que les modules des $z_n$ forment une suite g\'eom\'etrique.
+                  Que peut-on dire de leurs arguments\,?
+            \item Pour quelles valeurs de $n$, $z_n$ est-il r\'eel\,?
+                  R\'eel n\'egatif\,?
+                  Imaginaire pur\,?
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      On consid\`ere le polyn\^ome $P(z)$ suivant : $P(z) = z^3 + 9 i z^2 + 2(6i - 11)z - 3(4i + 12)$.
+      \begin{enumerate}
+            \item D\'emontrer que l'\'equation $P ( z ) = 0$ admet une solution r\'eelle $z_1$.
+            \item D\'eterminer un polyn\^ome $Q ( z )$ tel que $P ( z ) = ( z - z_1 ) Q ( z )$.
+            \item D\'emontrer que l'\'equation $Q ( z ) = 0$ admet une solution imaginaire pure $z_2$.
+            \item R\'esoudre dans $\mathbb{C}$ l'\'equation $P ( z ) = 0$.
+            \item On note $z_3$ la 3~i\`eme solution de l'\'equation $P ( z ) = 0$. 
+                  D\'emontrer que les points du plan complexe $A$, $B$ et $C$ d'affixes respectives $z_1$, $z_2$ et $z_3$, 
+                  sont align\'es.
+      \end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+      On rapporte le plan \`a un rep\'ere orthonorm\'e $(O ; \vec{u} , \vec{v})$ d'unit\'e 2~cm.
+      On consid\`ere le polyn\^ome $P$ d\'efinie par 
+            $
+                  P(z) = 4 \, z^{3} - \left(4 - 2 i\right) \, z^{2} + \left(5 + 2 i\right) \, z + 4 + \frac{1}{2} i \;.
+            $
+      \begin{enumerate}
+            \item Trouver le r\'eel $\alpha$ v\'erifiant $P(\alpha) = 0$.
+            \item R\'esoudre dans $\mathbb{C}$ l'\'equation $P(z) = 0$. \newline
+                  On d\'esigne par $z_1$ et $z_2$ les deux racines non-r\'eels de $P$, o\`u $\mathfrak{Im}(z_1) < 0$.
+                  On d\'esigne respectivement par $A$, $B$ et $C$ les points d'affixes $\alpha$, $z_1$ et $z_2$.
+            \item Trouver les deux nombres complexes $a$ et $b$ v\'erifiant :
+                  $
+                        \left\lbrace
+                              \begin{array}{l}
+                                    \alpha = a z_2    + b \\
+                                    z_1    = a \alpha + b \;.
+                              \end{array}
+                        \right.
+                  $
+                  
+                  On pose $\omega = \frac{b}{1-a}$, et on note par $\Omega$ le point d'affixe $\omega$.
+            \item D\'eterminer la forme alg\'ebrique de $\omega$.
+            \item Placer les points $A$, $B$, $C$ et $\Omega$ dans le rep\`ere $(O ; \vec{u} , \vec{v})$.
+      \end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+      Le plan complexe est rapporté au repère orthonormal direct $( A ; \overrightarrow{AB} , \overrightarrow{AD} )$. 
+      On consid\`ere le point $C$ tel que $ABCD$ est un carr\'e.
+      Soit E le milieu du segment [ AD ], on considère le carré EDGF tel que
+      $( \overrightarrow{ED} ; \overrightarrow{EF} ) = \frac{\pi}{2} \quad [ \mathrm{mod} 2 \pi ] $.
+      \begin{enumerate}
+            \item \begin{enumerate}
+                        \item Faire une figure en plaçant les points 
+                              $A$, $B$, $C$, $D$, $E$, $F$, $G$. 
+                              On complètera la figure au cours de l’exercice.
+                        \item Préciser les nombres complexes $a$, $b$, $c$, $d$, $e$, $f$, $g$, 
+                              affixes respectives des points $A$, $B$, $C$, $D$, $E$, $F$ et $G$. 
+                  \end{enumerate}
+                  Soit la similitude directe $s$ du plan telle que $s ( D ) = F$ et $s ( B ) = D$.
+            \item On se propose de préciser les éléments caractéristiques de la similitude directe $s$.
+                  \begin{enumerate}
+                        \item Déterminer son rapport $k$ et son angle $\theta$.
+                        \item Donner l’écriture complexe de cette similitude.
+                        \item Déterminer le centre $\Omega$ de la similitude directe $s$.
+                  \end{enumerate}
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      Le plan complexe est muni d'un repère orthonormal direct 
+      $( O ; \vec{u} , \vec{v} )$, unité graphique 2~cm. 
+      On note $A$, $B$, $C$, $D$ et $E$ les points d’affixes respectives 
+      $z_A = 2 i$, $z_B = 2$, $z_C = 4 + 6i$, $z_D = -1 + i$ et $z_E = -3 + 3i$.
+      \begin{enumerate}
+            \item Placer les points sur une figure qui sera complétée au fur et à mesure des questions.
+            \item Déterminer la nature du triangle $ABC$.
+            \item Soit $f$ la similitude plane directe telle que $f(A) = D$ et $f(B) = A$.
+                  \begin{enumerate}
+                        \item Donner l’écriture complexe de $f$.
+                        \item Déterminer l’angle, le rapport et le centre $\Omega$ de cette similitude.
+                        \item Montrer que le triangle $DAE$ est l’image du triangle $ABC$ par la similitude $f$.
+                        \item En déduire la nature du triangle $DAE$.
+                  \end{enumerate}
+            \item On désigne par $(\mathscr{C}_1)$ le cercle de diamètre $[AB]$ et
+                  par $(\mathscr{C}_2)$ le cercle de diamètre $[AD]$.
+                  On note $M$ le second point d’intersection du cercle $(\mathscr{C}_1)$ et de la droite $(BC)$, 
+                  et $N$ le second point d’intersection du cercle $(\mathscr{C}_2)$ et de la droite $(AE)$.
+                  \begin{enumerate}
+                        \item Déterminer l’image de $M$ par la similitude $f$.
+                        \item En déduire la nature du triangle $\Omega MN$.
+                  \end{enumerate}
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      On consid\`ere le polyn\^ome $P$ d\'efini par 
+      $P(z) = 2 \, z^{3} - \left(3 + i\right) \, z^{2} + \left( 3 - 3 i \right) \, z + 10 i$.
+      \begin{enumerate}
+            \item Trouver le r\'eel $\lambda$ tel que $P(\lambda + \lambda i) = 0$.
+            \item Soient $A$, $B$ et $C$ les points d'affixes respectifs 
+                  $z_A = -1-i$, $z_B = 1+2i$ et $z_C = \frac{3}{2}-\frac{1}{2}i$.
+                  Soit $s$ la similitude plane directe qui laisse $A$ invariant et transforme $B$ en $C$.
+                  \begin{enumerate}
+                        \item Donner l'ecriture complexe de $s$.
+                        \item Donner les \'el\'ements caract\'eristiques de $s$.
+                  \end{enumerate}
+            \item Soit $z\in\mathbb{C}$, on consid\`ere le nombre complexe $Z = \frac{z - z_B}{z - z_A}$.
+                  \begin{enumerate}
+                        \item Interpr\'eter $|Z|$ et $\Arg{Z}$.
+                        \item D\'eterminer l'ensemble $(\mathscr{D})$ des points $M$ du plan d'affixe $z$ tels que 
+                              $|\frac{z - z_B}{z - z_A}| = 1$.
+                        \item D\'eterminer l'image de $(\mathscr{D})$ par $s$.
+                  \end{enumerate}
+      \end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% Begin exo tany amin'i Mr Ranto %%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+	Soit $P(z) = z^3 - (2 + (1+\sqrt{3})i) z^2 + ((3-\sqrt{3}) + (1+2\sqrt{3})i) z + \sqrt{3} - 3 \sqrt{3} i$.
+	\begin{enumerate}
+		\item Calculer $P(i\sqrt{3})$.
+		\item Trouver le polyn\^ome $Q$ tel que $P(z) = (z-i\sqrt{3}) Q(z)$.
+		\item R\'esoudre dans $\mathbb{C}$ l'\'equation $P(z) = 0$.
+	\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+	On consid\`ere le polyn\^ome $P$ \`a variable complexe $z$ d\'efini par 
+	$P(z) = z^3 + (5+i) z^2 + 12 i z - 16 + 32 i$.
+	\begin{enumerate}
+		\item Montrer que l'\'equation $P(z) = 0$ admet une solution r\'eelle $z_0$
+			que l'on d\'eterminera.
+		\item Trouver les nombres complexes $a$ et $b$ tels que $P(z)$ peut s'\'ecrire sous forme
+			$P(z) = (z-z_0) (z^2 + a z + b)$.
+		\item R\'esoudre dans $\mathbb{C}$ l'\'equation $P(z) = 0$.
+	\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+	Soit le polyn\^ome $P$ \`a variable complexe $z$ d\'efini par : 
+	$P(z) = z^3 - 4z^2 + (8+i) z - 7 + i$.
+	\begin{enumerate}
+		\item Montrer que $z_0 = 1 - i$ est une racine de $P$.
+		\item Trouver les nombres complexes $a$ et $b$ tels que $P(z)$ 
+				peut s'\'ecrire sous forme $(z-z_0) (z^2 + a z + b)$.
+		\item R\'esoudre dans $\mathbb{C}$ l'\'equation $P(z)=0$.
+	\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+	On consid\`ere les deux \'equations 
+	\begin{equation}
+		\TCDtag{E}
+			z^4 + (-4 + 4i) z^3 - 16 (1+i) z - 80 = 0 
+		\label{eq:compl E}
+	\end{equation}
+	et 
+	\begin{equation}
+		\TCDtag{E'}
+			z^2 - (2-2i) z - 8 + 4i = 0 \;.
+		\label{eq:compl E'}
+	\end{equation}
+	\begin{enumerate}
+		\item R\'esoudre dans $\mathbb{C}$ l'\'equation \eqref{eq:compl E'}.
+		\item Montrer que les solutions de \eqref{eq:compl E'} sont solutions de \eqref{eq:compl E}.
+		\item Trouver le polyn\^ome $Q$ v\'erifiant :
+			$ 
+				z^4 + (-4 + 4i) z^3 - 16 (1+i) z - 80 = (z^2 - (2-2i) z - 8 + 4i) Q(z)
+			$.
+		\item R\'esoudre dans $\mathbb{C}$ l'\'equation \eqref{eq:compl E}.
+	\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+	R\'esoudre dans $\mathbb{C}$ l'\'equation $z^4 + 8(1-i) z^2 - 12 - 16 i = 0$.
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%% End exo tany amin'i Mr Ranto %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+      Le plan complexe est rapporté à un repère orthonormal direct $(O ; \vec{u} , \vec{v})$.
+      Soit $f$ la fonction de $\mathbb{C}$ dans $\mathbb{C}$ définie par 
+            $f(z) = \frac{2 - i z}{1-z}$.
+      \begin{enumerate}
+            \item Pr\'eciser l'ensemble de d\'efinition de $f$.
+            \item \begin{enumerate}
+                        \item Calculer $a = f(2)$ et doner la forme trigonom\'etrique de $a$.
+                        \item Pour quelles valeurs de l'entier naturel $k$ le nombre $a^k$ est-il r\'eel\,?
+                  \end{enumerate}
+            \item On pose $z' = f(z)$.
+                  \begin{enumerate}
+                        \item Exprimer $z$ en fonction de $z'$.
+                        \item Soient le point $M$ d'affixe $z$ et $M'$ d'affixe $z'$.
+                              Montrer que $OM = \frac{M'A}{M'B}$
+                              o\`u $A$ et $B$ sont des points dont on d\'eterminera les affixes.
+                        \item Soit $(\mathscr{C})$ l'ensemble des points $M$ du plan pour lesquels on a 
+                              $|z| = 1$ et $z \neq 1$.
+                              Montrer que si $M \in (\mathscr{C})$ alors $M' \in (\mathscr{C})$ que l'on pourra
+                              d\'efinir g\'eom\'etriquement.
+                        \item Tracer $(\mathscr{C})$ et $(\mathscr{D})$.
+                  \end{enumerate}
+            \item Soit $S$ la transformation du plan qui, \`a tout point $M(z)$, associe le point $M'(z')$
+                  v\'erifiant la relation $z' = \frac{\sqrt{3} + i}{2} \, z + 1 + 4 i $.
+                  \begin{enumerate}
+                        \item D\'eterminer la nature de $S$.
+                        \item D\'eterminer l'ensemble des points invariants par $S$.
+                        \item En d\'eduire les \'el\'ements caract\'eristiques de $S$.
+                  \end{enumerate}
+      \end{enumerate}
+\end{exo}
+
+
+
+
+
+\begin{corrige}
+
+\section{Solution des exercices et preuve des propri\'et\'es}
+\begin{sol}
+Solution de l'Exercice \ref{exe:mettre sous forme algebrique}. 
+\begin{itemize}
+	\item Pour le cas de $z_1$, il suffit de developper et de r\'eunir les termes r\'eels et les termes imaginaires: 
+		\begin{align*}
+		      z_1 & = (1-i)^2 (3+2i) = (1-2i+i^2) (3+2i)  \\
+		          & = -2i (3+2i) = -6i - 4i = 4 - 6i \;.
+		\end{align*} 
+		Ainsi on a $\mathfrak{Re}(z_1) = 4$ et $\mathfrak{Im}(z_1) = -6$.
+	\item Pour le cas de $z_2$, une technique assez commune est de multiplier la fraction par le conjugu\'e du d\'enominateur: 
+		\begin{align*}
+		      z_2 & = \frac{10-20i}{1-3i} = \frac{(10 - 20 i) (1 + 3i)}{(1-3i) (1+3i)} 
+		            = \frac{10 + 30i - 20i - 60 i^2}{1 + 3^2} \\
+		          & = \frac{10 + 10 i + 60}{10} = 7 + i \;.
+		\end{align*}
+		Ainsi on a $\mathfrak{Re}(z_2) = 7$ et $\mathfrak{Im}(z_2) = 1$.
+	\item Pour $z_3$, if suffit de combiner ce qu'on a fait dans le premier et dans le second cas:
+		\begin{align*}
+		      z_3 & = \frac{(10+15i)(10-20i)}{(3+i)^2} = \frac{(400-50i)(3-i)^2}{((3+i)(3-i))^2} \\
+		          & = \frac{(400-50i)(8-6i)}{10^2} = \frac{2900 - 2800 i}{100} 
+		            = 29 - 28 i \; . 
+		\end{align*}
+		Ainsi on a $\mathfrak{Re}(z_3) = 29$ et $\mathfrak{Im}(z_3) = -28$.
+\end{itemize}
+\label{sol:mettre sous forme algebrique}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{dem}
+      \label{dem:proprietes du conjugue}
+      Preuve de la Proposition~\ref{prp:proprietes du conjugue}. 
+      \begin{enumerate}
+            \item Si $z = a + i b$ alors $\bar{z} = a - i b$ et $\bar{\bar{z}} = a + i b = z$.
+            \item En posant $z_1 = a_1 + i b_1$ et $z_2 = a_2 + i b_2$, on a 
+                  \begin{align*}
+                        \overline{z_1 + z_2} = \overline{(a_1 + i b_1) + (a_2 + i b_2)} 
+                              & = \overline{(a_1 + a_2) + i (b_1 + b_2)}                          \\
+                              & = (a_1 + a_2) - i (b_1 + b_2)                                     \\
+                              & = a_1 + a_2 - i b_1 - i b_2                                       \\
+                              & = a_1 - i b_1 + a_2 - i b_2                                       \\
+                              & = \bar{z_1} + \bar{z_2}                                           \;.
+                  \end{align*}
+            \item Avec les m\^eme notations que pr\'ec\'edemment :
+                  \begin{align*}
+                        \overline{z_1 \cdot z_2} = \overline{(a_1 + i b_1) \cdot (a_2 + i b_2)}
+                              & = \overline{ a_1 a_2 + i a_1 b_2 + i a_2 b_1 + i^2 b_1 b_2 }       \\
+                              & = \overline{ a_1 a_2 - b_1 b_2 + i (a_1 b_2 + a_2 b_1) }           \\
+                              & = (a_1 a_2 - b_1 b_2) - i (a_1 b_2 + a_2 b_1)                      \;.
+                  \end{align*}
+                  %
+                  \begin{align*}
+                        \overline{z_1} \cdot \overline{z_2} = \overline{ a_1 + i b_1 } \cdot \overline{ a_2 + i b_2 }
+                              & = ( a_1 - i b_1 ) \cdot ( a_2 - i b_2 )                            \\
+                              & = (a_1 a_2 - i a_1 b_2 - i a_2 b_1 + i^2 b_1 b_2)                  \\
+                              & = (a_1 a_2 - b_1 b_2) - i (a_1 b_2 + a_2 b_1)                      \;.
+                  \end{align*}
+                  %
+                  Ce qui montre que $\overline{z_1 \cdot z_2} = \overline{z_1} \cdot \overline{z_2}$.
+            \item Comme
+                  \begin{align*}
+                        \frac{1}{z}
+                              & =  {\frac{1}{a + i b}}                                          
+                                =  {\frac{a - i b}{(a+ib)(a-ib)}}                               
+                                =  {\frac{a}{a^2 + b^2} - i \frac{b}{a^2 + b^2}}                        \\
+                        \intertext{ on a  }
+                        \overline{\frac{1}{z}}
+                              & = \frac{a}{a^2 + b^2} + i \frac{b}{a^2 + b^2}                           
+                                = \frac{a + i b}{a^2 + b^2}                                             
+                                = \frac{a+ib}{(a-ib)(a-ib)}                                             \\
+                              & = \frac{1}{a-ib}                                                        
+                                = \frac{1}{\bar{z}}                                                     \;.
+                  \end{align*}
+            \item En utilisant la propri\'et\'e \ref{prp:proprietes du conjugue, multiplication}, on a :
+                  $\overline{z^n} = \overline{ \underbrace{z \cdot z \cdots z}_{n \text{ fois }} }
+                        = \underbrace{ \bar{z} \cdot \bar{z} \cdots \bar{z} }_{n \text{ fois }} 
+                        = {\bar{z}}^n$.
+      \end{enumerate}
+\end{dem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{dem}
+	\label{dem:proprietes du module}
+	Preuve de la Proposition~\ref{prp:proprietes du module}. 
+	\begin{enumerate}
+	      \item $|z| = \sqrt{a^2 + b^2} = \sqrt{a^2 + (-b)^2} = |\bar{z}|$,
+	      \item $|z| = 0 \iff a^2 + b^2 = 0 \iff a = b = 0 \iff z = 0$,
+	      \item $|z z'| = \sqrt{(zz') (\overline{zz'})} = \sqrt{(z \bar{z}) (z' \overline{z'})} 
+	            = \sqrt{z \bar{z}} \sqrt{z' \overline{z'}} = |z| |z'| $,
+	      \item Si $z \neq 0$ on a: $|z \cdot \frac{1}{z}| = 1$ ce qui implique que 
+	            $|z| \cdot |\frac{1}{z}| = 1$ et donc que $|\frac{1}{z}| = \frac{1}{|z|}$.
+	      \item D'abord, montrons l'in\'egalit\'e suivante :
+		            \begin{lem}
+		                  \label{lem: inegalite x**2 + y**2 >= 2xy}
+	                        Pour tout r\'eels $X$ et $Y$, $2 X Y \leq X^2 + Y^2$.
+	      	            \end{lem}
+	      	            %
+	      	            \begin{proof}
+	      	                  Comme, pour tout r\'eel $X$ et $Y$, on a $(X - Y)^2 \geq 0$, on a 
+	      	                  $X^2 - 2 X Y + Y^2 \geq 0$ et donc $X^2 + Y^2 \geq 2 X Y $.
+	      	            \end{proof}
+	      	      %
+	      	      Posons $z = a + i b$ et $z' = \alpha + i \beta$, o\`u $a$, $b$, $\alpha$ et $\beta$ sont des nombres r\'eels.
+	      	      L'in\'egalit\'e \`a d\'emontrer est alors :
+	            \begin{align*}
+	                  |z + z'|                   
+	                        & \leq 
+	                              |z| + |z'|                                                                       \\
+	                  |z + z'|^2                 
+	                        & \leq 
+	                              (|z| + |z'|)^2                                                                   \\
+	                  |z + z'|^2                 
+	                        & \leq 
+	                              |z|^2 + |z'|^2 + 2 |z|\cdot |z'|                                                 \;.
+	            \end{align*}
+	            D'une part, le premi\`er membre de l'in\'egalit\'e est : 
+	                  \[
+	                  (a+\alpha)^2 + (b+\beta)^2 
+	                  \]
+	            qui est \'egale \`a 
+	                  \[
+	                  a^2+\alpha^2+b^2+\beta^2+2(a\alpha+b\beta)                                                   \;.
+	                  \]
+	            D'autre part, le second membre de l'in\'egalit\'e est :
+	                  \[
+	                        a^2 +b^2 + \alpha^2 + \beta^2 + 2 \sqrt{(a^2+b^2)\cdot(\alpha^2+\beta^2)}
+	                  \]
+      	            qui est \'egale \`a 
+	                  \[
+	                        a^2+b^2+\alpha^2+\beta^2+2\sqrt{(a\alpha)^2+(b\beta)^2+(a\beta)^2+(b\alpha)^2}         \;.
+	                  \]
+                  On simplifie l'expression $ a^2+\alpha^2+b^2+\beta^2 $, puis on divise par $2$ et on \'el\`eve au carr\'e,
+	            \begin{align*}
+	                  (a\alpha + b\beta)^2
+	                        & \leq 
+	                              (a\alpha)^2 + (b\beta)^2 + (a\beta)^2 + (b\alpha)^2                              \\
+	                  (a\alpha)^2 + (b\beta)^2 + 2 a\alpha b\beta 
+	                        & \leq 
+	                              (a\alpha)^2 + (b\beta)^2 + (a\beta)^2 + (b\alpha)^2                             \\
+	                  2 a\beta \; b\alpha
+	                        & \leq 
+	                              (a\beta)^2 + (b\alpha)^2                                                        \;.
+            	      \end{align*}
+            	      Cette derni\`ere in\'egalit\'e est vraie d'apr\`es le Lemme~\ref{lem: inegalite x**2 + y**2 >= 2xy},
+            	      en prenant $X = a\beta$ et $Y = b \alpha$.
+	\end{enumerate} 
+\end{dem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+\label{sol:forme algebrique et modules}
+Solution de l'exercice \ref{exe:forme algebrique et modules} 
+\begin{itemize}
+	\item Pour $z_1$:
+		\begin{align*}
+		      z_1 & = \overline{- (1 - 2i)^2} = \overline{(-1)} \cdot \overline{(1-2i)}^2 \\
+		          & = -1 \cdot (1+2i)^2 = - (1 + 4i + 2^2 i^2) = - (4i - 3) = 3 - 4i \;.
+		\end{align*}
+		Ce qui nous permet de calculer $|z_1| = \sqrt{3^2 + (-4)^2} = \sqrt{25} = 5$.
+	\item Pour $z_2$:
+		\begin{align*}
+		      z_2 & = \overline{\left( \frac{1}{3 + 4i} \right) } = \frac{1}{\overline{3 + 4i}}  = \frac{1}{3 - 4i}
+		              \left( = \frac{1}{z_1} \right) \\
+		          & = \frac{3+4i}{(3-4i)(3+4i)} = \frac{3+4i}{3^2+4^2} = \frac{3}{25} + \frac{4}{25}i \;.
+		\end{align*}
+		Pour calculer le module de $|z_2|$ on peut utiliser le fait que $z_2$ soit \'egal \`a $\frac{1}{z_1}$. 
+		Nous avons alors $|z_2| = |\frac{1}{z_1}| = \frac{1}{|z_1|} = \frac{1}{5}$. \\
+		On peut aussi faire le calcul direct (qui est plus compliqu\'e)
+		\[
+			|z_2| = \sqrt{\frac{3}{25}^2 + \frac{4}{25}^2} = \sqrt{\frac{3^2 + 4^2}{25^2} } 
+			      = \sqrt{\frac{25}{25^2} } = \sqrt{\frac{1}{25}} = \frac{1}{5}      \;.
+		\]
+\end{itemize}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+\label{sol:trigo-alg}
+Solution de l'exercice \ref{exe:trigo-alg}. 
+{\renewcommand{\arraystretch}{1.5}
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{IlIl|l|l|l|lI} \whline 
+			$x$ & $\frac{\pi}{2} $ & $\frac{\pi}{3}$ & $\frac{\pi}{4}$ & $\frac{\pi}{6}$ & $0$ \\ \whline
+			$\sin(x)$ & $1$ & $\frac{ \sqrt{3}}{2} $ & $\frac{ \sqrt{2}}{2} $ & $\frac{1}{2}$ & $0$ \\ \hline
+			$\cos(x)$ & $0$ & $\frac{1}{2}$ & $\frac{ \sqrt{2}}{2}$ & $\frac{ \sqrt{3}}{2} $ & $1$ \\ \whline 
+		\end{tabular}
+		\label{tab:angles_remarquables}
+		\caption{Valeurs des fonctions $\sin$ et $\cos$ pour certains angles remarquables.}
+	\end{table}
+}
+\begin{enumerate}
+	\item \begin{itemize}
+			\item On conmmence par calculer $|z_1| = \sqrt{1^2 + 0^2} = 1 $ puis on le met en facteur :
+			      $z_1 = 1 (1 + 0 i) = (\cos \theta + i \sin \theta)$.
+			      Ainsi, 
+			      $
+			            \begin{multiform}
+			                  \cos \theta = 1 \\
+			                  \sin \theta = 0
+			            \end{multiform}
+			      $
+			      ce qui correspond \`a $\theta = 0$.
+			      Ainsi, $z_1  = 1 (\cos 0 + i \sin 0)$,
+			      donc le module est \'egal \`a $1$ et l'argument est \'egal \`a $0$.
+			\item On conmmence par calculer $|z_2| = \sqrt{0^2 + 1^2} = 1 $ puis on le met en facteur :
+			      $z_2 = 1 (0 + 1\; i) = (\cos \theta + i \sin \theta)$.
+			      Ainsi, 
+			      $
+			            \begin{multiform}
+			                  \cos \theta = 0 \\
+			                  \sin \theta = 1
+			            \end{multiform}
+			      $
+			      ce qui correspond \`a $\theta = \frac{\pi}{2}$.
+			      Ainsi, $z_2  = 1 (\cos \frac{\pi}{2} + i \sin \frac{\pi}{2})$, 
+			      donc le module est \'egal \`a $1$ et l'argument est \'egal \`a $\frac{\pi}{2}$.
+			\item On commence par calculer $|z_3| = \sqrt{2^2 + 2^2} = \sqrt{2 \cdot 2^2} = 2 \sqrt{2}$.
+			      On met ensuite $|z_3|$ en facteur.
+			      $z_3 = 2 \sqrt{2} \left(\frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2} \right)$
+			      qui doit \^etre \'egal \`a 
+			      $ 2 \sqrt{2} \left( \cos \theta + i \sin \theta \right) $.
+			      Il vient alors que 
+			      $
+			            \begin{multiform}
+			                  \cos \theta = \frac{\sqrt{2}}{2} \\
+			                  \sin \theta = \frac{\sqrt{2}}{2}
+			            \end{multiform}
+			      $
+			      ce qui correspond \`a $\theta = \frac{\pi}{4}$.
+			      Ainsi, $z_3 = 2 \sqrt{2} \left( \cos \frac{\pi}{4} + i \sin \frac{\pi}{4} \right) $, 
+			           donc le module est \'egal \`a $2 \sqrt{2}$ et l'argument est \'egal \`a $\frac{\pi}{4}$.
+			\item De m\^eme, on commence par calculer le module de $z_4$,
+			      $|z_4| = \sqrt{1^2 + \sqrt{3}^2} = \sqrt{4} = 2$,
+			      puis on le met en facteur.
+			      $z_4 = 2 \left( \frac{1}{2} + i \frac{\sqrt{3}}{2} \right) = 2 \left( \cos \theta + \sin \theta \right)$.
+			      Donc 
+			      $
+			            \begin{multiform}
+			                  \cos \theta = \frac{1}{2}  \\
+			                  \sin \theta = \frac{\sqrt{3}}{2}
+			            \end{multiform}
+			      $
+			      ce qui correspond \`a $\theta = \frac{\pi}{3}$.
+			      Ainsi, $z_4 = 2 \left( \cos \frac{\pi}{3} + \sin \frac{\pi}{3} \right) $, 
+			      donc le module est \'egal \`a $2$ et l'argument est \'egal \`a $\frac{\pi}{3}$.
+		\end{itemize}
+	\item \begin{itemize} 
+			\item Le module est \'egal \`a $2$ et l'argument est \'egal \`a $\frac{\pi}{3}$. 
+			      On a 
+			      $z'_1 = 2 \left( \cos \frac{\pi}{3} - i \sin \frac{\pi}{3} \right) 
+			            = 2 \left( \frac{1}{2} - \frac{\sqrt{3}}{2} i \right) = 1 - \sqrt{3} i$.
+			\item Le module est \'egal \`a $\sqrt{3}$ et l'argument est \'egal \`a $\frac{\pi}{6}$. 
+			      On a 
+			      $z'_2 = \sqrt{3} \left( \cos \frac{\pi}{6} + i \sin \frac{\pi}{6} \right)
+			            = \sqrt{3} \left( \frac{\sqrt{3}}{2} + i \sin \frac{1}{2} \right)
+			            = \frac{3}{2} + \frac{\sqrt{3}}{2} i$.
+		\end{itemize}
+\end{enumerate}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{dem}
+\label{dem:argument}
+Preuve de la proposition \ref{prop:argument}. 
+\begin{enumerate}
+	\item Soient $z = r (\cos \theta + i \sin \theta )$ et $z' = r' (\cos \theta' + i \sin \theta' )$.
+	      On a:
+	      \begin{align*}
+		      z z' & = r r' (\cos \theta + i \sin \theta ) (\cos \theta' + i \sin \theta' )              \\
+		           & = r r' \left[ (\cos \theta \cos \theta' - \sin \theta \sin \theta') 
+		                 + i (\cos \theta \sin \theta' + \sin \theta \cos \theta') \right]    .
+		      \intertext{Rappelons que \newline 
+		                 $\cos (a+b) = \cos a \, \cos b - \sin a \, \sin b$ et que 
+		                 $\sin (a+b) = \sin a \, \cos b + \sin b \, \cos a$. \newline On a alors: }
+		      z z' & = r r' \left[ \cos (\theta + \theta') + i \sin (\theta + \theta') \right] .
+	      \end{align*}
+	      On en d\'eduit que $\arg(z z') = \arg(z) + \arg(z')$.
+%	      \footnote{et on retrouve aussi la propri\'et\'e: $|z z'| = |z| |z'|$}.	
+	      \begin{align*}
+	            \arg(z^n) & = \arg( \underbrace{z \cdot z \cdot \cdots \cdot z}_{n\text{ fois}} )       \\
+	                      & = \underbrace{ \arg{z} + \arg{z} + \cdots + \arg{z} }_{n\text{ fois}}
+	                        = n\ \arg{z} \;.
+	      \end{align*}
+	\item Remarquons d'abord que $z \cdot \frac{1}{z} = 1$ et que $\arg(1) = 0$.
+	      Puis on applique la propri\'et\'e pr\'ec\'edente \`a $z \cdot \frac{1}{z}$ 
+	      et on a $0 = \arg(1) = \arg(z \cdot \frac{1}{z}) = \arg(z) + \arg(\frac{1}{z})$. 
+	      Il s'en suit que $\arg(z) + \arg(\frac{1}{z}) = 0$ ce qui entraine que $\arg(\frac{1}{z}) = - \arg(z)$.
+	      
+	      \begin{align*}
+	            \arg\left( \frac{z}{z'} \right) & = \arg\left( z \cdot \frac{1}{z'} \right)      \\
+	                                            & = \arg z + \arg\left( \frac{1}{z'} \right)
+	                                              = \arg z - \arg z'                              .
+	      \end{align*}
+	\item Soit $r (\cos \theta + i \sin \theta)$ l'expression trigonom\'etrique de $z$. 
+	      Son expression alg\'ebrique est alors $r \cos \theta + i \, r \sin \theta$ et 
+	      son conjugu\'e est $r \cos \theta - i \, r \sin \theta$.
+	      Ainsi, le conjugu\'e de $z$ est $ r ( \cos \theta - i \, \sin \theta) $ 
+	      qui est \'egal \`a $ r \left[ \cos (- \theta ) + i \, \sin (- \theta) \right]$.
+	      On d\'eduit que $\arg(\bar{z}) = - \arg(z)$.
+\end{enumerate}
+Les deux derni\`eres propri\'et\'es sont faciles \`a v\'erifier (il suffit de d\'essiner).
+\end{dem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{dem}
+	\label{dem:Moivre}
+	Pour prouver la formule de Moivre (Th\'eor\`eme \ref{thm:Moivre}), nous allons utiliser le Th\'eoreme \ref{thm:Expo-trigo}.
+	Puisque 
+	\begin{align*}
+	(\cos \theta + i \sin \theta)^n & = \left( \expo{i \theta} \right)^n         
+	                                  = \expo{i n \theta}                        
+	                                  = \cos (n \theta) + i \sin (n \theta)     \;.
+	\end{align*}
+\end{dem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{dem}
+      \label{dem:Expo-trigo}
+      La formle d'Eulder (Th\'eor\`eme~\ref{thm:Expo-trigo}) sera admis.
+\end{dem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+\label{sol:santatra second degre}
+Solution de l'\'exercice \ref{exe:santatra second degre} \\
+	\begin{itemize}
+		\item On part de l'\'equation $z^2 - 2 z + 5 = 0$. 
+			On a $\Delta = 2^2 - 4 \cdot 1 \cdot 5 = 4 - 20 = -16 = (4i)^2$.
+			Ainsi, les deux racines complexes sont $z' = \frac{2-4i}{2} = 1 - 2i$ et $z' = \frac{2+4i}{2} = 1 + 2i$. 
+		\item On part de l'\'equation $z^2 - 4 z + 5 = 0$. 
+			On a $\Delta = 4^2 - 4 \cdot 1 \cdot 5 = 16 - 20 = -4 = (2i)^2$.
+			Ainsi, les deux racines complexes sont $z' = \frac{4-2i}{2} = 2 - i$ et $z' = \frac{4+2i}{2} = 2 + i$. 
+		\item On part de l'\'equation $4 z^2 - 8 z + 5 = 0$. 
+			On a $\Delta = 8^2 - 4 \cdot 4 \cdot 5 = 64 - 80 = -16 = (4i)^2$.
+			Ainsi, les deux racines complexes sont 
+			$z' = \frac{8-4i}{2 \cdot 8} = 1 - \frac{1}{2} i$ et $z' = \frac{8+4i}{2 \cdot 8} = 1 + \frac{1}{2} i$. 
+	\end{itemize}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+\label{sol:second degre complexe}
+Solution de l'exercice \ref{exe:second degre complexe} \\
+\begin{itemize} 
+\item Comme $\Delta = (- (1 + 2 i) )^2 - 4 \cdot 1 \cdot (-1+i) = (-3+4i)-(4i-4) = 1 = 1^2$
+      les solutions sont donc $z' = \frac{1+2i-1}{2} = i$ et $z'' = \frac{1+2i+1}{2} = 1+i$.
+\item Comme $\Delta = 2^2 - 4 \cdot i \cdot (-2i) = 4-8 = -4 = (2i)^2$
+      les solutions sont donc: \\
+      $z' = \frac{-2-2i}{2i} = \frac{-1-i}{i} = \frac{-i+1}{-1} = $ \fbox{$-1+i$}
+      \\ et \\
+      $z'' = \frac{-2+2i}{2i} = \frac{-1+i}{i} = \frac{-i-1}{-1} = $ \fbox{$1+i$}.
+\item Comme $\Delta = (1+3i)^2 + 4 (4 - 3i) = 1-9 + 6i + 16 - 12i = 8 - 6i$. 
+      Soit $\delta = x + i y \in \mathbb{C}$ tel que $\delta^2 = \Delta$.
+      Le module de $\Delta$ est \'egal \`a $\sqrt{8^2 + 6^2} = \sqrt{100} = 10$.
+      
+      On a alors 
+      $\displaystyle{
+	      \begin{multiform} 
+		      x^2 - y^2 = 8       \\
+		      2 x y     = -6      \\
+		      x^2 + y^2 = 10      \;.
+	      \end{multiform}
+      }$
+      
+      En consid\'eant
+      $\displaystyle{
+	      \begin{multiform}
+		      x^2 - y^2 = 8       \\
+		      x^2 + y^2 = 10      
+	      \end{multiform}
+      }$
+      on a $ 2 x^2 = 18 $ ce qui donne $x = \pm 3$.
+      Si $x = 3$, on a $2 \cdot 3 \cdot y = -6$ ce qui donne $y = -1$.
+      Ainsi, $\delta = 3 - i$ v\'erifie $\delta^2 = \Delta$.
+      Les racines sont donc 
+      \[
+      z' = \frac{(1+3i) - (3-i)}{2} = -1 + 2i
+      \qquad
+      \text{ et }
+      \qquad
+      z'' = \frac{(1+3i) + (3-i)}{2} = 2 + i
+      \; .
+      \]
+      L'ensemble des solutions est 
+      \fbox{
+		      $\displaystyle{
+            		      S = \left\lbrace -1 + 2i \ ; \ 2 + i  \right\rbrace
+		      }$
+	      }
+      .
+\end{itemize}
+\end{sol}
+
+\begin{sol}
+\label{sol:racines de l'unite}
+Solution de l'exercice \ref{exe:racines de l'unite}. \\
+Le module de $1$ est \'egal \`a $1$ et $\sqrt[n]{1} = 1$ pour tout entiers naturels positifs $n$.
+Comme $1$ est un r\'eel, son argument est \'egal \`a $0$. 
+Ainsi, les racines cubiques de l'unit\'e sont: 
+\begin{align*}
+      z_0 & = \sqrt[3]{1} \left(\cos \frac{0 + 0 \, \pi}{3} + i \sin \frac{0 + 0 \, \pi}{3} \right)        \\
+      z_0 & = \cos 0 + i \sin 0                                                                            \\
+          & \fbox{$ z_0 = 1 $}                                                                             \\
+      z_1 & = \sqrt[3]{1} \left(\cos \frac{0 + 2 \, \pi}{3} + i \sin \frac{0 + 2 \, \pi}{3} \right)        \\
+      z_1 & = \cos \frac{2\pi}{3} + i \sin \frac{2\pi}{3}                                                  \\
+          & \fbox{$ z_1 = -\frac{1}{2} + i \frac{\sqrt{3}}{2} $}                                           \\
+      z_2 & = \sqrt[3]{1} \left(\cos \frac{0 + 4 \, \pi}{3} + i \sin \frac{0 + 4 \, \pi}{3} \right)        \\
+      z_2 & = \cos \frac{4 \pi}{3} + i \sin \frac{4 \pi}{3}                                                \\
+          & \fbox{$ z_2 = -\frac{1}{2} - i \frac{\sqrt{3}}{2} $}                                           \;.
+\end{align*}
+De m\^eme, on peut trouver que les racines quatri\`emes de l'unit\'e sont $1$, $i$, $-1$ et $-i$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{subfigure}[b]{0.4 \actualtextwidth}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.5cm,y=1.5cm]
+		\draw [->,color=black] (-1.5,0) -- (1.5,0);
+		\draw [->,color=black] (0,-1.5) -- (0,1.5);
+		\clip (-1.5,-1.5) rectangle (1.5,1.5);
+		\draw [shift={(0,0)},color=brown,fill=brown,fill opacity=0.1] 
+		      (0,0) -- (0:0.18) arc (0:120:0.18) -- cycle;
+		\draw [shift={(0,0)},color=green!50!black,fill=green!50!black,fill opacity=0.1] 
+		      (0,0) -- (-120:0.16) arc (-120:0:0.16) -- cycle;
+		\draw [shift={(0,0)},color=green!50!black,fill=green!50!black,fill opacity=0.1] 
+		      (0,0) -- (-120:0.2) arc (-120:0:0.2) -- cycle;
+		\draw (0,0) circle (1);
+		\draw (0,0)-- (-0.5,0.85);
+		\draw (0,0)-- (-0.5,-0.85);
+		\fill [color=gray] (0,0) circle (1.5pt);
+		\fill [color=black] (1,0) circle (1.5pt);
+		\draw [color=black] (1.2,0.2) node {$1$};
+		\fill [color=black] (-0.5,0.85) circle (1.5pt);
+		\draw [color=black] (-1,1) node {$\frac{1}{2} + i \frac{ \sqrt{3} }{2}$};
+		\fill [color=black] (-0.5,-0.85) circle (1.5pt);
+		\draw [color=black] (-1,-1) node {$ - \frac{1}{2} - \frac{\sqrt{3}}{2}$};
+		\draw [color=brown] (0.35,0.25) node {$\frac{2 \pi}{3}$};
+		\draw [color=green!50!black] (0.35,-0.25) node {$\frac{- 2 \pi}{3}$};
+	\end{tikzpicture}
+	\label{fig:racine 4eme de l'unite}
+	\caption{Les racines cubique de l'unit\'e forment un polygone r\'egulier \`a $3$ c\^ot\'e.}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{subfigure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hfill
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{subfigure}[b]{0.4 \actualtextwidth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+	\definecolor{uququq}{rgb}{0.25,0.25,0.25}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.5cm,y=1.5cm]
+		\draw [->,color=black] (-1.5,0) -- (1.5,0);
+		\draw [->,color=black] (0,-1.5) -- (0,1.5);
+		\clip (-1.5,-1.5) rectangle (1.5,1.5);
+		\draw (0,0) circle (1);
+		\draw [color=brown] (0,1)-- (-1,0);
+		\draw [color=brown] (-1,0)-- (0,-1);
+		\draw [color=brown] (0,-1)-- (1,0);
+		\draw [color=brown] (1,0)-- (0,1);
+		\fill [ ] (0,0) circle (1.5pt);
+		\draw [ ] (-0.15,-0.15) node {$O$};
+		\fill [ ] (1,0) circle (1.5pt);
+		\draw [ ] (1.1,0.1) node {$1$};
+		\fill [ ] (0,1) circle (1.5pt);
+		\draw [ ] (0.1,1.2) node {$i$};
+		\fill [ ] (-1,0) circle (1.5pt);
+		\draw [ ] (-1.2,-0.1) node {$-1$};
+		\fill [ ] (0,-1) circle (1.5pt);
+		\draw [ ] (-0.17,-1.15) node {$-i$};
+	\end{tikzpicture}
+	\label{fig:racine 4eme de l'unite}
+	\caption{Les racines $4^{\text{i\`eme}}$ de l'unit\'e forment un polygone r\'egulier \`a $4$ c\^ot\'e.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{subfigure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\caption{Racines $n^{\text{i\`eme}}$ de l'unit\'e.}
+\label{fig:racine nieme de l'unite}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{sol}
+
+
+\begin{sol}
+\label{sol:racine nieme}
+Solution de l'exercice \ref{exe:racine nieme} \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Posons $z = 1 + \sqrt{3} i = 2 \left( \frac{1}{2} + \frac{\sqrt{3}}{2} i \right)$; on a alors $|z| = 2$ et $\arg(z) = \frac{\pi}{3}$.
+Les diff\'erentes arguments des racines $5^{\text{i\`eme}}$ de $z$ sont 
+$$
+\sqrt[5]{2}  \left[ \cos \left( \frac{ \frac{\pi }{3} + 2k\pi}{5} \right) + i \sin \left( \frac{ \frac{\pi }{3} + 2k\pi}{5} \right) \right] 
+$$ 
+pour $k$ allant de $0$ \`a $4$.
+Les racines $5^{\text{i\`eme}}$ de $z$ sont alors: 
+\begin{enumerate}
+\item $ z_0 = \sqrt[5]{2} \left( \cos \frac{\pi}{15} + i \sin \frac{\pi}{15} \right)         $
+\item $ z_1 = \sqrt[5]{2} \left( \cos \frac{5 \pi}{15} + i \sin \frac{5 \pi}{15} \right)     $
+\item $ z_2 = \sqrt[5]{2} \left( \cos \frac{13 \pi}{15} + i \sin \frac{13 \pi}{15} \right)   $
+\item $ z_3 = \sqrt[5]{2} \left( \cos \frac{19 \pi}{15} + i \sin \frac{19 \pi}{15} \right)   $
+\item $ z_4 = \sqrt[5]{2} \left( \cos \frac{5 \pi}{3} + i \sin \frac{5 \pi}{3} \right)       $
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{figure}
+%\includegraphics[scale=2]{./Complexe/Sary/5throot.png}
+%\label{fig:racine 5ieme}
+%\caption{Les racines $5^{\text{i\`eme}}$ forment un polygone r\'egulier centr\'e \`a l'origine.}
+%\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{sol}
+\end{corrige}
+

@@ -110,6 +110,7 @@ CHECKS = [
     ('enrichment converter tests', [PY, 'tests/test_enrichment.py']),
     ('notation: class and web agree, rewrite', [PY, 'tests/test_notation.py']),
     ('Malagasy books converter (T12 vocabulary, synthetic)', [PY, 'tests/test_mada.py']),
+    ('T12 C/D sources: anonymous, no third-party exercise, index', [PY, 'tests/test_t12_sources.py']),
     ('slide MathJax table from mx-math', [PY, '-m', 'mxbuild', 'notation', '--check']),
     ('slides check', [PY, 'tests/slides_check.py']),
     ('slide HTML exports: up to date, skill lint', [PY, 'tests/slides_export_check.py']),

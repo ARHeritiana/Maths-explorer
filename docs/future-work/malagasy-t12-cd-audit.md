@@ -214,3 +214,85 @@ and a summary sheet) can run 3–6 first as a pilot.
 2. Bac C and D statements 2003 to 2018: publish, with an attribution line (Baccalauréat malgache, série, année); publish only the solutions checked as real (C 2003, C 2004, C 2005 partial, marked partial). Further solutions are written by us and checked.
 3. Two courses: T12 C (`t12c`) and T12 D (`t12d`); the shared chapters appear in both (one source, two catalogue entries), the C-only and D-only chapters in their course.
 4. Not decided, defaults taken: master copy in `content/tex/mada/t12/`; teacher PDFs only where answers exist, the others after the bank has their answers; files outside the book stay in the private repository.
+
+
+## Import (unit T3, 2 November 2026)
+
+The book is in `content/tex/mada/t12/` (master copy): `chapitres/ch01` to `ch13` (one file per chapter: lesson, summary sheet, exercises,
+and the chapter's answers in a `corrige` environment printed only in the teacher edition; Affine and Isometrie joined in `ch06`),
+`supplements/` (problems, appendices), `bac/` (32 statements, each with the line "Baccalauréat malgache, série X, année"; the three
+real solutions `c-2003-corrige`, `c-2004-corrige`, `c-2005-corrige`, the last with a printed "Corrigé partiel" note), `preambule/` (the
+class with no author and no author footer, the styles, `t12-livre.sty` with the original packages and the edition switch),
+`t12-eleve.tex` and `t12-prof.tex` (drivers, A4 portrait, no front matter, title page, preface or cover) and `t12-corps.tex`.
+`chapitres.json` records, per chapter, the series (from section 2, `verify` notes kept), whether answers exist, the chapter order of
+`t12c` and `t12d`, and the Bac files. Not imported: the 24 near-copy "corrections", the six type-D practice papers, the files outside
+the book, the covers and front matter. `tests/test_t12_sources.py` keeps the folder anonymous (hashed names, `tests/banned.py`; the two
+surnames of the owner were added to `tests/banned-sha256.json`, so the site-wide check also refuses them) and free of third-party
+markers, and checks the index and the Bac files.
+
+Order changed from the book: statistics comes after exp/ln (chapter 11), as a source comment asks; part III is "Analyse et statistiques".
+
+**Exercises left out (third-party source named in a comment), 42.** In `Proba/Exo` the mark is an unnumbered heading ("exercises from
+the Prépa Bac book") before exercise 10; it was read as covering every exercise after it (10 to 23) [VERIFY with the owner: if only
+exercise 10 is third-party, exercises 11 to 23 can be restored from the private repository]. Isometrie keeps no exercise.
+
+| Source file | Exercise no. | Source named | Begins |
+|---|---|---|---|
+| `Proba/Exo` | 10 | Prépa Bac series | Un groupe de 20 personnes doit d 'esigner parmi ses membres  |
+| `Proba/Exo` | 11 | Prépa Bac series (group heading) | On tire simultan 'ement huit cartes d'un jeu de 32 cartes, e |
+| `Proba/Exo` | 12 | Prépa Bac series (group heading) | On dispose d'un d 'e cubique dont les faces sont num 'erot ' |
+| `Proba/Exo` | 13 | Prépa Bac series (group heading) | Une urne contient deux boules blanches et quatre boules noir |
+| `Proba/Exo` | 14 | Prépa Bac series (group heading) | Dans un magasin d’électroménager, on s’intéresse au comporte |
+| `Proba/Exo` | 15 | Prépa Bac series (group heading) | On dispose de deux urnes u_1 et u_2 . L’urne u_1 contient tr |
+| `Proba/Exo` | 16 | Prépa Bac series (group heading) | Le quart d’une population a été vacciné contre une maladie c |
+| `Proba/Exo` | 17 | Prépa Bac series (group heading) | Une urne contient (n+8) boules distinctes de trois couleurs  |
+| `Proba/Exo` | 18 | Prépa Bac series (group heading) | Dans une foires, une publicit 'e annonce : << Un billet sur  |
+| `Proba/Exo` | 19 | Prépa Bac series (group heading) | On lance un d 'e non pip 'e troi fois de suite. On note par  |
+| `Proba/Exo` | 20 | Prépa Bac series (group heading) | Dans un jeu de trente-deux cartes, on distingue quatre coule |
+| `Proba/Exo` | 21 | Prépa Bac series (group heading) | On consid `ere un questionnaire comportant cinq questions. P |
+| `Proba/Exo` | 22 | Prépa Bac series (group heading) | Une usine produit des sacs. Chaque sac fabriqu 'e peut pr 'e |
+| `Proba/Exo` | 23 | Prépa Bac series (group heading) | Une entreprise fabrique des lecteurs MP3, dont 6 sont d 'efe |
+| `Barycentre/Exo` | 12 | Prépa Bac series | On consid `ere, dans le plan orient 'e, un triangle ABC . On |
+| `Isometrie/Exo` | 1 | named textbook, already commented out | On se place dans le plan affine euclidien orient 'e. On cons |
+| `Isometrie/Exo` | 2 | named textbook | Dans le plan affine euclidien, on consid `ere un carr 'e ABC |
+| `Isometrie/Exo` | 3 | named textbook | Dans le plan affine euclidien orient 'e, on consid `ere un c |
+| `Isometrie/Exo` | 4 | Prépa Bac series | Dans le plan orient 'e, on consid `ere le triangle ABC . On  |
+| `Isometrie/Exo` | 5 | Prépa Bac series | On consid `ere dans un plan affine euclidien orient 'e un tr |
+| `Isometrie/Exo` | 6 | Prépa Bac series | ~ minipage .6 Dans le plan orient 'e on consid `ere la figur |
+| `Isometrie/Exo` | 7 | Prépa Bac series | Soit un triangle isoc `ele OAB , avec OA = OB , et un point  |
+| `Isometrie/Exo` | 8 | Prépa Bac series | Dans un plan , on consid `ere trois points A , B et C non al |
+| `Isometrie/Exo` | 9 | Prépa Bac series | On consid `ere dans le plan orient 'e un triangle 'equilat ' |
+| `Isometrie/Exo` | 10 | Prépa Bac series | Dans le plan orient 'e, on consid `ere un triangle 'equilat  |
+| `Similitude/Exo` | 1 | named textbook | On consid `ere la transformation f du plan complexe qui, `a  |
+| `Similitude/Exo` | 2 | named textbook | On consid `ere la transformation S du plan complexe, qui `a  |
+| `Similitude/Exo` | 3 | named textbook | On consid `ere dans le plan complexe les points A(1) , B(2)  |
+| `Similitude/Exo` | 4 | named textbook | On donne dans le plan complexe les points A(-1+3i) et B(1-2i |
+| `Similitude/Exo` | 5 | named textbook | Dans le plan complexe orient 'e, ABC est un triangle rectang |
+| `Similitude/Exo` | 6 | named textbook | Dans le plan complexe muni d'un rep `ere orthonormal direct  |
+| `Similitude/Exo` | 7 | named textbook | On donne dans le plan complexe les points B(i) , B'(4-3i) et |
+| `Similitude/Exo` | 8 | named textbook | Caract 'eriser les transformations S_1 , S_2 et S_3 du plan  |
+| `Stat/Exo` | 7 | Prépa Bac series | On consid `ere la s 'erie statistique double (x,y) d 'ecrite |
+| `Stat/Exo` | 8 | Prépa Bac series, already commented out | L' 'etude d'une population animale en voie de disparition a  |
+| `Stat/Exo` | 9 | Prépa Bac series | Au cours d'une s 'eance d'essai un pilote d'automobile doit, |
+| `Stat/Exo` | 10 | Prépa Bac series | Une entreprise fabrique et vend des lots de circuits 'electr |
+| `Stat/Exo` | 11 | Prépa Bac series | Le tableau suivant donne l' 'evolution du nombre de cas d'un |
+| `EquaDiff/Exo` | 5 | named textbook | On consid `ere l' 'equation diff 'erentielle (E) : y' + y =  |
+| `EquaDiff/Exo` | 6 | named textbook | V 'erifier que la fonction f_1 d 'efinie par f_1(x) = x 5 (2 |
+| `EquaDiff/Exo` | 9 | Prépa Bac series | Soit f une fonction d 'efinie sur R `a valeurs r 'eelles, de |
+| `EquaDiff/Exo` | 10 | Prépa Bac series | On appelle E l'ensemble des fonctions num 'eriques f admetta |
+
+**Barycentre proofs (from T5).** Five of the six proofs sit inside their property box (`\begin{prp} ... \begin{proof} ...`); the slide
+parser reads one level of boxes, so they gave no proof slide and their text ran into the property. `build/mxbuild/mada.py`
+(`hoist_proofs`) now moves a nested proof after its box: Barycentre gives 6 proof slides; T10 and T11 S decks unchanged.
+
+**Review list (maths, not fixed; a later unit fixes them):**
+
+| File | Place | Issue |
+|---|---|---|
+| `chapitres/ch04-nombres-complexes.tex` | footnote, section "Transformation de a cos x + b sin x" | cos(u − v) given with − sin u sin v (must be +) |
+| `chapitres/ch08-suites.tex` | example "somme des entiers de 1 à 100" | S_n defined from U_1, formula of U_0 + ... + U_n applied as (1 + 100)·100/2: right value, inconsistent with the stated formula |
+| `chapitres/ch08-suites.tex` | corrigé, sequences V_n = 1/n and W_n = (−1)ⁿ | conclusions name (U_n); V_n = 1/n used without n ⩾ 1 |
+| `chapitres/ch01-arithmetique.tex` | corrigé, proof of the divisibility property | qq′ = 1 deduced from b = (qq′)b without the case b = 0 |
+| `chapitres/ch13-equations-differentielles.tex` | characteristic equation | "f″(x) + a f′(x) + b f(x) = " with the "0" missing; `\mampiditratext` empty, so the justifications of the aligned proof vanish; the form f = g e^(αx) not justified as general |
+| `bac/c-2004-corrige.tex` | end of problem II | (g⁻¹)′(e) = 1/g′(e) assumes g⁻¹(e) = e without saying so [VERIFY against the statement] |
+| `chapitres/ch06-applications-affines-isometries.tex` | chapter title | "Applications affine" (agreement) |

@@ -1,0 +1,235 @@
+% Baccalauréat malgache, série C, 2005 : énoncé.
+\TCDBacAttribution{C}{2005}
+\providecommand{\dx}{\mathrm{d}x}
+\providecommand{\Re}[1]{\mathrm{Re}\left( #1 \right)}
+\providecommand{\Im}[1]{\mathrm{Im}\left( #1 \right)}
+\providecommand{\dt}{\mathrm{d}t}
+\providecommand{\Ouv}{(O;\vec{u},\vec{v})}
+\providecommand{\mes}[2]{\mathrm{mes}\left( \widehat{ \overrightarrow{#1} ; \overrightarrow{#2} } \right)}
+\providecommand{\D}{(\mathscr{D})}
+\providecommand{\Courbe}{(\mathscr{C})}
+\providecommand{\Courben}{(\mathscr{C}_n)}
+\providecommand{\CourbeU}{(\mathscr{C}_1)}
+\providecommand{\CourbeD}{(\mathscr{C}_2)}
+\providecommand{\CourbeA}{(\mathscr{C}_\alpha)}
+\providecommand{\congru}[3]{#1 \equi #2 \quad \left[ \mathrm{mod}~#3\right]}
+\providecommand{\Angl}[2]{\left( \widehat{ \overrightarrow{#1} , \overrightarrow{#2} } \right)}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{Exercice}}} (4 points) 
+      \begin{enumerate}
+            \item On donne l'\'equation : 
+                  \begin{equation}
+                        \TCDtag{1}
+                              2 x - y = 1 \; ;
+                        \label{eq:Bac C 2005 Arithm 1}
+                  \end{equation}
+                  $x$ et $y$ \'etant les inconnues, $x$ et $y$ sont des entiers relatifs.
+                  \begin{enumerate}
+                        \item Trouver une solution particuli\`ere $(x_0 ; y_0)$ de cette \'equation.
+                        \item R\'esoudre dans $\mathbb{Z} \times \mathbb{Z}$ l'\'equation \eqref{eq:Bac C 2005 Arithm 1}.
+                  \end{enumerate}
+            \item Un entier naturel $A$ est tel que :
+                  \begin{itemize}
+                        \item dans la base 10, $A$ s'\'ecrit $A=b+6$ ;
+                        \item dans le syst\`eme binaire, $A$ s'\'ecrit $A=\left(\overline{1a1}\right)_2$.
+                  \end{itemize}
+                  
+                  Trouver une relation qui lie $a$ et $b$.
+            \item R\'esoudre dans $\mathbb{N}^2$ le syst\`eme suivant, d'inconnues $x$ et $y$ :
+                  \[
+                        \begin{multiform}
+                              x+y=60 \\ \pgcd{x}{y}=12.
+                        \end{multiform}
+                  \]
+            \item Deux urnes identiques $U_1$ et $U_2$ contiennent chacune : 
+                  \begin{itemize}
+                        \item deux boules num\'erot\'ees chacune 0 ;
+                        \item trois boules num\'erot\'ees chacune 1 ;
+                        \item une boule num\'erot\'ee 2.
+                  \end{itemize}
+                  
+                  On tire au hasard une boule de $U_1$, puis on extrait au hasard et simultan\'ement deux boules de $U_2$.
+                  \begin{enumerate}
+                        \item Calculer la probabilit\'e de chacun des \'ev\`enements suivants : 
+                              \begin{itemize}
+                                    \item $A$ : << Les boules obtenues portent le m\^eme num\'ero >>.
+                                    \item $B$ : << La somme des num\'eros not\'es est \'egale \`a 4 >>.
+                              \end{itemize}
+                        \item Soient $x$ le num\'ero de la premi\`ere boule tir\'ee et $y$ la somme des num\'eros des 
+                              boules obtenues au deuxi\`eme tirage.
+                              Calculer la probabilit\'e de l'\'ev\`enement : 
+                              $C$ : << Le couple $(x,y)$ est solution de l'\'equation $2 x - y = 1$ >>.
+                  \end{enumerate}
+      \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME I}}} (7 points) \newline
+      Soit $(ABC)$ un triangle isoc\`ele et rectangle en $A$ avec $AB = AC = 4\cm$ et $\Angl{AB}{AC} = \frac{\pi}{2}$.
+      Soient $I$, $J$ et $K$ les milieux respectifs des segments $[AB]$, $[BC]$ et $[CA]$ et $E$ le  sym\'etrique de $A$ 
+      par rapport \`a $J$.
+      \begin{description}
+            \item[Partie 1]
+                  \begin{enumerate}
+                        \item \begin{enumerate}
+                                    \item Montrer que $\overrightarrow{JI} = \frac{\overrightarrow{JA} + \overrightarrow{JB}}{2}$
+                                          et $\overrightarrow{JK} = \frac{\overrightarrow{JA} + \overrightarrow{JC}}{2}$.
+                                          En d\'eduire que $\overrightarrow{IK} = \frac{1}{2} \overrightarrow{BC}$.
+                                    \item Montrer que $\overrightarrow{KI} = \frac{\overrightarrow{KA} + \overrightarrow{KB}}{2}$
+                                          et $\overrightarrow{KJ} = \frac{\overrightarrow{KB}+\overrightarrow{KC}}{2}$.
+                                          En d\'eduire que $\overrightarrow{IJ} = \frac{1}{2} \overrightarrow{AC}$.
+                                    \item Montrer que le quadruplet $(AIJK)$ est un carr\'e. Faire une figure.
+                              \end{enumerate}
+                        \item Soit $r$ la rotation de centre $J$ et d'angle $\frac{\pi}{2}$ et $t$ la translation de 
+                              vecteur $\vec{u} = \frac{1}{2} \overrightarrow{BC}$.
+                              \begin{enumerate}
+                                    \item D\'eterminer l'image du point $I$ par $t$ et celle de $K$ par $r$.
+                                    \item D\'eterminer l'image de $I$ par $f = r \circ t$. 
+                                          En d\'eduire la nature et les \'el\'ements caract\'eristiques de $f$.
+                                    \item Soit $g = t \circ r$.
+                                          D\'eterminer l'image de $K$ par $g$.
+                                          En d\'eduire la nature et les \'el\'ements caract\'eristiques de $g$.
+                              \end{enumerate}
+                        \item Soit $S$ la similitude plane directe qui transforme $B$ en $E$ et $J$ en $C$.
+                              Pr\'eciser le rapport et l'angle de $S$.
+                              \label{quest: Bac C 2005 Pbm 1 Part 1 quest 3}
+                              
+                              \underline{N.B :} Justifier votre r\'eponse.
+                  \end{enumerate}
+            \item[Partie 2]
+                  Le plan complexe est rapport\'e \`a un rep\`ere orthonorm\'e $(A ; \vec{e_1} , \vec{e_2})$ o\`u 
+                  $\vec{e_1} = \frac{1}{4} \overrightarrow{AB}$ et $\vec{e_2} = \frac{1}{4} \overrightarrow{AC}$.
+                  Dans ce rep\`ere, on donne les points : $A(0,0)$, $B(4,0)$ et $C(0,4)$.
+                  \begin{enumerate}
+                        \item Pr\'eciser les coordonn\'ees des points $E$ et $J$.
+                        \item \begin{enumerate}
+                                    \item Donner l'\'ecriture complexe de $S$.
+                                          ($S$ \'etant la similitude plane directe donn\'ee dans la \textbf{Partie 1},
+                                          \ref{quest: Bac C 2005 Pbm 1 Part 1 quest 3})
+                                    \item En d\'eduire les coordonn\'ees du centre $\Omega$ de $S$.
+                              \end{enumerate}
+                        \item Soit la transformation $\overline{S} = S \circ S_{(AB)}$, o\`u $S_{(AB)}$ est la sym\'etrie
+                              orthogonale par rapport \`a la droite $(AB)$.
+                              \begin{enumerate}
+                                    \item Pr\'eciser la nature et les \'el\'ements caract\'eristiques de $\bar{S}$.
+                                    \item D\'eterminer l'\'ecriture complexe associ\'ee \`a $\bar{S}$.
+                              \end{enumerate}
+                  \end{enumerate}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME II}}} (9 points) \newline
+      Soit la fonction num\'erique $f$ d\'efinie sur $\mathbb{R}$ par : 
+      \[
+            f(x) = 
+            \begin{multiform}
+                  (1-x) \expo{\frac{x}{2}} \quad \text{ si } x \geq 0 \\
+                  1 + \frac{x}{2} \ln (1-x) \quad \text{ si } x < 0 \;.
+            \end{multiform}
+      \]
+      $\Courbe$ sa repr\'esentation graphique dans un plan affine rapport\'e \`a un rep\`ere orthonorm\'e.
+      \begin{description}
+            \item[Partie A]
+                  \begin{enumerate}
+                        \item Soit $g$ la fonction d\'efinie sur l'intervalle $]-\infty ; 0[$ par : 
+                              $g(x) = (1-x) \ln (1-x) - x$.
+                              \begin{enumerate}
+                                    \item Etudier les variations de $g$ et dresser son tableau de variation.
+                                    \item En d\'eduire le signe de $g(x)$ suivant les valeurs de $x$.
+                              \end{enumerate}
+                        \item \begin{enumerate}
+                                    \item Montrer que $f$ est continue en $x_0 = 0$.
+                                    \item Calculer $\displaystyle{ \lim_{x\rightarrow 0^-} \frac{f(x) - f(0)}{x} }$.
+                                          \label{quest: Bac C 2005 Pbm 2 Part A 2/ b}
+                                    \item Pour tout $x > 0$, montrer que
+                                          \[
+                                                \frac{f(x) - f(0)}{x} = 
+                                                \frac{1}{2}
+                                                \left[ \frac{ \expo{\frac{x}{2}}-1 }{ \frac{x}{2}} \right] -
+                                                \expo{\frac{x}{2}}
+                                          \]
+                                          Calculer 
+                                          \[
+                                          \lim_{x\rightarrow 0^+ } \frac{f(x) - f(0)}{x}
+                                          \]
+                                          (Indication : poser $X = \frac{x}{2}$.)
+                                          \label{quest: Bac C 2005 Pbm 2 Part A 2/ c}
+                                    \item En utilisant les r\'esultats de 
+                                          \ref{quest: Bac C 2005 Pbm 2 Part A 2/ b} et \ref{quest: Bac C 2005 Pbm 2 Part A 2/ c},
+                                          quelles conclusions peut-on tirer sur $f$ puis sur $\Courbe$\,?
+                              \end{enumerate}
+                        \item \begin{enumerate}
+                                    \item Calculer 
+                                          $\displaystyle{
+                                          \lim_{x\rightarrow -\infty } f(x)
+                                          }$
+                                          et
+                                          $\displaystyle{
+                                          \lim_{x\rightarrow +\infty } f(x)
+                                          }$.
+                                    \item Pour tout $x$ \'el\'ement de l'intervalle $]-\infty ; 0[$, montrer que : 
+                                          $f'(x) = \frac{g(x)}{2 (1-x)}$.
+                                    \item Pour tout $x$ élément de l’intervalle $]0;+\infty[$, calculer $f'(x)$.
+                                    \item Dresser le tableau de variation de $f$.
+                              \end{enumerate}
+                        \item Etudier les branches infinies de $\Courbe$.
+                        \item Montrer que la courbe $\Courbe$ coupe l'axe des abscisses en deux points distincts 
+                              d'abscisses respectives $1$ et $\alpha$ avec $-2 < \alpha < -1$.
+                        \item Tracer la courbe $\Courbe$ en pr\'ecisant les demi-tangentes \`a l'origine $O$ du rep\`ere.
+                        \item Calculer, en $\cm^2$, l'aire $A$ du domaine plan limit\'e par $\Courbe$, l'axe des
+                              abscisses et les droites d'\'equation $x = 0$ et $x = 1$.
+                  \end{enumerate}
+            \item[Partie B]
+                  Soit $(I_n)_{n\in\mathbb{N}}$ la suite d\'efinie par : $I_0 = \sqrt{e} - 1$ et 
+                  pour tout $n \in \mathbb{N}^*$, 
+                  $I_n = \frac{1}{2^{n+1} (n!)} \int_{0}^{1} (1-t)^n \; \expo{\frac{t}{2}} \dt$.
+                  \begin{enumerate}
+                        \item A l'aide d'une int\'egration par parties, calculer $I_1$.
+                        \item Montrer que pour tout $n$ \'el\'ement de $\mathbb{N}$, on a 
+                              $I_{n+1} = I_n - \frac{1}{2^{n+1} [(n+1)!]}$.
+                  \end{enumerate}
+            \item En d\'eduire par r\'ecurrence que, pour tout entier naturel $n$, on a
+                  \[
+                  \sqrt{e}=1+\frac{1}{2}\frac{1}{1!}
+                            +\frac{1}{2^2}\frac{1}{2!}
+                            +\cdots
+                            +\frac{1}{2^n}\frac{1}{n!}+I_n.
+                  \]
+            \item Donner alors l'expression de $I_n$ en fonction de $n$.
+      \end{description}
+      \begin{center}
+            On donne : $\ln 2 \simeq 0,7$, $\ln 3 \simeq 1,1$, $\sqrt{e} \simeq 1,64$.
+      \end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

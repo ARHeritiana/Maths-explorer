@@ -1,0 +1,209 @@
+% Baccalauréat malgache, série C, 2018 : énoncé.
+\TCDBacAttribution{C}{2018}
+\providecommand{\cm}{~\mathrm{cm}}
+\providecommand{\D}{(\mathscr{D})}
+\providecommand{\Courbe}{(\mathscr{C})}
+\providecommand{\CourbeP}{(\mathscr{C}')}
+\providecommand{\Courben}{(\mathscr{C}_n)}
+\providecommand{\CourbeU}{(\mathscr{C}_1)}
+\providecommand{\CourbeD}{(\mathscr{C}_2)}
+\providecommand{\Plan}{(\mathscr{P})}
+\providecommand{\mes}[2]{\mathrm{mes}\left( \widehat{ \overrightarrow{#1} ; \overrightarrow{#2} } \right)}
+\providecommand{\Angl}[2]{\left( \overrightarrow{#1} ; \overrightarrow{#2} \right)}
+\providecommand{\congru}[3]{#1 \equiv #2 \quad \left[\mathrm{#3}\right]}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{Exercice}} (4 points)
+	\begin{description}
+		\item[I.\underline{Arithm\'etique :}]~\\[-1\baselineskip]
+			\begin{enumerate}
+				\item Soit l'entier naturel $A = 3 \times 5^{2n-1} + 2^{3n-2}$ avec $n \geq 1$.
+						\begin{enumerate}
+							\item Montrer que $20 \times A$ est divisible par $17$.
+							\item En d\'eduire que $A$ est divisible par $17$.
+						\end{enumerate}
+				\item Un entier naturel $B$ s'\'ecrit $\overline{3122}$ en base $4$ et $\overline{431}$ en base $n$.
+						D\'eterminer l'entier naturel $n$.
+				\item Calculer les entiers naturels non nuls $a$ et $b$ v\'erifiant : 
+						\[
+							a^2 - b^2 = 2\,916 \text{ et } PGCD(a;b) = 18 .
+						\]
+			\end{enumerate}
+		\item[II.\underline{Probabilit\'e :}]~\newline
+			Une urne contient $2n$ jetons rouges et $(n+3)$ jetons noirs, $n \in \mathbb{N}^*$.
+			\begin{enumerate}
+				\item On tire au hasard successivement et sans remise trois jetons de l'urne.
+					\begin{enumerate}
+						\item Exprimer en fonction de $n$ la probabilit\'e $P(A)$ de l'\'ev\`enement : \newline
+								$A$ : << On obtient un jeton rouge au premier tirage >>.
+						\item Calculer $\displaystyle{\lim_{n\rightarrow +\infty} P(A)}$.
+					\end{enumerate}
+				\item On tire au hasard successivement et avec remise trois jetons de l'urne.
+					\begin{enumerate}
+						\item Exprimer en fonction de $n$ la probabilit\'e $P(B)$ de l'\'ev\`enement : \newline
+								$B$ : << On obtient un jeton noir au premier tirage >>.
+						\item Calculer $\displaystyle{\lim_{n\rightarrow +\infty} P(B)}$.
+					\end{enumerate}
+			\end{enumerate}
+	\end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{Probleme I}} (7 points) \newline
+Dans le plan orient\'e $\Plan$, on consid\`ere le triangle $ABC$ rectangle en $A$ tel que $BC = 2 AB = 4\cm$ et 
+$\mes{AB}{AC} = \frac{\pi}{2}$.
+
+Soit $S$ la similitude plane directe qui laisse invariant le point $B$ et transforme le point $A$ en $C$.
+\begin{description}
+	\item[I. ] 
+		\begin{enumerate}
+			\item Construire en vraie grandeur le triangle $ABC$.
+			\item %
+				\begin{enumerate}
+					\item Soit $G$ le barycentre du syst\`eme $\{ (A,-1),(B,1),(C,1) \}$. Placer le point $G$.
+					\item D\'eterminer puis construire l'ensemble 
+						$(E_1) = \{ M \in \Plan \mid -MA^2 + MB^2 + MC^2 = 4 \}$.
+					\item D\'emontrer que, pour tout point $M$ du plan $\Plan$, 	
+						$- \overrightarrow{MA} + \overrightarrow{MB} + \overrightarrow{MC}$ 
+						est un vecteur constant dont on pr\'ecisera son expression en fonction des vecteurs 
+						$\overrightarrow{AB}$ et $\overrightarrow{AC}$.
+					\item D\'eterminer puis construire l'ensemble $(E_2)$ des points $M\in\Plan$ v\'erifiant
+						\[
+						\begin{aligned}
+						&(-2\overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC})\\
+						&\qquad\cdot(-\overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC})=0.
+						\end{aligned}
+						\]
+				\end{enumerate}
+		\end{enumerate}
+	\item[II. ]
+		\begin{enumerate}
+			\item D\'eterminer le rapport et l'angle de $S$.
+			\item Soient $M$ le point du demi-cercle de diam\`etre $[BC]$ ne contenant pas $A$ et $M'$ le point tel que 
+				$BM' = 2 BM$ et que $C$, $M$ et $M'$ soient align\'es dans cet ordre.
+				\begin{enumerate}
+					\item Placer les points $M$ et $M'$.
+					\item Montrer que $S(M) = M'$.
+				\end{enumerate}
+		\end{enumerate}
+	\item[III. ]
+		Le plan est muni d'un rep\`ere orthonorm\'e direct $(A ; \vec{u} , \vec{v})$ avec $\vec{u} = \frac{\overrightarrow{AB}}{2}$.
+		\begin{enumerate}
+			\item %
+				\begin{enumerate}
+					\item Donner les affixes des points $B$, $C$ et $G$.
+					\item D\'eterminer l'expression complexe de $S$.
+					\item En d\'eduire les \'el\'ements caract\'eristiques de $S$.
+				\end{enumerate}
+			\item Soit $T$ la transformation du plan d\'efinie par son expression complexe : 
+				\[
+					z' = (-1 + i \sqrt{3}) \bar{z} - 2 - 2 i \sqrt{3} .
+				\]
+				\begin{enumerate}
+					\item Quelle est la nature de $T$\,?
+					\item D\'eterminer les \'el\'ements caract\'eristiques de $T$.
+				\end{enumerate}
+		\end{enumerate}
+\end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{Probleme II}} (9 points) \newline
+On consid\`ere la fonction num\'erique $f$ d\'efinie sur $[ 0 ; +\infty[$ par : 
+	\[
+		\begin{multiform}
+			f(x) = \frac{x }{\ln (x + 1)} \text{ si } x \in ] 0 ; +\infty[	\\
+			f(0) = 1	.
+		\end{multiform}
+	\]
+On note par $\Courbe$ sa courbe repr\'esentative dans le plan muni d'un rep\`ere orthonorm\'e \Oij{} d'unit\'e $1\cm$.
+\begin{description}
+	\item[Partie A.]~\newline
+		\begin{enumerate}
+			\item Soit $g$ la fonction d\'efinie sur $[ 0 ; +\infty [$ par $g(x) = \frac{x}{x+1} - \ln (x + 1)$.
+				\begin{enumerate}
+					\item Etudier la variation de $g$.
+					\item En d\'eduire le signe de $g(x)$ pour tout $x > 0$.
+				\end{enumerate}
+			\item Soit $h$ la fonction d\'efinie sur $[ 0 ; +\infty[$ par $h(x) = \ln (x+1) - x + \frac{x^2}{2} - \frac{x^3}{3}$.
+				\begin{enumerate}
+					\item Etudier la variation de $h$.
+					\item En d\'eduire le signe de $h(x)$ pour tout $x \geq 0$.
+					\item Montrer que pour tout $\displaystyle{x \geq 0,\ \ln (x+1) - x + \frac{x^2}{2} \geq 0}$.
+					\item En d\'eduire que pour tout $x > 0$, 
+						$
+							\displaystyle{
+								-\frac{1}{2} \leq \frac{\ln (x+1) - x}{x^2} \leq -\frac{1}{2} + \frac{x}{3}	.
+							}
+						$
+					\item Calculer 
+						$
+							\displaystyle{
+								\lim_{x\rightarrow 0^+}
+									\frac{\frac{\ln (x+1)}{x} - 1}{x}
+							}.
+						$
+				\end{enumerate}
+		\end{enumerate}
+	\item[Partie B.]~\newline
+		\begin{enumerate}
+			\item %
+				Soit $\varphi$ la fonction d\'efinie sur $[0;+\infty[$ par $\varphi (x) = \frac{1}{f(x)}$.
+				Montrer que les deux fonctions $f$ et $\varphi$ sont continues \`a droite en $0$.
+			\item %
+				\begin{enumerate}
+					\item Exprimer $\displaystyle{\frac{f(x)-f(0)}{x}}$ en fonction de $x$, $\varphi (x)$ et $\varphi(0)$.
+					\item En d\'eduire que $\displaystyle{\lim_{x\rightarrow 0^+} \frac{f(x)-f(0)}{x}} = \frac{1}{2}$.
+						Que peut-on dire de $f$\,?
+				\end{enumerate}
+			\item Calculer la limite de $f$ en $+\infty$.
+			\item %
+				\begin{enumerate}
+					\item Donner une relation entre $f'(x)$ et $g(x)$ pour tout $x>0$,
+						o\`u $f'$ est la fonction d\'eriv\'ee de $f$.
+					\item Dresser le tableau de variation de $f$.
+				\end{enumerate}
+			\item %
+				\begin{enumerate}
+					\item Etudier la branche infinie de la courbe $\Courbe$ au voisinage de $+\infty$.
+					\item Tracer la courbe $\Courbe$ en pr\'ecisant la demi-tangente au point d'abscisse $x_0 = 0$.
+				\end{enumerate}
+		\end{enumerate}
+	\item[Partie C.]~\newline
+		\begin{enumerate}
+			\item D\'emontrer que, pour tout r\'eel $t \in [0;1]$, on a $1-t \leq \frac{1}{1+t} \leq 1$.
+			\item En d\'eduire que, pour tout $x \in [0;1]$, on a : $1 \leq f(x) \leq \frac{2}{2-x}$.
+			\item Montrer alors que $1 \leq \int_{0}^{1} f(x) \dx \leq 2 \ln 2$.
+		\end{enumerate}
+\end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

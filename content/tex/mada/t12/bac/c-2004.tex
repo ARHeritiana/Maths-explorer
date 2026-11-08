@@ -1,0 +1,218 @@
+% Baccalauréat malgache, série C, 2004 : énoncé.
+\TCDBacAttribution{C}{2004}
+\providecommand{\dx}{\mathrm{d}x}
+\providecommand{\Re}[1]{\mathrm{Re}\left( #1 \right)}
+\providecommand{\Im}[1]{\mathrm{Im}\left( #1 \right)}
+\providecommand{\dt}{\mathrm{d}t}
+\providecommand{\Ouv}{(O;\vec{u},\vec{v})}
+\providecommand{\mes}[2]{\mathrm{mes}\left( \widehat{ \overrightarrow{#1} ; \overrightarrow{#2} } \right)}
+\providecommand{\D}{(\mathscr{D})}
+\providecommand{\Courbe}{(\mathscr{C})}
+\providecommand{\Courben}{(\mathscr{C}_n)}
+\providecommand{\CourbeU}{(\mathscr{C}_1)}
+\providecommand{\CourbeD}{(\mathscr{C}_2)}
+\providecommand{\CourbeT}{(\mathscr{C}_3)}
+\providecommand{\congru}[3]{#1 \equi #2 \quad \left[ \mathrm{mod}~#3\right]}
+\providecommand{\Angl}[2]{\left( \widehat{ \overrightarrow{#1} , \overrightarrow{#2} } \right)}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{Exercice}}} (4 points) 
+      \begin{description}
+            \item[I. ]
+                  Un dé cubique a quatre faces numérotées 0 et deux faces numérotées 1. 
+                  Quand on lance ce dé, toutes les faces ont la même probabilité d’apparition. 
+                  \begin{enumerate}
+                        \item On lance ce dé une fois. Calculer les probabilités des événements suivants :
+                              \begin{itemize}
+                                    \item $A$ : << La face supérieure du dé porte le numéro 0 >>.
+                                    \item $B$ : << La face supérieure du dé porte le numéro 1 >>.
+                              \end{itemize}
+                        \item On lance ce dé cinq fois de suite ; les lancers étant indépendants, 
+                              calculer les probabilités des événements suivants :
+                              \begin{itemize}
+                                    \item $C$ : << Le numéro 0 apparaît exactement une fois >>.
+                                    \item $D$ : << Le numéro 1 apparaît exactement cinq fois >>.
+                                    \item $E$ : << Le numéro 0 apparaît au moins une fois >>.
+                              \end{itemize}
+                  \end{enumerate}
+            \item[II. ]
+                  \begin{enumerate}
+                        \item \begin{enumerate}
+                                    \item Convertir dans la base 10 l'entier $x$ \'ecrit dans le syst\`eme binaire : 
+                                          $x = (\overline{10101})_2$.
+                                    \item Convertir dans le syst\`eme binaire l'entier naturel $y = 23$ de la base 10.
+                              \end{enumerate}
+                        \item \begin{enumerate}
+                                    \item Dresser la table de multiplication et la table d'addition de $\mathbb{Z}/2\mathbb{Z}$.
+                                    \item R\'esoudre dans $\mathbb{Z}/2\mathbb{Z}$ l'\'equation \`a une inconnue $x$ : 
+                                          $x^2 + x + \bar{2} = \bar{0}$.
+                                    \item R\'esoudre dans $\mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/2\mathbb{Z}$
+                                          le syst\`eme de deux \'equations \`a deux inconnues $x$ et $y$ : 
+                                          $
+                                                \begin{multiform}
+                                                      \bar{2} x + y = \bar{0} \\
+                                                      x + \bar{3} y = \bar{0} \;.
+                                                \end{multiform}
+                                          $
+                              \end{enumerate}
+                  \end{enumerate}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME I}}} (7 points) \newline
+      On consid\`ere un triangle $(ABC)$ rectangle en $A$ avec $\mes{AB}{AC} = \frac{\pi}{2}$ et $AB = 2 AC = 8 \cm$.
+      Soient $I$, $J$ et $E$ les milieux respectifs des segments $[AB]$, $[AC]$ et $[BC]$.
+      \begin{description}
+            \item[Partie A]
+                  \begin{enumerate}
+                        \item \begin{enumerate}
+                                    \item D\'eterminer et construire le barycentre $G$ du syst\`eme
+                                          \[
+                                            \{(A,-1),(B,1),(C,1)\}.
+                                          \]
+                                    \item Exprimer $\overrightarrow{AG}$ en fonction de $\overrightarrow{AE}$ et 
+                                          calculer la distance $AG$.
+                                    \item Montrer que le point $E$ est le centre du cercle circonscrit au triangle $(ABC)$.
+                                    \item Construire le point $D$ tel que $(ABDC)$ soit un rectangle et d\'eterminer 2 
+                                          isom\'etries affines qui laissent globalement invariant le rectangle $(ABDC)$.
+                                    \item D\'eterminer et construire l'ensemble $\Courbe$ des points $M$ v\'erifiant : 
+                                          $- MA^2 + MB^2 + MC^2 = 20$.
+                                          V\'erifier que $E$ appartient \`a $\Courbe$.
+                              \end{enumerate}
+                        \item Montrer que pour tout $M$ du plan contenant $A$, $B$ et $C$, 
+                              $- \frac{3}{2} \overrightarrow{MA} + \frac{1}{2} \overrightarrow{MB} + \overrightarrow{MC}$
+                              est un vecteur fixe $\overrightarrow{W}$ que l'on pr\'ecisera.
+                              Construire le point $K$ tel que $\overrightarrow{W} = \overrightarrow{AK}$.
+                  \end{enumerate}
+            \item[Partie B]
+                  Le plan complexe $\Plan$ est rapport\'e \`a un rep\`ere orthonorm\'e $(A;\vec{u},\vec{v})$ tel que
+                  $\vec{u} = \frac{1}{8} \overrightarrow{AB}$, $\vec{v} = \frac{1}{4} \overrightarrow{AC}$.
+                  Soient $S_1$ la similitude plane directe qui transforme $C$ en $C$ et $I$ en $A$ ;
+                         $S_2$ la similitude plane directe qui transforme $I$ en $I$ et $A$ en $C$.
+                  \begin{enumerate}
+                        \item D\'eterminer $z_A$, $z_B$, $z_C$ et $z_I$ affixes respectives de $A$, $B$, $C$ et $I$.
+                        \item \begin{enumerate}
+                                    \item D\'eterminer les expressions complexes de $S_1$ et $S_2$.
+                                    \item Pr\'eciser les \'el\'ements caract\'eristiques de ces deux similitudes directes.
+                              \end{enumerate}
+                        \item Soit $R = S_2 \circ S_1$.
+                              \begin{enumerate}
+                                    \item Pr\'eciser l'image de $I$ par $R$.
+                                    \item Donner l'expression complexe associ\'ee \`a la transformation ponctuelle de $R$.
+                                    \item En d\'eduire ses \'el\'ements g\'eom\'etriques.
+                              \end{enumerate}
+                        \item Soit $g$ la transformation ponctuelle r\'eciproque de $S_1$.
+                              Caract\'eriser $g$ et trouver la repr\'esentation complexe associ\'ee \`a $g$.
+                  \end{enumerate}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME II}}} (9 points) \newline
+      Pour tout $n \in \mathbb{N}^*$, on consid\`ere la fonction $f_n$ d\'efinie par :
+      \[
+            \begin{multiform}
+                  f_n (0) = 0 \\
+                  f_n (x) = x [ \ln x ]^n \text{ pour } x > 0 \;.
+            \end{multiform}
+      \]
+      On note $\Courben$ la courbe repr\'esentative de $f_n$ dans un rep\`ere orthonorm\'e \Oij{} d'unit\'e $2\cm$.
+      \begin{description}
+            \item[Partie A]
+                  On d\'esigne par $I_n = \int_{1}^{e} f_n (x) \dx$, $n \in \mathbb{N}^*$.
+                  \begin{enumerate}
+                        \item Calculer $I_1$.
+                        \item A l'aide d'une int\'egration par parties :
+                              \begin{enumerate}
+                                    \item Calculer $I_2$.
+                                    \item Donner une expression de $I_{n+1}$ en fonction de $I_n$.
+                                    \item En d\'eduire $I_3$.
+                              \end{enumerate}
+                  \end{enumerate}
+            \item[Partie B] Etude des fonctions $f_n$ pour $n$ fix\'e.
+                  \begin{description}
+                        \item[I. ]
+                              \begin{enumerate}
+                                    \item \begin{enumerate}
+                                                \item Montrer que $f_n$ est continue en $0$.
+                                                \item Etudier la d\'erivabilit\'e de $f_n$ en $0$.
+                                                \item En d\'eduire la tangente \`a $\Courben$ au point d'abscisse $x_0 = 0$.
+                                          \end{enumerate}
+                                    \item Montrer que l'\'equation $f_{n+1} (x) - f_n (x) = 0$ admet trois solutions dans
+                                          l'intervalle $[0;+\infty[$.
+                                    \item En d\'eduire que toutes les courbes $\Courben$ passent par 3 points fixes dont 
+                                          on pr\'ecisera les coordonn\'ees.
+                              \end{enumerate}
+                        \item[II. ]
+                              Variation de $f_n$, pour $n \geq 2$.
+                              \begin{enumerate}
+                                    \item Calculer $\displaystyle{\lim_{x \rightarrow +\infty} f_n (x) }$.
+                                    \item Montrer que pour tout $x > 0$ : $f_n ' (x) = [n + \ln x] [\ln x]^{n-1}$.
+                                    \item \textbf{Pour $n$ impair :} 
+                                          \begin{enumerate}
+                                                \item Montrer que $f_n '(x)$ et $[n + \ln x]$ sont de m\^eme signe.
+                                                \item Dresser le tableau de variation de $f_n$.
+                                                      On calculera en particulier $f_n (\expo{-n})$.	\newline
+				                                          \textbf{Application :} Dresser le tableau de variation de $f_3$.
+                                          \end{enumerate}
+                                    \item \textbf{Pour $n$ pair :}
+                                          \begin{enumerate}
+                                                \item Montrer que : 
+                                                      \begin{itemize}
+                                                            \item pour tout $x\in ]0;\expo{-n}[ \cup ]1;+\infty[$, $f_n'(x)>0$.
+                                                            \item pour tout $x\in [\expo{-n};1]$, $f_n'(x) \leq 0$.
+                                                      \end{itemize}
+                                                \item Dresser le tableau de variation de $f_n$.	\newline
+				                                          \textbf{Application :} Dresser le tableau de variation de $f_2$.
+                                          \end{enumerate}
+                                    \item Etudier les positions relatives de $\CourbeD$ et $\CourbeT$ respectivement
+                                          dans les intervalles $]1;e[$ et $[e;+\infty[$.
+                                    \item Montrer que le point $I(1,0)$ est un point d'inflexion de $\CourbeT$.
+                                    \item Tracer dans un m\^eme rep\`ere $\CourbeD$ et $\CourbeT$.
+                              \end{enumerate}
+                        \item[III. ]
+                              On note $g$ la restriction de $f_2$ \`a l'intervalle $[1,e]$.
+                              \begin{enumerate}
+                                    \item Montrer que $g$ est une bijection de l'intervalle $[1,e]$ sur un intervalle $I$
+                                          que l'on d\'eterminera.
+                                    \item Calculer $\left(g^{-1}\right)' (e)$, $g^{-1}$ \'etant la fonction r\'eciproque de $g$.
+                                    \item Repr\'esenter graphiquement $g^{-1}$ 
+                                          dans le m\^eme rep\`ere que $\CourbeD$ et $\CourbeT$.
+                              \end{enumerate}
+                  \end{description}
+                  %
+                  \begin{center}
+                        On donne : $\expo{-3} \simeq 0,05$, $\expo{-2} \simeq 0,13$, $e \simeq 2,7$.
+                  \end{center}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

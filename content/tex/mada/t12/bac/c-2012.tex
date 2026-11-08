@@ -1,0 +1,238 @@
+% Baccalauréat malgache, série C, 2012 : énoncé.
+\TCDBacAttribution{C}{2012}
+\providecommand{\dx}{\mathrm{d}x}
+\providecommand{\Re}[1]{\mathrm{Re}\left( #1 \right)}
+\providecommand{\Im}[1]{\mathrm{Im}\left( #1 \right)}
+\providecommand{\dt}{\mathrm{d}t}
+\providecommand{\Ouv}{(O;\vec{u},\vec{v})}
+\providecommand{\mes}[2]{\mathrm{mes}\left( \widehat{ \overrightarrow{#1} ; \overrightarrow{#2} } \right)}
+\providecommand{\D}{(\mathscr{D})}
+\providecommand{\Courbe}{(\mathscr{C})}
+\providecommand{\congru}[3]{#1 \equi #2 \quad \left[ \mathrm{mod}~#3\right]}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{Exercice}}} (4 points) \\[-1\baselineskip]
+      \begin{enumerate}
+            \item On consid\`ere, dans $\mathbb{Z} \times \mathbb{Z}$, l'\'equation d\'efinie par 
+                  \begin{equation} 
+                  \TCDtag{E} 
+                  11 x - 7 y = 9 \;. 
+                  \label{eq:Bac C 2012 Exo arithm}
+                  \end{equation}
+                  On note par $(x_0 ; y_0)$ la solution de cette \'equation.
+                  \begin{enumerate}
+                        \item Montrer que $\congru{4 x_0}{2}{7}$.
+                        \item En d\'eduire une solution particuli\`ere de l'\'equation \eqref{eq:Bac C 2012 Exo arithm}.
+                        \item R\'esoudre dans $\mathbb{Z} \times \mathbb{Z}$ l'\'equation \eqref{eq:Bac C 2012 Exo arithm}.
+                        \item Trouver un couple $(a,b) \in \mathbb{N} \times \mathbb{N}$ v\'erifiant : 
+                              $11a - 7b = PGCD(a;b)$.
+                  \end{enumerate}
+            \item On dispose d'un d\'e cubique parfait \`a six faces num\'erot\'ees 2, 3, 4 dont 
+                  une face marqu\'ee 2, deux faces marqu\'ees 3 et deux faces marqu\'ees 4.
+                  On lance trois fois de suite ce d\'e.
+                  On note chaque fois le num\'ero apparu \`a la face sup\'erieure, 
+                  en l'\'ecrivant dans l'ordre de gauche \`a droite pour former un nombre naturel.
+                  Calculer la probabilit\'e de chaque \'ev\`enement suivant :
+                        \begin{description}
+                              \item[$A$ :] << Le nombre form\'e ne contient que des chiffres premiers >>.
+                              \item[$B$ :] << Le chiffre 4 apparait au moins une fois dans le nombre form\'e >>.
+                              \item[$C$ :] << Obtenir l'\'ecriture du nombre 92 dans le syst\`eme \`a base 5 >>.
+                              \item[$D$ :] << La somme des chiffres dans le nombre form\'e est 8 >>.
+                        \end{description}
+                        \begin{center}
+                              \textbf{\underline{NB :} On donnera les r\'esultats sous forme de fraction irr\'eductible.}
+                        \end{center}
+      \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME I}}} (7 points) \newline
+%
+      On consid\`ere dans le plan $\Plan$ un triangle rectangle et isoc\`ele $ABC$ tel que : 
+      $AB = AC = 2$ (unit\'e graphique $2\cm$) et $\mes{AB}{AC} = \frac{\pi}{2}$.
+      On d\'esigne par $G$ le milieu du segment $[BC]$ et par $O$ celui de $[AC]$.
+      On met les points $A$ et $C$ sur une droite horizontale.
+      
+      \underline{\textbf{Partie 1}} \newline
+            \begin{enumerate}
+                  \item \begin{enumerate}
+                              \item D\'eterminer et construire le barycentre $F$ des points $A$, $B$ et $C$ affect\'es
+                                    respectivement des coefficients $2$, $-1$ et $1$.
+                                    Montrer que $ABGF$ est un parall\'elogramme.
+                              \item D\'eterminer et construire l'ensemble $(E)$ des points $M$ du plan $\Plan$ tels que : 
+                                    $
+                                          \| 2 \overrightarrow{MA} - \overrightarrow{MB} + \overrightarrow{MC} \| 
+                                          = 
+                                          \| 2 \overrightarrow{MA} - \overrightarrow{MB} - \overrightarrow{MC} \|
+                                    $.
+                        \end{enumerate}
+                  \item On appelle $J$ le sym\'etrique de $B$ par rapport \`a $A$ et 
+                        $\D$ la droite passant par $J$ et parall\`ele \`a $(AC)$.
+                        Soit $(\Gamma)$ l'ensemble des points $M$ du plan $\Plan$ tels que si $H$ est le projet\'e
+                        orthogonal de $M$ sur $\D$ alors l'\'equation de $(\Gamma)$ est :
+                              \begin{equation}
+                              \TCDtag{1}
+                                    2 \; MA^2  - MB^2 + MC^2 = MH^2 - 4 \;.
+                              \label{eq:Bac C 2012 Probleme 1 partie 1}
+                              \end{equation}
+                        \begin{enumerate}
+                              \item Montrer que $(\Gamma)$ passe par $A$ et $C$.
+                              \item Calculer $FA^2$, $FB^2$ et $FC^2$.
+                              \item D\'emontrer que l'\'equation \eqref{eq:Bac C 2012 Probleme 1 partie 1} est \'equivalente \`a
+                                    l'\'equation $2\; MF^2 = MH^2$.
+                                    En d\'eduire la nature de $(\Gamma)$.
+                        \end{enumerate}
+            \end{enumerate}
+      \underline{\textbf{Partie 2}} \newline
+            Le plan $\Plan$ est rapport\'e au rep\`ere orthonorm\'e $\Ouv$ avec $\vec{u} = \frac{1}{2} \overrightarrow{CA}$.
+            \begin{enumerate}
+                  \item D\'eterminer respectivement les affixes $z_C$, $z_J$ et $z_F$ des points $C$, $J$ et $F$.
+                  \item On consid\`ere une similitude plane indirecte $S$ qui, \`a tout point $M$ d'affixe $z$ associe
+                        le point $M'$ d'affixe $z'$.
+                        \begin{enumerate}
+                              \item Sachant que $S$ transforme $F$ en $J$ et laisse invariant $C$, 
+                                    donner l'expression complexe de $S$.
+                              \item En d\'eduire les \'el\'ements caract\'eristique de $S$.
+                        \end{enumerate}
+                  \item \begin{enumerate}
+                              \item Calculer les affixes des points $A' = S(A)$ et $B' = S(B)$.
+                              \item Construire dans le m\^eme plan $\Plan$, l'image par $S$ du triangle $ABC$.
+                        \end{enumerate}
+            \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME II}}} (9 points) 
+      \begin{center}
+            \textbf{\underline{NB :} Les parties A et B sont ind\'ependantes.}
+      \end{center}
+      \begin{description}
+            \item[Partie A :] ~\newline
+                  On consid\`ere la fonction d\'efinie sur $\mathbb{R}$ par :
+                  \[
+                        \begin{multiform}
+                              f(x) = x \; \expo{x}                           \text{, si } x \leq 0       \\
+                              f(x) = \ln \left[ 2x + \sqrt{4x^2 + 1}\right]  \text{, si } x > 0       \;.
+                        \end{multiform}
+                  \]
+                  \begin{enumerate}
+                        \item \begin{enumerate}
+                                    \item Etudier la continuit\'e de $f$ en $x_0 = 0$.
+                                    \item En admettant que $\lim_{x\rightarrow 0^+} \frac{f(x)}{x} = 2$,
+                                          \'etudier la d\'erivabilit\'e de $f$ en $x_0 = 0$.
+                              \end{enumerate}
+                        \item Etudier les variations de $f$ en dressant son tableau de variation.
+                              \label{Bac C 2012 Probleme 2 Partie A question 2}
+                        \item Soit $g$ la fonction d\'efinie sur $[2 ; +\infty[$ par : $g(x) = x - f(x)$.
+                              \begin{enumerate}
+                                    \item Montrer que, pour tout $x \in [ 2 ; +\infty[ $, $g'(x) > 0$.
+                                    \item Prouver que $f(x) = \ln (x) + \ln \left[ 2 + \sqrt{4 + \frac{1}{x^2}} \right]$, 
+                                          pour $x > 0$.
+                                          En d\'eduire $\lim_{x\rightarrow +\infty} g(x)$.
+                                    \item D\'eduire le tableau de variation de $g$.
+                                          En d\'eduire que l'\'equation $f(x) = x$ admet une solution $\alpha$ et une seule,
+                                          telle que $2 \leq \alpha \leq 3$.
+                              \end{enumerate}
+                        \item Soit l'intervalle $I = [2 ; 3]$.
+                              \begin{enumerate}
+                                    \item D\'emontrer que, si $x \in I$ alors $f(x) \in I$. 
+                                          (On pourra utiliser 
+                                          \textbf{A.}
+                                          \ref{Bac C 2012 Probleme 2 Partie A question 2}
+                                          ).
+                                    \item Prouver que pour tout $x\in I$, on a : $0 \leq f'(x) \leq \frac{1}{2}$.
+                                          En d\'eduire que : $|f(x) - \alpha| \leq \frac{1}{2} |x-\alpha|$, pour tout $x\in I$.
+                              \end{enumerate}
+                        \item Soit la suite $(u_n)_{n\in\mathbb{N}}$ d\'efinie par : 
+                              $
+                                    \begin{multiform}
+                                          u_0 = 3 \\
+                                          u_{n+1} = f(u_n), \text{ si } n \in \mathbb{N} \;.
+                                    \end{multiform}
+                              $
+                              \begin{enumerate}
+                                    \item D\'emontrer, par r\'ecurrence, que $u_n \in I$, pour tout $n \in \mathbb{N}$.
+                                    \item Montrer que, pour tout $n\in\mathbb{N}$, 
+                                          $|u_{n+1} - \alpha| \leq \frac{1}{2} |u_n - \alpha |$ et 
+                                          $|u_n - \alpha| \leq \left( \frac{1}{2} \right)^n$.
+                                    \item D\'eterminer $n_0$ pour que $u_{n_0}$ soit une 
+                                          valeur approch\'ee de $\alpha$ \`a $0,1$ pr\`es. 
+                                          Calculer $u_{n_0}$.
+                              \end{enumerate}
+                        \item On appelle $\Courbe$ la courbe repr\'esentative de $f$ 
+                              dans un rep\`ere orthonorm\'e \Oij{} d'unit\'e $1\cm$.
+                              \begin{enumerate}
+                                    \item Etudier les branches infinies de $\Courbe$.
+                                    \item Tracer $\Courbe$ et la droite $\D : y = x$, 
+                                          en pr\'ecisant $\alpha$ et les demi-tangentes \`a $\Courbe$ en $x_0 = 0$.
+                              \end{enumerate}
+                  \end{enumerate}
+            \item[Partie B :]~\newline
+                  On consid\`ere l'\'equation diff\'erentielle : 
+                  \begin{equation}
+                        \TCDtag{$E_1$}
+                              y' - 2y = x \expo{x} \;.
+                        \label{eq: Bac C 2012 Probleme 2 Partie B equation 1}
+                  \end{equation}
+                  %
+                  \begin{enumerate}
+                        \item R\'esoudre l'\'equation diff\'erentielle 
+                              \begin{equation}
+                                    \TCDtag{$E_2$}
+                                          y' - 2y = 0 \;.
+                                    \label{eq: Bac C 2012 Probleme 2 Partie B equation 2}
+                              \end{equation}
+                        \item Soient $a$ et $b$ deux r\'eels et $u$ la fonction d\'efinie sur $\mathbb{R}$ par : 
+                              $u(x) = (ax+b) \expo{x}$.
+                              \begin{enumerate}
+                                    \item D\'eterminer $a$ et $b$ pour que $u$ soit solution de 
+                                          \eqref{eq: Bac C 2012 Probleme 2 Partie B equation 1}.
+                                    \item $\varphi$ \'etant une fonction d\'erivable sur $\mathbb{R}$.
+                                          Montrer que $(\varphi + u)$ est une solution de 
+                                          \eqref{eq: Bac C 2012 Probleme 2 Partie B equation 1} 
+                                          si et seulement si $\varphi$ est une solution de 
+                                          \eqref{eq: Bac C 2012 Probleme 2 Partie B equation 2}.
+                                    \item En d\'eduire l'ensemble des solutions de 
+                                          \eqref{eq: Bac C 2012 Probleme 2 Partie B equation 1}.
+                              \end{enumerate}
+                        \item D\'eterminer la solution de \eqref{eq: Bac C 2012 Probleme 2 Partie B equation 1}
+                              qui s'annule en $0$.
+                  \end{enumerate}
+                  %
+                  \begin{center}
+                        On donne : $\ln (4+\sqrt{17}) \simeq 2,09$ ; $\ln (6+\sqrt{37}) \simeq 2,49$ ; $\ln 5 \simeq 1,61$.
+                  \end{center}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

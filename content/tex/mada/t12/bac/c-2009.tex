@@ -1,0 +1,201 @@
+% Baccalauréat malgache, série C, 2009 : énoncé.
+\TCDBacAttribution{C}{2009}
+\providecommand{\dx}{\mathrm{d}x}
+\providecommand{\Re}[1]{\mathrm{Re}\left( #1 \right)}
+\providecommand{\Im}[1]{\mathrm{Im}\left( #1 \right)}
+\providecommand{\dt}{\mathrm{d}t}
+\providecommand{\Ouv}{(O;\vec{u},\vec{v})}
+\providecommand{\mes}[2]{\mathrm{mes}\left( \widehat{ \overrightarrow{#1} ; \overrightarrow{#2} } \right)}
+\providecommand{\D}{(\mathscr{D})}
+\providecommand{\Courbe}{(\mathscr{C})}
+\providecommand{\congru}[3]{#1 \equi #2 \quad \left[ \mathrm{mod}~#3\right]}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{Exercice}}} (4 points) \\%[-1\baselineskip]
+      \begin{description}
+            \item[A- Probabilit\'e :]
+                  Chaque lettre du mot « FLEURS » est écrite sur chaque face d’un dé cubique normal 
+                  (une seule lettre sur chaque face). 
+                  Un enfant lance trois fois successive ce dé et d’une manière independante. 
+                  Il obtient ainsi un « mot » de trois lettres (un mot peut avoir un sens ou non).
+                  \begin{enumerate}
+                        \item Calculer la probabilité de chacun des événements suivants :
+                              \begin{itemize}
+                                    \item $A$ : « L’enfant obtient un mot commençant par une consonne ».
+                                          \pnt{0,5}
+                                    \item $B$ : «  L’enfant obtient un mot commençant et se terminant par la même lettre ».
+                                          \pnt{0,5}
+                              \end{itemize}
+                        \item Soit $C$ l’événement « l’enfant obtient un mot ayant des lettres toutes différentes ».
+                              \begin{enumerate}
+                                    \item Définir l’événement $\overline{C}$, événement contraire de $C$.
+                                          \pnt{0,5}
+                                    \item Calculer la probabilité de l’événement $\overline{C}$.
+                                          \pnt{0,5}
+                              \end{enumerate}
+                  \end{enumerate}
+                  %
+                  \begin{center}
+                        NB: On donnera les résultats sous forme de fraction irréductible.
+                  \end{center}
+            \item[B- Arithm\'etique :]
+                  \begin{enumerate}
+                        \item Dans cette question $a$ désigne un élément de $\mathbb{Z}/6\mathbb{Z}$.
+                              Calculer $a^2 + 3a + 2$ pour $a = 4$. 
+                              \pnt{0,25}
+                        \item \begin{enumerate}
+                                    \item R\'esoudre dans $\mathbb{Z}^2$ l'\'equation $(E) : 7x - 3y = 0$.
+                                    \item D\'eterminer, en utilisant l'algorithme d'Euclide, une solution particuli\`ere
+                                          de l'\'equation 
+                                          \begin{equation}
+                                          \TCDtag{F}
+                                                7 x - 3 y = 2 \;.
+                                          \label{eq: Bac C 2009 Arithm F}
+                                          \end{equation}
+                                          R\'esoudre dans $\mathbb{Z}^2$, l'\'equation \eqref{eq: Bac C 2009 Arithm F}.
+                              \end{enumerate}
+                  \end{enumerate}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME I}}} (7 points) \newline
+      Dans le plan orient\'e $\Plan$, on donne le parall\'elogramme $OABC$.
+      
+            \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+                  \clip(-1.59,-0.54) rectangle (6.45,2.54);
+                  \draw (-1,0)-- (4,0);
+                  \draw (4,0)-- (6,2);
+                  \draw (6,2)-- (1,2);
+                  \draw (1,2)-- (-1,0);
+                  \begin{scriptsize}
+                        \fill [color=black] (-1,0) circle (1.5pt) node[above] {$A$};
+                        \fill [color=black] (4,0) circle (1.5pt) node[above] {$B$};
+                        \fill [color=black] (6,2) circle (1.5pt) node[below] {$C$};
+                        \fill [color=black] (1,2) circle (1.5pt) node[below] {$O$};
+                  \end{scriptsize}
+            \end{tikzpicture}
+            
+      \underline{\textbf{Partie A}} \newline
+      Construire les triangles $OCD$ et $OEA$, rectangle et isoc\`eles en $O$, de sens direct.
+      Puis placer le point $G$, milieu du segment $[DE]$.
+      
+      \underline{\textbf{Partie B}} \newline
+      On se propose de d\'emontrer par deux m\'ethodes diff\'erentes que les vecteurs 
+      $\overrightarrow{CA}$ et $\overrightarrow{OG}$ sont orthogonaux et que $CA = 2 OG$.
+      \begin{enumerate}
+            \item \underline{Par les nombres complexes.} \newline
+                  On munit le plan $\Plan$ d'un rep\`ere orthogonal direct d'origine $O$.
+                  On d\'esigne par $a$ et $b$ les affixes respectives des points $C$ et $E$.
+                  \begin{enumerate}
+                        \item D\'eterminer les affixes respectives des points $D$ et $A$.
+                        \item D\'eterminer $Z$ et $Z'$ affixes respectives des vecteurs 
+                              $\overrightarrow{CA}$ et $\overrightarrow{OG}$.
+                        \item Exprimer $Z'$ en fonction de $Z$.
+                        \item D\'emontrer que $\overrightarrow{CA}$ et $\overrightarrow{OG}$ sont orthogonaux et que $CA = 2 OG$.
+                  \end{enumerate}
+            \item \underline{Par les transformations.} \newline
+                  On donne : 
+                  \begin{mitanisa}
+                        $\bullet\ r$ la rotation de centre $O$ et d'angle $\frac{\pi}{2}$ ; \\
+                        $\bullet\ h$ l'homoth\'etite de centre $D$ et de rapport $2$ ; \\
+                        $\bullet\ s$ la compos\'ee $r \circ h$.
+                  \end{mitanisa}
+                  \begin{enumerate}
+                        \item Donner la nature de la transformation $s$.
+                        \item D\'eterminer $s(G)$ et $s(O)$.
+                        \item En d\'eduire que les vecteurs $\overrightarrow{CA}$ et $\overrightarrow{OG}$
+                              sont orthogonaux et que $CA = 2 OG$.
+                  \end{enumerate}
+      \end{enumerate}
+      
+      \underline{\textbf{Partie C}} \newline
+      Dans le rep\`ere orthogonal $(O ; \overrightarrow{OC} , \overrightarrow{OD})$, d\'eterminer l'expression complexe
+      de la transformation $s$ ainsi que l'affixe de son centre.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME II}}} (9 points) \newline
+      Soit $f$ la fonction d\'efinie sur $\mathbb{R}$ par $f(x) = x - 1 + (x^2 + 2) \expo{-x}$.
+      On d\'esigne par $\Courbe$ sa courbe repr\'esentative dans un rep\`ere orthonorm\'e \Oij{} d'unit\'e $2\cm$.
+      
+      \underline{\textbf{Partie A}} 
+      \begin{enumerate}
+            \item On donne la fonction num\'erique $g$ d\'efinie sur $\mathbb{R}$ par $g(x) = 1 - (x^2 - 2x + 2) \expo{-x}$.
+                  \begin{enumerate}
+                        \item Dresser le tableau de variation de $g$.
+                        \item D\'emontrer que l'\'equation $g(x) = 0$ admet une solution unique, 
+                              not\'ee $\alpha$ dans $\mathbb{R}$ et que $0,35 \leq \alpha \leq 0,36$.
+                        \item En d\'eduire le signe de $g(x)$ suivant les valeurs de $x$.
+                  \end{enumerate}
+            \item \begin{enumerate}
+                        \item Montrer que pour tout $x$ de $\mathbb{R}$, on a : $f'(x) = g(x)$.
+                        \item Dresser le tableau de variation de $f$.
+                        \item D\'emontrer que la droite $\D$ d'\'equation $y=x-1$ est une asymptote de $\Courbe$.
+                        \item Tracer dans le m\^eme rep\`ere, la droite $\D$ et la courbe $\Courbe$.
+                  \end{enumerate}
+                  (On prend, pour construire $\Courbe$, $\alpha = 0,35$).
+      \end{enumerate}
+      
+      \underline{\textbf{Partie B}} \textit{Etude d'une suite.} \newline
+      On appelle $I$ l'intervalle $[1;2]$.
+      \begin{enumerate}
+            \item On consid\`ere la fonction $h$ d\'efinie sur $I$ par : $h(x) = f(x) - x$.
+                  \begin{enumerate}
+                        \item D\'emontrer que $h$ est strictement d\'ecroissante sur $I$,
+                              puis dresser son tableau de variation.
+                        \item En d\'eduire que l'\'equation $f(x) = x$ admet une solution unique, 
+                              not\'ee $\beta$, appartenant \`a $I$.
+                  \end{enumerate}
+            \item D\'emontrer que, pour tout r\'eel $x$ de $I$, on a : $f(x) \in I$ et $|f'(x)| \leq \frac{3}{4}$.
+            \item $(U_n)_{n\in\mathbb{N}}$ est la suite num\'erique d\'efinie par : $U_0 = 1$ et $U_{n+1} = f(U_n)$ o\`u 
+                  $n\in\mathbb{N}$.
+                  \begin{enumerate}
+                        \item D\'emontrer par r\'ecurrence que, pour tout entier naturel $n$, on a : $U_n \in I$.
+                        \item D\'emontrer que, pour tout entier naturel $n$, on a : 
+                              $
+                              |U_{n+1} - \beta| \leq \frac{3}{4} |U_n - \beta|
+                              $
+                              et que 
+                              $
+                              |U_n - \beta| \leq \left( \frac{3}{4} \right)^n |U_0 - \beta|
+                              $.
+                        \item Prouver que la suite $(U_n)$ converge vers un r\'eel $\ell$, que l'on pr\'ecisera.
+                  \end{enumerate}
+            \item D\'eterminer l'entier naturel $p$ tel que, pour tout entier naturel $n$ sup\'erieur ou \'egal \`a $p$, on ait :
+                  $|U_n - \beta| \leq 10^{-2}$.
+      \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

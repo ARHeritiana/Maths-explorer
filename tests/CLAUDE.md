@@ -77,6 +77,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `banned.py`, `banned.mjs`, `banned-sha256.json` | banned names (hashed), links, e-mail addresses; ZIP source entries and embedded PDF text/metadata are inspected after decompression |
 | `privacy_scan.py`, `test_privacy_scan.py` | complete published PDF/text inventory; filenames, PDF text, Info metadata, XMP, outlines, links, annotations, form fields, attachment review and visible notices; adversarial PDF fixtures and private-report handling |
 | `twin_parity.py`, `test_twin.py`, `pdf_parity.py`, `tex_lint.py`, `test_notation.py`, `test_enrichment.py` | TeX system: twins, PDF editions, unit lint, notation, enrichment converter |
+| `test_t12_sources.py` | the T12 C/D book sources in `content/tex/mada/t12/`: anonymous (hashed names), no third-party exercise or type-D practice paper, no author or front matter, a consistent `chapitres.json`, Bac papers with their attribution line and only the three checked solutions |
 | `test_mada.py` | `build/mxbuild/mada.py` on synthetic snippets of the T12 C/D book vocabulary (`\begin{chapter}`, defi/thm/prp/lem/cor/rmk/dem, dropped exe/valiny/sol/fiche/sujet, `\providecommand`, boxes, `\vln`, multiform, mitanisa, IEEEeqnarray*, description, `\tikznode`, tabularx, accents), then through the slide parser |
 | `test_content_dependencies.py` | dependency invalidation of `mxbuild.refresh` |
 | `count_claims.py` | counts written in prose match the content |

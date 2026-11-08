@@ -1,0 +1,563 @@
+% T12 C/D, chapitre 3 : Systèmes d’équations linéaires dans R³. Source : le livre « Terminales scientifiques » (SystemeLineaire/Lesona, SystemeLineaire/Exo).
+% Les exercices tirés d’autres ouvrages ne sont pas repris (décision du 2 novembre 2026).
+
+\TCDLessonStyleOn
+\chapter{Syst\`emes d'\'equations lin\'eaires dans $\mathbb{R}^3$}
+\index{Systeme lineaire@Syst\`emes lin\'eaires}
+On s'interesse \`a la r\'esolution de syst\`emes de trois \'equations lin\'eaires \`a trois inconnues ;
+c'est-\`a-dire \`a des \'equations de la forme :
+\[
+	\begin{multiform}
+		a_1 x + b_1 y + c_1 z = d_1	\\
+		a_2 x + b_2 y + c_2 z = d_2	\\
+		a_3 x + b_3 y + c_3 z = d_3	.
+	\end{multiform}
+\]
+Ce genre de syst\`eme peut ais\'ement se g\'en\'eraliser en syst\`eme de $n$ \'equations \`a $n$ inconnues, 
+la m\'ethode de r\'esolution \'etant essentiellement similaire.
+
+                  \section{R\'esolution de syst\`emes lin\'eaires}
+\index{Systeme lineaire@Syst\`emes lin\'eaires!Methode de Gauss@M\'ethode de Gauss}
+\index{Methode de Gauss@M\'ethode de Gauss}
+                        \subsection{M\'ethode de Gauss}
+\index{Gauss!Pivot de}
+\index{Gauss!Methode de@M\'ethode de}
+                              Consid\'erons le syst\`eme suivant :
+                              \[
+                                    \left\lbrace
+                                    \begin{array}{lc}
+                                          3 x + 2 y -   z =   1  & (1) \\
+                                          2 x - 3 y +   z =  10  & (2) \\
+                                          - x +   y - 3 z = -12. & (3)
+                                    \end{array}
+                                    \right.
+                              \]
+                              On choisit une des \'equations pour \^etre le \emph{pivot}.
+\index{Pivot de Gauss}
+\index{Systeme lineaire@Syst\`eme lin\'eaires!Pivot}
+                              On va prendre l'\'equation $(1)$.
+                              \[
+                                    \left\lbrace
+	                                    \begin{array}{lcl}
+	                                          \textcolor{loko1}{3 x + 2 y -   z =   1}  
+	                                                & \textcolor{loko1}{(1)} 
+	                                                      & \textcolor{loko1}{\leftarrow \text{pivot}} \\
+	                                          2 x - 3 y +   z =  10  & (2) &            \\
+	                                          - x +   y - 3 z = -12. & (3) &
+	                                    \end{array}
+                                    \right.
+                              \]
+                              On utilise le pivot pour \'eliminer une des variables dans les autres \'equations :
+                              \[
+                                    \begin{matrix}
+		                                          +
+		                                    \underline{
+			                                    \left\lbrace
+				                                    \begin{array}{lc}
+				                                          3 x + 2 y -   z =   1  & (1) \\
+				                                          2 x - 3 y +   z =  10  & (2) 
+				                                    \end{array}
+			                                    \right.
+			                              }
+			                              \\
+	                                                5 x - y = 11 \quad (2')
+	                              \end{matrix}
+                                    \qquad
+                                    \begin{matrix}
+		                                          -
+		                                    \underline{
+			                                    \left\lbrace
+				                                    \begin{array}{lc}
+				                                          9 x + 6 y - 3 z =   3  & 3\times(1) \\
+				                                          - x +   y - 3 z = -12. & (3)
+				                                    \end{array}
+			                                    \right.                                    
+			                              }
+			                              \\
+			                              10 x + 5 y = 15 \quad (3')
+                                    \end{matrix}
+                              \]
+                              Ce qui nous donne le nouveau syst\`eme :
+                              \[
+                                    \left\lbrace
+	                                    \begin{array}{lcl}
+	                                          \cellcolor[gray]{0.8} 3 x + 2 y -   z =   1  
+	                                                & (1) 
+	                                                      & \leftarrow \text{on ne touche plus \`a l'ancien pivot,}  \\
+	                                          5 x - y         =  11  & (2') & \\
+	                                          10 x + 5 y      =  15. & (3') & \\
+	                                    \end{array}
+                                    \right.
+                              \]
+                              On choisit alors un nouveau pivot, prenons l'\'equation $(2')$.
+                              \[
+                                    \left\lbrace
+	                                    \begin{array}{lcl}
+	                                          3 x + 2 y -   z =   1  & (1) &            \\
+	                                          \textcolor{loko1}{5 x - y = 11}  
+	                                                & \textcolor{loko1}{(2')} 
+	                                                      & \textcolor{loko1}{\leftarrow \text{pivot}} \\
+	                                          10 x + 5 y = 15 & (3') &
+	                                    \end{array}
+                                    \right.
+                              \]
+                              A l'aide de ce nouveau pivot, on \'elimine une variable dans toutes les \'equations,
+                              except\'e celles qui ont d\'ej\`a servi de pivots.
+                              \[
+                                    \begin{matrix}
+	                                          +
+                                          \underline{
+		                                    \left\lbrace
+			                                    \begin{array}{lcl}
+			                                          25 x - 5 y = 55 & 5\times(2') & \\
+			                                          10 x + 5 y = 15 & (3') &  
+			                                    \end{array}
+		                                    \right.
+		                                    }
+                                                \\
+                                                            35 x        = 70      \quad (3'')
+                                    \end{matrix}
+                              \]
+                              On a alors le syst\`eme suivant : 
+                              \[
+                                    \left\lbrace
+	                                    \begin{array}{lc}
+	                                           3 x + 2 y -   z =   1  & (1 )  \\
+	                                           5 x -   y       =  11  & (2') \\
+	                                          35 x             =  70. & (3") \\
+	                                    \end{array}
+                                    \right.
+                              \]
+                              On r\'esout les \'equations une par une :
+                              \[
+                                    \left\lbrace
+	                                    \begin{array}{lc}
+	                                          35 x             =  70. & (3") \\
+	                                           5 x -   y       =  11  & (2') \\
+	                                           3 x + 2 y -   z =   1  & (1 )  \\
+	                                    \end{array}
+                                    \right.
+                                    \Rightarrow
+                                    \left\lbrace
+	                                    \begin{array}{l}
+	                                             x                   =   2    \\
+	                                           5 \cdot 2 -   y       =  11    \\
+	                                           3 \cdot 2 + 2 y -   z =   1    \\
+	                                    \end{array}
+                                    \right.
+                                    \Rightarrow
+                                    \left\lbrace
+	                                    \begin{array}{l}
+	                                             x           =  2  \\
+	                                           10 -  y       =  11 \\
+	                                           6 + 2 y -   z =   1 
+	                                    \end{array}
+                                    \right.
+                              \]
+                              %
+                              \[
+                                    \Rightarrow
+                                    \left\lbrace
+	                                    \begin{array}{l}
+	                                           x =  2       \\
+	                                           y = -1       \\
+	                                           2 \cdot (-1) -   z =   1 -6 
+	                                    \end{array}
+                                    \right.
+                                    \Rightarrow
+                                    \left\lbrace
+	                                    \begin{array}{l}
+	                                           x =  2 \\
+	                                           y = -1 \\
+	                                           - 2 - z = -5
+	                                    \end{array}
+                                    \right.
+                                    \Rightarrow
+                                    \left\lbrace
+	                                    \begin{array}{l}
+	                                           x =  2 \\
+	                                           y = -1 \\
+	                                           z =  3 .
+	                                    \end{array}
+                                    \right.
+                              \]
+                  Ainsi, \mybox{$(x,y,z) = (2,-1,3)$}.
+            \subsection{Par substitution}
+\index{Systeme lineaire@Syst\`eme lin\'eaires!Substitution}
+			Consid\'erons le syst\`eme suivant :
+				\[
+					\left\lbrace
+						\begin{array}{lc}
+							  2 x - 3 y + z = -7  & (1) \\
+							  3 x +   y - z = 11  & (2) \\
+							- 2 x + 2 y + z =  0. & (3)
+						\end{array}
+					\right.
+				\]
+			On choisit une \'equation et une variable \`a substituer.
+			Dans notre cas, l'\'equation $(2)$ donne $\textcolor{loko1}{z} = \textcolor{loko1}{3 x + y - 11}$.
+			On a alors 
+				\[
+					\left\lbrace
+						\begin{array}{l}
+							  2 x - 3 y + \textcolor{loko1}{3 x + y - 11} = -7  \\
+							- 2 x + 2 y + \textcolor{loko1}{3 x + y - 11} =  0. 
+						\end{array}
+					\right.
+					\Rightarrow
+					\left\lbrace
+						\begin{array}{lc}
+							5 x - 2 y =  4  & (1') \\
+							  x + 3 y = 11. & (3')
+						\end{array}
+					\right.
+				\]
+			(Ce syst\`eme peut \^etre r\'esolu par n'importe quelle m\'ethode.)
+			
+			On utilise l'\'equation $(3')$ pour avoir $\textcolor{loko1}{x} = \textcolor{loko1}{-3y+11}$.
+			Ceci donne 
+			      \[ 
+			            5 \cdot (\textcolor{loko1}{-3y+11}) - 2 y = 4
+			            \Rightarrow
+			            -15 y + 55 - 2y = 4
+			            \Rightarrow
+			            55 - 4 = 17 y .
+			      \]
+			On a alors :
+			\begin{itemize}
+			      \item $y = \frac{51}{17} = 3$,
+			      \item $x = -3 \cdot 3 + 11 = 2$,
+			      \item $z = 3 \cdot 2 + 3 - 11 = -2$.
+			\end{itemize}
+			La solution est donc \mybox{$(x,y,z) = (2,3,-2)$}.
+            \section{Probl\`eme se ramenant \`a la r\'esolution de syst\`eme d'\'equations lin\'eaires}
+                  \begin{ex}
+                        D\'eterminer la fonction polyn\^omiale de second degr\'e $P$ v\'erifiant :
+                        $P(1) = -2$, $P(2) = 1$ et $P(3) = 8$.
+                        %
+                        \begin{valiny}
+                              Soient $a$, $b$ et $c$ trois r\'eels tels que $P(x) = a x^2 + b x + c$.
+                              On alors 
+                              \[
+                                    \left\lbrace
+                                          \begin{array}{lc}
+                                                  a +   b + c = -2    & (1)       \\
+                                                4 a + 2 b + c =  1    & (2)       \\
+                                                9 a + 3 b + c =  8.   & (3)       
+                                          \end{array}
+                                    \right.
+                              \]
+                              L'\'equation $(1)$ donne $\textcolor{loko1}{c} = \textcolor{loko1}{-a -b - 2}$.
+                              \[
+                                    \left\lbrace
+                                          \begin{array}{l}
+                                                4 a + 2 b + \textcolor{loko1}{-a -b - 2} =  1   \\
+                                                9 a + 3 b + \textcolor{loko1}{-a -b - 2} =  8.        
+                                          \end{array}
+                                    \right.
+                                    \Rightarrow
+                                    \left\lbrace
+                                          \begin{array}{lc}
+                                                3 a +   b =  3    & (2')       \\
+                                                8 a + 2 b = 10.   & (3')       
+                                          \end{array}
+                                    \right.
+                              \]
+                              L'\'equation $(2')$ donne $\textcolor{loko1}{b} = \textcolor{loko1}{-3a +3}$ ;
+                              et donc $(3')$ devient : $ 8 a + 2 (\textcolor{loko1}{-3a +3}) = 10 $.
+                              Ainsi, $ 8a - 6a + 6 = 10 $ ou encore $ 2a = 4 $.
+                              
+                              On a alors :
+                              \begin{itemize}
+                                    \item $a = 2$,
+                                    \item $b = -3 \cdot 2 + 3 = -3$,
+                                    \item $c = -2 - (-3) -2 = -1$.
+                              \end{itemize}
+                              Finalement, \mybox{$P(x) = 2 x^2 - 3x - 1 $}.
+                        \end{valiny}
+                  \end{ex}
+                  \begin{ex}
+                        D\'eterminer les trois r\'eels $a$, $b$ et $c$ v\'erifiant :
+                        \[
+                              F(x) = 
+                              \frac{2 x^2 - 6 x - 4}{(x-1) (x+2)^2}
+                              = 
+                              \frac{a}{x-1} +\frac{b}{x+2} + \frac{c}{(x+2)^2}
+                              .
+                        \]
+                  \end{ex}
+                              \begin{valiny}
+                              Comme on a \textcolor{loko2}{trois} inconnues, 
+                              \'evaluons la fonction $F$ en \textcolor{loko2}{trois valeurs} quelconques
+                              (appartenant \`a son domaine).
+                              
+                              \begin{minipage}{.35\linewidth}
+	                              D'une part, on a : \newline
+                                    \textbullet\ $F(0)  = \frac{-4}{(-1) (2)^2} =  1 $, \newline
+                                    \textbullet\ $F(-1) = \frac{2 + 6 - 4}{(-2)(1)^2} = -2 $, \newline
+                                    \textbullet\ $F(2)  = \frac{8 - 12 -4}{1 \cdot (4)^2} =-\frac{1}{2} $.
+                              \end{minipage}
+										%
+											\begin{minipage}{.60\linewidth}
+											D'autre part : \newline
+											\textbullet\ $F(0)	= \frac{a}{-1} + \frac{b}{2} + \frac{c}{2^2} 
+															= - a + \frac{1}{2} b + \frac{1}{4} c$, \newline
+											\textbullet\ $F(-1)	= \frac{a}{-1-1} + \frac{b}{-1+2} + \frac{c}{(-1+2)^2} 
+															= -\frac{1}{2} a + b + c$, \newline
+											\textbullet\ $F(2)	= \frac{a}{2-1} + \frac{b}{2+2} + \frac{c}{(2+2)^2} 
+															= a + \frac{1}{4} b + \frac{1}{16} c$.
+										\end{minipage}
+                              
+                              En combinant ces r\'esultats, on a :
+                              \[
+                                    \left\lbrace
+                                          \begin{array}{lc}
+                                                - a + \frac{1}{2} b + \frac{1}{4} c = 1            \\
+                                                -\frac{1}{2} a + b + c = -2                        \\
+                                                a + \frac{1}{4} b + \frac{1}{16} c = -\frac{1}{2}  \;.
+                                          \end{array}
+                                    \right.
+                                    \iff
+                                    \left\lbrace
+                                          \begin{array}{lc}
+                                                - 4 a + 2 b +   c =  4  & (1)    \\
+                                                  - a + 2 b + 2 c = -4  & (2)    \\
+                                                 16 a + 4 b +   c = -8  & (3)    
+                                          \end{array}
+                                    \right.
+                              \]
+                        %
+                              Prenons $(1)$ comme \emph{pivot}.
+                              \[
+                                    \begin{matrix}
+	                                       -
+	                                    \underline{
+		                                    \left\lbrace
+		                                          \begin{array}{lc}
+		                                                  - a + 2 b + 2 c = -4  & (2)    \\
+		                                                - 8 a + 4 b + 2 c =  8  & (1)\times 2    
+		                                          \end{array}
+		                                    \right.
+		                                    }
+		                                    \\
+		                              7 a - 2 b = -12 \qquad (2')
+		                        \end{matrix}
+                                    \qquad
+                                    \begin{matrix}
+	                                          -
+	                                    \underline{
+		                                    \left\lbrace
+		                                          \begin{array}{lc}
+		                                                 16 a + 4 b +   c = -8  & (3)    \\
+		                                                - 4 a + 2 b +   c =  4  & (1)    
+		                                          \end{array}
+		                                    \right.
+		                                    }
+		                                    \\
+		                              20 a + 2 b = - 12 \qquad (3')
+		                        \end{matrix}
+                              \]
+                              On a alors 
+                              \[
+                                    \begin{matrix}
+	                                          +
+	                                    \underline{
+		                                    \left\lbrace
+		                                          \begin{array}{lc}
+		                                                 20 a + 2 b = - 12 & (3')    \\
+		                                                7 a - 2 b = -12 & (2')    
+		                                          \end{array}
+		                                    \right.
+		                                    }
+		                                    \\
+		                              27 a = - 24 \qquad (3'')
+		                        \end{matrix}
+                              \]
+                        Il vient alors que :
+                        \begin{itemize}
+                              \item $a = -\frac{24}{27} = -\frac{8}{9}$,
+                              \item $7 a - 2 b = - 12$ donc $b = \frac{7a+12}{2} = \frac{26}{9}$,
+                              \item $-4a + 2b + c = 4$ donc $c = 4 + 4a - 2b = -\frac{16}{3}$.
+                        \end{itemize}
+                        Donc \mybox{$(a,b,c) = (-\frac{8}{9} ; \frac{26}{9} ; -\frac{16}{3})$}
+                        et 
+                        $
+                              \displaystyle{
+                                    F(x) = \frac{26}{9 \, {\left(x + 2\right)}} 
+                                          - \frac{8}{9 \, {\left(x - 1\right)}} 
+                                          - \frac{16}{3 \, {\left(x + 2\right)}^{2}}
+                              }
+                        $.
+                        \end{valiny}
+
+
+
+
+
+
+
+
+
+\TCDLessonStyleOff
+\clearpage
+\newpage
+\subsection{Exercices}
+      \begin{exo}
+            R\'esoudre le syst\`eme d'\'equations suivant :
+            \[
+                  \begin{multiform}
+                        2 x + 4 y = 62 \\
+                          x +   y = 22 \;.
+                  \end{multiform}
+            \]
+      \end{exo}
+      %
+      \begin{exo}
+            Dans une ferme, il y a des lapins et des canards.
+            On compte en tout 62 pattes et 22 t\^etes (lapins et canards m\'elang\'es).
+            
+            \textsc{Question :} Combien y a-t-il d'animaux de chaque esp\`eces dans cette ferme\,?
+      \end{exo}
+      %
+      \begin{exo}
+            Un jour, Alice et Bob discutent :
+            \begin{description}
+                  \item[A : ] L'ann\'ee derni\`ere, mon \^age \'etait le triple du tien.
+                  \item[B : ] Et dans neuf ans, ton \^age sera le double du mien.
+            \end{description}
+            %
+            \textsc{Question :} Quel \^age ont Alice et Bob respectivement\,?
+      \end{exo}
+      %
+      \begin{exo}
+            \label{exo:mise en equation systeme lineaire a 3 inconnues}
+            Alice, Bob et C\'edric comparent leur argent et remarquent les faits suivants :
+            \begin{itemize}
+                  \item Alice a autant d'argent que Bob et C\'edric r\'eunis.
+                  \item Si on donne 100~Ar \`a C\'edric, alors C\'edric aura deux fois plus d'argent que Bob.
+                  \item Si on donne 300~Ar \`a Bob, alors Bob aura la moiti\'e de l'argent d'Alice.
+            \end{itemize}
+            %
+            \textsc{Question :} Combien poss\`ede chacun de nos trois camarades\,?
+      \end{exo}
+      %
+            \begin{exo}
+                  Soit $P(x) = a x^2 + b x + c$.
+                  Sachant que : $P(1) = 0$, $P(2) = 3$ et $P(3) = 10$ ; d\'eterminer $P$.
+                  
+                  M\^eme question pour un polyn\^eme $Q$ v\'erifiant : 
+                  $Q(-1) = 3$, $Q(1) = 1$ et $Q(-2) = -5$.
+            \end{exo}
+      %
+            \begin{exo}
+                  R\'esoudre dans $\mathbb{R}^3$ les syst\`emes d'\'equations suivants :
+	                  \begin{center}
+		                  \begin{tabularx}{\linewidth}{@{}X X@{}}
+	                        1.
+		                        $
+	                                    \displaystyle{
+	                                          \begin{multiform}
+	                                                3 x + 2 y -   z = 7 \\
+	                                                  x - 4 y + 2 z = 0 \\
+	                                              - 2 x +   y - 8 z = 4 .
+	                                          \end{multiform}
+	                                    }
+	                              $ 
+                              &
+                              2.
+	                              $
+	                                    \displaystyle{
+	                                          \begin{multiform}
+	                                                5 x +   y - 7 z =  10 \\
+	                                              - 2 x - 3 y + 4 z = -11 \\
+	                                                  x - 5 y +   z = - 4 .
+	                                          \end{multiform}
+	                                    }
+	                              $
+                              \\
+                              3.
+	                              $
+	                                    \displaystyle{
+	                                          \begin{multiform}
+	                                                  x +   y -  2 z = 3 \\
+	                                                2 x -   y +  3 z = 0 \\
+	                                              - 4 x + 5 y - 13 z = 6 .
+	                                          \end{multiform}
+	                                    }
+	                              $
+                              &
+                              4.
+	                              $
+	                                    \displaystyle{
+	                                          \begin{multiform}
+	                                                3 x - 5 y + 7 z = -12 \\
+	                                              - 2 x + 2 y -   z =   3 \\
+	                                              - 7 x + 9 y - 9 z =  18 .
+	                                          \end{multiform}
+	                                    }
+	                              $
+                              \\
+                              5.
+	                              $
+	                                    \displaystyle{
+	                                          \begin{multiform}
+	                                                2 x - 2 y +   z =  1 \\
+	                                                3 x +   y - 4 z = -7 \\
+	                                                - x + 5 y - 6 z =  2 .
+	                                          \end{multiform}
+	                                    }
+	                              $
+                              &
+                              6.
+	                              $
+	                                    \displaystyle{
+	                                          \begin{multiform}
+	                                                2 x - 3 y -   z = 6 \\
+	                                                5 x -   y + 3 z = 3 \\
+	                                                2 x +   y - 2 z = 3 .
+	                                          \end{multiform}
+	                                    }
+	                              $
+			                  \end{tabularx}
+	                  \end{center}
+            \end{exo}
+            %
+            \begin{exo}
+                  Pour chacun des cas suivants, d\'eterminer le polyn\^ome $P$
+                  v\'erifiant les conditions donn\'ees, le degr\'e de $P$ \'etant aussi petit que possible :
+                  \begin{enumerate}
+                        \item $P(-3) = -5$ et $P(2) = 10$.
+                        \item $P(-2) =  5$ et $P(3) =  2$.
+                        \item $P(-1) =  3$, $P(1) = 1$ et $P(2) =  9$.
+                        \item $P(-1) =  9$, $P(1) = 5$ et $P(2) = 15$.
+                        \item $P(-1) = -6$, $P(2) = 0$ et $P(3) =  2$.
+                        \item $P(-1) = -4$, $P(1) = 0$, $P(2) =  -1$ et $P(3) = -12$.
+                  \end{enumerate}
+            \end{exo}
+            %
+            \begin{exo}
+                  Trouver les r\'eels $a$, $b$ et $c$ pour avoir l'\'egalit\'e :
+                  \begin{enumerate}
+                        \item $\displaystyle{
+                                    \frac{6}{(x-1)(x+1)(x+2)}
+                                    = 
+                                    \frac{a}{x-1} + \frac{b}{x+1} + \frac{c}{x+2}
+                              }$.
+                        \item $\displaystyle{
+                                    \frac{5}{(x^2+1)(2x+1)}
+                                    = 
+                                    \frac{a x + b}{x^2+1} + \frac{c}{2x+1}
+                              }$.
+                        \item $\displaystyle{
+                                    \frac{4}{(x+1)^2(3x+1)}
+                                    = 
+                                    \frac{a}{3x+1} + \frac{b}{x+1} + \frac{c}{(x+1)^2}
+                              }$.
+                        \item $\displaystyle{
+                                    \frac{3}{(2 x^2+1)(2x-1)}
+                                    = 
+                                    \frac{a x + b}{2x^2+1} + \frac{c}{2x-1}
+                              }$.
+                  \end{enumerate}
+            \end{exo}
+
