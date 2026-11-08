@@ -1,0 +1,36 @@
+\NeedsTeXFormat{LaTeX2e}[2020/10/01]
+\ProvidesPackage{t12-livre}[2026/11/02 T12 C/D book: packages of the original Main.tex, editions, Bac attribution]
+% The student edition hides the corrige environments; the teacher edition (\TCDEditionProf defined before) prints them.
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[provide=*,french]{babel}
+\RequirePackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\RequirePackage{ifthen}
+\RequirePackage{graphicx}
+\RequirePackage{array,hhline,calc,colortbl,tabularx}
+\RequirePackage{wasysym,pifont,marvosym}
+\RequirePackage{textcomp}
+\RequirePackage{verbatim}
+\RequirePackage{comment}
+\RequirePackage{fancybox}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows,decorations,decorations.pathmorphing,intersections,patterns,shadows}
+\RequirePackage[all]{xy}
+\RequirePackage{wrapfig,sidecap,float}
+\RequirePackage{caption,subcaption}
+\RequirePackage{varwidth}
+\RequirePackage{tcd-compat}
+\RequirePackage{tcd-colour}
+\RequirePackage{makeidx}
+\RequirePackage{hyperref}
+\RequirePackage{bookmark}
+\hypersetup{colorlinks=true, linkcolor=TCDAccentDark, urlcolor=TCDAccentDark, citecolor=TCDAccentDark,
+  pdftitle={Mathématiques, Terminales C et D}, pdfauthor={}, pdfsubject={Cours, exercices et sujets de mathématiques, Terminales C et D},
+  pdfkeywords={mathématiques, terminale, Madagascar}}
+\RequirePackage{tcd-professional}
+\renewcommand{\TCDShortTitle}{Terminales C et D}
+\renewcommand{\TCDAuthor}{}
+\ifdefined\TCDEditionProf \includecomment{corrige}\else \excludecomment{corrige}\fi
+% Bac papers: the attribution line, and the note of a partial correction
+\newcommand{\TCDBacAttribution}[2]{\par\noindent{\sffamily\small\color{TCDMuted}Baccalauréat malgache, série~#1, #2.}\par\medskip}
+\newcommand{\TCDPartial}[1]{\par\noindent{\itshape #1}\par\medskip}
+\endinput

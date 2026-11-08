@@ -1,0 +1,21 @@
+\NeedsTeXFormat{LaTeX2e}[2020/10/01]
+\ProvidesPackage{tcd-compat}[2026/08/23 Compatibility helpers for the TCD sources]
+
+\RequirePackage{amsmath}
+\RequirePackage{array}
+\RequirePackage{tcd-trollface}
+
+% Replacement for the sole interval-bracket pair formerly taken from
+% stmaryrd, which is not needed elsewhere in the project.
+\providecommand{\llbracket}{\mathopen{[\![}}
+\providecommand{\rrbracket}{\mathclose{]\!]}}
+
+% The original project used IEEEeqnarray only for unnumbered aligned displays.
+% This compact compatibility environment keeps the old source readable without
+% requiring the unrelated IEEEtran bundle.
+\newcolumntype{C}{>{\displaystyle}c}
+\newenvironment{IEEEeqnarray*}[1]
+  {\begin{equation*}\begin{array}{#1}}
+  {\end{array}\end{equation*}}
+
+\endinput

@@ -1,0 +1,404 @@
+\NeedsTeXFormat{LaTeX2e}[2020/10/01]
+\ProvidesPackage{tcd-professional}[2026/08/23 Editorial and pedagogical styles]
+
+\RequirePackage{etoolbox}
+\RequirePackage{needspace}
+\RequirePackage{adjustbox}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+
+% Context --------------------------------------------------------------------
+% Lesson files use compact editorial headings for statements. Exercises,
+% examination papers, summaries, and appendices retain fully delimited boxes.
+% The public switches let Main.tex select the style once per source component;
+% individual lesson files therefore contain no layout conditionals.
+\newif\ifTCDLessonContext
+\TCDLessonContextfalse
+\newcommand{\TCDLessonStyleOn}{\TCDLessonContexttrue}
+\newcommand{\TCDLessonStyleOff}{\TCDLessonContextfalse}
+
+% The class resets this legacy register to \columnwidth when the main layout
+% starts.  Keeping it equal to \textwidth here is correct for the one-column
+% covers and front matter that precede that switch.
+\setlength{\actualtextwidth}{\textwidth}
+
+% Lists and captions ----------------------------------------------------------
+\setlist{
+  itemsep=0.12\baselineskip,
+  parsep=0pt,
+  topsep=0.35\baselineskip,
+  partopsep=0pt
+}
+\captionsetup{
+  font=small,
+  labelfont={sf,bf,color=TCDAccentDark},
+  textfont=it,
+  justification=centering,
+  skip=4pt
+}
+
+% Reusable, breakable pedagogical frames -------------------------------------
+\newcommand{\TCDPedagogicalFrameStart}[1]{%
+  \par
+  % Reserve enough room for the heading and at least two lines of content.
+  \Needspace*{8\baselineskip}
+  \begin{tcolorbox}[
+    enhanced jigsaw,
+    breakable,
+    colframe=#1,
+    colback=#1!4,
+    boxrule=0.65pt,
+    arc=2pt,
+    outer arc=2pt,
+    boxsep=0pt,
+    top=5pt,
+    bottom=5pt,
+    left=7pt,
+    right=7pt,
+    before skip=0.65\baselineskip,
+    after skip=0.35\baselineskip,
+    pad at break*=2pt
+  ]%
+}
+
+\newcommand{\TCDPedagogicalFrameEnd}{%
+  \par\end{tcolorbox}
+}
+
+% In lessons, a coloured marker and a typographic heading provide hierarchy
+% without surrounding every statement with a box or introducing large blank
+% areas at page breaks.
+\newcommand{\TCDLessonStatementStart}[4]{%
+  \par
+  \Needspace*{6\baselineskip}%
+  \addvspace{0.45\baselineskip}%
+  \noindent
+  {\color{#1}\rule{1.6pt}{1.15em}}%
+  \hspace{0.55em}%
+  {\sffamily\bfseries\color{#1}#2~#3%
+    \ifstrempty{#4}{}{\normalfont\itshape\color{TCDMuted}\space(#4)}%
+  }%
+  \par\nobreak\smallskip\nobreak\normalfont
+}
+
+\newcommand{\TCDLessonStatementEnd}{%
+  \par\addvspace{0.2\baselineskip}%
+}
+
+\newcommand{\TCDStatementStart}[4]{%
+  \ifTCDLessonContext
+    \TCDLessonStatementStart{#1}{#2}{#3}{#4}%
+  \else
+    \TCDPedagogicalFrameStart{#1}%
+    {\sffamily\bfseries\color{#1}#2~#3%
+      \ifstrempty{#4}{}{\normalfont\itshape\color{TCDMuted}\space(#4)}%
+    }%
+    \par\nobreak\smallskip\nobreak\normalfont
+  \fi
+}
+
+\newcommand{\TCDStatementEnd}{%
+  \ifTCDLessonContext
+    \TCDLessonStatementEnd
+  \else
+    \TCDPedagogicalFrameEnd
+  \fi
+}
+
+\newcommand{\TCDExerciseStart}[4]{%
+  \TCDPedagogicalFrameStart{#1}%
+  \colorbox{#1}{%
+    \strut\sffamily\bfseries\color{white}#2~#3%
+  }%
+  \ifstrempty{#4}{}{%
+    \hspace{0.45em}{\sffamily\itshape\color{TCDMuted}(#4)}%
+  }%
+  \par\nobreak\smallskip\nobreak\normalfont
+}
+
+\newcommand{\TCDExerciseEnd}{\TCDPedagogicalFrameEnd}
+
+% Corrected, reference-aware pedagogical environments ------------------------
+\RenewDocumentEnvironment{defi}{O{}}%
+  {\refstepcounter{defi}\TCDStatementStart{TCDDefinition}{Définition}{\thedefi}{#1}}%
+  {\TCDStatementEnd}
+
+\RenewDocumentEnvironment{rmk}{O{}}%
+  {\refstepcounter{rmk}\TCDStatementStart{TCDRemark}{Remarque}{\thermk}{#1}\itshape}%
+  {\normalfont\TCDStatementEnd}
+
+\RenewDocumentEnvironment{ex}{}%
+  {\refstepcounter{ex}\TCDStatementStart{TCDExample}{Exemple}{\theex}{}}%
+  {\TCDStatementEnd}
+
+\RenewDocumentEnvironment{prop}{O{}}%
+  {\refstepcounter{prop}\TCDStatementStart{TCDTheorem}{Propriété}{\theprop}{#1}}%
+  {\TCDStatementEnd}
+
+\RenewDocumentEnvironment{prp}{O{}}%
+  {\refstepcounter{prop}\TCDStatementStart{TCDTheorem}{Propriété}{\theprop}{#1}}%
+  {\TCDStatementEnd}
+
+\RenewDocumentEnvironment{lem}{O{}}%
+  {\refstepcounter{lem}\TCDStatementStart{TCDTheorem}{Lemme}{\thelem}{#1}}%
+  {\TCDStatementEnd}
+
+\RenewDocumentEnvironment{thm}{O{}}%
+  {\refstepcounter{thm}\TCDStatementStart{TCDTheorem}{Théorème}{\thethm}{#1}}%
+  {\TCDStatementEnd}
+
+\RenewDocumentEnvironment{cor}{O{}}%
+  {\refstepcounter{cor}\TCDStatementStart{TCDTheorem}{Corollaire}{\thecor}{#1}}%
+  {\TCDStatementEnd}
+
+\RenewDocumentEnvironment{exo}{O{}}%
+  {\refstepcounter{exo}\TCDExerciseStart{TCDExercise}{Exercice}{\theexo}{#1}}%
+  {\TCDExerciseEnd}
+
+% Exam-specific environments -------------------------------------------------
+\newcounter{tcdsubject}
+\RenewDocumentEnvironment{sujetD}{}%
+  {\clearpage\stepcounter{tcdsubject}\setcounter{exe}{0}}%
+  {\par\medskip\noindent{\color{TCDRule}\rule{\linewidth}{0.6pt}}\par}
+
+\RenewDocumentEnvironment{exe}{}%
+  {\refstepcounter{exe}\TCDExerciseStart{TCDExercise}{Exercice}{\theexe}{}}%
+  {\TCDExerciseEnd}
+
+\RenewDocumentEnvironment{pbm*}{}%
+  {\TCDStatementStart{TCDProblem}{Problème}{}{}}%
+  {\TCDStatementEnd}
+
+\providecommand{\theHexe}{}
+\renewcommand{\theHexe}{\arabic{tcdsubject}.\arabic{exe}}
+
+% Page-break discipline ------------------------------------------------------
+% `titlesec` controls the visual hierarchy; these strict guards control
+% pagination.  Top-level section headings commonly introduce a subsection and
+% a display rather than an ordinary paragraph, so their reservation must cover
+% that whole opening unit.  The values then decrease with the hierarchy.
+\newcommand{\TCDKeepWithNext}[1][6\baselineskip]{%
+  \par\Needspace*{#1}%
+}
+\pretocmd{\section}{\TCDKeepWithNext[14\baselineskip]}{}{}
+\pretocmd{\subsection}{\TCDKeepWithNext[10\baselineskip]}{}{}
+\pretocmd{\subsubsection}{\TCDKeepWithNext[8\baselineskip]}{}{}
+\pretocmd{\paragraph}{\TCDKeepWithNext[7\baselineskip]}{}{}
+
+% Prevent first/last paragraph lines and split footnotes at page boundaries.
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\interfootnotelinepenalty=10000
+
+% Hyperref normally derives equation destinations from the printed chapter,
+% section, and equation numbers.  Several legacy examination papers restart
+% those counters, so the printed numbers are intentionally repeated.  Add a
+% hidden environment serial to keep every PDF destination unique.
+\newcounter{tcdmathanchor}
+\renewcommand{\theHequation}{tcd.\arabic{tcdmathanchor}.\arabic{equation}}
+\BeforeBeginEnvironment{equation}{\stepcounter{tcdmathanchor}}
+\BeforeBeginEnvironment{align}{\stepcounter{tcdmathanchor}}
+\BeforeBeginEnvironment{gather}{\stepcounter{tcdmathanchor}}
+\BeforeBeginEnvironment{multline}{\stepcounter{tcdmathanchor}}
+\BeforeBeginEnvironment{flalign}{\stepcounter{tcdmathanchor}}
+\BeforeBeginEnvironment{alignat}{\stepcounter{tcdmathanchor}}
+
+% Manual equation tags are given the same unique destination treatment.
+\newcommand{\TCDtag}[1]{%
+  \stepcounter{tcdmathanchor}%
+  \refstepcounter{equation}%
+  \tag{#1}%
+}
+
+% Emphasis commands used throughout the legacy content.  They are safe both
+% inside and outside math mode; the original text-font switch failed in math.
+\newcommand{\TCDEmphasize}[2]{%
+  \begingroup
+  \color{#1}%
+  \ifmmode
+    \boldsymbol{#2}%
+  \else
+    \adjustbox{max width=\linewidth}{%
+      \begin{varwidth}{\linewidth}
+        \bfseries\boldmath #2\unboldmath
+      \end{varwidth}%
+    }%
+  \fi
+  \endgroup
+}
+\renewcommand{\defbox}[1]{\TCDEmphasize{TCDAccentDark}{#1}}
+\renewcommand{\thmbox}[1]{\TCDEmphasize{TCDAccentDark}{#1}}
+\renewcommand{\propbox}[1]{\TCDEmphasize{TCDInk}{#1}}
+
+% Width-aware two-panel composition. Both panels are computed from the current
+% local measure, so the command remains safe in columns, footnotes, lists, and
+% framed material. The optional argument is the left-panel fraction.
+\NewDocumentCommand{\TCDSideBySide}{O{.30} +m +m}{%
+  \par\noindent
+  \begin{minipage}[t]{#1\linewidth}%
+    \vspace{0pt}#2%
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{\dimexpr\linewidth-#1\linewidth-1em\relax}%
+    \vspace{0pt}#3%
+  \end{minipage}%
+  \par
+}
+
+% Repeated-division diagrams are composed as explicit panels.  In the legacy
+% source the pictures followed prose in the same paragraph, which allowed TeX
+% to place one picture beside the sentence and wrap the second onto a later
+% line.  This component gives every diagram its own bounded, centred measure
+% and keeps the explanatory result below it.
+\NewDocumentCommand{\TCDConversionPanel}{+m +m}{%
+  \centering
+  \adjustbox{max width=.98\linewidth}{#1}%
+  \par\smallskip
+  #2%
+}
+
+\NewDocumentCommand{\TCDConversionPair}{+m +m +m +m}{%
+  \TCDKeepWithNext[12\baselineskip]%
+  \TCDSideBySide[.48]{%
+    \TCDConversionPanel{#1}{#2}%
+  }{%
+    \TCDConversionPanel{#3}{#4}%
+  }%
+}
+
+% A conversion example starts with a short explanation followed by an atomic
+% pair of diagrams.  Reserve the opening unit before printing its heading so a
+% page or column break cannot leave the heading and introduction behind.
+\NewDocumentEnvironment{conversionexample}{}%
+  {\TCDKeepWithNext[18\baselineskip]\begin{ex}}%
+  {\end{ex}}
+
+% Break-safe replacements for the legacy framed notes and formula boxes.
+\renewcommand{\mybox}[1]{%
+  \adjustbox{max width=\linewidth}{%
+    \fcolorbox{TCDRule}{white}{%
+      \begin{varwidth}{0.94\linewidth}\raggedright #1\end{varwidth}%
+    }%
+  }%
+}
+\renewcommand{\invertbox}[1]{%
+  \adjustbox{max width=\linewidth}{%
+    \colorbox{TCDInk}{%
+      \strut\color{white}\bfseries #1%
+    }%
+  }%
+}
+
+% Notes and warnings share one implementation, which keeps their dimensions
+% and page-break behaviour consistent throughout the book.
+\newcommand{\TCDNotice}[4]{%
+  \par\Needspace*{7\baselineskip}%
+  \begin{tcolorbox}[
+    enhanced jigsaw,
+    breakable,
+    colframe=#1,
+    colback=#2,
+    boxrule=#3,
+    arc=2pt,
+    outer arc=2pt,
+    boxsep=0pt,
+    top=6pt,
+    bottom=6pt,
+    left=8pt,
+    right=8pt,
+    before skip=0.65\baselineskip,
+    after skip=0.55\baselineskip,
+    pad at break*=2pt
+  ]
+    #4
+  \end{tcolorbox}%
+}
+
+\renewcommand{\nota}[1]{%
+  \TCDNotice{TCDRule}{TCDTint}{0.6pt}{%
+    {\sffamily\bfseries\color{TCDAccentDark}Note.}\enspace #1%
+  }%
+}
+
+\renewcommand{\warning}[1]{%
+  \TCDNotice{TCDAccent}{TCDTint}{1pt}{%
+    {\sffamily\bfseries\color{TCDAccentDark}Attention.}\enspace #1%
+  }%
+}
+
+\renewcommand{\smallnota}[1]{%
+  \par\smallskip\noindent
+  {\color{TCDAccent}\ding{43}}\enspace #1\par\smallskip
+}
+
+% The legacy `mitanisa` environment was a one-cell tabular.  A tabular cannot
+% wrap long prose, so it could project outside portrait pages.  Keep its
+% intended indented-block appearance while allowing normal line breaking.
+\RenewDocumentEnvironment{mitanisa}{}%
+  {\par\noindent\begin{minipage}[t]{\linewidth}\raggedright}%
+  {\end{minipage}\par}
+
+% Revision sheets use a compact editorial heading.  The legacy centered
+% \section* inherited paragraph justification and stretched the two-word
+% title across the full measure.
+\RenewDocumentEnvironment{fiche}{}%
+  {%
+    \clearpage
+    \pagestyle{emptystyleko}%
+    \par\noindent
+    {\sffamily\bfseries\Large\color{TCDAccentDark}\`A retenir}%
+    \par\nobreak\smallskip
+    {\color{TCDAccent}\rule{4.5em}{1.2pt}}%
+    \par\addvspace{0.8\baselineskip}%
+  }%
+  {\clearpage\pagestyle{fancy}}
+
+% The original method box nested full-width minipages inside two framed boxes;
+% the frame padding therefore projected beyond the measure in every layout.
+% A breakable block preserves the visual hierarchy and follows the
+% current line width in both orientations.
+\RenewDocumentEnvironment{methode}{O{}}%
+  {%
+    \par\Needspace*{8\baselineskip}%
+    \begin{tcolorbox}[
+      enhanced jigsaw,
+      breakable,
+      colframe=TCDRule,
+      colback=TCDTint,
+      boxrule=0.7pt,
+      arc=2pt,
+      outer arc=2pt,
+      boxsep=0pt,
+      top=7pt,
+      bottom=7pt,
+      left=9pt,
+      right=9pt,
+      before skip=0.75\baselineskip,
+      after skip=0.6\baselineskip,
+      pad at break*=2pt
+    ]%
+    {\sffamily\bfseries\color{TCDAccentDark}%
+      \ifstrempty{#1}{Bo\^ite \`a m\'ethode}{#1}.}%
+    \par\nobreak\smallskip
+  }%
+  {\end{tcolorbox}\par}
+
+% In two-column mode the standard `book` implementation temporarily calls
+% \onecolumn for the table of contents.  Suppress only that internal switch in
+% the landscape edition; the standard heading, bookmarks, marks, and TOC file
+% handling remain untouched.  Portrait mode retains the class behaviour.
+\let\TCDStandardTableOfContents\tableofcontents
+\renewcommand{\tableofcontents}{%
+  \ifTCDLandscape
+    \begingroup
+      \let\onecolumn\relax
+      \let\twocolumn\relax
+      \TCDStandardTableOfContents
+    \endgroup
+  \else
+    \TCDStandardTableOfContents
+  \fi
+}
+
+\endinput

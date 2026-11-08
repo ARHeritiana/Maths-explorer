@@ -1,0 +1,203 @@
+% Baccalauréat malgache, série C, 2017 : énoncé.
+\TCDBacAttribution{C}{2017}
+\providecommand{\cm}{~\mathrm{cm}}
+\providecommand{\D}{(\mathscr{D})}
+\providecommand{\Courbe}{(\mathscr{C})}
+\providecommand{\CourbeP}{(\mathscr{C}')}
+\providecommand{\Courben}{(\mathscr{C}_n)}
+\providecommand{\CourbeU}{(\mathscr{C}_1)}
+\providecommand{\CourbeD}{(\mathscr{C}_2)}
+\providecommand{\Plan}{(\mathscr{P})}
+\providecommand{\mes}[2]{\mathrm{mes}\left( \widehat{ \overrightarrow{#1} ; \overrightarrow{#2} } \right)}
+\providecommand{\Angl}[2]{\left( \overrightarrow{#1} ; \overrightarrow{#2} \right)}
+\providecommand{\congru}[3]{#1 \equiv #2 \quad \left[\mathrm{#3}\right]}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{Exercice}} (4 points)% \newline
+      \begin{description}
+            \item[I.\underline{Arithm\'etique :}]
+                  \begin{enumerate}
+                        \item \begin{enumerate}
+                                    \item Montrer que pour tout entier naturel $x$ et $y$, $x+y$ et $x-y$ ont la m\^eme parit\'e.
+                                    \item En d\'eduire la r\'esolution dans $\mathbb{N} \times \mathbb{N}$ de l'\'equation : 
+                                          $x^2 = y^2 + 8$.
+                              \end{enumerate}
+                        \item \begin{enumerate}
+                                    \item R\'esoudre dans $\mathbb{N}$ l'\'equation : $\congru{5x}{1}{3}$.
+                                    \item En d\'eduire une solution particuli\`ere de l'\'equation : $5x-3y = 1$.
+                                    \item R\'esoudre dans $\mathbb{N} \times \mathbb{N}$ l'\'equation : $5x-3y=1$.
+                              \end{enumerate}
+                  \end{enumerate}
+            \item[II.\underline{Probabilit\'e :}]
+                  Une urne contient 3 boules blanches et $n$ boules noires ($n\geq 3$).
+                  Toutes les boules sont indiscernables au toucher.
+                  \begin{enumerate}
+                        \item Un enfant tire simultan\'ement deux boules de l'urne.
+                              On note par $A_n$ l'\'ev\`enement : 
+                              << Obtenir au moins une boule noire >>.
+                              \begin{enumerate}
+                                    \item Calculer la probabilit\'e $P(A_n)$ de $A_n$.
+                                    \item Calculer $\lim_{n\rightarrow +\infty} P(A_n)$.
+                                    \item Pour quelles valeurs de $n$ a-t-on $P(A_n) \leq 0,99$\,?
+                              \end{enumerate}
+                        \item On remet l'urne dans la condition initiale.
+                              L'enfant tire de nouveau au hasard une \`a une 3 boules 
+                              en remettant dans l'urne chaque boule qui \`a \'et\'e tir\'ee.
+                              Soit $B_n$ : << tirer 3 boules blanches >>.
+                              \begin{enumerate}
+                                    \item Calculer la probabilit\'e $P(B_n)$ de $B_n$.
+                                    \item D\'eterminer la valeur de $n\in\mathbb{N}$ pour que $P(B_n) = \frac{27}{1000}$.
+                              \end{enumerate}
+                  \end{enumerate}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{Probleme I}} (7 points) \newline
+      Dans le plan orient\'e $\Plan$, on consid\`ere le triangle \'equilat\'eral $ABC$ tel que 
+      $\Angl{BC}{BA} = \frac{\pi}{3}$ et $AB = 4\cm$.
+      Soit $I$ le projet\'e orthogonal de $A$ sur le segment $[BC]$.
+      La droite parall\`ele \`a la droite $(AI)$ et passant par le point $C$ coupe la droite $(AB)$ au point $\Omega$.
+      On note par $D$ le sym\'etrique de $B$ par rapport au point $C$.
+      Soient $t$ la translation de vecteur $\overrightarrow{BC}$ ; $r$ la rotation de centre $A$ et d'angle $\frac{\pi}{3}$ ;
+      $r_1$ la rotation de centre $B$ et d'angle $-\frac{\pi}{3}$ ; $f = t \circ r$ et $g = f \circ r_1$.
+      \begin{description}
+            \item[Partie A]
+                  \begin{enumerate}
+                        \item Faites la figure et placer les points $A$, $B$, $C$, $D$, $I$ et $\Omega$.
+                        \item \begin{enumerate}
+                                    \item D\'ecomposer $t$ en deux sym\'etries orthogonales 
+                                          dont l'un des axes est la droite $(AI)$.
+                                    \item D\'ecomposer $r$ en deux sym\'etries orthogonales 
+                                          dont l'un des axes est la droite $(AB)$.
+                                    \item D\'eterminer la nature et les \'el\'ements caract\'eristiques de $f$.
+                              \end{enumerate}
+                        \item \begin{enumerate}
+                                    \item D\'eterminer $g(B)$.
+                                    \item En d\'eduire la nature et les \'el\'ements caract\'eristiques de $g$.
+                              \end{enumerate}
+                        \item On note par $A' = f(A)$, $B' = f(B)$ et $C' = f(C)$.
+                              \begin{enumerate}
+                                    \item Placer les points $A'$, $B'$ et $C'$ sur la m\^eme figure.
+                                    \item Quelle est la nature du triangle $A'B'C'$\,? Justifier.
+                                    \item Montrer que $\Omega$, $A'$ et $B'$ sont align\'es.
+                              \end{enumerate}
+                  \end{enumerate}
+            \item[Partie B]
+                  Le plan $\Plan$ est rapport\'e \`a un rep\`ere orthonorm\'e direct $(B;\vec{u},\vec{v})$.
+                  Sachant que $\vec{u} = \frac{1}{3} \overrightarrow{BI}$ et $\vec{v} = \frac{1}{3\sqrt{3}} \overrightarrow{IA}$.
+                  \begin{enumerate}
+                        \item \begin{enumerate}
+                                    \item Exprimer le vecteur $\overrightarrow{BA}$ 
+                                          en fonction des deux vecteurs $\vec{u}$ et $\vec{v}$.
+                                    \item Donner les affixes des points $A$, $B$ et $C$.
+                              \end{enumerate}
+                        \item \begin{enumerate}
+                                    \item Ecrire les expressions complexes de $t$, $r$ et $r_1$.
+                                    \item En d\'eduire les expressions complexes de $f$ et $g$.
+                                    \item D\'eterminer leurs natures et leurs \'el\'ements caract\'eristiques.
+                              \end{enumerate}
+                  \end{enumerate}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{Probleme II}} (9 points)% \newline
+      \begin{description}
+            \item[Partie A]
+                  Pour tout entier naturel $n>0$, soit la fonction num\'erique $f_n$ de la variable r\'eelle $x$ d\'efinie sur 
+                  $\mathbb{R} \setminus \{-1\}$ par : 
+                  \[
+                        f_n (x) = \frac{\expo{-x}}{(1+x)^n} \;.
+                  \]
+                  On note par $\Courben$ sa courbe repr\'esentative 
+                  dans un plan muni d'un rep\`ere orthonorm\'e \Oij{} d'unit\'e $1\cm$.
+                  \begin{enumerate}
+                        \item \begin{enumerate}
+                                    \item Calculer les limites de $f_n$ aux bornes de son ensemble de d\'efinition
+                                          (on distinguera les cas o\`u $n$ est pair ou impair).
+                                    \item Calculer la fonction d\'eriv\'ee $f_n'(x)$ en fonction de $x$ et $n$.
+                                    \item Dresser les tableaux de variations de $f_n$ selon la parit\'e de $n$.
+                              \end{enumerate}
+                        \item Montrer que toutes les courbes $\Courben$ passent par un point fixe de coordonn\'ees que 
+                              l'on pr\'ecisera.
+                        \item Calculer $\displaystyle{\lim_{x\rightarrow -\infty} \frac{f(x)}{x}}$
+                              (distinguer les deux cas o\`u $n$ est pair ou impair).
+                        \item \begin{enumerate}
+                                    \item Etudier suivant les valeurs de $x$ 
+                                          la position relative des courbes $\CourbeU$ et $\CourbeD$.
+                                    \item Tracer $\CourbeU$ et $\CourbeD$ dans le m\^eme rep\`ere.
+                              \end{enumerate}
+                  \end{enumerate}
+            \item[Partie B]
+                  Pour tout entier naturel $n > 0$, soit $I_n = \int_{0}^{1} f_n (x) \dx$.
+                  \begin{enumerate}
+                        \item Donner l'expression de $f_n'(x)$ en fonction de $f_n(x)$ et de $f_{n+1}(x)$.
+                              \label{quest: Bac 2017 serie C Probleme 2 Partie B question 1}
+                        \item \begin{enumerate}
+                                    \item Montrer que la suite $(I_n)$ est d\'ecroissante.
+                                    \item En d\'eduire que la suite $(I_n)$ est convergente.
+                              \end{enumerate}
+                        \item \begin{enumerate}
+                                    \item D\'emontrer que pour tout entier nature $n>0$ et $0\leq x \leq 1$, on a : 
+                                          \[
+                                                \frac{\expo{-1}}{(1+x)^n} \leq f_n(x) \leq \frac{1}{(1+x)^n} \;.
+                                          \]
+                                    \item En d\'eduire que pour tout $n>1$, on a : 
+                                          \[
+                                                \frac{\expo{-1}}{n-1} \left[ 1-\frac{1}{2^{n-1}} \right]
+                                                \leq I_n \leq 
+                                                \frac{1}{n-1} \left[ 1-\frac{1}{2^{n-1}} \right] \;.
+                                          \]
+                                    \item Calculer $\displaystyle{\lim_{n\rightarrow +\infty} I_n}$.
+                              \end{enumerate}
+                        \item \begin{enumerate}
+                                    \item En utilisant la question \ref{quest: Bac 2017 serie C Probleme 2 Partie B question 1}
+                                          de la partie \textbf{B},
+                                          montrer que : $I_n + n I_{n+1} = 1 - \frac{\expo{-1}}{2^n}$.
+                                    \item En d\'eduire $\displaystyle{\lim_{n\rightarrow +\infty} n\,I_{n+1}}$.
+                              \end{enumerate}
+                  \end{enumerate}
+            \item[Partie C (Cette partie est ind\'ependante des deux parties A et B)] ~\newline
+                  Soit $(U_n)$ la suite d\'efinie pour tout entier naturel $n>0$ par : 
+                  $U_n = \int_{0}^{1} x^n \ln (x+1) \dx$.
+                  \begin{enumerate}
+                        \item Etudier le signe de $(x^{n+1} - x^n)$ sur l'intervalle $[0;1]$.
+                        \item En d\'eduire le sens de variation de $(U_n)$.
+                        \item La suite $(U_n)$ est-elle convergente\,? Justifier.
+                        \item D\'emontrer que pour tout entier naturel $n>0$, on a : 
+                              $ 0 \leq U_n \leq \frac{\ln 2}{n+1} $.
+                        \item En d\'eduire $\displaystyle{\lim_{n\rightarrow+\infty} U_n}$.
+                  \end{enumerate}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

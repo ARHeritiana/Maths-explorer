@@ -1,0 +1,278 @@
+% T12 C/D, chapitre 13 : Équations différentielles. Source : le livre « Terminales scientifiques » (EquaDiff/Lesona, EquaDiff/Exo).
+% Les exercices tirés d’autres ouvrages ne sont pas repris (décision du 2 novembre 2026).
+
+\TCDLessonStyleOn
+%\providecommand{\mampiditratext}[1]{\hfill \text{#1} \qquad}
+\providecommand{\mampiditratext}[1]{}
+\chapter{Equations diff\'erentielles}
+\index{Equations differentielles@Equations diff\'erentielles}
+	      La fonction exponentielle qu'on a \'etudi\'ee auparavant poss\`ede une propri\'et\'e int\'eressante : 
+	      elle est \'egale \`a sa propre d\'eriv\'ee.
+      Cette propri\'et\'e va bien souvent \^etre utilis\'ee pour r\'esoudre ce que l'on appelle 
+      \emph{\'equation diff\'erentielle}.
+      \begin{defi}[Equation diff\'erentielle]
+      Une \emph{\'equation diff\'erentielle} est une \'equation dans laquelle 
+	      les inconnues sont des fonctions et leurs d\'eriv\'ees.
+	      R\'esoudre une \'equation diff\'erentielle consiste donc \`a chercher toutes les fonctions $f$ 
+      (d\'erivable autant de fois que n\'ecessaire) qui v\'erifient l'\'equation.
+      \end{defi}
+      %
+	            \section{\'Equation diff\'erentielle du premier ordre} 
+            %
+\index{Equations differentielles@Equations diff\'erentielles!du premier ordre}
+            %
+	            Une \'equation diff\'erentielle est dite \emph{du premier ordre} 
+            si elle ne fait intervenir que des d\'eriv\'ees d'ordre au plus $1$.
+            On veut trouver une fonction $y$ v\'erifiant l'\'equation 
+            \mybox{$ y' + ay = 0 $} o\`u $a$ est un nombre r\'eel.
+            Autrement dit, on cherche une fonction $f$ telle que ${f'(x) + a \; f(x) = 0}$.
+            \paragraph{R\'esolution}
+                  Cette \'equation est \'equivalente \`a $y' = - a y$ o\`u encore, en posant $\alpha = -a$, \`a 
+                  \begin{equation}
+                  \label{eq: diff premier ordre}
+                  y' = \alpha y \; .
+                  \end{equation}
+                  La fonction $f$ d\'efinie par $f(x) = e^{\alpha x}$ v\'erifie cette propri\'et\'e 
+                  puisque $f'(x) = \alpha \; e^{\alpha x} = \alpha \; f(x)$. 
+\index{Equations differentielles@Equations diff\'erentielles!Solution particuliere@Solution particuli\`ere}
+                  Cette fonction $f$ est donc une solution particuli\`ere de l'\'Equation \ref{eq: diff premier ordre}.
+                  
+                  Cherchons maintenant les solutions de la forme : $ f(x) = g(x) \; e^{\alpha x}$.
+	                  La fonction $g$ doit \^etre d\'erivable partout o\`u $f$ l'est.
+                  Ainsi, on a 
+                  \begin{align*}
+                        f'(x) & = g'(x) e^{\alpha x } + \alpha g(x) e^{\alpha x} \\
+                        \mampiditratext{et comme $f'(x) = \alpha f(x)$}
+                        \alpha f(x) & = g'(x) e^{\alpha x } + \alpha g(x) e^{\alpha x} \\
+                        \mampiditratext{de plus, $f(x) = g(x) e^{\alpha x}$, donc }
+                        \alpha e^{\alpha x} g(x) & = g'(x) e^{\alpha x } + \alpha g(x) e^{\alpha x} \\
+                        \mampiditratext{et il suit que }
+                        0 & = g'(x) e^{\alpha x } \;.
+                  \end{align*}
+	                  Comme la fonction exponentielle ne s'annule jamais, $g'(x) = 0$.
+	                  On conclut que la fonction $g$ est constante.
+	                  Ainsi :
+	                  \par\smallskip\noindent
+	                  \mybox{%
+	                  {l'ensemble des solutions de l'\'equation $y' + a \; y = 0$ est 
+	                  l'ensemble des fonctions $f$ telles que $f(x) = k \; e^{-a x}$ o\`u $k \in \mathbb{R}$.}}
+                  %
+                  \begin{exe}
+                  Consid\'erons l'\'equation diff\'erentielle $y' =  2 y$.
+                  On veut chercher la solution de cette \'equation qui v\'erifie $y(0) = 3$.
+                  L'ensemble des solutions de cette \'equation (sans tenir compte de la condition initiale)
+                  est l'ensemble des $f$ d\'efinies par $f(x) = k \; e^{2 x}$.
+                  La condition qu'on veut imposer est $f(0) = 3$, ce qui \'equivaut \`a $k \; e^{2 \; 0} = 3$ et donc $k = 3$.
+                  Ainsi, la solution est $f(x) = 3 \; e^{2 x}$.
+                  \end{exe}
+                  %
+            \paragraph{R\'esolution d'une \'equation avec condition initiale}
+                  %
+\index{Equations differentielles@Equations diff\'erentielles!du premier ordre!avec condition initiale}
+                  %
+                  On veut r\'esoudre une \'equation diff\'erentielle du premier ordre 
+                  v\'erifiant une condition de la forme $y(x_0) = y_0$.
+                  On sait d\'ej\`a que les solutions de l'\'equation sont de la forme $y(x) = k \; e^{-a x}$.
+                  Ainsi, $y_0 = y(x_0) = k \; e^{-a x_0}$, ce qui nous donne $k = y_0 e^{a x_0}$.
+                  La fonction $y$ s'\'ecrit alors
+                  $y(x) = y_0 e^{a x_0} e^{-a x} = y_0 e^{-a(x - x_0)}$.
+                  
+                  On admettra que l'\'equation $y' + a y = 0$ admet une
+                  solution unique v\'erifiant la condition $y(x_0) = y_0$.
+%
+      \section{\'Equation diff\'erentielle du second ordre}
+%
+\index{Equations differentielles@Equations diff\'erentielles!du second ordre}
+%
+            On s'interesse maintenant aux \'equations de la forme 
+            \begin{equation}
+            \label{eq: diff second ordre}
+                  y'' + a y' + by = 0.
+            \end{equation}
+            Pour r\'esoudre une telle \'equation, on r\'esout d'abord l'\'equation caract\'eristique.
+            %
+            \paragraph{\'Equation caract\'eristique:}
+	                  On cherche les r\'eels $r$ tels que la fonction $x \mapsto e^{rx}$ soit une solution de l'\'equation.
+                  Posons $f(x) = e^{r x}$, on a alors $f'(x) = r e^{rx}$ et $f''(x) = r^2 e^{rx}$.
+                  Ainsi, $f''(x) + a f'(x) + b f(x) = $ \'equivaut \`a 
+                  $r^2 e^{rx} + a r e^{rx} + b e^{r x} = 0$ et par cons\'equent $(r^2 + a r + b) e^{r x} = 0$. 
+	                  Comme la fonction exponentielle est toujours strictement positive (et donc non nulle), 
+                  n\'ec\'essairement \mybox{$r^2 + a r + b = 0$}.
+            %
+            \paragraph{R\'esolution:}
+                  Selon le discriminant $\Delta$ de l'\'equation caract\'eristique: \\
+                  \noindent
+	                        \begin{thm} ~ 
+                              \begin{itemize} 
+                              \item Si $\Delta > 0$: 
+                                    Soient $r_1$ et $r_2$ les deux solutions r\'eelles de l'\'equation caract\'eristique. 
+                                    L'ensemble des solutions de l'\'Equation \ref{eq: diff second ordre} est 
+                                    l'ensemble des fonctions $f$ de la forme
+                                    \invertbox{$f(x) = A \; e^{r_1 \; x } + B \; e^{r_2 \; x}$}.
+                              \item Si $\Delta = 0$: Soit $\rho$ la racine (double) de l'\'equation caract\'eristique.
+                                    L'ensemble des solutions de l'\'Equation \ref{eq: diff second ordre} est 
+                                    l'ensemble des fonctions $f$ de la forme
+	                                    \invertbox{$f(x) = (A x + B) \; e^{\rho x} $}.
+                              \item Si $\Delta < 0$: 
+                                    L'\'equation caract\'eristique admet alors deux racines complexes conjugu\'ees.
+                                    Soient $\alpha$ et $\beta$ les deux r\'eels tels que 
+                                    les deux solutions sont $\alpha + i \beta$ et $\alpha - i \beta$.
+                                    L'ensemble des solutions de l'\'Equation \ref{eq: diff second ordre} est 
+                                    l'ensemble des fonctions $f$ de la forme
+                                    \invertbox{$f(x) = \left(A \cos (\beta x ) + B \sin (\beta x) \right) \; e^{\alpha x}$}.
+                              \end{itemize}
+	                        \end{thm}
+                  %
+                  \smallnota{Dans tous les cas, il existe une solution unique satisfaisant \`a la condition initiale 
+                        $y(x_0) = y_0$ et $y'(x_0) = y'_0$.}
+                  %
+            \begin{ex}
+                  \begin{enumerate}
+                  \item R\'esoudre l'\'equation diff\'erentielle 
+                        \begin{equation}
+                        \label{eq:ex:eq diff 1}
+                              y'' - 3 y' - 4 y = 0
+                        \end{equation}
+                  avec les conditions initiales : $y(0) = 2 $ et $y'(0) = 4$.
+                  \end{enumerate}
+            \end{ex}
+
+\TCDLessonStyleOff
+\clearpage
+\section{Exercices}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+R\'esoudre les \'equations diff\'erentielles suivantes : 
+\begin{enumerate}
+\item $y' - 3 y = 0$, avec $y(0) = 1$
+\item $2 y' - \frac{y}{2} = 0$, avec $y(0) = 2 e$
+\item $ - y' - \sin(x) \; y = 0$, avec $y(0) = 1$
+\item $2 y' + \frac{2x}{x^2 + 1} \; y = 0$, avec $y(0) = 1$.
+\end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+      On consid\`ere l'\'equation diff\'erentielle $(E) : y''+2y'-3y=0$.
+      \begin{enumerate}
+            \item D\'emontrer que la fonction $\varphi$ telle que : $\varphi (x) = \expo{rx}$ est solution de $(E)$
+                  si $r$ v\'erifie une \'equation du second degr\'e que l'on d\'eterminera.
+                  Cette \'equation du second degr\'e admet deux racines $r_1$ et $r_2$.
+            \item D\'emontrer que la fonction $f$ telle que : 
+                  $f(x) = \lambda_1 \cdot \expo{r_1 x} + \lambda_2 \cdot \expo{r_2 x}$ est solution de $(E)$,
+                  $\lambda_1$ et $\lambda_2$ \'etant des constantes arbitraires.
+            \item D\'eterminer la solution $f$ v\'erifiant les conditions : $f(0) = 4$ et $f'(0) = 0$.
+      \end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+R\'esoudre les \'equations diff\'erentielles suivantes : 
+\begin{enumerate}
+\item $y'' - 3 y' + 2y = 0$, avec $y'(0) = 1$ et $y(0) = 0$.
+\item $y'' + 2 y' + y = 0$, avec $y'(0) = 1$ et $y(0) = 0$.
+\item $y'' + y' + y = 0$, avec $y'(0) = 1$ et $y(0) = 0$.
+\end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+On consid\`ere l'\'equation diff\'erentielle 
+\begin{equation}
+y' + y = \frac{1}{{\left(e^{x} - 1\right)}^{2}} \; .
+\label{eq:premier_ordre_non_homogene}
+\end{equation}
+\begin{enumerate}
+\item V\'erifier que la fonction $f : x \ {\mapsto}\  \frac{e^{-x}}{e^{-x} - 1}$ 
+      est une solution de \eqref{eq:premier_ordre_non_homogene}. 
+\item R\'esoudre l'\'equation diff\'erentielle homog\`ene 
+      \begin{equation}
+      y' - y = 0 \; .
+      \label{eq:premier_ordre_homogene}
+      \end{equation}
+\item En d\'eduire l'ensemble des solutions de \eqref{eq:premier_ordre_non_homogene}.
+\end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+On consid\`ere l'\'equation diff\'erentielle 
+      \begin{equation}
+      y'' - 4 y' + 3y = 3 x^2 - 2 x - 9 \; .
+      \label{eq:second_ordre_non_homog\`ene}
+      \end{equation}
+\begin{enumerate}
+\item R\'esoudre l'\'equation diff\'erentielle 
+      \begin{equation*}
+      y'' - 4 y' + 3y = 0 \; .
+      \label{eq:second_ordre_homog\`ene}
+      \end{equation*}
+\item Montrer que la fonction $f : x \mapsto x^2 + 2 x - 1$ 
+      est solution de l'\'equation \eqref{eq:second_ordre_non_homog\`ene}.
+\item D\'eduire l'ensemble des solutions de \eqref{eq:second_ordre_non_homog\`ene}.
+\item D\'eterminer une solution $\varphi$ de \eqref{eq:second_ordre_non_homog\`ene} v\'erifiant $\varphi (0) = 0$.
+\end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}
+On consid\`ere les \'equations diff\'erentielles \eqref{eq:second_ordre} et \eqref{eq:second_ordre_homogene} :
+      \begin{equation}
+      \TCDtag{E}
+      y'' + 2 y' + y = 2 \; e^{-x} 
+      \label{eq:second_ordre}
+      \end{equation}
+      et
+      \begin{equation}
+      \TCDtag{H}
+      y'' + 2 y' + y = 0  \; .
+      \label{eq:second_ordre_homogene}
+      \end{equation}
+\begin{enumerate}
+\item D\'eterminer l'ensemble des solutions de \eqref{eq:second_ordre_homogene}.
+\item V\'erifier que la fonction $f : x \mapsto (x+2)^2 \; e^{-x} $ est solution de \eqref{eq:second_ordre}.
+\item D\'eduire l'ensemble des solutions de \eqref{eq:second_ordre}.
+\item Donner une solution $\varphi$ de \eqref{eq:second_ordre} v\'erifiant : 
+      \[
+      \varphi (0) = 0 \text{ et } \varphi' (0) = 0 \; .
+      \]
+\end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

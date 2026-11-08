@@ -1,0 +1,8 @@
+% T12 C/D book, teacher edition (A4 portrait). Compile from this folder with pdfLaTeX;
+% the class and styles are found in preambule/ through \input@path.
+\makeatletter\def\input@path{{preambule/}}\makeatother
+\newcommand{\TCDEditionProf}{}
+\PassOptionsToClass{portrait}{bokiko}
+\documentclass{bokiko}
+\usepackage{t12-livre}
+\input{t12-corps}

@@ -1,0 +1,146 @@
+% Baccalauréat malgache, série D, 2005 : énoncé.
+\TCDBacAttribution{D}{2005}
+\providecommand{\Courbe}{(\mathscr{C})}
+\providecommand{\CourbeP}{(\mathscr{C'})}
+\providecommand{\D}{(\mathscr{D})}
+\providecommand{\Plan}{(\mathscr{P})}
+\providecommand{\Ouv}{(O ; \vec{u} , \vec{v})}
+%\providecommand{\Oij}{(O ; \vec{\imath} , \vec{\jmath})}
+\providecommand{\cm}{~\mathrm{cm}}
+\providecommand{\dx}{~\mathrm{d}x}
+\providecommand{\Arg}[1]{\mathrm{Arg}\left( #1 \right)}
+\providecommand{\Angl}[2]{\left( \overrightarrow{#1} ; \overrightarrow{#2} \right)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%                   %%%%%%%%%%%%%%%%%%%                   %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{Exercice I}} (5 points) \newline
+      Le plan complexe $\Plan$ est rapport\'e \`a un rep\`ere orthonorm\'e $\Ouv$.
+      On note $A$ le point d'affixe $i$.
+      \begin{enumerate}
+            \item R\'esoudre dans $\mathbb{C}$ l'\'equation : $\frac{i z - 2 + 4 i}{z - i} = z$.
+            \item \`A tout point $M$ d'affixe $z$, avec $z \neq i$, on associe le point $M'$ d'affixe $z'$ tel que :
+                  $z' = \frac{iz - 2 + 4i}{z - i}$.
+                  \begin{enumerate}
+                        \item Exprimer $z'-i$ en fonction de $z$.
+                        \item Montrer que $(z' - i)(z-i) = -3 + 4i$.
+                        \item En d\'eduire la valeur de $|z'-i| \cdot |z-i|$.
+                        \item D\'eterminer l'ensemble $\Courbe$ des points $M$ tels que $|z-i| = \sqrt{10}$.
+                        \item En utilisant les r\'esultats pr\'ec\'edentes, montrer que si $M$ appartient au cercle de centre $A$
+                              et de rayon $\sqrt{10}$ alors $M'$ appartient \`a un cercle $\CourbeP$ de centre $A$ dont on 
+                              d\'eterminera le rayon.
+                  \end{enumerate}
+            \item Soit $S$ la similitude plane directe de centre $A$, de rapport $\sqrt{2}$ et d'angle de mesure $\frac{5\pi}{4}$.
+                  \begin{enumerate}
+                        \item Ecrire l'expression complexe de $S$.
+                        \item Soit $B$ le point d'affixe $1+3i$ et $B' = S(B)$.
+                              D\'eterminer l'affixe de $B'$.
+                              Montrer que $B'$ appartient au cercle $\Courbe$.
+                  \end{enumerate}
+      \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%                   %%%%%%%%%%%%%%%%%%%                   %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{Exercice II}} (5 points) \newline
+      On dispose de deux d\'es cubiques parfaits et identiques $D_1$ et $D_2$.
+      Chaque d\'e comporte : 
+            \begin{mitanisa}
+                  \textbullet trois faces num\'erot\'ees 1, \\
+                  \textbullet deux faces num\'erot\'ees 2, \\
+                  \textbullet une face num\'erot\'ee 5.
+            \end{mitanisa}
+      \begin{enumerate}
+            \item \underline{On lance une fois le d\'e $D_1$} et on note le num\'ero apparu sur la face sup\'erieure du d\'e.
+                  Calculer la probabilit\'e de chacun des \'ev\`enements suivants :
+                  \begin{itemize}
+                        \item $A$ : << Le num\'ero apparu est impair >>.
+                        \item $B$ : << Le d\'e donne le num\'ero 1 >>.
+                  \end{itemize}
+            \item On lance simultan\'ement les deux d\'es $D_1$ et $D_2$ et on note les num\'eros apparus sur les
+                  faces sup\'erieures des deux d\'es.
+                  On dit qu'on a effectu\'e ainsi << \underline{une \'epreuve} >>.
+                  \begin{enumerate}
+                        \item Soit l'\'ev\`enement $C$ : << La somme des num\'eros not\'es est \'egale \`a 4 >>.
+                              Montrer que la probabilit\'e de l'\'ev\`enement $C : P(C) = \frac{1}{9}$.
+                        \item Calculer la probabilité de l’événement :
+                              $E$ : << Les deux d\'es donnent le m\^eme num\'ero >>.
+                        \item Soit $X$ la variable aléatoire réelle qui, à chaque éventualité, 
+                              associe la somme des numéros apparus sur les faces supérieures des deux dés.
+                              Préciser l’univers image de $X$ puis déterminer la loi de probabilité de $X$.
+                  \end{enumerate}
+            \item \underline{Une partie} consiste \`a effectuer 4 \'epreuves successives d'une mani\`ere ind\'ependante.
+                  A chaque épreuve, on note les numéros obtenus. On fait une partie. Soit $Y$ la variable aléatoire réelle 
+                  égale au nombre de fois de réalisation de l’événement $C$ lors d’une partie.
+                  \begin{enumerate}
+                        \item Pr\'eciser l'univers image de $Y$.
+                        \item Calculer l'esperance $E(Y)$ et la variance $V(Y)$ de $Y$.
+                        \item Calculer $P(Y = 3)$.
+                  \end{enumerate}
+      \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%                   %%%%%%%%%%%%%%%%%%%                   %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{Probleme}} (10 points) \newline
+      Soit la fonction num\'erique $f$ d\'efinie sur l'intervalle $]-1;+\infty[$ par : 
+      \[
+            f(x) = 
+	            \begin{multiform}
+                        -x + 2 \ln (x+1) \text{ si } x \in ]-1 , 0[ \\
+                        x - 1 + \expo{-x} \text{ si } x \in [0 , +\infty[ \;.
+	            \end{multiform}
+      \]
+      On note $\Courbe$ sa représentation graphique dans un repère orthonormé \Oij{} (unité : $2 \cm$).
+      \begin{enumerate}
+            \item \begin{enumerate}
+            	            \item Montrer que $f$ est continue en $x_0 = 0$.
+            	            \item Montrer que 
+            	                  $\displaystyle{
+            	                        \lim_{x\rightarrow 0^-} \frac{f(x) - f(0)}{x-0} = 1
+            	                  }$
+            	                  et
+            	                  $\displaystyle{
+            	                        \lim_{x\rightarrow 0^+} \frac{f(x) - f(0)}{x-0} = 0
+            	                  }$.
+            	                  Que peut-on en conclure sur $f$\,?
+                  \end{enumerate}
+            \item \begin{enumerate}
+                        \item Calculer 
+            	                  $\displaystyle{ \lim_{x\rightarrow 0^+} f(x) }$ et 
+            	                  $\displaystyle{ \lim_{x\rightarrow +\infty} f(x) }$.
+            	            \item Si $x \in ]-1 , 0[$, calculer $f'(x)$ et \'etudier son signe.
+            	            \item Si $x \in ]0 , +\infty[$, calculer $f'(x)$ et \'etudier son signe.
+            	            \item Dresser le tableau de variation de $f$.
+                  \end{enumerate}
+            \item Montrer que la droite $\D$ d'\'equation $y = x - 1$ est asymptote \`a $\Courbe$ au voisinage de $+\infty$.
+            \item Tracer $\Courbe$ et $\D$ dans un m\^eme rep\`ere 
+                  (pr\'eciser les demi-tangentes \`a l'origine $O$ du rep\`ere).
+            \item Soit $\alpha$ un nombre r\'eel tel que $\alpha > 1$.
+                  On note $A(\alpha)$ l'aire du domaine plan limit\'e par $\Courbe$, la droite $\D$ et les droites 
+                  d'\'equations respectives $x = 1$ et $x = \alpha$.
+                  \begin{enumerate}
+                        \item Exprimer, en $\cm^2$, $A(\alpha)$ en fonction de $\alpha$.
+                        \item Calculer $ \displaystyle{ \lim_{\alpha\rightarrow +\infty} A(\alpha) } $.
+                  \end{enumerate}
+            \item Pour tout $n \in \mathbb{N}$, on pose 
+                  $\displaystyle{
+                        U_n = \int_{n}^{n+1} \left[ f(x) - (x-1) \right] \dx
+                  }$.
+                  (En remarquant que si $n \in \mathbb{N}$ et $x \in [n , n+1]$, on a : $f(x) = x - 1 + \expo{-x}$.)
+                  \begin{enumerate}
+                        \item Exprimer $U_n$ en fonction de $n$.
+                        \item Montrer que $(U_n)_{n\in\mathbb{N}}$ est une suite g\'eom\'etrique dont on pr\'ecisera la raison
+                              et le premier terme.
+                  \end{enumerate}
+            \item Soit $g$ la restriction de $f$ \`a l'intervalle $I = [0,+\infty[$.
+                  \begin{enumerate}
+                        \item Montrer que $g$ admet une fonction r\'eciproque $g^{-1}$.
+                        \item Repr\'esenter graphiquement $g^{-1}$ dans le m\^eme rep\`ere que $\Courbe$.
+                  \end{enumerate}
+      \end{enumerate}
+
+
+
+
+
+
+
+

@@ -1,0 +1,913 @@
+% T12 C/D, chapitre 8 : Suites numériques. Source : le livre « Terminales scientifiques » (Suite/Lesona, Suite/Fiche, Suite/Exo, Suite/Valiny).
+% Les exercices tirés d’autres ouvrages ne sont pas repris (décision du 2 novembre 2026).
+
+\TCDLessonStyleOn
+\begin{chapter}{Suite num\'erique}
+%
+\section{Raisonnement par r\'ecurrence}
+\index{Raisonnement par recurrence@Raisonnement par r\'ecurrence}
+\index{recurrence@r\'ecurrence!raisonnement par}
+%
+      \begin{prop}
+            Soit $\mathcal{P}_n$ une propri\'et\'e d\'ependant d'un param\`etre entier $n$.
+            $\mathcal{P}_n$ est vraie pour tout entier naturel $n \geq n_0$, $n_0 \in \mathbb{N}$, si : 
+                  \begin{enumerate}
+                        \item $\mathcal{P}_{n_0}$ est vraie (c'est l'\emph{initialisation}).
+                        \item $\mathcal{P}_k \Rightarrow \mathcal{P}_{k+1}$ pour $k\geq n_0$ (c'est l'\emph{h\'er\'edit\'e}).
+                  \end{enumerate}
+      \end{prop}
+      %
+      \begin{ex}
+            Nous allons d\'emontrer que pour tout entier naturel non nul $n$,
+            la propri\'et\'e suivante est vraie : 
+                  $$
+                        \mathcal{P}_n \ : \ 
+                        1 + 2 + 3 + \cdots + (n-1) + n = \frac{n (n+1)}{2}
+                        \;.
+                  $$
+            \begin{description}
+                  \item[Initialisation :]
+                        Nous avons :
+                              $
+                                    \frac{1 \cdot (1+1)}{2} = 1 
+                              $
+                        ce qui montre $\mathcal{P}_1$.
+                  \item[H\'er\'edit\'e :]
+                        \underline{\textbf{H}ypoth\`ese de \textbf{R}\'ecurrence :}
+                        On suppose que pour un entier quelconque $k$, $\mathcal{P}_k$ est vraie.
+                        Ceci se traduit alors par 
+                              \[
+                              1+2+3+\cdots+(k-1)+k = \frac{k(k+1)}{2}\;.
+                              \]
+                        \`A partir de cette \textbf{HR}, prouvons que $\mathcal{P}_{k+1}$ est vraie.
+                        Pour cela, regardons ce qui se passe au rang suivant (c'est-\`a-dire au rang $k+1$) :
+                              \begin{align*}
+                              1+2+3+\cdots+(k-1)+k+(k+1) & = \frac{k(k+1)}{2}  + (k+1)                      \\
+                                                         & = (k+1)\left( \frac{k}{2} + 1 \right)            \\
+                                                         & = (k+1) \frac{k+2}{2}                            \\
+                                                         & = \frac{(\mathbold{k+1}) (\mathbold{k+1}+1)}{2}  
+                              \end{align*}
+                              ce qui montre que $\mathcal{P}_{k+1}$ est vraie.
+                        Ainsi, on vient de prouver que $\mathcal{P}_k \Rightarrow \mathcal{P}_{k+1}$.
+            \end{description}
+            On conclut que la propri\'et\'e $\mathcal{P}_k$ est vraie pour tout $k \geq 1$.
+      \end{ex}
+%
+\warning{ %
+Notons que l'initialisation est n\'ecessaire.
+Pour montrer cela, nous allons omettre l'initialisation et montrer
+la propri\'et\'e erron\'ee que $2^n < 0$ pour tout $n \in \mathbb{N}$. \\
+Pour $n \in \mathbb{N}$, soit $\mathcal{P}_n$ la propri\'et\'e << $2^n$ est n\'egatif >>.
+On veut prouver que $\mathcal{P}_n$ est vraie pour tout $n \in \mathbb{N}$.
+\begin{enumerate}
+\item On veut omettre la premi\`ere \'etape.
+\item Supposons que pour un certain $k \in \mathbb{N}$ on ait $2^k < 0$.
+      On veut donc montrer $\mathcal{P}_{k+1}$, c'est-\`a-dire que $2^{k+1}<0$.
+      D'apr\`es l'hypoth\`ese de r\'ecurrence, on a $2^k < 0$ et, en multipliant l'in\'egalit\'e par $2$, on a :
+      $2^{k+1} < 0$.
+\end{enumerate}
+}
+%
+\index{Suite}
+%
+\section{Rappel}
+\subsection{Suites arithm\'etiques}
+\index{Suite!arithmetiques@arithm\'etiques}
+\begin{defi}
+Une suite $(U_n)_{n \in E}$ est dite \emph{arithm\'etique} s'il existe un r\'eel $r$ tel que $U_{n+1} = U_n + r$ pour tout $n \in E$.
+Le nombre $r$ est appel\'e \emph{raison} de la suite $(U_n)$.
+\end{defi}
+\begin{ex}
+\begin{itemize} 
+\item 
+La suite des nombres impairs, d\'efinie par : 
+$
+\left\lbrace
+\begin{array}{l}
+U_0 = 1 \\
+U_{n+1} = U_n + 2
+\end{array}
+\right.
+$
+est une suite arithm\'etique.
+\item 
+La suite des nombres entiers naturels est la suite arithm\'etique de premier terme $U_0 = 0$ et de raison $r = 1$.
+\end{itemize}
+\end{ex}
+%
+\subsubsection{Expression en fonction de $n$}
+Soit $(U_n)$ une suite arithm\'etique de premier terme $U_0$ et de raison $r$. Alors 
+\mybox{$U_n = U_0 + n \; r$}.
+\begin{prop}
+Soit $(U_n)$ une suite arithm\'etique de raison $r$.
+Si $p$ et $q$ sont deux entiers naturels tels que $p \leq q$, alors : \mybox{$U_q = U_p + (q - p) \; r $}.
+\end{prop}
+%
+\begin{ex}
+Soit $(U_n)$ la suite arithm\'etique de raison $3$ et de premier terme $U_0 = 1$.
+Alors $U_{20} = U_0 + (20 - 0) \; 3 = 1 + 60 = 61$.
+\end{ex}
+%
+\subsubsection{G\'en\'eralit\'es}
+%
+\subsubsection{Somme des termes d'une suite arithm\'etique}
+\index{Suite!arithmetiques@arithm\'etiques!somme des termes}
+%
+Soit $(U_n)$ une suite arithm\'etique de raison $r$.
+Posons $S_n = U_0 + U_1 + \cdots + U_n$.
+On a alors
+\thmbox{$\displaystyle{ S_n = \frac{(U_0 + U_n) \cdot (n+1)}{2} }$}.%
+\footnote{%
+				$
+					S = \frac{(
+					\tikznode{U0}{\textcolor{loko2}{$U_0$}};
+					+
+					\tikznode{Un}{\textcolor{loko1}{$U_n$}};
+					)
+					\cdot
+					(
+					\tikznode{n+1}{\textcolor{loko3}{$n+1$}};
+					)
+					}{
+					2
+					}
+					=
+					\frac{ (\tikznode{Premier terme}{$\text{\textcolor{loko2}{Premier terme}}$}; 
+					+ 
+					\tikznode{Dernier terme}{$\text{\textcolor{loko1}{Dernier terme}}$}; )
+					\cdot
+					( \tikznode{Nombre de termes}{$\text{\textcolor{loko3}{Nombre de termes}}$}; )
+					}{ 2 }
+				$
+				%
+				%\tikz[overlay]\draw[thick,color = loko2,->,>=stealth] 
+				%	(Premier terme) .. controls +(up:2em) and +(up:2em) .. (U0);
+				%\tikz[overlay]\draw[thick,color = loko1,->,>=stealth] 
+				%	(Dernier terme) .. controls +(down:2em) and +(down:2em) .. (Un);
+				%\tikz[overlay]\draw[thick,color = loko3,->,>=stealth] 
+				%	(Nombre de termes) .. controls +(up:2em) and +(up:2em) .. (n+1);
+			}
+%
+\begin{ex}
+Calculer la somme des entiers naturels de $1$ \`a $100$.
+Posons $U_n = n$ et $S_n = U_1 + U_2 + \cdots + U_{100}$.
+On a alors 
+$$
+S_{100} = \frac{(1 + 100) \cdot 100}{2} = 5050 \; .
+$$
+
+Calculer la somme des $n + 1$ premiers nombres impairs : \\
+Posons $V_n = 2n+1$ et $T_n = V_0 + V_1 + \cdots + V_n$.
+\begin{align*}
+T_n & = \frac{(1 + (2n+1)) \cdot (n+1)}{2}       
+      = \frac{(2 n + 2) \cdot (n+1)}{2}          \\
+    & = \frac{\not 2 (n+1) (n+1)}{\not 2}        
+      = (n+1)^2                                  \;.
+\end{align*}
+\end{ex}
+%
+\subsection{Suites g\'eom\'etriques}
+\index{Suite!geometriques@g\'eom\'etriques}
+%
+\begin{defi}
+Une suite $(U_n)_{n \in E}$ est dite \emph{g\'eom\'etrique} s'il existe un r\'eel $q$ tel que $U_{n+1} = q \cdot U_n$ pour tout $n \in E$.
+Le nombre $q$ est appel\'e \emph{raison} de la suite $(U_n)$.
+\end{defi}
+\begin{ex}
+\begin{itemize} 
+\item 
+La suite d\'efinie par : 
+$
+\left\lbrace
+\begin{array}{l}
+U_0 = 1/3 \\
+U_{n+1} = 2 \cdot U_n
+\end{array}
+\right.
+$
+est une suite g\'eom\'etrique.
+\item 
+La suite des puissances de $2$ est une suite g\'eom\'etrique de raison $2$.
+\end{itemize}
+\end{ex}
+%
+\subsubsection{Expression en fonction de $n$}
+Soit $(U_n)$ une suite g\'eom\'etrique de premier terme $U_0$ et de raison $q$. Alors
+\mybox{$U_n = U_0 \cdot q^n $}.
+\begin{prop}
+Soit $(U_n)$ une suite g\'eom\'etrique de raison $q$.
+Si $r$ et $s$ sont deux entiers naturels tels que $r \leq s$, alors : \mybox{$U_s = U_r \; q^{s-r} $}.
+\end{prop}
+%
+\begin{ex}
+Soit $(U_n)$ la suite g\'eom\'etrique de raison $1/2$ et de premier terme $U_0 = 8$.
+Alors $U_{12} = U_0\cdot \left(\frac{1}{2}\right)^{12 - 0} = 8 \; \frac{1}{2^{12}} = \frac{1}{512}$.
+\end{ex}
+%
+\subsubsection{Somme des termes d'une suite g\'eom\'etrique}
+\index{Suite!geometriques@g\'eom\'etriques!somme des termes}
+%
+Soit $(U_n)$ une suite g\'eom\'etrique de raison $q$.
+Posons $S_n = U_0 + U_1 + \cdots + U_n$.
+Si $q \neq 1$, on a
+\thmbox{$\displaystyle{ S_n = U_0 \frac{1 - q^{n+1}}{1-q} }$}.%
+	\footnote{%
+					$
+						T = \tikznode{V0}{\textcolor{loko2}{$V_0$}};
+						\cdot
+						\frac{1-\tikznode{q1}{\textcolor{loko1}{$q$}};^{\tikznode{n+1}{\textcolor{loko3}{$n+1$}};}}
+						{1-\tikznode{q2}{\textcolor{loko1}{$q$}};}
+						= \tikznode{Premier_terme}{\text{\textcolor{loko2}{$\text{Premier terme}$}}}; \cdot 
+						\frac{1-\tikznode{Raison1}{\text{\textcolor{loko1}{$Raison$}}};^{ \tikznode{Nombre_de_termes}
+						{\text{\textcolor{loko3}{\footnotesize{Nombre de termes}}}}; }}
+						{ 1-\tikznode{Raison2}{\text{\textcolor{loko1}{$Raison$}}}; }
+					$
+	%
+	%\tikz[overlay]\draw[thick,color = loko2,->] 
+	%	(Premier_terme) .. controls +(up:-3em) and +(up:-3em) .. (V0);
+	%\tikz[overlay]\draw[thick,color = loko1,->] 
+	%	(Raison1) .. controls +(down:3em) and +(down:3em) .. (q1);
+	%\tikz[overlay]\draw[thick,color = loko1,->] 
+	%	(Raison2) .. controls +(down:3em) and +(down:3em) .. (q2);
+	%\tikz[overlay]\draw[thick,color = loko3,->] 
+	%	(Nombre_de_termes) .. controls +(up:2em) and +(up:2em) .. (n+1);
+		}
+Si $q = 1$, alors $S_n = (n+1)U_0$.
+%
+\begin{ex}
+Calculer la somme $S = 1 + 2^1 + 2^2 + \cdots + 2^{10}$.
+On a 
+$
+S = 1 \cdot \frac{1 - 2^{11}}{1- 2} = \frac{1 - 2^{11}}{-1} = 2^{11} - 1 = 2047.
+$
+\end{ex}
+%
+\section{Suites num\'eriques}
+%
+\begin{defi}
+Une suite num\'erique $(U_n)_{n \in E}$ est une application de $E \subseteq \mathbb{N}$ vers $\mathbb{R}$.
+\end{defi}
+%
+\noindent
+\underline{Terminologies :} \\
+\begin{enumerate}
+\item La suite est not\'ee $(U_n)$.
+\item Le terme de rang $n$ est not\'e $U_n$.
+\end{enumerate}
+%
+\subsection{D\'etermination d'une suite}
+\index{Suite!Determination@D\'etermination}
+%
+\subsubsection{D\'efinie par une relation : $U_{n} = f(n)$}
+On peut d\'efinir une suite par la donn\'ee de l'expression du terme de rang $n$ en fonction de $n$.
+\begin{ex}
+      Soit $U_n = 2n + 1$.
+      La suite $(U_n)$ est ici d\'efini pour tout $n \in \mathbb{N}$.
+      \[
+            U_0 = 1 \qquad U_1 = 3 \qquad U_2 = 5 \qquad U_3 = 7 \; .
+      \]
+\end{ex}
+\subsubsection{D\'efinie par une relation : $U_{n+1} = f(U_n)$}
+On peut aussi d\'efinir une suite par la donn\'ee d'un terme et d'une relation de r\'ecurrence.
+\begin{ex}
+Soit $(U_n)$ la suite d\'efinie par : 
+      \[
+            \left\lbrace
+                  \begin{matrix}
+                        U_0 = 1 \\
+                        U_{n+1} = U_n + 2
+                  \end{matrix}
+            \right.
+      \]
+      Les premier termes de cette suite sont : 
+      \[
+            U_0 = 1 \qquad U_1 = 3 \qquad U_2 = 5 \qquad U_3 = 7 \; .
+      \]
+\end{ex}
+%
+\subsubsection{G\'en\'eralit\'es}
+%
+\begin{defi}[Suites monotones] ~ \\
+\index{Suite!monotones}
+%
+\begin{itemize} 
+\item Une suite $(U_n)$ est dite \emph{croissante} si pour tout $n \in \mathbb{N}$ on a : $U_{n} \leq U_{n+1}$.
+\item Une suite $(U_n)$ est dite \emph{d\'ecroissante} si pour tout $n \in \mathbb{N}$ on a : $U_{n+1} \leq U_{n}$.
+\item Une suite est dite \emph{monotone} si elle est croissante ou d\'ecroissante.
+\end{itemize}
+\end{defi}
+%
+\begin{exe} ~ \\
+\label{exe:suite monotones}
+\begin{itemize} 
+\item Montrer que la suite $(U_n)$ d\'efinie par $U_n = 3 n + 1 $ est croissante.
+\item Montrer que la suite $(V_n)$ d\'efinie par $V_n = \frac{1}{n} $ est d\'ecroissante.
+\item Montrer que la suite $(W_n)$ d\'efinie par $W_n = (-1)^n $ n'est ni croissante ni d\'ecroissante.
+\end{itemize}
+
+\end{exe}
+%
+\begin{defi}[Suites born\'ees] ~ \\
+\index{Suite!bornee@born\'ee}
+%
+\begin{itemize} 
+\item Une suite $(U_n)$ est dite \emph{major\'ee} s'il \'existe $M \in \mathbb{R}$ tel que $U_n \leq M$ pour tout $n \in \mathbb{N}$.
+\item Une suite $(U_n)$ est dite \emph{minor\'ee} s'il \'existe $m \in \mathbb{R}$ tel que $U_n \geq m$ pour tout $n \in \mathbb{N}$.
+\item Une suite est dite \emph{born\'ee} si elle est \`a la fois minor\'ee et major\'ee.
+\end{itemize}
+\end{defi}
+%
+\begin{exe} ~ \\
+\label{exe:suite bornee}
+\begin{itemize} 
+\item Montrer que la suite $(U_n)$ d\'efinie par $U_n = -n^2 + 3 $ est major\'ee.
+\item Montrer que la suite $(V_n)$ d\'efinie par $V_n = \frac{n^2 + 1}{n + 1} $ est minor\'ee.
+\item Montrer que la suite $(W_n)$ d\'efinie par $W_n = (-1)^n n $ n'est ni minor\'ee ni major\'ee.
+\end{itemize}
+
+\end{exe}
+%
+\subsection{Suites convergentes et suites divergentes}
+\index{Suite!convergente}
+\index{Suite!divergente}
+%
+\begin{defi}[Convergence]
+Soit $(U_n)$ une suite num\'erique et soit $\ell \in \mathbb{R}$.
+On dit que $(U_n)$ converge vers $\ell$ si 
+$$
+\lim_{n \rightarrow + \infty} U_n = \ell \; .
+$$
+Une suite qui n'est pas convergente est dite \emph{divergente}.
+\end{defi}
+%
+\begin{prop} ~ \\
+Soient $f$ une fonction d\'efinie sur $\mathbb{R}^+$ et $(U_n)$ la suite d\'efinie par ${U_n = f(n)}$.
+Alors, 
+\[
+\text{Si } \lim_{x \rightarrow + \infty} f(x) = \ell \text{ alors } \lim_{n \rightarrow + \infty} U_n = \ell      \; .
+\]
+\end{prop}
+
+\begin{thm}[admis] ~\\
+Soit $(U_n)$ une suite num\'erique :
+\begin{enumerate}
+\item Si $(U_n)$ est croissante et major\'ee alors $(U_n)$ est convergente.
+\item Si $(U_n)$ est d\'ecroissante et minor\'ee alors $(U_n)$ est convergente.
+\end{enumerate}
+\end{thm}
+%
+\begin{ex}
+Consid\'erons les suites num\'eriques suivantes:
+\begin{enumerate}
+\item Soit $(W_n)_{n \in \mathbb{N}^*}$ la suite d\'efinie par $W_n = \frac{1}{n}$. 
+      Comme $W_n \geq 0$ pour tout $n$ et que $(W_n)$ est d\'ecroissante, alors la suite $(W_n)$ est convergente.
+\item L'exemple pr\'ec\'edent est un peu trop facile. Consid\'erons la suite $(X_n)_{n \in \mathbb{N}}$ d\'efinie par 
+      $X_n = \sum_{k = 1}^n \frac{1}{k \cdot 2^k}$.
+      Comme $X_{n+1} - X_n = \frac{1}{(n+1) \cdot 2^{n+1}} > 0$, la suite $(X_n)$ est croissante.
+      De plus, comme $\frac{1}{k \cdot 2^k} \leq \frac{1}{2^k}$ alors 
+      $X_n \leq \sum_{k = 1}^n \frac{1}{2^k}$ pour tout $n \in \mathbb{N}^*$.
+      Comme $\lim_{n \rightarrow + \infty} \sum_{k = 1}^n \frac{1}{2^k} = 1$ alors $X_n \leq 1$.
+      La suite $(X_n)$ est ainsi major\'ee; comme elle est croissante alors elle est convergente.
+\end{enumerate}
+\end{ex}
+%
+\begin{thm}
+Soient $(U_n)$ une suite num\'erique et $f$ une fonction num\'erique.
+Supposons que $(U_n)$ converge vers un nombre r\'eel $\ell$ et que $f$ est continue dans un voisinage de $\ell$.
+Alors la suite $(f(U_n))$ converge vers $f(\ell)$.
+\end{thm}
+\begin{ex}
+On veut \'etudier la convergence de la suite $(V_n)$ d\'efinie pour tout $n \in \mathbb{N}^*$ par $V_n = \sin \frac{1}{n}$.
+Consid\'erons la suite $(U_n)$ d\'efinie par $U_n = \frac{1}{n}$ et la fonction $f$ d\'efinie par $f(x) = \sin x$.
+On sait que la fonction sinus est continue sur $\mathbb{R}$.
+Comme $\lim_{n \rightarrow + \infty} U_n = 0$ et que $f(0) = 0$, 
+la suite $(V_n)$ d\'efinie par $V_n = f(U_n)$ est convergente et sa limite est $0$.
+\end{ex}
+%
+\subsection{Th\'eor\`eme de comparaison}
+\index{Comparaison!Theoreme de@Th\'eor\`eme de}
+%
+\begin{thm}
+\label{thm:comparaison suite}
+Soient $(U_n)$ et $(V_n)$ deux suites num\'eriques telles que $U_n \leq V_n$ \`a partir d'un certain rang.
+\begin{itemize} 
+\item
+      $
+      \text{Si }
+      \lim_{n \rightarrow + \infty} U_n = + \infty
+      \quad
+      \text{ alors }
+      \quad
+      \lim_{n \rightarrow + \infty} V_n = + \infty
+      $
+\item
+      $
+      \text{Si }
+      \lim_{n \rightarrow + \infty} V_n = - \infty
+      \quad
+      \text{ alors }
+      \quad
+      \lim_{n \rightarrow + \infty} U_n = - \infty
+      $
+\end{itemize}
+\end{thm}
+\begin{ex}
+Soient $(U_n)$ la suite d\'efinie par $U_n = n^2 - 1 $ et $(V_n)$ la suite d\'efinie par ${V_n = n^2 + \sin (n)}$.
+Comme $-1 \leq \sin (n) \leq 1$ pour tout $n \in \mathbb{N}$, alors 
+      $n^2 - 1 \leq n^2 + \sin (n) \leq n^2 + 1$ pour tout $n \in \mathbb{N}$, ce qui veut dire que 
+      $U_n \leq V_n$ pour tout $n \in \mathbb{N}$.
+D'une part, on sait que $\lim_{n \rightarrow + \infty} U_n = + \infty$; d'autre part, on sait que $U_n \leq V_n$.
+Ainsi, d'apr\`es le Th\'eor\`eme~\ref{thm:comparaison suite}, on a $\lim_{n \rightarrow + \infty} V_n = + \infty$.
+\end{ex}
+%
+\begin{thm}
+%\index{Suite!Theoreme des gendarmes@Th\'eor\`eme des gendarmes}
+\index{Theoreme@Th\'eor\`eme!gendarmes}
+\label{thm:gendarme suite}
+Soient $(U_n)$, $(V_n)$ et $(W_n)$ trois suites num\'eriques telles que ${U_n \leq V_n \leq W_n}$ \`a partir d'un certain rang.
+Si $\lim_{n \rightarrow + \infty} U_n = \lim_{n \rightarrow + \infty} V_n = \ell$ alors $\lim_{n \rightarrow + \infty} W_n = \ell$.
+\end{thm}
+\begin{ex}
+Consid\'erons les trois suites $(U_n)$, $(V_n)$ et $(W_n)$ d\'efinies respectivement par : 
+\begin{itemize} 
+\item $ U_n = \frac{-1}{n} $
+\item $ V_n = \frac{\sin(n)}{n} $
+\item $ W_n = \frac{1}{n} $
+\end{itemize}
+Comme $-1 \leq \sin (n) \leq 1$ pour tout $n \in \mathbb{N}$, alors 
+      $U_n \leq V_n \leq W_n$.
+Or, on sait que $ \lim_{n \rightarrow + \infty} U_n = \lim_{n \rightarrow + \infty} W_n = 0$; d'apr\`es le Th\'eor\`eme \ref{thm:gendarme suite}, $ \lim_{n \rightarrow + \infty} V_n = 0 $.
+\end{ex}
+%
+\subsection{Etude de quelques exemples}
+%
+\subsubsection{Suite du type $a^n$}
+%
+Soient $a \in \mathbb{R}$ et $(U_n)$ la suite d\'efinie par $U_n = a^n$ est la suite g\'eometrique de raison $a$ et de premier terme $1$.
+\begin{itemize} 
+\item Si $a \leq -1$, la suite $(U_n)$ est divergente.
+\item Si $-1 < a < 1$, la suite $(U_n)$ converge vers $0$.
+\item Si $a > 1$, la suite $(U_n)$ tend vers $+ \infty$.
+\end{itemize}
+\begin{exe}
+\label{exe:-1/2 ^n}
+On consid\`ere la suite $(U_n)$ d\'efinie par son terme g\'en\'eral $U_n = \left( \frac{-1}{2} \right)^n$.
+Etudier les variations de $(U_n)$ et sa convergence.
+
+\end{exe}
+%
+\subsubsection{Suite du type $n^a$}
+%
+Soient $a$ un nombre r\'eel et $(V_n)$ la suite num\'erique d\'efinie par $V_n = n^a$.
+\begin{itemize} 
+\item Si $a < 0$, alors la suite $(V_n)$ converge vers $0$.
+\item Si $a > 0$, alors la suite $(V_n)$ tend vers $+\infty$.
+\end{itemize}
+%
+\subsubsection{Suite r\'ecurrente}
+%
+Certaines suites peuvent \^etre pr\'esent\'e sous forme de relation de r\'ecurrence et la donn\'ee d'un premier terme.
+Par exemple, consid\'erons la suite $(U_n)$ d\'efinie par 
+\[
+\left\lbrace
+\begin{array}{l}
+U_0 = -2 \\
+U_{n+1} = U_n + 3 .
+\end{array}
+\right.
+\]
+Comme $U_{n+1} - U_n = 3$, $(U_n)$ est une suite arithm\'etique de raison $3$.
+Comme le premier terme est $-2$, le terme g\'en\'eral est $U_n = -2 + 3n$.
+Il n'est pas difficile de constater que la suite $(U_n)$ est croissante.
+
+De m\^eme, les suites g\'eom\'etriques peuvent \^etre pr\'esent\'ees sous forme r\'ecurrente.
+Consid\'erons par exemple la suite $(V_n)$ d\'efinie par 
+\[
+\left\lbrace
+\begin{array}{l}
+V_0 = 2 \\
+V_{n+1} = -3  V_n .
+\end{array}
+\right.
+\]
+Comme $\frac{V_{n+1}}{V_n} = -3$, $(V_n)$ est une suite g\'eom\'etrique de raison $-3$.
+Comme $V_0 = 2$, l'expression de $V_n$ en fonction de $n$ est $V_n = 2 \cdot (-3)^n$.
+La suite $(V_n)$ est une suite altern\'ee; en effet, le signe de $V_n$ est diff\'erent du signe de $V_{n+1}$.
+%
+      \warning{
+            Les suites arithm\'etiques et g\'eom\'etriques ne repr\'esentent que des cas tr\`es particulier de suites.
+            Il existe des suites qui ne sont ni arithm\'etiques ni g\'eom\'etriques. \newline
+            %
+            De m\^eme, les suites croissantes et d\'ecroissantes ne sont que des cas particuliers de suites.
+            Il existe des suites qui ne sont ni croissante ni d\'ecroissante. \newline
+            %
+            Par contre, toute suite qui n'est pas convergente est divergente (c'est la d\'efinition).
+      }
+%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{chapter}
+
+\TCDLessonStyleOff
+\begin{fiche}
+      \subsection*{Suite arithm\'etiques (de raison $r$)}
+            \begin{itemize}
+                  \item $U_{n+1} = U_n + r$,
+                  \item $U_n = U_p + (n-p) r$, et donc $U_n = U_0 + n r$,
+                  \item \[
+                              S = \frac{
+                                          \left(
+                                                \text{$1^\text{er}$ terme $+$ dernier terme}
+                                          \right)
+                                          \cdot
+                                          \text{Nombre de termes}
+                                       }{2}      \;.
+                        \]
+            \end{itemize}
+      \subsection*{Suite g\'eom\'etriques (de raison $q$)}
+            \begin{itemize}
+                  \item $U_{n+1} = q \cdot U_n $,
+                  \item $U_n = U_p \cdot q^{n-p}$, et donc $U_n = U_0 \cdot q^n$,
+                  \item \[
+                              S = \text{$1^{\text{er}}$ terme}
+                                    \cdot
+                                  \frac{
+                                             1-\text{raison}^{\text{Nombre de termes}}
+                                       }{
+                                             1-\text{raison}
+                                       }      \;.
+                        \]
+            \end{itemize}
+      \subsection*{Th\'eor\`emes}
+            \begin{itemize}
+                  \item Une suite croissante major\'ee est convergente.
+                  \item Une suite d\'ecroissante minor\'ee est convergente.
+                  \item Si 
+                        \hypothesebox{$U_n\leq V_n\leq W_n$}
+                        et que 
+                        \hypothesebox{$\lim_{n\rightarrow+\infty}U_n=\lim_{n\rightarrow+\infty}W_n=\ell$}
+                        alors  
+                        \thmbox{$\lim_{n\rightarrow+\infty}V_n=\ell$}.
+                  \item ~\\
+                        \begin{tabular}{|c|c|}
+                              \hline
+                              \rowcolor[gray]{0.8}
+                                    \color{black}
+                              $q$        & $\displaystyle{\lim_{n\rightarrow+\infty} q^n}$       \\
+                              \hline
+                              $q\leq -1$ & n'existe pas                           \\
+                              \hline
+                              $-1<q<1$   & $0$                                    \\
+                              \hline
+                              $q=1$      & $1$                                    \\
+                              \hline
+                              $q>1$      & $+\infty$                              \\
+                              \hline
+                        \end{tabular}
+            \end{itemize}
+
+\end{fiche}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\TCDLessonStyleOff
+\clearpage
+\section{Exercices} 
+\begin{exo}
+\begin{enumerate}
+      \item \begin{enumerate}
+                  \item Trouver la somme des $n$ premiers termes de la 
+                        suite arithm\'etique de premier terme $2$ et de raison $2$.
+                  \item Trouver la somme des $n$ premiers termes de la 
+                        suite g\'eom\'etrique de premier terme $2$ et de raison $2$.
+            \end{enumerate}
+      \item Soit $(U_n)$ la suite arithm\'etique telle que $U_{1999} = 1333$ et $U_{2017} = 1345$.
+            Calculer la raison et le premier terme.
+      \item Soit $(V_n)_{n \in \mathbb{N}}$ la suite g\'eometrique de raison $2$ telle que $V_1 + V_2 + \cdots + V_9 = 146$.
+            Donner le premier terme et le cinqui\`eme terme de la suite $(V_n)$.
+\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      \begin{enumerate}
+            \item Soit $(U_n)_{n\in\mathbb{N}}$ une suite arithm\'etique de raison $r > 0$ telle que 
+                  \[
+                        \left\lbrace
+                              \begin{array}{l}
+                                    U_1 + U_2 + U_3 = 3 \\
+                                    U_1 \; U_2 \; U_3 = \frac{8}{9} .
+                              \end{array}
+                        \right.
+                  \]
+                  Exprimer $U_n$ en fonction de $n$.
+            \item Soit $(V_n)$ la suite g\'eometrique croissante telle que 
+                  \[
+                        \left\lbrace
+                              \begin{array}{l}
+                                    V_1 + V_2 + V_3 = 2 + 3 \sqrt{2} \\
+                                    V_1 \; V_2 \; V_3 = 8 .
+                              \end{array}
+                        \right.
+                  \]
+                  Determiner $V_1$, $V_2$ et $V_3$.
+            \item Soit $(W_n)$ la suite d\'efinie par 
+                  \[
+                        \left\lbrace
+                              \begin{array}{l}
+                                    W_0 = 16  \\
+                                    W_{n+1} = -\frac{1}{2} \; W_n .
+                              \end{array}
+                        \right.
+                  \]      
+                  \begin{enumerate}
+                        \item Donner les cinq premiers termes de la suite $(W_n)$ ainsi que sont dixi\`eme terme.
+                        \item Donner la nature de la suite $(W_n)$ et l'expression de $W_n$ en fonction de $n$.
+                        \item Calculer $W_2 + W_3 + \cdots + W_9$.
+                  \end{enumerate}
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+      \begin{enumerate}
+            \item On consid\`ere la suite $(U_n)_{n \in \mathbb{N}^*}$ d\'efinie par :
+                  $
+                        \left\lbrace
+                              \begin{tabular}{l}
+                                    $U_1 = 1 $ \\
+                                    $U_{n+1} = \frac{U_n}{\sqrt{U_n ^2 \; + \; 1}}$ .
+                              \end{tabular}
+                        \right.
+                  $
+                  Montrer par r\'ecurrence que $U_n = \frac{1}{\sqrt{n}}$.
+            \item On consid\`ere la suite $(U_n)_{n \in \mathbb{N}^*}$ d\'efinie par :
+                  $
+                        \left\lbrace
+                              \begin{tabular}{l}
+                                    $U_1 = 1 $ \\
+                                    $U_{n+1} = \frac{U_n + 2}{U_n + 1}$ .
+                              \end{tabular}
+                        \right.
+                  $
+                  Montrer que, pour tout $n \in \mathbb{N}$, on a $1 \leq U_n \leq 2$.
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}
+Montrer par r\'ecurrence chacune des propositions suivantes :
+\begin{enumerate}
+      \item $10^n - 1$ est divisible par $9$ pour tout $n \in \mathbb{N}^*$.
+      \item $2 n \leq n!$ pour tout $n \geq 3$.
+      \item $\frac{n!}{n^n} \leq \frac{1}{n}$ pour tout $n \in \mathbb{N}^*$.
+      \item $8^n - 3^n$ est divisible par $5$ pour tout $n \in \mathbb{N}$.
+      \item $3^{3n} + 11 \cdot 2^{2n + 1}$ est un multiple de $23$ pour tout $n\in\mathbb{N}$.
+      \item $(1+x)^n \geq 1+nx$ pour tout $x\in\mathbb{R}_+$ et pour tout $n\in\mathbb{N}$.
+\end{enumerate}
+\end{exo}
+%
+\begin{exo}
+Consid\'erons les suites $(U_n)_{n \in \mathbb{N}^*}$ et $(V_n)_{n \in \mathbb{N}^*}$ d\'efinies par :
+\[
+\left\lbrace
+\begin{tabular}{l}
+$U_1 = 1$ \\
+$U_{n+1} = \frac{U_n}{U_n + 1}$
+\end{tabular}
+\right. \; .
+\]
+et 
+$$
+V_n = \frac{1}{U_n} \; .
+$$
+\begin{enumerate}
+      \item Calculer les 5 premier termes des suites $(U_n)$ et $(V_n)$. (Que remarquez-vous?)
+      \item Montrer que la suite $(V_n)$ est une suite arithm\'etique et d\'eterminer sa raison.
+      \item Ecrire $V_n$ en fonction de $n$; en d\'eduire l'expression de $U_n$ en fonction de $n$.
+\end{enumerate}
+\end{exo}
+%
+%\begin{exo}[\`A traiter apr\`es la le\c{c}ons sur la fonction $\ln$]
+%Soient $(U_n)_{n \in \mathbb{N}}$ la suite num\'erique d\'efinie par $U_n = \ln n - \ln (n+1) $.
+%Montrer que la suite $(U_n)$ est croissante et calculer sa limite.
+%\end{exo}
+%
+\begin{exo}
+      On consid\`ere la suite de nombre r\'eels $(U_n)_{n\in\mathbb{N}}$ d\'efinie par 
+      son premier terme $U_0 = 2$ et par la relation $U_{n+1} = \frac{2 U_n + 1}{U_n + 2}$
+      v\'erifi\'ee pour tout entier naturel $n$.
+      
+      Le but de l'exercice est d'exprimer $U_n$ en fonction de $n$.
+      \begin{enumerate}
+            \item Calculer $U_1$, $U_2$ et $U_3$.
+            \item On admet qu'il existe une suite $(a_n)_{n\in\mathbb{N}}$ unique telle que,
+                  pour tout entier naturel $n$, on a : 
+                        \[
+                              U_n = \frac{3a_n-1}{3a_n-2}.
+                        \]
+                  \begin{enumerate}
+                        \item Montrer que $a_0 = 1$.
+                        \item Exprimer $U_{n+1}$ en fonction de $a_{n+1}$, 
+                              puis de $a_n$ et en d\'eduire que la suite $(a_n)_{n\in\mathbb{N}}$ v\'erifie,
+                              pour tout entier naturel $n$, la relation : 
+                                    \[
+                                          a_{n+1} = 3 a_n - 1.
+                                    \]
+                  \end{enumerate}
+            \item Soit $(b_n)_{n\in\mathbb{N}}$ la suite d\'efinie pour tout entier naturel $n$, par :
+                        \[
+                              b_n = a_n - \frac{1}{2}.
+                        \]
+                  \begin{enumerate}
+                        \item Montrer que la suite $(b_n)_{n\in\mathbb{N}}$ est une suite g\'eom\'etrique de 
+                              raison 3 et de premier terme $\frac{1}{2}$.
+                        \item Calculer $b_n$ en fonction de $n$.
+                        \item En d\'eduire l'expression de $a_n$ puis celle de $U_n$ en fonction de $n$.
+                        \item D\'eterminer la limite de $(U_n)_{n\in\mathbb{N}}$ quand $n$ tend vers $+\infty$.
+                  \end{enumerate}
+      \end{enumerate}
+\end{exo}
+%
+\begin{exo}[N\'ecessite la connaissance des fonctions $\ln$ et $\exp$]~\newline
+      Soit la suite num\'erique $(u_n)$ d\'efinie par : 
+      $u_0 = 1$, $u_1 = \expo{a}$ et $$ \forall n \in \mathbb{N}, \quad u_{n+2} = \frac{(u_{n+1})^{2b+1}}{(u_n)^{2b}} $$
+      o\`u $a$ et $b$ sont des constantes r\'eelles et $\expo{}$ d\'esigne la base de la fonction logarithme n\'ep\'erien.
+      
+      On se propose de calculer $u_n$ en fonction de $n$, $a$ et $b$.
+      \begin{enumerate}
+            \item A l'aide d'un raisonnement par r\'ecurrence, montrer que : $\forall n \in \mathbb{N}, \quad u_n > 0$.
+            \item Si $b=\frac{1}{2}$, montrer que $(u_n)$ est une suite g\'eom\'etrique.
+                  Calculer alors $u_n$ en fonction de $n$ et $a$.
+                  
+                  D\'esormais, on suppose que $b \neq \frac{1}{2}$.
+            \item Soit la suite $(v_n)$ d\'efinie par : $\forall n \in \mathbb{N}, \quad v_n = \ln (u_n)$,
+                  o\`u $\ln$ d\'esigne la fonction logarithme n\'ep\'erien.
+                  \begin{enumerate}
+                        \item Calculer $v_0$ et $v_1$.
+                        \item Ecrire la relation de r\'ecurrence donnant $v_{n+2}$ en fonction de $v_n$ et $v_{n+1}$.
+                  \end{enumerate}
+            \item Soit la suite $(w_n)$ d\'efinie par : $\forall n \in \mathbb{N}, \quad w_n = v_{n+1} - v_n$.
+                  \begin{enumerate}
+                        \item Montrer que $(w_n)$ est une suite g\'eom\'etrique.
+                              Calculer alors $w_n$ en fonction de $n$, $a$ et $b$.
+                        \item Calculer la somme $S = w_0 + w_1 + \cdots + w_{n-1}$.
+                              En d\'eduire $v_n$ en fonction de $n$, $a$ et $b$.
+                  \end{enumerate}
+            \item \begin{enumerate}
+                        \item Calculer $u_n$ en fonction de $v_n$, puis en fonction de $n$, $a$ et $b$.
+                        \item Pour quelles valeurs de $b$ la suite $(u_n)$ est-elle convergente\,?
+                              Donner sa limite dans ce cas.
+                  \end{enumerate}
+      \end{enumerate}
+\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}[Tour de Hano\"i]
+\index{Tour de Hanoi@Tour de Hano\"i}
+\index{Hanoi@Hano\"i!Tour de}
+On dispose d'une tour compos\'ee de 5 disques, initialement empil\'es par ordre d\'ecroissant de taille sur un piquet.
+L'objectif du jeu est de transf\'erer le tour tout entier d'un piquet \`a un autre ;
+d\'epla\c{c}ant un disque \`a la fois, et ne jamais placer un disque sur un autre plus petit.
+
+Le math\'ematicien fran\c{c}ais Edouard Lucas inventa ce jeu en 1883, accompagn\'e d'une petite histoire.
+Il raconta que Dieu pla\c{c}a 64 disques d'or dans un monast\`ere au commencement des temps.
+Ces disques \'etaient placer sur un piquet en diamants, et il y avait deux autres piquets.
+Les moines devait, chaque jours, d\'eplacer un de ces disques selon les r\`egles cit\'es ci-dessus.
+La l\'egende raconte qu'au moment o\`u le dernier disque sera mise \`a sa place, le monde arrivera \`a sa fin.
+
+\begin{center}
+	\begin{tikzpicture}[x=.225cm,y=.5cm]
+		\draw[line width = .5cm, color=loko3b] (-23,-7.5) -- (23,-7.5) ;
+		\foreach \i in {-15,0,15}
+			\draw[line width = .125cm, color=loko1] (\i,-1.5) -- (\i,-7) ;
+		\foreach \x in {2,3,...,6}
+			\shade[ball color = loko2, rounded corners = 1ex] ({-\x},{-\x-1}) rectangle ({\x},{-\x})
+ ;
+		\foreach \x in {2,3,...,6}
+			\draw[color = loko2, rounded corners = 1ex] ({-\x},{-\x-1}) rectangle ({\x},{-\x})
+ ;
+	\end{tikzpicture}	
+\end{center}
+
+\textsc{Probl\`eme : }
+quel est le nombre minimum de mouvements n\'ecessaire pour achever ce jeu\,?
+et quel est la strat\'egie \`a adopter\,?
+\end{exo}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{corrige}
+\section{Solution des exercices}
+\begin{sol} ~ \\
+\label{Sol:suite monotones}
+(Solution de l'Exercice \ref{exe:suite monotones})
+\begin{itemize} 
+\item Posons $U_n = 3 n + 1 $. \\
+      On a alors $U_{n+1} = 3 (n+1) + 1 = 3n+3+1 = 3n + 4 > 3n + 1 = U_n$.
+      Ainsi, $U_{n+1} \geq U_n$; ce qui veut dire que $(U_n)$ est croissante.
+\item Montrer que la suite $(U_n)$ d\'efinie par $V_n = \frac{1}{n} $ est d\'ecroissante. \\
+      Comme $n + 1 > n$ et qu'ils sont tout deux positifs, on a $\frac{1}{n+1} < \frac{1}{n}$.
+      Ce qui implique que $(U_n)$ est d\'ecroissante.
+\item Montrer que la suite $(U_n)$ d\'efinie par $W_n = (-1)^n $ n'est ni croissante ni d\'ecroissante. \\
+      Consid\'erons $U_0$, $U_1$ et $U_2$.
+      On a $U_0 = 1$, $U_1 = -1$ et $U_2 = 1$; ce qui nous donne $U_0 > U_1$ et donc montre que $(U_n)$ n'est pas croissante.
+      Comme $U_1 < U_2$, alors $(U_n)$ n'est pas d\'ecroissante.
+      Ainsi, $(U_n)$ n'est ni croissante ni d\'ecroissante.
+\end{itemize}
+\end{sol}
+%
+\begin{sol} ~ \\
+(Solution de l'Exercice \ref{exe:suite bornee})
+\label{Sol:suite bornee}
+\begin{itemize} 
+\item Soit $(U_n)$ la suite d\'efinie par $U_n = -n^2 + 3 $.
+      Comme $-n^2 \leq 0$ pour tout $n \in \mathbb{N}$, alors $-n^2 + 3 \leq 3$.
+      Ainsi, $3$ est un majorant de $(U_n)$.
+\item Soit $(V_n)$ la suite d\'efinie par $V_n = \frac{n^2 + 1}{n + 1} $.
+      Pour tout $n \in \mathbb{N}$ on a $n^2 + 1 \geq 0$ et $n+1 \geq 0$; ainsi, $\frac{n^2 + 1}{n+1} \geq 0$.
+      On conclut que $0$ est un minorant de $(V_n)$.
+\item Soit $(W_n)$ la suite d\'efinie par $W_n = (-1)^n n $.
+      Pour tout $n_0 \in \mathbb{N}$ on a $W_{2 n_0} = (-1)^{2 n_0} (2 n_0) = 2 n_0$.
+      Ainsi, pour tout $M \in \mathbb{R}$, on pourra toujours trouver un nombre $n_0$ tel que $W_{n_0}$ soit plus grand que $M$.
+      De m\^eme, pour tout $n_1 \in \mathbb{N}$ on a $W_{2 n_1 + 1} = (-1)^{2 n_1 + 1} (2 n_1 + 1) = 2 n_1 + 1$.
+      Ainsi, pour tout $m \in \mathbb{R}$, on pourra toujours trouver un nombre $n_0$ tel que $W_{n_1}$ soit plus petit que $m$.
+\end{itemize}
+\end{sol}
+%
+\begin{sol} ~ \\
+\label{sol:-1/2 ^n}
+(Solution de l'Exercice \ref{exe:-1/2 ^n})\\
+La suite $(U_n)$ est une suite g\'eom\'etrique de raison $\frac{-1}{2}$.
+Voyons les premier termes de cette suite: 
+\begin{itemize}
+\item $U_0 = 1$
+\item $U_1 = -\frac{1}{2}$
+\item $U_2 = \frac{1}{4}$
+\item $U_3 = -\frac{1}{8}$.
+\end{itemize}
+La suite est alt\'ern\'ee et, en valeur absolue, elle tend vers $0$.
+\end{sol}
+\end{corrige}
+

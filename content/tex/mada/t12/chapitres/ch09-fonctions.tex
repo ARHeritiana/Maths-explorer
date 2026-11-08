@@ -1,0 +1,1114 @@
+% T12 C/D, chapitre 9 : Limites, continuité et dérivation. Source : le livre « Terminales scientifiques » (Fonction/Lesona, Fonction/Fiche, Fonction/Exo).
+% Les exercices tirés d’autres ouvrages ne sont pas repris (décision du 2 novembre 2026).
+
+\TCDLessonStyleOn
+\newcommand{\Df}{\mathcal{D}_f}
+
+\chapter{G\'en\'eralit\'es sur les fonctions}
+\section{Limites et continuit\'e}
+      \begin{prop}[Limites aux infinis]
+      \index{Limites!infinis}
+            Les limites aux infinis se fait de mani\`ere similaire \`a celle des suites.
+            
+            La limite en $\pm\infty$ d'une fraction rationnelle est \'egale \`a la limite du quotient des termes de plus haut degr\'e.
+            \begin{ex}
+                  \[
+                  \lim_{x\rightarrow+\infty} \frac{x^3-23x^2+37}{-2x^2-57} = \lim_{x\rightarrow+\infty} \frac{x^3}{-2x^2} 
+                                                                           = \lim_{x\rightarrow+\infty} \frac{x}{-2}      
+                                                                           = -\infty	.
+                  \]
+            \end{ex}
+      \end{prop}
+%
+      \begin{defi}[Limites en $x_0$]
+      \index{Limites!en x0@en $x_0$}
+            Soient $f$ une fonction et $x_0$ un nombre r\'eel.
+            \begin{itemize}
+                  \item On dit que $f$ tend vers $+\infty$ quand $x$ tend vers $x_0$ si 
+                        la valeur de $f(x)$ peut devenir positive et arbitrairement grand
+                        quand $x$ est proche de $x_0$.
+                  \item On dit que $f$ tend vers $-\infty$ quand $x$ tend vers $x_0$ si 
+                        la valeur de $f(x)$ peut devenir n\'egative et arbitrairement grand en valeur absolue
+                        quand $x$ est proche de $x_0$.
+                  \item On appelle \emph{limite de $f$ \`a gauche de $x_0$} 
+                     \index{Limites!en x0@en $x_0$!a gauche@\`a gauche}
+                        la limite de $f$ quand $x$ tend vers ${x_0}$ par valeur inf\'erieure.
+                        On note 
+                        \begin{center}
+                              \defbox{$\displaystyle{ \lim_{\substack{x\rightarrow x_0\\x<x_0}} f(x) }$}
+                              ou encore \defbox{$\displaystyle{ \lim_{x\rightarrow {x_0}^-} f(x) }$}.
+                        \end{center}
+                  \item On appelle \emph{limite de $f$ \`a droite de ${x_0}$} 
+                     \index{Limites!en x0@en $x_0$!a droite@\`a droite}
+                        la limite de $f$ quand $x$ tend vers ${x_0}$ par valeur sup\'erieure.
+                        On note 
+                        \begin{center}
+                              \defbox{$\displaystyle{ \lim_{\substack{x\rightarrow {x_0}\\x>{x_0}}} f(x) }$}
+                              ou encore \defbox{$\displaystyle{  \lim_{x\rightarrow {x_0}^+} f(x) }$}.
+                        \end{center}
+            \end{itemize}
+%
+      \begin{rmk}~\\[-1\baselineskip]
+            \begin{itemize}
+            \item Il est possible que $\lim_{x\rightarrow a^+} f(x)$ soit diff\'erente de $\lim_{x\rightarrow a^-} f(x)$.
+            \item Si $\lim_{x\rightarrow a^+} f(x) = \ell = \lim_{x\rightarrow a^-} f(x)$ 
+                  alors $\lim_{x\rightarrow a} f(x)$ existe et est \'egale \`a $\ell$.
+            \end{itemize}
+      \end{rmk}
+      \end{defi}
+%
+      \begin{defi}[Asymptotes]
+      \index{Courbe!Branches infinies!Asymptotes}
+            Soit $f$ une fonction.
+            
+            Si $\lim_{x\rightarrow\pm\infty}f(x)=b$.
+            La droite d'\'equation $y=b$ est alors appel\'ee une \emph{asymptote horizontale}
+            \`a la courbe repr\'esentative de $f$.
+            \index{Courbe!Asymptotes!horizontales}
+            
+            Si $\lim_{x\rightarrow {a}^{\pm}}f(x)=\infty$.
+            La droite d'\'equation $x=a$ est alors appel\'ee une \emph{asymptote verticale}
+            \`a la courbe repr\'esentative de $f$.
+            \index{Courbe!Asymptotes!verticales}
+            \begin{ex}~\\
+                  \begin{figure}[H]
+                  \centering
+                        \begin{tikzpicture}[line cap=round,line join=round,>=stealth]
+                        \Milimetre{(-5.14,-1.19)}{(5.23,2.23)}
+                        \draw[->,color=black,thick] (-5.14,0) -- (5.23,0);
+                        \foreach \x in {-5,-4,-3,-2,-1,1,2,3,4,5}
+                        \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+                        \draw[->,color=black,thick] (0,-1.19) -- (0,2.23);
+                        \foreach \y in {-1,1,2}
+                        \draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+                        \draw[color=black] (0pt,0pt) node[above right] {\footnotesize $0$};
+                        \clip(-5.14,-1.19) rectangle (5.23,2.23);
+                        \draw [color=loko1,domain=-5.14:5.23, thick] plot(\x,{(--1-0*\x)/1});
+                        \draw[color=loko2, smooth,samples=100,domain=-5.14:5.23, very thick] plot(\x,{1-(2*(\x)-1)/((\x)^4+1+2.718^(-(\x)))});
+                        \draw[color=loko2] (5,1) node[below] {\footnotesize $\mathscr{C}$};
+                        \draw[color=loko1] (-5,1) node[below] {\footnotesize $\mathscr{D}$};
+                        \end{tikzpicture}
+                        \caption{Dans cet exemple, $\lim_{x\rightarrow-\infty}f(x)=\lim_{x\rightarrow+\infty}f(x)=1$.
+                                 La droite $(\mathscr{D})$ est une asymptote horizontale.
+                                 On constate que la courbe $\mathscr{C}$ s'approche de $(\mathscr{D})$.
+                                 Remarquez que la courbe \emph{peut} couper l'asymptote!
+                                 }
+                        \label{fig:asymptote horizontale}
+                  \end{figure}
+                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                  \begin{figure}[H]
+                  \centering
+                        \caption{%
+                                 Dans cet exemple, $\lim_{x\rightarrow 1^-}f(x)=-\infty$ et
+                                 $\lim_{x\rightarrow 1^+}f(x)=+\infty$.
+                                 La droite $(\mathscr{D})$ est une asymptote verticale.
+                                 On constate que la courbe $\mathscr{C}$ s'approche de $(\mathscr{D})$.
+                             }
+                        \begin{tikzpicture}[>=stealth]
+                        \Milimetre{(-2.25,-2)}{(4,3)}
+                        \draw[->,color=black,thick] (-2,0) -- (4,0);
+                        \foreach \x in {-2,-1,1,2,3}
+                        \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+                        \draw[->,color=black,thick] (0,-3) -- (0,3);
+                        \foreach \y in {-2,-1,1,2,3}
+                        \draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+                        \draw[color=black] (0pt,0pt) node[above right] {\footnotesize $0$};
+                        \draw [color=loko1, thick] (1,-3.36) -- (1,4.14);
+                        \draw[color=loko2, smooth,samples=500,domain=-3.164:0.99, very thick] plot(\x,{(\x)^3/(9*((\x)-1))});
+                        \draw[color=loko2, smooth,samples=500,domain=1.01:4.14, very thick] plot(\x,{(\x)^3/(9*((\x)-1))});
+                        \draw[color=loko2] (1,3.5) node[right] {\footnotesize $\mathscr{C}$};
+                        \draw[color=loko1] (1,-2.5) node[right] {\footnotesize $\mathscr{D}$};
+                        \end{tikzpicture}
+                        \label{fig:asymptote verticale}
+                  \end{figure}
+            \end{ex}
+      \end{defi}
+
+      \begin{prop}
+      \index{Limites!operations sur@op\'erations sur}
+      Les op\'erations sur les limites se font comme d'habitude :
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|c|}
+            \hline 
+                  \headingstyleko
+            $\lim f$ & $\lim g$ & $\lim (f+g)$ \\ 
+            \hline 
+            $\ell$ & $\ell'$ & $\ell+\ell'$ \\ 
+            \hline 
+            $\ell$ & $+\infty$ & $+\infty$ \\ 
+            \hline 
+            $\ell$ & $-\infty$ & $-\infty$ \\ 
+            \hline 
+            $+\infty$ & $+\infty$ & $+\infty$ \\ 
+            \hline 
+            $-\infty$ & $-\infty$ & $-\infty$ \\ 
+            \hline 
+            $+\infty$ & $-\infty$ & Forme ind\'etermin\'ee \\ 
+            \hline 
+            \end{tabular} 
+            \index{Limites!operations sur@op\'erations sur!somme}
+            \caption{Limite d'une somme.}
+            \label{tab:limite somme}
+            \end{table}
+            %
+%            \begin{minipage}{.45\textwidth}
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|c|}
+            \hline 
+                  \headingstyleko
+            $\lim f$ & $\lim g$ & $\lim (f\cdot g)$ \\ 
+            \hline 
+            $ \ell $ & $ \ell' $ & $ \ell \cdot \ell' $ \\
+            \hline
+            $ \ell (\neq 0) $ & $ \infty $ & $\infty$ (signe du produit) \\
+            \hline 
+            $ \infty $ & $\infty $ & $\infty $ (signe du produit) \\
+            \hline 
+            $0$ & $\infty$ & Forme ind\'etermin\'ee \\
+            \hline                                     
+            \end{tabular} 
+                  \index{Limites!operations sur@op\'erations sur!produit}
+            \caption{Limite d'un produit.}
+            \label{tab:limite produit}
+            \end{table}
+%            \end{minipage}
+            %
+%            \begin{minipage}{.45\textwidth}
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|c|}
+            \hline 
+                  \headingstyleko
+            $\lim f$ & $\lim g$ & $\lim \left( \frac{f}{g} \right)$ \\ 
+            \hline 
+            $ \ell $ & $ \ell' (\neq 0) $ & $ \frac{\ell}{\ell'} $ \\
+            \hline
+            $ \ell $ & $\infty $ & $0$ \\
+            \hline
+            $ \ell (\neq 0) $ & $ 0 $ & $\infty$ (signe du produit) \\
+            \hline 
+            $ \infty $ & $ \ell' $ & $\infty $ (signe du produit) \\
+            \hline 
+            $0$ & $0$ & Forme ind\'etermin\'ee \\
+            \hline
+            $\infty$ & $\infty$ & Forme ind\'etermin\'ee \\
+            \hline                                     
+            \end{tabular} 
+                  \index{Limites!operations sur@op\'erations sur!quotient}
+            \caption{Limite d'un quotient.}
+            \label{tab:limite quotient}
+            \end{table}            
+%            \end{minipage}
+      \end{prop}
+
+      \begin{thm}[Limite d'une fonction compos\'ee]
+\index{Limites!fonctions composees@fonctions compos\'ees}
+\index{Fonctions composees@Fonctions compos\'ees!limite}
+            Soient $f$ et $g$ deux fonctions et soit $h = g\circ f$, c'est-\`a-dire $h(x) = g\left( f(x) \right)$.
+            Si \hypothesebox{$ \lim_{x\rightarrow x_0} f(x) = y_0 $} 
+            et \hypothesebox{$ \lim_{x\rightarrow y_0} g(x) = z_0$} 
+            alors \thmbox{$\displaystyle{\lim_{x\rightarrow x_0} h(x) = z_0} $}.
+            
+            \smallnota{Ici, $x_0$, $y_0$ et $z_0$ peuvent \^etre des nombre r\'eels ou infinis.}
+            \begin{ex}
+                  Soit $h(x) = \cos \left( \frac{1}{x^2 + 1} \right)$.
+                  On veut calculer la limite de $h(x)$ quand $x$ tend vers $-\infty$.
+                  
+                  On $f(x) = \frac{1}{x^2 + 1}$ et $g(x) = \cos x$.
+                  Il vient que $g\left(f(x)\right) = \cos \left( \frac{1}{x^2 + 1} \right)$.
+                  
+                  \[
+                  \left.
+                  \begin{matrix}
+                        \displaystyle{\lim_{x\rightarrow-\infty} f(x) = 0} \\
+                        \displaystyle{\lim_{x\rightarrow 0} g(x) = 1} \\
+                  \end{matrix}
+                  \right\rbrace 
+                  \Rightarrow
+                  \lim_{x\rightarrow-\infty} h(x) = 1
+                  \]
+                  \begin{figure}[H]
+                  \centering
+                        \begin{tikzpicture}[>=stealth]
+                        \Milimetre{(-5.14,-1.19)}{(5.23,2.23)}
+                        \draw[->,color=black,thick] (-5.14,0) -- (5.23,0);
+                        \foreach \x in {-5,-4,-3,-2,-1,1,2,3,4,5}
+                        \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+                        \draw[->,color=black,thick] (0,-1.19) -- (0,2.23);
+                        \foreach \y in {-1,1,2}
+                        \draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+                        \draw[color=black] (0pt,0pt) node[above right] {\footnotesize $0$};
+                        \clip(-5.14,-1.19) rectangle (5.23,2.23);
+                        \draw[color=loko2, smooth,samples=200,domain=-5.14:5.23, thick] plot(\x,{cos((1/((\x)^2+1))*180/pi)});
+                        \draw [color=loko1,domain=-5.14:5.23] plot(\x,{1});
+                        \draw[color=loko2] (5,1) node[below] {\footnotesize $\mathscr{C}$};
+                        \draw[color=loko1] (-5,1) node[below] {\footnotesize $\mathscr{D}$};
+                        \end{tikzpicture}
+                        \caption{Courbe de la fonction $h$ d\'efinie par $h(x) = \cos \left(\frac{1}{x^2+1}\right)$.
+                                 }
+                        \label{fig:fonction composee}
+                  \end{figure}
+            \end{ex}
+      \end{thm}
+
+      \begin{defi}[Continuit\'e]
+      \index{Continuite@Continuit\'e}
+            Soit $f$ une fonction d\'efinie sur un intervalle $I$ et soit $a \in I$.
+            On dit que \emph{$f$ est continue en $a$} si 
+                  \defbox{$\lim_{x\rightarrow a^-} f(x) = \lim_{x\rightarrow a^+} f(x) = f(a)$}.
+            On dit que $f$ est continue sur $I$ si elle est continue en tout points de $I$.
+            
+            Soit $f$ une fonction d\'efinie \`a gauche et \`a droite de $a$, mais pas en $a$.
+            Si
+                  $\lim_{x\rightarrow a^-} f(x) = \lim_{x\rightarrow a^+} f(x)$, 
+            alors on peut \emph{prolonger $f$ par continuit\'e} en $a$ en posant $f(a) = \lim_{x\rightarrow a} f(x)$.
+\index{Prolongement par continuite@Prolongement par continuit\'e}
+                  \begin{figure}[H]
+                  \centering
+                        \begin{tikzpicture}[>=stealth]
+                        \clip (-5,-0.5) rectangle (5,1.5);
+                        \Milimetre{(-5.14,-1.19)}{(5.23,2.23)}
+                        \draw[->,color=black,thick] (-5.14,0) -- (5.23,0);
+                        \foreach \x in {-5,-4,-3,-2,-1,1,2,3,4,5}
+                        \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+                        \draw[->,color=black,thick] (0,-1.19) -- (0,1.5);
+                        \foreach \y in {-1,1,2}
+                        \draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+                        \draw[color=black] (0pt,0pt) node[above right] {\footnotesize $0$};
+                        \clip(-5.14,-1.19) rectangle (5.23,2.23);
+                        \draw[color=loko2, smooth,samples=200,domain=-5.14:5.23,very thick] 
+                                                                   plot(\x,{sin(((\x))*180/pi)/(\x)});
+                        \draw[color=loko2] (5,-0.5) node[below] {\footnotesize $\mathscr{C}$};
+                        \filldraw [fill=white,draw=loko1] (0,1) circle (2.5pt);
+                        \end{tikzpicture}
+                        \caption{Courbe de la fonction $f$ d\'efinie par $f(x) = \frac{\sin (x)}{x}$.
+                                 Cette fonction n'est pas d\'efinie en $0$,
+                                 mais comme $\lim_{x\rightarrow 0} f(x) = 1$,
+                                 on peut prolonger $f$ par continuit\'e en posant $f(0) = 1$.
+                                 }
+                        \label{fig:prolongement par continuite}
+                  \end{figure}
+      \end{defi}
+      
+      \begin{prop}\vspace{-1\baselineskip}
+      \begin{itemize}
+            \item Les fonctions polyn\^omiales ainsi que les fonction $\sin$ et $\cos$ sont continues.
+            \item La fonction racine carr\'ee (ou n'importe quel autre racine) est continue.
+            \item Le produit et la somme de deux fonctions continues sont continus.
+            \item Le quotient de deux fonctions continues est continu sur tout intervalle dans lequel le d\'enominateur ne s'annule pas.
+            \item La compos\'ee de deux fonctions continues est continue.
+      \end{itemize}
+      
+      \end{prop}
+
+      \begin{thm}[\textbf{T}h\'eor\`eme des \textbf{V}aleurs \textbf{I}nterm\'ediaires]
+\index{Theoreme@Th\'eor\`eme!Valeurs Intermediaires@Valeurs Interm\'ediaires}
+\index{TVI}
+            Soit $f$ une fonction continue sur un intervalle $[a,b]$.
+            On note respectivement par $m$ et $M$ le minimum et le maximum de $f$ sur $[a,b]$.
+            Alors, pour tout $y_0\in[m,M]$, il existe $x_0\in[a,b]$ tel que \thmbox{$f(x_0)=y_0$}.      
+      \end{thm}
+
+      \begin{defi}[Bijective]
+\index{Bijectivite@Bijectivit\'e}
+            Soit $f : E \rightarrow F$ une fonction.
+            On dit que $f$ est \emph{bijective} si : 
+                  \begin{description}
+                        \item[Injectivit\'e :] 
+\index{Injectivite@Injectivit\'e}
+                                               si $a_1$ et $a_2$ sont des \'el\'ements de $E$ tels que 
+                                               $f(a_1) = f(a_2)$, alors $a_1=a_2$.
+                        \item[Surjectivit\'e :]
+\index{Surjectivite@Surjectivit\'e}
+                                               pour tout $b\in F$, il existe $a\in E$ tel que $f(a)=b$.
+                  \end{description}
+      \end{defi}
+      
+      \begin{prop}
+            Soit $f$ une fonction \hypothesebox{continue et strictement monotone} sur un intervalle $I$. \linebreak
+            Alors \thmbox{$f$ r\'ealise une bijection} de $I$ vers $f(I)$.
+            
+            La fonction $f$ admet alors une fonction r\'eciproque $f^{-1} : f(I) \rightarrow I$.
+\index{Fonction reciproque@Fonction r\'eciproque}
+            Cette r\'eciproque $f^{-1}$ est aussi une bijection continue et strictement monotone.
+            De plus, $f$ et $f^{-1}$ varient dans le m\^eme sens.
+      \end{prop}
+
+      \begin{cor}
+\index{Bijectivite@Bijectivit\'e!continue et strictement monotone}
+            Soit $f$ une fonction continue et strictement monotone sur un intervalle $[a,b]$.
+            On note respectivement par $m$ et $M$ le minimum et le maximum de $f$ sur $[a,b]$.
+            Alors, pour tout $y_0\in[m,M]$, il existe \emph{un unique} $x_0\in[a,b]$ tel que \thmbox{$f(x_0)=y_0$}.
+      \end{cor}
+
+\section{D\'erivation}
+\index{Derivee@D\'eriv\'ee}
+      \begin{defi}[D\'erivabilit\'e]
+\index{Derivee@D\'eriv\'ee!en un point}
+\index{Derivee@D\'eriv\'ee!sur un intervalle}
+            Soient $f$ une fonction et $x_0 \in \mathbb{R}$.
+            
+            On dit que la fonction $f$ est d\'erivable au point $x_0$ si 
+                  \defbox{   $ \lim_{x\rightarrow x_0} \frac{f(x) - f(x_0)}{x-x_0} $   }
+            existe et est finie.
+            Cette limite est appel\'ee \emph{nombre d\'eriv\'ee} de $f$ en $x_0$ et est not\'e \emph{$f'(x_0)$}.
+            
+            La fonction $f$ est dite d\'erivable sur un intervalle $]a,b[$ si elle est d\'erivable en tout points de $]a,b[$.
+            L'application $f' : ]a,b[ \rightarrow \mathbb{R} , \ x \mapsto f'(x)$ est appel\'ee 
+            \emph{fonction d\'eriv\'ee de $f$}.
+            
+            \smallnota{Toute fonction d\'erivable est aussi continue. Mais la r\'eciproque est fausse.}
+      \end{defi}
+      
+      \begin{defi}[D\'erivabilit\'e \`a gauche et \`a droite]
+\index{Derivee@D\'eriv\'ee!en un point!a gauche@\`a gauche}
+\index{Derivee@D\'eriv\'ee!en un point!a droite@\`a droite}
+            Soient $f$ une fonction et $x_0 \in \mathbb{R}$.
+            On dit que la fonction $f$ est d\'erivable \`a gauche (resp. \`a droite) en $x_0$ si la fonction 
+                  \defbox{$x \mapsto \frac{f(x)-f(x_0)}{x-x_0} $}
+            admet une limite finie \`a gauche (resp. \`a droite).
+            Cette limite est alors appel\'ee \emph{nombre d\'eriv\'ee de $f$ \`a gauche (resp. \`a droite) en $x_0$}
+            et not\'ee $f'_g (x_0)$ (resp. $f'_d (x_0)$ ).
+            
+            Si $f$ est une fonction de la variable $x$, sa d\'eriv\'ee par rapport \`a $x$ est aussi not\'ee 
+                  \defbox{$\frac{\mathrm{d}f}{\mathrm{d}x}$}.
+            
+            \smallnota{Si $f$ est d\'erivable en $x_0$ alors $f$ est d\'erivable \`a gauche et \`a droite en $x_0$.}
+      \end{defi}
+      
+      \begin{defi}[D\'eriv\'ee successive]
+\index{Derivee@D\'eriv\'ee!successive}
+            Soit $f$ une fonction d\'erivable sur un intervalle $I$.
+            Si $f'$ est aussi d\'erivable sur $I$, alors sa d\'eriv\'ee, 
+            not\'ee $f''$ ou $\frac{\mathrm{d}^2f}{\mathrm{d}x^2}$ est appel\'ee
+            \emph{d\'eriv\'ee seconde} de $f$ ; on dit que \emph{$f$ est deux fois d\'erivable} sur $I$.
+            Plus g\'en\'eralement, si $f$ est $n$ fois d\'erivable sur $I$, 
+            on note $f^{(n)}$ ou $\frac{\mathrm{d}^nf}{\mathrm{d}x^n}$
+            sa d\'eriv\'ee $n^{\text{i\`eme}}$.
+            Si $f$ admet une d\'eriv\'ee d'ordre $n$ pour tout $n\in \mathbb{N}^*$, alors $f$ est dite
+            \emph{ind\'efiniment d\'erivable} sur $I$.
+      \end{defi}
+            
+      \subsection{Interpr\'etation graphique de la d\'eriv\'ee}
+\index{Derivee@D\'eriv\'ee!Interpretation graphique@Interpr\'etation graphique}
+            Soient $f$ une fonction, 
+            $\mathscr{C}$ la courbe repr\'esentative de $f$ 
+            et $x_0\in \mathbb{R}$
+            tels que $f'(x_0)$ existe.
+            %
+            Le nombre $f'(x_0)$ repr\'esente alors 
+            le coefficient directeur de la droite $(\mathscr{T}_{x_0})$, 
+            \emph{tangente} \`a $\mathscr{C}$ au point d'abscisse $x_0$.
+            %
+            L'\'equation de la droite $(\mathscr{T}_{x_0})$ peut s'\'ecrire
+            \thmbox{$ y = f'(x_0) \cdot (x-x_0) + f(x_0) $}.
+
+                  \begin{figure}[h!tb]
+                  \centering
+                        \begin{tikzpicture}[>=stealth,scale=2.5]
+                        \clip(-1.5,-0.67) rectangle (1.71,1.9);
+                        \coordinate (tl) at (-1.5,-0.67);
+                        \coordinate (br) at (1.71,1.9);
+                        \Milimetre{(br)}{(tl)}
+                        \draw[->,color=black,thick] (-1.5,0) -- (1.71,0);
+                        \foreach \x in {-1,1}
+                        \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+                        \draw[->,color=black,thick] (0,-0.67) -- (0,1.9);
+                        \foreach \y in {,1,2}
+                        \draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+                        \draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+                        \draw[color=loko2, smooth,samples=100,domain=-0.9999995023070956:1.7147589756629125, very thick] 
+                                    plot(\x,{abs((\x))*sqrt((\x)+1)});
+                        \draw [->,color=loko6, thick] (0,0) -- (0.6,0.6);
+                        \draw [->,color=loko1, thick] (0,0) -- (-0.6,0.6);
+                        \draw [->,color=loko1!50!loko4, thick] (-1,0) -- (-1,0.6);
+                        \draw [<->,color=loko5, thick] (-1,0.39) -- (-0.35,0.39);
+                        \end{tikzpicture}
+                        \caption{Courbe avec ses demi-tangentes.
+                              Ici, on a $f'_g(0) = -1$, $f'_d(0) = 1$ et $\lim_{x\rightarrow -1^+} f'(x) = +\infty$.
+                              Noter que quand la limite de la d\'eriv\'ee tend vers l'infini, alors la tangente est verticale.
+                              \`A l'inverse, quand la d\'eriv\'ee est nulle, la tangente est horizontale.
+                                 }
+                        \label{fig:demi-tangentes}
+                  \end{figure}
+            %
+            \begin{prop}
+                  Si $f$ est d\'erivable sur un intervalle $I$ et si $f'(x) > 0$ (resp. $f'(x)<0$) pour tout $x \in I$,
+                  alors $f$ est croissante (resp. d\'ecroissante) sur $I$.
+            \end{prop}
+            %
+                  \begin{thm}[\textbf{T}h\'eor\`eme des \textbf{A}ccroissements \textbf{F}inis]
+\index{Theoreme@Th\'eor\`eme!Accroissement Finis}
+\index{TAF}
+                        Soient $a$ et $b$ deux nombres r\'eels tels que $a<b$.
+                        Soit $f$ une fonction continue sur $[a,b]$ et d\'erivable sur $]a,b[$.
+                        Alors il existe un r\'eel $c\in]a,b[$ tel que 
+                              \thmbox{
+                                    \[
+                                          \frac{f(b)-f(a)}{b-a}=f'(c)
+                                    \]
+                              }.
+                              \begin{figure}[H]
+                              \centering
+                                    \begin{tikzpicture}[>=stealth,x=1cm,y=.75cm]
+                                    \clip(-5,-3.18) rectangle (2.87,2.08);
+                                    \draw[smooth,samples=100,domain=-5.004308656164452:2.8695264419449] 
+                                                                  plot(\x,{1/5*((\x)^3+3*(\x)^2-2*(\x)-5)});
+                                    \draw [color=loko2,domain=-5:2.87]
+                                                                  plot(\x,{(--1.92--3.01*\x)/5.55});
+                                    \draw [dash pattern=on 1ex off 1ex,color=loko1,domain=-5:2.87] 
+                                                                  plot(\x,{(-7.26--3.01*\x)/5.55});
+                                    \fill [color=loko2] (-3.78,-1.7) circle (1.5pt);
+                                    \draw[color=loko2] (-4,-1.5) node {$a$};
+                                    \fill [color=loko2] (1.78,1.31) circle (1.5pt);
+                                    \draw[color=loko2] (2,1) node {$b$};
+                                    \fill [color=loko1] (0.61,-0.97) circle (1.5pt);
+                                    \draw[color=loko1] (0.75,-1.25) node {$c$};
+                                    \end{tikzpicture}                              
+                              \caption{Il existe un point o\`u la pente de la tangente est \'egale \`a la pente de la corde.}
+                              \label{fig:TAF}
+                              \end{figure}
+                  \end{thm}
+            %
+                  \begin{cor}[Th\'eor\`eme de ROLLE]
+\index{Theoreme@Th\'eor\`eme!de ROLLE}
+                        Soit $f$ une fonction continue sur $[a,b]$ et d\'erivable sur $]a,b[$.
+                        Si $f(a) = f(b)$ alors il existe $c\in]a,b[$ tel que $f'(c) = 0$.
+                  \end{cor}
+            %
+                  \begin{thm}[\textbf{I}n\'egalit\'e des \textbf{A}ccroissement \textbf{F}inis]
+\index{Theoreme@Th\'eor\`eme!Accroissement Finis!In\'egalit\'e des}
+\index{IAF}
+                        Soit $f:[a,b]\rightarrow\mathbb{R}$ une fonction (avec $a$ et $b$ deux r\'eels tels que $a<b$).
+                        Si 
+                        \begin{itemize}
+                              \item $f$ est \hypothesebox{continue sur $[a,b]$ et d\'erivable sur $]a,b[$}
+                              \item il existe $M\in\mathbb{R}$ tel que \hypothesebox{$|f'(x)|\leq M$} pour tout $x\in]a,b[$
+                        \end{itemize}
+                        alors \thmbox{\[ \left| \frac{f(b) - f(a)}{b - a} \right| \leq M . \]}
+                  \end{thm}
+            
+            
+      \subsection{D\'eriv\'ee usuelle}~\\[-1\baselineskip]
+%      \begin{table}[H]
+%      \centering
+	      \begin{table}[H]
+	            \begin{tabularx}{\linewidth}{|p{.2\linewidth}p{.2\linewidth}X|}
+            \hline
+                  \headingstyleko
+            Fonctions      & D\'eriv\'ees & Domaines de d\'erivabilit\'es
+            \\ \hline
+            $c$    & $0$ & $\mathbb{R}$ 
+            \\ \hline
+            $\lambda x$    & $\lambda$ & $\mathbb{R}$ 
+            \\ \hline
+            $x^n$    & $n \cdot x^{n-1}$ & $\mathbb{R}$ 
+            \\ \hline
+            $\sqrt{x}$ & $\frac{1}{2\sqrt{x}}$ & $]0 ; +\infty [$
+            \\ \hline
+            $\frac{1}{x}$ & $-\frac{1}{x^2}$ & $]-\infty ; 0[ \cup ] 0 ; +\infty[$ 
+            \\ \hline
+            $\sin {x}$ & $\cos {x}$ & $\mathbb{R}$ 
+            \\ \hline
+            $\cos {x}$ & $-\sin {x}$ & $\mathbb{R}$ 
+            \\ \hline
+	            \end{tabularx}
+         \caption{D\'eriv\'ee de fonctions usuelles.}
+      \end{table}
+
+      \begin{table}[H]
+            \begin{tabular*}{.99\actualtextwidth}%
+                        {| c e c e c |}
+            \hline
+                  \headingstyleko
+            Fonctions      & D\'eriv\'ees & Domaines de d\'erivabilit\'es
+            \\ \hline
+            $\lambda u$    & $\lambda u'$ & en tout r\'eel o\`u $u$ est d\'erivable
+            \\ \hline
+            $u^n$    & $n \cdot u' \cdot u^{n-1}$ & en tout r\'eel o\`u $u$ est d\'erivable
+            \\ \hline
+            $\sqrt{u}$ & $\frac{u'}{2\sqrt{u}}$ & tout r\'eel o\`u $u$ est d\'erivable et strictement positif
+            \\ \hline
+            $\frac{1}{u}$ & $-\frac{u'}{u^2}$ & tout r\'eel o\`u $u$ est d\'erivable et diff\'erent de z\'ero
+            \\ \hline
+            $\sin {u}$ & $u' \cos {u}$ & en tout r\'eel o\`u $u$ est d\'erivable
+            \\ \hline
+            $\cos {u}$ & $- u' \sin {u}$ & en tout r\'eel o\`u $u$ est d\'erivable
+            \\ \hline
+            \end{tabular*}
+         \caption{D\'eriv\'ees faisant intervenir des fonctions usuelles.}
+      \end{table}
+
+      \begin{table}[H]
+            \begin{tabularx}{1\actualtextwidth}
+                        {| Y  Y |}
+            \hline
+                  \headingstyleko Fonctions      & D\'eriv\'ees 
+            \\ \hline
+            $u + v$    & $u' + v'$
+            \\ \hline
+            $u\cdot v$    & $u' \cdot v + u \cdot v'$
+            \\ \hline
+            $\displaystyle{ \frac{u}{v} }$ & $\displaystyle{ \frac{u' \cdot v - u \cdot v'}{v^2} }$
+            \\ \hline
+            $\displaystyle{ f^{-1} }$    & $\displaystyle{ \frac{1}{f'\circ f^{-1}} }$
+\index{Fonction reciproque@Fonction r\'eciproque!derivee@d\'eriv\'ee}
+            \\ \hline
+            $f \circ g$    & $g' \cdot \left( f' \circ g \right)$
+\index{Fonctions composees@Fonctions compos\'ees!derivee@d\'eriv\'ee}
+            \\ \hline
+            \end{tabularx}
+         \caption{Op\'erations sur les d\'eriv\'ees.}
+      \end{table}
+%      \caption{Table de d\'eriv\'ees usuelle}
+%      \index{Derivee@D\'eriv\'ee!table de}
+%      \label{tab:derivee}
+%      \end{table}
+
+\section{Propri\'et\'e g\'eom\'etriques}
+      \subsection{Sym\'etries}
+\index{Courbe!Symetrie@Sym\'etrie}
+            \begin{defi}[Fonction paire et impaire]
+\index{Parite@Parit\'e}
+                  Soit $f$ une fonction et $\Df$ son domaine de d\'efinition.
+                  \begin{itemize}
+                        \item Une fonction $f$ est dite paire si pour tout $x\in\Df$, on a $-x\in\Df$ et $f(-x) = f(x)$.
+                        \item Une fonction $f$ est dite impaire si pour tout $x\in\Df$, on a $-x\in\Df$ et $f(-x) = -f(x)$.
+                  \end{itemize}
+            \end{defi}
+            \subsubsection{Sym\'etrie par rapport \`a une droite verticale}
+\index{Courbe!Symetrie@Sym\'etrie!par rapport a une droite@par rapport \`a une droite}
+                  La courbe repr\'esentative d'une fonction paire admet une sym\'etrie par rapport \`a l'axe $Oy$.
+                  Plus g\'en\'eralement, 
+                  la courbe repr\'esentative d'une fonction $f$ admet une sym\'etrie
+                  par rapport \`a la droite d'\'equation $x=a$ si
+                  \[   \forall x\in\Df,\ (2a-x)\in\Df \text{ et } f(2a-x) = f(x)   \]
+            \subsubsection{Sym\'etrie par rapport \`a un point}
+\index{Courbe!Symetrie@Sym\'etrie!par rapport a un point@par rapport \`a un point}
+                  La courbe repr\'esentative d'une fonction impaire admet une sym\'etrie par rapport \`a l'origine.
+                  Plus g\'en\'eralement, 
+                  la courbe repr\'esentative d'une fonction $f$ admet une sym\'etrie par rapport \`a un point $I = (a,b)$ si
+                  \[   \forall x\in\Df,\ (2a-x)\in\Df \text{ et } f(2a-x) + f(x) = 2 b .  \]
+      \subsection{P\'eriodicit\'e}
+\index{Periodicite@P\'eriodicit\'e}
+            Une fonction $f$ est dite p\'eriodique de p\'eriode $T$ si 
+                  \[ \forall x \in \Df, x+T\in\Df \text{ et } f(x+T) = f(x)      \;. \]
+            Les fonctions p\'eriodiques les plus fr\'equemment rencontr\'es sont 
+            les fonction trigonom\'etriques $\sin$ et $\cos$.
+            
+            Pour \'etudier une fonction p\'eriodique de p\'eriode $T$, 
+            il suffit de l'\'etudier sur un intervalle de longueur $T$.
+            Pour tracer la courbe, il suffit de le faire sur un tel intervalle,
+            le reste de la courbe s'obtient par translation de cette partie.
+      \subsection{Point d'inflexion}
+\index{Courbe!Points d'inflexsion}
+            Soient $I(a,b)$ un point et $f$ une fonction d\'efinie sur un voisinage de $a$.
+            Notons par $(\mathscr{C})$ la courbe repr\'esentative de $f$.
+            Le point $I$ est un point d'inflexion de $(\mathscr{C})$ si 
+            la tangente \`a $(\mathscr{C})$ au point $I$ coupe la courbe.
+            
+            Si $f$ est deux fois d\'erivable au voisinage du point $I$
+            et si la d\'eriv\'ee seconde s'annule en $a$ en changeant de signe
+            alors $I$ est un point d'inflexion.
+                              \begin{figure}[h!t]
+                              \centering
+                                    \begin{tikzpicture}[>=stealth,x=7em,y=5em]
+                                    \coordinate (I) at (0.67,0.47);
+                                    \coordinate (txt) at (1.25,-0.25);
+                                    \clip(-0.75,-0.65) rectangle (2.11,1.33);
+                                    \draw[color=loko2, smooth,samples=100,domain=-0.7465507858958698:2.1134960912091096]
+                                         plot(\x,{1/3*((\x)^3-2*(\x)^2+3*(\x))});
+                                    \draw[color=loko1, smooth,samples=100,domain=-0.7465507858958698:2.1134960912091096]
+                                         plot(\x,{(3*0.67^2-4*0.67+3)/3*((\x)-0.67)+1/3*(0.67^3-2*0.67^2+3*0.67)});
+                                    \fill [color=loko6] (I) circle (2.5pt);
+                                    \draw[color=loko6] (txt) node[below] {\textit{Point d'inflexion}};
+                                    \draw[->] (txt) to[out=90,in=-60] (I);
+                                    \end{tikzpicture}                              
+                              \caption{Au point d'inflexion, la tangente coupe la courbe.}
+                              \label{fig:inflexion}
+                              \end{figure}
+      \subsection{Fonction r\'eciproque}
+\index{Courbe!Fonction reciproque@Fonction r\'eciproque}
+\index{Fonction reciproque@Fonction r\'eciproque!Courbe}
+            Soit $f : E \rightarrow F$ une fonction bijective, notons par $\mathscr{C}$ sa courbe repr\'esentative.
+            Elle admet alors une fonction r\'eciproque $f^{-1} : F \rightarrow E$ 
+            dont on notera par $\mathscr{C}'$ la courbe repr\'esentative.
+            Les courbes $\mathscr{C}$ et $\mathscr{C}'$ sont sym\'etrique par rapport \`a la premi\`er bissectrice.
+            %
+            \begin{figure}[h!]
+            \centering
+		         \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+		         \clip (-4,-4) rectangle (6,6);
+	               \draw [color=black, xstep=.1,ystep=.1, opacity=.05, line width=.05] (-4,-4) grid (6,6);
+	               \draw [color=black, xstep=.5,ystep=.5, opacity=.1, line width=.1] (-4,-4) grid (6,6);
+	               \draw [color=black, xstep=1,ystep=1, opacity=.2, line width=.2] (-4,-4) grid (6,6);
+		         \draw[->,color=black] (-4,0) -- (6,0);
+		         \foreach \x in {-3,-2,-1,1,2,3,4,5}
+		               \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+		         \draw[->,color=black] (0,-4) -- (0,6);
+		         \foreach \y in {-3,-2,-1,1,2,3,4,5}
+		               \draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+		         \draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+		         \clip(-6,-6) rectangle (6,6);
+		         \draw[color=loko2, smooth,samples=100,domain=-6:6] 
+		               plot(\x,{((\x)-1)^3-1});
+		         \draw (-6,-6) -- (6,6) node[very near end,sloped,below] {$y = x$} ;
+		         \draw[color=loko1, smooth,samples=100,domain=-6:6] 
+		               plot({((\x)-1)^3-1},\x);
+		         \draw (5.5,0) node[above] {$x$};
+		         \draw (0,5.5) node[right] {$y$};
+		         \draw (-3.5,0) node[above] {$x'$};
+		         \draw (0,-3.5) node[right] {$y'$};
+		         \draw[color=loko2] (2,5.5) node[] {$y = f(x)$};
+		         \draw[color=loko1 ] (5,2.5) node[] {$y = f^{-1} (x)$};
+		         \end{tikzpicture}
+	         \caption{Courbe d'une fonction trac\'ee dans le m\^eme rep\`ere que la courbe de sa fonction r\'eciproque.}
+            \end{figure}
+            %
+\section{Branches infinies}
+\index{Courbe!Branches infinies}
+      Soient $f$ une fonction et $\mathscr{C}$ sa courbe repr\'esentative.
+      La courbe $\mathscr{C}$ est alors un ensemble de points de la forme $(x,f(x))$.
+      On parle de \emph{branche infinie} de la courbe quand au moins une des coordonn\'ees tend vers l'infini.
+            
+      On sait d\'ej\`a que si $\lim_{x\rightarrow x_0} f(x) = \infty$ alors 
+      la courbe $\mathscr{C}$ admet une asymptote verticale d'\'equation $x=x_0$.
+\index{Asymptote!verticale}
+      
+      Pour ce qui est de la limite de $f(x)$ quand $x$ tend vers l'infini, il y a plusieurs possibilit\'es.
+            \begin{figure}[h!]
+            \centering
+                  \begin{tikzpicture}[>=stealth,x=1.9em,y=3\baselineskip]
+                        \draw[rounded corners = 2ex] (-0.5,6.5) rectangle (3.5,7.5);
+                              \draw (1.5,7) node[] {$\displaystyle{ \lim_{x\rightarrow\infty} f(x) }$};
+                        \draw[->] (0.5,6.5) to[out=270,in=90] node[fill=white]{$ = \ell$} (-2,4.65);
+                        \draw[rounded corners = 2ex] (-5,3.4) rectangle (1.4,4.6);
+                              \draw (-2,4) node[] {  \parbox{11em}{\raggedright %
+                                                                    Asymptote horizontale d'\'equation  $(y=\ell)$}  };
+                        \draw[->] (2.5,6.5) to[out=270,in=90] node[fill=white]{$ = \infty$} (5,4.65);
+                        \draw (7.2,3.5) rectangle (2.8,4.5);
+                              \draw (5,4) node[] {  $\displaystyle{ \lim_{x\rightarrow\infty} \frac{f(x)}{x} }$  };
+                        \draw[->] (6,3.45) to[out=270,in=90] node[fill=white]{$ = \infty$} (8,2.15);
+                        \draw[rounded corners = 2ex] (5,2.1) rectangle (11,0.9);
+                              \draw (8,1.5) node[] {  \parbox{11em}{\raggedright %
+                                                                    Branche Parabolique de direction $(y'Oy)$}  };
+                        \draw[->] (4,3.45) to[out=270,in=90] node[fill=white]{$ = a$} (2,2.15);
+                        \draw (0,2.05) rectangle (4,0.95);
+                              \draw (2,1.5) node[] {  $\displaystyle{\lim_{x\rightarrow\infty} \left( f(x)-ax \right) }$  };
+                        \draw[->] (1,0.95) to[out=270,in=90] node[fill=white]{$ = b$} (-1,0.15);
+                        \draw[rounded corners = 2ex] (-3.8,0.1) rectangle (1.8,-1.1);
+                              \draw (-1,-.5) node[] {  \parbox{9em}{\raggedright %
+                                                                     Asymptote oblique d'\'equation $(y=ax+b)$}  };
+                        \draw[->] (3,0.95) to[out=270,in=90] node[fill=white]{$ = \infty$} (5,0.15);
+                        \draw[rounded corners = 2ex] (2.2,0.1) rectangle (8.2,-1.1);
+                              \draw (5.2,-.5) node[] {  \parbox{11em}{\raggedright %
+                                                                    Branche parabolique de direction $(y = ax)$}  };
+                  \end{tikzpicture}
+            \caption{Branches infinies}
+\index{Asymptote!horizontale}
+\index{Branche parabolique}
+            \label{fig:branches infinies}
+            \end{figure}
+
+      \smallnota{%
+                  Si $\lim_{x\rightarrow\infty} f(x) = \infty$ et que $\lim_{x\rightarrow\infty} \frac{f(x)}{x} = 0$ alors la courbe $\mathscr{C}$ admet une branche parabolique de direction $x'Ox$.
+                  }
+
+\TCDLessonStyleOff
+\providecommand{\Milimetre}[2]{%
+									\clip (#1) rectangle (#2);
+									\draw [xstep=0.1cm,ystep=0.1cm,opacity=.05,line width=.05] (#1) grid (#2) ;
+									\draw [xstep=0.5cm,ystep=0.5cm,opacity=0.1,line width=0.1] (#1) grid (#2) ;
+									\draw [xstep=1.0cm,ystep=1.0cm,opacity=0.2,line width=0.2] (#1) grid (#2) ;
+									}
+\providecommand{\Courbe}{(\mathscr{C})}
+\clearpage
+%\begin{fiche}
+\index{Courbe!Branches infinies!Branches paraboliques}
+	\subsection*{Branches paraboliques}
+\index{Branches paraboliques}
+		\subsubsection*{Axe $(x'Ox)$}
+\index{Branches paraboliques!suivant x'Ox@suivant $(x'Ox)$}
+\index{Courbe!Branches paraboliques!suivant x'Ox@suivant $(x'Ox)$}
+\vspace{-1.5\baselineskip}
+	\[
+		\begin{multiform}
+			\lim_{x\rightarrow \infty} f(x) = \infty 		\\
+			\lim_{x\rightarrow \infty} \frac{f(x)}{x} = 0 .
+		\end{multiform}
+	\]
+La courbe $\Courbe$ admet une branche parabolique de direction $(x'Ox)$ 
+		\begin{figure}[h!b]
+		\centering
+			\begin{tikzpicture}[x=1cm,y=.75cm]
+				\shade[right color=loko1, left color=white, opacity=.25] (0,-4) rectangle (5,4);
+					\draw[color=loko1] (5,-4) node[below left] {au voisinage de $+\infty$.};
+				\shade[left color=loko2, right color=white, opacity=.25] (0,-4) rectangle (-5,4);
+					\draw[color=loko2] (-5,-4) node[below right] {au voisinage de $-\infty$.};
+				\clip (-5,-4) rectangle (5,4);
+				\draw[smooth,samples=10,domain=1:3,color=loko1] plot({(\x)^2},{\x});
+					\draw (3,2) node[above] {$\displaystyle{\lim_{x\rightarrow+\infty} f(x) = +\infty}$};
+				\draw[smooth,samples=10,domain=1:3,color=loko2] plot({(\x)^2},{-\x});
+					\draw (3,-2) node[below] {$\displaystyle{\lim_{x\rightarrow+\infty} f(x) = -\infty}$};
+				\draw[smooth,samples=10,domain=1:3,color=loko1] plot(-{(\x)^2},{\x});
+					\draw (-3,2) node[above] {$\displaystyle{\lim_{x\rightarrow-\infty} f(x) = +\infty}$};
+				\draw[smooth,samples=10,domain=1:3,color=loko2] plot(-{(\x)^2},{-\x});
+					\draw (-3,-2) node[below] {$\displaystyle{\lim_{x\rightarrow-\infty} f(x) = -\infty}$};
+				\begin{scope}
+					\clip (0,0) circle (2);
+					\fill[color=white] (0,0) circle (2);
+						\shade[right color=loko1, left color=white, opacity=.25] (0,-5) rectangle (5,5);
+							\draw[color=loko1] (5,-5) node[below left] {au voisinage de $+\infty$.};
+						\shade[left color=loko2, right color=white, opacity=.25] (0,-5) rectangle (-5,5);
+							\draw[color=loko2] (-5,-5) node[below right] {au voisinage de $-\infty$.};
+				\end{scope}
+				\draw[->] (-5,0) -- (5,0);
+				\draw[->] (0,-4) -- (0,4);
+			\end{tikzpicture}
+			\caption{Branches paraboliques suivants l'axe des abscisses.}
+		\end{figure}
+
+		\subsubsection*{D'axe $(y'Oy)$}
+\index{Branches paraboliques!suivant y'Oy@suivant $(y'Oy)$}
+\index{Courbe!Branches paraboliques!suivant y'Oy@suivant $(y'Oy)$}
+\vspace{-1.5\baselineskip}
+	\[
+		\begin{multiform}
+			\lim_{x\rightarrow \infty} f(x) = \infty 		\\
+			\lim_{x\rightarrow \infty} \frac{f(x)}{x} = \infty 
+		\end{multiform}
+	\]
+La courbe $\Courbe$ admet une branche parabolique de direction $(y'Oy)$ 
+		\begin{figure}[h!b]
+		\centering
+			\begin{tikzpicture}[x=1cm,y=.6cm]
+				\shade[right color=loko1, left color=white, opacity=.25] (0,-5) rectangle (5,5);
+					\draw[color=loko1] (5,-5) node[below left] {au voisinage de $+\infty$.};
+				\shade[left color=loko2, right color=white, opacity=.25] (0,-5) rectangle (-5,5);
+					\draw[color=loko2] (-5,-5) node[below right] {au voisinage de $-\infty$.};
+				\clip (-5,-5) rectangle (5,5);
+				\draw[smooth,samples=10,domain=1:3,color=loko1] plot({\x},{(\x)^2});
+					\draw (3,1) node[above] {$\displaystyle{\lim_{x\rightarrow+\infty} f(x) = +\infty}$};
+				\draw[smooth,samples=10,domain=1:3,color=loko1] plot({-\x},{(\x)^2});
+					\draw (3,-1) node[below] {$\displaystyle{\lim_{x\rightarrow+\infty} f(x) = -\infty}$};
+				\draw[smooth,samples=10,domain=1:3,color=loko2] plot({\x},-{(\x)^2});
+					\draw (-3,1) node[above] {$\displaystyle{\lim_{x\rightarrow-\infty} f(x) = +\infty}$};
+				\draw[smooth,samples=10,domain=1:3,color=loko2] plot({-\x},-{(\x)^2});
+					\draw (-3,-1) node[below] {$\displaystyle{\lim_{x\rightarrow-\infty} f(x) = -\infty}$};
+				\begin{scope}
+					\clip (0,0) circle (2);
+					\fill[color=white] (0,0) circle (2.5);
+						\shade[right color=loko1, left color=white, opacity=.25] (0,-5) rectangle (5,5);
+							\draw[color=loko1] (5,-5) node[below left] {au voisinage de $+\infty$.};
+						\shade[left color=loko2, right color=white, opacity=.25] (0,-5) rectangle (-5,5);
+							\draw[color=loko2] (-5,-5) node[below right] {au voisinage de $-\infty$.};
+				\end{scope}
+				\draw[->] (-5,0) -- (5,0);
+				\draw[->] (0,-5) -- (0,5);
+			\end{tikzpicture}
+			\caption{Branches paraboliques suivants l'axe des ordonn\'ees.}
+		\end{figure}
+
+		\subsubsection*{D'axe $y = ax$}
+\index{Branches paraboliques!suivant y = ax@suivant $(y = ax)$}
+\index{Courbe!Branches paraboliques!suivant y = ax@suivant $(y = ax)$}
+\vspace{-1.5\baselineskip}
+	\[
+		\begin{multiform}
+			\lim_{x\rightarrow \infty} \frac{f(x)}{x} = a 		\\
+			\lim_{x\rightarrow \infty} (f(x) - a \, x) = \infty 
+		\end{multiform}
+	\]
+La courbe $\Courbe$ admet une branche parabolique de direction $(y = a x)$ 
+		\begin{figure}[h!b]
+		\centering
+			\begin{tikzpicture}[x=1cm,y=.6cm]
+				\shade[right color=loko1, left color=white, opacity=.25] (0,-5) rectangle (5,5);
+					\draw[color=loko1] (5,-5) node[below left] {au voisinage de $+\infty$.};
+				\shade[left color=loko2, right color=white, opacity=.25] (0,-5) rectangle (-5,5);
+					\draw[color=loko2] (-5,-5) node[below right] {au voisinage de $-\infty$.};
+				\clip (-5,-5) rectangle (5,5);
+				%%% Raha a > 0 %%%
+				\draw[color=col0] (-5,-5) -- (5,5) 
+													node[very near end,above,sloped] {\textcolor{col0}{$y = ax$}}
+													node[very near end,below,sloped] {$a > 0$}
+													node[very near start,above,sloped] {\textcolor{col0}{$y = ax$}}
+													node[very near start,below,sloped] {$a > 0$};
+				\draw[smooth,samples=10,domain=1.5:5,color=loko1] plot({\x},{\x + ln(\x)});
+				\draw[smooth,samples=10,domain=2:5,color=loko1] plot({\x},{\x - ln(\x)});
+				\draw[smooth,samples=10,domain=-2:-5,color=loko2] plot({\x},{\x + ln(-\x)});
+				\draw[smooth,samples=10,domain=-1.5:-5,color=loko2] plot({\x},{\x - ln(-\x)});
+				%%% Raha a < 0 %%%
+				\draw[color=col0] (-5,5) -- (5,-5) 
+													node[very near end,above,sloped] {\textcolor{col0}{$y = ax$}}
+													node[very near end,below,sloped] {$a < 0$}
+													node[very near start,above,sloped] {\textcolor{col0}{$y = ax$}}
+													node[very near start,below,sloped] {$a < 0$};
+				\draw[smooth,samples=10,domain=1.5:5,color=loko2] plot({\x},{-\x - ln(\x)});
+				\draw[smooth,samples=10,domain=2:5,color=loko2] plot({\x},{-\x + ln(\x)});
+				\draw[smooth,samples=10,domain=-2:-5,color=loko1] plot({\x},{-\x - ln(-\x)});
+				\draw[smooth,samples=10,domain=-1.5:-5,color=loko1] plot({\x},{-\x + ln(-\x)});
+				\begin{scope}
+					\clip (0,0) circle (2.5);
+					\fill[color=white] (0,0) circle (2.5);
+						\shade[right color=loko1, left color=white, opacity=.25] (0,-5) rectangle (5,5);
+							\draw[color=loko1] (5,-5) node[below left] {au voisinage de $+\infty$.};
+						\shade[left color=loko2, right color=white, opacity=.25] (0,-5) rectangle (-5,5);
+							\draw[color=loko2] (-5,-5) node[below right] {au voisinage de $-\infty$.};
+				\end{scope}
+				\draw[->] (-5,0) -- (5,0);
+				\draw[->] (0,-5) -- (0,5);
+			\end{tikzpicture}
+			\caption{Branches paraboliques suivants la droit d'\'equation ${y = ax}$.}
+		\end{figure}
+%\end{fiche}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\TCDLessonStyleOff
+\clearpage
+\section{Exercices}
+      \begin{exo}
+      Calculer les limites suivantes : \\
+%      \begin{minipage}{0.45\textwidth}
+            \begin{itemize}
+                  \item $\lim_{x\rightarrow 2}\frac{x^2 - 4}{x-2}$
+                  \item $\lim_{x\rightarrow 2^+} \sqrt{x-2}$
+                  \item $\lim_{x\rightarrow -2} \sqrt{|x+2| + 2} $
+                  \item $\lim_{x\rightarrow-2^+} \frac{x^3 + 8}{|x+2|} $
+%            \end{itemize}      
+%      \end{minipage}
+      %
+%      \begin{minipage}{0.45\textwidth}
+%            \begin{itemize}
+                  \item $ \lim_{x\rightarrow 1} -\frac{1}{(x-1)^2} $
+                  \item $ \lim_{x\rightarrow 1^+} \frac{1}{x-1} $
+                  \item $ \lim_{x\rightarrow 1^-} \frac{x}{x-1} $
+                  \item $ \lim_{x\rightarrow 1^+} \sqrt{\frac{x}{x-1}} $
+            \end{itemize}
+%      \end{minipage}
+      \end{exo}
+%
+      \begin{exo}~\\
+            \begin{enumerate}
+                  \item Soit $g(x) = x^3 + x^2 - 8 x - 12$.
+                        Calculer $g(-2)$. Factoriser $g(x)$.
+                  \item On consid\`ere la fonction $f : x \mapsto \frac{-3x^2-x+10}{x^3+x^2-8x-12}$.
+                        Quel est l'ensemble de d\'efinition de $f$?
+                        D\'eterminer les limites de $f$ aux bornes de son domaine de d\'efinition.
+            \end{enumerate}
+      \end{exo}
+%
+      \begin{exo}~\\
+            \begin{enumerate}
+                  \item Factoriser les deux polyn\^omes $\varphi$ et $\theta$ tels que :
+                        $\varphi (x) = -9x^3 -15x^2 + 8x + 16$ et $\theta (x) = 5x^2 + 7x - 12$.
+                  \item On consid\`ere la fonction $f : x \mapsto \frac{\varphi (x)}{\theta (x)}$.
+                        Quel est l'ensemble de d\'efinition de $f$\,? 
+                        Quelles sont les limites de $f$ aux bornes de son domaine de d\'efinition?
+                  \item On consid\`ere la fonction $g : x \mapsto \frac{\theta (x)}{\varphi (x)}$.
+                        Quel est l'ensemble de d\'efinition de $g$\,? 
+                        Quelles sont les limites de $g$ aux bornes de son domaine de d\'efinition?
+            \end{enumerate}
+      \end{exo}
+%
+      \begin{exo}
+      Calculer les limites suivantes : \\[\baselineskip]
+%            \begin{minipage}{0.45\textwidth}
+                  \begin{itemize}
+                        \item $ \lim_{x\rightarrow -\infty} \frac{x}{x-1} $
+                        \item $ \lim_{x\rightarrow +\infty} \frac{\sqrt{x^3 - 1}}{x \sqrt{x}} $
+                        \item $ \lim_{x\rightarrow +\infty} \sqrt{x^2 + 1} - x $
+                        \item $ \lim_{x\rightarrow -\infty} \sqrt{|x^3 - 1|} + x^2 $
+                        \item $ \lim_{x\rightarrow 3} \frac{\sqrt{x+1}-2}{x-3} $
+                        \item $ \lim_{x\rightarrow 2} \frac{\sqrt{x+2}-2}{\sqrt{x+7}-3} $
+                        \item $ \lim_{x\rightarrow 0} \frac{x}{\sqrt{x^2+1} - 1} $
+%                  \end{itemize}            
+%            \end{minipage}
+%            %
+%            \begin{minipage}{0.45\textwidth}
+%                  \begin{itemize}
+                        \item $ \lim_{x\rightarrow +\infty} \sqrt{x^2+2x+5}-\sqrt{x^2-1} $
+                        \item $ \lim_{x\rightarrow -\infty} \sqrt{x^2+2x+5}-\sqrt{x^2-1} $
+                        \item $ \lim_{x\rightarrow +\infty} \sqrt{x^2+x+1}-3x+2 $
+                        \item $ \lim_{x\rightarrow -\infty} \sqrt{x^2+x+1}-3x+2 $
+                        \item $ \lim_{x\rightarrow +\infty} \sqrt{x^2+x+1}+x+2 $
+                        \item $ \lim_{x\rightarrow -\infty} \sqrt{x^2+x+1}+x+2 $
+                        \item $ \lim_{x\rightarrow +\infty} \sqrt{x+\sqrt{x}} - \sqrt{x} $            
+                  \end{itemize}
+%            \end{minipage}
+      \end{exo}
+%
+      \begin{exo}
+            On consid\`ere la fonction $f$ telle que $f(x) = \sqrt{\frac{x^3}{x-1}}$.
+            \begin{enumerate}
+                  \item Quel est l'ensemble de d\'efinition de $f$.
+                        Quelle est la limite de $f(x)$ lorsque $x$ tend vers $\pm \infty$.
+                  \item D\'eterminer $\lim_{x\rightarrow+\infty} \frac{f(x)}{x}$. On note par $a$ cette limite.
+                        Calculer $\lim_{x\rightarrow+\infty} f(x) - ax$, on note par $b$ cette limite.
+                  \item On pose $\varepsilon (x) = f(x) - (ax + b)$.
+                        Etudier le signe de $\varepsilon (x)$.
+                        Que peut-on en d\'eduire\,?
+            \end{enumerate}
+      \end{exo}
+%
+      \begin{exo}
+            On consid\`ere la fonction $f:x\mapsto\frac{1-x}{1+x}$.
+            D\'eterminer les constantes $a$ et $b$ telles que $f(x) = a + \frac{b}{1+x}$.
+             la  la d\'eriv\'ee $n^\text{i\`eme}$ de $f$.
+      \end{exo}
+%
+      \begin{exo}
+            Soit $f$ la fonction d\'efinie sur $]-1 ; +\infty[$ par $f(x) = x + 3 + \frac{2}{x+1}$.
+            \begin{enumerate}
+                  \item D\'eterminer $\lim_{x\rightarrow-1} f(x)$.
+                        Que peut-on en d\'eduire comme asymptote pour la courbe repr\'esentative $(\mathscr{C})$ de $f$\,?
+                  \item D\'eterminer $\lim_{x\rightarrow+\infty} f(x)$.
+                  \item D\'eterminer $\lim_{x\rightarrow+\infty} \left[ f(x) - (x+3) \right]$.
+                        Que peut-on en d\'eduire comme asymptote pour la courbe repr\'esentative $(\mathscr{C})$ de $f$\,?
+            \end{enumerate}
+      \end{exo}
+%
+      \begin{exo}
+            On consid\`ere la fonction $f$ d\'efinie par $f(x) = \frac{1+x^2}{1-x^2}$.
+            \begin{enumerate}
+                  \item Donner le domaine de d\'efinition de $f$.
+                  \item Calculer les limites de $f$ aux bornes de son domaine de d\'efinition.
+                  \item D\'eterminer la fonction $f'$, fonction d\'eriv\'ee de $f$.
+                  \item \'Etudier le signe de $f'$ puis dresser le tableau des variations de $f$.
+                  \item Tracer la courbe $(\mathscr{C})$ repr\'esentative de $f$ dans un rep\`ere orthonorm\'e.
+            \end{enumerate}
+            M\^eme questions pour les fonctions : $g:x\mapsto x+\sqrt{16-x^2} $ et $h:x\mapsto\sqrt{|x^2-6x-7|}$.
+      \end{exo}
+%
+      \begin{exo}
+            Etudier la fonction $f : x \mapsto \frac{x^3 + 2}{2x}$ et 
+            construire sa courbe repr\'esentative $(\mathscr{C})$ dans un rep\`ere orthonorm\'e.
+            Placer dans le m\^eme rep\`ere la parabole $(\mathscr{P})$ d'\'equation $p(x) = \frac{x^2}{2}$.
+      \end{exo}
+%
+      \begin{exo}
+            Soit la fonction $f : x \mapsto \sqrt{x^2 + x + 1}$ et notons par $(\mathscr{C})$ sa courbe repr\'esentative.
+            Montrer que $(\mathscr{C})$ admet un axe de sym\'etrie, puis construire $(\mathscr{C})$ dans un rep\`ere orthonorm\'e.
+      \end{exo}
+%
+      \begin{exo}
+            On consid\`ere la fonction $f:x\mapsto \frac{x}{1+|x|}$ et on note par $(\mathscr{C})$ sa courbe repr\'esentative.
+
+            Etudier le sens de variation de $f$, 
+            en d\'eduire que $f$ admet une fonction r\'eciproque $f^{-1}$ dont on d\'eterminera le domaine de d\'efinition.
+            On note par $(\mathscr{C}')$ la courbe repr\'esentative de $f^{-1}$.
+            
+            Exprimer $f^{-1} (x)$ en fonction de $x$.
+            Construire $(\mathscr{C})$ et $(\mathscr{C}')$ dans le m\^eme rep\`ere.
+      \end{exo}
+%
+      \begin{exo}
+            On consid\`ere la fonction $f$ d\'efinie par :
+                  \[
+                        \left\lbrace
+                              \begin{array}{l}
+                                    f(x) = \frac{|x| \sqrt{|x|}}{x} \quad \forall x \in \mathbb{R}^*\\
+                                    f(0) = 0
+                              \end{array}
+                        \right.
+                  \]
+            \begin{enumerate}
+                  \item Etudier la continuit\'e et la d\'erivabilit\'e de $f$ en $0$.
+                  \item D\'emontrer que $f$ admet une fonction r\'eciproque $f^{-1}$ 
+                        dont on pr\'ecisera l'ensemble de d\'efinition.
+                        Exprimer $f^{-1} (x)$ en fonction de $x$.
+                  \item Repr\'esenter graphiquement $f$ et $f^{-1}$ dans un rep\`ere orthonorm\'e.
+            \end{enumerate}
+      \end{exo}
+%
+      \begin{exo}
+      On consid\`ere la fonction $f:x\mapsto 1+\frac{x}{\sqrt{x^2 + 1}}$.
+      On note par $(\mathscr{C})$ sa courbe repr\'esentative dans un rep\`ere orthonorm\'e $(O,\vec{\imath},\vec{\jmath})$.
+      \begin{enumerate}
+            \item 
+%                  \begin{enumerate}
+%                        \item 
+                              Etudier les variations de $f$.
+%                        \item 
+                              Montrer que $(\mathscr{C})$ admet un point d'inflexion $I$ que l'on d\'eterminera.
+%                        \item 
+                              D\'eterminer l'\'equation de la tangente en $I$ \`a la courbe $(\mathscr{C})$.
+%                        \item 
+                              Montrer que $(\mathscr{C})$ admet $I$ comme centre de sym\'etrie.
+%                        \item 
+                              Construire $(\mathscr{C})$.
+%                  \end{enumerate}
+            \item Montrer que l'\'equation $f(x) = x$ admet une solution $\alpha \in ]1,2[$.
+                  On pourra appliquer le th\'eor\`eme des valeurs interm\'ediaires \`a la fonction $g : x \mapsto f(x) - x$.
+            \item 
+                  %\begin{enumerate}
+%                        \item 
+                              Montrer que $f$ est une bijection de $\mathbb{R}$ sur un intervalle de $\mathbb{R}$.
+%                        \item 
+                              D\'eterminer l'ensemble de d\'efinition et l'ensemble d'arriv\'e de 
+                              sa fonction r\'eciproque $f^{-1}$.
+%                        \item 
+                              Exprimer $f^{-1}(x)$ en fonction de $x$.
+%                        \item 
+                              Construire la courbe $(\mathscr{C}')$, repr\'esentative de $f^{-1}$ 
+                              dans $(O,\vec{\imath},\vec{\jmath})$.            
+%                  \end{enumerate}
+      \end{enumerate}
+      \end{exo}
+%%%%%%%%%% Fonction irrationnelle
+\begin{exo}
+Soit $f$ la fonction d\'efinie par : 
+$\displaystyle{
+f(x) = x + \sqrt{|4x^2 - 1|}
+}$
+et notons par $(\mathcal{C})$ sa courbe repr\'esentative.
+\begin{enumerate}
+\item Donner le domaine de d\'efinition de $f$.
+\item Etudier la continuit\'e de $f$.
+\item Etudier la d\'erivabilit\'e de $f$ aux points $-\frac{1}{2}$ et $\frac{1}{2}$.
+\item Donner la fonction d\'eriv\'ee de $f$.
+\item Etudier les signes de : 
+     \begin{enumerate}
+     \item $\sqrt{4x^2 - 1} + 4x$.
+     \item $\sqrt{1 - 4x^2} - 4x$.
+     \end{enumerate}
+\item Etudier les signes de $f'$; en d\'eduire le tableau de variation de $f$.
+\item Calculer $\lim_{x \rightarrow - \infty} \left( f(x) + x \right)$ et $\lim_{x \rightarrow + \infty} \left( f(x) - 3 x \right) $.
+      Interpreter le r\'esultat en terme de branches infinies.
+\item Tracer la courbe repr\'esentative de $f$ dans un rep\`ere orthogonal $(O, \vec{\imath},\vec{\jmath})$ o\`u $\|\vec{\imath}\| = \text{4cm}$ et $\| \vec{\jmath} \| = \text{ 2 cm } $.
+\item 
+      \begin{enumerate}
+      \item Soit $h$ la restriction de $f$ \`a l'intervalle $]-\infty ; -\frac{1}{2} ]$.
+            Montrer que $h$ admet une fonction r\'eciproque $h^{-1}$ dont on pr\'ecisera l'ensemble de d\'epart et la variation.
+      \item Calculer $\lim_{x \rightarrow + \infty} \left[ x + h^{-1} (x) \right]$, conclure et tracer la courbe $(\Gamma)$ repr\'esentative de $h^{-1}$.
+      \item Calculer $h^{-1} (0)$ et d\'eterminer une \'equation de la tangente \`a $(\Gamma)$ au point $O$.
+      \end{enumerate}
+\end{enumerate}
+\end{exo}
+

@@ -1,0 +1,181 @@
+% Baccalauréat malgache, série C, 2006 : énoncé.
+\TCDBacAttribution{C}{2006}
+\providecommand{\dx}{\mathrm{d}x}
+\providecommand{\Re}[1]{\mathrm{Re}\left( #1 \right)}
+\providecommand{\Im}[1]{\mathrm{Im}\left( #1 \right)}
+\providecommand{\dt}{\mathrm{d}t}
+\providecommand{\Ouv}{(O;\vec{u},\vec{v})}
+\providecommand{\mes}[2]{\mathrm{mes}\left( \widehat{ \overrightarrow{#1} ; \overrightarrow{#2} } \right)}
+\providecommand{\D}{(\mathscr{D})}
+\providecommand{\Courbe}{(\mathscr{C})}
+\providecommand{\Courben}{(\mathscr{C}_n)}
+\providecommand{\CourbeU}{(\mathscr{C}_1)}
+\providecommand{\CourbeD}{(\mathscr{C}_2)}
+\providecommand{\CourbeA}{(\mathscr{C}_\alpha)}
+\providecommand{\congru}[3]{#1 \equi #2 \quad \left[ \mathrm{mod}~#3\right]}
+\providecommand{\Angl}[2]{\left( \widehat{ \overrightarrow{#1} , \overrightarrow{#2} } \right)}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{Exercice}}} (4 points) 
+      \begin{description}
+            \item[I. ]
+                  Dans un syst\`eme de num\'eration de base $n$, on consid\`ere les nombres 
+                  $a = \overline{211}$, $b = \overline{312}$ et $c = \overline{133032}$.
+                  \begin{enumerate}
+                        \item \begin{enumerate}
+                                    \item Sachant que $c = ab$, montrer que $n$ divise $8$.
+                                    \item En d\'eduire la valeur de $n$.
+                                    \item Ecrire $a$ et $b$ dans le syst\`eme d\'ecimal.
+                              \end{enumerate}
+                        \item R\'esoudre dans $\mathbb{Z} \times \mathbb{Z}$, l'\'equation : $37 x + 54 y = 3$.
+                  \end{enumerate}
+            \item[II. ]
+                  Une urne contient 4 jetons portant respectivement les num\'eros 0, 1, 2, 3.
+                  On tire un \`a un sans remise les jetons jusqu'\`a ce que l'urne soit vide.
+                  \begin{enumerate}
+                        \item Combien y a-t-il de r\'esultats possibles\,?
+                        \item Calculer la probabilit\'e de chacun des \'ev\`enements suivants : 
+                              \begin{itemize}
+                                    \item $E$ : << Le num\'ero du $3^{\text{\`eme}}$ jeton tir\'e est \'egal \`a 3 >>.
+                                    \item $F$ : << Le num\'ero du $3^{\text{\`eme}}$ jeton tir\'e est compris entre les 
+                                          num\'eros des deux premiers >>.
+                                    \item $G$ : << Le produit des num\'eros des deux derniers jetons est non nul >>.
+                              \end{itemize}
+                  \end{enumerate}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME I}}} (7 points) \newline
+      Dans le plan orient\'e $\Plan$, on consid\`ere le triangle $ABC$ rectangle en $A$ tel que
+      \[
+            BC=2AB=4\cm
+            \qquad\text{et}\qquad
+            \mes{AB}{AC}=\frac{\pi}{2}.
+      \]
+      On note : 
+      \begin{mitanisa}
+            $r_A$ la rotation de centre $A$ et d'angle de mesure $\frac{\pi}{2}$ ; \\
+            $r_B$ la rotation de centre $B$ et d'angle de mesure $\frac{\pi}{3}$. 
+      \end{mitanisa}
+      
+      \begin{description}
+            \item[Partie A :] \underline{M\'ethode g\'eom\'etrique :}
+                  \begin{enumerate}
+                        \item \begin{enumerate}
+                                    \item D\'eterminer une mesure de l'angle $\Angl{BA}{BC}$.
+                                    \item En d\'ecomposant $r_A$ et $r_B$ en deux sym\'etries orthogonales convenablement
+                                          choisies, d\'eterminer la nature et les \'el\'ements caract\'eristiques de 
+                                          la transformation $f = r_A \circ r_B$.
+                              \end{enumerate}
+                        \item Soit $S$ la similitude directe de centre $B$ qui transforme $A$ en $C$.
+                              \begin{enumerate}
+                                    \item D\'eterminer le rapport et l'angle de la similitude $S$.
+                                    \item Faire la construction g\'eom\'etrique du point $C_1$ image du point $C$ par 
+                                          la similitude $S$.
+                                    \item On note $C_2$ l'image du point $C_1$ par la similitude $S$ ;
+                                          montrer que les points $A$, $B$ et $C_2$ sont align\'es.
+                              \end{enumerate}
+                  \end{enumerate}
+            \item[Partie B :] \underline{Utilisation de nombres complexes :} \newline
+                  Le plan $\Plan$ est rapport\'e \`a un rep\`ere orthonorm\'e direct $(A ; \vec{u} , \vec{v} )$ avec
+                  $\vec{u} = \frac{\overrightarrow{AB}}{2}$ et $\vec{v} = \frac{\overrightarrow{AC}}{2 \sqrt{3}}$.
+                  \begin{enumerate}
+                        \item Donner les affixes des points $A$, $B$ et $C$.
+                        \item \begin{enumerate}
+                                    \item Donner les expressions complexes des rotations $r_A$ et $r_B$.
+                                          En d\'eduire celle de $f = r_A \circ r_B$.
+                                    \item Donner les \'el\'ements caract\'eristiques de $f$.
+                              \end{enumerate}
+                        \item Donner l'expression complexe de la similitude $S$ d\'efinie dans la 
+                              \textbf{Partie A} et en d\'eduire ses \'el\'ements caract\'eristiques.
+                        \item Soit $g$ la transformation d\'efinie par sa forme complexe : 
+                              $z' = \left( -1-i\sqrt{3} \right) \bar{z} + 4 + 2 i \sqrt{3}$.
+                              \begin{enumerate}
+                                    \item D\'eterminer les affixes de $B'$ et $C'$ images respectives de $B$ et $C$ par 
+                                          la transformation $g$.
+                                    \item V\'erifier que les points $B$, $C$ et $C'$ sont align\'es.
+                                    \item En d\'eduire les \'el\'ements caract\'eristiques de $g$.
+                              \end{enumerate}
+                  \end{enumerate}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME II}}} (9 points) \newline
+      Soit $f_\alpha$ la fonction num\'erique d\'efinie sur $[0;+\infty[$ par : 
+      $f_\alpha (0) = 0$ et $f_\alpha (x) = x^\alpha \; \expo{1-x}$ pour tout $x > 0$ o\`u $\alpha$ est un nombre r\'eel non nul.
+      On d\'esigne par $\CourbeA$ la courbe repr\'esentative de $f_\alpha$ dans un rep\`ere orthonorm\'e direct \Oij{}
+      d'unit\'e $2\cm$.
+      \begin{description}
+            \item[Partie A]
+                  \begin{enumerate}
+                        \item Etudier suivant le signe de $\alpha$, le sens de variation de $f_\alpha$.
+                        \item On prend $\alpha = 1$.
+                              \begin{enumerate}
+                                    \item Dresser le tableau de variation de $f_1$.
+                                    \item Construire la courbe $\CourbeU$.
+                                    \item Calculer \`a l'aide d'une int\'egration par parties 
+                                          $I = \int_{0}^{1} 4\; f_1 (x) \dx$ et interpr\'eter g\'eom\'etriquement ce r\'esultat.
+                              \end{enumerate}
+                        \item On consid\`ere l'\'equation diff\'erentielle $(E) : y'' - 2 y' + y = 4 (x-1) \expo{1-x}$.
+                              \begin{enumerate}
+                                    \item V\'erifier que $f_1$ est une solution de $(E)$.
+                                    \item R\'esoudre l'\'equation $(E') : y'' - 2 y' + y = 0$ et 
+                                          en d\'eduire les solutions g\'en\'erales de $(E)$.
+                              \end{enumerate}
+                  \end{enumerate}
+            \item[Partie B]~\newline
+                  Pour tout entier $n \geq 1$, on pose $I_n = \int_{0}^{1} x^{n} \; \expo{1-x} \dx$.
+                  \begin{enumerate}
+                        \item \begin{enumerate}
+                                    \item En utilisant un encadrement de $\expo{1-x}$ sur l'intervalle $[0;1]$,
+                                          montrer que pour tout $n \geq 1$, on a : 
+                                          $\displaystyle{ \frac{1}{n+1} \leq I_n \leq \frac{e}{n+1} }$.
+                                    \item A l'aide d'une int\'egration par parties, montrer que pour tout $n \geq 1$ on a : 
+                                          $I_{n+1} = (n+1) I_n - 1$.
+                              \end{enumerate}
+                        \item On pose $J_n = n! \; e - I_n$.
+                              \begin{enumerate}
+                                    \item Calculer $J_1$.
+                                    \item Exprimer $J_{n+1}$ \`a l'aide de $J_n$.
+                                          En d\'eduire par r\'ecurrence que pour tout $n \geq 1$, $J_n$ est un entier naturel.
+                                    \item Montrer que pour tout $n \geq 2$, le nombre $n! \; e$ tel que $n!\; e = J_n + I_n$
+                                          n'est pas un entier naturel.
+                                    \item Soient $p$ et $q$ deux entiers naturels non nuls.
+                                          Montrer que pour $n \geq q$, le nombre $n! \; \frac{p}{q}$ est un entier naturel.
+                                          D\'eduire des questions pr\'ec\'edentes que $e$ n'est pas un nombre rationnel.
+                              \end{enumerate}
+                  \end{enumerate}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

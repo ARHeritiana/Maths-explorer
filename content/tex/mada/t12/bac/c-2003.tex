@@ -1,0 +1,195 @@
+% Baccalauréat malgache, série C, 2003 : énoncé.
+\TCDBacAttribution{C}{2003}
+\providecommand{\dx}{\mathrm{d}x}
+\providecommand{\Re}[1]{\mathrm{Re}\left( #1 \right)}
+\providecommand{\Im}[1]{\mathrm{Im}\left( #1 \right)}
+\providecommand{\dt}{\mathrm{d}t}
+\providecommand{\Ouv}{(O;\vec{u},\vec{v})}
+\providecommand{\mes}[2]{\mathrm{mes}\left( \widehat{ \overrightarrow{#1} ; \overrightarrow{#2} } \right)}
+\providecommand{\D}{(\mathscr{D})}
+\providecommand{\Courbe}{(\mathscr{C})}
+\providecommand{\Courben}{(\mathscr{C}_n)}
+\providecommand{\CourbeD}{(\mathscr{C}_2)}
+\providecommand{\congru}[3]{#1 \equi #2 \quad \left[ \mathrm{mod}~#3\right]}
+\providecommand{\Angl}[2]{\left( \widehat{ \overrightarrow{#1} , \overrightarrow{#2} } \right)}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{Exercice}}} (4 points) 
+      \begin{description}
+            \item[I. \textsc{Probabilit\'e}] ~\newline
+                  Une roue est divis\'ee en douze secteurs identiques : quatre blancs, trois rouges, quatre verts et un noir.
+                  Quand on fait tourner la roue, chaque secteur a la m\^eme probabilit\'e d'\^etre point\'e par un index
+                  fixe lorsque la roue s'arr\^ete.
+                  \begin{enumerate}
+                        \item Setra tourne la roue une fois. 
+                              D\'eterminer les probabilit\'es des \'ev\`enements suivants :
+                              \begin{itemize}
+                                    \item $A$ : << L'index pointe sur un secteur noir >>.
+                                    \item $B$ : << L'index pointe sur un rouge ou un blanc >>.
+                              \end{itemize}
+                        \item On adopte la r\`egle suivante : lors d'une partie, 
+                              le joueur marque 10 points si l'index pointe sur un secteur noir ; 
+                              5 points sur un rouge ; 1 point sur un vert et $(-3)$ points sur un blanc.
+                              Naivo joue trois parties successives d'une mani\`ere ind\'ependante.
+                              D\'eterminer les probabilit\'es des \'ev\`enements : 
+                              \begin{itemize}
+                                    \item $C$ : << Naivo totalise 25 points >>.
+                                    \item $D$ : << Naivo totalise au moins 21 points >>.
+                              \end{itemize}
+                  \end{enumerate}
+            \item[II. \textsc{Arithm\'etique}]
+                  \begin{enumerate}
+                        \item Pour $x$ dans $\mathbb{Z}/6\mathbb{Z}$ donner toutes les valeurs de $x^2$.
+                        \item Donner alors les quatre \'el\'ements de $\mathbb{Z}/6\mathbb{Z}$ qui sont solutions de
+                              l'\'equation $x^p = x$, $p$ \'etant un entier naturel non nul.
+                        \item Montrer que pour tout $x$ de $\mathbb{Z}/6\mathbb{Z}$ on a $x^3 = x$.
+                        \item En d\'eduire que pour tout entier naturel $n$, $n^3 - n$ est divisible par $6$.
+                  \end{enumerate}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME I}}} (7 points) \newline
+      Dans un plan orient\'e $\Plan$, soit $ABCD$ un carr\'e direct, de centre $J$.
+      \begin{description}
+            \item[Partie A]~\newline
+                  \begin{description}
+                        \item[I. ]
+                              On d\'esigne par : 
+                                    \begin{mitanisa}
+                                          $r$ : la rotation de centre $A$ et d'angle $\frac{\pi}{2}$. \\
+                                          $t$ : la translation de vecteur $\overrightarrow{AB}$. \\
+                                          $h$ : l'homoth\'etie de centre $C$, de rapport $\sqrt{3}$.
+                                    \end{mitanisa}
+                              \begin{enumerate}
+                                    \item \begin{enumerate}
+                                                \item Montrer que $r' = t \circ r$ est une rotation dont on pr\'ecisera l'angle.
+                                                \item D\'eterminer les images des points $A$ et $B$ par $r'$.
+                                                \item En d\'eduire le centre de $r'$.
+                                          \end{enumerate}
+                                    \item On note $f = r' \circ h$.
+                                          \begin{enumerate}
+                                                \item Montrer que $f$ est une similitude directe 
+                                                      dont on pr\'ecisera l'angle et le rapport.
+                                                \item Soit $I$ le centre de $f$.
+                                                      Apr\`es avoir d\'eterminer l'image de $C$ par $f$, 
+                                                      prouver que $\Angl{IC}{ID} = \frac{\pi}{2}$ et $ID = \sqrt{3} IC$.
+                                                \item En consid\'erant le triangle $[ICD]$, donner une mesure de l'angle
+                                                      $\Angl{CD}{CI}$ et placer $I$ sur la figure.
+                                                \item D\'eterminer et construire l'ensemble : 
+                                                      $(E) = \{ M \in \Plan \mid MD^2 - 3 MC^2 = 0 \}$.
+                                          \end{enumerate}
+                              \end{enumerate}
+                        \item[II. ]
+                              On note $K$ le milieu de $[CD]$. 
+                              On choisit comme rep\`ere orthonorm\'e direct $(A;\overrightarrow{AB},\overrightarrow{AD})$.
+                              \begin{enumerate}
+                                    \item Quelles sont les affixes de $A$, $C$, $J$, $K$\,?
+                                    \item On note $S$ la similitude directe qui transforme $A$ en $J$ et $C$ en $K$.
+                                          \begin{enumerate}
+                                                \item Ecrire l'expression complexe de $S$.
+                                                \item Donner ses \'el\'ements g\'eom\'etriques.
+                                          \end{enumerate}
+                              \end{enumerate}
+                  \end{description}
+            \item[Partie B]
+                  $E$, $F$, $G$ sont trois points non align\'es du plan $\Plan$, $\theta$ un r\'eel donn\'e non nul.
+                        \begin{mitanisa}
+                              On note : 
+                                    \begin{mitanisa}
+                                          $R_F$ : la rotation de centre $F$ et d'angle $\theta$. \\
+                                          $R_E$ : la rotation de centre $E$ et d'angle $\theta$. 
+                                    \end{mitanisa}
+                              On note $H = R_F (E)$, $P = R_F (G)$ et $Q = R_E (G)$.
+                        \end{mitanisa}
+                  \begin{enumerate}
+                        \item Quelle est la nature de $R_E \circ R_F^{-1}$\,?
+                        \item En d\'eduire que $EHPQ$ est un parall\'elogramme.
+                  \end{enumerate}
+      \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\textsc{\textbf{PROBLEME II}}} (9 points)
+      \begin{description}
+            \item[Partie A]
+                  Soit $f$ la fonction d\'efinie par $f(x) = \frac{\ln x}{\expo{x}}$ 
+                  o\`u $\ln$ d\'esigne le logarithme n\'ep\'erien.
+                  On note $\Courbe$ la courbe repr\'esentative de $f$ dans un rep\`ere orthogonal \Oij{} avec
+                  $\| \ivec \| = 1 \cm$ et $\| \jvec \| = 5 \cm$.
+                  \begin{enumerate}
+                        \item On pose $g(x) = - \frac{1}{x} + \ln x$.
+                              \begin{enumerate}
+                                    \item Etudier le sens de variation de $g$.
+                                    \item Montrer que l'\'equation $g(x) = 0$ admet une solution unique $\alpha$ telle que : 
+                                          $\frac{3}{2}<\alpha<2$ et en d\'eduire le signe de $g(x)$ suivant les valeurs de $x$.
+                              \end{enumerate}
+                        \item Etudier la variation de $f$.
+                        \item Ecrire $f(\alpha)$ sans $\ln \alpha$ et en d\'eduire que 
+                              $\displaystyle{\frac{\expo{-2}}{2}<f(\alpha)< 2 \frac{\expo{-\frac{3}{2}}}{3}}$.
+                        \item Tracer la courbe $\Courbe$.
+                        \item On pose $G(x) = \int_{2x}^{x^2} f(t) \dt$, $\forall x > 0$.
+                              Montrer que $G$ est d\'erivable et calculer $G'(x)$.
+                  \end{enumerate}
+            \item[Partie B]
+                  On pose $\forall x > 0$, $h(x) = \expo{\frac{1}{x}}$.
+                  \begin{enumerate}
+                        \item Montrer que l'\'equation $g(x) = 0$ est \'equivalente \`a $h(x) = x$.
+                        \item Calculer $h'(x)$ et v\'erifier que : 
+                              $\forall x \in \left[ \frac{3}{2} ; 2 \right]$, 
+                              $\displaystyle{
+                              -\frac{4}{9} \cdot \expo{\frac{3}{2}} \leq h'(x) \leq - \frac{1}{4} \cdot \expo{\frac{1}{2}}
+                              }$.
+                              En d\'eduire qu'il existe un r\'eel $k \in ]0 ; 1[$ tel que : 
+                              $\forall x \in \left[ \frac{3}{2} ; 2 \right]$, $|h'(x)| \leq k$.
+                        \item Prouver que $\forall x, y \in \left[ \frac{3}{2} ; 2 \right]$, 
+                              $|h(x) - h(y) | \leq k \cdot |x - y|$.
+                        \item On d\'efinit la suite $(u_n)$ par : $u_0 = 2$ et $u_{n+1} = h(u_n)$.
+                              \begin{enumerate}
+                                    \item Montrer que $\forall n \in \mathbb{N}$, $\frac{3}{2} \leq u_n \leq 2$.
+                                    \item Montrer que $\forall n \in \mathbb{N}$, $|u_{n+1}-\alpha|\leq k  |u_n-\alpha|$.
+                                    \item En d\'eduire que $\forall n \in \mathbb{N}$, 
+                                          $|u_n - \alpha| \leq k^n |u_0 - \alpha|$ et calculer la limite de $(u_n)$.
+                              \end{enumerate}
+                  \end{enumerate}
+            \item[Partie C]
+                  On consid\`ere l'\'equation diff\'erentielle $(E) : y'' + 3 y' + 2y = \frac{x-1}{x^2} \cdot \expo{-x}$.
+                  \begin{enumerate}
+                        \item V\'erifier que la fonction $f$ de la partie $A$ est solution de $(E)$.
+                        \item R\'esoudre alors $(E)$.
+                  \end{enumerate}
+      \end{description}
+      %
+      \begin{center}
+            On donne : $\expo{-2} \simeq 0,13$, $\expo{-\frac{3}{2}} \simeq 0,22$,
+                       $\expo{\frac{1}{2}} \simeq 1,6$, $\expo{\frac{2}{3}} \simeq 1,94$.
+      \end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
