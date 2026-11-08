@@ -96,6 +96,9 @@ export function benfordProbability(d, digits = 1) {
 }
 export function benfordData(seed, count, mode = 'log') {
   integer(count, 0, 10000, 'count'); const next = rng(seed);
+  if (mode === 'pow2') return Array.from({ length: Math.min(count, 1000) }, (_, i) => 2 ** (i + 1));
+  if (mode === 'fib') { const f = [1, 2]; while (f.length < Math.min(count, 1000)) f.push(f.at(-1) + f.at(-2)); return f.slice(0, Math.min(count, 1000)); }
+  if (mode === 'squares') return Array.from({ length: count }, (_, i) => (i + 1) ** 2);
   return Array.from({ length: count }, (_, i) => mode === 'identifiers' ? 1000 + i : mode === 'narrow' ? 80 + 10 * next() : mode === 'uniform' ? 1 + 999 * next() : 10 ** (6 * next() - 3));
 }
 export function benford(s) {
@@ -170,4 +173,31 @@ export function monty(s) {
   const current=trial(choice);let eligible=0,wins=0;
   for(let r=0;r<runs;r++){const t=trial(Math.floor(next()*3));if(t.valid){eligible++;wins+=t.win;}}
   return {...current,choice,opened,runs,eligible,wins,frequency:eligible?wins/eligible:null,...montyExact(host,strategy)};
+}
+
+// Figures: pure data behind the pictures (the same seeds as the models above, so the picture and the numbers cannot disagree).
+// P(collision) for n = 0..maxN in one pass: q[j] = j! e_j(p) is the probability that j people all differ.
+export function birthdayCurve(days = 365, probabilities = null, maxN = 100) {
+  integer(days, 1, 10000, 'days'); integer(maxN, 1, 1000, 'maxN');
+  const q = Array(maxN + 1).fill(0); q[0] = 1;
+  for (let i = 0; i < days; i++) { const p = probabilities ? probabilities[i] : 1 / days; for (let j = Math.min(maxN, i + 1); j > 0; j--) q[j] += j * p * q[j - 1]; }
+  return q.map(x => Math.max(0, Math.min(1, 1 - x)));
+}
+export const birthdayThreshold = curve => curve.findIndex(p => p >= .5);
+// The two clouds of loaves: weighed at random, and keeping the heaviest of five. Same seed, same n.
+export function bakerClouds(s) {
+  const a = baker({ ...s, mode: 'random', runs: 0 }), b = baker({ ...s, mode: 'selected', runs: 0 });
+  return { random: a.weights, selected: b.weights, meanRandom: a.average, meanSelected: b.average, shift: b.average - a.average };
+}
+// Many Monty Hall games with the cumulative wins of the two strategies among the games where a goat was revealed.
+export function montyTally(seed, runs, host = 'informed') {
+  integer(runs, 0, 10000, 'runs');
+  const next = rng(seed), eligible = new Uint32Array(runs), sw = new Uint32Array(runs), st = new Uint32Array(runs);
+  let e = 0, a = 0, b = 0;
+  for (let i = 0; i < runs; i++) {
+    const prize = Math.floor(next() * 3), choice = Math.floor(next() * 3), doors = [0, 1, 2].filter(d => d !== choice && (host === 'random' || d !== prize)), opened = doors[Math.floor(next() * doors.length)];
+    if (opened !== prize) { e++; if (choice === prize) b++; else a++; }
+    eligible[i] = e; sw[i] = a; st[i] = b;
+  }
+  return { eligible, switchWins: sw, stayWins: st };
 }

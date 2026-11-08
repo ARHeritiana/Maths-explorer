@@ -54,3 +54,24 @@
 .mc-pseudo { margin: .6rem 0; }
 .mc-pseudo summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }
 .mc-pseudo pre { overflow-x: auto; max-width: 100%; margin: 0; padding: .6rem; background: var(--sunken); font-size: .85rem; }
+
+/* Pictures of the chance exhibits (templates/inference-figure.js): canvas panels, two columns on a wide screen, one on a phone. */
+.inf-fig-host { min-width: 0; }
+.inf-fig { display: grid; grid-template-columns: minmax(0,1fr); gap: 12px; margin: .2rem 0 .8rem; }
+@media (min-width: 900px) { .inf-fig:not(.inf-fig--stack) { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+.inf-panel { margin: 0; min-width: 0; }
+.inf-panel figcaption { font-size: .9rem; font-weight: 700; margin-bottom: .3rem; min-height: 1.3em; }
+.inf-panel figcaption small { font-weight: 400; color: var(--muted); }
+.inf-canvas { position: relative; }
+.inf-canvas .obj-canvas { background: var(--surface); }
+.inf-panel canvas:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.inf-toggle { margin: .4rem 0 0; min-height: 44px; }
+.inf-overlay { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); pointer-events: none; }
+.inf-overlay .inference-doors { display: contents; }
+.inf-overlay .inference-door { pointer-events: auto; min-height: 0; height: 100%; border: 0; background: transparent; color: transparent; font-size: 0; cursor: pointer; border-radius: 0; }
+.inf-overlay .inference-door:focus-visible { outline: 3px solid var(--accent); outline-offset: -6px; }
+.inf-overlay .inference-door[aria-pressed="true"] { border: 0; }
+.inference-more { margin: .6rem 0; }
+.inference-more summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 700; }
+.inf-canvas.obj-viewport { max-width: none; margin-inline: 0; }
+.inf-fig--stack .inf-panel { max-width: 880px; }
