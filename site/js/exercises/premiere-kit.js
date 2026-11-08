@@ -56,3 +56,39 @@ export const mm = M;
 
 // exact rational as BigInt pair, for thresholds of geometric growth
 export const bigPow = (b, n) => BigInt(b) ** BigInt(n);
+
+// Solution set of  a(x - r1)(x - r2) OP 0  (OP among '>', '>=', '<', '<='), roots as exact fractions sorted increasingly (0, 1 or 2
+// of them, their count being that of the real roots). Returns {tex, has(x)}: the interval notation and its membership test.
+import { val, fracTex } from './engine.js';
+import { E, ivTex, ivHas } from './seconde-kit.js';
+export const OPS = { '>': '>', '>=': '\\geqslant ', '<': '<', '<=': '\\leqslant ' };
+export function ineqSet(a, roots, op) {
+  const strict = op === '>' || op === '<', wantPos = op === '>' || op === '>=', same = (a > 0) === wantPos, closed = !strict;
+  const EF = (f) => ({ t: fracTex(f), v: val(f) });
+  let list;
+  if (roots.length === 2) list = same ? [{ lo: null, hi: EF(roots[0]), hc: closed }, { lo: EF(roots[1]), lc: closed, hi: null }] : [{ lo: EF(roots[0]), lc: closed, hi: EF(roots[1]), hc: closed }];
+  else if (roots.length === 1) {
+    const x0 = EF(roots[0]);
+    if (same) list = strict ? [{ lo: null, hi: x0, hc: false }, { lo: x0, lc: false, hi: null }] : [{ lo: null, hi: null }];
+    else return { tex: strict ? '\\varnothing' : `\\left\\{${x0.t}\\right\\}`, has: (x) => !strict && x === x0.v };
+  } else list = same ? [{ lo: null, hi: null }] : [];
+  return { tex: ivTex(list), has: (x) => ivHas(list, x) };
+}
+
+// A four-choice question can, for a few seeds, give two wrong options with the same text (two typical errors that happen to
+// give the same value). The generator then draws the next numbers: same seed, same result.
+export function robust(list) {
+  for (const t of list) {
+    const make = t.make;
+    t.make = function (r, level) {
+      // e^{1} is written e (a whole-text pass, so every generator benefits).
+      const tidy = (x) => { if (typeof x !== 'string') return x; return x.replace(/\\mathrm\{e\}\^\{1\}(?![0-9])/g, '\\mathrm{e}'); };
+      for (let i = 0; i < 40; i++) {
+        try { const out = make.call(this, r, level); return { ...out, q: tidy(out.q), a: tidy(out.a), s: tidy(out.s) }; }
+        catch (e) { if (!/^mcq: only/.test(e.message)) throw e; }
+      }
+      throw new Error(`${t.id}: no valid four-choice draw`);
+    };
+  }
+  return list;
+}

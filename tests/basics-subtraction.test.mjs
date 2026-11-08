@@ -5,13 +5,13 @@ import {runInNewContext} from 'node:vm';
 
 const html = await readFile(new URL('../dist/resources/basics/subtraction.html', import.meta.url), 'utf8');
 const source = await readFile(new URL('../site/resources/basics/subtraction.html', import.meta.url), 'utf8');
-const app = await readFile(new URL('../dist/js/app.js', import.meta.url), 'utf8');
+import { basicsLesson, isBasicsRoute } from '../site/js/basics-page.js';
 
 test('subtraction is published and reachable as the third Basics lesson', () => {
   assert.equal(html, source);
-  assert.match(app, /r\.id === "subtraction"/);
-  assert.match(app, /id: "subtraction", number: "03"/);
-  assert.match(app, /#basics\/subtraction/);
+  assert.ok(isBasicsRoute('subtraction'));
+  assert.equal(basicsLesson('subtraction').number, '03');
+  assert.equal(basicsLesson('subtraction').previous, 'addition');
   assert.match(html, /mx-basics-size/);
   assert.match(html, /ResizeObserver/);
   assert.match(html, /prefers-reduced-motion/);

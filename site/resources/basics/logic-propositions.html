@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Propositions et connecteurs</title>
+<link rel="stylesheet" href="logic-lesson.css">
+</head>
+<body>
+<main>
+<div class="motif" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<h1 data-i="title"></h1>
+<p class="lead" data-i="lead"></p>
+<div class="tabs" role="tablist" data-ia="tabs">
+<button class="tab" role="tab" id="tab-explore" aria-controls="panel-explore" data-i="tab.explore"></button>
+<button class="tab" role="tab" id="tab-venn" aria-controls="panel-venn" data-i="tab.venn"></button>
+<button class="tab" role="tab" id="tab-practice" aria-controls="panel-practice" data-i="tab.practice"></button>
+<button class="tab" role="tab" id="tab-recap" aria-controls="panel-recap" data-i="tab.recap"></button>
+</div>
+
+<section id="panel-explore" role="tabpanel" aria-labelledby="tab-explore" tabindex="0">
+<h2 data-i="explore.title"></h2><p class="muted" data-i="explore.caption"></p>
+<div class="grid2">
+<div class="card"><h3 data-i="pq.title"></h3><p class="muted" data-i="pq.sub"></p><div class="togs" id="togs"></div></div>
+<div class="card"><h3 data-i="f.title"></h3><p class="muted" data-i="f.sub"></p><div class="chips" id="formulas" role="group" data-ia="formulas"></div></div>
+</div>
+<div class="card"><h3 data-i="tt.title"></h3><div id="f-result" aria-live="polite"></div><div class="scroll" id="tt"></div><div id="tt-note"></div></div>
+<p class="note" data-i="explore.note"></p>
+</section>
+
+<section id="panel-venn" role="tabpanel" aria-labelledby="tab-venn" tabindex="0">
+<h2 data-i="venn.title"></h2><p class="muted" data-i="venn.caption"></p>
+<div class="grid2 wide">
+<div class="card"><h3 data-i="vn.live"></h3><div class="svg-holder" id="venn-svg"></div><div id="venn-read" aria-live="polite"></div></div>
+<div>
+<div class="card"><h3 data-i="vn.props"></h3><h4 data-i="vn.p"></h4><div class="chips" id="ppick" role="group" data-ia="ppick"></div><h4 data-i="vn.q"></h4><div class="chips" id="qpick" role="group" data-ia="qpick"></div></div>
+<div class="card"><h3 data-i="vn.op"></h3><div class="chips" id="vformulas" role="group" data-ia="vformulas"></div></div>
+<div class="card"><h3 data-i="vn.x"></h3><div class="tiles" id="xpick" role="group" data-ia="xpick"></div></div>
+</div>
+</div>
+<div class="card"><h3 data-i="vn.corr"></h3><div class="scroll"><table class="mini"><tbody id="corr-rows"></tbody></table></div></div>
+</section>
+
+<section id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" tabindex="0">
+<h2 data-i="practice.title"></h2><p class="muted" data-i="practice.caption"></p>
+<div class="card" id="quiz"></div>
+</section>
+
+<section id="panel-recap" role="tabpanel" aria-labelledby="tab-recap" tabindex="0">
+<h2 data-i="recap.title"></h2><p class="muted" data-i="recap.caption"></p>
+<div class="card"><div class="scroll"><table class="mini"><thead><tr><th data-i="recap.h1"></th><th data-i="recap.h2"></th><th data-i="recap.h3"></th></tr></thead><tbody id="recap-rows"></tbody></table></div></div>
+<div class="card"><h3 data-i="recap.ideas"></h3><div id="ideas"></div></div>
+<p class="muted" data-i="recap.next"></p>
+</section>
+</main>
+<script src="logic-lesson.js"></script>
+<script>
+/* TEXT-BEGIN: every sentence of this edition. The code below this block is identical in both editions. */
+const T = {
+ "vf": [
+  "F",
+  "V"
+ ],
+ "vt": [
+  "fausse (F)",
+  "vraie (V)"
+ ],
+ "vtrue": "Vraie",
+ "vfalse": "Fausse",
+ "and": "et",
+ "or": "ou",
+ "togLabel": "{0} est {1}. Appuie pour changer.",
+ "cur": "Avec P = {0} et Q = {1}, la proposition {2} est <strong>{3}</strong>.",
+ "ttCaption": "Table de vérité de {0}",
+ "cellLabel": "Ligne {0} : valeur {1}",
+ "vennAria": "Diagramme de Venn : la zone colorée est celle où {0} est vraie, c’est-à-dire l’ensemble {1}.",
+ "vres": "La proposition {0} est vraie exactement pour les éléments de l’ensemble {1}, ici {2}.",
+ "vx": "Pour x = {0} : P est {1}, Q est {2}, donc {3} est <strong>{4}</strong>. On a bien {0} {5} {6}.",
+ "f": {
+  "not": "« non P » est vraie quand P est fausse, et inversement.",
+  "and": "« P et Q » est vraie seulement quand P et Q sont toutes les deux vraies.",
+  "or": "« P ou Q » est vraie dès que l’une au moins des deux est vraie (ou inclusif).",
+  "nand": "« non (P et Q) » est vraie dès que l’une au moins des deux est fausse.",
+  "nor": "« non (P ou Q) » est vraie seulement quand P et Q sont toutes les deux fausses.",
+  "ornn": "« (non P) ou (non Q) » : l’une au moins des deux est fausse.",
+  "andnn": "« (non P) et (non Q) » : les deux sont fausses.",
+  "pnq": "« P et non Q » : P est vraie et Q est fausse.",
+  "npq": "« non P et Q » : P est fausse et Q est vraie.",
+  "porn": "« P ou non Q » : P est vraie, ou Q est fausse (ou les deux).",
+  "xor": "Le « ou exclusif » : l’une ou l’autre, mais pas les deux.",
+  "lem": "Toujours vraie, quelle que soit la valeur de P.",
+  "contra": "Toujours fausse, quelle que soit la valeur de P."
+ },
+ "note": {
+  "taut": "Cette formule est vraie quelles que soient les valeurs de P et de Q : c’est une <strong>tautologie</strong>.",
+  "contra": "Cette formule est fausse quelles que soient les valeurs de P et de Q : c’est une <strong>contradiction</strong>.",
+  "equiv": "Même table de vérité que {0}. Les deux formules sont <strong>équivalentes</strong> : {1}.",
+  "incl": "Attention : quand P et Q sont toutes les deux vraies, P ∨ Q est vraie. En mathématiques le « ou » est inclusif, contrairement au « fromage ou dessert » du menu."
+ },
+ "pred": {
+  "even": [
+   "est pair",
+   "est impair"
+  ],
+  "m3": [
+   "est un multiple de 3",
+   "n’est pas un multiple de 3"
+  ],
+  "gt6": [
+   "est strictement supérieur à 6",
+   "est inférieur ou égal à 6"
+  ],
+  "prime": [
+   "est un nombre premier",
+   "n’est pas un nombre premier"
+  ],
+  "lt5": [
+   "est strictement inférieur à 5",
+   "est supérieur ou égal à 5"
+  ]
+ },
+ "rname": {
+  "10": "P seulement",
+  "11": "P et Q",
+  "01": "Q seulement",
+  "00": "ni P ni Q"
+ },
+ "corr": [
+  [
+   "¬P",
+   "Aᶜ : les éléments qui ne sont pas dans A"
+  ],
+  [
+   "P ∧ Q",
+   "A ∩ B : les éléments qui sont dans A et dans B"
+  ],
+  [
+   "P ∨ Q",
+   "A ∪ B : les éléments qui sont dans A ou dans B (ou les deux)"
+  ],
+  [
+   "P ∧ ¬Q",
+   "A ∖ B : dans A mais pas dans B"
+  ],
+  [
+   "P ∨ ¬P",
+   "U : tout l’univers (tautologie)"
+  ],
+  [
+   "P ∧ ¬P",
+   "∅ : aucun élément (contradiction)"
+  ]
+ ],
+ "recap": [
+  [
+   "¬P",
+   "non P",
+   "vraie quand P est fausse"
+  ],
+  [
+   "P ∧ Q",
+   "P et Q",
+   "vraie quand P et Q sont vraies"
+  ],
+  [
+   "P ∨ Q",
+   "P ou Q",
+   "vraie quand l’une au moins est vraie"
+  ],
+  [
+   "¬(P ∧ Q) ⇔ ¬P ∨ ¬Q",
+   "1re loi de De Morgan",
+   "(A ∩ B)ᶜ = Aᶜ ∪ Bᶜ"
+  ],
+  [
+   "¬(P ∨ Q) ⇔ ¬P ∧ ¬Q",
+   "2e loi de De Morgan",
+   "(A ∪ B)ᶜ = Aᶜ ∩ Bᶜ"
+  ],
+  [
+   "¬(¬P) ⇔ P",
+   "double négation",
+   "(Aᶜ)ᶜ = A"
+  ]
+ ],
+ "ideas": "<p><strong>Une proposition est vraie ou fausse, pas les deux.</strong> « 9 est premier » est une proposition fausse. « x + 2 = 5 » dépend de x : c’est un prédicat.</p><p><strong>Le « ou » mathématique est inclusif.</strong> P ∨ Q est vraie quand P, Q, ou les deux, sont vraies.</p><p><strong>Pour nier une conjonction ou une disjonction, on change de connecteur et on nie chaque morceau.</strong> C’est ce que disent les lois de De Morgan.</p><p><strong>Les connecteurs sont les opérations sur les ensembles :</strong> ¬ est le complémentaire, ∧ l’intersection, ∨ la réunion.</p>",
+ "c": {
+  "fill": "Remplis d’abord les quatre cases.",
+  "rows": "Ligne(s) à revoir : {0}.",
+  "c1": {
+   "q": "Parmi ces phrases, laquelle est une proposition, c’est-à-dire un énoncé qui est vrai ou faux ?",
+   "opts": [
+    "Ferme la fenêtre, s’il te plaît.",
+    "Quel jour sommes-nous ?",
+    "9 est un nombre premier.",
+    "x + 2 = 5"
+   ],
+   "correct": 2,
+   "why": "« 9 est un nombre premier » est fausse, mais c’est bien une proposition : on peut décider de sa valeur de vérité. « x + 2 = 5 » dépend de x (c’est un prédicat) ; un ordre ou une question n’est ni vrai ni faux.",
+   "hint": "Demande-toi : peut-on dire que c’est vrai ou faux, sans rien ajouter ?"
+  },
+  "c2": {
+   "q": "Pour n = {0}, on pose P : « n {1} » et Q : « n {2} ». La proposition {3} est-elle vraie ?",
+   "why": "P({0}) est {1} et Q({0}) est {2}. Donc {3} est {4}.",
+   "hint": "Évalue P, puis Q, puis applique la table du connecteur."
+  },
+  "c3": {
+   "q": "Complète la colonne de la proposition {0} : appuie sur chaque case pour choisir V ou F, puis vérifie.",
+   "why": "La colonne de {0}, de haut en bas : {1}.",
+   "hint": "Calcule d’abord le « non » pour chaque ligne, puis combine.",
+   "rows": "Ligne(s) à revoir : {0}."
+  },
+  "c4": {
+   "q": "Quelle est la négation de la proposition « {0} » ?",
+   "why": "Loi de De Morgan : {0}. La négation est donc « {1} ».",
+   "hint": "On change le connecteur (et ↔ ou) et on nie chaque morceau."
+  },
+  "c5": {
+   "q": "La proposition « 6 est pair ou 6 est un multiple de 3 » est…",
+   "opts": [
+    "vraie : le « ou » est inclusif, il suffit qu’une partie soit vraie (ici les deux le sont)",
+    "fausse : « ou » veut dire l’un ou l’autre, pas les deux",
+    "impossible à décider sans plus d’information"
+   ],
+   "why": "En mathématiques, P ∨ Q est vraie dès qu’au moins une des deux propositions est vraie. Pour « l’un ou l’autre mais pas les deux », on parle de ou exclusif.",
+   "hint": "Regarde la ligne V, V de la table de P ∨ Q."
+  },
+  "c6": {
+   "q": "Colorie les régions où la proposition {0} est vraie, puis vérifie.",
+   "ctx": "Ici P : « x est pair », Q : « x est strictement supérieur à 6 », sur U = {1 ; … ; 12}. Appuie sur une région pour la colorier.",
+   "svg": "Diagramme de Venn à colorier : quatre régions",
+   "clear": "Effacer",
+   "wrong": "Régions coloriées à tort : {0}.",
+   "miss": "Régions oubliées : {0}.",
+   "why": "Pour {0}, il faut colorier : {1}.",
+   "hint": "Pour chaque région, demande-toi si P et Q y sont vraies ou fausses, puis lis la formule."
+  }
+ },
+ "ui": {
+  "title": "Propositions et connecteurs",
+  "lead": "Une proposition est vraie ou fausse. Avec « non », « et » et « ou », on en fabrique d’autres. Manipule les valeurs de vérité, lis les tables, puis retrouve les mêmes idées avec des ensembles.",
+  "tab.explore": "Explorer",
+  "tab.venn": "Lien avec les ensembles",
+  "tab.practice": "Défis",
+  "tab.recap": "À retenir",
+  "explore.title": "Les connecteurs en action",
+  "explore.caption": "Change les valeurs de P et de Q, choisis une formule : sa table de vérité se met à jour et la ligne qui correspond à ta situation est surlignée.",
+  "pq.title": "1. Deux propositions",
+  "pq.sub": "Appuie sur un interrupteur pour rendre P ou Q vraie (V) ou fausse (F).",
+  "f.title": "2. Une formule",
+  "f.sub": "Les trois connecteurs de base, puis des combinaisons à comparer.",
+  "tt.title": "3. Table de vérité",
+  "explore.note": "<strong>À essayer :</strong> choisis ¬(P ∧ Q) puis ¬P ∨ ¬Q. Leurs colonnes sont identiques : ces formules sont équivalentes (loi de De Morgan).",
+  "venn.title": "Une proposition, c’est un ensemble",
+  "venn.caption": "Dans un univers U = {1 ; … ; 12}, une propriété P(x) définit l’ensemble A des éléments qui la vérifient. Les connecteurs deviennent des opérations sur les ensembles.",
+  "vn.live": "Diagramme de Venn",
+  "vn.props": "1. Deux propriétés",
+  "vn.p": "P(x) est :",
+  "vn.q": "Q(x) est :",
+  "vn.op": "2. Une formule",
+  "vn.x": "3. Un élément x à tester",
+  "vn.corr": "Le dictionnaire connecteurs et ensembles",
+  "practice.title": "Défis guidés",
+  "practice.caption": "Six questions : reconnaître une proposition, évaluer, compléter une table, nier, comprendre le « ou » et colorier un diagramme.",
+  "recap.title": "À retenir",
+  "recap.caption": "Notations du programme de lycée et leur traduction en ensembles.",
+  "recap.h1": "Écriture",
+  "recap.h2": "Se lit",
+  "recap.h3": "Sens ou ensembles",
+  "recap.ideas": "Quatre idées",
+  "recap.next": "Suite : <a href=\"../../#basics/logic-implication\" target=\"_top\">l’implication, la réciproque et la contraposée</a>. Pour les ensembles eux-mêmes : <a href=\"../../#basics/sets\" target=\"_top\">la leçon sur les ensembles</a>."
+ },
+ "ia": {
+  "tabs": "Sections de la leçon",
+  "formulas": "Choix de la formule",
+  "ppick": "Propriété P",
+  "qpick": "Propriété Q",
+  "vformulas": "Choix de la formule",
+  "xpick": "Choix de l’élément x"
+ },
+ "q": {
+  "step": "Défi {0} sur {1}",
+  "next": "Défi suivant",
+  "last": "Voir le bilan",
+  "good": "Bien vu.",
+  "bad": "Pas encore.",
+  "solution": "Voir la solution",
+  "solutionShown": "Voici la solution.",
+  "again": "Recommencer",
+  "title": "Bilan",
+  "result": "{0} réponse(s) juste(s) du premier coup sur {1}.",
+  "group": "Réponses possibles",
+  "check": "Vérifier"
+ }
+};
+/* TEXT-END */
+'use strict';
+const $=LX.$,fmt=LX.fmt,vf=LX.vf;
+const show=LX.init(T,['explore','venn','practice','recap']);
+// ---- Pure logic (language free). A formula is a function of the truth values of P and Q.
+const F=[
+{id:'not',sym:'¬P',set:'Aᶜ',f:(p,q)=>!p},
+{id:'and',sym:'P ∧ Q',set:'A ∩ B',f:(p,q)=>p&&q},
+{id:'or',sym:'P ∨ Q',set:'A ∪ B',f:(p,q)=>p||q},
+{id:'nand',sym:'¬(P ∧ Q)',set:'(A ∩ B)ᶜ',f:(p,q)=>!(p&&q)},
+{id:'nor',sym:'¬(P ∨ Q)',set:'(A ∪ B)ᶜ',f:(p,q)=>!(p||q)},
+{id:'ornn',sym:'¬P ∨ ¬Q',set:'Aᶜ ∪ Bᶜ',f:(p,q)=>!p||!q},
+{id:'andnn',sym:'¬P ∧ ¬Q',set:'Aᶜ ∩ Bᶜ',f:(p,q)=>!p&&!q},
+{id:'pnq',sym:'P ∧ ¬Q',set:'A ∩ Bᶜ',f:(p,q)=>p&&!q},
+{id:'npq',sym:'¬P ∧ Q',set:'Aᶜ ∩ B',f:(p,q)=>!p&&q},
+{id:'porn',sym:'P ∨ ¬Q',set:'A ∪ Bᶜ',f:(p,q)=>p||!q},
+{id:'xor',sym:'(P ∨ Q) ∧ ¬(P ∧ Q)',set:'A Δ B',f:(p,q)=>(p||q)&&!(p&&q)},
+{id:'lem',sym:'P ∨ ¬P',set:'U',f:(p,q)=>p||!p},
+{id:'contra',sym:'P ∧ ¬P',set:'∅',f:(p,q)=>p&&!p}
+];
+const byId=id=>F.find(x=>x.id===id);
+const ROWS=[[true,true],[true,false],[false,true],[false,false]];
+const column=f=>ROWS.map(([p,q])=>f.f(p,q));
+const sameTable=(a,b)=>column(a).every((v,i)=>v===column(b)[i]);
+const isTautology=f=>column(f).every(Boolean);
+const isContradiction=f=>column(f).every(v=>!v);
+const isPrime=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};
+const PRED=[
+{id:'even',f:n=>n%2===0},
+{id:'m3',f:n=>n%3===0},
+{id:'gt6',f:n=>n>6},
+{id:'prime',f:isPrime},
+{id:'lt5',f:n=>n<5}
+];
+const predById=id=>PRED.find(x=>x.id===id);
+const U=[1,2,3,4,5,6,7,8,9,10,11,12];
+// Regions of the Venn diagram where a formula holds (a region is a pair of truth values).
+const regionsWhere=f=>new Set(['10','01','11','00'].filter(b=>f.f(b[0]==='1',b[1]==='1')));
+const roster=a=>'{'+a.join(' ; ')+'}';
+const sentence=(subject,id,neg)=>subject+' '+T.pred[id][neg?1:0];
+
+// ---- Explore
+let P=true,Q=false,fid='and';
+const eqNote=f=>{
+ if(isTautology(f))return T.note.taut;
+ if(isContradiction(f))return T.note.contra;
+ const same=F.filter(g=>g!==f&&!isTautology(g)&&!isContradiction(g)&&sameTable(f,g));
+ return same.length?fmt(T.note.equiv,same.map(g=>g.sym).join(', '),f.sym+' ⇔ '+same[0].sym):'';
+};
+function renderExplore(){
+ $('togs').innerHTML=[['p',P],['q',Q]].map(([k,v])=>{const n=k.toUpperCase();return `<button type="button" class="tog" role="switch" aria-checked="${v}" data-var="${k}" aria-label="${fmt(T.togLabel,n,T.vt[+v])}"><span class="nm">${n}</span><span class="val">${T.vt[+v]}</span></button>`;}).join('');
+ $('formulas').innerHTML=F.map(f=>`<button type="button" class="chip" data-f="${f.id}" aria-pressed="${f.id===fid}">${f.sym}</button>`).join('');
+ const f=byId(fid),v=f.f(P,Q);
+ $('f-result').innerHTML=`<div class="math">${f.sym}</div><p>${fmt(T.cur,vf(P),vf(Q),f.sym,vf(v))}</p><p class="muted">${T.f[f.id]}</p>`;
+ $('tt').innerHTML=`<table class="tt"><caption class="sr">${fmt(T.ttCaption,f.sym)}</caption><thead><tr><th scope="col">P</th><th scope="col">Q</th><th scope="col">${f.sym}</th></tr></thead><tbody>${ROWS.map(([p,q])=>`<tr class="${p===P&&q===Q?'cur':''}"><td class="${p?'y':'n'}">${vf(p)}</td><td class="${q?'y':'n'}">${vf(q)}</td><td class="${f.f(p,q)?'y':'n'}">${vf(f.f(p,q))}</td></tr>`).join('')}</tbody></table>`;
+ const extra=f.id==='or'&&P&&Q?'<p class="note">'+T.note.incl+'</p>':'';
+ $('tt-note').innerHTML=extra+(eqNote(f)?'<p class="note">'+eqNote(f)+'</p>':'');
+}
+$('togs').addEventListener('click',e=>{const b=e.target.closest('[data-var]');if(!b)return;if(b.dataset.var==='p')P=!P;else Q=!Q;LX.keepFocus(renderExplore);});
+$('formulas').addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(!b)return;fid=b.dataset.f;LX.keepFocus(renderExplore);});
+
+// ---- Venn link
+let vp='even',vq='gt6',vfid='and',vx=8;
+const inSet=(id,n)=>predById(id).f(n);
+function renderVenn(){
+ const f=byId(vfid),items={'10':[],'01':[],'11':[],'00':[]};
+ U.forEach(n=>items[LX.regionOf(inSet(vp,n),inSet(vq,n))].push(n));
+ const sel=regionsWhere(f);
+ $('venn-svg').innerHTML=LX.venn2({sel,items,ring:vx,aria:fmt(T.vennAria,f.sym,f.set)});
+ const A=U.filter(n=>inSet(vp,n)),B=U.filter(n=>inSet(vq,n)),res=U.filter(n=>f.f(inSet(vp,n),inSet(vq,n)));
+ const pv=inSet(vp,vx),qv=inSet(vq,vx),fv=f.f(pv,qv);
+ $('venn-read').innerHTML=`<p><span class="cA" style="color:var(--va)">A</span> = {x ∈ U | P(x)} = ${roster(A)}<br><span style="color:var(--vb)">B</span> = {x ∈ U | Q(x)} = ${roster(B)}</p><p>${fmt(T.vres,f.sym,f.set,roster(res))}</p><p>${fmt(T.vx,vx,vf(pv),vf(qv),f.sym,vf(fv),fv?'∈':'∉',f.set)}</p>`;
+ $('ppick').innerHTML=PRED.map(p=>`<button type="button" class="chip" data-p="${p.id}" aria-pressed="${p.id===vp}">${sentence('x',p.id)}</button>`).join('');
+ $('qpick').innerHTML=PRED.map(p=>`<button type="button" class="chip" data-q="${p.id}" aria-pressed="${p.id===vq}">${sentence('x',p.id)}</button>`).join('');
+ $('vformulas').innerHTML=F.map(g=>`<button type="button" class="chip" data-vf="${g.id}" aria-pressed="${g.id===vfid}">${g.sym}</button>`).join('');
+ $('xpick').innerHTML=U.map(n=>`<button type="button" class="tile" data-x="${n}" aria-pressed="${n===vx}">${n}</button>`).join('');
+}
+$('panel-venn').addEventListener('click',e=>{
+ const b=e.target.closest('[data-p],[data-q],[data-vf],[data-x]');if(!b)return;
+ if(b.dataset.p)vp=b.dataset.p;else if(b.dataset.q)vq=b.dataset.q;else if(b.dataset.vf)vfid=b.dataset.vf;else vx=+b.dataset.x;
+ LX.keepFocus(renderVenn);
+});
+
+// ---- Challenges
+const ev=(p,q,f)=>f.f(p,q);
+function itemProposition(){
+ const c=T.c.c1;
+ return LX.choice({q:c.q,opts:c.opts,correct:c.correct,why:c.why,hint:c.hint});
+}
+function itemEvaluate(){
+ const n=2+Math.floor(Math.random()*29),[a,b]=LX.shuffle(PRED).slice(0,2),f=byId(LX.pickOne(['and','or','nor','nand','pnq','npq','porn'])),
+  p=a.f(n),qv=b.f(n),res=f.f(p,qv),c=T.c.c2;
+ return LX.choice({q:fmt(c.q,n,T.pred[a.id][0],T.pred[b.id][0],f.sym),opts:[T.vtrue,T.vfalse],correct:res?0:1,
+  why:fmt(c.why,n,vf(p),vf(qv),f.sym,vf(res)),hint:c.hint});
+}
+function itemTable(){
+ const f=byId(LX.pickOne(['porn','npq','nand','xor','pnq'])),want=column(f),c=T.c.c3;
+ const st=[null,null,null,null];
+ return {hint:c.hint,why:fmt(c.why,f.sym,want.map(vf).join(' ')),
+ reveal(){const body=$('quiz').querySelector('.qbody');body.querySelectorAll('[data-c]').forEach((b,i)=>{st[i]=want[i];b.textContent=vf(want[i]);b.disabled=true;});},
+ render(body,api){
+  body.innerHTML=`<p>${fmt(c.q,f.sym)}</p><div class="scroll"><table class="tt"><caption class="sr">${fmt(T.ttCaption,f.sym)}</caption><thead><tr><th scope="col">P</th><th scope="col">Q</th><th scope="col">${f.sym}</th></tr></thead><tbody>${ROWS.map(([p,qq],i)=>`<tr><td>${vf(p)}</td><td>${vf(qq)}</td><td><button type="button" class="chip" data-c="${i}" aria-label="${fmt(T.cellLabel,i+1,'?')}">?</button></td></tr>`).join('')}</tbody></table></div><div class="row"><button type="button" class="btn" id="c3-check">${T.q.check}</button></div>`;
+  body.querySelectorAll('[data-c]').forEach(b=>b.addEventListener('click',()=>{const i=+b.dataset.c;st[i]=st[i]===null?true:!st[i];b.textContent=vf(st[i]);b.setAttribute('aria-label',fmt(T.cellLabel,i+1,vf(st[i])));b.closest('td').className='';}));
+  $('c3-check').addEventListener('click',()=>{
+   if(st.some(v=>v===null)){api.answer(false,T.c.fill+' ');return;}
+   const bad=st.map((v,i)=>v===want[i]?-1:i+1).filter(i=>i>0);
+   body.querySelectorAll('[data-c]').forEach((b,i)=>{b.closest('td').className=st[i]===want[i]?'good':'bad';});
+   api.answer(!bad.length,bad.length?fmt(c.rows,bad.join(', '))+' ':'');
+  });
+ }};
+}
+function itemDeMorgan(){
+ const [a,b]=LX.shuffle(PRED).slice(0,2),isAnd=Math.random()<.5,c=T.c.c4,conn=isAnd?T.and:T.or,opp=isAnd?T.or:T.and;
+ const s=(x,y,k,nx,ny)=>'n '+T.pred[x.id][nx?1:0]+' '+k+' n '+T.pred[y.id][ny?1:0];
+ const right=s(a,b,opp,1,1);
+ return LX.choice({q:fmt(c.q,s(a,b,conn,0,0)),opts:[right,s(a,b,conn,1,1),s(a,b,opp,0,0),s(a,b,opp,1,0)],correct:0,
+  why:fmt(c.why,isAnd?'¬(P ∧ Q) ⇔ ¬P ∨ ¬Q':'¬(P ∨ Q) ⇔ ¬P ∧ ¬Q',right),hint:c.hint});
+}
+function itemInclusive(){const c=T.c.c5;return LX.choice({q:c.q,opts:c.opts,correct:0,why:c.why,hint:c.hint});}
+function itemVenn(){
+ const f=byId(LX.pickOne(['pnq','npq','nor','nand','xor','ornn'])),want=regionsWhere(f),c=T.c.c6;
+ const items={'10':[],'01':[],'11':[],'00':[]};U.forEach(n=>items[LX.regionOf(predById('even').f(n),predById('gt6').f(n))].push(n));
+ const sel=new Set();let checked=false;
+ const names=l=>l.map(b=>T.rname[b]).join(' ; ');
+ const draw=()=>{$('c6-svg').innerHTML=LX.venn2({sel,items,clickable:true,expected:want,checked,aria:c.svg,regionLabel:b=>T.rname[b]});};
+ return {hint:c.hint,why:fmt(c.why,f.sym,names([...want])),
+ reveal(){want.forEach(b=>sel.add(b));checked=true;draw();},
+ render(body,api){
+  body.innerHTML=`<p>${fmt(c.q,f.sym)}</p><p class="muted">${c.ctx}</p><div class="svg-holder" id="c6-svg"></div><div class="row"><button type="button" class="btn" id="c6-check">${T.q.check}</button><button type="button" class="btn alt" id="c6-clear">${c.clear}</button></div>`;
+  draw();
+  const toggle=e=>{const g=e.target.closest('[data-region]');if(!g)return false;const b=g.dataset.region;sel.has(b)?sel.delete(b):sel.add(b);checked=false;LX.keepFocus(draw);return true;};
+  $('c6-svg').addEventListener('click',toggle);
+  $('c6-svg').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&toggle(e))e.preventDefault();});
+  $('c6-clear').addEventListener('click',()=>{sel.clear();checked=false;draw();});
+  $('c6-check').addEventListener('click',()=>{
+   checked=true;draw();
+   const wrong=[...sel].filter(b=>!want.has(b)),miss=[...want].filter(b=>!sel.has(b));
+   api.answer(!wrong.length&&!miss.length,(wrong.length?fmt(c.wrong,names(wrong))+' ':'')+(miss.length?fmt(c.miss,names(miss))+' ':''));
+  });
+ }};
+}
+const makeQuiz=()=>[itemProposition(),itemEvaluate(),itemTable(),itemDeMorgan(),itemInclusive(),itemVenn()];
+let quiz=null;
+
+// ---- Static content
+$('corr-rows').innerHTML=T.corr.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('');
+$('recap-rows').innerHTML=T.recap.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+$('ideas').innerHTML=T.ideas;
+renderExplore();renderVenn();quiz=LX.quiz('quiz',makeQuiz);
+LX.notifySize();
+
+</script>
+</body>
+</html>

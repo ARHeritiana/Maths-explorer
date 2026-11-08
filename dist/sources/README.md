@@ -5,8 +5,8 @@ figures and style files. English twins carry the suffix `-en` (translated prose,
 
 ```sh
 cd premiere
-pdflatex -no-shell-escape eleve.tex && pdflatex -no-shell-escape eleve.tex            # French, student
-pdflatex -no-shell-escape professeur.tex && pdflatex -no-shell-escape professeur.tex  # French, teacher
+xelatex -no-shell-escape eleve.tex && xelatex -no-shell-escape eleve.tex            # French, student
+xelatex -no-shell-escape professeur.tex && xelatex -no-shell-escape professeur.tex  # French, teacher
 ```
 
 Engine and preamble are those of each source (pdfLaTeX unless stated; enrichment workshops use XeLaTeX).

@@ -87,6 +87,7 @@ Seeded and limitless: any text is a seed, the same seed gives the same series. F
 | `js/worksheets.js` | `#sheets` page: worksheet, quiz (interro) or supervised test (devoir); marking scheme, subjects A and B, student and teacher versions |
 | `js/exercises/engine.js` | seeded random numbers, exact fractions, LaTeX helpers (`polyTex`, `numTex`, `sqrtTex`...) |
 | `js/exercises/templates-<class>.js` | the generators of `seconde`, `premiere`, `terminale`, `expertes`, `stmg`: `make(r, level)` returns statement, answer and `ok()` that recomputes the answer another way; chapter ids are those of `manifest.json` |
+| `js/exercises/templates-premiere-2.js`, `-3.js`, `-4.js`, `premiere-kit.js`, `problems-premiere.js` | the second Première bank (chapters 01 to 10, at least eight generators each): four-choice questions with one typical error per wrong option (`mcq`), true/false (`tf`), find-the-error (`spot`), tables of variations, contexts, level-3 exam-style items, ten seeded problems; registered in `bank.js` (`robust` redraws the rare four-choice question with two identical wrong options) |
 | `js/exercises/authored.js` | fixed multi-part exercises with a full correction (`ok()` checks the quoted numbers) |
 | `js/exercises/problems.js` | the same kind of problem, with numbers drawn from the seed |
 | `js/bank-page.js` | `#bank[/<course>[/<chapter>]]`: the online exercise bank (rail of levels, chapter index, worked exercises with hints and folded corrections, renewable seeded problems, quick practice from the generators, print with or without corrections) |
@@ -135,6 +136,12 @@ To add a generator: write `make` in the class file, give it a manifest chapter, 
 | `js/university.js`, `js/university-model.js` | `#university` pages and pathway summaries |
 | `js/quadratic-workshop.js` | `#workshop/quadratic` five-stage workshop |
 | `resources/document-theme.css` | style of generated HTML resource pages |
+| `js/basics-page.js` | `#basics` as data: `BASICS_GROUPS` (groups of lessons), derived numbers and previous/next, `basicsPage` (grouped index and lesson page), `bindBasics` (theme and height of the iframe), `discoveryLessons` (lessons placed in the topic browser). `js/app.js` only imports it; add a lesson here |
+| `resources/basics/logic-lesson.css`, `resources/basics/logic-lesson.js` | Shared look and engine of the four logic lessons: tokens, tabs, truth tables, Venn diagram of two propositions (`LX.venn2`), guided-challenge runner (`LX.quiz`, `LX.choice`), height message |
+| `resources/basics/logic-propositions.html`, `.en.html` | Logic 1: propositions, connectives, truth tables, Venn link with sets. Same code in both editions, only the `TEXT-BEGIN`/`TEXT-END` table, title and `lang` differ (`tests/logic-lessons.test.mjs`) |
+| `resources/basics/logic-implication.html`, `.en.html` | Logic 2: implication, converse, contrapositive, equivalence, necessary and sufficient conditions |
+| `resources/basics/logic-quantifiers.html`, `.en.html` | Logic 3: quantifiers over an editable universe, two quantifiers, negation checked against all universes, counterexample game |
+| `resources/basics/logic-reasoning.html`, `.en.html` | Logic 4: direct proof, contrapositive, counterexample, cases, contradiction, induction (proofs to assemble, dominoes) |
 | `resources/basics/place-value.html` | Self-contained first foundation: regrouping and place-value activity; embedded by `js/app.js` |
 | `resources/basics/place-value.en.html` | English interactive foundation edition, with local typography and iframe resizing |
 | `resources/basics/addition.html` | Second foundation: place-value addition and animated carries in bases 2 to 16; embedded by `js/app.js` |

@@ -10,7 +10,7 @@ main{max-width:760px;margin:0 auto;padding:28px 14px 48px;overflow-wrap:anywhere
 h1{font:600 clamp(1.75rem,7vw,2.5rem)/1.1 "STIX Two Text",Georgia,serif;margin:0 0 10px}
 h2{font:600 1.5rem/1.2 "STIX Two Text",Georgia,serif;margin:0 0 6px}
 h3{font:600 1.2rem/1.3 "STIX Two Text",Georgia,serif;margin:0 0 6px}
-h4{font:700 .85rem/1.3 "Atkinson Hyperlegible",system-ui,sans-serif;margin:0 0 4px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute)}
+h4{font:700 .85rem/1.3 "Atkinson Hyperlegible",system-ui,sans-serif;margin:10px 0 4px;letter-spacing:.02em;color:var(--mute)}
 p{margin:0 0 10px}
 a{color:var(--b)}
 .lead{color:var(--mute);margin:0 0 16px;max-width:60ch}
@@ -23,12 +23,13 @@ button{font:inherit;color:var(--ink);cursor:pointer}
 .tab,.btn,.seg button,.tog,.answer,.pick,.chip,.cell,.tile{min-height:44px;min-width:44px;border-radius:10px;border:2px solid var(--line);background:var(--surf);padding:6px 12px;font-weight:700;text-align:left}
 .tab{flex:1 1 auto;text-align:center}
 .tab[aria-selected="true"],.seg button[aria-pressed="true"],.chip[aria-pressed="true"],.pick[aria-current="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.seg button[aria-pressed="true"] .muted,.chip[aria-pressed="true"] .muted{color:inherit}
 .btn{background:var(--ink);color:var(--paper);border-color:var(--ink);text-align:center}
 .btn.alt{background:var(--surf);color:var(--ink)}
 .btn:disabled{opacity:.4;cursor:default}
 .row{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}
 .card{background:var(--surf);border:2px solid var(--line);border-radius:18px;padding:14px;margin-top:12px;box-shadow:0 6px 18px -12px rgba(19,48,59,.35);min-width:0}
-.grid2{display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.grid2{display:grid;align-items:start;gap:12px;grid-template-columns:minmax(0,1fr)}
 .seg{display:flex;gap:6px;flex-wrap:wrap}
 .seg button{text-align:center}
 .stagetop{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:flex-start}
@@ -41,8 +42,8 @@ button{font:inherit;color:var(--ink);cursor:pointer}
 .tog{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;font-weight:400}
 .tog .nm{font:600 1.2rem "STIX Two Text",Georgia,serif}
 .tog .val{font-weight:700;min-width:5.5em;text-align:center;border-radius:8px;padding:2px 8px;border:2px solid var(--line)}
-.tog[aria-pressed="true"] .val{border-color:var(--ok);color:var(--ok)}
-.tog[aria-pressed="false"] .val{border-color:var(--bad);color:var(--bad)}
+.tog[aria-checked="true"] .val{border-color:var(--ok);color:var(--ok)}
+.tog[aria-checked="false"] .val{border-color:var(--bad);color:var(--bad)}
 /* truth tables */
 .tt{border-collapse:collapse;margin:8px 0;min-width:240px}
 .tt th,.tt td{border:1px solid var(--line);padding:6px 10px;text-align:center}
@@ -69,7 +70,7 @@ button{font:inherit;color:var(--ink);cursor:pointer}
 .tile.cur{box-shadow:0 0 0 3px var(--vs)}
 /* relation grid */
 .rel{border-collapse:separate;border-spacing:4px;margin:8px 0}
-.rel th{font:600 1rem "STIX Two Text",Georgia,serif;padding:2px 6px}
+.rel th{white-space:nowrap;font:600 1rem "STIX Two Text",Georgia,serif;padding:2px 6px}
 .cell{width:48px;text-align:center;padding:2px}
 .cell[aria-pressed="true"]{background:color-mix(in srgb,var(--ok) 14%,var(--surf));border-color:var(--ok);color:var(--ok)}
 .rel tr.hit th,.rel tr.hit td:first-child{outline:0}
@@ -93,7 +94,7 @@ button{font:inherit;color:var(--ink);cursor:pointer}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 /* Venn diagram of two propositions */
 .svg-holder{overflow-x:auto;margin-top:8px}
-.svg-holder svg{display:block;width:100%;min-width:300px;height:auto}
+.svg-holder svg{display:block;width:100%;min-width:280px;height:auto}
 .vframe{fill:var(--surf);stroke:var(--mute);stroke-width:1.5;stroke-dasharray:5 6}
 .vu{fill:var(--mute);font:italic 16px "STIX Two Text",Georgia,serif}
 .vlab{font:italic 600 24px "STIX Two Text",Georgia,serif}
@@ -111,8 +112,8 @@ g[data-region]:focus-visible .rg.on{opacity:.8}
 .bank{display:grid;gap:6px;margin:8px 0}
 .bank button{min-height:44px;border-radius:10px;border:2px solid var(--line);background:var(--surf);padding:8px 12px;text-align:left;font-weight:400}
 .bank button.shake{border-color:var(--bad)}
-.dominoes{display:flex;gap:6px;align-items:flex-end;padding:10px 4px 6px;overflow-x:auto;min-height:92px}
-.dom{flex:none;width:30px;height:64px;border-radius:5px;border:2px solid var(--ink);background:var(--surf);display:flex;align-items:flex-end;justify-content:center;font:700 .8rem ui-monospace,monospace;padding-bottom:4px;transform-origin:bottom left;transition:transform .25s}
+.dominoes{display:flex;gap:4px;align-items:flex-end;padding:10px 4px 6px;overflow-x:auto;min-height:92px}
+.dom{flex:none;width:24px;height:64px;border-radius:5px;border:2px solid var(--ink);background:var(--surf);display:flex;align-items:flex-end;justify-content:center;font:700 .8rem ui-monospace,monospace;padding-bottom:4px;transform-origin:bottom left;transition:transform .25s}
 .dom.fell{transform:rotate(68deg) translateX(-2px);background:color-mix(in srgb,var(--ok) 20%,var(--surf));border-color:var(--ok)}
 .dom.gap{outline:3px dashed var(--bad);outline-offset:2px}
 .gapbtn{flex:none;width:44px;height:44px;border-radius:50%;border:2px dashed var(--line);background:transparent;padding:0;font-weight:700}

@@ -7,10 +7,12 @@ import {challengeIcon} from './challenges/registry.js';
 import {PEOPLE,ADVANCES} from './history-data.js';
 import {previewKind,modelPreview} from './discovery-previews.js';
 import {all as ERROR_RECORDS} from './errors-model.js';
+import {discoveryLessons} from './basics-page.js';
 const E=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Foundations lessons indexed in the topic browser; older arithmetic lessons remain outside it.
-const FOUNDATION_LESSONS=[{id:'sets',title:['Ensembles','Sets and operations'],summary:['Diagrammes de Venn, réunion, intersection, différence, complémentaire, questions et lois sur les ensembles.','Venn diagrams, union, intersection, difference, complement, questions and the laws of sets.'],topics:['foundations/sets'],concepts:['sets','venn']}];
+const FOUNDATION_LESSONS=[{id:'sets',title:['Ensembles','Sets and operations'],summary:['Diagrammes de Venn, réunion, intersection, différence, complémentaire, questions et lois sur les ensembles.','Venn diagrams, union, intersection, difference, complement, questions and the laws of sets.'],topics:['foundations/sets'],concepts:['sets','venn'],links:['#basics/logic-propositions']}];
 FOUNDATION_LESSONS.push({id:'fractions',title:['Le laboratoire des fractions','The fractions lab'],summary:['Construire, comparer et calculer avec les fractions : barres, droite graduée, aires et parcours guidé.','Explore fractions with bars, a number line, areas and guided challenges.'],topics:['arithmetic/calculation'],concepts:['fractions','proportions']});
+FOUNDATION_LESSONS.push(...discoveryLessons());
 export const discoveryIndex = data => buildDiscoveryIndex({...data,lessons:FOUNDATION_LESSONS,libraryChapters:discoveryChapters,biographies:BIOGRAPHIES,stories:STORIES,people:PEOPLE,advances:ADVANCES,university,courses,errors:ERROR_RECORDS()});
 export function previewSVG(item,t) {
   const kind=previewKind(item);

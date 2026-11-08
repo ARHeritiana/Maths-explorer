@@ -1,5 +1,5 @@
 // True 3D with the 2D canvas: orthographic camera, z up, painter's algorithm. Dragging empty space rotates (pitch clamped).
-import { C, text, dot, slider, snap, clamp, inl, rich, tpt } from "./widgets.js";
+import { C, fade, mix, text, dot, slider, snap, clamp, inl, rich, tpt } from "./widgets.js";
 // the one camera of the site (also the laboratory template `space`)
 import { cam3Project, cam3Unproject, cam3Turn } from "../js/camera3d.js";
 
@@ -38,7 +38,7 @@ export const W3 = {
           const pts = [[x0, y0], [x1, y0], [x1, y1], [x0, y1]].map(([x, y]) => P(x, y, f(x, y))), z = f((x0 + x1) / 2, (y0 + y1) / 2);
           facets.push({ pts, d: pts.reduce((s, p) => s + p.d, 0) / 4, z });
         }
-        facets.sort((a, b) => b.d - a.d).forEach(F => { const sh = .45 + .1 * Math.min(1, F.z / 3); poly(g, F.pts, `rgb(${Math.round(60 + 60 * sh)},${Math.round(150 + 80 * sh)},${Math.round(130 + 60 * sh)})`, .95, "rgba(20,32,36,.6)"); });
+        facets.sort((a, b) => b.d - a.d).forEach(F => { const sh = .45 + .1 * Math.min(1, F.z / 3); poly(g, F.pts, mix(C.grid, C.axis, 2 * (sh - .45) / .1 * .25 + .15), .95, fade(C.ink, .35)); });
         const s = P(px, py, 0), t = P(px, py, f(px, py)); seg(g, s, t, C.warn, 2, [4, 4]); dot(o, t.X, t.Y, C.warn, "", "default", false); dot(o, s.X, s.Y, C.acc, o.L ? "(x, y)" : "(x ; y)");
         set(o, lines(inl("z=3-\\dfrac{x^2+y^2}{3}"), inl(`f${tpt(o, px, py)}=${o.tn(f(px, py), 3)}`), o.pair("Glissez le fond pour tourner.", "Drag the background to rotate.")));
       },

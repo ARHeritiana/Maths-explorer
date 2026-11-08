@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Types de raisonnement</title>
+<link rel="stylesheet" href="logic-lesson.css">
+</head>
+<body>
+<main>
+<div class="motif" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<h1 data-i="title"></h1>
+<p class="lead" data-i="lead"></p>
+<div class="tabs" role="tablist" data-ia="tabs">
+<button class="tab" role="tab" id="tab-explore" aria-controls="panel-explore" data-i="tab.explore"></button>
+<button class="tab" role="tab" id="tab-practice" aria-controls="panel-practice" data-i="tab.practice"></button>
+<button class="tab" role="tab" id="tab-recap" aria-controls="panel-recap" data-i="tab.recap"></button>
+</div>
+
+<section id="panel-explore" role="tabpanel" aria-labelledby="tab-explore" tabindex="0">
+<h2 data-i="explore.title"></h2><p class="muted" data-i="explore.caption"></p>
+<div class="grid2 wide">
+<nav class="card" aria-label="" data-ia="methods"><h3 data-i="methods.title"></h3><div class="pickers" id="methods"></div></nav>
+<article class="card" id="tech" aria-live="off"></article>
+</div>
+</section>
+
+<section id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" tabindex="0">
+<h2 data-i="practice.title"></h2><p class="muted" data-i="practice.caption"></p>
+<div class="card" id="quiz"></div>
+</section>
+
+<section id="panel-recap" role="tabpanel" aria-labelledby="tab-recap" tabindex="0">
+<h2 data-i="recap.title"></h2><p class="muted" data-i="recap.caption"></p>
+<div class="card"><div class="scroll"><table class="mini"><thead><tr><th data-i="recap.h1"></th><th data-i="recap.h2"></th><th data-i="recap.h3"></th></tr></thead><tbody id="recap-rows"></tbody></table></div></div>
+<div class="card"><h3 data-i="recap.ideas"></h3><div id="ideas"></div></div>
+<p class="muted" data-i="recap.next"></p>
+</section>
+</main>
+<script src="logic-lesson.js"></script>
+<script>
+/* TEXT-BEGIN: every sentence of this edition. The code below this block is identical in both editions. */
+const T = {
+ "vf": [
+  "F",
+  "V"
+ ],
+ "order": {
+  "bank": "Étapes à placer",
+  "bankLabel": "Étapes disponibles",
+  "proof": "Ta démonstration",
+  "proofLabel": "Étapes déjà placées, dans l’ordre",
+  "reset": "Recommencer",
+  "no": "Ce n’est pas la prochaine étape.",
+  "first": "Une démonstration commence par poser ce qu’on suppose ou ce qu’on veut démontrer.",
+  "next": "Relis ce que tu viens de placer : de quoi a-t-on besoin ensuite ?",
+  "done": "Démonstration complète.",
+  "doneNote": "Chaque étape s’appuie sur les précédentes."
+ },
+ "m": {
+  "direct": {
+   "name": "Démonstration directe",
+   "idea": "On part de l’hypothèse et on enchaîne des égalités ou des implications jusqu’à la conclusion.",
+   "claim": "Si n est pair, alors n² est pair.",
+   "steps": [
+    "Soit n un entier pair. Par définition, il existe un entier k tel que n = 2k.",
+    "Alors n² = (2k)² = 4k².",
+    "On écrit 4k² = 2 × (2k²), et 2k² est un entier.",
+    "Donc n² est pair. ∎"
+   ]
+  },
+  "contra": {
+   "name": "Contraposée",
+   "idea": "Pour démontrer P ⇒ Q, on démontre ¬Q ⇒ ¬P, qui lui est équivalente. C’est utile quand la négation de Q donne plus de prise que P.",
+   "claim": "Si n² est pair, alors n est pair.",
+   "steps": [
+    "On démontre la contraposée : si n est impair, alors n² est impair.",
+    "Soit n impair : il existe un entier k tel que n = 2k + 1.",
+    "Alors n² = 4k² + 4k + 1 = 2(2k² + 2k) + 1.",
+    "Comme 2k² + 2k est un entier, n² est impair.",
+    "La contraposée est démontrée ; elle est équivalente à l’énoncé de départ. ∎"
+   ]
+  },
+  "counter": {
+   "name": "Contre-exemple",
+   "idea": "Pour réfuter un « pour tout », un seul cas qui ne marche pas suffit. À l’inverse, des cas qui marchent ne prouvent rien.",
+   "claim": "Pour tout entier n ≥ 0, n² + n + 41 est premier.",
+   "noProof": "Un contre-exemple n’a pas besoin d’autre démonstration : il suffit de le calculer."
+  },
+  "cases": {
+   "name": "Disjonction de cas",
+   "idea": "Quand l’énoncé dépend d’une alternative (pair ou impair, signe, ...), on traite chaque cas et on vérifie qu’il n’y en a pas d’autre.",
+   "claim": "Pour tout entier n, n(n + 1) est pair.",
+   "steps": [
+    "Soit n un entier. Il est pair ou impair : on distingue deux cas.",
+    "Cas 1 : n est pair. Alors n(n + 1) est un produit dont un facteur est pair, donc il est pair.",
+    "Cas 2 : n est impair, n = 2k + 1. Alors n + 1 = 2(k + 1) est pair, donc n(n + 1) est pair.",
+    "Dans les deux cas n(n + 1) est pair, et il n’y a pas d’autre cas. ∎"
+   ]
+  },
+  "absurd": {
+   "name": "Raisonnement par l’absurde",
+   "idea": "On suppose le contraire de ce qu’on veut démontrer et on aboutit à une contradiction : l’hypothèse était donc fausse.",
+   "claim": "√2 est irrationnel · il y a une infinité de nombres premiers",
+   "steps": {
+    "sqrt2": [
+     "Supposons par l’absurde que √2 soit rationnel : √2 = p/q avec p et q entiers non nuls et la fraction p/q irréductible.",
+     "En élevant au carré : p² = 2q². Donc p² est pair.",
+     "Donc p est pair (le carré d’un impair est impair) : p = 2m.",
+     "Alors 4m² = 2q², soit q² = 2m². Donc q² est pair, et q aussi.",
+     "p et q sont tous les deux pairs : la fraction p/q n’est pas irréductible. C’est une contradiction.",
+     "L’hypothèse est donc fausse : √2 est irrationnel. ∎"
+    ],
+    "primes": [
+     "Supposons par l’absurde qu’il n’y ait qu’un nombre fini de nombres premiers : p₁, …, pₙ.",
+     "Posons N = p₁ × … × pₙ + 1. Comme N ≥ 2, il admet un diviseur premier p.",
+     "Ce p est l’un des pᵢ, puisque la liste contient tous les premiers. Donc p divise p₁ × … × pₙ.",
+     "p divise N et p₁ × … × pₙ, donc p divise leur différence : N − p₁ × … × pₙ = 1.",
+     "Un nombre premier ne divise pas 1 : contradiction.",
+     "Il y a donc une infinité de nombres premiers. ∎"
+    ]
+   }
+  },
+  "induction": {
+   "name": "Récurrence",
+   "idea": "Pour démontrer P(n) pour tout n ≥ 0 : on prouve P(0) (initialisation), puis P(k) ⇒ P(k + 1) (hérédité). Comme des dominos.",
+   "claim": "Pour tout entier n ≥ 1, 1 + 2 + … + n = n(n + 1)/2.",
+   "steps": [
+    "Initialisation : pour n = 1, on a 1 = 1 × 2 / 2. La propriété est vraie au rang 1.",
+    "Hérédité : soit k ≥ 1 tel que 1 + 2 + … + k = k(k + 1)/2 (hypothèse de récurrence).",
+    "Alors 1 + 2 + … + k + (k + 1) = k(k + 1)/2 + (k + 1).",
+    "Or k(k + 1)/2 + (k + 1) = (k + 1)(k + 2)/2 : c’est la propriété au rang k + 1.",
+    "Par récurrence, la propriété est vraie pour tout entier n ≥ 1. ∎"
+   ]
+  }
+ },
+ "d": {
+  "directLabel": "Choisis un entier n",
+  "directEven": "n = {0} est pair : n = 2 × {1}. Alors n² = {2} = 2 × {3}, pair.",
+  "directOdd": "n = {0} est impair : l’hypothèse n’est pas vérifiée, l’énoncé ne dit rien sur lui.",
+  "contraIntro": "Sur les entiers de 1 à 10, l’énoncé et sa contraposée ont toujours la même valeur de vérité.",
+  "contraCaption": "Énoncé et contraposée",
+  "contraA": "n² pair ⇒ n pair",
+  "contraB": "n impair ⇒ n² impair",
+  "counterLabel": "Teste une valeur de n",
+  "counterValue": "Pour n = {0} : n² + n + 41 = {1}.",
+  "prime": "premier",
+  "composite": "composé : {0} × {1}",
+  "counterFound": "Contre-exemple(s) trouvé(s) : n = {0}. L’énoncé est faux.",
+  "counterKeep": "Continue : 40 valeurs de suite donnent un nombre premier. Y a-t-il un contre-exemple ?",
+  "casesLabel": "Choisis un entier n",
+  "case1": "Cas 1 : n pair",
+  "case2": "Cas 2 : n impair",
+  "case1On": "n = {0}, n + 1 = {1}, produit {2} : le facteur {0} est pair.",
+  "case2On": "n = {0}, n + 1 = {1}, produit {2} : le facteur {1} est pair.",
+  "caseOff": "Ce cas ne s’applique pas à ce n.",
+  "ctxLabel": "Choisis l’énoncé à démontrer",
+  "ctxSqrt": "√2 est irrationnel",
+  "ctxPrimes": "Infinité de nombres premiers",
+  "sqrtLabel": "Dénominateur q",
+  "sqrtRead": "Pour q = {0}, l’entier p le plus proche de q√2 est {1}. Alors p² = {2} et 2q² = {3} : la différence p² − 2q² vaut {4}, jamais 0.",
+  "sqrtNote": "Aucune fraction testée n’égale √2. Mais tester ne suffit pas : la démonstration par l’absurde couvre tous les couples (p, q).",
+  "primeLabel": "Nombre de premiers dans la liste",
+  "primeRead": "Liste : {0}. N = produit + 1 = {1}. Son plus petit diviseur premier est {2}, qui n’est pas dans la liste ({3}).",
+  "primeNote": "La liste est toujours incomplète : N fournit un nouveau premier (ou en cache un)."
+ },
+ "dom": {
+  "intro": "Appuie sur « Lancer ». Appuie sur un domino pour le coincer, ou coupe le cas de base : vois ce qui tombe.",
+  "base": "Cas de base : P(0) est vraie",
+  "baseLabel": "Cas de base",
+  "on": "vrai",
+  "off": "faux",
+  "rowLabel": "Dominos P(0) à P(9)",
+  "go": "Lancer",
+  "reset": "Remettre debout",
+  "domLabel": "Domino {0} : {1}",
+  "stuck": "coincé, P(k) ne se transmet pas à P(k+1)",
+  "free": "transmet bien",
+  "noBase": "Sans cas de base, aucun domino ne tombe : l’hérédité seule ne démontre rien. (« n = n + 1 » est héréditaire, mais jamais vraie.)",
+  "allFall": "Tous les dominos tombent : initialisation et hérédité donnent P(n) pour tout n, et ainsi de suite à l’infini.",
+  "stoppedAt": "La chaîne s’arrête : P(n) est vraie de 0 à {0}, mais on ne peut rien conclure au-delà. L’hérédité doit valoir pour chaque k.",
+  "sumTitle": "Vérifier la formule cas par cas",
+  "sumLabel": "Choisis n",
+  "sumRead": "Pour n = {0} : {1} = {2}, et n(n + 1)/2 = {3}. Mais vérifier ne démontre pas : la récurrence le fait pour tous les n."
+ },
+ "c": [
+  {
+   "q": "Pour réfuter « tout nombre premier est impair », la méthode la plus directe est…",
+   "opts": [
+    "un contre-exemple (le nombre 2)",
+    "une récurrence",
+    "un raisonnement par l’absurde sur tous les nombres premiers",
+    "une disjonction de cas"
+   ],
+   "why": "Un « pour tout » est réfuté par un seul cas où il échoue : 2 est premier et pair.",
+   "hint": "Combien de cas faut-il pour réfuter un « pour tout » ?"
+  },
+  {
+   "q": "Pour démontrer que √3 est irrationnel, on commence naturellement par…",
+   "opts": [
+    "« Supposons que √3 = p/q avec p/q irréductible » (par l’absurde)",
+    "« Vérifions pour quelques fractions » (par exemples)",
+    "« Initialisons pour n = 0 » (par récurrence)",
+    "« Distinguons selon le signe de √3 » (par cas)"
+   ],
+   "why": "Comme pour √2, on suppose le contraire et on cherche une contradiction avec l’irréductibilité.",
+   "hint": "On veut montrer qu’une chose est impossible."
+  },
+  {
+   "q": "Pour démontrer « si n² est impair, alors n est impair », une méthode efficace est de démontrer…",
+   "opts": [
+    "la contraposée : si n est pair, alors n² est pair",
+    "la réciproque : si n est impair, alors n² est impair",
+    "l’énoncé pour n = 1, 3, 5, 7",
+    "la négation de l’énoncé"
+   ],
+   "why": "La contraposée ¬Q ⇒ ¬P est équivalente à P ⇒ Q, et « n pair ⇒ n² pair » est immédiat. La réciproque, elle, est un autre énoncé.",
+   "hint": "Échange les deux morceaux et nie chacun."
+  },
+  {
+   "q": "On prouve P(0), puis que P(k) entraîne P(k + 1) pour tout k ≥ 0. On en conclut que P(n) est vraie pour tout n ≥ 0. Ce raisonnement s’appelle…",
+   "opts": [
+    "une récurrence",
+    "un raisonnement par l’absurde",
+    "une disjonction de cas",
+    "un contre-exemple"
+   ],
+   "why": "C’est le principe de récurrence : l’initialisation donne le premier domino, l’hérédité fait tomber tous les suivants.",
+   "hint": "Pense aux dominos."
+  },
+  {
+   "q": "Pour résoudre |x − 3| = 5, on distingue selon que x − 3 est positif ou négatif. Ce raisonnement s’appelle…",
+   "opts": [
+    "une disjonction de cas",
+    "une récurrence",
+    "un raisonnement par l’absurde",
+    "une démonstration par contraposée"
+   ],
+   "why": "La valeur absolue est définie par cas : on traite x − 3 ≥ 0 puis x − 3 < 0, et on regroupe les solutions (x = 8 ou x = −2).",
+   "hint": "Il y a deux situations possibles et on les traite l’une après l’autre."
+  },
+  {
+   "q": "Laquelle de ces phrases n’est pas une démonstration de « pour tout n ≥ 1, n² ≥ n » ?",
+   "opts": [
+    "« J’ai vérifié pour n = 1, 2, …, 100, donc c’est vrai. »",
+    "« Soit n ≥ 1. Alors n² − n = n(n − 1) ≥ 0. »",
+    "« Par récurrence : 1² ≥ 1, et si k² ≥ k alors (k + 1)² = k² + 2k + 1 ≥ k + 1. »",
+    "« Par l’absurde : si n² < n avec n ≥ 1, alors n < 1, ce qui est faux. »"
+   ],
+   "why": "Vérifier un grand nombre de cas ne démontre pas un « pour tout » sur tous les entiers (rappelle-toi n² + n + 41). Les trois autres raisonnements sont valides.",
+   "hint": "Quelle phrase ne couvre que des cas particuliers ?"
+  }
+ ],
+ "recap": [
+  [
+   "Directe",
+   "établir P ⇒ Q",
+   "supposer P, enchaîner jusqu’à Q"
+  ],
+  [
+   "Contraposée",
+   "P ⇒ Q est plus simple à l’envers",
+   "démontrer ¬Q ⇒ ¬P"
+  ],
+  [
+   "Contre-exemple",
+   "réfuter ∀x, P(x)",
+   "exhiber un x tel que ¬P(x)"
+  ],
+  [
+   "Disjonction de cas",
+   "alternative (pair/impair, signe, …)",
+   "traiter chaque cas, sans en oublier"
+  ],
+  [
+   "Absurde",
+   "montrer qu’une chose est impossible",
+   "supposer le contraire, trouver une contradiction"
+  ],
+  [
+   "Récurrence",
+   "P(n) pour tout n ≥ n₀",
+   "initialisation, puis hérédité P(k) ⇒ P(k + 1)"
+  ]
+ ],
+ "ideas": "<p><strong>Un raisonnement est valide quand chaque étape découle des précédentes.</strong> L’ordre des étapes compte, c’est ce que tu as reconstitué.</p><p><strong>Des exemples n’ont jamais démontré un « pour tout »</strong>, alors qu’un contre-exemple le réfute immédiatement.</p><p><strong>La contraposée et l’absurde sont de proches cousins :</strong> on nie quelque chose, puis on en déduit une conséquence impossible ou une négation de l’hypothèse.</p><p><strong>La récurrence demande deux choses :</strong> le premier domino et la transmission de chaque rang au suivant.</p>",
+ "q": {
+  "step": "Défi {0} sur {1}",
+  "next": "Défi suivant",
+  "last": "Voir le bilan",
+  "good": "Bien vu.",
+  "bad": "Pas encore.",
+  "solution": "Voir la solution",
+  "solutionShown": "Voici la solution.",
+  "again": "Recommencer",
+  "title": "Bilan",
+  "result": "{0} réponse(s) juste(s) du premier coup sur {1}.",
+  "group": "Réponses possibles",
+  "check": "Vérifier"
+ },
+ "ui": {
+  "title": "Types de raisonnement",
+  "lead": "Démontrer, c’est enchaîner des étapes. Selon l’énoncé, on choisit la méthode : directe, contraposée, contre-exemple, cas, absurde ou récurrence. Assemble des démonstrations et fais tomber des dominos.",
+  "tab.explore": "Les six méthodes",
+  "tab.practice": "Quel raisonnement ?",
+  "tab.recap": "À retenir",
+  "explore.title": "Six façons de démontrer",
+  "explore.caption": "Choisis une méthode : un petit exemple à manipuler, puis la démonstration à reconstituer dans l’ordre.",
+  "methods.title": "Méthodes",
+  "practice.title": "Quel raisonnement ?",
+  "practice.caption": "Six situations : choisis la méthode qui convient.",
+  "recap.title": "À retenir",
+  "recap.caption": "Une méthode pour chaque situation.",
+  "recap.h1": "Méthode",
+  "recap.h2": "Quand l’utiliser",
+  "recap.h3": "Schéma",
+  "recap.ideas": "Quatre idées",
+  "recap.next": "Retour : <a href=\"../../#basics/logic-quantifiers\" target=\"_top\">les quantificateurs</a>. Pour aller vers les ensembles : <a href=\"../../#basics/sets\" target=\"_top\">la leçon sur les ensembles</a>."
+ },
+ "ia": {
+  "tabs": "Sections de la leçon",
+  "methods": "Méthodes de raisonnement"
+ }
+};
+/* TEXT-END */
+'use strict';
+const $=LX.$,fmt=LX.fmt;
+const show=LX.init(T,['explore','practice','recap']);
+// ---- Pure logic (language free)
+const smallestFactor=N=>{for(let d=2;d*d<=N;d++)if(N%d===0)return d;return N;};
+const isPrime=N=>N>=2&&smallestFactor(N)===N;
+const euler=n=>n*n+n+41;
+const PRIMES=[2,3,5,7,11,13,17];
+const euclid=k=>{const list=PRIMES.slice(0,k),N=list.reduce((a,b)=>a*b,1)+1,p=smallestFactor(N);return {list,N,p,isNew:!list.includes(p)};};
+const sqrt2=q=>{const p=Math.round(q*Math.SQRT2);return {p,diff:p*p-2*q*q};};
+const triangle=n=>n*(n+1)/2;
+const NDOM=10;
+// Dominoes 0..NDOM-1: domino 0 falls if the base case holds; domino k falls if domino k-1 falls and k is not stuck.
+function dominoFall(n,base,stuck){if(!base)return [];const r=[0];for(let k=1;k<n;k++){if(stuck.has(k))break;r.push(k);}return r;}
+const roster=a=>'{'+a.join(' ; ')+'}';
+const reduced=()=>{try{return window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch{return false;}};
+
+// ---- A proof to assemble: the student clicks the steps in the right order.
+function orderProof(host,steps){
+ let placed=0;const O=T.order,bank=LX.shuffle(steps.map((s,i)=>({s,i})));
+ host.innerHTML=`<h4>${O.bank}</h4><div class="bank" role="group" aria-label="${O.bankLabel}"></div><h4>${O.proof}</h4><ol class="steps placed" aria-label="${O.proofLabel}"></ol><div class="fbox" aria-live="polite"></div><div class="row"><button type="button" class="btn alt" data-reset>${O.reset}</button></div>`;
+ const bankEl=host.querySelector('.bank'),list=host.querySelector('.steps'),fb=host.querySelector('.fbox');
+ const draw=()=>{
+  bankEl.innerHTML=bank.filter(x=>x.i>=placed).map(x=>`<button type="button" data-i="${x.i}">${x.s}</button>`).join('');
+  list.innerHTML=steps.slice(0,placed).map(s=>`<li>${s}</li>`).join('');
+ };
+ host.addEventListener('click',e=>{
+  if(e.target.closest('[data-reset]')){placed=0;fb.innerHTML='';draw();bankEl.querySelector('button')?.focus({preventScroll:true});return;}
+  const b=e.target.closest('[data-i]');if(!b)return;
+  if(+b.dataset.i===placed){
+   placed++;draw();
+   fb.innerHTML=placed===steps.length?`<div class="fb good"><strong>${O.done}</strong> ${O.doneNote}</div>`:'';
+   (bankEl.querySelector('button')||host.querySelector('[data-reset]')).focus({preventScroll:true});
+  }else{
+   b.classList.add('shake');
+   fb.innerHTML=`<div class="fb bad"><strong>${O.no}</strong> ${placed===0?O.first:O.next}</div>`;
+  }
+ });
+ draw();
+ return {placed:()=>placed,total:steps.length};
+}
+
+// ---- The six methods
+const METHODS=['direct','contra','counter','cases','absurd','induction'];
+let method='direct',absurdCtx='sqrt2',domTimer=null;
+function renderMethods(){
+ $('methods').innerHTML=METHODS.map((m,i)=>`<button type="button" class="pick" data-m="${m}" aria-current="${m===method}">${i+1}. ${T.m[m].name}</button>`).join('');
+}
+const head=m=>`<h3 id="tech-h" tabindex="-1">${T.m[m].name}</h3><p>${T.m[m].idea}</p><p class="math">${T.m[m].claim}</p>`;
+const range=(id,min,max,val,label)=>`<label class="muted" for="${id}">${label}</label><input type="range" id="${id}" min="${min}" max="${max}" value="${val}">`;
+function demoDirect(){
+ const R=$('tech-demo'),upd=()=>{const n=+$('dn').value;
+  $('dread').innerHTML=n%2===0?fmt(T.d.directEven,n,n/2,n*n,n*n/2):fmt(T.d.directOdd,n);};
+ R.innerHTML=range('dn',0,20,6,T.d.directLabel)+'<p id="dread" aria-live="polite"></p>';
+ $('dn').addEventListener('input',upd);upd();
+}
+function demoContra(){
+ const rows=Array.from({length:10},(_,i)=>i+1).map(n=>{const P=(n*n)%2===0,Q=n%2===0;return {n,a:!P||Q,b:Q||!P?true:false,P,Q};});
+ const sq=n=>({a:!((n*n)%2===0)||n%2===0,b:!(n%2===1)||(n*n)%2===1});
+ $('tech-demo').innerHTML=`<p class="muted">${T.d.contraIntro}</p><div class="scroll"><table class="tt"><caption class="sr">${T.d.contraCaption}</caption><thead><tr><th scope="col">n</th><th scope="col">${T.d.contraA}</th><th scope="col">${T.d.contraB}</th></tr></thead><tbody>${Array.from({length:10},(_,i)=>i+1).map(n=>{const r=sq(n);return `<tr><td>${n}</td><td class="${r.a?'y':'n'}">${LX.vf(r.a)}</td><td class="${r.b?'y':'n'}">${LX.vf(r.b)}</td></tr>`;}).join('')}</tbody></table></div>`;
+}
+function demoCounter(){
+ const seen=new Set();
+ const upd=()=>{const n=+$('cn').value,N=euler(n),f=smallestFactor(N),ok=isPrime(N);if(!ok)seen.add(n);
+  $('cread').innerHTML=fmt(T.d.counterValue,n,N)+' '+(ok?'<span class="badge t">'+T.d.prime+'</span>':'<span class="badge f">'+fmt(T.d.composite,f,N/f)+'</span>')+
+   (seen.size?'<p class="fb bad">'+fmt(T.d.counterFound,roster([...seen].sort((a,b)=>a-b)))+'</p>':'<p class="muted">'+T.d.counterKeep+'</p>');};
+ $('tech-demo').innerHTML=range('cn',0,45,0,T.d.counterLabel)+'<div id="cread" aria-live="polite"></div>';
+ $('cn').addEventListener('input',upd);upd();
+}
+function demoCases(){
+ const upd=()=>{const n=+$('sn').value,even=n%2===0;
+  $('sread').innerHTML=`<div class="stmts"><div class="stmt ${even?'t':''}"><div><span class="nm">${T.d.case1}</span>${even?fmt(T.d.case1On,n,n+1,n*(n+1)):T.d.caseOff}</div></div><div class="stmt ${even?'':'t'}"><div><span class="nm">${T.d.case2}</span>${even?T.d.caseOff:fmt(T.d.case2On,n,n+1,n*(n+1))}</div></div></div>`;};
+ $('tech-demo').innerHTML=range('sn',1,30,7,T.d.casesLabel)+'<div id="sread" aria-live="polite"></div>';
+ $('sn').addEventListener('input',upd);upd();
+}
+function demoAbsurd(){
+ const d=T.d,host=$('tech-demo');
+ const sqrtPart=()=>{const upd=()=>{const qq=+$('aq').value,r=sqrt2(qq);$('aread').innerHTML=fmt(d.sqrtRead,qq,r.p,r.p*r.p,2*qq*qq,String(r.diff).replace('-','−'));};
+  $('apart').innerHTML=range('aq',1,40,5,d.sqrtLabel)+'<p id="aread" aria-live="polite"></p><p class="muted">'+d.sqrtNote+'</p>';$('aq').addEventListener('input',upd);upd();};
+ const primePart=()=>{const upd=()=>{const k=+$('ak').value,r=euclid(k);$('aread').innerHTML=fmt(d.primeRead,r.list.join(' × '),r.N,r.p,r.list.join(', '));};
+  $('apart').innerHTML=range('ak',1,6,4,d.primeLabel)+'<p id="aread" aria-live="polite"></p><p class="muted">'+d.primeNote+'</p>';$('ak').addEventListener('input',upd);upd();};
+ host.innerHTML=`<div class="seg" role="group" aria-label="${d.ctxLabel}"><button type="button" data-ctx="sqrt2" aria-pressed="${absurdCtx==='sqrt2'}">${d.ctxSqrt}</button><button type="button" data-ctx="primes" aria-pressed="${absurdCtx==='primes'}">${d.ctxPrimes}</button></div><div id="apart"></div>`;
+ (absurdCtx==='sqrt2'?sqrtPart:primePart)();
+}
+function demoInduction(){
+ const D=T.dom;let base=true,stuck=new Set(),fallen=[];
+ const host=$('tech-demo');
+ host.innerHTML=`<p class="muted">${D.intro}</p><div class="togs"><button type="button" class="tog" role="switch" aria-checked="true" id="dbase" aria-label="${D.baseLabel}"><span>${D.base}</span><span class="val" id="dbaseval"></span></button></div><div class="dominoes" id="doms" role="group" aria-label="${D.rowLabel}"></div><div class="row"><button type="button" class="btn" id="dgo">${D.go}</button><button type="button" class="btn alt" id="dreset">${D.reset}</button></div><div id="dread" aria-live="polite"></div>`;
+ const draw=()=>{
+  $('dbase').setAttribute('aria-checked',String(base));$('dbaseval').textContent=base?D.on:D.off;
+  $('doms').innerHTML=Array.from({length:NDOM},(_,k)=>{const f=fallen.includes(k);
+   return k===0?`<div class="dom${f?' fell':''}" aria-hidden="true">0</div>`:`<button type="button" class="dom${f?' fell':''}${stuck.has(k)?' gap':''}" data-k="${k}" aria-pressed="${stuck.has(k)}" aria-label="${fmt(D.domLabel,k,stuck.has(k)?D.stuck:D.free)}">${k}</button>`;}).join('');
+ };
+ const verdict=()=>{
+  const all=dominoFall(NDOM,base,stuck);
+  let msg;
+  if(!base)msg=D.noBase;else if(all.length===NDOM)msg=D.allFall;else msg=fmt(D.stoppedAt,all.length-1,all.length);
+  return msg;
+ };
+ const reset=()=>{clearTimeout(domTimer);fallen=[];$('dread').innerHTML='';draw();};
+ $('dbase').addEventListener('click',()=>{base=!base;reset();});
+ $('doms').addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b)return;const k=+b.dataset.k;stuck.has(k)?stuck.delete(k):stuck.add(k);reset();$('doms').querySelector('[data-k="'+k+'"]')?.focus({preventScroll:true});});
+ $('dreset').addEventListener('click',reset);
+ $('dgo').addEventListener('click',()=>{
+  clearTimeout(domTimer);fallen=[];
+  const all=dominoFall(NDOM,base,stuck);
+  const done=()=>{$('dread').innerHTML='<p class="fb '+(all.length===NDOM&&base?'good':'bad')+'">'+verdict()+'</p>';};
+  if(reduced()){fallen=all;draw();done();return;}
+  let i=0;const step=()=>{if(i<all.length){fallen=all.slice(0,++i);draw();domTimer=setTimeout(step,130);}else done();};step();
+ });
+ draw();
+ // The sum formula, checked case by case.
+ const S=document.createElement('div');S.className='card';S.innerHTML=`<h4>${D.sumTitle}</h4>${range('tn',1,12,5,D.sumLabel)}<p id="tread" aria-live="polite"></p>`;
+ host.appendChild(S);
+ const upd=()=>{const n=+$('tn').value;$('tread').innerHTML=fmt(D.sumRead,n,Array.from({length:n},(_,i)=>i+1).join(' + '),n*(n+1)/2,triangle(n));};
+ $('tn').addEventListener('input',upd);upd();
+}
+function renderTech(){
+ clearTimeout(domTimer);
+ const m=method,M=T.m[m];
+ $('tech').innerHTML=head(m)+'<div id="tech-demo" class="card"></div><div id="tech-proof"></div>';
+ ({direct:demoDirect,contra:demoContra,counter:demoCounter,cases:demoCases,absurd:demoAbsurd,induction:demoInduction})[m]();
+ const steps=m==='absurd'?M.steps[absurdCtx]:M.steps;
+ if(steps){$('tech-proof').innerHTML='';orderProof($('tech-proof'),steps);}
+ else $('tech-proof').innerHTML='<p class="note">'+M.noProof+'</p>';
+ LX.notifySize();
+}
+$('methods').addEventListener('click',e=>{const b=e.target.closest('[data-m]');if(!b)return;method=b.dataset.m;renderMethods();renderTech();$('tech-h').focus({preventScroll:true});});
+$('tech').addEventListener('click',e=>{const b=e.target.closest('[data-ctx]');if(!b)return;absurdCtx=b.dataset.ctx;renderTech();});
+
+// ---- Challenges: which reasoning?
+const makeQuiz=()=>T.c.map(c=>LX.choice({q:c.q,opts:c.opts,correct:0,why:c.why,hint:c.hint}));
+
+// ---- Static content
+$('recap-rows').innerHTML=T.recap.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+$('ideas').innerHTML=T.ideas;
+renderMethods();renderTech();LX.quiz('quiz',makeQuiz);
+LX.notifySize();
+
+</script>
+</body>
+</html>

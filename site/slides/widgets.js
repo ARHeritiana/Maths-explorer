@@ -8,7 +8,7 @@ import { W3 } from "./widgets-3d.js";
 // every canvas follows both themes. C is mutated in place: widgets keep reading C.acc, C.warn ... at every frame.
 // acc = the object studied (and the focus), blue = a second object, warn = warning, pos = valid, ink / muted / axis / grid = chrome.
 export const C = { bg: "#ffffff", grid: "#ececec", axis: "#6e6e6e", ink: "#000000", muted: "#595959", acc: "#d90012", warn: "#b3000f", blue: "#2563eb", pos: "#0a7a43", posSoft: "#e1f3ea" };
-const cssVar = n => (typeof document === "undefined" ? "" : getComputedStyle(document.documentElement).getPropertyValue(n).trim());
+const cssVar = n => (typeof document === "undefined" || typeof getComputedStyle !== "function" ? "" : getComputedStyle(document.documentElement).getPropertyValue(n).trim());
 export function readPalette() {
   const v = (n, d) => cssVar(n) || d;
   Object.assign(C, { bg: v("--surface", C.bg), grid: v("--grid", C.grid), axis: v("--line-strong", C.axis), ink: v("--ink", C.ink), muted: v("--muted", C.muted), acc: v("--accent", C.acc), warn: v("--neg", C.warn), blue: v("--c1", C.blue), pos: v("--pos", C.pos), posSoft: v("--pos-soft", C.posSoft) });

@@ -4,12 +4,11 @@ import {readFile} from 'node:fs/promises';
 import {runInNewContext} from 'node:vm';
 const html = await readFile(new URL('../dist/resources/basics/addition.html', import.meta.url), 'utf8');
 const source = await readFile(new URL('../site/resources/basics/addition.html', import.meta.url), 'utf8');
-const app = await readFile(new URL('../dist/js/app.js', import.meta.url), 'utf8');
+import { basicsLesson, isBasicsRoute } from '../site/js/basics-page.js';
 test('addition is published and accessible through Basics', () => {
   assert.equal(html, source);
-  assert.match(app, /r\.id === "addition"/);
-  assert.match(app, /id: "addition"/);
-  assert.match(app, /resources\/basics\//);
+  assert.ok(isBasicsRoute('addition'));
+  assert.equal(basicsLesson('addition').number, '02');
   assert.match(html, /mx-basics-size/);
   assert.match(html, /ResizeObserver/);
   assert.match(html, /prefers-reduced-motion/);
