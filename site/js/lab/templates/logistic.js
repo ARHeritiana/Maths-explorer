@@ -3,9 +3,9 @@ import { panelView,drawAxes,drawScene,drawHandles,buildHandles } from '../plot.j
 import { bifurcation } from '../models/cobweb.js';
 export function mount(env){
  const {exp,stage,fmt,getState,setState,advance,isUnlocked}=env;let views={};
- stage.wrap.style.height='660px';
- function layout(){const W=stage.W,H=stage.H,wide=W>650;
-  const rects=wide?[{x:0,y:0,w:W/2,h:H/2},{x:W/2,y:0,w:W/2,h:H/2},{x:0,y:H/2,w:W,h:H/2}]:[0,1,2].map(i=>({x:0,y:i*H/3,w:W,h:H/3}));
+ const tall=()=>stage.W>650?'720px':'980px';stage.wrap.style.height=tall();stage.wrap.style.maxHeight='none';
+ function layout(){const W=stage.W,H=stage.H,wide=W>650;if(stage.wrap.style.height!==tall())stage.wrap.style.height=tall();
+  const rects=wide?[{x:0,y:0,w:W/2,h:H/2},{x:W/2,y:0,w:W/2,h:H/2},{x:0,y:H/2,w:W/2,h:H/2},{x:W/2,y:H/2,w:W/2,h:H/2}]:[0,1,2,3].map(i=>({x:0,y:i*H/4,w:W,h:H/4}));
   views={};exp.views.panels.forEach((id,i)=>views[id]=panelView(stage,id,rects[i],exp.views[id]));
  }layout();
  const handles=buildHandles({exp,fmt,getState,setState,views:()=>views,panels:exp.views.panels});
@@ -15,7 +15,9 @@ export function mount(env){
   if(hi>lo){g.save();g.beginPath();g.rect(v.left,v.top,v.width,v.height);g.clip();g.fillStyle=stage.color('obj3');g.globalAlpha=.45;for(const[r,x]of bifurcation(lo,hi,Math.min(600,Math.max(80,Math.floor(v.width))),32,900)){const Y=v.Y(x);if(Y>=v.top&&Y<=v.top+v.height)g.fillRect(v.X(r),Y,1.2,1.2);}g.restore();}
   drawHandles(g,stage,handles,isUnlocked);
  }
- const players=[];
- function player(c,onChange){let stop=null;const api={get playing(){return!!stop;},stop(){if(stop){stop();stop=null;onChange?.(false);}},toggle(){if(stop)return api.stop();let n=c.get(getState());if(n>=c.max)n=0;if(stage.reduced()){advance(c.set(getState(),Math.min(c.max,n+1)));return;}let last=null,carry=0;advance(c.set(getState(),n));stop=stage.animate(now=>{last??=now;carry+=Math.min(.1,(now-last)/1000)*8;last=now;const steps=Math.floor(carry);if(steps){carry-=steps;n=Math.min(c.max,n+steps);advance(c.set(getState(),n));}if(n>=c.max){stop=null;onChange?.(false);return false;}});onChange?.(true);}};players.push(api);return api;}
- return{draw,handles,player,destroy(){players.forEach(p=>p.stop());}};
+ const players=[],autos=[];
+ function player(c,onChange){let stop=null;const api={get playing(){return!!stop;},stop(){if(stop){stop();stop=null;onChange?.(false);}},toggle(){if(stop)return api.stop();let n=c.get(getState());if(n>=c.max)n=0;if(stage.reduced()){advance(c.set(getState(),Math.min(c.max,n+1)));return;}let last=null,carry=0;advance(c.set(getState(),n));stop=stage.animate(now=>{last??=now;carry+=Math.min(.1,(now-last)/1000)*8;last=now;const steps=Math.floor(carry);if(steps){carry-=steps;n=Math.min(c.max,n+steps);advance(c.set(getState(),n));}if(n>=c.max){stop=null;onChange?.(false);return false;}});onChange?.(true);}};players.push(api);
+ if(c.autoplay){const IO=stage.wrap.ownerDocument.defaultView.IntersectionObserver;let seen=false,io=null;const start=()=>{if(seen)return;seen=true;io?.disconnect();if(c.get(getState())!==0)return;if(stage.reduced()){if(c.rest!=null)advance(c.set(getState(),c.rest));}else api.toggle();};io=IO?new IO(es=>{if(es.some(e=>e.isIntersecting))start();},{threshold:.3}):null;io?.observe(stage.wrap);autos.push(()=>io?.disconnect());}
+ return api;}
+ return{draw,handles,player,destroy(){autos.forEach(f=>f());players.forEach(p=>p.stop());}};
 }

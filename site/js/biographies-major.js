@@ -2493,5 +2493,824 @@ export const MAJOR_BIOGRAPHIES = [
     ]
    ]
   ]
+ },
+ {
+  "id": "weierstrass",
+  "name": "Karl Weierstrass",
+  "dates": "1815-1897",
+  "places": [
+   "Allemagne",
+   "Germany"
+  ],
+  "dek": [
+   "Karl Weierstrass a joué un rôle central dans la transformation de l’analyse en une théorie dont les affirmations de convergence reposent sur des hypothèses précises.",
+   "Karl Weierstrass helped turn analysis into a subject in which assertions about limits and convergence depend on explicit, carefully stated hypotheses."
+  ],
+  "facts": [
+   [
+    "1815",
+    [
+     "Naissance le 31 octobre 1815.",
+     "Born on 31 October 1815."
+    ]
+   ],
+   [
+    "1897",
+    [
+     "Mort le 19 février 1897.",
+     "Dies on 19 February 1897."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Formé dans un parcours universitaire irrégulier et longtemps professeur dans l’enseignement secondaire, il devient une figure majeure des mathématiques à Berlin grâce à ses recherches sur les fonctions elliptiques et abéliennes. Il développe des méthodes systématiques fondées sur les séries entières, étudie la convergence uniforme et les produits infinis, et contribue à la formulation rigoureuse des propriétés des fonctions réelles et complexes. Ses cours transmettent à plusieurs générations de chercheurs des méthodes qui remplaceront progressivement les raisonnements fondés sur les seules intuitions géométriques.",
+      "After an unconventional university path and years teaching in secondary schools, he became an influential mathematician in Berlin through work on elliptic and Abelian functions. He developed systematic power-series methods, investigated uniform convergence and infinite products, and strengthened the foundations of real and complex analysis. His lectures trained generations of mathematicians to distinguish a persuasive graph or calculation from a logically justified argument."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/weierstrass",
+   "#lab/sequences"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Weierstrass/",
+    [
+     "Karl Weierstrass · MacTutor (anglais)",
+     "Karl Weierstrass · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "riemann",
+  "name": "Bernhard Riemann",
+  "dates": "1826-1866",
+  "places": [
+   "Allemagne",
+   "Germany"
+  ],
+  "dek": [
+   "En une carrière très courte, Bernhard Riemann a transformé l’analyse, la géométrie et la théorie des nombres.",
+   "In a remarkably short career, Bernhard Riemann reshaped analysis, geometry and number theory."
+  ],
+  "facts": [
+   [
+    "1826",
+    [
+     "Naissance le 17 septembre 1826.",
+     "Born on 17 September 1826."
+    ]
+   ],
+   [
+    "1854",
+    [
+     "Leçon d’habilitation sur les fondements de la géométrie.",
+     "Habilitation lecture on the foundations of geometry."
+    ]
+   ],
+   [
+    "1859",
+    [
+     "Mémoire sur le nombre de nombres premiers.",
+     "Memoir on the number of primes."
+    ]
+   ],
+   [
+    "1866",
+    [
+     "Mort le 20 juillet 1866.",
+     "Dies on 20 July 1866."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Ses recherches sur les fonctions d’une variable complexe conduisent à la notion de surface de Riemann, qui permet de comprendre géométriquement des fonctions multivaluées. Dans sa conférence d’habilitation de 1854, il propose d’étudier des espaces dont la géométrie peut varier d’un point à l’autre : ce cadre deviendra fondamental pour la géométrie différentielle et, bien plus tard, pour la relativité générale. Il contribue aussi à la théorie de l’intégration, et son mémoire de 1859 relie la distribution des nombres premiers aux propriétés de la fonction zêta dans le plan complexe. L’hypothèse de Riemann, sur ses zéros non triviaux, demeure une question ouverte.",
+      "His work on complex functions led to Riemann surfaces, which give a geometric language for multivalued functions. In his 1854 habilitation lecture he proposed studying spaces whose geometry may vary from point to point, establishing ideas that became essential to differential geometry and, much later, general relativity. He also contributed to integration theory, while his 1859 memoir linked the distribution of prime numbers to the complex zeta function. The Riemann hypothesis about its nontrivial zeros remains a central unsolved problem."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/riemann",
+   "#history/advances/riemann-hypothesis",
+   "#history/advances/prime-number-theorem"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Riemann/",
+    [
+     "Bernhard Riemann · MacTutor (anglais)",
+     "Bernhard Riemann · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "dedekind",
+  "name": "Richard Dedekind",
+  "dates": "1831-1916",
+  "places": [
+   "Allemagne",
+   "Germany"
+  ],
+  "dek": [
+   "Richard Dedekind cherche à comprendre comment les nombres et les structures algébriques peuvent être définis indépendamment de leur représentation intuitive.",
+   "Richard Dedekind investigated how numbers and algebraic structures can be defined without relying on a picture or an intuitive continuum."
+  ],
+  "facts": [
+   [
+    "1831",
+    [
+     "Naissance le 6 octobre 1831.",
+     "Born on 6 October 1831."
+    ]
+   ],
+   [
+    "1872",
+    [
+     "Continuité et nombres irrationnels.",
+     "Continuity and irrational numbers."
+    ]
+   ],
+   [
+    "1916",
+    [
+     "Mort le 12 février 1916.",
+     "Dies on 12 February 1916."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Sa théorie des coupures, publiée en 1872, construit les nombres réels à partir de partitions des rationnels et clarifie le problème de la continuité. En théorie algébrique des nombres, il développe la notion d’idéal afin de remplacer une factorisation des éléments qui peut échouer par une théorie de factorisation des idéaux. Cette idée, prolongée par d’autres mathématiciens, devient fondamentale en algèbre commutative. Dedekind étudie aussi les ensembles infinis, les définitions récursives et l’arithmétique, et contribue à rendre les structures elles-mêmes aussi importantes que les calculs effectués sur leurs éléments.",
+      "His theory of cuts, published in 1872, constructed the real numbers through partitions of the rationals and clarified the meaning of continuity. In algebraic number theory he developed ideals, replacing the factorization of individual elements, which may fail to be unique, with a powerful factorization theory for ideals. Later mathematicians extended this approach into commutative algebra. His work on infinite sets, recursion and arithmetic also helped establish the structural viewpoint that permeates modern mathematics."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/dedekind",
+   "#history/advances/dedekind-cuts"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Dedekind/",
+    [
+     "Richard Dedekind · MacTutor (anglais)",
+     "Richard Dedekind · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "cantor",
+  "name": "Georg Cantor",
+  "dates": "1845-1918",
+  "places": [
+   "Russie et Allemagne",
+   "Russia and Germany"
+  ],
+  "dek": [
+   "Georg Cantor fonde une partie essentielle de la théorie moderne des ensembles à partir de questions d’analyse et de séries trigonométriques.",
+   "Georg Cantor developed essential parts of modern set theory from questions about analysis and trigonometric series."
+  ],
+  "facts": [
+   [
+    "1845",
+    [
+     "Naissance le 3 mars 1845.",
+     "Born on 3 March 1845."
+    ]
+   ],
+   [
+    "1874",
+    [
+     "Démontre que les réels ne sont pas dénombrables.",
+     "Proves that the reals are not countable."
+    ]
+   ],
+   [
+    "1918",
+    [
+     "Mort le 6 janvier 1918.",
+     "Dies on 6 January 1918."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Il démontre que l’ensemble des réels ne peut pas être mis en correspondance terme à terme avec celui des entiers et développe la notion de cardinalité pour comparer rigoureusement des infinis. Ses travaux sur les nombres ordinaux et les nombres transfinis donnent un langage pour organiser les ensembles bien ordonnés et leurs tailles. Ses découvertes suscitent des débats profonds sur les fondements des mathématiques, mais elles deviennent rapidement indispensables à l’analyse, à la topologie et à la logique. La question de l’hypothèse du continu illustre la portée et les limites de la théorie axiomatique développée après lui.",
+      "He proved that the real numbers cannot be matched one-to-one with the natural numbers and introduced cardinality as a precise way of comparing infinite sets. His work on ordinal and transfinite numbers provided a language for well-ordered sets and different sizes of infinity. These ideas prompted major debates about the foundations of mathematics, but they became indispensable to analysis, topology and logic. The continuum hypothesis exemplifies both the reach of Cantor’s questions and the limits later discovered within axiomatic set theory."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/cantor",
+   "#history/advances/cantor-uncountable"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Cantor/",
+    [
+     "Georg Cantor · MacTutor (anglais)",
+     "Georg Cantor · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "kovalevskaya",
+  "name": "Sofia Kovalevskaya",
+  "dates": "1850-1891",
+  "places": [
+   "Russie et Suède",
+   "Russia and Sweden"
+  ],
+  "dek": [
+   "Sofia Kovalevskaya est une mathématicienne majeure de l’analyse et de la mécanique, qui mène ses recherches malgré les restrictions imposées aux études des femmes dans plusieurs universités européennes de son temps.",
+   "Sofia Kovalevskaya was a major contributor to analysis and mechanics whose research advanced despite restrictions on women’s university education in much of nineteenth-century Europe."
+  ],
+  "facts": [
+   [
+    "1850",
+    [
+     "Naissance le 15 janvier 1850.",
+     "Born on 15 January 1850."
+    ]
+   ],
+   [
+    "1891",
+    [
+     "Mort le 10 février 1891.",
+     "Dies on 10 February 1891."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Ses premiers travaux portent sur les équations aux dérivées partielles : le théorème de Cauchy-Kovalevskaya précise des conditions d’existence et d’unicité locales pour certaines solutions analytiques. Elle contribue également à l’étude des anneaux de Saturne et à la mécanique des corps rigides. Sa découverte d’un cas intégrable nouveau du mouvement d’une toupie est récompensée par le prix Bordin de l’Académie des sciences de Paris. Professeure à Stockholm, elle laisse une œuvre théorique durable et une trajectoire scientifique remarquable.",
+      "Her early work concerned partial differential equations; the Cauchy-Kovalevskaya theorem gives conditions for local existence and uniqueness of certain analytic solutions. She also investigated Saturn’s rings and the mechanics of rigid bodies. Her discovery of a new integrable case of the rotating top won the Bordin Prize of the Paris Academy of Sciences. She later held a professorship in Stockholm, leaving both lasting mathematics and an important example of scientific persistence."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/kovalevskaya"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Kovalevskaya/",
+    [
+     "Sofia Kovalevskaya · MacTutor (anglais)",
+     "Sofia Kovalevskaya · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "lebesgue",
+  "name": "Henri Lebesgue",
+  "dates": "1875-1941",
+  "places": [
+   "France",
+   "France"
+  ],
+  "dek": [
+   "Henri Lebesgue renouvelle profondément la théorie de l’intégration au début du XXe siècle.",
+   "Henri Lebesgue transformed integration theory at the beginning of the twentieth century."
+  ],
+  "facts": [
+   [
+    "1875",
+    [
+     "Naissance le 28 juin 1875.",
+     "Born on 28 June 1875."
+    ]
+   ],
+   [
+    "1902",
+    [
+     "Thèse Intégrale, longueur, aire.",
+     "Thesis Intégrale, longueur, aire."
+    ]
+   ],
+   [
+    "1941",
+    [
+     "Mort le 26 juillet 1941.",
+     "Dies on 26 July 1941."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Plutôt que de partir seulement d’un découpage de l’intervalle en petites tranches, il construit une théorie de la mesure permettant de traiter de nouvelles classes de fonctions, notamment des fonctions très discontinues. Son intégrale généralise celle de Riemann et donne des outils puissants pour étudier les limites de suites de fonctions et les séries de Fourier. La portée de ses travaux dépasse un simple procédé de calcul : ils modifient ce que signifie mesurer la taille d’un ensemble, intégrer une fonction et échanger certaines opérations de limite. La théorie de la mesure devient ensuite une base commune à l’analyse, aux probabilités et aux équations différentielles.",
+      "Instead of relying only on subdividing the horizontal axis, he developed measure-theoretic methods that can handle substantially broader classes of functions, including highly discontinuous ones. The Lebesgue integral extends Riemann integration and provides powerful tools for limits of function sequences and Fourier analysis. His contribution was not merely another computational technique: it changed the way mathematicians understand the size of sets, the meaning of an integral and the conditions under which limits may be interchanged. Measure theory subsequently became foundational in analysis, probability and differential equations."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/lebesgue",
+   "#history/advances/lebesgue-integral",
+   "#lab/integral"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Lebesgue/",
+    [
+     "Henri Lebesgue · MacTutor (anglais)",
+     "Henri Lebesgue · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "kolmogorov",
+  "name": "Andrey Kolmogorov",
+  "dates": "1903-1987",
+  "places": [
+   "Russie et URSS",
+   "Russia and Soviet Union"
+  ],
+  "dek": [
+   "Andrey Kolmogorov donne en 1933 une formulation axiomatique des probabilités fondée sur la théorie de la mesure.",
+   "Andrey Kolmogorov gave probability theory a measure-theoretic axiomatic foundation in his 1933 book."
+  ],
+  "facts": [
+   [
+    "1903",
+    [
+     "Naissance le 25 avril 1903.",
+     "Born on 25 April 1903."
+    ]
+   ],
+   [
+    "1933",
+    [
+     "Grundbegriffe der Wahrscheinlichkeitsrechnung.",
+     "Grundbegriffe der Wahrscheinlichkeitsrechnung."
+    ]
+   ],
+   [
+    "1987",
+    [
+     "Mort le 20 octobre 1987.",
+     "Dies on 20 October 1987."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Cette clarification permet d’étudier avec rigueur les variables aléatoires, les processus stochastiques et les espérances conditionnelles dans un cadre unifié. Son œuvre s’étend cependant bien au-delà du hasard : il contribue à la turbulence, à la théorie des systèmes dynamiques, à la topologie et à l’étude de l’information algorithmique. Ses idées sur les perturbations des systèmes hamiltoniens participent à la naissance de ce qui deviendra la théorie KAM, poursuivie par Arnold et Moser. Kolmogorov incarne une pratique des mathématiques où une théorie abstraite peut nourrir des problèmes de physique et d’observation.",
+      "This framework made it possible to study random variables, stochastic processes and conditional expectations as parts of a coherent mathematical theory. His work ranged far beyond randomness, with major contributions to turbulence, dynamical systems, topology and algorithmic information. His approach to perturbations of Hamiltonian systems helped launch what became KAM theory, further developed by Arnold and Moser. Kolmogorov exemplifies the way a deep abstract framework can illuminate physical phenomena while retaining precise mathematical assumptions."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/kolmogorov",
+   "#history/advances/kolmogorov-axioms",
+   "#lab/probability"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Kolmogorov/",
+    [
+     "Andrey Kolmogorov · MacTutor (anglais)",
+     "Andrey Kolmogorov · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "godel",
+  "name": "Kurt Gödel",
+  "dates": "1906-1978",
+  "places": [
+   "Autriche et États-Unis",
+   "Austria and United States"
+  ],
+  "dek": [
+   "Kurt Gödel transforme la logique mathématique en montrant qu’il existe des limites précises à ce qu’un système axiomatique peut démontrer.",
+   "Kurt Gödel transformed mathematical logic by identifying precise limits on what formal axiomatic systems can prove."
+  ],
+  "facts": [
+   [
+    "1906",
+    [
+     "Naissance le 28 avril 1906.",
+     "Born on 28 April 1906."
+    ]
+   ],
+   [
+    "1931",
+    [
+     "Théorèmes d’incomplétude.",
+     "Incompleteness theorems."
+    ]
+   ],
+   [
+    "1978",
+    [
+     "Mort le 14 janvier 1978.",
+     "Dies on 14 January 1978."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Son théorème de complétude, obtenu en 1929 et publié en 1930, concerne la logique du premier ordre : toutes ses formules logiquement valides sont démontrables. Ses théorèmes d’incomplétude de 1931 portent sur des théories formelles effectivement axiomatisées, cohérentes et assez puissantes pour exprimer l’arithmétique ; de tels systèmes ne peuvent pas décider toutes les affirmations arithmétiques pertinentes et, sous des conditions adaptées, ne démontrent pas leur propre cohérence. Gödel contribue aussi à la théorie des ensembles, notamment avec l’univers constructible et des résultats de cohérence relative. Il impose ainsi une distinction fondamentale entre vérité, démontrabilité et choix des axiomes.",
+      "His completeness theorem, proved in 1929 and published in 1930, concerns first-order logic: every logically valid formula is derivable in an appropriate proof system. His 1931 incompleteness theorems apply to consistent, effectively axiomatized formal theories capable of expressing sufficient arithmetic; such theories cannot settle every relevant arithmetical sentence and, under suitable conditions, cannot establish their own consistency. Gödel also contributed to set theory through the constructible universe and relative-consistency results. His work makes the distinction between truth, provability and a chosen set of axioms impossible to ignore."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/godel",
+   "#history/advances/godel-incompleteness",
+   "#history/advances/godel-consistency"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Godel/",
+    [
+     "Kurt Gödel · MacTutor (anglais)",
+     "Kurt Gödel · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "serre",
+  "name": "Jean-Pierre Serre",
+  "dates": "Né en 1926 / Born 1926",
+  "places": [
+   "France",
+   "France"
+  ],
+  "dek": [
+   "Jean-Pierre Serre est l’un des mathématiciens les plus influents dans les relations entre topologie algébrique, géométrie algébrique et théorie des nombres.",
+   "Jean-Pierre Serre has been one of the most influential figures linking algebraic topology, algebraic geometry and number theory."
+  ],
+  "facts": [
+   [
+    "1926",
+    [
+     "Naissance le 15 septembre 1926.",
+     "Born on 15 September 1926."
+    ]
+   ],
+   [
+    "1954",
+    [
+     "Médaille Fields.",
+     "Fields Medal."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Ses premiers travaux utilisent notamment les suites spectrales pour étudier les groupes d’homotopie des sphères, problème qui avait longtemps résisté aux méthodes précédentes. Il joue ensuite un rôle majeur dans l’introduction et la diffusion des faisceaux cohérents, dans l’étude des variétés algébriques et dans les liens entre géométrie analytique complexe et géométrie algébrique. En théorie des nombres, ses travaux touchent les représentations galoisiennes, les formes modulaires et les groupes algébriques. L’unité de son œuvre tient à sa capacité à déplacer des idées puissantes d’un domaine à un autre.",
+      "His early research used spectral sequences to investigate homotopy groups of spheres, questions that had resisted earlier techniques. He then played a central role in developing and disseminating coherent sheaf methods, the study of algebraic varieties and links between complex analytic and algebraic geometry. His number-theoretic work includes Galois representations, modular forms and algebraic groups. A hallmark of his research is the ability to carry powerful ideas from one field into another, revealing unexpected structures across mathematical subjects."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/serre"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Serre/",
+    [
+     "Jean-Pierre Serre · MacTutor (anglais)",
+     "Jean-Pierre Serre · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "grothendieck",
+  "name": "Alexander Grothendieck",
+  "dates": "1928-2014",
+  "places": [
+   "France et réseaux internationaux",
+   "France and international mathematics"
+  ],
+  "dek": [
+   "Alexander Grothendieck est l’un des grands architectes des mathématiques du XXe siècle.",
+   "Alexander Grothendieck was one of the major architects of twentieth-century mathematics."
+  ],
+  "facts": [
+   [
+    "1928",
+    [
+     "Naissance le 28 mars 1928.",
+     "Born on 28 March 1928."
+    ]
+   ],
+   [
+    "1966",
+    [
+     "Médaille Fields.",
+     "Fields Medal."
+    ]
+   ],
+   [
+    "2014",
+    [
+     "Mort le 13 novembre 2014.",
+     "Dies on 13 November 2014."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Après des travaux importants en analyse fonctionnelle, il transforme la géométrie algébrique en introduisant des concepts qui permettent d’étudier simultanément de vastes familles d’objets géométriques et arithmétiques. Les schémas, les foncteurs représentables, la cohomologie étale et les topos ouvrent de nouvelles perspectives sur les relations entre géométrie, nombres et logique. Avec ses collaborateurs et au fil de séminaires collectifs, il développe des méthodes qui contribuent notamment aux progrès sur les conjectures de Weil. Sa manière de chercher des structures générales, plutôt qu’une astuce propre à chaque problème, a profondément influencé l’algèbre et la géométrie contemporaines.",
+      "After influential work in functional analysis, he reshaped algebraic geometry with concepts that made it possible to study broad families of geometric and arithmetic objects together. Schemes, representable functors, étale cohomology and topoi opened new connections among geometry, number theory and logic. Working with collaborators and through extensive seminar projects, he developed methods central to advances on the Weil conjectures and many other problems. His distinctive search for general structures, rather than isolated tricks for individual problems, continues to shape algebra and geometry."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/grothendieck"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Grothendieck/",
+    [
+     "Alexander Grothendieck · MacTutor (anglais)",
+     "Alexander Grothendieck · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "uhlenbeck",
+  "name": "Karen Uhlenbeck",
+  "dates": "Née en 1942 / Born 1942",
+  "places": [
+   "États-Unis",
+   "United States"
+  ],
+  "dek": [
+   "Karen Uhlenbeck est une figure majeure de l’analyse géométrique, où les équations différentielles servent à comprendre les propriétés globales des espaces et des surfaces.",
+   "Karen Uhlenbeck is a leading figure in geometric analysis, where differential equations are used to understand the global properties of spaces and surfaces."
+  ],
+  "facts": [
+   [
+    "1942",
+    [
+     "Naissance le 24 août 1942.",
+     "Born on 24 August 1942."
+    ]
+   ],
+   [
+    "2019",
+    [
+     "Prix Abel, première femme lauréate.",
+     "Abel Prize, the first woman to receive it."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Elle renouvelle l’étude des problèmes variationnels, des applications harmoniques et des équations de Yang-Mills issues de la physique mathématique. Ses travaux sur la compacité, les singularités amovibles et les phénomènes de concentration d’énergie deviennent essentiels à la théorie de jauge et à la géométrie en dimension quatre. Elle a également joué un rôle important dans la formation et la visibilité des jeunes mathématiciennes. En 2019, elle devient la première femme à recevoir le prix Abel, qui récompense ses contributions fondamentales à l’analyse géométrique et à la physique mathématique.",
+      "She transformed the study of variational problems, harmonic maps and Yang-Mills equations arising from mathematical physics. Her work on compactness, removable singularities and energy concentration became fundamental to gauge theory and four-dimensional geometry. She also contributed to mentoring and supporting the visibility of women in mathematics. In 2019 she became the first woman to receive the Abel Prize, recognizing her foundational contributions to geometric analysis and mathematical physics."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/uhlenbeck"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Uhlenbeck_Karen/",
+    [
+     "Karen Uhlenbeck · MacTutor (anglais)",
+     "Karen Uhlenbeck · MacTutor"
+    ]
+   ],
+   [
+    "https://abelprize.no/abel-prize-laureates/2019",
+    [
+     "Prix Abel 2019 (anglais)",
+     "Abel Prize 2019"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "wiles",
+  "name": "Andrew Wiles",
+  "dates": "Né en 1953 / Born 1953",
+  "places": [
+   "Royaume-Uni et États-Unis",
+   "United Kingdom and United States"
+  ],
+  "dek": [
+   "Andrew Wiles est surtout connu pour avoir démontré le dernier théorème de Fermat, mais son résultat s’inscrit dans un vaste programme de théorie des nombres reliant les courbes elliptiques aux formes modulaires.",
+   "Andrew Wiles is best known for proving Fermat’s Last Theorem, but his achievement belongs to a broad number-theoretic programme connecting elliptic curves and modular forms."
+  ],
+  "facts": [
+   [
+    "1953",
+    [
+     "Naissance le 11 avril 1953.",
+     "Born on 11 April 1953."
+    ]
+   ],
+   [
+    "1995",
+    [
+     "Publication de la preuve du dernier théorème de Fermat.",
+     "The proof of Fermat’s Last Theorem is published."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Œuvre et contributions",
+     "Work and contributions"
+    ],
+    [
+     [
+      "Ses recherches antérieures portent notamment sur la théorie d’Iwasawa. Dans les années 1990, il établit la modularité d’une classe de courbes elliptiques semi-stables sur les rationnels, ce qui, grâce à des travaux antérieurs de Frey, Ribet et d’autres mathématiciens, entraîne le théorème de Fermat. Une difficulté découverte après son annonce de 1993 est réparée en partie avec Richard Taylor ; les articles définitifs paraissent en 1995. Le succès de Wiles illustre comment un problème élémentaire à énoncer peut demander, pour être résolu, la rencontre de théories extrêmement sophistiquées.",
+      "His earlier work included major contributions to Iwasawa theory. In the 1990s he established modularity for a class of semistable elliptic curves over the rational numbers, which, combined with earlier insights of Frey, Ribet and others, implied Fermat’s theorem. A difficulty uncovered after his 1993 announcement was resolved in part through work with Richard Taylor; the definitive papers appeared in 1995. Wiles’s achievement shows how a problem that is easy to state can require the interaction of remarkably sophisticated theories."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/wiles",
+   "#history/advances/wiles-fermat",
+   "#history/advances/fermat-last-note"
+  ],
+  "sources": [
+   [
+    "https://mathshistory.st-andrews.ac.uk/Biographies/Wiles/",
+    [
+     "Andrew Wiles · MacTutor (anglais)",
+     "Andrew Wiles · MacTutor"
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "haken",
+  "name": "Wolfgang Haken",
+  "dates": "1928-2022",
+  "places": [
+   "Allemagne et États-Unis",
+   "Germany and United States"
+  ],
+  "dek": [
+   "Un pionnier de la topologie en dimension trois, également coauteur de la première preuve du théorème des quatre couleurs.",
+   "A pioneer in three-dimensional topology and coauthor of the first proof of the four-colour theorem."
+  ],
+  "facts": [
+   [
+    "1928",
+    [
+     "Naissance en 1928.",
+     "Born in 1928."
+    ]
+   ],
+   [
+    "1976",
+    [
+     "Avec Appel, preuve du théorème des quatre couleurs.",
+     "With Appel, proof of the four colour theorem."
+    ]
+   ],
+   [
+    "2022",
+    [
+     "Mort en 2022.",
+     "Dies in 2022."
+    ]
+   ]
+  ],
+  "sections": [
+   [
+    [
+     "Nœuds et variétés de dimension trois",
+     "Knots and three-dimensional manifolds"
+    ],
+    [
+     [
+      "Wolfgang Haken a joué un rôle fondateur dans la topologie des variétés de dimension trois, bien avant ses travaux sur les cartes coloriées. Ses recherches sur les surfaces normales, les surfaces incompressibles et les décompositions hiérarchiques ont fourni des méthodes pour reconnaître certaines propriétés de nœuds et de variétés. Le problème de reconnaître le nœud trivial, puis l’étude de l’équivalence des nœuds et de la classification des espaces à trois dimensions, l’ont conduit à créer des techniques devenues centrales en topologie géométrique. Ces méthodes s’appuient sur un dialogue rigoureux entre les propriétés des surfaces plongées et les procédures finies de calcul.",
+      "Wolfgang Haken was a foundational figure in the topology of three-dimensional manifolds well before his work on map colouring. His investigations of normal surfaces, incompressible surfaces and hierarchical decompositions supplied methods for deciding properties of knots and manifolds. From the problem of recognizing the unknot, he moved toward knot equivalence and the structure of three-dimensional spaces, developing techniques that became central to geometric topology. His approach connected the geometry of embedded surfaces with finite mathematical procedures."
+     ]
+    ]
+   ],
+   [
+    [
+     "Quatre couleurs et démonstration informatique",
+     "Four colours and computer-assisted proof"
+    ],
+    [
+     [
+      "Avec Kenneth Appel, Haken démontre en 1976 le théorème des quatre couleurs : toute carte planaire peut être coloriée avec au plus quatre couleurs si les régions partageant une frontière reçoivent des couleurs différentes. Leur méthode combine une partie théorique, qui réduit le problème à une famille finie de configurations inévitables, et de nombreux contrôles informatiques de réductibilité. La preuve complète, publiée en 1977, a marqué un tournant dans les débats sur la vérification des démonstrations assistées par ordinateur. Ce résultat célèbre ne doit pourtant pas faire oublier l’influence indépendante et durable de Haken sur la topologie des nœuds et des variétés.",
+      "With Kenneth Appel, Haken proved the four-colour theorem in 1976: every planar map can be coloured using at most four colours so that neighbouring regions have distinct colours. Their approach combined a theoretical reduction to a finite unavoidable collection of configurations with extensive computer checks of reducibility. The full proof, published in 1977, became a turning point in debates over the verification of computer-assisted proofs. This celebrated achievement should not eclipse Haken’s independent and lasting influence on knot theory and three-manifold topology."
+     ]
+    ]
+   ]
+  ],
+  "links": [
+   "#history/people/haken",
+   "#history/advances/four-colour-proof",
+   "#gallery/four-colours"
+  ],
+  "sources": [
+   [
+    "https://doi.org/10.1090/noti2781",
+    [
+     "Wolfgang Haken, 1928-2022 · Notices of the AMS (anglais)",
+     "Wolfgang Haken, 1928-2022 · Notices of the AMS"
+    ]
+   ],
+   [
+    "https://ijm.math.illinois.edu/ijm-issue-to-honor-wolfgang-haken/",
+    [
+     "Hommage de l’Illinois Journal of Mathematics (anglais)",
+     "Tribute in the Illinois Journal of Mathematics"
+    ]
+   ]
+  ]
  }
 ];

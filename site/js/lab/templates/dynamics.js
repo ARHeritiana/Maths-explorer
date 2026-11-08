@@ -15,7 +15,7 @@ export function mount(env) {
       setState(spec.set?spec.set(getState(),value):{[spec.key]:value,time:0});stage.invalidate();},{signal:abort.signal});slots.push({spec,input});
   }
   stage.wrap.parentElement.append(details);
-  let playing=null;
+  let playing=null,auto=null,lastPreset;const autos=[];
   function player(c,onChange){
     let stop=null;
     const api={get playing(){return !!stop;},stop(){if(stop){stop();stop=null;onChange?.(false);}},toggle(){
@@ -26,7 +26,15 @@ export function mount(env) {
         advance(c.set(current,value));const m=exp.model.model({...current,time:value});
         if(value>=c.max||(m.status!=='complete'&&value>=m.path.t)){stop=null;onChange?.(false);return false;}
       });onChange?.(true);
-    }};playing=api;return api;
+    }};playing=api;
+    // `autoplay`: once, when the figure is first on screen, run the time from 0 so that the two futures visibly part (nothing runs
+    // offscreen, and under reduced motion the figure rests at `rest`, a time at which the gap is already visible)
+    if(c.autoplay){auto=c;const IO=stage.wrap.ownerDocument.defaultView.IntersectionObserver;let seen=false,io=null;
+      const start=()=>{if(seen)return;seen=true;io?.disconnect();if(c.get(getState())!==0)return;if(stage.reduced()){if(c.rest!=null)advance(c.set(getState(),c.rest));}else api.toggle();};
+      io=IO?new IO(es=>{if(es.some(e=>e.isIntersecting))start();},{threshold:.3}):null;io?.observe(stage.wrap);autos.push(()=>io?.disconnect());}
+    return api;
   }
-  return {...base,player,draw(g){base.draw(g);const s=getState();for(const {spec,input}of slots){const v=String(spec.get?spec.get(s):s[spec.key]);if(input.value!==v)input.value=v;if(spec.options)spec.options.forEach(([,,off],i)=>{if(off){const d=!!off();if(input.options[i].disabled!==d)input.options[i].disabled=d;}});}},destroy(){playing?.stop();abort.abort();details.remove();base.destroy();}};
+  return {...base,player,draw(g){base.draw(g);const s=getState();
+    // a new starting condition (a preset button) restarts the run, except under reduced motion where the figure rests at a readable time
+    if(s.preset!==lastPreset){const first=lastPreset===undefined;lastPreset=s.preset;if(!first&&auto&&playing&&s.time===0)queueMicrotask(()=>{if(getState().time!==0)return;if(stage.reduced())advance(auto.set(getState(),auto.rest));else if(!playing.playing)playing.toggle();});}for(const {spec,input}of slots){const v=String(spec.get?spec.get(s):s[spec.key]);if(input.value!==v)input.value=v;if(spec.options)spec.options.forEach(([,,off],i)=>{if(off){const d=!!off();if(input.options[i].disabled!==d)input.options[i].disabled=d;}});}},destroy(){autos.forEach(f=>f());playing?.stop();abort.abort();details.remove();base.destroy();}};
 }

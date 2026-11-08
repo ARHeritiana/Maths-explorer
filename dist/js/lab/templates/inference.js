@@ -1,4 +1,5 @@
 import { mountMonteCarlo } from './monte-carlo.js';
+import { createFigure } from './inference-figure.js';
 // DOM-native chance surface: keyboard/touch cards, stable histogram rows and seeded trials.
 // It uses the shared shell lifecycle and dirty-frame scheduler, as the calculation surface does.
 export function createStage(host,{onFrame,label}){
@@ -16,12 +17,15 @@ export function mount({exp,stage,fmt,getState,setState,advance}){
  const on=(n,event,fn)=>n.addEventListener(event,fn,{signal:abort.signal});
  const premise=el('p','inference-assumption',t(d.assumption)),surface=el('div','inference-surface'),status=el('p','inference-status'),formula=el('p','inference-formula',d.formula),stats=el('dl','inference-stats'),chart=el('div','inference-chart'),caution=el('p','inference-caution',t(d.caution));
  status.setAttribute('role','status');status.setAttribute('aria-live','polite');chart.setAttribute('role','table');
- root.append(premise,surface,status,formula,stats,chart,caution);
+ const figHost=el('div','inf-fig-host');
+ const figure=createFigure(exp.id,figHost,{t,fmt,reduced:()=>stage.reduced(),getState,setState});
+ const more=el('details','inference-more');more.append(el('summary','',t(['Tableau des valeurs et tirages','Table of values and draws'])));
+ root.append(premise,figHost,surface,status,formula,stats,figure?more:chart,caution);
  const pairs=Array.from({length:8},()=>{const dt=el('dt',''),dd=el('dd','');stats.append(dt,dd);return [dt,dd];});
  const bins=Array.from({length:90},()=>{const row=el('div','inference-bin'),label=el('span','inference-bin-label'),tracks=el('span','inference-tracks'),observed=el('i','inference-observed'),theory=el('i','inference-theory'),value=el('span','inference-bin-value');row.setAttribute('role','row');label.setAttribute('role','rowheader');tracks.setAttribute('aria-hidden','true');value.setAttribute('role','cell');tracks.append(observed,theory);row.append(label,tracks,value);chart.append(row);return {row,label,observed,theory,value};});
- const note=el('p','inference-plot-note');chart.before(note);
+ const note=el('p','inference-plot-note');if(figure)more.append(note,chart);else chart.before(note);
  function button(text,fn){const b=el('button','btn btn-secondary',t(text));b.type='button';on(b,'click',fn);surface.append(b);return b;}
- const cells=el('div','inference-cells');surface.append(cells);
+ const cells=el('div','inference-cells');if(figure)more.append(cells);else surface.append(cells);
  const cards=Array.from({length:100},(_,i)=>{const n=el('span','inference-cell');cells.append(n);return n;});
  let accept,reject,reveal,doors=[],dataset;
  if(exp.id==='secretary'){
@@ -30,7 +34,7 @@ export function mount({exp,stage,fmt,getState,setState,advance}){
  }
  if(exp.id==='tank')reveal=button(['Révéler la population','Reveal population'],()=>setState({revealed:1}));
  if(exp.id==='monty'){
-  cells.hidden=true;const board=el('div','inference-doors');surface.prepend(board);
+  cells.hidden=true;const board=el('div','inference-doors');if(figure?.overlay)figure.overlay.append(board);else surface.prepend(board);
   doors=Array.from({length:3},(_,i)=>{const b=el('button','inference-door');b.type='button';on(b,'click',()=>{const s=getState(),m=exp.model.model(s);if(s.finished||s.opened&&i===m.door)return;setState(s.opened?{strategy:i===s.choice?'stay':'switch',finished:true}:{choice:i});});board.append(b);return b;});
   reveal=button(['Ouvrir une autre porte','Open another door'],()=>{const s=getState();if(!s.opened)setState({opened:true});});
  }
@@ -56,7 +60,7 @@ export function mount({exp,stage,fmt,getState,setState,advance}){
   if(stage.reduced()){setState({count:Math.min(5000,getState().count+1)});return;}
   grow.setAttribute('aria-pressed','true');let last=0;
   const step=now=>{if(!alive||stage.reduced()){stopGrowth();grow.setAttribute('aria-pressed','false');return;}
-   if(now-last>100){last=now;const s=getState();if(s.mode==='real'||s.mode==='custom'||s.count>=5000){stopGrowth();grow.setAttribute('aria-pressed','false');return;}setState({count:Math.min(5000,s.count+10)});}
+   if(now-last>100){last=now;const s=getState();if(s.mode==='real'||s.mode==='custom'||s.count>=(['pow2','fib'].includes(s.mode)?1000:5000)){stopGrowth();grow.setAttribute('aria-pressed','false');return;}setState({count:Math.min(5000,s.count+10)});}
    growth=requestAnimationFrame(step);};growth=requestAnimationFrame(step);
  });grow.setAttribute('aria-pressed','false');}
 
@@ -92,5 +96,6 @@ export function mount({exp,stage,fmt,getState,setState,advance}){
    reveal.disabled=!!s.opened;write(status,!s.opened?t(['Choisis une porte, puis demande une révélation.','Choose a door, then ask for a reveal.']):!m.valid?t(['Le prix est révélé : cette partie est exclue du dénominateur conditionnel.','Prize revealed: this game is excluded from the conditional denominator.']):s.finished?t(m.win?['Gagné !','You win!']:['Perdu.','You lose.']):t(['Touche la porte choisie pour rester, ou l’autre porte fermée pour changer.','Tap the chosen door to stay, or the other closed door to switch.']));
    showStats([[['Probabilité conditionnelle exacte','Exact conditional probability'],percent(m.probability)],[['Probabilité d’une chèvre révélée','Probability of a goat reveal'],percent(m.eligibleProbability)],[['Gains / chèvres révélées','Wins / goat reveals'],m.wins+' / '+m.eligible],[['Parties commencées','Games started'],m.runs],[['Fréquence conditionnelle','Conditional frequency'],percent(m.frequency)],[['IC Wilson des simulations (95 %, approché)','Simulation Wilson CI (95%, approximate)'],interval(m.wins,m.eligible)]]);bars([m.frequency||0],[m.probability],[t(['Gagner','Win'])],t(['Gains conditionnés sur une chèvre révélée','Wins conditioned on a goat reveal']));
   }
- },destroy(){alive=false;stopGrowth();abort.abort();}};
+ figure?.update(s,m);
+ },destroy(){alive=false;stopGrowth();abort.abort();figure?.destroy();}};
 }

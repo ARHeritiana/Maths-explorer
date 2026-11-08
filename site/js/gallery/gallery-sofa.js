@@ -8,7 +8,7 @@ const FRAME_MS=12;   // the walls get at most this long per frame (after the fir
 const S=52,OX=450,OY=40,EPS=1e-5;   // world (y up) to canvas: X = OX + S x, Y = OY + S (1 - y)
 export function movingSofa(root,opts){
   const {t,lang}=opts,num=(v,d=3)=>lang==='fr'?v.toFixed(d).replace('.',','):v.toFixed(d);
-  let kind='hammersley',r=HAMMERSLEY_R,w=1,len=1.8,poly=[],hit=[],c0=[0,0],reachR=1,pose={x:0,y:0,a:0},shown={x:0,y:0,a:0},want=null,drag=null,drawing=null,play=null,auto=false,best=0,dirty=true,own=null;
+  let kind='hammersley',r=HAMMERSLEY_R,w=1,len=1.8,poly=[],hit=[],c0=[0,0],reachR=1,pose={x:0,y:0,a:0},shown={x:0,y:0,a:0},want=null,drag=null,drawing=null,play=null,auto=false,best=0,dirty=true,own=null,ghosts=[],preview=[];
   const o=exhibit(root,opts,t('Pousse le canapé dans le couloir, de gauche à droite puis vers le bas, sans traverser les murs : contre un mur, il glisse. Glisse-le pour le déplacer, tire la poignée ronde pour le faire tourner autour de son centre ; au clavier, les flèches le déplacent et les touches [ et ] le font tourner. Pour zoomer, pince l’écran ou utilise Ctrl + molette.','Push the sofa along the hallway, left to right then down, without going through the walls: against a wall it slides. Drag it to move it, pull the round handle to turn it about its centre; with the keyboard, arrow keys move it and the [ and ] keys turn it. To zoom, pinch or use Ctrl + wheel.'),
     `<label class="act-field exhibit-select"><span class="act-label">${t('Forme','Shape')}</span><select id="so-kind"><option value="hammersley" selected>${t('Famille de Hammersley','Hammersley’s family')}</option><option value="gerver">${t('Canapé de Gerver','Gerver’s sofa')}</option><option value="rect">${t('Rectangle','Rectangle')}</option><option value="own">${t('Mon dessin','My drawing')}</option></select></label>`+
     field('so-r',t('Rayon de l’encoche r','Notch radius r'),0,1,.01,r.toFixed(2))+field('so-w',t('Largeur','Width'),.2,1,.01,w)+field('so-l',t('Longueur','Length'),.2,3,.01,len)+
@@ -22,7 +22,14 @@ export function movingSofa(root,opts){
   const guide=a=>kind==='gerver'?gerverTurn(GERVER.path,a):kind==='hammersley'?hammersleyTurn(r,a):null;
   const motion=s=>kind==='gerver'?gerverPose(GERVER.path,s):hammersleyPose(r,s,1.5);
   const start=()=>{if(kind==='hammersley'||kind==='gerver')return motion(0);const xs=poly.map(p=>p[0]),ys=poly.map(p=>p[1]);return {x:-1.5-Math.max(...xs),y:.5-(Math.max(...ys)+Math.min(...ys))/2,a:0};};
-  function shapeChanged(){setPoly(kind==='hammersley'?hammersley(r):kind==='gerver'?GERVER.outline:kind==='rect'?rectangle(w,len):own||rectangle(.8,.8));pose=kind==='own'&&own?.pose?{...own.pose}:start();shown={...pose};want=null;play=null;show();dirty=true;}
+  function shapeChanged(){setPoly(kind==='hammersley'?hammersley(r):kind==='gerver'?GERVER.outline:kind==='rect'?rectangle(w,len):own||rectangle(.8,.8));pose=kind==='own'&&own?.pose?{...own.pose}:start();shown={...pose};want=null;play=null;ghosts=[];buildPreview();show();dirty=true;}
+  // The planned motion of Hammersley's and Gerver's sofas as faint outlines (6 poses of the turn), so the corner turn is visible before it is played;
+  // the poses the student actually visits are kept as ghosts (the swept trail) as the sofa moves.
+  function buildPreview(){preview=(kind==='hammersley'||kind==='gerver')?Array.from({length:6},(_,i)=>motion(1+i/5)):[];}
+  const GHOST_MAX=70;
+  function remember(){const l=ghosts[ghosts.length-1];if(!l||Math.hypot(pose.x-l.x,pose.y-l.y)>.2||Math.abs(pose.a-l.a)>.14){ghosts.push({x:pose.x,y:pose.y,a:pose.a});if(ghosts.length>GHOST_MAX)ghosts.shift();}}
+  const outline=(pts)=>{g.beginPath();pts.forEach((p,i)=>i?g.lineTo(X(p[0]),Y(p[1])):g.moveTo(X(p[0]),Y(p[1])));g.closePath();};
+  const mw=str=>(g.measureText(str)||{}).width||str.length*7;
   function show(){root.querySelector('#so-r').closest('.act-field').hidden=kind!=='hammersley';root.querySelectorAll('#so-w,#so-l').forEach(el=>el.closest('.act-field').hidden=kind!=='rect');playBtn.hidden=!(kind==='hammersley'||kind==='gerver');drawBtn.hidden=kind!=='own';}
   function moveTo(target){auto=false;pose=resolve(hit,pose,target,{eps:EPS,guide});dirty=true;}
   const centreOf=p=>place([c0],p)[0],centre=()=>centreOf(pose);
@@ -32,7 +39,7 @@ export function movingSofa(root,opts){
   bind(root,'so-r',v=>{r=v;shapeChanged();},v=>v.toFixed(2));bind(root,'so-w',v=>{w=v;shapeChanged();},v=>v.toFixed(2));bind(root,'so-l',v=>{len=v;shapeChanged();},v=>v.toFixed(2));
   o.on(drawBtn,'click',()=>{drawing=[];drawBtn.textContent=t('Dessine dans le couloir…','Draw in the hallway…');dirty=true;});
   o.on(playBtn,'click',()=>{play=play===null?0:null;auto=true;dirty=true;o.wake(100);});
-  o.on(root.querySelector('#so-reset'),'click',()=>{pose=start();shown={...pose};want=null;play=null;dirty=true;});
+  o.on(root.querySelector('#so-reset'),'click',()=>{pose=start();shown={...pose};want=null;play=null;ghosts=[];dirty=true;});
   o.touchHit(at=>{if(drawing)return true;const p=W(at),h=handle(),poly=place(hit,pose);if(Math.hypot(p[0]-h[0],p[1]-h[1])<.3)return true;let yes=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;});
   o.on(o.cv,'pointerdown',e=>{const p=W(o.point(e));play=null;
     if(drawing){drawing=[p];drag={draw:true};}
@@ -56,6 +63,8 @@ export function movingSofa(root,opts){
   o.on(o.cv,'pointerup',up);o.cancelDrag=()=>{drag=null;want=null;};
   o.on(o.cv,'keydown',e=>{if(e.shiftKey)return;const d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]}[e.key];
     if(d){e.preventDefault();play=null;moveTo({...pose,x:pose.x+d[0]*.05,y:pose.y+d[1]*.05});}else if(e.key==='['||e.key===']'){e.preventDefault();play=null;moveTo(turnAbout(pose,c0,pose.a+(e.key===']'?-1:1)*Math.PI/90));}});
+  // Default view: framed on the corner (the hallway is long and the sofa small at the plain scale). Reset (0 or double click) returns here.
+  {const cam=o.navigation.camera,Z=1.75,W0=-.9,V0=-.15;const frame=()=>{cam.scale=Z;cam.x=o.W/2-Z*X(W0);cam.y=o.H/2-Z*Y(V0);};cam.reset=frame;frame();o.navigation.apply();}
   shapeChanged();
   root.__sofa=()=>({pose:{...pose},handle:handle(),centre:centre(),kind});   // read by the browser tests
   o.onResize=()=>{dirty=true;};o.busy=()=>play!==null||!!want;
@@ -67,16 +76,28 @@ export function movingSofa(root,opts){
     // the drawn pose eases toward the true one (about 25 ms), which hides the small jumps of a sliding contact
     const gap=Math.hypot(pose.x-shown.x,pose.y-shown.y)+Math.abs(pose.a-shown.a);
     if(gap>0){if(opts.reduced()||gap>1.2||play!==null)shown={...pose};else{const k=1-Math.exp(-real*45);shown={x:shown.x+(pose.x-shown.x)*k,y:shown.y+(pose.y-shown.y)*k,a:shown.a+(pose.a-shown.a)*k};if(Math.hypot(pose.x-shown.x,pose.y-shown.y)+Math.abs(pose.a-shown.a)<2e-4)shown={...pose};}dirty=true;}
+    if(!drawing&&(gap>0||play!==null))remember();
     if(!dirty)return false;dirty=false;
     const C=palette(),ok=fits(poly,pose,EPS),done=ok&&through(poly,pose),A=kind==='gerver'?GERVER.area:kind==='hammersley'?hammersleyArea(r):area(poly);if(done&&!auto)best=Math.max(best,A);
     g.clearRect(0,0,o.W,o.H);g.fillStyle=C.line;g.globalAlpha=.35;g.fillRect(-2000,-2000,4640,4440);g.globalAlpha=1;
     g.fillStyle=C.sunken;g.fillRect(-2000,Y(1),X(1)+2000,S);g.fillRect(X(0),Y(1),S,3000);
     g.strokeStyle=C.ink;g.lineWidth=2;g.beginPath();g.moveTo(-2000,Y(1));g.lineTo(X(1),Y(1));g.lineTo(X(1),3000);g.moveTo(-2000,Y(0));g.lineTo(X(0),Y(0));g.lineTo(X(0),3000);g.stroke();
+    if(!drawing){
+      g.save();g.setLineDash([4,5]);g.lineWidth=1;g.globalAlpha=.6;g.strokeStyle=C.muted;for(const q of preview){outline(place(poly,q));g.stroke();}g.setLineDash([]);g.restore();
+      g.lineWidth=1.2;for(const q of ghosts){outline(place(poly,q));g.globalAlpha=.05;g.fillStyle=C.accent;g.fill();g.globalAlpha=.3;g.strokeStyle=C.accent;g.stroke();}g.globalAlpha=1;}
     if(drawing){g.strokeStyle=C.obj2;g.lineWidth=2;g.beginPath();drawing.forEach((p,i)=>i?g.lineTo(X(p[0]),Y(p[1])):g.moveTo(X(p[0]),Y(p[1])));g.stroke();}
     else{const pts=place(poly,shown);g.beginPath();pts.forEach((p,i)=>i?g.lineTo(X(p[0]),Y(p[1])):g.moveTo(X(p[0]),Y(p[1])));g.closePath();
       g.fillStyle=ok?(done?C.pos:C.accent):C.neg;g.globalAlpha=.4;g.fill();g.globalAlpha=1;g.strokeStyle=ok?C.ink:C.neg;g.lineWidth=2;g.stroke();
       const h=handleOf(shown),[cx,cy]=centreOf(shown);g.strokeStyle=C.ink;g.lineWidth=1.5;g.setLineDash([4,3]);g.beginPath();g.moveTo(X(cx),Y(cy));g.lineTo(X(h[0]),Y(h[1]));g.stroke();g.setLineDash([]);
       g.fillStyle=C.ink;g.beginPath();g.arc(X(cx),Y(cy),3.5,0,2*Math.PI);g.fill();g.fillStyle=C.obj2;g.beginPath();g.arc(X(h[0]),Y(h[1]),8,0,2*Math.PI);g.fill();}
+    {const cam=o.navigation?.camera;g.save();g.setTransform(o.scale,0,0,o.scale,0,0);
+      g.font='600 13px "IBM Plex Sans",sans-serif';g.textBaseline='top';g.textAlign='left';
+      const L1=`${t('Aire','Area')} ${num(A,kind==='gerver'?4:3)}`,L2=`${t('record','record')} ${num(RECORDS.gerver,4)}`,w1=mw(`${L1}  ·  ${L2}`);
+      g.fillStyle=C.surface;g.fillRect(6,6,w1+14,24);g.strokeStyle=C.line;g.lineWidth=1;g.strokeRect(6.5,6.5,w1+13,23);g.fillStyle=ok?C.ink:C.neg;g.fillText(L1,13,12);g.fillStyle=C.muted;g.font='13px "IBM Plex Sans",sans-serif';g.fillText(`·  ${L2}`,13+mw(L1+'  '),12);
+      // the turn: a gauge from 0 to 90 degrees, with the sofa's current angle
+      const deg=Math.max(0,Math.min(90,-pose.a*180/Math.PI)),bx=14,by=o.H-24,bw=200;g.fillStyle=C.surface;g.fillRect(6,by-20,bw+16,42);g.strokeStyle=C.line;g.strokeRect(6.5,by-19.5,bw+15,41);
+      g.font='12px "IBM Plex Sans",sans-serif';g.fillStyle=C.muted;g.fillText(t('Virage dans le coin','Turn in the corner'),bx,by-15);g.fillStyle=C.sunken;g.fillRect(bx,by+4,bw,8);g.fillStyle=done?C.pos:ok?C.accent:C.neg;g.fillRect(bx,by+4,bw*deg/90,8);
+      g.strokeStyle=C.ink;g.lineWidth=1;g.strokeRect(bx+.5,by+4.5,bw-1,7);g.fillStyle=C.ink;g.textAlign='right';g.fillText(`${Math.round(deg)}° / 90°`,bx+bw,by-15);g.restore();}
     const status=drawing?t('Dessine le contour de ton canapé d’un seul trait.','Draw the outline of your sofa in one stroke.'):!ok?t('Le canapé traverse un mur : ramène-le dans le couloir.','The sofa goes through a wall: bring it back into the hallway.'):done?t('Le canapé a passé le coin !','The sofa is round the corner!'):t('Dans le couloir.','In the hallway.');
     const turned=Math.round(-pose.a*180/Math.PI);
     o.read(`${t('Aire :','Area:')} ${num(A,kind==='gerver'?4:3)}${kind==='hammersley'?` (π/2 + 2r − πr²/2 = ${num(hammersleyArea(r))})`:''} · ${t('tourné de','turned by')} ${turned}° · ${status}${best?` · ${t('ta meilleure aire passée :','your best area through:')} ${num(best,4)}`:''} · ${t('record connu :','known record:')} ${num(RECORDS.gerver,4)}`);

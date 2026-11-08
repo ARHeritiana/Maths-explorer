@@ -10,7 +10,7 @@ import {buildDiscoveryIndex,topicCounts} from '../site/js/discovery-index.js';
 import {GALOIS_BIOGRAPHY} from '../site/js/reading-history-content.js';
 const t=p=>p[0];
 test('historical records have typed dates, sources, context and resolving people',()=>{
- assert.ok(PEOPLE.length===57&&ADVANCES.length>=50);
+ assert.ok(PEOPLE.length===69&&ADVANCES.length>=50);
  for(const list of [PEOPLE,ADVANCES])assert.equal(list.length,new Set(list.map(x=>x.id)).size);
  for(const item of [...PEOPLE,...ADVANCES]){
   assert.ok(Number.isInteger(item.start));assert.ok(item.end===null||Number.isInteger(item.end)&&item.end>=item.start);
@@ -166,8 +166,9 @@ test('major questions and results of #16 are dated, typed and sourced',()=>{
  for(const [q,a] of [['fermat-last-note','wiles-fermat'],['poincare-conjecture','perelman-preprints'],['kepler-packing','hales-kepler-formal']]){
   assert.ok(ADVANCES.find(x=>x.id===q).links.includes('#history/advances/'+a));assert.ok(ADVANCES.find(x=>x.id===a).links.includes('#history/advances/'+q));
  }
- // No new person was added for these events (issue #15 is separate): authors are credited by name.
- for(const name of ['Bernhard Riemann','Georg Cantor','Kurt Gödel','Andrew Wiles','Grigori Perelman'])assert.ok(ADVANCES.some(e=>e.credits.includes(name)),name);
+ // Authors on the people timeline (issue #15) are linked as people; the others stay credited by name.
+ for(const [event,id] of [['riemann-hypothesis','riemann'],['cantor-uncountable','cantor'],['godel-incompleteness','godel'],['godel-consistency','godel'],['cohen-independence','godel'],['wiles-fermat','wiles'],['dedekind-cuts','dedekind'],['lebesgue-integral','lebesgue'],['kolmogorov-axioms','kolmogorov']])assert.ok(ADVANCES.find(e=>e.id===event).people.includes(id),event);
+ assert.ok(ADVANCES.find(e=>e.id==='perelman-preprints').credits.includes('Grigori Perelman'));
 });
 
 // Issue #15: every person with a full biography links to it, and the biography links back to the timeline entry.

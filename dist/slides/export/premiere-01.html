@@ -4507,7 +4507,7 @@ __d("lab/experiments/dynamics.js", function (__e, __r) {
 const D = __r("lab/models/dynamics.js");
 const { LIMITS } = __r("device-capability.js");
 const P=(fr,en)=>[fr,en],clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
-const time={kind:'scrubber',min:0,max:20,step:.04,label:P('Temps simulé','Simulation time'),get:s=>s.time,set:(s,time)=>({time}),play:{step:.04}};
+const time={kind:'scrubber',min:0,max:20,step:.04,label:P('Temps simulé','Simulation time'),get:s=>s.time,set:(s,time)=>({time}),play:{step:.04},autoplay:true,rest:8};
 const run={kind:'action',label:P('Repartir de ces conditions','Use these initial conditions'),options:[{value:'step',label:P('Un pas','One step')},{value:'reset',label:P('Revenir au départ','Reset time')}],act:(s,v)=>({time:v==='step'?Math.min(20,s.time+.04):0})};
 const delta={kind:'slider',key:'delta',min:0,max:.01,step:.000001,label:P('Écart initial de la comparaison','Initial comparison difference')};
 const speed={key:'speed',label:P('Vitesse de lecture','Playback speed'),options:[.25,.5,1,2,4].map(x=>[x,P(`× ${x}`,`× ${x}`)]),set:(s,x)=>({speed:Number(x)})};
@@ -4517,17 +4517,23 @@ const precision={key:'tolerance',label:P('Tolérance locale du solveur','Solver 
 // measured once by the shell: how many solver steps per second this device does
 const scale={kind:'dynamics',share:.3,work:()=>{const r=D.simulateDynamics('pendulum',{m1:1,m2:1,l1:1,l2:1,g:9.81,damping:0},[2,1.9,0,0],2,{tolerance:1e-9});return r.accepted+r.rejected;},apply:r=>{device.tier=r.tier;device.limits=r.limits;}};
 const settings=(key,label,min,max,step=.1)=>({key,label,min,max,step});
-function diagnostic(model){return {x:[0,20],y:[0,8],share:.65,xTicks:[0,5,10,15,20],yTicks:[0,2,4,6,8],scene(s,{fmt}){
-  const m=model(s),points=m.path.samples.filter(q=>q.t<=m.now.t).map(q=>{const other=D.stateAt(m.other,q.t);let distance;
-    if(s.system==='pendulum'){const a=D.pendulumPoints(m.params,q.y)[1],b=D.pendulumPoints(m.params,other.y)[1];distance=Math.hypot(a[0]-b[0],a[1]-b[1]);}
-    else distance=Math.hypot(...q.y.filter((_,i)=>i%4<2).map((v,i)=>v-other.y[Math.floor(i/2)*4+i%2]));
-    return [q.t,distance];});
-  // before Play there is only the t = 0 sample (one point draws nothing): show where the curve starts, with the initial separation as a guide
-  const last=points.at(-1),guide=points.length<2&&last?[{a:[0,last[1]],b:[20,last[1]],color:'muted',dash:[3,5],width:1.5}]:[];
-  return {polys:[{pts:points,color:'neg',close:false,width:2}],lines:guide,points:last?[{at:last,r:4.5,color:'neg'}]:[],texts:[{at:[.3,7.3],text:fmt.t(P('Distance entre les deux trajectoires','Distance between trajectories')),color:'muted',size:13}]};
+// Separation of the two nearby trajectories against time, on a logarithmic scale: an exponential growth (chaos) is a rising straight line,
+// and the plot fills from t = 0 as the time advances. The faint dashed ghost is the whole curve, so the student sees where it is heading.
+const SEP_FLOOR=-9;
+function separation(model,s,q,m){const other=D.stateAt(m.other,q.t);let d;
+  if(s.system==='pendulum'){const a=D.pendulumPoints(m.params,q.y)[1],b=D.pendulumPoints(m.params,other.y)[1];d=Math.hypot(a[0]-b[0],a[1]-b[1]);}
+  else d=Math.hypot(...q.y.filter((_,i)=>i%4<2).map((v,i)=>v-other.y[Math.floor(i/2)*4+i%2]));
+  return [q.t,Math.max(SEP_FLOOR,Math.log10(Math.max(d,1e-300)))];}
+function diagnostic(model){return {x:[0,20],y:[-7,1.5],share:.65,xTicks:[0,5,10,15,20],yTicks:[-6,-4,-2,0],scene(s,{fmt}){
+  const m=model(s),all=m.path.samples.map(q=>separation(model,s,q,m)),points=all.filter(q=>q[0]<=m.now.t),first=all[0],last=points.at(-1);
+  const gain=last&&first?Math.pow(10,last[1]-first[1]):1,texts=[{at:[.3,1.4],text:fmt.t(P('Écart entre les deux trajectoires, en log₁₀ (−4 = 0,0001)','Gap between the two trajectories, log₁₀ (−4 = 0.0001)')),color:'muted',size:12},
+    {at:[.3,-6.65],text:fmt.t(P('t = 0 : écart de départ','t = 0: starting gap')),color:'muted',size:11}];
+  if(last&&gain>1.5)texts.push({at:[Math.min(14,last[0]+.4),Math.max(-5.6,last[1]-.7)],text:`× ${gain>=100?Math.round(gain).toLocaleString(fmt.lang==='fr'?'fr-FR':'en-US'):gain.toFixed(1)}`,color:'neg',size:14});
+  return {polys:[{pts:all,color:'muted',close:false,width:1.5,dash:[2,5],alpha:.5},{pts:points,color:'neg',close:false,width:2.5}],
+    lines:first?[{a:[0,first[1]],b:[20,first[1]],color:'muted',dash:[3,5],width:1.2}]:[],points:last?[{at:last,r:5,color:'neg'}]:[],texts};
 }};}
 function readout(model){return(s,{fmt})=>{const m=model(s);return [[P('Temps effectivement calculé','Actual calculated time'),fmt.read(m.now.t,2)],[P('Énergie mécanique','Mechanical energy'),fmt.read(m.energy,6)],[P(s.system==='pendulum'&&s.damping?'Variation relative d’énergie, frottement inclus':'Écart relatif d’énergie',s.system==='pendulum'&&s.damping?'Relative energy change, including damping':'Relative energy deviation'),fmt.read(m.drift,8)],[P('Distance des trajectoires','Trajectory distance'),fmt.read(m.divergence,6)],[P('État du calcul','Computation status'),m.status==='complete'?fmt.t(P('Précision locale contrôlée','Local precision controlled')):fmt.t(P('Arrêt : rencontre proche ou limite numérique','Stopped: close encounter or numerical limit'))],...(s.system==='gravity'?[[P('Écart relatif du moment cinétique','Relative angular momentum deviation'),fmt.read(m.angularDrift,8)]]:[])];};}
-const pendulumState={system:'pendulum',a:2,b:1.9,u:0,v:0,l1:1,l2:1,m1:1,m2:1,g:9.81,damping:0,time:0,delta:.00001,speed:1,tolerance:1e-8};
+const pendulumState={system:'pendulum',a:2,b:1.9,u:0,v:0,l1:1,l2:1,m1:1,m2:1,g:9.81,damping:0,time:0,delta:.00001,speed:2,tolerance:1e-8};
 function moveBob(s,index,x,y){const m=D.pendulumModel(s),a=m.now.y[0],b=m.now.y[1];if(index===0)return{a:Math.atan2(x,-y),b,u:0,v:0,time:0};const first=D.pendulumPoints(m.params,[a,b])[0];return {a,b:Math.atan2(x-first[0],-(y-first[1])),u:0,v:0,time:0};}
 const pendulum={
  scale,id:'double-pendulum',template:'dynamics',symbol:'∿',group:P('Systèmes dynamiques','Dynamical systems'),title:P('Deux pendules, deux futurs proches','Two pendulums, two nearby futures'),short:P('Le double pendule','The double pendulum'),intro:P('Glisse les deux masses, puis lance le temps. Compare deux départs presque identiques et surveille les erreurs numériques.','Drag both masses, then start time. Compare almost identical starts and inspect numerical errors.'),duration:18,level:P('Lycée · Université','Upper secondary · University'),prereq:P('Angles, énergie, dérivées','Angles, energy, derivatives'),state:pendulumState,
@@ -4536,20 +4542,21 @@ const pendulum={
  settings:[settings('m1',P('Masse 1','Mass 1'),.1,5),settings('m2',P('Masse 2','Mass 2'),.1,5),settings('l1',P('Longueur 1','Length 1'),.2,2),settings('l2',P('Longueur 2','Length 2'),.2,2),settings('g',P('Gravité','Gravity'),.1,20),settings('u',P('Vitesse angulaire initiale 1','Initial angular velocity 1'),-10,10),settings('v',P('Vitesse angulaire initiale 2','Initial angular velocity 2'),-10,10),settings('damping',P('Frottement visqueux','Viscous damping'),0,1,.01),speed,precision],
  views:{panels:['motion','diagnostic'],motion:{x:[-4.2,4.2],y:[-4.2,4.2],equal:true,share:.65,scene(s){const m=D.pendulumModel(s),first=m.points[0],second=m.points[1],other=m.nearby;
    const past=m.path.samples.filter(q=>q.t<=m.now.t&&q.t>=m.now.t-4),polys=[];for(let i=1;i<past.length;i++)polys.push({pts:[D.pendulumPoints(m.params,past[i-1].y)[1],D.pendulumPoints(m.params,past[i].y)[1]],color:'accent',close:false,alpha:.1+.6*i/past.length,width:1.6});
-   return{polys,lines:[{a:[0,0],b:first,color:'accent',width:3},{a:first,b:second,color:'accent',width:3},{a:[0,0],b:other[0],color:'neg',dash:[4,4]},{a:other[0],b:other[1],color:'neg',dash:[4,4]}],points:[{at:[0,0],color:'ink',r:4},{at:first,color:'accent',r:7+Math.sqrt(s.m1)*2},{at:second,color:'accent',r:7+Math.sqrt(s.m2)*2},{at:other[1],color:'neg',r:4,hollow:true}]};}},diagnostic:diagnostic(D.pendulumModel),formula:()=> 'M(q)q″ + C(q,q′) + ∇V(q) + c q′ = 0',readout:readout(D.pendulumModel)},
+   const past2=m.other.samples.filter(q=>q.t<=m.now.t&&q.t>=m.now.t-4);for(let i=1;i<past2.length;i++)polys.push({pts:[D.pendulumPoints(m.params,past2[i-1].y)[1],D.pendulumPoints(m.params,past2[i].y)[1]],color:'obj2',close:false,dash:[3,4],alpha:.2+.7*i/past2.length,width:1.6});
+   return{polys,lines:[{a:[0,0],b:first,color:'accent',width:3},{a:first,b:second,color:'accent',width:3},{a:[0,0],b:other[0],color:'obj2',dash:[4,4]},{a:other[0],b:other[1],color:'obj2',dash:[4,4]}],points:[{at:[0,0],color:'ink',r:4},{at:first,color:'accent',r:7+Math.sqrt(s.m1)*2},{at:second,color:'accent',r:7+Math.sqrt(s.m2)*2},{at:other[1],color:'obj2',r:5,hollow:true}]};}},diagnostic:diagnostic(D.pendulumModel),formula:()=> 'M(q)q″ + C(q,q′) + ∇V(q) + c q′ = 0',readout:readout(D.pendulumModel)},
  missions:[{id:'predict',kind:'predict',correct:1,prompt:P('Deux départs distants de 0,00001 radian : les futurs resteront-ils toujours proches ?','Two starts 0.00001 radians apart: must their futures stay close forever?'),choices:[P('Oui, pour toutes les conditions.','Yes, for every initial condition.'),P('Cela dépend des conditions et de la durée.','It depends on initial conditions and duration.')]},{id:'release',kind:'explore',set:{time:0},unlock:['bob1','bob2','time'],prompt:P('Glisse les masses, puis avance au-delà de 5 secondes. Le rouge suit un angle initial très légèrement différent.','Drag the masses, then advance past 5 seconds. Red follows a slightly different initial angle.'),goal:s=>s.time>=5,done:P('La distance est mesurée dans le second graphique. Elle peut croître sans que le mouvement soit aléatoire.','The second graph measures separation. It can grow while the motion remains deterministic.')},{id:'compare',kind:'contrast',variants:[{label:P('Petites oscillations','Small oscillations'),set:{a:.15,b:.12,u:0,v:0,time:10}},{label:P('Grande amplitude','Large amplitude'),set:{a:2,b:1.9,u:0,v:0,time:10}}],prompt:P('Compare deux régimes. Un double pendule n’est pas chaotique pour toutes ses conditions initiales.','Compare two regimes. A double pendulum is not chaotic for all initial conditions.')},{id:'energy',kind:'check',set:{a:0,b:0,u:0,v:0,l1:1,l2:1,m1:1,m2:1,g:9.81,time:0},quantity:'energy',answer:-29.43,tolerance:1e-8,prompt:P('Les deux masses au repos vers le bas : avec le zéro de potentiel au pivot, calcule E pour m₁ = m₂ = l₁ = l₂ = 1 et g = 9,81.','Both masses rest downwards. With potential zero at the pivot, compute E for m₁ = m₂ = l₁ = l₂ = 1 and g = 9.81.'),because:P('E = −(m₁ + m₂)gl₁ − m₂gl₂ = −29,43.','E = −(m₁ + m₂)gl₁ − m₂gl₂ = −29.43.')},{id:'why',kind:'explain',prompt:P('Pourquoi faut-il comparer les tolérances avant d’attribuer un écart au chaos ?','Why compare solver tolerances before attributing separation to chaos?'),argument:P('Les mêmes équations et conditions initiales donnent le même futur idéal. Le calcul RK4 estime son erreur locale par deux demi-pas comparés à un pas entier, puis adapte le pas. Une petite variation d’énergie sans frottement contrôle une erreur numérique, mais ne prouve pas que la phase reste exacte longtemps. Réduire la tolérance doit stabiliser une trajectoire sur un horizon fixé. Avec frottement, dE/dt = −c(u² + v²) : l’énergie baisse physiquement.','The same equations and initial conditions give the same ideal future. RK4 estimates local error by comparing two half steps with one whole step, then adjusts the step. Small energy variation without damping monitors numerical error but does not prove long-time phase accuracy. Reducing tolerance should stabilize a trajectory over a fixed horizon. With damping, dE/dt = −c(u² + v²): energy physically decreases.')}],
  conclusion:P('Le modèle suppose des tiges sans masse, des masses ponctuelles et des angles absolus mesurés depuis la verticale descendante. Le temps affiché est celui d’un état calculé, à 0,04 unité près. Le graphe rouge mesure une différence de positions, pas un exposant de Lyapunov.','The model assumes massless rods, point masses and absolute angles from downward vertical. Displayed time belongs to a calculated state, within 0.04 units. The red graph measures positional separation, not a Lyapunov exponent.'),history:{title:P('Des équations déterministes','Deterministic equations'),story:P('Les équations de Lagrange relient l’énergie cinétique et le potentiel aux accélérations couplées.','Lagrange equations connect kinetic energy and potential to the coupled accelerations.'),source:'https://www.myphysicslab.com/pendulum/double-pendulum-en.html'}
 };
 const preset=D.GRAVITY_PRESETS.figure8;
-const gravityState={system:'gravity',initial:preset.y.slice(),m1:1,m2:1,m3:1,G:1,com:true,time:0,delta:.00001,speed:1,tolerance:1e-8,preset:'figure8'};
+const gravityState={system:'gravity',initial:preset.y.slice(),m1:1,m2:1,m3:1,G:1,com:true,time:0,delta:.00001,speed:2,tolerance:1e-8,preset:'figure8'};
 function gravityMove(s,i,x,y,velocity){const m=D.gravityModel(s),initial=m.now.y.slice(),at=4*i;
  if(velocity){initial[at+2]=clamp(2*(x-initial[at]),-8,8);initial[at+3]=clamp(2*(y-initial[at+1]),-8,8);}else{initial[at]=clamp(x,-8,8);initial[at+1]=clamp(y,-8,8);if([0,1,2].some(j=>j!==i&&Math.hypot(initial[at]-initial[4*j],initial[at+1]-initial[4*j+1])<.025))return null;}
  return{initial,time:0,preset:'custom'};}
 const gravityControls={};for(let i=0;i<3;i++)for(const velocity of[false,true]){const id=`${velocity?'velocity':'body'}${i+1}`;gravityControls[id]={kind:'handle',panel:'motion',grid:.02,color:['accent','obj2','obj3'][i],label:P(`${velocity?'Vitesse':'Position'} du corps ${i+1}`,`${velocity?'Velocity':'Position'} of body ${i+1}`),at:s=>{const y=D.gravityModel(s).now.y;return[y[4*i]+(velocity?.5*y[4*i+2]:0),y[4*i+1]+(velocity?.5*y[4*i+3]:0)];},drag:(s,x,y)=>gravityMove(s,i,x,y,velocity),nudge:(s,dx,dy)=>{const y=D.gravityModel(s).now.y;return gravityMove(s,i,y[4*i]+(velocity?.5*y[4*i+2]:0)+.02*dx,y[4*i+1]+(velocity?.5*y[4*i+3]:0)+.02*dy,velocity);}};}
 const threeBody={
  ...pendulum,id:'three-body',symbol:'⋆',title:P('Trois corps sous la gravité','Three bodies under gravity'),short:P('Le problème des trois corps','The three-body problem'),intro:P('Déplace trois masses et les pointes de leurs vecteurs vitesse. Lance un huit périodique ou une rencontre et compare les diagnostics.','Move three masses and the tips of their velocity vectors. Run a periodic eight or an encounter and compare diagnostics.'),state:gravityState,
- model:{model:D.gravityModel,quantities:{mass:s=>s.m1+s.m2+s.m3},quantity:(k,s)=>s.m1+s.m2+s.m3},controls:{...gravityControls,time,run,delta},
- settings:[{key:'preset',label:P('Conditions initiales','Initial conditions'),options:[['figure8',P('Huit chorégraphique','Figure-eight choreography')],['hierarchical',P('Système hiérarchique','Hierarchical system')],['scattering',P('Rencontre et diffusion','Encounter and scattering')],['custom',P('Conditions personnalisées','Custom conditions')]],set:(s,k)=>k==='custom'?{preset:k}:({preset:k,initial:D.GRAVITY_PRESETS[k].y.slice(),m1:D.GRAVITY_PRESETS[k].masses[0],m2:D.GRAVITY_PRESETS[k].masses[1],m3:D.GRAVITY_PRESETS[k].masses[2],time:0})},settings('m1',P('Masse 1','Mass 1'),.001,5,.001),settings('m2',P('Masse 2','Mass 2'),.001,5,.001),settings('m3',P('Masse 3','Mass 3'),.001,5,.001),settings('G',P('Constante gravitationnelle','Gravitational constant'),.1,5,.1),{key:'com',label:P('Repère','Reference frame'),options:[['true',P('Centre de masse','Center of mass')],['false',P('Coordonnées initiales','Initial coordinates')]],get:s=>String(s.com),set:(s,v)=>({com:v==='true',time:0})},speed,precision],
+ model:{model:D.gravityModel,quantities:{mass:s=>s.m1+s.m2+s.m3},quantity:(k,s)=>s.m1+s.m2+s.m3},controls:{...gravityControls,time,regime:{kind:'choice',label:P('Conditions de départ','Starting conditions'),get:s=>s.preset,set:(s,k)=>({preset:k,initial:D.GRAVITY_PRESETS[k].y.slice(),m1:1,m2:1,m3:1,time:0}),options:[['figure8',P('Huit stable','Stable figure-eight')],['chaotic',P('Départ chaotique','Chaotic start')]].map(([value,label])=>({value,label}))},run,delta},
+ settings:[{key:'preset',label:P('Conditions initiales','Initial conditions'),options:[['figure8',P('Huit chorégraphique','Figure-eight choreography')],['chaotic',P('Départ chaotique','Chaotic start')],['hierarchical',P('Système hiérarchique','Hierarchical system')],['scattering',P('Rencontre et diffusion','Encounter and scattering')],['custom',P('Conditions personnalisées','Custom conditions')]],set:(s,k)=>k==='custom'?{preset:k}:({preset:k,initial:D.GRAVITY_PRESETS[k].y.slice(),m1:D.GRAVITY_PRESETS[k].masses[0],m2:D.GRAVITY_PRESETS[k].masses[1],m3:D.GRAVITY_PRESETS[k].masses[2],time:0})},settings('m1',P('Masse 1','Mass 1'),.001,5,.001),settings('m2',P('Masse 2','Mass 2'),.001,5,.001),settings('m3',P('Masse 3','Mass 3'),.001,5,.001),settings('G',P('Constante gravitationnelle','Gravitational constant'),.1,5,.1),{key:'com',label:P('Repère','Reference frame'),options:[['true',P('Centre de masse','Center of mass')],['false',P('Coordonnées initiales','Initial coordinates')]],get:s=>String(s.com),set:(s,v)=>({com:v==='true',time:0})},speed,precision],
  views:{panels:['motion','diagnostic'],motion:{x:[-4,4],y:[-4,4],equal:true,share:.65,scene(s){const m=D.gravityModel(s),colors=['accent','obj2','obj3'],polys=[],lines=[],points=[];
   for(let j=0;j<3;j++){const past=m.path.samples.filter(q=>q.t<=m.now.t&&q.t>=m.now.t-5);for(let i=1;i<past.length;i++)polys.push({pts:[past[i-1].y.slice(4*j,4*j+2),past[i].y.slice(4*j,4*j+2)],color:colors[j],close:false,alpha:.12+.55*i/past.length,width:1.5});
    polys.push({pts:m.other.samples.filter(q=>q.t<=m.now.t&&q.t>=m.now.t-5).map(q=>q.y.slice(4*j,4*j+2)),color:colors[j],close:false,dash:[3,4],alpha:.45});
@@ -4863,28 +4870,23 @@ __d("lab/experiments/fair-division.js", function (__e, __r) {
 // Two linked fair-division sandboxes share valuations and checks; geometry is not utility.
 const F = __r("lab/models/fair-division.js");
 const { clamp, snap } = __r("lab/models/num.js");
+const { cakeScene, goodsScene } = __r("lab/experiments/fair-scenes.js");
 const P=(fr,en)=>[fr,en],tones=['accent','obj2','obj3'];
-const counter=[[2,3,1],[1,2,3],[3,1,2]],uniform=[[1,1,1],[1,1,1],[1,1,1]];
+const counter=[[2,3,1],[1,2,3],[3,1,2]],uniform=[[3,3,3],[3,3,3],[3,3,3]];
 const cakeState={kind:'cake',values:uniform,cut1:1/3,cut2:2/3,person:0,bin:1};
 const yes=(b,f)=>f.t(b?P('oui','yes'):P('non','no'));
 function editValue(s,person,bin,value){const values=s.values.map(r=>r.slice());values[person][bin]=clamp(Math.round(value),0,6);return values[person].some(v=>v>0)?{values}:null;}
 const history={title:P('Des critères de partage','Criteria for division'),story:P('Les critères comparent les lots selon les préférences de chaque personne. Ils ne comparent pas des unités de bonheur entre personnes. Référence : A. Procaccia, Cake Cutting Algorithms, sections 2 et 3 du chapitre 13.','The criteria compare bundles using each person’s own preferences. They do not compare units of happiness between people. Reference: A. Procaccia, Cake Cutting Algorithms, sections 13.2 and 13.3.'),source:'https://www.cs.cmu.edu/~arielpro/15896s15/docs/paper10.pdf'};
 const readout=(s,{fmt})=>{const m=F.model(s);return [...m.own.map((v,i)=>[P(`Valeur du lot de ${String.fromCharCode(65+i)} pour cette personne`,`Own bundle value for ${String.fromCharCode(65+i)}`),fmt.read(v,3)]),[P('Proportionnel pour tous','Proportional for everyone'),yes(m.allProportional,fmt)],[P('Sans envie','Envy-free'),yes(m.envyFree,fmt)],[P('Plus grande envie','Largest envy'),fmt.read(m.maxEnvy,3)],...m.matrix.map((r,i)=>[P(`Évaluation de A, B, C par ${String.fromCharCode(65+i)}`,`Values of A, B, C for ${String.fromCharCode(65+i)}`),r.map(v=>fmt.read(v,3)).join(' ; ')])];};
 const cut=(key,label)=>({kind:'handle',axis:'x',color:'accent',grid:.1,label,
- at:s=>[s[key]*12,8],drag:(s,x)=>({[key]:clamp(x/12,key==='cut1'?0:s.cut1,key==='cut1'?s.cut2:1)}),
+ at:s=>[s[key]*12,9.6],drag:(s,x)=>({[key]:clamp(x/12,key==='cut1'?0:s.cut1,key==='cut1'?s.cut2:1)}),
  valuetext:(s,f)=>f.rel('x',s[key],3)});
 __e.default = {
  id:'fair-division',template:'figure',symbol:'⅓',group:P('Décider et partager','Decide and divide'),title:P('Partager la valeur, pas la longueur','Divide value, not length'),short:P('Partage d’un gâteau','Cake division'),intro:P('Déplace les deux coupures et modifie les goûts de A, B et C. Un tiers de longueur n’est pas forcément un tiers de valeur. Chaque ligne de densité est normalisée à une valeur totale de 1.','Move both cuts and edit the preferences of A, B and C. A third of the length need not be a third of the value. Each density row is normalized to a total value of 1.'),duration:12,level:P('Lycée · premières notions universitaires','Secondary · early university'),prereq:P('Fractions, aire sous une fonction constante par morceaux','Fractions, area under a piecewise constant function'),model:F,state:cakeState,
  controls:{cut1:cut('cut1',P('Première coupure','First cut')),cut2:cut('cut2',P('Seconde coupure','Second cut')),
  person:{kind:'choice',key:'person',label:P('Préférences à modifier','Preferences to edit'),options:[0,1,2].map(value=>({value,label:P(`Personne ${'ABC'[value]}`,`Person ${'ABC'[value]}`)}))},
  density:{kind:'handle',color:'obj2',grid:[.1,1],label:P('Densité : gauche/droite pour choisir une zone, haut/bas pour sa valeur','Density: left/right selects a region, up/down sets its value'),at:s=>[(s.bin+.5)*4,s.values[s.person][s.bin]],drag:(s,x,y)=>{const bin=clamp(Math.floor(x/4),0,2),patch=editValue(s,s.person,bin,y);return patch?{...patch,bin}:null;},nudge:(s,dx,dy)=>dx?{bin:clamp(s.bin+dx,0,2)}:editValue(s,s.person,s.bin,s.values[s.person][s.bin]+dy),valuetext:(s,f)=>`${'ABC'[s.person]} : ${s.bin+1} = ${f.num(s.values[s.person][s.bin])}`}},
- views:{panels:['figure'],figure:{x:[-1,13],y:[-1,11],axes:false,equal:false,scene(s,{fmt}){
- const edges=[0,s.cut1*12,s.cut2*12,12],rects=[],lines=[],texts=[];
- for(let i=0;i<3;i++){rects.push({x:edges[i],y:7,w:edges[i+1]-edges[i],h:1,color:tones[i],alpha:.35});texts.push({at:[(edges[i]+edges[i+1])/2,7.5],text:'ABC'[i],anchor:'center',color:'ink',size:18});}
- for(let person=0;person<3;person++)for(let bin=0;bin<3;bin++){const h=s.values[person][bin];lines.push({a:[bin*4,h],b:[(bin+1)*4,h],color:tones[person],width:person===s.person?4:1.5,dash:person===s.person?[]:[4,4]});}
- for(let bin=0;bin<3;bin++)rects.push({x:bin*4,y:0,w:4,h:s.values[s.person][bin],color:tones[s.person],alpha:.12});
- texts.push({at:[0,9.25],text:fmt.t(P('Gâteau : A reçoit à gauche, B au centre, C à droite','Cake: A gets left, B middle, C right')),color:'ink',size:14},{at:[0,-.6],text:fmt.t(P('Glisse la poignée de densité pour changer les goûts','Drag the density handle to edit preferences')),color:'muted',size:13});
- return {rects,lines,texts};},measure(s,{fmt}){const m=F.model(s);return {text:fmt.t(m.envyFree?P('Sans envie','Envy-free'):m.allProportional?P('Proportionnel, mais avec envie','Proportional, with envy'):P('Proportionnalité non satisfaite','Proportionality fails')),color:m.envyFree?'pos':'neg'};}},formula:(s,{fmt})=>fmt.t(P('Proportionnel : Vᵢ(Aᵢ) ≥ 1/3. Sans envie : Vᵢ(Aᵢ) ≥ Vᵢ(Aⱼ) pour tous i, j.','Proportional: Vᵢ(Aᵢ) ≥ 1/3. Envy-free: Vᵢ(Aᵢ) ≥ Vᵢ(Aⱼ) for all i, j.')),readout},
+ views:{panels:['figure'],figure:{x:[-1,13],y:[-9.2,12.8],axes:false,equal:false,scene:(s,{fmt})=>cakeScene(s,F.model(s),x=>fmt.t(x)),measure(s,{fmt}){const m=F.model(s);return {text:fmt.t(m.envyFree?P('Sans envie','Envy-free'):m.allProportional?P('Proportionnel, mais avec envie','Proportional, with envy'):P('Proportionnalité non satisfaite','Proportionality fails')),color:m.envyFree?'pos':'neg'};}},formula:(s,{fmt})=>fmt.t(P('Proportionnel : Vᵢ(Aᵢ) ≥ 1/3. Sans envie : Vᵢ(Aᵢ) ≥ Vᵢ(Aⱼ) pour tous i, j.','Proportional: Vᵢ(Aᵢ) ≥ 1/3. Envy-free: Vᵢ(Aᵢ) ≥ Vᵢ(Aⱼ) for all i, j.')),readout},
  missions:[
  {id:'open',kind:'predict',set:cakeState,prompt:P('Trois parts de même longueur sont-elles toujours un partage sans envie ?','Are three equal-length pieces always an envy-free division?'),choices:[P('Oui, la longueur suffit','Yes, length is enough'),P('Non, les goûts peuvent différer','No, preferences can differ')],correct:1},
  {id:'cuts',kind:'explore',set:{...cakeState,cut1:.2,cut2:.8},unlock:['cut1','cut2'],prompt:P('Avec les goûts uniformes, ajuste les coupures pour un partage proportionnel pour tous.','With uniform preferences, adjust both cuts to make the allocation proportional for everyone.'),hint:P('Chaque valeur est la longueur. Il faut trois parts de valeur 1/3.','Each value equals length. All three pieces must have value 1/3.'),goal:(s,m)=>m.allProportional,done:P('Les parts égales conviennent pour des goûts uniformes. Change maintenant les goûts.','Equal pieces work for uniform preferences. Now change the preferences.')},
@@ -4903,10 +4905,7 @@ const discreteExperiment={
  edit:{kind:'choice',key:'edit',label:P('Valeur à modifier','Value to edit'),options:[0,1].flatMap(i=>[0,1,2].map(j=>({value:`${i}-${j}`,label:P(`Personne ${'AB'[i]} · objet ${j+1}`,`Person ${'AB'[i]} · good ${j+1}`)})))},
  value:{kind:'handle',axis:'y',grid:.5,color:'pos',label:P('Valeur de l’objet pour la personne choisie','Good value for the selected person'),at:s=>{const [i,j]=editor(s);return [2+j*4,s.values[i][j]/2];},drag:(s,x,y)=>{const [i,j]=editor(s);return editValue(s,i,j,y*2);},nudge:(s,dx,dy)=>{const [i,j]=editor(s);return editValue(s,i,j,s.values[i][j]+(dy||dx));},valuetext:s=>{const[i,j]=editor(s);return `${'AB'[i]} : ${j+1} = ${s.values[i][j]}`;}},
  draft:{kind:'action',label:P('Autre allocation','Another allocation'),options:[{value:'round',label:P('Tour de rôle sincère','Sincere round robin')}],act:s=>({owners:F.roundRobin(s.values)})}},
- views:{panels:['figure'],figure:{x:[-1,13],y:[-1,11],axes:false,equal:false,scene(s,{fmt}){const [i,j]=editor(s),rects=[],texts=[],lines=[];
- for(let owner=0;owner<2;owner++){lines.push({a:[0,owner===0?8:6],b:[12,owner===0?8:6],color:tones[owner],width:1});texts.push({at:[-.7,owner===0?8:6],text:'AB'[owner],color:'ink',size:18});}
- for(let good=0;good<3;good++){const x=2+good*4,y=s.owners[good]===0?8:6;rects.push({x:x-.65,y:y-.45,w:1.3,h:.9,color:tones[good],alpha:.3});texts.push({at:[x,y],text:String(good+1),anchor:'center',color:'ink',size:17});rects.push({x:x-1,y:0,w:2,h:s.values[i][good]/2,color:tones[i],alpha:good===j?.4:.15});texts.push({at:[x,-.6],text:`${good+1}: ${fmt.num(s.values[i][good])}`,anchor:'center',color:'muted',size:14});}
- texts.push({at:[0,9.3],text:fmt.t(P('Glisse les objets sur la ligne A ou B','Drag goods to row A or B')),color:'ink',size:15},{at:[0,4],text:fmt.t(P('Valeurs privées de ','Private values of '))+'AB'[i],color:'ink',size:15});return {rects,texts,lines};},measure(s,{fmt}){const m=F.model(s);return {text:fmt.t(m.envyFree?P('Sans envie','Envy-free'):m.ef1?P('EF1, mais avec envie','EF1, with envy'):P('EF1 non satisfait','EF1 fails')),color:m.envyFree?'pos':'neg'};}},formula:(s,{fmt})=>fmt.t(P('Proportionnel : Vᵢ(Aᵢ) ≥ Vᵢ(tous les objets)/2. Sans envie : Vᵢ(Aᵢ) ≥ Vᵢ(Aⱼ).','Proportional: Vᵢ(Aᵢ) ≥ Vᵢ(all goods)/2. Envy-free: Vᵢ(Aᵢ) ≥ Vᵢ(Aⱼ).')),readout(s,{fmt}){const m=F.model(s);return [[P('Valeur du lot de A pour A','A’s value of A’s bundle'),fmt.read(m.own[0])],[P('Valeur du lot de B pour B','B’s value of B’s bundle'),fmt.read(m.own[1])],[P('Proportionnel pour tous','Proportional for everyone'),yes(m.allProportional,fmt)],[P('Sans envie','Envy-free'),yes(m.envyFree,fmt)],[P('Sans envie à un objet près (EF1)','Envy-free up to one good (EF1)'),yes(m.ef1,fmt)],[P('Évaluations de A : lot A ; lot B','A’s values: bundle A; bundle B'),m.matrix[0].map(v=>fmt.read(v)).join(' ; ')],[P('Évaluations de B : lot A ; lot B','B’s values: bundle A; bundle B'),m.matrix[1].map(v=>fmt.read(v)).join(' ; ')]];}},
+ views:{panels:['figure'],figure:{x:[-1,13],y:[-1.3,14.6],axes:false,equal:false,scene:(s,{fmt})=>goodsScene(s,F.model(s),x=>fmt.t(x)),measure(s,{fmt}){const m=F.model(s);return {text:fmt.t(m.envyFree?P('Sans envie','Envy-free'):m.ef1?P('EF1, mais avec envie','EF1, with envy'):P('EF1 non satisfait','EF1 fails')),color:m.envyFree?'pos':'neg'};}},formula:(s,{fmt})=>fmt.t(P('Proportionnel : Vᵢ(Aᵢ) ≥ Vᵢ(tous les objets)/2. Sans envie : Vᵢ(Aᵢ) ≥ Vᵢ(Aⱼ).','Proportional: Vᵢ(Aᵢ) ≥ Vᵢ(all goods)/2. Envy-free: Vᵢ(Aᵢ) ≥ Vᵢ(Aⱼ).')),readout(s,{fmt}){const m=F.model(s);return [[P('Valeur du lot de A pour A','A’s value of A’s bundle'),fmt.read(m.own[0])],[P('Valeur du lot de B pour B','B’s value of B’s bundle'),fmt.read(m.own[1])],[P('Proportionnel pour tous','Proportional for everyone'),yes(m.allProportional,fmt)],[P('Sans envie','Envy-free'),yes(m.envyFree,fmt)],[P('Sans envie à un objet près (EF1)','Envy-free up to one good (EF1)'),yes(m.ef1,fmt)],[P('Évaluations de A : lot A ; lot B','A’s values: bundle A; bundle B'),m.matrix[0].map(v=>fmt.read(v)).join(' ; ')],[P('Évaluations de B : lot A ; lot B','B’s values: bundle A; bundle B'),m.matrix[1].map(v=>fmt.read(v)).join(' ; ')]];}},
  missions:[{id:'open',kind:'predict',prompt:P('Un seul objet vaut 1 pour A et pour B. Peut-on l’attribuer sans envie et sans argent ?','One good is worth 1 to both A and B. Can it be allocated envy-free, without money?'),choices:[P('Toujours','Always'),P('Non : une personne reste sans cet objet','No: one person receives none of it')],correct:1},
  {id:'allocate',kind:'explore',set:{...goodsState,owners:[1,0,0]},unlock:['good0','good2'],prompt:P('Attribue les trois objets pour que personne n’envie l’autre. Inspecte les valeurs privées, pas seulement le nombre d’objets.','Allocate the three goods so nobody envies the other. Inspect private values, not just the number of goods.'),goal:(s,m)=>m.envyFree,hint:P('A aime surtout 1 ; B aime surtout 3. Vérifie aussi qui obtient 2.','A especially likes 1; B especially likes 3. Also check who gets 2.'),done:P('Les préférences différentes peuvent permettre un partage sans envie.','Different preferences can make an envy-free allocation possible.')},
  {id:'preferences',kind:'explore',set:goodsState,unlock:['value','edit'],prompt:P('Change une valeur privée pour faire apparaître de l’envie sans déplacer les objets.','Change a private value to create envy without moving any good.'),goal:(s,m)=>!m.envyFree,hint:P('B peut valoriser 1 bien davantage que son propre lot.','B can value good 1 much more than B’s own bundle.'),done:P('Le même partage physique peut devenir injuste selon les goûts.','The same physical allocation can fail fairness after preferences change.')},
@@ -4917,6 +4916,109 @@ const discreteExperiment={
 };
 
 __e.discreteExperiment = discreteExperiment;
+});
+__d("lab/experiments/fair-scenes.js", function (__e, __r) {
+// Scenes (pure data: polygons, lines, texts, points) of the two fair-division figures. They only read the state and the model
+// (models/fair-division.js), so a test can check that what is drawn is what the model says: the pieces of the cake, the density of the
+// chosen person, the matrix of every person's value of every piece, the envy arrows between the players.
+const P = (fr, en) => [fr, en];
+const PERSON = ["c1", "c2", "c5"];   // data colours of A, B and C (never the accent, which is the studied object, nor green/red, which mean right/wrong)
+const L = "ABC", EPS = 1e-10;
+const box = (x0, y0, x1, y1) => [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
+// breaks a sentence into lines of at most n characters (the figure has no automatic wrapping)
+function wrap(text, n = 46) {
+  const out = []; let line = "";
+  for (const w of String(text).split(" ")) { if (line && (line + " " + w).length > n) { out.push(line); line = w; } else line = line ? line + " " + w : w; }
+  if (line) out.push(line);
+  return out;
+}
+const pct = (v) => `${Math.round(v * 100)} %`;
+// who envies whom: [[i, j, own value, value of j's bundle], ...]
+function envyPairs(m) {
+  const out = [];
+  m.matrix.forEach((row, i) => row.forEach((v, j) => { if (i !== j && v - m.own[i] > EPS) out.push([i, j, m.own[i], v]); }));
+  return out;
+}
+function cakeScene(s, m, t) {
+  const edges = [0, s.cut1 * 12, s.cut2 * 12, 12], p = s.person, row = s.values[p], polys = [], lines = [], texts = [];
+  // the cake: one coloured piece per person, between the two cuts
+  for (let i = 0; i < 3; i++) {
+    polys.push({ pts: box(edges[i], 9, edges[i + 1], 10.2), fill: PERSON[i], alpha: 0.5, color: PERSON[i], width: 2 });
+    if (edges[i + 1] - edges[i] > 0.7) texts.push({ at: [(edges[i] + edges[i + 1]) / 2, 9.6], dy: 6, anchor: "center", text: L[i], color: "ink", size: 18 });
+  }
+  for (const x of [edges[1], edges[2]]) lines.push({ a: [x, 9], b: [x, 0], color: "accent", dash: [4, 4], width: 1.5 });
+  // the taste of the chosen person: height = interest of the zone; the area over their own piece is their value of it
+  for (let b = 0; b < 3; b++) {
+    polys.push({ pts: box(b * 4, 0, (b + 1) * 4, row[b]), fill: PERSON[p], alpha: 0.12, color: PERSON[p], width: 0 });
+    const a = Math.max(edges[p], b * 4), z = Math.min(edges[p + 1], (b + 1) * 4);
+    if (z > a && row[b] > 0) polys.push({ pts: box(a, 0, z, row[b]), fill: PERSON[p], alpha: 0.5, color: PERSON[p], width: 0 });
+  }
+  for (let q = 0; q < 3; q++) {
+    const h = s.values[q], pts = [];
+    h.forEach((v, b) => pts.push([b * 4, v], [(b + 1) * 4, v]));
+    polys.push({ pts, color: PERSON[q], width: q === p ? 3 : 1.5, dash: q === p ? [] : [4, 4], close: false });
+  }
+  lines.push({ a: [0, 0], b: [12, 0], color: "muted", width: 1 });
+  texts.push({ at: [0, 7.1], text: `${t(P("Goûts de", "Tastes of"))} ${L[p]} ${t(P(": l’aire colorée sous la courbe est la valeur de son lot", ": the shaded area under the curve is the value of its piece"))}`, color: PERSON[p], size: 12 });
+  // matrix: row i = how person i values each piece (the piece j goes to person j); own piece framed, envied pieces in red
+  const X0 = 3, PITCH = 3, W = 2.9, top = (i) => -1.9 - 1.4 * i;
+  texts.push({ at: [0, -1.25], text: t(P("Valeur du lot de…", "Value of the piece of…")), color: "muted", size: 12 });
+  for (let j = 0; j < 3; j++) texts.push({ at: [X0 + PITCH * j + W / 2, -1.25], anchor: "center", text: L[j], color: PERSON[j], size: 14 });
+  for (let i = 0; i < 3; i++) {
+    texts.push({ at: [0, top(i) - 0.85], dy: 5, text: `${L[i]} ${t(P("estime", "values"))}`, color: PERSON[i], size: 14 });
+    for (let j = 0; j < 3; j++) {
+      const own = i === j, envy = !own && m.matrix[i][j] - m.own[i] > EPS;
+      polys.push({ pts: box(X0 + PITCH * j, top(i) - 1.3, X0 + PITCH * j + W, top(i)), fill: envy ? "neg" : own ? PERSON[i] : "muted", alpha: envy ? 0.3 : own ? 0.35 : 0.08, color: envy ? "neg" : own ? PERSON[i] : "line", width: own || envy ? 2.2 : 1 });
+      texts.push({ at: [X0 + PITCH * j + W / 2, top(i) - 0.65], dy: 5, anchor: "center", text: pct(m.matrix[i][j]), color: envy ? "neg" : "ink", size: 14 });
+    }
+  }
+  // the verdict, said in words under the matrix
+  const pairs = envyPairs(m), at = -6.4;
+  let verdict, color;
+  if (m.envyFree) { verdict = t(P("Sans envie : sur chaque ligne, la case encadrée (son propre lot) est la plus grande.", "Envy-free: on every row the framed cell (their own piece) is the largest.")); color = "pos"; }
+  else if (m.allProportional) { verdict = t(P("Proportionnel (chaque lot vaut au moins 33 % pour son bénéficiaire) mais pas sans envie : ", "Proportional (each piece is worth at least 33 % to its receiver) but not envy-free: ")) + pairs.map(([i, j]) => `${L[i]} ${t(P("envie", "envies"))} ${L[j]}`).join(", ") + "."; color = "neg"; }
+  else { verdict = t(P("Pas proportionnel : un lot vaut moins de 33 % pour la personne qui le reçoit.", "Not proportional: a piece is worth less than 33 % to the person who receives it.")); color = "neg"; }
+  wrap(verdict, 42).forEach((line, k) => texts.push({ at: [0, at - 1.15 * k], text: line, color, size: 13 }));
+  return { polys, lines, texts };
+}
+function goodsScene(s, m, t) {
+  const [i] = s.edit.split("-").map(Number), polys = [], lines = [], texts = [], points = [], yOf = (o) => (o === 0 ? 8 : 6);
+  for (let o = 0; o < 2; o++) {
+    polys.push({ pts: box(0, yOf(o) - 1, 12, yOf(o) + 1), fill: PERSON[o], alpha: 0.1, color: PERSON[o], width: 1.5 });
+    texts.push({ at: [-0.8, yOf(o)], dy: 6, text: L[o], color: PERSON[o], size: 20 });
+  }
+  for (let g = 0; g < 3; g++) {
+    const x = 2 + g * 4, y = yOf(s.owners[g]), o = s.owners[g];
+    polys.push({ pts: box(x - 0.9, y - 0.5, x + 0.9, y + 0.5), fill: PERSON[o], alpha: 0.55, color: PERSON[o], width: 2 });
+    texts.push({ at: [x, y], dy: 6, anchor: "center", text: String(g + 1), color: "ink", size: 17 });
+    texts.push({ at: [x, y - 0.78], dy: 4, anchor: "center", text: `A ${s.values[0][g]} · B ${s.values[1][g]}`, color: "ink", size: 11 });
+  }
+  // the envy graph: an arrow from i to j when i values j's bundle more than their own
+  const nodes = [[3, 11.8], [9, 11.8]], pairs = envyPairs(m);
+  for (let o = 0; o < 2; o++) { points.push({ at: nodes[o], r: 17, hollow: true, color: PERSON[o] }); texts.push({ at: nodes[o], dy: 6, anchor: "center", text: L[o], color: "ink", size: 17 }); }
+  for (const [a, b, own, other] of pairs) {
+    const dy = a === 0 ? 0.35 : -0.35, x0 = nodes[a][0] + (a === 0 ? 0.9 : -0.9), x1 = nodes[b][0] + (a === 0 ? -0.9 : 0.9);
+    lines.push({ a: [x0, 11.8 + dy], b: [x1, 11.8 + dy], color: "neg", width: 3, arrow: true });
+    texts.push({ at: [6, 11.8 + (a === 0 ? 1.0 : -1.2)], anchor: "center", text: `${L[a]} ${t(P("envie", "envies"))} ${L[b]} : ${other} > ${own}`, color: "neg", size: 13 });
+  }
+  if (!pairs.length) texts.push({ at: [6, 11.8], dy: 5, anchor: "center", text: t(P("Aucune envie : personne ne préfère le lot de l’autre", "No envy: nobody prefers the other bundle")), color: "pos", size: 13 });
+  // private values of the chosen person (bars), the handle edits them
+  for (let g = 0; g < 3; g++) {
+    const x = 2 + g * 4, j = s.edit.split("-").map(Number)[1];
+    polys.push({ pts: box(x - 1, 0, x + 1, s.values[i][g] / 2), fill: PERSON[i], alpha: g === j ? 0.5 : 0.18, color: PERSON[i], width: 1.5 });
+    texts.push({ at: [x, -0.6], anchor: "center", text: `${g + 1} : ${s.values[i][g]}`, color: "ink", size: 13 });
+  }
+  texts.push({ at: [0, 4], text: `${t(P("Valeurs privées de", "Private values of"))} ${L[i]}`, color: PERSON[i], size: 15 });
+  wrap(t(P("Glisse un objet vers A ou B ; la poignée verte règle une valeur", "Drag a good to row A or B; the green handle sets a value")), 38).forEach((line, k) => texts.push({ at: [0, 3.3 - 1.1 * k], text: line, color: "muted", size: 12 }));
+  return { polys, lines, texts, points };
+}
+
+__e.PERSON = PERSON;
+__e.wrap = wrap;
+__e.pct = pct;
+__e.envyPairs = envyPairs;
+__e.cakeScene = cakeScene;
+__e.goodsScene = goodsScene;
 });
 __d("lab/experiments/fermat.js", function (__e, __r) {
 // Experiment `fermat` (template calculation): the numbers 2^e + 1 for e = 1, …, 32. Fermat believed every 2^(2^n) + 1
@@ -5411,7 +5513,7 @@ const restarted = s => Object.fromEntries(Object.entries({revealed:0,opened:fals
 const configs={
  secretary:{state:{n:20,skip:7,interview:1,accepted:-1,finished:false,runs:0,seed:1},controls:{n:{...slider('n',P('Candidats n','Candidates n'),2,100),set:(s,n)=>({n,skip:Math.min(n-1,s.skip),...restarted(s)})},skip:{...slider('skip',P('Refus initiaux r','Initial rejections r'),0,99),range:s=>[0,s.n-1],set:(s,v)=>({skip:Math.min(s.n-1,v)})},sample},quantity:s=>M.secretary(s).probability,check:{set:{n:4,skip:1},answer:11/24},question:P('Pour n = 4 et r = 1, quelle est la probabilité de choisir le meilleur ?','For n = 4 and r = 1, what is the probability of choosing the best?'),prediction:P('Peut-on garantir de choisir le meilleur sans rappel ?','Can one guarantee choosing the best without recall?'),right:P('Non, une probabilité reste inférieure à 1.','No, the probability stays below 1.')},
  tank:{state:{N:100,k:5,guess:100,revealed:0,runs:0,seed:1},controls:{k:slider('k',P('Taille de l’échantillon k','Sample size k'),1,50),guess:slider('guess',P('Ton estimation de N','Your guess of N'),2,1000),sample},quantity:s=>M.tank(s).expectedEstimate,check:{set:{N:100,k:5},answer:100},question:P('Si N = 100, quelle est l’espérance de l’estimateur sans biais ?','If N = 100, what is the expected value of the unbiased estimator?'),prediction:P('Le maximum observé sous-estime-t-il N en moyenne ?','Does the observed maximum underestimate N on average?'),right:P('Oui, sauf si toute la population est observée.','Yes, except when the entire population is observed.')},
- benford:{state:{count:100,mode:'log',digits:1,scale:1,values:null,runs:0,seed:1},controls:{count:slider('count',P('Nombres synthétiques','Synthetic numbers'),1,5000),mode:choice('mode',P('Jeu de données','Dataset'),[['log','Log-uniforme','Log-uniform'],['uniform','Uniforme de 1 à 1 000','Uniform from 1 to 1,000'],['identifiers','Identifiants attribués','Assigned identifiers'],['narrow','Plage étroite 80 à 90','Narrow range 80 to 90'],['real','Sept constantes du SI','Seven SI constants'],['custom','Mes données','My data']]),digits:choice('digits',P('Chiffres significatifs','Significant digits'),[[1,'Premier chiffre','First digit'],[2,'Deux premiers chiffres','First two digits']]),scale:slider('scale',P('Multiplier les valeurs','Scale values'),0.1,10,0.1),sample},model:s=>M.benford({...s,values:s.mode==='real'?SI_CONSTANTS:s.mode==='custom'?(s.values||[]):null}),quantity:()=>Math.log10(2),check:{set:{digits:1},answer:Math.log10(2)},question:P('Quelle probabilité théorique Benford attribue-t-il au premier chiffre 1 ?','What theoretical Benford probability does the leading digit 1 have?'),prediction:P('Des identifiants attribués doivent-ils suivre Benford ?','Must assigned identifiers follow Benford?'),right:P('Non, le modèle logarithmique doit être justifié.','No, the logarithmic model must be justified.')},
+ benford:{state:{count:100,mode:'log',digits:1,scale:1,values:null,runs:0,seed:1},controls:{count:slider('count',P('Nombres synthétiques','Synthetic numbers'),1,5000),mode:choice('mode',P('Jeu de données','Dataset'),[['log','Log-uniforme','Log-uniform'],['uniform','Uniforme de 1 à 1 000','Uniform from 1 to 1,000'],['identifiers','Identifiants attribués','Assigned identifiers'],['narrow','Plage étroite 80 à 90','Narrow range 80 to 90'],['pow2','Puissances de 2 (calculées)','Powers of 2 (computed)'],['fib','Suite de Fibonacci (calculée)','Fibonacci numbers (computed)'],['squares','Carrés 1², 2², 3²… (calculés)','Squares 1², 2², 3²… (computed)'],['real','Sept constantes du SI','Seven SI constants'],['custom','Mes données','My data']]),digits:choice('digits',P('Chiffres significatifs','Significant digits'),[[1,'Premier chiffre','First digit'],[2,'Deux premiers chiffres','First two digits']]),scale:slider('scale',P('Multiplier les valeurs','Scale values'),0.1,10,0.1),sample},model:s=>M.benford({...s,values:s.mode==='real'?SI_CONSTANTS:s.mode==='custom'?(s.values||[]):null}),quantity:()=>Math.log10(2),check:{set:{digits:1},answer:Math.log10(2)},question:P('Quelle probabilité théorique Benford attribue-t-il au premier chiffre 1 ?','What theoretical Benford probability does the leading digit 1 have?'),prediction:P('Des identifiants attribués doivent-ils suivre Benford ?','Must assigned identifiers follow Benford?'),right:P('Non, le modèle logarithmique doit être justifié.','No, the logarithmic model must be justified.')},
  baker:{state:{target:1000,mean:980,sigma:20,noise:5,n:30,mode:'random',runs:0,seed:1},controls:{n:slider('n',P('Pains pesés n','Loaves weighed n'),2,200),mean:slider('mean',P('Moyenne vraie de fabrication (g)','True production mean (g)'),940,1020),noise:slider('noise',P('Bruit de mesure τ (g)','Measurement noise τ (g)'),0,50),mode:choice('mode',P('Prélèvement','Sampling'),[['random','Pains au hasard','Random loaves'],['selected','Plus lourd de cinq pains','Heaviest of five loaves']]),sample},quantity:s=>Math.hypot(s.sigma,s.noise)/Math.sqrt(s.n),check:{set:{sigma:20,noise:0,n:100},answer:2},question:P('Avec σ = 20 g, sans bruit et n = 100, que vaut SE en g ?','With σ = 20 g, no noise and n = 100, what is SE in g?'),prediction:P('Une p-valeur est-elle la probabilité que le boulanger soit honnête ?','Is a p-value the probability that the baker is honest?'),right:P('Non, elle est calculée sous une hypothèse de modèle.','No, it is computed under a model hypothesis.')},
  birthdays:{state:{n:23,days:365,mode:'uniform',runs:0,seed:1},controls:{n:slider('n',P('Personnes ou valeurs hachées','People or hashed values'),2,100),days:choice('days',P('Cases possibles','Possible buckets'),[[365,'365 jours','365 days'],[16,'16 empreintes','16 hashes'],[256,'256 empreintes','256 hashes'],[1024,'1 024 empreintes','1,024 hashes']]),mode:choice('mode',P('Distribution','Distribution'),[['uniform','Uniforme','Uniform'],['seasonal','Saisonnière fictive','Fictional seasonal']]),sample},quantity:s=>M.birthdays(s).probability,check:{set:{n:2,days:365,mode:'uniform'},answer:1/365},question:P('Deux personnes, 365 jours équiprobables : quelle probabilité de collision ?','Two people, 365 equally likely days: what collision probability?'),prediction:P('Avec 23 personnes et 365 jours équiprobables, une collision est-elle plus probable que son absence ?','With 23 people and 365 equally likely days, is a collision more likely than no collision?'),right:P('Oui, la probabilité dépasse la moitié.','Yes, the probability exceeds one half.')},
  monty:{state:{choice:0,host:'informed',strategy:'switch',runs:0,seed:1,opened:false,finished:false},controls:{host:choice('host',P('Règle de l’animateur','Host rule'),[['informed','Informé : ouvre une chèvre','Informed: reveals a goat'],['random','Ignorant : ouvre au hasard','Uninformed: opens randomly']]),strategy:choice('strategy',P('Stratégie répétée','Repeated strategy'),[['switch','Changer','Switch'],['stay','Rester','Stay']]),sample},quantity:s=>M.monty(s).probability,check:{set:{host:'informed',strategy:'switch'},answer:2/3},question:P('Animateur informé : quelle probabilité de gagner en changeant ?','Informed host: what is the probability of winning by switching?'),prediction:P('Changer est-il avantageux avec un animateur informé qui propose toujours de changer ?','Is switching advantageous with an informed host who always offers a switch?'),right:P('Oui, la probabilité est deux tiers.','Yes, the probability is two thirds.')},
@@ -5829,10 +5931,19 @@ const state={kind:'logistic',r:3.7,u0:.413,n:0,delta:.000001};
 __e.default = {
  id:'logistic',template:'logistic',symbol:'r',group:P('Systèmes dynamiques','Dynamical systems'),title:P('Une population, des cycles et du chaos','A population, cycles and chaos'),short:P('La suite logistique','The logistic map'),intro:P('Relie l’escalier, les générations et le diagramme de bifurcation. Cherche des cycles à l’intérieur du régime complexe.','Connect the cobweb, generations and bifurcation diagram. Find cycles within the complex regime.'),duration:20,level:P('Lycée · Université','Upper secondary · University'),prereq:P('Suites, fonctions et dérivées','Sequences, functions and derivatives'),state,
  model:{model:W.logistic,quantities:{fixed:s=>W.fixedPoint(s)},quantity:(name,s)=>W.fixedPoint(s)},
- controls:{start:{kind:'handle',resetKeys:['n'],panel:'graph',axis:'x',grid:.001,label:P('Population initiale x₀','Initial population x₀'),at:s=>[s.u0,0],drag:(s,x)=>({u0:clamp(x,0,1),n:0})},rate:{kind:'handle',resetKeys:['n'],panel:'graph',axis:'y',grid:.001,label:P('Sommet de la parabole : règle r','Parabola vertex: changes r'),at:s=>[.5,s.r/4],drag:(s,x,y)=>({r:clamp(4*y,0,4),n:0})},parameter:{kind:'handle',resetKeys:['n'],panel:'bifurcation',axis:'x',grid:.0001,label:P('Paramètre r sur le diagramme','Parameter r on the diagram'),at:s=>[s.r,.95],drag:(s,x)=>({r:clamp(x,0,4),n:0})},n:{kind:'scrubber',min:0,max:120,step:1,label:P('Génération n','Generation n'),get:s=>s.n,set:(s,n)=>({n:Math.round(n)}),play:{seconds:15}},delta:{kind:'slider',key:'delta',min:0,max:.001,step:.000001,label:P('Écart initial de la comparaison','Initial comparison difference')},window:{kind:'choice',label:P('Comparer des régimes','Compare regimes'),get:s=>s.r,set:(s,r)=>({r,n:80}),options:[[.8,P('Extinction','Extinction')],[2.8,P('Point fixe','Fixed point')],[3.2,P('Cycle de période 2','Period-2 cycle')],[3.5,P('Cycle de période 4','Period-4 cycle')],[3.835,P('Fenêtre de période 3','Period-3 window')],[3.9,P('Sensibilité','Sensitivity')]].map(([value,label])=>({value,label}))}},
- views:{panels:['graph','series','bifurcation'],graph:{x:[0,1],y:[0,1],equal:true,xTicks:[0,.25,.5,.75,1],yTicks:[0,.25,.5,.75,1],scene(s,{fmt}){const m=W.logistic(s);return{curves:[{f:m.f,color:'accent'}],lines:[{a:[0,0],b:[1,1],color:'muted',dash:[4,4]}],polys:[{pts:m.path,color:'obj2',close:false}],texts:[{at:[.03,.94],text:fmt.t(P('Escalier : xₙ → xₙ₊₁','Cobweb: xₙ → xₙ₊₁')),size:12,color:'muted'}]};}},series:{x:[0,120],y:[0,1],xTicks:[0,30,60,90,120],yTicks:[0,.5,1],scene(s,{fmt}){const m=W.logistic(s);// the first generations are drawn in a faint dashed ghost until the user has advanced, with a dot at the current one
+ controls:{start:{kind:'handle',resetKeys:['n'],panel:'graph',axis:'x',grid:.001,label:P('Population initiale x₀','Initial population x₀'),at:s=>[s.u0,0],drag:(s,x)=>({u0:clamp(x,0,1),n:0})},rate:{kind:'handle',resetKeys:['n'],panel:'graph',axis:'y',grid:.001,label:P('Sommet de la parabole : règle r','Parabola vertex: changes r'),at:s=>[.5,s.r/4],drag:(s,x,y)=>({r:clamp(4*y,0,4),n:0})},parameter:{kind:'handle',resetKeys:['n'],panel:'bifurcation',axis:'x',grid:.0001,label:P('Paramètre r sur le diagramme','Parameter r on the diagram'),at:s=>[s.r,.95],drag:(s,x)=>({r:clamp(x,0,4),n:0})},n:{kind:'scrubber',min:0,max:120,step:1,label:P('Génération n','Generation n'),get:s=>s.n,set:(s,n)=>({n:Math.round(n)}),play:{seconds:15},autoplay:true,rest:90},delta:{kind:'slider',key:'delta',min:0,max:.001,step:.000001,label:P('Écart initial de la comparaison','Initial comparison difference')},window:{kind:'choice',label:P('Comparer des régimes','Compare regimes'),get:s=>s.r,set:(s,r)=>({r,n:80}),options:[[.8,P('Extinction','Extinction')],[2.8,P('Point fixe','Fixed point')],[3.2,P('Cycle de période 2','Period-2 cycle')],[3.5,P('Cycle de période 4','Period-4 cycle')],[3.835,P('Fenêtre de période 3','Period-3 window')],[3.9,P('Sensibilité','Sensitivity')]].map(([value,label])=>({value,label}))}},
+ views:{panels:['graph','series','sep','bifurcation'],graph:{x:[0,1],y:[0,1],equal:true,xTicks:[0,.25,.5,.75,1],yTicks:[0,.25,.5,.75,1],scene(s,{fmt}){const m=W.logistic(s);return{curves:[{f:m.f,color:'accent'}],lines:[{a:[0,0],b:[1,1],color:'muted',dash:[4,4]}],polys:[{pts:m.path,color:'obj2',close:false}],texts:[{at:[.03,.94],text:fmt.t(P('Escalier : xₙ → xₙ₊₁','Cobweb: xₙ → xₙ₊₁')),size:12,color:'muted'}]};}},series:{x:[0,120],y:[0,1],xTicks:[0,30,60,90,120],yTicks:[0,.5,1],scene(s,{fmt}){const m=W.logistic(s);// the first generations are drawn in a faint dashed ghost until the user has advanced, with a dot at the current one
 const ghost=s.n<120?W.logistic({...s,n:120}).terms.map((x,n)=>[n,x]):[];
-return{polys:[{pts:ghost,color:'muted',close:false,width:1.5,dash:[2,5]},{pts:m.terms.map((x,n)=>[n,x]),color:'accent',close:false},{pts:m.near.map((x,n)=>[n,x]),color:'neg',close:false,dash:[4,4]}],points:[{at:[m.terms.length-1,m.terms.at(-1)],r:4.5,color:'accent'}],texts:[{at:[3,.94],text:fmt.t(P('Population selon la génération','Population against generation')),size:12,color:'muted'}]};}},bifurcation:{x:[0,4],y:[0,1],xTicks:[0,1,2,3,4],yTicks:[0,.5,1],scene(s,{fmt}){return{lines:[{a:[s.r,0],b:[s.r,1],color:'accent',width:2}],texts:[{at:[.05,.94],text:fmt.t(P('Après 900 générations, 32 états par r. Zoom possible.','After 900 generations, 32 states per r. Zoom to inspect.')),size:12,color:'muted'}]};}},
+return{polys:[{pts:ghost,color:'muted',close:false,width:1.5,dash:[2,5]},{pts:m.terms.map((x,n)=>[n,x]),color:'accent',close:false},{pts:m.near.map((x,n)=>[n,x]),color:'obj2',close:false,dash:[4,4],width:2}],points:[{at:[m.terms.length-1,m.terms.at(-1)],r:4.5,color:'accent'}],texts:[{at:[3,.94],text:fmt.t(P('Population selon la génération','Population against generation')),size:12,color:'muted'}]};}},sep:{x:[0,120],y:[-7,.5],xTicks:[0,30,60,90,120],yTicks:[-6,-4,-2,0],scene(s,{fmt}){
+// gap |xₙ − x′ₙ| between the two populations on a log₁₀ scale, filled from generation 0 as n advances; the dashed straight line is the growth
+// the Lyapunov exponent predicts (gap ≈ gap₀ · e^(λ n)); the faint ghost is the whole sequence
+const full=W.logistic({...s,n:120}),pts=n=>full.terms.slice(0,n+1).map((x,i)=>[i,Math.max(-9,Math.log10(Math.max(Math.abs(x-full.near[i]),1e-300)))]);
+const all=pts(120),shown=pts(s.n),g0=all[0][1],lam=full.lyapunov/Math.LN10,last=shown.at(-1),gain=Math.pow(10,last[1]-g0);
+const texts=[{at:[3,.38],text:fmt.t(P('Écart entre les deux populations, en log₁₀ (−3 = 0,001)','Gap between the two populations, log₁₀ (−3 = 0.001)')),size:12,color:'muted'}];
+if(s.n>0&&gain>1.5)texts.push({at:[Math.min(95,s.n+3),Math.max(-5.6,last[1]-.8)],text:`× ${gain>=100?Math.round(gain).toLocaleString(fmt.lang==='fr'?'fr-FR':'en-US'):gain.toFixed(1)}`,size:14,color:'neg'});
+if(Number.isFinite(lam))texts.push({at:[3,-6.6],text:fmt.t(P('Droite en tirets : croissance prévue e^(λn), λ ≈ ','Dashed line: predicted growth e^(λn), λ ≈ '))+fmt.num(full.lyapunov),size:11,color:'muted'});
+return{polys:[{pts:all,color:'muted',close:false,width:1.5,dash:[2,5],alpha:.5},{pts:shown,color:'neg',close:false,width:2.5}],
+ lines:Number.isFinite(lam)?[{a:[0,g0],b:[120,g0+lam*120],color:'ink',dash:[6,4],width:1.2}]:[],points:[{at:last,r:4.5,color:'neg'}],texts};}},bifurcation:{x:[0,4],y:[0,1],xTicks:[0,1,2,3,4],yTicks:[0,.5,1],scene(s,{fmt}){return{lines:[{a:[s.r,0],b:[s.r,1],color:'accent',width:2}],texts:[{at:[.05,.94],text:fmt.t(P('Après 900 générations, 32 états par r. Zoom possible.','After 900 generations, 32 states per r. Zoom to inspect.')),size:12,color:'muted'}]};}},
  formula:s=>`xₙ₊₁ = r xₙ(1 − xₙ) ; 0 ≤ r ≤ 4`,
  readout(s,{fmt}){const m=W.logistic(s);return[[P('Paramètre r','Parameter r'),fmt.read(s.r,5)],[P('Population xₙ','Population xₙ'),fmt.read(m.last,6)],[P('Écart entre populations voisines','Nearby-population separation'),fmt.read(m.divergence,6)],[P('Exposant de Lyapunov, estimation','Lyapunov exponent, estimate'),Number.isFinite(m.lyapunov)?fmt.read(m.lyapunov,4):'−∞']];}},
  missions:[{id:'predict',kind:'predict',correct:1,prompt:P('Une récurrence aussi simple peut-elle donner autre chose qu’un point fixe ?','Can a recurrence this simple produce anything besides a fixed point?'),choices:[P('Non, elle finit toujours sur une valeur.','No, it always settles at one value.'),P('Oui, le résultat dépend de r et du départ.','Yes, it depends on r and the start.')]},{id:'iterate',kind:'explore',unlock:['start','rate','n'],prompt:P('Déplace x₀ et le sommet qui règle r. Avance au-delà de 30 générations et compare l’escalier au graphique temporel.','Move x₀ and the vertex that changes r. Advance past 30 generations and compare the cobweb with the time plot.'),goal:s=>s.n>=30,done:P('Les trois vues partagent le même r. Le diagramme du bas échantillonne des comportements après un temps de transition.','All three views share r. The lower diagram samples behaviour after a transient.')},{id:'window',kind:'contrast',variants:[{label:P('Sensibilité, r = 3,9','Sensitivity, r = 3.9'),set:{r:3.9,n:100}},{label:P('Fenêtre périodique, r = 3,835','Periodic window, r = 3.835'),set:{r:3.835,n:100}}],prompt:P('Compare la sensibilité et une fenêtre périodique. Zoome le diagramme : après le début du chaos, tous les paramètres ne donnent pas le même régime.','Compare sensitivity and a periodic window. Zoom the diagram: beyond chaos onset, parameters do not all give the same regime.')},{id:'fixed',kind:'check',set:{r:2.5,u0:.2,n:15},quantity:'fixed',answer:.6,tolerance:1e-10,prompt:P('Résous x = 2,5x(1 − x). Quel point fixe non nul trouves-tu ?','Solve x = 2.5x(1 − x). Which nonzero fixed point do you find?'),because:P('Pour x ≠ 0, 1 = 2,5(1 − x), donc x = 0,6.','For x ≠ 0, 1 = 2.5(1 − x), hence x = 0.6.')},{id:'why',kind:'explain',prompt:P('Pourquoi un point fixe peut-il perdre sa stabilité sans disparaître ?','Why can a fixed point lose stability without disappearing?'),argument:P('En x* = 1 − 1/r, la dérivée vaut 2 − r. Pour 1 < r < 3, sa valeur absolue est inférieure à 1 : le point fixe attire localement. À r = 3 cette condition cesse et un cycle de période 2 apparaît. Il reste stable jusqu’à r = 1 + √6. D’autres doublements suivent, avec des fenêtres périodiques dans la région complexe. L’exposant affiché est une moyenne numérique de log|r(1 − 2xₙ)| sur un trajet : ce n’est pas une preuve de chaos pour tout départ.','At x* = 1 − 1/r the derivative is 2 − r. For 1 < r < 3 its absolute value is below one, so the fixed point is locally attracting. At r = 3 this condition ends and a period-2 cycle appears. It remains stable until r = 1 + √6. Further doublings follow, with periodic windows in the complex region. The displayed exponent is a numerical average of log|r(1 − 2xₙ)| along an orbit, not proof of chaos for every start.')}],
@@ -8435,6 +8546,8 @@ function centerOfMassFrame(p, y) { const inv = gravityInvariants(p, y), mass = p
 const GRAVITY_PRESETS = {
   figure8: { masses: [1, 1, 1], y: [-.97000436, .24308753, .466203685, .43236573, .97000436, -.24308753, .466203685, .43236573, 0, 0, -.93240737, -.86473146] },
   hierarchical: { masses: [1, .02, .001], y: [0, 0, 0, 0, 1, 0, 0, 1, 3, 0, 0, .58] },
+  // the figure-eight positions with other velocities (zero total momentum): an unstable start, where a gap of 1e-5 reaches about 1 within t = 20
+  chaotic: { masses: [1, 1, 1], y: [-.97000436, .24308753, -.14, .309, .97000436, -.24308753, -.246, -.251, 0, 0, .386, -.058] },
   scattering: { masses: [1, 1, .1], y: [-.6, 0, 0, -.6, .6, 0, 0, .6, -3, 1, 1.4, -.1] },
 };
 function simulateDynamics(kind, params, initial, duration, options = {}) {
@@ -8825,6 +8938,9 @@ function benfordProbability(d, digits = 1) {
 }
 function benfordData(seed, count, mode = 'log') {
   integer(count, 0, 10000, 'count'); const next = rng(seed);
+  if (mode === 'pow2') return Array.from({ length: Math.min(count, 1000) }, (_, i) => 2 ** (i + 1));
+  if (mode === 'fib') { const f = [1, 2]; while (f.length < Math.min(count, 1000)) f.push(f.at(-1) + f.at(-2)); return f.slice(0, Math.min(count, 1000)); }
+  if (mode === 'squares') return Array.from({ length: count }, (_, i) => (i + 1) ** 2);
   return Array.from({ length: count }, (_, i) => mode === 'identifiers' ? 1000 + i : mode === 'narrow' ? 80 + 10 * next() : mode === 'uniform' ? 1 + 999 * next() : 10 ** (6 * next() - 3));
 }
 function benford(s) {
@@ -8901,6 +9017,33 @@ function monty(s) {
   return {...current,choice,opened,runs,eligible,wins,frequency:eligible?wins/eligible:null,...montyExact(host,strategy)};
 }
 
+// Figures: pure data behind the pictures (the same seeds as the models above, so the picture and the numbers cannot disagree).
+// P(collision) for n = 0..maxN in one pass: q[j] = j! e_j(p) is the probability that j people all differ.
+function birthdayCurve(days = 365, probabilities = null, maxN = 100) {
+  integer(days, 1, 10000, 'days'); integer(maxN, 1, 1000, 'maxN');
+  const q = Array(maxN + 1).fill(0); q[0] = 1;
+  for (let i = 0; i < days; i++) { const p = probabilities ? probabilities[i] : 1 / days; for (let j = Math.min(maxN, i + 1); j > 0; j--) q[j] += j * p * q[j - 1]; }
+  return q.map(x => Math.max(0, Math.min(1, 1 - x)));
+}
+const birthdayThreshold = curve => curve.findIndex(p => p >= .5);
+// The two clouds of loaves: weighed at random, and keeping the heaviest of five. Same seed, same n.
+function bakerClouds(s) {
+  const a = baker({ ...s, mode: 'random', runs: 0 }), b = baker({ ...s, mode: 'selected', runs: 0 });
+  return { random: a.weights, selected: b.weights, meanRandom: a.average, meanSelected: b.average, shift: b.average - a.average };
+}
+// Many Monty Hall games with the cumulative wins of the two strategies among the games where a goat was revealed.
+function montyTally(seed, runs, host = 'informed') {
+  integer(runs, 0, 10000, 'runs');
+  const next = rng(seed), eligible = new Uint32Array(runs), sw = new Uint32Array(runs), st = new Uint32Array(runs);
+  let e = 0, a = 0, b = 0;
+  for (let i = 0; i < runs; i++) {
+    const prize = Math.floor(next() * 3), choice = Math.floor(next() * 3), doors = [0, 1, 2].filter(d => d !== choice && (host === 'random' || d !== prize)), opened = doors[Math.floor(next() * doors.length)];
+    if (opened !== prize) { e++; if (choice === prize) b++; else a++; }
+    eligible[i] = e; sw[i] = a; st[i] = b;
+  }
+  return { eligible, switchWins: sw, stayWins: st };
+}
+
 __e.permutation = permutation;
 __e.secretaryProbability = secretaryProbability;
 __e.secretaryThreshold = secretaryThreshold;
@@ -8922,6 +9065,10 @@ __e.birthdayProbability = birthdayProbability;
 __e.birthdays = birthdays;
 __e.montyExact = montyExact;
 __e.monty = monty;
+__e.birthdayCurve = birthdayCurve;
+__e.birthdayThreshold = birthdayThreshold;
+__e.bakerClouds = bakerClouds;
+__e.montyTally = montyTally;
 });
 __d("lab/models/integral.js", function (__e, __r) {
 // Pure maths of Riemann sums for f(x) = x^2 on [a, b]. The sum uses n equal rectangles.
@@ -11316,7 +11463,7 @@ function mount(env) {
       setState(spec.set?spec.set(getState(),value):{[spec.key]:value,time:0});stage.invalidate();},{signal:abort.signal});slots.push({spec,input});
   }
   stage.wrap.parentElement.append(details);
-  let playing=null;
+  let playing=null,auto=null,lastPreset;const autos=[];
   function player(c,onChange){
     let stop=null;
     const api={get playing(){return !!stop;},stop(){if(stop){stop();stop=null;onChange?.(false);}},toggle(){
@@ -11327,9 +11474,17 @@ function mount(env) {
         advance(c.set(current,value));const m=exp.model.model({...current,time:value});
         if(value>=c.max||(m.status!=='complete'&&value>=m.path.t)){stop=null;onChange?.(false);return false;}
       });onChange?.(true);
-    }};playing=api;return api;
+    }};playing=api;
+    // `autoplay`: once, when the figure is first on screen, run the time from 0 so that the two futures visibly part (nothing runs
+    // offscreen, and under reduced motion the figure rests at `rest`, a time at which the gap is already visible)
+    if(c.autoplay){auto=c;const IO=stage.wrap.ownerDocument.defaultView.IntersectionObserver;let seen=false,io=null;
+      const start=()=>{if(seen)return;seen=true;io?.disconnect();if(c.get(getState())!==0)return;if(stage.reduced()){if(c.rest!=null)advance(c.set(getState(),c.rest));}else api.toggle();};
+      io=IO?new IO(es=>{if(es.some(e=>e.isIntersecting))start();},{threshold:.3}):null;io?.observe(stage.wrap);autos.push(()=>io?.disconnect());}
+    return api;
   }
-  return {...base,player,draw(g){base.draw(g);const s=getState();for(const {spec,input}of slots){const v=String(spec.get?spec.get(s):s[spec.key]);if(input.value!==v)input.value=v;if(spec.options)spec.options.forEach(([,,off],i)=>{if(off){const d=!!off();if(input.options[i].disabled!==d)input.options[i].disabled=d;}});}},destroy(){playing?.stop();abort.abort();details.remove();base.destroy();}};
+  return {...base,player,draw(g){base.draw(g);const s=getState();
+    // a new starting condition (a preset button) restarts the run, except under reduced motion where the figure rests at a readable time
+    if(s.preset!==lastPreset){const first=lastPreset===undefined;lastPreset=s.preset;if(!first&&auto&&playing&&s.time===0)queueMicrotask(()=>{if(getState().time!==0)return;if(stage.reduced())advance(auto.set(getState(),auto.rest));else if(!playing.playing)playing.toggle();});}for(const {spec,input}of slots){const v=String(spec.get?spec.get(s):s[spec.key]);if(input.value!==v)input.value=v;if(spec.options)spec.options.forEach(([,,off],i)=>{if(off){const d=!!off();if(input.options[i].disabled!==d)input.options[i].disabled=d;}});}},destroy(){autos.forEach(f=>f());playing?.stop();abort.abort();details.remove();base.destroy();}};
 }
 
 __e.mount = mount;
@@ -11543,8 +11698,464 @@ function mount({stage,fmt,getState,setState,refresh}){
 
 __e.mount = mount;
 });
+__d("lab/templates/inference-figure.js", function (__e, __r) {
+// Pictures for the six "chance and data" experiments: canvas panels drawn from the same state and model as the numbers.
+// One shared animation loop per figure (visible-loop.js): it runs only while something moves and the figure is on screen.
+const { canvasIn, palette, animationLoop, css } = __r("object-kit.js");
+const M = __r("lab/models/inference.js");
+
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+let fontFamily = '';
+const font = (size, weight = 400) => `${weight} ${size}px ${fontFamily || (fontFamily = getComputedStyle(document.body).fontFamily || 'sans-serif')}`;
+function txt(g, s, x, y, { size = 12, color, align = 'left', weight = 400, base = 'alphabetic' } = {}) {
+  g.font = font(size, weight); g.fillStyle = color; g.textAlign = align; g.textBaseline = base; g.fillText(s, x, y);
+}
+const line = (g, x1, y1, x2, y2, color, w = 1, dash = null) => { g.strokeStyle = color; g.lineWidth = w; g.setLineDash(dash || []); g.beginPath(); g.moveTo(x1, y1); g.lineTo(x2, y2); g.stroke(); g.setLineDash([]); };
+const alpha = (g, a, fn) => { const old = g.globalAlpha; g.globalAlpha = a; fn(); g.globalAlpha = old; };
+const jitter = i => ((Math.imul(i + 1, 2654435761) >>> 8) % 1000) / 1000;
+const normalPdf = (x, m, s) => Math.exp(-(((x - m) / s) ** 2) / 2) / (s * 2.5066282746310002);
+
+// A canvas panel at a logical size (so that text stays readable on a phone), with its caption above.
+function panel(parent, W, H, caption, draw, { label = '' } = {}) {
+  const box = document.createElement('figure'); box.className = 'inf-panel';
+  const cap = document.createElement('figcaption'); cap.textContent = caption; box.append(cap);
+  const host = document.createElement('div'); host.className = 'inf-canvas'; box.append(host); parent.append(box);
+  // logical width = css width (text keeps its size on any screen), fixed css height (nothing moves when the figure mounts)
+  let cw = host.clientWidth || W;
+  const ro = globalThis.ResizeObserver ? new ResizeObserver(() => { const w = host.clientWidth; if (w > 0) cw = w; }) : null; ro?.observe(host);
+  const o = canvasIn(host, W / H, { navigation: false });
+  Object.defineProperty(o, 'W', { get: () => cw, set() {}, configurable: true }); o.H = H;
+  o.cv.style.aspectRatio = 'auto'; o.cv.style.height = H + 'px'; o.resize();
+  o.cv.setAttribute('role', 'img'); o.cv.setAttribute('aria-label', label || caption);
+  o.paint = () => { if (!o.live) return; const w = o.W; o.g.setTransform(o.cv.width / w, 0, 0, o.cv.height / H, 0, 0); o.g.clearRect(0, 0, w, H); draw(o.g, w, H, palette()); };
+  o.redraw = o.paint; o.host = host; o.caption = cap; o.dispose = () => { ro?.disconnect(); o.disconnect?.(); };
+  return o;
+}
+// A pointer/keyboard slider laid over a panel: x -> value mapping given by the caller. Touch is claimed only where `hit` says so.
+function slider(o, { hit, set, min, max, step = 1, get, text }) {
+  const cv = o.cv; let down = false;
+  cv.tabIndex = 0; cv.setAttribute('role', 'slider'); cv.setAttribute('aria-valuemin', min); cv.setAttribute('aria-valuemax', max);
+  o.touchHit(pt => hit(pt));
+  cv.addEventListener('pointerdown', e => { const pt = o.point(e); if (!hit(pt)) return; down = true; cv.setPointerCapture?.(e.pointerId); set(pt); e.preventDefault(); });
+  cv.addEventListener('pointermove', e => { if (down) set(o.point(e)); });
+  const up = () => { down = false; };
+  cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+  cv.addEventListener('keydown', e => {
+    const v = get(), k = e.key, d = e.shiftKey ? 10 * step : step;
+    const nv = k === 'ArrowRight' || k === 'ArrowUp' ? v + d : k === 'ArrowLeft' || k === 'ArrowDown' ? v - d : k === 'Home' ? min : k === 'End' ? max : null;
+    if (nv === null) return; e.preventDefault(); set(null, clamp(nv, min, max));
+  });
+  o.setAria = () => { cv.setAttribute('aria-valuenow', get()); cv.setAttribute('aria-valuetext', text()); };
+}
+
+const BUILD = {
+  // ---------------------------------------------------------------- baker
+  baker({ wrap, t, fmt, setState, getState }) {
+    const L = 40, bins = 40, lo = 900, hi = 1100;
+    let S, Mo, clouds = null, ckey = '', shown = Array(bins).fill(0), counts = Array(bins).fill(0);
+    const px = (W, v) => L + (clamp(v, lo, hi) - lo) / (hi - lo) * (W - L - 14);
+    const hist = panel(wrap, 480, 290, t(['Masses des pains pesés (g)', 'Weights of the loaves weighed (g)']), (g, W, H, p) => {
+      const T = 46, B = H - 50, n = S.n, tsd = Math.hypot(S.sigma, S.noise), bw = (W - L - 14) / bins;
+      const peak = Math.max(1, ...counts, n * 5 * normalPdf(S.mean, S.mean, tsd)), y = c => B - c / peak * (B - T) * .92;
+      line(g, L, B, W - 14, B, p.line, 1);
+      for (let i = 0; i < bins; i++) { if (shown[i] > .02) { g.fillStyle = p.obj3; g.fillRect(L + i * bw + 1, y(shown[i]), bw - 2, B - y(shown[i])); } }
+      g.strokeStyle = p.ink; g.lineWidth = 1.5; g.setLineDash([5, 4]); g.beginPath();
+      for (let v = lo; v <= hi; v += 2) { const c = n * 5 * normalPdf(v, S.mean, tsd); (v === lo ? g.moveTo : g.lineTo).call(g, px(W, v), y(c)); }
+      g.stroke(); g.setLineDash([]);
+      for (let v = lo; v <= hi; v += 20) { line(g, px(W, v), B, px(W, v), B + 4, p.line); txt(g, String(v), px(W, v), B + 16, { size: 11, color: p.muted, align: 'center' }); }
+      // target (the claim), sample mean (what the data say) and the naive 95 % interval around it
+      line(g, px(W, S.target), T - 2, px(W, S.target), B, p.ink, 2);
+      const left = Mo.average < S.target;   // the two labels sit on opposite sides of their lines
+      txt(g, t(['cible ', 'target ']) + S.target + ' g', px(W, S.target) + (left ? 5 : -5), T - 6, { size: 12, color: p.ink, weight: 700, align: left ? 'left' : 'right' });
+      const mx = px(W, Mo.average);
+      line(g, mx, T - 2, mx, B, p.accent, 2.5);
+      txt(g, 'x̄ = ' + fmt.num(Mo.average, 1) + ' g', mx + (left ? -5 : 5), T - 6, { size: 12, color: p.accent, weight: 700, align: left ? 'right' : 'left' });
+      const c0 = px(W, Mo.ci[0]), c1 = px(W, Mo.ci[1]); line(g, c0, B - 8, c1, B - 8, p.accent, 3); line(g, c0, B - 14, c0, B - 2, p.accent, 2); line(g, c1, B - 14, c1, B - 2, p.accent, 2);
+      // the true production mean: a handle to drag
+      const hx = px(W, S.mean); g.fillStyle = p.ink; g.beginPath(); g.moveTo(hx, B + 20); g.lineTo(hx - 7, B + 31); g.lineTo(hx + 7, B + 31); g.closePath(); g.fill();
+      txt(g, 'μ = ' + S.mean, hx, B + 45, { size: 11, color: p.ink, align: 'center', weight: 700 });
+    });
+    slider(hist, { min: 940, max: 1020, get: () => getState().mean, hit: ([x, y]) => Math.abs(x - px(hist.W, getState().mean)) < 30 && y > 245, set: (pt, v) => setState({ mean: Math.round(v ?? clamp(lo + (pt[0] - L) / (hist.W - L - 14) * (hi - lo), 940, 1020)) }), text: () => t(['moyenne vraie ', 'true mean ']) + getState().mean + ' g' });
+    hist.caption.append(' ', Object.assign(document.createElement('small'), { textContent: t(['(pointillés : pains fabriqués ; glisse le triangle μ)', '(dashed: loaves baked; drag the μ triangle)']) }));
+    const strips = panel(wrap, 480, 290, t(['Même nombre de pains : au hasard, ou le plus lourd de cinq', 'Same number of loaves: random, or the heaviest of five']), (g, W, H, p) => {
+      const rows = [['random', t(['Pains au hasard', 'Random loaves']), clouds.random, clouds.meanRandom, p.ink], ['selected', t(['Le plus lourd de cinq', 'Heaviest of five']), clouds.selected, clouds.meanSelected, p.accent]];
+      rows.forEach(([id, name, xs, mean, col], r) => {
+        const top = 34 + r * 112, active = S.mode === id;
+        alpha(g, active ? 1 : .55, () => {
+          txt(g, name + (active ? '  ◀' : ''), L, top - 8, { size: 12, color: p.ink, weight: 700 });
+          line(g, L, top + 76, W - 14, top + 76, p.line);
+          xs.forEach((v, i) => { g.fillStyle = col; g.globalAlpha = (active ? .75 : .4); g.fillRect(px(W, v) - 2.5, top + 8 + jitter(i) * 56, 5, 5); });
+          g.globalAlpha = 1;
+          const mx = px(W, mean); line(g, mx, top, mx, top + 76, col, 3);
+          txt(g, 'x̄ = ' + fmt.num(mean, 1) + ' g', W - 14, top - 8, { size: 12, color: col, weight: 700, align: 'right' });
+        });
+      });
+      for (const [v, col, dash, lbl] of [[S.mean, p.muted, [3, 3], 'μ'], [S.target, p.ink, null, '']]) { line(g, px(W, v), 22, px(W, v), H - 30, col, 1.2, dash); if (lbl) txt(g, lbl, px(W, v), 14, { size: 11, color: col, align: 'center' }); }
+      for (let v = lo; v <= hi; v += 20) txt(g, String(v), px(W, v), H - 12, { size: 11, color: p.muted, align: 'center' });
+      txt(g, t(['décalage dû au tri : ', 'shift caused by selection: ']) + (clouds.shift >= 0 ? '+' : '') + fmt.num(clouds.shift, 1) + ' g', W - 14, 14, { size: 12, color: p.accent, align: 'right', weight: 700 });
+    }, { label: '' });
+    strips.cv.addEventListener('pointerdown', e => { const [, y] = strips.point(e); setState({ mode: y < 146 ? 'random' : 'selected' }); });
+    strips.caption.append(' ', Object.assign(document.createElement('small'), { textContent: t(['(touche une rangée pour l’adopter)', '(tap a row to use it)']) }));
+    return {
+      panels: [hist, strips],
+      set(s, m) {
+        S = s; Mo = m;
+        const key = JSON.stringify([s.seed, s.n, s.mean, s.sigma, s.noise]); if (key !== ckey) { ckey = key; clouds = M.bakerClouds(s); }
+        counts = Array(bins).fill(0); for (const w of m.weights) counts[clamp(Math.floor((w - lo) / (hi - lo) * bins), 0, bins - 1)]++;
+        const sub = [`${t(['moyenne observée', 'observed mean'])} ${fmt.num(m.average, 1)} g`, `${t(['cible', 'target'])} ${s.target} g`, `${t(['tri : décalage', 'selection shift'])} ${fmt.num(clouds.shift, 1)} g`].join(', ');
+        hist.cv.setAttribute('aria-label', t(['Histogramme des masses. ', 'Histogram of weights. ']) + sub); strips.cv.setAttribute('aria-label', t(['Deux nuages de masses. ', 'Two clouds of weights. ']) + sub); hist.setAria();
+      },
+      step(k) { let moving = false; shown = shown.map((v, i) => { const d = counts[i] - v; if (Math.abs(d) < .02) return counts[i]; moving = true; return v + d * k; }); return moving; },
+    };
+  },
+
+  // ---------------------------------------------------------------- tank
+  tank({ wrap, t, fmt, setState, getState }) {
+    let S, Mo, shownEst = 0, hasEst = false, hist = Array(32).fill(0), histM = Array(32).fill(0), hshown = Array(32).fill(0), hshownM = Array(32).fill(0);
+    const axisMax = () => { const s = S, e = Mo.estimate; return s.revealed ? Math.max(s.N, s.guess, e, Mo.upper) * 1.08 : Math.max(s.guess, e, Mo.upper, 2 * Mo.m) * 1.08; };
+    const L = 24, ax = W => v => L + v / axisMax() * (W - L - 18);
+    const lineP = panel(wrap, 480, 290, t(['Numéros observés sur la droite 1…N', 'Observed serial numbers on the line 1…N']), (g, W, H, p) => {
+      const x = ax(W), Y = 128, N = S.N;
+      line(g, L, Y, W - 18, Y, p.ink, 2);
+      if (S.revealed && N <= 600) for (let i = 1; i <= N; i++) line(g, x(i), Y - 5, x(i), Y, p.line, 1);
+      const max = axisMax(), step = max > 600 ? 200 : max > 250 ? 100 : max > 120 ? 50 : 20;
+      for (let v = 0; v <= max; v += step) { line(g, x(v), Y, x(v), Y + 6, p.ink); txt(g, String(v), x(v), Y + 19, { size: 11, color: p.muted, align: 'center' }); }
+      for (const v of Mo.sample) line(g, x(v), Y - 26, x(v), Y, v === Mo.m ? p.ink : p.obj3, v === Mo.m ? 4 : 2.5);
+      if (S.k <= 8) Mo.sample.forEach(v => v !== Mo.m && txt(g, String(v), x(v), Y - 31, { size: 10, color: p.muted, align: 'center' }));
+      txt(g, 'M = ' + Mo.m, x(Mo.m), Y - 33, { size: 12, color: p.ink, weight: 700, align: 'center' });
+      // the corrected estimate and its one-sided upper bound
+      const ex = x(shownEst); g.fillStyle = p.accent; g.beginPath(); g.moveTo(ex, Y - 62); g.lineTo(ex + 8, Y - 72); g.lineTo(ex, Y - 82); g.lineTo(ex - 8, Y - 72); g.closePath(); g.fill();
+      line(g, ex, Y - 62, ex, Y, p.accent, 1.5, [3, 3]);
+      txt(g, 'N̂ = ' + fmt.num(Mo.estimate, 1), ex, Y - 88, { size: 12, color: p.accent, weight: 700, align: 'center' });
+      line(g, x(Mo.m), Y + 38, x(Mo.upper), Y + 38, p.ink, 2); line(g, x(Mo.m), Y + 32, x(Mo.m), Y + 44, p.ink, 2); line(g, x(Mo.upper), Y + 32, x(Mo.upper), Y + 44, p.ink, 2);
+      txt(g, t(['borne à 95 % : ', '95% bound: ']) + Mo.upper, x(Mo.upper), Y + 58, { size: 11, color: p.ink, align: x(Mo.upper) > W - 110 ? 'right' : 'left' });
+      // your guess: drag the handle
+      const gx = x(S.guess); g.strokeStyle = p.ink; g.lineWidth = 2; g.fillStyle = p.surface; g.beginPath(); g.moveTo(gx, Y + 70); g.lineTo(gx - 8, Y + 86); g.lineTo(gx + 8, Y + 86); g.closePath(); g.fill(); g.stroke();
+      txt(g, t(['ton estimation ', 'your guess ']) + S.guess, gx, Y + 102, { size: 12, color: p.ink, align: gx > W - 70 ? 'right' : gx < 70 ? 'left' : 'center', weight: 700 });
+      if (S.revealed) { line(g, x(N), 26, x(N), Y + 8, p.accent, 3); txt(g, 'N = ' + N, x(N) + (x(N) > W - 80 ? -6 : 6), 20, { size: 13, color: p.accent, weight: 700, align: x(N) > W - 80 ? 'right' : 'left' }); }
+      else txt(g, t(['N est caché : révèle la population pour comparer.', 'N is hidden: reveal the population to compare.']), W / 2, 22, { size: 12, color: p.muted, align: 'center' });
+    });
+    slider(lineP, { min: 2, max: 1000, get: () => getState().guess, hit: ([x, y]) => y > 180 || Math.abs(x - ax(lineP.W)(getState().guess)) < 28, set: (pt, v) => setState({ guess: Math.round(v ?? clamp(((pt[0] - L) / (lineP.W - L - 18)) * axisMax(), 2, 1000)) }), text: () => t(['estimation ', 'guess ']) + getState().guess });
+    const rep = panel(wrap, 480, 290, t(['Répétitions : le maximum M contre l’estimateur N̂', 'Repetitions: the maximum M versus the estimator N̂']), (g, W, H, p) => {
+      const T = 40, B = H - 52, N = S.N, xmax = Math.min(2 * N, Math.max(1.3 * N, N * (1 + 1 / S.k))), bw = (W - 30) / 32, xv = v => 20 + v / xmax * (W - 30);
+      line(g, 20, B, W - 10, B, p.line);
+      if (!S.revealed || !S.runs) { txt(g, S.revealed ? t(['Lance « + 100 essais » pour voir les répétitions.', 'Press “+ 100 trials” to see repetitions.']) : t(['Révèle N, puis répète le tirage.', 'Reveal N, then repeat the draw.']), W / 2, H / 2, { size: 13, color: p.muted, align: 'center' }); return; }
+      const peak = Math.max(1, ...hshown, ...hshownM);
+      for (let i = 0; i < 32; i++) {
+        for (const [arr, col] of [[hshownM, p.c[1]], [hshown, p.c[0]]]) { const h = arr[i] / peak * (B - T); alpha(g, .6, () => { g.fillStyle = col; g.fillRect(20 + i * bw + 1, B - h, bw - 2, h); }); }
+      }
+      for (let v = 0; v <= xmax; v += Math.max(20, Math.round(xmax / 6 / 20) * 20)) { line(g, xv(v), B, xv(v), B + 4, p.line); txt(g, String(v), xv(v), B + 16, { size: 11, color: p.muted, align: 'center' }); }
+      line(g, xv(N), T - 10, xv(N), B, p.accent, 3); txt(g, 'N = ' + N, xv(N) + 5, T - 14, { size: 12, color: p.accent, weight: 700 });
+      const mM = Mo.maxima.reduce((a, b) => a + b, 0) / Mo.maxima.length, mE = Mo.observedMean;
+      for (const [v, col, name, dy] of [[mM, p.c[1], 'M', 30], [mE, p.c[0], 'N̂', 30]]) { g.fillStyle = col; g.beginPath(); g.moveTo(xv(v), B + 18); g.lineTo(xv(v) - 6, B + 28); g.lineTo(xv(v) + 6, B + 28); g.closePath(); g.fill(); }
+      g.fillStyle = p.c[1]; g.fillRect(20, H - 22, 10, 10); txt(g, t(['maximum M — moyenne ', 'maximum M — mean ']) + fmt.num(mM, 1), 34, H - 13, { size: 11, color: p.ink });
+      g.fillStyle = p.c[0]; g.fillRect(W / 2 + 4, H - 22, 10, 10); txt(g, 'N̂ = M(1+1/k)−1 — ' + t(['moyenne ', 'mean ']) + fmt.num(mE, 1), W / 2 + 18, H - 13, { size: 11, color: p.ink });
+    });
+    return {
+      panels: [lineP, rep],
+      set(s, m) {
+        S = s; Mo = m; if (!hasEst) { shownEst = m.estimate; hasEst = true; }
+        hist = Array(32).fill(0); histM = Array(32).fill(0);
+        if (s.revealed && s.runs) { const xmax = Math.min(2 * s.N, Math.max(1.3 * s.N, s.N * (1 + 1 / s.k))); const f = (arr, vs) => vs.forEach(v => arr[clamp(Math.floor(v / xmax * 32), 0, 31)]++); f(hist, m.estimates); f(histM, m.maxima); }
+        lineP.cv.setAttribute('aria-label', `${t(['Numéros observés', 'Observed serials'])}: ${m.sample.join(', ')}. M = ${m.m}, N̂ = ${fmt.num(m.estimate, 1)}, ${t(['borne 95 %', '95% bound'])} ${m.upper}${s.revealed ? ', N = ' + s.N : ''}`); lineP.setAria();
+        rep.cv.setAttribute('aria-label', s.revealed && s.runs ? `${t(['Répétitions', 'Repetitions'])}: ${t(['moyenne de N̂', 'mean of N̂'])} ${fmt.num(m.observedMean, 1)}, N = ${s.N}` : t(['Répétitions : pas encore', 'Repetitions: not yet']));
+      },
+      step(k) { let moving = Math.abs(shownEst - Mo.estimate) > .05; shownEst = moving ? shownEst + (Mo.estimate - shownEst) * k : Mo.estimate;
+        for (const [sh, tg] of [[hshown, hist], [hshownM, histM]]) for (let i = 0; i < 32; i++) { const d = tg[i] - sh[i]; if (Math.abs(d) < .05) sh[i] = tg[i]; else { sh[i] += d * k; moving = true; } }
+        return moving; },
+    };
+  },
+
+  // ---------------------------------------------------------------- monty
+  monty({ wrap, t, fmt, setState, getState }) {
+    let S, Mo, open = [0, 0, 0], tkey = '', tally = null, shownRuns = 0, view = 'tally', pulse = 0;
+    const doorsPanel = panel(wrap, 480, 270, t(['Trois portes', 'Three doors']), (g, W, H, p) => {
+      const cw = W / 3;
+      for (let i = 0; i < 3; i++) {
+        const x = i * cw + cw * .12, y = 28, w = cw * .76, h = 170, o = open[i], isChoice = i === S.choice;
+        g.fillStyle = p.sunken; g.fillRect(x, y, w, h);
+        if (o > 0.02) { g.save(); g.beginPath(); g.rect(x, y, w, h); g.clip(); g.translate(x + w / 2, y + h - 18); const k = Math.min(1, w / 110); g.scale(k, k); (i === Mo.prize ? car : goat)(g, 0, 0, p); g.restore(); }
+        const lw = w * (1 - o * .92);
+        g.fillStyle = p.surface; g.fillRect(x, y, lw, h); g.strokeStyle = isChoice ? p.accent : p.ink; g.lineWidth = isChoice ? 4 : 2; g.strokeRect(x, y, w, h); g.strokeRect(x, y, lw, h);
+        if (o < .6) { txt(g, String(i + 1), x + lw / 2, y + 80, { size: 52 * Math.min(1, w / 110) * (1 - o), color: p.ink, align: 'center', weight: 700 }); g.fillStyle = p.ink; g.beginPath(); g.arc(x + lw - 12, y + 92, 5, 0, 7); g.fill(); }
+        line(g, x - 8, y + h, x + w + 8, y + h, p.ink, 2);
+        const final = S.finished ? (S.strategy === 'stay' ? S.choice : [0, 1, 2].find(d => d !== S.choice && d !== Mo.door)) : -1;
+        txt(g, t(['Porte ', 'Door ']) + (i + 1) + (isChoice ? t([' · ton choix', ' · your pick']) : ''), x + w / 2, y + h + 20, { size: 13, color: isChoice ? p.accent : p.ink, weight: isChoice ? 700 : 400, align: 'center' });
+        if (final === i) { txt(g, Mo.win ? t(['✓ gagné', '✓ won']) : t(['✗ perdu', '✗ lost']), x + w / 2, y + h + 40, { size: 13, color: Mo.win ? p.pos : p.neg, weight: 700, align: 'center' }); }
+      }
+      if (S.opened && !S.finished && Mo.valid) txt(g, t(['Reste, ou change : touche une porte.', 'Stay or switch: touch a door.']), W / 2, 16, { size: 12, color: p.muted, align: 'center' });
+      else if (!S.opened) txt(g, t(['Choisis une porte, puis laisse l’animateur ouvrir.', 'Pick a door, then let the host open one.']), W / 2, 16, { size: 12, color: p.muted, align: 'center' });
+    });
+    doorsPanel.cv.removeAttribute('role'); doorsPanel.cv.setAttribute('aria-hidden', 'true'); doorsPanel.cv.tabIndex = -1;
+    doorsPanel.host.style.position = 'relative';
+    const overlay = document.createElement('div'); overlay.className = 'inf-overlay'; doorsPanel.host.append(overlay);
+    const side = panel(wrap, 480, 270, '', (g, W, H, p) => {
+      if (view === 'tree') return tree(g, W, H, p, t);
+      const e = tally.eligible, i = Math.max(0, Math.min(S.runs, Math.round(shownRuns)) - 1), have = S.runs > 0 && e.length;
+      const exactSwitch = M.montyExact(S.host, 'switch').probability, exactStay = M.montyExact(S.host, 'stay').probability;
+      const ge = have ? e[i] : 0, sw = have ? tally.switchWins[i] : 0, st = have ? tally.stayWins[i] : 0, fs = ge ? sw / ge : 0, ft = ge ? st / ge : 0;
+      const T = 40, B = H - 44;
+      [[t(['Changer', 'Switch']), fs, exactSwitch, p.accent, 24, sw], [t(['Rester', 'Stay']), ft, exactStay, p.obj2, 94, st]].forEach(([name, f, ex, col, x0, wins]) => {
+        g.fillStyle = col; g.fillRect(x0, B - f * (B - T), 56, f * (B - T)); line(g, x0 - 6, B - ex * (B - T), x0 + 62, B - ex * (B - T), p.ink, 2, [4, 3]);
+        txt(g, name, x0 + 28, B + 16, { size: 12, color: p.ink, align: 'center', weight: 700 }); txt(g, have ? fmt.num(100 * f, 1) + ' %' : '–', x0 + 28, B - f * (B - T) - 6, { size: 12, color: p.ink, align: 'center', weight: 700 });
+        txt(g, fmt.num(ex * 100, 1) + ' %', x0 + 28, B - ex * (B - T) - 18, { size: 10, color: p.muted, align: 'center' });
+      });
+      line(g, 14, B, 170, B, p.line);
+      txt(g, have ? `${sw + st}/${ge}`.replace(/.*/, `${t(['gains', 'wins'])} ${sw} + ${st} = ${ge}`) : t(['Aucune partie : lance des essais.', 'No game yet: run trials.']), 94, H - 6, { size: 11, color: p.muted, align: 'center' });
+      // running frequencies against the number of games
+      const X0 = 205, X1 = W - 12;
+      line(g, X0, T, X0, B, p.line); line(g, X0, B, X1, B, p.line);
+      for (const [v, col] of [[exactSwitch, p.accent], [exactStay, p.obj2]]) { const y = B - v * (B - T); line(g, X0, y, X1, y, col, 1, [4, 4]); txt(g, v === 1 / 3 ? '1/3' : v === 2 / 3 ? '2/3' : '1/2', X1, y - 3, { size: 10, color: p.muted, align: 'right' }); }
+      txt(g, '0', X0 - 4, B + 4, { size: 10, color: p.muted, align: 'right' }); txt(g, '1', X0 - 4, T + 4, { size: 10, color: p.muted, align: 'right' });
+      txt(g, t(['parties jouées →', 'games played →']), X1, H - 6, { size: 11, color: p.muted, align: 'right' });
+      if (have && i > 0) for (const [arr, col] of [[tally.stayWins, p.obj2], [tally.switchWins, p.accent]]) {
+        g.strokeStyle = col; g.lineWidth = 2; g.beginPath(); const pts = Math.min(i + 1, 240);
+        for (let j = 0; j < pts; j++) { const idx = Math.round(j * i / Math.max(1, pts - 1)), v = e[idx] ? arr[idx] / e[idx] : 0; const x = X0 + (idx + 1) / Math.max(S.runs, 1) * (X1 - X0), y = B - v * (B - T); j ? g.lineTo(x, y) : g.moveTo(x, y); }
+        g.stroke();
+      }
+      txt(g, 'n = ' + S.runs, X0 + 4, T - 8, { size: 11, color: p.muted });
+    });
+    // caption and the view toggle
+    const toggle = document.createElement('button'); toggle.type = 'button'; toggle.className = 'btn btn-secondary inf-toggle'; toggle.setAttribute('aria-pressed', 'false');
+    const cap = () => { side.caption.textContent = view === 'tree' ? t(['Arbre de probabilités (animateur informé)', 'Probability tree (informed host)']) : t(['Gains cumulés : changer contre rester', 'Cumulative wins: switch versus stay']); toggle.textContent = view === 'tree' ? t(['Voir les parties simulées', 'Show simulated games']) : t(['Voir l’arbre des probabilités', 'Show the probability tree']); toggle.setAttribute('aria-pressed', String(view === 'tree')); };
+    cap(); toggle.addEventListener('click', () => { view = view === 'tree' ? 'tally' : 'tree'; cap(); side.paint(); }); side.host.after(toggle);
+    return {
+      panels: [doorsPanel, side], overlay,
+      set(s, m) {
+        const first = !S; S = s; Mo = m; const key = s.seed + '|' + s.host; if (key !== tkey) { tkey = key; tally = M.montyTally(s.seed, 10000, s.host); }
+        shownRuns = Math.min(shownRuns, s.runs); if (first) shownRuns = s.runs;
+        side.cv.setAttribute('aria-label', t(['Gains cumulés. ', 'Cumulative wins. ']) + `${t(['changer', 'switch'])} ${m.wins}/${m.eligible}`); void pulse;
+        doorsPanel.caption.textContent = t(['Trois portes — ', 'Three doors — ']) + (!s.opened ? t(['à toi de choisir', 'your pick']) : s.finished ? (m.win ? t(['gagné', 'won']) : t(['perdu', 'lost'])) : t(['une chèvre est révélée', 'a goat is revealed']));
+      },
+      step(k, dt) {
+        let moving = false;
+        for (let i = 0; i < 3; i++) { const tg = S.finished || (S.opened && i === Mo.door) ? 1 : 0, d = tg - open[i]; if (Math.abs(d) < .01) open[i] = tg; else { open[i] += d * k; moving = true; } }
+        if (shownRuns !== S.runs) { const rate = Math.max(60, S.runs / .9) * (dt || 1); shownRuns = Math.min(S.runs, shownRuns + rate); moving = true; if (dt === 0) shownRuns = S.runs; }
+        return moving;
+      },
+    };
+  },
+
+  // ---------------------------------------------------------------- birthdays
+  birthdays({ wrap, t, fmt, setState, getState }) {
+    let S, Mo, ckey = '', curve = [], cur0 = [], pulse = 0, lastN = 0;
+    const days = () => S.days, cols = () => Math.ceil(Math.sqrt(days() * 1.6));
+    const cal = panel(wrap, 480, 290, '', (g, W, H, p) => {
+      const d = days(), c = cols(), r = Math.ceil(d / c), cs = Math.min(30, (W - 24) / c, (H - 78) / r), x0 = (W - cs * c) / 2, y0 = 26;
+      const count = new Map(); Mo.sample.forEach(v => count.set(v, (count.get(v) || 0) + 1));
+      for (let i = 0; i < d; i++) {
+        const x = x0 + (i % c) * cs, y = y0 + Math.floor(i / c) * cs, n = count.get(i) || 0;
+        g.fillStyle = n > 1 ? p.accent : n === 1 ? p.obj2 : p.sunken; g.fillRect(x + 1, y + 1, cs - 2, cs - 2);
+        if (!n) { g.strokeStyle = p.line; g.lineWidth = .5; g.strokeRect(x + 1.5, y + 1.5, cs - 3, cs - 3); }
+        if (n > 1 && cs >= 12) txt(g, String(n), x + cs / 2, y + cs / 2, { size: Math.min(13, cs - 3), color: css('--accent-ink'), weight: 700, align: 'center', base: 'middle' });
+      }
+      if (pulse > 0 && Mo.sample.length) { const i = Mo.sample.at(-1), x = x0 + (i % c) * cs + cs / 2, y = y0 + Math.floor(i / c) * cs + cs / 2; g.strokeStyle = p.accent; g.lineWidth = 2; g.beginPath(); g.arc(x, y, cs * (.6 + (1 - pulse) * 1.6), 0, 7); g.stroke(); }
+      const by = y0 + r * cs + 14;
+      g.fillStyle = p.obj2; g.fillRect(x0, by - 9, 10, 10); txt(g, t(['une personne', 'one person']), x0 + 15, by, { size: 11, color: p.ink });
+      g.fillStyle = p.accent; g.fillRect(x0 + 110, by - 9, 10, 10); txt(g, t(['au moins deux : collision', 'two or more: collision']), x0 + 125, by, { size: 11, color: p.ink });
+      txt(g, `${S.n} ${t(['personnes', 'people'])}, ${d} ${S.days === 365 ? t(['jours', 'days']) : t(['cases', 'buckets'])}`, W / 2, 14, { size: 12, color: p.ink, align: 'center', weight: 700 });
+      txt(g, Mo.duplicate ? t(['Collision !', 'Collision!']) : t(['Aucune collision', 'No collision']), W / 2, H - 6, { size: 13, color: Mo.duplicate ? p.accent : p.muted, align: 'center', weight: 700 });
+    }, { label: '' });
+    const L = 40, T = 34, plot = (W, H) => ({ x: n => L + n / 100 * (W - L - 16), y: q => H - 40 - q * (H - 40 - T) });
+    const crv = panel(wrap, 480, 290, t(['Probabilité d’une collision selon la taille du groupe', 'Probability of a collision by group size']), (g, W, H, p) => {
+      const { x, y } = plot(W, H), B = H - 40;
+      for (const q of [0, .25, .5, .75, 1]) { line(g, L, y(q), W - 16, y(q), q === .5 ? p.line : p.grid, q === .5 ? 1.2 : 1); txt(g, Math.round(q * 100) + ' %', L - 5, y(q) + 4, { size: 10, color: p.muted, align: 'right' }); }
+      for (let n = 0; n <= 100; n += 10) { txt(g, String(n), x(n), B + 15, { size: 10, color: p.muted, align: 'center' }); line(g, x(n), B, x(n), B + 4, p.line); }
+      txt(g, t(['personnes n →', 'people n →']), W - 16, H - 6, { size: 11, color: p.muted, align: 'right' });
+      if (S.mode !== 'uniform') { g.strokeStyle = p.obj3; g.lineWidth = 1.5; g.setLineDash([4, 3]); g.beginPath(); cur0.forEach((v, n) => n ? g.lineTo(x(n), y(v)) : g.moveTo(x(n), y(v))); g.stroke(); g.setLineDash([]); }
+      g.strokeStyle = p.ink; g.lineWidth = 2.5; g.beginPath(); curve.forEach((v, n) => n ? g.lineTo(x(n), y(v)) : g.moveTo(x(n), y(v))); g.stroke();
+      const n = S.n, n50 = M.birthdayThreshold(curve);
+      if (n50 > 0 && n50 <= 100) { line(g, x(n50), y(.5), x(n50), B, p.muted, 1.2, [3, 3]); if (n !== n50) { g.fillStyle = p.surface; g.strokeStyle = p.ink; g.lineWidth = 2; g.beginPath(); g.arc(x(n50), y(curve[n50]), 5, 0, 7); g.fill(); g.stroke(); } txt(g, 'n* = ' + n50, x(n50) + 6, B - 8, { size: 12, color: p.ink, weight: 700 }); }
+      const pv = curve[n]; line(g, x(n), y(pv), x(n), B, p.accent, 2); line(g, L, y(pv), x(n), y(pv), p.accent, 1.2, [3, 3]);
+      g.fillStyle = p.accent; g.beginPath(); g.arc(x(n), y(pv), 7, 0, 7); g.fill();
+      const leftSide = n >= 15; txt(g, `n = ${n} : ${fmt.num(pv * 100, 1)} %`, x(n) + (leftSide ? -12 : 12), y(pv) - 12, { size: 13, color: p.accent, weight: 700, align: leftSide ? 'right' : 'left' });
+      if (S.runs) { g.strokeStyle = p.ink; g.lineWidth = 2; g.strokeRect(x(n) - 5, y(Mo.frequency) - 5, 10, 10); }
+      if (n50 > 0) txt(g, t(['≥ 50 % dès n = ', '≥ 50% from n = ']) + n50, W - 16, T - 10, { size: 12, color: p.muted, align: 'right' });
+    });
+    slider(crv, { min: 2, max: 100, get: () => getState().n, hit: ([x, y]) => x > L - 10 && y > T - 10 && y < 262, set: (pt, v) => setState({ n: Math.round(v ?? clamp((pt[0] - L) / (crv.W - L - 16) * 100, 2, 100)) }), text: () => `${getState().n} ${t(['personnes', 'people'])}` });
+    crv.caption.append(' ', Object.assign(document.createElement('small'), { textContent: t(['(glisse le point rouge)', '(drag the red dot)']) }));
+    return {
+      panels: [cal, crv],
+      set(s, m) {
+        S = s; Mo = m; const key = s.days + s.mode; if (key !== ckey) { ckey = key; const probs = s.mode === 'seasonal' ? Array.from({ length: s.days }, (_, i) => (1 + .6 * Math.cos(2 * Math.PI * i / s.days)) / s.days) : null; curve = M.birthdayCurve(s.days, probs, 100); cur0 = s.mode === 'uniform' ? curve : M.birthdayCurve(s.days, null, 100); }
+        if (s.n > lastN) pulse = 1; lastN = s.n; cal.caption.textContent = t(['Le calendrier du groupe', 'The group’s calendar']);
+        cal.cv.setAttribute('aria-label', `${s.n} ${t(['personnes', 'people'])}: ${m.duplicate ? t(['collision présente', 'collision present']) : t(['aucune collision', 'no collision'])}`);
+        crv.cv.setAttribute('aria-label', `${t(['Courbe de probabilité', 'Probability curve'])}: n = ${s.n}, ${fmt.num(curve[s.n] * 100, 1)} %`); crv.setAria();
+      },
+      step(k, dt) { if (pulse > 0) { pulse = dt ? Math.max(0, pulse - dt * 2.2) : 0; return pulse > 0; } return false; },
+    };
+  },
+
+  // ---------------------------------------------------------------- secretary
+  secretary({ wrap, t, fmt, setState, getState }) {
+    let S, Mo, shown = [], timer = 0;
+    const n100 = () => Math.min(S.n, 100);
+    const recs = () => { const out = [], seenRel = []; for (let i = 0; i < S.interview; i++) { const v = Mo.order[i], below = Mo.order.slice(0, i).filter(x => x < v).length; seenRel.push(i ? (below + 1) / (i + 1) : 1); out.push(i === 0 || Mo.order.slice(0, i).every(x => x < v)); } return { seenRel, isRecord: out }; };
+    const stopIdx = () => M.secretarySelection(Mo.order, Math.min(S.n - 1, S.skip));
+    const bars = panel(wrap, 480, 290, t(['Les candidats, dans l’ordre des entretiens', 'The candidates, in interview order']), (g, W, H, p) => {
+      const n = S.n, L = 14, T = 40, B = H - 56, bw = (W - L - 12) / n, { seenRel, isRecord } = recs(), r = Math.min(n - 1, S.skip), stop = stopIdx();
+      line(g, L, B, W - 12, B, p.line);
+      for (let i = 0; i < n; i++) {
+        const x = L + i * bw, seen = i < S.interview, h = S.finished ? Mo.order[i] / n * (B - T) : seen ? Math.max(.06, seenRel[i]) * (B - T) : 4;
+        const hh = i < shown.length ? shown[i] : h;
+        let col = !seen && !S.finished ? p.line : i < r ? p.obj3 : p.obj2;
+        if (S.finished && i === S.accepted) col = p.accent;
+        g.fillStyle = col; g.fillRect(x + Math.min(1, bw / 4), B - hh, Math.max(1, bw - Math.min(2, bw / 2)), hh);
+        if (seen && isRecord[i] && !S.finished) { g.fillStyle = p.ink; g.fillRect(x + bw / 2 - 2, B - hh - 8, 4, 4); }
+        if (S.finished && Mo.order[i] === n) { g.strokeStyle = Mo.selected === n ? p.pos : p.neg; g.lineWidth = 2; g.strokeRect(x - 1, B - hh - 3, bw + 2, hh + 3); }
+      }
+      // the observation threshold r and the point where the rule would stop
+      const rx = L + r * bw; line(g, rx, T - 14, rx, B, p.ink, 2, [5, 4]);
+      txt(g, 'r = ' + r, rx + 4, T - 20, { size: 12, color: p.ink, weight: 700 });
+      txt(g, t(['observation', 'observe']), L + 2, T - 6, { size: 11, color: p.muted });
+      if (S.interview > r && stop < S.interview) { const sx = L + stop * bw + bw / 2; g.fillStyle = p.accent; g.beginPath(); g.moveTo(sx, B + 3); g.lineTo(sx - 6, B + 13); g.lineTo(sx + 6, B + 13); g.closePath(); g.fill(); txt(g, t(['la règle s’arrête', 'the rule stops']), sx, B + 28, { size: 11, color: p.accent, weight: 700, align: sx > W - 70 ? 'right' : sx < 60 ? 'left' : 'center' }); }
+      txt(g, S.finished ? t(['Qualités réelles révélées : ', 'True qualities revealed: ']) + (Mo.selected === n ? t(['meilleur choisi ✓', 'best chosen ✓']) : t(['rang ', 'rank ']) + Mo.selected + '/' + n) : t(['Hauteur = rang parmi les candidats déjà vus ; point = meilleur jusqu’ici', 'Height = rank among those seen; dot = best so far']), W / 2, H - 6, { size: 11, color: p.muted, align: 'center' });
+    });
+    const run = document.createElement('button'); run.type = 'button'; run.className = 'btn btn-secondary inf-toggle'; run.textContent = t(['Appliquer la règle de seuil', 'Apply the threshold rule']);
+    bars.host.after(run);
+    const clearTimer = () => { clearTimeout(timer); timer = 0; };
+    run.addEventListener('click', () => {
+      clearTimer();
+      const reduced = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      const s0 = getState(); if (s0.finished) { setState({ interview: 1, accepted: -1, finished: false }); }
+      const step = () => { const s = getState(), m = M.secretary(s), stop = M.secretarySelection(m.order, Math.min(s.n - 1, s.skip));
+        if (s.finished) return;
+        if (reduced) { setState({ interview: stop + 1, accepted: stop, finished: true }); return; }
+        if (s.interview < stop + 1) { setState({ interview: s.interview + 1 }); timer = setTimeout(step, 260); } else setState({ accepted: stop, finished: true }); };
+      step();
+    });
+    const L2 = 40, T2 = 34, px = (W, r) => L2 + r / Math.max(1, S.n - 1) * (W - L2 - 16), py = (H, q) => H - 40 - q * (H - 40 - T2) / .5;
+    const curve = panel(wrap, 480, 290, t(['Probabilité de choisir le meilleur selon r', 'Probability of choosing the best, by r']), (g, W, H, p) => {
+      const n = S.n, B = H - 40, qmax = .5;
+      for (const q of [0, .1, .2, .3, .4, .5]) { line(g, L2, py(H, q), W - 16, py(H, q), p.grid); txt(g, Math.round(q * 100) + ' %', L2 - 5, py(H, q) + 4, { size: 10, color: p.muted, align: 'right' }); }
+      line(g, L2, py(H, 1 / Math.E), W - 16, py(H, 1 / Math.E), p.muted, 1, [4, 3]); txt(g, '1/e ≈ 36,8 %'.replace(',', fmt.num(.5, 1).includes(',') ? ',' : '.'), W - 16, py(H, 1 / Math.E) - 4, { size: 10, color: p.muted, align: 'right' });
+      g.strokeStyle = p.ink; g.lineWidth = 2.5; g.beginPath(); for (let r = 0; r < n; r++) { const x = px(W, r), y = py(H, Math.min(qmax, M.secretaryProbability(n, r))); r ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke();
+      const o = Mo.optimum, ne = n / Math.E; line(g, px(W, ne), T2, px(W, ne), B, p.muted, 1, [3, 3]); txt(g, 'n/e ≈ ' + fmt.num(ne, 1), px(W, ne) + (ne > n * .6 ? -5 : 5), T2 + 10, { size: 11, color: p.muted, align: ne > n * .6 ? 'right' : 'left' });
+      if (o.skip !== Math.min(n - 1, S.skip)) { g.fillStyle = p.surface; g.strokeStyle = p.ink; g.lineWidth = 2; g.beginPath(); g.arc(px(W, o.skip), py(H, o.probability), 5, 0, 7); g.fill(); g.stroke();
+      txt(g, t(['meilleur r = ', 'best r = ']) + o.skip + ' (' + fmt.num(100 * o.probability, 1) + ' %)', px(W, o.skip), py(H, o.probability) - 12, { size: 11, color: p.ink, weight: 700, align: o.skip > n * .7 ? 'right' : 'center' }); }
+      const r = Math.min(n - 1, S.skip), cx = px(W, r), cy = py(H, Math.min(qmax, Mo.probability)); line(g, cx, cy, cx, B, p.accent, 2); g.fillStyle = p.accent; g.beginPath(); g.arc(cx, cy, 7, 0, 7); g.fill();
+      const isBest = r === o.skip; txt(g, `r = ${r} : ${fmt.num(100 * Mo.probability, 1)} %` + (isBest ? t([' (meilleur)', ' (best)']) : ''), isBest ? cx : cx + (r > n * .6 ? -12 : 12), isBest ? cy - 14 : cy + 22, { size: 13, color: p.accent, weight: 700, align: isBest ? (r > n * .6 ? 'right' : 'center') : r > n * .6 ? 'right' : 'left' });
+      if (S.runs) { g.strokeStyle = p.ink; g.lineWidth = 2; g.strokeRect(cx - 5, py(H, Math.min(qmax, Mo.frequency)) - 5, 10, 10); }
+      for (let q = 0; q <= n; q += n > 50 ? 20 : 10) txt(g, String(q), px(W, Math.min(q, n - 1)), B + 15, { size: 10, color: p.muted, align: 'center' });
+      txt(g, t(['refus initiaux r →', 'initial rejections r →']), W - 16, H - 6, { size: 11, color: p.muted, align: 'right' });
+    });
+    slider(curve, { min: 0, max: 99, get: () => getState().skip, hit: ([x, y]) => x > L2 - 10 && y > T2 - 10 && y < 262, set: (pt, v) => { const s = getState(); setState({ skip: clamp(Math.round(v ?? ((pt[0] - L2) / (curve.W - L2 - 16)) * (s.n - 1)), 0, s.n - 1), finished: false, interview: 1, accepted: -1 }); }, text: () => 'r = ' + getState().skip });
+    curve.caption.append(' ', Object.assign(document.createElement('small'), { textContent: t(['(glisse le point rouge)', '(drag the red dot)']) }));
+    return {
+      panels: [bars, curve],
+      set(s, m) {
+        S = s; Mo = m; const { seenRel } = recs(), B = 234, H = B - 40;
+        void seenRel; void H; if (!shown.length || shown.length !== s.n) shown = Array.from({ length: s.n }, () => 4);
+        bars.cv.setAttribute('aria-label', `${t(['Entretien ', 'Interview '])}${Math.min(s.interview, s.n)}/${s.n}, r = ${Math.min(s.n - 1, s.skip)}${s.finished ? ', ' + t(['qualité choisie ', 'selected quality ']) + m.selected + '/' + s.n : ''}`);
+        curve.cv.setAttribute('aria-label', `${t(['Probabilité de succès', 'Success probability'])}: r = ${Math.min(s.n - 1, s.skip)}, ${fmt.num(100 * m.probability, 1)} %`); curve.setAria();
+        run.disabled = false;
+      },
+      step(k) {
+        const n = S.n, B = 234, T = 40, { seenRel } = recs(); let moving = false;
+        for (let i = 0; i < n; i++) { const tg = S.finished ? Mo.order[i] / n * (B - T) : i < S.interview ? Math.max(.06, seenRel[i]) * (B - T) : 4, d = tg - shown[i]; if (Math.abs(d) < .3) shown[i] = tg; else { shown[i] += d * k; moving = true; } }
+        return moving;
+      },
+      destroy() { clearTimer(); },
+    };
+  },
+
+  // ---------------------------------------------------------------- benford
+  benford({ wrap, t, fmt, getState }) {
+    let S, Mo, shown = [];
+    wrap.classList.add('inf-fig--stack');
+    const L = 40, R = 14, start = () => (S.digits === 1 ? 1 : 10);
+    const bars = panel(wrap, 560, 300, t(['Fréquence du premier chiffre : données contre loi de Benford', 'Leading-digit frequency: data versus Benford’s law']), (g, W, H, p) => {
+      const cnt = Mo.counts.length, bw = (W - L - R) / cnt, T = 36, B = H - 34, ymax = Math.max(.32, ...Mo.theory, ...Mo.frequency) * 1.08, y = v => B - v / ymax * (B - T);
+      for (let q = 0; q <= .3; q += .1) { line(g, L, y(q), W - R, y(q), p.grid); txt(g, Math.round(q * 100) + ' %', L - 5, y(q) + 4, { size: 11, color: p.muted, align: 'right' }); }
+      line(g, L, B, W - R, B, p.line);
+      for (let i = 0; i < cnt; i++) {
+        const x = L + i * bw, h = shown[i] ?? 0; g.fillStyle = p.obj3; g.fillRect(x + Math.min(2, bw / 4), y(h), bw - Math.min(4, bw / 2), B - y(h));
+        const tx = x + bw / 2, ty = y(Mo.theory[i]); line(g, x + 1, ty, x + bw - 1, ty, p.accent, 3);
+        if (cnt <= 9) { g.fillStyle = p.accent; g.beginPath(); g.arc(tx, ty, 4, 0, 7); g.fill(); txt(g, fmt.num(100 * Mo.theory[i], 1), tx, ty - 9, { size: 11, color: p.accent, align: 'center', weight: 700 }); }
+        if (cnt <= 9 || i % 10 === 0) txt(g, String(i + start()), tx, B + 16, { size: 12, color: p.ink, align: 'center', weight: 700 });
+      }
+      g.fillStyle = p.obj3; g.fillRect(L + 4, 8, 11, 11); txt(g, t(['tes données (', 'your data (']) + Mo.n + ')', L + 19, 18, { size: 12, color: p.ink });
+      line(g, W - R - 110, 14, W - R - 94, 14, p.accent, 3); txt(g, 'log₁₀(1 + 1/d)', W - R, 18, { size: 12, color: p.accent, weight: 700, align: 'right' });
+      if (!Mo.n) txt(g, t(['Aucune valeur exploitable.', 'No usable value.']), W / 2, H / 2, { size: 13, color: p.muted, align: 'center' });
+    });
+    const ruler = panel(wrap, 560, 150, t(['La règle logarithmique : chaque valeur tombe sur une graduation de 1 à 10', 'The logarithmic ruler: each value lands on a mark between 1 and 10']), (g, W, H, p) => {
+      const x = v => L + Math.log10(v) * (W - L - R), Y = 82, d0 = start(), top = d0 === 1 ? 10 : 100;
+      const xs = v => L + (Math.log10(v) - Math.log10(d0)) / (Math.log10(top) - Math.log10(d0)) * (W - L - R);
+      void x;
+      for (let d = d0; d < top; d += d0 === 1 ? 1 : 1) {
+        const a = xs(d), b = xs(d + 1);
+        if (d0 === 10 && d % 10 !== 0 && d !== 99) { line(g, a, Y, a, Y + 6, p.line); continue; }
+        g.fillStyle = (d % 2) ? p.sunken : p.surface; g.fillRect(a, Y, b - a, 22); g.strokeStyle = p.ink; g.lineWidth = 1; g.strokeRect(a, Y, b - a, 22);
+        if (b - a > 20 || d0 === 10) txt(g, String(d), (a + b) / 2, Y + 15, { size: 12, color: p.ink, align: 'center', weight: 700 });
+      }
+      // the data, one tick per value, at log10 of its mantissa: where Benford lives
+      const vals = Mo.values; const step = Math.max(1, Math.floor(vals.length / 1500));
+      g.strokeStyle = p.c[0]; g.lineWidth = 1; g.globalAlpha = .45; g.beginPath();
+      for (let i = 0; i < vals.length; i += step) { const v = Math.abs(vals[i] * S.scale); if (!v || !Number.isFinite(v)) continue; const m = v / 10 ** Math.floor(Math.log10(v)), mm = d0 === 1 ? m : m * 10; if (mm < d0 || mm >= top) continue; const px = xs(mm); g.moveTo(px, Y - 6); g.lineTo(px, Y - 36 - 0); }
+      g.stroke(); g.globalAlpha = 1;
+      txt(g, t(['position = log₁₀ de la mantisse (écrite de 1 à 10)', 'position = log₁₀ of the mantissa (written from 1 to 10)']), L, 20, { size: 12, color: p.ink });
+      txt(g, t(['Largeur du chiffre d = log₁₀(1 + 1/d) : le 1 occupe 30 %, le 9 moins de 5 %.', 'Width of digit d = log₁₀(1 + 1/d): the 1 takes 30%, the 9 less than 5%.']), L, Y + 44, { size: 12, color: p.muted });
+      if (d0 === 1) { txt(g, '1', xs(1), Y + 64, { size: 11, color: p.muted, align: 'center' }); txt(g, '10', xs(10), Y + 64, { size: 11, color: p.muted, align: 'center' }); }
+    });
+    return {
+      panels: [bars, ruler],
+      set(s, m) {
+        S = s; Mo = m; if (shown.length !== m.counts.length) shown = m.frequency.map(() => 0);
+        const sub = m.frequency.slice(0, 9).map((f, i) => `${i + start()}: ${fmt.num(100 * f, 1)} %`).join(', ');
+        bars.cv.setAttribute('aria-label', `${t(['Fréquences observées', 'Observed frequencies'])}, n = ${m.n}. ${s.digits === 1 ? sub : ''}`); ruler.cv.setAttribute('aria-label', t(['Règle logarithmique avec les valeurs', 'Logarithmic ruler with the values']));
+      },
+      step(k) { let moving = false; shown = shown.map((v, i) => { const d = Mo.frequency[i] - v; if (Math.abs(d) < .0004) return Mo.frequency[i]; moving = true; return v + d * k; }); return moving; },
+    };
+  },
+};
+
+function car(g, cx, by, p) {
+  g.fillStyle = p.accent; g.fillRect(cx - 34, by - 30, 68, 18); g.fillRect(cx - 20, by - 46, 38, 18);
+  g.fillStyle = p.sunken; g.fillRect(cx - 15, by - 42, 12, 11); g.fillRect(cx + 2, by - 42, 12, 11);
+  g.fillStyle = p.ink; for (const dx of [-20, 20]) { g.beginPath(); g.arc(cx + dx, by - 11, 8, 0, 7); g.fill(); }
+}
+function goat(g, cx, by, p) {
+  g.fillStyle = p.obj3; g.strokeStyle = p.ink; g.lineWidth = 2;
+  g.fillRect(cx - 26, by - 52, 48, 26); g.strokeRect(cx - 26, by - 52, 48, 26);
+  for (const dx of [-22, -10, 8, 18]) line(g, cx + dx, by - 26, cx + dx, by, p.ink, 3);
+  g.fillRect(cx + 16, by - 74, 18, 24); g.strokeRect(cx + 16, by - 74, 18, 24);
+  line(g, cx + 20, by - 74, cx + 17, by - 88, p.ink, 2.5); line(g, cx + 30, by - 74, cx + 33, by - 88, p.ink, 2.5); line(g, cx + 25, by - 50, cx + 25, by - 40, p.ink, 2);
+  g.fillStyle = p.ink; g.fillRect(cx + 26, by - 66, 3, 3);
+}
+// The probability tree for an informed host, you having picked door 1: three equally likely prizes, then the host's forced or free reveal.
+function tree(g, W, H, p, t) {
+  const x1 = Math.round(W * .3), x2 = Math.round(W * .62), pw = Math.max(72, Math.round(W * .2)), x3 = W - pw - 6;
+  const rows = [[44, 0, t(['ouvre 2 : 1/6', 'opens 2: 1/6']), false], [92, 0, t(['ouvre 3 : 1/6', 'opens 3: 1/6']), false], [152, 1, t(['ouvre 3 : 1/3', 'opens 3: 1/3']), true], [208, 2, t(['ouvre 2 : 1/3', 'opens 2: 1/3']), true]];
+  const prizeY = [68, 152, 208], mid = H / 2 - 10;
+  txt(g, t(['ton choix :', 'your pick:']), 6, mid - 14, { size: 11, color: p.muted }); txt(g, t(['porte 1', 'door 1']), 6, mid + 2, { size: 12, color: p.ink, weight: 700 });
+  prizeY.forEach((y, i) => { line(g, 62, mid, x1 - 4, y, p.ink, 1.5); txt(g, t(['prix en ', 'prize at ']) + (i + 1), x1, y - 18, { size: 11, color: p.ink, weight: 700 }); txt(g, '1/3', x1, y - 6, { size: 11, color: p.muted }); });
+  for (const [y, pi, label, sw] of rows) {
+    line(g, x1 + 46, prizeY[pi] - 2, x2 - 4, y, p.ink, 1.2); txt(g, label, x2, y - 6, { size: 11, color: p.ink });
+    g.fillStyle = sw ? p.accent : p.obj2; g.fillRect(x3, y - 4, pw, 20); txt(g, sw ? t(['changer gagne', 'switch wins']) : t(['rester gagne', 'stay wins']), x3 + pw / 2, y + 10, { size: 10.5, color: sw ? css('--accent-ink') : p.surface, align: 'center', weight: 700 });
+  }
+  txt(g, t(['Rester : 1/6 + 1/6 = 1/3', 'Stay: 1/6 + 1/6 = 1/3']), 6, H - 28, { size: 12, color: p.ink, weight: 700 });
+  txt(g, t(['Changer : 1/3 + 1/3 = 2/3', 'Switch: 1/3 + 1/3 = 2/3']), 6, H - 10, { size: 12, color: p.accent, weight: 700 });
+}
+
+function createFigure(id, host, ctx) {
+  const probe = document.createElement('canvas');
+  if (!BUILD[id] || !probe.getContext?.('2d')) return null;
+  const wrap = document.createElement('div'); wrap.className = 'inf-fig'; host.append(wrap);
+  const B = BUILD[id]({ ...ctx, wrap });
+  let ready = false;
+  const loop = animationLoop(wrap, (dt) => { if (!ready) return false; const moving = B.step(dt > 0 ? 1 - Math.exp(-12 * dt) : 1, dt); B.panels.forEach(p => p.paint()); return moving ? true : false; }, { reduced: ctx.reduced });
+  return {
+    wrap, overlay: B.overlay || null,
+    update(s, m) { ready = true; B.set(s, m); B.panels.forEach(p => { p.live = true; }); loop.wake(60); },
+    destroy() { loop.stop(); B.destroy?.(); B.panels.forEach(p => p.dispose?.()); wrap.remove(); },
+  };
+}
+
+__e.createFigure = createFigure;
+});
 __d("lab/templates/inference.js", function (__e, __r) {
 const { mountMonteCarlo } = __r("lab/templates/monte-carlo.js");
+const { createFigure } = __r("lab/templates/inference-figure.js");
 // DOM-native chance surface: keyboard/touch cards, stable histogram rows and seeded trials.
 // It uses the shared shell lifecycle and dirty-frame scheduler, as the calculation surface does.
 function createStage(host,{onFrame,label}){
@@ -11562,12 +12173,15 @@ function mount({exp,stage,fmt,getState,setState,advance}){
  const on=(n,event,fn)=>n.addEventListener(event,fn,{signal:abort.signal});
  const premise=el('p','inference-assumption',t(d.assumption)),surface=el('div','inference-surface'),status=el('p','inference-status'),formula=el('p','inference-formula',d.formula),stats=el('dl','inference-stats'),chart=el('div','inference-chart'),caution=el('p','inference-caution',t(d.caution));
  status.setAttribute('role','status');status.setAttribute('aria-live','polite');chart.setAttribute('role','table');
- root.append(premise,surface,status,formula,stats,chart,caution);
+ const figHost=el('div','inf-fig-host');
+ const figure=createFigure(exp.id,figHost,{t,fmt,reduced:()=>stage.reduced(),getState,setState});
+ const more=el('details','inference-more');more.append(el('summary','',t(['Tableau des valeurs et tirages','Table of values and draws'])));
+ root.append(premise,figHost,surface,status,formula,stats,figure?more:chart,caution);
  const pairs=Array.from({length:8},()=>{const dt=el('dt',''),dd=el('dd','');stats.append(dt,dd);return [dt,dd];});
  const bins=Array.from({length:90},()=>{const row=el('div','inference-bin'),label=el('span','inference-bin-label'),tracks=el('span','inference-tracks'),observed=el('i','inference-observed'),theory=el('i','inference-theory'),value=el('span','inference-bin-value');row.setAttribute('role','row');label.setAttribute('role','rowheader');tracks.setAttribute('aria-hidden','true');value.setAttribute('role','cell');tracks.append(observed,theory);row.append(label,tracks,value);chart.append(row);return {row,label,observed,theory,value};});
- const note=el('p','inference-plot-note');chart.before(note);
+ const note=el('p','inference-plot-note');if(figure)more.append(note,chart);else chart.before(note);
  function button(text,fn){const b=el('button','btn btn-secondary',t(text));b.type='button';on(b,'click',fn);surface.append(b);return b;}
- const cells=el('div','inference-cells');surface.append(cells);
+ const cells=el('div','inference-cells');if(figure)more.append(cells);else surface.append(cells);
  const cards=Array.from({length:100},(_,i)=>{const n=el('span','inference-cell');cells.append(n);return n;});
  let accept,reject,reveal,doors=[],dataset;
  if(exp.id==='secretary'){
@@ -11576,7 +12190,7 @@ function mount({exp,stage,fmt,getState,setState,advance}){
  }
  if(exp.id==='tank')reveal=button(['Révéler la population','Reveal population'],()=>setState({revealed:1}));
  if(exp.id==='monty'){
-  cells.hidden=true;const board=el('div','inference-doors');surface.prepend(board);
+  cells.hidden=true;const board=el('div','inference-doors');if(figure?.overlay)figure.overlay.append(board);else surface.prepend(board);
   doors=Array.from({length:3},(_,i)=>{const b=el('button','inference-door');b.type='button';on(b,'click',()=>{const s=getState(),m=exp.model.model(s);if(s.finished||s.opened&&i===m.door)return;setState(s.opened?{strategy:i===s.choice?'stay':'switch',finished:true}:{choice:i});});board.append(b);return b;});
   reveal=button(['Ouvrir une autre porte','Open another door'],()=>{const s=getState();if(!s.opened)setState({opened:true});});
  }
@@ -11602,7 +12216,7 @@ function mount({exp,stage,fmt,getState,setState,advance}){
   if(stage.reduced()){setState({count:Math.min(5000,getState().count+1)});return;}
   grow.setAttribute('aria-pressed','true');let last=0;
   const step=now=>{if(!alive||stage.reduced()){stopGrowth();grow.setAttribute('aria-pressed','false');return;}
-   if(now-last>100){last=now;const s=getState();if(s.mode==='real'||s.mode==='custom'||s.count>=5000){stopGrowth();grow.setAttribute('aria-pressed','false');return;}setState({count:Math.min(5000,s.count+10)});}
+   if(now-last>100){last=now;const s=getState();if(s.mode==='real'||s.mode==='custom'||s.count>=(['pow2','fib'].includes(s.mode)?1000:5000)){stopGrowth();grow.setAttribute('aria-pressed','false');return;}setState({count:Math.min(5000,s.count+10)});}
    growth=requestAnimationFrame(step);};growth=requestAnimationFrame(step);
  });grow.setAttribute('aria-pressed','false');}
 
@@ -11638,7 +12252,8 @@ function mount({exp,stage,fmt,getState,setState,advance}){
    reveal.disabled=!!s.opened;write(status,!s.opened?t(['Choisis une porte, puis demande une révélation.','Choose a door, then ask for a reveal.']):!m.valid?t(['Le prix est révélé : cette partie est exclue du dénominateur conditionnel.','Prize revealed: this game is excluded from the conditional denominator.']):s.finished?t(m.win?['Gagné !','You win!']:['Perdu.','You lose.']):t(['Touche la porte choisie pour rester, ou l’autre porte fermée pour changer.','Tap the chosen door to stay, or the other closed door to switch.']));
    showStats([[['Probabilité conditionnelle exacte','Exact conditional probability'],percent(m.probability)],[['Probabilité d’une chèvre révélée','Probability of a goat reveal'],percent(m.eligibleProbability)],[['Gains / chèvres révélées','Wins / goat reveals'],m.wins+' / '+m.eligible],[['Parties commencées','Games started'],m.runs],[['Fréquence conditionnelle','Conditional frequency'],percent(m.frequency)],[['IC Wilson des simulations (95 %, approché)','Simulation Wilson CI (95%, approximate)'],interval(m.wins,m.eligible)]]);bars([m.frequency||0],[m.probability],[t(['Gagner','Win'])],t(['Gains conditionnés sur une chèvre révélée','Wins conditioned on a goat reveal']));
   }
- },destroy(){alive=false;stopGrowth();abort.abort();}};
+ figure?.update(s,m);
+ },destroy(){alive=false;stopGrowth();abort.abort();figure?.destroy();}};
 }
 
 __e.createStage = createStage;
@@ -11650,9 +12265,9 @@ const { panelView, drawAxes, drawScene, drawHandles, buildHandles } = __r("lab/p
 const { bifurcation } = __r("lab/models/cobweb.js");
 function mount(env){
  const {exp,stage,fmt,getState,setState,advance,isUnlocked}=env;let views={};
- stage.wrap.style.height='660px';
- function layout(){const W=stage.W,H=stage.H,wide=W>650;
-  const rects=wide?[{x:0,y:0,w:W/2,h:H/2},{x:W/2,y:0,w:W/2,h:H/2},{x:0,y:H/2,w:W,h:H/2}]:[0,1,2].map(i=>({x:0,y:i*H/3,w:W,h:H/3}));
+ const tall=()=>stage.W>650?'720px':'980px';stage.wrap.style.height=tall();stage.wrap.style.maxHeight='none';
+ function layout(){const W=stage.W,H=stage.H,wide=W>650;if(stage.wrap.style.height!==tall())stage.wrap.style.height=tall();
+  const rects=wide?[{x:0,y:0,w:W/2,h:H/2},{x:W/2,y:0,w:W/2,h:H/2},{x:0,y:H/2,w:W/2,h:H/2},{x:W/2,y:H/2,w:W/2,h:H/2}]:[0,1,2,3].map(i=>({x:0,y:i*H/4,w:W,h:H/4}));
   views={};exp.views.panels.forEach((id,i)=>views[id]=panelView(stage,id,rects[i],exp.views[id]));
  }layout();
  const handles=buildHandles({exp,fmt,getState,setState,views:()=>views,panels:exp.views.panels});
@@ -11662,9 +12277,11 @@ function mount(env){
   if(hi>lo){g.save();g.beginPath();g.rect(v.left,v.top,v.width,v.height);g.clip();g.fillStyle=stage.color('obj3');g.globalAlpha=.45;for(const[r,x]of bifurcation(lo,hi,Math.min(600,Math.max(80,Math.floor(v.width))),32,900)){const Y=v.Y(x);if(Y>=v.top&&Y<=v.top+v.height)g.fillRect(v.X(r),Y,1.2,1.2);}g.restore();}
   drawHandles(g,stage,handles,isUnlocked);
  }
- const players=[];
- function player(c,onChange){let stop=null;const api={get playing(){return!!stop;},stop(){if(stop){stop();stop=null;onChange?.(false);}},toggle(){if(stop)return api.stop();let n=c.get(getState());if(n>=c.max)n=0;if(stage.reduced()){advance(c.set(getState(),Math.min(c.max,n+1)));return;}let last=null,carry=0;advance(c.set(getState(),n));stop=stage.animate(now=>{last??=now;carry+=Math.min(.1,(now-last)/1000)*8;last=now;const steps=Math.floor(carry);if(steps){carry-=steps;n=Math.min(c.max,n+steps);advance(c.set(getState(),n));}if(n>=c.max){stop=null;onChange?.(false);return false;}});onChange?.(true);}};players.push(api);return api;}
- return{draw,handles,player,destroy(){players.forEach(p=>p.stop());}};
+ const players=[],autos=[];
+ function player(c,onChange){let stop=null;const api={get playing(){return!!stop;},stop(){if(stop){stop();stop=null;onChange?.(false);}},toggle(){if(stop)return api.stop();let n=c.get(getState());if(n>=c.max)n=0;if(stage.reduced()){advance(c.set(getState(),Math.min(c.max,n+1)));return;}let last=null,carry=0;advance(c.set(getState(),n));stop=stage.animate(now=>{last??=now;carry+=Math.min(.1,(now-last)/1000)*8;last=now;const steps=Math.floor(carry);if(steps){carry-=steps;n=Math.min(c.max,n+steps);advance(c.set(getState(),n));}if(n>=c.max){stop=null;onChange?.(false);return false;}});onChange?.(true);}};players.push(api);
+ if(c.autoplay){const IO=stage.wrap.ownerDocument.defaultView.IntersectionObserver;let seen=false,io=null;const start=()=>{if(seen)return;seen=true;io?.disconnect();if(c.get(getState())!==0)return;if(stage.reduced()){if(c.rest!=null)advance(c.set(getState(),c.rest));}else api.toggle();};io=IO?new IO(es=>{if(es.some(e=>e.isIntersecting))start();},{threshold:.3}):null;io?.observe(stage.wrap);autos.push(()=>io?.disconnect());}
+ return api;}
+ return{draw,handles,player,destroy(){autos.forEach(f=>f());players.forEach(p=>p.stop());}};
 }
 
 __e.mount = mount;
