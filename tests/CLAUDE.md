@@ -152,3 +152,5 @@ interactions. Additional collection browser scripts remain available.
 `annals-bank.test.mjs`: attributed source units, valid chapter links, live bank routes, combined exam/year/topic search and lazy local loading, corrections, paging and reset.
 
 `test_annals_code.py`: literal listing whitespace and HTML escaping, numbered table programs and blank lines, parallel programs, untouched data tables and TeX code typography.
+
+`visible-loop.test.mjs`: the shared animation loop (no frames offscreen or in a hidden tab, reduced motion draws once then only while interacting, a frame returning false sleeps, stop releases everything).

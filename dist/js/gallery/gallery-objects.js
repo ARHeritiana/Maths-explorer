@@ -162,7 +162,11 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   const off = document.createElement("canvas"), oj = document.createElement("canvas");
   // GPU path: every device pixel is computed with a smooth escape time (fractal-gl.js); the CPU path below is the fallback
   let glMain = createFractalGL(), glJulia = createFractalGL();
-  const glSize = (p, k) => { const d = Math.min(p.cv.width / p.W, 2.5), s = Math.min(1, 1800 / (p.W * d)); return [Math.round(p.W * d * s * k), Math.round(p.H * d * s * k)]; };
+  // Resolution follows the canvas (device pixels, at most 2x), and adapts to the machine: a render that takes too long (software GL, a weak
+  // GPU, a deep zoom) lowers `quality` for the next ones and a quick one raises it back, so that dragging stays responsive.
+  let quality = 1;
+  const glSize = (p, k) => { const d = Math.min(p.cv.width / p.W, 2.5), s = Math.min(1, 1800 / (p.W * d)) * quality; return [Math.max(64, Math.round(p.W * d * s * k)), Math.max(48, Math.round(p.H * d * s * k))]; };
+  const adapt = (ms) => { quality = ms > 250 ? Math.max(0.4, quality * 0.75) : ms < 60 ? Math.min(1, quality * 1.12) : quality; };
   const marker = () => {
     const h = (w * o.H) / o.W, [sx, sy] = [(0.5 + (cSel[0] - cx) / w) * o.W, (0.5 - (cSel[1] - cy) / h) * o.H];
     o.g.strokeStyle = "#fff"; o.g.lineWidth = 2; o.g.beginPath(); o.g.arc(sx, sy, 8, 0, TAU); o.g.moveTo(sx - 13, sy); o.g.lineTo(sx + 13, sy); o.g.moveTo(sx, sy - 13); o.g.lineTo(sx, sy + 13); o.g.stroke();
@@ -170,8 +174,8 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   const maxJulia = () => iterationLimit;
   function renderMain(res) {
     if (glMain && !glMain.lost) {
-      const [pw, ph] = glSize(o, hq ? 1 : 0.5), h = (w * o.H) / o.W, img = glMain.render({ width: pw, height: ph, kind: "mandelbrot", cx, cy, w, h, max: maxIt(), samples: hq ? 2 : 1, palette: paletteId, phase });
-      if (img) { o.g.imageSmoothingEnabled = true; o.g.imageSmoothingQuality = "high"; o.g.drawImage(img, 0, 0, o.W, o.H); marker(); return; }
+      const t0 = performance.now(), [pw, ph] = glSize(o, hq ? 1 : 0.5), h = (w * o.H) / o.W, img = glMain.render({ width: pw, height: ph, kind: "mandelbrot", cx, cy, w, h, max: maxIt(), samples: hq ? 2 : 1, palette: paletteId, phase });
+      if (img) { o.g.imageSmoothingEnabled = true; o.g.imageSmoothingQuality = "high"; o.g.drawImage(img, 0, 0, o.W, o.H); marker(); adapt(performance.now() - t0); return; }
     }
     glMain = null;
     const pw = Math.round(o.W / res), ph = Math.round(o.H / res); off.width = pw; off.height = ph;
