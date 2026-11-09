@@ -9,6 +9,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | Test | Covers |
 |---|---|
 | `navigation-ergonomics.test.mjs` | cross-page class persistence, blocked storage, generator controls retained under disclosures and complete collection navigation |
+| `teacher-state.test.mjs` | `teacher-state.js`: defaults, persistence round trip, class and chapter together, stale chapter ignored, bounded de-duplicated recents, favorites, merge-safe tool settings, export/import validation, clear, blocked or full storage fallback and `storageStatus()`, change event |
 | `home.test.mjs` | Class-to-chapter homepage, actual live destinations, remembered/resumed classes, blocked storage, accent and synonym searches, empty results, focus and curriculum language policy |
 | `challenge-backlog.test.mjs` | Knight graph/tour validation and bounded search; exhaustive Eulerian multigraph trails; BigInt factorial valuations and arbitrary-base zeros independently checked against direct factorials |
 | `math.test.mjs` | `math.js`, lab definitions in `content.js` |
