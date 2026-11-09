@@ -1656,8 +1656,6 @@ input[type="range"]::-moz-range-thumb { background: var(--accent); border-color:
 .annal-program-options > section { min-width: 0; }
 .annal-program-options h3 { margin: 0 0 8px; font-size: 1rem; }
 .annal-program-options .annal-code { margin: 0; }
-/* Keep the screen-reader MathML available without widening long formula lines. */
-.annal-content mjx-assistive-mml, .annal-print mjx-assistive-mml { width: 1px !important; height: 1px !important; }
 
 /* Layout stability of a gallery page: until the exhibit has mounted into #object-stage (empty), the blocks below it stay invisible, so
    that they do not jump down by the height of the exhibit (CLS). They are shown by themselves after 3 s if the mount never happens. */
