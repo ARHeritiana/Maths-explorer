@@ -3,6 +3,7 @@ import { liveCourses as courses } from './live-curriculum.js';
 import { assetHref, fetchJSON } from './data-loader.js';
 import { icon } from './icons.js';
 import { errorsFor } from './errors-model.js';
+import { classroom, noteOpen } from './classroom-context.js';
 // Slides index (#slides[/<course>]): a rail of curricula, then levels (owner request, 1 November 2026: curriculum first,
 // deck counts only); the decks of the chosen level fill the panel, in the HTML (explore) or PDF (lecture) edition.
 const P = (fr, en) => [fr, en];
@@ -58,12 +59,15 @@ export async function bindSlides(t) {
           main = `<a class="deck-title" href="${E(assetHref('./slides/player.html'))}&amp;deck=${E(d.id)}&amp;lang=${E(lang)}">${E(title)}</a>`;
           actions = `<a href="${E(assetHref('./slides/export/' + d.id + '.html'))}" download="${E(d.id)}.html">${icon('download-simple',16)}HTML</a>${errors?`<a class="deck-source" href="#chapter/${E(d.id)}/cours/errors">${P('Erreurs fréquentes','Common errors')[L]} (${errors})</a>`:''}`;
         }
-        return `<li class="deck-card"><span class="deck-no">${String(d.number).padStart(2, '0')}</span>${main}<details class="deck-downloads secondary-tools"><summary>${P('Télécharger / autres supports','Downloads / other resources')[L]}</summary><div class="deck-actions">${actions}</div></details></li>`;
+        const mine = classroom().chapter === d.id;
+        return `<li class="deck-card${mine ? ' is-class-chapter' : ''}"${mine ? ' aria-current="true"' : ''}>${mine ? `<span class="deck-badge">${P('Chapitre de ta classe', 'Your class chapter')[L]}</span>` : ''}<span class="deck-no">${String(d.number).padStart(2, '0')}</span>${main}<details class="deck-downloads secondary-tools"><summary>${P('Télécharger / autres supports','Downloads / other resources')[L]}</summary><div class="deck-actions">${actions}</div></details></li>`;
       };
       host.innerHTML = `<div class="res-head"><h2>${E(c.title[L])}</h2><span class="pw-count">${decks.length} ${P('diaporamas', 'decks')[L]}</span></div>${decks.length ? `<ol class="deck-grid">${decks.map(card).join('')}</ol>` : `<p class="pw-empty">${P('Pas encore de diaporama pour ce niveau.', 'No deck for this level yet.')[L]}</p>`}`;
     };
     const root = document.querySelector('.slides-page');
     root.addEventListener('click', e => {
+      const deck = e.target.closest('a.deck-title');
+      if (deck && /player\.html/.test(deck.getAttribute('href') || '')) noteOpen({ type: 'deck', id: 'deck-' + new URL(deck.href, location.href).searchParams.get('deck'), title: deck.textContent.trim(), href: deck.getAttribute('href').replace(/&amp;/g, '&') });
       const pick = e.target.closest('[data-course]');
       if (pick) { course = pick.dataset.course; try { rememberCourse(course); } catch { /* storage blocked */ } history.replaceState(null, '', '#slides/' + course); paint(); return; }
       const type = e.target.closest('[data-slide-type]');

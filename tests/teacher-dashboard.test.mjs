@@ -197,3 +197,26 @@ test('English labels render and the teacher module does not leak a French-only s
  assert.ok(!/undefined|NaN/.test(main.textContent));
  assert.ok(!/[–—]/.test(main.textContent),'no em or en dashes in copy');
 });
+
+test('one-click timed starters: link to the launch route, remembered defaults, no forced values',async()=>{
+ const h=await setup();
+ const go=h.$('a.td-go');assert.equal(go.getAttribute('href'),'#automatismes/go');assert.ok(isLiveHash('#automatismes/go'));
+ assert.match(h.$('#td-timed-sum').textContent,/5 min/,'default duration shown');
+ h.change(h.$('#td-class'),'premiere');
+ assert.match(h.$('#td-timed-sum').textContent,/Première/,'the class of the device is named');
+ h.change(h.$('#td-auto-minutes'),'8');h.change(h.$('#td-auto-count'),'12');h.change(h.$('#td-auto-seed'),'keep');
+ assert.deepEqual(h.state.getTools().automatismes,{minutes:8,count:12,seedPolicy:'keep'});
+ assert.match(h.$('#td-timed-sum').textContent,/8 min.*12.*même série/);
+ assert.ok(h.$('details.secondary-tools[open]'),'the settings stay open while editing');
+ h.change(h.$('#td-auto-minutes'),'999');assert.equal(h.state.getTools().automatismes.minutes,60,'bounded');
+ // persisted for the next visit on this device
+ await h.stop();const h2=await setup({win:h.window});
+ assert.equal(h2.$('#td-auto-minutes').value,'60');assert.equal(h2.$('#td-auto-seed').value,'keep');
+ h2.click('[data-td="export"]');assert.equal(JSON.parse(h2.saved[0].text).tools.automatismes.seedPolicy,'keep','exported with the rest');
+});
+
+test('one-click starters with storage blocked still show defaults',async()=>{
+ const h=await setup({blocked:true});
+ assert.ok(h.$('a.td-go'));h.change(h.$('#td-auto-minutes'),'7');
+ assert.equal(h.$('#td-auto-minutes').value,'7','held in memory for the session');
+});

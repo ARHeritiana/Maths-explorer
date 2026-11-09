@@ -69,6 +69,52 @@ with sync_playwright() as p:
     page.goto(f'{BASE}/#teacher'); dashboard(page)
     assert page.locator('.td-items a').count() >= 1, 'opened actions are listed as recent items'
 
+    # 4b. shared class and chapter reach the generators, lessons and exercises; one-click timed starters
+    page.goto(f'{BASE}/#teacher'); dashboard(page)
+    chapter = 'premiere-02'   # a chapter that has generator questions
+    assert chapter in options_
+    page.select_option('#td-class', 'premiere'); page.select_option('#td-chapter', chapter)
+    page.goto(f'{BASE}/#sheets'); page.wait_for_selector('#gen-form')
+    assert page.locator('[data-ctx-note]').count() == 1, 'the preselected chapter is announced'
+    assert page.locator('input[name="chapter"]:checked').evaluate_all('e => e.map(x => x.value)') == [chapter]
+    page.locator('[data-ctx-all]').click()
+    assert page.locator('input[name="chapter"]:checked').count() == 0, 'one click widens to every chapter'
+    assert page.locator('[data-ctx-note]').count() == 0
+    page.goto(f'{BASE}/#resources/premiere'); page.wait_for_selector('[data-ctx-strip]')
+    assert page.locator('[data-ctx-strip] a').first.get_attribute('href') == f'#chapter/{chapter}'
+    page.goto(f'{BASE}/#resources/seconde'); page.wait_for_selector('.chapter-grid')
+    assert page.locator('[data-ctx-strip]').count() == 0, 'another class is never filtered by the device choice'
+    page.goto(f'{BASE}/#teacher'); dashboard(page)
+    recents = page.locator('.td-items a').evaluate_all('a => a.map(x => x.getAttribute("href"))')
+    assert '#sheets' in recents and '#resources/premiere' in recents, recents
+    page.select_option('#td-class', 'premiere'); page.select_option('#td-chapter', chapter)   # browsing seconde moved the class
+    page.locator('.td-timed summary').click()
+    page.fill('#td-auto-minutes', '3'); page.press('#td-auto-minutes', 'Tab')
+    page.fill('#td-auto-count', '5'); page.press('#td-auto-count', 'Tab')
+    page.select_option('#td-auto-seed', 'new')
+    page.locator('a.td-go').click()
+    page.wait_for_selector('#auto-stage.presenting')
+    assert page.evaluate('location.hash') == '#automatismes', 'reload never relaunches'
+    assert page.input_value('input[name=minutes]') == '3' and page.input_value('input[name=count]') == '5'
+    assert page.evaluate("document.querySelector(\"select[name=cls]\").value") == "premiere", page.evaluate("[document.querySelector(\"select[name=cls]\").value, localStorage.getItem(\"mx-home-course\")]")
+    assert page.locator('input[name="chapter"]:checked').evaluate_all('e => e.map(x => x.value)') == [chapter]
+    seed1 = page.input_value('input[name=seed]')
+    q1 = page.locator('#st-q').inner_text()
+    page.locator('#st-play').click(); page.wait_for_timeout(1300)
+    assert page.locator('#st-timer').inner_text() != '', 'timer runs'
+    page.keyboard.press('a'); page.wait_for_timeout(200)
+    assert page.locator('#st-reveal').get_attribute('aria-pressed') == 'true', 'solution reveal still works'
+    page.locator('#st-play').click()
+    page.keyboard.press('Escape')
+    page.evaluate("document.querySelector('#auto-stage').classList.remove('presenting')")
+    page.goto(f'{BASE}/#teacher'); dashboard(page)
+    page.locator('.td-timed summary').click(); page.select_option('#td-auto-seed', 'keep'); page.locator('a.td-go').click()
+    page.wait_for_selector('#auto-stage.presenting')
+    assert page.input_value('input[name=seed]') == seed1, 'same-series policy keeps the code'
+    assert page.locator('[data-act="print-student"]').count() == 1 and page.locator('[data-act="tex-student"]').count() == 1 and page.locator('[data-act="projection-file"]').count() == 1
+    page.goto(f'{BASE}/#teacher'); dashboard(page)
+    page.evaluate('document.documentElement.classList.remove("is-presenting")')
+
     # 5. switch back to the student home
     page.locator('[data-set-entry="student"]').click()
     page.wait_for_selector('#home-class')

@@ -7,6 +7,7 @@ import {discoveryChapters} from './catalogue-data.js';
 import {CLASSES,chaptersOf} from './exercises/bank.js';
 import {resolveRef} from './lab/registry.js';
 import {assetHref,fetchJSON} from './data-loader.js';
+import {autoDefaults} from './classroom-context.js';
 
 const E=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const STATE_FILE='maths-explorer-espace-professeur.json';
@@ -79,7 +80,7 @@ export async function mountTeacherDashboard(main,{t,state,isGone=()=>false,decks
  const L=(fr,en)=>t([fr,en]),P=p=>t(p);
  if(decks===undefined)decks=await fetchJSON('./slides/data/index.json').catch(()=>null);
  if(isGone())return ()=>{};
- let confirmClear=false,message='';
+ let confirmClear=false,message='',autoOpen=false;
  const live=href=>!href.startsWith('#')||isLiveHash(href);
  const link=(a)=>a.href?`<a class="td-action" href="${E(a.href)}" data-recent-id="${E(a.id)}" data-recent-title="${E(P(a.label)+(a.detail?' · '+P(a.detail):''))}"><span class="td-action-title">${E(P(a.label))}</span><span class="td-action-detail">${E(P(a.detail))}</span></a>`
   :`<span class="td-action is-unavailable"><span class="td-action-title">${E(P(a.label))}</span><span class="td-action-detail">${E(P(a.why))}</span></span>`;
@@ -97,7 +98,7 @@ export async function mountTeacherDashboard(main,{t,state,isGone=()=>false,decks
   const entry=state.getEntry();
   const recents=state.getRecent().filter(i=>live(i.href)),favorites=state.getFavorites().filter(i=>live(i.href));
   const ch=chapter?chapterOf(chapter):null;
-  const actions=quickActions({course,chapter,decks});
+  const actions=quickActions({course,chapter,decks}),auto=autoDefaults(state.getTools());
   const memory=state.storageStatus()==='memory-only';
   main.innerHTML=`<h1>${L('Espace professeur','Teacher area')}</h1>
 <p class="page-intro">${L('Tableau de bord de cet appareil : ta classe, tes derniers outils et des accès directs. Rien n’est envoyé ailleurs.','Dashboard for this device: your class, your latest tools and direct access. Nothing is sent elsewhere.')}</p>
@@ -111,6 +112,13 @@ ${memory?`<p class="td-banner" role="status"><strong>${L('Stockage bloqué.','St
 <div class="td-selects"><label class="td-field"><span>${L('Classe','Class')}</span><select id="td-class"><option value="">${L('Aucune classe choisie','No class chosen')}</option>${liveCourses.map(c=>`<option value="${E(c.id)}"${c.id===course?' selected':''}>${E(courseName(c.id))}</option>`).join('')}</select></label>
 <label class="td-field"><span>${L('Chapitre','Chapter')}</span><select id="td-chapter"${course?'':' disabled'}><option value="">${course?L('Aucun chapitre précis','No specific chapter'):L('Choisis d’abord une classe','Choose a class first')}</option>${chapters.map(c=>`<option value="${E(c.id)}"${c.id===chapter?' selected':''}>${String(c.number).padStart(2,'0')} · ${E(c.title[0])}</option>`).join('')}</select></label></div>
 <p class="td-resume" id="td-resume">${course?`${L('Tu travailles avec','Working with')} <strong>${E(courseName(course))}</strong>${ch?` · <a href="#chapter/${E(chapter)}" data-recent-id="chapter-${E(chapter)}" data-recent-title="${E(ch.title[0])}" data-recent-type="chapter">${E(ch.title[0])}</a>`:''}.`:L('Aucune classe choisie sur cet appareil. Les actions ci-dessous couvrent toutes les classes.','No class chosen on this device. The actions below cover every class.')} <span class="muted">${L('Ce choix est partagé avec l’accueil, les cours, les exercices et les diaporamas.','This choice is shared with the home, lessons, exercises and slides.')}</span></p></section>
+<section class="td-section td-timed" aria-labelledby="td-timed-h"><h2 tabindex="-1" id="td-timed-h">${L('Automatismes en un clic','Timed starters in one click')}</h2>
+<p><a class="btn btn-primary td-go" href="#automatismes/go">${L('Lancer la série projetée','Start the projected series')}</a> <span class="muted" id="td-timed-sum">${course?E(courseName(course))+(ch?' · '+E(ch.title[0]):''):L('Toutes les classes','Any class')} · ${auto.minutes} min · ${auto.count} ${L('questions','questions')} · ${auto.seedPolicy==='keep'?L('même série','same series'):L('nouvelle série','new series')}</span></p>
+<details class="secondary-tools"${autoOpen?' open':''}><summary>${L('Réglages mémorisés sur cet appareil','Defaults remembered on this device')}</summary>
+<div class="td-selects"><label class="td-field"><span>${L('Durée totale (minutes)','Total time (minutes)')}</span><input id="td-auto-minutes" type="number" min="1" max="60" value="${auto.minutes}"></label>
+<label class="td-field"><span>${L('Nombre de questions','Number of questions')}</span><input id="td-auto-count" type="number" min="3" max="30" value="${auto.count}"></label>
+<label class="td-field"><span>${L('Série','Series')}</span><select id="td-auto-seed"><option value="new"${auto.seedPolicy==='new'?' selected':''}>${L('Nouvelle série à chaque lancement','New series each time')}</option><option value="keep"${auto.seedPolicy==='keep'?' selected':''}>${L('Garder le code de la dernière série','Keep the last series code')}</option></select></label></div></details>
+<p class="muted">${L('La classe et le chapitre viennent du choix ci-dessus. Sur la page, tout reste modifiable : chapitres, durée, code de la série, réponses, plein écran, impression et exports.','Class and chapter come from the choice above. On the page everything stays editable: chapters, time, series code, answers, full screen, printing and exports.')}</p></section>
 <section class="td-section" aria-labelledby="td-act-h"><h2 tabindex="-1" id="td-act-h">${L('Accès rapides','Quick actions')}</h2>
 <ul class="td-actions">${actions.map(a=>`<li>${link(a)}</li>`).join('')}</ul></section>
 <div class="td-columns">
@@ -150,6 +158,10 @@ ${confirmClear?`<div class="td-confirm" role="alertdialog" aria-labelledby="td-c
  const change=async e=>{
   const el=e.target;
   if(el.id==='td-class'){state.setClassroom({course:el.value});message='';draw();focusAfter('td-class');}
+  else if(el.id==='td-auto-minutes'||el.id==='td-auto-count'||el.id==='td-auto-seed'){
+   const patch=el.id==='td-auto-seed'?{seedPolicy:el.value}:el.id==='td-auto-count'?{count:Number(el.value)}:{minutes:Number(el.value)};
+   const keep=el.id;autoOpen=true;state.setTools({automatismes:autoDefaults({automatismes:{...autoDefaults(state.getTools()),...patch}})});message='';draw();main.querySelector('#'+keep)?.focus();
+  }
   else if(el.id==='td-chapter'){state.setChapter(el.value);message='';draw();focusAfter('td-chapter');}
   else if(el.id==='td-import'){
    const file=el.files?.[0];if(!file)return;

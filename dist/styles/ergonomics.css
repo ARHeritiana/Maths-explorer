@@ -189,3 +189,11 @@
 .auto-stage,.auto-body{grid-template-columns:minmax(0,1fr);min-width:0}
 .auto-head{flex-wrap:wrap}
 .auto-q,.auto-a,.auto-controls{min-width:0;max-width:100%}
+/* Class chapter shared from the Espace professeur: always visible, always changeable */
+.ctx-strip,.ctx-note{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;margin:12px 0;padding:8px 14px;background:var(--sunken);border:1px solid var(--line);color:var(--ink)}
+.ctx-note{margin:0 0 8px}
+.ctx-actions{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.ctx-strip .btn,.ctx-strip .btn-quiet,.ctx-note .btn-quiet{display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
+.ctx-note a.btn-quiet,.ctx-strip a.btn-quiet{text-decoration:underline;text-underline-offset:4px}
+.deck-card.is-class-chapter{outline:2px solid var(--accent);outline-offset:-2px}
+.deck-badge{font:700 .8rem var(--ui);color:var(--accent)}

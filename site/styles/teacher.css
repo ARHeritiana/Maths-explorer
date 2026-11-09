@@ -39,3 +39,6 @@ a.td-action .td-action-title{color:var(--accent)}
 .teacher-switch span{color:var(--muted);font-size:.9rem}
 @media(max-width:420px){.td-actions{grid-template-columns:1fr}.td-entry{padding:12px}}
 .td-resume a{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
+/* One-click timed starters */
+.td-timed p{margin:0 0 12px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.td-timed .td-go{min-height:48px;text-decoration:none}

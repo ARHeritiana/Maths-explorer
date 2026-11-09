@@ -1,4 +1,5 @@
 import {currentCourse,rememberCourse} from '../navigation-state.js';
+import {classroom,chapterTitle as classChapterTitle} from '../classroom-context.js';
 // Shared pieces of the two generator pages (#automatismes, #sheets): form controls, settings kept on the device,
 // maths typesetting, file download and printing. Plain DOM, no framework.
 import { CLASSES, DOMAINS, LEVELS, chaptersOf, domainsOf } from './bank.js';
@@ -7,8 +8,25 @@ import { esc } from './export.js';
 const P = (fr, en) => [fr, en];
 export { P };
 
+// The chapter chosen for the class (Espace professeur) is preselected once per change: a later manual choice of chapters
+// stays until the class chapter itself changes. `ctxChapter` remembers which class chapter was last applied.
+function applyClassroomChapter(settings){
+ const c=classroom(),ch=c.chapter&&c.course===settings.cls&&chaptersOf(settings.cls).includes(c.chapter)?c.chapter:'';
+ if((settings.ctxChapter||'')!==ch){settings.ctxChapter=ch;if(ch)settings.chapters=[ch];}
+}
+// A visible line naming the preselected chapter, with the way to widen it. Empty when the chapters were changed by hand.
+export const contextNote=(settings,t)=>settings.ctxChapter&&settings.chapters.length===1&&settings.chapters[0]===settings.ctxChapter
+ ?`<p class="ctx-note" data-ctx-note role="status">${t(P('Chapitre de ta classe préréglé :','Class chapter preselected:'))} <strong>${esc(classChapterTitle(settings.ctxChapter)||settings.ctxChapter)}</strong> <button type="button" class="btn-quiet" data-ctx-all>${t(P('Tous les chapitres','All chapters'))}</button> <a class="btn-quiet" href="#teacher">${t(P('Changer de classe','Change class'))}</a></p>`:'';
+// Keeps the note in step with the chapter chips: any manual change removes it.
+export function bindContextNote(form,getSettings){
+ form.addEventListener('change',()=>{const host=form.querySelector('#gen-context');if(!host)return;const on=form.querySelectorAll('input[name="chapter"]:checked');
+  if(!(on.length===1&&on[0].value===getSettings().ctxChapter))host.innerHTML='';});
+ form.addEventListener('click',e=>{if(!e.target.closest('[data-ctx-all]'))return;
+  form.querySelectorAll('input[name="chapter"]').forEach(i=>{i.checked=false;});form.querySelector('#gen-context').innerHTML='';
+  form.dispatchEvent(new Event('change',{bubbles:true}));form.querySelector('input[name="chapter"]')?.focus();});
+}
 // ---- settings kept on this device (a convenience, never sent anywhere) ----
-export const loadSettings = (key, fallback) => { let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')||{};}catch{}const settings={...fallback,...saved};if('cls' in settings)settings.cls=currentCourse(settings.cls)||settings.cls;return settings; };
+export const loadSettings = (key, fallback) => { let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')||{};}catch{}const settings={...fallback,...saved};if('cls' in settings){settings.cls=currentCourse(settings.cls)||settings.cls;if('chapters' in settings)applyClassroomChapter(settings);}return settings; };
 export const saveSettings = (key, value) => { if(value.cls)rememberCourse(value.cls); try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* storage may be blocked */ } };
 
 // ---- maths ----

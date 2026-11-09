@@ -16,6 +16,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/navigation-state.js` | one validated, device-local class preference shared across home, courses, practice, slides and classroom generators |
 | `js/teacher-state.js` | device-local teacher state (`mx-teacher-*`): entry choice, chapter beside the class, recent items, favorites, automatismes settings, export/import/clear, in-memory fallback with `storageStatus()`; no UI, no network |
 | `js/config.js` | site-wide configuration constants (the Mikajy Free download link), read by the home and app |
+| `js/classroom-context.js` | the device's class and chapter offered to other pages: recents on open (`recentFor`, `noteOpen`), the "your class chapter" strip on lessons and exercises, remembered one-click automatismes defaults (`autoDefaults`); never a hidden filter, storage-safe |
 | `js/teacher-entry.js` | eager and tiny: which entrance a device opens (`landingHash`, `homeHash`) and the `data-set-entry` switch (`installEntrySwitch`); no preference means the student home, untouched |
 | `js/teacher-dashboard.js` | `#teacher` Espace professeur, loaded on demand by `app.js`: class and chapter override, `quickActions` (links only to existing routes, unavailable ones explain why), recents and favorites, storage banner, export, import and clear of teacher state |
 | `js/page-ergonomics.js` | native disclosures group classroom chapter choices, advanced settings and secondary exports without replacing controls |

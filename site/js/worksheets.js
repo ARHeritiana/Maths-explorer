@@ -4,7 +4,7 @@
 // LaTeX source. Same seed, same document.
 import { CLASSES, buildSheet, describeLevels } from './exercises/bank.js';
 import { html, esc, sheetHtml, sheetTex, kindLabel } from './exercises/export.js';
-import { P, stepSeed, loadSettings, saveSettings, typeset, download, printMarkup, stamp, classOptions, chapterChips, domainChips, levelChips, checked } from './exercises/ui-kit.js';
+import { P, contextNote, bindContextNote, stepSeed, loadSettings, saveSettings, typeset, download, printMarkup, stamp, classOptions, chapterChips, domainChips, levelChips, checked } from './exercises/ui-kit.js';
 
 const KEY = 'maths-explorer-sheets-v1';
 const DEFAULTS = { cls: 'premiere', kind: 'interro', chapters: [], domains: [], levels: [1, 2, 3], count: 3, parts: 3, authored: true, bareme: false, total: 20, two: false, seed: '' };
@@ -22,7 +22,7 @@ export function sheetsPage(t) {
 <label class="gen-field"><span>${t(P('Classe', 'Class'))}</span><select name="cls">${classOptions(s.cls)}</select></label>
 <label class="gen-field"><span>${t(P('Type de document', 'Document type'))}</span><select name="kind">${kinds.map(([id, l]) => `<option value="${id}"${id === s.kind ? ' selected' : ''}>${t(l)}</option>`).join('')}</select></label>
 </div>
-<div id="gen-chapters"></div><div id="gen-domains"></div><div id="gen-levels">${levelChips(s.levels, t)}</div>
+<div id="gen-context">${contextNote(s, t)}</div><div id="gen-chapters"></div><div id="gen-domains"></div><div id="gen-levels">${levelChips(s.levels, t)}</div>
 <div class="gen-row">
 <label class="gen-field"><span>${t(P('Nombre d’exercices', 'Number of exercises'))}</span><input type="number" name="count" min="1" max="10" value="${s.count}"></label>
 <label class="gen-field"><span>${t(P('Questions par exercice généré', 'Questions per generated exercise'))}</span><input type="number" name="parts" min="1" max="5" value="${s.parts}"></label>
@@ -52,6 +52,7 @@ export function bindSheets(root, t, { chapterTitle = (id) => id } = {}) {
   const s = loadSettings(KEY, DEFAULTS);
   if (!s.seed) s.seed = newSeed();
   form.elements.seed.value = s.seed;
+  bindContextNote(form, () => s);
   let docs = {}, subject = 'A', version = 'student', opts = null;
 
   const read = () => ({ cls: form.elements.cls.value, kind: form.elements.kind.value, chapters: checked(form, 'chapter'), domains: checked(form, 'domain'), levels: checked(form, 'level').map(Number).sort(), count: Math.max(1, Math.min(10, Number(form.elements.count.value) || 3)), parts: Math.max(1, Math.min(5, Number(form.elements.parts.value) || 3)), authored: form.elements.authored.checked, bareme: form.elements.bareme.checked, total: Math.max(1, Math.min(100, Number(form.elements.total.value) || 20)), two: form.elements.two.checked, seed: form.elements.seed.value.trim() || s.seed });

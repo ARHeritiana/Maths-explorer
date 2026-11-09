@@ -3,7 +3,8 @@
 // or exported as LaTeX source or as a standalone projection page. Same seed, same series.
 import { CLASSES, buildStarter, describeLevels } from './exercises/bank.js';
 import { html, esc, starterHtml, starterTex, projectionHtml } from './exercises/export.js';
-import { P, loadSettings, saveSettings, typeset, download, printMarkup, stamp, classOptions, chapterChips, domainChips, levelChips, checked } from './exercises/ui-kit.js';
+import { autoDefaults } from './classroom-context.js';
+import { P, contextNote, bindContextNote, loadSettings, saveSettings, typeset, download, printMarkup, stamp, classOptions, chapterChips, domainChips, levelChips, checked } from './exercises/ui-kit.js';
 import { fullscreenButton } from './visual-lessons.js';
 
 const KEY = 'maths-explorer-automatismes-v1';
@@ -17,7 +18,7 @@ export function automatismesPage(t, pair) {
 <div class="gen-layout">
 <form class="gen-form" id="gen-form" aria-label="${t(P('Réglages de la série', 'Series settings'))}" onsubmit="return false">
 <label class="gen-field"><span>${t(P('Classe', 'Class'))}</span><select name="cls">${classOptions(s.cls)}</select></label>
-<div id="gen-chapters"></div><div id="gen-domains"></div><div id="gen-levels">${levelChips(s.levels, t)}</div>
+<div id="gen-context">${contextNote(s, t)}</div><div id="gen-chapters"></div><div id="gen-domains"></div><div id="gen-levels">${levelChips(s.levels, t)}</div>
 <div class="gen-row">
 <label class="gen-field"><span>${t(P('Questions', 'Questions'))}</span><input type="number" name="count" min="3" max="30" value="${s.count}"></label>
 <label class="gen-field"><span>${t(P('Durée totale (minutes)', 'Total time (minutes)'))}</span><input type="number" name="minutes" min="1" max="60" value="${s.minutes}"></label>
@@ -48,11 +49,15 @@ export function automatismesPage(t, pair) {
 </section></div></main>`;
 }
 
-export function bindAutomatismes(root, t, { chapterTitle = (id) => id } = {}) {
+export function bindAutomatismes(root, t, { chapterTitle = (id) => id, launch = false } = {}) {
   const form = root.querySelector('#gen-form'), $ = (sel) => root.querySelector(sel);
   const s = loadSettings(KEY, DEFAULTS);
   if (!s.seed) s.seed = newSeed();
+  // One-click session from the Espace professeur (#automatismes/go): class and chapter come from the device, the
+  // remembered duration, size and seed policy replace the form values; everything stays editable on the page.
+  if (launch) { const d = autoDefaults(); Object.assign(s, { minutes: d.minutes, count: d.count }); if (d.seedPolicy === 'new') s.seed = newSeed(); form.elements.minutes.value = s.minutes; form.elements.count.value = s.count; }
   form.elements.seed.value = s.seed;
+  bindContextNote(form, () => s);
   let doc = null, i = 0, showAnswer = false, running = false, left = 0, tick = null;
 
   const read = () => ({ cls: form.elements.cls.value, chapters: checked(form, 'chapter'), domains: checked(form, 'domain'), levels: checked(form, 'level').map(Number).sort(), count: Math.max(3, Math.min(30, Number(form.elements.count.value) || 10)), minutes: Math.max(1, Math.min(60, Number(form.elements.minutes.value) || 5)), order: form.elements.order.value, fast: form.elements.fast.checked, qcm: form.elements.qcm.checked, seed: form.elements.seed.value.trim() || s.seed });
@@ -150,5 +155,10 @@ export function bindAutomatismes(root, t, { chapterTitle = (id) => id } = {}) {
   document.addEventListener('keydown', onKey);
   window.addEventListener('resize', fit); document.addEventListener('fullscreenchange', fit);
   rebuild();
+  if (launch) {
+    const stage = $('#auto-stage');
+    if (doc && !doc.empty) { stage.classList.add('presenting'); document.documentElement.classList.add('is-presenting'); stage.requestFullscreen?.().catch(() => {}); stage.focus(); fit(); }
+    try { history.replaceState(null, '', '#automatismes'); } catch { /* the address stays */ }
+  }
   return () => { stopTimer(); document.removeEventListener('keydown', onKey); window.removeEventListener('resize', fit); document.removeEventListener('fullscreenchange', fit); document.querySelector('.print-doc')?.remove(); };
 }

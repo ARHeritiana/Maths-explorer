@@ -40,6 +40,7 @@ import { isAnswer, formatNumber } from "./math.js";
 import {discoveryIndex,discoveryPage,bindDiscovery,discoveryContext,isTopicRoute} from './discovery.js';
 import {historyPage,bindHistory,isHistoryRoute,mathematiciansTimelineUrl} from './history.js';
 import * as teacherState from './teacher-state.js';
+import {noteOpen,recentFor,contextStripHtml,mountContextStrip} from './classroom-context.js';
 import {landingHash,homeHash,installEntrySwitch} from './teacher-entry.js';
 
 const $ = (s, root = document) => root.querySelector(s);
@@ -246,6 +247,12 @@ function render() {
     if (!isLiveHash(a.getAttribute('href'))) a.remove();
   });
   bindCommon();
+  // The device remembers what was opened (Espace professeur recents) and names the class chapter on lessons and exercises.
+  if (valid) {
+    const recent = recentFor(page, r.id, r.tab, t, experiment ? t(experiment.title) : "");
+    if (recent) noteOpen(recent);
+    if (page === "resources" || (page === "bank" && r.id !== "annales" && !r.tab)) mountContextStrip($("#main"), contextStripHtml({ page, t, course: r.id || currentCourse() }));
+  }
   if (page === "gallery" && r.id) bindGallery();
   if (page === "lab" && !experiment) bindLabIndex($("#main"), pair);
   if (page === "challenges") stopChapter = bindChallenges();
@@ -259,7 +266,7 @@ function render() {
   if (page === "pack") bindPack(t);
   if (page === "sources") bindSources(t);
   if (page === "slides") bindSlides(t);
-  if (page === "automatismes") stopChapter = bindAutomatismes($("#main"), t, { chapterTitle: chapterTitleFr });
+  if (page === "automatismes") stopChapter = bindAutomatismes($("#main"), t, { chapterTitle: chapterTitleFr, launch: r.id === "go" });
   if (page === "bank") stopChapter = bindBank($("#main"), t, r.id, r.tab);
   if (page === "sheets") stopChapter = bindSheets($("#main"), t, { chapterTitle: chapterTitleFr });
   if (page === "university") bindUniversity(r.id, lang);
