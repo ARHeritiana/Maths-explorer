@@ -76,11 +76,13 @@ const download=(name,text)=>{
 const readText=f=>typeof f.text==='function'?f.text():new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>ok(String(r.result));r.onerror=no;r.readAsText(f);});
 
 // Renders into `main` and binds. `options.decks` (array or null) skips the network; `options.download(name, text)` replaces the file save.
-export async function mountTeacherDashboard(main,{t,state,isGone=()=>false,decks,download:save=download}={}){
+export async function mountTeacherDashboard(main,{t,state,isGone=()=>false,decks,download:save=download,search=true}={}){
  const L=(fr,en)=>t([fr,en]),P=p=>t(p);
  if(decks===undefined)decks=await fetchJSON('./slides/data/index.json').catch(()=>null);
  if(isGone())return ()=>{};
  let confirmClear=false,message='',autoOpen=false;
+ // The search box lives in one node that survives every redraw (typed text and results are kept).
+ const searchHost=main.ownerDocument.createElement('div');searchHost.id='td-search-host';let stopSearch=()=>{};
  const live=href=>!href.startsWith('#')||isLiveHash(href);
  const link=(a)=>a.href?`<a class="td-action" href="${E(a.href)}" data-recent-id="${E(a.id)}" data-recent-title="${E(P(a.label)+(a.detail?' · '+P(a.detail):''))}"><span class="td-action-title">${E(P(a.label))}</span><span class="td-action-detail">${E(P(a.detail))}</span></a>`
   :`<span class="td-action is-unavailable"><span class="td-action-title">${E(P(a.label))}</span><span class="td-action-detail">${E(P(a.why))}</span></span>`;
@@ -119,6 +121,7 @@ ${memory?`<p class="td-banner" role="status"><strong>${L('Stockage bloqué.','St
 <label class="td-field"><span>${L('Nombre de questions','Number of questions')}</span><input id="td-auto-count" type="number" min="3" max="30" value="${auto.count}"></label>
 <label class="td-field"><span>${L('Série','Series')}</span><select id="td-auto-seed"><option value="new"${auto.seedPolicy==='new'?' selected':''}>${L('Nouvelle série à chaque lancement','New series each time')}</option><option value="keep"${auto.seedPolicy==='keep'?' selected':''}>${L('Garder le code de la dernière série','Keep the last series code')}</option></select></label></div></details>
 <p class="muted">${L('La classe et le chapitre viennent du choix ci-dessus. Sur la page, tout reste modifiable : chapitres, durée, code de la série, réponses, plein écran, impression et exports.','Class and chapter come from the choice above. On the page everything stays editable: chapters, time, series code, answers, full screen, printing and exports.')}</p></section>
+<section class="td-section td-search" id="td-search-slot" aria-label="${L('Recherche','Search')}"></section>
 <section class="td-section" aria-labelledby="td-act-h"><h2 tabindex="-1" id="td-act-h">${L('Accès rapides','Quick actions')}</h2>
 <ul class="td-actions">${actions.map(a=>`<li>${link(a)}</li>`).join('')}</ul></section>
 <div class="td-columns">
@@ -136,6 +139,7 @@ ${favorites.length?`<ul class="td-items">${favorites.map(i=>itemRow(i,'fav')).jo
 <label class="td-field td-import"><span>${L('Importer un fichier exporté','Import an exported file')}</span><input id="td-import" type="file" accept="application/json,.json"></label>
 ${confirmClear?`<div class="td-confirm" role="alertdialog" aria-labelledby="td-confirm-t"><p id="td-confirm-t"><strong>${L('Tout effacer sur cet appareil ?','Clear everything on this device?')}</strong> ${L('Cela efface aussi la classe choisie (accueil, cours, exercices, diaporamas), les récents, les favoris et les réglages de l’Espace professeur.','This also forgets the chosen class (home, lessons, exercises, slides), recent items, favorites and Teacher area settings.')}</p><button type="button" class="btn btn-primary" data-td="clear-yes">${L('Oui, tout effacer','Yes, clear everything')}</button> <button type="button" class="btn btn-secondary" data-td="clear-no">${L('Annuler','Cancel')}</button></div>`:''}
 <p id="td-message" class="td-message" role="status" aria-live="polite">${E(message)}</p></section>`;
+ main.querySelector('#td-search-slot')?.append(searchHost);
  };
  const focusAfter=id=>main.querySelector('#'+id)?.focus();
  const click=e=>{
@@ -173,5 +177,6 @@ ${confirmClear?`<div class="td-confirm" role="alertdialog" aria-labelledby="td-c
  };
  main.addEventListener('click',click);main.addEventListener('change',change);
  draw();
- return ()=>{main.removeEventListener('click',click);main.removeEventListener('change',change);};
+ if(search)import('./resource-search.js').then(m=>m.mountResourceSearch(searchHost,{t,state,decks,isGone})).then(stop=>{stopSearch=stop;if(isGone())stop();}).catch(()=>{searchHost.innerHTML=`<p class="muted" role="status">${L('La recherche n’a pas pu se charger.','Search could not load.')}</p>`;});
+ return ()=>{main.removeEventListener('click',click);main.removeEventListener('change',change);stopSearch();};
 }

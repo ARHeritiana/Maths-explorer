@@ -19,6 +19,9 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/classroom-context.js` | the device's class and chapter offered to other pages: recents on open (`recentFor`, `noteOpen`), the "your class chapter" strip on lessons and exercises, remembered one-click automatismes defaults (`autoDefaults`); never a hidden filter, storage-safe |
 | `js/teacher-entry.js` | eager and tiny: which entrance a device opens (`landingHash`, `homeHash`) and the `data-set-entry` switch (`installEntrySwitch`); no preference means the student home, untouched |
 | `js/teacher-dashboard.js` | `#teacher` Espace professeur, loaded on demand by `app.js`: class and chapter override, `quickActions` (links only to existing routes, unavailable ones explain why), recents and favorites, storage banner, export, import and clear of teacher state |
+| `js/resource-index.js` | pure: the one search index over live resources (stable ids `type:key`, honest actions Ouvrir/Projeter/Manipuler/Imprimer, projectable/printable flags), accent/case/plural folding, FR/EN synonyms, ranking, filters (class, topic, type, projection, print), and the shared topic/relationship registry `RELATIONS` (`rel.*` ids) behind `relatedTo` |
+| `js/resource-sources.js` | wiring of the real data (discovery index, chapters, decks, bank, annales) through `isLiveHash` into `buildResourceIndex`; decks come from the caller (no index, no slide claimed) |
+| `js/resource-search.js` | the search UI (`mountResourceSearch`) used by `#search` and the teacher dashboard, favorites and recents through `teacher-state.js`; styles in `styles/teacher.css` |
 | `js/page-ergonomics.js` | native disclosures group classroom chapter choices, advanced settings and secondary exports without replacing controls |
 | `js/ui.js` | theme choice, full-screen presenting |
 | `js/icons.js` | Phosphor icon paths, `icon(name, size)` |

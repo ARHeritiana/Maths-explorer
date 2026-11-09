@@ -42,3 +42,28 @@ a.td-action .td-action-title{color:var(--accent)}
 /* One-click timed starters */
 .td-timed p{margin:0 0 12px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
 .td-timed .td-go{min-height:48px;text-decoration:none}
+/* Resource search (#search and the dashboard): Cahier tokens only */
+.rs-title{font-size:1.25rem;margin:0 0 12px}
+.rs-form{margin:0 0 8px}
+.rs-q input{width:100%;box-sizing:border-box}
+.rs-filters{margin:8px 0}
+.rs-checks{display:flex;flex-wrap:wrap;gap:4px 24px}
+.rs-check{display:inline-flex;align-items:center;gap:8px;min-height:44px;font:600 .92rem var(--ui)}
+.rs-check input{width:44px;height:44px;margin:0;flex:none}
+.rs-status{min-height:1.4em;margin:4px 0}
+.rs-group{margin:20px 0}
+.rs-group h3{font-size:1.05rem;margin:0 0 6px}
+.rs-list{list-style:none;margin:0;padding:0}
+.rs-item{padding:10px 0;border-bottom:1px solid var(--line)}
+.rs-head{display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline;justify-content:space-between}
+.rs-title-line{font:700 1rem var(--ui);overflow-wrap:anywhere}
+.rs-meta{font-size:.86rem;color:var(--muted)}
+.rs-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.rs-act,.rs-fav,.rs-chip,.rs-group .btn-quiet,.rs-empty .btn{min-height:44px;display:inline-flex;align-items:center}
+.rs-related{margin-top:6px}
+.rs-related summary{min-height:44px;display:flex;align-items:center;cursor:pointer}
+.rs-related ul{list-style:none;margin:0;padding:0 0 0 8px}
+.rs-related a{display:inline-flex;align-items:center;min-height:44px}
+.rs-suggest{display:flex;flex-wrap:wrap;gap:8px}
+.rs-empty{padding:12px 16px;border:1.5px dashed var(--line-strong);background:var(--sunken)}
+.rs-note{font-size:.88rem}
