@@ -1,0 +1,199 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {JSDOM} from 'jsdom';
+import {createTeacherState} from '../site/js/teacher-state.js';
+import {mountTeacherDashboard,quickActions,chaptersFor,STATE_FILE} from '../site/js/teacher-dashboard.js';
+import {landingHash,homeHash,installEntrySwitch} from '../site/js/teacher-entry.js';
+import {homePage} from '../site/js/welcome.js';
+import {liveCourses,isLiveHash} from '../site/js/live-curriculum.js';
+import {chaptersOf} from '../site/js/exercises/bank.js';
+
+const t=p=>p[0];
+const DECKS=[{id:'seconde-01',course:'seconde',editions:{fr:{}}},{id:'premiere-02',course:'premiere',editions:{fr:{}}}];
+const setup=async({blocked=false,decks=DECKS,win}={})=>{
+ const dom=win?null:new JSDOM('<div id="app"><main id="main"></main></div>',{url:'https://example.test/#teacher'});
+ const window=win||dom.window;
+ if(blocked)Object.defineProperty(window,'localStorage',{get(){throw new Error('blocked');}});
+ const state=createTeacherState(window),main=window.document.querySelector('#main'),saved=[];
+ const stop=await mountTeacherDashboard(main,{t,state,decks,download:(name,text)=>saved.push({name,text})});
+ const change=(el,value)=>{el.value=value;el.dispatchEvent(new window.Event('change',{bubbles:true}));};
+ const click=sel=>main.querySelector(sel).click();
+ return {window,state,main,saved,stop,change,click,$:s=>main.querySelector(s),$$:s=>[...main.querySelectorAll(s)]};
+};
+const tick=()=>new Promise(r=>setTimeout(r,10));
+
+test('entry preference: remembered, switch both ways, landing and logo follow it',async()=>{
+ const h=await setup();
+ assert.equal(h.state.getEntry(),'');
+ assert.equal(landingHash('',h.state.getEntry()),null,'no preference: the student home is untouched');
+ assert.equal(landingHash('#home','teacher'),'#teacher');assert.equal(landingHash('','teacher'),'#teacher');
+ assert.equal(landingHash('#lab/quadratic','teacher'),null,'explicit links are never redirected');
+ assert.equal(homeHash('teacher'),'#teacher');assert.equal(homeHash('student'),'#home');
+ // student home offers the choice
+ const home=new JSDOM(homePage({t:p=>p[0],pair:(a)=>a,link:(p,id)=>'#'+p+(id?'/'+id:''),index:[],last:''}),{url:'https://example.test/'});
+ const choose=home.window.document.querySelector('[data-set-entry="teacher"]');
+ assert.equal(choose.getAttribute('href'),'#teacher');
+ const stopSwitch=installEntrySwitch(home.window.document.body,h.state);
+ choose.click();assert.equal(h.state.getEntry(),'teacher');
+ assert.equal(createTeacherState(h.window).getEntry(),'teacher','persisted for the next visit');
+ // the dashboard now shows the way back, always visible
+ await h.stop();const h2=await setup({win:h.window});
+ const back=h2.$('[data-set-entry="student"]');assert.ok(back);assert.equal(back.getAttribute('href'),'#home');
+ const stopBack=installEntrySwitch(h2.main,h2.state);back.click();
+ assert.equal(h2.state.getEntry(),'student');assert.equal(landingHash('','student'),null);
+ stopBack();stopSwitch();
+ // from the dashboard with no preference, a button chooses it
+ const h3=await setup();assert.ok(h3.$('a[href="#home"]'),'student home reachable');
+ h3.click('[data-td="entry-teacher"]');assert.equal(h3.state.getEntry(),'teacher');
+ assert.ok(h3.$('[data-set-entry="student"]'),'switch back is shown after choosing');
+});
+
+test('class and chapter override: chapters limited to the class, nothing hidden',async()=>{
+ const h=await setup();
+ assert.equal(h.$('#td-chapter').disabled,true,'no chapter list without a class');
+ assert.equal(h.$$('#td-class option').length,liveCourses.length+1);
+ for(const c of liveCourses){
+  h.change(h.$('#td-class'),c.id);
+  assert.equal(h.state.getClassroom().course,c.id);
+  const ids=h.$$('#td-chapter option').slice(1).map(o=>o.value);
+  assert.deepEqual(ids,chaptersFor(c.id).map(x=>x.id));
+  assert.ok(ids.length>0);assert.ok(ids.every(id=>isLiveHash('#chapter/'+id)));
+ }
+ h.change(h.$('#td-class'),'seconde');h.change(h.$('#td-chapter'),'seconde-01');
+ assert.deepEqual(h.state.getClassroom(),{course:'seconde',chapter:'seconde-01'});
+ assert.match(h.$('#td-resume').textContent,/Seconde/);
+ assert.equal(h.$('#td-resume a').getAttribute('href'),'#chapter/seconde-01');
+ assert.equal(h.window.document.activeElement.id,'td-chapter','focus stays on the control');
+ h.change(h.$('#td-class'),'premiere');
+ assert.equal(h.state.getChapter(),'','changing class drops the chapter of another class');
+ h.change(h.$('#td-class'),'');
+ assert.equal(h.state.getClassroom().course,'');
+ assert.equal(h.$('#td-chapter').disabled,true);
+ // the class is the shared one
+ h.change(h.$('#td-class'),'terminale');
+ assert.equal(h.window.localStorage.getItem('mx-home-course'),'terminale');
+});
+
+test('quick actions: every enabled one points at an existing live route, the others explain themselves',async()=>{
+ for(const course of ['',...liveCourses.map(c=>c.id)]){
+  const chapters=['',...(course?chaptersFor(course).map(c=>c.id):[])];
+  for(const chapter of chapters){
+   for(const decks of [DECKS,[],null]){
+    const actions=quickActions({course,chapter,decks});
+    assert.deepEqual(actions.map(a=>a.id),['starters','sheets','exercises','slides','lesson','lab']);
+    for(const a of actions){
+     if(a.href){
+      assert.equal(a.why,null);
+      if(a.href.startsWith('#'))assert.ok(isLiveHash(a.href),`${a.id} ${a.href}`);
+      else assert.match(a.href,/slides\/player\.html.*deck=/);
+      if(a.href.startsWith('#bank/')&&chapter)assert.ok(chaptersOf(course).includes(chapter),'exercises exist for '+chapter);
+     }else assert.ok(a.why&&a.why[0],`${a.id} unavailable without a reason`);
+    }
+   }
+  }
+ }
+ const a=quickActions({course:'seconde',chapter:'seconde-01',decks:DECKS});
+ assert.match(a.find(x=>x.id==='slides').href,/deck=seconde-01/);
+ assert.equal(a.find(x=>x.id==='lesson').href,'#chapter/seconde-01');
+ const none=quickActions({course:'seconde',chapter:'seconde-01',decks:[]});
+ assert.equal(none.find(x=>x.id==='slides').href,null,'no deck, no link');
+ assert.equal(quickActions({course:'seconde',decks:null}).find(x=>x.id==='slides').href,'#slides/seconde','index unreadable: class page still exists');
+});
+
+test('dashboard has no dead buttons or links',async()=>{
+ const h=await setup();
+ h.change(h.$('#td-class'),'seconde');h.change(h.$('#td-chapter'),'seconde-01');
+ for(const a of h.$$('a')){
+  const href=a.getAttribute('href');assert.ok(href&&href!=='#','link without a target: '+a.textContent);
+  if(href.startsWith('#'))assert.ok(isLiveHash(href),href);
+ }
+ for(const el of h.$$('.is-unavailable'))assert.ok(!el.matches('a,button'),'unavailable entries are not controls');
+ for(const b of h.$$('button'))assert.ok(b.dataset.td,'every button is wired: '+b.textContent);
+ assert.ok(!/Mes sélections|Rechercher|Ma séance/.test(h.main.textContent),'no placeholder for later increments');
+ const hidden=new Set(liveCourses.map(c=>c.id));
+ assert.deepEqual(h.$$('#td-class option').slice(1).map(o=>o.value).filter(v=>!hidden.has(v)),[]);
+});
+
+test('recents and favorites: honest empty states, then populated, removable, only live links',async()=>{
+ const h=await setup();
+ assert.match(h.$('#td-rec-h').parentElement.textContent,/Aucun élément récent/);
+ assert.match(h.$('#td-fav-h').parentElement.textContent,/Aucun favori/);
+ h.state.addRecent({type:'chapter',id:'seconde-01',title:'Arithmétique',href:'#chapter/seconde-01'});
+ h.state.addRecent({type:'chapter',id:'hidden',title:'Caché',href:'#chapter/t10-01'});
+ h.state.addRecent({type:'tool',id:'x',title:'Outil externe',href:'https://example.org/'});
+ await h.stop();const h2=await setup({win:h.window});
+ const rows=h2.$$('#td-rec-h ~ ul li');
+ assert.equal(rows.length,2,'an item of a hidden curriculum is not shown');assert.ok(!h2.main.textContent.includes('Caché'));
+ assert.equal(h2.$$('#td-rec-h ~ ul a').length,2);
+ h2.click('[data-td="fav"][data-id="seconde-01"]');
+ assert.equal(h2.state.isFavorite('chapter','seconde-01'),true);
+ assert.match(h2.$('#td-fav-h').parentElement.textContent,/Arithmétique/);
+ assert.equal(h2.$('[data-td="fav"][data-id="seconde-01"]').getAttribute('aria-pressed'),'true');
+ h2.click('[data-td="unfav"]');assert.deepEqual(h2.state.getFavorites(),[]);
+ assert.match(h2.$('#td-fav-h').parentElement.textContent,/Aucun favori/);
+ h2.click('[data-td="clear-recent"]');assert.deepEqual(h2.state.getRecent(),[]);
+ assert.match(h2.$('#td-rec-h').parentElement.textContent,/Aucun élément récent/);
+});
+
+test('opening a quick action records it as a recent item',async()=>{
+ const h=await setup();
+ h.change(h.$('#td-class'),'premiere');
+ const link=h.$('.td-action[data-recent-id="exercises"]');
+ link.addEventListener('click',e=>e.preventDefault());link.click();
+ const [r]=h.state.getRecent();
+ assert.equal(r.href,'#bank/premiere');assert.match(r.title,/Exercices/);
+});
+
+test('storage blocked: banner, choices kept for the session, export still works',async()=>{
+ const h=await setup({blocked:true});
+ assert.ok(h.$('.td-banner'),'storage banner is shown');assert.match(h.$('.td-banner').textContent,/bloqué/);
+ h.change(h.$('#td-class'),'seconde');
+ assert.equal(h.state.storageStatus(),'memory-only');
+ h.state.setEntry('teacher');assert.equal(h.state.getEntry(),'teacher','kept in memory');
+ h.click('[data-td="export"]');
+ assert.equal(h.saved.length,1);assert.equal(JSON.parse(h.saved[0].text).entry,'teacher');
+ const ok=await setup();assert.equal(ok.$('.td-banner'),null,'no banner when storage works');
+});
+
+test('export, clear, import round trip',async()=>{
+ const h=await setup();
+ h.change(h.$('#td-class'),'premiere');
+ const ch=chaptersFor('premiere')[0].id;h.change(h.$('#td-chapter'),ch);
+ h.state.setEntry('teacher');
+ h.state.addRecent({type:'chapter',id:ch,title:'Un chapitre',href:'#chapter/'+ch});
+ h.state.addFavorite({type:'chapter',id:ch,title:'Un chapitre',href:'#chapter/'+ch});
+ h.state.setTools({starters:{minutes:7}});
+ h.click('[data-td="export"]');
+ const file=h.saved[0];assert.equal(file.name,STATE_FILE);
+ const before=JSON.parse(file.text);assert.equal(before.course,'premiere');assert.equal(before.chapter,ch);
+ // clear needs a confirmation that says the class is forgotten
+ h.click('[data-td="clear-ask"]');
+ assert.match(h.$('.td-confirm').textContent,/classe choisie/);
+ h.click('[data-td="clear-no"]');assert.equal(h.$('.td-confirm'),null);assert.equal(h.state.getClassroom().course,'premiere');
+ h.click('[data-td="clear-ask"]');h.click('[data-td="clear-yes"]');
+ assert.equal(h.state.getClassroom().course,'','the class is forgotten too');
+ assert.equal(h.state.getEntry(),'');assert.deepEqual(h.state.getRecent(),[]);assert.equal(h.$('#td-class').value,'');
+ assert.match(h.$('#td-message').textContent,/effacé/);
+ // import the file
+ const input=h.$('#td-import');
+ Object.defineProperty(input,'files',{value:[Object.assign(new h.window.File([file.text],'x.json'),{text:async()=>file.text})],configurable:true});
+ input.dispatchEvent(new h.window.Event('change',{bubbles:true}));
+ await tick();
+ assert.deepEqual(h.state.exportState(),before,'round trip is exact');
+ assert.equal(h.$('#td-class').value,'premiere');assert.equal(h.$('#td-chapter').value,ch);
+ assert.match(h.$('#td-message').textContent,/Importé/);
+ // garbage changes nothing
+ const bad=h.$('#td-import');
+ Object.defineProperty(bad,'files',{value:[Object.assign(new h.window.File(['{not json'],'y.json'),{text:async()=>'{not json'})],configurable:true});
+ bad.dispatchEvent(new h.window.Event('change',{bubbles:true}));await tick();
+ assert.deepEqual(h.state.exportState(),before);assert.match(h.$('#td-message').textContent,/non reconnu/);
+});
+
+test('English labels render and the teacher module does not leak a French-only string key',async()=>{
+ const dom=new JSDOM('<main id="main"></main>',{url:'https://example.test/'});
+ const state=createTeacherState(dom.window),main=dom.window.document.querySelector('main');
+ await mountTeacherDashboard(main,{t:p=>p[1],state,decks:[],download(){}});
+ assert.match(main.querySelector('h1').textContent,/Teacher area/);
+ assert.ok(!/undefined|NaN/.test(main.textContent));
+ assert.ok(!/[–—]/.test(main.textContent),'no em or en dashes in copy');
+});

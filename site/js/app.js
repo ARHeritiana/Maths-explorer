@@ -38,6 +38,8 @@ import { indexPage as labIndexPage, experimentPage, bindLabIndex } from "./lab/p
 import { isAnswer, formatNumber } from "./math.js";
 import {discoveryIndex,discoveryPage,bindDiscovery,discoveryContext,isTopicRoute} from './discovery.js';
 import {historyPage,bindHistory,isHistoryRoute,mathematiciansTimelineUrl} from './history.js';
+import * as teacherState from './teacher-state.js';
+import {landingHash,homeHash,installEntrySwitch} from './teacher-entry.js';
 
 const $ = (s, root = document) => root.querySelector(s);
 const esc = (x) =>
@@ -147,7 +149,7 @@ function header(page) {
     `<a href="${destination(tabs[0][0])}" data-section="${id}" ${['resources','bank','slides'].includes(tabs[0][0])?`data-course-page="${tabs[0][0]}"`:''} ${section?.[0] === id ? 'aria-current="true"' : ""}>${icon(ic, 20)}<span>${pair(fr, en)}</span></a>`).join("");
   const subnav = section ? `<nav class="subnav" aria-label="${pair(section[1], section[2])}"><div class="subnav-inner">${section[4].map(([id, fr, en, ic]) =>
     `<a href="${destination(id)}" ${['resources','bank','slides'].includes(id)?`data-course-page="${id}"`:''} ${tab === id ? 'aria-current="page"' : ""}>${icon(ic, 18)}<span>${pair(fr, en)}</span></a>`).join("")}${section[0]==='learn'?`<details class="section-tools secondary-tools"><summary>${pair('Pour enseigner','For teaching')}</summary><div><a href="#pack">${pair('Dossier sur mesure','Custom pack')}</a><a href="#workshop/quadratic">${pair('Atelier du second degré','Quadratic workshop')}</a></div></details>`:''}</div></nav>` : "";
-  return `<header class="topbar"><a class="brand" href="#home" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">${pair("Menu","Menu")}</button><nav id="primary-nav" class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${sectionLinks}</nav><div class="tools"><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" ${(["chapter","university","workshop"].includes(route().page)||(route().page==="library"&&route().id))?"hidden":""} role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>${subnav}`;
+  return `<header class="topbar"><a class="brand" href="${homeHash(teacherState.getEntry())}" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">${pair("Menu","Menu")}</button><nav id="primary-nav" class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${sectionLinks}</nav><div class="tools"><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" ${(["chapter","university","workshop"].includes(route().page)||(route().page==="library"&&route().id))?"hidden":""} role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>${subnav}`;
 }
 function footer() {
   return `<footer><span class="foot-brand">Maths Explorer</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><nav class="foot-links" aria-label="${pair("Autres pages", "More pages")}"><a href="#pack">${pair("Dossier sur mesure", "Custom pack")}</a><a href="#sources">${pair("Sources LaTeX", "LaTeX sources")}</a>${FULL_EDITION?`<a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a>`:""}<a href="https://github.com/ARHeritiana/Mikajy/releases/latest" target="_blank" rel="noopener noreferrer">Mikajy (Android)</a><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.${lang}" rel="license noopener" target="_blank">${pair("Licence CC BY-NC-SA 4.0", "CC BY-NC-SA 4.0 licence")}</a></nav></footer>`;
@@ -193,7 +195,7 @@ function render() {
     (r.page === "errors" && isErrorRoute(r.id)) ||
     (r.page === "olympiad" && isOlympiadRoute(r.id)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "basics" && isBasicsRoute(r.id)) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab)) ||
+    (r.page === "home" && !r.id) || (r.page === "teacher" && !r.id) || (r.page === "basics" && isBasicsRoute(r.id)) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab)) ||
     r.page === "university" || (r.page === "resources" && isLiveRoute(r)) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
@@ -202,7 +204,7 @@ function render() {
   document.body.dataset.page=page;
   $("#app").innerHTML =
     header(page) +
-    (page === "basics" ? basicsPage(r.id, { t, pair, lang, assetHref }) : page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "bank" ? bankPage(t, r.id, r.tab) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
+    (page === "teacher" ? teacherLoading() : page === "basics" ? basicsPage(r.id, { t, pair, lang, assetHref }) : page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "bank" ? bankPage(t, r.id, r.tab) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "university" ? universityPage(lang)
       : page === "topics" ? discoveryPage(discovery,r.id,r.tab,t)
       : page === "history" ? historyPage(r.id,r.tab,t,discovery)
@@ -249,6 +251,7 @@ function render() {
   if (page === "errors") stopChapter = bindErrors($("#main"), t, r.id);
   if (page === "olympiad") stopChapter = bindOlympiad($("#main"), lang);
   if (page === "home") stopChapter = bindHome($("#main"),discovery,t);
+  if (page === "teacher") stopChapter = mountTeacher($("#main"));
   if (page === "basics" && r.id) stopChapter = bindBasics({ $, currentTheme });
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
   if (page === "pathways") stopChapter = bindPathways({ root: $("#main"), pathways: livePathways, labs, t, pair, link, glyph, completed });
@@ -277,6 +280,20 @@ function render() {
   // the lists of the previous page of the same kind keep their scroll position (gallery sidebar, timelines, strips)
   restoreScrolls($("#app"), cameFrom === page ? keptScrolls : null);
   lastPage = page;
+}
+// The teacher dashboard is loaded on demand: students never download it.
+const teacherLoading = () => `<main id="main" class="page teacher-page" tabindex="-1"><h1>${pair("Espace professeur", "Teacher area")}</h1><p role="status">${pair("Chargement…", "Loading…")}</p></main>`;
+function mountTeacher(main) {
+  let stop = () => {}, gone = false;
+  import('./teacher-dashboard.js').then(async m => {
+    if (gone) return;
+    const done = await m.mountTeacherDashboard(main, { t, state: teacherState, isGone: () => gone });
+    stop = done || stop;
+    if (gone) stop();
+  }).catch(() => {
+    if (!gone) main.innerHTML = `<h1>${pair("Espace professeur", "Teacher area")}</h1><p role="alert">${pair("Le tableau de bord n’a pas pu se charger. Vérifie la connexion, puis recharge la page.", "The dashboard could not load. Check the connection, then reload the page.")} <a href="#home" data-set-entry="student">${pair("Accueil élèves", "Student home")}</a></p>`;
+  });
+  return () => { gone = true; stop(); };
 }
 function bindCommon() {
  const syncCourseLinks=()=>document.querySelectorAll('[data-course-page]').forEach(a=>{const c=currentCourse();a.href=link(a.dataset.coursePage,c);});
@@ -503,6 +520,9 @@ window.addEventListener("hashchange", () => {
   $("#main")?.focus({ preventScroll: true });
   window.scrollTo(0, 0);
 });
+installEntrySwitch($("#app"), teacherState);
+// A teacher who chose the dashboard lands on it when opening the site without a destination.
+{ const landing = landingHash(location.hash, teacherState.getEntry()); if (landing) history.replaceState(null, "", landing); }
 render();
 
 // Optional browser-standard agent access; ordinary browsers need no polyfill or service.

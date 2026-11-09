@@ -15,6 +15,8 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/pathways-view.js` | `#pathways` page: curriculum rail, level tabs, topic filters and tile grid (`pathwayPage`, `bindPathways`); data stays in `js/content.js` `pathways` |
 | `js/navigation-state.js` | one validated, device-local class preference shared across home, courses, practice, slides and classroom generators |
 | `js/teacher-state.js` | device-local teacher state (`mx-teacher-*`): entry choice, chapter beside the class, recent items, favorites, automatismes settings, export/import/clear, in-memory fallback with `storageStatus()`; no UI, no network |
+| `js/teacher-entry.js` | eager and tiny: which entrance a device opens (`landingHash`, `homeHash`) and the `data-set-entry` switch (`installEntrySwitch`); no preference means the student home, untouched |
+| `js/teacher-dashboard.js` | `#teacher` Espace professeur, loaded on demand by `app.js`: class and chapter override, `quickActions` (links only to existing routes, unavailable ones explain why), recents and favorites, storage banner, export, import and clear of teacher state |
 | `js/page-ergonomics.js` | native disclosures group classroom chapter choices, advanced settings and secondary exports without replacing controls |
 | `js/ui.js` | theme choice, full-screen presenting |
 | `js/icons.js` | Phosphor icon paths, `icon(name, size)` |
@@ -38,6 +40,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `styles/topics.css` | the topics browser (`#topics`): field menu with figures, landing tiles and the "where to start" selection (issue #22); cards stay in `pages.css` |
 | `styles/exhibit.css` | the gallery exhibit layout (stage first with chips, tools, hint and zoom over the canvas, readout and legend, tabbed side panel), first used by the mirrored rooms; entries with `layout: 'exhibit'` get the full workbench width |
 | `styles/ergonomics.css` | compact catalogues, grouped secondary tools, collection navigation and responsive layouts, using the existing visual tokens |
+| `styles/teacher.css` | the Espace professeur dashboard (Cahier tokens only) |
 | `styles/home.css` | compact class-to-chapter homepage, one quiet interactive figure and grouped secondary entrances |
 
 ## Content data

@@ -1,0 +1,40 @@
+/* Teacher area (#teacher). Existing Cahier tokens only; both themes follow from them. */
+.teacher-page{max-width:1100px}
+.teacher-page .td-section{margin:28px 0;padding-top:18px;border-top:1px solid var(--line)}
+.teacher-page .td-section h2{font-size:1.25rem;margin:0 0 12px}
+.teacher-page h2:focus{outline:none}
+.teacher-page h2:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.td-banner{margin:16px 0;padding:12px 16px;border:1.5px solid var(--neg);background:var(--neg-soft);color:var(--ink)}
+.td-entry{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin:16px 0;padding:12px 16px;background:var(--sunken);border:1px solid var(--line)}
+.td-entry p{margin:0}
+.td-entry-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.teacher-page .btn,.teacher-page .btn-quiet{min-height:44px}
+.td-selects{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin-bottom:12px}
+.td-field{display:flex;flex-direction:column;gap:4px;font:600 .92rem var(--ui)}
+.td-field select,.td-field input{min-height:44px;padding:6px 10px;font:inherit;font-weight:400;color:var(--ink);background:var(--surface);border:1.5px solid var(--line-strong);border-radius:var(--r-sm);max-width:100%}
+.td-field select:disabled{color:var(--muted);background:var(--sunken)}
+.td-resume{margin:0}
+.td-actions{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:12px}
+.td-action{display:flex;flex-direction:column;gap:4px;height:100%;min-height:88px;padding:12px 14px;box-sizing:border-box;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--ink);text-decoration:none}
+a.td-action:hover{border-color:var(--ink)}
+.td-action-title{font:700 1.02rem var(--ui)}
+.td-action-detail{font-size:.88rem;color:var(--muted)}
+a.td-action .td-action-title{color:var(--accent)}
+.td-action.is-unavailable{border-style:dashed;border-color:var(--line);background:var(--sunken)}
+.td-action.is-unavailable .td-action-title{color:var(--muted)}
+.td-columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:0 32px}
+.td-items{list-style:none;margin:0 0 8px;padding:0}
+.td-items li{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;border-bottom:1px solid var(--line)}
+.td-item-link{display:inline-flex;align-items:center;min-height:44px;flex:1 1 180px;overflow-wrap:anywhere}
+.td-jobs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px}
+.td-jobs h3{font-size:1rem;margin:0 0 4px}
+.td-jobs ul{list-style:none;margin:0;padding:0}
+.td-jobs a{display:inline-flex;align-items:center;min-height:44px}
+.td-data-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.td-confirm{margin:12px 0;padding:12px 16px;border:1.5px solid var(--neg);background:var(--neg-soft)}
+.td-message{min-height:1.6em;margin:8px 0 0;font-weight:600}
+.teacher-switch{margin:12px 0 0}
+.teacher-switch a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.teacher-switch span{color:var(--muted);font-size:.9rem}
+@media(max-width:420px){.td-actions{grid-template-columns:1fr}.td-entry{padding:12px}}
+.td-resume a{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
