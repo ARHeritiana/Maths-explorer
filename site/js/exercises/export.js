@@ -95,20 +95,22 @@ export function starterTex(doc, opts = {}) {
 // A standalone projection page: one question at a time, timer, answer reveal, keyboard control. It loads MathJax
 // from cdnjs (internet needed in the room); everything else is inline. The questions are embedded as data.
 export function projectionHtml(doc, opts = {}) {
-  const data = JSON.stringify({ title: opts.title || 'Automatismes', subtitle: opts.subtitle || '', seconds: doc.secondsPerItem, total: doc.minutes * 60, items: doc.items.map((i) => ({ q: html(i.q), a: html(i.a), level: i.level })) }).replace(/</g, '\\u003c');
+  const data = JSON.stringify({ title: opts.title || 'Automatismes', subtitle: opts.subtitle || '', seconds: doc.secondsPerItem, total: doc.minutes * 60, items: doc.items.map((i) => ({ q: html(i.q), a: i.choices ? '' : html(i.a), level: i.level, ...(i.choices ? { stem: html(i.stem), choices: i.choices.map(html), correct: i.correct } : {}) })) }).replace(/</g, '\\u003c');
   return `<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${HTML(opts.title || 'Automatismes')}</title>
 <style>
 :root{--bg:#fbf8f1;--fg:#1d2433;--muted:#5b6475;--accent:#b4531a;--line:#d8d2c4;--ok:#1f7a4d}
 @media (prefers-color-scheme:dark){:root{--bg:#161b26;--fg:#f1ede3;--muted:#a3abbb;--accent:#f0a35e;--line:#2c3446;--ok:#6fd3a0}}
-*{box-sizing:border-box}html,body{height:100%;margin:0}
+*{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden}
 body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;display:grid;grid-template-rows:auto 1fr auto}
 header,footer{display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:.8rem 1.5rem;color:var(--muted);font-size:clamp(14px,1.6vw,20px)}
 #bar{height:6px;background:var(--line)}#bar>i{display:block;height:100%;width:0;background:var(--accent)}
-main{display:grid;place-items:center;padding:2rem 6vw;text-align:center}
-#q{font-size:clamp(26px,4.6vw,64px);line-height:1.35;max-width:1500px}
-#a{margin-top:1.5em;font-size:clamp(24px,4vw,56px);color:var(--ok);min-height:1.5em}
+main{display:grid;place-items:center;padding:1rem 6vw;text-align:center;min-height:0;overflow:hidden}
+.ch{list-style:none;margin:.6em auto 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4em 1em;max-width:46em;text-align:left;font-size:.9em}.ch li{display:flex;gap:.6em;align-items:baseline;border:1px solid var(--line);padding:.3em .6em}.ch b{color:var(--accent)}.ch li.r{border:3px solid var(--ok)}@media(min-aspect-ratio:5/4){.ch{grid-template-columns:repeat(4,minmax(0,1fr));max-width:none}.ch li{justify-content:center}}
+@media(max-width:600px){.ch{grid-template-columns:1fr}}
+#q{font-size:calc(clamp(22px,4.2vw,58px)*var(--fit,1));line-height:1.35;max-width:1500px}
+#a{margin-top:1em;font-size:calc(clamp(22px,3.8vw,52px)*var(--fit,1));color:var(--ok);min-height:1.5em}
 #timer{font-variant-numeric:tabular-nums;font-size:clamp(28px,4vw,56px);color:var(--fg);font-weight:600}
 button{font:inherit;background:transparent;color:var(--fg);border:2px solid var(--line);border-radius:10px;padding:.5rem 1rem;cursor:pointer;min-height:44px}
 button:focus-visible{outline:3px solid var(--accent)}button[aria-pressed=true]{border-color:var(--accent)}
@@ -130,8 +132,10 @@ window.MathJax={tex:{inlineMath:[['\\\\(','\\\\)']],displayMath:[['\\\\[','\\\\]
 const D=JSON.parse(document.getElementById('data').textContent);let i=0,showA=false,running=false,left=D.seconds,total=0,tick=null;
 const $=id=>document.getElementById(id);
 function fmt(s){s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
-function typeset(){if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([$('q'),$('a')]).catch(()=>{});}
-function draw(){const it=D.items[i];$('q').innerHTML='<strong>'+(i+1)+'.</strong> '+it.q;$('a').innerHTML=showA?it.a:'';$('count').textContent=D.title+' · question '+(i+1)+' sur '+D.items.length;$('level').textContent='niveau '+it.level;$('timer').textContent=fmt(left);$('fill').style.width=(100*(i+1)/D.items.length)+'%';$('reveal').setAttribute('aria-pressed',String(showA));$('play').setAttribute('aria-pressed',String(running));$('play').textContent=running?'Pause (Espace)':'Départ (Espace)';typeset();}
+function fit(){const m=document.querySelector('main');document.documentElement.style.removeProperty('--fit');let f=1;while(f>.3&&(m.scrollHeight>m.clientHeight+1||m.scrollWidth>m.clientWidth+1)){f-=.06;document.documentElement.style.setProperty('--fit',f.toFixed(2));}}
+function typeset(){if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([$('q'),$('a')]).then(fit,fit);else fit();}
+addEventListener('resize',fit);
+function draw(){const it=D.items[i];$('q').innerHTML='<strong>'+(i+1)+'.</strong> '+(it.choices?it.stem+'<ul class="ch">'+it.choices.map((c,k)=>'<li'+(showA&&k===it.correct?' class="r"':'')+'><b>'+'ABCD'[k]+'</b><span>'+c+'</span></li>').join('')+'</ul>':it.q);$('a').innerHTML=showA?it.a:'';$('count').textContent=D.title+' · question '+(i+1)+' sur '+D.items.length;$('level').textContent='niveau '+it.level;$('timer').textContent=fmt(left);$('fill').style.width=(100*(i+1)/D.items.length)+'%';$('reveal').setAttribute('aria-pressed',String(showA));$('play').setAttribute('aria-pressed',String(running));$('play').textContent=running?'Pause (Espace)':'Départ (Espace)';typeset();}
 function go(n){i=Math.max(0,Math.min(D.items.length-1,n));showA=false;left=D.seconds;draw();}
 function loop(){if(!running)return;left-=1;if(left<=0){if(i<D.items.length-1){go(i+1);}else{running=false;left=0;}}draw_t();}
 function draw_t(){$('timer').textContent=fmt(left);if(!running)draw();}

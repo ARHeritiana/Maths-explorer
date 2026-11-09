@@ -21,6 +21,7 @@ export function mcq(r, stem, right, wrongs, truth) {
   const at = order.indexOf(right);
   const others = order.map((o, i) => (o === right ? null : `(${L[i]}) ${o.why.replace(/\.$/, '')}`)).filter(Boolean).join(' ; ');
   return {
+    kind: 'qcm', stem, choices: order.map((o) => o.t), short: `(${L[at]}) ${right.t}`, correct: at,   // structured form for the projection stage
     q: `QCM, une seule réponse exacte. ${stem} ${order.map((o, i) => `(${L[i]}) ${o.t}`).join(' ; ')}.`,
     a: `Réponse (${L[at]}) : ${right.t}. ${right.why} Erreurs des autres choix : ${others}.`,
     ok: () => order.length === 4 && new Set(order.map((o) => o.t)).size === 4 && order.filter(truth).length === 1 && truth(order[at]),

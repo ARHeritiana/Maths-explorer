@@ -68,7 +68,7 @@ const nearest = (t, level) => supports(t).reduce((best, l) => (Math.abs(l - leve
 export function instance(t, level, seed) {
   const lv = nearest(t, level);
   const out = t.make(rng(`${seed}|${t.id}|${lv}`), lv);
-  return { id: t.id, cls: t.cls, chapter: t.chapter, domain: t.domain, skill: t.skill, level: lv, q: out.q, a: out.a, s: out.s || '' };
+  return { id: t.id, cls: t.cls, chapter: t.chapter, domain: t.domain, skill: t.skill, level: lv, q: out.q, a: out.a, s: out.s || '', ...(out.kind === 'qcm' ? { kind: 'qcm', stem: out.stem, choices: out.choices, short: out.short, correct: out.correct } : {}) };
 }
 
 const match = (item, o) => (!o.chapters?.length || o.chapters.includes(item.chapter)) && (!o.domains?.length || o.domains.includes(item.domain));
@@ -93,6 +93,8 @@ export function buildStarter(o) {
       if (cursor >= order.length) { order = r.shuffle(pool); cursor = 0; }
       const t = order[cursor++];
       const cand = instance(t, target, `${seed}|${i}|${attempt}`);
+      // a four-choice question reads badly on a projected starter: skipped unless asked for (o.qcm), kept only as a last resort
+      if (cand.kind === 'qcm' && !o.qcm && attempt < 11) continue;
       if (!seen.has(cand.q) || attempt === 11) item = cand;
     }
     seen.add(item.q);
