@@ -1,0 +1,40 @@
+# Temporary one-time publication refresh. Remove after completion.
+name: Refresh generated site index and build receipt
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refresh-site-once.yml'
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install pymupdf==1.26.6
+      - name: Regenerate checked publication metadata
+        run: PYTHONPATH=build python -m mxbuild.refresh
+      - name: Inspect output and refuse unrelated modifications
+        run: |
+          git status --short
+          python3 - <<'PY'
+          import subprocess
+          changed = subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines()
+          allowed = {'content/data/build-state.json', 'site/index.html', 'dist/index.html'}
+          unexpected = sorted(set(changed) - allowed)
+          if unexpected:
+              raise SystemExit('Unexpected generated changes: ' + ', '.join(unexpected))
+          if not changed:
+              raise SystemExit('No generated changes; expected refreshed import-map hashes and receipt')
+          PY
+      - name: Commit regenerated index and receipt
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add content/data/build-state.json site/index.html dist/index.html
+          git commit -m 'Regenerate site import-map and build receipt for Mikajy links'
+          git push origin HEAD:main
