@@ -14,6 +14,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/app.js` | router and page shell: `route()`, `link()`, `header()` (nav), `footer()`, `render()` (route validity and dispatch), `bindCommon()`; experiment pages mount `js/lab/` (`render()` dispatch, `mountExperiment`); the gallery page of one exhibit (`galleryDetail`, `bindGallery`), challenge and pathway pages |
 | `js/pathways-view.js` | `#pathways` page: curriculum rail, level tabs, topic filters and tile grid (`pathwayPage`, `bindPathways`); data stays in `js/content.js` `pathways` |
 | `js/navigation-state.js` | one validated, device-local class preference shared across home, courses, practice, slides and classroom generators |
+| `js/teacher-state.js` | device-local teacher state (`mx-teacher-*`): entry choice, chapter beside the class, recent items, favorites, automatismes settings, export/import/clear, in-memory fallback with `storageStatus()`; no UI, no network |
 | `js/page-ergonomics.js` | native disclosures group classroom chapter choices, advanced settings and secondary exports without replacing controls |
 | `js/ui.js` | theme choice, full-screen presenting |
 | `js/icons.js` | Phosphor icon paths, `icon(name, size)` |
