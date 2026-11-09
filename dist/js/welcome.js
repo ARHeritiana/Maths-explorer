@@ -5,7 +5,7 @@ import {discoveryChapters} from './catalogue-data.js';
 import {icon} from './icons.js';
 import {FigureEngine,readouts} from './figure-engine.js';
 import {makeParabola} from './figure-scenes.js';
-export const MIKAJY_DOWNLOAD_URL = "https://github.com/Heritiana-Ankatso/Mikajy-Free/releases/latest";
+import { MIKAJY_DOWNLOAD_URL } from './config.js';
 const E=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const homeChapters=index=>{
  const routes=new Set(index.map(x=>x.route));
