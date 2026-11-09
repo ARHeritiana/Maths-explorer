@@ -8,10 +8,10 @@ import { svgEl, colour } from "../common/kit.js";
 export const NAIL_Y = 14, SLACK_Y = 24, FLOOR_Y = 95, FRAME = { x: 30, y: 46, w: 40, h: 26 };
 export const nailX = (i, n) => 50 + (i - (n - 1) / 2) * (70 / Math.max(n, 2));
 export const WALL = "color-mix(in srgb, #d8c4a0 45%, var(--surface))";
-const ROPE = "#c98d47", ROPE_DARK = "#6d4518", ROPE_LIGHT = "#f0c98c";
+const ROPE = "#b8782f", ROPE_W = 1.05, GAP = 0.5;
 
 // radius of every turn: the k-th turn around a nail goes a little wider than the previous one, so the loops never overlap
-export function radii(word) { const count = {}; return word.map((c) => { const i = Math.abs(c); count[i] = (count[i] || 0) + 1; return 3.2 + 1.3 * (count[i] - 1); }); }
+export function radii(word) { const count = {}; return word.map((c) => { const i = Math.abs(c); count[i] = (count[i] || 0) + 1; return 3.2 + 1.8 * (count[i] - 1); }); }
 
 const lerp = (a, b, s) => [a[0] + (b[0] - a[0]) * s, a[1] + (b[1] - a[1]) * s];
 // the points a turn passes through, clockwise (c > 0: up the left side, over the top, down the right side, under the nail) or
@@ -58,17 +58,39 @@ export function rope(word, n, { collapse = [], dy = 0, rot = 0, fall = 0 } = {})
 }
 const d = (pts) => pts.map((p, i) => `${i ? "L" : "M"}${p[0].toFixed(2)} ${p[1].toFixed(2)}`).join("");
 
-// draw the rope into `g`; `upTo` (a number of pieces, fractional) draws it progressively; `hot` is the letter highlighted
+// do the segments a-b and c-e cross?
+function crosses(a, b, c, e) {
+  const o = (p, q, r) => (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]);
+  return o(a, b, c) * o(a, b, e) < 0 && o(c, e, a) * o(c, e, b) < 0;
+}
+// the runs of a piece (as index pairs) that pass over an earlier piece; the ends shared with the previous piece are ignored
+function overRuns(pts, before) {
+  const hit = new Array(pts.length).fill(false);
+  for (let i = 0; i + 1 < pts.length; i++) {
+    for (let m = 0; m < before.length && !hit[i]; m++) {
+      const q = before[m], last = m === before.length - 1, from = last ? 0 : 0, to = last ? q.length - 4 : q.length - 1;
+      if (last && i < 3) continue;
+      for (let k = from; k + 1 < q.length && k < to; k++) if (crosses(pts[i], pts[i + 1], q[k], q[k + 1])) { hit[i] = true; break; }
+    }
+  }
+  const mark = hit.slice();
+  hit.forEach((h, i) => { if (h) for (let k = i - 2; k <= i + 2; k++) if (k >= 0 && k < mark.length) mark[k] = true; });
+  const runs = []; let start = -1;
+  mark.forEach((m, i) => { if (m && start < 0) start = i; if ((!m || i === mark.length - 1) && start >= 0) { runs.push(pts.slice(start, m ? i + 1 : i + 1)); start = -1; } });
+  return runs.filter((r) => r.length > 1);
+}
+
+// Draw the rope into `g`; `upTo` (a number of pieces, fractional) draws it progressively; `hot` is the letter highlighted.
+// Like the strands of the "knots in 3D" exhibit: one solid, uniform strand, and wherever it goes under an earlier turn that
+// turn is interrupted by a margin of the wall's colour (drawn with butt ends, then the strand itself with round ends).
 export function drawRope(g, pieces, { upTo = Infinity, hot = -2, scale = 1 } = {}) {
-  let shown = 0;
+  let shown = 0; const before = [];
   for (const piece of pieces) {
     if (shown >= upTo) break;
     const frac = Math.min(1, upTo - shown), pts = frac < 1 ? piece.pts.slice(0, Math.max(2, Math.ceil(piece.pts.length * frac))) : piece.pts; shown++;
-    const path = d(pts), w = scale;
-    svgEl("path", { d: path, fill: "none", stroke: WALL, "stroke-width": 2.6 * w, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
-    svgEl("path", { d: path, fill: "none", stroke: ROPE_DARK, "stroke-width": 1.55 * w, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
-    svgEl("path", { d: path, fill: "none", stroke: piece.j === hot ? "var(--accent)" : ROPE, "stroke-width": 1.05 * w, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
-    svgEl("path", { d: path, fill: "none", stroke: ROPE_LIGHT, "stroke-width": 0.35 * w, "stroke-dasharray": `${0.9 * w} ${0.9 * w}`, "stroke-linecap": "round", opacity: piece.j === hot ? 0.5 : 0.85 }, g);
+    for (const run of overRuns(pts, before)) svgEl("path", { d: d(run), fill: "none", stroke: WALL, "stroke-width": (ROPE_W + 2 * GAP) * scale, "stroke-linecap": "butt", "stroke-linejoin": "round" }, g);
+    svgEl("path", { d: d(pts), fill: "none", stroke: piece.j === hot ? "var(--accent)" : ROPE, "stroke-width": ROPE_W * scale, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
+    before.push(pts);
   }
 }
 
