@@ -71,6 +71,20 @@ with sync_playwright() as p:
    page.set_viewport_size({'width':320,'height':900})
    page.locator('.advanced-settings > summary').click();page.locator('.export-options > summary').click();page.locator('.chapter-options > summary').click()
    assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2'),(route,'expanded options')
+ # Generated series are seeded at random: sweep fixed seeds so formulas of every shape (including their assistive MathML) are covered on any day.
+ for route in ['automatismes','sheets']:
+  go(route);page.locator('.advanced-settings > summary').click()
+  for seed in ['s5','s7','s8','s10','s21','s33','s46','s52','s58','s2','s3','s4']:
+   page.fill('[name="seed"]',seed);page.wait_for_timeout(60)
+   for width in [320,390,768,1440]:
+    page.set_viewport_size({'width':width,'height':900})
+    for theme in ['jour','nuit']:
+     page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme)
+     for size in ['100%','200%']:
+      page.evaluate('(s)=>document.documentElement.style.fontSize=s',size)
+      if page.evaluate('document.documentElement.scrollWidth>innerWidth+2'):overflows.append((route,'seed '+seed,width,theme,size))
+      checked+=1
+   page.evaluate("document.documentElement.style.fontSize='100%'")
  assert not errors,errors
  assert not overflows,overflows
  browser.close();print(f'Ergonomics passed: shared class context, real downloads, collection chooser, filters and {checked} responsive page/theme combinations.')
