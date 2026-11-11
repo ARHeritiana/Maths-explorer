@@ -98,7 +98,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `#home` (default) | logo | `welcome.js` `homePage` / `bindHome` / `mountHomeFigure`, class-to-chapter flow |
 | `#basics[/place-value|addition|subtraction|multiplication|division|fractions|sets|logic-propositions|logic-implication|logic-quantifiers|logic-reasoning]` | Apprendre > Bases | `app.js` `basicsPage` / `bindBasics`, `site/resources/basics/place-value.html, site/resources/basics/place-value.en.html`, `site/resources/basics/addition.html, site/resources/basics/addition.en.html` and `site/resources/basics/subtraction.html, site/resources/basics/subtraction.en.html`, `site/resources/basics/multiplication.html, site/resources/basics/multiplication.en.html` and `site/resources/basics/division.html, site/resources/basics/division.en.html` and `site/resources/basics/sets.html, site/resources/basics/sets.en.html` and `site/resources/basics/fractions.html, site/resources/basics/fractions.en.html` (discovery record `FOUNDATION_LESSONS` in `discovery.js`) |
 | `#resources[/<course>]` | Programme français > Cours | `resource-library.js` `libraryPage` / `bindLibrary` (rail of curricula and levels beside the chapter grid; classroom tools in the rail) |
-| `#chapter/<id>[/<tab>]` | (Cours) | `resource-library.js` `chapterPage` → `chapter-sequence.js` |
+| `#chapter/<id>[/<tab>]` | (Cours) | `resource-library.js` `chapterPage` → `chapter-sequence.js`; "Ressources liées" box from `related-box.js` (also on `#gallery/<id>` and `#lab/<experiment>`) |
 | `#library[/<id>]` | (Cours) | `library.js` `mountLibrary` |
 | `#workshop/quadratic` | (Cours) | `quadratic-workshop.js` |
 | `#pack[/<id>]`, `#sources` | (Cours) | `pack-builder.js` |

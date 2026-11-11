@@ -44,13 +44,13 @@ const synonymsOf = word => [...new Set(SYNONYMS.filter(g => g.includes(word)).fl
 // Teacher workflows, the student pages and the museum read the same ids; nothing is copied.
 export const RELATIONS = [
   {id: 'rel.population-growth', title: ['Croissance démographique', 'Population growth'], synonyms: ['population', 'démographie', 'natalité', 'croissance exponentielle', 'taux de croissance', 'modèle logistique', 'growth', 'demographic'],
-   concepts: ['sequences', 'sequence', 'exponential', 'exponentielle', 'logistic', 'cobweb', 'geometric', 'suites geometriques'], routes: ['#lab/exponential', '#lab/logistic', '#lab/cobweb', '#gallery/logistic-gallery', '#lab/sequences']},
+   concepts: ['sequences', 'sequence', 'exponential', 'exponentielle', 'logistic', 'cobweb', 'suites geometriques'], routes: ['#lab/exponential', '#lab/logistic', '#lab/cobweb', '#gallery/logistic-gallery', '#lab/sequences']},
   {id: 'rel.rate-of-change', title: ['Taux de variation et dérivation', 'Rates of change and derivatives'], synonyms: ['vitesse', 'tangente', 'optimisation', 'pente', 'speed', 'slope', 'tangent', 'optimization'],
    concepts: ['derivative', 'derivation', 'optimisation', 'optimization', 'tangent'], routes: ['#lab/derivative']},
   {id: 'rel.chance-and-conditioning', title: ['Hasard et conditionnement', 'Chance and conditioning'], synonyms: ['aléatoire', 'arbre', 'bayes', 'monty hall', 'tirage', 'random', 'tree'],
    concepts: ['probability', 'conditional', 'conditioning', 'random', 'binomial', 'bayes'], routes: ['#lab/probability', '#lab/monty', '#lab/bertrand']},
   {id: 'rel.periodic-phenomena', title: ['Phénomènes périodiques', 'Periodic phenomena'], synonyms: ['onde', 'roue', 'oscillation', 'wave', 'wheel', 'cycle'],
-   concepts: ['trigonometry', 'trig', 'fourier', 'periodic'], routes: ['#lab/trig', '#lab/ferris-wheel', '#lab/fourier-series']},
+   concepts: ['trigonometry', 'trig', 'fourier', 'periodic'], routes: ['#lab/trig', '#lab/ferris-wheel', '#lab/fourier-series', '#lab/fourier-drawing', '#gallery/fourier']},
   {id: 'rel.vectors-and-space', title: ['Vecteurs et espace', 'Vectors and space'], synonyms: ['repérage', 'droites', 'plans', 'orthogonalité', 'lines', 'planes', 'orthogonality'],
    concepts: ['vectors', 'scalar', 'space-lines', 'space-equations'], routes: ['#lab/vectors', '#lab/space-lines', '#lab/line']},
   {id: 'rel.graphs-and-networks', title: ['Graphes et réseaux', 'Graphs and networks'], synonyms: ['parcours', 'chemin', 'sommet', 'arête', 'path', 'vertex', 'edge', 'network'],
@@ -233,12 +233,44 @@ export function searchResources(index, {query = '', cls = '', topic = '', type =
   const list = out.map(x => x.item);
   return limit ? list.slice(0, limit) : list;
 }
+// A lab address with a mission, or a chapter address with a tab, is one page: such addresses compare by their first two segments, others whole.
+export const routeBase = href => {const h = String(href || '').split('?')[0].replace(/\/$/, ''), p = h.split('/'); return /^#(lab|chapter|gallery)$/.test(p[0]) ? p.slice(0, 2).join('/') : h;};
 // Related resources of one item: siblings of its chapter, linked pages, then anything sharing a registry relation.
-export function relatedTo(index, id, {limit = 6} = {}) {
+// Options (all off by default, so the search page is unchanged): `types` (allow-list), `excludeTypes`, `excludeSameChapter`
+// (no sibling of the item's own chapter), `otherClassChapters` (no chapter of the item's own class), `excludeHrefs` (addresses
+// the page already shows), `perType` (at most that many of one type, for variety).
+export function relatedTo(index, id, {limit = 6, types = null, excludeTypes = [], excludeSameChapter = false, otherClassChapters = false, excludeHrefs = [], perType = 0} = {}) {
   const it = index.find(x => x.id === id);
   if (!it) return [];
-  const scored = index.filter(x => x.id !== id).map(x => ({x, s: (it.related.includes(x.id) ? 10 : 0) + x.relations.filter(r => it.relations.includes(r)).length * 4 + (x.type !== it.type ? 1 : 0) - (x.type === 'annales' ? 3 : 0)}))
+  const skip = new Set(excludeHrefs.map(routeBase)), banned = new Set(excludeTypes);
+  const keep = x => !(types && !types.includes(x.type)) && !banned.has(x.type)
+    && !(excludeSameChapter && it.chapter && x.chapter === it.chapter)
+    && !(otherClassChapters && x.type === 'chapter' && x.classes.some(c => it.classes.includes(c)))
+    && !Object.values(x.actions).some(a => skip.has(routeBase(a.href)));
+  const scored = index.filter(x => x.id !== id && keep(x)).map(x => ({x, s: (it.related.includes(x.id) ? 10 : 0) + x.relations.filter(r => it.relations.includes(r)).length * 4 + (x.type !== it.type ? 1 : 0) - (x.type === 'annales' ? 3 : 0)}))
     .filter(o => o.s >= 4).sort((a, b) => b.s - a.s || (a.x.id < b.x.id ? -1 : 1));
-  return scored.slice(0, limit).map(o => o.x);
+  const out = [], count = {};
+  for (const o of scored) {
+    if (out.length >= limit) break;
+    if (perType && (count[o.x.type] || 0) >= perType) continue;
+    count[o.x.type] = (count[o.x.type] || 0) + 1;
+    out.push(o.x);
+  }
+  return out;
+}
+// The index item a page address stands for: #chapter/<id>[/tab], #gallery/<id>, #lab/<experiment>[/<mission>]. Null for anything else.
+const PAGE_TYPE = {chapter: 'chapter', gallery: 'gallery', lab: 'lab'};
+export function itemForRoute(index, hash) {
+  const base = routeBase(String(hash || '').startsWith('#') ? hash : '#' + hash), type = PAGE_TYPE[base.slice(1).split('/')[0]];
+  return type ? index.find(x => x.type === type && x.route.replace(/\/$/, '') === base) || null : null;
+}
+// What a chapter, exhibit or experiment page shows in its "related resources" box: widening resources only (never the chapter's own
+// slides, exercises or starters, never past papers), a few of each type, and nothing the page already links to (`excludeHrefs`).
+const WIDEN = ['chapter', 'lab', 'gallery', 'challenge', 'history', 'misconception', 'lesson'];
+export function relatedForPage(index, hash, {excludeHrefs = [], limit = 6} = {}) {
+  const it = itemForRoute(index, hash);
+  if (!it) return [];
+  const own = it.type === 'chapter';
+  return relatedTo(index, it.id, {limit, perType: 2, excludeHrefs, types: own ? WIDEN : WIDEN.filter(x => x !== 'misconception' && x !== 'lesson'), excludeSameChapter: own, otherClassChapters: own});
 }
 export const relationTitle = id => RELATIONS.find(r => r.id === id)?.title || [id, id];

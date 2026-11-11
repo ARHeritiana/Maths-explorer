@@ -254,6 +254,7 @@ function render() {
     if (page === "resources" || (page === "bank" && r.id !== "annales" && !r.tab)) mountContextStrip($("#main"), contextStripHtml({ page, t, course: r.id || currentCourse() }));
   }
   if (page === "gallery" && r.id) bindGallery();
+  if (page === "chapter" || (page === "gallery" && r.id) || experiment) stopViews.push(mountRelated($("#main"), page === "chapter" ? "#chapter/" + r.id : page === "gallery" ? "#gallery/" + r.id : "#lab/" + experiment.id));
   if (page === "lab" && !experiment) bindLabIndex($("#main"), pair);
   if (page === "challenges") stopChapter = bindChallenges();
   if (page === "errors") stopChapter = bindErrors($("#main"), t, r.id);
@@ -293,6 +294,31 @@ function render() {
 // The teacher dashboard is loaded on demand: students never download it.
 const teacherLoading = () => `<main id="main" class="page teacher-page" tabindex="-1"><h1>${pair("Espace professeur", "Teacher area")}</h1><p role="status">${pair("Chargement…", "Loading…")}</p></main>`;
 const searchLoading = () => `<main id="main" class="page teacher-page rs-page" tabindex="-1"><h1>${pair("Rechercher", "Search")}</h1><p role="status">${pair("Chargement…", "Loading…")}</p></main>`;
+// The "related resources" box: a placeholder at the end of the page, filled by related-box.js (which carries the whole index)
+// only when it comes near the viewport. A chapter waits for its content first, so the page is not short when the box decides.
+function mountRelated(main, hash) {
+  if (!main) return () => {};
+  main.insertAdjacentHTML("beforeend", '<div class="related-slot" data-related-slot></div>');
+  const slot = main.querySelector("[data-related-slot]");
+  let gone = false, observer = null, mutations = null, timer = 0;
+  const load = () => {
+    observer?.disconnect(); observer = null;
+    import("./related-box.js").then((m) => { if (!gone && slot.isConnected) m.fillRelatedBox(slot, { main, hash, t }); }).catch(() => { slot.remove(); });
+  };
+  const watch = () => {
+    if (gone) return;
+    if (typeof IntersectionObserver !== "function") { timer = setTimeout(load, 1500); return; }
+    observer = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) load(); }, { rootMargin: "400px 0px" });
+    observer.observe(slot);
+  };
+  const seq = main.querySelector("#chapter-sequence");
+  if (seq && seq.getAttribute("aria-busy") !== "false") {
+    mutations = new MutationObserver(() => { if (seq.getAttribute("aria-busy") === "false") { mutations.disconnect(); mutations = null; clearTimeout(timer); watch(); } });
+    mutations.observe(seq, { attributes: true, attributeFilter: ["aria-busy"] });
+    timer = setTimeout(() => { mutations?.disconnect(); mutations = null; watch(); }, 8000);
+  } else watch();
+  return () => { gone = true; observer?.disconnect(); mutations?.disconnect(); clearTimeout(timer); };
+}
 function mountSearch(main, query) {
   let stop = () => {}, gone = false;
   import('./resource-search.js').then(m => {
