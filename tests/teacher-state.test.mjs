@@ -84,7 +84,7 @@ test('clearAll deletes everything including the class',()=>{
  const {s,win}=mk();
  s.setEntry('teacher');s.setChapter('seconde-01');s.addRecent(item(1));s.addFavorite(item(1));s.setTools({a:1});
  s.clearAll();
- assert.deepEqual(s.exportState(),{version:1,entry:'',course:'',chapter:'',recent:[],favorites:[],tools:{}});
+ assert.deepEqual(s.exportState(),{version:1,entry:'',course:'',chapter:'',recent:[],favorites:[],tools:{},seance:{blocks:[]}});
  assert.equal([...Array(win.localStorage.length).keys()].filter(i=>win.localStorage.key(i).startsWith('mx-teacher-')).length,0);
 });
 test('blocked storage falls back to memory and says so',()=>{
@@ -111,4 +111,30 @@ test('changes dispatch mx-teacher-change once per actual change',()=>{
  s.setEntry('teacher');s.setEntry('teacher');s.addRecent(item(1));s.toggleFavorite(item(1));s.setTools({a:1});s.setChapter('seconde-01');s.setChapter('bad');
  assert.deepEqual(kinds,['entry','recent','favorites','tools','chapter']);
  s.clearAll();assert.equal(kinds.at(-1),'clear');
+});
+
+const blk=(id,phase='cours')=>({id,phase,title:'Bloc '+id,href:'#chapter/seconde-01',minutes:10,print:false});
+test('seance: round trip, persistence, cleaning, export/import, clear, event',()=>{
+ const {s,win}=mk();const kinds=[];
+ win.addEventListener('mx-teacher-change',e=>kinds.push(e.detail.kind));
+ assert.deepEqual(s.getSeance(),{blocks:[]});
+ const c=s.setSeance({blocks:[blk('a'),{id:'bad',phase:'nope',title:'x',href:'#x'},blk('b','bilan'),{...blk('c'),href:'javascript:alert(1)'}]});
+ assert.deepEqual(c.blocks.map(b=>b.id),['a','b']);
+ assert.deepEqual(createTeacherState(win).getSeance(),c);
+ assert.ok(win.localStorage.getItem('mx-teacher-seance'));assert.deepEqual(kinds,['seance']);
+ const dump=JSON.parse(JSON.stringify(s.exportState()));assert.deepEqual(dump.seance,c);
+ const t=mk();assert.equal(t.s.importState(dump).rejected,0);assert.deepEqual(t.s.getSeance(),c);
+ assert.ok(t.s.importState({version:1,entry:'teacher'}).ok,'old files without seance still import');
+ assert.deepEqual(t.s.getSeance(),c,'absent key leaves the seance alone');
+ const r=t.s.importState({version:1,seance:{blocks:[blk('z'),{id:1}]}});
+ assert.equal(r.rejected,1);assert.deepEqual(t.s.getSeance().blocks.map(b=>b.id),['z']);
+ for(const bad of ['x',[],null,{blocks:'no'},42]){const before=t.s.getSeance();assert.equal(t.s.importState({version:1,seance:bad}).rejected,1);assert.deepEqual(t.s.getSeance(),before);}
+ win.localStorage.setItem('mx-teacher-seance','not json');assert.deepEqual(s.getSeance(),{blocks:[]});
+ s.setSeance(c);s.clearAll();assert.deepEqual(s.getSeance(),{blocks:[]});assert.equal(win.localStorage.getItem('mx-teacher-seance'),null);
+});
+test('seance: blocked storage keeps it in memory',()=>{
+ const {s,win}=mk();
+ Object.defineProperty(win,'localStorage',{get(){throw new Error('blocked')}});
+ assert.doesNotThrow(()=>s.setSeance({blocks:[blk('a')]}));
+ assert.equal(s.getSeance().blocks.length,1);assert.equal(s.storageStatus(),'memory-only');
 });
