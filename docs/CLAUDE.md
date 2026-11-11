@@ -19,6 +19,7 @@ Read one only when the task router in `MAP.md` sends you here.
 | `IMPROVEMENT_GOALS.md` | owner-approved learning, visualization, interactive slides, error-investigation, and Grand Oral goals with acceptance criteria |
 | `REDESIGN_HANDOFF.md` | prompt to begin implementation of the revised redesign proposal |
 | `LAB_DESIGN.md` | laboratory v2: research basis, templates, mission model, lab references for lessons and slides |
+| `TEACHER_STRUCTURE.md` | the owner's teacher-first structure (11 Nov 2026): three modes (Préparer, En classe, Détente), launch pad order, séance, classroom setup, build rules |
 | `CURRICULUM.md` | programme references (verify before citing) |
 | `RESOURCE_LIBRARY.md` | history and provenance of the resource library |
 | `ACTIVE_WORKSTREAMS.md` | current parallel-task register and corrected mathematicians' timeline scope; preserve it when writing a narrower handoff |
