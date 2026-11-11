@@ -19,7 +19,8 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/config.js` | site-wide configuration constants (the Mikajy Free download link), read by the home and app |
 | `js/classroom-context.js` | the device's class and chapter offered to other pages: recents on open (`recentFor`, `noteOpen`), the "your class chapter" strip on lessons and exercises, remembered one-click automatismes defaults (`autoDefaults`); never a hidden filter, storage-safe |
 | `js/modes.js` | pure: the three modes (preparer, classe, detente) with labels and home hashes, `modeOfRoute(page,remembered)`, `showModeBar({entry,page})`; the bar is drawn by `header()` in `app.js`, styles in `styles/teacher.css` |
-| `js/prepare-page.js` | `#prepare` (Préparer), loaded on demand: intro and links for now; the séance builder lands here |
+| `js/prepare-page.js` | `#prepare` (Préparer), loaded on demand: class and chapter selects, chapter sheet by phase (launchpad) with errors to expect (`errorsFor`), search over the shared index, the "Ma séance" builder (saved at once through `teacher-state.js`), Évaluer links; prerequisites not shown (no cheap source) |
+| `js/prepare-model.js` | pure (no DOM): phase default from item type, block from item or phase, totals wording and print list, live-link filter |
 | `js/relax-page.js` | `#relax` (Détente), loaded on demand: intro and links for now |
 | `js/teacher-entry.js` | eager and tiny: which entrance a device opens (`landingHash`, `homeHash`) and the `data-set-entry` switch (`installEntrySwitch`); no preference means the student home, untouched |
 | `js/launchpad-model.js` | pure (no DOM): the one resolution of a class and chapter to bank, slides, lesson and laboratory targets (`resolveTargets`), `launchpad({course,chapter,decks})` (the seven phases of `seance-model.js` with href or reason, detail, board script and print flag) and `resolveForSeance` (resolver for `defaultSeance`) |

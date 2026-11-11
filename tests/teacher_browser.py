@@ -235,7 +235,7 @@ with sync_playwright() as p:
     dp.locator('a.lp-tile[data-recent-id="automatismes"]').click(); dp.wait_for_selector('#auto-stage.presenting')
     assert dp.locator('#mx-dock:visible').count() == 0, 'hidden during the projection stage'
     dp.keyboard.press('Escape'); dp.evaluate("document.fullscreenElement && document.exitFullscreen(); document.querySelector('#auto-stage').classList.remove('presenting'); document.documentElement.classList.remove('is-presenting')")
-    dp.wait_for_timeout(200)
+    dp.wait_for_selector('#mx-dock', state='visible', timeout=5000)
     assert dp.locator('#mx-dock:visible').count() == 1, 'back after the projection'
     # no overflow, 44 px targets, both themes
     for width in (320, 390, 1440):
@@ -249,6 +249,34 @@ with sync_playwright() as p:
                 assert not small, small
                 assert dp.evaluate("(() => { const r = document.querySelector('#mx-dock').getBoundingClientRect(); return r.right <= innerWidth + 1 && r.bottom <= innerHeight + 1; })()")
     dk.close()
+
+    # 5b. Préparer: add from the chapter sheet and from search, reorder, reload keeps it, launch in class shows the strip
+    pg = context.new_page()
+    pg.on('pageerror', lambda e: errors.append(str(e)))
+    pg.goto(f'{BASE}/#prepare'); pg.wait_for_selector('#pp-class')
+    pg.evaluate("localStorage.removeItem('mx-teacher-seance')"); pg.reload(); pg.wait_for_selector('#pp-class')
+    pg.select_option('#pp-class', 'premiere'); pg.select_option('#pp-chapter', 'premiere-02')
+    pg.locator('[data-pp="add-phase"]').first.click()
+    assert pg.locator('.pp-block').count() == 1
+    pg.fill('#pp-q', 'second degré'); pg.wait_for_selector('.pp-result [data-pp="add-result"]')
+    pg.locator('[data-pp="add-result"]').first.click()
+    assert pg.locator('.pp-block').count() == 2
+    first_title = pg.locator('.pp-block strong').first.inner_text()
+    pg.locator('[data-pp="down"]').first.click()
+    assert pg.locator('.pp-block strong').nth(1).inner_text() == first_title, 'reordered'
+    assert pg.evaluate("document.activeElement.closest('#pp-builder') !== null"), 'focus kept in the builder'
+    pg.reload(); pg.wait_for_selector('#pp-class')
+    assert pg.locator('.pp-block').count() == 2 and pg.locator('.pp-block strong').nth(1).inner_text() == first_title, 'reload keeps it'
+    pg.locator('#pp-launch').click(); pg.wait_for_selector('.lp-blocks')
+    assert pg.locator('.lp-blocks li').count() == 2 and pg.evaluate('location.hash') == '#teacher'
+    for width in (320, 390, 1440):
+        pg.set_viewport_size({'width': width, 'height': 800})
+        pg.goto(f'{BASE}/#prepare'); pg.wait_for_selector('#pp-class')
+        assert not overflow(pg), ('prepare', width)
+        small = pg.evaluate("""() => [...document.querySelectorAll('#main a, #main button, #main select, #main input:not([type=checkbox])')]
+          .filter(e => e.offsetParent && !e.classList.contains('sr-only') && e.getBoundingClientRect().height < 43).map(e => e.outerHTML.slice(0, 80))""")
+        assert not small, small
+    pg.close()
 
     # 6. phone width and both themes: no overflow, targets of at least 44 px
     for width in (320, 390, 1440):

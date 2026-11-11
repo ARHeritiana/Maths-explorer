@@ -125,3 +125,33 @@ a.dock-link:hover{color:var(--ink)!important}
 .has-dock body{padding-bottom:calc(60px + env(safe-area-inset-bottom,0px))}
 @media(max-width:480px){.dock{gap:2px;padding-left:4px;padding-right:4px}.dock a,.dock button,.dock .dock-link{padding:0 8px}.dock-back{font-size:.85rem}}
 @media(display-mode:fullscreen){.dock{display:none}}
+/* Préparer (#prepare): chapter sheet, search, séance builder. Cahier tokens only. */
+.pp-live{min-height:1.6em;margin:4px 0;font-weight:600}
+.pp-selects{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px}
+.pp-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:0 32px}
+.pp-phases,.pp-results,.pp-blocks{list-style:none;margin:0;padding:0}
+.pp-phase,.pp-result,.pp-block{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:10px 0;border-bottom:1px solid var(--line)}
+.pp-phase-text{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 220px;overflow-wrap:anywhere}
+.pp-why{font-size:.9rem;color:var(--muted);font-style:italic}
+.pp-phase-actions,.pp-block-tools,.pp-builder-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.pp-sub{font-size:1rem;margin:16px 0 4px}
+.pp-phase-select select,.pp-min input{min-width:0}
+.pp-min input{width:6rem}
+.pp-block{display:block;border:1.5px solid var(--line-strong);padding:12px;margin-bottom:8px;background:var(--surface)}
+.pp-block-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:8px}
+.pp-block-n{flex:none;display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;border:1.5px solid var(--ink);font:700 .95rem var(--ui)}
+.pp-block a{color:var(--accent)}
+.pp-icon{min-width:44px}
+.pp-totals{margin:16px 0;padding:12px;border:1.5px solid var(--line-strong);background:var(--sunken)}
+.pp-totals p{margin:0 0 8px}
+.pp-total.is-over{border-left:6px solid var(--neg);padding-left:8px}
+.pp-meter{display:block;width:100%;height:20px;accent-color:var(--accent);margin:0 0 12px}
+.pp-warn{padding:8px 12px;border:1.5px solid var(--neg);background:var(--neg-soft);font-weight:600}
+.pp-builder-actions .btn{min-height:44px}
+.pp-builder-actions a.btn{text-decoration:none}
+@media(min-width:960px){
+ .pp-layout{grid-template-columns:minmax(0,1fr) minmax(360px,.9fr)}
+ .pp-sheet,.pp-search,.pp-eval{grid-column:1}
+ .pp-builder{grid-column:2;grid-row:1 / span 3;align-self:start;position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}
+}
+.pp-block a{display:inline-flex;align-items:center;min-height:44px}
