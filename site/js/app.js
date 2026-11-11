@@ -292,9 +292,17 @@ function render() {
   if (page === "library") mountLibrary($("#main"), {lang,id:r.id});
   stopViews.push(organizePage($("#main"),t));
   installPresenting();
+  syncDock(page);
   // the lists of the previous page of the same kind keep their scroll position (gallery sidebar, timelines, strips)
   restoreScrolls($("#app"), cameFrom === page ? keptScrolls : null);
   lastPage = page;
+}
+// The in-class dock (dock.js) is loaded only once the device remembers the En classe mode: students never download it.
+let dockApi = null;
+function syncDock(page) {
+  if (!dockApi && teacherState.getMode() !== "classe") { document.documentElement.classList.remove("has-dock"); return; }
+  if (dockApi) { dockApi.update(page); return; }
+  import("./dock.js").then(m => { dockApi = dockApi || m.mountDock({ state: teacherState, pair, getPage: () => document.body.dataset.page || "" }); dockApi.update(document.body.dataset.page || ""); }).catch(() => {});
 }
 // The teacher dashboard is loaded on demand: students never download it.
 const teacherLoading = () => `<main id="main" class="page teacher-page" tabindex="-1"><h1>${pair("Espace professeur", "Teacher area")}</h1><p role="status">${pair("Chargement…", "Loading…")}</p></main>`;

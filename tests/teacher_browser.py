@@ -182,6 +182,74 @@ with sync_playwright() as p:
             assert fp.locator('nav.modebar a').evaluate_all('a => a.every(x => x.getBoundingClientRect().height >= 43)')
     fresh.close()
 
+    # 5c. in-class dock: only for a device in mode classe, on tool pages
+    dk = browser.new_context(viewport={'width': 1280, 'height': 800}); dp = dk.new_page()
+    dp.on('pageerror', lambda e: errors.append(str(e)))
+    dp.goto(f'{BASE}/#resources'); dp.wait_for_selector('.chapter-grid, main')
+    assert dp.locator('#mx-dock').count() == 0, 'students never get the dock'
+    assert dp.evaluate("[...document.scripts].length >= 0") and not dp.evaluate("performance.getEntriesByType('resource').some(r => r.name.includes('dock.js'))"), 'students do not download it'
+    dp.evaluate("localStorage.setItem('mx-teacher-entry','teacher'); localStorage.setItem('mx-teacher-mode','classe')")
+    for h in ('#teacher', '#prepare', '#relax', '#home', ''):
+        dp.goto(f'{BASE}/{h}'); dp.wait_for_selector('h1, #home-class'); dp.wait_for_timeout(300)
+        assert dp.locator('#mx-dock:visible').count() == 0, f'no dock on {h or "home"}'
+    dp.goto(f'{BASE}/#teacher'); dashboard(dp)
+    dp.select_option('#td-class', 'premiere'); dp.select_option('#td-chapter', 'premiere-02')
+    for h in ('#bank/premiere/premiere-02', '#automatismes', '#lab', '#chapter/premiere-02'):
+        dp.goto(f'{BASE}/{h}'); dp.wait_for_selector('#mx-dock:visible')
+        assert dp.locator('#mx-dock .dock-link').count() == 7, h
+        assert dp.locator('#mx-dock .dock-back').get_attribute('href') == '#teacher'
+        assert dp.evaluate("parseFloat(getComputedStyle(document.body).paddingBottom) >= 56"), 'content clears the dock'
+    dp.goto(f'{BASE}/#bank/premiere/premiere-02'); dp.wait_for_selector('#mx-dock:visible')
+    assert dp.locator('#mx-dock [aria-current="page"]').get_attribute('data-dock-phase') == 'exercices'
+    # links reach their pages in one click
+    for phase in ('automatismes', 'activite', 'cours', 'outils'):
+        dp.goto(f'{BASE}/#bank/premiere/premiere-02'); dp.wait_for_selector('#mx-dock:visible')
+        link = dp.locator(f'#mx-dock a[data-dock-phase="{phase}"]'); href = link.get_attribute('href')
+        link.click(); dp.wait_for_timeout(500)
+        if href.startswith('#'):
+            assert dp.locator('h1').first.inner_text() not in ('Page introuvable', 'Page not found'), href
+            if phase == 'automatismes':
+                dp.wait_for_selector('#auto-stage.presenting')
+                assert dp.locator('#mx-dock:visible').count() == 0, 'the one-click series opens the projection: dock hidden'
+                dp.evaluate("document.querySelector('#auto-stage').classList.remove('presenting'); document.documentElement.classList.remove('is-presenting')")
+            else:
+                assert dp.locator('#mx-dock:visible').count() == 1, 'dock stays on the next tool page'
+        else:
+            assert 'player.html' in dp.url, dp.url
+    dp.goto(f'{BASE}/#automatismes'); dp.wait_for_selector('#mx-dock:visible')
+    assert dp.locator('#mx-dock a[data-dock-next]').count() == 1 and dp.locator('#mx-dock a[data-dock-prev]').count() == 0
+    dp.locator('#mx-dock a[data-dock-next]').click(); dp.wait_for_timeout(300)
+    assert dp.evaluate('location.hash').startswith('#bank/'), 'next goes to the following phase'
+    dp.locator('#mx-dock .dock-back').click(); dashboard(dp)
+    assert dp.locator('#mx-dock:visible').count() == 0
+    # collapse persists across a reload
+    dp.goto(f'{BASE}/#lab'); dp.wait_for_selector('#mx-dock:visible')
+    dp.locator('#mx-dock [data-dock-toggle]').click()
+    assert dp.locator('#mx-dock .dock-link').count() == 0 and dp.locator('#mx-dock .dock-tab').count() == 1
+    assert dp.evaluate("JSON.parse(localStorage.getItem('mx-teacher-tools')).dockCollapsed") is True
+    dp.reload(); dp.wait_for_selector('#mx-dock .dock-tab')
+    assert dp.locator('#mx-dock .dock-link').count() == 0, 'collapsed after reload'
+    dp.locator('#mx-dock .dock-tab').click(); assert dp.locator('#mx-dock .dock-link').count() == 7
+    # hidden while the automatismes projection stage is open
+    dp.goto(f'{BASE}/#teacher'); dashboard(dp)
+    dp.locator('a.lp-tile[data-recent-id="automatismes"]').click(); dp.wait_for_selector('#auto-stage.presenting')
+    assert dp.locator('#mx-dock:visible').count() == 0, 'hidden during the projection stage'
+    dp.keyboard.press('Escape'); dp.evaluate("document.fullscreenElement && document.exitFullscreen(); document.querySelector('#auto-stage').classList.remove('presenting'); document.documentElement.classList.remove('is-presenting')")
+    dp.wait_for_timeout(200)
+    assert dp.locator('#mx-dock:visible').count() == 1, 'back after the projection'
+    # no overflow, 44 px targets, both themes
+    for width in (320, 390, 1440):
+        dp.set_viewport_size({'width': width, 'height': 800})
+        for theme in ('jour', 'nuit'):
+            for h in ('#bank/premiere/premiere-02', '#automatismes', '#lab', '#chapter/premiere-02'):
+                dp.goto(f'{BASE}/{h}'); dp.wait_for_selector('#mx-dock:visible')
+                dp.evaluate(f"document.documentElement.dataset.theme = '{theme}'")
+                assert not overflow(dp), (width, theme, h)
+                small = dp.evaluate("""() => [...document.querySelectorAll('#mx-dock a, #mx-dock button')].filter(e => e.offsetParent && e.getBoundingClientRect().height < 43).map(e => e.outerHTML.slice(0, 80))""")
+                assert not small, small
+                assert dp.evaluate("(() => { const r = document.querySelector('#mx-dock').getBoundingClientRect(); return r.right <= innerWidth + 1 && r.bottom <= innerHeight + 1; })()")
+    dk.close()
+
     # 6. phone width and both themes: no overflow, targets of at least 44 px
     for width in (320, 390, 1440):
         page.set_viewport_size({'width': width, 'height': 800})

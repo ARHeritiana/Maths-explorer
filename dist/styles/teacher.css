@@ -105,3 +105,23 @@ a.lp-block:hover{border-color:var(--ink)}
 .lp-total{margin:0 0 8px;font-weight:600}
 .lp-build{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
 @media(max-width:420px){.lp-grid{grid-template-columns:1fr}.lp-tile{padding-left:48px}.lp-n{left:12px}.lp-title{font-size:1.3rem}}
+/* In-class dock (dock.js): slim bar fixed to the bottom of tool pages in En classe. Cahier tokens only. */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:stretch;gap:4px;box-sizing:border-box;min-height:52px;padding:4px clamp(8px,2vw,24px) calc(4px + env(safe-area-inset-bottom,0px));background:var(--surface);border-top:1.5px solid var(--line-strong);font:700 .92rem var(--ui)}
+.dock[hidden],.dock.is-projecting,.is-presenting .dock{display:none}
+.dock a,.dock button,.dock .dock-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 12px;box-sizing:border-box;font:inherit;color:var(--ink);text-decoration:none;white-space:nowrap}
+.dock-back{color:var(--accent)!important;text-decoration:underline!important;text-underline-offset:4px;flex:none}
+.dock-list{display:flex;flex:1 1 0;min-width:0;margin:0;padding:0;list-style:none;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+.dock-list li{flex:none}
+.dock-link{color:var(--muted)!important;border-bottom:3px solid transparent}
+a.dock-link:hover{color:var(--ink)!important}
+.dock-link[aria-current="page"]{color:var(--ink)!important;border-bottom-color:var(--accent)}
+.dock-link.is-disabled{color:var(--muted)!important;opacity:.6;border-bottom:1px dashed var(--line-strong);cursor:not-allowed}
+.dock-step,.dock-fold,.dock-tab{background:var(--sunken);border:1px solid var(--line-strong)!important;border-radius:var(--r-sm);cursor:pointer;flex:none}
+.dock-step{font-size:1.3rem}
+.dock:focus-within,.dock a:focus-visible,.dock button:focus-visible{outline-offset:-3px}
+.dock a:focus-visible,.dock button:focus-visible{outline:3px solid var(--accent)}
+.dock.is-collapsed{left:auto;right:0;min-height:0;padding:0 8px calc(4px + env(safe-area-inset-bottom,0px));background:transparent;border:0}
+.dock.is-collapsed .dock-tab{background:var(--surface);box-shadow:0 0 0 1px var(--line-strong)}
+.has-dock body{padding-bottom:calc(60px + env(safe-area-inset-bottom,0px))}
+@media(max-width:480px){.dock{gap:2px;padding-left:4px;padding-right:4px}.dock a,.dock button,.dock .dock-link{padding:0 8px}.dock-back{font-size:.85rem}}
+@media(display-mode:fullscreen){.dock{display:none}}
