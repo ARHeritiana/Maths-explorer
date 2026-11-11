@@ -109,7 +109,7 @@ test('dashboard has no dead buttons or links',async()=>{
  }
  for(const el of h.$$('.is-unavailable'))assert.ok(!el.matches('a,button'),'unavailable entries are not controls');
  for(const b of h.$$('button'))assert.ok(b.dataset.td,'every button is wired: '+b.textContent);
- assert.ok(!/Mes sélections|Rechercher|Ma séance/.test(h.main.textContent),'no placeholder for later increments');
+ assert.ok(!/Mes sélections|Accès rapides/.test(h.main.textContent),'old quick actions list is gone');
  const hidden=new Set(liveCourses.map(c=>c.id));
  assert.deepEqual(h.$$('#td-class option').slice(1).map(o=>o.value).filter(v=>!hidden.has(v)),[]);
 });
@@ -138,10 +138,41 @@ test('recents and favorites: honest empty states, then populated, removable, onl
 test('opening a quick action records it as a recent item',async()=>{
  const h=await setup();
  h.change(h.$('#td-class'),'premiere');
- const link=h.$('.td-action[data-recent-id="exercises"]');
+ const link=h.$('.lp-tile[data-recent-id="exercices"]');
  link.addEventListener('click',e=>e.preventDefault());link.click();
  const [r]=h.state.getRecent();
  assert.equal(r.href,'#bank/premiere');assert.match(r.title,/Exercices/);
+});
+
+test('launch pad: seven tiles in order, link tiles in projecteur view, board scripts and tags in tableau view, switch persists',async()=>{
+ const h=await setup();
+ h.change(h.$('#td-class'),'seconde');h.change(h.$('#td-chapter'),'seconde-01');
+ assert.match(h.$('h1').textContent,/En classe/);
+ assert.equal(h.$$('.lp-grid>li').length,7);
+ assert.equal(h.$('.lp-tile[data-recent-id="automatismes"]').getAttribute('href'),'#automatismes/go');
+ assert.equal(h.$('[data-view="projecteur"]').getAttribute('aria-pressed'),'true');
+ assert.equal(h.$$('.lp-script').length,0);
+ h.click('[data-view="tableau"]');
+ assert.equal(h.state.getTools().view,'tableau');
+ assert.equal(h.$$('.lp-script').length,7);assert.equal(h.$$('.lp-tag').length,7);
+ assert.equal(h.$$('.lp-tag.is-print').length,2);
+ assert.ok(/sans papier/.test(h.$('.lp-tag').textContent)&&/fiche à imprimer/.test(h.$('.lp-tag.is-print').textContent));
+ assert.equal(h.$$('a.lp-open').length,7,'the link stays available as Ouvrir');
+ await h.stop();const h2=await setup({win:h.window});
+ assert.equal(h2.$('[data-view="tableau"]').getAttribute('aria-pressed'),'true','switch persists');
+ h2.click('[data-view="projecteur"]');assert.equal(h2.state.getTools().view,'projecteur');
+});
+
+test('Ma séance: empty state proposes a standard séance, stored and shown; blocks are links',async()=>{
+ const h=await setup();
+ h.change(h.$('#td-class'),'seconde');h.change(h.$('#td-chapter'),'seconde-01');
+ assert.equal(h.state.getSeance().blocks.length,0);
+ assert.ok(h.$('[data-td="propose"]'));assert.equal(h.$('.lp-build').getAttribute('href'),'#prepare');
+ h.click('[data-td="propose"]');
+ assert.equal(h.state.getSeance().blocks.length,7);
+ assert.equal(h.$$('.lp-blocks li').length,7);assert.equal(h.$('[data-td="propose"]'),null);
+ for(const a of h.$$('.lp-blocks a'))assert.ok(a.getAttribute('href'));
+ assert.match(h.$('.lp-total').textContent,/\d+ min/);
 });
 
 test('storage blocked: banner, choices kept for the session, export still works',async()=>{
@@ -193,7 +224,7 @@ test('English labels render and the teacher module does not leak a French-only s
  const dom=new JSDOM('<main id="main"></main>',{url:'https://example.test/'});
  const state=createTeacherState(dom.window),main=dom.window.document.querySelector('main');
  await mountTeacherDashboard(main,{t:p=>p[1],state,decks:[],download(){}});
- assert.match(main.querySelector('h1').textContent,/Teacher area/);
+ assert.match(main.querySelector('h1').textContent,/In class/);
  assert.ok(!/undefined|NaN/.test(main.textContent));
  assert.ok(!/[–—]/.test(main.textContent),'no em or en dashes in copy');
 });

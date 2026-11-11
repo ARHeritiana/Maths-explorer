@@ -93,7 +93,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 |---|---|---|
 | `#topics[/<topic>[/<subtopic>]]` | Explorer > Domaines | `discovery.js`, `discovery-index.js`, `topic-registry.js` (field figures, starters, difficulty bands), `styles/topics.css` |
 | `#search[/<query>]` | (header magnifier, dashboard section) | `resource-search.js`, `resource-index.js`, `resource-sources.js`; styles `teacher.css` |
-| `#teacher` | (device entrance, not in the nav) | `teacher-dashboard.js` `mountTeacherDashboard`, loaded on demand; entry preference `teacher-entry.js`, state `teacher-state.js` (séance model `seance-model.js`) |
+| `#teacher` | (device entrance, not in the nav) | `teacher-dashboard.js` `mountTeacherDashboard` (En classe launch pad), loaded on demand; pure phases and targets `launchpad-model.js`; entry preference `teacher-entry.js`, state `teacher-state.js` (séance model `seance-model.js`) |
 | `#prepare` | Préparer mode (mode bar, shown for the teacher entrance) | `prepare-page.js` `mountPreparePage`, loaded on demand; mode bar `modes.js` (`MODES`, `modeOfRoute`, `showModeBar`), remembered through `teacher-state.js` `getMode`/`setMode` |
 | `#relax` | Détente mode (mode bar) | `relax-page.js` `mountRelaxPage`, loaded on demand; `modes.js` |
 | `#home` (default) | logo | `welcome.js` `homePage` / `bindHome` / `mountHomeFigure`, class-to-chapter flow |

@@ -3,7 +3,9 @@
  - choosing it is remembered: a fresh visit with an empty address lands on the dashboard, the logo goes there,
    and a visible switch returns to the student home (and is remembered too);
  - class and chapter selectors override and persist; the chapter list is limited to the class;
- - every quick action is a working link to an existing page (opened, no "Page introuvable");
+ - En classe launch pad: seven tiles, each available tile reaches its page in one click, the automatismes tile starts the
+   timed series, Projecteur / Tableau seul persists, the séance proposal is stored and shown;
+ - every pad tile is a working link to an existing page (opened, no "Page introuvable");
  - storage blocked: the page still works and shows the banner;
  - mode bar (Préparer, En classe, Détente): hidden for students, shown for the teacher entrance, remembered;
  - 320 px without horizontal overflow, in both themes, no console error, controls at least 44 px high.
@@ -57,11 +59,15 @@ with sync_playwright() as p:
     assert page.evaluate("localStorage.getItem('mx-home-course')") == 'premiere', 'shared with the rest of the site'
 
     # 4. every enabled quick action leads to a real page
-    hrefs = page.locator('a.td-action').evaluate_all('a => a.map(x => x.getAttribute("href"))')
+    hrefs = page.locator('a.lp-tile').evaluate_all('a => a.map(x => x.getAttribute("href"))')
     assert len(hrefs) >= 4, hrefs
+    assert page.locator('.lp-grid > li').count() == 7, 'seven phases'
+    page.goto(f'{BASE}/#teacher'); dashboard(page)
+    page.locator('a.lp-tile[data-recent-id="automatismes"]').click(); page.wait_for_selector('#auto-stage.presenting')
+    assert page.evaluate('location.hash') == '#automatismes', 'automatismes tile: one click to the timed series'
     for href in hrefs:
         page.goto(f'{BASE}/#teacher'); dashboard(page)
-        page.locator(f'a.td-action[href="{href}"]').click()
+        page.locator(f'a.lp-tile[href="{href}"]').first.click()
         page.wait_for_timeout(400)
         if href.startswith('#'):
             assert page.locator('h1').first.inner_text() != 'Page introuvable', href
@@ -69,6 +75,22 @@ with sync_playwright() as p:
             assert 'player.html' in page.url, page.url
     page.goto(f'{BASE}/#teacher'); dashboard(page)
     assert page.locator('.td-items a').count() >= 1, 'opened actions are listed as recent items'
+
+    # 4a. board view persists across a reload; the pad keeps the link as Ouvrir; a standard séance is proposed, stored and shown
+    page.goto(f'{BASE}/#teacher'); dashboard(page)
+    page.locator('[data-view="tableau"]').click()
+    assert page.locator('.lp-script').count() == 7 and page.locator('a.lp-open').count() >= 4
+    page.reload(); dashboard(page)
+    assert page.locator('[data-view="tableau"]').get_attribute('aria-pressed') == 'true', 'switch persists'
+    assert page.evaluate("JSON.parse(localStorage.getItem('mx-teacher-tools')).view") == 'tableau'
+    page.locator('[data-view="projecteur"]').click()
+    page.locator('[data-td="propose"]').click()
+    assert page.locator('.lp-blocks li').count() >= 4
+    assert page.evaluate("JSON.parse(localStorage.getItem('mx-teacher-seance')).blocks.length") >= 4
+    page.reload(); dashboard(page)
+    assert page.locator('.lp-blocks li').count() >= 4, 'séance stored'
+    page.locator('.lp-blocks a').first.click(); page.wait_for_timeout(300)
+    assert page.locator('h1').first.inner_text() != 'Page introuvable'
 
     # 4b. shared class and chapter reach the generators, lessons and exercises; one-click timed starters
     page.goto(f'{BASE}/#teacher'); dashboard(page)
