@@ -42,6 +42,7 @@ import {historyPage,bindHistory,isHistoryRoute,mathematiciansTimelineUrl} from '
 import * as teacherState from './teacher-state.js';
 import {noteOpen,recentFor,contextStripHtml,mountContextStrip} from './classroom-context.js';
 import {landingHash,homeHash,installEntrySwitch} from './teacher-entry.js';
+import {MODES,modeOfRoute,showModeBar} from './modes.js';
 
 const $ = (s, root = document) => root.querySelector(s);
 const esc = (x) =>
@@ -151,7 +152,9 @@ function header(page) {
     `<a href="${destination(tabs[0][0])}" data-section="${id}" ${['resources','bank','slides'].includes(tabs[0][0])?`data-course-page="${tabs[0][0]}"`:''} ${section?.[0] === id ? 'aria-current="true"' : ""}>${icon(ic, 20)}<span>${pair(fr, en)}</span></a>`).join("");
   const subnav = section ? `<nav class="subnav" aria-label="${pair(section[1], section[2])}"><div class="subnav-inner">${section[4].map(([id, fr, en, ic]) =>
     `<a href="${destination(id)}" ${['resources','bank','slides'].includes(id)?`data-course-page="${id}"`:''} ${tab === id ? 'aria-current="page"' : ""}>${icon(ic, 18)}<span>${pair(fr, en)}</span></a>`).join("")}${section[0]==='learn'?`<details class="section-tools secondary-tools"><summary>${pair('Pour enseigner','For teaching')}</summary><div><a href="#pack">${pair('Dossier sur mesure','Custom pack')}</a><a href="#workshop/quadratic">${pair('Atelier du second degré','Quadratic workshop')}</a></div></details>`:''}</div></nav>` : "";
-  return `<header class="topbar"><a class="brand" href="${homeHash(teacherState.getEntry())}" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">${pair("Menu","Menu")}</button><nav id="primary-nav" class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${sectionLinks}</nav><div class="tools"><a class="icon-btn" href="#search" data-search-link aria-label="${pair("Rechercher une ressource", "Search resources")}" title="${pair("Rechercher une ressource", "Search resources")}"${route().page === "search" ? ' aria-current="page"' : ""}>${icon("magnifying-glass", 22)}</a><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" ${(["chapter","university","workshop"].includes(route().page)||(route().page==="library"&&route().id))?"hidden":""} role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>${subnav}`;
+  const entry = teacherState.getEntry();
+  const modeBar = showModeBar({ entry, page }) ? (active => `<nav class="modebar" aria-label="${pair("Modes", "Modes")}">${MODES.map(m => `<a href="${m.hash}" data-teacher-mode="${m.id}"${active === m.id ? ' aria-current="page"' : ""}>${pair(...m.label)}</a>`).join("")}</nav>`)(modeOfRoute(page, teacherState.getMode())) : "";
+  return `<header class="topbar"><a class="brand" href="${homeHash(teacherState.getEntry())}" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">${pair("Menu","Menu")}</button><nav id="primary-nav" class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${sectionLinks}</nav><div class="tools"><a class="icon-btn" href="#search" data-search-link aria-label="${pair("Rechercher une ressource", "Search resources")}" title="${pair("Rechercher une ressource", "Search resources")}"${route().page === "search" ? ' aria-current="page"' : ""}>${icon("magnifying-glass", 22)}</a><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" ${(["chapter","university","workshop"].includes(route().page)||(route().page==="library"&&route().id))?"hidden":""} role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>${modeBar}${subnav}`;
 }
 function footer() {
   return `<footer><span class="foot-brand">Maths Explorer</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><nav class="foot-links" aria-label="${pair("Autres pages", "More pages")}"><a href="#pack">${pair("Dossier sur mesure", "Custom pack")}</a><a href="#sources">${pair("Sources LaTeX", "LaTeX sources")}</a>${FULL_EDITION?`<a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a>`:""}<a href="${MIKAJY_SPARK_DOWNLOAD_URL}" target="_blank" rel="noopener noreferrer">Mikajy Spark (Android)</a><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.${lang}" rel="license noopener" target="_blank">${pair("Licence CC BY-NC-SA 4.0", "CC BY-NC-SA 4.0 licence")}</a></nav></footer>`;
@@ -197,7 +200,7 @@ function render() {
     (r.page === "errors" && isErrorRoute(r.id)) ||
     (r.page === "olympiad" && isOlympiadRoute(r.id)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "teacher" && !r.id) || r.page === "search" || (r.page === "basics" && isBasicsRoute(r.id)) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab, r.sub)) ||
+    (r.page === "home" && !r.id) || (r.page === "teacher" && !r.id) || (r.page === "prepare" && !r.id) || (r.page === "relax" && !r.id) || r.page === "search" || (r.page === "basics" && isBasicsRoute(r.id)) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab, r.sub)) ||
     r.page === "university" || (r.page === "resources" && isLiveRoute(r)) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
@@ -206,7 +209,7 @@ function render() {
   document.body.dataset.page=page;
   $("#app").innerHTML =
     header(page) +
-    (page === "search" ? searchLoading() : page === "teacher" ? teacherLoading() : page === "basics" ? basicsPage(r.id, { t, pair, lang, assetHref }) : page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "bank" ? bankPage(t, r.id, r.tab) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
+    (page === "search" ? searchLoading() : page === "teacher" ? teacherLoading() : page === "prepare" ? modeLoading(pair("Préparer", "Prepare")) : page === "relax" ? modeLoading(pair("Détente", "Relax")) : page === "basics" ? basicsPage(r.id, { t, pair, lang, assetHref }) : page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "bank" ? bankPage(t, r.id, r.tab) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "university" ? universityPage(lang)
       : page === "topics" ? discoveryPage(discovery,r.id,r.tab,t)
       : page === "history" ? historyPage(r.id,r.tab,t,discovery)
@@ -261,6 +264,8 @@ function render() {
   if (page === "olympiad") stopChapter = bindOlympiad($("#main"), lang);
   if (page === "home") stopChapter = bindHome($("#main"),discovery,t);
   if (page === "teacher") stopChapter = mountTeacher($("#main"));
+  if (page === "prepare") stopChapter = mountMode($("#main"), "prepare");
+  if (page === "relax") stopChapter = mountMode($("#main"), "relax");
   if (page === "search") stopChapter = mountSearch($("#main"), r.id);
   if (page === "basics" && r.id) stopChapter = bindBasics({ $, currentTheme });
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
@@ -293,6 +298,18 @@ function render() {
 }
 // The teacher dashboard is loaded on demand: students never download it.
 const teacherLoading = () => `<main id="main" class="page teacher-page" tabindex="-1"><h1>${pair("Espace professeur", "Teacher area")}</h1><p role="status">${pair("Chargement…", "Loading…")}</p></main>`;
+const modeLoading = title => `<main id="main" class="page teacher-page" tabindex="-1"><h1>${title}</h1><p role="status">${pair("Chargement…", "Loading…")}</p></main>`;
+// #prepare and #relax are loaded on demand like the dashboard.
+function mountMode(main, kind) {
+  let stop = () => {}, gone = false;
+  import(kind === "prepare" ? './prepare-page.js' : './relax-page.js').then(async m => {
+    if (gone) return;
+    const done = await (kind === "prepare" ? m.mountPreparePage : m.mountRelaxPage)(main, { t, state: teacherState, isGone: () => gone });
+    stop = done || stop;
+    if (gone) stop();
+  }).catch(() => { if (!gone) main.innerHTML = `<h1>${pair("Page indisponible", "Page unavailable")}</h1><p role="alert">${pair("La page n’a pas pu se charger. Recharge-la.", "The page could not load. Reload it.")}</p>`; });
+  return () => { gone = true; stop(); };
+}
 const searchLoading = () => `<main id="main" class="page teacher-page rs-page" tabindex="-1"><h1>${pair("Rechercher", "Search")}</h1><p role="status">${pair("Chargement…", "Loading…")}</p></main>`;
 // The "related resources" box: a placeholder at the end of the page, filled by related-box.js (which carries the whole index)
 // only when it comes near the viewport. A chapter waits for its content first, so the page is not short when the box decides.
@@ -568,6 +585,7 @@ window.addEventListener("hashchange", () => {
   window.scrollTo(0, 0);
 });
 installEntrySwitch($("#app"), teacherState);
+$("#app").addEventListener("click", e => { const a = e.target.closest?.("[data-teacher-mode]"); if (a) teacherState.setMode(a.dataset.teacherMode); });
 // A teacher who chose the dashboard lands on it when opening the site without a destination.
 { const landing = landingHash(location.hash, teacherState.getEntry()); if (landing) history.replaceState(null, "", landing); }
 render();

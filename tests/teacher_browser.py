@@ -5,6 +5,7 @@
  - class and chapter selectors override and persist; the chapter list is limited to the class;
  - every quick action is a working link to an existing page (opened, no "Page introuvable");
  - storage blocked: the page still works and shows the banner;
+ - mode bar (Préparer, En classe, Détente): hidden for students, shown for the teacher entrance, remembered;
  - 320 px without horizontal overflow, in both themes, no console error, controls at least 44 px high.
 Run through tests/run_browser.py, or alone against a running server: MATHS_EXPLORER_URL=http://localhost:4173 python tests/teacher_browser.py
 """
@@ -121,6 +122,43 @@ with sync_playwright() as p:
     assert page.evaluate("localStorage.getItem('mx-teacher-entry')") == 'student'
     page.goto(f'{BASE}/'); page.reload(); page.wait_for_selector('#home-class')
     assert page.evaluate('location.hash') in ('', '#home')
+
+    # 5b. mode bar: absent for a fresh student, present after choosing the teacher entrance, remembered across reloads
+    fresh = browser.new_context(viewport={'width': 1280, 'height': 800}); fp = fresh.new_page()
+    fp.on('pageerror', lambda e: errors.append(str(e)))
+    fp.goto(f'{BASE}/'); fp.wait_for_selector('#home-class')
+    assert fp.locator('nav.modebar').count() == 0, 'student experience untouched'
+    fp.goto(f'{BASE}/#resources'); fp.wait_for_selector('.chapter-grid, main')
+    assert fp.locator('nav.modebar').count() == 0
+    fp.goto(f'{BASE}/'); fp.locator('.teacher-entry summary').click(); fp.locator('[data-set-entry="teacher"]').click(); dashboard(fp)
+    assert fp.locator('nav.modebar a').count() == 3
+    assert fp.locator('nav.modebar [aria-current="page"]').get_attribute('data-teacher-mode') == 'classe'
+    fp.locator('nav.modebar a[data-teacher-mode="preparer"]').click(); fp.wait_for_selector('h1')
+    assert fp.evaluate('location.hash') == '#prepare' and fp.locator('h1').first.inner_text() in ('Préparer', 'Prepare')
+    assert fp.locator('nav.modebar [aria-current="page"]').get_attribute('data-teacher-mode') == 'preparer'
+    fp.locator('nav.modebar a[data-teacher-mode="detente"]').click(); fp.wait_for_selector('h1')
+    assert fp.evaluate('location.hash') == '#relax' and fp.locator('h1').first.inner_text() in ('Détente', 'Relax')
+    fp.locator('nav.modebar a[data-teacher-mode="classe"]').click(); dashboard(fp)
+    assert fp.evaluate('location.hash') == '#teacher'
+    for h in ('#prepare', '#relax'):
+        fp.goto(f'{BASE}/{h}'); fp.wait_for_selector('h1')
+        for a in fp.locator('main a[href^="#"]').evaluate_all('a => a.map(x => x.getAttribute("href"))'):
+            fp.goto(f'{BASE}/{a}'); fp.wait_for_timeout(250)
+            assert fp.locator('h1:text-matches("^(Page introuvable|Page not found)$")').count() == 0, a
+    # a tool opened from a mode keeps that mode highlighted, also after a reload
+    fp.goto(f'{BASE}/#prepare'); fp.wait_for_selector('h1'); fp.locator('nav.modebar a[data-teacher-mode="preparer"]').click()
+    fp.goto(f'{BASE}/#bank/annales'); fp.wait_for_selector('nav.modebar')
+    assert fp.locator('nav.modebar [aria-current="page"]').get_attribute('data-teacher-mode') == 'preparer'
+    fp.reload(); fp.wait_for_selector('nav.modebar')
+    assert fp.locator('nav.modebar [aria-current="page"]').get_attribute('data-teacher-mode') == 'preparer', 'remembered mode survives a reload'
+    assert fp.evaluate("localStorage.getItem('mx-teacher-mode')") == 'preparer'
+    for width in (320, 390):
+        fp.set_viewport_size({'width': width, 'height': 800})
+        for h in ('#teacher', '#prepare', '#relax', '#bank/annales'):
+            fp.goto(f'{BASE}/{h}'); fp.wait_for_selector('nav.modebar')
+            assert not overflow(fp), (width, h)
+            assert fp.locator('nav.modebar a').evaluate_all('a => a.every(x => x.getBoundingClientRect().height >= 43)')
+    fresh.close()
 
     # 6. phone width and both themes: no overflow, targets of at least 44 px
     for width in (320, 390, 1440):

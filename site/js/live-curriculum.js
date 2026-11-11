@@ -38,7 +38,7 @@ export function liveCatalog(catalog) {
 export function isLiveRoute({ page, id, tab }) {
   if (FULL_EDITION && ['pathways', 'university'].includes(page)) return true;
   if (page === 'automatismes') return !id || id === 'go';
-  if (['home', 'teacher', 'sources', 'sheets'].includes(page)) return !id;
+  if (['home', 'teacher', 'prepare', 'relax', 'sources', 'sheets'].includes(page)) return !id;
   if (page === 'search') return true;
   if (page === 'resources' || page === 'slides') return !id || isLiveCourse(id);
   if (page === 'chapter') return chapterIds.has(id);

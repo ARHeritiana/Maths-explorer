@@ -67,3 +67,10 @@ a.td-action .td-action-title{color:var(--accent)}
 .rs-suggest{display:flex;flex-wrap:wrap;gap:8px}
 .rs-empty{padding:12px 16px;border:1.5px dashed var(--line-strong);background:var(--sunken)}
 .rs-note{font-size:.88rem}
+/* Mode bar (Préparer, En classe, Détente): under the header, wraps at 320 px, 44 px targets. */
+.modebar{display:flex;flex-wrap:wrap;gap:0 4px;padding:0 clamp(16px,3vw,32px);background:var(--surface);border-bottom:1px solid var(--line)}
+.modebar a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 14px;box-sizing:border-box;font:700 .95rem var(--ui);color:var(--muted);border-bottom:3px solid transparent}
+.modebar a:hover{color:var(--ink)}
+.modebar a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
+.is-presenting .modebar{display:none}
+@media (max-width:480px){.modebar{padding:0 8px}.modebar a{flex:1 1 0;padding:0 6px}}

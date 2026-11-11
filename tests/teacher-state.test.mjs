@@ -84,7 +84,7 @@ test('clearAll deletes everything including the class',()=>{
  const {s,win}=mk();
  s.setEntry('teacher');s.setChapter('seconde-01');s.addRecent(item(1));s.addFavorite(item(1));s.setTools({a:1});
  s.clearAll();
- assert.deepEqual(s.exportState(),{version:1,entry:'',course:'',chapter:'',recent:[],favorites:[],tools:{},seance:{blocks:[]}});
+ assert.deepEqual(s.exportState(),{version:1,entry:'',course:'',chapter:'',recent:[],favorites:[],tools:{},seance:{blocks:[]},mode:""});
  assert.equal([...Array(win.localStorage.length).keys()].filter(i=>win.localStorage.key(i).startsWith('mx-teacher-')).length,0);
 });
 test('blocked storage falls back to memory and says so',()=>{
@@ -137,4 +137,17 @@ test('seance: blocked storage keeps it in memory',()=>{
  Object.defineProperty(win,'localStorage',{get(){throw new Error('blocked')}});
  assert.doesNotThrow(()=>s.setSeance({blocks:[blk('a')]}));
  assert.equal(s.getSeance().blocks.length,1);assert.equal(s.storageStatus(),'memory-only');
+});
+test('mode: validates, persists, event, export/import/clear, old files import',()=>{
+ const {s,win}=mk();const kinds=[];
+ win.addEventListener('mx-teacher-change',e=>kinds.push(e.detail.kind));
+ assert.equal(s.getMode(),'');assert.equal(s.setMode('admin'),false);assert.equal(s.getMode(),'');
+ assert.equal(s.setMode('classe'),true);assert.deepEqual(kinds,['mode']);
+ assert.equal(createTeacherState(win).getMode(),'classe');assert.equal(win.localStorage.getItem('mx-teacher-mode'),'classe');
+ assert.equal(s.exportState().mode,'classe');
+ const t=mk();assert.ok(t.s.importState(JSON.parse(JSON.stringify(s.exportState()))).applied.includes('mode'));assert.equal(t.s.getMode(),'classe');
+ assert.ok(t.s.importState({version:1,entry:'teacher'}).ok);assert.equal(t.s.getMode(),'classe','absent key leaves the mode alone');
+ assert.equal(t.s.importState({version:1,mode:'x'}).rejected,1);assert.equal(t.s.getMode(),'classe');
+ win.localStorage.setItem('mx-teacher-mode','garbage');assert.equal(s.getMode(),'');
+ s.setMode('detente');s.clearAll();assert.equal(s.getMode(),'');assert.equal(win.localStorage.getItem('mx-teacher-mode'),null);
 });

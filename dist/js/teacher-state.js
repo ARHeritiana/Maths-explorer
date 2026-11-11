@@ -1,10 +1,11 @@
-// Device-local teacher state: entry choice, class + chapter, recent items, favorites, automatismes settings.
+// Device-local teacher state: entry choice, class + chapter, recent items, favorites, automatismes settings, séance.
 // No account, no network, no analytics. Keys 'mx-teacher-*'. Falls back to memory when storage is blocked or full.
 import {currentCourse,rememberCourse} from './navigation-state.js';
 import {liveChapterCourse} from './live-curriculum.js';
+import {cleanSeance} from './seance-model.js';
 export const VERSION=1,RECENT_MAX=20,FAVORITES_MAX=200;
-const K={entry:'mx-teacher-entry',chapter:'mx-teacher-chapter',recent:'mx-teacher-recent',favorites:'mx-teacher-favorites',tools:'mx-teacher-tools'};
-const PROBE='mx-teacher-probe',ENTRIES=['teacher','student'];
+const K={entry:'mx-teacher-entry',chapter:'mx-teacher-chapter',recent:'mx-teacher-recent',favorites:'mx-teacher-favorites',tools:'mx-teacher-tools',seance:'mx-teacher-seance',mode:'mx-teacher-mode'};
+const PROBE='mx-teacher-probe',ENTRIES=['teacher','student'],MODES=['preparer','classe','detente'];
 const str=(v,n)=>typeof v==='string'&&v.length>0&&v.length<=n;
 const safeHref=h=>str(h,500)&&/^(#|\/|\.\/|\.\.\/|https?:\/\/)/.test(h);
 // Returns a clean item {type,id,title,href,at} or null.
@@ -58,6 +59,12 @@ export function createTeacherState(context=globalThis){
    const changed=api.getEntry()!==v;write(K.entry,v||null);if(changed)emit('entry');return true;
   },
   // Chapter ids come from the live catalogue. A chapter only counts while it belongs to the selected class.
+  // The mode bar's remembered mode: preparer | classe | detente, or '' for none.
+  getMode(){const v=read(K.mode);return MODES.includes(v)?v:'';},
+  setMode(v){
+   if(v!==''&&!MODES.includes(v))return false;
+   const changed=api.getMode()!==v;write(K.mode,v||null);if(changed)emit('mode');return true;
+  },
   getChapter(){
    const id=read(K.chapter),course=id?liveChapterCourse(id):'';
    if(!course)return '';
@@ -109,8 +116,11 @@ export function createTeacherState(context=globalThis){
    for(const k of Object.keys(next))if(next[k]===null)delete next[k];
    write(K.tools,JSON.stringify(next));emit('tools');return next;
   },
+  // The séance prepared in #prepare and offered in class. Always cleaned; see seance-model.js.
+  getSeance(){return cleanSeance(readJSON(K.seance,null));},
+  setSeance(s){const c=cleanSeance(s);write(K.seance,JSON.stringify(c));emit('seance');return c;},
   exportState(){
-   return {version:VERSION,entry:api.getEntry(),course:currentCourse('',context),chapter:api.getChapter(),recent:api.getRecent(),favorites:api.getFavorites(),tools:api.getTools()};
+   return {version:VERSION,entry:api.getEntry(),course:currentCourse('',context),chapter:api.getChapter(),recent:api.getRecent(),favorites:api.getFavorites(),tools:api.getTools(),seance:api.getSeance(),mode:api.getMode()};
   },
   // Applies the valid parts of a snapshot (object or JSON string). Malformed parts are skipped and counted.
   importState(data){
@@ -137,6 +147,13 @@ export function createTeacherState(context=globalThis){
     if(data.tools&&typeof data.tools==='object'&&!Array.isArray(data.tools)){write(K.tools,JSON.stringify(cleanTools(data.tools)));applied.push('tools');}
     else rejected++;
    }
+   if('mode' in data){if(data.mode===''||MODES.includes(data.mode)){write(K.mode,data.mode||null);applied.push('mode');}else rejected++;}
+   if('seance' in data){
+    if(data.seance&&typeof data.seance==='object'&&!Array.isArray(data.seance)&&Array.isArray(data.seance.blocks)){
+     const c=cleanSeance(data.seance);rejected+=data.seance.blocks.length-c.blocks.length;
+     write(K.seance,JSON.stringify(c));applied.push('seance');
+    }else rejected++;
+   }
    if(applied.length)emit('import');
    return {ok:true,applied,rejected};
   },
@@ -149,4 +166,4 @@ export function createTeacherState(context=globalThis){
  return api;
 }
 const shared=createTeacherState();
-export const {storageStatus,getEntry,setEntry,getChapter,getClassroom,setChapter,setClassroom,getRecent,addRecent,clearRecent,getFavorites,isFavorite,addFavorite,removeFavorite,toggleFavorite,getTools,setTools,exportState,importState,clearAll}=shared;
+export const {storageStatus,getEntry,setEntry,getChapter,getClassroom,setChapter,setClassroom,getRecent,addRecent,clearRecent,getFavorites,isFavorite,addFavorite,removeFavorite,toggleFavorite,getTools,setTools,getSeance,setSeance,getMode,setMode,exportState,importState,clearAll}=shared;
