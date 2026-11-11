@@ -31,5 +31,5 @@ This supersedes the **fixed 46 retained / 39 excluded** implementation instructi
 
 - Every single-workstream handoff must point back to this register, list unrelated active/pending streams as **unchanged** rather than losing them, and update the relevant row when its state truly changes.
 - Do not declare another task complete from a passing build, a prepared patch or a draft text. Cite commits, checks, independent reviews and publication status separately.
-- Pending English-language translation/proofreading of curriculum **lessons** remains **ON STANDBY and unfinished** under `PROJECT_BRIEF.md` section 3. Existing English editions stay available; do not resume English lesson work without a new owner decision.
+- Language (owner, 11 November 2026, `PROJECT_BRIEF.md` section 3): each lesson is in its target language(s); French and Malagasy curriculum lessons are French only, so English translation or proofreading of those lessons is not a pending workstream. Existing English editions stay available, neither removed nor extended.
 - The private repository keeps audits, reviewer notes and publication evidence; this public index contains no private links, credentials or student information.

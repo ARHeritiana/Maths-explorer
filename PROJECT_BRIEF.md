@@ -43,7 +43,6 @@ site. The French lycée curriculum stays visible; galleries, curiosities, labora
 foundations, challenges, history, reading, Olympiad (its own category) and shared
 workshops stay available. Hide the Pathways menu and its footer link as well; old
 Pathways links return to courses. Other curriculum resources remain in the repository.
-The bilingual lesson goal remains on standby, unfinished.
 
 1. Classes the owner teaches this year: Seconde, Première spécialité, Terminale spécialité, Maths expertes, Terminale STMG.
 2. Malagasy Terminale (T12), all series, in the order S, then OSE, then L.
@@ -68,16 +67,16 @@ Programme references (French), checked on 12 October 2026 on the Eduscol page "P
 
 Language at launch (decided): French for the French and Malagasy curricula; English for IB; bilingual (French and English) for Olympiad. Full bilingual parity can wait. This overrides the old rule that every resource exists in both languages.
 
-Language policy, owner decision of 25 October 2026 (binding on all future work until the owner says otherwise):
-- The bilingual goal for lessons is on standby. Do not translate, proofread or integrate English editions of curriculum lessons.
-- Specific exception, owner request of 4 November 2026: the fractions foundation (`#basics/fractions`) must be bilingual in French and English. This does not lift the general standby.
-- French and Malagasy curricula: French only.
-- International curriculum (IB, SAT): English only.
-- University: the language the resource was started in.
-- Olympiad (owner, 25 October 2026): a category in its own right, separate from the curricula, bilingual (French and English) by default.
-- Work on standby is not started or continued (for example unread English proofreading entries) until the owner lifts the standby.
+Language policy, owner decision of 11 November 2026 (binding on all future work; it replaces the policy of 25 October 2026 and the "language at launch" line above):
+- Each lesson is written in its target language(s).
+- French curriculum: lessons in French.
+- Malagasy curriculum: lessons in French.
+- International curricula (IB, SAT): lessons in English.
+- University: the input language of the resource, or bilingual.
+- Olympiad, problems (challenges), galleries and all extra-curricular activities: bilingual (French and English).
+- The fractions foundation (`#basics/fractions`) is bilingual in French and English (owner request of 4 November 2026).
+- There is no pending bilingual goal for curriculum lessons: the former "standby" and the reminder that went with it in every site map or report are withdrawn. English editions of French or Malagasy curriculum lessons are not written, translated or proofread.
 - Existing English editions stay published as they are; they are neither removed nor extended.
-- Standby is unfinished work, not a closed decision: every site map or progress report for the owner must remind them that the bilingual goal is on standby.
 
 ## 4. The chapter unit (PROPOSED template, owner to correct)
 

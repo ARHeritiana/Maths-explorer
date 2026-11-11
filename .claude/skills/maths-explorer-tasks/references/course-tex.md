@@ -3,7 +3,7 @@
 Read `content/CLAUDE.md` first (it is short). Then:
 1. Open only the unit: `content/tex/courses/<course>/<folder>/<unit>.fr.tex`. Never edit `.en.tex` (generated).
 2. If prose changed, update the matching segment in `<unit>.en.json` (stable ids; prose only, maths untouched).
-   Respect the governing language policy first. While English curriculum revisions are on standby, retain the
+   Respect the governing language policy first (French curriculum lessons are French only). Retain the
    current English edition with `mxbuild.twin.freeze_english(path, reason)` before editing French, and select
    `buildLanguages: ["fr"]` in the manifest book. The checked snapshot retains the old edition; it does not certify
    translation of the revised French. See `docs/ADR-0001-tex-i18n.md`.

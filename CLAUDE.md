@@ -7,10 +7,8 @@ committing. Obsolete branches are removed once their content is in `main` or jud
 
 **Edition rule (owner, 8 November 2026, hard rule): Maths-explorer is the limited edition of Matematika, so Matematika has to have everything Maths-explorer has, and more.** Never publish to Maths-explorer without syncing Matematika in the same round, and never let Matematika lag or lose anything. Sync recipe: set `FULL_EDITION = true` in `site/js/live-curriculum.js`, `make site`, rsync `dist/` into a clone of the Matematika repo (excluding LICENSE*, README.md, .nojekyll), commit with that repo's author identity, push, then restore the flag (`git checkout site dist content/data/build-state.json && make site`).
 
-**Language rule (owner, 25 October 2026, until the owner says otherwise):** French and Malagasy curricula in French only,
-the international curriculum in English only, university resources in the language they were started in, Olympiad as its own category, bilingual by default. The bilingual
-goal for lessons is on standby (details: `PROJECT_BRIEF.md` section 3). Whenever the owner asks for a map of the site or a
-report, remind them that the bilingual goal is on standby, as unfinished work.
+**Language rule (owner, 11 November 2026):** each lesson is written in its target language(s). French curriculum: French. Malagasy curriculum: French. International curricula: English. University: the input language of the resource, or bilingual. Olympiad, problems, galleries and all extra-curricular activities: bilingual (French and English).
+Details: `PROJECT_BRIEF.md` section 3. There is no pending bilingual goal for curriculum lessons and no reminder to give.
 
 **Long agent work (owner, 25 October 2026):** review and audit work runs from the committed queue
 `course-quality/queue/` of the private repository (`QUEUE.json`, `README.md`, `REVIEW-BRIEF.md`): one result file per

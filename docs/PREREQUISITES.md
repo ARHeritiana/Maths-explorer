@@ -2,7 +2,7 @@
 
 Maths Explorer now has an advisory prerequisite audit built around its own chapter catalogue and exercise registry.
 It is an authoring tool, not a student assessment system, a personal progress tracker or a publication gate.
-The bilingual lesson goal remains on standby and unfinished; retained English curriculum editions are not audited or changed.
+Retained English curriculum editions are not audited or changed.
 
 ## Run it
 

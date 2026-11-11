@@ -6,8 +6,7 @@ The annales index starts with exam and search. The redundant class selector is
 removed. Existing year and notion selectors appear only after an exam is chosen;
 their options come from that exam, and unavailable selections clear on a switch.
 The existing chapter entry remains unchanged; no extra topic selector was added.
-Reset restores the compact initial form. The bilingual lesson goal remains on
-standby, unfinished.
+Reset restores the compact initial form.
 
 ## Site-wide ergonomics (5 November 2026)
 
@@ -19,7 +18,6 @@ demand; collections have previous/next and a folded complete chooser. Discovery
 starts with a domain or a search. The main navigation preserves class context.
 Mathematical models, activity controls and content are retained. Styles use the
 existing tokens in `styles/ergonomics.css`.
-The bilingual lesson goal remains on standby, unfinished.
 
 ## Approved homepage ergonomics (5 November 2026)
 
@@ -30,7 +28,6 @@ Large card grids and duplicate entry buttons are removed. One fixed manipulable
 parabola replaces the five-scene slideshow; discovery links are secondary and
 teaching tools are grouped under a disclosure. Source: `site/js/welcome.js`,
 `site/styles/home.css`; the app owns figure cleanup and theme changes.
-The bilingual lesson goal remains on standby, unfinished.
 
 ## Algorithms and program rendering (5 November 2026)
 
@@ -43,7 +40,6 @@ Printing reuses the same markup. Existing source values and program logic are
 retained. `scripts/annals-code.py` owns the conversion; regressions are in
 `tests/test_annals_code.py` and `tests/annals-bank.test.mjs`. The PDF books are
 retained only after comparing every archived typesetting input and output hash.
-The bilingual lesson goal remains on standby, unfinished.
 
 ## Exercise navigation (5 November 2026)
 
@@ -54,7 +50,6 @@ by class as well as exam, year and topic. Direct links omit catalogue filters;
 loading more results preserves opened exercises. Exercises without a source
 correction are labelled before opening. The redundant French curriculum heading
 is removed from bank, courses and slides; phone class links wrap into visible rows.
-The bilingual lesson goal remains on standby, unfinished.
 
 ## Curriculum visibility corrected (4 November 2026)
 
@@ -65,12 +60,11 @@ interface. The Pathways menu and its footer link are hidden at the owner’s req
 old Pathways links return to courses. Course selectors show only the French curriculum; hidden
 curriculum links still return to the French courses. Shared library resources and
 source bundles remain accessible. No resource files were removed.
-`site/js/live-curriculum.js` is the shared curriculum visibility policy. The bilingual
-lesson goal remains on standby, unfinished.
+`site/js/live-curriculum.js` is the shared curriculum visibility policy.
 
 ## Fractions foundation (4 November 2026)
 
-Integrated the supplied fractions workbench at `#basics/fractions`, seventh foundation. Eight activities, six guided challenges, shared Cahier typography and themes, visible activity grid, keyboard focus and bounded SVG handles, automatic iframe resizing, arithmetic discovery link. French and English by the specific owner request of 4 November 2026; the wider bilingual lesson goal remains on standby (unfinished). Sources: `site/resources/basics/fractions.html` and `site/resources/basics/fractions.en.html`, with identical scripts outside the language table; regression coverage: `tests/fractions.test.mjs`.
+Integrated the supplied fractions workbench at `#basics/fractions`, seventh foundation. Eight activities, six guided challenges, shared Cahier typography and themes, visible activity grid, keyboard focus and bounded SVG handles, automatic iframe resizing, arithmetic discovery link. French and English by the specific owner request of 4 November 2026. Sources: `site/resources/basics/fractions.html` and `site/resources/basics/fractions.en.html`, with identical scripts outside the language table; regression coverage: `tests/fractions.test.mjs`.
 
 ## Open issues: triage (1 November 2026, night, issues agent; read-only checks, nothing closed)
 
@@ -199,7 +193,7 @@ Still to do (next sessions):
    checked by hand; the IMO 1986 semi-invariant numerically. Next: more problems per strategy, olympiad papers by level, review.
 6. Private repository `Maths-explorer-backup` not reached from this laptop (no GitHub access at the time): nothing was read from its
    review queue.
-7. Bilingual goal for lessons: still on standby (owner rule), unfinished.
+7. Language: see the owner rule of 11 November 2026 (`PROJECT_BRIEF.md` section 3); no pending bilingual goal for curriculum lessons.
 
 ## Generators: automatismes, worksheets, exercise bank (1 November 2026, owner request)
 
@@ -207,7 +201,7 @@ Still to do (next sessions):
 - Bank: 69 generators (Seconde 15, Première 15, Terminale 16, Maths expertes 14, STMG 9) with three levels, each returning statement, answer and an `ok()` that recomputes the answer another way; 20 fixed written exercises with full corrections and 6 seeded problems (multi-part, numbers from the seed). Chapter ids and classes are those of `manifest.json`. Distinct questions per generator over 4,000 seeds: median about 1,400; the smallest spaces are the exact-value trigonometry topics (tens of variants, inherent to the topic). `tests/exercise-bank.test.mjs` fails below 20.
 - Automatismes: class, chapters, topics, levels, number of questions, total time (seconds per question follow), progressive or mixed order, short questions only; projection stage on the page (timer, keys, full screen), print (students, answer key), LaTeX source, standalone projection page (`.html`, loads MathJax from cdnjs, so the room needs internet).
 - Sheets: type (worksheet, interro, devoir), marking scheme optional (points scale exactly to the total, half points), subjects A and B, student and teacher versions, print and LaTeX source.
-- Not done: no `pdflatex` in the cloud container, so the `.tex` files are tested for structure only, never compiled (compile one before relying on it: pdfLaTeX + mathpazo, `mdframed`, `needspace`); the generators have not been reviewed by the owner against the new 2026 programmes (chapter titles are the site's own; level labels are the assistant's) [VERIFY]; Malagasy T10/T11 and Olympiad classes have no generators yet; English editions: none (curricula are French only, standby unchanged); a real-device screen-reader pass.
+- Not done: no `pdflatex` in the cloud container, so the `.tex` files are tested for structure only, never compiled (compile one before relying on it: pdfLaTeX + mathpazo, `mdframed`, `needspace`); the generators have not been reviewed by the owner against the new 2026 programmes (chapter titles are the site's own; level labels are the assistant's) [VERIFY]; Malagasy T10/T11 and Olympiad classes have no generators yet; English editions: none (curricula are French only); a real-device screen-reader pass.
 - Publication gate removed by the owner the same day (`PROJECT_BRIEF.md` section 2): nothing here was waiting for audits.
 - Build note: `make site` needs `pip install pymupdf`; the 28 failing node tests of the earlier note were missing `jsdom` (`npm install` fixes it; 476 pass).
 
@@ -251,11 +245,11 @@ Not done: the 20 planned misconceptions; links from individual lessons, exercise
 
 The six numbered chapter stages are replaced by four direct destinations, none compulsory: `#chapter/<id>/cours` (default), `/manipuler`, `/exercices`, `/documents`. The old names `prepare`, `understand`, `experiment`, `practice` and `review` resolve as aliases (`chapterTab` in `site/js/chapter-sequence.js`); `/cours/<n>` and `/exercices/<n>` open at idea or exercise n, and `/review` at the chapter bilan. The numbered rail and the "next step" bar are gone; the chapter overview is a short optional "Par où commencer ?" line. Cours merges the former preparation (objectives, fluency, diagnostic folded) and the written lesson; Exercices merges practice and the review questions (a personal checklist is folded). Practice cards link to the exact idea (`lessonIndex` in `sequence-model.js`), not to a generic course page. Mathematics, labs and slide widgets are unchanged. New test `tests/chapter_destinations_browser.py` (run by `run_browser.py`); `accessibility_browser.py` covers the four destinations at 320, 390, 768 and 1440 px, both themes, doubled text.
 
-Not done, and not claimed: milestone 3 (private coverage matrix, canonical structured chapter content, original exercises), milestone 4 (mixed revision), the quadratic pilot's completeness assessment against the matrix, usability tests with students and teachers, real-device screen-reader testing, phone performance check. Practice for chapters with no authored tasks still falls back to the verified reused examples. The bilingual goal for lessons remains on standby and unfinished.
+Not done, and not claimed: milestone 3 (private coverage matrix, canonical structured chapter content, original exercises), milestone 4 (mixed revision), the quadratic pilot's completeness assessment against the matrix, usability tests with students and teachers, real-device screen-reader testing, phone performance check. Practice for chapters with no authored tasks still falls back to the verified reused examples.
 
 ## Malagasy T10 / T11 S sources imported (31 October 2026)
 
-At the owner's request the original T10 (9 chapters plus activities and solutions) and T11 S (20 chapters plus assessments) maths sources have been committed under `content/malagasy/source/`. The chapter-to-source mapping is in `content/malagasy/chapters.json`; source transfer is **not** Maths-explorer chapter publication or course adaptation completion. Start with T10 logic, then T11 S functions, retaining the official programme, computational proof, dual independent AI audits, full PDF/slides build, browser and accessibility gates. See `docs/future-work/malagasy-t10-t11-source-adaptation.md` and active workstream D. The owner has confirmed sole authorship of T10 and T11. Other active workstreams and the English lesson standby are unchanged.
+At the owner's request the original T10 (9 chapters plus activities and solutions) and T11 S (20 chapters plus assessments) maths sources have been committed under `content/malagasy/source/`. The chapter-to-source mapping is in `content/malagasy/chapters.json`; source transfer is **not** Maths-explorer chapter publication or course adaptation completion. Start with T10 logic, then T11 S functions, retaining the official programme, computational proof, dual independent AI audits, full PDF/slides build, browser and accessibility gates. See `docs/future-work/malagasy-t10-t11-source-adaptation.md` and active workstream D. The owner has confirmed sole authorship of T10 and T11. Other active workstreams are unchanged.
 
 ## Cross-workstream register and revised timeline direction, 31 October 2026
 
@@ -267,7 +261,7 @@ The prior 30 October editorial instructions below and in the draft are supersede
 
 ## Foundations and practice corrections, 28 October 2026
 
-Reviewed the 20 commits dated 28 October (UTC), covering foundations, standalone practice and publication checks. Foundations now prevent counters exceeding four-column capacity, support keyboard rotation/zoom/reset of the 3D camera, redraw when the site theme changes and cancel multiplication carries after a reset. Interval practice approvals are bound to the nine reviewed source statements; the Python precondition is retained, with regression checks against the French source table and program. Enlarged text and input labels now wrap within narrow screens. New interaction regressions cover both existing language editions. Private audit and computation evidence lives in `audits/basics-20261028/` and `verification/` of the private repository. Human/classroom acceptance remains pending. The bilingual curriculum goal remains on standby and unfinished.
+Reviewed the 20 commits dated 28 October (UTC), covering foundations, standalone practice and publication checks. Foundations now prevent counters exceeding four-column capacity, support keyboard rotation/zoom/reset of the 3D camera, redraw when the site theme changes and cancel multiplication carries after a reset. Interval practice approvals are bound to the nine reviewed source statements; the Python precondition is retained, with regression checks against the French source table and program. Enlarged text and input labels now wrap within narrow screens. New interaction regressions cover both existing language editions. Private audit and computation evidence lives in `audits/basics-20261028/` and `verification/` of the private repository. Human/classroom acceptance remains pending.
 
 ## Homepage and catalogue redesign, 27 October 2026
 
@@ -279,19 +273,19 @@ Challenge cards now keep a readable minimum width on phones and with enlarged te
 
 Release verification passes: `npm test`, `npm run check` and full `make check`, including the complete browser integration suite and slide smoke replay. Published source copies and generated site files match.
 
-Desktop/phone layouts, both themes, 200% text, keyboard menu operation, search, course counts and representative downloads have automated checks. Real-device screen-reader testing and learner/teacher acceptance remain pending. The bilingual curriculum goal remains on standby and unfinished.
+Desktop/phone layouts, both themes, 200% text, keyboard menu operation, search, course counts and representative downloads have automated checks. Real-device screen-reader testing and learner/teacher acceptance remain pending.
 
 ## French course quality, 27 October 2026
 
 Première C07 and Terminale STMG C04 have completed two independent source and rendered-PDF reviews with exact computation checks. C07 corrections now explain the diameter interpretation and identify the singleton explicitly. STMG C04 has eight session-specific homework tasks with answers, completed proof and variation explanations, and the correct positive-domain graph for session 29. This is a bounded two-chapter review, not annual-course acceptance; human review remains pending. Private evidence is in `course-quality/batches/20261027-c07-stmg-c04/` in the existing private repository.
 
-French builds can retain frozen English source baselines and rebuild one language independently. Existing English editions remain available; the bilingual lesson goal remains on standby.
+French builds can retain frozen English source baselines and rebuild one language independently. Existing English editions remain available.
 
 Last updated: 25 October 2026. Everything an agent needs to start is in this file plus `PROJECT_BRIEF.md` (governing, wins on any conflict); `MAP.md` says which files a task needs. If you only have time for one thing, read brief section 2 (rules) and the task queue below.
 
 ## History atlas, 26 October 2026
 
-The history routes now offer a visual time axis with lifetime bars, period navigation, scale choices and a reading view for phones, with the existing sourced people and advances. Forty locally hosted Wikimedia images retain their individual licences and attribution on the detail pages. The bilingual goal for curriculum lessons remains on standby.
+The history routes now offer a visual time axis with lifetime bars, period navigation, scale choices and a reading view for phones, with the existing sourced people and advances. Forty locally hosted Wikimedia images retain their individual licences and attribution on the detail pages.
 
 ## Current checkpoint, 25 October 2026
 
@@ -300,7 +294,7 @@ The history routes now offer a visual time axis with lifetime bars, period navig
 - The correction block `089a844` includes 49 English wording corrections in Première chapters C02 and C05 through C10, coordinated French/English repairs to the fixed-margin table and closed-interval extrema instructions, and regenerated course/slide/lecture downloads. These are bounded corrections, not completion of the remaining legacy curriculum review. Other English proofreading streams have completed proposals or partial read logs, preserved in the private repository's latest course-quality handoff. A prepared translation table is not evidence that it was read.
 - Browser readout assertions now wait safely for animation-frame updates (`e813148`), preserving exact numerical assertions and requiring an actual string before accepting a changed value. Required pipeline checks, local bilingual browser integration, the updated slide decks and the full publication privacy scan passed. Consult the latest Actions run and private execution handoff for authoritative deployment and CI status.
 - GitHub issues #1 through #22 remain open. Their feature implementations are shipped; acceptance and closure must be reconciled against the issue requirements. In particular, the Gömböc exhibit explicitly uses a certified polyhedral analogue with numerical dynamics.
-- Owner decisions, 25 October 2026 (later): language policy and bilingual standby recorded in `PROJECT_BRIEF.md` section 3 (remind the owner of the standby in every site map or report); the 17 French source findings repaired or triaged (private `verification/source-repairs-20261025/`); Gömböc exhibit physics and drawing fixed (issue #18 stays open until the owner reconciles issues); the Seconde/STMG cross-review is deferred to a lighter agent and issue reconciliation waits for the owner's go. The owner supplied the Malagasy programme documents (Seconde, Première, Terminale) in a personal folder reachable through the Google Drive connector; never write its link or identifiers anywhere.
+- Owner decisions, 25 October 2026 (later): language policy recorded in `PROJECT_BRIEF.md` section 3 (replaced by the owner rule of 11 November 2026: no bilingual standby, no reminder); the 17 French source findings repaired or triaged (private `verification/source-repairs-20261025/`); Gömböc exhibit physics and drawing fixed (issue #18 stays open until the owner reconciles issues); the Seconde/STMG cross-review is deferred to a lighter agent and issue reconciliation waits for the owner's go. The owner supplied the Malagasy programme documents (Seconde, Première, Terminale) in a personal folder reachable through the Google Drive connector; never write its link or identifiers anywhere.
 - Next: resume the private proofreading/correction queue from its recorded hashes and unread IDs, then reconcile issue acceptance. Real-device screen-reader testing, owner design/classroom acceptance and unresolved official curriculum sources remain separate pending work.
 
 Read `PROJECT_BRIEF.md` and `MAP.md` next, then `course-quality/EXECUTION_HANDOFF_20261025.md` and `course-quality/phase2-english-20261025-HANDOFF.md` in the private repository before applying a proposal. `docs/HANDOFF.md` contains historical build/migration notes; its old branch, hosting, toolchain and task-status statements do not supersede this checkpoint. Exact test/deployment results and commit references are recorded with each release in `docs/LOG.md` and the private evidence.
@@ -378,7 +372,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 5. No accounts, no analytics.
 6. Publication needs no audit or code verification (owner, 1 November 2026). `human_reviewed` may still be recorded in the ledger.
 7. Never invent a source, bulletin number or programme requirement. Tag [VERIFY] or say you do not know.
-8. Language (owner, 25 October 2026; brief section 3): French for French and Malagasy curricula, English for the international curriculum, the original language for university, Olympiad a category of its own, bilingual by default. The bilingual goal for lessons is on standby; remind the owner of it in every site map or report.
+8. Language (owner, 25 October 2026; brief section 3): French for French and Malagasy curricula, English for the international curriculum, the original language for university, Olympiad a category of its own, bilingual by default. Superseded on 11 November 2026: each lesson in its target language(s), university in its input language or bilingual, Olympiad, problems, galleries and extra-curricular activities bilingual; no bilingual goal for curriculum lessons and no reminder.
 9. Slides: read both skills first; every canvas draggable; true 3D where the object is 3D; lint before committing.
 10. Copy: no em or en dashes in site copy.
 
@@ -453,7 +447,7 @@ Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympi
 4. Owner review of the Cahier design.
 5. (Settled 15 October 2026: content CC BY-NC-SA 4.0 in `LICENSE.md`, program code MIT in `LICENSE-CODE`.)
 6. Language policy is implemented: curriculum language follows the brief, neutral content follows the selected language, and resources declare available editions independently. Paired TeX translation remains a workflow, not a mandatory publication pair.
-7. English proofreading of curriculum lessons is on standby (owner, 25 October 2026). Exact segment coverage and remaining scope stay recorded privately for when it resumes. Alignment is not proofreading.
+7. English proofreading of curriculum lessons is not pending work (owner language rule of 11 November 2026: French curriculum lessons are French only). Alignment is not proofreading.
 8. Owner, school and place names remain in the git history of the TeX branch; removing them needs a history rewrite and force-push.
 9. Later: access control (codes or paywall) needs a server or paid platform.
 
@@ -555,21 +549,21 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 
 - Added 24 original French exam-style problems (84 questions): eight EAM, eight E3C, eight Bac spécialité. Shared records in `site/js/exercises/authored-exams.js` feed the existing online bank, worksheet composer, printing and LaTeX exports.
 - Based on six inspected APMEP papers from 2021, 2025 and 2026; new scenarios and coefficients, hints and full worked solutions. Existing bank entries are preserved.
-- French curriculum content remains French only. The bilingual lesson goal remains on standby and unfinished.
+- French curriculum content remains French only.
 
-- 3 November 2026: all 24 exam-style problems now list observable target skills, distinct from prerequisites; the online bank, printed sheets and LaTeX editions share those lists. Bilingual lesson work remains on standby.
+- 3 November 2026: all 24 exam-style problems now list observable target skills, distinct from prerequisites; the online bank, printed sheets and LaTeX editions share those lists.
 
 ## Internal prerequisites, 3 November 2026
 
 - Added an advisory prerequisite audit integrated with the existing bank registry, chapter catalogue, generated samples, authored French decks, French chapter sources, make check and CI. Design/authoring instructions: `docs/PREREQUISITES.md`.
 - Initial profiles cover the five French priority courses; all 24 new exam problems have explicit per-question contracts. Legacy content remains visibly unannotated and is scanned heuristically, without being certified.
 - Supports concept dependencies, chapter/unit order with sequence identity, local definitions and earlier-question results, reasoned mentions/extensions, stale source declarations and internal JSON/Markdown reports. Default diagnostics do not add a publication gate or student-facing audit labels.
-- Bilingual lesson work remains on standby and unfinished; retained English curriculum editions are not scanned or modified.
+-; retained English curriculum editions are not scanned or modified.
 
-- Current display instruction, 3 November 2026: keep target-skill metadata internal for now; do not display competency lists or exam-type labels on bank cards, printed sheets or LaTeX editions. The prerequisite diagnostics remain internal and advisory. Bilingual lesson work remains on standby.
+- Current display instruction, 3 November 2026: keep target-skill metadata internal for now; do not display competency lists or exam-type labels on bank cards, printed sheets or LaTeX editions. The prerequisite diagnostics remain internal and advisory.
 
 ## Self-hosted Bac, EAM and E3C bank (5 November 2026)
 
 The GitHub Pages bank at #bank/annales contains 829 individual exercises (429 Bac, 120 EAM, 280 E3C), with 821 proposed source corrections. The eight unavailable corrections are labelled. Chapter bank pages include source-tagged matches; untagged exercises stay in the complete catalogue. Question hierarchy, maths, original diagrams and boxed answers are retained in local HTML/SVG, with folded corrections, filters, permalinks and printing. Six native-frame PDF books and complete LaTeX bundles are generated locally.
 
-Source and attribution: APMEP / CoopMaths, CC BY-SA, separate from the general site licence. Canonical metadata is manifest.annalsBank; imported source fragments are content/tex/annals/*.tex. See docs/ANNALS.md for producers and dependencies. The bilingual lesson goal remains on standby, unfinished.
+Source and attribution: APMEP / CoopMaths, CC BY-SA, separate from the general site licence. Canonical metadata is manifest.annalsBank; imported source fragments are content/tex/annals/*.tex. See docs/ANNALS.md for producers and dependencies.

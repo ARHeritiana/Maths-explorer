@@ -11,5 +11,3 @@ The script build-annals.py converts question hierarchy, tables and maths to HTML
 Build requirements: Pandoc, Python with PyMuPDF and BeautifulSoup, and TeX Live with French, latex-extra, science, pstricks, plain-generic, plus Ghostscript and dvips. Rebuild with make site. Integrity checks use the generated receipts in content/data/annals-build.json and content/data/annals-pdf-build.json.
 
 The bank reuses the existing bank cards, MathJax, folded corrections and print path. MathJax 3.2.2's complete TeX bundle is served locally, including the extensions used by the annales.
-
-The wider bilingual lesson goal remains on standby, unfinished.

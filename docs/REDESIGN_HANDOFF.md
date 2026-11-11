@@ -2,7 +2,7 @@
 
 ## Implementation checkpoint, 27 October 2026
 
-The useful homepage, shared typography/phone navigation and illustrated chapter catalogue are implemented. Continue with milestone 2, the quadratic chapter's four direct destinations, rather than replacing the homepage again. Consult root `HANDOFF.md` for current verification and remaining acceptance work. The bilingual curriculum goal remains on standby and unfinished.
+The useful homepage, shared typography/phone navigation and illustrated chapter catalogue are implemented. Continue with milestone 2, the quadratic chapter's four direct destinations, rather than replacing the homepage again. Consult root `HANDOFF.md` for current verification and remaining acceptance work.
 
 Paste the following into a new implementation chat opened on this repository.
 
@@ -46,7 +46,7 @@ Work on main only. Edit source files, regenerate served outputs through the esta
 
 Preserve anonymity, local resource hosting, no accounts, no analytics and no student tracking. Keep drafts and review evidence private. The independent-audit and verification publication gate was removed by the owner on 1 November 2026.
 
-French and Malagasy curricula use French; International uses English; university retains the original language; Olympiad is separate and bilingual by default. Existing English editions stay available. The bilingual curriculum goal remains on standby and unfinished.
+French and Malagasy curricula use French; International uses English; university retains the original language; Olympiad is separate and bilingual by default. Existing English editions stay available.
 
 ## Starting state
 
