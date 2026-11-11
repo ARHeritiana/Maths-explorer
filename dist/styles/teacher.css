@@ -155,3 +155,20 @@ a.dock-link:hover{color:var(--ink)!important}
  .pp-builder{grid-column:2;grid-row:1 / span 3;align-self:start;position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}
 }
 .pp-block a{display:inline-flex;align-items:center;min-height:44px}
+/* Détente (#relax): quiet cards, borders not shadows. Cahier tokens only. */
+.rx-section{margin:0 0 32px}
+.rx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.rx-card{display:flex;flex-direction:column;gap:8px;min-width:0;padding:16px;box-sizing:border-box;border:1.5px solid var(--line-strong);background:var(--surface);overflow-wrap:anywhere}
+.rx-kind{margin:0;font:700 .85rem var(--ui);letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.rx-title{margin:0;font-size:1.25rem;line-height:1.25}
+.rx-teaser{margin:0;font-size:1.05rem;line-height:1.5}
+.rx-card summary{display:flex;align-items:center;min-height:44px;cursor:pointer;font-weight:600}
+.rx-hint{margin-top:8px}
+.rx-go{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;margin-top:auto;padding:0 16px;box-sizing:border-box;border:1.5px solid var(--ink);color:var(--accent);font-weight:700;text-decoration:none}
+.rx-go:hover{border-color:var(--accent)}
+.rx-draw{min-height:44px}
+.rx-live{min-height:1.6em;margin:4px 0 12px;font-weight:600}
+.rx-surprise-card{border-color:var(--accent)}
+.rx-more{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.rx-more a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;box-sizing:border-box;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--accent);font-weight:600;text-decoration:none}
+.rx-more a:hover{border-color:var(--ink)}

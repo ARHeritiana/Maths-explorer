@@ -167,6 +167,22 @@ with sync_playwright() as p:
         for a in fp.locator('main a[href^="#"]').evaluate_all('a => a.map(x => x.getAttribute("href"))'):
             fp.goto(f'{BASE}/{a}'); fp.wait_for_timeout(250)
             assert fp.locator('h1:text-matches("^(Page introuvable|Page not found)$")').count() == 0, a
+    # 5b2. Détente: the day's cards (four in the limited edition, five with the Olympiad), every link opens a real page, redraw
+    fp.goto(f'{BASE}/#relax'); fp.wait_for_selector('#rx-today .rx-card')
+    olympiad_live = fp.evaluate("import('./js/live-curriculum.js').then(m => m.isLiveHash('#olympiad'))")
+    assert fp.locator('#rx-today .rx-card').count() == (5 if olympiad_live else 4), 'the picks of the day'
+    assert fp.locator('#rx-today .rx-card a.rx-go').count() == fp.locator('#rx-today .rx-card').count()
+    fp.locator('#rx-draw').click()
+    assert fp.locator('#rx-surprise .rx-card').count() == 1 and fp.locator('#rx-live').inner_text().strip() != ''
+    for a in fp.locator('#rx-today a.rx-go, .rx-more a').evaluate_all('a => a.map(x => x.getAttribute("href"))'):
+        fp.goto(f'{BASE}/{a}'); fp.wait_for_timeout(300)
+        assert fp.locator('h1:text-matches("^(Page introuvable|Page not found)$")').count() == 0, a
+    for width in (320, 390, 1440):
+        fp.set_viewport_size({'width': width, 'height': 800}); fp.goto(f'{BASE}/#relax'); fp.wait_for_selector('#rx-today .rx-card')
+        fp.locator('#rx-draw').click()
+        assert not overflow(fp), ('relax', width)
+        assert fp.locator('.rx-go, .rx-more a, .rx-draw').evaluate_all('a => a.every(x => x.getBoundingClientRect().height >= 43)'), width
+    fp.set_viewport_size({'width': 1280, 'height': 800})
     # a tool opened from a mode keeps that mode highlighted, also after a reload
     fp.goto(f'{BASE}/#prepare'); fp.wait_for_selector('h1'); fp.locator('nav.modebar a[data-teacher-mode="preparer"]').click()
     fp.goto(f'{BASE}/#bank/annales'); fp.wait_for_selector('nav.modebar')
