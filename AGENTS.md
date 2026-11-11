@@ -15,7 +15,7 @@ files each task needs, and each source folder has a CLAUDE.md index. Open only t
 repository or read dist/. Recipes for recurring tasks: .claude/skills/maths-explorer-tasks/. The TeX and
 build pipeline is documented in docs/ARCHITECTURE.md (read it only for build work).
 
-Language rule (owner, 11 November 2026): each lesson is written in its target language(s). French curriculum: French. Malagasy curriculum: French. International curricula: English. University: the input language of the resource, or bilingual. Olympiad, problems, galleries and all extra-curricular activities: bilingual (French and English)
+Language rule (owner, 11 November 2026): each lesson is written in its target language(s). French curriculum: French. Malagasy curriculum: French. International curricula: English. University: the input language of the resource, or bilingual. Foundations (`#basics`), Olympiad, problems, galleries and all extra-curricular activities: bilingual (French and English). Existing English editions of curriculum lessons are kept as they are
 (PROJECT_BRIEF.md section 3). There is no pending bilingual goal for curriculum lessons and no reminder to give.
 
 PROJECT_BRIEF.md is the governing document and supersedes every earlier

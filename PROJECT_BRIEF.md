@@ -74,9 +74,9 @@ Language policy, owner decision of 11 November 2026 (binding on all future work;
 - International curricula (IB, SAT): lessons in English.
 - University: the input language of the resource, or bilingual.
 - Olympiad, problems (challenges), galleries and all extra-curricular activities: bilingual (French and English).
-- The fractions foundation (`#basics/fractions`) is bilingual in French and English (owner request of 4 November 2026).
+- Foundations (`#basics`, every lesson, fractions included): bilingual (French and English), owner confirmation of 11 November 2026.
 - There is no pending bilingual goal for curriculum lessons: the former "standby" and the reminder that went with it in every site map or report are withdrawn. English editions of French or Malagasy curriculum lessons are not written, translated or proofread.
-- Existing English editions stay published as they are; they are neither removed nor extended.
+- Existing English editions of curriculum lessons are kept (owner confirmation of 11 November 2026): they stay published as they are, neither removed nor extended.
 
 ## 4. The chapter unit (PROPOSED template, owner to correct)
 
