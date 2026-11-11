@@ -1,59 +1,91 @@
 // Drawings of the nails challenge, shared by the activity and the solution: a wall, real nails (the head in front of the rope),
-// a framed picture hanging from its two top corners, and the rope itself, wound turn by turn. Coordinates are those of a
-// 100 x 100 scene (nails on the line y = 14, as the drawing gestures of activity.js expect). Each turn is one piece of rope,
-// drawn in order with a halo of the wall's colour, so a later pass visibly crosses over an earlier one. A turn can be
-// "collapsed" (0 = wound, 1 = slipped off its nail onto the slack line below the nails): the animations only move this number.
+// a framed picture hanging from its two top corners, and the rope itself. Coordinates are those of a 100 x 100 scene (nails on
+// the line y = 14, as the drawing gestures of activity.js expect).
+// How the rope is laid out, so that one can read how it is attached: a turn is ONE arch over its nail (clockwise: up the left
+// side, over the top, down the right side; anticlockwise: the other way), the k-th turn around a nail a little wider than the
+// previous one, so arches are nested and never touch. Between two turns the rope runs horizontally below the nails, each run
+// on a level of its own where runs would overlap. So the rope only ever meets itself at clean crossings (a run or a leg
+// across a leg or a run), drawn like the strands of the "knots in 3D" exhibit: the later pass goes over, the earlier one is
+// interrupted. A turn can be "collapsed" (0 = on its nail, 1 = slipped off, lying with the runs below): the animations only
+// move this number.
 import { svgEl, colour } from "../common/kit.js";
 
 export const NAIL_Y = 14, SLACK_Y = 24, FLOOR_Y = 95, FRAME = { x: 30, y: 46, w: 40, h: 26 };
 export const nailX = (i, n) => 50 + (i - (n - 1) / 2) * (70 / Math.max(n, 2));
 export const WALL = "color-mix(in srgb, #d8c4a0 45%, var(--surface))";
-const ROPE = "#b8782f", ROPE_W = 1.05, GAP = 0.5;
+const ROPE = "#b8782f", ROPE_W = 1.1, GAP = 0.6, R0 = 4, LANE_TOP = 22, LANE_BOTTOM = 40, CORNER = 1.4;
 
-// radius of every turn: the k-th turn around a nail goes a little wider than the previous one, so the loops never overlap
-export function radii(word) { const count = {}; return word.map((c) => { const i = Math.abs(c); count[i] = (count[i] || 0) + 1; return 3.2 + 1.8 * (count[i] - 1); }); }
+// radius of every turn: the k-th turn around a nail goes a little wider than the previous one. When a nail carries many
+// turns the first arch tightens (down to 3) and the step shrinks, so the arches of neighbouring nails never meet; `step` tells
+// how far apart they ended up (Infinity when no nail has two turns)
+const CLEAR = 1.9;   // distance between two parallel passes at which the full-width rope still reads
+export function radii(word, n = 4) {
+  const total = {}; word.forEach((c) => { total[Math.abs(c)] = (total[Math.abs(c)] || 0) + 1; });
+  const most = Math.max(1, ...Object.values(total)), room = 35 / Math.max(n, 2) - 1.1;
+  const r0 = most > 1 ? Math.max(3, Math.min(R0, room - CLEAR * (most - 1))) : R0, step = most > 1 ? Math.min(2.4, (room - r0) / (most - 1)) : Infinity, count = {};
+  const R = word.map((c) => { const i = Math.abs(c); count[i] = (count[i] || 0) + 1; return r0 + (most > 1 ? step : 0) * (count[i] - 1); });
+  R.step = step;
+  return R;
+}
 
 const lerp = (a, b, s) => [a[0] + (b[0] - a[0]) * s, a[1] + (b[1] - a[1]) * s];
-// the points a turn passes through, clockwise (c > 0: up the left side, over the top, down the right side, under the nail) or
-// anticlockwise (under first); collapsed by s toward the slack line under the nail
-function turnPoints(c, n, r, s, flatY = SLACK_Y) {
-  const x = nailX(Math.abs(c) - 1, n), y = NAIL_Y, k = Math.SQRT1_2;
-  const ring = c > 0
-    ? [[x - r * 1.15, y + r * 1.25], [x - r, y], [x - r * k, y - r * k], [x, y - r], [x + r * k, y - r * k], [x + r, y], [x + r * k, y + r * k], [x, y + r], [x - r * 0.55, y + r * 1.9]]
-    : [[x - r * 0.95, y + r * 1.5], [x - r * 0.4, y + r * 1.05], [x + r * k, y + r * k], [x + r, y], [x + r * k, y - r * k], [x, y - r], [x - r * k, y - r * k], [x - r, y], [x - r * 1.1, y + r * 1.6]];
-  const flat = [x, flatY];
-  return ring.map((p) => lerp(p, flat, s));
+// levels of the horizontal runs: run k joins turn k - 1 to turn k; it takes the first level no earlier overlapping run uses
+function runLevels(spans) {
+  const level = [];
+  spans.forEach(([a, b], k) => {
+    const lo = Math.min(a, b) - 1.2, hi = Math.max(a, b) + 1.2, used = new Set();
+    for (let m = 0; m < k; m++) { const [c, e] = spans[m]; if (Math.min(c, e) - 1.2 < hi && Math.max(c, e) + 1.2 > lo) used.add(level[m]); }
+    let l = 0; while (used.has(l)) l++;
+    level.push(l);
+  });
+  return level;
 }
-// Catmull-Rom through the points, as a polyline
-function spline(pts, per = 7) {
-  if (pts.length < 3) return pts.slice();
-  const out = [pts[0]];
-  for (let i = 0; i < pts.length - 1; i++) {
-    const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
-    for (let k = 1; k <= per; k++) {
-      const t = k / per, t2 = t * t, t3 = t2 * t;
-      out.push([0, 1].map((d) => 0.5 * (2 * p1[d] + (-p0[d] + p2[d]) * t + (2 * p0[d] - 5 * p1[d] + 4 * p2[d] - p3[d]) * t2 + (-p0[d] + 3 * p1[d] - 3 * p2[d] + p3[d]) * t3)));
-    }
+// round the corners of a tagged polyline (points { p, j }) with radius rad, then cut it into short steps
+function smooth(way, rad = CORNER, stepLen = 0.6) {
+  const out = [way[0]];
+  for (let i = 1; i + 1 < way.length; i++) {
+    const a = way[i - 1].p, b = way[i].p, c = way[i + 1].p, la = Math.hypot(a[0] - b[0], a[1] - b[1]), lc = Math.hypot(c[0] - b[0], c[1] - b[1]);
+    const turn = la && lc ? ((a[0] - b[0]) * (c[0] - b[0]) + (a[1] - b[1]) * (c[1] - b[1])) / (la * lc) : -1;
+    if (turn < -0.97) { out.push(way[i]); continue; }   // nearly straight: keep the point
+    const r = Math.min(rad, la / 2, lc / 2), p = lerp(b, a, r / la), q = lerp(b, c, r / lc);
+    for (let k = 0; k <= 5; k++) { const t = k / 5, u = 1 - t; out.push({ j: way[i].j, p: [u * u * p[0] + 2 * u * t * b[0] + t * t * q[0], u * u * p[1] + 2 * u * t * b[1] + t * t * q[1]] }); }
   }
-  return out;
+  out.push(way.at(-1));
+  const fine = [out[0]];
+  for (let i = 1; i < out.length; i++) {
+    const a = out[i - 1].p, b = out[i].p, parts = Math.max(1, Math.ceil(Math.hypot(a[0] - b[0], a[1] - b[1]) / stepLen));
+    for (let k = 1; k <= parts; k++) fine.push({ j: out[i].j, p: lerp(a, b, k / parts) });
+  }
+  return fine;
 }
-// The rope as pieces: { j, pts } with j = -1 the start (left corner of the frame), then one piece per letter, then the end
-// (j = word.length, to the right corner). `collapse[j]` slips turn j; `dy` moves the corners with a falling picture.
+// The rope as pieces: { j, pts } with j = -1 the start (from the left corner of the frame), then one piece per letter (the
+// run that leads to its nail, then its arch), then the end (j = word.length, to the right corner). `collapse[j]` slips turn j;
+// `dy`, `rot` move the corners with a falling picture; `fall` brings every run down onto one slack line above the frame.
 export function rope(word, n, { collapse = [], dy = 0, rot = 0, fall = 0 } = {}) {
-  const R = radii(word), cx = FRAME.x + FRAME.w / 2, cy = FRAME.y + dy, f = Math.min(1, fall);
-  // with the picture falling, the slack line comes down with it and lies just above the frame
-  const flatY = SLACK_Y + (FRAME.y - 3 - SLACK_Y) * f + dy, sideY = SLACK_Y + 6 + (FRAME.y - 2 - SLACK_Y - 6) * f + dy;
+  const R = radii(word, n), cx = FRAME.x + FRAME.w / 2, cy = FRAME.y + dy, f = Math.min(1, fall), m = word.length;
   const corner = (side) => { const x = FRAME.x + (side ? FRAME.w : 0) - cx, a = (rot * Math.PI) / 180; return [cx + x * Math.cos(a), cy + x * Math.sin(a)]; };
   const L = corner(0), Rc = corner(1);
-  const way = [{ j: -1, p: L }, { j: -1, p: [Math.min(L[0] + 2, 30), sideY] }];
-  word.forEach((c, j) => turnPoints(c, n, R[j], collapse[j] || 0, flatY).forEach((p) => way.push({ j, p })));
-  way.push({ j: word.length, p: [Math.max(Rc[0] - 2, 70), sideY] }, { j: word.length, p: Rc });
-  const line = [], owner = [];
-  const per = 6;
-  const pts = way.map((w) => w.p), dense = spline(pts, per);
-  dense.forEach((p, k) => { line.push(p); owner.push(k ? way[Math.floor((k - 1) / per) + 1].j : way[0].j); });   // a span belongs to the turn it ends in
+  if (!m) return [{ j: -1, pts: [L, [L[0] + 4, cy - 3], [Rc[0] - 4, cy - 3], Rc] }];
+  const X = word.map((c) => nailX(Math.abs(c) - 1, n)), side = word.map((c) => (c > 0 ? 1 : -1));
+  const inX = word.map((_, j) => X[j] - side[j] * R[j]), outX = word.map((_, j) => X[j] + side[j] * R[j]);
+  // runs 1 .. m - 1 between two turns; the two ends of the rope leave below every run
+  const spans = []; for (let k = 1; k < m; k++) spans.push([outX[k - 1], inX[k]]);
+  const level = runLevels(spans), top = Math.max(0, ...level), gap = Math.min(3.2, (LANE_BOTTOM - LANE_TOP) / Math.max(1, top + 1));
+  const flatY = FRAME.y - 3 + dy, down = (y) => y + (flatY - y) * f;
+  const runY = (k) => down(k < 1 || k >= m ? LANE_TOP + (top + 1) * gap + (spans.length ? 0.6 : 0) : LANE_TOP + level[k - 1] * gap);   // run k ends at turn k
+  const way = [{ j: -1, p: L }];
+  word.forEach((c, j) => {
+    const s = collapse[j] || 0, yIn = runY(j), yOut = runY(j + 1), rest = [X[j], (yIn + yOut) / 2], put = (p, tag = j) => way.push({ j: tag, p: lerp(p, rest, s) });
+    put([inX[j], yIn], j ? j : -1);
+    put([inX[j], NAIL_Y]);
+    for (let k = 1; k < 12; k++) { const a = (Math.PI * k) / 12; put([X[j] - side[j] * R[j] * Math.cos(a), NAIL_Y - R[j] * Math.sin(a)]); }
+    put([outX[j], NAIL_Y]);
+    put([outX[j], yOut]);
+  });
+  way.push({ j: m, p: Rc });
   const pieces = [];
-  line.forEach((p, k) => { const j = owner[k]; if (!pieces.length || pieces.at(-1).j !== j) pieces.push({ j, pts: k ? [line[k - 1], p] : [p] }); else pieces.at(-1).pts.push(p); });
+  pieces.thin = Math.max(0.45, Math.min(1, R.step / CLEAR, gap / CLEAR));   // a crowded winding is drawn with a thinner rope
+  smooth(way).forEach(({ j, p }, k, all) => { if (!pieces.length || pieces.at(-1).j !== j) pieces.push({ j, pts: k ? [all[k - 1].p, p] : [p] }); else pieces.at(-1).pts.push(p); });
   return pieces;
 }
 const d = (pts) => pts.map((p, i) => `${i ? "L" : "M"}${p[0].toFixed(2)} ${p[1].toFixed(2)}`).join("");
@@ -84,6 +116,7 @@ function overRuns(pts, before) {
 // Like the strands of the "knots in 3D" exhibit: one solid, uniform strand, and wherever it goes under an earlier turn that
 // turn is interrupted by a margin of the wall's colour (drawn with butt ends, then the strand itself with round ends).
 export function drawRope(g, pieces, { upTo = Infinity, hot = -2, scale = 1 } = {}) {
+  scale *= pieces.thin || 1;
   let shown = 0; const before = [];
   for (const piece of pieces) {
     if (shown >= upTo) break;
