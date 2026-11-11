@@ -8,7 +8,7 @@ import { liveCompanionCatalog } from './live-curriculum.js';
 const resourceCatalog = liveCompanionCatalog(completeCatalog);
 import { liveCourses as primaryCourses } from './live-curriculum.js';
 import { AUTHORED, TEMPLATES, instance } from './exercises/bank.js';
-import { MADA } from './exercises/bank-mada.js';
+import { exercisesOf, LEVEL as LEVEL_PAIRS } from './exercises/bank-select.js';
 import { rng } from './exercises/engine.js';
 import { typeset, printMarkup } from './exercises/ui-kit.js';
 import { html as H } from './exercises/export.js';
@@ -18,21 +18,20 @@ import {ANNALS,annalsFor,annalsMarkup,bindAnnals} from './annals-bank.js';
 const P = (fr, en) => [fr, en];
 const E = (x) => String(x).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const SHORT = { seconde: P('Seconde', 'Seconde'), premiere: P('Première spécialité', 'Première'), terminale: P('Terminale spécialité', 'Terminale'), expertes: P('Maths expertes', 'Further maths'), stmg: P('Terminale STMG', 'Terminale STMG'), t10: P('T10', 'T10'), t11s: P('T11 série S', 'T11 S') };
-const LEVEL = { 1: P('Routine', 'Routine'), 2: P('Standard', 'Standard'), 3: P('Exigeant', 'Demanding') };
+const LEVEL = LEVEL_PAIRS;
 const courses = primaryCourses.filter((c) => c.curriculum === 'fr' || c.curriculum === 'mg');
 const chaptersOf = (course) => resourceCatalog.chapters.filter((c) => c.course === course).sort((a, b) => a.number - b.number);
-// A seeded problem that repeats a fixed exercise of the same title (its random-values twin) replaces it: one card each.
-const exercisesOf = (chapter) => { const all = [...AUTHORED, ...MADA].filter((e) => e.chapters.includes(chapter)); return all.filter((e) => e.make || !all.some((x) => x.make && x.title === e.title)).sort((a, b) => a.level - b.level); };
 const generatorsOf = (chapter) => TEMPLATES.filter((t) => t.chapter === chapter);
 export const bankCount = (chapter) => exercisesOf(chapter).length;
-export const isBankRoute = (course, chapter) => course==='annales'?(!chapter||ANNALS.some(r=>r.id===chapter)): (!course || courses.some((c) => c.id === course)) && (!chapter || chaptersOf(course).some((c) => c.id === chapter));
+// #bank[/<course>[/<chapter>[/<exercise id>]]]; #bank/annales[/<paper id>]. An exercise id must be one the chapter page shows.
+export const isBankRoute = (course, chapter, exercise) => course==='annales'?(!chapter||ANNALS.some(r=>r.id===chapter)): (!course || courses.some((c) => c.id === course)) && (!chapter || chaptersOf(course).some((c) => c.id === chapter)) && (!exercise || (!!chapter && exercisesOf(chapter).some((e) => e.id === exercise)));
 
 const stars = (n) => `<span class="bank-level" data-level="${n}">${'●'.repeat(n)}${'○'.repeat(3 - n)}</span>`;
 // One exercise: statement, then each part with its hint and its correction folded.
 function exerciseCard(e, k, seed, t) {
   const body = e.make ? e.make(rng(`${seed}|${e.id}`)) : e;
   const parts = body.parts || [];
-  return `<article class="bank-ex" id="ex-${E(e.id)}" data-ex="${E(e.id)}"><header class="bank-ex-head"><span class="bank-no">${k}</span><div><h3>${E(e.title)}</h3><p class="bank-meta">${stars(e.level)} ${t(LEVEL[e.level])} · ${e.minutes || 10} min${e.make ? ` · ${t(P('valeurs tirées au hasard', 'random values'))}` : ''}${e.source ? ` · ${E(e.source)}` : ''}</p></div>${e.make ? `<button type="button" class="bank-renew" data-renew="${E(e.id)}">${icon('arrows-clockwise', 16)}${t(P('Nouvelles valeurs', 'New values'))}</button>` : ''}</header>
+  return `<article class="bank-ex" id="ex-${E(e.id)}" data-ex="${E(e.id)}"><header class="bank-ex-head"><span class="bank-no">${k}</span><div><h3 tabindex="-1">${E(e.title)}</h3><p class="bank-meta">${stars(e.level)} ${t(LEVEL[e.level])} · ${e.minutes || 10} min${e.make ? ` · ${t(P('valeurs tirées au hasard', 'random values'))}` : ''}${e.source ? ` · ${E(e.source)}` : ''}</p></div>${e.make ? `<button type="button" class="bank-renew" data-renew="${E(e.id)}">${icon('arrows-clockwise', 16)}${t(P('Nouvelles valeurs', 'New values'))}</button>` : ''}</header>
   <div class="bank-intro">${H(body.intro || '')}</div>
   ${parts.length ? `<ol class="bank-parts">${parts.map((p) => `<li><div class="bank-q">${H(p.q)}</div>${p.hint ? `<details class="bank-hint"><summary>${t(P('Indice', 'Hint'))}</summary><div>${H(p.hint)}</div></details>` : ''}<details class="bank-sol"><summary>${t(P('Correction', 'Solution'))}</summary><div>${H(p.a)}</div></details></li>`).join('')}</ol>` : ''}
   ${body.solution ? `<details class="bank-sol"><summary>${t(P('Correction', 'Solution'))}</summary><div>${H(body.solution)}</div></details>` : ''}</article>`;
@@ -74,13 +73,28 @@ export function bankPage(t, course, chapter) {
   ${bankNav(t,false)}<div class="pw-layout res-layout">${rail(id, t)}<section class="pw-panel" id="bank-panel">${chapter ? chapterView(id, chapter, 'bank', t) : chapterIndex(id, t)}</section></div></main>`;
 }
 
-export function bindBank(root, t, course, chapter) {
+export function bindBank(root, t, course, chapter, exercise) {
   const stopAnnals=bindAnnals(root,chapter&&course!=='annales'?annalsFor(chapter):ANNALS);
   if(course==='annales')return stopAnnals;
   const panel = root.querySelector('#bank-panel');
   if (course) try { rememberCourse(course); } catch { /* storage blocked */ }
-  typeset(panel);
+  const typeset_ = typeset(panel);
   if (!chapter) return stopAnnals;
+  // A direct link to one exercise (#bank/<course>/<chapter>/<id>): bring it into view and focus its heading once the page has
+  // settled (app.js resets the scroll and focus after rendering; MathJax changes the heights). No level filter hides it on arrival.
+  let stopJump = () => {};
+  if (exercise) {
+    let gone = false, timer = 0;
+    const jump = () => {
+      if (gone) return;
+      const card = panel.querySelector(`[data-ex="${CSS.escape(exercise)}"]`);
+      if (!card) return;
+      card.scrollIntoView({ block: 'start' });
+      card.querySelector('h3')?.focus({ preventScroll: true });
+    };
+    timer = setTimeout(() => { jump(); Promise.resolve(typeset_).then(() => { if (!gone) { jump(); } }); }, 0);
+    stopJump = () => { gone = true; clearTimeout(timer); };
+  }
   let quick = 1;
   const click = async (e) => {
     const renew = e.target.closest('[data-renew]'), lf = e.target.closest('[data-level-filter]'), pr = e.target.closest('[data-print]');
@@ -107,5 +121,5 @@ export function bindBank(root, t, course, chapter) {
     }
   };
   panel.addEventListener('click', click);
-  return () => {stopAnnals();panel.removeEventListener('click', click);};
+  return () => {stopJump();stopAnnals();panel.removeEventListener('click', click);};
 }

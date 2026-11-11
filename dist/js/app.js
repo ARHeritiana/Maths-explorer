@@ -105,7 +105,7 @@ function state(lab) {
 }
 function route() {
   const parts = location.hash.slice(1).split("/");
-  return { page: parts[0] || "home", id: parts[1], tab: parts[2] };
+  return { page: parts[0] || "home", id: parts[1], tab: parts[2], sub: parts[3] };
 }
 function link(page, id = "") {
   return "#" + page + (id ? "/" + id : "");
@@ -197,7 +197,7 @@ function render() {
     (r.page === "errors" && isErrorRoute(r.id)) ||
     (r.page === "olympiad" && isOlympiadRoute(r.id)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "teacher" && !r.id) || r.page === "search" || (r.page === "basics" && isBasicsRoute(r.id)) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab)) ||
+    (r.page === "home" && !r.id) || (r.page === "teacher" && !r.id) || r.page === "search" || (r.page === "basics" && isBasicsRoute(r.id)) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab, r.sub)) ||
     r.page === "university" || (r.page === "resources" && isLiveRoute(r)) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
@@ -269,7 +269,7 @@ function render() {
   if (page === "sources") bindSources(t);
   if (page === "slides") bindSlides(t);
   if (page === "automatismes") stopChapter = bindAutomatismes($("#main"), t, { chapterTitle: chapterTitleFr, launch: r.id === "go" });
-  if (page === "bank") stopChapter = bindBank($("#main"), t, r.id, r.tab);
+  if (page === "bank") stopChapter = bindBank($("#main"), t, r.id, r.tab, r.sub);
   if (page === "sheets") stopChapter = bindSheets($("#main"), t, { chapterTitle: chapterTitleFr });
   if (page === "university") bindUniversity(r.id, lang);
   if (page === "chapter") {

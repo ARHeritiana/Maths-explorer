@@ -43,7 +43,7 @@ ${decks === null ? `<p class="muted rs-note">${L('L’index des diaporamas n’a
   const itemHtml = it => {
     const acts = actionsOf(it), fav = favState(it), title = t(it.title), related = relatedTo(index, it.id, {limit: 4});
     const cls = it.classes.map(c => CLASS_NAMES[c] || c).join(', ');
-    return `<li class="rs-item" data-id="${E(it.id)}"><div class="rs-head"><span class="rs-title-line">${E(title)}</span><span class="rs-meta">${E(t(typeLabel(it.type)))}${cls ? ' · ' + E(cls) : ''}</span></div>
+    return `<li class="rs-item" data-id="${E(it.id)}"><div class="rs-head"><span class="rs-title-line">${E(title)}</span><span class="rs-meta">${E(t(typeLabel(it.type)))}${cls ? ' · ' + E(cls) : ''}${it.type === 'exercise' ? ' · ' + E(t(it.summary)) : ''}</span></div>
 <div class="rs-actions">${acts.map(a => `<a class="btn btn-secondary rs-act" data-act="${a.key}" data-id="${E(it.id)}"${a.prepare?.chapter ? ` data-chapter="${E(a.prepare.chapter)}"` : ''} href="${E(a.href)}">${E(t(a.label))}<span class="sr-only"> : ${E(title)}</span></a>`).join('')}<button type="button" class="btn-quiet rs-fav" data-fav="${E(it.id)}" aria-pressed="${fav}">${fav ? L('Retirer des favoris', 'Remove from favorites') : L('Ajouter aux favoris', 'Add to favorites')}<span class="sr-only"> : ${E(title)}</span></button></div>
 ${related.length ? `<details class="rs-related"><summary>${L('Ressources liées', 'Related resources')} (${related.length})</summary><ul>${related.map(r => { const h = primaryHref(r); return `<li><a href="${E(h)}">${E(t(r.title))}</a> <span class="muted">${E(t(typeLabel(r.type)))}</span></li>`; }).join('')}</ul></details>` : ''}</li>`;
   };

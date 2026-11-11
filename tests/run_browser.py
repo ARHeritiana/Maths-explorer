@@ -31,7 +31,7 @@ try:
     # The live site is French-curriculum only. Standalone collection and other-curriculum
     # scripts remain in tests/ alongside their source modules; their unit suites still run.
     for script in ['ergonomics_browser.py', 'live_curriculum_browser.py', 'slides_lab_browser.py',
-                   'generators_browser.py', 'chapter_destinations_browser.py', 'teacher_browser.py', 'search_browser.py', 'related_browser.py']:
+                   'generators_browser.py', 'chapter_destinations_browser.py', 'teacher_browser.py', 'search_browser.py', 'related_browser.py', 'exercise_link_browser.py']:
         result = subprocess.run([sys.executable, 'tests/' + script], cwd=root)
         if result.returncode:
             break

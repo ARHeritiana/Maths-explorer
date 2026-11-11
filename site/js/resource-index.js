@@ -11,7 +11,7 @@ const stem = w => w.length > 3 && /[sx]$/.test(w) ? w.slice(0, -1) : w;
 export const tokens = value => fold(value).split(' ').filter(Boolean).map(stem);
 
 export const TYPES = [
-  ['chapter', ['Chapitre', 'Chapter']], ['slides', ['Diaporama', 'Slides']], ['exercises', ['Exercices corrigés', 'Worked exercises']],
+  ['chapter', ['Chapitre', 'Chapter']], ['slides', ['Diaporama', 'Slides']], ['exercises', ['Exercices du chapitre', 'Chapter exercises']], ['exercise', ['Exercice corrigé', 'Worked exercise']],
   ['automatismes', ['Automatismes', 'Starters']], ['lab', ['Expérience', 'Experiment']], ['gallery', ['Curiosité', 'Curiosity']],
   ['challenge', ['Défi', 'Challenge']], ['history', ['Histoire', 'History']], ['misconception', ['Erreur à corriger', 'Error to correct']],
   ['annales', ['Annale', 'Past paper']], ['lesson', ['Leçon', 'Lesson']], ['tool', ['Outil', 'Tool']],
@@ -76,8 +76,9 @@ const hrefOf = a => a?.href || '';
 const hasAction = it => Object.keys(it.actions).length > 0;
 
 // sources: {discovery, chapters:[{id,course,title}], classes:[{id,title}], decks:[]|null, deckHref(id), exerciseChapters:{class:[id]},
+//   exercises:[{id,title,cls,chapters:[chapter ids where the bank page shows it],level:[fr,en],minutes,domain}] (one worked exercise each),
 //   automatismes:{chapterId:[domain labels]}, annals:[], isLive(hash)}
-export function buildResourceIndex({discovery = [], chapters = [], classes = [], decks = null, deckHref = id => '', exerciseChapters = {}, automatismes = {}, annals = [], isLive = () => true} = {}) {
+export function buildResourceIndex({discovery = [], chapters = [], classes = [], decks = null, deckHref = id => '', exerciseChapters = {}, exercises = [], automatismes = {}, annals = [], isLive = () => true} = {}) {
   const classIds = new Set(classes.map(c => c.id));
   const className = id => pair(classes.find(c => c.id === id)?.title || id);
   const chapterOf = new Map(chapters.map(c => [c.id, c]));
@@ -127,6 +128,16 @@ export function buildResourceIndex({discovery = [], chapters = [], classes = [],
       classes: [cls], tags: tagsOfChapter.get(id) || [], concepts: [ch.topic].filter(Boolean), synonyms: [], chapter: id,
       actions: {open: {href: `#bank/${cls}/${id}`}, print: {href: `#bank/${cls}/${id}`, via: 'page'}}, related: []});
   }
+  // 3b. One record per worked exercise the bank page shows. Its address opens the bank chapter page on that exercise: the first
+  // chapter it is shown in, preferring a chapter of its own class. Only title, chapter, level and duration are searchable text.
+  for (const e of exercises) {
+    const shown = (e.chapters || []).map(c => chapterOf.get(c)).filter(c => c && classIds.has(c.course));
+    const ch = shown.find(c => c.course === e.cls) || shown[0];
+    if (!ch) continue;
+    const href = `#bank/${ch.course}/${ch.id}/${e.id}`, lv = pair(e.level), min = e.minutes || 10;
+    add({id: `exercise:${e.id}`, type: 'exercise', route: href, title: pair(e.title), summary: [`${ch.title[0]} · ${lv[0]} · ${min} min`, `${ch.title[1] || ch.title[0]} · ${lv[1]} · ${min} min`],
+      classes: [ch.course], tags: tagsOfChapter.get(ch.id) || [], concepts: [ch.topic, e.domain].filter(Boolean), synonyms: [], chapter: ch.id, actions: {open: {href}}, related: []});
+  }
   for (const [id, domains] of Object.entries(automatismes)) {
     const ch = chapterOf.get(id);
     if (!ch || !classIds.has(ch.course)) continue;
@@ -146,14 +157,14 @@ export function buildResourceIndex({discovery = [], chapters = [], classes = [],
     classes: [], tags: [], concepts: [], synonyms: ['interro', 'devoir', 'évaluation', 'quiz', 'test'], chapter: '', actions: {open: {href: '#sheets'}, print: {href: '#sheets', via: 'page'}}, related: []});
   // Relations and sibling links. A resource of a chapter inherits the chapter's relations through its tags, and a resource names
   // its siblings (same chapter) and the resources it is linked to, when they survived the live filter.
-  const byRoute = new Map([...items.values()].filter(i => i.route && !i.id.startsWith('slides:') && !i.id.startsWith('exercises:') && !i.id.startsWith('automatismes:')).map(i => [i.route, i.id]));
+  const byRoute = new Map([...items.values()].filter(i => i.route && !i.id.startsWith('slides:') && !i.id.startsWith('exercise:') && !i.id.startsWith('exercises:') && !i.id.startsWith('automatismes:')).map(i => [i.route, i.id]));
   const chapterWords = new Map();
   for (const it of items.values()) {
     const words = new Set([...it.tags.flatMap(t => t.split('/')), ...it.concepts, ...tokens(it.title[0]), ...tokens(it.title[1])].map(w => stem(fold(w))));
     const own = it.route.replace(/\/$/, '');
     it.relations = RELATIONS.filter(r => r.routes.includes(own) || r.concepts.some(c => words.has(stem(fold(c))) || (c.includes('-') === false && c.includes(' ') && fold(it.title[0]).includes(fold(c))))).map(r => r.id);
     it.related = it.related.map(r => byRoute.get(r.split('/').slice(0, 2).join('/'))).filter(Boolean);
-    if (it.chapter) chapterWords.set(it.chapter, [...(chapterWords.get(it.chapter) || []), it.id]);
+    if (it.chapter && it.type !== 'exercise') chapterWords.set(it.chapter, [...(chapterWords.get(it.chapter) || []), it.id]);
   }
   // Chapter-linked kinds share the relations of their chapter, so a topic found through a chapter reaches its slides too.
   for (const it of items.values()) if (it.chapter && !it.id.startsWith('chapter:')) {
@@ -161,9 +172,11 @@ export function buildResourceIndex({discovery = [], chapters = [], classes = [],
     if (chapterItem) it.relations = [...new Set([...it.relations, ...chapterItem.relations])];
   }
   for (const it of items.values()) {
-    const sib = it.chapter ? chapterWords.get(it.chapter).filter(x => x !== it.id) : [];
-    it.related = [...new Set([...it.related, ...sib])].filter(x => x !== it.id && items.has(x));
-    it.synonyms = [...it.synonyms, ...typeLabel(it.type), ...it.relations.flatMap(id => RELATIONS.find(r => r.id === id).synonyms)];
+    // Individual exercises are never listed as siblings of anything; an exercise leads to its chapter, its chapter's exercises and slides, and the chapter's experiments.
+    const lead = it.type === 'exercise' ? [`chapter:${it.chapter}`, `exercises:${it.chapter}`, `slides:${it.chapter}`, ...(items.get(`chapter:${it.chapter}`)?.related || []).filter(x => items.get(x)?.type === 'lab')] : null;
+    const sib = lead || (it.chapter ? chapterWords.get(it.chapter).filter(x => x !== it.id) : []);
+    it.related = [...new Set([...(lead ? [] : it.related), ...sib])].filter(x => x !== it.id && items.has(x));
+    it.synonyms = [...it.synonyms, ...typeLabel(it.type), ...(it.type === 'exercise' ? [] : it.relations.flatMap(id => RELATIONS.find(r => r.id === id).synonyms))];
     it.search = {title: tokens(it.title.join(' ')), tags: [...new Set(tokens([...it.tags.flatMap(t => t.split('/')), ...it.concepts].join(' ')))], synonyms: [...new Set(tokens(it.synonyms.join(' ')))], summary: tokens(it.summary.join(' ')),
       relations: tokens(it.relations.map(id => relationText(RELATIONS.find(r => r.id === id))).join(' '))};
     it.titleFold = fold(it.title.join(' '));
@@ -215,13 +228,14 @@ export function searchResources(index, {query = '', cls = '', topic = '', type =
     if (projectable && !it.projectable) continue;
     if (printable && !it.printable) continue;
     let score = 0, ok = true;
+    const single = it.type === 'exercise'; // an individual exercise counts fully only through its own title
     for (const alts of clauses) {
       let best = 0;
-      for (const {w, k} of alts) for (const [f, weight] of Object.entries(FIELD_WEIGHT)) best = Math.max(best, k * weight * fieldHit(w, it.search[f], f === 'summary'));
+      for (const {w, k} of alts) for (const [f, weight] of Object.entries(FIELD_WEIGHT)) best = Math.max(best, k * weight * (single && f !== 'title' ? .5 : 1) * fieldHit(w, it.search[f], f === 'summary'));
       if (!best) {ok = false; break;}
       score += best;
     }
-    const inRelation = rels.size && it.relations.some(r => rels.has(r));
+    const inRelation = !single && rels.size && it.relations.some(r => rels.has(r));
     if (!ok && !inRelation) continue;
     if (!ok) score = 4;
     else if (inRelation) score += 3;
@@ -247,7 +261,7 @@ export function relatedTo(index, id, {limit = 6, types = null, excludeTypes = []
     && !(excludeSameChapter && it.chapter && x.chapter === it.chapter)
     && !(otherClassChapters && x.type === 'chapter' && x.classes.some(c => it.classes.includes(c)))
     && !Object.values(x.actions).some(a => skip.has(routeBase(a.href)));
-  const scored = index.filter(x => x.id !== id && keep(x)).map(x => ({x, s: (it.related.includes(x.id) ? 10 : 0) + x.relations.filter(r => it.relations.includes(r)).length * 4 + (x.type !== it.type ? 1 : 0) - (x.type === 'annales' ? 3 : 0)}))
+  const scored = index.filter(x => x.id !== id && keep(x) && (x.type !== 'exercise' || it.related.includes(x.id))).map(x => ({x, s: (it.related.includes(x.id) ? 10 : 0) + x.relations.filter(r => it.relations.includes(r)).length * 4 + (x.type !== it.type ? 1 : 0) - (x.type === 'annales' ? 3 : 0)}))
     .filter(o => o.s >= 4).sort((a, b) => b.s - a.s || (a.x.id < b.x.id ? -1 : 1));
   const out = [], count = {};
   for (const o of scored) {

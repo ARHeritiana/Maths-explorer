@@ -4,9 +4,11 @@
 import {labs, challenges} from './content.js';
 import {discoveryIndex} from './discovery.js';
 import {resourceCatalog} from './resource-library.js';
-import {liveDiscovery, isLiveHash, liveCourses} from './live-curriculum.js';
+import {liveDiscovery, isLiveHash, liveCourses, liveCompanionCatalog} from './live-curriculum.js';
+import {resourceCatalog as completeCatalog} from './resources-data.js';
 import {discoveryChapters} from './catalogue-data.js';
-import {CLASSES, chaptersOf, templatesFor} from './exercises/bank.js';
+import {CLASSES, chaptersOf, templatesFor, DOMAINS} from './exercises/bank.js';
+import {shownExercises, LEVEL} from './exercises/bank-select.js';
 import {ANNALS} from './annals-bank.js';
 import {assetHref} from './data-loader.js';
 import {buildResourceIndex} from './resource-index.js';
@@ -25,7 +27,11 @@ export function collectSources({decks = null} = {}) {
     for (const t of templatesFor(id)) if (live.has(t.chapter)) (automatismes[t.chapter] ||= new Set()).add(t.domain);
   }
   for (const k of Object.keys(automatismes)) automatismes[k] = [...automatismes[k]];
+  // The very selection the bank page applies (bank-select.js), over the chapters the bank page lists (its own live catalogue).
+  const bankCourses = new Set(liveCourses.filter(c => c.curriculum === 'fr' || c.curriculum === 'mg').map(c => c.id));
+  const bankChapters = liveCompanionCatalog(completeCatalog).chapters.filter(c => bankCourses.has(c.course)).map(c => c.id);
+  const exercises = shownExercises(bankChapters).map(({exercise: e, chapters: cs}) => ({id: e.id, title: e.title, cls: e.cls, chapters: cs, level: LEVEL[e.level] || LEVEL[2], minutes: e.minutes, domain: DOMAINS[e.domain] || e.domain}));
   const discovery = liveDiscovery(discoveryIndex({labs, challenges, chapters: resourceCatalog.chapters}));
-  return {discovery, chapters, classes, decks, deckHref, exerciseChapters, automatismes, annals: ANNALS.filter(r => liveIds.has(r.cls)), isLive: isLiveHash};
+  return {discovery, chapters, classes, decks, deckHref, exerciseChapters, exercises, automatismes, annals: ANNALS.filter(r => liveIds.has(r.cls)), isLive: isLiveHash};
 }
 export const buildLiveResourceIndex = options => buildResourceIndex(collectSources(options));
