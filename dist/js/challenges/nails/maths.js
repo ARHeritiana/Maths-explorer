@@ -33,3 +33,5 @@ export function meets(word, n, k) {
 }
 export const letter = (c) => NAMES[Math.abs(c) - 1] + (c < 0 ? "⁻¹" : "");
 export const wordText = (w) => (w.length ? w.map(letter).join(" ") : "1");
+// the turns as plain text for the worked solution: "A↻ B↻ A↺ B↺" (↻ clockwise, ↺ the other way)
+export const turnText = (w) => w.map((c) => NAMES[Math.abs(c) - 1] + (c > 0 ? "↻" : "↺")).join(" ");

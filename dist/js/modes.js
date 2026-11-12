@@ -1,5 +1,6 @@
 // The three teacher modes shown in the mode bar. Pure: no DOM, no storage.
 // Strings are [French, English] pairs; hashes are the home page of each mode.
+import {effectiveEntry} from './teacher-entry.js';
 export const MODES = [
  {id:'preparer',label:['Préparer','Prepare'],hash:'#prepare'},
  {id:'classe',label:['En classe','In class'],hash:'#teacher'},
@@ -13,7 +14,7 @@ export function modeOfRoute(page, remembered = '') {
  if (Object.hasOwn(OWN, page)) return OWN[page];
  return MODE_IDS.includes(remembered) ? remembered : '';
 }
-// The student experience stays untouched: the bar shows only for a device that chose the teacher entrance, or on the mode pages.
-export function showModeBar({entry, page} = {}) {
- return entry === 'teacher' || ['teacher', 'prepare', 'relax'].includes(page);
+// The bar shows when the effective entrance is the teacher one (an unstored choice means the edition default), or on the mode pages.
+export function showModeBar({entry, page, full} = {}) {
+ return effectiveEntry(entry, full === undefined ? undefined : {full}) === 'teacher' || ['teacher', 'prepare', 'relax'].includes(page);
 }

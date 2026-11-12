@@ -6,8 +6,8 @@ import {showModeBar} from './modes.js';
 // Pages that are never tool pages: the three mode homes, the student home, unknown routes.
 const NOT_TOOLS=new Set(['','teacher','prepare','relax','home','missing']);
 // True only for the remembered mode 'classe', when the mode bar shows, on a tool page.
-export function showDock({mode='',entry='',page=''}={}){
- return mode==='classe'&&showModeBar({entry,page})&&!NOT_TOOLS.has(page);
+export function showDock({mode='',entry='',page='',full}={}){
+ return mode==='classe'&&showModeBar({entry,page,full})&&!NOT_TOOLS.has(page);
 }
 
 const path=h=>String(h||'').replace(/^#/,'').split(/[?]/)[0];

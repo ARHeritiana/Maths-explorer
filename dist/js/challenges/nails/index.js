@@ -2,7 +2,7 @@
 // question, emblem and hint actions. Everything else about this challenge is in this folder; registry.js lists the folders.
 import { choice, P } from "../common/helpers.js";
 import { svg, dot } from "../common/icon.js";
-import { NAIL_VARIANTS, SHORTEST, parseNails, wordText, NAMES } from "./maths.js";
+import { NAIL_VARIANTS, SHORTEST, parseNails, turnText, NAMES } from "./maths.js";
 export { activity } from "./activity.js";
 export { diagram } from "./solution.js";
 
@@ -13,11 +13,11 @@ export const card = {
   id: "nails",
   type: "olympiad",
   title: ["Un tableau sur des clous", "A picture on nails"],
-  topic: ["Raisonnement, groupes", "Reasoning, groups"],
+  topic: ["Raisonnement, enroulements", "Reasoning, windings"],
   difficulty: 3,
   minutes: 15,
   hints: [],
-  extension: ["Avec n clous, trouve un enroulement qui tombe dès qu’on retire un clou quelconque. Combien de lettres utilise ta méthode quand n double ?", "With n nails, find a winding that falls as soon as any nail is removed. How many letters does your method use when n doubles?"],
+  extension: ["Avec n clous, trouve un enroulement qui tombe dès qu’on retire un clou quelconque. Combien de tours utilise ta méthode quand n double ?", "With n nails, find a winding that falls as soon as any nail is removed. How many turns does your method use when n doubles?"],
 };
 
 export const variant = {
@@ -27,18 +27,18 @@ export const variant = {
     `Un tableau est suspendu par une ficelle attachée à ses deux coins supérieurs, enroulée autour de ${n} clous alignés ${nailsOf(n)}. Un tour, c’est la ficelle qui fait une fois le tour d’un clou, dans un sens ou dans l’autre. On veut que le tableau tombe ${rule(n, k, true)}. Quel est le plus petit nombre de tours possible ?`,
     `A picture hangs from a string tied to its two top corners and wound around ${n} nails in a row, ${nailsOf(n)}. A turn is the string going once around one nail, in either direction. The picture must fall ${rule(n, k, false)}. What is the smallest possible number of turns?`); },
   hints: () => [
-    P("Écris un enroulement comme un mot : A pour un tour de A dans le sens des aiguilles d’une montre, A⁻¹ dans l’autre sens. Que devient le mot quand on retire le clou A ? Quand le tableau tombe-t-il ?", "Write a winding as a word: A for a clockwise turn around A, A⁻¹ for the other direction. What happens to the word when nail A is removed? When does the picture fall?"),
-    P("Le tableau tombe quand le mot qui reste se simplifie entièrement (A A⁻¹ s’annule). Essaie A B A⁻¹ B⁻¹ : que reste-t-il si on retire A ? si on retire B ? si on ne retire rien ?", "The picture falls when the word that is left cancels completely (A A⁻¹ cancels). Try A B A⁻¹ B⁻¹: what is left if A is removed? if B is removed? if nothing is removed?"),
+    P("Que devient la ficelle quand tu arraches un clou ? Quels tours restent accrochés, lesquels glissent ?", "What happens to the string when you pull a nail out? Which turns stay caught, which slip off?"),
+    P("Si la ficelle fait le tour d’un clou dans un sens puis, juste après, le tour du même clou dans l’autre sens, que se passe-t-il quand on tire dessus ? Essaie de t’en servir avec deux clous, en entremêlant les tours.", "If the string goes round a nail one way and, right after, round the same nail the other way, what happens when you pull? Try to use that with two nails, by interleaving the turns."),
   ],
   solution: (q) => {
-    const [n, k] = parseNails(q.nails), w = SHORTEST[q.nails], L = w.length;
-    const model = P("Écrivons l’enroulement comme un mot : A est un tour autour du clou A dans le sens des aiguilles d’une montre, A⁻¹ un tour en sens inverse. Retirer un clou revient à effacer ses lettres ; le tableau tombe exactement quand ce qui reste se simplifie entièrement, en supprimant les paires voisines comme A A⁻¹ (c’est le calcul dans le groupe libre, qui décrit les enroulements à déformation près).", "Write the winding as a word: A is a turn around nail A clockwise, A⁻¹ a turn the other way. Removing a nail erases its letters; the picture falls exactly when what is left cancels completely, deleting neighbouring pairs such as A A⁻¹ (this is computing in the free group, which describes windings up to deformation).");
+    const [n, k] = parseNails(q.nails), w = SHORTEST[q.nails], L = w.length, T = turnText(w);
+    const idea = P("L’idée : quand on arrache un clou, tous les tours de ficelle autour de lui glissent et disparaissent. Et quand la ficelle fait le tour d’un clou dans un sens puis, sans rien accrocher entre les deux, le tour du même clou dans l’autre sens, elle se défait toute seule en tirant. Le tableau tombe quand il ne reste plus rien qui retienne la ficelle. (↻ : un tour dans le sens des aiguilles d’une montre, ↺ : dans l’autre sens.)", "The idea: when a nail is pulled out, every turn of string around it slips off. And when the string goes round a nail one way and then, with nothing caught in between, round the same nail the other way, it comes undone by itself when pulled. The picture falls when nothing is left to hold the string. (↻: one turn clockwise, ↺: the other way.)");
     const why = k === n
-      ? P(`Ici ${wordText(w)} convient : chaque lettre est seule de son clou, donc le mot ne se simplifie que s’il ne reste plus aucune lettre, c’est-à-dire quand les ${n} clous sont retirés. Il faut au moins un tour par clou, sinon retirer les autres clous ferait déjà tomber le tableau : ${L} est le minimum.`, `Here ${wordText(w)} works: each letter is the only one of its nail, so the word cancels only when no letter is left, that is when all ${n} nails are removed. At least one turn per nail is needed, otherwise removing the other nails would already make it fall: ${L} is the least.`)
+      ? P(`Ici ${T} convient : chaque clou a son tour, et tant qu’il reste un clou, son tour retient la ficelle ; le tableau ne tombe que lorsque les ${n} clous sont arrachés. Il faut au moins un tour par clou : si un clou n’avait aucun tour, on arracherait tous les autres et le tableau tomberait avant que les ${n} soient arrachés. La réponse est ${L}.`, `Here ${T} works: every nail has its turn, and as long as one nail is left its turn holds the string; the picture falls only when all ${n} nails are out. At least one turn per nail is needed: if a nail had no turn, pulling out all the others would make the picture fall before all ${n} are out. The answer is ${L}.`)
       : k === n - 1
-        ? P(`Ici ${wordText(w)} convient. ${k - 1 ? `Si on retire ${k - 1} clou${k - 1 > 1 ? "s" : ""}` : "Si on ne retire aucun clou"}, il reste au moins deux clous X, Y et un mot de la forme … X Y … X⁻¹ Y⁻¹ … où rien ne se simplifie entièrement ; si on en retire ${k}, il reste un seul clou X et le mot X X⁻¹, qui s’annule. Chaque clou doit apparaître avec une somme d’exposants égale à zéro (sinon il retiendrait seul le tableau), donc au moins deux fois : ${L} lettres au minimum, et une recherche exhaustive le confirme.`, `Here ${wordText(w)} works. If ${k - 1 || "no"} nail${k - 1 > 1 ? "s are" : " is"} removed, at least two nails X, Y remain and a word of the form … X Y … X⁻¹ Y⁻¹ … in which nothing cancels completely; if ${k} are removed, a single nail X remains and the word X X⁻¹, which cancels. Each nail must appear with exponents adding up to zero (otherwise it alone would hold the picture), so at least twice: ${L} letters at least, and an exhaustive search confirms it.`)
-        : P(`Ici ${wordText(w)} convient (${L} lettres). ${n === 2 ? "Si on retire A, il reste B B⁻¹ : il tombe ; si on retire B, il reste A A⁻¹ : il tombe ; sans rien retirer, A B A⁻¹ B⁻¹ ne se simplifie pas : il tient. Chaque clou doit apparaître avec une somme d’exposants égale à zéro, donc au moins deux fois : 4 est le minimum." : "On le construit avec des commutateurs [X, Y] = X Y X⁻¹ Y⁻¹, qui s’annulent dès que X ou Y s’annule : [[A, B], C] tombe si on retire A, B ou C. Une recherche exhaustive de tous les mots plus courts confirme que 10 est le minimum."}`, `Here ${wordText(w)} works (${L} letters). ${n === 2 ? "If A is removed, B B⁻¹ is left: it falls; if B is removed, A A⁻¹ is left: it falls; with nothing removed, A B A⁻¹ B⁻¹ does not cancel: it holds. Each nail must appear with exponents adding up to zero, so at least twice: 4 is the least." : "It is built with commutators [X, Y] = X Y X⁻¹ Y⁻¹, which cancel as soon as X or Y cancels: [[A, B], C] falls if A, B or C is removed. An exhaustive search of all shorter words confirms that 10 is the least."}`);
-    return P(`${model[0]} ${why[0]}`, `${model[1]} ${why[1]}`);
+        ? P(`Ici ${T} convient : chaque clou a un tour dans un sens et un tour dans l’autre, entremêlés. Si on arrache tous les clous sauf un, les deux tours du clou resté seul se défont l’un l’autre et le tableau tombe ; si on en laisse deux ou plus, les tours s’accrochent les uns aux autres et rien ne se défait. Un clou resté seul doit lâcher la ficelle : avec un seul tour (ou des tours tous dans le même sens) il la retiendrait. Il lui faut donc au moins un tour dans chaque sens, soit 2 tours par clou : ${L} en tout.`, `Here ${T} works: every nail has one turn each way, interleaved. If all nails but one are pulled out, the two turns of the nail left alone undo each other and the picture falls; if two or more are left, the turns catch on each other and nothing comes undone. A nail left alone must let the string go: with a single turn (or turns all the same way) it would hold it. So it needs at least one turn each way, that is 2 turns per nail: ${L} in all.`)
+        : P(`Ici ${T} convient (${L} tours). On part du montage à 2 clous A, B (${turnText(SHORTEST["2,1"])}), qui tombe dès qu’on arrache A ou B : c’est un enchevêtrement. On le traite comme un gros clou : un tour de C, puis le même enchevêtrement dans l’autre sens, puis un tour de C dans l’autre sens. Si on arrache C, l’enchevêtrement va et revient autour de rien et se défait ; si on arrache A ou B, c’est l’enchevêtrement qui disparaît et les deux tours de C se défont. Une recherche par ordinateur de tous les montages plus courts confirme que ${L} est le minimum.`, `Here ${T} works (${L} turns). Start from the winding for 2 nails A, B (${turnText(SHORTEST["2,1"])}), which falls as soon as A or B is pulled out: it is a tangle. Use it like a fat nail: one turn of C, then the same tangle the other way round, then one turn of C the other way. If C is pulled out, the tangle goes there and back around nothing and comes undone; if A or B is pulled out, the tangle disappears and the two turns of C undo each other. A computer search of all shorter windings confirms that ${L} is the least.`);
+    return P(`${idea[0]} ${why[0]}`, `${idea[1]} ${why[1]}`);
   },
 };
 
@@ -48,7 +48,5 @@ export const original = () => P(
 
 export const icon = svg(`<path d="M14 50h36V30H14z" ${'fill="currentColor" fill-opacity=".18"'}/><path d="M14 30L24 14M50 30L40 14" /><path class="ci-draw" d="M24 14c-6-6 6-8 4 0c4 6 10 6 12 0c-2-8 10-6 4 0"/>${dot(24, 12, 3)}${dot(40, 12, 3)}`);
 
-export const hintActions = {
-  0: ["word", "Écrire l’enroulement comme un mot", "Write the winding as a word"],
-  1: ["table", "Afficher ce qui reste pour chaque choix de clous retirés", "Show what is left for every choice of removed nails"],
-};
+// no hint button acts on the scene: the activity gives no help of its own
+export const hintActions = {};

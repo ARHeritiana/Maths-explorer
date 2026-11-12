@@ -5,8 +5,8 @@
 import {liveCourses,isLiveHash} from './live-curriculum.js';
 import {fetchJSON} from './data-loader.js';
 import {courseName,chapterOf,launchpad,resolveForSeance} from './launchpad-model.js';
-import {PHASES,phaseById,addBlock,removeBlock,moveBlock,setMinutes,togglePrint,totals,defaultSeance,emptySeance,MAX_MINUTES,TARGET_MINUTES} from './seance-model.js';
-import {phaseForType,blockFromItem,blockFromPhase,describeTotals,printList,liveLinks} from './prepare-model.js';
+import {PHASES,phaseById,addBlock,removeBlock,moveBlockTo,setMinutes,togglePrint,totals,defaultSeance,emptySeance,MAX_MINUTES,TARGET_MINUTES} from './seance-model.js';
+import {phaseForType,blockFromItem,blockFromPhase,describeTotals,printList,liveLinks,dropIndex,movedText} from './prepare-model.js';
 import {searchResources,typeLabel} from './resource-index.js';
 import {errorsFor} from './errors-model.js';
 import {chaptersFor} from './teacher-dashboard.js';
@@ -75,11 +75,11 @@ ${can?`<div class="pp-phase-actions"><label class="td-field pp-phase-select"><sp
  const drawBuilder=()=>{
   const s=state.getSeance(),tot=totals(s),d=describeTotals(tot,s.blocks.length),prints=printList(s);
   const n=s.blocks.length;
-  $('#pp-builder').innerHTML=`${n?`<ol class="pp-blocks">${s.blocks.map((b,i)=>`<li class="pp-block" data-block="${E(b.id)}"><div class="pp-block-head"><span class="pp-block-n" aria-hidden="true">${i+1}</span><div class="pp-phase-text"><strong>${live(b.href)?`<a href="${E(b.href)}">${E(b.title)}</a>`:E(b.title)}</strong><span class="muted">${E(P(phaseById(b.phase)?.label||['',''])) }</span></div></div>
-<div class="pp-block-tools"><button type="button" class="btn btn-secondary pp-icon" data-pp="up" data-id="${E(b.id)}"${i===0?' disabled':''}>${L('Monter','Move up')}<span class="sr-only"> : ${E(b.title)}</span></button><button type="button" class="btn btn-secondary pp-icon" data-pp="down" data-id="${E(b.id)}"${i===n-1?' disabled':''}>${L('Descendre','Move down')}<span class="sr-only"> : ${E(b.title)}</span></button>
-<label class="td-field pp-min"><span>${L('Minutes','Minutes')}<span class="sr-only"> : ${E(b.title)}</span></span><input type="number" min="0" max="${MAX_MINUTES}" step="1" inputmode="numeric" data-pp-min="${E(b.id)}" value="${b.minutes}"></label>
-<label class="rs-check pp-print"><input type="checkbox" data-pp-print="${E(b.id)}"${b.print?' checked':''}><span>${L('fiche à imprimer','sheet to print')}<span class="sr-only"> : ${E(b.title)}</span></span></label>
-<button type="button" class="btn-quiet" data-pp="remove" data-id="${E(b.id)}">${L('Retirer','Remove')}<span class="sr-only"> : ${E(b.title)}</span></button></div></li>`).join('')}</ol>`
+  $('#pp-builder').innerHTML=`${n?`${n>1?`<p class="pp-hint muted">${L('Glisse la poignée pour réordonner (ou flèches haut et bas sur la poignée).','Drag the handle to reorder (or Up and Down arrows on the handle).')}</p>`:''}<ol class="pp-blocks">${s.blocks.map(b=>`<li class="pp-block" data-block="${E(b.id)}"><button type="button" class="pp-grip" data-pp-grip="${E(b.id)}" aria-label="${E(L('Déplacer','Move'))} : ${E(b.title)}"><svg viewBox="0 0 10 16" width="10" height="16" aria-hidden="true" focusable="false"><g fill="currentColor"><circle cx="2" cy="3" r="1.4"/><circle cx="8" cy="3" r="1.4"/><circle cx="2" cy="8" r="1.4"/><circle cx="8" cy="8" r="1.4"/><circle cx="2" cy="13" r="1.4"/><circle cx="8" cy="13" r="1.4"/></g></svg></button>
+<div class="pp-block-text"><span class="pp-phase-tag">${E(P(phaseById(b.phase)?.label||['','']))}</span><strong>${live(b.href)?`<a href="${E(b.href)}">${E(b.title)}</a>`:E(b.title)}</strong></div>
+<label class="pp-min"><input type="number" min="0" max="${MAX_MINUTES}" step="1" inputmode="numeric" data-pp-min="${E(b.id)}" value="${b.minutes}" aria-label="${E(L('Minutes','Minutes'))} : ${E(b.title)}"><span aria-hidden="true">min</span></label>
+<label class="pp-print"><input type="checkbox" data-pp-print="${E(b.id)}"${b.print?' checked':''}><span class="pp-box" aria-hidden="true"><svg viewBox="0 0 12 12" width="12" height="12" focusable="false"><path d="M2 6.5l2.6 2.6L10 3.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></span><span class="pp-print-word">${L('Imprimer','Print')}<span class="sr-only"> : ${E(b.title)}</span></span></label>
+<button type="button" class="pp-remove" data-pp="remove" data-id="${E(b.id)}" aria-label="${E(L('Retirer','Remove'))} : ${E(b.title)}"><span aria-hidden="true">×</span></button></li>`).join('')}</ol>`
   :`<p class="muted">${L('La séance est vide. Ajoute des ressources depuis la fiche du chapitre ou la recherche, ou pars d’une séance type.','The séance is empty. Add resources from the chapter sheet or the search, or start from a standard séance.')}</p>`}
 <div class="pp-totals"><p class="pp-total${d.over?' is-over':''}"><strong>${E(P(d.minutesText))}</strong></p>
 <meter class="pp-meter" min="0" max="${TARGET_MINUTES}" value="${Math.min(tot.minutes,TARGET_MINUTES)}" aria-label="${E(L('Minutes prévues sur 55','Planned minutes out of 55'))}">${tot.minutes} / ${TARGET_MINUTES}</meter>
@@ -97,7 +97,7 @@ ${d.warn?`<p class="pp-warn" role="status">${E(P(d.warn))}</p>`:''}
  const save=(s,msg,focus)=>{state.setSeance(s);drawBuilder();announce(msg);(typeof focus==='function'?focus():focus&&main.querySelector(focus))?.focus();};
  const added=title=>`${L('Ajouté à la séance','Added to the séance')} : ${title}`;
  const byAttr=(a,id)=>[...main.querySelectorAll(`[${a}]`)].find(n=>n.getAttribute(a)===id)||null;
- const btn=(act,id)=>[...main.querySelectorAll(`[data-pp="${act}"]`)].find(n=>n.dataset.id===id)||null;
+ const grip=id=>byAttr('data-pp-grip',id),btn=(act,id)=>[...main.querySelectorAll(`[data-pp="${act}"]`)].find(n=>n.dataset.id===id)||null;
  const click=e=>{
   if(e.target.closest('#pp-launch')){try{state.setMode('classe');}catch{}return;}
   const b=e.target.closest('[data-pp]');if(!b)return;
@@ -114,12 +114,6 @@ ${d.warn?`<p class="pp-warn" role="status">${E(P(d.warn))}</p>`:''}
    const next=addBlock(s,blk);
    if(next.blocks.length===s.blocks.length)announce(L('Séance pleine : 30 blocs au plus.','Séance full: 30 blocks at most.'));
    else{state.setSeance(next);drawBuilder();announce(added(blk.title));}
-  }else if(d==='up'||d==='down'){
-   const delta=d==='up'?-1:1;if(i<0)return;
-   const next=moveBlock(s,i,delta),j=i+delta;
-   // keep focus on the same kind of button; when the block reaches an end that button is disabled, so use the other one
-   const other=d==='up'?'down':'up',atEnd=j===0||j===s.blocks.length-1;
-   save(next,`${s.blocks[i].title} : ${L('position','position')} ${j+1} ${L('sur','of')} ${s.blocks.length}`,()=>btn(atEnd?other:d,id));
   }else if(d==='remove'){
    const t0=s.blocks[i]?.title,after=s.blocks[i+1]||s.blocks[i-1];
    save(removeBlock(s,id),`${L('Retiré de la séance','Removed from the séance')} : ${t0}`,after?()=>btn('remove',after.id):'#pp-builder-h');
@@ -129,6 +123,45 @@ ${d.warn?`<p class="pp-warn" role="status">${E(P(d.warn))}</p>`:''}
   }else if(d==='clear'){
    save(emptySeance(),L('Séance vidée.','Séance cleared.'),'#pp-builder-h');
   }
+ };
+
+ // Reordering: pointer events on the grip (mouse, pen, touch), Arrow keys on the focused grip. Pure part: dropIndex, moveBlockTo.
+ let drag=null;
+ const endDrag=()=>{if(!drag)return;const {li,ol,line,g,pid}=drag;li.classList.remove('is-lifted');li.style.transform='';ol.classList.remove('is-dragging');line?.remove();try{g.releasePointerCapture(pid);}catch{}drag=null;};
+ const down=e=>{
+  const g=e.target.closest?.('[data-pp-grip]');if(!g||drag||(e.pointerType==='mouse'&&e.button!==0))return;
+  const li=g.closest('.pp-block'),ol=li.parentNode,blocks=[...ol.children].filter(n=>n.classList.contains('pp-block'));
+  drag={id:g.dataset.ppGrip,g,li,ol,blocks,pid:e.pointerId,y0:e.clientY,from:blocks.indexOf(li),to:blocks.indexOf(li),on:false,line:null};
+  try{g.setPointerCapture(e.pointerId);}catch{}
+  g.focus();e.preventDefault();
+ };
+ const move=e=>{
+  if(!drag||e.pointerId!==drag.pid)return;
+  const dy=e.clientY-drag.y0;
+  if(!drag.on){if(Math.abs(dy)<4)return;drag.on=true;drag.li.classList.add('is-lifted');drag.ol.classList.add('is-dragging');drag.line=drag.ol.ownerDocument.createElement('div');drag.line.className='pp-drop-line';drag.line.setAttribute('aria-hidden','true');drag.ol.appendChild(drag.line);}
+  const {blocks,from,ol}=drag,y=e.clientY-ol.getBoundingClientRect().top;
+  drag.li.style.transform=`translateY(${dy}px)`;
+  drag.to=dropIndex(blocks.map(b=>b.offsetTop+b.offsetHeight/2),from,y);
+  const others=blocks.filter((_,i)=>i!==from),at=drag.to<others.length?others[drag.to].offsetTop-4:others.length?others.at(-1).offsetTop+others.at(-1).offsetHeight+1:0;
+  drag.line.style.top=at+'px';
+ };
+ const up=e=>{
+  if(!drag||e.pointerId!==drag.pid)return;
+  const {on,from,to,id}=drag;endDrag();
+  if(!on||from===to)return;
+  const s=state.getSeance(),next=moveBlockTo(s,from,to);
+  save(next,t(movedText(s.blocks[from].title,to+1,s.blocks.length)),()=>grip(id));
+ };
+ const cancel=e=>{if(drag&&e.pointerId===drag.pid)endDrag();};
+ const key=e=>{
+  const g=e.target.closest?.('[data-pp-grip]');if(!g)return;
+  if(e.key==='Escape'&&drag){endDrag();return;}
+  if(e.key!=='ArrowUp'&&e.key!=='ArrowDown')return;
+  e.preventDefault();
+  const s=state.getSeance(),id=g.dataset.ppGrip,i=s.blocks.findIndex(x=>x.id===id);if(i<0)return;
+  const j=Math.min(s.blocks.length-1,Math.max(0,i+(e.key==='ArrowUp'?-1:1)));
+  if(j===i){announce(t(movedText(s.blocks[i].title,i+1,s.blocks.length)));return;}
+  save(moveBlockTo(s,i,j),t(movedText(s.blocks[i].title,j+1,s.blocks.length)),()=>grip(id));
  };
  const change=async e=>{
   const el=e.target;
@@ -150,6 +183,7 @@ ${d.warn?`<p class="pp-warn" role="status">${E(P(d.warn))}</p>`:''}
  };
  const submit=e=>e.preventDefault();
  main.addEventListener('click',click);main.addEventListener('change',change);main.addEventListener('input',input);main.addEventListener('submit',submit);
+ const ev=[['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['keydown',key]];for(const [n,f] of ev)main.addEventListener(n,f);
  drawAll();
- return ()=>{main.removeEventListener('click',click);main.removeEventListener('change',change);main.removeEventListener('input',input);main.removeEventListener('submit',submit);};
+ return ()=>{main.removeEventListener('click',click);main.removeEventListener('change',change);main.removeEventListener('input',input);main.removeEventListener('submit',submit);for(const [n,f] of ev)main.removeEventListener(n,f);endDrag();};
 }

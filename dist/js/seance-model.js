@@ -54,14 +54,16 @@ export function addBlock(seance,block){
  return b?{blocks:[...s.blocks,b]}:s;
 }
 export const removeBlock=(seance,id)=>{const s=cleanSeance(seance);return {blocks:s.blocks.filter(b=>b.id!==id)};};
-// Moves the block at index by delta places (negative = earlier), staying inside the list.
-export function moveBlock(seance,index,delta){
+// Moves the block at index `from` so that it ends at index `to` (clamped to the list). Same séance when nothing changes.
+export function moveBlockTo(seance,from,to){
  const s=cleanSeance(seance),n=s.blocks.length;
- if(!Number.isInteger(index)||!Number.isInteger(delta)||index<0||index>=n)return s;
- const to=Math.min(n-1,Math.max(0,index+delta));
- if(to===index)return s;
- const a=[...s.blocks],[b]=a.splice(index,1);a.splice(to,0,b);return {blocks:a};
+ if(!Number.isInteger(from)||!Number.isInteger(to)||from<0||from>=n)return s;
+ const t=Math.min(n-1,Math.max(0,to));
+ if(t===from)return s;
+ const a=[...s.blocks],[b]=a.splice(from,1);a.splice(t,0,b);return {blocks:a};
 }
+// Moves the block at index by delta places (negative = earlier), staying inside the list.
+export const moveBlock=(seance,index,delta)=>Number.isInteger(index)&&Number.isInteger(delta)?moveBlockTo(seance,index,index+delta):cleanSeance(seance);
 const patch=(seance,id,f)=>{const s=cleanSeance(seance);return {blocks:s.blocks.map(b=>b.id===id?f(b):b)};};
 export const setMinutes=(seance,id,minutes)=>patch(seance,id,b=>({...b,minutes:clampMin(minutes)}));
 export const togglePrint=(seance,id)=>patch(seance,id,b=>({...b,print:!b.print}));
