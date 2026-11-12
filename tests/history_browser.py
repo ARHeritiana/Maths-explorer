@@ -45,8 +45,14 @@ with sync_playwright() as p:
  assert page.locator('.subnav a[href="../../index.html#home"]').count()==0
  assert page.locator('.topbar .brand').get_attribute('href')=='../../index.html#home'
  assert page.locator('.topbar .mainnav a').count()==3
- assert page.locator('.life').first.evaluate('e=>e.getBoundingClientRect().height')>=44
- assert page.locator('.life img').first.evaluate('e=>e.getBoundingClientRect().height')>=40
+ # The whole chronology fits the stage height (no vertical scroll): rows shrink to fit, labelled rows stay legible.
+ for vw,vh in [(1366,768),(1920,1080),(1440,1000)]:
+  page.set_viewport_size({'width':vw,'height':vh});page.wait_for_timeout(250)
+  fit=page.evaluate('''()=>{const s=document.getElementById('scroller'),r=s.getBoundingClientRect(),lives=[...document.querySelectorAll('.life')].map(e=>e.getBoundingClientRect());return {sh:s.scrollHeight,ch:s.clientHeight,vh:innerHeight,bottom:Math.max(...lives.map(l=>l.bottom)),axis:document.querySelector('.axis').getBoundingClientRect().bottom,rowH:Math.min(...lives.map(l=>l.height))}}''')
+  assert fit['sh']<=fit['ch']+1,(vw,vh,'timeline scrolls vertically',fit)
+  assert fit['bottom']<=fit['vh'] and fit['axis']<=fit['vh']+1,(vw,vh,'timeline bottom outside viewport',fit)
+  assert fit['rowH']>=22,(vw,vh,'rows too small',fit)
+ page.set_viewport_size({'width':1440,'height':1000});page.wait_for_timeout(250)
  page.locator('[data-theme-toggle]').click()
  assert page.evaluate("localStorage.getItem('maths-explorer-theme')")==page.evaluate('document.documentElement.dataset.theme')
  page.locator('[data-theme-toggle]').click()

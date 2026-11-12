@@ -180,11 +180,15 @@ function layout(){
  const short=sh<560;
  // Keep portraits readable at every horizontal zoom; scroll vertically rather than shrink.
  laneH=mobile?(short?48:52):(short?50:56);
- const top=mobile?(short?82:96):(short?86:104);
- const visibleRows=Math.max(4,Math.floor((sh-top-65)/laneH));
+ const topBase=mobile?(short?82:96):(short?86:104);
+ const visibleRows=Math.max(4,Math.floor((sh-topBase-65)/laneH));
  maxLanes=Math.max(mobile?14:18,Math.min(26,visibleRows));
  const markerW=mobile?(short?44:48):(short?48:52);
- const portrait=mobile?(short?40:44):(short?44:48);
+ let portrait=mobile?(short?40:44):(short?44:48);
+ // Desktop and tablet: the whole chronology fits the stage height, rows and portraits shrink to fit (nobody is omitted).
+ // Phones keep full-size rows and scroll vertically.
+ let top=topBase;
+ if(!mobile){top=Math.min(topBase,76);laneH=Math.max(20,Math.min(laneH,Math.floor((sh-top-BOTTOM-28)/maxLanes)));portrait=Math.min(portrait,laneH-3)}
  const gap=2;
  const fw=Math.ceil(Math.max(scroll.clientWidth,x(NOW)+RIGHT));
  surface.style.width=fw+'px';
