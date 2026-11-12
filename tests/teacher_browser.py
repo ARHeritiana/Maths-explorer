@@ -1,5 +1,5 @@
 """Browser checks of the Espace professeur (#teacher), the device-local entrance.
- - no preference: the student home opens untouched, with a way to choose the Teacher area;
+ - no preference: the limited edition opens the Teacher area; 'Espace élève' (mode bar) and 'Espace professeur' (footer) switch and persist;
  - choosing it is remembered: a fresh visit with an empty address lands on the dashboard, the logo goes there,
    and a visible switch returns to the student home (and is remembered too);
  - class and chapter selectors override and persist; the chapter list is limited to the class;
@@ -32,12 +32,24 @@ with sync_playwright() as p:
     page.on('pageerror', lambda e: errors.append(str(e)))
     page.on('console', lambda m: errors.append(m.text) if m.type == 'error' else None)
 
-    # 1. a new visitor sees the student home, never the dashboard
-    page.goto(f'{BASE}/'); page.wait_for_selector('#home-class')
-    assert page.evaluate('location.hash') in ('', '#home')
-    page.locator('.teacher-entry summary').click()
-    page.locator('[data-set-entry="teacher"]').click()
-    dashboard(page)
+    # 1. limited edition: a device that never chose lands on the teacher entrance, with an always-visible way to the student area
+    page.goto(f'{BASE}/'); dashboard(page)
+    assert page.evaluate('location.hash') == '#teacher'
+    assert page.evaluate("localStorage.getItem('mx-teacher-entry')") is None, 'landing alone stores nothing'
+    assert page.locator('nav.modebar').count() == 1 and page.locator('.brand').get_attribute('href') == '#teacher'
+    sw = page.locator('nav.modebar a[data-set-entry="student"]'); assert sw.count() == 1
+    assert sw.bounding_box()['height'] >= 43, 'student link target is at least 44 px'
+    page.goto(f'{BASE}/#home'); page.wait_for_selector('#home-class')
+    assert page.evaluate('location.hash') == '#home', 'an explicit #home opens the student home, not redirected'
+    page.goto(f'{BASE}/'); dashboard(page)
+    sw.click(); page.wait_for_selector('#home-class')
+    assert page.evaluate('location.hash') == '#home' and page.evaluate("localStorage.getItem('mx-teacher-entry')") == 'student'
+    page.goto(f'{BASE}/'); page.reload(); page.wait_for_selector('#home-class')
+    assert page.evaluate('location.hash') in ('', '#home'), 'the student choice persists on reload'
+    assert page.locator('nav.modebar').count() == 0 and page.locator('.brand').get_attribute('href') == '#home'
+    back = page.locator('footer a[data-set-entry="teacher"]'); assert back.count() == 1 and back.is_visible()
+    assert back.bounding_box()['height'] >= 43
+    back.click(); dashboard(page)
     assert page.evaluate('location.hash') == '#teacher'
     assert page.evaluate("localStorage.getItem('mx-teacher-entry')") == 'teacher'
 
@@ -149,7 +161,7 @@ with sync_playwright() as p:
     page.evaluate('document.documentElement.classList.remove("is-presenting")')
 
     # 5. switch back to the student home
-    page.locator(".td-settings summary").click(); page.locator('[data-set-entry="student"]').click()
+    page.locator(".td-settings summary").click(); page.locator('.td-settings [data-set-entry="student"]').click()
     page.wait_for_selector('#home-class')
     assert page.evaluate("localStorage.getItem('mx-teacher-entry')") == 'student'
     page.goto(f'{BASE}/'); page.reload(); page.wait_for_selector('#home-class')
@@ -158,12 +170,14 @@ with sync_playwright() as p:
     # 5b. mode bar: absent for a fresh student, present after choosing the teacher entrance, remembered across reloads
     fresh = browser.new_context(viewport={'width': 1280, 'height': 800}); fp = fresh.new_page()
     fp.on('pageerror', lambda e: errors.append(str(e)))
-    fp.goto(f'{BASE}/'); fp.wait_for_selector('#home-class')
+    fp.goto(f'{BASE}/'); dashboard(fp)
+    assert fp.locator('nav.modebar').count() == 1, 'unstored choice: the limited edition default shows the bar'
+    fp.locator('nav.modebar a[data-set-entry="student"]').click(); fp.wait_for_selector('#home-class')
     assert fp.locator('nav.modebar').count() == 0, 'student experience untouched'
     fp.goto(f'{BASE}/#resources'); fp.wait_for_selector('.chapter-grid, main')
     assert fp.locator('nav.modebar').count() == 0
-    fp.goto(f'{BASE}/'); fp.locator('.teacher-entry summary').click(); fp.locator('[data-set-entry="teacher"]').click(); dashboard(fp)
-    assert fp.locator('nav.modebar a').count() == 3
+    fp.goto(f'{BASE}/'); fp.wait_for_selector('#home-class'); fp.locator('footer a[data-set-entry="teacher"]').click(); dashboard(fp)
+    assert fp.locator('nav.modebar a[data-teacher-mode]').count() == 3
     assert fp.locator('nav.modebar [aria-current="page"]').get_attribute('data-teacher-mode') == 'classe'
     fp.locator('nav.modebar a[data-teacher-mode="preparer"]').click(); fp.wait_for_selector('h1')
     assert fp.evaluate('location.hash') == '#prepare' and fp.locator('h1').first.inner_text() in ('Préparer', 'Prepare')
@@ -288,9 +302,28 @@ with sync_playwright() as p:
     pg.locator('[data-pp="add-result"]').first.click()
     assert pg.locator('.pp-block').count() == 2
     first_title = pg.locator('.pp-block strong').first.inner_text()
-    pg.locator('[data-pp="down"]').first.click()
-    assert pg.locator('.pp-block strong').nth(1).inner_text() == first_title, 'reordered'
-    assert pg.evaluate("document.activeElement.closest('#pp-builder') !== null"), 'focus kept in the builder'
+    stored = lambda: pg.evaluate("JSON.parse(localStorage.getItem('mx-teacher-seance')).blocks.map(b => b.id)")
+    assert pg.locator('[data-pp="up"], [data-pp="down"]').count() == 0, 'no up/down buttons'
+    # keyboard: ArrowDown on the focused grip moves the block and keeps focus on a grip
+    pg.locator('.pp-grip').first.focus(); pg.keyboard.press('ArrowDown')
+    assert pg.locator('.pp-block strong').nth(1).inner_text() == first_title, 'reordered by keyboard'
+    assert pg.evaluate("document.activeElement.classList.contains('pp-grip')"), 'focus kept on a grip'
+    assert 'position 2' in pg.locator('#pp-live').inner_text()
+    # real pointer drag: add a third block, drag the 3rd above the 1st
+    pg.locator('[data-pp="add-result"]').nth(1).click()
+    assert pg.locator('.pp-block').count() == 3
+    before = stored(); assert len(before) == 3
+    g3, b1 = pg.locator('.pp-grip').nth(2).bounding_box(), pg.locator('.pp-block').first.bounding_box()
+    pg.mouse.move(g3['x'] + g3['width'] / 2, g3['y'] + g3['height'] / 2); pg.mouse.down()
+    pg.mouse.move(g3['x'] + 4, g3['y'] - 20, steps=4); pg.mouse.move(g3['x'] + 4, b1['y'] + 4, steps=6)
+    assert pg.locator('.pp-drop-line').count() == 1 and pg.locator('.pp-block.is-lifted').count() == 1, 'insertion line while dragging'
+    pg.mouse.up()
+    assert stored() == [before[2], before[0], before[1]], ('dropped first', before, stored())
+    assert pg.locator('.pp-drop-line').count() == 0
+    pg.locator('.pp-grip').nth(1).click(); assert stored() == [before[2], before[0], before[1]], 'a click on a grip moves nothing'
+    first_title = pg.locator('.pp-block strong').first.inner_text()
+    pg.locator('[data-pp="remove"]').last.click(); assert pg.locator('.pp-block').count() == 2
+    first_title = pg.locator('.pp-block strong').nth(1).inner_text()
     pg.reload(); pg.wait_for_selector('#pp-class')
     assert pg.locator('.pp-block').count() == 2 and pg.locator('.pp-block strong').nth(1).inner_text() == first_title, 'reload keeps it'
     pg.locator('#pp-launch').click(); pg.wait_for_selector('.lp-blocks')

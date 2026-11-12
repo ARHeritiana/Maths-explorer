@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {PHASES,emptySeance,defaultSeance,addBlock,removeBlock,moveBlock,setMinutes,togglePrint,totals,cleanSeance,MAX_BLOCKS} from '../site/js/seance-model.js';
+import {PHASES,emptySeance,defaultSeance,addBlock,removeBlock,moveBlock,moveBlockTo,setMinutes,togglePrint,totals,cleanSeance,MAX_BLOCKS} from '../site/js/seance-model.js';
 const blk=(id,o={})=>({id,phase:'cours',title:'T'+id,href:'#chapter/x',minutes:10,print:false,...o});
 test('phases in session order with default minutes and [fr,en] labels',()=>{
  assert.deepEqual(PHASES.map(p=>p.id),['automatismes','correction','activite','cours','exercices','outils','bilan']);
@@ -48,4 +48,12 @@ test('cleanSeance rejects malformed input and caps blocks',()=>{
  const many=cleanSeance({blocks:Array.from({length:50},(_,i)=>blk('i'+i))});assert.equal(many.blocks.length,MAX_BLOCKS);
  assert.equal(addBlock(many,{phase:'cours',title:'x',href:'#x'}).blocks.length,MAX_BLOCKS);
  assert.deepEqual(cleanSeance(JSON.parse('{"blocks":[{"id":"a","phase":"cours","title":"t","href":"#h","__proto__":{"x":1}}]}')).blocks[0],{id:'a',phase:'cours',title:'t',href:'#h',minutes:0,print:false});
+});
+test('moveBlockTo: any position, clamped, no-ops return the same content, immutable',()=>{
+ const s={blocks:['a','b','c','d'].map(i=>blk(i))},ids=x=>x.blocks.map(b=>b.id).join('');
+ assert.equal(ids(moveBlockTo(s,2,0)),'cabd');assert.equal(ids(moveBlockTo(s,0,3)),'bcda');assert.equal(ids(moveBlockTo(s,1,2)),'acbd');
+ assert.equal(ids(moveBlockTo(s,3,-5)),'dabc');assert.equal(ids(moveBlockTo(s,0,99)),'bcda');
+ assert.deepEqual(moveBlockTo(s,1,1),s);assert.deepEqual(moveBlockTo(s,9,0),s);assert.deepEqual(moveBlockTo(s,-1,0),s);
+ assert.deepEqual(moveBlockTo(s,0,1.5),s);assert.deepEqual(moveBlockTo({blocks:[]},0,1),{blocks:[]});assert.equal(ids(s),'abcd');
+ assert.equal(ids(moveBlock(s,3,-1)),'abdc');
 });

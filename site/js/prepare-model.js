@@ -34,3 +34,10 @@ export function describeTotals(tot,count=0){
 export const printList=seance=>seance.blocks.filter(b=>b.print).map(b=>b.title);
 // Live-route filter for a list of [hash,fr,en].
 export const liveLinks=(links,isLive)=>links.filter(([h])=>!h.startsWith('#')||isLive(h));
+// Drag and drop: where a dragged block lands. `mids` are the vertical centres of all blocks in order, `from` the dragged
+// index, `y` the pointer position in the same space. Returns the target index in the final list (0..n-1).
+export function dropIndex(mids,from,y){
+ return mids.filter((_,i)=>i!==from).filter(m=>m<y).length;
+}
+// Announcement for a block that moved: [fr,en] pair.
+export const movedText=(title,pos,count)=>[`${title} : position ${pos} sur ${count}`,`${title}: position ${pos} of ${count}`];

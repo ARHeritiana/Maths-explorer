@@ -30,17 +30,25 @@ test('page: sections in order, shared class and chapter, chapter sheet adds bloc
  assert.ok(h.$('#pp-live').textContent.startsWith('Ajouté'));
  h.stop();
 });
-test('builder: move, minutes, print toggle and warning, remove, clear, standard, persistence',async()=>{
+test('builder: keyboard move, minutes, print toggle and warning, remove, clear, standard, persistence',async()=>{
  const h=await setup();
  h.change(h.$('#pp-class'),'seconde');h.change(h.$('#pp-chapter'),h.$$('#pp-chapter option')[1].value);
  h.$('[data-pp="standard"]').click();
  const n=h.state.getSeance().blocks.length;assert.ok(n>=4);
  const ids=h.state.getSeance().blocks.map(b=>b.id);
- assert.equal(h.$('[data-pp="up"]').disabled,true);
- h.$$('[data-pp="down"]')[0].click();
+ assert.equal(h.$('[data-pp="up"]'),null,'no up/down buttons');assert.equal(h.$('[data-pp="down"]'),null);
+ assert.equal(h.$$('.pp-grip').length,n,'one grip per block');
+ const key=(el,k)=>el.dispatchEvent(new h.window.KeyboardEvent('keydown',{key:k,bubbles:true,cancelable:true}));
+ key(h.$$('.pp-grip')[0],'ArrowUp');assert.deepEqual(h.state.getSeance().blocks.map(b=>b.id),ids,'first block cannot go up');
+ key(h.$$('.pp-grip')[0],'ArrowDown');
  assert.deepEqual(h.state.getSeance().blocks.map(b=>b.id).slice(0,2),[ids[1],ids[0]]);
+ assert.ok(h.$('#pp-live').textContent.includes('position 2 sur'),'announced');
  const active=h.window.document.activeElement;
- assert.ok(h.main.contains(active)&&active!==h.window.document.body,'focus kept after the redraw');
+ assert.equal(active.dataset.ppGrip,ids[0],'focus stays on the moved block grip');
+ key(active,'ArrowUp');assert.deepEqual(h.state.getSeance().blocks.map(b=>b.id).slice(0,2),ids.slice(0,2));
+ key(h.$$('.pp-grip')[n-1],'ArrowDown');assert.deepEqual(h.state.getSeance().blocks.map(b=>b.id),ids,'last block cannot go down');
+ assert.ok(h.$$('.pp-print input').every(c=>c.type==='checkbox'),'print control is a real checkbox');
+ assert.ok(h.$('.pp-print').textContent.startsWith('Imprimer'));
  h.change(h.$('[data-pp-min]'),'200');assert.equal(h.state.getSeance().blocks[0].minutes,90,'clamped to 90');
  h.change(h.$('[data-pp-min]'),'10');assert.equal(h.state.getSeance().blocks[0].minutes,10);
  assert.ok(h.$('.pp-total').textContent.includes('sur 55'));assert.ok(h.$('meter'));

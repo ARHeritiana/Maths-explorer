@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {phaseForType,blockFromItem,blockFromPhase,describeTotals,printList,liveLinks,isPhase} from '../site/js/prepare-model.js';
+import {phaseForType,blockFromItem,blockFromPhase,describeTotals,printList,liveLinks,isPhase,dropIndex,movedText} from '../site/js/prepare-model.js';
 import {totals,addBlock,emptySeance} from '../site/js/seance-model.js';
 
 test('phase default from item type',()=>{
@@ -30,4 +30,15 @@ test('describeTotals: minutes text, print count, warning above 3',()=>{
 });
 test('liveLinks keeps only live routes',()=>{
  assert.deepEqual(liveLinks([['#a','x','y'],['#b','x','y'],['https://z','x','y']],h=>h==='#a').map(l=>l[0]),['#a','https://z']);
+});
+test('dropIndex: target index from the pointer position, dragged block excluded',()=>{
+ const mids=[20,60,100,140];
+ assert.equal(dropIndex(mids,2,0),0);assert.equal(dropIndex(mids,2,10),0);assert.equal(dropIndex(mids,2,30),1);
+ assert.equal(dropIndex(mids,2,100),2);assert.equal(dropIndex(mids,2,500),3);
+ assert.equal(dropIndex(mids,0,30),0);assert.equal(dropIndex(mids,0,70),1);assert.equal(dropIndex(mids,0,500),3);
+ assert.equal(dropIndex([50],0,999),0);assert.equal(dropIndex([],0,5),0);
+});
+test('movedText is a [fr,en] pair without dashes',()=>{
+ const m=movedText('Cours',2,5);assert.equal(m.length,2);assert.equal(m[0],'Cours : position 2 sur 5');assert.equal(m[1],'Cours: position 2 of 5');
+ assert.ok(!/[–—]/.test(m.join('')));
 });
