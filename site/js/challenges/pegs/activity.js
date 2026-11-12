@@ -1,5 +1,5 @@
 // Hands-on activity of the pegs challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { colour, onHintAction, svgEl } from "../common/kit.js";
+import { colour, onHintAction, svgEl, goalLine } from "../common/kit.js";
 import { pegTarget, PEGS_START, pegClass, pegLanding } from "./maths.js";
 
 /* ------------------------------------------------------------ three pegs */
@@ -9,7 +9,7 @@ export function activity(root, { t, q, reduced: reducedPref }) {
   let pos, hist, sel, bounds, level = 0, notice = "", fly = null, raf = 0;   // level 1: parity of each peg (hint 1), 2: points coloured by parity (hint 2)
   const reset = () => { pos = PEGS_START.map((p) => [...p]); hist = []; sel = null; bounds = null; notice = ""; };
   root.innerHTML = `
-    <p class="act-help">${t("Touche un pion, puis un autre : le premier saute par-dessus le second et atterrit au point symétrique, si ce point est libre. Peux-tu amener un pion sur le point visé ?", "Tap a peg, then another: the first jumps over the second and lands on the symmetric point, if that point is free. Can you bring a peg onto the marked point?")}</p>
+    ${goalLine(t, `Amène un pion sur le point visé.`, `Bring a peg onto the marked point.`, "Touche un pion, puis un autre : le premier saute par-dessus le second et atterrit au point symétrique, si ce point est libre.", "Tap a peg, then another: the first jumps over the second and lands on the symmetric point, if that point is free.")}
     <svg class="act-svg" viewBox="0 0 10 10" role="group" aria-label="${t("Quadrillage, trois pions et un point visé", "Grid, three pegs and a target point")}"></svg>
     <div class="act-controls"><button class="btn-quiet" id="pg-undo" type="button">${t("Annuler", "Undo")}</button><button class="btn-quiet" id="pg-reset" type="button">${t("Recommencer", "Restart")}</button></div>
     <p class="act-readout" id="pg-read" role="status" aria-live="polite"></p>`;

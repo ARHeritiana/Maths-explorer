@@ -1,5 +1,5 @@
 // Hands-on activity of the doors challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { onHintAction, clamp } from "../common/kit.js";
+import { onHintAction, clamp, goalLine } from "../common/kit.js";
 
 /* ------------------------------------------------------------------ doors */
 export function activity(root, { t, q }) {
@@ -8,7 +8,7 @@ export function activity(root, { t, q }) {
   let picked = null;
   let timer = null;
   root.innerHTML = `
-    <p class="act-help">${t("Fais avancer les passages et regarde les portes changer d’état. Touche une porte pour voir quand elle a été changée.", "Step through the passes and watch the doors change. Tap a door to see when it was changed.")}</p>
+    ${goalLine(t, `Combien de portes restent ouvertes à la fin ?`, `How many doors are open at the end?`, "Fais avancer les passages et regarde les portes changer d’état. Touche une porte pour voir quand elle a été changée.", "Step through the passes and watch the doors change. Tap a door to see when it was changed.")}
     <div class="doors" id="dr-grid" role="group" aria-label="${ND} ${t("portes", "doors")}"></div>
     <div class="act-controls">
       <label class="act-field" for="dr-k"><span class="act-label">${t("Après le passage", "After pass")} <output id="dr-out"></output></span><input id="dr-k" type="range" min="0" max="${ND}" step="1" value="0"></label>

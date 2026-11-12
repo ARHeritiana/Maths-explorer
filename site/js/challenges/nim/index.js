@@ -18,9 +18,10 @@ export const card = {
 };
 
 export const variant = {
+  impossible: true,   // the answer can be "impossible": the shared answer form offers a neutral Impossible button (checks the answer 0)
   params: [int("n", "Nombre de pierres", "Number of stones", 10, 60, 21), int("m", "Maximum retiré par coup", "Most removable per move", 2, 6, 3)],
   answer: (q) => q.n % (q.m + 1),
-  prompt: (q) => P(`Il y a ${q.n} pierres. À tour de rôle, on en retire de 1 à ${q.m}. Prendre la dernière fait gagner. Tu commences : combien dois-tu en prendre pour garantir la victoire avec un jeu parfait ? (Réponds 0 si aucune stratégie ne la garantit.)`, `There are ${q.n} stones. Players take turns removing 1 to ${q.m}. Taking the last stone wins. You move first: how many should you take to guarantee victory with perfect play? (Answer 0 if no strategy guarantees it.)`),
+  prompt: (q) => P(`Il y a ${q.n} pierres. À tour de rôle, on en retire de 1 à ${q.m}. Prendre la dernière fait gagner. Tu commences : combien dois-tu en prendre pour garantir la victoire avec un jeu parfait ?`, `There are ${q.n} stones. Players take turns removing 1 to ${q.m}. Taking the last stone wins. You move first: how many should you take to guarantee victory with perfect play?`),
   hints: (q) => [P(`Avec ${q.m + 1} pierres, le joueur qui doit jouer perd contre un adversaire parfait.`, `With ${q.m + 1} stones, the player to move loses against perfect play.`), P(`Après le premier coup, complète chaque coup adverse pour retirer ${q.m + 1} pierres au total.`, `After your first move, complement each opponent move to remove ${q.m + 1} stones in total.`)],
   solution: (q) => {
     const r = q.n % (q.m + 1), b = q.m + 1;

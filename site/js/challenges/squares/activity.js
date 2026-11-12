@@ -1,5 +1,5 @@
 // Hands-on activity of the squares challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { svgEl, colour, clamp } from "../common/kit.js";
+import { svgEl, colour, clamp, goalLine } from "../common/kit.js";
 
 /* ---------------------------------------------------------------- squares */
 // Each border (an L of 1, 3, 5, … dots) has its own colour, an outline that wraps the whole L, and a matching line in
@@ -8,7 +8,7 @@ import { svgEl, colour, clamp } from "../common/kit.js";
 export function activity(root, { t }) {
   let n = 5;
   root.innerHTML = `
-    <p class="act-help">${t("Ajoute des bordures de points une à une et compte les points de chacune. Chaque bordure a sa couleur et son contour.", "Add borders of dots one at a time and count the dots in each. Every border has its own colour and outline.")}</p>
+    ${goalLine(t, `Calcule la somme des nombres impairs.`, `Work out the sum of the odd numbers.`, "Ajoute des bordures de points une à une et compte les points de chacune.", "Add borders of dots one at a time and count the dots in each.")}
     <div class="sq-layout">
       <svg class="act-svg" id="sq-svg" viewBox="0 0 300 300" role="img" aria-label="${t("Points disposés en carré, une couleur par bordure", "Dots arranged in a square, one colour per border")}"></svg>
       <details><summary>${t("Afficher les comptages", "Show counts")}</summary><ol class="sq-legend" id="sq-legend" aria-label="${t("Bordures et nombre de points", "Borders and dot counts")}"></ol></details>

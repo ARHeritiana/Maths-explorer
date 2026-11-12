@@ -1,6 +1,6 @@
 // Hands-on activity of the gauss-sum challenge: add the terms one by one (and feel how long it takes), pair any two
 // terms, and look at the sum as a staircase. It never states the answer; the flipped copy is a hint action.
-import { colour, onHintAction, svgEl } from "../common/kit.js";
+import { colour, onHintAction, svgEl, goalLine } from "../common/kit.js";
 import { parseSeries, term, lastTerm, groupDigits } from "./maths.js";
 
 const SHOWN = 8;   // terms shown at each end of a long series
@@ -11,7 +11,7 @@ export function activity(root, { t, q, lang }) {
   const shown = k <= 2 * SHOWN + 2 ? Array.from({ length: k }, (_, i) => i) : [...Array.from({ length: SHOWN }, (_, i) => i), null, ...Array.from({ length: SHOWN }, (_, i) => k - SHOWN + i)];
   let added = 0, total = 0, pick = null, pairs = [], flip = false;
   root.innerHTML = `
-    <p class="act-help">${t("Additionne les termes un par un, ou touche deux nombres pour voir leur somme. Essaie plusieurs paires : que remarques-tu ?", "Add the terms one by one, or tap two numbers to see their sum. Try several pairs: what do you notice?")}</p>
+    ${goalLine(t, `Calcule la somme.`, `Work out the sum.`, "Additionne les termes un par un, ou touche deux nombres pour voir leur somme. ", "Add the terms one by one, or tap two numbers to see their sum. ")}
     <div class="cl-grid gs-tiles" id="gs-tiles" role="group" aria-label="${t("Les termes de la somme", "The terms of the sum")}"></div>
     <div class="act-controls"><button class="btn btn-primary" id="gs-add" type="button">${t("Ajouter le terme suivant", "Add the next term")}</button><button class="btn btn-secondary" id="gs-add10" type="button">${t("Ajouter dix termes", "Add ten terms")}</button><button class="btn-quiet" id="gs-reset" type="button">${t("Recommencer", "Restart")}</button></div>
     <p class="act-readout" id="gs-read" role="status" aria-live="polite"></p>

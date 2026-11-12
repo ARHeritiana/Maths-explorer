@@ -1,6 +1,6 @@
 // Hands-on activity of the reflect challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { f1 } from "../common/helpers.js";
-import { lockTouch, onHintAction, svgEl, colour, toLocal, clamp } from "../common/kit.js";
+import { lockTouch, onHintAction, svgEl, colour, toLocal, clamp, goalLine } from "../common/kit.js";
 import { reflectSet, pathLength, shortestVia, bestContact } from "./maths.js";
 
 /* --------------------------------------------------- shortest path, mirror */
@@ -8,7 +8,7 @@ export function activity(root, { t, q }) {
   const [a, b, d] = reflectSet(q.set), W = 520, H = 300, s = Math.min(380 / d, 100 / Math.max(a, b), 36), X0 = 70, RY = 150;
   let x = d / 2, best = Infinity, mirror = false, grab = false;
   root.innerHTML = `
-    <p class="act-help">${t("Fais glisser le point X le long de la rivière (ou utilise le curseur) : la longueur AX + XB change. Où est-elle la plus petite ?", "Drag the point X along the river (or use the slider): the length AX + XB changes. Where is it smallest?")}</p>
+    ${goalLine(t, `Trouve où puiser l’eau pour le trajet le plus court.`, `Find where to draw water for the shortest route.`, "Fais glisser le point X le long de la rivière (ou utilise le curseur) : la longueur AX + XB change.", "Drag the point X along the river (or use the slider): the length AX + XB changes.")}
     <svg class="act-svg" viewBox="0 0 ${W} ${H}" role="group" aria-label="${t("Rivière, points A et B, point de puisage X", "River, points A and B, water point X")}"></svg>
     <div class="act-controls"><label class="act-field" for="rf-x"><span class="act-label">${t("Position de X", "Position of X")} <output id="rf-xout"></output></span><input id="rf-x" type="range" min="0" max="${d}" step="0.05" value="${x}"></label></div>
     <p class="act-readout" id="rf-read" role="status" aria-live="polite"></p>`;

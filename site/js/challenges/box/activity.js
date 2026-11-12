@@ -6,7 +6,7 @@
 // A route within 0.4 % of the shortest triggers the finale: the box unfolds, the ant walks the straight line, the box folds back.
 import { boxSet, boxPath, nets, FACE_AXIS, faceValue, dist3, shareFace, facesOf, netRoute, polyLength, hingePosition } from "./maths.js";
 import { boxScaler, drawBox, projectBoxPoint, flatCamera } from "./view-3d.js";
-import { clamp, lockTouch, svgEl, toLocal } from "../common/kit.js";
+import { clamp, lockTouch, svgEl, toLocal, goalLine } from "../common/kit.js";
 import { makeView, confetti } from "../common/view-3d.js";
 
 export const W = 640, H = 420, CX = 320, CY = 214;
@@ -23,7 +23,7 @@ export function activity(root, { t, q, reduced }) {
   const fmt = (v) => String(Math.round(v * 100) / 100).replace(".", t(",", "."));
   const N = boxScaler(dims);
   root.innerHTML = `
-    <p class="act-help" id="bx-help"></p>
+    ${goalLine(t, "Mène la fourmi du coin S au coin T sur la surface.", "Take the ant from corner S to corner T over the surface.")}<p class="sr-only" id="bx-help"></p>
     <svg class="act-svg bx-stage" viewBox="0 0 ${W} ${H}" tabindex="0" role="application" aria-label="${t("La boîte et la fourmi : fais glisser pour tourner, touche la boîte pour poser des points", "The box and the ant: drag to turn, tap the box to place points")}"></svg>
     <div class="act-buttons bx-bar" id="bx-bar3d">
       <button class="btn btn-secondary" id="bx-add" type="button">${t("Ajouter un point (clavier)", "Add a point (keyboard)")}</button>

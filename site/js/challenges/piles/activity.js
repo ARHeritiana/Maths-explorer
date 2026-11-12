@@ -1,5 +1,5 @@
 // Hands-on activity of the piles challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { MINUS, clamp } from "../common/kit.js";
+import { MINUS, clamp, goalLine } from "../common/kit.js";
 import { splitTotal } from "./maths.js";
 
 /* ----------------------------------------------------------------- piles */
@@ -8,7 +8,7 @@ export function activity(root, { t, q }) {
   let ps, log, total, sel, cut;
   const reset = () => { ps = [N]; log = []; total = 0; sel = 0; cut = 1; };
   root.innerHTML = `
-    <p class="act-help">${t("Choisis un tas d’au moins 2 cailloux, règle la coupure, puis sépare : le produit est noté. Essaie plusieurs façons de couper : que remarques-tu sur le total à la fin ?", "Choose a pile of at least 2 pebbles, set the cut, then split: the product is written down. Try several ways of cutting: what do you notice about the total at the end?")}</p>
+    ${goalLine(t, `Sépare le tas jusqu’à ce que chaque tas n’ait plus qu’un caillou.`, `Split the pile until every pile has a single pebble.`, "Choisis un tas d’au moins 2 cailloux, règle la coupure, puis sépare : le produit est noté.", "Choose a pile of at least 2 pebbles, set the cut, then split: the product is written down.")}
     <div class="cl-grid cl-piles" id="pl-piles" role="group" aria-label="${t("Tas de cailloux", "Piles of pebbles")}"></div>
     <div class="act-controls"><label class="act-field" for="pl-cut"><span class="act-label">${t("Coupure", "Cut")} <output id="pl-cutout"></output></span><input id="pl-cut" type="range" min="1" max="2" step="1" value="1"></label>
       <button class="btn btn-primary" id="pl-split" type="button">${t("Séparer", "Split")}</button><button class="btn btn-secondary" id="pl-rand" type="button">${t("Tout séparer au hasard", "Split everything at random")}</button><button class="btn-quiet" id="pl-reset" type="button">${t("Recommencer", "Restart")}</button></div>

@@ -4,7 +4,7 @@
 const caf = (id) => globalThis.cancelAnimationFrame?.(id);
 import { bridgeTimes, bridgeBest } from "./maths.js";
 import { makeSoldier, easeInOut, seg, lerp } from "../common/scene-kit.js";
-import { svgEl } from "../common/kit.js";
+import { svgEl, goalLine } from "../common/kit.js";
 import { nightBridge, makeLantern } from "./art.js";
 import { LOOKS, slotX, LAMP_REST, WAIT_Y, LANE_Y, L, R } from "./solution.js";
 
@@ -16,7 +16,7 @@ export function activity(root, { t, q, reduced }) {
   let side, torch, elapsed, hist, sel, anim = null, raf = 0, msg = "";
   const reset = () => { side = [0, 0, 0, 0]; torch = 0; elapsed = 0; hist = []; sel = new Set(); anim = null; };
   root.innerHTML = `
-    <p class="act-help">${t("Touche une ou deux personnes du côté de la lampe, puis fais-les traverser le pont : le temps compté est celui du plus lent.", "Tap one or two people on the lamp's side, then send them across the bridge: the time counted is the slower one's.")}</p>
+    ${goalLine(t, `Fais passer les quatre soldats de l’autre côté du pont.`, `Get all four soldiers across the bridge.`, "Touche une ou deux personnes du côté de la lampe, puis fais-les traverser le pont : le temps compté est celui du plus lent.", "Tap one or two people on the lamp's side, then send them across the bridge: the time counted is the slower one's.")}
     <svg class="act-svg br-night" viewBox="0 0 520 300" role="group" aria-label="${t("Quatre soldats, une lampe, un pont", "Four soldiers, one lamp, one bridge")}"></svg>
     <div class="act-buttons"><button class="btn btn-primary" id="br-go" type="button">${t("Faire traverser", "Send across")}</button><button class="btn-quiet" id="br-undo" type="button">${t("Annuler", "Undo")}</button><button class="btn-quiet" id="br-reset" type="button">${t("Recommencer", "Restart")}</button></div>
     <p class="act-readout" id="br-read" role="status" aria-live="polite"></p>

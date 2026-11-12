@@ -333,7 +333,7 @@ with sync_playwright() as p:
     assert page.locator('.ag-guard').count() == 1 and '100 %' in page.locator('#ag-read').inner_text(), 'one guard watches a convex gallery'
     page.locator('#ag-m-vertex').click(); assert page.locator('.ag-vertex').count() == 12, 'vertices can be moved'
     page.locator('#ag-random').click(); assert page.locator('.ag-guard').count() == 0, 'a new gallery starts without guards'
-    assert page.locator('#original').count() == 1, 'the original question is shown above the checkable one'
+    assert page.locator('#original').count() == 1 and not page.locator('#original').is_visible(), 'the original statement is in a closed disclosure'
     page.goto(BASE+'/#challenges/eggs')
     page.locator('.floor[data-f="50"]').click()
     assert page.locator('#eg-read strong').first.inner_text() == '1'

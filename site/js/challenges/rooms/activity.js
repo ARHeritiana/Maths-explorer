@@ -1,5 +1,5 @@
 const caf = (id) => globalThis.cancelAnimationFrame?.(id);
-import { svgEl, onHintAction, makeCtx } from "../common/kit.js";
+import { svgEl, onHintAction, makeCtx, goalLine } from "../common/kit.js";
 import { makeSoldier, easeInOut } from "../common/scene-kit.js";
 import { colour } from "../common/kit.js";
 import { ROOM_NAMES, eulerCriteria } from "./maths.js";
@@ -11,7 +11,7 @@ import { HOUSE, ROOM_RECTS, STAND, DOORS, doorway, standAfter, ringRoute } from 
 export function activity(root, { t, q, reduced }) {
   const doors = (q.layout === "closed-door" ? DOORS.slice(1) : DOORS), edges = edgesFor(q), calm = () => (typeof reduced === "function" ? reduced() : !!reduced);
   const state = { closed: new Set(), walk: [], at: null, stand: STAND[5] }; let level = 0, raf = 0, moving = false, msg = "";
-  root.innerHTML = `<p class="act-help">${t("Voici le plan d’une maison : cinq pièces A à E et l’extérieur O. Touche une pièce (ou l’extérieur) pour y poser le promeneur, puis une porte : il la traverse. Passe une fois par chaque porte. En mode « fermer des portes », touche une porte pour la fermer ou la rouvrir.", "Here is the plan of a house: five rooms A to E and the outside O. Tap a room (or the outside) to put the walker there, then a door: he walks through it. Pass through every door exactly once. In “close doors” mode, tap a door to close or reopen it.")}</p>
+  root.innerHTML = `${goalLine(t, `Passe une fois par chaque porte.`, `Go through every door exactly once.`, "Voici le plan d’une maison : cinq pièces A à E et l’extérieur O. Touche une pièce (ou l’extérieur) pour y poser le promeneur, puis une porte : il la traverse. Passe une fois par chaque porte. En mode « fermer des portes », touche une porte pour la fermer ou la rouvrir.", "Here is the plan of a house: five rooms A to E and the outside O. Tap a room (or the outside) to put the walker there, then a door: he walks through it. Pass through every door exactly once. In “close doors” mode, tap a door to close or reopen it.")}
     <label>${t("Mode", "Mode")} <select data-mode><option value="walk">${t("Marcher", "Walk")}</option><option value="edit">${t("Fermer des portes", "Close doors")}</option></select></label>
     <svg class="act-svg" viewBox="0 0 520 350" role="group" aria-label="${t("Plan de la maison", "House plan")}"></svg>
     <div class="act-controls"><button class="btn-quiet" type="button" data-undo>${t("Annuler une porte", "Undo a door")}</button><button class="btn-quiet" type="button" data-restart>${t("Recommencer", "Start over")}</button><button class="btn-quiet" type="button" data-plan>${t("Rétablir le plan", "Restore the plan")}</button></div>

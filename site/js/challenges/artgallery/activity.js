@@ -1,6 +1,6 @@
 // Hands-on activity of the artgallery challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { pointInPolygon, visibility, triangulate, threeColour } from "./maths.js";
-import { lockTouch, onHintAction, svgEl, colour, toLocal } from "../common/kit.js";
+import { lockTouch, onHintAction, svgEl, colour, toLocal, goalLine } from "../common/kit.js";
 
 export const GW = 20, GH = 12;
 
@@ -73,7 +73,7 @@ export function activity(root, { t, q }) {
   const guards = [];
   let drag = null, sel = -1, mode = "guard", best = 0, aid = 0;   // aid: 0 none, 1 triangulation (hint 1), 2 plus 3-colouring (hint 2)
   root.innerHTML = `
-    <p class="act-help">${t(`Une galerie à ${N} côtés. Pose des gardiens (touche la galerie ; glisse un gardien pour le déplacer, touche-le pour l’enlever). Puis change de galerie ou déforme celle-ci : glisse un sommet, tant que les murs ne se croisent pas.`, `A gallery with ${N} sides. Place guards (tap the gallery; drag a guard to move it, tap it to remove it). Then change the gallery or reshape this one: drag a vertex as long as the walls do not cross.`)}</p>
+    ${goalLine(t, `Surveille toute la galerie avec le moins de gardiens possible.`, `Watch the whole gallery with as few guards as possible.`, `Une galerie à ${N} côtés. Pose des gardiens (touche la galerie ; glisse un gardien pour le déplacer, touche-le pour l’enlever). Puis change de galerie ou déforme celle-ci : glisse un sommet, tant que les murs ne se croisent pas.`, `A gallery with ${N} sides. Place guards (tap the gallery; drag a guard to move it, tap it to remove it). Then change the gallery or reshape this one: drag a vertex as long as the walls do not cross.`)}
     <div class="act-controls" role="group" aria-label="${t("Que déplacer ?", "What to move?")}">
       <button class="btn btn-secondary" id="ag-m-guard" type="button" aria-pressed="true">${t("Gardiens", "Guards")}</button>
       <button class="btn btn-secondary" id="ag-m-vertex" type="button" aria-pressed="false">${t("Sommets", "Vertices")}</button>

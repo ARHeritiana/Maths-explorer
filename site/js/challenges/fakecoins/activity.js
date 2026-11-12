@@ -1,5 +1,5 @@
 // Hands-on activity of the fakecoins challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { onHintAction, MINUS, clamp } from "../common/kit.js";
+import { onHintAction, MINUS, clamp, goalLine } from "../common/kit.js";
 import { minSample, identifies } from "./maths.js";
 
 /* ------------------------------------------------------------ fake coins */
@@ -8,7 +8,7 @@ export function activity(root, { t, q }) {
   let counts, fake, weighed, reading, solved;
   const fresh = () => { counts = Array(N).fill(0); fake = Math.floor(Math.random() * N); weighed = 0; reading = null; solved = false; };
   root.innerHTML = `
-    <p class="act-help">${t("Choisis combien de pièces prendre dans chaque pile, puis pèse (les vraies pèsent 10 g, les fausses 9 g). Un seul pesage est autorisé dans l’énoncé : ici on les compte. Ensuite, désigne la pile fausse.", "Choose how many coins to take from each pile, then weigh (genuine coins weigh 10 g, fake ones 9 g). The problem allows one weighing: here they are counted. Then name the fake pile.")}</p>
+    ${goalLine(t, `Trouve la pile de fausses pièces.`, `Find the pile of fake coins.`, "Choisis combien de pièces prendre dans chaque pile, puis pèse (les vraies pèsent 10 g, les fausses 9 g). Un seul pesage est autorisé dans l’énoncé : ici on les compte. Ensuite, désigne la pile fausse.", "Choose how many coins to take from each pile, then weigh (genuine coins weigh 10 g, fake ones 9 g). The problem allows one weighing: here they are counted. Then name the fake pile.")}
     <div class="fc-piles" id="fc-piles"></div>
     <div class="act-buttons" style="margin-top:10px"><button class="btn btn-primary" id="fc-weigh" type="button">${t("Peser", "Weigh")}</button><button class="btn-quiet" id="fc-zero" type="button">${t("Tout à zéro", "All to zero")}</button><button class="btn-quiet" id="fc-new" type="button">${t("Nouvelle pile fausse", "New fake pile")}</button></div>
     <p class="act-readout" id="fc-read" role="status" aria-live="polite"></p>

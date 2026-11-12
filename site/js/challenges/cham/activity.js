@@ -1,7 +1,7 @@
 // Hands-on activity of the cham challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { makeChameleon } from "./art.js";
 import { chamSet, chamMin } from "./maths.js";
-import { colour, onHintAction } from "../common/kit.js";
+import { colour, onHintAction, goalLine } from "../common/kit.js";
 
 /* ------------------------------------------------------------ chameleons */
 export function activity(root, { t, q }) {
@@ -9,7 +9,7 @@ export function activity(root, { t, q }) {
   let s, hist, level = 0;   // 0: nothing, 1: raw differences (hint 1), 2: differences modulo 3 (hint 2)
   const reset = () => { s = [...start]; hist = []; };
   root.innerHTML = `
-    <p class="act-help">${t("Choisis quelles couleurs se rencontrent : les deux prennent la troisième couleur. Peux-tu rendre tous les caméléons de la même couleur ?", "Choose which colours meet: both take the third colour. Can you make all the chameleons the same colour?")}</p>
+    ${goalLine(t, `Rends tous les caméléons de la même couleur.`, `Make all the chameleons the same colour.`, "Choisis quelles couleurs se rencontrent : les deux prennent la troisième couleur.", "Choose which colours meet: both take the third colour.")}
     <div class="cm-bars" id="cm-bars" aria-hidden="true"></div>
     <div class="act-buttons" id="cm-btns" role="group" aria-label="${t("Rencontres", "Meetings")}"></div>
     <div class="act-controls"><button class="btn-quiet" id="cm-undo" type="button">${t("Annuler", "Undo")}</button><button class="btn-quiet" id="cm-reset" type="button">${t("Recommencer", "Restart")}</button></div>

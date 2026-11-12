@@ -1,5 +1,5 @@
 // Hands-on activity of the merge challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { onHintAction } from "../common/kit.js";
+import { onHintAction, goalLine } from "../common/kit.js";
 import { mergeFinal, mergeProduct } from "./maths.js";
 
 /* ----------------------------------------------------------------- merge */
@@ -8,7 +8,7 @@ export function activity(root, { t, q }) {
   let nums, history, sel, showInv = false;
   const reset = () => { nums = Array.from({ length: N }, (_, i) => i + 1); history = []; sel = []; };
   root.innerHTML = `
-    <p class="act-help">${t("Touche deux nombres pour les remplacer par a + b + ab.", "Tap two numbers to replace them by a + b + ab.")}</p>
+    ${goalLine(t, `Réduis les nombres à un seul.`, `Reduce the numbers to a single one.`, "Touche deux nombres pour les remplacer par a + b + ab.", "Tap two numbers to replace them by a + b + ab.")}
     <div class="cl-grid cl-merge" id="mg-board" role="group" aria-label="${t("Nombres au tableau", "Numbers on the board")}"></div>
     <div class="act-controls"><button class="btn btn-secondary" id="mg-rand" type="button">${t("Fusion au hasard", "Random merge")}</button><button class="btn-quiet" id="mg-undo" type="button">${t("Annuler", "Undo")}</button><button class="btn-quiet" id="mg-reset" type="button">${t("Recommencer", "Restart")}</button></div>
     <p class="act-readout" id="mg-read" role="status" aria-live="polite"></p>

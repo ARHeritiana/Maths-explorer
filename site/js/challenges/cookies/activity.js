@@ -1,6 +1,7 @@
 // Give identical cookies to distinct children directly. Cookie identities exist only for DOM continuity, never for counting.
 import { onHintAction } from '../common/kit.js';
 import { code, NAMES } from './maths.js';
+import { goalLine } from "../common/kit.js";
 
 const cookieArt = '<svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="17" fill="#d99a51" stroke="#714018" stroke-width="2"/><g fill="#694025"><circle cx="16" cy="15" r="2.7"/><circle cx="28" cy="17" r="2.7"/><circle cx="22" cy="27" r="2.7"/><circle cx="13" cy="27" r="2"/><circle cx="31" cy="29" r="2"/></g></svg>';
 function childArt(i){
@@ -21,7 +22,7 @@ export function activity(root,{t,q}){
   const n=q.n,k=q.k,min=q.rule==='one'?1:0,abort=new root.ownerDocument.defaultView.AbortController();
   const on=(el,type,fn,options={})=>el.addEventListener(type,fn,{...options,signal:abort.signal});
   let owners=Array(n).fill(-1),found=new Set(),level=0,notice='',selected=null,drag=null,ghost=null,suppressClick=false;
-  root.innerHTML=`<p class="act-help">${t('Glisse les biscuits vers les enfants. Tu peux les déplacer d’un enfant à l’autre ou les remettre dans la réserve. Ou touche un biscuit, puis un enfant. Au clavier : Entrée pour choisir, Tab puis Entrée pour donner, Échap pour annuler.','Drag cookies to the children. Move them between children or return them to the tray. Or tap a cookie, then a child. Keyboard: Enter to select, Tab then Enter to give, Escape to cancel.')}</p>
+  root.innerHTML=`${goalLine(t, `Donne tous les biscuits aux enfants.`, `Give all the cookies to the children.`, 'Glisse les biscuits vers les enfants. Tu peux les déplacer d’un enfant à l’autre ou les remettre dans la réserve. Ou touche un biscuit, puis un enfant. Au clavier : Entrée pour choisir, Tab puis Entrée pour donner, Échap pour annuler.','Drag cookies to the children. Move them between children or return them to the tray. Or tap a cookie, then a child. Keyboard: Enter to select, Tab then Enter to give, Escape to cancel.')}
     <div class="ck-sharing" role="group" aria-label="${t('Partager les biscuits','Share the cookies')}">
       <section class="ck-tray" data-cookie-destination="-1"><button type="button" class="ck-return btn-quiet">${t('Réserve','Tray')}</button><div class="ck-pile" data-pile="-1"></div></section>
       <div class="ck-children">${Array.from({length:k},(_,i)=>`<section class="ck-recipient" data-cookie-destination="${i}"><button type="button" class="ck-child" data-child="${i}">${childArt(i)}<span>${NAMES[i]} · <output data-count="${i}">0</output></span></button><div class="ck-pile" data-pile="${i}"></div></section>`).join('')}</div>

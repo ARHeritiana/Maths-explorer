@@ -2,7 +2,7 @@
 // The network is drawn as the river map of the animated solution (islands, wooden bridges, a walker who really crosses the
 // bridge you tap), so the graph itself is not shown: it is what the learner has to see in the map.
 const caf = (id) => globalThis.cancelAnimationFrame?.(id);
-import { onHintAction, svgEl, makeCtx } from "../common/kit.js";
+import { onHintAction, svgEl, makeCtx, goalLine } from "../common/kit.js";
 import { graphFor, layoutOf, bridgeGeom } from "./maths.js";
 import { scene } from "./solution.js";
 import { easeInOut } from "../common/scene-kit.js";
@@ -14,7 +14,7 @@ export function activity(root, { t, q, reduced, lang }) {
   const calm = () => (typeof reduced === "function" ? reduced() : !!reduced);
   let showDeg = false, raf = 0, moving = false, msg = "";   // hint 1: the number of bridges at each district
   root.innerHTML = `
-    <p class="act-help">${t(`${graph.names.length} quartiers (${graph.names.join(", ")}) reliés par ${E} ponts. Touche un quartier pour y poser le promeneur, puis un pont qui en part : il le traverse. Mode retrait : touche un pont pour le supprimer ou le rétablir.`, `${graph.names.length} districts (${graph.names.join(", ")}) joined by ${E} bridges. Tap a district to place the walker, then tap a bridge leaving it: the walker crosses it. Removal mode: tap a bridge to remove or restore it.`)}</p>
+    ${goalLine(t, `Traverse chaque pont une seule fois.`, `Cross every bridge exactly once.`, `${graph.names.length} quartiers (${graph.names.join(", ")}) reliés par ${E} ponts. Touche un quartier pour y poser le promeneur, puis un pont qui en part : il le traverse. Mode retrait : touche un pont pour le supprimer ou le rétablir.`, `${graph.names.length} districts (${graph.names.join(", ")}) joined by ${E} bridges. Tap a district to place the walker, then tap a bridge leaving it: the walker crosses it. Removal mode: tap a bridge to remove or restore it.`)}
     <svg class="act-svg" viewBox="0 0 ${W} ${H}" role="group" aria-label="${t("Carte des quartiers et des ponts", "Map of the districts and bridges")}"></svg>
     <div class="act-controls">
       <fieldset class="act-choice"><legend>${t("Mode", "Mode")}</legend>

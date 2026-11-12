@@ -1,4 +1,5 @@
-// Hands-on activity of the eggs challenge: the learner tries, fails and notices; it never states the answer or the method.
+
+import { goalLine } from "../common/kit.js";// Hands-on activity of the eggs challenge: the learner tries, fails and notices; it never states the answer or the method.
 
 /* ------------------------------------------------------------------ eggs */
 export function activity(root, { t, q }) {
@@ -9,7 +10,7 @@ export function activity(root, { t, q }) {
     left = EGGS; drops = 0; log = []; lo = 0; hi = FLOORS + 1; done = false;
   };
   root.innerHTML = `
-    <p class="act-help">${t(`Touche un étage pour y lâcher un œuf. Un œuf intact peut resservir, un œuf brisé non. Tu as ${EGGS} œufs. Cherche l’étage critique : le plus haut étage d’où un œuf ne se brise pas (0 s’il se brise dès l’étage 1).`, `Tap a floor to drop an egg from it. An intact egg can be reused, a broken one cannot. You have ${EGGS} eggs. Find the critical floor: the highest floor from which an egg does not break (0 if it breaks from floor 1).`)}</p>
+    ${goalLine(t, `Trouve l’étage critique.`, `Find the critical floor.`, `Touche un étage pour y lâcher un œuf. Un œuf intact peut resservir, un œuf brisé non. Tu as ${EGGS} œufs. Cherche l’étage critique : le plus haut étage d’où un œuf ne se brise pas (0 s’il se brise dès l’étage 1).`, `Tap a floor to drop an egg from it. An intact egg can be reused, a broken one cannot. You have ${EGGS} eggs. Find the critical floor: the highest floor from which an egg does not break (0 if it breaks from floor 1).`)}
     <div class="egg-status" id="eg-status" aria-hidden="true"></div>
     <div class="egg-grid" id="eg-grid" role="group" aria-label="${t(`Immeuble de ${FLOORS} étages`, `Building with ${FLOORS} floors`)}"></div>
     <div class="act-controls">

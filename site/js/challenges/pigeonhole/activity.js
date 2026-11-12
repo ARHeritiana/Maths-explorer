@@ -1,6 +1,6 @@
 // Hands-on activity of the pigeonhole challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { formatNumber } from "../../math.js";
-import { MINUS, onHintAction, colour } from "../common/kit.js";
+import { MINUS, onHintAction, colour, goalLine } from "../common/kit.js";
 
 export const fmtFor = (lang) => (n, d = 2) => formatNumber(Math.abs(n) < 1e-12 ? 0 : n, lang, d).replace(/-/g, MINUS);
 
@@ -11,7 +11,7 @@ export function activity(root, { t, lang, q }) {
   const sel = new Set();
   let best = 0;
   root.innerHTML = `
-    <p class="act-help">${t(`Choisis des nombres en les touchant. Le but : en choisir le plus possible sans qu’aucune paire n’ait une différence multiple de ${MOD}.`, `Pick numbers by tapping them. The aim: pick as many as you can without any pair having a difference that is a multiple of ${MOD}.`)}</p>
+    ${goalLine(t, `Choisis le plus de nombres possible sans qu’aucune paire n’ait une différence multiple de ${MOD}.`, `Pick as many numbers as you can without any pair having a difference that is a multiple of ${MOD}.`, `Choisis des nombres en les touchant. Le but : en choisir le plus possible sans qu’aucune paire n’ait une différence multiple de ${MOD}.`, `Pick numbers by tapping them. The aim: pick as many as you can without any pair having a difference that is a multiple of ${MOD}.`)}
     <div class="pick-grid" id="pg-grid" role="group" aria-label="${t("Entiers de 1 à 60", "Integers from 1 to 60")}">${Array.from({ length: MAX }, (_, i) => `<button type="button" class="pick" data-n="${i + 1}" aria-pressed="false">${i + 1}</button>`).join("")}</div>
     <p class="act-readout" id="pg-read" role="status" aria-live="polite"></p>
     <div class="act-controls">

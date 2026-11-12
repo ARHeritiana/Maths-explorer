@@ -1,5 +1,5 @@
 // Hands-on activity of the lighteggs challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { svgEl } from "../common/kit.js";
+import { svgEl, goalLine } from "../common/kit.js";
 import { makeEgg } from "../common/scene-props.js";
 import { eggWeighings } from "./maths.js";
 
@@ -9,7 +9,7 @@ export function activity(root, { t, q }) {
   let light, state, used, mode, over;   // state: 0 aside, 1 left pan, 2 right pan, 3 set aside (cleared)
   const fresh = () => { light = Math.floor(Math.random() * N); state = Array(N).fill(0); used = 0; mode = "weigh"; over = false; };
   root.innerHTML = `
-    <p class="act-help">${t("Touche un œuf pour le changer de place : à côté, plateau de gauche, plateau de droite, ou écarté (hors de cause). Pèse, puis désigne l’œuf abîmé, plus léger que les autres.", "Tap an egg to move it: aside, left pan, right pan, or cleared (ruled out). Weigh, then name the spoiled egg, which is lighter than the others.")}</p>
+    ${goalLine(t, `Trouve l’œuf abîmé, le plus léger.`, `Find the spoiled egg, the lighter one.`, "Touche un œuf pour le changer de place : à côté, plateau de gauche, plateau de droite, ou écarté (hors de cause). Pèse, puis désigne l’œuf abîmé, plus léger que les autres.", "Tap an egg to move it: aside, left pan, right pan, or cleared (ruled out). Weigh, then name the spoiled egg, which is lighter than the others.")}
     <svg class="act-svg" id="eg-scale" style="max-width:360px" viewBox="0 0 360 120" role="img" aria-label="${t("Balance", "Balance")}"></svg>
     <div class="cl-grid cl-eggs" id="eg-grid" role="group" aria-label="${t("Les œufs", "The eggs")}"></div>
     <div class="act-buttons" style="margin-top:10px"><button class="btn btn-primary" id="eg-weigh" type="button">${t("Peser", "Weigh")}</button><button class="btn btn-secondary" id="eg-name" type="button" aria-pressed="false">${t("Désigner l’œuf abîmé", "Name the spoiled egg")}</button><button class="btn-quiet" id="eg-new" type="button">${t("Nouvelle partie", "New game")}</button></div>

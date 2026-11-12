@@ -1,6 +1,6 @@
 // Hands-on activity of the star challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { f1 } from "../common/helpers.js";
-import { svgEl, colour, clamp } from "../common/kit.js";
+import { svgEl, colour, clamp, goalLine } from "../common/kit.js";
 import { starK, starSumDegrees } from "./maths.js";
 
 export const TAU = Math.PI * 2;
@@ -10,7 +10,7 @@ export function activity(root, { t, q }) {
   let n = q.n, k = starK(q.n, q.k), irregular = false, angles = [];
   const regular = () => Array.from({ length: n }, (_, i) => (TAU * i) / n);
   root.innerHTML = `
-    <p class="act-help">${t("Choisis le nombre de points et le saut. Les angles aux pointes sont mesurés à partir des coordonnées. Le bouton « Points au hasard » déplace les points sur le cercle.", "Choose the number of points and the skip. The tip angles are measured from the coordinates. The “Random points” button moves the points on the circle.")}</p>
+    ${goalLine(t, `Mesure la somme des angles aux pointes.`, `Measure the sum of the tip angles.`, "Choisis le nombre de points et le saut. Le bouton « Points au hasard » déplace les points sur le cercle.", "Choose the number of points and the skip. The “Random points” button moves the points on the circle.")}
     <svg class="act-svg" viewBox="0 0 520 320" role="img" aria-label="${t("Étoile à n branches", "Star with n points")}"></svg>
     <div class="act-controls">
       <label class="act-field" for="st-n"><span class="act-label">${t("Points", "Points")} <output id="st-nout"></output></span><input id="st-n" type="range" min="5" max="13" step="1" value="${n}"></label>

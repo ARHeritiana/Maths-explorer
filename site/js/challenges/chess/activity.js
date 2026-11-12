@@ -1,5 +1,5 @@
 // Hands-on activity of the chess challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { lockTouch, svgEl, toLocal, clamp } from "../common/kit.js";
+import { lockTouch, svgEl, toLocal, clamp, goalLine } from "../common/kit.js";
 
 /* --------------------------------------------------------------- dominoes */
 export function activity(root, { t, reduced, q }) {
@@ -19,7 +19,7 @@ export function activity(root, { t, reduced, q }) {
   let focused = false;
 
   root.innerHTML = `
-    <p class="act-help">${t("Fais glisser un domino depuis la réserve jusqu’au plateau. Touche un domino posé pour le tourner, ou fais-le glisser hors du plateau pour l’enlever. Sur téléphone, le bouton « Toucher un domino » permet aussi de les enlever d’un simple toucher. Au clavier : flèches, Entrée pour poser, Suppr pour enlever.", "Drag a domino from the supply onto the board. Tap a placed domino to turn it, or drag it off the board to remove it. On a phone, the “Tapping a domino” button also lets you remove one with a simple tap. With a keyboard: arrows, Enter to place, Delete to remove.")}</p>
+    ${goalLine(t, `Recouvre le plateau avec des dominos.`, `Cover the board with dominoes.`, "Fais glisser un domino depuis la réserve jusqu’au plateau. Touche un domino posé pour le tourner, ou fais-le glisser hors du plateau pour l’enlever. Sur téléphone, le bouton « Toucher un domino » permet aussi de les enlever d’un simple toucher. Au clavier : flèches, Entrée pour poser, Suppr pour enlever.", "Drag a domino from the supply onto the board. Tap a placed domino to turn it, or drag it off the board to remove it. On a phone, the “Tapping a domino” button also lets you remove one with a simple tap. With a keyboard: arrows, Enter to place, Delete to remove.")}
     <svg class="act-svg dom-svg" viewBox="0 0 ${W} ${H}" tabindex="0" role="application" aria-label="${t("Plateau de dominos", "Domino board")}"></svg>
     <div class="act-controls">
       <button class="btn btn-secondary" id="dm-tap" type="button" aria-pressed="false">${t("Toucher un domino : le tourner", "Tapping a domino: turn it")}</button>

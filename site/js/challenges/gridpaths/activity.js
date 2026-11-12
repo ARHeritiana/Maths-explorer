@@ -1,5 +1,5 @@
 // Hands-on activity of the gridpaths challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { onHintAction, svgEl, colour } from "../common/kit.js";
+import { onHintAction, svgEl, colour, goalLine } from "../common/kit.js";
 import { pascalGrid, gridPaths } from "./maths.js";
 
 /* ------------------------------------------------------------ grid paths */
@@ -8,7 +8,7 @@ export function activity(root, { t, q }) {
   let walk = [], counts = false;
   const px = (i) => X0 + i * DX, py = (j) => Y0 + (n - j) * DY, g = pascalGrid(m, n);
   root.innerHTML = `
-    <p class="act-help">${t("Avance du coin en bas à gauche (A) jusqu’au coin en haut à droite (B) avec les boutons ou en touchant le prochain point. Chaque chemin complet est mémorisé : combien de chemins différents trouves-tu ?", "Walk from the bottom-left corner (A) to the top-right corner (B) with the buttons or by tapping the next point. Every complete path is remembered: how many different paths can you find?")}</p>
+    ${goalLine(t, `Va du coin A au coin B.`, `Get from corner A to corner B.`, "Avance du coin en bas à gauche (A) jusqu’au coin en haut à droite (B) avec les boutons ou en touchant le prochain point.", "Walk from the bottom-left corner (A) to the top-right corner (B) with the buttons or by tapping the next point.")}
     <svg class="act-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${t("Quadrillage", "Grid")}"></svg>
     <div class="act-buttons">
       <button class="btn btn-secondary" id="gp-r" type="button">${t("Droite →", "Right →")}</button>

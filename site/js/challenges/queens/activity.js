@@ -1,5 +1,5 @@
 // Hands-on activity of the queens challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { onHintAction } from "../common/kit.js";
+import { onHintAction, goalLine } from "../common/kit.js";
 import { queensK, QUEENS, unattacked } from "./maths.js";
 
 /* ---------------------------------------------------------------- queens */
@@ -7,7 +7,7 @@ export function activity(root, { t, q }) {
   const n = q.n, k = queensK(n, q.k), [best, example] = QUEENS[`${n},${k}`], queensSet = new Set();
   let peeked = false, record = 0;
   root.innerHTML = `
-    <p class="act-help">${t(`Touche une case pour poser ou retirer une dame (${k} au plus). Les cases vertes sont libres : ni occupées ni attaquées. Une dame est arrêtée par la première pièce rencontrée.`, `Tap a square to place or remove a queen (${k} at most). Green squares are free: neither occupied nor attacked. A queen's line of sight stops at the first piece.`)}</p>
+    ${goalLine(t, `Laisse le plus de cases libres possible.`, `Leave as many squares free as you can.`, `Touche une case pour poser ou retirer une dame (${k} au plus). Une dame est arrêtée par la première pièce rencontrée.`, `Tap a square to place or remove a queen (${k} at most). A queen's line of sight stops at the first piece.`)}
     <div class="qn-board" id="qn-board" style="--n:${n}" role="grid" aria-label="${t("Échiquier", "Chessboard")}"></div>
     <div class="act-controls"><button class="btn-quiet" id="qn-clear" type="button">${t("Tout retirer", "Remove all")}</button></div>
     <p class="act-readout" id="qn-read" role="status" aria-live="polite"></p>`;

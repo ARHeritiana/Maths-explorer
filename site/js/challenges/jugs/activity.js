@@ -1,6 +1,6 @@
 // Hands-on activity of the jugs challenge: fill, empty and pour two jugs until one holds the target amount. Hint actions list
 // the states reached and draw the table of states (x, y) with the path followed; the activity never states the method.
-import { colour, onHintAction, svgEl, toLocal, lockTouch } from "../common/kit.js";
+import { colour, onHintAction, svgEl, toLocal, lockTouch, goalLine } from "../common/kit.js";
 import { parseJugs, apply } from "./maths.js";
 
 export function activity(root, { t, q, reduced: reducedPref }) {
@@ -9,7 +9,7 @@ export function activity(root, { t, q, reduced: reducedPref }) {
   let st, hist, level = 0, selected = -1, drag = null, status = '';
   const reset = () => { st = [0, 0]; hist = [[0, 0]]; };
   root.innerHTML = `
-    <p class="act-help">${t(`Obtiens ${target} L. Glisse un bidon vers le robinet pour le remplir, l’évier pour le vider, ou l’autre bidon pour transvaser. Tu peux aussi toucher un bidon, puis sa destination. Clavier : Tab et Entrée sur ces mêmes objets.`, `Get ${target} L. Drag a jug to the tap to fill it, the sink to empty it, or the other jug to pour. You can also tap a jug, then its destination. Keyboard: Tab and Enter on these same objects.`)}</p>
+    ${goalLine(t, `Obtiens ${target} L.`, `Get ${target} L.`, `Obtiens ${target} L. Glisse un bidon vers le robinet pour le remplir, l’évier pour le vider, ou l’autre bidon pour transvaser. Tu peux aussi toucher un bidon, puis sa destination. Clavier : Tab et Entrée sur ces mêmes objets.`, `Get ${target} L. Drag a jug to the tap to fill it, the sink to empty it, or the other jug to pour. You can also tap a jug, then its destination. Keyboard: Tab and Enter on these same objects.`)}
     <svg class="act-svg jg-svg" viewBox="0 0 100 88" role="group" aria-label="${t("Bidons interactifs, robinet et évier", "Interactive jugs, tap and sink")}"></svg>
     <div class="act-controls"><button class="btn-quiet" id="jg-undo" type="button">${t("Annuler", "Undo")}</button><button class="btn-quiet" id="jg-reset" type="button">${t("Recommencer", "Restart")}</button></div>
     <p class="act-readout" id="jg-read" role="status" aria-live="polite"></p>

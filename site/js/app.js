@@ -36,6 +36,7 @@ import { mountExperiment } from "./lab/mount.js";
 import { resolveRef, labRef } from "./lab/registry.js";
 import { indexPage as labIndexPage, experimentPage, bindLabIndex } from "./lab/page.js";
 import { isAnswer, formatNumber } from "./math.js";
+import { cartoonPress } from "./challenges/common/cartoon.js";
 import {discoveryIndex,discoveryPage,bindDiscovery,discoveryContext,isTopicRoute} from './discovery.js';
 import {historyPage,bindHistory,isHistoryRoute,mathematiciansTimelineUrl} from './history.js';
 import * as teacherState from './teacher-state.js';
@@ -484,7 +485,7 @@ function variationPanel(c) {
 }
 function challengeDetail(c) {
   const v = variantText(c, paramsOf(c.id));
-  return `<main id="main" class="page challenge-detail" tabindex="-1"><a class="backlink" href="#challenges">${pair("Tous les défis", "All challenges")}</a><div class="challenge-columns"><article><span class="section-kicker">${t(c.topic)} · ${c.minutes} min</span><h1>${t(c.title)}</h1>${v.original ? `<span class="section-kicker check-kicker">${pair("Énoncé et version vérifiable ici", "Statement and the version checked here")}</span>` : ""}<p class="problem" id="problem">${t(v.prompt)}</p>${v.original ? `<section class="original" aria-labelledby="original-title"><span class="section-kicker" id="original-title">${pair("Question d’origine · à traiter seul ou avec un enseignant, le site ne peut pas la vérifier", "Original question · to work out alone or with a teacher, the site cannot check it")}</span><p class="problem original-q" id="original">${t(v.original)}</p></section>` : ""}${variationPanel(c)}${hasActivity(c.id) ? `<section class="activity" aria-labelledby="activity-title"><h2 id="activity-title">${pair("À toi d’explorer", "Explore it yourself")}</h2><div id="activity" data-activity="${c.id}"></div></section>` : ""}<form id="challenge-form" data-id="${c.id}"><label for="challenge-answer">${pair("Ta réponse numérique", "Your numerical answer")}</label><div class="answer-row"><input type="text" id="challenge-answer" inputmode="text" required autocomplete="off" placeholder="${pair("Nombre ou fraction", "Number or fraction")}"><button class="primary">${pair("Vérifier", "Check")}</button></div><p id="challenge-feedback" class="feedback" role="status">${completed.has(c.id) ? pair("Tu as déjà trouvé cette réponse. Essaie maintenant de rédiger la preuve.", "You have already found this answer. Now try writing the proof.") : ""}</p></form></article><aside class="hint-panel"><h2>${pair("Un coup de pouce ?", "A little nudge?")}</h2>${v.hints.map((h, i) => `<details><summary>${pair("Indice", "Hint")} ${i + 1}</summary><p data-hint="${i}">${t(h)}</p>${hintAction(c.id, i)}</details>`).join("")}</aside></div>${readAlso(link("challenges", c.id), [], t)}<section class="solution-wide"><details class="solution"><summary>${pair("Voir la solution expliquée", "See the worked solution")}</summary>${hasSolution(c.id) ? `<div id="solution-anim" class="sol-host" data-solution="${c.id}"></div>` : ""}<p id="solution-text">${t(v.solution)}</p><div class="extension"><strong>${pair("Pour aller plus loin", "Take it further")}</strong><p>${t(c.extension)}</p></div></details></section></main>`;
+  return `<main id="main" class="page challenge-detail" tabindex="-1"><a class="backlink" href="#challenges">${pair("Tous les défis", "All challenges")}</a><div class="challenge-columns"><article><span class="section-kicker">${t(c.topic)} · ${c.minutes} min</span><h1>${t(c.title)}</h1><p class="problem" id="problem">${t(v.prompt)}</p>${variationPanel(c)}${hasActivity(c.id) ? `<section class="activity" aria-labelledby="activity-title"><h2 id="activity-title">${pair("À toi d’explorer", "Explore it yourself")}</h2><div id="activity" data-activity="${c.id}"></div></section>` : ""}<form id="challenge-form" data-id="${c.id}"><label for="challenge-answer">${pair("Ta réponse numérique", "Your numerical answer")}</label><div class="answer-row"><input type="text" id="challenge-answer" inputmode="text" required autocomplete="off" placeholder="${pair("Nombre ou fraction", "Number or fraction")}"><button class="primary" type="submit">${pair("Vérifier", "Check")}</button>${VARIANTS[c.id]?.impossible ? `<button class="secondary" type="button" id="challenge-impossible">${pair("Impossible", "Impossible")}</button>` : ""}</div><p id="challenge-feedback" class="feedback" role="status">${completed.has(c.id) ? pair("Tu as déjà trouvé cette réponse. Essaie maintenant de rédiger la preuve.", "You have already found this answer. Now try writing the proof.") : ""}</p></form></article><aside class="hint-panel"><h2>${pair("Un coup de pouce ?", "A little nudge?")}</h2>${v.hints.map((h, i) => `<details><summary>${pair("Indice", "Hint")} ${i + 1}</summary><p data-hint="${i}">${t(h)}</p>${hintAction(c.id, i)}</details>`).join("")}${v.original ? `<details class="original-statement"><summary>${pair("Énoncé d’origine", "Original statement")}</summary><p class="problem original-q" id="original">${t(v.original)}</p><p class="muted">${pair("À traiter seul ou avec un enseignant : le site ne peut pas la vérifier.", "To work out alone or with a teacher: the site cannot check it.")}</p></details>` : ""}</aside></div>${readAlso(link("challenges", c.id), [], t)}<section class="solution-wide"><details class="solution"><summary>${pair("Voir la solution expliquée", "See the worked solution")}</summary>${hasSolution(c.id) ? `<div id="solution-anim" class="sol-host" data-solution="${c.id}"></div>` : ""}<details class="written"><summary>${pair("Version écrite", "Written version")}</summary><p id="solution-text">${t(v.solution)}</p></details><div class="extension"><strong>${pair("Pour aller plus loin", "Take it further")}</strong><p>${t(c.extension)}</p></div></details></section></main>`;
 }
 function bindChallenges() {
   const host = $("#activity"), solHost = $("#solution-anim"), form = $("#challenge-form"), cid = form?.dataset.id;
@@ -502,7 +503,8 @@ function bindChallenges() {
   $(".solution")?.addEventListener("toggle", (e) => (e.target.open ? sol?.start() : sol?.stop()));
   document.querySelectorAll("[data-hint-act]").forEach((b) => b.addEventListener("click", () => document.dispatchEvent(new CustomEvent("challenge-action", { detail: { id: cid, act: b.dataset.hintAct } }))));
   mountAll();
-  const stop = () => { stopActivity(); sol?.stop(); };
+  const stopPress = $("#main") ? cartoonPress($("#main"), reducedMotion, "#challenge-form button, .hint-action, .variation-actions button") : () => {};
+  const stop = () => { stopActivity(); sol?.stop(); stopPress(); };
   if (cid && hasVariants(cid)) {
     const c = challenges.find((x) => x.id === cid);
     const refresh = () => {
@@ -551,10 +553,9 @@ function bindChallenges() {
       $(`[data-filter="${challengeFilter}"]`).focus();
     }),
   );
-  $("#challenge-form")?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const c = challenges.find((x) => x.id === e.target.dataset.id),
-      correct = isAnswer($("#challenge-answer").value, variantText(c, paramsOf(c.id)).answer);
+  // `raw` is what the learner typed, or "0" for the neutral Impossible button (only offered when the answer can be impossible).
+  const check = (raw) => {
+    const c = challenges.find((x) => x.id === cid), correct = isAnswer(raw, variantText(c, paramsOf(c.id)).answer);
     if (correct) {
       completed.add(c.id);
       save();
@@ -564,13 +565,12 @@ function bindChallenges() {
           "C’est la bonne valeur. Maintenant, justifie-la : la solution t’aide à comparer ton raisonnement.",
           "That is the correct value. Now justify it: use the solution to compare your reasoning.",
         )
-      : pair(
-          "Pas encore. Essaie un cas plus simple ou ouvre le premier indice.",
-          "Not yet. Try a simpler case or open the first hint.",
-        );
+      : pair("Pas encore.", "Not yet.");
     $("#challenge-feedback").classList.toggle("success", correct);
     illuminateFeedback($("#challenge-feedback"), reducedMotion);
-  });
+  };
+  $("#challenge-form")?.addEventListener("submit", (e) => { e.preventDefault(); check($("#challenge-answer").value); });
+  $("#challenge-impossible")?.addEventListener("click", () => { $("#challenge-answer").value = ""; check("0"); });
   return stop;
 }
 

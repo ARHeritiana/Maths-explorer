@@ -30,7 +30,8 @@ scene-level tap/drag actions have keyboard equivalents, and camera gestures canc
 
 | File | Holds |
 |---|---|
-| `kit.js` | `svgEl`, `toLocal`, `clamp`, `colour(i)` (card colours `--c1..--c8`), `lockTouch`, `onHintAction`, `makeCtx`, `MINUS` |
+| `cartoon.js` | pop/squash press feedback: `PRESS`, `installCartoon`, `pop`, `cartoonPress` |
+| `kit.js` | `goalLine`, `svgEl`, `toLocal`, `clamp`, `colour(i)` (card colours `--c1..--c8`), `lockTouch`, `onHintAction`, `makeCtx`, `MINUS` |
 | `helpers.js` | bilingual pair `P`, easing (`clamp01`, `ez`, `seg`, `lerp`), SVG text styles, parameter builders `int`, `choice` |
 | `icon.js` | emblem frame `svg`, `soft`, `dot` |
 | `player.js` | `playSolution(def, root, options)`: the solution player (steps, play, captions, `seek`) |
@@ -48,3 +49,5 @@ scene-level tap/drag actions have keyboard equivalents, and camera gestures canc
 Update of 31 October 2026: the activities are played on the scenes of their solutions. `rooms/art.js` is the floor plan (rooms, 16 doors, the walker's way through a door and round the house); `konigsberg/activity.js` reuses the river map and walker of `solution.js`; `bridge/activity.js` is played on the night bridge with the lantern; `horses/activity.js` runs its races on a track with the solution's horses; the Gauss solution writes the algebra line by line beside the staircase.
 
 Update of 12 November 2026: `nails/` is a pure-logic challenge with thin DOM. `rope-path.js` is the pure geometry of the rope (one arch per turn; a join between two arches is straight along the nail line when no nail lies between them, otherwise it goes under the nails), `timeline.js` the pure timeline of a pulled nail (`timeline`, `poseAt`, `poseOf`, `settled`), `gesture.js` the pure model of the loop drawn on the scene (a click draws nothing; the rope starts at the pointer or at a corner of the frame), `plan.js` the steps and captions of the worked solution (physical idea only, no group vocabulary), `art.js` the drawings (`drawScene`), `activity.js` the playable scene (no text, counters or tables under it) and `solution.js` the animated reveal on the shared player. Tests: `tests/nails.test.mjs`.
+
+Update of 12 November 2026 (shared layer): `common/cartoon.js` holds the pop/squash press feedback (`PRESS`, `installCartoon`, `pop`, `cartoonPress`), used by nails and by the shared buttons around every activity (answer, hints, variation reset). `goalLine(t, fr, en, opFr?, opEn?)` in `common/kit.js` is the one-line goal at the top of each activity (operating instructions only for screen readers). A variant with `impossible: true` gets a neutral "Impossible" button beside the answer field (checks the answer 0) and its prompt must not mention it. The original statement sits in a closed "Énoncé d'origine" disclosure in the hint panel; the written solution is a closed "Version écrite" disclosure with no URLs or citations. `tests/challenge-jargon.test.mjs` is a ratchet over hints and solutions: it holds an ALLOWLIST of known offenders by id; later batches shrink it (a clean challenge must be removed from the list, a new violation fails).

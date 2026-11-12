@@ -1,5 +1,5 @@
 // Hands-on activity of the hanoi challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { svgEl, colour, toLocal } from "../common/kit.js";
+import { svgEl, colour, toLocal, goalLine } from "../common/kit.js";
 
 /* ----------------------------------------------------------------- hanoi */
 export function activity(root, { t, reduced, q }) {
@@ -7,7 +7,7 @@ export function activity(root, { t, reduced, q }) {
   let n = Math.min(q.n, 8), pegs, moves, from = null, best = {};
   const reset = () => { pegs = [Array.from({ length: n }, (_, i) => n - i), [], []]; moves = 0; from = null; };
   root.innerHTML = `
-    <p class="act-help">${t("Choisis une tige de départ puis une tige d’arrivée pour déplacer le disque du dessus. Un disque ne se pose jamais sur un disque plus petit.", "Pick a source peg then a target peg to move the top disk. A disk never sits on a smaller disk.")}</p>
+    ${goalLine(t, `Déplace toute la pile sur une autre tige.`, `Move the whole stack to another peg.`, "Choisis une tige de départ puis une tige d’arrivée pour déplacer le disque du dessus. Un disque ne se pose jamais sur un disque plus petit.", "Pick a source peg then a target peg to move the top disk. A disk never sits on a smaller disk.")}
     <svg class="act-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${t("Trois tiges et des disques", "Three pegs and some disks")}"></svg>
     <div class="act-buttons hn-pegs" role="group" aria-label="${t("Tiges", "Pegs")}">
       ${[1, 2, 3].map((i) => `<button class="btn btn-secondary hn-peg" data-peg="${i - 1}" type="button" aria-pressed="false">${t("Tige", "Peg")} ${i}</button>`).join("")}

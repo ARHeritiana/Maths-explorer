@@ -18,12 +18,13 @@ export const card = {
 };
 
 export const variant = {
+  impossible: true,   // the answer can be "impossible": the shared answer form offers a neutral Impossible button (checks the answer 0)
   params: [{ ...choice("jugs", "Bidons et quantité visée", "Jugs and target amount", JUG_PRESETS.map((s) => { const [a, b, t] = parseJugs(s); return [s, `${a} L et ${b} L : ${t} L`, `${a} L and ${b} L: ${t} L`]; }), "3,5,4"),
     fields: [int('capacity1', 'Premier bidon (L)', 'First jug (L)', 1, 30, 3), int('capacity2', 'Second bidon (L)', 'Second jug (L)', 1, 30, 5), int('target', 'Quantité visée (L)', 'Target amount (L)', 1, 60, 4)] }],
   answer: (q) => { const [a, b, t] = parseJugs(q.jugs); return jugsMin(a, b, t); },
   prompt: (q) => { const [a, b, t] = parseJugs(q.jugs); return P(
-    `On dispose d’un robinet, d’un évier et de deux bidons sans graduation, de ${a} L et de ${b} L. Une opération consiste à remplir un bidon au robinet, à le vider dans l’évier, ou à verser un bidon dans l’autre jusqu’à ce que le premier soit vide ou le second plein. Quel est le plus petit nombre d’opérations pour obtenir exactement ${t} L dans l’un des bidons ? Réponds 0 si c’est impossible.`,
-    `You have a tap, a sink and two unmarked jugs of ${a} L and ${b} L. One operation is to fill a jug at the tap, empty it into the sink, or pour one jug into the other until the first is empty or the second full. What is the smallest number of operations to get exactly ${t} L in one of the jugs? Answer 0 if it is impossible.`); },
+    `On dispose d’un robinet, d’un évier et de deux bidons sans graduation, de ${a} L et de ${b} L. Une opération consiste à remplir un bidon au robinet, à le vider dans l’évier, ou à verser un bidon dans l’autre jusqu’à ce que le premier soit vide ou le second plein. Quel est le plus petit nombre d’opérations pour obtenir exactement ${t} L dans l’un des bidons ?`,
+    `You have a tap, a sink and two unmarked jugs of ${a} L and ${b} L. One operation is to fill a jug at the tap, empty it into the sink, or pour one jug into the other until the first is empty or the second full. What is the smallest number of operations to get exactly ${t} L in one of the jugs?`); },
   hints: (q) => { const [a, b] = parseJugs(q.jugs); return [
     P(`Note l’état des deux bidons après chaque opération, par exemple (0 ; ${b}) puis (${Math.min(a, b)} ; ${b - Math.min(a, b)}). Quelles quantités apparaissent ?`, `Write down the state of both jugs after each operation, for example (0, ${b}) then (${Math.min(a, b)}, ${b - Math.min(a, b)}). Which amounts appear?`),
     P(`Toute quantité obtenue s’écrit u × ${a} + v × ${b} avec u et v entiers relatifs. Que dire alors de son reste dans la division par pgcd(${a} ; ${b}) = ${gcd(a, b)} ? Essaie aussi la stratégie « toujours verser le même bidon dans l’autre ».`, `Every amount obtained is u × ${a} + v × ${b} for some integers u and v. What then is its remainder on division by gcd(${a}, ${b}) = ${gcd(a, b)}? Try also the strategy “always pour the same jug into the other”.`),

@@ -1,7 +1,7 @@
 // Hands-on activity of the sum and product puzzle: choose a pair (x, y) and see what Sam and Paula see (every split of the
 // sum, every split of the product); the map of all pairs is drawn below. Hint actions list Sam's possible sums and filter the
 // map sentence by sentence; the activity never states the pair.
-import { onHintAction } from "../common/kit.js";
+import { onHintAction, goalLine } from "../common/kit.js";
 import { spSteps, goodSums, splitsOfSum, splitsOfProduct } from "./maths.js";
 
 export function activity(root, { t, q }) {
@@ -9,7 +9,7 @@ export function activity(root, { t, q }) {
   const byProd = new Map(); for (const [x, y] of all) byProd.set(x * y, (byProd.get(x * y) || 0) + 1);
   let x = 4, y = 7, level = 0, stage = 0;
   root.innerHTML = `
-    <p class="act-help">${t(`Choisis un couple 1 < x < y avec x + y ≤ ${N}. Tu vois ce que Sam (la somme) et Paula (le produit) peuvent imaginer. Sur la carte, chaque point est un couple ; le tien est entouré.`, `Choose a pair 1 < x < y with x + y ≤ ${N}. You see what Sam (the sum) and Paula (the product) can imagine. On the map every dot is a pair; yours is circled.`)}</p>
+    ${goalLine(t, `Retrouve le couple de Sam et Paula.`, `Find Sam and Paula’s pair.`, `Choisis un couple 1 < x < y avec x + y ≤ ${N}.`, `Choose a pair 1 < x < y with x + y ≤ ${N}.`)}
     <div class="act-controls"><label class="act-field">x <input id="sp-x" type="number" min="2" max="${N}" value="${x}"></label><label class="act-field">y <input id="sp-y" type="number" min="3" max="${N}" value="${y}"></label><button class="secondary" id="sp-next" type="button" hidden></button></div>
     <p class="act-readout" id="sp-read" role="status" aria-live="polite"></p>
     <canvas class="sp-map" width="640" height="360" role="img" aria-label="${t("Carte des couples (x, y)", "Map of the pairs (x, y)")}"></canvas>`;

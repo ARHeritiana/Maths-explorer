@@ -1,6 +1,6 @@
 // Hands-on activity of the fly challenge: the statement played as an animation (two trains, the fly going back and forth),
 // with a trip counter. Hint actions add a clock and a time and position graph; distance belongs in the solution.
-import { colour, onHintAction, svgEl, toLocal } from "../common/kit.js";
+import { colour, onHintAction, svgEl, toLocal, goalLine } from "../common/kit.js";
 import { parseFly, meetTime, flyMotion, flyTrace, flyNumber } from "./maths.js";
 
 export function activity(root, { t, q, reduced: reducedPref, lang }) {
@@ -10,7 +10,7 @@ export function activity(root, { t, q, reduced: reducedPref, lang }) {
   let time = 0, playing = false, last = 0, raf = 0, level = 0, drag = null, blocked = false;
   const pointers = new Set();
   root.innerHTML = `
-    <p class="act-help">${t("Touche la scène pour lancer ou suspendre la course ; glisse horizontalement pour parcourir le temps. La mouche rebondit à chaque rencontre, sans pause. Ses vitesses et celles des trains sont celles de l’énoncé. Clavier : Espace pour lancer, flèches pour avancer ou reculer, B pour le prochain rebond.", "Tap the scene to play or pause; drag horizontally to scrub time. The fly turns instantly at each encounter, without pausing. Its speed and the trains’ speeds match the statement. Keyboard: Space to play, arrows to scrub, B for the next bounce.")}</p>
+    ${goalLine(t, `Suis la mouche entre les deux trains.`, `Follow the fly between the two trains.`, "Touche la scène pour lancer ou suspendre la course ; glisse horizontalement pour parcourir le temps. La mouche rebondit à chaque rencontre, sans pause. Ses vitesses et celles des trains sont celles de l’énoncé. Clavier : Espace pour lancer, flèches pour avancer ou reculer, B pour le prochain rebond.", "Tap the scene to play or pause; drag horizontally to scrub time. The fly turns instantly at each encounter, without pausing. Its speed and the trains’ speeds match the statement. Keyboard: Space to play, arrows to scrub, B for the next bounce.")}
     <svg class="act-svg" viewBox="0 0 100 34" tabindex="0" role="group" aria-label="${t("Course interactive : trains et mouche", "Interactive race: trains and fly")}"></svg>
     <svg class="act-svg fl-graph" viewBox="0 0 100 46" hidden role="img" aria-label="${t("Graphique temps et position", "Time and position graph")}"></svg>
     <details><summary>${t("Lecture et alternatives aux gestes", "Playback and gesture alternatives")}</summary><div class="act-controls"><button class="secondary" id="fl-play" type="button"></button><button class="btn-quiet" id="fl-step" type="button">${t("Trajet suivant", "Next leg")}</button><button class="btn-quiet" id="fl-reset" type="button">${t("Recommencer", "Restart")}</button><label>${t("Vitesse de lecture", "Playback speed")}<select id="fl-rate"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option></select></label></div></details>

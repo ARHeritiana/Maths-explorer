@@ -1,13 +1,13 @@
 // Hands-on activity of the lunes challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { f1 } from "../common/helpers.js";
-import { svgEl, colour } from "../common/kit.js";
+import { svgEl, colour, goalLine } from "../common/kit.js";
 import { luneArea, luneTotal } from "./maths.js";
 
 /* ----------------------------------------------------------------- lunes */
 export function activity(root, { t, q }) {
   let a = q.a, b = q.b;
   root.innerHTML = `
-    <p class="act-help">${t("Les deux lunules (en orange) sont à l’extérieur du cercle de diamètre AB. Change les côtés CA et CB : compare leur aire, comptée par quadrillage, à l’aire du triangle.", "The two lunes (orange) lie outside the circle on diameter AB. Change the sides CA and CB: compare their area, counted on a grid, with the area of the triangle.")}</p>
+    ${goalLine(t, `Mesure l’aire des deux lunules.`, `Measure the area of the two lunes.`, " Change les côtés CA et CB.", " Change the sides CA and CB.")}
     <svg class="act-svg" viewBox="0 0 520 300" role="img" aria-label="${t("Triangle rectangle, demi-cercles et lunules", "Right triangle, semicircles and lunes")}"></svg>
     <div class="act-controls">
       <label class="act-field" for="ln-a"><span class="act-label">CA <output id="ln-aout"></output></span><input id="ln-a" type="range" min="2" max="20" step="1" value="${a}"></label>

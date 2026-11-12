@@ -6,7 +6,7 @@
 // When the cuts they draw share the cake fairly, the cake is cut with a short show and turned in 3D.
 import { niceSide, cutsOfSegments, piecePolygons, rayToOutline, cakeShares, isFair, pieceDirections } from "./maths.js";
 import { drawCake } from "./view-3d.js";
-import { clamp, lockTouch, svgEl, colour, toLocal } from "../common/kit.js";
+import { clamp, lockTouch, svgEl, colour, toLocal, goalLine } from "../common/kit.js";
 import { makeView, confetti } from "../common/view-3d.js";
 
 export const W = 640, H = 430, CX = 320, CY = 214;
@@ -28,7 +28,7 @@ export function activity(root, { t, q, reduced }) {
   const isReduced = () => (typeof reduced === "function" ? reduced() : !!reduced);
 
   root.innerHTML = `
-    <p class="act-help" id="ck-help"></p>
+    ${goalLine(t, "Partage le gâteau en parts égales.", "Cut the cake into equal parts.")}<p class="sr-only" id="ck-help"></p>
     <svg class="act-svg ck-stage" viewBox="0 0 ${W} ${H}" tabindex="0" role="application" aria-label="${t("Le gâteau cubique : fais glisser pour le tourner", "The cubic cake: drag to turn it")}"></svg>
     <div class="act-controls ck-row" id="ck-view">
       <button class="btn btn-secondary" id="ck-lock" type="button" aria-pressed="false">${t("Verrouiller la vue de dessus", "Lock the view from above")}</button>

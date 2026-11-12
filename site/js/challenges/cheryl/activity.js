@@ -1,6 +1,6 @@
 // Hands-on activity of Cheryl's birthday: the ten dates in a calendar grid; the learner crosses dates out sentence by
 // sentence. Hint actions mark the days that appear only once and offer to cross out the dates of each sentence in turn.
-import { onHintAction } from "../common/kit.js";
+import { onHintAction, goalLine } from "../common/kit.js";
 import { CHERYL_SETS, cherylSteps, uniqueDays, MONTHS } from "./maths.js";
 
 export function activity(root, { t, q, lang }) {
@@ -9,7 +9,7 @@ export function activity(root, { t, q, lang }) {
   let crossed = new Set(), level = 0, applied = 0;
   const key = (d) => d.join("-");
   root.innerHTML = `
-    <p class="act-help">${t("Touche une date pour la barrer (ou la rétablir). Lis les trois phrases une par une et barre les dates qu’elles éliminent.", "Tap a date to cross it out (or bring it back). Read the three sentences one at a time and cross out the dates they rule out.")}</p>
+    ${goalLine(t, `Retrouve l’anniversaire de Cheryl.`, `Find Cheryl’s birthday.`, "Touche une date pour la barrer (ou la rétablir). Lis les trois phrases une par une et barre les dates qu’elles éliminent.", "Tap a date to cross it out (or bring it back). Read the three sentences one at a time and cross out the dates they rule out.")}
     <ol class="ch-says">
       <li><strong>Albert</strong>${t(" : ", ": ")}${t("« Je ne sais pas, mais je sais que Bernard ne sait pas non plus. »", "“I don’t know, but I know that Bernard doesn’t know either.”")}</li>
       <li><strong>Bernard</strong>${t(" : ", ": ")}${t("« Au début, je ne savais pas, mais maintenant je sais. »", "“At first I didn’t know, but now I know.”")}</li>

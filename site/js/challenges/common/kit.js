@@ -52,3 +52,9 @@ export function onHintAction(id, handlers) {
   document.addEventListener("challenge-action", fn);
   return () => document.removeEventListener("challenge-action", fn);
 }
+
+// The one-line goal at the top of an activity: a single sentence stating what to achieve, with no coaching, counter or result.
+// `operate` is an optional bilingual pair [fr, en] of how to operate it (gestures, keys), kept for screen readers only.
+export function goalLine(t, fr, en, opFr, opEn) {
+  return `<p class="act-help goal">${t(fr, en)}${opFr ? `<span class="sr-only"> ${t(opFr, opEn)}</span>` : ""}</p>`;
+}
