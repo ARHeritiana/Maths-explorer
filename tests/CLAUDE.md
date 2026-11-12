@@ -32,6 +32,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `lab-objects.test.mjs` | `lab-objects.js` pure maths |
 | `explorer-models.test.mjs` | `canvas-navigation.js`, `lab-objects.js`, `platonic-fold.js` |
 | `gallery-math.test.mjs`, `gallery-controls.test.mjs` | `js/gallery/gallery-math.js`, `js/gallery/gallery-objects.js` |
+| `nails.test.mjs` | the nails challenge, pure parts: rope geometry (no dip between two consecutive over-crossings, under-crossings go below), timeline of a pulled nail (start and end poses against free reduction, press then pop, monotone slips), the drawn stroke (a click on a corner draws and moves nothing), plan and captions of the solution for all six variants (counter-examples really break the rule, no group-theory vocabulary, no dashes) |
 | `challenge-puzzles.test.mjs`, `challenge-puzzles2.test.mjs` | pure challenge maths, by an independent method |
 | `challenges-variants.test.mjs` | every challenge has variant, original, activity, solution; answers recomputed |
 | `cake-model.test.mjs`, `box-model.test.mjs` | cake and box sandboxes |

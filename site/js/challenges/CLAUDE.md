@@ -15,7 +15,7 @@ from `registry.js` only.
 | `view-3d.js` | renderer | 3D drawing shared by the activity and the solution (cake, box) |
 | `art.js` | characters, props | drawings used only by this challenge |
 
-A folder has only the files it needs (some challenges have no `maths.js`).
+A folder has only the files it needs (some challenges have no `maths.js`). A challenge with pure logic beyond `maths.js` may add named pure modules (`nails/` has `rope-path.js`, `timeline.js`, `gesture.js`, `plan.js`; listed in `tests/map.test.mjs`).
 
 Backlog additions: `knights/` has a legal-move board and cancellable cooperative tour search; `rooms/` has an editable
 five-room door multigraph and Eulerian traversal; `factorials/` has exact BigInt valuations and arbitrary-base zeros.
@@ -46,3 +46,5 @@ scene-level tap/drag actions have keyboard equivalents, and camera gestures canc
    every layer, `tests/browser.py` (`CHALLENGES` list).
 
 Update of 31 October 2026: the activities are played on the scenes of their solutions. `rooms/art.js` is the floor plan (rooms, 16 doors, the walker's way through a door and round the house); `konigsberg/activity.js` reuses the river map and walker of `solution.js`; `bridge/activity.js` is played on the night bridge with the lantern; `horses/activity.js` runs its races on a track with the solution's horses; the Gauss solution writes the algebra line by line beside the staircase.
+
+Update of 12 November 2026: `nails/` is a pure-logic challenge with thin DOM. `rope-path.js` is the pure geometry of the rope (one arch per turn; a join between two arches is straight along the nail line when no nail lies between them, otherwise it goes under the nails), `timeline.js` the pure timeline of a pulled nail (`timeline`, `poseAt`, `poseOf`, `settled`), `gesture.js` the pure model of the loop drawn on the scene (a click draws nothing; the rope starts at the pointer or at a corner of the frame), `plan.js` the steps and captions of the worked solution (physical idea only, no group vocabulary), `art.js` the drawings (`drawScene`), `activity.js` the playable scene (no text, counters or tables under it) and `solution.js` the animated reveal on the shared player. Tests: `tests/nails.test.mjs`.

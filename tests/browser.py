@@ -373,6 +373,22 @@ with sync_playwright() as p:
     page.locator('#js-n').fill('7'); page.locator('#js-run').click()
     page.wait_for_function("document.querySelector('#js-read strong')")
     assert page.locator('#js-read strong').inner_text() == '7'
+    # Nails: a click on a corner of the frame starts the rope there and moves nothing; the scene carries no explanatory text.
+    page.goto(BASE+'/#challenges/nails')
+    nails_svg = page.locator('#activity svg.act-svg'); nails_svg.scroll_into_view_if_needed()
+    nb = nails_svg.bounding_box(); scale = min(nb['width'], nb['height']) / 100
+    def nail_at(x, y): return nb['x'] + nb['width']/2 + (x - 50) * scale, nb['y'] + nb['height']/2 + (y - 50) * scale
+    page.mouse.move(*nail_at(30, 46)); page.mouse.down(); page.wait_for_timeout(500)
+    assert page.locator('#activity svg polyline').count() == 0, 'a click on a corner draws no rope and nothing moves toward a nail'
+    page.mouse.move(*nail_at(34, 40), steps=3); page.wait_for_timeout(100)
+    pts = page.locator('#activity svg polyline').evaluate("p => p.getAttribute('points').split(' ').map(s => s.split(',').map(Number))")
+    assert abs(pts[0][0] - 30) < 0.01 and abs(pts[0][1] - 46) < 0.01, 'the rope starts exactly at the corner'
+    assert sum(((a[0]-b[0])**2 + (a[1]-b[1])**2) ** .5 for a, b in zip(pts, pts[1:])) < 9, 'its length is the pointer-driven length only'
+    page.mouse.up()
+    assert page.locator('#activity .act-help, #activity .nl-word, #activity .nl-table, #activity .nl-calc, #activity details').count() == 0, 'no explanatory text under the nails scene'
+    assert page.evaluate("!/[0-9]|\\bmot\\b|word/.test(document.querySelector('#activity .nl-stage').innerText)"), 'no counters or hint-bearing labels'
+    page.locator('#activity [data-nail="0"]').click(); page.wait_for_timeout(1800)
+    page.locator('#activity [data-c="1"]').click(); page.wait_for_timeout(900)
     for challenge in CHALLENGES:
         page.goto(BASE+'/#challenges/'+challenge)
         page.locator('.solution summary').click()

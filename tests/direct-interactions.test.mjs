@@ -165,16 +165,19 @@ test('challenge motion callbacks, contact, hidden answers and ordered nail drawi
     assert.match(root.querySelector('.fl-fly').getAttribute('transform'),/19.5/);
     key(scene,'End');assert.doesNotMatch(root.querySelector('#fl-read').textContent,/1000|distance/);stop();
     stop = mountActivity('nails',root,{lang,reduced:()=>true,params:defaults('nails')});
-    const svg = root.querySelector('svg'), tools = root.querySelector('.nl-tools');assert.equal(tools.open,false);
+    const svg = root.querySelector('svg');assert.equal(root.querySelector('.nl-tools details,details.nl-tools'),null,'no explanatory fold under the scene');
+    const read = () => root.querySelector('#nl-read').textContent, drawn = () => svg.querySelectorAll('polyline').length;
     const stroke = points => {pointer(svg,'pointerdown',...points[0]);for(const p of points.slice(1))pointer(svg,'pointermove',...p);pointer(svg,'pointerup',...points.at(-1));};
     const circle = Array.from({length:81},(_,i)=>[50+26*Math.cos(i*Math.PI/40),14+10*Math.sin(i*Math.PI/40)]);
-    stroke(circle);assert.match(root.querySelector('#nl-read').textContent,/2/);
+    stroke(circle);assert.match(read(),lang==='fr'?/tient/:/holds/,'a loop round both nails holds');
     stroke([...circle].reverse());
-    w.document.dispatchEvent(new w.CustomEvent('challenge-action',{detail:{id:'nails',act:'word'}}));
-    assert.match(root.querySelector('#nl-read').textContent,lang==='fr'?/tombe/:/falls/,'retracing a two-nail loop cancels it');
+    assert.match(read(),lang==='fr'?/tombe/:/falls/,'retracing the loop the other way cancels it');
     root.querySelector('#nl-clear').click();
-    pointer(svg,'pointerdown',20,8);pointer(svg,'pointermove',90,8);svg.dispatchEvent(new w.Event('pointercancel'));pointer(svg,'pointerup',90,8);
-    assert.match(root.querySelector('#nl-read').innerHTML,/<strong>0<\/strong>/,'cancelled drawing adds no winding');
+    assert.match(read(),lang==='fr'?/terre/:/floor/);
+    pointer(svg,'pointerdown',20,8);pointer(svg,'pointermove',90,8);{const c=new w.Event('pointercancel');Object.defineProperty(c,'pointerId',{value:1});svg.dispatchEvent(c);}pointer(svg,'pointerup',90,8);
+    assert.match(read(),lang==='fr'?/terre/:/floor/,'cancelled drawing adds no winding');
+    pointer(svg,'pointerdown',30,46);assert.equal(drawn(),0,'a click on a corner of the frame draws no rope');pointer(svg,'pointerup',30,46);assert.equal(drawn(),0);
+    assert.doesNotMatch(root.querySelector('.nl-stage').textContent,/⁻|mot\b|word|tours? :|Turns:|\d/,'no counters or word notation in the display');
     const nail = root.querySelector('[data-nail="0"]');nail.focus();key(nail,'Enter');assert.equal(w.document.activeElement.dataset.nail,'0');key(w.document.activeElement,'Enter');assert.equal(root.querySelector('[data-nail="0"]').getAttribute('aria-pressed'),'false');
     stop();root.replaceChildren();
   }

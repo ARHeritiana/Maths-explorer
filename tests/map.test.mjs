@@ -58,7 +58,7 @@ test("the folder indexes are never published", () => {
 });
 
 // One folder per challenge: the folder holds only the files of the convention, and registry.js lists every folder.
-const ROLE_FILES = new Set(["index.js", "maths.js", "activity.js", "solution.js", "view-3d.js", "art.js"]);
+const ROLE_FILES = new Set(["index.js", "maths.js", "activity.js", "solution.js", "view-3d.js", "art.js", "rope-path.js", "timeline.js", "gesture.js", "plan.js"]);
 test("every challenge folder follows the convention and is listed in registry.js", () => {
   const dir = join(ROOT, "site/js/challenges"), registry = read("site/js/challenges/registry.js");
   const folders = readdirSync(dir).filter((f) => f !== "common" && statSync(join(dir, f)).isDirectory());
