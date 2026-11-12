@@ -46,26 +46,20 @@ export function resolveTargets({course='',chapter='',decks=null}={}){
   here,name,chTitle,hasDeck:here&&slides.includes('player.html')};
 }
 
-// Generic board scripts: what to write or draw when there is no projector. [fr,en] lines.
-const BOARD={
- automatismes:[['Écrire 3 à 5 questions au tableau.','Write 3 to 5 questions on the board.'],['Interroger un élève par question, temps court.','Ask one pupil per question, keep it short.'],['Corriger à l’oral, noter les erreurs fréquentes.','Correct aloud, note the common errors.']],
- correction:[['Écrire les numéros des exercices donnés.','Write the numbers of the set exercises.'],['Appeler un élève au tableau pour chacun.','Call a pupil to the board for each one.'],['Compléter ou reprendre la rédaction avec la classe.','Complete or redo the write-up with the class.']],
- activite:[['Dessiner la figure de départ.','Draw the starting figure.'],['Écrire la question à chercher.','Write the question to investigate.'],['Laisser chercher, puis recueillir les conjectures.','Let pupils search, then collect their conjectures.']],
- cours:[['Écrire le titre et la définition.','Write the title and the definition.'],['Écrire un exemple traité en entier.','Write one fully worked example.'],['Encadrer la propriété à retenir.','Box the property to remember.']],
- exercices:[['Écrire les énoncés au tableau.','Write the statements on the board.'],['Circuler dans les rangs pendant la recherche.','Circulate while pupils work.'],['Faire corriger les points difficiles au tableau.','Have the hard points corrected on the board.']],
- outils:[['Choisir une figure ou une expérience à tracer au tableau.','Pick a figure or an experiment to draw on the board.'],['Écrire la question que l’outil éclaire.','Write the question the tool answers.']],
- bilan:[['Écrire la phrase clé du cours.','Write the key sentence of the lesson.'],['Écrire le travail à faire pour la prochaine séance.','Write the homework for the next session.']],
-};
 const PRINT=new Set(['exercices','bilan']);
 const pre=(p,d)=>d?[`${p[0]} : ${d[0]}`,`${p[1]}: ${d[1]}`]:null;
 
-// The seven phases of seance-model.js, in order: {id,label,detail,href|null,why|null,board,print}.
-export function launchpad({course='',chapter='',decks=null}={}){
- const T=resolveTargets({course,chapter,decks}),known=isKnownClass(course);
- const auto={href:known?'#automatismes/go':'',
+// The seven phases of seance-model.js, in order: {id,label,detail,href|null,why|null,print}.
+// `view` is the En classe switch: 'projecteur' (default) opens the projectable form of each resource (timed series,
+// slide player); 'tableau' opens the non-projected form (list of questions, chapter page). Other phases are the same.
+export function launchpad({course='',chapter='',decks=null,view='projecteur'}={}){
+ const T=resolveTargets({course,chapter,decks}),known=isKnownClass(course),board=view==='tableau';
+ const auto=board
+  ?{href:known?'#automatismes/list':'',detail:course?[`Liste des questions, réglée pour ${T.name}`,`List of questions, set for ${T.name}`]:['Liste des questions de la série','List of the series questions'],why:known?null:noClass}
+  :{href:known?'#automatismes/go':'',
   detail:course?[`Série chronométrée, réglée pour ${T.name}`,`Timed series for ${T.name}`]:['Série chronométrée à projeter','Timed series to project'],why:known?null:noClass};
  const bank=T.bank,generic=(fr,en)=>[fr,en];
- const cours=T.hasDeck?{href:T.slides.href,detail:pre(['Diaporama','Slides'],T.slides.detail)}:{href:T.lesson.href,detail:T.lesson.detail};
+ const cours=T.hasDeck&&!board?{href:T.slides.href,detail:pre(['Diaporama','Slides'],T.slides.detail)}:{href:T.lesson.href,detail:T.lesson.detail};
  const by={
   automatismes:auto,
   correction:{href:bank.href,detail:pre(['Corrigés','Answer keys'],bank.detail)||generic('Exercices donnés, avec corrigés','Set exercises, with answer keys'),why:bank.why},
@@ -77,7 +71,7 @@ export function launchpad({course='',chapter='',decks=null}={}){
  };
  return PHASES.map(p=>{
   const x=by[p.id];
-  return {id:p.id,label:p.label,detail:x.detail,href:x.href||null,why:x.href?null:(x.why||generic('Non disponible.','Not available.')),board:BOARD[p.id],print:PRINT.has(p.id)};
+  return {id:p.id,label:p.label,detail:x.detail,href:x.href||null,why:x.href?null:(x.why||generic('Non disponible.','Not available.')),print:PRINT.has(p.id)};
  });
 }
 

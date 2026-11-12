@@ -21,8 +21,8 @@ const TOOLS={automatismes:P('Automatismes','Starters'),sheets:P('Fiches et éval
 export function recentFor(page,id,tab,t,extraTitle=''){
  if(page==='chapter'&&id){const title=chapterTitle(id);return title?{type:'chapter',id:'chapter-'+id,title,href:'#chapter/'+id}:null;}
  if(!TOOLS[page])return null;
- const base=t(TOOLS[page]),slug=id&&id!=='go'?'/'+id:'';
- const title=extraTitle||(id&&id!=='go'?base+' · '+id:base);
+ const plain=!id||(page==='automatismes'&&(id==='go'||id==='list')),base=t(TOOLS[page]),slug=plain?'':'/'+id;
+ const title=extraTitle||(plain?base:base+' · '+id);
  return {type:'tool',id:page+slug,title,href:'#'+page+slug+(slug&&tab?'/'+tab:'')};
 }
 // A quiet strip on lessons and exercises: names the class and chapter and offers the way into that chapter or out of it.

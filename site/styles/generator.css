@@ -27,6 +27,9 @@
 .gen-list { padding-left: 1.4rem; display: grid; gap: 10px; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
 .gen-list > li { min-width: 0; }
 .gen-answer { margin-top: 2px; }
+.gen-list-bar { margin: 4px 0 8px; }
+.gen-list.answers-hidden .gen-answer { display: none; }
+.is-list .gen-list { font-size: 1.35rem; line-height: 1.5; gap: 16px; }
 .gen-preview { overflow-x: auto; }
 
 /* projection stage: a card on the page, the whole screen when presented */
@@ -95,3 +98,4 @@
   .sheet-parts li, .sheet-ex h2 { break-inside: avoid; }
   .sheet-ex h2 { break-after: avoid; }
 }
+.is-list .auto-stage:not(.presenting) { display: none; }

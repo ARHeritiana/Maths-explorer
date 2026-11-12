@@ -55,11 +55,25 @@ test('shared resolution with quickActions',()=>{
  }
 });
 
-test('board scripts are non-empty in both languages',()=>{
- for(const p of launchpad({})){
-  assert.ok(p.board.length>0,p.id);
-  for(const [fr,en] of p.board){assert.ok(fr&&en);assert.ok(!/[–—]/.test(fr+en));}
+test('projecteur and tableau views: same seven phases, only automatismes and cours differ',()=>{
+ for(const k of cases){
+  const proj=launchpad(k),def=launchpad({...k,view:'projecteur'}),tab=launchpad({...k,view:'tableau'});
+  assert.deepEqual(proj,def,'projecteur is the default');
+  assert.deepEqual(tab.map(p=>p.id),proj.map(p=>p.id));
+  for(const p of tab){
+   assert.ok(!('board' in p),'no board script');
+   const q=proj.find(x=>x.id===p.id);
+   if(p.id==='automatismes'){if(p.href)assert.equal(p.href,'#automatismes/list');assert.equal(!!p.href,!!q.href);}
+   else if(p.id==='cours'){assert.ok(!p.href||!p.href.includes('player.html'),'tableau never opens the slide player');assert.equal(p.href,launchpad({...k,decks:[]}).find(x=>x.id==='cours').href,'chapter page or class lessons');}
+   else assert.deepEqual(p,q,p.id);
+   if(p.href&&p.href.startsWith('#'))assert.ok(isLiveHash(p.href),p.href);
+  }
  }
+ assert.equal(launchpad({course:'seconde',view:'projecteur'})[0].href,'#automatismes/go');
+ assert.equal(launchpad({course:'seconde',view:'tableau'})[0].href,'#automatismes/list');
+ const c={course:'seconde',chapter:'seconde-01',decks:DECKS};
+ assert.ok(launchpad(c).find(p=>p.id==='cours').href.includes('deck=seconde-01'));
+ assert.equal(launchpad({...c,view:'tableau'}).find(p=>p.id==='cours').href,'#chapter/seconde-01');
 });
 
 test('resolveForSeance feeds defaultSeance',()=>{

@@ -37,7 +37,22 @@ A launch pad in session order, each phase one click from the page and at most on
 7. Bilan et travail à faire (what to give as homework, from the chapter's exercises)
 
 Plus "Ma séance": the ordered blocks prepared in Préparer, each one click to launch; a switch **Projecteur / Tableau
-seul** (board view shows, per phase, what to write or draw).
+seul** (tools key `view`). The switch only changes where the seven tiles lead; the layout and the tiles are identical
+and the site gives no instructions on how to run the session (owner, 12 November 2026). Tableau seul opens the
+non-projected form of each resource, and the in-class dock follows the same view (`launchpad({..., view})`):
+
+| Phase | Projecteur | Tableau seul |
+|---|---|---|
+| 1 Automatismes | `#automatismes/go` (timed projection stage) | `#automatismes/list` (numbered list of the series questions, answers hidden behind a "Réponses" button, "Projeter" one click away) |
+| 2 Correction | bank of the chapter | same (the answer-key list) |
+| 3 Activité d'introduction | chapter experiment `#lab/...` | same |
+| 4 Cours | slide player of the chapter if a deck exists | chapter page `#chapter/<id>` (or the class lessons), never the player |
+| 5 Exercices | bank of the chapter | same |
+| 6 Outils | `#lab` | same |
+| 7 Bilan | bank of the chapter | same |
+
+`#automatismes/list` takes the class, chapter and remembered defaults like `/go`, opens the list in large type with
+answers hidden, projects nothing, and rewrites the address to `#automatismes`.
 
 One screen, no endless scroll (owner, 12 November 2026). The page is: class and chapter selects with the switch, the
 seven tiles (4 + 3), and "Ma séance" as one row that scrolls sideways. Below, two collapsed disclosures: "Récents et

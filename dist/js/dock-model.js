@@ -32,14 +32,14 @@ export function phasesOfHash(hash,items){
 const sameStop=(a,b)=>{
  const x=seg(a),y=seg(b);
  if(!x.length||!y.length)return false;
- if(x[0]==='automatismes'&&y[0]==='automatismes')return true; // '#automatismes/go' launches, the page then shows '#automatismes'
+ if(x[0]==='automatismes'&&y[0]==='automatismes')return true; // '#automatismes/go' and '/list' launch, the page then shows '#automatismes'
  return x.join('/')===y.join('/');
 };
 
 // {items,prev,next,current}. items: [{id,label,href,active,disabled,why}]; prev/next: {href,label}|null;
 // current: the phase id or séance block id the page is at, or null.
-export function dockItems({course='',chapter='',decks=null,seance=null,currentHash=''}={}){
- const pad=launchpad({course,chapter,decks});
+export function dockItems({course='',chapter='',decks=null,seance=null,currentHash='',view='projecteur'}={}){
+ const pad=launchpad({course,chapter,decks,view});
  const ids=phasesOfHash(currentHash,pad),primary=ids[0]||null;
  const items=pad.map(p=>({id:p.id,label:p.label,href:p.href,active:p.id===primary,disabled:!p.href,why:p.why}));
  const blocks=Array.isArray(seance?.blocks)?seance.blocks:[];

@@ -273,7 +273,7 @@ function render() {
   if (page === "pack") bindPack(t);
   if (page === "sources") bindSources(t);
   if (page === "slides") bindSlides(t);
-  if (page === "automatismes") stopChapter = bindAutomatismes($("#main"), t, { chapterTitle: chapterTitleFr, launch: r.id === "go" });
+  if (page === "automatismes") stopChapter = bindAutomatismes($("#main"), t, { chapterTitle: chapterTitleFr, launch: r.id === "go", list: r.id === "list" });
   if (page === "bank") stopChapter = bindBank($("#main"), t, r.id, r.tab, r.sub);
   if (page === "sheets") stopChapter = bindSheets($("#main"), t, { chapterTitle: chapterTitleFr });
   if (page === "university") bindUniversity(r.id, lang);

@@ -85,3 +85,13 @@ test('showDock: only in remembered mode classe, with the mode bar, on tool pages
  }
  assert.equal(showDock(),false);
 });
+
+test('the dock follows the view: tableau links to the non-projector targets',()=>{
+ const proj=dockItems({...ctx,currentHash:'#teacher'}),tab=dockItems({...ctx,currentHash:'#teacher',view:'tableau'});
+ const by=(m,id)=>m.items.find(i=>i.id===id).href;
+ assert.equal(by(proj,'automatismes'),'#automatismes/go');assert.equal(by(tab,'automatismes'),'#automatismes/list');
+ assert.ok(by(proj,'cours').includes('player.html'));assert.equal(by(tab,'cours'),'#chapter/premiere-02');
+ const pad=launchpad({...ctx,view:'tableau'});
+ tab.items.forEach((i,k)=>assert.equal(i.href,pad[k].href));
+ assert.deepEqual(active(dockItems({...ctx,view:'tableau',currentHash:'#automatismes'})),['automatismes']);
+});

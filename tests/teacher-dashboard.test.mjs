@@ -144,23 +144,25 @@ test('opening a quick action records it as a recent item',async()=>{
  assert.equal(r.href,'#bank/premiere');assert.match(r.title,/Exercices/);
 });
 
-test('launch pad: seven tiles in order, link tiles in projecteur view, board scripts and tags in tableau view, switch persists',async()=>{
+test('launch pad: seven link tiles in both views, tableau opens the non-projector targets with no scripts, switch persists',async()=>{
  const h=await setup();
  h.change(h.$('#td-class'),'seconde');h.change(h.$('#td-chapter'),'seconde-01');
  assert.match(h.$('h1').textContent,/En classe/);
  assert.equal(h.$$('.lp-grid>li').length,7);
  assert.equal(h.$('.lp-tile[data-recent-id="automatismes"]').getAttribute('href'),'#automatismes/go');
+ assert.match(h.$('.lp-tile[data-recent-id="cours"]').getAttribute('href'),/player\.html/);
  assert.equal(h.$('[data-view="projecteur"]').getAttribute('aria-pressed'),'true');
- assert.equal(h.$$('.lp-script').length,0);
+ const links=h.$$('.lp-grid>li>a.lp-tile').length;
  h.click('[data-view="tableau"]');
  assert.equal(h.state.getTools().view,'tableau');
- assert.equal(h.$$('.lp-script').length,7);assert.equal(h.$$('.lp-tag').length,7);
- assert.equal(h.$$('.lp-tag.is-print').length,2);
- assert.ok(/sans papier/.test(h.$('.lp-tag').textContent)&&/fiche à imprimer/.test(h.$('.lp-tag.is-print').textContent));
- assert.equal(h.$$('a.lp-open').length,7,'the link stays available as Ouvrir');
+ assert.equal(h.$('.lp-tile[data-recent-id="automatismes"]').getAttribute('href'),'#automatismes/list');
+ assert.equal(h.$('.lp-tile[data-recent-id="cours"]').getAttribute('href'),'#chapter/seconde-01');
+ assert.equal(h.$$('.lp-script').length+h.$$('.lp-tag').length+h.$$('a.lp-open').length+h.$$('.lp-board').length,0,'no board scripts, tags or Ouvrir');
+ assert.equal(h.$$('.lp-grid>li>a.lp-tile').length,links,'same tile layout: every tile is one link');
  await h.stop();const h2=await setup({win:h.window});
  assert.equal(h2.$('[data-view="tableau"]').getAttribute('aria-pressed'),'true','switch persists');
  h2.click('[data-view="projecteur"]');assert.equal(h2.state.getTools().view,'projecteur');
+ assert.equal(h2.$('.lp-tile[data-recent-id="automatismes"]').getAttribute('href'),'#automatismes/go');
 });
 
 test('Ma séance: empty state proposes a standard séance, stored and shown; blocks are links',async()=>{

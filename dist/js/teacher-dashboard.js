@@ -47,19 +47,14 @@ export async function mountTeacherDashboard(main,{t,state,isGone=()=>false,decks
  if(isGone())return ()=>{};
  let confirmClear=false,message='',settingsOpen=false,recentOpen=false;
  const live=href=>!href.startsWith('#')||isLiveHash(href);
-// One tile of the launch pad. Projecteur view: the whole tile is the link. Tableau view: the board script, a paper tag
- // and the link kept as "Ouvrir".
- const tile=(p,i,view)=>{
+// One tile of the launch pad: the whole tile is the link, in both views (the view only changes the target).
+ const tile=(p,i)=>{
   const title=P(p.label),detail=p.detail?P(p.detail):'';
   const rec=`data-recent-id="${E(p.id)}" data-recent-title="${E(title+' · '+detail)}"`;
   const head=`<span class="lp-n" aria-hidden="true">${i+1}</span>`;
-  if(view!=='tableau')return p.href
+  return p.href
    ?`<a class="lp-tile" href="${E(p.href)}" ${rec}>${head}<span class="lp-title">${E(title)}</span><span class="lp-detail">${E(detail)}</span></a>`
    :`<span class="lp-tile is-unavailable">${head}<span class="lp-title">${E(title)}</span><span class="lp-detail">${E(P(p.why))}</span></span>`;
-  return `<div class="lp-tile lp-board${p.href?'':' is-unavailable'}">${head}<h3 class="lp-title">${E(title)}</h3><p class="lp-detail">${E(detail)}</p>
-<ul class="lp-script">${p.board.map(l=>`<li>${E(P(l))}</li>`).join('')}</ul>
-<p class="lp-tag${p.print?' is-print':''}">${p.print?L('fiche à imprimer','printed sheet'):L('sans papier','no paper')}</p>
-${p.href?`<a class="btn btn-secondary lp-open" href="${E(p.href)}" ${rec}>${L('Ouvrir','Open')}<span class="sr-only"> : ${E(title)}</span></a>`:`<p class="lp-why">${E(P(p.why))}</p>`}</div>`;
  };
  const seanceStrip=(seance,tot)=>{
   const body=seance.blocks.length
@@ -87,7 +82,7 @@ ${p.href?`<a class="btn btn-secondary lp-open" href="${E(p.href)}" ${rec}>${L('O
   const auto=autoDefaults(state.getTools());
   const memory=state.storageStatus()==='memory-only';
   const view=state.getTools().view==='tableau'?'tableau':'projecteur';
-  const phases=launchpad({course,chapter,decks}),seance=state.getSeance();
+  const phases=launchpad({course,chapter,decks,view}),seance=state.getSeance();
   const recentCount=recents.length+favorites.length;
   main.innerHTML=`${memory?`<p class="td-banner" role="status"><strong>${L('Stockage bloqué.','Storage blocked.')}</strong> ${L('Ce navigateur refuse d’enregistrer : tes choix ne sont gardés que pour cette session. Exporte-les dans les réglages en bas de page pour les conserver.','This browser refuses to save: your choices only last for this session. Export them in the settings at the bottom of the page to keep them.')}</p>`:''}
 <div class="td-top"><h1>${L('En classe','In class')}</h1>
@@ -97,7 +92,7 @@ ${p.href?`<a class="btn btn-secondary lp-open" href="${E(p.href)}" ${rec}>${L('O
 <div class="lp-switch" role="group" aria-label="${L('Affichage','Display')}"><button type="button" class="btn ${view==='projecteur'?'btn-primary':'btn-secondary'}" data-td="view" data-view="projecteur" aria-pressed="${view==='projecteur'}">${L('Projecteur','Projector')}</button><button type="button" class="btn ${view==='tableau'?'btn-primary':'btn-secondary'}" data-td="view" data-view="tableau" aria-pressed="${view==='tableau'}">${L('Tableau seul','Board only')}</button></div></div>
 <p class="td-resume" id="td-resume">${course?`<strong>${E(courseName(course))}</strong>${ch?` · <a href="#chapter/${E(chapter)}" data-recent-id="chapter-${E(chapter)}" data-recent-title="${E(ch.title[0])}" data-recent-type="chapter">${E(ch.title[0])}</a>`:''}`:L('Aucune classe choisie : les tuiles couvrent toutes les classes.','No class chosen: the tiles cover every class.')}</p>
 <section class="td-section lp-pad" aria-labelledby="td-pad-h"><h2 tabindex="-1" id="td-pad-h" class="sr-only">${L('Phases de la séance','Session phases')}</h2>
-<ol class="lp-grid">${phases.map((p,i)=>`<li>${tile(p,i,view)}</li>`).join('')}</ol></section>
+<ol class="lp-grid">${phases.map((p,i)=>`<li>${tile(p,i)}</li>`).join('')}</ol></section>
 ${seanceStrip(seance,totals(seance))}
 <details class="td-recent td-fold" data-fold="recent"${recentOpen?' open':''}><summary>${L('Récents et favoris','Recent and favorites')}<span class="td-count">${recentCount}</span></summary>
 <div class="td-columns">

@@ -79,7 +79,16 @@ with sync_playwright() as p:
     # 4a. board view persists across a reload; the pad keeps the link as Ouvrir; a standard séance is proposed, stored and shown
     page.goto(f'{BASE}/#teacher'); dashboard(page)
     page.locator('[data-view="tableau"]').click()
-    assert page.locator('.lp-script').count() == 7 and page.locator('a.lp-open').count() >= 4
+    assert page.locator('.lp-script, .lp-tag, a.lp-open').count() == 0, 'no board scripts in Tableau seul'
+    assert page.locator('a.lp-tile').count() >= 4
+    # one click from #teacher in Tableau seul: the automatismes list, not the projection stage
+    page.locator('a.lp-tile[data-recent-id="automatismes"]').click(); page.wait_for_selector('#gen-list li')
+    assert page.locator('#auto-stage.presenting').count() == 0, 'not the projection stage'
+    assert page.locator('#gen-answers[open]').count() == 1 and page.locator('#gen-list li').count() >= 3
+    assert page.locator('#gen-list .gen-answer').first.is_hidden(), 'answers hidden by default'
+    assert page.locator('[data-act="project"]').is_visible(), 'projection stays one click away'
+    page.locator('#gen-toggle-answers').click(); assert page.locator('#gen-list .gen-answer').first.is_visible()
+    page.goto(f'{BASE}/#teacher'); dashboard(page)
     page.reload(); dashboard(page)
     assert page.locator('[data-view="tableau"]').get_attribute('aria-pressed') == 'true', 'switch persists'
     assert page.evaluate("JSON.parse(localStorage.getItem('mx-teacher-tools')).view") == 'tableau'

@@ -45,18 +45,22 @@ export function automatismesPage(t, pair) {
 <div class="auto-body"><div id="st-q" class="auto-q" aria-live="polite"></div><div id="st-a" class="auto-a"></div></div>
 <div class="auto-controls"><button type="button" class="btn btn-secondary" id="st-prev">${t(P('Précédent', 'Previous'))}</button><button type="button" class="btn btn-secondary" id="st-next">${t(P('Suivant', 'Next'))}</button><button type="button" class="btn btn-secondary" id="st-reveal" aria-pressed="false">${t(P('Réponse', 'Answer'))}</button><button type="button" class="btn btn-primary" id="st-play" aria-pressed="false">${t(P('Départ', 'Start'))}</button>${fullscreenButton(pair)}<span class="muted auto-keys">${t(P('Touches : ← → A Espace', 'Keys: ← → A Space'))}</span></div>
 </section>
-<details class="gen-answers"><summary>${t(P('Voir la liste des questions et des réponses', 'Show the list of questions and answers'))}</summary><ol id="gen-list" class="gen-list"></ol></details>
+<details class="gen-answers" id="gen-answers"><summary>${t(P('Voir la liste des questions et des réponses', 'Show the list of questions and answers'))}</summary><p class="gen-list-bar"><button type="button" class="btn btn-secondary" id="gen-toggle-answers" aria-pressed="true">${t(P('Réponses', 'Answers'))}</button></p><ol id="gen-list" class="gen-list"></ol></details>
 </section></div></main>`;
 }
 
-export function bindAutomatismes(root, t, { chapterTitle = (id) => id, launch = false } = {}) {
+export function bindAutomatismes(root, t, { chapterTitle = (id) => id, launch = false, list = false } = {}) {
   const form = root.querySelector('#gen-form'), $ = (sel) => root.querySelector(sel);
   const s = loadSettings(KEY, DEFAULTS);
   if (!s.seed) s.seed = newSeed();
   // One-click session from the Espace professeur (#automatismes/go): class and chapter come from the device, the
   // remembered duration, size and seed policy replace the form values; everything stays editable on the page.
-  if (launch) { const d = autoDefaults(); Object.assign(s, { minutes: d.minutes, count: d.count }); if (d.seedPolicy === 'new') s.seed = newSeed(); form.elements.minutes.value = s.minutes; form.elements.count.value = s.count; }
+  // #automatismes/list (En classe, Tableau seul): the same device defaults, but the plain list of questions opens, answers
+  // hidden, and nothing is projected; the Projeter button stays one click away.
+  if (launch || list) { const d = autoDefaults(); Object.assign(s, { minutes: d.minutes, count: d.count }); if (d.seedPolicy === 'new') s.seed = newSeed(); form.elements.minutes.value = s.minutes; form.elements.count.value = s.count; }
   form.elements.seed.value = s.seed;
+  const showAnswers = (on) => { const l = $('#gen-list'); l.classList.toggle('answers-hidden', !on); $('#gen-toggle-answers').setAttribute('aria-pressed', String(on)); };
+  $('#gen-toggle-answers').addEventListener('click', () => showAnswers($('#gen-toggle-answers').getAttribute('aria-pressed') !== 'true'));
   bindContextNote(form, () => s);
   let doc = null, i = 0, showAnswer = false, running = false, left = 0, tick = null;
 
@@ -155,6 +159,11 @@ export function bindAutomatismes(root, t, { chapterTitle = (id) => id, launch = 
   document.addEventListener('keydown', onKey);
   window.addEventListener('resize', fit); document.addEventListener('fullscreenchange', fit);
   rebuild();
+  if (list) {
+    root.classList.add('is-list'); showAnswers(false);
+    const d = $('#gen-answers'); d.open = true; d.querySelector('summary').focus?.({ preventScroll: false });
+    try { history.replaceState(null, '', '#automatismes'); } catch { /* the address stays */ }
+  }
   if (launch) {
     const stage = $('#auto-stage');
     if (doc && !doc.empty) { stage.classList.add('presenting'); document.documentElement.classList.add('is-presenting'); stage.requestFullscreen?.().catch(() => {}); stage.focus(); fit(); }

@@ -22,7 +22,7 @@ export function mountDock({state,pair,getPage}){
   el.hidden=!on;
   if(!on){el.innerHTML='';return;}
   const {course,chapter}=state.getClassroom();
-  const m=dockItems({course,chapter,decks:decks??null,seance:state.getSeance(),currentHash:location.hash});
+  const m=dockItems({course,chapter,decks:decks??null,seance:state.getSeance(),currentHash:location.hash,view:state.getTools().view==='tableau'?'tableau':'projecteur'});
   const L=p=>esc(pair(p[0],p[1]));
   const label=pair('En classe','In class');
   if(collapsed()){
