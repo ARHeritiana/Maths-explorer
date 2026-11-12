@@ -14,7 +14,6 @@
 .td-field select,.td-field input{min-height:44px;padding:6px 10px;font:inherit;font-weight:400;color:var(--ink);background:var(--surface);border:1.5px solid var(--line-strong);border-radius:var(--r-sm);max-width:100%}
 .td-field select:disabled{color:var(--muted);background:var(--sunken)}
 .td-field,label.td-field.td-import{display:flex;min-width:0}.td-field input[type=file]{width:100%;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden}
-.td-resume{margin:0}
 .td-actions{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:12px}
 .td-action{display:flex;flex-direction:column;gap:4px;height:100%;min-height:88px;padding:12px 14px;box-sizing:border-box;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--ink);text-decoration:none}
 a.td-action:hover{border-color:var(--ink)}
@@ -27,10 +26,6 @@ a.td-action .td-action-title{color:var(--accent)}
 .td-items{list-style:none;margin:0 0 8px;padding:0}
 .td-items li{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;border-bottom:1px solid var(--line)}
 .td-item-link{display:inline-flex;align-items:center;min-height:44px;flex:1 1 180px;overflow-wrap:anywhere}
-.td-jobs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px}
-.td-jobs h3{font-size:1rem;margin:0 0 4px}
-.td-jobs ul{list-style:none;margin:0;padding:0}
-.td-jobs a{display:inline-flex;align-items:center;min-height:44px}
 .td-data-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
 .td-confirm{margin:12px 0;padding:12px 16px;border:1.5px solid var(--neg);background:var(--neg-soft)}
 .td-message{min-height:1.6em;margin:8px 0 0;font-weight:600}
@@ -38,10 +33,6 @@ a.td-action .td-action-title{color:var(--accent)}
 .teacher-switch a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;text-decoration:underline;text-underline-offset:4px}
 .teacher-switch span{color:var(--muted);font-size:.9rem}
 @media(max-width:420px){.td-actions{grid-template-columns:1fr}.td-entry{padding:12px}}
-.td-resume a{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
-/* One-click timed starters */
-.td-timed p{margin:0 0 12px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
-.td-timed .td-go{min-height:48px;text-decoration:none}
 /* Resource search (#search and the dashboard): Cahier tokens only */
 .rs-title{font-size:1.25rem;margin:0 0 12px}
 .rs-form{margin:0 0 8px}
@@ -74,37 +65,67 @@ a.td-action .td-action-title{color:var(--accent)}
 .modebar a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
 .is-presenting .modebar{display:none}
 @media (max-width:480px){.modebar{padding:0 8px}.modebar a{flex:1 1 0;padding:0 6px}}
-/* En classe launch pad: large tiles, readable at projector distance, square corners, borders not shadows. */
-.teacher-page .td-class{margin:12px 0 0;padding-top:0;border-top:0}
-.lp-switch{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
-.lp-switch .btn{min-height:48px;min-width:44px}
-.teacher-page .lp-pad{margin:16px 0;padding-top:0;border-top:0}
-.lp-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:16px}
-.lp-grid>li{min-width:0}
-.lp-tile{position:relative;display:flex;flex-direction:column;gap:6px;height:100%;min-height:132px;padding:16px 16px 16px 56px;box-sizing:border-box;border:2px solid var(--line-strong);border-radius:0;background:var(--surface);color:var(--ink);text-decoration:none;overflow-wrap:anywhere}
-a.lp-tile:hover{border-color:var(--ink)}
-a.lp-tile:focus-visible,.lp-open:focus-visible,.lp-block:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.lp-n{position:absolute;left:16px;top:16px;font:700 1.3rem var(--ui);color:var(--muted)}
-.lp-title{font:700 1.5rem/1.2 var(--ui);margin:0;color:var(--ink)}
-a.lp-tile .lp-title{color:var(--accent)}
-.lp-detail{font-size:1.05rem;color:var(--muted);margin:0}
-.lp-tile.is-unavailable{border-style:dashed;border-color:var(--line);background:var(--sunken)}
-.lp-tile.is-unavailable .lp-title{color:var(--muted)}
-.lp-board{min-height:0}
-.lp-script{margin:4px 0;padding-left:20px;font-size:1.15rem;line-height:1.45}
-.lp-script li{margin:4px 0}
-.lp-tag{margin:0;font:700 .92rem var(--ui);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+/* En classe: one screen. Class and chapter, the seven tiles, the séance strip; everything else folded below.
+   Cahier look: black on white, one red accent, square corners, borders not shadows. */
+.teacher-page{max-width:1280px}
+.teacher-page.td-page{padding-top:12px;padding-bottom:24px}
+.td-top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 24px;margin:8px 0 0}
+.td-top h1{margin:0;font-size:2rem;line-height:1;flex:none;padding-bottom:10px}
+.teacher-page .td-class{margin:0;padding:0;border:0;flex:1 1 420px}
+.teacher-page .td-class .td-selects{margin:0;grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
+.td-top .lp-switch{margin:0;flex:none}
+.lp-switch{display:flex;gap:0}
+.lp-switch .btn{min-height:44px;min-width:44px;border-radius:0}
+.lp-switch .btn+.btn{margin-left:-2px}
+.td-resume{margin:8px 0 0;font-size:1rem}
+.td-resume a{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
+.teacher-page .lp-pad{margin:8px 0 16px;padding-top:0;border-top:0}
+.lp-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
+.lp-grid>li{min-width:0;grid-column:span 6}
+@media(min-width:900px){.lp-grid>li{grid-column:span 3}.lp-grid>li:nth-child(n+5){grid-column:span 4}}
+@media(max-width:560px){.lp-grid>li{grid-column:span 12}.lp-grid{gap:8px}.lp-tile{min-height:0;padding:10px 12px 10px 52px}.lp-n{left:12px;top:8px;font-size:1.8rem}.lp-title{font-size:1.35rem}.teacher-page .td-class .td-selects{grid-template-columns:minmax(0,1fr)}.td-top .lp-switch{flex:1 1 100%}.lp-switch .btn{flex:1}}
+.lp-tile{position:relative;display:flex;flex-direction:column;justify-content:flex-start;gap:4px;height:100%;min-height:112px;padding:16px 16px 14px 64px;box-sizing:border-box;border:2px solid var(--ink);border-radius:0;background:var(--surface);color:var(--ink);text-decoration:none;overflow-wrap:anywhere}
+a.lp-tile:hover{background:var(--sunken)}
+a.lp-tile:focus-visible,.lp-open:focus-visible,.lp-block:focus-visible,.lp-build:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.lp-n{position:absolute;left:16px;top:12px;font:800 2.2rem/1 var(--ui);color:var(--accent)}
+.lp-title{font:700 1.55rem/1.15 var(--ui);margin:0;color:var(--ink)}
+.lp-detail{font-size:1.02rem;line-height:1.3;color:var(--muted);margin:0}
+.lp-tile.is-unavailable{border-style:dashed;border-color:var(--line-strong);background:var(--sunken)}
+.lp-tile.is-unavailable .lp-n,.lp-tile.is-unavailable .lp-title{color:var(--muted)}
+.lp-board{min-height:0;justify-content:flex-start}
+.lp-script{margin:4px 0;padding-left:20px;font-size:1.05rem;line-height:1.4}
+.lp-script li{margin:3px 0}
+.lp-tag{margin:0;font:700 .9rem var(--ui);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
 .lp-tag.is-print{color:var(--ink)}
 .lp-why{margin:0;font-weight:600}
 .lp-open{align-self:flex-start}
-.lp-blocks{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.lp-blocks li{min-width:0}
-.lp-block{display:inline-flex;align-items:center;gap:12px;min-height:44px;padding:6px 14px;box-sizing:border-box;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--accent);text-decoration:none;font:700 1.05rem var(--ui);max-width:100%;overflow-wrap:anywhere}
-a.lp-block:hover{border-color:var(--ink)}
+/* Ma séance: one row, scrolls sideways when long */
+.teacher-page .lp-seance{display:flex;align-items:center;gap:8px 16px;margin:0 0 16px;padding:8px 12px;border:2px solid var(--line-strong);background:var(--surface)}
+.teacher-page .lp-seance h2{margin:0;flex:none;font-size:1.1rem}
+.lp-blocks{list-style:none;margin:0;padding:0;display:flex;flex-wrap:nowrap;gap:8px;flex:1 1 0;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+.lp-blocks li{flex:none}
+.lp-block{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:4px 12px;box-sizing:border-box;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--ink);text-decoration:none;font:700 1rem var(--ui);white-space:nowrap}
+a.lp-block:hover{border-color:var(--ink);background:var(--sunken)}
 .lp-block-min{color:var(--muted);font-weight:400;font-size:.9rem}
-.lp-total{margin:0 0 8px;font-weight:600}
-.lp-build{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
-@media(max-width:420px){.lp-grid{grid-template-columns:1fr}.lp-tile{padding-left:48px}.lp-n{left:12px}.lp-title{font-size:1.3rem}}
+.lp-total{margin:0;flex:none;font-weight:600;white-space:nowrap}
+.lp-empty{margin:0;flex:1 1 0;min-width:0}
+.lp-build{flex:none;display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--accent)}
+@media(max-width:560px){.teacher-page .lp-seance{flex-wrap:wrap}.lp-blocks{flex-basis:100%;order:3}}
+/* Folded secondary areas at the very bottom */
+.td-fold{margin:0 0 8px;border:1px solid var(--line-strong);background:var(--surface)}
+.td-fold>summary{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;cursor:pointer;font:600 .98rem var(--ui);color:var(--muted)}
+.td-fold>summary:hover{color:var(--ink)}
+.td-fold>summary:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.td-fold[open]>summary{color:var(--ink);border-bottom:1px solid var(--line)}
+.td-fold>:not(summary){margin:0;padding:12px 16px}
+.td-fold h3{font-size:1.05rem;margin:0 0 6px}
+.td-fold h3:focus{outline:none}
+.td-fold .td-columns{padding:12px 16px}
+.td-count{display:inline-flex;align-items:center;justify-content:center;min-width:1.6em;padding:0 6px;border:1px solid var(--line-strong);font-size:.85rem}
+.td-settings{margin-top:24px}
+.td-settings>section+section{border-top:1px solid var(--line)}
+.td-settings .td-entry{display:block;margin:0;background:transparent;border:0;border-top:1px solid var(--line)}
+@media(max-width:420px){.td-top h1{padding-bottom:0}.td-fold>:not(summary){padding:12px}}
 /* In-class dock (dock.js): slim bar fixed to the bottom of tool pages in En classe. Cahier tokens only. */
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:stretch;gap:4px;box-sizing:border-box;min-height:52px;padding:4px clamp(8px,2vw,24px) calc(4px + env(safe-area-inset-bottom,0px));background:var(--surface);border-top:1.5px solid var(--line-strong);font:700 .92rem var(--ui)}
 .dock[hidden],.dock.is-projecting,.is-presenting .dock{display:none}

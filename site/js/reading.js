@@ -44,7 +44,9 @@ export function readAlso(hash, own, t) {
 
 const sourcesList = (list, t) => `<details class="read-sources secondary-tools"><summary>${t(["Sources et références", "Sources and references"])}</summary><ul>${list.map(([url, label]) => `<li><a href="${url}" target="_blank" rel="noopener noreferrer">${esc(t(label))} <span class="sr-only">${t(["(nouvel onglet)", "(new tab)"])}</span></a></li>`).join("")}</ul></details>`;
 const body = (sections, t) => sections.map(([h, ps]) => `<section><h2>${t(h)}</h2>${ps.map((p) => `<p>${esc(t(p))}</p>`).join("")}</section>`).join("");
-const plate = (name) => `<span class="read-plate" aria-hidden="true">${esc(initials(name))}</span>`;
+// Readings about a problem rather than a person get a short mathematical mark instead of an empty disk.
+const GLYPHS = { secretary: "1/e", tank: "N", benford: "log", birthdays: "365", monty: "3", "fair-division": "\u00bd", "hairy-ball": "S\u00b2", "nonorientable-surfaces": "\u221e", "double-pendulum": "\u03b8", "three-body": "3\u2009m", logistic: "x\u2099", illumination: "\u2202" };
+const plate = (name, id) => `<span class="read-plate" aria-hidden="true">${esc(initials(name) || GLYPHS[id] || "\u2211")}</span>`;
 
 function biographyIndex(t) {
   return `<main id="main" class="page read-page" tabindex="-1"><div class="page-heading"><div><h1>${t(["Biographies", "Biographies"])}</h1><p>${t(["Des vies de mathématiciens, les idées qu’ils ont laissées et les pages du site où les manipuler.", "Lives of mathematicians, the ideas they left, and the pages of the site where you can handle them."])}</p></div></div>
@@ -60,12 +62,12 @@ function biographyPage(b, t) {
 }
 function storyIndex(t) {
   return `<main id="main" class="page read-page" tabindex="-1"><div class="page-heading"><div><h1>${t(["Histoires et lectures", "Stories and readings"])}</h1><p>${t(["Des anecdotes dont on examine les sources, et des lectures pour comprendre les expériences.", "Stories whose sources are examined, and readings that explain the experiments."])}</p></div></div>
-  <div class="read-grid">${STORIES.map((s) => { const who = BIOGRAPHIES.find((b) => b.id === s.who), person = who ? who.name : s.figure || ""; return `<a class="read-card" href="#stories/${s.id}">${plate(person)}<span class="read-card-body"><strong>${esc(t(s.title))}</strong>${person ? `<span class="read-dates">${esc(person)}</span>` : ""}<span>${esc(t(s.dek))}</span></span></a>`; }).join("")}</div></main>`;
+  <div class="read-grid">${STORIES.map((s) => { const who = BIOGRAPHIES.find((b) => b.id === s.who), person = who ? who.name : s.figure || ""; return `<a class="read-card" href="#stories/${s.id}">${plate(person, s.id)}<span class="read-card-body"><strong>${esc(t(s.title))}</strong>${person ? `<span class="read-dates">${esc(person)}</span>` : ""}<span>${esc(t(s.dek))}</span></span></a>`; }).join("")}</div></main>`;
 }
 function storyPage(s, t) {
   const hash = "#stories/" + s.id, who = BIOGRAPHIES.find((b) => b.id === s.who);
   return `<main id="main" class="page read-page" tabindex="-1"><a class="backlink" href="#stories">${t(["Toutes les histoires", "All stories"])}</a>
-  <article class="read-article"><header class="read-header">${plate(who ? who.name : s.figure || "")}<div><span class="section-kicker">${t(s.kind==='lesson'?["Lecture mathématique", "Mathematical reading"]:["Histoire", "Story"])}${who ? ` · <a href="#biographies/${who.id}">${esc(who.name)}</a>` : s.figure ? ` · ${esc(s.figure)}` : ""}</span><h1>${esc(t(s.title))}</h1><p class="read-dek">${esc(t(s.dek))}</p></div></header>
+  <article class="read-article"><header class="read-header">${plate(who ? who.name : s.figure || "", s.id)}<div><span class="section-kicker">${t(s.kind==='lesson'?["Lecture mathématique", "Mathematical reading"]:["Histoire", "Story"])}${who ? ` · <a href="#biographies/${who.id}">${esc(who.name)}</a>` : s.figure ? ` · ${esc(s.figure)}` : ""}</span><h1>${esc(t(s.title))}</h1><p class="read-dek">${esc(t(s.dek))}</p></div></header>
   <div class="read-text read-story">${body(s.sections, t)}</div>
   ${readAlso(hash, s.links, t)}${sourcesList(s.sources, t)}</article></main>`;
 }

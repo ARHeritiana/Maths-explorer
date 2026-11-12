@@ -108,14 +108,15 @@ with sync_playwright() as p:
     page.goto(f'{BASE}/#resources/seconde'); page.wait_for_selector('.chapter-grid')
     assert page.locator('[data-ctx-strip]').count() == 0, 'another class is never filtered by the device choice'
     page.goto(f'{BASE}/#teacher'); dashboard(page)
+    page.locator('.td-recent summary').click()
     recents = page.locator('.td-items a').evaluate_all('a => a.map(x => x.getAttribute("href"))')
     assert '#sheets' in recents and '#resources/premiere' in recents, recents
     page.select_option('#td-class', 'premiere'); page.select_option('#td-chapter', chapter)   # browsing seconde moved the class
-    page.locator('.td-timed summary').click()
+    page.locator('.td-settings summary').click()
     page.fill('#td-auto-minutes', '3'); page.press('#td-auto-minutes', 'Tab')
     page.fill('#td-auto-count', '5'); page.press('#td-auto-count', 'Tab')
     page.select_option('#td-auto-seed', 'new')
-    page.locator('a.td-go').click()
+    page.locator('.lp-grid a.lp-tile').first.click()
     page.wait_for_selector('#auto-stage.presenting')
     assert page.evaluate('location.hash') == '#automatismes', 'reload never relaunches'
     assert page.input_value('input[name=minutes]') == '3' and page.input_value('input[name=count]') == '5'
@@ -131,7 +132,7 @@ with sync_playwright() as p:
     page.keyboard.press('Escape')
     page.evaluate("document.querySelector('#auto-stage').classList.remove('presenting')")
     page.goto(f'{BASE}/#teacher'); dashboard(page)
-    page.locator('.td-timed summary').click(); page.select_option('#td-auto-seed', 'keep'); page.locator('a.td-go').click()
+    page.locator('.td-settings summary').click(); page.select_option('#td-auto-seed', 'keep'); page.locator('.lp-grid a.lp-tile').first.click()
     page.wait_for_selector('#auto-stage.presenting')
     assert page.input_value('input[name=seed]') == seed1, 'same-series policy keeps the code'
     assert page.locator('[data-act="print-student"]').count() == 1 and page.locator('[data-act="tex-student"]').count() == 1 and page.locator('[data-act="projection-file"]').count() == 1
@@ -139,7 +140,7 @@ with sync_playwright() as p:
     page.evaluate('document.documentElement.classList.remove("is-presenting")')
 
     # 5. switch back to the student home
-    page.locator('[data-set-entry="student"]').click()
+    page.locator(".td-settings summary").click(); page.locator('[data-set-entry="student"]').click()
     page.wait_for_selector('#home-class')
     assert page.evaluate("localStorage.getItem('mx-teacher-entry')") == 'student'
     page.goto(f'{BASE}/'); page.reload(); page.wait_for_selector('#home-class')

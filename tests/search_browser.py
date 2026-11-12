@@ -91,14 +91,11 @@ with sync_playwright() as p:
     page.wait_for_selector('#auto-stage', state='attached')
     assert page.evaluate("localStorage.getItem('mx-teacher-chapter')") == 'premiere-01', 'chapter preselected for the projection'
     assert page.evaluate("document.querySelector('#auto-stage').classList.contains('presenting')"), 'projection stage is open'
-    # the favorite shows on the dashboard, and the dashboard has the same search
+    # the favorite shows in the folded "Récents et favoris" of the dashboard, which has no search box of its own (the header has it)
     page.goto(f'{BASE}/#teacher'); page.wait_for_selector('#td-class')
-    page.wait_for_selector('#td-search-slot .rs input[type=search]')
+    assert page.locator('#td-search-slot, .td-search').count() == 0, 'one search entry point: the header'
+    page.locator('.td-recent summary').click()
     assert 'Automatismes' in page.locator('#td-fav-h ~ .td-items, #td-fav-h ~ ul').first.inner_text()
-    page.locator('#td-search-slot input[type=search]').fill('dérivée')
-    page.wait_for_selector('#td-search-slot .rs-item')
-    page.select_option('#td-class', 'terminale')
-    assert page.locator('#td-search-slot input[type=search]').input_value() == 'dérivée', 'search survives a dashboard redraw'
 
     # 6. keyboard: type, Tab to the first action, activate with Enter
     page.goto(f'{BASE}/#search'); page.wait_for_selector('.rs input[type=search]')

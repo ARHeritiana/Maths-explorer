@@ -37,7 +37,15 @@ A launch pad in session order, each phase one click from the page and at most on
 7. Bilan et travail à faire (what to give as homework, from the chapter's exercises)
 
 Plus "Ma séance": the ordered blocks prepared in Préparer, each one click to launch; a switch **Projecteur / Tableau
-seul** (board view shows, per phase, what to write or draw). A compact in-class dock (previous, next, back to the pad)
+seul** (board view shows, per phase, what to write or draw).
+
+One screen, no endless scroll (owner, 12 November 2026). The page is: class and chapter selects with the switch, the
+seven tiles (4 + 3), and "Ma séance" as one row that scrolls sideways. Below, two collapsed disclosures: "Récents et
+favoris" and "Réglages de cet appareil" (remembered automatismes defaults, start page choice, export, import, clear).
+Removed as duplicates: the timed-series button (tile 1 is that one click), the dashboard search (the header has it) and
+"Par activité" (the header menus and the tiles reach every page).
+
+A compact in-class dock (previous, next, back to the pad)
 on tool pages, hidden in full-screen projection and brought back by a tab on the screen edge.
 
 ### Préparer (`#prepare`)

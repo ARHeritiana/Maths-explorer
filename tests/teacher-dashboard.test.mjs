@@ -231,14 +231,14 @@ test('English labels render and the teacher module does not leak a French-only s
 
 test('one-click timed starters: link to the launch route, remembered defaults, no forced values',async()=>{
  const h=await setup();
- const go=h.$('a.td-go');assert.equal(go.getAttribute('href'),'#automatismes/go');assert.ok(isLiveHash('#automatismes/go'));
+ const go=h.$('.lp-grid a.lp-tile');assert.equal(go.getAttribute('href'),'#automatismes/go','the first tile is the one-click timed series');assert.equal(h.$('a.td-go'),null,'no duplicate launch button');assert.ok(isLiveHash('#automatismes/go'));
  assert.match(h.$('#td-timed-sum').textContent,/5 min/,'default duration shown');
  h.change(h.$('#td-class'),'premiere');
  assert.match(h.$('#td-timed-sum').textContent,/Première/,'the class of the device is named');
  h.change(h.$('#td-auto-minutes'),'8');h.change(h.$('#td-auto-count'),'12');h.change(h.$('#td-auto-seed'),'keep');
  assert.deepEqual(h.state.getTools().automatismes,{minutes:8,count:12,seedPolicy:'keep'});
  assert.match(h.$('#td-timed-sum').textContent,/8 min.*12.*même série/);
- assert.ok(h.$('details.secondary-tools[open]'),'the settings stay open while editing');
+ assert.ok(h.$('details.td-settings[open]'),'the settings stay open while editing');
  h.change(h.$('#td-auto-minutes'),'999');assert.equal(h.state.getTools().automatismes.minutes,60,'bounded');
  // persisted for the next visit on this device
  await h.stop();const h2=await setup({win:h.window});
@@ -248,6 +248,24 @@ test('one-click timed starters: link to the launch route, remembered defaults, n
 
 test('one-click starters with storage blocked still show defaults',async()=>{
  const h=await setup({blocked:true});
- assert.ok(h.$('a.td-go'));h.change(h.$('#td-auto-minutes'),'7');
+ assert.ok(h.$('.lp-grid a.lp-tile'));h.change(h.$('#td-auto-minutes'),'7');
  assert.equal(h.$('#td-auto-minutes').value,'7','held in memory for the session');
+});
+
+test('one screen: first-screen elements present, secondary areas folded, removed sections gone',async()=>{
+ const h=await setup();
+ h.change(h.$('#td-class'),'seconde');h.change(h.$('#td-chapter'),'seconde-01');
+ const top=[...h.main.children];
+ const has=sel=>top.some(n=>n.matches(sel)||n.querySelector(sel));
+ assert.ok(has('#td-class')&&has('#td-chapter'),'class and chapter selects');
+ assert.equal(h.$$('.lp-grid>li').length,7,'seven tiles');
+ assert.deepEqual(h.$$('.lp-grid .lp-n').map(n=>n.textContent),['1','2','3','4','5','6','7'],'in session order');
+ assert.ok(top.some(n=>n.classList.contains('lp-seance')),'Ma séance strip is top level');
+ for(const sel of ['.td-recent','.td-settings']){const d=h.$(sel);assert.ok(d&&d.tagName==='DETAILS'&&!d.open,sel+' is a collapsed disclosure');assert.ok(top.includes(d));}
+ for(const id of ['td-entry-h','td-data-h','td-timed-h'])assert.ok(h.$('.td-settings #'+id),id+' moved into the settings');
+ for(const id of ['td-rec-h','td-fav-h'])assert.ok(h.$('.td-recent #'+id),id+' moved into the recent disclosure');
+ for(const n of top)assert.ok(!n.matches('.td-entry,.td-timed,.td-search,.td-columns')&&n.id!=='td-search-slot','no secondary section at top level');
+ assert.equal(h.$('#td-search-slot'),null,'search lives in the header only');
+ assert.ok(!/Par activité|By activity|Automatismes en un clic/.test(h.main.textContent),'removed sections stay removed');
+ assert.ok(!/[–—]/.test(h.main.textContent));
 });
