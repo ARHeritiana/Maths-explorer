@@ -29,6 +29,10 @@
 .gen-answer { margin-top: 2px; }
 .gen-list-bar { margin: 4px 0 8px; }
 .gen-list.answers-hidden .gen-answer { display: none; }
+.gen-comp, .sheet-comp { margin-left: 0.5em; color: var(--muted); font-size: 0.8em; font-variant: small-caps; letter-spacing: 0.02em; white-space: nowrap; }
+.sheet-comp { color: #555; }
+.gen-comp-note:empty { display: none; }
+.gen-comp-note p { margin: 0 0 8px; padding: 8px 14px; background: var(--sunken); border: 1px solid var(--line); font-size: 0.95rem; overflow-wrap: anywhere; }
 .is-list .gen-list { font-size: 1.35rem; line-height: 1.5; gap: 16px; }
 .gen-preview { overflow-x: auto; }
 

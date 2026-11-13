@@ -28,7 +28,7 @@ test('rule: later reviews grow by exact integer steps, hard < good < easy',()=>{
  assert.deepEqual(seq([3,3,3,3]).map(c=>[c.ivl,c.ease]),[[4,265],[15,280],[58,295],[226,300]]);
  assert.deepEqual(seq([1,1,1,1,1]).map(c=>[c.ivl,c.ease]),[[1,235],[2,220],[3,205],[4,190],[5,175]]);
  const c=seq([2,2,2])[2];   // ivl 8, ease 250
- assert.deepEqual(M.preview(c,c.due),[0,10,20,27]);
+ assert.deepEqual(M.preview(c,c.due),[0,10,20,28]);   // easy: round(8 × 265 × 1,3 / 100) = round(27,56) = 28
  for(const start of seq([2,3,1,2,3,2,2])){const p=M.preview(start,start.due);if(start.reps>0&&p[3]<M.MAX_IVL)assert.ok(p[0]===0&&p[1]<p[2]&&p[2]<p[3],JSON.stringify(p));}
 });
 test('rule: a miss resets the run, counts a lapse only after a success, and bounds hold',()=>{

@@ -59,6 +59,10 @@ export const competences = [
         const h = r.int(5, 60), L = 2 * h, thing = r.pick(['un enclos', 'un potager', 'un parc à vélos']);
         return { q: `On construit ${thing} rectangulaire adossé à un mur avec ${M(`${L}${u}`)} de grillage pour les trois autres côtés. On note ${M('x')} la longueur (en ${unit}) de chacun des deux côtés perpendiculaires au mur. Exprimer l’aire ${M('A(x)')} en fonction de ${M('x')} et préciser les valeurs possibles de ${M('x')}.`, a: `Le côté parallèle au mur mesure ${M(`${L}-2x`)} : ${M(`A(x)=x(${L}-2x)`)} pour ${M(`x\\in]0\\,;\\,${h}[`)}.`, ok: () => [1, 2, h - 1].every((x) => { const side = L - x - x; return side > 0 && x * side === evalPoly([-2, L, 0], x); }) };
       }
+      if (r.next() < 0.5) {   // rectangular sheet c × d: V(x) = x(c - 2x)(d - 2x), x below half the shorter side
+        const h = r.int(5, 30), c = 2 * h, d = c + 2 * r.int(1, 15), cube = mulPoly([1, 0], mulPoly([-2, c], [-2, d]));
+        return { q: `Dans une feuille rectangulaire de ${M(`${c}${u}`)} sur ${M(`${d}${u}`)}, on découpe à chaque coin un carré de côté ${M('x')} (en ${unit}), puis on relève les bords pour former une boîte sans couvercle. Exprimer le volume ${M('V(x)')} de la boîte en fonction de ${M('x')} et préciser les valeurs possibles de ${M('x')}.`, a: `Le fond est un rectangle de ${M(`${c}-2x`)} sur ${M(`${d}-2x`)} et la hauteur vaut ${M('x')} : ${M(`V(x)=x(${c}-2x)(${d}-2x)`)} pour ${M(`x\\in]0\\,;\\,${h}[`)}.`, ok: () => [1, 2, h - 1].every((x) => { const w = c - x - x, l = d - x - x; return w > 0 && l > w && w * l * x === evalPoly(cube, x); }) };
+      }
       const h = r.int(5, 30), c = 2 * h, cube = mulPoly([1, 0], mulPoly([-2, c], [-2, c]));
       return { q: `Dans une feuille carrée de côté ${M(`${c}${u}`)}, on découpe à chaque coin un carré de côté ${M('x')} (en ${unit}), puis on relève les bords pour former une boîte sans couvercle. Exprimer le volume ${M('V(x)')} de la boîte en fonction de ${M('x')} et préciser les valeurs possibles de ${M('x')}.`, a: `Le fond est un carré de côté ${M(`${c}-2x`)} et la hauteur vaut ${M('x')} : ${M(`V(x)=x(${c}-2x)^{2}`)} pour ${M(`x\\in]0\\,;\\,${h}[`)}.`, ok: () => [1, 2, h - 1].every((x) => { const base = c - x - x; return base > 0 && base * base * x === evalPoly(cube, x); }) };
     } },
@@ -116,7 +120,7 @@ export const competences = [
     } },
   { id: 't5-read-convexity', cls: 'terminale', chapter: 'terminale-06', domain: 'analyse', skill: 'Lire la convexité et les points d’inflexion sur le signe de la dérivée seconde', fast: true,
     make(r, level) {
-      const f = r.pick(['f', 'g', 'h']), s0 = r.sign(), a = r.int(-9, 6), b = a + r.int(1, 6);
+      const f = r.pick(['f', 'g', 'h']), s0 = r.sign(), a = r.int(-12, 12), b = a + r.int(1, 6);
       // zeros of the second derivative and its sign on each interval; level 3 has a zero without change of sign
       const xs = level === 1 ? [a] : [a, b];
       const signs = level === 1 ? [s0, -s0] : level === 2 ? [s0, -s0, s0] : r.pick([[s0, s0, -s0], [s0, -s0, -s0]]);
@@ -155,19 +159,19 @@ export const competences = [
     make(r, level) {
       const cm = (t) => F(100 + t, 100), rate = (q) => sub(mul(q, F(100)), F(100));   // rate in percent of a multiplier
       if (level === 1) {
-        const t = r.pick([4, 5, 8, 10, 12, 15, 20, 25, 30, 40, 50, 60, 75]), v = r.next() < 0.5, q = cm(t), said = v ? t : 100 + t;
+        const t = r.int(1, 95), v = r.next() < 0.5, q = cm(t), said = v ? t : 100 + t;
         return tf({ s: `Multiplier une grandeur par ${M(numTex(q))} revient à l’augmenter de ${M(pc(said))}.`, v, j: `${M(`${numTex(q)}=1+\\dfrac{${t}}{100}`)} : c’est une hausse de ${M(pc(t))}${v ? '' : `, pas de ${M(pc(said))}`}.`, c: () => eq(rate(q), F(said)) === v && eq(mul(q, F(200)), F(200 + 2 * t)) });
       }
       if (level === 2 && r.next() < 0.5) {
-        const a = r.pick([5, 10, 20, 25, 30, 40, 50]), b = r.pick([10, 20, 30, 40, 50, 60]), g = rate(mul(cm(a), cm(b)));
+        const a = 5 * r.int(1, 12), b = 5 * r.int(1, 12), g = rate(mul(cm(a), cm(b)));
         return tf({ s: `Augmenter une grandeur de ${M(pc(a))} puis de ${M(pc(b))} revient à l’augmenter de ${M(pc(a + b))}.`, v: false, j: `${M(`${numTex(cm(a))}\\times ${numTex(cm(b))}=${numTex(mul(cm(a), cm(b)))}`)} : la hausse globale est de ${M(pcF(g))}, les taux ne s’ajoutent pas.`, c: () => (100 + a) * (100 + b) - 10000 !== 100 * (a + b) && eq(g, F((100 + a) * (100 + b) - 10000, 100)) });
       }
       if (level === 2) {
         const v = r.next() < 0.4, [t, h] = v ? r.pick([[20, 25], [50, 100], [60, 150], [75, 300], [80, 400]]) : (() => { const x = r.pick([5, 10, 15, 20, 25, 30, 40, 50]); return [x, x]; })(), q = mul(cm(-t), cm(h));
         return tf({ s: `Une baisse de ${M(pc(t))} est exactement compensée par une hausse de ${M(pc(h))}.`, v, j: `${M(`${numTex(cm(-t))}\\times ${numTex(cm(h))}=${numTex(q)}`)}${v ? ' : on retrouve la valeur de départ.' : ` : on ne retrouve pas la valeur de départ (il reste une baisse de ${M(pcF(rate(q)))}).`}`, c: () => ((100 - t) * (100 + h) === 10000) === v });
       }
-      const t = r.pick([10, 20, 30, 40, 50]), n = r.pick([2, 3]), rise = r.next() < 0.5, one = cm(rise ? t : -t), q = n === 2 ? mul(one, one) : mul(one, mul(one, one)), g = rate(q), gv = Math.abs(g.n / g.d);
-      return tf({ s: `${rise ? 'Augmenter' : 'Diminuer'} une grandeur de ${M(pc(t))}, ${n === 2 ? 'deux' : 'trois'} fois de suite, revient à ${rise ? 'l’augmenter' : 'la diminuer'} de ${M(pc(n * t))}.`, v: false, j: `${M(`${numTex(one)}^{${n}}=${numTex(q)}`)} : l’évolution globale est une ${rise ? 'hausse' : 'baisse'} de ${M(pcF(g))}, pas de ${M(pc(n * t))}.`, c: () => { let x = 10 ** 6; for (let i = 0; i < n; i++) x = (x * (rise ? 100 + t : 100 - t)) / 100; return Math.abs(x - 10 ** 6) * 100 !== n * t * 10 ** 6 && Math.abs(Math.abs(x - 10 ** 6) / 10 ** 4 - gv) < 1e-9; } });
+      const t = r.int(2, 50), n = r.pick([2, 3]), rise = r.next() < 0.5, one = cm(rise ? t : -t), q = n === 2 ? mul(one, one) : mul(one, mul(one, one)), g = rate(q), gv = Math.abs(g.n / g.d);
+      return tf({ s: `${rise ? 'Augmenter' : 'Diminuer'} une grandeur de ${M(pc(t))}, ${n === 2 ? 'deux' : 'trois'} fois de suite, revient à ${rise ? 'l’augmenter' : 'la diminuer'} de ${M(pc(n * t))}.`, v: false, j: `${M(`${numTex(one)}^{${n}}=${numTex(q)}`)} : l’évolution globale est une ${rise ? 'hausse' : 'baisse'} de ${M(pcF(g))}, pas de ${M(pc(n * t))}.`, c: () => { let x = F(1); for (let i = 0; i < n; i++) x = mul(x, F(rise ? 100 + t : 100 - t, 100)); const k = F(Math.round(gv * 10 ** 6), 10 ** 6); return eq(x, q) && !eq(rate(x), F(rise ? n * t : -n * t)) && eq(rate(x), rise ? k : F(-k.n, k.d)); } });   // exact product, independent of the display
     } },
   { id: 'm5-read-law', cls: 'stmg', chapter: 'stmg-07', domain: 'stats-proba', skill: 'Lire une probabilité dans le tableau d’une loi', fast: true,
     make(r, level) {

@@ -149,8 +149,9 @@ draw();
 }
 
 // ---- HTML documents for the page and for printing (same structure as the LaTeX sources) ----
-export function starterHtml(doc, { teacher = false, subtitle = '' } = {}) {
-  return `<article class="sheet-doc${teacher ? ' is-teacher' : ''}"><header><h1>Automatismes${teacher ? ' : corrigé' : ''}</h1><p>${esc(subtitle)}</p>${teacher ? '' : `<p class="sheet-fields">Nom : <span></span> Date : <span></span> <em>${doc.minutes} min</em></p>`}</header><ol class="sheet-starter">${doc.items.map((i) => `<li><div>${html(i.q)}</div>${teacher ? `<div class="sheet-answer"><strong>Réponse :</strong> ${html(i.a)}${i.s ? ` <em>${html(i.s)}</em>` : ''}</div>` : '<div class="sheet-space"></div>'}</li>`).join('')}</ol></article>`;
+// `competency` (teacher version only): a function from an item to a short label, printed discreetly after the answer.
+export function starterHtml(doc, { teacher = false, subtitle = '', competency = null } = {}) {
+  return `<article class="sheet-doc${teacher ? ' is-teacher' : ''}"><header><h1>Automatismes${teacher ? ' : corrigé' : ''}</h1><p>${esc(subtitle)}</p>${teacher ? '' : `<p class="sheet-fields">Nom : <span></span> Date : <span></span> <em>${doc.minutes} min</em></p>`}</header><ol class="sheet-starter">${doc.items.map((i) => `<li><div>${html(i.q)}</div>${teacher ? `<div class="sheet-answer"><strong>Réponse :</strong> ${html(i.a)}${i.s ? ` <em>${html(i.s)}</em>` : ''}${competency && competency(i) ? ` <small class="sheet-comp">${esc(competency(i))}</small>` : ''}</div>` : '<div class="sheet-space"></div>'}</li>`).join('')}</ol></article>`;
 }
 export function sheetHtml(doc, { teacher = false, bareme = false, title = '', subtitle = '' } = {}) {
   const ex = (e) => `<section class="sheet-ex"><h2>Exercice ${e.n}${e.title ? ` : ${html(e.title)}` : ''}${bareme ? ` <small>(${pts(e.pts)} points)</small>` : ''}</h2>${e.intro ? `<p>${html(e.intro)}</p>` : ''}<ol class="sheet-parts">${e.parts.map((p) => `<li><div>${html(p.q)}${bareme ? ` <em class="sheet-pts">(${pts(p.pts)} pt${p.pts > 1 ? 's' : ''})</em>` : ''}</div>${teacher ? `<div class="sheet-answer">${html(p.a)}${p.s ? ` <em>${html(p.s)}</em>` : ''}</div>` : ''}</li>`).join('')}</ol></section>`;

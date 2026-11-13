@@ -35,7 +35,10 @@ const small = pdfs.filter(f => sizeOf(f) < 600e3);
 assert.ok(small.length >= 2, 'two small PDFs exist');
 const [openedPdf, unopenedPdf] = small.map(f => 'resources/' + f.split(path.sep).join('/'));
 const ROUTES = ['#home', '#automatismes', '#bank', '#lab', '#chapter/' + chapter.id];
-const UNOPENED = '#olympiad/' + OLYMPIAD[0].id;   // never opened online: only the shell can draw it, formulas included
+// Never opened online: only the shell can draw it, formulas included. The Olympiad page is live only in the full
+// edition; the limited edition redirects it, so the worksheet generator (shell code only, formulas) is used there.
+// A chapter page never opened online is not a candidate: its data is copied only when it is first opened.
+const UNOPENED = isLiveHash('#olympiad/' + OLYMPIAD[0].id) ? '#olympiad/' + OLYMPIAD[0].id : '#sheets';
 
 /* ---------------------------------------------------------------- the server: sub-path, Range, a switch, overrides */
 const overrides = new Map();   // relative path -> Buffer (the "new version" published later)

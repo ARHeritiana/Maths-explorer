@@ -9,6 +9,7 @@ The pipeline package. Run with `PYTHONPATH=build python3 -m mxbuild <command>` o
 | `__init__.py` | `ROOT`, `DIST` | |
 | `refresh.py` | dependency-driven rebuild of everything linked; input fingerprints in `content/data/build-state.json` | `make site` |
 | `site.py` | copy `site/` into `dist/`, regenerate import maps (cache busting) | part of `make site` |
+| `offline.py` | writes `dist/sw.js`: `site/sw.js` with the shell manifest (files, content hashes, version) in place of its placeholder; `docs/OFFLINE.md` | part of `make site` |
 | `catalog.py` | `catalog.json`, `resources-data.js`, `RESOURCE_PROVENANCE.json` from the manifest; `load()`/`save()` | `make catalog` |
 | `content_index.py` | `site/js/catalogue-data.js` and the measured content model | part of `make site` |
 | `slide_editions.py` | explicit available slide languages, independent per-language sequences and paired-text compatibility | slides, exports, lecture PDFs |

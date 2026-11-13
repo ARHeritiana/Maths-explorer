@@ -178,7 +178,7 @@ export const seedFor = (id, card, today) => `${id}|${card ? card.seen : 0}|${tod
 export const levelFor = (card) => (!card || card.ivl < 3 ? 1 : card.ivl < MASTERED_IVL ? 2 : 3);
 
 // ---- export, import ----
-export function exportReview(state, now = new Date()) {
+export function exportReview(state, now) {   // now: a Date from the caller (the model has no clock); none gives an empty exportedAt
   const clean = sanitize(state).state;
   return { app: APP, version: VERSION, exportedAt: now instanceof Date && !Number.isNaN(now.getTime()) ? now.toISOString() : '', cards: clean.cards, settings: clean.settings };
 }

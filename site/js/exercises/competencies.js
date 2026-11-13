@@ -553,6 +553,17 @@ export const COMPETENCY_OF = {
   'm4-rev-mean': [C],
   'm4-rev-mix': [M, C],
   'm4-rev-prop': [C, M],
+  // ======== templates-competences.js (short generators written for the weakest cells of the audit) ========
+  'p5-model-recurrence': [M, C],
+  'p5-model-area': [M],
+  'p5-read-variations': [P, R],
+  'p5-read-tree': [P, C],
+  't5-read-limits-table': [P, R],
+  't5-read-convexity': [P],
+  'e5-model-transition': [M, P],
+  'm5-evol-vf': [R, C],
+  'm5-read-law': [P, C],
+  'm5-model-exp': [M, C],
 };
 
 export const mainCompetency = (id) => COMPETENCY_OF[id]?.[0] || null;
