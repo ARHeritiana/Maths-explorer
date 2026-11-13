@@ -1,5 +1,6 @@
 """Browser checks of the shared challenge layer (site/js/app.js challengeDetail and bindChallenges):
- - the original statement sits in a closed disclosure in the side panel and opens on demand;
+ - no hint panel and no hint buttons (owner rule: no hints in the UI);
+ - the original statement sits in a closed disclosure under the answer form and opens on demand;
  - a wrong answer gets the neutral "Pas encore." with no coaching;
  - the Impossible button exists only where the answer can be impossible (cham), and counts as the answer 0;
  - the written solution is a closed "Version écrite" disclosure inside the worked solution;
@@ -66,6 +67,7 @@ with sync_playwright() as p:
         page.wait_for_timeout(250)
         assert page.locator('#challenge-form').get_attribute('data-id') == cid, cid
         assert not overflow(page), f'{cid}: horizontal overflow at 390 px'
+        assert page.locator('.hint-panel, [data-hint-act], [data-hint]').count() == 0, f'{cid}: hints shown'
         page.goto(f'{BASE}/#challenges'); page.wait_for_timeout(50)
     assert not errors, errors
     browser.close()

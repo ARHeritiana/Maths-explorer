@@ -26,7 +26,7 @@ import { isReading, readingPage, readAlso } from "./reading.js";
 import { mountArt } from "./home-art.js";
 import { mountLibrary } from "./library.js";
 import { icon } from "./icons.js";
-import { VARIANTS, HINT_ACTIONS, hasVariants, defaults as variantDefaults, randomParams, normalise as normaliseVariant, mountActivity, hasActivity, challengeIcon, originalOf, mountSolution, hasSolution } from "./challenges/registry.js";
+import { VARIANTS, hasVariants, defaults as variantDefaults, randomParams, normalise as normaliseVariant, mountActivity, hasActivity, challengeIcon, originalOf, mountSolution, hasSolution } from "./challenges/registry.js";
 import { fullscreenButton } from "./visual-lessons.js";
 import { basicsPage, bindBasics, isBasicsRoute } from "./basics-page.js";
 import { currentTheme, toggleTheme, installPresenting } from "./ui.js";
@@ -468,9 +468,6 @@ function challengePage(id) {
 // Parameters of the variation currently shown, per challenge (kept while the visitor browses; not stored).
 const variantState = {};
 const paramsOf = (id) => (variantState[id] ??= hasVariants(id) ? variantDefaults(id) : {});
-// Hints that carry a button acting on the experiment (hintActions in each challenge folder): { hint index: [action, French label, English label] }.
-// The activity listens for the "challenge-action" event, so the button can sit in the hint panel, away from the board.
-const hintAction = (id, i) => { const a = HINT_ACTIONS[id]?.[i]; return a ? `<button class="btn btn-secondary hint-action" type="button" data-hint-act="${a[0]}"${a[3] ? ' aria-pressed="false"' : ""}>${pair(a[1], a[2])}</button>` : ""; };
 const variantText = (c, q) => {
   const v = VARIANTS[c.id];
   return v ? { prompt: v.prompt(q), original: originalOf(c.id, q), answer: v.answer(q), solution: v.solution(q), hints: v.hints ? v.hints(q) : c.hints } : { prompt: c.prompt, original: null, answer: c.answer, solution: c.solution, hints: c.hints };
@@ -485,7 +482,7 @@ function variationPanel(c) {
 }
 function challengeDetail(c) {
   const v = variantText(c, paramsOf(c.id));
-  return `<main id="main" class="page challenge-detail" tabindex="-1"><a class="backlink" href="#challenges">${pair("Tous les défis", "All challenges")}</a><div class="challenge-columns"><article><span class="section-kicker">${t(c.topic)} · ${c.minutes} min</span><h1>${t(c.title)}</h1><p class="problem" id="problem">${t(v.prompt)}</p>${variationPanel(c)}${hasActivity(c.id) ? `<section class="activity" aria-labelledby="activity-title"><h2 id="activity-title">${pair("À toi d’explorer", "Explore it yourself")}</h2><div id="activity" data-activity="${c.id}"></div></section>` : ""}<form id="challenge-form" data-id="${c.id}"><label for="challenge-answer">${pair("Ta réponse numérique", "Your numerical answer")}</label><div class="answer-row"><input type="text" id="challenge-answer" inputmode="text" required autocomplete="off" placeholder="${pair("Nombre ou fraction", "Number or fraction")}"><button class="primary" type="submit">${pair("Vérifier", "Check")}</button>${VARIANTS[c.id]?.impossible ? `<button class="secondary" type="button" id="challenge-impossible">${pair("Impossible", "Impossible")}</button>` : ""}</div><p id="challenge-feedback" class="feedback" role="status">${completed.has(c.id) ? pair("Tu as déjà trouvé cette réponse. Essaie maintenant de rédiger la preuve.", "You have already found this answer. Now try writing the proof.") : ""}</p></form></article><aside class="hint-panel"><h2>${pair("Un coup de pouce ?", "A little nudge?")}</h2>${v.hints.map((h, i) => `<details><summary>${pair("Indice", "Hint")} ${i + 1}</summary><p data-hint="${i}">${t(h)}</p>${hintAction(c.id, i)}</details>`).join("")}${v.original ? `<details class="original-statement"><summary>${pair("Énoncé d’origine", "Original statement")}</summary><p class="problem original-q" id="original">${t(v.original)}</p><p class="muted">${pair("À traiter seul ou avec un enseignant : le site ne peut pas la vérifier.", "To work out alone or with a teacher: the site cannot check it.")}</p></details>` : ""}</aside></div>${readAlso(link("challenges", c.id), [], t)}<section class="solution-wide"><details class="solution"><summary>${pair("Voir la solution expliquée", "See the worked solution")}</summary>${hasSolution(c.id) ? `<div id="solution-anim" class="sol-host" data-solution="${c.id}"></div>` : ""}<details class="written"><summary>${pair("Version écrite", "Written version")}</summary><p id="solution-text">${t(v.solution)}</p></details><div class="extension"><strong>${pair("Pour aller plus loin", "Take it further")}</strong><p>${t(c.extension)}</p></div></details></section></main>`;
+  return `<main id="main" class="page challenge-detail" tabindex="-1"><a class="backlink" href="#challenges">${pair("Tous les défis", "All challenges")}</a><div class="challenge-columns"><article><span class="section-kicker">${t(c.topic)} · ${c.minutes} min</span><h1>${t(c.title)}</h1><p class="problem" id="problem">${t(v.prompt)}</p>${variationPanel(c)}${hasActivity(c.id) ? `<section class="activity" aria-labelledby="activity-title"><h2 id="activity-title">${pair("À toi d’explorer", "Explore it yourself")}</h2><div id="activity" data-activity="${c.id}"></div></section>` : ""}<form id="challenge-form" data-id="${c.id}"><label for="challenge-answer">${pair("Ta réponse numérique", "Your numerical answer")}</label><div class="answer-row"><input type="text" id="challenge-answer" inputmode="text" required autocomplete="off" placeholder="${pair("Nombre ou fraction", "Number or fraction")}"><button class="primary" type="submit">${pair("Vérifier", "Check")}</button>${VARIANTS[c.id]?.impossible ? `<button class="secondary" type="button" id="challenge-impossible">${pair("Impossible", "Impossible")}</button>` : ""}</div><p id="challenge-feedback" class="feedback" role="status">${completed.has(c.id) ? pair("Tu as déjà trouvé cette réponse. Essaie maintenant de rédiger la preuve.", "You have already found this answer. Now try writing the proof.") : ""}</p></form>${v.original ? `<details class="original-statement"><summary>${pair("Énoncé d’origine", "Original statement")}</summary><p class="problem original-q" id="original">${t(v.original)}</p><p class="muted">${pair("À traiter seul ou avec un enseignant : le site ne peut pas la vérifier.", "To work out alone or with a teacher: the site cannot check it.")}</p></details>` : ""}</article></div>${readAlso(link("challenges", c.id), [], t)}<section class="solution-wide"><details class="solution"><summary>${pair("Voir la solution expliquée", "See the worked solution")}</summary>${hasSolution(c.id) ? `<div id="solution-anim" class="sol-host" data-solution="${c.id}"></div>` : ""}<details class="written"><summary>${pair("Version écrite", "Written version")}</summary><p id="solution-text">${t(v.solution)}</p></details><div class="extension"><strong>${pair("Pour aller plus loin", "Take it further")}</strong><p>${t(c.extension)}</p></div></details></section></main>`;
 }
 function bindChallenges() {
   const host = $("#activity"), solHost = $("#solution-anim"), form = $("#challenge-form"), cid = form?.dataset.id;
@@ -501,9 +498,8 @@ function bindChallenges() {
   }
   // The animated solution starts the first time the worked solution is opened and stops when it is closed.
   $(".solution")?.addEventListener("toggle", (e) => (e.target.open ? sol?.start() : sol?.stop()));
-  document.querySelectorAll("[data-hint-act]").forEach((b) => b.addEventListener("click", () => document.dispatchEvent(new CustomEvent("challenge-action", { detail: { id: cid, act: b.dataset.hintAct } }))));
   mountAll();
-  const stopPress = $("#main") ? cartoonPress($("#main"), reducedMotion, "#challenge-form button, .hint-action, .variation-actions button") : () => {};
+  const stopPress = $("#main") ? cartoonPress($("#main"), reducedMotion, "#challenge-form button, .variation-actions button") : () => {};
   const stop = () => { stopActivity(); sol?.stop(); stopPress(); };
   if (cid && hasVariants(cid)) {
     const c = challenges.find((x) => x.id === cid);
@@ -511,7 +507,6 @@ function bindChallenges() {
       const q = paramsOf(cid), v = variantText(c, q);
       $("#problem").innerHTML = t(v.prompt);
       if ($("#original") && v.original) $("#original").innerHTML = t(v.original);
-      document.querySelectorAll("[data-hint]").forEach((el) => { el.innerHTML = t(v.hints[+el.dataset.hint]); });
       $("#solution-text").innerHTML = t(v.solution);
       $("#challenge-feedback").textContent = ""; $("#challenge-feedback").classList.remove("success");
       $("#challenge-answer").value = "";
