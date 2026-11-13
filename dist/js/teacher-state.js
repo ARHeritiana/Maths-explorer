@@ -5,7 +5,7 @@ import {liveChapterCourse} from './live-curriculum.js';
 import {cleanSeance} from './seance-model.js';
 export const VERSION=1,RECENT_MAX=20,FAVORITES_MAX=200;
 const K={entry:'mx-teacher-entry',chapter:'mx-teacher-chapter',recent:'mx-teacher-recent',favorites:'mx-teacher-favorites',tools:'mx-teacher-tools',seance:'mx-teacher-seance',mode:'mx-teacher-mode'};
-const PROBE='mx-teacher-probe',ENTRIES=['teacher','student'],MODES=['preparer','classe','detente'];
+const PROBE='mx-teacher-probe',ENTRIES=['visitor','student','teacher'],MODES=['preparer','classe','detente'];
 const str=(v,n)=>typeof v==='string'&&v.length>0&&v.length<=n;
 const safeHref=h=>str(h,500)&&/^(#|\/|\.\/|\.\.\/|https?:\/\/)/.test(h);
 // Returns a clean item {type,id,title,href,at} or null.

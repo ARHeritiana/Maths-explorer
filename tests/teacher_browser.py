@@ -32,21 +32,31 @@ with sync_playwright() as p:
     page.on('pageerror', lambda e: errors.append(str(e)))
     page.on('console', lambda m: errors.append(m.text) if m.type == 'error' else None)
 
-    # 1. limited edition: a device that never chose lands on the teacher entrance, with an always-visible way to the student area
-    page.goto(f'{BASE}/'); dashboard(page)
-    assert page.evaluate('location.hash') == '#teacher'
+    # 1. a device that never chose is a visitor: visitor home, nothing stored, no mode bar; the profile menu switches
+    page.goto(f'{BASE}/'); page.wait_for_selector('.home-visitor')
+    assert page.evaluate('location.hash') in ('', '#home')
     assert page.evaluate("localStorage.getItem('mx-teacher-entry')") is None, 'landing alone stores nothing'
+    assert page.locator('nav.modebar').count() == 0 and page.locator('.brand').get_attribute('href') == '#home'
+    assert page.locator('#home-figure-stage canvas').count() == 1, 'the visitor home has a figure to move'
+    menu = page.locator('.audience-menu summary'); assert menu.bounding_box()['height'] >= 43
+    menu.click(); page.locator('.audience-list [data-set-entry="teacher"]').click(); dashboard(page)
+    assert page.evaluate('location.hash') == '#teacher' and page.evaluate("localStorage.getItem('mx-teacher-entry')") == 'teacher'
+    assert page.locator('.audience-menu[open]').count() == 0, 'the menu closes on a choice'
     assert page.locator('nav.modebar').count() == 1 and page.locator('.brand').get_attribute('href') == '#teacher'
     sw = page.locator('nav.modebar a[data-set-entry="student"]'); assert sw.count() == 1
     assert sw.bounding_box()['height'] >= 43, 'student link target is at least 44 px'
     page.goto(f'{BASE}/#home'); page.wait_for_selector('#home-class')
-    assert page.evaluate('location.hash') == '#home', 'an explicit #home opens the student home, not redirected'
+    assert page.evaluate('location.hash') == '#home', 'an explicit #home opens the home, not redirected'
     page.goto(f'{BASE}/'); dashboard(page)
     sw.click(); page.wait_for_selector('#home-class')
     assert page.evaluate('location.hash') == '#home' and page.evaluate("localStorage.getItem('mx-teacher-entry')") == 'student'
     page.goto(f'{BASE}/'); page.reload(); page.wait_for_selector('#home-class')
     assert page.evaluate('location.hash') in ('', '#home'), 'the student choice persists on reload'
     assert page.locator('nav.modebar').count() == 0 and page.locator('.brand').get_attribute('href') == '#home'
+    # visitor and student share #home: the choice redraws the page without a hash change
+    page.locator('.audience-menu summary').click(); page.locator('.audience-list [data-set-entry="visitor"]').click()
+    page.wait_for_selector('.home-visitor'); assert page.evaluate("localStorage.getItem('mx-teacher-entry')") == 'visitor'
+    page.locator('.audience-cards [data-set-entry="student"]').click(); page.wait_for_selector('#home-class')
     back = page.locator('footer a[data-set-entry="teacher"]'); assert back.count() == 1 and back.is_visible()
     assert back.bounding_box()['height'] >= 43
     back.click(); dashboard(page)
@@ -170,9 +180,9 @@ with sync_playwright() as p:
     # 5b. mode bar: absent for a fresh student, present after choosing the teacher entrance, remembered across reloads
     fresh = browser.new_context(viewport={'width': 1280, 'height': 800}); fp = fresh.new_page()
     fp.on('pageerror', lambda e: errors.append(str(e)))
-    fp.goto(f'{BASE}/'); dashboard(fp)
-    assert fp.locator('nav.modebar').count() == 1, 'unstored choice: the limited edition default shows the bar'
-    fp.locator('nav.modebar a[data-set-entry="student"]').click(); fp.wait_for_selector('#home-class')
+    fp.goto(f'{BASE}/'); fp.wait_for_selector('.home-visitor')
+    assert fp.locator('nav.modebar').count() == 0, 'unstored choice: visitor, no bar'
+    fp.locator('.audience-cards [data-set-entry="student"]').click(); fp.wait_for_selector('#home-class')
     assert fp.locator('nav.modebar').count() == 0, 'student experience untouched'
     fp.goto(f'{BASE}/#resources'); fp.wait_for_selector('.chapter-grid, main')
     assert fp.locator('nav.modebar').count() == 0

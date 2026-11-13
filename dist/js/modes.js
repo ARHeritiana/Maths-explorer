@@ -14,7 +14,7 @@ export function modeOfRoute(page, remembered = '') {
  if (Object.hasOwn(OWN, page)) return OWN[page];
  return MODE_IDS.includes(remembered) ? remembered : '';
 }
-// The bar shows when the effective entrance is the teacher one (an unstored choice means the edition default), or on the mode pages.
+// The bar shows for a device in the teacher audience, or on the mode pages.
 export function showModeBar({entry, page, full} = {}) {
- return effectiveEntry(entry, full === undefined ? undefined : {full}) === 'teacher' || ['teacher', 'prepare', 'relax'].includes(page);
+ return effectiveEntry(entry) === 'teacher' || ['teacher', 'prepare', 'relax'].includes(page);
 }

@@ -15,14 +15,10 @@ test('modeOfRoute: other pages keep the remembered mode, or none',()=>{
   assert.equal(modeOfRoute(p,'classe'),'classe',p);assert.equal(modeOfRoute(p),'',p);assert.equal(modeOfRoute(p,''),'',p);assert.equal(modeOfRoute(p,'bogus'),'',p);
  }
 });
-test('showModeBar: teacher entrance, edition default when nothing is stored, or the mode pages',()=>{
- // limited edition (full:false): unstored means teacher
- assert.equal(showModeBar({entry:'',page:'home',full:false}),true);
- assert.equal(showModeBar({entry:'student',page:'resources',full:false}),false);
- assert.equal(showModeBar({entry:'teacher',page:'resources',full:false}),true);
- // full edition: unstored means student, bar hidden
- assert.equal(showModeBar({entry:'',page:'home',full:true}),false);
- assert.equal(showModeBar({entry:'student',page:'resources',full:true}),false);
- assert.equal(showModeBar({entry:'teacher',page:'resources',full:true}),true);
- for(const full of [true,false])for(const page of ['teacher','prepare','relax'])assert.equal(showModeBar({entry:'student',page,full}),true,page);
+test('showModeBar: teacher audience only, or the mode pages; the default audience is the visitor',()=>{
+ assert.equal(showModeBar({entry:'',page:'home'}),false);
+ assert.equal(showModeBar({entry:'visitor',page:'resources'}),false);
+ assert.equal(showModeBar({entry:'student',page:'resources'}),false);
+ assert.equal(showModeBar({entry:'teacher',page:'resources'}),true);
+ for(const entry of ['','visitor','student'])for(const page of ['teacher','prepare','relax'])assert.equal(showModeBar({entry,page}),true,page);
 });
