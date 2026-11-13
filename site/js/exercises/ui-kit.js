@@ -26,7 +26,7 @@ export function bindContextNote(form,getSettings){
   form.dispatchEvent(new Event('change',{bubbles:true}));form.querySelector('input[name="chapter"]')?.focus();});
 }
 // ---- settings kept on this device (a convenience, never sent anywhere) ----
-export const loadSettings = (key, fallback) => { let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')||{};}catch{}const settings={...fallback,...saved};if('cls' in settings){settings.cls=currentCourse(settings.cls)||settings.cls;if('chapters' in settings)applyClassroomChapter(settings);}return settings; };
+export const loadSettings = (key, fallback) => { let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')||{};}catch{}const settings={...fallback,...saved};if('cls' in settings){settings.cls=currentCourse(settings.cls)||settings.cls;if(!CLASSES.some(c=>c.id===settings.cls))settings.cls=CLASSES[0]?.id||'';if('chapters' in settings)applyClassroomChapter(settings);}return settings; };
 export const saveSettings = (key, value) => { if(value.cls)rememberCourse(value.cls); try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* storage may be blocked */ } };
 
 // ---- maths ----

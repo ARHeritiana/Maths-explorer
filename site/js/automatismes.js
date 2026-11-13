@@ -8,7 +8,7 @@ import { P, contextNote, bindContextNote, loadSettings, saveSettings, typeset, d
 import { fullscreenButton } from './visual-lessons.js';
 
 const KEY = 'maths-explorer-automatismes-v1';
-const DEFAULTS = { cls: 'premiere', chapters: [], domains: [], levels: [1, 2], count: 10, minutes: 5, order: 'progressive', fast: true, qcm: false, seed: '' };
+const DEFAULTS = { cls: '', chapters: [], domains: [], levels: [1, 2], count: 10, minutes: 5, order: 'progressive', fast: true, qcm: false, seed: '' };
 const newSeed = () => Math.random().toString(36).slice(2, 8);
 
 export function automatismesPage(t, pair) {
