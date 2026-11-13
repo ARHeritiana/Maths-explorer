@@ -5,6 +5,8 @@ import os
 from urllib.parse import urljoin, urlparse
 from playwright.sync_api import sync_playwright
 from accessibility_browser import check_home_chapter
+# The home is the visitor home by default (docs/AUDIENCE_MODES.md); these checks are about the student home.
+STUDENT = "try{if(!localStorage.getItem('mx-teacher-entry'))localStorage.setItem('mx-teacher-entry','student')}catch(e){}"
 
 # The experiments with missions (site/js/lab/), walked mission by mission.
 EXPERIMENTS = ['quadratic','trig','sequences','derivative','integral','probability','vectors','statistics','complex','line','exponential','cobweb','matrix','space-lines',
@@ -72,6 +74,7 @@ with sync_playwright() as p:
         options['firefox_user_prefs'] = {'security.sandbox.content.level':0}
     browser = getattr(p, engine).launch(**options)
     page = browser.new_page(viewport={'width':1440,'height':1000})
+    page.add_init_script(STUDENT)
     # Cold local module graphs can exceed 30 s in constrained environments.
     # Assertions on the rendered content retain Playwright's normal timeout.
     page.set_default_navigation_timeout(120000)
@@ -139,6 +142,7 @@ with sync_playwright() as p:
 
     # First visit uses the browser language; curriculum pages must not overwrite that preference.
     automatic = browser.new_context(locale='en-GB')
+    automatic.add_init_script(STUDENT)
     neutral = automatic.new_page()
     neutral.on('pageerror', lambda e: errors.append(str(e)))
     neutral.goto(BASE+'/#gallery'); neutral.wait_for_selector('.wonder')

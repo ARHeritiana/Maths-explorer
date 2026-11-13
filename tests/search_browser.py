@@ -9,6 +9,8 @@ Run through tests/run_browser.py, or alone: MATHS_EXPLORER_URL=http://localhost:
 import json
 import os
 from playwright.sync_api import sync_playwright
+# The home is the visitor home by default (docs/AUDIENCE_MODES.md); these checks are about the student home.
+STUDENT = "try{if(!localStorage.getItem('mx-teacher-entry'))localStorage.setItem('mx-teacher-entry','student')}catch(e){}"
 
 BASE = os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173')
 
@@ -26,6 +28,7 @@ with sync_playwright() as p:
     browser = p.chromium.launch(**options)
     errors = []
     context = browser.new_context(viewport={'width': 1280, 'height': 800}, locale='fr-FR')
+    context.add_init_script(STUDENT)
     page = context.new_page()
     page.on('pageerror', lambda e: errors.append(page.url + ' ' + str(e)))
     page.on('console', lambda m: errors.append(m.text) if m.type == 'error' else None)
@@ -111,6 +114,7 @@ with sync_playwright() as p:
     # 7. small screens, both themes, 44 px targets, no overflow
     page.close()  # the projection step may have left the window in full screen
     page = browser.new_context(viewport={'width': 1280, 'height': 800}, locale='fr-FR').new_page()
+    page.add_init_script(STUDENT)
     page.on('pageerror', lambda e: errors.append(page.url + ' ' + str(e)))
     for width in (320, 390, 1280):
         for theme in ('jour', 'nuit'):

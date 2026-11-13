@@ -2,6 +2,8 @@
 import os
 import shutil
 from playwright.sync_api import sync_playwright
+# The home is the visitor home by default (docs/AUDIENCE_MODES.md); these checks are about the student home.
+STUDENT = "try{if(!localStorage.getItem('mx-teacher-entry'))localStorage.setItem('mx-teacher-entry','student')}catch(e){}"
 
 BASE = os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173/')
 COURSES = ['seconde', 'premiere', 'terminale', 'expertes', 'stmg']
@@ -14,6 +16,7 @@ with sync_playwright() as p:
       sessionStorage.setItem('mx-course', 't11s');
       sessionStorage.setItem('mx-pathway', 'mg');
     """)
+    context.add_init_script(STUDENT)
     page = context.new_page()
     errors = []
     page.on('pageerror', lambda error: errors.append(str(error)))
