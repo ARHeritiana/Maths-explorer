@@ -43,6 +43,7 @@ import * as teacherState from './teacher-state.js';
 import {noteOpen,recentFor,contextStripHtml,mountContextStrip} from './classroom-context.js';
 import {landingHash,homeHash,effectiveEntry,installEntrySwitch,AUDIENCES} from './teacher-entry.js';
 import {MODES,modeOfRoute,showModeBar} from './modes.js';
+import {installOffline} from './offline.js';
 
 const $ = (s, root = document) => root.querySelector(s);
 const esc = (x) =>
@@ -119,6 +120,7 @@ const SECTIONS = [
   ["learn", "Apprendre", "Learn", "books", [
     ["resources", "Cours", "Lessons", "books"],
     ["bank", "Exercices", "Exercises", "seal-check"],
+    ["review", "Réviser", "Review", "arrows-clockwise"],
     ["bank/annales", "Annales", "Past papers", "scroll"],
     ["slides", "Diaporamas", "Slides", "presentation-chart"],
     ["basics", "Bases", "Foundations", "books"],
@@ -202,7 +204,7 @@ function render() {
     (r.page === "errors" && isErrorRoute(r.id)) ||
     (r.page === "olympiad" && isOlympiadRoute(r.id)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "teacher" && !r.id) || (r.page === "prepare" && !r.id) || (r.page === "relax" && !r.id) || r.page === "search" || (r.page === "basics" && isBasicsRoute(r.id)) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab, r.sub)) ||
+    (r.page === "home" && !r.id) || (r.page === "teacher" && !r.id) || (r.page === "prepare" && !r.id) || (r.page === "relax" && !r.id) || (r.page === "review" && !r.id) || r.page === "search" || (r.page === "basics" && isBasicsRoute(r.id)) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab, r.sub)) ||
     r.page === "university" || (r.page === "resources" && isLiveRoute(r)) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
@@ -211,7 +213,7 @@ function render() {
   document.body.dataset.page=page;
   $("#app").innerHTML =
     header(page) +
-    (page === "search" ? searchLoading() : page === "teacher" ? teacherLoading() : page === "prepare" ? modeLoading(pair("Préparer", "Prepare")) : page === "relax" ? modeLoading(pair("Détente", "Relax")) : page === "basics" ? basicsPage(r.id, { t, pair, lang, assetHref }) : page === "home" ? homePage({ pair, t, link, index:discovery, last, audience: effectiveEntry(teacherState.getEntry()) }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "bank" ? bankPage(t, r.id, r.tab) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
+    (page === "search" ? searchLoading() : page === "teacher" ? teacherLoading() : page === "prepare" ? modeLoading(pair("Préparer", "Prepare")) : page === "relax" ? modeLoading(pair("Détente", "Relax")) : page === "review" ? modeLoading(pair("Réviser", "Review")) : page === "basics" ? basicsPage(r.id, { t, pair, lang, assetHref }) : page === "home" ? homePage({ pair, t, link, index:discovery, last, audience: effectiveEntry(teacherState.getEntry()) }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "bank" ? bankPage(t, r.id, r.tab) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "university" ? universityPage(lang)
       : page === "topics" ? discoveryPage(discovery,r.id,r.tab,t)
       : page === "history" ? historyPage(r.id,r.tab,t,discovery)
@@ -268,6 +270,7 @@ function render() {
   if (page === "teacher") stopChapter = mountTeacher($("#main"));
   if (page === "prepare") stopChapter = mountMode($("#main"), "prepare");
   if (page === "relax") stopChapter = mountMode($("#main"), "relax");
+  if (page === "review") stopChapter = mountMode($("#main"), "review");
   if (page === "search") stopChapter = mountSearch($("#main"), r.id);
   if (page === "basics" && r.id) stopChapter = bindBasics({ $, currentTheme });
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
@@ -309,12 +312,12 @@ function syncDock(page) {
 // The teacher dashboard is loaded on demand: students never download it.
 const teacherLoading = () => `<main id="main" class="page teacher-page" tabindex="-1"><h1>${pair("Espace professeur", "Teacher area")}</h1><p role="status">${pair("Chargement…", "Loading…")}</p></main>`;
 const modeLoading = title => `<main id="main" class="page teacher-page" tabindex="-1"><h1>${title}</h1><p role="status">${pair("Chargement…", "Loading…")}</p></main>`;
-// #prepare and #relax are loaded on demand like the dashboard.
+// #prepare, #relax and #review are loaded on demand like the dashboard.
 function mountMode(main, kind) {
   let stop = () => {}, gone = false;
-  import(kind === "prepare" ? './prepare-page.js' : './relax-page.js').then(async m => {
+  import(kind === "prepare" ? './prepare-page.js' : kind === "review" ? './review-page.js' : './relax-page.js').then(async m => {
     if (gone) return;
-    const done = await (kind === "prepare" ? m.mountPreparePage : m.mountRelaxPage)(main, { t, state: teacherState, isGone: () => gone });
+    const done = await (kind === "prepare" ? m.mountPreparePage : kind === "review" ? m.mountReviewPage : m.mountRelaxPage)(main, { t, state: teacherState, isGone: () => gone });
     stop = done || stop;
     if (gone) stop();
   }).catch(() => { if (!gone) main.innerHTML = `<h1>${pair("Page indisponible", "Page unavailable")}</h1><p role="alert">${pair("La page n’a pas pu se charger. Recharge-la.", "The page could not load. Reload it.")}</p>`; });
@@ -609,6 +612,7 @@ $("#app").addEventListener("click", e => { const a = e.target.closest?.("[data-t
 // A teacher who chose the dashboard lands on it when opening the site without a destination.
 { const landing = landingHash(location.hash, teacherState.getEntry()); if (landing) history.replaceState(null, "", landing); }
 render();
+installOffline();
 
 // Optional browser-standard agent access; ordinary browsers need no polyfill or service.
 if (document.modelContext?.registerTool) {

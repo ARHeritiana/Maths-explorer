@@ -167,6 +167,9 @@ def prepare(check=False, adopt=False):
             raise ValueError('Linked catalogue metadata is stale; run make site. ' + '; '.join(detail))
         if saved.get('outputs') != output_hashes():
             raise ValueError('Generated products changed or are missing; run make site and review the rebuilt outputs')
+        from . import offline
+        if offline.write(check=True):
+            raise ValueError('Offline manifest is stale (dist/sw.js does not match the shell files of dist/); run make site')
         print('Content dependencies, catalogue views and published products match.')
         return
     if not saved and not adopt:
