@@ -6,7 +6,7 @@ dist/ is what the host serves and is committed (the host has no build step). It 
     js/enrichment-data.js), written by the other pipeline steps.
 Edit site/, never the dist/ copies; `python -m mxbuild site --check` fails when a copy differs from its source.
 """
-import hashlib, os, re, shutil
+import hashlib, json, os, re, shutil
 from . import ROOT, DIST
 
 SITE = ROOT / 'site'
@@ -14,9 +14,12 @@ AGENT_NOTES = {'CLAUDE.md', 'AGENTS.md'}   # folder indexes for coding agents (M
 WORKER = SITE / 'sw.js'   # service worker source: dist/sw.js is generated from it by offline.py (manifest inlined)
 
 # Two editions of one source: FULL_EDITION in site/js/live-curriculum.js chooses (false: Maths Explorer, the French lycée
-# site; true: Matematika, the complete site). The name of the site is the one fact that differs in static pages: it is
-# applied here to their served copies, and scripts read it back from <meta name="application-name">.
-NAMES = {False: 'Maths Explorer', True: 'Matematika'}
+# site; true: Matematika, the complete site). Their names and search descriptions live in content/data/edition.json; the
+# source is written with the limited edition's, and the full build rewrites the served copies of the named pages (and
+# offline.py the service worker, scripts/export-slides.py the standalone decks). Scripts read the name back from
+# <meta name="application-name">.
+EDITION = json.loads((ROOT / 'content' / 'data' / 'edition.json').read_text(encoding='utf-8'))
+NAMES = {False: EDITION['name']['limited'], True: EDITION['name']['full']}
 NAMED_PAGES = {'index.html', 'slides/player.html', 'resources/basics/fractions.html', 'resources/basics/fractions.en.html',
                'resources/history/mathematicians-timeline.html'}
 
@@ -32,6 +35,17 @@ def full_edition():
 ATLAS_PLACEHOLDER = 'export const MIKAJY_ATLAS_DOWNLOAD_URL = "";'
 
 
+def edition_name():
+    return NAMES[full_edition()]
+
+
+def edition_text(text):
+    """Text of a named page or generated file as the current edition serves it (unchanged in the limited edition)."""
+    if not full_edition():
+        return text
+    return text.replace(EDITION['description']['limited'], EDITION['description']['full']).replace(NAMES[False], NAMES[True])
+
+
 def atlas_url():
     url = os.environ.get('MX_ATLAS_URL', '').strip()
     if not re.fullmatch(r'https://github\.com/[\w.-]+/[\w.-]+/releases/latest', url):
@@ -45,7 +59,7 @@ def served(src):
     data = src.read_bytes()
     rel = src.relative_to(SITE).as_posix()
     if full_edition() and rel in NAMED_PAGES:
-        data = data.decode('utf-8').replace(NAMES[False], NAMES[True]).encode('utf-8')
+        data = edition_text(data.decode('utf-8')).encode('utf-8')
     elif full_edition() and rel == 'js/config.js':
         text = data.decode('utf-8')
         assert text.count(ATLAS_PLACEHOLDER) == 1, 'site/js/config.js must keep the Atlas placeholder line'

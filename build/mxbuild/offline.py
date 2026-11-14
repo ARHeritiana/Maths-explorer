@@ -42,7 +42,8 @@ def manifest(root=None):
 
 def render(root=None, source=None):
     """The served worker: site/sw.js with the manifest in place of the placeholder."""
-    text = (source or SOURCE).read_text(encoding='utf-8')
+    from .site import edition_text   # the offline page of the worker names the site
+    text = edition_text((source or SOURCE).read_text(encoding='utf-8'))
     if text.count(PLACEHOLDER) != 1:
         raise ValueError(f'site/sw.js must contain the line `{PLACEHOLDER}` exactly once')
     data = json.dumps(manifest(root), separators=(',', ':'), ensure_ascii=True)
