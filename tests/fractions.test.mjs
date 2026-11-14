@@ -3,6 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {JSDOM} from 'jsdom';
+import {FULL_EDITION} from '../site/js/live-curriculum.js';
 const french=readFileSync(new URL('../site/resources/basics/fractions.html',import.meta.url),'utf8');
 function page(source=french){
  const dom=new JSDOM(source,{runScripts:'outside-only',url:'https://example.test/resources/basics/fractions.html'});
@@ -12,13 +13,16 @@ function page(source=french){
 }
 const english=readFileSync(new URL('../site/resources/basics/fractions.en.html',import.meta.url),'utf8');
 const scripts=html=>[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m=>m[1]).join('\n');
+// The full edition serves the named pages with its own name (build/mxbuild/site.py edition_text).
+const EDITION=JSON.parse(readFileSync(new URL('../content/data/edition.json',import.meta.url),'utf8'));
+const served=html=>FULL_EDITION?html.split(EDITION.name.limited).join(EDITION.name.full):html;
 const withoutText=html=>scripts(html).replace(/\/\/ TEXT-BEGIN[\s\S]*?\/\/ TEXT-END/,'');
 test('both fractions editions have identical engines, table keys and published sources',()=>{
  assert.equal(withoutText(french),withoutText(english));
  const table=s=>JSON.parse(s.match(/const T = (\{[\s\S]*?\});\n\/\/ TEXT-END/)[1]);
  assert.deepEqual(Object.keys(table(french)),Object.keys(table(english)));
  for(const [lang,html] of [['fr',french],['en',english]]){
-  assert.equal(readFileSync(new URL('../dist/resources/basics/fractions'+(lang==='en'?'.en':'')+'.html',import.meta.url),'utf8'),html);
+  assert.equal(readFileSync(new URL('../dist/resources/basics/fractions'+(lang==='en'?'.en':'')+'.html',import.meta.url),'utf8'),served(html));
   assert.match(html,new RegExp('<html lang="'+lang+'"'));assert.doesNotMatch(html,/<script[^>]+src=|https?:\/\/|[—–]/);
  }
  const app=readFileSync(new URL('../site/js/basics-page.js',import.meta.url),'utf8');

@@ -4,7 +4,7 @@ import {pageOfTheDay,randomPage,teaser,candidates,buildPools,liveCollections,KIN
 import {BIOGRAPHIES,STORIES} from '../dist/js/reading-content.js';
 import {STRATEGIES} from '../dist/js/olympiad-content.js';
 import {labs} from '../dist/js/content.js';
-import {isLiveHash} from '../dist/js/live-curriculum.js';
+import {isLiveHash,FULL_EDITION} from '../dist/js/live-curriculum.js';
 
 const POOLS=buildPools({BIOGRAPHIES,STORIES,labs,STRATEGIES});
 const ALL=()=>true;
@@ -28,8 +28,9 @@ test('every pick is live, titled, with a bounded non-empty teaser and a kind lab
    for(const x of p.teaser)assert.ok(x.length<=TEASER_MAX,x);
   }
  }
- // limited edition: Olympiad is not published, so it is never picked there
- assert.ok(pageOfTheDay(day(0),POOLS,{live:isLiveHash}).every(p=>p.kind!=='olympiad'));
+ // limited edition: Olympiad is not published, so it is never picked there; the full edition publishes it
+ const olympiad=pageOfTheDay(day(0),POOLS,{live:isLiveHash}).some(p=>p.kind==='olympiad');
+ assert.equal(olympiad,FULL_EDITION);
  assert.ok(pageOfTheDay(day(0),POOLS,{live:ALL}).some(p=>p.kind==='olympiad'&&p.problem.q&&p.strategy!==undefined));
 });
 

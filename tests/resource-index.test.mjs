@@ -32,8 +32,10 @@ test('every action is a real, live address; nothing for other curricula', () => 
     assert.ok(actionsOf(i).length, i.id);
     for (const a of actionsOf(i)) assert.ok(a.href.startsWith('#') ? isLiveHash(a.href) : /player\.html/.test(a.href), `${i.id} ${a.key} ${a.href}`);
   }
-  assert.ok(!ids.some(id => /^(chapter|slides|exercises|automatismes):(t10|t11s|int|ib)/.test(id)));
-  assert.ok(!ids.includes('slides:t10-01'), 'a deck of a hidden course is not indexed');
+  if (!FULL_EDITION) {
+    assert.ok(!ids.some(id => /^(chapter|slides|exercises|automatismes):(t10|t11s|int|ib)/.test(id)));
+    assert.ok(!ids.includes('slides:t10-01'), 'a deck of a hidden course is not indexed');
+  } else assert.ok(ids.includes('chapter:t10-01') && ids.includes('chapter:t11s-01'), 'the full edition indexes the Malagasy curriculum');
   if (!FULL_EDITION) assert.ok(!index.some(i => Object.values(i.actions).some(a => /^#(olympiad|pathways|university)/.test(a.href))));
 });
 test('slides only when the deck index lists a French edition; none without the index', () => {
