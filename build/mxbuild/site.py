@@ -6,12 +6,51 @@ dist/ is what the host serves and is committed (the host has no build step). It 
     js/enrichment-data.js), written by the other pipeline steps.
 Edit site/, never the dist/ copies; `python -m mxbuild site --check` fails when a copy differs from its source.
 """
-import hashlib, re, shutil
+import hashlib, os, re, shutil
 from . import ROOT, DIST
 
 SITE = ROOT / 'site'
 AGENT_NOTES = {'CLAUDE.md', 'AGENTS.md'}   # folder indexes for coding agents (MAP.md), never served
 WORKER = SITE / 'sw.js'   # service worker source: dist/sw.js is generated from it by offline.py (manifest inlined)
+
+# Two editions of one source: FULL_EDITION in site/js/live-curriculum.js chooses (false: Maths Explorer, the French lycée
+# site; true: Matematika, the complete site). The name of the site is the one fact that differs in static pages: it is
+# applied here to their served copies, and scripts read it back from <meta name="application-name">.
+NAMES = {False: 'Maths Explorer', True: 'Matematika'}
+NAMED_PAGES = {'index.html', 'slides/player.html', 'resources/basics/fractions.html', 'resources/basics/fractions.en.html',
+               'resources/history/mathematicians-timeline.html'}
+
+
+def full_edition():
+    m = re.search(r'^export const FULL_EDITION = (true|false);', (SITE / 'js' / 'live-curriculum.js').read_text(encoding='utf-8'), re.M)
+    return m.group(1) == 'true'
+
+
+# The Mikajy Atlas link of the full edition names an account that must never be written in this repository (banned
+# phrase, tests/banned.py). Its value is kept by the Matematika repository and given to the full build as MX_ATLAS_URL;
+# the build writes it into the served copy of js/config.js, before any hash is taken.
+ATLAS_PLACEHOLDER = 'export const MIKAJY_ATLAS_DOWNLOAD_URL = "";'
+
+
+def atlas_url():
+    url = os.environ.get('MX_ATLAS_URL', '').strip()
+    if not re.fullmatch(r'https://github\.com/[\w.-]+/[\w.-]+/releases/latest', url):
+        raise SystemExit('The full edition needs MX_ATLAS_URL (the Mikajy Atlas releases page, kept in the Matematika repository).')
+    return url
+
+
+def served(src):
+    """The bytes dist/ must hold for a file of site/: a plain copy, except, in the full edition, the edition name in the
+    named pages and the Atlas link in js/config.js."""
+    data = src.read_bytes()
+    rel = src.relative_to(SITE).as_posix()
+    if full_edition() and rel in NAMED_PAGES:
+        data = data.decode('utf-8').replace(NAMES[False], NAMES[True]).encode('utf-8')
+    elif full_edition() and rel == 'js/config.js':
+        text = data.decode('utf-8')
+        assert text.count(ATLAS_PLACEHOLDER) == 1, 'site/js/config.js must keep the Atlas placeholder line'
+        data = text.replace(ATLAS_PLACEHOLDER, f'export const MIKAJY_ATLAS_DOWNLOAD_URL = "{atlas_url()}";').encode('utf-8')
+    return data
 
 
 def pairs():
@@ -48,7 +87,10 @@ def versioned_index():
     def current(rel):   # the dist copy once written, else the source: they are byte-identical after `make site`
         return DIST / rel if (DIST / rel).exists() and not (SITE / rel).exists() else SITE / rel
     files = sorted({p.relative_to(SITE).as_posix() for p in (SITE / 'js').rglob('*.js')} | {p.relative_to(DIST).as_posix() for p in (DIST / 'js').glob('*.js')})
-    imports = {f'./{f}': f'./{f}?v={_hash(current(f))}' for f in files}
+    def digest(f):   # a file of site/ is hashed as served (the full edition rewrites js/config.js)
+        p = current(f)
+        return hashlib.sha1(served(p) if p.is_relative_to(SITE) else p.read_bytes()).hexdigest()[:10]
+    imports = {f'./{f}': f'./{f}?v={digest(f)}' for f in files}
     import json
     block = (MAP_START + '\n    <script type="importmap">\n' + json.dumps({'imports': imports}, indent=2).replace('\n', '\n    ') + '\n    </script>\n    '
              + f'<script type="module" src="{imports["./js/app.js"]}"></script>\n    ' + MAP_END)
@@ -67,10 +109,11 @@ def write(check=False):
     if not check: (SITE / 'index.html').write_text(versioned_index(), encoding='utf-8')
     elif versioned_index() != (SITE / 'index.html').read_text(encoding='utf-8'): stale.append((SITE / 'index.html').relative_to(ROOT))
     for src, dst in pairs():
-        if dst.exists() and dst.read_bytes() == src.read_bytes(): continue
+        data = served(src)
+        if dst.exists() and dst.read_bytes() == data: continue
         stale.append(dst.relative_to(ROOT))
         if not check:
-            dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(src, dst)
+            dst.parent.mkdir(parents=True, exist_ok=True); dst.write_bytes(data); shutil.copystat(src, dst)
     for o in orphans():
         stale.append(o.relative_to(ROOT))
         if not check: o.unlink()

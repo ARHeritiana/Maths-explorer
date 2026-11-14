@@ -1,11 +1,11 @@
 // The home guides students from a class to a chapter; the gallery retains its shared drawings.
-import {liveCourses,isLiveHash} from './live-curriculum.js';
+import {liveCourses,isLiveHash,FULL_EDITION} from './live-curriculum.js';
 import {rememberCourse} from './navigation-state.js';
 import {discoveryChapters} from './catalogue-data.js';
 import {icon} from './icons.js';
 import {FigureEngine,readouts} from './figure-engine.js';
 import {makeParabola} from './figure-scenes.js';
-import { MIKAJY_SPARK_DOWNLOAD_URL } from './config.js';
+import { MIKAJY_SPARK_DOWNLOAD_URL, MIKAJY_ATLAS_DOWNLOAD_URL } from './config.js';
 const E=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const homeChapters=index=>{
  const routes=new Set(index.map(x=>x.route));
@@ -13,7 +13,10 @@ const homeChapters=index=>{
 };
 // The figure every home shows: one parabola to move, with its numbers.
 const homeFigure=(pair,link,label)=>`<aside class="quiet-figure" aria-labelledby="figure-heading"><p class="small-label">${label}</p><figure class="home-plate"><figcaption class="plate-top"><b id="figure-heading">${pair("Et si tu déplaçais le sommet ?","What if you moved the vertex?")}</b></figcaption><div class="figure-stage" id="home-figure-stage"><span class="figure-hint">${pair("Glisse un point pour transformer la parabole.","Drag a point to transform the parabola.")}</span></div><div class="figure-numbers" id="home-figure-numbers"></div></figure><p class="figure-description">${pair("Observe ce qui change, puis essaie de l’expliquer.","Observe what changes, then try to explain it.")}</p><a class="text-link quiet-link" href="${link("lab/quadratic")}"><span>${pair("Poursuivre dans le laboratoire","Continue in the laboratory")}</span> →</a><p class="figure-status sr-only" role="status" aria-live="polite"></p></aside>`;
-const mikajy=pair=>`<section class="secondary-entry" aria-labelledby="mikajy-heading"><div><h2 id="mikajy-heading">${pair("Mikajy Spark, calculatrice manuscrite pour Android","Mikajy Spark, a handwriting calculator for Android")}</h2><p>${pair("Écris tes calculs du doigt. La reconnaissance et les calculs fonctionnent sans connexion.","Write calculations with your finger. Recognition and calculations work offline.")}</p></div><nav aria-label="Mikajy"><a href="${MIKAJY_SPARK_DOWNLOAD_URL}" target="_blank" rel="noopener noreferrer">${pair("Télécharger Mikajy Spark","Download Mikajy Spark")} →</a></nav></section>`;
+// The full edition (Matematika) also offers Mikajy Atlas, the complete calculator.
+const mikajy=pair=>FULL_EDITION&&MIKAJY_ATLAS_DOWNLOAD_URL
+ ?`<section class="secondary-entry" aria-labelledby="mikajy-heading"><div><h2 id="mikajy-heading">${pair("Mikajy Spark et Atlas, calculatrices manuscrites pour Android","Mikajy Spark and Atlas, handwriting calculators for Android")}</h2><p>${pair("Écris tes calculs du doigt. La reconnaissance et les calculs fonctionnent sans connexion.","Write calculations with your finger. Recognition and calculations work offline.")}</p></div><nav aria-label="Mikajy"><a href="${MIKAJY_SPARK_DOWNLOAD_URL}" target="_blank" rel="noopener noreferrer">${pair("Télécharger Mikajy Spark : rapide et léger","Download Mikajy Spark: fast and lightweight")} →</a><a href="${MIKAJY_ATLAS_DOWNLOAD_URL}" target="_blank" rel="noopener noreferrer">${pair("Télécharger Mikajy Atlas : version complète","Download Mikajy Atlas: full edition")} →</a></nav></section>`
+ :`<section class="secondary-entry" aria-labelledby="mikajy-heading"><div><h2 id="mikajy-heading">${pair("Mikajy Spark, calculatrice manuscrite pour Android","Mikajy Spark, a handwriting calculator for Android")}</h2><p>${pair("Écris tes calculs du doigt. La reconnaissance et les calculs fonctionnent sans connexion.","Write calculations with your finger. Recognition and calculations work offline.")}</p></div><nav aria-label="Mikajy"><a href="${MIKAJY_SPARK_DOWNLOAD_URL}" target="_blank" rel="noopener noreferrer">${pair("Télécharger Mikajy Spark","Download Mikajy Spark")} →</a></nav></section>`;
 // Doors of the visitor home: [hash, verb, what is behind]. Only live routes are shown (each edition has its own set).
 const DOORS=[
  ['#lab',["Manipuler","Experiment"],["Des expériences où l’on déplace, on prévoit, puis on vérifie.","Experiments where you move things, predict, then check."]],

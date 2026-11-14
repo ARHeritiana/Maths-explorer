@@ -18,6 +18,8 @@ const KIND = {
   example: ["Exemple", "Example"], error: ["Attention", "Watch out"], try: ["À vous", "Your turn"], proof: ["Démonstration", "Proof"],
   activity: ["Activité", "Activity"], code: ["Python", "Python"], widget: ["Explorer", "Explore"],
 };
+// The name of this edition, written into player.html by the build (build/mxbuild/site.py); exports keep the default.
+const SITE_NAME = document.querySelector('meta[name="application-name"]')?.content || "Maths Explorer";
 const UI = {
   stepPrev: ["Étape précédente", "Previous step"], stepNext: ["Étape suivante", "Next step"], all: ["Tout", "All"],
   step: ["Étape", "Step"], prev: ["Diapositive précédente", "Previous slide"], next: ["Diapositive suivante", "Next slide"],
@@ -25,7 +27,7 @@ const UI = {
   lang: ["English", "Français"], list: ["Plan", "Outline"], full: ["Plein écran", "Full screen"],
   download: ["Télécharger HTML", "Download HTML"], downloadTip: ["Télécharger ce diaporama en un seul fichier HTML", "Download this deck as a single HTML file"],
   home: ["Toutes les séries", "All decks"], back: ["Retour", "Back"], site: ["Accueil", "Home"],
-  backName: ["Retour à la liste des diaporamas", "Back to the list of slide decks"], siteName: ["Accueil de Maths Explorer", "Maths Explorer home"],
+  backName: ["Retour à la liste des diaporamas", "Back to the list of slide decks"], siteName: [`Accueil de ${SITE_NAME}`, `${SITE_NAME} home`],
   toNight: ["Passer au thème sombre", "Switch to dark theme"], toDay: ["Passer au thème clair", "Switch to light theme"], theme: ["Thème", "Theme"], loadErr: ["Série introuvable.", "Deck not found."],
   hint: ["Flèches : étapes et diapositives · R réponse · G plan · F plein écran", "Arrows: steps and slides · R answer · G outline · F full screen"],
   slides: ["diapositives", "slides"], liveLab: ["Valeurs en direct", "Live values"],
@@ -212,7 +214,7 @@ async function render() {
   if (live) { live.destroy?.(); live = null; }
   const s = deck.slides[index], k = s.k, label = KIND[k]?.[lang] || k;
   document.documentElement.lang = lang ? "en" : "fr";
-  document.title = `${plain(deck.title[lang])} · Maths Explorer`;
+  document.title = `${plain(deck.title[lang])} · ${SITE_NAME}`;
   const title = esc(s.t[lang]), rawBody = tex(s.b[lang] || "");
   const widgets = deck.slides.filter(x => x.k === "widget"), shared = widgets[0];
   const ans = s.a ? tex(s.a[lang]) : "";
