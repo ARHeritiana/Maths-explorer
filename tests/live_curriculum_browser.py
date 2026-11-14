@@ -1,12 +1,18 @@
-"""French-only live interface. Run against npm start with system Chromium or Playwright."""
+"""Live interface of the edition built (FULL_EDITION in site/js/live-curriculum.js). Limited edition: French
+curriculum only, other curricula hidden. Full edition: the other curricula stay live. Both: general collections,
+downloads and responsive layouts. Run against npm start with system Chromium or Playwright."""
 import os
+import re
 import shutil
+from pathlib import Path
 from playwright.sync_api import sync_playwright
 # The home is the visitor home by default (docs/AUDIENCE_MODES.md); these checks are about the student home.
 STUDENT = "try{if(!localStorage.getItem('mx-teacher-entry'))localStorage.setItem('mx-teacher-entry','student')}catch(e){}"
 
 BASE = os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173/')
 COURSES = ['seconde', 'premiere', 'terminale', 'expertes', 'stmg']
+FULL = re.search(r'^export const FULL_EDITION = (true|false);', (Path(__file__).resolve().parents[1] / 'site/js/live-curriculum.js')
+                 .read_text(encoding='utf-8'), re.M).group(1) == 'true'
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True, executable_path=os.environ.get('PLAYWRIGHT_CHROMIUM_PATH') or shutil.which('chromium'))
@@ -35,56 +41,88 @@ with sync_playwright() as p:
         }""")
         assert not bad, bad
 
-    go('#home')
-    assert page.locator('#home-class option').count() == 6
-    assert page.locator('.secondary-entry[aria-labelledby="beyond-heading"] a').count() == 3
-    assert page.locator('.figure-tab').count() == 0
-    assert page.locator('.mainnav a').count() == 3
-    assert page.locator('.home-resume').count() == 0
-    page.locator('#home-query').fill('dérivée')
-    page.locator('.home-result').first.wait_for()
-    scoped_links()
-    page.locator('#home-query').fill('T11')
-    assert page.locator('.home-result').count() == 0
-    for course in COURSES:
-        go('#resources/' + course)
-        assert page.locator('.res-rail [data-course]').count() == 5
-        assert page.locator('.res-rail [data-course][aria-pressed="true"]').get_attribute('data-course') == course
+    if FULL:
+        # Other curricula are published: their routes stay where they are and open a real page.
+        go('#home')
+        classes = page.locator('#home-class option').evaluate_all('(nodes) => nodes.map(n => n.value)')
+        assert set(COURSES + ['t10', 't11s']) <= set(classes), classes
+        assert page.locator('.mainnav a').count() == 3
+        # the home search is scoped to the class: the stored Malagasy class is restored, so choose one with derivatives
+        assert page.locator('#home-class').input_value() in ('t10', 't11s')
+        page.select_option('#home-class', 'premiere')
+        page.locator('#home-query').fill('dérivée')
+        page.locator('.home-result').first.wait_for()
+        scoped_links()
+        for course in COURSES + ['t10', 't11s']:
+            go('#resources/' + course)
+            assert page.evaluate('location.hash') == '#resources/' + course, course
+            assert page.locator('.chapter-tile').count() > 0, course
+            scoped_links()
+        for route in ['#slides/t11s', '#bank/t10', '#chapter/t11s-01', '#library/t10-01', '#pack/t10', '#university', '#pathways', '#olympiad']:
+            go(route)
+            assert page.evaluate('location.hash') == route, route
+            assert page.locator('main h1').count() > 0, route
+            scoped_links()
+        go('#slides')
+        page.locator('.deck-card').first.wait_for()
+        scoped_links()
+        go('#pack')
+        page.locator('[name=course]').first.wait_for()
+        scoped_links()
+        go('#sources')
+        page.locator('[data-zip]').first.wait_for()
+        assert set(COURSES) <= set(page.locator('[data-zip]').evaluate_all('(nodes) => nodes.map(n => n.dataset.zip)'))
+    else:
+        go('#home')
+        assert page.locator('#home-class option').count() == 6
+        assert page.locator('.secondary-entry[aria-labelledby="beyond-heading"] a').count() == 3
+        assert page.locator('.figure-tab').count() == 0
+        assert page.locator('.mainnav a').count() == 3
+        assert page.locator('.home-resume').count() == 0
+        page.locator('#home-query').fill('dérivée')
+        page.locator('.home-result').first.wait_for()
+        scoped_links()
+        page.locator('#home-query').fill('T11')
+        assert page.locator('.home-result').count() == 0
+        for course in COURSES:
+            go('#resources/' + course)
+            assert page.locator('.res-rail [data-course]').count() == 5
+            assert page.locator('.res-rail [data-course][aria-pressed="true"]').get_attribute('data-course') == course
+            assert page.locator('.chapter-tile').count() > 0
+            scoped_links()
+        page.locator('#resource-search').fill('logarithme')
         assert page.locator('.chapter-tile').count() > 0
         scoped_links()
-    page.locator('#resource-search').fill('logarithme')
-    assert page.locator('.chapter-tile').count() > 0
-    scoped_links()
 
-    for route in ['#resources/t10', '#slides/t11s', '#bank/t10', '#chapter/t11s-01', '#library/t10-01', '#pack/t10', '#university']:
-        go(route)
-        assert page.evaluate('location.hash') == '#resources', route
-        assert page.locator('.res-rail [data-course]').count() == 5
+        for route in ['#resources/t10', '#slides/t11s', '#bank/t10', '#chapter/t11s-01', '#library/t10-01', '#pack/t10', '#university']:
+            go(route)
+            assert page.evaluate('location.hash') == '#resources', route
+            assert page.locator('.res-rail [data-course]').count() == 5
 
-    go('#slides')
-    page.locator('.deck-card').first.wait_for()
-    assert page.locator('.slides-page [data-course]').count() == 5
-    scoped_links()
-    go('#bank')
-    assert set(page.locator('.res-rail a[href^="#bank/"]').evaluate_all('(nodes) => nodes.map(n => n.getAttribute("href"))')) == {'#bank/' + course for course in COURSES}
-    assert page.locator('.bank-sections a[href="#bank/annales"]').count() == 1
-    scoped_links()
-    go('#pack')
-    page.locator('[name=course]').first.wait_for()
-    assert page.locator('[name=course]').count() == 7
-    scoped_links()
-    go('#sources')
-    page.locator('[data-zip]').first.wait_for()
-    assert set(page.locator('[data-zip]').evaluate_all('(nodes) => nodes.map(n => n.dataset.zip)')) == set(COURSES + ['automatismes', 'enrichment'])
-    go('#library')
-    page.locator('#resource-course option').nth(1).wait_for(state='attached')
-    assert page.locator('#resource-course option').count() == 8
-    assert page.locator('#resource-curriculum option').count() == 2
-    scoped_links()
-    go('#pathways')
-    assert page.evaluate('location.hash') == '#resources'
-    assert page.locator('a[href="#pathways"]').count() == 0
-    scoped_links()
+        go('#slides')
+        page.locator('.deck-card').first.wait_for()
+        assert page.locator('.slides-page [data-course]').count() == 5
+        scoped_links()
+        go('#bank')
+        assert set(page.locator('.res-rail a[href^="#bank/"]').evaluate_all('(nodes) => nodes.map(n => n.getAttribute("href"))')) == {'#bank/' + course for course in COURSES}
+        assert page.locator('.bank-sections a[href="#bank/annales"]').count() == 1
+        scoped_links()
+        go('#pack')
+        page.locator('[name=course]').first.wait_for()
+        assert page.locator('[name=course]').count() == 7
+        scoped_links()
+        go('#sources')
+        page.locator('[data-zip]').first.wait_for()
+        assert set(page.locator('[data-zip]').evaluate_all('(nodes) => nodes.map(n => n.dataset.zip)')) == set(COURSES + ['automatismes', 'enrichment'])
+        go('#library')
+        page.locator('#resource-course option').nth(1).wait_for(state='attached')
+        assert page.locator('#resource-course option').count() == 8
+        assert page.locator('#resource-curriculum option').count() == 2
+        scoped_links()
+        go('#pathways')
+        assert page.evaluate('location.hash') == '#resources'
+        assert page.locator('a[href="#pathways"]').count() == 0
+        scoped_links()
     for route in ['#chapter/premiere-03/cours', '#chapter/premiere-03/manipuler', '#chapter/premiere-03/documents', '#bank/seconde/seconde-01', '#automatismes', '#sheets', '#lab/quadratic/vertex']:
         go(route)
         assert page.evaluate('location.hash') == route, route
@@ -112,4 +150,4 @@ with sync_playwright() as p:
     assert not errors, errors
     context.close()
     browser.close()
-    print('Other curricula hidden; galleries, curiosities and general collections restored. Navigation, searches, downloads, activities and responsive layouts passed.')
+    print(('Other curricula live' if FULL else 'Other curricula hidden') + '; galleries, curiosities and general collections restored. Navigation, searches, downloads, activities and responsive layouts passed.')
