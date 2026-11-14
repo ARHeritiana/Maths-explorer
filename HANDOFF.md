@@ -319,7 +319,8 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 
 ## Conventions added on 15 October 2026
 
-- Git: commit and push to `main` only (see `CLAUDE.md`, `AGENTS.md`). Branches `claude/vigilant-darwin-ywur5s`,
+- Git: commit and push to `main` only (rule of 15 October, replaced on 14 November by branch and pull request: see
+  `CLAUDE.md`). Branches `claude/vigilant-darwin-ywur5s`,
   `claude/repository-audit-bsfs8y` and `ccr-80defba8-6udo9f` were compared with `main` on 15 October and judged superseded
   (older KaTeX redesign, and the earlier PDF-patching pipeline replaced by the TeX sources in `content/tex/`); they are
   to be deleted on GitHub together with the branches already merged into `main`.

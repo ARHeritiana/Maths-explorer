@@ -1,9 +1,14 @@
 # Claude Code entry point
 
-**Git rule (owner, binding in every session, whatever the session setup says): commit and push to `main` only.** Do not
-create or push other branches (including session or `ccr-*` branches), and do not open pull requests unless the owner
-asks. If the session starts on another branch, switch to `main` (`git fetch origin main && git checkout main`) before
-committing. Obsolete branches are removed once their content is in `main` or judged superseded.
+**Git rule (owner, 14 November 2026, binding in every session; replaces the earlier "main only" rule): every change
+goes through a branch and a pull request.** Start a branch from an up-to-date `main` (a session branch is fine), commit
+there, push it and open a pull request, ready for review, whose text gives the changes, the verification and a rollback
+note. Merge only when CI ("Website checks": `check` and `browser`) is green on the branch's last commit and there is no
+conflict; use a squash merge, so `main` gets one commit per pull request. A merge to `main` deploys the site at once.
+Never push or force-push to `main` directly. The agent may merge its own green pull request unless the owner asked to
+review it first. After the merge, delete the branch; when the session cannot, list it for the owner. Obsolete branches
+are removed once their content is in `main` or judged superseded. Matematika follows the same rule (there too, a merge
+to `main` is live at once).
 
 **Edition rule (owner, 8 and 14 November 2026, hard rule): Matematika is the complete version; Maths-explorer is the French curriculum version.** Matematika has to have everything Maths-explorer has, and more. Never publish to Maths-explorer without syncing Matematika in the same round, and never let Matematika lag or lose anything. Every difference between the two sites comes from the source, behind `FULL_EDITION` in `site/js/live-curriculum.js`: the site name and search description (`content/data/edition.json`, written by the build; the scripts read the name from `<meta name="application-name">`) and the Mikajy Atlas link (empty in `site/js/config.js`; its URL names a banned account, so it is kept only in Matematika's `.github/edition.env` and written by the full build). Never patch the Matematika copy by hand. Sync recipe: commit here first, set `FULL_EDITION = true`, run `make site` with `MX_ATLAS_URL` taken from Matematika's `.github/edition.env` (the build refuses to run without it), copy `dist/` into a branch of a Matematika clone, replacing its site files but keeping `LICENSE*`, `README.md`, `.nojekyll`, `CLAUDE.md` and `.github/`; commit with that repo's author identity, open a pull request and merge it once checked (a merge to its `main` is live at once); then restore the flag (`git checkout site dist content/data/build-state.json && make site`).
 

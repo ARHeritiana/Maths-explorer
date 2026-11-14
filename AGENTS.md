@@ -6,9 +6,9 @@ identifiers, or links in HTML, client-side catalogues, downloaded documents, or
 PDF annotations. Host resource copies within the Site. Contact links are an
 exception only in a specific, justified case authorised by the owner.
 
-Git rule, set by the owner and binding on every agent: commit and push to the `main` branch only. Do not create or
-use feature, session or agent branches, and do not open pull requests unless the owner asks. Run `npm test` and
-`npm run check` before each push.
+Git rule, set by the owner and binding on every agent: the one text is in `CLAUDE.md` (branch and pull request for
+every change, squash merge once CI is green, never push to `main` directly). Run `npm test` and `npm run check` before
+each push.
 
 Start with HANDOFF.md (state and task queue), then PROJECT_BRIEF.md, then MAP.md: its task router names the
 files each task needs, and each source folder has a CLAUDE.md index. Open only those files; do not scan the
