@@ -13,7 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'build'))
 from mxbuild.slide_editions import languages, for_language
-from mxbuild.site import edition_name   # Maths Explorer, or Matematika in the full edition (content/data/edition.json)
+from mxbuild.site import edition_name   # the site name (content/data/edition.json)
 SRC = ROOT / 'site/slides'
 JS = ROOT / 'site/js'
 DATA = ROOT / 'dist/slides/data'

@@ -11,11 +11,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / 'content/tex/courses'
-MADA = ROOT / 'content/tex/mada'
 sys.path.insert(0, str(ROOT / "build"))
 from mxbuild import notation   # per-language rendering of the notation commands (mirror of mx-notation.sty)
 from mxbuild.slide_editions import languages, normalise_deck, combine_sequences, for_language
-from mxbuild import mada   # Malagasy books (T10, T11 S): their LaTeX rewritten for `canonical`
 OUT = ROOT / 'dist/slides/data'
 CATALOG = json.loads((ROOT / 'content/data/manifest.json').read_text())['catalog']
 CH = {c['id']: c for c in CATALOG['chapters']}
@@ -536,17 +534,6 @@ def add_widgets(cid, slides):
     return slides
 
 
-def mada_text(cid, course, n, source):
-    """A chapter of a Malagasy book in the canonical vocabulary (T10 entry activities inlined; teacher material, figures and
-    exercise sections dropped; the books' macros expanded)."""
-    base = MADA / course
-    text = source.read_text(encoding='utf8')
-    text = re.sub(r'\\input\{activities/([^}]+)\}', lambda m: (base / 'activities' / (m.group(1) + '.tex')).read_text(encoding='utf8') if (base / 'activities' / (m.group(1) + '.tex')).exists() else '', text)
-    defs = mada.macros(*[p.read_text(encoding='utf8') for p in sorted(base.rglob('*.sty')) + sorted(base.glob('*.cls'))])
-    title = next(c['title'][0] for c in CATALOG['chapters'] if c['id'] == cid)
-    return mada.prepare(text, defs, n, title)
-
-
 def files():
     parsers = {
         'premiere': ('chapitres/C{n:02d}', lambda src,n: canonical(src,n,attach_figures=True,extra={'application':'try','proof':'proof'},skip_sections=r'(MCQ|QCM|Diagnostic)',goals_first=True)),
@@ -554,12 +541,6 @@ def files():
         'stmg': ('c{n:02d}', canonical),
         'expertes': ('chapitres/C{n:02d}', lambda src,n: canonical(src,n,attach_figures=True,extra={'proof':'proof'},subsections=True,skip_sections=r'(Automatismes|Fluency|Exercices|Exercises|Problème|Problem)$')),
     }
-    # Malagasy books (content/tex/mada/<course>/, copied from the owner's Mada-Boky repository): French only, the n-th chapter file
-    mada_parser = lambda src, n: canonical(src, n, extra={'proof': 'proof'}, skip_sections=r'(Exercices|Problèmes|Défis|Logique & Algorithmes)')
-    for course, folder in (('t10', 'chapters'), ('t11s', 'chapitres')):
-        names = sorted((MADA / course / folder).glob('*.tex'), key=lambda p: p.name if course == 't10' else re.sub(r'^ch(\d+).*', r'\1', p.name).zfill(3))
-        for chapter in [c for c in CATALOG['chapters'] if c['course'] == course and c.get('number')]:
-            yield chapter['id'], course, chapter['number'], names[chapter['number'] - 1], MADA / course / 'none.en.tex', mada_parser
     for chapter in CATALOG['chapters']:
         course,n=chapter['course'],chapter['number']
         if course not in parsers or not n:continue
@@ -571,15 +552,11 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     for old in OUT.glob('*.json'): old.unlink()
     index = []; problems = []; decks = {}; jobs = {}
-    # Malagasy decks (French only, no English heading to match): the chapter's laboratory references close the deck
-    for c in CATALOG['chapters']:
-        if c['course'] in ('t10', 't11s') and c.get('labs'): WIDGETS.setdefault(c['id'], [(END, lab(ref)) for ref in c['labs']])
     for cid, course, n, fr, en, fn in files():
         sequences = {}
         for lang, source in (('fr', fr), ('en', en)):
             if not source.exists(): continue
-            if course in ('t10', 't11s'): body, figures = extract_figs(mada_text(cid, course, n, source))
-            else: body, figures = extract_figs(notation.expand(resolve_counts(inline_includes(source.read_text(encoding='utf8'), SRC / course, lang), lang), lang))
+            body, figures = extract_figs(notation.expand(resolve_counts(inline_includes(source.read_text(encoding='utf8'), SRC / course, lang), lang), lang))
             parsed = fn(body, n)
             for slide in parsed:
                 slide['b'], refs = fig_tokens(slide['b'])

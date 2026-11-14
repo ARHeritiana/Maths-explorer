@@ -5,16 +5,15 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {resolve,relative,join} from 'node:path';
 import {AUTHORED,TEMPLATES} from '../site/js/exercises/bank.js';
 import {rng} from '../site/js/exercises/engine.js';
-import {MADA} from '../site/js/exercises/bank-mada.js';
 import {createModel,auditResource,resourceFingerprint} from './prerequisite-model.mjs';
 const ROOT=fileURLToPath(new URL('../',import.meta.url));
 const read=path=>readFileSync(resolve(ROOT,path),'utf8');
 const generatorSignature=()=>createHash('sha256').update(readdirSync(resolve(ROOT,'site/js/exercises')).filter(f=>f.endsWith('.js')).sort().map(f=>f+'\n'+read('site/js/exercises/'+f)).join('\n')).digest('hex');
 export function collectResources(manifest,{seedCount=4,course=null}={}) {
   const generatedHash=generatorSignature();
-  const resources=[],coverage={bankRecords:AUTHORED.length+MADA.length,templates:TEMPLATES.length,seedCount,decks:0,texChapters:0,unsupportedCourses:[]};
+  const resources=[],coverage={bankRecords:AUTHORED.length,templates:TEMPLATES.length,seedCount,decks:0,texChapters:0,unsupportedCourses:[]};
   const included=cls=>!course||course===cls;
-  for(const e of [...AUTHORED,...MADA].filter(e=>included(e.cls))) {
+  for(const e of AUTHORED.filter(e=>included(e.cls))) {
     for(let s=0;s<(e.make?seedCount:1);s++) {
       const body=e.make?e.make(rng(`prerequisite-${s}`)):e;
       for(const chapter of e.chapters)resources.push({resource:{id:e.id,intro:body.intro,parts:body.parts||[],title:e.title},context:{course:e.cls,chapter,phase:'practice',...(e.make?{sourceHash:generatedHash}:{})},source:{kind:e.make?'seeded-problem':'fixed-exercise',path:'site/js/exercises/',seed:e.make?s:null}});
@@ -60,7 +59,7 @@ export function runAudit({seedCount=4,course=null}={}) {
   const spec=JSON.parse(read('content/data/prerequisites.json')),manifest=JSON.parse(read('content/data/manifest.json'));
   const model=createModel(spec,manifest),{resources,coverage}=collectResources(manifest,{seedCount,course});
   const knownResources=course?collectResources(manifest,{seedCount:1}).resources:resources;
-  const allIds=new Set([...[...AUTHORED,...MADA].map(e=>e.id),...TEMPLATES.map(t=>t.id),...knownResources.map(r=>r.resource.id)]);
+  const allIds=new Set([...AUTHORED.map(e=>e.id),...TEMPLATES.map(t=>t.id),...knownResources.map(r=>r.resource.id)]);
   for(const id of Object.keys(spec.contracts||{}))if(!allIds.has(id))model.errors.push({code:'ORPHAN_CONTRACT',severity:'error',message:id});
   const placements=[],unsupported=new Set();
   for(const row of model.errors.length?[]:resources) {

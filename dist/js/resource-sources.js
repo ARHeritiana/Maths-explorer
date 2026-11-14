@@ -28,7 +28,7 @@ export function collectSources({decks = null} = {}) {
   }
   for (const k of Object.keys(automatismes)) automatismes[k] = [...automatismes[k]];
   // The very selection the bank page applies (bank-select.js), over the chapters the bank page lists (its own live catalogue).
-  const bankCourses = new Set(liveCourses.filter(c => c.curriculum === 'fr' || c.curriculum === 'mg').map(c => c.id));
+  const bankCourses = new Set(liveCourses.filter(c => c.curriculum === 'fr').map(c => c.id));
   const bankChapters = liveCompanionCatalog(completeCatalog).chapters.filter(c => bankCourses.has(c.course)).map(c => c.id);
   const exercises = shownExercises(bankChapters).map(({exercise: e, chapters: cs}) => ({id: e.id, title: e.title, cls: e.cls, chapters: cs, level: LEVEL[e.level] || LEVEL[2], minutes: e.minutes, domain: DOMAINS[e.domain] || e.domain}));
   const discovery = liveDiscovery(discoveryIndex({labs, challenges, chapters: resourceCatalog.chapters}));

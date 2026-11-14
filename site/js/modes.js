@@ -8,7 +8,7 @@ export const MODES = [
 ];
 export const MODE_IDS = MODES.map(m => m.id);
 const OWN = {teacher:'classe',prepare:'preparer',sheets:'preparer',pack:'preparer',sources:'preparer'};
-for (const p of ['relax','biographies','stories','history','gallery','olympiad','challenges','topics','lab']) OWN[p] = 'detente';
+for (const p of ['relax','biographies','stories','history','gallery','challenges','topics','lab']) OWN[p] = 'detente';
 // Mode a page belongs to. Every other page keeps the remembered mode, so a tool opened from a mode stays under it.
 export function modeOfRoute(page, remembered = '') {
  if (Object.hasOwn(OWN, page)) return OWN[page];

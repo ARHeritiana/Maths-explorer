@@ -9,7 +9,7 @@ import { classroom, noteOpen } from './classroom-context.js';
 const P = (fr, en) => [fr, en];
 const E = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const SHORT = { seconde: P('Seconde', 'Seconde'), premiere: P('Première spécialité', 'Première'), terminale: P('Terminale spécialité', 'Terminale'), expertes: P('Maths expertes', 'Further maths'), stmg: P('Terminale STMG', 'Terminale STMG'), t10: P('T10', 'T10'), t11s: P('T11 série S', 'T11 S') };
-const slideCourses = () => courses.filter(c => c.curriculum === 'fr' || c.curriculum === 'mg');
+const slideCourses = () => courses.filter(c => c.curriculum === 'fr');
 const chosen = () => {
   const id = location.hash.split('/')[1];
   if (slideCourses().some(c => c.id === id)) return id;

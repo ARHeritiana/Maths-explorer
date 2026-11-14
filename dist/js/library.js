@@ -19,10 +19,9 @@ export function selectChapters(catalog,filter=filters) {
   const q=normalize(filter.search);
   return catalog.chapters.filter(c=>{
     if(filter.lab&&!c.labs.some(ref=>ref.split('/')[0]===filter.lab))return false;
-    // a course belongs to its curriculum (manifest field); shared and exploration chapters serve every curriculum but the French one
+    // a course belongs to its curriculum (manifest field); shared and exploration chapters are listed under all resources
     const own=catalog.courses.find(x=>x.id===c.course)?.curriculum, common=['shared','explorations'].includes(c.course);
     if(filter.curriculum==='fr'&&own!=='fr')return false;
-    if(['mg','ib'].includes(filter.curriculum)&&!common&&own!==filter.curriculum)return false;
     if(filter.course!=='all'&&c.course!==filter.course)return false;
     const rs=catalog.resources.filter(r=>r.chapter===c.id||r.chapter===c.guide);
     if(filter.type!=='all'&&!rs.some(r=>r.type===filter.type&&(filter.solutions||r.audience!=='teacher')))return false;
@@ -52,10 +51,10 @@ export async function mountLibrary(main,{lang,id}) {
     <p id="pathway-resource-note" class="resource-scope"></p><p class="resource-note">${p('Les langues disponibles sont indiquées pour chaque document. Les fichiers s’ouvrent dans la langue du cursus si cette édition existe.','Available languages are listed for each document. Files open in the curriculum language when that edition exists.')}</p><p id="resource-results-count" role="status" aria-live="polite"></p><div id="chapter-grid" class="chapter-grid"></div>`;
     const form=main.querySelector('form');
     const refresh=()=>{
-      const allowed=c.courses.filter(x=>['mg','ib'].includes(filters.curriculum)?['shared','explorations'].includes(x.id):filters.curriculum==='fr'?!['shared','explorations'].includes(x.id):true);
+      const allowed=c.courses.filter(x=>filters.curriculum==='fr'?!['shared','explorations'].includes(x.id):true);
       if(filters.course!=='all'&&!allowed.some(x=>x.id===filters.course))filters.course='all';
       main.querySelector('#resource-course').innerHTML=`<option value="all">${p('Tous les cours','All courses')}</option>`+allowed.map(x=>`<option value="${x.id}" ${filters.course===x.id?'selected':''}>${esc(t(x.title))}</option>`).join('');
-      main.querySelector('#pathway-resource-note').textContent=['mg','ib'].includes(filters.curriculum)?p('Notions à transférer à votre cours : ces fiches ne constituent pas un programme malgache ou international complet. Vérifiez votre niveau, votre série et votre option avec votre enseignant.','Concepts to transfer to your course: these sheets are not a complete Malagasy or international syllabus. Check your level, stream and option with your teacher.'):'';
+      main.querySelector('#pathway-resource-note').textContent='';
       const matches=selectChapters(c,filters);
       // Count source chapters the same way as the heading; shared sheets and exercise banks are listed separately.
       const sourceCount=matches.filter(x=>!['shared','explorations'].includes(x.course)&&x.number>0).length,extra=matches.length-sourceCount;

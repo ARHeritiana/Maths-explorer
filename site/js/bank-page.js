@@ -1,8 +1,8 @@
 import {currentCourse,rememberCourse} from './navigation-state.js';
 // Online exercise bank (#bank[/<course>[/<chapter>]]): worked exercises to do on screen, chapter by chapter, with hints
 // and corrections revealed on demand, seeded problems whose numbers can be renewed, and a quick series of generated
-// questions. Data: js/exercises/bank.js (generators, authored exercises, seeded problems) and js/exercises/bank-mada.js
-// (exercises of the Malagasy books). Printing reuses the worksheet print path.
+// questions. Data: js/exercises/bank.js (generators, authored exercises, seeded problems). Printing reuses the worksheet
+// print path.
 import { resourceCatalog as completeCatalog } from './resources-data.js';
 import { liveCompanionCatalog } from './live-curriculum.js';
 const resourceCatalog = liveCompanionCatalog(completeCatalog);
@@ -19,7 +19,7 @@ const P = (fr, en) => [fr, en];
 const E = (x) => String(x).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const SHORT = { seconde: P('Seconde', 'Seconde'), premiere: P('Première spécialité', 'Première'), terminale: P('Terminale spécialité', 'Terminale'), expertes: P('Maths expertes', 'Further maths'), stmg: P('Terminale STMG', 'Terminale STMG'), t10: P('T10', 'T10'), t11s: P('T11 série S', 'T11 S') };
 const LEVEL = LEVEL_PAIRS;
-const courses = primaryCourses.filter((c) => c.curriculum === 'fr' || c.curriculum === 'mg');
+const courses = primaryCourses.filter((c) => c.curriculum === 'fr');
 const chaptersOf = (course) => resourceCatalog.chapters.filter((c) => c.course === course).sort((a, b) => a.number - b.number);
 const generatorsOf = (chapter) => TEMPLATES.filter((t) => t.chapter === chapter);
 export const bankCount = (chapter) => exercisesOf(chapter).length;

@@ -147,31 +147,12 @@ with sync_playwright() as p:
     neutral.on('pageerror', lambda e: errors.append(str(e)))
     neutral.goto(BASE+'/#gallery'); neutral.wait_for_selector('.wonder')
     assert neutral.locator('html').get_attribute('lang') == 'en'
-    neutral.goto(BASE+'/#university/module-semaine-1'); neutral.wait_for_selector('.sequence-forward')
+    neutral.goto(BASE+'/#chapter/seconde-01'); neutral.wait_for_selector('main h1')
     assert neutral.locator('html').get_attribute('lang') == 'fr'
     neutral.goto(BASE+'/#gallery'); neutral.wait_for_selector('.wonder')
     assert neutral.locator('html').get_attribute('lang') == 'en'
     automatic.close()
 
-    # Exercise every generated university route and scoped navigation in the real browser.
-    university = page.request.get(BASE+'/resources/university/index.json').json()
-    page.goto(BASE+'/#university')
-    page.wait_for_selector('.university-sequence')
-    assert page.locator('.university-sequence').count() == sum(len(s['sequences']) for s in university['sections'])
-    for section in university['sections']:
-        for at, sequence in enumerate(section['sequences']):
-            page.goto(BASE+'/#university/'+sequence['id'])
-            page.wait_for_selector('.sequence-forward')
-            assert page.locator('html').get_attribute('lang') == section['language']
-            assert page.locator('[data-lang]:visible').count() == 0
-            expected = [section['sequences'][n]['id'] for n in [at-1,at+1] if 0 <= n < len(section['sequences'])]
-            actual = page.locator('.sequence-forward a').evaluate_all('(links) => links.map(a => a.hash.split("/").pop())')
-            assert actual == expected, (sequence['id'], actual, expected)
-            assert page.locator('a.university-file[download]').count() == 1
-    for width in [320,390,1280]:
-        page.set_viewport_size({'width':width,'height':900})
-        page.goto(BASE+'/#university'); page.wait_for_selector('.university-sequence')
-        assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), ('university',width)
     for route in ['courses','slides','pack','library','lab/quadratic','gallery/platonic']:
         page.goto(BASE+'/#'+route)
         page.wait_for_selector('main')
@@ -185,11 +166,6 @@ with sync_playwright() as p:
         assert page.locator(panel+' .canvas-navigation').text_content() != '100 %'
         canvas.press('0')
         assert page.locator(panel+' .canvas-navigation').text_content() == '100 %'
-    page.goto(BASE+'/#university/module-semaine-1')
-    for key in ['module-workbook','module-statements','module-tex','module-all']:
-        response = page.request.get(urljoin(BASE+'/', university['files'][key]['path']))
-        assert response.ok, key
-        assert response.body().startswith(b'%PDF-' if key in ['module-workbook','module-statements'] else b'PK'), key
     page.set_viewport_size({'width':1440,'height':1000})
     page.goto(BASE+'/#gallery'); page.wait_for_selector('.wonder')
     page.goto(BASE+'/#lab'); assert page.locator('.lab2-card-link').count() == 42, 'the laboratory index includes all registered experiments'

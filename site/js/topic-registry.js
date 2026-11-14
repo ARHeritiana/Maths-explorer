@@ -72,13 +72,6 @@ export const PLACEMENTS = Object.fromEntries([
   ['#gallery/soap-films', ['geometry/space','analysis/functions']],
   ['#gallery/einstein', ['geometry/plane']],
   ['#gallery/four-colours', ['discrete/graphs','foundations/reasoning']],
-  ['#university/calculs-algebriques', ['algebra/equations','discrete/counting']],
-  ['#university/fourier-periodicite', ['analysis/integration']],
-  ['#university/fourier-coefficients', ['analysis/integration','algebra/complex']],
-  ['#university/fourier-convergence', ['analysis/integration','analysis/limits']],
-  ['#university/fourier-energie', ['analysis/integration','algebra/linear']],
-  ['#university/fourier-discret', ['analysis/integration','algebra/linear']],
-  ['#university/fourier-contours', ['analysis/integration','geometry/plane']],
 ]);
 // The word rules match whole words where a fragment would mislead ("logi" in "Topologie", "ensemble" in "l'ensemble de
 // Mandelbrot"). `fallback: false` returns [] when nothing matches (the caller then inherits from linked records).

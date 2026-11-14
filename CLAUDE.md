@@ -10,7 +10,19 @@ review it first. After the merge, delete the branch; when the session cannot, li
 are removed once their content is in `main` or judged superseded. Matematika follows the same rule (there too, a merge
 to `main` is live at once).
 
-**Edition rule (owner, 8 and 14 November 2026, hard rule): Matematika is the complete version; Maths-explorer is the French curriculum version.** Matematika has to have everything Maths-explorer has, and more. Never publish to Maths-explorer without syncing Matematika in the same round, and never let Matematika lag or lose anything. Every difference between the two sites comes from the source, behind `FULL_EDITION` in `site/js/live-curriculum.js`: the site name and search description (`content/data/edition.json`, written by the build; the scripts read the name from `<meta name="application-name">`) and the Mikajy Atlas link (empty in `site/js/config.js`; its URL names a banned account, so it is kept only in Matematika's `.github/edition.env` and written by the full build). Never patch the built `dist/` of either repository by hand. Sync recipe (since 14 November 2026, step 2 of the owner's plan: Matematika holds its own source and builds its own `dist/`): make the same source change in a branch of a Matematika clone (apply this repository's diff there), run `make site` there (the full edition is fixed and the Atlas URL is read from its `.github/edition.env`), run its checks, and open and merge its pull request once CI is green; a merge to its `main` is live at once. Never copy this repository's `dist/` into Matematika and never set `FULL_EDITION` here to build it. The files that differ on purpose are listed in Matematika's `CLAUDE.md`.
+**Independence rule (owner's plan, step 3, 14 November 2026; replaces the edition rule and the sync recipe of 8 and 14
+November): Maths-explorer and Matematika are two independent products, each with its own source, build and `dist/`.**
+- Maths-explorer (this repository) is the French lycée curriculum site: the French courses with their shared resources
+  (annales, automatismes, worksheets, exercise bank, slides, Réviser) and the general collections (laboratory, gallery
+  and curiosities, foundations, challenges, history, reading, errors, the quadratic workshop). It holds no Malagasy,
+  international, university or Olympiad content and has one build, with no edition switch (`FULL_EDITION` is gone; the
+  site name is in `content/data/edition.json`). Never add that content here: it belongs to Matematika.
+- Matematika (its own repository, named in the private handoff) is the complete site. The owner's hard rule still holds:
+  Matematika never lacks anything this site has. So a French or general change made here is also made in Matematika,
+  in its own branch and pull request, in the same round (apply the source diff there where it fits, `make site` there,
+  its checks). Nothing is synced automatically; never copy this repository's `dist/` into Matematika, and never copy
+  Matematika's other curricula back here.
+- The Mikajy Atlas link (its URL names a banned account) is Matematika's only; it never appears in this repository.
 
 **Language rule (owner, 11 November 2026):** each lesson is written in its target language(s). French curriculum: French. Malagasy curriculum: French. International curricula: English. University: the input language of the resource, or bilingual. Foundations (`#basics`), Olympiad, problems, galleries and all extra-curricular activities: bilingual (French and English). Existing English editions of curriculum lessons are kept as they are.
 Details: `PROJECT_BRIEF.md` section 3. There is no pending bilingual goal for curriculum lessons and no reminder to give.

@@ -1,5 +1,16 @@
 # Handoff
 
+## Step 3: French curriculum only (14 November 2026)
+
+Step 3 of the owner's plan (private handoff `coordination/handoff-20261113/README.md` in Maths-explorer-backup). This
+repository no longer holds the Malagasy (T10, T11 S, T12 sources), international (pathways, IB, SAT), university or
+Olympiad content, nor `FULL_EDITION`, the edition texts of the full build or the Mikajy Atlas handling. All of it stays in
+Matematika, which holds its own source since step 2. Kept here: the French courses and their shared resources, and the
+general collections. The laboratory keeps all its experiments, including `ferris-wheel` and the Fourier and Monte Carlo
+experiments, now reached from the laboratory index only (pinned in `tests/lab-links.test.mjs`). `CLAUDE.md` carries
+the independence rule in place of the edition rule and the sync recipe. Generated products of the removed content were
+deleted from `dist/` and the build receipt's removed jobs dropped (an explicit asset migration, `refresh.py`).
+
 ## Exam archive filters (5 November 2026)
 
 The annales index starts with exam and search. The redundant class selector is

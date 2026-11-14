@@ -1,19 +1,14 @@
-// Publication scope only. The complete catalogues and archived resources stay intact.
+// Publication scope: the French lycée curriculum, its shared resources and the general collections (laboratory, gallery,
+// foundations, challenges, history, reading, errors). Every list of courses, chapters and routes is filtered here.
 import { courses, discoveryChapters } from './catalogue-data.js';
-import { pathways } from './content.js';
-// Two editions of the same code. false: the French lycée site (arheritiana.github.io/Maths-explorer).
-// true: the complete edition with the Malagasy, international, university and Olympiad content (Matematika). Everything
-// else that differs follows this flag: the site name and the Mikajy Atlas link (both written by build/mxbuild/site.py).
-export const FULL_EDITION = false;
-export const livePathways = FULL_EDITION ? pathways : pathways.filter(p => p.id === 'fr');
 
-export const liveCourses = FULL_EDITION ? courses : courses.filter(c => c.curriculum === 'fr');
+export const liveCourses = courses.filter(c => c.curriculum === 'fr');
 export const isLiveCourse = id => liveCourses.some(c => c.id === id);
 const chapters = discoveryChapters.filter(c => isLiveCourse(c.course));
 const chapterIds = new Set(chapters.map(c => c.id));
 // Course of a live chapter id, '' when the id is unknown or not published.
 export const liveChapterCourse = id => chapters.find(c => c.id === id)?.course || '';
-export const liveLibraryCourses = FULL_EDITION ? courses : courses.filter(c => c.curriculum === 'fr' || c.curriculum === 'shared');
+export const liveLibraryCourses = courses.filter(c => c.curriculum === 'fr' || c.curriculum === 'shared');
 const isLiveLibraryCourse = id => liveLibraryCourses.some(c => c.id === id);
 const libraryChapterIds = new Set(discoveryChapters.filter(c => isLiveLibraryCourse(c.course)).map(c => c.id));
 
@@ -36,7 +31,6 @@ export function liveCatalog(catalog) {
 }
 
 export function isLiveRoute({ page, id, tab }) {
-  if (FULL_EDITION && ['pathways', 'university'].includes(page)) return true;
   if (page === 'automatismes') return !id || id === 'go' || id === 'list';
   if (['home', 'teacher', 'prepare', 'relax', 'review', 'sources', 'sheets'].includes(page)) return !id;
   if (page === 'search') return true;
@@ -47,8 +41,7 @@ export function isLiveRoute({ page, id, tab }) {
   if (page === 'bank' && id === 'annales') return true;
   if (page === 'bank') return (!id || isLiveCourse(id)) && (!tab || chapters.some(c => c.id === tab && c.course === id));
   if (['lab', 'gallery', 'topics', 'basics', 'history', 'biographies', 'stories', 'challenges'].includes(page)) return true;
-  if (page === 'olympiad') return FULL_EDITION;
-  if (page === 'workshop') return FULL_EDITION || id === 'quadratic';
+  if (page === 'workshop') return id === 'quadratic';
   if (page === 'errors') return true;
   return false;
 }

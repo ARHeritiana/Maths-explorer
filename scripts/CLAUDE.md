@@ -8,11 +8,9 @@ Builders called by `build/mxbuild` (see `pipeline.py` `COURSES`) or by `make`. E
 | `build-expertes.py`, `build-stmg.py`, `build-automatismes.py` | Maths expertes, STMG, automatismes PDFs | `make tex` |
 | `build-enrichment.py`, `enrichment_sections.py` | enrichment PDFs, HTML and site data | `make tex COURSE=enrichment` |
 | `build-slides.py` | slide decks and figures from TeX and `content/slides` (`WIDGETS` table places canvases) | `make slides` |
-| `build-mada.py` | Malagasy curriculum (T10, T11 S): chapter and supplement PDFs cut from the owner's compiled Mada-Boky books, manifest records | by hand, then `make site` |
 | `export-slides.py` | one self-contained HTML per deck | `make slides`, `make site` |
 | `build-lecture-slides.py` | Beamer lecture PDFs | `make lectures` |
 | `extract-terminale-slides.py` | one-off: Terminale French drafts from LaTeX | by hand |
-| `build-university.py`, `build-module-maths.py` | university foundations; applied mathematics module | `make university`, `make site` |
 | `error-coverage.mjs` | `docs/ERROR_COVERAGE.md` (error correction coverage matrix by curriculum and misconception); `--check` compares | `node scripts/error-coverage.mjs`; `tests/errors.test.mjs` fails if stale |
 | `build-study-guides.mjs` | study guide HTML pages from `site/js/study-guides.js` | by hand |
 | `publish-sources.py` | publish `.tex` sources to `dist/sources/` (refuses identifying content) | `make tex` |
@@ -23,9 +21,6 @@ Builders called by `build/mxbuild` (see `pipeline.py` `COURSES`) or by `make`. E
 | `serve.mjs` | local server of `dist/` on port 4173 | `npm start` |
 | `optimise-gomboc.py` | the visibly shaped Gömböc: support-function polynomial found by sequential linear programming (`site/js/gomboc-support-data.js`) | by hand |
 | `build-gallery-data.py` | Gerver's sofa from Romik's equations (`site/js/gallery/gallery-sofa-gerver.js`); best known square packings from a checkout of github.com/jlevy/squares (`site/js/gallery/gallery-squares-data.js`); needs numpy, scipy, shapely, pyyaml | by hand |
-
-`build-fourier.py`: six web lessons, four XeLaTeX PDF editions, source bundle and checked build receipt.
-
 
 `prerequisite-model.mjs`: internal concept DAG, course scope/order, local question scaffolding and source fingerprints. `check-prerequisites.mjs`: advisory scan of the real bank, generated samples, authored French decks and chapter TeX; reports in ignored build output. See `docs/PREREQUISITES.md`.
 

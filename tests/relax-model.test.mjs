@@ -2,11 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {pageOfTheDay,randomPage,teaser,candidates,buildPools,liveCollections,KINDS,TEASER_MAX} from '../dist/js/relax-model.js';
 import {BIOGRAPHIES,STORIES} from '../dist/js/reading-content.js';
-import {STRATEGIES} from '../dist/js/olympiad-content.js';
 import {labs} from '../dist/js/content.js';
-import {isLiveHash,FULL_EDITION} from '../dist/js/live-curriculum.js';
+import {isLiveHash} from '../dist/js/live-curriculum.js';
 
-const POOLS=buildPools({BIOGRAPHIES,STORIES,labs,STRATEGIES});
+const POOLS=buildPools({BIOGRAPHIES,STORIES,labs});
 const ALL=()=>true;
 const day=n=>new Date(2026,10,1+n);
 const key=l=>l.map(x=>x.hash+'|'+x.id).join(',');
@@ -28,10 +27,6 @@ test('every pick is live, titled, with a bounded non-empty teaser and a kind lab
    for(const x of p.teaser)assert.ok(x.length<=TEASER_MAX,x);
   }
  }
- // limited edition: Olympiad is not published, so it is never picked there; the full edition publishes it
- const olympiad=pageOfTheDay(day(0),POOLS,{live:isLiveHash}).some(p=>p.kind==='olympiad');
- assert.equal(olympiad,FULL_EDITION);
- assert.ok(pageOfTheDay(day(0),POOLS,{live:ALL}).some(p=>p.kind==='olympiad'&&p.problem.q&&p.strategy!==undefined));
 });
 
 test('every candidate of the real data has a title and a teaser in both languages',()=>{
@@ -62,7 +57,7 @@ test('random draw uses the injected rng',()=>{
  assert.equal(first.kind,'biography');assert.equal(last.kind,'experiment');
  assert.deepEqual(randomPage(POOLS,()=>0.37,{live:ALL}),randomPage(POOLS,()=>0.37,{live:ALL}));
  const kinds=new Set();for(let i=0;i<50;i++)kinds.add(randomPage(POOLS,()=>i/50,{live:ALL}).kind);
- assert.equal(kinds.size,5);
+ assert.equal(kinds.size,4);
 });
 
 test('collections keep only live routes',()=>{

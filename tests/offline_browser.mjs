@@ -25,7 +25,6 @@ const { discoveryChapters } = await import('../dist/js/catalogue-data.js');
 const { isLiveHash } = await import('../dist/js/live-curriculum.js');
 const chapter = discoveryChapters.find(c => isLiveHash('#chapter/' + c.id));
 assert.ok(chapter, 'a live chapter exists in the generated catalogue');
-const { STRATEGIES: OLYMPIAD } = await import('../dist/js/olympiad-content.js');
 const decks = JSON.parse(readFileSync(dist + 'slides/data/index.json', 'utf8'));
 const deck = (Array.isArray(decks) ? decks : decks.decks || Object.values(decks)).find(d => d && d.id && readdirSync(dist + 'slides/data').includes(d.id + '.json'));
 assert.ok(deck, 'a deck exists in the generated slide index');
@@ -35,10 +34,9 @@ const small = pdfs.filter(f => sizeOf(f) < 600e3);
 assert.ok(small.length >= 2, 'two small PDFs exist');
 const [openedPdf, unopenedPdf] = small.map(f => 'resources/' + f.split(path.sep).join('/'));
 const ROUTES = ['#home', '#automatismes', '#bank', '#lab', '#chapter/' + chapter.id];
-// Never opened online: only the shell can draw it, formulas included. The Olympiad page is live only in the full
-// edition; the limited edition redirects it, so the worksheet generator (shell code only, formulas) is used there.
+// Never opened online: only the shell can draw it, formulas included: the worksheet generator (shell code only, formulas).
 // A chapter page never opened online is not a candidate: its data is copied only when it is first opened.
-const UNOPENED = isLiveHash('#olympiad/' + OLYMPIAD[0].id) ? '#olympiad/' + OLYMPIAD[0].id : '#sheets';
+const UNOPENED = '#sheets';
 
 /* ---------------------------------------------------------------- the server: sub-path, Range, a switch, overrides */
 const overrides = new Map();   // relative path -> Buffer (the "new version" published later)

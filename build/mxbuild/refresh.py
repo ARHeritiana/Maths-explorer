@@ -39,35 +39,15 @@ def inputs():
     if 'annalsBank' in manifest:
         result['annals'] = fingerprint(['content/tex/annals/**/*', 'content/tex/core/*', 'scripts/build-annals.py', 'scripts/annals-code.py', 'scripts/build-annals-pdf.py'], manifest['annalsBank'])
     result['static-site'] = fingerprint(['site/**/*', 'content/data/edition.json'])
-    result['fourier'] = fingerprint(['content/university/fourier/**/*','scripts/build-fourier.py'],[s for s in manifest['university']['sections'] if s['id']=='fourier'])
-    result['foundations'] = fingerprint(
-        ['content/tex/university/foundations/**/*', 'content/slides/university/foundations/*',
-         'scripts/build-university.py'],
-        [s for s in manifest['university']['sections'] if s['id'] == 'foundations'])
-    result['module-tex'] = fingerprint(['content/university/module-maths/3_Sources_LaTeX/**/*','scripts/build-module-maths.py'])
-    result['module'] = fingerprint(['content/university/module-maths/**/*', 'scripts/build-module-maths.py'],
-                                  [s for s in manifest['university']['sections'] if s['id'] == 'module-maths'])
     result['slides'] = fingerprint(
-        ['content/slides/**/*', 'content/tex/courses/**/*', 'content/tex/core/*', 'content/tex/mada/**/*',
-         'scripts/build-slides.py','build/mxbuild/slide_editions.py','build/mxbuild/mada.py'], {'chapters':manifest['catalog']['chapters'],'courses':manifest['catalog']['courses']})
+        ['content/slides/**/*', 'content/tex/courses/**/*', 'content/tex/core/*',
+         'scripts/build-slides.py','build/mxbuild/slide_editions.py'], {'chapters':manifest['catalog']['chapters'],'courses':manifest['catalog']['courses']})
     result['slide-exports']=fingerprint(['scripts/export-slides.py','site/js/live-curriculum.js','content/data/edition.json','build/mxbuild/refresh.py','build/mxbuild/slide_editions.py','site/slides/*','site/js/canvas-navigation.js','site/js/camera3d.js','site/js/lab/**/*','site/js/math.js','site/js/object-kit.js','site/js/fourier-model.js','site/js/gallery/gallery-math.js','site/js/inference-content.js','dist/slides/data/*.json','dist/slides/fig/*.svg'])
     result['lectures']=fingerprint(['scripts/build-lecture-slides.py','build/mxbuild/slide_editions.py','dist/slides/data/*.json','dist/slides/fig/*.svg'])
     result['sources'] = fingerprint(['content/tex/courses/**/*', 'content/tex/core/*',
                                      'scripts/publish-sources.py'],
                                     {'books': manifest['books'], 'courses': manifest['catalog']['courses']})
-    result['mada'] = fingerprint(['scripts/build-mada.py'], mada_records(manifest))
     return result
-
-
-MADA = ('t10', 't11s')   # Malagasy courses: their PDFs are cut from the owner's Mada-Boky books by scripts/build-mada.py
-
-
-def mada_records(manifest):
-    ours = lambda cid: str(cid).split('-')[0] in MADA
-    cat, comp = manifest['catalog'], manifest['companion']
-    return {'courses': [c for c in cat['courses'] if c['id'] in MADA], 'chapters': [c for c in cat['chapters'] if ours(c['id'])],
-            'resources': [r for r in cat['resources'] if ours(r['chapter'])], 'companion': [c for c in comp['chapters'] + comp['supplements'] if ours(c['id'])],
-            'sources': [s for s in cat['sources'] + comp['sources'] if s['name'].startswith(MADA)]}
 
 
 def changed_jobs(before, after):
@@ -93,16 +73,6 @@ def run_job(key):
     elif key == 'static-site':
         # site.write() below copies source and updates linked catalogue metadata.
         return
-    elif key == 'fourier':
-        command(sys.executable, 'scripts/build-fourier.py')
-    elif key == 'foundations':
-        if any(s['id'] == 'foundations' for s in catalog.load()['university']['sections']):
-            command(sys.executable, 'scripts/build-university.py')
-    elif key == 'module-tex':
-        command(sys.executable, 'scripts/build-module-maths.py', '--compile')
-    elif key == 'module':
-        if any(s['id'] == 'module-maths' for s in catalog.load()['university']['sections']):
-            command(sys.executable, 'scripts/build-module-maths.py')
     elif key in ('slides','slide-exports','lectures'):
         # Reuse verified lecture assets when only interactive widgets changed.
         # The checker compares every generated TeX source, source archive and PDF hash.
@@ -113,23 +83,6 @@ def run_job(key):
         command(sys.executable,'scripts/'+script)
     elif key == 'sources':
         command(sys.executable, 'scripts/publish-sources.py')
-    elif key == 'mada':
-        # The books live in another repository: here we only check that every file named by the records was cut.
-        rec = mada_records(catalog.load())
-        paths = [e['path'] for r in rec['resources'] for e in r['editions'].values()] + [e['path'] for c in rec['companion'] for f in c['files'] for e in f['editions'].values()]
-        missing = [p for p in paths if not (DIST / p.removeprefix('./')).is_file()]
-        if missing:
-            raise RuntimeError('Malagasy PDFs missing; run scripts/build-mada.py --books <Mada-Boky>/Livres: ' + ', '.join(missing[:5]))
-
-
-def cleanup(previous):
-    """Delete only old generated university assets that no longer have a record."""
-    current = json.loads(content_index.UNIVERSITY.read_text())
-    keep = {f['path'] for f in current['files'].values()}
-    for record in previous.get('files', {}).values():
-        path = DIST / record['path']
-        if record['path'] not in keep and path.is_relative_to(DIST / 'resources/university'):
-            path.unlink(missing_ok=True)
 
 
 def output_hashes():
@@ -143,7 +96,6 @@ def output_hashes():
 
 
 def prepare(check=False, adopt=False):
-    previous = json.loads(content_index.UNIVERSITY.read_text())
     saved = json.loads(STATE.read_text()) if STATE.exists() else {}
     now = inputs()
     removed=set(saved.get('inputs',{}))-set(now)
@@ -190,9 +142,6 @@ def prepare(check=False, adopt=False):
         run_job('slide-exports')
     catalog.write()
     site.write()
-    content_index.write()
-    cleanup(previous)
-    # Pruning changes the asset map, so regenerate it before versioning entry scripts.
     content_index.write()
     site.write()
     receipt = {'schema': 1, 'inputs': inputs(), 'outputs': output_hashes()}

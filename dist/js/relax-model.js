@@ -3,16 +3,15 @@
 // trimmed to TEASER_MAX characters). Every pick resolves to a live hash (`live`, isLiveHash by default).
 // Strings are [French, English] pairs. Pools (all optional, empty is fine):
 //   biographies [{id,name,dek}], stories [{id,title,dek}], curiosities [{id,title,intro}],
-//   olympiad [{id,title,theme,problems:[{title,q,hints}]}], experiments [{id,title,intro}].
+//   experiments [{id,title,intro}].
 import {isLiveHash} from './live-curriculum.js';
 
 export const TEASER_MAX = 200;
-export const KINDS = ['biography', 'story', 'curiosity', 'olympiad', 'experiment'];
+export const KINDS = ['biography', 'story', 'curiosity', 'experiment'];
 export const KIND_INFO = {
  biography: {label: ['Biographie', 'Biography'], action: ['Lire', 'Read']},
  story: {label: ['Histoire', 'Story'], action: ['Lire', 'Read']},
  curiosity: {label: ['Curiosité', 'Curiosity'], action: ['Manipuler', 'Explore']},
- olympiad: {label: ['Problème d’olympiade', 'Olympiad problem'], action: ['Chercher', 'Solve']},
  experiment: {label: ['Expérience du laboratoire', 'Laboratory experiment'], action: ['Manipuler', 'Explore']},
 };
 
@@ -43,13 +42,6 @@ export function candidates(kind, pools = {}, live = isLiveHash) {
  if (kind === 'story') for (const s of pools.stories || []) list.push(make(kind, s.id, '#stories/' + s.id, s.title, s.dek));
  if (kind === 'curiosity') for (const c of pools.curiosities || []) list.push(make(kind, c.id, '#gallery/' + c.id, c.title, c.intro));
  if (kind === 'experiment') for (const e of pools.experiments || []) list.push(make(kind, e.id, '#lab/' + e.id, e.title, e.intro));
- if (kind === 'olympiad') for (const s of pools.olympiad || []) (s.problems || []).forEach((p, i) => {
-  if (!p || !p.q) return;
-  const hint = (p.hints || [])[0] || null;
-  list.push(make(kind, s.id + '/' + i, '#olympiad/' + s.id, p.title || s.title,
-   [s.theme && s.title ? 'Stratégie : ' + s.title[0] : '', s.theme && s.title ? 'Strategy: ' + s.title[1] : ''],
-   {strategy: s.id, index: i, problem: {q: p.q, hint}}));
- });
  return list.filter(x => x && live(x.hash));
 }
 
@@ -84,14 +76,13 @@ export function randomPage(pools = {}, rng = Math.random, {live = isLiveHash} = 
 // Collections of "Pour aller plus loin" ([hash, French, English]); the page keeps the live ones.
 export const COLLECTIONS = [
  ['#biographies', 'Biographies', 'Biographies'], ['#stories', 'Histoires', 'Stories'], ['#gallery', 'Curiosités', 'Curiosities'],
- ['#olympiad', 'Olympiades', 'Olympiads'], ['#lab', 'Laboratoire', 'Laboratory'], ['#challenges', 'Défis', 'Challenges'],
+ ['#lab', 'Laboratoire', 'Laboratory'], ['#challenges', 'Défis', 'Challenges'],
  ['#history', 'Chronologies', 'Timelines'], ['#topics', 'Domaines', 'Topics'], ['#errors', 'Erreurs fréquentes', 'Common errors'],
 ];
 export const liveCollections = (live = isLiveHash) => COLLECTIONS.filter(c => live(c[0]));
 
-// Pools from the site data (content.js labs, reading-content.js, olympiad-content.js): plain mapping, no new text.
-export const buildPools = ({BIOGRAPHIES = [], STORIES = [], labs = [], STRATEGIES = []} = {}) => ({
+// Pools from the site data (content.js labs, reading-content.js): plain mapping, no new text.
+export const buildPools = ({BIOGRAPHIES = [], STORIES = [], labs = []} = {}) => ({
  biographies: BIOGRAPHIES, stories: STORIES,
  curiosities: labs.filter(l => l.custom && l.intro), experiments: labs.filter(l => !l.custom && l.intro),
- olympiad: STRATEGIES,
 });

@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { quadratic, riemann, squareSecant, formatNumber, axisTicks } from "../dist/js/math.js";
-import { labs, challenges, pathways, pathwayStages } from "../dist/js/content.js";
+import { labs, challenges } from "../dist/js/content.js";
 import { STORIES } from "../dist/js/reading-content.js";
 const near = (a,b) => assert.ok(Math.abs(a-b) < 1e-10, `${a} != ${b}`);
 
@@ -41,7 +41,7 @@ test("small graph values stay nonzero and scale labels stay distinct", () => {
     assert.ok(formatNumber(1e8,lang).length < 12);
   }
 });
-test("all reasoning, presets and pathway notes are bilingual and valid", () => {
+test("all reasoning and presets are bilingual and valid", () => {
   for (const l of labs) {
     if (l.experiment) {
       // Rebuilt experiments keep their text in lab/experiments/ (checked field by field in lab-engine.test.mjs); here only the
@@ -69,10 +69,6 @@ test("all reasoning, presets and pathway notes are bilingual and valid", () => {
     assert.equal(source.protocol,'https:');
     assert.ok(source.hostname.includes('.'));
     if(source.hostname!=='mathshistory.st-andrews.ac.uk')assert.ok(l.sourceLabel?.length===2&&l.sourceLabel.every(Boolean),'non-MacTutor sources need their own bilingual attribution');
-  }
-  for (const p of pathways) for (const s of pathwayStages(p)) {
-    assert.ok(s.name.length===2 && s.name.every(Boolean));
-    if(s.note) assert.ok(s.note.length===2 && s.note.every(Boolean));
   }
   for(const c of challenges) for(const h of c.hints) assert.ok(h.length===2 && h.every(Boolean));
 });

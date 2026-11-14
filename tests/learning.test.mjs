@@ -13,8 +13,8 @@ const fmt=(n,d=4)=>n.toFixed(d),t=p=>p[0];
 test('all retained chapter extracts match the provenance manifest and have valid page pointers',async()=>{
  const resourceCatalog=completeCatalog;
  const manifest=JSON.parse(await readFile(new URL('../content/data/RESOURCE_PROVENANCE.json',import.meta.url)));
- assert.equal(resourceCatalog.chapters.length,87);/* 58 French chapters, 9 T10 and 20 T11 S (Malagasy curriculum) */assert.equal(manifest.length,[...resourceCatalog.chapters,...resourceCatalog.supplements].reduce((n,c)=>n+c.files.length,0));
- assert.equal(new Set(resourceCatalog.chapters.map(c=>c.id)).size,87);
+ assert.equal(resourceCatalog.chapters.length,58);/* the 58 chapters of the five French courses */assert.equal(manifest.length,[...resourceCatalog.chapters,...resourceCatalog.supplements].reduce((n,c)=>n+c.files.length,0));
+ assert.equal(new Set(resourceCatalog.chapters.map(c=>c.id)).size,58);
  for(const c of [...resourceCatalog.chapters,...resourceCatalog.supplements]){if(c.topic)assert.ok(guides[c.topic]);for(const f of c.files){
  const p=manifest.find(p=>p.path===f.path);assert.ok(p);assert.deepEqual(p.pages,[f.start,f.end]);assert.equal(f.pages,f.end-f.start+1);
  for(const page of Object.values(f.sections||{}))assert.ok(Number.isInteger(page)&&page>=1&&page<=f.pages);

@@ -1,12 +1,11 @@
 import {currentCourse,rememberCourse} from './navigation-state.js';
 import {organizePage} from './page-ergonomics.js';
-import {isLiveRoute, isLiveHash, liveDiscovery, livePathways, FULL_EDITION} from './live-curriculum.js';
+import {isLiveRoute, isLiveHash, liveDiscovery} from './live-curriculum.js';
 import {galleryContext} from './gallery/gallery-context.js';
 import {installControlPolicy} from "./control-policy.js";
 import {preferredLanguage,routeLanguage} from "./content-language.js";
 import {workshopMarkup,bindWorkshop} from './quadratic-workshop.js';
 import { errorsPage, bindErrors } from "./errors.js";
-import { olympiadPage, bindOlympiad, isOlympiadRoute } from "./olympiad.js";
 import { rememberScrolls, restoreScrolls } from "./scroll-memory.js";
 import { withEntryNav } from "./entry-nav.js";
 import { isErrorRoute } from "./errors-model.js";
@@ -16,13 +15,11 @@ import { automatismesPage, bindAutomatismes } from "./automatismes.js";
 import { sheetsPage, bindSheets } from "./worksheets.js";
 import { bankPage, bindBank, isBankRoute } from "./bank-page.js";
 import { slidesPage, bindSlides } from "./slides-page.js";
-import { universityPage, bindUniversity } from "./university.js";
 import { observeSvgNavigation } from "./canvas-navigation.js";
-import { labs, challenges, pathways } from "./content.js";
-import { pathwayPage as pathwayPageView, bindPathways } from "./pathways-view.js";
+import { labs, challenges } from "./content.js";
 import { mountObject } from "./lab-objects.js";
 import { homePage, bindHome, mountHomeFigure, galleryPage as galleryIndex } from "./welcome.js";
-import { MIKAJY_SPARK_DOWNLOAD_URL, MIKAJY_ATLAS_DOWNLOAD_URL } from "./config.js";
+import { MIKAJY_SPARK_DOWNLOAD_URL } from "./config.js";
 // The name of this edition (Maths Explorer or Matematika), written into index.html by the build (build/mxbuild/site.py).
 const SITE_NAME = document.querySelector('meta[name="application-name"]')?.content || "Maths Explorer";
 import { isReading, readingPage, readAlso } from "./reading.js";
@@ -128,13 +125,11 @@ const SECTIONS = [
     ["basics", "Bases", "Foundations", "books"],
     ["automatismes", "Automatismes", "Starters", "lightbulb"],
     ["sheets", "Fiches", "Worksheets", "pencil-simple-line"],
-    ...(FULL_EDITION ? [["pathways", "Parcours", "Pathways", "path"]] : []),
   ]],
   ["explore", "Explorer", "Explore", "flask", [
     ["topics", "Domaines", "Topics", "magnifying-glass"],
     ["lab", "Laboratoire", "Laboratory", "flask"],
     ["challenges", "Défis", "Challenges", "puzzle-piece"],
-    ...(FULL_EDITION ? [["olympiad", "Olympiades", "Olympiads", "trophy"]] : []),
     ["errors", "Erreurs", "Errors", "warning"],
   ]],
   ["read", "Lire", "Read", "book-open", [
@@ -145,7 +140,7 @@ const SECTIONS = [
   ]],
 ];
 // pages reached from a tab count as that tab
-const TAB_OF = { chapter: "resources", library: "resources", workshop: "resources", pack: "resources", sources: "resources", university: "pathways" };
+const TAB_OF = { chapter: "resources", library: "resources", workshop: "resources", pack: "resources", sources: "resources" };
 function header(page) {
   const tab = page === "bank" && route().id === "annales" ? "bank/annales" : TAB_OF[page] || page;
   const section = SECTIONS.find(([, , , , tabs]) => tabs.some(([id]) => id === tab));
@@ -163,7 +158,7 @@ function header(page) {
   return `<header class="topbar"><a class="brand" href="${homeHash(entry)}" aria-label="${SITE_NAME}">${brandMark}<span class="brand-name">${SITE_NAME}</span></a><button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">${pair("Menu","Menu")}</button><nav id="primary-nav" class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${sectionLinks}</nav><div class="tools">${audienceMenu}<a class="icon-btn" href="#search" data-search-link aria-label="${pair("Rechercher une ressource", "Search resources")}" title="${pair("Rechercher une ressource", "Search resources")}"${route().page === "search" ? ' aria-current="page"' : ""}>${icon("magnifying-glass", 22)}</a><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" ${(["chapter","university","workshop"].includes(route().page)||(route().page==="library"&&route().id))?"hidden":""} role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>${modeBar}${subnav}`;
 }
 function footer() {
-  return `<footer><span class="foot-brand">${SITE_NAME}</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><nav class="foot-links" aria-label="${pair("Autres pages", "More pages")}">${effectiveEntry(teacherState.getEntry()) !== "teacher" ? `<a class="foot-switch" href="#teacher" data-set-entry="teacher">${pair("Espace professeur", "Teacher area")}</a>` : ""}<a href="#pack">${pair("Dossier sur mesure", "Custom pack")}</a><a href="#sources">${pair("Sources LaTeX", "LaTeX sources")}</a>${FULL_EDITION?`<a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a>`:""}<a href="${MIKAJY_SPARK_DOWNLOAD_URL}" target="_blank" rel="noopener noreferrer">Mikajy Spark (Android)</a>${FULL_EDITION && MIKAJY_ATLAS_DOWNLOAD_URL ? `<a href="${MIKAJY_ATLAS_DOWNLOAD_URL}" target="_blank" rel="noopener noreferrer">Mikajy Atlas (Android)</a>` : ""}<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.${lang}" rel="license noopener" target="_blank">${pair("Licence CC BY-NC-SA 4.0", "CC BY-NC-SA 4.0 licence")}</a></nav></footer>`;
+  return `<footer><span class="foot-brand">${SITE_NAME}</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><nav class="foot-links" aria-label="${pair("Autres pages", "More pages")}">${effectiveEntry(teacherState.getEntry()) !== "teacher" ? `<a class="foot-switch" href="#teacher" data-set-entry="teacher">${pair("Espace professeur", "Teacher area")}</a>` : ""}<a href="#pack">${pair("Dossier sur mesure", "Custom pack")}</a><a href="#sources">${pair("Sources LaTeX", "LaTeX sources")}</a><a href="${MIKAJY_SPARK_DOWNLOAD_URL}" target="_blank" rel="noopener noreferrer">Mikajy Spark (Android)</a><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.${lang}" rel="license noopener" target="_blank">${pair("Licence CC BY-NC-SA 4.0", "CC BY-NC-SA 4.0 licence")}</a></nav></footer>`;
 }
 // French title of a chapter, for the generators (their content is French)
 const chapterTitleFr = (id) => resourceCatalog.chapters.find((c) => c.id === id)?.title?.[0] || id;
@@ -204,10 +199,9 @@ function render() {
     (r.page === 'history' && isHistoryRoute(r.id,r.tab)) ||
     (r.page === 'topics' && isTopicRoute(r.id,r.tab)) ||
     (r.page === "errors" && isErrorRoute(r.id)) ||
-    (r.page === "olympiad" && isOlympiadRoute(r.id)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "teacher" && !r.id) || (r.page === "prepare" && !r.id) || (r.page === "relax" && !r.id) || (r.page === "review" && !r.id) || r.page === "search" || (r.page === "basics" && isBasicsRoute(r.id)) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab, r.sub)) ||
-    r.page === "university" || (r.page === "resources" && isLiveRoute(r)) || (r.page === "workshop" && r.id === "quadratic") ||
+    (r.page === "home" && !r.id) || (r.page === "teacher" && !r.id) || (r.page === "prepare" && !r.id) || (r.page === "relax" && !r.id) || (r.page === "review" && !r.id) || r.page === "search" || (r.page === "basics" && isBasicsRoute(r.id)) || isReading(r.page, r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" || r.page === "automatismes" || r.page === "sheets" || (r.page === "bank" && isBankRoute(r.id, r.tab, r.sub)) ||
+    (r.page === "resources" && isLiveRoute(r)) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
   if(['resources','slides','bank'].includes(page))rememberCourse(r.id);
@@ -216,12 +210,10 @@ function render() {
   $("#app").innerHTML =
     header(page) +
     (page === "search" ? searchLoading() : page === "teacher" ? teacherLoading() : page === "prepare" ? modeLoading(pair("Préparer", "Prepare")) : page === "relax" ? modeLoading(pair("Détente", "Relax")) : page === "review" ? modeLoading(pair("Réviser", "Review")) : page === "basics" ? basicsPage(r.id, { t, pair, lang, assetHref }) : page === "home" ? homePage({ pair, t, link, index:discovery, last, audience: effectiveEntry(teacherState.getEntry()) }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "bank" ? bankPage(t, r.id, r.tab) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
-      : page === "university" ? universityPage(lang)
       : page === "topics" ? discoveryPage(discovery,r.id,r.tab,t)
       : page === "history" ? historyPage(r.id,r.tab,t,discovery)
       : page === "chapter" ? chapterPage(r.id, r.tab, t, labs)
       : page === "errors" ? errorsPage(r.id, t)
-      : page === "olympiad" ? olympiadPage(r.id, t)
       : page === "lab"
       ? (experiment ? experimentPage(experiment, { t, pair, link, completed, mission: r.tab || "" }) : labIndexPage({ t, pair, link, completed }))
       : page === "gallery"
@@ -232,8 +224,6 @@ function render() {
         ? challengePage(r.id)
         : page === "library"
           ? `<main id="main" tabindex="-1" class="library-page"></main>`
-        : page === "pathways"
-          ? pathwayPage()
           : `<main id="main" tabindex="-1" class="page"><h1>${pair("Page introuvable", "Page not found")}</h1><a href="#lab">${pair("Ouvrir le laboratoire", "Open the laboratory")}</a></main>`) +
     footer();
   if(r.id && page!=='topics') {
@@ -267,7 +257,6 @@ function render() {
   if (page === "lab" && !experiment) bindLabIndex($("#main"), pair);
   if (page === "challenges") stopChapter = bindChallenges();
   if (page === "errors") stopChapter = bindErrors($("#main"), t, r.id);
-  if (page === "olympiad") stopChapter = bindOlympiad($("#main"), lang);
   if (page === "home") stopChapter = bindHome($("#main"),discovery,t);
   if (page === "teacher") stopChapter = mountTeacher($("#main"));
   if (page === "prepare") stopChapter = mountMode($("#main"), "prepare");
@@ -276,14 +265,12 @@ function render() {
   if (page === "search") stopChapter = mountSearch($("#main"), r.id);
   if (page === "basics" && r.id) stopChapter = bindBasics({ $, currentTheme });
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
-  if (page === "pathways") stopChapter = bindPathways({ root: $("#main"), pathways: livePathways, labs, t, pair, link, glyph, completed });
   if (page === "pack") bindPack(t);
   if (page === "sources") bindSources(t);
   if (page === "slides") bindSlides(t);
   if (page === "automatismes") stopChapter = bindAutomatismes($("#main"), t, { chapterTitle: chapterTitleFr, launch: r.id === "go", list: r.id === "list" });
   if (page === "bank") stopChapter = bindBank($("#main"), t, r.id, r.tab, r.sub);
   if (page === "sheets") stopChapter = bindSheets($("#main"), t, { chapterTitle: chapterTitleFr });
-  if (page === "university") bindUniversity(r.id, lang);
   if (page === "chapter") {
     stopChapter = bindChapter(r.id, t, fmt);
     if (last !== r.id || !seen.has(r.id)) {
@@ -586,8 +573,6 @@ function bindChallenges() {
   });
   return stop;
 }
-// Pathways page: curriculum rail, level tabs, topic filters and tile grid (js/pathways-view.js).
-function pathwayPage() { return pathwayPageView({ pathways: livePathways, labs, t, pair, icon }); }
 
 $(".skip").addEventListener("click", e => {
   e.preventDefault();
