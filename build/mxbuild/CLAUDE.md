@@ -8,7 +8,7 @@ The pipeline package. Run with `PYTHONPATH=build python3 -m mxbuild <command>` o
 | `__main__.py` | command line (`catalog`, `site`, `tex`, `check`, `twin`, `enrichment`, `notation`) | |
 | `__init__.py` | `ROOT`, `DIST` | |
 | `refresh.py` | dependency-driven rebuild of everything linked; input fingerprints in `content/data/build-state.json` | `make site` |
-| `site.py` | copy `site/` into `dist/`, regenerate import maps (cache busting); the edition name (`NAMES`: Maths Explorer, or Matematika when `FULL_EDITION` is true) is written into the static pages of `NAMED_PAGES` | part of `make site` |
+| `site.py` | copy `site/` into `dist/`, regenerate import maps (cache busting); the edition name (`NAMES`: Maths Explorer, or Matematika when `FULL_EDITION` is true) is written into the static pages of `NAMED_PAGES`, and the full edition's Atlas link (`MX_ATLAS_URL`, required) into `js/config.js` | part of `make site` |
 | `offline.py` | writes `dist/sw.js`: `site/sw.js` with the shell manifest (files, content hashes, version) in place of its placeholder; `docs/OFFLINE.md` | part of `make site` |
 | `catalog.py` | `catalog.json`, `resources-data.js`, `RESOURCE_PROVENANCE.json` from the manifest; `load()`/`save()` | `make catalog` |
 | `content_index.py` | `site/js/catalogue-data.js` and the measured content model | part of `make site` |

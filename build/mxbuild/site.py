@@ -6,7 +6,7 @@ dist/ is what the host serves and is committed (the host has no build step). It 
     js/enrichment-data.js), written by the other pipeline steps.
 Edit site/, never the dist/ copies; `python -m mxbuild site --check` fails when a copy differs from its source.
 """
-import hashlib, re, shutil
+import hashlib, os, re, shutil
 from . import ROOT, DIST
 
 SITE = ROOT / 'site'
@@ -26,11 +26,30 @@ def full_edition():
     return m.group(1) == 'true'
 
 
+# The Mikajy Atlas link of the full edition names an account that must never be written in this repository (banned
+# phrase, tests/banned.py). Its value is kept by the Matematika repository and given to the full build as MX_ATLAS_URL;
+# the build writes it into the served copy of js/config.js, before any hash is taken.
+ATLAS_PLACEHOLDER = 'export const MIKAJY_ATLAS_DOWNLOAD_URL = "";'
+
+
+def atlas_url():
+    url = os.environ.get('MX_ATLAS_URL', '').strip()
+    if not re.fullmatch(r'https://github\.com/[\w.-]+/[\w.-]+/releases/latest', url):
+        raise SystemExit('The full edition needs MX_ATLAS_URL (the Mikajy Atlas releases page, kept in the Matematika repository).')
+    return url
+
+
 def served(src):
-    """The bytes dist/ must hold for a file of site/: a plain copy, except the edition name in the named pages."""
+    """The bytes dist/ must hold for a file of site/: a plain copy, except, in the full edition, the edition name in the
+    named pages and the Atlas link in js/config.js."""
     data = src.read_bytes()
-    if src.relative_to(SITE).as_posix() in NAMED_PAGES and full_edition():
+    rel = src.relative_to(SITE).as_posix()
+    if full_edition() and rel in NAMED_PAGES:
         data = data.decode('utf-8').replace(NAMES[False], NAMES[True]).encode('utf-8')
+    elif full_edition() and rel == 'js/config.js':
+        text = data.decode('utf-8')
+        assert text.count(ATLAS_PLACEHOLDER) == 1, 'site/js/config.js must keep the Atlas placeholder line'
+        data = text.replace(ATLAS_PLACEHOLDER, f'export const MIKAJY_ATLAS_DOWNLOAD_URL = "{atlas_url()}";').encode('utf-8')
     return data
 
 
@@ -68,7 +87,10 @@ def versioned_index():
     def current(rel):   # the dist copy once written, else the source: they are byte-identical after `make site`
         return DIST / rel if (DIST / rel).exists() and not (SITE / rel).exists() else SITE / rel
     files = sorted({p.relative_to(SITE).as_posix() for p in (SITE / 'js').rglob('*.js')} | {p.relative_to(DIST).as_posix() for p in (DIST / 'js').glob('*.js')})
-    imports = {f'./{f}': f'./{f}?v={_hash(current(f))}' for f in files}
+    def digest(f):   # a file of site/ is hashed as served (the full edition rewrites js/config.js)
+        p = current(f)
+        return hashlib.sha1(served(p) if p.is_relative_to(SITE) else p.read_bytes()).hexdigest()[:10]
+    imports = {f'./{f}': f'./{f}?v={digest(f)}' for f in files}
     import json
     block = (MAP_START + '\n    <script type="importmap">\n' + json.dumps({'imports': imports}, indent=2).replace('\n', '\n    ') + '\n    </script>\n    '
              + f'<script type="module" src="{imports["./js/app.js"]}"></script>\n    ' + MAP_END)
