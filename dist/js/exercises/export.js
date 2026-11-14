@@ -2,6 +2,8 @@
 // and a standalone projection page for the automatismes. Pure string builders, no DOM.
 // A statement is French text with maths between \( \) or \[ \]; nothing else is interpreted.
 
+import { starterFigureHtml, starterFigureTex } from './starter-visual.js';
+
 const HTML = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 export const esc = HTML;
 
@@ -79,12 +81,15 @@ export function sheetTex(doc, opts = {}) {
 // Automatismes: two columns of numbered questions; the teacher version gives each answer under its question.
 export function starterTex(doc, opts = {}) {
   const teacher = opts.version === 'teacher';
-  const L = [PREAMBLE.replace('\\setlist[enumerate]{label=\\alph*)}', '\\setlist[enumerate]{label=\\arabic*.}'), '\\pagestyle{empty}', '\\begin{document}'];
+  // TikZ only when a question carries a figure (starter-visual.js), so a plain series keeps its exact preamble
+  const preamble = doc.items.some((it) => it.figure) ? `${PREAMBLE}\n\\usepackage{tikz}` : PREAMBLE;
+  const L = [preamble.replace('\\setlist[enumerate]{label=\\alph*)}', '\\setlist[enumerate]{label=\\arabic*.}'), '\\pagestyle{empty}', '\\begin{document}'];
   L.push(`\\begin{center}{\\Large\\bfseries Automatismes${teacher ? ' --- corrigé' : ''}}\\\\[2pt]${tex(opts.subtitle || '')}\\end{center}`);
   if (!teacher) L.push(`\\noindent Nom : \\dotfill\\quad Date : \\dotfill\\hfill\\textit{${doc.minutes} minutes}\\par\\medskip`);
   L.push('\\begin{multicols}{2}', '\\begin{enumerate}[itemsep=0.9em]');
   for (const it of doc.items) {
     L.push(`\\item ${tex(it.q)}`);
+    if (it.figure) L.push(starterFigureTex(it.figure));
     if (teacher) L.push(`\\\\\\hspace*{1em}\\textbf{Réponse :} ${tex(it.a)}${it.s ? ` \\textit{(${tex(it.s)})}` : ''}`);
     else L.push('\\vspace{2.2em}');
   }
@@ -95,7 +100,7 @@ export function starterTex(doc, opts = {}) {
 // A standalone projection page: one question at a time, timer, answer reveal, keyboard control. It loads MathJax
 // from cdnjs (internet needed in the room); everything else is inline. The questions are embedded as data.
 export function projectionHtml(doc, opts = {}) {
-  const data = JSON.stringify({ title: opts.title || 'Automatismes', subtitle: opts.subtitle || '', seconds: doc.secondsPerItem, total: doc.minutes * 60, items: doc.items.map((i) => ({ q: html(i.q), a: i.choices ? '' : html(i.a), level: i.level, ...(i.choices ? { stem: html(i.stem), choices: i.choices.map(html), correct: i.correct } : {}) })) }).replace(/</g, '\\u003c');
+  const data = JSON.stringify({ title: opts.title || 'Automatismes', subtitle: opts.subtitle || '', seconds: doc.secondsPerItem, total: doc.minutes * 60, items: doc.items.map((i) => ({ q: html(i.q), a: i.choices ? '' : html(i.a), fig: i.figure ? starterFigureHtml(i.figure) : '', level: i.level, ...(i.choices ? { stem: html(i.stem), choices: i.choices.map(html), correct: i.correct } : {}) })) }).replace(/</g, '\\u003c');
   return `<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${HTML(opts.title || 'Automatismes')}</title>
@@ -135,7 +140,7 @@ function fmt(s){s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+String(s
 function fit(){const m=document.querySelector('main');document.documentElement.style.removeProperty('--fit');let f=1;while(f>.3&&(m.scrollHeight>m.clientHeight+1||m.scrollWidth>m.clientWidth+1)){f-=.06;document.documentElement.style.setProperty('--fit',f.toFixed(2));}}
 function typeset(){if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([$('q'),$('a')]).then(fit,fit);else fit();}
 addEventListener('resize',fit);
-function draw(){const it=D.items[i];$('q').innerHTML='<strong>'+(i+1)+'.</strong> '+(it.choices?it.stem+'<ul class="ch">'+it.choices.map((c,k)=>'<li'+(showA&&k===it.correct?' class="r"':'')+'><b>'+'ABCD'[k]+'</b><span>'+c+'</span></li>').join('')+'</ul>':it.q);$('a').innerHTML=showA?it.a:'';$('count').textContent=D.title+' · question '+(i+1)+' sur '+D.items.length;$('level').textContent='niveau '+it.level;$('timer').textContent=fmt(left);$('fill').style.width=(100*(i+1)/D.items.length)+'%';$('reveal').setAttribute('aria-pressed',String(showA));$('play').setAttribute('aria-pressed',String(running));$('play').textContent=running?'Pause (Espace)':'Départ (Espace)';typeset();}
+function draw(){const it=D.items[i];$('q').innerHTML='<strong>'+(i+1)+'.</strong> '+(it.choices?it.stem+'<ul class="ch">'+it.choices.map((c,k)=>'<li'+(showA&&k===it.correct?' class="r"':'')+'><b>'+'ABCD'[k]+'</b><span>'+c+'</span></li>').join('')+'</ul>':it.q)+(it.fig||'');$('a').innerHTML=showA?it.a:'';$('count').textContent=D.title+' · question '+(i+1)+' sur '+D.items.length;$('level').textContent='niveau '+it.level;$('timer').textContent=fmt(left);$('fill').style.width=(100*(i+1)/D.items.length)+'%';$('reveal').setAttribute('aria-pressed',String(showA));$('play').setAttribute('aria-pressed',String(running));$('play').textContent=running?'Pause (Espace)':'Départ (Espace)';typeset();}
 function go(n){i=Math.max(0,Math.min(D.items.length-1,n));showA=false;left=D.seconds;draw();}
 function loop(){if(!running)return;left-=1;if(left<=0){if(i<D.items.length-1){go(i+1);}else{running=false;left=0;}}draw_t();}
 function draw_t(){$('timer').textContent=fmt(left);if(!running)draw();}
@@ -151,7 +156,7 @@ draw();
 // ---- HTML documents for the page and for printing (same structure as the LaTeX sources) ----
 // `competency` (teacher version only): a function from an item to a short label, printed discreetly after the answer.
 export function starterHtml(doc, { teacher = false, subtitle = '', competency = null } = {}) {
-  return `<article class="sheet-doc${teacher ? ' is-teacher' : ''}"><header><h1>Automatismes${teacher ? ' : corrigé' : ''}</h1><p>${esc(subtitle)}</p>${teacher ? '' : `<p class="sheet-fields">Nom : <span></span> Date : <span></span> <em>${doc.minutes} min</em></p>`}</header><ol class="sheet-starter">${doc.items.map((i) => `<li><div>${html(i.q)}</div>${teacher ? `<div class="sheet-answer"><strong>Réponse :</strong> ${html(i.a)}${i.s ? ` <em>${html(i.s)}</em>` : ''}${competency && competency(i) ? ` <small class="sheet-comp">${esc(competency(i))}</small>` : ''}</div>` : '<div class="sheet-space"></div>'}</li>`).join('')}</ol></article>`;
+  return `<article class="sheet-doc${teacher ? ' is-teacher' : ''}"><header><h1>Automatismes${teacher ? ' : corrigé' : ''}</h1><p>${esc(subtitle)}</p>${teacher ? '' : `<p class="sheet-fields">Nom : <span></span> Date : <span></span> <em>${doc.minutes} min</em></p>`}</header><ol class="sheet-starter">${doc.items.map((i) => `<li><div>${html(i.q)}${starterFigureHtml(i.figure)}</div>${teacher ? `<div class="sheet-answer"><strong>Réponse :</strong> ${html(i.a)}${i.s ? ` <em>${html(i.s)}</em>` : ''}${competency && competency(i) ? ` <small class="sheet-comp">${esc(competency(i))}</small>` : ''}</div>` : '<div class="sheet-space"></div>'}</li>`).join('')}</ol></article>`;
 }
 export function sheetHtml(doc, { teacher = false, bareme = false, title = '', subtitle = '' } = {}) {
   const ex = (e) => `<section class="sheet-ex"><h2>Exercice ${e.n}${e.title ? ` : ${html(e.title)}` : ''}${bareme ? ` <small>(${pts(e.pts)} points)</small>` : ''}</h2>${e.intro ? `<p>${html(e.intro)}</p>` : ''}<ol class="sheet-parts">${e.parts.map((p) => `<li><div>${html(p.q)}${bareme ? ` <em class="sheet-pts">(${pts(p.pts)} pt${p.pts > 1 ? 's' : ''})</em>` : ''}</div>${teacher ? `<div class="sheet-answer">${html(p.a)}${p.s ? ` <em>${html(p.s)}</em>` : ''}</div>` : ''}</li>`).join('')}</ol></section>`;

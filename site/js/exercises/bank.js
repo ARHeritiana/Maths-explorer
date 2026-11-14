@@ -43,6 +43,7 @@ import { problemsSeconde3 } from './problems-seconde-3.js';
 import { problemsStmg } from './problems-stmg.js';
 import { problemsExpertes } from './problems-expertes.js';
 import { competences } from './templates-competences.js';
+import { visualStartersFor } from './starter-visual.js';
 
 export const DOMAINS = {
   nombres: 'Nombres et calculs', algebre: 'Algèbre', fonctions: 'Fonctions', analyse: 'Analyse', suites: 'Suites', geometrie: 'Géométrie',
@@ -72,17 +73,27 @@ const nearest = (t, level) => supports(t).reduce((best, l) => (Math.abs(l - leve
 export function instance(t, level, seed) {
   const lv = nearest(t, level);
   const out = t.make(rng(`${seed}|${t.id}|${lv}`), lv);
-  return { id: t.id, cls: t.cls, chapter: t.chapter, domain: t.domain, skill: t.skill, level: lv, competency: mainCompetency(t.id), q: out.q, a: out.a, s: out.s || '', ...(out.kind === 'qcm' ? { kind: 'qcm', stem: out.stem, choices: out.choices, short: out.short, correct: out.correct } : {}) };
+  return { id: t.id, cls: t.cls, chapter: t.chapter, domain: t.domain, skill: t.skill, level: lv, competency: mainCompetency(t.id), q: out.q, a: out.a, s: out.s || '', ...(out.figure ? { figure: out.figure } : {}), ...(out.kind === 'qcm' ? { kind: 'qcm', stem: out.stem, choices: out.choices, short: out.short, correct: out.correct } : {}) };
 }
 
 const match = (item, o) => (!o.chapters?.length || o.chapters.includes(item.chapter)) && (!o.domains?.length || o.domains.includes(item.domain));
 const allowedLevels = (o) => { const l = (o.levels?.length ? [...o.levels] : [1, 2, 3]).sort(); return l; };
 
 // ---- automatismes ----
+// The starter pool of a class: its generators plus the illustrated starters (starter-visual.js), which serve only here.
+const starterPool = (cls) => [...templatesFor(cls), ...visualStartersFor(cls)];
+// Positions of a series of `count` items that show a figure: about 30 % (at least one, at most one per illustrated
+// generator, since a generator keeps its wording), spread evenly, when the filtered pool has both kinds; otherwise none
+// are reserved and the draw is the plain one.
+const figurePositions = (count, visual, plain) => {
+  if (!visual || !plain) return new Set();
+  const k = Math.min(visual, Math.max(1, Math.round(count * 0.3)));
+  return new Set(Array.from({ length: k }, (_, j) => Math.floor(((j + 0.5) * count) / k)));
+};
 // Which main competencies the starter pool of a class can serve under the other filters (chapters, topics, short only):
 // {competency: number of generators}. The page uses it to say that a ticked competency has nothing to offer.
 export function starterCompetencies(o) {
-  const pool = templatesFor(o.cls).filter((t) => match(t, o)), fast = pool.filter((t) => t.fast), n = {};
+  const pool = starterPool(o.cls).filter((t) => match(t, o)), fast = pool.filter((t) => t.fast), n = {};
   for (const t of (o.fastOnly !== false && fast.length ? fast : pool)) { const c = mainCompetency(t.id); if (c) n[c] = (n[c] || 0) + 1; }
   return n;
 }
@@ -91,25 +102,29 @@ export function buildStarter(o) {
   const levels = allowedLevels(o);
   // o.competencies (optional, main competencies of competencies.js): none given keeps the pool, the order and so the series
   // of a seed exactly as before. With a filter, `longOnly` tells the page that no short generator was left.
-  let pool = templatesFor(o.cls).filter((t) => match(t, o) && hasCompetency(t.id, o.competencies));
+  let pool = starterPool(o.cls).filter((t) => match(t, o) && hasCompetency(t.id, o.competencies));
   const fast = pool.filter((t) => t.fast);
   if (o.fastOnly !== false && fast.length) pool = fast;
   const base = { kind: 'starter', cls: o.cls, seed: String(seed), minutes: o.minutes || 5, levels, items: [] };
   if (o.competencies?.length) { base.competencies = [...o.competencies]; if (o.fastOnly !== false && pool.length && !fast.length) base.longOnly = true; }
   if (!pool.length) return { ...base, empty: true, secondsPerItem: 0 };
   const r = rng(`${seed}|starter|${o.cls}`);
-  let order = r.shuffle(pool), cursor = 0;
+  // Two decks drawn in turn: illustrated starters on the figure positions, the other generators elsewhere.
+  const visual = pool.filter((t) => t.visual), plain = pool.filter((t) => !t.visual);
+  const withFigure = figurePositions(count, visual.length, plain.length);
+  const decks = [plain.length ? plain : visual, visual].map((list) => ({ list, order: r.shuffle(list), cursor: 0 }));
+  const draw = (d) => { if (d.cursor >= d.order.length) { d.order = r.shuffle(d.list); d.cursor = 0; } return d.order[d.cursor++]; };
   const seen = new Set();
   for (let i = 0; i < count; i++) {
     const target = o.order === 'mixed' ? r.pick(levels) : levels[Math.min(levels.length - 1, Math.floor((i * levels.length) / count))];
+    const deck = decks[withFigure.has(i) ? 1 : 0];
     let item = null;
     for (let attempt = 0; attempt < 12 && !item; attempt++) {
-      if (cursor >= order.length) { order = r.shuffle(pool); cursor = 0; }
-      const t = order[cursor++];
+      const t = draw(deck);
       const cand = instance(t, target, `${seed}|${i}|${attempt}`);
       // a four-choice question reads badly on a projected starter: skipped unless asked for (o.qcm), kept only as a last resort
       if (cand.kind === 'qcm' && !o.qcm && attempt < 11) continue;
-      if (!seen.has(cand.q) || attempt === 11) item = cand;
+      if (!seen.has(cand.q) || attempt === 11) item = cand;   // same wording twice reads as a repeat, even with another figure
     }
     seen.add(item.q);
     base.items.push({ n: i + 1, ...item });

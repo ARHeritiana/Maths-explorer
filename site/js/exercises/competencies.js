@@ -16,7 +16,8 @@
 //               The investigations of a chapter live in its tab "Manipuler" (heading "Chercher avant de formaliser",
 //               site/js/chapter-sequence.js) and in the laboratory. No generator has "chercher" as its main competency;
 //               do not relabel one to fill the gap.
-// A new generator needs one line here (tests/competencies.test.mjs fails otherwise and pins the coverage table).
+// A new generator needs one line here (tests/competencies.test.mjs fails otherwise and pins the coverage table); so does
+// a new illustrated starter of starter-visual.js.
 // Classes are never listed in code: every loop goes over CLASSES and TEMPLATES of bank.js, so a new class only needs its
 // lines in the table below (the class comments of the table are headings for the reader, nothing reads them).
 
@@ -564,6 +565,29 @@ export const COMPETENCY_OF = {
   'm5-evol-vf': [R, C],
   'm5-read-law': [P, C],
   'm5-model-exp': [M, C],
+  // ======== starter-visual.js (illustrated starters; starters only, not in TEMPLATES, so not in the coverage table) ========
+  // reading a figure is représenter; deducing a property from it (sign of a, sign of a trinomial, f from f' or f'') is
+  // raisonner, with représenter second.
+  'v-s-vectors-equal': [R, P],
+  'v-s-vector-coords': [P],
+  'v-s-line-equation': [P],
+  'v-s-line-slope': [P, C],
+  'v-s-line-intercept': [P],
+  'v-s-parabola-shape': [R, P],
+  'v-s-parabola-variations': [P],
+  'v-s-parabola-roots': [P],
+  'v-s-parabola-table': [R, P],
+  'v-p-parabola-signs': [R, P],
+  'v-p-parabola-variations': [P],
+  'v-p-parabola-roots': [P],
+  'v-p-parabola-table': [R, P],
+  'v-m-line-equation': [P],
+  'v-m-line-slope': [P, C],
+  'v-m-line-image': [P],
+  'v-e-complex-vector': [P],
+  'v-e-complex-equal': [P, C],
+  'v-t-derivative': [R, P],
+  'v-t-second-derivative': [R, P],
 };
 
 export const mainCompetency = (id) => COMPETENCY_OF[id]?.[0] || null;
