@@ -359,3 +359,30 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1.5px va
  body { padding-bottom:0; }
  .subnav { position:static; }
 }
+
+/* Profile (audience) menu of the header: visitor, student or teacher, stored on the device. */
+.audience-menu { position: relative; }
+.audience-menu summary { display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px; border-radius: var(--r-sm); color: var(--ink-2); font: 600 0.9rem var(--ui); cursor: pointer; list-style: none; }
+.audience-menu summary::-webkit-details-marker { display: none; }
+.audience-menu summary:hover, .audience-menu[open] summary { background: var(--sunken); color: var(--ink); }
+.audience-list { position: absolute; right: 0; top: calc(100% + 6px); z-index: 40; width: min(300px, calc(100vw - 24px)); padding: 6px; background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--r-sm); box-shadow: 0 10px 30px rgb(0 0 0 / 0.18); }
+.audience-list a { display: flex; flex-direction: column; gap: 2px; min-height: 44px; padding: 8px 10px; border-radius: var(--r-sm); color: var(--ink); }
+.audience-list a b { font: 700 0.95rem var(--ui); }
+.audience-list a span { color: var(--ink-2); font-size: 0.84rem; }
+.audience-list a:hover, .audience-list a:focus-visible { background: var(--sunken); }
+.audience-list a[aria-current="true"] { box-shadow: inset 3px 0 0 var(--accent); }
+.audience-list p { margin: 6px 10px 4px; color: var(--muted); font-size: 0.8rem; }
+@media (max-width: 700px) { .audience-menu summary span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } .audience-menu summary { padding: 0; width: 44px; justify-content: center; } }
+@media print { .audience-menu { display: none !important; } }
+/* ------------------------------------------------- offline support (js/offline.js): badge, update notice, missing content */
+.offline-bar { position: fixed; left: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 60; display: flex; flex-wrap: wrap; gap: 8px; max-width: calc(100vw - 24px); font: 700 .9rem var(--ui); pointer-events: none; }
+.offline-bar[hidden] { display: none; }
+body:has(.dock:not([hidden])) .offline-bar { bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
+.is-presenting .offline-bar .offline-offline { display: none; }
+.offline-item { display: inline-flex; align-items: center; gap: 10px; min-height: 36px; padding: 4px 12px; background: var(--surface); color: var(--ink); border: 1.5px solid var(--line-strong); pointer-events: auto; }
+.offline-offline::before { content: ""; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--muted); }
+.offline-update { border-color: var(--ink); }
+.offline-bar button { min-height: 32px; padding: 2px 10px; font: inherit; }
+.offline-reload { background: var(--ink); color: var(--bg); }
+.offline-later { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+@media print { .offline-bar { display: none; } }

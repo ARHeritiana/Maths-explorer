@@ -55,21 +55,22 @@
       } catch (e) {}
     </script>
     <link rel="preload" href="./fonts/stix-two-text-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="./styles/explorer.css?v=9a46bd6da6" />
+    <link rel="stylesheet" href="./styles/explorer.css?v=310094f082" />
     <link rel="stylesheet" href="./styles/pages.css?v=fe3610c23e" />
     <link rel="stylesheet" href="./styles/ergonomics.css?v=4a6e199373" />
-    <link rel="stylesheet" href="./styles/home.css?v=96a3a4684f" />
+    <link rel="stylesheet" href="./styles/home.css?v=18e716a2da" />
     <link rel="stylesheet" href="./styles/history.css?v=7563185537" />
     <link rel="stylesheet" href="./styles/exhibit.css?v=0c1617d5cb" />
     <link rel="stylesheet" href="./styles/topics.css?v=1ec2f6ee25" />
     <link rel="stylesheet" href="./styles/teacher.css?v=fce93ba156" />
+    <link rel="stylesheet" href="./styles/review.css?v=9200017f1f" />
     <!-- importmap:start -->
     <script type="importmap">
 {
       "imports": {
         "./js/annals-bank.js": "./js/annals-bank.js?v=49636c9652",
-        "./js/app.js": "./js/app.js?v=7079360016",
-        "./js/automatismes.js": "./js/automatismes.js?v=650ae95eaf",
+        "./js/app.js": "./js/app.js?v=fc54dec630",
+        "./js/automatismes.js": "./js/automatismes.js?v=940e49ad19",
         "./js/bank-page.js": "./js/bank-page.js?v=2c2aacd2c3",
         "./js/basics-page.js": "./js/basics-page.js?v=ffbd569767",
         "./js/biographies-major.js": "./js/biographies-major.js?v=d52726aba4",
@@ -270,10 +271,11 @@
         "./js/exercises/authored.js": "./js/exercises/authored.js?v=4e8c47aaa5",
         "./js/exercises/bank-mada.js": "./js/exercises/bank-mada.js?v=46a5149ae5",
         "./js/exercises/bank-select.js": "./js/exercises/bank-select.js?v=9b37025594",
-        "./js/exercises/bank.js": "./js/exercises/bank.js?v=dcb81db24d",
+        "./js/exercises/bank.js": "./js/exercises/bank.js?v=34cd996de9",
+        "./js/exercises/competencies.js": "./js/exercises/competencies.js?v=479120bd3e",
         "./js/exercises/engine.js": "./js/exercises/engine.js?v=acd62de68d",
         "./js/exercises/expertes-kit.js": "./js/exercises/expertes-kit.js?v=abee042d16",
-        "./js/exercises/export.js": "./js/exercises/export.js?v=7fd0814244",
+        "./js/exercises/export.js": "./js/exercises/export.js?v=3285c6076b",
         "./js/exercises/premiere-kit.js": "./js/exercises/premiere-kit.js?v=e61cacae22",
         "./js/exercises/problems-expertes.js": "./js/exercises/problems-expertes.js?v=645ff0dd08",
         "./js/exercises/problems-premiere.js": "./js/exercises/problems-premiere.js?v=6d998d8db0",
@@ -286,6 +288,7 @@
         "./js/exercises/seconde-kit-2.js": "./js/exercises/seconde-kit-2.js?v=97ca1e4c2b",
         "./js/exercises/seconde-kit.js": "./js/exercises/seconde-kit.js?v=f717d5e6bd",
         "./js/exercises/stmg-kit.js": "./js/exercises/stmg-kit.js?v=916dd07b51",
+        "./js/exercises/templates-competences.js": "./js/exercises/templates-competences.js?v=73f3bd71e5",
         "./js/exercises/templates-expertes-2.js": "./js/exercises/templates-expertes-2.js?v=d30cce5d7f",
         "./js/exercises/templates-expertes-3.js": "./js/exercises/templates-expertes-3.js?v=7e1b8f2c3b",
         "./js/exercises/templates-expertes-4.js": "./js/exercises/templates-expertes-4.js?v=d5d66402dd",
@@ -313,7 +316,7 @@
         "./js/exercises/templates-terminale-5.js": "./js/exercises/templates-terminale-5.js?v=c85b254025",
         "./js/exercises/templates-terminale.js": "./js/exercises/templates-terminale.js?v=9a04cdd499",
         "./js/exercises/terminale-kit.js": "./js/exercises/terminale-kit.js?v=78ba04ffea",
-        "./js/exercises/ui-kit.js": "./js/exercises/ui-kit.js?v=e765e34060",
+        "./js/exercises/ui-kit.js": "./js/exercises/ui-kit.js?v=83eddd74d4",
         "./js/fair-division-content.js": "./js/fair-division-content.js?v=e8e9ab5a2e",
         "./js/figure-engine.js": "./js/figure-engine.js?v=a36b274b3b",
         "./js/figure-scenes.js": "./js/figure-scenes.js?v=fc8bc5f067",
@@ -469,13 +472,14 @@
         "./js/launchpad-model.js": "./js/launchpad-model.js?v=e4a26e3908",
         "./js/learning-content.js": "./js/learning-content.js?v=e97b635b08",
         "./js/library.js": "./js/library.js?v=097e9014f0",
-        "./js/live-curriculum.js": "./js/live-curriculum.js?v=34e47edb55",
+        "./js/live-curriculum.js": "./js/live-curriculum.js?v=9fd2cb0796",
         "./js/mandelbrot-preview.js": "./js/mandelbrot-preview.js?v=4d3aee61f4",
         "./js/math.js": "./js/math.js?v=3728a18776",
-        "./js/modes.js": "./js/modes.js?v=2f92284f12",
+        "./js/modes.js": "./js/modes.js?v=d1308e54c7",
         "./js/motion.js": "./js/motion.js?v=5fe0a274ee",
         "./js/navigation-state.js": "./js/navigation-state.js?v=bba40bad57",
         "./js/object-kit.js": "./js/object-kit.js?v=6e3215f507",
+        "./js/offline.js": "./js/offline.js?v=b7a9bc94b7",
         "./js/olympiad-content.js": "./js/olympiad-content.js?v=8111285124",
         "./js/olympiad-widgets.js": "./js/olympiad-widgets.js?v=49cc857266",
         "./js/olympiad.js": "./js/olympiad.js?v=c519668dae",
@@ -499,14 +503,17 @@
         "./js/resource-search.js": "./js/resource-search.js?v=aac0f17e13",
         "./js/resource-sources.js": "./js/resource-sources.js?v=a402acc164",
         "./js/resources-data.js": "./js/resources-data.js?v=4ca8817569",
+        "./js/review-model.js": "./js/review-model.js?v=f00aff5f20",
+        "./js/review-page.js": "./js/review-page.js?v=486fa00b8e",
+        "./js/review-state.js": "./js/review-state.js?v=103c597b16",
         "./js/scroll-memory.js": "./js/scroll-memory.js?v=e9eee1baf4",
         "./js/seance-model.js": "./js/seance-model.js?v=9d33ac2fdd",
         "./js/sequence-model.js": "./js/sequence-model.js?v=70fbefb3f1",
         "./js/slides-page.js": "./js/slides-page.js?v=45ef9e5e3c",
         "./js/study-guides.js": "./js/study-guides.js?v=1b11b9ed93",
-        "./js/teacher-dashboard.js": "./js/teacher-dashboard.js?v=dc8e43c897",
-        "./js/teacher-entry.js": "./js/teacher-entry.js?v=0b834406a6",
-        "./js/teacher-state.js": "./js/teacher-state.js?v=ef0b8fdfbc",
+        "./js/teacher-dashboard.js": "./js/teacher-dashboard.js?v=3801aafe6f",
+        "./js/teacher-entry.js": "./js/teacher-entry.js?v=104a96d3f4",
+        "./js/teacher-state.js": "./js/teacher-state.js?v=e93ee3e7d2",
         "./js/topic-registry.js": "./js/topic-registry.js?v=57af72c291",
         "./js/topology-content.js": "./js/topology-content.js?v=ef333dc505",
         "./js/ui.js": "./js/ui.js?v=a096b0396d",
@@ -514,12 +521,12 @@
         "./js/university.js": "./js/university.js?v=e7fbff3738",
         "./js/visible-loop.js": "./js/visible-loop.js?v=1bd00417d7",
         "./js/visual-lessons.js": "./js/visual-lessons.js?v=2d994f8fbb",
-        "./js/welcome.js": "./js/welcome.js?v=e87d5b6e69",
-        "./js/worksheets.js": "./js/worksheets.js?v=e0210f89fd"
+        "./js/welcome.js": "./js/welcome.js?v=df49be19ac",
+        "./js/worksheets.js": "./js/worksheets.js?v=c508fed939"
       }
     }
     </script>
-    <script type="module" src="./js/app.js?v=7079360016"></script>
+    <script type="module" src="./js/app.js?v=fc54dec630"></script>
     <!-- importmap:end -->
   </head>
   <body>

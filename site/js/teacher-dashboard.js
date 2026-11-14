@@ -110,7 +110,7 @@ ${favorites.length?`<ul class="td-items">${favorites.map(i=>itemRow(i,'fav')).jo
 <label class="td-field"><span>${L('Nombre de questions','Number of questions')}</span><input id="td-auto-count" type="number" min="3" max="30" value="${auto.count}"></label>
 <label class="td-field"><span>${L('Série','Series')}</span><select id="td-auto-seed"><option value="new"${auto.seedPolicy==='new'?' selected':''}>${L('Nouvelle série à chaque lancement','New series each time')}</option><option value="keep"${auto.seedPolicy==='keep'?' selected':''}>${L('Garder le code de la dernière série','Keep the last series code')}</option></select></label></div></section>
 <section class="td-entry" aria-labelledby="td-entry-h"><h3 tabindex="-1" id="td-entry-h">${L('Page d’accueil','Start page')}</h3>
-<p>${eff==='teacher'?L('Cet appareil s’ouvre sur l’Espace professeur.','This device opens on the Teacher area.'):L('Cet appareil s’ouvre sur l’Espace élève.','This device opens on the student area.')}${entry?'':' '+L('(choix par défaut de cette édition)','(default of this edition)')}</p>
+<p>${eff==='teacher'?L('Cet appareil s’ouvre sur l’Espace professeur.','This device opens on the Teacher area.'):eff==='student'?L('Cet appareil s’ouvre sur l’Espace élève.','This device opens on the student area.'):L('Cet appareil s’ouvre sur l’accueil des visiteurs.','This device opens on the visitor home.')}${entry?'':' '+L('(choix par défaut)','(default)')}</p>
 <span class="td-entry-actions">${eff==='teacher'
   ?`<a class="btn btn-secondary" href="#home" data-set-entry="student">${L('Ouvrir l’Espace élève au démarrage','Open the student area at start-up')}</a>`
   :`<button type="button" class="btn btn-secondary" data-td="entry-teacher">${L('Ouvrir l’Espace professeur au démarrage','Open the Teacher area at start-up')}</button><a class="btn-quiet" href="#home">${L('Espace élève','Student area')}</a>`}${entry?`<button type="button" class="btn-quiet" data-td="entry-reset">${L('Rétablir le choix par défaut','Restore the default choice')}</button>`:''}</span></section>
@@ -133,7 +133,7 @@ ${confirmClear?`<div class="td-confirm" role="alertdialog" aria-labelledby="td-c
   const d=b.dataset.td;
   if(d==='view'){state.setTools({view:b.dataset.view==='tableau'?'tableau':'projecteur'});draw();main.querySelector(`[data-td="view"][data-view="${b.dataset.view}"]`)?.focus();}
   else if(d==='propose'){state.setSeance(defaultSeance({course:state.getClassroom().course,chapter:state.getClassroom().chapter},resolveForSeance(state.getClassroom().course,state.getClassroom().chapter,decks)));draw();focusAfter('td-seance-h');}
-  else if(d==='entry-reset'){state.setEntry('');message=L('Le choix par défaut de l’édition est rétabli.','The edition default is restored.');draw();focusAfter('td-entry-h');}
+  else if(d==='entry-reset'){state.setEntry('');message=L('Le choix par défaut (visiteur) est rétabli.','The default (visitor) is restored.');draw();focusAfter('td-entry-h');}
   else if(d==='entry-teacher'){state.setEntry('teacher');message=L('Cet appareil s’ouvrira sur l’Espace professeur.','This device will now open on the Teacher area.');draw();focusAfter('td-entry-h');}
   else if(d==='fav'){state.toggleFavorite(state.getRecent().find(i=>i.type===b.dataset.type&&i.id===b.dataset.id));draw();[...main.querySelectorAll('[data-td="fav"]')].find(x=>x.dataset.id===b.dataset.id)?.focus();}
   else if(d==='unfav'){state.removeFavorite(b.dataset.type,b.dataset.id);draw();focusAfter('td-fav-h');}

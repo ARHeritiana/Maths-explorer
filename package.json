@@ -10,6 +10,7 @@
     "check": "node scripts/check-syntax.mjs",
     "test:browser": "python tests/run_browser.py",
     "test:dom": "node tests/dom-smoke.mjs",
+    "test:offline": "node tests/offline_browser.mjs",
     "check:prerequisites": "node scripts/check-prerequisites.mjs",
     "check:prerequisites:strict": "node scripts/check-prerequisites.mjs --strict"
   },

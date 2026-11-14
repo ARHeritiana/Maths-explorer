@@ -11,11 +11,12 @@ from . import ROOT, DIST
 
 SITE = ROOT / 'site'
 AGENT_NOTES = {'CLAUDE.md', 'AGENTS.md'}   # folder indexes for coding agents (MAP.md), never served
+WORKER = SITE / 'sw.js'   # service worker source: dist/sw.js is generated from it by offline.py (manifest inlined)
 
 
 def pairs():
     for src in sorted(SITE.rglob('*')):
-        if src.is_file() and '__pycache__' not in src.parts and src.name not in AGENT_NOTES:
+        if src.is_file() and '__pycache__' not in src.parts and src.name not in AGENT_NOTES and src != WORKER:
             yield src, DIST / src.relative_to(SITE)
 
 
@@ -73,6 +74,9 @@ def write(check=False):
     for o in orphans():
         stale.append(o.relative_to(ROOT))
         if not check: o.unlink()
+    # Last: the service worker carries the hashes of the shell files written above (offline.py).
+    from . import offline
+    stale += offline.write(check=check)
     return stale
 
 

@@ -4,6 +4,7 @@ import {classroom,chapterTitle as classChapterTitle} from '../classroom-context.
 // maths typesetting, file download and printing. Plain DOM, no framework.
 import { CLASSES, DOMAINS, LEVELS, chaptersOf, domainsOf } from './bank.js';
 import { esc } from './export.js';
+import { COMPETENCIES } from './competencies.js';
 
 const P = (fr, en) => [fr, en];
 export { P };
@@ -26,7 +27,7 @@ export function bindContextNote(form,getSettings){
   form.dispatchEvent(new Event('change',{bubbles:true}));form.querySelector('input[name="chapter"]')?.focus();});
 }
 // ---- settings kept on this device (a convenience, never sent anywhere) ----
-export const loadSettings = (key, fallback) => { let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')||{};}catch{}const settings={...fallback,...saved};if('cls' in settings){settings.cls=currentCourse(settings.cls)||settings.cls;if('chapters' in settings)applyClassroomChapter(settings);}return settings; };
+export const loadSettings = (key, fallback) => { let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')||{};}catch{}const settings={...fallback,...saved};if('cls' in settings){settings.cls=currentCourse(settings.cls)||settings.cls;if(!CLASSES.some(c=>c.id===settings.cls))settings.cls=CLASSES[0]?.id||'';if('chapters' in settings)applyClassroomChapter(settings);}return settings; };
 export const saveSettings = (key, value) => { if(value.cls)rememberCourse(value.cls); try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* storage may be blocked */ } };
 
 // ---- maths ----
@@ -76,4 +77,6 @@ export function checkChips(name, legend, items, selected) {
 export const levelChips = (selected, t) => checkChips('level', t(P('Niveaux', 'Levels')), LEVELS.map(([n, l]) => [String(n), l]), selected.map(String));
 export const chapterChips = (cls, selected, chapterTitle, t) => checkChips('chapter', t(P('Chapitres (aucun coché : tous)', 'Chapters (none ticked: all)')), chaptersOf(cls).map((id) => [id, chapterTitle(id)]), selected);
 export const domainChips = (cls, selected, t) => checkChips('domain', t(P('Thèmes (aucun coché : tous)', 'Topics (none ticked: all)')), domainsOf(cls).map((d) => [d, DOMAINS[d] || d]), selected);
+// Optional filter by main competency (competencies.js). "Chercher" is offered so that the page can say where it lives.
+export const competencyChips = (selected, t) => checkChips('competency', t(P('Compétences (aucune cochée : toutes)', 'Competencies (none ticked: all)')), COMPETENCIES.map((c) => [c.id, t(c.label)]), selected);
 export const checked = (root, name) => [...root.querySelectorAll(`input[name="${name}"]:checked`)].map((i) => i.value);

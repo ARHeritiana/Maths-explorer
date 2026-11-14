@@ -1,11 +1,13 @@
 """Site-wide practical navigation, native disclosures and responsive page families."""
 import os,shutil
 from playwright.sync_api import sync_playwright
+# The home is the visitor home by default (docs/AUDIENCE_MODES.md); these checks are about the student home.
+STUDENT = "try{if(!localStorage.getItem('mx-teacher-entry'))localStorage.setItem('mx-teacher-entry','student')}catch(e){}"
 BASE=os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173').rstrip('/')
 ROUTES=['home','resources/premiere','slides/premiere','bank/premiere','bank/annales','bank/seconde/seconde-01','chapter/premiere-02/cours','chapter/premiere-02/documents','topics','topics/analysis','lab','gallery','gallery/fourier','challenges','challenges/gauss-sum','biographies','stories','errors','errors/square-of-sum','olympiad','basics','automatismes','sheets']
 with sync_playwright() as p:
  browser=p.chromium.launch(headless=True,executable_path=os.environ.get('PLAYWRIGHT_CHROMIUM_PATH') or shutil.which('chromium'))
- context=browser.new_context(locale='fr-FR',reduced_motion='reduce',viewport={'width':1440,'height':1000});page=context.new_page();errors=[]
+ context=browser.new_context(locale='fr-FR',reduced_motion='reduce',viewport={'width':1440,'height':1000});context.add_init_script(STUDENT);page=context.new_page();errors=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
  def go(route):
   page.goto(BASE+'/#'+route);page.locator('main').wait_for();page.wait_for_timeout(120)

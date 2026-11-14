@@ -7,7 +7,7 @@ import { html, esc, sheetHtml, sheetTex, kindLabel } from './exercises/export.js
 import { P, contextNote, bindContextNote, stepSeed, loadSettings, saveSettings, typeset, download, printMarkup, stamp, classOptions, chapterChips, domainChips, levelChips, checked } from './exercises/ui-kit.js';
 
 const KEY = 'maths-explorer-sheets-v1';
-const DEFAULTS = { cls: 'premiere', kind: 'interro', chapters: [], domains: [], levels: [1, 2, 3], count: 3, parts: 3, authored: true, bareme: false, total: 20, two: false, seed: '' };
+const DEFAULTS = { cls: '', kind: 'interro', chapters: [], domains: [], levels: [1, 2, 3], count: 3, parts: 3, authored: true, bareme: false, total: 20, two: false, seed: '' };
 const SIZES = { sheet: [5, 3], interro: [3, 3], devoir: [4, 3] };
 const newSeed = () => Math.random().toString(36).slice(2, 8);
 

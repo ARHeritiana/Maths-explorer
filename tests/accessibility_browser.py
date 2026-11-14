@@ -5,6 +5,8 @@ and palette contrast. Real device screen-reader acceptance remains manual.
 """
 import os
 from pathlib import Path
+# The home is the visitor home by default (docs/AUDIENCE_MODES.md); these checks are about the student home.
+STUDENT = "try{if(!localStorage.getItem('mx-teacher-entry'))localStorage.setItem('mx-teacher-entry','student')}catch(e){}"
 
 STEPS = ['cours', 'manipuler', 'exercices', 'documents']
 ROUTES = ['home', 'errors', 'errors/square-of-sum', 'errors/square-inequality', 'errors/sine-of-sum', 'errors/division-by-zero'] + ['chapter/premiere-02/' + step for step in STEPS]
@@ -126,6 +128,7 @@ if __name__ == '__main__':
             options['executable_path'] = os.environ['PLAYWRIGHT_CHROMIUM_PATH']
         browser = playwright.chromium.launch(**options)
         page = browser.new_page(reduced_motion='reduce')
+        page.add_init_script(STUDENT)
         errors = []
         page.on('pageerror', lambda error: errors.append(str(error)))
         cases = check_home_chapter(page, os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173'), os.environ.get('MATHS_EXPLORER_SCREENSHOTS'))

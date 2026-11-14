@@ -20,6 +20,10 @@ Read one only when the task router in `MAP.md` sends you here.
 | `REDESIGN_HANDOFF.md` | prompt to begin implementation of the revised redesign proposal |
 | `LAB_DESIGN.md` | laboratory v2: research basis, templates, mission model, lab references for lessons and slides |
 | `TEACHER_STRUCTURE.md` | the owner's teacher-first structure (11 Nov 2026): three modes (Préparer, En classe, Détente), launch pad order, séance, classroom setup, build rules |
+| `AUDIENCE_MODES.md` | the three audiences per device (visitor by default, student, teacher), switching, why, and how "private" material is handled without accounts |
+| `REVIEW.md` | Réviser (`#review`): spaced repetition by objective, files, rule, data export and import |
+| `OFFLINE.md` | offline support: what is precached, what is cached when opened, strategies, update flow, kill switch, tests |
+| `AUTOMATISMES_COMPETENCES.md` | competency of each generator: classification rules, pinned coverage table, gaps, where labels show |
 | `CURRICULUM.md` | programme references (verify before citing) |
 | `RESOURCE_LIBRARY.md` | history and provenance of the resource library |
 | `ACTIVE_WORKSTREAMS.md` | current parallel-task register and corrected mathematicians' timeline scope; preserve it when writing a narrower handoff |

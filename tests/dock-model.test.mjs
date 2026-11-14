@@ -78,8 +78,8 @@ test('showDock: only in remembered mode classe, with the mode bar, on tool pages
   assert.equal(showDock({mode:'detente',entry:'teacher',page}),false);
   assert.equal(showDock({mode:'',entry:'teacher',page}),false);
   assert.equal(showDock({mode:'classe',entry:'student',page}),false,page+' student: no mode bar');
-  assert.equal(showDock({mode:'classe',entry:'',page,full:true}),false,'full edition, nothing stored: student');
-  assert.equal(showDock({mode:'classe',entry:'',page,full:false}),true,'limited edition, nothing stored: teacher');
+  assert.equal(showDock({mode:'classe',entry:'',page}),false,'nothing stored: visitor, no dock');
+  assert.equal(showDock({mode:'classe',entry:'visitor',page}),false,'visitor: no dock');
  }
  for(const page of ['teacher','prepare','relax','home','missing','']){
   assert.equal(showDock({mode:'classe',entry:'teacher',page}),false,page);

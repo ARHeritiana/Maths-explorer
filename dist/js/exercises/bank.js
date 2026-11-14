@@ -1,6 +1,8 @@
 // The exercise bank: registry of templates and authored exercises, and the two composers used by the pages
 // (buildStarter: short automatismes; buildSheet: worksheets, quizzes, supervised tests). Pure, seeded, no DOM.
+import { courses } from '../catalogue-data.js';
 import { rng, hashSeed } from './engine.js';
+import { hasCompetency, mainCompetency } from './competencies.js';
 import { seconde } from './templates-seconde.js';
 import { seconde2 } from './templates-seconde-2.js';
 import { seconde3 } from './templates-seconde-3.js';
@@ -40,21 +42,23 @@ import { stmg4 } from './templates-stmg-4.js';
 import { problemsSeconde3 } from './problems-seconde-3.js';
 import { problemsStmg } from './problems-stmg.js';
 import { problemsExpertes } from './problems-expertes.js';
+import { competences } from './templates-competences.js';
 
-export const CLASSES = [
-  { id: 'seconde', label: 'Seconde' },
-  { id: 'premiere', label: 'Première spécialité' },
-  { id: 'terminale', label: 'Terminale spécialité' },
-  { id: 'expertes', label: 'Maths expertes' },
-  { id: 'stmg', label: 'Terminale STMG' },
-];
 export const DOMAINS = {
   nombres: 'Nombres et calculs', algebre: 'Algèbre', fonctions: 'Fonctions', analyse: 'Analyse', suites: 'Suites', geometrie: 'Géométrie',
   'stats-proba': 'Statistiques et probabilités', complexes: 'Nombres complexes', arithmetique: 'Arithmétique', matrices: 'Matrices', graphes: 'Graphes',
 };
 export const LEVELS = [[1, 'Niveau 1 : routine'], [2, 'Niveau 2 : standard'], [3, 'Niveau 3 : exigeant']];
-export const TEMPLATES = [...seconde, ...seconde2, ...seconde3, ...tidy(seconde4), ...tidy(seconde5), ...tidy(seconde6), ...tidy(seconde7), ...tidy(seconde8), ...premiere, ...robust(premiere2), ...robust(premiere3), ...robust(premiere4), ...terminale, ...tidy(terminale2), ...tidy(terminale3), ...tidy(terminale4), ...tidy(terminale5), ...expertes, ...tidy(expertes2), ...tidy(expertes3), ...tidy(expertes4), ...tidy(expertes5), ...stmg, ...tidy(stmg2), ...tidy(stmg3), ...tidy(stmg4)];
+export const TEMPLATES = [...seconde, ...seconde2, ...seconde3, ...tidy(seconde4), ...tidy(seconde5), ...tidy(seconde6), ...tidy(seconde7), ...tidy(seconde8), ...premiere, ...robust(premiere2), ...robust(premiere3), ...robust(premiere4), ...terminale, ...tidy(terminale2), ...tidy(terminale3), ...tidy(terminale4), ...tidy(terminale5), ...expertes, ...tidy(expertes2), ...tidy(expertes3), ...tidy(expertes4), ...tidy(expertes5), ...stmg, ...tidy(stmg2), ...tidy(stmg3), ...tidy(stmg4), ...competences];
 export const AUTHORED = [...authored, ...authoredExams, ...authoredSeconde, ...problems, ...problemsSeconde, ...problemsSeconde2, ...problemsSeconde3, ...problemsPremiere, ...problemsTerminale, ...problemsStmg, ...problemsExpertes];   // fixed exercises, then seeded problems (those have make(r))
+// The classes offered by the generators: every course of the catalogue (content/data/manifest.json) that has at least one
+// generator or worked exercise, in catalogue order, labelled by its catalogue title. Nothing is listed by hand: a new level
+// appears as soon as its course is in the manifest and its exercises are registered above.
+const usedClasses = new Set([...TEMPLATES.map((t) => t.cls), ...AUTHORED.map((e) => e.cls)]);
+export const CLASSES = [
+  ...courses.filter((c) => usedClasses.has(c.id)).map((c) => ({ id: c.id, label: c.title[0] })),
+  ...[...usedClasses].filter((id) => !courses.some((c) => c.id === id)).map((id) => ({ id, label: id })),
+];
 export const MINUTES = { 1: 2, 2: 4, 3: 6 };           // estimated minutes of a generated part, by level
 
 export const templatesFor = (cls) => TEMPLATES.filter((t) => t.cls === cls);
@@ -68,20 +72,30 @@ const nearest = (t, level) => supports(t).reduce((best, l) => (Math.abs(l - leve
 export function instance(t, level, seed) {
   const lv = nearest(t, level);
   const out = t.make(rng(`${seed}|${t.id}|${lv}`), lv);
-  return { id: t.id, cls: t.cls, chapter: t.chapter, domain: t.domain, skill: t.skill, level: lv, q: out.q, a: out.a, s: out.s || '', ...(out.kind === 'qcm' ? { kind: 'qcm', stem: out.stem, choices: out.choices, short: out.short, correct: out.correct } : {}) };
+  return { id: t.id, cls: t.cls, chapter: t.chapter, domain: t.domain, skill: t.skill, level: lv, competency: mainCompetency(t.id), q: out.q, a: out.a, s: out.s || '', ...(out.kind === 'qcm' ? { kind: 'qcm', stem: out.stem, choices: out.choices, short: out.short, correct: out.correct } : {}) };
 }
 
 const match = (item, o) => (!o.chapters?.length || o.chapters.includes(item.chapter)) && (!o.domains?.length || o.domains.includes(item.domain));
 const allowedLevels = (o) => { const l = (o.levels?.length ? [...o.levels] : [1, 2, 3]).sort(); return l; };
 
 // ---- automatismes ----
+// Which main competencies the starter pool of a class can serve under the other filters (chapters, topics, short only):
+// {competency: number of generators}. The page uses it to say that a ticked competency has nothing to offer.
+export function starterCompetencies(o) {
+  const pool = templatesFor(o.cls).filter((t) => match(t, o)), fast = pool.filter((t) => t.fast), n = {};
+  for (const t of (o.fastOnly !== false && fast.length ? fast : pool)) { const c = mainCompetency(t.id); if (c) n[c] = (n[c] || 0) + 1; }
+  return n;
+}
 export function buildStarter(o) {
   const count = Math.max(1, Math.min(40, o.count || 10)), seed = o.seed ?? 'starter';
   const levels = allowedLevels(o);
-  let pool = templatesFor(o.cls).filter((t) => match(t, o));
+  // o.competencies (optional, main competencies of competencies.js): none given keeps the pool, the order and so the series
+  // of a seed exactly as before. With a filter, `longOnly` tells the page that no short generator was left.
+  let pool = templatesFor(o.cls).filter((t) => match(t, o) && hasCompetency(t.id, o.competencies));
   const fast = pool.filter((t) => t.fast);
   if (o.fastOnly !== false && fast.length) pool = fast;
   const base = { kind: 'starter', cls: o.cls, seed: String(seed), minutes: o.minutes || 5, levels, items: [] };
+  if (o.competencies?.length) { base.competencies = [...o.competencies]; if (o.fastOnly !== false && pool.length && !fast.length) base.longOnly = true; }
   if (!pool.length) return { ...base, empty: true, secondsPerItem: 0 };
   const r = rng(`${seed}|starter|${o.cls}`);
   let order = r.shuffle(pool), cursor = 0;

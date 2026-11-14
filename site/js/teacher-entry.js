@@ -1,17 +1,25 @@
-// Which entrance a device opens. Each edition has a default (limited edition: the teacher entrance; full edition: the student
-// home); an explicit choice stored on the device always wins, in both editions. The edition flag lives in live-curriculum.js.
+// Which audience a device opens for: visitor, student or teacher. Visitor is the default everywhere; a choice made on a
+// device is stored there (key mx-teacher-entry, through teacher-state.js) and always wins. No account: the choice changes
+// the entrance and the ergonomics, never what can be read (nothing on the site is private, see docs/AUDIENCE_MODES.md).
 // Eager and tiny: app.js uses it at start-up; the dashboard itself (teacher-dashboard.js) is loaded only when opened.
-import {FULL_EDITION} from './live-curriculum.js';
 export const TEACHER_HASH = '#teacher';
-// Entrance in force: the stored choice ('teacher' | 'student'), else the edition default.
-export const defaultEntry = (full = FULL_EDITION) => (full ? 'student' : 'teacher');
-export const effectiveEntry = (entry, {full = FULL_EDITION} = {}) => (entry === 'teacher' || entry === 'student' ? entry : defaultEntry(full));
+// The three audiences, in menu order. Strings are [French, English]; `hash` is the home of the audience.
+export const AUDIENCES = [
+  {id:'visitor',label:['Visiteur','Visitor'],hint:['Découvrir librement','Look around freely'],hash:'#home'},
+  {id:'student',label:['Élève','Student'],hint:['Ma classe, mes chapitres, mes révisions','My class, my chapters, my review'],hash:'#home'},
+  {id:'teacher',label:['Professeur','Teacher'],hint:['Préparer, faire classe, se détendre','Prepare, teach, relax'],hash:TEACHER_HASH},
+];
+const IDS = AUDIENCES.map(a => a.id);
+// Audience in force when nothing is stored. The argument is kept for callers of the former per-edition default.
+export const defaultEntry = () => 'visitor';
+// Audience in force: the stored choice, else the default.
+export const effectiveEntry = (entry) => (IDS.includes(entry) ? entry : defaultEntry());
 // Hash to open instead of the requested one, or null. Only an empty address or the bare '#' is redirected (an explicit
-// '#home' still opens the student home), and only when the effective entrance is the teacher one.
-export const landingHash = (hash, entry, opts) => (effectiveEntry(entry, opts) === 'teacher' && (!hash || hash === '#') ? TEACHER_HASH : null);
+// '#home' still opens the home), and only for a device that chose the teacher audience.
+export const landingHash = (hash, entry) => (effectiveEntry(entry) === 'teacher' && (!hash || hash === '#') ? TEACHER_HASH : null);
 // Where the logo and the "home" of this device point.
-export const homeHash = (entry, opts) => (effectiveEntry(entry, opts) === 'teacher' ? TEACHER_HASH : '#home');
-// Elements with data-set-entry="teacher|student" record the choice, then follow their own link.
+export const homeHash = (entry) => (effectiveEntry(entry) === 'teacher' ? TEACHER_HASH : '#home');
+// Elements with data-set-entry="visitor|student|teacher" record the choice, then follow their own link.
 export function installEntrySwitch(root, state) {
   const click = e => {
     const el = e.target.closest?.('[data-set-entry]');

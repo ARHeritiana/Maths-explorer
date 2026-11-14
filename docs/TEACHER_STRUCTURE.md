@@ -18,14 +18,12 @@ a written check, a homework (DM), a supervised test (DS), then correction and re
 entry (0 to 3), automatismes ritual (3 to 10), homework correction (10 to 18), activity or lesson (18 to 35),
 exercises (35 to 50), wrap-up and homework (50 to 55).
 
-## Entrance per edition
+## Entrance: three audiences
 
-A device that never chose opens the edition default: the limited edition (Maths-explorer) opens the teacher entrance
-(`#teacher`, mode bar visible), the full edition (Matematika) opens the student home. A stored choice wins in both editions;
-only the empty address is redirected (an explicit `#home` still opens the student home). Two quiet links switch and record
-the choice: "Espace élève" at the right end of the mode bar, "Espace professeur" in the footer of the student side; the
-device settings can restore the default. Logic: `effectiveEntry`, `landingHash`, `homeHash` in `site/js/teacher-entry.js`
-(edition flag `FULL_EDITION` in `live-curriculum.js`).
+Since 13 November 2026 a device that never chose is a visitor in both products (`docs/AUDIENCE_MODES.md`); the
+teacher entrance (`#teacher`, mode bar visible) opens by default only on a device that chose the teacher audience
+(profile menu of the header, "Je suis professeur" on the visitor home, or the footer link). Only the empty address is
+redirected. Logic: `effectiveEntry`, `landingHash`, `homeHash` in `site/js/teacher-entry.js`.
 
 ## Information architecture
 

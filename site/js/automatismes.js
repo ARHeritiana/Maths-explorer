@@ -1,14 +1,16 @@
 // "Automatismes" (#automatismes): a generator of short fluency series. The teacher chooses the class, chapters, topics,
 // levels, number of questions and total time; the series can be projected from the page, printed (students, teacher),
 // or exported as LaTeX source or as a standalone projection page. Same seed, same series.
-import { CLASSES, buildStarter, describeLevels } from './exercises/bank.js';
+import { CLASSES, buildStarter, starterCompetencies, describeLevels } from './exercises/bank.js';
+import { competencyById } from './exercises/competencies.js';
 import { html, esc, starterHtml, starterTex, projectionHtml } from './exercises/export.js';
 import { autoDefaults } from './classroom-context.js';
-import { P, contextNote, bindContextNote, loadSettings, saveSettings, typeset, download, printMarkup, stamp, classOptions, chapterChips, domainChips, levelChips, checked } from './exercises/ui-kit.js';
+import { P, contextNote, bindContextNote, loadSettings, saveSettings, typeset, download, printMarkup, stamp, classOptions, chapterChips, domainChips, levelChips, competencyChips, checked } from './exercises/ui-kit.js';
 import { fullscreenButton } from './visual-lessons.js';
 
 const KEY = 'maths-explorer-automatismes-v1';
-const DEFAULTS = { cls: 'premiere', chapters: [], domains: [], levels: [1, 2], count: 10, minutes: 5, order: 'progressive', fast: true, qcm: false, seed: '' };
+const DEFAULTS = { cls: '', chapters: [], domains: [], levels: [1, 2], competencies: [], count: 10, minutes: 5, order: 'progressive', fast: true, qcm: false, seed: '' };
+const validCompetencies = (list) => (Array.isArray(list) ? list.filter((c) => competencyById(c)) : []);
 const newSeed = () => Math.random().toString(36).slice(2, 8);
 
 export function automatismesPage(t, pair) {
@@ -19,6 +21,7 @@ export function automatismesPage(t, pair) {
 <form class="gen-form" id="gen-form" aria-label="${t(P('Réglages de la série', 'Series settings'))}" onsubmit="return false">
 <label class="gen-field"><span>${t(P('Classe', 'Class'))}</span><select name="cls">${classOptions(s.cls)}</select></label>
 <div id="gen-context">${contextNote(s, t)}</div><div id="gen-chapters"></div><div id="gen-domains"></div><div id="gen-levels">${levelChips(s.levels, t)}</div>
+<div id="gen-competencies">${competencyChips(validCompetencies(s.competencies), t)}</div><div id="gen-competency-note" class="gen-comp-note" role="status" aria-live="polite"></div>
 <div class="gen-row">
 <label class="gen-field"><span>${t(P('Questions', 'Questions'))}</span><input type="number" name="count" min="3" max="30" value="${s.count}"></label>
 <label class="gen-field"><span>${t(P('Durée totale (minutes)', 'Total time (minutes)'))}</span><input type="number" name="minutes" min="1" max="60" value="${s.minutes}"></label>
@@ -64,7 +67,7 @@ export function bindAutomatismes(root, t, { chapterTitle = (id) => id, launch = 
   bindContextNote(form, () => s);
   let doc = null, i = 0, showAnswer = false, running = false, left = 0, tick = null;
 
-  const read = () => ({ cls: form.elements.cls.value, chapters: checked(form, 'chapter'), domains: checked(form, 'domain'), levels: checked(form, 'level').map(Number).sort(), count: Math.max(3, Math.min(30, Number(form.elements.count.value) || 10)), minutes: Math.max(1, Math.min(60, Number(form.elements.minutes.value) || 5)), order: form.elements.order.value, fast: form.elements.fast.checked, qcm: form.elements.qcm.checked, seed: form.elements.seed.value.trim() || s.seed });
+  const read = () => ({ cls: form.elements.cls.value, chapters: checked(form, 'chapter'), domains: checked(form, 'domain'), levels: checked(form, 'level').map(Number).sort(), competencies: checked(form, 'competency'), count: Math.max(3, Math.min(30, Number(form.elements.count.value) || 10)), minutes: Math.max(1, Math.min(60, Number(form.elements.minutes.value) || 5)), order: form.elements.order.value, fast: form.elements.fast.checked, qcm: form.elements.qcm.checked, seed: form.elements.seed.value.trim() || s.seed });
   const drawChips = (cls) => { $('#gen-chapters').innerHTML = chapterChips(cls, s.chapters.filter((c) => c.startsWith(cls)), chapterTitle, t); $('#gen-domains').innerHTML = domainChips(cls, s.domains, t); };
   drawChips(s.cls);
 
@@ -106,18 +109,36 @@ export function bindAutomatismes(root, t, { chapterTitle = (id) => id, launch = 
     drawStage();
   };
 
+  // The competency of a question, for the teacher only (list under the answers, printed key): never on the projected stage.
+  const compLabel = (it) => { const c = competencyById(it.competency); return c ? t(c.label) : ''; };
+  // Says what a ticked competency cannot give under the current class, chapters, topics and "short only" settings.
+  // "Chercher" is never a timed starter: the note points to the chapter's investigations instead of relabelling questions.
+  function competencyNote(o) {
+    const host = $('#gen-competency-note'), have = starterCompetencies({ cls: o.cls, chapters: o.chapters, domains: o.domains, fastOnly: o.fast }), lines = [];
+    const name = (id) => `« ${esc(t(competencyById(id).label))} »`;
+    if (o.competencies.includes('chercher')) {
+      const where = o.chapters.length === 1 ? `<a href="#chapter/${esc(o.chapters[0])}/manipuler">${t(P('l’onglet Manipuler du chapitre (« Chercher avant de formaliser »)', 'the chapter’s Explore tab ("Investigate before formalising")'))}</a>` : t(P('l’onglet Manipuler de chaque chapitre (« Chercher avant de formaliser »)', 'the Explore tab of each chapter ("Investigate before formalising")'));
+      lines.push(`${t(P('« Chercher » n’est pas un automatisme chronométré : aucune question courte n’y est rangée. Les recherches (prévoir, tester, conjecturer) sont dans', '"Investigate" is not a timed starter: no short question is filed under it. Investigations (predict, test, conjecture) are in'))} ${where} ${t(P('et au', 'and in the'))} <a href="#lab">${t(P('laboratoire', 'laboratory'))}</a>.`);
+    }
+    const none = o.competencies.filter((c) => c !== 'chercher' && !have[c]);
+    if (none.length) lines.push(`${t(P('Aucune question', 'No question'))} ${none.map(name).join(', ')} ${t(P('pour ces réglages (classe, chapitres, thèmes).', 'for these settings (class, chapters, topics).'))}`);
+    if (doc?.longOnly) lines.push(t(P('Aucune question courte pour cette compétence : la série utilise des questions plus longues, prévois plus de temps.', 'No short question for this competency: the series uses longer questions, allow more time.')));
+    host.innerHTML = lines.map((l) => `<p>${l}</p>`).join('');
+  }
+
   function rebuild(keepPosition = false) {
     const o = read();
     Object.assign(s, o, { seed: o.seed });
     saveSettings(KEY, s);
     stopTimer();
-    doc = buildStarter({ cls: o.cls, chapters: o.chapters, domains: o.domains, levels: o.levels.length ? o.levels : [1, 2, 3], count: o.count, minutes: o.minutes, order: o.order, fastOnly: o.fast, qcm: o.qcm, seed: o.seed });
+    doc = buildStarter({ cls: o.cls, chapters: o.chapters, domains: o.domains, levels: o.levels.length ? o.levels : [1, 2, 3], count: o.count, minutes: o.minutes, order: o.order, fastOnly: o.fast, qcm: o.qcm, seed: o.seed, ...(o.competencies.length ? { competencies: o.competencies } : {}) });
+    competencyNote(o);
     if (!keepPosition) i = 0;
     showAnswer = false; left = doc.secondsPerItem || 0;
     const sum = $('#gen-summary');
     sum.textContent = doc.empty ? '' : `${doc.items.length} ${t(P('questions', 'questions'))} · ${doc.minutes} min · ${doc.secondsPerItem} s ${t(P('par question', 'per question'))}`;
     const list = $('#gen-list');
-    list.innerHTML = doc.items.map((it) => `<li><div>${html(it.q)}</div><div class="gen-answer"><span class="muted">${t(P('Réponse', 'Answer'))} :</span> ${html(it.a)}${it.s ? ` <em class="muted">${html(it.s)}</em>` : ''}</div></li>`).join('');
+    list.innerHTML = doc.items.map((it) => `<li><div>${html(it.q)}</div><div class="gen-answer"><span class="muted">${t(P('Réponse', 'Answer'))} :</span> ${html(it.a)}${it.s ? ` <em class="muted">${html(it.s)}</em>` : ''} <small class="gen-comp">${esc(compLabel(it))}</small></div></li>`).join('');
     typeset(list);
     drawStage();
     return o;
@@ -141,7 +162,7 @@ export function bindAutomatismes(root, t, { chapterTitle = (id) => id, launch = 
     const o = read(), sub = subtitle(o), name = stamp(o.cls, doc.seed), act = b.dataset.act;
     if (act === 'project') { const stage = $('#auto-stage'); stage.classList.add('presenting'); document.documentElement.classList.add('is-presenting'); stage.requestFullscreen?.().catch(() => {}); stage.focus(); }
     else if (act === 'print-student') printMarkup(starterHtml(doc, { subtitle: sub }));
-    else if (act === 'print-teacher') printMarkup(starterHtml(doc, { teacher: true, subtitle: sub }));
+    else if (act === 'print-teacher') printMarkup(starterHtml(doc, { teacher: true, subtitle: sub, competency: compLabel }));
     else if (act === 'tex-student') download(`automatismes-${name}.tex`, starterTex(doc, { version: 'student', subtitle: sub }), 'application/x-tex');
     else if (act === 'tex-teacher') download(`automatismes-${name}-corrige.tex`, starterTex(doc, { version: 'teacher', subtitle: sub }), 'application/x-tex');
     else if (act === 'projection-file') download(`automatismes-${name}-projection.html`, projectionHtml(doc, { title: 'Automatismes', subtitle: sub }), 'text/html;charset=utf-8');

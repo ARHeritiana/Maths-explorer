@@ -8,6 +8,8 @@ Run through tests/run_browser.py, or alone: MATHS_EXPLORER_URL=http://localhost:
 """
 import os
 from playwright.sync_api import sync_playwright
+# The home is the visitor home by default (docs/AUDIENCE_MODES.md); these checks are about the student home.
+STUDENT = "try{if(!localStorage.getItem('mx-teacher-entry'))localStorage.setItem('mx-teacher-entry','student')}catch(e){}"
 
 BASE = os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173')
 HEAVY = ('resource-sources', 'resource-index', 'related-box')
@@ -31,6 +33,7 @@ with sync_playwright() as p:
     browser = p.chromium.launch(**options)
     errors = []
     context = browser.new_context(viewport={'width': 390, 'height': 700}, locale='fr-FR')
+    context.add_init_script(STUDENT)
     page = context.new_page()
     page.on('pageerror', lambda e: errors.append(page.url + ' ' + str(e)))
     page.on('console', lambda m: errors.append(m.text) if m.type == 'error' else None)

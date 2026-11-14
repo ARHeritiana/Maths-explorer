@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
 import {createTeacherState} from '../site/js/teacher-state.js';
 import {mountTeacherDashboard,quickActions,chaptersFor,STATE_FILE} from '../site/js/teacher-dashboard.js';
-import {landingHash,homeHash,effectiveEntry,defaultEntry,installEntrySwitch} from '../site/js/teacher-entry.js';
+import {landingHash,homeHash,effectiveEntry,defaultEntry,installEntrySwitch,AUDIENCES} from '../site/js/teacher-entry.js';
 import {homePage} from '../site/js/welcome.js';
 import {liveCourses,isLiveHash} from '../site/js/live-curriculum.js';
 import {chaptersOf} from '../site/js/exercises/bank.js';
@@ -25,21 +25,24 @@ const tick=()=>new Promise(r=>setTimeout(r,10));
 test('entry preference: remembered, switch both ways, landing and logo follow it',async()=>{
  const h=await setup();
  assert.equal(h.state.getEntry(),'');
- const L={full:false},F={full:true};
- assert.equal(defaultEntry(false),'teacher');assert.equal(defaultEntry(true),'student');
- assert.equal(effectiveEntry('',L),'teacher');assert.equal(effectiveEntry('',F),'student');
- for(const o of [L,F]){assert.equal(effectiveEntry('student',o),'student');assert.equal(effectiveEntry('teacher',o),'teacher');assert.equal(effectiveEntry('bogus',o),defaultEntry(o.full));}
- // limited edition: unstored opens the teacher entrance; '#home' typed explicitly is not redirected
- assert.equal(landingHash('',h.state.getEntry(),L),'#teacher');assert.equal(landingHash('#',null,L),'#teacher');
- assert.equal(landingHash('#home','',L),null,'explicit #home opens the student home');
- assert.equal(landingHash('#home','teacher',L),null);assert.equal(landingHash('','teacher',L),'#teacher');
- assert.equal(landingHash('','student',L),null,'stored student choice wins');
- assert.equal(landingHash('#lab/quadratic','',L),null,'explicit links are never redirected');
- // full edition: unstored opens the student home; stored teacher choice wins
- assert.equal(landingHash('','',F),null);assert.equal(landingHash('#','',F),null);assert.equal(landingHash('','student',F),null);
- assert.equal(landingHash('','teacher',F),'#teacher');assert.equal(landingHash('#home','teacher',F),null);
- assert.equal(homeHash('teacher',F),'#teacher');assert.equal(homeHash('student',L),'#home');
- assert.equal(homeHash('',L),'#teacher');assert.equal(homeHash('',F),'#home');
+ assert.equal(defaultEntry(),'visitor');assert.deepEqual(AUDIENCES.map(a=>a.id),['visitor','student','teacher']);
+ assert.equal(effectiveEntry(''),'visitor');assert.equal(effectiveEntry('bogus'),'visitor');
+ for(const a of ['visitor','student','teacher'])assert.equal(effectiveEntry(a),a);
+ // nothing stored: the visitor home, no redirection; only a device that chose "teacher" lands on the dashboard
+ assert.equal(landingHash('',h.state.getEntry()),null);assert.equal(landingHash('#',null),null);
+ assert.equal(landingHash('','teacher'),'#teacher');assert.equal(landingHash('#','teacher'),'#teacher');
+ assert.equal(landingHash('#home','teacher'),null,'explicit #home opens the home');
+ assert.equal(landingHash('','student'),null);assert.equal(landingHash('','visitor'),null);
+ assert.equal(landingHash('#lab/quadratic','teacher'),null,'explicit links are never redirected');
+ assert.equal(homeHash('teacher'),'#teacher');assert.equal(homeHash('student'),'#home');assert.equal(homeHash('visitor'),'#home');assert.equal(homeHash(''),'#home');
+ // the visitor home offers both working audiences and has no class finder
+ const visitor=new JSDOM(homePage({t:p=>p[0],pair:(a)=>a,link:(p,id)=>'#'+p+(id?'/'+id:''),index:[],last:'',audience:'visitor'}),{url:'https://example.test/'});
+ const vd=visitor.window.document;
+ assert.equal(vd.querySelector('#home-class'),null);assert.ok(vd.querySelector('#home-figure-stage'),'a figure to move at once');
+ assert.equal(vd.querySelector('[data-set-entry="student"]').getAttribute('href'),'#home');
+ assert.equal(vd.querySelector('.audience-cards [data-set-entry="teacher"]').getAttribute('href'),'#teacher');
+ assert.ok(vd.querySelectorAll('.door-list a').length>=5);
+ for(const a of vd.querySelectorAll('.door-list a'))assert.ok(isLiveHash(a.getAttribute('href')),a.getAttribute('href'));
  // student home offers the choice
  const home=new JSDOM(homePage({t:p=>p[0],pair:(a)=>a,link:(p,id)=>'#'+p+(id?'/'+id:''),index:[],last:''}),{url:'https://example.test/'});
  const choose=home.window.document.querySelector('[data-set-entry="teacher"]');
@@ -61,7 +64,7 @@ test('entry preference: remembered, switch both ways, landing and logo follow it
  h4.click('[data-td="entry-teacher"]');assert.equal(h4.state.getEntry(),'teacher');
  assert.ok(h4.$('[data-set-entry="student"]'),'switch back is shown after choosing');
  assert.ok(h4.$('[data-td="entry-reset"]'),'a stored choice can be reset');
- h4.click('[data-td="entry-reset"]');assert.equal(h4.state.getEntry(),'','reset restores the edition default');
+ h4.click('[data-td="entry-reset"]');assert.equal(h4.state.getEntry(),'','reset restores the default');
  assert.equal(h4.$('[data-td="entry-reset"]'),null);
 });
 
