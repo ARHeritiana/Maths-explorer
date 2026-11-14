@@ -33,8 +33,7 @@ really need them.
 | a foundations lesson (`#basics`) | `site/js/basics-page.js` (`BASICS_GROUPS`, `basicsPage`, `bindBasics`), `site/resources/basics/place-value.html, site/resources/basics/place-value.en.html`, `site/resources/basics/addition.html, site/resources/basics/addition.en.html`, `site/resources/basics/subtraction.html, site/resources/basics/subtraction.en.html`, `site/resources/basics/multiplication.html, site/resources/basics/multiplication.en.html`, `site/resources/basics/division.html, site/resources/basics/division.en.html`, `site/resources/basics/sets.html, site/resources/basics/sets.en.html` | place value, the four arithmetic operations, sets (shared code, one text table per edition); `site/resources/basics/fractions.html` and `site/resources/basics/fractions.en.html` are the bilingual fractions workbench |
 | a route (add or rename a page) | `site/js/app.js` `route()`, `render()` (validity list and dispatch) | section 3 |
 | any text of a laboratory experiment (missions, prompts, arguments) | `site/js/lab/experiments/<id>.js` (index in `site/js/lab/CLAUDE.md`) | gallery entries only: `site/js/content.js` `labs` (`custom: true`) |
-| any text of a pathway | `site/js/content.js` (`pathways`) | challenge text: `site/js/challenges/<id>/index.js` |
-| the observation-wheel experiment (`#lab/ferris-wheel`, International pathway stage "Modèles sinusoïdaux") | `site/js/lab/experiments/ferris-wheel.js`, `site/js/lab/models/ferris-wheel.js` (pure maths); stage in `site/js/content.js` `pathways` (`int`, `ib`); `tests/ferris-wheel.test.mjs` | prototype kept in `docs/future-work/london-eye-interactive-exercise.html`; no French chapter text (English-only exercise) |
+| the observation-wheel experiment (`#lab/ferris-wheel`, laboratory index only here; its IB pathway stage is in Matematika) | `site/js/lab/experiments/ferris-wheel.js`, `site/js/lab/models/ferris-wheel.js` (pure maths); `tests/ferris-wheel.test.mjs` | prototype kept in `docs/future-work/london-eye-interactive-exercise.html`; no French chapter text (English-only exercise) |
 | the laboratory rebuild (templates, missions, lab references) | `docs/LAB_DESIGN.md` (the contract) | |
 | a laboratory experiment (new one, new mission, handles, drawing) | `site/js/lab/CLAUDE.md`, then `site/js/lab/experiments/<id>.js`, `models/<id>.js`; contract `docs/LAB_DESIGN.md`; recipe `lab` | `site/js/lab/templates/` only for a template change |
 | the laboratory engine (drag, camera, readouts, rAF), the mission card or the lab page | `site/js/lab/engine.js`, `shell.js`, `page.js` (and `plot.js` for drawing) | |
@@ -42,7 +41,6 @@ really need them.
 | a biography or a story ("Lire"), or a cross-link between a text, a curiosity and a challenge | `site/js/reading-content.js` (texts and their `links`), `site/js/reading.js` (pages, `readAlso`); curiosity links: `links` in `site/js/gallery/gallery-curiosities.js` | a link is written once; the page it points to shows it back |
 | a gallery curiosity or a lab "object" | `site/js/lab-objects.js` (`mountObject`), `js/gallery/gallery-objects.js`, maths in `js/gallery/gallery-math.js`; card drawing in `home-art.js` | |
 | the error correction collection ("Erreurs": false claims, counterexamples, repairs, flawed derivations) | `site/js/errors-data.js` (the records; add an error here), `site/js/errors-model.js` (computed checks, `errorsFor`), `site/js/errors.js` (page); `tests/errors.test.mjs` | goals 4 and 5 of `docs/IMPROVEMENT_GOALS.md`; links to chapters are `links` of each record and appear back on chapter pages, the slides index and in discovery; coverage: `content/data/error-coverage.json`, then `node scripts/error-coverage.mjs` |
-| an Olympiad strategy (idea, example, problems, hints, solutions, links) | `site/js/olympiad-content.js`; page `site/js/olympiad.js`; figures `site/js/olympiad-widgets.js`; `tests/olympiad.test.mjs` | bilingual (owner rule: Olympiad is its own category) |
 | one challenge | its folder `site/js/challenges/<id>/` (index in `site/js/challenges/CLAUDE.md`) | new challenge: recipe `challenge` |
 | the home page | `site/js/welcome.js`, `site/styles/home.css`; interactive scene `site/js/figure-scenes.js`, engine `site/js/figure-engine.js` | |
 | course catalogue entries, titles, chapters, language of a course | `content/data/manifest.json` | `make site` |
@@ -59,7 +57,6 @@ really need them.
 | lecture (Beamer) PDFs | `scripts/build-lecture-slides.py`, `content/tex/lectures/` | |
 | the library / pack builder / LaTeX sources pages | `site/js/library.js`, `pack-builder.js` | |
 | the slides index page | `site/js/slides-page.js` | |
-| university pages | `site/js/university.js`, `university-model.js`; data in `manifest.json` key `university`; sources `content/tex/university/`, `content/university/` | |
 | enrichment workshops | `content/data/enrichment.json` (both languages) | `build/mxbuild/enrichment.py` only for the converter |
 | terminology FR/EN | `content/data/glossary.json` | |
 | the quadratic workshop (`#workshop/quadratic`) | `site/js/quadratic-workshop.js` | |
@@ -76,16 +73,15 @@ really need them.
 | an unpublished future-exploration reference | `HANDOFF.md` task queue, then `docs/future-work/equidecomposability-of-polygons.html` | Prototype, now integrated as the gallery exhibit `equidecomposition` (`site/js/gallery/gallery-equidecomposition*.js`); kept as reference. |
 | the unpublished Monte Carlo exploration lab | `HANDOFF.md` task queue, then `docs/future-work/monte-carlo-lab.html` | Prototype, now integrated as the `monte-carlo-*` laboratory experiments (`site/js/lab/experiments/monte-carlo.js`); kept as reference. |
 | the unpublished set theory interactive atlas | `HANDOFF.md` task queue, then `docs/future-work/set-theory-interactive-atlas.html` | Prototype, now integrated as the foundations lesson `#basics/sets` (`site/resources/basics/sets*.html`); kept as reference. |
-| the unpublished London Eye trigonometry exercise | `HANDOFF.md` task queue, then `docs/future-work/london-eye-interactive-exercise.html` | Prototype, now integrated as the experiment `ferris-wheel` (International pathway); kept as reference. |
+| the unpublished London Eye trigonometry exercise | `HANDOFF.md` task queue, then `docs/future-work/london-eye-interactive-exercise.html` | Prototype, now integrated as the experiment `ferris-wheel`; kept as reference. |
 
 
 ## 3. Site map (hash routes)
 
-Live scope, owner clarification of 4 November 2026: only the other curricula are
-hidden. Galleries, curiosities, laboratories, foundations, challenges, history,
-reading, Olympiad and shared workshops remain live. `site/js/live-curriculum.js`
-controls curriculum visibility; the Pathways menu and footer link are hidden, with
-old Pathways links returning to courses. Complete source data and resources are retained.
+Scope (step 3 of the owner's plan, 14 November 2026): the French lycée curriculum, with the galleries, curiosities,
+laboratory, foundations, challenges, history, reading, errors and the quadratic workshop. The Malagasy, international,
+university and Olympiad content lives in Matematika only. `site/js/live-curriculum.js` filters courses and routes; an
+address of a removed page returns to the courses.
 
 All pages are rendered by `site/js/app.js` `render()`; the module named builds the page markup and binds it.
 
@@ -115,11 +111,8 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `#biographies[/<id>]` | Lire > Biographies | `reading.js` `readingPage`; texts `reading-content.js` |
 | `#stories[/<id>]` | Lire > Histoires | `reading.js` `readingPage`; texts `reading-content.js` |
 | `#gallery[/<id>]` | Lire > Curiosités | `welcome.js` `galleryPage` (index), `app.js` `galleryDetail` / `bindGallery` (one exhibit); objects `lab-objects.js`, `js/gallery/gallery-objects.js`; data `labs` with `custom: true` (`#lab/<exhibit>` redirects here) |
-| `#olympiad[/<id>]` | Explorer > Olympiades | `olympiad.js` (`olympiadPage`, `bindOlympiad`); content `olympiad-content.js`, figures `olympiad-widgets.js` |
 | `#errors[/<id>]` | Explorer > Erreurs | `errors.js` `errorsPage` / `bindErrors`; data and checks `errors-model.js` |
 | `#challenges[/<id>]` | Explorer > Défis | `app.js` `challengePage`, `challengeDetail`, `bindChallenges`; content from `site/js/challenges/registry.js` |
-| `#pathways` | Apprendre > Parcours | `app.js` `pathwayPage`; data `content.js` `pathways` |
-| `#university[/<id>]` | (Parcours) | `university.js` |
 
 ## 4. Area indexes (read only the one you work in)
 
@@ -130,7 +123,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `site/js/lab/` | `site/js/lab/CLAUDE.md` | the laboratory: engine, shell, templates, models, one file per experiment |
 | `content/` | `content/CLAUDE.md` | TeX courses, slide decks, manifest and other data |
 | `build/mxbuild/` | `build/mxbuild/CLAUDE.md` | the pipeline (`make tex`, `site`, `catalog`, `check`) |
-| `scripts/` | `scripts/CLAUDE.md` | course, slide and university builders |
+| `scripts/` | `scripts/CLAUDE.md` | course and slide builders |
 | `tests/` | `tests/CLAUDE.md` | which test covers which module |
 | `docs/` | `docs/CLAUDE.md` | which document is current |
 

@@ -2,7 +2,7 @@
 import {TOPICS,topicById,membershipByKey,TOPIC_FIGURES,TOPIC_STARTERS,DIFFICULTY_BANDS} from './topic-registry.js';
 import {buildDiscoveryIndex,filterDiscovery,topicCounts,recommendations,FORMAT_LABELS} from './discovery-index.js';
 import {BIOGRAPHIES,STORIES} from './reading-content.js';
-import {university,courses,discoveryChapters} from './catalogue-data.js';
+import {courses,discoveryChapters} from './catalogue-data.js';
 import {challengeIcon} from './challenges/registry.js';
 import {PEOPLE,ADVANCES} from './history-data.js';
 import {previewKind,modelPreview} from './discovery-previews.js';
@@ -13,7 +13,7 @@ const E=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','
 const FOUNDATION_LESSONS=[{id:'sets',title:['Ensembles','Sets and operations'],summary:['Diagrammes de Venn, réunion, intersection, différence, complémentaire, questions et lois sur les ensembles.','Venn diagrams, union, intersection, difference, complement, questions and the laws of sets.'],topics:['foundations/sets'],concepts:['sets','venn'],links:['#basics/logic-propositions']}];
 FOUNDATION_LESSONS.push({id:'fractions',title:['Le laboratoire des fractions','The fractions lab'],summary:['Construire, comparer et calculer avec les fractions : barres, droite graduée, aires et parcours guidé.','Explore fractions with bars, a number line, areas and guided challenges.'],topics:['arithmetic/calculation'],concepts:['fractions','proportions']});
 FOUNDATION_LESSONS.push(...discoveryLessons());
-export const discoveryIndex = data => buildDiscoveryIndex({...data,lessons:FOUNDATION_LESSONS,libraryChapters:discoveryChapters,biographies:BIOGRAPHIES,stories:STORIES,people:PEOPLE,advances:ADVANCES,university,courses,errors:ERROR_RECORDS()});
+export const discoveryIndex = data => buildDiscoveryIndex({...data,lessons:FOUNDATION_LESSONS,libraryChapters:discoveryChapters,biographies:BIOGRAPHIES,stories:STORIES,people:PEOPLE,advances:ADVANCES,courses,errors:ERROR_RECORDS()});
 export function previewSVG(item,t) {
   const kind=previewKind(item);
   if(kind==='challenge')return `<figure class="discovery-preview discovery-emblem" data-preview="challenge">${challengeIcon(item.route.split('/')[1])}<figcaption>${E(t(item.title))}</figcaption></figure>`;

@@ -13,10 +13,7 @@ for resource in manifest['catalog']['resources']:
         path = ROOT / 'dist' / edition['path'].removeprefix('./')
         if path.suffix == '.pdf': languages[path] = lang.upper()
 source_layout = set()
-if 'university' in manifest:
-    index = json.loads((ROOT / 'dist/resources/university/index.json').read_text())
-    source_layout = {ROOT / 'dist' / f['path'] for f in index['files'].values() if f['path'].endswith('.pdf')}
-# Hand-supplied standalone editions explicitly retain their source layout, like university imports.
+# Hand-supplied standalone editions explicitly retain their source layout.
 source_layout |= {ROOT / 'dist' / edition['path'].removeprefix('./')
                   for resource in manifest['catalog']['resources']
                   for edition in resource.get('editions', {}).values() if edition.get('layout') == 'source'}

@@ -29,7 +29,7 @@ test('resource catalog resolves every downloadable file and provenance record',(
   for(const s of c.sources)assert.match(s.sha256,/^[a-f0-9]{64}$/);
 });
 test('every imported course chapter has a complete student and teacher edition',()=>{
-  assert.equal(c.chapters.filter(ch=>!['shared','explorations'].includes(ch.course)&&ch.number>0).length,87);   // with T10 and T11 S
+  assert.equal(c.chapters.filter(ch=>!['shared','explorations'].includes(ch.course)&&ch.number>0).length,58);   // the five French courses
   for(const ch of c.chapters.filter(ch=>!['shared','explorations'].includes(ch.course)&&ch.number>0)){
     const rs=c.resources.filter(r=>r.chapter===ch.id);
     assert.ok(rs.some(r=>r.type==='booklet'&&r.audience==='student'));
@@ -39,9 +39,6 @@ test('every imported course chapter has a complete student and teacher edition',
 });
 test('language and pathway filters do not relabel French originals as translated or aligned',()=>{
   const curriculumOf=id=>c.courses.find(x=>x.id===id).curriculum;
-  assert.ok(selectChapters(c,{...base,curriculum:'ib'}).every(ch=>['shared','explorations'].includes(ch.course)));
-  const mg=selectChapters(c,{...base,curriculum:'mg'});   // the Malagasy courses (T10, T11 S) and the shared chapters
-  assert.ok(mg.every(ch=>['shared','explorations'].includes(ch.course)||curriculumOf(ch.course)==='mg')&&mg.some(ch=>ch.course==='t10')&&mg.some(ch=>ch.course==='t11s'));
   assert.ok(selectChapters(c,{...base,curriculum:'fr'}).every(ch=>curriculumOf(ch.course)==='fr'));
   assert.equal(selectChapters(c,{...base,course:'seconde',language:'en',type:'notes'}).length,15);
   assert.equal(selectChapters(c,{...base,type:'solutions'}).length,0);

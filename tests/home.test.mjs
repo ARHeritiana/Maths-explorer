@@ -4,7 +4,7 @@ import {JSDOM} from 'jsdom';
 import {homePage,bindHome} from '../site/js/welcome.js';
 import {discoveryIndex} from '../site/js/discovery.js';
 import {labs,challenges} from '../site/js/content.js';
-import {liveCourses,isLiveHash,FULL_EDITION} from '../site/js/live-curriculum.js';
+import {liveCourses,isLiveHash} from '../site/js/live-curriculum.js';
 import {resourceCatalog} from '../dist/js/resources-data.js';
 const index=discoveryIndex({labs,challenges,chapters:resourceCatalog.chapters});
 const setup=(language=0,{last='',saved='',storage=true}={})=>{
@@ -50,7 +50,7 @@ test('home remembers a class, resumes an actual chapter and survives blocked sto
  assert.equal(h.dom.window.localStorage.getItem('mx-home-course'),'seconde');h.close();
  for(const storage of [true,false]){
   // a class that is not live: another curriculum in the limited edition, an unknown one in the full edition
-  const next=setup(0,FULL_EDITION?{last:'zz-01',saved:'zz',storage}:{last:'t10-01',saved:'t11s',storage});
+  const next=setup(0,{last:'zz-01',saved:'zz',storage});
   assert.equal(next.root.querySelector('#home-class').value,'');
   assert.equal(next.root.querySelector('.home-resume'),null);
   assert.ok(next.choose('terminale').length);next.close();

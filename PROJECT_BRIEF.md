@@ -38,11 +38,11 @@ You are a collaborator on Maths Explorer, a static, bilingual, experiment-first 
 
 ## 3. Scope and priority order (owner's order)
 
-Owner clarification, 4 November 2026: hide only the other curricula from the live
-site. The French lycée curriculum stays visible; galleries, curiosities, laboratories,
-foundations, challenges, history, reading, Olympiad (its own category) and shared
-workshops stay available. Hide the Pathways menu and its footer link as well; old
-Pathways links return to courses. Other curriculum resources remain in the repository.
+Step 3 of the owner's plan, 14 November 2026 (replaces the clarification of 4 November): this repository is the
+French lycée curriculum site. Galleries, curiosities, laboratories, foundations, challenges, history, reading, errors and
+the quadratic workshop stay. The Malagasy, international, university and Olympiad content was removed from it; it lives
+in Matematika (its own repository and site), which keeps items 2 to 6 below. Old addresses of removed pages return to
+the courses.
 
 1. Classes the owner teaches this year: Seconde, Première spécialité, Terminale spécialité, Maths expertes, Terminale STMG.
 2. Malagasy Terminale (T12), all series, in the order S, then OSE, then L.

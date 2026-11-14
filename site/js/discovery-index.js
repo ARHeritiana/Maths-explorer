@@ -3,7 +3,7 @@ import {TOPICS, membershipsFor, difficultyBand} from './topic-registry.js';
 export const FORMAT_LABELS = {lab:['Laboratoire','Laboratory'], gallery:['Curiosité','Curiosity'], challenge:['Défi','Challenge'], error:['Erreur à corriger','Error to correct'], biography:['Biographie','Biography'], story:['Histoire','Story'], timeline:['Chronologie','Timeline'], chapter:['Chapitre','Chapter'], lesson:['Leçon','Lesson'], workshop:['Atelier','Workshop'], pdf:['PDF','PDF'], html:['HTML','HTML']};
 const pair = value => Array.isArray(value)?value:[String(value || ''),String(value || '')];
 export const normalize = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryChapters=[],biographies=[],stories=[],people=[],advances=[],university={sections:[]},enrichment=[],courses=[],errors=[],lessons=[]}={}) {
+export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryChapters=[],biographies=[],stories=[],people=[],advances=[],enrichment=[],courses=[],errors=[],lessons=[]}={}) {
   const records = new Map();
   function add(record, kind, route, extra={}) {
     const title=pair(record.title || record.name), memberships=membershipsFor(record,kind,{route,fallback:kind!=='lesson'});
@@ -24,7 +24,6 @@ export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryCh
   stories.forEach(x=>add(x,x.kind==='lesson'?'lesson':'story',`#stories/${x.id}`,{links:x.who?[`#biographies/${x.who}`]:[]}));
   people.forEach(x=>add(x,'timeline',`#history/people/${x.id}`,{links:advances.filter(e=>e.people.includes(x.id)).map(e=>`#history/advances/${e.id}`)}));
   advances.forEach(x=>add(x,'timeline',`#history/advances/${x.id}`,{links:x.people.map(id=>`#history/people/${id}`)}));
-  for(const section of university.sections || []) for(const x of section.sequences || []) add(x,'lesson',`#university/${x.id}`,{level:['Université','University']});
   enrichment.forEach(x=>add(x,'workshop',`#library/explore-${x.id}`));
   lessons.forEach(x=>add(x,'lesson',`#basics/${x.id}`));
   // Declare a relationship once; both ends resolve to canonical records. Unknown/deleted targets are discarded.

@@ -7,7 +7,6 @@ import * as F from '../dist/js/lab/models/ferris-wheel.js';
 import exp from '../dist/js/lab/experiments/ferris-wheel.js';
 import { EXPERIMENTS, resolveRef, SECTION_INFO, INDEX_ORDER, groupOf } from '../dist/js/lab/registry.js';
 import { makeFormat } from '../dist/js/lab/format.js';
-import { pathways, pathwayStages } from '../dist/js/content.js';
 
 const near = (a, b, tol, msg = '') => assert.ok(Math.abs(a - b) <= tol, `${msg} ${a} != ${b}`);
 // An independent height: the y-coordinate of a point turning on the circle, a sine of the angle measured from the lowest point.
@@ -132,15 +131,10 @@ test('the idealisation is stated: published data, then assumptions that are not 
   assert.equal(exp.history.source, 'https://www.londoneye.com/about-us/history/');
 });
 
-test('registered in the laboratory, mission rules hold, and the experiment is placed in the International pathway', () => {
+test('registered in the laboratory and mission rules hold', () => {
   assert.ok(EXPERIMENTS.includes(exp)); assert.equal(resolveRef('ferris-wheel/above').index, 4);
   assert.equal(exp.missions.length, 6); assert.equal(exp.missions[0].kind, 'predict'); assert.equal(exp.missions.at(-1).kind, 'explain');
   assert.equal(exp.template, 'process'); assert.ok(groupOf(exp) in SECTION_INFO && INDEX_ORDER.includes(groupOf(exp)));
-  const ib = pathways.find((p) => p.id === 'int').programmes.find((p) => p.id === 'ib');
-  const stage = ib.stages.find((st) => st.ids.includes('ferris-wheel'));
-  assert.ok(stage, 'a stage of the IB programme of the International pathway');
-  assert.match(stage.note[1], /Indicative placement/); assert.match(stage.note[1], /not a claim/);
-  assert.ok(!pathwayStages(pathways.find((p) => p.id === 'mg')).some((st) => st.ids.includes('ferris-wheel')));
 });
 
 test('topic browser: calculus and modelling experiments are not filed under arithmetic (the word "calcul" in a text is not arithmetic)', async () => {

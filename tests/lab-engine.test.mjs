@@ -31,7 +31,7 @@ import * as CR from "../dist/js/lab/models/circle-regions.js";
 import * as BU from "../dist/js/lab/models/buffon.js";
 import * as BE from "../dist/js/lab/models/bertrand.js";
 import { readFileSync, readdirSync, statSync } from "node:fs";
-import { labs, pathways, pathwayStages } from "../dist/js/content.js";
+import { labs } from "../dist/js/content.js";
 
 const near = (a, b, tol = 1e-9, msg = "") => assert.ok(Math.abs(a - b) <= tol, `${msg} ${a} != ${b}`);
 const byId = Object.fromEntries(EXPERIMENTS.map((e) => [e.id, e]));
@@ -762,7 +762,7 @@ test("complex: multiplication multiplies moduli and adds arguments; translation 
 function sources(dir) {
   return readdirSync(dir).flatMap((f) => { const p = `${dir}/${f}`; return statSync(p).isDirectory() ? sources(p) : p.endsWith(".js") ? [p] : []; });
 }
-test("every link into #lab/<id>[/<mission>] in the site, the pathways and the manifest resolves", () => {
+test("every link into #lab/<id>[/<mission>] in the site and the manifest resolves", () => {
   const custom = new Set(labs.filter((l) => l.custom).map((l) => l.id));   // gallery curiosities: #lab/<id> redirects to #gallery/<id>
   const ok = (ref) => resolveRef(ref) !== null || custom.has(ref.split("/")[0]);
   let found = 0;
@@ -772,13 +772,12 @@ test("every link into #lab/<id>[/<mission>] in the site, the pathways and the ma
     for (const m of text.matchAll(/\blink\(\s*["']lab["']\s*,\s*["']([a-z0-9-]+)["']/g)) { assert.ok(ok(m[1]), `${file}: link("lab", "${m[1]}")`); found++; }
   }
   assert.ok(found >= 1);
-  for (const p of pathways) for (const stage of pathwayStages(p)) for (const id of stage.ids || []) assert.ok(ok(id) || labs.some((l) => l.id === id), `pathway ${p.id}: ${id}`);
   const manifest = JSON.parse(readFileSync("content/data/manifest.json", "utf8")), refs = [];
   const walk = (x) => { if (Array.isArray(x)) x.forEach(walk); else if (x && typeof x === "object") for (const [k, v] of Object.entries(x)) { if (k === "labs" && Array.isArray(v)) refs.push(...v); else walk(v); } };
   walk(manifest);
   assert.ok(refs.length > 0);
   for (const ref of refs) assert.ok(resolveRef(ref), `manifest lab reference ${ref}`);
-  // every experiment of the catalogue is reachable from at least one chapter, pathway or the index
+  // every experiment of the catalogue is reachable from at least one chapter or the index
   assert.deepEqual(new Set(["probability", "vectors", "statistics", "complex"].filter((id) => refs.includes(id))), new Set(["probability", "vectors", "statistics", "complex"]));
 });
 

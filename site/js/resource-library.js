@@ -14,7 +14,7 @@ export {resourceCatalog};
 const P=(fr,en)=>[fr,en];
 const E=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const courses=Object.fromEntries(primaryCourses.map(c=>[c.id,c.title]));
-const curriculumOf=Object.fromEntries(primaryCourses.map(c=>[c.id,c.curriculum]));   // 'fr' (French) or 'mg' (Malagasy)
+const curriculumOf=Object.fromEntries(primaryCourses.map(c=>[c.id,c.curriculum]));   // 'fr' (French)
 const inCurriculum=k=>Object.keys(courses).filter(id=>curriculumOf[id]===k);
 const kinds={chapter:P('Chapitre élève · cours, activités et exercices','Student chapter · lessons, activities and exercises'),teacher:P('Édition professeur · corrections et conseils','Teacher edition · solutions and guidance'),fluency:P('Automatismes · fiche élève','Fluency · student worksheet'),'fluency-solutions':P('Automatismes · corrigé','Fluency · solutions')};
 const tabs={understand:P('Comprendre','Understand'),experiment:P('Expérimenter','Experiment'),practice:P('S’entraîner','Practise'),documents:P('Documents','Documents')};

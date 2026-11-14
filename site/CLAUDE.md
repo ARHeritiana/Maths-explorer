@@ -12,11 +12,10 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 |---|---|
 | `index.html` | page skeleton, theme bootstrap, generated import map (do not edit the map) |
 | `js/app.js` | router and page shell: `route()`, `link()`, `header()` (nav), `footer()`, `render()` (route validity and dispatch), `bindCommon()`; experiment pages mount `js/lab/` (`render()` dispatch, `mountExperiment`); the gallery page of one exhibit (`galleryDetail`, `bindGallery`), challenge and pathway pages |
-| `js/pathways-view.js` | `#pathways` page: curriculum rail, level tabs, topic filters and tile grid (`pathwayPage`, `bindPathways`); data stays in `js/content.js` `pathways` |
 | `js/navigation-state.js` | one validated, device-local class preference shared across home, courses, practice, slides and classroom generators |
 | `js/teacher-state.js` | device-local teacher state (`mx-teacher-*`): entry choice, chapter beside the class, recent items, favorites, automatismes settings, export/import/clear, in-memory fallback with `storageStatus()`; no UI, no network |
 | `js/seance-model.js` | pure séance model (no DOM, no storage): phases with default minutes, blocks, add/remove/move/minutes/print, totals against 55 min, `cleanSeance`; stored through `teacher-state.js` key `mx-teacher-seance` |
-| `js/config.js` | site-wide configuration constants: the Mikajy Spark download link, and the Mikajy Atlas link left empty (the full build writes it from `MX_ATLAS_URL`, `build/mxbuild/site.py`; shown only when set), read by the home and app |
+| `js/config.js` | site-wide configuration constants: the Mikajy Spark download link, read by the home and app |
 | `js/classroom-context.js` | the device's class and chapter offered to other pages: recents on open (`recentFor`, `noteOpen`), the "your class chapter" strip on lessons and exercises, remembered one-click automatismes defaults (`autoDefaults`); never a hidden filter, storage-safe |
 | `js/modes.js` | pure: the three modes (preparer, classe, detente) with labels and home hashes, `modeOfRoute(page,remembered)`, `showModeBar({entry,page,full})`; the bar is drawn by `header()` in `app.js`, styles in `styles/teacher.css` |
 | `js/prepare-page.js` | `#prepare` (Préparer), loaded on demand: class and chapter selects, chapter sheet by phase (launchpad) with errors to expect (`errorsFor`), search over the shared index, the "Ma séance" builder (saved at once through `teacher-state.js`), Évaluer links; prerequisites not shown (no cheap source) |
@@ -50,9 +49,9 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/control-policy.js` | selectors with one choice become labels |
 | `js/resource-editions.js` | exact language edition selection, available language labels and complete pack checks |
 | `js/content-language.js` | language of each route (neutral pages vs curriculum pages) |
-| `js/live-curriculum.js` | shared live visibility policy: French courses, filtered catalogues, route and discovery scope; complete data is retained |
+| `js/live-curriculum.js` | publication scope: the French courses and their shared resources, filtered catalogues, route and discovery scope |
 | `js/data-loader.js` | `assetHref` (versioned URLs), `fetchJSON` |
-| `js/catalogue-data.js` | GENERATED from `content/data/manifest.json`: courses, university, asset versions |
+| `js/catalogue-data.js` | GENERATED from `content/data/manifest.json`: courses, chapters, asset versions |
 | `js/canvas-navigation.js` | camera (zoom, pan, reset) shared with the slide player |
 | `js/camera3d.js` | the one orthographic 3D camera (project, unproject, view ray, constraints, turn), used by the laboratory template `space` and by `slides/widgets-3d.js` |
 | `styles/explorer.css` | design tokens (both themes), base elements, layout |
@@ -68,7 +67,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 
 | File | Holds |
 |---|---|
-| `js/content.js` | `labs` (the fourteen experiments are catalogue lines from `js/lab/registry.js`; `custom: true` ones are gallery objects), `challengeBase` / `challenges` (text, topic, hints), `pathways` |
+| `js/content.js` | `labs` (the fourteen experiments are catalogue lines from `js/lab/registry.js`; `custom: true` ones are gallery objects), `challengeBase` / `challenges` (text, topic, hints) |
 | `js/learning-content.js` | companion lessons on chapter pages (`guides`) |
 | `js/study-guides.js` | short starting sheets (built into HTML by `scripts/build-study-guides.mjs`) |
 
@@ -125,21 +124,12 @@ Seeded and limitless: any text is a seed, the same seed gives the same series. F
 | `js/exercises/problems.js` | the same kind of problem, with numbers drawn from the seed |
 | `js/bank-page.js` | `#bank[/<course>[/<chapter>[/<exercise id>]]]`: the online exercise bank (a fourth segment = one worked exercise the chapter page shows: scrolled into view and its heading focused after render, never hidden by a level filter; an id the page does not show is "Page introuvable"; `bindBank` needs nothing from the search index) (rail of levels, chapter index, worked exercises with hints and folded corrections, renewable seeded problems, quick practice from the generators, print with or without corrections) |
 | `js/exercises/bank-select.js` | pure, no DOM: `exercisesOf(chapter)` (the one rule of which worked exercises the bank page shows under a chapter: a seeded twin replaces its fixed twin of the same title), `shownExercises(chapterIds)`, `LEVEL` labels; imported by `bank-page.js` and `resource-sources.js` so page and search index cannot disagree |
-| `js/exercises/bank-mada.js` | exercises of the Malagasy books (T10, T11 S) for the online bank, same shape as `authored.js` |
 | `js/exercises/bank.js` | registry, `instance`, `buildStarter`, `buildSheet`, marking scheme (`scalePoints`) |
 | `js/exercises/export.js` | HTML, LaTeX and projection-page builders (one source string serves all three) |
 | `js/exercises/ui-kit.js` | form chips, settings kept on the device, MathJax loading, download, print, `stepSeed` |
 | `styles/generator.css` | forms, projection stage, paper preview and print rules |
 
 To add a generator: write `make` in the class file, give it a manifest chapter, a domain and an `ok()`; `tests/exercise-bank.test.mjs` then checks it (answers, formatting, variety of at least 20 questions).
-
-## Olympiad ("Explorer > Olympiades")
-
-| File | Holds |
-|---|---|
-| `js/olympiad-content.js` | the ten strategies (bilingual): the question, the idea, a solved example, five problems per strategy (national, Pan-African, international level) with hints and solutions, links to experiments and challenges; seeded from the owner's COMIMa courses, rewritten, problems restated |
-| `js/olympiad.js` | `#olympiad` (index) and `#olympiad/<id>` (one strategy): page markup, inline figure or laboratory experiment, MathJax typesetting |
-| `js/olympiad-widgets.js` | three figures with pure models: nearest neighbours (extremal principle), the inscribed angle, rectangle and square of the same perimeter |
 
 ## Reading ("Lire": biographies, stories; the curiosities are the gallery)
 
@@ -167,7 +157,6 @@ To add a generator: write `make` in the class file, give it a manifest chapter, 
 | `js/library.js` | `#library` filterable resource list; chapter detail with the "Open in the laboratory" links |
 | `js/pack-builder.js` | `#pack` custom pack builder, `#sources` LaTeX sources |
 | `js/slides-page.js` | `#slides` deck index (HTML and lecture PDF editions) |
-| `js/university.js`, `js/university-model.js` | `#university` pages and pathway summaries |
 | `js/quadratic-workshop.js` | `#workshop/quadratic` five-stage workshop |
 | `resources/document-theme.css` | style of generated HTML resource pages |
 | `js/basics-page.js` | `#basics` as data: `BASICS_GROUPS` (groups of lessons), derived numbers and previous/next, `basicsPage` (grouped index and lesson page), `bindBasics` (theme and height of the iframe), `discoveryLessons` (lessons placed in the topic browser). `js/app.js` only imports it; add a lesson here |

@@ -201,10 +201,9 @@ with sync_playwright() as p:
         for a in fp.locator('main a[href^="#"]').evaluate_all('a => a.map(x => x.getAttribute("href"))'):
             fp.goto(f'{BASE}/{a}'); fp.wait_for_timeout(250)
             assert fp.locator('h1:text-matches("^(Page introuvable|Page not found)$")').count() == 0, a
-    # 5b2. Détente: the day's cards (four in the limited edition, five with the Olympiad), every link opens a real page, redraw
+    # 5b2. Détente: the four cards of the day, every link opens a real page, redraw
     fp.goto(f'{BASE}/#relax'); fp.wait_for_selector('#rx-today .rx-card')
-    olympiad_live = fp.evaluate("import('./js/live-curriculum.js').then(m => m.isLiveHash('#olympiad'))")
-    assert fp.locator('#rx-today .rx-card').count() == (5 if olympiad_live else 4), 'the picks of the day'
+    assert fp.locator('#rx-today .rx-card').count() == 4, 'the picks of the day'
     assert fp.locator('#rx-today .rx-card a.rx-go').count() == fp.locator('#rx-today .rx-card').count()
     fp.locator('#rx-draw').click()
     assert fp.locator('#rx-surprise .rx-card').count() == 1 and fp.locator('#rx-live').inner_text().strip() != ''

@@ -4,7 +4,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {buildResourceIndex, searchResources, relatedTo, actionsOf, fold, tokens, RELATIONS, relationsForQuery, TYPE_IDS, primaryHref, publicItem} from '../dist/js/resource-index.js';
 import {buildLiveResourceIndex, deckHref} from '../dist/js/resource-sources.js';
-import {isLiveHash, FULL_EDITION} from '../dist/js/live-curriculum.js';
+import {isLiveHash} from '../dist/js/live-curriculum.js';
 
 const decks = [{id: 'premiere-01', course: 'premiere', editions: {fr: {}}}, {id: 'premiere-02', course: 'premiere', editions: {}}, {id: 't10-01', course: 't10', editions: {fr: {}}}];
 const index = buildLiveResourceIndex({decks});
@@ -32,11 +32,8 @@ test('every action is a real, live address; nothing for other curricula', () => 
     assert.ok(actionsOf(i).length, i.id);
     for (const a of actionsOf(i)) assert.ok(a.href.startsWith('#') ? isLiveHash(a.href) : /player\.html/.test(a.href), `${i.id} ${a.key} ${a.href}`);
   }
-  if (!FULL_EDITION) {
-    assert.ok(!ids.some(id => /^(chapter|slides|exercises|automatismes):(t10|t11s|int|ib)/.test(id)));
-    assert.ok(!ids.includes('slides:t10-01'), 'a deck of a hidden course is not indexed');
-  } else assert.ok(ids.includes('chapter:t10-01') && ids.includes('chapter:t11s-01'), 'the full edition indexes the Malagasy curriculum');
-  if (!FULL_EDITION) assert.ok(!index.some(i => Object.values(i.actions).some(a => /^#(olympiad|pathways|university)/.test(a.href))));
+  assert.ok(!ids.some(id => /^(chapter|slides|exercises|automatismes):(t10|t11s|int|ib)/.test(id)));
+  assert.ok(!index.some(i => Object.values(i.actions).some(a => /^#(olympiad|pathways|university)/.test(a.href))));
 });
 test('slides only when the deck index lists a French edition; none without the index', () => {
   assert.ok(ids.includes('slides:premiere-01') && !ids.includes('slides:premiere-02'));
