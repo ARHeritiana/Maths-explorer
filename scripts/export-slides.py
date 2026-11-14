@@ -13,6 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'build'))
 from mxbuild.slide_editions import languages, for_language
+from mxbuild.site import edition_name   # Maths Explorer, or Matematika in the full edition (content/data/edition.json)
 SRC = ROOT / 'site/slides'
 JS = ROOT / 'site/js'
 DATA = ROOT / 'dist/slides/data'
@@ -166,6 +167,7 @@ def page(deck, engine, css, mj):
 <html lang="{language}">
 <head>
 <meta charset="utf-8">
+<meta name="application-name" content="{edition_name()}">
 <title>{title}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>try{{var t=localStorage.getItem("maths-explorer-theme");if(t!=="jour"&&t!=="nuit")t=matchMedia("(prefers-color-scheme: dark)").matches?"nuit":"jour";document.documentElement.dataset.theme=t}}catch(e){{}}</script>

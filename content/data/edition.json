@@ -1,0 +1,8 @@
+{
+  "about": "The two editions built from this source. site/js/live-curriculum.js FULL_EDITION chooses: false is the limited edition (the French curriculum site), true the full edition (Matematika). Read by build/mxbuild/site.py (static pages, js/config.js), build/mxbuild/offline.py (service worker) and scripts/export-slides.py (standalone decks); the pages read the name back from <meta name=\"application-name\">.",
+  "name": {"limited": "Maths Explorer", "full": "Matematika"},
+  "description": {
+    "limited": "Des chapitres du programme français, des galeries, des curiosités et des expériences pour explorer les mathématiques.",
+    "full": "Les programmes malgache, français et internationaux, des galeries, des curiosités et des expériences pour explorer les mathématiques."
+  }
+}

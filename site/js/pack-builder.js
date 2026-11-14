@@ -2,6 +2,8 @@ import {editionFor,packEditions} from './resource-editions.js';
 import {courseLanguage} from "./content-language.js";
 import { liveLibraryCourses as courses, liveCatalog } from './live-curriculum.js';
 import { assetHref, fetchJSON } from './data-loader.js';
+// The name of this edition, written into index.html by the build (content/data/edition.json); printed on the pack cover.
+const SITE_NAME = globalThis.document?.querySelector('meta[name="application-name"]')?.content || 'Maths Explorer';
 // Custom pack builder and LaTeX sources browser.
 // PDFs are merged in the browser from the files the site already serves; nothing is uploaded.
 import { resourceCatalog as completeCatalog } from './resources-data.js';
@@ -181,7 +183,7 @@ async function mergeOne(items, lang, t, say) {
     const font = await out.embedFont(StandardFonts.Helvetica), bold = await out.embedFont(StandardFonts.HelveticaBold);
     const safe = s => [...s].map(c => { try { font.encodeText(c); return c; } catch { return '?'; } }).join('');
     const cover = out.insertPage(0, [595, 842]);
-    cover.drawText('Maths Explorer', { x: 56, y: 770, size: 26, font: bold, color: rgb(0.06, 0.1, 0.2) });
+    cover.drawText(SITE_NAME, { x: 56, y: 770, size: 26, font: bold, color: rgb(0.06, 0.1, 0.2) });
     cover.drawText(lang === 'en' ? 'Custom pack' : 'Dossier sur mesure', { x: 56, y: 742, size: 14, font, color: rgb(0.2, 0.3, 0.4) });
     let y = 700;
     for (const p of parts) {
@@ -193,8 +195,8 @@ async function mergeOne(items, lang, t, say) {
       y -= 17;
     }
   }
-  out.setTitle(lang === 'en' ? 'Maths Explorer: custom pack' : 'Maths Explorer : dossier sur mesure');
-  out.setAuthor('Maths Explorer'); out.setProducer('Maths Explorer'); out.setCreator('Maths Explorer');
+  out.setTitle(lang === 'en' ? `${SITE_NAME}: custom pack` : `${SITE_NAME} : dossier sur mesure`);
+  out.setAuthor(SITE_NAME); out.setProducer(SITE_NAME); out.setCreator(SITE_NAME);
   out.setSubject(''); out.setKeywords([]);
   return out.save();
 }
