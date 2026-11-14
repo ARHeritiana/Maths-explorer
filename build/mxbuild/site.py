@@ -13,6 +13,26 @@ SITE = ROOT / 'site'
 AGENT_NOTES = {'CLAUDE.md', 'AGENTS.md'}   # folder indexes for coding agents (MAP.md), never served
 WORKER = SITE / 'sw.js'   # service worker source: dist/sw.js is generated from it by offline.py (manifest inlined)
 
+# Two editions of one source: FULL_EDITION in site/js/live-curriculum.js chooses (false: Maths Explorer, the French lycée
+# site; true: Matematika, the complete site). The name of the site is the one fact that differs in static pages: it is
+# applied here to their served copies, and scripts read it back from <meta name="application-name">.
+NAMES = {False: 'Maths Explorer', True: 'Matematika'}
+NAMED_PAGES = {'index.html', 'slides/player.html', 'resources/basics/fractions.html', 'resources/basics/fractions.en.html',
+               'resources/history/mathematicians-timeline.html'}
+
+
+def full_edition():
+    m = re.search(r'^export const FULL_EDITION = (true|false);', (SITE / 'js' / 'live-curriculum.js').read_text(encoding='utf-8'), re.M)
+    return m.group(1) == 'true'
+
+
+def served(src):
+    """The bytes dist/ must hold for a file of site/: a plain copy, except the edition name in the named pages."""
+    data = src.read_bytes()
+    if src.relative_to(SITE).as_posix() in NAMED_PAGES and full_edition():
+        data = data.decode('utf-8').replace(NAMES[False], NAMES[True]).encode('utf-8')
+    return data
+
 
 def pairs():
     for src in sorted(SITE.rglob('*')):
@@ -67,10 +87,11 @@ def write(check=False):
     if not check: (SITE / 'index.html').write_text(versioned_index(), encoding='utf-8')
     elif versioned_index() != (SITE / 'index.html').read_text(encoding='utf-8'): stale.append((SITE / 'index.html').relative_to(ROOT))
     for src, dst in pairs():
-        if dst.exists() and dst.read_bytes() == src.read_bytes(): continue
+        data = served(src)
+        if dst.exists() and dst.read_bytes() == data: continue
         stale.append(dst.relative_to(ROOT))
         if not check:
-            dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(src, dst)
+            dst.parent.mkdir(parents=True, exist_ok=True); dst.write_bytes(data); shutil.copystat(src, dst)
     for o in orphans():
         stale.append(o.relative_to(ROOT))
         if not check: o.unlink()
