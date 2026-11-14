@@ -30,9 +30,19 @@ def full_edition():
 
 
 # The Mikajy Atlas link of the full edition names an account that must never be written in this repository (banned
-# phrase, tests/banned.py). Its value is kept by the Matematika repository and given to the full build as MX_ATLAS_URL;
-# the build writes it into the served copy of js/config.js, before any hash is taken.
+# phrase, tests/banned.py). Its value is kept by the Matematika repository in .github/edition.env (MX_ATLAS_URL), read
+# from there unless the environment sets MX_ATLAS_URL; the build writes it into the served copy of js/config.js, before
+# any hash is taken.
 ATLAS_PLACEHOLDER = 'export const MIKAJY_ATLAS_DOWNLOAD_URL = "";'
+
+
+def edition_env():
+    """Values of .github/edition.env (Matematika keeps the Atlas URL there); empty when the file is absent."""
+    f = ROOT / '.github' / 'edition.env'
+    if not f.is_file():
+        return {}
+    pairs = (line.split('=', 1) for line in f.read_text(encoding='utf-8').splitlines() if '=' in line and not line.lstrip().startswith('#'))
+    return {k.strip(): v.strip() for k, v in pairs}
 
 
 def edition_name():
@@ -47,7 +57,7 @@ def edition_text(text):
 
 
 def atlas_url():
-    url = os.environ.get('MX_ATLAS_URL', '').strip()
+    url = os.environ.get('MX_ATLAS_URL', '').strip() or edition_env().get('MX_ATLAS_URL', '')
     if not re.fullmatch(r'https://github\.com/[\w.-]+/[\w.-]+/releases/latest', url):
         raise SystemExit('The full edition needs MX_ATLAS_URL (the Mikajy Atlas releases page, kept in the Matematika repository).')
     return url

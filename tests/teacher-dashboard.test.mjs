@@ -5,7 +5,7 @@ import {createTeacherState} from '../site/js/teacher-state.js';
 import {mountTeacherDashboard,quickActions,chaptersFor,STATE_FILE} from '../site/js/teacher-dashboard.js';
 import {landingHash,homeHash,effectiveEntry,defaultEntry,installEntrySwitch,AUDIENCES} from '../site/js/teacher-entry.js';
 import {homePage} from '../site/js/welcome.js';
-import {liveCourses,isLiveHash} from '../site/js/live-curriculum.js';
+import {liveCourses,isLiveHash,FULL_EDITION} from '../site/js/live-curriculum.js';
 import {chaptersOf} from '../site/js/exercises/bank.js';
 
 const t=p=>p[0];
@@ -139,7 +139,7 @@ test('recents and favorites: honest empty states, then populated, removable, onl
  assert.match(h.$('#td-rec-h').parentElement.textContent,/Aucun élément récent/);
  assert.match(h.$('#td-fav-h').parentElement.textContent,/Aucun favori/);
  h.state.addRecent({type:'chapter',id:'seconde-01',title:'Arithmétique',href:'#chapter/seconde-01'});
- h.state.addRecent({type:'chapter',id:'hidden',title:'Caché',href:'#chapter/t10-01'});
+ h.state.addRecent({type:'chapter',id:'hidden',title:'Caché',href:FULL_EDITION?'#chapter/zz-01':'#chapter/t10-01'});
  h.state.addRecent({type:'tool',id:'x',title:'Outil externe',href:'https://example.org/'});
  await h.stop();const h2=await setup({win:h.window});
  const rows=h2.$$('#td-rec-h ~ ul li');

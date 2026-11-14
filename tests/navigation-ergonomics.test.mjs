@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
 import {currentCourse,rememberCourse} from '../site/js/navigation-state.js';
+import {FULL_EDITION} from '../site/js/live-curriculum.js';
 import {organizePage} from '../site/js/page-ergonomics.js';
 import {withEntryNav} from '../site/js/entry-nav.js';
 import {sheetsPage} from '../site/js/worksheets.js';
@@ -13,7 +14,7 @@ test('the selected class carries between sections, while invalid data and blocke
  assert.equal(currentCourse('',win),'');rememberCourse('premiere',win);
  assert.equal(currentCourse('',win),'premiere');assert.equal(win.sessionStorage.getItem('mx-course'),'premiere');
  rememberCourse('premiere',win);assert.equal(events,1,'one notification per actual change');
- rememberCourse('t11s',win);assert.equal(currentCourse('',win),'premiere','hidden curricula do not reappear');
+ rememberCourse(FULL_EDITION?'zz':'t11s',win);assert.equal(currentCourse('',win),'premiere','classes that are not live do not reappear');
  rememberCourse('seconde',win);assert.equal(currentCourse('',win),'seconde');
  Object.defineProperty(win,'localStorage',{get(){throw new Error('blocked')}});
  assert.equal(currentCourse('',win),'seconde');rememberCourse('stmg',win);assert.equal(currentCourse('',win),'stmg');

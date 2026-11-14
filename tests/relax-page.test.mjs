@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
 import {mountRelaxPage} from '../dist/js/relax-page.js';
 import {describe} from '../dist/js/reading.js';
-import {isLiveHash} from '../dist/js/live-curriculum.js';
+import {isLiveHash,FULL_EDITION} from '../dist/js/live-curriculum.js';
 
 const ALL=()=>true;
 const setup=async({lang=0,live=ALL,rng=()=>0.5}={})=>{
@@ -43,13 +43,13 @@ test('English labels',async()=>{
  h.$('#rx-draw').click();assert.ok(h.$('#rx-live').textContent.startsWith('Suggested page:'));
 });
 
-test('limited edition: no Olympiad card, every link is live and resolves to a page',async()=>{
+test('live data: Olympiad card only in the full edition, every link is live and resolves to a page',async()=>{
  const h=await setup({live:isLiveHash});
- assert.equal(h.$$('#rx-today .rx-card').length,4);assert.equal(h.$('[data-rx-kind="olympiad"]'),null);
+ assert.equal(h.$$('#rx-today .rx-card').length,FULL_EDITION?5:4);assert.equal(!!h.$('[data-rx-kind="olympiad"]'),FULL_EDITION);
  const hrefs=h.$$('a').map(a=>a.getAttribute('href'));
  assert.ok(hrefs.length>=4+6);
  for(const href of hrefs){assert.ok(isLiveHash(href),href);if(/^#(biographies|stories|gallery|lab)\//.test(href))assert.ok(describe(href),'no dead link '+href);}
- assert.ok(!hrefs.includes('#olympiad'));
+ if(!FULL_EDITION)assert.ok(!hrefs.includes('#olympiad'));
 });
 
 test('empty data: the page still renders',async()=>{
