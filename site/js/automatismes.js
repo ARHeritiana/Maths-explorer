@@ -3,6 +3,7 @@
 // or exported as LaTeX source or as a standalone projection page. Same seed, same series.
 import { CLASSES, buildStarter, starterCompetencies, describeLevels } from './exercises/bank.js';
 import { competencyById } from './exercises/competencies.js';
+import { starterFigureHtml } from './exercises/starter-visual.js';
 import { html, esc, starterHtml, starterTex, projectionHtml } from './exercises/export.js';
 import { autoDefaults } from './classroom-context.js';
 import { P, contextNote, bindContextNote, loadSettings, saveSettings, typeset, download, printMarkup, stamp, classOptions, chapterChips, domainChips, levelChips, competencyChips, checked } from './exercises/ui-kit.js';
@@ -91,7 +92,7 @@ export function bindAutomatismes(root, t, { chapterTitle = (id) => id, launch = 
   // one stem, then the choices as a grid of short lines (a four-choice item is never one long paragraph)
   const stageQuestion = (it) => it.choices
     ? `<strong>${it.n}.</strong> ${html(it.stem)}<ul class="auto-choices">${it.choices.map((c, k) => `<li${showAnswer && k === it.correct ? ' class="is-right"' : ''}><b>${'ABCD'[k]}</b><span>${html(c)}</span></li>`).join('')}</ul>`
-    : `<strong>${it.n}.</strong> ${html(it.q)}`;
+    : `<strong>${it.n}.</strong> ${html(it.q)}${starterFigureHtml(it.figure)}`;
   // presented: shrink the text until question and answer fit the screen (the factor --fit scales both)
   const fit = () => {
     const stage = $('#auto-stage'), body = stage?.querySelector('.auto-body'); if (!body) return;
@@ -138,7 +139,7 @@ export function bindAutomatismes(root, t, { chapterTitle = (id) => id, launch = 
     const sum = $('#gen-summary');
     sum.textContent = doc.empty ? '' : `${doc.items.length} ${t(P('questions', 'questions'))} · ${doc.minutes} min · ${doc.secondsPerItem} s ${t(P('par question', 'per question'))}`;
     const list = $('#gen-list');
-    list.innerHTML = doc.items.map((it) => `<li><div>${html(it.q)}</div><div class="gen-answer"><span class="muted">${t(P('Réponse', 'Answer'))} :</span> ${html(it.a)}${it.s ? ` <em class="muted">${html(it.s)}</em>` : ''} <small class="gen-comp">${esc(compLabel(it))}</small></div></li>`).join('');
+    list.innerHTML = doc.items.map((it) => `<li><div>${html(it.q)}${starterFigureHtml(it.figure)}</div><div class="gen-answer"><span class="muted">${t(P('Réponse', 'Answer'))} :</span> ${html(it.a)}${it.s ? ` <em class="muted">${html(it.s)}</em>` : ''} <small class="gen-comp">${esc(compLabel(it))}</small></div></li>`).join('');
     typeset(list);
     drawStage();
     return o;

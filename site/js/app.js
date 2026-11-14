@@ -607,6 +607,14 @@ window.addEventListener("mx-teacher-change", e => {
   if (route().page === "home") render();
   else { const bar = $("#app .topbar .audience-menu"); if (bar) { const box = document.createElement("div"); box.innerHTML = header(route().page); const fresh = box.querySelector(".audience-menu"); if (fresh) bar.replaceWith(fresh); } }
 });
+// The profile menu opens inside the window: the tools row moves with the width and the text size (left under the brand
+// on a phone, right of the brand elsewhere), so the list is placed when it opens, from its button, never off screen.
+document.addEventListener("toggle", e => {
+  const m = e.target; if (!m.matches?.(".audience-menu") || !m.open) return;
+  const list = m.querySelector(".audience-list"), box = m.getBoundingClientRect(), w = list.offsetWidth, gap = 12;
+  const left = Math.max(gap, Math.min(box.right - w, window.innerWidth - gap - w));   // right-aligned when it fits
+  list.style.right = "auto"; list.style.left = `${Math.round(left - box.left)}px`;
+}, true);
 // The profile menu closes on a choice, on Escape and on a click outside.
 document.addEventListener("click", e => { const m = $(".audience-menu[open]"); if (m && (!m.contains(e.target) || e.target.closest("a"))) m.open = false; });
 document.addEventListener("keydown", e => { const m = e.key === "Escape" && $(".audience-menu[open]"); if (m) { m.open = false; m.querySelector("summary").focus(); } });

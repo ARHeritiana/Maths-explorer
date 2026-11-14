@@ -36,6 +36,12 @@ variations, a tree, a law, convexity from the sign of $f''$; translating an evol
 or a transition matrix; an area to optimise; a short true/false on evolutions). Remaining gaps: short *représenter* and
 *modéliser* items in every class, short *raisonner* items in Seconde, Maths expertes and STMG.
 
+Illustrated starters (14 November 2026): `site/js/exercises/starter-visual.js` adds twenty short starters with a figure
+(vectors, lines, parabolas, a scatter plot with its fitted line, the graph of $f'$ or $f''$, the complex plane), for the
+starter pool only. They are not generators of `TEMPLATES`, so the table above does not count them. Main competency:
+*représenter* for a reading (13), *raisonner* for a property deduced from the figure (7); lines in `competencies.js`.
+About 30 % of a series shows a figure when the class, chapters and topics allow it (at most one per illustrated starter).
+
 ## Where it shows
 
 - `#automatismes`: optional filter "Compétences" (none ticked: all; the series is then identical to before). A note

@@ -93,18 +93,18 @@ a.lp-tile:focus-visible,.lp-block:focus-visible,.lp-build:focus-visible{outline:
 .lp-detail{font-size:1.02rem;line-height:1.3;color:var(--muted);margin:0}
 .lp-tile.is-unavailable{border-style:dashed;border-color:var(--line-strong);background:var(--sunken)}
 .lp-tile.is-unavailable .lp-n,.lp-tile.is-unavailable .lp-title{color:var(--muted)}
-/* Ma séance: one row, scrolls sideways when long */
-.teacher-page .lp-seance{display:flex;align-items:center;gap:8px 16px;margin:0 0 16px;padding:8px 12px;border:2px solid var(--line-strong);background:var(--surface)}
+/* Ma séance: one row when it fits (the blocks scroll sideways when long); the total and the link wrap below otherwise */
+.teacher-page .lp-seance{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin:0 0 16px;padding:8px 12px;border:2px solid var(--line-strong);background:var(--surface)}
 .teacher-page .lp-seance h2{margin:0;flex:none;font-size:1.1rem}
 .lp-blocks{list-style:none;margin:0;padding:0;display:flex;flex-wrap:nowrap;gap:8px;flex:1 1 0;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
 .lp-blocks li{flex:none}
 .lp-block{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:4px 12px;box-sizing:border-box;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--ink);text-decoration:none;font:700 1rem var(--ui);white-space:nowrap}
 a.lp-block:hover{border-color:var(--ink);background:var(--sunken)}
 .lp-block-min{color:var(--muted);font-weight:400;font-size:.9rem}
-.lp-total{margin:0;flex:none;font-weight:600;white-space:nowrap}
+.lp-total{margin:0;flex:0 1 auto;min-width:0;font-weight:600}   /* wraps (or moves to its own line) rather than pushing the page wider */
 .lp-empty{margin:0;flex:1 1 0;min-width:0}
 .lp-build{flex:none;display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--accent)}
-@media(max-width:560px){.teacher-page .lp-seance{flex-wrap:wrap}.lp-blocks{flex-basis:100%;order:3}}
+@media(max-width:560px){.lp-total{flex:1 1 100%}.lp-blocks{flex-basis:100%;order:3}}
 /* Folded secondary areas at the very bottom */
 .td-fold{margin:0 0 8px;border:1px solid var(--line-strong);background:var(--surface)}
 .td-fold>summary{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;cursor:pointer;font:600 .98rem var(--ui);color:var(--muted)}

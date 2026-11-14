@@ -5,10 +5,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { TEMPLATES, CLASSES, buildStarter, starterCompetencies } from '../dist/js/exercises/bank.js';
+import { VISUAL_STARTERS } from '../dist/js/exercises/starter-visual.js';
 import { COMPETENCIES, COMPETENCY_IDS, COMPETENCY_OF, mainCompetency, hasCompetency, coverage, competencyById } from '../dist/js/exercises/competencies.js';
 
 test('one line per generator, known competencies only, no duplicate inside a line', () => {
-  const ids = TEMPLATES.map((t) => t.id);
+  const ids = [...TEMPLATES, ...VISUAL_STARTERS].map((t) => t.id);
   assert.deepEqual(ids.filter((id) => !COMPETENCY_OF[id]), [], 'generators without a competency line');
   assert.deepEqual(Object.keys(COMPETENCY_OF).filter((id) => !ids.includes(id)), [], 'lines without a generator');
   for (const [id, list] of Object.entries(COMPETENCY_OF)) {
@@ -22,7 +23,7 @@ test('one line per generator, known competencies only, no duplicate inside a lin
 });
 
 test('no generator has "chercher" as its main competency (a timed starter is not an investigation)', () => {
-  assert.deepEqual(TEMPLATES.filter((t) => mainCompetency(t.id) === 'chercher').map((t) => t.id), []);
+  assert.deepEqual([...TEMPLATES, ...VISUAL_STARTERS].filter((t) => mainCompetency(t.id) === 'chercher').map((t) => t.id), []);
 });
 
 test('the filter: none ticked changes nothing; ticked keeps only those main competencies', () => {
