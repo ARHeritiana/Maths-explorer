@@ -2,7 +2,7 @@
 // Both degrade quietly: blocked storage keeps the choice for this visit only,
 // and a browser without the Fullscreen API gets a CSS full-window fallback.
 const KEY = "maths-explorer-theme";
-const COLORS = { jour: "#f5f6f8", nuit: "#0c111b" };
+const COLORS = { jour: "#fff7ea", nuit: "#1c1530" };
 
 export function currentTheme() {
   return document.documentElement.dataset.theme === "nuit" ? "nuit" : "jour";

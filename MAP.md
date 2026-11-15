@@ -26,7 +26,7 @@ really need them.
 
 | I want to change... | Open (and nothing else first) | Then |
 |---|---|---|
-| a colour, font, spacing, radius or theme | `site/styles/explorer.css` (tokens at the top, both themes) | `docs/DESIGN_V3.md` only for a design decision |
+| a colour, font, spacing, radius or theme | `site/styles/explorer.css` (tokens at the top, both themes) | `docs/DESIGN_V7.md` only for a design decision |
 | the look of one page or component | `site/styles/pages.css` (search the page class, see section 3) | standalone mathematicians: `site/styles/timeline-standalone.css` and `site/resources/history/mathematicians-timeline.html` |
 | shared class memory or grouped optional classroom controls | `site/js/navigation-state.js`, `site/js/page-ergonomics.js`, `site/styles/ergonomics.css` | |
 | the top navigation (Apprendre, Explorer and Lire, with page tabs), footer, theme or language buttons | `site/js/app.js` `SECTIONS`, `TAB_OF`, `header()` / `footer()` | |
