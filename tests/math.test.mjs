@@ -112,7 +112,7 @@ test("content links resolve and all learning content has two language versions",
     assert.ok(l.steps.length > 0, `${l.id}: exploration steps`);
     for (const step of l.steps)
       assert.ok(step.length === 2 && step.every(text => typeof text === 'string' && text.length > 0), `${l.id}: bilingual step`);
-    assert.ok(Number.isFinite(l.answer));
+    assert.ok(l.answer === undefined || Number.isFinite(l.answer), `${l.id}: a number, or an open question`);
   }
   for (const c of challenges) {
     for (const key of ["title", "topic", "prompt", "solution", "extension"])

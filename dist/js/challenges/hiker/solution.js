@@ -20,8 +20,8 @@ export const diagram = {
       P(`Jour 1 : départ du pied à 8 h 00, arrivée au sommet ${T1} h plus tard.`, `Day 1: he leaves the foot at 08:00 and reaches the top ${T1} h later.`),
       P(`Jour 2 : départ du sommet à 8 h 00 par le même sentier, arrivée en bas ${T2} h plus tard.`, `Day 2: he leaves the top at 08:00 on the same trail and is down ${T2} h later.`),
       P("Imaginons les deux journées en même temps : deux randonneurs partent à 8 h 00, l’un d’en bas, l’autre d’en haut, sur le même sentier.", "Picture both days at once: two hikers leave at 08:00, one from the foot, one from the top, on the same trail."),
-      P(`Ils marchent l’un vers l’autre, donc ils se croisent forcément. Là, à ${clock(m, "fr")}, le randonneur passe au même endroit les deux jours.`, `They walk towards each other, so they must meet. There, at ${clock(m, "en")}, the hiker is at the same place on both days.`),
-      P(`L’un a fait h ÷ ${T1} du sentier, l’autre doit encore en faire h ÷ ${T2} : h ÷ ${T1} + h ÷ ${T2} = 1, donc h = ${T1} × ${T2} ÷ ${T1 + T2} heures, soit ${m} minutes après 8 h 00.`, `One has done h ÷ ${T1} of the trail, the other still has h ÷ ${T2} to go: h ÷ ${T1} + h ÷ ${T2} = 1, so h = ${T1} × ${T2} ÷ ${T1 + T2} hours, that is ${m} minutes after 08:00.`),
+      P(`Ils marchent l’un vers l’autre : quelle que soit leur allure, ils se croisent forcément. Là, le randonneur passe au même endroit, à la même heure, les deux jours.`, `They walk towards each other: whatever their pace, they must meet. There, the hiker is at the same place, at the same time, on both days.`),
+      P(`Bonus, si les allures sont régulières (comme ici) : l’un a fait h ÷ ${T1} du sentier, l’autre doit encore en faire h ÷ ${T2} : h ÷ ${T1} + h ÷ ${T2} = 1, donc h = ${T1} × ${T2} ÷ ${T1 + T2} heures, soit ${clock(m, "fr")}.`, `Bonus, if the paces are steady (as here): one has done h ÷ ${T1} of the trail, the other still has h ÷ ${T2} to go: h ÷ ${T1} + h ÷ ${T2} = 1, so h = ${T1} × ${T2} ÷ ${T1 + T2} hours, that is ${clock(m, "en")}.`),
     ];
   },
 };

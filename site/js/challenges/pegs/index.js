@@ -17,10 +17,10 @@ export const card = {
 };
 
 export const variant = {
-  impossible: true,   // the answer can be "impossible": the shared answer form offers a neutral Impossible button (checks the answer 0)
+  open: true,   // open challenge: "can a peg reach this point?", and which points can it reach; the site checks nothing
   params: [choice("target", "Point à atteindre", "Point to reach", PEG_TARGETS.map((s) => [s, `(${s.split(",").join(", ")})`, `(${s.split(",").join(", ")})`]), "1,1")],
-  answer: (q) => pegsMin(pegTarget(q.target)),
-  prompt: (q) => { const [x, y] = pegTarget(q.target); return P(`Trois pions sont posés aux points (0, 0), (1, 0) et (0, 1) d’un quadrillage. Un pion peut sauter par-dessus un autre pion et atterrir au point symétrique de sa place par rapport à ce pion, à condition que ce point soit libre. Quel est le plus petit nombre de sauts après lequel un pion se trouve au point (${x}, ${y}) ?`, `Three pegs sit at the points (0, 0), (1, 0) and (0, 1) of a grid. A peg may jump over another peg and land on the point symmetric to its place about that peg, provided that point is free. What is the smallest number of jumps after which a peg is on the point (${x}, ${y})?`); },
+  answer: (q) => pegsMin(pegTarget(q.target)),   // fewest jumps (0: impossible): a fact used by the tests, not asked
+  prompt: (q) => { const [x, y] = pegTarget(q.target); return P(`Trois pions sont posés aux points (0, 0), (1, 0) et (0, 1) d’un quadrillage. Un pion peut sauter par-dessus un autre pion et atterrir au point symétrique de sa place par rapport à ce pion, à condition que ce point soit libre. Peut-on amener un pion au point (${x}, ${y}) ? Si oui, décris une suite de sauts. Sinon, démontre que c’est impossible. Quels points du quadrillage un pion peut-il occuper un jour ?`, `Three pegs sit at the points (0, 0), (1, 0) and (0, 1) of a grid. A peg may jump over another peg and land on the point symmetric to its place about that peg, provided that point is free. Can a peg be brought to the point (${x}, ${y})? If so, describe a sequence of jumps. If not, prove it is impossible. Which points of the grid can a peg ever occupy?`); },
   solution: (q) => {
     const T = pegTarget(q.target), [x, y] = T, steps = pegsSolve(T), par = ([u, v]) => [`${u % 2 === 0 ? "pair" : "impair"}`, `${v % 2 === 0 ? "pair" : "impair"}`], parEn = ([u, v]) => [u % 2 === 0 ? "even" : "odd", v % 2 === 0 ? "even" : "odd"];
     const name = (k) => "ABC"[k], pt = (p) => `(${p.join(", ")})`;
@@ -31,12 +31,8 @@ export const variant = {
     const k = steps ? steps.length : 0;
     const low = k === 1 ? P(`Un saut suffit, et zéro ne suffit pas : le point n’est pas occupé au départ.`, `One jump is enough, and none is not: the point is not occupied at the start.`) : k > 1 ? P(`Moins ne suffit pas : après au plus ${k - 1} saut${k > 2 ? "s" : ""}, les points occupés en plus des trois de départ sont ${list(k - 1)} (on les obtient en essayant les 6 sauts possibles à chaque étape), et (${x}, ${y}) n’y est pas.`, `Fewer is not enough: after at most ${k - 1} jump${k > 2 ? "s" : ""}, the points occupied besides the starting three are ${list(k - 1)} (found by trying the 6 possible jumps at each stage), and (${x}, ${y}) is not among them.`) : P("", "");
     return steps ? P(`${inv[0]} ${reach[0]} Le point (${x}, ${y}) est de type (${par(T).join(", ")}) : c’est le type d’un pion, donc il est atteignable. Suite de ${steps.length} saut${steps.length > 1 ? "s" : ""} : ${seqFr}. ${low[0]}`, `${inv[1]} ${reach[1]} The point (${x}, ${y}) is of type (${parEn(T).join(", ")}): the type of one peg, so it is reachable. A sequence of ${steps.length} jump${steps.length > 1 ? "s" : ""}: ${seqEn}. ${low[1]}`)
-      : P(`${inv[0]} ${reach[0]} Le point (${x}, ${y}) est de type (${par(T).join(", ")}), qu’aucun pion n’a : il est impossible à atteindre, quel que soit le nombre de sauts. Réponse : 0.`, `${inv[1]} ${reach[1]} The point (${x}, ${y}) is of type (${parEn(T).join(", ")}), which no peg has: it can never be reached, however many jumps are made. Answer: 0.`);
+      : P(`${inv[0]} ${reach[0]} Le point (${x}, ${y}) est de type (${par(T).join(", ")}), qu’aucun pion n’a : il est impossible à atteindre, quel que soit le nombre de sauts.`, `${inv[1]} ${reach[1]} The point (${x}, ${y}) is of type (${parEn(T).join(", ")}), which no peg has: it can never be reached, however many jumps are made.`);
   },
 };
-
-export const original = (q) => { const [x, y] = String(q.target).split(","); return P(
-`Trois pions sont aux points (0, 0), (1, 0) et (0, 1). Un pion peut sauter par-dessus un autre et atterrir au point symétrique, si ce point est libre. Peut-on amener un pion au point (${x}, ${y}) ? Si oui, décris une suite de sauts. Sinon, démontre que c’est impossible. Quels points du quadrillage un pion peut-il occuper un jour ?`,
-`Three pegs sit at (0, 0), (1, 0) and (0, 1). A peg may jump over another and land on the symmetric point, if that point is free. Can a peg be brought to the point (${x}, ${y})? If so, describe a sequence of jumps. If not, prove it is impossible. Which points of the grid can a peg ever occupy?`); };
 
 export const icon = svg(`<path d="M8 52h48M8 36h48M8 20h48M12 16v40M28 16v40M44 16v40" stroke-opacity=".28" stroke-width="1.6"/><circle cx="12" cy="52" r="5" fill="currentColor" fill-opacity=".35"/><circle cx="28" cy="52" r="5" fill="currentColor" fill-opacity=".35"/><g class="ci-bob"><circle cx="12" cy="36" r="5" fill="currentColor"/></g><path d="M12 31c5-12 16-12 21-2" stroke-dasharray="3 3"/>${dot(44, 52, 3, "ci-blink")}`);

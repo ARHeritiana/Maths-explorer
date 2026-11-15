@@ -166,8 +166,21 @@ test("art gallery: random galleries are simple polygons with the requested numbe
   }
 });
 
-test("every challenge has an original question in both languages, with no em or en dash and no unfilled parameter", () => {
+// Owner rule (15 November 2026): a challenge whose classic statement asks for a number is checked by the site and keeps
+// the longer proof version folded under it ("Jusqu'à la preuve"); an open challenge (variant.open) shows the classic
+// statement itself, has no answer form and no separate original.
+test("open challenges show the classic statement with no answer form; the others keep an original proof version", () => {
+  const open = Object.keys(VARIANTS).filter((id) => VARIANTS[id].open);
+  assert.ok(open.length >= 10 && open.length < Object.keys(VARIANTS).length, `open: ${open}`);
+  for (const id of open) { assert.ok(!ORIGINALS[id], `${id}: an open challenge has no separate original`); assert.ok(!VARIANTS[id].impossible, `${id}: no Impossible button on an open challenge`); }
   for (const id of Object.keys(VARIANTS)) {
+    const [fr, en] = VARIANTS[id].prompt(defaults(id));
+    if (VARIANTS[id].open) for (const text of [fr, en]) assert.ok(!/combien|quel est le plus petit nombre|how many|smallest number|minimum number|réponse en|give the answer/i.test(text), `${id}: an open statement asks no number: ${text}`);
+  }
+});
+
+test("every checked challenge has an original question in both languages, with no em or en dash and no unfilled parameter", () => {
+  for (const id of Object.keys(VARIANTS).filter((id) => !VARIANTS[id].open)) {
     assert.ok(ORIGINALS[id], `original for ${id}`);
     const q = Object.fromEntries(VARIANTS[id].params.map((p) => [p.id, p.value])), [fr, en] = ORIGINALS[id](q);
     for (const text of [fr, en]) { assert.ok(text.length > 30, id); assert.ok(!/undefined|NaN|[—–]/.test(text), `${id}: ${text}`); }
