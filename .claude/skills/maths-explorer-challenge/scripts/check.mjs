@@ -164,7 +164,8 @@ if (!args.includes("--no-browser") && !errors.length) {
         if (r.act > 0 && !r.goal) W(`${tag}: no goalLine() at the top of the activity`);
         // frames are [p=0, p=0.5, p=1] per step; a step may fade in from nothing, but its end frame must show something
         r.frames.forEach((n, i) => { if (n === 0 && i % 3 === 2) E(`${tag}: solution step ${(i - 2) / 3} is empty at p = 1`); });
-        if (r.still.length) E(`${tag}: solution step${r.still.length > 1 ? "s" : ""} ${r.still.join(", ")} never move${r.still.length > 1 ? "" : "s"}: every step of the solution must be animated (references/design.md section 2)`);
+        // motion is a teaching choice (references/design.md section 2): only a solution where nothing ever moves is flagged
+        if (r.still.length && r.still.length === r.frames.length / 3) W(`${tag}: no step of the solution moves: check that motion would not help understanding (references/design.md section 2)`);
         if (!r.ok) E(`${tag}: the expected answer is not accepted by the form`);
         if (r.overflow) E(`${tag}: horizontal overflow`);
       }

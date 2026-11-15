@@ -35,13 +35,24 @@ Matematika must never lack anything this site has: open the same challenge there
 in the same round (apply the folder and the five edits where they fit, `make site` there, its checks). Never copy
 `dist/` between the two repositories. If this session cannot reach Matematika, say so in the PR and the final report.
 
-## From a standalone page
+## Receiving a challenge (from another agent, or from a page made without the repository)
 
-A page made in Standalone mode (from `assets/standalone/challenge.html`) holds the files as blocks.
-`node .claude/skills/maths-explorer-challenge/scripts/split.mjs <page.html> --dry` lists what it would write;
-without `--dry` it writes the challenge folder (shared `common/` files only with `--shared`, to review in the diff).
-Then `new.mjs` is not needed; write the independent test `tests/<id>.test.mjs`, run `check.mjs <id>`, and make the five
-edits above.
+The delivery is a page (format A) or a bundle (format B), see `AGENT_BRIEF.md`. For each repository:
+
+1. `node .claude/skills/maths-explorer-challenge/scripts/split.mjs <delivery> --dry` lists what it would write; run it
+   again without `--dry`. In Matematika: `--site /path/to/matematika/site`. Shared files (`common/`, `math.js`) that
+   differ are reported and not written; read the difference, and use `--shared` only for a deliberate new helper
+   (then name it in `site/js/challenges/CLAUDE.md`).
+2. `check.mjs <id> --shots <dir>`. Typical faults from other agents: a file name outside the allowed list (only
+   index, maths, activity, solution, art, plan; rename), a bare import (`import ... from "lodash"`), an answer that is
+   not a whole number for some parameters, text with dashes or jargon, a frame that depends on time. Fix small things;
+   send the rest back with the check's messages.
+3. Verify the mathematics: read `maths.js`, run `node --test tests/<id>.test.mjs`, and make sure the test is truly
+   independent (not a copy of `maths.js`); write it if it is missing or weak.
+4. Look at the screenshots and play `preview.mjs <id>`: characters at the template's level, an activity that shows the
+   problem without giving the method, a solution that explains (animated where it helps).
+5. The five registration edits above, then `make site`, `npm run check && npm test`, `npm run test:dom`, the browser
+   checks, and the pull request. Then the same in the other repository, in the same round.
 
 ## Delivering without integrating
 

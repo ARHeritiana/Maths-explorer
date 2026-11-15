@@ -1,4 +1,8 @@
 <!doctype html>
+<!-- Maths Explorer challenge page, handoff format (AGENT_BRIEF.md of the skill maths-explorer-challenge).
+     Each text block below (a script of type text/plain whose data-path names a file) is one file of the site: edit the blocks of the
+     challenge's folder js/challenges/<id>/ and its test tests/<id>.test.mjs; leave js/challenges/common/ and
+     js/math.js as they are. The page runs as it is: open it, press Solution and Self-check. -->
 <html lang="fr" data-theme="jour">
 <head>
 <meta charset="utf-8">
@@ -1545,13 +1549,28 @@ export function isAnswer(raw, expected, tolerance = 1e-6) {
   return Number.isFinite(value) && Math.abs(value - expected) <= tolerance;
 }
 </script>
+<script type="text/plain" data-path="tests/handshakes.test.mjs">
+// The handshakes challenge, pure parts: every answer recomputed by an independent method over the whole parameter range.
+import test from "node:test";
+import assert from "node:assert/strict";
+import { variant } from "../site/js/challenges/handshakes/index.js";
+
+test("handshakes: brute force over every pair of people gives the answer", () => {
+  const p = variant.params.find((x) => x.id === "n");
+  for (let n = p.min; n <= p.max; n++) {
+    let count = 0;
+    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) count++;   // independent of the formula in maths.js
+    assert.equal(variant.answer({ n }), count, `n = ${n}`);
+  }
+});
+</script>
 <script>
 // Loader: each text block becomes a module (blob URL); its relative imports are rewritten to bare "mx/<path>" names,
 // and an import map, added before any module runs, maps those names to the blobs. Resolution by name allows cycles.
 (() => {
   const join = (base, rel) => { const parts = base.split("/").slice(0, -1); for (const s of rel.split("/")) { if (s === "..") parts.pop(); else if (s !== ".") parts.push(s); } return parts.join("/"); };
   const imports = {};
-  for (const block of document.querySelectorAll('script[type="text/plain"][data-path]')) {
+  for (const block of document.querySelectorAll('script[type="text/plain"][data-path^="js/"]')) {
     const rel = block.dataset.path, src = block.textContent.replace(/^\n/, "").replace(/<\\\/script/gi, "<\/script");
     const code = src.replace(/(\bfrom\s*|\bimport\s*\(\s*|\bimport\s+)(["'])(\.{1,2}\/[^"']+)\2/g, (m, a, q, sp) => a + q + "mx/" + join(rel, sp) + q);
     imports["mx/" + rel] = URL.createObjectURL(new Blob([code + "\n//# sourceURL=" + rel], { type: "text/javascript" }));
@@ -1621,27 +1640,32 @@ window.__setParams = (next) => { Object.assign(q, next); normalise(); render(); 
 window.__setLang = (l) => { lang = l; render(); };
 $("#pv-lang").addEventListener("click", () => { lang = lang === "fr" ? "en" : "fr"; render(); });
 // Self-check (the browser half of check.mjs, for when no repository is at hand): every combination of the parameters
-// (at most 12), both languages: the activity draws, every solution step shows something and MOVES, the answer is accepted.
+// (at most 12), both languages: the activity draws, every solution step shows something, the answer is a whole number;
+// a solution where nothing moves is noted (motion is a teaching choice, not a rule).
 async function selfCheck() {
   const pools = v.params.map((p) => (p.kind === "int" ? [...new Set([p.min, p.max, p.value])] : p.options.map((o) => o[0])));
   let combos = pools.reduce((acc, pool) => acc.flatMap((a) => pool.map((x) => [...a, x])), [[]]).map((c) => Object.fromEntries(v.params.map((p, i) => [p.id, c[i]])));
   if (combos.length > 12) combos = combos.filter((_, i) => i % Math.ceil(combos.length / 12) === 0);
-  const problems = [], keep = { ...q }, keepLang = lang;
+  const problems = [], notes = [], keep = { ...q }, keepLang = lang;
   for (const L of ["fr", "en"]) for (const c of combos) {
     lang = L; Object.assign(q, c); normalise(); render(); await new Promise((ok) => setTimeout(ok, 30));
     const tag = L + " " + JSON.stringify(c);
     if (typeof C.activity === "function" && !document.querySelector("#activity *")) problems.push(tag + ": the activity draws nothing");
     if (!sol) problems.push(tag + ": no animated solution (index.js must export diagram, and scene for a cartoon)");
-    else for (let k = 0; k < sol.steps; k++) {
-      const snap = (p) => { sol.seek(k, p); return document.querySelector("#solution-anim svg").innerHTML; };
-      if (!snap(1)) problems.push(tag + ": solution step " + (k + 1) + " is empty");
-      if (snap(0.05) === snap(0.95)) problems.push(tag + ": solution step " + (k + 1) + " never moves (every step must be animated)");
+    else {
+      let moving = 0;
+      for (let k = 0; k < sol.steps; k++) {
+        const snap = (p) => { sol.seek(k, p); return document.querySelector("#solution-anim svg").innerHTML; };
+        if (!snap(1)) problems.push(tag + ": solution step " + (k + 1) + " is empty");
+        if (snap(0.05) !== snap(0.95)) moving++;
+      }
+      if (!moving) notes.push(tag + ": no step of the solution moves (fine only if motion would not help understanding)");
     }
     const a = v.answer(q); if (!Number.isInteger(a) || a < 0 || !isAnswer(String(a), a)) problems.push(tag + ": answer " + a + " is not a whole number >= 0");
   }
   lang = keepLang; Object.assign(q, keep); render();
   const box = document.getElementById("pv-errors");
-  box.textContent = problems.length ? "Self-check: " + problems.length + " problem(s)\n" + [...new Set(problems)].join("\n") : "";
+  box.textContent = [...(problems.length ? ["Self-check: " + problems.length + " problem(s)", ...new Set(problems)] : []), ...new Set(notes)].join("\n");
   window.__selfCheck = problems;
   $("#pv-check").textContent = problems.length ? "Self-check: " + problems.length + " ✗" : "Self-check: OK ✓";
   return problems;

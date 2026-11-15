@@ -43,17 +43,14 @@ the look and the feel; do not copy its code (section 5).
   the picture has done the work. Name the high-school idea plainly ("they always meet", "the gap goes from −1 to +1
   so it is 0 at some moment"), never a theorem's name as the reason.
 - Each frame is a pure function of (step, p). Derive every pose from p (see section 3), never from accumulated state.
-- **Animated means moving in every step** (owner, 15 November 2026: a solution that only showed pictures had to be
-  sent back). As p goes from 0 to 1 inside a step, the scene changes: a character walks, reaches, turns, hops, an
-  object travels, a line or a bar grows, a number counts up while it is explained, a bubble pops. Plan the motion of
-  each step together with its caption (storyboard: "step 2: A walks to each person in turn; a line grows to each
-  one"). Even the first step moves (the characters wave hello, the ants set off). Not animated: one still picture per
-  step, a picture that only fades in, text with a figure, a single moving step among still ones.
-- Give each step time to be watched: `dur(step, q)` of 3 to 7 seconds, longer for a step with several moves. The
-  player starts by itself when the learner opens the solution and runs to the last step; Previous, Next and Play
-  stay available.
-- Checked by `check.mjs` and by the page's Self-check: the drawing at p = 0.05 and at p = 0.95 must differ in every
-  step.
+- **Animate where motion helps understanding** (owner, 15 November 2026). Motion is a teaching tool, not a rule:
+  use it for a process (the spoon's round trip), a trajectory (the ants, the hikers), a transformation (bumping ants
+  turning into ghosts), a quantity that builds up (lines appearing one person at a time), a before and after. A step
+  that states a fact, a formula or the answer may stay still. Decide in the storyboard, step by step, and say why in
+  the delivery note. A solution where nothing ever moves is suspicious for a problem about motion or process:
+  `check.mjs` and the Self-check flag it as a note to judge, not as an error.
+- Give each moving step time to be watched: `dur(step, q)` of 3 to 7 seconds. The player starts by itself when the
+  learner opens the solution; Previous, Next and Play stay available.
 
 ## 3. Cartoon characters (SVG)
 
