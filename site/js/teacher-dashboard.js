@@ -7,7 +7,7 @@ import {discoveryChapters} from './catalogue-data.js';
 import {fetchJSON} from './data-loader.js';
 import {autoDefaults} from './classroom-context.js';
 import {courseName,chapterOf,noClass,isKnownClass,resolveTargets,launchpad,resolveForSeance} from './launchpad-model.js';
-import {defaultSeance,totals} from './seance-model.js';
+import {defaultSeance,totals,seanceDuration} from './seance-model.js';
 import {effectiveEntry} from './teacher-entry.js';
 
 const E=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -60,7 +60,7 @@ export async function mountTeacherDashboard(main,{t,state,isGone=()=>false,decks
  const seanceStrip=(seance,tot)=>{
   const body=seance.blocks.length
    ?`<ol class="lp-blocks">${seance.blocks.map(b=>`<li>${live(b.href)?`<a class="lp-block" href="${E(b.href)}">`:'<span class="lp-block">'}<span class="lp-block-title">${E(b.title)}</span><span class="lp-block-min">${b.minutes} min</span>${live(b.href)?'</a>':'</span>'}</li>`).join('')}</ol>
-<p class="lp-total">${tot.minutes} min${tot.over?` · ${L('au-delà de 55 minutes','over 55 minutes')}`:''}${tot.printCount?` · ${tot.printCount} ${L('à imprimer','to print')}`:''}</p>`
+<p class="lp-total">${tot.minutes} min${tot.over?` · ${L(`au-delà de ${tot.target} minutes`,`over ${tot.target} minutes`)}`:''}${tot.printCount?` · ${tot.printCount} ${L('à imprimer','to print')}`:''}</p>`
    :`<p class="lp-empty muted">${L('Aucune séance préparée.','No séance prepared.')}</p>
 <button type="button" class="btn btn-secondary" data-td="propose">${L('Proposer une séance type','Suggest a standard séance')}</button>`;
   return `<section class="td-section lp-seance" aria-labelledby="td-seance-h"><h2 tabindex="-1" id="td-seance-h">${L('Ma séance','My séance')}</h2>${body}
@@ -132,7 +132,7 @@ ${confirmClear?`<div class="td-confirm" role="alertdialog" aria-labelledby="td-c
   const b=e.target.closest('[data-td]');if(!b)return;
   const d=b.dataset.td;
   if(d==='view'){state.setTools({view:b.dataset.view==='tableau'?'tableau':'projecteur'});draw();main.querySelector(`[data-td="view"][data-view="${b.dataset.view}"]`)?.focus();}
-  else if(d==='propose'){state.setSeance(defaultSeance({course:state.getClassroom().course,chapter:state.getClassroom().chapter},resolveForSeance(state.getClassroom().course,state.getClassroom().chapter,decks)));draw();focusAfter('td-seance-h');}
+  else if(d==='propose'){state.setSeance(defaultSeance({course:state.getClassroom().course,chapter:state.getClassroom().chapter,duration:seanceDuration(state.getSeance())},resolveForSeance(state.getClassroom().course,state.getClassroom().chapter,decks)));draw();focusAfter('td-seance-h');}
   else if(d==='entry-reset'){state.setEntry('');message=L('Le choix par défaut (visiteur) est rétabli.','The default (visitor) is restored.');draw();focusAfter('td-entry-h');}
   else if(d==='entry-teacher'){state.setEntry('teacher');message=L('Cet appareil s’ouvrira sur l’Espace professeur.','This device will now open on the Teacher area.');draw();focusAfter('td-entry-h');}
   else if(d==='fav'){state.toggleFavorite(state.getRecent().find(i=>i.type===b.dataset.type&&i.id===b.dataset.id));draw();[...main.querySelectorAll('[data-td="fav"]')].find(x=>x.dataset.id===b.dataset.id)?.focus();}

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {phaseForType,blockFromItem,blockFromPhase,describeTotals,printList,liveLinks,isPhase,dropIndex,movedText} from '../site/js/prepare-model.js';
-import {totals,addBlock,emptySeance} from '../site/js/seance-model.js';
+import {totals,addBlock,emptySeance,setDuration} from '../site/js/seance-model.js';
 
 test('phase default from item type',()=>{
  const want={exercise:'exercices',exercises:'exercices',deck:'cours',slides:'cours',lab:'activite',errors:'outils',misconception:'outils',starters:'automatismes',automatismes:'automatismes',annales:'exercices',chapter:'cours'};
@@ -27,6 +27,8 @@ test('describeTotals: minutes text, print count, warning above 3',()=>{
  assert.ok(d.warn[0].includes('Beaucoup de papier'));assert.equal(describeTotals(totals(mk(4,1,3)),4).warn,null);
  for(const x of [d.minutesText,d.printText,d.warn].flat())assert.ok(!/[–—]/.test(x));
  assert.deepEqual(printList(mk(3,1,2)),['b0','b1']);
+ // The text compares with the séance's own length.
+ const long=setDuration(mk(4,20,0),90);assert.ok(describeTotals(totals(long),4).minutesText[0].includes('80 min sur 90 : 10 min libres'));
 });
 test('liveLinks keeps only live routes',()=>{
  assert.deepEqual(liveLinks([['#a','x','y'],['#b','x','y'],['https://z','x','y']],h=>h==='#a').map(l=>l[0]),['#a','https://z']);
