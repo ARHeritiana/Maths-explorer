@@ -33,9 +33,9 @@ export const saveSettings = (key, value) => { if(value.cls)rememberCourse(value.
 // ---- maths ----
 let mathPromise = null;
 export function loadMath() {
-  if (window.MathJax?.typesetPromise) return Promise.resolve();
+  if (window.MathJax?.typesetPromise) return window.MathJax.startup?.promise || Promise.resolve();
   return (mathPromise ||= new Promise((ok, fail) => {
-    if (!window.MathJax) window.MathJax = { startup: { typeset: false }, svg: { fontCache: 'none' }, options: { enableAssistiveMml: true }, tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+    if (!window.MathJax) window.MathJax = { startup: { typeset: false }, svg: { fontCache: 'none' }, options: { enableAssistiveMml: true }, tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']], macros: {pgcd:'\\operatorname{PGCD}',ppcm:'\\operatorname{PPCM}',/*mx-math*/"N":"\\mathbb{N}","Z":"\\mathbb{Z}","D":"\\mathbb{D}","Q":"\\mathbb{Q}","R":"\\mathbb{R}","C":"\\mathbb{C}","vect":["\\overrightarrow{#1}",1],"vi":"\\vec{\\imath}","vj":"\\vec{\\jmath}","vk":"\\vec{k}","norm":["\\left\\lVert #1\\right\\rVert",1],"vc":["\\begin{pmatrix}#1\\\\#2\\end{pmatrix}",2],"deter":["\\det\\left(#1,#2\\right)",2],"abs":["\\left\\lvert #1\\right\\rvert",1],"dd":"\\,\\mathrm{d}","e":"\\mathrm{e}","Card":"\\operatorname{Card}","E":"\\operatorname{E}","V":"\\operatorname{V}","degre":"^{\\circ}","un":["\\,\\mathrm{#1}",1],"sci":["#1\\times10^{#2}",2],"llbracket":"\\mathopen{[\\mkern-3mu[}","rrbracket":"\\mathclose{]\\mkern-3mu]}"/*end mx-math*/} } };
     const s = document.createElement('script');
     s.src = './vendor/mathjax-tex-svg.js?v=3.2.2-full'; s.onload = () => (window.MathJax.startup?.promise || Promise.resolve()).then(ok, ok); s.onerror = () => { mathPromise = null; fail(new Error('MathJax')); };
     document.head.append(s);
