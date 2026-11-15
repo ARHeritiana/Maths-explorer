@@ -281,10 +281,13 @@ with sync_playwright() as p:
     dp.goto(f'{BASE}/#teacher'); dashboard(dp)
     dp.locator('a.lp-tile[data-recent-id="automatismes"]').click(); dp.wait_for_selector('#auto-stage.presenting')
     assert dp.locator('#mx-dock:visible').count() == 0, 'hidden during the projection stage'
+    # the full-screen request is asynchronous: leaving before it has completed would let it land afterwards
+    try: dp.wait_for_function('!!document.fullscreenElement', timeout=3000)
+    except Exception: pass   # a browser may refuse full screen; the class-based presentation is then all there is
     dp.keyboard.press('Escape'); dp.evaluate("document.fullscreenElement && document.exitFullscreen(); document.querySelector('#auto-stage').classList.remove('presenting'); document.documentElement.classList.remove('is-presenting')")
+    dp.wait_for_function('!document.fullscreenElement')   # leaving full screen is asynchronous; the dock and resizing wait for it
     dp.wait_for_selector('#mx-dock', state='visible', timeout=5000)
     assert dp.locator('#mx-dock:visible').count() == 1, 'back after the projection'
-    dp.wait_for_function('!document.fullscreenElement')   # leaving full screen is asynchronous; resizing before it ends fails
     # no overflow, 44 px targets, both themes
     for width in (320, 390, 1440):
         dp.set_viewport_size({'width': width, 'height': 800})
