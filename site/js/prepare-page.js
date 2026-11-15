@@ -121,6 +121,13 @@ ${d.warn?`<p class="pp-warn" role="status">${E(P(d.warn))}</p>`:''}
    const {course,chapter}=ctx(),next=defaultSeance({course,chapter},resolveForSeance(course,chapter,decks));
    save(next,next.blocks.length?`${L('Séance type posée','Standard séance set')} : ${next.blocks.length} ${L('blocs','blocks')}`:L('Aucune phase disponible pour ce choix.','No phase available for this choice.'),'[data-pp="standard"]');
   }else if(d==='clear'){
+   // Two presses, no browser dialog: the first arms the button for a few seconds, the second empties the séance.
+   const b=e.target.closest('[data-pp="clear"]');
+   if(b&&!b.dataset.armed){
+    b.dataset.armed='1';b.textContent=L('Vraiment vider ?','Really clear?');b.classList.add('is-armed');announce(L('Appuie encore pour vider la séance.','Press again to clear the séance.'));
+    const disarm=()=>{if(!b.isConnected||!b.dataset.armed)return;delete b.dataset.armed;b.textContent=L('Vider','Clear');b.classList.remove('is-armed');};
+    setTimeout(disarm,4000);b.addEventListener('blur',disarm,{once:true});return;
+   }
    save(emptySeance(),L('Séance vidée.','Séance cleared.'),'#pp-builder-h');
   }
  };

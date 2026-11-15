@@ -60,6 +60,7 @@ test('builder: keyboard move, minutes, print toggle and warning, remove, clear, 
  h.stop();const h2=await setup({win:h.window});
  assert.equal(h2.$$('.pp-block').length,n);assert.equal(h2.$$('[data-pp-print]:checked').length,4);
  h2.$('[data-pp="remove"]').click();assert.equal(h2.state.getSeance().blocks.length,n-1);
+ h2.$('[data-pp="clear"]').click();assert.ok(h2.state.getSeance().blocks.length>0,'the first press only arms Vider');assert.match(h2.$('[data-pp="clear"]').textContent,/Vraiment|Really/);
  h2.$('[data-pp="clear"]').click();assert.equal(h2.state.getSeance().blocks.length,0);
  assert.equal(h2.$('[data-pp="clear"]').disabled,true);
  h2.$('#pp-launch').addEventListener('click',e=>e.preventDefault());
