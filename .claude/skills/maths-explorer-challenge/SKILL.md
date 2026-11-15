@@ -34,8 +34,9 @@ With a repository at hand you may build in place instead: `scripts/new.mjs <id>`
 `assets/template/`, `scripts/check.mjs <id> --shots <dir>` checks it, and `scripts/preview.mjs <id> --lite --out
 <dir>/<id>.html` makes the page in the handoff format, to publish (an Artifact where available) or to send.
 
-Give another agent the job: send it `AGENT_BRIEF.md`, `assets/standalone/challenge.html` and the problem (the
-examples of `assets/examples/` if a prototype exists).
+Give another agent the job: send it the agent kit and the problem. `scripts/kit.mjs <dir>` assembles the kit
+(`AGENT_BRIEF.md`, the template page, the examples, and a `SKILL.md` made from the brief); zipped, the same folder is
+a handout for any agent and a skill for claude.ai (`maths-challenge-builder`).
 
 ## Role 2: you integrate a delivered challenge
 
@@ -57,6 +58,7 @@ then Matematika):
 | `scripts/check.mjs <id> [--shots dir] [--no-browser]` | contract, every parameter combination, text rules, giveaway controls; in Chromium: activity draws, every solution step drawn, answer accepted, no console error, no overflow at 390 px; warns when no solution step moves |
 | `scripts/preview.mjs <id> [--out file] [--lite]` | the page in the handoff format (Solution ▶, Self-check, language, theme, reduced motion) |
 | `scripts/new.mjs <id>` | a new folder and test from the template, in a repository |
+| `scripts/kit.mjs <dir>` | the agent kit: brief, template page, examples, and a `SKILL.md` built from the brief (zip it to upload or send) |
 
 `assets/standalone/challenge.html` is `preview.mjs handshakes --lite`; regenerate it when the template challenge or the
 shared kit changes, and re-send it to agents that work from an old copy.
