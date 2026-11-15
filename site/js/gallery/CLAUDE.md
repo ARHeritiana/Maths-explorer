@@ -33,3 +33,4 @@ relative to `site/js/gallery/`. Imports between these files use `./`; shared mod
 | `gallery-fair-division.js` | mounts the cake and goods laboratories (content in `site/js/fair-division-content.js`) |
 | `gallery-topology.js` | reuses the guided topology laboratories (content in `site/js/topology-content.js`) |
 | `gallery-dynamics.js` | mounts the pendulum, three-body and logistic simulations in gallery entries (content in `site/js/dynamics-content.js`) |
+| `curiosity-explainers.js` | animated cartoon explanations of the ten open curiosities (soap films, hat, sofa, equidecomposition, Banach-Tarski, Penrose room, double pendulum, three bodies, indivisible goods, baker) on the challenges' solution player; reuses the sofa, hat and illumination models; loaded on demand by `app.js` when "Comprendre la réponse" opens |
