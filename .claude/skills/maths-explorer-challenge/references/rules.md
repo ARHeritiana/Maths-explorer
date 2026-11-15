@@ -15,8 +15,11 @@ they differ, the most recent dated rule wins; the list below is current on 15 No
 ## What the page shows
 
 - The statement only. No hint panel, no hint buttons (13 November 2026).
-- The activity offers tools, never the method: no counter, table, running total, highlighted invariant, "optimal"
-  button or helper that gives the idea away. A neutral end message ("Everyone has shaken hands.") is fine.
+- The activity simulates the problem and offers tools, never the method: no table, running total, highlighted
+  invariant, hint toggle, "worst case" or "optimal" button, or helper that gives the idea away. Neutral measurements
+  of what the question asks (a stopwatch, a move count, measuring a cup) and a neutral end message are fine.
+- The right experiment may reveal the idea: that is the intended discovery (`references/design.md` section 1), as
+  long as the learner chose it and nothing on screen pointed to it.
 - One `goalLine` sentence on top of the activity; nothing explanatory under it.
 - Answer `0` means impossible only when `variant.impossible` is set; the prompt never mentions "impossible".
 - The original statement sits in a closed "Énoncé d'origine" disclosure; the written solution in a closed "Version
@@ -24,7 +27,7 @@ they differ, the most recent dated rule wins; the list below is current on 15 No
 
 ## Teaching (the animated solution does the teaching)
 
-- High-school level, cartoon-like: real objects (people, pegs, eggs, bridges) before symbols; the symbols, if any,
+- High-school level, cartoon-like, in the activity's world with the same characters: real objects (people, pegs, eggs, bridges) before symbols; the symbols, if any,
   arrive in the last steps. Show the town before the graph (Königsberg rule).
 - No jargon in the written solution: the banned list in `tests/challenge-jargon.test.mjs` (group, invariant, modulo,
   graph, parity, valuation, Euler, Bézout, gcd, ...) fails the tests. Say "even or odd", "never changes", "the

@@ -112,6 +112,13 @@ for (const f of ["index.js", "maths.js", "activity.js", "solution.js", "art.js",
   for (const m of src.matchAll(IMPORT)) { const spec = m[1] || m[2] || m[3]; if (!spec.startsWith(".")) E(`${f}: import "${spec}" is not relative (no bare or remote modules)`); }
   if (/\b(fetch|XMLHttpRequest|localStorage)\b/.test(src)) W(`${f}: uses fetch / XMLHttpRequest / localStorage`);
   if (f === "maths.js" && /\bdocument\b|\bwindow\b/.test(src)) E("maths.js must be pure (no document / window)");
+  // controls that hand over the idea belong in the animated solution (references/design.md section 1)
+  if (f === "activity.js") {
+    // only the text a learner can see: string literals, without comments and module paths
+    const code = src.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:"'`\\])\/\/.*$/gm, "$1");
+    const visible = [...code.matchAll(/(["'`])((?:\\.|(?!\1)[\s\S])*?)\1/g)].map((m) => m[2]).filter((x) => !/\.js$/.test(x)).join(" ");
+    const give = visible.match(/astuce|indice|\bhints?\b|pire cas|worst case|optimal|meilleur coup|best move|\bsolution\b|simulations/gi); if (give) W(`activity.js mentions ${[...new Set(give.map((x) => x.toLowerCase()))].join(", ")}: no control may give the idea away`);
+  }
   if (!src.startsWith("//")) W(`${f}: should open with a one-line comment saying what the file holds`);
 }
 if (!existsSync(path.join(folder, "maths.js"))) W("no maths.js: fine only if the answer needs no computation");

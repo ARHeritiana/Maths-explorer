@@ -1,9 +1,12 @@
-// Animated solution of the __ID__ challenge, a pure function of (step, progress). `diagram` holds the captions (steps) and,
-// without a `scene`, draws the frames; a `scene` (mount once, then update) replaces the drawing. See common/player.js.
+// Animated solution of the __ID__ challenge. `diagram` holds the captions (steps); `scene` builds the cartoon once
+// (mount) and poses it as a pure function of (step, p) (update). See common/player.js and references/design.md.
 import { P, ez, mid } from "../common/helpers.js";
-import { colour } from "../common/kit.js";
+import { colour, svgEl } from "../common/kit.js";
 import { seg } from "../common/scene-kit.js";
 import { seats, handshakes } from "./maths.js";
+import { makePerson, posePerson } from "./art.js";
+
+const CX = 180, CY = 160, R = 110;
 
 export const diagram = {
   size: [520, 300],
@@ -13,14 +16,26 @@ export const diagram = {
     P(`Chacune en fait autant : ${q.n} × ${q.n - 1} = ${q.n * (q.n - 1)} mains tendues.`, `Everyone does the same: ${q.n} × ${q.n - 1} = ${q.n * (q.n - 1)} hands held out.`),
     P(`Mais une poignée de main, c’est deux mains : ${q.n * (q.n - 1)} ÷ 2 = ${handshakes(q.n)}.`, `But one handshake is two hands: ${q.n * (q.n - 1)} ÷ 2 = ${handshakes(q.n)}.`),
   ],
-  // c: drawing context from common/kit.js makeCtx (line, circ, rect, text, path, wrap, t); s: step; p: progress 0..1
-  draw(c, s, p, q) {
-    const n = q.n, S = seats(n, 180, 150, 115);
-    const lines = (from, k) => { for (let j = 0; j < n; j++) if (j !== from) { const a = S[from], b = S[j], u = k; c.line(a[0], a[1], a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u, { stroke: colour(from), "stroke-width": 1.4, opacity: 0.7 }); } };
-    if (s === 1) lines(0, ez(p));
-    if (s >= 2) { const upto = s === 2 ? Math.ceil(ez(p) * n) : n; for (let i = 0; i < upto; i++) lines(i, 1); }
-    S.forEach(([x, y], i) => c.circ(x, y, 8, { fill: `color-mix(in srgb, ${colour(i)} 70%, var(--surface))`, stroke: "var(--ink)", "stroke-width": 1.5 }));
-    if (s >= 2) c.text(410, 120, `${n} × ${n - 1}`, { ...mid, class: "sol-line" });
-    if (s === 3) { c.text(410, 160, `÷ 2`, { ...mid, class: "sol-line", opacity: seg(p, 0, 0.5) }); c.text(410, 210, `${handshakes(n)}`, { ...mid, class: "sol-hot", opacity: seg(p, 0.4, 1) }); }
+};
+
+export const scene = {
+  // c: drawing context from common/kit.js makeCtx; build every element once and keep handles in S
+  mount(c, q) {
+    const n = q.n, S = seats(n, CX, CY, R), lines = svgEl("g", {}, c.svg);
+    const people = S.map((_, i) => makePerson(c.svg, { fill: `color-mix(in srgb, ${colour(i)} 70%, var(--surface))`, size: 1.4 }));
+    const txt = [c.text(410, 120, `${n} × ${n - 1}`, { ...mid, class: "sol-line" }), c.text(410, 160, "÷ 2", { ...mid, class: "sol-line" }), c.text(410, 210, `${handshakes(n)}`, { ...mid, class: "sol-hot" })];
+    return { n, S, lines, people, txt };
+  },
+  // a frame is a pure function of (step, p): everything is recomputed from them, nothing accumulates
+  update(st, s, p) {
+    const { n, S, lines, people, txt } = st, centre = (i) => Math.atan2(CY - S[i][1], CX - S[i][0]);
+    lines.replaceChildren();
+    const reach = (from, k) => { for (let j = 0; j < n; j++) if (j !== from) { const [a, b] = [S[from], S[j]]; svgEl("line", { x1: a[0], y1: a[1] - 16, x2: a[0] + (b[0] - a[0]) * k, y2: a[1] - 16 + (b[1] - a[1]) * k, stroke: colour(from), "stroke-width": 1.4, opacity: 0.7 }, lines); } };
+    const active = s === 1 ? 1 : s >= 2 ? (s === 2 ? Math.ceil(ez(p) * n) : n) : 0;   // people who have reached out
+    if (s === 1) reach(0, ez(p)); else for (let i = 0; i < active; i++) reach(i, 1);
+    people.forEach((P, i) => posePerson(P, { x: S[i][0], y: S[i][1], angle: centre(i), reach: i < active ? 1 : 0, hop: s === 1 && i === 0 ? seg(p, 0.6, 1) : 0 }));
+    txt[0].setAttribute("opacity", s >= 2 ? 1 : 0);
+    txt[1].setAttribute("opacity", s === 3 ? seg(p, 0, 0.5) : 0);
+    txt[2].setAttribute("opacity", s === 3 ? seg(p, 0.4, 1) : 0);
   },
 };

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Hiker Problem</title>
+<style>
+:root{--bg:#fafaf7;--card:#fff;--fg:#1d2433;--mu:#667085;--ln:#d8dce3;--b:#2563eb;--o:#ea7a12;--r:#d92d20;--m:#e9eef5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#12151c;--card:#1b2029;--fg:#e8ecf3;--mu:#98a2b3;--ln:#323a48;--b:#6ea0ff;--o:#ffa34d;--r:#ff6b5e;--m:#232b38}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12151c;--card:#1b2029;--fg:#e8ecf3;--mu:#98a2b3;--ln:#323a48;--b:#6ea0ff;--o:#ffa34d;--r:#ff6b5e;--m:#232b38}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 Georgia,"Times New Roman",serif}
+main{max-width:720px;margin:0 auto;padding:14px}
+h1{font-size:22px;margin:4px 0 6px}h2{font-size:16px;margin:0 0 8px}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:12px;margin:12px 0}
+.tl{border-left:4px solid var(--b)}
+svg{width:100%;height:auto;display:block}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+button,select{font:inherit;font-size:14px;padding:7px 12px;border-radius:8px;border:1px solid var(--ln);background:var(--m);color:var(--fg);cursor:pointer}
+button:disabled{opacity:.45;cursor:default}
+input[type=range]{width:100%;accent-color:var(--b)}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:13px}
+.b{color:var(--b);font-weight:bold}.o{color:var(--o);font-weight:bold}.r{color:var(--r);font-weight:bold}
+.mu{color:var(--mu)}
+#st{min-height:22px}
+ol{padding-left:20px;margin:6px 0}li{margin:4px 0}
+label{font-size:14px}label select{margin-left:6px}
+details{margin:8px 0}summary{cursor:pointer;font-weight:bold;font-size:14px;padding:6px 0}
+.og{display:grid;gap:10px;padding:6px 0;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));align-items:center}
+.og .row{grid-column:1/-1;margin:0}
+.dd{border-top:1px solid var(--ln);margin:0}
+</style></head><body><main>
+<h1>The Hiker Problem</h1>
+<div class="card tl"><b>Problem.</b> On Day 1, a hiker leaves the foot of a mountain at 08:00 and reaches the summit at 20:00. On Day 2, he leaves the summit at 08:00 and descends by the <i>same</i> trail, arriving at the foot at 20:00. His speed is arbitrary on both days. <b>Show that there is at least one point of the trail that he passes at exactly the same time of day on both days.</b><div class="mu" style="font-size:13px;margin-top:6px">Watch the two days below, then open the Solution section.</div></div>
+
+<div class="card">
+<svg id="m" viewBox="0 0 400 190" role="img" aria-label="A hiker climbs the mountain on Day 1 and descends on Day 2"></svg>
+<div class="row" style="flex-wrap:nowrap"><button id="pm" style="min-width:112px">Pause</button><b class="mono" id="mc" style="font-size:18px">Day 1 · 08:00</b></div>
+<input type="range" id="ms" min="0" max="720" value="0" aria-label="Time of day">
+<details class="opt"><summary>Options</summary><div class="og">
+<label>Speed <select id="sp"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+<label><input type="checkbox" id="rs"> Include rests</label>
+<label><input type="checkbox" id="wg"> Allow backtracking</label>
+<div class="row"><button id="nw">New paths</button><button id="nm">New mountain</button></div>
+</div></details>
+</div>
+
+<div class="card"><h2>Solution</h2>
+<details class="dd"><summary>Hint</summary><div class="mu">Imagine both walks take place on the same day, one hiker climbing from the foot while another descends from the summit. What must happen to the gap between them?</div></details>
+<details class="dd" id="fs"><summary>Full solution</summary><div>
+<p><b>TL;DR.</b> Superimposing the two days gives two walkers moving in opposite directions along one path, so they must meet. That meeting is a place passed at the same time of day on both days.</p>
+<svg id="s" viewBox="0 0 400 190" role="img" aria-label="Both days superimposed"></svg>
+<div class="row" style="flex-wrap:nowrap"><button id="ps" style="min-width:78px">Pause</button><b class="mono" id="sc" style="font-size:18px">08:00</b></div>
+<input type="range" id="ss" min="0" max="720" value="0" aria-label="Time of day">
+<div id="st" class="mono"></div>
+<div class="row"><label><input type="checkbox" id="rv"> Reveal meeting point(s)</label><button id="jm">Jump to meeting</button></div>
+<svg id="gr" viewBox="0 0 400 230" role="img" aria-label="Position against time of day for both days"></svg>
+<div class="mu" style="font-size:13px"><span class="b">Blue</span>: Day 1 ascent. <span class="o">Orange</span>: Day 2 descent. <span class="r">Red</span>: meeting point(s), shown only when revealed and after the hikers have met.</div>
+<ol>
+<li>Let u(t) and d(t) be the positions (0 = foot, 1 = summit) at time t on Day 1 and Day 2. Both are continuous on [8, 20].</li>
+<li>Define g(t) = u(t) − d(t), continuous on [8, 20].</li>
+<li>At 08:00: g = 0 − 1 = −1 &lt; 0. At 20:00: g = 1 − 0 = +1 &gt; 0.</li>
+<li>By the Intermediate Value Theorem, some t* has g(t*) = 0, i.e. u(t*) = d(t*): same place, same time of day.</li>
+</ol>
+<div class="mu" style="font-size:13px">Live: <span class="mono" id="gv"></span>. Generically the number of meetings is odd; monotone walks give exactly one.</div>
+</div></details></div>
+</main>
+<script>
+const $=id=>document.getElementById(id),N='http://www.w3.org/2000/svg';
+let EK=[0,.12,.3,.5,.72,.9,1],K1,K2,tm=0,ts=0,pm=true,ps=true,spd=1,X0=[],MK=[],hdM=0,hdS=0;
+function cr(K,x){const n=K.length-1,s=Math.min(Math.max(x,0),1)*n,i=Math.min(Math.floor(s),n-1),u=s-i,a=K[Math.max(i-1,0)],b=K[i],c=K[i+1],d=K[Math.min(i+2,n)];return .5*(2*b+(c-a)*u+(2*a-5*b+4*c-d)*u*u+(3*b-a-3*c+d)*u*u*u)}
+function rm(){EK=[0];const n=6;for(let i=1;i<n;i++){const b=i/n;EK.push(Math.min(.97,Math.max(.03,b+(Math.random()-.5)*.7*Math.sin(Math.PI*b))))}EK.push(1)}
+const X=s=>30+340*s,E=s=>.9*Math.min(1,Math.max(0,cr(EK,s))),Y=s=>170-130*E(s);
+const ss=u=>u*u*(3-2*u);
+function gen0(w){const n=5+Math.floor(Math.random()*3);let r=[];for(let i=0;i<n;i++)r.push(Math.random());
+ if(!w){r.sort((a,b)=>a-b);for(let i=1;i<n;i++)if(Math.random()<.25)r[i]=r[i-1]}
+ return[0,...r,1]}
+function gen(){const w=$('wg').checked;
+ if($('rs').checked)return{K:gen0(w),M:null};
+ const m=6+Math.floor(Math.random()*3);let K=[0];
+ if(w){for(let i=1;i<m;i++)K.push(Math.random());K.push(1)}
+ else{const g=[];let T=0;for(let i=0;i<m;i++){const v=.25+Math.random()*1.5;g.push(v);T+=v}let c=0;for(let i=0;i<m-1;i++){c+=g[i]/T;K.push(c)}K.push(1)}
+ const h=1/m,M=[];
+ for(let i=0;i<=m;i++){
+  if(w){const a=Math.max(i-1,0),b=Math.min(i+1,m);M.push((K[b]-K[a])/((b-a)*h))}
+  else{const l=i>0?(K[i]-K[i-1])/h:null,r=i<m?(K[i+1]-K[i])/h:null;M.push(l==null?r:r==null?l:2*l*r/(l+r))}}
+ return{K,M}}
+function f0(K,x){const k=K.length-1,s=Math.min(Math.max(x,0),1)*k,i=Math.min(Math.floor(s),k-1);return K[i]+(K[i+1]-K[i])*ss(s-i)}
+function f(S,x){if(!S.M)return f0(S.K,x);
+ const K=S.K,M=S.M,m=K.length-1,h=1/m,s=Math.min(Math.max(x,0),1)*m,i=Math.min(Math.floor(s),m-1),u=s-i,u2=u*u,u3=u2*u;
+ const v=(2*u3-3*u2+1)*K[i]+(u3-2*u2+u)*h*M[i]+(3*u2-2*u3)*K[i+1]+(u3-u2)*h*M[i+1];return Math.min(1,Math.max(0,v))}
+const U=x=>f(K1,x),D=x=>1-f(K2,x);
+const hm=x=>{const m=Math.round(480+x*720);return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')};
+const sg=v=>(v<0?'−':'+')+Math.abs(v).toFixed(2);
+function el(n,a,p){const e=document.createElementNS(N,n);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
+const gp=x=>40+350*x,gq=v=>200-170*v;
+function base(p,hs){$(p).innerHTML='<polygon id="'+p+'P" fill="var(--m)" stroke="var(--ln)"/><polyline id="'+p+'T" fill="none" stroke="var(--mu)" stroke-width="2" stroke-dasharray="4 3"/><text x="26" y="184" font-size="11" fill="var(--mu)">Foot</text><text id="'+p+'U" font-size="11" fill="var(--mu)">Summit</text>'+hs}
+const hk={0:{l:null,ph:0,f:1,a:0},1:{l:null,ph:0,f:1,a:0},2:{l:null,ph:0,f:-1,a:0}};
+function mk(i,c,hat,lab){const g=$('h'+i);
+ g.innerHTML='<text y="-33" text-anchor="middle" font-size="8" fill="var(--fg)" font-family="sans-serif">'+lab+'</text><g class="fl"><g class="bd">'+
+ '<g class="lb"><line y1="-8" y2="-1.5" stroke="#374151" stroke-width="3" stroke-linecap="round"/><rect x="-1.5" y="-2.5" width="5.5" height="2.6" rx="1.2" fill="#5b3a29"/></g>'+
+ '<g class="rb"><line y1="-15" y2="-8.5" stroke="'+c+'" stroke-width="2.6" stroke-linecap="round"/></g>'+
+ '<rect x="-8.5" y="-18" width="6" height="9" rx="2" fill="#a16207"/>'+
+ '<rect x="-3.8" y="-17.5" width="7.6" height="10" rx="3" fill="'+c+'"/>'+
+ '<g class="lf"><line y1="-8" y2="-1.5" stroke="#4b5563" stroke-width="3" stroke-linecap="round"/><rect x="-1.5" y="-2.5" width="5.5" height="2.6" rx="1.2" fill="#7c4a2d"/></g>'+
+ '<g class="rf"><line y1="-15" y2="-8.5" stroke="'+c+'" stroke-width="2.6" stroke-linecap="round"/><line y1="-9" x2="3" y2="1" stroke="#8b5e34" stroke-width="1" stroke-linecap="round"/></g>'+
+ '<circle cy="-22.5" r="4.6" fill="#f2c9a0"/><path d="M-5.1,-23.5 A5.1,5.1 0 0 1 5.1,-23.5 Z" fill="'+hat+'"/><rect x="1" y="-24.4" width="6.5" height="1.6" rx=".8" fill="'+hat+'"/>'+
+ '<circle cx="2" cy="-22" r=".7" fill="#222"/><path d="M1,-19.8 q1.5,1.2 3,0" stroke="#222" stroke-width=".6" fill="none"/></g></g>';
+ const q=c=>g.querySelector('.'+c);hk[i].r={fl:q('fl'),bd:q('bd'),lf:q('lf'),lb:q('lb'),rf:q('rf'),rb:q('rb')}}
+function pose(i,s){const h=hk[i],r=h.r;let dl=0;
+ if(h.l!=null){dl=s-h.l;if(Math.abs(dl)>.2)dl=0;else if(Math.abs(dl)>1e-5)h.f=dl>0?1:-1}
+ h.l=s;h.ph+=Math.abs(dl)/.047*6.283;
+ h.a+=(Math.min(1,Math.sqrt(Math.abs(dl)/.0009))-h.a)*.25;
+ const a=h.a,sw=Math.sin(h.ph)*34*a,rot=(v,y)=>'rotate('+v.toFixed(1)+' 0 '+y+')';
+ r.lf.setAttribute('transform',rot(sw,-8));r.lb.setAttribute('transform',rot(-sw,-8));
+ r.rf.setAttribute('transform',rot(-sw*.9,-15));r.rb.setAttribute('transform',rot(sw*.9,-15));
+ const bob=-Math.abs(Math.cos(h.ph))*1.3*a+Math.sin(performance.now()/450)*.4*(1-a);
+ r.bd.setAttribute('transform','translate(0,'+bob.toFixed(2)+') rotate('+(4+8*a).toFixed(1)+')');
+ r.fl.setAttribute('transform','scale('+(h.f*.85)+',.85)');
+ $('h'+i).setAttribute('transform','translate('+X(s)+','+Y(s)+')')}
+function terrain(){let tr='';for(let i=0;i<=100;i++){const s=i/100;tr+=X(s)+','+Y(s)+' '}
+ ['m','s'].forEach(p=>{$(p+'T').setAttribute('points',tr);$(p+'P').setAttribute('points','0,170 '+tr+'400,'+(Y(1)+25)+' 400,170');$(p+'U').setAttribute('x',X(1)-22);$(p+'U').setAttribute('y',Y(1)-12)})}
+function build(keep){
+ if(!keep){K1=gen();K2=gen()}
+ terrain();
+ X0=[];MK=[];let pg=U(0)-D(0);
+ for(let i=1;i<=1440;i++){const x=i/1440,g=U(x)-D(x);if(pg<0&&g>=0||pg>0&&g<=0){const a=(i-1)/1440;X0.push(a+(0-pg)/(g-pg)/1440)}pg=g}
+ const g=$('gr');g.innerHTML='';
+ el('rect',{x:40,y:30,width:350,height:170,fill:'none',stroke:'var(--ln)'},g);
+ [0,.25,.5,.75,1].forEach(x=>{el('line',{x1:gp(x),x2:gp(x),y1:30,y2:200,stroke:'var(--ln)','stroke-dasharray':'2 3'},g);
+  const t=el('text',{x:gp(x),y:216,'text-anchor':'middle','font-size':10,fill:'var(--mu)'},g);t.textContent=hm(x)});
+ [['Summit',1],['Foot',0]].forEach(([l,v])=>{const t=el('text',{x:36,y:gq(v)+3,'text-anchor':'end','font-size':10,fill:'var(--mu)'},g);t.textContent=l});
+ [U,D].forEach((F,j)=>{let d='';for(let i=0;i<=240;i++){const x=i/240;d+=(i?'L':'M')+gp(x).toFixed(1)+' '+gq(F(x)).toFixed(1)}
+  el('path',{d,fill:'none',stroke:j?'var(--o)':'var(--b)','stroke-width':2.5},g)});
+ X0.forEach(z=>{const c=el('circle',{cx:gp(z),cy:gq(U(z)),r:6,fill:'none',stroke:'var(--r)','stroke-width':2.5},g);c._z=z;c.style.display='none';MK.push(c)});
+ el('line',{id:'cur',y1:30,y2:200,stroke:'var(--fg)','stroke-width':1.2},g);
+ el('circle',{id:'c1',r:4.5,fill:'var(--b)'},g);el('circle',{id:'c2',r:4.5,fill:'var(--o)'},g);
+ const m=$('sK');m.innerHTML='';
+ X0.forEach(z=>{const s=U(z);const c=el('circle',{cx:X(s),cy:Y(s)-7,r:11,fill:'none',stroke:'var(--r)','stroke-width':2,'stroke-dasharray':'3 2'},m);c._z=z;c.style.display='none';MK.push(c)});
+ draw()}
+function drawM(){const x=tm<=1?tm:tm-1,s=tm<=1?U(x):D(x);
+ $('mc').textContent='Day '+(tm<=1?1:2)+' · '+hm(x);$('ms').value=Math.round(x*720);pose(0,s)}
+function drawS(){
+ const u=U(ts),d=D(ts),g=u-d;
+ $('sc').textContent=hm(ts);$('ss').value=Math.round(ts*720);
+ pose(1,u);pose(2,d);
+ $('cur').setAttribute('x1',gp(ts));$('cur').setAttribute('x2',gp(ts));
+ $('c1').setAttribute('cx',gp(ts));$('c1').setAttribute('cy',gq(u));
+ $('c2').setAttribute('cx',gp(ts));$('c2').setAttribute('cy',gq(d));
+ $('gv').textContent='g(t) = u − d = '+sg(g)+'  |  g(08:00) = −1.00, g(20:00) = +1.00';
+ const sh=$('rv').checked;MK.forEach(c=>c.style.display=sh&&ts>=c._z?'':'none');$('jm').disabled=!sh;
+ const past=X0.filter(z=>ts>=z),near=sh&&past.some(z=>ts-z<.02);
+ $('st').innerHTML=sh&&past.length?(near?'<span class="r">Meeting: same place at the same clock time.</span>':'Met at '+past.map(z=>hm(z)).join(', ')+'.'):'Both hikers are on the trail. Watch for the moment they cross.'}
+function draw(){drawM();drawS()}
+let last=0;
+function loop(now){const dt=Math.min((now-last)/1000,.1);last=now;
+ if(pm){if(hdM>0){hdM-=dt;if(hdM<=0&&tm>=2)tm=0}else{const o=tm;tm+=dt*spd/12;if(o<1&&tm>=1){tm=1;pm=false;$('pm').textContent='Start Day 2'}else if(tm>=2){tm=2;hdM=1.8}}drawM()}
+ if(ps&&$('fs').open){if(hdS>0){hdS-=dt;if(hdS<=0)ts=0}else{ts+=dt*spd/12;if(ts>=1){ts=1;hdS=1.8}}drawS()}
+ requestAnimationFrame(loop)}
+$('pm').onclick=()=>{pm=!pm;$('pm').textContent=pm?'Pause':'Play'};
+$('ps').onclick=()=>{ps=!ps;$('ps').textContent=ps?'Pause':'Play'};
+$('ms').oninput=e=>{const x=e.target.value/720;tm=tm<=1?x:1+Math.max(x,1e-4);hdM=0;pm=false;$('pm').textContent='Play';drawM()};
+$('ss').oninput=e=>{ts=e.target.value/720;hdS=0;ps=false;$('ps').textContent='Play';drawS()};
+$('sp').onchange=e=>spd=+e.target.value;
+$('nw').onclick=()=>build();$('wg').onchange=()=>build();$('rs').onchange=()=>build();
+$('nm').onclick=()=>{rm();build(1)};
+$('rv').onchange=drawS;$('fs').ontoggle=drawS;
+$('jm').onclick=()=>{ts=X0[0];ps=false;$('ps').textContent='Play';drawS()};
+base('m','<g id="h0"></g>');base('s','<g id="sK"></g><g id="h1"></g><g id="h2"></g>');
+mk(0,'#2563eb','#dc2626','');mk(1,'#2563eb','#dc2626','Day 1');mk(2,'#ea7a12','#2f855a','Day 2');
+build();requestAnimationFrame(loop);
+</script></body></html>

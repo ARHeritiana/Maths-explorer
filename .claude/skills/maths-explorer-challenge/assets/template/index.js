@@ -5,7 +5,7 @@ import { int, P } from "../common/helpers.js";
 import { svg, dot } from "../common/icon.js";
 import { handshakes } from "./maths.js";
 export { activity } from "./activity.js";
-export { diagram } from "./solution.js";
+export { diagram, scene } from "./solution.js";
 
 export const card = {
   id: "__ID__",                 // = folder name, lower case and hyphens

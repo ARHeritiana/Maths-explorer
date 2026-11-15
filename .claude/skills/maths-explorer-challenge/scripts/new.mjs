@@ -11,6 +11,6 @@ const dir = path.join(repo, "site/js/challenges", id), testFile = path.join(repo
 if (existsSync(dir) || existsSync(testFile)) { console.error(`${dir} or ${testFile} already exists`); process.exit(1); }
 mkdirSync(dir, { recursive: true });
 const fill = (f) => readFileSync(path.join(tpl, f), "utf8").replaceAll("__ID__", id);
-for (const f of ["index.js", "maths.js", "activity.js", "solution.js"]) writeFileSync(path.join(dir, f), fill(f));
+for (const f of ["index.js", "maths.js", "activity.js", "solution.js", "art.js"]) writeFileSync(path.join(dir, f), fill(f));
 writeFileSync(testFile, fill("test.mjs"));
 console.log(`created ${path.relative(repo, dir)}/ and ${path.relative(repo, testFile)}`);
