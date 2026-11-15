@@ -12,6 +12,8 @@
 .page-heading p, .page-intro, .lab-heading p, .library-heading p { margin: 0; color: var(--ink-2); max-width: 62ch; }
 .section-kicker, .breadcrumb, .eyebrow { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; color: var(--muted); font-size: 0.95rem; font-weight: 700; }
 .breadcrumb span { opacity: 0.6; }
+.chapter-heading .breadcrumb { align-items: center; margin-bottom: 0; }
+.chapter-heading .breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
 .muted { color: var(--muted); font-size: 0.95rem; }
 .backlink, .back-library, .library-back { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 8px; color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
 .error { margin: 0; color: var(--neg); font-weight: 700; }
@@ -388,6 +390,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .act-field { display: grid; gap: 2px; flex: 1 1 220px; min-width: 0; font-weight: 700; }
 .act-label { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 8px; }
 .act-field output { font: 600 1.1rem var(--math); color: var(--accent); font-variant-numeric: tabular-nums; }
+.range-ends { display: flex; justify-content: space-between; font-weight: 400; font-size: 0.8rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
 .act-number input { width: 9rem; }
 .act-check { display: flex; align-items: center; gap: 8px; min-height: 44px; }
 .act-check input, .act-choice input { width: 18px; height: 18px; accent-color: var(--accent); }
@@ -447,7 +450,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 
 /* pigeonhole */
 .pick-grid { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; }
-.pick { min-height: 40px; padding: 0; border: 1.5px solid var(--line-strong); border-radius: 0; background: var(--surface); font: 600 0.95rem var(--math); transition: background-color var(--t); }
+.pick { min-height: 40px; padding: 0; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); font: 700 0.95rem var(--ui); font-variant-numeric: tabular-nums; transition: background-color var(--t); }
 .pick[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .pick.clash { background: var(--neg); border-color: var(--neg); color: var(--surface); }
 

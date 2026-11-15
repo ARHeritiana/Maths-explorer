@@ -90,6 +90,8 @@ motionPreference.addEventListener?.("change", () => {
 const t = (pair) => pair[lang === "fr" ? 0 : 1];
 const fmt = (n, d = 3) => formatNumber(n, lang, d);
 const pair = (fr, en) => t([fr, en]);
+// The header and footer speak the reader's chosen language, even on a page whose content has one edition.
+const inChosenLanguage = (draw) => { const kept = lang; lang = preferredLang; try { return draw(); } finally { lang = kept; } };
 function save() {
   try {
     localStorage.setItem(
@@ -99,7 +101,7 @@ function save() {
   } catch {
     storageWorks = false;
   }
-  if ($("footer")) $("footer").outerHTML = footer();
+  if ($("footer")) $("footer").outerHTML = inChosenLanguage(footer);
 }
 // What a gallery exhibit remembers while the visitor browses: the values of its controls and the answer to its question.
 function state(lab) {
@@ -143,6 +145,8 @@ const SECTIONS = [
 // pages reached from a tab count as that tab
 const TAB_OF = { chapter: "resources", library: "resources", workshop: "resources", pack: "resources", sources: "resources" };
 function header(page) {
+  const contentLang = document.documentElement.lang || lang;
+  const singleEdition = contentLang === "fr" ? pair("Cette page existe en français seulement.", "This page is only available in French.") : pair("Cette page existe en anglais seulement.", "This page is only available in English.");
   const tab = page === "bank" && route().id === "annales" ? "bank/annales" : TAB_OF[page] || page;
   const section = SECTIONS.find(([, , , , tabs]) => tabs.some(([id]) => id === tab));
   const dark = currentTheme() === "nuit";
@@ -156,7 +160,7 @@ function header(page) {
   const modeBar = showModeBar({ entry, page }) ? (active => `<nav class="modebar" aria-label="${pair("Modes", "Modes")}">${MODES.map(m => `<a href="${m.hash}" data-teacher-mode="${m.id}"${active === m.id ? ' aria-current="page"' : ""}>${pair(...m.label)}</a>`).join("")}<a class="modebar-switch" href="#home" data-set-entry="student">${pair("Espace élève", "Student area")}</a></nav>`)(modeOfRoute(page, teacherState.getMode())) : "";
   const audience = effectiveEntry(entry), who = AUDIENCES.find(a => a.id === audience);
   const audienceMenu = `<details class="audience-menu"><summary aria-label="${pair("Profil", "Profile")} : ${t(who.label)}. ${pair("Changer de profil", "Change profile")}" title="${pair("Changer de profil", "Change profile")}">${icon(audience === "teacher" ? "presentation-chart" : audience === "student" ? "graduation-cap" : "user", 20)}<span>${t(who.label)}</span></summary><div class="audience-list" role="group" aria-label="${pair("Profil", "Profile")}">${AUDIENCES.map(a => `<a href="${a.hash}" data-set-entry="${a.id}"${a.id === audience ? ' aria-current="true"' : ""}><b>${t(a.label)}</b><span>${t(a.hint)}</span></a>`).join("")}<p>${pair("Mémorisé sur cet appareil.", "Remembered on this device.")}</p></div></details>`;
-  return `<header class="topbar"><a class="brand" href="${homeHash(entry)}" aria-label="${SITE_NAME}">${brandMark}<span class="brand-name">${SITE_NAME}</span></a><button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">${pair("Menu","Menu")}</button><nav id="primary-nav" class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${sectionLinks}</nav><div class="tools">${audienceMenu}<a class="icon-btn" href="#search" data-search-link aria-label="${pair("Rechercher une ressource", "Search resources")}" title="${pair("Rechercher une ressource", "Search resources")}"${route().page === "search" ? ' aria-current="page"' : ""}>${icon("magnifying-glass", 22)}</a><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" ${(["chapter","university","workshop"].includes(route().page)||(route().page==="library"&&route().id))?"hidden":""} role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>${modeBar}${subnav}`;
+  return `<header class="topbar"${lang !== contentLang ? ` lang="${lang}"` : ""}><a class="brand" href="${homeHash(entry)}" aria-label="${SITE_NAME}">${brandMark}<span class="brand-name">${SITE_NAME}</span></a><button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">${pair("Menu","Menu")}</button><nav id="primary-nav" class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${sectionLinks}</nav><div class="tools">${audienceMenu}<a class="icon-btn" href="#search" data-search-link aria-label="${pair("Rechercher une ressource", "Search resources")}" title="${pair("Rechercher une ressource", "Search resources")}"${route().page === "search" ? ' aria-current="page"' : ""}>${icon("magnifying-glass", 22)}</a><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" role="group" aria-label="${pair("Langue", "Language")}"${lang !== contentLang ? ` aria-describedby="language-note" title="${singleEdition}"` : ""}><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button>${lang !== contentLang ? `<span id="language-note" class="sr-only">${singleEdition}</span>` : ""}</div></div></header>${modeBar}${subnav}`;
 }
 function footer() {
   return `<footer><span class="foot-brand">${SITE_NAME}</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><nav class="foot-links" aria-label="${pair("Autres pages", "More pages")}">${effectiveEntry(teacherState.getEntry()) !== "teacher" ? `<a class="foot-switch" href="#teacher" data-set-entry="teacher">${pair("Espace professeur", "Teacher area")}</a>` : ""}<a href="#pack">${pair("Dossier sur mesure", "Custom pack")}</a><a href="#sources">${pair("Sources LaTeX", "LaTeX sources")}</a><a href="${MIKAJY_SPARK_DOWNLOAD_URL}" target="_blank" rel="noopener noreferrer">Mikajy Spark (Android)</a><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.${lang}" rel="license noopener" target="_blank">${pair("Licence CC BY-NC-SA 4.0", "CC BY-NC-SA 4.0 licence")}</a></nav></footer>`;
@@ -209,7 +213,7 @@ function render() {
   if(page==='chapter')rememberCourse(resourceCatalog.chapters.find(c=>c.id===r.id)?.course);
   document.body.dataset.page=page;
   $("#app").innerHTML =
-    header(page) +
+    inChosenLanguage(() => header(page)) +
     (page === "search" ? searchLoading() : page === "teacher" ? teacherLoading() : page === "prepare" ? modeLoading(pair("Préparer", "Prepare")) : page === "relax" ? modeLoading(pair("Détente", "Relax")) : page === "review" ? modeLoading(pair("Réviser", "Review")) : page === "basics" ? basicsPage(r.id, { t, pair, lang, assetHref }) : page === "home" ? homePage({ pair, t, link, index:discovery, last, audience: effectiveEntry(teacherState.getEntry()) }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "bank" ? bankPage(t, r.id, r.tab) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "automatismes" ? automatismesPage(t, pair) : page === "sheets" ? sheetsPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "topics" ? discoveryPage(discovery,r.id,r.tab,t)
       : page === "history" ? historyPage(r.id,r.tab,t,discovery)
@@ -226,7 +230,7 @@ function render() {
         : page === "library"
           ? `<main id="main" tabindex="-1" class="library-page"></main>`
           : `<main id="main" tabindex="-1" class="page"><h1>${pair("Page introuvable", "Page not found")}</h1><a href="#lab">${pair("Ouvrir le laboratoire", "Open the laboratory")}</a></main>`) +
-    footer();
+    inChosenLanguage(footer);
   if(r.id && page!=='topics') {
     const context=discoveryContext(discovery,`#${page}/${r.id}${page==='history'&&r.tab?'/'+r.tab:''}`,t);
     if(context) $('#main')?.insertAdjacentHTML('beforeend',context);
@@ -375,7 +379,7 @@ function bindCommon() {
     toggleTheme();
     homeFigure?.retheme();
     const dark = currentTheme() === "nuit";
-    const label = dark ? pair("Passer au thème clair", "Switch to light theme") : pair("Passer au thème sombre", "Switch to dark theme");
+    const label = inChosenLanguage(() => dark ? pair("Passer au thème clair", "Switch to light theme") : pair("Passer au thème sombre", "Switch to dark theme"));
     const button = $("[data-theme-toggle]");
     button.setAttribute("aria-label", label);
     button.title = label;
@@ -493,7 +497,7 @@ function variationPanel(c) {
   if (!hasVariants(c.id)) return "";
   const q = paramsOf(c.id);
   const controls = VARIANTS[c.id].params.map((prm) => prm.kind === "int"
-    ? `<label class="var-field"><span class="var-label">${t(prm.label)} <output data-out="${prm.id}">${c.id === "konigsberg" && q[prm.id] === 0 ? pair("0 (Königsberg)", "0 (Königsberg)") : q[prm.id]}</output></span><input type="range" data-var="${prm.id}" min="${prm.min}" max="${prm.max}" step="${prm.step}" value="${q[prm.id]}"></label>`
+    ? `<label class="var-field" for="var-${prm.id}"><span class="var-label">${t(prm.label)} <output data-out="${prm.id}">${c.id === "konigsberg" && q[prm.id] === 0 ? pair("0 (Königsberg)", "0 (Königsberg)") : q[prm.id]}</output></span><input type="range" id="var-${prm.id}" data-var="${prm.id}" min="${prm.min}" max="${prm.max}" step="${prm.step}" value="${q[prm.id]}"><span class="range-ends" aria-hidden="true"><span>${prm.min}</span><span>${prm.max}</span></span></label>`
     : `<div class="var-field"><label for="var-${prm.id}">${t(prm.label)}${prm.fields ? ' · ' + pair('Exemples facultatifs', 'Optional examples') : ''}</label><select id="var-${prm.id}" data-var="${prm.id}">${prm.fields ? `<option value="custom">${pair('Mes valeurs', 'My values')}</option>` : ''}${prm.options.map(([val, fr, en]) => `<option value="${val}" ${String(q[prm.id]) === String(val) ? 'selected' : ''}>${pair(fr, en)}</option>`).join('')}</select>${prm.fields ? `<div class="var-numbers">${prm.fields.map((field, i) => `<label>${t(field.label)}<input type="number" inputmode="numeric" min="${field.min}" max="${field.max}" step="1" required data-custom="${prm.id}" data-part="${i}" value="${String(q[prm.id]).split(',')[i]}"></label>`).join('')}</div><button class="secondary" type="button" data-apply="${prm.id}">${pair('Appliquer mes valeurs', 'Apply my values')}</button>` : ''}</div>`).join("");
   return `<details class="variation" aria-labelledby="variation-title"><summary id="variation-title">${pair("Modifier les données", "Change the data")}</summary><p class="muted">${pair("Choisis tes valeurs. Le problème, la solution et l’expérience suivront tes réglages.", "Choose your own values. The problem, solution and experiment will follow your settings.")}</p><div class="var-controls">${controls}</div><div class="variation-actions"><button class="text-button" id="var-random" type="button">${pair("Au hasard", "Surprise me")}</button><button class="text-button" id="var-reset" type="button">${pair("Valeurs d’origine", "Original values")}</button></div></details>`;
 }
