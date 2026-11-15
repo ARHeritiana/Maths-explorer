@@ -14,7 +14,7 @@ sheets, and the preparation page shows how many are planned.
 ## The unit of work
 
 A chapter (séquence) runs about 8 to 12 sessions: diagnostic questions, an introductory activity, lesson, exercises,
-a written check, a homework (DM), a supervised test (DS), then correction and remediation. A session (55 min) runs:
+a written check, a homework (DM), a supervised test (DS), then correction and remediation. A session (55 min by default; the teacher sets its length in Préparer) runs:
 entry (0 to 3), automatismes ritual (3 to 10), homework correction (10 to 18), activity or lesson (18 to 35),
 exercises (35 to 50), wrap-up and homework (50 to 55).
 
@@ -73,7 +73,7 @@ on tool pages, hidden in full-screen projection and brought back by a tab on the
 ### Préparer (`#prepare`)
 
 The teacher has time: choose and assemble. Chapter sheet (prerequisites, errors to expect, resources by phase), a
-séance builder (add resources from the search index, order them, durations against 55 min, print count with a
+séance builder (add resources from the search index, order them, durations against the séance length the teacher chose, 55 min unless changed (the standard séance fills that length), print count with a
 gentle warning above 3), then **Évaluer**: fiches et évaluations (DS, interrogations, subjects A and B), annales,
 common errors as remediation. The séance saved here is the one offered in class.
 
