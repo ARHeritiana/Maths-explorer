@@ -1,5 +1,4 @@
-// The doors challenge: card text, variations (checked answer, statement, solution text), original question, emblem and
-// hint actions. Everything else about this challenge is in this folder; registry.js lists the folders.
+// The doors challenge: card text, variations (checked answer, statement, solution text), original question, emblem. Everything else about this challenge is in this folder; registry.js lists the folders.
 import { int, P } from "../common/helpers.js";
 import { svg, soft, dot } from "../common/icon.js";
 export { activity } from "./activity.js";
@@ -13,7 +12,6 @@ export const card = {
   topic: ["Nombres entiers", "Whole numbers"],
   difficulty: 2,
   minutes: 10,
-  hints: [["La porte n change d’état une fois par diviseur positif de n.", "Door n is toggled once for each positive divisor of n."], ["Les diviseurs se regroupent par paires d et n/d. Quand sont-ils égaux ?", "Divisors pair up as d and n/d. When are they equal?"]],
   extension: ["Combien de portes restent ouvertes s’il y en a N ? Explique pourquoi.", "How many remain open with N doors? Explain why."],
 };
 
@@ -30,4 +28,3 @@ export const original = (q) => P(
 
 export const icon = svg(`<rect x="6" y="14" width="14" height="38" rx="2"/><rect class="ci-door" x="25" y="14" width="14" height="38" rx="2" ${soft}/><rect x="44" y="14" width="14" height="38" rx="2"/>${dot(16, 33, 1.8)}${dot(41, 33, 1.8)}${dot(54.5, 33, 1.8)}`);
 
-export const hintActions = { 0: ["divisors", "Écrire le nombre de diviseurs sur chaque porte", "Write the number of divisors on each door"] };

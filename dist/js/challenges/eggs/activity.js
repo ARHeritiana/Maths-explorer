@@ -1,7 +1,11 @@
+
 // Hands-on activity of the eggs challenge: the learner tries, fails and notices; it never states the answer or the method.
 
+import { goalLine } from "../common/kit.js";
+import { cartoonPress, PRESS } from "../common/cartoon.js";
+
 /* ------------------------------------------------------------------ eggs */
-export function activity(root, { t, q }) {
+export function activity(root, { t, q, reduced }) {
   const FLOORS = q.floors, EGGS = Number(q.eggs);
   let crit, left, drops, log, lo, hi, done;
   const fresh = () => {
@@ -9,7 +13,7 @@ export function activity(root, { t, q }) {
     left = EGGS; drops = 0; log = []; lo = 0; hi = FLOORS + 1; done = false;
   };
   root.innerHTML = `
-    <p class="act-help">${t(`Touche un étage pour y lâcher un œuf. Un œuf intact peut resservir, un œuf brisé non. Tu as ${EGGS} œufs. Cherche l’étage critique : le plus haut étage d’où un œuf ne se brise pas (0 s’il se brise dès l’étage 1).`, `Tap a floor to drop an egg from it. An intact egg can be reused, a broken one cannot. You have ${EGGS} eggs. Find the critical floor: the highest floor from which an egg does not break (0 if it breaks from floor 1).`)}</p>
+    ${goalLine(t, `Trouve l’étage critique.`, `Find the critical floor.`, `Touche un étage pour y lâcher un œuf. Un œuf intact peut resservir, un œuf brisé non. Tu as ${EGGS} œufs. Cherche l’étage critique : le plus haut étage d’où un œuf ne se brise pas (0 s’il se brise dès l’étage 1).`, `Tap a floor to drop an egg from it. An intact egg can be reused, a broken one cannot. You have ${EGGS} eggs. Find the critical floor: the highest floor from which an egg does not break (0 if it breaks from floor 1).`)}
     <div class="egg-status" id="eg-status" aria-hidden="true"></div>
     <div class="egg-grid" id="eg-grid" role="group" aria-label="${t(`Immeuble de ${FLOORS} étages`, `Building with ${FLOORS} floors`)}"></div>
     <div class="act-controls">
@@ -26,7 +30,7 @@ export function activity(root, { t, q }) {
       const info = log.find((l) => l.f === f);
       const b = document.createElement("button");
       b.type = "button";
-      b.className = `floor${info ? (info.broke ? " broke" : " safe") : f > lo && f < hi ? " maybe" : ""}`;
+      b.className = `${PRESS} floor${info ? (info.broke ? " broke" : " safe") : f > lo && f < hi ? " maybe" : ""}`;
       b.textContent = f;
       b.dataset.f = f;
       b.disabled = done || left === 0 || !!info;
@@ -56,11 +60,11 @@ export function activity(root, { t, q }) {
     if (!Number.isInteger(v) || v < 0 || v > FLOORS || root.querySelector("#eg-guess").value === "") { draw(t(`Entre un entier de 0 à ${FLOORS}.`, `Enter an integer from 0 to ${FLOORS}.`)); return; }
     done = true;
     const open = hi - lo - 1;   // floors still undecided after the drops
-    const why = open > 0 ? ` ${t(`Il restait ${open + 1} candidats (${lo} à ${hi - 1}) : ton plan n’avait pas assez de lancers ou d’œufs pour trancher, c’était un pari.`, `${open + 1} candidates were left (${lo} to ${hi - 1}): your plan did not have enough drops or eggs to decide, so it was a guess.`)}` : "";
+    const why = open > 0 ? ` ${t(`Il restait ${open + 1} candidats (${lo} à ${hi - 1}) : c’était un pari.`, `${open + 1} candidates were left (${lo} to ${hi - 1}): it was a guess.`)}` : "";
     draw(v === crit ? t(`Tu as annoncé ${v} : exact, l’étage critique est ${crit}. Tu as utilisé ${drops} lancers.`, `You announced ${v}: correct, the critical floor is ${crit}. You used ${drops} drops.`) + why : t(`Tu as annoncé ${v} : faux, l’étage critique était ${crit}.`, `You announced ${v}: wrong, the critical floor was ${crit}.`) + why);
   });
   root.querySelector("#eg-new").addEventListener("click", () => { fresh(); root.querySelector("#eg-guess").value = ""; draw(); });
   fresh();
   draw();
-  return () => {};
+  return cartoonPress(root, reduced);
 }

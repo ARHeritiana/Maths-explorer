@@ -1,9 +1,10 @@
 // Hands-on activity of the horses challenge: the learner tries, fails and notices; it never states the answer or the method.
 const caf = (id) => globalThis.cancelAnimationFrame?.(id);
-import { clamp } from "../common/kit.js";
+import { clamp, goalLine } from "../common/kit.js";
 import { horseRaces } from "./maths.js";
 import { makeHorse } from "./art.js";
 import { svgEl } from "../common/kit.js";
+import { cartoonPress } from "../common/cartoon.js";
 
 export const shuffled = (n) => { const a = Array.from({ length: n }, (_, i) => i); for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 
@@ -14,7 +15,7 @@ export function activity(root, { t, q, reduced }) {
   const calm = () => (typeof reduced === "function" ? reduced() : !!reduced);
   const fresh = () => { const p = shuffled(25); speed = (h) => p[h]; sel = new Set(); log = []; podium = []; mode = "race"; };
   root.innerHTML = `
-    <p class="act-help">${t(`Choisis de 2 à 5 chevaux et fais-les courir : tu vois seulement l’ordre d’arrivée, jamais les temps. Quand tu sais, propose ${TOP === 3 ? "le podium" : "le plus rapide"}. Glisse les chevaux pour les ranger comme tu veux sur le terrain (flèches du clavier aussi).`, `Pick 2 to 5 horses and race them: you only see the finishing order, never times. When you know, propose ${TOP === 3 ? "the podium" : "the fastest"}. Drag the horses to arrange them however you like on the field (arrow keys work too).`)}</p>
+    ${goalLine(t, `${TOP === 3 ? "Trouve le podium." : "Trouve le cheval le plus rapide."}`, `${TOP === 3 ? "Find the podium." : "Find the fastest horse."}`, `Choisis de 2 à 5 chevaux et fais-les courir : tu vois seulement l’ordre d’arrivée, jamais les temps. Quand tu sais, propose ${TOP === 3 ? "le podium" : "le plus rapide"}. Glisse les chevaux pour les ranger comme tu veux sur le terrain (flèches du clavier aussi).`, `Pick 2 to 5 horses and race them: you only see the finishing order, never times. When you know, propose ${TOP === 3 ? "the podium" : "the fastest"}. Drag the horses to arrange them however you like on the field (arrow keys work too).`)}
     <div class="cl-arena" id="hs-grid" role="group" aria-label="${t("Les 25 chevaux", "The 25 horses")}"></div>
     <svg class="act-svg hs-track" id="hs-track" viewBox="0 0 520 190" role="img" aria-label="${t("Piste de course : les chevaux choisis courent ici", "Race track: the chosen horses run here")}"></svg>
     <div class="act-buttons" style="margin-top:10px">
@@ -132,5 +133,6 @@ export function activity(root, { t, q, reduced }) {
   root.querySelector("#hs-clear").addEventListener("click", () => { sel = new Set(); podium = []; render(); });
   root.querySelector("#hs-new").addEventListener("click", () => { fresh(); render(); });
   fresh(); render();
-  return () => { caf(raf); };
+  const off = cartoonPress(root, reduced);
+  return () => { caf(raf); off(); };
 }

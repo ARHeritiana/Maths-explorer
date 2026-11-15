@@ -3,6 +3,7 @@
 // slip off and the picture falls and bounces or stays caught. No words, counters or tables: the scene is the only feedback (a
 // hidden status line serves screen readers). Motion in timeline.js, the stroke in gesture.js, drawings in art.js.
 import { colour, svgEl, toLocal } from "../common/kit.js";
+import { PRESS, installCartoon, pop } from "../common/cartoon.js";
 import { parseNails, NAMES } from "./maths.js";
 import { NAIL_Y, nailX, drawScene } from "./art.js";
 import { timeline, poseAt, poseOf, settled, easeInOut, clamp01 } from "./timeline.js";
@@ -13,25 +14,23 @@ const STYLE = `
 .nl-stage .act-svg{width:100%;height:auto;max-height:72vh;border:2px solid var(--ink);touch-action:none;display:block}
 .nl-controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
 .nl-turns{display:flex;flex-wrap:wrap;gap:8px}
-.nl-turns button,.nl-tools button{min-height:48px;min-width:48px;font-size:1.1rem;font-weight:700;border:2px solid var(--ink);transition:transform .22s cubic-bezier(.3,1.9,.5,1)}
-.nl-turns button:active,.nl-tools button:active{transform:scale(.88,.8)}
-.nl-turns button.is-pop{animation:nl-pop .35s cubic-bezier(.3,1.9,.5,1)}
+.nl-turns button,.nl-tools button{min-height:48px;min-width:48px;font-size:1.1rem;font-weight:700;border:2px solid var(--ink)}
 .nl-tools{display:flex;flex-wrap:wrap;gap:8px}
-@keyframes nl-pop{0%{transform:scale(1)}35%{transform:scale(.86,.78)}70%{transform:scale(1.08,1.12)}100%{transform:scale(1)}}
 .nl-stage [data-nail]{cursor:grab}.nl-stage [data-nail]:focus-visible circle{stroke:var(--accent);stroke-width:.6}
-@media (prefers-reduced-motion:reduce){.nl-turns button,.nl-tools button{transition:none}.nl-turns button:active,.nl-tools button:active{transform:none}.nl-turns button.is-pop{animation:none}}`;
+`;
 
 export function activity(root, { t, q, reduced: reducedPref }) {
   const reduced = () => (typeof reducedPref === "function" ? !!reducedPref() : !!reducedPref);
   const [n] = parseNails(q.nails), W = 100, H = 100, ny = NAIL_Y;
   let word = [], removed = 0, raf = 0, gesture = null, blocked = false, upTo = Infinity, held = null, show = poseOf(word, n, 0);
   const pointers = new Set();
+  installCartoon();
   root.innerHTML = `<style>${STYLE}</style>
     <div class="nl-stage">
       <svg class="act-svg" viewBox="0 0 ${W} ${H}" tabindex="0" role="group" aria-label="${t("Mur, clous, ficelle et tableau", "Wall, nails, string and picture")}"></svg>
       <div class="nl-controls">
-        <div class="nl-turns" role="group" aria-label="${t("Tours de ficelle", "Turns of string")}">${NAMES.slice(0, n).map((N, i) => `<button class="secondary" type="button" data-c="${i + 1}" style="border-color:var(--ink);background:color-mix(in srgb,${colour(i)} 22%,var(--surface))" aria-label="${t(`Un tour autour de ${N} dans le sens des aiguilles d’une montre`, `A clockwise turn around ${N}`)}">↻ ${N}</button><button class="secondary" type="button" data-c="${-(i + 1)}" style="background:color-mix(in srgb,${colour(i)} 22%,var(--surface))" aria-label="${t(`Un tour autour de ${N} dans l’autre sens`, `An anticlockwise turn around ${N}`)}">↺ ${N}</button>`).join("")}</div>
-        <div class="nl-tools"><button class="btn-quiet" id="nl-undo" type="button">${t("Annuler", "Undo")}</button><button class="btn-quiet" id="nl-clear" type="button">${t("Recommencer", "Start over")}</button></div>
+        <div class="nl-turns" role="group" aria-label="${t("Tours de ficelle", "Turns of string")}">${NAMES.slice(0, n).map((N, i) => `<button class="secondary ${PRESS}" type="button" data-c="${i + 1}" style="border-color:var(--ink);background:color-mix(in srgb,${colour(i)} 22%,var(--surface))" aria-label="${t(`Un tour autour de ${N} dans le sens des aiguilles d’une montre`, `A clockwise turn around ${N}`)}">↻ ${N}</button><button class="secondary ${PRESS}" type="button" data-c="${-(i + 1)}" style="background:color-mix(in srgb,${colour(i)} 22%,var(--surface))" aria-label="${t(`Un tour autour de ${N} dans l’autre sens`, `An anticlockwise turn around ${N}`)}">↺ ${N}</button>`).join("")}</div>
+        <div class="nl-tools"><button class="btn-quiet ${PRESS}" id="nl-undo" type="button">${t("Annuler", "Undo")}</button><button class="btn-quiet ${PRESS}" id="nl-clear" type="button">${t("Recommencer", "Start over")}</button></div>
       </div>
     </div>
     <p class="sr-only" id="nl-read" role="status" aria-live="polite"></p>`;
@@ -82,7 +81,7 @@ export function activity(root, { t, q, reduced: reducedPref }) {
   function addTurns(cs) { const before = word.length; word = [...word, ...cs]; glide(before, 380 * cs.length); }
   const changed = () => glide();
 
-  const bounce = (b) => { b.classList.remove("is-pop"); void b.offsetWidth; if (!reduced()) b.classList.add("is-pop"); };
+  const bounce = (b) => pop(b, reduced);
   root.querySelector(".nl-turns").addEventListener("click", (e) => { const b = e.target.closest("[data-c]"), c = Number(b?.dataset.c); if (!c) return; bounce(b); addTurns([c]); });
   root.querySelector("#nl-undo").addEventListener("click", () => { word = word.slice(0, -1); changed(); });
   root.querySelector("#nl-clear").addEventListener("click", () => { word = []; removed = 0; changed(); });

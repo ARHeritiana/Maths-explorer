@@ -1,5 +1,5 @@
 // The nails challenge (hanging a picture): card text, variations (checked answer, statement, solution text), original
-// question, emblem and hint actions. Everything else about this challenge is in this folder; registry.js lists the folders.
+// question, emblem. Everything else about this challenge is in this folder; registry.js lists the folders.
 import { choice, P } from "../common/helpers.js";
 import { svg, dot } from "../common/icon.js";
 import { NAIL_VARIANTS, SHORTEST, parseNails, turnText, NAMES } from "./maths.js";
@@ -16,7 +16,6 @@ export const card = {
   topic: ["Raisonnement, enroulements", "Reasoning, windings"],
   difficulty: 3,
   minutes: 15,
-  hints: [],
   extension: ["Avec n clous, trouve un enroulement qui tombe dès qu’on retire un clou quelconque. Combien de tours utilise ta méthode quand n double ?", "With n nails, find a winding that falls as soon as any nail is removed. How many turns does your method use when n doubles?"],
 };
 
@@ -26,10 +25,6 @@ export const variant = {
   prompt: (q) => { const [n, k] = parseNails(q.nails); return P(
     `Un tableau est suspendu par une ficelle attachée à ses deux coins supérieurs, enroulée autour de ${n} clous alignés ${nailsOf(n)}. Un tour, c’est la ficelle qui fait une fois le tour d’un clou, dans un sens ou dans l’autre. On veut que le tableau tombe ${rule(n, k, true)}. Quel est le plus petit nombre de tours possible ?`,
     `A picture hangs from a string tied to its two top corners and wound around ${n} nails in a row, ${nailsOf(n)}. A turn is the string going once around one nail, in either direction. The picture must fall ${rule(n, k, false)}. What is the smallest possible number of turns?`); },
-  hints: () => [
-    P("Que devient la ficelle quand tu arraches un clou ? Quels tours restent accrochés, lesquels glissent ?", "What happens to the string when you pull a nail out? Which turns stay caught, which slip off?"),
-    P("Si la ficelle fait le tour d’un clou dans un sens puis, juste après, le tour du même clou dans l’autre sens, que se passe-t-il quand on tire dessus ? Essaie de t’en servir avec deux clous, en entremêlant les tours.", "If the string goes round a nail one way and, right after, round the same nail the other way, what happens when you pull? Try to use that with two nails, by interleaving the turns."),
-  ],
   solution: (q) => {
     const [n, k] = parseNails(q.nails), w = SHORTEST[q.nails], L = w.length, T = turnText(w);
     const idea = P("L’idée : quand on arrache un clou, tous les tours de ficelle autour de lui glissent et disparaissent. Et quand la ficelle fait le tour d’un clou dans un sens puis, sans rien accrocher entre les deux, le tour du même clou dans l’autre sens, elle se défait toute seule en tirant. Le tableau tombe quand il ne reste plus rien qui retienne la ficelle. (↻ : un tour dans le sens des aiguilles d’une montre, ↺ : dans l’autre sens.)", "The idea: when a nail is pulled out, every turn of string around it slips off. And when the string goes round a nail one way and then, with nothing caught in between, round the same nail the other way, it comes undone by itself when pulled. The picture falls when nothing is left to hold the string. (↻: one turn clockwise, ↺: the other way.)");
@@ -48,5 +43,3 @@ export const original = () => P(
 
 export const icon = svg(`<path d="M14 50h36V30H14z" ${'fill="currentColor" fill-opacity=".18"'}/><path d="M14 30L24 14M50 30L40 14" /><path class="ci-draw" d="M24 14c-6-6 6-8 4 0c4 6 10 6 12 0c-2-8 10-6 4 0"/>${dot(24, 12, 3)}${dot(40, 12, 3)}`);
 
-// no hint button acts on the scene: the activity gives no help of its own
-export const hintActions = {};

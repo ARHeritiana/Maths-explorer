@@ -122,7 +122,7 @@ export const scene = {
     });
     let text = "";
     if (step === 0) text = `${c.t("Course", "Race")} ${Math.min(5, Math.floor(p * 5) + 1)} / 5`;
-    else if (step === 1) text = p < 0.66 ? `${c.t("Course", "Race")} 6 : ${c.t("les 5 vainqueurs", "the 5 winners")}` : c.t("on renomme les groupes", "rename the groups");
+    else if (step === 1) text = p < 0.66 ? `${c.t("Course", "Race")} 6 : ${c.t("les 5 vainqueurs", "the 5 winners")}` : c.t("on renomme les paquets", "rename the batches");
     else if (step === 2) text = top3 ? c.t("A1 est premier de tous", "A1 is first of all") : `${c.t("24 perdants", "24 losers")} ÷ 4 = 6 ${c.t("courses", "races")}`;
     else if (step === 3) text = c.t("5 candidats pour la 2e et la 3e place", "5 candidates for 2nd and 3rd place");
     else text = p < 0.8 ? `${c.t("Course", "Race")} 7` : c.t("A2 est 2e, B1 est 3e : 7 courses", "A2 is 2nd, B1 is 3rd: 7 races");
@@ -133,14 +133,14 @@ export const scene = {
 export const diagram = {
   size: [520, 300],
   steps: (q) => Number(q.top) === 3 ? [
-    P("25 chevaux, courses de 5 au plus. Courses 1 à 5 : on les fait courir par groupes de 5. Chaque colonne est classée, le plus rapide du groupe en haut.", "25 horses, races of at most 5. Races 1 to 5: they race in groups of 5. Each column is ranked, the fastest of the group on top."),
-    P("Course 6 : les 5 vainqueurs. On renomme les groupes A, B, C, D, E dans l’ordre d’arrivée de leurs vainqueurs : A1 est plus rapide que B1, qui l’est plus que C1…", "Race 6: the 5 winners. Rename the groups A, B, C, D, E in the order their winners finish: A1 is faster than B1, which is faster than C1…"),
-    P("A1 bat son groupe et les 4 autres vainqueurs, donc tous les chevaux : A1 est le premier du classement général.", "A1 beats its own group and the 4 other winners, hence every horse: A1 is first overall."),
+    P("25 chevaux, courses de 5 au plus. Courses 1 à 5 : on les fait courir par paquets de 5. Chaque colonne est classée, le plus rapide du paquet en haut.", "25 horses, races of at most 5. Races 1 to 5: they race in batches of 5. Each column is ranked, the fastest of the batch on top."),
+    P("Course 6 : les 5 vainqueurs. On renomme les paquets A, B, C, D, E dans l’ordre d’arrivée de leurs vainqueurs : A1 est plus rapide que B1, qui l’est plus que C1…", "Race 6: the 5 winners. Rename the batches A, B, C, D, E in the order their winners finish: A1 is faster than B1, which is faster than C1…"),
+    P("A1 bat son paquet et les 4 autres vainqueurs, donc tous les chevaux : A1 est le premier du classement général.", "A1 beats its own batch and the 4 other winners, hence every horse: A1 is first overall."),
     P("Qui peut être 2e ou 3e ? Un cheval qui a déjà 3 chevaux devant lui est éliminé (en gris). Il reste 5 candidats : A2, A3, B1, B2, C1.", "Who can be 2nd or 3rd? A horse with 3 horses already ahead of it is out (greyed). Five candidates remain: A2, A3, B1, B2, C1."),
     P("Course 7 : ces 5 candidats. Les deux premiers sont les 2e et 3e de l’ensemble. En tout 7 courses.", "Race 7: these 5 candidates. The first two are 2nd and 3rd overall. In all, 7 races."),
   ] : [
-    P("25 chevaux, courses de 5 au plus. Courses 1 à 5 : cinq groupes de 5, chacun classé.", "25 horses, races of at most 5. Races 1 to 5: five groups of 5, each ranked."),
-    P("Course 6 : les 5 vainqueurs. Le vainqueur de cette course bat son groupe et les 4 autres vainqueurs, donc tous les chevaux : c’est le plus rapide.", "Race 6: the 5 winners. The winner of that race beats its own group and the 4 other winners, hence every horse: it is the fastest."),
+    P("25 chevaux, courses de 5 au plus. Courses 1 à 5 : cinq paquets de 5, chacun classé.", "25 horses, races of at most 5. Races 1 to 5: five batches of 5, each ranked."),
+    P("Course 6 : les 5 vainqueurs. Le vainqueur de cette course bat son paquet et les 4 autres vainqueurs, donc tous les chevaux : c’est le plus rapide.", "Race 6: the 5 winners. The winner of that race beats its own batch and the 4 other winners, hence every horse: it is the fastest."),
     P("On ne peut pas faire moins : 24 chevaux doivent perdre au moins une fois, une course de 5 chevaux fait au plus 4 perdants, et 5 courses font au plus 20 perdants. Il faut donc 6 courses.", "One cannot do fewer: 24 horses must lose at least once, a race of 5 horses makes at most 4 losers, and 5 races make at most 20 losers. So 6 races are needed."),
   ],
   draw(c, s, p, q) {
@@ -151,14 +151,14 @@ export const diagram = {
     const grey = (g, r) => top3 && s >= 3 && !((g === 0 && (r === 1 || r === 2)) || (g === 1 && (r === 0 || r === 1)) || (g === 2 && r === 0) || (g === 0 && r === 0));
     for (let g = 0; g < 5; g++) {
       const x = colX(g), shownLetters = s >= 1 && moved > 0.5;
-      c.text(x + CW / 2 - 4, 40, shownLetters ? letter(g) : `${c.t("groupe", "group")} ${order[g] + 1}`, { ...ink, class: shownLetters ? "sol-label" : "sol-small" });
+      c.text(x + CW / 2 - 4, 40, shownLetters ? letter(g) : `${c.t("paquet", "batch")} ${order[g] + 1}`, { ...ink, class: shownLetters ? "sol-label" : "sol-small" });
       for (let r = 0; r < 5; r++) {
         const win = r === 0 && s >= 1 && s <= 1, isA1 = g === 0 && r === 0 && s >= 2, cand = top3 && s >= 3 && !grey(g, r) && !(g === 0 && r === 0), gr = grey(g, r);
         c.rect(x, Y0 + r * RH, CW - 8, RH - 6, { rx: 7, fill: isA1 ? colour(6) : cand ? colour(2) : `color-mix(in srgb, ${colour(g)} ${gr ? 14 : 55}%, var(--surface))`, stroke: win ? "var(--ink)" : "var(--line-strong)", "stroke-width": win ? 3 : 1, opacity: gr ? 0.55 : 1 });
         c.text(x + (CW - 8) / 2, Y0 + r * RH + 20, s >= 2 || (s === 1 && moved > 0.5) ? `${letter(g)}${r + 1}` : `${r + 1}`, { ...ink, class: "sol-small", style: `font-weight:700;fill:${isA1 || cand ? "#fff" : "var(--ink)"}` });
       }
     }
-    if (s === 0 || (s === 1 && p < 0.1)) c.text(60 + 2.5 * CW - 6, 262, c.t("5 courses : une par groupe", "5 races: one per group"), { ...ink, class: "sol-sub" });
+    if (s === 0 || (s === 1 && p < 0.1)) c.text(60 + 2.5 * CW - 6, 262, c.t("5 courses : une par paquet", "5 races: one per batch"), { ...ink, class: "sol-sub" });
     if (s === 1) { c.rect(X0 - 4, Y0 - 3, 5 * CW - 2, RH, { rx: 9, fill: "none", stroke: colour(1), "stroke-width": 3 }); c.text(60 + 2.5 * CW - 6, 262, c.t("Course 6 : les cinq vainqueurs", "Race 6: the five winners"), { ...ink, class: "sol-sub" }); }
     if (s === 2) c.text(60 + 2.5 * CW - 6, 262, c.t("A1 est premier de tous", "A1 is first of all"), { ...ink, class: "sol-hot" });
     if (top3 && s === 4) { c.text(60 + 2.5 * CW - 6, 262, c.t("Course 7 : A2, A3, B1, B2, C1", "Race 7: A2, A3, B1, B2, C1"), { ...ink, class: "sol-sub" }); c.text(440, 120, "7", { ...ink, class: "sol-big" }); c.text(440, 146, c.t("courses", "races"), { ...ink, class: "sol-sub" }); }
