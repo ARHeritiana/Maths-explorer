@@ -15,7 +15,7 @@ export const BANNED = [
 
 // Known offenders from the audit of 12 November 2026. Remove an id once its hints and solution are clean.
 export const ALLOWLIST = new Set([
-  "cham", "pegs", "jugs", "factorials", "rooms", "knights", "merge", "inversions", "piles", "ramsey", "artgallery", "konigsberg", "sumproduct",
+  "factorials", "rooms", "knights", "ramsey", "artgallery", "konigsberg", "sumproduct",
 ]);
 
 const strip = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();

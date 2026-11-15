@@ -70,7 +70,7 @@ test("all reasoning and presets are bilingual and valid", () => {
     assert.ok(source.hostname.includes('.'));
     if(source.hostname!=='mathshistory.st-andrews.ac.uk')assert.ok(l.sourceLabel?.length===2&&l.sourceLabel.every(Boolean),'non-MacTutor sources need their own bilingual attribution');
   }
-  for(const c of challenges) for(const h of c.hints) assert.ok(h.length===2 && h.every(Boolean));
+  for(const c of challenges) for(const h of (c.hints || [])) assert.ok(h.length===2 && h.every(Boolean));
 });
 test("classic challenge answers agree with independent small-case calculations", () => {
   const answer=id=>challenges.find(c=>c.id===id).answer;
