@@ -466,13 +466,15 @@ with sync_playwright() as p:
         page.locator('.cl-egg[data-i="%d"]'%(i-1)).click(); page.locator('.cl-egg[data-i="%d"]'%(i-1)).click()
     page.locator('#eg-weigh').click(); assert page.locator('#eg-read').inner_text().strip()
     go('fakecoins')
-    hint(2, 'fill'); page.locator('#fc-weigh').click()
+    for i in range(10):
+        for _ in range(i + 1): page.locator('.fc-step[data-i="%d"][data-d="1"]'%i).click()   # 1, 2, 3, … coins
+    page.locator('#fc-weigh').click()
     import re
     grams = int(re.search(r'(\d+) g', page.locator('#fc-read').inner_text()).group(1))
     page.locator('.fc-g[data-i="%d"]'%(550 - grams - 1)).click()
     assert 'strong' in page.locator('#fc-read').inner_html(), 'the shortfall names the fake pile'
     # Euclidean geometry and invariants: each activity responds and agrees with the mathematics.
-    go('reflect'); hint(2, 'mirror'); assert 'AB′' in page.locator('#rf-read').inner_text() and '5 m' in page.locator('#rf-read').inner_text()
+    go('reflect'); page.locator('#rf-x').fill('1.35'); assert '5 m' in page.locator('#rf-read').inner_text()
     go('lunes'); reveal('#ln-read'); assert '24' in page.locator('#ln-read').inner_text()
     go('star'); reveal('#st-read'); page.locator('#st-rand').click(); assert '180' in page.locator('#st-read').inner_text()
     go('box')

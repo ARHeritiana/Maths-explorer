@@ -1,5 +1,6 @@
 // Hands-on activity of the snail challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { MINUS, svgEl, colour, goalLine } from "../common/kit.js";
+import { cartoonPress, PRESS } from "../common/cartoon.js";
 import { makeSnail } from "./art.js";
 import { snailDown, snailTrace, snailDays } from "./maths.js";
 
@@ -46,5 +47,6 @@ export function activity(root, { t, reduced, q }) {
   root.querySelector("#sn-reset").addEventListener("click", () => { halt(); half = 0; draw(); });
   draw();
   void MINUS;
-  return halt;
+  const press = cartoonPress(root, reduced);
+  return () => { halt(); press(); };
 }

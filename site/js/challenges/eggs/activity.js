@@ -1,8 +1,11 @@
 
-import { goalLine } from "../common/kit.js";// Hands-on activity of the eggs challenge: the learner tries, fails and notices; it never states the answer or the method.
+// Hands-on activity of the eggs challenge: the learner tries, fails and notices; it never states the answer or the method.
+
+import { goalLine } from "../common/kit.js";
+import { cartoonPress, PRESS } from "../common/cartoon.js";
 
 /* ------------------------------------------------------------------ eggs */
-export function activity(root, { t, q }) {
+export function activity(root, { t, q, reduced }) {
   const FLOORS = q.floors, EGGS = Number(q.eggs);
   let crit, left, drops, log, lo, hi, done;
   const fresh = () => {
@@ -27,7 +30,7 @@ export function activity(root, { t, q }) {
       const info = log.find((l) => l.f === f);
       const b = document.createElement("button");
       b.type = "button";
-      b.className = `floor${info ? (info.broke ? " broke" : " safe") : f > lo && f < hi ? " maybe" : ""}`;
+      b.className = `${PRESS} floor${info ? (info.broke ? " broke" : " safe") : f > lo && f < hi ? " maybe" : ""}`;
       b.textContent = f;
       b.dataset.f = f;
       b.disabled = done || left === 0 || !!info;
@@ -57,11 +60,11 @@ export function activity(root, { t, q }) {
     if (!Number.isInteger(v) || v < 0 || v > FLOORS || root.querySelector("#eg-guess").value === "") { draw(t(`Entre un entier de 0 à ${FLOORS}.`, `Enter an integer from 0 to ${FLOORS}.`)); return; }
     done = true;
     const open = hi - lo - 1;   // floors still undecided after the drops
-    const why = open > 0 ? ` ${t(`Il restait ${open + 1} candidats (${lo} à ${hi - 1}) : ton plan n’avait pas assez de lancers ou d’œufs pour trancher, c’était un pari.`, `${open + 1} candidates were left (${lo} to ${hi - 1}): your plan did not have enough drops or eggs to decide, so it was a guess.`)}` : "";
+    const why = open > 0 ? ` ${t(`Il restait ${open + 1} candidats (${lo} à ${hi - 1}) : c’était un pari.`, `${open + 1} candidates were left (${lo} to ${hi - 1}): it was a guess.`)}` : "";
     draw(v === crit ? t(`Tu as annoncé ${v} : exact, l’étage critique est ${crit}. Tu as utilisé ${drops} lancers.`, `You announced ${v}: correct, the critical floor is ${crit}. You used ${drops} drops.`) + why : t(`Tu as annoncé ${v} : faux, l’étage critique était ${crit}.`, `You announced ${v}: wrong, the critical floor was ${crit}.`) + why);
   });
   root.querySelector("#eg-new").addEventListener("click", () => { fresh(); root.querySelector("#eg-guess").value = ""; draw(); });
   fresh();
   draw();
-  return () => {};
+  return cartoonPress(root, reduced);
 }
