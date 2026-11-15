@@ -39,7 +39,10 @@ else {
 }
 if (typeof activity !== "function") E("index.js must re-export `activity` (activity.js)");
 if (!diagram) E("index.js must re-export `diagram` (solution.js)");
-if (typeof original !== "function") E("index.js must export `original(q)` returning a [fr, en] pair");
+const open = Boolean(v?.open);   // open challenge (owner rule, 15 November 2026): classic statement, no answer form, no original
+if (!open && typeof original !== "function") E("index.js must export `original(q)` returning a [fr, en] pair (or set variant.open for an open challenge)");
+if (open && original) E("an open challenge (variant.open) has no `original`: its prompt is the classic statement");
+if (open && v?.impossible) E("an open challenge has no Impossible button: remove variant.impossible");
 if (typeof icon !== "string" || !icon.startsWith('<svg class="ci"')) E("`icon` must be built with svg() from common/icon.js");
 
 let combos = [];
@@ -86,8 +89,9 @@ for (const q of combos) {
     const pr = v.prompt(q), so = v.solution(q), or = original?.(q);
     if (!isPair(pr) || pr.some((s) => s.length < 20)) E(`prompt ${tag}: [fr, en] of at least 20 characters`);
     if (!isPair(so) || so.some((s) => s.length < 20)) E(`solution ${tag}: [fr, en] of at least 20 characters`);
-    if (!isPair(or)) E(`original ${tag}: must return a [fr, en] pair`);
-    pr?.forEach((s, i) => { textCheck(`prompt${tag}[${i}]`, s, { strict: false }); if (/impossible/i.test(s)) W(`prompt${tag}[${i}] mentions "impossible": the neutral button must not be announced`); });
+    if (!open && !isPair(or)) E(`original ${tag}: must return a [fr, en] pair`);
+    if (open) pr?.forEach((s, i) => { if (/combien|quel est le plus petit nombre|how many|smallest number|donne la réponse en|give the answer in/i.test(s)) W(`prompt${tag}[${i}] asks for a number: an open challenge keeps the classic question (proof, construction, yes or no with a reason)`); });
+    pr?.forEach((s, i) => { textCheck(`prompt${tag}[${i}]`, s, { strict: false }); if (!open && /impossible/i.test(s)) W(`prompt${tag}[${i}] mentions "impossible": the neutral button must not be announced`); });
     so?.forEach((s, i) => textCheck(`solution${tag}[${i}]`, s, { strict: true }));
     or?.forEach((s, i) => textCheck(`original${tag}[${i}]`, s, { strict: false }));
     const st = diagram?.steps?.(q);
@@ -96,7 +100,7 @@ for (const q of combos) {
     if (scene?.steps) { const ss = scene.steps(q); if (ss.length !== st.length) W("scene.steps and diagram.steps differ in length"); }
   } catch (e) { E(`${tag}: ${e.stack?.split("\n").slice(0, 3).join(" | ")}`); }
 }
-if (zero && !v.impossible) W("some answer is 0: if 0 means \"impossible\", set variant.impossible = true (a genuine 0, as in Königsberg, needs nothing)");
+if (zero && !v.impossible && !open) W("some answer is 0: if 0 means \"impossible\", set variant.impossible = true (a genuine 0, as in Königsberg, needs nothing)");
 if (v?.impossible && !zero) W("variant.impossible is set but no tested combination is impossible");
 if (diagram) {
   if (!Array.isArray(diagram.size) || diagram.size.length !== 2) E("diagram.size must be [width, height]");
@@ -155,9 +159,12 @@ if (!args.includes("--no-browser") && !errors.length) {
             const snap = (p) => { s.seek(k, p); return document.querySelector("#solution-anim svg").innerHTML; };
             if (snap(0.05) === snap(0.95)) out.still.push(k);
           }
-          document.querySelector("#challenge-answer").value = String(window.__challenge.variant.answer(q));
-          document.querySelector("#challenge-form button.primary").click();
-          out.ok = document.querySelector("#challenge-feedback").classList.contains("success");
+          if (window.__challenge.variant.open) out.ok = !document.querySelector("#challenge-form") && !!document.querySelector(".open-note");
+          else {
+            document.querySelector("#challenge-answer").value = String(window.__challenge.variant.answer(q));
+            document.querySelector("#challenge-form button.primary").click();
+            out.ok = document.querySelector("#challenge-feedback").classList.contains("success");
+          }
           return out;
         }, [lang, q]);
         if (r.act === 0) E(`${tag}: the activity drew nothing`);
@@ -166,7 +173,7 @@ if (!args.includes("--no-browser") && !errors.length) {
         r.frames.forEach((n, i) => { if (n === 0 && i % 3 === 2) E(`${tag}: solution step ${(i - 2) / 3} is empty at p = 1`); });
         // motion is a teaching choice (references/design.md section 2): only a solution where nothing ever moves is flagged
         if (r.still.length && r.still.length === r.frames.length / 3) W(`${tag}: no step of the solution moves: check that motion would not help understanding (references/design.md section 2)`);
-        if (!r.ok) E(`${tag}: the expected answer is not accepted by the form`);
+        if (!r.ok) E(open ? `${tag}: an open challenge shows the open note and no answer form` : `${tag}: the expected answer is not accepted by the form`);
         if (r.overflow) E(`${tag}: horizontal overflow`);
       }
       if (shots) {

@@ -26,7 +26,7 @@ file in your first answer (not a plan), then the short note it asks for. More de
 pictures, the bar of detail, from a problem to a checkable number, porting a prototype), `references/contract.md`
 (exports in detail) and `references/rules.md` (owner rules).
 
-Steps: solve first and verify the answer twice; choose the checkable version (a whole number, 1 to 3 parameters);
+Steps: solve first and verify the answer twice; keep the classic statement (a number the site checks, or an open challenge, `variant.open`, when it asks for a proof or a construction; 1 to 3 parameters);
 design (world and characters, activity, solution storyboard with the steps where motion helps); build from the
 template; run the Self-check; deliver.
 
