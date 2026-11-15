@@ -20,7 +20,7 @@ DATA = ROOT / 'dist/slides/data'
 FIG = ROOT / 'dist/slides/fig'
 OUT = ROOT / 'dist/slides/export'
 MATHJAX = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js'
-FONTS = 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Schibsted+Grotesk:wght@400..900&family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap'
+FONTS = 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:wght@200..800&family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap'
 MODULES = ['../js/canvas-navigation.js', '../js/camera3d.js', 'edition-policy.js', 'widgets.js', 'widgets-2d.js', 'widgets-3d.js', 'player.js']   # widgets.js precedes the widgets that use it
 
 

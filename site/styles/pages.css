@@ -1243,73 +1243,83 @@ details.source-course[open] { padding-bottom: 16px; }
 
 
 /* ====================================================================================================================
-   Design v6 "Grille" (31 October 2026). Swiss modernist: white and black, one red, square corners, hairlines, no
-   shadow, no gradient, no blur, no decorative motion. Type: Schibsted Grotesk for headings and interface, Atkinson
-   Hyperlegible for running text (kept for low vision), STIX Two for mathematics. Tokens are in explorer.css.
-   Rationale and prototype: docs/design-v6/. Data colours (--c1..--c8) stay: graph colourings need them.
+   Design v7 "Bac à sable" (15 November 2026). A mathematical playground: cream paper, plum ink, rounded shapes with
+   2 px ink outlines, pill buttons, no shadow, no gradient. Type: Bricolage Grotesque for headings, Atkinson Hyperlegible
+   for text and interface (kept for low vision), STIX Two for mathematics. Tokens are in explorer.css; rationale in
+   docs/DESIGN_V7.md. Data colours (--c1..--c8) stay: graph colourings need them.
    ==================================================================================================================== */
 :root { --signal: var(--accent); }
-h1, h2, h3, .brand, .btn, .primary, .secondary, .mainnav a, .subnav a, .language button, .seg, .text-button, .btn-quiet, .menu-tile strong, .row-title, .foot-brand { font-family: var(--ui); }
-h1, h2 { font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+h1, h2, h3, .brand, .menu-tile strong, .row-title, .foot-brand { font-family: var(--display); }
+.btn, .primary, .secondary, .mainnav a, .subnav a, .language button, .seg, .text-button, .btn-quiet { font-family: var(--ui); }
+h1, h2 { font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; }
 h3 { font-weight: 700; letter-spacing: -0.015em; }
 .page h1, .library-heading h1, .lab-heading h1, .chapter-heading h1 { font-size: clamp(2.1rem, 4.4vw, 3.6rem); letter-spacing: -0.035em; margin-bottom: 14px; }
-.entrance-intro h1, .home-head h1 { font-size: clamp(2.3rem, 5vw, 4.2rem); max-width: 16ch; line-height: 1.02; letter-spacing: -0.035em; }
+.entrance-intro h1, .home-head h1 { font-size: clamp(2.3rem, 5vw, 4.2rem); max-width: 16ch; line-height: 1; letter-spacing: -0.035em; }
 .home-highlight { color: var(--accent); }
 
-/* running head: a heavy bar, then the section tabs as plain text with a red underline */
-.topbar { position: sticky; padding-top: 12px; background: var(--bg); border-bottom: 1px solid var(--ink); }
-.topbar::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 12px; background: var(--ink); }
-.brand { font-weight: 800; letter-spacing: -0.03em; font-size: 1.2rem; }
-.brandmark { width: 26px; height: 26px; }
-.bm-bg { fill: var(--ink); } .bm-curve, .bm-dot { stroke: var(--bg); } .bm-dot { fill: var(--accent); stroke: none; }
-.mainnav a { font-weight: 700; color: var(--ink-2); }
-.mainnav a[aria-current]::after, .subnav a[aria-current]::after { height: 4px; background: var(--accent); border-radius: 0; }
-.mainnav a[aria-current], .subnav a[aria-current] { color: var(--ink); }
-.subnav { background: var(--bg); border-bottom: 1px solid var(--line); }
-.language { border-radius: 0; border-color: var(--ink); }
+/* header: cream bar over an ink rule; the current section is an ink pill */
+.topbar { position: sticky; background: var(--bg); border-bottom: 2px solid var(--ink); }
+.mainnav { align-items: center; }
+.mainnav a { min-height: 44px; padding: 0 16px; border-radius: var(--r-pill); font-weight: 700; color: var(--ink-2); }
+.mainnav a:hover { background: var(--sunken); color: var(--ink); }
+.mainnav a[aria-current] { background: var(--ink); color: var(--bg); }
+.mainnav a[aria-current]::after { display: none; }
+@media (max-width: 960px) {
+  .mainnav { align-items: stretch; border-top: 2px solid var(--ink); }
+  .mainnav a { border-radius: var(--r-sm); margin: 4px 2px; min-height: 52px; }
+  .mainnav a[aria-current] { background: var(--sun); color: var(--on-sun); }
+}
+.language { border: 2px solid var(--ink); border-radius: var(--r-pill); padding: 2px; }
+.language button { border-radius: var(--r-pill); }
 .language button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-footer { border-top: 1px solid var(--ink); }
+.icon-btn, .btn-quiet, .text-button { border-radius: var(--r-pill); }
+footer { border-top: 2px solid var(--ink); }
 
-/* buttons: square, black; red on hover */
-.btn, .primary, .secondary { border-radius: 0; border-width: 2px; }
+/* buttons: pills; primary is ink and turns tomato on hover, secondary is outlined and turns sunflower */
+.btn, .primary, .secondary { border-radius: var(--r-pill); border-width: 2px; padding: 8px 22px; }
 .btn-primary, .primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .btn-primary:hover, .primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .btn-secondary, .secondary { background: transparent; border-color: var(--ink); color: var(--ink); }
-.btn-secondary:hover, .secondary:hover { background: var(--ink); color: var(--bg); }
-/* a toggle button shows its state: filled in the accent colour with a check mark when on (hover stays ink, so on is never mistaken for hover) */
+.btn-secondary:hover, .secondary:hover { background: var(--sun); border-color: var(--sun); color: var(--on-sun); }
+/* a toggle button shows its state: filled in the accent colour with a check mark when on (hover is sunflower, so on is never mistaken for hover) */
 .btn-secondary[aria-pressed="true"], .btn-secondary[aria-pressed="true"]:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .btn-secondary[aria-pressed="true"]::before { content: "\2713\00a0"; }
 @media (forced-colors: active) { .btn-secondary[aria-pressed="true"] { outline: 3px solid Highlight; outline-offset: 2px; } }
+.text-button:hover { background: none; color: var(--accent); text-decoration-thickness: 3px; }
+.btn:disabled, .primary:disabled, .secondary:disabled { background: transparent; border-color: var(--line); color: var(--muted); }
 
-/* cards become hairlined lists and flat plates: no shadow, no lift, square */
-.tool-card, .idea-card, .chapter-tile, .home-result, .menu-tile, .resume, .rows, .group, .segmented, .discovery-card, .challenge-card, .pathway-card { border-radius: 0; box-shadow: none; }
-.tool-card, .idea-card, .chapter-tile { border: 0; border-top: 6px solid var(--ink); background: transparent; }
-.tool-card:hover, .idea-card:hover, .chapter-tile:hover { box-shadow: none; transform: none; border-top-color: var(--accent); }
-.tool-card .discovery-preview, .idea-card .discovery-preview, .chapter-tile .discovery-preview { background: var(--sunken); border-bottom: 1px solid var(--ink); }
-.entrance .entrance-art .discovery-preview { border-radius: 0; border: 0; border-top: 6px solid var(--ink); background: var(--sunken); }
+/* cards: rounded, outlined in ink, no shadow; they lift a little under the pointer */
+.tool-card, .idea-card, .chapter-tile, .home-result, .menu-tile, .resume, .rows, .group, .discovery-card, .challenge-card, .pathway-card { border-radius: var(--r); box-shadow: none; }
+.segmented { border-radius: var(--r-pill); border: 2px solid var(--ink); }
+.tool-card, .idea-card, .chapter-tile { border: 2px solid var(--ink); background: var(--surface); overflow: hidden; transition: transform var(--t), border-color var(--t); }
+.tool-card:hover, .idea-card:hover, .chapter-tile:hover { box-shadow: none; transform: translateY(-3px); border-color: var(--accent); }
+.tool-card .discovery-preview, .idea-card .discovery-preview, .chapter-tile .discovery-preview { background: var(--figure); border-bottom: 2px solid var(--ink); }
+.entrance .entrance-art .discovery-preview { border-radius: var(--r-panel); border: 2px solid var(--ink); background: var(--figure); }
 .tool-card .task-link, .idea-card .task-link { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
-.row[data-selected], .lab-link.selected { box-shadow: none; border-left: 6px solid var(--accent); background: transparent; }
-.menu-tile:hover, .home-result:hover { background: transparent; border-color: var(--ink); }
+.row[data-selected], .lab-link.selected { box-shadow: none; border-left: 0; border-radius: var(--r-sm); outline: 3px solid var(--accent); outline-offset: -3px; background: var(--surface); }
+.menu-tile:hover, .home-result:hover { background: var(--sunken); border-color: var(--ink); }
 .home-result, .menu-tile, .group, .rows, .resume { border-color: var(--ink); }
-.resume { background: transparent; border-width: 1.5px; }
-.seg[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.resume { background: var(--surface); border-width: 2px; }
+.seg { border-radius: var(--r-pill); }
+.seg[aria-pressed="true"] { background: var(--sun); color: var(--on-sun); }
 .tag.olympiad { background: var(--ink); color: var(--bg); }
 .row-no, .row-meta, .seg span { font-variant-numeric: tabular-nums; }
-.entrance-section { border-top: 2px solid var(--ink); }
-.section-kicker, .kicker { font: 600 0.82rem var(--ui); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+.entrance-section { border-top: 2px solid var(--line); }
+.section-kicker, .kicker { font: 700 0.82rem var(--ui); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 
 /* forms and controls */
-input[type="search"], input[type="text"], select, textarea { border-radius: 0; border: 1.5px solid var(--ink); background: var(--bg); }
-input[type="range"]::-webkit-slider-thumb { background: var(--accent); border-color: var(--bg); border-radius: 0; }
-input[type="range"]::-moz-range-thumb { background: var(--accent); border-color: var(--bg); border-radius: 0; }
-:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; border-radius: 0; }
-.feedback.success, .success { border-left: 5px solid var(--pos); }
-.feedback.error, .error { border-left: 5px solid var(--neg); }
-@media (prefers-reduced-motion: reduce) { .tool-card, .idea-card, .chapter-tile { transition: none; } }
+input[type="search"], input[type="text"], select, textarea { border-radius: var(--r-sm); border: 2px solid var(--ink); background: var(--surface); }
+input[type="range"]::-webkit-slider-thumb { background: var(--shape); border-color: var(--ink); border-radius: 50%; }
+input[type="range"]::-moz-range-thumb { background: var(--shape); border-color: var(--ink); border-radius: 50%; }
+:focus-visible { outline: 3px solid var(--obj2); outline-offset: 3px; }
+:root[data-theme="nuit"] :focus-visible { outline-color: var(--sun); }
+.feedback.success, .success { border: 2px solid var(--pos); border-radius: var(--r-sm); }
+.feedback.error, .error { border: 2px solid var(--neg); border-radius: var(--r-sm); }
+@media (prefers-reduced-motion: reduce) { .tool-card, .idea-card, .chapter-tile { transition: none; } .tool-card:hover, .idea-card:hover, .chapter-tile:hover { transform: none; } }
 
-/* previews and emblems are drawn in ink on a light plate; red is kept for emphasis only (raised specificity beats the per-picture colours in explorer.css) */
-:root:root:root .discovery-preview[data-preview] { --topic-ink: var(--ink); color: var(--ink); background: var(--sunken); }
-.lab2-kind, .tag, .pill, .level { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+/* previews and emblems are drawn in ink on a lilac plate; tomato is kept for the studied object (raised specificity beats the per-picture colours in explorer.css) */
+:root:root:root .discovery-preview[data-preview] { --topic-ink: var(--ink); color: var(--ink); background: var(--figure); }
+.lab2-kind, .tag, .pill, .level { background: var(--surface); color: var(--ink); border: 2px solid var(--ink); border-radius: var(--r-pill); }
 .challenge-motif, .card-bottom { color: var(--ink); }
 .card-bottom span:first-child { color: var(--ink); }
 
@@ -1332,12 +1342,12 @@ input[type="range"]::-moz-range-thumb { background: var(--accent); border-color:
 .lab2-group[hidden], .lab2-cards [hidden], .lab2-sub[hidden] { display: none !important; }
 
 /* ===== Home: the animated plate (home-slides.js, figure-engine.js) ===== */
-:root { --q3: #bdbdbd; }
-:root[data-theme="nuit"] { --q3: #666666; }
-.cr { color: var(--accent); font-weight: 700; } .cb { color: var(--ink); font-weight: 700; } .cy { background: var(--q3); color: var(--ink); padding: 0 0.2em; }
-.home-plate { margin: 0; min-width: 0; border-top: 6px solid var(--ink); background: var(--bg); }
-.home-plate .plate-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 20px; padding: 8px 0; border-bottom: 1px solid var(--ink); font-size: 0.95rem; }
-.home-plate .plate-top b { font-family: var(--ui); font-weight: 800; letter-spacing: -0.01em; }
+:root { --q3: #9c7bea; }
+:root[data-theme="nuit"] { --q3: #8e78e0; }
+.cr { color: var(--accent); font-weight: 700; } .cb { color: var(--ink); font-weight: 700; } .cy { background: var(--q3); color: var(--on-sun); padding: 0 0.2em; border-radius: 6px; }
+.home-plate { margin: 0; min-width: 0; padding: 4px 20px 16px; border: 2px solid var(--ink); border-radius: var(--r-panel); background: var(--bg); overflow: hidden; }
+.home-plate .plate-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 20px; padding: 10px 0; border-bottom: 2px solid var(--line); font-size: 0.95rem; }
+.home-plate .plate-top b { font-family: var(--display); font-weight: 800; letter-spacing: -0.01em; }
 .home-plate .plate-legend { color: var(--ink-2); }
 .figure-stage { position: relative; height: clamp(320px, 46vh, 480px); overflow: hidden; touch-action: none; background: var(--bg); transition: opacity 0.26s; }
 .figure-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; outline: none; touch-action: pan-y; }
