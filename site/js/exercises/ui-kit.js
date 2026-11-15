@@ -42,7 +42,7 @@ export function loadMath() {
   }));
 }
 export async function typeset(root) {
-  try { await loadMath(); await window.MathJax.typesetPromise([root]); } catch { /* the text stays readable as plain LaTeX */ }
+  try { await loadMath(); if (root && root.isConnected === false) return; await window.MathJax.typesetPromise([root]); } catch { /* the text stays readable as plain LaTeX */ }
 }
 
 // ---- files and printing ----
