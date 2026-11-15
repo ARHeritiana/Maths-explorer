@@ -50,7 +50,8 @@ Use the site's SVG approach; a canvas only when hundreds of moving objects need 
 
 - **Build once, pose every frame**: `mount` creates nested `<g>` groups with their pivots (hip, shoulder, neck); `update`
   sets only `transform` attributes. The hiker prototype is the pattern (`mk` builds, `pose` moves), and so is the
-  template's `art.js` (`makePerson`, `posePerson`, `makeBubble`, `poseBubble`), with the shared layout in `plan.js`.
+  shared `common/person.js` (`makePerson`, `posePerson`; `gear: "hiker"` adds a backpack and a sun hat) and
+  `common/bubble.js` (`makeBubble`, `poseBubble`), used by the template.
 - **Walk cycle from distance, not time**: `phase = distance / stride × 2π`, so feet never slide; leg and arm swing
   `sin(phase) × amplitude`; the amplitude eases to 0 when the character stops, and a slow breathing bob takes over.
   In a solution, compute the distance from p, so the frame stays pure.
@@ -61,15 +62,15 @@ Use the site's SVG approach; a canvas only when hundreds of moving objects need 
 - **Colours**: outlines and text in `var(--ink)`; bodies from `colour(i)` mixed with `var(--surface)` so both themes work;
   skin, wood, coffee and other fixed material colours may stay literal (they are the object's colour, not the theme's).
 - **Reduced motion**: no walk cycle, no bubbles; characters appear in their final pose for each step.
-- **Reuse**: `common/scene-kit.js` (`makeSoldier`, hats), `common/scene-props.js` (`dayScene`, `makeEgg`,
+- **Reuse**: `common/person.js` and `common/bubble.js` (the detailed person and the speech bubble), `common/scene-kit.js` (`makeSoldier`, hats), `common/scene-props.js` (`dayScene`, `makeEgg`,
   `makeBalance`), `snail/art.js` (`makeSnail`), `bridge/art.js` (`nightBridge`, `makeLantern`). A new character goes in
   the challenge's `art.js`; when a second challenge needs it, move it to `common/` and name it in
   `site/js/challenges/CLAUDE.md`.
 
 ## 3b. The bar: how elaborate is elaborate enough
 
-A plain dot, a stick figure or a circle with a face is **not enough**. The template (`assets/template/art.js`,
-`plan.js`, `activity.js`, `solution.js`) is the minimum standard; match it or go beyond it.
+A plain dot, a stick figure or a circle with a face is **not enough**. The template (`common/person.js`, and the
+template's `plan.js`, `activity.js`, `solution.js`) is the minimum standard; match it or go beyond it.
 
 | Layer | Minimum |
 |---|---|

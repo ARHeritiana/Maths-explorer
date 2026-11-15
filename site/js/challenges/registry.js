@@ -42,9 +42,13 @@ import * as gaussSum from "./gauss-sum/index.js";
 import * as knights from "./knights/index.js";
 import * as rooms from "./rooms/index.js";
 import * as factorials from "./factorials/index.js";
+import * as handshakes from "./handshakes/index.js";
+import * as ants from "./ants/index.js";
+import * as hiker from "./hiker/index.js";
+import * as coffee from "./coffee/index.js";
 
 // Order of the cards on the challenges page.
-export const CHALLENGES = [gaussSum, doors, chess, nim, pigeonhole, squares, hanoi, eggs, konigsberg, rooms, knights, factorials, josephus, ramsey, artgallery, gridpaths, cookies, jugs, fly, horses, cake, queens, snail, bridge, lighteggs, fakecoins, reflect, lunes, star, box, merge, cham, pegs, nails, inversions, piles, cheryl, sumproduct];
+export const CHALLENGES = [gaussSum, doors, chess, nim, pigeonhole, squares, hanoi, eggs, konigsberg, rooms, knights, factorials, josephus, ramsey, artgallery, gridpaths, cookies, jugs, fly, horses, cake, queens, snail, bridge, lighteggs, fakecoins, reflect, lunes, star, box, merge, cham, pegs, nails, inversions, piles, cheryl, sumproduct, handshakes, ants, hiker, coffee];
 
 const byId = Object.fromEntries(CHALLENGES.map((c) => [c.card.id, c]));
 const table = (field) => Object.fromEntries(CHALLENGES.filter((c) => c[field] !== undefined).map((c) => [c.card.id, c[field]]));

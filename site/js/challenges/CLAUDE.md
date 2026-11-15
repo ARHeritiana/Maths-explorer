@@ -35,6 +35,8 @@ scene-level tap/drag actions have keyboard equivalents, and camera gestures canc
 | `helpers.js` | bilingual pair `P`, easing (`clamp01`, `ez`, `seg`, `lerp`), SVG text styles, parameter builders `int`, `choice` |
 | `icon.js` | emblem frame `svg`, `soft`, `dot` |
 | `player.js` | `playSolution(def, root, options)`: the solution player (steps, play, captions, `seek`) |
+| `person.js` | the detailed cartoon person: `makePerson` (built once; `gear: "hiker"` adds a backpack and a sun hat), `posePerson` (pure pose: walk, facing, gaze, reach, wave, hop, breathe, blink, mood); used by handshakes and hiker |
+| `bubble.js` | the speech bubble: `makeBubble`, `poseBubble` (pops in with an overshoot) |
 | `knight-piece.js` | the chess knight silhouette (activity, solution `ctx.knight`, emblem) |
 | `scene-kit.js`, `scene-props.js` | cartoon characters and props used by several challenges (soldier, day scene, egg, balance) |
 | `scene-3d.js`, `view-3d.js` | helpers of the 3D solutions; the small orthographic 3D renderer (cake, box) |
@@ -58,3 +60,10 @@ Update of 12 November 2026 (shared layer): `common/cartoon.js` holds the pop/squ
 Update of 13 November 2026 (owner rule: no hints in the UI): the challenge page has no hint panel and no hint buttons. Done 15 November 2026 for all 38 challenges: no `hints`, no `hintActions`, no `onHintAction`; views that only a hint opened went into the animated solution or were dropped. New challenges must not add hints (`tests/math.test.mjs` and `tests/challenge-jargon.test.mjs` fail otherwise).
 
 Update of 15 November 2026 (owner notes): `konigsberg/` shows the town as in Euler's 1736 problem, never the graph: `plan.js` is the pure town geometry (Königsberg drawn by hand for network 0, a stored table of district sites for the random networks 1 to 99, with the search that made it), `art.js` the drawings (water, shores, houses, wooden bridges); the statement names no pair of districts, and the graph appears only in the solution, where the town turns into it. `rooms/` solution: each line to the outside follows its own lane and reaches O directly, never meeting another (checked in `tests/challenge-backlog.test.mjs`).
+
+Update of 15 November 2026 (four challenges built with the skill `maths-explorer-challenge`, owner prototypes in
+`.claude/skills/maths-explorer-challenge/assets/examples/`): `handshakes/` (people around a table; `plan.js` is the shared layout), `ants/` (ants on a stick;
+`maths.js` is the exact ghost model, `art.js` the ant, the stick and the garden), `hiker/` (two days on a mountain;
+`plan.js` the trail, signposts and sun, `art.js` the mountain scene), `coffee/` (two glass mugs and a spoon; `art.js`
+the kitchen, the mugs with faces, the spoon and the cards). Each activity is alive (breathing, blinking, reactions) and
+each solution is a `scene` in the same world. Tests: `handshakes`, `ants`, `hiker`, `coffee` `.test.mjs`.
