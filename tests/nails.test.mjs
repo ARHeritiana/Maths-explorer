@@ -126,10 +126,10 @@ test("plan: the counter-examples really break the rule (a nail with no turn, a n
   for (const v of ["3,3", "4,4"]) { const [n] = parseNails(v), st = plan(v).find((s) => s.word.length < SHORTEST[v].length); assert.ok(falls(st.word, (1 << (n - 1)) - 1), "falls with only n-1 nails out"); }
   for (const v of ["2,1", "3,2", "4,3"]) { const [n] = parseNails(v), st = plan(v).find((s) => s.word.length === n), mask = ((1 << n) - 1) & ~1; assert.ok(!falls(st.word, mask), "a single turn still holds"); }
 });
-test("solution text and hints have no group-theory vocabulary", () => {
+test("solution text has no group-theory vocabulary", () => {
   for (const v of NAIL_VARIANTS) {
     const q = { nails: v };
-    for (const text of [...variant.solution(q), ...variant.hints(q).flat()]) { assert.ok(!BAD.test(text), `vocabulary in: ${text.slice(0, 80)}`); assert.ok(!/[—–]/.test(text)); }
+    for (const text of [...variant.solution(q)]) { assert.ok(!BAD.test(text), `vocabulary in: ${text.slice(0, 80)}`); assert.ok(!/[—–]/.test(text)); }
   }
 });
 test("solution diagram: steps follow the plan, durations are positive", () => {

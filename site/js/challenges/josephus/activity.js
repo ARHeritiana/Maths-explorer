@@ -1,5 +1,6 @@
 // Hands-on activity of the josephus challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { svgEl, goalLine } from "../common/kit.js";
+import { cartoonPress } from "../common/cartoon.js";
 import { josephusOrder } from "./maths.js";
 
 /* -------------------------------------------------------------- josephus */
@@ -15,8 +16,7 @@ export function activity(root, { t, reduced, q }) {
       <button class="btn btn-primary" id="js-run" type="button">${t("Jouer jusqu’au bout", "Play to the end")}</button>
       <button class="btn-quiet" id="js-reset" type="button">${t("Recommencer", "Restart")}</button></div>
     </div>
-    <p class="act-readout" id="js-read" role="status" aria-live="polite"></p>
-    <p class="act-score" id="js-table"></p>`;
+    <p class="act-readout" id="js-read" role="status" aria-live="polite"></p>`;
   const svg = root.querySelector("svg"), read = root.querySelector("#js-read");
   const pos = (i) => { const a = ((-90 + (360 * (i - 1)) / n) * Math.PI) / 180, r = 150; return [CX + r * Math.cos(a), CY + r * Math.sin(a)]; };
   const stop = () => { clearInterval(timer); timer = 0; };
@@ -35,7 +35,6 @@ export function activity(root, { t, reduced, q }) {
     read.innerHTML = finished ? `${t("Dernière personne restante", "Last person standing")} : <strong>${order.last}</strong>.` : `${left} ${t(left > 1 ? "personnes restent" : "personne reste", "remain")}${killed ? `. ${t("Dernière éliminée", "Last removed")} : ${order.out[killed - 1]}` : ""}.`;
     root.querySelector("#js-step").disabled = finished;
     root.querySelector("#js-run").disabled = finished;
-    root.querySelector("#js-table").textContent = `${t("Survivante pour n = 1, 2, …, 20", "Survivor for n = 1, 2, …, 20")} : ${Array.from({ length: 20 }, (_, k) => josephusOrder(k + 1, K).last).join(", ")}`;
   }
   root.querySelector("#js-n").addEventListener("input", (e) => { n = Number(e.target.value); setup(); });
   root.querySelector("#js-step").addEventListener("click", () => { stop(); if (killed < order.out.length) killed += 1; draw(); });
@@ -45,6 +44,7 @@ export function activity(root, { t, reduced, q }) {
     timer = setInterval(() => { if (killed >= order.out.length) return stop(); killed += 1; draw(); }, n > 45 ? 70 : 140);
   });
   root.querySelector("#js-reset").addEventListener("click", setup);
+  const unpress = cartoonPress(root, reduced);
   setup();
-  return stop;
+  return () => { stop(); unpress(); };
 }
