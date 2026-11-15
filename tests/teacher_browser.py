@@ -189,11 +189,9 @@ with sync_playwright() as p:
     fp.goto(f'{BASE}/'); fp.wait_for_selector('#home-class'); fp.locator('footer a[data-set-entry="teacher"]').click(); dashboard(fp)
     assert fp.locator('nav.modebar a[data-teacher-mode]').count() == 3
     assert fp.locator('nav.modebar [aria-current="page"]').get_attribute('data-teacher-mode') == 'classe'
-    fp.locator('nav.modebar a[data-teacher-mode="preparer"]').click(); fp.wait_for_selector('h1')
-    assert fp.evaluate('location.hash') == '#prepare' and fp.locator('h1').first.inner_text() in ('Préparer', 'Prepare')
+    fp.locator('nav.modebar a[data-teacher-mode="preparer"]').click(); fp.wait_for_function("([h,a,b])=>location.hash===h&&[a,b].includes(document.querySelector('h1')?.innerText)", arg=['#prepare','Préparer','Prepare'])
     assert fp.locator('nav.modebar [aria-current="page"]').get_attribute('data-teacher-mode') == 'preparer'
-    fp.locator('nav.modebar a[data-teacher-mode="detente"]').click(); fp.wait_for_selector('h1')
-    assert fp.evaluate('location.hash') == '#relax' and fp.locator('h1').first.inner_text() in ('Détente', 'Relax')
+    fp.locator('nav.modebar a[data-teacher-mode="detente"]').click(); fp.wait_for_function("([h,a,b])=>location.hash===h&&[a,b].includes(document.querySelector('h1')?.innerText)", arg=['#relax','Détente','Relax'])
     fp.locator('nav.modebar a[data-teacher-mode="classe"]').click(); dashboard(fp)
     assert fp.evaluate('location.hash') == '#teacher'
     for h in ('#prepare', '#relax'):

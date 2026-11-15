@@ -49,7 +49,7 @@ with sync_playwright() as p:
   chooser=page.locator('.entry-chooser');assert chooser.get_attribute('open') is None
   chooser.locator('summary').click();items=chooser.locator('.lab-link');assert items.count()>=4
   target=items.last.get_attribute('href');items.last.click();page.wait_for_function('(h)=>location.hash===h',arg=target)
-  page.locator('.entry-chooser > summary').wait_for();assert page.locator('.entry-chooser').get_attribute('open') is None
+  page.wait_for_function('(h)=>{const c=document.querySelector(".entry-chooser");return c&&!c.open&&c.querySelector(`[aria-current="page"]`)?.getAttribute("href")===h}',arg=target)
   assert page.locator('.entry-chooser [aria-current="page"]').get_attribute('href')==target
   assert page.locator('.entry-steps [rel="prev"]').count()==1
  go('topics');assert not page.locator('#discovery-results').is_visible();page.fill('[name="query"]','dériv');assert page.locator('#discovery-results').is_visible();assert page.locator('.discovery-card').count()>0
