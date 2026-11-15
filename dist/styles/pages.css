@@ -80,6 +80,7 @@ caption { text-align: left; color: var(--muted); padding: 8px 0; font-size: 0.95
 .steps li { counter-increment: steps; position: relative; padding-left: 38px; margin-bottom: 12px; line-height: 1.5; }
 .steps li::before { content: counter(steps); position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 700 0.9rem var(--body); }
 .checkpoint { border-top: 1px solid var(--line); padding-top: 16px; }
+.checkpoint .open-question { font-size: 1.05rem; margin: 8px 0 4px; }
 .checkpoint > .eyebrow { color: var(--ink); font: 700 1.1rem var(--display); }
 .checkpoint form > label { display: block; margin-bottom: 8px; }
 #quiz-preset { width: 100%; margin: 4px 0 12px; font-size: 0.95rem; }
@@ -160,6 +161,10 @@ caption { text-align: left; color: var(--muted); padding: 8px 0; font-size: 0.95
 .proof-callout p { margin: 6px 0; }
 .challenge-columns form { max-width: 460px; margin-top: 24px; }
 .challenge-columns form > label { display: block; margin-bottom: 8px; font-weight: 700; }
+.challenge-shelf { margin-top: 28px; }
+.challenge-shelf .shelf-title { font-size: clamp(1.25rem, 2.2vw, 1.6rem); margin: 0 0 4px; }
+.challenge-shelf .shelf-note { margin: 0 0 14px; max-width: 60ch; }
+.open-note { max-width: 460px; margin-top: 20px; padding: 10px 14px; border-left: 3px solid var(--accent, currentColor); background: var(--accent-soft); }
 .original-statement { max-width: 460px; margin-top: 20px; border-top: 1px solid var(--line); padding-top: 4px; }
 .original-statement .original-q { margin: 6px 0 4px; font-size: clamp(1.05rem, 1.6vw, 1.2rem); }
 .extension { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ink-2); }

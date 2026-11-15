@@ -11,7 +11,7 @@ export const diagram = {
     P(`Paula ne sait pas : son produit a plusieurs décompositions. Il reste ${st[1].length} couples.`, `Paula doesn’t know: her product has several splits. ${st[1].length} pairs remain.`),
     P(`Sam savait : toutes les décompositions de sa somme ont un produit ambigu. Il reste ${st[2].length} couples, sur quelques sommes seulement.`, `Sam knew: every split of his sum has an ambiguous product. ${st[2].length} pairs remain, on a few sums only.`),
     P(`Paula sait maintenant : parmi ses décompositions, une seule a une somme permise. Il reste ${st[3].length} couples.`, `Paula now knows: among her splits only one has an allowed sum. ${st[3].length} pairs remain.`),
-    s ? P(`Sam sait aussi : sa somme n’a plus qu’une décomposition, (${s[0]} ; ${s[1]}). Produit ${s[0] * s[1]}.`, `Sam knows too: his sum has a single split left, (${s[0]}, ${s[1]}). Product ${s[0] * s[1]}.`) : P("Aucun couple ne survit : le dialogue est impossible avec cette borne. Réponse 0.", "No pair survives: the dialogue is impossible with this bound. Answer 0."),
+    s ? P(`Sam sait aussi : sa somme n’a plus qu’une décomposition, (${s[0]} ; ${s[1]}). Les nombres sont ${s[0]} et ${s[1]}.`, `Sam knows too: his sum has a single split left, (${s[0]}, ${s[1]}). The numbers are ${s[0]} and ${s[1]}.`) : P("Aucun couple ne survit : le dialogue est impossible avec cette borne. Réponse 0.", "No pair survives: the dialogue is impossible with this bound. Answer 0."),
   ]; },
   draw(c, s, p, q) {
     const N = q.N, st = spSteps(N), xmax = Math.floor((N - 1) / 2), ymax = N - 2;
