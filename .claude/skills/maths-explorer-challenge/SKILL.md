@@ -1,6 +1,6 @@
 ---
 name: maths-explorer-challenge
-description: Turn a maths problem into a finished Maths Explorer challenge (the "Défis" collection, `#challenges/<id>`) - a drop-in folder `site/js/challenges/<id>/` with a checked numerical version and its parameters, the original open question, a hands-on activity, an animated cartoon solution and a card emblem, plus an independent test, a one-file interactive preview for review, and the registration edits. Use it whenever an agent is handed a problem, puzzle, riddle or olympiad exercise "for the challenges", "pour les défis", "to add to the collection", or a standalone interactive prototype of one to port, or is asked to build or redo a challenge, even if the request only says "make this interactive for the site".
+description: Turn a maths problem into a finished Maths Explorer challenge (the "Défis" collection, page #challenges/ID) - a drop-in folder site/js/challenges/ID/ with a checked numerical version and its parameters, the original open question, a hands-on activity, an animated cartoon solution and a card emblem, plus an independent test, a one-file interactive preview for review, and the registration edits. Use it whenever an agent is handed a problem, puzzle, riddle or olympiad exercise "for the challenges", "pour les défis", "to add to the collection", or a standalone interactive prototype of one to port, or is asked to build or redo a challenge, even if the request only says "make this interactive for the site".
 ---
 
 # Maths Explorer challenge
