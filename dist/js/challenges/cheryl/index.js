@@ -21,24 +21,21 @@ export const card = {
 
 export const variant = {
   params: [choice("set", "Liste de dates", "List of dates", [["orig", "La liste publiée", "The published list"], ["b", "Liste 2", "List 2"], ["c", "Liste 3", "List 3"], ["d", "Liste 4", "List 4"]], "orig")],
-  answer: (q) => cherylAnswer(CHERYL_SETS[q.set])[1],
+  open: true,   // open challenge: find the full date and explain each sentence; the site checks nothing
+  answer: (q) => cherylAnswer(CHERYL_SETS[q.set])[1],   // day of the month: a fact used by the tests, not asked
   prompt: (q) => { const D = CHERYL_SETS[q.set]; return P(
-    `Albert et Bernard veulent connaître l’anniversaire de Cheryl. Elle leur donne dix dates possibles : ${list(D, 0)}. Elle dit le mois seulement à Albert, et le jour seulement à Bernard. Albert : « Je ne sais pas quand est l’anniversaire de Cheryl, mais je sais que Bernard ne le sait pas non plus. » Bernard : « Au début, je ne savais pas, mais maintenant je sais. » Albert : « Alors moi aussi, je sais. » Quel est le jour (le numéro dans le mois) de l’anniversaire de Cheryl ?`,
-    `Albert and Bernard want to know Cheryl’s birthday. She gives them ten possible dates: ${list(D, 1)}. She tells only the month to Albert, and only the day to Bernard. Albert: “I don’t know when Cheryl’s birthday is, but I know that Bernard doesn’t know either.” Bernard: “At first I didn’t know, but now I know.” Albert: “Then I also know.” What is the day (the number in the month) of Cheryl’s birthday?`); },
+    `Albert et Bernard veulent connaître l’anniversaire de Cheryl. Elle leur donne dix dates possibles : ${list(D, 0)}. Elle dit le mois seulement à Albert, et le jour seulement à Bernard. Albert : « Je ne sais pas quand est l’anniversaire de Cheryl, mais je sais que Bernard ne le sait pas non plus. » Bernard : « Au début, je ne savais pas, mais maintenant je sais. » Albert : « Alors moi aussi, je sais. » Quelle est la date de l’anniversaire de Cheryl ? Explique, phrase par phrase, ce que chacune apprend aux autres. Pourquoi la dernière phrase d’Albert est-elle nécessaire ?`,
+    `Albert and Bernard want to know Cheryl’s birthday. She gives them ten possible dates: ${list(D, 1)}. She tells only the month to Albert, and only the day to Bernard. Albert: “I don’t know when Cheryl’s birthday is, but I know that Bernard doesn’t know either.” Bernard: “At first I didn’t know, but now I know.” Albert: “Then I also know.” When is Cheryl’s birthday? Explain, sentence by sentence, what each one tells the others. Why is Albert’s last sentence needed?`); },
   solution: (q) => {
     const D = CHERYL_SETS[q.set], [, s1, s2, s3] = cherylSteps(D), u = uniqueDays(D), a = cherylAnswer(D);
     const out = (lang) => {
       const fr = !lang;
       return fr
-        ? `Les jours ${u.join(" et ")} n’apparaissent qu’une fois : si Bernard avait l’un d’eux, il saurait. Albert est sûr que Bernard ne sait pas, donc son mois ne contient aucun de ces jours : il reste ${months(s1, 0)}, soit ${list(s1, 0)}. Bernard sait maintenant : son jour n’apparaît qu’une fois dans cette liste réduite. Il reste ${list(s2, 0)}. Albert sait alors : son mois ne contient qu’une de ces dates. Il reste ${list(s3, 0)}. L’anniversaire est le ${dateText(a, 0)} : la réponse est ${a[1]}.`
-        : `The days ${u.join(" and ")} appear only once: if Bernard had one of them, he would know. Albert is sure Bernard doesn’t know, so his month contains none of these days: ${months(s1, 1)} remain, that is ${list(s1, 1)}. Bernard now knows: his day appears only once in this shorter list. What remains is ${list(s2, 1)}. Albert then knows: his month contains only one of these dates. What remains is ${list(s3, 1)}. The birthday is ${dateText(a, 1)}: the answer is ${a[1]}.`;
+        ? `Les jours ${u.join(" et ")} n’apparaissent qu’une fois : si Bernard avait l’un d’eux, il saurait. Albert est sûr que Bernard ne sait pas, donc son mois ne contient aucun de ces jours : il reste ${months(s1, 0)}, soit ${list(s1, 0)}. Bernard sait maintenant : son jour n’apparaît qu’une fois dans cette liste réduite. Il reste ${list(s2, 0)}. Albert sait alors : son mois ne contient qu’une de ces dates. Il reste ${list(s3, 0)}. L’anniversaire est le ${dateText(a, 0)}. Sans la dernière phrase d’Albert, il resterait ${list(s2, 0)} : c’est elle qui écarte les mois où plusieurs dates restent.`
+        : `The days ${u.join(" and ")} appear only once: if Bernard had one of them, he would know. Albert is sure Bernard doesn’t know, so his month contains none of these days: ${months(s1, 1)} remain, that is ${list(s1, 1)}. Bernard now knows: his day appears only once in this shorter list. What remains is ${list(s2, 1)}. Albert then knows: his month contains only one of these dates. What remains is ${list(s3, 1)}. The birthday is ${dateText(a, 1)}. Without Albert’s last sentence, ${list(s2, 1)} would remain: it is the sentence that rules out the months where several dates are left.`;
     };
     return P(out(0), out(1));
   },
 };
-
-export const original = (q) => P(
-  `Retrouve la date complète de l’anniversaire de Cheryl et explique, phrase par phrase, ce que chacune apprend aux autres. Pourquoi la dernière phrase d’Albert est-elle nécessaire ?`,
-  `Find the full date of Cheryl’s birthday and explain, sentence by sentence, what each one tells the others. Why is Albert’s last sentence needed?`);
 
 export const icon = svg(`<path d="M12 22h40v32H12z" ${'fill="currentColor" fill-opacity=".14"'}/><path d="M12 30h40M22 16v10M42 16v10"/><path class="ci-draw" d="M20 38l6 8 14-12"/>${dot(46, 46, 2.6, "ci-blink")}`);

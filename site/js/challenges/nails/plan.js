@@ -47,7 +47,7 @@ export function plan(variant) {
     const single = Array.from({ length: n }, (_, i) => i + 1), add = Array.from({ length: n - 1 }, (_, i) => i + 1);
     steps.push(step(single, n, { draw: true, add }, [`Pourquoi pas moins de ${L} tours ? Si chaque clou n’avait qu’un tour, en arrachant tous les clous sauf ${N[0]} le tour autour de ${N[0]} retiendrait encore le tableau : il tiendrait alors qu’il doit tomber. Un clou resté seul doit lâcher la ficelle : il lui faut un tour dans chaque sens, donc au moins 2 tours par clou, soit ${L}.`, `Why not fewer than ${L} turns? If every nail had one turn only, pulling out all nails except ${N[0]} would leave the turn around ${N[0]} still holding the picture, although it must fall. A nail left alone must let the rope go: it needs a turn each way, so at least 2 turns per nail, that is ${L}.`]));
   }
-  steps.push(step(w, n, { answer: L }, [`Réponse : ${L} tours.${variant === "3,1" ? " On a essayé par ordinateur tous les montages plus courts : aucun ne convient." : ""}`, `Answer: ${L} turns.${variant === "3,1" ? " A computer tried every shorter winding: none works." : ""}`]));
+  steps.push(step(w, n, { answer: L }, [`Le montage le plus court : ${L} tours.${variant === "3,1" ? " On a essayé par ordinateur tous les montages plus courts : aucun ne convient." : ""}`, `The shortest winding: ${L} turns.${variant === "3,1" ? " A computer tried every shorter winding: none works." : ""}`]));
   return steps;
 }
 // the pose-ready timeline of a step

@@ -67,6 +67,21 @@ test('builder: keyboard move, minutes, print toggle and warning, remove, clear, 
  h2.$('#pp-launch').click();assert.equal(h2.$('#pp-launch').getAttribute('href'),'#teacher');assert.equal(h2.state.getMode(),'classe');
  h2.stop();
 });
+test('séance length: chosen by the teacher, used by the totals and the meter, kept by Séance type and Vider',async()=>{
+ const h=await setup();
+ h.change(h.$('#pp-class'),'seconde');h.change(h.$('#pp-chapter'),h.$$('#pp-chapter option')[1].value);
+ const field=h.$('#pp-duration');assert.ok(field&&field.labels[0].textContent.includes('Durée de la séance'),'labelled field');
+ assert.equal(field.value,'55','55 min by default');assert.ok(h.$$('#pp-durations option').map(o=>o.value).includes('110'));
+ h.change(field,'110');assert.equal(h.state.getSeance().duration,110,'saved at once');
+ assert.ok(h.$('.pp-total').textContent.includes('sur 110'));assert.equal(h.$('meter').getAttribute('max'),'110');
+ assert.ok(h.$('meter').getAttribute('aria-label').includes('110'));assert.equal(h.window.document.activeElement.id,'pp-duration');
+ assert.ok(h.$('#pp-live').textContent.includes('110 min'));
+ h.$('[data-pp="standard"]').click();assert.equal(h.state.getSeance().duration,110,'Séance type keeps the length');
+ h.$('[data-pp="clear"]').click();h.$('[data-pp="clear"]').click();assert.equal(h.state.getSeance().duration,110,'Vider keeps the length');
+ h.change(h.$('#pp-duration'),'1000');assert.equal(h.state.getSeance().duration,240,'clamped');
+ h.change(h.$('#pp-duration'),'');assert.equal(h.state.getSeance().duration,undefined,'empty field: back to 55');assert.equal(h.$('#pp-duration').value,'55');
+ h.stop();
+});
 test('search adds a result with a phase defaulting from its type',async()=>{
  const h=await setup();
  await h.type('second degré');

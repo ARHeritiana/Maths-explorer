@@ -93,3 +93,30 @@ export function trailAges(lastAlive, gen, depth = 10) {
   for (const [k, g] of lastAlive) { const age = gen - g; if (age >= 1 && age <= depth) out.push([k, age]); }
   return out;
 }
+
+// Cells born and cells that died between two consecutive generations (counts, from the two sets themselves).
+export function transition(before, after) {
+  let born = 0, died = 0;
+  for (const k of after) if (!before.has(k)) born++;
+  for (const k of before) if (!after.has(k)) died++;
+  return { born, died };
+}
+// What the pattern looks like in one generation: its shape up to translation and where its corner is. Dropped (null) for a
+// large pattern, where comparing shapes would cost more than the exhibit is worth.
+export const SHAPE_MAX = 200;
+export function shapeOf(set) {
+  if (!set.size || set.size > SHAPE_MAX) return null;
+  const b = bounds(set);
+  return { nf: normalForm(set), x: b[0], y: b[1] };
+}
+// The smallest p <= maxPeriod such that the latest shape (last entry) equals the shape p generations earlier up to translation,
+// with the shift. It only reports what the recorded generations show; it proves nothing about later ones.
+export function observedRepeat(shapes, maxPeriod = 40) {
+  const n = shapes.length, cur = shapes[n - 1];
+  if (!cur) return null;
+  for (let p = 1; p <= Math.min(maxPeriod, n - 1); p++) {
+    const old = shapes[n - 1 - p];
+    if (old && old.nf === cur.nf) return { period: p, dx: cur.x - old.x, dy: cur.y - old.y };
+  }
+  return null;
+}

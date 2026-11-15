@@ -17,24 +17,20 @@ export const card = {
 };
 
 export const variant = {
-  impossible: true,   // the answer can be "impossible": the shared answer form offers a neutral Impossible button (checks the answer 0)
+  open: true,   // open challenge: find the two numbers and justify each sentence; the site checks nothing
   params: [choice("N", "Borne de la somme", "Bound on the sum", SP_BOUNDS.map((N) => [N, `x + y ≤ ${N}`, `x + y ≤ ${N}`]), 100)],
-  answer: (q) => { const s = spSolution(q.N); return s ? s[0] * s[1] : 0; },
+  answer: (q) => { const s = spSolution(q.N); return s ? s[0] * s[1] : 0; },   // product (0: no pair): a fact used by the tests, not asked
   prompt: (q) => P(
-    `On choisit deux entiers x et y avec 1 < x < y et x + y ≤ ${q.N}. On donne leur somme à Sam et leur produit à Paula, et chacun sait ce que l’autre a reçu comme information. Paula : « Je ne connais pas les deux nombres. » Sam : « Je savais que tu ne les connaissais pas. » Paula : « Maintenant, je les connais. » Sam : « Maintenant, moi aussi. » Que vaut le produit x × y ?`,
-    `Two whole numbers x and y are chosen with 1 < x < y and x + y ≤ ${q.N}. Sam is told their sum and Paula their product, and each knows what kind of information the other received. Paula: “I don’t know the two numbers.” Sam: “I knew you didn’t.” Paula: “Now I know them.” Sam: “Now I know them too.” What is the product x × y?`),
+    `On choisit deux entiers x et y avec 1 < x < y et x + y ≤ ${q.N}. On donne leur somme à Sam et leur produit à Paula, et chacun sait ce que l’autre a reçu comme information. Paula : « Je ne connais pas les deux nombres. » Sam : « Je savais que tu ne les connaissais pas. » Paula : « Maintenant, je les connais. » Sam : « Maintenant, moi aussi. » Trouve les deux nombres et justifie chaque étape du dialogue. Pourquoi la borne sur la somme compte-t-elle ? Que se passe-t-il si on la change ?`,
+    `Two whole numbers x and y are chosen with 1 < x < y and x + y ≤ ${q.N}. Sam is told their sum and Paula their product, and each knows what kind of information the other received. Paula: “I don’t know the two numbers.” Sam: “I knew you didn’t.” Paula: “Now I know them.” Sam: “Now I know them too.” Find the two numbers and justify each step of the dialogue. Why does the bound on the sum matter? What happens if it changes?`),
   solution: (q) => {
     const st = spSteps(q.N), s = spSolution(q.N), g = goodSums(q.N);
     const fr = `On teste les couples phrase par phrase. Il y a ${st[0].length} couples au départ. « Je ne les connais pas » garde les produits qui ont plusieurs décompositions (${st[1].length} couples). « Je savais que tu ne savais pas » garde les sommes dont toutes les décompositions ont un produit ambigu : ${g.length ? g.join(", ") : "aucune"} (${st[2].length} couples). « Maintenant je sais » garde les couples dont le produit n’a plus qu’une décomposition parmi ceux-là (${st[3].length} couples). « Moi aussi » garde ceux dont la somme n’a plus qu’une décomposition restante : ${st[4].length ? st[4].map((p) => `(${p.join(" ; ")})`).join(", ") : "aucun"}. `
-      + (s ? `Le couple est (${s[0]} ; ${s[1]}) : produit ${s[0] * s[1]}.` : `Aucun couple ne survit : avec cette borne, le dialogue est impossible, réponse 0.`);
+      + (s ? `Les deux nombres sont ${s[0]} et ${s[1]}. La borne compte à chaque phrase : elle décide quelles sommes et quelles décompositions sont permises ; change-la avec « Modifier les données » pour voir le dialogue garder ou perdre sa solution.` : `Aucun couple ne survit : avec cette borne, le dialogue est impossible. La borne décide quelles sommes et quelles décompositions sont permises.`);
     const en = `Test the pairs sentence by sentence. There are ${st[0].length} pairs at the start. “I don’t know them” keeps the products with several splits (${st[1].length} pairs). “I knew you didn’t” keeps the sums all of whose splits have an ambiguous product: ${g.length ? g.join(", ") : "none"} (${st[2].length} pairs). “Now I know” keeps the pairs whose product has a single split among those (${st[3].length} pairs). “Now me too” keeps those whose sum has a single remaining split: ${st[4].length ? st[4].map((p) => `(${p.join(", ")})`).join(", ") : "none"}. `
-      + (s ? `The pair is (${s[0]}, ${s[1]}): product ${s[0] * s[1]}.` : `No pair survives: with this bound the dialogue is impossible, answer 0.`);
+      + (s ? `The two numbers are ${s[0]} and ${s[1]}. The bound matters at every sentence: it decides which sums and which splits are allowed; change it with “Change the data” to see the dialogue keep or lose its solution.` : `No pair survives: with this bound the dialogue is impossible. The bound decides which sums and which splits are allowed.`);
     return P(fr, en);
   },
 };
-
-export const original = () => P(
-  "Trouve les deux nombres et justifie chaque étape du dialogue. Pourquoi la borne sur la somme compte-t-elle ? Que se passe-t-il si on la change ?",
-  "Find the two numbers and justify each step of the dialogue. Why does the bound on the sum matter? What happens if it changes?");
 
 export const icon = svg(`<text x="10" y="30" font-size="20" font-weight="700" fill="currentColor" stroke="none">+</text><text x="34" y="30" font-size="20" font-weight="700" fill="currentColor" stroke="none">×</text><path d="M10 40h44" stroke-opacity=".3"/><path class="ci-draw" d="M14 52l8-6 8 4 8-8 10 4"/>${dot(48, 46, 2.6, "ci-blink")}`);
