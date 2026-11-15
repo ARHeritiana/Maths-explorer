@@ -323,9 +323,8 @@ with sync_playwright() as p:
     page.locator('.pick[data-n="15"]').click()
     assert page.locator('.pick.clash').count() == 2
     page.goto(BASE+'/#challenges/squares')
-    # The sum stays folded until the learner asks for it, then follows the slider.
-    page.locator('#sq-n').fill('12'); assert not page.locator('#sq-read').is_visible(), 'the sum is hidden until asked for'
-    page.locator('details:has(#sq-read) > summary').click(); assert '144' in page.locator('#sq-read strong').inner_text()
+    # The activity never shows the sum: only the size of the last border.
+    page.locator('#sq-n').fill('12'); assert '144' not in page.locator('#sq-read').inner_text() and '23' in page.locator('#sq-read').inner_text()
     # Challenges added in October 2026: activities, animated solutions and the touch fix for the domino board.
     page.goto(BASE+'/#challenges/artgallery')
     page.locator('#ag-convex').click(); page.locator('.ag-svg').scroll_into_view_if_needed(); box = page.locator('.ag-svg').bounding_box()

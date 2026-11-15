@@ -1,7 +1,7 @@
 // Hands-on activity of the lunes challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { f1 } from "../common/helpers.js";
 import { svgEl, colour, goalLine } from "../common/kit.js";
-import { luneArea, luneTotal } from "./maths.js";
+import { luneArea } from "./maths.js";
 
 /* ----------------------------------------------------------------- lunes */
 export function activity(root, { t, q }) {
@@ -29,8 +29,8 @@ export function activity(root, { t, q }) {
     svgEl("path", { d: `M${Cx} ${Cy}A${(b / 2) * sc} ${(b / 2) * sc} 0 0 1 ${Bx} ${By}`, fill: "none", stroke: "var(--ink)", "stroke-width": 2 }, svg);
     for (const [pt, lab, dx, dy] of [[[Cx, Cy], "C", -14, 18], [[Ax, Ay], "A", 14, 18], [[Bx, By], "B", -14, -6]]) { const tx = svgEl("text", { x: pt[0] + dx, y: pt[1] + dy, "text-anchor": "middle", style: "font:700 15px var(--body);fill:var(--ink)" }, svg); tx.textContent = lab; }
     root.querySelector("#ln-aout").textContent = `${a} cm`; root.querySelector("#ln-bout").textContent = `${b} cm`;
-    const est = luneArea(a, b, 360), tri = luneTotal(a, b);
-    read.innerHTML = `${t("Aire des lunules (comptage)", "Area of the lunes (counted)")} ≈ <strong>${f1(est)} cm²</strong> · ${t("aire du triangle", "area of the triangle")} ${a} × ${b} / 2 = <strong>${tri} cm²</strong>`;
+    const est = luneArea(a, b, 360);
+    read.innerHTML = `${t("Aire des lunules (comptage)", "Area of the lunes (counted)")} ≈ <strong>${f1(est)} cm²</strong>`;
   }
   root.querySelector("#ln-a").addEventListener("input", (e) => { a = Number(e.target.value); draw(); });
   root.querySelector("#ln-b").addEventListener("input", (e) => { b = Number(e.target.value); draw(); });

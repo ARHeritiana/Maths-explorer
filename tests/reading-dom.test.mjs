@@ -74,7 +74,7 @@ test('Game of Life, square packing, moving sofa, inscribed and opaque squares mo
     const stop=mountActivity('gauss-sum',root,{lang,reduced:()=>false,params:{series:'1,1,100'}});
     root.querySelector('#gs-add10').click();assert.match(root.querySelector('#gs-read').textContent,/10.*55/);
     const tiles=root.querySelectorAll('.cl-tok');assert.equal(tiles.length,16);tiles[0].click();root.querySelectorAll('.cl-tok')[15].click();assert.match(root.querySelector('#gs-pairs').textContent,/1 \+ 100 = 101/);
-    w.document.dispatchEvent(new w.CustomEvent('challenge-action',{detail:{id:'gauss-sum',act:'flip'}}));assert.ok(root.querySelectorAll('#gs-svg rect').length>24);
+    assert.equal(root.querySelectorAll('#gs-svg rect').length,24,'no flipped copy in the activity');
     stop();root.remove();
   }
   dom.window.close();

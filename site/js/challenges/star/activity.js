@@ -1,12 +1,14 @@
 // Hands-on activity of the star challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { f1 } from "../common/helpers.js";
 import { svgEl, colour, clamp, goalLine } from "../common/kit.js";
+import { PRESS, installCartoon, cartoonPress } from "../common/cartoon.js";
 import { starK, starSumDegrees } from "./maths.js";
 
 export const TAU = Math.PI * 2;
 
 /* ------------------------------------------------------------------ star */
-export function activity(root, { t, q }) {
+export function activity(root, { t, q, reduced }) {
+  installCartoon();
   let n = q.n, k = starK(q.n, q.k), irregular = false, angles = [];
   const regular = () => Array.from({ length: n }, (_, i) => (TAU * i) / n);
   root.innerHTML = `
@@ -15,7 +17,7 @@ export function activity(root, { t, q }) {
     <div class="act-controls">
       <label class="act-field" for="st-n"><span class="act-label">${t("Points", "Points")} <output id="st-nout"></output></span><input id="st-n" type="range" min="5" max="13" step="1" value="${n}"></label>
       <label class="act-field" for="st-k"><span class="act-label">${t("Saut k", "Skip k")} <output id="st-kout"></output></span><input id="st-k" type="range" min="1" max="6" step="1" value="${k}"></label>
-      <button class="btn btn-secondary" id="st-rand" type="button">${t("Points au hasard", "Random points")}</button><button class="btn-quiet" id="st-reg" type="button">${t("Régulier", "Regular")}</button>
+      <button class="btn btn-secondary ${PRESS}" id="st-rand" type="button">${t("Points au hasard", "Random points")}</button><button class="btn-quiet ${PRESS}" id="st-reg" type="button">${t("Régulier", "Regular")}</button>
     </div>
     <details class="act-measurements"><summary>${t("Afficher les mesures", "Show measurements")}</summary><p class="act-readout" id="st-read" role="status" aria-live="polite"></p></details>`;
   const svg = root.querySelector("svg"), read = root.querySelector("#st-read");
@@ -42,5 +44,5 @@ export function activity(root, { t, q }) {
   root.querySelector(".act-measurements").addEventListener("toggle", draw);
   void starSumDegrees;
   draw();
-  return () => {};
+  return cartoonPress(root, reduced);
 }
