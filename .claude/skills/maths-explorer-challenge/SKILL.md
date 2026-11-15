@@ -45,8 +45,9 @@ folder only if you need a pattern the template lacks (index in `references/contr
    - Emblem: a 64 by 64 line drawing of the situation.
    For a prototype to port, also follow `references/design.md` section 5.
 4. **Scaffold**: `node .claude/skills/maths-explorer-challenge/scripts/new.mjs <id>` creates the folder and the test
-   from a working template (handshakes): cartoon people in `art.js` built once and posed each frame, shared by the
-   activity and a `scene` solution. Rewrite every file; keep the export shapes and the build-once, pose-per-frame pattern.
+   from a working template (handshakes): detailed cartoon people (`art.js`: limbs with joints, eyes that look and
+   blink, expressions, speech bubbles) around a table (`plan.js`), alive in the activity and posed in a `scene`
+   solution. It is the minimum standard of detail (`references/design.md` section 3b). Rewrite every file; keep the export shapes and the build-once, pose-per-frame pattern.
 5. **Write `maths.js` and the test first**, then `index.js`, `activity.js`, `solution.js`.
 6. **Check**: `node .claude/skills/maths-explorer-challenge/scripts/check.mjs <id> --shots <scratchpad>/shots`, and
    `node --test tests/<id>.test.mjs`. The check works before registration. Fix every ERROR; judge every WARN. Open the
@@ -63,7 +64,7 @@ folder only if you need a pattern the template lacks (index in `references/contr
 
 | Script | Does | Needs |
 |---|---|---|
-| `scripts/new.mjs <id>` | creates `site/js/challenges/<id>/` (index, maths, activity, solution, art) and `tests/<id>.test.mjs` from `assets/template/` | refuses to overwrite |
+| `scripts/new.mjs <id>` | creates `site/js/challenges/<id>/` (index, maths, activity, solution, art, plan) and `tests/<id>.test.mjs` from `assets/template/` | refuses to overwrite |
 | `scripts/check.mjs <id> [--shots dir] [--no-browser]` | contract, all parameter combinations, giveaway controls in the activity (warning), owner text rules (dashes, jargon list of `tests/challenge-jargon.test.mjs`, no URLs), imports; then Chromium: activity draws, every solution step drawn, answer accepted, no console error, no overflow at 390 px | Node 18+, Playwright (pre-installed in cloud sessions) |
 | `scripts/preview.mjs <id> [--out file]` | one self-contained HTML page reproducing the challenge page (language, theme and reduced-motion toggles) | Node only |
 

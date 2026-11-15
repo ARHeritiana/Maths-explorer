@@ -50,7 +50,7 @@ Use the site's SVG approach; a canvas only when hundreds of moving objects need 
 
 - **Build once, pose every frame**: `mount` creates nested `<g>` groups with their pivots (hip, shoulder, neck); `update`
   sets only `transform` attributes. The hiker prototype is the pattern (`mk` builds, `pose` moves), and so is the
-  template's `art.js` (`makePerson`, `posePerson`).
+  template's `art.js` (`makePerson`, `posePerson`, `makeBubble`, `poseBubble`), with the shared layout in `plan.js`.
 - **Walk cycle from distance, not time**: `phase = distance / stride × 2π`, so feet never slide; leg and arm swing
   `sin(phase) × amplitude`; the amplitude eases to 0 when the character stops, and a slow breathing bob takes over.
   In a solution, compute the distance from p, so the frame stays pure.
@@ -65,6 +65,25 @@ Use the site's SVG approach; a canvas only when hundreds of moving objects need 
   `makeBalance`), `snail/art.js` (`makeSnail`), `bridge/art.js` (`nightBridge`, `makeLantern`). A new character goes in
   the challenge's `art.js`; when a second challenge needs it, move it to `common/` and name it in
   `site/js/challenges/CLAUDE.md`.
+
+## 3b. The bar: how elaborate is elaborate enough
+
+A plain dot, a stick figure or a circle with a face is **not enough**. The template (`assets/template/art.js`,
+`plan.js`, `activity.js`, `solution.js`) is the minimum standard; match it or go beyond it.
+
+| Layer | Minimum |
+|---|---|
+| anatomy | head with hair, ear, two eyes (white and pupil), brows, nose, cheek and an expressive mouth; neck; torso with shading on the back side, collar and belt; two arms and two legs, each in two segments (elbow, knee) with hands and shoes; a ground shadow |
+| variety | each character differs: skin, hair, clothing colour from `colour(i)`, an accessory (cap, glasses, bow); props get their material colour (wood, coffee, metal) |
+| life (idle) | breathing, blinking at irregular moments, eyes that follow what matters (the chosen piece, the partner, the event) |
+| motion | walk cycle driven by distance with knee bend and counter-swinging arms; facing that flips with direction; anticipation and overshoot (`easeOutBack`), a hop or squash on an event |
+| emotion | at least four expressions (smile, grin, "o" of surprise, flat), chosen by what happens (surprise at a bump, joy at a success) |
+| events | a speech bubble that pops in and out on the key event ("Enchanté !", "Demi-tour !", "Oups !") |
+| setting | a scene, not a void: ground or rug, the main object (table, stick, mountain, cups) drawn with outline, shading and a highlight; layers so that characters pass in front of and behind it |
+| response | every learner action gets a visible reaction from the characters (wave when chosen, turn and look, reach out, hop) |
+
+Check it by eye at 390 px and 1280 px (`check.mjs --shots`) and in a few frames of the solution (`window.__solution.seek`
+in the preview). If a frame could be mistaken for a diagram, it is not done yet.
 
 ## 4. From a problem to a checkable number
 
