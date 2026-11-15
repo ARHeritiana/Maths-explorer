@@ -284,6 +284,7 @@ with sync_playwright() as p:
     dp.keyboard.press('Escape'); dp.evaluate("document.fullscreenElement && document.exitFullscreen(); document.querySelector('#auto-stage').classList.remove('presenting'); document.documentElement.classList.remove('is-presenting')")
     dp.wait_for_selector('#mx-dock', state='visible', timeout=5000)
     assert dp.locator('#mx-dock:visible').count() == 1, 'back after the projection'
+    dp.wait_for_function('!document.fullscreenElement')   # leaving full screen is asynchronous; resizing before it ends fails
     # no overflow, 44 px targets, both themes
     for width in (320, 390, 1440):
         dp.set_viewport_size({'width': width, 'height': 800})
