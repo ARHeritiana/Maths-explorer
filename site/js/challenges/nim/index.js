@@ -1,5 +1,5 @@
-// The nim challenge: card text, variations (checked answer, statement, solution text), original question, emblem and
-// hint actions. Everything else about this challenge is in this folder; registry.js lists the folders.
+// The nim challenge: card text, variations (checked answer, statement, solution text), original question and emblem.
+// Everything else about this challenge is in this folder; registry.js lists the folders.
 import { int, P } from "../common/helpers.js";
 import { svg } from "../common/icon.js";
 export { activity } from "./activity.js";
@@ -13,7 +13,6 @@ export const card = {
   topic: ["Stratégie", "Strategy"],
   difficulty: 2,
   minutes: 8,
-  hints: [["Avec 4 pierres, le joueur qui doit jouer perd contre un adversaire parfait.", "With 4 stones, the player to move loses against perfect play."], ["Après le premier coup, complète chaque coup adverse pour retirer 4 pierres au total.", "After your first move, complement each opponent move to remove 4 stones in total."]],
   extension: ["Adapte la stratégie si on peut retirer de 1 à 5 pierres.", "Adapt the strategy when players may remove 1 to 5 stones."],
 };
 
@@ -22,7 +21,6 @@ export const variant = {
   params: [int("n", "Nombre de pierres", "Number of stones", 10, 60, 21), int("m", "Maximum retiré par coup", "Most removable per move", 2, 6, 3)],
   answer: (q) => q.n % (q.m + 1),
   prompt: (q) => P(`Il y a ${q.n} pierres. À tour de rôle, on en retire de 1 à ${q.m}. Prendre la dernière fait gagner. Tu commences : combien dois-tu en prendre pour garantir la victoire avec un jeu parfait ?`, `There are ${q.n} stones. Players take turns removing 1 to ${q.m}. Taking the last stone wins. You move first: how many should you take to guarantee victory with perfect play?`),
-  hints: (q) => [P(`Avec ${q.m + 1} pierres, le joueur qui doit jouer perd contre un adversaire parfait.`, `With ${q.m + 1} stones, the player to move loses against perfect play.`), P(`Après le premier coup, complète chaque coup adverse pour retirer ${q.m + 1} pierres au total.`, `After your first move, complement each opponent move to remove ${q.m + 1} stones in total.`)],
   solution: (q) => {
     const r = q.n % (q.m + 1), b = q.m + 1;
     return r

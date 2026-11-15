@@ -1,5 +1,6 @@
 // Hands-on activity of the hanoi challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { svgEl, colour, toLocal, goalLine } from "../common/kit.js";
+import { cartoonPress } from "../common/cartoon.js";
 
 /* ----------------------------------------------------------------- hanoi */
 export function activity(root, { t, reduced, q }) {
@@ -57,8 +58,7 @@ export function activity(root, { t, reduced, q }) {
     const m = history.pop(); if (!m) return;
     pegs[m[0]].push(pegs[m[1]].pop()); moves -= 1; from = null; draw();
   });
-  void reduced;
   reset();
   draw();
-  return () => {};
+  return cartoonPress(root, reduced);
 }

@@ -1,5 +1,5 @@
-// The hanoi challenge: card text, variations (checked answer, statement, solution text), original question, emblem and
-// hint actions. Everything else about this challenge is in this folder; registry.js lists the folders.
+// The hanoi challenge: card text, variations (checked answer, statement, solution text), original question and emblem.
+// Everything else about this challenge is in this folder; registry.js lists the folders.
 import { int, P } from "../common/helpers.js";
 import { svg, soft } from "../common/icon.js";
 export { activity } from "./activity.js";
@@ -13,7 +13,6 @@ export const card = {
   topic: ["Récurrence", "Recursion"],
   difficulty: 2,
   minutes: 10,
-  hints: [["Commence avec 1, 2 puis 3 disques et note le nombre minimal de coups.", "Start with 1, 2 then 3 disks and note the minimum number of moves."], ["Pour bouger le plus grand disque, les autres doivent être ailleurs. Combien de coups pour les y mettre, puis pour les remettre dessus ?", "To move the largest disk, the others must be elsewhere. How many moves to put them there, then back on top?"]],
   extension: ["Démontre par récurrence que u(n) = 2^n − 1, puis montre que le plus petit disque bouge un coup sur deux.", "Prove by induction that u(n) = 2^n − 1, then show that the smallest disk moves every other move."],
 };
 
