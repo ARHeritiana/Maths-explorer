@@ -24,7 +24,7 @@ test('catalogue line: bilingual pairs, links resolve, no dashes',()=>{
     else if(v&&typeof v==='object')Object.entries(v).forEach(([k,x])=>walk(x,`${path}.${k}`));
   };
   walk({title:e.title,short:e.short,intro:e.intro,steps:e.steps,quiz:e.quiz,explain:e.explain,story:e.story,reasoning:e.reasoning,history:e.history,sourceLabel:e.sourceLabel},'equidecomposition');
-  assert.equal(e.answer,36/9);
+  assert.equal(e.answer,undefined,'an open question (owner rule, 15 November 2026)');
   for(const h of e.links)assert.ok(describe(h),`link ${h} resolves`);
   for(const h of ['#lab/tiles','#gallery/banach-tarski-gallery'])assert.ok(e.links.includes(h));
   const src=['site/js/gallery/gallery-equidecomposition.js','site/js/gallery/gallery-equidecomposition-model.js','site/js/gallery/gallery-curiosities.js'].map(f=>readFileSync(f,'utf8')).join('');

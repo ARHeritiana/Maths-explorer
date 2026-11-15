@@ -67,3 +67,12 @@ Update of 15 November 2026 (four challenges built with the skill `maths-explorer
 `plan.js` the trail, signposts and sun, `art.js` the mountain scene), `coffee/` (two glass mugs and a spoon; `art.js`
 the kitchen, the mugs with faces, the spoon and the cards). Each activity is alive (breathing, blinking, reactions) and
 each solution is a `scene` in the same world. Tests: `handshakes`, `ants`, `hiker`, `coffee` `.test.mjs`.
+
+Update of 15 November 2026 (owner rule: keep the classic statement): a challenge whose classic statement asks for a
+number is checked by the site (answer form; its proof version folds under "Jusqu'à la preuve", from `original`). A
+challenge whose classic statement asks for a proof, a construction or a yes/no with a reason is open: `variant.open:
+true`, `prompt` is the classic statement, no `original`, no `impossible`, no answer form; the challenges list shows it on
+the shelf "Défis ouverts". Its `answer` stays only as a fact checked by the tests. Open today: chess, konigsberg, rooms,
+knights, jugs, cake, fakecoins, cham, pegs, nails, cheryl, sumproduct, hiker, coffee (`tests/challenges-variants.test.mjs`).
+Gallery curiosities follow the same rule: an entry without `answer` shows its question and a written explanation, no
+form (`tests/curiosity-questions.test.mjs`).

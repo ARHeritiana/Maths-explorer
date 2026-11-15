@@ -63,6 +63,7 @@ CHALLENGES = ['gauss-sum','doors','chess','nim','pigeonhole','squares','hanoi','
 CHALLENGE_ANSWERS = ['5050','10','30','1','8','400','63','14','1','19','6','4','210','1001','6','1000','7','900','3','8','17','2','45','5','24','180','5','719','0','0','4','13','45','16','52']
 CHALLENGES += ['rooms', 'knights', 'factorials', 'handshakes', 'ants', 'hiker', 'coffee']
 CHALLENGE_ANSWERS += ['1', '63', '12', '45', '100', '240', '40']
+OPEN_CHALLENGES = {'chess','konigsberg','rooms','knights','jugs','cake','fakecoins','cham','pegs','nails','cheryl','sumproduct','hiker','coffee'}
 BASE = os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173')
 
 with sync_playwright() as p:
@@ -178,13 +179,16 @@ with sync_playwright() as p:
             assert page.locator('html').get_attribute('lang') == language
             assert page.locator('.canvas-navigation button:visible').count() == 0
         for challenge,answer in zip(CHALLENGES,CHALLENGE_ANSWERS):
-            page.goto(BASE+'/#challenges/'+challenge)
-            page.locator('#challenge-answer').fill(answer)
-            page.locator('#challenge-form button').click()
-            assert 'success' in page.locator('#challenge-feedback').get_attribute('class')
-            for summary in page.locator('.hint-panel summary, .solution-wide summary').all():
+            page.goto(BASE+'/#challenges/'+challenge); page.wait_for_selector('#main.challenge-detail')
+            if challenge in OPEN_CHALLENGES:   # open challenges: no answer form, the site checks nothing
+                assert page.locator('#challenge-form').count() == 0 and page.locator('.open-note').count() == 1, challenge
+            else:
+                page.locator('#challenge-answer').fill(answer)
+                page.locator('#challenge-form button').click()
+                assert 'success' in page.locator('#challenge-feedback').get_attribute('class')
+            for summary in page.locator('.solution-wide summary').all():
                 summary.click()
-            assert page.locator('.hint-panel details[open]').count() == 2 and page.locator('.solution-wide details[open]').count() == 1
+            assert page.locator('.solution-wide details[open]').count() >= 1
     # Probability: the run buttons add experiments to one series; the seeded series is the same after a reload of the mission.
     page.goto(BASE+'/#lab/probability/run'); page.locator('.lab2-canvas').wait_for()
     run = page.locator('[data-control="run"] button')

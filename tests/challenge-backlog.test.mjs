@@ -92,3 +92,8 @@ test("rooms sketch (owner rule: lines to the outside each reach O, never meet el
     }
   }
 });
+
+test("knights: the stored closed tours of the worked solution are valid closed tours", async () => {
+  const { CLOSED_TOURS, validTour } = await import("../dist/js/challenges/knights/maths.js");
+  for (const n of [6, 8, 10]) assert.ok(validTour(CLOSED_TOURS[n], n, n, true), `closed tour ${n}`);
+});
