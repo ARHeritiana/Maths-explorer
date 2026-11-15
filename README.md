@@ -13,7 +13,7 @@ Read, in this order:
 1. `HANDOFF.md`: current state, task queue, how to verify your work. Then `MAP.md`: which files each task needs (do not read the whole repository).
 2. `PROJECT_BRIEF.md`: the governing document. It overrides this file, `AGENTS.md` and `docs/`.
 3. `docs/HANDOFF.md` and `docs/ARCHITECTURE.md`: the TeX and build pipeline (status of the PDF migration, commands).
-4. `docs/DESIGN_V3.md`: the visual design and its reasons.
+4. `docs/DESIGN_V7.md`: the visual design ("Bac à sable") and its rules; `docs/DESIGN_V3.md` for the reasoning that still binds it.
 5. `.claude/skills/slides-interactive-math/SKILL.md`, then `.claude/skills/slides-interactive-3d-math/SKILL.md`, before touching any slide.
 6. Review status and audit notes live in the private repository ARHeritiana/Maths-explorer-backup, outside this public repository (`private/` is git-ignored). Agents commit new audit notes and verification scripts there.
 

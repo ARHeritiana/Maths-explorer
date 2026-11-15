@@ -6,20 +6,20 @@
 <title>Arithmétique</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>try{var t=localStorage.getItem("maths-explorer-theme");if(t!=="jour"&&t!=="nuit")t=matchMedia("(prefers-color-scheme: dark)").matches?"nuit":"jour";document.documentElement.dataset.theme=t}catch(e){}</script>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Schibsted+Grotesk:wght@400..900&family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:wght@200..800&family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],packages:{'[+]':['ams']},macros:{/*mx-math*/"N":"\\mathbb{N}","Z":"\\mathbb{Z}","D":"\\mathbb{D}","Q":"\\mathbb{Q}","R":"\\mathbb{R}","C":"\\mathbb{C}","vect":["\\overrightarrow{#1}",1],"vi":"\\vec{\\imath}","vj":"\\vec{\\jmath}","vk":"\\vec{k}","norm":["\\left\\lVert #1\\right\\rVert",1],"vc":["\\begin{pmatrix}#1\\\\#2\\end{pmatrix}",2],"deter":["\\det\\left(#1,#2\\right)",2],"abs":["\\left\\lvert #1\\right\\rvert",1],"dd":"\\,\\mathrm{d}","e":"\\mathrm{e}","Card":"\\operatorname{Card}","E":"\\operatorname{E}","V":"\\operatorname{V}","degre":"^{\\circ}","un":["\\,\\mathrm{#1}",1],"sci":["#1\\times10^{#2}",2],"llbracket":"\\mathopen{[\\mkern-3mu[}","rrbracket":"\\mathclose{]\\mkern-3mu]}"/*end mx-math*/}},
 svg:{fontCache:'none'},options:{enableAssistiveMml:false},startup:{typeset:false}};</script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
 <style>
-/* Classroom slide player, design v3 "Cahier" (docs/DESIGN_V3.md): the tokens are the site's (styles/explorer.css), Jour by
+/* Classroom slide player, design v7 "Bac à sable" (docs/DESIGN_V7.md): the tokens are the site's (styles/explorer.css), Jour by
    default and Nuit when the visitor chose it on the site (localStorage "maths-explorer-theme") or the system asks for it.
    Fixed 1280x720 stage scaled to the window: a 52 px bar (Retour, Accueil, deck, theme), then the flow column of step blocks on
    the left (x 40-560), the live figure and its controls on the right (x 600-1240), step buttons at the bottom.
    Colour carries meaning: --accent = the object studied and focus, --pos = true / valid, --neg = warning. Sharp corners, borders not shadows. */
 
-:root,:root[data-theme="jour"]{color-scheme:light;--bg:#ffffff;--surface:#ffffff;--sunken:#f2f2f2;--ink:#000000;--ink-2:#1f1f1f;--muted:#595959;--line:#cdcdcd;--line-strong:#6e6e6e;--grid:#ececec;--accent:#d90012;--accent-ink:#ffffff;--accent-soft:#fff0f1;--obj2:#000000;--obj3:#8a8a8a;--pos:#0a7a43;--pos-soft:#e1f3ea;--neg:#b3000f;--neg-soft:#fbe7e5;--c1:#2563eb;--c2:#e8710a;--c3:#0f9d58;--c4:#c2185b;--c5:#7b1fa2;--c6:#00838f;--c7:#b8860b;--c8:#d84315}
-:root[data-theme="nuit"]{color-scheme:dark;--bg:#0a0a0a;--surface:#121212;--sunken:#1b1b1b;--ink:#ffffff;--ink-2:#dcdcdc;--muted:#a3a3a3;--line:#333333;--line-strong:#808080;--grid:#202020;--accent:#ff5560;--accent-ink:#000000;--accent-soft:#3a1316;--obj2:#f2f2f2;--obj3:#9a9a9a;--pos:#5fd0a0;--pos-soft:#12301f;--neg:#ff8a80;--neg-soft:#3a1714;--c1:#7aa2ff;--c2:#ffa94d;--c3:#5fd0a0;--c4:#ff7eb6;--c5:#c9a6ff;--c6:#4dd0e1;--c7:#ffd54f;--c8:#ff8a65}
-:root{--display:"Schibsted Grotesk",var(--ui);--ui:"Schibsted Grotesk",var(--ui);--body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;--math:"STIX Two Text","Times New Roman",serif}
+:root,:root[data-theme="jour"]{color-scheme:light;--bg:#fff7ea;--surface:#ffffff;--sunken:#f6eedd;--ink:#2b1e3f;--ink-2:#4a3d5e;--muted:#55466b;--line:#e6dacb;--line-strong:#2b1e3f;--grid:#efe6d6;--accent:#c8391b;--accent-ink:#fff7ea;--accent-soft:#fff0ea;--obj2:#6b4fc9;--obj3:#8a7da0;--pos:#0f7a6f;--pos-soft:#ddf2ee;--neg:#a4133c;--neg-soft:#fbe3ea;--c1:#2563eb;--c2:#e8710a;--c3:#0f9d58;--c4:#c2185b;--c5:#7b1fa2;--c6:#00838f;--c7:#b8860b;--c8:#d84315;--shape:#e8492a;--sun:#ffbe2e;--on-sun:#2b1e3f;--figure:#f3eeff}
+:root[data-theme="nuit"]{color-scheme:dark;--bg:#1c1530;--surface:#271e40;--sunken:#2f2550;--ink:#fff7ea;--ink-2:#cfc3e6;--muted:#bdb0d6;--line:#3a2f55;--line-strong:#8b7daa;--grid:#2a2145;--accent:#ff7a5c;--accent-ink:#1c1530;--accent-soft:#3d2233;--obj2:#b9a2ff;--obj3:#8e83a8;--pos:#3cc7b4;--pos-soft:#12332f;--neg:#ff8fa8;--neg-soft:#3a1828;--c1:#7aa2ff;--c2:#ffa94d;--c3:#5fd0a0;--c4:#ff7eb6;--c5:#c9a6ff;--c6:#4dd0e1;--c7:#ffd54f;--c8:#ff8a65;--shape:#ff7a5c;--sun:#ffcb55;--on-sun:#1c1530;--figure:#231a3a}
+:root{--display:"Bricolage Grotesque",system-ui,sans-serif;--ui:var(--body);--body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;--math:"STIX Two Text","Times New Roman",serif}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;background:var(--bg);color:var(--ink)}
 body{display:flex;align-items:center;justify-content:center;overflow:hidden}
