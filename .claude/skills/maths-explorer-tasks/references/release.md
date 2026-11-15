@@ -7,4 +7,6 @@
 4. `grep -n "—\|–" <files you wrote>`: no em or en dashes in visible text.
 5. Update `MAP.md` or the folder `CLAUDE.md` if you added, moved or removed a file. Tick the task in `HANDOFF.md` and
    add one dated line to `docs/LOG.md`.
-6. Commit on `main` with a clear message (no names of owner, school or city), then `git push -u origin main`.
+6. Commit on a branch started from an up-to-date `main` with a clear message (no names of owner, school or city), push
+   the branch and open a pull request, ready for review, with the changes, the verification and a rollback note. Merge
+   (squash) only when CI "Website checks" is green; never push to `main` (root `CLAUDE.md` git rule, 14 November 2026).

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Les fourmis tamponneuses</title>
+<style>
+:root{--bg:#fbf8f1;--fg:#2a2118;--mut:#6f6455;--card:#fff;--line:#e2d9c8;--acc:#c0392b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1712;--fg:#f1e9da;--mut:#a99d8a;--card:#272119;--line:#3a3227;--acc:#ff7a66;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1b1712;--fg:#f1e9da;--mut:#a99d8a;--card:#272119;--line:#3a3227;--acc:#ff7a66;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+.w{max-width:760px;margin:0 auto;padding:14px}
+h1{font-size:1.4rem;margin:.2em 0}
+p{margin:.4em 0;color:var(--mut)}
+canvas{display:block;width:100%;height:270px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+.st{display:flex;gap:8px;margin:10px 0}
+.st div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 8px;font-size:.78rem;color:var(--mut)}
+.st b{display:block;font-size:1.15rem;color:var(--fg)}
+.c{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.c label{display:flex;align-items:center;gap:10px;font-size:.9rem;margin:6px 0}
+.c input[type=range]{flex:1;accent-color:var(--acc)}
+.bt{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+button{font:inherit;font-size:.9rem;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+button.p{background:var(--acc);color:#fff;border-color:var(--acc)}
+#msg{color:var(--fg);margin:10px 0}
+details{margin-top:8px;color:var(--mut);font-size:.92rem}
+</style></head><body><div class="w">
+<h1>🐜 Les fourmis tamponneuses</h1>
+<p>Un bâton d’un mètre, des fourmis à 1 m/min qui font demi-tour quand elles se rencontrent et tombent aux extrémités. Combien de temps au maximum ?</p>
+<canvas id="cv"></canvas>
+<div class="st"><div>Temps<b id="tT">0,0 s</b></div><div>Sur le bâton<b id="tA">0</b></div><div>Dernière chute<b id="tL">–</b></div></div>
+<div class="c">
+<label>Fourmis <input id="nR" type="range" min="1" max="50" value="50"><b id="nV">50</b></label>
+<label>Vitesse <input id="sR" type="range" min="0.25" max="4" step="0.25" value="1"><b id="sV">×1</b></label>
+<label><input id="gC" type="checkbox"> Mode astuce : afficher les fantômes</label>
+<div class="bt"><button class="p" id="bP">▶ Lancer</button><button id="bN">🎲 Nouveau tirage</button><button id="bW">⚠ Pire cas</button><button id="bT">200 simulations</button></div>
+</div>
+<p id="msg">Réglez le nombre de fourmis puis lancez la simulation.</p>
+<details id="dt" hidden><summary>L’astuce des fantômes</summary><p>Quand deux fourmis se rencontrent et repartent en sens inverse, c’est comme si elles se traversaient : les fourmis sont indiscernables. Chaque « fantôme » avance donc tout droit et tombe au bout d’au plus 1 minute. Les positions occupées sont les mêmes à chaque instant : la réponse est <b>1 minute</b>, quel que soit le nombre de fourmis, et elle est atteinte dès qu’une fourmi part d’une extrémité vers l’intérieur.</p></details>
+</div>
+<script>
+const $=i=>document.getElementById(i),cv=$("cv"),c=cv.getContext("2d");
+const COL=["#c0392b","#e67e22","#4a3426","#7d3c98","#1f7a5a"],BASE=1/12,PAD=26,H=270,fr=v=>v.toFixed(1).replace(".",",");
+let ants=[],t=0,run=false,speed=1,maxSeen=0,W=300,last=0,fin=0;
+function gen(n,worst){const r=[...Array(n)].map(()=>Math.random()).sort((a,b)=>a-b),g=.001,a=r.map((v,i)=>({x:i*g+v*(1-(n-1)*g),d:Math.random()<.5?-1:1,al:true,fy:0,fv:0,rot:0,ph:Math.random()*6,b:0,col:COL[Math.floor(Math.random()*5)],ft:0}));
+if(worst){a[0].x=0;a[0].d=1}a.forEach(q=>{q.x0=q.x;q.d0=q.d});return a}
+function step(a,dt,t0){let p=null;for(const q of a){if(!q.al)continue;const xo=q.x;q.x+=q.d*dt;q.ph+=dt*150;
+if((q.x<=0&&q.d<0)||(q.x>=1&&q.d>0)){q.al=false;q.ft=Math.min(t0+(q.d>0?1-xo:xo),t0+dt);q.fv=0}}
+for(const q of a){if(!q.al)continue;if(p&&p.d>0&&q.d<0&&p.x>=q.x){const m=(p.x+q.x)/2;p.x=q.x=m;p.d=-1;q.d=1;p.b=q.b=.7}p=q}}
+function reset(w){ants=gen(+$("nR").value,w);t=0;run=false;fin=0;$("bP").textContent="▶ Lancer";$("msg").textContent=w?"Une fourmi part de l’extrémité gauche vers la droite.":"Nouveau tirage aléatoire.";}
+function finish(){run=false;fin=Math.min(60,Math.max(...ants.map(q=>q.ft))*60);maxSeen=Math.max(maxSeen,fin);$("bP").textContent="▶ Rejouer";
+$("msg").textContent="Toutes les fourmis sont tombées après "+fr(fin)+" s. Plus long temps observé : "+fr(maxSeen)+" s."}
+function size(){const d=devicePixelRatio||1;W=cv.clientWidth;cv.width=W*d;cv.height=H*d;c.setTransform(d,0,0,d,0,0)}
+function ant(x,y,s,dir,ph,col,sur){c.save();c.translate(x,y-Math.abs(Math.sin(ph*2))*.02*s);c.scale(dir,1);c.lineWidth=Math.max(1,s*.05);c.strokeStyle="#1d1410";c.lineCap=c.lineJoin="round";
+c.beginPath();for(const i of[-1,0,1]){const fx=i*.17*s+Math.sin(ph+i*2.1)*.06*s,l=Math.max(0,Math.cos(ph+i*2.1))*.05*s;c.moveTo(i*.1*s,-.28*s);c.lineTo(fx+.05*s,-.14*s-l);c.lineTo(fx,-l)}c.stroke();
+c.fillStyle=col;const E=(a,b,r,q)=>{c.beginPath();c.ellipse(a*s,b*s,r*s,q*s,0,0,7);c.fill();c.stroke()};
+E(-.34,-.3,.25,.19);E(-.02,-.31,.13,.11);c.beginPath();c.arc(.26*s,-.36*s,.17*s,0,7);c.fill();c.stroke();
+c.fillStyle="rgba(255,255,255,.35)";c.beginPath();c.ellipse(-.38*s,-.37*s,.1*s,.05*s,-.3,0,7);c.fill();
+c.fillStyle="#fff";c.beginPath();c.arc(.31*s,-.4*s,.075*s,0,7);c.fill();c.stroke();c.fillStyle="#000";c.beginPath();c.arc(.335*s,-.4*s,.035*s,0,7);c.fill();
+c.beginPath();if(sur)c.arc(.34*s,-.3*s,.035*s,0,7);else c.arc(.33*s,-.34*s,.06*s,.2,Math.PI-.2);c.stroke();
+const w=Math.sin(ph*.7)*.04*s;c.beginPath();c.moveTo(.3*s,-.5*s);c.quadraticCurveTo(.36*s,-.78*s,.5*s+w,-.82*s);c.moveTo(.22*s,-.5*s);c.quadraticCurveTo(.2*s,-.8*s,.3*s+w,-.88*s);c.stroke();
+c.fillStyle="#1d1410";for(const[a,b]of[[.5,-.82],[.3,-.88]]){c.beginPath();c.arc(a*s+w,b*s,.03*s,0,7);c.fill()}c.restore()}
+function draw(){const fg=getComputedStyle(document.documentElement).getPropertyValue("--fg"),n=ants.length,L=W-2*PAD,X=v=>PAD+v*L,s=Math.max(10,Math.min(20,L/n*1.3)),top=165;
+c.clearRect(0,0,W,H);c.textAlign="center";c.fillStyle=fg;c.font="11px system-ui";c.globalAlpha=.6;
+if($("gC").checked){c.textAlign="left";c.fillText("Fantômes : chacun file tout droit, sans demi-tour",PAD,18);c.strokeStyle=fg;c.lineWidth=1;c.beginPath();c.moveTo(X(0),48);c.lineTo(X(1),48);c.stroke();c.globalAlpha=1;
+for(const q of ants)if(q.al){const x=X(q.x);c.globalAlpha=.25;c.strokeStyle=fg;c.beginPath();c.moveTo(x,52);c.lineTo(x,top-s*.95);c.stroke()}c.globalAlpha=1;
+for(const q of ants){const g=q.x0+q.d0*t;if(g>=0&&g<=1){c.fillStyle=q.col;c.beginPath();c.arc(X(g),48,4,0,7);c.fill()}}}
+c.globalAlpha=1;c.fillStyle="#a8743a";c.strokeStyle="#6b4420";c.lineWidth=2;c.beginPath();c.roundRect(X(0)-6,top,L+12,22,8);c.fill();c.stroke();
+c.fillStyle="#8d5f2d";for(let i=1;i<10;i++){c.fillRect(X(i/10),top+3,2,16)}
+c.fillStyle=fg;c.globalAlpha=.7;c.textAlign="center";c.fillText("0 m",X(0),top+38);c.fillText("1 m",X(1),top+38);c.globalAlpha=1;
+for(let r=0;r<3;r++)ants.forEach((q,i)=>{if(i%3!==r)return;const y=top+3+r*s*.12;
+if(q.al)ant(X(q.x),y,s,q.d,q.ph,q.col,false);else if(q.fy<400){const side=q.d>0?1:0;c.save();c.translate(0,q.fy);const ex=q.d>0?X(1):X(0);c.translate(ex,y);c.rotate(q.rot);c.translate(-ex,-y);ant(ex,y,s,q.d,q.ph,q.col,true);c.restore()}});
+c.font="bold 11px system-ui";let nb=0;for(const q of ants)if(q.al&&q.b>0&&nb++<8){const x=X(q.x),y=top-s*1.05,w=68;c.fillStyle="#fff";c.strokeStyle="#333";c.lineWidth=1;c.beginPath();c.roundRect(x-w/2,y-16,w,18,8);c.fill();c.stroke();c.fillStyle="#222";c.textAlign="center";c.fillText("Demi-tour !",x,y-3)}}
+function frame(ts){const rd=Math.min(.05,(ts-last)/1000||0);last=ts;
+if(run){let sim=rd*speed*BASE;while(sim>0){const h=Math.min(sim,.001);step(ants,h,t);t+=h;sim-=h}
+for(const q of ants)if(!q.al&&q.fy<400){q.fv+=900*rd;q.fy+=q.fv*rd;q.rot+=rd*q.d*5}
+if(!ants.some(q=>q.al)&&ants.every(q=>q.fy>=0)&&run){fin=1;if(!ants.some(q=>q.al)){const done=ants.every(q=>q.fy>=400||true);finish()}}}
+for(const q of ants)if(q.b>0)q.b-=rd;
+const al=ants.filter(q=>q.al).length,fs=ants.filter(q=>!q.al).map(q=>q.ft);
+$("tT").textContent=fr(Math.min(60,t*60))+" s";$("tA").textContent=al;$("tL").textContent=fs.length?fr(Math.min(60,Math.max(...fs)*60))+" s":"–";
+draw();requestAnimationFrame(frame)}
+$("bP").onclick=()=>{if(!ants.some(q=>q.al))reset(false);run=!run;$("bP").textContent=run?"⏸ Pause":"▶ Reprendre"};
+$("bN").onclick=()=>reset(false);$("bW").onclick=()=>reset(true);
+$("nR").oninput=e=>{$("nV").textContent=e.target.value;reset(false)};
+$("sR").oninput=e=>{speed=+e.target.value;$("sV").textContent="×"+speed};
+$("bT").onclick=()=>{const n=+$("nR").value;let m=0;for(let k=0;k<200;k++){const a=gen(n,false);let u=0;while(a.some(q=>q.al)){step(a,.002,u);u+=.002}m=Math.max(m,Math.min(60,Math.max(...a.map(q=>q.ft))*60))}
+maxSeen=Math.max(maxSeen,m);$("msg").textContent="Sur 200 tirages avec "+n+" fourmi"+(n>1?"s":"")+" : temps le plus long = "+fr(m)+" s."};
+$("gC").onchange=e=>{$("dt").hidden=!e.target.checked};addEventListener("resize",size);size();reset(false);requestAnimationFrame(frame);
+</script></body></html>

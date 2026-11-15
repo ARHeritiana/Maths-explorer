@@ -41,6 +41,9 @@ scene-level tap/drag actions have keyboard equivalents, and camera gestures canc
 
 ## Add a challenge
 
+From a problem to a finished challenge: skill `maths-explorer-challenge` (contract, template, checks, preview).
+Short version:
+
 1. Copy a recent folder (`pegs/`), rename it to the new id, rewrite its files.
 2. Add one import line and one entry in `CHALLENGES` (card order) in `registry.js`.
 3. Tests: maths in `tests/challenge-puzzles2.test.mjs` (or a new test), `tests/challenges-variants.test.mjs` checks

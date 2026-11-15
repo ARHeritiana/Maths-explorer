@@ -10,7 +10,7 @@ files opened. Load only the recipe you need:
 
 | Task | Recipe |
 |---|---|
-| add or change a challenge (statement, variant, activity, hint, solution, icon) | `references/challenge.md` |
+| add or change a challenge (statement, variant, activity, solution, icon) | `references/challenge.md`; a new challenge from a problem: skill `maths-explorer-challenge` |
 | add or change a laboratory experiment or a gallery curiosity | `references/lab.md` |
 | change a course PDF, add a chapter, change the PDF look | `references/course-tex.md` |
 | change a slide deck, the player, or a slide canvas | `references/slides.md` |

@@ -224,3 +224,5 @@ Append one dated line per finished task at the end of the first list (before "Da
 5 November 2026: clarified chapter practice and exam-annales navigation, separate counts, class filtering, persistent opened results and compact direct links; removed redundant curriculum headings and wrapped phone class choices.
 
 5 November 2026: fixed annales algorithms and source-code rendering, preserved indentation/operators/line numbering and candidate labels, rebuilt HTML, and verified unchanged PDF inputs.
+
+15 November 2026: added the agent skill `maths-explorer-challenge` (problem to finished challenge: contract, owner rules, working template, contract and browser check, one-file review preview, registration edits). Its check flags two existing defects: an en dash in the English solution of `cham`, empty solution frames of `factorials` for n = 0. The release recipe now follows the branch and pull request rule.

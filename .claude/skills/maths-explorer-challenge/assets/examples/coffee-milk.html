@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Café au lait · Lait au café</title>
+<style>
+:root{--bg:#fbf8f3;--fg:#2b2118;--mu:#7a6a5a;--card:#fff;--bd:#e3d9cc;--cof:#5b3317;--mil:#f3ede2;--ac:#b4501e;--ok:#2e7d4f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1713;--fg:#f0e8dc;--mu:#a99a88;--card:#2a231c;--bd:#40372d;--ac:#e8895a;--ok:#6fcf97}}
+:root[data-theme="dark"]{--bg:#1c1713;--fg:#f0e8dc;--mu:#a99a88;--card:#2a231c;--bd:#40372d;--ac:#e8895a;--ok:#6fcf97}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:760px;margin:0 auto;padding:14px}
+h1{font:600 22px/1.2 Georgia,serif;margin:4px 0}
+.sub{color:var(--mu);margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px;margin:10px 0}
+canvas{width:100%;height:auto;display:block}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+button{font:inherit;padding:7px 12px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);cursor:pointer}
+button.on,button.p{background:var(--ac);color:#fff;border-color:var(--ac)}
+label{display:flex;gap:8px;align-items:center;color:var(--mu);font-size:14px}
+input[type=range]{accent-color:var(--ac)}
+.g{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.k{color:var(--mu);font-size:13px}.v{font:600 18px ui-monospace,monospace}
+.ok{color:var(--ok);font-weight:600}.fm{font-family:ui-monospace,monospace;font-size:14px;overflow-x:auto}
+h3{margin:0 0 4px;font-size:15px}p{margin:4px 0}
+</style></head><body><main>
+<div class="row" style="justify-content:space-between"><h1 data-t="h"></h1><button id="lg">EN</button></div>
+<p class="sub" data-t="sub"></p>
+<div class="row"><button id="td" class="on" data-t="d"></button><button id="tc" data-t="c"></button></div>
+<div class="card"><canvas id="cv"></canvas>
+<div class="row"><button id="bs" class="p"></button><button id="bo"></button><button id="ba"></button><button id="bf"></button><button id="br"></button></div>
+<div class="row"><label><span data-t="spd"></span><input id="sp" type="range" min=".4" max="4" step=".1" value="1"></label></div>
+<div class="row" id="gd"><label><span data-t="pN"></span><b id="vN">40</b><input id="rN" type="range" min="20" max="80" step="2" value="40"></label>
+<label><span data-t="pK"></span><b id="vK">2</b><input id="rK" type="range" min="1" max="8" value="2"></label></div>
+<div class="row" id="gc" hidden><label><span data-t="pV"></span><b id="vV">5</b><input id="rV" type="range" min="1" max="40" value="5"></label></div></div>
+<div class="card g">
+<div><div class="k" data-t="ln"></div><div class="v" id="n">0</div></div>
+<div><div class="k" data-t="le"></div><div class="v" id="eq">—</div></div>
+<div><div class="k" data-t="la"></div><div class="v" id="a">0</div></div>
+<div><div class="k" data-t="lb"></div><div class="v" id="b">0</div></div>
+<div style="grid-column:1/3"><div class="k" data-t="lg"></div><div class="v" id="gp"></div><div id="vd"></div></div></div>
+<div class="card"><canvas id="ch"></canvas><div class="fm" id="fm"></div></div>
+<div class="card"><h3 data-t="q11t"></h3><p data-t="q11"></p><h3 data-t="q12t"></h3><p data-t="q12"></p></div>
+</main>
+<script>
+const D={fr:{h:"Café au lait · Lait au café",sub:"Deux tasses de 200 mL, une cuillère : café → lait, puis mélange → café.",d:"Discret (grains)",c:"Continu (liquide)",step:"Transfert",op:"Opération",auto:"Auto",pause:"Pause",fast:"×10",reset:"Réinitialiser",spd:"Vitesse",pN:"Grains par tasse N =",pK:"Grains par cuillère k =",pV:"Cuillère v (mL) =",ln:"Opérations n",le:"Égalité",la:"Café dans le lait",lb:"Lait dans le café",lg:"Écart à 50/50 (café dans le lait − moitié)",kc:"Café",kl:"Lait",cA:"Tasse de café",cB:"Tasse de lait",never:"toujours > 0 : le 50/50 n’est jamais atteint",hit:"50/50 atteint ! (grâce au hasard)",nh:"pas encore 50/50",odd:"N impair : 50/50 impossible",q11t:"Question 11 — Réponse : autant.",q11:"Chaque tasse retrouve exactement son volume. Le café « manquant » dans la tasse de café a donc été remplacé par exactement autant de lait. Or ce café manquant se trouve dans la tasse de lait : café dans le lait = lait dans le café, à chaque opération, quelle que soit la cuillère.",q12t:"Question 12 — Dépend du modèle.",q12:"Continu : x ↦ ((V−v)x+Vv)/(V+v), donc xₙ = 100(1−rⁿ) avec 0<r<1 : xₙ<100 pour tout n, la tasse 50/50 n’est qu’approchée, jamais obtenue. Discret : l’évolution est aléatoire et x = N/2 peut être atteint par hasard (si N est pair).",dm:"Aléatoire : x ← x + j − i (j grains de café prélevés dans A, i dans B)"},
+en:{h:"Coffee in milk · Milk in coffee",sub:"Two 200 mL cups, one spoon: coffee → milk, then mixture → coffee.",d:"Discrete (grains)",c:"Continuous (liquid)",step:"Transfer",op:"Operation",auto:"Auto",pause:"Pause",fast:"×10",reset:"Reset",spd:"Speed",pN:"Grains per cup N =",pK:"Grains per spoon k =",pV:"Spoon v (mL) =",ln:"Operations n",le:"Equality",la:"Coffee in the milk",lb:"Milk in the coffee",lg:"Gap to 50/50 (coffee in milk − half)",kc:"Coffee",kl:"Milk",cA:"Coffee cup",cB:"Milk cup",never:"always > 0: 50/50 is never reached",hit:"50/50 reached! (by chance)",nh:"not 50/50 yet",odd:"N odd: 50/50 impossible",q11t:"Question 11 — Answer: the same amount.",q11:"Each cup ends with exactly its original volume. The coffee “missing” from the coffee cup was therefore replaced by exactly as much milk. That missing coffee is in the milk cup: coffee in milk = milk in coffee after every operation, whatever the spoon.",q12t:"Question 12 — Depends on the model.",q12:"Continuous: x ↦ ((V−v)x+Vv)/(V+v), so xₙ = 100(1−rⁿ) with 0<r<1: xₙ<100 for all n, a 50/50 cup is approached, never obtained. Discrete: the process is random and x = N/2 can be hit by chance (if N is even).",dm:"Random: x ← x + j − i (j coffee grains taken from A, i from B)"}};
+const $=s=>document.querySelector(s),cv=$('#cv'),g=cv.getContext('2d'),ch=$('#ch'),h2=ch.getContext('2d');
+const CW=700,CH=400,cx=[180,520],TOP=130,BOT=340,V=200;
+function fit(c,w,h){const d=devicePixelRatio||1;c.width=w*d;c.height=h*d;c.getContext('2d').setTransform(d,0,0,d,0,0)}
+fit(cv,CW,CH);fit(ch,700,170);
+let mode='d',lang='fr',N=40,K=2,v=5,speed=1,A,B,hist,n,half,anim,pending,auto,r,sp={x:350,y:60};
+const T=k=>D[lang][k];
+const css=k=>getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+const hx=s=>[1,3,5].map(i=>parseInt(s.substr(i,2),16));
+const mix=(a,b,f)=>{const p=hx(a),q=hx(b);return`rgb(${p.map((u,i)=>Math.round(u*f+q[i]*(1-f)))})`};
+const gcd=(a,b)=>b?gcd(b,a%b):a;
+function mk(t,c){return{t,x:cx[c]+(Math.random()-.5)*150,y:BOT-20-Math.random()*150,vx:(Math.random()-.5)*2.4,vy:(Math.random()-.5)*2.4}}
+function reset(){anim=null;pending=0;auto=false;half=0;n=0;sp.x=350;sp.y=60;
+ r=Math.min(11,Math.sqrt(.3*180*170/(Math.PI*(N+K+4))));
+ if(mode=='d'){A=[];B=[];for(let i=0;i<N;i++){A.push(mk(0,0));B.push(mk(1,1))}}else{A={c:V,m:0};B={c:0,m:V}}
+ hist=[0];ui()}
+const xval=()=>mode=='d'?B.filter(o=>o.t==0).length:B.c;
+const yval=()=>mode=='d'?A.filter(o=>o.t==1).length:A.m;
+function pick(i){const c=i?B:A;
+ if(mode=='d'){const p=[];for(let q=0;q<K;q++)p.push(c.splice(Math.random()*c.length|0,1)[0]);return p}
+ const t=c.c+c.m,s={c:v*c.c/t,m:v*c.m/t};c.c-=s.c;c.m-=s.m;return s}
+function drop(j,p){const c=j?B:A;
+ if(mode=='d')p.forEach(o=>{o.x=cx[j]+(Math.random()-.5)*120;o.y=BOT-165+Math.random()*30;o.vx=(Math.random()-.5)*2;o.vy=Math.random();c.push(o)});
+ else{c.c+=p.c;c.m+=p.m}}
+function start(i,j){anim={i,j,k:0,t:0,f:{x:sp.x,y:sp.y},p:null,off:[],
+ wp:[[cx[i],60,.45],[cx[i],205,.5,'pick'],[cx[i],60,.5],[cx[j],60,.6],[cx[j],205,.5,'drop'],[cx[j],60,.45],[350,60,.45,'end']]}}
+function finish(){half^=1;if(!half){n++;hist.push(xval())}ui()}
+function upd(dt){
+ if(!anim&&pending>0){pending--;start(half?1:0,half?0:1)}
+ if(anim){const a=anim,w=a.wp[a.k];a.t+=dt*speed/w[2];
+  const e=Math.min(a.t,1),s=e*e*(3-2*e);sp.x=a.f.x+(w[0]-a.f.x)*s;sp.y=a.f.y+(w[1]-a.f.y)*s;
+  if(a.t>=1){
+   if(w[3]=='pick'){a.p=pick(a.i);if(mode=='d')a.off=a.p.map(()=>{const q=Math.random()*6.28,d=Math.sqrt(Math.random())*rx()*.6;return[Math.cos(q)*d,Math.sin(q)*d]});ui()}
+   if(w[3]=='drop'){drop(a.j,a.p);a.p=null}
+   if(w[3]=='end'){anim=null;finish()}else{a.f={x:w[0],y:w[1]};a.k++;a.t=0}}}
+ if(mode=='d')phys()}
+function phys(){for(let i=0;i<2;i++){const c=i?B:A,l=cx[i]-88+r,rr=cx[i]+88-r,tp=BOT-175+r,bt=BOT-r;
+ for(const o of c){o.x+=o.vx;o.y+=o.vy;
+  if(o.x<l){o.x=l;o.vx=Math.abs(o.vx)}if(o.x>rr){o.x=rr;o.vx=-Math.abs(o.vx)}
+  if(o.y<tp){o.y=tp;o.vy=Math.abs(o.vy)}if(o.y>bt){o.y=bt;o.vy=-Math.abs(o.vy)}
+  o.vx+=(Math.random()-.5)*.1;o.vy+=(Math.random()-.5)*.1;
+  const s=Math.hypot(o.vx,o.vy);if(s>1.6){o.vx*=1.6/s;o.vy*=1.6/s}if(s<.4){o.vx+=Math.random()-.5;o.vy+=Math.random()-.5}}
+ for(let a=0;a<c.length;a++)for(let b=a+1;b<c.length;b++){const p=c[a],q=c[b],dx=q.x-p.x,dy=q.y-p.y,d=Math.hypot(dx,dy);
+  if(d<2*r&&d>.01){const u=(2*r-d)/2/d;p.x-=dx*u;p.y-=dy*u;q.x+=dx*u;q.y+=dy*u}}}}
+const rx=()=>mode=='d'?Math.max(14,r*Math.sqrt(K)*1.25):10+v*.7;
+function draw(){const fg=css('--fg'),CO=css('--cof'),MI=css('--mil');g.clearRect(0,0,CW,CH);g.lineJoin='round';
+ for(let i=0;i<2;i++){const c=i?B:A,X=cx[i];let fr;
+  if(mode=='c'){const vol=c.c+c.m;fr=c.c/vol;const y=BOT-160*vol/200,w=90+10*(BOT-y)/210;
+   g.fillStyle=mix(CO,MI,fr);g.beginPath();g.moveTo(X-w,y);g.lineTo(X+w,y);g.lineTo(X+90,BOT);g.lineTo(X-90,BOT);g.fill()}
+  else{for(const o of c){g.fillStyle=o.t?MI:CO;g.strokeStyle='#b9ad9c';g.lineWidth=1;g.beginPath();g.arc(o.x,o.y,r,0,6.283);g.fill();g.stroke()}fr=c.filter(o=>!o.t).length/c.length}
+  g.strokeStyle=fg;g.lineWidth=3;g.beginPath();g.moveTo(X-100,TOP);g.lineTo(X-90,BOT);g.lineTo(X+90,BOT);g.lineTo(X+100,TOP);g.stroke();
+  g.beginPath();i?g.arc(X+99,215,38,-1.5708,1.5708):g.arc(X-99,215,38,1.5708,4.7124);g.stroke();
+  g.fillStyle=MI;g.fillRect(X-90,352,180,10);g.fillStyle=CO;g.fillRect(X-90,352,180*fr,10);g.strokeStyle='#b9ad9c';g.lineWidth=1;g.strokeRect(X-90,352,180,10);
+  g.fillStyle=fg;g.font='14px system-ui,sans-serif';g.textAlign='center';g.fillText(i?T('cB'):T('cA'),X,384);
+  const cc=mode=='d'?c.filter(o=>!o.t).length:c.c,mm=mode=='d'?c.filter(o=>o.t).length:c.m,fm=x=>mode=='d'?x:x.toFixed(2)+' mL';
+  g.textAlign='left';g.font='600 14px system-ui,sans-serif';g.strokeStyle='#b9ad9c';g.lineWidth=1;
+  [[CO,T('kc'),cc,104],[MI,T('kl'),mm,122]].forEach(([col,lb,val,yy])=>{g.fillStyle=col;g.fillRect(X-76,yy-11,12,12);g.strokeRect(X-76,yy-11,12,12);g.fillStyle=fg;g.fillText(lb+' : '+fm(val),X-58,yy)})}
+ const a=anim,R=rx();g.strokeStyle=fg;g.globalAlpha=.8;g.lineWidth=5;g.lineCap='round';g.beginPath();g.moveTo(sp.x,sp.y);g.lineTo(sp.x+30,sp.y-58);g.stroke();g.globalAlpha=1;
+ let bc='#c8c8c8';if(a&&a.p&&mode=='c')bc=mix(CO,MI,a.p.c/(a.p.c+a.p.m));
+ g.fillStyle=bc;g.lineWidth=2;g.beginPath();g.ellipse(sp.x,sp.y,R,R*.6,0,0,6.283);g.fill();g.stroke();
+ if(a&&a.p&&mode=='d')a.p.forEach((o,i)=>{g.fillStyle=o.t?MI:CO;g.strokeStyle='#b9ad9c';g.lineWidth=1;g.beginPath();g.arc(sp.x+a.off[i][0],sp.y+a.off[i][1],r,0,6.283);g.fill();g.stroke()});
+ if(a&&a.p){const p=a.p,dd=mode=='d',cc=dd?p.filter(o=>!o.t).length:p.c,mm=dd?p.filter(o=>o.t).length:p.m,fm=x=>dd?x:x.toFixed(2)+' mL',t1=T('kc')+' : '+fm(cc),t2=T('kl')+' : '+fm(mm);
+  g.font='600 13px system-ui,sans-serif';g.textAlign='left';const w=Math.max(g.measureText(t1).width,g.measureText(t2).width)+28,x0=sp.x-R-10-w,y0=sp.y-18;
+  g.fillStyle=css('--card');g.strokeStyle=fg;g.lineWidth=1;g.beginPath();g.roundRect(x0,y0,w,38,6);g.fill();g.stroke();
+  [[CO,t1,12],[MI,t2,29]].forEach(([col,t,yy])=>{g.fillStyle=col;g.fillRect(x0+6,y0+yy-9,10,10);g.strokeStyle='#b9ad9c';g.strokeRect(x0+6,y0+yy-9,10,10);g.fillStyle=fg;g.fillText(t,x0+22,y0+yy)})}}
+function chart(){const w=700,h=170,L=46,Rr=12,Tp=16,Bm=26,fg=css('--fg'),mu=css('--mu'),ac=css('--ac'),hf=mode=='d'?N/2:V/2,ym=hf*1.12,nm=Math.max(10,hist.length-1);
+ const X=i=>L+(w-L-Rr)*i/nm,Y=y=>h-Bm-(h-Tp-Bm)*y/ym;h2.clearRect(0,0,w,h);
+ h2.strokeStyle=mu;h2.lineWidth=1;h2.beginPath();h2.moveTo(L,Tp);h2.lineTo(L,h-Bm);h2.lineTo(w-Rr,h-Bm);h2.stroke();
+ h2.fillStyle=mu;h2.font='12px system-ui,sans-serif';h2.textAlign='right';h2.fillText('0',L-5,h-Bm+4);h2.fillText(hf,L-5,Y(hf)+4);
+ h2.textAlign='left';h2.fillText(T('la')+(mode=='d'?'':' (mL)'),L+6,Tp-3);h2.textAlign='right';h2.fillText('n',w-Rr,h-8);
+ h2.setLineDash([6,5]);h2.strokeStyle=fg;h2.beginPath();h2.moveTo(L,Y(hf));h2.lineTo(w-Rr,Y(hf));h2.stroke();h2.setLineDash([]);
+ h2.strokeStyle=ac;h2.lineWidth=2;h2.beginPath();hist.forEach((y,i)=>i?h2.lineTo(X(i),Y(y)):h2.moveTo(X(i),Y(y)));h2.stroke();
+ h2.fillStyle=ac;hist.forEach((y,i)=>{h2.beginPath();h2.arc(X(i),Y(y),3,0,6.283);h2.fill()})}
+function ui(){const d=mode=='d',a=xval(),b=yval(),f=x=>d?x:x.toFixed(3)+' mL',hf=d?N/2:V/2;
+ $('#n').textContent=n;$('#a').textContent=f(a);$('#b').textContent=f(b);
+ $('#eq').textContent=half?'—':(Math.abs(a-b)<1e-9?'a = b ✓':'a ≠ b');
+ $('#gp').textContent=half?'—':(d?hf-a:(hf-a).toFixed(4)+' mL');
+ const vd=$('#vd');vd.className='';
+ if(half)vd.textContent='';else if(!d)vd.textContent=T('never');
+ else if(N%2)vd.textContent=T('odd');else if(a==hf){vd.textContent=T('hit');vd.className='ok'}else vd.textContent=T('nh');
+ if(d)$('#fm').textContent=T('dm');else{const p=V-v,q=V+v,k=gcd(p,q);$('#fm').textContent=`xₙ = 100·(1 − (${p/k}/${q/k})ⁿ)   [x₀ = 0]`}
+ $('#ba').textContent=auto?T('pause'):T('auto');$('#ba').className=auto?'on':'';chart()}
+function setLang(l){lang=l;document.documentElement.lang=l;document.querySelectorAll('[data-t]').forEach(e=>e.textContent=T(e.dataset.t));
+ $('#bs').textContent=T('step');$('#bo').textContent=T('op');$('#bf').textContent=T('fast');$('#br').textContent=T('reset');$('#lg').textContent=l=='fr'?'EN':'FR';ui()}
+function setMode(m){mode=m;$('#td').className=m=='d'?'on':'';$('#tc').className=m=='c'?'on':'';$('#gd').hidden=m!='d';$('#gc').hidden=m!='c';reset()}
+$('#td').onclick=()=>setMode('d');$('#tc').onclick=()=>setMode('c');$('#br').onclick=reset;$('#lg').onclick=()=>setLang(lang=='fr'?'en':'fr');
+$('#bs').onclick=()=>{if(!anim&&!auto)pending=1};$('#bo').onclick=()=>{if(!anim&&!auto)pending=half?1:2};
+$('#ba').onclick=()=>{auto=!auto;pending=auto?1e9:0;ui()};
+$('#bf').onclick=()=>{if(anim)return;auto=false;pending=0;const xf=(i,j)=>drop(j,pick(i));
+ if(half){xf(1,0);half=0;n++;hist.push(xval())}
+ for(let q=0;q<10;q++){xf(0,1);xf(1,0);n++;hist.push(xval())}ui()};
+$('#sp').oninput=e=>speed=+e.target.value;
+$('#rN').oninput=e=>{N=+e.target.value;$('#vN').textContent=N;reset()};
+$('#rK').oninput=e=>{K=+e.target.value;$('#vK').textContent=K;reset()};
+$('#rV').oninput=e=>{v=+e.target.value;$('#vV').textContent=v;reset()};
+let last=performance.now();
+function loop(t){const dt=Math.min((t-last)/1000,.05);last=t;upd(dt);draw();requestAnimationFrame(loop)}
+reset();setLang('fr');requestAnimationFrame(loop);
+</script></body></html>

@@ -10,19 +10,10 @@ For shared parameter presentation, edit `site/js/app.js` (`variationPanel`, `bin
 optional tuple `fields` allow bounded custom numbers with explicit validation. Integration coverage is in
 `tests/dom-smoke.mjs`, `tests/direct-interactions.test.mjs` and `tests/browser.py`.
 
-Add a challenge:
-1. Copy `site/js/challenges/pegs/` (the latest complete example) to `site/js/challenges/<id>/` and rewrite each file:
-   - `index.js`: `card` (id, type, title, topic, difficulty, minutes, hints, extension), `variant` (params, answer,
-     prompt, hints, solution; defaults give the statement shown on the card), `original` (never states the answer or
-     the method), `icon`, `hintActions`.
-   - `maths.js`: pure functions. `activity.js`: the hands-on canvas. `solution.js`: `diagram` (captions and frames),
-     optionally `scene`.
-2. `site/js/challenges/registry.js`: one import line and one entry in `CHALLENGES` (its place sets the card order).
-3. Tests: the maths by an independent method (`tests/challenge-puzzles2.test.mjs` or a new test file),
-   `tests/challenges-variants.test.mjs` (checks every layer of every challenge), `tests/browser.py` (`CHALLENGES`).
-
-Rules (`HANDOFF.md` conventions of 15 October): the page shows the statement only; anything revealing a method is a
-hint action; hint 1 brings closer, hint 2 nearly gives it away; every computed answer verified by an independent method.
+Add a challenge: use the skill `maths-explorer-challenge` (`.claude/skills/maths-explorer-challenge/SKILL.md`). It
+holds the export contract, the owner rules, a working template (`scripts/new.mjs <id>`), a contract and browser check
+(`scripts/check.mjs <id>`), a one-file preview for review (`scripts/preview.mjs <id>`) and the five registration
+edits.
 
 Then follow `release.md`.
 
