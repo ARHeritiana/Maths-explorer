@@ -86,3 +86,17 @@ test('Évaluer links are live routes only; English labels',async()=>{
  assert.equal(h.$('[data-pp="standard"]').textContent,'Standard séance');
  h.stop();
 });
+
+test('page: the chapter sheet folds the objectives and prerequisites of the chapter deck, loaded on first opening',async()=>{
+ const real=globalThis.fetch,asked=[];
+ globalThis.fetch=async u=>{asked.push(String(u));return {ok:true,json:async()=>({id:'seconde-01',slides:[{k:'goals',t:['Objectifs','Goals'],b:['<b>Prérequis</b> fractions et puissances','<b>Prerequisites</b> fractions and powers']}]})};};
+ try{
+  const h=await setup();
+  h.change(h.$('#pp-class'),'seconde');h.change(h.$('#pp-chapter'),h.$$('#pp-chapter option')[1].value);
+  const d=h.$('details.pp-goals');assert.ok(d,'fold present once a chapter is chosen');assert.equal(d.open,false);assert.equal(asked.length,0,'nothing loaded before opening');
+  d.open=true;d.dispatchEvent(new h.window.Event('toggle'));for(let i=0;i<50&&!/fractions/.test(d.textContent);i++)await tick();
+  assert.match(d.querySelector('h4').textContent,/Prérequis/);assert.match(d.textContent,/fractions et puissances/);
+  assert.ok(asked[0].includes('slides/data/'),asked[0]);
+  h.stop();
+ }finally{globalThis.fetch=real;}
+});

@@ -1,9 +1,12 @@
 // #prepare (Préparer): the teacher has time, so choose and assemble. Class and chapter (shared state), the chapter sheet by
 // phase, a search over the shared resource index, the "Ma séance" builder (saved at once, offered in class) and Évaluer.
 // Pure logic: seance-model.js, launchpad-model.js, prepare-model.js. The index is the one of resource-sources.js.
-// Not sourced, so left out: prerequisites of a chapter (they live in per-chapter deck files, not in the catalogue).
+// Objectives and prerequisites of a chapter: read from its deck file (slides/data/<id>.json, as the chapter page does),
+// only when the teacher opens the fold.
 import {liveCourses,isLiveHash} from './live-curriculum.js';
 import {fetchJSON} from './data-loader.js';
+import {sequenceModel,goalFields} from './sequence-model.js';
+import {typeset} from './exercises/ui-kit.js';
 import {courseName,chapterOf,launchpad,resolveForSeance} from './launchpad-model.js';
 import {PHASES,phaseById,addBlock,removeBlock,moveBlockTo,setMinutes,togglePrint,totals,defaultSeance,emptySeance,MAX_MINUTES,TARGET_MINUTES} from './seance-model.js';
 import {phaseForType,blockFromItem,blockFromPhase,describeTotals,printList,liveLinks,dropIndex,movedText} from './prepare-model.js';
@@ -52,8 +55,19 @@ export async function mountPreparePage(main,{t,state,isGone=()=>false,decks,inde
   $('#pp-sheet').innerHTML=`<p class="muted">${ch?`${E(courseName(course))} · ${E(ch.title[lang])}`:course?`${E(courseName(course))} · ${L('aucun chapitre précis : ressources de la classe','no specific chapter: class resources')}`:L('Aucune classe choisie : ressources générales. Choisis une classe et un chapitre pour une fiche précise.','No class chosen: general resources. Pick a class and a chapter for a precise sheet.')}</p>
 <ol class="pp-phases">${phases.map(p=>`<li class="pp-phase"><div class="pp-phase-text"><strong>${E(P(p.label))}</strong><span class="muted">${p.detail?E(P(p.detail)):''}</span>${p.href?'':`<span class="pp-why">${E(P(p.why))}</span>`}</div>
 <div class="pp-phase-actions">${p.href&&live(p.href)?`<a class="btn-quiet" href="${E(p.href)}">${L('Ouvrir','Open')}<span class="sr-only"> : ${E(P(p.label))}</span></a><button type="button" class="btn btn-secondary" data-pp="add-phase" data-phase="${E(p.id)}">${L('Ajouter à la séance','Add to the séance')}<span class="sr-only"> : ${E(P(p.label))}</span></button>`:''}</div></li>`).join('')}</ol>
-${chapter?`<h3 class="pp-sub">${L('Erreurs à prévoir','Errors to expect')}</h3>${errs.length?`<ul class="td-items">${errs.map(e=>`<li><a class="td-item-link" href="#errors/${E(e.id)}">${E(P(e.title))}</a></li>`).join('')}</ul>`:`<p class="muted">${L('Aucune erreur fréquente liée à ce chapitre pour le moment.','No common error is linked to this chapter yet.')}</p>`}`:''}`;
+${chapter?`<details class="pp-goals" data-pp-goals="${E(chapter)}"><summary>${L('Objectifs et prérequis','Objectives and prerequisites')}</summary><div class="pp-goals-body" aria-live="polite"></div></details>`:''}${chapter?`<h3 class="pp-sub">${L('Erreurs à prévoir','Errors to expect')}</h3>${errs.length?`<ul class="td-items">${errs.map(e=>`<li><a class="td-item-link" href="#errors/${E(e.id)}">${E(P(e.title))}</a></li>`).join('')}</ul>`:`<p class="muted">${L('Aucune erreur fréquente liée à ce chapitre pour le moment.','No common error is linked to this chapter yet.')}</p>`}`:''}`;
  };
+ // The fold fills itself on first opening; a missing deck says so instead of leaving it empty.
+ const goalsCache=new Map();
+ main.addEventListener('toggle',async e=>{
+  const d=e.target;if(!d.matches?.('details[data-pp-goals]')||!d.open||d.dataset.filled)return;
+  d.dataset.filled='1';const id=d.dataset.ppGoals,body=d.querySelector('.pp-goals-body');body.textContent=L('Chargement…','Loading…');
+  let fields=goalsCache.get(id);
+  if(!fields){try{const deck=await fetchJSON(`./slides/data/${encodeURIComponent(id)}.json`);fields=goalFields(sequenceModel(deck).goals,lang);goalsCache.set(id,fields);}catch{fields=null;}}
+  if(!body.isConnected)return;
+  body.innerHTML=fields?.length?fields.map(f=>`<section><h4>${f.label}</h4><div>${f.body}</div></section>`).join(''):`<p class="muted">${L('Ce chapitre n’a pas encore d’objectifs ni de prérequis écrits.','This chapter has no written objectives or prerequisites yet.')}</p>`;
+  if(fields?.length)typeset(body);
+ },true);
  const ensureIndex=async()=>{
   if(idx||idxFailed)return;
   try{const m=await import('./resource-sources.js');idx=m.buildLiveResourceIndex({decks});}catch{idxFailed=true;}
