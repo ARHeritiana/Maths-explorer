@@ -1276,6 +1276,10 @@ footer { border-top: 1px solid var(--ink); }
 .btn-primary:hover, .primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .btn-secondary, .secondary { background: transparent; border-color: var(--ink); color: var(--ink); }
 .btn-secondary:hover, .secondary:hover { background: var(--ink); color: var(--bg); }
+/* a toggle button shows its state: filled in the accent colour with a check mark when on (hover stays ink, so on is never mistaken for hover) */
+.btn-secondary[aria-pressed="true"], .btn-secondary[aria-pressed="true"]:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn-secondary[aria-pressed="true"]::before { content: "\2713\00a0"; }
+@media (forced-colors: active) { .btn-secondary[aria-pressed="true"] { outline: 3px solid Highlight; outline-offset: 2px; } }
 
 /* cards become hairlined lists and flat plates: no shadow, no lift, square */
 .tool-card, .idea-card, .chapter-tile, .home-result, .menu-tile, .resume, .rows, .group, .segmented, .discovery-card, .challenge-card, .pathway-card { border-radius: 0; box-shadow: none; }
