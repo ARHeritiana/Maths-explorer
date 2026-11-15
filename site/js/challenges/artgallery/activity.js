@@ -1,6 +1,7 @@
 // Hands-on activity of the artgallery challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { pointInPolygon, visibility, triangulate, threeColour } from "./maths.js";
-import { lockTouch, onHintAction, svgEl, colour, toLocal, goalLine } from "../common/kit.js";
+import { pointInPolygon, visibility } from "./maths.js";
+import { lockTouch, svgEl, colour, toLocal, goalLine } from "../common/kit.js";
+import { cartoonPress } from "../common/cartoon.js";
 
 export const GW = 20, GH = 12;
 
@@ -64,14 +65,14 @@ export const convexGallery = (n) => Array.from({ length: n }, (_, i) => { const 
 
 export const starGallery = (n) => Array.from({ length: n }, (_, i) => { const a = (i / n) * 2 * Math.PI, r = i % 2 ? 0.45 : 1; return [GW / 2 + 8.8 * r * Math.cos(a), GH / 2 + 5.2 * r * Math.sin(a)]; });
 
-export function activity(root, { t, q }) {
+export function activity(root, { t, reduced, q }) {
   const N = Number(q.n), MAXG = Math.floor(N / 3) + 4;
   const SC = 16, PAD = 14, W = GW * SC + 2 * PAD, H = GH * SC + 2 * PAD;
   const X = (x) => PAD + x * SC, Y = (y) => PAD + (GH - y) * SC;
   const inv = (p) => [(p.x - PAD) / SC, GH - (p.y - PAD) / SC];
   let poly = randomGallery(N), cells = [];
   const guards = [];
-  let drag = null, sel = -1, mode = "guard", best = 0, aid = 0;   // aid: 0 none, 1 triangulation (hint 1), 2 plus 3-colouring (hint 2)
+  let drag = null, sel = -1, mode = "guard", best = 0;
   root.innerHTML = `
     ${goalLine(t, `Surveille toute la galerie avec le moins de gardiens possible.`, `Watch the whole gallery with as few guards as possible.`, `Une galerie à ${N} côtés. Pose des gardiens (touche la galerie ; glisse un gardien pour le déplacer, touche-le pour l’enlever). Puis change de galerie ou déforme celle-ci : glisse un sommet, tant que les murs ne se croisent pas.`, `A gallery with ${N} sides. Place guards (tap the gallery; drag a guard to move it, tap it to remove it). Then change the gallery or reshape this one: drag a vertex as long as the walls do not cross.`)}
     <div class="act-controls" role="group" aria-label="${t("Que déplacer ?", "What to move?")}">
@@ -99,11 +100,6 @@ export function activity(root, { t, q }) {
     const vis = guards.map((g) => visibility(poly, g));
     vis.forEach((v) => svgEl("path", { d: path(v), class: "ag-vis" }, svg));
     svgEl("path", { d: path(poly), class: "ag-wall" }, svg);
-    if (aid >= 1) {
-      const tris = triangulate(poly);
-      tris.forEach(([a, b, c]) => svgEl("path", { d: path([poly[a], poly[b], poly[c]]), fill: "none", stroke: "var(--muted)", "stroke-width": 1.4, "stroke-dasharray": "4 4", "pointer-events": "none" }, svg));
-      if (aid >= 2) threeColour(poly.length, tris).forEach((c, i) => { svgEl("circle", { cx: X(poly[i][0]), cy: Y(poly[i][1]), r: 7, fill: colour(c * 2 + 1), stroke: "var(--ink)", "stroke-width": 1.5, "pointer-events": "none" }, svg); });
-    }
     if (mode === "vertex") poly.forEach((v, i) => {
       const grp = svgEl("g", { class: "ag-vertex", "data-v": i, tabindex: 0, role: "button", "aria-label": `${t("Sommet", "Vertex")} ${i + 1}` }, svg);
       svgEl("circle", { cx: X(v[0]), cy: Y(v[1]), r: 16, class: "hit" }, grp);
@@ -174,5 +170,5 @@ export function activity(root, { t, q }) {
   root.querySelector("#ag-star").addEventListener("click", () => setPoly(starGallery(N)));
   root.querySelector("#ag-clear").addEventListener("click", () => { guards.length = 0; sel = -1; draw(); });
   sample(); draw();
-  return onHintAction("artgallery", { triangulate: () => { aid = Math.max(aid, 1); draw(); }, colour: () => { aid = 2; draw(); } });
+  return cartoonPress(root, reduced);
 }

@@ -4,6 +4,7 @@ import { clamp, goalLine } from "../common/kit.js";
 import { horseRaces } from "./maths.js";
 import { makeHorse } from "./art.js";
 import { svgEl } from "../common/kit.js";
+import { cartoonPress } from "../common/cartoon.js";
 
 export const shuffled = (n) => { const a = Array.from({ length: n }, (_, i) => i); for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 
@@ -132,5 +133,6 @@ export function activity(root, { t, q, reduced }) {
   root.querySelector("#hs-clear").addEventListener("click", () => { sel = new Set(); podium = []; render(); });
   root.querySelector("#hs-new").addEventListener("click", () => { fresh(); render(); });
   fresh(); render();
-  return () => { caf(raf); };
+  const off = cartoonPress(root, reduced);
+  return () => { caf(raf); off(); };
 }

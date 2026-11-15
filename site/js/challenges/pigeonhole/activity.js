@@ -1,18 +1,19 @@
 // Hands-on activity of the pigeonhole challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { formatNumber } from "../../math.js";
-import { MINUS, onHintAction, colour, goalLine } from "../common/kit.js";
+import { MINUS, goalLine } from "../common/kit.js";
+import { cartoonPress, PRESS } from "../common/cartoon.js";
 
 export const fmtFor = (lang) => (n, d = 2) => formatNumber(Math.abs(n) < 1e-12 ? 0 : n, lang, d).replace(/-/g, MINUS);
 
 /* -------------------------------------------------------------- pigeonhole */
-export function activity(root, { t, lang, q }) {
+export function activity(root, { t, lang, reduced, q }) {
   const MAX = 60, MOD = q.m;
   const fmt = fmtFor(lang);
   const sel = new Set();
   let best = 0;
   root.innerHTML = `
     ${goalLine(t, `Choisis le plus de nombres possible sans qu’aucune paire n’ait une différence multiple de ${MOD}.`, `Pick as many numbers as you can without any pair having a difference that is a multiple of ${MOD}.`, `Choisis des nombres en les touchant. Le but : en choisir le plus possible sans qu’aucune paire n’ait une différence multiple de ${MOD}.`, `Pick numbers by tapping them. The aim: pick as many as you can without any pair having a difference that is a multiple of ${MOD}.`)}
-    <div class="pick-grid" id="pg-grid" role="group" aria-label="${t("Entiers de 1 à 60", "Integers from 1 to 60")}">${Array.from({ length: MAX }, (_, i) => `<button type="button" class="pick" data-n="${i + 1}" aria-pressed="false">${i + 1}</button>`).join("")}</div>
+    <div class="pick-grid" id="pg-grid" role="group" aria-label="${t("Entiers de 1 à 60", "Integers from 1 to 60")}">${Array.from({ length: MAX }, (_, i) => `<button type="button" class="pick ${PRESS}" data-n="${i + 1}" aria-pressed="false">${i + 1}</button>`).join("")}</div>
     <p class="act-readout" id="pg-read" role="status" aria-live="polite"></p>
     <div class="act-controls">
       <button class="btn btn-secondary" id="pg-clear" type="button">${t("Tout effacer", "Clear all")}</button>
@@ -34,12 +35,10 @@ export function activity(root, { t, lang, q }) {
         }
     return { bad, first };
   };
-  let showRem = false;   // hint 1: colour every number by its remainder
   function render() {
     const { bad, first } = pairOf(sel);
     grid.querySelectorAll(".pick").forEach((b) => {
       const n = Number(b.dataset.n);
-      if (showRem) { b.dataset.rem = n % MOD; b.style.setProperty("--rem", colour(n % MOD)); }
       b.setAttribute("aria-pressed", String(sel.has(n)));
       b.classList.toggle("clash", bad.has(n));
     });
@@ -74,5 +73,5 @@ export function activity(root, { t, lang, q }) {
     root.querySelector("#pg-sim-read").textContent = `${t("Sur 1 000 tirages de", "Out of 1,000 draws of")} ${k} ${t("nombres", "numbers")} : ${free} ${t("sans aucune paire de ce type", "with no such pair")} (${fmt((free / 1000) * 100, 1)} %). ${t("Une simulation suggère, elle ne prouve pas.", "A simulation suggests; it does not prove.")}`;
   });
   render();
-  return onHintAction("pigeonhole", { remainders: () => { showRem = true; render(); } });
+  return cartoonPress(root, reduced, "button");
 }

@@ -2,12 +2,13 @@
 //
 // The cake challenge as an open sandbox. The visitor gets a cake they can turn in 3D, a button that locks the view from above,
 // and there a small geometry kit in the manner of GeoGebra (points, segments, midpoints, intersections, circles, a grid with
-// snapping). Nothing tells them where to cut: the hints (see hintActions in index.js) move the view and the grid for them.
+// snapping). Nothing tells them where to cut.
 // When the cuts they draw share the cake fairly, the cake is cut with a short show and turned in 3D.
 import { niceSide, cutsOfSegments, piecePolygons, rayToOutline, cakeShares, isFair, pieceDirections } from "./maths.js";
 import { drawCake } from "./view-3d.js";
 import { clamp, lockTouch, svgEl, colour, toLocal, goalLine } from "../common/kit.js";
 import { makeView, confetti } from "../common/view-3d.js";
+import { cartoonPress } from "../common/cartoon.js";
 
 export const W = 640, H = 430, CX = 320, CY = 214;
 
@@ -367,24 +368,6 @@ export function activity(root, { t, q, reduced }) {
     if (added.length) record(...added);
     afterChange();
   }
-  // moves made by the hints
-  function hintTop(centre) {
-    const go = () => {
-      if (centre && !objs.some((o) => isCentre(o))) { const p = newPoint(0.5, 0.5, { kind: "hint" }); p.name = "O"; record(p.id); }
-      afterChange();
-    };
-    if (phase === "3d") { lockTop(); const wait = setInterval(() => { if (phase === "top" && !flying) { clearInterval(wait); go(); } }, 60); }
-    else if (phase === "result") { backToTop(); go(); }
-    else go();
-  }
-  function hintGrid() {
-    hintTop(true);
-    const fin = () => { showGrid = true; snapOn = true; g = gStar; $("#ck-grid").checked = true; $("#ck-snap").checked = true; afterChange(); };
-    if (phase === "top" && !flying) fin(); else { const wait = setInterval(() => { if (phase === "top" && !flying) { clearInterval(wait); fin(); } }, 60); }
-  }
-  const onAction = (e) => { if (e.detail?.id !== "cake") return; if (e.detail.act === "top") hintTop(true); else if (e.detail.act === "grid") hintGrid(); };
-  document.addEventListener("challenge-action", onAction);
-
   // ------------------------------------------------------------ pointer input
   const local = (e) => toLocal(svg, e);
   let dragRot = null, down = null;
@@ -451,5 +434,6 @@ export function activity(root, { t, q, reduced }) {
   $("#ck-cut").addEventListener("click", () => { const cuts = currentCuts(); if (cuts.length >= 2) startResult(cuts); });
 
   updateUI(); draw();
-  return () => { cancelAnimationFrame(raf); document.removeEventListener("challenge-action", onAction); };
+  const off = cartoonPress(root, reduced);
+  return () => { cancelAnimationFrame(raf); off(); };
 }

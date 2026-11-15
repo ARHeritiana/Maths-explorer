@@ -5,6 +5,7 @@ const caf = (id) => globalThis.cancelAnimationFrame?.(id);
 import { bridgeTimes, bridgeBest } from "./maths.js";
 import { makeSoldier, easeInOut, seg, lerp } from "../common/scene-kit.js";
 import { svgEl, goalLine } from "../common/kit.js";
+import { cartoonPress } from "../common/cartoon.js";
 import { nightBridge, makeLantern } from "./art.js";
 import { LOOKS, slotX, LAMP_REST, WAIT_Y, LANE_Y, L, R } from "./solution.js";
 
@@ -74,5 +75,6 @@ export function activity(root, { t, q, reduced }) {
   root.querySelector("#br-reset").addEventListener("click", () => { reset(); draw(); });
   void best;
   reset(); draw();
-  return () => { caf(raf); };
+  const off = cartoonPress(root, reduced);
+  return () => { caf(raf); off(); };
 }
