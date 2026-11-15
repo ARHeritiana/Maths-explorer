@@ -470,7 +470,7 @@ const variantState = {};
 const paramsOf = (id) => (variantState[id] ??= hasVariants(id) ? variantDefaults(id) : {});
 const variantText = (c, q) => {
   const v = VARIANTS[c.id];
-  return v ? { prompt: v.prompt(q), original: originalOf(c.id, q), answer: v.answer(q), solution: v.solution(q), hints: v.hints ? v.hints(q) : (c.hints || []) } : { prompt: c.prompt, original: null, answer: c.answer, solution: c.solution, hints: c.hints || [] };
+  return v ? { prompt: v.prompt(q), original: originalOf(c.id, q), answer: v.answer(q), solution: v.solution(q) } : { prompt: c.prompt, original: null, answer: c.answer, solution: c.solution };
 };
 function variationPanel(c) {
   if (!hasVariants(c.id)) return "";

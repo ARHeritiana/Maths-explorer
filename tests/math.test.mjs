@@ -117,6 +117,6 @@ test("content links resolve and all learning content has two language versions",
   for (const c of challenges) {
     for (const key of ["title", "topic", "prompt", "solution", "extension"])
       assert.ok(c[key].length === 2 && c[key].every(Boolean));
-    assert.ok(!c.hints || c.hints.length === 0 || c.hints.length === 2, `${c.id}: hints`);
+    assert.ok(!c.hints && !c.hintActions, `${c.id}: no hints (owner rule, 13 November 2026)`);
   }
 });

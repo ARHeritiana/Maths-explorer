@@ -45,14 +45,6 @@ export function makeCtx(svg, lang) {
   return { svg, t, line, circ, rect, text, path, wrap, knight };
 }
 
-// Hints can act on the canvas: the hint panel dispatches "challenge-action" ({ id, act }); an activity registers its handlers
-// here and calls the returned function when it stops.
-export function onHintAction(id, handlers) {
-  const fn = (e) => { if (e.detail?.id === id) handlers[e.detail.act]?.(); };
-  document.addEventListener("challenge-action", fn);
-  return () => document.removeEventListener("challenge-action", fn);
-}
-
 // The one-line goal at the top of an activity: a single sentence stating what to achieve, with no coaching, counter or result.
 // `operate` is an optional bilingual pair [fr, en] of how to operate it (gestures, keys), kept for screen readers only.
 export function goalLine(t, fr, en, opFr, opEn) {

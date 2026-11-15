@@ -24,13 +24,14 @@ test("every challenge has variants whose defaults give the statement shown on th
 
 test("statements, answers and solutions are well formed over the whole parameter range", () => {
   for (const id of Object.keys(VARIANTS)) {
+    assert.ok(!VARIANTS[id].hints, `${id}: no hints (owner rule)`);
     const v = VARIANTS[id], pools = v.params.map((p) => (p.kind === "int" ? [p.min, p.max, p.value, p.min + p.step * Math.round((p.max - p.min) / 2 / p.step)] : p.options.map((o) => o[0])));
     const combos = pools.reduce((acc, pool) => acc.flatMap((a) => pool.map((x) => [...a, x])), [[]]);
     for (const combo of combos) {
       const q = Object.fromEntries(v.params.map((p, i) => [p.id, combo[i]])), n = normalise(id, q);
       for (const key of Object.keys(q)) assert.equal(String(n[key]), String(q[key]), `${id} ${key}`);
       assert.ok(Number.isInteger(v.answer(q)) && v.answer(q) >= 0, `${id} answer ${JSON.stringify(q)}`);
-      for (const text of [...v.prompt(q), ...v.solution(q), ...(v.hints ? v.hints(q).flat() : [])]) assert.ok(text && !/undefined|NaN|Infinity|null/.test(text), `${id}: ${text}`);
+      for (const text of [...v.prompt(q), ...v.solution(q)]) assert.ok(text && !/undefined|NaN|Infinity|null/.test(text), `${id}: ${text}`);
     }
     for (let i = 0; i < 30; i++) { const q = randomParams(id, Math.random), n = normalise(id, q); assert.deepEqual(n, Object.fromEntries(Object.entries(q).map(([k, x]) => [k, typeof n[k] === "number" ? Number(x) : x]))); }
   }

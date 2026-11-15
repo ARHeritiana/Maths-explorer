@@ -28,7 +28,7 @@ function texts(id) {
   if (combos.length > 400) combos = combos.filter((_, i) => i % Math.ceil(combos.length / 400) === 0);
   for (const combo of [null, ...combos]) {
     const q = combo ? Object.fromEntries(v.params.map((p, i) => [p.id, combo[i]])) : q0;
-    out.push(...v.solution(q), ...(v.hints ? v.hints(q).flat() : []));
+    out.push(...v.solution(q));
   }
   return out;
 }

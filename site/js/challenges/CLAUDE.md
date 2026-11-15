@@ -8,9 +8,9 @@ from `registry.js` only.
 
 | File | Exports | Holds |
 |---|---|---|
-| `index.js` | `card`, `variant`, `original`, `icon`, `hintActions`, re-exports `activity`, `diagram`, `scene` | card text (title, topic, minutes, extension), variations (`params`, `answer(q)`, `prompt(q)`, `hints(q)`, `solution(q)`, optional `random(q, rnd)`), original open question, emblem SVG, hint buttons `{ hint index: [action, fr, en, toggle?] }` |
+| `index.js` | `card`, `variant`, `original`, `icon`, re-exports `activity`, `diagram`, `scene` | card text (title, topic, minutes, extension), variations (`params`, `answer(q)`, `prompt(q)`, `hints(q)`, `solution(q)`, optional `random(q, rnd)`), original open question, emblem SVG, hint buttons `{ hint index: [action, fr, en, toggle?] }` |
 | `maths.js` | pure functions | the mathematics, no DOM; tested in `tests/` by an independent method |
-| `activity.js` | the activity function `(root, { t, q, reduced, lang })` | hands-on canvas; listens to hint buttons with `onHintAction(id, {...})` from `common/kit.js` |
+| `activity.js` | the activity function `(root, { t, q, reduced, lang })` | hands-on canvas; neutral controls, no counter or helper that gives the method away (owner rule) |
 | `solution.js` | `diagram` (`{ size, steps(q), draw(c, step, p, q), dur? }`), optional `scene` (`{ mount, update, dur?, steps? }`) | animated solution; a scene replaces the drawing and keeps the diagram's captions |
 | `view-3d.js` | renderer | 3D drawing shared by the activity and the solution (cake, box) |
 | `art.js` | characters, props | drawings used only by this challenge |
@@ -31,7 +31,7 @@ scene-level tap/drag actions have keyboard equivalents, and camera gestures canc
 | File | Holds |
 |---|---|
 | `cartoon.js` | pop/squash press feedback: `PRESS`, `installCartoon`, `pop`, `cartoonPress` |
-| `kit.js` | `goalLine`, `svgEl`, `toLocal`, `clamp`, `colour(i)` (card colours `--c1..--c8`), `lockTouch`, `onHintAction`, `makeCtx`, `MINUS` |
+| `kit.js` | `goalLine`, `svgEl`, `toLocal`, `clamp`, `colour(i)` (card colours `--c1..--c8`), `lockTouch`, `makeCtx`, `MINUS` |
 | `helpers.js` | bilingual pair `P`, easing (`clamp01`, `ez`, `seg`, `lerp`), SVG text styles, parameter builders `int`, `choice` |
 | `icon.js` | emblem frame `svg`, `soft`, `dot` |
 | `player.js` | `playSolution(def, root, options)`: the solution player (steps, play, captions, `seek`) |
@@ -52,4 +52,6 @@ Update of 12 November 2026: `nails/` is a pure-logic challenge with thin DOM. `r
 
 Update of 12 November 2026 (shared layer): `common/cartoon.js` holds the pop/squash press feedback (`PRESS`, `installCartoon`, `pop`, `cartoonPress`), used by nails and by the shared buttons around every activity (answer, Impossible, variation reset). `goalLine(t, fr, en, opFr?, opEn?)` in `common/kit.js` is the one-line goal at the top of each activity (operating instructions only for screen readers). A variant with `impossible: true` gets a neutral "Impossible" button beside the answer field (checks the answer 0) and its prompt must not mention it. The original statement sits in a closed "Énoncé d'origine" disclosure under the answer form; the written solution is a closed "Version écrite" disclosure with no URLs or citations. `tests/challenge-jargon.test.mjs` is a ratchet over hints and solutions: it holds an ALLOWLIST of known offenders by id; later batches shrink it (a clean challenge must be removed from the list, a new violation fails).
 
-Update of 13 November 2026 (owner rule: no hints in the UI): the challenge page has no hint panel and no hint buttons. `hints`, `hintActions` and the `onHintAction` listeners still exist in the folders but nothing shows or fires them; each batch of the challenge rollout deletes them from its challenges (and moves any needed view, such as a colouring or a top view, into the animated solution). New challenges must not add hints.
+Update of 13 November 2026 (owner rule: no hints in the UI): the challenge page has no hint panel and no hint buttons. Done 15 November 2026 for all 38 challenges: no `hints`, no `hintActions`, no `onHintAction`; views that only a hint opened went into the animated solution or were dropped. New challenges must not add hints (`tests/math.test.mjs` and `tests/challenge-jargon.test.mjs` fail otherwise).
+
+Update of 15 November 2026 (owner notes): `konigsberg/` shows the town as in Euler's 1736 problem, never the graph: `plan.js` is the pure town geometry (Königsberg drawn by hand for network 0, a stored table of district sites for the random networks 1 to 99, with the search that made it), `art.js` the drawings (water, shores, houses, wooden bridges); the statement names no pair of districts, and the graph appears only in the solution, where the town turns into it. `rooms/` solution: each line to the outside follows its own lane and reaches O directly, never meeting another (checked in `tests/challenge-backlog.test.mjs`).
