@@ -15,7 +15,7 @@ from . import ROOT, twin
 
 CORE = ROOT / 'content/tex/core'
 PLAYER = ROOT / 'site/slides/player.html'
-CHAPTER = ROOT / 'site/js/chapter-sequence.js'   # chapter pages load MathJax with the same table
+CHAPTER = ROOT / 'site/js/exercises/ui-kit.js'   # the site's one MathJax loader (chapter pages, banks) uses the same table
 SEP = {'fr': ';', 'en': ','}
 
 

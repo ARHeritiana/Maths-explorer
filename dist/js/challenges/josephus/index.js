@@ -1,5 +1,5 @@
-// The josephus challenge: card text, variations (checked answer, statement, solution text), original question, emblem and
-// hint actions. Everything else about this challenge is in this folder; registry.js lists the folders.
+// The josephus challenge: card text, variations (checked answer, statement, solution text), original question, emblem.
+// Everything else about this challenge is in this folder; registry.js lists the folders.
 import { int, choice, P } from "../common/helpers.js";
 import { svg, dot } from "../common/icon.js";
 import { josephusOrder } from "./maths.js";
@@ -16,7 +16,6 @@ export const card = {
   topic: ["Récurrence", "Recursion"],
   difficulty: 3,
   minutes: 12,
-  hints: [["Cherche la survivante pour n = 1, 2, 3, …, 10 : quel motif apparaît quand n est une puissance de 2 ?", "Find the survivor for n = 1, 2, 3, …, 10: what pattern appears when n is a power of 2?"], ["Après avoir éliminé assez de personnes pour tomber sur une puissance de 2, qui est la première personne sautée ?", "After removing enough people to land on a power of 2, who is the first person skipped?"]],
   extension: ["Écris le numéro du survivant en binaire à partir de celui de n : que remarques-tu ?", "Write n in binary and the survivor’s number in binary: what do you notice?"],
 };
 

@@ -323,9 +323,8 @@ with sync_playwright() as p:
     page.locator('.pick[data-n="15"]').click()
     assert page.locator('.pick.clash').count() == 2
     page.goto(BASE+'/#challenges/squares')
-    # The sum stays folded until the learner asks for it, then follows the slider.
-    page.locator('#sq-n').fill('12'); assert not page.locator('#sq-read').is_visible(), 'the sum is hidden until asked for'
-    page.locator('details:has(#sq-read) > summary').click(); assert '144' in page.locator('#sq-read strong').inner_text()
+    # The activity never shows the sum: only the size of the last border.
+    page.locator('#sq-n').fill('12'); assert '144' not in page.locator('#sq-read').inner_text() and '23' in page.locator('#sq-read').inner_text()
     # Challenges added in October 2026: activities, animated solutions and the touch fix for the domino board.
     page.goto(BASE+'/#challenges/artgallery')
     page.locator('#ag-convex').click(); page.locator('.ag-svg').scroll_into_view_if_needed(); box = page.locator('.ag-svg').bounding_box()
@@ -333,7 +332,7 @@ with sync_playwright() as p:
     assert page.locator('.ag-guard').count() == 1 and '100 %' in page.locator('#ag-read').inner_text(), 'one guard watches a convex gallery'
     page.locator('#ag-m-vertex').click(); assert page.locator('.ag-vertex').count() == 12, 'vertices can be moved'
     page.locator('#ag-random').click(); assert page.locator('.ag-guard').count() == 0, 'a new gallery starts without guards'
-    assert page.locator('#original').count() == 1, 'the original question is shown above the checkable one'
+    assert page.locator('#original').count() == 1 and not page.locator('#original').is_visible(), 'the original statement is in a closed disclosure'
     page.goto(BASE+'/#challenges/eggs')
     page.locator('.floor[data-f="50"]').click()
     assert page.locator('#eg-read strong').first.inner_text() == '1'
@@ -432,14 +431,16 @@ with sync_playwright() as p:
     page.locator('#hs-home').click(); assert page.locator('.cl-tok[data-h="24"]').evaluate("e => e.style.getPropertyValue('--c')") == '4'
 
     go('cake')
-    assert page.locator('#ck-kit').is_hidden() and page.locator('[data-hint-act]').count() == 2, 'the cake starts as a 3D view only; hints carry the buttons'
+    assert page.locator('#ck-kit').is_hidden() and page.locator('[data-hint-act]').count() == 0, 'the cake starts as a 3D view only, with no hint buttons'
     page.locator('#ck-lock').click(); page.wait_for_timeout(1000)
-    hint(1, 'top'); page.wait_for_timeout(300)
-    hint(2, 'grid'); page.wait_for_timeout(300)
-    assert page.locator('#ck-size-out').inner_text() == '5' and page.locator('#ck-snap').is_checked(), 'hint 2 places the grid with a side of 5 units'
-    page.locator('[data-tool="segment"]').click(); page.locator('.ck-stage').scroll_into_view_if_needed()   # scroll first: the stage position is read in viewport coordinates
+    page.locator('#ck-grid').check(); page.locator('#ck-snap').check(); page.locator('#ck-size').fill('5'); page.wait_for_timeout(300)
+    assert page.locator('#ck-size-out').inner_text() == '5' and page.locator('#ck-snap').is_checked(), 'the learner sets the grid to a side of 5 units'
+    page.locator('[data-tool="point"]').click(); page.locator('.ck-stage').scroll_into_view_if_needed()   # scroll first: the stage position is read in viewport coordinates
     box = page.locator('.ck-stage').bounding_box(); kx, ky = box['width'] / 640, box['height'] / 430
     scr = lambda x, y: (box['x'] + (320 + 330 * (x / 5 - 0.5)) * kx, box['y'] + (214 - 330 * (y / 5 - 0.5)) * ky)
+    page.mouse.click(*scr(0, 0)); page.mouse.click(*scr(5, 5))   # the centre is built by the learner: midpoint of two opposite corners
+    page.locator('[data-tool="mid"]').click(); page.mouse.click(*scr(0, 0)); page.mouse.click(*scr(5, 5))
+    page.locator('[data-tool="segment"]').click()
     for (x, y) in [(4, 0), (5, 3), (3, 5), (0, 4), (0, 0)]:   # a first wrong set (the last cut is missing), then the right one
         if (x, y) == (0, 0): assert 'équitable' not in page.locator('#ck-read').inner_text()
         page.mouse.click(*scr(2.5, 2.5)); page.mouse.click(*scr(x, y))
@@ -467,20 +468,19 @@ with sync_playwright() as p:
         page.locator('.cl-egg[data-i="%d"]'%(i-1)).click(); page.locator('.cl-egg[data-i="%d"]'%(i-1)).click()
     page.locator('#eg-weigh').click(); assert page.locator('#eg-read').inner_text().strip()
     go('fakecoins')
-    hint(2, 'fill'); page.locator('#fc-weigh').click()
+    for i in range(10):
+        for _ in range(i + 1): page.locator('.fc-step[data-i="%d"][data-d="1"]'%i).click()   # 1, 2, 3, … coins
+    page.locator('#fc-weigh').click()
     import re
     grams = int(re.search(r'(\d+) g', page.locator('#fc-read').inner_text()).group(1))
     page.locator('.fc-g[data-i="%d"]'%(550 - grams - 1)).click()
     assert 'strong' in page.locator('#fc-read').inner_html(), 'the shortfall names the fake pile'
     # Euclidean geometry and invariants: each activity responds and agrees with the mathematics.
-    go('reflect'); hint(2, 'mirror'); assert 'AB′' in page.locator('#rf-read').inner_text() and '5 m' in page.locator('#rf-read').inner_text()
+    go('reflect'); page.locator('#rf-x').fill('1.35'); assert '5 m' in page.locator('#rf-read').inner_text()
     go('lunes'); reveal('#ln-read'); assert '24' in page.locator('#ln-read').inner_text()
     go('star'); reveal('#st-read'); page.locator('#st-rand').click(); assert '180' in page.locator('#st-read').inner_text()
     go('box')
-    assert page.locator('input[name="bx"]').count() == 0, 'the box offers no unfolding choice before a hint'
-    hint(1, 'net'); page.wait_for_timeout(2300); assert page.locator('#bx-barflat').is_visible() and page.locator('#bx-read strong').count() == 1
-    hint(2, 'line'); assert 'segment' in page.locator('#bx-read').inner_text()
-    page.locator('#bx-fold').click(); page.wait_for_timeout(1800)
+    assert page.locator('input[name="bx"]').count() == 0 and page.locator('#bx-barflat').count() == 0, 'the box offers no unfolding control'
     page.locator('.bx-stage').evaluate("e => { const b = e.__box(); b.add([1, 0, 4 / 3]); b.add([1, 2, 4]); }")   # the shortest route of the 1 x 2 x 4 box
     page.wait_for_timeout(500); assert 'Bravo' in page.locator('#bx-read').inner_text() or 'Well done' in page.locator('#bx-read').inner_text()
     go('merge')

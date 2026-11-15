@@ -6,6 +6,7 @@ import { challenges } from "../dist/js/content.js";
 import { VARIANTS, defaults, randomParams, normalise, hasActivity, hasSolution, ORIGINALS, SOLUTIONS } from "../dist/js/challenges/registry.js";
 import { josephusOrder } from "../dist/js/challenges/josephus/maths.js";
 import { graphFor, minRemoval, walkable, degrees, trailOf } from "../dist/js/challenges/konigsberg/maths.js";
+import { cityFor, inside, edgeDist, HIT } from "../dist/js/challenges/konigsberg/plan.js";
 import { comb, triangulate, threeColour, visibility, pointInPolygon, area2 } from "../dist/js/challenges/artgallery/maths.js";
 import { eggDrops, eggPlan, eggCover } from "../dist/js/challenges/eggs/maths.js";
 
@@ -23,13 +24,14 @@ test("every challenge has variants whose defaults give the statement shown on th
 
 test("statements, answers and solutions are well formed over the whole parameter range", () => {
   for (const id of Object.keys(VARIANTS)) {
+    assert.ok(!VARIANTS[id].hints, `${id}: no hints (owner rule)`);
     const v = VARIANTS[id], pools = v.params.map((p) => (p.kind === "int" ? [p.min, p.max, p.value, p.min + p.step * Math.round((p.max - p.min) / 2 / p.step)] : p.options.map((o) => o[0])));
     const combos = pools.reduce((acc, pool) => acc.flatMap((a) => pool.map((x) => [...a, x])), [[]]);
     for (const combo of combos) {
       const q = Object.fromEntries(v.params.map((p, i) => [p.id, combo[i]])), n = normalise(id, q);
       for (const key of Object.keys(q)) assert.equal(String(n[key]), String(q[key]), `${id} ${key}`);
       assert.ok(Number.isInteger(v.answer(q)) && v.answer(q) >= 0, `${id} answer ${JSON.stringify(q)}`);
-      for (const text of [...v.prompt(q), ...v.solution(q), ...(v.hints ? v.hints(q).flat() : [])]) assert.ok(text && !/undefined|NaN|Infinity|null/.test(text), `${id}: ${text}`);
+      for (const text of [...v.prompt(q), ...v.solution(q)]) assert.ok(text && !/undefined|NaN|Infinity|null/.test(text), `${id}: ${text}`);
     }
     for (let i = 0; i < 30; i++) { const q = randomParams(id, Math.random), n = normalise(id, q); assert.deepEqual(n, Object.fromEntries(Object.entries(q).map(([k, x]) => [k, typeof n[k] === "number" ? Number(x) : x]))); }
   }
@@ -87,6 +89,27 @@ test("konigsberg: the minimum removal agrees with a direct search for an Euler w
     const w = trailOf(g, minRemoval(g)); assert.equal(w.length, E - best); assert.ok(walkable(g, minRemoval(g)));
   }
   assert.deepEqual(degrees(graphFor(0)), [5, 3, 3, 3]);
+});
+
+// The statement no longer lists the bridges: the town map must show the network faithfully. Each bridge starts on the
+// shore of the land of its first district, ends on the shore of the land of its second, its middle is over water, no two
+// bridges cross, and bridges stand far enough apart for a 44 px tap on a phone.
+test("konigsberg: every town map realises its network (lands, water, bridges) and the statement lists no bridge", () => {
+  const onLand = (poly, p) => inside(poly, p) || edgeDist(poly, p) < 1.5;
+  const cross = ([a, b], [c, d]) => { const o = (p, q, r) => Math.sign((q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0])); return o(a, b, c) * o(a, b, d) < 0 && o(c, d, a) * o(c, d, b) < 0; };
+  for (let id = 0; id < 100; id++) {
+    const g = graphFor(id), city = cityFor(id);
+    assert.equal(city.lands.length, g.names.length, `network ${id}`);
+    g.edges.forEach(([a, b], i) => {
+      const br = city.bridges[i];
+      assert.ok(onLand(city.lands[a], br.a) && onLand(city.lands[b], br.b), `network ${id} bridge ${i} ends`);
+      assert.ok(city.lands.every((poly) => !inside(poly, br.mid)), `network ${id} bridge ${i} over water`);
+      city.lands.forEach((poly, v) => { if (v !== a && v !== b) assert.ok(!onLand(poly, br.a) && !onLand(poly, br.b), `network ${id} bridge ${i} touches land ${v}`); });
+      city.bridges.forEach((o, j) => { if (j > i) { assert.ok(!cross([br.a, br.b], [o.a, o.b]), `network ${id} bridges ${i}, ${j} cross`); assert.ok(Math.hypot(br.mid[0] - o.mid[0], br.mid[1] - o.mid[1]) >= HIT - 10, `network ${id} bridges ${i}, ${j} too close`); } });
+    });
+    const text = VARIANTS.konigsberg.prompt({ g: id }).join(" ");
+    for (const [a, b] of g.edges) assert.doesNotMatch(text, new RegExp(`(entre|between) ${g.names[a]} (et|and) ${g.names[b]}`), `network ${id}: the statement lists a bridge`);
+  }
 });
 
 test("josephus: simulation, recurrence and the closed form 2l + 1", () => {

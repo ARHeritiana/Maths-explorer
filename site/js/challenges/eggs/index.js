@@ -1,5 +1,4 @@
-// The eggs challenge: card text, variations (checked answer, statement, solution text), original question, emblem and
-// hint actions. Everything else about this challenge is in this folder; registry.js lists the folders.
+// The eggs challenge: card text, variations (checked answer, statement, solution text), original question, emblem. Everything else about this challenge is in this folder; registry.js lists the folders.
 import { int, choice, P } from "../common/helpers.js";
 import { svg, soft } from "../common/icon.js";
 import { eggDrops, eggPlan, eggCover } from "./maths.js";
@@ -14,7 +13,6 @@ export const card = {
   topic: ["Optimisation", "Optimization"],
   difficulty: 3,
   minutes: 15,
-  hints: [["Avec un seul œuf, la seule méthode sûre est de monter un étage à la fois.", "With a single egg the only safe method is to climb one floor at a time."], ["Si le premier œuf se brise au k-ième lancer, combien de lancers restent-ils au second ? Fais diminuer le pas à chaque lancer.", "If the first egg breaks on the kth drop, how many drops does the second have left? Make the step shrink with each drop."]],
   extension: ["Que devient la réponse avec 3 œufs ? Cherche un tableau « étages couverts » en fonction du nombre d’œufs et de lancers.", "What happens with 3 eggs? Look for a table of floors covered as a function of eggs and drops."],
 };
 

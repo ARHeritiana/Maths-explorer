@@ -1,4 +1,4 @@
-// The cake sandbox: geometry of cuts drawn as segments, fairness, and the grid size offered by hint 2.
+// The cake sandbox: geometry of cuts drawn as segments, fairness, and the grid size that suits the cuts.
 import test from "node:test";
 import assert from "node:assert/strict";
 import { perimeterParam, rayToOutline, cutsOfSegments, piecePolygons, isFair, niceSide, pieceDirections } from "../dist/js/challenges/cake/maths.js";
@@ -34,7 +34,7 @@ test("cake: the pieces tile the square, and rays from the centre reach the outli
   for (let th = 0; th < 6.3; th += 0.37) { const [x, y] = rayToOutline(th); assert.ok(perimeterParam(x, y, 1e-9) !== null); }
 });
 
-test("cake: the grid size of hint 2 puts every equally spaced cut on grid points", () => {
+test("cake: the natural grid size puts every equally spaced cut on grid points", () => {
   for (const n of [3, 4, 5, 6, 10]) {
     const g = niceSide(n); assert.ok(g >= 3 && g <= 12, `${n}`);
     const spacing = (4 * g) / n; assert.ok(Number.isInteger(spacing), `${n}: spacing ${spacing}`);

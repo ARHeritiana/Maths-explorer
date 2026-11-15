@@ -4,6 +4,8 @@ import { knightMoves, validTour, searchTour, closedTourExists } from "../site/js
 import { FIVE_ROOM_EDGES, eulerCriteria, eulerTrail } from "../site/js/challenges/rooms/maths.js";
 import { factorialValuation, trailingZeros, valuationTerms } from "../site/js/challenges/factorials/maths.js";
 import { variant as roomVariant, edgesFor } from "../site/js/challenges/rooms/index.js";
+import { doorLine } from "../site/js/challenges/rooms/solution.js";
+import { DOORS, STAND, HOUSE } from "../site/js/challenges/rooms/art.js";
 
 function finish(g) { let r; do { r = g.next(); } while (!r.done); return r.value; }
 test("knight graph edges agree with independent coordinate distance and are symmetric", () => {
@@ -52,5 +54,41 @@ test("the room checker asks for a minimal repair without exposing the parity met
     const minimum = trailExists(edges) ? 0 : edges.some((_, i) => trailExists(edges.filter((_, j) => j !== i))) ? 1 : 2;
     assert.equal(roomVariant.answer(q), minimum);
     assert.doesNotMatch(roomVariant.prompt(q).join(' '), /impair|odd|degr[ée]|Euler/i);
+  }
+});
+
+// The rooms solution turns the plan into a sketch: a point per room, one point O for the outside, a line per door.
+const O = [HOUSE.w / 2, HOUSE.h + 118];
+const segs = (pts) => pts.slice(1).map((p, k) => [pts[k], p]);
+const near = (p, q, r) => Math.hypot(p[0] - q[0], p[1] - q[1]) < r;
+const segDist = (p, [a, b]) => { const dx = b[0] - a[0], dy = b[1] - a[1], t = Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / (dx * dx + dy * dy || 1))); return Math.hypot(p[0] - a[0] - t * dx, p[1] - a[1] - t * dy); };
+const sample = (pts, step = 1) => segs(pts).flatMap(([a, b]) => { const n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / step)); return Array.from({ length: n }, (_, k) => [a[0] + ((b[0] - a[0]) * k) / n, a[1] + ((b[1] - a[1]) * k) / n]); });
+
+test("rooms sketch: every door line runs from its room's point through its door to the other room's point or to O", () => {
+  DOORS.forEach((d, k) => {
+    const line = doorLine(k);
+    assert.deepEqual(line[0], STAND[d.a], `door ${k} starts at its room`);
+    assert.ok(segs(line).some((s) => segDist([d.x, d.y], s) < 1e-9), `door ${k} goes through its door`);
+    assert.deepEqual(line.at(-1), d.b === 5 ? O : STAND[d.b], `door ${k} ends at ${d.b === 5 ? "O" : "the other room"}`);
+  });
+});
+
+test("rooms sketch: outside lines never touch the house walls except at their own door, and stay outside it", () => {
+  DOORS.forEach((d, k) => {
+    if (d.b !== 5) return;
+    const outside = sample(doorLine(k).slice(1)).slice(1);
+    for (const p of outside) assert.ok(!(p[0] > 1 && p[0] < HOUSE.w - 1 && p[1] > 1 && p[1] < HOUSE.h - 1), `door ${k} line re-enters the house at ${p}`);
+  });
+});
+
+test("rooms sketch (owner rule: lines to the outside each reach O, never meet elsewhere): no two door lines meet or come close except at a room point or at O", () => {
+  const ends = [...STAND.slice(0, 5), O], R = 22, GAP = 6;   // R: radius of a drawn point in house units (14 px / 0.72 plus margin)
+  for (let i = 0; i < DOORS.length; i++) for (let j = i + 1; j < DOORS.length; j++) {
+    const A = doorLine(i), B = doorLine(j);
+    for (const p of sample(A)) {
+      if (ends.some((e) => near(p, e, R))) continue;
+      const dmin = Math.min(...segs(B).map((s) => segDist(p, s)));
+      assert.ok(dmin >= GAP, `lines of doors ${i} and ${j} come within ${dmin.toFixed(1)} at (${p.map((v) => v.toFixed(0))})`);
+    }
   }
 });

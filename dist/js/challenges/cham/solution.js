@@ -24,8 +24,8 @@ export const scene = {
     el("rect", { x: 0, y: 236, width: 520, height: 64, fill: "#6b4a26" }, svg); el("rect", { x: 0, y: 236, width: 520, height: 6, fill: "#8a6236" }, svg);
     const sprites = []; for (let i = 0; i < r + g + b + 2; i++) sprites.push(makeChameleon(svg));
     const sparkG = el("g", {}, svg), board = pillAt(svg, 90, 8, 340, 30), label = el("text", { x: 260, y: 29, "text-anchor": "middle", style: white(15) }, board);
-    const info = el("g", {}, svg), card = el("rect", { x: 250, y: 56, width: 260, height: 96, rx: 12, fill: "#0a0f2c", opacity: 0 }, info);
-    const lines = [0, 1, 2].map((i) => el("text", { x: 264, y: 82 + i * 26, style: "font:600 14px var(--body);fill:#fff" }, info));
+    const info = el("g", {}, svg), card = el("rect", { x: 232, y: 56, width: 280, height: 96, rx: 12, fill: "#0a0f2c", opacity: 0 }, info);
+    const lines = [0, 1, 2].map((i) => el("text", { x: 242, y: 82 + i * 26, style: "font:600 13px var(--body);fill:#fff" }, info));
     const heads = [0, 1, 2].map((i) => el("text", { "text-anchor": "middle", style: "font:700 22px var(--math);fill:#fff;paint-order:stroke;stroke:#2a4a2a;stroke-width:4px" }, svg));
     return { c, sprites, label, card, lines, heads, r, g, b, sparkG };
   },
@@ -67,8 +67,8 @@ export const scene = {
     const rows = [["r − v", r - g, r - 1 - (g - 1)], ["v − b", g - b, g - 1 - (b + 2)], ["b − r", b - r, b + 2 - (r - 1)]];
     const show = step === 2 || step === 3 ? easeInOut(seg(p, 0, 0.2)) : 0;
     card.setAttribute("opacity", String(0.9 * show));
-    lines.forEach((t, i) => { t.textContent = show ? `${rows[i][0]} : ${rows[i][1]} → ${rows[i][2]}   (mod 3 : ${mod(rows[i][1])} = ${mod(rows[i][2])})` : ""; t.setAttribute("opacity", String(show)); t.style.fill = step === 3 && mod(rows[i][1]) === 0 ? "#5fd0a0" : "#fff"; });
-    label.textContent = step === 0 ? `${r} · ${g} · ${b}` : step === 1 ? c.t("une rencontre : −1, −1, +2", "one meeting: −1, −1, +2") : step === 2 ? c.t("les différences mod 3 ne bougent pas", "the differences mod 3 never change") : step === 3 ? c.t("deux effectifs égaux à 0 ⇒ une différence ≡ 0", "two counts equal 0 ⇒ a difference ≡ 0") : sol ? `${c.t("rencontre", "meeting")} ${Math.min(total, mi + 1)} / ${total}` : c.t("impossible : aucune différence ≡ 0 (mod 3)", "impossible: no difference ≡ 0 (mod 3)");
+    lines.forEach((t, i) => { t.textContent = show ? `${rows[i][0]} : ${rows[i][1]} → ${rows[i][2]} (${c.t("reste ÷ 3", "remainder ÷ 3")} : ${mod(rows[i][1])} = ${mod(rows[i][2])})` : ""; t.setAttribute("opacity", String(show)); t.style.fill = step === 3 && mod(rows[i][1]) === 0 ? "#5fd0a0" : "#fff"; });
+    label.textContent = step === 0 ? `${r} · ${g} · ${b}` : step === 1 ? c.t("une rencontre : −1, −1, +2", "one meeting: −1, −1, +2") : step === 2 ? c.t("chaque reste ÷ 3 reste le même", "each remainder ÷ 3 stays the same") : step === 3 ? c.t("deux effectifs à 0 : un reste égal à 0", "two counts at 0: a remainder of 0") : sol ? `${c.t("rencontre", "meeting")} ${Math.min(total, mi + 1)} / ${total}` : c.t("impossible : aucun reste égal à 0", "impossible: no remainder equal to 0");
   },
 };
 
@@ -78,9 +78,9 @@ export const diagram = {
   steps: (q) => { const [r, g, b] = chamSet(q.set), sol = chamSolve(r, g, b), mod = (x) => ((x % 3) + 3) % 3; return [
     P(`${r} rouges, ${g} verts, ${b} bleus. Deux caméléons de couleurs différentes se rencontrent : tous deux prennent la troisième couleur.`, `${r} red, ${g} green, ${b} blue. Two chameleons of different colours meet: both take the third colour.`),
     P("Une rencontre rouge-vert : r − 1, v − 1, b + 2. Les trois effectifs changent de −1, −1, +2.", "A red–green meeting: r − 1, g − 1, b + 2. The three counts change by −1, −1, +2."),
-    P("Les différences r − v, v − b, b − r varient de 0 ou de ±3 : modulo 3, elles ne changent jamais. C’est l’invariant.", "The differences r − g, g − b, b − r change by 0 or ±3: modulo 3 they never change. That is the invariant."),
-    P("Pour que tous aient la même couleur, deux effectifs doivent valoir 0 : leur différence vaut 0, donc deux des trois différences doivent être ≡ 0 (mod 3).", "For all to have the same colour, two counts must be 0: their difference is 0, so one of the three differences must be ≡ 0 (mod 3)."),
-    sol ? P(`Ici r − v ≡ ${mod(r - g)}, v − b ≡ ${mod(g - b)}, b − r ≡ ${mod(b - r)} : c’est possible, et il faut au minimum ${sol.length} rencontres (suite ci-contre).`, `Here r − g ≡ ${mod(r - g)}, g − b ≡ ${mod(g - b)}, b − r ≡ ${mod(b - r)}: it is possible, and at least ${sol.length} meetings are needed (sequence shown).`) : P(`Ici r − v ≡ ${mod(r - g)}, v − b ≡ ${mod(g - b)}, b − r ≡ ${mod(b - r)} : aucune n’est congrue à 0, donc c’est impossible. Réponse : 0.`, `Here r − g ≡ ${mod(r - g)}, g − b ≡ ${mod(g - b)}, b − r ≡ ${mod(b - r)}: none is 0, so it is impossible. Answer: 0.`),
+    P("Les différences r − v, v − b, b − r changent de 0 ou de ±3 : le reste de leur division par 3 ne change jamais.", "The differences r − g, g − b, b − r change by 0 or ±3: their remainder on division by 3 never changes."),
+    P("Pour que tous aient la même couleur, deux effectifs doivent valoir 0 : leur différence vaut 0, donc l’une des trois différences doit avoir pour reste 0 dans la division par 3.", "For all to have the same colour, two counts must be 0: their difference is 0, so one of the three differences must have remainder 0 on division by 3."),
+    sol ? P(`Ici les restes de r − v, v − b, b − r sont ${mod(r - g)}, ${mod(g - b)}, ${mod(b - r)} : c’est possible, et il faut au minimum ${sol.length} rencontres (suite ci-contre).`, `Here the remainders of r − g, g − b, b − r are ${mod(r - g)}, ${mod(g - b)}, ${mod(b - r)}: it is possible, and at least ${sol.length} meetings are needed (sequence shown).`) : P(`Ici les restes de r − v, v − b, b − r sont ${mod(r - g)}, ${mod(g - b)}, ${mod(b - r)} : aucun n’est 0, donc c’est impossible. Réponse : 0.`, `Here the remainders of r − g, g − b, b − r are ${mod(r - g)}, ${mod(g - b)}, ${mod(b - r)}: none is 0, so it is impossible. Answer: 0.`),
   ]; },
   draw(c, s, p, q) {
     const [r, g, b] = chamSet(q.set), cols = [colour(3), colour(2), colour(0)], names = [c.t("rouges", "red"), c.t("verts", "green"), c.t("bleus", "blue")], mod = (x) => ((x % 3) + 3) % 3;
@@ -88,7 +88,7 @@ export const diagram = {
     if (s <= 3) cur.forEach((v, i) => { const w = (v / mx) * 280; c.rect(110, 50 + i * 50, Math.max(0, w), 30, { rx: 6, fill: cols[i], stroke: "var(--ink)", "stroke-width": 1.5 }); c.text(100, 71 + i * 50, names[i], { "text-anchor": "end", class: "sol-small" }); c.text(118 + Math.max(0, w), 71 + i * 50, `${Math.round(v)}`, { class: "sol-line" }); });
     if (s >= 2 && s <= 3) {
       const rows = [["r − v", r - g, after[0] - after[1]], ["v − b", g - b, after[1] - after[2]], ["b − r", b - r, after[2] - after[0]]];
-      rows.forEach(([lab, before, aft], i) => { c.text(60, 218 + i * 24, `${lab} :`, { class: "sol-small" }); c.text(130, 218 + i * 24, `${before}`, { class: "sol-line" }); c.text(180, 218 + i * 24, "→", { class: "sol-small" }); c.text(210, 218 + i * 24, `${aft}`, { class: "sol-line" }); c.text(270, 218 + i * 24, `mod 3 : ${mod(before)} = ${mod(aft)}`, { class: s === 3 && mod(before) === 0 ? "sol-hot" : "sol-small" }); });
+      rows.forEach(([lab, before, aft], i) => { c.text(60, 218 + i * 24, `${lab} :`, { class: "sol-small" }); c.text(130, 218 + i * 24, `${before}`, { class: "sol-line" }); c.text(180, 218 + i * 24, "→", { class: "sol-small" }); c.text(210, 218 + i * 24, `${aft}`, { class: "sol-line" }); c.text(270, 218 + i * 24, `${c.t("reste ÷ 3", "remainder ÷ 3")} : ${mod(before)} = ${mod(aft)}`, { class: s === 3 && mod(before) === 0 ? "sol-hot" : "sol-small" }); });
     }
     if (s === 4) {
       const sol = chamSolve(r, g, b);

@@ -1,5 +1,5 @@
-// The chess challenge: card text, variations (checked answer, statement, solution text), original question, emblem and
-// hint actions. Everything else about this challenge is in this folder; registry.js lists the folders.
+// The chess challenge: card text, variations (checked answer, statement, solution text), original question and emblem.
+// Everything else about this challenge is in this folder; registry.js lists the folders.
 import { int, choice, P } from "../common/helpers.js";
 import { svg, soft } from "../common/icon.js";
 export { activity } from "./activity.js";
@@ -13,7 +13,6 @@ export const card = {
   topic: ["Pavages", "Tilings"],
   difficulty: 2,
   minutes: 10,
-  hints: [["Colorie les cases en noir et blanc.", "Colour the squares black and white."], ["Chaque domino couvre une case de chaque couleur. Que dire des deux cases retirées ?", "Every domino covers one square of each colour. What can you say about the two removed squares?"]],
   extension: ["Si on retire deux cases de couleurs différentes quelconques, le plateau 8 × 8 reste-t-il toujours pavable ? Cherche avant de conclure.", "If two squares of different colours are removed, can the 8 × 8 board always be tiled? Investigate before concluding."],
 };
 
@@ -34,5 +33,3 @@ export const original = (q) => P(
 `Can this ${q.n} × ${q.n} board, missing ${q.kind === "adj" ? "two neighbouring corners" : "two opposite corners"}, be covered exactly by 2 × 1 dominoes, with no overlap and nothing sticking out? If so, describe a tiling. If not, prove it is impossible with an argument that avoids trying every placement.`);
 
 export const icon = svg(`<rect x="8" y="8" width="48" height="48" rx="3"/><path d="M8 24h48M8 40h48M24 8v48M40 8v48"/><rect class="ci-slide" x="11" y="11" width="26" height="10" rx="3" ${soft}/><rect x="43" y="27" width="10" height="26" rx="3" ${soft}/>`);
-
-export const hintActions = { 0: ["colour", "Colorier les cases", "Colour the squares", true] };

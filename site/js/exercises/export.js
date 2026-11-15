@@ -90,7 +90,7 @@ export function starterTex(doc, opts = {}) {
   for (const it of doc.items) {
     L.push(`\\item ${tex(it.q)}`);
     if (it.figure) L.push(starterFigureTex(it.figure));
-    if (teacher) L.push(`\\\\\\hspace*{1em}\\textbf{Réponse :} ${tex(it.a)}${it.s ? ` \\textit{(${tex(it.s)})}` : ''}`);
+    if (teacher) L.push(`${it.figure ? '\\par\\noindent' : '\\\\'}\\hspace*{1em}\\textbf{Réponse :} ${tex(it.a)}${it.s ? ` \\textit{(${tex(it.s)})}` : ''}`);
     else L.push('\\vspace{2.2em}');
   }
   L.push('\\end{enumerate}', '\\end{multicols}', '\\end{document}');

@@ -1,88 +1,102 @@
-// Animated solution of the konigsberg challenge, a pure function of (step, progress). `diagram` holds the captions (steps) and,
-// without a `scene`, draws the frames; a `scene` (mount once, then update) replaces the drawing. See common/player.js.
-import { el, pillAt, white, P, ez } from "../common/helpers.js";
+// Animated solution of the konigsberg challenge, a pure function of (step, progress). `diagram` holds the captions (steps);
+// the `scene` (mount once, then update) draws them: it starts from the town map of the activity and turns it into the
+// graph (each land shrinks to a point, each bridge becomes a line through where it stood), then counts the bridges of each
+// point, pairs them (one in, one out) and walks the remaining bridges. See common/player.js.
+import { el, pillAt, white, P } from "../common/helpers.js";
 import { colour } from "../common/kit.js";
-import { makeSoldier, easeInOut, seg, clamp01 } from "../common/scene-kit.js";
-import { graphFor, minRemoval, trailOf, layoutOf, bridgeGeom, degrees } from "./maths.js";
+import { makeSoldier, easeInOut, seg, clamp01, lerp } from "../common/scene-kit.js";
+import { graphFor, minRemoval, trailOf, degrees } from "./maths.js";
+import { cityFor, graphOver, bez } from "./plan.js";
+import { drawTown } from "./art.js";
+
+const L2 = (a, b, k) => [lerp(a[0], b[0], k), lerp(a[1], b[1], k)];
+const qd = ({ A, C, B }) => `M${A[0].toFixed(1)} ${A[1].toFixed(1)}Q${C[0].toFixed(1)} ${C[1].toFixed(1)} ${B[0].toFixed(1)} ${B[1].toFixed(1)}`;
+// the point the pairing step looks at: an odd district if there is one (its last bridge stays alone), else district 0
+const focusOf = (deg) => { const v = deg.findIndex((d) => d % 2); return v < 0 ? 0 : v; };
 
 /* ================================================================= the bridges of Königsberg */
 export const scene = {
-  size: [520, 300],
-  dur: (s, q) => { const g = graphFor(q.g), best = minRemoval(g), walk = trailOf(g, best); return s === 5 ? Math.min(14000, 1600 + walk.length * 1100) : 3600; },
+  size: [520, 360],
+  dur: (s, q) => { if (s !== 6) return [3200, 4600, 3600, 5200, 3600, 3400][s]; const g = graphFor(q.g); return Math.min(14000, 1600 + trailOf(g, minRemoval(g)).length * 1000); },
   steps: null,
   mount(c, q) {
-    const svg = c.svg, g = graphFor(q.g), pos = layoutOf(g);
-    const id = "kb" + Math.floor(Math.random() * 1e6);
-    const defs = el("defs", {}, svg), gr = el("linearGradient", { id, x1: 0, y1: 0, x2: 0, y2: 1 }, defs);
-    [[0, "#7ec8f2"], [1, "#2f7fbf"]].forEach(([o, col]) => el("stop", { offset: o, "stop-color": col }, gr));
-    el("rect", { width: 520, height: 300, fill: `url(#${id})` }, svg);
-    for (let i = 0; i < 14; i++) el("path", { d: `M${(i * 97) % 520} ${30 + ((i * 53) % 250)} q10 -6 20 0 t20 0`, fill: "none", stroke: "#fff", "stroke-width": 1.6, opacity: 0.4, "stroke-linecap": "round", class: "sc-wave", style: `--d:${(i % 5) * 0.4}s` }, svg);
-    const bridges = g.edges.map((_, i) => { const { d, mid } = bridgeGeom(g, i, pos), gp = el("g", {}, svg); el("path", { d, fill: "none", stroke: "#4b2d14", "stroke-width": 13, "stroke-linecap": "round" }, gp); el("path", { d, fill: "none", stroke: "#b9814a", "stroke-width": 9, "stroke-linecap": "round" }, gp); const planks = el("path", { d, fill: "none", stroke: "#6b4423", "stroke-width": 9, "stroke-dasharray": "1.6 5", opacity: 0.7 }, gp); const done = el("path", { d, fill: "none", stroke: "#5fd0a0", "stroke-width": 5, "stroke-linecap": "round", opacity: 0, "stroke-dasharray": "999", "stroke-dashoffset": "999" }, gp); const cross = el("text", { x: mid[0], y: mid[1] + 8, "text-anchor": "middle", style: "font:700 24px var(--body);fill:#ff5b5b;paint-order:stroke;stroke:#fff;stroke-width:3px" }, gp); cross.textContent = "×"; return { gp, planks, done, cross, d }; });
-    const islands = g.names.map((nm, v) => { const [x, y] = pos[v], gp = el("g", { transform: `translate(${x} ${y})` }, svg); el("ellipse", { rx: 36, ry: 27, fill: "#e8d6a0", stroke: "#a38a4a", "stroke-width": 2 }, gp); el("ellipse", { rx: 30, ry: 21, fill: "#79c276" }, gp); const rr = (v * 37) % 5; el("circle", { cx: -14 + rr, cy: -6, r: 5, fill: "#3f8f4a" }, gp); el("circle", { cx: 16 - rr, cy: 6, r: 4, fill: "#3f8f4a" }, gp); const t = el("text", { y: 6, "text-anchor": "middle", style: "font:700 18px var(--body);fill:#1f3a24" }, gp); t.textContent = nm; const badge = el("g", { transform: "translate(26 -26)" }, gp); const bc = el("circle", { r: 11, fill: "#fff", stroke: "#222", "stroke-width": 1.5 }, badge); const bt = el("text", { y: 4.5, "text-anchor": "middle", style: "font:700 13px var(--body);fill:#222" }, badge); return { gp, badge, bc, bt }; });
-    const walker = makeSoldier(svg, { uniform: "#e8710a", hat: 1, size: 0.9, label: "" });
-    const board = pillAt(svg, 110, 8, 300, 30), label = el("text", { x: 260, y: 29, "text-anchor": "middle", style: white(15) }, board);
-    return { c, g, pos, bridges, islands, walker, label };
+    const g = graphFor(q.g), city = cityFor(q.g), G = graphOver(city, g);
+    const T = drawTown(c.svg, city, g.names, "kbs" + Math.floor(Math.random() * 1e6));
+    const lines = g.edges.map(() => el("path", { fill: "none", "stroke-linecap": "round", opacity: 0 }, T.layer));
+    const nodes = g.names.map((nm, v) => {
+      const gp = el("g", { transform: `translate(${G.pts[v][0].toFixed(1)} ${G.pts[v][1].toFixed(1)})`, opacity: 0 }, T.layer);
+      const ring = el("circle", { r: 15, fill: "#fffdf5", stroke: "#2b2538", "stroke-width": 2.5 }, gp);
+      el("text", { y: 6.5, "text-anchor": "middle", style: "font:700 18px var(--body);fill:#2b2538" }, gp).textContent = nm;
+      const badge = el("g", { transform: "translate(17 -17)", opacity: 0 }, gp), bc = el("circle", { r: 11, stroke: "#fff", "stroke-width": 2 }, badge), bt = el("text", { y: 4.5, "text-anchor": "middle", style: "font:700 13px var(--body);fill:#fff" }, badge);
+      return { gp, ring, badge, bc, bt };
+    });
+    const walker = makeSoldier(T.layer, { uniform: "#e8710a", hat: 1, size: 0.75, label: "" });
+    // the graph may bulge past the frame: fit it (points, lines, badges) into the frame below the board
+    const xs = [], ys = [];
+    G.curves.forEach((cv) => { for (let k = 0; k <= 20; k++) { const [x, y] = bez(cv, k / 20); xs.push(x); ys.push(y); } });
+    G.pts.forEach(([x, y]) => { xs.push(x - 18, x + 30); ys.push(y - 30, y + 18); });
+    const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys), fx = [12, 46, city.W - 12, city.H - 10];
+    const k = Math.min(1, (fx[2] - fx[0]) / (x1 - x0), (fx[3] - fx[1]) / (y1 - y0)), fit = { k, dx: (fx[0] + fx[2]) / 2 - (k * (x0 + x1)) / 2, dy: (fx[1] + fx[3]) / 2 - (k * (y0 + y1)) / 2 };
+    const board = pillAt(c.svg, 120, 8, 280, 30), label = el("text", { x: 260, y: 29, "text-anchor": "middle", style: white(15) }, board);
+    return { c, g, city, G, T, lines, nodes, walker, label, fit };
   },
   update(S, step, p, q) {
-    const { c, g, pos, bridges, islands, walker, label } = S, best = minRemoval(g), removed = step >= 4 ? best : new Set(), deg = degrees(g, removed), trail = step === 5 ? trailOf(g, best) : [];
-    const prog = step === 5 ? easeInOut(seg(p, 0.06, 0.96)) * trail.length : 0;
-    g.edges.forEach((b, i) => {
-      const br = bridges[i], gone = best.has(i) && step >= 4, w = trail.findIndex((x) => x[0] === i);
-      br.gp.setAttribute("opacity", String(gone ? (step === 4 ? 1 - 0.65 * easeInOut(seg(p, 0.1, 0.6)) : 0.35) : 1));
-      br.gp.setAttribute("transform", gone && step === 4 ? `translate(0 ${(8 * easeInOut(seg(p, 0.1, 0.8))).toFixed(1)})` : gone ? "translate(0 8)" : "");
-      br.cross.setAttribute("opacity", String(gone ? 1 : 0));
-      const done = step === 5 && w >= 0 ? clamp01(prog - w) : 0;
-      br.done.setAttribute("opacity", String(done > 0 ? 1 : 0)); br.done.setAttribute("stroke-dashoffset", String(999 * (1 - done)));
-      br.done.setAttribute("pathLength", "999");
+    const { c, g, city, G, T, lines, nodes, walker, label, fit } = S, best = minRemoval(g), removed = step >= 5 ? best : new Set(), deg = degrees(g, removed), deg0 = degrees(g);
+    const m = step === 0 ? 0 : step === 1 ? easeInOut(seg(p, 0.08, 0.9)) : 1;   // 0 = the town map, 1 = the graph
+    // the map fades as each land shrinks to its point
+    const fm = easeInOut(seg(m, 0.65, 1));   // the finished graph then glides into the frame
+    T.layer.setAttribute("transform", `translate(${(fit.dx * fm).toFixed(2)} ${(fit.dy * fm).toFixed(2)}) scale(${lerp(1, fit.k, fm).toFixed(4)})`);
+    T.water.setAttribute("opacity", String(1 - 0.75 * m));
+    T.lands.forEach((ld, v) => { const [x, y] = G.pts[v], s = Math.max(0.001, 1 - m); ld.g.setAttribute("transform", `translate(${x} ${y}) scale(${s.toFixed(3)}) translate(${-x} ${-y})`); ld.g.setAttribute("opacity", String(clamp01(1 - m * 1.15))); });
+    T.signs.forEach((sg) => sg.setAttribute("opacity", String(clamp01(1 - m * 2))));
+    T.bridges.forEach((br) => { br.g.setAttribute("opacity", String(clamp01(1 - m * 1.6))); br.cross.setAttribute("opacity", "0"); });
+    nodes.forEach((nd, v) => nd.gp.setAttribute("opacity", String(clamp01((m - 0.45) * 2))));
+    // each bridge becomes a line from point to point through where the bridge stood
+    const focus = focusOf(deg0), mine = g.edges.map((e, i) => i).filter((i) => g.edges[i][0] === focus || g.edges[i][1] === focus);
+    const lit = step === 3 ? Math.ceil(seg(p, 0.06, 0.8) * mine.length) : 0;
+    const trail = step === 6 ? trailOf(g, best) : [], prog = step === 6 ? easeInOut(seg(p, 0.06, 0.96)) * trail.length : 0;
+    g.edges.forEach((e, i) => {
+      const br = city.bridges[i], cv = G.curves[i], curve = { A: L2(br.a, cv.A, m), B: L2(br.b, cv.B, m), C: L2(br.mid, cv.C, m) }, gone = removed.has(i);
+      let stroke = m < 0.6 ? "#8a5a2e" : "#2b2538", width = lerp(12, 4, m), dash = "none", op = m > 0 ? 1 : 0;
+      if (step === 3) { const k = mine.indexOf(i); if (k >= 0 && k < lit) { const alone = k === mine.length - 1 && mine.length % 2 === 1; stroke = alone ? "#e0245e" : colour(Math.floor(k / 2)); width = 7; } else if (k < 0) op = 0.35; }
+      if (step === 4 && deg0.some((d, v) => d % 2 && (e[0] === v || e[1] === v))) op = 1;
+      if (gone) { stroke = "#e0245e"; dash = "6 7"; op = step === 5 ? 1 - 0.7 * easeInOut(seg(p, 0.2, 0.8)) : 0.3; }
+      if (step === 6) { const w = trail.findIndex((x) => x[0] === i); if (w >= 0 && prog > w) { stroke = "#1f9d6b"; width = 6; } }
+      Object.entries({ d: qd(curve), stroke, "stroke-width": width.toFixed(1), "stroke-dasharray": dash, opacity: op }).forEach(([k, v]) => lines[i].setAttribute(k, v));
     });
-    g.names.forEach((nm, v) => {
-      const odd = step >= 1 && deg[v] % 2 === 1, il = islands[v];
-      il.badge.setAttribute("opacity", String(step >= 1 ? easeInOut(step === 1 ? seg(p, 0, 0.5) : 1) : 0));
-      il.bt.textContent = deg[v]; il.bc.setAttribute("fill", odd ? "#ff8a8a" : "#fff"); il.bc.setAttribute("stroke", odd ? "#b00020" : "#222");
-      il.gp.setAttribute("transform", `translate(${pos[v][0]} ${pos[v][1] - (odd && step >= 1 && step <= 3 ? 2.5 * Math.abs(Math.sin(p * 9 + v)) : 0)})`);
+    // bridges per point (from step 2), odd points in red
+    nodes.forEach((nd, v) => {
+      const odd = deg[v] % 2 === 1, show = step >= 2 ? (step === 2 ? easeInOut(seg(p, 0.1 + 0.1 * v, 0.4 + 0.1 * v)) : 1) : 0;
+      nd.badge.setAttribute("opacity", String(show)); nd.bt.textContent = deg[v]; nd.bc.setAttribute("fill", odd ? "#e0245e" : "#1f9d6b");
+      const pulse = (step === 4 && odd) || (step === 3 && v === focus) ? 1 + 0.12 * Math.abs(Math.sin(p * 10)) : 1;
+      nd.ring.setAttribute("r", (15 * pulse).toFixed(2)); nd.ring.setAttribute("stroke", odd && step >= 2 ? "#e0245e" : "#2b2538"); nd.ring.setAttribute("stroke-width", odd && step >= 2 ? "4" : "2.5");
     });
-    // the walker crosses the remaining bridges (last step)
-    if (step === 5 && trail.length) {
-      const k = Math.min(trail.length - 1, Math.floor(prog)), [bi, from, to] = trail[k], tt = prog - k, { ctrl } = bridgeGeom(g, bi, pos), A = pos[from], B = pos[to];
-      const x = (1 - tt) ** 2 * A[0] + 2 * (1 - tt) * tt * ctrl[0] + tt * tt * B[0], y = (1 - tt) ** 2 * A[1] + 2 * (1 - tt) * tt * ctrl[1] + tt * tt * B[1];
-      walker.set({ x, y: y + 12, dir: B[0] >= A[0] ? 1 : -1, phase: prog * 3, amp: 1, scale: 1 });
+    // the walker: on the map at the start, then along the remaining lines at the end
+    if (step === 0) { const s = city.spots[0].stand; walker.set({ x: s[0], y: s[1], dir: 1, amp: 0, scale: 1 }); }
+    else if (step === 6 && trail.length) {
+      const k = Math.min(trail.length - 1, Math.floor(prog)), [bi, from] = trail[k], tt = Math.min(1, prog - k), fwd = from === g.edges[bi][0], pt = bez(G.curves[bi], fwd ? tt : 1 - tt), nx = bez(G.curves[bi], fwd ? Math.min(1, tt + 0.02) : Math.max(0, 1 - tt - 0.02));
+      walker.set({ x: pt[0], y: pt[1] + 8, dir: nx[0] >= pt[0] ? 1 : -1, phase: prog * 3, amp: p < 0.97 ? 1 : 0, scale: 1 });
     } else walker.set({ x: 0, y: 0, scale: 0 });
-    const oddCount = deg.filter((v) => v % 2).length;
-    label.textContent = step === 0 ? `${g.names.length} ${c.t("quartiers", "districts")}, ${g.edges.length} ${c.t("ponts", "bridges")}` : step <= 3 ? `${c.t("Quartiers impairs", "Odd districts")} : ${deg.map((v) => v % 2).reduce((a, b2) => a + b2, 0)}` : step === 4 ? `${c.t("ponts retirés", "bridges removed")} : ${best.size}` : `${c.t("Quartiers impairs", "Odd districts")} : ${oddCount}`;
+    const odd = deg.filter((d) => d % 2).length;
+    label.textContent = step <= 1 ? `${g.names.length} ${c.t("quartiers", "districts")}, ${g.edges.length} ${c.t("ponts", "bridges")}` : step === 5 ? `${c.t("ponts retirés", "bridges removed")} : ${best.size}` : step === 6 ? `${c.t("minimum", "minimum")} : ${best.size}` : `${c.t("quartiers impairs", "odd districts")} : ${odd}`;
   },
 };
 
-/* ------------------------------------------------------------ konigsberg */
+/* ------------------------------------------------------------ konigsberg: captions */
 export const diagram = {
-  size: [520, 300],
+  size: [520, 360],
   steps: (q) => {
-    const g = graphFor(q.g), deg = degrees(g), odd = deg.filter((x) => x % 2).length, best = minRemoval(g), names = [...best].map((i) => `${g.names[g.edges[i][0]]}${g.names[g.edges[i][1]]}`), list = g.names.map((nm, i) => `${nm} ${deg[i]}`).join(", ");
+    const g = graphFor(q.g), deg = degrees(g), odd = deg.filter((x) => x % 2).length, best = minRemoval(g), names = [...best].map((i) => `${g.names[g.edges[i][0]]}-${g.names[g.edges[i][1]]}`).join(", "), list = g.names.map((nm, i) => `${nm} ${deg[i]}`).join(", ");
+    const f = g.names[focusOf(deg)], fd = deg[focusOf(deg)];
     return [
-      P(`${g.names.length} quartiers, ${g.edges.length} ponts. Peut-on les traverser tous exactement une fois ?`, `${g.names.length} districts, ${g.edges.length} bridges. Can we cross every bridge exactly once?`),
-      P(`Comptons les ponts qui touchent chaque quartier : ${list}. Il y a ${odd} nombre${odd > 1 ? "s" : ""} impair${odd > 1 ? "s" : ""}.`, `Count the bridges touching each district: ${list}. There ${odd === 1 ? "is" : "are"} ${odd} odd number${odd === 1 ? "" : "s"}.`),
-      P("Quand on passe par un quartier, on utilise un pont pour entrer et un pour sortir : deux ponts. Seuls le départ et l’arrivée peuvent laisser un nombre impair.", "Passing through a district uses one bridge to enter and one to leave: two bridges. Only the start and the end can leave an odd number."),
-      P(`Un parcours exige donc 0 ou 2 quartiers impairs. Ici ${odd}${odd > 2 ? " : impossible, il faut retirer des ponts" : " : c’est possible"}.`, `So a route needs 0 or 2 odd districts. Here there ${odd === 1 ? "is" : "are"} ${odd}${odd > 2 ? ": impossible, bridges must go" : ": it is possible"}.`),
-      best.size ? P(`Retirons ${best.size === 1 ? "le pont" : "les ponts"} ${names.join(", ")} : chaque retrait corrige la parité de deux quartiers, il en reste au plus 2 d’impairs.`, `Remove ${best.size === 1 ? "the bridge" : "the bridges"} ${names.join(", ")}: each removal fixes the parity of two districts, leaving at most 2 odd ones.`) : P("Aucun pont à retirer : le réseau convient déjà.", "No bridge needs to go: the network already works."),
-      P(`On peut alors parcourir chaque pont restant une fois. Minimum de ponts à retirer : ${best.size}.`, `Now every remaining bridge can be crossed once. Minimum bridges to remove: ${best.size}.`),
+      P(`Le plan : ${g.names.length} quartiers, ${g.edges.length} ponts. Peut-on traverser chaque pont exactement une fois ?`, `The map: ${g.names.length} districts, ${g.edges.length} bridges. Can we cross every bridge exactly once?`),
+      P("Seul compte quel pont relie quels quartiers. Chaque quartier rétrécit jusqu’à n’être qu’un point, chaque pont devient un trait entre deux points.", "All that matters is which bridge joins which districts. Each district shrinks to a point, each bridge becomes a line between two points."),
+      P(`Comptons les ponts de chaque point : ${list}. ${odd ? `${odd} nombre${odd > 1 ? "s sont impairs" : " est impair"}.` : "Tous sont pairs."}`, `Count the bridges of each point: ${list}. ${odd ? `${odd} of these number${odd > 1 ? "s are" : " is"} odd.` : "All are even."}`),
+      P(`Quand on traverse ${f}, on utilise un pont pour entrer et un pour sortir : ses ponts vont par deux. ${fd % 2 ? `${f} en a ${fd} : il en reste un seul, donc ${f} doit être le départ ou l’arrivée.` : `${f} en a ${fd} : ils vont tous par deux.`}`, `Passing through ${f} uses one bridge in and one bridge out: its bridges go in pairs. ${fd % 2 ? `${f} has ${fd}: one is left alone, so ${f} must be the start or the end.` : `${f} has ${fd}: they all go in pairs.`}`),
+      P(`Seuls le départ et l’arrivée peuvent avoir un nombre impair de ponts : il faut 0 ou 2 quartiers impairs. Ici ${odd}${odd > 2 ? " : c’est impossible, il faut retirer des ponts." : " : c’est possible."}`, `Only the start and the end can have an odd number of bridges: there must be 0 or 2 odd districts. Here there ${odd === 1 ? "is" : "are"} ${odd}${odd > 2 ? ": impossible, bridges must go." : ": it is possible."}`),
+      best.size ? P(`Retirer un pont enlève un pont à deux points seulement. On retire ${best.size === 1 ? "le pont" : "les ponts"} ${names} : il reste au plus 2 quartiers impairs.`, `Removing a bridge takes one away from two points only. We remove ${best.size === 1 ? "the bridge" : "the bridges"} ${names}: at most 2 odd districts are left.`) : P("Aucun pont à retirer : le réseau convient déjà.", "No bridge needs to go: the network already works."),
+      P(`La promenade traverse alors chaque pont restant une fois. Minimum de ponts à retirer : ${best.size}.`, `Now the walk crosses every remaining bridge once. Minimum number of bridges to remove: ${best.size}.`),
     ];
   },
-  draw(c, s, p, q) {
-    const g = graphFor(q.g), pos = layoutOf(g), best = minRemoval(g), removed = s >= 4 ? best : new Set(), deg = degrees(g, removed), walk = s === 5 ? trailOf(g, best) : [];
-    const prog = s === 5 ? p * walk.length : 0;
-    g.edges.forEach((b, i) => {
-      const { d } = bridgeGeom(g, i, pos), gone = best.has(i) && s >= 4, w = walk.findIndex((x) => x[0] === i), crossed = s === 5 && w >= 0 && prog > w;
-      c.path(d, { class: "sol-bridge", style: `stroke:${gone ? "var(--neg)" : crossed ? colour(2) : "var(--ink-2)"};opacity:${gone ? (s === 4 ? 1 - 0.6 * ez(p) : 0.25) : 1};stroke-dasharray:${gone ? "6 6" : "none"}` });
-    });
-    g.names.forEach((n, v) => {
-      const [x, y] = pos[v], odd = s >= 1 && deg[v] % 2 === 1, ang = Math.atan2(y - 150, x - 260), r = 38;
-      c.circ(x, y, 22, { class: "sol-node", style: odd ? `stroke:${colour(3)};stroke-width:4` : "" }); c.text(x, y + 6, n, { class: "sol-label", "text-anchor": "middle" });
-      if (s >= 1) c.text(x + r * Math.cos(ang), y + r * Math.sin(ang) + 9, deg[v], { class: "sol-big small", "text-anchor": "middle", style: `fill:${odd ? colour(3) : "var(--ink)"};opacity:${s === 1 ? ez(p) : 1}` });
-    });
-    if (s === 5 && walk.length) {
-      const k = Math.min(walk.length - 1, Math.floor(prog)), [bi, from, to] = walk[k], tt = prog - k, { ctrl } = bridgeGeom(g, bi, pos), A = pos[from], B = pos[to];
-      const x = (1 - tt) ** 2 * A[0] + 2 * (1 - tt) * tt * ctrl[0] + tt * tt * B[0], y = (1 - tt) ** 2 * A[1] + 2 * (1 - tt) * tt * ctrl[1] + tt * tt * B[1];
-      c.circ(x, y, 9, { style: `fill:${colour(2)};stroke:var(--ink);stroke-width:2` });
-    }
-    c.text(26, 286, s >= 1 ? `${c.t("Quartiers impairs", "Odd districts")} : ${deg.filter((v) => v % 2).length}` : "", { class: "sol-sub" });
-  },
+  draw() {},   // the scene above draws every frame
 };

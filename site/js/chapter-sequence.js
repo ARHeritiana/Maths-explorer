@@ -7,6 +7,7 @@ import { mountExperiment } from './lab/mount.js';
 import { resolveRef } from './lab/registry.js';
 import { labs } from './content.js';
 import { errorsFor } from './errors-model.js';
+import { typeset } from './exercises/ui-kit.js';
 const P=(fr,en)=>[fr,en], E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Four destinations, none compulsory. The six stage names of the first design stay valid as aliases (old links, tests).
 const tabs=[['cours',P('Cours','Lesson')],['manipuler',P('Manipuler','Explore')],['exercices',P('Exercices','Exercises')],['documents',P('Documents','Documents')]];
@@ -24,17 +25,8 @@ function errorBlock(c,L){
  const list=errorsFor('#chapter/'+c.id);if(!list.length)return '';
  return `<aside class="chapter-errors" aria-labelledby="chapter-errors-title"><h3 id="chapter-errors-title">${P('Erreurs fréquentes sur ce chapitre','Common errors in this chapter')[L]}</h3><p class="muted">${P('Teste chaque affirmation fausse, trouve un contre-exemple, puis répare-la.','Test each false statement, find a counterexample, then repair it.')[L]}</p><ul>${list.map(e=>`<li><a href="#errors/${e.id}">${E(e.title[L])}</a>${e.claim?` <span class="chapter-errors-claim">${E(Array.isArray(e.claim)?e.claim[L]:e.claim)}</span>`:''}</li>`).join('')}</ul></aside>`;
 }
-let mathPromise;
-async function math(root){
- if(!mathPromise){mathPromise=(async()=>{
-  if(!window.MathJax?.startup?.promise){
-   window.MathJax={startup:{typeset:false},svg:{fontCache:'none'},options:{enableAssistiveMml:true},tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],macros:{pgcd:'\\operatorname{PGCD}',ppcm:'\\operatorname{PPCM}',/*mx-math*/"N":"\\mathbb{N}","Z":"\\mathbb{Z}","D":"\\mathbb{D}","Q":"\\mathbb{Q}","R":"\\mathbb{R}","C":"\\mathbb{C}","vect":["\\overrightarrow{#1}",1],"vi":"\\vec{\\imath}","vj":"\\vec{\\jmath}","vk":"\\vec{k}","norm":["\\left\\lVert #1\\right\\rVert",1],"vc":["\\begin{pmatrix}#1\\\\#2\\end{pmatrix}",2],"deter":["\\det\\left(#1,#2\\right)",2],"abs":["\\left\\lvert #1\\right\\rvert",1],"dd":"\\,\\mathrm{d}","e":"\\mathrm{e}","Card":"\\operatorname{Card}","E":"\\operatorname{E}","V":"\\operatorname{V}","degre":"^{\\circ}","un":["\\,\\mathrm{#1}",1],"sci":["#1\\times10^{#2}",2],"llbracket":"\\mathopen{[\\mkern-3mu[}","rrbracket":"\\mathclose{]\\mkern-3mu]}"/*end mx-math*/}}};
-   await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='./vendor/mathjax-tex-svg.js';s.onload=resolve;s.onerror=reject;document.head.append(s);});
-  }
-  await window.MathJax.startup.promise;
- })();}
- try {await mathPromise;if(root.isConnected){await window.MathJax.typesetPromise([root]);}}catch{mathPromise=null;}
-}
+// One MathJax loader for the whole site (exercises/ui-kit.js): two loaders loaded it twice on back-to-back pages.
+const math=(root)=>typeset(root);
 // The edition of the interface language. A missing edition is reported, never replaced (owner rule), except in a curriculum
 // that is French only by the language rule (Malagasy): its French edition is the only one, named as such.
 // Every chapter has a slide deck (the Malagasy ones are built from the owner's books, content/tex/mada/).

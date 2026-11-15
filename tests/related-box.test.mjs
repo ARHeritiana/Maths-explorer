@@ -66,8 +66,6 @@ test('addresses the page already shows are not repeated; nothing related gives a
   const all = relatedForPage(index, '#lab/exponential'), shown = all.map(primaryHref);
   const left = relatedForPage(index, '#lab/exponential', {excludeHrefs: shown});
   assert.ok(!left.some(x => shown.includes(primaryHref(x))));
-  const nothing = pages('gallery').find(g => g.id === 'gallery:reuleaux');
-  assert.ok(nothing && relatedForPage(index, nothing.route).length === 0);
   assert.equal(relatedBoxHtml([], t), '');
   assert.deepEqual(relatedForPage(index, '#search'), []);
 });
@@ -84,4 +82,7 @@ test('coverage: every lab, and every class chapter except the revision ones, has
   const missing = empty('chapter').filter(id => !/revision|unsorted|shared-/.test(id));
   assert.deepEqual(missing, []);
   assert.ok(pages('gallery').length - empty('gallery').length >= 20);
+});
+test('every live gallery exhibit gets at least one related item', () => {
+  for (const it of pages('gallery')) assert.ok(relatedForPage(index, it.route).length > 0, it.id);
 });

@@ -1,20 +1,20 @@
-// Hands-on activity of the jugs challenge: fill, empty and pour two jugs until one holds the target amount. Hint actions list
-// the states reached and draw the table of states (x, y) with the path followed; the activity never states the method.
-import { colour, onHintAction, svgEl, toLocal, lockTouch } from "../common/kit.js";
+// Hands-on activity of the jugs challenge: fill, empty and pour two jugs until one holds the target amount. It never states the method.
+import { colour, svgEl, toLocal, lockTouch, goalLine } from "../common/kit.js";
+import { PRESS, installCartoon } from "../common/cartoon.js";
 import { parseJugs, apply } from "./maths.js";
 
 export function activity(root, { t, q, reduced: reducedPref }) {
+  installCartoon();
   const reduced = typeof reducedPref === "function" ? !!reducedPref() : !!reducedPref;
   const [a, b, target] = parseJugs(q.jugs), cap = Math.max(a, b);
-  let st, hist, level = 0, selected = -1, drag = null, status = '';
+  let st, hist, selected = -1, drag = null, status = '';
   const reset = () => { st = [0, 0]; hist = [[0, 0]]; };
   root.innerHTML = `
-    <p class="act-help">${t(`Obtiens ${target} L. Glisse un bidon vers le robinet pour le remplir, l’évier pour le vider, ou l’autre bidon pour transvaser. Tu peux aussi toucher un bidon, puis sa destination. Clavier : Tab et Entrée sur ces mêmes objets.`, `Get ${target} L. Drag a jug to the tap to fill it, the sink to empty it, or the other jug to pour. You can also tap a jug, then its destination. Keyboard: Tab and Enter on these same objects.`)}</p>
+    ${goalLine(t, `Obtiens ${target} L.`, `Get ${target} L.`, `Glisse un bidon vers le robinet pour le remplir, l’évier pour le vider, ou l’autre bidon pour transvaser. Tu peux aussi toucher un bidon, puis sa destination. Clavier : Tab et Entrée sur ces mêmes objets.`, `Drag a jug to the tap to fill it, the sink to empty it, or the other jug to pour. You can also tap a jug, then its destination. Keyboard: Tab and Enter on these same objects.`)}
     <svg class="act-svg jg-svg" viewBox="0 0 100 88" role="group" aria-label="${t("Bidons interactifs, robinet et évier", "Interactive jugs, tap and sink")}"></svg>
-    <div class="act-controls"><button class="btn-quiet" id="jg-undo" type="button">${t("Annuler", "Undo")}</button><button class="btn-quiet" id="jg-reset" type="button">${t("Recommencer", "Restart")}</button></div>
-    <p class="act-readout" id="jg-read" role="status" aria-live="polite"></p>
-    <svg class="act-svg jg-table" viewBox="0 0 100 60" hidden role="img" aria-label="${t("Table des états", "Table of states")}"></svg>`;
-  const svg = root.querySelector(".jg-svg"), table = root.querySelector(".jg-table"), read = root.querySelector("#jg-read");
+    <div class="act-controls"><button class="btn-quiet ${PRESS}" id="jg-undo" type="button">${t("Annuler", "Undo")}</button><button class="btn-quiet ${PRESS}" id="jg-reset" type="button">${t("Recommencer", "Restart")}</button></div>
+    <p class="act-readout" id="jg-read" role="status" aria-live="polite"></p>`;
+  const svg = root.querySelector(".jg-svg"), read = root.querySelector("#jg-read");
   function destination(id, label, d, y, h) {
     const g = svgEl('g', { 'data-destination': id, role: 'button', tabindex: 0, 'aria-label': label, class: 'jg-object' }, svg);
     svgEl('rect', { x: 37, y, width: 26, height: h, rx: 3, fill: 'transparent' }, g);
@@ -35,17 +35,6 @@ export function activity(root, { t, q, reduced: reducedPref }) {
   });
   const ghost = svgEl('path', { d: 'M-5 -8V6H5V-8', fill: 'var(--surface)', stroke: 'var(--accent)', 'stroke-width': 1, 'pointer-events': 'none', visibility: 'hidden' }, svg);
   lockTouch(svg, '[data-jug]');
-  function drawTable() {
-    table.hidden = level < 2;
-    if (level < 2) return;
-    table.replaceChildren();
-    const sx = 84 / a, sy = 48 / b, X = (x) => 10 + x * sx, Y = (y) => 54 - y * sy;
-    for (let x = 0; x <= a; x++) for (let y = 0; y <= b; y++) svgEl("circle", { cx: X(x), cy: Y(y), r: 0.7, fill: x === target || y === target ? "var(--pos)" : "var(--line-strong)" }, table);
-    svgEl("path", { d: `M${X(0)} ${Y(0)}H${X(a)}V${Y(b)}H${X(0)}Z`, fill: "none", stroke: "var(--line-strong)", "stroke-width": 0.4 }, table);
-    svgEl("polyline", { points: hist.map(([x, y]) => `${X(x)},${Y(y)}`).join(" "), fill: "none", stroke: colour(0), "stroke-width": 0.8 }, table);
-    svgEl("circle", { cx: X(st[0]), cy: Y(st[1]), r: 1.6, fill: colour(0) }, table);
-    svgEl("text", { x: 55, y: 59.5, "text-anchor": "middle", "font-size": 3.4, fill: "var(--muted)" }, table).textContent = t(`x = litres dans ${a} L, y = litres dans ${b} L ; vert : ${target} L dans un bidon`, `x = litres in ${a} L, y = litres in ${b} L; green: ${target} L in a jug`);
-  }
   function draw() {
     jugs.forEach(({ g, water, outline, label, h }, i) => {
       const size = i ? b : a, lv = h * st[i] / size;
@@ -57,8 +46,7 @@ export function activity(root, { t, q, reduced: reducedPref }) {
     svg.dataset.state = st.join(',');
     const done = st[0] === target || st[1] === target, n = hist.length - 1;
     root.querySelector("#jg-undo").disabled = n === 0;
-    read.innerHTML = `${t("Opérations : ", "Operations: ")}<strong>${n}</strong> · ${selected >= 0 ? t('Bidon sélectionné', 'Selected jug') + ' ' + (selected + 1) : t('Choisis un bidon', 'Choose a jug')}${status ? ' · ' + status : ''}${done ? ` · <strong>${t(`${target} L obtenus !`, `${target} L reached!`)}</strong>` : ""}${level >= 1 ? ` · ${t("états : ", "states: ")}${hist.map((s) => `(${s.join(t(" ; ", ", "))})`).join(" → ")}` : ""}`;
-    drawTable();
+    read.innerHTML = `${t("Opérations : ", "Operations: ")}<strong>${n}</strong> · ${selected >= 0 ? t('Bidon sélectionné', 'Selected jug') + ' ' + (selected + 1) : t('Aucun bidon sélectionné', 'No jug selected')}${status ? ' · ' + status : ''}${done ? ` · <strong>${t(`${target} L obtenus !`, `${target} L reached!`)}</strong>` : ""}`;
   }
   function move(m) {
     const n = apply(m, st, a, b);
@@ -86,6 +74,5 @@ export function activity(root, { t, q, reduced: reducedPref }) {
   root.querySelector("#jg-undo").addEventListener("click", () => { cancel(); status = ''; if (hist.length > 1) { hist.pop(); st = hist.at(-1); draw(); } });
   root.querySelector("#jg-reset").addEventListener("click", () => { cancel(); selected = -1; status = ''; reset(); draw(); });
   reset(); draw();
-  const off = onHintAction("jugs", { states: () => { level = Math.max(level, 1); draw(); }, table: () => { level = 2; draw(); } });
-  return () => { cancel(); off(); };
+  return () => { cancel(); };
 }

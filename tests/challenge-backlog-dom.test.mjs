@@ -34,6 +34,8 @@ test('knight dragging commits exactly one move and keyboard, undo and touch canc
   cell(0).dispatchEvent(new w.Event('pointercancel',{bubbles:true}));
   cell(17).dispatchEvent(new w.MouseEvent('pointerup',{bubbles:true,clientX:50,clientY:90}));
   assert.match(root.querySelector('[role=status]').textContent,/1\/64/);
+  assert.equal(root.querySelector('[data-search]'),null,'no hint-gated search panel');
+  assert.equal(root.querySelector('rect[visibility=visible]'),null,'no legal-move display');
   f.close();
 });
 test('room traversal, keyboard editing and undo operate without exposing the Euler method',()=>{
@@ -52,19 +54,12 @@ test('room traversal, keyboard editing and undo operate without exposing the Eul
   assert.equal(root.querySelectorAll('[data-door]').length,16);assert.equal(root.querySelectorAll('[data-room]').length,6);
   f.close();
 });
-test('factor removal and hidden exact calculation respect hints, validation and exact BigInt inputs',()=>{
-  const f=fixture(factorials,{n:50,p:3,base:10}),{root,dom}=f,w=dom.window;
-  assert.equal(root.querySelector('form').hidden,true);
+test('factor removal works and the activity offers no exact calculator or hint views',()=>{
+  const f=fixture(factorials,{n:50,p:3,base:10}),{root,dom}=f;
+  assert.equal(root.querySelector('form'),null);
+  assert.equal(root.querySelector('[data-layers]'),null);
   const nine=[...root.querySelectorAll('[data-factors] button')][8];nine.click();nine.click();
   assert.equal(nine.textContent,'1');assert.match(root.querySelector('[data-count]').textContent,/2/);
-  document.dispatchEvent(new w.CustomEvent('challenge-action',{detail:{id:'factorials',act:'exact'}}));
-  const form=root.querySelector('form');assert.equal(form.hidden,false);
-  form.elements.n.value='100000000000000000000000000000';form.elements.base.value='12';
-  form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
-  const n=BigInt(form.elements.n.value), expected=(n-[...n.toString(3)].reduce((sum,digit)=>sum+BigInt(digit),0n))/2n;
-  assert.ok(root.querySelector('[data-result]').textContent.endsWith(String(expected)));
-  form.elements.n.value='-1';form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
-  assert.match(root.querySelector('[data-result]').textContent,/nonnegative/);
   f.close();
 });
 

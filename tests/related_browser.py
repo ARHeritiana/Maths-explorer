@@ -79,10 +79,11 @@ with sync_playwright() as p:
         scroll_end(page); page.wait_for_timeout(600)
         assert page.locator('.related-box').count() == 0
 
-    # a page with nothing related shows no box, no heading, no empty slot
+    # every exhibit now has related resources (15 Nov 2026), including the Reuleaux one that had none; the empty case
+    # (no box, no heading, no slot) is checked in tests/related-box.test.mjs, as no live page is without relations any more
     open_page(page, '#gallery/reuleaux'); scroll_end(page)
-    page.wait_for_function("!document.querySelector('.related-slot')", timeout=8000)
-    assert page.locator('.related-box').count() == 0 and 'Ressources liées' not in page.inner_text('#main')
+    page.wait_for_selector('.related-box', timeout=8000)
+    assert page.locator('.related-box a').count() >= 1
 
     # English edition of the heading (lab pages follow the interface language)
     open_page(page, '#lab/exponential'); page.evaluate("localStorage.setItem('maths-explorer-v1', JSON.stringify({lang: 'en'}))")

@@ -208,3 +208,8 @@ a.dock-link:hover{color:var(--ink)!important}
 .rx-more{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .rx-more a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;box-sizing:border-box;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--accent);font-weight:600;text-decoration:none}
 .rx-more a:hover{border-color:var(--ink)}
+/* Préparer: objectives and prerequisites of the chapter, folded */
+.pp-goals{margin:12px 0;border:1px solid var(--line);border-radius:10px;padding:0 12px}
+.pp-goals>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:600}
+.pp-goals-body{padding-bottom:12px;overflow-wrap:anywhere}
+.pp-goals-body h4{margin:8px 0 4px;font-size:1rem}

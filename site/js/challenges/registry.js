@@ -1,5 +1,5 @@
-// Every challenge is one folder, site/js/challenges/<id>/: index.js (card, variations, original question, emblem, hint
-// actions), maths.js (pure, tested), activity.js (hands-on canvas), solution.js (animated solution), and view-3d.js or
+// Every challenge is one folder, site/js/challenges/<id>/: index.js (card, variations, original question, emblem),
+// maths.js (pure, tested), activity.js (hands-on canvas), solution.js (animated solution), and view-3d.js or
 // art.js when it draws its own 3D objects or characters. Shared building blocks are in common/.
 // To add a challenge: create its folder (copy a recent one, such as pegs/), then add it to the two lists below.
 import { playSolution } from "./common/player.js";
@@ -51,7 +51,6 @@ const table = (field) => Object.fromEntries(CHALLENGES.filter((c) => c[field] !=
 
 export const challengeBase = CHALLENGES.map((c) => c.card);
 export const VARIANTS = table("variant");
-export const HINT_ACTIONS = table("hintActions");
 export const ORIGINALS = table("original");
 
 /* ------------------------------------------------------------- variants */

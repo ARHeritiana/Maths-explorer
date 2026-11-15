@@ -13,8 +13,8 @@ with sync_playwright() as p:
   page.goto(BASE+'/#'+route);page.locator('main').wait_for();page.wait_for_timeout(120)
  go('home');page.select_option('#home-class','stmg');assert page.locator('.mainnav [data-section="learn"]').get_attribute('href')=='#resources/stmg'
  page.locator('.mainnav [data-section="learn"]').click();
- assert page.locator('.subnav a[href="#automatismes"]').is_visible(), 'Automatismes must be visible in Apprendre'
- assert page.locator('.subnav a[href="#sheets"]').is_visible(), 'Fiches must be visible in Apprendre'
+ page.locator('.subnav a[href="#automatismes"]').wait_for(state='visible')  # Automatismes must be visible in Apprendre
+ page.locator('.subnav a[href="#sheets"]').wait_for(state='visible')  # Fiches must be visible in Apprendre
  page.locator('.res-rail [data-course="premiere"]').click()
  assert page.locator('.subnav [data-course-page="bank"]').get_attribute('href')=='#bank/premiere'
  page.locator('.subnav [data-course-page="bank"]').click();page.wait_for_url('**/#bank/premiere')
@@ -49,7 +49,7 @@ with sync_playwright() as p:
   chooser=page.locator('.entry-chooser');assert chooser.get_attribute('open') is None
   chooser.locator('summary').click();items=chooser.locator('.lab-link');assert items.count()>=4
   target=items.last.get_attribute('href');items.last.click();page.wait_for_function('(h)=>location.hash===h',arg=target)
-  page.locator('.entry-chooser > summary').wait_for();assert page.locator('.entry-chooser').get_attribute('open') is None
+  page.wait_for_function('(h)=>{const c=document.querySelector(".entry-chooser");return c&&!c.open&&c.querySelector(`[aria-current="page"]`)?.getAttribute("href")===h}',arg=target)
   assert page.locator('.entry-chooser [aria-current="page"]').get_attribute('href')==target
   assert page.locator('.entry-steps [rel="prev"]').count()==1
  go('topics');assert not page.locator('#discovery-results').is_visible();page.fill('[name="query"]','dériv');assert page.locator('#discovery-results').is_visible();assert page.locator('.discovery-card').count()>0

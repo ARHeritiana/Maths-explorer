@@ -1,6 +1,7 @@
 // Give identical cookies to distinct children directly. Cookie identities exist only for DOM continuity, never for counting.
-import { onHintAction } from '../common/kit.js';
-import { code, NAMES } from './maths.js';
+import { NAMES } from './maths.js';
+import { goalLine } from "../common/kit.js";
+import { cartoonPress } from "../common/cartoon.js";
 
 const cookieArt = '<svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="17" fill="#d99a51" stroke="#714018" stroke-width="2"/><g fill="#694025"><circle cx="16" cy="15" r="2.7"/><circle cx="28" cy="17" r="2.7"/><circle cx="22" cy="27" r="2.7"/><circle cx="13" cy="27" r="2"/><circle cx="31" cy="29" r="2"/></g></svg>';
 function childArt(i){
@@ -17,18 +18,18 @@ function childArt(i){
   // a whole child: two legs ending in shoes that point outwards, a torso, two arms with hands, a head
   return `<svg viewBox="0 0 72 92" aria-hidden="true"><path d="M28 64 V80 M44 64 V80" stroke="${trousers}" stroke-width="9" stroke-linecap="round"/><path d="M19 84.5 Q19 79.5 26 79.5 L31 79.5 Q33 85.5 29 87 L21 87 Q19 86 19 84.5Z M53 84.5 Q53 79.5 46 79.5 L41 79.5 Q39 85.5 43 87 L51 87 Q53 86 53 84.5Z" fill="#2a2230"/><path d="M19 48 Q9 56 10 67" fill="none" stroke="${shirt}" stroke-width="8.5" stroke-linecap="round"/><circle cx="10" cy="69.5" r="4.4" fill="${skin}"/><path d="M53 48 Q63 56 62 67" fill="none" stroke="${shirt}" stroke-width="8.5" stroke-linecap="round"/><circle cx="62" cy="69.5" r="4.4" fill="${skin}"/><path d="M17 66 Q17 44 36 44 Q55 44 55 66 Q55 70 50 70 L22 70 Q17 70 17 66Z" fill="${shirt}"/><circle cx="36" cy="27" r="18" fill="${skin}"/><g fill="#302322" transform="translate(1 0)">${hair[i]}</g><g fill="#201c1b"><circle cx="30" cy="28" r="1.9"/><circle cx="43" cy="28" r="1.9"/></g><g fill="#e98a78" opacity=".45"><circle cx="26" cy="34" r="3"/><circle cx="47" cy="34" r="3"/></g><path d="M30 36 Q36.5 41.5 43 35.5" fill="none" stroke="#743b2c" stroke-width="1.7" stroke-linecap="round"/>${i===2?'<g fill="none" stroke="#26394c" stroke-width="1.5"><circle cx="30" cy="28" r="5"/><circle cx="43" cy="28" r="5"/><path d="M35 28 H38"/></g>':''}${i===4?'<path d="M25 53 H48 M25 59 H48" stroke="#fff" stroke-width="3"/>':''}</svg>`;
 }
-export function activity(root,{t,q}){
+export function activity(root,{t,q,reduced}){
   const n=q.n,k=q.k,min=q.rule==='one'?1:0,abort=new root.ownerDocument.defaultView.AbortController();
   const on=(el,type,fn,options={})=>el.addEventListener(type,fn,{...options,signal:abort.signal});
-  let owners=Array(n).fill(-1),found=new Set(),level=0,notice='',selected=null,drag=null,ghost=null,suppressClick=false;
-  root.innerHTML=`<p class="act-help">${t('Glisse les biscuits vers les enfants. Tu peux les déplacer d’un enfant à l’autre ou les remettre dans la réserve. Ou touche un biscuit, puis un enfant. Au clavier : Entrée pour choisir, Tab puis Entrée pour donner, Échap pour annuler.','Drag cookies to the children. Move them between children or return them to the tray. Or tap a cookie, then a child. Keyboard: Enter to select, Tab then Enter to give, Escape to cancel.')}</p>
+  let owners=Array(n).fill(-1),found=new Set(),notice='',selected=null,drag=null,ghost=null,suppressClick=false;
+  root.innerHTML=`${goalLine(t, `Donne tous les biscuits aux enfants.`, `Give all the cookies to the children.`, 'Glisse les biscuits vers les enfants. Tu peux les déplacer d’un enfant à l’autre ou les remettre dans la réserve. Ou touche un biscuit, puis un enfant. Au clavier : Entrée pour choisir, Tab puis Entrée pour donner, Échap pour annuler.','Drag cookies to the children. Move them between children or return them to the tray. Or tap a cookie, then a child. Keyboard: Enter to select, Tab then Enter to give, Escape to cancel.')}
     <div class="ck-sharing" role="group" aria-label="${t('Partager les biscuits','Share the cookies')}">
       <section class="ck-tray" data-cookie-destination="-1"><button type="button" class="ck-return btn-quiet">${t('Réserve','Tray')}</button><div class="ck-pile" data-pile="-1"></div></section>
       <div class="ck-children">${Array.from({length:k},(_,i)=>`<section class="ck-recipient" data-cookie-destination="${i}"><button type="button" class="ck-child" data-child="${i}">${childArt(i)}<span>${NAMES[i]} · <output data-count="${i}">0</output></span></button><div class="ck-pile" data-pile="${i}"></div></section>`).join('')}</div>
-    </div><p class="act-readout ck-code" id="ck-code" aria-live="polite" hidden></p>
+    </div>
     <div class="act-controls"><button class="secondary" id="ck-note" type="button">${t('Noter ce partage','Note this sharing')}</button><button class="btn-quiet" id="ck-reset" type="button">${t('Recommencer','Restart')}</button></div>
     <p class="act-readout" id="ck-read" role="status" aria-live="polite"></p>`;
-  const stage=root.querySelector('.ck-sharing'),tray=root.querySelector('[data-pile="-1"]'),read=root.querySelector('#ck-read'),codeEl=root.querySelector('#ck-code'),note=root.querySelector('#ck-note');
+  const stage=root.querySelector('.ck-sharing'),tray=root.querySelector('[data-pile="-1"]'),read=root.querySelector('#ck-read'),note=root.querySelector('#ck-note');
   const piles=Array.from({length:k},(_,i)=>root.querySelector(`[data-pile="${i}"]`));
   const cookies=Array.from({length:n},(_,i)=>{const b=document.createElement('button');b.type='button';b.className='ck-cookie';b.dataset.cookie=i;b.innerHTML=cookieArt;tray.append(b);return b;});
   function paint(){
@@ -36,8 +37,6 @@ export function activity(root,{t,q}){
     cookies.forEach((b,i)=>{const parent=owners[i]===-1?tray:piles[owners[i]];if(b.parentNode!==parent)parent.append(b);b.setAttribute('aria-label',t('Biscuit dans ','Cookie in ')+(owners[i]===-1?t('la réserve','the tray'):NAMES[owners[i]]));b.setAttribute('aria-pressed',String(selected===i));});
     parts.forEach((p,i)=>{root.querySelector(`[data-count="${i}"]`).textContent=p;root.querySelector(`[data-child="${i}"]`).setAttribute('aria-label',`${NAMES[i]} : ${p} ${t('biscuits. Donner le biscuit choisi.','cookies. Give the selected cookie.')}`);});
     stage.dataset.parts=parts.join(',');stage.dataset.left=left;
-    const row=code(parts);codeEl.hidden=level<1;
-    if(level)codeEl.innerHTML=level>=2?`<span class="ck-row">${[...row].map((c,i)=>`<span><small>${i+1}</small>${c}</span>`).join('')}</span>`:`<span class="ck-row">${row||'·'}</span>`;
     const full=left===0,ok=full&&parts.every(p=>p>=min);note.disabled=!ok;
     read.textContent=`${t('Biscuits encore à donner : ','Cookies still to give: ')}${left} · ${t('partages différents notés : ','different sharings noted: ')}${found.size}${selected===null?'':` · ${t('Biscuit choisi : touche un enfant ou la réserve.','Cookie selected: tap a child or the tray.')}`}${notice?' · '+notice:''}${full&&!ok?' · '+t('chacun doit en recevoir au moins un','everyone must get at least one'):''}`;
   }
@@ -53,6 +52,6 @@ export function activity(root,{t,q}){
   on(stage,'keydown',e=>{if(e.key==='Escape'){e.preventDefault();cancel();}else if((e.key==='Delete'||e.key==='Backspace')&&selected!==null){e.preventDefault();give(-1);}});
   on(note,'click',()=>{const parts=stage.dataset.parts,key=parts;notice=found.has(key)?t('déjà noté','already noted'):t('partage noté','sharing noted');found.add(key);paint();});
   on(root.querySelector('#ck-reset'),'click',()=>{clearDrag();owners=Array(n).fill(-1);found=new Set();selected=null;notice='';paint();});
-  const off=onHintAction('cookies',{code:()=>{level=Math.max(level,1);paint();},places:()=>{level=2;paint();}});
-  paint();return()=>{clearDrag();off();abort.abort();};
+  const press=cartoonPress(root,reduced,'.ck-return,.ck-child,#ck-note,#ck-reset');
+  paint();return()=>{clearDrag();press();abort.abort();};
 }

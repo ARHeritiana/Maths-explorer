@@ -1,5 +1,6 @@
 // Hands-on activity of the snail challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { MINUS, svgEl, colour } from "../common/kit.js";
+import { MINUS, svgEl, colour, goalLine } from "../common/kit.js";
+import { cartoonPress, PRESS } from "../common/cartoon.js";
 import { makeSnail } from "./art.js";
 import { snailDown, snailTrace, snailDays } from "./maths.js";
 
@@ -11,7 +12,7 @@ export function activity(root, { t, reduced, q }) {
   const steps = [];   // heights after each half-day
   trace.forEach((d) => { steps.push(d.peak); if (!d.done) steps.push(d.end); });
   root.innerHTML = `
-    <p class="act-help">${t("Fais avancer l’escargot demi-journée par demi-journée.", "Move the snail forward half a day at a time.")}</p>
+    ${goalLine(t, `Mène l’escargot au sommet du poteau.`, `Get the snail to the top of the post.`, "Fais avancer l’escargot demi-journée par demi-journée.", "Move the snail forward half a day at a time.")}
     <svg class="act-svg" viewBox="0 0 ${W} ${HT}" role="img" aria-label="${t("Poteau et courbe de la hauteur de l’escargot", "Post and graph of the snail’s height")}"></svg>
     <div class="act-buttons">
       <button class="btn btn-primary" id="sn-next" type="button">${t("Demi-journée suivante", "Next half-day")}</button>
@@ -46,5 +47,6 @@ export function activity(root, { t, reduced, q }) {
   root.querySelector("#sn-reset").addEventListener("click", () => { halt(); half = 0; draw(); });
   draw();
   void MINUS;
-  return halt;
+  const press = cartoonPress(root, reduced);
+  return () => { halt(); press(); };
 }

@@ -189,11 +189,9 @@ with sync_playwright() as p:
     fp.goto(f'{BASE}/'); fp.wait_for_selector('#home-class'); fp.locator('footer a[data-set-entry="teacher"]').click(); dashboard(fp)
     assert fp.locator('nav.modebar a[data-teacher-mode]').count() == 3
     assert fp.locator('nav.modebar [aria-current="page"]').get_attribute('data-teacher-mode') == 'classe'
-    fp.locator('nav.modebar a[data-teacher-mode="preparer"]').click(); fp.wait_for_selector('h1')
-    assert fp.evaluate('location.hash') == '#prepare' and fp.locator('h1').first.inner_text() in ('Préparer', 'Prepare')
+    fp.locator('nav.modebar a[data-teacher-mode="preparer"]').click(); fp.wait_for_function("([h,a,b])=>location.hash===h&&[a,b].includes(document.querySelector('h1')?.innerText)", arg=['#prepare','Préparer','Prepare'])
     assert fp.locator('nav.modebar [aria-current="page"]').get_attribute('data-teacher-mode') == 'preparer'
-    fp.locator('nav.modebar a[data-teacher-mode="detente"]').click(); fp.wait_for_selector('h1')
-    assert fp.evaluate('location.hash') == '#relax' and fp.locator('h1').first.inner_text() in ('Détente', 'Relax')
+    fp.locator('nav.modebar a[data-teacher-mode="detente"]').click(); fp.wait_for_function("([h,a,b])=>location.hash===h&&[a,b].includes(document.querySelector('h1')?.innerText)", arg=['#relax','Détente','Relax'])
     fp.locator('nav.modebar a[data-teacher-mode="classe"]').click(); dashboard(fp)
     assert fp.evaluate('location.hash') == '#teacher'
     for h in ('#prepare', '#relax'):
@@ -283,7 +281,11 @@ with sync_playwright() as p:
     dp.goto(f'{BASE}/#teacher'); dashboard(dp)
     dp.locator('a.lp-tile[data-recent-id="automatismes"]').click(); dp.wait_for_selector('#auto-stage.presenting')
     assert dp.locator('#mx-dock:visible').count() == 0, 'hidden during the projection stage'
+    # the full-screen request is asynchronous: leaving before it has completed would let it land afterwards
+    try: dp.wait_for_function('!!document.fullscreenElement', timeout=3000)
+    except Exception: pass   # a browser may refuse full screen; the class-based presentation is then all there is
     dp.keyboard.press('Escape'); dp.evaluate("document.fullscreenElement && document.exitFullscreen(); document.querySelector('#auto-stage').classList.remove('presenting'); document.documentElement.classList.remove('is-presenting')")
+    dp.wait_for_function('!document.fullscreenElement')   # leaving full screen is asynchronous; the dock and resizing wait for it
     dp.wait_for_selector('#mx-dock', state='visible', timeout=5000)
     assert dp.locator('#mx-dock:visible').count() == 1, 'back after the projection'
     # no overflow, 44 px targets, both themes

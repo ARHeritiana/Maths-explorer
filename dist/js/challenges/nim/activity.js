@@ -1,5 +1,6 @@
 // Hands-on activity of the nim challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { clamp } from "../common/kit.js";
+import { clamp, goalLine } from "../common/kit.js";
+import { cartoonPress } from "../common/cartoon.js";
 
 /* -------------------------------------------------------------------- nim */
 export function activity(root, { t, reduced, q }) {
@@ -7,7 +8,7 @@ export function activity(root, { t, reduced, q }) {
   let stones = N0, turn = "you", over = false, userFirst = true, perfect = true;
   let wins = 0, games = 0, log = [], timer = null;
   root.innerHTML = `
-    <p class="act-help">${t(`Joue contre l’ordinateur. À ton tour, retire de 1 à ${MAXT} pierres. Celui qui prend la dernière pierre gagne.`, `Play the computer. On your turn take 1 to ${MAXT} stones. Whoever takes the last stone wins.`)}</p>
+    ${goalLine(t, `Prends la dernière pierre.`, `Take the last stone.`, `Joue contre l’ordinateur. À ton tour, retire de 1 à ${MAXT} pierres. Celui qui prend la dernière pierre gagne.`, `Play the computer. On your turn take 1 to ${MAXT} stones. Whoever takes the last stone wins.`)}
     <div class="nim-pile" id="nim-pile" aria-hidden="true">${Array.from({ length: N0 }, () => '<span class="stone"></span>').join("")}</div>
     <p class="act-readout nim-status" id="nim-status" role="status" aria-live="polite"></p>
     <div class="act-buttons">${Array.from({ length: MAXT }, (_, i) => i + 1).map((k) => `<button class="btn btn-primary" type="button" data-take="${k}">${t("Prendre", "Take")} ${k}</button>`).join("")}</div>
@@ -65,5 +66,6 @@ export function activity(root, { t, reduced, q }) {
   root.querySelectorAll('[name="nim-first"]').forEach((r) => r.addEventListener("change", () => { userFirst = r.value === "you"; start(); }));
   root.querySelectorAll('[name="nim-level"]').forEach((r) => r.addEventListener("change", () => { perfect = r.value === "perfect"; start(); }));
   render();
-  return () => clearTimeout(timer);
+  const off = cartoonPress(root, reduced);
+  return () => { clearTimeout(timer); off(); };
 }

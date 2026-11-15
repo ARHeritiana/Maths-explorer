@@ -70,8 +70,8 @@ with sync_playwright() as p:
 
     # documents in one tap, Back restores the previous destination
     page.goto(f'{BASE}/#chapter/{CHAPTER}/exercices'); loaded(page)
-    page.locator('.chapter-tabs a[href$="/documents"]').click(); loaded(page)
-    assert page.locator('.sequence-documents .document-link').count() >= 1
+    page.locator('.chapter-tabs a[href$="/documents"]').click(); page.wait_for_function("location.hash.endsWith('/documents')"); loaded(page)
+    page.locator('.sequence-documents .document-link').first.wait_for()
     page.go_back(); loaded(page)
     assert page.locator('.chapter-tabs [aria-current="page"]').get_attribute('href').endswith('/exercices')
 

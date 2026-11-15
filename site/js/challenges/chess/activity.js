@@ -1,5 +1,6 @@
 // Hands-on activity of the chess challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { lockTouch, svgEl, toLocal, clamp } from "../common/kit.js";
+import { lockTouch, svgEl, toLocal, clamp, goalLine } from "../common/kit.js";
+import { cartoonPress } from "../common/cartoon.js";
 
 /* --------------------------------------------------------------- dominoes */
 export function activity(root, { t, reduced, q }) {
@@ -12,14 +13,13 @@ export function activity(root, { t, reduced, q }) {
   let dominos = [];
   let nextId = 1;
   let drag = null;
-  let colour = false;
   let tapRemoves = false;   // what a tap on a placed domino does: turn it (default) or remove it
   let kbo = "h";
   let cursor = { c: Math.floor(N / 2) - 1, r: Math.floor(N / 2) - 1 };
   let focused = false;
 
   root.innerHTML = `
-    <p class="act-help">${t("Fais glisser un domino depuis la réserve jusqu’au plateau. Touche un domino posé pour le tourner, ou fais-le glisser hors du plateau pour l’enlever. Sur téléphone, le bouton « Toucher un domino » permet aussi de les enlever d’un simple toucher. Au clavier : flèches, Entrée pour poser, Suppr pour enlever.", "Drag a domino from the supply onto the board. Tap a placed domino to turn it, or drag it off the board to remove it. On a phone, the “Tapping a domino” button also lets you remove one with a simple tap. With a keyboard: arrows, Enter to place, Delete to remove.")}</p>
+    ${goalLine(t, `Recouvre le plateau avec des dominos.`, `Cover the board with dominoes.`, "Fais glisser un domino depuis la réserve jusqu’au plateau. Touche un domino posé pour le tourner, ou fais-le glisser hors du plateau pour l’enlever. Sur téléphone, le bouton « Toucher un domino » permet aussi de les enlever d’un simple toucher. Au clavier : flèches, Entrée pour poser, Suppr pour enlever.", "Drag a domino from the supply onto the board. Tap a placed domino to turn it, or drag it off the board to remove it. On a phone, the “Tapping a domino” button also lets you remove one with a simple tap. With a keyboard: arrows, Enter to place, Delete to remove.")}
     <svg class="act-svg dom-svg" viewBox="0 0 ${W} ${H}" tabindex="0" role="application" aria-label="${t("Plateau de dominos", "Domino board")}"></svg>
     <div class="act-controls">
       <button class="btn btn-secondary" id="dm-tap" type="button" aria-pressed="false">${t("Toucher un domino : le tourner", "Tapping a domino: turn it")}</button>
@@ -61,20 +61,14 @@ export function activity(root, { t, reduced, q }) {
   const announce = (text) => (root.querySelector("#dm-read").textContent = text);
   function summary(extra = "") {
     const n = dominos.length;
-    let split = "";
-    if (colour) {
-      const free = { a: 0, b: 0 }, occ = occupied(null);
-      for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) if (!removed.has(`${c},${r}`) && !occ.has(`${c},${r}`)) free[(c + r) % 2 ? "b" : "a"] += 1;
-      split = ` ${t("Libres", "Free")} : ${free.a} ${t("claires", "light")}, ${free.b} ${t("sombres", "dark")}.`;
-    }
-    announce(`${n} ${t(n > 1 ? "dominos posés" : "domino posé", n > 1 ? "dominoes placed" : "domino placed")}, ${N * N - 2 - 2 * n} ${t("cases libres", "free squares")}.${split} ${extra}`.trim());
+    announce(`${n} ${t(n > 1 ? "dominos posés" : "domino posé", n > 1 ? "dominoes placed" : "domino placed")}, ${N * N - 2 - 2 * n} ${t("cases libres", "free squares")}. ${extra}`.trim());
   }
   function drawBoard() {
     board.replaceChildren();
     for (let r = 0; r < N; r++)
       for (let c = 0; c < N; c++) {
         const gone = removed.has(`${c},${r}`);
-        svgEl("rect", { x: BX + c * C, y: BY + r * C, width: C, height: C, class: gone ? "cell gone" : `cell ${colour ? ((c + r) % 2 ? "b" : "a") : ""}` }, board);
+        svgEl("rect", { x: BX + c * C, y: BY + r * C, width: C, height: C, class: gone ? "cell gone" : "cell" }, board);
       }
   }
   function drawPlaced() {
@@ -235,13 +229,6 @@ export function activity(root, { t, reduced, q }) {
     e.currentTarget.setAttribute("aria-pressed", String(tapRemoves));
     e.currentTarget.textContent = tapRemoves ? t("Toucher un domino : l’enlever", "Tapping a domino: remove it") : t("Toucher un domino : le tourner", "Tapping a domino: turn it");
   });
-  // The colouring is a hint, so its button lives with hint 1 in the hint panel (see hintActions in index.js). It reaches
-  // the activity as a "challenge-action" event; the activity keeps the button's pressed state in step.
-  const hintButton = () => document.querySelector('[data-hint-act="colour"]');
-  const setColour = (on) => { colour = on; hintButton()?.setAttribute("aria-pressed", String(colour)); drawBoard(); summary(); };
-  const onAction = (e) => { if (e.detail?.id === "chess" && e.detail.act === "colour") setColour(!colour); };
-  document.addEventListener("challenge-action", onAction);
-  hintButton()?.setAttribute("aria-pressed", "false");
   // A greedy random attempt: dominoes are laid one by one in random places until none fits. It never completes the board.
   root.querySelector("#dm-auto").addEventListener("click", () => {
     dominos = [];
@@ -260,6 +247,5 @@ export function activity(root, { t, reduced, q }) {
   drawTray();
   redraw();
   summary();
-  void reduced;
-  return () => document.removeEventListener("challenge-action", onAction);
+  return cartoonPress(root, reduced);
 }

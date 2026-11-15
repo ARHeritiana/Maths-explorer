@@ -1,5 +1,4 @@
-// The cookies challenge: card text, variations (checked answer, statement, solution text), original question, emblem and
-// hint actions. Everything else about this challenge is in this folder; registry.js lists the folders.
+// The cookies challenge: card text, variations (checked answer, statement, solution text), original question, emblem. Everything else about this challenge is in this folder; registry.js lists the folders.
 import { int, choice, P } from "../common/helpers.js";
 import { svg, dot } from "../common/icon.js";
 import { sharings, code, NAMES } from "./maths.js";
@@ -15,7 +14,6 @@ export const card = {
   topic: ["Dénombrement", "Counting"],
   difficulty: 2,
   minutes: 12,
-  hints: [],
   extension: ["Et si chacun ne peut pas recevoir plus de 3 biscuits ? Combien de solutions entières positives l’équation x + y + z + t = 20 a-t-elle ?", "What if nobody may receive more than 3 cookies? How many solutions in natural numbers does x + y + z + t = 20 have?"],
 };
 
@@ -29,10 +27,6 @@ export const variant = {
   prompt: (q) => P(
     `On partage ${q.n} biscuits identiques entre ${q.k} personnes ${people(q.k)}, en donnant tous les biscuits. ${q.rule === "one" ? "Chacun doit en recevoir au moins un." : "Certains peuvent ne rien recevoir."} Seul compte le nombre de biscuits reçus par chacun. Combien de partages différents y a-t-il ?`,
     `${q.n} identical cookies are shared among ${q.k} people ${people(q.k)}, giving away every cookie. ${q.rule === "one" ? "Everyone must receive at least one." : "Some may receive nothing."} Only the number of cookies each person receives matters. How many different sharings are there?`),
-  hints: (q) => [
-    P("Commence avec moins de biscuits et moins de personnes : 3 biscuits pour 3 personnes, puis 4 biscuits. Comment écrire un partage de façon compacte ?", "Start with fewer cookies and fewer people: 3 cookies for 3 people, then 4 cookies. How can a sharing be written compactly?"),
-    P(`Aligne les biscuits et place ${q.k - 1} séparateurs entre eux : ce qui est avant le premier séparateur va à A, etc. Que faut-il choisir pour décrire un partage ?`, `Line up the cookies and place ${q.k - 1} separators among them: what is before the first separator goes to A, and so on. What must be chosen to describe a sharing?`),
-  ],
   solution: (q) => {
     const n = q.n, k = q.k, m = n + k - 1, v = sharings(n, k, q.rule === "one");
     // an example of a sharing and its row: 3 to A, nothing to B, the rest to C (two people: 3 and the rest)
@@ -52,8 +46,3 @@ export const original = (q) => P(
   `In how many ways can ${q.n} identical cookies be shared among ${q.k} named people? Find a method that works for n cookies and k people, and prove that it counts each sharing exactly once. What does the rule “everyone gets at least one” change?`);
 
 export const icon = svg(`<circle cx="18" cy="40" r="8" ${'fill="currentColor" fill-opacity=".22"'}/><circle cx="34" cy="40" r="8" ${'fill="currentColor" fill-opacity=".22"'}/><path d="M44 28v24" stroke-width="3.5"/><circle class="ci-bob" cx="54" cy="40" r="6"/>${dot(16, 38, 1.6)}${dot(20, 42, 1.6)}${dot(33, 37, 1.6)}${dot(36, 43, 1.6)}<path d="M10 22h44" stroke-opacity=".3"/>`);
-
-export const hintActions = {
-  0: ["code", "Écrire le partage affiché avec des ● et des |", "Write the sharing shown with ● and |"],
-  1: ["places", "Numéroter les places de la rangée", "Number the places of the row"],
-};

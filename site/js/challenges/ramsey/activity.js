@@ -1,14 +1,15 @@
 // Hands-on activity of the ramsey challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { svgEl } from "../common/kit.js";
+import { svgEl, goalLine } from "../common/kit.js";
+import { cartoonPress } from "../common/cartoon.js";
 
 /* ---------------------------------------------------------------- ramsey */
-export function activity(root, { t, q }) {
+export function activity(root, { t, q, reduced }) {
   const W = 340, H = 340, CX = 170, CY = 170, R = 130, S = Number(q.s), NMAX = S === 3 ? 6 : 9;
   let n = Math.min(NMAX, S === 3 ? 6 : 8);
   const col = new Map();   // "i-j" -> 1 (friends) | 2 (strangers)
   const key = (a, b) => (a < b ? `${a}-${b}` : `${b}-${a}`);
   root.innerHTML = `
-    <p class="act-help">${t(`Chaque trait relie deux personnes. Touche un trait pour le faire passer de « pas encore décidé » à « amis » (plein, bleu), puis « pas amis » (pointillé, orange), puis de nouveau « pas décidé ». Cherche à éviter trois amis et ${S === 3 ? 'trois' : 'quatre'} inconnus.`, `Each line joins two people. Tap a line to turn it from “undecided” to “friends” (solid, blue), then “not friends” (dashed, orange), then back to “undecided”. Try to avoid three friends and ${S === 3 ? 'three' : 'four'} strangers.`)}</p>
+    ${goalLine(t, `Évite trois amis ou ${S === 3 ? 'trois' : 'quatre'} inconnus.`, `Avoid three friends or ${S === 3 ? 'three' : 'four'} strangers.`, `Chaque trait relie deux personnes. Touche un trait pour le faire passer de « pas encore décidé » à « amis » (plein, bleu), puis « pas amis » (pointillé, orange), puis de nouveau « pas décidé ». Cherche à éviter trois amis et ${S === 3 ? 'trois' : 'quatre'} inconnus.`, `Each line joins two people. Tap a line to turn it from “undecided” to “friends” (solid, blue), then “not friends” (dashed, orange), then back to “undecided”. Try to avoid three friends and ${S === 3 ? 'three' : 'four'} strangers.`)}
     <svg class="act-svg" viewBox="0 0 ${W} ${H}" role="group" aria-label="${t("Personnes reliées deux à deux", "People joined in pairs")}"></svg>
     <div class="act-controls">
       <label class="act-field" for="rm-n"><span class="act-label">${t("Nombre de personnes", "Number of people")} <output id="rm-out"></output></span><input id="rm-n" type="range" min="3" max="${NMAX}" step="1" value="${n}"></label>
@@ -50,6 +51,7 @@ export function activity(root, { t, q }) {
   root.querySelector("#rm-n").addEventListener("input", (e) => { n = Number(e.target.value); col.clear(); draw(); });
   root.querySelector("#rm-rand").addEventListener("click", () => { col.clear(); for (let a = 0; a < n; a++) for (let b = a + 1; b < n; b++) col.set(key(a, b), 1 + Math.floor(Math.random() * 2)); draw(); });
   root.querySelector("#rm-clear").addEventListener("click", () => { col.clear(); draw(); });
+  const unpress = cartoonPress(root, reduced);
   draw();
-  return () => {};
+  return unpress;
 }

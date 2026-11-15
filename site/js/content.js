@@ -207,11 +207,11 @@ for (const lab of labs) {
   lab.quizState ??= quizStates[lab.id];
 }
 
-// Each challenge lives in challenges/<id>/ (registry.js lists them). Its statement, expected answer, hints and worked
+// Each challenge lives in challenges/<id>/ (registry.js lists them). Its statement, expected answer and worked
 // solution come from its variant with the default parameters: one source, so the page and the tests cannot drift apart.
 export const challenges = challengeBase.map((c) => {
   const v = VARIANTS[c.id], q = defaults(c.id);
-  return { ...c, prompt: v.prompt(q), answer: v.answer(q), solution: v.solution(q), hints: v.hints ? v.hints(q) : c.hints };
+  return { ...c, prompt: v.prompt(q), answer: v.answer(q), solution: v.solution(q) };
 });
 
 

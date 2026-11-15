@@ -16,7 +16,7 @@ export const scene = {
     dayScene(svg, { ground: 244 });
     el("rect", { x: 20, y: 236, width: 480, height: 10, rx: 4, fill: "#a8723f", stroke: "#4b2d14", "stroke-width": 1.6 }, svg);
     const people = Array.from({ length: N }, (_, v) => makeSoldier(svg, { uniform: ["#3b82f6", "#e8710a", "#2fa866", "#c2185b"][v % 4], hat: v % 4, size: 0.72 + (v / N) * 0.55, skin: ["#f1c27d", "#e0ac69", "#f5d0a9", "#d8a47f"][v % 4], label: String(v + 1) }));
-    const t1 = el("text", { x: 260, y: 66, "text-anchor": "middle", style: "font:700 38px var(--math);fill:#fff;paint-order:stroke;stroke:#2a4a2a;stroke-width:5px" }, svg), t2 = el("text", { x: 260, y: 286, "text-anchor": "middle", style: "font:700 14px var(--body);fill:#fff;paint-order:stroke;stroke:#2a4a2a;stroke-width:3px" }, svg);
+    const t1 = el("text", { x: 260, y: 66, "text-anchor": "middle", style: "font:700 28px var(--math);fill:#fff;paint-order:stroke;stroke:#2a4a2a;stroke-width:5px" }, svg), t2 = el("text", { x: 260, y: 286, "text-anchor": "middle", style: "font:700 14px var(--body);fill:#fff;paint-order:stroke;stroke:#2a4a2a;stroke-width:3px" }, svg);
     const board = pillAt(svg, 90, 8, 340, 28), label = el("text", { x: 260, y: 27, "text-anchor": "middle", style: white(14) }, board);
     return { c, N, people, t1, t2, label };
   },
@@ -31,8 +31,8 @@ export const scene = {
       people[v - 1].set({ x, y: 232, dir: 1, phase: 0, amp: 0, hop, cheer: step === 3 ? easeInOut(seg(p, 0.3, 0.6)) : 0 });
     });
     const inv = inversions(row);
-    t1.textContent = `${c.t("inversions", "inversions")} : ${inv}`; t2.textContent = `${c.t("échanges faits", "swaps made")} : ${whole}`;
-    label.textContent = [`${c.t("la rangée", "the row")} : ${p0.join(", ")}`, c.t("un échange : −1 inversion", "one swap: −1 inversion"), c.t("chaque échange : −1, quel que soit le choix", "every swap: −1, whatever the choice"), `${inv0} ${c.t("échanges exactement", "swaps exactly")}`][step];
+    t1.textContent = `${c.t("paires mal rangées", "pairs out of order")} : ${inv}`; t2.textContent = `${c.t("échanges faits", "swaps made")} : ${whole}`;
+    label.textContent = [`${c.t("la rangée", "the row")} : ${p0.join(", ")}`, c.t("un échange : −1 paire mal rangée", "one swap: −1 pair out of order"), c.t("chaque échange : −1, quel que soit le choix", "every swap: −1, whatever the choice"), `${inv0} ${c.t("échanges exactement", "swaps exactly")}`][step];
   },
 };
 
@@ -40,10 +40,10 @@ export const scene = {
 export const diagram = {
   size: [520, 300],
   steps: (q) => { const p0 = permOf(q.n, q.seed), inv = inversions(p0); return [
-    P(`La rangée : ${p0.join(", ")}. Une inversion est une paire (pas forcément voisine) où la plus grande est à gauche : il y en a ${inv}.`, `The row: ${p0.join(", ")}. An inversion is a pair (not necessarily neighbours) where the taller is on the left: there are ${inv}.`),
-    P("On échange deux voisines mal rangées : leur paire n’est plus une inversion, et aucune autre paire ne change. Le nombre d’inversions baisse exactement de 1.", "Swap two neighbours in the wrong order: their pair stops being an inversion, and no other pair changes. The number of inversions drops by exactly 1."),
-    P("On recommence : chaque échange fait baisser le compteur de 1, quel que soit l’échange choisi.", "Again and again: every swap lowers the counter by 1, whichever swap is chosen."),
-    P(`La rangée est triée quand le compteur vaut 0. Il fallait donc exactement ${inv} échanges, quels que soient les choix.`, `The row is sorted when the counter reaches 0. So exactly ${inv} swaps were needed, whatever the choices.`),
+    P(`La rangée : ${p0.join(", ")}. Une paire mal rangée est une paire de personnes (pas forcément voisines) où la plus grande est à gauche : il y en a ${inv}.`, `The row: ${p0.join(", ")}. A pair out of order is a pair of people (not necessarily neighbours) where the taller is on the left: there are ${inv}.`),
+    P("On échange deux voisines mal rangées : leur paire est remise en ordre, et aucune autre paire ne change. Le nombre de paires mal rangées baisse exactement de 1.", "Swap two neighbours that are out of order: their pair is put right, and no other pair changes. The number of pairs out of order drops by exactly 1."),
+    P("On recommence : chaque échange fait baisser ce nombre de 1, quel que soit l’échange choisi.", "Again and again: every swap lowers this number by 1, whichever swap is chosen."),
+    P(`La rangée est triée quand ce nombre vaut 0. Il fallait donc exactement ${inv} échanges, quels que soient les choix.`, `The row is sorted when this number reaches 0. So exactly ${inv} swaps were needed, whatever the choices.`),
   ]; },
   draw(c, s, p, q) {
     const p0 = permOf(q.n, q.seed), N = q.n, log = bubbleSwaps(p0).log, W = Math.min(46, 440 / N), x0 = 260 - (W * N) / 2, base = 250;
@@ -54,7 +54,7 @@ export const diagram = {
       let x = slot(i); if (frac > 0 && whole < total) { const j = log[whole]; if (i === j) x = lerp(slot(i), slot(i + 1), ez(frac)); if (i === j + 1) x = lerp(slot(i), slot(i - 1), ez(frac)); }
       c.rect(x + 2, base - h(v), W - 4, h(v), { rx: 5, fill: `color-mix(in srgb, ${colour(v - 1)} 55%, var(--surface))`, stroke: "var(--ink)", "stroke-width": 1.5 }); c.text(x + W / 2, base - h(v) + 18, v, { ...mid, class: "sol-small", style: "font-weight:700" });
     });
-    const inv = inversions(row); c.text(260, 34, `${c.t("inversions", "inversions")} : ${Math.max(0, inv - (frac > 0 && whole < total ? 1 : 0) * 0)}`, { ...mid, class: s === 3 ? "sol-hot" : "sol-big small" });
+    const inv = inversions(row); c.text(260, 34, `${c.t("paires mal rangées", "pairs out of order")} : ${Math.max(0, inv - (frac > 0 && whole < total ? 1 : 0) * 0)}`, { ...mid, class: s === 3 ? "sol-hot" : "sol-big small" });
     c.text(260, 285, `${c.t("échanges faits", "swaps made")} : ${whole}`, { ...mid, class: "sol-sub" });
   },
 };

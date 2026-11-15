@@ -1,15 +1,15 @@
 // Hands-on activity of the lighteggs challenge: the learner tries, fails and notices; it never states the answer or the method.
-import { svgEl } from "../common/kit.js";
+import { svgEl, goalLine } from "../common/kit.js";
+import { cartoonPress, PRESS } from "../common/cartoon.js";
 import { makeEgg } from "../common/scene-props.js";
-import { eggWeighings } from "./maths.js";
 
 /* ------------------------------------------------------------ light egg */
-export function activity(root, { t, q }) {
-  const N = q.n, K = eggWeighings(N);
+export function activity(root, { t, q, reduced }) {
+  const N = q.n;
   let light, state, used, mode, over;   // state: 0 aside, 1 left pan, 2 right pan, 3 set aside (cleared)
   const fresh = () => { light = Math.floor(Math.random() * N); state = Array(N).fill(0); used = 0; mode = "weigh"; over = false; };
   root.innerHTML = `
-    <p class="act-help">${t("Touche un œuf pour le changer de place : à côté, plateau de gauche, plateau de droite, ou écarté (hors de cause). Pèse, puis désigne l’œuf abîmé, plus léger que les autres.", "Tap an egg to move it: aside, left pan, right pan, or cleared (ruled out). Weigh, then name the spoiled egg, which is lighter than the others.")}</p>
+    ${goalLine(t, `Trouve l’œuf abîmé, le plus léger.`, `Find the spoiled egg, the lighter one.`, "Touche un œuf pour le changer de place : à côté, plateau de gauche, plateau de droite, ou écarté (hors de cause). Pèse, puis désigne l’œuf abîmé, plus léger que les autres.", "Tap an egg to move it: aside, left pan, right pan, or cleared (ruled out). Weigh, then name the spoiled egg, which is lighter than the others.")}
     <svg class="act-svg" id="eg-scale" style="max-width:360px" viewBox="0 0 360 120" role="img" aria-label="${t("Balance", "Balance")}"></svg>
     <div class="cl-grid cl-eggs" id="eg-grid" role="group" aria-label="${t("Les œufs", "The eggs")}"></div>
     <div class="act-buttons" style="margin-top:10px"><button class="btn btn-primary" id="eg-weigh" type="button">${t("Peser", "Weigh")}</button><button class="btn btn-secondary" id="eg-name" type="button" aria-pressed="false">${t("Désigner l’œuf abîmé", "Name the spoiled egg")}</button><button class="btn-quiet" id="eg-new" type="button">${t("Nouvelle partie", "New game")}</button></div>
@@ -35,7 +35,7 @@ export function activity(root, { t, q }) {
   }
   grid.addEventListener("click", (e) => {
     const b = e.target.closest(".cl-egg"); if (!b || over) return; const i = Number(b.dataset.i);
-    if (mode === "name") { over = true; mode = "weigh"; const ok = i === light; draw(ok ? `<strong>${t("Exact !", "Correct!")}</strong> ${t(`Tu l’as trouvé en ${used} pesée${used > 1 ? "s" : ""}.`, `You found it in ${used} weighing${used > 1 ? "s" : ""}.`)} ${used <= K ? t(`C’est le minimum (${K}) : bravo.`, `That is the minimum (${K}): well done.`) : t(`Il est possible de le faire en ${K}.`, `It can be done in ${K}.`)}` : `${t("Non : l’œuf abîmé était le numéro", "No: the spoiled egg was number")} <strong>${light + 1}</strong>.`); return; }
+    if (mode === "name") { over = true; mode = "weigh"; const ok = i === light; draw(ok ? `<strong>${t("Exact !", "Correct!")}</strong> ${t(`Tu l’as trouvé en ${used} pesée${used > 1 ? "s" : ""}.`, `You found it in ${used} weighing${used > 1 ? "s" : ""}.`)}` : `${t("Non : l’œuf abîmé était le numéro", "No: the spoiled egg was number")} <strong>${light + 1}</strong>.`); return; }
     state[i] = (state[i] + 1) % 4; tilt = 0; draw();
   });
   root.querySelector("#eg-weigh").addEventListener("click", () => {
@@ -46,5 +46,5 @@ export function activity(root, { t, q }) {
   root.querySelector("#eg-name").addEventListener("click", () => { if (!over) { mode = mode === "name" ? "weigh" : "name"; draw(); } });
   root.querySelector("#eg-new").addEventListener("click", () => { fresh(); tilt = 0; draw(); });
   fresh(); draw();
-  return () => {};
+  return cartoonPress(root, reduced);
 }

@@ -2,12 +2,13 @@
 //
 // The ant on the box as an open sandbox. The visitor turns a 3D box, then lays a route on its surface by tapping points;
 // two consecutive points must share a face (so crossing an edge means putting a point on that edge), and the length is
-// measured live. Nothing suggests flattening the box: the hints do that on request (hintActions in index.js).
+// measured live. Nothing suggests flattening the box.
 // A route within 0.4 % of the shortest triggers the finale: the box unfolds, the ant walks the straight line, the box folds back.
-import { boxSet, boxPath, nets, FACE_AXIS, faceValue, dist3, shareFace, facesOf, netRoute, polyLength, hingePosition } from "./maths.js";
-import { boxScaler, drawBox, projectBoxPoint, flatCamera } from "./view-3d.js";
-import { clamp, lockTouch, svgEl, toLocal } from "../common/kit.js";
+import { boxSet, boxPath, nets, FACE_AXIS, faceValue, dist3, shareFace, facesOf, netRoute, polyLength } from "./maths.js";
+import { boxScaler, drawBox, flatCamera } from "./view-3d.js";
+import { clamp, lockTouch, svgEl, toLocal, goalLine } from "../common/kit.js";
 import { makeView, confetti } from "../common/view-3d.js";
+import { cartoonPress } from "../common/cartoon.js";
 
 export const W = 640, H = 420, CX = 320, CY = 214;
 
@@ -23,17 +24,13 @@ export function activity(root, { t, q, reduced }) {
   const fmt = (v) => String(Math.round(v * 100) / 100).replace(".", t(",", "."));
   const N = boxScaler(dims);
   root.innerHTML = `
-    <p class="act-help" id="bx-help"></p>
+    ${goalLine(t, "Mène la fourmi du coin S au coin T sur la surface.", "Take the ant from corner S to corner T over the surface.")}<p class="sr-only" id="bx-help"></p>
     <svg class="act-svg bx-stage" viewBox="0 0 ${W} ${H}" tabindex="0" role="application" aria-label="${t("La boîte et la fourmi : fais glisser pour tourner, touche la boîte pour poser des points", "The box and the ant: drag to turn, tap the box to place points")}"></svg>
     <div class="act-buttons bx-bar" id="bx-bar3d">
       <button class="btn btn-secondary" id="bx-add" type="button">${t("Ajouter un point (clavier)", "Add a point (keyboard)")}</button>
       <button class="btn btn-secondary" id="bx-walk" type="button">${t("Faire marcher la fourmi", "Send the ant walking")}</button>
       <button class="btn-quiet" id="bx-undo" type="button">${t("Annuler le dernier point", "Undo the last point")}</button>
       <button class="btn-quiet" id="bx-clear" type="button">${t("Tout effacer", "Clear")}</button>
-    </div>
-    <div class="act-buttons bx-bar" id="bx-barflat" hidden>
-      <button class="btn btn-secondary" id="bx-next" type="button">${t("Autre paire de faces", "Another pair of faces")}</button>
-      <button class="btn-quiet" id="bx-fold" type="button">${t("Replier la boîte", "Fold the box back")}</button>
     </div>
     <p class="act-readout" id="bx-read" role="status" aria-live="polite"></p>`;
   const $ = (s) => root.querySelector(s);
@@ -43,8 +40,6 @@ export function activity(root, { t, q, reduced }) {
   let cam = { yaw: -38, pitch: 28, scale: 300, cx: CX, cy: CY }, mode = "3d", way = [], drag = null, rot = null, raf = 0, found = false;
   let flat = { k: NET.indexOf(NET.reduce((a, b) => (b.length > a.length ? b : a))), amount: 0, m: 0.5, line: false }, walk = null, fin = null, finT = 0, flying = false;
   const route = () => [S, ...way.map((w) => w.p)];
-  const edgeEnds = (net) => { const e = net.edgeAxis, p0 = [0, 0, 0]; p0[FACE_AXIS[net.base]] = faceValue(dims, net.base); p0[FACE_AXIS[net.hinge]] = faceValue(dims, net.hinge); const p1 = p0.slice(); p1[e] = dims[e]; return [p0, p1]; };
-  const flatM = () => { const [p0, p1] = edgeEnds(NET[flat.k]); return p0.map((v, i) => v + (p1[i] - v) * flat.m); };
   const mk = (c = cam) => makeView({ ...c });
 
   // ------------------------------------------------------------ picking on the surface
@@ -95,24 +90,18 @@ export function activity(root, { t, q, reduced }) {
   function draw() {
     svg.replaceChildren();
     const view = mk();
-    if (mode === "flat" || mode === "finale") { drawFlat(view); return; }
+    if (mode === "finale") { drawFlat(view); return; }
     const antPos = walk ? walk.pos : S;
     const { g } = drawBox(svg, view, dims, { paths: paths3d(), markers: [{ p: S, kind: "S" }, { p: T, kind: "T" }], edgeLabels: true, ant: { p: antPos, ang: walk?.ang ?? -0.5, glow: !!walk } });
     overlayWays(view, g);
     if (!way.length) { const tx = svgEl("text", { x: W / 2, y: H - 12, "text-anchor": "middle", style: "font:600 13px var(--body);fill:var(--muted);pointer-events:none" }, svg); tx.textContent = t("Glisse pour tourner · touche la boîte pour poser un point de ton trajet", "Drag to turn · tap the box to place a point of your route"); }
   }
   function drawFlat(view) {
-    const net = { base: NET[flat.k].base, hinge: NET[flat.k].hinge, amount: flat.amount }, m = flatM(), paths = [];
+    const net = { base: NET[flat.k].base, hinge: NET[flat.k].hinge, amount: flat.amount }, paths = [];
     const crossing = flatRoute();
-    if (mode !== "finale") paths.push({ pts: [S, m, T], colour: "#d62828", width: 4 });
-    if (flat.line || (mode === "finale" && fin)) paths.push({ pts: crossing.points, colour: "#2a9d8f", width: 4, dash: flat.line && mode !== "finale" ? "9 6" : undefined, glow: mode === "finale", upTo: mode === "finale" ? fin.line : 1 });
+    if (mode === "finale" && fin) paths.push({ pts: crossing.points, colour: "#2a9d8f", width: 4, glow: mode === "finale", upTo: mode === "finale" ? fin.line : 1 });
     const ant = mode === "finale" && fin.ant != null ? { p: pointAlong(crossing.points, fin.ant), ang: 0, glow: true } : null;
     const { g } = drawBox(svg, view, dims, { net, paths, markers: [{ p: S, kind: "S" }, { p: T, kind: "T" }], edgeLabels: false, ant });
-    // the sliding crossing point
-    if (mode === "flat") {
-      const [x, y] = projectBoxPoint(view, dims, net, m), h = svgEl("g", { class: "toy-handle", tabindex: 0, "data-handle": "m", role: "slider", "aria-label": t("Point de passage sur l’arête commune", "Crossing point on the shared edge"), "aria-valuemin": 0, "aria-valuemax": 100, "aria-valuenow": Math.round(flat.m * 100) }, g);
-      svgEl("circle", { class: "hit", cx: x, cy: y, r: 22 }, h); svgEl("circle", { class: "ring", cx: x, cy: y, r: 10 }, h); svgEl("circle", { class: "core", cx: x, cy: y, r: 4 }, h);
-    }
     if (mode === "finale") finaleOverlay(view, net, crossing);
   }
   const flatRoute = () => netRoute(dims, NET[flat.k]);
@@ -120,17 +109,11 @@ export function activity(root, { t, q, reduced }) {
 
   // ------------------------------------------------------------ the camera, the net, the readouts
   const flatCam = (k) => flatCamera(dims, NET[k], W, H);
-  const hingeFlat = (net, v) => (facesOf(dims, v).includes(net.hinge) && !facesOf(dims, v).includes(net.base) ? hingePosition(dims, net.base, net.hinge, v, 1) : v);
-  function flatReadout() {
-    const m = flatM(), len = polyLength([S, m, T]), n = NET[flat.k];
-    read.innerHTML = `${t("Trajet S → point de passage → T", "Route S → crossing point → T")} : <strong>${fmt(len)} cm</strong>${flat.line ? ` · ${t("segment droit", "straight segment")} : <strong>${fmt(n.length)} cm</strong>` : ""}`;
-  }
   function updateUI() {
-    $("#bx-bar3d").hidden = mode !== "3d"; $("#bx-barflat").hidden = mode !== "flat";
+    $("#bx-bar3d").hidden = mode !== "3d";
     help.textContent = mode === "3d"
       ? t(`La fourmi part du coin S et veut atteindre le coin T, en marchant sur la surface. Dimensions : ${A} × ${B} × ${C} cm. Touche la boîte pour poser des points : deux points consécutifs doivent être sur une même face (pour passer d’une face à l’autre, pose un point sur leur arête).`, `The ant starts at corner S and wants to reach corner T, walking on the surface. Dimensions: ${A} × ${B} × ${C} cm. Tap the box to place points: two consecutive points must be on a common face (to go from one face to another, put a point on their edge).`)
-      : mode === "flat" ? t("Deux faces voisines sont mises à plat. Fais glisser le point de passage sur l’arête commune.", "Two neighbouring faces are laid flat. Drag the crossing point along the shared edge.") : "";
-    if (mode === "flat") { flatReadout(); return; }
+      : "";
     if (mode !== "3d") return;
     const r = route(), bad = r.findIndex((p, i) => i + 1 < r.length && shareFace(dims, p, r[i + 1]) < 0);
     const ends = way.length && dist3(way[way.length - 1].p, T) < 1e-9;
@@ -154,24 +137,6 @@ export function activity(root, { t, q, reduced }) {
     };
     raf = requestAnimationFrame(tick);
   }
-  function showNet(k, line) {
-    walk = null;
-    const go = () => { mode = "flat"; flat.k = k; flat.m = 0.5; flat.amount = 0; flat.line = !!line; updateUI(); fly(flatCam(k), 650, null, () => animateAmount(0, 1, 1100)); draw(); };
-    if (mode === "flat" || mode === "finale") { flat.k = k; flat.m = 0.5; flat.line = !!line; flat.amount = 0; const target = flatCam(k); mode = "flat"; updateUI(); fly(target, 400, null, () => animateAmount(0, 1, 900)); return; }
-    go();
-  }
-  function animateAmount(from, to, ms, done) {
-    if (isReduced()) { flat.amount = to; draw(); done?.(); return; }
-    const t0 = performance.now(); flying = true;
-    const tick = (now) => { const k = clamp((now - t0) / ms, 0, 1); flat.amount = lerp(from, to, ease(k)); draw(); if (k < 1) raf = requestAnimationFrame(tick); else { flying = false; done?.(); } };
-    raf = requestAnimationFrame(tick);
-  }
-  function foldBack() {
-    if (mode !== "flat") return;
-    cancelAnimationFrame(raf);
-    animateAmount(flat.amount, 0, 700, () => { mode = "3d"; updateUI(); fly({ yaw: -38, pitch: 28, scale: 300, cx: CX, cy: CY }, 650, null, () => { updateUI(); draw(); }); });
-  }
-
   // ------------------------------------------------------------ the ant walking the route, and the finale
   function walkRoute() {
     const r = route(); if (r.length < 2) return;
@@ -221,31 +186,17 @@ export function activity(root, { t, q, reduced }) {
     void view; void net;
   }
 
-  // ------------------------------------------------------------ the hints
-  const onAction = (e) => {
-    if (e.detail?.id !== "box") return;
-    if (e.detail.act === "net") showNet(mode === "flat" ? flat.k : NET.indexOf(NET.reduce((a, b) => (b.length > a.length ? b : a))), false);
-    else if (e.detail.act === "line") { if (mode === "flat") { flat.line = true; updateUI(); draw(); } else { showNet(flat.k, true); } }
-  };
-  document.addEventListener("challenge-action", onAction);
-
   // ------------------------------------------------------------ input
   const local = (e) => toLocal(svg, e);
   let down = null;
   svg.addEventListener("pointerdown", (e) => {
     if (mode === "finale" || flying) return;
     const L = local(e), h = e.target.closest?.(".toy-handle");
-    if (h?.dataset.handle === "m") { drag = { m: true }; svg.setPointerCapture(e.pointerId); e.preventDefault(); return; }
     if (h?.dataset.i !== undefined) { drag = { i: Number(h.dataset.i) }; svg.setPointerCapture(e.pointerId); e.preventDefault(); return; }
     if (mode === "3d") { rot = { x: L.x, y: L.y, yaw: cam.yaw, pitch: cam.pitch }; down = { x: L.x, y: L.y }; svg.setPointerCapture(e.pointerId); }
   });
   svg.addEventListener("pointermove", (e) => {
     const L = local(e);
-    if (drag?.m) {
-      const net = { base: NET[flat.k].base, hinge: NET[flat.k].hinge, amount: flat.amount }, [p0, p1] = edgeEnds(NET[flat.k]), v = mk(), a = projectBoxPoint(v, dims, net, p0), b = projectBoxPoint(v, dims, net, p1);
-      const dx = b[0] - a[0], dy = b[1] - a[1], k = ((L.x - a[0]) * dx + (L.y - a[1]) * dy) / (dx * dx + dy * dy);
-      flat.m = clamp(Math.round(k * 200) / 200, 0, 1); updateUI(); draw(); return;
-    }
     if (drag?.i !== undefined) { const hit = pick(mk(), L.x, L.y); if (hit) { way[drag.i].p = hit.p; updateUI(); draw(); } return; }
     if (rot) { cam = { ...cam, yaw: rot.yaw + (L.x - rot.x) * 0.45, pitch: clamp(rot.pitch + (L.y - rot.y) * 0.35, -60, 88) }; draw(); }
   });
@@ -263,7 +214,6 @@ export function activity(root, { t, q, reduced }) {
   svg.addEventListener("keydown", (e) => {
     const d = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] }[e.key], h = e.target.closest?.(".toy-handle");
     if (!d) return;
-    if (h?.dataset.handle === "m") { e.preventDefault(); flat.m = clamp(flat.m + (d[0] || d[1]) * (e.shiftKey ? 0.05 : 0.01), 0, 1); updateUI(); draw(); svg.querySelector("[data-handle=m]")?.focus(); return; }
     if (h?.dataset.i !== undefined) {
       e.preventDefault(); const i = Number(h.dataset.i), p = way[i].p, fs = facesOf(dims, p), step = e.shiftKey ? 0.5 : 0.1, f = fs[0], k = FACE_AXIS[f], u = (k + 1) % 3, w = (k + 2) % 3;
       p[u] = clamp(p[u] + d[0] * step, 0, dims[u]); p[w] = clamp(p[w] + d[1] * step, 0, dims[w]);
@@ -287,10 +237,9 @@ export function activity(root, { t, q, reduced }) {
   $("#bx-undo").addEventListener("click", () => { way.pop(); afterEdit(); });
   $("#bx-clear").addEventListener("click", () => { way = []; found = false; afterEdit(); });
   $("#bx-walk").addEventListener("click", walkRoute);
-  $("#bx-next").addEventListener("click", () => { const k = (flat.k + 1) % NET.length; flat.k = k; flat.m = 0.5; flat.amount = 0; const target = flatCam(k); fly(target, 400, null, () => animateAmount(0, 1, 800)); updateUI(); });
-  $("#bx-fold").addEventListener("click", foldBack);
 
   svg.__box = () => ({ way, mode, flat, cam, add: (p) => { way.push({ p }); afterEdit(); } });   // read by the browser tests
   updateUI(); draw();
-  return () => { cancelAnimationFrame(raf); document.removeEventListener("challenge-action", onAction); };
+  const off = cartoonPress(root, reduced);
+  return () => { cancelAnimationFrame(raf); off(); };
 }
