@@ -43,6 +43,10 @@ they differ, the most recent dated rule wins; the list below is current on 15 No
 
 ## Quality bar (check before delivery)
 
+- The first answer publishes the playable page as an Artifact (owner, 15 November 2026).
+- The solution is animated in every step (`references/design.md` section 2); `check.mjs` and the Self-check fail a
+  still step.
+
 - Works at 390 px wide without horizontal scroll, and at 1280 px; both themes (`jour`, `nuit`); reduced motion shows
   final frames without animation.
 - Every piece reachable and operable by keyboard; status messages in an `aria-live` region.

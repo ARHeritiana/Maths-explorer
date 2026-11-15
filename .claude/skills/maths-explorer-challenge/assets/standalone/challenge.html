@@ -1,0 +1,1658 @@
+<!doctype html>
+<html lang="fr" data-theme="jour">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Challenge preview</title>
+<style>.inference-surface .btn{ margin: .3rem; min-height: 44px; }
+.inference-data-label{ display: block; font-size: .85rem; }
+.inference-input-error{ color: var(--neg); }
+.lab2:has(.inference-stage) .lab2-nav button{ flex: 1 1 8rem; min-width: 0; overflow-wrap: anywhere; }
+.lab2:has(.inference-stage) .lab2-ctl-label{ flex-wrap: wrap; overflow-wrap: anywhere; }
+.lab2:has(.inference-stage) .lab2-choice select{ width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box; }
+.mc-bar .btn{ min-height: 44px; min-width: 44px; margin: 0; }
+.mc-speed select{ min-height: 44px; max-width: 100%; font: inherit; color: var(--ink); background: var(--surface); }
+.mc-pseudo summary{ min-height: 44px; display: flex; align-items: center; cursor: pointer; }
+.inf-panel canvas:focus-visible{ outline: 3px solid var(--accent); outline-offset: 2px; }
+.inf-overlay .inference-door:focus-visible{ outline: 3px solid var(--accent); outline-offset: -6px; }
+.inference-more summary{ min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 700; }
+.gen-field input, .gen-field select{ min-height: 44px; padding: 6px 10px; border: 2px solid var(--line-strong); background: var(--bg); width: 100%; border-radius: 0; }
+.gen-field input:focus-visible, .gen-field select:focus-visible{ outline: 3px solid var(--accent); outline-offset: 1px; }
+.gen-check input{ width: 22px; height: 22px; margin-top: 3px; flex: none; accent-color: var(--accent); }
+.gen-chip input{ position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.gen-chip input:checked + span{ background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.gen-chip input:focus-visible + span{ outline: 3px solid var(--accent); outline-offset: 2px; }
+.gen-answers summary{ min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 700; }
+.gen-comp-note p{ margin: 0 0 8px; padding: 8px 14px; background: var(--sunken); border: 1px solid var(--line); font-size: 0.95rem; overflow-wrap: anywhere; }
+.auto-body{ min-height: 200px; display: grid; align-content: center; gap: 18px; text-align: center; padding: 12px 0; }
+.auto-controls .btn-quiet{ margin-left: auto; }
+.auto-stage.presenting .auto-body{ min-height: 0; overflow: hidden; }
+.auto-stage:fullscreen .auto-body{ min-height: 0; overflow: hidden; }
+.sheet-doc h1{ font-family: var(--display); font-size: 1.7rem; text-align: center; margin: 0 0 4px; color: #000; letter-spacing: 0; }
+.sheet-doc header > p{ text-align: center; margin: 2px 0; color: #333; }
+.sheet-ex h2{ font-family: var(--display); font-size: 1.15rem; margin: 22px 0 6px; color: #000; }
+.sheet-ex h2 small{ font-weight: 400; color: #333; }
+@media print{html.printing-doc body > *:not(.print-doc){ display: none !important; }
+html.printing-doc .print-doc{ display: block; }
+html.printing-doc, html.printing-doc body{ background: #fff !important; }
+.sheet-parts li, .sheet-ex h2{ break-inside: avoid; }
+.sheet-ex h2{ break-after: avoid; }
+}
+:root, :root[data-theme="jour"]{
+  color-scheme: light;
+  --bg: #ffffff; --surface: #ffffff; --sunken: #f2f2f2;
+  --ink: #000000; --ink-2: #1f1f1f; --muted: #595959;
+  --line: #cdcdcd; --line-strong: #6e6e6e; --grid: #ececec;
+  --accent: #d90012; --accent-ink: #ffffff; --accent-soft: #fff0f1;
+  --obj2: #000000; --obj3: #8a8a8a;
+  --pos: #0a7a43; --pos-soft: #e1f3ea; --neg: #b3000f; --neg-soft: #fbe7e5;
+  --mark: #ffe14d;
+  --c1: #2563eb; --c2: #e8710a; --c3: #0f9d58; --c4: #c2185b; --c5: #7b1fa2; --c6: #00838f; --c7: #b8860b; --c8: #d84315;   
+}
+:root[data-theme="nuit"]{
+  color-scheme: dark;
+  --bg: #0a0a0a; --surface: #121212; --sunken: #1b1b1b;
+  --ink: #ffffff; --ink-2: #dcdcdc; --muted: #a3a3a3;
+  --line: #333333; --line-strong: #808080; --grid: #202020;
+  --accent: #ff5560; --accent-ink: #000000; --accent-soft: #3a1316;
+  --obj2: #f2f2f2; --obj3: #9a9a9a;
+  --pos: #5fd0a0; --pos-soft: #12301f; --neg: #ff8a80; --neg-soft: #3a1714;
+  --mark: #4d4210;
+  --c1: #7aa2ff; --c2: #ffa94d; --c3: #5fd0a0; --c4: #ff7eb6; --c5: #c9a6ff; --c6: #4dd0e1; --c7: #ffd54f; --c8: #ff8a65;
+}
+:root{
+  --display: "Schibsted Grotesk", system-ui, sans-serif; --ui: "Schibsted Grotesk", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --math: "STIX Two Text", "Times New Roman", serif;
+  --page-w: 1440px; 
+  --r: 0; --r-sm: 0; --header: 66px; --chrome: var(--header); --t: 120ms ease;
+  font-size: 100%;
+}
+:root:has(.subnav){ --chrome: calc(var(--header) + 47px); }
+*, *::before, *::after{ box-sizing: border-box; }
+html{ scroll-padding-top: calc(var(--chrome) + 16px); -webkit-text-size-adjust: 100%; }
+body{ margin: 0; min-height: 100dvh; background: var(--bg); color: var(--ink); font: 1.125rem/1.6 var(--body); font-synthesis: none; overflow-wrap: break-word; }
+button, input, textarea, select{ font: inherit; color: inherit; }
+button{ cursor: pointer; border: 0; background: none; }
+button:disabled{ cursor: default; }
+a, button, input, summary, textarea, select{ -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+:focus-visible{ outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 0; }
+h1, h2, h3, p{ margin-top: 0; }
+h1, h2, h3{ font-family: var(--display); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; text-wrap: balance; }
+p{ text-wrap: pretty; }
+svg{ display: block; max-width: 100%; }
+mjx-container > svg{ display: inline; }
+.sr-only{ position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip:focus{ top: 8px; }
+#app > main, #app > .lab-layout{ flex: 1; }
+::selection{ background: var(--mark); color: var(--ink); }
+.btn, .primary, .secondary{
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 18px;
+  border: 1.5px solid transparent; border-radius: var(--r-sm); font-weight: 700; font-size: 1rem; line-height: 1.2; text-align: center; max-width: 100%;
+  transition: background-color var(--t), border-color var(--t), color var(--t);
+}
+.btn-primary, .primary{ background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover, .primary:hover{ background: color-mix(in srgb, var(--accent) 86%, var(--ink)); }
+.btn-secondary, .secondary{ background: var(--surface); border-color: var(--line-strong); color: var(--ink); }
+.btn-secondary:hover, .secondary:hover{ border-color: var(--ink); }
+.btn-quiet, .text-button{ display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px; border-radius: var(--r-sm); color: var(--ink-2); font-size: 0.95rem; transition: background-color var(--t), color var(--t); }
+.btn-quiet:hover, .text-button:hover{ background: var(--sunken); color: var(--ink); }
+.text-button{ text-decoration: underline; text-underline-offset: 4px; }
+.btn-quiet[aria-pressed="true"]{ background: var(--accent-soft); color: var(--accent); }
+.icon-btn{ display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--r-sm); color: var(--ink-2); transition: background-color var(--t); }
+.icon-btn:hover{ background: var(--sunken); color: var(--ink); }
+.mainnav{ display: flex; align-items: stretch; gap: 4px; height: 100%; margin-right: auto; }
+.mainnav a{ position: relative; display: flex; align-items: center; gap: 8px; padding: 0 12px; color: var(--muted); font-weight: 700; font-size: 1rem; transition: color var(--t); }
+.mainnav a .icon{ width: 20px; height: 20px; }
+.mainnav a:hover{ color: var(--ink); }
+.mainnav a[aria-current]{ color: var(--ink); }
+.mainnav a[aria-current]::after{ content: ""; position: absolute; left: 12px; right: 12px; bottom: -1px; height: 3px; background: var(--accent); border-radius: 0; }
+.language button{ min-width: 44px; min-height: 36px; padding: 0 8px; font-weight: 700; font-size: 0.9rem; color: var(--ink-2); transition: background-color var(--t), color var(--t); }
+.language button[aria-pressed="true"]{ background: var(--ink); color: var(--bg); }
+@media (max-width: 960px){.mainnav{ position: fixed; z-index: 60; left: 0; right: 0; bottom: 0; height: auto; margin: 0; padding-bottom: env(safe-area-inset-bottom); background: var(--surface); border-top: 1px solid var(--line); }
+.mainnav a{ flex: 1; flex-direction: column; justify-content: center; gap: 2px; min-height: 60px; padding: 0 2px; font-size: 0.85rem; }
+.mainnav a .icon{ display: block; width: 24px; height: 24px; }
+.mainnav a[aria-current]{ color: var(--accent); }
+.mainnav a[aria-current]::after{ left: 20%; right: 20%; top: -1px; bottom: auto; border-radius: 0 0 3px 3px; }
+body{ padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
+}
+.home:focus{ outline: none; }
+.home-head h1{ margin-bottom: 8px; font-size: clamp(2rem, 3.6vw, 3rem); letter-spacing: -0.02em; }
+.home-head p{ margin: 0; color: var(--ink-2); max-width: 60ch; }
+.search input[type="search"]{ width: 100%; min-height: 48px; padding: 0 14px 0 44px; background: var(--surface); }
+.menu-group h2{ margin-bottom: 12px; font-size: 1.3rem; }
+.row[data-selected]{ background: var(--accent-soft); box-shadow: inset 4px 0 0 var(--accent); }
+.row-main{ flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.group > summary{ display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 0 16px; font-weight: 700; cursor: pointer; }
+.group > summary span{ font: 400 0.95rem var(--math); color: var(--muted); }
+.course-supplements h3{ font: 700 1rem var(--body); margin: 12px 0 4px; color: var(--ink-2); }
+.resource-empty button{ margin-top: 8px; min-height: 44px; padding: 0 18px; border-radius: var(--r-sm); background: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.stage-head h2{ margin: 0 0 8px; font-size: clamp(1.5rem, 2.2vw, 1.9rem); }
+.is-presenting .topbar, .is-presenting .mainnav, .is-presenting .subnav{ display: none; }
+[data-fs-target]:fullscreen .lesson-diagram svg, .presenting .lesson-diagram svg{ max-height: 68vh; }
+input[type="range"]{ -webkit-appearance: none; appearance: none; width: 100%; height: 36px; background: transparent; cursor: pointer; margin: 0; }
+input[type="range"]::-webkit-slider-runnable-track{ height: 6px; border-radius: 0; background: var(--line-strong); }
+input[type="range"]::-moz-range-track{ height: 6px; border-radius: 0; background: var(--line-strong); }
+input[type="range"]::-webkit-slider-thumb{ -webkit-appearance: none; width: 26px; height: 26px; margin-top: -10px; border-radius: 50%; background: var(--accent); border: 3px solid var(--surface); box-shadow: 0 0 0 1.5px var(--accent); }
+input[type="range"]::-moz-range-thumb{ width: 20px; height: 20px; border-radius: 50%; background: var(--accent); border: 3px solid var(--surface); box-shadow: 0 0 0 1.5px var(--accent); }
+input[type="range"]:focus-visible{ outline: none; }
+input[type="range"]:focus-visible::-webkit-slider-thumb{ box-shadow: 0 0 0 1.5px var(--accent), 0 0 0 5px var(--ink); }
+input[type="range"]:focus-visible::-moz-range-thumb{ box-shadow: 0 0 0 1.5px var(--accent), 0 0 0 5px var(--ink); }
+@media (prefers-reduced-motion: reduce){*, *::before, *::after{ animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+@media (forced-colors: active){.row[data-selected]{ outline: 2px solid Highlight; }
+.seg[aria-pressed="true"], .language button[aria-pressed="true"]{ background: Highlight; color: HighlightText; }
+}
+@media print{.topbar, .mainnav, .subnav, .tools, footer, .preview, .chooser-tools, .elsewhere{ display: none !important; }
+body{ background: #fff; color: #000; padding: 0; }
+}
+.entrance-intro h1{ font-size:clamp(1.8rem,3.2vw,2.5rem); max-width:22ch; line-height:1.15; }
+.entrance-intro p{ color:var(--ink-2); max-width:54ch; }
+#home-search label{ display:block; font-weight:700; margin-bottom:8px; }
+.home-search-row input{ width:100%; min-width:0; }
+.entrance-art svg{ width:100%; height:auto; }
+.entrance .entrance-art .discovery-preview svg{ height:220px; }
+.entrance-section > h2, .home-reading h2{ margin-bottom:8px; }
+.entrance-section > p{ color:var(--ink-2); }
+.tool-card h3,.idea-card h3{ font-size:1.2rem; margin-bottom:8px; }
+.tool-card p{ color:var(--ink-2); font-size:1rem; line-height:1.5; }
+.tool-card .discovery-preview svg,.idea-card .discovery-preview svg,.chapter-tile .discovery-preview svg{ width:100%; height:160px; }
+.idea-card h3,.idea-card > .task-link{ display:block; margin:16px 20px; }
+.chapter-tile-body{ padding:16px 20px; display:block; }
+.chapter-tile-body strong{ display:block; font-size:1.2rem; line-height:1.3; }
+.chapter-tile-body > span{ display:block; margin-top:8px; color:var(--ink-2); font-size:1rem; }
+.chapter-tile-body small{ display:block; color:var(--muted); margin-top:12px; }
+@media(prefers-reduced-motion:no-preference){.tool-card:is(:hover,:focus-visible) svg path:not(.preview-axis), .idea-card:is(:hover,:focus-visible) svg path:not(.preview-axis){ animation:trace-preview 600ms ease-out both; }
+}
+@keyframes trace-preview{ from { stroke-dasharray:1; stroke-dashoffset:1; } to { stroke-dasharray:1; stroke-dashoffset:0; } }
+@media(max-width:600px){:root{ --header:64px; }
+.entrance-intro h1{ font-size:1.8rem; }
+.entrance-intro > div > p:not(.home-greeting){ font-size:1rem; }
+.home-search-row input{ flex:1 1 150px; }
+.home-search-row button{ flex:1; }
+.topbar:has(.mainnav.is-open) .tools .language:not([hidden]){ display:flex; }
+.mainnav{ display:none; position:static; width:100%; padding:0; border:0; margin:0; }
+.mainnav.is-open{ display:flex; flex-wrap:wrap; }
+.mainnav a{ min-height:48px; flex-direction:row; font-size:1rem; gap:6px; }
+.mainnav.is-open a{ flex:1 1 auto; min-width:0; max-width:100%; }
+.mainnav a .icon{ width:18px; height:18px; }
+body{ padding-bottom:0; }
+}
+.audience-menu summary{ display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px; border-radius: var(--r-sm); color: var(--ink-2); font: 600 0.9rem var(--ui); cursor: pointer; list-style: none; }
+.audience-menu summary::-webkit-details-marker{ display: none; }
+.audience-menu summary:hover, .audience-menu[open] summary{ background: var(--sunken); color: var(--ink); }
+.audience-list a:hover, .audience-list a:focus-visible{ background: var(--sunken); }
+.audience-list p{ margin: 6px 10px 4px; color: var(--muted); font-size: 0.8rem; }
+@media (max-width: 700px){.audience-menu summary span{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.audience-menu summary{ padding: 0; width: 44px; justify-content: center; }
+}
+body:has(.dock:not([hidden])) .offline-bar{ bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
+.offline-bar button{ min-height: 32px; padding: 2px 10px; font: inherit; }
+.page, .library-page, .chapter-page{ max-width: var(--page-w); width: 100%; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 3vw, 32px) 8px; }
+.page:focus, .lab-main:focus, .library-page:focus{ outline: none; }
+.page h1, .library-heading h1, .lab-heading h1, .chapter-heading h1{ font-size: clamp(1.9rem, 3.4vw, 2.8rem); letter-spacing: -0.02em; margin-bottom: 10px; }
+.page h2, .library-page h2{ font-size: clamp(1.3rem, 2vw, 1.6rem); }
+.page-heading{ display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px; margin-bottom: 24px; }
+.page-heading > *, .lab-heading > *{ min-width: 0; max-width: 100%; }
+.page h1, .lab-heading h1{ overflow-wrap: anywhere; }
+.page-heading p, .page-intro, .lab-heading p, .library-heading p{ margin: 0; color: var(--ink-2); max-width: 62ch; }
+.section-kicker, .breadcrumb, .eyebrow{ display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; color: var(--muted); font-size: 0.95rem; font-weight: 700; }
+.muted{ color: var(--muted); font-size: 0.95rem; }
+.error:empty, .feedback:empty{ display: none; }
+.experiment, .learning, .pathway-card, .visual-lesson, .study-sheet, .document-card, .resource-card, .practice-card, .source-practice, .experiment-prompts, .quadratic-panel, .lab-resources, .teacher-files, .library-count, .resource-filters, .chapter-card, .challenge-card{
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
+}
+input[type="text"], input[type="search"], input:not([type]), textarea, select{ min-height: 44px; padding: 8px 12px; background: var(--surface); color: var(--ink); border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); transition: border-color var(--t); }
+input::placeholder, textarea::placeholder{ color: var(--muted); opacity: 1; }
+input:focus-visible, textarea:focus-visible, select:focus-visible{ outline: 3px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+label{ line-height: 1.5; }
+details > summary{ display: flex; align-items: center; min-height: 44px; cursor: pointer; font-weight: 700; }
+details > summary:hover{ color: var(--accent); }
+.answer-row{ display: flex; gap: 8px; align-items: stretch; }
+.answer-row input{ flex: 1; min-width: 0; }
+.feedback{ margin: 12px 0; padding: 12px 14px; border-radius: var(--r-sm); background: var(--sunken); border-left: 4px solid var(--muted); line-height: 1.5; }
+.feedback.success{ border-left-color: var(--pos); background: var(--pos-soft); }
+.group-label{ margin: 14px 10px 4px; color: var(--muted); font-size: 0.9rem; font-weight: 700; }
+.lab-link.selected{ background: var(--accent-soft); color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+.lab-main{ min-width: 0; }
+.mode label{ display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); cursor: pointer; transition: border-color var(--t), background-color var(--t); }
+.mode label:has(input:checked){ border-color: var(--accent); background: var(--accent-soft); font-weight: 700; }
+.mode input{ accent-color: var(--accent); width: 18px; height: 18px; }
+.learning-label{ display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 10px; color: var(--muted); font-weight: 700; font-size: 0.95rem; }
+.learning-label > span:last-child{ margin-left: auto; font-weight: 400; }
+.learning h2{ font-size: 1.4rem; margin-bottom: 10px; }
+.checkpoint form > label{ display: block; margin-bottom: 8px; }
+.checkpoint details{ margin-top: 8px; }
+.reasoning label{ display: block; margin: 6px 0; font-weight: 700; font-size: 0.95rem; }
+.lab-resources p{ color: var(--ink-2); }
+.history h2{ font-size: 1.15rem; margin: 4px 0 0; }
+.history p{ color: var(--ink-2); margin-bottom: 8px; }
+.lesson-diagram text, .quadratic-panel svg text{ font: 13px var(--math); fill: var(--muted); }
+.trig-tabs button{ min-height: 44px; padding: 0 16px; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); font-weight: 700; color: var(--ink-2); }
+.trig-tabs button[aria-pressed="true"]{ background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.trig-tools label{ display: grid; gap: 6px; font-weight: 700; }
+.trig-tools select{ width: 100%; }
+.trig-playback label{ flex: 1; min-width: 12rem; }
+.trig-diagram svg{ width: 100%; max-height: none; overflow: hidden; }
+.trig-plot svg .trig-axis{ font-weight: 700; font-size: 16px; }
+.trig-plot svg .trig-angle{ font-size: 14px; }
+.trig-plot svg .trig-coordinate{ font-size: 23px; font-weight: 600; stroke: none; }
+.trig-plot svg .trig-identity{ font-size: 19px; }
+.trig-plot svg .trig-mark{ fill: var(--muted); }
+.trig-plot svg .trig-future{ opacity: 0.25; }
+.trig-plot svg text.orange{ fill: var(--obj2); stroke: none; }
+.trig-plot svg text.blue{ fill: var(--obj3); stroke: none; }
+.challenge-grid{ display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); gap: 12px; }
+.challenge-card{ display: flex; flex-direction: column; gap: 6px; padding: 18px; transition: border-color var(--t), background-color var(--t); }
+.challenge-card:hover{ border-color: var(--accent); background: var(--accent-soft); }
+.challenge-motif{ display: block; min-height: 80px; padding: 10px 0 4px; color: var(--accent); font: italic 400 clamp(2.6rem, 4vw, 3.6rem)/1 var(--math); }
+.challenge-card h2, .challenge-card h3{ font-size: 1.2rem; margin: 2px 0 4px; }
+.challenge-card p{ margin: 0 0 12px; color: var(--ink-2); font-size: 0.98rem; }
+.challenge-columns{ display: block; }
+.challenge-columns > *{ min-width: 0; }
+.challenge-columns article{ max-width: 700px; overflow-wrap: anywhere; }
+.problem{ margin: 18px 0; font: 400 clamp(1.3rem, 2vw, 1.65rem)/1.55 var(--math); }
+.proof-callout p{ margin: 6px 0; }
+.challenge-columns form{ max-width: 460px; margin-top: 24px; }
+.challenge-columns form > label{ display: block; margin-bottom: 8px; font-weight: 700; }
+.original-statement{ max-width: 460px; margin-top: 20px; border-top: 1px solid var(--line); padding-top: 4px; }
+.original-statement .original-q{ margin: 6px 0 4px; font-size: clamp(1.05rem, 1.6vw, 1.2rem); }
+.extension{ margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ink-2); }
+.pathway-label{ display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 14px; border-radius: var(--r-sm); background: var(--accent); color: var(--accent-ink); font: 700 1.3rem var(--display); }
+.pathway-card h2{ font-size: 1.35rem; }
+.pathway-card > p{ color: var(--ink-2); }
+.pathway-card .stage h3, .pathway-card .stage h4{ color: var(--muted); font: 700 0.95rem var(--body); letter-spacing: 0; }
+.curriculum-note h2{ font-size: 1.1rem; }
+.chapter-heading h1{ max-width: 28ch; }
+.companion h2, .experiment-prompts h2, .practice-card h2, .source-practice h2{ font-size: 1.45rem; margin: 6px 0 10px; }
+.worked-example h3{ margin-top: 0; }
+.companion-scope, .experiment-prompts p{ color: var(--muted); font-size: 0.95rem; }
+.lesson-diagram svg{ width: 100%; height: auto; margin-top: 8px; overflow: hidden; }
+.story-controls button, .resource-empty button{ min-height: 44px; padding: 0 16px; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); font-weight: 700; transition: background-color var(--t), border-color var(--t); }
+.story-controls button:hover:not(:disabled){ background: var(--sunken); }
+.story-controls button:disabled{ opacity: 0.45; }
+.story-controls [data-story="play"], .quadratic-stages button[aria-pressed="true"], .story-controls [aria-pressed="true"]:not(.btn-quiet){ background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.scene-parameter input{ grid-column: 1 / -1; }
+@keyframes scene-reveal{ from { opacity: 0; } to { opacity: 1; } }
+@keyframes line-reveal{ from { stroke-dasharray: 1; stroke-dashoffset: 1; } to { stroke-dasharray: 1; stroke-dashoffset: 0; } }
+p > .lab-jump{ display: inline-flex; margin-top: 0; }
+.practice-card label{ display: grid; gap: 8px; }
+.practice-card details, .source-practice details{ margin-top: 16px; padding-top: 8px; border-top: 1px solid var(--line); }
+.enrichment-preview p{ max-width: 70ch; line-height: 1.75; }
+.enrichment-preview details{ margin: 1.2rem 0; padding: 0.8rem 1.2rem; border-left: 4px solid var(--obj3); background: var(--sunken); border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+.resource-filters label{ display: flex; flex-direction: column; gap: 6px; min-width: 0; font-weight: 700; font-size: 0.95rem; }
+.resource-filters button{ justify-self: end; }
+.chapter-card h2{ font-size: 1.2rem; margin-bottom: 12px; }
+.resource-card h3{ font-size: 1.05rem; }
+.resource-card > p{ color: var(--ink-2); font-size: 0.95rem; }
+.file-source summary{ color: var(--muted); font-weight: 400; }
+.sheet-section h3{ color: var(--accent); }
+.sheet-section p{ line-height: 1.8; }
+.sheet-solution{ padding: 8px 16px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--sunken); }
+.library-page p{ overflow-wrap: anywhere; }
+.quadratic-stages button{ min-height: 44px; padding: 0 16px; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); font-weight: 700; color: var(--ink-2); }
+.quadratic-stages button[aria-pressed="true"]{ color: var(--accent-ink); }
+.quadratic-panel h2{ font-size: 1.3rem; }
+.quadratic-presets button{ min-height: 44px; padding: 0 14px; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); font: 400 1rem var(--math); }
+.quadratic-presets button:hover{ background: var(--sunken); }
+.q-input{ max-width: 100%; }
+@media (max-width: 1280px){.learning-label, .learning h2{ grid-column: 1 / -1; }
+}
+@media (max-width: 960px){.side-title, .group-label, .side-note{ display: none; }
+.lab-link.selected{ border-color: var(--accent); box-shadow: none; }
+.challenge-columns, .chapter-workbench, .experiment-chapter, .practice-layout, .quadratic-layout{ grid-template-columns: 1fr; }
+.resource-filters label:first-child, .resource-filters .teacher-toggle{ grid-column: 1 / -1; }
+}
+@media (max-width: 700px){.trig-diagram svg{ max-width: 365px; justify-self: center; }
+.answer-row{ flex-wrap: wrap; }
+.answer-row .primary{ flex: 1 1 100%; }
+.challenge-grid{ gap: 10px; }
+.challenge-card{ padding: 14px; }
+.challenge-card p{ display: none; }
+.challenge-motif{ min-height: 64px; }
+}
+@media (max-width: 560px){.btn-quiet .fs-label{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+@media (max-width: 560px){.challenge-grid{ gap: 8px; }
+.challenge-card{ padding: 10px 12px; gap: 2px; }
+.challenge-motif{ min-height: 0; padding: 4px 0 0; }
+.challenge-motif .ci{ width: 44px; height: 44px; }
+.challenge-card h2{ font-size: 1rem; line-height: 1.25; }
+.wonder-body{ padding: 8px 10px 10px; gap: 2px; }
+.wonder-body strong{ font-size: 0.98rem; line-height: 1.25; }
+.wonder-body > span:not(.wonder-go){ display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 0.85rem; }
+.wonder-body .wonder-go{ display: none; }
+}
+@media print{.sidebar, .controls, .answer-row, .backlink, .filter-row, .resource-filters, .chapter-tabs, .story-controls, .scene-parameter, .mobile-lab-picker, .btn-quiet{ display: none !important; }
+.lab-layout, .workbench, .challenge-columns, .learning, .chapter-workbench{ display: block; }
+.sheet-solution:not([open]), .teacher-files:not([open]){ display: none; }
+}
+.activity{ margin: 24px 0; padding: 18px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.activity h2{ font-size: 1.25rem; margin-bottom: 6px; }
+.act-help{ margin: 0 0 12px; color: var(--ink-2); font-size: 0.98rem; }
+.act-svg{ width: 100%; height: auto; max-height: 500px; background: var(--sunken); border-radius: var(--r-sm); touch-action: auto; user-select: none; -webkit-user-select: none; }
+.act-controls{ display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 12px; }
+.act-buttons{ display: flex; flex-wrap: wrap; gap: 8px; }
+.act-field{ display: grid; gap: 2px; flex: 1 1 220px; min-width: 0; font-weight: 700; }
+.act-label{ display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 8px; }
+.act-field output{ font: 600 1.1rem var(--math); color: var(--accent); font-variant-numeric: tabular-nums; }
+.act-number input{ width: 9rem; }
+.act-check{ display: flex; align-items: center; gap: 8px; min-height: 44px; }
+.act-check input, .act-choice input{ width: 18px; height: 18px; accent-color: var(--accent); }
+.act-choice{ display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; border: 0; margin: 0; padding: 0; }
+.act-choice legend{ font-weight: 700; float: left; margin-right: 12px; padding: 0; }
+.act-choice label{ display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+.act-readout{ margin: 12px 0 0; line-height: 1.5; font-size: 1.05rem; }
+.act-readout strong{ font: 700 1.3rem var(--math); }
+.act-score{ margin: 8px 0 0; color: var(--muted); }
+.act-table{ width: 100%; font-size: 0.98rem; }
+.act-table th, .act-table td{ text-align: left; padding: 6px 12px; }
+.act-table thead th{ position: sticky; top: 0; background: var(--sunken); }
+.act-table tr.yes td:last-child{ color: var(--pos); font-weight: 700; }
+.act-table tr.no td:last-child{ color: var(--neg); font-weight: 700; }
+.act-table tr.no{ background: var(--neg-soft); }
+.hs-person.selected circle{ fill: var(--accent-soft); stroke-width: 6; }
+.hs-person:focus-visible circle{ stroke: var(--ink); stroke-width: 6; }
+.dom-svg:focus-visible{ outline: 3px solid var(--accent); outline-offset: 2px; }
+.dom-svg .cell{ fill: var(--surface); stroke: var(--line-strong); stroke-width: 1; }
+.dom-svg .cell.gone{ fill: none; stroke-dasharray: 3 4; opacity: 0.7; }
+.dom-svg .cell.a{ fill: var(--surface); }
+.dom-svg .cell.b{ fill: color-mix(in srgb, var(--ink) 30%, var(--surface)); }
+.tray-label{ font: 700 15px var(--body); fill: var(--ink); }
+.act-buttons + .act-controls{ margin-top: 14px; }
+.nim-pile + .nim-status + .act-buttons{ justify-content: center; }
+.act-svg .toy-handle{ cursor: grab; outline: none; touch-action: none; }
+.act-svg .toy-handle .hit{ fill: transparent; }
+.act-svg .toy-handle .ring{ fill: var(--surface); stroke: var(--accent); stroke-width: 3; }
+.act-svg .toy-handle .core{ fill: var(--accent); }
+.act-svg .toy-handle:focus-visible .ring, .act-svg .toy-handle.grabbed .ring{ stroke: var(--ink); stroke-width: 5; }
+@media (max-width: 560px){.activity{ padding: 14px; margin-left: -4px; margin-right: -4px; }
+}
+.programme > summary{ display: block; cursor: pointer; list-style: none; position: relative; padding-right: 28px; }
+.programme > summary::-webkit-details-marker, .curriculum-note > summary::-webkit-details-marker{ display: none; }
+.programme > summary::after, .curriculum-note > summary::after{ content: "+"; position: absolute; right: 4px; top: 2px; color: var(--accent); font: 700 1.3rem/1 var(--body); }
+.programme[open] > summary::after, .curriculum-note[open] > summary::after{ content: "−"; }
+.programme > summary p{ margin: 0 0 6px; }
+.curriculum-note > summary{ display: block; cursor: pointer; list-style: none; position: relative; padding-right: 28px; }
+.programme > summary p{ color: var(--ink-2); font-size: 0.95rem; }
+.pack-heading p{ max-width: 62ch; color: var(--ink-2); }
+.pack-step h2{ font-size: 1.1rem; margin: 0 0 12px; }
+.pack-pill input{ position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.pack-pill input:checked + span{ background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.pack-pill input:focus-visible + span{ outline: 3px solid var(--accent); outline-offset: 2px; }
+.pack-check input{ width: 18px; height: 18px; margin-top: 4px; accent-color: var(--accent); }
+.pack-actions button, .pack-tools button, .source-head button{ min-height: 44px; padding: 0 16px; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); font-weight: 700; }
+.pack-actions .pack-primary{ background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.pack-actions button:disabled, .source-head button:disabled{ opacity: 0.45; cursor: not-allowed; }
+.pack-note, .pack-summary, .pack-progress{ font-size: 0.95rem; }
+.source-head h2{ margin: 0; }
+.deck-main{ display: flex; flex-direction: column; min-width: 0; }
+details.source-course{ padding: 0; }
+details.source-course > summary{ list-style: none; cursor: pointer; flex-wrap: wrap; align-items: center; min-height: 56px; padding: 12px 0; }
+details.source-course > summary h2{ flex: 1; min-width: 0; }
+details.source-course > summary::-webkit-details-marker{ display: none; }
+details.source-course > summary h2{ font-size: 1.3rem; }
+details.source-course > summary::after{ content: ""; width: 10px; height: 10px; margin-left: 4px; border-right: 2.5px solid var(--muted); border-bottom: 2.5px solid var(--muted); transform: rotate(45deg); transition: transform var(--t); }
+details.source-course[open] > summary::after{ transform: rotate(225deg); }
+details.source-course > summary span{ flex: 0 1 auto; min-width: 0; max-width: 100%; color: var(--muted); font-size: 0.85rem; text-align: right; overflow-wrap: anywhere; }
+details.source-course[open]{ padding-bottom: 16px; }
+.chapter-start p{margin:0;max-width:65ch}
+.sequence-content>h2{margin-top:0}
+.sequence-card h3,.sequence-objectives h3{margin:0 0 16px}
+.sequence-maths p{margin:10px 0}
+.sequence-checklist label{display:flex;align-items:center;gap:12px;min-width:0;flex:1;min-height:44px}
+.sequence-checklist label span{min-width:0;overflow-wrap:anywhere}
+.sequence-checklist input{flex:none;width:22px;height:22px;accent-color:var(--accent)}
+.sequence-experiment button,.sequence-experiment select{background:var(--panel-2);color:var(--ink);border:1px solid var(--line);min-height:44px;padding:6px 12px;border-radius: 0}
+.sequence-experiment .wctl label{display:flex;align-items:center;gap:8px}
+.sequence-experiment input[type=range]{accent-color:var(--accent);max-width:140px}
+.ag-vertex .hit{ fill: transparent; }
+.ag-vertex:focus-visible .sq{ stroke-width: 4; fill: var(--accent-soft); }
+.ag-guard .hit{ fill: transparent; }
+.ag-guard:focus-visible .ring, .ag-guard.sel .ring{ stroke-width: 4; stroke-dasharray: none; }
+.rm-edge .hit{ stroke: transparent; stroke-width: 22; }
+.rm-edge:focus-visible .ln{ stroke-width: 8; }
+.rm-label{ font: 700 14px var(--body); fill: var(--ink); }
+.kb-bridge .hit{ fill: none; stroke: transparent; stroke-width: 20; }
+.kb-bridge:focus-visible .ln{ stroke-width: 11; }
+.act-svg .num-bg{ fill: var(--surface); stroke: var(--pos); stroke-width: 2; }
+.act-svg .num{ font: 700 12px var(--body); fill: var(--ink); pointer-events: none; }
+.js-p{ fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+.js-p.dead{ fill: var(--sunken); stroke: var(--line); }
+.js-p.win{ fill: var(--pos); stroke: var(--ink); stroke-width: 3; }
+.js-p.win + .js-n{ fill: var(--surface); }
+.sol-host{ margin: 10px 0 14px; }
+.sol-svg{ width: 100%; height: auto; background: var(--sunken); border-radius: var(--r-sm); user-select: none; -webkit-user-select: none; }
+.sol-cap{ min-height: 3.6em; margin: 10px 0; font-size: 1rem; line-height: 1.5; }
+.sol-controls{ display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.sol-count{ margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sol-svg text{ font-family: var(--body); }
+.sol-label{ font: 700 14px var(--body); fill: var(--ink); }
+.sol-big{ font: 700 46px var(--math); fill: var(--ink); }
+.sol-big.small{ font-size: 26px; }
+.sol-sub{ font: 400 16px var(--body); fill: var(--muted); }
+.sol-small{ font: 400 13px var(--body); fill: var(--ink-2); }
+.sol-line{ font: 600 18px var(--math); fill: var(--ink); }
+.sol-hot{ font: 700 22px var(--math); fill: var(--pos); }
+.sol-tiny{ font: 600 9px var(--body); fill: var(--muted); }
+.sol-tiny.on{ fill: var(--surface); }
+.sol-edge{ fill: none; stroke-width: 4; stroke-linecap: round; }
+.sol-edge.thin{ stroke-width: 2.2; }
+.sol-node{ fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+.sol-door{ fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.2; }
+.sol-door.open{ stroke: none; }
+.sol-ring{ fill: none; stroke: var(--neg); stroke-width: 3; }
+.sol-cell{ stroke: var(--line-strong); stroke-width: 1; }
+.sol-cell.gone{ fill: none; stroke-dasharray: 3 4; opacity: 0.7; }
+.sol-domino{ fill: var(--accent-soft); stroke: var(--accent); stroke-width: 3; }
+.sol-stone{ stroke-width: 1.5; }
+.sol-bracket{ fill: none; stroke-width: 3; }
+.sol-box{ fill: var(--surface); stroke: var(--line-strong); stroke-width: 2; }
+.sol-box.hot{ stroke: var(--neg); stroke-width: 4; }
+.sol-ball{ stroke: var(--ink); stroke-width: 1.5; }
+.sol-ball-n{ font: 700 14px var(--body); fill: #fff; }
+.sol-window{ fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 6 5; }
+.sol-axis{ stroke: var(--line-strong); stroke-width: 1.5; }
+.sol-curve{ fill: none; stroke: var(--accent); stroke-width: 4; }
+.sol-guide{ stroke-width: 3; stroke-dasharray: 8 6; }
+.sol-wall{ fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.sol-diag{ stroke: var(--muted); stroke-width: 1.6; }
+.sol-vis{ fill: var(--pos-soft); stroke: none; }
+.sol-vertex{ stroke-width: 2; }
+.sol-floor{ stroke: var(--line-strong); stroke-width: 1; }
+.sol-bridge{ fill: none; stroke-width: 7; stroke-linecap: round; }
+.sol-tri{ stroke: none; }
+.sol-sq-dot{ stroke: var(--surface); stroke-width: 1; }
+.sol-last{ fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.variation{ margin: 16px 0; padding: 14px 16px; border: 1.5px dashed var(--c2); border-radius: var(--r); background: color-mix(in srgb, var(--c2) 9%, var(--surface)); }
+.variation-head{ display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+.variation h2{ font-size: 1.15rem; margin: 0; }
+.variation .muted{ margin: 4px 0 0; }
+.variation-actions{ display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.var-controls{ display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 10px 24px; margin-top: 8px; }
+.var-field{ display: grid; gap: 2px; font-weight: 700; }
+.var-label output{ color: var(--accent); font: 600 1.1rem var(--math); }
+.var-choice{ border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; }
+.var-choice legend{ font-weight: 700; float: left; margin-right: 12px; padding: 0; }
+.var-choice label{ display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+.var-choice input{ width: 18px; height: 18px; accent-color: var(--accent); }
+.variation > summary{ font-weight: 700; cursor: pointer; min-height: 44px; }
+.variation > .muted{ margin-top: 12px; }
+.var-field select{ width: 100%; min-width: 0; }
+.var-numbers{ display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 12px 0; }
+.var-numbers label{ display: grid; gap: 4px; min-width: 0; }
+.var-numbers input{ width: 100%; min-width: 0; }
+.variation .variation-actions{ margin-top: 12px; flex-wrap: wrap; }
+.jg-object:focus-visible{ outline: 1px solid var(--accent); outline-offset: 1px; }
+.jg-svg{ max-height: 460px; }
+.obj-tabs button{ min-height: 40px; padding: 6px 14px; border: 1px solid var(--line-strong); border-radius: 0; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.obj-tabs button[aria-pressed="true"], .obj-tabs button[aria-selected="true"]{ background: var(--ink); color: var(--surface); border-color: transparent; }
+.qn-cell:focus-visible{ outline: 3px solid var(--ink); outline-offset: -3px; }
+.iv-bar:focus-visible{ outline: 3px solid var(--ink); outline-offset: 2px; }
+.challenge-motif .ci{ display: block; width: 64px; height: 64px; overflow: visible; }
+.challenge-motif .ci *{ transform-box: fill-box; transform-origin: center; }
+@keyframes qn-drop{ from { transform: scale(1.5) translateY(-10px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes ci-door{ 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(.2); } }
+@keyframes ci-slide{ 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(8px, 0); } }
+@keyframes ci-blink{ 0%, 100% { opacity: 1; } 50% { opacity: .15; } }
+@keyframes ci-bob{ 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes ci-fall{ 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(36px); opacity: 1; } 78% { transform: translateY(36px) scale(1.4, .5); opacity: 1; } 100% { transform: translateY(36px) scale(1.4, .5); opacity: 0; } }
+@keyframes ci-spin{ to { transform: rotate(360deg); } }
+@keyframes ci-pulse{ 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .55; transform: scale(1.06); } }
+@keyframes ci-draw{ 0% { stroke-dashoffset: 100; } 55%, 100% { stroke-dashoffset: 0; } }
+@keyframes ci-trace{ to { stroke-dashoffset: -114; } }
+@keyframes ci-run{ 0% { transform: translateX(0); } 100% { transform: translateX(40px); } }
+@keyframes ci-cut{ 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-6px); opacity: .6; } }
+@keyframes ci-climb{ 0% { transform: translateY(0); } 45% { transform: translateY(-38px); } 60% { transform: translateY(-31px); } 100% { transform: translateY(0); } }
+@keyframes ci-cross{ 0% { transform: translate(0, 0); opacity: 0; } 10% { opacity: 1; } 50% { transform: translate(22px, -9px); } 90% { opacity: 1; } 100% { transform: translate(44px, 0); opacity: 0; } }
+@keyframes ci-tilt{ 0%, 100% { transform: rotate(-9deg); } 50% { transform: rotate(9deg); } }
+@keyframes ci-merge-l{ 0%, 100% { transform: translateX(0); } 50% { transform: translateX(11px) scale(1.25); } }
+@keyframes ci-merge-r{ 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-11px) scale(1.25); } }
+@keyframes ci-swap-a{ 0%, 100% { transform: translateX(0); } 50% { transform: translateX(13px); } }
+@keyframes ci-swap-b{ 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-13px); } }
+.sol-svg .sd, .sol-svg .lt{ pointer-events: none; }
+@keyframes sc-twinkle{ 0%, 100% { opacity: .95; } 50% { opacity: .25; } }
+@keyframes sc-wave{ 0%, 100% { transform: translateX(0); } 50% { transform: translateX(9px); } }
+@keyframes sc-mist{ from { transform: translateX(-18px); } to { transform: translateX(22px); } }
+@keyframes sc-flame{ 0%, 100% { transform: scale(1); opacity: 1; } 35% { transform: scale(1.07); opacity: .88; } 70% { transform: scale(.96); opacity: 1; } }
+@keyframes sd-breathe{ 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.1px); } }
+.solution-wide{ margin-top: 36px; max-width: 980px; }
+.solution-wide details.solution{ border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 4px 20px 18px; }
+.solution-wide details.solution > summary{ min-height: 52px; display: flex; align-items: center; font: 700 1.15rem var(--display, var(--body)); cursor: pointer; }
+.solution-wide .sol-svg{ max-height: 640px; }
+.welcome:focus{ outline: none; }
+.welcome-text h1{ font-size: clamp(2.2rem, 4.6vw, 3.8rem); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 16px; }
+.wonder:hover, .wonder:focus-visible{ transform: translateY(-4px); border-color: var(--accent); }
+.wonder-body{ display: grid; gap: 6px; padding: 14px 16px 16px; }
+.wonder-body strong{ font: 700 1.1rem var(--display, var(--body)); }
+.wonder-body > span{ color: var(--ink-2); font-size: 0.95rem; line-height: 1.45; }
+.gallery-page .wonder-body > span:not(.wonder-go){ display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.wonder-body .wonder-go{ color: var(--accent); font-weight: 700; margin-top: 4px; }
+.door-card:hover, .door-card:focus-visible{ border-color: var(--accent); transform: translateY(-3px); }
+.welcome-school p{ margin: 0; color: var(--ink-2); }
+.stage-text h1{ margin: 0; font-size: clamp(2.8rem, 8vw, 6rem); line-height: 1; letter-spacing: -0.03em; color: #fff; }
+.stage-text p{ margin: 0 0 14px; font: 600 clamp(1rem, 2vw, 1.4rem) var(--body); opacity: 0.85; }
+.reasoning .notes > summary{ cursor: pointer; padding: 10px 0; font-weight: 700; color: var(--ink-2); }
+.canvas-navigation button{min-width:44px;min-height:44px;padding:6px 10px;border:1px solid var(--line-strong);border-radius: 0;background:var(--surface);color:var(--ink);cursor:pointer;font-size:20px}
+.canvas-navigation button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.platonic-proof summary{font-size:18px;font-weight:600;cursor:pointer}
+.slide-type-toggle button{text-align:left;padding:16px 20px;min-height:80px;border:1px solid var(--line-strong);border-radius: 0;background:var(--surface);color:var(--ink);cursor:pointer;font:inherit}
+@media(max-width:480px){.slide-type-toggle button{min-height:0;padding:10px 12px}
+}
+.university-sequence h3{margin-top:0}
+.university-sequence p{margin:.6rem 0}
+.exhibit-controls .act-field{ flex:1 1 180px; min-width:0; }
+.exhibit-controls select{ max-width:100%; min-height:44px; width:100%; }
+.exhibit-presets .btn{ white-space:normal; min-height:44px; }
+.exhibit-notes p{ overflow-wrap:anywhere; }
+@media(max-width:540px){.exhibit-controls .btn{ flex:1 1 140px; }
+.exhibit-controls .act-field{ flex-basis:100%; }
+}
+.exhibit-controls .act-check{ display:flex;align-items:center;gap:8px;min-height:44px; }
+.exhibit-controls input[type=checkbox]{ width:20px;height:20px;flex:none; }
+.exhibit-controls .exhibit-select{ flex-basis:100%; }
+.exhibit-controls .eq-vertices input, .exhibit-controls #eq-t{ width:100%; min-height:44px; box-sizing:border-box; }
+.gallery-context h2{ font-size:1.2rem;margin:0 0 12px; }
+.gallery-context p{ margin:0;line-height:1.7; }
+.lab2-index .page-intro{ margin-bottom: 20px; }
+.lab2-page .lab-heading h1{ font-size: clamp(1.6rem, 2.6vw, 2.1rem); margin-bottom: 6px; }
+.lab2-group-head h2{ margin: 0; font-size: 1.2rem; }
+.lab2-group-head p{ margin: 0; color: var(--muted); font-size: 0.92rem; }
+.lab2-sub h3{ margin: 0; color: var(--ink-2); font: 700 0.8rem var(--body); letter-spacing: 0.04em; text-transform: uppercase; }
+.lab2-card-body{ display: grid; gap: 1px; min-width: 0; line-height: 1.3; }
+.lab2-card-body span{ color: var(--ink-2); font-size: 0.92rem; }
+.lab2-card-body .lab2-card-meta{ color: var(--muted); font-size: 0.82rem; }
+@media (max-width: 560px){.lab2-cards > * + *{ border-top: 1px solid var(--line); }
+.lab2-card-body .lab2-card-meta{ display: none; }
+.lab2-sub h3{ padding: 8px 12px 0; }
+}
+.lab2-all summary{ display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-weight: 700; cursor: pointer; }
+.lab2-after h2{ font-size: 1.1rem; margin: 0 0 6px; }
+.chapter-lab h3{ margin: 0 0 10px; }
+.lab2-canvas:focus-visible{ outline-offset: -3px; }
+.lab2-handle:focus-visible{ outline: 3px solid var(--accent); outline-offset: -3px; }
+.lab2-zoom button{ display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); color: var(--ink-2); font: 700 1.15rem/1 var(--body); opacity: 0.86; cursor: pointer; }
+.lab2-zoom button:hover{ opacity: 1; border-color: var(--accent); color: var(--accent); }
+.lab2-zoom button:focus-visible{ outline: 3px solid var(--accent); outline-offset: 1px; }
+@media (pointer: coarse){.lab2-zoom button{ width: 44px; height: 44px; }
+}
+.lab2-prompt:focus{ outline: none; }
+.lab2-ctl-label{ display: flex; justify-content: space-between; gap: 8px; font-weight: 700; }
+.lab2-ctl input[type="range"]{ width: 100%; min-height: 44px; accent-color: var(--accent); }
+.lab2-check input, .lab2-answer textarea{ width: 100%; padding: 8px 10px; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); }
+.lab2-check input{ min-height: 44px; }
+.lab2-hintbox summary{ min-height: 32px; cursor: pointer; color: var(--accent); font-weight: 700; }
+.lab2-hintbox p{ margin: 4px 0 0; color: var(--ink-2); }
+.lab2-feedback{ margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+.lab2-feedback:empty{ display: none; }
+.lab2-feedback[data-tone="good"]{ color: var(--pos); }
+.lab2-feedback[data-tone="warn"]{ color: var(--neg); }
+.lab2-nav button{ min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+.lab2-nav button:disabled{ opacity: 0.45; }
+.lab2-argument h2{ font-size: 1.2rem; }
+@media (max-width: 720px){.lab2-page .breadcrumb, .lab2-page .lab-heading p, .lab2-page .lab2-meta, .lab2-page .level{ display: none; }
+.lab2-page .lab-heading h1{ font-size: 1.4rem; }
+}
+.fc-example select{ width: 100%; min-width: 0; max-width: 100%; }
+.fc-tools label{ display: grid; gap: 6px; }
+.programme > summary p{ font-weight: 400; }
+.ck-child svg{ width: 72px; height: 92px; }
+.ck-cookie svg{ display: block; width: 44px; height: 44px; pointer-events: none; }
+.lab2-stream-speed input{ grid-column: 1 / -1; width: 100%; min-height: 44px; accent-color: var(--accent); }
+.read-card:hover, .read-card:focus-visible{ border-color: var(--accent); }
+.read-card-body{ display: grid; gap: 4px; }
+.read-card-body strong{ font: 700 1.2rem/1.25 var(--display); }
+.read-card-body > span:not(.read-dates){ color: var(--ink-2); font-size: 0.98rem; line-height: 1.5; }
+.read-header h1{ margin: 0 0 8px; font-size: clamp(2rem, 4vw, 2.8rem); }
+.read-header .section-kicker a{ color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.read-text h2{ font-size: 1.45rem; margin-bottom: 10px; }
+.read-text p{ line-height: 1.75; }
+.read-timeline h2{ font-size: 1.15rem; margin-bottom: 12px; }
+.read-also h2, .read-sources h2{ font-size: 1.2rem; margin-bottom: 12px; }
+.read-also a:hover, .read-also a:focus-visible{ border-color: var(--accent); }
+.related-box h2{ font-size: 1.2rem; margin-bottom: 12px; }
+.related-list a:hover, .related-list a:focus-visible{ border-color: var(--accent); }
+.challenge-detail .read-also, .lab-main .read-also{ margin-top: 24px; }
+.discovery-filters label{display:flex;flex:1 1 11rem;flex-direction:column;gap:.35rem;min-width:0}
+.discovery-filters input,.discovery-filters select{width:100%;min-height:44px;max-width:100%}
+.discovery-filters button{min-height:44px}
+.discovery-card > *{min-width:0}
+.discovery-card h2{font-size:1.15rem;margin:.2rem 0;overflow-wrap:anywhere}
+.discovery-card p{margin:.35rem 0;overflow-wrap:anywhere}
+.discovery-card .section-kicker{font-size:.8rem}
+.discovery-preview svg{display:block;width:100%;height:6rem;stroke:currentColor;stroke-width:1.7;fill:none}
+.discovery-preview svg text{stroke:none;fill:var(--ink);font-size:13px}
+.discovery-emblem svg *{animation:none!important;transition:none!important}
+.discovery-context details{margin-top:.5rem}
+.discovery-context summary{min-height:44px;display:list-item;padding:.5rem 0;cursor:pointer}
+@media(max-width:480px){.discovery-preview svg{height:4.5rem}
+.discovery-card h2{font-size:1rem}
+}
+:root{ --signal: var(--accent); }
+h1, h2, h3, .brand, .btn, .primary, .secondary, .mainnav a, .subnav a, .language button, .seg, .text-button, .btn-quiet, .menu-tile strong, .row-title, .foot-brand{ font-family: var(--ui); }
+h1, h2{ font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+h3{ font-weight: 700; letter-spacing: -0.015em; }
+.page h1, .library-heading h1, .lab-heading h1, .chapter-heading h1{ font-size: clamp(2.1rem, 4.4vw, 3.6rem); letter-spacing: -0.035em; margin-bottom: 14px; }
+.entrance-intro h1, .home-head h1{ font-size: clamp(2.3rem, 5vw, 4.2rem); max-width: 16ch; line-height: 1.02; letter-spacing: -0.035em; }
+.mainnav a{ font-weight: 700; color: var(--ink-2); }
+.mainnav a[aria-current]::after, .subnav a[aria-current]::after{ height: 4px; background: var(--accent); border-radius: 0; }
+.mainnav a[aria-current], .subnav a[aria-current]{ color: var(--ink); }
+.language button[aria-pressed="true"]{ background: var(--ink); color: var(--bg); }
+.btn, .primary, .secondary{ border-radius: 0; border-width: 2px; }
+.btn-primary, .primary{ background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn-primary:hover, .primary:hover{ background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn-secondary, .secondary{ background: transparent; border-color: var(--ink); color: var(--ink); }
+.btn-secondary:hover, .secondary:hover{ background: var(--ink); color: var(--bg); }
+.tool-card, .idea-card, .chapter-tile, .home-result, .menu-tile, .resume, .rows, .group, .segmented, .discovery-card, .challenge-card, .pathway-card{ border-radius: 0; box-shadow: none; }
+.row[data-selected], .lab-link.selected{ box-shadow: none; border-left: 6px solid var(--accent); background: transparent; }
+.section-kicker, .kicker{ font: 600 0.82rem var(--ui); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+input[type="search"], input[type="text"], select, textarea{ border-radius: 0; border: 1.5px solid var(--ink); background: var(--bg); }
+input[type="range"]::-webkit-slider-thumb{ background: var(--accent); border-color: var(--bg); border-radius: 0; }
+input[type="range"]::-moz-range-thumb{ background: var(--accent); border-color: var(--bg); border-radius: 0; }
+:focus-visible{ outline: 3px solid var(--ink); outline-offset: 2px; border-radius: 0; }
+.feedback.success, .success{ border-left: 5px solid var(--pos); }
+.feedback.error, .error{ border-left: 5px solid var(--neg); }
+:root:root:root .discovery-preview[data-preview]{ --topic-ink: var(--ink); color: var(--ink); background: var(--sunken); }
+.challenge-motif, .card-bottom{ color: var(--ink); }
+:root:has(.subnav){ --chrome: var(--header); }
+.domain-filter{ display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; margin: 8px 0 4px; border-bottom: 1px solid var(--ink); }
+.domain-filter button{ min-height: 44px; padding: 8px 0 7px; background: none; border: 0; border-bottom: 3px solid transparent; margin-bottom: -1px; color: var(--ink-2); font: 600 1rem var(--ui); cursor: pointer; }
+.domain-filter button:hover{ border-bottom-color: var(--line); }
+.domain-filter button[aria-pressed="true"]{ color: var(--ink); border-bottom-color: var(--accent); }
+.domain-filter .domain-all{ margin-left: auto; font-weight: 600; font-size: 0.95rem; text-decoration: underline; text-underline-offset: 4px; align-self: center; }
+.domain-count{ margin: 6px 0 0; min-height: 1.4em; color: var(--muted); font-size: 0.95rem; }
+:root{ --q3: #bdbdbd; }
+:root[data-theme="nuit"]{ --q3: #666666; }
+.figure-stage.kbd canvas:focus{ outline: 3px solid var(--ink); outline-offset: -3px; }
+@keyframes figure-fill{ to { width: 100%; } }
+.errors-page .page-intro{max-width:70ch}
+.errors-page .page-intro{margin-bottom:24px}
+.error-var input[type=range]{width:min(220px,50vw);min-height:44px}
+.error-diagram svg{display:block;width:min(100%,300px);height:auto}
+.chapter-errors h3{margin:0 0 6px}
+.go-group > legend, .go-group > summary{ padding: 0 6px; font-weight: 800; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.go-physics > summary{ cursor: pointer; padding: 0; min-height: 32px; display: flex; align-items: center; }
+.go-physics[open] > summary{ margin-bottom: 10px; }
+.go-buttons, .go-row{ display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.go-buttons .btn{ flex: 1 1 96px; }
+.go-group .act-field{ flex: none; }
+.res-top h1{ margin-bottom: 4px; }
+.res-head h2{ margin: 0; font-size: clamp(1.5rem, 2.2vw, 2rem); }
+.res-layout .chapter-tile .discovery-preview svg{ height: 130px; }
+.res-layout .chapter-tile-body{ padding: 12px 16px 16px; }
+.res-layout .chapter-tile-body strong{ font-size: 1.05rem; margin-top: 2px; }
+.res-layout .chapter-tile-body small{ margin: 0; font-weight: 700; }
+.res-layout .chapter-tile-body > span{ font-size: 0.95rem; }
+.res-extra-head h3{ margin: 0; }
+@media (max-width: 960px){.res-head h2{ font-size: 1.4rem; }
+}
+.bank-ex-head h3:focus-visible{ outline: 3px solid var(--accent); outline-offset: 2px; }
+.bank-ex-head h3{ margin: 0; font-size: 1.15rem; }
+.bank-intro p{ margin: 6px 0; }
+.bank-hint > summary, .bank-sol > summary{ display: inline-flex; align-items: center; min-height: 32px; padding: 0 10px; cursor: pointer; font-weight: 700; font-size: 0.9rem; border: 1px solid var(--line-strong); list-style: none; }
+.bank-hint > summary::-webkit-details-marker, .bank-sol > summary::-webkit-details-marker{ display: none; }
+.bank-hint > summary{ color: var(--ink-2); }
+.bank-sol > summary{ color: var(--accent); }
+.bank-hint[open] > summary, .bank-sol[open] > summary{ background: var(--sunken); }
+.bank-section-head h2{ margin: 0; }
+.bank-print details > summary{ display: none; }
+.mb-controls h3, .mb-linked h3{ margin:0; }
+.mb-controls label, .mb-linked label{ font-weight:600; }
+.mb-controls select, .mb-parameter input{ width:100%; min-height:44px; padding:8px; color:var(--ink); background:var(--surface); border:1px solid var(--line-strong); border-radius:8px; font:inherit; }
+.mb-controls input[type=range], .mb-linked input[type=range]{ width:100%; }
+.mb-controls button{ width:100%; }
+.mb-parameter label{ flex:1 1 120px; }
+.annal-ex > summary{ cursor: pointer; padding: 1rem; min-height: 44px; }
+.annal-ex > summary .bank-meta{ display: block; margin-top: .4rem; }
+.bank-annals > summary{ min-height: 44px; padding-block: 12px; cursor: pointer; font-weight: 800; }
+.annal-filters label:first-child{ grid-column: 1 / -1; }
+.annal-ex > summary{ overflow-wrap: anywhere; }
+.resource-page .workshops > summary{ flex-wrap: wrap; overflow-wrap: anywhere; }
+.annal-algorithm p{ margin: 0; white-space: pre; }
+@media print{.annal-code, .annal-algorithm p{ white-space: pre-wrap; overflow-wrap: anywhere; }
+}
+.annal-program-options h3{ margin: 0 0 8px; font-size: 1rem; }
+@keyframes mx-reveal{ to { visibility: visible; } }
+body:has(#object-stage:empty) :is(.learning, .workbench ~ *, #app ~ footer, main ~ footer, footer){ visibility: hidden; animation: mx-reveal 0s 3s forwards; }
+</style>
+<style>
+  /* preview frame only (not part of the site) */
+  .pv-bar { position: sticky; top: 0; z-index: 5; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; padding: 8px 16px; background: var(--surface); border-bottom: 1px solid var(--line); font-size: .9rem; }
+  .pv-bar strong { margin-right: auto; }
+  .pv-errors { margin: 12px 16px; padding: 10px 14px; border: 2px solid var(--neg, #c00); border-radius: 8px; white-space: pre-wrap; font: .85rem/1.4 ui-monospace, monospace; }
+  .pv-errors:empty { display: none; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 16px; }
+  .pv-settings { display: flex; flex-wrap: wrap; gap: 10px 16px; margin: 10px 0; }
+  .pv-settings label { display: flex; gap: 6px; align-items: center; font-size: .95rem; }
+</style>
+</head>
+<body>
+<div class="pv-bar" role="toolbar" aria-label="Preview">
+  <strong id="pv-name"></strong>
+  <button class="btn-quiet" type="button" id="pv-solution">Solution ▶</button>
+  <button class="btn-quiet" type="button" id="pv-check">Self-check</button>
+  <button class="btn-quiet" type="button" id="pv-lang">EN</button>
+  <button class="btn-quiet" type="button" id="pv-theme">Nuit</button>
+  <button class="btn-quiet" type="button" id="pv-motion" aria-pressed="false">Reduced motion</button>
+</div>
+<pre class="pv-errors" id="pv-errors" role="alert"></pre>
+<div id="pv-root"></div>
+<script>
+  // Errors are shown on the page and kept in window.__previewErrors for check.mjs.
+  window.__previewErrors = [];
+  const report = (m) => { window.__previewErrors.push(String(m)); document.getElementById("pv-errors").textContent += m + "\n"; };
+  addEventListener("error", (e) => report(e.message + (e.filename ? " @ " + e.filename.slice(-40) + ":" + e.lineno : "")));
+  addEventListener("unhandledrejection", (e) => report("unhandled: " + (e.reason?.stack || e.reason)));
+</script>
+<script type="text/plain" data-path="js/challenges/handshakes/index.js">
+// The handshakes challenge: card text, variations (checked answer, statement, written solution), original question and emblem.
+// Everything else about this challenge is in this folder; registry.js lists the folders.
+import { int, P } from "../common/helpers.js";
+import { svg, dot } from "../common/icon.js";
+import { handshakes } from "./maths.js";
+export { activity } from "./activity.js";
+export { diagram, scene } from "./solution.js";
+
+export const card = {
+  id: "handshakes",                 // = folder name, lower case and hyphens
+  type: "play",                 // "play" (Maths récréatives) or "olympiad" (Esprit olympiade)
+  title: P("Poignées de main", "Handshakes"),
+  topic: P("Dénombrement", "Counting"),
+  difficulty: 1,                // 1, 2 or 3
+  minutes: 8,
+  extension: P("Et si chacun ne serre la main qu’à ses deux voisins de table, autour d’une table ronde ?", "What if each person shakes hands only with their two neighbours at a round table?"),
+};
+
+export const variant = {
+  
+  params: [int("n", "Nombre de personnes", "Number of people", 3, 30, 10)],
+  answer: (q) => handshakes(q.n),   // an integer >= 0, from maths.js
+  prompt: (q) => P(
+    `${q.n} personnes se retrouvent. Chacune serre une fois la main de chacune des autres. Combien de poignées de main sont échangées en tout ?`,
+    `${q.n} people meet. Each one shakes hands once with each of the others. How many handshakes take place in all?`),
+  // the written solution ("Version écrite"): plain high-school wording, no jargon, no URLs or citations
+  solution: (q) => P(
+    `Chaque personne serre ${q.n - 1} mains, ce qui fait ${q.n} × ${q.n - 1} = ${q.n * (q.n - 1)} mains serrées si l’on compte personne par personne. Mais chaque poignée de main relie deux personnes : elle a été comptée deux fois. Il y en a donc ${q.n * (q.n - 1)} ÷ 2 = ${handshakes(q.n)}.`,
+    `Each person shakes ${q.n - 1} hands, which makes ${q.n} × ${q.n - 1} = ${q.n * (q.n - 1)} hands shaken when counted person by person. But each handshake joins two people: it has been counted twice. So there are ${q.n * (q.n - 1)} ÷ 2 = ${handshakes(q.n)}.`),
+};
+
+// The original open question (proof, strategy or construction). It never states the answer or the method.
+export const original = (q) => P(
+  `${q.n} personnes se serrent toutes la main deux à deux. Combien de poignées de main ? Trouve une formule valable pour n personnes et justifie-la.`,
+  `${q.n} people all shake hands in pairs. How many handshakes? Find a formula valid for n people and justify it.`);
+
+// 64 × 64 emblem for the card, in currentColor; classes ci-bob, ci-blink, ci-pulse, ci-cross animate a part.
+export const icon = svg(`<circle cx="32" cy="32" r="20" stroke-opacity=".3"/>${[0, 1, 2, 3, 4].map((k) => { const a = -Math.PI / 2 + (k * 2 * Math.PI) / 5; return dot(32 + 20 * Math.cos(a), 32 + 20 * Math.sin(a), 4); }).join("")}<path d="M32 12L51 26M32 12L13 26" class="ci-blink"/>`);
+</script>
+<script type="text/plain" data-path="js/challenges/common/helpers.js">
+// Small helpers shared by several challenges: bilingual pairs, easing, SVG text styles, parameter builders.
+import { svgEl } from "./kit.js";
+import { clamp01 } from "./scene-kit.js";
+
+export const P = (fr, en) => [fr, en];
+
+export const int = (id, fr, en, min, max, value, step = 1) => ({ kind: "int", id, label: P(fr, en), min, max, value, step });
+
+export const choice = (id, fr, en, options, value) => ({ kind: "choice", id, label: P(fr, en), options, value });
+
+export const f1 = (x) => String(Math.round(x * 10) / 10);
+
+export const el = svgEl;
+
+export const pillAt = (parent, x, y, w, h) => { const g = el("g", {}, parent); el("rect", { x, y, width: w, height: h, rx: h / 2, fill: "#0a0f2c", opacity: 0.74 }, g); return g; };
+
+export const white = (size) => `font:700 ${size}px var(--body);fill:#fff`;
+
+export const ez = (x) => 1 - (1 - clamp01(x)) ** 3;
+
+export const ink = { "text-anchor": "middle" };
+
+export const mid = { "text-anchor": "middle" };
+</script>
+<script type="text/plain" data-path="js/challenges/common/kit.js">
+// Shared helpers for the challenge activities and the animated solutions.
+
+import { knightInner } from "./knight-piece.js";
+export const NS = "http://www.w3.org/2000/svg";
+
+export const MINUS = "−";
+
+export const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+
+export function svgEl(name, attrs = {}, parent) {
+  const el = document.createElementNS(NS, name);
+  for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+  if (parent) parent.append(el);
+  return el;
+}
+
+export function toLocal(svg, event) {
+  const p = svg.createSVGPoint();
+  p.x = event.clientX;
+  p.y = event.clientY;
+  return p.matrixTransform(svg.getScreenCTM().inverse());
+}
+
+// Eight colours that stay distinguishable in both themes (defined as --c1 .. --c8 in pages.css).
+export const colour = (i) => `var(--c${(((i % 8) + 8) % 8) + 1})`;
+
+// touch-action is ignored on SVG child elements, so a finger dragging a piece would scroll the page.
+// Cancelling touchstart on the pieces (not on the empty board) keeps the page scrollable everywhere else.
+export function lockTouch(svg, selector) {
+  svg.addEventListener("touchstart", (e) => { if (e.target.closest?.(selector)) e.preventDefault(); }, { passive: false });
+}
+
+// Drawing helpers bound to an SVG element (or group) for the animated solutions; t picks the language.
+export function makeCtx(svg, lang) {
+  const t = (fr, en) => (lang === "fr" ? fr : en);
+  const line = (x1, y1, x2, y2, attrs = {}) => svgEl("line", { x1, y1, x2, y2, ...attrs }, svg);
+  const circ = (cx, cy, r, attrs = {}) => svgEl("circle", { cx, cy, r, ...attrs }, svg);
+  const rect = (x, y, width, height, attrs = {}) => svgEl("rect", { x, y, width, height, ...attrs }, svg);
+  const text = (x, y, s, attrs = {}) => { const el = svgEl("text", { x, y, ...attrs }, svg); el.textContent = s; return el; };
+  const path = (d, attrs = {}) => svgEl("path", { d, ...attrs }, svg);
+  // greedy word wrap into several <text> lines of at most `max` characters
+  const wrap = (x, y, str, max, attrs = {}, dy = 17) => { const words = String(str).split(" "); let ln = "", k = 0; for (const w of words) { if ((ln + " " + w).trim().length > max) { text(x, y + k++ * dy, ln, attrs); ln = w; } else ln = (ln + " " + w).trim(); } if (ln) text(x, y + k * dy, ln, attrs); };
+  // a drawn chess knight in a size x size square at (x, y)
+  const knight = (x, y, size, fill = "var(--accent)") => { const g = svgEl("g", { transform: `translate(${x} ${y}) scale(${size / 64})`, fill, stroke: "var(--ink)", "stroke-width": Math.max(1.6, 90 / size), "stroke-linejoin": "round", "stroke-linecap": "round" }, svg); g.innerHTML = knightInner; return g; };
+  return { svg, t, line, circ, rect, text, path, wrap, knight };
+}
+
+// The one-line goal at the top of an activity: a single sentence stating what to achieve, with no coaching, counter or result.
+// `operate` is an optional bilingual pair [fr, en] of how to operate it (gestures, keys), kept for screen readers only.
+export function goalLine(t, fr, en, opFr, opEn) {
+  return `<p class="act-help goal">${t(fr, en)}${opFr ? `<span class="sr-only"> ${t(opFr, opEn)}</span>` : ""}</p>`;
+}
+</script>
+<script type="text/plain" data-path="js/challenges/common/knight-piece.js">
+// The chess knight silhouette (a horse's head on a base) shared by the knight's tour activity, its solution and its emblem.
+// Drawn in a 64 x 64 box facing left; `knightPiece` returns SVG markup of the piece scaled into a size x size square.
+export const KNIGHT_BODY = "M18 52C17 43 21 37 27 32C24 32 20 34 16 38C13 40 9 39 9 36C9 32 14 27 18 23L21 12L27 18C31 15 36 14 40 15C49 18 54 30 52 52Z";
+export const KNIGHT_BASE = "M15 52h40v6H15z";
+export const knightInner = '<path d="' + KNIGHT_BODY + '"/><path d="' + KNIGHT_BASE + '"/><circle cx="22" cy="27" r="1.8" fill="var(--ink)" stroke="none"/><path d="M13 36.5l3-1" fill="none"/>';
+export const knightPiece = (x, y, size, fill = "var(--accent)", extra = "") => `<g transform="translate(${x} ${y}) scale(${size / 64})" fill="${fill}" stroke="var(--ink)" stroke-width="${Math.max(1.6, 64 / size * 1.4)}" stroke-linejoin="round" stroke-linecap="round" ${extra}>${knightInner}</g>`;
+</script>
+<script type="text/plain" data-path="js/challenges/common/scene-kit.js">
+// Small kit for cartoon scenes inside the animated solutions: easing and the articulated soldier (the night landscape
+// and the lantern of the bridge are in bridge/art.js).
+// Everything is plain SVG built once; a scene is then posed by calling set() on its parts, so a frame is a pure function
+// of the step and its progress (scrubbable, reproducible). Ambient motion (twinkling stars, water, flame) is CSS only
+// and is switched off by prefers-reduced-motion (see the "scene kit" block of pages.css).
+import { svgEl } from "./kit.js";
+
+export const clamp01 = (x) => Math.min(1, Math.max(0, x));
+
+export const lerp = (a, b, k) => a + (b - a) * k;
+
+export const seg = (p, a, b) => clamp01((p - a) / (b - a));
+
+export const easeInOut = (x) => { const k = clamp01(x); return k * k * (3 - 2 * k); };
+
+export const easeOutBack = (x) => { const k = clamp01(x), c = 1.70158; return 1 + (c + 1) * (k - 1) ** 3 + c * (k - 1) ** 2; };
+
+export const TAU = Math.PI * 2;
+
+export const el = (name, attrs, parent) => svgEl(name, attrs, parent);
+
+/* ------------------------------------------------------------------ a soldier made of separate parts */
+export const HATS = [
+  // scout: red beret with a pom-pom
+  () => `<path d="M-9 -43 Q-1 -57 9.5 -44 Q3 -46 -9 -43Z" fill="#d32f2f"/><circle cx="1" cy="-53" r="1.8" fill="#8f1b1b"/>`,
+  // plain helmet with a brim
+  () => `<path d="M-9 -41 A9 9 0 0 1 9 -41Z" fill="#6b7a4f"/><rect x="-11" y="-42" width="22" height="3" rx="1.5" fill="#55623e"/>`,
+  // peaked cap
+  () => `<path d="M-9 -41 A9 9 0 0 1 9 -41Z" fill="#35507a"/><rect x="2" y="-42" width="12" height="3" rx="1.5" fill="#22344f"/><circle cx="0" cy="-47" r="1.8" fill="#f3c84a"/>`,
+  // tall fur hat with a plume, for the old sergeant
+  () => `<rect x="-7.5" y="-61" width="15" height="19" rx="3" fill="#6d2c2c"/><rect x="-7.5" y="-45" width="15" height="2.6" fill="#f3c84a"/><path d="M0 -61 q-3 -9 4 -10 q1 6 -4 10Z" fill="#f1f1f1"/>`,
+];
+
+export function makeSoldier(parent, { uniform, hat = 0, size = 1, skin = "#f1c27d", moustache = false, label = "", top = 66 }) {
+  const root = el("g", { class: "sd" }, parent);
+  const shadow = el("ellipse", { cx: 0, cy: 0.5, rx: 11 * size, ry: 3.2, fill: "#000", opacity: 0.28 }, root);
+  const flip = el("g", {}, root), bob = el("g", {}, flip);
+  const dark = "#2b2538";
+  const mk = (cls, x, y, body) => { const g = el("g", { class: cls, transform: `translate(${x} ${y})` }, bob); g.innerHTML = body; return g; };
+  const legBody = `<rect x="-3" y="0" width="6" height="14" rx="3" fill="${dark}"/><ellipse cx="1.8" cy="15.5" rx="5.2" ry="2.6" fill="#1b1727"/>`;
+  const armBody = `<rect x="-2.7" y="-1" width="5.4" height="15" rx="2.7" fill="${uniform}" stroke="#0003" stroke-width=".6"/><circle cy="14.5" r="2.7" fill="${skin}"/>`;
+  const legB = mk("sd-leg", -3.5, -16, legBody);
+  const armB = mk("sd-arm", -7, -30, armBody);
+  const body = el("g", {}, bob);
+  body.innerHTML = `<rect x="-8.5" y="-34" width="17" height="20" rx="6" fill="${uniform}" stroke="#0003" stroke-width=".7"/><rect x="-8.5" y="-22" width="17" height="3" fill="#2b2538" opacity=".55"/><circle cx="0" cy="-27" r="1.2" fill="#f3c84a"/><circle cx="0" cy="-17" r="1.2" fill="#f3c84a"/>`;
+  const head = el("g", { class: "sd-head" }, bob);
+  head.innerHTML = `<circle cx="0" cy="-40" r="8.2" fill="${skin}" stroke="#0002" stroke-width=".6"/><circle cx="3.2" cy="-41" r="1.15" fill="#222"/><circle cx="6.6" cy="-41" r="1.15" fill="#222"/><circle cx="8.3" cy="-38.6" r="1.7" fill="#d9a066"/><path d="M3.6 -36.2 q2.4 1.8 4.6 0" fill="none" stroke="#7a3b2a" stroke-width="1" stroke-linecap="round"/>${moustache ? `<path d="M2.5 -37.4 q3 -1.6 6 0 q-3 2.2 -6 0Z" fill="#eee"/>` : ""}${HATS[hat]()}`;
+  const legF = mk("sd-leg", 3.5, -16, legBody);
+  const armF = mk("sd-arm", 7, -30, armBody);
+  const badge = el("g", { visibility: label === "" ? "hidden" : "visible" }, root);
+  el("circle", { r: 9, fill: "#fff", stroke: uniform, "stroke-width": 2.4 }, badge);
+  const txt = el("text", { y: 4.4, "text-anchor": "middle", style: "font:700 12px var(--math, serif);fill:#1a1a2e" }, badge);
+  txt.textContent = label;
+
+  return {
+    root,
+    // Pose the character. phase: walk cycle in turns; amp: stride size (0 = standing); carry: lantern arm raised;
+    // cheer 0..1: both arms up; hop: height of a jump; scale: pop-in factor (0 hides it).
+    set({ x, y, dir = 1, phase = 0, amp = 0, carry = false, cheer = 0, hop = 0, scale = 1 }) {
+      root.setAttribute("visibility", scale <= 0.01 ? "hidden" : "visible");
+      root.setAttribute("transform", `translate(${x.toFixed(2)} ${(y - hop).toFixed(2)})`);
+      shadow.setAttribute("rx", (11 * size * (1 - Math.min(0.5, hop / 50))).toFixed(2));
+      shadow.setAttribute("transform", `translate(0 ${hop.toFixed(2)})`);
+      flip.setAttribute("transform", `scale(${(dir * size * scale).toFixed(3)} ${(size * scale).toFixed(3)})`);
+      const s = Math.sin(phase * TAU), c = Math.abs(Math.cos(phase * TAU)), a = amp;
+      bob.setAttribute("transform", `translate(0 ${(-a * 2.3 * c).toFixed(2)}) rotate(${(a * 3.2).toFixed(2)})`);
+      legF.setAttribute("transform", `translate(3.5 -16) rotate(${(32 * a * s).toFixed(2)})`);
+      legB.setAttribute("transform", `translate(-3.5 -16) rotate(${(-32 * a * s).toFixed(2)})`);
+      const wave = Math.sin(phase * TAU * 2);
+      armF.setAttribute("transform", `translate(7 -30) rotate(${(carry ? -66 + 4 * s : cheer ? lerp(0, -150 + 10 * wave, cheer) : -28 * a * s - 2).toFixed(2)})`);
+      armB.setAttribute("transform", `translate(-7 -30) rotate(${(cheer ? lerp(0, 150 - 10 * wave, cheer) : 28 * a * s + 3).toFixed(2)})`);
+      badge.setAttribute("transform", `translate(0 ${(-(top * size * scale) - a * 2).toFixed(2)}) scale(${Math.min(1, scale).toFixed(3)})`);
+      root.classList.toggle("sd-idle", a === 0 && !cheer);
+    },
+    // Where the carried lantern hangs, in the scene's coordinates.
+    hand({ x, y, dir = 1, scale = 1 }) { return [x + dir * size * scale * 19.5, y - size * scale * 24]; },
+  };
+}
+</script>
+<script type="text/plain" data-path="js/challenges/common/icon.js">
+// Building blocks of the challenge emblems (challenge-icons): an SVG frame drawn in currentColor, a soft fill and a dot.
+
+export const svg = (body) => `<svg class="ci" viewBox="0 0 64 64" width="64" height="64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${body}</g></svg>`;
+
+export const soft = 'fill="currentColor" fill-opacity=".22"';
+
+export const dot = (x, y, r = 3.4, cls = "") => `<circle class="${cls}" cx="${x}" cy="${y}" r="${r}" fill="currentColor" stroke="none"/>`;
+</script>
+<script type="text/plain" data-path="js/challenges/handshakes/maths.js">
+// Pure mathematics of the handshakes challenge (no DOM), checked by an independent method in tests/handshakes.test.mjs.
+
+// Number of handshakes among n people: n(n - 1) / 2.
+export const handshakes = (n) => (n * (n - 1)) / 2;
+
+// Points of the n people on a circle of radius r centred at (cx, cy), first one at the top.
+export const seats = (n, cx, cy, r) => Array.from({ length: n }, (_, k) => { const a = -Math.PI / 2 + (2 * Math.PI * k) / n; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; });
+
+// Key of an unordered pair, so that (i, j) and (j, i) are the same handshake.
+export const pairKey = (i, j) => (i < j ? `${i}-${j}` : `${j}-${i}`);
+</script>
+<script type="text/plain" data-path="js/challenges/handshakes/activity.js">
+// Hands-on activity of the handshakes challenge: the learner tries, fails and notices; it never states the answer or the method.
+// Contract: activity(root, { t, q, reduced, lang }) draws into root and returns a cleanup function.
+// The world is the solution's world (plan.js, common/person.js): same room, same table, same people, so the solution feels familiar.
+// The people are alive: they breathe, blink, look at whoever is chosen, wave when picked, and shake hands with a hop.
+import { colour, svgEl, goalLine } from "../common/kit.js";
+import { PRESS, installCartoon } from "../common/cartoon.js";
+import { pairKey, handshakes } from "./maths.js";
+import { makePerson, posePerson } from "../common/person.js";
+import { makeBubble, poseBubble } from "../common/bubble.js";
+import { layout, handAt, aimAt } from "./plan.js";
+
+const ROOM = { cx: 170, cy: 172, rx: 134, ry: 90 }, SHAKE = 900;   // SHAKE: length of a handshake, in ms
+
+export function activity(root, { t, q, reduced: reducedPref }) {
+  installCartoon();
+  const reduced = () => (typeof reducedPref === "function" ? !!reducedPref() : !!reducedPref);
+  const n = q.n, L = layout(n, ROOM), S = L.seats, size = L.size, T = L.table, done = new Set();
+  let sel = null, shake = null, raf = 0;   // shake: { i, j, start }
+  root.innerHTML = `
+    ${goalLine(t, "Fais serrer la main à tout le monde.", "Get everyone to shake hands.", "Touche une personne puis une autre pour qu’elles se serrent la main.", "Tap one person then another to make them shake hands.")}
+    <svg class="act-svg" viewBox="0 0 340 300" role="group" aria-label="${t("Personnes autour d’une table", "People around a table")}"></svg>
+    <div class="act-controls"><button class="btn-quiet ${PRESS}" type="button" data-a="reset">${t("Recommencer", "Restart")}</button></div>
+    <p class="act-readout" role="status" aria-live="polite"></p>`;
+  const svg = root.querySelector("svg"), read = root.querySelector(".act-readout");
+  // the scene is built once; frames only pose it
+  svgEl("ellipse", { cx: ROOM.cx, cy: ROOM.cy + 4, rx: ROOM.rx + 26, ry: ROOM.ry + 22, fill: "color-mix(in srgb, var(--accent) 9%, transparent)" }, svg);
+  const back = svgEl("g", {}, svg);
+  svgEl("rect", { x: T.cx - 6, y: T.cy, width: 12, height: 28, fill: "#8d5f2d", stroke: "var(--ink)", "stroke-width": 1.2 }, svg);
+  svgEl("ellipse", { cx: T.cx, cy: T.cy, rx: T.rx, ry: T.ry, fill: "#c58b52", stroke: "var(--ink)", "stroke-width": 1.6 }, svg);
+  const lines = svgEl("g", { opacity: 0.75 }, svg), front = svgEl("g", {}, svg), over = svgEl("g", {}, svg);
+  const handles = [], people = S.map(([x, y], i) => {
+    const h = svgEl("g", { class: "toy-handle", tabindex: 0, role: "button", "data-i": i, "aria-label": `${t("Personne", "Person")} ${i + 1}` }, y < T.cy ? back : front);
+    svgEl("ellipse", { class: "hit", cx: x, cy: y - 30 * size, rx: 16 * size, ry: 36 * size }, h);
+    handles.push(h);
+    return makePerson(h, { fill: `color-mix(in srgb, ${colour(i)} 70%, var(--surface))`, look: i, size });
+  });
+  const ring = svgEl("ellipse", { rx: 15 * size, ry: 4.5 * size, fill: "none", stroke: "var(--ink)", "stroke-width": 1.4, "stroke-dasharray": "3 3", opacity: 0 }, over);
+  const hello = makeBubble(over);
+  const centre = [ROOM.cx, ROOM.cy - 30];
+  function drawLines() {
+    lines.replaceChildren();
+    for (const key of done) { const [i, j] = key.split("-").map(Number), a = handAt(S[i], size), b = handAt(S[j], size); svgEl("line", { x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: "var(--accent)", "stroke-width": 1.6, "stroke-linecap": "round" }, lines); }
+    read.textContent = done.size === handshakes(n) ? t("Tout le monde s’est serré la main.", "Everyone has shaken hands.") : "";   // neutral end message, no running count
+  }
+  // one frame, a function of the clock time `now` (ms) and the current state
+  function frame(now) {
+    const sec = reduced() ? 0 : now / 1000, k = shake ? Math.min(1, (now - shake.start) / SHAKE) : 0;
+    S.forEach((at, i) => {
+      const focus = shake ? (i === shake.i ? S[shake.j] : i === shake.j ? S[shake.i] : S[shake.i]) : sel !== null && sel !== i ? S[sel] : centre;
+      const aim = aimAt(at, focus === centre ? centre : handAt(focus, size), size);
+      const pose = { x: at[0], y: at[1], facing: aim.facing, gaze: [Math.sign(focus[0] - at[0]) || 0, focus[1] < at[1] ? -0.3 : 0.3], breathe: 2.2 * sec + i, blink: ((sec + i * 0.37) % 3.7) < 0.12 ? 1 : 0, mood: "smile" };
+      if (sel === i) Object.assign(pose, { wave: reduced() ? 0 : (sec % 1.6) / 1.6, mood: "grin" });
+      if (shake && (i === shake.i || i === shake.j)) {
+        const grip = Math.min(1, k * 3) * (1 - Math.max(0, (k - 0.85) / 0.15));
+        Object.assign(pose, { reach: grip, reachAngle: aim.angle, hop: Math.max(0, Math.min(1, (k - 0.35) / 0.35)), mood: k > 0.25 ? "grin" : "o" });
+      }
+      posePerson(people[i], pose);
+      handles[i].setAttribute("aria-pressed", String(sel === i));
+    });
+    ring.setAttribute("opacity", sel === null ? 0 : 0.8);
+    if (sel !== null) { ring.setAttribute("cx", S[sel][0]); ring.setAttribute("cy", S[sel][1]); }
+    const b = shake ? handAt(S[shake.i], size) : [0, 0];
+    poseBubble(hello, { x: b[0] + 4, y: Math.max(36, b[1] - 34 * size),   // never above the frame
+      text: t("Enchanté !", "Nice to meet you!"), appear: shake ? Math.min(1, k * 4) * (1 - Math.max(0, (k - 0.8) / 0.2)) : 0 });
+    if (shake && k >= 1) shake = null;
+  }
+  const loop = (now) => { frame(now); raf = reduced() ? 0 : requestAnimationFrame(loop); };
+  const kick = () => { if (reduced()) { shake = null; frame(0); } else if (!raf) raf = requestAnimationFrame(loop); };
+  const pick = (i) => {
+    if (sel === null || sel === i) { sel = sel === i ? null : i; kick(); return; }
+    done.add(pairKey(sel, i)); drawLines();
+    shake = { i: sel, j: i, start: performance.now() }; sel = null; kick();
+  };
+  svg.addEventListener("click", (e) => { const g = e.target.closest(".toy-handle"); if (g) pick(Number(g.dataset.i)); });
+  svg.addEventListener("keydown", (e) => { const g = e.target.closest?.(".toy-handle"); if (g && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); pick(Number(g.dataset.i)); } });
+  root.querySelector('[data-a="reset"]').addEventListener("click", () => { done.clear(); sel = null; shake = null; drawLines(); kick(); });
+  drawLines(); frame(0); kick();
+  return () => { cancelAnimationFrame(raf); raf = 0; };   // the idle loop must stop when the activity is unmounted
+}
+</script>
+<script type="text/plain" data-path="js/challenges/common/cartoon.js">
+// Shared cartoon press feedback: a control squashes when pressed and pops when released. Hoisted from nails/activity.js so
+// every challenge (and the shared page layer around it) can reuse it. `installCartoon()` injects the style once;
+// `PRESS` is the class name to put on a control; `pop(el, reduced)` replays the pop; `cartoonPress(root, reduced)` marks the
+// buttons under `root` and pops them on click. `reduced` is a boolean or a function returning one (prefers-reduced-motion
+// is also honoured by the stylesheet itself).
+export const PRESS = "cartoon-press";
+const EASE = "cubic-bezier(.3,1.9,.5,1)";
+export const CARTOON_CSS = `
+.${PRESS}{transition:transform .22s ${EASE}}
+.${PRESS}:active{transform:scale(.88,.8)}
+.${PRESS}.is-pop{animation:cartoon-pop .35s ${EASE}}
+@keyframes cartoon-pop{0%{transform:scale(1)}35%{transform:scale(.86,.78)}70%{transform:scale(1.08,1.12)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.${PRESS}{transition:none}.${PRESS}:active{transform:none}.${PRESS}.is-pop{animation:none}}`;
+
+export function installCartoon(doc = typeof document === "undefined" ? null : document) {
+  if (!doc || doc.getElementById("cartoon-style")) return;
+  const style = doc.createElement("style");
+  style.id = "cartoon-style";
+  style.textContent = CARTOON_CSS;
+  doc.head.append(style);
+}
+
+const isReduced = (r) => (typeof r === "function" ? !!r() : !!r);
+
+export function pop(el, reduced) {
+  el.classList.remove("is-pop");
+  if (isReduced(reduced)) return;
+  void el.offsetWidth;
+  el.classList.add("is-pop");
+}
+
+// Mark every button under root (or matching `selector`) with the press class and pop it on click; returns a cleanup function.
+export function cartoonPress(root, reduced, selector = "button") {
+  installCartoon();
+  const mark = () => root.querySelectorAll(selector).forEach((b) => b.classList.add(PRESS));
+  mark();
+  const onClick = (e) => { const b = e.target.closest?.(selector); if (b && root.contains(b) && !b.disabled) pop(b, reduced); };
+  root.addEventListener("click", onClick);
+  return () => root.removeEventListener("click", onClick);
+}
+</script>
+<script type="text/plain" data-path="js/challenges/common/person.js">
+// Shared cartoon person for the challenges (handshakes, hiker, ...): built once with makePerson, posed every frame
+// with posePerson. Every pose is a pure function of its arguments, so an animated solution stays pure.
+// Speech bubbles are in bubble.js.
+import { svgEl } from "./kit.js";
+
+// Material colours are the person's own (skin, hair, trousers, shoes), not the theme's; outlines follow var(--ink).
+export const SKINS = ["#f2c9a0", "#e0ac7e", "#c68b59", "#8d5a3b", "#f6d7bd", "#b97a50"];
+export const HAIRS = ["#3b2a20", "#7a4a24", "#d9a441", "#1d1d1d", "#a0522d", "#5a5a5a"];
+const TROUSERS = "#3d4b6b", SHOES = "#3b2a20", INK = "var(--ink)";
+
+// One person, about 66 units tall, feet at (0, 0), facing +x. `look` picks the outfit: skin, hair, accessory.
+// gear: "hiker" adds a backpack and a sun hat (and drops the look's accessory).
+export function makePerson(parent, { fill, look = 0, size = 1, gear = null }) {
+  const skin = SKINS[look % SKINS.length], hair = HAIRS[(look * 5 + 1) % HAIRS.length], extra = gear ? 0 : look % 4;   // 0 none, 1 cap, 2 glasses, 3 bow
+  const g = (p, attrs = {}) => svgEl("g", attrs, p);
+  const root = g(parent);
+  const shadow = svgEl("ellipse", { cx: 0, cy: 0, rx: 14, ry: 3.4, fill: INK, opacity: 0.16 }, root);
+  const fig = g(root), flip = g(fig);
+  // a limb: two segments, each a <g> turning about its joint, drawn as an outlined capsule
+  const limb = (p, x, y, len, colour, width, endPart) => {
+    const upper = g(p), lower = g(upper);
+    const seg = (q, x0) => { svgEl("line", { x1: x0, y1: y, x2: x0 + len, y2: y, stroke: INK, "stroke-width": width + 2, "stroke-linecap": "round" }, q); svgEl("line", { x1: x0, y1: y, x2: x0 + len, y2: y, stroke: colour, "stroke-width": width, "stroke-linecap": "round" }, q); };
+    seg(upper, x); seg(lower, x + len); endPart(lower, x + 2 * len, y);
+    return { upper, lower, x, y, len };
+  };
+  const hand = (q, x, y) => svgEl("circle", { cx: x, cy: y, r: 2.7, fill: skin, stroke: INK, "stroke-width": 1 }, q);
+  // the shin points down when posed, so the shoe is long along the local -y axis (world forward)
+  const shoe = (q, x, y) => svgEl("ellipse", { cx: x + 1.2, cy: y - 1.6, rx: 2.3, ry: 3.6, fill: SHOES, stroke: INK, "stroke-width": 1 }, q);
+  const shade = `color-mix(in srgb, ${fill} 75%, #000)`;
+  const backArm = limb(flip, -3, -41, 9, shade, 4.4, hand);
+  const backLeg = limb(flip, -2, -21, 10, `color-mix(in srgb, ${TROUSERS} 80%, #000)`, 5, shoe);
+  const frontLeg = limb(flip, 2, -21, 10, TROUSERS, 5, shoe);
+  const body = g(flip);   // torso and head breathe together
+  if (gear === "hiker") {   // backpack behind the torso, with a rolled mat on top
+    svgEl("rect", { x: -15, y: -43, width: 9, height: 20, rx: 3, fill: "#7a5230", stroke: INK, "stroke-width": 1.3 }, body);
+    svgEl("rect", { x: -14, y: -35, width: 7, height: 6, rx: 1.5, fill: "#5e3d22", stroke: INK, "stroke-width": 0.8 }, body);
+    svgEl("rect", { x: -16.5, y: -47, width: 12, height: 4.6, rx: 2.3, fill: "#c0392b", stroke: INK, "stroke-width": 1 }, body);
+  }
+  svgEl("path", { d: "M-9 -19 Q-10.5 -37 -6.5 -43 Q0 -46.5 6.5 -43 Q10.5 -37 9 -19 Z", fill, stroke: INK, "stroke-width": 1.4, "stroke-linejoin": "round" }, body);
+  svgEl("path", { d: "M-9 -19 Q-10.5 -37 -6.5 -43 Q-4 -44.6 -2 -45 Q-5 -33 -3 -19 Z", fill: shade, opacity: 0.55 }, body);   // shade on the back
+  svgEl("path", { d: "M-3 -44.5 L0.5 -40.5 L4 -44.5", fill: "none", stroke: INK, "stroke-width": 1, "stroke-linejoin": "round" }, body);   // collar
+  svgEl("rect", { x: -9.2, y: -22, width: 18.4, height: 3.2, rx: 1.2, fill: "#5b3a29", stroke: INK, "stroke-width": 0.8 }, body);   // belt
+  svgEl("rect", { x: -2.2, y: -49, width: 5, height: 6, fill: skin, stroke: INK, "stroke-width": 1 }, body);   // neck
+  const head = g(body);
+  svgEl("circle", { cx: 1, cy: -56, r: 9.6, fill: skin, stroke: INK, "stroke-width": 1.4 }, head);
+  svgEl("path", { d: "M-8.6 -55 Q-10 -67 1.5 -66.4 Q11.2 -66 10.8 -57.5 Q7 -62.5 2.5 -60.6 Q-1.5 -62.4 -3.6 -58 Q-6 -55.6 -8.6 -55 Z", fill: hair, stroke: INK, "stroke-width": 1.2, "stroke-linejoin": "round" }, head);
+  svgEl("ellipse", { cx: -3.4, cy: -54.5, rx: 2, ry: 2.8, fill: skin, stroke: INK, "stroke-width": 1 }, head);   // ear
+  svgEl("circle", { cx: 6.8, cy: -51.8, r: 1.9, fill: "#ff7b7b", opacity: 0.4 }, head);   // cheek
+  svgEl("path", { d: "M9.6 -55 q2.4 1.6 0.2 3", fill: "none", stroke: INK, "stroke-width": 1, "stroke-linecap": "round" }, head);   // nose
+  const eye = (cx, rx) => {
+    const e = g(head);
+    svgEl("ellipse", { cx, cy: -57, rx, ry: 2.9, fill: "#fff", stroke: INK, "stroke-width": 0.8 }, e);
+    const pupil = svgEl("circle", { cx, cy: -57, r: 1.35, fill: "#1d1d1d" }, e);
+    return { e, pupil, cx };
+  };
+  const eyes = [eye(1.6, 1.9), eye(6.2, 2.4)];
+  const brows = svgEl("path", { fill: "none", stroke: INK, "stroke-width": 1.1, "stroke-linecap": "round" }, head);
+  const mouth = svgEl("path", { stroke: INK, "stroke-width": 1, "stroke-linecap": "round", "stroke-linejoin": "round" }, head);
+  if (gear === "hiker") svgEl("path", { d: "M-12 -61.5 Q-11 -60 1 -60.4 Q13 -60 14.5 -61.5 Q12 -63.5 9 -63.4 Q8.5 -70.5 1 -70.6 Q-6.5 -70.5 -7 -63.4 Q-10 -63.5 -12 -61.5 Z", fill: "#d4b26a", stroke: INK, "stroke-width": 1.2, "stroke-linejoin": "round" }, head);
+  if (gear === "hiker") svgEl("path", { d: "M-6.8 -64 Q1 -65.6 8.8 -64", fill: "none", stroke: "#8b2c1f", "stroke-width": 1.6 }, head);
+  if (extra === 1) svgEl("path", { d: "M-8.8 -60 Q-8 -69 2 -68.5 Q10.5 -68 10.5 -61 L16 -60.4 Q15 -58.6 10 -59.2 Z", fill: `color-mix(in srgb, ${fill} 60%, #fff)`, stroke: INK, "stroke-width": 1.1, "stroke-linejoin": "round" }, head);
+  if (extra === 2) svgEl("path", { d: "M-0.6 -57 a2.5 2.5 0 1 0 5 0 a2.5 2.5 0 1 0 -5 0 M4.4 -57 h0.8 M5.2 -57 a2.8 2.8 0 1 0 5.6 0 a2.8 2.8 0 1 0 -5.6 0", fill: "none", stroke: INK, "stroke-width": 1 }, head);
+  if (extra === 3) svgEl("path", { d: "M-6 -64 l-3.5 -3 v6 Z M-6 -64 l3.5 -3 v6 Z", fill: "#e2557a", stroke: INK, "stroke-width": 0.9, "stroke-linejoin": "round" }, head);
+  const frontArm = limb(flip, 3, -41, 9, fill, 4.6, hand);
+  return { root, shadow, fig, flip, body, head, eyes, brows, mouth, backArm, frontArm, backLeg, frontLeg, size };
+}
+
+const turn = (part, deg, x, y) => part.setAttribute("transform", `rotate(${deg.toFixed(1)} ${x} ${y})`);
+const lerp = (a, b, k) => a + (b - a) * k;
+const MOUTHS = {
+  smile: ["M3.2 -51.2 q2.6 2.2 5.2 0", "none"],
+  grin: ["M2.8 -51.6 q3 4.6 6 0 Z", "#7a2e2e"],
+  o: ["M5.6 -51.6 a1.5 1.9 0 1 0 0.01 0 Z", "#7a2e2e"],
+  flat: ["M3.4 -50.6 h4.6", "none"],
+};
+
+// Pose a person. All arguments are plain numbers, so a frame depends only on them:
+//   x, y: feet; facing: 1 right, -1 left; gaze: [dx, dy] in -1..1 (where the pupils look, in screen directions);
+//   walk: { phase, amp } (phase from distance walked, amp 0..1); reach: 0..1 front arm out to `reachAngle` (degrees,
+//   0 = straight ahead, negative = up); wave: 0..1; hop: 0..1; breathe: phase in radians; blink: 0..1; mood: smile, grin, o, flat.
+export function posePerson(P, { x, y, facing = 1, gaze = [0, 0], walk = { phase: 0, amp: 0 }, reach = 0, reachAngle = 0, wave = 0, hop = 0, breathe = 0, blink = 0, mood = "smile" }) {
+  const lift = 5 * Math.sin(Math.PI * Math.min(1, Math.max(0, hop)));
+  P.root.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${P.size})`);
+  P.shadow.setAttribute("rx", (14 - lift * 1.2).toFixed(1));
+  P.fig.setAttribute("transform", `translate(0 ${(-lift).toFixed(2)})`);
+  P.flip.setAttribute("transform", facing < 0 ? "scale(-1 1)" : "");
+  P.body.setAttribute("transform", `translate(0 ${(0.6 * Math.sin(breathe)).toFixed(2)})`);
+  // legs swing in opposite phase with a knee bend on the way forward; arms counter-swing
+  const s = Math.sin(walk.phase) * walk.amp;
+  const leg = (L, sign) => { turn(L.upper, 90 + 24 * s * sign, L.x, L.y); turn(L.lower, Math.max(0, 30 * Math.sin(walk.phase + (sign > 0 ? 0 : Math.PI))) * walk.amp, L.x + L.len, L.y); };
+  leg(P.frontLeg, 1); leg(P.backLeg, -1);
+  turn(P.backArm.upper, 88 + 20 * s, P.backArm.x, P.backArm.y); turn(P.backArm.lower, -14, P.backArm.x + P.backArm.len, P.backArm.y);
+  // front arm: hanging (88 deg), swinging, reaching out, or waving above the head
+  const hang = 88 - 20 * s, out = reachAngle, up = -70 + 18 * Math.sin(wave * Math.PI * 6);
+  const shoulder = wave > 0 ? lerp(hang, up, Math.min(1, wave * 4)) : lerp(hang, out, reach);
+  turn(P.frontArm.upper, shoulder, P.frontArm.x, P.frontArm.y);
+  turn(P.frontArm.lower, wave > 0 ? -40 : lerp(-16, 0, reach), P.frontArm.x + P.frontArm.len, P.frontArm.y);
+  // eyes: pupils follow the gaze (mirrored with the body), lids close with blink
+  const gx = Math.max(-1, Math.min(1, gaze[0])) * facing, gy = Math.max(-1, Math.min(1, gaze[1]));
+  for (const E of P.eyes) {
+    E.pupil.setAttribute("cx", (E.cx + 0.9 * gx).toFixed(2)); E.pupil.setAttribute("cy", (-57 + 1.1 * gy).toFixed(2));
+    E.e.setAttribute("transform", `translate(0 -57) scale(1 ${(1 - 0.92 * Math.min(1, blink)).toFixed(2)}) translate(0 57)`);
+  }
+  const raised = mood === "o" || mood === "grin" ? -1.4 : 0;
+  P.brows.setAttribute("d", `M0 ${-61.2 + raised} q1.6 -1 3.2 0 M5 ${-61.6 + raised} q1.8 -1.1 3.6 0`);
+  const [d, f] = MOUTHS[mood] || MOUTHS.smile;
+  P.mouth.setAttribute("d", d); P.mouth.setAttribute("fill", f);
+}
+</script>
+<script type="text/plain" data-path="js/challenges/common/bubble.js">
+// Shared speech bubble for the challenges: makeBubble once, then poseBubble every frame (pops in with an overshoot).
+import { svgEl } from "./kit.js";
+const INK = "var(--ink)";
+
+// A speech bubble with a tail, anchored by its tail tip.
+export function makeBubble(parent) {
+  const root = svgEl("g", { "pointer-events": "none" }, parent);
+  const box = svgEl("path", { fill: "var(--surface)", stroke: INK, "stroke-width": 1.3, "stroke-linejoin": "round" }, root);
+  const text = svgEl("text", { "text-anchor": "middle", "font-size": 11, "font-weight": 700, fill: INK }, root);
+  return { root, box, text };
+}
+
+// Pose a bubble: tail tip at (x, y), text, appear 0..1 (pops in with a small overshoot).
+export function poseBubble(B, { x, y, text, appear = 1 }) {
+  const k = Math.max(0, Math.min(1, appear)), pop = k <= 0 ? 0 : 1 + 0.15 * Math.sin(Math.PI * k) * (1 - k);
+  B.root.setAttribute("opacity", k.toFixed(2));
+  B.root.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${pop.toFixed(3)})`);
+  const w = Math.max(40, text.length * 6.4 + 14), h = 20, top = -7 - h, L = -w / 2, R = w / 2, B0 = top + h;   // tail tip at (0, 0)
+  B.box.setAttribute("d", `M${L + 8} ${top} H${R - 8} Q${R} ${top} ${R} ${top + 8} V${B0 - 8} Q${R} ${B0} ${R - 8} ${B0} H6 L0 0 L-2 ${B0} H${L + 8} Q${L} ${B0} ${L} ${B0 - 8} V${top + 8} Q${L} ${top} ${L + 8} ${top} Z`);
+  B.text.setAttribute("x", 0); B.text.setAttribute("y", top + 14); B.text.textContent = text;
+}
+</script>
+<script type="text/plain" data-path="js/challenges/handshakes/plan.js">
+// Pure layout of the handshakes challenge: the room, the round table and where each person stands. Used by the activity
+// and the solution so that both show the same scene.
+
+// Seats on an ellipse around the table; the first person stands at the back (top), the others clockwise.
+export function layout(n, { cx, cy, rx, ry }) {
+  const size = n <= 6 ? 1.1 : n <= 10 ? 0.86 : n <= 16 ? 0.74 : n <= 22 ? 0.62 : 0.52;
+  const seats = Array.from({ length: n }, (_, k) => { const a = -Math.PI / 2 + (2 * Math.PI * k) / n; return [cx + rx * Math.cos(a), cy + ry * Math.sin(a)]; });
+  return { seats, size, table: { cx, cy: cy - 6, rx: rx * 0.45, ry: ry * 0.42 } };
+}
+
+// Where a person's hand is, roughly, for the lines that stand for handshakes.
+export const handAt = ([x, y], size) => [x, y - 34 * size];
+
+// Facing (1 or -1) and the arm angle in the body frame (degrees, 0 ahead, negative up) to point at (tx, ty).
+export function aimAt([x, y], [tx, ty], size) {
+  const facing = tx >= x ? 1 : -1, dx = Math.abs(tx - x) || 1e-6, dy = ty - (y - 41 * size);
+  return { facing, angle: Math.max(-45, Math.min(60, (Math.atan2(dy, dx) * 180) / Math.PI)) };
+}
+</script>
+<script type="text/plain" data-path="js/challenges/handshakes/solution.js">
+// Animated solution of the handshakes challenge. `diagram` holds the captions (steps); `scene` builds the cartoon once
+// (mount) and poses it as a pure function of (step, p) (update): nothing accumulates between frames.
+import { P, ez, mid } from "../common/helpers.js";
+import { colour, svgEl } from "../common/kit.js";
+import { seg } from "../common/scene-kit.js";
+import { handshakes } from "./maths.js";
+import { makePerson, posePerson } from "../common/person.js";
+import { makeBubble, poseBubble } from "../common/bubble.js";
+import { layout, handAt, aimAt } from "./plan.js";
+
+const ROOM = { cx: 200, cy: 200, rx: 162, ry: 80 };
+
+export const diagram = {
+  size: [520, 300],
+  dur: (step) => [3200, 6000, 4200, 3800][step],
+  steps: (q) => [
+    P(`${q.n} personnes se retrouvent autour d’une table.`, `${q.n} people meet around a table.`),
+    P(`A serre la main de chacune des ${q.n - 1} autres : ${q.n - 1} poignées de main.`, `A shakes hands with each of the ${q.n - 1} others: ${q.n - 1} handshakes.`),
+    P(`Chacune en fait autant : ${q.n} × ${q.n - 1} = ${q.n * (q.n - 1)} mains tendues.`, `Everyone does the same: ${q.n} × ${q.n - 1} = ${q.n * (q.n - 1)} hands held out.`),
+    P(`Mais une poignée de main, c’est deux mains : ${q.n * (q.n - 1)} ÷ 2 = ${handshakes(q.n)}.`, `But one handshake is two hands: ${q.n * (q.n - 1)} ÷ 2 = ${handshakes(q.n)}.`),
+  ],
+};
+
+export const scene = {
+  mount(c, q) {
+    const n = q.n, L = layout(n, ROOM), T = L.table;
+    svgEl("ellipse", { cx: ROOM.cx, cy: ROOM.cy + 4, rx: ROOM.rx + 30, ry: ROOM.ry + 26, fill: "color-mix(in srgb, var(--accent) 9%, transparent)" }, c.svg);   // rug
+    const back = svgEl("g", {}, c.svg);
+    svgEl("rect", { x: T.cx - 6, y: T.cy, width: 12, height: 26, fill: "#8d5f2d", stroke: "var(--ink)", "stroke-width": 1.2 }, c.svg);   // table foot
+    svgEl("ellipse", { cx: T.cx, cy: T.cy, rx: T.rx, ry: T.ry, fill: "#c58b52", stroke: "var(--ink)", "stroke-width": 1.6 }, c.svg);
+    svgEl("ellipse", { cx: T.cx - T.rx * 0.25, cy: T.cy - T.ry * 0.3, rx: T.rx * 0.45, ry: T.ry * 0.25, fill: "#fff", opacity: 0.18 }, c.svg);   // shine
+    const front = svgEl("g", {}, c.svg), lines = svgEl("g", { opacity: 0.6 }, c.svg), bubbles = svgEl("g", {}, c.svg);
+    // people behind the table are drawn before it, the others after
+    const people = L.seats.map(([, y], i) => makePerson(y < T.cy ? back : front, { fill: `color-mix(in srgb, ${colour(i)} 70%, var(--surface))`, look: i, size: L.size }));
+    const name = svgEl("text", { "text-anchor": "middle", "font-size": 12, "font-weight": 700, fill: "var(--ink)" }, front);
+    const hello = makeBubble(bubbles);
+    const txt = [c.text(450, 110, "", { ...mid, class: "sol-line" }), c.text(450, 150, "÷ 2", { ...mid, class: "sol-line" }), c.text(450, 200, `${handshakes(n)}`, { ...mid, class: "sol-hot" })];
+    return { n, L, people, lines, hello, name, txt, lang: c.t("fr", "en") };
+  },
+  update(st, s, p) {
+    const { n, L, people, lines, hello, name, txt, lang } = st, S = L.seats, size = L.size, centre = [ROOM.cx, ROOM.cy - 30];
+    const word = lang === "fr" ? "Enchanté !" : "Nice to meet you!";
+    lines.replaceChildren();
+    const line = (i, j, k = 1, col = colour(i)) => { const a = handAt(S[i], size), b = handAt(S[j], size); svgEl("line", { x1: a[0], y1: a[1], x2: a[0] + (b[0] - a[0]) * k, y2: a[1] + (b[1] - a[1]) * k, stroke: col, "stroke-width": 1.6, "stroke-linecap": "round" }, lines); };
+    // default pose: idle, breathing and looking at the table; the breathing and the blinks are functions of p
+    const pose = S.map((at, i) => ({ x: at[0], y: at[1], ...aimAt(at, centre, size), gaze: [Math.sign(centre[0] - at[0]) * 0.5, 0.3], breathe: 6 * p + i, blink: Math.abs(Math.sin(9 * p + i * 1.7)) > 0.998 ? 1 : 0, mood: "smile" }));
+    let bubble = null;
+    if (s === 0) {   // hello: each one waves in turn
+      S.forEach((_, i) => { const w = seg(p, (i / n) * 0.8, (i / n) * 0.8 + 0.25); if (w > 0 && w < 1) Object.assign(pose[i], { wave: w, mood: "grin" }); });
+    }
+    if (s === 1) {   // A meets the others one by one
+      const u = Math.min(n - 1 - 1e-9, ez(p) * (n - 1)), idx = Math.floor(u), k = p >= 1 ? 1 : u - idx, j = idx + 1;
+      for (let m = 1; m < j; m++) line(0, m);
+      line(0, j, seg(k, 0.15, 0.45));
+      const a = aimAt(S[0], handAt(S[j], size), size), b = aimAt(S[j], handAt(S[0], size), size), shake = seg(k, 0.3, 0.6) * (1 - seg(k, 0.85, 1));
+      Object.assign(pose[0], { facing: a.facing, reachAngle: a.angle, reach: shake, gaze: [a.facing, 0.2], mood: shake > 0.5 ? "grin" : "smile", hop: seg(k, 0.45, 0.75) });
+      Object.assign(pose[j], { facing: b.facing, reachAngle: b.angle, reach: shake, gaze: [b.facing, -0.2], mood: shake > 0.5 ? "grin" : "o", hop: seg(k, 0.45, 0.75) });
+      S.forEach((_, i) => { if (i !== 0 && i !== j) pose[i].gaze = [Math.sign(S[0][0] - S[i][0]), -0.4]; });   // the others watch
+      bubble = { at: handAt(S[0], size), appear: seg(k, 0.3, 0.45) * (1 - seg(k, 0.8, 0.95)) };
+      txt[0].textContent = `${Math.min(j - (k < 0.45 ? 1 : 0), n - 1)}`;
+    }
+    if (s >= 2) {   // everyone reaches out; in step 2 the lines appear person by person
+      const upto = s === 2 ? Math.ceil(ez(p) * n) : n;
+      for (let i = 0; i < upto; i++) for (let j = 0; j < n; j++) if (j !== i) line(i, j, s === 2 && i === upto - 1 ? seg(ez(p) * n - (upto - 1), 0, 1) : 1);
+      S.forEach((at, i) => { if (i < upto) Object.assign(pose[i], { reach: 1, reachAngle: aimAt(at, centre, size).angle, mood: "grin" }); });
+      txt[0].textContent = `${n} × ${n - 1}`;
+    }
+    if (s === 3) S.forEach((_, i) => Object.assign(pose[i], { hop: seg(p, 0.65 + 0.2 * (i / n), 0.85 + 0.15 * (i / n)), reach: 1 - seg(p, 0.6, 0.8) }));   // the final cheer
+    people.forEach((Pp, i) => posePerson(Pp, pose[i]));
+    name.setAttribute("x", S[0][0]); name.setAttribute("y", S[0][1] + 14); name.textContent = "A";
+    poseBubble(hello, bubble ? { x: bubble.at[0] + 6, y: Math.max(36, bubble.at[1] - 34 * size), text: word, appear: bubble.appear } : { x: 0, y: 0, text: word, appear: 0 });
+    txt[0].setAttribute("opacity", s >= 1 ? 1 : 0);
+    txt[1].setAttribute("opacity", s === 3 ? seg(p, 0, 0.4) : 0);
+    txt[2].setAttribute("opacity", s === 3 ? seg(p, 0.3, 0.7) : 0);
+  },
+};
+</script>
+<script type="text/plain" data-path="js/challenges/common/player.js">
+// Animated solutions: each challenge explains its answer as a short sequence of steps, drawn as SVG.
+// A solution is { size: [w, h], steps(q): [[fr, en], ...], draw(ctx, step, p, q) } where q holds the parameters of the
+// variation being solved, and draw is a pure function of the step index and the progress p in [0, 1] inside that step,
+// so any frame can be reproduced and scrubbed.
+// Controls: restart, previous, play or pause, next. With reduced motion nothing plays by itself: each step shows its
+// finished state. The caption of the current step is announced in a polite live region.
+import { makeCtx } from "./kit.js";
+
+export const ctxFor = makeCtx;
+
+/* ----------------------------------------------------------------- player */
+export function playSolution(def, root, { lang, reduced: reducedPref, params = {} }) {
+  const reduced = () => (typeof reducedPref === "function" ? reducedPref() : !!reducedPref);   // the app passes a function
+  const t = (fr, en) => (lang === "fr" ? fr : en);
+  const [w, h] = def.size, HOLD = 900, steps = def.steps(params), nSteps = steps.length;
+  const durOf = () => (def.dur ? def.dur(step, params) : 2600);   // a solution may pace each step itself
+  let step = 0, p = reduced() ? 1 : 0, auto = false, raf = 0, started = false, scene = null;
+  root.innerHTML = `
+    <div class="sol-anim">
+      <svg class="sol-svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${t("Animation de la solution", "Solution animation")}"></svg>
+      <p class="sol-cap" role="status" aria-live="polite"></p>
+      <div class="sol-controls">
+        <button class="btn-quiet" data-a="restart" type="button" aria-label="${t("Revenir au début", "Back to the start")}">⏮</button>
+        <button class="btn btn-secondary" data-a="prev" type="button">${t("Précédent", "Previous")}</button>
+        <button class="btn btn-primary" data-a="play" type="button" aria-pressed="false">${t("Lecture", "Play")}</button>
+        <button class="btn btn-secondary" data-a="next" type="button">${t("Suivant", "Next")}</button>
+        <span class="sol-count"></span>
+      </div>
+    </div>`;
+  const svg = root.querySelector("svg"), cap = root.querySelector(".sol-cap"), count = root.querySelector(".sol-count");
+  const btn = (a) => root.querySelector(`[data-a="${a}"]`), playBtn = btn("play");
+  function paint() {
+    if (def.mount) { scene ||= (svg.replaceChildren(), def.mount(ctxFor(svg, lang), params)); def.update(scene, step, p, params); }   // built once, then posed
+    else { svg.replaceChildren(); def.draw(ctxFor(svg, lang), step, p, params); }
+    cap.textContent = steps[step][lang === "fr" ? 0 : 1];
+    count.textContent = `${t("Étape", "Step")} ${step + 1} / ${nSteps}`;
+    btn("prev").disabled = step === 0;
+    btn("next").disabled = step === nSteps - 1 && p >= 1;
+    playBtn.textContent = auto ? t("Pause", "Pause") : step === nSteps - 1 && p >= 1 ? t("Rejouer", "Replay") : t("Lecture", "Play");
+    playBtn.setAttribute("aria-pressed", String(auto));
+  }
+  const halt = () => { auto = false; cancelAnimationFrame(raf); raf = 0; };
+  // Animate the current step from its progress p to 1; with auto, carry on to the next steps.
+  function run() {
+    cancelAnimationFrame(raf);
+    let start = performance.now() - p * durOf();
+    const tick = (now) => {
+      const e = now - start, DUR = durOf();
+      p = Math.min(1, Math.max(0, e / DUR));   // a frame timestamp can predate the start by a few ms
+      paint();
+      if (p < 1) { raf = requestAnimationFrame(tick); return; }
+      if (auto && step < nSteps - 1) {
+        if (e < DUR + HOLD) { raf = requestAnimationFrame(tick); return; }
+        step += 1; p = 0; start = now; paint(); raf = requestAnimationFrame(tick); return;
+      }
+      auto = false; raf = 0; paint();
+    };
+    raf = requestAnimationFrame(tick);
+  }
+  const show = (k, animated) => { halt(); step = clamp(k, 0, nSteps - 1); p = animated && !reduced() ? 0 : 1; paint(); if (p < 1) run(); };
+  // These controls are replaced when variation data changes; discarded players must not receive new clicks.
+  root.querySelector(".sol-controls").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-a]");
+    if (!b) return;
+    const a = b.dataset.a;
+    if (a === "restart") show(0, true);
+    else if (a === "prev") show(step - 1, false);
+    else if (a === "next") { if (p < 1) { halt(); p = 1; paint(); } else show(step + 1, true); }
+    else if (auto) { halt(); paint(); }
+    else if (reduced()) show(step === nSteps - 1 ? 0 : step + 1, false);
+    else { if (step === nSteps - 1 && p >= 1) { step = 0; p = 0; } auto = true; paint(); run(); }
+  });
+  paint();
+  // seek: show the frame at (step, p) without playing; used by the browser tests and for scrubbing
+  return { stop: halt, seek: (k, pp = 1) => { halt(); step = clamp(k, 0, nSteps - 1); p = clamp(pp, 0, 1); paint(); }, steps: nSteps, start: () => { if (!started && !reduced()) { started = true; auto = true; paint(); run(); } } };
+}
+
+export const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+</script>
+<script type="text/plain" data-path="js/math.js">
+export function quadratic(a, b, c) {
+  if (a === 0)
+    return {
+      kind: b === 0 ? "constant" : "linear",
+      roots: b === 0 ? [] : [-c / b],
+      allReal: b === 0 && c === 0,
+      vertex: null,
+      discriminant: null,
+    };
+  const d = b * b - 4 * a * c;
+  const roots =
+    d < 0
+      ? []
+      : d === 0
+        ? [-b / (2 * a)]
+        : (() => {
+            // Avoid cancellation when one root is much smaller than the other.
+            const q = -0.5 * (b + (b < 0 ? -1 : 1) * Math.sqrt(d));
+            return [q / a, c / q].sort((x, y) => x - y);
+          })();
+  return {
+    kind: "quadratic",
+    roots: roots.map(x => Object.is(x, -0) ? 0 : x),
+    allReal: false,
+    vertex: [-b / (2 * a), c - (b * b) / (4 * a)],
+    discriminant: d,
+  };
+}
+export function sequence(first, step, count, geometric = false) {
+  return Array.from({ length: count }, (_, i) =>
+    geometric ? first * step ** i : first + step * i,
+  );
+}
+export function binomial(n, p) {
+  let choose = 1;
+  return Array.from({ length: n + 1 }, (_, k) => {
+    if (k) choose = (choose * (n - k + 1)) / k;
+    return choose * p ** k * (1 - p) ** (n - k);
+  });
+}
+export function sampleBinomial(n, p, count, random = Math.random) {
+  const bins = Array(n + 1).fill(0);
+  for (let i = 0; i < count; i++) {
+    let k = 0;
+    for (let j = 0; j < n; j++) if (random() < p) k++;
+    bins[k]++;
+  }
+  return bins;
+}
+export function statistics(values) {
+  if (!values.length || values.some((v) => !Number.isFinite(v)))
+    throw new Error("Invalid data");
+  const sorted = [...values].sort((a, b) => a - b),
+    n = values.length;
+  const mean = values.reduce((a, b) => a + b, 0) / n;
+  return {
+    n,
+    mean,
+    median:
+      n % 2 ? sorted[(n - 1) / 2] : (sorted[n / 2 - 1] + sorted[n / 2]) / 2,
+    sd: Math.hypot(...values.map(x => x - mean)) / Math.sqrt(n),
+    min: sorted[0],
+    max: sorted[n - 1],
+  };
+}
+export function parseData(raw) {
+  const parts = raw
+    .trim()
+    .split(/[;\s]+/)
+    .filter(Boolean);
+  if (!parts.length || parts.length > 100) throw new Error("Use 1–100 values");
+  const numbers = parts.map((v) =>
+    /^[+-]?(?:\d+(?:[.,]\d*)?|[.,]\d+)$/.test(v)
+      ? Number(v.replace(",", "."))
+      : NaN,
+  );
+  if (numbers.some((x) => !Number.isFinite(x) || Math.abs(x) > 10000))
+    throw new Error("Invalid values");
+  return numbers;
+}
+export function riemann(n, method = "left") {
+  if (!Number.isInteger(n) || n < 1 || n > 100000 ||
+      !["left", "right", "midpoint"].includes(method))
+    throw new RangeError("Invalid rectangle configuration");
+  const offset = method === "right" ? 1 : method === "midpoint" ? 0.5 : 0;
+  let sum = 0;
+  for (let i = 0; i < n; i++) sum += ((i + offset) / n) ** 2 / n;
+  return sum;
+}
+export function squareSecant(x, h) {
+  if (!Number.isFinite(x) || !Number.isFinite(h) || h === 0)
+    throw new RangeError("A secant needs a finite, nonzero increment");
+  return 2 * x + h;
+}
+export function formatNumber(n, lang = "en", digits = 3) {
+  if (!Number.isFinite(n)) throw new RangeError("Expected a finite number");
+  // Scientific notation preserves small nonzero values and large graph labels.
+  const scientific = n !== 0 && (Math.abs(n) < Math.max(1e-4, 10 ** -digits) || Math.abs(n) >= 1e6);
+  return new Intl.NumberFormat(lang, scientific
+    ? { notation: "scientific", maximumSignificantDigits: 4 }
+    : { maximumFractionDigits: digits }).format(Object.is(n, -0) ? 0 : n);
+}
+export function axisTicks(min, max) {
+  if (!Number.isFinite(min) || !Number.isFinite(max) || !(max > min))
+    throw new RangeError("Invalid axis bounds");
+  const rough = (max - min) / 6;
+  const power = Math.max(Number.MIN_VALUE, 10 ** Math.floor(Math.log10(rough || Number.MIN_VALUE)));
+  const step = [1, 2, 5, 10].map(v => v * power).find(v => v >= rough);
+  const first = Math.ceil(min / step);
+  const values = [];
+  // Bounded by the chosen tick count, never by an absolute epsilon in data units.
+  for (let i = 0; i < 8; i++) {
+    const value = (first + i) * step;
+    if (value > max + step * 1e-9) break;
+    const normalized = Math.abs(value) < step * 1e-8 ? 0 : value;
+    if (values.at(-1) !== normalized) values.push(normalized);
+  }
+  return { values, digits: Math.max(2, Math.min(15, -Math.floor(Math.log10(step)))) };
+}
+export function gcd(a, b) {
+  while (b) {
+    [a, b] = [b, a % b];
+  }
+  return Math.abs(a);
+}
+export function isAnswer(raw, expected, tolerance = 1e-6) {
+  const clean = raw.trim().replace(",", ".");
+  if (
+    !/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+))?$/.test(
+      clean,
+    )
+  )
+    return false;
+  const [a, b] = clean.split("/").map(Number),
+    value = b === undefined ? a : a / b;
+  return Number.isFinite(value) && Math.abs(value - expected) <= tolerance;
+}
+</script>
+<script>
+// Loader: each text block becomes a module (blob URL); its relative imports are rewritten to bare "mx/<path>" names,
+// and an import map, added before any module runs, maps those names to the blobs. Resolution by name allows cycles.
+(() => {
+  const join = (base, rel) => { const parts = base.split("/").slice(0, -1); for (const s of rel.split("/")) { if (s === "..") parts.pop(); else if (s !== ".") parts.push(s); } return parts.join("/"); };
+  const imports = {};
+  for (const block of document.querySelectorAll('script[type="text/plain"][data-path]')) {
+    const rel = block.dataset.path, src = block.textContent.replace(/^\n/, "").replace(/<\\\/script/gi, "<\/script");
+    const code = src.replace(/(\bfrom\s*|\bimport\s*\(\s*|\bimport\s+)(["'])(\.{1,2}\/[^"']+)\2/g, (m, a, q, sp) => a + q + "mx/" + join(rel, sp) + q);
+    imports["mx/" + rel] = URL.createObjectURL(new Blob([code + "\n//# sourceURL=" + rel], { type: "text/javascript" }));
+  }
+  const map = document.createElement("script"); map.type = "importmap"; map.textContent = JSON.stringify({ imports });
+  document.currentScript.after(map);
+})();
+</script>
+<script type="module">
+// the challenge is the folder whose index.js is in the blocks (so renaming the blocks renames the challenge)
+const ID = [...document.querySelectorAll('script[type="text/plain"][data-path]')].map((b) => b.dataset.path.match(/^js\/challenges\/([^/]+)\/index\.js$/)?.[1]).find((x) => x && x !== "common");
+const C = await import("mx/js/challenges/" + ID + "/index.js");
+const { playSolution } = await import("mx/js/challenges/common/player.js");
+const { cartoonPress, installCartoon } = await import("mx/js/challenges/common/cartoon.js");
+const { isAnswer } = await import("mx/js/math.js");
+window.__challenge = C;
+
+let lang = "fr", reduced = false, stopAct = () => {}, sol = null;
+const $ = (s) => document.querySelector(s), T = (pair) => pair[lang === "fr" ? 0 : 1], t = (fr, en) => (lang === "fr" ? fr : en);
+const v = C.variant, q = Object.fromEntries(v.params.map((p) => [p.id, p.value]));
+const normalise = () => { for (const p of v.params) if (p.kind === "int") { const n = Math.round(Number(q[p.id])); q[p.id] = Number.isFinite(n) ? Math.min(p.max, Math.max(p.min, n)) : p.value; } else if (typeof p.options[0][0] === "number") q[p.id] = Number(q[p.id]); };
+
+function settings() {
+  return v.params.map((p) => p.kind === "int"
+    ? '<label>' + T(p.label) + ' <input type="number" data-var="' + p.id + '" min="' + p.min + '" max="' + p.max + '" step="' + p.step + '" value="' + q[p.id] + '"></label>'
+    : '<label>' + T(p.label) + ' <select data-var="' + p.id + '">' + p.options.map((o) => '<option value="' + o[0] + '"' + (String(o[0]) === String(q[p.id]) ? " selected" : "") + '>' + (lang === "fr" ? o[1] : o[2]) + '</option>').join("") + '</select></label>').join("");
+}
+// Same markup and classes as app.js challengeDetail, so pages.css styles it as on the site.
+function render() {
+  stopAct(); sol?.stop();
+  document.documentElement.lang = lang;
+  const c = C.card, original = C.original ? C.original(q) : null;
+  document.title = T(c.title);
+  $("#pv-name").textContent = "Preview · " + c.id + " · " + (c.type === "play" ? t("Récréatif", "Recreational") : t("Olympiade", "Olympiad")) + " · " + "●".repeat(c.difficulty) + "○".repeat(3 - c.difficulty);
+  $("#pv-lang").textContent = lang === "fr" ? "EN" : "FR";
+  $("#pv-root").innerHTML = '<main id="main" class="page challenge-detail" tabindex="-1"><div class="challenge-columns"><article>'
+    + '<span class="section-kicker">' + T(c.topic) + ' · ' + c.minutes + ' min</span><h1>' + T(c.title) + '</h1>'
+    + '<p class="problem" id="problem">' + T(v.prompt(q)) + '</p>'
+    + '<details class="variation"><summary>' + t("Modifier les données", "Change the data") + '</summary><div class="pv-settings">' + settings() + '</div></details>'
+    + (typeof C.activity === "function" ? '<section class="activity" aria-labelledby="activity-title"><h2 id="activity-title">' + t("À toi d’explorer", "Explore it yourself") + '</h2><div id="activity"></div></section>' : "")
+    + '<form id="challenge-form"><label for="challenge-answer">' + t("Ta réponse numérique", "Your numerical answer") + '</label><div class="answer-row"><input type="text" id="challenge-answer" required autocomplete="off" placeholder="' + t("Nombre ou fraction", "Number or fraction") + '"><button class="primary" type="submit">' + t("Vérifier", "Check") + '</button>'
+    + (v.impossible ? '<button class="secondary" type="button" id="challenge-impossible">Impossible</button>' : "") + '</div><p id="challenge-feedback" class="feedback" role="status"></p></form>'
+    + (original ? '<details class="original-statement"><summary>' + t("Énoncé d’origine", "Original statement") + '</summary><p class="problem original-q" id="original">' + T(original) + '</p><p class="muted">' + t("À traiter seul ou avec un enseignant : le site ne peut pas la vérifier.", "To work out alone or with a teacher: the site cannot check it.") + '</p></details>' : "")
+    + '</article></div><section class="solution-wide"><details class="solution"><summary>' + t("Voir la solution expliquée", "See the worked solution") + '</summary>'
+    + (C.diagram ? '<div id="solution-anim" class="sol-host"></div>' : "")
+    + '<details class="written"><summary>' + t("Version écrite", "Written version") + '</summary><p id="solution-text">' + T(v.solution(q)) + '</p></details>'
+    + '<div class="extension"><strong>' + t("Pour aller plus loin", "Take it further") + '</strong><p>' + T(c.extension) + '</p></div></details></section></main>';
+  installCartoon();
+  const host = $("#activity");
+  if (host) { const inner = document.createElement("div"); host.replaceChildren(inner); stopAct = C.activity(inner, { t, lang, reduced: () => reduced, q: { ...q } }) || (() => {}); }
+  // A scene replaces the drawing of the diagram but keeps its captions (registry.js SOLUTIONS).
+  const def = C.diagram && (C.scene ? { ...C.diagram, ...C.scene, steps: C.scene.steps ?? C.diagram.steps, draw: undefined } : C.diagram);
+  sol = def ? playSolution(def, $("#solution-anim"), { lang, reduced: () => reduced, params: { ...q } }) : null;
+  window.__solution = sol;
+  $(".solution").addEventListener("toggle", (e) => (e.target.open ? sol?.start() : sol?.stop()));
+  cartoonPress($("#main"), () => reduced, "#challenge-form button");
+  const check = (raw) => {
+    const ok = isAnswer(raw, v.answer(q));
+    $("#challenge-feedback").textContent = ok ? t("C’est la bonne valeur. Maintenant, justifie-la : la solution t’aide à comparer ton raisonnement.", "That is the correct value. Now justify it: use the solution to compare your reasoning.") : t("Pas encore.", "Not yet.");
+    $("#challenge-feedback").classList.toggle("success", ok);
+  };
+  $("#challenge-form").addEventListener("submit", (e) => { e.preventDefault(); check($("#challenge-answer").value); });
+  $("#challenge-impossible")?.addEventListener("click", () => check("0"));
+  document.querySelectorAll("[data-var]").forEach((el) => el.addEventListener("change", () => { q[el.dataset.var] = el.value; normalise(); render(); $(".variation").open = true; }));
+}
+window.__setParams = (next) => { Object.assign(q, next); normalise(); render(); };   // used by check.mjs
+window.__setLang = (l) => { lang = l; render(); };
+$("#pv-lang").addEventListener("click", () => { lang = lang === "fr" ? "en" : "fr"; render(); });
+// Self-check (the browser half of check.mjs, for when no repository is at hand): every combination of the parameters
+// (at most 12), both languages: the activity draws, every solution step shows something and MOVES, the answer is accepted.
+async function selfCheck() {
+  const pools = v.params.map((p) => (p.kind === "int" ? [...new Set([p.min, p.max, p.value])] : p.options.map((o) => o[0])));
+  let combos = pools.reduce((acc, pool) => acc.flatMap((a) => pool.map((x) => [...a, x])), [[]]).map((c) => Object.fromEntries(v.params.map((p, i) => [p.id, c[i]])));
+  if (combos.length > 12) combos = combos.filter((_, i) => i % Math.ceil(combos.length / 12) === 0);
+  const problems = [], keep = { ...q }, keepLang = lang;
+  for (const L of ["fr", "en"]) for (const c of combos) {
+    lang = L; Object.assign(q, c); normalise(); render(); await new Promise((ok) => setTimeout(ok, 30));
+    const tag = L + " " + JSON.stringify(c);
+    if (typeof C.activity === "function" && !document.querySelector("#activity *")) problems.push(tag + ": the activity draws nothing");
+    if (!sol) problems.push(tag + ": no animated solution (index.js must export diagram, and scene for a cartoon)");
+    else for (let k = 0; k < sol.steps; k++) {
+      const snap = (p) => { sol.seek(k, p); return document.querySelector("#solution-anim svg").innerHTML; };
+      if (!snap(1)) problems.push(tag + ": solution step " + (k + 1) + " is empty");
+      if (snap(0.05) === snap(0.95)) problems.push(tag + ": solution step " + (k + 1) + " never moves (every step must be animated)");
+    }
+    const a = v.answer(q); if (!Number.isInteger(a) || a < 0 || !isAnswer(String(a), a)) problems.push(tag + ": answer " + a + " is not a whole number >= 0");
+  }
+  lang = keepLang; Object.assign(q, keep); render();
+  const box = document.getElementById("pv-errors");
+  box.textContent = problems.length ? "Self-check: " + problems.length + " problem(s)\n" + [...new Set(problems)].join("\n") : "";
+  window.__selfCheck = problems;
+  $("#pv-check").textContent = problems.length ? "Self-check: " + problems.length + " ✗" : "Self-check: OK ✓";
+  return problems;
+}
+window.__runSelfCheck = selfCheck;
+$("#pv-check").addEventListener("click", selfCheck);
+$("#pv-solution").addEventListener("click", () => { const d = $(".solution"); d.open = true; d.scrollIntoView({ behavior: "smooth" }); sol?.start(); });
+$("#pv-theme").addEventListener("click", (e) => { const night = document.documentElement.dataset.theme !== "nuit"; document.documentElement.dataset.theme = night ? "nuit" : "jour"; e.target.textContent = night ? "Jour" : "Nuit"; });
+$("#pv-motion").addEventListener("click", (e) => { reduced = !reduced; e.target.setAttribute("aria-pressed", String(reduced)); render(); });
+render();
+window.__previewReady = true;
+</script>
+</body>
+</html>

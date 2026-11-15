@@ -35,6 +35,14 @@ Matematika must never lack anything this site has: open the same challenge there
 in the same round (apply the folder and the five edits where they fit, `make site` there, its checks). Never copy
 `dist/` between the two repositories. If this session cannot reach Matematika, say so in the PR and the final report.
 
+## From a standalone page
+
+A page made in Standalone mode (from `assets/standalone/challenge.html`) holds the files as blocks.
+`node .claude/skills/maths-explorer-challenge/scripts/split.mjs <page.html> --dry` lists what it would write;
+without `--dry` it writes the challenge folder (shared `common/` files only with `--shared`, to review in the diff).
+Then `new.mjs` is not needed; write the independent test `tests/<id>.test.mjs`, run `check.mjs <id>`, and make the five
+edits above.
+
 ## Delivering without integrating
 
 If the request is only to *prepare* the challenge (owner review first), still make all five edits: `tests/map.test.mjs`

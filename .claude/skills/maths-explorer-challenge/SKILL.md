@@ -1,72 +1,96 @@
 ---
 name: maths-explorer-challenge
-description: Turn a maths problem into a finished Maths Explorer challenge (the "Défis" collection, page #challenges/ID) - a drop-in folder site/js/challenges/ID/ with a checked numerical version and its parameters, the original open question, a hands-on activity, an animated cartoon solution and a card emblem, plus an independent test, a one-file interactive preview for review, and the registration edits. Use it whenever an agent is handed a problem, puzzle, riddle or olympiad exercise "for the challenges", "pour les défis", "to add to the collection", or a standalone interactive prototype of one to port, or is asked to build or redo a challenge, even if the request only says "make this interactive for the site".
+description: Turn a maths problem into a finished Maths Explorer challenge (the "Défis" collection, page #challenges/ID) - a playable interactive page delivered as an Artifact in the FIRST answer, with a checked numerical version, the original open question, a hands-on activity with cartoon characters and an ANIMATED cartoon solution, plus (in the repository) a drop-in folder site/js/challenges/ID/, an independent test and the registration edits. Use it whenever an agent is handed a problem, puzzle, riddle or olympiad exercise "for the challenges", "pour les défis", "to add to the collection", or a standalone interactive prototype of one to port, or is asked to build or redo a challenge, even if the request only says "make this interactive for the site".
 ---
 
 # Maths Explorer challenge
 
 Input: one problem (statement in any language, sometimes a source and an answer), or a standalone prototype page of
-it (like `assets/examples/`). Output: a challenge that the site
-loads with **one import line**, verified mathematically and in a browser. Work in a checkout of this repository: the
-challenge builds on `site/js/challenges/common/`, and the scripts below read `site/`.
+it (like `assets/examples/`). Output: a challenge the owner can **play at once**, and that the site loads with one
+import line.
 
-Read before starting (short): `site/js/challenges/CLAUDE.md` (files of a folder, shared kit), then
-`references/design.md` (the style: cartoon characters, an interaction that shows how the problem works, the insight
-earned by the right experiment; three example prototypes), `references/contract.md` (exact exports) and
-`references/rules.md` (owner rules, quality bar). Open one existing
-folder only if you need a pattern the template lacks (index in `references/contract.md` section 6).
+## Two things the owner must never have to ask for again (15 November 2026)
 
-## Deliverable
+1. **The first answer delivers the playable page, published as an Artifact.** Not a plan, not code in the chat, not
+   files without a page, not "here is how it could look". If something is missing, deliver the page with what is
+   known and say what is missing in two lines. Questions come after the page, never instead of it.
+2. **The solution is animated.** It is played by the solution player (Play, Pause, Previous, Next, captions) and
+   **every step moves**: characters walk, reach, turn, objects travel, quantities grow while the caption explains.
+   A still drawing per step, a slideshow of static frames, a written explanation with a figure, or a single moving
+   step is not an animated solution. The self-check and `check.mjs` fail any step whose start and end frames are the
+   same.
 
-| Piece | Where | What makes it easy to integrate |
+Both are checked in the delivery checklist at the end of this file, before every reply.
+
+## Pick the mode
+
+| You have | Mode | Deliverable of the first answer |
 |---|---|---|
-| challenge folder | `site/js/challenges/<id>/` (`index.js`, `maths.js`, `activity.js`, `solution.js`, optional `art.js`) | self-contained; imports only `../common/` and its own files |
-| independent test | `tests/<id>.test.mjs` | recomputes every answer by another method over the whole parameter range |
-| review page | `<id>-preview.html` (scratchpad), published as an Artifact when the owner reviews | one file, site CSS and fonts inlined, same markup as the real page |
-| registration | the edits in `references/integration.md` | five small edits, listed with their exact lines |
-| pull request | branch + PR, text from `assets/PR_TEMPLATE.md` | changes, verification, rollback note, design note |
+| a checkout of Maths-explorer or Matematika (`site/js/challenges/` exists) | **Repository** | the challenge folder, its test, `check.mjs` passing, and the preview page published as an Artifact; then the pull request |
+| no repository (a chat, claude.ai, a sandbox without the site) | **Standalone** | one page made from `assets/standalone/challenge.html`, published as an Artifact, its Self-check passing |
 
-## Workflow
+A standalone page is not a lesser deliverable: its source blocks are the repository files, and `scripts/split.mjs`
+writes them into the repository unchanged later.
 
-1. **Solve first, on paper.** Find the answer, a proof, and the idea a high-school student can follow. Compute the
-   answer by two independent methods (formula and brute force, or search). If you cannot prove it, say so and stop:
-   no unverified challenge goes in. State the source and provenance in the PR text only, never on the page.
-2. **Choose the checkable version.** The site checks one integer `>= 0` (fractions are accepted by the form but the
-   tests expect integers). Pick 1 to 3 parameters (`int` or `choice`) whose every combination gives a well-posed
-   statement; the defaults give the card statement. If some cases have no solution, `0` means impossible and
-   `variant.impossible = true`. Keep the open question (prove, construct, find a strategy) for `original(q)`.
-3. **Design before code** (`references/design.md`; write the result into the PR's design note):
-   - The world and its characters: who or what moves (ants, a hiker, a spoon), drawn as cartoon characters.
-   - Activity: the rules simulated faithfully, the learner making the choices the question ranges over, neutral
-     tools only. Name the experiment that reveals the idea; check that it is natural to try and that nothing on
-     screen names or performs it.
-   - Solution storyboard: 4 to 8 steps in the same world, the decisive observation shown on the characters, symbols
-     last, the answer in the last step.
-   - Emblem: a 64 by 64 line drawing of the situation.
-   For a prototype to port, also follow `references/design.md` section 5.
-4. **Scaffold**: `node .claude/skills/maths-explorer-challenge/scripts/new.mjs <id>` creates the folder and the test
-   from a working template (handshakes): detailed cartoon people (shared `common/person.js`: limbs with joints, eyes that
-   look and blink, expressions; `common/bubble.js`: speech bubbles) around a table (`plan.js`), alive in the activity and posed in a `scene`
-   solution. It is the minimum standard of detail (`references/design.md` section 3b). Rewrite every file; keep the export shapes and the build-once, pose-per-frame pattern.
-5. **Write `maths.js` and the test first**, then `index.js`, `activity.js`, `solution.js`.
-6. **Check**: `node .claude/skills/maths-explorer-challenge/scripts/check.mjs <id> --shots <scratchpad>/shots`, and
-   `node --test tests/<id>.test.mjs`. The check works before registration. Fix every ERROR; judge every WARN. Open the
-   screenshots (390 px and 1280 px, page and last solution frame) and look at them.
-7. **Preview**: `node .claude/skills/maths-explorer-challenge/scripts/preview.mjs <id> --out <scratchpad>/<id>-preview.html`.
-   Play it yourself in Chromium (both languages, both themes, reduced motion). Publish it as an Artifact when the
-   owner wants to review before the merge, or when you deliver without merging.
-8. **Integrate**: the edits of `references/integration.md`, then `make site`, `npm run check && npm test`,
-   `npm run test:dom`, and the browser checks when the pipeline is available.
-9. **Ship**: branch and pull request (root `CLAUDE.md` git rule), PR text from `assets/PR_TEMPLATE.md`. Matematika
-   must get the same challenge in its own pull request in the same round (root `CLAUDE.md` independence rule).
+Read before starting (short): `references/design.md` (the style: cartoon characters, an interaction that shows how
+the problem works, the insight earned by the right experiment, the animated solution, the minimum level of detail),
+`references/contract.md` (exact exports) and `references/rules.md` (owner rules, quality bar). In Repository mode,
+also `site/js/challenges/CLAUDE.md`.
 
-## Scripts
+## Workflow (both modes)
 
-| Script | Does | Needs |
-|---|---|---|
-| `scripts/new.mjs <id>` | creates `site/js/challenges/<id>/` (index, maths, activity, solution, plan) and `tests/<id>.test.mjs` from `assets/template/` | refuses to overwrite |
-| `scripts/check.mjs <id> [--shots dir] [--no-browser]` | contract, all parameter combinations, giveaway controls in the activity (warning), owner text rules (dashes, jargon list of `tests/challenge-jargon.test.mjs`, no URLs), imports; then Chromium: activity draws, every solution step drawn, answer accepted, no console error, no overflow at 390 px | Node 18+, Playwright (pre-installed in cloud sessions) |
-| `scripts/preview.mjs <id> [--out file]` | one self-contained HTML page reproducing the challenge page (language, theme and reduced-motion toggles) | Node only |
+1. **Solve first.** Find the answer, a proof, and the idea a high-school student can follow. Compute the answer by
+   two independent methods (formula and brute force, or search). If you cannot prove it, say so: no unverified
+   challenge goes in. Provenance goes in the PR text, never on the page.
+2. **Choose the checkable version.** The site checks one integer `>= 0`. Pick 1 to 3 parameters (`int` or `choice`)
+   whose every combination gives a well-posed statement; the defaults give the card statement. If some cases have no
+   solution, `0` means impossible and `variant.impossible = true`. Keep the open question for `original(q)`.
+   Proof problems need a numerical version (`references/design.md` section 4).
+3. **Design** (`references/design.md`): the world and its cartoon characters; the activity (rules simulated, the
+   learner's choices, neutral tools, the experiment that reveals the idea, nothing that names it); the **solution
+   storyboard**: 4 to 8 steps, for each step one caption AND the motion that happens during it (who moves, from where
+   to where); the emblem.
+4. **Build** from the template (the handshakes challenge: detailed people with jointed limbs, eyes that look and
+   blink, expressions, speech bubbles, a table; alive in the activity; a `scene` solution that moves in every step).
+   It is the minimum standard of detail (`references/design.md` section 3b). Keep the export shapes, the
+   build-once, pose-per-frame pattern, and frames as pure functions of (step, p).
+   - Repository: `node .claude/skills/maths-explorer-challenge/scripts/new.mjs <id>` creates the folder and the test.
+     Write `maths.js` and the test first, then `index.js`, `activity.js`, `solution.js` (and `plan.js` or `art.js`).
+   - Standalone: copy `assets/standalone/challenge.html` (one page, 117 KB, no download). Edit only the blocks
+     `<script type="text/plain" data-path="js/challenges/handshakes/...">`: rename the folder in their `data-path`
+     (and in the `card.id`), rewrite each block as the file it is. Leave the `common/` and `math.js` blocks as they
+     are; a new shared helper goes in a new block `js/challenges/common/<name>.js`. Add a block for each new file of
+     the folder; a block is imported by its relative path, like a file.
+5. **Check.**
+   - Repository: `check.mjs <id> --shots <dir>` (contract, every parameter combination, text rules, then in Chromium:
+     activity draws, every solution step drawn and moving, answer accepted, no console error, no overflow at
+     390 px) and `node --test tests/<id>.test.mjs`. Look at the screenshots.
+   - Standalone: open the page and press **Self-check** (the same browser checks, run inside the page) and
+     **Solution ▶** (watch it play from the first step to the last). If you cannot open a browser, say so.
+6. **Deliver the Artifact** (first answer, both modes): Repository mode publishes
+   `preview.mjs <id> --lite --out <dir>/<id>.html`; Standalone mode publishes the edited page.
+7. **Repository only, then**: the registration edits (`references/integration.md`), `make site`, the checks, branch
+   and pull request (`assets/PR_TEMPLATE.md`), and the same challenge in Matematika in the same round. A standalone page
+   reaches the repository with `split.mjs <page.html>`, then the same registration edits.
 
-Calibration: on the 38 existing challenges `check.mjs` reports no false error; the two errors it raises are real
-(`cham`: an en dash in the English solution; `factorials` with n = 0: empty solution frames).
+## Scripts (Repository mode; Node 18+)
+
+| Script | Does |
+|---|---|
+| `scripts/new.mjs <id>` | creates `site/js/challenges/<id>/` (index, maths, activity, solution, plan) and `tests/<id>.test.mjs` from `assets/template/` (refuses to overwrite) |
+| `scripts/check.mjs <id> [--shots dir] [--no-browser]` | contract, all parameter combinations, giveaway controls (warning), text rules (dashes, jargon list of `tests/challenge-jargon.test.mjs`, no URLs), imports; then Chromium (Playwright): activity draws, every solution step drawn **and moving**, answer accepted, no console error, no overflow at 390 px |
+| `scripts/preview.mjs <id> [--out file] [--lite]` | one self-contained page reproducing the challenge page, with toolbar buttons Solution ▶, Self-check, language, theme, reduced motion; every source file is a readable block; `--lite`: no web fonts, only the styles a challenge page uses |
+| `scripts/split.mjs <page.html> [--dry] [--shared]` | writes the blocks of a standalone page back into `site/js/...` (the challenge folder; shared files only with `--shared`) |
+
+`assets/standalone/challenge.html` is `preview.mjs handshakes --lite`; regenerate it when the template challenge or the
+shared kit changes.
+
+## Delivery checklist (before every reply)
+
+- [ ] An Artifact is published in THIS answer, and it plays (no console error; Self-check or `check.mjs` passes).
+- [ ] Solution ▶ plays every step, and something moves in every step (no still step, no static slideshow).
+- [ ] The characters are at the template's level of detail; the activity reacts to every action.
+- [ ] The answer is verified by two independent methods; the checked version is an integer `>= 0`.
+- [ ] Both languages, no em or en dash, no hint or method in the activity.
+- [ ] The reply gives the Artifact first, then in a few lines: the checked question and answer, what the learner does,
+  the solution steps, and anything not done.

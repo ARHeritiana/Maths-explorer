@@ -148,7 +148,13 @@ if (!args.includes("--no-browser") && !errors.length) {
           const act = document.querySelector("#activity");
           const out = { act: act ? act.querySelectorAll("*").length : -1, goal: !!act?.querySelector(".goal"), frames: [], overflow: document.documentElement.scrollWidth > innerWidth + 1 };
           const s = window.__solution;
-          if (s) for (let k = 0; k < s.steps; k++) for (const p of [0, 0.5, 1]) { s.seek(k, p); out.frames.push(document.querySelectorAll("#solution-anim svg *").length); }
+          out.still = [];
+          if (s) for (let k = 0; k < s.steps; k++) {
+            for (const p of [0, 0.5, 1]) { s.seek(k, p); out.frames.push(document.querySelectorAll("#solution-anim svg *").length); }
+            // the animation requirement: something must move inside every step (the drawing at p = 0.05 and 0.95 differ)
+            const snap = (p) => { s.seek(k, p); return document.querySelector("#solution-anim svg").innerHTML; };
+            if (snap(0.05) === snap(0.95)) out.still.push(k);
+          }
           document.querySelector("#challenge-answer").value = String(window.__challenge.variant.answer(q));
           document.querySelector("#challenge-form button.primary").click();
           out.ok = document.querySelector("#challenge-feedback").classList.contains("success");
@@ -158,6 +164,7 @@ if (!args.includes("--no-browser") && !errors.length) {
         if (r.act > 0 && !r.goal) W(`${tag}: no goalLine() at the top of the activity`);
         // frames are [p=0, p=0.5, p=1] per step; a step may fade in from nothing, but its end frame must show something
         r.frames.forEach((n, i) => { if (n === 0 && i % 3 === 2) E(`${tag}: solution step ${(i - 2) / 3} is empty at p = 1`); });
+        if (r.still.length) E(`${tag}: solution step${r.still.length > 1 ? "s" : ""} ${r.still.join(", ")} never move${r.still.length > 1 ? "" : "s"}: every step of the solution must be animated (references/design.md section 2)`);
         if (!r.ok) E(`${tag}: the expected answer is not accepted by the form`);
         if (r.overflow) E(`${tag}: horizontal overflow`);
       }
