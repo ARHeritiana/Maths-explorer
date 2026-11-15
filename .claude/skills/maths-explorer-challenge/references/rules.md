@@ -43,6 +43,9 @@ they differ, the most recent dated rule wins; the list below is current on 15 No
 
 ## Quality bar (check before delivery)
 
+- The delivery is the file in the handoff format (`AGENT_BRIEF.md`), in the first answer, not a plan.
+- The solution is animated where motion helps understanding (`references/design.md` section 2).
+
 - Works at 390 px wide without horizontal scroll, and at 1280 px; both themes (`jour`, `nuit`); reduced motion shows
   final frames without animation.
 - Every piece reachable and operable by keyboard; status messages in an `aria-live` region.

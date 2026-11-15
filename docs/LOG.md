@@ -228,3 +228,7 @@ Append one dated line per finished task at the end of the first list (before "Da
 15 November 2026: added the agent skill `maths-explorer-challenge` (problem to finished challenge: contract, owner rules, working template, contract and browser check, one-file review preview, registration edits). Its check flags two existing defects: an en dash in the English solution of `cham`, empty solution frames of `factorials` for n = 0. The release recipe now follows the branch and pull request rule.
 
 15 November 2026: four new challenges built with the skill `maths-explorer-challenge` from the owner's prototypes and the skill template: handshakes, the bumping ants, the hiker, coffee and milk; shared `common/person.js` and `common/bubble.js`.
+
+15 November 2026: challenge skill, after an owner review: the first answer must publish the playable page as an Artifact, and the solution must move in every step (check.mjs and the page Self-check fail a still step); Standalone mode from assets/standalone/challenge.html, written back with split.mjs. check.mjs now reports still steps in 25 older challenges.
+
+15 November 2026, later: the challenge skill is organised around a handoff format for any AI agent (AGENT_BRIEF.md, the template page, a text bundle) and its integration into both repositories (split.mjs reads pages and bundles, with the test); animation is used where motion helps understanding, no longer required in every step.
