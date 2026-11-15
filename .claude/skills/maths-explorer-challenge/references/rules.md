@@ -22,8 +22,12 @@ they differ, the most recent dated rule wins; the list below is current on 15 No
   long as the learner chose it and nothing on screen pointed to it.
 - One `goalLine` sentence on top of the activity; nothing explanatory under it.
 - Answer `0` means impossible only when `variant.impossible` is set; the prompt never mentions "impossible".
-- The original statement sits in a closed "Énoncé d'origine" disclosure; the written solution in a closed "Version
-  écrite"; both are produced by the shared page from `original(q)` and `variant.solution(q)`.
+- Keep the classic statement (owner rule, 15 November 2026). If it asks for a number, the prompt is that statement and
+  the site checks it; the proof version, if any, sits in a closed "Jusqu'à la preuve" disclosure from `original(q)`. If
+  it asks for a proof, a construction or a yes/no with a reason, set `variant.open: true`: the prompt is the classic
+  statement, no `original`, no `impossible`, no answer form, and the solution answers that question. Never bend a
+  statement into a number just to have something to check.
+- The written solution sits in a closed "Version écrite", produced by the shared page from `variant.solution(q)`.
 
 ## Teaching (the animated solution does the teaching)
 
