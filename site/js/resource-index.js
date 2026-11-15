@@ -59,6 +59,22 @@ export const RELATIONS = [
    concepts: ['reasoning', 'induction', 'logic', 'invariants', 'proof'], routes: []},
   {id: 'rel.complex-numbers', title: ['Nombres complexes', 'Complex numbers'], synonyms: ['imaginaire', 'module', 'argument', 'imaginary', 'modulus'],
    concepts: ['complex', 'complex-algebra', 'complex-plane'], routes: ['#lab/complex']},
+  {id: 'rel.constant-width', title: ['Cercles, arcs et largeur constante', 'Circles, arcs and constant width'], synonyms: ['triangle de Reuleaux', 'largeur constante', 'périmètre', 'arc de cercle', 'Reuleaux triangle', 'constant width', 'perimeter', 'arc length'],
+   concepts: [], routes: ['#gallery/reuleaux', '#chapter/premiere-07', '#chapter/premiere-10', '#lab/trig']},
+  {id: 'rel.polyhedra-and-solids', title: ['Solides et polyèdres', 'Solids and polyhedra'], synonyms: ['solides de Platon', 'polyèdre régulier', 'sommets arêtes faces', 'espace', 'Platonic solids', 'regular polyhedron', 'vertices edges faces', 'space geometry'],
+   concepts: [], routes: ['#gallery/platonic', '#gallery/gomboc', '#chapter/terminale-02', '#chapter/terminale-09', '#history/people/euclid', '#history/advances/elements']},
+  {id: 'rel.chaos-and-iteration', title: ['Chaos et suites itérées', 'Chaos and iterated sequences'], synonyms: ['sensibilité aux conditions initiales', 'effet papillon', 'suite récurrente', 'point fixe', 'sensitive dependence', 'butterfly effect', 'recurrence', 'fixed point'],
+   concepts: [], routes: ['#gallery/chaos', '#gallery/logistic-gallery', '#lab/logistic', '#lab/cobweb', '#lab/double-pendulum', '#gallery/double-pendulum-gallery', '#gallery/three-body-gallery', '#gallery/mandelbrot', '#history/people/lorenz', '#history/advances/lorenz-chaos', '#chapter/terminale-01', '#chapter/terminale-03']},
+  {id: 'rel.nearest-point-and-bisectors', title: ['Médiatrices et point le plus proche', 'Perpendicular bisectors and nearest point'], synonyms: ['diagramme de Voronoï', 'médiatrice', 'distance', 'cellule', 'Voronoi diagram', 'perpendicular bisector', 'cell'],
+   concepts: [], routes: ['#gallery/voronoi', '#biographies/voronoi', '#history/people/voronoi', '#history/advances/voronoi', '#chapter/premiere-07', '#chapter/seconde-12', '#chapter/terminale-09']},
+  {id: 'rel.optimisation-and-extremal-problems', title: ['Optimisation et problèmes extrémaux', 'Optimisation and extremal problems'], synonyms: ['brachistochrone', 'cycloïde', 'chemin le plus rapide', 'surface minimale', 'minimum', 'maximum', 'fastest path', 'cycloid', 'minimal surface', 'shortest'],
+   concepts: [], routes: ['#gallery/fastest-slide', '#gallery/soap-films', '#gallery/opaque-square', '#lab/derivative', '#chapter/premiere-06', '#chapter/seconde-10', '#history/advances/brachistochrone', '#history/people/johann-bernoulli']},
+  {id: 'rel.topology-and-surfaces', title: ['Topologie : nœuds et surfaces', 'Topology: knots and surfaces'], synonyms: ['nœud', 'ruban de Möbius', 'bouteille de Klein', 'surface', 'knot', 'Möbius strip', 'Klein bottle'],
+   concepts: [], routes: ['#gallery/knots', '#gallery/nonorientable-surfaces-gallery', '#lab/nonorientable-surfaces', '#gallery/hairy-ball-gallery', '#lab/hairy-ball', '#history/advances/mobius-strip', '#history/advances/klein-bottle', '#history/people/mobius', '#history/people/klein']},
+  {id: 'rel.tilings-and-aperiodicity', title: ['Pavages et apériodicité', 'Tilings and aperiodicity'], synonyms: ['pavage', 'apériodique', 'monotuile', 'tuile chapeau', 'tiling', 'aperiodic', 'monotile', 'hat tile'],
+   concepts: [], routes: ['#gallery/einstein', '#history/advances/hat', '#history/people/penrose', '#lab/tiles', '#gallery/equidecomposition', '#gallery/square-packing']},
+  {id: 'rel.planar-shape-problems', title: ['Problèmes de formes planes', 'Planar shape problems'], synonyms: ['canapé', 'carré inscrit', 'carré opaque', 'déménageur', 'continuité', 'moving sofa', 'inscribed square', 'opaque square', 'continuity'],
+   concepts: [], routes: ['#gallery/moving-sofa', '#history/advances/sofa-question', '#history/advances/gerver-sofa', '#history/advances/baek-sofa', '#gallery/inscribed-square', '#gallery/opaque-square', '#gallery/square-packing', '#gallery/equidecomposition', '#chapter/premiere-06', '#chapter/terminale-06', '#chapter/seconde-12']},
 ];
 const relationText = r => [...r.title, ...r.synonyms, ...r.concepts].join(' ');
 // Relations a query talks about: every word of the query appears in the relation's words (or a synonym of it).
