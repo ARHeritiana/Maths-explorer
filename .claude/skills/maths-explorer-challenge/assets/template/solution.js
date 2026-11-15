@@ -4,7 +4,8 @@ import { P, ez, mid } from "../common/helpers.js";
 import { colour, svgEl } from "../common/kit.js";
 import { seg } from "../common/scene-kit.js";
 import { handshakes } from "./maths.js";
-import { makePerson, posePerson, makeBubble, poseBubble } from "./art.js";
+import { makePerson, posePerson } from "../common/person.js";
+import { makeBubble, poseBubble } from "../common/bubble.js";
 import { layout, handAt, aimAt } from "./plan.js";
 
 const ROOM = { cx: 200, cy: 200, rx: 162, ry: 80 };

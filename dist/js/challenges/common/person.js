@@ -1,6 +1,7 @@
-// Drawings of the __ID__ challenge: a cartoon person and a speech bubble, built once and posed every frame
-// (references/design.md section 3). Every pose is a pure function of its arguments, so the solution stays pure.
-import { svgEl } from "../common/kit.js";
+// Shared cartoon person for the challenges (handshakes, hiker, ...): built once with makePerson, posed every frame
+// with posePerson. Every pose is a pure function of its arguments, so an animated solution stays pure.
+// Speech bubbles are in bubble.js.
+import { svgEl } from "./kit.js";
 
 // Material colours are the person's own (skin, hair, trousers, shoes), not the theme's; outlines follow var(--ink).
 export const SKINS = ["#f2c9a0", "#e0ac7e", "#c68b59", "#8d5a3b", "#f6d7bd", "#b97a50"];
@@ -8,8 +9,9 @@ export const HAIRS = ["#3b2a20", "#7a4a24", "#d9a441", "#1d1d1d", "#a0522d", "#5
 const TROUSERS = "#3d4b6b", SHOES = "#3b2a20", INK = "var(--ink)";
 
 // One person, about 66 units tall, feet at (0, 0), facing +x. `look` picks the outfit: skin, hair, accessory.
-export function makePerson(parent, { fill, look = 0, size = 1 }) {
-  const skin = SKINS[look % SKINS.length], hair = HAIRS[(look * 5 + 1) % HAIRS.length], extra = look % 4;   // 0 none, 1 cap, 2 glasses, 3 bow
+// gear: "hiker" adds a backpack and a sun hat (and drops the look's accessory).
+export function makePerson(parent, { fill, look = 0, size = 1, gear = null }) {
+  const skin = SKINS[look % SKINS.length], hair = HAIRS[(look * 5 + 1) % HAIRS.length], extra = gear ? 0 : look % 4;   // 0 none, 1 cap, 2 glasses, 3 bow
   const g = (p, attrs = {}) => svgEl("g", attrs, p);
   const root = g(parent);
   const shadow = svgEl("ellipse", { cx: 0, cy: 0, rx: 14, ry: 3.4, fill: INK, opacity: 0.16 }, root);
@@ -29,6 +31,11 @@ export function makePerson(parent, { fill, look = 0, size = 1 }) {
   const backLeg = limb(flip, -2, -21, 10, `color-mix(in srgb, ${TROUSERS} 80%, #000)`, 5, shoe);
   const frontLeg = limb(flip, 2, -21, 10, TROUSERS, 5, shoe);
   const body = g(flip);   // torso and head breathe together
+  if (gear === "hiker") {   // backpack behind the torso, with a rolled mat on top
+    svgEl("rect", { x: -15, y: -43, width: 9, height: 20, rx: 3, fill: "#7a5230", stroke: INK, "stroke-width": 1.3 }, body);
+    svgEl("rect", { x: -14, y: -35, width: 7, height: 6, rx: 1.5, fill: "#5e3d22", stroke: INK, "stroke-width": 0.8 }, body);
+    svgEl("rect", { x: -16.5, y: -47, width: 12, height: 4.6, rx: 2.3, fill: "#c0392b", stroke: INK, "stroke-width": 1 }, body);
+  }
   svgEl("path", { d: "M-9 -19 Q-10.5 -37 -6.5 -43 Q0 -46.5 6.5 -43 Q10.5 -37 9 -19 Z", fill, stroke: INK, "stroke-width": 1.4, "stroke-linejoin": "round" }, body);
   svgEl("path", { d: "M-9 -19 Q-10.5 -37 -6.5 -43 Q-4 -44.6 -2 -45 Q-5 -33 -3 -19 Z", fill: shade, opacity: 0.55 }, body);   // shade on the back
   svgEl("path", { d: "M-3 -44.5 L0.5 -40.5 L4 -44.5", fill: "none", stroke: INK, "stroke-width": 1, "stroke-linejoin": "round" }, body);   // collar
@@ -49,6 +56,8 @@ export function makePerson(parent, { fill, look = 0, size = 1 }) {
   const eyes = [eye(1.6, 1.9), eye(6.2, 2.4)];
   const brows = svgEl("path", { fill: "none", stroke: INK, "stroke-width": 1.1, "stroke-linecap": "round" }, head);
   const mouth = svgEl("path", { stroke: INK, "stroke-width": 1, "stroke-linecap": "round", "stroke-linejoin": "round" }, head);
+  if (gear === "hiker") svgEl("path", { d: "M-12 -61.5 Q-11 -60 1 -60.4 Q13 -60 14.5 -61.5 Q12 -63.5 9 -63.4 Q8.5 -70.5 1 -70.6 Q-6.5 -70.5 -7 -63.4 Q-10 -63.5 -12 -61.5 Z", fill: "#d4b26a", stroke: INK, "stroke-width": 1.2, "stroke-linejoin": "round" }, head);
+  if (gear === "hiker") svgEl("path", { d: "M-6.8 -64 Q1 -65.6 8.8 -64", fill: "none", stroke: "#8b2c1f", "stroke-width": 1.6 }, head);
   if (extra === 1) svgEl("path", { d: "M-8.8 -60 Q-8 -69 2 -68.5 Q10.5 -68 10.5 -61 L16 -60.4 Q15 -58.6 10 -59.2 Z", fill: `color-mix(in srgb, ${fill} 60%, #fff)`, stroke: INK, "stroke-width": 1.1, "stroke-linejoin": "round" }, head);
   if (extra === 2) svgEl("path", { d: "M-0.6 -57 a2.5 2.5 0 1 0 5 0 a2.5 2.5 0 1 0 -5 0 M4.4 -57 h0.8 M5.2 -57 a2.8 2.8 0 1 0 5.6 0 a2.8 2.8 0 1 0 -5.6 0", fill: "none", stroke: INK, "stroke-width": 1 }, head);
   if (extra === 3) svgEl("path", { d: "M-6 -64 l-3.5 -3 v6 Z M-6 -64 l3.5 -3 v6 Z", fill: "#e2557a", stroke: INK, "stroke-width": 0.9, "stroke-linejoin": "round" }, head);
@@ -96,22 +105,4 @@ export function posePerson(P, { x, y, facing = 1, gaze = [0, 0], walk = { phase:
   P.brows.setAttribute("d", `M0 ${-61.2 + raised} q1.6 -1 3.2 0 M5 ${-61.6 + raised} q1.8 -1.1 3.6 0`);
   const [d, f] = MOUTHS[mood] || MOUTHS.smile;
   P.mouth.setAttribute("d", d); P.mouth.setAttribute("fill", f);
-}
-
-// A speech bubble with a tail, anchored by its tail tip.
-export function makeBubble(parent) {
-  const root = svgEl("g", { "pointer-events": "none" }, parent);
-  const box = svgEl("path", { fill: "var(--surface)", stroke: INK, "stroke-width": 1.3, "stroke-linejoin": "round" }, root);
-  const text = svgEl("text", { "text-anchor": "middle", "font-size": 11, "font-weight": 700, fill: INK }, root);
-  return { root, box, text };
-}
-
-// Pose a bubble: tail tip at (x, y), text, appear 0..1 (pops in with a small overshoot).
-export function poseBubble(B, { x, y, text, appear = 1 }) {
-  const k = Math.max(0, Math.min(1, appear)), pop = k <= 0 ? 0 : 1 + 0.15 * Math.sin(Math.PI * k) * (1 - k);
-  B.root.setAttribute("opacity", k.toFixed(2));
-  B.root.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${pop.toFixed(3)})`);
-  const w = Math.max(40, text.length * 6.4 + 14), h = 20, top = -7 - h, L = -w / 2, R = w / 2, B0 = top + h;   // tail tip at (0, 0)
-  B.box.setAttribute("d", `M${L + 8} ${top} H${R - 8} Q${R} ${top} ${R} ${top + 8} V${B0 - 8} Q${R} ${B0} ${R - 8} ${B0} H6 L0 0 L-2 ${B0} H${L + 8} Q${L} ${B0} ${L} ${B0 - 8} V${top + 8} Q${L} ${top} ${L + 8} ${top} Z`);
-  B.text.setAttribute("x", 0); B.text.setAttribute("y", top + 14); B.text.textContent = text;
 }

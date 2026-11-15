@@ -61,8 +61,8 @@ def walk_experiment(page, name):
     assert page.locator('.lab2-argument').is_visible(), 'the argument comes after the last mission'
 CHALLENGES = ['gauss-sum','doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','cookies','jugs','fly','horses','cake','queens','snail','bridge','lighteggs','fakecoins','reflect','lunes','star','box','merge','cham','pegs','nails','inversions','piles','cheryl','sumproduct']
 CHALLENGE_ANSWERS = ['5050','10','30','1','8','400','63','14','1','19','6','4','210','1001','6','1000','7','900','3','8','17','2','45','5','24','180','5','719','0','0','4','13','45','16','52']
-CHALLENGES += ['rooms', 'knights', 'factorials']
-CHALLENGE_ANSWERS += ['1', '63', '12']
+CHALLENGES += ['rooms', 'knights', 'factorials', 'handshakes', 'ants', 'hiker', 'coffee']
+CHALLENGE_ANSWERS += ['1', '63', '12', '45', '100', '240', '40']
 BASE = os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173')
 
 with sync_playwright() as p:

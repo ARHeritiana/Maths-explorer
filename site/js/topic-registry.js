@@ -4,13 +4,13 @@ const sub = (id, fr, en, concepts, words) => ({id, title:P(fr,en), concepts:conc
 export const TOPICS = [
   {id:'arithmetic', title:P('Arithmétique','Arithmetic'), preview:'numbers', subtopics:[
     sub('integers','Entiers et divisibilité','Integers and divisibility','arithmetic primes bezout congruences modular diophantine factorial factorials valuations jugs euler-primes fermat doors','(?<!log)arithm|divisib|prime|premier|congru|factoriel|factorial|entier'),
-    sub('calculation','Calcul et proportions','Calculation and proportions','percentages reals gauss-sum','calcul mental|calcul numérique|calcul décimal|proportion|pourcent|percent|fraction')]},
+    sub('calculation','Calcul et proportions','Calculation and proportions','percentages reals gauss-sum coffee','calcul mental|calcul numérique|calcul décimal|proportion|pourcent|percent|fraction')]},
   {id:'algebra', title:P('Algèbre','Algebra'), preview:'parabola', subtopics:[
     sub('equations','Équations et polynômes','Equations and polynomials','algebra quadratic polynomials inequalities sumproduct','algebr|algèbr|equation|équation|polyn|trinôme|quadratic'),
     sub('linear','Vecteurs et algèbre linéaire','Vectors and linear algebra','vectors scalar matrices matrix orthogonality space-equations','vect|matri|linéaire|linear'),
     sub('complex','Nombres complexes','Complex numbers','complex complex-algebra complex-plane complex-exponential complex-rotations roots-of-unity','complex|racines de l.unité|roots of unity')]},
   {id:'analysis', title:P('Analyse','Analysis'), preview:'curve', subtopics:[
-    sub('functions','Fonctions et variations','Functions and variation','functions quadratic derivative convexity exponential logarithm log10 reciprocal bisection optimisation line lines ferris-wheel','fonction|function|dériv|deriv|exponent|logarith|convex|optimis'),
+    sub('functions','Fonctions et variations','Functions and variation','functions quadratic derivative convexity exponential logarithm log10 reciprocal bisection optimisation line lines ferris-wheel hiker','fonction|function|dériv|deriv|exponent|logarith|convex|optimis'),
     sub('limits','Suites et limites','Sequences and limits','sequences sequence-limits function-limits induction telescoping differential','suite|sequence|limit|récurrence'),
     sub('integration','Intégration et Fourier','Integration and Fourier','integral fourier fourier-series fourier-drawing trig-functions trigonometry','intégr|integr|fourier|trigonom')]},
   {id:'geometry', title:P('Géométrie','Geometry'), preview:'geometry', subtopics:[
@@ -28,10 +28,10 @@ export const TOPICS = [
     sub('inference','Estimation et incertitude','Estimation and uncertainty','concentration german-tank baker inference','estimat|incert|uncertain|tank|boulanger|baker|inferen')]},
   {id:'discrete', title:P('Mathématiques discrètes','Discrete mathematics'), preview:'graph', subtopics:[
     sub('graphs','Graphes et parcours','Graphs and traversal','graphs euler-trails konigsberg five-rooms rooms knight-tour knights chess queens ramsey','\\bgraphes?\\b(?!\\s+(?:de|d’|d\\x27|représentatif))|\\bgraphs?\\b(?!\\s+of)|parcours|travers|cavalier|knight|eulérien|eulerian|königsberg|konigsberg'),
-    sub('counting','Dénombrement et algorithmes','Counting and algorithms','counting lattice-paths pigeonhole gridpaths cookies hanoi merge inversions josephus nim piles pegs horses eggs lighteggs fakecoins cheryl','dénombre|\\bcount(?:ing|s)?\\b|algorithm|combina|tiroir|pigeon|inversion')]},
+    sub('counting','Dénombrement et algorithmes','Counting and algorithms','counting lattice-paths pigeonhole gridpaths cookies hanoi merge inversions josephus nim piles pegs horses eggs lighteggs fakecoins cheryl handshakes','dénombre|\\bcount(?:ing|s)?\\b|algorithm|combina|tiroir|pigeon|inversion')]},
   {id:'dynamics', title:P('Dynamique','Dynamics'), preview:'orbit', subtopics:[
     sub('iteration','Itérations et chaos','Iteration and chaos','cobweb chaos mandelbrot logistic life','chaos|logisti|itér|iterat|mandelbrot|bifurc|\\blife\\b|jeu de la vie'),
-    sub('motion','Mouvement et mécanique','Motion and mechanics','double-pendulum three-body gomboc fastest fly snail bridge soap','pendul|three.body|trois corps|\\bmotion\\b|\\bmouvements?\\b|descent|brachist|gömb|gomb')]},
+    sub('motion','Mouvement et mécanique','Motion and mechanics','double-pendulum three-body gomboc fastest fly snail bridge soap ants','pendul|three.body|trois corps|\\bmotion\\b|\\bmouvements?\\b|descent|brachist|gömb|gomb')]},
   {id:'foundations', title:P('Fondements','Foundations'), preview:'numbers', subtopics:[
     sub('reasoning','Logique et démonstration','Logic and proof','logic review invariants induction circle-regions tiles fermat euler-primes','\\blogiques?\\b|\\blogic(?:al)?\\b|\\bpreuves?\\b|\\bproofs?\\b|raisonn|reasoning|invariant'),
     sub('sets','Ensembles et choix','Sets and choice','banach-tarski fair-division fair-goods','\\bensembles\\b|théorie des ensembles|set theory|banach|tarski|axiom|partage équitable|fair division|\\benvy|\\benvie')]},

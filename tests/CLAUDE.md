@@ -41,6 +41,10 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `challenge_browser.py` | Playwright: shared challenge layer: no hint panel or hint buttons, original statement in a closed disclosure under the form, neutral `Pas encore.`, Impossible button only where the answer can be impossible (counts as 0), written solution folded in `Version écrite`, every challenge opens at 390 px without overflow or console error (run by `run_browser.py`) |
 | `challenge-jargon.test.mjs` | ratchet: hints and written solutions of every challenge avoid a banned jargon list; an explicit ALLOWLIST of known offenders, to be shrunk by later batches |
 | `challenge-puzzles.test.mjs`, `challenge-puzzles2.test.mjs` | pure challenge maths, by an independent method |
+| `handshakes.test.mjs` | handshakes: the answer n(n − 1)/2 against counting every pair |
+| `ants.test.mjs` | ants: the ghost model against a half-second simulation where ants really collide (positions, falls, sides, number of meetings); the answer L against every start on short sticks |
+| `hiker.test.mjs` | hiker: the meeting minute against a minute-by-minute search; random walks with rests and backtracking always cross (the original question) |
+| `coffee.test.mjs` | coffee: exact fractions (BigInt) for the answer V v/(V + v) and for "milk in coffee = coffee in milk" after up to six round trips |
 | `challenges-variants.test.mjs` | every challenge has variant, original, activity, solution; answers recomputed |
 | `cake-model.test.mjs`, `box-model.test.mjs` | cake and box sandboxes |
 | `control-policy.test.mjs` | `control-policy.js`, `content-language.js`, camera policy, slide widgets |

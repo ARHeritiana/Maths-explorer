@@ -1,11 +1,12 @@
 // Hands-on activity of the __ID__ challenge: the learner tries, fails and notices; it never states the answer or the method.
 // Contract: activity(root, { t, q, reduced, lang }) draws into root and returns a cleanup function.
-// The world is the solution's world (plan.js, art.js): same room, same table, same people, so the solution feels familiar.
+// The world is the solution's world (plan.js, common/person.js): same room, same table, same people, so the solution feels familiar.
 // The people are alive: they breathe, blink, look at whoever is chosen, wave when picked, and shake hands with a hop.
 import { colour, svgEl, goalLine } from "../common/kit.js";
 import { PRESS, installCartoon } from "../common/cartoon.js";
 import { pairKey, handshakes } from "./maths.js";
-import { makePerson, posePerson, makeBubble, poseBubble } from "./art.js";
+import { makePerson, posePerson } from "../common/person.js";
+import { makeBubble, poseBubble } from "../common/bubble.js";
 import { layout, handAt, aimAt } from "./plan.js";
 
 const ROOM = { cx: 170, cy: 172, rx: 134, ry: 90 }, SHAKE = 900;   // SHAKE: length of a handshake, in ms
