@@ -8,7 +8,7 @@ import {fetchJSON} from './data-loader.js';
 import {sequenceModel,goalFields} from './sequence-model.js';
 import {typeset} from './exercises/ui-kit.js';
 import {courseName,chapterOf,launchpad,resolveForSeance} from './launchpad-model.js';
-import {PHASES,phaseById,addBlock,removeBlock,moveBlockTo,setMinutes,togglePrint,totals,defaultSeance,emptySeance,MAX_MINUTES,TARGET_MINUTES} from './seance-model.js';
+import {PHASES,phaseById,addBlock,removeBlock,moveBlockTo,setMinutes,setDuration,seanceDuration,togglePrint,totals,defaultSeance,emptySeance,MAX_MINUTES,MIN_DURATION,MAX_DURATION,DURATIONS} from './seance-model.js';
 import {phaseForType,blockFromItem,blockFromPhase,describeTotals,printList,liveLinks,dropIndex,movedText} from './prepare-model.js';
 import {searchResources,typeLabel} from './resource-index.js';
 import {errorsFor} from './errors-model.js';
@@ -89,14 +89,15 @@ ${can?`<div class="pp-phase-actions"><label class="td-field pp-phase-select"><sp
  const drawBuilder=()=>{
   const s=state.getSeance(),tot=totals(s),d=describeTotals(tot,s.blocks.length),prints=printList(s);
   const n=s.blocks.length;
-  $('#pp-builder').innerHTML=`${n?`${n>1?`<p class="pp-hint muted">${L('Glisse la poignée pour réordonner (ou flèches haut et bas sur la poignée).','Drag the handle to reorder (or Up and Down arrows on the handle).')}</p>`:''}<ol class="pp-blocks">${s.blocks.map(b=>`<li class="pp-block" data-block="${E(b.id)}"><button type="button" class="pp-grip" data-pp-grip="${E(b.id)}" aria-label="${E(L('Déplacer','Move'))} : ${E(b.title)}"><svg viewBox="0 0 10 16" width="10" height="16" aria-hidden="true" focusable="false"><g fill="currentColor"><circle cx="2" cy="3" r="1.4"/><circle cx="8" cy="3" r="1.4"/><circle cx="2" cy="8" r="1.4"/><circle cx="8" cy="8" r="1.4"/><circle cx="2" cy="13" r="1.4"/><circle cx="8" cy="13" r="1.4"/></g></svg></button>
+  $('#pp-builder').innerHTML=`<div class="pp-duration"><label for="pp-duration">${L('Durée de la séance','Length of the séance')}</label><span class="pp-min"><input type="number" id="pp-duration" min="${MIN_DURATION}" max="${MAX_DURATION}" step="1" inputmode="numeric" list="pp-durations" value="${tot.target}"><span aria-hidden="true">min</span></span><datalist id="pp-durations">${DURATIONS.map(m=>`<option value="${m}"></option>`).join('')}</datalist></div>
+${n?`${n>1?`<p class="pp-hint muted">${L('Glisse la poignée pour réordonner (ou flèches haut et bas sur la poignée).','Drag the handle to reorder (or Up and Down arrows on the handle).')}</p>`:''}<ol class="pp-blocks">${s.blocks.map(b=>`<li class="pp-block" data-block="${E(b.id)}"><button type="button" class="pp-grip" data-pp-grip="${E(b.id)}" aria-label="${E(L('Déplacer','Move'))} : ${E(b.title)}"><svg viewBox="0 0 10 16" width="10" height="16" aria-hidden="true" focusable="false"><g fill="currentColor"><circle cx="2" cy="3" r="1.4"/><circle cx="8" cy="3" r="1.4"/><circle cx="2" cy="8" r="1.4"/><circle cx="8" cy="8" r="1.4"/><circle cx="2" cy="13" r="1.4"/><circle cx="8" cy="13" r="1.4"/></g></svg></button>
 <div class="pp-block-text"><span class="pp-phase-tag">${E(P(phaseById(b.phase)?.label||['','']))}</span><strong>${live(b.href)?`<a href="${E(b.href)}">${E(b.title)}</a>`:E(b.title)}</strong></div>
 <label class="pp-min"><input type="number" min="0" max="${MAX_MINUTES}" step="1" inputmode="numeric" data-pp-min="${E(b.id)}" value="${b.minutes}" aria-label="${E(L('Minutes','Minutes'))} : ${E(b.title)}"><span aria-hidden="true">min</span></label>
 <label class="pp-print"><input type="checkbox" data-pp-print="${E(b.id)}"${b.print?' checked':''}><span class="pp-box" aria-hidden="true"><svg viewBox="0 0 12 12" width="12" height="12" focusable="false"><path d="M2 6.5l2.6 2.6L10 3.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></span><span class="pp-print-word">${L('Imprimer','Print')}<span class="sr-only"> : ${E(b.title)}</span></span></label>
 <button type="button" class="pp-remove" data-pp="remove" data-id="${E(b.id)}" aria-label="${E(L('Retirer','Remove'))} : ${E(b.title)}"><span aria-hidden="true">×</span></button></li>`).join('')}</ol>`
   :`<p class="muted">${L('La séance est vide. Ajoute des ressources depuis la fiche du chapitre ou la recherche, ou pars d’une séance type.','The séance is empty. Add resources from the chapter sheet or the search, or start from a standard séance.')}</p>`}
 <div class="pp-totals"><p class="pp-total${d.over?' is-over':''}"><strong>${E(P(d.minutesText))}</strong></p>
-<meter class="pp-meter" min="0" max="${TARGET_MINUTES}" value="${Math.min(tot.minutes,TARGET_MINUTES)}" aria-label="${E(L('Minutes prévues sur 55','Planned minutes out of 55'))}">${tot.minutes} / ${TARGET_MINUTES}</meter>
+<meter class="pp-meter" min="0" max="${tot.target}" value="${Math.min(tot.minutes,tot.target)}" aria-label="${E(L(`Minutes prévues sur ${tot.target}`,`Planned minutes out of ${tot.target}`))}">${tot.minutes} / ${tot.target}</meter>
 <p class="pp-print-count"><strong>${E(P(d.printText))}</strong>. ${L('Imprimer avec modération : chaque fiche cochée est comptée.','Print in moderation: each ticked sheet is counted.')}</p>
 ${d.warn?`<p class="pp-warn" role="status">${E(P(d.warn))}</p>`:''}
 <p class="pp-print-list muted">${prints.length?`${L('À imprimer','To print')} : ${prints.map(E).join(' ; ')}.`:L('Aucune fiche cochée.','No sheet ticked.')}</p></div>
@@ -132,7 +133,7 @@ ${d.warn?`<p class="pp-warn" role="status">${E(P(d.warn))}</p>`:''}
    const t0=s.blocks[i]?.title,after=s.blocks[i+1]||s.blocks[i-1];
    save(removeBlock(s,id),`${L('Retiré de la séance','Removed from the séance')} : ${t0}`,after?()=>btn('remove',after.id):'#pp-builder-h');
   }else if(d==='standard'){
-   const {course,chapter}=ctx(),next=defaultSeance({course,chapter},resolveForSeance(course,chapter,decks));
+   const {course,chapter}=ctx(),next=defaultSeance({course,chapter,duration:seanceDuration(s)},resolveForSeance(course,chapter,decks));
    save(next,next.blocks.length?`${L('Séance type posée','Standard séance set')} : ${next.blocks.length} ${L('blocs','blocks')}`:L('Aucune phase disponible pour ce choix.','No phase available for this choice.'),'[data-pp="standard"]');
   }else if(d==='clear'){
    // Two presses, no browser dialog: the first arms the button for a few seconds, the second empties the séance.
@@ -142,7 +143,7 @@ ${d.warn?`<p class="pp-warn" role="status">${E(P(d.warn))}</p>`:''}
     const disarm=()=>{if(!b.isConnected||!b.dataset.armed)return;delete b.dataset.armed;b.textContent=L('Vider','Clear');b.classList.remove('is-armed');};
     setTimeout(disarm,4000);b.addEventListener('blur',disarm,{once:true});return;
    }
-   save(emptySeance(),L('Séance vidée.','Séance cleared.'),'#pp-builder-h');
+   save(emptySeance(seanceDuration(s)),L('Séance vidée.','Séance cleared.'),'#pp-builder-h');
   }
  };
 
@@ -188,7 +189,10 @@ ${d.warn?`<p class="pp-warn" role="status">${E(P(d.warn))}</p>`:''}
   const el=e.target;
   if(el.id==='pp-class'){state.setClassroom({course:el.value});drawSelects();drawSheet();drawResults();$('#pp-class')?.focus();}
   else if(el.id==='pp-chapter'){state.setChapter(el.value);drawSheet();$('#pp-chapter')?.focus();}
-  else if(el.dataset.ppMin!==undefined){
+  else if(el.id==='pp-duration'){
+   const v=Math.round(Number(el.value)),next=setDuration(state.getSeance(),el.value===''||!Number.isFinite(v)?undefined:v);
+   save(next,`${L('Durée de la séance','Length of the séance')} : ${seanceDuration(next)} min`,'#pp-duration');
+  }else if(el.dataset.ppMin!==undefined){
    const id=el.dataset.ppMin,v=Math.round(Number(el.value));
    save(setMinutes(state.getSeance(),id,Number.isFinite(v)?v:0),`${L('Durée mise à jour','Minutes updated')} : ${Math.min(MAX_MINUTES,Math.max(0,Number.isFinite(v)?v:0))} min`,()=>byAttr('data-pp-min',id));
   }else if(el.dataset.ppPrint!==undefined){

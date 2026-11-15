@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {PHASES,emptySeance,defaultSeance,addBlock,removeBlock,moveBlock,moveBlockTo,setMinutes,togglePrint,totals,cleanSeance,MAX_BLOCKS} from '../site/js/seance-model.js';
+import {PHASES,emptySeance,defaultSeance,addBlock,removeBlock,moveBlock,moveBlockTo,setMinutes,setDuration,seanceDuration,togglePrint,totals,cleanSeance,MAX_BLOCKS,DEFAULT_DURATION,MIN_DURATION,MAX_DURATION,DURATIONS} from '../site/js/seance-model.js';
 const blk=(id,o={})=>({id,phase:'cours',title:'T'+id,href:'#chapter/x',minutes:10,print:false,...o});
 test('phases in session order with default minutes and [fr,en] labels',()=>{
  assert.deepEqual(PHASES.map(p=>p.id),['automatismes','correction','activite','cours','exercices','outils','bilan']);
@@ -13,6 +13,10 @@ test('defaultSeance uses the resolver and skips phases it cannot resolve',()=>{
  assert.equal(calls.length,7);assert.deepEqual(s.blocks.map(b=>b.phase),['automatismes','correction','activite','cours','exercices','bilan']);
  assert.equal(s.blocks[3].title,'Le cours');assert.equal(s.blocks[3].resourceId,'r1');assert.equal(s.blocks[0].minutes,5);
  assert.equal(new Set(s.blocks.map(b=>b.id)).size,6);
+ // The suggested minutes are scaled to fill the séance length exactly (the phase defaults add up to 60).
+ assert.equal(s.blocks.reduce((m,b)=>m+b.minutes,0),55);assert.equal(totals(s).over,false);
+ for(const d of [45,50,60,90,110,120]){const x=defaultSeance({duration:d},()=>'#a');assert.equal(x.blocks.reduce((m,b)=>m+b.minutes,0),d,'fills '+d);assert.ok(x.blocks.every(b=>Number.isInteger(b.minutes)&&b.minutes>=0));}
+ assert.deepEqual(defaultSeance({duration:110},()=>'#a').blocks.map(b=>b.minutes),[9,15,22,28,27,0,9]);
  assert.deepEqual(defaultSeance({}),{blocks:[]});
  assert.deepEqual(defaultSeance({},()=>'javascript:x').blocks,[]);
 });
@@ -34,12 +38,32 @@ test('add, remove, move, minutes, print are immutable',()=>{
 });
 test('totals: minutes against target, print warning above 3',()=>{
  let s={blocks:[blk('a',{minutes:30}),blk('b',{minutes:25})]};
- assert.deepEqual(totals(s),{minutes:55,over:false,printCount:0,printWarning:false});
+ assert.deepEqual(totals(s),{minutes:55,target:55,over:false,printCount:0,printWarning:false});
  s=setMinutes(s,'b',26);assert.equal(totals(s).over,true);assert.equal(totals(s,{target:60}).over,false);
  s={blocks:['a','b','c','d'].map(i=>blk(i,{print:true}))};
  assert.equal(totals(s).printCount,4);assert.equal(totals(s).printWarning,true);
  assert.equal(totals({blocks:s.blocks.slice(0,3)}).printWarning,false);
- assert.deepEqual(totals(null),{minutes:0,over:false,printCount:0,printWarning:false});
+ assert.deepEqual(totals(null),{minutes:0,target:55,over:false,printCount:0,printWarning:false});
+});
+test('duration: each séance has its own length, 55 min unless set, kept by every edit',()=>{
+ assert.equal(DEFAULT_DURATION,55);assert.ok(DURATIONS.includes(55)&&DURATIONS.every(m=>m>=MIN_DURATION&&m<=MAX_DURATION));
+ // A séance stored before durations existed, or set to 55, has no duration field and means 55 min.
+ assert.equal(seanceDuration({blocks:[]}),55);assert.deepEqual(setDuration({blocks:[]},55),{blocks:[]});
+ let s=setDuration({blocks:[blk('a',{minutes:50}),blk('b',{minutes:40})]},110);
+ assert.equal(s.duration,110);assert.deepEqual(totals(s),{minutes:90,target:110,over:false,printCount:0,printWarning:false});
+ // Every edit keeps the length.
+ for(const next of [addBlock(s,{phase:'bilan',title:'B',href:'#b'}),removeBlock(s,'a'),moveBlockTo(s,0,1),moveBlock(s,1,-1),setMinutes(s,'a',5),togglePrint(s,'a'),cleanSeance(JSON.parse(JSON.stringify(s)))])assert.equal(next.duration,110);
+ assert.equal(setMinutes(s,'a',90).blocks[0].minutes,90);assert.equal(totals(setMinutes(s,'a',90)).over,true);
+ // The same plan is over a 55 minute lesson and fits a 110 minute one.
+ assert.equal(totals(setDuration(s,55)).over,true);assert.equal(totals(s).over,false);
+ // Clamped to MIN_DURATION..MAX_DURATION and rounded; anything that is not a number gives the default.
+ assert.equal(setDuration(s,5).duration,MIN_DURATION);assert.equal(setDuration(s,999).duration,MAX_DURATION);assert.equal(setDuration(s,52.4).duration,52);
+ for(const bad of [undefined,null,'60',NaN,Infinity,{}])assert.equal(seanceDuration(setDuration(s,bad)),55);
+ assert.equal(seanceDuration(cleanSeance({duration:'90',blocks:[]})),55);
+ // New séances can start with a length.
+ assert.deepEqual(emptySeance(60),{duration:60,blocks:[]});assert.deepEqual(emptySeance(),{blocks:[]});
+ assert.equal(defaultSeance({duration:90},()=>'#a').duration,90);
+ assert.equal(totals(s,{target:60}).target,60);
 });
 test('cleanSeance rejects malformed input and caps blocks',()=>{
  for(const bad of [null,undefined,'x',42,[],{},{blocks:'no'}])assert.deepEqual(cleanSeance(bad),{blocks:[]});

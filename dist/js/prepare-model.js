@@ -1,6 +1,6 @@
 // Préparer (#prepare) model: pure helpers (no DOM, no storage). Maps a search item to a séance phase and a block,
 // and words the totals. Strings shown to users are [French, English] pairs.
-import {PHASES,MAX_BLOCKS,TARGET_MINUTES,PRINT_WARNING_ABOVE} from './seance-model.js';
+import {PHASES,MAX_BLOCKS,DEFAULT_DURATION,PRINT_WARNING_ABOVE} from './seance-model.js';
 
 // Phase a resource of this index type usually belongs to; the teacher can change it before adding.
 const PHASE_OF_TYPE=Object.freeze({exercise:'exercices',exercises:'exercices',annales:'exercices',slides:'cours',deck:'cours',chapter:'cours',lesson:'cours',
@@ -22,10 +22,11 @@ export function blockFromPhase(p,lang=0){
  return {phase:p.id,title:detail?`${label} : ${detail}`:label,href:p.href,print:false};
 }
 // What to say about the totals: {minutesText:[fr,en], over, printText:[fr,en], warn:[fr,en]|null, full}.
+// The comparison is with the séance's own length (tot.target, from totals()).
 export function describeTotals(tot,count=0){
- const gap=Math.abs(tot.minutes-TARGET_MINUTES);
- const minutesText=tot.over?[`${tot.minutes} min sur ${TARGET_MINUTES} : ${gap} min de trop`,`${tot.minutes} min of ${TARGET_MINUTES}: ${gap} min too many`]
-  :[`${tot.minutes} min sur ${TARGET_MINUTES} : ${gap} min libres`,`${tot.minutes} min of ${TARGET_MINUTES}: ${gap} min free`];
+ const target=tot.target??DEFAULT_DURATION,gap=Math.abs(tot.minutes-target);
+ const minutesText=tot.over?[`${tot.minutes} min sur ${target} : ${gap} min de trop`,`${tot.minutes} min of ${target}: ${gap} min too many`]
+  :[`${tot.minutes} min sur ${target} : ${gap} min libres`,`${tot.minutes} min of ${target}: ${gap} min free`];
  const printText=[`${tot.printCount} fiche${tot.printCount>1?'s':''} à imprimer`,`${tot.printCount} sheet${tot.printCount>1?'s':''} to print`];
  const warn=tot.printCount>PRINT_WARNING_ABOVE?['Beaucoup de papier : plus de 3 fiches à imprimer.','A lot of paper: more than 3 sheets to print.']:null;
  return {minutesText,over:tot.over,printText,warn,full:count>=MAX_BLOCKS};
