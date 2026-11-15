@@ -16,9 +16,9 @@ export function activity(root, { t, lang, reduced, q }) {
     <div class="pick-grid" id="pg-grid" role="group" aria-label="${t("Entiers de 1 à 60", "Integers from 1 to 60")}">${Array.from({ length: MAX }, (_, i) => `<button type="button" class="pick ${PRESS}" data-n="${i + 1}" aria-pressed="false">${i + 1}</button>`).join("")}</div>
     <p class="act-readout" id="pg-read" role="status" aria-live="polite"></p>
     <div class="act-controls">
-      <button class="btn btn-secondary" id="pg-clear" type="button">${t("Tout effacer", "Clear all")}</button>
-      <label class="act-field" for="pg-k"><span class="act-label">${t("Tirage au hasard de", "Random draw of")} <output id="pg-kout">6</output> ${t("nombres", "numbers")}</span><input id="pg-k" type="range" min="2" max="10" value="6"></label>
-      <button class="btn btn-secondary" id="pg-sim" type="button">${t("Faire 1 000 tirages", "Run 1,000 draws")}</button>
+      <button class="btn-quiet" id="pg-clear" type="button">${t("Tout effacer", "Clear all")}</button>
+      <label class="act-field" for="pg-k"><span class="act-label">${t("Tirage au hasard de", "Random draw of")} <output id="pg-kout">6</output> ${t("nombres", "numbers")}</span><input id="pg-k" type="range" min="2" max="10" value="6"><span class="range-ends" aria-hidden="true"><span>2</span><span>10</span></span></label>
+      <button class="btn btn-primary" id="pg-sim" type="button">${t("Faire 1 000 tirages", "Run 1,000 draws")}</button>
     </div>
     <p class="act-readout" id="pg-sim-read" role="status" aria-live="polite"></p>`;
   const grid = root.querySelector("#pg-grid");
@@ -44,7 +44,9 @@ export function activity(root, { t, lang, reduced, q }) {
     });
     if (!first && sel.size > best) best = sel.size;
     const count = sel.size;
-    root.querySelector("#pg-read").textContent = first
+    root.querySelector("#pg-read").textContent = !count
+      ? `${t("Clique sur des nombres pour les choisir.", "Click numbers to choose them.")}${best ? ` ${t("Ton record sans paire", "Your best without a pair")} : ${best}.` : ""}`
+      : first
       ? `${count} ${t("nombres choisis.", "numbers chosen.")} ${t("Paire trouvée", "Pair found")} : ${first[1]} ${MINUS} ${first[0]} = ${first[1] - first[0]} = ${MOD} × ${(first[1] - first[0]) / MOD}.`
       : `${count} ${t(`nombres choisis, aucune paire dont la différence soit un multiple de ${MOD}.`, `numbers chosen, no pair whose difference is a multiple of ${MOD}.`)}${best ? ` ${t("Ton record sans paire", "Your best without a pair")} : ${best}.` : ""}`;
   }
