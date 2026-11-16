@@ -15,14 +15,16 @@ export const card = {
   extension: [fr, en],        // "Pour aller plus loin", a further question; no answer
 };
 export const variant = {
+  open: true,                 // optional: an open challenge (classic statement asks for a proof, a construction or a
+                              // yes/no with a reason): no answer form, no `original`, no `impossible`; see rules.md
   impossible: true,           // optional: an answer 0 means "impossible"; adds a neutral Impossible button (checks 0)
   params: [int(...), choice(...)],          // from ../common/helpers.js; see section 2
-  answer: (q) => integer >= 0,              // computed by maths.js, never typed in
-  prompt: (q) => [fr, en],                  // the checked statement; with the defaults it is the card statement
+  answer: (q) => integer >= 0,              // computed by maths.js, never typed in; for an open challenge, a fact for the tests
+  prompt: (q) => [fr, en],                  // the classic statement as it is usually asked; with the defaults, the card statement
   solution: (q) => [fr, en],                // the written solution ("Version écrite"), plain text, no HTML needed
   random: (q, rnd) => {},                   // optional: draw extra hidden parameters (Königsberg draws a graph seed)
 };
-export const original = (q) => [fr, en];   // the open question (prove, construct, strategy); never states answer or method
+export const original = (q) => [fr, en];   // checked challenges only: the proof version, folded under "Jusqu’à la preuve"
 export const icon = svg(`...`);             // 64 x 64 emblem from ../common/icon.js (svg, soft, dot); currentColor only
 export { activity } from "./activity.js";
 export { diagram } from "./solution.js";
@@ -100,7 +102,8 @@ new name means adding it to `ROLE_FILES` and describing it in `site/js/challenge
 | tap one piece then another (jumps), growing camera | `pegs/` |
 | drag pieces, with arrow keys as the keyboard equivalent | `horses/` |
 | custom tuple parameters (`fields`, `validate`) | `jugs/`, `fly/` |
-| impossible answers | `pegs/` |
+| impossible answers (neutral Impossible button) | `nim/` |
+| open challenge (no answer form, classic statement) | `cham/`, `pegs/`, `knights/` |
 | hidden random parameter (`random`) | `konigsberg/` |
 | cartoon `scene` with characters | `eggs/`, `snail/`; `bridge/` puts `mount`/`update` inside `diagram` |
 | 3D sandbox and 3D solution | `cake/`, `box/` |

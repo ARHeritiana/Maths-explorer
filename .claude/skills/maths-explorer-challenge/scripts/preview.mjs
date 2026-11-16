@@ -55,7 +55,7 @@ function css(rel, seen = new Set()) {   // fonts become data: URLs unless --lite
   });
 }
 // --lite: drop @font-face and keep only the rules whose selectors a challenge page uses (nested @media blocks too)
-const KEEP = /(:root|html|body|\*|main|\bh[1-3]\b|\bp\b|button|input|select|label|details|summary|svg|\.page|challenge|activity|act-|sol-|solution|written|extension|variation|var-|answer-row|feedback|original|problem|section-kicker|btn|toy-handle|\.hit|primary|secondary|muted|sr-only|cartoon|focus|data-theme)/;
+const KEEP = /(:root|html|body|\*|main|\bh[1-3]\b|\bp\b|button|input|select|label|details|summary|svg|\.page|challenge|activity|act-|sol-|solution|written|extension|variation|var-|answer-row|feedback|original|open-note|problem|section-kicker|btn|toy-handle|\.hit|primary|secondary|muted|sr-only|cartoon|focus|data-theme)/;
 function liteCss(src) {
   src = src.replace(/@font-face\s*{[^}]*}/g, "").replace(/\/\*[\s\S]*?\*\//g, "");
   let out = "", i = 0;
@@ -163,9 +163,9 @@ function render() {
     + '<p class="problem" id="problem">' + T(v.prompt(q)) + '</p>'
     + '<details class="variation"><summary>' + t("Modifier les données", "Change the data") + '</summary><div class="pv-settings">' + settings() + '</div></details>'
     + (typeof C.activity === "function" ? '<section class="activity" aria-labelledby="activity-title"><h2 id="activity-title">' + t("À toi d’explorer", "Explore it yourself") + '</h2><div id="activity"></div></section>' : "")
-    + '<form id="challenge-form"><label for="challenge-answer">' + t("Ta réponse numérique", "Your numerical answer") + '</label><div class="answer-row"><input type="text" id="challenge-answer" required autocomplete="off" placeholder="' + t("Nombre ou fraction", "Number or fraction") + '"><button class="primary" type="submit">' + t("Vérifier", "Check") + '</button>'
-    + (v.impossible ? '<button class="secondary" type="button" id="challenge-impossible">Impossible</button>' : "") + '</div><p id="challenge-feedback" class="feedback" role="status"></p></form>'
-    + (original ? '<details class="original-statement"><summary>' + t("Énoncé d’origine", "Original statement") + '</summary><p class="problem original-q" id="original">' + T(original) + '</p><p class="muted">' + t("À traiter seul ou avec un enseignant : le site ne peut pas la vérifier.", "To work out alone or with a teacher: the site cannot check it.") + '</p></details>' : "")
+    + (v.open ? '<p class="open-note">' + t("Défi ouvert : le site ne vérifie pas ta réponse. Cherche, rédige, discutes-en avec d’autres, puis compare avec la solution.", "Open challenge: the site does not check your answer. Think, write it up, talk it over with others, then compare with the solution.") + '</p>' : '<form id="challenge-form"><label for="challenge-answer">' + t("Ta réponse numérique", "Your numerical answer") + '</label><div class="answer-row"><input type="text" id="challenge-answer" required autocomplete="off" placeholder="' + t("Nombre ou fraction", "Number or fraction") + '"><button class="primary" type="submit">' + t("Vérifier", "Check") + '</button>'
+    + (v.impossible ? '<button class="secondary" type="button" id="challenge-impossible">Impossible</button>' : "") + '</div><p id="challenge-feedback" class="feedback" role="status"></p></form>')
+    + (original ? '<details class="original-statement"><summary>' + t("Jusqu’à la preuve", "All the way to a proof") + '</summary><p class="problem original-q" id="original">' + T(original) + '</p><p class="muted">' + t("À traiter seul ou avec d’autres : le site ne vérifie pas cette partie.", "To work out alone or with others: the site does not check this part.") + '</p></details>' : "")
     + '</article></div><section class="solution-wide"><details class="solution"><summary>' + t("Voir la solution expliquée", "See the worked solution") + '</summary>'
     + (C.diagram ? '<div id="solution-anim" class="sol-host"></div>' : "")
     + '<details class="written"><summary>' + t("Version écrite", "Written version") + '</summary><p id="solution-text">' + T(v.solution(q)) + '</p></details>'
@@ -184,7 +184,7 @@ function render() {
     $("#challenge-feedback").textContent = ok ? t("C’est la bonne valeur. Maintenant, justifie-la : la solution t’aide à comparer ton raisonnement.", "That is the correct value. Now justify it: use the solution to compare your reasoning.") : t("Pas encore.", "Not yet.");
     $("#challenge-feedback").classList.toggle("success", ok);
   };
-  $("#challenge-form").addEventListener("submit", (e) => { e.preventDefault(); check($("#challenge-answer").value); });
+  $("#challenge-form")?.addEventListener("submit", (e) => { e.preventDefault(); check($("#challenge-answer").value); });
   $("#challenge-impossible")?.addEventListener("click", () => check("0"));
   document.querySelectorAll("[data-var]").forEach((el) => el.addEventListener("change", () => { q[el.dataset.var] = el.value; normalise(); render(); $(".variation").open = true; }));
 }

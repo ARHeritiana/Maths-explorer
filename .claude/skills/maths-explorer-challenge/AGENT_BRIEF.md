@@ -8,7 +8,8 @@ below is what matters most**.
 ## What you are making
 
 A **challenge** for the "Défis" page of a French lycée maths website (bilingual French and English): a problem the
-learner explores with an interactive scene, answers with a whole number that the site checks, and then understands
+learner explores with an interactive scene, answers (with a whole number the site checks, or, for an open challenge,
+by a proof or a construction the site does not check), and then understands
 through a worked solution with cartoon pictures, animated where motion helps. The template page is a complete
 working challenge (handshakes): copy it and rewrite it for your problem.
 
@@ -44,8 +45,8 @@ the solution steps in one line each, saying which steps are animated and why; an
 - `index.js`: `card` (`id`, `type` "play" or "olympiad", `title`, `topic`, `extension` as `[fr, en]` pairs,
   `difficulty` 1 to 3, `minutes`); `variant` (`params`: built with `int(id, fr, en, min, max, default, step)` or
   `choice(id, fr, en, [[value, fr, en], ...], default)`; `answer(q)`: a whole number `>= 0`; `prompt(q)` and
-  `solution(q)`: `[fr, en]`; optional `impossible: true` when an answer 0 means "impossible"); `original(q)`: the
-  open question, `[fr, en]`; `icon`: a 64 x 64 line drawing made with `svg()` from `common/icon.js`; and
+  `solution(q)`: `[fr, en]`; optional `impossible: true` when an answer 0 means "impossible"; `open: true` for an
+  open challenge); `original(q)`: for a checked challenge, the proof version, `[fr, en]` (none for an open one); `icon`: a 64 x 64 line drawing made with `svg()` from `common/icon.js`; and
   `export { activity } from "./activity.js"`, `export { diagram, scene } from "./solution.js"`.
 - `maths.js`: pure functions (no DOM): the answer and every computation the scene needs.
 - `activity.js`: `export function activity(root, { t, q, lang, reduced })` draws the hands-on scene into `root`
@@ -75,9 +76,13 @@ The shared kit is in the template's `common/` blocks: `kit.js` (`svgEl`, `colour
 - **The solution explains with pictures, in the activity's world.** Animate when motion helps understanding: a
   process, a trajectory, a transformation, a quantity that builds up, a before and after. A step that states a fact or
   a formula may stay still. Decide step by step; say in the note which steps move and why.
-- **The answer is a whole number** `>= 0` for every combination of parameters; the parameters (1 to 3) give a
-  well-posed problem for every value. Proof questions get a numerical version (a minimum, a count, a time, an amount)
-  and keep the proof for `original(q)`.
+- **Keep the classic statement** (owner rule). If the problem, as it is classically asked, asks for a number, the
+  prompt is that question and `answer(q)` is a whole number `>= 0` for every combination of parameters (1 to 3
+  parameters, well posed for every value); the proof version goes in `original(q)`. If it asks for a proof, a
+  construction, a strategy or a yes or no with a reason, make it an **open challenge**: `variant.open: true`, the
+  prompt is the classic statement, no `original`, no `impossible`; the site shows no answer form and the solution
+  answers the classic question. `answer(q)` then stays only as a fact checked by the tests. Never reword a statement
+  just to get a number to check.
 - **Text**: every visible string in French and English (`[fr, en]`); French typography (space before `: ; ? !`,
   apostrophe ’); no em dash or en dash; high-school words (no "invariant", "modulo", "graph", "parity" in the written
   solution: say "never changes", "remainder", "even or odd"); no URLs or sources on the page.
