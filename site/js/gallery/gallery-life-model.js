@@ -120,3 +120,11 @@ export function observedRepeat(shapes, maxPeriod = 40) {
   }
   return null;
 }
+// Speed of a travelling shape from its observed repeat, in the usual unit c = one cell per generation (king's move): the
+// glider moves (1, 1) every 4 generations, so c/4. Null for a shape repeating in place. Exact for the recorded repeat only.
+const gcd = (a, b) => (b ? gcd(b, a % b) : a);
+export function shipSpeed(rep) {
+  if (!rep || (!rep.dx && !rep.dy)) return null;
+  const m = Math.max(Math.abs(rep.dx), Math.abs(rep.dy)), d = gcd(m, rep.period);
+  return { num: m / d, den: rep.period / d, label: `${m / d === 1 ? '' : m / d}c/${rep.period / d}`.replace(/\/1$/, '') };
+}

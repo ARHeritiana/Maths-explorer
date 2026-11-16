@@ -95,6 +95,15 @@ export function arms(coeffs, t, count) {
   }
   return chain;
 }
+// Relative RMS error over the samples when only the `n` largest circles are kept, for n = 0 ... coeffs.length (coefficients sorted
+// by decreasing amplitude): sqrt(sum of the dropped |c_k|^2 / sum of all |c_k|^2), by Parseval. Exact on the samples, not between them.
+export function errorCurve(coeffs) {
+  const total = coeffs.reduce((s, c) => s + c.amp ** 2, 0), out = new Array(coeffs.length + 1);
+  let left = total; out[0] = total > 0 ? 1 : 0;
+  coeffs.forEach((c, i) => { left = Math.max(0, left - c.amp ** 2); out[i + 1] = total > 0 ? Math.sqrt(left / total) : 0; });
+  out[coeffs.length] = 0;
+  return out;
+}
 // A closed polyline from a parametric curve, for the other shapes of the lab.
 export const heart = (n) => Array.from({ length: n }, (_, i) => { const t = (TAU * i) / n; return [16 * Math.sin(t) ** 3, 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)]; });
 export const star = (n, spikes = 5) => Array.from({ length: n }, (_, i) => { const t = (TAU * i) / n, r = 1 + 0.45 * Math.cos(spikes * t); return [r * Math.cos(t) * 10, r * Math.sin(t) * 10]; });
