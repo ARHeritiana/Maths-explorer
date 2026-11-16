@@ -33,4 +33,7 @@ relative to `site/js/gallery/`. Imports between these files use `./`; shared mod
 | `gallery-fair-division.js` | mounts the cake and goods laboratories (content in `site/js/fair-division-content.js`) |
 | `gallery-topology.js` | reuses the guided topology laboratories (content in `site/js/topology-content.js`) |
 | `gallery-dynamics.js` | mounts the pendulum, three-body and logistic simulations in gallery entries (content in `site/js/dynamics-content.js`) |
+| `gallery-intuition.js` | catalogue lines (and `links` back to `#intuition`) of the collection entries colliding blocks and napkin ring |
+| `gallery-collisions-model.js`, `gallery-collisions.js` | colliding blocks that count digits of π: exact event-driven simulation (`simulate`, count from velocity order, `angleCount` = ⌈π/θ⌉ − 1), velocity-space view; mass ratio 10^e, drag the start, step, play, keyboard |
+| `gallery-napkin-model.js`, `gallery-napkin.js` | napkin-ring paradox: hole radius, height, annulus slice area, Cavalieri volume, V = π h³/6; two drilled spheres side by side in a turnable cutaway, same height or same hole |
 | `curiosity-explainers.js` | animated cartoon explanations of the ten open curiosities (soap films, hat, sofa, equidecomposition, Banach-Tarski, Penrose room, double pendulum, three bodies, indivisible goods, baker) on the challenges' solution player; reuses the sofa, hat and illumination models; loaded on demand by `app.js` when "Comprendre la réponse" opens |

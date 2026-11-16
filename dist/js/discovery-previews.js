@@ -39,7 +39,7 @@ const known=new Set(['monte-carlo','ferris-wheel','quadratic','probability','tri
  'line','exponential','cobweb','matrix','space-lines','sequences','fourier','circle-regions','buffon','bertrand',
  'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','life',
  'voronoi','fastest-slide','einstein','square-packing','inscribed-square','soap-films','knots','moving-sofa',
- 'opaque-square','equidecomposition','four-colours','mandelbrot','arithmetic','reals','algebra','percentages','conditioning',
+ 'opaque-square','equidecomposition','collisions','napkin-ring','four-colours','mandelbrot','arithmetic','reals','algebra','percentages','conditioning',
  'random-variable','counting','polynomials','modular','bezout','primes','graphs','markov','logic','sets']);
 // Topic names identify a chapter's mathematical model; broad field memberships do not.
 export function previewKind(item) {
@@ -232,6 +232,13 @@ export function modelPreview(kind) {
   const hex=eqPreset('hexagon').pts,H=([x,y])=>[40+30*x,50+30*y],w=62,h=2.598*900/w;
   drawing=eqTriangulate(hex).map(t=>path(t.map(H),true)).join('')+path([[90,50-h/2],[90+w,50-h/2],[90+w,50+h/2],[90,50+h/2]],true);
   caption=P('Un hexagone découpé en triangles, puis un rectangle de même aire','A hexagon cut into triangles, then a rectangle of the same area');
+ } else if(kind==='collisions') {
+  drawing='<path d="M16,14V86"/>'+path([[22,86],[22,66],[42,66],[42,86]],true)+path([[70,86],[70,40],[116,40],[116,86]],true)+path([[10,86],[150,86]])+'<path d="M80,30A24,24 0 0 1 128,30"/>';
+  caption=P('Un bloc léger, un bloc lourd, un mur : 3, 31, 314, 3141 chocs','A light block, a heavy block, a wall: 3, 31, 314, 3141 collisions');
+ } else if(kind==='napkin-ring') {
+  const ring=(cx,rx,ry,h)=>`<ellipse cx="${cx}" cy="${50-h}" rx="${rx}" ry="${ry}"/><ellipse cx="${cx}" cy="${50+h}" rx="${rx}" ry="${ry}"/>`+path([[cx-rx,50-h],[cx-rx,50+h]])+path([[cx+rx,50-h],[cx+rx,50+h]]);
+  drawing=ring(45,30,9,14)+ring(115,16,5,14);
+  caption=P('Deux anneaux de même hauteur : même volume','Two rings of the same height: same volume');
  } else if(kind==='four-colours') {
   drawing=[[[20,15],[80,15],[80,50],[20,50]],[[80,15],[140,15],[140,50],[80,50]],[[20,50],[80,50],[80,85],[20,85]],[[80,50],[140,50],[140,85],[80,85]]].map((p,i)=>path(p,true).replace('<path ',`<path style="fill:var(--c${i+1});fill-opacity:.5" `)).join('');
   caption=P('Une carte, des frontières partagées','A map with shared boundaries');

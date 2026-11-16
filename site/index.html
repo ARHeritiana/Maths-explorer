@@ -57,7 +57,7 @@
     </script>
     <link rel="preload" href="./fonts/stix-two-text-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="./styles/explorer.css?v=3a87a17495" />
-    <link rel="stylesheet" href="./styles/pages.css?v=aaa559392a" />
+    <link rel="stylesheet" href="./styles/pages.css?v=9bbcdf3ecb" />
     <link rel="stylesheet" href="./styles/ergonomics.css?v=4a6e199373" />
     <link rel="stylesheet" href="./styles/home.css?v=18e716a2da" />
     <link rel="stylesheet" href="./styles/history.css?v=7563185537" />
@@ -70,7 +70,7 @@
 {
       "imports": {
         "./js/annals-bank.js": "./js/annals-bank.js?v=49636c9652",
-        "./js/app.js": "./js/app.js?v=63788f107a",
+        "./js/app.js": "./js/app.js?v=dd23993b9d",
         "./js/automatismes.js": "./js/automatismes.js?v=027ca4e4ff",
         "./js/bank-page.js": "./js/bank-page.js?v=56108896c9",
         "./js/basics-page.js": "./js/basics-page.js?v=ffbd569767",
@@ -278,12 +278,12 @@
         "./js/classroom-context.js": "./js/classroom-context.js?v=ede6ba9a15",
         "./js/config.js": "./js/config.js?v=5637398774",
         "./js/content-language.js": "./js/content-language.js?v=a6f646dbc1",
-        "./js/content.js": "./js/content.js?v=8a17715897",
+        "./js/content.js": "./js/content.js?v=edbb2d4fea",
         "./js/control-policy.js": "./js/control-policy.js?v=a7bac4dbb5",
         "./js/data-loader.js": "./js/data-loader.js?v=cf9ec4f62b",
         "./js/device-capability.js": "./js/device-capability.js?v=23bc059e65",
         "./js/discovery-index.js": "./js/discovery-index.js?v=575cafbdc0",
-        "./js/discovery-previews.js": "./js/discovery-previews.js?v=840657aea3",
+        "./js/discovery-previews.js": "./js/discovery-previews.js?v=032829d274",
         "./js/discovery.js": "./js/discovery.js?v=1b2ab88f55",
         "./js/dock-model.js": "./js/dock-model.js?v=8b9f826098",
         "./js/dock.js": "./js/dock.js?v=cc1cc5459d",
@@ -352,6 +352,8 @@
         "./js/fractal-gl.js": "./js/fractal-gl.js?v=8df272fa28",
         "./js/gallery/curiosity-explainers.js": "./js/gallery/curiosity-explainers.js?v=3ed34a7bb9",
         "./js/gallery/gallery-additions.js": "./js/gallery/gallery-additions.js?v=2f902eaf2b",
+        "./js/gallery/gallery-collisions-model.js": "./js/gallery/gallery-collisions-model.js?v=8eefc332ad",
+        "./js/gallery/gallery-collisions.js": "./js/gallery/gallery-collisions.js?v=aaa34b149f",
         "./js/gallery/gallery-context.js": "./js/gallery/gallery-context.js?v=992044c7b3",
         "./js/gallery/gallery-curiosities.js": "./js/gallery/gallery-curiosities.js?v=64be147b46",
         "./js/gallery/gallery-dynamics.js": "./js/gallery/gallery-dynamics.js?v=efa9fe0a01",
@@ -367,6 +369,7 @@
         "./js/gallery/gallery-inference.js": "./js/gallery/gallery-inference.js?v=bff8c56862",
         "./js/gallery/gallery-inscribed-model.js": "./js/gallery/gallery-inscribed-model.js?v=d40be4a61d",
         "./js/gallery/gallery-inscribed.js": "./js/gallery/gallery-inscribed.js?v=ba0fe58125",
+        "./js/gallery/gallery-intuition.js": "./js/gallery/gallery-intuition.js?v=9d4857e8cf",
         "./js/gallery/gallery-kit.js": "./js/gallery/gallery-kit.js?v=95967b7318",
         "./js/gallery/gallery-knot-geometry.js": "./js/gallery/gallery-knot-geometry.js?v=bfe0d0f0d9",
         "./js/gallery/gallery-knot-model.js": "./js/gallery/gallery-knot-model.js?v=e6be1ef6ff",
@@ -376,6 +379,8 @@
         "./js/gallery/gallery-life.js": "./js/gallery/gallery-life.js?v=27dfb3acab",
         "./js/gallery/gallery-math.js": "./js/gallery/gallery-math.js?v=8654f28e26",
         "./js/gallery/gallery-models.js": "./js/gallery/gallery-models.js?v=418c0ec1b2",
+        "./js/gallery/gallery-napkin-model.js": "./js/gallery/gallery-napkin-model.js?v=916aeb3c15",
+        "./js/gallery/gallery-napkin.js": "./js/gallery/gallery-napkin.js?v=6ecdb34e75",
         "./js/gallery/gallery-objects.js": "./js/gallery/gallery-objects.js?v=45b4e1016c",
         "./js/gallery/gallery-opaque-model.js": "./js/gallery/gallery-opaque-model.js?v=41f4465914",
         "./js/gallery/gallery-opaque.js": "./js/gallery/gallery-opaque.js?v=a3dea5baa6",
@@ -400,7 +405,7 @@
         "./js/history-images.js": "./js/history-images.js?v=d8a8d19015",
         "./js/history-layout.js": "./js/history-layout.js?v=55ca8ef77d",
         "./js/history.js": "./js/history.js?v=01e430e734",
-        "./js/home-art.js": "./js/home-art.js?v=427918d6df",
+        "./js/home-art.js": "./js/home-art.js?v=a4948da0bf",
         "./js/home-slides.js": "./js/home-slides.js?v=5aec319a13",
         "./js/icons.js": "./js/icons.js?v=fe69dcac48",
         "./js/illumination-content.js": "./js/illumination-content.js?v=e0b78e701f",
@@ -413,8 +418,10 @@
         "./js/illumination-view.js": "./js/illumination-view.js?v=415cfa2679",
         "./js/illumination-worker.js": "./js/illumination-worker.js?v=e63b1593fc",
         "./js/inference-content.js": "./js/inference-content.js?v=8d78550fce",
+        "./js/intuition-data.js": "./js/intuition-data.js?v=81dbf204b9",
+        "./js/intuition-page.js": "./js/intuition-page.js?v=1c8ee3c556",
         "./js/knot-catalogue.js": "./js/knot-catalogue.js?v=3350a9a9c6",
-        "./js/lab-objects.js": "./js/lab-objects.js?v=a39d94dbfa",
+        "./js/lab-objects.js": "./js/lab-objects.js?v=70b3d788dd",
         "./js/lab/engine.js": "./js/lab/engine.js?v=c9c98b28b5",
         "./js/lab/experiments/bertrand.js": "./js/lab/experiments/bertrand.js?v=599ac52f31",
         "./js/lab/experiments/buffon.js": "./js/lab/experiments/buffon.js?v=f67ca54439",
@@ -501,7 +508,7 @@
         "./js/launchpad-model.js": "./js/launchpad-model.js?v=e4a26e3908",
         "./js/learning-content.js": "./js/learning-content.js?v=e97b635b08",
         "./js/library.js": "./js/library.js?v=3608f3bcb1",
-        "./js/live-curriculum.js": "./js/live-curriculum.js?v=07d6d2d03d",
+        "./js/live-curriculum.js": "./js/live-curriculum.js?v=b7c75cfc20",
         "./js/mandelbrot-preview.js": "./js/mandelbrot-preview.js?v=4d3aee61f4",
         "./js/math.js": "./js/math.js?v=3728a18776",
         "./js/modes.js": "./js/modes.js?v=47ed5c3351",
@@ -518,12 +525,12 @@
         "./js/quadratic-workshop.js": "./js/quadratic-workshop.js?v=9bee7ed85a",
         "./js/reading-content.js": "./js/reading-content.js?v=f362c66edf",
         "./js/reading-history-content.js": "./js/reading-history-content.js?v=5d7f910beb",
-        "./js/reading.js": "./js/reading.js?v=5da87e0156",
+        "./js/reading.js": "./js/reading.js?v=2ccd241e5a",
         "./js/related-box.js": "./js/related-box.js?v=b4d54ac56e",
         "./js/relax-model.js": "./js/relax-model.js?v=8f68320a6e",
         "./js/relax-page.js": "./js/relax-page.js?v=00a671dfec",
         "./js/resource-editions.js": "./js/resource-editions.js?v=58cfc5e35d",
-        "./js/resource-index.js": "./js/resource-index.js?v=46d53e3be1",
+        "./js/resource-index.js": "./js/resource-index.js?v=f4b68a6664",
         "./js/resource-library.js": "./js/resource-library.js?v=ef4c6421e3",
         "./js/resource-search.js": "./js/resource-search.js?v=aac0f17e13",
         "./js/resource-sources.js": "./js/resource-sources.js?v=1f8560c976",
@@ -539,7 +546,7 @@
         "./js/teacher-dashboard.js": "./js/teacher-dashboard.js?v=da7fbaca10",
         "./js/teacher-entry.js": "./js/teacher-entry.js?v=104a96d3f4",
         "./js/teacher-state.js": "./js/teacher-state.js?v=e93ee3e7d2",
-        "./js/topic-registry.js": "./js/topic-registry.js?v=a0b33478aa",
+        "./js/topic-registry.js": "./js/topic-registry.js?v=99b8ae5519",
         "./js/topology-content.js": "./js/topology-content.js?v=2ac4a12d0b",
         "./js/ui.js": "./js/ui.js?v=4dbe58d90f",
         "./js/visible-loop.js": "./js/visible-loop.js?v=1bd00417d7",
@@ -549,7 +556,7 @@
       }
     }
     </script>
-    <script type="module" src="./js/app.js?v=63788f107a"></script>
+    <script type="module" src="./js/app.js?v=dd23993b9d"></script>
     <!-- importmap:end -->
   </head>
   <body>
