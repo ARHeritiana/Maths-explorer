@@ -11,6 +11,13 @@ export function niceTicks(max,count=4){
   if(out.at(-1)<max)out.push(+(out.at(-1)+step).toPrecision(12));
   return out;
 }
+// Round ticks covering [lo, hi] when the axis should not start at 0 (a quantity that only moves a little, like a film's area).
+export function niceRange(lo,hi,count=4){
+  if(!(hi>lo))return [lo-1,lo,lo+1].map(v=>+v.toPrecision(12));
+  const raw=(hi-lo)/count,p=10**Math.floor(Math.log10(raw)),step=[1,2,5,10].map(m=>m*p).find(v=>v>=raw),out=[];
+  for(let v=Math.floor(lo/step)*step;v<hi+step*.999;v+=step)out.push(+v.toPrecision(12));
+  return out;
+}
 // Indices to draw from n samples, at most `cap` of them: a fixed stride, always ending on the last sample, never an invented value.
 export function sampleIndices(n,cap=600){
   const stride=Math.max(1,Math.ceil(n/cap)),out=[];for(let i=0;i<n;i+=stride)out.push(i);
@@ -41,19 +48,20 @@ export function plotPanel(after,caption,{aspect=640/250}={}){
   let last=null;p.redraw=()=>{if(last)lineChart(p,last);};
   p.draw=spec=>{last=spec;lineChart(p,spec);};
   p.caption=text=>{if(cap.textContent!==text)cap.textContent=text;};
+  p.show=on=>{fig.hidden=!on;};
   p.stop=()=>{p.disconnect?.();p.stopTouch?.();fig.remove();};
   return p;
 }
 
-// spec: {xMax, yMax, xLabel, yLabel, series:[{values|points, color (a palette() key such as 'ink', or a CSS colour), dots}], marker:[x,y], logY:[lo,hi], yFormat}
+// spec: {xMax, yMin (optional: axis not from 0), yMax, xLabel, yLabel, series:[{values|points, color (a palette() key such as 'ink', or a CSS colour), dots}], marker:[x,y], logY:[lo,hi], yFormat}
 // values are y at x = 0, 1, 2...; points are [x, y] pairs. Samples are joined by straight segments; dots mark each sample when few.
 export function lineChart(p,spec){
   // labels keep about 11 css pixels on a narrow screen: the logical canvas is 640 wide whatever its width on the page
   const k=Math.max(1,Math.min(2.2,640/(p.cv.clientWidth||640))),g=p.g,C=palette(),W=p.W,H=p.H,L=30+22*k,R=W-14,T=8+8*k,B=H-14-18*k,fmt=spec.yFormat||(v=>String(v));
   g.save();g.setTransform(p.scale,0,0,p.scale,0,0);g.clearRect(0,0,W,H);g.fillStyle=C.surface;g.fillRect(0,0,W,H);
   const xt=niceTicks(spec.xMax||1,6),xm=xt.at(-1),log=spec.logY;
-  const yt=log?Array.from({length:Math.round(Math.log10(log[1]/log[0]))+1},(_,i)=>log[0]*10**i):niceTicks(spec.yMax||1,4),ym=yt.at(-1);
-  const X=x=>L+(R-L)*x/xm,Y=log?(v=>B-(B-T)*Math.log10(Math.max(v,log[0])/log[0])/Math.log10(log[1]/log[0])):(v=>B-(B-T)*v/ym);
+  const yt=log?Array.from({length:Math.round(Math.log10(log[1]/log[0]))+1},(_,i)=>log[0]*10**i):spec.yMin!=null?niceRange(spec.yMin,spec.yMax,4):niceTicks(spec.yMax||1,4),y0=log?0:yt[0],ym=yt.at(-1);
+  const X=x=>L+(R-L)*x/xm,Y=log?(v=>B-(B-T)*Math.log10(Math.max(v,log[0])/log[0])/Math.log10(log[1]/log[0])):(v=>B-(B-T)*(v-y0)/(ym-y0));
   g.font=`${Math.round(11*k)}px "IBM Plex Sans",system-ui,sans-serif`;g.lineWidth=1;g.strokeStyle=C.grid;g.fillStyle=C.muted;
   g.textAlign='right';g.textBaseline='middle';
   for(const v of yt){const y=Math.round(Y(v))+.5;g.beginPath();g.moveTo(L,y);g.lineTo(R,y);g.stroke();g.fillText(fmt(v),L-4*k,y);}
