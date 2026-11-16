@@ -398,7 +398,37 @@ function subjectArt(kind, cv, opts) {
   },{reduced:opts.reduced,still:1});
 }
 
-export const ART = { gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
+// Colliding blocks: a wall, a light and a heavy block, and the point turning on the circle of velocities.
+function collisionsArt(cv, opts) {
+  return runner(cv, (g, W, H, t, C) => {
+    const f = Math.min(W / 240, H / 150), x = (v) => v * f, y = (v) => v * f, base = H * 0.62;
+    g.fillStyle = C.ink; g.fillRect(x(14), base - y(60), x(7), y(60));
+    g.fillStyle = C.line; g.fillRect(x(14), base, x(210), y(4));
+    g.fillStyle = C.c[0]; g.fillRect(x(34), base - y(22), x(22), y(22));
+    g.fillStyle = C.c[1]; g.fillRect(x(110), base - y(46), x(46), y(46));
+    g.strokeStyle = C.muted; g.lineWidth = 2; g.beginPath(); g.arc(x(190), base - y(30), y(24), 0, Math.PI * 2); g.stroke();
+    const a = (t * 1.2) % (Math.PI * 2); g.fillStyle = C.neg; g.beginPath(); g.arc(x(190) + Math.cos(a) * y(24), base - y(30) + Math.sin(a) * y(24), 4 * f, 0, Math.PI * 2); g.fill();
+  }, { reduced: opts.reduced, still: 1 });
+}
+// Napkin ring: two drilled spheres of different sizes and the same height.
+function napkinArt(cv, opts) {
+  return runner(cv, (g, W, H, t, C) => {
+    const ring = (cx, rx, h, col) => { const ry = rx * 0.3; g.strokeStyle = C.ink; g.lineWidth = 2; g.fillStyle = col; g.globalAlpha = 0.85;
+      g.beginPath(); g.ellipse(cx, H / 2 + h, rx, ry, 0, 0, Math.PI); g.lineTo(cx - rx, H / 2 - h); g.ellipse(cx, H / 2 - h, rx, ry, 0, Math.PI, 0, true); g.closePath(); g.fill(); g.stroke(); g.globalAlpha = 1;
+      g.beginPath(); g.ellipse(cx, H / 2 - h, rx, ry, 0, 0, Math.PI * 2); g.stroke(); };
+    ring(W * 0.3, W * 0.2, H * 0.2, C.c[0]); ring(W * 0.72, W * 0.12, H * 0.2, C.c[1]);
+  }, { reduced: opts.reduced, still: 1 });
+}
+// Hundred boxes: a permutation drawn as cycles on a ring.
+function boxesArt(cv, opts) {
+  const cyc = [[0, 4, 9, 13], [1, 6, 2], [3, 11], [5, 15, 7, 10, 14], [8], [12]], n = 16;
+  return runner(cv, (g, W, H, t, C) => {
+    const R = Math.min(W, H) * 0.38, P = (k) => [W / 2 + R * Math.cos(-Math.PI / 2 + (k / n) * 2 * Math.PI), H / 2 + R * Math.sin(-Math.PI / 2 + (k / n) * 2 * Math.PI)];
+    cyc.forEach((c, i) => { g.strokeStyle = C.c[i % 8]; g.lineWidth = 2.5; g.beginPath(); c.forEach((k, j) => { const p = P(k); j ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]); }); g.closePath(); g.stroke(); });
+    for (let k = 0; k < n; k++) { const p = P(k); g.fillStyle = C.ink; g.beginPath(); g.arc(p[0], p[1], 3.5, 0, Math.PI * 2); g.fill(); }
+  }, { reduced: opts.reduced, still: 1 });
+}
+export const ART = { collisions: collisionsArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
   life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt, equidecomposition: equidecompositionArt,
   ...Object.fromEntries(['secretary-gallery','tank-gallery','benford-gallery','baker-gallery','birthdays-gallery','monty-gallery','fair-division-gallery','fair-goods-gallery','hairy-ball-gallery','nonorientable-surfaces-gallery','banach-tarski-gallery','double-pendulum-gallery','three-body-gallery','logistic-gallery','mirrored-rooms'].map(id => [id, (cv, o) => subjectArt(id, cv, o)])),
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };

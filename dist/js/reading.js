@@ -30,6 +30,7 @@ export function describe(hash) {
   if (page === "stories") { const s = STORIES.find((x) => x.id === id); return s && { kind: s.kind==='lesson'?["Lecture mathématique", "Mathematical reading"]:["Histoire", "Story"], title: s.title }; }
   if (page === "challenges") { const c = challenges.find((x) => x.id === id); return c && { kind: ["Défi", "Challenge"], title: c.title }; }
   if (page === "gallery") { const l = labs.find((x) => x.custom && x.id === id); return l && { kind: ["Curiosité", "Curiosity"], title: l.title }; }
+  if (page === "intuition" && !id) return { kind: ["Collection", "Collection"], title: ["Les mathématiques contre l’intuition", "Mathematics against intuition"] };
   if (page === "lab") { const l = labs.find((x) => !x.custom && x.id === id); return l && { kind: ["Laboratoire", "Laboratory"], title: l.title }; }
   return null;
 }

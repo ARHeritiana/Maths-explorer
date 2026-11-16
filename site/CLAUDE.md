@@ -64,6 +64,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `styles/ergonomics.css` | compact catalogues, grouped secondary tools, collection navigation and responsive layouts, using the existing visual tokens |
 | `styles/teacher.css` | the Espace professeur dashboard (Cahier tokens only) |
 | `styles/home.css` | compact class-to-chapter homepage, one quiet interactive figure and grouped secondary entrances |
+| `js/intuition-data.js`, `js/intuition-page.js` | the collection « Les mathématiques contre l'intuition » (`#intuition`, issue #28): `ENTRIES` (claim, fact and address of each live exhibit, experiment or challenge; existing ones are linked, never copied), `SOON`, `intuitionPage`; gallery lines in `js/gallery/gallery-intuition.js` |
 
 ## Content data
 

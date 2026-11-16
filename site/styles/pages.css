@@ -1596,3 +1596,23 @@ input[type="range"]::-moz-range-thumb { background: var(--shape); border-color: 
    that they do not jump down by the height of the exhibit (CLS). They are shown by themselves after 3 s if the mount never happens. */
 @keyframes mx-reveal { to { visibility: visible; } }
 body:has(#object-stage:empty) :is(.learning, .workbench ~ *, #app ~ footer, main ~ footer, footer) { visibility: hidden; animation: mx-reveal 0s 3s forwards; }
+
+/* collection « Les mathématiques contre l'intuition » (#intuition): cards with the claim and the fact, full text, wrapping grid */
+.intuition-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 0.9rem; margin: 1.2rem 0; }
+.intuition-card { display: flex; flex-direction: column; gap: 0.35rem; padding: 1rem 1.1rem; border: 1.5px solid var(--line-strong); border-radius: 14px; background: var(--surface); color: var(--ink); text-decoration: none; }
+.intuition-card:hover, .intuition-card:focus-visible { border-color: var(--accent); }
+.intuition-card strong { font-size: 1.1rem; }
+.intuition-card em { font-style: normal; font-weight: 700; color: var(--muted); }
+/* hundred boxes exhibit: the boxes are buttons in a grid */
+.hb-grid { display: grid; grid-template-columns: repeat(var(--cols, 10), minmax(0, 1fr)); gap: 6px; margin: 0.8rem 0; }
+.hb-grid[hidden] { display: none; }
+.hb-box { position: relative; min-height: 2.5rem; padding: 0; border: 2px solid var(--ink); border-radius: 8px; background: var(--surface); color: var(--ink); font: 700 0.85rem/1 var(--ui); cursor: pointer; transition: transform 0.12s; }
+.hb-box:hover:not(.hb-open) { transform: translateY(-2px); }
+.hb-box:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.hb-lid { position: absolute; left: 4px; top: 2px; font-size: 0.65rem; color: var(--muted); }
+.hb-num { font-size: 1.05rem; animation: hb-pop 0.22s ease-out; }
+.hb-open { background: var(--sunken); cursor: default; }
+.hb-hit { background: var(--accent-soft); border-color: var(--accent); }
+.hb-box[aria-disabled="true"]:not(.hb-open) { opacity: 0.55; cursor: not-allowed; }
+@keyframes hb-pop { from { transform: scale(0.3); opacity: 0; } 70% { transform: scale(1.25); } to { transform: scale(1); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .hb-num { animation: none; } .hb-box { transition: none; } }

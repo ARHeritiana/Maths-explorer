@@ -54,12 +54,12 @@ export const resourceCatalog = {
     {
       "name": "expertes-eleve.pdf",
       "title": "expertes-eleve.pdf",
-      "modified": "2026-11-16T14:33:39.000Z"
+      "modified": "2026-11-16T16:54:10.000Z"
     },
     {
       "name": "expertes-prof.pdf",
       "title": "expertes-prof.pdf",
-      "modified": "2026-11-16T14:33:39.000Z"
+      "modified": "2026-11-16T16:54:10.000Z"
     },
     {
       "name": "premiere-unsorted-automatismes",

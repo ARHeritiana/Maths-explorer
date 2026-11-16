@@ -43,6 +43,7 @@ export function isLiveRoute({ page, id, tab }) {
   if (['lab', 'gallery', 'topics', 'basics', 'history', 'biographies', 'stories', 'challenges'].includes(page)) return true;
   if (page === 'workshop') return id === 'quadratic';
   if (page === 'errors') return true;
+  if (page === 'intuition') return !id;
   return false;
 }
 
