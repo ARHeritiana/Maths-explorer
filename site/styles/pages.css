@@ -1596,3 +1596,10 @@ input[type="range"]::-moz-range-thumb { background: var(--shape); border-color: 
    that they do not jump down by the height of the exhibit (CLS). They are shown by themselves after 3 s if the mount never happens. */
 @keyframes mx-reveal { to { visibility: visible; } }
 body:has(#object-stage:empty) :is(.learning, .workbench ~ *, #app ~ footer, main ~ footer, footer) { visibility: hidden; animation: mx-reveal 0s 3s forwards; }
+
+/* collection « Les mathématiques contre l'intuition » (#intuition): cards with the claim and the fact, full text, wrapping grid */
+.intuition-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 0.9rem; margin: 1.2rem 0; }
+.intuition-card { display: flex; flex-direction: column; gap: 0.35rem; padding: 1rem 1.1rem; border: 1.5px solid var(--line-strong); border-radius: 14px; background: var(--surface); color: var(--ink); text-decoration: none; }
+.intuition-card:hover, .intuition-card:focus-visible { border-color: var(--accent); }
+.intuition-card strong { font-size: 1.1rem; }
+.intuition-card em { font-style: normal; font-weight: 700; color: var(--muted); }
