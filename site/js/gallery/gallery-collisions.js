@@ -64,7 +64,7 @@ export function collisions(root,opts){
       g.fillStyle=col;g.strokeStyle=C.ink;g.lineWidth=2.5;g.beginPath();g.roundRect(0,-ht,w,ht,Math.min(14,w/4));g.fill();g.stroke();
       face(w/2,-ht*.55,Math.min(w,60)/2.2,who==='A',bump,C);
       g.fillStyle=C.ink;g.font='bold 13px system-ui';g.textAlign='center';g.fillText(who==='A'?'1 kg':`${ratio().toLocaleString(lang==='fr'?'fr-FR':'en-US').replace(/ /g,' ')} kg`,w/2,-ht-6);g.restore();};
-    draw('A',pA,hA,C.c?.[0]||C.obj2,now);draw('B',pB,hB(),C.c?.[1]||C.accent,now);
+    draw('A',pA,hA,C.c?.[0]||C.obj2,now);draw('B',pB,hB(),C.c?.[1]||C.object,now);
     if(now){const bx=X0+(pA+hA)*UNIT;g.strokeStyle=C.neg;g.lineWidth=3;for(let k=0;k<6;k++){const a=-Math.PI/2+(k-2.5)*.5,r1=14,r2=14+16*(1-flash/.35);g.beginPath();g.moveTo(bx+Math.cos(a)*r1,FLOOR-30+Math.sin(a)*r1);g.lineTo(bx+Math.cos(a)*r2,FLOOR-30+Math.sin(a)*r2);g.stroke();}}
     // counter
     const cnt=ev.block+ev.wall,done=prog>=n;
@@ -76,14 +76,14 @@ export function collisions(root,opts){
     const th=theta(ratio());
     const Q=([x,y])=>[cx+R*x,cy-R*y];
     // mirrors: the vertical axis (wall) and the line at angle theta from it (blocks)
-    g.strokeStyle=C.accent;g.lineWidth=2;g.setLineDash([6,4]);g.beginPath();g.moveTo(...Q([0,-1.12]));g.lineTo(...Q([0,1.12]));g.stroke();
+    g.strokeStyle=C.object;g.lineWidth=2;g.setLineDash([6,4]);g.beginPath();g.moveTo(...Q([0,-1.12]));g.lineTo(...Q([0,1.12]));g.stroke();
     const mx=Math.sin(th),my=Math.cos(th);g.strokeStyle=C.obj2;g.beginPath();g.moveTo(...Q([-mx*1.12,-my*1.12]));g.lineTo(...Q([mx*1.12,my*1.12]));g.stroke();g.setLineDash([]);
     // trail of the point (one point per collision so far)
     g.strokeStyle=C.ink;g.lineWidth=2;g.beginPath();const step=Math.max(1,Math.floor(i/400));for(let k=0;k<=i;k+=step){const [px,py]=velocityPoint(sim.events[k],ratio());const q=Q([px,py]);k?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]);}
     {const [px,py]=velocityPoint(ev,ratio());const q=Q([px,py]);g.lineTo(q[0],q[1]);}g.stroke();
     {const [px,py]=velocityPoint(ev,ratio()),q=Q([px,py]);g.fillStyle=C.neg;g.beginPath();g.arc(q[0],q[1],6,0,TAU);g.fill();}
     g.fillStyle=C.muted;g.font='12px system-ui';g.textAlign='center';g.fillText(t('Espace des vitesses (√m·v)','Velocity space (√m·v)'),cx,cy+R+22);
-    g.textAlign='right';g.fillStyle=C.accent;g.fillText(t('mur','wall'),cx-6,cy-R-8);g.textAlign='left';g.fillStyle=C.obj2;const lab=Q([mx*1.2,my*1.2]);g.fillText(t('chocs entre blocs','block collisions'),lab[0]+4,Math.max(lab[1],cy-R-8));
+    g.textAlign='right';g.fillStyle=C.object;g.fillText(t('mur','wall'),cx-6,cy-R-8);g.textAlign='left';g.fillStyle=C.obj2;const lab=Q([mx*1.2,my*1.2]);g.fillText(t('chocs entre blocs','block collisions'),lab[0]+4,Math.max(lab[1],cy-R-8));
     // text block: angle, pi
     const tx=300;g.textAlign='left';g.fillStyle=C.ink;g.font='bold 15px system-ui';
     g.fillText(`${t('Angle entre les deux miroirs','Angle between the two mirrors')} : ${num(th*180/Math.PI,4)}°`,tx,270);

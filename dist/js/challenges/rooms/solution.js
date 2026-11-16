@@ -70,7 +70,7 @@ export const diagram = {
     // the plan fades away as the diagram appears, leaving only a trace of the rooms under it
     const planOp = 1 - 0.85 * show;
     ROOM_RECTS.forEach((r, i) => { const [x, y] = S([r.x, r.y]); el("rect", { x, y, width: r.w * K, height: r.h * K, fill: colour(i), "fill-opacity": 0.2, stroke: "var(--ink)", "stroke-width": 3.5, "stroke-linejoin": "round", opacity: planOp }, svg); });
-    DOORS.slice(shift).forEach((d) => { const h = d.n[0] === 0, [x, y] = S([d.x, d.y]), w = (h ? 30 : 10) * K, ht = (h ? 10 : 30) * K; el("rect", { x: x - w / 2, y: y - ht / 2, width: w, height: ht, rx: 2, fill: "var(--surface)", stroke: "var(--accent)", "stroke-width": 2, opacity: planOp }, svg); });
+    DOORS.slice(shift).forEach((d) => { const h = d.n[0] === 0, [x, y] = S([d.x, d.y]), w = (h ? 30 : 10) * K, ht = (h ? 10 : 30) * K; el("rect", { x: x - w / 2, y: y - ht / 2, width: w, height: ht, rx: 2, fill: "var(--surface)", stroke: "var(--object-ink)", "stroke-width": 2, opacity: planOp }, svg); });
     // one line per door
     edges.forEach((e, i) => el("path", { d: pathD(lineOf(i)), fill: "none", stroke: "var(--ink-2)", "stroke-width": 3, "stroke-linecap": "round", "stroke-linejoin": "round", opacity: show }, svg));
     // the doors of D light up two by two (in, out)
@@ -81,7 +81,7 @@ export const diagram = {
     // the points: five rooms and the outside (O's count sits below it, clear of its lines)
     [0, 1, 2, 3, 4, 5].forEach((v) => {
       const [x, y] = S(pointOf(v)), odd = step >= 1 && crit.degrees[v] % 2 === 1;
-      el("circle", { cx: x, cy: y, r: v === 5 ? 15 : 14, fill: odd ? "var(--accent-soft)" : "var(--surface)", stroke: odd ? "var(--neg)" : "var(--ink)", "stroke-width": odd ? 4 : 2.5, opacity: show }, svg);
+      el("circle", { cx: x, cy: y, r: v === 5 ? 15 : 14, fill: odd ? "var(--object-soft)" : "var(--surface)", stroke: odd ? "var(--neg)" : "var(--ink)", "stroke-width": odd ? 4 : 2.5, opacity: show }, svg);
       el("text", { x, y: y + 6, "text-anchor": "middle", "font-size": 17, "font-weight": 700, fill: "var(--ink)", opacity: show }, svg).textContent = ROOM_NAMES[v];
       if (step >= 1) { const bx = x + (v === 5 ? 0 : 16), by = y + (v === 5 ? 25 : -15); el("circle", { cx: bx, cy: by, r: 10, fill: odd ? "var(--neg)" : "var(--pos)" }, svg); el("text", { x: bx, y: by + 4.5, "text-anchor": "middle", style: "font:700 12px var(--body);fill:#fff" }, svg).textContent = crit.degrees[v]; }
     });

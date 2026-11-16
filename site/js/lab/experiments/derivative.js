@@ -47,7 +47,7 @@ export default {
       valuetext: (s, f2) => `h = ${f2.num(s.h, 3)}`,
     },
     base: {
-      kind: "handle", soft: true, color: "accent", axis: "x", grid: [0.25, 0], label: ["Point A", "Point A"],
+      kind: "handle", soft: true, color: "object", axis: "x", grid: [0.25, 0], label: ["Point A", "Point A"],
       at: (s) => [s.x, f(s.x)],
       drag: (s, wx) => ({ x: clamp(wx, -3, 3) }),
       valuetext: (s, f2) => `x = ${f2.num(s.x)}`,
@@ -70,7 +70,7 @@ export default {
       scene(s, { fmt }) {
         const m = model(s), num = fmt.num, xb = s.x + s.h, wide = Math.abs(s.h) >= 0.2;
         return {
-          curves: [{ f, color: "accent", width: 3 }],
+          curves: [{ f, color: "object", width: 3 }],
           lines: [
             { a: [s.x, m.ya], b: [s.x + 1, m.ya + m.tangent], extend: true, color: "obj3", width: 2.5, dash: [9, 5] },
             { a: [s.x, m.ya], b: [xb, m.yb], extend: true, color: "obj2", width: 2.5 },
@@ -78,7 +78,7 @@ export default {
             { a: [xb, m.ya], b: [xb, m.yb], color: "muted", width: 1.5, dash: [3, 4] },
           ],
           points: [
-            { at: [s.x, m.ya], color: "accent", r: 5, label: "A", dx: -20, dy: -12 },
+            { at: [s.x, m.ya], color: "object", r: 5, label: "A", dx: -20, dy: -12 },
             { at: [xb, m.yb], color: "obj2", r: 5, label: "B", dx: 10, dy: -12 },
           ],
           texts: wide ? [

@@ -13,15 +13,15 @@ export function activity(root, { t, q, reduced }) {
     const text = svgEl("text", { x: x + 4, y: y + 13, "text-anchor": "start", fill: "var(--muted)", "font-size": 11, "pointer-events": "none" }, g); cells.push({ g, text });
   }
   // the path is traced over the board (a line through the centres, with arrowheads), and the knight is a drawn piece that glides to its square
-  const trace = svgEl("g", { "pointer-events": "none" }, board), piece = svgEl("g", { "pointer-events": "none", fill: "var(--accent)", stroke: "var(--ink)", "stroke-width": 2.6, "stroke-linejoin": "round", "stroke-linecap": "round", visibility: "hidden" }, board);
+  const trace = svgEl("g", { "pointer-events": "none" }, board), piece = svgEl("g", { "pointer-events": "none", fill: "var(--object-ink)", stroke: "var(--ink)", "stroke-width": 2.6, "stroke-linejoin": "round", "stroke-linecap": "round", visibility: "hidden" }, board);
   piece.innerHTML = knightInner; piece.style.transition = "transform .22s ease";
   const centre = (v) => [(v % n + .5) * 44, (Math.floor(v / n) + .5) * 44];
   function drawTrace() {
     trace.replaceChildren(); if (path.length < 1) return;
     const pts = path.map(centre);
-    if (pts.length > 1) svgEl("polyline", { points: pts.map((p) => p.join(",")).join(" "), fill: "none", stroke: "var(--accent)", "stroke-width": 3.2, "stroke-linecap": "round", "stroke-linejoin": "round", opacity: .8 }, trace);
-    for (let i = 1; i < pts.length; i++) { const [a, b] = [pts[i - 1], pts[i]], m = [a[0] + (b[0] - a[0]) * .62, a[1] + (b[1] - a[1]) * .62], ang = Math.atan2(b[1] - a[1], b[0] - a[0]), k = 6; svgEl("polygon", { points: [[m[0] + Math.cos(ang) * k, m[1] + Math.sin(ang) * k], [m[0] + Math.cos(ang + 2.5) * k, m[1] + Math.sin(ang + 2.5) * k], [m[0] + Math.cos(ang - 2.5) * k, m[1] + Math.sin(ang - 2.5) * k]].map((p) => p.join(",")).join(" "), fill: "var(--accent)", stroke: "none" }, trace); }
-    pts.forEach((p, i) => svgEl("circle", { cx: p[0], cy: p[1], r: i === 0 ? 5 : 3, fill: i === 0 ? "var(--pos)" : "var(--accent)" }, trace));
+    if (pts.length > 1) svgEl("polyline", { points: pts.map((p) => p.join(",")).join(" "), fill: "none", stroke: "var(--object-ink)", "stroke-width": 3.2, "stroke-linecap": "round", "stroke-linejoin": "round", opacity: .8 }, trace);
+    for (let i = 1; i < pts.length; i++) { const [a, b] = [pts[i - 1], pts[i]], m = [a[0] + (b[0] - a[0]) * .62, a[1] + (b[1] - a[1]) * .62], ang = Math.atan2(b[1] - a[1], b[0] - a[0]), k = 6; svgEl("polygon", { points: [[m[0] + Math.cos(ang) * k, m[1] + Math.sin(ang) * k], [m[0] + Math.cos(ang + 2.5) * k, m[1] + Math.sin(ang + 2.5) * k], [m[0] + Math.cos(ang - 2.5) * k, m[1] + Math.sin(ang - 2.5) * k]].map((p) => p.join(",")).join(" "), fill: "var(--object-ink)", stroke: "none" }, trace); }
+    pts.forEach((p, i) => svgEl("circle", { cx: p[0], cy: p[1], r: i === 0 ? 5 : 3, fill: i === 0 ? "var(--pos)" : "var(--object-ink)" }, trace));
   }
   function cancel() { drag = null; }
   function draw(message = "") {

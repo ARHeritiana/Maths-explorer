@@ -20,11 +20,11 @@ export function fastestSlide(root,opts){
   let frame=0;
   const idle=idleGuard(o);
   o.onResize=()=>{dirty=true;};
-  o.animate(dt=>{if(idle(playing||dirty,JSON.stringify([handles,time,selected,visible])))return false;if(dirty)rebuild();if(playing){time+=dt;const finish=Math.max(0,...tracks.filter((_,i)=>visible[i]).map(x=>x.total));if(time>=finish){time=finish;playing=false;}}const C=background(o),colors=[C.accent,C.obj2,C.pos];
+  o.animate(dt=>{if(idle(playing||dirty,JSON.stringify([handles,time,selected,visible])))return false;if(dirty)rebuild();if(playing){time+=dt;const finish=Math.max(0,...tracks.filter((_,i)=>visible[i]).map(x=>x.total));if(time>=finish){time=finish;playing=false;}}const C=background(o),colors=[C.object,C.obj2,C.pos];
     g.font='14px system-ui';g.textAlign='left';g.fillStyle=C.muted;g.fillText(t('Départ : y = 0','Start: y = 0'),55,30);g.fillText(t('1 m vers le bas','1 m down'),65,430);
     for(let y=0;y<=3;y++)path(g,[X([0,y]),X([4,y])],{stroke:C.line,width:.6});
     tracks.forEach((tr,i)=>{if(!visible[i])return;path(g,tr.points.map(X),{stroke:colors[i],width:3});const tau=Math.min(time,tr.total),theta=tau/Math.sqrt(cy.a/9.81),pos=i===2?[cy.a*(theta-Math.sin(theta)),cy.a*(1-Math.cos(theta))]:pointAtTime(tr,tau);dot(g,X(pos),colors[i],8);g.fillStyle=colors[i];g.fillText(`${labels[i]}: ${fmt(tr.total)} s`,325,345+i*26);});
-    if(visible[0]){path(g,[[0,0],handles[0]].map(X),{stroke:C.muted,width:1});path(g,[handles[1],end].map(X),{stroke:C.muted,width:1});handles.forEach((p,i)=>dot(g,X(p),i===selected?C.ink:C.accent,8,`P${i+1}`));}dot(g,X([0,0]),C.ink,5,'A');dot(g,X(end),C.ink,5,'B');
+    if(visible[0]){path(g,[[0,0],handles[0]].map(X),{stroke:C.muted,width:1});path(g,[handles[1],end].map(X),{stroke:C.muted,width:1});handles.forEach((p,i)=>dot(g,X(p),i===selected?C.ink:C.object,8,`P${i+1}`));}dot(g,X([0,0]),C.ink,5,'A');dot(g,X(end),C.ink,5,'B');
     root.querySelector('#bs-time').value=time;root.querySelector('#bs-time-out').textContent=time.toFixed(3);
     if(++frame%12===0||!dt)o.read(`${t('Temps','Time')}: ${fmt(time)} s · ${labels[0]} ${fmt(tracks[0].total)} s · ${labels[1]} ${fmt(tracks[1].total)} s · ${labels[2]} ${fmt(cy.time)} s. ${t('Ta courbe et la droite : durées numériques.','Your curve and straight line: numerical timings.')}`);
   });return o.stop;

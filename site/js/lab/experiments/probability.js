@@ -24,7 +24,7 @@ export default {
   state: { n: 10, p: 0.3, runs: 0, seed: 2, theory: 0 },
   controls: {
     expectation: {
-      kind: "handle", color: "accent", axis: "x", label: ["Repère E = np (change p)", "Marker E = np (changes p)"],
+      kind: "handle", color: "object", axis: "x", label: ["Repère E = np (change p)", "Marker E = np (changes p)"],
       at: (s) => [s.n * s.p, 0.025],
       drag: (s, x) => ({ p: clamp(snap(x / s.n, 0.05), 0, 1) }),
       nudge: (s, dx, dy) => ({ p: clamp(snap(s.p + (dx || dy) * 0.05, 0.05), 0, 1) }),
@@ -54,8 +54,8 @@ export default {
           if (m.runs) rects.push({ x: show ? k + 0.02 : k - 0.2, w: show ? 0.34 : 0.4, h: m.freq[k], color: "obj2", alpha: 0.6 });
         }
         if (show || unlocked("expectation")) {
-          lines.push({ a: [m.mean, 0], b: [m.mean, 0.5], color: "accent", dash: [6, 5], width: 1.8 });
-          texts.push({ at: [m.mean, 0.42], text: fmt.rel("E", m.mean), color: "accent", dx: 6, size: 15 });
+          lines.push({ a: [m.mean, 0], b: [m.mean, 0.5], color: "object", dash: [6, 5], width: 1.8 });
+          texts.push({ at: [m.mean, 0.42], text: fmt.rel("E", m.mean), color: "object", dx: 6, size: 15 });
         }
         if (m.runs && (show || unlocked("expectation"))) points.push({ at: [m.observedMean, 0.015], color: "obj2", hollow: true, r: 6 });
         texts.push({ at: [-0.6, 0.485], text: fmt.t(show ? ["fréquence (plein), probabilité (contour)", "frequency (filled), probability (outline)"] : ["fréquence observée", "observed frequency"]), color: "muted", size: 15 });

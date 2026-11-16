@@ -1,4 +1,4 @@
-"""Build lecture editions as actual 16:9 Beamer (Cahier theme, content/tex/core/beamer/beamerthememx.sty) documents, never browser printouts.
+"""Build lecture editions as actual 16:9 Beamer (theme content/tex/core/beamer/beamerthememx.sty, look from content/tex/core/mx-brand.sty) documents, never browser printouts.
 
 The HTML decks retain manipulable figures. Lecture editions retain definitions, proofs, methods,
 questions and worked answers. Interactive-only scenes are deliberately omitted. Long material is
@@ -14,10 +14,10 @@ sys.path.insert(0,str(ROOT/'build'))
 from mxbuild.notation import mathjax, BRACKETS
 from mxbuild.slide_editions import languages, for_language
 DATA=ROOT/'dist/slides/data'; OUT=ROOT/'dist/slides/lectures'; SOURCE=ROOT/'content/tex/lectures'; CORE=ROOT/'content/tex/core'; BUILD=ROOT/'build/out/lectures'
-# What a published source archive carries: the theme. The fonts are shared by every deck, course and book, so they are NOT copied
+# What a published source archive carries: the theme and the brand file it reads. The fonts are shared by every deck, course and book, so they are NOT copied
 # into each archive (145 decks x 2.4 MB would triple the site): they are published once, in dist/sources/core/fonts.
-THEME_FILES=['beamer/beamerthememx.sty']
-FONTS_README=("The fonts this theme loads by file name (STIX Two text and maths, Schibsted Grotesk, Latin Modern Mono) are shared by all Maths Explorer\n"
+THEME_FILES=['beamer/beamerthememx.sty','mx-brand.sty']
+FONTS_README=("The fonts this theme loads by file name (named in core/mx-brand.sty: text, headings, STIX Two maths, Latin Modern Mono) are shared by all\n"
  "sources and published once at sources/core/fonts/ on the site (with their licences). Copy that folder to core/fonts/ next to the\n"
  "main file before compiling with XeTeX (xelatex -no-shell-escape), or set \\mxcorepath to a folder that contains fonts/.\n").encode()
 def theme_entries():
@@ -153,7 +153,7 @@ def build_one(item):
     path=work/'main.tex';path.write_text(tex)
     link=work/'core'
     if not link.is_symlink():link.symlink_to(CORE)
-    digest=hashlib.sha256((tex+'mx-lecture-v1').encode()+b''.join(p.read_bytes()for p in sorted((work/'figures').glob('*.pdf')))+b''.join(theme_entries().values())).hexdigest();cache=work/'source.sha256'
+    digest=hashlib.sha256((tex+'mx-lecture-v1').encode()+b''.join(p.read_bytes()for p in sorted((work/'figures').glob('*.pdf')))+b''.join(theme_entries().values())+b''.join(f.read_bytes() for f in sorted((CORE/'fonts').glob('*')))).hexdigest();cache=work/'source.sha256'
     out=OUT/(key+'.pdf');OUT.mkdir(parents=True,exist_ok=True)
     if not out.exists()or not cache.exists()or cache.read_text()!=digest:
         for run in range(2):

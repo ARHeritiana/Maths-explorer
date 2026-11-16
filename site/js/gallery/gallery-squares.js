@@ -38,7 +38,7 @@ export function squarePacking(root,opts){
     const C=palette(),bad=overlaps(squares),hit=new Set(bad.flat()),[fx,fy,side]=frame(squares),rec=RECORDS[n];
     g.clearRect(0,0,o.W,o.H);g.fillStyle=C.sunken;g.fillRect(-2000,-2000,4640,4440);
     if(rec){const [px,py]=toPx([fx,fy]);g.strokeStyle=C.pos;g.globalAlpha=.55;g.lineWidth=1.5;g.setLineDash([2,4]);g.strokeRect(px,py,rec.side*u,rec.side*u);g.globalAlpha=1;}
-    const [px,py]=toPx([fx,fy]);g.strokeStyle=C.accent;g.lineWidth=2;g.setLineDash([7,5]);g.strokeRect(px,py,side*u,side*u);g.setLineDash([]);
+    const [px,py]=toPx([fx,fy]);g.strokeStyle=C.object;g.lineWidth=2;g.setLineDash([7,5]);g.strokeRect(px,py,side*u,side*u);g.setLineDash([]);
     squares.forEach((sq,i)=>{const pts=vertices(sq).map(toPx);g.beginPath();pts.forEach((p,k)=>k?g.lineTo(...p):g.moveTo(...p));g.closePath();
       g.fillStyle=hit.has(i)?C.neg:C.c[i%8];g.globalAlpha=hit.has(i)?.45:.3;g.fill();g.globalAlpha=1;g.strokeStyle=hit.has(i)?C.neg:C.ink;g.lineWidth=i===selected?3:1.4;g.stroke();});
     const sel=squares[selected],h=toPx(handle(sel)),v=toPx(vertices(sel)[2]);g.strokeStyle=C.ink;g.lineWidth=1.5;g.beginPath();g.moveTo(...v);g.lineTo(...h);g.stroke();

@@ -124,7 +124,7 @@ export function createStage(host, options = {}) {
   // fontScale > 1 for projection (the slide player): every text of the canvas grows, the handles and lines do not
   stage.font = (size, weight = 400, italic = false) => `${italic ? "italic " : ""}${weight} ${Math.round(size * fontScale * 10) / 10}px ${family()}`;
   stage.sans = (size, weight = 400) => `${weight} ${Math.round(size * fontScale * 10) / 10}px ${rootStyle?.getPropertyValue("--body").trim() || "system-ui, sans-serif"}`;
-  // A colour name from the palette ("accent", "obj2", "c3" ...) or any CSS colour.
+  // A colour name from the palette ("object", "obj2", "c3" ...) or any CSS colour.
   stage.color = (name) => {
     const p = stage.pal;
     if (!name) return p.ink;

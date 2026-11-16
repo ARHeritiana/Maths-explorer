@@ -37,14 +37,14 @@ export default {
   state: { ax: -2, ay: -1, az: 0, ux: 2, uy: 1, uz: 1, d: -7, t: 0, mode: 0, hide: 0 },
   controls: {
     A: {
-      kind: "handle", color: "accent", grid: 1, label: ["Ombre de A au sol (déplace A horizontalement)", "Shadow of A on the floor (moves A horizontally)"],
+      kind: "handle", color: "object", grid: 1, label: ["Ombre de A au sol (déplace A horizontalement)", "Shadow of A on the floor (moves A horizontally)"],
       at: (s) => [s.ax, s.ay, 0],
       constraint: () => FLOOR,
       drag: (s, p) => ({ ax: clamp(rnd(p[0]), -XY, XY), ay: clamp(rnd(p[1]), -XY, XY) }),
       valuetext: (s, f) => f.pt(s.ax, s.ay, s.az),
     },
     Az: {
-      kind: "handle", color: "accent", grid: 1, label: ["Point A (change sa hauteur)", "Point A (changes its height)"],
+      kind: "handle", color: "object", grid: 1, label: ["Point A (change sa hauteur)", "Point A (changes its height)"],
       at: (s) => [s.ax, s.ay, s.az],
       constraint: (s) => ({ o: [s.ax, s.ay, 0], e1: [0, 0, 1] }),
       drag: (s, p) => ({ az: clamp(rnd(p[2]), ZMIN, ZMAX) }),
@@ -85,14 +85,14 @@ export default {
         segs.push(drop(a), drop(b));
         points.push({ at: a, color: "ink", r: 5.5, label: `A ${pt(...a)}`, dx: 12, dy: -10 });
         points.push({ at: b, color: "obj3", r: 5, hollow: true, label: s.mode === 0 ? "B" : undefined, dx: 10, dy: -8 });
-        if (s.mode === 1) points.push({ at: m.M, color: "accent", r: 6.5, label: `M(t) ${pt(...m.M)}`, dx: 12, dy: 24 });
+        if (s.mode === 1) points.push({ at: m.M, color: "object", r: 6.5, label: `M(t) ${pt(...m.M)}`, dx: 12, dy: 24 });
         if (s.mode === 0 && !s.hide && m.I) points.push({ at: m.I, color: "pos", r: 6.5, label: `I ${pt(...m.I)}`, dx: 12, dy: 24 });
         if (s.mode === 2) {
           segs.push({ a, b: m.H, color: "neg", width: 3.5 });
           points.push({ at: m.H, color: "pos", r: 6.5, label: "H", dx: 12, dy: 24 });
         }
         return {
-          faces: show && m.planePoly ? [{ pts: m.planePoly, color: "accent", alpha: 0.16, occlude: true }] : [],
+          faces: show && m.planePoly ? [{ pts: m.planePoly, color: "object", alpha: 0.16, occlude: true }] : [],
           segs, points,
         };
       },

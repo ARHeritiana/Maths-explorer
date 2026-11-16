@@ -42,11 +42,11 @@ export const diagram = {
     const route = step >= 3 && closedPath ? closedPath : path || stuck;
     const shown = step === 0 ? Math.max(1, Math.round(p * 6)) : step === 1 || (step === 3 && closedPath) ? Math.max(1, Math.round(p * route.length)) : route.length;
     const pts = route.slice(0, shown).map(ctr);
-    if (pts.length > 1) c.path("M" + pts.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join("L"), { fill: "none", stroke: "var(--accent)", "stroke-width": 1.7, "stroke-linejoin": "round", "stroke-linecap": "round", opacity: 0.75 });
-    if (step === 3 && closedPath && shown === route.length) { const [a, b] = [ctr(route.at(-1)), ctr(route[0])]; c.line(a[0], a[1], b[0], b[1], { stroke: "var(--accent)", "stroke-width": 3.2, "stroke-dasharray": "5 4" }); }
-    pts.forEach(([x, y], i) => { if (size >= 24) c.text(x, y + 4, String(i + 1), { "text-anchor": "middle", "font-size": Math.min(13, size * 0.36), "font-weight": 700, fill: "var(--ink)", stroke: "var(--surface)", "stroke-width": 3.2, "paint-order": "stroke" }); else c.circ(x, y, 2.2, { fill: "var(--accent)" }); });
+    if (pts.length > 1) c.path("M" + pts.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join("L"), { fill: "none", stroke: "var(--object-ink)", "stroke-width": 1.7, "stroke-linejoin": "round", "stroke-linecap": "round", opacity: 0.75 });
+    if (step === 3 && closedPath && shown === route.length) { const [a, b] = [ctr(route.at(-1)), ctr(route[0])]; c.line(a[0], a[1], b[0], b[1], { stroke: "var(--object-ink)", "stroke-width": 3.2, "stroke-dasharray": "5 4" }); }
+    pts.forEach(([x, y], i) => { if (size >= 24) c.text(x, y + 4, String(i + 1), { "text-anchor": "middle", "font-size": Math.min(13, size * 0.36), "font-weight": 700, fill: "var(--ink)", stroke: "var(--surface)", "stroke-width": 3.2, "paint-order": "stroke" }); else c.circ(x, y, 2.2, { fill: "var(--object-ink)" }); });
     const at = route[shown - 1]; if (at !== undefined) { const [x, y] = ctr(at); c.knight(x - size * 0.42, y - size * 0.42, size * 0.84); }
-    if (n === 3 && step >= 1) { const [x, y] = ctr(4); c.line(x - size * .3, y - size * .3, x + size * .3, y + size * .3, { stroke: "var(--accent)", "stroke-width": 4 }); c.line(x + size * .3, y - size * .3, x - size * .3, y + size * .3, { stroke: "var(--accent)", "stroke-width": 4 }); }
+    if (n === 3 && step >= 1) { const [x, y] = ctr(4); c.line(x - size * .3, y - size * .3, x + size * .3, y + size * .3, { stroke: "var(--object-ink)", "stroke-width": 4 }); c.line(x + size * .3, y - size * .3, x - size * .3, y + size * .3, { stroke: "var(--object-ink)", "stroke-width": 4 }); }
     const label = step === 3 ? (n % 2 ? `${(n * n + 1) / 2} ≠ ${(n * n - 1) / 2}` : closedPath ? c.t("circuit fermé", "closed tour") : "") : path ? `${n * n} ${c.t("cases", "squares")} · ${n * n - 1} ${c.t("coups", "moves")}` : step === 0 ? "" : c.t("bloqué", "stuck");
     c.text(310, 150, label, { fill: "var(--ink)", "font-size": 20 });
   },

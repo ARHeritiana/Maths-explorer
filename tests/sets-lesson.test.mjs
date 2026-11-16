@@ -344,10 +344,11 @@ for (const lang of LANGS) {
       assert.ok(P.messages.some(m => m && m.type === 'mx-basics-size'));
       // no external request and no dash in copy
       assert.ok(!/(src|href)=["']https?:/i.test(html), 'no external resource');
-      assert.ok(!/fonts\.googleapis|<link /.test(html));
+      assert.ok(!/fonts\.googleapis/.test(html));
+      assert.deepEqual([...html.matchAll(/<link [^>]*>/g)].map(m => m[0]), ['<link rel="stylesheet" href="basics-theme.css">'], 'only the shared lesson theme');
       assert.ok(!/[–—]/.test(html), 'no em or en dash');
       assert.ok(html.includes('prefers-reduced-motion'));
-      assert.ok(html.includes('../../fonts/') && html.includes('mx-basics-size') && html.includes('ResizeObserver'));
+      assert.ok(html.includes('basics-theme.js') && html.includes('mx-basics-size') && html.includes('ResizeObserver'));
       assert.deepEqual(P.messages.filter(m => typeof m === 'string'), [], 'no script error');
     } finally { P.close(); }
   });

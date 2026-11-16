@@ -33,14 +33,14 @@ export default {
   state: { deg: 45, assoc: "none", fn: "sin" },
   controls: {
     angle: {
-      kind: "handle", panel: "circle", color: "accent", absolute: true, label: ["Point P sur le cercle", "Point P on the circle"],
+      kind: "handle", panel: "circle", color: "object", absolute: true, label: ["Point P sur le cercle", "Point P on the circle"],
       at: (s) => { const p = T.trigValues(s.deg); return [p.cos, p.sin]; },
       drag: (s, x, y) => ({ deg: wrap(Math.round(((Math.atan2(y, x) * 180) / PI + 360) % 360 / GRID) * GRID) % 360 }),
       nudge: (s, dx, dy) => ({ deg: wrap(s.deg + GRID * (dx || dy)) }),
       valuetext: (s, f) => `${f.num(s.deg)}°`,
     },
     onGraph: {
-      kind: "handle", panel: "graph", color: "accent", axis: "x", grid: [(GRID * PI) / 180, 0], label: ["Point de la courbe", "Point of the curve"],
+      kind: "handle", panel: "graph", color: "object", axis: "x", grid: [(GRID * PI) / 180, 0], label: ["Point de la courbe", "Point of the curve"],
       at: (s) => [(s.deg * PI) / 180, fnOf(s)((s.deg * PI) / 180)],
       drag: (s, x) => ({ deg: clamp(Math.round(((x * 180) / PI) / GRID) * GRID, 0, 360) }),
       valuetext: (s, f) => `${f.num(s.deg)}°`,
@@ -71,13 +71,13 @@ export default {
         const marks = remarkableAngles.slice(0, -1).map((d) => ({ at: [Math.cos((d * PI) / 180), Math.sin((d * PI) / 180)], color: "muted", r: 2.5 }));
         const scene = {
           circles: [{ c: [0, 0], r: 1, color: "line", width: 2 }],
-          arcs: [{ c: [0, 0], from: 0, to: Math.min(s.deg, 359.9), color: "accent", pixels: 22 }],
+          arcs: [{ c: [0, 0], from: 0, to: Math.min(s.deg, 359.9), color: "object", pixels: 22 }],
           lines: [
-            { a: [0, 0], b: [p.cos, p.sin], color: "accent", width: 2.5 },
+            { a: [0, 0], b: [p.cos, p.sin], color: "object", width: 2.5 },
             { a: [0, 0], b: [p.cos, 0], color: "obj2", width: 5 },
             { a: [p.cos, 0], b: [p.cos, p.sin], color: "obj3", width: 5 },
           ],
-          points: [...marks, { at: [p.cos, p.sin], color: "accent", r: 5, label: "P", dx: 10, dy: -10 }],
+          points: [...marks, { at: [p.cos, p.sin], color: "object", r: 5, label: "P", dx: 10, dy: -10 }],
         };
         if (s.fn === "cos") {
           // cos x is read horizontally on the circle; a quarter turn about O lays it on the vertical axis, from where it is

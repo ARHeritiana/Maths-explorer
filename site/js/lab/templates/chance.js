@@ -36,7 +36,7 @@ export function mount(env) {
       row.forEach((hit, j) => {
         const x = left + j * rad * 2.6 + rad;
         g.beginPath(); g.arc(x, y, rad, 0, Math.PI * 2);
-        if (hit) { g.fillStyle = stage.color("accent"); g.fill(); } else { g.lineWidth = 1.4; g.strokeStyle = pal.muted; g.stroke(); }
+        if (hit) { g.fillStyle = stage.color("object"); g.fill(); } else { g.lineWidth = 1.4; g.strokeStyle = pal.muted; g.stroke(); }
       });
       g.fillStyle = pal.ink; g.font = stage.font(Math.max(12, Math.min(16, rowH * 0.8)), 600); g.textAlign = "left";
       g.fillText("= " + row.reduce((a, b) => a + b, 0), left + n * rad * 2.6 + 6, y + 5);

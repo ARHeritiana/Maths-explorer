@@ -212,7 +212,7 @@ test('standalone timeline provides site navigation and a shared theme',()=>{
  assert.ok(doc.querySelector('#timeline-theme'));
  assert.match(html,/localStorage\.getItem\('maths-explorer-theme'\)/);
  assert.match(html,/localStorage\.setItem\('maths-explorer-theme',theme\)/);
- const sharedStyles=readFileSync(new URL('../site/styles/explorer.css',import.meta.url),'utf8');
+ const sharedStyles=readFileSync(new URL('../site/styles/tokens.css',import.meta.url),'utf8');
  assert.match(sharedStyles,/:root\[data-theme="nuit"\]/);
  assert.match(sharedStyles,/:root\[data-theme="jour"\]/);
 });

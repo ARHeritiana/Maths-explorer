@@ -26,14 +26,14 @@ export default {
   state: { t: 0, aid: "none", hide: 0 },
   controls: {
     seat: {
-      kind: "handle", panel: "wheel", color: "accent", absolute: true, label: ["Point marqué sur la roue", "Marked point on the wheel"],
+      kind: "handle", panel: "wheel", color: "object", absolute: true, label: ["Point marqué sur la roue", "Marked point on the wheel"],
       at: (s) => { const p = seat(s.t); return [p.x, p.y]; },
       drag: (s, x, y) => ({ t: wrap(snap(F.timeAt(x, y), STEP)) }),
       nudge: (s, dx, dy) => ({ t: wrap(s.t + NUDGE * (dx || dy)) }),
       valuetext: (s, f) => `t = ${f.num(s.t)} min, h = ${f.read(height(s.t), 1)} m`,
     },
     onGraph: {
-      kind: "handle", panel: "graph", color: "accent", axis: "x", grid: [STEP, 0], label: ["Point de la courbe", "Point of the curve"],
+      kind: "handle", panel: "graph", color: "object", axis: "x", grid: [STEP, 0], label: ["Point de la courbe", "Point of the curve"],
       at: (s) => [s.t, height(s.t)],
       drag: (s, x) => ({ t: clamp(tidy(snap(x, STEP)), 0, T_MAX) }),
       nudge: (s, dx, dy) => ({ t: clamp(tidy(snap(s.t + NUDGE * (dx || dy), STEP)), 0, T_MAX) }),
@@ -63,7 +63,7 @@ export default {
         const m = model(s), p = m.seat;
         const scene = {
           circles: [{ c: [0, CENTRE], r: RADIUS, color: "line", width: 2.5 }],
-          lines: [{ a: [0, CENTRE], b: [p.x, p.y], color: "accent", width: 2 }],
+          lines: [{ a: [0, CENTRE], b: [p.x, p.y], color: "object", width: 2 }],
           points: [{ at: [0, CENTRE], color: "muted", r: 3.5 }],
         };
         if (s.aid === "level") {
@@ -91,7 +91,7 @@ export default {
             { f: height, from: 0, to: t, color: "obj2", width: 3.5, samples: 180 },
           ],
           lines: [{ a: [t, 0], b: [t, h], color: "obj2", dash: [4, 4], width: 1.5 }],
-          points: [{ at: [t, h], color: "accent", r: 5 }],
+          points: [{ at: [t, h], color: "object", r: 5 }],
         };
         if (s.aid === "level") {
           const n = 48, pts = Array.from({ length: n + 1 }, (_, i) => { const x = m.t1 + ((m.t2 - m.t1) * i) / n; return [x, height(x)]; });
@@ -106,7 +106,7 @@ export default {
     },
     links(s) {
       const p = seat(s.t);
-      return [{ from: { panel: "wheel", at: [p.x, p.y] }, to: { panel: "graph", at: [s.t, height(s.t)] }, color: "accent" }];
+      return [{ from: { panel: "wheel", at: [p.x, p.y] }, to: { panel: "graph", at: [s.t, height(s.t)] }, color: "object" }];
     },
     formula(s, { fmt }) {
       const h = height(s.t);

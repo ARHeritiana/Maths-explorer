@@ -16,7 +16,7 @@ const STYLE = `
 .nl-turns{display:flex;flex-wrap:wrap;gap:8px}
 .nl-turns button,.nl-tools button{min-height:48px;min-width:48px;font-size:1.1rem;font-weight:700;border:2px solid var(--ink)}
 .nl-tools{display:flex;flex-wrap:wrap;gap:8px}
-.nl-stage [data-nail]{cursor:grab}.nl-stage [data-nail]:focus-visible circle{stroke:var(--accent);stroke-width:.6}
+.nl-stage [data-nail]{cursor:grab}.nl-stage [data-nail]:focus-visible circle{stroke:var(--object-ink);stroke-width:.6}
 `;
 
 export function activity(root, { t, q, reduced: reducedPref }) {
@@ -49,7 +49,7 @@ export function activity(root, { t, q, reduced: reducedPref }) {
       svgEl("circle", { cx: nailX(i, n), cy: ny, r: 4.8, fill: "transparent", stroke: "transparent" }, hit);
     }
     const pts = previewPoints(gesture);
-    if (pts.length > 1) svgEl("polyline", { points: pts.map((p) => `${p.x},${p.y}`).join(" "), fill: "none", stroke: "var(--accent)", "stroke-width": 0.9, "stroke-dasharray": "1.5 1", "stroke-linecap": "round" }, svg);
+    if (pts.length > 1) svgEl("polyline", { points: pts.map((p) => `${p.x},${p.y}`).join(" "), fill: "none", stroke: "var(--object-ink)", "stroke-width": 0.9, "stroke-dasharray": "1.5 1", "stroke-linecap": "round" }, svg);
     if (focusNail !== undefined) svg.querySelector(`[data-nail="${focusNail}"]`)?.focus({ preventScroll: true });
   }
 

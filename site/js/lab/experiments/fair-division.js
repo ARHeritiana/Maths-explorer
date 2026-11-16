@@ -2,14 +2,14 @@
 import * as F from '../models/fair-division.js';
 import {clamp,snap} from '../models/num.js';
 import {cakeScene,goodsScene} from './fair-scenes.js';
-const P=(fr,en)=>[fr,en],tones=['accent','obj2','obj3'];
+const P=(fr,en)=>[fr,en],tones=['object','obj2','obj3'];
 const counter=[[2,3,1],[1,2,3],[3,1,2]],uniform=[[3,3,3],[3,3,3],[3,3,3]];
 const cakeState={kind:'cake',values:uniform,cut1:1/3,cut2:2/3,person:0,bin:1};
 const yes=(b,f)=>f.t(b?P('oui','yes'):P('non','no'));
 function editValue(s,person,bin,value){const values=s.values.map(r=>r.slice());values[person][bin]=clamp(Math.round(value),0,6);return values[person].some(v=>v>0)?{values}:null;}
 const history={title:P('Des critères de partage','Criteria for division'),story:P('Les critères comparent les lots selon les préférences de chaque personne. Ils ne comparent pas des unités de bonheur entre personnes. Référence : A. Procaccia, Cake Cutting Algorithms, sections 2 et 3 du chapitre 13.','The criteria compare bundles using each person’s own preferences. They do not compare units of happiness between people. Reference: A. Procaccia, Cake Cutting Algorithms, sections 13.2 and 13.3.'),source:'https://www.cs.cmu.edu/~arielpro/15896s15/docs/paper10.pdf'};
 const readout=(s,{fmt})=>{const m=F.model(s);return [...m.own.map((v,i)=>[P(`Valeur du lot de ${String.fromCharCode(65+i)} pour cette personne`,`Own bundle value for ${String.fromCharCode(65+i)}`),fmt.read(v,3)]),[P('Proportionnel pour tous','Proportional for everyone'),yes(m.allProportional,fmt)],[P('Sans envie','Envy-free'),yes(m.envyFree,fmt)],[P('Plus grande envie','Largest envy'),fmt.read(m.maxEnvy,3)],...m.matrix.map((r,i)=>[P(`Évaluation de A, B, C par ${String.fromCharCode(65+i)}`,`Values of A, B, C for ${String.fromCharCode(65+i)}`),r.map(v=>fmt.read(v,3)).join(' ; ')])];};
-const cut=(key,label)=>({kind:'handle',axis:'x',color:'accent',grid:.1,label,
+const cut=(key,label)=>({kind:'handle',axis:'x',color:'object',grid:.1,label,
  at:s=>[s[key]*12,9.6],drag:(s,x)=>({[key]:clamp(x/12,key==='cut1'?0:s.cut1,key==='cut1'?s.cut2:1)}),
  valuetext:(s,f)=>f.rel('x',s[key],3)});
 export default {

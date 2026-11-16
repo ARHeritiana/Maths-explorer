@@ -319,7 +319,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 | Area | State |
 |---|---|
 | Governing brief | `PROJECT_BRIEF.md` v0.5. Decisions settled, only the items in "Open for the owner" below remain. |
-| Design | Design v7 "Bac à sable" (rules and tokens in `docs/DESIGN_V7.md`; reasoning that still binds in `docs/DESIGN_V3.md`). Source in `site/styles/explorer.css` and `pages.css`, `site/js/ui.js`, `site/js/icons.js`, fonts in `site/fonts/`; `dist/` holds the assembled copies. |
+| Design | Design v7 "Bac à sable" (rules and tokens in `docs/DESIGN_V7.md`; reasoning that still binds in `docs/DESIGN_V3.md`). Tokens in `site/styles/tokens.css` (also read by the foundation lessons); PDFs and lectures from `content/tex/core/mx-brand.sty`; share image `site/share.png`. Source in `site/styles/explorer.css` and `pages.css`, `site/js/ui.js`, `site/js/icons.js`, fonts in `site/fonts/`; `dist/` holds the assembled copies. |
 | Site and content | `site/` is the hand-written web source and `dist/` the committed, assembled folder (`make site`). The catalogue comes from `content/data/manifest.json` (`make catalog`). Bilingual PDFs are compiled from the shared TeX system in `content/tex/` (seven courses migrated, 58 slide decks in `dist/slides/`); details and next steps in `docs/HANDOFF.md`. |
 | Tests | `npm test` (node tests), `npm run check` (syntax of every served script, `scripts/check-syntax.mjs`), `make check` (pipeline; the notation test needs TeX Live) and the browser suite (`npm run test:browser`) are the pre-push checks. Current results are in the latest entry of `docs/LOG.md`. |
 | Skills | `.claude/skills/slides-interactive-math/` and `slides-interactive-3d-math/` with lint script; `.claude/skills/maths-explorer-tasks/` (step-by-step recipes for recurring tasks). Navigation: `MAP.md`. |
@@ -456,7 +456,7 @@ Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympi
 1. Malagasy programme documents: the owner supplies them per chapter.
 2. Terminale STMG programme in force this year (not found on Eduscol in the 12 October check).
 3. Whether maths expertes keeps the 2019 text beyond this year.
-4. Owner review of the Cahier design.
+4. Owner review of the "Bac à sable" design applied to the course PDFs and Beamer lectures.
 5. (Settled 15 October 2026: content CC BY-NC-SA 4.0 in `LICENSE.md`, program code MIT in `LICENSE-CODE`.)
 6. Language policy is implemented: curriculum language follows the brief, neutral content follows the selected language, and resources declare available editions independently. Paired TeX translation remains a workflow, not a mandatory publication pair.
 7. English proofreading of curriculum lessons is not pending work (owner language rule of 11 November 2026: French curriculum lessons are French only). Alignment is not proofreading.

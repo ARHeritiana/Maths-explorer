@@ -24,7 +24,7 @@ export default {
   ease: ['k', 'a'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     start: {
-      kind: "handle", soft: true, color: "accent", axis: "y", grid: [1, 0.5], label: ["Point (0 ; k)", "Point (0, k)"],
+      kind: "handle", soft: true, color: "object", axis: "y", grid: [1, 0.5], label: ["Point (0 ; k)", "Point (0, k)"],
       at: (s) => [0, s.k],
       drag: (s, x, y) => ({ k: clamp(y, 0.5, KMAX) }),
       valuetext: (s, f) => `k = ${f.num(s.k)}`,
@@ -46,12 +46,12 @@ export default {
         const m = model(s), num = fmt.num, list = E.terms(s, 5);
         const dots = [-3, -2, -1].map((n) => ({ at: [n, m.f(n)], color: "muted", r: 3.5 }));
         return {
-          curves: [{ f: m.f, from: XR[0], to: XR[1], color: "accent", width: 3 }],
+          curves: [{ f: m.f, from: XR[0], to: XR[1], color: "object", width: 3 }],
           points: [
             ...dots,
-            { at: [0, s.k], color: "accent", r: 5, label: fmt.pt(0, s.k), dx: 12, dy: 22 },
+            { at: [0, s.k], color: "object", r: 5, label: fmt.pt(0, s.k), dx: 12, dy: 22 },
             { at: [1, list[1]], color: "obj2", r: 5, label: fmt.pt(1, list[1]), dx: 12, dy: 22 },
-            ...[2, 3, 4].map((n) => ({ at: [n, list[n]], color: "accent", r: 4.5 })),
+            ...[2, 3, 4].map((n) => ({ at: [n, list[n]], color: "object", r: 4.5 })),
           ],
           texts: [0, 1, 2].map((n) => ({ at: [n + 0.5, m.f(n + 0.5)], text: `× ${num(s.a)}`, color: "obj2", anchor: "center", dy: -16, size: 15 })),
         };

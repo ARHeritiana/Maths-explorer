@@ -96,7 +96,7 @@ export function equidecomposition(root,opts){
     [[CH.AP,'P'],[CH.AQ,'Q'],[CH.R,'R']].forEach(([A,label])=>{trace(A);g.stroke();const m=X([Math.min(...A.map(p=>p[0])),Math.min(...A.map(p=>p[1]))]);g.fillText(label,m[0],m[1]-5);});
     g.setLineDash([]);
     if(drawing){
-      g.strokeStyle=C.accent;g.fillStyle=C.accent;g.lineWidth=2;g.beginPath();pts.map(X).forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.stroke();
+      g.strokeStyle=C.object;g.fillStyle=C.object;g.lineWidth=2;g.beginPath();pts.map(X).forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.stroke();
       pts.map(X).forEach(p=>{g.beginPath();g.arc(p[0],p[1],4,0,2*Math.PI);g.fill();});
       o.read(msg||t(`Tu dessines ${drawing} (${pts.length} sommet${pts.length>1?'s':''}) : clique pour ajouter des sommets (au moins 3, sans auto-intersection), ou écris-les, puis ferme le polygone.`,`You are drawing ${drawing} (${pts.length} vert${pts.length===1?'ex':'ices'}): click to add vertices (at least 3, no self-intersection), or type them, then close the polygon.`));
       return;

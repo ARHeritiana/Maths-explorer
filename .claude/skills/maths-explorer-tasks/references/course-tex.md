@@ -17,6 +17,7 @@ Read `content/CLAUDE.md` first (it is short). Then:
 6. New chapter: add it to `content/data/manifest.json` (`catalog.chapters`, and `books.<course>`), with its companion
    layout record (`companion`); the build refuses incomplete entries.
 
-Look of every PDF: `content/tex/core/mx-layout.sty` (frame, palette), `mx-env.sty` (boxes), `mx-figures.sty` (figure
-palette). A core change rebuilds every course.
+Look of every PDF and lecture: `content/tex/core/mx-brand.sty` only (colours, fonts, frame, headings, box families,
+title slide); `mx-layout.sty`, `mx-env.sty` and `content/tex/core/beamer/beamerthememx.sty` are structure, the same in both sites. A core
+change rebuilds every course, annales book and lecture (`make site`).
 Then follow `release.md`.

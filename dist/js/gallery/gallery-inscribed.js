@@ -44,8 +44,8 @@ export function inscribedSquare(root,opts){
     if(stroke){g.strokeStyle=C.obj2;g.lineWidth=2.5;g.beginPath();stroke.forEach((p,i)=>i?g.lineTo(...X(p)):g.moveTo(...X(p)));g.stroke();}
     else{
       g.strokeStyle=crossing?C.neg:C.ink;g.lineWidth=2.5;g.beginPath();pts.forEach((p,i)=>i?g.lineTo(...X(p)):g.moveTo(...X(p)));g.closePath();g.stroke();
-      found.forEach((f,i)=>{if(i===pick)return;g.strokeStyle=C.accent;g.globalAlpha=.25;g.lineWidth=1.5;g.beginPath();f.corners.forEach((p,k)=>k?g.lineTo(...X(p)):g.moveTo(...X(p)));g.closePath();g.stroke();g.globalAlpha=1;});
-      const f=found[pick];if(f){g.fillStyle=C.accent;g.globalAlpha=.18;g.beginPath();f.corners.forEach((p,k)=>k?g.lineTo(...X(p)):g.moveTo(...X(p)));g.closePath();g.fill();g.globalAlpha=1;g.strokeStyle=C.accent;g.lineWidth=3;g.stroke();f.corners.forEach(p=>{g.fillStyle=C.pos;g.beginPath();g.arc(...X(p),6,0,2*Math.PI);g.fill();});}
+      found.forEach((f,i)=>{if(i===pick)return;g.strokeStyle=C.object;g.globalAlpha=.25;g.lineWidth=1.5;g.beginPath();f.corners.forEach((p,k)=>k?g.lineTo(...X(p)):g.moveTo(...X(p)));g.closePath();g.stroke();g.globalAlpha=1;});
+      const f=found[pick];if(f){g.fillStyle=C.object;g.globalAlpha=.18;g.beginPath();f.corners.forEach((p,k)=>k?g.lineTo(...X(p)):g.moveTo(...X(p)));g.closePath();g.fill();g.globalAlpha=1;g.strokeStyle=C.object;g.lineWidth=3;g.stroke();f.corners.forEach(p=>{g.fillStyle=C.pos;g.beginPath();g.arc(...X(p),6,0,2*Math.PI);g.fill();});}
       ctrl.forEach((p,i)=>{g.fillStyle=i===sel?C.obj2:C.surface;g.strokeStyle=C.ink;g.lineWidth=1.5;g.beginPath();g.arc(...X(p),i===sel?8:6,0,2*Math.PI);g.fill();g.stroke();});
     }
     const what=ratio===1?t('carré','square'):t('rectangle','rectangle'),many=found.length>1;
