@@ -106,6 +106,8 @@ import { movingSofa } from './gallery/gallery-sofa.js';
 import { inscribedSquare } from './gallery/gallery-inscribed.js';
 import { opaqueSquare } from './gallery/gallery-opaque.js';
 import { equidecomposition } from './gallery/gallery-equidecomposition.js';
+import { collisions } from './gallery/gallery-collisions.js';
+import { napkinRing } from './gallery/gallery-napkin.js';
 import { inferenceGallery } from './gallery/gallery-inference.js';
 import { fairGallery } from './gallery/gallery-fair-division.js';
 import { topologyGallery } from './gallery/gallery-topology.js';
@@ -379,7 +381,7 @@ function chaos(root, { t, reduced, lang }) {
 }
 
 export const OBJECTS = { ...Object.fromEntries(["double-pendulum", "three-body", "logistic"].map(id => [id + "-gallery", dynamicsGallery(id)])), "mirrored-rooms":illuminationGallery, gomboc, ...Object.fromEntries(["secretary", "tank", "benford", "baker", "birthdays", "monty"].map(id => [id + "-gallery", inferenceGallery(id)])), galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles, 'four-colours':fourColours, life:gameOfLife, 'square-packing':squarePacking, 'moving-sofa':movingSofa, 'inscribed-square':inscribedSquare, 'opaque-square':opaqueSquare, equidecomposition };
-Object.assign(OBJECTS, {'fair-division-gallery':fairGallery('fair-division'),'fair-goods-gallery':fairGallery('fair-goods'),'hairy-ball-gallery':topologyGallery('hairy-ball'),'nonorientable-surfaces-gallery':topologyGallery('nonorientable-surfaces'),'banach-tarski-gallery':topologyGallery('banach-tarski-model')});
+Object.assign(OBJECTS, {collisions,'napkin-ring':napkinRing,'fair-division-gallery':fairGallery('fair-division'),'fair-goods-gallery':fairGallery('fair-goods'),'hairy-ball-gallery':topologyGallery('hairy-ball'),'nonorientable-surfaces-gallery':topologyGallery('nonorientable-surfaces'),'banach-tarski-gallery':topologyGallery('banach-tarski-model')});
 export const isObject = (id) => Object.hasOwn(OBJECTS, id);
 export function mountObject(id, root, { lang, reduced, ...options }) {
   const t = (fr, en) => (lang === "fr" ? fr : en);
