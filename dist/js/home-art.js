@@ -428,7 +428,17 @@ function boxesArt(cv, opts) {
     for (let k = 0; k < n; k++) { const p = P(k); g.fillStyle = C.ink; g.beginPath(); g.arc(p[0], p[1], 3.5, 0, Math.PI * 2); g.fill(); }
   }, { reduced: opts.reduced, still: 1 });
 }
-export const ART = { collisions: collisionsArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
+// Morley's triangle: a triangle, its trisectors and the equilateral triangle they make.
+import { morley as morleyModel } from './gallery/gallery-morley-model.js';
+function morleyArt(cv, opts) {
+  return runner(cv, (g, W, H, t, C) => {
+    const k = Math.min(W, H) / 150, wob = 0.12 * Math.sin(t * 0.8), A = [14 * k, 128 * k], B = [(136 + 20 * wob) * k, 128 * k], Cc = [(48 + 40 * wob) * k, 14 * k], m = morleyModel(A, B, Cc);
+    g.strokeStyle = C.ink; g.lineWidth = 2.5; g.beginPath(); g.moveTo(...A); g.lineTo(...B); g.lineTo(...Cc); g.closePath(); g.stroke();
+    m.lines.forEach(([a, b], i) => { g.strokeStyle = C.c[(i >> 1) % 3]; g.lineWidth = 1.5; g.beginPath(); g.moveTo(...a); g.lineTo(...b); g.stroke(); });
+    g.fillStyle = C.accent; g.globalAlpha = 0.45; g.beginPath(); g.moveTo(...m.D); g.lineTo(...m.E); g.lineTo(...m.F); g.closePath(); g.fill(); g.globalAlpha = 1;
+  }, { reduced: opts.reduced, still: 1 });
+}
+export const ART = { collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
   life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt, equidecomposition: equidecompositionArt,
   ...Object.fromEntries(['secretary-gallery','tank-gallery','benford-gallery','baker-gallery','birthdays-gallery','monty-gallery','fair-division-gallery','fair-goods-gallery','hairy-ball-gallery','nonorientable-surfaces-gallery','banach-tarski-gallery','double-pendulum-gallery','three-body-gallery','logistic-gallery','mirrored-rooms'].map(id => [id, (cv, o) => subjectArt(id, cv, o)])),
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };

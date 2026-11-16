@@ -74,7 +74,7 @@ export const RELATIONS = [
   {id: 'rel.tilings-and-aperiodicity', title: ['Pavages et apériodicité', 'Tilings and aperiodicity'], synonyms: ['pavage', 'apériodique', 'monotuile', 'tuile chapeau', 'tiling', 'aperiodic', 'monotile', 'hat tile'],
    concepts: [], routes: ['#gallery/einstein', '#history/advances/hat', '#history/people/penrose', '#lab/tiles', '#gallery/equidecomposition', '#gallery/square-packing']},
   {id: 'rel.against-intuition', title: ['Les mathématiques contre l’intuition', 'Mathematics against intuition'], synonyms: ['paradoxe', 'contre-intuitif', 'surprenant', 'collisions et pi', 'anneau de serviette', 'paradox', 'counterintuitive', 'surprising', 'napkin ring'],
-   concepts: [], routes: ['#intuition', '#gallery/collisions', '#gallery/napkin-ring', '#gallery/birthdays-gallery', '#gallery/monty-gallery', '#lab/bertrand', '#lab/circle-regions', '#lab/tiles']},
+   concepts: [], routes: ['#intuition', '#gallery/collisions', '#gallery/napkin-ring', '#gallery/hundred-boxes', '#gallery/morley', '#gallery/birthdays-gallery', '#gallery/monty-gallery', '#lab/bertrand', '#lab/circle-regions', '#lab/tiles']},
   {id: 'rel.planar-shape-problems', title: ['Problèmes de formes planes', 'Planar shape problems'], synonyms: ['canapé', 'carré inscrit', 'carré opaque', 'déménageur', 'continuité', 'moving sofa', 'inscribed square', 'opaque square', 'continuity'],
    concepts: [], routes: ['#gallery/moving-sofa', '#history/advances/sofa-question', '#history/advances/gerver-sofa', '#history/advances/baek-sofa', '#gallery/inscribed-square', '#gallery/opaque-square', '#gallery/square-packing', '#gallery/equidecomposition', '#chapter/premiere-06', '#chapter/terminale-06', '#chapter/seconde-12']},
 ];
