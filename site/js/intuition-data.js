@@ -9,6 +9,9 @@ export const ENTRIES = [
   {id: 'napkin-ring', hash: '#gallery/napkin-ring', kind: 'gallery', title: P('L’anneau de serviette', 'The napkin ring'),
     claim: P('Une grosse sphère percée garde plus de matière qu’une petite, à hauteur égale.', 'A large drilled sphere keeps more material than a small one, at equal height.'),
     fact: P('Le volume est π h³ / 6, quel que soit le rayon de la sphère.', 'The volume is π h³ / 6, whatever the radius of the sphere.')},
+  {id: 'hundred-boxes', hash: '#gallery/hundred-boxes', kind: 'gallery', title: P('Les cent boîtes', 'The hundred boxes'),
+    claim: P('Sans se parler, cent prisonniers qui ouvrent des boîtes n’ont presque aucune chance.', 'Without talking, a hundred prisoners opening boxes have almost no chance.'),
+    fact: P('Une stratégie les fait gagner avec une probabilité d’environ 31 %, contre (1/2)¹⁰⁰ au hasard.', 'One strategy wins with probability about 31%, against (1/2)¹⁰⁰ at random.')},
   {id: 'birthdays', hash: '#gallery/birthdays-gallery', kind: 'gallery', title: P('Deux anniversaires le même jour', 'Two birthdays on the same day'),
     claim: P('Il faut une foule pour que deux personnes aient le même anniversaire.', 'It takes a crowd for two people to share a birthday.'),
     fact: P('23 personnes suffisent pour dépasser une chance sur deux.', '23 people are enough to pass one chance in two.')},
@@ -27,7 +30,6 @@ export const ENTRIES = [
 ];
 // Entries planned for the collection and not on the site yet (issue #28, next phases).
 export const SOON = [
-  P('Le problème des cent boîtes', 'The hundred boxes problem'),
   P('Le triangle de Morley', 'Morley’s triangle'),
   P('Le carré disparu', 'The missing square'),
 ];
