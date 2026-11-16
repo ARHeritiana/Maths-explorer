@@ -21,7 +21,7 @@ const dot=(x,y,r=3)=>`<circle class="preview-fill" cx="${round(x)}" cy="${round(
 const axis='<path class="preview-axis" d="M12 84H150M18 10V88"/>';
 const plot=(f,a,b,n=60)=>path(Array.from({length:n+1},(_,i)=>{const x=a+(b-a)*i/n;return [16+128*i/n,f(x)];}));
 const project=([x,y,z])=>[80+24*(.8*x-.6*y),51+18*(.3*x+.4*y-.86*z)];
-const aliases={'monte-carlo-pi':'monte-carlo','monte-carlo-lake':'monte-carlo','monte-carlo-integral':'monte-carlo','monte-carlo-walk':'monte-carlo','mirrored-rooms':'illumination','banach-tarski':'banach-tarski-model','galton':'probability',
+const aliases={'monte-carlo-pi':'monte-carlo','monte-carlo-lake':'monte-carlo','monte-carlo-integral':'monte-carlo','monte-carlo-walk':'monte-carlo','mirrored-rooms':'illumination','banach-tarski':'banach-tarski-model','banach-tarski-tree':'banach-tarski-model','galton':'probability',
  'premiere-02':'quadratic','scalar':'vectors','matrices':'matrix','trigonometry':'trig','trig-functions':'trig',
  'complex-algebra':'complex','complex-plane':'complex','complex-exponential':'complex','complex-rotations':'complex',
  'sequence-limits':'sequences','function-limits':'limits','differential':'exponential','exponential-function':'exponential',

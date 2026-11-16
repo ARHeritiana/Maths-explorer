@@ -58,6 +58,7 @@ export const PLACEMENTS = Object.fromEntries([
   ...LAB(['fair-division','fair-goods'], ['foundations/sets']),
   ...LAB(['hairy-ball','nonorientable-surfaces'], ['topology/surfaces']),
   ['#lab/banach-tarski-model', ['foundations/sets','geometry/space']],
+  ['#lab/banach-tarski-tree', ['foundations/sets','geometry/space']],
   ['#gallery/banach-tarski-gallery', ['foundations/sets','geometry/space']],
   ['#lab/monte-carlo-pi', ['probability/experiments','statistics/inference']],
   ['#lab/monte-carlo-lake', ['probability/experiments','statistics/inference','geometry/plane']],

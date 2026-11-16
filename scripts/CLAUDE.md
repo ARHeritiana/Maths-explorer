@@ -29,3 +29,5 @@ Builders called by `build/mxbuild` (see `pipeline.py` `COURSES`) or by `make`. E
 `build-annals-pdf.py`: native course-style annales statement/correction PDFs and their portable source bundle with precompiled vector figures; `data/annals-pdf-build.json` records source/output integrity.
 
 `annals-code.py`: protects literal listings and table-based programs before semantic HTML conversion; retains indentation, source operators, line numbers and mathematical pseudocode. Used by `build-annals.py`; `--html-only` reuses published figures, and `build-annals-pdf.py --reuse-inputs` retains PDF books only when their archived typesetting inputs and output hashes are identical.
+
+`fetch-benford-population.py`: regenerates `site/js/lab/models/benford-data.js` from the World Bank API (country populations, 2022). Needs network; run by hand, never in the build.

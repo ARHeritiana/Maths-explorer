@@ -74,3 +74,31 @@ export function surfacesModel(s){const topology=surfaceTopology(s.surface,s.cut)
 const inverse={a:'A',A:'a',b:'B',B:'b'};
 export function reduceWord(word){const out=[];for(const c of word){if(!inverse[c])throw new RangeError('Unknown letter');if(out.at(-1)===inverse[c])out.pop();else out.push(c);}return out.join('');}
 export function reducedWords(depth){if(!Number.isInteger(depth)||depth<0||depth>6)throw new RangeError('Depth');const words=[''];let layer=[''];for(let k=0;k<depth;k++){const next=[];for(const w of layer)for(const c of ['a','A','b','B'])if(!w||inverse[c]!==w.at(-1))next.push(w+c);words.push(...next);layer=next;}return words;}
+
+// The free group on a, b (A = a^-1, B = b^-1) as the tree of reduced words, and its paradoxical decomposition.
+// W(x) = reduced words starting with the letter x. Left multiplication by a sends W(A) onto the words NOT starting with a
+// (a·A·u = u), so F = W(a) ⊔ a·W(A), and likewise F = W(b) ⊔ b·W(B): four pieces, two copies. This is an identity between
+// infinite sets: on the finite tree of words up to length d the copy is short by exactly the words of length d (see treeCopy).
+export const FREE_INVERSE=inverse;
+export const startsWith=(w,x)=>w[0]===x;
+export const leftMultiply=(x,w)=>reduceWord(x+w);
+export function treeCopy(depth,gen){
+ if(!['a','b'].includes(gen))throw new RangeError('Generator');
+ const all=reducedWords(depth),inv=inverse[gen],fixed=all.filter(w=>w[0]===gen),moved=all.filter(w=>w[0]===inv).map(w=>leftMultiply(gen,w));
+ const covered=new Set([...fixed,...moved]),missing=all.filter(w=>!covered.has(w));
+ return {size:all.length,fixed:fixed.length,moved:moved.length,overlap:fixed.length+moved.length-covered.size,missing,missingCount:missing.length};
+}
+// Radial layout of the tree: the four letters leave the root at 0, 90, 180, 270 degrees; every later step turns by -60, 0 or +60.
+export function treeLayout(depth,{first=1.9,ratio=.45}={}){
+ if(!Number.isInteger(depth)||depth<0||depth>5)throw new RangeError('Depth');
+ const nodes=[{w:'',x:0,y:0,parent:-1,heading:0}],order=['a','b','A','B'],index=new Map([['',0]]);
+ for(let i=0;i<nodes.length;i++){
+  const n=nodes[i];if(n.w.length>=depth)continue;
+  const len=first*ratio**n.w.length,letters=order.filter(c=>!n.w||c!==inverse[n.w.at(-1)]);
+  letters.forEach((c,j)=>{
+   const heading=n.w?n.heading+(j-(letters.length-1)/2)*Math.PI/3:order.indexOf(c)*Math.PI/2;
+   const child={w:n.w+c,x:n.x+len*Math.cos(heading),y:n.y+len*Math.sin(heading),parent:i,heading};index.set(child.w,nodes.length);nodes.push(child);
+  });
+ }
+ return {nodes,index};
+}
