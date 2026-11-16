@@ -922,6 +922,14 @@ details.source-course[open] { padding-bottom: 16px; }
 .exhibit-presets { display:flex; flex-wrap:wrap; gap:8px; flex:1 1 100%; }
 .exhibit-presets .btn { white-space:normal; min-height:44px; }
 .exhibit-readout { min-height:3em; font-variant-numeric:tabular-nums; }
+.exhibit-metrics, .exhibit-plot { width:100%; max-width:min(100%, 880px, calc(64svh * var(--canvas-aspect, 1.5))); margin-inline:auto; box-sizing:border-box; }
+.exhibit-metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr)); margin-top:10px; margin-bottom:0; border-top:1px solid var(--line); border-left:1px solid var(--line); }
+.exhibit-metrics > div { background:var(--surface); padding:6px 10px; min-width:0; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+.exhibit-metrics dt { margin:0; font-size:.78rem; color:var(--muted); overflow-wrap:anywhere; }
+.exhibit-metrics dd { margin:2px 0 0; font:600 1.02rem var(--math, inherit); font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.exhibit-kind { font-size:.7rem; letter-spacing:.02em; text-transform:lowercase; border:1px solid var(--line-strong); padding:0 4px; white-space:nowrap; }
+.exhibit-plot { margin-top:10px; margin-bottom:0; }
+.exhibit-plot figcaption { font-size:.82rem; color:var(--muted); margin-top:4px; }
 .exhibit-notes { margin-top:14px; border-top:1px solid var(--line); padding-top:12px; }
 .exhibit-notes p { overflow-wrap:anywhere; }
 .kn-swatch { border-width:3px; min-width:64px; font-weight:700; }

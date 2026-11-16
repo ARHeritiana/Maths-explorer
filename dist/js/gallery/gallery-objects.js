@@ -4,7 +4,8 @@
 import { navigationButtons } from "../canvas-navigation.js";
 import { canvasIn, palette, loopFor } from "../object-kit.js";
 import { createFractalGL } from "../fractal-gl.js";
-import { escape, MADAGASCAR, resample, fourier, arms, heart, star, COUNT_SCHEDULE, REVOLUTION } from "./gallery-math.js";
+import { metricStrip, plotPanel } from "./gallery-panels.js";
+import { escape, MADAGASCAR, resample, fourier, errorCurve, arms, heart, star, COUNT_SCHEDULE, REVOLUTION } from "./gallery-math.js";
 
 const TAU = Math.PI * 2;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
@@ -36,9 +37,13 @@ function fourierLab(root, { t, reduced, lang }) {
     <p class="act-readout" id="fr-read" role="status" aria-live="polite"></p>`;
   const o = canvasIn(root.querySelector("#fr-stage"), 640 / 420), g = o.g, read = root.querySelector("#fr-read"), slider = root.querySelector("#fr-n"), out = root.querySelector("#fr-n-out");
   o.cv.style.cursor = "crosshair";
+  const M = metricStrip(root.querySelector("#fr-stage"), t, [{ id: "n", label: t("Cercles gardés N", "Circles kept N"), kind: "exact" },
+    { id: "err", label: t("Erreur RMS relative", "Relative RMS error"), kind: "exact" }, { id: "next", label: t("Rayon du plus grand cercle omis", "Radius of the largest circle left out"), kind: "exact" }]);
+  const P = plotPanel(M.el, t("Erreur RMS relative (échelle logarithmique) selon le nombre N de cercles, les plus grands d’abord. Les rayons décroissent vite : chaque cercle ajouté corrige moins que le précédent. Erreur exacte sur les 256 points échantillonnés, pas entre eux.", "Relative RMS error (log scale) against the number N of circles, largest first. The radii shrink fast: each added circle corrects less than the one before. Exact error on the 256 sampled points, not between them."));
+  let errs = [];
   const setShape = (name, raw) => {
     const r0 = resample(raw ?? SHAPES[name](), N), mx = r0.reduce((q, p) => q + p[0] / N, 0), my = r0.reduce((q, p) => q + p[1] / N, 0);
-    pts = r0.map((p) => [p[0] - mx, p[1] - my]); co = fourier(pts);   // centred: the constant term vanishes and every circle turns
+    pts = r0.map((p) => [p[0] - mx, p[1] - my]); co = fourier(pts); errs = errorCurve(co);   // centred: the constant term vanishes and every circle turns
     const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]), w = Math.max(...xs) - Math.min(...xs), h = Math.max(...ys) - Math.min(...ys);
     scale = Math.min((o.W - 120) / w, (o.H - 80) / h); centre = [(Math.max(...xs) + Math.min(...xs)) / 2, (Math.max(...ys) + Math.min(...ys)) / 2];
     trail = []; clock = 0; auto = false;   // the build-up plays only when asked ("Build up again")
@@ -51,7 +56,12 @@ function fourierLab(root, { t, reduced, lang }) {
   function update() {
     out.textContent = count; slider.value = count;
     if (reduced()) frame(0);
-    if (!co.length) { read.textContent = t("Dessine une forme fermée avec le doigt ou la souris.", "Draw a closed shape with your finger or the mouse."); return; }
+    if (!co.length) { read.textContent = t("Dessine une forme fermée avec le doigt ou la souris.", "Draw a closed shape with your finger or the mouse."); ["n", "err", "next"].forEach((id) => M.set(id, "–")); errs = []; P.draw({ xMax: 150, logY: [0.01, 100], series: [] }); return; }
+    const pctOf = (e) => Math.max(0.01, 100 * e), shown = errs.slice(0, Math.min(errs.length, 151)).map((e, n) => [n, pctOf(e)]).slice(1);
+    M.set("n", count); M.set("err", `${fmt(100 * errs[Math.min(count, errs.length - 1)], 2)} %`);
+    M.set("next", count < co.length ? `${fmt((100 * co[count].amp) / rms(), 2)} % ${t("de la RMS du contour", "of the outline RMS")}` : t("aucun", "none"));
+    P.draw({ xMax: shown.length, logY: [0.01, 100], yFormat: (v) => fmt(v, 2), xLabel: t("nombre de cercles N", "number of circles N"), yLabel: t("erreur (%)", "error (%)"),
+      series: [{ points: shown, color: "ink", dots: false }], marker: [Math.min(count, shown.length), pctOf(errs[Math.min(count, errs.length - 1)])] });
     const left = Math.sqrt(co.slice(count).reduce((s, c) => s + c.amp ** 2, 0)), pct = (100 * left) / rms();
     read.innerHTML = `${count} ${t(count > 1 ? "cercles" : "cercle", count > 1 ? "circles" : "circle")} · ${t("erreur RMS relative sur les échantillons", "relative sample RMS error")} : <strong>${fmt(pct)} %</strong> ${t("(normalisée par la RMS du contour centré)", "(normalised by the centred outline RMS)")}${count < co.length ? "" : ` · ${t("tous les échantillons sont reconstruits à l’arrondi près", "all samples recovered up to rounding")}`}`;
   }
@@ -122,7 +132,7 @@ function fourierLab(root, { t, reduced, lang }) {
 
   setShape("madagascar");
   if (reduced()) { count = DEFAULT_MADAGASCAR; auto = false; update(); }
-  return () => { stop(); o.navigation?.destroy(); o.stopTouch?.(); };
+  return () => { stop(); P.stop(); M.el.remove(); o.navigation?.destroy(); o.stopTouch?.(); };
 }
 
 /* =========================================================== Mandelbrot */

@@ -17,15 +17,17 @@ test('Game of Life, square packing, moving sofa, inscribed and opaque squares mo
   // the inscribed-square search runs in slices between timers: wait (up to 5 s) for the frame that shows its result
   const until=async ok=>{for(let i=0;i<100&&!(tick(),ok());i++)await new Promise(r=>setTimeout(r,50));};
   const read=root=>root.querySelector('.exhibit-readout').textContent;
+  const live=root=>root.querySelectorAll('.exhibit-metrics dd')[1].textContent;   // Game of Life: the live-cell count of the metrics strip
   const pointer=(el,type,x,y)=>el.dispatchEvent(new w.MouseEvent(type,{clientX:x,clientY:y,bubbles:true}));
   for(const lang of ['fr','en'])for(const id of ['life','square-packing']){
     const root=w.document.createElement('section');w.document.body.append(root);
     const stop=mountObject(id,root,{lang,reduced:false});tick(2);const cv=root.querySelector('canvas');assert.ok(cv);
     if(id==='life'){
+      assert.equal(root.querySelectorAll('.exhibit-metrics dd').length,6);assert.ok(root.querySelector('.exhibit-plot canvas'));assert.equal(live(root),'5');
       assert.match(read(root),/5/);root.querySelector('#lf-step').click();tick();assert.match(read(root),/1/);
-      const sel=root.querySelector('#lf-preset');sel.value='diehard';sel.dispatchEvent(new w.Event('change'));tick();assert.match(read(root),/ 7$|: 7/);
-      root.querySelector('#lf-clear').click();tick();pointer(cv,'pointerdown',320,220);pointer(cv,'pointerup',320,220);tick();assert.match(read(root),/1$/);
-      cv.dispatchEvent(new w.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}));cv.dispatchEvent(new w.KeyboardEvent('keydown',{key:' ',bubbles:true}));tick();assert.match(read(root),/2$/);
+      const sel=root.querySelector('#lf-preset');sel.value='diehard';sel.dispatchEvent(new w.Event('change'));tick();assert.equal(live(root),'7');
+      root.querySelector('#lf-clear').click();tick();pointer(cv,'pointerdown',320,220);pointer(cv,'pointerup',320,220);tick();assert.equal(live(root),'1');
+      cv.dispatchEvent(new w.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}));cv.dispatchEvent(new w.KeyboardEvent('keydown',{key:' ',bubbles:true}));tick();assert.equal(live(root),'2');
       root.querySelector('#lf-play').click();tick(3);root.querySelector('#lf-play').click();
     }
     if(id==='square-packing'){
