@@ -22,7 +22,7 @@ export const diagram = {
     if (st.answer) {
       const g = svgEl("g", { transform: "translate(86 62)" }, c.svg);
       svgEl("circle", { r: 8.5, fill: "var(--surface)", stroke: "var(--ink)", "stroke-width": 0.9 }, g);
-      const tx = svgEl("text", { "text-anchor": "middle", y: 3.2, "font-size": 9, "font-weight": 800, fill: "var(--accent)", transform: `scale(${1 + 0.15 * Math.sin(Math.PI * clamp01(p * 2))})` }, g);
+      const tx = svgEl("text", { "text-anchor": "middle", y: 3.2, "font-size": 9, "font-weight": 800, fill: "var(--object-ink)", transform: `scale(${1 + 0.15 * Math.sin(Math.PI * clamp01(p * 2))})` }, g);
       tx.textContent = String(st.answer);
     }
   },

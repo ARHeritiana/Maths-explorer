@@ -69,7 +69,7 @@ function fourierLab(root, { t, reduced, lang }) {
     const phase = reduced() ? 0 : (clock / REVOLUTION) % 1;
     g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
     if (drawing) {
-      g.strokeStyle = C.accent; g.lineWidth = 3; g.lineCap = "round"; g.beginPath(); drawing.forEach((p, i) => (i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]))); g.stroke();
+      g.strokeStyle = C.object; g.lineWidth = 3; g.lineCap = "round"; g.beginPath(); drawing.forEach((p, i) => (i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]))); g.stroke();
       g.fillStyle = C.muted; g.font = "600 13px system-ui"; g.textAlign = "center"; g.fillText(t("Lâche pour fermer la forme", "Release to close the shape"), o.W / 2, o.H - 14);
       return;
     }
@@ -78,12 +78,12 @@ function fourierLab(root, { t, reduced, lang }) {
     const chain = arms(co, phase, count), tip = chain[chain.length - 1];
     g.lineCap = "round"; g.lineJoin = "round";
     if (reduced()) {   // no motion: the whole curve of the current circles, once
-      g.strokeStyle = C.accent; g.lineWidth = 3.2; g.beginPath();
+      g.strokeStyle = C.object; g.lineWidth = 3.2; g.beginPath();
       for (let i = 0; i <= 240; i++) { const q = arms(co, i / 240, count).at(-1), [x, y] = toScreen(q[0], q[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); }
       g.stroke();
     } else {
       trail.push({ x: tip[0], y: tip[1], ts: clock, count }); while (trail.length && clock - trail[0].ts > FADE) trail.shift();
-      g.lineWidth = 3.4; g.strokeStyle = C.accent;
+      g.lineWidth = 3.4; g.strokeStyle = C.object;
       for (let i = 1; i < trail.length; i++) { if (trail[i].count !== trail[i-1].count || trail[i].ts-trail[i-1].ts > .15) continue; const k = 1 - (clock - trail[i].ts) / FADE; g.globalAlpha = Math.max(0, k) ** 1.4; const a = toScreen(trail[i - 1].x, trail[i - 1].y), b = toScreen(trail[i].x, trail[i].y); g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
       g.globalAlpha = 1;
     }

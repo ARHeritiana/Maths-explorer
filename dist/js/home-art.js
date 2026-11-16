@@ -23,7 +23,7 @@ import {flatten as roomOutline, trace as traceRoom} from './illumination-model.j
 
 const TAU = Math.PI * 2;
 const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || "#888";
-const cols = () => ({ ink: css("--ink"), muted: css("--muted"), accent: css("--accent"), line: css("--line-strong"), surface: css("--surface"), c: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => css(`--c${i}`)), neg: css("--neg") });
+const cols = () => ({ ink: css("--ink"), muted: css("--muted"), object: css("--object-ink"), objectFill: css("--object"), objectSoft: css("--object-soft"), line: css("--line-strong"), surface: css("--surface"), c: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => css(`--c${i}`)), neg: css("--neg") });
 
 // Shared frame loop: sizes the canvas to its box, runs draw(g, W, H, time, C) only while visible.
 function runner(cv, draw, { reduced = () => false, still = 6, trailing = false, pauseButton = null } = {}) {
@@ -73,7 +73,7 @@ function fourierArt(cv, opts) {
   const FADE = 1.7 * REVOLUTION; let trail = [], prevRev = -1;
   const preview = opts.home ? Array.from({ length: 321 }, (_, i) => arms(co, i / 320, 40).at(-1)) : null;
   return runner(cv, (g, W, H, t, C0) => {
-    const C = dark ? { ...C0, ink: "#ffffff", muted: "#cfd8ff", accent: "#ffd54a", line: "#9fb0ff", neg: "#ff6b9a" } : C0;
+    const C = dark ? { ...C0, ink: "#ffffff", muted: "#cfd8ff", object: "#ffd54a", line: "#9fb0ff", neg: "#ff6b9a" } : C0;
     const s = Math.min((W * 0.78) / span[0], (H * 0.9) / span[1]), P = (x, y) => [W / 2 + (x - cxy[0]) * s, H / 2 - (y - cxy[1]) * s], still = opts.reduced?.();
     // The tip traces the curve of the first `count` circles as it goes and the old trace fades slowly; a circle is added only
     // after a full turn. The shape is never drawn in advance: it appears, sharpens turn after turn, and the loop starts over.
@@ -83,13 +83,13 @@ function fourierArt(cv, opts) {
     const chain = arms(co, phase, count), tip = chain[chain.length - 1];
     g.lineCap = "round"; g.lineJoin = "round";
     if (preview) {
-      g.strokeStyle = C.accent; g.lineWidth = 2.4; g.globalAlpha = .45; g.beginPath();
+      g.strokeStyle = C.object; g.lineWidth = 2.4; g.globalAlpha = .45; g.beginPath();
       preview.forEach((q, i) => { const p = P(q[0], q[1]); i ? g.lineTo(...p) : g.moveTo(...p); }); g.stroke(); g.globalAlpha = 1;
     }
-    if (still) { g.strokeStyle = C.accent; g.lineWidth = 3.2; g.beginPath(); for (let i = 0; i <= 260; i++) { const q = arms(co, i / 260, count).at(-1), [x, y] = P(q[0], q[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke(); }
+    if (still) { g.strokeStyle = C.object; g.lineWidth = 3.2; g.beginPath(); for (let i = 0; i <= 260; i++) { const q = arms(co, i / 260, count).at(-1), [x, y] = P(q[0], q[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke(); }
     else {
       trail.push({ x: tip[0], y: tip[1], ts: t, count }); while (trail.length && t - trail[0].ts > FADE) trail.shift();
-      g.lineWidth = 3.4; g.strokeStyle = C.accent;
+      g.lineWidth = 3.4; g.strokeStyle = C.object;
       for (let i = 1; i < trail.length; i++) { if (trail[i].count !== trail[i-1].count || trail[i].ts-trail[i-1].ts > .15) continue; const k = 1 - (t - trail[i].ts) / FADE; g.globalAlpha = Math.max(0, k) ** 1.4; const a = P(trail[i - 1].x, trail[i - 1].y), b = P(trail[i].x, trail[i].y); g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
       g.globalAlpha = 1;
     }
@@ -160,8 +160,8 @@ function reuleauxArt(cv, opts) {
     const R = pts.map((p) => { const x = p[0] - c0[0], y = p[1] - c0[1]; return [x * cs - y * sn, x * sn + y * cs]; });
     const th = 0.6, u = [Math.cos(th), Math.sin(th)], d = [-u[1], u[0]], proj = R.map((p) => p[0] * u[0] + p[1] * u[1]), hmax = Math.max(...proj), hmin = Math.min(...proj);
     const X = (x, y) => [cx + x * s, cy - y * s];
-    g.fillStyle = C.accent; g.globalAlpha = 0.22; g.beginPath(); R.forEach((p, i) => { const [x, y] = X(p[0], p[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); }); g.closePath(); g.fill();
-    g.globalAlpha = 1; g.strokeStyle = C.accent; g.lineWidth = 3; g.stroke();
+    g.fillStyle = C.object; g.globalAlpha = 0.22; g.beginPath(); R.forEach((p, i) => { const [x, y] = X(p[0], p[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); }); g.closePath(); g.fill();
+    g.globalAlpha = 1; g.strokeStyle = C.object; g.lineWidth = 3; g.stroke();
     g.strokeStyle = C.ink; g.lineWidth = 1.6;
     for (const h of [hmax, hmin]) { const A = X(u[0] * h - d[0] * 0.75, u[1] * h - d[1] * 0.75), B = X(u[0] * h + d[0] * 0.75, u[1] * h + d[1] * 0.75); g.beginPath(); g.moveTo(...A); g.lineTo(...B); g.stroke(); }
     const m = X(u[0] * hmin, u[1] * hmin), n = X(u[0] * hmax, u[1] * hmax); g.setLineDash([4, 4]); g.beginPath(); g.moveTo(...m); g.lineTo(...n); g.stroke(); g.setLineDash([]);
@@ -192,16 +192,16 @@ function newGalleryArt(kind,cv,opts){
       const seeds=Array.from({length:11},(_,i)=>[W*(.1+.8*(.5+.5*Math.sin(i*2.9))),H*(.1+.8*(.5+.5*Math.cos(i*1.7)))]),cells=voronoiCells(seeds,[0,0,W,H]),col=colourWith(cells.length,neighbours(cells),4)||[];
       cells.forEach((p,i)=>draw(p,C.c[col[i]??0],true,1.4));
     }else if(kind==='fastest-slide'){
-      const map=p=>[W*.1+p[0]*W*.2,H*.17+p[1]*H*.25];draw([[0,0],[4,2]].map(map),C.c[1],false,2);draw(slide.points.map(map),C.accent,false,3);const p=map(pointAtTime(track,time%track.total));g.fillStyle=C.accent;g.beginPath();g.arc(...p,6,0,TAU);g.fill();
+      const map=p=>[W*.1+p[0]*W*.2,H*.17+p[1]*H*.25];draw([[0,0],[4,2]].map(map),C.c[1],false,2);draw(slide.points.map(map),C.object,false,3);const p=map(pointAtTime(track,time%track.total));g.fillStyle=C.object;g.beginPath();g.arc(...p,6,0,TAU);g.fill();
     }else if(kind==='soap-films'){
       const proj=(x,y,z)=>[W/2+(x*.8-y*.45)*W*.24,H/2+(x*.18+y*.32-z*.55)*H*.4];
-      for(let i=0;i<=12;i++){const u=-1+i/6;for(let k=0;k<2;k++)draw(Array.from({length:41},(_,j)=>{const v=-1+j/20,x=k?u:v,y=k?v:u;return proj(x,y,.75*x*y+.35*Math.sin(Math.PI*(x+1)/2)*Math.sin(Math.PI*(y+1)/2)*Math.exp(-time%5));}),C.accent,false,1.4);}
+      for(let i=0;i<=12;i++){const u=-1+i/6;for(let k=0;k<2;k++)draw(Array.from({length:41},(_,j)=>{const v=-1+j/20,x=k?u:v,y=k?v:u;return proj(x,y,.75*x*y+.35*Math.sin(Math.PI*(x+1)/2)*Math.sin(Math.PI*(y+1)/2)*Math.exp(-time%5));}),C.object,false,1.4);}
     }else if(kind==='knots'){
       const a=time*.22,points=Array.from({length:301},(_,i)=>{const[x,y,z]=spaceKnot('figure8',i/300),v=x*Math.sin(a)+z*Math.cos(a);return [W/2+(x*Math.cos(a)-z*Math.sin(a))*W*.22,H/2+(y*.75-v*.35)*H*.23,v];});
-      drawKnotStrand(g,points.slice(0,-1),{ink:C.accent,background:C.surface});
+      drawKnotStrand(g,points.slice(0,-1),{ink:C.object,background:C.surface});
     }else{
       const tiles=family(.5+.23*Math.sin(time*.22)),pts=tiles.flatMap(x=>x.vertices),xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),cx=(Math.min(...xs)+Math.max(...xs))/2,cy=(Math.min(...ys)+Math.max(...ys))/2,s=Math.min(W,H)*.09;
-      tiles.forEach(tile=>draw(tile.vertices.map(([x,y])=>[W/2+(x-cx)*s,H/2+(y-cy)*s]),tile.reflected?C.c[2]:C.accent,true,1));
+      tiles.forEach(tile=>draw(tile.vertices.map(([x,y])=>[W/2+(x-cx)*s,H/2+(y-cy)*s]),tile.reflected?C.c[2]:C.object,true,1));
     }
   },{reduced:opts.reduced});
 }
@@ -212,7 +212,7 @@ function lifeArt(cv, opts) {
   return runner(cv, (g, W, H, t, C) => {
     const k = Math.max(0, Math.floor(t / 0.12)) % 240; while (gens.length <= k) gens.push(step(gens.at(-1)));
     const cell = Math.max(3, Math.min(W / 64, H / 40)), ox = W / 2 - 4 * cell, oy = H * 0.32;
-    g.fillStyle = C.accent; for (const key of gens[k]) { const [x, y] = coords(key); g.fillRect(ox + x * cell, oy + y * cell, cell - 1, cell - 1); }
+    g.fillStyle = C.object; for (const key of gens[k]) { const [x, y] = coords(key); g.fillRect(ox + x * cell, oy + y * cell, cell - 1, cell - 1); }
   }, { reduced: opts.reduced, still: 6 });
 }
 // Ten unit squares in a square of side 3 + 1/sqrt 2, the turned square slowly glowing.
@@ -220,7 +220,7 @@ function squaresArt(cv, opts) {
   const sq = ten(), side = 3 + Math.SQRT1_2;
   return runner(cv, (g, W, H, t, C) => {
     const u = Math.min(W, H) * 0.8 / side, ox = (W - side * u) / 2, oy = (H - side * u) / 2;
-    g.strokeStyle = C.accent; g.lineWidth = 2; g.setLineDash([6, 4]); g.strokeRect(ox, oy, side * u, side * u); g.setLineDash([]);
+    g.strokeStyle = C.object; g.lineWidth = 2; g.setLineDash([6, 4]); g.strokeRect(ox, oy, side * u, side * u); g.setLineDash([]);
     sq.forEach((q, i) => { const p = vertices(q).map(([x, y]) => [ox + x * u, oy + y * u]); g.beginPath(); p.forEach((v, j) => j ? g.lineTo(...v) : g.moveTo(...v)); g.closePath();
       g.globalAlpha = q.a ? 0.45 + 0.35 * Math.sin(t * 2) : 0.3; g.fillStyle = C.c[i % 8]; g.fill(); g.globalAlpha = 1; g.strokeStyle = C.ink; g.lineWidth = 1.2; g.stroke(); });
   }, { reduced: opts.reduced, still: 0.8 });
@@ -232,7 +232,7 @@ function sofaArt(cv, opts) {
     const u = Math.min(W / 6.2, H / 4.6), X = (x) => W * 0.64 + u * x, Y = (y) => H * 0.18 + u * (1 - y), s = 1.5 + 1.5 * Math.sin(t * 0.6);
     g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.moveTo(0, Y(1)); g.lineTo(X(1), Y(1)); g.lineTo(X(1), H); g.moveTo(0, Y(0)); g.lineTo(X(0), Y(0)); g.lineTo(X(0), H); g.stroke();
     const pts = place(poly, hammersleyPose(HAMMERSLEY_R, s, 1.5)); g.beginPath(); pts.forEach(([x, y], i) => i ? g.lineTo(X(x), Y(y)) : g.moveTo(X(x), Y(y))); g.closePath();
-    g.globalAlpha = 0.4; g.fillStyle = C.accent; g.fill(); g.globalAlpha = 1; g.strokeStyle = C.accent; g.stroke();
+    g.globalAlpha = 0.4; g.fillStyle = C.object; g.fill(); g.globalAlpha = 1; g.strokeStyle = C.object; g.stroke();
   }, { reduced: opts.reduced, still: 2.6 });
 }
 // A closed curve and the square found on it (computed once).
@@ -241,7 +241,7 @@ function inscribedArt(cv, opts) {
   return runner(cv, (g, W, H, t, C) => {
     const u = Math.min(W / 10.4, H / 7.4), X = ([x, y]) => [(W - 10 * u) / 2 + u * x, (H - 7 * u) / 2 + u * y];
     g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); pts.forEach((p, i) => i ? g.lineTo(...X(p)) : g.moveTo(...X(p))); g.closePath(); g.stroke();
-    if (sq) { g.strokeStyle = C.accent; g.lineWidth = 2.5; g.globalAlpha = 0.55 + 0.45 * Math.sin(t * 2); g.beginPath(); sq.corners.forEach((p, i) => i ? g.lineTo(...X(p)) : g.moveTo(...X(p))); g.closePath(); g.stroke(); g.globalAlpha = 1; sq.corners.forEach((p) => { g.fillStyle = C.accent; g.beginPath(); g.arc(...X(p), 4, 0, 2 * Math.PI); g.fill(); }); }
+    if (sq) { g.strokeStyle = C.object; g.lineWidth = 2.5; g.globalAlpha = 0.55 + 0.45 * Math.sin(t * 2); g.beginPath(); sq.corners.forEach((p, i) => i ? g.lineTo(...X(p)) : g.moveTo(...X(p))); g.closePath(); g.stroke(); g.globalAlpha = 1; sq.corners.forEach((p) => { g.fillStyle = C.object; g.beginPath(); g.arc(...X(p), 4, 0, 2 * Math.PI); g.fill(); }); }
   }, { reduced: opts.reduced, still: 0.8 });
 }
 // The shortest known barrier of the square in a turning beam of light.
@@ -251,7 +251,7 @@ function opaqueArt(cv, opts) {
     const u = Math.min(W, H) * 0.55, X = ([x, y]) => [W / 2 + u * (x - 0.5), H / 2 - u * (y - 0.5)], th = (t * 0.3) % Math.PI, nx = -Math.sin(th), ny = Math.cos(th), cs = [[0, 0], [1, 0], [1, 1], [0, 1]].map(([x, y]) => x * nx + y * ny), lo = Math.min(...cs), hi = Math.max(...cs);
     for (let k = 0; k <= 24; k++) { const c = lo + (hi - lo) * (k + 0.5) / 25, [a, b] = lineAt(th, c, 2); g.strokeStyle = C.muted; g.globalAlpha = 0.25; g.beginPath(); g.moveTo(...X(a)); g.lineTo(...X(b)); g.stroke(); }
     g.globalAlpha = 1; g.strokeStyle = C.line; g.setLineDash([4, 4]); g.strokeRect(...X([0, 1]), u, u); g.setLineDash([]);
-    g.strokeStyle = C.accent; g.lineWidth = 4; g.lineCap = 'round'; segs.forEach(([a, b]) => { g.beginPath(); g.moveTo(...X(a)); g.lineTo(...X(b)); g.stroke(); });
+    g.strokeStyle = C.object; g.lineWidth = 4; g.lineCap = 'round'; segs.forEach(([a, b]) => { g.beginPath(); g.moveTo(...X(a)); g.lineTo(...X(b)); g.stroke(); });
   }, { reduced: opts.reduced, still: 1 });
 }
 // Hexagon cut into pieces that slide into a square and back (computed once).
@@ -302,27 +302,27 @@ function penrosePreview() {
 function subjectArt(kind, cv, opts) {
   return runner(cv,(g,W,H,t,C)=>{
     const s=Math.min(W/240,H/140), X=x=>W/2+(x-120)*s,Y=y=>H/2+(y-70)*s;
-    const ink=C.ink, accent=C.accent, blue=C.c[0],gold=C.c[1];
+    const ink=C.ink, obj=C.object, blue=C.c[0],gold=C.c[1];
     g.lineCap='round';g.lineJoin='round';
     const path=(pts,color=ink,width=2,fill=null)=>{g.beginPath();pts.forEach(([x,y],i)=>i?g.lineTo(X(x),Y(y)):g.moveTo(X(x),Y(y)));if(fill){g.closePath();g.fillStyle=fill;g.fill();}g.strokeStyle=color;g.lineWidth=width*s;g.stroke();};
     const ellipse=(x,y,rx,ry,fill,color=ink,width=1.5)=>{g.beginPath();g.ellipse(X(x),Y(y),rx*s,ry*s,0,0,TAU);if(fill){g.fillStyle=fill;g.fill();}if(color){g.strokeStyle=color;g.lineWidth=width*s;g.stroke();}};
     const rect=(x,y,w,h,fill,color=ink)=>{path([[x,y],[x+w,y],[x+w,y+h],[x,y+h]],color,1.5,fill);};
     const text=(v,x,y,size=13,color=ink)=>{g.font=`600 ${size*s}px sans-serif`;g.textAlign='center';g.textBaseline='middle';g.fillStyle=color;g.fillText(v,X(x),Y(y));};
-    const arrow=(a,b,color=accent)=>{path([a,b],color,2);const angle=Math.atan2(b[1]-a[1],b[0]-a[0]);path([[b[0]-7*Math.cos(angle-.5),b[1]-7*Math.sin(angle-.5)],b,[b[0]-7*Math.cos(angle+.5),b[1]-7*Math.sin(angle+.5)]],color,2);};
+    const arrow=(a,b,color=obj)=>{path([a,b],color,2);const angle=Math.atan2(b[1]-a[1],b[0]-a[0]);path([[b[0]-7*Math.cos(angle-.5),b[1]-7*Math.sin(angle-.5)],b,[b[0]-7*Math.cos(angle+.5),b[1]-7*Math.sin(angle+.5)]],color,2);};
     const floor=()=>{g.globalAlpha=.13;ellipse(120,117,88,5,ink,null);g.globalAlpha=1;};
     const sphere=(x,y,r,color)=>{const grad=g.createRadialGradient(X(x-r*.35),Y(y-r*.4),r*.05*s,X(x),Y(y),r*s);grad.addColorStop(0,C.surface);grad.addColorStop(.35,color);grad.addColorStop(1,ink);ellipse(x,y,r,r,grad,null);};
     if(kind==='monty-gallery'){
       floor();[34,99,164].forEach((x,i)=>{rect(x,26,43,85,C.surface);rect(x+4,30,35,77,i===1?gold:blue);ellipse(x+31,71,2,2,ink,null);text(String(i+1),x+21,43,10);});
       // Open the middle door to reveal a little car.
       rect(103,55,35,52,C.surface);path([[104,55],[117,61],[117,107],[104,107]],ink,1.5,gold);
-      path([[122,81],[125,73],[133,73],[136,81]],ink,1.5,accent);rect(120,81,18,8,accent);ellipse(124,90,2.5,2.5,ink,null);ellipse(134,90,2.5,2.5,ink,null);
+      path([[122,81],[125,73],[133,73],[136,81]],ink,1.5,obj);rect(120,81,18,8,obj);ellipse(124,90,2.5,2.5,ink,null);ellipse(134,90,2.5,2.5,ink,null);
       arrow([55,19],[183,19]);
     }else if(kind==='birthdays-gallery'){
       // A crowd with one matching pair; the card title supplies the context.
       for(let row=0;row<3;row++)for(let col=0;col<5;col++){
         const x=42+col*39,y=23+row*38;
         const matched=(row===0&&col===1)||(row===2&&col===3);
-        const colour=matched?accent:ink;
+        const colour=matched?obj:ink;
         g.globalAlpha=matched?1:.24;
         ellipse(x,y,6,6,colour,null);
         g.beginPath();g.moveTo(X(x-11),Y(y+26));g.lineTo(X(x-11),Y(y+16));
@@ -331,14 +331,14 @@ function subjectArt(kind, cv, opts) {
       }
       g.globalAlpha=1;
     }else if(kind==='benford-gallery'){
-      path([[29,112],[215,112]],C.line,1);for(let i=1;i<=9;i++){let h=83*Math.log10(1+1/i)/Math.log10(2);rect(25+i*19,111-h,12,h,i===1?accent:blue,null);text(String(i),31+i*19,124,10);}
-      text('30.1%',50,17,12,accent);
+      path([[29,112],[215,112]],C.line,1);for(let i=1;i<=9;i++){let h=83*Math.log10(1+1/i)/Math.log10(2);rect(25+i*19,111-h,12,h,i===1?obj:blue,null);text(String(i),31+i*19,124,10);}
+      text('30.1%',50,17,12,obj);
     }else if(kind==='secretary-gallery'){
-      const heights=[20,40,27,54,38,71];floor();for(let i=0;i<6;i++){const x=37+i*32,h=heights[i];rect(x-9,109-h,18,h,i===5?accent:C.surface);ellipse(x,99-h,6,6,i===5?accent:blue,null);}
+      const heights=[20,40,27,54,38,71];floor();for(let i=0;i<6;i++){const x=37+i*32,h=heights[i];rect(x-9,109-h,18,h,i===5?obj:C.surface);ellipse(x,99-h,6,6,i===5?obj:blue,null);}
       g.setLineDash([4*s,4*s]);path([[128,21],[128,115]],C.line,1);g.setLineDash([]);text('1/e',90,22,17);arrow([149,28],[197,28]);
     }else if(kind==='tank-gallery'){
       floor();[43,91,139,187].forEach((x,i)=>{path([[x-15,49],[x+17,49],[x+20,85],[x-18,85]],ink,1.5,i===2?gold:C.surface);ellipse(x-17,62,2,2,ink,null);text(['12','38','68','?'][i],x,69,16);});
-      path([[27,37],[27,28],[206,28],[206,37]],C.line,1.5);text('N?',120,111,18,accent);
+      path([[27,37],[27,28],[206,28],[206,37]],C.line,1.5);text('N?',120,111,18,obj);
     }else if(kind==='baker-gallery'){
       floor();
       // Traditional balance, with a loaf on the left and a cast-metal mass on the right.
@@ -359,25 +359,25 @@ function subjectArt(kind, cv, opts) {
       path([[165,72],[185,72],[181,76],[169,76]],ink,.8,C.surface);
       text('1 kg',175,84,9,C.surface);
     }else if(kind==='fair-division-gallery'){
-      floor();ellipse(120,95,52,16,gold);rect(68,70,104,24,gold,null);ellipse(120,70,52,17,C.surface);for(const a of [-Math.PI/2,Math.PI/6,5*Math.PI/6])path([[120,70],[120+51*Math.cos(a),70+17*Math.sin(a)]],accent,2);[[95,63],[145,67],[117,79]].forEach(([x,y])=>ellipse(x,y,4,2.5,accent,null));
+      floor();ellipse(120,95,52,16,gold);rect(68,70,104,24,gold,null);ellipse(120,70,52,17,C.surface);for(const a of [-Math.PI/2,Math.PI/6,5*Math.PI/6])path([[120,70],[120+51*Math.cos(a),70+17*Math.sin(a)]],obj,2);[[95,63],[145,67],[117,79]].forEach(([x,y])=>ellipse(x,y,4,2.5,obj,null));
     }else if(kind==='fair-goods-gallery'){
-      floor();[58,182].forEach((x,i)=>{ellipse(x,37,10,10,i?accent:blue,null);path([[x-18,68],[x-12,53],[x+12,53],[x+18,68]],ink,1.5,C.surface);});
+      floor();[58,182].forEach((x,i)=>{ellipse(x,37,10,10,i?obj:blue,null);path([[x-18,68],[x-12,53],[x+12,53],[x+18,68]],ink,1.5,C.surface);});
       path([[38,96],[79,96],[73,113],[43,113],[38,96]],ink,1.5);path([[161,96],[202,96],[196,113],[166,113],[161,96]],ink,1.5);
       rect(105,55,27,30,gold);path([[118,55],[118,85],[105,65],[132,65]],ink,1);arrow([103,91],[77,91],blue);arrow([139,91],[164,91]);
     }else if(kind==='hairy-ball-gallery'){
-      sphere(120,70,47,blue);for(let j=-2;j<=2;j++)for(let i=-2;i<=2;i++){const r=Math.hypot(i,j);if(r<.5||r>2.6)continue;const x=120+i*15,y=70+j*15,a=Math.atan2(j,i)+Math.PI/2;arrow([x,y],[x+8*Math.cos(a),y+8*Math.sin(a)],C.surface);}ellipse(120,70,4,4,accent,C.surface);
+      sphere(120,70,47,blue);for(let j=-2;j<=2;j++)for(let i=-2;i<=2;i++){const r=Math.hypot(i,j);if(r<.5||r>2.6)continue;const x=120+i*15,y=70+j*15,a=Math.atan2(j,i)+Math.PI/2;arrow([x,y],[x+8*Math.cos(a),y+8*Math.sin(a)],C.surface);}ellipse(120,70,4,4,obj,C.surface);
     }else if(kind==='nonorientable-surfaces-gallery'){
       // A half-twisted ribbon: draw its rear half before its front half.
       const strips=[];for(let i=0;i<120;i++){let a=i*TAU/120,b=(i+1)*TAU/120;const point=(u,v)=>{const r=49+v*Math.cos(u/2);const q=cam3Project(.25,.5,r*Math.cos(u),r*Math.sin(u),v*Math.sin(u/2));return [120+q.u*1.3,70-q.v*1.3];};strips.push({d:Math.sin(a),p:[point(a,-12),point(b,-12),point(b,12),point(a,12)],c:Math.cos(a/2)>0?blue:gold});}strips.sort((a,b)=>a.d-b.d);for(const q of strips)path(q.p,q.c,1,q.c);
     }else if(kind==='banach-tarski-gallery'){
-      sphere(54,72,28,blue);sphere(174,45,25,blue);sphere(174,102,25,blue);arrow([91,72],[132,72]);path([[132,72],[140,45]],accent);path([[132,72],[140,102]],accent);
+      sphere(54,72,28,blue);sphere(174,45,25,blue);sphere(174,102,25,blue);arrow([91,72],[132,72]);path([[132,72],[140,45]],obj);path([[132,72],[140,102]],obj);
     }else if(kind==='double-pendulum-gallery'){
-      floor();const draw=(a,b,color)=>{const p=[113+39*Math.sin(a),23+39*Math.cos(a)],q=[p[0]+43*Math.sin(b),p[1]+43*Math.cos(b)];path([[113,23],p,q],color,2.5);ellipse(...p,6,6,color,null);ellipse(...q,8,8,color,null);};g.globalAlpha=.2;draw(.75,-.2,blue);draw(.9,.05,blue);g.globalAlpha=1;draw(.65+.1*Math.sin(t*.5),-.6+.15*Math.sin(t*.7),accent);path([[94,21],[132,21]],ink,3);
+      floor();const draw=(a,b,color)=>{const p=[113+39*Math.sin(a),23+39*Math.cos(a)],q=[p[0]+43*Math.sin(b),p[1]+43*Math.cos(b)];path([[113,23],p,q],color,2.5);ellipse(...p,6,6,color,null);ellipse(...q,8,8,color,null);};g.globalAlpha=.2;draw(.75,-.2,blue);draw(.9,.05,blue);g.globalAlpha=1;draw(.65+.1*Math.sin(t*.5),-.6+.15*Math.sin(t*.7),obj);path([[94,21],[132,21]],ink,3);
     }else if(kind==='three-body-gallery'){
-      const orbit=(phase,n=100)=>Array.from({length:n+1},(_,i)=>{let a=i*TAU/n+phase;return [120+75*Math.sin(a),70+34*Math.sin(2*a)];});path(orbit(0),C.line,1.4);for(let i=0;i<3;i++){let a=t*.25+i*TAU/3;sphere(120+75*Math.sin(a),70+34*Math.sin(2*a),7+i*2,[blue,gold,accent][i]);}
+      const orbit=(phase,n=100)=>Array.from({length:n+1},(_,i)=>{let a=i*TAU/n+phase;return [120+75*Math.sin(a),70+34*Math.sin(2*a)];});path(orbit(0),C.line,1.4);for(let i=0;i<3;i++){let a=t*.25+i*TAU/3;sphere(120+75*Math.sin(a),70+34*Math.sin(2*a),7+i*2,[blue,gold,obj][i]);}
     }else if(kind==='logistic-gallery'){
       // Bifurcation diagram of x -> r*x*(1-x), computed, not decorative noise.
-      g.fillStyle=accent;for(let i=0;i<160;i++){let r=2.8+1.2*i/159,x=.37;for(let k=0;k<180;k++)x=r*x*(1-x);for(let k=0;k<32;k++){x=r*x*(1-x);g.fillRect(X(30+i*1.13),Y(114-x*90),s,s);}}path([[27,20],[27,117],[216,117]],C.line,1);
+      g.fillStyle=obj;for(let i=0;i<160;i++){let r=2.8+1.2*i/159,x=.37;for(let k=0;k<180;k++)x=r*x*(1-x);for(let k=0;k<32;k++){x=r*x*(1-x);g.fillRect(X(30+i*1.13),Y(114-x*90),s,s);}}path([[27,20],[27,117],[216,117]],C.line,1);
     }else if(kind==='mirrored-rooms'){
       const room=penrosePreview(), map=([x,y])=>[120+x*17,70+y*12];
       const outline=room.outline.map(map);

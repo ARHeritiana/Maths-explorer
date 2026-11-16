@@ -67,9 +67,9 @@ const BUILD = {
       const left = Mo.average < S.target;   // the two labels sit on opposite sides of their lines
       txt(g, t(['cible ', 'target ']) + S.target + ' g', px(W, S.target) + (left ? 5 : -5), T - 6, { size: 12, color: p.ink, weight: 700, align: left ? 'left' : 'right' });
       const mx = px(W, Mo.average);
-      line(g, mx, T - 2, mx, B, p.accent, 2.5);
-      txt(g, 'x̄ = ' + fmt.num(Mo.average, 1) + ' g', mx + (left ? -5 : 5), T - 6, { size: 12, color: p.accent, weight: 700, align: left ? 'right' : 'left' });
-      const c0 = px(W, Mo.ci[0]), c1 = px(W, Mo.ci[1]); line(g, c0, B - 8, c1, B - 8, p.accent, 3); line(g, c0, B - 14, c0, B - 2, p.accent, 2); line(g, c1, B - 14, c1, B - 2, p.accent, 2);
+      line(g, mx, T - 2, mx, B, p.object, 2.5);
+      txt(g, 'x̄ = ' + fmt.num(Mo.average, 1) + ' g', mx + (left ? -5 : 5), T - 6, { size: 12, color: p.object, weight: 700, align: left ? 'right' : 'left' });
+      const c0 = px(W, Mo.ci[0]), c1 = px(W, Mo.ci[1]); line(g, c0, B - 8, c1, B - 8, p.object, 3); line(g, c0, B - 14, c0, B - 2, p.object, 2); line(g, c1, B - 14, c1, B - 2, p.object, 2);
       // the true production mean: a handle to drag
       const hx = px(W, S.mean); g.fillStyle = p.ink; g.beginPath(); g.moveTo(hx, B + 20); g.lineTo(hx - 7, B + 31); g.lineTo(hx + 7, B + 31); g.closePath(); g.fill();
       txt(g, 'μ = ' + S.mean, hx, B + 45, { size: 11, color: p.ink, align: 'center', weight: 700 });
@@ -77,7 +77,7 @@ const BUILD = {
     slider(hist, { min: 940, max: 1020, get: () => getState().mean, hit: ([x, y]) => Math.abs(x - px(hist.W, getState().mean)) < 30 && y > 245, set: (pt, v) => setState({ mean: Math.round(v ?? clamp(lo + (pt[0] - L) / (hist.W - L - 14) * (hi - lo), 940, 1020)) }), text: () => t(['moyenne vraie ', 'true mean ']) + getState().mean + ' g' });
     hist.caption.append(' ', Object.assign(document.createElement('small'), { textContent: t(['(pointillés : pains fabriqués ; glisse le triangle μ)', '(dashed: loaves baked; drag the μ triangle)']) }));
     const strips = panel(wrap, 480, 290, t(['Même nombre de pains : au hasard, ou le plus lourd de cinq', 'Same number of loaves: random, or the heaviest of five']), (g, W, H, p) => {
-      const rows = [['random', t(['Pains au hasard', 'Random loaves']), clouds.random, clouds.meanRandom, p.ink], ['selected', t(['Le plus lourd de cinq', 'Heaviest of five']), clouds.selected, clouds.meanSelected, p.accent]];
+      const rows = [['random', t(['Pains au hasard', 'Random loaves']), clouds.random, clouds.meanRandom, p.ink], ['selected', t(['Le plus lourd de cinq', 'Heaviest of five']), clouds.selected, clouds.meanSelected, p.object]];
       rows.forEach(([id, name, xs, mean, col], r) => {
         const top = 34 + r * 112, active = S.mode === id;
         alpha(g, active ? 1 : .55, () => {
@@ -91,7 +91,7 @@ const BUILD = {
       });
       for (const [v, col, dash, lbl] of [[S.mean, p.muted, [3, 3], 'μ'], [S.target, p.ink, null, '']]) { line(g, px(W, v), 22, px(W, v), H - 30, col, 1.2, dash); if (lbl) txt(g, lbl, px(W, v), 14, { size: 11, color: col, align: 'center' }); }
       for (let v = lo; v <= hi; v += 20) txt(g, String(v), px(W, v), H - 12, { size: 11, color: p.muted, align: 'center' });
-      txt(g, t(['décalage dû au tri : ', 'shift caused by selection: ']) + (clouds.shift >= 0 ? '+' : '') + fmt.num(clouds.shift, 1) + ' g', W - 14, 14, { size: 12, color: p.accent, align: 'right', weight: 700 });
+      txt(g, t(['décalage dû au tri : ', 'shift caused by selection: ']) + (clouds.shift >= 0 ? '+' : '') + fmt.num(clouds.shift, 1) + ' g', W - 14, 14, { size: 12, color: p.object, align: 'right', weight: 700 });
     }, { label: '' });
     strips.cv.addEventListener('pointerdown', e => { const [, y] = strips.point(e); setState({ mode: y < 146 ? 'random' : 'selected' }); });
     strips.caption.append(' ', Object.assign(document.createElement('small'), { textContent: t(['(touche une rangée pour l’adopter)', '(tap a row to use it)']) }));
@@ -123,15 +123,15 @@ const BUILD = {
       if (S.k <= 8) Mo.sample.forEach(v => v !== Mo.m && txt(g, String(v), x(v), Y - 31, { size: 10, color: p.muted, align: 'center' }));
       txt(g, 'M = ' + Mo.m, x(Mo.m), Y - 33, { size: 12, color: p.ink, weight: 700, align: 'center' });
       // the corrected estimate and its one-sided upper bound
-      const ex = x(shownEst); g.fillStyle = p.accent; g.beginPath(); g.moveTo(ex, Y - 62); g.lineTo(ex + 8, Y - 72); g.lineTo(ex, Y - 82); g.lineTo(ex - 8, Y - 72); g.closePath(); g.fill();
-      line(g, ex, Y - 62, ex, Y, p.accent, 1.5, [3, 3]);
-      txt(g, 'N̂ = ' + fmt.num(Mo.estimate, 1), ex, Y - 88, { size: 12, color: p.accent, weight: 700, align: 'center' });
+      const ex = x(shownEst); g.fillStyle = p.object; g.beginPath(); g.moveTo(ex, Y - 62); g.lineTo(ex + 8, Y - 72); g.lineTo(ex, Y - 82); g.lineTo(ex - 8, Y - 72); g.closePath(); g.fill();
+      line(g, ex, Y - 62, ex, Y, p.object, 1.5, [3, 3]);
+      txt(g, 'N̂ = ' + fmt.num(Mo.estimate, 1), ex, Y - 88, { size: 12, color: p.object, weight: 700, align: 'center' });
       line(g, x(Mo.m), Y + 38, x(Mo.upper), Y + 38, p.ink, 2); line(g, x(Mo.m), Y + 32, x(Mo.m), Y + 44, p.ink, 2); line(g, x(Mo.upper), Y + 32, x(Mo.upper), Y + 44, p.ink, 2);
       txt(g, t(['borne à 95 % : ', '95% bound: ']) + Mo.upper, x(Mo.upper), Y + 58, { size: 11, color: p.ink, align: x(Mo.upper) > W - 110 ? 'right' : 'left' });
       // your guess: drag the handle
       const gx = x(S.guess); g.strokeStyle = p.ink; g.lineWidth = 2; g.fillStyle = p.surface; g.beginPath(); g.moveTo(gx, Y + 70); g.lineTo(gx - 8, Y + 86); g.lineTo(gx + 8, Y + 86); g.closePath(); g.fill(); g.stroke();
       txt(g, t(['ton estimation ', 'your guess ']) + S.guess, gx, Y + 102, { size: 12, color: p.ink, align: gx > W - 70 ? 'right' : gx < 70 ? 'left' : 'center', weight: 700 });
-      if (S.revealed) { line(g, x(N), 26, x(N), Y + 8, p.accent, 3); txt(g, 'N = ' + N, x(N) + (x(N) > W - 80 ? -6 : 6), 20, { size: 13, color: p.accent, weight: 700, align: x(N) > W - 80 ? 'right' : 'left' }); }
+      if (S.revealed) { line(g, x(N), 26, x(N), Y + 8, p.object, 3); txt(g, 'N = ' + N, x(N) + (x(N) > W - 80 ? -6 : 6), 20, { size: 13, color: p.object, weight: 700, align: x(N) > W - 80 ? 'right' : 'left' }); }
       else txt(g, t(['N est caché : révèle la population pour comparer.', 'N is hidden: reveal the population to compare.']), W / 2, 22, { size: 12, color: p.muted, align: 'center' });
     });
     slider(lineP, { min: 2, max: 1000, get: () => getState().guess, hit: ([x, y]) => y > 180 || Math.abs(x - ax(lineP.W)(getState().guess)) < 28, set: (pt, v) => setState({ guess: Math.round(v ?? clamp(((pt[0] - L) / (lineP.W - L - 18)) * axisMax(), 2, 1000)) }), text: () => t(['estimation ', 'guess ']) + getState().guess });
@@ -144,7 +144,7 @@ const BUILD = {
         for (const [arr, col] of [[hshownM, p.c[1]], [hshown, p.c[0]]]) { const h = arr[i] / peak * (B - T); alpha(g, .6, () => { g.fillStyle = col; g.fillRect(20 + i * bw + 1, B - h, bw - 2, h); }); }
       }
       for (let v = 0; v <= xmax; v += Math.max(20, Math.round(xmax / 6 / 20) * 20)) { line(g, xv(v), B, xv(v), B + 4, p.line); txt(g, String(v), xv(v), B + 16, { size: 11, color: p.muted, align: 'center' }); }
-      line(g, xv(N), T - 10, xv(N), B, p.accent, 3); txt(g, 'N = ' + N, xv(N) + 5, T - 14, { size: 12, color: p.accent, weight: 700 });
+      line(g, xv(N), T - 10, xv(N), B, p.object, 3); txt(g, 'N = ' + N, xv(N) + 5, T - 14, { size: 12, color: p.object, weight: 700 });
       const mM = Mo.maxima.reduce((a, b) => a + b, 0) / Mo.maxima.length, mE = Mo.observedMean;
       for (const [v, col, name, dy] of [[mM, p.c[1], 'M', 30], [mE, p.c[0], 'N̂', 30]]) { g.fillStyle = col; g.beginPath(); g.moveTo(xv(v), B + 18); g.lineTo(xv(v) - 6, B + 28); g.lineTo(xv(v) + 6, B + 28); g.closePath(); g.fill(); }
       g.fillStyle = p.c[1]; g.fillRect(20, H - 22, 10, 10); txt(g, t(['maximum M — moyenne ', 'maximum M — mean ']) + fmt.num(mM, 1), 34, H - 13, { size: 11, color: p.ink });
@@ -175,11 +175,11 @@ const BUILD = {
         g.fillStyle = p.sunken; g.fillRect(x, y, w, h);
         if (o > 0.02) { g.save(); g.beginPath(); g.rect(x, y, w, h); g.clip(); g.translate(x + w / 2, y + h - 18); const k = Math.min(1, w / 110); g.scale(k, k); (i === Mo.prize ? car : goat)(g, 0, 0, p); g.restore(); }
         const lw = w * (1 - o * .92);
-        g.fillStyle = p.surface; g.fillRect(x, y, lw, h); g.strokeStyle = isChoice ? p.accent : p.ink; g.lineWidth = isChoice ? 4 : 2; g.strokeRect(x, y, w, h); g.strokeRect(x, y, lw, h);
+        g.fillStyle = p.surface; g.fillRect(x, y, lw, h); g.strokeStyle = isChoice ? p.object : p.ink; g.lineWidth = isChoice ? 4 : 2; g.strokeRect(x, y, w, h); g.strokeRect(x, y, lw, h);
         if (o < .6) { txt(g, String(i + 1), x + lw / 2, y + 80, { size: 52 * Math.min(1, w / 110) * (1 - o), color: p.ink, align: 'center', weight: 700 }); g.fillStyle = p.ink; g.beginPath(); g.arc(x + lw - 12, y + 92, 5, 0, 7); g.fill(); }
         line(g, x - 8, y + h, x + w + 8, y + h, p.ink, 2);
         const final = S.finished ? (S.strategy === 'stay' ? S.choice : [0, 1, 2].find(d => d !== S.choice && d !== Mo.door)) : -1;
-        txt(g, t(['Porte ', 'Door ']) + (i + 1) + (isChoice ? t([' · ton choix', ' · your pick']) : ''), x + w / 2, y + h + 20, { size: 13, color: isChoice ? p.accent : p.ink, weight: isChoice ? 700 : 400, align: 'center' });
+        txt(g, t(['Porte ', 'Door ']) + (i + 1) + (isChoice ? t([' · ton choix', ' · your pick']) : ''), x + w / 2, y + h + 20, { size: 13, color: isChoice ? p.object : p.ink, weight: isChoice ? 700 : 400, align: 'center' });
         if (final === i) { txt(g, Mo.win ? t(['✓ gagné', '✓ won']) : t(['✗ perdu', '✗ lost']), x + w / 2, y + h + 40, { size: 13, color: Mo.win ? p.pos : p.neg, weight: 700, align: 'center' }); }
       }
       if (S.opened && !S.finished && Mo.valid) txt(g, t(['Reste, ou change : touche une porte.', 'Stay or switch: touch a door.']), W / 2, 16, { size: 12, color: p.muted, align: 'center' });
@@ -194,7 +194,7 @@ const BUILD = {
       const exactSwitch = M.montyExact(S.host, 'switch').probability, exactStay = M.montyExact(S.host, 'stay').probability;
       const ge = have ? e[i] : 0, sw = have ? tally.switchWins[i] : 0, st = have ? tally.stayWins[i] : 0, fs = ge ? sw / ge : 0, ft = ge ? st / ge : 0;
       const T = 40, B = H - 44;
-      [[t(['Changer', 'Switch']), fs, exactSwitch, p.accent, 24, sw], [t(['Rester', 'Stay']), ft, exactStay, p.obj2, 94, st]].forEach(([name, f, ex, col, x0, wins]) => {
+      [[t(['Changer', 'Switch']), fs, exactSwitch, p.object, 24, sw], [t(['Rester', 'Stay']), ft, exactStay, p.obj2, 94, st]].forEach(([name, f, ex, col, x0, wins]) => {
         g.fillStyle = col; g.fillRect(x0, B - f * (B - T), 56, f * (B - T)); line(g, x0 - 6, B - ex * (B - T), x0 + 62, B - ex * (B - T), p.ink, 2, [4, 3]);
         txt(g, name, x0 + 28, B + 16, { size: 12, color: p.ink, align: 'center', weight: 700 }); txt(g, have ? fmt.num(100 * f, 1) + ' %' : '–', x0 + 28, B - f * (B - T) - 6, { size: 12, color: p.ink, align: 'center', weight: 700 });
         txt(g, fmt.num(ex * 100, 1) + ' %', x0 + 28, B - ex * (B - T) - 18, { size: 10, color: p.muted, align: 'center' });
@@ -204,10 +204,10 @@ const BUILD = {
       // running frequencies against the number of games
       const X0 = 205, X1 = W - 12;
       line(g, X0, T, X0, B, p.line); line(g, X0, B, X1, B, p.line);
-      for (const [v, col] of [[exactSwitch, p.accent], [exactStay, p.obj2]]) { const y = B - v * (B - T); line(g, X0, y, X1, y, col, 1, [4, 4]); txt(g, v === 1 / 3 ? '1/3' : v === 2 / 3 ? '2/3' : '1/2', X1, y - 3, { size: 10, color: p.muted, align: 'right' }); }
+      for (const [v, col] of [[exactSwitch, p.object], [exactStay, p.obj2]]) { const y = B - v * (B - T); line(g, X0, y, X1, y, col, 1, [4, 4]); txt(g, v === 1 / 3 ? '1/3' : v === 2 / 3 ? '2/3' : '1/2', X1, y - 3, { size: 10, color: p.muted, align: 'right' }); }
       txt(g, '0', X0 - 4, B + 4, { size: 10, color: p.muted, align: 'right' }); txt(g, '1', X0 - 4, T + 4, { size: 10, color: p.muted, align: 'right' });
       txt(g, t(['parties jouées →', 'games played →']), X1, H - 6, { size: 11, color: p.muted, align: 'right' });
-      if (have && i > 0) for (const [arr, col] of [[tally.stayWins, p.obj2], [tally.switchWins, p.accent]]) {
+      if (have && i > 0) for (const [arr, col] of [[tally.stayWins, p.obj2], [tally.switchWins, p.object]]) {
         g.strokeStyle = col; g.lineWidth = 2; g.beginPath(); const pts = Math.min(i + 1, 240);
         for (let j = 0; j < pts; j++) { const idx = Math.round(j * i / Math.max(1, pts - 1)), v = e[idx] ? arr[idx] / e[idx] : 0; const x = X0 + (idx + 1) / Math.max(S.runs, 1) * (X1 - X0), y = B - v * (B - T); j ? g.lineTo(x, y) : g.moveTo(x, y); }
         g.stroke();
@@ -244,16 +244,16 @@ const BUILD = {
       const count = new Map(); Mo.sample.forEach(v => count.set(v, (count.get(v) || 0) + 1));
       for (let i = 0; i < d; i++) {
         const x = x0 + (i % c) * cs, y = y0 + Math.floor(i / c) * cs, n = count.get(i) || 0;
-        g.fillStyle = n > 1 ? p.accent : n === 1 ? p.obj2 : p.sunken; g.fillRect(x + 1, y + 1, cs - 2, cs - 2);
+        g.fillStyle = n > 1 ? p.object : n === 1 ? p.obj2 : p.sunken; g.fillRect(x + 1, y + 1, cs - 2, cs - 2);
         if (!n) { g.strokeStyle = p.line; g.lineWidth = .5; g.strokeRect(x + 1.5, y + 1.5, cs - 3, cs - 3); }
-        if (n > 1 && cs >= 12) txt(g, String(n), x + cs / 2, y + cs / 2, { size: Math.min(13, cs - 3), color: css('--accent-ink'), weight: 700, align: 'center', base: 'middle' });
+        if (n > 1 && cs >= 12) txt(g, String(n), x + cs / 2, y + cs / 2, { size: Math.min(13, cs - 3), color: css('--object-on'), weight: 700, align: 'center', base: 'middle' });
       }
-      if (pulse > 0 && Mo.sample.length) { const i = Mo.sample.at(-1), x = x0 + (i % c) * cs + cs / 2, y = y0 + Math.floor(i / c) * cs + cs / 2; g.strokeStyle = p.accent; g.lineWidth = 2; g.beginPath(); g.arc(x, y, cs * (.6 + (1 - pulse) * 1.6), 0, 7); g.stroke(); }
+      if (pulse > 0 && Mo.sample.length) { const i = Mo.sample.at(-1), x = x0 + (i % c) * cs + cs / 2, y = y0 + Math.floor(i / c) * cs + cs / 2; g.strokeStyle = p.object; g.lineWidth = 2; g.beginPath(); g.arc(x, y, cs * (.6 + (1 - pulse) * 1.6), 0, 7); g.stroke(); }
       const by = y0 + r * cs + 14;
       g.fillStyle = p.obj2; g.fillRect(x0, by - 9, 10, 10); txt(g, t(['une personne', 'one person']), x0 + 15, by, { size: 11, color: p.ink });
-      g.fillStyle = p.accent; g.fillRect(x0 + 110, by - 9, 10, 10); txt(g, t(['au moins deux : collision', 'two or more: collision']), x0 + 125, by, { size: 11, color: p.ink });
+      g.fillStyle = p.object; g.fillRect(x0 + 110, by - 9, 10, 10); txt(g, t(['au moins deux : collision', 'two or more: collision']), x0 + 125, by, { size: 11, color: p.ink });
       txt(g, `${S.n} ${t(['personnes', 'people'])}, ${d} ${S.days === 365 ? t(['jours', 'days']) : t(['cases', 'buckets'])}`, W / 2, 14, { size: 12, color: p.ink, align: 'center', weight: 700 });
-      txt(g, Mo.duplicate ? t(['Collision !', 'Collision!']) : t(['Aucune collision', 'No collision']), W / 2, H - 6, { size: 13, color: Mo.duplicate ? p.accent : p.muted, align: 'center', weight: 700 });
+      txt(g, Mo.duplicate ? t(['Collision !', 'Collision!']) : t(['Aucune collision', 'No collision']), W / 2, H - 6, { size: 13, color: Mo.duplicate ? p.object : p.muted, align: 'center', weight: 700 });
     }, { label: '' });
     const L = 40, T = 34, plot = (W, H) => ({ x: n => L + n / 100 * (W - L - 16), y: q => H - 40 - q * (H - 40 - T) });
     const crv = panel(wrap, 480, 290, t(['Probabilité d’une collision selon la taille du groupe', 'Probability of a collision by group size']), (g, W, H, p) => {
@@ -265,9 +265,9 @@ const BUILD = {
       g.strokeStyle = p.ink; g.lineWidth = 2.5; g.beginPath(); curve.forEach((v, n) => n ? g.lineTo(x(n), y(v)) : g.moveTo(x(n), y(v))); g.stroke();
       const n = S.n, n50 = M.birthdayThreshold(curve);
       if (n50 > 0 && n50 <= 100) { line(g, x(n50), y(.5), x(n50), B, p.muted, 1.2, [3, 3]); if (n !== n50) { g.fillStyle = p.surface; g.strokeStyle = p.ink; g.lineWidth = 2; g.beginPath(); g.arc(x(n50), y(curve[n50]), 5, 0, 7); g.fill(); g.stroke(); } txt(g, 'n* = ' + n50, x(n50) + 6, B - 8, { size: 12, color: p.ink, weight: 700 }); }
-      const pv = curve[n]; line(g, x(n), y(pv), x(n), B, p.accent, 2); line(g, L, y(pv), x(n), y(pv), p.accent, 1.2, [3, 3]);
-      g.fillStyle = p.accent; g.beginPath(); g.arc(x(n), y(pv), 7, 0, 7); g.fill();
-      const leftSide = n >= 15; txt(g, `n = ${n} : ${fmt.num(pv * 100, 1)} %`, x(n) + (leftSide ? -12 : 12), y(pv) - 12, { size: 13, color: p.accent, weight: 700, align: leftSide ? 'right' : 'left' });
+      const pv = curve[n]; line(g, x(n), y(pv), x(n), B, p.object, 2); line(g, L, y(pv), x(n), y(pv), p.object, 1.2, [3, 3]);
+      g.fillStyle = p.object; g.beginPath(); g.arc(x(n), y(pv), 7, 0, 7); g.fill();
+      const leftSide = n >= 15; txt(g, `n = ${n} : ${fmt.num(pv * 100, 1)} %`, x(n) + (leftSide ? -12 : 12), y(pv) - 12, { size: 13, color: p.object, weight: 700, align: leftSide ? 'right' : 'left' });
       if (S.runs) { g.strokeStyle = p.ink; g.lineWidth = 2; g.strokeRect(x(n) - 5, y(Mo.frequency) - 5, 10, 10); }
       if (n50 > 0) txt(g, t(['≥ 50 % dès n = ', '≥ 50% from n = ']) + n50, W - 16, T - 10, { size: 12, color: p.muted, align: 'right' });
     });
@@ -298,7 +298,7 @@ const BUILD = {
         const x = L + i * bw, seen = i < S.interview, h = S.finished ? Mo.order[i] / n * (B - T) : seen ? Math.max(.06, seenRel[i]) * (B - T) : 4;
         const hh = i < shown.length ? shown[i] : h;
         let col = !seen && !S.finished ? p.line : i < r ? p.obj3 : p.obj2;
-        if (S.finished && i === S.accepted) col = p.accent;
+        if (S.finished && i === S.accepted) col = p.object;
         g.fillStyle = col; g.fillRect(x + Math.min(1, bw / 4), B - hh, Math.max(1, bw - Math.min(2, bw / 2)), hh);
         if (seen && isRecord[i] && !S.finished) { g.fillStyle = p.ink; g.fillRect(x + bw / 2 - 2, B - hh - 8, 4, 4); }
         if (S.finished && Mo.order[i] === n) { g.strokeStyle = Mo.selected === n ? p.pos : p.neg; g.lineWidth = 2; g.strokeRect(x - 1, B - hh - 3, bw + 2, hh + 3); }
@@ -307,7 +307,7 @@ const BUILD = {
       const rx = L + r * bw; line(g, rx, T - 14, rx, B, p.ink, 2, [5, 4]);
       txt(g, 'r = ' + r, rx + 4, T - 20, { size: 12, color: p.ink, weight: 700 });
       txt(g, t(['observation', 'observe']), L + 2, T - 6, { size: 11, color: p.muted });
-      if (S.interview > r && stop < S.interview) { const sx = L + stop * bw + bw / 2; g.fillStyle = p.accent; g.beginPath(); g.moveTo(sx, B + 3); g.lineTo(sx - 6, B + 13); g.lineTo(sx + 6, B + 13); g.closePath(); g.fill(); txt(g, t(['la règle s’arrête', 'the rule stops']), sx, B + 28, { size: 11, color: p.accent, weight: 700, align: sx > W - 70 ? 'right' : sx < 60 ? 'left' : 'center' }); }
+      if (S.interview > r && stop < S.interview) { const sx = L + stop * bw + bw / 2; g.fillStyle = p.object; g.beginPath(); g.moveTo(sx, B + 3); g.lineTo(sx - 6, B + 13); g.lineTo(sx + 6, B + 13); g.closePath(); g.fill(); txt(g, t(['la règle s’arrête', 'the rule stops']), sx, B + 28, { size: 11, color: p.object, weight: 700, align: sx > W - 70 ? 'right' : sx < 60 ? 'left' : 'center' }); }
       txt(g, S.finished ? t(['Qualités réelles révélées : ', 'True qualities revealed: ']) + (Mo.selected === n ? t(['meilleur choisi ✓', 'best chosen ✓']) : t(['rang ', 'rank ']) + Mo.selected + '/' + n) : t(['Hauteur = rang parmi les candidats déjà vus ; point = meilleur jusqu’ici', 'Height = rank among those seen; dot = best so far']), W / 2, H - 6, { size: 11, color: p.muted, align: 'center' });
     });
     const run = document.createElement('button'); run.type = 'button'; run.className = 'btn btn-secondary inf-toggle'; run.textContent = t(['Appliquer la règle de seuil', 'Apply the threshold rule']);
@@ -332,8 +332,8 @@ const BUILD = {
       const o = Mo.optimum, ne = n / Math.E; line(g, px(W, ne), T2, px(W, ne), B, p.muted, 1, [3, 3]); txt(g, 'n/e ≈ ' + fmt.num(ne, 1), px(W, ne) + (ne > n * .6 ? -5 : 5), T2 + 10, { size: 11, color: p.muted, align: ne > n * .6 ? 'right' : 'left' });
       if (o.skip !== Math.min(n - 1, S.skip)) { g.fillStyle = p.surface; g.strokeStyle = p.ink; g.lineWidth = 2; g.beginPath(); g.arc(px(W, o.skip), py(H, o.probability), 5, 0, 7); g.fill(); g.stroke();
       txt(g, t(['meilleur r = ', 'best r = ']) + o.skip + ' (' + fmt.num(100 * o.probability, 1) + ' %)', px(W, o.skip), py(H, o.probability) - 12, { size: 11, color: p.ink, weight: 700, align: o.skip > n * .7 ? 'right' : 'center' }); }
-      const r = Math.min(n - 1, S.skip), cx = px(W, r), cy = py(H, Math.min(qmax, Mo.probability)); line(g, cx, cy, cx, B, p.accent, 2); g.fillStyle = p.accent; g.beginPath(); g.arc(cx, cy, 7, 0, 7); g.fill();
-      const isBest = r === o.skip; txt(g, `r = ${r} : ${fmt.num(100 * Mo.probability, 1)} %` + (isBest ? t([' (meilleur)', ' (best)']) : ''), isBest ? cx : cx + (r > n * .6 ? -12 : 12), isBest ? cy - 14 : cy + 22, { size: 13, color: p.accent, weight: 700, align: isBest ? (r > n * .6 ? 'right' : 'center') : r > n * .6 ? 'right' : 'left' });
+      const r = Math.min(n - 1, S.skip), cx = px(W, r), cy = py(H, Math.min(qmax, Mo.probability)); line(g, cx, cy, cx, B, p.object, 2); g.fillStyle = p.object; g.beginPath(); g.arc(cx, cy, 7, 0, 7); g.fill();
+      const isBest = r === o.skip; txt(g, `r = ${r} : ${fmt.num(100 * Mo.probability, 1)} %` + (isBest ? t([' (meilleur)', ' (best)']) : ''), isBest ? cx : cx + (r > n * .6 ? -12 : 12), isBest ? cy - 14 : cy + 22, { size: 13, color: p.object, weight: 700, align: isBest ? (r > n * .6 ? 'right' : 'center') : r > n * .6 ? 'right' : 'left' });
       if (S.runs) { g.strokeStyle = p.ink; g.lineWidth = 2; g.strokeRect(cx - 5, py(H, Math.min(qmax, Mo.frequency)) - 5, 10, 10); }
       for (let q = 0; q <= n; q += n > 50 ? 20 : 10) txt(g, String(q), px(W, Math.min(q, n - 1)), B + 15, { size: 10, color: p.muted, align: 'center' });
       txt(g, t(['refus initiaux r →', 'initial rejections r →']), W - 16, H - 6, { size: 11, color: p.muted, align: 'right' });
@@ -369,12 +369,12 @@ const BUILD = {
       line(g, L, B, W - R, B, p.line);
       for (let i = 0; i < cnt; i++) {
         const x = L + i * bw, h = shown[i] ?? 0; g.fillStyle = p.obj3; g.fillRect(x + Math.min(2, bw / 4), y(h), bw - Math.min(4, bw / 2), B - y(h));
-        const tx = x + bw / 2, ty = y(Mo.theory[i]); line(g, x + 1, ty, x + bw - 1, ty, p.accent, 3);
-        if (cnt <= 9) { g.fillStyle = p.accent; g.beginPath(); g.arc(tx, ty, 4, 0, 7); g.fill(); txt(g, fmt.num(100 * Mo.theory[i], 1), tx, ty - 9, { size: 11, color: p.accent, align: 'center', weight: 700 }); }
+        const tx = x + bw / 2, ty = y(Mo.theory[i]); line(g, x + 1, ty, x + bw - 1, ty, p.object, 3);
+        if (cnt <= 9) { g.fillStyle = p.object; g.beginPath(); g.arc(tx, ty, 4, 0, 7); g.fill(); txt(g, fmt.num(100 * Mo.theory[i], 1), tx, ty - 9, { size: 11, color: p.object, align: 'center', weight: 700 }); }
         if (cnt <= 9 || i % 10 === 0) txt(g, String(i + start()), tx, B + 16, { size: 12, color: p.ink, align: 'center', weight: 700 });
       }
       g.fillStyle = p.obj3; g.fillRect(L + 4, 8, 11, 11); txt(g, t(['tes données (', 'your data (']) + Mo.n + ')', L + 19, 18, { size: 12, color: p.ink });
-      line(g, W - R - 110, 14, W - R - 94, 14, p.accent, 3); txt(g, 'log₁₀(1 + 1/d)', W - R, 18, { size: 12, color: p.accent, weight: 700, align: 'right' });
+      line(g, W - R - 110, 14, W - R - 94, 14, p.object, 3); txt(g, 'log₁₀(1 + 1/d)', W - R, 18, { size: 12, color: p.object, weight: 700, align: 'right' });
       if (!Mo.n) txt(g, t(['Aucune valeur exploitable.', 'No usable value.']), W / 2, H / 2, { size: 13, color: p.muted, align: 'center' });
     });
     const ruler = panel(wrap, 560, 150, t(['La règle logarithmique : chaque valeur tombe sur une graduation de 1 à 10', 'The logarithmic ruler: each value lands on a mark between 1 and 10']), (g, W, H, p) => {
@@ -409,7 +409,7 @@ const BUILD = {
 };
 
 function car(g, cx, by, p) {
-  g.fillStyle = p.accent; g.fillRect(cx - 34, by - 30, 68, 18); g.fillRect(cx - 20, by - 46, 38, 18);
+  g.fillStyle = p.object; g.fillRect(cx - 34, by - 30, 68, 18); g.fillRect(cx - 20, by - 46, 38, 18);
   g.fillStyle = p.sunken; g.fillRect(cx - 15, by - 42, 12, 11); g.fillRect(cx + 2, by - 42, 12, 11);
   g.fillStyle = p.ink; for (const dx of [-20, 20]) { g.beginPath(); g.arc(cx + dx, by - 11, 8, 0, 7); g.fill(); }
 }
@@ -430,10 +430,10 @@ function tree(g, W, H, p, t) {
   prizeY.forEach((y, i) => { line(g, 62, mid, x1 - 4, y, p.ink, 1.5); txt(g, t(['prix en ', 'prize at ']) + (i + 1), x1, y - 18, { size: 11, color: p.ink, weight: 700 }); txt(g, '1/3', x1, y - 6, { size: 11, color: p.muted }); });
   for (const [y, pi, label, sw] of rows) {
     line(g, x1 + 46, prizeY[pi] - 2, x2 - 4, y, p.ink, 1.2); txt(g, label, x2, y - 6, { size: 11, color: p.ink });
-    g.fillStyle = sw ? p.accent : p.obj2; g.fillRect(x3, y - 4, pw, 20); txt(g, sw ? t(['changer gagne', 'switch wins']) : t(['rester gagne', 'stay wins']), x3 + pw / 2, y + 10, { size: 10.5, color: sw ? css('--accent-ink') : p.surface, align: 'center', weight: 700 });
+    g.fillStyle = sw ? p.object : p.obj2; g.fillRect(x3, y - 4, pw, 20); txt(g, sw ? t(['changer gagne', 'switch wins']) : t(['rester gagne', 'stay wins']), x3 + pw / 2, y + 10, { size: 10.5, color: sw ? css('--object-on') : p.surface, align: 'center', weight: 700 });
   }
   txt(g, t(['Rester : 1/6 + 1/6 = 1/3', 'Stay: 1/6 + 1/6 = 1/3']), 6, H - 28, { size: 12, color: p.ink, weight: 700 });
-  txt(g, t(['Changer : 1/3 + 1/3 = 2/3', 'Switch: 1/3 + 1/3 = 2/3']), 6, H - 10, { size: 12, color: p.accent, weight: 700 });
+  txt(g, t(['Changer : 1/3 + 1/3 = 2/3', 'Switch: 1/3 + 1/3 = 2/3']), 6, H - 10, { size: 12, color: p.object, weight: 700 });
 }
 
 export function createFigure(id, host, ctx) {

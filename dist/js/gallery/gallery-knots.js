@@ -36,7 +36,7 @@ export function knotsInSpace(root,opts){
   o.on(o.cv,'pointerup',e=>{if(drag&&!drag.moved&&mode==='projection'&&q('#kn-colour').checked){const p=o.point(e);let best=25;for(const s of segments){const v=sub(s.b,s.a),w=sub(p,s.a),u=Math.max(0,Math.min(1,dot(w,v)/(dot(v,v)||1))),dist=Math.hypot(p[0]-s.a[0]-u*v[0],p[1]-s.a[1]-u*v[1]);if(dist<best){best=dist;selectedArc=s.arc;}}if(best<25)cycle();}drag=null;});o.cancelDrag=()=>drag=null;
   o.on(o.cv,'keydown',e=>{if(e.shiftKey||mode!=='space')return;const d={ArrowLeft:[-.12,0],ArrowRight:[.12,0],ArrowUp:[0,-.1],ArrowDown:[0,.1]}[e.key];if(d){e.preventDefault();yaw+=d[0];tilt=Math.max(-1.35,Math.min(1.35,tilt+d[1]));dirty=true;o.redraw();}});
   function drawProjection(P,C){
-    const inks=[C.accent,C.obj2,C.pos],coloured=q('#kn-colour').checked,color=arc=>coloured?inks[colors[arc]||0]:C.accent;segments=[];
+    const inks=[C.object,C.obj2,C.pos],coloured=q('#kn-colour').checked,color=arc=>coloured?inks[colors[arc]||0]:C.object;segments=[];
     for(let i=0;i<P.length;i++){const cuts=[i,...projection.cuts.filter(c=>c>i&&c<i+1),i+1],a=P[i],b=P[(i+1)%P.length];for(let j=0;j<cuts.length-1;j++){const lo=cuts[j]-i,hi=cuts[j+1]-i,arc=projection.arcAt(i+(lo+hi)/2),p=screen(a.map((x,d)=>x+lo*(b[d]-x))),q=screen(a.map((x,d)=>x+hi*(b[d]-x)));path(g,[p,q],{stroke:color(arc),width:7});segments.push({a:p.slice(0,2),b:q.slice(0,2),arc});}}
     const at=u=>{const i=(Math.floor(u)%P.length+P.length)%P.length,f=u-Math.floor(u);return screen(P[i].map((x,d)=>x+f*(P[(i+1)%P.length][d]-x)));};
     for(const c of projection.crossings.slice().sort((a,b)=>a.depth-b.depth)){const center=at(c.over),parts=[center];for(const direction of [-1,1]){const side=[];let length=0,previous=center;for(let k=1;k<30&&length<17;k++){const p=at(c.over+direction*k*.15);length+=Math.hypot(p[0]-previous[0],p[1]-previous[1]);side.push(p);previous=p;}if(direction<0)parts.unshift(...side.reverse());else parts.push(...side);}path(g,parts,{stroke:C.sunken,width:16});path(g,parts,{stroke:color(projection.arcAt(c.over)),width:7});}
@@ -49,7 +49,7 @@ export function knotsInSpace(root,opts){
     if(!dirty&&key===lastKey)return playing?undefined:false;dirty=false;lastKey=key;
     const C=background(o),points=knotDeformation(base,example,phase),P=cameraKnot(points,mode==='projection'?0:yaw,mode==='projection'?0:tilt,mirror);
     if(mode==='space'){
-      drawKnotStrand(g,P.map(screen),{ink:C.accent,background:C.sunken,width:7,gap:3});
+      drawKnotStrand(g,P.map(screen),{ink:C.object,background:C.sunken,width:7,gap:3});
       const crossings=projectedKnotCrossings(P).crossings;
       o.cv.dataset.crossings=String(crossings.length);
     }

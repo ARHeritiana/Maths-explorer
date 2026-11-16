@@ -7,12 +7,12 @@ const sphereModel={model:T.hairyModel,quantities:{tangency:s=>T.hairyModel(s).ta
 function sphereScene(s){
  const m=T.hairyModel(s),faces=[],segs=[],points=[];
  if(s.field==='circle'){
-  for(let k=0;k<48;k++){const a=k*T.TAU/48,b=(k+1)*T.TAU/48;segs.push({a:[Math.cos(a),Math.sin(a),0],b:[Math.cos(b),Math.sin(b),0],color:'accent',width:3});}
+  for(let k=0;k<48;k++){const a=k*T.TAU/48,b=(k+1)*T.TAU/48;segs.push({a:[Math.cos(a),Math.sin(a),0],b:[Math.cos(b),Math.sin(b),0],color:'object',width:3});}
   for(let k=0;k<16;k++){const a=k*T.TAU/16,p=[Math.cos(a),Math.sin(a),0],v=T.circleField(p);segs.push({a:p,b:p.map((x,i)=>x+.25*v[i]),color:'obj2',arrow:true,width:2});}
  }else{
   for(let j=0;j<10;j++)for(let i=0;i<20;i++){
    const u=i*T.TAU/20,v=-Math.PI/2+j*Math.PI/10;
-   faces.push({pts:[T.spherePoint(u,v),T.spherePoint(u+T.TAU/20,v),T.spherePoint(u+T.TAU/20,v+Math.PI/10),T.spherePoint(u,v+Math.PI/10)],color:'accent',alpha:.08,line:false});
+   faces.push({pts:[T.spherePoint(u,v),T.spherePoint(u+T.TAU/20,v),T.spherePoint(u+T.TAU/20,v+Math.PI/10),T.spherePoint(u,v+Math.PI/10)],color:'object',alpha:.08,line:false});
   }
   for(let j=1;j<7;j++)for(let i=0;i<12;i++){
    const p=T.spherePoint(i*T.TAU/12,-Math.PI/2+j*Math.PI/7),v=T.tangentField(p,m.axis,s.field);segs.push({a:p,b:p.map((x,k)=>x+.27*v[k]),color:'obj2',arrow:true,width:1.5});
@@ -21,7 +21,7 @@ function sphereScene(s){
   segs.push({a:[0,0,0],b:m.axis,color:'muted',dash:[4,4],width:1.5});
  }
  const p=s.field==='circle'?[Math.cos(s.longitude),Math.sin(s.longitude),0]:m.p;
- points.push({at:p,color:'accent',r:5,label:'p'});segs.push({a:p,b:p.map((x,k)=>x+.4*m.vector[k]),color:'pos',arrow:true,width:3});
+ points.push({at:p,color:'object',r:5,label:'p'});segs.push({a:p,b:p.map((x,k)=>x+.4*m.vector[k]),color:'pos',arrow:true,width:3});
  return {faces,segs,points};
 }
 export const hairyExperiment={
@@ -47,7 +47,7 @@ function surfaceScene(s){
  const faces=[],segs=[],points=[],n=48,m=18,kind=s.surface,w=s.width,gap=.045;
  const vAt=j=>kind==='mobius'?(2*j/m-1)*w:j*T.TAU/m;
  const allowed=(u,v)=>kind==='klein'?s.cut!=='meridian'||u>.09&&u<T.TAU-.09:s.cut==='centre'?Math.abs(v)>gap:s.cut==='thirds'?Math.abs(Math.abs(v)-w/3)>gap:true;
- const component=v=>kind==='mobius'&&s.cut==='thirds'?(Math.abs(v)<w/3?'obj2':'accent'):'accent';
+ const component=v=>kind==='mobius'&&s.cut==='thirds'?(Math.abs(v)<w/3?'obj2':'object'):'object';
  for(let i=0;i<n;i++)for(let j=0;j<m;j++){
   const u=i*T.TAU/n,a=vAt(j),b=vAt(j+1),mid=(a+b)/2;
   if(!allowed(u+T.TAU/(2*n),mid))continue;
@@ -82,7 +82,7 @@ const atomsState={owners:Array(12).fill(0)};
 const atomsModel={model:s=>({total:s.owners.length,left:s.owners.filter(x=>x===0).length,right:s.owners.filter(x=>x===1).length}),quantities:{total:s=>s.owners.length},quantity:(k,s)=>atomsModel.quantities[k](s)};
 export const banachExperiment={
  id:'banach-tarski-model',template:'figure',symbol:'∪',group:P('Fondements','Foundations'),title:P('Des points qui ne se dupliquent pas','Points that cannot duplicate'),short:P('Avant Banach-Tarski','Before Banach-Tarski'),intro:P('Déplace douze points entre deux récipients. Ce modèle fini explique un obstacle ; il ne dessine pas les pièces non mesurables du théorème de Banach-Tarski.','Move twelve points between two containers. This finite model explains an obstruction; it does not draw the nonmeasurable pieces in the Banach-Tarski theorem.'),duration:8,level:P('Lycée · initiation universitaire','Upper secondary · university introduction'),prereq:P('Ensembles, comptage et notion de volume','Sets, counting and the idea of volume'),model:atomsModel,state:atomsState,
- controls:Object.fromEntries(Array.from({length:12},(_,i)=>['atom'+i,{kind:'handle',color:'accent',label:P(`Point ${i+1} : déplacer vers A ou B`,`Point ${i+1}: move to A or B`),grid:.2,at:s=>[(s.owners[i]===0?-2.6:2.6)+(i%3-1)*.65,1.1-Math.floor(i/3)*.65],drag:(s,x)=>({owners:s.owners.map((a,j)=>i===j?(x>=0?1:0):a)}),nudge:(s,dx)=>({owners:s.owners.map((a,j)=>i===j?(dx>0?1:dx<0?0:a):a)}),valuetext:(s,f)=>f.t(P('Récipient ','Container '))+'AB'[s.owners[i]]}])),
+ controls:Object.fromEntries(Array.from({length:12},(_,i)=>['atom'+i,{kind:'handle',color:'object',label:P(`Point ${i+1} : déplacer vers A ou B`,`Point ${i+1}: move to A or B`),grid:.2,at:s=>[(s.owners[i]===0?-2.6:2.6)+(i%3-1)*.65,1.1-Math.floor(i/3)*.65],drag:(s,x)=>({owners:s.owners.map((a,j)=>i===j?(x>=0?1:0):a)}),nudge:(s,dx)=>({owners:s.owners.map((a,j)=>i===j?(dx>0?1:dx<0?0:a):a)}),valuetext:(s,f)=>f.t(P('Récipient ','Container '))+'AB'[s.owners[i]]}])),
  views:{panels:['figure'],figure:{x:[-5,5],y:[-2.4,2.4],axes:false,equal:true,scene(s,{fmt}){return {circles:[{c:[-2.6,0],r:1.9,color:'obj2',width:2},{c:[2.6,0],r:1.9,color:'obj3',width:2}],texts:[{at:[-2.6,2.15],text:fmt.t(P('A : cible 12','A: target 12')),anchor:'center',color:'ink',size:16},{at:[2.6,2.15],text:fmt.t(P('B : cible 12','B: target 12')),anchor:'center',color:'ink',size:16},...s.owners.map((owner,i)=>({at:[(owner===0?-2.6:2.6)+(i%3-1)*.65,1.3-Math.floor(i/3)*.65],text:String(i+1),anchor:'center',color:'muted',size:12}))]};}},formula:(s,{fmt})=>fmt.t(P('Ensemble fini : |A| + |B| = 12. Deux copies de 12 demanderaient 24 points.','Finite set: |A| + |B| = 12. Two copies of 12 would require 24 points.')),readout(s,{fmt}){const m=atomsModel.model(s);return [[P('Points dans A','Points in A'),String(m.left)],[P('Points dans B','Points in B'),String(m.right)],[P('Total invariant','Invariant total'),String(m.total)]];}},
  missions:[
   {id:'open',kind:'predict',prompt:P('Déplacer douze points sans en copier ni en supprimer peut-il donner deux groupes de douze ?','Can moving twelve points without copying or deleting produce two groups of twelve?'),choices:[P('Oui','Yes'),P('Non','No')],correct:1},

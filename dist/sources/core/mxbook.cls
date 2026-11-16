@@ -31,15 +31,17 @@
   \LoadClass[11pt,a4paper,oneside,openany]{book}
 \fi
 
+\RequirePackage{mx-brand}    % the look: colours, fonts, mark, frame, heading and box styles (one file per site)
 \RequirePackage{mx-i18n}     % language, labels, dates, number formatting (reads \mx@lang)
 \RequirePackage{mx-edition}  % \ifmxteacher and teacher-only material (reads \mx@edition)
 \RequirePackage{mx-math}     % mathematics macros (\R, \vect, ...), defined once for books, slides and site
 \RequirePackage{mx-notation} % notations that differ by language (\num, \pc, intervals, \pt, \ens), defined once
-\RequirePackage{mx-figures}  % colours, TikZ and pgfplots styles
+\RequirePackage{mx-figures}  % colour roles used by figures, TikZ and pgfplots styles
 \RequirePackage{mx-layout}   % geometry, headings, running heads, page-break policy (reads \mx@layout, \mx@course)
 \RequirePackage{mx-env}      % canonical environments (keypoint, method, example, exercise, ...)
 \RequirePackage{mx-code}     % Python listings
 \RequirePackage[hidelinks,unicode]{hyperref}   % last, as hyperref requires
+\hypersetup{pdfcreator={\mxbrandname}}
 % Bookmarks and the contents list are PDF strings: the maths symbols that titles use are given as Unicode characters
 % (with unicode-math the symbols are not plain macros that hyperref can turn into text).
 \pdfstringdefDisableCommands{\def\mapsto{↦}\def\longmapsto{⟼}\def\to{→}\def\rightarrow{→}\def\Rightarrow{⇒}\def\Leftrightarrow{⇔}%

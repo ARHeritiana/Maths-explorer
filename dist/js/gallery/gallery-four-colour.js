@@ -119,11 +119,11 @@ export function fourColours(root, opts) {
     for (const [, , segments] of bad) for (const s of segments) path(g, s, { stroke: C.neg, width: 6 });
     if (map[selected]) path(g, map[selected], { close: true, stroke: C.ink, width: 3.5 });
     if (mode === 'draw') {
-      path(g, [[cursor[0] - 9, cursor[1]], [cursor[0] + 9, cursor[1]]], { stroke: C.accent }); path(g, [[cursor[0], cursor[1] - 9], [cursor[0], cursor[1] + 9]], { stroke: C.accent });
+      path(g, [[cursor[0] - 9, cursor[1]], [cursor[0] + 9, cursor[1]]], { stroke: C.object }); path(g, [[cursor[0], cursor[1] - 9], [cursor[0], cursor[1] + 9]], { stroke: C.object });
       if (drag) {
         const i = map.findIndex((p) => pointIn(drag.a, p)), parts = i >= 0 ? splitCountry(map[i], drag.a, drag.b) : null;
-        if (parts) for (const [, , segments] of countryEdges(parts)) for (const s of segments) path(g, s, { stroke: C.accent, width: 4 });
-        else path(g, [drag.a, drag.b], { stroke: C.accent, width: 3 }); dot(g, drag.a, C.accent, 4);
+        if (parts) for (const [, , segments] of countryEdges(parts)) for (const s of segments) path(g, s, { stroke: C.object, width: 4 });
+        else path(g, [drag.a, drag.b], { stroke: C.object, width: 3 }); dot(g, drag.a, C.object, 4);
       }
     }
     const done = col.every((c) => c >= 0), used = new Set(col.filter((c) => c >= 0)).size;

@@ -25,7 +25,7 @@ export default {
   ease: ['a', 'b'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     upper: {
-      kind: "handle", soft: true, color: "accent", axis: "x", grid: [0.25, 0], label: ["Borne b", "Bound b"],
+      kind: "handle", soft: true, color: "object", axis: "x", grid: [0.25, 0], label: ["Borne b", "Bound b"],
       at: (s) => [s.b, 0],
       drag: (s, wx) => ({ b: clamp(wx, s.a + 0.25, 2.5) }),
       valuetext: (s, fm) => `b = ${fm.num(s.b)}`,
@@ -52,12 +52,12 @@ export default {
       x: [-1, 3], y: [-1.2, 7], xTicks: [-1, 0, 1, 2, 3], yTicks: [0, 1, 2, 3, 4, 5, 6, 7],
       scene(s) {
         return {
-          areas: [{ f, from: s.a, to: s.b, color: "accent", alpha: 0.12 }],
+          areas: [{ f, from: s.a, to: s.b, color: "object", alpha: 0.12 }],
           rects: I.rectangles(s.a, s.b, s.n, s.method).map((r) => ({ ...r, color: "obj2", alpha: 0.32 })),
-          curves: [{ f, color: "accent", width: 3 }],
+          curves: [{ f, color: "object", width: 3 }],
           texts: [
             { at: [s.a, 0], text: "a", dy: 26, anchor: "center", color: "obj3" },
-            { at: [s.b, 0], text: "b", dy: 26, anchor: "center", color: "accent" },
+            { at: [s.b, 0], text: "b", dy: 26, anchor: "center", color: "object" },
           ],
         };
       },

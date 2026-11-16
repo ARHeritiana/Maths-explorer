@@ -38,7 +38,7 @@ export function soapFilm(root,opts){
     const key=`${o.cv.width},${view.yaw},${view.pitch},${o.navigation.camera.scale},${o.navigation.camera.x},${o.navigation.camera.y},${document.documentElement.dataset.theme}`;
     if(!dirty&&key===lastView)return running?undefined:false;lastView=key;dirty=false;
     const C=background(o),P=mesh.pts.map(project),faces=mesh.faces.map(f=>({f,z:f.reduce((s,i)=>s+P[i][2],0)})).sort((a,b)=>a.z-b.z);
-    for(const {f}of faces){path(g,f.map(i=>P[i]),{close:true,fill:side(f,P)?C.accent:C.obj3,alpha:.34});path(g,f.map(i=>P[i]),{close:true,stroke:C.line,width:.35,alpha:.42});}
+    for(const {f}of faces){path(g,f.map(i=>P[i]),{close:true,fill:side(f,P)?C.object:C.obj3,alpha:.34});path(g,f.map(i=>P[i]),{close:true,stroke:C.line,width:.35,alpha:.42});}
     for(const wire of mesh.wires)path(g,wire.map(i=>P[i]),{close:wire.length>2,stroke:C.ink,width:4});
     handles.forEach((h,k)=>{const q=P[h.id];if(!q)return;const on=k===hot,r=on?9:7;g.beginPath();g.arc(q[0],q[1],r,0,Math.PI*2);g.fillStyle=on?C.obj2:C.surface;g.fill();g.lineWidth=2.5;g.strokeStyle=C.ink;g.stroke();});
     if(history.length>1){const max=history[0],min=Math.min(...history),span=Math.max(.02,max-min);path(g,history.map((v,i)=>[22+i/(history.length-1)*130,410-(v-min)/span*45]),{stroke:C.pos,width:2});}

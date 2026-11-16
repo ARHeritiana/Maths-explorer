@@ -180,7 +180,7 @@ function galton(root, { t, reduced, lang }) {
       g.fillStyle = C.muted; g.beginPath(); g.arc(x, y, 3.2, 0, TAU); g.fill();
       if (pas && G.dx > 20) { g.fillStyle = C.ink; g.font = "600 10px system-ui"; g.textAlign = "center"; g.fillText(pas(r)[j], x, y - 6); }
     }
-    if (pas && G.dx > 20) for (let k = 0; k <= rows; k++) { g.fillStyle = C.accent; g.font = "700 11px system-ui"; g.textAlign = "center"; g.fillText(pas(rows)[k], G.cx + (k - rows / 2) * G.dx, G.base - 4); }
+    if (pas && G.dx > 20) for (let k = 0; k <= rows; k++) { g.fillStyle = C.object; g.font = "700 11px system-ui"; g.textAlign = "center"; g.fillText(pas(rows)[k], G.cx + (k - rows / 2) * G.dx, G.base - 4); }
     // falling balls
     for (const b of balls) {
       const s = Math.min(b.tau, rows + 1.4); let j = 0, x, y;
@@ -246,7 +246,7 @@ function reuleauxLab(root, { t, reduced, lang }) {
   const hitShape = ([x,y]) => { let yes=false;for(let i=0,j=paintedShape.length-1;i<paintedShape.length;j=i++){const a=paintedShape[i],b=paintedShape[j];if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;};
   o.touchHit(hitShape);
   const f = (x, d = 2) => { const s = (Math.round(x * 10 ** d) / 10 ** d).toFixed(d); return lang === "fr" ? s.replace(".", ",") : s; };
-  const fill = (C) => { g.fillStyle = C.accent; g.globalAlpha = 0.28; g.fill(); g.globalAlpha = 1; g.strokeStyle = C.accent; g.lineWidth = 3; g.stroke(); };
+  const fill = (C) => { g.fillStyle = C.object; g.globalAlpha = 0.28; g.fill(); g.globalAlpha = 1; g.strokeStyle = C.object; g.lineWidth = 3; g.stroke(); };
   function drawShape(C, cx, cy, S, rot) {   // S pixels per unit of width
     paintedShape = shape.pts.map(([x,y])=>[cx+S*(x*Math.cos(rot)-y*Math.sin(rot)),cy-S*(x*Math.sin(rot)+y*Math.cos(rot))]);
     g.beginPath(); shape.pts.forEach(([x, y], i) => { const X = cx + S * (x * Math.cos(rot) - y * Math.sin(rot)), Y = cy - S * (x * Math.sin(rot) + y * Math.cos(rot)); i ? g.lineTo(X, Y) : g.moveTo(X, Y); }); g.closePath(); fill(C);
@@ -337,7 +337,7 @@ function chaos(root, { t, reduced, lang }) {
   capability({ kind: "draws", gpu: false, share: 0.3, work: () => { let s = 0; for (let i = 0; i < 3000; i++) { let j = 0; for (let r = 0; r < 15; r++) if (Math.random() < 0.5) j++; s += j; } return 3000 + (s < 0 ? 1 : 0); } })
     .then((r) => { if (!closed) perFrame = { basic: 900, standard: 4000, high: 20000, extreme: 100000 }[r.tier] || 900; }).catch(() => {});
   function stepFor(ms, max) { const t0 = performance.now(); let done = 0; while (done < max && performance.now() - t0 < ms) { const n = Math.min(500, max - done); step(n); done += n; } }
-  function step(count) { const lg = ensureLayer().getContext("2d"), C = palette(); lg.fillStyle = C.accent; for (let i = 0; i < count; i++) { const v = verts[Math.floor(Math.random() * k)]; cur = [cur[0] + (v[0] - cur[0]) * ratio, cur[1] + (v[1] - cur[1]) * ratio]; if (pts.length++ > 12) lg.fillRect(cur[0], cur[1], 1.6, 1.6); } }
+  function step(count) { const lg = ensureLayer().getContext("2d"), C = palette(); lg.fillStyle = C.object; for (let i = 0; i < count; i++) { const v = verts[Math.floor(Math.random() * k)]; cur = [cur[0] + (v[0] - cur[0]) * ratio, cur[1] + (v[1] - cur[1]) * ratio]; if (pts.length++ > 12) lg.fillRect(cur[0], cur[1], 1.6, 1.6); } }
   function triangle(lg, a, b, c, lv) { if (lv === 0) { lg.beginPath(); lg.moveTo(...a); lg.lineTo(...b); lg.lineTo(...c); lg.closePath(); lg.fill(); return; } const mid = (u, v) => [(u[0] + v[0]) / 2, (u[1] + v[1]) / 2]; const ab = mid(a, b), bc = mid(b, c), ca = mid(c, a); triangle(lg, a, ab, ca, lv - 1); triangle(lg, ab, b, bc, lv - 1); triangle(lg, ca, bc, c, lv - 1); }
   const idle = idleGuard(o);
   let lastRead = "";
@@ -353,7 +353,7 @@ function chaos(root, { t, reduced, lang }) {
       verts.forEach((v, i) => { g.fillStyle = C.obj2; g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.arc(v[0], v[1], 9, 0, TAU); g.fill(); g.stroke(); g.fillStyle = C.ink; g.font = "700 13px system-ui"; g.textAlign = "center"; g.fillText("ABCDEF"[i], v[0], v[1] - 15); });
       setRead(`${pts.length.toLocaleString(lang === "fr" ? "fr-FR" : "en-US")} ${t("points", "points")} · r = <strong>${f(ratio)}</strong> · ${t("pour", "for")} ${k} ${t("sommets, la valeur", "vertices, the value")} <strong>${f(1 - gonContraction(k))}</strong> ${t("donne une figure de type fractal (r = 1/2 pour le triangle)", "gives a fractal figure (r = 1/2 for the triangle)")}.`);
     } else {
-      g.fillStyle = C.accent; const R = 200, cx = o.W / 2, cy = o.H / 2 + 20; triangle(g, [cx, cy - R * 0.95], [cx - R * 1.05, cy + R * 0.7], [cx + R * 1.05, cy + R * 0.7], level);
+      g.fillStyle = C.object; const R = 200, cx = o.W / 2, cy = o.H / 2 + 20; triangle(g, [cx, cy - R * 0.95], [cx - R * 1.05, cy + R * 0.7], [cx + R * 1.05, cy + R * 0.7], level);
       setRead(`${t("Niveau", "Level")} <strong>${level}</strong> : ${t("triangles pleins", "filled triangles")} 3<sup>${level}</sup> = <strong>${sierpinskiCount(level)}</strong> · ${t("aire restante", "remaining area")} (3/4)<sup>${level}</sup> ≈ <strong>${f(sierpinskiArea(level) * 100)} %</strong> ${t("de l’aire du grand triangle", "of the big triangle’s area")}.`);
     }
   }

@@ -30,7 +30,7 @@ for(const [id,[enTitle,frTitle]] of Object.entries(lessons)){
   assert.match(en,/<html lang="en">/);assert.match(fr,/<html lang="fr">/);
   assert.ok(en.includes(enTitle));assert.ok(fr.includes(frTitle));assert.ok(!en.includes(frTitle));
   assert.ok(en.includes('mx-basics-size')&&en.includes('ResizeObserver'));
-  assert.ok(en.includes('../../fonts/'));assert.ok(!en.includes('fonts.googleapis.com'));
+  assert.ok(en.includes('href="basics-theme.css"'));assert.ok(!en.includes('fonts.googleapis.com'));
   assert.ok(en.includes('prefers-reduced-motion'));
  });
 }

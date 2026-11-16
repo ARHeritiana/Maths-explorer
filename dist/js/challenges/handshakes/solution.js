@@ -24,7 +24,7 @@ export const diagram = {
 export const scene = {
   mount(c, q) {
     const n = q.n, L = layout(n, ROOM), T = L.table;
-    svgEl("ellipse", { cx: ROOM.cx, cy: ROOM.cy + 4, rx: ROOM.rx + 30, ry: ROOM.ry + 26, fill: "color-mix(in srgb, var(--accent) 9%, transparent)" }, c.svg);   // rug
+    svgEl("ellipse", { cx: ROOM.cx, cy: ROOM.cy + 4, rx: ROOM.rx + 30, ry: ROOM.ry + 26, fill: "color-mix(in srgb, var(--object-ink) 9%, transparent)" }, c.svg);   // rug
     const back = svgEl("g", {}, c.svg);
     svgEl("rect", { x: T.cx - 6, y: T.cy, width: 12, height: 26, fill: "#8d5f2d", stroke: "var(--ink)", "stroke-width": 1.2 }, c.svg);   // table foot
     svgEl("ellipse", { cx: T.cx, cy: T.cy, rx: T.rx, ry: T.ry, fill: "#c58b52", stroke: "var(--ink)", "stroke-width": 1.6 }, c.svg);

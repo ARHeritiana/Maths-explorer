@@ -33,12 +33,20 @@ the home plate, the mark and favicon, the theme colour of the browser bar (`site
 slide player tokens and fonts (`site/slides/player.css`, `scripts/export-slides.py`), the timeline page mark.
 Schibsted Grotesk left the site (it stays in the TeX sources until the PDFs are restyled).
 
-## Still to do
+## Done on 16 November 2026
 
-1. PDFs and Beamer lectures (`content/tex/core/`) still use the v6 palette and Schibsted Grotesk: restyle them, then
-   rebuild every PDF.
-2. Standalone pages with their own style (`site/resources/basics/*.html`, `site/resources/document-theme.css`).
-3. A share image (1280 × 640) for GitHub and social previews.
+1. PDFs and Beamer lectures restyled through one brand file, `content/tex/core/mx-brand.sty` (style apart from content:
+   the other core files are the same in both sites; `docs/TEX_STYLE_GUIDE.md`). Text in Atkinson Hyperlegible, titles in
+   Bricolage Grotesque, maths in STIX Two; rounded cards (lilac definitions, outlined properties), sunflower chips,
+   the mark in the header. Every PDF and lecture rebuilt.
+2. The site's tokens moved to `site/styles/tokens.css`, imported by `explorer.css` and by the foundation lessons
+   through `site/resources/basics/basics-theme.css`: the lessons keep only their data colours and follow the site's
+   fonts, corners and both themes.
+3. Share image `site/share.png` (1280 × 640, `scripts/share-image.py`), declared in `site/index.html` (Open Graph). Upload it
+   by hand as the repository's social preview (GitHub, Settings, General, Social preview).
+4. Figures read the role `--object-ink` / `--object` (the studied object) instead of `--accent`; here both point to tomato.
+
+Still to do: `site/resources/document-theme.css` (generated HTML resource pages) keeps its own dark look.
 
 The full brand guide (logo system, both palettes with contrast, components, slides, PDF page, share card) is the
 canvas "Brand identity proposals", page "Bac à sable guide".

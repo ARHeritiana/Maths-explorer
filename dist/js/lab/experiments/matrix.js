@@ -25,7 +25,7 @@ export default {
   ease: ['a', 'b', 'c', 'd'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     i: {
-      kind: "handle", soft: true, panel: "after", color: "accent", grid: 0.5, label: ["Image de i (première colonne de M)", "Image of i (first column of M)"],
+      kind: "handle", soft: true, panel: "after", color: "object", grid: 0.5, label: ["Image de i (première colonne de M)", "Image of i (first column of M)"],
       at: (s) => [s.a, s.c],
       drag: (s, x, y) => ({ a: clamp(x, -LIM, LIM), c: clamp(y, -LIM, LIM) }),
       valuetext: (s, f) => f.pt(s.a, s.c),
@@ -45,11 +45,11 @@ export default {
         return {
           polys: [{ pts: [[0, 0], [1, 0], [1, 1], [0, 1]], fill: "muted", alpha: 0.2, color: "muted", width: 2 }],
           lines: [
-            { a: [0, 0], b: [1, 0], color: "accent", width: 3.5, arrow: true },
+            { a: [0, 0], b: [1, 0], color: "object", width: 3.5, arrow: true },
             { a: [0, 0], b: [0, 1], color: "obj2", width: 3.5, arrow: true },
           ],
           points: [
-            { at: [1, 0], color: "accent", r: 4, label: "i", dx: 4, dy: 20 },
+            { at: [1, 0], color: "object", r: 4, label: "i", dx: 4, dy: 20 },
             { at: [0, 1], color: "obj2", r: 4, label: "j", dx: -14, dy: 6, anchor: "right" },
           ],
           texts: [{ at: [-RANGE + 0.2, RANGE - 0.7], text: fmt.t(["Départ : carré unité", "Before: unit square"]), color: "muted", size: 15 }],
@@ -60,13 +60,13 @@ export default {
       x: [-RANGE, RANGE], y: [-RANGE, RANGE], equal: true, xTicks: [-4, -2, 0, 2, 4], yTicks: [-4, -2, 0, 2, 4],
       scene(s, { fmt }) {
         const m = model(s), tone = m.orientation > 0 ? "pos" : m.orientation < 0 ? "neg" : "muted", grid = [];
-        for (let k = -8; k <= 8; k++) grid.push({ a: m.f([-9, k]), b: m.f([9, k]), color: "accent", alpha: 0.28, width: 1.1 }, { a: m.f([k, -9]), b: m.f([k, 9]), color: "accent", alpha: 0.28, width: 1.1 });
+        for (let k = -8; k <= 8; k++) grid.push({ a: m.f([-9, k]), b: m.f([9, k]), color: "object", alpha: 0.28, width: 1.1 }, { a: m.f([k, -9]), b: m.f([k, 9]), color: "object", alpha: 0.28, width: 1.1 });
         const mid = [(s.a + s.b) / 2, (s.c + s.d) / 2];
         return {
-          lines: [...grid, { a: [0, 0], b: m.i, color: "accent", width: 3.5, arrow: true }, { a: [0, 0], b: m.j, color: "obj2", width: 3.5, arrow: true }],
+          lines: [...grid, { a: [0, 0], b: m.i, color: "object", width: 3.5, arrow: true }, { a: [0, 0], b: m.j, color: "obj2", width: 3.5, arrow: true }],
           polys: [{ pts: m.polygon, fill: tone, alpha: m.invertible ? 0.22 : 0, color: tone, width: 2.2 }],
           points: [
-            { at: m.i, color: "accent", r: 4.5, label: "M(i)", dx: 10, dy: 20 },
+            { at: m.i, color: "object", r: 4.5, label: "M(i)", dx: 10, dy: 20 },
             { at: m.j, color: "obj2", r: 4.5, label: "M(j)", dx: 10, dy: -10 },
           ],
           texts: [

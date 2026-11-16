@@ -23,7 +23,7 @@ export function activity(root, { t, q, reduced: reducedPref }) {
     <p class="act-readout" role="status" aria-live="polite"></p>`;
   const svg = root.querySelector("svg"), read = root.querySelector(".act-readout");
   // the scene is built once; frames only pose it
-  svgEl("ellipse", { cx: ROOM.cx, cy: ROOM.cy + 4, rx: ROOM.rx + 26, ry: ROOM.ry + 22, fill: "color-mix(in srgb, var(--accent) 9%, transparent)" }, svg);
+  svgEl("ellipse", { cx: ROOM.cx, cy: ROOM.cy + 4, rx: ROOM.rx + 26, ry: ROOM.ry + 22, fill: "color-mix(in srgb, var(--object-ink) 9%, transparent)" }, svg);
   const back = svgEl("g", {}, svg);
   svgEl("rect", { x: T.cx - 6, y: T.cy, width: 12, height: 28, fill: "#8d5f2d", stroke: "var(--ink)", "stroke-width": 1.2 }, svg);
   svgEl("ellipse", { cx: T.cx, cy: T.cy, rx: T.rx, ry: T.ry, fill: "#c58b52", stroke: "var(--ink)", "stroke-width": 1.6 }, svg);
@@ -39,7 +39,7 @@ export function activity(root, { t, q, reduced: reducedPref }) {
   const centre = [ROOM.cx, ROOM.cy - 30];
   function drawLines() {
     lines.replaceChildren();
-    for (const key of done) { const [i, j] = key.split("-").map(Number), a = handAt(S[i], size), b = handAt(S[j], size); svgEl("line", { x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: "var(--accent)", "stroke-width": 1.6, "stroke-linecap": "round" }, lines); }
+    for (const key of done) { const [i, j] = key.split("-").map(Number), a = handAt(S[i], size), b = handAt(S[j], size); svgEl("line", { x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: "var(--object-ink)", "stroke-width": 1.6, "stroke-linecap": "round" }, lines); }
     read.textContent = done.size === handshakes(n) ? t("Tout le monde s’est serré la main.", "Everyone has shaken hands.") : "";   // neutral end message, no running count
   }
   // one frame, a function of the clock time `now` (ms) and the current state

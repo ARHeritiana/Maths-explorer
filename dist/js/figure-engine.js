@@ -11,7 +11,7 @@ const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n
 // Colours are read from the design tokens at draw time (cached until the theme changes).
 export const readColors = () => ({
   paper: css('--bg'), ink: css('--ink'), ink2: css('--ink-2'), muted: css('--muted'), grid: css('--grid'), grid2: css('--line'),
-  q1: css('--accent'), q2: css('--ink'), q3: css('--q3'), line: css('--line'), ui: css('--ui') || 'sans-serif',
+  q1: css('--object-ink'), q2: css('--ink'), q3: css('--q3'), line: css('--line'), ui: css('--ui') || 'sans-serif',
 });
 
 export function FigureEngine(stage, first, o = {}) {

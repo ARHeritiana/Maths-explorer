@@ -24,7 +24,7 @@ export function voronoiWorld(root,opts){
   o.animate(dt=>{if(playing){growth=opts.reduced()?1:Math.min(1,growth+dt*.36);if(growth===1)playing=false;}
     if(idle(relax||playing,JSON.stringify([seeds,selected,growth]))&&cells.length)return false;
     cells=voronoiCells(seeds,[0,0,640,440]);if(relax&&dt){const centres=cells.map(polygonCentroid);seeds=seeds.map((s,i)=>s.map((v,k)=>v+(centres[i][k]-v)*Math.min(1,dt*2)));}
-    const C=background(o),colors=[C.accent,C.obj2,C.obj3,C.pos,C.neg];
+    const C=background(o),colors=[C.object,C.obj2,C.obj3,C.pos,C.neg];
     cells.forEach((p,i)=>{g.save();if(growth<1){g.beginPath();g.arc(...seeds[i],growth*800,0,2*Math.PI);g.clip();}path(g,p,{close:true,fill:colors[i%5],alpha:.16});path(g,p,{close:true,stroke:C.line,width:1.5});g.restore();});
     seeds.forEach((p,i)=>{dot(g,p,i===selected?C.ink:colors[i%5],i===selected?9:6,String(i+1));if(i===selected){g.strokeStyle=C.surface;g.lineWidth=2;g.beginPath();g.arc(...p,5,0,2*Math.PI);g.stroke();}});
     if(!(relax||playing)||++frame%12===0||!dt)o.read(`${seeds.length} ${t('graines','seeds')} · ${t('territoire choisi','selected territory')} ${selected+1}: ${(polygonArea(cells[selected])/(640*440)*100).toFixed(1)} % · ${t('Les points de la frontière sont à égale distance.','Boundary points are equally distant.')}`);

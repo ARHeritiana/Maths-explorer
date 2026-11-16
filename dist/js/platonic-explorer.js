@@ -26,7 +26,7 @@ export function mountPlatonic(root,{t,reduced},solids,names,schlafli,angle,verdi
     const C=palette(),net=nets[name],polys=net.faces(fold),scale=Math.min(280/net.radius,175/net.radius),screen=polys.map(poly=>poly.map(v=>{const r=rot(v);return[o.W/2+scale*r[0],o.H/2-scale*r[1],r[2]];}));
     g.clearRect(0,0,o.W,o.H);g.fillStyle=C.sunken;g.fillRect(0,0,o.W,o.H);
     projected=screen.map((pts,i)=>({pts,i,depth:pts.reduce((s,p)=>s+p[2]/pts.length,0)})).sort((a,b)=>b.depth-a.depth);
-    for(const {pts,i}of projected){g.beginPath();pts.forEach(([x,y],j)=>j?g.lineTo(x,y):g.moveTo(x,y));g.closePath();g.globalAlpha=i===selected||i===hover?1:.85;g.fillStyle=C.c[i%8];g.fill();g.globalAlpha=1;g.lineWidth=i===selected?4:i===hover?3:1.8;g.strokeStyle=i===selected?C.accent:C.ink;g.stroke();if(!numbers&&i!==selected)continue;
+    for(const {pts,i}of projected){g.beginPath();pts.forEach(([x,y],j)=>j?g.lineTo(x,y):g.moveTo(x,y));g.closePath();g.globalAlpha=i===selected||i===hover?1:.85;g.fillStyle=C.c[i%8];g.fill();g.globalAlpha=1;g.lineWidth=i===selected?4:i===hover?3:1.8;g.strokeStyle=i===selected?C.object:C.ink;g.stroke();if(!numbers&&i!==selected)continue;
       const x=pts.reduce((s,p)=>s+p[0]/pts.length,0),y=pts.reduce((s,p)=>s+p[1]/pts.length,0);g.fillStyle=C.ink;g.font='600 13px system-ui';g.textAlign='center';g.fillText(String(i+1),x,y+4);
     }
   }
@@ -48,7 +48,7 @@ export function mountPlatonic(root,{t,reduced},solids,names,schlafli,angle,verdi
     if(total<TAU){fg.beginPath();fg.moveTo(...center);fg.arc(...center,35,-Math.PI/2+total,TAU-Math.PI/2);fg.closePath();fg.fillStyle=C.pos;fg.globalAlpha=.5;fg.fill();fg.globalAlpha=1;}
     fg.fillStyle=C.ink;fg.textAlign='left';fg.font='600 21px system-ui';fg.fillText(`${q} × ${fmt(angle(p))}° = ${fmt(q*angle(p))}°`,18,32);
     const valid=verdict(p,q)==='solid';fanRead.textContent=valid?t(`Il reste ${fmt(360-q*angle(p))}° de vide. Clique sur « Former ce solide », puis replie le patron.`,`An angle gap of ${fmt(360-q*angle(p))}° remains. Choose “Build this solid”, then fold the net.`):verdict(p,q)==='flat'?t('360° : aucun relief. Ces faces restent dans le plan.','360°: no corner. These faces stay in the plane.'):t('Plus de 360° : les angles se chevauchent. Impossible pour un sommet convexe.','More than 360°: the angles overlap. A convex vertex is impossible.');
-    for(const id of ['p','q']){const [x,y]=fanPos(id);fg.strokeStyle=C.line;fg.lineWidth=2;fg.beginPath();fg.moveTo(100,y);fg.lineTo(500,y);fg.stroke();fg.fillStyle=C.accent;fg.beginPath();fg.arc(x,y,10,0,TAU);fg.fill();fg.fillStyle=C.ink;fg.font='600 18px system-ui';fg.fillText(`${id} = ${id==='p'?p:q}`,20,y+5);}
+    for(const id of ['p','q']){const [x,y]=fanPos(id);fg.strokeStyle=C.line;fg.lineWidth=2;fg.beginPath();fg.moveTo(100,y);fg.lineTo(500,y);fg.stroke();fg.fillStyle=C.object;fg.beginPath();fg.arc(x,y,10,0,TAU);fg.fill();fg.fillStyle=C.ink;fg.font='600 18px system-ui';fg.fillText(`${id} = ${id==='p'?p:q}`,20,y+5);}
     root.querySelector('#pl-build-case').disabled=!valid;
     root.querySelector('#pl-table').innerHTML=`<table class="act-table pl-table"><caption>${t('Les cinq couples possibles','The five possible pairs')}</caption><thead><tr><th>p</th><th>q</th><th>${t('Solide','Solid')}</th></tr></thead><tbody>${Object.keys(solids).map(id=>`<tr><td>${schlafli[id][0]}</td><td>${schlafli[id][1]}</td><td><button type="button" class="pl-cell${schlafli[id][0]===p&&schlafli[id][1]===q?' sel':''}" data-case="${id}">${t(...names[id])}</button></td></tr>`).join('')}</tbody></table>`;
   }

@@ -41,7 +41,7 @@ export default {
   state: { ax: 0, ay: 1, bx: 2, by: 5 },
   controls: {
     A: {
-      kind: "handle", color: "accent", grid: 0.5, label: ["Point A", "Point A"],
+      kind: "handle", color: "object", grid: 0.5, label: ["Point A", "Point A"],
       at: (s) => [s.ax, s.ay],
       drag: (s, x, y) => ({ ax: clamp(x, -XMAX, XMAX), ay: clamp(y, -YMAX, YMAX) }),
       valuetext: (s, f) => f.pt(s.ax, s.ay),
@@ -59,17 +59,17 @@ export default {
       x: [-6, 6], y: [-5.5, 5.5], equal: true, xTicks: [-6, -4, -2, 0, 2, 4, 6], yTicks: [-4, -2, 0, 2, 4],
       scene(s, { fmt }) {
         const m = model(s), num = fmt.num, [ax, ay, bx, by] = [s.ax, s.ay, s.bx, s.by];
-        if (m.degenerate) return { points: [{ at: [ax, ay], color: "accent", r: 6, label: `A = B ${fmt.pt(ax, ay)}`, dx: 12, dy: -12 }] };
+        if (m.degenerate) return { points: [{ at: [ax, ay], color: "object", r: 6, label: `A = B ${fmt.pt(ax, ay)}`, dx: 12, dy: -12 }] };
         const right = bx >= ax, up = by >= ay, tone = m.increasing ? "pos" : m.decreasing ? "neg" : "ink";
         return {
           lines: [
-            { a: [ax, ay], b: [bx, by], extend: true, color: "accent", width: 3 },
+            { a: [ax, ay], b: [bx, by], extend: true, color: "object", width: 3 },
             { a: [ax, ay], b: [bx, by], color: "obj2", width: 3.5, arrow: true },
           ],
           polys: [{ pts: [[ax, ay], [bx, ay], [bx, by]], fill: tone, alpha: m.vertical || m.dy === 0 ? 0 : 0.09, color: "muted", dash: [5, 5], width: 1.5, close: true }],
           points: [
             ...(m.p !== null && Math.abs(m.p) <= YMAX && ax !== 0 && bx !== 0 ? [{ at: [0, m.p], color: "pos", r: 5, hollow: true, label: `p = ${coef(num, m.intercept)}`, dx: 10, dy: -10 }] : []),
-            { at: [ax, ay], color: "accent", r: 6, label: `A ${fmt.pt(ax, ay)}`, anchor: right ? "right" : "left", dx: right ? -12 : 12, dy: ay > 4 ? 24 : ay < -4 ? -12 : up ? 22 : -12 },
+            { at: [ax, ay], color: "object", r: 6, label: `A ${fmt.pt(ax, ay)}`, anchor: right ? "right" : "left", dx: right ? -12 : 12, dy: ay > 4 ? 24 : ay < -4 ? -12 : up ? 22 : -12 },
             { at: [bx, by], color: "obj2", r: 6, label: `B ${fmt.pt(bx, by)}`, anchor: right ? "left" : "right", dx: right ? 12 : -12, dy: by > 4 ? 24 : by < -4 ? -12 : up ? -12 : 22 },
           ],
           texts: [

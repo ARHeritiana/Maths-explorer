@@ -1,21 +1,32 @@
 # TeX style guide
 
-One LaTeX system for every course: class `mxbook` and packages in `content/tex/core/`. pdfLaTeX without shell escape,
-`mathpazo`; large boxes `mdframed` (left rule, breakable), small elements `tcolorbox`; numbering by `\newcounter`; page
-breaks by `\mxneed{n}` (`\Needspace`), never by hand. Minimal compilable example: `content/tex/core/example.tex`
-(`pdflatex example.tex` in that folder; options `\def\mxopts{lang=en,edition=teacher}\input{example}`).
+One LaTeX system for every course: class `mxbook` and packages in `content/tex/core/`. XeTeX without shell escape,
+fonts loaded by file name from `content/tex/core/fonts/`; boxes are breakable `tcolorbox`es; numbering by
+`\newcounter`; page breaks by `\mxneed{n}` (`\Needspace`), never by hand. Minimal compilable example:
+`content/tex/core/example.tex` (`xelatex example.tex` in that folder; options
+`\def\mxopts{lang=en,edition=teacher}\input{example}`).
+
+**Style and content live apart.** `mx-brand.sty` is the only file that belongs to one site: colours, fonts, mark,
+wordmark, tagline, page frame, heading styles, box families, chips and the title slide (design v7 "Bac à sable",
+`docs/DESIGN_V7.md`). Every other core file is structure and is identical in Maths-explorer and Matematika; units
+name roles (`mxobject`, `mxpos`, an environment), never a colour value or a font. To restyle every PDF and lecture,
+edit `mx-brand.sty` (and `fonts/fonts.json` for a new face), run `python3 scripts/tex-fonts.py` if fonts changed, then
+`make site`.
 
 ## Files
 
 | File | Holds |
 |---|---|
+| `mx-brand.sty` | the look (one file per site, see above); its header lists the names a brand must define: colours `mxink mxinktwo mxmuted mxline mxlinestrong mxpaper mxaccent mxaccentsoft mxobject mxobjectfill mxobjectsoft mxobjtwo mxobjtwosoft mxpos mxpossoft mxneg mxnegsoft mxmark mxonmark mxslidebg mxslideink`, fonts and `\mxdisplayfont \mxheadfont \mxlabelfont`, `\mxbrandname \mxbrandwordmark \mxbrandmark \mxbrandtagline`, `\mxbrandframe`, heading styles, `\mxboxtitlefont`, box families `mx/result mx/definition mx/method mx/work mx/quiet mx/pitfall mx/teacher`, `mx/chip`, `mx/band`, `\mxarc`, `\mxslidetitlebackground`, `\mxslidetitlefont`, `\mxslideframetitlemark` |
+| `fonts/` | OpenType files loaded by name. `fonts.json` lists the brand faces; `scripts/tex-fonts.py` makes them from the site's web fonts (static instances, latin and latin-ext merged, and every missing character up to U+2FFF copied from STIX Two Text, so a symbol such as ℃ never goes missing); STIX Two and Latin Modern Mono are shipped as they are |
+| `beamer/beamerthememx.sty` | the Beamer theme of the lecture PDFs: structure only, look from `mx-brand.sty` |
 | `mxbook.cls` | the master: options `course=`, `lang=fr\|en`, `edition=student\|teacher\|both`, `layout=booklet\|sheet\|slide-figs`, `unit=chapter\|sequence`, `sections=numbered\|unnumbered`; loads every package below; `\mxinclude`, `\mxunit`, `\mxfront`, `\mxsubtitle`, `\mxnewpage`, `\mxsection`, `\mxlabel` |
 | `mx-i18n.sty` | babel, label dictionary (`\mxlabelof{key}`), `\mxtr{fr}{en}` (core only), `\mxdate{YYYY-MM-DD}`, `\mxdate*{...}` |
 | `mx-edition.sty` | `\ifmxteacher`, `\mxteacheronly{}`, `\mxstudentonly{}` |
 | `mx-math.sty` | every maths macro that reads the same in both languages, once (`\R \N \Z \Q \D \C \vect \vi \vj \vk \norm \vc \deter \abs \dd \e \Card \E \V \pgcd \ppcm \degre \un \sci`); source of the slide player's MathJax table |
 | `mx-notation.sty` | every notation that differs between French and English (`\num \pc \intff \intoo \intfo \intof \ent \pt \ens`), printed per language |
-| `mx-figures.sty` | palette `mxink mxmint mxmintpale mxteacher mxwarn mxline mxmuted mxpaper`; TikZ libraries; styles `mxcurve mxaux mxpoint mxaxisline` (TikZ), `mxaxis mxgridaxis` (pgfplots) |
-| `mx-layout.sty` | geometry, print palette, native header band and footer, headings, `\mxneed{n}` |
+| `mx-figures.sty` | the colour names units use in figures (roles from the brand; `mxmint` = the studied object, `mxteacher` = correct, `mxwarn` = error); TikZ libraries; styles `mxcurve mxaux mxpoint mxaxisline` (TikZ), `mxaxis mxgridaxis` (pgfplots) |
+| `mx-layout.sty` | geometry, where the frame is drawn (`\mxput`, `\mxframepage`), heading structure, `\mxneed{n}` |
 | `mx-env.sty` | the environments below |
 | `mx-code.sty` | Python listings style, `\code{}` |
 
@@ -144,8 +155,8 @@ and become `<id>:name`. A course main is generated from the manifest; by hand it
 
 ## Native document frame
 
-`mx-layout.sty` draws the dark header band, mint rule, language label and footer directly in TeX. The body remains
-Palatino through `mathpazo`; frame text uses the class's sans-serif family. Body geometry is unchanged. The native
+`mx-layout.sty` draws the frame on every page directly in TeX; what the frame shows (mark, name, rules, language
+label, tagline, page count) is the brand's `\mxbrandframe`. Body geometry is unchanged. The native
 frame replaces the former secondary running heads and footers, so printed page counters refer to the downloaded
 file rather than to an enclosing book. The `slide-figs` layout remains bare and keeps its figure palette.
 

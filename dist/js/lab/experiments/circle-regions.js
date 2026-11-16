@@ -32,7 +32,7 @@ export default {
       x: [-1.25, 1.25], y: [-1.2, 1.2], equal: true, axes: false, pad: [6, 6, 6, 6],
       scene(s) {
         const m = model(s);
-        const lines = m.chords.map(([i, j]) => ({ a: m.pts[i], b: m.pts[j], color: "accent", width: 1.8 }));
+        const lines = m.chords.map(([i, j]) => ({ a: m.pts[i], b: m.pts[j], color: "object", width: 1.8 }));
         const points = [
           ...m.pts.map((p) => ({ at: p, color: "ink", r: 6 })),
           ...m.hits.filter((h) => h.m > 2).map((h) => ({ at: h.at, color: "neg", r: 7, hollow: true })),

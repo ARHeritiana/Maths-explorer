@@ -52,7 +52,7 @@ export function gameOfLife(root,opts){
     g.strokeStyle=C.ink;g.lineWidth=1.5;g.beginPath();const stride=Math.max(1,Math.floor(n/600));
     for(let i=0;i<n;i+=stride){const x=X(i),y=Yp(pops[i]);i?g.lineTo(x,y):g.moveTo(x,y);}
     if((n-1)%stride)g.lineTo(X(n-1),Yp(pops[n-1]));g.stroke();
-    g.fillStyle=C.accent;g.beginPath();g.arc(X(Math.min(n-1,gen)),Yp(pops[Math.min(n-1,gen)]),4,0,Math.PI*2);g.fill();
+    g.fillStyle=C.object;g.beginPath();g.arc(X(Math.min(n-1,gen)),Yp(pops[Math.min(n-1,gen)]),4,0,Math.PI*2);g.fill();
   }
   o.animate(dt=>{
     // real elapsed time: the simulation runs only when asked, so it also runs under reduced motion
@@ -76,8 +76,8 @@ export function gameOfLife(root,opts){
       for(let x=Math.floor(view.cx+(x0-o.W/2)/cs);x<=Math.ceil(view.cx+(x1-o.W/2)/cs);x++){g.moveTo(sx(x),y0);g.lineTo(sx(x),y1);}
       for(let y=Math.floor(view.cy+(y0-GH/2)/cs);y<=Math.ceil(view.cy+(y1-GH/2)/cs);y++){g.moveTo(x0,sy(y));g.lineTo(x1,sy(y));}g.stroke();}
     const gap=cs>=7?1:0,vis=(px,py)=>px+cs>=x0&&px<=x1&&py+cs>=y0&&py<=y1;
-    if(trail){g.fillStyle=C.accent;for(const [k,age] of trailAges(last,gen,TRAIL)){if(cells.has(k))continue;const [x,y]=coords(k),px=sx(x),py=sy(y);if(!vis(px,py))continue;g.globalAlpha=.34*(1-(age-1)/TRAIL);g.fillRect(px+gap/2,py+gap/2,cs-gap,cs-gap);}g.globalAlpha=1;}
-    g.fillStyle=C.accent;
+    if(trail){g.fillStyle=C.object;for(const [k,age] of trailAges(last,gen,TRAIL)){if(cells.has(k))continue;const [x,y]=coords(k),px=sx(x),py=sy(y);if(!vis(px,py))continue;g.globalAlpha=.34*(1-(age-1)/TRAIL);g.fillRect(px+gap/2,py+gap/2,cs-gap,cs-gap);}g.globalAlpha=1;}
+    g.fillStyle=C.object;
     for(const k of cells){const [x,y]=coords(k),px=sx(x),py=sy(y);if(!vis(px,py))continue;g.fillRect(px+gap/2,py+gap/2,cs-gap,cs-gap);}
     if(root.ownerDocument.activeElement===o.cv){g.strokeStyle=C.obj2;g.lineWidth=2/sc;g.strokeRect(sx(cursor[0]),sy(cursor[1]),cs,cs);}
     g.restore();

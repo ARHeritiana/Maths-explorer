@@ -173,7 +173,7 @@ export function drawScene(g, v, scene, st, { ghost = false } = {}) {
     g.beginPath(); g.moveTo(v.X(from), v.Y(0));
     for (let i = 0; i <= n; i++) { const x = from + ((to - from) * i) / n; g.lineTo(v.X(x), v.Y(a.f(x))); }
     g.lineTo(v.X(to), v.Y(0)); g.closePath();
-    g.globalAlpha *= a.alpha ?? 0.14; g.fillStyle = st.color(a.color || "accent"); g.fill();
+    g.globalAlpha *= a.alpha ?? 0.14; g.fillStyle = st.color(a.color || "objectFill"); g.fill();
     g.globalAlpha = ghost ? 0.38 : 1;
   }
   for (const r of scene.rects || []) {
@@ -194,7 +194,7 @@ export function drawScene(g, v, scene, st, { ghost = false } = {}) {
     if (p.width !== 0) { stroke(g, st, p, { color: "ink", width: 2 }); g.lineJoin = "round"; g.stroke(); }
   }
   for (const c of scene.curves || []) {
-    stroke(g, st, c, { color: "accent", width: 3 });
+    stroke(g, st, c, { color: "object", width: 3 });
     const a = Math.max(c.from ?? v.x0, v.x0), b = Math.min(c.to ?? v.x1, v.x1), n = c.samples || 240;
     g.lineJoin = "round"; g.beginPath();
     let pen = false;
@@ -222,7 +222,7 @@ export function drawScene(g, v, scene, st, { ghost = false } = {}) {
     g.beginPath(); g.ellipse(v.X(c.c[0]), v.Y(c.c[1]), (c.r / (v.x1 - v.x0)) * v.width, (c.r / (v.y1 - v.y0)) * v.height, 0, 0, Math.PI * 2); g.stroke();
   }
   for (const a of scene.arcs || []) {
-    stroke(g, st, a, { color: "accent", width: 2.5 });
+    stroke(g, st, a, { color: "object", width: 2.5 });
     const rr = a.pixels ?? 26;
     g.beginPath(); g.arc(v.X(a.c[0]), v.Y(a.c[1]), rr, -(a.from * Math.PI) / 180, -(a.to * Math.PI) / 180, a.to > a.from); g.stroke();
   }
@@ -251,7 +251,7 @@ export function drawScene(g, v, scene, st, { ghost = false } = {}) {
 
 // Handle marks: a free handle is a filled dot in a soft halo; the handle under the pointer, focused or dragged gets a ring.
 // Locked handles (a gated mission) are a small hollow mark.
-export function drawHandle(g, st, x, y, { color = "accent", locked = false, focused = false, id = null } = {}) {
+export function drawHandle(g, st, x, y, { color = "object", locked = false, focused = false, id = null } = {}) {
   g.save();
   g.setLineDash([]);
   const c = st.color(color);
@@ -307,7 +307,7 @@ export function buildHandles({ exp, fmt, getState, getShown = getState, setState
     const view = () => views()[panel];
     handles.push({
       id, control: c, panel,
-      label: fmt.t(c.label), color: c.color || "accent", absolute: !!c.absolute,
+      label: fmt.t(c.label), color: c.color || "object", absolute: !!c.absolute,
       pos() {
         const v = view(), [wx, wy] = c.at(getShown());
         return [clamp(v.X(wx), v.left + 6, v.left + v.width - 6), clamp(v.Y(wy), v.top + 6, v.top + v.height - 6)];

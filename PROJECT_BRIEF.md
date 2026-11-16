@@ -116,7 +116,7 @@ Derived from the owner's two attached slides (trinôme, déterminant et colinéa
 
 ## 6. Design
 
-The owner discarded every earlier design instruction on 13 October 2026 and delegated design to the assistant, working from the site's goal and functions. The current design ("Cahier"), its reasoning, tokens and components are in `docs/DESIGN_V3.md`; read it before any visual work. Rules that still bind any design, because they come from the site's purpose rather than from taste:
+The owner discarded every earlier design instruction on 13 October 2026 and delegated design to the assistant, working from the site's goal and functions. The current design is v7 "Bac à sable" (chosen by the owner on 15 November 2026): its rules and tokens are in `docs/DESIGN_V7.md`; read it before any visual work. `docs/DESIGN_V3.md` keeps the reasoning that still binds it (the purpose rules below). Rules that still bind any design, because they come from the site's purpose rather than from taste:
 
 - Experiment first: the manipulable figure is the main content of a chapter, and the first screen offers a way into one.
 - Honest labelling: experiments give evidence, not proof; show the numbers behind a picture; simplify coefficients.
@@ -160,7 +160,7 @@ Still open:
 1. Malagasy programme documents: the owner supplies them per chapter.
 2. The Terminale STMG programme in force this year.
 3. Whether maths expertes keeps the 2019 text beyond this year.
-4. Owner review of the Cahier design (`docs/DESIGN_V3.md`).
+4. Owner review of the "Bac à sable" design applied to the course PDFs and Beamer lectures (`docs/DESIGN_V7.md`).
 
 ## 10. Skills stored in this repository
 

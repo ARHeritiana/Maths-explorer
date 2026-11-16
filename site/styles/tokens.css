@@ -1,0 +1,53 @@
+/* Tokens of the site: fonts, colours of both themes (Jour, Nuit) and shapes, the one source of the look. Imported by
+   explorer.css (the site) and by the standalone pages (foundation lessons, documents); the slide player keeps its own
+   copy in site/slides/player.css. Font files are relative to this folder. */
+/* Maths Explorer, design v7 "Bac à sable". See docs/DESIGN_V7.md.
+   Panels 36px, cards 24px, fields 12px, buttons are pills. Ink outlines, not shadows. Colour carries meaning only:
+   accent (tomato) = the object studied, --obj2 (lilac) and --obj3 = other objects, --pos valid, --neg error,
+   --sun = surprises and the selected class. Motion is limited to short state changes and is removed under reduced motion. */
+
+@font-face { font-family: "Atkinson Hyperlegible"; font-weight: 400; font-display: swap; src: url(../fonts/atkinson-hyperlegible-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Atkinson Hyperlegible"; font-weight: 700; font-display: swap; src: url(../fonts/atkinson-hyperlegible-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Atkinson Hyperlegible"; font-weight: 400; font-display: swap; src: url(../fonts/atkinson-hyperlegible-latin-ext-400-normal.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Atkinson Hyperlegible"; font-weight: 700; font-display: swap; src: url(../fonts/atkinson-hyperlegible-latin-ext-700-normal.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Bricolage Grotesque"; font-weight: 200 800; font-display: swap; src: url(../fonts/bricolage-grotesque-latin-wght-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Bricolage Grotesque"; font-weight: 200 800; font-display: swap; src: url(../fonts/bricolage-grotesque-latin-ext-wght-normal.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "STIX Two Text"; font-style: italic; font-weight: 400; font-display: swap; src: url(../fonts/stix-two-text-latin-400-italic.woff2) format("woff2"); }
+@font-face { font-family: "STIX Two Text"; font-weight: 600; font-display: swap; src: url(../fonts/stix-two-text-latin-600-normal.woff2) format("woff2"); }
+@font-face { font-family: "STIX Two Text"; font-weight: 700; font-display: swap; src: url(../fonts/stix-two-text-latin-700-normal.woff2) format("woff2"); }
+
+/* ------------------------------------------------------------------ tokens */
+:root, :root[data-theme="jour"] {
+  color-scheme: light;
+  --bg: #fff7ea; --surface: #ffffff; --sunken: #f6eedd;
+  --ink: #2b1e3f; --ink-2: #4a3d5e; --muted: #55466b;
+  --line: #e6dacb; --line-strong: #2b1e3f; --grid: #efe6d6;
+  --accent: #c8391b; --accent-ink: #fff7ea; --accent-soft: #fff0ea;
+  --shape: #e8492a; --sun: #ffbe2e; --on-sun: #2b1e3f; --figure: #f3eeff;
+  --obj2: #6b4fc9; --obj3: #8a7da0;
+  --pos: #0f7a6f; --pos-soft: #ddf2ee; --neg: #a4133c; --neg-soft: #fbe3ea;
+  --mark: #ffbe2e;
+  --c1: #2563eb; --c2: #e8710a; --c3: #0f9d58; --c4: #c2185b; --c5: #7b1fa2; --c6: #00838f; --c7: #b8860b; --c8: #d84315;   /* data colours (graph colourings, series); not part of the interface palette */
+}
+:root[data-theme="nuit"] {
+  color-scheme: dark;
+  --bg: #1c1530; --surface: #271e40; --sunken: #2f2550;
+  --ink: #fff7ea; --ink-2: #cfc3e6; --muted: #bdb0d6;
+  --line: #3a2f55; --line-strong: #8b7daa; --grid: #2a2145;
+  --accent: #ff7a5c; --accent-ink: #1c1530; --accent-soft: #3d2233;
+  --shape: #ff7a5c; --sun: #ffcb55; --on-sun: #1c1530; --figure: #231a3a;
+  --obj2: #b9a2ff; --obj3: #8e83a8;
+  --pos: #3cc7b4; --pos-soft: #12332f; --neg: #ff8fa8; --neg-soft: #3a1828;
+  --mark: #5c4a12;
+  --c1: #7aa2ff; --c2: #ffa94d; --c3: #5fd0a0; --c4: #ff7eb6; --c5: #c9a6ff; --c6: #4dd0e1; --c7: #ffd54f; --c8: #ff8a65;
+}
+:root {
+  /* the studied object in figures (one role for both brands: Matematika draws it in ochre, this site in tomato) */
+  --object-ink: var(--accent); --object: var(--shape); --object-soft: var(--accent-soft); --object-on: var(--accent-ink);
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif; --ui: var(--body);
+  --math: "STIX Two Text", "Times New Roman", serif;
+  --page-w: 1440px; /* one container width: pages, sub-navigation, home */
+  --r: 24px; --r-sm: 12px; --r-panel: 36px; --r-pill: 999px; --header: 66px; --chrome: var(--header); --t: 120ms ease;
+  font-size: 100%;
+}

@@ -39,7 +39,7 @@ for (const id of IDS) {
     assert.equal(strip(fr), strip(en));
     assert.ok(fr.includes('logic-lesson.css') && fr.includes('logic-lesson.js'));
     assert.doesNotMatch(fr + en, /https?:\/\/|[—–]/);
-    assert.equal([...(fr + en).matchAll(/<script[^>]+src="([^"]+)"/g)].every(m => m[1] === 'logic-lesson.js'), true);
+    assert.equal([...(fr + en).matchAll(/<script[^>]+src="([^"]+)"/g)].every(m => ['logic-lesson.js', 'basics-theme.js'].includes(m[1])), true);
     const a = page(id, 'fr'), b = page(id, 'en');
     try {
       assert.equal(JSON.stringify(shape(a.run('T'))), JSON.stringify(shape(b.run('T'))));
@@ -344,7 +344,7 @@ test('reasoning: the dominoes fall exactly as the base case and the stuck links 
 test('the shared files are published with the lessons and referenced fonts exist', () => {
   assert.ok(existsSync(new URL('logic-lesson.css', dir)));
   const css = readFileSync(new URL('logic-lesson.css', dir), 'utf8');
-  assert.ok(css.includes('prefers-reduced-motion') && css.includes('prefers-color-scheme:dark') && css.includes('[data-theme="dark"]'));
+  assert.ok(css.includes('prefers-reduced-motion') && css.includes('prefers-color-scheme:dark') && css.includes('[data-theme="nuit"]'));
   for (const m of css.matchAll(/url\("([^"]+\.woff2)"\)/g)) assert.ok(existsSync(new URL(m[1], dir)), m[1]);
   assert.doesNotMatch(css + shared, /fetch\(|XMLHttpRequest|googleapis|import\(|url\("?https?:/);
   assert.ok(shared.includes('mx-basics-size') && shared.includes('ResizeObserver'));

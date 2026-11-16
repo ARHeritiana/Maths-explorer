@@ -92,7 +92,7 @@ export function basicsPage(id, { t, pair, lang, assetHref }) {
 export function bindBasics({ $, currentTheme }) {
   const frame = $("#basics-frame"); if (!frame) return () => {};
   let alive = true;
-  const sync = () => { try { const d = frame.contentDocument; if (!d) return; d.documentElement.dataset.theme = currentTheme() === "nuit" ? "dark" : "light"; const h = d.documentElement.scrollHeight; if (h > 0 && Math.abs(h - frame.getBoundingClientRect().height) > 3) frame.style.height = h + "px"; } catch {} };
+  const sync = () => { try { const d = frame.contentDocument; if (!d) return; d.documentElement.dataset.theme = currentTheme(); const h = d.documentElement.scrollHeight; if (h > 0 && Math.abs(h - frame.getBoundingClientRect().height) > 3) frame.style.height = h + "px"; } catch {} };
   const message = e => { if (e.origin !== location.origin || e.source !== frame.contentWindow || e.data?.type !== "mx-basics-size") return; if (alive && Number.isFinite(e.data.height) && e.data.height > 0 && e.data.height < 20000) frame.style.height = e.data.height + "px"; };
   const load = () => sync(); frame.addEventListener("load", load); window.addEventListener("message", message);
   const obs = typeof MutationObserver === "undefined" ? null : new MutationObserver(sync); obs?.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });

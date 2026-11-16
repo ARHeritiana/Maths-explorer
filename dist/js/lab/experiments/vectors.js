@@ -25,7 +25,7 @@ export default {
   ease: ['ux', 'uy', 'vx', 'vy'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     u: {
-      kind: "handle", soft: true, color: "accent", grid: 0.5, label: ["Extrémité du vecteur u", "Tip of vector u"],
+      kind: "handle", soft: true, color: "object", grid: 0.5, label: ["Extrémité du vecteur u", "Tip of vector u"],
       at: (s) => [s.ux, s.uy],
       drag: (s, x, y) => ({ ux: clamp(x, -LIMIT, LIMIT), uy: clamp(y, -LIMIT, LIMIT) }),
       valuetext: (s, f) => f.pt(s.ux, s.uy),
@@ -49,12 +49,12 @@ export default {
             { pts: m.polygon, fill: tone, alpha: flat ? 0 : 0.22, color: tone, width: 1.5, dash: [6, 5] },
           ],
           lines: [
-            { a: [0, 0], b: [s.ux, s.uy], color: "accent", width: 3.5, arrow: true },
+            { a: [0, 0], b: [s.ux, s.uy], color: "object", width: 3.5, arrow: true },
             { a: [0, 0], b: [s.vx, s.vy], color: "obj2", width: 3.5, arrow: true },
             ...(flat && (m.normU > 0 || m.normV > 0) ? [{ a: [-s.ux * 9, -s.uy * 9], b: [s.ux * 9, s.uy * 9], color: "pos", width: 2, dash: [3, 5] }] : []),
           ],
           points: [
-            { at: [s.ux, s.uy], color: "accent", r: 5, label: `u = ${fmt.pt(s.ux, s.uy)}`, dx: 14, dy: 22 },
+            { at: [s.ux, s.uy], color: "object", r: 5, label: `u = ${fmt.pt(s.ux, s.uy)}`, dx: 14, dy: 22 },
             { at: [s.vx, s.vy], color: "obj2", r: 5, label: `v = ${fmt.pt(s.vx, s.vy)}`, dx: -14, dy: -12, anchor: "right" },
             { at: [sx, sy], color: tone, r: 3.5, hollow: true },
           ],

@@ -110,7 +110,7 @@ export function mountMonteCarlo({ exp, stage, fmt, getState, setState, advance }
   }
 
   // ---- drawing
-  const css = () => { const c = root.ownerDocument.defaultView.getComputedStyle(root), v = (n, d) => c.getPropertyValue(n).trim() || d; return { ink: v("--ink", "#000"), muted: v("--muted", "#595959"), line: v("--line", "#cdcdcd"), grid: v("--grid", "#ececec"), sunken: v("--sunken", "#f2f2f2"), pos: v("--pos", "#0a7a43"), out: v("--c2", "#e8710a"), blue: v("--c1", "#2563eb"), accent: v("--accent", "#d90012") }; };
+  const css = () => { const c = root.ownerDocument.defaultView.getComputedStyle(root), v = (n, d) => c.getPropertyValue(n).trim() || d; return { ink: v("--ink", "#000"), muted: v("--muted", "#595959"), line: v("--line", "#cdcdcd"), grid: v("--grid", "#ececec"), sunken: v("--sunken", "#f2f2f2"), pos: v("--pos", "#0a7a43"), out: v("--c2", "#e8710a"), blue: v("--c1", "#2563eb"), object: v("--object-ink", "#d90012") }; };
   function setup(c, w, h) {
     const dpr = Math.min(2, globalThis.devicePixelRatio || 1);
     if (c.dataset.h !== String(h)) { c.style.height = h + "px"; c.dataset.h = String(h); }
@@ -135,7 +135,7 @@ export function mountMonteCarlo({ exp, stage, fmt, getState, setState, advance }
     for (const p of m.points) { g.beginPath(); g.fillStyle = p.inside ? col.pos : col.out; g.globalAlpha = 0.85; g.arc(x + p.x * s, y + p.y * s, r, 0, 2 * Math.PI); g.fill(); }
     g.globalAlpha = 1; g.strokeStyle = col.line; g.lineWidth = 1.5; g.strokeRect(x, y, s, s);
     label(g, kind === "pi" ? "2 × 2" : fr ? "10 km × 10 km" : "10 km × 10 km", w / 2, y + s + 10, col.muted, "center", 11);
-    if (overlay && trace) { g.strokeStyle = col.accent; g.lineWidth = 2.5; g.setLineDash([5, 5]); g.beginPath(); trace.forEach(([px, py], i) => (i ? g.lineTo(x + px * s, y + py * s) : g.moveTo(x + px * s, y + py * s))); g.stroke(); g.setLineDash([]); }
+    if (overlay && trace) { g.strokeStyle = col.object; g.lineWidth = 2.5; g.setLineDash([5, 5]); g.beginPath(); trace.forEach(([px, py], i) => (i ? g.lineTo(x + px * s, y + py * s) : g.moveTo(x + px * s, y + py * s))); g.stroke(); g.setLineDash([]); }
   }
   function drawIntegral(g, w, h, m, col, s) {
     const L = 38, R = 12, T = 12, B = 26, W = w - L - R, H = h - T - B, b = m.b, top = 1.1, f = M.INTEGRANDS[s.fn].f;

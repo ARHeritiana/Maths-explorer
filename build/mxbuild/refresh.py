@@ -32,19 +32,19 @@ def inputs():
     result = {}
     for course, book in manifest['books'].items():
         result['course:' + course] = fingerprint(
-            [f'content/tex/courses/{course}/**/*', 'content/tex/core/*',
+            [f'content/tex/courses/{course}/**/*', 'content/tex/core/**/*',
              'content/data/glossary.json', COURSES.get(course, ['unsupported'])[0], 'build/mxbuild/tex.py',
              'build/mxbuild/twin.py', 'build/mxbuild/books.py'],
             {'book': book, 'chapters': [c for c in manifest['catalog']['chapters'] if c['course'] == course]})
     if 'annalsBank' in manifest:
-        result['annals'] = fingerprint(['content/tex/annals/**/*', 'content/tex/core/*', 'scripts/build-annals.py', 'scripts/annals-code.py', 'scripts/build-annals-pdf.py'], manifest['annalsBank'])
+        result['annals'] = fingerprint(['content/tex/annals/**/*', 'content/tex/core/**/*', 'scripts/build-annals.py', 'scripts/annals-code.py', 'scripts/build-annals-pdf.py'], manifest['annalsBank'])
     result['static-site'] = fingerprint(['site/**/*', 'content/data/edition.json'])
     result['slides'] = fingerprint(
-        ['content/slides/**/*', 'content/tex/courses/**/*', 'content/tex/core/*',
+        ['content/slides/**/*', 'content/tex/courses/**/*', 'content/tex/core/**/*',
          'scripts/build-slides.py','build/mxbuild/slide_editions.py'], {'chapters':manifest['catalog']['chapters'],'courses':manifest['catalog']['courses']})
     result['slide-exports']=fingerprint(['scripts/export-slides.py','site/js/live-curriculum.js','content/data/edition.json','build/mxbuild/refresh.py','build/mxbuild/slide_editions.py','site/slides/*','site/js/canvas-navigation.js','site/js/camera3d.js','site/js/lab/**/*','site/js/math.js','site/js/object-kit.js','site/js/fourier-model.js','site/js/gallery/gallery-math.js','site/js/inference-content.js','dist/slides/data/*.json','dist/slides/fig/*.svg'])
-    result['lectures']=fingerprint(['scripts/build-lecture-slides.py','build/mxbuild/slide_editions.py','dist/slides/data/*.json','dist/slides/fig/*.svg'])
-    result['sources'] = fingerprint(['content/tex/courses/**/*', 'content/tex/core/*',
+    result['lectures']=fingerprint(['scripts/build-lecture-slides.py','content/tex/core/**/*','build/mxbuild/slide_editions.py','dist/slides/data/*.json','dist/slides/fig/*.svg'])
+    result['sources'] = fingerprint(['content/tex/courses/**/*', 'content/tex/core/**/*',
                                      'scripts/publish-sources.py'],
                                     {'books': manifest['books'], 'courses': manifest['catalog']['courses']})
     return result

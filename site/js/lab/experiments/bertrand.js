@@ -56,7 +56,7 @@ export default {
         if (s.method === "midpoint") circles.push({ c: [0, 0], r: 0.5, color: "pos", width: 1.5, dash: [4, 4] });
         if (progress !== null && s.runs < MAX_RUNS) {
           const next = model({ ...s, runs: s.runs + 1 }).shown.at(-1), p = progress * progress * (3 - 2 * progress);
-          lines.push({ a: next.a, b: next.a.map((x, i) => x + p * (next.b[i] - x)), color: "accent", width: 3, alpha: 1 });
+          lines.push({ a: next.a, b: next.a.map((x, i) => x + p * (next.b[i] - x)), color: "object", width: 3, alpha: 1 });
         }
         return { circles, polys, lines };
       },
