@@ -73,6 +73,7 @@ export const PLACEMENTS = Object.fromEntries([
   ['#gallery/einstein', ['geometry/plane']],
   ['#gallery/four-colours', ['discrete/graphs','foundations/reasoning']],
   ['#gallery/collisions', ['dynamics/motion','geometry/plane']],
+  ['#gallery/hundred-boxes', ['probability/experiments','discrete/counting']],
   ['#gallery/napkin-ring', ['geometry/space','analysis/integration']],
 ]);
 // The word rules match whole words where a fragment would mislead ("logi" in "Topologie", "ensemble" in "l'ensemble de

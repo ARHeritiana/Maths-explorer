@@ -38,11 +38,21 @@ test('colliding blocks and the napkin ring mount, react and clean up', async () 
     const [left, right] = read(root).match(/\d+[.,]\d+/g).map(x => Number(x.replace(',', '.'))); assert.ok(left < right, 'same hole: volumes differ');
     root.querySelector('canvas').dispatchEvent(new w.KeyboardEvent('keydown', {key: 'ArrowLeft', bubbles: true})); tick();
     assert.ok(!/NaN|undefined|Infinity/.test(root.textContent)); stop(); assert.equal(frames.size, 0); root.remove();
+    root = w.document.createElement('section'); w.document.body.append(root);
+    stop = mountObject('hundred-boxes', root, {lang, reduced: false}); tick(2);
+    assert.equal(root.querySelectorAll('.hb-box').length, 10); assert.match(read(root), /0/);
+    root.querySelector('.hb-box').click(); assert.equal(root.querySelectorAll('.hb-open').length, 1);
+    for (let k = 0; k < 9; k++) root.querySelectorAll('.hb-box')[k].click(); assert.equal(root.querySelectorAll('.hb-open').length, 5, 'half of the boxes at most');
+    root.querySelector('#hb-follow').click(); assert.match(read(root), /\/?10|10/); root.querySelector('#hb-rand').click();
+    root.querySelector('#hb-1000').click(); assert.match(read(root), /1[ ,.]?000/);
+    const sel = root.querySelector('#hb-n'); sel.value = '100'; sel.dispatchEvent(new w.Event('change')); assert.equal(root.querySelectorAll('.hb-box').length, 100);
+    const v = root.querySelector('#hb-view'); v.value = 'cycles'; v.dispatchEvent(new w.Event('change')); tick(2);
+    assert.ok(!/NaN|undefined|Infinity/.test(root.textContent)); stop(); assert.equal(frames.size, 0); root.remove();
   }
   dom.window.close();
 });
 test('the collection page lists entries that exist, with no dead link and no dash', () => {
-  assert.ok(ENTRIES.length >= 7);
+  assert.ok(ENTRIES.length >= 8);
   const html = intuitionPage(p => p[0]);
   for (const e of ENTRIES) { assert.ok(describe(e.hash), `${e.id} resolves`); assert.ok(html.includes(`href="${e.hash}"`)); }
   assert.ok(!/[—–]/.test(JSON.stringify(ENTRIES)));
