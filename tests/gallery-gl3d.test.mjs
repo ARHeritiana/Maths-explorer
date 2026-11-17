@@ -21,6 +21,23 @@ test('every preset field is tangent and its indices add up to χ(S²) = 2', () =
   }
 });
 
+test('the torus can be combed: the constant fields have no zero, and combing keeps the sum at χ(T²) = 0', () => {
+  for (const preset of ['along', 'spiral']) { const z = H.torusZeros({ preset, strength: 1, strokes: [] }); assert.equal(z.zeros.length, 0, preset); assert.equal(z.sum, 0); }
+  const h = H.torusZeros({ preset: 'height', strength: 1, strokes: [] });
+  assert.deepEqual(h.zeros.map((q) => q.index).sort((a, b) => a - b), [-1, -1, 1, 1]);
+  let s = 11; const rnd = () => (s = (s * 48271) % 2147483647) / 2147483647;
+  for (let trial = 0; trial < 3; trial++) {
+    const strokes = Array.from({ length: 30 }, () => { const a = 6.283 * rnd(); return { c: [6.283 * rnd(), 6.283 * rnd()], t: [1.5 * Math.cos(a), 1.5 * Math.sin(a)] }; });
+    const z = H.torusZeros({ preset: 'along', strength: 1, strokes });
+    assert.equal(z.sum, 0); for (const q of z.zeros) assert.ok(q.residual < 1e-12);
+  }
+  // the field is tangent, and a hair stays on the surface (pushed out only by its lift)
+  const st = { preset: 'spiral', strength: 1, strokes: [] }, q = [0.7, 2.1], v = H.torusVector(st, q);
+  assert.ok(Math.abs(dot(v, H.torusNormal(q))) < 1e-12);
+  for (const p of H.torusHair(st, q, 0.3, 1, 0)) { const e = Math.hypot(Math.hypot(p[0], p[1]) - H.TORUS.R, p[2]) - H.TORUS.r; assert.ok(Math.abs(e) < 1e-12); }
+  for (const p of [[0.3, 0.4], [5, 6]]) { const back = H.torusParam(H.torusPoint(p)).map((x) => (x + 2 * Math.PI) % (2 * Math.PI)); assert.ok(Math.abs(back[0] - p[0]) < 1e-12 && Math.abs(back[1] - p[1]) < 1e-12); }
+});
+
 test('the single-zero field vanishes only at the north pole, with index +2', () => {
   const z = H.zeros({ preset: 'single', strength: 1, strokes: [] });
   assert.equal(z.zeros.length, 1);

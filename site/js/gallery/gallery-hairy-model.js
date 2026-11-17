@@ -137,3 +137,111 @@ export function hair(state, root, length, vmax, lift = 0.05) {
   }
   return pts;
 }
+
+// The contrast: the torus T² (tube of radius r = 0.42 around a circle of radius R = 1 in the plane z = 0), of characteristic
+// χ(T²) = 0. A point is q = (u, v): u turns around the hole, v around the tube. The torus has a global orthonormal tangent frame
+// (e_u, e_v), so a field is two components (a, b) in that frame, everywhere at once: a constant (a, b) never vanishes, the torus
+// can be combed. A comb stroke at c with components t adds w·t, w = exp(-2d²/σ²), d the chord distance in each direction (smooth
+// and periodic). Zeros come from exact winding numbers of (a, b) around the cells of a grid in (u, v), then Newton; the indices
+// add up to 0. Same formula in GLSL (TORUS_GLSL).
+export const TORUS = { R: 1, r: 0.42 };
+export const TORUS_PRESETS = ['along', 'spiral', 'height', 'none'];
+export const TORUS_INDEX = { none: 0, along: 1, spiral: 2, height: 3 };
+// along = e_u (around the hole), spiral = 0.8 e_u + 0.6 e_v, height = gradient of x (maximum and minimum of index +1, two saddles -1)
+export function torusPreset(kind, [u, v]) {
+  if (kind === 'along') return [1, 0];
+  if (kind === 'spiral') return [0.8, 0.6];
+  if (kind === 'height') return [-Math.sin(u), -Math.sin(v) * Math.cos(u)];
+  return [0, 0];
+}
+export function torusField(state, q) {
+  const b = torusPreset(state.preset, q), s = state.strength ?? 1, f = [b[0] * s, b[1] * s];
+  for (const { c, t } of state.strokes || []) {
+    const hu = 2 * Math.sin((q[0] - c[0]) / 2) * (TORUS.R + TORUS.r * Math.cos(c[1])), hv = 2 * Math.sin((q[1] - c[1]) / 2) * TORUS.r;
+    const w = Math.exp(-2 * (hu * hu + hv * hv) / (SIGMA * SIGMA)); f[0] += w * t[0]; f[1] += w * t[1];
+  }
+  return f;
+}
+// point of the torus pushed out by h along the normal (the tube radius becomes r + h), and the unit normal
+export const torusPoint = ([u, v], h = 0) => { const c = TORUS.R + (TORUS.r + h) * Math.cos(v); return [c * Math.cos(u), c * Math.sin(u), (TORUS.r + h) * Math.sin(v)]; };
+export const torusNormal = ([u, v]) => [Math.cos(v) * Math.cos(u), Math.cos(v) * Math.sin(u), Math.sin(v)];
+// the field as a 3D vector at q (for drawing and tests): a e_u + b e_v
+export function torusVector(state, q) { const [a, b] = torusField(state, q), [u, v] = q; return [-a * Math.sin(u) - b * Math.sin(v) * Math.cos(u), a * Math.cos(u) - b * Math.sin(v) * Math.sin(u), b * Math.cos(v)]; }
+// (u, v) of a point near the torus
+export const torusParam = ([x, y, z]) => [Math.atan2(y, x), Math.atan2(z, Math.hypot(x, y) - TORUS.R)];
+export const TORUS_GLSL = `
+uniform int uPreset; uniform float uStrength; uniform int uStrokes; uniform vec4 uC[${MAX_STROKES}]; uniform vec4 uT[${MAX_STROKES}];
+const float TR = ${TORUS.R.toFixed(6)}, Tr = ${TORUS.r.toFixed(6)};
+vec2 presetField(vec2 q){
+  if (uPreset == 1) return vec2(1.0, 0.0);
+  if (uPreset == 2) return vec2(0.8, 0.6);
+  if (uPreset == 3) return vec2(-sin(q.x), -sin(q.y) * cos(q.x));
+  return vec2(0.0);
+}
+vec2 field2(vec2 q){
+  vec2 f = presetField(q) * uStrength;
+  for (int i = 0; i < ${MAX_STROKES}; i++) {
+    if (i >= uStrokes) break;
+    vec2 c = uC[i].xy, h = 2.0 * sin(0.5 * (q - c)) * vec2(TR + Tr * cos(c.y), Tr);
+    f += exp(-2.0 * dot(h, h) / ${(SIGMA * SIGMA).toFixed(6)}) * uT[i].xy;
+  }
+  return f;
+}
+vec3 tpos(vec2 q, float h){ float c = TR + (Tr + h) * cos(q.y); return vec3(c * cos(q.x), c * sin(q.x), (Tr + h) * sin(q.y)); }
+vec3 tnormal(vec2 q){ return vec3(cos(q.y) * cos(q.x), cos(q.y) * sin(q.x), sin(q.y)); }`;
+const wrapP = (a) => a - 2 * Math.PI * Math.floor(a / (2 * Math.PI));
+// Newton's method in (u, v) on the components (a, b)
+function refineTorus(state, q0, iterations = 30) {
+  let q = q0.slice();
+  for (let it = 0; it < iterations; it++) {
+    const f = torusField(state, q), h = 1e-7, fu = torusField(state, [q[0] + h, q[1]]), fv = torusField(state, [q[0], q[1] + h]);
+    const a = (fu[0] - f[0]) / h, b = (fv[0] - f[0]) / h, c = (fu[1] - f[1]) / h, d = (fv[1] - f[1]) / h, det = a * d - b * c;
+    if (!Number.isFinite(det) || Math.abs(det) < 1e-300) break;
+    let du = -(d * f[0] - b * f[1]) / det, dv = -(-c * f[0] + a * f[1]) / det; const st = Math.hypot(du, dv);
+    if (st > 0.05) { du *= 0.05 / st; dv *= 0.05 / st; }
+    q = [q[0] + du, q[1] + dv];
+    if (st < 1e-15) break;
+  }
+  q = [wrapP(q[0]), wrapP(q[1])]; const f = torusField(state, q);
+  return { q, residual: Math.hypot(f[0], f[1]) };
+}
+// All zeros on the torus, same output as zeros() plus q. Grid of 8·2^level by 3·2^level cells, shifted off the lines u, v ∈ {0, π}.
+export function torusZeros(state, level = 5) {
+  const nu = 8 * 2 ** level, nv = 3 * 2 ** level, ou = 0.01234, ov = 0.02171, val = [], mags = [];
+  for (let j = 0; j < nv; j++) for (let i = 0; i < nu; i++) { const f = torusField(state, [ou + 2 * Math.PI * i / nu, ov + 2 * Math.PI * j / nv]); val.push(Math.atan2(f[1], f[0])); mags.push(Math.hypot(f[0], f[1])); }
+  const vmax = Math.max(...mags);
+  if (!(vmax > 1e-9) || mags.some((m) => m < 1e-12 * Math.max(1, vmax))) return { zeros: [], sum: null, vmax, degenerate: true };
+  const at = (i, j) => val[(j % nv) * nu + (i % nu)], found = []; let sum = 0;
+  for (let j = 0; j < nv; j++) for (let i = 0; i < nu; i++) {
+    const t = [at(i, j), at(i + 1, j), at(i + 1, j + 1), at(i, j + 1)];
+    const w = Math.round((wrap(t[1] - t[0]) + wrap(t[2] - t[1]) + wrap(t[3] - t[2]) + wrap(t[0] - t[3])) / (2 * Math.PI));
+    if (!w) continue; sum += w;
+    const r = refineTorus(state, [ou + 2 * Math.PI * (i + 0.5) / nu, ov + 2 * Math.PI * (j + 0.5) / nv]);
+    const near = found.find((z) => Math.abs(wrap(z.q[0] - r.q[0])) + Math.abs(wrap(z.q[1] - r.q[1])) < 1e-8);
+    if (near) near.index += w; else found.push({ q: r.q, p: torusPoint(r.q), index: w, residual: r.residual });
+  }
+  return { zeros: found.filter((z) => z.index !== 0 || z.residual < 1e-9), sum, vmax, degenerate: false };
+}
+// Hair roots on the torus, even in area (density ∝ R + r cos v): v by the inverse of the area fraction, u by the golden ratio,
+// then a seeded jitter. Returns (u, v, 0) triples.
+export function torusRoots(n, jitter = 0, seed = 7) {
+  const out = new Float32Array(n * 3), { R, r } = TORUS, g = (Math.sqrt(5) - 1) / 2, h = jitter * Math.sqrt(4 * Math.PI * Math.PI * R * r / n);
+  let s = seed; const rnd = () => (s = (s * 48271) % 2147483647) / 2147483647 - 0.5;
+  for (let i = 0; i < n; i++) {
+    const target = 2 * Math.PI * R * (i + 0.5) / n; let v = target / R;
+    for (let k = 0; k < 8; k++) v -= (R * v + r * Math.sin(v) - target) / (R + r * Math.cos(v));
+    const u = 2 * Math.PI * ((i * g) % 1);
+    out[3 * i] = u + h * rnd() / (R + r * Math.cos(v)); out[3 * i + 1] = v + h * rnd() / r;
+  }
+  return out;
+}
+// one hair on the torus (same steps as the shader of the exhibit)
+export function torusHair(state, q0, length, vmax, lift = 0.05) {
+  let q = q0.slice(); const f0 = torusField(state, q), L = length * Math.hypot(...f0) / vmax, pts = [];
+  for (let k = 0; k <= SEGMENTS; k++) {
+    const s = k / SEGMENTS; pts.push(torusPoint(q, lift * L * (1 - (1 - s) ** 2) / Math.max(length, 1e-9)));
+    const f = torusField(state, q), n = Math.hypot(f[0], f[1]); if (n < 1e-12) continue;
+    q = [q[0] + f[0] / n * L / SEGMENTS / (TORUS.R + TORUS.r * Math.cos(q[1])), q[1] + f[1] / n * L / SEGMENTS / TORUS.r];
+  }
+  return pts;
+}
