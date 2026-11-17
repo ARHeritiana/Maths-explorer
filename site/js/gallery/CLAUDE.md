@@ -7,10 +7,10 @@ relative to `site/js/gallery/`. Imports between these files use `./`; shared mod
 | File | Holds |
 |---|---|
 | `gallery-objects.js` | Fourier circles (Madagascar opens on 24 circles), Mandelbrot/Julia explorer |
-| `gallery-math.js` | pure maths of the gallery (escape times, DFT, `errorCurve` of the Fourier circles, Madagascar outline) |
+| `gallery-math.js` | pure maths of the gallery (escape times, `orbit`, `membership` (proved inside by the cardioid and period-2 tests, proved outside by escape, otherwise unknown), DFT, `errorCurve` of the Fourier circles, chaos-game `similarityDimension`, `boxCounts`, `logSlope`, Madagascar outline) |
 | `gallery-additions.js` | six experiment-first gallery entries (with the four colour map) and source labels |
 | `gallery-models.js`, `gallery-kit.js` | Voronoi clipping and cell facts (`cellFacts`: area, neighbours, nearest seed), descent timing and bead state (`stateAtTime`: depth, speed, distance), film area minimisation; shared exhibit lifecycle |
-| `gallery-panels.js` | measurement panels beside a figure (issue #37): `metricStrip` (labelled live values marked exact, approximate or observed), `plotPanel` and `lineChart` (one plot from the same state), pure `niceTicks`, `sampleIndices`; used by Life, fastest slide, Voronoi and Fourier |
+| `gallery-panels.js` | measurement panels beside a figure (issue #37): `metricStrip` (labelled live values marked exact, approximate or observed), `plotPanel` and `lineChart` (one plot from the same state), pure `niceTicks`, `niceRange`, `sampleIndices`; used by Life, fastest slide, Voronoi, Fourier, Mandelbrot and Julia, soap films, chaos game (`../lab-objects.js`), inscribed square and knots |
 | `gallery-voronoi.js`, `gallery-fastest.js`, `gallery-soap.js` | draggable territories, bead races, rotatable film |
 | `gallery-knot-model.js` | legacy pure braid/invariant helpers and verified mirror certificate, retained for model tests |
 | `gallery-knot-render.js` | shared solid-colour strand drawing with depth-ordered crossing gaps for the card and full explorer |

@@ -66,3 +66,42 @@ test('plot axes: round ticks covering the maximum; sampled indices keep the last
   const idx=sampleIndices(6001,600);assert.ok(idx.length<=602);assert.equal(idx.at(-1),6000);assert.equal(idx[0],0);
   assert.deepEqual(sampleIndices(3),[0,1,2]);assert.deepEqual(sampleIndices(0),[]);
 });
+
+// Batch 2 of issue #37: Mandelbrot membership, chaos-game dimensions, film-area axis, knot colourings.
+import {escape,orbit,membership,similarityDimension,boxCounts,logSlope} from '../site/js/gallery/gallery-math.js';
+import {niceRange} from '../site/js/gallery/gallery-panels.js';
+import {KNOT_CATALOGUE} from '../site/js/knot-catalogue.js';
+import {normaliseKnot,cameraKnot,knotProjection,knotDeformation} from '../site/js/gallery/gallery-knot-geometry.js';
+
+test('Mandelbrot: points proved inside never escape, points proved outside really escape', () => {
+  assert.equal(membership([-0.5,0]).status,'cardioid');assert.equal(membership([0.25,0]).status,'cardioid');assert.equal(membership([-1,0]).status,'bulb');
+  assert.equal(membership([-2,0],500).status,'unknown');assert.equal(membership([0,1],500).status,'unknown');   // both in the set, neither in the two discs
+  const m=membership([0.3,0.6]);assert.equal(m.status,'escapes');const z=orbit([0.3,0.6],[0,0],m.n);assert.ok(Math.hypot(...z.at(-1))>2);assert.ok(Math.hypot(...z.at(-2))<=2);
+  for(let i=0;i<=60;i++)for(let j=0;j<=40;j++){const c=[-2.2+i*0.05,j*0.03],r=membership(c,200);
+    if(r.status==='cardioid'||r.status==='bulb')assert.equal(escape(0,0,c[0],c[1],3000),3000,`${c} escapes`);
+    if(r.status==='escapes')assert.equal(r.n,escape(0,0,c[0],c[1],200));}
+});
+test('orbit: stops at the first |z| > 2 and starts from z0', () => {
+  const z=orbit([1,0],[0,0],40);assert.deepEqual(z.map(p=>p[0]),[0,1,2,5]);
+  assert.deepEqual(orbit([0,0],[0.5,0],3),[[0.5,0],[0.25,0],[0.0625,0],[0.00390625,0]]);
+});
+test('chaos game: similarity dimensions and box counting on known sets', () => {
+  near(similarityDimension(3,.5),Math.log(3)/Math.log(2),1e-12);near(similarityDimension(4,.5),2,1e-12);near(similarityDimension(6,.6),2,1e-12);
+  near(logSlope([[2,8],[4,32],[8,128]]),2,1e-12);
+  const square=[],line=[];for(let i=0;i<256;i++)for(let j=0;j<256;j++)square.push([i/256,j/256]);for(let i=0;i<4096;i++)line.push([i/4096,i/4096]);
+  near(logSlope(boxCounts(square,[0,0,1],[4,8,16,32,64])),2,1e-9);near(logSlope(boxCounts(line,[0,0,1],[4,8,16,32,64])),1,1e-9);
+  // deterministic Sierpinski points (all addresses of depth 7): the estimate is close to log 3 / log 2
+  let pts=[[0,0]];const V=[[0,0],[1,0],[0.5,Math.sqrt(3)/2]];for(let d=0;d<7;d++)pts=pts.flatMap(p=>V.map(v=>[(p[0]+v[0])/2,(p[1]+v[1])/2]));
+  assert.ok(Math.abs(logSlope(boxCounts(pts,[0,0,1],[4,8,16,32,64]))-Math.log(3)/Math.log(2))<0.1);
+});
+test('axis from a minimum: ticks cover the range with a round step', () => {
+  const r=niceRange(3.912,3.97);assert.ok(r[0]<=3.912&&r.at(-1)>=3.97);assert.ok(r.length<=7);
+  assert.deepEqual(niceRange(2,2),[1,2,3]);
+});
+test('knots: the number of 3-colourings is the same in every view and along every guided deformation; the crossings are not', () => {
+  for(const [id,count] of [['0_1',3],['3_1',9],['4_1',3]]){const b=normaliseKnot(KNOT_CATALOGUE.find(x=>x.id===id));
+    for(let i=0;i<12;i++)assert.equal(knotProjection(cameraKnot(b,i*.4,i*.13,i%2===1)).count,count);}
+  for(const [ex,id] of [['unknot','0_1'],['shear','3_1'],['turn','4_1']]){const b=normaliseKnot(KNOT_CATALOGUE.find(x=>x.id===id)),cross=new Set(),cols=new Set();
+    for(let i=0;i<=40;i++){const p=knotProjection(cameraKnot(knotDeformation(b,ex,i/40),0,0,false));cross.add(p.crossings.length);cols.add(p.count);}
+    assert.equal(cols.size,1);assert.ok(cross.size>1,ex);}
+});

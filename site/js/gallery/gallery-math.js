@@ -111,3 +111,34 @@ export const star = (n, spikes = 5) => Array.from({ length: n }, (_, i) => { con
 // How the circles are added: one more batch after each full turn of the tip (the number of circles during turn 1, 2, 3, ...).
 export const COUNT_SCHEDULE = [1, 2, 3, 4, 6, 9, 13, 19, 28, 40, 56, 80, 110, 150];
 export const REVOLUTION = 6.5;   // seconds per full turn
+
+// Orbit z_{n+1} = z_n^2 + c from z0, stopped after `steps` steps or once |z| > 2 (escape is then certain).
+export function orbit(c, z0 = [0, 0], steps = 40) {
+  const out = [z0.slice()]; let [x, y] = z0;
+  for (let i = 0; i < steps && x * x + y * y <= 4; i++) { const nx = x * x - y * y + c[0]; y = 2 * x * y + c[1]; x = nx; out.push([x, y]); }
+  return out;
+}
+// What can be said about c and the Mandelbrot set M, and so about the Julia set of c (connected exactly when c is in M):
+// "escapes" at step n (|z_n| > 2: c is not in M, proved), "cardioid" or "bulb" (c is in the main cardioid or the period-2 disc,
+// so in M, proved by the closed-form tests), or "unknown" (no escape within max steps: evidence, not a proof).
+export function membership(c, max = 300) {
+  const [a, b] = c, q = (a - 0.25) ** 2 + b * b;
+  if (q * (q + (a - 0.25)) <= 0.25 * b * b) return { status: "cardioid" };
+  if ((a + 1) ** 2 + b * b <= 1 / 16) return { status: "bulb" };
+  const n = escape(0, 0, a, b, max);
+  return n < max ? { status: "escapes", n } : { status: "unknown", max };
+}
+// Chaos game with k vertices moving a fraction r of the way: k maps of ratio s = 1 - r. Similarity dimension log k / log(1/s),
+// an upper bound of the Hausdorff dimension, equal to it when the k copies do not overlap (open set condition), capped at 2.
+export const similarityDimension = (k, s) => Math.min(2, Math.log(k) / Math.log(1 / s));
+// Box counting on points in a square window [x0, x0 + size)²: number of occupied boxes for each number of boxes per side.
+export function boxCounts(points, [x0, y0, size], sides = [4, 8, 16, 32, 64, 128]) {
+  return sides.map((n) => { const seen = new Set(); for (const [x, y] of points) { const i = Math.floor(((x - x0) / size) * n), j = Math.floor(((y - y0) / size) * n); if (i >= 0 && j >= 0 && i < n && j < n) seen.add(i * n + j); } return [n, seen.size]; });
+}
+// Least-squares slope of log N against log n: the box-counting estimate of a dimension (an estimate from finitely many points).
+export function logSlope(pairs) {
+  const P = pairs.filter(([, c]) => c > 0).map(([n, c]) => [Math.log(n), Math.log(c)]), m = P.length;
+  if (m < 2) return NaN;
+  const mx = P.reduce((s, p) => s + p[0], 0) / m, my = P.reduce((s, p) => s + p[1], 0) / m;
+  return P.reduce((s, p) => s + (p[0] - mx) * (p[1] - my), 0) / P.reduce((s, p) => s + (p[0] - mx) ** 2, 0);
+}
