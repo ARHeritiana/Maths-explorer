@@ -64,7 +64,7 @@ really need them.
 | the quadratic workshop (`#workshop/quadratic`) | `site/js/quadratic-workshop.js` | |
 | cache busting, versioned URLs | `site/js/data-loader.js` (`assetHref`), `build/mxbuild/site.py` | |
 | canvas zoom, pan, drag, keyboard | `site/js/canvas-navigation.js` (lab handles: `site/js/lab/engine.js`) | one camera policy for the site and the player |
-| a 3D view (rotation, projection, constrained points) | `site/js/camera3d.js` (the one 3D camera), `site/js/lab/templates/space.js` (laboratory), `site/slides/widgets-3d.js` (slides) | `docs/LAB_DESIGN.md` section 12 |
+| a 3D view (rotation, projection, constrained points) | `site/js/camera3d.js` (the one 3D camera; the WebGL2 perspective exhibits of the gallery use `site/js/gallery/gl3d.js`), `site/js/lab/templates/space.js` (laboratory), `site/slides/widgets-3d.js` (slides) | `docs/LAB_DESIGN.md` section 12 |
 | how selectors collapse to labels | `site/js/control-policy.js` | |
 | which language a page uses | `site/js/content-language.js` | |
 | the build or a check | `build/mxbuild/CLAUDE.md` | |
