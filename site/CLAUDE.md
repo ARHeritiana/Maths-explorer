@@ -54,7 +54,9 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/catalogue-data.js` | GENERATED from `content/data/manifest.json`: courses, chapters, asset versions |
 | `js/canvas-navigation.js` | camera (zoom, pan, reset) shared with the slide player |
 | `js/camera3d.js` | the one orthographic 3D camera (project, unproject, view ray, constraints, turn), used by the laboratory template `space` and by `slides/widgets-3d.js` |
-| `styles/explorer.css` | design tokens (both themes), base elements, layout |
+| `styles/tokens.css` | design tokens: font faces, colours of both themes (Jour, Nuit), shapes; the one source of the look, imported by `explorer.css` and the foundation lessons |
+| `styles/explorer.css` | base elements, layout (imports `tokens.css`) |
+| `share.png` | share image for link previews (Open Graph in `index.html`), drawn by `scripts/share-image.py` |
 | `styles/pages.css` | page and component styles, challenge card colours and animations |
 | `styles/timeline-standalone.css` | standalone mathematicians timeline: shared site chrome, Jour/Nuit tokens, readable portrait lanes and mobile scrolling |
 | `styles/topics.css` | the topics browser (`#topics`): field menu with figures, landing tiles and the "where to start" selection (issue #22); cards stay in `pages.css` |
@@ -161,6 +163,7 @@ To add a generator: write `make` in the class file, give it a manifest chapter, 
 | `js/quadratic-workshop.js` | `#workshop/quadratic` five-stage workshop |
 | `resources/document-theme.css` | style of generated HTML resource pages |
 | `js/basics-page.js` | `#basics` as data: `BASICS_GROUPS` (groups of lessons), derived numbers and previous/next, `basicsPage` (grouped index and lesson page), `bindBasics` (theme and height of the iframe), `discoveryLessons` (lessons placed in the topic browser). `js/app.js` only imports it; add a lesson here |
+| `resources/basics/basics-theme.css`, `resources/basics/basics-theme.js` | Shared look of every foundation lesson: imports `styles/tokens.css`, maps the lessons' interface names (`--paper`, `--mute`, `--surf`, `--b` ...) onto the site tokens, site fonts for text and headings; the script sets the theme when a lesson is opened alone (the host page sets it otherwise, `bindBasics`) |
 | `resources/basics/logic-lesson.css`, `resources/basics/logic-lesson.js` | Shared look and engine of the four logic lessons: tokens, tabs, truth tables, Venn diagram of two propositions (`LX.venn2`), guided-challenge runner (`LX.quiz`, `LX.choice`), height message |
 | `resources/basics/logic-propositions.html`, `.en.html` | Logic 1: propositions, connectives, truth tables, Venn link with sets. Same code in both editions, only the `TEXT-BEGIN`/`TEXT-END` table, title and `lang` differ (`tests/logic-lessons.test.mjs`) |
 | `resources/basics/logic-implication.html`, `.en.html` | Logic 2: implication, converse, contrapositive, equivalence, necessary and sufficient conditions |

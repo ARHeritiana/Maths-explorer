@@ -25,7 +25,7 @@ export default {
   state: { mode: "arith", u0: 2, r: 3, q: 2, n: 6 },
   controls: {
     start: {
-      kind: "handle", color: "accent", axis: "y", grid: [1, 0.5], label: ["Point u₀ (premier terme)", "Point u₀ (first term)"],
+      kind: "handle", color: "object", axis: "y", grid: [1, 0.5], label: ["Point u₀ (premier terme)", "Point u₀ (first term)"],
       at: (s) => [0, s.u0],
       drag: (s, x, y) => ({ u0: nz(clamp(y, -5, 8)) }),
       valuetext: (s, f) => `u₀ = ${f.num(s.u0)}`,
@@ -51,7 +51,7 @@ export default {
     graph: {
       x: [-1, COUNT - 0.5], y: [-8, 16], xTicks: Array.from({ length: COUNT }, (_, k) => k), yTicks: [-8, -4, 0, 4, 8, 12, 16],
       scene(s, { fmt }) {
-        const list = S.terms(s, COUNT), pts = list.map((u, k) => ({ at: [k, u], color: k <= s.n ? "accent" : "muted", r: k <= s.n ? 6 : 3.5, hollow: k > s.n }));
+        const list = S.terms(s, COUNT), pts = list.map((u, k) => ({ at: [k, u], color: k <= s.n ? "object" : "muted", r: k <= s.n ? 6 : 3.5, hollow: k > s.n }));
         const guide = isGeom(s)
           ? (s.q > 0 ? [{ f: (x) => s.u0 * s.q ** x, color: "muted", dash: [5, 5], width: 1.5 }] : [])
           : [{ f: (x) => s.u0 + s.r * x, color: "muted", dash: [5, 5], width: 1.5 }];
@@ -59,7 +59,7 @@ export default {
           curves: guide,
           lines: [{ a: [s.n, -8], b: [s.n, 16], color: "muted", dash: [3, 5], width: 1.2 }],
           points: pts,
-          texts: [{ at: [s.n, list[s.n]], text: fmt.rel(`u${sup(s.n)}`, list[s.n]), dx: 10, dy: -14, color: "accent" }],
+          texts: [{ at: [s.n, list[s.n]], text: fmt.rel(`u${sup(s.n)}`, list[s.n]), dx: 10, dy: -14, color: "object" }],
         };
       },
     },

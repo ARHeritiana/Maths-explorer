@@ -1,0 +1,10 @@
+/* Look of the foundation lessons (basics/*.html): the site's own tokens (fonts, both themes, corners), so a lesson
+   matches the site around it on each brand. A lesson keeps only its data colours (--a, --c0..--c3, --va ...) and maps
+   its interface names onto the site roles here. Theme: data-theme="jour" or "nuit", set by the host page
+   (basics-page.js bindBasics) or, when the lesson is opened alone, by basics-theme.js. */
+@import url("../../styles/tokens.css");
+:root { --paper: var(--bg); --mute: var(--muted); --surf: var(--surface); --b: var(--accent); --ok: var(--pos); --bad: var(--neg); color-scheme: light; }
+:root[data-theme="nuit"] { color-scheme: dark; }
+body { font-family: var(--body); font-synthesis: none; }
+h1, h2, h3 { font-family: var(--display); letter-spacing: -0.02em; }
+::selection { background: var(--mark, var(--accent-soft)); color: var(--ink); }

@@ -15,6 +15,8 @@ Builders called by `build/mxbuild` (see `pipeline.py` `COURSES`) or by `make`. E
 | `build-study-guides.mjs` | study guide HTML pages from `site/js/study-guides.js` | by hand |
 | `publish-sources.py` | publish `.tex` sources to `dist/sources/` (refuses identifying content) | `make tex` |
 | `finalize-resources.py` | PDF hygiene, then catalogue | by hand |
+| `tex-fonts.py` | the TeX fonts (`content/tex/core/fonts/`) from the site's web fonts, list in `content/tex/core/fonts/fonts.json`: static instances, subsets merged, missing characters from STIX Two Text | by hand, after a font change |
+| `share-image.py` | `site/share.png`, the 1280 x 640 link preview of the brand | by hand |
 | `tex-inventory.py` | `docs/TEX_INVENTORY.md` | `make inventory` |
 | `check-stmg-twins.py` | kept for an old command; real check is `tests/twin_parity.py` | |
 | `check-syntax.mjs` | syntax of every served script | `npm run check` |

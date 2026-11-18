@@ -26,7 +26,7 @@ export function cakeScene(s, m, t) {
     polys.push({ pts: box(edges[i], 9, edges[i + 1], 10.2), fill: PERSON[i], alpha: 0.5, color: PERSON[i], width: 2 });
     if (edges[i + 1] - edges[i] > 0.7) texts.push({ at: [(edges[i] + edges[i + 1]) / 2, 9.6], dy: 6, anchor: "center", text: L[i], color: "ink", size: 18 });
   }
-  for (const x of [edges[1], edges[2]]) lines.push({ a: [x, 9], b: [x, 0], color: "accent", dash: [4, 4], width: 1.5 });
+  for (const x of [edges[1], edges[2]]) lines.push({ a: [x, 9], b: [x, 0], color: "object", dash: [4, 4], width: 1.5 });
   // the taste of the chosen person: height = interest of the zone; the area over their own piece is their value of it
   for (let b = 0; b < 3; b++) {
     polys.push({ pts: box(b * 4, 0, (b + 1) * 4, row[b]), fill: PERSON[p], alpha: 0.12, color: PERSON[p], width: 0 });

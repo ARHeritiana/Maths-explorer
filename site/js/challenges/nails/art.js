@@ -42,7 +42,7 @@ export function drawRope(g, pieces, { upTo = Infinity, hot = -2, scale = 1 } = {
     if (shown >= upTo) break;
     const frac = Math.min(1, upTo - shown), pts = frac < 1 ? piece.pts.slice(0, Math.max(2, Math.ceil(piece.pts.length * frac))) : piece.pts; shown++;
     for (const run of overRuns(pts, before)) svgEl("path", { d: d(run), fill: "none", stroke: WALL, "stroke-width": (ROPE_W + 2 * GAP) * scale, "stroke-linecap": "butt", "stroke-linejoin": "round" }, g);
-    svgEl("path", { d: d(pts), fill: "none", stroke: (hot instanceof Set ? hot.has(piece.j) : piece.j === hot) ? "var(--accent)" : ROPE, "stroke-width": ROPE_W * scale, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
+    svgEl("path", { d: d(pts), fill: "none", stroke: (hot instanceof Set ? hot.has(piece.j) : piece.j === hot) ? "var(--object-ink)" : ROPE, "stroke-width": ROPE_W * scale, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
     before.push(pts);
   }
 }
@@ -63,7 +63,7 @@ export function drawNail(g, x, y, pull = 0, focus = false, squash = 0, lift = 0)
   svgEl("ellipse", { cx: 0.6, cy: 0.9, rx: 1.9, ry: 1.3, fill: "#000", opacity: 0.22 }, head);
   svgEl("circle", { cx: 0, cy: 0, r: 2, fill: "#aeb6bf", stroke: "var(--ink)", "stroke-width": 0.7 }, head);
   svgEl("circle", { cx: -0.6, cy: -0.6, r: 0.7, fill: "#fff", opacity: 0.9 }, head);
-  if (focus) svgEl("circle", { cx: 0, cy: 0, r: 3.4, fill: "none", stroke: "var(--accent)", "stroke-width": 0.5 }, head);
+  if (focus) svgEl("circle", { cx: 0, cy: 0, r: 3.4, fill: "none", stroke: "var(--object-ink)", "stroke-width": 0.5 }, head);
 }
 // the framed picture (wood frame, a small landscape) and its two rings; dy, rot: falling
 export function drawPicture(g, { dy = 0, rot = 0, squash = 0 } = {}) {

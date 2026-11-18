@@ -66,7 +66,7 @@ export default {
       set:Q.rootCase,
     },
     vertex: {
-      kind: "handle", soft: true, color: "accent", label: ["Sommet S", "Vertex S"], grid: 0.5,
+      kind: "handle", soft: true, color: "object", label: ["Sommet S", "Vertex S"], grid: 0.5,
       at: (s) => { const m = model(s); return [m.alpha, m.beta]; },
       drag: (s, x, y) => fromVertex(s.a, clamp(x, -6, 6), clamp(y, -6, 8)),
       valuetext: (s, f) => { const m = model(s); return f.pt(m.alpha, m.beta); },
@@ -98,13 +98,13 @@ export default {
       scene(s, { fmt }) {
         const m = model(s), num = fmt.num;
         return {
-          curves: [{ f: m.f, color: "accent", width: 3 }],
+          curves: [{ f: m.f, color: "object", width: 3 }],
           lines: [{ a: [m.alpha, -6], b: [m.alpha, 8], color: "muted", dash: [6, 5], width: 1.5 }],
           points: [
             // a double root is the vertex itself, which already carries its coordinates
             ...m.roots.map((r) => ({ at: [r, 0], color: "pos", r: 6, label: m.roots.length === 2 ? fmt.read(r) : undefined, dy: -12 })),
             { at: [0, s.c], color: "obj3", r: 5 },
-            { at: [m.alpha, m.beta], color: "accent", r: 5, label: fmt.pt(m.alpha, m.beta), dx: 16, dy: 32 },
+            { at: [m.alpha, m.beta], color: "object", r: 5, label: fmt.pt(m.alpha, m.beta), dx: 16, dy: 32 },
           ],
         };
       },

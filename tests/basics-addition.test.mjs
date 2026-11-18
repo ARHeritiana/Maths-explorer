@@ -12,7 +12,8 @@ test('addition is published and accessible through Basics', () => {
   assert.match(html, /mx-basics-size/);
   assert.match(html, /ResizeObserver/);
   assert.match(html, /prefers-reduced-motion/);
-  assert.match(html, /data-theme="dark"/);
+  assert.match(html, /data-theme="nuit"/);
+  assert.match(html, /href="basics-theme.css"/);
   assert.match(html, /Ajouter la colonne/);
   assert.match(html, /Regrouper/);
   assert.ok(!html.includes('fonts.googleapis.com'));

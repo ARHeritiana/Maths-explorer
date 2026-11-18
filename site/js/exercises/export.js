@@ -121,12 +121,16 @@ button{font:inherit;background:transparent;color:var(--fg);border:2px solid var(
 button:focus-visible{outline:3px solid var(--accent)}button[aria-pressed=true]{border-color:var(--accent)}
 .controls{display:flex;gap:.6rem;flex-wrap:wrap}
 mjx-container{font-size:100%!important}
+#w{width:100%;height:100%;min-height:0;display:grid;align-content:center}#f:empty{display:none}#f{min-height:0;min-width:0}
+#w.fig{grid-template-rows:auto minmax(40%,1fr) auto;align-content:stretch;gap:.3em}#f svg{width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;margin:0!important}
+@media(min-aspect-ratio:5/4){#w.fig{grid-template:minmax(0,1fr) auto minmax(0,1fr)/minmax(0,1fr) minmax(0,1.1fr);column-gap:3vw;text-align:left}#w.fig #q{grid-area:1/1/2/2;align-self:end}#w.fig #a{grid-area:2/1/4/2;align-self:start}#w.fig #f{grid-area:1/2/4/3}}
+@media(max-height:500px){header,footer{padding:.3rem 1rem}main{padding:.3rem 4vw}#timer{font-size:22px}button{min-height:36px;padding:.25rem .7rem}#hint{display:none}#q{font-size:calc(clamp(18px,3vw,32px)*var(--fit,1))}#a{font-size:calc(clamp(16px,2.8vw,28px)*var(--fit,1))}}
 @media print{header,footer,#bar{display:none}}
 </style></head>
 <body>
 <div id="bar" aria-hidden="true"><i id="fill"></i></div>
 <header><span id="count"></span><span id="timer" role="timer" aria-live="off">0:00</span><span id="level"></span></header>
-<main><div><div id="q" aria-live="polite"></div><div id="a"></div></div></main>
+<main><div id="w"><div id="q" aria-live="polite"></div><div id="f"></div><div id="a"></div></div></main>
 <footer><div class="controls"><button id="prev">Précédent (←)</button><button id="next">Suivant (→)</button><button id="reveal" aria-pressed="false">Réponse (A)</button><button id="play" aria-pressed="false">Départ (Espace)</button><button id="full">Plein écran (F)</button></div><span id="hint">Touches : ← → A Espace F</span></footer>
 <script id="data" type="application/json">${data}</script>
 <script>
@@ -140,7 +144,7 @@ function fmt(s){s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+String(s
 function fit(){const m=document.querySelector('main');document.documentElement.style.removeProperty('--fit');let f=1;while(f>.3&&(m.scrollHeight>m.clientHeight+1||m.scrollWidth>m.clientWidth+1)){f-=.06;document.documentElement.style.setProperty('--fit',f.toFixed(2));}}
 function typeset(){if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([$('q'),$('a')]).then(fit,fit);else fit();}
 addEventListener('resize',fit);
-function draw(){const it=D.items[i];$('q').innerHTML='<strong>'+(i+1)+'.</strong> '+(it.choices?it.stem+'<ul class="ch">'+it.choices.map((c,k)=>'<li'+(showA&&k===it.correct?' class="r"':'')+'><b>'+'ABCD'[k]+'</b><span>'+c+'</span></li>').join('')+'</ul>':it.q)+(it.fig||'');$('a').innerHTML=showA?it.a:'';$('count').textContent=D.title+' · question '+(i+1)+' sur '+D.items.length;$('level').textContent='niveau '+it.level;$('timer').textContent=fmt(left);$('fill').style.width=(100*(i+1)/D.items.length)+'%';$('reveal').setAttribute('aria-pressed',String(showA));$('play').setAttribute('aria-pressed',String(running));$('play').textContent=running?'Pause (Espace)':'Départ (Espace)';typeset();}
+function draw(){const it=D.items[i];$('q').innerHTML='<strong>'+(i+1)+'.</strong> '+(it.choices?it.stem+'<ul class="ch">'+it.choices.map((c,k)=>'<li'+(showA&&k===it.correct?' class="r"':'')+'><b>'+'ABCD'[k]+'</b><span>'+c+'</span></li>').join('')+'</ul>':it.q);$('f').innerHTML=it.choices?'':(it.fig||'');$('w').classList.toggle('fig',!it.choices&&!!it.fig);$('a').innerHTML=showA?it.a:'';$('count').textContent=D.title+' · question '+(i+1)+' sur '+D.items.length;$('level').textContent='niveau '+it.level;$('timer').textContent=fmt(left);$('fill').style.width=(100*(i+1)/D.items.length)+'%';$('reveal').setAttribute('aria-pressed',String(showA));$('play').setAttribute('aria-pressed',String(running));$('play').textContent=running?'Pause (Espace)':'Départ (Espace)';typeset();}
 function go(n){i=Math.max(0,Math.min(D.items.length-1,n));showA=false;left=D.seconds;draw();}
 function loop(){if(!running)return;left-=1;if(left<=0){if(i<D.items.length-1){go(i+1);}else{running=false;left=0;}}draw_t();}
 function draw_t(){$('timer').textContent=fmt(left);if(!running)draw();}

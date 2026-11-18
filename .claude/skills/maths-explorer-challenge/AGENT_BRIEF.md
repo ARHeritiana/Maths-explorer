@@ -87,7 +87,7 @@ The shared kit is in the template's `common/` blocks: `kit.js` (`svgEl`, `colour
   apostrophe ’); no em dash or en dash; high-school words (no "invariant", "modulo", "graph", "parity" in the written
   solution: say "never changes", "remainder", "even or odd"); no URLs or sources on the page.
 - **Works everywhere**: 390 px wide phones with no horizontal scroll, light and dark themes (colours from CSS
-  variables: `var(--ink)`, `var(--surface)`, `var(--accent)`, `colour(i)`), keyboard (every piece focusable, Enter or
+  variables: `var(--ink)`, `var(--surface)`, `var(--object-ink)` (the studied object; `var(--object)` for a fill), `colour(i)`), keyboard (every piece focusable, Enter or
   Space, arrows for a drag), reduced motion (final poses, no loops).
 
 ## Before you answer

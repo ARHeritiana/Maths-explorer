@@ -51,7 +51,7 @@ export function opaqueSquare(root,opts){
     // the beam: 48 parallel rays across the square, bright where they get through
     for(let k=0;k<=48;k++){const c=lo+(hi-lo)*(k+.5)/49,through=open.some(([u,v])=>c>u&&c<v),[a,b]=lineAt(theta,c,2.2);g.strokeStyle=through?C.obj2:C.muted;g.globalAlpha=through?.9:.18;g.lineWidth=through?2:1;g.beginPath();g.moveTo(...X(a));g.lineTo(...X(b));g.stroke();}
     g.globalAlpha=1;
-    segs.forEach(([a,b],i)=>{g.strokeStyle=i===sel?C.accent:C.ink;g.lineWidth=i===sel?5:4;g.lineCap='round';g.beginPath();g.moveTo(...X(a));g.lineTo(...X(b));g.stroke();[a,b].forEach(p=>{g.fillStyle=i===sel?C.accent:C.ink;g.beginPath();g.arc(...X(p),5,0,2*Math.PI);g.fill();});});
+    segs.forEach(([a,b],i)=>{g.strokeStyle=i===sel?C.object:C.ink;g.lineWidth=i===sel?5:4;g.lineCap='round';g.beginPath();g.moveTo(...X(a));g.lineTo(...X(b));g.stroke();[a,b].forEach(p=>{g.fillStyle=i===sel?C.object:C.ink;g.beginPath();g.arc(...X(p),5,0,2*Math.PI);g.fill();});});
     const L=length(segs),exact=BARRIERS[preset]?.exact,deg=(result.worst?result.worst.theta*180/Math.PI:0);
     o.read(`${t('Longueur :','Length:')} ${num(L)}${exact&&preset!=='empty'?` = ${exact}`:''} · ${result.opaque&&segs.length?t('Opaque : aucune droite ne traverse sans rencontrer la barrière.','Opaque: no line crosses without meeting the barrier.'):t(`Pas opaque : de la lumière passe, par exemple dans la direction ${num(deg,0)}°.`,`Not opaque: light gets through, for example in direction ${num(deg,0)}°.`)}${best?` · ${t('ta plus courte barrière opaque :','your shortest opaque barrier:')} ${num(best)}`:''} · ${t('record connu :','known record:')} ${num(Math.SQRT2+Math.sqrt(6)/2)}`);
   });

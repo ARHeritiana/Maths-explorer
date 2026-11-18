@@ -33,13 +33,13 @@ export function activity(root, { t, q, reduced: reducedPref }) {
     const label = svgEl('text', { x: x + 11, y: 68, 'text-anchor': 'middle', 'font-size': 4, 'font-weight': 700, fill: 'var(--ink)' }, g);
     return { g, water, outline, label, h };
   });
-  const ghost = svgEl('path', { d: 'M-5 -8V6H5V-8', fill: 'var(--surface)', stroke: 'var(--accent)', 'stroke-width': 1, 'pointer-events': 'none', visibility: 'hidden' }, svg);
+  const ghost = svgEl('path', { d: 'M-5 -8V6H5V-8', fill: 'var(--surface)', stroke: 'var(--object-ink)', 'stroke-width': 1, 'pointer-events': 'none', visibility: 'hidden' }, svg);
   lockTouch(svg, '[data-jug]');
   function draw() {
     jugs.forEach(({ g, water, outline, label, h }, i) => {
       const size = i ? b : a, lv = h * st[i] / size;
       water.setAttribute('y', 62 - lv); water.setAttribute('height', lv);
-      outline.setAttribute('stroke', i === selected ? 'var(--accent)' : 'var(--ink)'); outline.setAttribute('stroke-width', i === selected ? 1.5 : .8);
+      outline.setAttribute('stroke', i === selected ? 'var(--object-ink)' : 'var(--ink)'); outline.setAttribute('stroke-width', i === selected ? 1.5 : .8);
       label.textContent = `${st[i]} / ${size} L`; g.setAttribute('aria-label', t(`Bidon ${i + 1} : ${st[i]} sur ${size} litres. Sélectionner ou verser depuis le bidon sélectionné.`, `Jug ${i + 1}: ${st[i]} of ${size} litres. Select or pour from the selected jug.`));
       g.setAttribute('aria-pressed', String(i === selected));
     });

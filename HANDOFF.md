@@ -90,7 +90,7 @@ Integrated the supplied fractions workbench at `#basics/fractions`, seventh foun
 | #15 Mathematicians timeline | 56 people in `history-data.js` (30 thin entries removed); Riemann, Cantor, Gödel, Kovalevskaya, Wiles, Perelman absent; a staged 60-biography set sits in the private repository | owner decision on the staged private set, else add sourced records |
 | #16 Advances timeline | Done on 1 Nov: 26 sourced events added (82 in all): Kepler, Fermat's note and Wiles, Basel, Goldbach, Wessel, Gauss 1799, Cauchy, non-Euclidean geometry, quaternions, Boole, Riemann, Dedekind, Cantor, Lindemann, prime number theorem, Hilbert, Lebesgue, Poincaré and Perelman, Zermelo, Gödel (1931, 1940), Kolmogorov, Cohen, Hales. No person added (#15), no image | done |
 | #22 Taxonomy | Misplacements fixed on 1 Nov (explicit `PLACEMENTS` in `topic-registry.js`, whole-word rules, broad gallery group no longer matched, placement test in `tests/discovery.test.mjs`). Then the owner choices: field menu with a figure per field, difficulty filter (three bands), landing with fields first, six starters, then the full list (`styles/topics.css`) | done |
-| #23 Javalab/Mathoutils audit | public credit and links removed, guard `tests/attribution.test.mjs`, audit `docs/future-work/h-provenance-audit.md`; live comparison impossible (sites unreachable) | report findings in an issue comment; owner names any copied wording |
+| #23 Mathoutils audit | public credit and links removed, guard `tests/attribution.test.mjs`, audit `docs/future-work/h-provenance-audit.md`; live comparison impossible (sites unreachable) | report findings in an issue comment; owner names any copied wording |
 | #24 Foundations locale | fixed on 28 Oct (`fd079963`): six lessons in FR and EN, iframe src, lang and title follow the site language, the switch reloads the lesson; verified in the browser on 1 Nov; new `tests/basics_browser.py` | close after owner check |
 | #26 Malagasy T10, T11 S | courses (29 chapters, PDFs) and 29 decks on the site; exercise extraction belongs to the exercise agent; left: generators for T10 and T11 S, the books' figures in the decks, official syllabus check [VERIFY] | other parts after the exercise agent |
 | #27 Prince Rupert | nothing on the site | new lab: pure projection model, cube witness 3√2/4, tests |
@@ -319,7 +319,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 | Area | State |
 |---|---|
 | Governing brief | `PROJECT_BRIEF.md` v0.5. Decisions settled, only the items in "Open for the owner" below remain. |
-| Design | Design v7 "Bac à sable" (rules and tokens in `docs/DESIGN_V7.md`; reasoning that still binds in `docs/DESIGN_V3.md`). Source in `site/styles/explorer.css` and `pages.css`, `site/js/ui.js`, `site/js/icons.js`, fonts in `site/fonts/`; `dist/` holds the assembled copies. |
+| Design | Design v7 "Bac à sable" (rules and tokens in `docs/DESIGN_V7.md`; reasoning that still binds in `docs/DESIGN_V3.md`). Tokens in `site/styles/tokens.css` (also read by the foundation lessons); PDFs and lectures from `content/tex/core/mx-brand.sty`; share image `site/share.png`. Source in `site/styles/explorer.css` and `pages.css`, `site/js/ui.js`, `site/js/icons.js`, fonts in `site/fonts/`; `dist/` holds the assembled copies. |
 | Site and content | `site/` is the hand-written web source and `dist/` the committed, assembled folder (`make site`). The catalogue comes from `content/data/manifest.json` (`make catalog`). Bilingual PDFs are compiled from the shared TeX system in `content/tex/` (seven courses migrated, 58 slide decks in `dist/slides/`); details and next steps in `docs/HANDOFF.md`. |
 | Tests | `npm test` (node tests), `npm run check` (syntax of every served script, `scripts/check-syntax.mjs`), `make check` (pipeline; the notation test needs TeX Live) and the browser suite (`npm run test:browser`) are the pre-push checks. Current results are in the latest entry of `docs/LOG.md`. |
 | Skills | `.claude/skills/slides-interactive-math/` and `slides-interactive-3d-math/` with lint script; `.claude/skills/maths-explorer-tasks/` (step-by-step recipes for recurring tasks). Navigation: `MAP.md`. |
@@ -456,7 +456,7 @@ Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympi
 1. Malagasy programme documents: the owner supplies them per chapter.
 2. Terminale STMG programme in force this year (not found on Eduscol in the 12 October check).
 3. Whether maths expertes keeps the 2019 text beyond this year.
-4. Owner review of the Cahier design.
+4. Owner review of the "Bac à sable" design applied to the course PDFs and Beamer lectures.
 5. (Settled 15 October 2026: content CC BY-NC-SA 4.0 in `LICENSE.md`, program code MIT in `LICENSE-CODE`.)
 6. Language policy is implemented: curriculum language follows the brief, neutral content follows the selected language, and resources declare available editions independently. Paired TeX translation remains a workflow, not a mandatory publication pair.
 7. English proofreading of curriculum lessons is not pending work (owner language rule of 11 November 2026: French curriculum lessons are French only). Alignment is not proofreading.

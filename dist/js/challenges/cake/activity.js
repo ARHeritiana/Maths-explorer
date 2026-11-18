@@ -143,7 +143,7 @@ export function activity(root, { t, q, reduced }) {
     for (const c of objs.filter((x) => x.type === "circ")) {
       const A = pt(c.c), B = pt(c.r); if (!A.ok || !B.ok) continue;
       const r = Math.hypot(B.x - A.x, B.y - A.y) * cam.scale, [sx, sy] = toScreen(A.x, A.y);
-      svgEl("circle", { cx: sx, cy: sy, r, fill: "var(--accent-soft)", "fill-opacity": 0.25, stroke: "var(--accent)", "stroke-width": 2.2, "pointer-events": "none" }, o);
+      svgEl("circle", { cx: sx, cy: sy, r, fill: "var(--object-soft)", "fill-opacity": 0.25, stroke: "var(--object-ink)", "stroke-width": 2.2, "pointer-events": "none" }, o);
     }
     const dc = diskCircle();
     if (dc && disk.on) {
@@ -166,16 +166,16 @@ export function activity(root, { t, q, reduced }) {
     }
     if (pending.length && hover && (tool === "segment" || tool === "circle")) {
       const A = pt(pending[0]), [x0, y0] = toScreen(A.x, A.y), [x1, y1] = toScreen(...hover);
-      if (tool === "segment") svgEl("line", { x1: x0, y1: y0, x2: x1, y2: y1, stroke: "var(--accent)", "stroke-width": 2, "stroke-dasharray": "5 5", "pointer-events": "none" }, o);
-      else svgEl("circle", { cx: x0, cy: y0, r: Math.hypot(x1 - x0, y1 - y0), fill: "none", stroke: "var(--accent)", "stroke-width": 2, "stroke-dasharray": "5 5", "pointer-events": "none" }, o);
+      if (tool === "segment") svgEl("line", { x1: x0, y1: y0, x2: x1, y2: y1, stroke: "var(--object-ink)", "stroke-width": 2, "stroke-dasharray": "5 5", "pointer-events": "none" }, o);
+      else svgEl("circle", { cx: x0, cy: y0, r: Math.hypot(x1 - x0, y1 - y0), fill: "none", stroke: "var(--object-ink)", "stroke-width": 2, "stroke-dasharray": "5 5", "pointer-events": "none" }, o);
     }
     // points
     for (const p of objs.filter((x) => x.type === "pt" && x.ok)) {
       const [sx, sy] = toScreen(p.x, p.y), free = p.kind === "free", sel = pending.includes(p.id);
       const gEl = svgEl("g", { class: "toy-handle ck-pt", tabindex: 0, "data-id": p.id, role: "button", "aria-label": `${t("Point", "Point")} ${p.name}${showGrid ? ` (${fmt(p.x * g)} ; ${fmt(p.y * g)})` : ""}${free ? "" : ` (${t("construit", "constructed")})`}` }, o);
       svgEl("circle", { class: "hit", cx: sx, cy: sy, r: 20 }, gEl);
-      svgEl("circle", { class: "ring", cx: sx, cy: sy, r: sel ? 11 : 8, style: `stroke:${free ? "var(--accent)" : "var(--muted)"};stroke-width:${sel ? 4 : 3}` }, gEl);
-      svgEl("circle", { class: "core", cx: sx, cy: sy, r: 3.2, style: `fill:${free ? "var(--accent)" : "var(--muted)"}` }, gEl);
+      svgEl("circle", { class: "ring", cx: sx, cy: sy, r: sel ? 11 : 8, style: `stroke:${free ? "var(--object-ink)" : "var(--muted)"};stroke-width:${sel ? 4 : 3}` }, gEl);
+      svgEl("circle", { class: "core", cx: sx, cy: sy, r: 3.2, style: `fill:${free ? "var(--object-ink)" : "var(--muted)"}` }, gEl);
       const lab = svgEl("text", { x: sx + 11, y: sy - 10, style: "font:700 13px var(--body);fill:var(--ink);paint-order:stroke;stroke:var(--sunken);stroke-width:3px;pointer-events:none" }, o);
       lab.textContent = p.name + (showGrid ? ` (${fmt(p.x * g)} ; ${fmt(p.y * g)})` : "");
     }

@@ -62,7 +62,7 @@ export const scene = {
       const gx = a.x + a.d * tSim, out = gx < 0 || gx > L;
       G.root.setAttribute("opacity", out ? 0 : s === 4 && i !== 0 ? 0.25 : 0.55);
       poseAnt(G, { x: X(Math.max(0, Math.min(L, gx))), y: GY, facing: a.d, phase: (X(gx) - X0) / 4, amp: out || p >= 1 ? 0 : 1, mood: "smile" });
-      if (s === 2 && !out) svgEl("line", { x1: X(gx), y1: GY + 4, x2: X(gx), y2: Y - 26 * size, stroke: "var(--accent)", "stroke-width": 1, "stroke-dasharray": "2 3" }, links);   // same places
+      if (s === 2 && !out) svgEl("line", { x1: X(gx), y1: GY + 4, x2: X(gx), y2: Y - 26 * size, stroke: "var(--object-ink)", "stroke-width": 1, "stroke-dasharray": "2 3" }, links);   // same places
     });
     const recent = s <= 1 ? list.filter((m) => tSim >= m.t && tSim - m.t < speed * 0.5).slice(-2) : [];
     bubbles.forEach((B, k) => { const m = recent[k]; poseBubble(B, m ? { x: X(m.x), y: Y - 34 * size, text: word, appear: seg((tSim - m.t) / (speed * 0.5), 0, 0.15) * (1 - seg((tSim - m.t) / (speed * 0.5), 0.7, 1)) } : { x: 0, y: 0, text: "", appear: 0 }); });

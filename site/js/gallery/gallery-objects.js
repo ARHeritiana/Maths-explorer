@@ -4,7 +4,8 @@
 import { navigationButtons } from "../canvas-navigation.js";
 import { canvasIn, palette, loopFor } from "../object-kit.js";
 import { createFractalGL } from "../fractal-gl.js";
-import { escape, MADAGASCAR, resample, fourier, arms, heart, star, COUNT_SCHEDULE, REVOLUTION } from "./gallery-math.js";
+import { metricStrip, plotPanel } from "./gallery-panels.js";
+import { escape, MADAGASCAR, resample, fourier, errorCurve, orbit, membership, arms, heart, star, COUNT_SCHEDULE, REVOLUTION } from "./gallery-math.js";
 
 const TAU = Math.PI * 2;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
@@ -36,9 +37,13 @@ function fourierLab(root, { t, reduced, lang }) {
     <p class="act-readout" id="fr-read" role="status" aria-live="polite"></p>`;
   const o = canvasIn(root.querySelector("#fr-stage"), 640 / 420), g = o.g, read = root.querySelector("#fr-read"), slider = root.querySelector("#fr-n"), out = root.querySelector("#fr-n-out");
   o.cv.style.cursor = "crosshair";
+  const M = metricStrip(root.querySelector("#fr-stage"), t, [{ id: "n", label: t("Cercles gardés N", "Circles kept N"), kind: "exact" },
+    { id: "err", label: t("Erreur RMS relative", "Relative RMS error"), kind: "exact" }, { id: "next", label: t("Rayon du plus grand cercle omis", "Radius of the largest circle left out"), kind: "exact" }]);
+  const P = plotPanel(M.el, t("Erreur RMS relative (échelle logarithmique) selon le nombre N de cercles, les plus grands d’abord. Les rayons décroissent vite : chaque cercle ajouté corrige moins que le précédent. Erreur exacte sur les 256 points échantillonnés, pas entre eux.", "Relative RMS error (log scale) against the number N of circles, largest first. The radii shrink fast: each added circle corrects less than the one before. Exact error on the 256 sampled points, not between them."));
+  let errs = [];
   const setShape = (name, raw) => {
     const r0 = resample(raw ?? SHAPES[name](), N), mx = r0.reduce((q, p) => q + p[0] / N, 0), my = r0.reduce((q, p) => q + p[1] / N, 0);
-    pts = r0.map((p) => [p[0] - mx, p[1] - my]); co = fourier(pts);   // centred: the constant term vanishes and every circle turns
+    pts = r0.map((p) => [p[0] - mx, p[1] - my]); co = fourier(pts); errs = errorCurve(co);   // centred: the constant term vanishes and every circle turns
     const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]), w = Math.max(...xs) - Math.min(...xs), h = Math.max(...ys) - Math.min(...ys);
     scale = Math.min((o.W - 120) / w, (o.H - 80) / h); centre = [(Math.max(...xs) + Math.min(...xs)) / 2, (Math.max(...ys) + Math.min(...ys)) / 2];
     trail = []; clock = 0; auto = false;   // the build-up plays only when asked ("Build up again")
@@ -51,7 +56,12 @@ function fourierLab(root, { t, reduced, lang }) {
   function update() {
     out.textContent = count; slider.value = count;
     if (reduced()) frame(0);
-    if (!co.length) { read.textContent = t("Dessine une forme fermée avec le doigt ou la souris.", "Draw a closed shape with your finger or the mouse."); return; }
+    if (!co.length) { read.textContent = t("Dessine une forme fermée avec le doigt ou la souris.", "Draw a closed shape with your finger or the mouse."); ["n", "err", "next"].forEach((id) => M.set(id, "–")); errs = []; P.draw({ xMax: 150, logY: [0.01, 100], series: [] }); return; }
+    const pctOf = (e) => Math.max(0.01, 100 * e), shown = errs.slice(0, Math.min(errs.length, 151)).map((e, n) => [n, pctOf(e)]).slice(1);
+    M.set("n", count); M.set("err", `${fmt(100 * errs[Math.min(count, errs.length - 1)], 2)} %`);
+    M.set("next", count < co.length ? `${fmt((100 * co[count].amp) / rms(), 2)} % ${t("de la RMS du contour", "of the outline RMS")}` : t("aucun", "none"));
+    P.draw({ xMax: shown.length, logY: [0.01, 100], yFormat: (v) => fmt(v, 2), xLabel: t("nombre de cercles N", "number of circles N"), yLabel: t("erreur (%)", "error (%)"),
+      series: [{ points: shown, color: "ink", dots: false }], marker: [Math.min(count, shown.length), pctOf(errs[Math.min(count, errs.length - 1)])] });
     const left = Math.sqrt(co.slice(count).reduce((s, c) => s + c.amp ** 2, 0)), pct = (100 * left) / rms();
     read.innerHTML = `${count} ${t(count > 1 ? "cercles" : "cercle", count > 1 ? "circles" : "circle")} · ${t("erreur RMS relative sur les échantillons", "relative sample RMS error")} : <strong>${fmt(pct)} %</strong> ${t("(normalisée par la RMS du contour centré)", "(normalised by the centred outline RMS)")}${count < co.length ? "" : ` · ${t("tous les échantillons sont reconstruits à l’arrondi près", "all samples recovered up to rounding")}`}`;
   }
@@ -69,7 +79,7 @@ function fourierLab(root, { t, reduced, lang }) {
     const phase = reduced() ? 0 : (clock / REVOLUTION) % 1;
     g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
     if (drawing) {
-      g.strokeStyle = C.accent; g.lineWidth = 3; g.lineCap = "round"; g.beginPath(); drawing.forEach((p, i) => (i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]))); g.stroke();
+      g.strokeStyle = C.object; g.lineWidth = 3; g.lineCap = "round"; g.beginPath(); drawing.forEach((p, i) => (i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]))); g.stroke();
       g.fillStyle = C.muted; g.font = "600 13px system-ui"; g.textAlign = "center"; g.fillText(t("Lâche pour fermer la forme", "Release to close the shape"), o.W / 2, o.H - 14);
       return;
     }
@@ -78,12 +88,12 @@ function fourierLab(root, { t, reduced, lang }) {
     const chain = arms(co, phase, count), tip = chain[chain.length - 1];
     g.lineCap = "round"; g.lineJoin = "round";
     if (reduced()) {   // no motion: the whole curve of the current circles, once
-      g.strokeStyle = C.accent; g.lineWidth = 3.2; g.beginPath();
+      g.strokeStyle = C.object; g.lineWidth = 3.2; g.beginPath();
       for (let i = 0; i <= 240; i++) { const q = arms(co, i / 240, count).at(-1), [x, y] = toScreen(q[0], q[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); }
       g.stroke();
     } else {
       trail.push({ x: tip[0], y: tip[1], ts: clock, count }); while (trail.length && clock - trail[0].ts > FADE) trail.shift();
-      g.lineWidth = 3.4; g.strokeStyle = C.accent;
+      g.lineWidth = 3.4; g.strokeStyle = C.object;
       for (let i = 1; i < trail.length; i++) { if (trail[i].count !== trail[i-1].count || trail[i].ts-trail[i-1].ts > .15) continue; const k = 1 - (clock - trail[i].ts) / FADE; g.globalAlpha = Math.max(0, k) ** 1.4; const a = toScreen(trail[i - 1].x, trail[i - 1].y), b = toScreen(trail[i].x, trail[i].y); g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
       g.globalAlpha = 1;
     }
@@ -122,7 +132,7 @@ function fourierLab(root, { t, reduced, lang }) {
 
   setShape("madagascar");
   if (reduced()) { count = DEFAULT_MADAGASCAR; auto = false; update(); }
-  return () => { stop(); o.navigation?.destroy(); o.stopTouch?.(); };
+  return () => { stop(); P.stop(); M.el.remove(); o.navigation?.destroy(); o.stopTouch?.(); };
 }
 
 /* =========================================================== Mandelbrot */
@@ -151,6 +161,9 @@ function mandelbrotLab(root, { t, reduced, lang }) {
     <section><h3>${t('L’orbite, pas à pas', 'The orbit, step by step')}</h3><p id="mb-orbit-help">${t('Depuis z₀ = 0, on calcule zₙ₊₁ = zₙ² + c.', 'Starting at z₀ = 0, calculate zₙ₊₁ = zₙ² + c.')}</p><canvas id="mb-orbit" width="500" height="260" aria-label="${t('Orbite du point choisi', 'Orbit of the selected point')}"></canvas><div class="act-controls"><button class="btn btn-secondary" id="mb-orbit-play" type="button" aria-pressed="false">${t("Lire l’orbite", "Play orbit")}</button><button class="btn btn-secondary" id="mb-orbit-next" type="button">${t("Étape suivante", "Next step")}</button></div><label for="mb-steps">${t('Étapes', 'Steps')} <output id="mb-steps-out">12</output></label><input id="mb-steps" type="range" min="1" max="40" value="12"><p id="mb-orbit-read" aria-live="polite"></p></section></div>
     <p class="act-readout" id="mb-read" role="status" aria-live="polite"></p>`;
   const o = canvasIn(root.querySelector("#mb-stage"), 640 / 400, {navigation:false}), j = canvasIn(root.querySelector("#mb-julia"), 640 / 400, {navigation:false}), read = root.querySelector("#mb-read");
+  const MS = metricStrip(root.querySelector(".mb-explorer"), t, [{ id: "c", label: t("Point choisi c", "Selected point c"), kind: "exact" }, { id: "m", label: t("c et l’ensemble de Mandelbrot", "c and the Mandelbrot set") },
+    { id: "j", label: t("Ensemble de Julia de c", "Julia set of c") }, { id: "z", label: t("Orbite : dernier |zₙ|", "Orbit: last |zₙ|"), kind: "exact" }]);
+  const OP = plotPanel(root.querySelector("#mb-orbit"), t("Module |zₙ| à chaque étape n de l’orbite choisie ; la ligne pointillée est le rayon 2 : dès que |zₙ| le dépasse, l’orbite part à l’infini.", "Modulus |zₙ| at each step n of the chosen orbit; the dotted line is radius 2: once |zₙ| passes it, the orbit goes to infinity."));
   o.cv.style.cursor = "crosshair";
   const maxIt = () => iterationLimit;
   // cosine palette on the smooth escape time; the inside of the set is dark
@@ -206,9 +219,15 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   }
   const f = (v) => (lang === "fr" ? String(Math.round(v * 1e6) / 1e6).replace(".", ",") : String(Math.round(v * 1e6) / 1e6));
   function readout() {
-    const max = 300, n = escape(0, 0, cSel[0], cSel[1], max), sign = cSel[1] < 0 ? "−" : "+", txt = `c = ${f(cSel[0])} ${sign} ${f(Math.abs(cSel[1]))} i`;
-    const s = n >= max ? t(`${txt} : aucune échappée en ${max} itérations ; cela ne prouve pas l’appartenance à l’ensemble.`, `${txt}: no escape in ${max} iterations; this does not prove membership.`) : t(`${txt} : |z| dépasse 2 après ${n} itérations : c n’est pas dans l’ensemble.`, `${txt}: |z| exceeds 2 after ${n} iterations: c is not in the set.`);
+    const max = iterationLimit, m = membership(cSel, max), sign = cSel[1] < 0 ? "−" : "+", txt = `c = ${f(cSel[0])} ${sign} ${f(Math.abs(cSel[1]))} i`;
+    const verdict = m.status === "escapes" ? t(`|z| dépasse 2 à l’étape ${m.n} : c n’est pas dans l’ensemble (prouvé)`, `|z| exceeds 2 at step ${m.n}: c is not in the set (proved)`)
+      : m.status === "cardioid" ? t("dans la cardioïde principale : c est dans l’ensemble (prouvé)", "inside the main cardioid: c is in the set (proved)")
+      : m.status === "bulb" ? t("dans le disque de période 2 : c est dans l’ensemble (prouvé)", "inside the period-2 disc: c is in the set (proved)")
+      : t(`aucune échappée en ${max} étapes : indice, pas une preuve`, `no escape in ${max} steps: evidence, not a proof`);
+    const s = `${txt} : ${verdict}.`.replace(" : ", lang === "fr" ? " : " : ": ");
     if (s !== last) { read.textContent = s; last = s; }
+    MS.set("c", txt.slice(4)); MS.set("m", verdict);
+    MS.set("j", m.status === "escapes" ? t("non connexe : une poussière (prouvé)", "disconnected: a dust (proved)") : m.status === "unknown" ? t("connexe si c est dans l’ensemble ; non tranché ici", "connected if c is in the set; not settled here") : t("connexe, d’un seul tenant (prouvé)", "connected, in one piece (proved)"));
   }
   const view = () => ({ h: (w * o.H) / o.W });
   const toC = (e) => { const [x, y] = o.point(e), { h } = view(); return [cx + (x / o.W - 0.5) * w, cy - (y / o.H - 0.5) * h]; };
@@ -218,7 +237,10 @@ function mandelbrotLab(root, { t, reduced, lang }) {
     const points = [activePlane === 'julia' ? [...zStart] : [0,0]]; let [x,y]=points[0];
     for(let i=0;i<orbitSteps;i++){const nx=x*x-y*y+cSel[0]; y=2*x*y+cSel[1]; x=nx; if(!Number.isFinite(x)||!Number.isFinite(y)) break; points.push([x,y]); if(x*x+y*y>16) break;}
     const scale= Math.max(2,...points.flatMap(p=>p.map(Math.abs))), W=canvas.width,H=canvas.height, k=Math.min(W,H)/(2.4*scale);
-    g.clearRect(0,0,W,H);g.strokeStyle='#8292a5';g.lineWidth=1;g.beginPath();g.moveTo(0,H/2);g.lineTo(W,H/2);g.moveTo(W/2,0);g.lineTo(W/2,H);g.stroke();g.strokeStyle='#d58d28';g.lineWidth=2;g.beginPath();points.forEach(([a,b],i)=>{const px=W/2+a*k,py=H/2-b*k;if(i)g.lineTo(px,py);else g.moveTo(px,py);});g.stroke();
+    const C=palette();g.clearRect(0,0,W,H);g.strokeStyle=C.line;g.lineWidth=1;g.beginPath();g.moveTo(0,H/2);g.lineTo(W,H/2);g.moveTo(W/2,0);g.lineTo(W/2,H);g.stroke();g.strokeStyle=C.object;g.lineWidth=2;g.beginPath();points.forEach(([a,b],i)=>{const px=W/2+a*k,py=H/2-b*k;if(i)g.lineTo(px,py);else g.moveTo(px,py);});g.stroke();
+    const mods=orbit(cSel,points[0],orbitSteps).map(([a,b])=>Math.hypot(a,b)),shown=mods.map(v=>Math.min(v,4));
+    MS.set('z',`n = ${mods.length-1} · |z| ${mods.at(-1)>4?'> 4':'= '+f(mods.at(-1))}`);
+    OP.draw({xMax:Math.max(10,orbitSteps),yMax:4,xLabel:t('étape n','step n'),yLabel:'|zₙ|',yFormat:v=>f(v),series:[{points:[[0,2],[Math.max(10,orbitSteps),2]],color:'muted',dash:[4,4],width:1,dots:false},{values:shown,color:'object'}]});
     const p=points[points.length-1];root.querySelector('#mb-orbit-read').textContent=`z${points.length-1} = ${f(p[0])} ${p[1]<0?'−':'+'} ${f(Math.abs(p[1]))}i`;
   }
   const stop = loopFor((dt) => {
@@ -277,7 +299,7 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   j.cv.addEventListener('pointerup',e=>{if(jdrag&&activePlane==='julia'&&Math.hypot(e.clientX-jdrag.x,e.clientY-jdrag.y)<5){const [px,py]=j.point(e);zStart=[jx+(px/j.W-.5)*jw,jy-(py/j.H-.5)*jw*j.H/j.W];dirty=true;}jdrag=null;});
   for(const ev of ['pointercancel','view-gesture'])j.cv.addEventListener(ev,()=>jdrag=null);
   j.cv.addEventListener('wheel',e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();const [px,py]=j.point(e),at=[jx+(px/j.W-.5)*jw,jy-(py/j.H-.5)*jw*j.H/j.W],old=jw;jw=clamp(jw*Math.exp(e.deltaY*.005),2e-13,6);const k=jw/old;jx=at[0]+(jx-at[0])*k;jy=at[1]+(jy-at[1])*k;dirty=true;},{passive:false});
-  return () => { stop(); o.stopTouch?.(); j.stopTouch?.(); glMain?.destroy(); glJulia?.destroy(); };
+  return () => { stop(); OP.stop(); MS.el.remove(); o.stopTouch?.(); j.stopTouch?.(); glMain?.destroy(); glJulia?.destroy(); };
 }
 
 export const GALLERY_OBJECTS = { fourier: fourierLab, mandelbrot: mandelbrotLab };

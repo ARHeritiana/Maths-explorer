@@ -25,7 +25,7 @@ export function mount(env){
     g.save();g.beginPath();g.rect(v.left,v.top,v.width,v.height);g.clip();
     if(s.mode==='shape'&&s.shape==='custom'&&!s.custom){if(stroke)line(stroke,'obj3',3);drawHandle(g,stage,v.X(pen[0]),v.Y(pen[1]),{color:'obj3'});g.restore();return;}
     if(s.mode==='shape'){
-      prepare(s);line([...pts,pts[0]],'muted',1,[4,5]);line(curve.slice(0,Math.max(2,Math.floor(s.time*1024)+1)),'accent',3);
+      prepare(s);line([...pts,pts[0]],'muted',1,[4,5]);line(curve.slice(0,Math.max(2,Math.floor(s.time*1024)+1)),'object',3);
       const chain=arms(co,s.time,s.count);for(let i=1;i<chain.length;i++){
         const [x,y]=chain[i-1],[X,Y,r]=chain[i];g.strokeStyle=stage.color('muted');g.lineWidth=1;
         if(r>1e-8){g.beginPath();g.arc(v.X(x),v.Y(y),Math.abs(v.X(r)-v.X(0)),0,F.TAU);g.stroke();}line([[x,y],[X,Y]],'obj2',1.5);
@@ -33,7 +33,7 @@ export function mount(env){
       const tip=chain.at(-1);g.fillStyle=stage.color('neg');g.beginPath();g.arc(v.X(tip[0]),v.Y(tip[1]),4,0,F.TAU);g.fill();
       if(stroke)line(stroke,'obj3',3);
     }else if(s.mode==='wave'){
-      const wave=Array.from({length:501},(_,i)=>[i/500,s.amplitude*Math.cos(F.TAU*s.frequency*i/500+s.phase)]);line(wave,'accent',3);
+      const wave=Array.from({length:501},(_,i)=>[i/500,s.amplitude*Math.cos(F.TAU*s.frequency*i/500+s.phase)]);line(wave,'object',3);
       // A small rotating vector is paired with the wave at t = 0. The draggable tip controls A and φ.
       const x=s.amplitude*Math.sin(s.phase),y=s.amplitude*Math.cos(s.phase);g.restore();g.save();g.strokeStyle=stage.color('muted');g.lineWidth=1;g.beginPath();g.arc(w.X(0),w.Y(0),Math.abs(w.X(s.amplitude)-w.X(0)),0,F.TAU);g.stroke();g.strokeStyle=stage.color('obj2');g.lineWidth=2;g.beginPath();g.moveTo(w.X(0),w.Y(0));g.lineTo(w.X(x),w.Y(y));g.stroke();g.setLineDash([4,5]);g.beginPath();g.moveTo(w.X(x),w.Y(y));g.lineTo(v.X(0),v.Y(y));g.stroke();g.setLineDash([]);drawHandle(g,stage,w.X(x),w.Y(y),{color:'obj2',locked:!isUnlocked('waveTip'),id:'waveTip'});
     }else{
@@ -41,7 +41,7 @@ export function mount(env){
       // Break at jumps rather than joining opposite limits with a fictitious segment.
       let segment=[];for(const t of samples){const y=F.signal(s.signal,t);if(segment.length&&Math.abs(y-segment.at(-1)[1])>1){line(segment,'muted',1.8,[5,5]);segment=[];}segment.push([t,y]);}line(segment,'muted',1.8,[5,5]);
       if(s.mode==='coefficient')line(samples.map(t=>[t,F.signal(s.signal,t)*Math.sin(F.TAU*s.n*t)]),'obj2',2.5);
-      else {line(samples.map(t=>[t,F.partial(s.signal,s.N,t)]),'accent',2.8);if(s.method==='fejer')line(samples.map(t=>[t,F.partial(s.signal,s.N,t,true)]),'obj3',2.8);}
+      else {line(samples.map(t=>[t,F.partial(s.signal,s.N,t)]),'object',2.8);if(s.method==='fejer')line(samples.map(t=>[t,F.partial(s.signal,s.N,t,true)]),'obj3',2.8);}
     }
     g.restore();
     if(s.mode==='shape'){

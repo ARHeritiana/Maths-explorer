@@ -5,13 +5,13 @@ import { W2 } from "./widgets-2d.js";
 import { W3 } from "./widgets-3d.js";
 
 // Colours come from the CSS tokens of the page (player.css: the site's Jour / Nuit), read again whenever the theme changes, so
-// every canvas follows both themes. C is mutated in place: widgets keep reading C.acc, C.warn ... at every frame.
-// acc = the object studied (and the focus), blue = a second object, warn = warning, pos = valid, ink / muted / axis / grid = chrome.
-export const C = { bg: "#ffffff", grid: "#ececec", axis: "#6e6e6e", ink: "#000000", muted: "#595959", acc: "#d90012", warn: "#b3000f", blue: "#2563eb", pos: "#0a7a43", posSoft: "#e1f3ea" };
+// every canvas follows both themes. C is mutated in place: widgets keep reading C.obj, C.warn ... at every frame.
+// obj = the object studied (and the focus; token --object-ink), blue = a second object, warn = warning, pos = valid, ink / muted / axis / grid = chrome.
+export const C = { bg: "#ffffff", grid: "#ececec", axis: "#6e6e6e", ink: "#000000", muted: "#595959", obj: "#d90012", warn: "#b3000f", blue: "#2563eb", pos: "#0a7a43", posSoft: "#e1f3ea" };
 const cssVar = n => (typeof document === "undefined" || typeof getComputedStyle !== "function" ? "" : getComputedStyle(document.documentElement).getPropertyValue(n).trim());
 export function readPalette() {
   const v = (n, d) => cssVar(n) || d;
-  Object.assign(C, { bg: v("--surface", C.bg), grid: v("--grid", C.grid), axis: v("--line-strong", C.axis), ink: v("--ink", C.ink), muted: v("--muted", C.muted), acc: v("--accent", C.acc), warn: v("--neg", C.warn), blue: v("--c1", C.blue), pos: v("--pos", C.pos), posSoft: v("--pos-soft", C.posSoft) });
+  Object.assign(C, { bg: v("--surface", C.bg), grid: v("--grid", C.grid), axis: v("--line-strong", C.axis), ink: v("--ink", C.ink), muted: v("--muted", C.muted), obj: v("--object-ink", C.obj), warn: v("--neg", C.warn), blue: v("--c1", C.blue), pos: v("--pos", C.pos), posSoft: v("--pos-soft", C.posSoft) });
   return C;
 }
 const rgbOf = c => { const m = /^#([0-9a-f]{6})$/i.exec(c); return m ? [0, 2, 4].map(i => parseInt(m[1].slice(i, i + 2), 16)) : null; };
@@ -111,7 +111,7 @@ export const LAB_PALETTE = () => {
   if (labPalette && key === labPaletteKey) return labPalette;
   labPaletteKey = key; readPalette();
   const v = n => cssVar(n);
-  return (labPalette = { ink: v("--ink"), muted: v("--muted"), line: v("--line-strong"), surface: v("--surface"), sunken: v("--sunken"), accent: v("--accent"), obj2: v("--obj2"), obj3: v("--obj3"), pos: v("--pos"), neg: v("--neg"), grid: v("--grid"), c: [1, 2, 3, 4, 5, 6, 7, 8].map(i => v(`--c${i}`)) });
+  return (labPalette = { ink: v("--ink"), muted: v("--muted"), line: v("--line-strong"), surface: v("--surface"), sunken: v("--sunken"), object: v("--object-ink"), objectFill: v("--object"), objectSoft: v("--object-soft"), obj2: v("--obj2"), obj3: v("--obj3"), pos: v("--pos"), neg: v("--neg"), grid: v("--grid"), c: [1, 2, 3, 4, 5, 6, 7, 8].map(i => v(`--c${i}`)) });
 };
 const loadLab = () => import("../js/lab/mount.js");
 // The laboratory writes its numbers with Unicode (x², uₙ, ≈, √3/2, 35°); the player typesets every formula with MathJax, so the
@@ -231,7 +231,7 @@ export function axes(g, v, o = {}) {
   g.restore();
 }
 const lab = (x, lang) => fmt(x, lang, 2).replace("-", "\u2212");
-export function curve(g, v, f, a, b, color = C.acc, w = 3) {
+export function curve(g, v, f, a, b, color = C.obj, w = 3) {
   g.save(); g.strokeStyle = color; g.lineWidth = w; g.lineJoin = "round"; g.beginPath(); let pen = false;
   const n = 400;
   for (let i = 0; i <= n; i++) {
@@ -242,7 +242,7 @@ export function curve(g, v, f, a, b, color = C.acc, w = 3) {
   }
   g.stroke(); g.restore();
 }
-export function dot(o, x, y, color = C.acc, label = "", cur = "grab", draggable = true, side = 1) {
+export function dot(o, x, y, color = C.obj, label = "", cur = "grab", draggable = true, side = 1) {
   const g = o.g; g.save();
   if (draggable) { g.strokeStyle = color; g.lineWidth = 1.5; g.setLineDash([4, 4]); g.lineDashOffset = -(o.t || 0) * 8; g.beginPath(); g.arc(x, y, 15 + 2 * Math.sin((o.t || 0) * 3), 0, 7); g.stroke(); g.setLineDash([]); }
   g.fillStyle = color; g.beginPath(); g.arc(x, y, 7, 0, 7); g.fill();
