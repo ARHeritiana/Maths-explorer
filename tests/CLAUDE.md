@@ -195,3 +195,5 @@ interactions. Additional collection browser scripts remain available.
 `test_annals_code.py`: literal listing whitespace and HTML escaping, numbered table programs and blank lines, parallel programs, untouched data tables and TeX code typography.
 
 `visible-loop.test.mjs`: the shared animation loop (no frames offscreen or in a hidden tab, reduced motion draws once then only while interacting, a frame returning false sleeps, stop releases everything).
+
+`banach-tree.test.mjs`: the free-group tree of the Banach-Tarski lab: reduced-word enumeration against `treeCopy` (F = W(a) ⊔ a·W(A) up to the words of length d), layout, lab missions, and an exact Z[√2] check that the two rotations by arccos(1/3) have no relation among reduced words of length up to 8 (a sanity check, not a proof).
