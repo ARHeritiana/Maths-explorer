@@ -36,6 +36,9 @@ def face(sources, axes, family, style):
     names = merged['name']
     for rec in list(names.names):
         if rec.nameID in (1, 2, 4, 6, 16, 17): names.removeNames(nameID=rec.nameID)
+    # no contact addresses in shipped files (tests/banned.py): a designer's e-mail in the name table goes
+    for rec in list(names.names):
+        if '@' in rec.toUnicode(): names.removeNames(nameID=rec.nameID, platformID=rec.platformID, platEncID=rec.platEncID, langID=rec.langID)
     # fixed dates, so the same sources always give the same bytes (no change in git, no rebuild of every PDF)
     merged.recalcTimestamp = False
     merged['head'].created = merged['head'].modified = 0x7C259DC0   # 2000-01-01
