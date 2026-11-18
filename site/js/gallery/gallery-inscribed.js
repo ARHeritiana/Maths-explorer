@@ -1,6 +1,7 @@
 // The inscribed square problem: draw a closed curve or reshape one, and the exhibit searches for squares (or rectangles
 // of a chosen shape) with their four corners on it (gallery exhibit; maths in gallery/gallery-inscribed-model.js).
 import {exhibit,button,field,bind,palette} from './gallery-kit.js';
+import {metricStrip} from './gallery-panels.js';
 import {curve,selfCrossing,inscribed,inscribedSliced,randomCurve,insertionIndex,PRESETS} from './gallery-inscribed-model.js';
 const S=60,OX=20,OY=10;
 export function inscribedSquare(root,opts){
@@ -12,6 +13,8 @@ export function inscribedSquare(root,opts){
     button('is-draw',t('Dessiner une courbe','Draw a curve'),true)+button('is-random',t('Courbe au hasard','Random curve'))+button('is-delete',t('Effacer le point choisi','Delete the selected point'))+button('is-next',t('Carré suivant','Next square'))+button('is-sides',t('Côtés droits','Straight sides'))+
     field('is-ratio',t('Rapport des côtés (1 = carré)','Ratio of the sides (1 = square)'),1,3,.1,1)+field('is-point',t('Point choisi','Selected point'),1,ctrl.length,1,1),
     `<p>${t('Otto Toeplitz pose la question en 1911. La réponse est oui pour les courbes convexes (Arnold Emch, 1913), pour les courbes lisses (Lev Schnirelmann, 1929) et pour bien d’autres familles ; pour une courbe continue quelconque, elle reste inconnue. Un triangle acutangle contient trois carrés inscrits, un triangle obtusangle un seul : essaie.','Otto Toeplitz asked the question in 1911. The answer is yes for convex curves (Arnold Emch, 1913), for smooth curves (Lev Schnirelmann, 1929) and for many other families; for an arbitrary continuous curve it is still unknown. An acute triangle contains three inscribed squares, an obtuse one only one: try it.')}</p><p>${t('En 2020, Joshua Greene et Andrew Lobb ont montré que toute courbe lisse contient des rectangles inscrits de n’importe quelle forme : règle le rapport des côtés pour les chercher. La recherche du site est numérique : elle essaie de nombreuses paires de points de la courbe et peut manquer un carré très petit.','In 2020 Joshua Greene and Andrew Lobb showed that every smooth curve contains inscribed rectangles of every shape: set the ratio of the sides to look for them. The site’s search is numerical: it tries many pairs of points of the curve and can miss a very small square.')}</p>`);
+  const M=metricStrip(root.querySelector('.exhibit-stage'),t,[{id:'found',label:t('Trouvés par la recherche','Found by the search'),kind:'observed'},{id:'side',label:t('Côté et aire de celui affiché','Side and area of the one shown'),kind:'approx'},
+    {id:'err',label:t('Écart des coins à la courbe','Distance of the corners to the curve'),kind:'approx'},{id:'known',label:t('Ce qui est démontré pour cette courbe','What is proved for this curve')}]);
   const g=o.g,pointSel=root.querySelector('#is-point'),sidesBtn=root.querySelector('#is-sides');
   const X=([x,y])=>[OX+S*x,OY+S*y],W=([px,py])=>[(px-OX)/S,(py-OY)/S];
   function rebuild(search=true){pts=curve(ctrl,{corners,n:corners?40:24});crossing=selfCrossing(pts);pointSel.max=ctrl.length;sidesBtn.setAttribute('aria-pressed',String(corners));found=[];pick=0;dirty=true;
@@ -44,13 +47,18 @@ export function inscribedSquare(root,opts){
     if(stroke){g.strokeStyle=C.obj2;g.lineWidth=2.5;g.beginPath();stroke.forEach((p,i)=>i?g.lineTo(...X(p)):g.moveTo(...X(p)));g.stroke();}
     else{
       g.strokeStyle=crossing?C.neg:C.ink;g.lineWidth=2.5;g.beginPath();pts.forEach((p,i)=>i?g.lineTo(...X(p)):g.moveTo(...X(p)));g.closePath();g.stroke();
-      found.forEach((f,i)=>{if(i===pick)return;g.strokeStyle=C.accent;g.globalAlpha=.25;g.lineWidth=1.5;g.beginPath();f.corners.forEach((p,k)=>k?g.lineTo(...X(p)):g.moveTo(...X(p)));g.closePath();g.stroke();g.globalAlpha=1;});
-      const f=found[pick];if(f){g.fillStyle=C.accent;g.globalAlpha=.18;g.beginPath();f.corners.forEach((p,k)=>k?g.lineTo(...X(p)):g.moveTo(...X(p)));g.closePath();g.fill();g.globalAlpha=1;g.strokeStyle=C.accent;g.lineWidth=3;g.stroke();f.corners.forEach(p=>{g.fillStyle=C.pos;g.beginPath();g.arc(...X(p),6,0,2*Math.PI);g.fill();});}
+      found.forEach((f,i)=>{if(i===pick)return;g.strokeStyle=C.object;g.globalAlpha=.25;g.lineWidth=1.5;g.beginPath();f.corners.forEach((p,k)=>k?g.lineTo(...X(p)):g.moveTo(...X(p)));g.closePath();g.stroke();g.globalAlpha=1;});
+      const f=found[pick];if(f){g.fillStyle=C.object;g.globalAlpha=.18;g.beginPath();f.corners.forEach((p,k)=>k?g.lineTo(...X(p)):g.moveTo(...X(p)));g.closePath();g.fill();g.globalAlpha=1;g.strokeStyle=C.object;g.lineWidth=3;g.stroke();f.corners.forEach(p=>{g.fillStyle=C.pos;g.beginPath();g.arc(...X(p),6,0,2*Math.PI);g.fill();});}
       ctrl.forEach((p,i)=>{g.fillStyle=i===sel?C.obj2:C.surface;g.strokeStyle=C.ink;g.lineWidth=1.5;g.beginPath();g.arc(...X(p),i===sel?8:6,0,2*Math.PI);g.fill();g.stroke();});
     }
+    const F=found[pick];
+    M.set('found',stroke||crossing?'–':`${found.length}${found.length>=40?'+':''}`);
+    M.set('side',F?`${num(F.side)} · ${num(Math.abs(F.corners.reduce((a,p,i)=>{const q=F.corners[(i+1)%4];return a+p[0]*q[1]-q[0]*p[1];},0))/2)} u²`:'–');
+    M.set('err',F?`< ${num(Math.max(F.error,1e-4)*100,2)} % ${t('de la taille de la courbe','of the curve size')}`:'–');
+    M.set('known',crossing?t('rien : la courbe se croise, ce n’est pas une courbe de Jordan','nothing: the curve crosses itself, it is not a Jordan curve'):ratio===1?t(corners?'un carré inscrit existe : polygone, cas démontré par Emch (1916)':'un carré inscrit existe : courbe faite de morceaux polynomiaux, cas démontré par Emch (1916)',corners?'an inscribed square exists: polygon, case proved by Emch (1916)':'an inscribed square exists: curve made of polynomial pieces, case proved by Emch (1916)'):t('rectangles de toute forme : démontré pour les courbes lisses (Greene et Lobb, 2020) ; ici la recherche est un indice','rectangles of any shape: proved for smooth curves (Greene and Lobb, 2020); here the search is evidence'));
     const what=ratio===1?t('carré','square'):t('rectangle','rectangle'),many=found.length>1;
     o.read(stroke?t('Dessine une courbe fermée d’un seul trait.','Draw a closed curve in one stroke.'):crossing?t('La courbe se croise : ce n’est plus une courbe de Jordan. Déplace un point.','The curve crosses itself: it is no longer a Jordan curve. Move a point.'):
       found.length?`${found.length}${found.length>=40?'+':''} ${t(many?what+'s trouvés':what+' trouvé',many?what+'s found':what+' found')} · ${t('côté du '+what+' affiché :','side of the one shown:')} ${num(found[pick].side)} · ${t('écart à la courbe <','distance to the curve <')} ${num(Math.max(found[pick].error,1e-4)*100,2)} %`:t('Recherche… ou aucun trouvé : déplace un point.','Searching… or none found: move a point.'));
   });
-  const stop=o.stop;return ()=>{cancelSearch();stop();};
+  const stop=o.stop;return ()=>{cancelSearch();M.el.remove();stop();};
 }

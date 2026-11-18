@@ -9,7 +9,7 @@ const MAX = 20, N = 7;
 const DEFAULT = [2, 3, 4, 4, 5, 6, 9];
 
 const handle = (i) => ({
-  kind: "handle", color: "accent", axis: "x", grid: [0.5, 0], label: [`Valeur D${i + 1}`, `Value D${i + 1}`],
+  kind: "handle", color: "object", axis: "x", grid: [0.5, 0], label: [`Valeur D${i + 1}`, `Value D${i + 1}`],
   at: (s) => [s.data[i], 0.4 + 0.5 * model(s).levels[i]],
   drag: (s, x) => ({ data: s.data.map((v, j) => (j === i ? clamp(x, 0, MAX) : v)) }),
   valuetext: (s, f) => f.num(s.data[i]),
@@ -56,12 +56,12 @@ export default {
         const m = model(s);
         const box = [[m.q1, 0.3], [m.q3, 0.3], [m.q3, 0.7], [m.q1, 0.7], [m.q1, 0.3]];
         return {
-          polys: [{ pts: box, fill: "accent", alpha: 0.18, color: "accent", width: 2.4 }],
+          polys: [{ pts: box, fill: "object", alpha: 0.18, color: "object", width: 2.4 }],
           lines: [
-            { a: [m.min, 0.5], b: [m.q1, 0.5], color: "accent", width: 2.4 },
-            { a: [m.q3, 0.5], b: [m.max, 0.5], color: "accent", width: 2.4 },
-            { a: [m.min, 0.36], b: [m.min, 0.64], color: "accent", width: 2.4 },
-            { a: [m.max, 0.36], b: [m.max, 0.64], color: "accent", width: 2.4 },
+            { a: [m.min, 0.5], b: [m.q1, 0.5], color: "object", width: 2.4 },
+            { a: [m.q3, 0.5], b: [m.max, 0.5], color: "object", width: 2.4 },
+            { a: [m.min, 0.36], b: [m.min, 0.64], color: "object", width: 2.4 },
+            { a: [m.max, 0.36], b: [m.max, 0.64], color: "object", width: 2.4 },
             { a: [m.median, 0.3], b: [m.median, 0.7], color: "obj3", width: 4.5 },
           ],
           points: [{ at: [m.mean, 0.5], color: "obj2", r: 6, hollow: true }],
@@ -70,9 +70,9 @@ export default {
             y: 0.9, to: 0.72, size: 15,
             items: [
               { x: m.min, text: "min", color: "muted" },
-              { x: m.q1, text: "Q₁", color: "accent" },
+              { x: m.q1, text: "Q₁", color: "object" },
               { x: m.median, text: fmt.fr ? "méd." : "med.", color: "obj3" },
-              { x: m.q3, text: "Q₃", color: "accent" },
+              { x: m.q3, text: "Q₃", color: "object" },
               { x: m.max, text: "max", color: "muted" },
             ],
           },

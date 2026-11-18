@@ -108,9 +108,9 @@ caption { text-align: left; color: var(--muted); padding: 8px 0; font-size: 0.95
 .gridline, .q-grid { stroke: var(--grid); stroke-width: 1; }
 .axis, .q-axis { stroke: var(--line-strong); stroke-width: 1.4; }
 .curve { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.teal { stroke: var(--accent); } .orange { stroke: var(--obj2); } .blue { stroke: var(--obj3); }
+.teal { stroke: var(--object-ink); } .orange { stroke: var(--obj2); } .blue { stroke: var(--obj3); }
 .point { stroke: var(--surface); stroke-width: 2.5; }
-.point.teal { fill: var(--accent); } .point.orange { fill: var(--obj2); } .point.blue { fill: var(--obj3); }
+.point.teal { fill: var(--object-ink); } .point.orange { fill: var(--obj2); } .point.blue { fill: var(--obj3); }
 .bar { stroke-width: 1; stroke: var(--surface); }
 .bar.teal { fill: color-mix(in srgb, var(--accent) 65%, transparent); } .bar.orange { fill: color-mix(in srgb, var(--obj2) 65%, transparent); }
 .circle-grid { fill: color-mix(in srgb, var(--accent) 6%, transparent); stroke: var(--line-strong); stroke-width: 1.6; }
@@ -208,10 +208,10 @@ caption { text-align: left; color: var(--muted); padding: 8px 0; font-size: 0.95
 .step-count { margin-left: auto; color: var(--muted); font: 600 1rem var(--math); }
 .lesson-diagram svg { width: 100%; height: auto; margin-top: 8px; overflow: hidden; }
 .lesson-diagram text { fill: var(--ink); font-size: 16px; }
-.lesson-diagram .ink { fill: none; stroke: var(--accent); stroke-width: 3; vector-effect: non-scaling-stroke; }
-.lesson-diagram .dot { fill: var(--accent); }
+.lesson-diagram .ink { fill: none; stroke: var(--object-ink); stroke-width: 3; vector-effect: non-scaling-stroke; }
+.lesson-diagram .dot { fill: var(--object-ink); }
 .lesson-diagram .open { fill: var(--surface); stroke: var(--obj2); stroke-width: 2.5; }
-.lesson-diagram .area { fill: var(--accent); fill-opacity: 0.18; stroke: var(--accent); stroke-width: 1; }
+.lesson-diagram .area { fill: var(--object-ink); fill-opacity: 0.18; stroke: var(--object-ink); stroke-width: 1; }
 .lesson-diagram .gold { stroke: var(--obj2); } .lesson-diagram .dot.gold { fill: var(--obj2); } .lesson-diagram .area.gold { fill: var(--obj2); }
 .lesson-diagram .violet { stroke: var(--obj3); } .lesson-diagram .dot.violet { fill: var(--obj3); } .lesson-diagram .area.violet { fill: var(--obj3); fill-opacity: 0.45; }
 .lesson-diagram .axis { stroke: var(--line-strong); stroke-width: 1; } .lesson-diagram .grid { stroke: var(--grid); stroke-width: 1; }
@@ -303,7 +303,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .quadratic-presets { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
 .quadratic-presets button { min-height: 44px; padding: 0 14px; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); font: 400 1rem var(--math); }
 .quadratic-presets button:hover { background: var(--sunken); }
-.q-curve { fill: none; stroke: var(--accent); stroke-width: 3; }
+.q-curve { fill: none; stroke: var(--object-ink); stroke-width: 3; }
 .q-positive { fill: var(--pos); opacity: 0.18; } .q-negative { fill: var(--neg); opacity: 0.18; }
 .q-symmetry { stroke: var(--muted); stroke-dasharray: 5 5; } .q-root, .q-vertex { fill: var(--ink); }
 .quadratic-practice { margin: 18px 0; }
@@ -407,11 +407,11 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .act-table tr.yes td:last-child { color: var(--pos); font-weight: 700; } .act-table tr.no td:last-child { color: var(--neg); font-weight: 700; } .act-table tr.no { background: var(--neg-soft); }
 
 /* handshakes */
-.hs-lines line { stroke: var(--accent); stroke-width: 3; stroke-linecap: round; }
+.hs-lines line { stroke: var(--object-ink); stroke-width: 3; stroke-linecap: round; }
 .hs-lines .hs-temp { stroke: var(--obj2); stroke-dasharray: 5 6; }
 .hs-person { outline: none; cursor: pointer; touch-action: none; }
-.hs-person circle { fill: var(--surface); stroke: var(--accent); stroke-width: 3; }
-.hs-person.selected circle { fill: var(--accent-soft); stroke-width: 6; }
+.hs-person circle { fill: var(--surface); stroke: var(--object-ink); stroke-width: 3; }
+.hs-person.selected circle { fill: var(--object-soft); stroke-width: 6; }
 .hs-person:focus-visible circle { stroke: var(--ink); stroke-width: 6; }
 .hs-letter { font: 700 20px var(--body); fill: var(--ink); pointer-events: none; }
 .hs-count { font: 600 16px var(--math); fill: var(--muted); pointer-events: none; }
@@ -430,7 +430,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .dom-svg .cell.a { fill: var(--surface); } .dom-svg .cell.b { fill: color-mix(in srgb, var(--ink) 30%, var(--surface)); }
 .dom rect { stroke-width: 2.5; }
 .dom[data-d] rect { fill-opacity: 0.5; }   /* the colouring of the squares stays visible under a placed domino */
-.dom.ha rect { fill: var(--accent-soft); stroke: var(--accent); } .dom.va rect { fill: color-mix(in srgb, var(--obj2) 20%, var(--surface)); stroke: var(--obj2); }
+.dom.ha rect { fill: var(--object-soft); stroke: var(--object-ink); } .dom.va rect { fill: color-mix(in srgb, var(--obj2) 20%, var(--surface)); stroke: var(--obj2); }
 .dom line { stroke: var(--ink-2); stroke-width: 2; opacity: 0.5; }
 .dom[data-d], .dom.src { cursor: grab; touch-action: none; }
 .dom.ghost { opacity: 0.85; } .dom.ghost.ok rect { stroke: var(--pos); } .dom.ghost.bad rect { stroke: var(--neg); fill: var(--neg-soft); }
@@ -456,15 +456,15 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 
 /* inequality */
 .ineq-figs { display: grid; grid-template-columns: 3fr 2fr; gap: 12px; margin-bottom: 8px; }
-.ineq-figs .curve { stroke: var(--accent); }
+.ineq-figs .curve { stroke: var(--object-ink); }
 .ineq-figs .gl { stroke: var(--grid); } .ineq-figs .ax { stroke: var(--line-strong); stroke-width: 1.4; }
 .ineq-figs .tk { font: 13px var(--math); fill: var(--muted); }
 .ineq-figs .drop { stroke: var(--obj2); stroke-dasharray: 4 4; stroke-width: 2; }
-.ineq-figs .iq-rect { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 3; }
+.ineq-figs .iq-rect { fill: var(--object-soft); stroke: var(--object-ink); stroke-width: 3; }
 .act-svg .toy-handle { cursor: grab; outline: none; touch-action: none; }
 .act-svg .toy-handle .hit { fill: transparent; }
-.act-svg .toy-handle .ring { fill: var(--surface); stroke: var(--accent); stroke-width: 3; }
-.act-svg .toy-handle .core { fill: var(--accent); }
+.act-svg .toy-handle .ring { fill: var(--surface); stroke: var(--object-ink); stroke-width: 3; }
+.act-svg .toy-handle .core { fill: var(--object-ink); }
 .act-svg .toy-handle:focus-visible .ring, .act-svg .toy-handle.grabbed .ring { stroke: var(--ink); stroke-width: 5; }
 
 /* squares */
@@ -578,7 +578,7 @@ details.source-course[open] { padding-bottom: 16px; }
 .ag-wall { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
 .ag-vertex { cursor: grab; outline: none; touch-action: none; }
 .ag-vertex .hit { fill: transparent; } .ag-vertex .sq { fill: var(--surface); stroke: var(--ink); stroke-width: 2.4; }
-.ag-vertex:focus-visible .sq { stroke-width: 4; fill: var(--accent-soft); }
+.ag-vertex:focus-visible .sq { stroke-width: 4; fill: var(--object-soft); }
 .ag-guard { cursor: grab; outline: none; touch-action: none; }
 .ag-guard .hit { fill: transparent; }
 .ag-guard .dot { stroke: var(--ink); stroke-width: 2; }
@@ -595,28 +595,28 @@ details.source-course[open] { padding-bottom: 16px; }
 .floor:disabled { cursor: default; opacity: 1; }
 .floor:disabled:not(.safe):not(.broke) { opacity: 0.55; }
 .hn-base, .hn-pole { fill: var(--line-strong); }
-.hn-pole.from { fill: var(--accent); }
+.hn-pole.from { fill: var(--object-ink); }
 .hn-disk { stroke: var(--ink); stroke-width: 1.5; }
 .hn-pegs { margin-top: 8px; } .hn-peg { flex: 1 1 0; }
 .rm-edge { outline: none; cursor: pointer; }
 .rm-edge .hit { stroke: transparent; stroke-width: 22; }
 .rm-edge .ln { stroke: var(--line-strong); stroke-width: 2; stroke-dasharray: 2 6; stroke-linecap: round; opacity: 0.7; }
-.rm-edge.c1 .ln { stroke: var(--accent); stroke-width: 5; stroke-dasharray: none; opacity: 1; }
+.rm-edge.c1 .ln { stroke: var(--object-ink); stroke-width: 5; stroke-dasharray: none; opacity: 1; }
 .rm-edge.c2 .ln { stroke: var(--obj2); stroke-width: 5; stroke-dasharray: 11 7; opacity: 1; }
 .rm-edge:focus-visible .ln { stroke-width: 8; }
 .rm-node { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
 .rm-label { font: 700 14px var(--body); fill: var(--ink); }
-.rm-tri { stroke: none; } .rm-tri.c1 { fill: var(--accent); opacity: 0.28; } .rm-tri.c2 { fill: var(--obj2); opacity: 0.28; }
+.rm-tri { stroke: none; } .rm-tri.c1 { fill: var(--object-ink); opacity: 0.28; } .rm-tri.c2 { fill: var(--obj2); opacity: 0.28; }
 .kb-bridge { outline: none; cursor: pointer; }
 .kb-bridge .hit { fill: none; stroke: transparent; stroke-width: 20; }
 .kb-bridge .ln { fill: none; stroke: var(--ink-2); stroke-width: 7; stroke-linecap: round; }
 .kb-bridge.crossed .ln { stroke: var(--pos); }
 .kb-bridge.gone .ln { stroke: var(--neg); stroke-dasharray: 4 9; opacity: 0.5; }
 .kb-bridge:focus-visible .ln { stroke-width: 11; }
-.kb-land { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 3; } .kb-land.here { fill: var(--accent); }
+.kb-land { fill: var(--object-soft); stroke: var(--object-ink); stroke-width: 3; } .kb-land.here { fill: var(--object-ink); }
 .kb-name { font: 700 18px var(--body); fill: var(--ink); pointer-events: none; }
 .act-svg .num-bg { fill: var(--surface); stroke: var(--pos); stroke-width: 2; } .act-svg .num { font: 700 12px var(--body); fill: var(--ink); pointer-events: none; }
-.js-p { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; } .js-p.dead { fill: var(--sunken); stroke: var(--line); } .js-p.win { fill: var(--pos); stroke: var(--ink); stroke-width: 3; }
+.js-p { fill: var(--object-soft); stroke: var(--object-ink); stroke-width: 2; } .js-p.dead { fill: var(--sunken); stroke: var(--line); } .js-p.win { fill: var(--pos); stroke: var(--ink); stroke-width: 3; }
 .js-n { font: 600 9px var(--body); fill: var(--ink); pointer-events: none; } .js-n.dead { fill: var(--muted); opacity: 0.5; }
 .js-p.win + .js-n { fill: var(--surface); }
 
@@ -639,14 +639,14 @@ details.source-course[open] { padding-bottom: 16px; }
 .sol-door { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.2; } .sol-door.open { stroke: none; }
 .sol-ring { fill: none; stroke: var(--neg); stroke-width: 3; }
 .sol-cell { stroke: var(--line-strong); stroke-width: 1; } .sol-cell.gone { fill: none; stroke-dasharray: 3 4; opacity: 0.7; }
-.sol-domino { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 3; }
+.sol-domino { fill: var(--object-soft); stroke: var(--object-ink); stroke-width: 3; }
 .sol-stone { stroke-width: 1.5; }
 .sol-bracket { fill: none; stroke-width: 3; }
 .sol-box { fill: var(--surface); stroke: var(--line-strong); stroke-width: 2; } .sol-box.hot { stroke: var(--neg); stroke-width: 4; }
 .sol-ball { stroke: var(--ink); stroke-width: 1.5; } .sol-ball-n { font: 700 14px var(--body); fill: #fff; }
 .sol-window { fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 6 5; }
 .sol-axis { stroke: var(--line-strong); stroke-width: 1.5; }
-.sol-curve { fill: none; stroke: var(--accent); stroke-width: 4; }
+.sol-curve { fill: none; stroke: var(--object-ink); stroke-width: 4; }
 .sol-guide { stroke-width: 3; stroke-dasharray: 8 6; }
 .sol-wall { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
 .sol-diag { stroke: var(--muted); stroke-width: 1.6; }
@@ -922,6 +922,14 @@ details.source-course[open] { padding-bottom: 16px; }
 .exhibit-presets { display:flex; flex-wrap:wrap; gap:8px; flex:1 1 100%; }
 .exhibit-presets .btn { white-space:normal; min-height:44px; }
 .exhibit-readout { min-height:3em; font-variant-numeric:tabular-nums; }
+.exhibit-metrics, .exhibit-plot { width:100%; max-width:min(100%, 880px, calc(64svh * var(--canvas-aspect, 1.5))); margin-inline:auto; box-sizing:border-box; }
+.exhibit-metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr)); margin-top:10px; margin-bottom:0; border-top:1px solid var(--line); border-left:1px solid var(--line); }
+.exhibit-metrics > div { background:var(--surface); padding:6px 10px; min-width:0; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+.exhibit-metrics dt { margin:0; font-size:.78rem; color:var(--muted); overflow-wrap:anywhere; }
+.exhibit-metrics dd { margin:2px 0 0; font:600 1.02rem var(--math, inherit); font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.exhibit-kind { font-size:.7rem; letter-spacing:.02em; text-transform:lowercase; border:1px solid var(--line-strong); padding:0 4px; white-space:nowrap; }
+.exhibit-plot { margin-top:10px; margin-bottom:0; }
+.exhibit-plot figcaption { font-size:.82rem; color:var(--muted); margin-top:4px; }
 .exhibit-notes { margin-top:14px; border-top:1px solid var(--line); padding-top:12px; }
 .exhibit-notes p { overflow-wrap:anywhere; }
 .kn-swatch { border-width:3px; min-width:64px; font-weight:700; }
@@ -1390,7 +1398,7 @@ input[type="range"]::-moz-range-thumb { background: var(--shape); border-color: 
 .error-vars{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center}.error-var{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-weight:600;min-height:44px;max-width:100%}.error-var input[type=range]{width:min(220px,50vw);min-height:44px}.error-var output{min-width:2ch}
 .error-readout{border-collapse:collapse;width:100%}.error-readout th,.error-readout td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:left}.error-readout td{font:600 1.15rem var(--math,serif)}
 .error-verdict{margin:0;font-weight:600}
-.error-diagram svg{display:block;width:min(100%,300px);height:auto}.error-diagram .dg-a{fill:var(--accent-soft);stroke:var(--accent)}.error-diagram .dg-b{fill:var(--sunken);stroke:var(--neg)}.error-diagram .dg-c{fill:var(--accent-soft);stroke:var(--ink-2)}.error-diagram-text{fill:var(--ink);font:600 11px var(--body)}
+.error-diagram svg{display:block;width:min(100%,300px);height:auto}.error-diagram .dg-a{fill:var(--object-soft);stroke:var(--object-ink)}.error-diagram .dg-b{fill:var(--sunken);stroke:var(--neg)}.error-diagram .dg-c{fill:var(--object-soft);stroke:var(--ink-2)}.error-diagram-text{fill:var(--ink);font:600 11px var(--body)}
 .error-options{border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;margin:0 0 16px}.error-option{display:flex;gap:10px;align-items:center;min-height:44px;font:600 1.05rem var(--math,serif);overflow-wrap:anywhere}
 .error-steps{list-style:none;padding:0;display:grid;gap:8px;margin:16px 0}.error-step{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;width:100%;min-height:44px;padding:10px 14px;text-align:left;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:var(--r-sm);cursor:pointer}
 .error-step[aria-pressed=true]{border-color:var(--accent);background:var(--accent-soft)}.error-step-eq{font:600 1.1rem var(--math,serif)}.error-step-values{font-weight:600}
@@ -1616,3 +1624,7 @@ body:has(#object-stage:empty) :is(.learning, .workbench ~ *, #app ~ footer, main
 .hb-box[aria-disabled="true"]:not(.hb-open) { opacity: 0.55; cursor: not-allowed; }
 @keyframes hb-pop { from { transform: scale(0.3); opacity: 0; } 70% { transform: scale(1.25); } to { transform: scale(1); opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .hb-num { animation: none; } .hb-box { transition: none; } }
+/* WebGL2 exhibits (gallery/gl3d.js): the GPU canvas with its label overlay on top */
+.gl-viewport { position:relative; }
+.gl-canvas { touch-action:none; outline-offset:3px; }
+.gl-overlay { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }

@@ -66,7 +66,7 @@ export default {
       scene(s, { fmt }) {
         const m = model(s);
         return {
-          polys: [{ pts: HOUSE, fill: "accent", alpha: 0.18, color: "accent", width: 2 }],
+          polys: [{ pts: HOUSE, fill: "object", alpha: 0.18, color: "object", width: 2 }],
           lines: [{ a: [0, 0], b: m.t, color: "obj3", width: 2.5, arrow: true }],
           points: [
             { at: m.t, color: "obj3", r: 5, label: "t", dx: 8, dy: -9 },
@@ -81,12 +81,12 @@ export default {
       scene(s, { fmt }) {
         const m = model(s), flat = s.mode === "multiply" && s.r === 0, lines = [];
         if (!flat) for (let k = -8; k <= 8; k++) {
-          lines.push({ a: m.f([-9, k]), b: m.f([9, k]), color: "accent", alpha: 0.3, width: 1.2 }, { a: m.f([k, -9]), b: m.f([k, 9]), color: "accent", alpha: 0.3, width: 1.2 });
+          lines.push({ a: m.f([-9, k]), b: m.f([9, k]), color: "object", alpha: 0.3, width: 1.2 }, { a: m.f([k, -9]), b: m.f([k, 9]), color: "object", alpha: 0.3, width: 1.2 });
         }
         const turnable = s.mode === "multiply" && m.argT !== null && m.argZ !== null && Math.abs(m.argZ) > 1e-9 && s.r > 0;
         return {
           lines: [...lines, { a: [0, 0], b: m.z, color: "obj2", width: 2.5, arrow: true }, { a: [0, 0], b: m.w, color: "obj3", width: 2.5, arrow: true }],
-          polys: [{ pts: m.house, fill: "accent", alpha: 0.18, color: "accent", width: 2 }],
+          polys: [{ pts: m.house, fill: "object", alpha: 0.18, color: "object", width: 2 }],
           arcs: turnable ? [{ c: [0, 0], from: m.argT, to: m.argT + m.argZ, color: "obj2", width: 2.5, pixels: 30 }] : [],
           points: [
             { at: m.z, color: "obj2", r: 5, label: "z", dx: 8, dy: -9 },

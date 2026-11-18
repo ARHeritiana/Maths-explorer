@@ -1,0 +1,47 @@
+{
+  "about": "Faces the TeX core loads, made from site/fonts by scripts/tex-fonts.py (brand: Bac à sable). STIX Two and Latin Modern Mono are shipped as they are.",
+  "faces": {
+    "AtkinsonHyperlegible-Regular.ttf": {
+      "family": "Atkinson Hyperlegible",
+      "style": "Regular",
+      "sources": [
+        "atkinson-hyperlegible-latin-400-normal.woff2",
+        "atkinson-hyperlegible-latin-ext-400-normal.woff2"
+      ],
+      "fallback": "STIXTwoText-Regular.otf"
+    },
+    "AtkinsonHyperlegible-Bold.ttf": {
+      "family": "Atkinson Hyperlegible Bold",
+      "style": "Regular",
+      "sources": [
+        "atkinson-hyperlegible-latin-700-normal.woff2",
+        "atkinson-hyperlegible-latin-ext-700-normal.woff2"
+      ],
+      "fallback": "STIXTwoText-Bold.otf"
+    },
+    "BricolageGrotesque-Bold.ttf": {
+      "family": "Bricolage Grotesque Bold",
+      "style": "Regular",
+      "axes": {
+        "wght": 700
+      },
+      "sources": [
+        "bricolage-grotesque-latin-wght-normal.woff2",
+        "bricolage-grotesque-latin-ext-wght-normal.woff2"
+      ],
+      "fallback": "STIXTwoText-Bold.otf"
+    },
+    "BricolageGrotesque-ExtraBold.ttf": {
+      "family": "Bricolage Grotesque ExtraBold",
+      "style": "Regular",
+      "axes": {
+        "wght": 800
+      },
+      "sources": [
+        "bricolage-grotesque-latin-wght-normal.woff2",
+        "bricolage-grotesque-latin-ext-wght-normal.woff2"
+      ],
+      "fallback": "STIXTwoText-Bold.otf"
+    }
+  }
+}

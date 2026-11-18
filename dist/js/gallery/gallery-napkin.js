@@ -22,7 +22,7 @@ export function napkinRing(root,opts){
     const zs=Array.from({length:M+1},(_,k)=>-d.h/2+(z0+d.h/2)*k/M);
     for(let a=0;a<N;a++){const a0=a/N*TAU,a1=(a+1)/N*TAU,am=(a0+a1)/2;
       for(let k=0;k<M;k++){const za=zs[k],zb=zs[k+1],ra=sliceOuter(d.R,za),rb=sliceOuter(d.R,zb),zm=(za+zb)/2,rm=sliceOuter(d.R,zm);
-        out.push({pts:[P(ra*Math.cos(a0),ra*Math.sin(a0),za),P(ra*Math.cos(a1),ra*Math.sin(a1),za),P(rb*Math.cos(a1),rb*Math.sin(a1),zb),P(rb*Math.cos(a0),rb*Math.sin(a0),zb)],f:shade([Math.cos(am)*rm,Math.sin(am)*rm,zm],C),col:C.accent});
+        out.push({pts:[P(ra*Math.cos(a0),ra*Math.sin(a0),za),P(ra*Math.cos(a1),ra*Math.sin(a1),za),P(rb*Math.cos(a1),rb*Math.sin(a1),zb),P(rb*Math.cos(a0),rb*Math.sin(a0),zb)],f:shade([Math.cos(am)*rm,Math.sin(am)*rm,zm],C),col:C.object});
         out.push({pts:[P(d.r*Math.cos(a0),d.r*Math.sin(a0),za),P(d.r*Math.cos(a1),d.r*Math.sin(a1),za),P(d.r*Math.cos(a1),d.r*Math.sin(a1),zb),P(d.r*Math.cos(a0),d.r*Math.sin(a0),zb)],f:shade([-Math.cos(am),-Math.sin(am),0],C)*.8,col:C.muted});}
       const ro=sliceOuter(d.R,z0);
       out.push({pts:[P(d.r*Math.cos(a0),d.r*Math.sin(a0),z0),P(ro*Math.cos(a0),ro*Math.sin(a0),z0),P(ro*Math.cos(a1),ro*Math.sin(a1),z0),P(d.r*Math.cos(a1),d.r*Math.sin(a1),z0)],f:1,col:C.obj2,cap:true});}

@@ -59,7 +59,7 @@ export function mount(env) {
       if (next) setState(next);
     };
     return {
-      id, control: c, label: fmt.t(c.label), color: c.color || "accent", absolute: false,
+      id, control: c, label: fmt.t(c.label), color: c.color || "object", absolute: false,
       pos() {
         const q = proj(c.at(getState()));
         return [clamp(q.X, 6, stage.W - 6), clamp(q.Y, 6, stage.H - 6)];
@@ -129,9 +129,9 @@ export function mount(env) {
     for (const f of faces) {
       g.save();
       g.beginPath(); f.poly.forEach((p, i) => (i ? g.lineTo(p.X, p.Y) : g.moveTo(p.X, p.Y))); g.closePath();
-      g.globalAlpha *= f.alpha ?? 0.2; g.fillStyle = stage.color(f.color || "accent"); g.fill();
+      g.globalAlpha *= f.alpha ?? 0.2; g.fillStyle = stage.color(f.color || "objectFill"); g.fill();
       g.restore();
-      if (f.line !== false) { g.save(); g.strokeStyle = stage.color(f.color || "accent"); g.lineWidth = 1.5; g.setLineDash(f.dash || []); g.lineJoin = "round"; g.beginPath(); f.poly.forEach((p, i) => (i ? g.lineTo(p.X, p.Y) : g.moveTo(p.X, p.Y))); g.closePath(); g.stroke(); g.restore(); }
+      if (f.line !== false) { g.save(); g.strokeStyle = stage.color(f.color || "object"); g.lineWidth = 1.5; g.setLineDash(f.dash || []); g.lineJoin = "round"; g.beginPath(); f.poly.forEach((p, i) => (i ? g.lineTo(p.X, p.Y) : g.moveTo(p.X, p.Y))); g.closePath(); g.stroke(); g.restore(); }
     }
     for (const sg of scene.segs || []) {
       const color = stage.color(sg.color || "ink"), width = sg.width ?? 2.5;

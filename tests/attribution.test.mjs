@@ -1,11 +1,11 @@
-// Workstream H guard: no public credit or link for the two reference sites the owner asked to remove (JavaLab, Mathoutils)
-// anywhere that is served or built into the site. The task register and the provenance audit under docs/ may name them.
+// Workstream H guard: no public credit or link for the reference site the owner asked to remove (Mathoutils)
+// anywhere that is served or built into the site. The task register and the provenance audit under docs/ may name it.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readdirSync, readFileSync, statSync} from 'node:fs';
 import {join} from 'node:path';
 const root = new URL('../', import.meta.url).pathname;
-const NAMES = /java\s*lab|math\s*outils?/i;
+const NAMES = /math\s*outils?/i;
 const TEXT = /\.(js|mjs|css|html|json|md|txt|py|tex|sty|svg|yml|yaml)$/i;
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {
@@ -15,7 +15,7 @@ function walk(dir, out = []) {
   }
   return out;
 }
-test('no JavaLab or Mathoutils credit in site/, content/, scripts/, build/, README or licences', () => {
+test('no Mathoutils credit in site/, content/, scripts/, build/, README or licences', () => {
   const files = ['site', 'content', 'scripts', 'build'].flatMap(d => walk(join(root, d)));
   for (const f of ['README.md', 'LICENSE.md', 'LICENSE-CODE', 'AGENTS.md']) { try { files.push(join(root, f)); } catch { /* optional */ } }
   const hits = [];

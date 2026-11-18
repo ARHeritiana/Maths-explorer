@@ -84,10 +84,10 @@ export function movingSofa(root,opts){
     g.strokeStyle=C.ink;g.lineWidth=2;g.beginPath();g.moveTo(-2000,Y(1));g.lineTo(X(1),Y(1));g.lineTo(X(1),3000);g.moveTo(-2000,Y(0));g.lineTo(X(0),Y(0));g.lineTo(X(0),3000);g.stroke();
     if(!drawing){
       g.save();g.setLineDash([4,5]);g.lineWidth=1;g.globalAlpha=.6;g.strokeStyle=C.muted;for(const q of preview){outline(place(poly,q));g.stroke();}g.setLineDash([]);g.restore();
-      g.lineWidth=1.2;for(const q of ghosts){outline(place(poly,q));g.globalAlpha=.05;g.fillStyle=C.accent;g.fill();g.globalAlpha=.3;g.strokeStyle=C.accent;g.stroke();}g.globalAlpha=1;}
+      g.lineWidth=1.2;for(const q of ghosts){outline(place(poly,q));g.globalAlpha=.05;g.fillStyle=C.object;g.fill();g.globalAlpha=.3;g.strokeStyle=C.object;g.stroke();}g.globalAlpha=1;}
     if(drawing){g.strokeStyle=C.obj2;g.lineWidth=2;g.beginPath();drawing.forEach((p,i)=>i?g.lineTo(X(p[0]),Y(p[1])):g.moveTo(X(p[0]),Y(p[1])));g.stroke();}
     else{const pts=place(poly,shown);g.beginPath();pts.forEach((p,i)=>i?g.lineTo(X(p[0]),Y(p[1])):g.moveTo(X(p[0]),Y(p[1])));g.closePath();
-      g.fillStyle=ok?(done?C.pos:C.accent):C.neg;g.globalAlpha=.4;g.fill();g.globalAlpha=1;g.strokeStyle=ok?C.ink:C.neg;g.lineWidth=2;g.stroke();
+      g.fillStyle=ok?(done?C.pos:C.object):C.neg;g.globalAlpha=.4;g.fill();g.globalAlpha=1;g.strokeStyle=ok?C.ink:C.neg;g.lineWidth=2;g.stroke();
       const h=handleOf(shown),[cx,cy]=centreOf(shown);g.strokeStyle=C.ink;g.lineWidth=1.5;g.setLineDash([4,3]);g.beginPath();g.moveTo(X(cx),Y(cy));g.lineTo(X(h[0]),Y(h[1]));g.stroke();g.setLineDash([]);
       g.fillStyle=C.ink;g.beginPath();g.arc(X(cx),Y(cy),3.5,0,2*Math.PI);g.fill();g.fillStyle=C.obj2;g.beginPath();g.arc(X(h[0]),Y(h[1]),8,0,2*Math.PI);g.fill();}
     {const cam=o.navigation?.camera;g.save();g.setTransform(o.scale,0,0,o.scale,0,0);
@@ -96,7 +96,7 @@ export function movingSofa(root,opts){
       g.fillStyle=C.surface;g.fillRect(6,6,w1+14,24);g.strokeStyle=C.line;g.lineWidth=1;g.strokeRect(6.5,6.5,w1+13,23);g.fillStyle=ok?C.ink:C.neg;g.fillText(L1,13,12);g.fillStyle=C.muted;g.font='13px "IBM Plex Sans",sans-serif';g.fillText(`·  ${L2}`,13+mw(L1+'  '),12);
       // the turn: a gauge from 0 to 90 degrees, with the sofa's current angle
       const deg=Math.max(0,Math.min(90,-pose.a*180/Math.PI)),bx=14,by=o.H-24,bw=200;g.fillStyle=C.surface;g.fillRect(6,by-20,bw+16,42);g.strokeStyle=C.line;g.strokeRect(6.5,by-19.5,bw+15,41);
-      g.font='12px "IBM Plex Sans",sans-serif';g.fillStyle=C.muted;g.fillText(t('Virage dans le coin','Turn in the corner'),bx,by-15);g.fillStyle=C.sunken;g.fillRect(bx,by+4,bw,8);g.fillStyle=done?C.pos:ok?C.accent:C.neg;g.fillRect(bx,by+4,bw*deg/90,8);
+      g.font='12px "IBM Plex Sans",sans-serif';g.fillStyle=C.muted;g.fillText(t('Virage dans le coin','Turn in the corner'),bx,by-15);g.fillStyle=C.sunken;g.fillRect(bx,by+4,bw,8);g.fillStyle=done?C.pos:ok?C.object:C.neg;g.fillRect(bx,by+4,bw*deg/90,8);
       g.strokeStyle=C.ink;g.lineWidth=1;g.strokeRect(bx+.5,by+4.5,bw-1,7);g.fillStyle=C.ink;g.textAlign='right';g.fillText(`${Math.round(deg)}° / 90°`,bx+bw,by-15);g.restore();}
     const status=drawing?t('Dessine le contour de ton canapé d’un seul trait.','Draw the outline of your sofa in one stroke.'):!ok?t('Le canapé traverse un mur : ramène-le dans le couloir.','The sofa goes through a wall: bring it back into the hallway.'):done?t('Le canapé a passé le coin !','The sofa is round the corner!'):t('Dans le couloir.','In the hallway.');
     const turned=Math.round(-pose.a*180/Math.PI);

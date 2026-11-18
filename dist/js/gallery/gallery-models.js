@@ -16,6 +16,19 @@ export function voronoiCells(seeds,bounds=[0,0,640,420]) {
     }return poly;
   });
 }
+// Facts about cell i of a clipped diagram: each edge belongs either to the perpendicular bisector with one neighbouring seed or to
+// the frame (j = -1); the nearest other seed and its distance d (the cell contains the disc of radius d/2 about its seed, unless the
+// frame is closer). Exact up to rounding: the cell is the intersection of half-planes.
+export function cellFacts(seeds,cells,i,eps=1e-6){
+  const cell=cells[i]||[],s=seeds[i],edges=[];
+  for(let k=0;k<cell.length;k++){const a=cell[k],b=cell[(k+1)%cell.length],len=Math.hypot(b[0]-a[0],b[1]-a[1]);if(len<eps)continue;
+    const m=[(a[0]+b[0])/2,(a[1]+b[1])/2],di=Math.hypot(m[0]-s[0],m[1]-s[1]);let j=-1,best=Infinity;
+    seeds.forEach((q,n)=>{if(n===i)return;const e=Math.abs(Math.hypot(m[0]-q[0],m[1]-q[1])-di);if(e<best){best=e;j=n;}});
+    edges.push({a,b,len,j:best<1e-6*Math.max(1,di)?j:-1});}
+  const neighbours=[...new Set(edges.filter(e=>e.j>=0).map(e=>e.j))].sort((x,y)=>x-y);
+  let nearest=-1,d=Infinity;seeds.forEach((q,n)=>{if(n===i)return;const r=Math.hypot(q[0]-s[0],q[1]-s[1]);if(r<d){d=r;nearest=n;}});
+  return {area:polygonArea(cell),perimeter:edges.reduce((x,e)=>x+e.len,0),edges,neighbours,nearest,distance:d};
+}
 export const polygonArea=p=>Math.abs(p.reduce((s,a,i)=>{const b=p[(i+1)%p.length];return s+a[0]*b[1]-a[1]*b[0];},0))/2;
 export function polygonCentroid(p){
   let a=0,x=0,y=0;for(let i=0;i<p.length;i++){const u=p[i],v=p[(i+1)%p.length],d=u[0]*v[1]-v[0]*u[1];a+=d;x+=(u[0]+v[0])*d;y+=(u[1]+v[1])*d;}
@@ -36,6 +49,16 @@ export function descentTrack(points,g=9.81){
     const sum=Math.sqrt(2*g*Math.max(0,a[1]))+Math.sqrt(2*g*Math.max(0,b[1]));
     total+=Math.min(a[1],b[1])<0||sum<1e-12?Infinity:2*s/sum;times.push(total);
   }return {points,times,total,length};
+}
+// Bead state at a time: position, depth y, speed v = sqrt(2gy) (energy, the same on every track at a given depth) and distance
+// travelled along the track. Polyline tracks are timed segment by segment; the cycloid (cy given) is exact.
+export function stateAtTime(track,time,cy=null,g=9.81){
+  let pos,dist;
+  if(cy){const th=Math.min(Math.max(time,0),cy.time)/Math.sqrt(cy.a/g);pos=[cy.a*(th-Math.sin(th)),cy.a*(1-Math.cos(th))];dist=4*cy.a*(1-Math.cos(th/2));}
+  else{pos=pointAtTime(track,time);const {points,times}=track;let i=0;dist=0;
+    while(i<points.length-1&&times[i+1]<=Math.min(time,track.total)){dist+=Math.hypot(points[i+1][0]-points[i][0],points[i+1][1]-points[i][1]);i++;}
+    if(i<points.length-1)dist+=Math.hypot(pos[0]-points[i][0],pos[1]-points[i][1]);}
+  return {pos,depth:pos[1],speed:Math.sqrt(2*g*Math.max(0,pos[1])),dist};
 }
 export function pointAtTime(track,time){
   const {points,times}=track;if(time<=0)return points[0];if(time>=track.total)return points.at(-1);

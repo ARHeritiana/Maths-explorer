@@ -39,16 +39,16 @@ export const W2 = {
       draw(g) {
         const V = v(), N = o.tn; axes(g, V, { lang: o.L, sx: mode === "log" ? 2 : 1 });
         if (mode === "exp") {
-          curve(g, V, x => C0 * b ** x, -4, 4); dot(o, V.X(0), V.Y(C0), C.acc, "A", "grab", true, -1); dot(o, V.X(1), V.Y(C0 * b), C.warn, "B");
+          curve(g, V, x => C0 * b ** x, -4, 4); dot(o, V.X(0), V.Y(C0), C.obj, "A", "grab", true, -1); dot(o, V.X(1), V.Y(C0 * b), C.warn, "B");
           set(o, lines(inl(`f(x)=${N(C0)}\\times ${tpar(N, b)}^x`), `${inl(`A${tpt(o, 0, C0)}`)} · ${inl(`B${tpt(o, 1, C0 * b)}`)}`, o.pair(`Raison ${inl(`b=${N(b)}`)} : ${b > 1 ? "croissante" : b < 1 ? "décroissante" : "constante"}`, `Base ${inl(`b=${N(b)}`)}: ${b > 1 ? "increasing" : b < 1 ? "decreasing" : "constant"}`), o.pair(`Taux d’évolution par unité : ${inl(`${N((b - 1) * 100)}\\,\\%`)}`, `Rate of change per unit: ${inl(`${N((b - 1) * 100)}\\,\\%`)}`)));
         } else if (mode === "log") {
           curve(g, V, x => Math.log10(x), .001, 12); const x = 10 ** tx;
           g.save(); g.strokeStyle = C.warn; g.setLineDash([6, 5]); g.beginPath(); g.moveTo(V.X(x), V.Y(0)); g.lineTo(V.X(x), V.Y(tx)); g.lineTo(V.X(0), V.Y(tx)); g.stroke(); g.restore();
-          dot(o, V.X(x), V.Y(tx), C.acc, "M");
+          dot(o, V.X(x), V.Y(tx), C.obj, "M");
           set(o, lines(inl(`x=${N(x)}`), inl(`\\log(x)=${N(tx)}`), inl(`10^{${N(tx)}}=${N(x)}`), o.pair(`${inl("\\log 10=1")}, ${inl("\\log 1=0")} : le logarithme croît lentement.`, `${inl("\\log 10=1")}, ${inl("\\log 1=0")}: the logarithm grows slowly.`)));
         } else {
           curve(g, V, x => (x < -.12 || x > .12 ? k / x : NaN), -6, -.12); curve(g, V, x => k / x, .12, 6);
-          dot(o, V.X(1), V.Y(k), C.warn, "k"); const y = k / tx2; dot(o, V.X(tx2), V.Y(y), C.acc, "M");
+          dot(o, V.X(1), V.Y(k), C.warn, "k"); const y = k / tx2; dot(o, V.X(tx2), V.Y(y), C.obj, "M");
           set(o, lines(inl(`f(x)=\\dfrac{${N(k)}}{x}`), `${inl(`M${tpt(o, tx2, y)}`)} : ${inl(`x\\times y=${N(tx2 * y)}`)}`, k > 0 ? o.pair(`Décroissante sur ${inl(tiv(o, "-\\infty", 0, false, false))} et sur ${inl(tiv(o, 0, "+\\infty", false, false))}.`, `Decreasing on ${inl(tiv(o, "-\\infty", 0, false, false))} and on ${inl(tiv(o, 0, "+\\infty", false, false))}.`) : o.pair("Croissante sur chaque intervalle.", "Increasing on each interval."), o.pair(`Asymptotes : ${inl("x=0")} et ${inl("y=0")}.`, `Asymptotes: ${inl("x=0")} and ${inl("y=0")}.`)));
         }
       },
@@ -63,8 +63,8 @@ export const W2 = {
       draw(g) {
         const V = v(); axes(g, V, { lang: o.L });
         const arrow = (P, Q, col) => { g.save(); g.strokeStyle = g.fillStyle = col; g.lineWidth = 3; const a = [V.X(P[0]), V.Y(P[1])], b = [V.X(Q[0]), V.Y(Q[1])]; g.beginPath(); g.moveTo(...a); g.lineTo(...b); g.stroke(); const t = Math.atan2(b[1] - a[1], b[0] - a[0]); g.beginPath(); g.moveTo(...b); g.lineTo(b[0] - 14 * Math.cos(t - .4), b[1] - 14 * Math.sin(t - .4)); g.lineTo(b[0] - 14 * Math.cos(t + .4), b[1] - 14 * Math.sin(t + .4)); g.fill(); g.restore(); };
-        arrow(A, B, C.acc); arrow(A, Cc, C.warn);
-        dot(o, V.X(A[0]), V.Y(A[1]), C.ink, "A"); dot(o, V.X(B[0]), V.Y(B[1]), C.acc, "B"); dot(o, V.X(Cc[0]), V.Y(Cc[1]), C.warn, "C");
+        arrow(A, B, C.obj); arrow(A, Cc, C.warn);
+        dot(o, V.X(A[0]), V.Y(A[1]), C.ink, "A"); dot(o, V.X(B[0]), V.Y(B[1]), C.obj, "B"); dot(o, V.X(Cc[0]), V.Y(Cc[1]), C.warn, "C");
         const u = [B[0] - A[0], B[1] - A[1]], w = [Cc[0] - A[0], Cc[1] - A[1]], N = o.tn;
         const dp = u[0] * w[0] + u[1] * w[1], det = u[0] * w[1] - u[1] * w[0], nu = Math.hypot(...u), nw = Math.hypot(...w);
         const ang = nu && nw ? Math.acos(clamp(dp / (nu * nw), -1, 1)) * 180 / Math.PI : NaN;
@@ -94,13 +94,13 @@ export const W2 = {
       draw(g) {
         const V = v(), N = o.tn, r = rank(); axes(g, V, { lang: o.L, sx: 5, sy: mode === "inf" ? 20 : 2 }); const rk = r === null ? "?" : r;
         g.save(); g.beginPath(); g.rect(V.pad, V.pad, o.W - 2 * V.pad, o.H - 2 * V.pad); g.clip();
-        if (mode === "inf") { g.fillStyle = fade(C.pos, .14); g.fillRect(V.X(-.5), V.Y(100), V.X(M + .5) - V.X(-.5), V.Y(A) - V.Y(100)); curve(g, V, () => A, -.5, M + .5, C.acc, 2); }
-        else { g.fillStyle = fade(C.pos, .16); g.fillRect(V.X(-.5), V.Y(l + eps), V.X(M + .5) - V.X(-.5), V.Y(l - eps) - V.Y(l + eps)); curve(g, V, () => l, -.5, M + .5, C.acc, 2); }
+        if (mode === "inf") { g.fillStyle = fade(C.pos, .14); g.fillRect(V.X(-.5), V.Y(100), V.X(M + .5) - V.X(-.5), V.Y(A) - V.Y(100)); curve(g, V, () => A, -.5, M + .5, C.obj, 2); }
+        else { g.fillStyle = fade(C.pos, .16); g.fillRect(V.X(-.5), V.Y(l + eps), V.X(M + .5) - V.X(-.5), V.Y(l - eps) - V.Y(l + eps)); curve(g, V, () => l, -.5, M + .5, C.obj, 2); }
         if (r !== null && r <= M) { g.strokeStyle = C.blue; g.setLineDash([6, 5]); g.lineWidth = 1.5; g.beginPath(); g.moveTo(V.X(r), V.Y(V.y0)); g.lineTo(V.X(r), V.Y(V.y1)); g.stroke(); g.setLineDash([]); text(g, inl("N"), V.X(r) + 6, V.pad + 18, C.blue, 16); }
-        for (let n = 0; n <= M; n++) { const y = u(n), inside = mode === "inf" ? y > A : Math.abs(y - l) < eps; g.fillStyle = inside ? C.acc : C.warn; g.beginPath(); g.arc(V.X(n), V.Y(y), 4.5, 0, 7); g.fill(); }
+        for (let n = 0; n <= M; n++) { const y = u(n), inside = mode === "inf" ? y > A : Math.abs(y - l) < eps; g.fillStyle = inside ? C.obj : C.warn; g.beginPath(); g.arc(V.X(n), V.Y(y), 4.5, 0, 7); g.fill(); }
         g.restore();
-        if (mode === "inf") { dot(o, V.X(M - 1), V.Y(A), C.acc, "A", "grab", true, -1); set(o, lines(inl("u_n=\\dfrac{n^2}{10}"), inl(`A=${N(A)}`), o.pair(`${inl("u_n>A")} pour tout ${inl(`n\\geqslant N=${rk}`)}.`, `${inl("u_n>A")} for every ${inl(`n\\geq N=${rk}`)}.`), o.pair(`Tout seuil ${inl("A")} est dépassé à partir d’un certain rang : ${inl("u_n\\to+\\infty")}.`, `Every threshold ${inl("A")} is exceeded from some rank on: ${inl("u_n\\to+\\infty")}.`))); return; }
-        dot(o, V.X(0), V.Y(l + c), C.warn, inl("u_0")); dot(o, V.X(M - 1), V.Y(l), C.acc, inl("\\ell"), "grab", true, -1); dot(o, V.X(M - 4), V.Y(l + eps), C.blue, inl("\\varepsilon"), "grab", true, -1);
+        if (mode === "inf") { dot(o, V.X(M - 1), V.Y(A), C.obj, "A", "grab", true, -1); set(o, lines(inl("u_n=\\dfrac{n^2}{10}"), inl(`A=${N(A)}`), o.pair(`${inl("u_n>A")} pour tout ${inl(`n\\geqslant N=${rk}`)}.`, `${inl("u_n>A")} for every ${inl(`n\\geq N=${rk}`)}.`), o.pair(`Tout seuil ${inl("A")} est dépassé à partir d’un certain rang : ${inl("u_n\\to+\\infty")}.`, `Every threshold ${inl("A")} is exceeded from some rank on: ${inl("u_n\\to+\\infty")}.`))); return; }
+        dot(o, V.X(0), V.Y(l + c), C.warn, inl("u_0")); dot(o, V.X(M - 1), V.Y(l), C.obj, inl("\\ell"), "grab", true, -1); dot(o, V.X(M - 4), V.Y(l + eps), C.blue, inl("\\varepsilon"), "grab", true, -1);
         set(o, lines(inl(mode === "harm" ? `u_n=${N(l)}${sgn(c)}\\dfrac{${N(Math.abs(c))}}{n+1}` : `u_n=${N(l)}${sgn(c)}${N(Math.abs(c))}\\times(${N(-.8)})^n`), inl(`\\varepsilon=${N(eps)}`),
           o.pair(`Tous les termes sont dans ${inl(tiv(o, l - eps, l + eps, false, false))} dès ${inl(`n\\geqslant N=${rk}`)}.`, `All terms lie in ${inl(tiv(o, l - eps, l + eps, false, false))} for ${inl(`n\\geq N=${rk}`)}.`),
           o.pair(`Réduisez ${inl("\\varepsilon")} : ${inl("N")} augmente, mais il existe toujours. C’est la définition de ${inl("u_n\\to\\ell")}.`, `Shrink ${inl("\\varepsilon")}: ${inl("N")} grows, but it always exists. This is the definition of ${inl("u_n\\to\\ell")}.`)));
@@ -123,7 +123,7 @@ export const W2 = {
       draw(g) {
         const [f, df, d2f, box, name] = F[mode], V = view(o, ...box), N = o.tn; axes(g, V, { lang: o.L });
         const a0 = mode === "ln" ? .02 : box[0];
-        for (let i = 0; i < 200; i++) { const x = a0 + (box[1] - a0) * (i + .5) / 200; g.fillStyle = d2f(x) > 1e-9 ? C.acc : d2f(x) < -1e-9 ? C.warn : C.muted; g.fillRect(V.X(x), o.H - V.pad + 8, (V.X(box[1]) - V.X(a0)) / 200 + .5, 6); }
+        for (let i = 0; i < 200; i++) { const x = a0 + (box[1] - a0) * (i + .5) / 200; g.fillStyle = d2f(x) > 1e-9 ? C.obj : d2f(x) < -1e-9 ? C.warn : C.muted; g.fillRect(V.X(x), o.H - V.pad + 8, (V.X(box[1]) - V.X(a0)) / 200 + .5, 6); }
         g.save(); g.beginPath(); g.rect(V.pad, V.pad, o.W - 2 * V.pad, o.H - 2 * V.pad); g.clip();
         curve(g, V, x => (mode === "ln" && x <= 0 ? NaN : f(x)), a0, box[1]);
         curve(g, V, x => f(m) + df(m) * (x - m), box[0], box[1], C.blue, 2);
@@ -152,7 +152,7 @@ export const W2 = {
         const N = o.tn; let txt;
         if (sxx > 1e-9) { const a = sxy / sxx, b = my - a * mx; curve(g, V, x => a * x + b, 0, 8, C.warn, 2.5); const r = syy > 1e-9 ? sxy / Math.sqrt(sxx * syy) : NaN; txt = lines(o.pair(`Droite de régression : ${inl(`y=${tpoly([[a, "x"], [b, ""]], N)}`)}`, `Regression line: ${inl(`y=${tpoly([[a, "x"], [b, ""]], N)}`)}`), o.pair(`Coefficient de corrélation ${inl(`r=${N(r, 3)}`)}`, `Correlation coefficient ${inl(`r=${N(r, 3)}`)}`), o.pair(`Point moyen ${inl(`G${tpt(o, mx, my)}`)}`, `Mean point ${inl(`G${tpt(o, mx, my)}`)}`)); }
         else txt = o.pair("Tous les x sont égaux : pas de droite de régression.", "All x are equal: no regression line.");
-        P.forEach((p, i) => dot(o, V.X(p[0]), V.Y(p[1]), C.acc, "")); dot(o, V.X(mx), V.Y(my), C.ink, "G", "default", false); set(o, txt);
+        P.forEach((p, i) => dot(o, V.X(p[0]), V.Y(p[1]), C.obj, "")); dot(o, V.X(mx), V.Y(my), C.ink, "G", "default", false); set(o, txt);
       },
     };
   },
@@ -165,9 +165,9 @@ export const W2 = {
       handles() { const bw_ = o.W - 120; return rows().map(([y], i) => ({ x: bx + [pa, pb1, pb2][i] * bw_, y: y + 18, cur: "ew-resize", move(X) { const val = clamp(snap((X - bx) / bw_, .05), 0, 1); if (i === 0) pa = val; else if (i === 1) pb1 = val; else pb2 = val; } })); },
       draw(g) {
         const bw_ = o.W - 120, N = o.tn;
-        rows().forEach(([y, l], i) => { const val = [pa, pb1, pb2][i]; text(g, inl(`${l}=${N(val)}`), bx, y - 8, C.ink, 20); g.fillStyle = C.grid; g.fillRect(bx, y, bw_, 36); g.fillStyle = C.acc; g.fillRect(bx, y, val * bw_, 36); dot(o, bx + val * bw_, y + 18, C.warn); });
+        rows().forEach(([y, l], i) => { const val = [pa, pb1, pb2][i]; text(g, inl(`${l}=${N(val)}`), bx, y - 8, C.ink, 20); g.fillStyle = C.grid; g.fillRect(bx, y, bw_, 36); g.fillStyle = C.obj; g.fillRect(bx, y, val * bw_, 36); dot(o, bx + val * bw_, y + 18, C.warn); });
         const p = [pa * pb1, pa * (1 - pb1), (1 - pa) * pb2, (1 - pa) * (1 - pb2)], y0 = 400;
-        p.forEach((q, i) => { const w = q * bw_; const x = bx + p.slice(0, i).reduce((s, z) => s + z, 0) * bw_; g.fillStyle = i % 2 ? C.warn : C.acc; g.globalAlpha = .55 + .1 * (i % 2); g.fillRect(x, y0, w, 30); g.globalAlpha = 1; });
+        p.forEach((q, i) => { const w = q * bw_; const x = bx + p.slice(0, i).reduce((s, z) => s + z, 0) * bw_; g.fillStyle = i % 2 ? C.warn : C.obj; g.globalAlpha = .55 + .1 * (i % 2); g.fillRect(x, y0, w, 30); g.globalAlpha = 1; });
         text(g, o.pair("Aire = probabilité du chemin", "Area = probability of the path"), bx, y0 + 52, C.muted, 16);
         const pB = p[0] + p[2];
         set(o, lines(inl(`P(A\\cap B)=${N(p[0], 3)}`), inl(`P(A\\cap\\overline{B})=${N(p[1], 3)}`), inl(`P(\\overline{A}\\cap B)=${N(p[2], 3)}`), inl(`P(\\overline{A}\\cap\\overline{B})=${N(p[3], 3)}`), o.pair(`Probabilités totales : ${inl(`P(B)=${N(pB, 3)}`)}`, `Total probability: ${inl(`P(B)=${N(pB, 3)}`)}`), pB > 0 ? inl(`P_B(A)=${N(p[0] / pB, 3)}`) : ""));
@@ -183,7 +183,7 @@ export const W2 = {
       draw(g) {
         const V = v(), s = w.reduce((a, b) => a + b, 0); axes(g, V, { lang: o.L, sx: 1, sy: .25 });
         const p = w.map(q => q / s), E = p.reduce((a, q, i) => a + q * xs[i], 0), Vr = p.reduce((a, q, i) => a + q * (xs[i] - E) ** 2, 0);
-        p.forEach((q, i) => { g.fillStyle = C.acc; const bw = (V.X(1) - V.X(0)) * .5; g.fillRect(V.X(xs[i]) - bw / 2, V.Y(q), bw, V.Y(0) - V.Y(q)); dot(o, V.X(xs[i]), V.Y(q), C.warn); });
+        p.forEach((q, i) => { g.fillStyle = C.obj; const bw = (V.X(1) - V.X(0)) * .5; g.fillRect(V.X(xs[i]) - bw / 2, V.Y(q), bw, V.Y(0) - V.Y(q)); dot(o, V.X(xs[i]), V.Y(q), C.warn); });
         g.save(); g.strokeStyle = C.ink; g.setLineDash([6, 5]); g.beginPath(); g.moveTo(V.X(E), V.Y(0)); g.lineTo(V.X(E), V.Y(1)); g.stroke(); g.restore(); text(g, inl("E(X)"), V.X(E) + 6, V.Y(.95), C.ink, 16);
         const N = o.tn; set(o, lines(p.map((q, i) => inl(`P(X=${xs[i]})=${N(q, 3)}`)).join("<br>"), inl(`E(X)=${N(E, 3)}`), inl(`V(X)=${N(Vr, 3)}`), inl(`\\sigma(X)=${N(Math.sqrt(Vr), 3)}`)));
       },
@@ -196,8 +196,8 @@ export const W2 = {
     return {
       handles() { const s = (o.W - 120) / 1.0; return [{ x: bx + (t1 + .5) * s, y: Y1(), cur: "ew-resize", move(X) { t1 = clamp(snap((X - bx) / s - .5, .01), -.5, .5); } }, { x: bx + (t2 + .5) * s, y: Y2(), cur: "ew-resize", move(X) { t2 = clamp(snap((X - bx) / s - .5, .01), -.5, .5); } }]; },
       draw(g) {
-        const s = o.W - 120, N = o.tn; [[t1, Y1(), "t_1"], [t2, Y2(), "t_2"]].forEach(([t, y, l]) => { g.fillStyle = C.grid; g.fillRect(bx, y - 4, s, 8); g.fillStyle = C.axis; g.fillRect(bx + s / 2 - 1, y - 14, 2, 28); dot(o, bx + (t + .5) * s, y, C.acc); text(g, inl(`${l}=${N(t * 100, 0)}\\,\\%`), bx, y - 26, C.ink, 20); });
-        const cm = (1 + t1) * (1 + t2); const y0 = o.H * .56, step = o.H * .1, bh = o.H * .07; [["100", 100], [o.num(100 * (1 + t1), 1), 100 * (1 + t1)], [o.num(100 * cm, 1), 100 * cm]].forEach(([l, v], i) => { const w = v / 150 * s; g.fillStyle = i === 2 ? C.warn : C.acc; g.globalAlpha = .8; g.fillRect(bx, y0 + i * step, w, bh); g.globalAlpha = 1; text(g, l, bx + w + 10, y0 + i * step + bh * .75, C.ink, 18); });
+        const s = o.W - 120, N = o.tn; [[t1, Y1(), "t_1"], [t2, Y2(), "t_2"]].forEach(([t, y, l]) => { g.fillStyle = C.grid; g.fillRect(bx, y - 4, s, 8); g.fillStyle = C.axis; g.fillRect(bx + s / 2 - 1, y - 14, 2, 28); dot(o, bx + (t + .5) * s, y, C.obj); text(g, inl(`${l}=${N(t * 100, 0)}\\,\\%`), bx, y - 26, C.ink, 20); });
+        const cm = (1 + t1) * (1 + t2); const y0 = o.H * .56, step = o.H * .1, bh = o.H * .07; [["100", 100], [o.num(100 * (1 + t1), 1), 100 * (1 + t1)], [o.num(100 * cm, 1), 100 * cm]].forEach(([l, v], i) => { const w = v / 150 * s; g.fillStyle = i === 2 ? C.warn : C.obj; g.globalAlpha = .8; g.fillRect(bx, y0 + i * step, w, bh); g.globalAlpha = 1; text(g, l, bx + w + 10, y0 + i * step + bh * .75, C.ink, 18); });
         set(o, lines(inl(`CM_1=1${sgn(t1)}${N(Math.abs(t1), 2)}=${N(1 + t1, 3)}`), inl(`CM_2=1${sgn(t2)}${N(Math.abs(t2), 2)}=${N(1 + t2, 3)}`), o.pair(`Coefficient global : ${inl(N(cm, 4))}`, `Overall multiplier: ${inl(N(cm, 4))}`), o.pair(`Évolution globale : ${inl(`${N((cm - 1) * 100, 2)}\\,\\%`)}`, `Overall change: ${inl(`${N((cm - 1) * 100, 2)}\\,\\%`)}`), Math.abs(cm - 1) > 1e-9 ? o.pair(`Taux réciproque : ${inl(`${N((1 / cm - 1) * 100, 2)}\\,\\%`)}`, `Reverse rate: ${inl(`${N((1 / cm - 1) * 100, 2)}\\,\\%`)}`) : ""));
       },
     };
@@ -212,7 +212,7 @@ export const W2 = {
       draw(g) {
         const V = v(), f = F[kind], N = o.tn; axes(g, V, { lang: o.L });
         if (kind === "inverse") { curve(g, V, f, -5, -.1); curve(g, V, f, .1, 5); } else curve(g, V, f, kind === "sqrt" ? 0 : -5, 5);
-        const y = f(x0); g.save(); g.strokeStyle = C.warn; g.setLineDash([6, 5]); g.lineWidth = 2; g.beginPath(); g.moveTo(V.X(x0), V.Y(0)); g.lineTo(V.X(x0), V.Y(clamp(y, -5, 5))); g.lineTo(V.X(0), V.Y(clamp(y, -5, 5))); g.stroke(); g.restore(); dot(o, V.X(x0), V.Y(clamp(y, -5, 5)), C.acc, "M");
+        const y = f(x0); g.save(); g.strokeStyle = C.warn; g.setLineDash([6, 5]); g.lineWidth = 2; g.beginPath(); g.moveTo(V.X(x0), V.Y(0)); g.lineTo(V.X(x0), V.Y(clamp(y, -5, 5))); g.lineTo(V.X(0), V.Y(clamp(y, -5, 5))); g.stroke(); g.restore(); dot(o, V.X(x0), V.Y(clamp(y, -5, 5)), C.obj, "M");
         let pre; if (kind === "square") pre = y > 0 ? [-Math.sqrt(y), Math.sqrt(y)] : [0]; else if (kind === "abs") pre = y > 0 ? [-y, y] : [0]; else if (kind === "inverse") pre = [1 / y]; else if (kind === "sqrt") pre = [y * y]; else if (kind === "cube") pre = [Math.cbrt(y)]; else pre = [(y - 1) / .5];
         set(o, lines(o.pair(`Image de ${inl(N(x0))} : ${inl(`f(${N(x0)})=${N(y, 3)}`)}`, `Image of ${inl(N(x0))}: ${inl(`f(${N(x0)})=${N(y, 3)}`)}`), o.pair(`Antécédent(s) de ${inl(N(y, 3))} : ${pre.map(q => inl(N(q, 3))).join(" ; ")}`, `Preimage(s) of ${inl(N(y, 3))}: ${pre.map(q => inl(N(q, 3))).join(", ")}`), kind === "square" ? o.pair(`Décroissante sur ${inl(tiv(o, "-\\infty", 0, false, true))}, croissante sur ${inl(tiv(o, 0, "+\\infty", true, false))}.`, `Decreasing on ${inl(tiv(o, "-\\infty", 0, false, true))}, increasing on ${inl(tiv(o, 0, "+\\infty", true, false))}.`) : kind === "inverse" ? o.pair(`Décroissante sur chaque intervalle, définie sur ${inl("\\mathbb{R}^*")}.`, `Decreasing on each interval, defined on ${inl("\\mathbb{R}\\setminus\\{0\\}")}.`) : ""));
       },
@@ -228,8 +228,8 @@ export const W2 = {
         const V = v(); axes(g, V, { lang: o.L, sx: 1, sy: 1e9 });
         const [a, b] = [Math.min(...I), Math.max(...I)], [c, d] = [Math.min(...J), Math.max(...J)];
         const seg = (x0, x1, y, col) => { g.save(); g.strokeStyle = col; g.lineWidth = 6; g.beginPath(); g.moveTo(V.X(x0), V.Y(y)); g.lineTo(V.X(x1), V.Y(y)); g.stroke(); g.restore(); };
-        seg(a, b, .7, C.acc); seg(c, d, .4, C.warn); const lo = Math.max(a, c), hi = Math.min(b, d); if (lo <= hi) seg(lo, hi, .15, C.ink);
-        [[I, .7, C.acc], [J, .4, C.warn]].forEach(([arr, y, col]) => arr.forEach(e => dot(o, V.X(e), V.Y(y), col)));
+        seg(a, b, .7, C.obj); seg(c, d, .4, C.warn); const lo = Math.max(a, c), hi = Math.min(b, d); if (lo <= hi) seg(lo, hi, .15, C.ink);
+        [[I, .7, C.obj], [J, .4, C.warn]].forEach(([arr, y, col]) => arr.forEach(e => dot(o, V.X(e), V.Y(y), col)));
         const N = o.tn, br = tiv(o, a, b), br2 = tiv(o, c, d), cx = (a + b) / 2, xc = Math.abs(cx) < 1e-9 ? "x" : `x${cx < 0 ? "+" : "-"}${N(Math.abs(cx))}`;
         set(o, lines(inl(`I=${br}`), inl(`J=${br2}`), inl(`I\\cap J=${lo <= hi ? tiv(o, lo, hi) : "\\varnothing"}`), inl(lo <= hi ? `I\\cup J=${tiv(o, Math.min(a, c), Math.max(b, d))}` : `I\\cup J=${br}\\cup ${br2}`), o.pair(`${inl(`|${xc}|\\leqslant ${N((b - a) / 2)}`)} décrit ${inl("I")}`, `${inl(`|${xc}|\\leq ${N((b - a) / 2)}`)} describes ${inl("I")}`)));
       },
@@ -252,20 +252,20 @@ export const W2 = {
         const expo = (rr, th) => { const s = angTeX(th, N).replace(/\\dfrac/g, "\\tfrac"), k = Math.abs(rr - 1) < 1e-9 ? "" : N(rr) + "\\,"; return s === "0" ? N(rr) : `${k}\\mathrm{e}^{${s[0] === "-" ? "-i" + s.slice(1) : "i" + s}}`; };
         if (mode === "alg") {
           g.save(); g.setLineDash([5, 5]); g.strokeStyle = C.muted; g.lineWidth = 1.5; g.beginPath(); g.moveTo(V.X(a), V.Y(b)); g.lineTo(V.X(a), V.Y(-b)); g.moveTo(V.X(a), V.Y(b)); g.lineTo(V.X(0), V.Y(b)); g.stroke(); g.restore();
-          arrowTo(g, V, O, z, C.acc); dot(o, V.X(a), V.Y(-b), C.blue, inl("\\overline{z}"), "default", false); dot(o, V.X(a), V.Y(b), C.acc, inl("z"));
+          arrowTo(g, V, O, z, C.obj); dot(o, V.X(a), V.Y(-b), C.blue, inl("\\overline{z}"), "default", false); dot(o, V.X(a), V.Y(b), C.obj, inl("z"));
           const kind = b === 0 ? o.pair(`${inl("z")} est réel : ${inl("z=\\overline{z}")}.`, `${inl("z")} is real: ${inl("z=\\overline{z}")}.`) : a === 0 ? o.pair(`${inl("z")} est imaginaire pur : ${inl("\\overline{z}=-z")}.`, `${inl("z")} is purely imaginary: ${inl("\\overline{z}=-z")}.`) : "";
           set(o, lines(inl(`z=${cTeX(a, b, N)}`), o.pair(`Partie réelle ${inl(`\\operatorname{Re}(z)=${N(a)}`)}, partie imaginaire ${inl(`\\operatorname{Im}(z)=${N(b)}`)}`, `Real part ${inl(`\\operatorname{Re}(z)=${N(a)}`)}, imaginary part ${inl(`\\operatorname{Im}(z)=${N(b)}`)}`),
             o.pair(`Conjugué ${inl(`\\overline{z}=${cTeX(a, -b, N)}`)}`, `Conjugate ${inl(`\\overline{z}=${cTeX(a, -b, N)}`)}`), inl(`z\\overline{z}=${tpar(N, a)}^2+${tpar(N, b)}^2=${N(a * a + b * b)}`), kind));
         } else if (mode === "polar") {
-          ring(g, V, r, C.muted); arc(t, 34, C.warn); arrowTo(g, V, O, z, C.acc); dot(o, V.X(a), V.Y(b), C.acc, inl("z"));
+          ring(g, V, r, C.muted); arc(t, 34, C.warn); arrowTo(g, V, O, z, C.obj); dot(o, V.X(a), V.Y(b), C.obj, inl("z"));
           const s = angTeX(t, N), par = s[0] === "-" ? `\\left(${s}\\right)` : s;
           set(o, lines(inl(`z${eq(a, b)}${cTeX(a, b, N)}`), o.pair(`Module ${inl(`|z|=${modTeX(a, b, N)}`)}`, `Modulus ${inl(`|z|=${modTeX(a, b, N)}`)}`), o.pair(`Argument ${inl(`\\arg z\\equiv${s}\\pmod{2\\pi}`)}`, `Argument ${inl(`\\arg z\\equiv${s}\\pmod{2\\pi}`)}`),
             inl(`z=${Math.abs(r - 1) < 1e-9 ? "" : N(r)}\\left(\\cos${par}+i\\sin${par}\\right)=${expo(r, t)}`)));
         } else {
           const p = [a * w[0] - b * w[1], a * w[1] + b * w[0]], rw = Math.hypot(...w), tw = Math.atan2(w[1], w[0]);
-          ring(g, V, 1, C.grid, false); arc(t, 30, C.acc); arc(tw, 44, C.blue); arc(Math.atan2(p[1], p[0]), 58, C.warn);
-          arrowTo(g, V, O, z, C.acc); arrowTo(g, V, O, w, C.blue); arrowTo(g, V, O, p, C.warn, 3.5);
-          dot(o, V.X(a), V.Y(b), C.acc, inl("z")); dot(o, V.X(w[0]), V.Y(w[1]), C.blue, inl("w")); dot(o, V.X(p[0]), V.Y(p[1]), C.warn, inl("zw"), "default", false);
+          ring(g, V, 1, C.grid, false); arc(t, 30, C.obj); arc(tw, 44, C.blue); arc(Math.atan2(p[1], p[0]), 58, C.warn);
+          arrowTo(g, V, O, z, C.obj); arrowTo(g, V, O, w, C.blue); arrowTo(g, V, O, p, C.warn, 3.5);
+          dot(o, V.X(a), V.Y(b), C.obj, inl("z")); dot(o, V.X(w[0]), V.Y(w[1]), C.blue, inl("w")); dot(o, V.X(p[0]), V.Y(p[1]), C.warn, inl("zw"), "default", false);
           const sz = angTeX(t, N), sw = angTeX(tw, N), add = sw[0] === "-" ? `\\left(${sw}\\right)` : sw;
           set(o, lines(inl(`z=${expo(r, t)},\\ w=${expo(rw, tw)}`), inl(`|zw|=|z|\\times|w|=${N(r, 4)}\\times${N(rw, 4)}${eq4(r * rw)}${N(r * rw, 4)}`),
             inl(`\\arg(zw)\\equiv${sz}+${add}\\equiv${angTeX(t + tw, N)}\\pmod{2\\pi}`), inl(`zw=${expo(r * rw, t + tw)}${eq(p[0], p[1])}${cTeX(p[0], p[1], N)}`)));
@@ -290,7 +290,7 @@ export const W2 = {
         const S = y ? 2 * x : x + x2, P = y ? x * x + y * y : x * x2, D = S * S - 4 * P, eqn = inl(`z^2${tpoly([[-S, "z"], [P, ""]], N).replace(/^(?!-)/, "+").replace(/^\+0$/, "")}=0`);
         if (y) { ring(g, V, Math.sqrt(P), C.muted); g.save(); g.setLineDash([5, 5]); g.strokeStyle = C.blue; g.lineWidth = 1.5; g.beginPath(); g.moveTo(V.X(x), V.Y(y)); g.lineTo(V.X(x), V.Y(-y)); g.stroke(); g.restore(); dot(o, V.X(x), V.Y(-y), C.blue, inl("z_2=\\overline{z_1}"), "default", false); }
         else dot(o, V.X(x2), V.Y(0), C.blue, inl("z_2"), "ew-resize", true, x2 < x ? -1 : 1);
-        dot(o, V.X(x), V.Y(y), C.acc, inl("z_1"), "grab", true, y || x2 >= x ? 1 : -1);
+        dot(o, V.X(x), V.Y(y), C.obj, inl("z_1"), "grab", true, y || x2 >= x ? 1 : -1);
         // -D = 4y^2, so sqrt(-D) = 2|y| is exact: show the simplified step (sqrt(16) -> 4i) as a class would write it.
         const k = 2 * Math.abs(y), sq = D < 0 ? `=\\dfrac{${N(S)}\\pm ${k === 1 ? "" : N(k)}i}{2}` : "";
         const roots = D < 0 ? o.pair(`${inl("\\Delta<0")} : deux racines complexes conjuguées ${inl(`z_{1,2}=\\dfrac{${N(S)}\\pm i\\sqrt{${N(-D)}}}{2}${sq}=${cTeX(x, y, N)}\\ \\text{ou}\\ ${cTeX(x, -y, N)}`)}`, `${inl("\\Delta<0")}: two conjugate complex roots ${inl(`z_{1,2}=\\dfrac{${N(S)}\\pm i\\sqrt{${N(-D)}}}{2}${sq}=${cTeX(x, y, N)}\\ \\text{or}\\ ${cTeX(x, -y, N)}`)}`)
@@ -314,7 +314,7 @@ export const W2 = {
         const z = Array.from({ length: n }, (_, k) => [rho * Math.cos((t + 2 * k * Math.PI) / n), rho * Math.sin((t + 2 * k * Math.PI) / n)]);
         ring(g, V, rho, C.muted); g.save(); g.strokeStyle = C.blue; g.fillStyle = fade(C.blue, .16); g.lineWidth = 2; g.beginPath(); z.forEach((p, k) => (k ? g.lineTo(V.X(p[0]), V.Y(p[1])) : g.moveTo(V.X(p[0]), V.Y(p[1])))); g.closePath(); g.fill(); g.stroke(); g.restore();
         z.forEach((p, k) => dot(o, V.X(p[0]), V.Y(p[1]), C.blue, k ? "" : inl("z_0"), "default", false));
-        arrowTo(g, V, [0, 0], a, C.acc); dot(o, V.X(a[0]), V.Y(a[1]), C.acc, inl("a"));
+        arrowTo(g, V, [0, 0], a, C.obj); dot(o, V.X(a[0]), V.Y(a[1]), C.obj, inl("a"));
         const s = angTeX(t, N), ks = o.L ? `k\\in\\{0,\\ldots,${n - 1}\\}` : `k\\in\\llbracket 0\\,;${n - 1}\\rrbracket`;
         set(o, lines(o.pair(`${inl(`a=${Math.abs(r - 1) < 1e-9 ? "" : N(r) + "\\,"}\\mathrm{e}^{i\\theta}`)} avec ${inl(`\\theta=${s}`)}`, `${inl(`a=${Math.abs(r - 1) < 1e-9 ? "" : N(r) + "\\,"}\\mathrm{e}^{i\\theta}`)} with ${inl(`\\theta=${s}`)}`),
           o.pair(`Solutions de ${inl(`z^{${n}}=a`)} : ${inl(`z_k=\\sqrt[${n}]{${N(r)}}\\,\\mathrm{e}^{i\\frac{\\theta+2k\\pi}{${n}}}`)}, ${inl(ks)}`, `Solutions of ${inl(`z^{${n}}=a`)}: ${inl(`z_k=\\sqrt[${n}]{${N(r)}}\\,\\mathrm{e}^{i\\frac{\\theta+2k\\pi}{${n}}}`)}, ${inl(ks)}`),
@@ -339,8 +339,8 @@ export const W2 = {
         const chord = (i, j, col) => { const P = G.at(i), Q = G.at(j); arrowTo(g, { X: s => s, Y: s => s }, P, Q, col, 2.5); };
         if (mode === "powers") {
           const seen = new Map(), seq = []; let x = 1 % n; while (!seen.has(x)) { seen.set(x, seq.length); seq.push(x); x = x * a % n; }
-          for (let k = 0; k + 1 < seq.length; k++) chord(seq[k], seq[k + 1], C.acc); if (seq.length > 1 || x !== seq[0]) chord(seq[seq.length - 1], x, C.acc);
-          seq.forEach(k => { const [px, py] = G.at(k); g.save(); g.fillStyle = C.acc; g.beginPath(); g.arc(px, py, 6, 0, 7); g.fill(); g.restore(); });
+          for (let k = 0; k + 1 < seq.length; k++) chord(seq[k], seq[k + 1], C.obj); if (seq.length > 1 || x !== seq[0]) chord(seq[seq.length - 1], x, C.obj);
+          seq.forEach(k => { const [px, py] = G.at(k); g.save(); g.fillStyle = C.obj; g.beginPath(); g.arc(px, py, 6, 0, 7); g.fill(); g.restore(); });
           dot(o, ...G.at(a), C.warn, inl("a"));
           const shown = seq.slice(0, 8).map((r, k) => `${a}^{${k}}\\equiv${r}`).join(",\\ ") + (seq.length > 8 ? ",\\ \\ldots" : "");
           const isPrime = n > 1 && Array.from({ length: n - 2 }, (_, i) => i + 2).every(p => n % p);
@@ -349,7 +349,7 @@ export const W2 = {
           const fermat = isPrime && a % n ? o.pair(`${inl(String(n))} est premier : ${inl(`${a}^{${n - 1}}\\equiv${powmod(a, n - 1, n)}\\pmod{${n}}`)} (petit théorème de Fermat)`, `${inl(String(n))} is prime: ${inl(`${a}^{${n - 1}}\\equiv${powmod(a, n - 1, n)}\\pmod{${n}}`)} (Fermat's little theorem)`) : "";
           set(o, lines(o.pair(`Puissances de ${inl(String(a))} modulo ${inl(String(n))} :`, `Powers of ${inl(String(a))} modulo ${inl(String(n))}:`), inl(shown), period, fermat));
         } else {
-          for (let k = 1; k < n; k++) if (k * a % n !== k) chord(k, k * a % n, d === 1 ? fade(C.acc, .6) : fade(C.warn, .6));
+          for (let k = 1; k < n; k++) if (k * a % n !== k) chord(k, k * a % n, d === 1 ? fade(C.obj, .6) : fade(C.warn, .6));
           dot(o, ...G.at(a), C.warn, inl("a"));
           let r0 = n, r1 = a, u0 = 0, u1 = 1; while (r1) { const q = Math.floor(r0 / r1); [r0, r1] = [r1, r0 - q * r1]; [u0, u1] = [u1, u0 - q * u1]; }
           const u = ((u0 % n) + n) % n, vco = (1 - a * u) / n;
@@ -378,7 +378,7 @@ export const W2 = {
         let P = M; for (let t = 1; t < k; t++) P = mul(P, M);
         g.save(); g.strokeStyle = C.axis; g.lineWidth = 3; E.forEach(([p, q]) => { g.beginPath(); g.moveTo(...at(p)); g.lineTo(...at(q)); g.stroke(); }); g.restore();
         names.forEach((s, q) => { const [x, y] = at(q); g.save(); g.fillStyle = q === i || q === j ? C.ink : C.grid; g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.arc(x, y, 17, 0, 7); g.fill(); g.stroke(); g.restore(); text(g, inl(s), x, y + 8, q === i || q === j ? C.bg : C.ink, 18, "center"); });
-        const [xi, yi] = at(i), [xj, yj] = at(j); dot(o, xi - 18, yi - 18, C.acc, o.pair("départ", "start"), "grab", true, -1); dot(o, xj + 18, yj + 18, C.warn, o.pair("arrivée", "end"));
+        const [xi, yi] = at(i), [xj, yj] = at(j); dot(o, xi - 18, yi - 18, C.obj, o.pair("départ", "start"), "grab", true, -1); dot(o, xj + 18, yj + 18, C.warn, o.pair("arrivée", "end"));
         const row = P[i].map(x => String(x)).join("&"), I = names[i], J = names[j], n = P[i][j];
         set(o, lines(o.pair(`Chaînes de longueur ${inl(String(k))} de ${inl(I)} à ${inl(J)} : ${inl(String(n))}`, `Walks of length ${inl(String(k))} from ${inl(I)} to ${inl(J)}: ${inl(String(n))}`),
           o.pair(`C'est le coefficient ${inl(`\\left(M^{${k}}\\right)_{${I}${J}}=${n}`)} de la matrice d'adjacence.`, `It is the entry ${inl(`\\left(M^{${k}}\\right)_{${I}${J}}=${n}`)} of the adjacency matrix.`),
@@ -396,10 +396,10 @@ export const W2 = {
       handles() { return rows.map(([y], k) => ({ x: bx + [a0, p, q][k] * bw(), y: y + 13, cur: "ew-resize", move(X) { const val = clamp(snap((X - bx) / bw(), .05), k ? .05 : 0, 1); if (k === 0) a0 = val; else if (k === 1) p = val; else q = val; } })); },
       draw(g) {
         const N = o.tn, l = q / (p + q), B = bw(), F = vplot(), n = 15, X = t => F.x0 + t / n * (F.x1 - F.x0), Y = y => F.y1 - y * (F.y1 - F.y0);
-        rows.forEach(([y, s], k) => { const val = [a0, p, q][k]; g.fillStyle = C.grid; g.fillRect(bx, y, B, 26); g.fillStyle = C.acc; g.fillRect(bx, y, val * B, 26); text(g, inl(`${s}=${N(val)}`), 12, y + 20, C.ink, 16); dot(o, bx + val * B, y + 13, C.warn); });
+        rows.forEach(([y, s], k) => { const val = [a0, p, q][k]; g.fillStyle = C.grid; g.fillRect(bx, y, B, 26); g.fillStyle = C.obj; g.fillRect(bx, y, val * B, 26); text(g, inl(`${s}=${N(val)}`), 12, y + 20, C.ink, 16); dot(o, bx + val * B, y + 13, C.warn); });
         g.save(); g.strokeStyle = C.axis; g.lineWidth = 1.5; g.beginPath(); g.moveTo(F.x0, F.y0); g.lineTo(F.x0, F.y1); g.lineTo(F.x1, F.y1); g.stroke(); g.setLineDash([6, 5]); g.strokeStyle = C.blue; g.beginPath(); g.moveTo(F.x0, Y(l)); g.lineTo(F.x1, Y(l)); g.stroke(); g.restore();
         text(g, "1", F.x0 - 8, Y(1) + 6, C.muted, 14, "right"); text(g, "0", F.x0 - 8, Y(0) + 6, C.muted, 14, "right"); text(g, inl("\\ell"), F.x1 - 4, Y(l) - 8, C.blue, 16, "right"); text(g, inl("n"), F.x1, F.y1 + 24, C.muted, 16, "right");
-        let a = a0; g.save(); g.fillStyle = C.acc; for (let t = 0; t <= n; t++) { g.beginPath(); g.arc(X(t), Y(a), 5, 0, 7); g.fill(); a = a * (1 - p) + (1 - a) * q; } g.restore();
+        let a = a0; g.save(); g.fillStyle = C.obj; for (let t = 0; t <= n; t++) { g.beginPath(); g.arc(X(t), Y(a), 5, 0, 7); g.fill(); a = a * (1 - p) + (1 - a) * q; } g.restore();
         const an = l + (1 - p - q) ** n * (a0 - l), osc = Math.abs(p + q - 2) < 1e-9; // p = q = 1: T swaps the states, no limit
         set(o, lines(inl(`T=\\begin{pmatrix}${N(1 - p)}&${N(p)}\\\\${N(q)}&${N(1 - q)}\\end{pmatrix},\\quad \\pi_{n+1}=\\pi_nT`),
           o.pair(`Avec ${inl("\\pi_n=\\begin{pmatrix}a_n&1-a_n\\end{pmatrix}")} : ${inl(`a_{n+1}=${N(1 - p - q)}\\,a_n+${N(q)}`)}`, `With ${inl("\\pi_n=\\begin{pmatrix}a_n&1-a_n\\end{pmatrix}")}: ${inl(`a_{n+1}=${N(1 - p - q)}\\,a_n+${N(q)}`)}`),
@@ -431,10 +431,10 @@ export const W2 = {
       draw(g) {
         const B = box(), hA = B.h * rA, k = counts(), N = o.tn;
         const cell = (x, y, w, h, col, val) => { g.fillStyle = col; g.globalAlpha = .78; g.fillRect(x, y, w, h); g.globalAlpha = 1; g.strokeStyle = C.bg; g.lineWidth = 3; g.strokeRect(x, y, w, h); if (w > 40 && h > 30) text(g, String(val), x + w / 2, y + h / 2 + 8, C.bg, 22, "center"); };
-        cell(B.x, B.y, B.w * pA, hA, C.acc, k.a); cell(B.x + B.w * pA, B.y, B.w * (1 - pA), hA, C.blue, k.b);
-        cell(B.x, B.y + hA, B.w * pN, B.h - hA, C.acc, k.c); cell(B.x + B.w * pN, B.y + hA, B.w * (1 - pN), B.h - hA, C.blue, k.d);
+        cell(B.x, B.y, B.w * pA, hA, C.obj, k.a); cell(B.x + B.w * pA, B.y, B.w * (1 - pA), hA, C.blue, k.b);
+        cell(B.x, B.y + hA, B.w * pN, B.h - hA, C.obj, k.c); cell(B.x + B.w * pN, B.y + hA, B.w * (1 - pN), B.h - hA, C.blue, k.d);
         text(g, inl(lab[0]), B.x - 14, B.y + hA / 2 + 8, C.ink, 20, "right"); text(g, inl(lab[1]), B.x - 14, B.y + hA + (B.h - hA) / 2 + 8, C.ink, 20, "right");
-        text(g, inl(lab[2]), B.x + 8, B.y - 14, C.acc, 20); text(g, inl(lab[3]), B.x + B.w - 8, B.y - 14, C.blue, 20, "right");
+        text(g, inl(lab[2]), B.x + 8, B.y - 14, C.obj, 20); text(g, inl(lab[3]), B.x + B.w - 8, B.y - 14, C.blue, 20, "right");
         // the overall share of B, as a dashed line: compare it with the two conditional splits
         const fB = (k.a + k.c) / n; g.save(); g.setLineDash([6, 6]); g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.moveTo(B.x + B.w * fB, B.y - 6); g.lineTo(B.x + B.w * fB, B.y + B.h + 6); g.stroke(); g.restore();
         text(g, inl(`f(${lab[2]})`), B.x + B.w * fB, B.y + B.h + 30, C.ink, 18, "center");
@@ -469,8 +469,8 @@ export const W2 = {
         // graph (top part): the two lines and, faintly, the product or the quotient
         g.save(); g.beginPath(); g.rect(0, 0, o.W, V.Y(-5) + 2); g.clip(); axes(g, V, { lang: o.L });
         curve(g, V, prod ? x => f(x) * h(x) : x => f(x) / h(x), V.x0, V.x1, C.muted, 2);
-        curve(g, V, f, V.x0, V.x1, C.acc, 3); curve(g, V, h, V.x0, V.x1, C.blue, 3); g.restore();
-        dot(o, V.X(r1), V.Y(0), C.acc); dot(o, V.X(r1 + 1), V.Y(clamp(a1, -4.8, 4.8)), C.acc, inl("f"));
+        curve(g, V, f, V.x0, V.x1, C.obj, 3); curve(g, V, h, V.x0, V.x1, C.blue, 3); g.restore();
+        dot(o, V.X(r1), V.Y(0), C.obj); dot(o, V.X(r1 + 1), V.Y(clamp(a1, -4.8, 4.8)), C.obj, inl("f"));
         dot(o, V.X(r2), V.Y(0), C.blue); dot(o, V.X(r2 + 1), V.Y(clamp(a2, -4.8, 4.8)), C.blue, inl("g"));
         // sign table (bottom part)
         const top = V.Y(-5) + 18, rowH = (o.H - top - 10) / 4, x0 = 120, x1 = o.W - 30, roots = [...new Set([r1, r2])].sort((p, q) => p - q);
@@ -484,7 +484,7 @@ export const W2 = {
         for (let i = 0; i < cols.length - 1; i++) {
           const lo = cols[i] === -Infinity ? roots[0] - 1 : cols[i], hi = cols[i + 1] === Infinity ? roots[roots.length - 1] + 1 : cols[i + 1], m = (lo + hi) / 2, xm = (X(i) + X(i + 1)) / 2;
           const sf = sgnAt(f, m), sh = sgnAt(h, m), sp = sf === sh ? "+" : "-";
-          [[sf, 1, C.acc], [sh, 2, C.blue], [sp, 3, C.ink]].forEach(([s_, row, col]) => text(g, s_ === "+" ? "+" : "−", xm, top + rowH * row + rowH / 2 + 8, col, 24, "center"));
+          [[sf, 1, C.obj], [sh, 2, C.blue], [sp, 3, C.ink]].forEach(([s_, row, col]) => text(g, s_ === "+" ? "+" : "−", xm, top + rowH * row + rowH / 2 + 8, col, 24, "center"));
         }
         roots.forEach((r, j) => { const xi = X(j + 1); [[f, 1], [h, 2]].forEach(([fn, row]) => { if (Math.abs(fn(r)) < 1e-9) text(g, "0", xi, top + rowH * row + rowH / 2 + 8, C.ink, 20, "center"); else { g.save(); g.strokeStyle = C.grid; g.setLineDash([4, 4]); g.beginPath(); g.moveTo(xi, top + rowH * row + 4); g.lineTo(xi, top + rowH * (row + 1) - 4); g.stroke(); g.restore(); } });
           const zeroDen = !prod && Math.abs(h(r)) < 1e-9;

@@ -45,7 +45,7 @@ export default {
         if (progress !== null && s.runs < MAX_RUNS) {
           const next = model({ ...s, runs: s.runs + 1 }).shown.at(-1), p = 1 - (1 - progress) ** 3;
           const offset = 1.2 * (1 - p);
-          lines.push({ a: [next.a[0], next.a[1] + offset], b: [next.b[0], next.b[1] + offset], color: "accent", width: 3, alpha: .25 + .75 * p });
+          lines.push({ a: [next.a[0], next.a[1] + offset], b: [next.b[0], next.b[1] + offset], color: "object", width: 3, alpha: .25 + .75 * p });
         }
         return { lines };
       },

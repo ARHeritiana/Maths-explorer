@@ -28,7 +28,7 @@ export const diagram = {
     // the legs drawn as a zigzag under the track (space-time picture)
     if (s >= 1) {
       const Y = (tt) => 170 + (tt / T) * 110, trace = flyTrace(D,v1,v2,w,time), pts = trace.points.map(([x,t])=>[X(x),Y(t)]);
-      if(trace.envelope){c.path('M'+trace.envelope.map(([x,t])=>`${X(x)},${Y(t)}`).join(' L')+' Z',{fill:'var(--accent)',opacity:.18,stroke:'none'});c.text(260,298,c.t('Zone ombrée : oscillations trop fines pour ce dessin.','Shaded area: oscillations too fine for this drawing.'),{...mid,class:'sol-small'});}
+      if(trace.envelope){c.path('M'+trace.envelope.map(([x,t])=>`${X(x)},${Y(t)}`).join(' L')+' Z',{fill:'var(--object-ink)',opacity:.18,stroke:'none'});c.text(260,298,c.t('Zone ombrée : oscillations trop fines pour ce dessin.','Shaded area: oscillations too fine for this drawing.'),{...mid,class:'sol-small'});}
       c.path("M" + pts.map((q2) => q2.join(",")).join(" L"), { fill: "none", stroke: "var(--ink)", "stroke-width": 1.4 });
       c.circ(X(trace.current[0]),Y(trace.current[1]),3,{fill:'var(--ink)'});
       c.line(X(0), Y(0), X(v1 * Math.min(time, T)), Y(Math.min(time, T)), { stroke: colour(0), "stroke-width": 2 });

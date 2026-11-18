@@ -6,17 +6,17 @@ import {GALLERY_OBJECTS} from '../site/js/gallery/gallery-objects.js';
 
 test('fractal gestures replace view buttons, reset either plane, and stop drifting at zoom limits',()=>{
   const dom=new JSDOM('<main></main>',{pretendToBeVisual:true}),w=dom.window;
-  const names=['document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','CustomEvent'];
+  const names=['document','devicePixelRatio','requestAnimationFrame','cancelAnimationFrame','CustomEvent','getComputedStyle'];
   const prior=new Map(names.map(k=>[k,Object.getOwnPropertyDescriptor(globalThis,k)]));
   const frames=new Map(),contexts=new Map();let next=0,stop;
   try{
-    globalThis.document=w.document;globalThis.devicePixelRatio=1;globalThis.CustomEvent=w.CustomEvent;
+    globalThis.document=w.document;globalThis.devicePixelRatio=1;globalThis.CustomEvent=w.CustomEvent;globalThis.getComputedStyle=w.getComputedStyle.bind(w);   // the orbit and its plot read the theme colours
     globalThis.requestAnimationFrame=fn=>{frames.set(++next,fn);return next;};
     globalThis.cancelAnimationFrame=id=>frames.delete(id);
     w.HTMLCanvasElement.prototype.getBoundingClientRect=()=>({left:0,top:0,width:640,height:400});
     w.HTMLCanvasElement.prototype.setPointerCapture=()=>{};
     w.HTMLCanvasElement.prototype.getContext=function(){
-      if(!contexts.has(this))contexts.set(this,{setTransform(){},clearRect(){},createImageData:(x,y)=>({data:new Uint8ClampedArray(x*y*4)}),putImageData(image){this.pixels=image.data;},drawImage(source){this.pixels=contexts.get(source).pixels;},beginPath(){},arc(){},moveTo(){},lineTo(){},stroke(){}});
+      if(!contexts.has(this))contexts.set(this,{setTransform(){},clearRect(){},createImageData:(x,y)=>({data:new Uint8ClampedArray(x*y*4)}),putImageData(image){this.pixels=image.data;},drawImage(source){this.pixels=contexts.get(source).pixels;},beginPath(){},arc(){},moveTo(){},lineTo(){},stroke(){},save(){},restore(){},fillRect(){},fillText(){},fill(){},setLineDash(){}});
       return contexts.get(this);
     };
     const root=document.querySelector('main');stop=GALLERY_OBJECTS.mandelbrot(root,{t:(fr)=>fr,reduced:()=>true,lang:'fr'});

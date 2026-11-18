@@ -93,6 +93,8 @@ export const sierpinskiArea = (level) => 0.75 ** level;
 import { NS, css, palette, canvasIn, field, bind, loopFor, idleGuard } from "./object-kit.js";
 import { mountPlatonic } from "./platonic-explorer.js";
 import { GALLERY_OBJECTS } from "./gallery/gallery-objects.js";
+import { metricStrip, plotPanel } from "./gallery/gallery-panels.js";
+import { similarityDimension, boxCounts, logSlope } from "./gallery/gallery-math.js";
 import { dynamicsGallery } from './gallery/gallery-dynamics.js';
 import { voronoiWorld } from './gallery/gallery-voronoi.js';
 import { fourColours } from './gallery/gallery-four-colour.js';
@@ -108,11 +110,14 @@ import { opaqueSquare } from './gallery/gallery-opaque.js';
 import { equidecomposition } from './gallery/gallery-equidecomposition.js';
 import { collisions } from './gallery/gallery-collisions.js';
 import { napkinRing } from './gallery/gallery-napkin.js';
+import { napkinRingGL } from './gallery/gallery-napkin-gl.js';
 import { hundredBoxes } from './gallery/gallery-boxes.js';
 import { morleyTriangle } from './gallery/gallery-morley.js';
 import { inferenceGallery } from './gallery/gallery-inference.js';
 import { fairGallery } from './gallery/gallery-fair-division.js';
 import { topologyGallery } from './gallery/gallery-topology.js';
+import { hairyBall } from './gallery/gallery-hairy.js';
+import { banachTarski } from './gallery/gallery-banach.js';
 import { illuminationGallery } from './illumination-content.js';
 import { gomboc } from './gallery/gallery-gomboc.js';
 import { capability } from './device-capability.js';
@@ -184,7 +189,7 @@ function galton(root, { t, reduced, lang }) {
       g.fillStyle = C.muted; g.beginPath(); g.arc(x, y, 3.2, 0, TAU); g.fill();
       if (pas && G.dx > 20) { g.fillStyle = C.ink; g.font = "600 10px system-ui"; g.textAlign = "center"; g.fillText(pas(r)[j], x, y - 6); }
     }
-    if (pas && G.dx > 20) for (let k = 0; k <= rows; k++) { g.fillStyle = C.accent; g.font = "700 11px system-ui"; g.textAlign = "center"; g.fillText(pas(rows)[k], G.cx + (k - rows / 2) * G.dx, G.base - 4); }
+    if (pas && G.dx > 20) for (let k = 0; k <= rows; k++) { g.fillStyle = C.object; g.font = "700 11px system-ui"; g.textAlign = "center"; g.fillText(pas(rows)[k], G.cx + (k - rows / 2) * G.dx, G.base - 4); }
     // falling balls
     for (const b of balls) {
       const s = Math.min(b.tau, rows + 1.4); let j = 0, x, y;
@@ -250,7 +255,7 @@ function reuleauxLab(root, { t, reduced, lang }) {
   const hitShape = ([x,y]) => { let yes=false;for(let i=0,j=paintedShape.length-1;i<paintedShape.length;j=i++){const a=paintedShape[i],b=paintedShape[j];if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;};
   o.touchHit(hitShape);
   const f = (x, d = 2) => { const s = (Math.round(x * 10 ** d) / 10 ** d).toFixed(d); return lang === "fr" ? s.replace(".", ",") : s; };
-  const fill = (C) => { g.fillStyle = C.accent; g.globalAlpha = 0.28; g.fill(); g.globalAlpha = 1; g.strokeStyle = C.accent; g.lineWidth = 3; g.stroke(); };
+  const fill = (C) => { g.fillStyle = C.object; g.globalAlpha = 0.28; g.fill(); g.globalAlpha = 1; g.strokeStyle = C.object; g.lineWidth = 3; g.stroke(); };
   function drawShape(C, cx, cy, S, rot) {   // S pixels per unit of width
     paintedShape = shape.pts.map(([x,y])=>[cx+S*(x*Math.cos(rot)-y*Math.sin(rot)),cy-S*(x*Math.sin(rot)+y*Math.cos(rot))]);
     g.beginPath(); shape.pts.forEach(([x, y], i) => { const X = cx + S * (x * Math.cos(rot) - y * Math.sin(rot)), Y = cy - S * (x * Math.sin(rot) + y * Math.cos(rot)); i ? g.lineTo(X, Y) : g.moveTo(X, Y); }); g.closePath(); fill(C);
@@ -332,7 +337,11 @@ function chaos(root, { t, reduced, lang }) {
     <div class="act-controls" id="ch-lvl" hidden>${field("ch-level", t("Niveau", "Level"), 0, 6, 1, level)}</div>
     <p class="act-readout" id="ch-read" role="status" aria-live="polite"></p>`;
   const o = canvasIn(root.querySelector("#ch-stage"), 640 / 460), g = o.g, read = root.querySelector("#ch-read");
-  const layout = () => { verts = Array.from({ length: k }, (_, i) => { const a = -Math.PI / 2 + (TAU * i) / k, R = 190; return [o.W / 2 + R * Math.cos(a) * (k === 3 ? 1.05 : 1), o.H / 2 + 12 + R * Math.sin(a) * (k === 3 ? 1.05 : 1) - (k === 3 ? 18 : 0)]; }); pts = []; cur = [o.W / 2, o.H / 2]; g.clearRect(0, 0, o.W, o.H); };
+  const MS = metricStrip(root.querySelector("#ch-stage"), t, [{ id: "n", label: t("Points tracés", "Points drawn"), kind: "exact" }, { id: "s", label: t("Copies et rapport s = 1 − r", "Copies and ratio s = 1 − r"), kind: "exact" },
+    { id: "d", label: t("Dimension de la figure limite", "Dimension of the limit figure") }, { id: "box", label: t("Estimation par comptage de boîtes", "Box-counting estimate"), kind: "approx" }]);
+  const BP = plotPanel(MS.el, t("Comptage de boîtes : nombre N de boîtes touchées par les points quand on découpe le cadre en n × n boîtes, en échelle log₂. La pente donne une estimation de la dimension ; la ligne pointillée a la pente théorique quand elle est justifiée.", "Box counting: number N of boxes hit by the points when the frame is cut into n × n boxes, on a log₂ scale. The slope estimates the dimension; the dotted line has the theoretical slope when it is justified."));
+  let sample = [], moved = false, boxKey = "";   // sample: up to 60 000 drawn points for the box count; moved: a vertex left the regular layout
+  const layout = () => { sample = []; moved = false; verts = Array.from({ length: k }, (_, i) => { const a = -Math.PI / 2 + (TAU * i) / k, R = 190; return [o.W / 2 + R * Math.cos(a) * (k === 3 ? 1.05 : 1), o.H / 2 + 12 + R * Math.sin(a) * (k === 3 ? 1.05 : 1) - (k === 3 ? 18 : 0)]; }); pts = []; cur = [o.W / 2, o.H / 2]; g.clearRect(0, 0, o.W, o.H); };
   const f = (x) => (lang === "fr" ? String(Math.round(x * 1000) / 1000).replace(".", ",") : String(Math.round(x * 1000) / 1000));
   let layer = null; // offscreen accumulation of points
   const ensureLayer = () => { if (!layer) { layer = document.createElement("canvas"); layer.width = o.W; layer.height = o.H; } return layer; };
@@ -341,11 +350,26 @@ function chaos(root, { t, reduced, lang }) {
   capability({ kind: "draws", gpu: false, share: 0.3, work: () => { let s = 0; for (let i = 0; i < 3000; i++) { let j = 0; for (let r = 0; r < 15; r++) if (Math.random() < 0.5) j++; s += j; } return 3000 + (s < 0 ? 1 : 0); } })
     .then((r) => { if (!closed) perFrame = { basic: 900, standard: 4000, high: 20000, extreme: 100000 }[r.tier] || 900; }).catch(() => {});
   function stepFor(ms, max) { const t0 = performance.now(); let done = 0; while (done < max && performance.now() - t0 < ms) { const n = Math.min(500, max - done); step(n); done += n; } }
-  function step(count) { const lg = ensureLayer().getContext("2d"), C = palette(); lg.fillStyle = C.accent; for (let i = 0; i < count; i++) { const v = verts[Math.floor(Math.random() * k)]; cur = [cur[0] + (v[0] - cur[0]) * ratio, cur[1] + (v[1] - cur[1]) * ratio]; if (pts.length++ > 12) lg.fillRect(cur[0], cur[1], 1.6, 1.6); } }
+  function step(count) { const lg = ensureLayer().getContext("2d"), C = palette(); lg.fillStyle = C.object; for (let i = 0; i < count; i++) { const v = verts[Math.floor(Math.random() * k)]; cur = [cur[0] + (v[0] - cur[0]) * ratio, cur[1] + (v[1] - cur[1]) * ratio]; if (pts.length++ > 12) { lg.fillRect(cur[0], cur[1], 1.6, 1.6); if (sample.length < 60000) sample.push(cur); } } }
   function triangle(lg, a, b, c, lv) { if (lv === 0) { lg.beginPath(); lg.moveTo(...a); lg.lineTo(...b); lg.lineTo(...c); lg.closePath(); lg.fill(); return; } const mid = (u, v) => [(u[0] + v[0]) / 2, (u[1] + v[1]) / 2]; const ab = mid(a, b), bc = mid(b, c), ca = mid(c, a); triangle(lg, a, ab, ca, lv - 1); triangle(lg, ab, b, bc, lv - 1); triangle(lg, ca, bc, c, lv - 1); }
   const idle = idleGuard(o);
   let lastRead = "";
   const setRead = (h) => { if (h !== lastRead) { lastRead = h; read.innerHTML = h; } };
+  // Similarity dimension log k / log(1/s): exact when the k copies do not overlap (regular layout with s at most the touching
+  // value, or any triangle with s at most 1/2, an affine image of the regular one), otherwise only an upper bound.
+  function measures(C) {
+    const s = 1 - ratio, D = similarityDimension(k, s), apart = s <= gonContraction(k) + 1e-9 && (!moved || k === 3);
+    MS.set("n", pts.length.toLocaleString(lang === "fr" ? "fr-FR" : "en-US"));
+    MS.set("s", `${k} · s = ${f(s)}`);
+    MS.set("d", apart ? t(`log ${k} / log(1/s) ≈ ${f(D)} (exact, les copies ne se chevauchent pas)`, `log ${k} / log(1/s) ≈ ${f(D)} (exact, the copies do not overlap)`) : t(`au plus ${f(D)} (les copies se chevauchent : majorant seulement)`, `at most ${f(D)} (the copies overlap: upper bound only)`));
+    const key = `${sample.length >> 12}|${k}|${ratio}|${verts.join()}`;
+    if (key === boxKey) return; boxKey = key;
+    const xs = verts.map((v) => v[0]), ys = verts.map((v) => v[1]), size = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)) + 2;
+    const counts = boxCounts(sample, [Math.min(...xs) - 1, Math.min(...ys) - 1, size], [4, 8, 16, 32, 64]), est = logSlope(counts);
+    MS.set("box", sample.length < 5000 ? t("il faut au moins 5 000 points", "needs at least 5,000 points") : `≈ ${f(est)} (${sample.length.toLocaleString(lang === "fr" ? "fr-FR" : "en-US")} ${t("points", "points")})`);
+    const P = counts.map(([n, c]) => [Math.log2(n), Math.log2(Math.max(1, c))]), mx = P.reduce((a, p) => a + p[0], 0) / P.length, my = P.reduce((a, p) => a + p[1], 0) / P.length;
+    BP.draw({ xMax: 7, yMax: 13, xLabel: "log₂ n", yLabel: "log₂ N", series: [...(apart ? [{ points: [[1, my + D * (1 - mx)], [7, my + D * (7 - mx)]], color: "muted", dash: [4, 4], width: 1, dots: false }] : []), { points: P, color: "object", dots: true }] });
+  }
   function draw() {
     if (idle(playing && mode === "game" && !reduced(), `${mode}|${level}|${k}|${ratio}|${pts.length}|${blank}|${verts.join()}`)) return false;
     const C = palette(); g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
@@ -355,14 +379,16 @@ function chaos(root, { t, reduced, lang }) {
       if (!pts.length && !blank) step(20000); else if (playing && !reduced()) { blank = false; stepFor(8, perFrame); }
       if (layer) g.drawImage(layer, 0, 0);
       verts.forEach((v, i) => { g.fillStyle = C.obj2; g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.arc(v[0], v[1], 9, 0, TAU); g.fill(); g.stroke(); g.fillStyle = C.ink; g.font = "700 13px system-ui"; g.textAlign = "center"; g.fillText("ABCDEF"[i], v[0], v[1] - 15); });
+      measures(C);
       setRead(`${pts.length.toLocaleString(lang === "fr" ? "fr-FR" : "en-US")} ${t("points", "points")} · r = <strong>${f(ratio)}</strong> · ${t("pour", "for")} ${k} ${t("sommets, la valeur", "vertices, the value")} <strong>${f(1 - gonContraction(k))}</strong> ${t("donne une figure de type fractal (r = 1/2 pour le triangle)", "gives a fractal figure (r = 1/2 for the triangle)")}.`);
     } else {
-      g.fillStyle = C.accent; const R = 200, cx = o.W / 2, cy = o.H / 2 + 20; triangle(g, [cx, cy - R * 0.95], [cx - R * 1.05, cy + R * 0.7], [cx + R * 1.05, cy + R * 0.7], level);
+      MS.set("n", "–"); MS.set("s", `3 · s = ${f(0.5)}`); MS.set("d", t(`log 3 / log 2 ≈ ${f(Math.log(3) / Math.log(2))} (exact)`, `log 3 / log 2 ≈ ${f(Math.log(3) / Math.log(2))} (exact)`)); MS.set("box", "–");
+      g.fillStyle = C.object; const R = 200, cx = o.W / 2, cy = o.H / 2 + 20; triangle(g, [cx, cy - R * 0.95], [cx - R * 1.05, cy + R * 0.7], [cx + R * 1.05, cy + R * 0.7], level);
       setRead(`${t("Niveau", "Level")} <strong>${level}</strong> : ${t("triangles pleins", "filled triangles")} 3<sup>${level}</sup> = <strong>${sierpinskiCount(level)}</strong> · ${t("aire restante", "remaining area")} (3/4)<sup>${level}</sup> ≈ <strong>${f(sierpinskiArea(level) * 100)} %</strong> ${t("de l’aire du grand triangle", "of the big triangle’s area")}.`);
     }
   }
   const restart = () => { layer = null; blank = false; layout(); };
-  root.querySelectorAll("[name=ch-mode]").forEach((r) => r.addEventListener("change", () => { mode = r.value; root.querySelector("#ch-game").hidden = mode !== "game"; root.querySelector("#ch-lvl").hidden = mode === "game"; root.querySelector("#ch-k").hidden = mode !== "game"; }));
+  root.querySelectorAll("[name=ch-mode]").forEach((r) => r.addEventListener("change", () => { mode = r.value; root.querySelector("#ch-game").hidden = mode !== "game"; root.querySelector("#ch-lvl").hidden = mode === "game"; root.querySelector("#ch-k").hidden = mode !== "game"; BP.show(mode === "game"); }));
   root.querySelectorAll("[name=ch-k]").forEach((r) => r.addEventListener("change", () => { k = Number(r.value); ratio = k === 3 ? 0.5 : Math.round((1 - gonContraction(k)) * 100) / 100; root.querySelector("#ch-r").value = ratio; root.querySelector("#ch-r-out").textContent = ratio; restart(); }));
   bind(root, "ch-r", (v) => { ratio = v; restart(); }, (v) => (lang === "fr" ? String(v).replace(".", ",") : String(v)));
   bind(root, "ch-level", (v) => { level = v; });
@@ -373,17 +399,19 @@ function chaos(root, { t, reduced, lang }) {
   const vertexAt = (p,r) => verts.findIndex(v=>Math.hypot(v[0]-p[0],v[1]-p[1])<r);
   o.touchHit(p=>mode==="game"&&vertexAt(p,40)>=0);
   o.cv.addEventListener("pointerdown", (e) => { if (mode !== "game") return; const [x, y] = o.point(e); grab = vertexAt([x,y],e.pointerType==="touch"?40:24); if (grab >= 0) { selectedVertex=grab;o.cv.setPointerCapture(e.pointerId); } });
-  o.cv.addEventListener("pointermove", (e) => { if (grab < 0) return; const [x, y] = o.point(e); verts[grab] = [clampN(x, 10, o.W - 10), clampN(y, 10, o.H - 10)]; layer = null; blank = false; pts = []; cur = [o.W / 2, o.H / 2]; });
+  o.cv.addEventListener("pointermove", (e) => { if (grab < 0) return; const [x, y] = o.point(e); verts[grab] = [clampN(x, 10, o.W - 10), clampN(y, 10, o.H - 10)]; layer = null; blank = false; pts = []; sample = []; moved = true; cur = [o.W / 2, o.H / 2]; });
   const up = () => { grab = -1; }; o.cv.addEventListener("pointerup", up); o.cv.addEventListener("pointercancel", up); o.cv.addEventListener("lostpointercapture", up); o.cv.addEventListener("view-gesture", up);
-  o.cv.addEventListener("keydown",e=>{if(e.shiftKey||mode!=="game")return;if(e.key==='['||e.key===']'){selectedVertex=(selectedVertex+(e.key===']'?1:k-1))%k;e.preventDefault();return;}const d={ArrowLeft:[-5,0],ArrowRight:[5,0],ArrowUp:[0,-5],ArrowDown:[0,5]}[e.key];if(!d)return;e.preventDefault();selectedVertex%=k;verts[selectedVertex]=[clampN(verts[selectedVertex][0]+d[0],10,o.W-10),clampN(verts[selectedVertex][1]+d[1],10,o.H-10)];layer=null;blank=false;pts=[];cur=[o.W/2,o.H/2];draw();});
+  o.cv.addEventListener("keydown",e=>{if(e.shiftKey||mode!=="game")return;if(e.key==='['||e.key===']'){selectedVertex=(selectedVertex+(e.key===']'?1:k-1))%k;e.preventDefault();return;}const d={ArrowLeft:[-5,0],ArrowRight:[5,0],ArrowUp:[0,-5],ArrowDown:[0,5]}[e.key];if(!d)return;e.preventDefault();selectedVertex%=k;verts[selectedVertex]=[clampN(verts[selectedVertex][0]+d[0],10,o.W-10),clampN(verts[selectedVertex][1]+d[1],10,o.H-10)];layer=null;blank=false;pts=[];sample=[];moved=true;cur=[o.W/2,o.H/2];draw();});
   o.cv.setAttribute('aria-label',t('Sommets : [ et ] pour choisir, flèches pour déplacer.','Vertices: [ and ] select, arrow keys move.'));
   layout(); o.redraw = () => draw();
   const stop = loopFor(() => draw(), reduced, o.cv);
-  return () => { closed = true; stop(); o.navigation?.destroy(); };
+  return () => { closed = true; stop(); BP.stop(); MS.el.remove(); o.navigation?.destroy(); };
 }
 
 export const OBJECTS = { ...Object.fromEntries(["double-pendulum", "three-body", "logistic"].map(id => [id + "-gallery", dynamicsGallery(id)])), "mirrored-rooms":illuminationGallery, gomboc, ...Object.fromEntries(["secretary", "tank", "benford", "baker", "birthdays", "monty"].map(id => [id + "-gallery", inferenceGallery(id)])), galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles, 'four-colours':fourColours, life:gameOfLife, 'square-packing':squarePacking, 'moving-sofa':movingSofa, 'inscribed-square':inscribedSquare, 'opaque-square':opaqueSquare, equidecomposition };
-Object.assign(OBJECTS, {collisions,'napkin-ring':napkinRing,'hundred-boxes':hundredBoxes,morley:morleyTriangle,'fair-division-gallery':fairGallery('fair-division'),'fair-goods-gallery':fairGallery('fair-goods'),'hairy-ball-gallery':topologyGallery('hairy-ball'),'nonorientable-surfaces-gallery':topologyGallery('nonorientable-surfaces'),'banach-tarski-gallery':topologyGallery('banach-tarski-model')});
+// The 3D exhibits draw with WebGL2 (gallery/gl3d.js); without it, or if a shader fails on this device, the earlier 2D version is mounted.
+const gpuFirst = (gpu, plain) => (root, o) => { let stop = null; try { stop = gpu(root, o); } catch (e) { console.warn(e); } return stop ?? plain(root, o); };
+Object.assign(OBJECTS, {collisions,'napkin-ring':gpuFirst(napkinRingGL,napkinRing),'hundred-boxes':hundredBoxes,morley:morleyTriangle,'fair-division-gallery':fairGallery('fair-division'),'fair-goods-gallery':fairGallery('fair-goods'),'hairy-ball-gallery':gpuFirst(hairyBall,topologyGallery('hairy-ball')),'nonorientable-surfaces-gallery':topologyGallery('nonorientable-surfaces'),'banach-tarski-gallery':gpuFirst(banachTarski,topologyGallery('banach-tarski-model'))});
 export const isObject = (id) => Object.hasOwn(OBJECTS, id);
 export function mountObject(id, root, { lang, reduced, ...options }) {
   const t = (fr, en) => (lang === "fr" ? fr : en);

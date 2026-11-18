@@ -15,7 +15,8 @@ test('subtraction is published and reachable as the third Basics lesson', () => 
   assert.match(html, /mx-basics-size/);
   assert.match(html, /ResizeObserver/);
   assert.match(html, /prefers-reduced-motion/);
-  assert.match(html, /data-theme="dark"/);
+  assert.match(html, /data-theme="nuit"/);
+  assert.match(html, /href="basics-theme.css"/);
   assert.match(html, /Soustraire la colonne/);
   assert.match(html, /Dégrouper/);
   assert.match(html, /Les mêmes échanges, avec des chiffres/);

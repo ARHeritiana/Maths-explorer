@@ -28,7 +28,7 @@ export default {
   ease: ['a', 'b', 'u0'],   // continuous keys the figure glides toward (shell.js); handles marked `soft` are free with a magnet
   controls: {
     start: {
-      kind: "handle", soft: true, color: "accent", axis: "x", grid: [0.5, 1], label: ["Point u₀ sur l’axe des abscisses", "Point u₀ on the x-axis"],
+      kind: "handle", soft: true, color: "object", axis: "x", grid: [0.5, 1], label: ["Point u₀ sur l’axe des abscisses", "Point u₀ on the x-axis"],
       at: (s) => [s.u0, 0],
       drag: (s, x) => ({ u0: clamp(x, U0MAX[0], U0MAX[1]) }),
       valuetext: (s, f) => `u₀ = ${f.num(s.u0)}`,
@@ -60,7 +60,7 @@ export default {
         const last = list.length - 1;
         return {
           lines: [{ a: [R[0], R[0]], b: [R[1], R[1]], color: "muted", dash: [6, 5], width: 1.6 }],
-          curves: [{ f: m.f, color: "accent", width: 3 }],
+          curves: [{ f: m.f, color: "object", width: 3 }],
           polys: [{ pts: m.path, color: "obj2", width: 2.2, close: false }],
           points: [
             ...(m.fixed !== null ? [{ at: [m.fixed, m.fixed], color: "pos", r: 6, hollow: true, label: `ℓ ${fmt.eq(m.fixed)} ${num(m.fixed)}`, dx: 10, dy: 24 }] : []),

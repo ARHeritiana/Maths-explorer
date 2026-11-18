@@ -26,10 +26,10 @@ export const diagram = {
         const h2 = hgt(val(m - 1 - i)), y = base - h - h2 - (1 - lift) * 30;
         c.rect(x + 1, y, w - 2, h2, { fill: colour(1), opacity: 0.6 * Math.max(0.3, lift), stroke: "var(--ink)", "stroke-width": 1 });
       }
-      if (on) { c.rect(x + 1, base - 128, w - 2, 128, { fill: "none", stroke: "var(--accent)", "stroke-width": 3 }); c.text(x + w / 2, base - 134, g(a + l), { ...mid, class: "sol-line" }); }
+      if (on) { c.rect(x + 1, base - 128, w - 2, 128, { fill: "none", stroke: "var(--object-ink)", "stroke-width": 3 }); c.text(x + w / 2, base - 134, g(a + l), { ...mid, class: "sol-line" }); }
     }
     c.line(40, base, 440, base, { stroke: "var(--line-strong)", "stroke-width": 2 });
-    if (s >= 2) { c.rect(60, base - 128, 360, 128, { fill: "none", stroke: "var(--accent)", "stroke-width": 3, "stroke-dasharray": "8 5" }); c.text(480, base - 64, g(a + l), { ...mid, class: "sol-line" }); c.text(240, 22, `${k} ${c.t("colonnes", "columns")}`, { ...mid, class: "sol-sub" }); }
+    if (s >= 2) { c.rect(60, base - 128, 360, 128, { fill: "none", stroke: "var(--object-ink)", "stroke-width": 3, "stroke-dasharray": "8 5" }); c.text(480, base - 64, g(a + l), { ...mid, class: "sol-line" }); c.text(240, 22, `${k} ${c.t("colonnes", "columns")}`, { ...mid, class: "sol-sub" }); }
     // algebra
     const terms = (list) => (k <= 4 ? list : [list[0], list[1], list[2], "…", list.at(-1)]).join(" + ");
     const fwd = Array.from({ length: k }, (_, i) => g(a + i * d)), bwd = Array.from({ length: k }, (_, i) => g(l - i * d));
@@ -45,7 +45,7 @@ export const diagram = {
     lines.forEach(([lab, body, o], i) => {
       if (o <= 0) return; const y = 212 + i * 30, hot = i === 4;
       c.text(30, y, lab + " =", { opacity: o, style: `font:600 ${size}px var(--math, serif);fill:var(--ink)` });
-      c.text(72, y, body, { opacity: o, style: `font:${hot ? 700 : 600} ${size}px var(--math, serif);fill:${hot ? "var(--accent)" : "var(--ink)"}` });
+      c.text(72, y, body, { opacity: o, style: `font:${hot ? 700 : 600} ${size}px var(--math, serif);fill:${hot ? "var(--object-ink)" : "var(--ink)"}` });
     });
   },
 };

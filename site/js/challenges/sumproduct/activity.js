@@ -23,7 +23,7 @@ export function activity(root, { t, q }) {
     read.innerHTML = valid
       ? `${t("Sam voit", "Sam sees")} <strong>S = ${sum}</strong>${t(" : ", ": ")}${pairs(sumSplits.map(([a, b]) => [a, b]))}<br>${t("produits de ces couples : ", "products of these pairs: ")}${sumSplits.map(([a, b]) => a * b).join(", ")}<br>${t("Paula voit", "Paula sees")} <strong>P = ${prod}</strong>${t(" : ", ": ")}${pairs(prodSplits)}`
       : t(`Choisis 1 < x < y avec x + y ≤ ${N}.`, `Choose 1 < x < y with x + y ≤ ${N}.`);
-    const C = { on: css("--accent"), off: css("--line-strong"), ink: css("--ink"), bg: css("--sunken") };
+    const C = { on: css("--object-ink"), off: css("--line-strong"), ink: css("--ink"), bg: css("--sunken") };
     g.fillStyle = C.bg; g.fillRect(0, 0, 640, 360);
     for (const p of all) { g.fillStyle = C.on; g.globalAlpha = 0.9; g.fillRect(PX(p[0]) - 1.5, PY(p[1]) - 1.5, 3, 3); }
     g.globalAlpha = 1;
