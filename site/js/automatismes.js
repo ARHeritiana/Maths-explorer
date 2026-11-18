@@ -46,7 +46,7 @@ export function automatismesPage(t, pair) {
 <section class="auto-stage" id="auto-stage" data-fs-target aria-label="${t(P('Projection', 'Projection'))}" tabindex="-1">
 <div class="auto-head"><span id="st-count"></span><span id="st-timer" role="timer" aria-live="off"></span><span id="st-level"></span></div>
 <div class="auto-bar" aria-hidden="true"><i id="st-fill"></i></div>
-<div class="auto-body"><div id="st-q" class="auto-q" aria-live="polite"></div><div id="st-a" class="auto-a"></div></div>
+<div class="auto-body"><div id="st-q" class="auto-q" aria-live="polite"></div><div id="st-fig" class="auto-fig"></div><div id="st-a" class="auto-a"></div></div>
 <div class="auto-controls"><button type="button" class="btn btn-secondary" id="st-prev">${t(P('Précédent', 'Previous'))}</button><button type="button" class="btn btn-secondary" id="st-next">${t(P('Suivant', 'Next'))}</button><button type="button" class="btn btn-secondary" id="st-reveal" aria-pressed="false">${t(P('Réponse', 'Answer'))}</button><button type="button" class="btn btn-primary" id="st-play" aria-pressed="false">${t(P('Départ', 'Start'))}</button>${fullscreenButton(pair)}<span class="muted auto-keys">${t(P('Touches : ← → A Espace', 'Keys: ← → A Space'))}</span></div>
 </section>
 <details class="gen-answers" id="gen-answers"><summary>${t(P('Voir la liste des questions et des réponses', 'Show the list of questions and answers'))}</summary><p class="gen-list-bar"><button type="button" class="btn btn-secondary" id="gen-toggle-answers" aria-pressed="true">${t(P('Réponses', 'Answers'))}</button></p><ol id="gen-list" class="gen-list"></ol></details>
@@ -76,9 +76,11 @@ export function bindAutomatismes(root, t, { chapterTitle = (id) => id, launch = 
   const stopTimer = () => { running = false; clearInterval(tick); tick = null; };
   function drawStage() {
     const stage = $('#auto-stage');
-    if (!doc || doc.empty) { $('#st-q').textContent = t(P('Aucune question ne correspond à ces réglages : élargis les chapitres, thèmes ou niveaux.', 'No question matches these settings: widen the chapters, topics or levels.')); $('#st-a').textContent = ''; $('#st-count').textContent = ''; $('#st-timer').textContent = ''; $('#st-level').textContent = ''; return; }
+    if (!doc || doc.empty) { $('#st-fig').innerHTML = ''; $('.auto-body').classList.remove('has-figure'); $('#st-q').textContent = t(P('Aucune question ne correspond à ces réglages : élargis les chapitres, thèmes ou niveaux.', 'No question matches these settings: widen the chapters, topics or levels.')); $('#st-a').textContent = ''; $('#st-count').textContent = ''; $('#st-timer').textContent = ''; $('#st-level').textContent = ''; return; }
     const it = doc.items[i];
     $('#st-q').innerHTML = stageQuestion(it);
+    $('#st-fig').innerHTML = it.choices ? '' : starterFigureHtml(it.figure);   // its own cell: it fills the room left by the text
+    $('.auto-body').classList.toggle('has-figure', !it.choices && !!it.figure);
     $('#st-a').innerHTML = showAnswer && !it.choices ? html(it.a) : '';   // a four-choice item shows its answer by highlighting the right choice   // the stage shows the answer only; the list below keeps the explanation
     $('#st-count').textContent = `${t(P('Question', 'Question'))} ${it.n} / ${doc.items.length}`;
     $('#st-timer').textContent = clock(left);
@@ -92,7 +94,7 @@ export function bindAutomatismes(root, t, { chapterTitle = (id) => id, launch = 
   // one stem, then the choices as a grid of short lines (a four-choice item is never one long paragraph)
   const stageQuestion = (it) => it.choices
     ? `<strong>${it.n}.</strong> ${html(it.stem)}<ul class="auto-choices">${it.choices.map((c, k) => `<li${showAnswer && k === it.correct ? ' class="is-right"' : ''}><b>${'ABCD'[k]}</b><span>${html(c)}</span></li>`).join('')}</ul>`
-    : `<strong>${it.n}.</strong> ${html(it.q)}${starterFigureHtml(it.figure)}`;
+    : `<strong>${it.n}.</strong> ${html(it.q)}`;
   // presented: shrink the text until question and answer fit the screen (the factor --fit scales both)
   const fit = () => {
     const stage = $('#auto-stage'), body = stage?.querySelector('.auto-body'); if (!body) return;
