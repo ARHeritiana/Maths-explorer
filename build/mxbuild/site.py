@@ -67,7 +67,7 @@ def versioned_index():
     def current(rel):   # the dist copy once written, else the source: they are byte-identical after `make site`
         return DIST / rel if (DIST / rel).exists() and not (SITE / rel).exists() else SITE / rel
     files = sorted({p.relative_to(SITE).as_posix() for p in (SITE / 'js').rglob('*.js')} | {p.relative_to(DIST).as_posix() for p in (DIST / 'js').glob('*.js')})
-    def digest(f):   # a file of site/ is hashed as served (the full edition rewrites js/config.js)
+    def digest(f):
         p = current(f)
         return hashlib.sha1(served(p) if p.is_relative_to(SITE) else p.read_bytes()).hexdigest()[:10]
     imports = {f'./{f}': f'./{f}?v={digest(f)}' for f in files}
