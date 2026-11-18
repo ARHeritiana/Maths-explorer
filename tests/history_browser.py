@@ -44,7 +44,7 @@ with sync_playwright() as p:
  assert page.locator('.topbar .brand').is_visible()
  assert page.locator('.subnav a[href="../../index.html#home"]').count()==0
  assert page.locator('.topbar .brand').get_attribute('href')=='../../index.html#home'
- assert page.locator('.topbar .mainnav a').count()==3
+ assert page.locator('.topbar .mainnav a').count()==4
  # The whole chronology fits the stage height (no vertical scroll): rows shrink to fit, labelled rows stay legible.
  for vw,vh in [(1366,768),(1920,1080),(1440,1000)]:
   page.set_viewport_size({'width':vw,'height':vh});page.wait_for_timeout(250)

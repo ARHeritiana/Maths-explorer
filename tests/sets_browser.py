@@ -34,7 +34,7 @@ with sync_playwright() as p:
         assert ('sets.en.html' in frame_el.get_attribute('src')) == (lang == 'en')
         frame = page.frame_locator('#basics-frame')
         frame.locator('h1').wait_for()
-        assert frame.locator('h1').inner_text() == title, (lang, frame.locator('h1').inner_text())
+        assert frame.locator('h1').text_content() == title, (lang, frame.locator('h1').text_content())
         assert frame.locator('html').get_attribute('lang') == lang
         # neighbour links and the index card
         assert page.locator('a[href="#basics/division"]').count() >= 1

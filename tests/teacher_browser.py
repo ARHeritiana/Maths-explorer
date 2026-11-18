@@ -92,7 +92,7 @@ with sync_playwright() as p:
         page.locator(f'a.lp-tile[href="{href}"]').first.click()
         page.wait_for_timeout(400)
         if href.startswith('#'):
-            assert page.locator('h1').first.inner_text() != 'Page introuvable', href
+            assert page.locator('h1').first.text_content() != 'Page introuvable', href
         else:
             assert 'player.html' in page.url, page.url
     page.goto(f'{BASE}/#teacher'); dashboard(page)
@@ -121,7 +121,7 @@ with sync_playwright() as p:
     page.reload(); dashboard(page)
     assert page.locator('.lp-blocks li').count() >= 4, 'séance stored'
     page.locator('.lp-blocks a').first.click(); page.wait_for_timeout(300)
-    assert page.locator('h1').first.inner_text() != 'Page introuvable'
+    assert page.locator('h1').first.text_content() != 'Page introuvable'
 
     # 4b. shared class and chapter reach the generators, lessons and exercises; one-click timed starters
     page.goto(f'{BASE}/#teacher'); dashboard(page)
@@ -189,9 +189,9 @@ with sync_playwright() as p:
     fp.goto(f'{BASE}/'); fp.wait_for_selector('#home-class'); fp.locator('footer a[data-set-entry="teacher"]').click(); dashboard(fp)
     assert fp.locator('nav.modebar a[data-teacher-mode]').count() == 3
     assert fp.locator('nav.modebar [aria-current="page"]').get_attribute('data-teacher-mode') == 'classe'
-    fp.locator('nav.modebar a[data-teacher-mode="preparer"]').click(); fp.wait_for_function("([h,a,b])=>location.hash===h&&[a,b].includes(document.querySelector('h1')?.innerText)", arg=['#prepare','Préparer','Prepare'])
+    fp.locator('nav.modebar a[data-teacher-mode="preparer"]').click(); fp.wait_for_function("([h,a,b])=>location.hash===h&&[a,b].includes(document.querySelector('h1')?.textContent)", arg=['#prepare','Préparer','Prepare'])
     assert fp.locator('nav.modebar [aria-current="page"]').get_attribute('data-teacher-mode') == 'preparer'
-    fp.locator('nav.modebar a[data-teacher-mode="detente"]').click(); fp.wait_for_function("([h,a,b])=>location.hash===h&&[a,b].includes(document.querySelector('h1')?.innerText)", arg=['#relax','Détente','Relax'])
+    fp.locator('nav.modebar a[data-teacher-mode="detente"]').click(); fp.wait_for_function("([h,a,b])=>location.hash===h&&[a,b].includes(document.querySelector('h1')?.textContent)", arg=['#relax','Détente','Relax'])
     fp.locator('nav.modebar a[data-teacher-mode="classe"]').click(); dashboard(fp)
     assert fp.evaluate('location.hash') == '#teacher'
     for h in ('#prepare', '#relax'):
@@ -254,7 +254,7 @@ with sync_playwright() as p:
         link = dp.locator(f'#mx-dock a[data-dock-phase="{phase}"]'); href = link.get_attribute('href')
         link.click(); dp.wait_for_timeout(500)
         if href.startswith('#'):
-            assert dp.locator('h1').first.inner_text() not in ('Page introuvable', 'Page not found'), href
+            assert dp.locator('h1').first.text_content() not in ('Page introuvable', 'Page not found'), href
             if phase == 'automatismes':
                 dp.wait_for_selector('#auto-stage.presenting')
                 assert dp.locator('#mx-dock:visible').count() == 0, 'the one-click series opens the projection: dock hidden'

@@ -1,4 +1,4 @@
-% mx-brand.sty -- the look of the PDFs and Beamer lectures: design v7 "Bac à sable" (docs/DESIGN_V7.md).
+% mx-brand.sty -- the look of the PDFs and Beamer lectures: design v8 "Bande dessinée" (docs/DESIGN_V8.md).
 % This is the only file of the TeX core that belongs to one site. Every other core file is structure (what a page,
 % a box or a slide holds) and reads its look from the names below; units never name a colour value or a font.
 % A brand file defines, in this order:
@@ -19,7 +19,7 @@
 %   slides    \mxslidetitlebackground (TikZ drawing behind the title slide), \mxslidetitlefont, \mxslideframetitlemark
 % The fonts are made from the site's web fonts by scripts/tex-fonts.py (list in fonts/fonts.json).
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{mx-brand}[2026/11/15 Maths Explorer brand: Bac a sable]
+\ProvidesPackage{mx-brand}[2026/11/18 Maths Explorer brand: Bande dessinee]
 \providecommand{\mxcorepath}{}
 \@ifpackageloaded{xcolor}{}{\RequirePackage[table]{xcolor}}
 \RequirePackage{fontspec}
@@ -27,108 +27,116 @@
 \RequirePackage{tikz}
 \RequirePackage[most]{tcolorbox}
 
-% ---- Colours (print: white paper; values of the Jour theme of the site) ----------------------------------------------
-\definecolor{mxink}{HTML}{2B1E3F}          % plum ink
-\definecolor{mxinktwo}{HTML}{4A3D5E}
-\definecolor{mxmuted}{HTML}{55466B}
-\definecolor{mxline}{HTML}{DCD2EA}
-\definecolor{mxlinestrong}{HTML}{6A5A80}
-\definecolor{mxpaper}{HTML}{FFF7EA}        % cream
-\definecolor{mxaccent}{HTML}{C8391B}       % tomato, text weight
-\definecolor{mxaccentsoft}{HTML}{FFF0EA}
-\colorlet{mxobject}{mxaccent}              % the studied object is tomato on this site
-\definecolor{mxobjectfill}{HTML}{E8492A}
+% ---- Colours (print: white paper; the comic palette of the site, values of the Jour theme) ----------------------------------
+\definecolor{mxink}{HTML}{111111}          % ink
+\definecolor{mxinktwo}{HTML}{2B2B2B}
+\definecolor{mxmuted}{HTML}{3D3D3D}
+\definecolor{mxline}{HTML}{BDBDBD}
+\definecolor{mxlinestrong}{HTML}{111111}
+\definecolor{mxpaper}{HTML}{FFF6C2}        % pale comic yellow
+\definecolor{mxaccent}{HTML}{B3101D}       % comic red, text weight
+\definecolor{mxaccentsoft}{HTML}{FFE1E3}
+\colorlet{mxobject}{mxaccent}              % the studied object is red on this site
+\definecolor{mxobjectfill}{HTML}{E11D2E}
 \colorlet{mxobjectsoft}{mxaccentsoft}
-\definecolor{mxobjtwo}{HTML}{6B4FC9}       % lilac
-\definecolor{mxobjtwosoft}{HTML}{F3EEFF}
-\definecolor{mxpos}{HTML}{0F7A6F}          % lagoon
-\definecolor{mxpossoft}{HTML}{E2F3F0}
-\definecolor{mxneg}{HTML}{A4133C}          % raspberry
-\definecolor{mxnegsoft}{HTML}{FBE7EC}
-\definecolor{mxmark}{HTML}{FFBE2E}         % sunflower
+\definecolor{mxobjtwo}{HTML}{1D4ED8}       % comic blue
+\definecolor{mxobjtwosoft}{HTML}{E6EDFF}
+\definecolor{mxpos}{HTML}{0A6B34}
+\definecolor{mxpossoft}{HTML}{DCF5E5}
+\definecolor{mxneg}{HTML}{9B0D4F}
+\definecolor{mxnegsoft}{HTML}{FDE3EE}
+\definecolor{mxmark}{HTML}{FFE14D}         % comic yellow
 \colorlet{mxonmark}{mxink}
-\colorlet{mxslidebg}{mxink}
-\colorlet{mxslideink}{mxpaper}
+\colorlet{mxslidebg}{mxmark}
+\colorlet{mxslideink}{mxink}
 
 % ---- Fonts -------------------------------------------------------------------------------------------------------------
-% Text and labels: Atkinson Hyperlegible (made for low vision; no italic is shipped, so it is slanted). Titles:
-% Bricolage Grotesque. Mathematics: STIX Two. Code: Latin Modern Mono.
+% Text and labels: Comic Neue (lettering, with its own italic). Titles: Anton (the open face closest to Impact, which the
+% site uses when the reader has it). Mathematics: STIX Two. Code: Latin Modern Mono.
 \defaultfontfeatures{Path=\mxcorepath fonts/,Ligatures=TeX}
-\setmainfont{AtkinsonHyperlegible}[Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Regular,
-  ItalicFeatures={FakeSlant=.16},BoldItalicFont=*-Bold,BoldItalicFeatures={FakeSlant=.16}]
-\setsansfont{AtkinsonHyperlegible}[Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Regular,
-  ItalicFeatures={FakeSlant=.16},BoldItalicFont=*-Bold,BoldItalicFeatures={FakeSlant=.16}]
+\setmainfont{ComicNeue}[Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic]
+\setsansfont{ComicNeue}[Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic]
 \setmonofont{lmmono10-regular}[Extension=.otf,UprightFont=*,ItalicFont=lmmono10-italic,BoldFont=lmmonolt10-bold,
   BoldItalicFont=lmmonolt10-boldoblique,Scale=.94]
 \setmathfont{STIXTwoMath-Regular}[Extension=.otf]
-\newfontfamily\mxdisplayfont{BricolageGrotesque-ExtraBold}[Extension=.ttf,BoldFont=*]
-\newfontfamily\mxheadfont{BricolageGrotesque-Bold}[Extension=.ttf,BoldFont=BricolageGrotesque-ExtraBold]
+\newfontfamily\mxdisplayfont{Anton-Regular}[Extension=.ttf,BoldFont=*,LetterSpace=1.5]
+\newfontfamily\mxheadfont{Anton-Regular}[Extension=.ttf,BoldFont=*,LetterSpace=1]
 \newcommand{\mxlabelfont}{\sffamily\bfseries}
 
 % ---- Names and mark ----------------------------------------------------------------------------------------------------
 \newcommand{\mxbrandname}{Maths Explorer}
-\newcommand{\mxbrandwordmark}{{\mxdisplayfont maths\ \textcolor{mxaccent}{explorer}}}
-% The mark: a Reuleaux triangle (constant width) with a dot. \mxbrandmark[fill][dot]{height}; below 5 mm the dot is
-% dropped. Drawn on the 100-unit grid of the site's SVG (y turned up).
+\newcommand{\mxbrandwordmark}{{\mxdisplayfont MATHS\ \textcolor{mxaccent}{EXPLORER}}}
+% The mark: a comic starburst outlined in ink, with a white pi. \mxbrandmark[fill][pi]{height}; below 5 mm the pi is
+% dropped. Twelve points with a fixed irregularity, as on the site (site/js/app.js brandMark).
 \newlength{\mx@u}
 \NewDocumentCommand{\mxbrandmark}{O{mxobjectfill} O{white} m}{\setlength{\mx@u}{#3}\divide\mx@u by 100\relax
-  \begin{tikzpicture}[baseline={(0,22.2\mx@u)}]
-  \fill[#1] (50\mx@u,88\mx@u) arc[start angle=60,end angle=0,radius=76\mx@u] arc[start angle=-60,end angle=-120,radius=76\mx@u]
-    arc[start angle=180,end angle=120,radius=76\mx@u] -- cycle;
-  \ifdim#3>5mm\fill[#2] (50\mx@u,44\mx@u) circle[radius=9\mx@u];\fi
+  \begin{tikzpicture}[baseline={(0,30\mx@u)}]
+  \draw[fill=#1,draw=mxink,line width=5\mx@u,line join=round]
+    (90:48\mx@u) -- (105:34\mx@u) -- (120:43\mx@u) -- (135:34\mx@u) -- (150:49\mx@u) -- (165:34\mx@u) -- (180:42\mx@u)
+    -- (195:34\mx@u) -- (210:48\mx@u) -- (225:34\mx@u) -- (240:44\mx@u) -- (255:34\mx@u) -- (270:47\mx@u) -- (285:34\mx@u)
+    -- (300:43\mx@u) -- (315:34\mx@u) -- (330:48\mx@u) -- (345:34\mx@u) -- (0:42\mx@u) -- (15:34\mx@u) -- (30:47\mx@u)
+    -- (45:34\mx@u) -- (60:44\mx@u) -- (75:34\mx@u) -- cycle;
+  \ifdim#3>5mm\node[text=#2,font=\mxdisplayfont\fontsize{38\mx@u}{38\mx@u}\selectfont,inner sep=0pt] at (0,-2\mx@u) {$\symup{\pi}$};\fi
 \end{tikzpicture}}
-\newcommand{\mxbrandtagline}{\mxtr{Devine, compare, prouve.}{Guess, compare, prove.}}
+\newcommand{\mxbrandtagline}{\mxtr{Touche, devine, puis prouve.}{Touch, guess, then prove.}}
 
 % ---- Page frame --------------------------------------------------------------------------------------------------------
-% Header: the mark and the wordmark, the language at the right, a 1.2 pt ink rule. Footer: a hairline, the tagline and
-% the page count. Rounded shapes, no fill, no shadow.
+% Header: the mark and the wordmark, the language at the right, a 2 pt ink rule. Footer: a hairline, the tagline and
+% the page count in a small ink box. Square corners; the only fill is the mark.
 \newcommand{\mxbrandframe}{%
   \AtPageUpperLeft{%
-    \mxput{23bp}{-29.6bp}{\mxbrandmark{10.5bp}}%
-    \mxput{36.5bp}{-28.6bp}{\makebox(0,0)[lb]{\fontsize{8.4bp}{10bp}\selectfont\color{mxink}\mxbrandwordmark}}%
+    \mxput{23bp}{-30.6bp}{\mxbrandmark{12bp}}%
+    \mxput{38bp}{-28.6bp}{\makebox(0,0)[lb]{\fontsize{9bp}{10bp}\selectfont\color{mxink}\mxbrandwordmark}}%
     \mxput{\dimexpr\paperwidth-23bp-5.2em\relax}{-28.4bp}{\makebox(0,0)[lb]{\mxlabelfont\fontsize{7.4bp}{9bp}\selectfont\color{mxmuted}\mxtr{FR}{EN}}}%
-    \mxput{23bp}{-34bp}{\color{mxink}\rule{\dimexpr\paperwidth-46bp\relax}{1.2bp}}}%
+    \mxput{23bp}{-35bp}{\color{mxink}\rule{\dimexpr\paperwidth-46bp\relax}{2bp}}}%
   \AtPageLowerLeft{%
-    \mxput{23bp}{26.75bp}{\color{mxline}\rule{\dimexpr\paperwidth-46bp\relax}{.6bp}}%
-    \mxput{23bp}{14bp}{\makebox(0,0)[lb]{\sffamily\fontsize{7.4bp}{9bp}\selectfont\color{mxmuted}\mxbrandtagline}}%
+    \mxput{23bp}{26.75bp}{\color{mxink}\rule{\dimexpr\paperwidth-46bp\relax}{.8bp}}%
+    \mxput{23bp}{14bp}{\makebox(0,0)[lb]{\sffamily\bfseries\fontsize{7.4bp}{9bp}\selectfont\color{mxmuted}\mxbrandtagline}}%
     \mxput{\dimexpr\paperwidth-23bp-3.4em\relax}{14bp}{\makebox(0,0)[lb]{\sffamily\bfseries\fontsize{7.4bp}{9bp}\selectfont\color{mxink}\mxframepage\ \textcolor{mxmuted}{/ \mxdocumentpages}}}}}
 
 % ---- Headings ----------------------------------------------------------------------------------------------------------
 \newcommand{\mxchapterlabelstyle}{\mxlabelfont\small\color{mxaccent}}
-\newcommand{\mxchaptertitlestyle}{\mxdisplayfont\fontsize{27}{29}\selectfont\color{mxink}}
-\newcommand{\mxchapterrule}{\vspace{8pt}\noindent\begin{tikzpicture}\fill[mxobjectfill,rounded corners=1.6pt] (0,0) rectangle (24mm,3.2pt);\end{tikzpicture}}
+\newcommand{\mxchaptertitlestyle}{\mxdisplayfont\fontsize{30}{32}\selectfont\color{mxink}}
+\newcommand{\mxchapterrule}{\vspace{8pt}\noindent\begin{tikzpicture}
+  \fill[mxink] (1.2pt,-1.2pt) rectangle (30mm+1.2pt,4.4pt-1.2pt);
+  \draw[fill=mxobjectfill,draw=mxink,line width=1pt] (0,0) rectangle (30mm,4.4pt);\end{tikzpicture}}
 \newcommand{\mxsectionstyle}{\mxheadfont\Large\color{mxink}}
 \newcommand{\mxsectionnumber}[1]{\textcolor{mxaccent}{#1}}
 \newcommand{\mxsubsectionstyle}{\mxheadfont\large\color{mxink}}
-\newcommand{\mxsheetsectionrule}{\vspace{-2pt}{\color{mxline}\titlerule[.8pt]}}
+\newcommand{\mxsheetsectionrule}{\vspace{-2pt}{\color{mxink}\titlerule[1pt]}}
 
 % ---- Boxes -------------------------------------------------------------------------------------------------------------
-% Rounded cards (12 px on the site: 3 mm here). Definitions on a lilac card, properties outlined in ink with a tomato
-% title, work boxes outlined lightly, errors on a raspberry card, teacher material on a lagoon card.
-\newcommand{\mxarc}{3mm}
+% Comic panels: square corners, an ink outline and a solid offset shadow. Properties are white panels with a red title,
+% definitions are blue panels, methods sit on pale yellow, errors on a raspberry panel, teacher material on green.
+\newcommand{\mxarc}{0mm}
 \newcommand{\mxboxtitlefont}{\mxheadfont}
 \tcbset{
-  mx/base/.style={enhanced,breakable,parbox=false,arc=\mxarc,outer arc=\mxarc,boxrule=0pt,colframe=white,colback=white,
-    left=9pt,right=9pt,top=6pt,bottom=6pt,before skip=7pt,after skip=5pt,fontupper=\normalfont},
-  mx/result/.style={mx/base,boxrule=1pt,colframe=mxink,code={\colorlet{mx@accent}{mxaccent}}},
-  mx/definition/.style={mx/base,colback=mxobjtwosoft,code={\colorlet{mx@accent}{mxobjtwo}}},
-  mx/method/.style={mx/base,colback=mxpaper,code={\colorlet{mx@accent}{mxink}}},
-  mx/work/.style={mx/base,boxrule=.8pt,colframe=mxline,code={\colorlet{mx@accent}{mxink}}},
+  mx/base/.style={enhanced,breakable,parbox=false,sharp corners,arc=\mxarc,outer arc=\mxarc,boxrule=0pt,colframe=white,colback=white,
+    left=9pt,right=9pt,top=6pt,bottom=6pt,before skip=8pt,after skip=7pt,fontupper=\normalfont},
+  mx/panel/.style={mx/base,boxrule=1pt,colframe=mxink,
+    shadow={1.4mm}{-1.4mm}{0mm}{mxink}},
+  mx/result/.style={mx/panel,code={\colorlet{mx@accent}{mxaccent}}},
+  mx/definition/.style={mx/panel,colframe=mxobjtwo,colback=mxobjtwosoft,shadow={1.4mm}{-1.4mm}{0mm}{mxobjtwo},code={\colorlet{mx@accent}{mxobjtwo}}},
+  mx/method/.style={mx/panel,colback=mxpaper,code={\colorlet{mx@accent}{mxink}}},
+  mx/work/.style={mx/base,boxrule=.8pt,colframe=mxink,code={\colorlet{mx@accent}{mxink}}},
   mx/quiet/.style={mx/base,colback=mxpaper,code={\colorlet{mx@accent}{mxinktwo}}},
-  mx/pitfall/.style={mx/base,colback=mxnegsoft,code={\colorlet{mx@accent}{mxneg}}},
-  mx/teacher/.style={mx/base,colback=mxpossoft,code={\colorlet{mx@accent}{mxpos}}},
-  mx/chip/.style={on line,colback=mxmark,colframe=mxmark,coltext=mxonmark,boxrule=0pt,arc=5pt,
+  mx/pitfall/.style={mx/panel,colframe=mxneg,colback=mxnegsoft,shadow={1.4mm}{-1.4mm}{0mm}{mxneg},code={\colorlet{mx@accent}{mxneg}}},
+  mx/teacher/.style={mx/panel,colframe=mxpos,colback=mxpossoft,shadow={1.4mm}{-1.4mm}{0mm}{mxpos},code={\colorlet{mx@accent}{mxpos}}},
+  mx/chip/.style={on line,colback=mxmark,colframe=mxink,coltext=mxonmark,boxrule=.6pt,arc=0pt,sharp corners,
     left=4pt,right=4pt,top=1pt,bottom=1pt,fontupper=\sffamily\bfseries\scriptsize},
-  mx/band/.style={enhanced,colback=mxink,colframe=mxink,boxrule=0pt,arc=\mxarc,coltext=mxpaper},
+  mx/band/.style={enhanced,sharp corners,colback=mxink,colframe=mxink,boxrule=0pt,arc=\mxarc,coltext=white},
 }
 
 % ---- Slides (Beamer theme mx) ------------------------------------------------------------------------------------------
-% Title slide: plum page, cream text, a large tomato Reuleaux triangle rolling off the right edge.
+% Title slide: a halftone yellow page with a large red starburst breaking out of the right edge.
 \newcommand{\mxslidetitlebackground}{\begin{tikzpicture}[remember picture,overlay]
   \fill[mxslidebg] (current page.south west) rectangle (current page.north east);
-  \node[anchor=center] at ([xshift=-14mm,yshift=4mm]current page.east) {\mxbrandmark[mxobjectfill][mxobjectfill]{58mm}};
+  \begin{scope}[shift={(current page.south west)}]
+    \foreach \i in {0,...,63}{\foreach \j in {0,...,36}{\fill[mxobjectfill,opacity=.16] (\i*2.6mm+1.3mm,\j*2.6mm+1.3mm) circle[radius=.42mm];}}
+  \end{scope}
+  \node[anchor=center] at ([xshift=-10mm,yshift=4mm]current page.east) {\mxbrandmark[mxobjectfill][white]{62mm}};
 \end{tikzpicture}}
 % Face of the title on the title slide: the display face.
 \newcommand{\mxslidetitlefont}{\mxdisplayfont}
-% The mark before a frame title: a short rounded tomato bar.
-\newcommand{\mxslideframetitlemark}{\begin{tikzpicture}\fill[mxobjectfill,rounded corners=1.3pt] (0,0) rectangle (1.6em,2.6pt);\end{tikzpicture}}
+% The mark before a frame title: a short red bar outlined in ink.
+\newcommand{\mxslideframetitlemark}{\begin{tikzpicture}\fill[mxink] (.9pt,-.9pt) rectangle (1.6em+.9pt,3.2pt-.9pt);\draw[fill=mxobjectfill,draw=mxink,line width=.6pt] (0,0) rectangle (1.6em,3.2pt);\end{tikzpicture}}

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#f5f6f8" />
+    <meta name="theme-color" content="#ffe14d" />
     <meta name="application-name" content="Maths Explorer" />
     <meta
       name="description"
@@ -62,12 +62,12 @@
         if (saved !== "jour" && saved !== "nuit")
           saved = matchMedia("(prefers-color-scheme: dark)").matches ? "nuit" : "jour";
         document.documentElement.dataset.theme = saved;
-        document.querySelector('meta[name="theme-color"]').content = saved === "nuit" ? "#0c111b" : "#f5f6f8";
+        document.querySelector('meta[name="theme-color"]').content = saved === "nuit" ? "#14130f" : "#ffe14d";
       } catch (e) {}
     </script>
     <link rel="preload" href="./fonts/stix-two-text-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="./styles/explorer.css?v=08b52bf2cb" />
-    <link rel="stylesheet" href="./styles/pages.css?v=e51fd1f43c" />
+    <link rel="stylesheet" href="./styles/explorer.css?v=f8a8abc6d0" />
+    <link rel="stylesheet" href="./styles/pages.css?v=5222e9fc1b" />
     <link rel="stylesheet" href="./styles/ergonomics.css?v=4a6e199373" />
     <link rel="stylesheet" href="./styles/home.css?v=18e716a2da" />
     <link rel="stylesheet" href="./styles/history.css?v=7563185537" />
@@ -75,19 +75,20 @@
     <link rel="stylesheet" href="./styles/topics.css?v=1ec2f6ee25" />
     <link rel="stylesheet" href="./styles/teacher.css?v=9ddd66244e" />
     <link rel="stylesheet" href="./styles/review.css?v=9200017f1f" />
+    <link rel="stylesheet" href="./styles/comic.css?v=948dc09c88" />
     <!-- importmap:start -->
     <script type="importmap">
 {
       "imports": {
         "./js/annals-bank.js": "./js/annals-bank.js?v=49636c9652",
-        "./js/app.js": "./js/app.js?v=dd23993b9d",
+        "./js/app.js": "./js/app.js?v=5e79cd1dc8",
         "./js/automatismes.js": "./js/automatismes.js?v=027ca4e4ff",
         "./js/bank-page.js": "./js/bank-page.js?v=56108896c9",
         "./js/basics-page.js": "./js/basics-page.js?v=df5c9a13db",
         "./js/biographies-major.js": "./js/biographies-major.js?v=d52726aba4",
         "./js/camera3d.js": "./js/camera3d.js?v=1bacf9765e",
         "./js/canvas-navigation.js": "./js/canvas-navigation.js?v=04396cab00",
-        "./js/catalogue-data.js": "./js/catalogue-data.js?v=9e20f48753",
+        "./js/catalogue-data.js": "./js/catalogue-data.js?v=48f49ba939",
         "./js/challenges/ants/activity.js": "./js/challenges/ants/activity.js?v=976caa20eb",
         "./js/challenges/ants/art.js": "./js/challenges/ants/art.js?v=b866e20fa8",
         "./js/challenges/ants/index.js": "./js/challenges/ants/index.js?v=dbbb27f9e0",
@@ -363,7 +364,7 @@
         "./js/gallery/curiosity-explainers.js": "./js/gallery/curiosity-explainers.js?v=3ed34a7bb9",
         "./js/gallery/gallery-additions.js": "./js/gallery/gallery-additions.js?v=2f902eaf2b",
         "./js/gallery/gallery-banach-model.js": "./js/gallery/gallery-banach-model.js?v=14be946729",
-        "./js/gallery/gallery-banach.js": "./js/gallery/gallery-banach.js?v=60ed8066aa",
+        "./js/gallery/gallery-banach.js": "./js/gallery/gallery-banach.js?v=7817016c5f",
         "./js/gallery/gallery-boxes-model.js": "./js/gallery/gallery-boxes-model.js?v=5db1ec5142",
         "./js/gallery/gallery-boxes.js": "./js/gallery/gallery-boxes.js?v=34abc49ccd",
         "./js/gallery/gallery-collisions-model.js": "./js/gallery/gallery-collisions-model.js?v=8eefc332ad",
@@ -379,7 +380,7 @@
         "./js/gallery/gallery-four-colour.js": "./js/gallery/gallery-four-colour.js?v=0b68b03152",
         "./js/gallery/gallery-gomboc.js": "./js/gallery/gallery-gomboc.js?v=d2dd6e2f77",
         "./js/gallery/gallery-hairy-model.js": "./js/gallery/gallery-hairy-model.js?v=2123d3739b",
-        "./js/gallery/gallery-hairy.js": "./js/gallery/gallery-hairy.js?v=ccbbab54c8",
+        "./js/gallery/gallery-hairy.js": "./js/gallery/gallery-hairy.js?v=53b47223ee",
         "./js/gallery/gallery-hat-model.js": "./js/gallery/gallery-hat-model.js?v=21e06b91d1",
         "./js/gallery/gallery-hat.js": "./js/gallery/gallery-hat.js?v=04c68ee09d",
         "./js/gallery/gallery-inference.js": "./js/gallery/gallery-inference.js?v=bff8c56862",
@@ -395,7 +396,7 @@
         "./js/gallery/gallery-life.js": "./js/gallery/gallery-life.js?v=0635cb01ea",
         "./js/gallery/gallery-math.js": "./js/gallery/gallery-math.js?v=98f99478d8",
         "./js/gallery/gallery-models.js": "./js/gallery/gallery-models.js?v=774f1f3edb",
-        "./js/gallery/gallery-napkin-gl.js": "./js/gallery/gallery-napkin-gl.js?v=28e79b2346",
+        "./js/gallery/gallery-napkin-gl.js": "./js/gallery/gallery-napkin-gl.js?v=88db08a7a3",
         "./js/gallery/gallery-napkin-model.js": "./js/gallery/gallery-napkin-model.js?v=916aeb3c15",
         "./js/gallery/gallery-napkin.js": "./js/gallery/gallery-napkin.js?v=d2152635dc",
         "./js/gallery/gallery-objects.js": "./js/gallery/gallery-objects.js?v=d8aaece3ca",
@@ -530,7 +531,7 @@
         "./js/mandelbrot-preview.js": "./js/mandelbrot-preview.js?v=4d3aee61f4",
         "./js/math.js": "./js/math.js?v=3728a18776",
         "./js/modes.js": "./js/modes.js?v=47ed5c3351",
-        "./js/motion.js": "./js/motion.js?v=5fe0a274ee",
+        "./js/motion.js": "./js/motion.js?v=1dcf636a6a",
         "./js/navigation-state.js": "./js/navigation-state.js?v=bba40bad57",
         "./js/object-kit.js": "./js/object-kit.js?v=3c1eca9f7c",
         "./js/offline.js": "./js/offline.js?v=b7a9bc94b7",
@@ -552,7 +553,7 @@
         "./js/resource-library.js": "./js/resource-library.js?v=ef4c6421e3",
         "./js/resource-search.js": "./js/resource-search.js?v=aac0f17e13",
         "./js/resource-sources.js": "./js/resource-sources.js?v=1f8560c976",
-        "./js/resources-data.js": "./js/resources-data.js?v=a851d6f842",
+        "./js/resources-data.js": "./js/resources-data.js?v=b0edd6e036",
         "./js/review-model.js": "./js/review-model.js?v=f00aff5f20",
         "./js/review-page.js": "./js/review-page.js?v=486fa00b8e",
         "./js/review-state.js": "./js/review-state.js?v=103c597b16",
@@ -566,15 +567,15 @@
         "./js/teacher-state.js": "./js/teacher-state.js?v=e93ee3e7d2",
         "./js/topic-registry.js": "./js/topic-registry.js?v=4a75edeeb5",
         "./js/topology-content.js": "./js/topology-content.js?v=8481038c11",
-        "./js/ui.js": "./js/ui.js?v=4dbe58d90f",
+        "./js/ui.js": "./js/ui.js?v=8f3043c6ed",
         "./js/visible-loop.js": "./js/visible-loop.js?v=1bd00417d7",
         "./js/visual-lessons.js": "./js/visual-lessons.js?v=2d994f8fbb",
-        "./js/welcome.js": "./js/welcome.js?v=b786ca6224",
+        "./js/welcome.js": "./js/welcome.js?v=3288ac99d8",
         "./js/worksheets.js": "./js/worksheets.js?v=c508fed939"
       }
     }
     </script>
-    <script type="module" src="./js/app.js?v=dd23993b9d"></script>
+    <script type="module" src="./js/app.js?v=5e79cd1dc8"></script>
     <!-- importmap:end -->
   </head>
   <body>

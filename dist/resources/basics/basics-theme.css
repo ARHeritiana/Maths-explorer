@@ -6,5 +6,11 @@
 :root { --paper: var(--bg); --mute: var(--muted); --surf: var(--surface); --b: var(--accent); --ok: var(--pos); --bad: var(--neg); color-scheme: light; }
 :root[data-theme="nuit"] { color-scheme: dark; }
 body { font-family: var(--body); font-synthesis: none; }
-h1, h2, h3 { font-family: var(--display); letter-spacing: -0.02em; }
+h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercase; letter-spacing: .01em; line-height: 1.02; }
+h3 { font-family: var(--body); font-weight: 700; }
+h1 { text-shadow: 3px 3px 0 var(--shape); }
+/* design v8 "Bande dessinée": buttons and inputs are outlined in ink with a solid shadow */
+button { border-radius: 0 !important; }
+button:not([role="tab"]):not(:disabled) { box-shadow: 3px 3px 0 var(--shadow); }
+:focus-visible { outline: 4px solid var(--obj2); outline-offset: 3px; }
 ::selection { background: var(--mark, var(--accent-soft)); color: var(--ink); }

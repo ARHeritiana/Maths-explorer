@@ -14,7 +14,8 @@ Read one only when the task router in `MAP.md` sends you here.
 | `SLIDES.md` | where each deck comes from, slide checks |
 | `DESIGN_V3.md`, `DESIGN_V4.md` | design reasoning (v4 amends v3) |
 | `DESIGN_V6.md` | the previous look, "Grille" (31 October 2026), superseded by v7 |
-| `DESIGN_V7.md` | the current look, "Bac à sable" (chosen 15 November 2026): rules, what is done, what is next. Supersedes the look of v3, v4 and v6 |
+| `DESIGN_V7.md` | the previous look, "Bac à sable" (15 November 2026), superseded by v8 |
+| `DESIGN_V8.md` | the current look, "Bande dessinée" (18 November 2026): visual rules, the ergonomic rules with their sources, the four-section structure, rollback |
 | `design-v6/prototype.html` | clickable redesign prototype (home, chapter, laboratory, notes); not part of the site |
 | `REDESIGN_PROPOSAL_2026-10-27.md` | proposed illustrated catalogue, practical tools, chapter redesign and content completion |
 | `IMPROVEMENT_GOALS.md` | owner-approved learning, visualization, interactive slides, error-investigation, and Grand Oral goals with acceptance criteria |

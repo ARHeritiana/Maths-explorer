@@ -298,7 +298,7 @@ export function hairyBall(root, opts) {
       const [x, y] = stage.project(z.p), [x2, y2] = stage.project(z.p.map((v) => v * 1.0) .map((v, i) => v + 0.09 * (i === 2 ? 1 : 0)));
       const r = Math.max(9, Math.hypot(x2 - x, y2 - y));
       g.lineWidth = 2; g.strokeStyle = C.neg; g.beginPath(); g.arc(x, y, r, 0, 2 * Math.PI); g.stroke();
-      g.font = '700 14px "Atkinson Hyperlegible", system-ui, sans-serif'; g.textAlign = 'left'; g.textBaseline = 'bottom';
+      g.font = '700 14px "Comic Neue", system-ui, sans-serif'; g.textAlign = 'left'; g.textBaseline = 'bottom';
       const label = signed(z.index); g.lineWidth = 4; g.strokeStyle = C.surface; g.strokeText(label, x + r + 3, y - 3); g.fillStyle = C.ink; g.fillText(label, x + r + 3, y - 3);
     }
     if (st.mode === 'comb' && hover && front(hover)) { const [x, y] = stage.project(hover); g.strokeStyle = C.ink; g.globalAlpha = 0.7; g.lineWidth = 1.5; g.setLineDash([4, 4]); g.beginPath(); g.arc(x, y, 26, 0, 2 * Math.PI); g.stroke(); g.setLineDash([]); g.globalAlpha = 1; }

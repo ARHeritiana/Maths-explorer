@@ -26,10 +26,10 @@ really need them.
 
 | I want to change... | Open (and nothing else first) | Then |
 |---|---|---|
-| a colour, font, spacing, radius or theme | `site/styles/tokens.css` (tokens, both themes) | `docs/DESIGN_V7.md` only for a design decision |
+| a colour, font, spacing, radius or theme | `site/styles/tokens.css` (tokens, both themes) | `docs/DESIGN_V8.md` only for a design decision; the comic layer is `site/styles/comic.css` |
 | the look of one page or component | `site/styles/pages.css` (search the page class, see section 3) | standalone mathematicians: `site/styles/timeline-standalone.css` and `site/resources/history/mathematicians-timeline.html` |
 | shared class memory or grouped optional classroom controls | `site/js/navigation-state.js`, `site/js/page-ergonomics.js`, `site/styles/ergonomics.css` | |
-| the top navigation (Apprendre, Explorer and Lire, with page tabs), footer, theme or language buttons | `site/js/app.js` `SECTIONS`, `TAB_OF`, `header()` / `footer()` | |
+| the top navigation (Cours, Exercices, Labo and Bibliothèque, with page tabs), footer, theme or language buttons | `site/js/app.js` `SECTIONS`, `TAB_OF`, `header()` / `footer()` | |
 | a foundations lesson (`#basics`) | `site/js/basics-page.js` (`BASICS_GROUPS`, `basicsPage`, `bindBasics`), `site/resources/basics/place-value.html, site/resources/basics/place-value.en.html`, `site/resources/basics/addition.html, site/resources/basics/addition.en.html`, `site/resources/basics/subtraction.html, site/resources/basics/subtraction.en.html`, `site/resources/basics/multiplication.html, site/resources/basics/multiplication.en.html`, `site/resources/basics/division.html, site/resources/basics/division.en.html`, `site/resources/basics/sets.html, site/resources/basics/sets.en.html` | place value, the four arithmetic operations, sets (shared code, one text table per edition); `site/resources/basics/fractions.html` and `site/resources/basics/fractions.en.html` are the bilingual fractions workbench |
 | a route (add or rename a page) | `site/js/app.js` `route()`, `render()` (validity list and dispatch) | section 3 |
 | any text of a laboratory experiment (missions, prompts, arguments) | `site/js/lab/experiments/<id>.js` (index in `site/js/lab/CLAUDE.md`) | gallery entries only: `site/js/content.js` `labs` (`custom: true`) |
@@ -89,33 +89,33 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 
 | Route | Nav label | Page module |
 |---|---|---|
-| `#topics[/<topic>[/<subtopic>]]` | Explorer > Domaines | `discovery.js`, `discovery-index.js`, `topic-registry.js` (field figures, starters, difficulty bands), `styles/topics.css` |
+| `#topics[/<topic>[/<subtopic>]]` | Cours > Domaines | `discovery.js`, `discovery-index.js`, `topic-registry.js` (field figures, starters, difficulty bands), `styles/topics.css` |
 | `#search[/<query>]` | (header magnifier, dashboard section) | `resource-search.js`, `resource-index.js`, `resource-sources.js`; styles `teacher.css` |
 | `#teacher` | (device entrance, not in the nav) | `teacher-dashboard.js` `mountTeacherDashboard` (En classe launch pad), loaded on demand; pure phases and targets `launchpad-model.js`; entry preference `teacher-entry.js`, state `teacher-state.js` (séance model `seance-model.js`) |
 | in-class dock | (bottom bar on tool pages in mode En classe) | `dock.js` loaded on demand by `app.js` `syncDock`; pure `dock-model.js`; styles `teacher.css` |
 | `#prepare` | Préparer mode (mode bar, shown for the teacher entrance) | `prepare-page.js` `mountPreparePage` (builder), loaded on demand; pure `prepare-model.js`; mode bar `modes.js` (`MODES`, `modeOfRoute`, `showModeBar`), remembered through `teacher-state.js` `getMode`/`setMode` |
 | `#relax` | Détente mode (mode bar) | `relax-page.js` `mountRelaxPage` (five pages of the day, Surprends-moi, collections), loaded on demand with its data; pure `relax-model.js` (`pageOfTheDay`, `randomPage`); `modes.js` |
-| `#review` | Apprendre > Réviser | `review-page.js` `mountReviewPage`, loaded on demand; pure `review-model.js`, storage `review-state.js`, styles `styles/review.css`; `docs/REVIEW.md` |
+| `#review` | Exercices > Réviser | `review-page.js` `mountReviewPage`, loaded on demand; pure `review-model.js`, storage `review-state.js`, styles `styles/review.css`; `docs/REVIEW.md` |
 | `#home` (default) | logo | `welcome.js` `homePage` / `bindHome` / `mountHomeFigure`, class-to-chapter flow |
-| `#basics[/place-value|addition|subtraction|multiplication|division|fractions|sets|logic-propositions|logic-implication|logic-quantifiers|logic-reasoning]` | Apprendre > Bases | `app.js` `basicsPage` / `bindBasics`, `site/resources/basics/place-value.html, site/resources/basics/place-value.en.html`, `site/resources/basics/addition.html, site/resources/basics/addition.en.html` and `site/resources/basics/subtraction.html, site/resources/basics/subtraction.en.html`, `site/resources/basics/multiplication.html, site/resources/basics/multiplication.en.html` and `site/resources/basics/division.html, site/resources/basics/division.en.html` and `site/resources/basics/sets.html, site/resources/basics/sets.en.html` and `site/resources/basics/fractions.html, site/resources/basics/fractions.en.html` (discovery record `FOUNDATION_LESSONS` in `discovery.js`) |
-| `#resources[/<course>]` | Programme français > Cours | `resource-library.js` `libraryPage` / `bindLibrary` (rail of curricula and levels beside the chapter grid; classroom tools in the rail) |
+| `#basics[/place-value|addition|subtraction|multiplication|division|fractions|sets|logic-propositions|logic-implication|logic-quantifiers|logic-reasoning]` | Cours > Bases | `app.js` `basicsPage` / `bindBasics`, `site/resources/basics/place-value.html, site/resources/basics/place-value.en.html`, `site/resources/basics/addition.html, site/resources/basics/addition.en.html` and `site/resources/basics/subtraction.html, site/resources/basics/subtraction.en.html`, `site/resources/basics/multiplication.html, site/resources/basics/multiplication.en.html` and `site/resources/basics/division.html, site/resources/basics/division.en.html` and `site/resources/basics/sets.html, site/resources/basics/sets.en.html` and `site/resources/basics/fractions.html, site/resources/basics/fractions.en.html` (discovery record `FOUNDATION_LESSONS` in `discovery.js`) |
+| `#resources[/<course>]` | Cours > Chapitres | `resource-library.js` `libraryPage` / `bindLibrary` (rail of curricula and levels beside the chapter grid; classroom tools in the rail) |
 | `#chapter/<id>[/<tab>]` | (Cours) | `resource-library.js` `chapterPage` → `chapter-sequence.js`; "Ressources liées" box from `related-box.js` (also on `#gallery/<id>` and `#lab/<experiment>`) |
 | `#library[/<id>]` | (Cours) | `library.js` `mountLibrary` |
 | `#workshop/quadratic` | (Cours) | `quadratic-workshop.js` |
 | `#pack[/<id>]`, `#sources` | (Cours) | `pack-builder.js` |
-| `#automatismes` | Apprendre > Automatismes | `automatismes.js` (generator, projection, print, LaTeX); engine in `js/exercises/` |
-| `#sheets` | Apprendre > Fiches | `worksheets.js` (worksheets, quizzes, tests; student and teacher versions) |
-| `#bank[/<course>[/<chapter>[/<exercise id>]]]` | Apprendre > Exercices | `bank-page.js` (online exercise bank; the exercise segment opens the chapter page on that exercise, scrolled to and focused, and is the `open` address of the search items `exercise:<id>`; the selection rule shared with the index is `js/exercises/bank-select.js`); data `js/exercises/bank.js`, annales `js/annals-bank.js` (`#bank/annales[/<id>]`), `authored.js`, `problems.js`, the per-class files (`authored-seconde.js`, `problems-seconde.js`, `problems-seconde-2.js`), `bank-mada.js` |
-| `#slides[/<course>]` | Apprendre > Diaporamas | `slides-page.js` (rail of curricula and levels, deck cards); decks open in `slides/player.html` with `deck=<id>` |
-| `#lab` | Explorer > Laboratoire | `site/js/lab/page.js` `indexPage` (experiments grouped by type of activity) |
+| `#automatismes` | Exercices > Automatismes | `automatismes.js` (generator, projection, print, LaTeX); engine in `js/exercises/` |
+| `#sheets` | Cours > Fiches | `worksheets.js` (worksheets, quizzes, tests; student and teacher versions) |
+| `#bank[/<course>[/<chapter>[/<exercise id>]]]` | Exercices > Exercices | `bank-page.js` (online exercise bank; the exercise segment opens the chapter page on that exercise, scrolled to and focused, and is the `open` address of the search items `exercise:<id>`; the selection rule shared with the index is `js/exercises/bank-select.js`); data `js/exercises/bank.js`, annales `js/annals-bank.js` (`#bank/annales[/<id>]`), `authored.js`, `problems.js`, the per-class files (`authored-seconde.js`, `problems-seconde.js`, `problems-seconde-2.js`), `bank-mada.js` |
+| `#slides[/<course>]` | Cours > Diaporamas | `slides-page.js` (rail of curricula and levels, deck cards); decks open in `slides/player.html` with `deck=<id>` |
+| `#lab` | Labo > Laboratoire | `site/js/lab/page.js` `indexPage` (experiments grouped by type of activity) |
 | `#lab/<experiment>[/<mission>]` | Laboratoire | `site/js/lab/page.js` `experimentPage` + `site/js/lab/mount.js` `mountExperiment`; the mission is kept in the address |
-| `#history[/<kind>[/<id>]]` (`people` or `advances`) | Lire > Chronologies | `history.js`, `history-layout.js`, `history-images.js`; sourced records in `history-data.js` |
-| `#biographies[/<id>]` | Lire > Biographies | `reading.js` `readingPage`; texts `reading-content.js` |
-| `#stories[/<id>]` | Lire > Histoires | `reading.js` `readingPage`; texts `reading-content.js` |
-| `#gallery[/<id>]` | Lire > Curiosités | `welcome.js` `galleryPage` (index), `app.js` `galleryDetail` / `bindGallery` (one exhibit); objects `lab-objects.js`, `js/gallery/gallery-objects.js`; data `labs` with `custom: true` (`#lab/<exhibit>` redirects here) |
-| `#intuition` | Explorer > Contre l’intuition | `intuition-page.js` `intuitionPage`; the entries `intuition-data.js` (`ENTRIES`, `SOON`): each points at an exhibit, experiment or challenge that exists (issue #28); gallery entries `site/js/gallery/gallery-intuition.js` |
-| `#errors[/<id>]` | Explorer > Erreurs | `errors.js` `errorsPage` / `bindErrors`; data and checks `errors-model.js` |
-| `#challenges[/<id>]` | Explorer > Défis | `app.js` `challengePage`, `challengeDetail`, `bindChallenges`; content from `site/js/challenges/registry.js` |
+| `#history[/<kind>[/<id>]]` (`people` or `advances`) | Bibliothèque > Chronologies | `history.js`, `history-layout.js`, `history-images.js`; sourced records in `history-data.js` |
+| `#biographies[/<id>]` | Bibliothèque > Biographies | `reading.js` `readingPage`; texts `reading-content.js` |
+| `#stories[/<id>]` | Bibliothèque > Histoires | `reading.js` `readingPage`; texts `reading-content.js` |
+| `#gallery[/<id>]` | Bibliothèque > Curiosités | `welcome.js` `galleryPage` (index), `app.js` `galleryDetail` / `bindGallery` (one exhibit); objects `lab-objects.js`, `js/gallery/gallery-objects.js`; data `labs` with `custom: true` (`#lab/<exhibit>` redirects here) |
+| `#intuition` | Labo > Contre l’intuition | `intuition-page.js` `intuitionPage`; the entries `intuition-data.js` (`ENTRIES`, `SOON`): each points at an exhibit, experiment or challenge that exists (issue #28); gallery entries `site/js/gallery/gallery-intuition.js` |
+| `#errors[/<id>]` | Labo > Erreurs | `errors.js` `errorsPage` / `bindErrors`; data and checks `errors-model.js` |
+| `#challenges[/<id>]` | Exercices > Défis | `app.js` `challengePage`, `challengeDetail`, `bindChallenges`; content from `site/js/challenges/registry.js` |
 
 ## 4. Area indexes (read only the one you work in)
 

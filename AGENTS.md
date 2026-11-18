@@ -39,5 +39,5 @@ or changing any slide.
   file, including guard lists.
 - French TeX units are the source; English units are generated from reviewed translation tables
   (`docs/ADR-0001-tex-i18n.md`). Translate prose only: never maths, TikZ, listings or `\includegraphics`.
-- No em-dashes in new visible text. No textbook statements reproduced. Visual design: see `docs/DESIGN_V7.md`.
+- No em-dashes in new visible text. No textbook statements reproduced. Visual design: see `docs/DESIGN_V8.md`.
 - Before pushing: `make check` must pass. Ask the owner before launching expensive agent batches.

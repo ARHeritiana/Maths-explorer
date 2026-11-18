@@ -145,7 +145,7 @@ export function banachTarski(root, opts) {
   };
   stage.drawOverlay = (g, f) => {
     const C = f.C, { off } = poses();
-    g.font = '600 13px "Atkinson Hyperlegible", system-ui, sans-serif'; g.textBaseline = 'middle';
+    g.font = '600 13px "Comic Neue", system-ui, sans-serif'; g.textBaseline = 'middle';
     const axis = (u, o, label) => { const a = stage.project(o.map((x, i) => x - 1.35 * u[i])), b = stage.project(o.map((x, i) => x + 1.35 * u[i])); g.strokeStyle = C.muted; g.lineWidth = 1.2; g.setLineDash([5, 5]); g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); g.setLineDash([]); g.fillStyle = C.muted; g.textAlign = 'left'; g.fillText(label, b[0] + 6, b[1]); };
     if (st.time < 1.02) { axis(AXIS.a, [0, 0, 0], t('axe de a', 'axis of a')); axis(AXIS.b, [0, 0, 0], t('axe de b', 'axis of b')); }
     const sp = stage.project(st.p), e = stage.project(off.e.map((x, i) => x + st.p[i]));
@@ -176,7 +176,7 @@ export function banachTarski(root, opts) {
       };
       rec(cx, cy, '', L, 0); g.fillStyle = C.ink; g.beginPath(); g.arc(cx, cy, 3.5, 0, 2 * Math.PI); g.fill();
     };
-    g.font = '600 12px "Atkinson Hyperlegible", system-ui, sans-serif'; g.textAlign = 'center'; g.fillStyle = C.muted;
+    g.font = '600 12px "Comic Neue", system-ui, sans-serif'; g.textAlign = 'center'; g.fillStyle = C.muted;
     if (st.time < 1) {
       draw(W / 2, H / 2 + 6, 52, (w) => col[w[0]]);
       g.fillText(t('Graphe de Cayley de F₂ : chaque branche est une pièce (la première lettre du mot)', 'Cayley graph of F₂: each branch is one piece (the first letter of the word)'), W / 2, 12);
