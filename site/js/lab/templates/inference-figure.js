@@ -150,13 +150,29 @@ const BUILD = {
       g.fillStyle = p.c[1]; g.fillRect(20, H - 22, 10, 10); txt(g, t(['maximum M — moyenne ', 'maximum M — mean ']) + fmt.num(mM, 1), 34, H - 13, { size: 11, color: p.ink });
       g.fillStyle = p.c[0]; g.fillRect(W / 2 + 4, H - 22, 10, 10); txt(g, 'N̂ = M(1+1/k)−1 — ' + t(['moyenne ', 'mean ']) + fmt.num(mE, 1), W / 2 + 18, H - 13, { size: 11, color: p.ink });
     });
+    // Five estimators of N compared over the repeated draws: where their average falls (dot) and their typical error (bar = root mean square error around N).
+    const NAMES = { max: ['maximum M', 'maximum M'], unbiased: ['N̂ = M(1+1/k)−1', 'N̂ = M(1+1/k)−1'], mean: ['2 × moyenne − 1', '2 × mean − 1'], bayes: ['bayésien : moyenne a posteriori', 'Bayesian: posterior mean'], median: ['bayésien : médiane a posteriori', 'Bayesian: posterior median'] };
+    const cmp = panel(wrap, 480, 290, t(['Cinq estimateurs de N, comparés sur les répétitions', 'Five estimators of N, compared over the repetitions']), (g, W, H, p) => {
+      if (!S.revealed || !S.runs) { txt(g, S.revealed ? t(['Lance « + 100 essais » pour comparer les estimateurs.', 'Press “+ 100 trials” to compare the estimators.']) : t(['Révèle N, puis répète le tirage.', 'Reveal N, then repeat the draw.']), W / 2, H / 2, { size: 13, color: p.muted, align: 'center' }); return; }
+      const N = S.N, L2 = 14, R = W - 14, xmax = 2 * N, xv = v => L2 + clamp(v, 0, xmax) / xmax * (R - L2);
+      line(g, xv(N), 26, xv(N), H - 22, p.accent, 3); txt(g, 'N = ' + N, xv(N) + 5, 20, { size: 12, color: p.accent, weight: 700 });
+      Mo.estimators.forEach((e, i) => {
+        const y = 58 + i * 46; txt(g, t(NAMES[e.id]), L2, y - 10, { size: 11, color: p.ink, weight: 700 });
+        line(g, L2, y, R, y, p.grid);
+        if (e.mean === null) { txt(g, t(['espérance infinie ou non définie pour k < 3', 'infinite or undefined expectation for k < 3']), L2, y + 4, { size: 11, color: p.muted }); return; }
+        line(g, xv(e.mean - e.rmse), y, xv(e.mean + e.rmse), y, p.c[i % 8], 6);
+        g.fillStyle = p.ink; g.beginPath(); g.arc(xv(e.mean), y, 6, 0, 7); g.fill();
+        txt(g, t(['moy. ', 'mean ']) + fmt.num(e.mean, 1) + t([', erreur quadratique ', ', RMS error ']) + fmt.num(e.rmse, 1), L2, y + 19, { size: 10, color: p.muted });
+      });
+    });
     return {
-      panels: [lineP, rep],
+      panels: [lineP, rep, cmp],
       set(s, m) {
         S = s; Mo = m; if (!hasEst) { shownEst = m.estimate; hasEst = true; }
         hist = Array(32).fill(0); histM = Array(32).fill(0);
         if (s.revealed && s.runs) { const xmax = Math.min(2 * s.N, Math.max(1.3 * s.N, s.N * (1 + 1 / s.k))); const f = (arr, vs) => vs.forEach(v => arr[clamp(Math.floor(v / xmax * 32), 0, 31)]++); f(hist, m.estimates); f(histM, m.maxima); }
         lineP.cv.setAttribute('aria-label', `${t(['Numéros observés', 'Observed serials'])}: ${m.sample.join(', ')}. M = ${m.m}, N̂ = ${fmt.num(m.estimate, 1)}, ${t(['borne 95 %', '95% bound'])} ${m.upper}${s.revealed ? ', N = ' + s.N : ''}`); lineP.setAria();
+        cmp.cv.setAttribute('aria-label', s.revealed && s.runs ? t(['Estimateurs de N : ', 'Estimators of N: ']) + m.estimators.map(e => t(NAMES[e.id]) + ' ' + (e.mean === null ? '—' : fmt.num(e.mean, 1) + ' ± ' + fmt.num(e.rmse, 1))).join('; ') : t(['Comparaison des estimateurs : pas encore', 'Estimator comparison: not yet']));
         rep.cv.setAttribute('aria-label', s.revealed && s.runs ? `${t(['Répétitions', 'Repetitions'])}: ${t(['moyenne de N̂', 'mean of N̂'])} ${fmt.num(m.observedMean, 1)}, N = ${s.N}` : t(['Répétitions : pas encore', 'Repetitions: not yet']));
       },
       step(k) { let moving = Math.abs(shownEst - Mo.estimate) > .05; shownEst = moving ? shownEst + (Mo.estimate - shownEst) * k : Mo.estimate;
@@ -324,8 +340,24 @@ const BUILD = {
       step();
     });
     const L2 = 40, T2 = 34, px = (W, r) => L2 + r / Math.max(1, S.n - 1) * (W - L2 - 16), py = (H, q) => H - 40 - q * (H - 40 - T2) / .5;
+    let rankKey = 0, rankCurve = [];
     const curve = panel(wrap, 480, 290, t(['Probabilité de choisir le meilleur selon r', 'Probability of choosing the best, by r']), (g, W, H, p) => {
       const n = S.n, B = H - 40, qmax = .5;
+      if (S.variant === 'rank') {   // another payoff: the expected rank of the candidate chosen (low is good), by r
+        if (rankKey !== n) { rankKey = n; rankCurve = Array.from({ length: n }, (_, r) => M.secretaryExpectedRank(n, r)); }
+        const ymax = 12, ry = v => H - 40 - (Math.min(v, ymax) - 1) / (ymax - 1) * (H - 40 - T2);
+        for (const q of [1, 4, 8, 12]) { line(g, L2, ry(q), W - 16, ry(q), p.grid); txt(g, String(q), L2 - 5, ry(q) + 4, { size: 10, color: p.muted, align: 'right' }); }
+        g.strokeStyle = p.ink; g.lineWidth = 2.5; g.beginPath(); rankCurve.forEach((v, r) => { const x = px(W, r), y = ry(v); r ? g.lineTo(x, y) : g.moveTo(x, y); }); g.stroke();
+        const bt = Mo.bestRankThreshold, opt = Mo.optimalRank;
+        if (opt !== null) { line(g, L2, ry(opt), W - 16, ry(opt), p.pos, 1.5, [5, 4]); txt(g, t(['règle optimale : ', 'optimal rule: ']) + fmt.num(opt, 2), W - 16, ry(opt) - 5, { size: 11, color: p.pos, align: 'right', weight: 700 }); }
+        g.fillStyle = p.surface; g.strokeStyle = p.ink; g.lineWidth = 2; g.beginPath(); g.arc(px(W, bt.skip), ry(bt.expectedRank), 5, 0, 7); g.fill(); g.stroke();
+        txt(g, t(['meilleur seuil r = ', 'best threshold r = ']) + bt.skip, px(W, bt.skip) + 8, ry(bt.expectedRank) - 8, { size: 11, color: p.ink, weight: 700 });
+        const r = Math.min(n - 1, S.skip), cx = px(W, r), cy = ry(rankCurve[r]); line(g, cx, cy, cx, B, p.accent, 2); g.fillStyle = p.accent; g.beginPath(); g.arc(cx, cy, 7, 0, 7); g.fill();
+        txt(g, 'r = ' + r + ' : ' + fmt.num(rankCurve[r], 2), cx + (r > n * .6 ? -12 : 12), cy + 22, { size: 13, color: p.accent, weight: 700, align: r > n * .6 ? 'right' : 'left' });
+        txt(g, t(['rang moyen du candidat choisi (haut = mauvais, borné à 12)', 'mean rank of the chosen candidate (high = bad, capped at 12)']), L2, T2 - 14, { size: 11, color: p.muted });
+        txt(g, t(['refus initiaux r →', 'initial rejections r →']), W - 16, H - 6, { size: 11, color: p.muted, align: 'right' });
+        return;
+      }
       for (const q of [0, .1, .2, .3, .4, .5]) { line(g, L2, py(H, q), W - 16, py(H, q), p.grid); txt(g, Math.round(q * 100) + ' %', L2 - 5, py(H, q) + 4, { size: 10, color: p.muted, align: 'right' }); }
       line(g, L2, py(H, 1 / Math.E), W - 16, py(H, 1 / Math.E), p.muted, 1, [4, 3]); txt(g, '1/e ≈ 36,8 %'.replace(',', fmt.num(.5, 1).includes(',') ? ',' : '.'), W - 16, py(H, 1 / Math.E) - 4, { size: 10, color: p.muted, align: 'right' });
       g.strokeStyle = p.ink; g.lineWidth = 2.5; g.beginPath(); for (let r = 0; r < n; r++) { const x = px(W, r), y = py(H, Math.min(qmax, M.secretaryProbability(n, r))); r ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke();
@@ -344,6 +376,7 @@ const BUILD = {
       panels: [bars, curve],
       set(s, m) {
         S = s; Mo = m; const { seenRel } = recs(), B = 234, H = B - 40;
+        curve.caption.firstChild.textContent = s.variant === 'rank' ? t(['Rang moyen du candidat choisi selon r', 'Mean rank of the chosen candidate, by r']) : t(['Probabilité de choisir le meilleur selon r', 'Probability of choosing the best, by r']);
         void seenRel; void H; if (!shown.length || shown.length !== s.n) shown = Array.from({ length: s.n }, () => 4);
         bars.cv.setAttribute('aria-label', `${t(['Entretien ', 'Interview '])}${Math.min(s.interview, s.n)}/${s.n}, r = ${Math.min(s.n - 1, s.skip)}${s.finished ? ', ' + t(['qualité choisie ', 'selected quality ']) + m.selected + '/' + s.n : ''}`);
         curve.cv.setAttribute('aria-label', `${t(['Probabilité de succès', 'Success probability'])}: r = ${Math.min(s.n - 1, s.skip)}, ${fmt.num(100 * m.probability, 1)} %`); curve.setAria();
