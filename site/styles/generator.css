@@ -67,6 +67,28 @@
 .auto-stage:fullscreen .auto-body { min-height: 0; overflow: hidden; }
 .auto-stage:fullscreen .auto-q { font-size: calc(clamp(1.6rem, 4vw, 3.6rem) * var(--fit, 1)); }
 .auto-stage:fullscreen .auto-a { font-size: calc(clamp(1.5rem, 3.6vw, 3.2rem) * var(--fit, 1)); }
+/* a figure has its own cell that takes the room the text leaves (below it upright, beside it in landscape); --fit
+   then shrinks the text only, and the drawing stays as large as the screen allows */
+.auto-fig:empty { display: none; }
+.auto-stage:is(.presenting, :fullscreen) .auto-body.has-figure { grid-template-rows: auto minmax(40%, 1fr) auto; align-content: stretch; gap: 8px; }
+.auto-stage:is(.presenting, :fullscreen) .auto-fig { min-height: 0; min-width: 0; }
+.auto-stage:is(.presenting, :fullscreen) .auto-fig svg { width: 100% !important; height: 100% !important; max-width: none !important; max-height: none !important; margin: 0 !important; }
+@media (min-aspect-ratio: 5/4) {
+  .auto-stage:is(.presenting, :fullscreen) .auto-body.has-figure { grid-template: minmax(0, 1fr) auto minmax(0, 1fr) / minmax(0, 1fr) minmax(0, 1.1fr); column-gap: 3vw; text-align: left; }
+  .auto-stage:is(.presenting, :fullscreen) .has-figure .auto-q { grid-area: 1 / 1 / 2 / 2; align-self: end; }
+  .auto-stage:is(.presenting, :fullscreen) .has-figure .auto-a { grid-area: 2 / 1 / 4 / 2; align-self: start; }
+  .auto-stage:is(.presenting, :fullscreen) .has-figure .auto-fig { grid-area: 1 / 2 / 4 / 3; }
+}
+/* phone held sideways: a slimmer head and controls leave the height to the question */
+@media (max-height: 500px) {
+  .auto-stage:is(.presenting, :fullscreen) { padding: 6px 3vw; gap: 6px; }
+  .auto-stage:is(.presenting, :fullscreen) .auto-head { font-size: 0.85rem; }
+  .auto-stage:is(.presenting, :fullscreen) #st-timer { font-size: 1.3rem; }
+  .auto-stage:is(.presenting, :fullscreen) .auto-body { padding: 4px 0; gap: 8px; }
+  .auto-stage:is(.presenting, :fullscreen) .auto-q { font-size: calc(clamp(1.1rem, 3vw, 2rem) * var(--fit, 1)); }
+  .auto-stage:is(.presenting, :fullscreen) .auto-a { font-size: calc(clamp(1rem, 2.8vw, 1.8rem) * var(--fit, 1)); }
+  .auto-stage:is(.presenting, :fullscreen) .auto-controls .btn { min-height: 36px; padding: 4px 12px; }
+}
 
 /* generated paper (preview and print) */
 .sheet-doc { background: #fff; color: #000; border: 1px solid var(--line); padding: 28px 34px; max-width: 860px; font-family: "STIX Two Text", "Times New Roman", serif; font-size: 1.05rem; line-height: 1.55; }
