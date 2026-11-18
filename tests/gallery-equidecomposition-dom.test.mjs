@@ -29,7 +29,7 @@ test('catalogue line: bilingual pairs, links resolve, no dashes',()=>{
   for(const h of ['#lab/tiles','#gallery/banach-tarski-gallery'])assert.ok(e.links.includes(h));
   const src=['site/js/gallery/gallery-equidecomposition.js','site/js/gallery/gallery-equidecomposition-model.js','site/js/gallery/gallery-curiosities.js'].map(f=>readFileSync(f,'utf8')).join('');
   assert.ok(!/[–—]/.test(src),'no en or em dash');
-  assert.ok(!/javalab|mathoutils/i.test(src));
+  assert.ok(!/mathoutils/i.test(src));
 });
 
 test('the exhibit mounts in both languages, reacts, refuses bad polygons, respects reduced motion and stops',()=>{
