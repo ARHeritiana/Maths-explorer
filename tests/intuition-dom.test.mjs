@@ -39,6 +39,13 @@ test('colliding blocks and the napkin ring mount, react and clean up', async () 
     root.querySelector('canvas').dispatchEvent(new w.KeyboardEvent('keydown', {key: 'ArrowLeft', bubbles: true})); tick();
     assert.ok(!/NaN|undefined|Infinity/.test(root.textContent)); stop(); assert.equal(frames.size, 0); root.remove();
     root = w.document.createElement('section'); w.document.body.append(root);
+    stop = mountObject('morley', root, {lang, reduced: false}); tick(2);
+    assert.match(read(root), /60[.,]00/); const mcv = root.querySelector('canvas');
+    pointer(mcv, 'pointerdown', 250, 90); pointer(mcv, 'pointermove', 300, 120); pointer(mcv, 'pointerup', 300, 120); tick();
+    mcv.dispatchEvent(new w.KeyboardEvent('keydown', {key: ']', bubbles: true})); mcv.dispatchEvent(new w.KeyboardEvent('keydown', {key: 'ArrowLeft', bubbles: true})); tick();
+    root.querySelector('#mo-random').click(); tick(); assert.match(read(root), /60[.,]00/, 'equilateral for a random triangle'); root.querySelector('#mo-show').click(); root.querySelector('#mo-reset').click(); tick();
+    assert.ok(!/NaN|undefined|Infinity/.test(root.textContent)); stop(); assert.equal(frames.size, 0); root.remove();
+    root = w.document.createElement('section'); w.document.body.append(root);
     stop = mountObject('hundred-boxes', root, {lang, reduced: false}); tick(2);
     assert.equal(root.querySelectorAll('.hb-box').length, 10); assert.match(read(root), /0/);
     root.querySelector('.hb-box').click(); assert.equal(root.querySelectorAll('.hb-open').length, 1);
@@ -52,7 +59,7 @@ test('colliding blocks and the napkin ring mount, react and clean up', async () 
   dom.window.close();
 });
 test('the collection page lists entries that exist, with no dead link and no dash', () => {
-  assert.ok(ENTRIES.length >= 8);
+  assert.ok(ENTRIES.length >= 9);
   const html = intuitionPage(p => p[0]);
   for (const e of ENTRIES) { assert.ok(describe(e.hash), `${e.id} resolves`); assert.ok(html.includes(`href="${e.hash}"`)); }
   assert.ok(!/[—–]/.test(JSON.stringify(ENTRIES)));

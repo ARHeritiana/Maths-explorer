@@ -7,5 +7,5 @@ export function intuitionPage(t) {
   return `<main id="main" tabindex="-1" class="page read-page intuition-page"><div class="page-heading"><div><h1>${t(['Les mathématiques contre l’intuition', 'Mathematics against intuition'])}</h1>
 <p>${t(['Des situations où l’intuition se trompe. Pour chacune : devine d’abord, manipule, mesure, puis comprends pourquoi.', 'Situations where intuition fails. For each one: guess first, manipulate, measure, then understand why.'])}</p></div></div>
 <div class="intuition-grid">${ENTRIES.map(card).join('')}</div>
-<section aria-labelledby="intuition-soon"><h2 id="intuition-soon">${t(['À venir', 'Coming'])}</h2><ul>${SOON.map((s) => `<li>${esc(t(s))}</li>`).join('')}</ul></section></main>`;
+${SOON.length ? `<section aria-labelledby="intuition-soon"><h2 id="intuition-soon">${t(['À venir', 'Coming'])}</h2><ul>${SOON.map((s) => `<li>${esc(t(s))}</li>`).join('')}</ul></section>` : ''}</main>`;
 }

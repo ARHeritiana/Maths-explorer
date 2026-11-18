@@ -1,7 +1,7 @@
 // The experiments of the laboratory: id -> experiment module, the templates (loaded when an experiment is mounted) and the
 // lab reference "<experiment>" or "<experiment>/<mission>" that the lab page, chapter pages and slides share.
 import fairDivision, {discreteExperiment as fairGoods} from "./experiments/fair-division.js";
-import {hairyExperiment, surfacesExperiment, banachExperiment} from "./experiments/topology.js";
+import {hairyExperiment, surfacesExperiment, banachExperiment, banachTreeExperiment} from "./experiments/topology.js";
 import quadratic from "./experiments/quadratic.js";
 import trig from "./experiments/trig.js";
 import sequences from "./experiments/sequences.js";
@@ -34,7 +34,7 @@ import ferrisWheel from "./experiments/ferris-wheel.js";
 // Order of the catalogue. The experiments are plain data and small; the heavy part (templates) is imported on demand.
 export const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines, fourier, drawingExperiment, tiles, eulerPrimes, fermat, circleRegions, buffon, bertrand, fairDivision, fairGoods, ...inferenceExperiments, ...monteCarloExperiments, doublePendulum, threeBody, logistic, illumination];
 
-EXPERIMENTS.push(hairyExperiment, surfacesExperiment, banachExperiment, ferrisWheel);
+EXPERIMENTS.push(hairyExperiment, surfacesExperiment, banachExperiment, banachTreeExperiment, ferrisWheel);
 
 export const TEMPLATES = {
   illumination: () => import("./templates/illumination.js"),

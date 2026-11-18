@@ -29,14 +29,61 @@ export function secretarySelection(order, skip) {
   for (let i = skip; i < order.length; i++) if (order[i] > best) return i;
   return order.length - 1;
 }
+// Other payoff: the cost is the final rank (1 = best), to be small. Exact law of the rank chosen by the threshold rule:
+// stop at i > r exactly when candidate i is a record and the best of the first i-1 is among the r refused (r/(i(i-1))); the rank of
+// a record of the first i is j with probability C(n-j, i-1)/C(n, i); no stop before n leaves candidate n, of uniform rank.
+export function secretaryRankLaw(n, r) {
+  integer(n, 1, 2000, 'n'); integer(r, 0, n - 1, 'skip');
+  const law = Array(n + 1).fill(0);
+  if (!r || n === 1) { for (let j = 1; j <= n; j++) law[j] = 1 / n; return law; }
+  const logC = (a, b) => { let x = 0; for (let t = 1; t <= b; t++) x += Math.log((a - b + t) / t); return x; };
+  for (let i = r + 1; i < n; i++) for (let j = 1; j <= n - i + 1; j++) law[j] += r / (i * (i - 1)) * Math.exp(logC(n - j, i - 1) - logC(n, i));
+  for (let j = 1; j <= n; j++) law[j] += r / ((n - 1) * n);
+  return law;
+}
+export const secretaryExpectedRank = (n, r) => secretaryRankLaw(n, r).reduce((a, p, j) => a + j * p, 0);
+export function secretaryBestRankThreshold(n) {
+  let best = 0, value = (n + 1) / 2;
+  for (let r = 1; r < n; r++) { const v = secretaryExpectedRank(n, r); if (v < value) { value = v; best = r; } }
+  return { skip: best, expectedRank: value };
+}
+// The rule that minimises the expected rank (backward induction over relative ranks, Lindley 1961; Chow, Moriguti, Robbins and
+// Samuels 1964): a candidate of relative rank y at position i has expected final rank y(n+1)/(i+1); accept it when that is at most
+// the expected rank V[i] of continuing optimally. Positions are 1-based; accept[i] is the largest relative rank accepted at i.
+export function secretaryRankPolicy(n) {
+  integer(n, 1, 2000, 'n');
+  const V = Array(n + 1).fill(Infinity), accept = Array(n + 1).fill(0);
+  V[n] = Infinity; accept[n] = n;
+  for (let i = n - 1; i >= 0; i--) {
+    let sum = 0; const q = i + 1;
+    for (let y = 1; y <= q; y++) sum += Math.min(y * (n + 1) / (q + 1), V[q]);
+    V[i] = sum / q;
+  }
+  for (let i = 1; i < n; i++) accept[i] = Math.min(i, Math.floor(V[i] * (i + 1) / (n + 1) + 1e-12));
+  return { expectedRank: V[0], accept };
+}
+export function secretaryRankSelection(order, policy) {
+  const n = order.length; let smaller = 0;
+  for (let i = 0; i < n; i++) {
+    smaller = 0; for (let k = 0; k < i; k++) if (order[k] > order[i]) smaller++;   // relative rank among the first i+1 (1 = best)
+    const y = smaller + 1; if (i === n - 1 || y <= policy.accept[i + 1]) return i;
+  }
+  return n - 1;
+}
 export function secretary(s) {
-  const { n = 20, skip = 7, runs = 0, seed = 1, interview = 1, accepted = -1 } = s;
+  const { n = 20, skip = 7, runs = 0, seed = 1, interview = 1, accepted = -1, variant = 'best' } = s;
   integer(n, 1, 2000, 'n'); integer(runs, 0, 10000, 'runs');
   const r = Math.max(0, Math.min(n - 1, Math.round(skip))), next = rng(seed);
   const order = permutation(n, next), seen = order.slice(0, Math.min(n, interview));
-  let hits = 0;
-  for (let i = 0; i < runs; i++) { const a = permutation(n, next); hits += a[secretarySelection(a, r)] === n; }
-  return { order, seen, relative: seen.map(x => 1 + seen.filter(y => y > x).length),
+  let hits = 0; const rankHits = Array(11).fill(0), policy = variant === 'rank' && n <= 200 ? secretaryRankPolicy(n) : null; let optSum = 0, thrSum = 0;
+  for (let i = 0; i < runs; i++) {
+    const a = permutation(n, next), pick = a[secretarySelection(a, r)]; hits += pick === n;
+    if (variant === 'rank') { const rank = n - pick + 1; rankHits[Math.min(10, rank)]++; thrSum += rank; if (policy) optSum += n - a[secretaryRankSelection(a, policy)] + 1; }
+  }
+  const rankLaw = variant === 'rank' ? secretaryRankLaw(n, r) : null;
+  return { variant, rankLaw, rankHits, expectedRank: rankLaw ? rankLaw.reduce((q, p, j) => q + j * p, 0) : null, meanRank: runs && variant === 'rank' ? thrSum / runs : null,
+    optimalRank: policy ? policy.expectedRank : null, meanOptimalRank: runs && policy ? optSum / runs : null, bestRankThreshold: variant === 'rank' ? secretaryBestRankThreshold(n) : null,
+    order, seen, relative: seen.map(x => 1 + seen.filter(y => y > x).length),
     selected: accepted >= 0 ? order[Math.min(n - 1, accepted)] : null, hits, runs,
     frequency: runs ? hits / runs : null, probability: secretaryProbability(n, r), optimum: secretaryThreshold(n) };
 }
@@ -71,13 +118,33 @@ export function tankUpperBound(m, k, alpha = .05) {
   while (hi - lo > 1) { const mid = Math.floor((lo + hi) / 2); if (maximumCDF(mid, k, m) > alpha) lo = mid; else hi = mid; }
   return lo;
 }
+// Bayesian reading: flat prior on N = m, m+1, ... (improper, stated as such). The likelihood of the sample maximum m is 1/C(n,k), so
+// P(N > n | m, k) = C(m-1, k-1) / C(n, k-1) for n >= m (telescoping sum), posterior mean (m-1)(k-1)/(k-2) for k >= 3 (infinite below).
+export const tankPosteriorMean = (m, k) => (k >= 3 ? (m - 1) * (k - 1) / (k - 2) : null);
+export function tankPosteriorTail(m, k, n) {
+  if (n < m) return 1;
+  let p = 1; for (let j = 0; j < k - 1; j++) p *= (m - 1 - j) / (n - j);
+  return p;
+}
+export function tankPosteriorMedian(m, k) {
+  if (k < 2) return null;
+  let n = m; while (tankPosteriorTail(m, k, n) > .5 && n < 1e7) n++;
+  return n;
+}
 export function tank(s) {
   const { N = 100, k = 5, runs = 0, seed = 1 } = s;
   integer(N, 2, 2000, 'N'); integer(k, 1, N, 'k'); integer(runs, 0, 10000, 'runs');
   const next = rng(seed), sample = permutation(N, next).slice(0, k).sort((a,b) => a-b), m = sample.at(-1);
   const estimate = m * (1 + 1 / k) - 1, estimates = [], maxima = [];
-  for (let i = 0; i < runs; i++) { const mx = Math.max(...permutation(N, next).slice(0, k)); maxima.push(mx); estimates.push(mx * (1 + 1 / k) - 1); }
-  return { sample, m, estimate, upper: tankUpperBound(m, k), estimates, maxima, runs,
+  const names = ['max', 'unbiased', 'mean', 'bayes', 'median'], tot = names.map(() => ({ sum: 0, sq: 0, n: 0 }));
+  for (let i = 0; i < runs; i++) {
+    const draw = permutation(N, next).slice(0, k), mx = Math.max(...draw); maxima.push(mx); estimates.push(mx * (1 + 1 / k) - 1);
+    const avg = draw.reduce((a, b) => a + b, 0) / k, vals = [mx, mx * (1 + 1 / k) - 1, 2 * avg - 1, tankPosteriorMean(mx, k), tankPosteriorMedian(mx, k)];
+    vals.forEach((v, j) => { if (v !== null) { tot[j].sum += v; tot[j].sq += (v - N) ** 2; tot[j].n++; } });
+  }
+  const estimators = names.map((id, j) => ({ id, mean: tot[j].n ? tot[j].sum / tot[j].n : null, rmse: tot[j].n ? Math.sqrt(tot[j].sq / tot[j].n) : null,
+    now: [m, estimate, 2 * sample.reduce((a, b) => a + b, 0) / k - 1, tankPosteriorMean(m, k), tankPosteriorMedian(m, k)][j] }));
+  return { sample, m, estimate, upper: tankUpperBound(m, k), estimates, maxima, runs, estimators,
     observedMean: runs ? estimates.reduce((a,b) => a+b,0) / runs : null,
     expectedMaximum: k * (N + 1) / (k + 1), expectedEstimate: N,
     variance: (N + 1) * (N - k) / (k * (k + 2)) };
@@ -99,6 +166,11 @@ export function benfordData(seed, count, mode = 'log') {
   if (mode === 'pow2') return Array.from({ length: Math.min(count, 1000) }, (_, i) => 2 ** (i + 1));
   if (mode === 'fib') { const f = [1, 2]; while (f.length < Math.min(count, 1000)) f.push(f.at(-1) + f.at(-2)); return f.slice(0, Math.min(count, 1000)); }
   if (mode === 'squares') return Array.from({ length: count }, (_, i) => (i + 1) ** 2);
+  // Fictional shop with fixed "psychological" prices (a price list, not a measurement): few distinct values, chosen by people.
+  if (mode === 'prices') { const list = [4.99, 9.99, 14.99, 19.99, 24.99, 29.99, 39.99, 49.99, 79.99, 99.99]; return Array.from({ length: count }, () => list[Math.floor(next() * list.length)]); }
+  // A fictional forger who invents amounts: each leading digit drawn uniformly from 1 to 9, magnitude from 1 to 4 digits. A model of
+  // "invented numbers", not a claim about how real people behave.
+  if (mode === 'invented') return Array.from({ length: count }, () => (1 + Math.floor(next() * 9) + next() * .99) * 10 ** Math.floor(next() * 4));
   return Array.from({ length: count }, (_, i) => mode === 'identifiers' ? 1000 + i : mode === 'narrow' ? 80 + 10 * next() : mode === 'uniform' ? 1 + 999 * next() : 10 ** (6 * next() - 3));
 }
 export function benford(s) {

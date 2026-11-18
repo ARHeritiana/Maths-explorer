@@ -21,7 +21,7 @@ const dot=(x,y,r=3)=>`<circle class="preview-fill" cx="${round(x)}" cy="${round(
 const axis='<path class="preview-axis" d="M12 84H150M18 10V88"/>';
 const plot=(f,a,b,n=60)=>path(Array.from({length:n+1},(_,i)=>{const x=a+(b-a)*i/n;return [16+128*i/n,f(x)];}));
 const project=([x,y,z])=>[80+24*(.8*x-.6*y),51+18*(.3*x+.4*y-.86*z)];
-const aliases={'monte-carlo-pi':'monte-carlo','monte-carlo-lake':'monte-carlo','monte-carlo-integral':'monte-carlo','monte-carlo-walk':'monte-carlo','mirrored-rooms':'illumination','banach-tarski':'banach-tarski-model','galton':'probability',
+const aliases={'monte-carlo-pi':'monte-carlo','monte-carlo-lake':'monte-carlo','monte-carlo-integral':'monte-carlo','monte-carlo-walk':'monte-carlo','mirrored-rooms':'illumination','banach-tarski':'banach-tarski-model','banach-tarski-tree':'banach-tarski-model','galton':'probability',
  'premiere-02':'quadratic','scalar':'vectors','matrices':'matrix','trigonometry':'trig','trig-functions':'trig',
  'complex-algebra':'complex','complex-plane':'complex','complex-exponential':'complex','complex-rotations':'complex',
  'sequence-limits':'sequences','function-limits':'limits','differential':'exponential','exponential-function':'exponential',
@@ -39,7 +39,7 @@ const known=new Set(['monte-carlo','ferris-wheel','quadratic','probability','tri
  'line','exponential','cobweb','matrix','space-lines','sequences','fourier','circle-regions','buffon','bertrand',
  'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','life',
  'voronoi','fastest-slide','einstein','square-packing','inscribed-square','soap-films','knots','moving-sofa',
- 'opaque-square','equidecomposition','collisions','napkin-ring','hundred-boxes','four-colours','mandelbrot','arithmetic','reals','algebra','percentages','conditioning',
+ 'opaque-square','equidecomposition','collisions','napkin-ring','hundred-boxes','morley','four-colours','mandelbrot','arithmetic','reals','algebra','percentages','conditioning',
  'random-variable','counting','polynomials','modular','bezout','primes','graphs','markov','logic','sets']);
 // Topic names identify a chapter's mathematical model; broad field memberships do not.
 export function previewKind(item) {
@@ -235,6 +235,10 @@ export function modelPreview(kind) {
  } else if(kind==='collisions') {
   drawing='<path d="M16,14V86"/>'+path([[22,86],[22,66],[42,66],[42,86]],true)+path([[70,86],[70,40],[116,40],[116,86]],true)+path([[10,86],[150,86]])+'<path d="M80,30A24,24 0 0 1 128,30"/>';
   caption=P('Un bloc léger, un bloc lourd, un mur : 3, 31, 314, 3141 chocs','A light block, a heavy block, a wall: 3, 31, 314, 3141 collisions');
+ } else if(kind==='morley') {
+  const A=[18,84],B=[142,84],Cc=[50,12],mid=(p,q,k)=>[p[0]+(q[0]-p[0])*k,p[1]+(q[1]-p[1])*k];
+  drawing=path([A,B,Cc],true)+path([mid(A,B,.45),mid(B,Cc,.5),mid(Cc,A,.5)],true);
+  caption=P('Un triangle et le triangle équilatéral de Morley','A triangle and its equilateral Morley triangle');
  } else if(kind==='hundred-boxes') {
   const pts=Array.from({length:10},(_,i)=>[80+38*Math.cos(i*Math.PI/5-Math.PI/2),50+38*Math.sin(i*Math.PI/5-Math.PI/2)]),cyc=[[0,3,7],[1,5],[2,9,4,8,6]];
   drawing=cyc.map(c=>path(c.map(k=>pts[k]),true)).join('')+pts.map(p=>dot(p[0],p[1],2.6)).join('');

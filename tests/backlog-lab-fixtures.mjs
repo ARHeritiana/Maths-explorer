@@ -25,6 +25,8 @@ export const BACKLOG_CHECKS={
  'ferris-wheel/height':({t})=>75+60*Math.sin(2*Math.PI*t/30-Math.PI/2),
  // time at or above 120 m by bisection on each side of the top, not by the arccos closed form
  'ferris-wheel/above':()=>{const h=t=>75+60*Math.sin(2*Math.PI*t/30-Math.PI/2);const root=(lo,hi,up)=>{for(let i=0;i<80;i++){const mid=(lo+hi)/2;((h(mid)<120)===up?lo=mid:hi=mid);}return (lo+hi)/2;};return root(15,30,false)-root(0,15,true);},
+ // words of length 3 over {a,b,A,B} with no adjacent inverse pair, none starting with a, counted by brute-force product
+ 'banach-tarski-tree/front':()=>{const inv={a:'A',A:'a',b:'B',B:'b'};let n=0;for(const x of 'abAB')for(const y of 'abAB')for(const z of 'abAB')if(inv[x]!==y&&inv[y]!==z&&x!=='a')n++;return n;},
  'banach-tarski-model/total':s=>s.owners.filter(x=>x===0).length+s.owners.filter(x=>x===1).length,
  'monte-carlo-pi/spread':({runs})=>{const p=discFraction();return 4*Math.sqrt(p*(1-p)/runs);},
  'monte-carlo-lake/spread':({runs})=>{const p=(.8-.2)*(.8-.2);return 100*Math.sqrt(p*(1-p)/runs);},
@@ -45,6 +47,7 @@ export const BACKLOG_WITNESSES={
  'nonorientable-surfaces/orientation':{u:2*Math.PI},
  'nonorientable-surfaces/cut':{cut:'thirds'},
  'ferris-wheel/model':{t:15},'ferris-wheel/first':{t:11.55},
+ 'banach-tarski-tree/move':{probe:'A'},'banach-tarski-tree/second':{gen:'b',probe:'B'},
  'banach-tarski-model/move':{owners:[1,1,0,0,0,0,0,0,0,0,0,0]},
 };
 export const BACKLOG_PREDICTIONS={
@@ -71,4 +74,7 @@ export const BACKLOG_PREDICTIONS={
  // the climb is steepest where a fine central difference of the height is largest: level with the hub (75 m)
  'ferris-wheel':{truth:()=>{const h=t=>75-60*Math.cos(Math.PI*t/15);let best=0,top=-Infinity;for(let t=0.001;t<15;t+=0.001){const d=(h(t+1e-4)-h(t-1e-4))/2e-4;if(d>top){top=d;best=t;}}return Math.abs(h(best)-75)<0.5?'hub':'other';},expected:'hub',words:/moyeu/},
  'banach-tarski-model':{truth:()=>12<12+12,expected:true,words:/^Non$/},
+ // F = W(a) + a W(A) on every reduced word up to length 6: each u not starting with a is a*(A u)
+ 'banach-tarski-tree':{truth:()=>{const inv={a:'A',A:'a',b:'B',B:'b'},build=d=>{let layer=[''],all=[''];for(let k=0;k<d;k++){const next=[];for(const w of layer)for(const c of 'abAB')if(!w||inv[c]!==w.at(-1))next.push(w+c);all.push(...next);layer=next;}return all;},deep=build(7),shallow=build(6);
+  const startA=new Set(deep.filter(w=>w[0]==='A').map(w=>w.slice(1))),notA=new Set(shallow.filter(u=>u[0]!=='a'));return notA.size===startA.size&&[...notA].every(u=>startA.has(u));},expected:true,words:/^Oui$/},
 };
