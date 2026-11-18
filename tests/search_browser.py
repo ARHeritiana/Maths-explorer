@@ -38,7 +38,7 @@ with sync_playwright() as p:
     page.locator('[data-search-link]').click()
     page.wait_for_selector('.rs input[type=search]')
     assert page.evaluate('location.hash') == '#search'
-    assert page.locator('h1').inner_text().strip() in ('Rechercher', 'Search')
+    assert page.locator('h1').text_content().strip() in ('Rechercher', 'Search')
     assert page.locator('.rs-suggest button').count() >= 3, 'suggestions before any query'
 
     # 1. a topic gives cross-resource results, each with real actions

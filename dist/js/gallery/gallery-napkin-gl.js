@@ -103,9 +103,9 @@ export function napkinRingGL(root, opts) {
     g.textAlign = 'center'; g.textBaseline = 'middle';
     D.forEach((d, i) => {
       const top = stage.project([cs[i][0], cs[i][1], cs[i][2] + d.R * S + 0.18]), bot = stage.project([cs[i][0], cs[i][1], cs[i][2] - d.R * S - 0.2]);
-      g.font = `700 ${Math.round(14 * k)}px "Atkinson Hyperlegible", system-ui, sans-serif`; g.lineWidth = 4; g.strokeStyle = C.surface; g.fillStyle = C.ink;
+      g.font = `700 ${Math.round(14 * k)}px "Comic Neue", system-ui, sans-serif`; g.lineWidth = 4; g.strokeStyle = C.surface; g.fillStyle = C.ink;
       const a = `R = ${num(d.R, 1)} cm`; g.strokeText(a, top[0], top[1]); g.fillText(a, top[0], top[1]);
-      g.font = `600 ${Math.round(13 * k)}px "Atkinson Hyperlegible", system-ui, sans-serif`;
+      g.font = `600 ${Math.round(13 * k)}px "Comic Neue", system-ui, sans-serif`;
       const b = `h = ${num(d.h, 2)} · r = ${num(d.r, 3)}`; g.strokeText(b, bot[0], bot[1]); g.fillStyle = C.muted; g.fillText(b, bot[0], bot[1]);
     });
   };

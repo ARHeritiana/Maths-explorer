@@ -100,12 +100,12 @@ with sync_playwright() as p:
     assert fresh.locator('.bank-ex:visible').count() == n
     # the chapter page without an exercise still behaves as before; the second chapter of the exercise opens too
     fresh.goto(f'{BASE}/#bank/{CLS}/{CH}'); fresh.wait_for_selector('.bank-ex')
-    assert fresh.locator('.bank-ex').count() == n and fresh.locator('h1').inner_text().strip() == 'Banque d’exercices'
+    assert fresh.locator('.bank-ex').count() == n and fresh.locator('h1').text_content().strip() == 'Banque d’exercices'
     fresh.goto(f'{BASE}/#bank/{CLS}/seconde-08/{EX}'); fresh.wait_for_selector(f'[data-ex="{EX}"]')
     # invalid exercise ids fall back like other invalid addresses
     for bad in [f'#bank/{CLS}/{CH}/nope', f'#bank/{CLS}/seconde-01/{EX}', f'#bank/{CLS}/{CH}/{EX}x']:
         fresh.goto(f'{BASE}/{bad}'); fresh.wait_for_selector('main')
-        assert fresh.locator('h1').inner_text().strip() == 'Page introuvable', bad
+        assert fresh.locator('h1').text_content().strip() == 'Page introuvable', bad
         assert fresh.locator('main a').count() >= 1
     fresh.close()
 

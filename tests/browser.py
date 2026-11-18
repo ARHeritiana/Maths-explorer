@@ -234,7 +234,7 @@ with sync_playwright() as p:
     page.wait_for_function("b => { const value = document.querySelector('.lab2-readout dd')?.textContent; return typeof value === 'string' && value !== b; }", arg=before)   # the next frame, not the key event
     for route in ['lab/unknown','challenges/unknown','unknown']:
         page.goto(BASE+'/#'+route)
-        assert page.locator('#main h1').inner_text() == 'Page not found'
+        assert page.locator('#main h1').text_content() == 'Page not found'
     # Derivative: approach from the left with the scrubber (position 10 of the list of |h| is 0.01).
     page.goto(BASE+'/#lab/derivative/sides')
     page.locator('.lab2-variant').nth(1).click()

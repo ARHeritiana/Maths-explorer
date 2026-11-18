@@ -41,7 +41,7 @@ with sync_playwright() as p:
     assert page.locator('#home-class option').count() == 6
     assert page.locator('.secondary-entry[aria-labelledby="beyond-heading"] a').count() == 3
     assert page.locator('.figure-tab').count() == 0
-    assert page.locator('.mainnav a').count() == 3
+    assert page.locator('.mainnav a').count() == 4
     assert page.locator('.home-resume').count() == 0
     page.locator('#home-query').fill('dérivée')
     page.locator('.home-result').first.wait_for()

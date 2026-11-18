@@ -115,33 +115,36 @@ function route() {
 function link(page, id = "") {
   return "#" + page + (id ? "/" + id : "");
 }
-const brandMark = `<svg class="brandmark" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M50 12A76 76 0 0 1 88 77.8A76 76 0 0 1 12 77.8A76 76 0 0 1 50 12Z" class="bm-shape"/><circle cx="50" cy="56" r="9" class="bm-dot"/></svg>`;
-// Three sections: "Apprendre" (courses and classroom tools), "Explorer" (laboratory, challenges) and "Lire" (biographies,
-// stories, and the curiosities of the gallery).
+const brandMark = `<svg class="brandmark" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M50.0 4.0 L58.0 20.1 L70.2 14.9 L71.9 28.1 L92.2 25.6 L79.9 42.0 L92.8 50.0 L79.9 58.0 L90.6 73.5 L71.9 71.9 L69.8 84.3 L58.0 79.9 L50.0 99.7 L42.0 79.9 L28.2 87.8 L28.1 71.9 L14.1 70.7 L20.1 58.0 L2.2 50.0 L20.1 42.0 L11.4 27.7 L28.1 28.1 L30.0 15.3 L42.0 20.1Z" class="bm-shape"/><text x="50" y="64" text-anchor="middle" font-size="40" font-family="Georgia, serif" font-weight="700" class="bm-dot">π</text></svg>`;
+// Four sections, named after what the visitor came to do (design v8, docs/DESIGN_V8.md): "Cours" (lessons and their
+// materials), "Exercices" (practice), "Labo" (experiments, intuition, errors) and "Bibliothèque" (curiosities, stories,
+// biographies, timelines). Every page of the former Apprendre, Explorer and Lire sections is still here, at its address.
 // The main bar names the sections; a row of tabs under it names the pages of the current section.
 const SECTIONS = [
-  ["learn", "Apprendre", "Learn", "books", [
-    ["resources", "Cours", "Lessons", "books"],
+  ["learn", "Cours", "Lessons", "books", [
+    ["resources", "Chapitres", "Chapters", "books"],
+    ["topics", "Domaines", "Topics", "magnifying-glass"],
+    ["basics", "Bases", "Foundations", "books"],
+    ["sheets", "Fiches", "Worksheets", "pencil-simple-line"],
+    ["slides", "Diaporamas", "Slides", "presentation-chart"],
+  ]],
+  ["practice", "Exercices", "Practice", "seal-check", [
     ["bank", "Exercices", "Exercises", "seal-check"],
+    ["automatismes", "Automatismes", "Starters", "lightbulb"],
+    ["challenges", "Défis", "Challenges", "puzzle-piece"],
     ["review", "Réviser", "Review", "arrows-clockwise"],
     ["bank/annales", "Annales", "Past papers", "scroll"],
-    ["slides", "Diaporamas", "Slides", "presentation-chart"],
-    ["basics", "Bases", "Foundations", "books"],
-    ["automatismes", "Automatismes", "Starters", "lightbulb"],
-    ["sheets", "Fiches", "Worksheets", "pencil-simple-line"],
   ]],
-  ["explore", "Explorer", "Explore", "flask", [
-    ["topics", "Domaines", "Topics", "magnifying-glass"],
+  ["explore", "Labo", "Lab", "flask", [
     ["lab", "Laboratoire", "Laboratory", "flask"],
-    ["challenges", "Défis", "Challenges", "puzzle-piece"],
-    ["errors", "Erreurs", "Errors", "warning"],
     ["intuition", "Contre l’intuition", "Against intuition", "lightbulb"],
+    ["errors", "Erreurs", "Errors", "warning"],
   ]],
-  ["read", "Lire", "Read", "book-open", [
+  ["read", "Bibliothèque", "Library", "book-open", [
+    ["gallery", "Curiosités", "Curiosities", "sparkle"],
     ["stories", "Histoires", "Stories", "scroll"],
     ["biographies", "Biographies", "Biographies", "user"],
     ["history", "Chronologies", "Timelines", "scroll"],
-    ["gallery", "Curiosités", "Curiosities", "sparkle"],
   ]],
 ];
 // pages reached from a tab count as that tab

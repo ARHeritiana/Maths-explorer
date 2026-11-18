@@ -52,7 +52,7 @@ i { font-family: var(--math); }
 /* ------------------------------------------------------------------ header */
 .topbar { position: sticky; top: 0; z-index: 50; height: var(--header); display: flex; align-items: center; gap: 24px; padding: 0 clamp(16px, 3vw, 32px); background: var(--surface); border-bottom: 1px solid var(--line); }
 .brand { display: flex; align-items: center; gap: 10px; font: 800 1.3rem var(--display); letter-spacing: -0.02em; }
-/* The mark: a Reuleaux triangle (constant width) with a dot, see docs/DESIGN_V7.md. */
+/* The mark: a comic starburst with a pi, see docs/DESIGN_V8.md (colours and outline in styles/comic.css). */
 .brandmark { width: 32px; height: 32px; }
 .bm-shape { fill: var(--shape); }
 .bm-dot { fill: var(--bg); }

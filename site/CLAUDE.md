@@ -40,7 +40,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/page-ergonomics.js` | native disclosures group classroom chapter choices, advanced settings and secondary exports without replacing controls |
 | `js/ui.js` | theme choice, full-screen presenting |
 | `js/icons.js` | Phosphor icon paths, `icon(name, size)` |
-| `js/motion.js` | interface motion (`installInterfaceMotion`, `celebrate`, `illuminateFeedback`) |
+| `js/motion.js` | interface motion: `celebrate` and `illuminateFeedback` pop a comic starburst ("BIEN VU !" red, "OUPS" blue) on a feedback box, never under reduced motion |
 | `js/visible-loop.js` | the one animation loop for figures (`animationLoop`, used by `object-kit.js` `loopFor`, the exhibit kit and the mirrored room): no frames offscreen, in a hidden tab or under reduced motion; a frame returning `false` sleeps until an interaction |
 | `js/device-capability.js` | what this device can afford: facts that forbid (data saver, battery, phone, no worker, no float GPU buffer), a short benchmark of the real work, memory; returns a tier (`basic` to `extreme`) with ceilings (rays, bounces, segments, trials per second); cached per session; the heavy exhibits offer choices up to the ceilings and nothing above |
 | `js/illumination-farm.js`, `js/illumination-worker.js` | mirrored rooms at scale: `traceChunk` (pure), a farm of Web Workers (or inline slices) that streams chunks of segments, with a segment cap and cancellation |
@@ -56,6 +56,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/camera3d.js` | the one orthographic 3D camera (project, unproject, view ray, constraints, turn), used by the laboratory template `space` and by `slides/widgets-3d.js` |
 | `styles/tokens.css` | design tokens: font faces, colours of both themes (Jour, Nuit), shapes; the one source of the look, imported by `explorer.css` and the foundation lessons |
 | `styles/explorer.css` | base elements, layout (imports `tokens.css`) |
+| `styles/comic.css` | design v8 "Bande dessinée" layer, loaded after every other stylesheet: halftone paper, white boards and panels with ink outlines and solid shadows, Impact titles, comic buttons, chapter tabs, home panels, starburst (`.burst`); `docs/DESIGN_V8.md` |
 | `share.png` | share image for link previews (Open Graph in `index.html`), drawn by `scripts/share-image.py` |
 | `styles/pages.css` | page and component styles, challenge card colours and animations |
 | `styles/timeline-standalone.css` | standalone mathematicians timeline: shared site chrome, Jour/Nuit tokens, readable portrait lanes and mobile scrolling |

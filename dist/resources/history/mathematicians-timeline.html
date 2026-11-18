@@ -61,24 +61,25 @@ document.documentElement.dataset.theme=theme;})();
 @media(hover:none){.life:hover:not(.selected){width:42px!important;filter:none}.life:hover:not(.selected) .life-name,.life:hover:not(.selected) .life-dates{opacity:0;visibility:hidden}.life:hover:not(.selected) img{transform:none}}
 
 /* The visual layer is in timeline-standalone.css, after the site styles. */
-</style><link rel="stylesheet" href="../../styles/timeline-standalone.css"></head><body>
+</style><link rel="stylesheet" href="../../styles/timeline-standalone.css"><link rel="stylesheet" href="../../styles/comic.css"></head><body>
 <div class="app">
 <a class="mx-skip" href="#scroller" data-fr="Aller à la frise" data-en="Skip to timeline">Aller à la frise</a>
 <header class="topbar">
- <a class="brand" href="../../index.html#home" aria-label="Maths Explorer"><svg class="brandmark" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M50 12A76 76 0 0 1 88 77.8A76 76 0 0 1 12 77.8A76 76 0 0 1 50 12Z" class="bm-shape"/><circle cx="50" cy="56" r="9" class="bm-dot"/></svg><span class="brand-name">Maths Explorer</span></a>
+ <a class="brand" href="../../index.html#home" aria-label="Maths Explorer"><svg class="brandmark" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M50.0 4.0 L58.0 20.1 L70.2 14.9 L71.9 28.1 L92.2 25.6 L79.9 42.0 L92.8 50.0 L79.9 58.0 L90.6 73.5 L71.9 71.9 L69.8 84.3 L58.0 79.9 L50.0 99.7 L42.0 79.9 L28.2 87.8 L28.1 71.9 L14.1 70.7 L20.1 58.0 L2.2 50.0 L20.1 42.0 L11.4 27.7 L28.1 28.1 L30.0 15.3 L42.0 20.1Z" class="bm-shape"/><text x="50" y="64" text-anchor="middle" font-size="40" font-family="Georgia, serif" font-weight="700" class="bm-dot">π</text></svg><span class="brand-name">Maths Explorer</span></a>
  <nav class="mainnav" aria-label="Navigation principale">
-  <a href="../../index.html#resources"><span data-site-icon="books"></span><span data-fr="Apprendre" data-en="Learn">Apprendre</span></a>
-  <a href="../../index.html#topics"><span data-site-icon="flask"></span><span data-fr="Explorer" data-en="Explore">Explorer</span></a>
-  <a href="../../index.html#stories" aria-current="true"><span data-site-icon="book-open"></span><span data-fr="Lire" data-en="Read">Lire</span></a>
+  <a href="../../index.html#resources"><span data-site-icon="books"></span><span data-fr="Cours" data-en="Lessons">Cours</span></a>
+  <a href="../../index.html#bank"><span data-site-icon="seal-check"></span><span data-fr="Exercices" data-en="Practice">Exercices</span></a>
+  <a href="../../index.html#lab"><span data-site-icon="flask"></span><span data-fr="Labo" data-en="Lab">Labo</span></a>
+  <a href="../../index.html#gallery" aria-current="true"><span data-site-icon="book-open"></span><span data-fr="Bibliothèque" data-en="Library">Bibliothèque</span></a>
  </nav>
  <div class="tools"><button type="button" class="icon-btn" id="timeline-theme" data-theme-toggle aria-label="Passer au thème sombre" title="Passer au thème sombre">☾</button>
  <div class="language" role="group" aria-label="Langue"><button type="button" data-timeline-lang="fr" lang="fr">FR</button><button type="button" data-timeline-lang="en" lang="en">EN</button></div></div>
 </header>
 <nav class="subnav" aria-label="Pages de lecture"><div class="subnav-inner">
- <a href="#scroller" aria-current="page"><span data-fr="Chronologies" data-en="Timelines">Chronologies</span></a>
- <a href="../../index.html#biographies"><span data-fr="Biographies" data-en="Biographies">Biographies</span></a>
- <a href="../../index.html#stories"><span data-fr="Histoires" data-en="Stories">Histoires</span></a>
  <a href="../../index.html#gallery"><span data-fr="Curiosités" data-en="Curiosities">Curiosités</span></a>
+ <a href="../../index.html#stories"><span data-fr="Histoires" data-en="Stories">Histoires</span></a>
+ <a href="../../index.html#biographies"><span data-fr="Biographies" data-en="Biographies">Biographies</span></a>
+ <a href="#scroller" aria-current="page"><span data-fr="Chronologies" data-en="Timelines">Chronologies</span></a>
  <a href="../../index.html#history/advances"><span data-fr="Idées" data-en="Ideas">Idées</span></a>
 </div></nav>
 <header class="header"><div class="toolbar"><span id="total" class="total">236 mathématiciens</span><div class="searchwrap"><input id="search" type="search" placeholder="Find a mathematician…" aria-label="Search mathematicians" autocomplete="off"><div id="results" class="results" hidden></div></div><div class="zoom"><button class="smallbtn" id="zoom-out" title="Zoom out" aria-label="Zoom out">−</button><span id="zoom-label" class="zoomlabel">3 px/yr</span><button class="smallbtn" id="zoom-in" title="Zoom in" aria-label="Zoom in">+</button></div></div></header>

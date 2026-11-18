@@ -246,7 +246,7 @@ test('every generator can be an objective: valid unique ids, live class, route a
  assert.equal(isLiveRoute({page:'review'}),true);assert.equal(isLiveRoute({page:'review',id:'x'}),false);
  const read=p=>readFileSync(new URL('../site/'+p,import.meta.url),'utf8');
  const app=read('js/app.js');
- assert.match(app,/\["bank", "Exercices", "Exercises", "seal-check"\],\s*\["review", "Réviser", "Review", "[a-z-]+"\]/);
+ assert.match(app,/\["practice", "Exercices", "Practice", "seal-check", \[[^]*?\["review", "Réviser", "Review", "[a-z-]+"\]/);   // a tab of the Exercices section
  assert.match(app,/r\.page === "review" && !r\.id/);assert.match(app,/'\.\/review-page\.js'/);assert.doesNotMatch(app,/^import[^\n]*review-page/m,'the page is loaded on demand');
  assert.match(read('index.html'),/href="\.\/styles\/review\.css(\?v=\w+)?"/);
  for(const f of ['js/review-model.js','js/review-state.js','js/review-page.js']){const src=read(f);for(const id of new Set([...liveIds,...TEMPLATES.map(t=>t.cls)]))assert.ok(!new RegExp(`['"\`]${id}['"\`]`).test(src),`${f} names the class ${id}`);}

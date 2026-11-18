@@ -89,7 +89,7 @@ with sync_playwright() as p:
     open_page(page, '#lab/exponential'); page.evaluate("localStorage.setItem('maths-explorer-v1', JSON.stringify({lang: 'en'}))")
     page.goto(f'{BASE}/#home'); page.goto(f'{BASE}/#lab/exponential'); page.reload(); page.wait_for_selector('#lab2-host'); scroll_end(page)
     page.wait_for_selector('.related-box', timeout=8000)
-    assert page.locator('.related-box h2').inner_text() == 'Related resources', page.locator('.related-box h2').inner_text()
+    assert page.locator('.related-box h2').text_content() == 'Related resources', page.locator('.related-box h2').text_content()
     page.evaluate("localStorage.removeItem('maths-explorer-v1')")
 
     # small screens, both themes: no overflow, 44 px targets

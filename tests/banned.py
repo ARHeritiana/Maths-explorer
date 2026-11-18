@@ -43,10 +43,19 @@ def pdf_text(path):
         return '\n'.join(p.get_text() for p in d) + json.dumps(d.metadata)
 
 
+def font_text(path):
+    """A font's readable text is its name table (family, copyright, designer, URLs); glyph bytes are not text and
+    can match the e-mail pattern by chance."""
+    from fontTools.ttLib import TTFont
+    return '\n'.join(r.toUnicode() for r in TTFont(path)['name'].names)
+
+
 def publication_text(path):
     """Inspect archive members as documents; compressed bytes are not publication text."""
     if path.suffix == '.pdf':
         return pdf_text(path)
+    if path.suffix.lower() in ('.ttf', '.otf'):
+        return font_text(path)
     if path.suffix == '.zip':
         parts = []
         binary = {'.png', '.jpg', '.jpeg', '.gif', '.ico', '.woff', '.woff2', '.ttf', '.otf'}
