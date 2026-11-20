@@ -37,7 +37,7 @@ const press=(el,type,x,y)=>el.dispatchEvent(new window.MouseEvent(type,{clientX:
 await go('#lab/quadratic/vertex');
 let lab=document.querySelector('.lab2');assert.ok(lab,'the experiment page mounts');
 assert.equal(lab.querySelectorAll('canvas').length,1);assert.equal(window.location.hash,'#lab/quadratic/vertex');
-assert.match(lab.querySelector('.lab2-step').textContent,/3\/6/);assert.ok(lab.querySelector('.lab2-formula').textContent.includes('f(x) ='));
+assert.match(lab.querySelector('.lab2-step').textContent,/Scènes|Scenes/,'the lab page is free exploration: scenes, not missions');assert.ok(lab.querySelector('.lab2-formula').textContent.includes('f(x) ='));
 const api=lab.__lab,canvas=lab.querySelector('canvas'),handle=api.stage.handles.find(h=>h.id==='vertex').button;assert.equal(lab.querySelectorAll('.lab2-handle').length,api.stage.handles.length);assert.ok(api.stage.handles.length>=3,'every handle of the experiment is free');
 const centre=()=>{const m=/translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(handle.style.transform);return [+m[1]+22,+m[2]+22];};
 const camera=api.stage.view,before=api.getState(),record=[];
@@ -74,15 +74,14 @@ assert.equal(-api.getState().b/2,-x0.b/2+0.5,'the vertex moved by one grid step'
   camera.zoom(1.25);flush();const o0=api.stage.cam('graph').ox;press(canvas,'pointerdown',600,40);for(let i=1;i<=6;i++){press(canvas,'pointermove',600-i*10,40+i*6);flush();}press(canvas,'pointerup',540,76);flush();
   assert.ok(api.stage.cam('graph').ox<o0,'once zoomed, a background drag moves the view');
   assert.equal(JSON.stringify(api.getState()),st,'moving the view never changes the state');canvas.dispatchEvent(new window.KeyboardEvent('keydown',{key:'0',bubbles:true,cancelable:true}));flush();assert.equal(camera.moved,false);}
-// missions: free exploration, every mission is open, controls work in a prediction, the address follows
+// free exploration: scenes are starting states, nothing is predicted, answered, graded or locked, the address follows the scene
 await go('#lab/quadratic/open');
-lab=document.querySelector('.lab2');let next=lab.querySelector('.lab2-nav .primary');assert.ok(!next.disabled,'Next never waits');
+lab=document.querySelector('.lab2');assert.ok(lab.querySelector('.lab2-nav').hidden,'no previous or next');
 assert.ok(lab.querySelectorAll('.lab2-ctl.is-locked').length===0&&lab.querySelectorAll('.lab2-dot:disabled').length===0,'nothing is locked');
-lab.querySelector('.lab2-option').click();flush();next.click();flush();
-assert.equal(window.location.hash,'#lab/quadratic/sign');assert.match(lab.querySelector('.lab2-step').textContent,/2\/6/);
-lab.querySelectorAll('.lab2-dot')[5].click();flush();assert.match(lab.querySelector('.lab2-step').textContent,/6\/6/,'any mission can be opened');
-assert.ok(!lab.querySelector('.lab2-argument').hidden,'the argument is there on the last mission');
-{const b=[...lab.querySelectorAll('.lab2-answer button.primary')].at(-1);assert.ok(!b.disabled,'the argument needs no written attempt');}
+assert.equal(lab.querySelectorAll('.lab2-option, .lab2-answer input, .lab2-answer textarea').length,0,'no prediction, no answer to give');
+assert.ok(lab.querySelector('.lab2-kind').hidden,'no mission kind badge');
+lab.querySelectorAll('.lab2-dot')[5].click();flush();assert.match(window.location.hash,/#lab\/quadratic\//);
+assert.ok(!lab.querySelector('.lab2-argument').hidden,'the idea is always shown');
 // gated (reserved for tests): controls locked to the mission, Next after the answer, a prediction hides the controls
 {const {mountExperiment:mx}=await import('../dist/js/lab/mount.js');const host=document.createElement('div');document.body.append(host);
   const G=mx(host,'quadratic/open',{mode:'full',lang:'fr',gated:true});await G.ready;flush();const R=host.querySelector('.lab2'),nx=R.querySelector('.lab2-nav .primary');

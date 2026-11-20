@@ -11152,13 +11152,13 @@ const TEXT = {
     "What you saw is experimental evidence, not a proof: a few positions do not cover every case. The argument below does cover every case.",
   ],
   keys: [
-    "Points : glisse-les, ou Tab puis les flèches. Zoom : boutons + et −, Ctrl + molette ou pincement ; une fois zoomé, glisse le fond pour déplacer la vue ; 0 : recentrer. N et P : mission suivante, précédente.",
-    "Points: drag them, or Tab then the arrow keys. Zoom: the + and − buttons, Ctrl + wheel or pinch; once zoomed, drag the background to move the view; 0: reset. N and P: next and previous mission.",
+    "Points : glisse-les, ou Tab puis les flèches. Zoom : boutons + et −, Ctrl + molette ou pincement ; une fois zoomé, glisse le fond pour déplacer la vue ; 0 : recentrer.",
+    "Points: drag them, or Tab then the arrow keys. Zoom: the + and − buttons, Ctrl + wheel or pinch; once zoomed, drag the background to move the view; 0: reset.",
   ],
   // the same help for a figure without draggable points (number grids, simulations)
   keysView: [
-    "Zoom : boutons + et −, Ctrl + molette ou pincement ; une fois zoomé, glisse le fond pour déplacer la vue ; 0 : recentrer. N et P : mission suivante, précédente.",
-    "Zoom: the + and − buttons, Ctrl + wheel or pinch; once zoomed, drag the background to move the view; 0: reset. N and P: next and previous mission.",
+    "Zoom : boutons + et −, Ctrl + molette ou pincement ; une fois zoomé, glisse le fond pour déplacer la vue ; 0 : recentrer.",
+    "Zoom: the + and − buttons, Ctrl + wheel or pinch; once zoomed, drag the background to move the view; 0: reset.",
   ],
   play: ["Lecture", "Play"],
   pause: ["Pause", "Pause"],
@@ -11178,6 +11178,10 @@ function createShell(host, exp, tpl, opts = {}) {
   const mode = opts.mode || "full";
   const full = mode === "full", slide = mode === "slide";
   const gated = !!opts.gated;
+  // Free exploration (owner, 20 November 2026): on the lab page every control works, nothing is predicted, answered, graded or
+  // locked. A mission shows as a "scene": a named starting state (`m.scene = { title, caption }`, both [fr, en] pairs) with a
+  // descriptive caption. `gated` (kept for future tests) restores the old mission flow; slides and chapters are unchanged.
+  const free = full && !gated;
   // In a slide the player typesets every formula (opts.render turns the Unicode of an experiment into MathJax markup); elsewhere
   // text is written as plain text nodes. `write` sets a node's text, `put` does it only when it changed (a Text node in place).
   const render = slide ? opts.render : null;
@@ -11187,6 +11191,9 @@ function createShell(host, exp, tpl, opts = {}) {
   const fmt = makeFormat(opts.lang || "fr");
   const t = fmt.t;
   const missions = exp.missions;
+  const onlyScenes = free && missions.some((m) => m.scene);   // once an experiment names its scenes, only those are listed
+  const sceneTitle = (m, i) => m.scene?.title || [`Scène ${i + 1}`, `Scene ${i + 1}`];
+  const sceneCaption = (m) => m.scene?.caption || m.because || m.done || m.prompt;
   const defaults = exp.state;
   const model = exp.model.model;
 
@@ -11428,7 +11435,8 @@ function createShell(host, exp, tpl, opts = {}) {
     head.append(prevBtn, label, nextBtn);
   } else head.append(stepEl, kindEl, fold);
   const dots = el("ol", "lab2-progress");
-  dots.setAttribute("aria-label", t(["Missions", "Missions"]));
+  dots.setAttribute("aria-label", free ? t(["Scènes", "Scenes"]) : t(["Missions", "Missions"]));
+  if (free) dots.classList.add("lab2-scenes");
   const promptEl = slide && opts.hint ? opts.hint : el("p", "lab2-prompt");
   if (slide && opts.hint) promptEl.classList.add("lab2-hint");
   promptEl.tabIndex = -1;
@@ -11453,15 +11461,17 @@ function createShell(host, exp, tpl, opts = {}) {
   if (full) {
     argumentEl = el("section", "lab2-argument");
     argumentEl.hidden = true;
-    argumentEl.append(el("h2", "", t(T("evidenceTitle"))), el("p", "lab2-evidence", t(exp.evidence || T("evidence"))));
+    if (free) argumentEl.append(el("h2", "", t(["L’idée", "The idea"])));
+    else argumentEl.append(el("h2", "", t(T("evidenceTitle"))), el("p", "lab2-evidence", t(exp.evidence || T("evidence"))));
     if (exp.conclusion) argumentEl.append(el("p", "lab2-conclusion", t(exp.conclusion)));
     root.append(argumentEl);
   }
 
   const dotButtons = missions.map((m, i) => {
-    const li = el("li"), b = el("button", "lab2-dot", String(i + 1));
+    const li = el("li"), b = el("button", free ? "lab2-dot lab2-scene" : "lab2-dot", free ? t(sceneTitle(m, i)) : String(i + 1));
     b.type = "button";
-    b.title = `${t(T("mission"))} ${i + 1}: ${t(KINDS[m.kind])}`;
+    if (onlyScenes && !m.scene) li.hidden = true;
+    b.title = free ? t(sceneTitle(m, i)) : `${t(T("mission"))} ${i + 1}: ${t(KINDS[m.kind])}`;
     b.setAttribute("aria-label", b.title);
     b.addEventListener("click", () => go(i));
     li.append(b); dots.append(li);
@@ -11524,7 +11534,8 @@ function createShell(host, exp, tpl, opts = {}) {
       setClass(b, "is-done", !!done[missions[i].id]);
       if (i === index) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
     });
-    if (argumentEl) argumentEl.hidden = gated ? !done[missions.at(-1).id] : !(done[missions.at(-1).id] || index === missions.length - 1);
+    if (free) navEl.hidden = true;
+    if (argumentEl) argumentEl.hidden = free ? !exp.conclusion : gated ? !done[missions.at(-1).id] : !(done[missions.at(-1).id] || index === missions.length - 1);
   }
 
   function renderAnswer(m) {
@@ -11659,7 +11670,7 @@ function createShell(host, exp, tpl, opts = {}) {
       answerEl.append(d);
     }
     if (m.kind === "explore" || m.kind === "contrast") {
-      const again = el("button", "text-button lab2-restart", text(T("restart")));
+      const again = el("button", "text-button lab2-restart", text(free ? ["Revenir au départ de la scène", "Back to the start of the scene"] : T("restart")));
       again.type = "button";
       again.addEventListener("click", () => { enter(index); });
       answerEl.append(again);
@@ -11675,11 +11686,12 @@ function createShell(host, exp, tpl, opts = {}) {
     ghostSet = null; variantSeen = new Set(); currentVariant = null; attempts = 0;
     lockControls(m);
     setClass(card, "is-done", !!done[m.id]);
-    setText(stepEl, (slide ? `${i + 1}/${missions.length}` : `${t(T("mission"))} ${full ? `${i + 1}/${missions.length}` : ""}`).trim());
-    setText(kindEl, t(KINDS[m.kind]));
-    card.dataset.kind = m.kind;
-    put(promptEl, t(m.prompt));
-    renderAnswer(m);
+    setText(stepEl, free ? t(["Scènes", "Scenes"]) : (slide ? `${i + 1}/${missions.length}` : `${t(T("mission"))} ${full ? `${i + 1}/${missions.length}` : ""}`).trim());
+    setText(kindEl, free ? "" : t(KINDS[m.kind]));
+    kindEl.hidden = free;
+    card.dataset.kind = free ? "scene" : m.kind;
+    put(promptEl, t(free ? sceneCaption(m) : m.prompt));
+    if (free) { answerEl.replaceChildren(); attempts = 0; finishAnswer({ kind: "explore" }); } else renderAnswer(m);
     setFeedback("");
     if (m.kind === "contrast" && m.variants?.length) answerEl.querySelector(".lab2-variant")?.click();
     maxReached = Math.max(maxReached, i);
@@ -11739,7 +11751,7 @@ function createShell(host, exp, tpl, opts = {}) {
       }
     }
     const m = mission();
-    if (m && m.kind === "explore" && !done[m.id] && m.goal(s, model(s))) markDone(t(m.done || T("goal")));
+    if (!free && m && m.kind === "explore" && !done[m.id] && m.goal(s, model(s))) markDone(t(m.done || T("goal")));
   }
 
   // The first mission of the reference.

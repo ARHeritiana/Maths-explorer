@@ -63,7 +63,7 @@ export function experimentPage(exp, { t, pair, link, completed, mission = "" }) 
   return `<main id="main" class="page lab2-page" tabindex="-1" data-experiment="${exp.id}">
 <div class="breadcrumb"><a href="${link("lab")}">${pair("Le laboratoire", "The laboratory")}</a><span>/</span>${esc(t(info?.title || exp.group))}</div>
 <div class="lab-heading"><div><h1>${esc(t(exp.title))}</h1><p>${esc(t(exp.intro))}</p></div><span class="level">${esc(t(exp.level))}</span></div>
-<p class="lab2-meta"><span aria-hidden="true">◷</span> ${exp.duration} min · <strong>${pair("Avant de commencer", "Before you begin")}</strong> ${esc(t(exp.prereq))}</p>
+<p class="lab2-meta"><span aria-hidden="true">◷</span> ${exp.duration} min</p>
 <div id="lab2-host" class="lab2-host" data-ref="${esc(labRef(exp.id, mission))}"></div>
 ${exp.template === 'fourier' ? fourierLinks(exp.id === 'fourier-drawing' ? 'drawing' : 'lab', pair('fr','en')) : ''}
 <nav class="lab2-steps" aria-label="${pair("Autres expériences", "Other experiments")}">${step(prev, "prev")}${step(next, "next")}<details class="lab2-all"><summary>${pair(`Toutes les expériences (${list.length})`, `All experiments (${list.length})`)}</summary><div class="lab2-chips">${others}</div></details></nav>

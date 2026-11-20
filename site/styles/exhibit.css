@@ -143,3 +143,10 @@
 .exhibit-controls .exhibit-actions:first-child { border-top: 0; padding-top: 0; }
 .act-help { color: var(--muted); font-size: 0.92rem; }
 .lab-main-article .exhibit-notes { display: none; }
+
+/* Laboratory page in free exploration (shell.js `free`): scenes are labelled chips, not numbered progress dots. */
+.lab2-scenes { gap: 8px; }
+.lab2-dot.lab2-scene { width: auto; min-height: 44px; padding: 6px 14px; border-radius: var(--r-pill, 999px); font-weight: 600; text-align: left; line-height: 1.2; }
+.lab2-full .lab2-prompt { color: var(--ink); }
+.art-sources { margin-top: 24px; max-width: 68ch; }
+.art-sources h2 { font-size: 1.1rem; margin: 0 0 6px; }
