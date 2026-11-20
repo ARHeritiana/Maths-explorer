@@ -1,5 +1,6 @@
 import {canvasIn,palette,field,bind,loopFor} from './object-kit.js';
 import {makeNet} from './platonic-fold.js';
+import {metricStrip} from './gallery/gallery-panels.js';
 const TAU=2*Math.PI;
 export function mountPlatonic(root,{t,reduced},solids,names,schlafli,angle,verdict) {
   let name='cube',fold=1,yaw=-.6,pitch=.65,drag=null,playing=false,p=4,q=3,selected=-1,hover=-1,spin=!reduced(),numbers=false,vyaw=0,vpitch=0,idle=0;
@@ -18,9 +19,14 @@ export function mountPlatonic(root,{t,reduced},solids,names,schlafli,angle,verdi
     <p class="act-readout" id="pl-fan-read" aria-live="polite"></p>
     <p>${t('Triangles : 3, 4 ou 5 par sommet. Carrés : 3. Pentagones : 3. Dès l’hexagone, trois angles font au moins 360° : aucun p ≥ 6 ne convient. Il reste cinq couples (p, q). Les cinq patrons ci-dessus prouvent leur existence ; la classification des polyèdres réguliers convexes les détermine à une similitude près.','Triangles: 3, 4 or 5 per vertex. Squares: 3. Pentagons: 3. From hexagons onward, three angles total at least 360°, so no p ≥ 6 works. Five pairs (p, q) remain. The five nets above establish their existence; the classification of convex regular polyhedra determines them up to similarity.')}</p></details>`;
   const o=canvasIn(root.querySelector('#pl-stage'),640/430),g=o.g,fo=canvasIn(root.querySelector('#pl-fan-stage'),1),fg=fo.g;
+  // Exact counts of the solid shown (issue #37): Euler's V − E + F = 2 and Descartes' total angle defect 720°.
+  const PS=metricStrip(root.querySelector('#pl-stage'),t,[{id:'vef',label:t('Sommets V, arêtes E, faces F','Vertices V, edges E, faces F'),kind:'exact'},{id:'euler',label:'V − E + F',kind:'exact'},
+    {id:'corner',label:t('Angles autour d’un sommet, et ce qui manque à 360°','Angles around a vertex, and what is missing from 360°'),kind:'exact'},{id:'total',label:t('Défaut total : V × manque','Total defect: V × gap'),kind:'exact'}]);
+  const facts=S=>{const a=angle(S.p),sum=S.q*a,defect=360-sum;return{euler:S.V-S.E+S.F,angle:a,sum,defect,total:S.V*defect};};   // same rule as platonicFacts in lab-objects.js
   const read=root.querySelector('#pl-read'),fanRead=root.querySelector('#pl-fan-read'),foldInput=root.querySelector('#pl-fold');let projected=[];
   const rot=([x,y,z])=>{const a=x*Math.cos(yaw)-y*Math.sin(yaw),b=x*Math.sin(yaw)+y*Math.cos(yaw);return[a,z*Math.cos(pitch)+b*Math.sin(pitch),b*Math.cos(pitch)-z*Math.sin(pitch)];};
-  const sync=()=>{foldInput.value=Math.round(fold*100);root.querySelector('#pl-fold-out').textContent=`${Math.round(fold*100)} %`;const S=solids[name];read.textContent=`${t(...names[name])} · ${S.F} ${t('faces','faces')} · ${S.E} ${t('arêtes','edges')} · ${S.V} ${t('sommets','vertices')}. ${t('Faces par sommet','Faces at each vertex')} : ${S.q}. ${selected>=0?t('Face choisie','Selected face')+' '+(selected+1):''}`;root.querySelectorAll('[data-solid]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.solid===name)));};
+  const sync=()=>{foldInput.value=Math.round(fold*100);root.querySelector('#pl-fold-out').textContent=`${Math.round(fold*100)} %`;const S=solids[name];read.textContent=`${t(...names[name])} · ${S.F} ${t('faces','faces')} · ${S.E} ${t('arêtes','edges')} · ${S.V} ${t('sommets','vertices')}. ${t('Faces par sommet','Faces at each vertex')} : ${S.q}. ${selected>=0?t('Face choisie','Selected face')+' '+(selected+1):''}`;root.querySelectorAll('[data-solid]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.solid===name)));
+    const P=facts(S);PS.set('vef',`${S.V} · ${S.E} · ${S.F}`);PS.set('euler',`${S.V} − ${S.E} + ${S.F} = ${P.euler}`);PS.set('corner',`${S.q} × ${P.angle}° = ${P.sum}° · ${P.defect}°`);PS.set('total',`${S.V} × ${P.defect}° = ${P.total}°`);};
   function draw(dt=0) {
     if(playing){fold=Math.min(1,fold+dt/3.5);if(fold===1)playing=false;sync();}
     const C=palette(),net=nets[name],polys=net.faces(fold),scale=Math.min(280/net.radius,175/net.radius),screen=polys.map(poly=>poly.map(v=>{const r=rot(v);return[o.W/2+scale*r[0],o.H/2-scale*r[1],r[2]];}));
@@ -72,5 +78,5 @@ export function mountPlatonic(root,{t,reduced},solids,names,schlafli,angle,verdi
   o.cv.addEventListener('keydown',e=>{const d={ArrowLeft:[-.1,0],ArrowRight:[.1,0],ArrowUp:[0,.08],ArrowDown:[0,-.08]}[e.key];if(d){e.preventDefault();yaw+=d[0];pitch=Math.max(-1.45,Math.min(1.45,pitch+d[1]));draw();}});
   o.cv.setAttribute('aria-label',t('Solide et patron 3D. Flèches pour tourner ; plus et moins pour zoomer.','3D solid and net. Arrow keys rotate; plus and minus zoom.'));o.cv.style.cursor='grab';
   o.redraw=()=>draw();fo.redraw=fan;sync();fan();draw();const stop=loopFor(dt=>{let moving=false;if(!drag&&!reduced()){if(Math.abs(vyaw)>.02||Math.abs(vpitch)>.02){const k=Math.exp(-dt*2.2);yaw+=vyaw*dt;pitch=Math.max(-1.45,Math.min(1.45,pitch+vpitch*dt));vyaw*=k;vpitch*=k;moving=true;}else if(spin){yaw+=dt*.45;moving=true;}}if(playing||moving){draw(dt);return;}return false;},reduced,o.cv);
-  return()=>{stop();o.navigation?.destroy();fo.navigation?.destroy();};
+  return()=>{stop();PS.el.remove();o.navigation?.destroy();fo.navigation?.destroy();};
 }

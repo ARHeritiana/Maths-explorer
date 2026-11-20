@@ -1,5 +1,14 @@
 # Handoff
 
+## Gallery measurements, batch 3 (20 November 2026, issue #37)
+
+Galton board: strip (balls, observed mean against np, observed standard deviation against √(np(1−p))) and the plot of the
+observed mean against the number of balls, one real point per update, history thinned past 1,200 points. Reuleaux: width
+in the chosen direction beside the polygon of the same vertices, Barbier's perimeter, areas; plot of the width against
+θ (flat for the Reuleaux shape, varying for the polygon). Platonic solids: V, E, F, V − E + F = 2, angle sum and gap at a
+vertex, Descartes' total defect 720°. Pure helpers in `site/js/lab-objects.js` (`polygonWidth`, `widthProfile`,
+`binMean`, `thinHistory`, `platonicFacts`), tested in `tests/gallery-measures.test.mjs`.
+
 ## Step 3: French curriculum only (14 November 2026)
 
 Step 3 of the owner's plan (private handoff `coordination/handoff-20261113/README.md` in Maths-explorer-backup). This

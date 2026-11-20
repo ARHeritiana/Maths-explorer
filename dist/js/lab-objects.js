@@ -8,6 +8,10 @@ export const clampN = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
 /* =============================================================== maths */
 // Binomial distribution of the Galton board: bin k of n rows with probability p of going right.
 export const binomial = (n, p) => { const out = []; let c = 1; for (let k = 0; k <= n; k++) { out.push(c * p ** k * (1 - p) ** (n - k)); c = (c * (n - k)) / (k + 1); } return out; };
+// Running mean of the Galton bins: mean of k over the landed balls (counts[k] balls in bin k), null with no ball.
+export const binMean = (counts) => { let n = 0, m = 0; counts.forEach((c, k) => { n += c; m += c * k; }); return n ? m / n : null; };
+// Keep a history of samples bounded: past `cap` points, drop every other old point (each kept point is a real sample).
+export const thinHistory = (h, cap = 1200) => (h.length > cap ? h.filter((_, i) => i % 2 === 0 || i === h.length - 1) : h);
 export const pascalRow = (n) => { const out = [1]; for (let k = 0; k < n; k++) out.push((out[k] * (n - k)) / (k + 1)); return out.map(Math.round); };
 
 // Reuleaux polygon with n (odd) vertices and constant width w. Vertices of the regular n-gon, arcs of radius w.
@@ -30,6 +34,10 @@ export function support(shape, theta) {
   return { h: best, at };
 }
 export const widthAt = (shape, theta) => support(shape, theta).h + support(shape, theta + Math.PI).h;
+// Width of a convex polygon (its vertices) between two parallel lines perpendicular to direction theta.
+export function polygonWidth(verts, theta) { const ux = Math.cos(theta), uy = Math.sin(theta), d = verts.map(([x, y]) => x * ux + y * uy); return Math.max(...d) - Math.min(...d); }
+// Width against direction, sampled every `step` degrees from 0 to 360 (issue #37 plot): [degrees, width] pairs.
+export const widthProfile = (fn, step = 2) => Array.from({ length: Math.round(360 / step) + 1 }, (_, i) => [i * step, fn((i * step * Math.PI) / 180)]);
 // Radius of curvature of the boundary in direction theta (shape frame): w on arcs, 0 on vertex cones.
 export function radiusAt(shape, theta) {
   const n = shape.n, a = (((theta - Math.PI / 2) % TAU) + TAU) % TAU, cone = TAU / (2 * n), idx = Math.floor((a + cone / 2) / cone);   // intervals of width pi/n centred on vertex directions (even) and arc directions (odd)
@@ -82,6 +90,9 @@ export function platonic(name) {
 // Why only five: q regular p-gons around a vertex. Their angles must add up to less than 360 degrees.
 export const interiorAngle = (p) => (180 * (p - 2)) / p;
 export function vertexVerdict(p, q) { const total = q * interiorAngle(p); return total < 360 - 1e-9 ? "solid" : Math.abs(total - 360) < 1e-9 ? "flat" : "overlap"; }
+// Exact facts of a solid from its counted vertices, edges and faces: Euler characteristic, face angle, angle sum and gap at a
+// vertex, and Descartes' total defect (always 720 degrees for a convex polyhedron).
+export function platonicFacts(S) { const angle = interiorAngle(S.p), sum = S.q * angle, defect = 360 - sum; return { euler: S.V - S.E + S.F, angle, sum, defect, total: S.V * defect }; }
 export const PLATONIC_CASES = [3, 4, 5, 6].flatMap((p) => [3, 4, 5, 6].map((q) => ({ p, q, verdict: vertexVerdict(p, q) })));
 
 // Chaos game: contraction ratio of the regular k-gon fractal (1/2 for the triangle, 0.382 for the pentagon, ...).
@@ -125,7 +136,8 @@ import { capability } from './device-capability.js';
 /* ---------------------------------------------------------------- Galton */
 function galton(root, { t, reduced, lang }) {
   let rows = 10, p = 0.5, counts = [], pending = [], total = 0, balls = [], continuous = false, pascal = false, theory = true, acc = 0, bigEpoch = 0, gone = false;
-  const reset = () => { bigEpoch++; counts = Array(rows + 1).fill(0); pending = Array(rows + 1).fill(0); total = 0; balls = []; };
+  let hist = [], seen = -1;   // [balls landed, sample mean] each time the count changed: the plot of the mean against n
+  const reset = () => { bigEpoch++; counts = Array(rows + 1).fill(0); pending = Array(rows + 1).fill(0); total = 0; balls = []; hist = []; seen = -1; };
   root.innerHTML = `
     <p class="act-help">${t("Chaque bille rencontre une rangée de clous : à chaque clou, elle part à droite avec la probabilité p, à gauche sinon. Lâche des billes et compare l’histogramme à la loi binomiale.", "Each ball meets a row of pegs: at each peg it goes right with probability p, left otherwise. Drop balls and compare the histogram with the binomial law.")}</p>
     <div class="obj-stage" id="gb-stage"></div>
@@ -141,6 +153,10 @@ function galton(root, { t, reduced, lang }) {
     </div>
     <p class="act-readout" id="gb-read" role="status" aria-live="polite"></p>`;
   const o = canvasIn(root.querySelector("#gb-stage"), 640 / 470), g = o.g, read = root.querySelector("#gb-read");
+  const MS = metricStrip(root.querySelector("#gb-stage"), t, [{ id: "n", label: t("Billes tombées", "Balls landed"), kind: "exact" },
+    { id: "m", label: t("Moyenne observée", "Observed mean"), kind: "observed" }, { id: "np", label: t("Espérance np", "Expectation np"), kind: "exact" },
+    { id: "s", label: t("Écart type observé", "Observed standard deviation"), kind: "observed" }, { id: "sd", label: "√(np(1−p))", kind: "exact" }]);
+  const MP = plotPanel(MS.el, t("Moyenne observée des cases en fonction du nombre de billes, un point par mise à jour (aucun lissage). La ligne pointillée est l’espérance np : la moyenne s’en approche, sans jamais être garantie de l’atteindre (loi des grands nombres).", "Observed mean of the bins against the number of balls, one point per update (no smoothing). The dotted line is the expectation np: the mean gets close to it, never guaranteed to reach it (law of large numbers)."));
   const geo = () => { const dx = Math.min(38, 580 / (rows + 1)), top = 30, dy = Math.min(24, 250 / (rows + 1)), cx = o.W / 2, base = top + rows * dy + 14; return { dx, dy, top, cx, base, bottom: o.H - 18, hmax: o.H - 18 - base - 26 }; };
   const pegX = (r, j, G) => G.cx + (j - r / 2) * G.dx, pegY = (r, G) => G.top + r * G.dy;
   const drop = (instant) => {
@@ -200,10 +216,22 @@ function galton(root, { t, reduced, lang }) {
       else { const [sx, sy] = slot(b.bin, b.slot), k = clampN(s - rows, 0, 1.4) / 1.4; x = lerp(G.cx + (b.bin - rows / 2) * G.dx, sx, k); y = lerp(pegY(rows, G) - 8, sy, k * k); }
       g.fillStyle = C.c[b.bin % 8]; g.strokeStyle = C.ink; g.lineWidth = 0.8; g.beginPath(); g.arc(x, y, R * 0.92, 0, TAU); g.fill(); g.stroke();
     }
-    const text = stats(); if (text !== lastText && (!balls.length || total % 5 === 0)) { read.innerHTML = text; lastText = text; }
+    const text = stats(); if (text !== lastText && (!balls.length || total % 5 === 0)) { read.innerHTML = text; lastText = text; measures(); }
     if (!balls.length && !continuous && !bigRun) return false;   // nothing falls: sleep until the next interaction
   }
   const lerp = (a, b, k) => a + (b - a) * k;
+  // The strip and the plot read the same counts as the board.
+  function measures() {
+    const loc = lang === "fr" ? "fr-FR" : "en-GB", f = (x) => (lang === "fr" ? String(Math.round(x * 1000) / 1000).replace(".", ",") : String(Math.round(x * 1000) / 1000));
+    const m = binMean(counts);
+    if (total !== seen) { seen = total; if (m != null) hist = thinHistory([...hist, [total, m]]); }
+    let v = 0; if (m != null) { counts.forEach((c, k) => (v += c * (k - m) ** 2)); v /= total; }
+    MS.set("n", total.toLocaleString(loc)); MS.set("m", m == null ? "–" : f(m)); MS.set("np", f(rows * p));
+    MS.set("s", m == null ? "–" : f(Math.sqrt(v))); MS.set("sd", f(Math.sqrt(rows * p * (1 - p))));
+    const ys = [rows * p, ...hist.map((h) => h[1])], lo = Math.min(...ys), hi = Math.max(...ys), pad = Math.max(0.05, (hi - lo) * 0.1);
+    MP.draw({ xMax: Math.max(10, total), yMin: Math.max(0, lo - pad), yMax: Math.min(rows, hi + pad), xLabel: t("billes", "balls"), yLabel: t("moyenne", "mean"), yFormat: f,
+      series: [{ points: [[0, rows * p], [Math.max(10, total), rows * p]], color: "muted", dash: [4, 4], width: 1, dots: false }, ...(hist.length ? [{ points: hist, color: "object" }] : [])] });
+  }
   bind(root, "gb-rows", (v) => { rows = v; reset(); lastText = ""; });
   bind(root, "gb-p", (v) => { p = v; reset(); lastText = ""; }, (v) => (lang === "fr" ? String(v).replace(".", ",") : String(v)));
   root.querySelector("#gb-one").addEventListener("click", () => drop(false));
@@ -229,9 +257,9 @@ function galton(root, { t, reduced, lang }) {
   o.cv.addEventListener('click',()=>drop(false));
   o.cv.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();drop(false);}});
   o.cv.setAttribute('aria-label',t('Planche de Galton : toucher ou Entrée pour lâcher une bille.','Galton board: tap or press Enter to drop a ball.'));
-  reset(); o.redraw = () => draw(0);
+  reset(); measures(); o.redraw = () => draw(0);
   const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced, o.cv);
-  return () => { gone = true; clearTimeout(bigRun); stop(); o.navigation?.destroy(); };
+  return () => { gone = true; clearTimeout(bigRun); stop(); MP.stop(); MS.el.remove(); o.navigation?.destroy(); };
 }
 
 /* -------------------------------------------------------------- Reuleaux */
@@ -252,6 +280,11 @@ function reuleauxLab(root, { t, reduced, lang }) {
     <p class="act-readout" id="rl-read" role="status" aria-live="polite"></p>`;
   const o = canvasIn(root.querySelector("#rl-stage"), 640 / 420), g = o.g, read = root.querySelector("#rl-read");
   let shape = reuleaux(n, 1), roll = rolling(shape), paintedShape = [];
+  const RS = metricStrip(root.querySelector("#rl-stage"), t, [{ id: "w", label: t("Largeur mesurée dans la direction choisie", "Width measured in the chosen direction"), kind: "approx" },
+    { id: "poly", label: t("Même direction, polygone des sommets", "Same direction, polygon of the vertices"), kind: "approx" },
+    { id: "per", label: t("Périmètre πw (Barbier)", "Perimeter πw (Barbier)"), kind: "exact" }, { id: "area", label: t("Aire, puis disque de même largeur", "Area, then the disk of equal width"), kind: "exact" }]);
+  const RP = plotPanel(RS.el, t("Largeur entre deux droites parallèles en fonction de leur direction θ, mesurée tous les 2° sur la courbe tracée. Trait plein : la forme de Reuleaux, constante. Pointillés : le polygone régulier de mêmes sommets, dont la largeur varie. La ligne verticale suit la direction choisie.", "Width between two parallel lines against their direction θ, measured every 2° on the drawn curve. Solid: the Reuleaux shape, constant. Dotted: the regular polygon with the same vertices, whose width varies. The vertical line follows the chosen direction."));
+  let profileKey = "", profile = null;
   const hitShape = ([x,y]) => { let yes=false;for(let i=0,j=paintedShape.length-1;i<paintedShape.length;j=i++){const a=paintedShape[i],b=paintedShape[j];if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;};
   o.touchHit(hitShape);
   const f = (x, d = 2) => { const s = (Math.round(x * 10 ** d) / 10 ** d).toFixed(d); return lang === "fr" ? s.replace(".", ",") : s; };
@@ -293,7 +326,22 @@ function reuleauxLab(root, { t, reduced, lang }) {
       [hA, -hB.h].forEach((v, i) => { const h = i === 0 ? v.h : v; const px = cx + S2 * h * d[0], py = cy - S2 * h * d[1], nx = -d[1], ny = -d[0]; g.beginPath(); g.moveTo(px - nx * 190, py - ny * 190 * -1 * -1); g.lineTo(px + nx * 190, py + ny * 190 * -1 * -1); g.stroke(); });
       g.fillStyle = C.neg; [hA.at, hB.at].forEach((q) => { g.beginPath(); g.arc(cx + S2 * q[0], cy - S2 * q[1], 5, 0, TAU); g.fill(); });
     }
-    read.innerHTML = `${t("Largeur", "Width")} w = <strong>${f(w)}</strong> cm · ${t("largeur mesurée", "measured width")} (${Math.round((psi * 180) / Math.PI) % 360}°) : <strong>${f(w * widthAt(shape, mode === "width" ? psi : psi + 0.7), 3)}</strong> cm · ${t("périmètre", "perimeter")} πw = <strong>${f(Math.PI * w)}</strong> cm (${t("celui du disque de même largeur", "the same as the disk of equal width")}) · ${t("aire", "area")} <strong>${f(shape.area * w * w)}</strong> cm² ${t("contre", "against")} ${f(shape.diskArea * w * w)} cm² ${t("pour le disque", "for the disk")}.`;
+    const deg = ((Math.round((psi * 180) / Math.PI) % 360) + 360) % 360;
+    read.innerHTML = `${t("Largeur", "Width")} w = <strong>${f(w)}</strong> cm. ${t("Même périmètre que le disque de même largeur, mais une aire plus petite : largeur égale ne veut pas dire aire égale.", "Same perimeter as the disk of equal width, but a smaller area: equal width does not mean equal area.")}`;
+    measures(deg);
+  }
+  // Strip and plot from the same shape as the canvas; the profile is recomputed only when the shape or w changes.
+  let lastMark = -1;
+  function measures(deg) {
+    const key = `${n}|${w}`;
+    if (key !== profileKey) { profileKey = key; lastMark = -1; profile = { rl: widthProfile((th) => w * widthAt(shape, th)), poly: widthProfile((th) => w * polygonWidth(shape.verts, th)) }; }
+    const th = (deg * Math.PI) / 180;
+    RS.set("w", `${f(w * widthAt(shape, th), 3)} cm (θ = ${deg}°)`); RS.set("poly", `${f(w * polygonWidth(shape.verts, th), 3)} cm`);
+    RS.set("per", `${f(Math.PI * w)} cm`); RS.set("area", `${f(shape.area * w * w)} cm² · ${f(shape.diskArea * w * w)} cm²`);
+    if (deg === lastMark) return; lastMark = deg;
+    const all = [...profile.rl, ...profile.poly].map((q) => q[1]);
+    RP.draw({ xMax: 360, xTicks: [0, 90, 180, 270, 360], yMin: Math.min(...all) * 0.98, yMax: Math.max(...all) * 1.01, xLabel: "θ (°)", yLabel: t("largeur (cm)", "width (cm)"), yFormat: (v) => f(v, 1), marker: [deg, w * widthAt(shape, th)],
+      series: [{ points: profile.poly, color: "muted", dash: [4, 4], dots: false }, { points: profile.rl, color: "object", dots: false }] });
   }
   const set = () => { shape = reuleaux(n, 1); roll = rolling(shape); };
   root.querySelectorAll("[name=rl-n]").forEach((r) => r.addEventListener("change", () => { n = Number(r.value); set(); }));
@@ -309,7 +357,7 @@ function reuleauxLab(root, { t, reduced, lang }) {
   o.cv.style.cursor='grab';o.redraw=()=>draw(0);
   draw(0);
   const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced, o.cv);
-  return () => { stop(); o.navigation?.destroy(); };
+  return () => { stop(); RP.stop(); RS.el.remove(); o.navigation?.destroy(); };
 }
 
 /* -------------------------------------------------------------- Platonic */

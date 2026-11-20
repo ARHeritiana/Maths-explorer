@@ -53,13 +53,13 @@ export function plotPanel(after,caption,{aspect=640/250}={}){
   return p;
 }
 
-// spec: {xMax, yMin (optional: axis not from 0), yMax, xLabel, yLabel, series:[{values|points, color (a palette() key such as 'ink', or a CSS colour), dots}], marker:[x,y], logY:[lo,hi], yFormat}
+// spec: {xMax, xTicks (optional: explicit ticks, the last one is the end of the axis), yMin (optional: axis not from 0), yMax, xLabel, yLabel, series:[{values|points, color (a palette() key such as 'ink', or a CSS colour), dots}], marker:[x,y], logY:[lo,hi], yFormat}
 // values are y at x = 0, 1, 2...; points are [x, y] pairs. Samples are joined by straight segments; dots mark each sample when few.
 export function lineChart(p,spec){
   // labels keep about 11 css pixels on a narrow screen: the logical canvas is 640 wide whatever its width on the page
   const k=Math.max(1,Math.min(2.2,640/(p.cv.clientWidth||640))),g=p.g,C=palette(),W=p.W,H=p.H,L=30+22*k,R=W-14,T=8+8*k,B=H-14-18*k,fmt=spec.yFormat||(v=>String(v));
   g.save();g.setTransform(p.scale,0,0,p.scale,0,0);g.clearRect(0,0,W,H);g.fillStyle=C.surface;g.fillRect(0,0,W,H);
-  const xt=niceTicks(spec.xMax||1,6),xm=xt.at(-1),log=spec.logY;
+  const xt=spec.xTicks||niceTicks(spec.xMax||1,6),xm=xt.at(-1),log=spec.logY;
   const yt=log?Array.from({length:Math.round(Math.log10(log[1]/log[0]))+1},(_,i)=>log[0]*10**i):spec.yMin!=null?niceRange(spec.yMin,spec.yMax,4):niceTicks(spec.yMax||1,4),y0=log?0:yt[0],ym=yt.at(-1);
   const X=x=>L+(R-L)*x/xm,Y=log?(v=>B-(B-T)*Math.log10(Math.max(v,log[0])/log[0])/Math.log10(log[1]/log[0])):(v=>B-(B-T)*(v-y0)/(ym-y0));
   g.font=`${Math.round(11*k)}px "IBM Plex Sans",system-ui,sans-serif`;g.lineWidth=1;g.strokeStyle=C.grid;g.fillStyle=C.muted;
