@@ -76,3 +76,8 @@ the shelf "Défis ouverts". Its `answer` stays only as a fact checked by the tes
 knights, jugs, cake, fakecoins, cham, pegs, nails, cheryl, sumproduct, hiker, coffee (`tests/challenges-variants.test.mjs`).
 Gallery curiosities follow the same rule: an entry without `answer` shows its question and a written explanation, no
 form (`tests/curiosity-questions.test.mjs`).
+
+Update of 20 November 2026: `braess/` (Braess's paradox, issue #34) has `art.js` (the town: houses at A, the stadium at
+B, cobbled streets, expressways, the new road with its barrier and ribbon, a car seen from above with its driver, the
+stopwatch); `maths.js` holds the route times, the equilibrium, one step of selfish switching and the map positions
+shared by the activity and the solution. Test: `tests/braess.test.mjs`.
