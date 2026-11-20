@@ -1,5 +1,15 @@
 # Handoff
 
+## Fractal rendering quality (20 November 2026)
+
+The 3D fractals are ray marched on the graphics card by one shared progressive renderer (`site/js/gallery/gl-progressive.js`:
+half resolution while dragging, then jittered samples averaged at rest; soft shadows, ambient occlusion, orbit-trap colours,
+three lights, highlight). The Menger sponge (stage 5), Sierpiński tetrahedron (7) and Cantor dust (5) use exact distance
+functions (`fractal-sdf.js`, JavaScript twins tested against the cell models in `tests/fractal-sdf.test.mjs`); the
+Mandelbulb, Mandelbox (default scale 2) and quaternion Julia use the same renderer. The Multibrot and Newton basins are
+drawn by a shader (smooth escape count), with the processor for deep zooms and without WebGL2. `drawFaces` (polyhedra,
+Wythoff, star solids) is lit by a fixed key light with a highlight. Mirrored to Matematika (content only).
+
 ## Fractals: new constructions, basins, Apollonian gasket, 3D sets and the collection page (20 November 2026, issue #36 complete)
 
 `#gallery/self-similar` gains the Heighway dragon, the Hilbert and Peano curves (finite stages, the limit fills the square),

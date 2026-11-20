@@ -2,6 +2,8 @@
 // Koch snowflake, Sierpiński carpet, Menger sponge and Sierpiński tetrahedron. The learner predicts, adds one stage at a time,
 // reads exact counts and measures in the strip under the figure and follows the measure on a plot; the 3D ones turn by drag.
 import {exhibit,palette,dragOrbit,drawFaces} from './gallery-kit.js';
+import {createProgressive,raymarchShader,RAY_UNIFORMS,setCamera,setColours} from './gl-progressive.js';
+import {GLSL,BOUNDS} from './fractal-sdf.js';
 import {illuminateFeedback} from '../motion.js';
 import {metricStrip,plotPanel} from './gallery-panels.js';
 import {FRACTALS,FRACTAL_IDS,stageFacts,cantorIntervals,kochSnowflake,carpetHoles,mengerFaces,tetrixPieces,dragonPoints,hilbertCells,peanoCells,fernPieces,fernPoints,dustCells,FERN_DET} from './gallery-selfsimilar-model.js';
@@ -45,6 +47,8 @@ const PREDICT={
   fern:{q:['La fougère est-elle faite de copies exactes d’elle-même, seulement plus petites ?','Is the fern made of exact copies of itself, only smaller?'],choices:[['Oui','Yes'],['Non : des copies déformées','No: distorted copies']],good:1,check:2,
     why:['Les transformations sont affines : elles écrasent plus dans une direction que dans l’autre (la tige est une copie aplatie). Il n’y a donc pas de rapport unique r ni de formule log N / log(1/r) ; la somme des aires des morceaux est au plus 0,9367ⁿ, donc la fougère limite a une aire nulle.','The maps are affine: they squash more in one direction than in the other (the stem is a flattened copy). So there is no single ratio r and no formula log N / log(1/r); the total area of the pieces is at most 0.9367ⁿ, so the limit fern has zero area.']}};
 
+// With WebGL2 the solids are ray-marched from their exact distance functions (fractal-sdf.js), so more stages can be shown.
+const GL_MAX={menger:5,tetrix:7,dust:5};
 export function selfSimilar(root,opts){
   const {t,lang}=opts,loc=lang==='fr'?'fr-FR':'en-GB';
   const nf={},num=(v,d=4)=>(nf[d]||=new Intl.NumberFormat(loc,{maximumSignificantDigits:d})).format(v),big=v=>v.toLocaleString(loc);
@@ -74,10 +78,13 @@ export function selfSimilar(root,opts){
     {id:'m',label:t('Mesure gardée','Measure kept'),kind:'exact'},{id:'x',label:t('À noter','Worth noting'),kind:'exact'},{id:'d',label:t('Dimension de la limite','Dimension of the limit'),kind:'exact'}]);
   const PP=plotPanel(MS.el,t('Mesure de l’étape n rapportée à l’étape 0, un point par étape, calculée exactement. La ligne pointillée est la limite quand elle est finie.','Measure of stage n relative to stage 0, one point per stage, computed exactly. The dotted line is the limit when it is finite.'));
   let faces=null,facesKey='',cloud=null;
+  const gls={};const glFor=k=>{if(!(k in GL_MAX))return null;if(!(k in gls)){try{gls[k]=createProgressive(raymarchShader(GLSL[k]),RAY_UNIFORMS);}catch(e){console.warn(e);gls[k]=null;}}return gls[k];};
+  const maxOf=k=>glFor(k)?GL_MAX[k]:FRACTALS[k].max;
   const sync=()=>{
+    glFor(id)?.reset();
     const F=FRACTALS[id],f=stageFacts(id,n),meas=t(...F.measure);
     root.querySelector('#ss-rule').textContent=`${t(...NAMES[id])} : ${t(...RULES[id])}`.replace(' : ',lang==='fr'?' : ':': ');
-    root.querySelector('#ss-turn').hidden=FRACTALS[id].E<3;root.querySelector('#ss-less').disabled=n===0;root.querySelector('#ss-more').disabled=n===F.max;
+    root.querySelector('#ss-turn').hidden=FRACTALS[id].E<3;root.querySelector('#ss-less').disabled=n===0;root.querySelector('#ss-more').disabled=n===maxOf(id);
     question();
     const rr=F.r===1/3?'1/3':F.r===1/2?'1/2':'1/√2',den=F.r===1/3?3:F.r===1/2?2:Math.SQRT2;
     if(F.curve||id==='fern'||id==='dust'){extraFacts(F,f,meas,rr,den);}else{
@@ -87,11 +94,11 @@ export function selfSimilar(root,opts){
     MS.set('x',id==='koch'?t(`aire × ${num(f.area)} → 8/5`,`area × ${num(f.area)} → 8/5`):id==='tetrix'?t('aire des faces : toujours la même','face area: always the same'):id==='menger'?t(`aire des faces × ${num((2*(20/9)**n+4*(8/9)**n)/6)} → ∞`,`face area × ${num((2*(20/9)**n+4*(8/9)**n)/6)} → ∞`):id==='carpet'?t(`${big((8**n-1)/7)} trous`,`${big((8**n-1)/7)} holes`):t('à la limite : une infinité de points','in the limit: infinitely many points'));
     MS.set('d',`log ${F.N} / log ${den} ${id==='tetrix'?'=':'≈'} ${num(f.dim,5)} (${t('espace','space')} ${F.E})`);
     }
-    const pts=Array.from({length:F.max+1},(_,k)=>[k,stageFacts(id,k).measure]),ymax=Math.max(...pts.map(q=>q[1]));
+    const M=maxOf(id),pts=Array.from({length:M+1},(_,k)=>[k,stageFacts(id,k).measure]),ymax=Math.max(...pts.map(q=>q[1]));
     const series=[{points:pts,color:'object',dots:true}];
-    if(id==='koch')series.push({points:Array.from({length:F.max+1},(_,k)=>[k,stageFacts('koch',k).area]),color:'muted',dots:true},{points:[[0,1.6],[F.max,1.6]],color:'muted',dash:[4,4],width:1,dots:false});
-    else if(stageFacts(id,0).limit===0)series.unshift({points:[[0,0],[F.max,0]],color:'muted',dash:[4,4],width:1,dots:false});
-    PP.draw({xMax:F.max,xTicks:Array.from({length:F.max+1},(_,k)=>k),yMax:ymax,xLabel:'n',yLabel:id==='koch'?t('périmètre (points pleins) et aire','perimeter (filled dots) and area'):meas,yFormat:v=>num(v,3),marker:[n,stageFacts(id,n).measure],series});
+    if(id==='koch')series.push({points:Array.from({length:M+1},(_,k)=>[k,stageFacts('koch',k).area]),color:'muted',dots:true},{points:[[0,1.6],[M,1.6]],color:'muted',dash:[4,4],width:1,dots:false});
+    else if(stageFacts(id,0).limit===0)series.unshift({points:[[0,0],[M,0]],color:'muted',dash:[4,4],width:1,dots:false});
+    PP.draw({xMax:M,xTicks:Array.from({length:M+1},(_,k)=>k),yMax:ymax,xLabel:'n',yLabel:id==='koch'?t('périmètre (points pleins) et aire','perimeter (filled dots) and area'):meas,yFormat:v=>num(v,3),marker:[n,stageFacts(id,n).measure],series});
     o.redraw();
   };
   // the strip of the curves, the dust and the fern
@@ -124,14 +131,17 @@ export function selfSimilar(root,opts){
   const sup=k=>String(k).split('').map(d=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[d]).join('');
   root.querySelectorAll('[name=ss-id]').forEach(r=>o.on(r,'change',()=>{id=r.value;n=0;Object.assign(view,VIEWS[id]||{});sync();}));
   o.on(root.querySelector('#ss-less'),'click',()=>{if(n>0){n--;sync();}});
-  o.on(root.querySelector('#ss-more'),'click',()=>{if(n<FRACTALS[id].max){n++;sync();}});
-  dragOrbit(o,view);
+  o.on(root.querySelector('#ss-more'),'click',()=>{if(n<maxOf(id)){n++;sync();}});
+  dragOrbit(o,view);const moved=()=>glFor(id)?.reset();o.on(o.cv,'pointermove',e=>{if(e.buttons)moved();});o.on(o.cv,'keydown',moved);
   o.on(root.querySelector('#ss-turn'),'click',()=>{view.yaw+=Math.PI/6;o.redraw();});   // the tap alternative to dragging
-  o.on(o.cv,'keydown',e=>{if(e.key==='+'||e.key==='-'){e.preventDefault();n=Math.max(0,Math.min(FRACTALS[id].max,n+(e.key==='+'?1:-1)));sync();}});
+  o.on(o.cv,'keydown',e=>{if(e.key==='+'||e.key==='-'){e.preventDefault();n=Math.max(0,Math.min(maxOf(id),n+(e.key==='+'?1:-1)));sync();}});
   o.cv.setAttribute('aria-label',t('Fractale. Plus et moins changent d’étape ; pour les figures en 3D, glisser ou les flèches font tourner la vue.','Fractal. Plus and minus change the stage; for the 3D figures, drag or use the arrow keys to turn the view.'));
 
   const draw3D=(C,polys,scale)=>drawFaces(g,C,polys,view,scale);
   o.animate(()=>{
+    const R=glFor(id);
+    if(R){const C=palette(),w=o.cv.width,h=o.cv.height,b=BOUNDS[id],more=R.frame(w,h,(gl,U)=>{setCamera(gl,U,view,b*3.1,b,w,h,1);setColours(gl,U,C);gl.uniform4f(U.uP,0,0,0,0);gl.uniform4f(U.uC,0,0,0,0);gl.uniform1i(U.uIters,0);gl.uniform1i(U.uStage,n);});
+      R.blit(g,o.W,o.H);o.read(`${t(...NAMES[id])} · ${t('étape','stage')} ${n}`);return more||R.busy();}
     const C=palette();g.clearRect(0,0,o.W,o.H);g.fillStyle=C.sunken;g.fillRect(0,0,o.W,o.H);
     if(id==='cantor'){
       const x0=40,w=o.W-80,rows=n+1,h=Math.min(26,300/rows),gap=Math.min(22,(o.H-60-rows*h)/Math.max(1,rows-1));
@@ -175,5 +185,5 @@ export function selfSimilar(root,opts){
   });
   sync();
   const stop=o.stop;
-  return ()=>{stop();PP.stop();MS.el.remove();};
+  return ()=>{stop();PP.stop();MS.el.remove();Object.values(gls).forEach(r=>r?.destroy());};
 }

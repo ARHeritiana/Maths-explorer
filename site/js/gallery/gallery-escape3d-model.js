@@ -5,7 +5,7 @@
 // real division algebras), so each is a chosen formula. Tested in tests/gallery-escape3d.test.mjs.
 export const SETS = {
   bulb: { names: ['Mandelbulb', 'Mandelbulb'], param: { min: 2, max: 12, step: 1, value: 8 } },          // power n
-  box: { names: ['Mandelbox', 'Mandelbox'], param: { min: -2.5, max: 3, step: 0.05, value: -1.5 } },      // scale s
+  box: { names: ['Mandelbox', 'Mandelbox'], param: { min: -2.5, max: 3, step: 0.05, value: 2 } },      // scale s
   julia: { names: ['Julia quaternionique (tranche)', 'Quaternion Julia (slice)'], param: { min: -0.6, max: 0.6, step: 0.01, value: 0 }, c: [-0.291, -0.399, 0.339, 0.437] },   // slice w
 };
 // Mandelbulb of power n (White and Nylander, 2009): in spherical coordinates, raise the radius to the power n and multiply
