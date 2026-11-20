@@ -26,7 +26,7 @@ really need them.
 
 | I want to change... | Open (and nothing else first) | Then |
 |---|---|---|
-| a colour, font, spacing, radius or theme | `site/styles/tokens.css` (tokens, both themes) | `docs/DESIGN_V8.md` only for a design decision; the comic layer is `site/styles/comic.css` |
+| a colour, font, spacing, radius or theme | `site/styles/tokens.css` (tokens, both themes) | `docs/DESIGN_V8.md` only for a design decision; the comic layer is `site/styles/comic.css`; review any UI change with the skills `frontend-design` and `web-design-guidelines` (`.claude/skills/`) |
 | the look of one page or component | `site/styles/pages.css` (search the page class, see section 3) | standalone mathematicians: `site/styles/timeline-standalone.css` and `site/resources/history/mathematicians-timeline.html` |
 | shared class memory or grouped optional classroom controls | `site/js/navigation-state.js`, `site/js/page-ergonomics.js`, `site/styles/ergonomics.css` | |
 | the top navigation (Cours, Exercices, Labo and Bibliothèque, with page tabs), footer, theme or language buttons | `site/js/app.js` `SECTIONS`, `TAB_OF`, `header()` / `footer()` | |

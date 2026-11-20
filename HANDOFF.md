@@ -1,5 +1,20 @@
 # Handoff
 
+## Fractal collection, phase 1 (20 November 2026, issue #36)
+
+New exhibit `#gallery/self-similar` ("Fractales, étape par étape"): Cantor set, Koch snowflake, Sierpiński carpet,
+Menger sponge (3D, up to stage 3: about 9,000 visible faces drawn on a 2D canvas) and Sierpiński tetrahedron (3D, up to
+stage 5), built one stage at a time with a prediction per fractal, a strip (stage, pieces, size, measure and its limit,
+Koch area → 8/5, Menger face area, holes, dimension log N / log(1/r) with the open set condition), the exact measure plot
+and a five-step argument with a transfer exercise (Vicsek cross); links to the Mandelbrot/Julia and chaos-game entries.
+Model `site/js/gallery/gallery-selfsimilar-model.js`, tests `tests/gallery-selfsimilar.test.mjs`.
+Design pass with the new skills `frontend-design` and `web-design-guidelines` (`.claude/skills/`, rules in
+`docs/DESIGN_V8.md` section "Design skills"): the prediction is a real question answered before building and checked from
+a given stage; chips and question above the figure, stage buttons right under it; the phone header is now one row (it was
+116 px on two rows, so anchors and focus went under it).
+Still to do for #36: Heighway dragon, Hilbert and Peano curves, Barnsley fern as its own entry, Multibrot and Newton
+basins, Mandelbulb, Mandelbox and quaternion Julia slices (WebGL raymarching), Apollonian packings.
+
 ## Gallery measurements, batch 3 (20 November 2026, issue #37)
 
 Galton board: strip (balls, observed mean against np, observed standard deviation against √(np(1−p))) and the plot of the

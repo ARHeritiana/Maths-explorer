@@ -48,6 +48,22 @@ The owner asked for fewer, clearer choices, following recognised web design rule
 | Large targets | W3C, WCAG 2.2, 2.5.8 (24 px minimum) | buttons and rows of 44 to 56 px |
 | Teenagers on phones | NN/g, teen users compared with other age groups | short sentences, two-step paths, the same path on phone and desktop |
 
+## Design skills (20 November 2026)
+
+Two third-party skills sit in `.claude/skills/` and are used for every new or changed page, exhibit or control:
+`frontend-design` (Anthropic, Apache 2.0: subject-first choices, restraint, one memorable element, plain copy) and
+`web-design-guidelines` (Vercel Web Interface Guidelines, MIT, rules pinned in `rules.md` with the project overrides in
+its `SKILL.md`: accessibility, focus, touch, layout, theming, copy). This document wins where they disagree: the palette,
+fonts and comic style are fixed here, copy is sentence case in French and English.
+
+Layout rules that came out of the first review:
+- Phone first, the figure in reach: choices and the question above a figure, the buttons that change it right under it,
+  measures after, so building a stage never scrolls the figure away (`.exhibit-band`, `site/styles/pages.css`).
+- Feedback lines keep their place (always one line of text), so the buttons under them never move as they are pressed.
+- The phone header is one row of 64 px (mark, tools, Menu; the language switch goes into the opened menu), so
+  `scroll-padding-top` matches it and nothing focused or linked hides under it.
+- Every drag has a button or key alternative (for example "Turn the view" on the 3D figures).
+
 ## Structure
 
 Four sections, named after what the visitor came to do (`site/js/app.js` `SECTIONS`):

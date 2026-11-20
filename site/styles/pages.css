@@ -922,6 +922,10 @@ details.source-course[open] { padding-bottom: 16px; }
 .exhibit-presets { display:flex; flex-wrap:wrap; gap:8px; flex:1 1 100%; }
 .exhibit-presets .btn { white-space:normal; min-height:44px; }
 .exhibit-readout { min-height:3em; font-variant-numeric:tabular-nums; }
+/* a band of controls lined up with the figure (same width, centred), one group per line */
+.exhibit-band { width:100%; max-width:min(100%, 880px, calc(64svh * var(--canvas-aspect, 1.5))); margin-inline:auto; box-sizing:border-box; display:flex; flex-direction:column; align-items:stretch; gap:6px; }
+.exhibit-band > .act-buttons { margin:0; }
+.exhibit-band > .feedback { margin:0; }
 .exhibit-metrics, .exhibit-plot { width:100%; max-width:min(100%, 880px, calc(64svh * var(--canvas-aspect, 1.5))); margin-inline:auto; box-sizing:border-box; }
 .exhibit-metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr)); margin-top:10px; margin-bottom:0; border-top:1px solid var(--line); border-left:1px solid var(--line); }
 .exhibit-metrics > div { background:var(--surface); padding:6px 10px; min-width:0; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
