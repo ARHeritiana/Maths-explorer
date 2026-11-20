@@ -30,11 +30,12 @@ import { inferenceExperiments } from "./experiments/inference.js";
 import { monteCarloExperiments } from "./experiments/monte-carlo.js";
 import illumination from "./experiments/illumination.js";
 import ferrisWheel from "./experiments/ferris-wheel.js";
+import eratosthenes from "./experiments/eratosthenes.js";
 
 // Order of the catalogue. The experiments are plain data and small; the heavy part (templates) is imported on demand.
 export const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines, fourier, drawingExperiment, tiles, eulerPrimes, fermat, circleRegions, buffon, bertrand, fairDivision, fairGoods, ...inferenceExperiments, ...monteCarloExperiments, doublePendulum, threeBody, logistic, illumination];
 
-EXPERIMENTS.push(hairyExperiment, surfacesExperiment, banachExperiment, banachTreeExperiment, ferrisWheel);
+EXPERIMENTS.push(hairyExperiment, surfacesExperiment, banachExperiment, banachTreeExperiment, ferrisWheel, eratosthenes);
 
 export const TEMPLATES = {
   illumination: () => import("./templates/illumination.js"),

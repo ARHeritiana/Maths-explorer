@@ -36,7 +36,7 @@ const aliases={'monte-carlo-pi':'monte-carlo','monte-carlo-lake':'monte-carlo','
 const known=new Set(['monte-carlo','ferris-wheel','quadratic','probability','trig','benford','secretary','tank','birthdays','monty','baker',
  'double-pendulum','three-body','logistic','illumination','fair-division','fair-goods','hairy-ball',
  'nonorientable-surfaces','banach-tarski-model','gomboc','derivative','integral','vectors','statistics','complex',
- 'line','exponential','cobweb','matrix','space-lines','sequences','fourier','circle-regions','buffon','bertrand',
+ 'line','exponential','cobweb','matrix','space-lines','sequences','fourier','circle-regions','buffon','bertrand','eratosthenes',
  'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','self-similar','polyhedra','viviani','life',
  'voronoi','fastest-slide','einstein','square-packing','inscribed-square','soap-films','knots','moving-sofa',
  'opaque-square','equidecomposition','collisions','napkin-ring','hundred-boxes','morley','four-colours','mandelbrot','arithmetic','reals','algebra','percentages','conditioning',
@@ -163,6 +163,11 @@ export function modelPreview(kind) {
  } else if(kind==='space-lines') {
   drawing=path([[30,55],[96,35],[134,60],[66,80]],true)+path([[80,10],[80,92]])+dot(80,57);
   caption=P('Une droite traverse un plan','A line crosses a plane');
+ } else if(kind==='eratosthenes') {
+  const O=[80,120],R=80,at=a=>[O[0]-R*Math.sin(a*Math.PI/180),O[1]-R*Math.cos(a*Math.PI/180)],top=(a,k=1.18)=>[O[0]-R*k*Math.sin(a*Math.PI/180),O[1]-R*k*Math.cos(a*Math.PI/180)];
+  const arc=[...Array(25)].map((_,i)=>at(-36+i*3));
+  drawing=path(arc)+path([at(0),top(0)])+path([at(14),top(14)])+path([[top(0)[0],2],at(0)])+path([[top(14)[0],2],top(14)])+path([O,top(0)])+path([O,top(14)]);
+  caption=P('Deux bâtons, deux ombres, un angle au centre','Two sticks, two shadows, one angle at the centre');
  } else if(kind==='circle-regions'||kind==='bertrand') {
   const pts=Array.from({length:5},(_,i)=>[80+37*Math.cos(i*2*Math.PI/5),50+37*Math.sin(i*2*Math.PI/5)]);
   drawing='<circle cx="80" cy="50" r="37"/>'+pts.flatMap((p,i)=>pts.slice(i+1).map(q=>path([p,q]))).join('');
