@@ -13,8 +13,8 @@ export default {
   title: ["Des aiguilles pour calculer π", "Needles to compute π"],
   short: ["Aiguille de Buffon", "Buffon’s needle"],
   intro: [
-    "Laisse tomber des aiguilles sur un parquet rayé. La proportion d’aiguilles qui touchent une rayure fait apparaître π.",
-    "Drop needles on a striped floor. The proportion of needles touching a stripe brings out π.",
+    "Des aiguilles tombent sur un parquet rayé. La proportion de celles qui touchent une rayure vaut 2L/(π d), et la figure compte les aiguilles lancées : π apparaît dans la fréquence observée.",
+    "Needles fall on a striped floor. The proportion of those that touch a stripe equals 2L/(π d), and the figure counts the needles dropped: π shows up in the observed frequency.",
   ],
   duration: 10,
   level: ["Terminale · Supérieur", "Advanced · University"],
@@ -83,6 +83,10 @@ export default {
     },
     {
       id: "drop", kind: "explore", set: { L: 1, runs: 0, seed: 4 }, unlock: ["run"],
+      scene: { title: ["Le parquet rayé", "The striped floor"], caption: [
+        "Des rayures espacées de 1 et des aiguilles de longueur 1. Une aiguille orange touche une rayure ; la probabilité est 2/π ≈ 0,637, et la fréquence s’en approche quand le nombre de lancers grandit.",
+        "Stripes 1 apart and needles of length 1. An orange needle touches a stripe; the probability is 2/π ≈ 0.637, and the frequency approaches it as the number of drops grows.",
+      ] },
       prompt: [
         "Lance au moins 1 000 aiguilles. Une aiguille orange touche une rayure. Vers quelle valeur la fréquence se stabilise-t-elle ?",
         "Drop at least 1,000 needles. An orange needle touches a stripe. Which value does the frequency settle near?",
@@ -96,6 +100,10 @@ export default {
     },
     {
       id: "half", kind: "contrast", set: { L: 1, runs: 2000, seed: 4 },
+      scene: { title: ["Deux mille aiguilles", "Two thousand needles"], caption: [
+        "Après 2 000 aiguilles de longueur 1, la fréquence des aiguilles orange est proche de 0,64, valeur de 2/π. Avec des aiguilles deux fois plus courtes, la fréquence serait à peu près divisée par 2.",
+        "After 2,000 needles of length 1, the frequency of orange needles is close to 0.64, the value of 2/π. With needles half as long the frequency would be roughly halved.",
+      ] },
       variants: [
         { label: ["Cas A : L = 1", "Case A: L = 1"], set: { L: 1 } },
         { label: ["Cas B : L = 0,5", "Case B: L = 0.5"], set: { L: 0.5 } },
@@ -111,6 +119,10 @@ export default {
     },
     {
       id: "theory", kind: "check", set: { L: 0.5, runs: 0, seed: 4 }, quantity: "prob", answer: 1 / Math.PI, tolerance: 0.005,
+      scene: { title: ["Aiguilles courtes", "Short needles"], caption: [
+        "Avec L = 0,5 et un écart d = 1, la probabilité théorique est 2L/(π d) = 1/π ≈ 0,318. Elle est proportionnelle à L tant que L ≤ d.",
+        "With L = 0.5 and a spacing d = 1, the theoretical probability is 2L/(π d) = 1/π ≈ 0.318. It is proportional to L as long as L ≤ d.",
+      ] },
       prompt: [
         "Avec L = 0,5 et d = 1, calcule la probabilité théorique 2L/(π d) (arrondie au millième).",
         "With L = 0.5 and d = 1, compute the theoretical probability 2L/(π d) (to the nearest thousandth).",

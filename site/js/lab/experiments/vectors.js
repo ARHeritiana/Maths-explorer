@@ -14,8 +14,8 @@ export default {
   title: ["Deux vecteurs, une aire", "Two vectors, one area"],
   short: ["Déterminant et colinéarité", "Determinant and collinearity"],
   intro: [
-    "Deux vecteurs construisent un parallélogramme. Son aire, avec un signe, est le déterminant : elle s’annule exactement quand les vecteurs sont colinéaires.",
-    "Two vectors build a parallelogram. Its area, with a sign, is the determinant: it vanishes exactly when the vectors are collinear.",
+    "Deux vecteurs u et v construisent un parallélogramme. Son aire, avec un signe, est le déterminant det(u, v) ; elle s’annule exactement quand les vecteurs sont colinéaires.",
+    "Two vectors u and v build a parallelogram. Its area, with a sign, is the determinant det(u, v); it vanishes exactly when the vectors are collinear.",
   ],
   duration: 8,
   level: ["Seconde · Première", "Foundation · Intermediate"],
@@ -82,6 +82,13 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { ux: 3, uy: 1, vx: -1, vy: 3 }, correct: 0,
+      scene: {
+        title: ["Parallélogramme d’aire 10", "A parallelogram of area 10"],
+        caption: [
+          "Les vecteurs u = (3 ; 1) et v = (−1 ; 3) construisent un parallélogramme d’aire 10 : det(u, v) = 3 × 3 − 1 × (−1) = 10. L’aire serait nulle si v était sur la droite qui porte u.",
+          "The vectors u = (3, 1) and v = (−1, 3) build a parallelogram of area 10: det(u, v) = 3 × 3 − 1 × (−1) = 10. The area would be zero if v lay on the line carrying u.",
+        ],
+      },
       prompt: [
         "Le parallélogramme construit sur u et v a une aire de 10. On fait glisser v jusqu’à le placer sur la droite qui porte u. Que devient l’aire du parallélogramme ?",
         "The parallelogram built on u and v has area 10. We slide v until it lies on the line carrying u. What happens to the area of the parallelogram?",
@@ -110,6 +117,13 @@ export default {
     },
     {
       id: "sign", kind: "contrast", set: { ux: 3, uy: 1, vx: -1, vy: 3 },
+      scene: {
+        title: ["Aire orientée", "A signed area"],
+        caption: [
+          "Les vecteurs v = (−1 ; 3) et v = (1 ; −3) donnent des parallélogrammes de même aire 10 mais de déterminants opposés : +10 quand on tourne de u vers v dans le sens direct, −10 dans le sens indirect. Le déterminant est une aire orientée.",
+          "The vectors v = (−1, 3) and v = (1, −3) give parallelograms of the same area 10 but opposite determinants: +10 when turning from u to v counterclockwise, −10 clockwise. The determinant is a signed area.",
+        ],
+      },
       variants: [
         { label: ["Cas A : v = (−1 ; 3)", "Case A: v = (−1, 3)"], set: { vx: -1, vy: 3 } },
         { label: ["Cas B : v = (1 ; −3)", "Case B: v = (1, −3)"], set: { vx: 1, vy: -3 } },
@@ -141,6 +155,13 @@ export default {
     },
     {
       id: "read", kind: "check", set: { ux: 2, uy: -1, vx: 1, vy: 3 }, quantity: "det", answer: 7, tolerance: 0.01,
+      scene: {
+        title: ["Déterminant 7", "A determinant of 7"],
+        caption: [
+          "Avec u = (2 ; −1) et v = (1 ; 3), det(u, v) = 2 × 3 − (−1) × 1 = 7 : c’est l’aire du parallélogramme, positive car la rotation de u vers v est directe.",
+          "With u = (2, −1) and v = (1, 3), det(u, v) = 2 × 3 − (−1) × 1 = 7: the area of the parallelogram, positive because the turn from u to v is counterclockwise.",
+        ],
+      },
       prompt: [
         "Lis les coordonnées de u et de v sur la figure, puis calcule le déterminant det(u, v) = ux × vy − uy × vx.",
         "Read the coordinates of u and v on the figure, then compute the determinant det(u, v) = ux × vy − uy × vx.",

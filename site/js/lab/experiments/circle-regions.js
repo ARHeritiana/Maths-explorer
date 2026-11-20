@@ -11,8 +11,8 @@ export default {
   title: ["1, 2, 4, 8, 16… et 31", "1, 2, 4, 8, 16… and 31"],
   short: ["Cordes d’un cercle et régions", "Chords of a circle and regions"],
   intro: [
-    "Place des points sur un cercle et trace toutes les cordes. Le nombre de régions double à chaque point… jusqu’au sixième.",
-    "Place points on a circle and draw every chord. The number of regions doubles with each point… until the sixth.",
+    "Des points sur un cercle, reliés par toutes les cordes, découpent le disque en régions. Leur nombre double à chaque point ajouté jusqu’à cinq points, puis la régularité se brise au sixième.",
+    "Points on a circle, joined by every chord, cut the disc into regions. Their number doubles with each added point up to five points, then the pattern breaks at the sixth.",
   ],
   duration: 10,
   level: ["Première · Terminale", "Intermediate · Advanced"],
@@ -60,6 +60,10 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { n: 5, mode: "general" }, correct: 1,
+      scene: { title: ["Cinq points, 16 régions", "Five points, 16 regions"], caption: [
+        "Avec 1, 2, 3, 4, 5 points, on obtient au plus 1, 2, 4, 8, 16 régions : le nombre double à chaque point. Cinq cas qui doublent ne disent rien du suivant.",
+        "With 1, 2, 3, 4, 5 points we get at most 1, 2, 4, 8, 16 regions: the number doubles with each point. Five cases that double say nothing about the next one.",
+      ] },
       prompt: [
         "Avec 1, 2, 3, 4, 5 points, on obtient au plus 1, 2, 4, 8, 16 régions. Avec 6 points, combien de régions au maximum ?",
         "With 1, 2, 3, 4, 5 points we get at most 1, 2, 4, 8, 16 regions. With 6 points, at most how many regions?",
@@ -81,6 +85,10 @@ export default {
     },
     {
       id: "regular", kind: "contrast", set: { n: 6, mode: "general" },
+      scene: { title: ["Six points, 31 régions", "Six points, 31 regions"], caption: [
+        "Six points quelconques donnent 31 régions, pas 32. Les six sommets d’un hexagone régulier en donnent 30 : ses trois grandes diagonales concourent au centre, et le maximum exige que trois cordes ne soient jamais concourantes.",
+        "Six general points give 31 regions, not 32. The six vertices of a regular hexagon give 30: its three long diagonals meet at the centre, and the maximum needs that no three chords are concurrent.",
+      ] },
       variants: [
         { label: ["Cas A : points quelconques", "Case A: general points"], set: { mode: "general" } },
         { label: ["Cas B : hexagone régulier", "Case B: regular hexagon"], set: { mode: "regular" } },
@@ -96,6 +104,10 @@ export default {
     },
     {
       id: "seven", kind: "check", set: { n: 7, mode: "general" }, quantity: "regions", answer: 57,
+      scene: { title: ["Sept points, 57 régions", "Seven points, 57 regions"], caption: [
+        "Avec 7 points quelconques, il y a 21 cordes et 35 croisements : 1 + 21 + 35 = 57 régions, loin de 2⁶ = 64. Le maximum vaut 1 + C(n, 2) + C(n, 4).",
+        "With 7 general points there are 21 chords and 35 crossings: 1 + 21 + 35 = 57 regions, far from 2⁶ = 64. The maximum is 1 + C(n, 2) + C(n, 4).",
+      ] },
       prompt: [
         "Avec 7 points quelconques, chaque corde ajoute une région, plus une par croisement. Il y a 21 cordes et 35 croisements (un par choix de 4 points). Combien de régions ?",
         "With 7 general points, each chord adds one region, plus one per crossing. There are 21 chords and 35 crossings (one per choice of 4 points). How many regions?",

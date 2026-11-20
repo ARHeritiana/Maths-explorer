@@ -119,3 +119,35 @@
 }
 @media (prefers-reduced-motion: reduce) { .exh-hint { transition: none; } }
 @media print { .exh-stage { height: 320px; } .exh-zoom, .exh-tools, .exh-tabs { display: none; } .exh-pane[hidden] { display: grid; } }
+
+/* Encyclopedia article of a gallery curiosity (site/js/gallery/article.js): readable column, fact box on the right. */
+.art-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 24px 40px; align-items: start; margin-top: 24px; }
+.art-body { max-width: 68ch; min-width: 0; line-height: 1.7; }
+.art-lead { font-size: 1.1rem; }
+.art-lead p:first-child::first-line { font-weight: 600; }
+.art-section { margin-top: 28px; }
+.art-section h2 { font-size: 1.35rem; margin: 0 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--line); }
+.art-body p { margin: 0 0 12px; }
+.art-explainer { margin: 8px 0 12px; }
+.art-facts { padding: 16px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); font-size: 0.95rem; }
+.art-facts h2 { font-size: 1.05rem; margin: 0 0 8px; }
+.art-facts dl { margin: 0; }
+.art-facts dt { margin-top: 8px; color: var(--muted); font-size: 0.85rem; font-weight: 700; }
+.art-facts dd { margin: 2px 0 0; }
+@media (max-width: 860px) { .art-layout { grid-template-columns: minmax(0, 1fr); } .art-facts { order: -1; } }
+
+/* Control panel of an exhibit (gallery-kit.js): aligned grid of fields, one row of buttons, a quiet help line. */
+.exhibit-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 12px 24px; align-items: end; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.exhibit-controls .act-field { flex: none; }
+.exhibit-controls .exhibit-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; padding-top: 12px; border-top: 1px solid var(--line); }
+.exhibit-controls .exhibit-actions:first-child { border-top: 0; padding-top: 0; }
+.act-help { color: var(--muted); font-size: 0.92rem; }
+.lab-main-article .exhibit-notes { display: none; }
+
+/* Laboratory page in free exploration (shell.js `free`): scenes are labelled chips, not numbered progress dots. */
+.lab2-scenes { gap: 8px; }
+.lab2-dot.lab2-scene { width: auto; min-height: 44px; padding: 6px 14px; border-radius: var(--r-pill, 999px); font-weight: 600; text-align: left; line-height: 1.2; }
+.lab2-full .lab2-prompt { color: var(--ink); }
+.art-sources { margin-top: 24px; max-width: 68ch; }
+.art-sources h2 { font-size: 1.1rem; margin: 0 0 6px; }
+.workbench-article { grid-template-columns: minmax(0, 1fr); }   /* an article page: the figure takes the whole width, still clipped like before */

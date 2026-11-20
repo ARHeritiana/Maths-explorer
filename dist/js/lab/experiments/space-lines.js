@@ -23,8 +23,8 @@ export default {
   title: ["Une droite perce un plan", "A line pierces a plane"],
   short: ["Droite et plan de l’espace", "Line and plane in space"],
   intro: [
-    "Fais tourner la figure : une droite et un plan de l’espace peuvent se couper en un point, ne pas se couper, ou se confondre en partie. Le vecteur directeur et le vecteur normal décident.",
-    "Turn the figure: a line and a plane in space can meet in one point, miss each other, or overlap along the whole line. The direction vector and the normal vector decide.",
+    "Une droite et un plan de l’espace peuvent se couper en un point, ne pas se couper, ou se confondre sur toute la droite. Le vecteur directeur u de la droite et le vecteur normal n du plan décident, selon que n · u est nul ou non.",
+    "A line and a plane in space can meet in one point, miss each other, or overlap along the whole line. The direction vector u of the line and the normal vector n of the plane decide, according to whether n · u is zero or not.",
   ],
   keys: [
     "Fais tourner la figure en glissant le fond, ou clique dans la figure puis utilise les flèches. Poignées : glisse les points (ils restent au sol ou sur une verticale), ou Tab puis les flèches. Molette : zoom ; 0 : recentrer. N et P : mission suivante, précédente.",
@@ -138,6 +138,10 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { mode: 0, hide: 1 }, correct: 0,
+      scene: { title: ["Une droite et un plan", "A line and a plane"], caption: [
+        "Le plan P et la droite passant par A de vecteur directeur u sont tracés dans l’espace. Ils ont un point commun, aucun, ou toute la droite, selon la position relative de u et de la normale n.",
+        "The plane P and the line through A with direction vector u are drawn in space. They have one common point, none, or the whole line, depending on how u and the normal n are placed.",
+      ] },
       prompt: [
         "Tourne la figure pour bien voir le plan P et la droite. Une droite et un plan de l’espace, en général : combien de points communs peuvent-ils avoir ?",
         "Turn the figure to see the plane P and the line clearly. A line and a plane in space, in general: how many common points can they have?",
@@ -150,6 +154,10 @@ export default {
     },
     {
       id: "param", kind: "explore", set: { mode: 1, t: 0 }, unlock: ["t"],
+      scene: { title: ["Représentation paramétrique", "Parametric form"], caption: [
+        "La droite passe par A(−2 ; −1 ; 0) avec u = (2 ; 1 ; 1), et M(t) = A + t u parcourt tous ses points. Un seul réel t donne les trois coordonnées d’un point ; en t = 0, M est en A.",
+        "The line passes through A(−2, −1, 0) with u = (2, 1, 1), and M(t) = A + t u runs through all its points. A single real number t gives the three coordinates of a point; at t = 0, M is at A.",
+      ] },
       prompt: [
         "La droite passe par A(−2 ; −1 ; 0) et a pour vecteur directeur u = (2 ; 1 ; 1) : M(t) = A + t u. Fais varier t jusqu’à ce que M(t) ait pour abscisse 2. Quelles sont alors ses coordonnées ?",
         "The line passes through A(−2, −1, 0) with direction vector u = (2, 1, 1): M(t) = A + t u. Vary t until M(t) has x-coordinate 2. What are its coordinates then?",
@@ -166,6 +174,10 @@ export default {
     },
     {
       id: "parallel", kind: "explore", set: { mode: 0, hide: 0, ax: -2, ay: -1, az: 2, ux: 2, uy: 1, uz: 1 }, unlock: ["tip", "tipz"],
+      scene: { title: ["Droite qui perce le plan", "A line piercing the plane"], caption: [
+        "Avec n = (1 ; 1 ; 2) et u = (2 ; 1 ; 1), n · u = 5 n’est pas nul : la droite perce le plan en un seul point. Elle serait parallèle au plan si n · u valait 0, sans point commun si A n’est pas dans le plan.",
+        "With n = (1, 1, 2) and u = (2, 1, 1), n · u = 5 is not zero: the line pierces the plane at a single point. It would be parallel to the plane if n · u were 0, with no common point if A is not in the plane.",
+      ] },
       prompt: [
         "Le point A reste fixe. Fais glisser l’ombre de B et la hauteur de B pour que la droite ne perce plus le plan : n · u = 0. Que vaut alors n · u, et combien de points communs reste-t-il ?",
         "Point A stays fixed. Drag the shadow of B and the height of B so that the line no longer pierces the plane: n · u = 0. What is n · u then, and how many common points remain?",
@@ -182,6 +194,10 @@ export default {
     },
     {
       id: "normal", kind: "explore", set: { mode: 2, hide: 0, ax: 2, ay: -1, az: 3, ux: 1, uy: 1, uz: 2, d: -2 }, unlock: ["A", "Az"],
+      scene: { title: ["Projeté orthogonal", "Orthogonal projection"], caption: [
+        "La droite passe par A(2 ; −1 ; 3) avec la normale n = (1 ; 1 ; 2) comme direction et perce le plan x + y + 2z − 2 = 0 en H, projeté orthogonal de A. La distance AH vaut |n · A + d| / ‖n‖ = 5/√6 ici, et 0 quand A est dans le plan.",
+        "The line passes through A(2, −1, 3) with the normal n = (1, 1, 2) as direction and pierces the plane x + y + 2z − 2 = 0 at H, the orthogonal projection of A. The distance AH equals |n · A + d| / ‖n‖ = 5/√6 here, and 0 when A is in the plane.",
+      ] },
       prompt: [
         "Le plan est x + y + 2z − 2 = 0 et la droite passe par A avec le vecteur normal n comme direction : elle perce le plan en H, le projeté orthogonal de A. Déplace A (son ombre, sa hauteur) jusqu’à ce que la distance AH soit nulle. Que vaut alors n · A + d ?",
         "The plane is x + y + 2z − 2 = 0 and the line passes through A with the normal vector n as direction: it pierces the plane at H, the orthogonal projection of A. Move A (its shadow, its height) until the distance AH is zero. What is n · A + d then?",
@@ -198,6 +214,10 @@ export default {
     },
     {
       id: "meet", kind: "check", set: { mode: 0, hide: 1, d: -7 }, quantity: "tStar", answer: 2, tolerance: 0.01,
+      scene: { title: ["Le point d’intersection", "The intersection point"], caption: [
+        "Pour le plan x + y + 2z − 7 = 0, remplacer M(t) = (−2 + 2t ; −1 + t ; t) dans l’équation donne 5t − 10 = 0. La droite coupe donc le plan en t = 2, au point (2 ; 1 ; 2).",
+        "For the plane x + y + 2z − 7 = 0, substituting M(t) = (−2 + 2t, −1 + t, t) into the equation gives 5t − 10 = 0. The line therefore meets the plane at t = 2, at the point (2, 1, 2).",
+      ] },
       prompt: [
         "La droite est M(t) = (−2 + 2t ; −1 + t ; t) et le plan est x + y + 2z − 7 = 0. Remplace x, y, z par leurs expressions en t dans l’équation du plan et résous : pour quelle valeur de t le point M(t) est-il dans le plan ?",
         "The line is M(t) = (−2 + 2t, −1 + t, t) and the plane is x + y + 2z − 7 = 0. Replace x, y, z by their expressions in t in the plane equation and solve: for which value of t is the point M(t) in the plane?",

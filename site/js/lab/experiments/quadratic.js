@@ -29,8 +29,8 @@ export default {
   title: ["La fabrique des paraboles", "The parabola workshop"],
   short: ["Fonctions du second degré", "Quadratic functions"],
   intro: [
-    "Que change chaque coefficient ? Déplace le sommet, l’ouverture et l’ordonnée à l’origine, et regarde les formules suivre la courbe.",
-    "What does each coefficient change? Move the vertex, the opening and the y-intercept, and watch the formulas follow the curve.",
+    "Une parabole est la courbe d’une fonction f(x) = ax² + bx + c. La figure montre son sommet, son ouverture et son ordonnée à l’origine, et les formules suivent la courbe.",
+    "A parabola is the curve of a function f(x) = ax² + bx + c. The figure shows its vertex, its opening and its y-intercept, and the formulas follow the curve.",
   ],
   duration: 8,
   level: ["Seconde · Première", "Foundation · Intermediate"],
@@ -135,6 +135,13 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { a: 1, b: 0, c: -2 }, correct: 0,
+      scene: {
+        title: ["Ouverte vers le haut", "Opens upward"],
+        caption: [
+          "La parabole f(x) = x² − 2 s’ouvre vers le haut : son sommet S(0 ; −2) est son point le plus bas, un minimum, et elle coupe l’axe des abscisses en deux points. Avec a < 0, elle s’ouvrirait vers le bas et le sommet serait un maximum.",
+          "The parabola f(x) = x² − 2 opens upward: its vertex S(0, −2) is its lowest point, a minimum, and it meets the x-axis at two points. With a < 0 it would open downward and the vertex would be a maximum.",
+        ],
+      },
       prompt: [
         "La parabole f(x) = x² − 2 s’ouvre vers le haut ; son sommet est S(0 ; −2). On rend a négatif sans déplacer le sommet. Que fait la parabole ?",
         "The parabola f(x) = x² − 2 opens upward; its vertex is S(0, −2). We make a negative without moving the vertex. What does the parabola do?",
@@ -163,6 +170,13 @@ export default {
     },
     {
       id: "vertex", kind: "explore", set: { a: 1, b: 0, c: 0 }, unlock: ["vertex"],
+      scene: {
+        title: ["Sommet à l’origine", "Vertex at the origin"],
+        caption: [
+          "La parabole f(x) = x² a son sommet à l’origine, sur l’axe des abscisses : c’est une racine double (Δ = 0). Dans l’écriture a(x − α)² + β, le sommet se lit directement (α ; β), alors que b et c demandent de développer.",
+          "The parabola f(x) = x² has its vertex at the origin, on the x-axis: a double root (Δ = 0). In the form a(x − α)² + β the vertex is read directly (α, β), whereas b and c require expanding.",
+        ],
+      },
       prompt: [
         "Déplace le sommet S jusqu’au point (2 ; −1). Sous la figure, la formule affiche les deux écritures de f(x) : comment le sommet se lit-il dans l’écriture (x − 2)² − 1 ?",
         "Move the vertex S to the point (2, −1). Under the figure, the formula shows both ways of writing f(x): how is the vertex read in the form (x − 2)² − 1?",
@@ -179,6 +193,13 @@ export default {
     },
     {
       id: "roots", kind: "contrast", set: { a: 1, b: 0, c: -2 }, unlock: ["yint"],
+      scene: {
+        title: ["Deux, une ou zéro racine", "Two, one or no roots"],
+        caption: [
+          "Le signe de Δ = b² − 4ac donne le nombre de points où la parabole coupe l’axe des abscisses : deux si Δ > 0, un seul (le sommet) si Δ = 0, aucun si Δ < 0. Ici f(x) = x² − 2 a deux racines.",
+          "The sign of Δ = b² − 4ac gives the number of points where the parabola meets the x-axis: two if Δ > 0, just one (the vertex) if Δ = 0, none if Δ < 0. Here f(x) = x² − 2 has two roots.",
+        ],
+      },
       variants: [
         { label: ["Cas A : c = −2", "Case A: c = −2"], set: { c: -2 } },
         { label: ["Cas B : c = 3", "Case B: c = 3"], set: { c: 3 } },
@@ -194,6 +215,13 @@ export default {
     },
     {
       id: "read", kind: "check", set: { a: 2, b: -8, c: 6 }, quantity: "beta", answer: -2, tolerance: 0.01,
+      scene: {
+        title: ["Parabole étroite", "A narrow parabola"],
+        caption: [
+          "La parabole f(x) = 2x² − 8x + 6 = 2(x − 2)² − 2 a son sommet en (2 ; −2), lisible dans la forme canonique. Avec a = 2, elle est plus étroite que y = x², et ses racines 1 et 3 sont symétriques par rapport à x = 2.",
+          "The parabola f(x) = 2x² − 8x + 6 = 2(x − 2)² − 2 has its vertex at (2, −2), readable in the canonical form. With a = 2 it is narrower than y = x², and its roots 1 and 3 are symmetric about x = 2.",
+        ],
+      },
       prompt: [
         "La figure montre f(x) = 2x² − 8x + 6. Lis les coordonnées du sommet sur le graphique : quelle est son ordonnée β ?",
         "The figure shows f(x) = 2x² − 8x + 6. Read the vertex coordinates on the graph: what is its y-coordinate β?",

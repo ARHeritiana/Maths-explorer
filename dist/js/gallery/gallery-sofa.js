@@ -37,9 +37,9 @@ export function movingSofa(root,opts){
   function shapeChanged(){drawPlot();setPoly(kind==='hammersley'?hammersley(r):kind==='gerver'?GERVER.outline:kind==='rect'?rectangle(w,len):own||rectangle(.8,.8));pose=kind==='own'&&own?.pose?{...own.pose}:start();shown={...pose};want=null;play=null;ghosts=[];buildPreview();show();dirty=true;}
   // The planned motion of Hammersley's and Gerver's sofas as faint outlines (6 poses of the turn), so the corner turn is visible before it is played;
   // the poses the student actually visits are kept as ghosts (the swept trail) as the sofa moves.
-  function buildPreview(){preview=(kind==='hammersley'||kind==='gerver')?Array.from({length:6},(_,i)=>motion(1+i/5)):[];}
+  function buildPreview(){preview=[];}   // no planned-motion outlines: they gave the solution away and cluttered the corner
   const GHOST_MAX=70;
-  function remember(){const l=ghosts[ghosts.length-1];if(!l||Math.hypot(pose.x-l.x,pose.y-l.y)>.2||Math.abs(pose.a-l.a)>.14){ghosts.push({x:pose.x,y:pose.y,a:pose.a});if(ghosts.length>GHOST_MAX)ghosts.shift();}}
+  function remember(){}   // the swept trail was removed: it cluttered the corner
   const outline=(pts)=>{g.beginPath();pts.forEach((p,i)=>i?g.lineTo(X(p[0]),Y(p[1])):g.moveTo(X(p[0]),Y(p[1])));g.closePath();};
   const mw=str=>(g.measureText(str)||{}).width||str.length*7;
   function show(){root.querySelector('#so-r').closest('.act-field').hidden=kind!=='hammersley';root.querySelectorAll('#so-w,#so-l').forEach(el=>el.closest('.act-field').hidden=kind!=='rect');playBtn.hidden=!(kind==='hammersley'||kind==='gerver');drawBtn.hidden=kind!=='own';}
@@ -94,9 +94,6 @@ export function movingSofa(root,opts){
     g.clearRect(0,0,o.W,o.H);g.fillStyle=C.line;g.globalAlpha=.35;g.fillRect(-2000,-2000,4640,4440);g.globalAlpha=1;
     g.fillStyle=C.sunken;g.fillRect(-2000,Y(1),X(1)+2000,S);g.fillRect(X(0),Y(1),S,3000);
     g.strokeStyle=C.ink;g.lineWidth=2;g.beginPath();g.moveTo(-2000,Y(1));g.lineTo(X(1),Y(1));g.lineTo(X(1),3000);g.moveTo(-2000,Y(0));g.lineTo(X(0),Y(0));g.lineTo(X(0),3000);g.stroke();
-    if(!drawing){
-      g.save();g.setLineDash([4,5]);g.lineWidth=1;g.globalAlpha=.6;g.strokeStyle=C.muted;for(const q of preview){outline(place(poly,q));g.stroke();}g.setLineDash([]);g.restore();
-      g.lineWidth=1.2;for(const q of ghosts){outline(place(poly,q));g.globalAlpha=.05;g.fillStyle=C.object;g.fill();g.globalAlpha=.3;g.strokeStyle=C.object;g.stroke();}g.globalAlpha=1;}
     if(drawing){g.strokeStyle=C.obj2;g.lineWidth=2;g.beginPath();drawing.forEach((p,i)=>i?g.lineTo(X(p[0]),Y(p[1])):g.moveTo(X(p[0]),Y(p[1])));g.stroke();}
     else{const pts=place(poly,shown);g.beginPath();pts.forEach((p,i)=>i?g.lineTo(X(p[0]),Y(p[1])):g.moveTo(X(p[0]),Y(p[1])));g.closePath();
       g.fillStyle=ok?(done?C.pos:C.object):C.neg;g.globalAlpha=.4;g.fill();g.globalAlpha=1;g.strokeStyle=ok?C.ink:C.neg;g.lineWidth=2;g.stroke();

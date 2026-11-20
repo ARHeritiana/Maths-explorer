@@ -25,8 +25,8 @@ export default {
   title: ["Approcher une tangente", "Approaching a tangent"],
   short: ["Dérivée et taux de variation", "Derivatives and rates of change"],
   intro: [
-    "Rapproche le point B du point A sur la parabole y = x² et observe la pente de la sécante (AB).",
-    "Bring the point B towards the point A on the parabola y = x² and watch the slope of the secant (AB).",
+    "La figure montre la parabole y = x², un point A et un point B de la courbe. La pente de la sécante (AB) se rapproche de celle de la tangente en A quand B s’approche de A.",
+    "The figure shows the parabola y = x², a point A and a point B of the curve. The slope of the secant (AB) comes close to that of the tangent at A as B approaches A.",
   ],
   duration: 8,
   level: ["Première · Terminale", "Intermediate · Advanced"],
@@ -113,6 +113,13 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { x: 1, h: 1 }, correct: 0,
+      scene: {
+        title: ["Sécante large", "A wide secant"],
+        caption: [
+          "A(1 ; 1) et B(2 ; 4) sont sur la parabole : la sécante (AB) a pour pente 3, plus que la tangente en A, dont la pente vaut 2.",
+          "A(1, 1) and B(2, 4) lie on the parabola: the secant (AB) has slope 3, more than the tangent at A, whose slope is 2.",
+        ],
+      },
       prompt: [
         "Les points A(1 ; 1) et B(2 ; 4) sont sur la parabole y = x². La droite (AB) a pour pente 3. Si B se rapproche de A le long de la courbe, que devient cette pente ?",
         "The points A(1, 1) and B(2, 4) lie on the parabola y = x². The line (AB) has slope 3. If B moves towards A along the curve, what happens to this slope?",
@@ -138,6 +145,13 @@ export default {
     },
     {
       id: "sides", kind: "contrast", set: { x: 1, h: 0.5 }, unlock: ["h"],
+      scene: {
+        title: ["B à droite de A", "B right of A"],
+        caption: [
+          "Avec h = 0,5, la pente de la sécante vaut 2x + h = 2,5 : un peu plus que 2x. Quand B est à gauche de A, elle vaut un peu moins ; dans les deux cas l’écart avec 2x est |h|, qui tend vers 0.",
+          "With h = 0.5 the slope of the secant is 2x + h = 2.5: slightly more than 2x. When B is left of A it is slightly less; in both cases the gap to 2x is |h|, which tends to 0.",
+        ],
+      },
       variants: [
         { label: ["B à droite de A (h > 0)", "B right of A (h > 0)"], set: { h: 0.5 } },
         { label: ["B à gauche de A (h < 0)", "B left of A (h < 0)"], set: { h: -0.5 } },
@@ -153,6 +167,13 @@ export default {
     },
     {
       id: "where", kind: "explore", set: { x: 1, h: 0.05 }, unlock: ["base"],
+      scene: {
+        title: ["Sécante presque tangente", "Almost a tangent"],
+        caption: [
+          "Avec h = 0,05, B est tout près de A et la sécante se confond presque avec la tangente, de pente 2x = 2. La pente de la tangente vaut 2x en chaque point ; elle est nulle au sommet, en x = 0.",
+          "With h = 0.05, B is very close to A and the secant almost merges with the tangent, of slope 2x = 2. The slope of the tangent is 2x at every point; it is zero at the vertex, at x = 0.",
+        ],
+      },
       prompt: [
         "Garde h petit et fais glisser le point A. Relève la pente de la tangente en x = −1, en x = 1, puis en x = 2. Pour quelle valeur de x la tangente est-elle horizontale ?",
         "Keep h small and drag the point A. Read the slope of the tangent at x = −1, x = 1, then x = 2. For which value of x is the tangent horizontal?",
@@ -166,6 +187,13 @@ export default {
     },
     {
       id: "slope", kind: "check", set: { x: 3, h: 0.01 }, quantity: "tangent", answer: 6, tolerance: 0.005,
+      scene: {
+        title: ["Tangente en x = 3", "Tangent at x = 3"],
+        caption: [
+          "A est en x = 3 et B tout près : la sécante a pour pente 6,01, la tangente a pour pente 2x = 6. L’écart est exactement h = 0,01.",
+          "A is at x = 3 and B very close: the secant has slope 6.01, the tangent has slope 2x = 6. The gap is exactly h = 0.01.",
+        ],
+      },
       prompt: [
         "A est au point d’abscisse 3 et B est tout près. La barre de résultats donne la pente de la sécante. Quelle est la pente de la tangente à la parabole en x = 3 ?",
         "A is at x = 3 and B is very close. The results bar gives the slope of the secant. What is the slope of the tangent to the parabola at x = 3?",

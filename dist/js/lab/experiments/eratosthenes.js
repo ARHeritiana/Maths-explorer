@@ -19,8 +19,8 @@ export default {
   title: ["Mesurer la Terre avec deux bâtons", "Measuring the Earth with two sticks"],
   short: ["L’expérience d’Ératosthène", "Eratosthenes’ experiment"],
   intro: [
-    "Le même jour à midi, un bâton vertical n’a pas d’ombre à Syène, un autre en a une à Alexandrie. Avec cette différence d’ombre et la distance entre les deux villes, on calcule le tour de la Terre.",
-    "On the same day at noon, a vertical stick casts no shadow at Syene, another casts one at Alexandria. From this difference of shadows and the distance between the towns, the Earth’s circumference follows.",
+    "Le même jour à midi, un bâton vertical n’a pas d’ombre à Syène alors qu’un autre en a une à Alexandrie. La figure montre une coupe de la Terre avec les deux bâtons, les rayons parallèles du Soleil et les ombres : la différence des ombres est l’angle au centre, et avec la distance entre les villes elle donne le tour de la Terre.",
+    "On the same day at noon, a vertical stick casts no shadow at Syene while another casts one at Alexandria. The figure shows a section of the Earth with the two sticks, the Sun’s parallel rays and the shadows: the difference of the shadows is the angle at the centre, and with the distance between the towns it gives the Earth’s circumference.",
   ],
   duration: 12,
   level: ["Seconde · Première", "Grades 10 to 11"],
@@ -102,6 +102,10 @@ export default {
     },
     {
       id: "shadow", kind: "explore", set: { phi: 15, sigma: 0, k: 5, unit: "stadia", hide: 0 }, unlock: ["city"],
+      scene: { title: ["Alexandrie à 15°", "Alexandria at 15°"], caption: [
+        "Quand Alexandrie est à 15° de Syène sur le cercle, son ombre mesure 15°, comme l’angle au centre. Le rayon qui frappe son bâton est parallèle à la droite qui va du centre de la Terre à Syène. Ératosthène a mesuré 7,2° à Alexandrie.",
+        "When Alexandria is 15° from Syene on the circle, its shadow measures 15°, like the angle at the centre. The ray striking its stick is parallel to the line from the Earth’s centre to Syene. Eratosthenes measured 7.2° at Alexandria.",
+      ] },
       prompt: [
         "Ératosthène a mesuré à Alexandrie une ombre de 7,2° (un cinquantième de tour) quand le Soleil était à la verticale de Syène. Déplace Alexandrie jusqu’à obtenir cette ombre, puis compare avec l’angle au centre.",
         "Eratosthenes measured a shadow of 7.2° (one fiftieth of a turn) at Alexandria when the Sun was overhead at Syene. Move Alexandria until you get this shadow, then compare with the angle at the centre.",
@@ -115,6 +119,10 @@ export default {
     },
     {
       id: "circumference", kind: "check", set: { phi: 7.2, sigma: 0, k: 5, unit: "stadia", hide: 1 }, quantity: "circumference", answer: 250000, tolerance: 0.01,
+      scene: { title: ["Un cinquantième de tour", "One fiftieth of a turn"], caption: [
+        "Avec une ombre de 7,2° et 5 000 stades entre les villes, l’arc de 5 000 stades est le cinquantième du cercle, car 7,2° est 1/50 de 360°. Le tour vaut donc 50 × 5 000 = 250 000 stades, soit C = 360 × s ÷ θ.",
+        "With a shadow of 7.2° and 5,000 stadia between the towns, the 5,000-stadia arc is one fiftieth of the circle, since 7.2° is 1/50 of 360°. The circumference is therefore 50 × 5,000 = 250,000 stadia, that is C = 360 × s ÷ θ.",
+      ] },
       prompt: [
         "Syène et Alexandrie sont à 5 000 stades l’une de l’autre, et l’angle au centre vaut 7,2°. Combien de stades fait le tour de la Terre ?",
         "Syene and Alexandria are 5,000 stadia apart, and the angle at the centre is 7.2°. How many stadia is the Earth’s circumference?",
@@ -127,6 +135,10 @@ export default {
     },
     {
       id: "sun", kind: "contrast", set: { phi: 7.2, sigma: 0, k: 5, unit: "stadia", hide: 0 }, unlock: ["sun"],
+      scene: { title: ["Soleil à la verticale de Syène", "Sun overhead at Syene"], caption: [
+        "Le Soleil est à la verticale de Syène : son bâton n’a pas d’ombre et celui d’Alexandrie en a une de 7,2°. Si le Soleil était plus bas, chaque ombre changerait, mais leur différence resterait l’angle au centre.",
+        "The Sun is overhead at Syene: its stick has no shadow and the one at Alexandria has a shadow of 7.2°. With a lower Sun each shadow would change, but their difference would remain the angle at the centre.",
+      ] },
       variants: [
         { label: ["A : Soleil à la verticale de Syène", "A: Sun overhead at Syene"], set: { sigma: 0 } },
         { label: ["B : Soleil plus bas, deux ombres", "B: lower Sun, two shadows"], set: { sigma: -12 } },
@@ -143,6 +155,10 @@ export default {
     },
     {
       id: "km", kind: "check", set: { phi: 7.2, sigma: 0, k: 0.8, unit: "km", hide: 1 }, quantity: "circumference", answer: 40000, tolerance: 0.01,
+      scene: { title: ["Deux villes à 800 km", "Two towns 800 km apart"], caption: [
+        "Deux villes du même méridien à 800 km l’une de l’autre, avec une différence d’ombre de 7,2°, donnent C = 360 × 800 ÷ 7,2 = 40 000 km. C’est proche du tour réel d’un méridien, environ 40 008 km.",
+        "Two towns on the same meridian 800 km apart, with a difference of shadows of 7.2°, give C = 360 × 800 ÷ 7.2 = 40,000 km. This is close to the real length of a meridian, about 40,008 km.",
+      ] },
       prompt: [
         "Aujourd’hui : deux villes sur le même méridien, à 800 km l’une de l’autre, et une différence d’ombre de 7,2° le même jour à midi. Quel tour de la Terre trouve-t-on, en km ?",
         "Today: two towns on the same meridian, 800 km apart, and a difference of shadows of 7.2° on the same day at noon. What circumference do you get, in km?",

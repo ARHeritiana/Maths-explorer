@@ -82,15 +82,14 @@ with sync_playwright() as p:
         assert not overflow(page), f'{cid}: horizontal overflow at 390 px'
         assert page.locator('.hint-panel, [data-hint-act], [data-hint]').count() == 0, f'{cid}: hints shown'
         page.goto(f'{BASE}/#challenges'); page.wait_for_timeout(50)
-    # Open curiosities: the animated explanation mounts when "Comprendre la réponse" opens and plays to its last step.
+    # Open curiosities: the animated explanation sits in the article (section "Explication animée"), mounts at once and plays to its last step.
     OPEN_CURIOSITIES = ['soap-films', 'einstein', 'moving-sofa', 'equidecomposition', 'banach-tarski-gallery', 'mirrored-rooms',
                         'double-pendulum-gallery', 'three-body-gallery', 'fair-goods-gallery', 'baker-gallery']
     for width in [1280, 390]:
         page.set_viewport_size({'width': width, 'height': 844})
         for gid in OPEN_CURIOSITIES:
-            page.goto(f'{BASE}/#gallery/{gid}'); page.wait_for_selector('.explain-open')
-            assert page.locator('#lab-quiz').count() == 0, f'{gid}: an open question has no answer form'
-            page.locator('.explain-open > summary').click()
+            page.goto(f'{BASE}/#gallery/{gid}'); page.wait_for_selector('.art-explainer')
+            assert page.locator('#lab-quiz, .explain-open, .checkpoint').count() == 0, f'{gid}: an article has no quiz or fold'
             page.wait_for_function("document.querySelector('[data-explain]').__solution", timeout=15000)
             n = page.evaluate("document.querySelector('[data-explain]').__solution.steps")
             page.evaluate(f"document.querySelector('[data-explain]').__solution.seek({n - 1}, 1)")

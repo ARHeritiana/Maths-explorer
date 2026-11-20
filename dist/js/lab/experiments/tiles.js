@@ -81,8 +81,8 @@ export default {
   title: ["Des pièces qui changent d’aire", "Pieces that change their area"],
   short: ["Puzzles trompeurs et preuve", "Misleading puzzles and proof"],
   intro: [
-    "Un carré de 64 carreaux devient un rectangle de 65 carreaux avec les mêmes pièces. La figure semble parfaite : seul un calcul dit où est passé le carreau.",
-    "A square of 64 cells becomes a rectangle of 65 cells with the same pieces. The figure looks perfect: only a calculation says where the cell went.",
+    "Un carré de 64 carreaux se découpe en quatre pièces qui, rangées autrement, forment un rectangle de 65 carreaux. Le dessin habituel semble parfait ; avec les vraies pièces, un parallélogramme très fin d’aire 1 apparaît le long de la diagonale.",
+    "A square of 64 cells is cut into four pieces that, rearranged, form a rectangle of 65 cells. The usual drawing looks perfect; with the true pieces, a very thin parallelogram of area 1 appears along the diagonal.",
   ],
   duration: 12,
   level: ["Seconde · Première", "Foundation · Intermediate"],
@@ -149,6 +149,10 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { a: 5, b: 3, variant: "square", show: 0 }, correct: 1,
+      scene: { title: ["Carré 8 × 8, rectangle 5 × 13", "8 × 8 square, 5 × 13 rectangle"], caption: [
+        "Les quatre mêmes pièces forment un carré de 64 carreaux et un rectangle de 65. Dans le dessin habituel, quelques coins sont déplacés d’une fraction de carreau pour que tout paraisse s’emboîter.",
+        "The same four pieces form a square of 64 cells and a rectangle of 65. In the usual drawing a few corners are moved by a fraction of a cell so that everything seems to fit.",
+      ] },
       prompt: [
         "Le carré 8 × 8 (64 carreaux) est découpé en quatre pièces, rangées en un rectangle 5 × 13 (65 carreaux). D’où vient le carreau de plus ?",
         "The 8 × 8 square (64 cells) is cut into four pieces, arranged into a 5 × 13 rectangle (65 cells). Where does the extra cell come from?",
@@ -174,6 +178,10 @@ export default {
     },
     {
       id: "size", kind: "explore", set: { a: 5, b: 3, variant: "square", show: 1 }, unlock: ["size"],
+      scene: { title: ["Les vraies pièces", "The true pieces"], caption: [
+        "Avec les vraies pièces, les bords ne sont pas alignés le long de la diagonale : ils laissent un parallélogramme d’aire det(u, v) = 8 × 2 − 3 × 5 = 1. C’est le carreau en plus, que le dessin habituel cache.",
+        "With the true pieces the edges are not aligned along the diagonal: they leave a parallelogram of area det(u, v) = 8 × 2 − 3 × 5 = 1. That is the extra cell, which the usual drawing hides.",
+      ] },
       prompt: [
         "Change la taille des pièces. Trouve une taille où le rectangle a un carreau de MOINS que le carré.",
         "Change the size of the pieces. Find a size where the rectangle has one cell LESS than the square.",
@@ -187,6 +195,10 @@ export default {
     },
     {
       id: "curry", kind: "contrast", set: { a: 5, b: 3, variant: "curry", show: 0 },
+      scene: { title: ["Les triangles de Curry", "Curry’s triangles"], caption: [
+        "Deux triangles 13 × 5 semblent faits des mêmes quatre pièces, et pourtant le second a un trou d’un carreau. Les pentes 3/8 et 2/5 diffèrent, donc le grand côté n’est pas vraiment droit.",
+        "Two 13 × 5 triangles seem made of the same four pieces, and yet the second has a hole of one cell. The slopes 3/8 and 2/5 differ, so the long side is not really straight.",
+      ] },
       variants: [
         { label: ["Cas A : présentation habituelle", "Case A: usual presentation"], set: { show: 0 } },
         { label: ["Cas B : vraies pièces", "Case B: true pieces"], set: { show: 1 } },

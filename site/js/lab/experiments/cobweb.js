@@ -17,8 +17,8 @@ export default {
   title: ["L’escalier d’une suite récurrente", "The staircase of a recurrence"],
   short: ["Suite uₙ₊₁ = f(uₙ) et point fixe", "Sequence uₙ₊₁ = f(uₙ) and fixed point"],
   intro: [
-    "Une suite définie par uₙ₊₁ = f(uₙ) se lit sur le graphique de f et la droite y = x : on monte jusqu’à la courbe, on traverse jusqu’à la droite, on recommence. Où l’escalier mène-t-il ?",
-    "A sequence defined by uₙ₊₁ = f(uₙ) can be read on the graph of f and the line y = x: go up to the curve, across to the line, repeat. Where does the staircase lead?",
+    "Une suite définie par uₙ₊₁ = f(uₙ) se lit sur le graphique de f et la droite y = x : on monte jusqu’à la courbe, on traverse jusqu’à la droite, et on recommence. La figure trace cet escalier et le point fixe où la courbe coupe la droite.",
+    "A sequence defined by uₙ₊₁ = f(uₙ) can be read on the graph of f and the line y = x: go up to the curve, across to the line, and repeat. The figure draws this staircase and the fixed point where the curve crosses the line.",
   ],
   duration: 9,
   level: ["Terminale", "Upper secondary"],
@@ -108,6 +108,10 @@ export default {
     },
     {
       id: "steps", kind: "explore", set: { a: 0.5, b: 2, u0: 8, n: 0 }, unlock: ["n"],
+      scene: { title: ["Avant le premier pas", "Before the first step"], caption: [
+        "Pour f(x) = 0,5 x + 2 et u₀ = 8, aucun pas n’est encore tracé : seul u₀ figure sur l’axe. Le point fixe est l’abscisse du point où la courbe coupe la droite y = x, ici 4.",
+        "For f(x) = 0.5 x + 2 and u₀ = 8, no step is drawn yet: only u₀ is on the axis. The fixed point is the x-coordinate of the point where the curve crosses the line y = x, here 4.",
+      ] },
       prompt: [
         "Fais défiler n jusqu’à 10. Où l’escalier mène-t-il ? Quel point de la droite y = x semble atteint, et que se passe-t-il pour l’écart |uₙ − ℓ| ?",
         "Scrub n up to 10. Where does the staircase lead? Which point of the line y = x seems to be reached, and what happens to the gap |uₙ − ℓ|?",
@@ -124,6 +128,10 @@ export default {
     },
     {
       id: "start", kind: "contrast", set: { a: 0.5, b: 2, u0: 8, n: 8 },
+      scene: { title: ["Descente vers 4", "Down to 4"], caption: [
+        "Après huit pas depuis u₀ = 8, l’escalier s’est resserré vers le point (4 ; 4). L’écart au point fixe est divisé par 2 à chaque pas, et le point fixe ne dépend que de f, pas de u₀.",
+        "After eight steps from u₀ = 8 the staircase has tightened towards the point (4, 4). The gap to the fixed point is halved at each step, and the fixed point depends only on f, not on u₀.",
+      ] },
       variants: [
         { label: ["Départ u₀ = 8", "Start u₀ = 8"], set: { u0: 8 } },
         { label: ["Départ u₀ = −1", "Start u₀ = −1"], set: { u0: -1 } },
@@ -139,6 +147,10 @@ export default {
     },
     {
       id: "slope", kind: "explore", set: { a: 0.5, b: 2, u0: 1, n: 8 }, unlock: ["slope"],
+      scene: { title: ["Montée vers 4", "Up to 4"], caption: [
+        "Partie de u₀ = 1, la suite monte vers 4 par en dessous, avec le même point fixe. Elle se rapproche de lui tant que |a| < 1 ; pour |a| > 1 l’écart serait multiplié par |a| à chaque pas et les termes s’éloigneraient.",
+        "Starting from u₀ = 1 the sequence climbs towards 4 from below, with the same fixed point. It approaches it as long as |a| < 1; for |a| > 1 the gap would be multiplied by |a| at each step and the terms would move away.",
+      ] },
       prompt: [
         "Fais glisser le point (2 ; f(2)) pour changer a. Trouve des valeurs de a pour lesquelles les termes ne se rapprochent plus du point fixe. Que vaut alors |a| ?",
         "Drag the point (2, f(2)) to change a. Find values of a for which the terms no longer get closer to the fixed point. What is |a| then?",
@@ -155,6 +167,10 @@ export default {
     },
     {
       id: "fixed", kind: "check", set: { a: 0.75, b: 1.5, u0: 0, n: 4 }, quantity: "fixed", answer: 6, tolerance: 0.01,
+      scene: { title: ["Point fixe 6", "Fixed point 6"], caption: [
+        "Pour f(x) = 0,75 x + 1,5, la courbe coupe la droite y = x en (6 ; 6), solution de ℓ = 0,75 ℓ + 1,5. Les termes 0, 1,5, 2,625… se rapprochent de 6 parce que |a| = 0,75 est inférieur à 1.",
+        "For f(x) = 0.75 x + 1.5 the curve crosses the line y = x at (6, 6), the solution of ℓ = 0.75 ℓ + 1.5. The terms 0, 1.5, 2.625… get closer to 6 because |a| = 0.75 is below 1.",
+      ] },
       prompt: [
         "Ici f(x) = 0,75 x + 1,5. Lis sur la figure où la courbe coupe la droite y = x, puis vérifie par le calcul : quelle est la valeur du point fixe ℓ, solution de ℓ = 0,75 ℓ + 1,5 ?",
         "Here f(x) = 0.75 x + 1.5. Read on the figure where the curve crosses the line y = x, then check by calculation: what is the fixed point ℓ, the solution of ℓ = 0.75 ℓ + 1.5?",

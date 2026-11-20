@@ -31,8 +31,8 @@ export default {
   title: ["Une droite, deux points", "A line, two points"],
   short: ["Pente et équation réduite", "Slope and equation of a line"],
   intro: [
-    "Deux points définissent une droite. Déplace-les et regarde ce qui reste vrai : le quotient des variations, la pente, l’équation y = mx + p, le vecteur directeur.",
-    "Two points define a line. Move them and watch what stays true: the quotient of the changes, the slope, the equation y = mx + p, the direction vector.",
+    "Deux points A et B définissent une droite. La figure montre le quotient des variations Δy/Δx, la pente, l’équation réduite y = mx + p et un vecteur directeur.",
+    "Two points A and B define a line. The figure shows the quotient of the changes Δy/Δx, the slope, the slope-intercept equation y = mx + p and a direction vector.",
   ],
   duration: 8,
   level: ["Seconde", "Foundation"],
@@ -106,6 +106,13 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { ax: 0, ay: 1, bx: 2, by: 5 }, correct: 0,
+      scene: {
+        title: ["Pente 2", "A slope of 2"],
+        caption: [
+          "La droite passe par A(0 ; 1) et B(2 ; 5) : quand x augmente de 2, y augmente de 4, donc Δy/Δx = 2 et l’équation est y = 2x + 1. Ce quotient est le même pour deux points quelconques de la droite, comme A et C(4 ; 9).",
+          "The line passes through A(0, 1) and B(2, 5): when x increases by 2, y increases by 4, so Δy/Δx = 2 and the equation is y = 2x + 1. This quotient is the same for any two points of the line, such as A and C(4, 9).",
+        ],
+      },
       prompt: [
         "La droite passe par A(0 ; 1) et B(2 ; 5) : quand x augmente de 2, y augmente de 4, donc le quotient Δy/Δx vaut 2. On remplace B par le point C(4 ; 9), qui est sur la même droite. Que devient le quotient de A à C ?",
         "The line passes through A(0, 1) and B(2, 5): when x increases by 2, y increases by 4, so the quotient Δy/Δx is 2. We replace B by the point C(4, 9), which is on the same line. What happens to the quotient from A to C?",
@@ -150,6 +157,13 @@ export default {
     },
     {
       id: "direction", kind: "contrast", set: { ax: 0, ay: 1, bx: 2, by: 5 },
+      scene: {
+        title: ["Même droite, autre vecteur", "Same line, other vector"],
+        caption: [
+          "Les vecteurs directeurs AB = (2 ; 4) et AB = (1 ; 2) sont différents mais colinéaires : même droite, même pente 2, même équation y = 2x + 1. Un vecteur directeur donne la direction, pas la longueur.",
+          "The direction vectors AB = (2, 4) and AB = (1, 2) differ but are collinear: same line, same slope 2, same equation y = 2x + 1. A direction vector gives the direction, not the length.",
+        ],
+      },
       variants: [
         { label: ["Cas A : B(2 ; 5)", "Case A: B(2, 5)"], set: { bx: 2, by: 5 } },
         { label: ["Cas B : B(1 ; 3)", "Case B: B(1, 3)"], set: { bx: 1, by: 3 } },
@@ -165,6 +179,13 @@ export default {
     },
     {
       id: "read", kind: "check", set: { ax: -1, ay: 4, bx: 3, by: -2 }, quantity: "intercept", answer: 2.5, tolerance: 0.01,
+      scene: {
+        title: ["Pente négative", "A negative slope"],
+        caption: [
+          "La droite passe par A(−1 ; 4) et B(3 ; −2) : m = −6/4 = −1,5, donc elle descend, et elle coupe l’axe des ordonnées en (0 ; 2,5). Son équation est y = −1,5x + 2,5.",
+          "The line passes through A(−1, 4) and B(3, −2): m = −6/4 = −1.5, so it goes down, and it cuts the y-axis at (0, 2.5). Its equation is y = −1.5x + 2.5.",
+        ],
+      },
       prompt: [
         "Lis les coordonnées de A et de B sur la figure. Calcule le coefficient directeur m, puis l’ordonnée à l’origine p de la droite (AB), avec p = yA − m xA. Que vaut p ?",
         "Read the coordinates of A and B on the figure. Compute the slope m, then the y-intercept p of the line (AB), with p = yA − m xA. What is p?",

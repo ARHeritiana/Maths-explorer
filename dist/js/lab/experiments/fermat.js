@@ -11,8 +11,8 @@ export default {
   title: ["Cinq cas, puis une erreur de Fermat", "Five cases, then Fermat’s mistake"],
   short: ["Nombres de Fermat 2^(2ⁿ) + 1", "Fermat numbers 2^(2ⁿ) + 1"],
   intro: [
-    "3, 5, 17, 257 et 65 537 sont premiers. Fermat en a conclu que tous les nombres 2^(2ⁿ) + 1 le sont. Le sixième lui donne tort.",
-    "3, 5, 17, 257 and 65,537 are prime. Fermat concluded that every number 2^(2ⁿ) + 1 is. The sixth one proves him wrong.",
+    "Les nombres 3, 5, 17, 257 et 65 537 sont premiers, et Fermat en a conclu que tous les nombres 2^(2ⁿ) + 1 le sont. La figure donne la décomposition de 2^e + 1 : le sixième, 2³² + 1, lui donne tort.",
+    "The numbers 3, 5, 17, 257 and 65,537 are prime, and Fermat concluded that every number 2^(2ⁿ) + 1 is. The figure gives the factorisation of 2^e + 1: the sixth one, 2³² + 1, proves him wrong.",
   ],
   duration: 10,
   level: ["Première · Terminale", "Intermediate · Advanced"],
@@ -45,6 +45,10 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { e: 16 }, correct: 1,
+      scene: { title: ["Un cinquième premier", "A fifth prime"], caption: [
+        "Pour e = 16, 2¹⁶ + 1 = 65 537 = F4 est premier, le cinquième d’une série qui a convaincu Fermat. Le suivant, F5, est hors de portée du calcul à la main.",
+        "For e = 16, 2¹⁶ + 1 = 65,537 = F4 is prime, the fifth of a run that convinced Fermat. The next one, F5, is out of reach of hand calculation.",
+      ] },
       prompt: [
         "F0 = 3, F1 = 5, F2 = 17, F3 = 257 et F4 = 65 537 sont premiers. Fermat affirmait que tous les Fn = 2^(2ⁿ) + 1 le sont. Que vaut F5 = 2³² + 1 = 4 294 967 297 ?",
         "F0 = 3, F1 = 5, F2 = 17, F3 = 257 and F4 = 65,537 are prime. Fermat claimed that every Fn = 2^(2ⁿ) + 1 is. What about F5 = 2³² + 1 = 4,294,967,297?",
@@ -70,6 +74,10 @@ export default {
     },
     {
       id: "odd", kind: "contrast", set: { e: 8 },
+      scene: { title: ["Un exposant puissance de 2", "A power-of-2 exponent"], caption: [
+        "Pour e = 8, 2⁸ + 1 = 257 = F3 est premier. Si l’exposant a un facteur impair, 2^e + 1 est composé : 2¹² + 1 = 4 097 = 17 × 241. C’est pourquoi on ne regarde que les puissances de 2.",
+        "For e = 8, 2⁸ + 1 = 257 = F3 is prime. If the exponent has an odd factor, 2^e + 1 is composite: 2¹² + 1 = 4,097 = 17 × 241. That is why only powers of 2 are considered.",
+      ] },
       variants: [
         { label: ["Cas A : 2⁸ + 1", "Case A: 2⁸ + 1"], set: { e: 8 } },
         { label: ["Cas B : 2¹² + 1", "Case B: 2¹² + 1"], set: { e: 12 } },
@@ -85,6 +93,10 @@ export default {
     },
     {
       id: "euler", kind: "check", set: { e: 32 }, quantity: "k", answer: 10,
+      scene: { title: ["Le sixième nombre", "The sixth number"], caption: [
+        "2³² + 1 = 4 294 967 297 = 641 × 6 700 417 est composé. Un diviseur premier de F5 s’écrit 64k + 1, et 641 = 64 × 10 + 1 est le bon candidat.",
+        "2³² + 1 = 4,294,967,297 = 641 × 6,700,417 is composite. A prime divisor of F5 has the form 64k + 1, and 641 = 64 × 10 + 1 is the right candidate.",
+      ] },
       prompt: [
         "Euler savait qu’un diviseur premier de F5 s’écrit 64k + 1 : il n’avait que peu de candidats à essayer. 641 = 64k + 1 : trouve k.",
         "Euler knew that a prime divisor of F5 has the form 64k + 1: he had few candidates to try. 641 = 64k + 1: find k.",

@@ -4,6 +4,9 @@ export {palette,field,bind,idleGuard};
 export const TAU=2*Math.PI;
 export function exhibit(root,{t,reduced},help,controls='',notes=''){
   root.innerHTML=`<p class="act-help">${help}</p><div class="obj-stage exhibit-stage"></div><div class="act-controls exhibit-controls">${controls}</div><p class="act-readout exhibit-readout" role="status" aria-live="polite"></p>${notes?`<details class="exhibit-notes"><summary>${t('Observer, puis comprendre','Observe, then understand')}</summary>${notes}</details>`:''}`;
+  // One tidy control panel: the fields (sliders, selects) in an aligned grid, every button gathered in one row below.
+  const panel=root.querySelector('.exhibit-controls'),btns=[...panel.children].filter(n=>n.tagName==='BUTTON');
+  if(btns.length){const row=root.ownerDocument.createElement('div');row.className='exhibit-actions';btns.forEach(b=>row.append(b));panel.append(row);}
   const o=canvasIn(root.querySelector('.exhibit-stage'),640/440),abort=new root.ownerDocument.defaultView.AbortController(),signal=abort.signal;
   o.cv.setAttribute('aria-label',t('Figure interactive. Tab pour les réglages. Pincement ou Ctrl + pincement ou Ctrl + molette pour zoomer ; Maj-glisser pour déplacer la vue ; 0 pour la réinitialiser.','Interactive figure. Tab for controls. Pinch or Ctrl + wheel to zoom; Shift-drag to pan; 0 to reset the view.'));
   const on=(el,type,fn)=>el.addEventListener(type,fn,{signal});let alive=true,draw=()=>{},lastRead='';
