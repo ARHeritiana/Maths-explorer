@@ -14,8 +14,8 @@ export default {
   title: ["Le hasard a ses habitudes", "Chance has its patterns"],
   short: ["Loi binomiale", "Binomial probability"],
   intro: [
-    "Répète une expérience aléatoire des centaines de fois et regarde les fréquences se stabiliser autour des probabilités.",
-    "Repeat a random experiment hundreds of times and watch the frequencies settle around the probabilities.",
+    "Une pièce truquée est lancée n fois et l’on compte les faces. Répétée des centaines de fois, cette expérience donne un diagramme de fréquences qui se stabilise autour des probabilités théoriques.",
+    "A trick coin is tossed n times and the heads are counted. Repeated hundreds of times, this experiment gives a chart of frequencies that settles around the theoretical probabilities.",
   ],
   duration: 10,
   level: ["Première · Terminale", "Intermediate · Advanced"],
@@ -83,6 +83,13 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { n: 10, p: 0.3, runs: 0, seed: 2, theory: 0 }, correct: 0,
+      scene: {
+        title: ["Avant toute expérience", "Before any experiment"],
+        caption: [
+          "Une pièce tombe sur face avec la probabilité 0,3 ; une expérience consiste à la lancer 10 fois et à compter les faces. Aucune expérience n’est encore faite, mais le nombre de faces le plus probable est déjà k = 3, soit np.",
+          "A coin lands on heads with probability 0.3; one experiment is 10 tosses and a count of the heads. No experiment has been made yet, but the most likely number of heads is already k = 3, that is np.",
+        ],
+      },
       prompt: [
         "Une pièce truquée tombe sur « face » avec la probabilité 0,3. Une expérience consiste à la lancer 10 fois et à compter les faces. On répète l’expérience 1 000 fois. Quel nombre de faces sera le plus fréquent ?",
         "A trick coin lands on heads with probability 0.3. One experiment is 10 tosses and a count of the heads. The experiment is repeated 1,000 times. Which number of heads will be the most frequent?",
@@ -112,6 +119,13 @@ export default {
     },
     {
       id: "few", kind: "contrast", set: { n: 10, p: 0.3, runs: 10, seed: 3, theory: 0 },
+      scene: {
+        title: ["Dix expériences", "Ten experiments"],
+        caption: [
+          "Avec 10 expériences, les barres sont irrégulières et changent beaucoup d’une série à l’autre. Avec 1 000 expériences tirées de la même suite de hasard, elles dessinent un profil stable : la fréquence d’un résultat se stabilise quand on répète.",
+          "With 10 experiments the bars are irregular and change a lot from one series to another. With 1,000 experiments drawn from the same sequence of chance they draw a stable profile: the frequency of a result settles as the experiment is repeated.",
+        ],
+      },
       variants: [
         { label: ["Cas A : 10 expériences", "Case A: 10 experiments"], set: { runs: 10 } },
         { label: ["Cas B : 1 000 expériences", "Case B: 1,000 experiments"], set: { runs: 1000 } },
@@ -127,6 +141,13 @@ export default {
     },
     {
       id: "mean", kind: "explore", set: { n: 10, p: 0.3, runs: 1000, seed: 2, theory: 0 }, unlock: ["expectation"],
+      scene: {
+        title: ["Mille expériences", "A thousand experiments"],
+        caption: [
+          "Après 1 000 expériences de 10 lancers avec p = 0,3, les barres se concentrent autour de k = 3. Le repère E marque np sur l’axe, et le centre du diagramme suit np quand p change.",
+          "After 1,000 experiments of 10 tosses with p = 0.3, the bars gather around k = 3. The marker E shows np on the axis, and the centre of the chart follows np when p changes.",
+        ],
+      },
       prompt: [
         "Le repère bleu E marque le nombre np sur l’axe. Fais-le glisser jusqu’à E = 5 : p change, et les mêmes 1 000 tirages sont réutilisés. Où va la barre la plus haute ?",
         "The blue marker E shows the number np on the axis. Drag it to E = 5: p changes and the same 1,000 draws are reused. Where does the highest bar go?",
@@ -143,6 +164,13 @@ export default {
     },
     {
       id: "read", kind: "check", set: { n: 8, p: 0.25, runs: 1000, seed: 5, theory: 0 }, quantity: "observedMode", answer: 2, tolerance: 0.01,
+      scene: {
+        title: ["Huit lancers, p = 0,25", "Eight tosses, p = 0.25"],
+        caption: [
+          "Ces 1 000 expériences de 8 lancers avec p = 0,25 ont leur barre la plus haute en k = 2, tout près de np = 8 × 0,25 = 2.",
+          "These 1,000 experiments of 8 tosses with p = 0.25 have their tallest bar at k = 2, right next to np = 8 × 0.25 = 2.",
+        ],
+      },
       prompt: [
         "Voici 1 000 expériences de 8 lancers, avec p = 0,25. Lis le diagramme : quelle valeur de k est la plus fréquente ?",
         "Here are 1,000 experiments of 8 tosses with p = 0.25. Read the chart: which value of k is the most frequent?",
@@ -158,6 +186,13 @@ export default {
     },
     {
       id: "why", kind: "explain", set: { n: 10, p: 0.3, runs: 1000, seed: 2, theory: 1 },
+      scene: {
+        title: ["Fréquences et probabilités", "Frequencies and probabilities"],
+        caption: [
+          "Les barres pleines des fréquences observées sont posées sur les contours des probabilités P(X = k). Après 1 000 expériences elles s’en approchent, car la variance de la fréquence vaut P(1 − P)/N et tend vers 0 quand N grandit.",
+          "The filled bars of the observed frequencies sit on the outlines of the probabilities P(X = k). After 1,000 experiments they come close, because the variance of the frequency is P(1 − P)/N and tends to 0 as N grows.",
+        ],
+      },
       prompt: [
         "Pourquoi les barres des fréquences observées (pleines) s’approchent-elles des probabilités (contours) quand on répète beaucoup l’expérience ?",
         "Why do the bars of the observed frequencies (filled) come close to the probabilities (outlines) when the experiment is repeated many times?",

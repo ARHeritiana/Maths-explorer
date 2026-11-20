@@ -14,8 +14,8 @@ export default {
   title: ["Une aire, rectangle par rectangle", "Area, one rectangle at a time"],
   short: ["Intégrales et approximation", "Integrals and approximation"],
   intro: [
-    "Approche l’aire sous la parabole y = x² avec des rectangles de plus en plus fins, et compare trois façons de choisir leur hauteur.",
-    "Approximate the area under the parabola y = x² with thinner and thinner rectangles, and compare three ways to choose their height.",
+    "L’aire sous la parabole y = x² est approchée par des rectangles de plus en plus fins. Leur hauteur est prise à gauche, à droite ou au milieu de chaque intervalle, et la figure compare la somme obtenue à l’aire exacte.",
+    "The area under the parabola y = x² is approximated by thinner and thinner rectangles. Their height is taken at the left, at the right or at the middle of each interval, and the figure compares the resulting sum with the exact area.",
   ],
   duration: 8,
   level: ["Terminale", "Advanced"],
@@ -86,6 +86,13 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { a: 0, b: 1, n: 4, method: "left" }, correct: 0,
+      scene: {
+        title: ["Quatre rectangles à gauche", "Four left rectangles"],
+        caption: [
+          "Les 4 rectangles ont leur coin supérieur gauche sur la parabole. Comme x² est croissante, ils restent sous la courbe : leur somme est plus petite que l’aire exacte, 1/3.",
+          "The 4 rectangles have their top-left corner on the parabola. Since x² is increasing, they stay under the curve: their sum is smaller than the exact area, 1/3.",
+        ],
+      },
       prompt: [
         "Les 4 rectangles ont leur coin supérieur gauche sur la parabole y = x². Leur aire totale est-elle plus petite, égale ou plus grande que l’aire sous la courbe entre 0 et 1 ?",
         "The 4 rectangles have their top-left corner on the parabola y = x². Is their total area smaller than, equal to or larger than the area under the curve between 0 and 1?",
@@ -107,6 +114,13 @@ export default {
     },
     {
       id: "heights", kind: "contrast", set: { a: 0, b: 1, n: 6, method: "left" }, unlock: ["n"],
+      scene: {
+        title: ["Gauche contre droite", "Left against right"],
+        caption: [
+          "Avec 6 rectangles, la somme à gauche est trop petite et celle à droite trop grande : l’aire exacte, 1/3, est coincée entre les deux. Leur écart (f(b) − f(a)) × (b − a) / n tend vers 0 quand n grandit.",
+          "With 6 rectangles the left sum is too small and the right sum too large: the exact area, 1/3, is squeezed between them. Their gap (f(b) − f(a)) × (b − a) / n tends to 0 as n grows.",
+        ],
+      },
       variants: [
         { label: ["Rectangles à gauche", "Left rectangles"], set: { method: "left" } },
         { label: ["Rectangles à droite", "Right rectangles"], set: { method: "right" } },
@@ -122,6 +136,13 @@ export default {
     },
     {
       id: "bound", kind: "explore", set: { a: 0, b: 1, n: 20, method: "mid" }, unlock: ["upper"],
+      scene: {
+        title: ["Rectangles au milieu", "Midpoint rectangles"],
+        caption: [
+          "Avec 20 rectangles pris au milieu, la somme est bien plus proche de l’aire exacte qu’avec des rectangles à gauche. L’aire de 0 à b vaut b³/3 : elle grandit de plus en plus vite quand b augmente, car la courbe monte.",
+          "With 20 midpoint rectangles the sum is much closer to the exact area than with left rectangles. The area from 0 to b is b³/3: it grows faster and faster as b increases, because the curve rises.",
+        ],
+      },
       prompt: [
         "Avec 20 rectangles pris au milieu, déplace la borne b pour que l’aire sous la courbe, de 0 à b, vaille 8/3 (environ 2,667). Quelle valeur de b convient ?",
         "With 20 midpoint rectangles, move the bound b so that the area under the curve, from 0 to b, equals 8/3 (about 2.667). Which value of b works?",
@@ -135,6 +156,13 @@ export default {
     },
     {
       id: "area", kind: "check", set: { a: 1, b: 2, n: 40, method: "mid" }, quantity: "exact", answer: 7 / 3, tolerance: 0.01,
+      scene: {
+        title: ["Aire entre 1 et 2", "Area between 1 and 2"],
+        caption: [
+          "Entre a = 1 et b = 2, l’aire exacte sous y = x² vaut (2³ − 1³)/3 = 7/3, environ 2,333. Quarante rectangles pris au milieu l’approchent de très près.",
+          "Between a = 1 and b = 2 the exact area under y = x² is (2³ − 1³)/3 = 7/3, about 2.333. Forty midpoint rectangles come very close to it.",
+        ],
+      },
       prompt: [
         "Entre a = 1 et b = 2, quelle est l’aire exacte sous y = x² ? Les sommes affichées t’en donnent une valeur proche ; l’aire exacte vaut (b³ − a³)/3. Une fraction est acceptée.",
         "Between a = 1 and b = 2, what is the exact area under y = x²? The displayed sums give a close value; the exact area is (b³ − a³)/3. A fraction is accepted.",

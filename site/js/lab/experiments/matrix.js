@@ -14,8 +14,8 @@ export default {
   title: ["Une matrice transforme le plan", "A matrix transforms the plane"],
   short: ["Matrices 2 × 2 et déterminant", "2 × 2 matrices and the determinant"],
   intro: [
-    "Les colonnes d’une matrice 2 × 2 sont les images de i et de j. Déplace-les : le carré unité devient un parallélogramme, et le déterminant dit par combien l’aire est multipliée.",
-    "The columns of a 2 × 2 matrix are the images of i and j. Move them: the unit square becomes a parallelogram, and the determinant says by how much the area is multiplied.",
+    "Les colonnes d’une matrice 2 × 2 sont les images de i et de j. Le carré unité devient un parallélogramme, et le déterminant donne le facteur par lequel l’aire est multipliée.",
+    "The columns of a 2 × 2 matrix are the images of i and j. The unit square becomes a parallelogram, and the determinant gives the factor by which the area is multiplied.",
   ],
   duration: 9,
   level: ["Maths expertes", "Further maths"],
@@ -92,6 +92,10 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { a: 2, b: 1, c: 0, d: 2 }, correct: 0,
+      scene: { title: ["Parallélogramme d’aire 4", "Parallelogram of area 4"], caption: [
+        "Les colonnes (2 ; 0) et (1 ; 2) envoient i et j sur les côtés d’un parallélogramme d’aire 4, soit det M = 2 × 2 − 1 × 0. Le carré unité, d’aire 1, a été multiplié par 4.",
+        "The columns (2, 0) and (1, 2) send i and j to the sides of a parallelogram of area 4, that is det M = 2 × 2 − 1 × 0. The unit square, of area 1, has been multiplied by 4.",
+      ] },
       prompt: [
         "La matrice M = (a b ; c d) a pour colonnes (2 ; 0) et (1 ; 2) : elle envoie i sur (2 ; 0) et j sur (1 ; 2). Le carré unité a une aire de 1. Quelle sera l’aire de son image, le parallélogramme construit sur ces deux colonnes ?",
         "The matrix M = (a b ; c d) has columns (2, 0) and (1, 2): it sends i to (2, 0) and j to (1, 2). The unit square has area 1. What will be the area of its image, the parallelogram built on these two columns?",
@@ -104,6 +108,10 @@ export default {
     },
     {
       id: "columns", kind: "explore", set: { a: 1, b: 0, c: 0, d: 1 }, unlock: ["i"],
+      scene: { title: ["La matrice identité", "The identity matrix"], caption: [
+        "Les colonnes (1 ; 0) et (0 ; 1) laissent i et j en place : le carré unité reste le même et det M = 1. La première colonne de M est l’image de i, la seconde celle de j.",
+        "The columns (1, 0) and (0, 1) leave i and j in place: the unit square stays the same and det M = 1. The first column of M is the image of i, the second that of j.",
+      ] },
       prompt: [
         "On part de la matrice identité : i et j sont envoyés sur eux-mêmes. Fais glisser l’image de i jusqu’au point (2 ; 1). Quelle colonne de M lis-tu ? Et que devient l’image de j ?",
         "We start from the identity matrix: i and j are sent to themselves. Drag the image of i to the point (2, 1). Which column of M do you read? And what happens to the image of j?",
@@ -120,6 +128,10 @@ export default {
     },
     {
       id: "area", kind: "explore", set: { a: 2, b: 0, c: 0, d: 1 }, unlock: ["j"],
+      scene: { title: ["Étirement horizontal", "Horizontal stretch"], caption: [
+        "L’image de i est (2 ; 0) et celle de j reste (0 ; 1) : le carré devient un rectangle deux fois plus large, d’aire det M = 2. Le signe du déterminant dit si l’orientation est conservée ou renversée.",
+        "The image of i is (2, 0) and that of j stays (0, 1): the square becomes a rectangle twice as wide, of area det M = 2. The sign of the determinant says whether the orientation is kept or reversed.",
+      ] },
       prompt: [
         "L’image de i reste en (2 ; 0). Fais glisser l’image de j pour que l’image du carré unité ait une aire de 3. Quel est le déterminant de M ? Plusieurs positions conviennent : quel signe peut-il avoir ?",
         "The image of i stays at (2, 0). Drag the image of j so that the image of the unit square has area 3. What is the determinant of M? Several positions work: what sign can it have?",
@@ -152,6 +164,10 @@ export default {
     },
     {
       id: "read", kind: "check", set: { a: 2, b: 1, c: -1, d: 2 }, quantity: "det", answer: 5, tolerance: 0.01,
+      scene: { title: ["Déterminant 5", "Determinant 5"], caption: [
+        "Les colonnes (2 ; −1) et (1 ; 2) donnent det M = 2 × 2 − 1 × (−1) = 5. Le carré unité est envoyé sur un parallélogramme d’aire 5, orienté comme le départ car le déterminant est positif.",
+        "The columns (2, −1) and (1, 2) give det M = 2 × 2 − 1 × (−1) = 5. The unit square is sent to a parallelogram of area 5, oriented like the start because the determinant is positive.",
+      ] },
       prompt: [
         "Lis sur la figure les images de i et de j, c’est-à-dire les colonnes (a ; c) et (b ; d) de M. Calcule ensuite le déterminant ad − bc. Que vaut-il ?",
         "Read on the figure the images of i and j, that is the columns (a, c) and (b, d) of M. Then compute the determinant ad − bc. What is it?",

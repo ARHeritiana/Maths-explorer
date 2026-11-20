@@ -21,8 +21,8 @@ export default {
   title: ["Que raconte une moyenne ?", "What does an average tell us?"],
   short: ["Moyenne, médiane, quartiles", "Mean, median, quartiles"],
   intro: [
-    "Sept valeurs sur une droite graduée. Déplace-en une et regarde ce qui bouge : la moyenne, la médiane, la boîte.",
-    "Seven values on a number line. Move one and watch what changes: the mean, the median, the box.",
+    "Sept valeurs sont placées sur une droite graduée. La figure montre leur moyenne, leur médiane et la boîte des quartiles, qui se mettent à jour avec chaque valeur.",
+    "Seven values are placed on a number line. The figure shows their mean, their median and the box of the quartiles, which update with each value.",
   ],
   duration: 8,
   level: ["Seconde", "Foundation"],
@@ -95,6 +95,13 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { data: DEFAULT, hide: 0 }, correct: 0,
+      scene: {
+        title: ["Sept valeurs", "Seven values"],
+        caption: [
+          "La série 2 ; 3 ; 4 ; 4 ; 5 ; 6 ; 9 a pour moyenne environ 4,7 et pour médiane 4. La boîte va de Q₁ = 3 à Q₃ = 6 ; la valeur 9 est la plus éloignée du centre.",
+          "The series 2, 3, 4, 4, 5, 6, 9 has a mean of about 4.7 and a median of 4. The box runs from Q₁ = 3 to Q₃ = 6; the value 9 is the farthest from the centre.",
+        ],
+      },
       prompt: [
         "La série 2 ; 3 ; 4 ; 4 ; 5 ; 6 ; 9 a pour moyenne environ 4,7 et pour médiane 4. On remplace la plus grande valeur, 9, par 18. Que deviennent la moyenne et la médiane ?",
         "The series 2, 3, 4, 4, 5, 6, 9 has a mean of about 4.7 and a median of 4. The largest value, 9, is replaced by 18. What happens to the mean and the median?",
@@ -107,6 +114,13 @@ export default {
     },
     {
       id: "outlier", kind: "contrast", set: { data: DEFAULT, hide: 0 },
+      scene: {
+        title: ["Une valeur extrême", "An extreme value"],
+        caption: [
+          "Remplacer 9 par 18 fait passer la moyenne d’environ 4,71 à 6, alors que la médiane reste à 4 et que la boîte ne bouge pas. Une valeur extrême déplace fortement la moyenne, mais pas la médiane.",
+          "Replacing 9 by 18 takes the mean from about 4.71 to 6, while the median stays at 4 and the box does not move. An extreme value moves the mean a lot, but not the median.",
+        ],
+      },
       variants: [
         { label: ["Cas A : la plus grande valeur est 9", "Case A: the largest value is 9"], set: { data: DEFAULT } },
         { label: ["Cas B : la plus grande valeur est 18", "Case B: the largest value is 18"], set: { data: [2, 3, 4, 4, 5, 6, 18] } },
@@ -154,6 +168,13 @@ export default {
     },
     {
       id: "read", kind: "check", set: { data: [1, 2, 4, 5, 7, 8, 12], hide: 1 }, quantity: "q3", answer: 8, tolerance: 0.01,
+      scene: {
+        title: ["Boîte de quartiles", "A box of quartiles"],
+        caption: [
+          "Pour la série 1 ; 2 ; 4 ; 5 ; 7 ; 8 ; 12, la boîte va de Q₁ = 2 à Q₃ = 8. Q₃ est la 6e valeur, car 6/7 ≈ 86 % des valeurs lui sont inférieures ou égales, contre 5/7 ≈ 71 % pour la 5e.",
+          "For the series 1, 2, 4, 5, 7, 8, 12 the box runs from Q₁ = 2 to Q₃ = 8. Q₃ is the 6th value, because 6/7 ≈ 86% of the values are less than or equal to it, against 5/7 ≈ 71% for the 5th.",
+        ],
+      },
       prompt: [
         "Lis la boîte sur la figure : quelle est la valeur du troisième quartile Q₃ ?",
         "Read the box on the figure: what is the value of the third quartile Q₃?",

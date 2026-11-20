@@ -11,8 +11,8 @@ export default {
   title: ["Quarante nombres premiers, et puis ?", "Forty primes, and then?"],
   short: ["Polynôme d’Euler n² + n + 41", "Euler’s polynomial n² + n + 41"],
   intro: [
-    "n² + n + 41 est premier pour n = 0, 1, 2, … et ainsi de suite pendant quarante valeurs. Une si longue série de vérifications prouve-t-elle quelque chose ?",
-    "n² + n + 41 is prime for n = 0, 1, 2, … and so on for forty values. Does such a long run of checks prove anything?",
+    "Le polynôme n² + n + 41 donne un nombre premier pour n = 0, 1, 2, … pendant quarante valeurs de suite. La figure liste ses valeurs et leurs décompositions : une longue série de vérifications ne fait pas une preuve.",
+    "The polynomial n² + n + 41 gives a prime for n = 0, 1, 2, … for forty values in a row. The figure lists its values and their factorisations: a long run of checks is not a proof.",
   ],
   duration: 10,
   level: ["Seconde · Première", "Foundation · Intermediate"],
@@ -45,6 +45,10 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { c: 41, n: 9 }, correct: 1,
+      scene: { title: ["Dix nombres premiers", "Ten primes"], caption: [
+        "Pour n = 0 à 9, n² + n + 41 vaut 41, 43, 47, 53, 61, 71, 83, 97, 113, 131 : dix nombres premiers d’affilée, et la série se poursuit bien au-delà.",
+        "For n = 0 to 9, n² + n + 41 gives 41, 43, 47, 53, 61, 71, 83, 97, 113, 131: ten primes in a row, and the run goes on well beyond.",
+      ] },
       prompt: [
         "f(n) = n² + n + 41 donne 41, 43, 47, 53, 61, 71, 83, 97, 113, 131 pour n = 0 à 9 : dix nombres premiers. f(n) est-il premier pour tout entier naturel n ?",
         "f(n) = n² + n + 41 gives 41, 43, 47, 53, 61, 71, 83, 97, 113, 131 for n = 0 to 9: ten primes. Is f(n) prime for every natural number n?",
@@ -70,6 +74,10 @@ export default {
     },
     {
       id: "square", kind: "check", set: { c: 41, n: 40 }, quantity: "root", answer: 41,
+      scene: { title: ["La série s’arrête", "The run stops"], caption: [
+        "f(40) = 40 × 41 + 41 = 41² = 1 681 n’est pas premier : la série s’arrête après quarante nombres premiers. En général f(c − 1) = c².",
+        "f(40) = 40 × 41 + 41 = 41² = 1,681 is not prime: the run stops after forty primes. In general f(c − 1) = c².",
+      ] },
       prompt: [
         "f(40) = 40² + 40 + 41 est un carré parfait. De quel entier est-il le carré ?",
         "f(40) = 40² + 40 + 41 is a perfect square. Of which whole number is it the square?",
@@ -82,6 +90,10 @@ export default {
     },
     {
       id: "lucky", kind: "contrast", set: { c: 41, n: 16 },
+      scene: { title: ["Milieu de la série", "Middle of the run"], caption: [
+        "En n = 16, f(16) = 313 est encore premier. D’autres constantes donnent des séries plus courtes : n² + n + 17 est premier pour n = 0 à 15, puis f(16) = 289 = 17².",
+        "At n = 16, f(16) = 313 is still prime. Other constants give shorter runs: n² + n + 17 is prime for n = 0 to 15, then f(16) = 289 = 17².",
+      ] },
       variants: [
         { label: ["Cas A : n² + n + 41", "Case A: n² + n + 41"], set: { c: 41 } },
         { label: ["Cas B : n² + n + 17", "Case B: n² + n + 17"], set: { c: 17 } },
@@ -97,6 +109,10 @@ export default {
     },
     {
       id: "why", kind: "explain", set: { c: 41, n: 59 },
+      scene: { title: ["Premier de nouveau", "Prime again"], caption: [
+        "Après la rupture, f(41) = 41 × 43 est composé, mais f(59) = 3 581 est de nouveau premier. Un polynôme peut donner beaucoup de nombres premiers sans les donner tous.",
+        "After the break, f(41) = 41 × 43 is composite, but f(59) = 3,581 is prime again. A polynomial can give many primes without giving only primes.",
+      ] },
       prompt: [
         "Pourquoi aucun polynôme non constant à coefficients entiers ne peut-il donner que des nombres premiers ?",
         "Why can no non-constant polynomial with integer coefficients give only primes?",

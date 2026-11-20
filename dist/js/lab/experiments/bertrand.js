@@ -16,8 +16,8 @@ export default {
   title: ["Une corde au hasard ?", "A chord at random?"],
   short: ["Paradoxe de Bertrand", "Bertrand’s paradox"],
   intro: [
-    "Quelle est la probabilité qu’une corde tirée au hasard soit plus longue que le côté du triangle équilatéral inscrit ? Trois façons de tirer, trois réponses.",
-    "What is the probability that a chord drawn at random is longer than the side of the inscribed equilateral triangle? Three ways to draw, three answers.",
+    "Une corde tirée au hasard dans un cercle est plus longue que le côté du triangle équilatéral inscrit avec une probabilité qui dépend de la façon de tirer. Trois méthodes donnent trois réponses : 1/3, 1/2 et 1/4.",
+    "A chord drawn at random in a circle is longer than the side of the inscribed equilateral triangle with a probability that depends on how it is drawn. Three methods give three answers: 1/3, 1/2 and 1/4.",
   ],
   duration: 10,
   level: ["Première · Terminale", "Intermediate · Advanced"],
@@ -102,6 +102,10 @@ export default {
     },
     {
       id: "methods", kind: "contrast", set: { method: "radius", runs: 2000, seed: 6 },
+      scene: { title: ["Point d’un rayon", "Point on a radius"], caption: [
+        "Le milieu de la corde est pris au hasard sur un rayon : la fréquence des cordes orange est environ 1/2. La corde est plus longue quand ce milieu est à moins de 1/2 du centre.",
+        "The midpoint of the chord is taken at random on a radius: the frequency of orange chords is about 1/2. The chord is longer when this midpoint is within 1/2 of the centre.",
+      ] },
       variants: [
         { label: ["Cas A : point d’un rayon", "Case A: point on a radius"], set: { method: "radius" } },
         { label: ["Cas B : milieu dans le disque", "Case B: midpoint in the disc"], set: { method: "midpoint" } },
@@ -117,6 +121,10 @@ export default {
     },
     {
       id: "midpoint", kind: "check", set: { method: "midpoint", runs: 0, seed: 6 }, quantity: "prob", answer: 0.25, tolerance: 0.001,
+      scene: { title: ["Milieu dans le disque", "Midpoint in the disc"], caption: [
+        "Le milieu de la corde est un point au hasard du disque : la probabilité vaut π (1/2)² / π = 1/4. Beaucoup de cordes courtes se trouvent près du bord.",
+        "The midpoint of the chord is a random point of the disc: the probability is π (1/2)² / π = 1/4. Many short chords lie near the edge.",
+      ] },
       prompt: [
         "Une corde est plus longue que √3 exactement quand son milieu est à moins de 1/2 du centre. Si le milieu est un point au hasard du disque de rayon 1, quelle est la probabilité ? (Écris un nombre décimal.)",
         "A chord is longer than √3 exactly when its midpoint is within 1/2 of the centre. If the midpoint is a random point of the disc of radius 1, what is the probability? (Write a decimal number.)",
@@ -126,6 +134,10 @@ export default {
     },
     {
       id: "why", kind: "explain", set: { method: "ends", runs: 2000, seed: 6 },
+      scene: { title: ["Deux extrémités", "Two endpoints"], caption: [
+        "Deux points pris au hasard sur le cercle : la fréquence des cordes orange approche 1/3. La corde est plus longue quand la seconde extrémité tombe sur l’arc opposé à la première, qui mesure un tiers du cercle.",
+        "Two random points on the circle: the frequency of orange chords approaches 1/3. The chord is longer when the second endpoint falls on the arc opposite the first, which is a third of the circle.",
+      ] },
       prompt: [
         "Pourquoi trois réponses différentes à la même question ? Laquelle est la bonne ?",
         "Why three different answers to the same question? Which one is right?",

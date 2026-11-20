@@ -23,8 +23,8 @@ export default {
   title: ["Un cercle, deux coordonnées", "One circle, two coordinates"],
   short: ["Cercle trigonométrique", "The unit circle"],
   intro: [
-    "Fais tourner le point P : ses coordonnées dessinent le cosinus et le sinus, sur le cercle et sur la courbe à la fois.",
-    "Rotate the point P: its coordinates draw cosine and sine, on the circle and on the curve at once.",
+    "Le point P parcourt le cercle trigonométrique : ses coordonnées sont cos x et sin x, et la même valeur se lit sur la courbe tracée à côté du cercle.",
+    "The point P runs around the unit circle: its coordinates are cos x and sin x, and the same value is read on the curve drawn beside the circle.",
   ],
   duration: 8,
   level: ["Première · Terminale", "Intermediate"],
@@ -138,6 +138,13 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { deg: 45, assoc: "none", fn: "sin" }, correct: 2,
+      scene: {
+        title: ["Angle de 45°", "An angle of 45°"],
+        caption: [
+          "P est à 45° sur le cercle de rayon 1 : cos 45° = sin 45° = √2/2, car P est sur la bissectrice du premier quadrant. Le point de la courbe a pour hauteur l’ordonnée de P.",
+          "P is at 45° on the circle of radius 1: cos 45° = sin 45° = √2/2, because P lies on the bisector of the first quadrant. The point on the curve has the height of the y-coordinate of P.",
+        ],
+      },
       prompt: [
         "Le point P est sur le cercle de centre O et de rayon 1, à l’angle x. Quand x = 180°, P est à l’opposé de sa position de départ (1 ; 0). Que vaut alors son abscisse, c’est-à-dire cos 180° ?",
         "The point P is on the circle with centre O and radius 1, at angle x. When x = 180°, P is opposite its starting position (1, 0). What is then its x-coordinate, that is cos 180°?",
@@ -146,6 +153,13 @@ export default {
     },
     {
       id: "quadrants", kind: "explore", set: { deg: 30, assoc: "none", fn: "sin" }, unlock: ["angle", "onGraph"],
+      scene: {
+        title: ["Premier quadrant", "First quadrant"],
+        caption: [
+          "P est à 30°, dans le premier quadrant : abscisse et ordonnée positives, avec sin 30° = 1/2. Entre 90° et 180°, cos x est négatif alors que sin x reste positif.",
+          "P is at 30°, in the first quadrant: both coordinates are positive, with sin 30° = 1/2. Between 90° and 180°, cos x is negative while sin x stays positive.",
+        ],
+      },
       prompt: [
         "Fais glisser P sur le cercle (ou le point de la courbe) pour trouver la zone où cos x est négatif et sin x positif. Vérifie sur les deux vues.",
         "Drag P on the circle (or the point of the curve) to find the region where cos x is negative and sin x is positive. Check on both views.",
@@ -159,6 +173,13 @@ export default {
     },
     {
       id: "exact", kind: "explore", set: { deg: 0, assoc: "none", fn: "cos" }, unlock: ["angle", "fn"],
+      scene: {
+        title: ["Le cosinus au départ", "Cosine at the start"],
+        caption: [
+          "À 0°, P est en (1 ; 0) : cos 0 = 1 et sin 0 = 0, donc la courbe du cosinus commence à son maximum et celle du sinus à zéro. Aux angles remarquables comme 60°, les valeurs sont exactes : cos 60° = 1/2 et sin 60° = √3/2.",
+          "At 0°, P is at (1, 0): cos 0 = 1 and sin 0 = 0, so the cosine curve starts at its maximum and the sine curve at zero. At remarkable angles such as 60° the values are exact: cos 60° = 1/2 and sin 60° = √3/2.",
+        ],
+      },
       prompt: [
         "Place P à 60°. Compare les valeurs exactes de cos 60° et sin 60° avec les longueurs des deux segments colorés, puis regarde la courbe de chaque fonction.",
         "Place P at 60°. Compare the exact values of cos 60° and sin 60° with the lengths of the two coloured segments, then look at the curve of each function.",
@@ -172,6 +193,13 @@ export default {
     },
     {
       id: "read", kind: "check", set: { deg: 150, assoc: "none", fn: "sin" }, quantity: "sin", answer: 0.5, tolerance: 0.01,
+      scene: {
+        title: ["Sinus à 150°", "Sine at 150°"],
+        caption: [
+          "À 150°, soit 5π/6, P est le symétrique de la position à 30° par rapport à l’axe des ordonnées. Donc sin 150° = sin 30° = 1/2, et le point de la courbe du sinus est à la même hauteur que P.",
+          "At 150°, that is 5π/6, P is the mirror image of the 30° position in the y-axis. So sin 150° = sin 30° = 1/2, and the point on the sine curve is at the same height as P.",
+        ],
+      },
       prompt: [
         "Sur la courbe du sinus, le point marqué a pour abscisse 5π/6, soit 150°. Lis son ordonnée : combien vaut sin 150° ? Une fraction est acceptée.",
         "On the sine curve, the marked point has x-coordinate 5π/6, that is 150°. Read its y-coordinate: what is sin 150°? A fraction is accepted.",
@@ -184,6 +212,13 @@ export default {
     },
     {
       id: "associated", kind: "contrast", set: { deg: 30, assoc: "supplementary", fn: "sin" }, unlock: ["angle"],
+      scene: {
+        title: ["Angle π − x", "The angle π − x"],
+        caption: [
+          "Q = P(π − x) est le symétrique de P par rapport à l’axe des ordonnées : seule l’abscisse change de signe, donc cos(π − x) = −cos x et sin(π − x) = sin x. Pour x + π, les deux coordonnées changent de signe, ce qui correspond à un demi-tour.",
+          "Q = P(π − x) is the mirror image of P in the y-axis: only the x-coordinate changes sign, so cos(π − x) = −cos x and sin(π − x) = sin x. For x + π both coordinates change sign, which is a half-turn.",
+        ],
+      },
       variants: [
         { label: ["Cas A : Q = P(π − x)", "Case A: Q = P(π − x)"], set: { assoc: "supplementary" } },
         { label: ["Cas B : Q = P(x + π)", "Case B: Q = P(x + π)"], set: { assoc: "plusPi" } },

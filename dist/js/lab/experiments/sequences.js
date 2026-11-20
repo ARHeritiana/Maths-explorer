@@ -15,8 +15,8 @@ export default {
   title: ["Additionner ou multiplier ?", "Add or multiply?"],
   short: ["Suites et croissance", "Sequences and growth"],
   intro: [
-    "Compare une suite où l’on ajoute toujours la même chose à une suite où l’on multiplie toujours par le même nombre.",
-    "Compare a sequence where you always add the same amount with one where you always multiply by the same number.",
+    "Une suite arithmétique ajoute toujours le même nombre, sa raison r ; une suite géométrique multiplie toujours par le même nombre q. La figure place les points (n ; uₙ) de la suite, alignés dans le premier cas, sur une courbe dans le second.",
+    "An arithmetic sequence always adds the same amount, its difference r; a geometric sequence always multiplies by the same number q. The figure plots the points (n, uₙ) of the sequence: aligned in the first case, on a curve in the second.",
   ],
   duration: 8,
   level: ["Première · Terminale", "Intermediate"],
@@ -93,6 +93,13 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { mode: "arith", u0: 2, r: 3 }, correct: 0,
+      scene: {
+        title: ["Suite arithmétique", "Arithmetic sequence"],
+        caption: [
+          "Avec u₀ = 2 et r = 3, les termes sont 2, 5, 8, 11… Les points (n ; uₙ) sont alignés sur une droite de pente r = 3 : pour une suite arithmétique, la pente de la droite est la raison.",
+          "With u₀ = 2 and r = 3 the terms are 2, 5, 8, 11… The points (n, uₙ) lie on a line of slope r = 3: for an arithmetic sequence the slope of the line is the difference.",
+        ],
+      },
       prompt: [
         "On part de u₀ = 2 et on ajoute 3 à chaque terme : 2, 5, 8, 11… Où vont se placer les points (n ; uₙ) ?",
         "We start at u₀ = 2 and add 3 each time: 2, 5, 8, 11… Where will the points (n, uₙ) lie?",
@@ -118,6 +125,13 @@ export default {
     },
     {
       id: "versus", kind: "contrast", set: { mode: "arith", u0: 1, r: 1, q: 2 }, unlock: ["n"],
+      scene: {
+        title: ["Droite et courbe", "Line and curve"],
+        caption: [
+          "Une suite part de u₀ = 1 et ajoute 1 à chaque pas : ses points sont alignés. Multiplier par 2 à la place donne 1, 2, 4, 8… : une courbe qui coïncide avec la droite jusqu’à u₁ = 2, puis la dépasse dès u₂ (4 contre 3).",
+          "A sequence starts at u₀ = 1 and adds 1 at each step: its points are aligned. Multiplying by 2 instead gives 1, 2, 4, 8…: a curve that agrees with the line up to u₁ = 2, then overtakes it from u₂ (4 against 3).",
+        ],
+      },
       variants: [
         { label: ["Additionner 1 à chaque pas", "Add 1 at each step"], set: { mode: "arith", u0: 1, r: 1 } },
         { label: ["Multiplier par 2 à chaque pas", "Multiply by 2 at each step"], set: { mode: "geom", u0: 1, q: 2 } },
@@ -133,6 +147,13 @@ export default {
     },
     {
       id: "signs", kind: "explore", set: { mode: "geom", u0: 2, q: 1.5, n: 6 }, unlock: ["step", "n"],
+      scene: {
+        title: ["Raison supérieure à 1", "Ratio above 1"],
+        caption: [
+          "Avec u₀ = 2 et q = 1,5, les termes 2 ; 3 ; 4,5… croissent de plus en plus vite. Une raison négative ferait alterner les signes des termes, car qⁿ alterne, et la valeur absolue grandirait si |q| > 1.",
+          "With u₀ = 2 and q = 1.5 the terms 2, 3, 4.5… grow faster and faster. A negative ratio would make the signs of the terms alternate, because qⁿ alternates, and the absolute value would grow if |q| > 1.",
+        ],
+      },
       prompt: [
         "Fais glisser le point u₁ pour choisir une raison q négative, puis fais défiler n. Que deviennent les signes des termes ? Et leur valeur absolue quand |q| > 1 ?",
         "Drag the point u₁ to choose a negative ratio q, then scrub n. What happens to the signs of the terms? And to their absolute value when |q| > 1?",
@@ -146,6 +167,13 @@ export default {
     },
     {
       id: "formula", kind: "check", set: { mode: "geom", u0: 3, q: 2, n: 4 }, quantity: "u5", answer: 96,
+      scene: {
+        title: ["Doubler à chaque pas", "Doubling at each step"],
+        caption: [
+          "Avec u₀ = 3 et q = 2, les termes jusqu’à n = 4 sont 3, 6, 12, 24, 48 : chaque terme est le double du précédent, et uₙ = 3 × 2ⁿ. Le premier terme porte l’indice 0.",
+          "With u₀ = 3 and q = 2 the terms up to n = 4 are 3, 6, 12, 24, 48: each term is double the previous one, and uₙ = 3 × 2ⁿ. The first term has index 0.",
+        ],
+      },
       prompt: [
         "La suite géométrique a pour premier terme u₀ = 3 et pour raison q = 2. Le tableau s’arrête à n = 4. Sans changer la figure, calcule u₅ avec la formule uₙ = u₀ × qⁿ.",
         "The geometric sequence has first term u₀ = 3 and ratio q = 2. The table stops at n = 4. Without changing the figure, compute u₅ with the formula uₙ = u₀ × qⁿ.",

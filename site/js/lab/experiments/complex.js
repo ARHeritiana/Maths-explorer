@@ -34,8 +34,8 @@ export default {
   title: ["Les nombres prennent le plan", "Numbers take the plane"],
   short: ["Nombres complexes", "Complex numbers"],
   intro: [
-    "Un nombre complexe est un point du plan. Ajouter déplace la figure ; multiplier par z la fait tourner et l’agrandit.",
-    "A complex number is a point of the plane. Adding moves the figure; multiplying by z rotates and enlarges it.",
+    "Un nombre complexe est un point du plan. Ajouter z décale la figure ; multiplier par z la fait tourner de l’argument de z et multiplie les distances à l’origine par le module de z.",
+    "A complex number is a point of the plane. Adding z shifts the figure; multiplying by z turns it by the argument of z and multiplies the distances from the origin by the modulus of z.",
   ],
   duration: 9,
   level: ["Approfondissement", "Extension"],
@@ -117,6 +117,13 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { r: 1, theta: 0, tx: 1, ty: 2, mode: "multiply", hide: 0 }, correct: 0,
+      scene: {
+        title: ["Le cas z = 1", "The case z = 1"],
+        caption: [
+          "Avec z = 1, la figure d’arrivée est identique à celle de départ : multiplier par 1 ne change rien. Avec z = i, la maison ferait un quart de tour autour de 0 sans changer de taille.",
+          "With z = 1 the figure of arrival is identical to the figure before: multiplying by 1 changes nothing. With z = i the house would turn a quarter turn about 0 without changing size.",
+        ],
+      },
       prompt: [
         "Ici z = 1 : la figure d’arrivée est identique à celle de départ. On remplace z par i, le point (0 ; 1). Que devient la maison dans le plan d’arrivée ?",
         "Here z = 1: the figure after is identical to the figure before. We replace z by i, the point (0, 1). What happens to the house in the plane of arrival?",
@@ -145,6 +152,13 @@ export default {
     },
     {
       id: "compare", kind: "contrast", set: { r: Math.SQRT2, theta: 45, tx: 1, ty: 2, mode: "multiply", hide: 0 },
+      scene: {
+        title: ["Multiplier par 1 + i", "Multiplying by 1 + i"],
+        caption: [
+          "Avec z = 1 + i, de module √2 et d’argument 45°, multiplier par z fait tourner la maison de 45° et multiplie les distances à l’origine par √2, environ 1,41. Ajouter z la décalerait au contraire sans la tourner.",
+          "With z = 1 + i, of modulus √2 and argument 45°, multiplying by z turns the house by 45° and multiplies the distances from the origin by √2, about 1.41. Adding z would instead shift it without turning it.",
+        ],
+      },
       variants: [
         { label: ["Cas A : on ajoute z", "Case A: add z"], set: { mode: "translate" } },
         { label: ["Cas B : on multiplie par z", "Case B: multiply by z"], set: { mode: "multiply" } },
@@ -160,6 +174,13 @@ export default {
     },
     {
       id: "angles", kind: "explore", set: { r: Math.SQRT2, theta: 45, tx: 2, ty: 0, mode: "multiply", hide: 0 }, unlock: ["t"],
+      scene: {
+        title: ["Arguments qui s’ajoutent", "Arguments that add"],
+        caption: [
+          "Avec z = 1 + i et t = 2, le produit z × t = 2 + 2i a pour argument 45° : multiplier par z ajoute l’argument de z à celui de t. Le produit est sur l’axe vertical quand arg t vaut 45° ou −135°.",
+          "With z = 1 + i and t = 2, the product z × t = 2 + 2i has argument 45°: multiplying by z adds the argument of z to that of t. The product is on the vertical axis when arg t is 45° or −135°.",
+        ],
+      },
       prompt: [
         "Ici z = 1 + i. Fais glisser t pour que z × t arrive sur l’axe vertical. Quel est l’argument de t quand c’est le cas ?",
         "Here z = 1 + i. Drag t so that z × t lands on the vertical axis. What is the argument of t when this happens?",
@@ -176,6 +197,13 @@ export default {
     },
     {
       id: "read", kind: "check", set: { r: Math.hypot(...Z_REF), theta: deg(Math.atan2(Z_REF[1], Z_REF[0])), tx: 0, ty: 2, mode: "multiply", hide: 1 }, quantity: "modW", answer: 5, tolerance: 0.01,
+      scene: {
+        title: ["Module d’un produit", "Modulus of a product"],
+        caption: [
+          "Avec z = 1,5 + 2i et t = 2i, le produit z × t = −4 + 3i est à la distance 5 de l’origine : |z × t| = √(16 + 9) = 5 = |z| × |t| = 2,5 × 2.",
+          "With z = 1.5 + 2i and t = 2i, the product z × t = −4 + 3i is at distance 5 from the origin: |z × t| = √(16 + 9) = 5 = |z| × |t| = 2.5 × 2.",
+        ],
+      },
       prompt: [
         "Voici z = 1,5 + 2i et t = 2i. Lis sur la figure les coordonnées de z × t dans le plan d’arrivée, puis calcule sa distance à l’origine, c’est-à-dire son module |z × t|.",
         "Here z = 1.5 + 2i and t = 2i. Read the coordinates of z × t in the plane of arrival on the figure, then compute its distance from the origin, that is its modulus |z × t|.",

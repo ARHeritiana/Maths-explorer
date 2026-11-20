@@ -13,8 +13,8 @@ export default {
   title: ["Multiplier à chaque pas", "Multiply at each step"],
   short: ["Fonctions k × aˣ et suites géométriques", "Functions k × aˣ and geometric sequences"],
   intro: [
-    "La fonction x ↦ k × aˣ multiplie par a chaque fois que x augmente de 1. Déplace les deux points et regarde la suite des valeurs en x = 0, 1, 2…",
-    "The function x ↦ k × aˣ multiplies by a each time x increases by 1. Move the two points and watch the sequence of values at x = 0, 1, 2…",
+    "La fonction x ↦ k × aˣ multiplie par a chaque fois que x augmente de 1. La figure montre sa courbe, les deux points (0 ; k) et (1 ; k × a), et la suite des valeurs en x = 0, 1, 2…",
+    "The function x ↦ k × aˣ multiplies by a each time x increases by 1. The figure shows its curve, the two points (0, k) and (1, k × a), and the sequence of values at x = 0, 1, 2…",
   ],
   duration: 8,
   level: ["Première · Terminale", "Intermediate"],
@@ -81,6 +81,10 @@ export default {
   missions: [
     {
       id: "open", kind: "predict", set: { k: 1, a: 2 }, correct: 0,
+      scene: { title: ["Le doublement", "Doubling"], caption: [
+        "Pour f(x) = 2ˣ, les valeurs en 0, 1, 2 sont 1, 2, 4 : chaque pas multiplie par 2. Le même facteur vaut pour tout x, même non entier.",
+        "For f(x) = 2ˣ the values at 0, 1, 2 are 1, 2, 4: each step multiplies by 2. The same factor holds for every x, even a non-integer.",
+      ] },
       prompt: [
         "Pour f(x) = 2ˣ, on lit f(0) = 1, f(1) = 2, f(2) = 4. Quand x augmente de 1, que fait f(x), pour n’importe quelle valeur de x (même non entière) ?",
         "For f(x) = 2ˣ we read f(0) = 1, f(1) = 2, f(2) = 4. When x increases by 1, what does f(x) do, for any value of x (even a non-integer)?",
@@ -93,6 +97,10 @@ export default {
     },
     {
       id: "base", kind: "explore", set: { k: 1, a: 2 }, unlock: ["unit", "a"],
+      scene: { title: ["Le facteur a", "The factor a"], caption: [
+        "Quand 0 < a < 1 chaque pas multiplie par un nombre plus petit que 1 et la courbe descend ; quand a > 1 elle monte ; quand a = 1 elle est constante. Ici a = 2 : la courbe monte.",
+        "When 0 < a < 1 each step multiplies by a number below 1 and the curve goes down; when a > 1 it goes up; when a = 1 it is constant. Here a = 2: the curve goes up.",
+      ] },
       prompt: [
         "Fais glisser le point d’abscisse 1 (ou le curseur a) jusqu’à ce que la courbe descende. Que vaut alors a par rapport à 1 ? Peut-on rendre a négatif ?",
         "Drag the point with x-coordinate 1 (or the slider a) until the curve goes down. How does a compare with 1 then? Can a be made negative?",
@@ -125,6 +133,10 @@ export default {
     },
     {
       id: "sequence", kind: "check", set: { k: 1.5, a: 2 }, quantity: "u5", answer: 48, tolerance: 0.01,
+      scene: { title: ["Une suite géométrique", "A geometric sequence"], caption: [
+        "Avec k = 1,5 et a = 2, les points (n ; f(n)) forment la suite uₙ = 1,5 × 2ⁿ, géométrique de premier terme 1,5 et de raison 2. Le tableau s’arrête à n = 4 et la courbe sort vite du cadre.",
+        "With k = 1.5 and a = 2, the points (n, f(n)) form the sequence uₙ = 1.5 × 2ⁿ, geometric with first term 1.5 and ratio 2. The table stops at n = 4 and the curve soon leaves the frame.",
+      ] },
       prompt: [
         "Les points (n ; f(n)) forment la suite uₙ = f(n). Lis u₀ et u₁ sur la figure ou dans le tableau, déduis la raison, puis calcule u₅ (le tableau s’arrête à n = 4 et la courbe sort du cadre).",
         "The points (n, f(n)) form the sequence uₙ = f(n). Read u₀ and u₁ on the figure or in the table, deduce the ratio, then compute u₅ (the table stops at n = 4 and the curve leaves the frame).",
