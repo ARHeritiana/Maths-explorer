@@ -1,5 +1,14 @@
 # Handoff
 
+## Viviani's theorem (20 November 2026, issue #33)
+
+New exhibit `#gallery/viviani` ("Le point qui ne change rien"): drag P in an equilateral triangle (or a vertex, which
+turns and resizes the triangle), three coloured perpendiculars with right-angle marks, the strip d₁ · d₂ · d₃, their sum
+and the height; "any triangle" shows the plain sum moving while a·d₁ + b·d₂ + c·d₃ = 2 × area stays; the three small
+triangles with their areas on demand; a question on where the sum is smallest, checked after three different places.
+Links to Seconde 12 and 13. Model `gallery-viviani-model.js`, tests `tests/gallery-viviani.test.mjs`. Not done: the
+laboratory mission and the Seconde exercise suggested by the issue.
+
 ## Challenge "La route de trop" (20 November 2026, issue #34)
 
 Braess's paradox as a checked challenge `#challenges/braess` (answer 80 for 4,000 drivers; parameter 1,000 to 8,000):
