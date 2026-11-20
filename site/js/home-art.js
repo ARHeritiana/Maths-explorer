@@ -448,7 +448,19 @@ function selfSimilarArt(cv, opts) {
     g.beginPath(); P.forEach(([x, y], i) => (i ? g.lineTo(cx + x * K, cy - y * K) : g.moveTo(cx + x * K, cy - y * K))); g.closePath(); g.fillStyle = C.c[1]; g.fill(); g.strokeStyle = C.ink; g.lineWidth = 1.5; g.stroke();
   }, { reduced: opts.reduced, still: 2 });
 }
-export const ART = { 'self-similar': selfSimilarArt, collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
+// Polyhedra by truncation: a cube whose corners are cut deeper and deeper, then back.
+import { family as polyFamily, cut as polyCut, hAt as polyH } from './gallery/gallery-polyhedra-model.js';
+import { drawFaces } from './gallery/gallery-kit.js';
+function polyhedraArt(cv, opts) {
+  const F = polyFamily('cube');
+  return runner(cv, (g, W, H, t, C) => {
+    const d = 0.5 - 0.5 * Math.cos(t * 0.5), P = polyCut(F, polyH(F, d));
+    g.save(); g.translate(W / 2 - 320 * (Math.min(W, H) / 330), H / 2 - 224 * (Math.min(W, H) / 330)); g.scale(Math.min(W, H) / 330, Math.min(W, H) / 330);
+    drawFaces(g, C, P.faces.map((f) => ({ pts: f.verts.map((i) => P.verts[i]), normal: f.n, shade: f.kind === 'cut' ? 1 : 0 })), { yaw: -0.6 + t * 0.2, pitch: 0.5 }, 120, { dy: 0 });
+    g.restore();
+  }, { reduced: opts.reduced, still: 3 });
+}
+export const ART = { polyhedra: polyhedraArt, 'self-similar': selfSimilarArt, collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
   life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt, equidecomposition: equidecompositionArt,
   ...Object.fromEntries(['secretary-gallery','tank-gallery','benford-gallery','baker-gallery','birthdays-gallery','monty-gallery','fair-division-gallery','fair-goods-gallery','hairy-ball-gallery','nonorientable-surfaces-gallery','banach-tarski-gallery','double-pendulum-gallery','three-body-gallery','logistic-gallery','mirrored-rooms'].map(id => [id, (cv, o) => subjectArt(id, cv, o)])),
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };

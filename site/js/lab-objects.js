@@ -125,6 +125,7 @@ import { napkinRingGL } from './gallery/gallery-napkin-gl.js';
 import { hundredBoxes } from './gallery/gallery-boxes.js';
 import { morleyTriangle } from './gallery/gallery-morley.js';
 import { selfSimilar } from './gallery/gallery-selfsimilar.js';
+import { polyhedraFamily } from './gallery/gallery-polyhedra.js';
 import { inferenceGallery } from './gallery/gallery-inference.js';
 import { fairGallery } from './gallery/gallery-fair-division.js';
 import { topologyGallery } from './gallery/gallery-topology.js';
@@ -460,7 +461,7 @@ function chaos(root, { t, reduced, lang }) {
 export const OBJECTS = { ...Object.fromEntries(["double-pendulum", "three-body", "logistic"].map(id => [id + "-gallery", dynamicsGallery(id)])), "mirrored-rooms":illuminationGallery, gomboc, ...Object.fromEntries(["secretary", "tank", "benford", "baker", "birthdays", "monty"].map(id => [id + "-gallery", inferenceGallery(id)])), galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles, 'four-colours':fourColours, life:gameOfLife, 'square-packing':squarePacking, 'moving-sofa':movingSofa, 'inscribed-square':inscribedSquare, 'opaque-square':opaqueSquare, equidecomposition };
 // The 3D exhibits draw with WebGL2 (gallery/gl3d.js); without it, or if a shader fails on this device, the earlier 2D version is mounted.
 const gpuFirst = (gpu, plain) => (root, o) => { let stop = null; try { stop = gpu(root, o); } catch (e) { console.warn(e); } return stop ?? plain(root, o); };
-Object.assign(OBJECTS, {collisions,'napkin-ring':gpuFirst(napkinRingGL,napkinRing),'hundred-boxes':hundredBoxes,morley:morleyTriangle,'self-similar':selfSimilar,'fair-division-gallery':fairGallery('fair-division'),'fair-goods-gallery':fairGallery('fair-goods'),'hairy-ball-gallery':gpuFirst(hairyBall,topologyGallery('hairy-ball')),'nonorientable-surfaces-gallery':topologyGallery('nonorientable-surfaces'),'banach-tarski-gallery':gpuFirst(banachTarski,topologyGallery('banach-tarski-model'))});
+Object.assign(OBJECTS, {collisions,'napkin-ring':gpuFirst(napkinRingGL,napkinRing),'hundred-boxes':hundredBoxes,morley:morleyTriangle,'self-similar':selfSimilar,polyhedra:polyhedraFamily,'fair-division-gallery':fairGallery('fair-division'),'fair-goods-gallery':fairGallery('fair-goods'),'hairy-ball-gallery':gpuFirst(hairyBall,topologyGallery('hairy-ball')),'nonorientable-surfaces-gallery':topologyGallery('nonorientable-surfaces'),'banach-tarski-gallery':gpuFirst(banachTarski,topologyGallery('banach-tarski-model'))});
 export const isObject = (id) => Object.hasOwn(OBJECTS, id);
 export function mountObject(id, root, { lang, reduced, ...options }) {
   const t = (fr, en) => (lang === "fr" ? fr : en);

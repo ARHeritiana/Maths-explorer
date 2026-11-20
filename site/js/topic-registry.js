@@ -70,6 +70,7 @@ export const PLACEMENTS = Object.fromEntries([
   ['#lab/circle-regions', ['discrete/counting','foundations/reasoning']],
   ['#gallery/mandelbrot', ['dynamics/iteration','algebra/complex']],
   ['#gallery/chaos', ['dynamics/iteration','geometry/plane']],
+  ['#gallery/polyhedra', ['geometry/space']],
   ['#gallery/self-similar', ['geometry/plane','geometry/space','dynamics/iteration']],
   ['#gallery/soap-films', ['geometry/space','analysis/functions']],
   ['#gallery/einstein', ['geometry/plane']],
