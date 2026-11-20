@@ -137,7 +137,7 @@
 @media (max-width: 860px) { .art-layout { grid-template-columns: minmax(0, 1fr); } .art-facts { order: -1; } }
 
 /* Control panel of an exhibit (gallery-kit.js): aligned grid of fields, one row of buttons, a quiet help line. */
-.exhibit-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 24px; align-items: end; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.exhibit-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 12px 24px; align-items: end; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
 .exhibit-controls .act-field { flex: none; }
 .exhibit-controls .exhibit-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; padding-top: 12px; border-top: 1px solid var(--line); }
 .exhibit-controls .exhibit-actions:first-child { border-top: 0; padding-top: 0; }
@@ -150,3 +150,4 @@
 .lab2-full .lab2-prompt { color: var(--ink); }
 .art-sources { margin-top: 24px; max-width: 68ch; }
 .art-sources h2 { font-size: 1.1rem; margin: 0 0 6px; }
+.workbench-article { grid-template-columns: minmax(0, 1fr); }   /* an article page: the figure takes the whole width, still clipped like before */

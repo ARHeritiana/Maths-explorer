@@ -16,8 +16,8 @@ export default {
   title: ["Une roue, une courbe de hauteur", "A wheel and its height curve"],
   short: ["Modèle trigonométrique d’une grande roue", "A trigonometric model of an observation wheel"],
   intro: [
-    "Un point marqué fait le tour d’une roue idéalisée en 30 minutes. Fais avancer le temps : la roue et la courbe de la hauteur h(t) se lisent ensemble.",
-    "A marked point goes once round an idealised wheel in 30 minutes. Move the time: the wheel and the height curve h(t) are read together.",
+    "Un point marqué fait le tour d’une roue idéalisée en 30 minutes. La figure montre la roue et la courbe de la hauteur h(t) du point, liées par le même temps t : une ligne horizontale relie la position sur la roue à son point sur la courbe.",
+    "A marked point goes once round an idealised wheel in 30 minutes. The figure shows the wheel and the height curve h(t) of the point, linked by the same time t: a horizontal line joins the position on the wheel to its point on the curve.",
   ],
   duration: 12,
   level: ["Intermédiaire", "Intermediate"],
@@ -139,6 +139,10 @@ export default {
     },
     {
       id: "model", kind: "explore", set: { t: 0, aid: "none", hide: 0 }, unlock: ["seat", "onGraph", "time"],
+      scene: { title: ["Départ au point le plus bas", "Start at the lowest point"], caption: [
+        "À t = 0 le point est au minimum, 15 m, d’une roue de 120 m de diamètre dont le sommet est à 135 m. Les deux hauteurs extrêmes donnent h(t) = 75 − 60 cos(πt/15), avec h(0) = 15 et h(15) = 135.",
+        "At t = 0 the point is at the minimum, 15 m, of a wheel of diameter 120 m whose top is 135 m. The two extreme heights give h(t) = 75 − 60 cos(πt/15), with h(0) = 15 and h(15) = 135.",
+      ] },
       prompt: [
         "Modèle idéalisé : le point tourne régulièrement, exactement un tour en 30 minutes, à partir du point le plus bas, sur un cercle de 120 m de diamètre dont le sommet est à 135 m du niveau de référence. Amène le point en haut et lis les deux hauteurs extrêmes. Elles imposent h(t) = a cos(bt) + d : quelles valeurs pour a, b et d ?",
         "Idealised model: the point turns steadily, exactly one revolution in 30 minutes, from the lowest point, on a circle of diameter 120 m whose top is 135 m above the reference level. Take the point to the top and read the two extreme heights. They fix h(t) = a cos(bt) + d: which values for a, b and d?",
@@ -167,6 +171,10 @@ export default {
     },
     {
       id: "first", kind: "explore", set: { t: 0, aid: "level", hide: 0 }, unlock: ["onGraph", "time"],
+      scene: { title: ["Le niveau 120 m", "The 120 m level"], caption: [
+        "Le trait en pointillés marque 120 m. La hauteur l’atteint une première fois en t₁ = (15/π) arccos(−3/4) ≈ 11,55 min, et une seconde fois en 30 − t₁ ≈ 18,45 min, par symétrie autour de t = 15.",
+        "The dashed line marks 120 m. The height reaches it a first time at t₁ = (15/π) arccos(−3/4) ≈ 11.55 min, and a second time at 30 − t₁ ≈ 18.45 min, by symmetry about t = 15.",
+      ] },
       prompt: [
         "Le trait en pointillés marque 120 m. Avance le temps jusqu’à ce que le point atteigne 120 m pour la première fois, puis calcule cet instant exactement en résolvant 75 − 60 cos(πt/15) = 120.",
         "The dashed line marks 120 m. Move the time until the point first reaches 120 m, then find that moment exactly by solving 75 − 60 cos(πt/15) = 120.",
@@ -180,6 +188,10 @@ export default {
     },
     {
       id: "above", kind: "check", set: { t: 11.55, aid: "level", hide: 0 }, quantity: "above", answer: 6.9016, tolerance: 0.005,
+      scene: { title: ["Au-dessus de 120 m", "Above 120 m"], caption: [
+        "La zone ombrée est l’ensemble des instants où la hauteur dépasse 120 m. Sa durée vaut 30 − (30/π) arccos(−3/4) ≈ 6,90 min par tour.",
+        "The shaded part is the set of times when the height is above 120 m. Its duration is 30 − (30/π) arccos(−3/4) ≈ 6.90 min per revolution.",
+      ] },
       prompt: [
         "Pendant un tour, combien de temps la hauteur reste-t-elle supérieure ou égale à 120 m ? Donne la réponse en minutes, à deux décimales.",
         "During one revolution, for how long is the height at least 120 m? Give the answer in minutes, to two decimal places.",
@@ -195,6 +207,10 @@ export default {
     },
     {
       id: "why", kind: "explain", set: { t: 7.5, aid: "tangent", hide: 0 },
+      scene: { title: ["Tangente à mi-montée", "Tangent halfway up"], caption: [
+        "À t = 7,5 min le point est à la hauteur du moyeu, 75 m, et la tangente à la courbe est la plus raide : h′(t) = 4π sin(πt/15) y vaut 4π ≈ 12,57 m/min, toute la vitesse du point étant alors verticale.",
+        "At t = 7.5 min the point is level with the hub, 75 m, and the tangent to the curve is at its steepest: h′(t) = 4π sin(πt/15) equals 4π ≈ 12.57 m/min there, all the speed of the point being vertical.",
+      ] },
       prompt: [
         "Pourquoi la hauteur augmente-t-elle le plus vite à la hauteur du moyeu, et à quelle vitesse ?",
         "Why does the height increase fastest level with the hub, and how fast is that?",
