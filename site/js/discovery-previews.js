@@ -37,7 +37,7 @@ const known=new Set(['monte-carlo','ferris-wheel','quadratic','probability','tri
  'double-pendulum','three-body','logistic','illumination','fair-division','fair-goods','hairy-ball',
  'nonorientable-surfaces','banach-tarski-model','gomboc','derivative','integral','vectors','statistics','complex',
  'line','exponential','cobweb','matrix','space-lines','sequences','fourier','circle-regions','buffon','bertrand',
- 'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','life',
+ 'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','self-similar','life',
  'voronoi','fastest-slide','einstein','square-packing','inscribed-square','soap-films','knots','moving-sofa',
  'opaque-square','equidecomposition','collisions','napkin-ring','hundred-boxes','morley','four-colours','mandelbrot','arithmetic','reals','algebra','percentages','conditioning',
  'random-variable','counting','polynomials','modular','bezout','primes','graphs','markov','logic','sets']);
@@ -192,6 +192,11 @@ export function modelPreview(kind) {
   for(let n=0;n<3;n++)triangles=triangles.flatMap(t=>t.map((p,i)=>[p,...t.filter((_,j)=>i!==j).map(q=>q.map((x,k)=>(x+p[k])/2))]));
   drawing=triangles.map(t=>path(t,true)).join('');
   caption=P('Triangle de Sierpiński : trois étapes','Sierpiński triangle: three steps');
+ } else if(kind==='self-similar') {
+  let squares=[[40,10,80]];
+  for(let n=0;n<2;n++)squares=squares.flatMap(([x,y,s])=>{const t=s/3,o=[];for(let i=0;i<3;i++)for(let j=0;j<3;j++)if(i!==1||j!==1)o.push([x+i*t,y+j*t,t]);return o;});
+  drawing=squares.map(([x,y,s])=>`<rect class="preview-fill" x="${x}" y="${y}" width="${s}" height="${s}"/>`).join('');
+  caption=P('Tapis de Sierpiński : deux étapes','Sierpiński carpet: two stages');
  } else if(kind==='life') {
   drawing=Array.from({length:6},(_,i)=>path([[40+i*16,10],[40+i*16,90]])+path([[40,10+i*16],[120,10+i*16]])).join('')+[[1,0],[2,1],[0,2],[1,2],[2,2]].map(([x,y])=>`<rect class="preview-fill" x="${56+x*16}" y="${26+y*16}" width="16" height="16"/>`).join('');
   caption=P('Un planeur du jeu de la vie, état initial','A Game of Life glider, initial state');

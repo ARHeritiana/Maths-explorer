@@ -303,8 +303,15 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1.5px va
  .brand-name { display:inline; font-size:1rem; }
  .brandmark { width:32px; height:32px; }
  .tools { margin-left:0; gap:4px; }
+ /* one row on a phone: mark, tools, Menu; the open menu takes the next row (the header stays --header tall otherwise,
+    so scroll-padding-top keeps focused and linked elements out from under it) */
+ .tools { order:2; } .nav-toggle { order:3; } .mainnav { order:4; }
  .topbar .tools .language { display:none; }
  .topbar:has(.mainnav.is-open) .tools .language:not([hidden]) { display:flex; }
+ /* menu open: the language switch goes under the sections, so Menu stays on the first row beside the tools */
+ .topbar:has(.mainnav.is-open) .tools { display:contents; }
+ .topbar:has(.mainnav.is-open) .tools > * { order:2; }
+ .topbar:has(.mainnav.is-open) .tools .language:not([hidden]) { order:5; margin:4px 0 4px auto; }
  .nav-toggle { display:inline-flex; align-items:center; min-height:44px; padding:0 16px; font-weight:700; border:2px solid var(--ink); border-radius: var(--r-pill); }
  .mainnav { display:none; position:static; width:100%; padding:0; border:0; margin:0; }
  .mainnav.is-open { display:flex; flex-wrap:wrap; }
@@ -312,6 +319,9 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1.5px va
  .mainnav.is-open a { flex:1 1 auto; min-width:0; max-width:100%; }
  .mainnav a .icon { width:18px; height:18px; }
  body { padding-bottom:0; }
+}
+@media(max-width:480px) {
+ .brand-name { display:none; }   /* the mark alone (the link keeps its name for screen readers) */
  .subnav { position:static; }
 }
 

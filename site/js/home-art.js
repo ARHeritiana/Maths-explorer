@@ -438,7 +438,17 @@ function morleyArt(cv, opts) {
     g.fillStyle = C.accent; g.globalAlpha = 0.45; g.beginPath(); g.moveTo(...m.D); g.lineTo(...m.E); g.lineTo(...m.F); g.closePath(); g.fill(); g.globalAlpha = 1;
   }, { reduced: opts.reduced, still: 1 });
 }
-export const ART = { collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
+// Self-similar fractals: a Sierpiński carpet whose stage grows and falls back, beside a Koch snowflake of the same stage.
+import { carpetHoles, kochSnowflake } from './gallery/gallery-selfsimilar-model.js';
+function selfSimilarArt(cv, opts) {
+  return runner(cv, (g, W, H, t, C) => {
+    const n = 1 + (Math.floor(t / 1.6) % 3), S = Math.min(W * 0.42, H * 0.8), x0 = W * 0.05, y0 = (H - S) / 2;
+    g.fillStyle = C.object; g.fillRect(x0, y0, S, S); g.fillStyle = C.sunken; for (const [x, y, s] of carpetHoles(n)) g.fillRect(x0 + x * S, y0 + y * S, s * S, s * S);
+    const P = kochSnowflake(n), K = Math.min(W * 0.4, H * 0.75), cx = W * 0.53, cy = H / 2 + K * Math.sqrt(3) / 6;
+    g.beginPath(); P.forEach(([x, y], i) => (i ? g.lineTo(cx + x * K, cy - y * K) : g.moveTo(cx + x * K, cy - y * K))); g.closePath(); g.fillStyle = C.c[1]; g.fill(); g.strokeStyle = C.ink; g.lineWidth = 1.5; g.stroke();
+  }, { reduced: opts.reduced, still: 2 });
+}
+export const ART = { 'self-similar': selfSimilarArt, collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
   life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt, equidecomposition: equidecompositionArt,
   ...Object.fromEntries(['secretary-gallery','tank-gallery','benford-gallery','baker-gallery','birthdays-gallery','monty-gallery','fair-division-gallery','fair-goods-gallery','hairy-ball-gallery','nonorientable-surfaces-gallery','banach-tarski-gallery','double-pendulum-gallery','three-body-gallery','logistic-gallery','mirrored-rooms'].map(id => [id, (cv, o) => subjectArt(id, cv, o)])),
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
