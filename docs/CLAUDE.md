@@ -21,6 +21,7 @@ Read one only when the task router in `MAP.md` sends you here.
 | `IMPROVEMENT_GOALS.md` | owner-approved learning, visualization, interactive slides, error-investigation, and Grand Oral goals with acceptance criteria |
 | `REDESIGN_HANDOFF.md` | prompt to begin implementation of the revised redesign proposal |
 | `LAB_DESIGN.md` | laboratory v2: research basis, templates, mission model, lab references for lessons and slides |
+| `MONOREPO_PLAN.md` | the plan to merge Maths-explorer and Matematika into one source with two editions: measured divergence, layout, steps, decisions |
 | `TEACHER_STRUCTURE.md` | the owner's teacher-first structure (11 Nov 2026): three modes (Préparer, En classe, Détente), launch pad order, séance, classroom setup, build rules |
 | `AUDIENCE_MODES.md` | the three audiences per device (visitor by default, student, teacher), switching, why, and how "private" material is handled without accounts |
 | `REVIEW.md` | Réviser (`#review`): spaced repetition by objective, files, rule, data export and import |
