@@ -930,6 +930,22 @@ details.source-course[open] { padding-bottom: 16px; }
 .exhibit-band > .feedback { margin:0; }
 .ph-slider { display:flex; flex-direction:column; gap:4px; flex:1 1 100%; font-weight:700; }
 .ph-slider input { width:100%; min-height:44px; }
+.wy-tri { margin:4px auto 0; }
+#wy-stops { flex-wrap:wrap; gap:6px; }
+#wy-stops .btn { flex:0 1 auto; min-height:44px; padding:4px 10px; font-size:.85rem; }
+.wy-tri svg { display:block; width:min(100%, 300px); margin:0 auto; touch-action:none; cursor:crosshair; }
+.wy-tri .wy-face { fill:var(--sunken); stroke:var(--ink); stroke-width:1.5; }
+.wy-tri .wy-stop { fill:var(--surface); stroke:var(--ink); stroke-width:1.2; }
+.wy-tri .wy-handle { fill:var(--object); stroke:var(--ink); stroke-width:1.5; cursor:grab; }
+.wy-tri .wy-handle.wy-twist { fill:var(--obj2); }
+.wy-tri .wy-handle:focus-visible { outline:none; stroke-width:4; }
+.wy-tri .wy-label { font:600 10px system-ui,sans-serif; fill:var(--muted); }
+.st-diagram { margin:8px auto 0; }
+.st-diagram svg { display:block; width:min(100%, 320px); margin:0 auto; background:var(--sunken); border:1px solid var(--line); border-radius:var(--radius, 8px); }
+.st-diagram .st-lines line { stroke:var(--muted); stroke-width:.5; }
+.st-diagram .st-now { fill:color-mix(in srgb, var(--object) 45%, transparent); stroke:var(--object); stroke-width:1.6; fill-rule:nonzero; }
+.st-diagram .st-was { fill:none; stroke:var(--ink); stroke-width:.9; stroke-dasharray:3 3; opacity:.6; }
+.st-diagram figcaption { font-size:.82rem; color:var(--muted); margin-top:4px; }
 .ph-legend, .exhibit-band.ph-legend { display:block; margin:6px auto 0; }   /* a line of text with swatches, not a column of groups */
 .ph-swatch { display:inline-block; width:1em; height:1em; border:2px solid var(--ink); vertical-align:-.15em; margin-inline:.6em .25em; }
 .ph-swatch:first-child { margin-inline-start:0; }

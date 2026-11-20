@@ -507,7 +507,29 @@ function rupertArt(cv, opts) {
     g.globalAlpha = 0.6; g.fillStyle = C.object; g.beginPath(); sq.forEach((p, i) => i ? g.lineTo(...p) : g.moveTo(...p)); g.closePath(); g.fill(); g.globalAlpha = 1;
   }, { reduced: opts.reduced, still: 2 });
 }
-export const ART = { rupert: rupertArt, cavalieri: cavalieriArt, dandelin: dandelinArt, viviani: vivianiArt, polyhedra: polyhedraArt, 'self-similar': selfSimilarArt, collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
+// Star polyhedra: a pentagram turning slowly around its pentagon.
+function starArt(cv, opts) {
+  return runner(cv, (g, W, H, t, C) => {
+    const R = Math.min(W, H) * 0.45, cx = W / 2, cy = H / 2, a0 = -Math.PI / 2 + 0.2 * Math.sin(t * 0.5);
+    const pt = (k, r) => [cx + r * Math.cos(a0 + k * 2 * Math.PI / 5), cy + r * Math.sin(a0 + k * 2 * Math.PI / 5)];
+    g.beginPath(); [0, 2, 4, 1, 3].forEach((k, i) => { const p = pt(k, R); i ? g.lineTo(...p) : g.moveTo(...p); }); g.closePath();
+    g.globalAlpha = 0.55; g.fillStyle = C.object; g.fill('nonzero'); g.globalAlpha = 1; g.strokeStyle = C.ink; g.lineWidth = 2; g.stroke();
+    g.beginPath(); [0, 1, 2, 3, 4].forEach((k, i) => { const p = pt(k + 0.5, R * 0.382); i ? g.lineTo(...p) : g.moveTo(...p); }); g.closePath(); g.fillStyle = C.c[1]; g.fill(); g.stroke();
+  }, { reduced: opts.reduced, still: 2 });
+}
+// Wythoff: the triangle of mirrors with a point moving inside it and its three distances to the sides.
+function wythoffArt(cv, opts) {
+  return runner(cv, (g, W, H, t, C) => {
+    const s = Math.min(W, H) / 100, A = [W / 2, 8 * s], B = [W / 2 - 50 * s, 92 * s], Cc = [W / 2 + 50 * s, 92 * s];
+    const w = [0.34 + 0.2 * Math.sin(t * 0.7), 0.33 + 0.2 * Math.sin(t * 0.9 + 2), 0]; w[2] = Math.max(0.05, 1 - w[0] - w[1]);
+    const P = [0, 1].map((q) => (w[0] * A[q] + w[1] * B[q] + w[2] * Cc[q]) / (w[0] + w[1] + w[2]));
+    g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.moveTo(...A); g.lineTo(...B); g.lineTo(...Cc); g.closePath(); g.stroke();
+    const foot = (U, V) => { const d = [V[0] - U[0], V[1] - U[1]], k = ((P[0] - U[0]) * d[0] + (P[1] - U[1]) * d[1]) / (d[0] ** 2 + d[1] ** 2); return [U[0] + k * d[0], U[1] + k * d[1]]; };
+    [[B, Cc], [Cc, A], [A, B]].forEach(([U, V], i) => { const F = foot(U, V); g.strokeStyle = C.c[i]; g.lineWidth = 2.5; g.beginPath(); g.moveTo(...P); g.lineTo(...F); g.stroke(); });
+    g.fillStyle = C.object; g.beginPath(); g.arc(P[0], P[1], 5 * s, 0, 2 * Math.PI); g.fill();
+  }, { reduced: opts.reduced, still: 2 });
+}
+export const ART = { 'star-polyhedra': starArt, wythoff: wythoffArt, rupert: rupertArt, cavalieri: cavalieriArt, dandelin: dandelinArt, viviani: vivianiArt, polyhedra: polyhedraArt, 'self-similar': selfSimilarArt, collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
   life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt, equidecomposition: equidecompositionArt,
   ...Object.fromEntries(['secretary-gallery','tank-gallery','benford-gallery','baker-gallery','birthdays-gallery','monty-gallery','fair-division-gallery','fair-goods-gallery','hairy-ball-gallery','nonorientable-surfaces-gallery','banach-tarski-gallery','double-pendulum-gallery','three-body-gallery','logistic-gallery','mirrored-rooms'].map(id => [id, (cv, o) => subjectArt(id, cv, o)])),
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
