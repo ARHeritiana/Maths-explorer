@@ -162,6 +162,9 @@ for(const id of ['voronoi','fastest-slide','soap-films','knots','einstein','four
  assert.ok(document.querySelector('#object-stage canvas'));
  assert.ok(!/undefined|NaN/.test(document.querySelector('#main').textContent));
 }
+// Encyclopedia articles (gallery curiosities): an article page has a lead and sections, and no task, quiz or steps.
+for(const id of ['life','moving-sofa']){await go('#gallery/'+id);assert.ok(document.querySelector('.art-body .art-lead p'),id+' has an article lead');assert.ok(document.querySelectorAll('.art-section').length>=3,id+' has sections');assert.ok(!document.querySelector('#lab-quiz, .steps, .checkpoint, .learning'),id+' shows no task or quiz');}
+assert.ok(document.querySelector('.art-explainer'),'an open curiosity keeps its animated explanation inside the article');
 console.log('DOM smoke passed: five folding controls, every experiment (drags with no element change, fixed camera, missions, keyboard handles, run buttons, free and gated missions, zoom only on purpose), old guided page gone, gallery redirects; canvas arguments finite.');
 // Compact challenge settings and genuinely editable data: statement, solution, checker and activity all follow.
 for(const id of ['fly','jugs']){

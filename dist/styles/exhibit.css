@@ -119,3 +119,19 @@
 }
 @media (prefers-reduced-motion: reduce) { .exh-hint { transition: none; } }
 @media print { .exh-stage { height: 320px; } .exh-zoom, .exh-tools, .exh-tabs { display: none; } .exh-pane[hidden] { display: grid; } }
+
+/* Encyclopedia article of a gallery curiosity (site/js/gallery/article.js): readable column, fact box on the right. */
+.art-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 24px 40px; align-items: start; margin-top: 24px; }
+.art-body { max-width: 68ch; min-width: 0; line-height: 1.7; }
+.art-lead { font-size: 1.1rem; }
+.art-lead p:first-child::first-line { font-weight: 600; }
+.art-section { margin-top: 28px; }
+.art-section h2 { font-size: 1.35rem; margin: 0 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--line); }
+.art-body p { margin: 0 0 12px; }
+.art-explainer { margin: 8px 0 12px; }
+.art-facts { padding: 16px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); font-size: 0.95rem; }
+.art-facts h2 { font-size: 1.05rem; margin: 0 0 8px; }
+.art-facts dl { margin: 0; }
+.art-facts dt { margin-top: 8px; color: var(--muted); font-size: 0.85rem; font-weight: 700; }
+.art-facts dd { margin: 2px 0 0; }
+@media (max-width: 860px) { .art-layout { grid-template-columns: minmax(0, 1fr); } .art-facts { order: -1; } }
