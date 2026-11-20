@@ -44,6 +44,7 @@ export function isLiveRoute({ page, id, tab }) {
   if (page === 'workshop') return id === 'quadratic';
   if (page === 'errors') return true;
   if (page === 'intuition') return !id;
+  if (page === 'fractals') return !id;
   return false;
 }
 

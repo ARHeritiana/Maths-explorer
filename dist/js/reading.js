@@ -31,6 +31,7 @@ export function describe(hash) {
   if (page === "challenges") { const c = challenges.find((x) => x.id === id); return c && { kind: ["Défi", "Challenge"], title: c.title }; }
   if (page === "gallery") { const l = labs.find((x) => x.custom && x.id === id); return l && { kind: ["Curiosité", "Curiosity"], title: l.title }; }
   if (page === "intuition" && !id) return { kind: ["Collection", "Collection"], title: ["Les mathématiques contre l’intuition", "Mathematics against intuition"] };
+  if (page === "fractals" && !id) return { kind: ["Collection", "Collection"], title: ["Fractales", "Fractals"] };
   if (page === "lab") { const l = labs.find((x) => !x.custom && x.id === id); return l && { kind: ["Laboratoire", "Laboratory"], title: l.title }; }
   return null;
 }

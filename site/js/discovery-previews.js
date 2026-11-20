@@ -37,7 +37,7 @@ const known=new Set(['monte-carlo','ferris-wheel','quadratic','probability','tri
  'double-pendulum','three-body','logistic','illumination','fair-division','fair-goods','hairy-ball',
  'nonorientable-surfaces','banach-tarski-model','gomboc','derivative','integral','vectors','statistics','complex',
  'line','exponential','cobweb','matrix','space-lines','sequences','fourier','circle-regions','buffon','bertrand','eratosthenes',
- 'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','self-similar','polyhedra','viviani','dandelin','cavalieri','rupert','star-polyhedra','wythoff','life',
+ 'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','self-similar','polyhedra','viviani','dandelin','cavalieri','rupert','star-polyhedra','wythoff','basins','apollonian','escape-3d','life',
  'voronoi','fastest-slide','einstein','square-packing','inscribed-square','soap-films','knots','moving-sofa',
  'opaque-square','equidecomposition','collisions','napkin-ring','hundred-boxes','morley','four-colours','mandelbrot','arithmetic','reals','algebra','percentages','conditioning',
  'random-variable','counting','polynomials','modular','bezout','primes','graphs','markov','logic','sets']);
@@ -197,6 +197,15 @@ export function modelPreview(kind) {
   for(let n=0;n<3;n++)triangles=triangles.flatMap(t=>t.map((p,i)=>[p,...t.filter((_,j)=>i!==j).map(q=>q.map((x,k)=>(x+p[k])/2))]));
   drawing=triangles.map(t=>path(t,true)).join('');
   caption=P('Triangle de Sierpiński : trois étapes','Sierpiński triangle: three steps');
+ } else if(kind==='basins') {
+  drawing=[0,1,2].map(k=>{const a=k*2*Math.PI/3;return `<circle class="preview-line" cx="${(80+30*Math.cos(a)).toFixed(1)}" cy="${(52+30*Math.sin(a)).toFixed(1)}" r="22"/>`;}).join('')+dot(80,52);
+  caption=P('Trois bassins autour de trois racines','Three basins around three roots');
+ } else if(kind==='apollonian') {
+  drawing=`<circle class="preview-line" cx="80" cy="52" r="44"/><circle class="preview-line" cx="58" cy="52" r="22"/><circle class="preview-line" cx="102" cy="52" r="22"/><circle class="preview-line" cx="80" cy="81.3" r="14.7"/><circle class="preview-line" cx="80" cy="22.7" r="14.7"/>`;
+  caption=P('Courbures −1, 2, 2, 3, 3','Curvatures −1, 2, 2, 3, 3');
+ } else if(kind==='escape-3d') {
+  drawing=`<circle class="preview-line" cx="80" cy="52" r="36"/>`+[0,1,2,3,4,5,6].map(k=>{const a=k*2*Math.PI/7;return `<circle class="preview-line" cx="${(80+36*Math.cos(a)).toFixed(1)}" cy="${(52+36*Math.sin(a)).toFixed(1)}" r="9"/>`;}).join('');
+  caption=P('Une figure à n − 1 copies autour d’un axe','A figure with n − 1 copies around an axis');
  } else if(kind==='star-polyhedra') {
   const star=[0,2,4,1,3].map(k=>[80+44*Math.cos(-Math.PI/2+k*2*Math.PI/5),52+44*Math.sin(-Math.PI/2+k*2*Math.PI/5)]),pent=[0,1,2,3,4].map(k=>[80+17*Math.cos(Math.PI/2+k*2*Math.PI/5),52+17*Math.sin(Math.PI/2+k*2*Math.PI/5)]);
   drawing=path(star,true)+path(pent,true);
