@@ -29,40 +29,41 @@ export function installNavFlyout(root = document) {
     if (now) go(); else timer = setTimeout(go, CLOSE_DELAY);
   }
   const later = (id) => { clearTimeout(timer); timer = setTimeout(() => show(id), OPEN_DELAY); };
-  const ac = new AbortController(), o = { signal: ac.signal };
+  const off = [], on = (t, type, fn) => { t.addEventListener(type, fn); off.push(() => t.removeEventListener(type, fn)); };
   for (const a of links) {
     a.setAttribute("aria-haspopup", "true");
-    a.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") later(a.dataset.section); }, o);
-    a.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") hide(false); }, o);
-    a.addEventListener("focus", () => { if (a.matches(":focus-visible")) show(a.dataset.section); }, o);
+    on(a, "pointerenter", (e) => { if (e.pointerType === "mouse") later(a.dataset.section); });
+    on(a, "pointerleave", (e) => { if (e.pointerType === "mouse") hide(false); });
+    on(a, "focus", () => { if (a.matches(":focus-visible")) show(a.dataset.section); });
   }
   for (const p of panels.values()) {
-    p.addEventListener("pointerenter", () => clearTimeout(timer), o);
-    p.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") hide(false); }, o);
-    p.addEventListener("focusout", (e) => { if (!p.contains(e.relatedTarget) && !links.includes(e.relatedTarget)) hide(false); }, o);
-    p.addEventListener("click", () => hide(true), o);
+    on(p, "pointerenter", () => clearTimeout(timer));
+    on(p, "pointerleave", (e) => { if (e.pointerType === "mouse") hide(false); });
+    on(p, "focusout", (e) => { if (!p.contains(e.relatedTarget) && !links.includes(e.relatedTarget)) hide(false); });
+    on(p, "click", () => hide(true));
   }
-  root.addEventListener("keydown", (e) => { if (e.key === "Escape" && openId) { const a = links.find((l) => l.dataset.section === openId); hide(true); a?.focus(); } }, o);
-  root.addEventListener("pointerdown", (e) => { if (openId && !e.target.closest(".nav-flyout, .mainnav")) hide(true); }, o);
-  return () => ac.abort();
+  on(root, "keydown", (e) => { if (e.key === "Escape" && openId) { const a = links.find((l) => l.dataset.section === openId); hide(true); a?.focus(); } });
+  on(root, "pointerdown", (e) => { if (openId && !e.target.closest(".nav-flyout, .mainnav")) hide(true); });
+  return () => off.forEach((f) => f());
 }
 
 // The folding menus of the header (profile, "Pour enseigner") also open when a mouse rests on them and close when it leaves,
 // unless a click kept them open. Touch and keyboard behave as before (a plain <details>).
 export function installHoverDetails(root = document) {
-  const ac = new AbortController(), o = { signal: ac.signal };
+  const off = [], on = (t, type, fn) => { t.addEventListener(type, fn); off.push(() => t.removeEventListener(type, fn)); };
   for (const d of root.querySelectorAll("details.audience-menu, details.section-tools")) {
     let timer = 0, byHover = false;
-    d.addEventListener("pointerenter", (e) => {
+    on(d, "pointerenter", (e) => {
       if (e.pointerType !== "mouse") return;
       clearTimeout(timer);
       if (!d.open) { d.open = true; byHover = true; }
-    }, o);
-    d.addEventListener("pointerleave", (e) => {
+    });
+    on(d, "pointerleave", (e) => {
       if (e.pointerType !== "mouse" || !byHover) return;
       timer = setTimeout(() => { if (byHover) { d.open = false; byHover = false; } }, 320);
-    }, o);
-    d.querySelector("summary")?.addEventListener("click", (e) => { if (byHover) { e.preventDefault(); byHover = false; } }, o);
+    });
+    const summary = d.querySelector("summary");
+    if (summary) on(summary, "click", (e) => { if (byHover) { e.preventDefault(); byHover = false; } });
   }
-  return () => ac.abort();
+  return () => off.forEach((f) => f());
 }
