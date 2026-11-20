@@ -1,5 +1,17 @@
 # Handoff
 
+## Fractals: new constructions, basins, Apollonian gasket, 3D sets and the collection page (20 November 2026, issue #36 complete)
+
+`#gallery/self-similar` gains the Heighway dragon, the Hilbert and Peano curves (finite stages, the limit fills the square),
+3D Cantor dust and the Barnsley fern (affine: no similarity dimension; Σ|det| = 0.9367 so the pieces' area tends to 0;
+the chaos-game cloud drawn). New `#gallery/basins` (Multibrot z ↦ zᵈ + c with its d − 1 copies; Newton basins of
+z³ − 1, z⁴ − 1, z⁵ − 1 and z³ − 2z + 2, whose cycle 0, 1 makes a whole region fail), `#gallery/apollonian` (Descartes'
+theorem, integer curvatures from (−1, 2, 2, 3), coverage plot, McMullen's numerical dimension labelled as an estimate) and
+`#gallery/escape-3d` (Mandelbulb, Mandelbox, quaternion Julia slice by WebGL2 ray marching with a processor fallback;
+labelled as a chosen formula, folds and a slice of a 4D set; no dimension shown). The collection `#fractals` (Labo >
+Fractales) lists every fractal of the site with what is known of its dimension (exact with its reason, published
+estimate, not established); its cards reuse `intuition-card`, so Matematika keeps its own look.
+
 ## Star polyhedra and the Wythoff triangle (20 November 2026, issue #35 complete)
 
 `#gallery/star-polyhedra`: the face planes of the dodecahedron (and of the icosahedron) kept and extended; the four

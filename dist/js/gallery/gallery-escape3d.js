@@ -9,7 +9,7 @@ import {SETS,DE} from './gallery-escape3d-model.js';
 
 const FRAG=`#version 300 es
 precision highp float;
-uniform vec2 uRes;uniform vec3 uEye,uRight,uUp,uFwd;uniform int uKind,uIters;uniform float uParam;uniform vec4 uC;
+uniform vec2 uRes;uniform vec3 uEye,uRight,uUp,uFwd;uniform int uKind,uIters;uniform float uParam,uFar;uniform vec4 uC;
 uniform vec3 uBg,uObj,uAlt,uInk;out vec4 o;
 vec4 qmul(vec4 a,vec4 b){return vec4(a.x*b.x-a.y*b.y-a.z*b.z-a.w*b.w,a.x*b.y+a.y*b.x+a.z*b.w-a.w*b.z,a.x*b.z-a.y*b.w+a.z*b.x+a.w*b.y,a.x*b.w+a.y*b.z-a.z*b.y+a.w*b.x);}
 float de(vec3 p){
@@ -20,7 +20,7 @@ float de(vec3 p){
 void main(){
   vec2 uv=(gl_FragCoord.xy-.5*uRes)/uRes.y;vec3 rd=normalize(uFwd*1.6+uRight*uv.x+uUp*uv.y),ro=uEye;
   float t=0.,px=1.6/uRes.y;int steps=0;bool hit=false;
-  for(int i=0;i<200;i++){vec3 p=ro+rd*t;float d=de(p);if(d<px*t*.6){hit=true;break;}t+=d*.9;steps=i;if(t>12.)break;}
+  for(int i=0;i<200;i++){vec3 p=ro+rd*t;float d=de(p);if(d<px*t*.6){hit=true;break;}t+=d*.9;steps=i;if(t>uFar)break;}
   if(!hit){o=vec4(uBg,1);return;}
   vec3 p=ro+rd*t;float e=max(px*t*.5,1e-5);vec2 k=vec2(1,-1);
   vec3 n=normalize(k.xyy*de(p+k.xyy*e)+k.yyx*de(p+k.yyx*e)+k.yxy*de(p+k.yxy*e)+k.xxx*de(p+k.xxx*e));
@@ -40,13 +40,13 @@ function makeGL(){
   const U=n=>gl.getUniformLocation(prog,n),vao=gl.createVertexArray();
   return {cv,draw(w,h,st){cv.width=w;cv.height=h;gl.viewport(0,0,w,h);gl.useProgram(prog);gl.bindVertexArray(vao);
     gl.uniform2f(U('uRes'),w,h);for(const k of ['uEye','uRight','uUp','uFwd','uBg','uObj','uAlt','uInk'])gl.uniform3fv(U(k),st[k]);
-    gl.uniform1i(U('uKind'),st.kind);gl.uniform1i(U('uIters'),st.iters);gl.uniform1f(U('uParam'),st.param);gl.uniform4fv(U('uC'),st.c);gl.drawArrays(gl.TRIANGLES,0,3);},
+    gl.uniform1i(U('uKind'),st.kind);gl.uniform1i(U('uIters'),st.iters);gl.uniform1f(U('uParam'),st.param);gl.uniform1f(U('uFar'),st.far);gl.uniform4fv(U('uC'),st.c);gl.drawArrays(gl.TRIANGLES,0,3);},
     destroy(){gl.getExtension('WEBGL_lose_context')?.loseContext();}};
 }
 
 export function escapeSets3D(root,opts){
   const {t,lang}=opts,nf=new Intl.NumberFormat(lang==='fr'?'fr-FR':'en-GB',{maximumFractionDigits:2}),num=v=>nf.format(v);
-  const KIND={bulb:0,box:1,julia:2},DIST={bulb:2.6,box:9,julia:2.6};
+  const KIND={bulb:0,box:1,julia:2},DIST={bulb:4.4,box:13,julia:4.2};
   let set='bulb',param=SETS.bulb.param.value,iters=10,dist=DIST.bulb,answer=null;const view={yaw:-.7,pitch:.35},seen=new Set(['bulb']),touched=new Set();
   const o=exhibit(root,opts,t('Trois objets de l’espace obtenus en répétant une formule, comme l’ensemble de Mandelbrot dans le plan. Glisse pour les faire tourner ; change le paramètre de chacun.','Three objects in space obtained by repeating a formula, like the Mandelbrot set in the plane. Drag to turn them; change the parameter of each.'),
     `<fieldset class="act-choice"><legend>${t('La Mandelbulb est-elle « l’ensemble de Mandelbrot en 3D », avec des nombres à trois dimensions qui se multiplient comme les complexes ?','Is the Mandelbulb “the Mandelbrot set in 3D”, with three-dimensional numbers that multiply like complex numbers?')}</legend>
@@ -96,12 +96,12 @@ export function escapeSets3D(root,opts){
   function cpuStep(C){const w=160,h=Math.round(160*o.H/o.W);if(low.width!==w){low.width=w;low.height=h;}if(cpuRow===0)cpuImg=lx.createImageData(w,h);
     const {eye,f,R,U}=camera(),bg=toRGB(C.sunken),ob=toRGB(C.object),t0=performance.now();
     while(cpuRow<h&&performance.now()-t0<20){for(let x=0;x<w;x++){const u=(x-w/2)/h,v=-(cpuRow-h/2)/h,d=[0,1,2].map(k=>f[k]*1.6+R[k]*u+U[k]*v),l=Math.hypot(...d),rd=d.map(q=>q/l);let tt=0,hit=false,st=0;
-      for(let i=0;i<90;i++){const p=eye.map((e,k)=>e+rd[k]*tt),dd=DE[set](p,param);if(dd<.003*tt){hit=true;st=i;break;}tt+=dd*.9;if(tt>12)break;}
+      for(let i=0;i<90;i++){const p=eye.map((e,k)=>e+rd[k]*tt),dd=DE[set](p,param);if(dd<.003*tt){hit=true;st=i;break;}tt+=dd*.9;if(tt>dist+8)break;}
       const col=hit?ob.map(c=>c*(1-st/90)*255):bg.map(c=>c*255),i4=(cpuRow*w+x)*4;cpuImg.data[i4]=col[0];cpuImg.data[i4+1]=col[1];cpuImg.data[i4+2]=col[2];cpuImg.data[i4+3]=255;}cpuRow++;}
     lx.putImageData(cpuImg,0,0);return cpuRow<h;}
   o.animate(()=>{const C=palette();
     if(GL){const {eye,f,R,U}=camera(),w=o.cv.width,h=o.cv.height;
-      GL.draw(w,h,{uEye:eye,uRight:R,uUp:U,uFwd:f,uBg:toRGB(C.sunken),uObj:toRGB(C.object),uAlt:toRGB(C.c[1]),uInk:toRGB(C.ink),kind:KIND[set],iters,param,c:SETS.julia.c});
+      GL.draw(w,h,{uEye:eye,uRight:R,uUp:U,uFwd:f,uBg:toRGB(C.sunken),uObj:toRGB(C.object),uAlt:toRGB(C.c[1]),uInk:toRGB(C.ink),kind:KIND[set],iters,param,far:dist+8,c:SETS.julia.c});
       g.save();g.setTransform(1,0,0,1,0,0);g.drawImage(GL.cv,0,0,w,h);g.restore();o.read(`${t(...SETS[set].names)} · ${pLab.textContent}`);return false;}
     const busy=cpuStep(C);g.clearRect(0,0,o.W,o.H);g.imageSmoothingEnabled=true;g.drawImage(low,0,0,o.W,o.H);o.read(busy?t('Calcul de l’image…','Computing the image…'):`${t(...SETS[set].names)} · ${pLab.textContent}`);return busy;});
   o.busy=()=>!GL&&cpuRow<Math.round(160*o.H/o.W);

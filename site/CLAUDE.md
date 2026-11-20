@@ -64,6 +64,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `styles/ergonomics.css` | compact catalogues, grouped secondary tools, collection navigation and responsive layouts, using the existing visual tokens |
 | `styles/teacher.css` | the Espace professeur dashboard (Cahier tokens only) |
 | `styles/home.css` | compact class-to-chapter homepage, one quiet interactive figure and grouped secondary entrances |
+| `js/fractals-data.js`, `js/fractals-page.js` | the fractal collection (`#fractals`, issue #36): `GROUPS` (2D or 3D, construction or iteration) and `FRACTALS` (name, exhibit address, what is known of the dimension: exact with its reason, published estimate, or not established), `fractalsPage` (cards reuse `intuition-card`, so each site keeps its look) |
 | `js/intuition-data.js`, `js/intuition-page.js` | the collection « Les mathématiques contre l'intuition » (`#intuition`, issue #28): `ENTRIES` (claim, fact and address of each live exhibit, experiment or challenge; existing ones are linked, never copied), `SOON`, `intuitionPage`; gallery lines in `js/gallery/gallery-intuition.js` |
 
 ## Content data

@@ -529,7 +529,33 @@ function wythoffArt(cv, opts) {
     g.fillStyle = C.object; g.beginPath(); g.arc(P[0], P[1], 5 * s, 0, 2 * Math.PI); g.fill();
   }, { reduced: opts.reduced, still: 2 });
 }
-export const ART = { 'star-polyhedra': starArt, wythoff: wythoffArt, rupert: rupertArt, cavalieri: cavalieriArt, dandelin: dandelinArt, viviani: vivianiArt, polyhedra: polyhedraArt, 'self-similar': selfSimilarArt, collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
+// Newton basins: three coloured sectors with a wavy shared boundary, turning slowly.
+function basinsArt(cv, opts) {
+  return runner(cv, (g, W, H, t, C) => {
+    const cx = W / 2, cy = H / 2, R = Math.max(W, H);
+    for (let k = 0; k < 3; k++) { g.fillStyle = C.c[k]; g.beginPath(); g.moveTo(cx, cy); for (let i = 0; i <= 40; i++) { const a = t * 0.2 + (k + i / 40) * 2 * Math.PI / 3, w = 0.25 * Math.sin(9 * a + t); g.lineTo(cx + R * Math.cos(a + w * (i === 0 || i === 40 ? 1 : 0)), cy + R * Math.sin(a)); } g.closePath(); g.fill(); }
+    for (let k = 0; k < 3; k++) { const a = t * 0.2 + (k + 0.5) * 2 * Math.PI / 3, r = Math.min(W, H) * 0.3; g.fillStyle = C.surface; g.beginPath(); g.arc(cx + r * Math.cos(a), cy + r * Math.sin(a), 5, 0, 2 * Math.PI); g.fill(); g.strokeStyle = C.ink; g.stroke(); }
+  }, { reduced: opts.reduced, still: 2 });
+}
+// Apollonian gasket: the first stages drawn from Descartes' rule.
+import { gasket as apGasket } from './gallery/gallery-apollonian-model.js';
+function apollonianArt(cv, opts) {
+  const C3 = apGasket(4);
+  return runner(cv, (g, W, H, t, C) => {
+    const R = Math.min(W, H) / 2 - 4, cx = W / 2, cy = H / 2;
+    for (const c of C3) { const r = R / Math.abs(c.k); if (r < 1) continue; g.beginPath(); g.arc(cx + c.z[0] * R, cy - c.z[1] * R, r, 0, 2 * Math.PI); if (c.k > 0) { g.globalAlpha = 0.25 + 0.15 * Math.sin(t + c.k); g.fillStyle = C.c[c.gen % 6]; g.fill(); g.globalAlpha = 1; } g.strokeStyle = C.ink; g.lineWidth = r > 8 ? 1.4 : 0.7; g.stroke(); }
+  }, { reduced: opts.reduced, still: 2 });
+}
+// 3D escape sets: a sphere with n − 1 bulbs round its equator, turning.
+function escape3dArt(cv, opts) {
+  return runner(cv, (g, W, H, t, C) => {
+    const cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.28;
+    g.fillStyle = C.object; g.beginPath(); g.arc(cx, cy, R, 0, 2 * Math.PI); g.fill();
+    for (let k = 0; k < 7; k++) { const a = t * 0.4 + k * 2 * Math.PI / 7, x = cx + R * 1.05 * Math.cos(a), y = cy + R * 0.35 * Math.sin(a), s = 0.6 + 0.4 * Math.sin(a); g.globalAlpha = 0.5 + 0.5 * s; g.fillStyle = C.c[1]; g.beginPath(); g.arc(x, y, R * 0.32 * s, 0, 2 * Math.PI); g.fill(); g.strokeStyle = C.ink; g.stroke(); }
+    g.globalAlpha = 1;
+  }, { reduced: opts.reduced, still: 2 });
+}
+export const ART = { basins: basinsArt, apollonian: apollonianArt, 'escape-3d': escape3dArt, 'star-polyhedra': starArt, wythoff: wythoffArt, rupert: rupertArt, cavalieri: cavalieriArt, dandelin: dandelinArt, viviani: vivianiArt, polyhedra: polyhedraArt, 'self-similar': selfSimilarArt, collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
   life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt, equidecomposition: equidecompositionArt,
   ...Object.fromEntries(['secretary-gallery','tank-gallery','benford-gallery','baker-gallery','birthdays-gallery','monty-gallery','fair-division-gallery','fair-goods-gallery','hairy-ball-gallery','nonorientable-surfaces-gallery','banach-tarski-gallery','double-pendulum-gallery','three-body-gallery','logistic-gallery','mirrored-rooms'].map(id => [id, (cv, o) => subjectArt(id, cv, o)])),
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
