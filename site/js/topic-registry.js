@@ -83,6 +83,7 @@ export const PLACEMENTS = Object.fromEntries([
   ['#gallery/morley', ['geometry/plane']],
   ['#gallery/napkin-ring', ['geometry/space','analysis/integration']],
   ['#gallery/cavalieri', ['geometry/space','analysis/integration']],
+  ['#gallery/rupert', ['geometry/space']],
 ]);
 // The word rules match whole words where a fragment would mislead ("logi" in "Topologie", "ensemble" in "l'ensemble de
 // Mandelbrot"). `fallback: false` returns [] when nothing matches (the caller then inherits from linked records).
