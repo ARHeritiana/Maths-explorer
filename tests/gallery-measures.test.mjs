@@ -105,3 +105,28 @@ test('knots: the number of 3-colourings is the same in every view and along ever
     for(let i=0;i<=40;i++){const p=knotProjection(cameraKnot(knotDeformation(b,ex,i/40),0,0,false));cross.add(p.crossings.length);cols.add(p.count);}
     assert.equal(cols.size,1);assert.ok(cross.size>1,ex);}
 });
+
+// Batch 3: Reuleaux width against direction, Platonic counts and defects, Galton running mean.
+import {reuleaux,widthAt,polygonWidth,widthProfile,platonic,platonicFacts,SOLIDS,binMean,thinHistory} from '../site/js/lab-objects.js';
+test('Reuleaux shapes have constant width w in every direction; the polygon of their vertices does not', () => {
+  for(const n of [3,5,7,9]){
+    const S=reuleaux(n,1),prof=widthProfile(th=>widthAt(S,th),1);
+    for(const [,w] of prof)near(w,1,2e-3);
+    const poly=widthProfile(th=>polygonWidth(S.verts,th),1).map(q=>q[1]);
+    assert.ok(Math.max(...poly)-Math.min(...poly)>1e-3,`n=${n}: polygon width varies`);
+    near(Math.max(...poly),1,1e-6);   // the diagonal of the polygon is the width w of the Reuleaux shape
+    near(S.perimeter,Math.PI,1e-12);assert.ok(S.area<S.diskArea);
+  }
+  // triangle: area (π − √3)/2 · w² by the classical formula
+  near(reuleaux(3,1).area,(Math.PI-Math.sqrt(3))/2,1e-12);
+});
+test('Platonic solids: V − E + F = 2 and the total angle defect is 720 degrees', () => {
+  for(const id of SOLIDS){const S=platonic(id),P=platonicFacts(S);assert.equal(P.euler,2,id);near(P.total,720,1e-9);assert.equal(S.V*S.q,2*S.E,id);assert.equal(S.F*S.p,2*S.E,id);}
+});
+test('Galton running mean and bounded history keep real samples', () => {
+  assert.equal(binMean([0,0,0]),null);
+  near(binMean([1,2,1]),1);near(binMean([0,0,5]),2);
+  const h=Array.from({length:1201},(_,i)=>[i,i*2]),k=thinHistory(h);
+  assert.ok(k.length<=601+1);assert.deepEqual(k.at(-1),[1200,2400]);for(const q of k)assert.equal(q[1],q[0]*2);
+  assert.equal(thinHistory(h.slice(0,10)).length,10);
+});
