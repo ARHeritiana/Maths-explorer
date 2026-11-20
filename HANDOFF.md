@@ -1,5 +1,15 @@
 # Handoff
 
+## Gallery measurements, batch 4 (20 November 2026, issue #37 complete)
+
+Shared in `gallery-panels.js` `plotPanel`: `compare` pins the first series of a run (grey, dotted, axes widened by the pure
+`withPinned`) so two runs share one plot; `onEvent` lists the spec's `events` (numbered dotted lines on the plot) as buttons
+that take the figure to that moment. Used by: Life (pin a run; events: shape seen again, peak, extinction; a button
+replays the run from its start to that generation), the Gömböc (new plot: height of G and E/(m g) against time, sampled
+from the simulated states; events: contact within 5° of S, rest within 1°, a button restores the stored state; pin a run
+to compare bodies, starts or κ), the moving sofa (new plot: Hammersley's A(r) with Gerver's record and the 2.37 bound;
+events r = 0 and r = 2/π set the notch). The rest of the #37 inventory already had honest readouts and is kept as it is.
+
 ## Prince Rupert's cube; the collection « contre l'intuition » complete (20 November 2026, issues #27 and #28)
 
 New exhibit `#gallery/rupert`: the five Platonic solids and the rhombicosidodecahedron, two views of one pair of positions

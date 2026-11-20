@@ -1,7 +1,7 @@
 // Conway's Game of Life on the unbounded plane: presets, drawing cells by hand, play, step and speed (gallery exhibit).
 import {exhibit,button,field,bind,palette} from './gallery-kit.js';
 import {metricStrip,plotPanel} from './gallery-panels.js';
-import {PRESETS,presetSet,step,key,coords,soup,bounds,fitView,trailAges,transition,shapeOf,observedRepeat,shipSpeed} from './gallery-life-model.js';
+import {PRESETS,presetSet,step,key,coords,soup,bounds,fitView,trailAges,transition,shapeOf,observedRepeat,shipSpeed,lifeEvents} from './gallery-life-model.js';
 const TRAIL=10,MAXGEN=6000,SHAPES=80;   // trail length in generations, length of the population record, shapes kept for the repeat
 export function gameOfLife(root,opts){
   const {t}=opts;
@@ -17,17 +17,22 @@ export function gameOfLife(root,opts){
     {id:'gen',label:t('Génération','Generation'),kind:'exact'},{id:'pop',label:t('Cellules vivantes','Live cells'),kind:'exact'},
     {id:'bd',label:t('Dernier pas : naissances, morts','Last step: births, deaths'),kind:'exact'},{id:'peak',label:t('Maximum atteint','Peak so far'),kind:'exact'},
     {id:'rep',label:t('Même forme revue','Same shape seen again'),kind:'observed'},{id:'speed',label:t('Déplacement','Movement'),kind:'observed'}]);
-  const P=plotPanel(M.el,t('Population P(g) à chaque génération g : un point par génération calculée, sans lissage.','Population P(g) at each generation g: one point per computed generation, no smoothing.'));
+  let repG=null;   // the generation at which the shape was first seen again (an event of the plot)
+  const runName=()=>sel.value==='soup'?t('soupe aléatoire','random soup'):start.size&&sel.selectedOptions[0]?sel.selectedOptions[0].textContent:t('ton dessin','your drawing');
+  // an event takes the grid to that generation: the run is replayed from its start (the rules are deterministic, so it is the same run)
+  function jumpTo(gx){setPlaying(false);const keep=pops.slice();cells=new Set(start);gen=0;restart();for(let i=0;i<gx;i++)advance();if(keep.length>pops.length)pops=keep;dirty=true;o.redraw();}
+  const P=plotPanel(M.el,t('Population P(g) à chaque génération g : un point par génération calculée, sans lissage. Les numéros marquent des événements ; leurs boutons ramènent la grille à ce moment.','Population P(g) at each generation g: one point per computed generation, no smoothing. Numbers mark events; their buttons take the grid back to that moment.'),
+    {t,compare:{label:()=>`${runName()}, ${pops.length-1} ${t('générations','generations')}`},onEvent:e=>jumpTo(e.x)});
   const g=o.g,playBtn=root.querySelector('#lf-play'),sel=root.querySelector('#lf-preset'),trailBtn=root.querySelector('#lf-trail'),fitBtn=root.querySelector('#lf-fit');
   const target=()=>fitView(bounds(cells),o.W,o.H);
   // screen (logical canvas pixels, camera undone by o.point) <-> cell coordinates under the current view
   const cellAt=p=>[Math.floor(view.cx+(p[0]-o.W/2)/view.cs),Math.floor(view.cy+(p[1]-o.H/2)/view.cs)];
   const sx=x=>o.W/2+(x-view.cx)*view.cs,sy=y=>o.H/2+(y-view.cy)*view.cs;
-  const resetMeasures=()=>{shapes=[shapeOf(cells)];tr=null;};
+  const resetMeasures=()=>{shapes=[shapeOf(cells)];tr=null;repG=null;};
   const record=()=>{if(gen<MAXGEN)pops[gen]=cells.size;};
   function load(id){cells=id==='soup'?soup(40,26,.32):presetSet(id);start=new Set(cells);gen=0;pops=[cells.size];last=new Map([...cells].map(k=>[k,0]));follow=true;snap=true;resetMeasures();o.navigation?.camera.reset();dirty=true;}
   function setPlaying(v){playing=v;playBtn.textContent=v?t('Pause','Pause'):t('Lancer','Play');}
-  function advance(){const before=cells;cells=step(cells);gen++;tr=transition(before,cells);shapes.push(shapeOf(cells));if(shapes.length>SHAPES)shapes.shift();for(const k of cells)last.set(k,gen);if(gen%TRAIL===0)for(const [k,g0] of last)if(gen-g0>TRAIL)last.delete(k);if(gen<=MAXGEN){pops.length=gen;pops.push(cells.size);}dirty=true;}
+  function advance(){const before=cells;cells=step(cells);gen++;tr=transition(before,cells);shapes.push(shapeOf(cells));if(shapes.length>SHAPES)shapes.shift();for(const k of cells)last.set(k,gen);if(gen%TRAIL===0)for(const [k,g0] of last)if(gen-g0>TRAIL)last.delete(k);if(gen<=MAXGEN){pops.length=gen;pops.push(cells.size);}if(repG===null&&observedRepeat(shapes))repG=gen;dirty=true;}
   function toggle([x,y],value){const k=key(x,y);const alive=value??!cells.has(k);if(alive){cells.add(k);last.set(k,gen);}else cells.delete(k);if(gen===0)start=new Set(cells);record();resetMeasures();dirty=true;return alive;}
   const restart=()=>{resetMeasures();pops=[cells.size];last=new Map([...cells].map(k=>[k,0]));follow=true;snap=true;o.navigation?.camera.reset();};
   o.on(sel,'change',()=>{load(sel.value);setPlaying(false);});
@@ -78,7 +83,7 @@ export function gameOfLife(root,opts){
     M.set('rep',rep?t(rep.period===1?'à chaque génération':`toutes les ${rep.period} générations`,rep.period===1?'every generation':`every ${rep.period} generations`):cells.size>200?t('motif trop grand pour comparer','pattern too large to compare'):t('pas encore','not yet'));
     M.set('speed',!rep?'–':moved?t(`(${rep.dx}, ${rep.dy}) par période, vitesse ${sp.label}`,`(${rep.dx}, ${rep.dy}) per period, speed ${sp.label}`):t('sur place','in place'));
     P.draw({xMax:Math.max(30,pops.length-1),yMax:Math.max(5,peak),xLabel:t('génération g','generation g'),yLabel:t('population P(g)','population P(g)'),
-      series:[{values:pops,color:C.ink}],marker:[Math.min(pops.length-1,gen),pops[Math.min(pops.length-1,gen)]]});
+      series:[{values:pops,color:C.ink}],marker:[Math.min(pops.length-1,gen),pops[Math.min(pops.length-1,gen)]],events:lifeEvents(pops,repG,t)});
     if(gen>=MAXGEN)P.caption(t(`Population P(g) : seules les ${MAXGEN} premières générations sont enregistrées.`,`Population P(g): only the first ${MAXGEN} generations are recorded.`));
     o.read(`${t('Génération','Generation')} ${gen} · ${cells.size} ${t('cellules vivantes','live cells')}${dead?' · '+t('tout est mort','everything has died'):''}${rep&&moved?' · '+t('le motif se déplace','the pattern travels'):''}`);
     return moving;

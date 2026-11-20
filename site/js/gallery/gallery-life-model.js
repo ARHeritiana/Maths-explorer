@@ -128,3 +128,13 @@ export function shipSpeed(rep) {
   const m = Math.max(Math.abs(rep.dx), Math.abs(rep.dy)), d = gcd(m, rep.period);
   return { num: m / d, den: rep.period / d, label: `${m / d === 1 ? '' : m / d}c/${rep.period / d}`.replace(/\/1$/, '') };
 }
+
+// The events marked on the population plot, from the recorded run only: the shape first seen again, the peak (when the
+// population has come down from it), the extinction. Pure, tested in tests/gallery-measures.test.mjs.
+export function lifeEvents(pops,repG,t=(fr,en)=>fr){
+  const out=[],peak=Math.max(0,...pops),pg=pops.indexOf(peak),dead=pops.findIndex((v,i)=>i>0&&v===0);
+  if(repG!==null&&repG!==undefined)out.push({x:repG,label:t(`g = ${repG} : la même forme est revue`,`g = ${repG}: the same shape is seen again`)});
+  if(peak>0&&pg>0&&pops.length-1>pg&&pops.at(-1)<peak)out.push({x:pg,label:t(`g = ${pg} : maximum, ${peak} cellules`,`g = ${pg}: peak, ${peak} cells`)});
+  if(dead>0)out.push({x:dead,label:t(`g = ${dead} : tout est mort`,`g = ${dead}: everything has died`)});
+  return out.sort((a,b)=>a.x-b.x);
+}

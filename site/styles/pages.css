@@ -946,6 +946,12 @@ details.source-course[open] { padding-bottom: 16px; }
 .exhibit-kind { font-size:.7rem; letter-spacing:.02em; text-transform:lowercase; border:1px solid var(--line-strong); padding:0 4px; white-space:nowrap; }
 .exhibit-plot { margin-top:10px; margin-bottom:0; }
 .exhibit-plot figcaption { font-size:.82rem; color:var(--muted); margin-top:4px; }
+.exhibit-events { margin:6px 0 0; padding-left:1.6em; display:flex; flex-direction:column; gap:4px; font-size:.86rem; }   /* numbered like the badges on the plot */
+.exhibit-events li::marker { color:var(--obj2, var(--muted)); font-weight:700; }
+.exhibit-events .btn { min-height:44px; text-align:left; justify-content:flex-start; font-size:.86rem; padding:4px 10px; }
+.exhibit-plot-tools { display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin-top:6px; }
+.exhibit-plot-tools .btn { min-height:44px; }
+.exhibit-pin-legend { font-size:.82rem; color:var(--muted); }
 .exhibit-notes { margin-top:14px; border-top:1px solid var(--line); padding-top:12px; }
 .exhibit-notes p { overflow-wrap:anywhere; }
 .kn-swatch { border-width:3px; min-width:64px; font-weight:700; }
