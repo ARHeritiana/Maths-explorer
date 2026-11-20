@@ -130,3 +130,46 @@ test('Galton running mean and bounded history keep real samples', () => {
   assert.ok(k.length<=601+1);assert.deepEqual(k.at(-1),[1200,2400]);for(const q of k)assert.equal(q[1],q[0]*2);
   assert.equal(thinHistory(h.slice(0,10)).length,10);
 });
+
+// batch 4: comparison of two runs, events on plots, Gömböc energy, Hammersley's family
+import {withPinned} from '../site/js/gallery/gallery-panels.js';
+import {lifeEvents} from '../site/js/gallery/gallery-life-model.js';
+import {hammersley,hammersleyArea,area as polyArea,HAMMERSLEY_R} from '../site/js/gallery/gallery-sofa-model.js';
+import * as GR from '../site/js/gomboc-rolling.js';
+import {makeSupportBody} from '../site/js/gomboc-support.js';
+import {VISIBLE_TERMS} from '../site/js/gomboc-support-data.js';
+
+test('a pinned run is drawn first, grey and dotted, and the axes widen to hold both runs', () => {
+  const spec={xMax:10,yMax:5,series:[{values:[1,2,3]}]},pin={points:[[0,1],[20,9]],label:'a'};
+  const out=withPinned(spec,pin);
+  assert.equal(out.series.length,2);assert.equal(out.series[0].color,'muted');assert.deepEqual(out.series[0].points,pin.points);
+  assert.equal(out.xMax,20);assert.equal(out.yMax,9);assert.equal(withPinned(spec,null),spec);
+  assert.equal(withPinned({...spec,xTicks:[0,5,10]},pin).xMax,10);   // explicit ticks are kept
+  assert.equal(withPinned({...spec,yMin:2},pin).yMin,1);
+  const log={xMax:3,logY:[0.01,100],series:[]};assert.equal(withPinned(log,pin).yMax,undefined);
+});
+
+function run(id,n){const pops=[],shapes=[];let cells=presetSet(id),repG=null;pops.push(cells.size);shapes.push(shapeOf(cells));
+  for(let g=1;g<=n;g++){cells=step(cells);pops.push(cells.size);shapes.push(shapeOf(cells));if(shapes.length>80)shapes.shift();if(repG===null&&observedRepeat(shapes))repG=g;}return {pops,repG};}
+test('Life events: the glider is seen again at g = 4, diehard dies at g = 130 after its peak, a blinker has no peak event', () => {
+  const gl=run('glider',20),ev=lifeEvents(gl.pops,gl.repG);assert.deepEqual(ev.map(e=>e.x),[4]);
+  const dh=run('diehard',140),d=lifeEvents(dh.pops,dh.repG);
+  const dead=d.find(e=>/mort/.test(e.label));assert.equal(dead.x,130);assert.equal(dh.pops[129]>0&&dh.pops[130],0);
+  const pk=d.find(e=>/maximum/.test(e.label));assert.equal(dh.pops[pk.x],Math.max(...dh.pops));
+  assert.ok(lifeEvents(run('blinker',10).pops,null).every(e=>!/maximum/.test(e.label)));
+  for(let i=1;i<d.length;i++)assert.ok(d[i].x>=d[i-1].x);
+});
+
+test('Hammersley: the area formula against the drawn outline, and the largest of the family at r = 2/π', () => {
+  for(const r of [0,0.2,0.5,HAMMERSLEY_R,0.9])assert.ok(Math.abs(polyArea(hammersley(r,400))-hammersleyArea(r))<2e-3,String(r));
+  let best=0,arg=0;for(let i=0;i<=10000;i++){const r=i/10000,a=hammersleyArea(r);if(a>best){best=a;arg=r;}}
+  near(arg,2/Math.PI,1e-4);near(best,Math.PI/2+2/Math.PI,1e-8);
+});
+
+test('Gömböc plot: E/(m g) never below the height of G, flat with no resistance, and with resistance the body comes to rest on S', () => {
+  const V=makeSupportBody(VISIBLE_TERMS);
+  let s=GR.start({colatitude:1,azimuth:0.4});const e0=GR.diagnostics(s,0,V).energy;
+  for(let i=0;i<400;i++){s=GR.advance(s,0.01,0,V);const d=GR.diagnostics(s,0,V);assert.ok(d.energy/GR.GRAVITY>=GR.derived(s,V).hit.H-1e-12);assert.ok(Math.abs(d.energy-e0)<1e-4*Math.abs(e0));}
+  let r=GR.start({colatitude:1,azimuth:0.4});for(let i=0;i<6000;i++)r=GR.advance(r,0.01,0.03,V);
+  const d=GR.diagnostics(r,0.03,V);assert.ok(d.angleStable*180/Math.PI<1,String(d.angleStable));assert.ok(d.energy/GR.GRAVITY-GR.derived(r,V).hit.H<1e-3*(V.range().hi-V.range().lo));
+});

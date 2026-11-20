@@ -2,6 +2,7 @@
 // a sphere to within 0.002 %, and a visibly shaped body found by optimisation (gomboc-support.js).
 // Exact radial law and mass properties: gomboc-body.js. Rolling dynamics without slipping: gomboc-rolling.js. Drawing: gomboc-gl.js.
 import { exhibit, button, field, palette, path, dot as drawDot } from './gallery-kit.js';
+import { plotPanel } from './gallery-panels.js';
 import { CAM3_DEFAULT, cam3Project, cam3TurnFree } from '../camera3d.js';
 import * as B from '../gomboc-body.js';
 import * as P from '../gomboc-rolling.js';
@@ -49,7 +50,32 @@ export function gomboc(root, opts) {
   const play = root.querySelector('#go-play'), inputs = Object.fromEntries(['body', 'mode', 'preset', 'zoom', 'mu', 'speed', 'relief', 'rolling', 'dt', 'follow'].map((k) => [k, root.querySelector('#go-' + k)]));
   const derivedOf = (st) => P.derived(st, model), diag = (st, k) => P.diagnostics(st, k, model), sim = (st, sec, k, dt) => P.simulate(st, sec, k, dt, model), adv = (st, h, k) => P.advance(st, h, k, model);
   const abort = new AbortController(), kappa = () => +inputs.rolling.value, relief = () => +inputs.relief.value, stepSize = () => +inputs.dt.value;
-  function reset() { s = P.start(PRESETS[inputs.preset.value]); baseline = diag(s, kappa()).energy; check = null; playing = false; trail = []; mapTrail = []; remember(); dirty = true; accumulator = 0; updatePlay(); }
+  // The plot under the figure (issue #37): height of G and E/(m g), the energy written as a height, against time, sampled from
+  // the same states as the drawing. E/(m g) − h is the kinetic part: the two curves meet when the body is at rest. Events: the
+  // contact first within 5° of the stable pole S, and rest within 1° of S; their buttons take the body back to that state.
+  let hist = [], sampleDt = 0.02, near = null, rest = null, plotDirty = true;
+  const yOf = (st) => { const dg = diag(st, kappa()), hu = model.heightUnit, eg = dg.energy / P.GRAVITY; return model.radial ? { h: dg.heightOverD, e: (eg - hu.offset) / hu.scale, dg } : { h: hu.offset + dg.heightOverD * hu.scale, e: eg, dg }; };
+  function sample(force) {
+    if (!s || (!force && hist.length && s.t - hist[hist.length - 1].t < sampleDt)) return;
+    const { h, e, dg } = yOf(s), deg = dg.angleStable * 180 / Math.PI, thr = model.radial ? 1e-3 : 1e-3 * (vr.hi - vr.lo);
+    hist.push({ t: s.t, h, e, st: s });
+    if (hist.length > 1200) { hist = hist.filter((_, i) => i % 2 === 0 || i === hist.length - 1); sampleDt *= 2; }   // keep every other sample: the plot stays honest, only coarser
+    if (near === null && s.t > 0 && deg < 5) near = { x: s.t, kind: 'near', st: s };
+    if (rest === null && s.t > 0 && deg < 1 && e - h < thr) rest = { x: s.t, kind: 'rest', st: s };
+    plotDirty = true;
+  }
+  const plotEvents = () => [near, rest].filter(Boolean).map((ev) => ({ ...ev, label: ev.kind === 'near' ? t(`t = ${num(ev.x, 1)} s : le contact passe à moins de 5° du pôle stable S`, `t = ${num(ev.x, 1)} s: the contact comes within 5° of the stable pole S`) : t(`t = ${num(ev.x, 1)} s : au repos, à moins de 1° de S`, `t = ${num(ev.x, 1)} s: at rest, within 1° of S`) }));
+  function jumpTo(ev) { s = ev.st; playing = false; updatePlay(); hist = hist.filter((q) => q.t <= ev.x); if (near && near.x > ev.x) near = null; if (rest && rest.x > ev.x) rest = null; trail = []; mapTrail = []; remember(); plotDirty = true; dirty = true; o.redraw(); }
+  const runName = () => `${inputs.body.selectedOptions[0]?.textContent.split(' (')[0]}, ${inputs.preset.selectedOptions[0]?.textContent}, κ = ${num(kappa(), 4)}`;
+  const PL = plotPanel(root.querySelector('.exhibit-stage'), t('Trait noir : hauteur h du centre de gravité G. Trait rouge : E/(m g), l’énergie écrite comme une hauteur ; l’écart entre les deux est l’énergie de mouvement. Sans résistance (κ = 0) le trait rouge reste plat ; avec κ > 0 il descend jusqu’au repos, où les deux traits se rejoignent. Un point tous les quelques pas de calcul, sans lissage.', 'Black line: height h of the centre of gravity G. Red line: E/(m g), the energy written as a height; the gap between them is the energy of motion. With no resistance (κ = 0) the red line stays flat; with κ > 0 it goes down to rest, where the two lines meet. One point every few computation steps, no smoothing.'),
+    { t, compare: { label: runName }, onEvent: jumpTo });
+  function drawPlot() {
+    if (!plotDirty || !hist.length) return; plotDirty = false;
+    const all = hist.flatMap((q) => [q.h, q.e]), lo = Math.min(...all), hi = Math.max(...all), pad = (hi - lo) * 0.08 || 0.01;
+    PL.draw({ xMax: Math.max(model.radial ? 50 : 2, s.t), yMin: lo - pad, yMax: hi + pad, yFormat: (v) => num(v, model.radial ? 2 : 3), xLabel: t('temps t (s)', 'time t (s)'), yLabel: model.radial ? '(h − 1)/d' : t('hauteur (rayon moyen 1)', 'height (mean radius 1)'),
+      series: [{ points: hist.map((q) => [q.t, q.h]), color: 'ink', dots: false }, { points: hist.map((q) => [q.t, q.e]), color: 'neg', width: 1.6, dots: false }], marker: [s.t, null], events: plotEvents() });
+  }
+  function reset() { s = P.start(PRESETS[inputs.preset.value]); baseline = diag(s, kappa()).energy; check = null; playing = false; trail = []; mapTrail = []; remember(); hist = []; near = rest = null; sampleDt = stepSize() * 2; sample(true); dirty = true; accumulator = 0; updatePlay(); }
   function remember() {
     const d = derivedOf(s), last = trail[trail.length - 1];
     if (!last || Math.hypot(last[0] - s.c[0], last[1] - s.c[1]) > 0.004) { trail.push([s.c[0], s.c[1]]); if (trail.length > 900) trail.shift(); }
@@ -58,7 +84,8 @@ export function gomboc(root, opts) {
   }
   function updatePlay() { play.textContent = playing ? t('Pause', 'Pause') : t('Lecture', 'Play'); play.setAttribute('aria-pressed', String(playing)); }
   function run() { if (reduced()) { playing = false; tick(model.radial ? 5 : 0.5); } else playing = !playing; dirty = true; updatePlay(); }
-  function tick(seconds) { s = sim(s, seconds, kappa(), stepSize()); remember(); dirty = true; }
+  // the same steps as P.simulate (n = ⌈seconds / Δt⌉ equal steps), sampled for the plot on the way
+  function tick(seconds) { const n = Math.max(1, Math.ceil(seconds / stepSize())), h = seconds / n; for (let i = 0; i < n; i++) { s = adv(s, h, kappa()); sample(); } remember(); dirty = true; }
   o.on(play, 'click', run); o.on(root.querySelector('#go-step'), 'click', () => tick(model.radial ? 10 : 1));
   o.on(root.querySelector('#go-reset'), 'click', reset); o.on(inputs.preset, 'change', reset);
   o.on(root.querySelector('#go-view'), 'click', () => { Object.assign(cam, CAM3_DEFAULT); o.navigation?.camera?.reset?.(); o.navigation?.apply?.(); setZoom(1); dirty = true; });
@@ -79,8 +106,8 @@ export function gomboc(root, opts) {
   // pinch, Ctrl + wheel and the + / − keys of the page camera all go through its zoomAt: send them to the smooth zoom about the body
   if (o.navigation?.camera) { const cam2 = o.navigation.camera, reset2 = cam2.reset; cam2.zoomAt = (factor) => setZoom(zoomTarget * factor); cam2.reset = () => { reset2(); setZoom(1); }; }
   const offsetNow = () => [0, 0];
-  function tipBody(dx, dy) { const w = worldScreen(dx, -dy); s = P.tilt(s, -w[1] * 0.004, w[0] * 0.004); baseline = diag(s, kappa()).energy; check = null; dirty = true; }
-  function pushBody(dx, dy) { const w = worldScreen(dx, -dy), gain = model.radial ? 0.0004 : 0.01; s = P.spin(s, [-w[1] * gain, w[0] * gain, 0]); baseline = diag(s, kappa()).energy; dirty = true; }
+  function tipBody(dx, dy) { const w = worldScreen(dx, -dy); s = P.tilt(s, -w[1] * 0.004, w[0] * 0.004); baseline = diag(s, kappa()).energy; check = null; sample(true); dirty = true; }
+  function pushBody(dx, dy) { const w = worldScreen(dx, -dy), gain = model.radial ? 0.0004 : 0.01; s = P.spin(s, [-w[1] * gain, w[0] * gain, 0]); baseline = diag(s, kappa()).energy; sample(true); dirty = true; }
   const insideBody = (p) => { const off = offsetNow(), dp = derivedOf(s).p, c = project(dp); return Math.hypot(p[0] - c[0] - off[0], p[1] - c[1] - off[1]) < SCALE * zoom * 1.2; };
   o.touchHit((p) => !!s && insideBody(p));
   o.on(o.cv, 'pointerdown', (e) => { if (!s) return; const p = o.point(e), mode = inputs.mode.value; drag = { p, last: p, mode: mode !== 'orbit' && insideBody(p) ? mode : 'orbit' }; playing = false; updatePlay(); o.cv.setPointerCapture?.(e.pointerId); e.preventDefault(); });
@@ -176,6 +203,7 @@ export function gomboc(root, opts) {
     if (keyboardBody) text += ` · ${t('Corps sélectionné : les flèches l’inclinent.', 'Body selected: arrows tip it.')}`;
     if (reduced()) text += ` · ${t('Mouvement réduit : avance avec Un pas.', 'Reduced motion: use One step.')}`;
     o.read(text);
+    drawPlot();
   }
   // CPU drawing when WebGL2 is not available: the same radial law on a coarse mesh, shaded with the exact normal
   function fallback(g, C, R, d, k, Pj, toViewer) {
@@ -203,7 +231,7 @@ export function gomboc(root, opts) {
   o.animate((dt) => {
     if (Math.abs(zoomTarget - zoom) > 1e-4) { zoom += (zoomTarget - zoom) * (dt ? 1 - Math.exp(-dt * 14) : 1); if (Math.abs(zoomTarget - zoom) < 1e-4) zoom = zoomTarget; dirty = true; }
     if (reduced() && playing) { playing = false; updatePlay(); }
-    if (playing && dt && s) { accumulator += dt * +inputs.speed.value; const h = stepSize(); let n = 0; while (accumulator >= h && n++ < 400) { s = adv(s, h, kappa()); accumulator -= h; } if (n >= 400) accumulator = 0; remember(); dirty = true; }
+    if (playing && dt && s) { accumulator += dt * +inputs.speed.value; const h = stepSize(); let n = 0; while (accumulator >= h && n++ < 400) { s = adv(s, h, kappa()); accumulator -= h; sample(); } if (n >= 400) accumulator = 0; remember(); dirty = true; }
     if (dirty || playing) { dirty = false; draw(); } else return false;
   });
   function useModel(name) {
@@ -218,5 +246,5 @@ export function gomboc(root, opts) {
   o.on(inputs.body, 'change', () => { useModel(inputs.body.value); o.redraw(); });
   fitStage(); useModel(inputs.body.value); setZoom(1, true); o.redraw();
   root.__gomboc = { setBody: (name) => { inputs.body.value = name; useModel(name); }, getModel: () => model, getState: () => s, getCamera: () => cam, setPreset: (value) => { inputs.preset.value = value; reset(); }, step: tick, usesGL: () => !!glr };
-  return () => { alive = false; abort.abort(); o.stop(); glr?.destroy(); delete root.__gomboc; };
+  return () => { alive = false; abort.abort(); PL.stop(); o.stop(); glr?.destroy(); delete root.__gomboc; };
 }

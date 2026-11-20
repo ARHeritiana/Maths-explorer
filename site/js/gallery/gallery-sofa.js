@@ -4,6 +4,7 @@
 import {exhibit,button,field,bind,palette} from './gallery-kit.js';
 import {hammersley,hammersleyArea,HAMMERSLEY_R,rectangle,area,place,fits,through,hammersleyPose,gerverPose,hammersleyTurn,gerverTurn,fromStroke,centroid,turnAbout,resolve,RECORDS} from './gallery-sofa-model.js';
 import {GERVER} from './gallery-sofa-gerver.js';
+import {plotPanel} from './gallery-panels.js';
 const FRAME_MS=12;   // the walls get at most this long per frame (after the first step); the rest waits for the next frame
 const S=52,OX=450,OY=40,EPS=1e-5;   // world (y up) to canvas: X = OX + S x, Y = OY + S (1 - y)
 export function movingSofa(root,opts){
@@ -14,6 +15,17 @@ export function movingSofa(root,opts){
     field('so-r',t('Rayon de l’encoche r','Notch radius r'),0,1,.01,r.toFixed(2))+field('so-w',t('Largeur','Width'),.2,1,.01,w)+field('so-l',t('Longueur','Length'),.2,3,.01,len)+
     button('so-draw',t('Dessiner mon canapé','Draw my sofa'))+button('so-play',t('Montrer le mouvement','Show the motion'),true)+button('so-reset',t('Revenir au départ','Back to the start')),
     `<p>${t('Un rectangle de largeur 1 ne tourne que s’il est assez court ; un demi-disque de rayon 1 tourne en pivotant autour du coin intérieur, avec une aire π/2 ≈ 1,571. En 1968, John Hammersley creuse une encoche en demi-cercle et écarte les deux quarts de disque : avec r = 2/π, l’aire atteint π/2 + 2/π ≈ 2,2074. En 1992, Joseph Gerver arrondit ce canapé ; son contour est fait de 18 morceaux de courbes et son aire vaut environ 2,2195. Celui qui est dessiné ici est calculé à partir des équations de Dan Romik (2018) : il est l’intersection de tous les couloirs vus depuis le canapé pendant qu’il tourne.','A rectangle of width 1 only turns if it is short enough; a half disc of radius 1 turns by pivoting about the inner corner, with area π/2 ≈ 1.571. In 1968 John Hammersley cut a half-disc notch and moved the two quarter discs apart: with r = 2/π the area reaches π/2 + 2/π ≈ 2.2074. In 1992 Joseph Gerver rounded this sofa; its outline is made of 18 pieces of curves and its area is about 2.2195. The one drawn here is computed from Dan Romik’s equations (2018): it is the intersection of all the hallways seen from the sofa while it turns.')}</p><p>${t('Le problème, posé par Leo Moser en 1966, demande l’aire la plus grande possible. Hammersley a montré qu’aucun canapé ne dépasse 2√2 ≈ 2,83 ; Yoav Kallus et Dan Romik ont abaissé cette borne à 2,37 en 2018, avec l’aide de l’ordinateur. En 2024, Jineon Baek a proposé une démonstration de plus de cent pages : le canapé de Gerver serait le meilleur. Au 20 octobre 2026, cette démonstration n’est pas encore publiée dans une revue ; elle est en cours de vérification, y compris sous forme formelle avec l’assistant de preuve Lean.','The problem, posed by Leo Moser in 1966, asks for the largest possible area. Hammersley showed that no sofa exceeds 2√2 ≈ 2.83; Yoav Kallus and Dan Romik lowered this bound to 2.37 in 2018, with computer help. In 2024 Jineon Baek proposed a proof of more than a hundred pages that Gerver’s sofa is the best. As of 20 October 2026 the proof has not yet appeared in a journal; it is being checked, including in formal form with the Lean proof assistant.')}</p>`);
+  // Area of Hammersley's sofa against the notch radius r (issue #37): A(r) = π/2 + 2r − πr²/2, exact, every sofa of the family
+  // goes round the corner; the largest is at r = 2/π. Gerver's record and the best proved upper bound are drawn for comparison.
+  const rInput=root.querySelector('#so-r'),setR=v=>{rInput.value=v.toFixed(2);rInput.dispatchEvent(new Event('input',{bubbles:true}));};
+  const PL=plotPanel(root.querySelector('.exhibit-stage'),t('Aire A(r) = π/2 + 2r − πr²/2 du canapé de Hammersley selon le rayon r de l’encoche (calcul exact, 101 valeurs de r). Tous ces canapés passent le coin. Pointillés : le canapé de Gerver (2,2195), optimal selon la démonstration annoncée par Baek en 2024, encore en cours de vérification, et la borne supérieure 2,37 prouvée avant elle.','Area A(r) = π/2 + 2r − πr²/2 of Hammersley’s sofa against the notch radius r (exact, 101 values of r). All these sofas go round the corner. Dotted: Gerver’s sofa (2.2195), optimal according to the proof Baek announced in 2024, still being checked, and the upper bound 2.37 proved before it.'),
+    {t,onEvent:e=>setR(e.x)});
+  const curve=Array.from({length:101},(_,i)=>[i/100,hammersleyArea(i/100)]);
+  function drawPlot(){PL.show(kind==='hammersley');if(kind!=='hammersley')return;
+    PL.draw({xMax:1,xTicks:[0,.25,.5,.75,1],yMin:1.5,yMax:2.4,yFormat:v=>num(v,1),xLabel:t('rayon de l’encoche r','notch radius r'),yLabel:t('aire A','area A'),
+      series:[{points:curve,color:'ink',dots:false},{points:[[0,RECORDS.gerver],[1,RECORDS.gerver]],color:'pos',dash:[5,4],width:1.4,dots:false},{points:[[0,RECORDS.upper],[1,RECORDS.upper]],color:'muted',dash:[2,4],width:1.4,dots:false}],
+      marker:[r,hammersleyArea(r)],
+      events:[{x:0,label:t('r = 0 : le demi-disque, aire π/2 ≈ 1,571','r = 0: the half disc, area π/2 ≈ 1.571')},{x:HAMMERSLEY_R,label:t(`r = 2/π ≈ 0,637 : le plus grand de la famille, π/2 + 2/π ≈ ${num(RECORDS.hammersley,4)}`,`r = 2/π ≈ 0.637: the largest of the family, π/2 + 2/π ≈ ${num(RECORDS.hammersley,4)}`)}]});}
   const g=o.g,kindSel=root.querySelector('#so-kind'),playBtn=root.querySelector('#so-play'),drawBtn=root.querySelector('#so-draw');
   const X=x=>OX+S*x,Y=y=>OY+S*(1-y),W=([px,py])=>[(px-OX)/S,1-(py-OY)/S];
   // the whole outline is used for the wall test: a thinned copy would cut across the concave notch
@@ -22,7 +34,7 @@ export function movingSofa(root,opts){
   const guide=a=>kind==='gerver'?gerverTurn(GERVER.path,a):kind==='hammersley'?hammersleyTurn(r,a):null;
   const motion=s=>kind==='gerver'?gerverPose(GERVER.path,s):hammersleyPose(r,s,1.5);
   const start=()=>{if(kind==='hammersley'||kind==='gerver')return motion(0);const xs=poly.map(p=>p[0]),ys=poly.map(p=>p[1]);return {x:-1.5-Math.max(...xs),y:.5-(Math.max(...ys)+Math.min(...ys))/2,a:0};};
-  function shapeChanged(){setPoly(kind==='hammersley'?hammersley(r):kind==='gerver'?GERVER.outline:kind==='rect'?rectangle(w,len):own||rectangle(.8,.8));pose=kind==='own'&&own?.pose?{...own.pose}:start();shown={...pose};want=null;play=null;ghosts=[];buildPreview();show();dirty=true;}
+  function shapeChanged(){drawPlot();setPoly(kind==='hammersley'?hammersley(r):kind==='gerver'?GERVER.outline:kind==='rect'?rectangle(w,len):own||rectangle(.8,.8));pose=kind==='own'&&own?.pose?{...own.pose}:start();shown={...pose};want=null;play=null;ghosts=[];buildPreview();show();dirty=true;}
   // The planned motion of Hammersley's and Gerver's sofas as faint outlines (6 poses of the turn), so the corner turn is visible before it is played;
   // the poses the student actually visits are kept as ghosts (the swept trail) as the sofa moves.
   function buildPreview(){preview=(kind==='hammersley'||kind==='gerver')?Array.from({length:6},(_,i)=>motion(1+i/5)):[];}
@@ -102,5 +114,6 @@ export function movingSofa(root,opts){
     const turned=Math.round(-pose.a*180/Math.PI);
     o.read(`${t('Aire :','Area:')} ${num(A,kind==='gerver'?4:3)}${kind==='hammersley'?` (π/2 + 2r − πr²/2 = ${num(hammersleyArea(r))})`:''} · ${t('tourné de','turned by')} ${turned}° · ${status}${best?` · ${t('ta meilleure aire passée :','your best area through:')} ${num(best,4)}`:''} · ${t('record connu :','known record:')} ${num(RECORDS.gerver,4)}`);
   });
-  return o.stop;
+  drawPlot();
+  return ()=>{PL.stop();o.stop();};
 }
