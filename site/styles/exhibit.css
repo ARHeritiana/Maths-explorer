@@ -151,3 +151,10 @@
 .art-sources { margin-top: 24px; max-width: 68ch; }
 .art-sources h2 { font-size: 1.1rem; margin: 0 0 6px; }
 .workbench-article { grid-template-columns: minmax(0, 1fr); }   /* an article page: the figure takes the whole width, still clipped like before */
+
+/* Hover flyouts of the main menu (nav-flyout.js): a panel under the header listing the pages of the section. */
+.nav-flyout { position: fixed; top: calc(var(--header, 64px) - 2px); z-index: 70; min-width: 240px; display: grid; gap: 2px; padding: 8px; background: var(--surface); color: var(--ink); border: 2px solid var(--line-strong); box-shadow: 4px 4px 0 var(--shadow, var(--line-strong)); }
+.nav-flyout[hidden] { display: none; }
+.nav-flyout a { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px; color: var(--ink); font-weight: 700; text-decoration: none; background: transparent; }
+.nav-flyout a:hover, .nav-flyout a:focus-visible { background: var(--ink); color: var(--surface); }
+@media (max-width: 960px) { .nav-flyout { display: none !important; } }
