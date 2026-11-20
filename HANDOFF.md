@@ -1,5 +1,14 @@
 # Handoff
 
+## Dandelin's spheres (20 November 2026, issue #31)
+
+New exhibit `#gallery/dandelin`: a cone cut by a tilted plane, the two spheres tangent to both, F₁ and F₂ where they
+touch the plane, a point P on the ellipse with PF₁, PF₂ and the generator T₁T₂ through P; sliders for P and the tilt,
+turnable view, spheres on demand; the strip shows PF₁, PF₂, their sum, T₁T₂ and the major axis; a question on the sum,
+checked after P has gone half way round; the tangent-length proof and a string-and-pins transfer. Model
+`gallery-dandelin-model.js`, tests `tests/gallery-dandelin.test.mjs`. Not done: the parabola (one sphere) and hyperbola
+cases, a laboratory version.
+
 ## Laboratory: Eratosthenes (20 November 2026, issue #32)
 
 New experiment `#lab/eratosthenes` ("Mesurer la Terre avec deux bâtons", template figure, group modelling): a section

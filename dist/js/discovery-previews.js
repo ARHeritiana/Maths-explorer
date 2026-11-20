@@ -37,7 +37,7 @@ const known=new Set(['monte-carlo','ferris-wheel','quadratic','probability','tri
  'double-pendulum','three-body','logistic','illumination','fair-division','fair-goods','hairy-ball',
  'nonorientable-surfaces','banach-tarski-model','gomboc','derivative','integral','vectors','statistics','complex',
  'line','exponential','cobweb','matrix','space-lines','sequences','fourier','circle-regions','buffon','bertrand','eratosthenes',
- 'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','self-similar','polyhedra','viviani','life',
+ 'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','self-similar','polyhedra','viviani','dandelin','life',
  'voronoi','fastest-slide','einstein','square-packing','inscribed-square','soap-films','knots','moving-sofa',
  'opaque-square','equidecomposition','collisions','napkin-ring','hundred-boxes','morley','four-colours','mandelbrot','arithmetic','reals','algebra','percentages','conditioning',
  'random-variable','counting','polynomials','modular','bezout','primes','graphs','markov','logic','sets']);
@@ -197,6 +197,10 @@ export function modelPreview(kind) {
   for(let n=0;n<3;n++)triangles=triangles.flatMap(t=>t.map((p,i)=>[p,...t.filter((_,j)=>i!==j).map(q=>q.map((x,k)=>(x+p[k])/2))]));
   drawing=triangles.map(t=>path(t,true)).join('');
   caption=P('Triangle de Sierpiński : trois étapes','Sierpiński triangle: three steps');
+ } else if(kind==='dandelin') {
+  const cone=[[80,8],[30,92]],cone2=[[80,8],[130,92]];
+  drawing=path(cone)+path(cone2)+`<ellipse class="preview-line" cx="80" cy="62" rx="30" ry="10" transform="rotate(-12 80 62)"/>`+`<circle class="preview-line" cx="80" cy="48" r="10"/><circle class="preview-line" cx="80" cy="76" r="16"/>`;
+  caption=P('Un cône, un plan, deux sphères','A cone, a plane, two spheres');
  } else if(kind==='viviani') {
   const T=[[80,10],[30,90],[130,90]],p=[86,62],ft=[[80+(p[0]-80)*0,0],[0,0],[0,0]];void ft;
   const feet=[[[30,90],[130,90]],[[130,90],[80,10]],[[80,10],[30,90]]].map(([u,v])=>{const d=[v[0]-u[0],v[1]-u[1]],k=((p[0]-u[0])*d[0]+(p[1]-u[1])*d[1])/(d[0]**2+d[1]**2);return [u[0]+k*d[0],u[1]+k*d[1]];});
