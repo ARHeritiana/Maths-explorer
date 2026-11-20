@@ -1,5 +1,16 @@
 # Handoff
 
+## Star polyhedra and the Wythoff triangle (20 November 2026, issue #35 complete)
+
+`#gallery/star-polyhedra`: the face planes of the dodecahedron (and of the icosahedron) kept and extended; the four
+Kepler-Poinsot solids as stellation stages, faces cut into pieces along every other plane and painted far to near, the
+stellation diagram of one face plane as SVG, V, E, F, χ (−6 for the small stellated and great dodecahedra) and density;
+question on Euler's relation. `#gallery/wythoff`: a point dragged in the triangle of mirrors of the tetrahedral,
+octahedral or icosahedral group; its orbit's convex hull, the 7 uniform stops per family (all Platonic and Archimedean
+solids), the twist (snub cube, snub dodecahedron, icosahedron from the tetrahedron; equal edges found by Nelder-Mead and
+checked against the tribonacci coordinates), the Catalan duals with the face-vertex correspondence, and a classification
+challenge (Platonic, Archimedean, prism or antiprism, Johnson, Catalan, Kepler-Poinsot) decided from computed properties.
+
 ## Gallery measurements, batch 4 (20 November 2026, issue #37 complete)
 
 Shared in `gallery-panels.js` `plotPanel`: `compare` pins the first series of a run (grey, dotted, axes widened by the pure
