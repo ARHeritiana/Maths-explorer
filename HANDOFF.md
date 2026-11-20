@@ -1,5 +1,15 @@
 # Handoff
 
+## Cavalieri's principle (20 November 2026, issue #30)
+
+New exhibit `#gallery/cavalieri`: a warm-up with two stacks of cards (one pushed sideways or made wavy: the card cut at
+each height and the volume stay the same), then a hemisphere of radius R beside a cylinder of radius R and height R with a
+cone dug out, cut by one plane at height z; both sections π(R² − z²) = πR² − πz² are drawn and measured. The question
+(which solid is larger) is answered only after the plane has swept most of the height, and the verdict says that heights
+tried prove nothing: the computation for every z does. The volume below the plane stays hidden until an answer is
+chosen. The explanation derives 2πR³/3 and 4πR³/3 and links to the napkin ring (not duplicated). Model and tests:
+`gallery-cavalieri-model.js`, `tests/gallery-cavalieri.test.mjs` (Simpson over the sections, stacked discs).
+
 ## Dandelin's spheres (20 November 2026, issue #31)
 
 New exhibit `#gallery/dandelin`: a cone cut by a tilted plane, the two spheres tangent to both, F₁ and F₂ where they
