@@ -27,7 +27,7 @@ export const TOPICS = [
     sub('data','Données et distributions','Data and distributions','statistics regression tables benford','statisti|\\bdonnées\\b|\\bdata\\b|régression|regression|benford'),
     sub('inference','Estimation et incertitude','Estimation and uncertainty','concentration german-tank baker inference','estimat|incert|uncertain|tank|boulanger|baker|inferen')]},
   {id:'discrete', title:P('Mathématiques discrètes','Discrete mathematics'), preview:'graph', subtopics:[
-    sub('graphs','Graphes et parcours','Graphs and traversal','graphs euler-trails konigsberg five-rooms rooms knight-tour knights chess queens ramsey','\\bgraphes?\\b(?!\\s+(?:de|d’|d\\x27|représentatif))|\\bgraphs?\\b(?!\\s+of)|parcours|travers|cavalier|knight|eulérien|eulerian|königsberg|konigsberg'),
+    sub('graphs','Graphes et parcours','Graphs and traversal','graphs euler-trails konigsberg five-rooms rooms knight-tour knights chess queens ramsey braess','\\bgraphes?\\b(?!\\s+(?:de|d’|d\\x27|représentatif))|\\bgraphs?\\b(?!\\s+of)|parcours|travers|cavalier|knight|eulérien|eulerian|königsberg|konigsberg'),
     sub('counting','Dénombrement et algorithmes','Counting and algorithms','counting lattice-paths pigeonhole gridpaths cookies hanoi merge inversions josephus nim piles pegs horses eggs lighteggs fakecoins cheryl handshakes','dénombre|\\bcount(?:ing|s)?\\b|algorithm|combina|tiroir|pigeon|inversion')]},
   {id:'dynamics', title:P('Dynamique','Dynamics'), preview:'orbit', subtopics:[
     sub('iteration','Itérations et chaos','Iteration and chaos','cobweb chaos mandelbrot logistic life','chaos|logisti|itér|iterat|mandelbrot|bifurc|\\blife\\b|jeu de la vie'),

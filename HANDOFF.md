@@ -1,5 +1,14 @@
 # Handoff
 
+## Challenge "La route de trop" (20 November 2026, issue #34)
+
+Braess's paradox as a checked challenge `#challenges/braess` (answer 80 for 4,000 drivers; parameter 1,000 to 8,000):
+the town with houses at A, the stadium at B, two cobbled streets that jam and two expressways, the new road behind the
+mayor's ribbon, 20 cars (each a group of N/20 drivers), a commuter with a stopwatch. The learner moves groups between
+route cards, lets the drivers change route by themselves (the rule of the problem) and opens the road; six animated
+solution steps in the same town. Built with the skill `maths-explorer-challenge` (check.mjs: 0 errors, 0 warnings).
+Not done: the guided laboratory and the Braess story suggested by the issue.
+
 ## Polyhedra by transformation, phase 1 (20 November 2026, issue #35)
 
 New exhibit `#gallery/polyhedra` ("Couper les coins d’un polyèdre"): one depth slider cuts the corners of any Platonic
