@@ -135,3 +135,11 @@
 .art-facts dt { margin-top: 8px; color: var(--muted); font-size: 0.85rem; font-weight: 700; }
 .art-facts dd { margin: 2px 0 0; }
 @media (max-width: 860px) { .art-layout { grid-template-columns: minmax(0, 1fr); } .art-facts { order: -1; } }
+
+/* Control panel of an exhibit (gallery-kit.js): aligned grid of fields, one row of buttons, a quiet help line. */
+.exhibit-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 24px; align-items: end; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.exhibit-controls .act-field { flex: none; }
+.exhibit-controls .exhibit-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; padding-top: 12px; border-top: 1px solid var(--line); }
+.exhibit-controls .exhibit-actions:first-child { border-top: 0; padding-top: 0; }
+.act-help { color: var(--muted); font-size: 0.92rem; }
+.lab-main-article .exhibit-notes { display: none; }
