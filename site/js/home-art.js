@@ -481,7 +481,23 @@ function dandelinArt(cv, opts) {
     for (const [z, col] of [[60, C.c[0]], [110, C.c[2]]]) { const r = z * Math.sin(0.44) * s; g.strokeStyle = col; g.lineWidth = 2; g.beginPath(); g.arc(cx, top + z * s, r, 0, Math.PI * 2); g.stroke(); }
   }, { reduced: opts.reduced, still: 2 });
 }
-export const ART = { dandelin: dandelinArt, viviani: vivianiArt, polyhedra: polyhedraArt, 'self-similar': selfSimilarArt, collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
+// Cavalieri: a hemisphere and a cylinder with its cone, one plane moving up and down through both.
+function cavalieriArt(cv, opts) {
+  return runner(cv, (g, W, H, t, C) => {
+    const R = Math.min(W / 5.2, H / 2.4), base = H * 0.78, z = (0.5 + 0.42 * Math.sin(t * 0.7)) * R, xl = W * 0.28, xr = W * 0.72, ry = R * 0.22;
+    g.strokeStyle = C.ink; g.lineWidth = 2;
+    g.beginPath(); g.arc(xl, base, R, Math.PI, 0); g.stroke(); g.beginPath(); g.ellipse(xl, base, R, ry, 0, 0, Math.PI * 2); g.stroke();
+    g.beginPath(); g.moveTo(xr - R, base); g.lineTo(xr - R, base - R); g.moveTo(xr + R, base); g.lineTo(xr + R, base - R); g.stroke();
+    g.beginPath(); g.ellipse(xr, base - R, R, ry, 0, 0, Math.PI * 2); g.stroke(); g.beginPath(); g.ellipse(xr, base, R, ry, 0, 0, Math.PI * 2); g.stroke();
+    g.strokeStyle = C.c[2]; g.beginPath(); g.moveTo(xr - R, base - R); g.lineTo(xr, base); g.lineTo(xr + R, base - R); g.stroke();
+    const r = Math.sqrt(Math.max(0, R * R - z * z)), y = base - z;
+    g.globalAlpha = 0.7; g.fillStyle = C.object;
+    g.beginPath(); g.ellipse(xl, y, r, ry * r / R, 0, 0, Math.PI * 2); g.fill();
+    g.beginPath(); g.ellipse(xr, y, R, ry, 0, 0, Math.PI * 2); g.ellipse(xr, y, z, ry * z / R, 0, 0, Math.PI * 2); g.fill('evenodd'); g.globalAlpha = 1;
+    g.strokeStyle = C.c[1]; g.setLineDash([6, 4]); g.beginPath(); g.moveTo(8, y); g.lineTo(W - 8, y); g.stroke(); g.setLineDash([]);
+  }, { reduced: opts.reduced, still: 2 });
+}
+export const ART = { cavalieri: cavalieriArt, dandelin: dandelinArt, viviani: vivianiArt, polyhedra: polyhedraArt, 'self-similar': selfSimilarArt, collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
   life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt, equidecomposition: equidecompositionArt,
   ...Object.fromEntries(['secretary-gallery','tank-gallery','benford-gallery','baker-gallery','birthdays-gallery','monty-gallery','fair-division-gallery','fair-goods-gallery','hairy-ball-gallery','nonorientable-surfaces-gallery','banach-tarski-gallery','double-pendulum-gallery','three-body-gallery','logistic-gallery','mirrored-rooms'].map(id => [id, (cv, o) => subjectArt(id, cv, o)])),
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
