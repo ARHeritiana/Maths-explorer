@@ -497,7 +497,17 @@ function cavalieriArt(cv, opts) {
     g.strokeStyle = C.c[1]; g.setLineDash([6, 4]); g.beginPath(); g.moveTo(8, y); g.lineTo(W - 8, y); g.stroke(); g.setLineDash([]);
   }, { reduced: opts.reduced, still: 2 });
 }
-export const ART = { cavalieri: cavalieriArt, dandelin: dandelinArt, viviani: vivianiArt, polyhedra: polyhedraArt, 'self-similar': selfSimilarArt, collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
+// Rupert: the hexagonal shadow of a cube with a slightly larger square turning inside it.
+function rupertArt(cv, opts) {
+  return runner(cv, (g, W, H, t, C) => {
+    const k = Math.min(W, H) * 0.42, cx = W / 2, cy = H / 2, hex = Array.from({ length: 6 }, (_, i) => [cx + k * Math.cos(Math.PI / 6 + i * Math.PI / 3), cy + k * Math.sin(Math.PI / 6 + i * Math.PI / 3)]);
+    g.globalAlpha = 0.3; g.fillStyle = C.c[1]; g.beginPath(); hex.forEach((p, i) => i ? g.lineTo(...p) : g.moveTo(...p)); g.closePath(); g.fill(); g.globalAlpha = 1;
+    g.strokeStyle = C.ink; g.lineWidth = 2; g.stroke();
+    const a = 0.26 + 0.05 * Math.sin(t * 0.8), h = k * 0.6, sq = [[-h, -h], [h, -h], [h, h], [-h, h]].map(([x, y]) => [cx + x * Math.cos(a) - y * Math.sin(a), cy + x * Math.sin(a) + y * Math.cos(a)]);
+    g.globalAlpha = 0.6; g.fillStyle = C.object; g.beginPath(); sq.forEach((p, i) => i ? g.lineTo(...p) : g.moveTo(...p)); g.closePath(); g.fill(); g.globalAlpha = 1;
+  }, { reduced: opts.reduced, still: 2 });
+}
+export const ART = { rupert: rupertArt, cavalieri: cavalieriArt, dandelin: dandelinArt, viviani: vivianiArt, polyhedra: polyhedraArt, 'self-similar': selfSimilarArt, collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
   life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt, equidecomposition: equidecompositionArt,
   ...Object.fromEntries(['secretary-gallery','tank-gallery','benford-gallery','baker-gallery','birthdays-gallery','monty-gallery','fair-division-gallery','fair-goods-gallery','hairy-ball-gallery','nonorientable-surfaces-gallery','banach-tarski-gallery','double-pendulum-gallery','three-body-gallery','logistic-gallery','mirrored-rooms'].map(id => [id, (cv, o) => subjectArt(id, cv, o)])),
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };

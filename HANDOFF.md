@@ -1,5 +1,17 @@
 # Handoff
 
+## Prince Rupert's cube; the collection « contre l'intuition » complete (20 November 2026, issues #27 and #28)
+
+New exhibit `#gallery/rupert`: the five Platonic solids and the rhombicosidodecahedron, two views of one pair of positions
+(the shadows, with the largest enlargement of the piece's shadow inside the block's computed by an exact linear programme;
+the passage, with the block in outline, the tunnel and the piece sliding through). Dragging the shadows turns the piece or
+the block; « Montrer un passage vérifié » loads a stored witness (s > 1 for every Platonic solid, 1.0606 for the cube
+against Nieuwland's 3√2/4). The rhombicosidodecahedron never goes above s = 1 in the search, and the text says this proves
+nothing; its status (2026 preprint), the Noperthedron (2025) and the Septopert (October 2026) are cited with sources, the
+last two not drawn (their vertex data is not reproduced here). Witnesses were found by a random search with local
+refinement, outside the repository; `tests/gallery-rupert.test.mjs` checks each by two independent methods. Issue #28:
+all six planned entries were live since #57, #59 and #61; Cavalieri and Rupert join the collection, `SOON` stays empty.
+
 ## Cavalieri's principle (20 November 2026, issue #30)
 
 New exhibit `#gallery/cavalieri`: a warm-up with two stacks of cards (one pushed sideways or made wavy: the card cut at

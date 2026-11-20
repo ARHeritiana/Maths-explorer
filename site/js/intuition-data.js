@@ -30,7 +30,13 @@ export const ENTRIES = [
   {id: 'tiles', hash: '#lab/tiles', kind: 'lab', title: P('Le carré disparu', 'The missing square'),
     claim: P('On réarrange les mêmes pièces et il manque (ou il reste) un carreau.', 'The same pieces are rearranged and a square is missing (or left over).'),
     fact: P('Le dessin est truqué : la « diagonale » est brisée.', 'The drawing cheats: the “diagonal” is bent.')},
+  {id: 'cavalieri', hash: '#gallery/cavalieri', kind: 'gallery', title: P('Le principe de Cavalieri', 'Cavalieri’s principle'),
+    claim: P('Une demi-boule et un cylindre creusé d’un cône ne se ressemblent pas : leurs volumes doivent différer.', 'A hemisphere and a cylinder with a cone dug out look nothing alike: their volumes must differ.'),
+    fact: P('À chaque hauteur leurs sections ont la même aire : même volume, 2πR³/3.', 'At every height their sections have the same area: the same volume, 2πR³/3.')},
+  {id: 'rupert', hash: '#gallery/rupert', kind: 'gallery', title: P('Le cube du prince Rupert', 'Prince Rupert’s cube'),
+    claim: P('Un cube ne peut pas traverser un cube de même taille.', 'A cube cannot go through a cube of the same size.'),
+    fact: P('Il passe par un tunnel droit, et même un cube 6 % plus grand (3√2/4).', 'It passes through a straight tunnel, and even a cube 6% larger (3√2/4).')},
 ];
-// Entries planned for the collection and not on the site yet (issue #28, next phases).
+// Entries planned for the collection and not on the site yet (issue #28: none left).
 export const SOON = [];
 export const KINDS = {gallery: P('Curiosité', 'Curiosity'), lab: P('Laboratoire', 'Laboratory'), challenge: P('Défi', 'Challenge')};
