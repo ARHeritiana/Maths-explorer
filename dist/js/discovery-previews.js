@@ -37,7 +37,7 @@ const known=new Set(['monte-carlo','ferris-wheel','quadratic','probability','tri
  'double-pendulum','three-body','logistic','illumination','fair-division','fair-goods','hairy-ball',
  'nonorientable-surfaces','banach-tarski-model','gomboc','derivative','integral','vectors','statistics','complex',
  'line','exponential','cobweb','matrix','space-lines','sequences','fourier','circle-regions','buffon','bertrand','eratosthenes',
- 'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','self-similar','polyhedra','viviani','dandelin','cavalieri','rupert','life',
+ 'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','self-similar','polyhedra','viviani','dandelin','cavalieri','rupert','star-polyhedra','wythoff','life',
  'voronoi','fastest-slide','einstein','square-packing','inscribed-square','soap-films','knots','moving-sofa',
  'opaque-square','equidecomposition','collisions','napkin-ring','hundred-boxes','morley','four-colours','mandelbrot','arithmetic','reals','algebra','percentages','conditioning',
  'random-variable','counting','polynomials','modular','bezout','primes','graphs','markov','logic','sets']);
@@ -197,6 +197,13 @@ export function modelPreview(kind) {
   for(let n=0;n<3;n++)triangles=triangles.flatMap(t=>t.map((p,i)=>[p,...t.filter((_,j)=>i!==j).map(q=>q.map((x,k)=>(x+p[k])/2))]));
   drawing=triangles.map(t=>path(t,true)).join('');
   caption=P('Triangle de Sierpiński : trois étapes','Sierpiński triangle: three steps');
+ } else if(kind==='star-polyhedra') {
+  const star=[0,2,4,1,3].map(k=>[80+44*Math.cos(-Math.PI/2+k*2*Math.PI/5),52+44*Math.sin(-Math.PI/2+k*2*Math.PI/5)]),pent=[0,1,2,3,4].map(k=>[80+17*Math.cos(Math.PI/2+k*2*Math.PI/5),52+17*Math.sin(Math.PI/2+k*2*Math.PI/5)]);
+  drawing=path(star,true)+path(pent,true);
+  caption=P('Une face prolongée en pentagramme','A face extended into a pentagram');
+ } else if(kind==='wythoff') {
+  drawing=path([[80,8],[20,94],[140,94]],true)+`<circle class="preview-line" cx="80" cy="66" r="5"/>`+path([[80,66],[80,94]])+path([[80,66],[57,52]])+path([[80,66],[103,52]]);
+  caption=P('Un point, ses distances aux trois miroirs','A point and its distances to the three mirrors');
  } else if(kind==='rupert') {
   drawing=`<path class="preview-line" d="M80 6 L146 40 L146 92 L80 104 L14 92 L14 40 Z"/>`+`<path class="preview-line" d="M80 24 L124 52 L96 92 L52 64 Z" stroke-dasharray="5 4"/>`;
   caption=P('Un carré dans l’ombre hexagonale d’un cube','A square in the hexagonal shadow of a cube');
