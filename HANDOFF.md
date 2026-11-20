@@ -6,7 +6,7 @@ New experiment `#lab/eratosthenes` ("Mesurer la Terre avec deux bâtons", templa
 of the Earth, sticks at Syene and Alexandria, parallel rays and shadows; drag Alexandria and the Sun, set the distance.
 Six missions: why the shadows differ (predict), get a 7.2° shadow (explore), 250,000 stadia (check), the Sun overhead at
 neither town (contrast), 800 km and 7.2° give 40,000 km (check), alternate angles and the assumptions (explain). History
-from the APS note, with the stadion caveat [VERIFY]. Lab-only for now (a chapter link rebuilds the Seconde PDFs, which needs TeX). Not done: the link from Seconde 9, a story in "Lire" and a 3D globe.
+from the APS note, with the stadion caveat [VERIFY]. Linked from Seconde 9 (receipt adopted with `mxbuild.refresh --adopt`: a lab reference changes no PDF or slide). Not done: a story in "Lire" and a 3D globe.
 
 ## Viviani's theorem (20 November 2026, issue #33)
 
