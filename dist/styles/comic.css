@@ -184,7 +184,7 @@ h1 .home-highlight { color: var(--shape); text-shadow: 3px 3px 0 var(--line-stro
 .home-simple .audience-cards a[data-set-entry="student"] { background: var(--obj2); color: #ffffff; }
 .home-simple .audience-cards a[data-set-entry="teacher"] { background: var(--shape); color: #ffffff; }
 :root[data-theme="nuit"] .home-simple .audience-cards a[data-set-entry] { color: #14130f; }
-.home-simple .audience-cards a:hover { background-color: inherit; filter: brightness(1.08); }
+.home-simple .audience-cards a:hover { filter: brightness(1.08); }
 .home-simple .audience-note { font-weight: 700; color: var(--ink-2); }
 .home-simple .secondary-entry { margin-top: 36px; }
 .home-simple .secondary-entry h2 { font-size: 1.5rem; }
@@ -228,3 +228,6 @@ h1 .home-highlight { color: var(--shape); text-shadow: 3px 3px 0 var(--line-stro
 .nav-toggle[aria-expanded="true"] { background: var(--ink); color: var(--surface); }
 
 .wonder-grid { gap: 22px; }
+
+/* Night theme: --shape and --accent are light, so a primary button takes dark text in both states (white was 2.5:1 to 3.3:1). */
+:root[data-theme="nuit"] :is(.btn-primary, .primary), :root[data-theme="nuit"] :is(.btn-primary, .primary):hover { color: #14130f; }
