@@ -1,13 +1,37 @@
 // Iteration in the complex plane (gallery exhibit, issue #36; maths in gallery-basins-model.js): the Multibrot sets
-// z → z^d + c, and the basins of Newton's method. The image is computed on the processor, a few rows per frame; a click
+// z → z^d + c, and the basins of Newton's method. The image is drawn on the graphics card (smooth colouring, sharpened at
+// rest by gl-progressive.js); deep zooms past single precision, and devices without WebGL2, compute it on the processor, a
+// few rows per frame. The share on the image is counted on a grid of points by the processor. A click
 // picks a point (its escape step, or its Newton path to a root), the zoom buttons zoom around it. A question per mode.
 import {exhibit,palette} from './gallery-kit.js';
+import {createProgressive} from './gl-progressive.js';
 import {illuminateFeedback} from '../motion.js';
 import {metricStrip} from './gallery-panels.js';
 import {multibrotEscape,symmetryOrder,boundRadius,POLYS,rootsFor,newton} from './gallery-basins-model.js';
 
-const rgbOf=(()=>{const c=typeof document!=='undefined'?document.createElement('canvas'):null,x=c?.getContext?.('2d');return css=>{if(!x)return [128,128,128];x.clearRect(0,0,1,1);x.fillStyle='#000';x.fillStyle=css;x.fillRect(0,0,1,1);const d=x.getImageData(0,0,1,1).data;return [d[0],d[1],d[2]];};})();
+const rgbOf=(()=>{const c=typeof document!=='undefined'?document.createElement('canvas'):null,x=c?.getContext?.('2d',{willReadFrequently:true});return css=>{if(!x)return [128,128,128];x.clearRect(0,0,1,1);x.fillStyle='#000';x.fillStyle=css;x.fillRect(0,0,1,1);const d=x.getImageData(0,0,1,1).data;return [d[0],d[1],d[2]];};})();
 const mix=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t);
+// One shader for both modes. Multibrot: escape count made continuous (k + 1 − log(log|z| / log R) / log d, with a large
+// bailout R) so the bands become smooth; Newton: the root reached, darker with the number of steps. Colours in sRGB.
+const FRAG=`#version 300 es
+precision highp float;
+uniform vec2 uRes,uJitter,uCenter;uniform float uSpan;uniform int uMode,uD,uN,uDeg,uNR;
+uniform vec2 uCoef[6],uRoots[5];uniform vec3 uSunk,uMid,uObj,uInk,uRC[5];out vec4 fragColor;
+vec2 cm(vec2 a,vec2 b){return vec2(a.x*b.x-a.y*b.y,a.x*b.y+a.y*b.x);}
+vec2 cd(vec2 a,vec2 b){return vec2(a.x*b.x+a.y*b.y,a.y*b.x-a.x*b.y)/dot(b,b);}
+void main(){
+  vec2 c=uCenter+(gl_FragCoord.xy+uJitter-.5*uRes)*(uSpan/uRes.x);vec3 col=uInk;
+  if(uMode==0){vec2 z=vec2(0);float R=max(2.,length(c));int k=-1;
+    int b=-1;for(int i=0;i<2000;i++){if(i>=uN+8)break;vec2 w=z;for(int j=1;j<8;j++){if(j>=uD)break;w=cm(w,z);}z=w+c;if(k<0&&i<uN&&dot(z,z)>R*R)k=i;if(dot(z,z)>1e6){b=i;break;}}
+    if(k>=0){float nu=float(k)+1.;if(b>=0)nu=max(1.,float(b)+1.-log(log(length(z))/log(1e3))/log(float(uD)));
+      float s=pow(clamp(log(nu)/log(float(uN)),0.,1.),1.6);col=s<.5?mix(uSunk,uMid,s*2.):mix(uMid,uObj,s*2.-1.);}}
+  else{vec2 z=c;
+    for(int i=0;i<2000;i++){if(i>=uN)break;vec2 p=vec2(0),dp=vec2(0);for(int k=5;k>=0;k--){if(k>uDeg)continue;dp=cm(dp,z)+p;p=cm(p,z)+uCoef[k];}
+      if(dot(dp,dp)<1e-24)break;z-=cd(p,dp);
+      for(int r=0;r<5;r++){if(r>=uNR)break;if(distance(z,uRoots[r])<1e-4){col=mix(uRC[r],vec3(0),min(.65,float(i+1)/(uN>100?40.:25.)));i=100000;break;}}}}
+  fragColor=vec4(col,1);
+}`;
+const U_NAMES=['uCenter','uSpan','uMode','uD','uN','uDeg','uNR','uCoef','uRoots','uSunk','uMid','uObj','uInk','uRC'];
 
 export function complexBasins(root,opts){
   const {t,lang}=opts,nf=new Intl.NumberFormat(lang==='fr'?'fr-FR':'en-GB',{maximumFractionDigits:4}),num=v=>nf.format(v),cx=z=>`${num(z[0])} ${z[1]<0?'−':'+'} ${num(Math.abs(z[1]))} i`;
@@ -55,10 +79,15 @@ export function complexBasins(root,opts){
     if(fb.textContent!==text){const was=fb.className;fb.className='feedback'+(cls?' '+cls:'');fb.textContent=text;if(cls&&was!==fb.className)illuminateFeedback(fb,opts.reduced);}}
   // the image, computed a few rows at a time into an offscreen buffer
   const off=document.createElement('canvas'),ox=off.getContext('2d');let img=null,row=0,stats=[0,0],colours=null;
+  const cf=new Float32Array(12),rf=new Float32Array(10);let R=null;try{R=createProgressive(FRAG,U_NAMES);}catch(e){console.warn(e);}
+  // single precision gives about 7 digits: past that zoom, the processor takes over
+  const onGPU=()=>R&&view.span>3e-4*Math.max(1,Math.hypot(...view.c));
   const W=()=>Math.round(o.W),H=()=>Math.round(o.H);
   const toC=(px,py)=>{const s=view.span/W();return [view.c[0]+(px-W()/2)*s,view.c[1]-(py-H()/2)*s];};
-  function restart(){off.width=W();off.height=H();img=ox.createImageData(W(),H());row=0;stats=[0,0];const C=palette();
-    colours={sunken:rgbOf(C.sunken),ink:rgbOf(C.ink),obj:rgbOf(C.object),mid:rgbOf(C.c[1]),roots:[0,1,2,3,4].map(i=>rgbOf(C.c[i]))};sync();o.redraw();}
+  function restart(){off.width=W();off.height=H();img=ox.createImageData(W(),H());row=0;stats=[0,0];const C=palette();R?.reset();
+    colours={sunken:rgbOf(C.sunken),ink:rgbOf(C.ink),obj:rgbOf(C.object),mid:rgbOf(C.c[1]),roots:[0,1,2,3,4].map(i=>rgbOf(C.c[i]))};
+    if(onGPU()){stats=[0,0];const sx=W()/4,sy=H()/4;for(let y=0;y<sy;y++)for(let x=0;x<sx;x++){pixel(4*x+2,4*y+2);stats[0]++;}row=H();}   // the count, on one point in 16
+    sync();o.redraw();}
   function pixel(px,py){const c=toC(px,py);
     if(mode==='multibrot'){const k=multibrotEscape(c,d,N);if(k===null)return colours.ink;stats[1]++;const s=Math.sqrt(k/N);return s<.5?mix(colours.sunken,colours.mid,s*2):mix(colours.mid,colours.obj,s*2-1);}
     const r=newton(poly,c,N,1e-6);if(r.root<0)return colours.ink;stats[1]++;return mix(colours.roots[r.root],[0,0,0],Math.min(.65,r.steps/(N>100?40:25)));}
@@ -86,7 +115,15 @@ export function complexBasins(root,opts){
   o.on(o.cv,'keydown',e=>{const k={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]}[e.key];if(!k)return;e.preventDefault();pick=pick||[...view.c];pick=[pick[0]+k[0]*view.span/40,pick[1]+k[1]*view.span/40];sync();o.redraw();});
   o.cv.setAttribute('aria-label',t('Image de l’itération. Toucher ou les flèches choisissent un point ; les boutons de zoom agrandissent autour de lui.','Image of the iteration. Touch or the arrow keys choose a point; the zoom buttons enlarge around it.'));
   o.animate(()=>{
-    const busy=compute(),C=palette();g.clearRect(0,0,o.W,o.H);g.drawImage(off,0,0,o.W,o.H);
+    if(!colours)return true;
+    const C=palette();let busy;g.clearRect(0,0,o.W,o.H);
+    if(onGPU()){const w=o.cv.width,h=o.cv.height,P=mode==='newton'?POLYS[poly]:null,rr=P?rootsFor(poly):[];
+      busy=R.frame(w,h,(gl,U)=>{gl.uniform2f(U.uCenter,view.c[0],view.c[1]);gl.uniform1f(U.uSpan,view.span);gl.uniform1i(U.uMode,P?1:0);gl.uniform1i(U.uD,d);gl.uniform1i(U.uN,N);
+        cf.fill(0);rf.fill(0);if(P){P.coef.forEach((z,k)=>{cf[2*k]=z[0];cf[2*k+1]=z[1];});rr.forEach((z,k)=>{rf[2*k]=z[0];rf[2*k+1]=z[1];});}
+        gl.uniform1i(U.uDeg,P?P.coef.length-1:0);gl.uniform1i(U.uNR,rr.length);gl.uniform2fv(U.uCoef,cf);gl.uniform2fv(U.uRoots,rf);
+        const f=v=>v.map(x=>x/255);gl.uniform3fv(U.uSunk,f(colours.sunken));gl.uniform3fv(U.uMid,f(colours.mid));gl.uniform3fv(U.uObj,f(colours.obj));gl.uniform3fv(U.uInk,f(colours.ink));gl.uniform3fv(U.uRC,colours.roots.flatMap(f));});
+      R.blit(g,o.W,o.H);busy=busy||R.busy();}
+    else{busy=compute();g.drawImage(off,0,0,o.W,o.H);}
     if(pick){const s=view.span/W(),P=z=>[W()/2+(z[0]-view.c[0])/s,H()/2-(z[1]-view.c[1])/s];
       if(mode==='newton'){const r=newton(poly,pick,40,1e-9,true);g.strokeStyle=C.surface;g.lineWidth=2.5;g.beginPath();r.path.forEach((z,i)=>{const p=P(z);i?g.lineTo(...p):g.moveTo(...p);});g.stroke();g.strokeStyle=C.ink;g.lineWidth=1.2;g.stroke();
         for(const z of r.path){const p=P(z);g.fillStyle=C.surface;g.beginPath();g.arc(p[0],p[1],3,0,6.3);g.fill();}}
@@ -97,5 +134,5 @@ export function complexBasins(root,opts){
   });
   o.busy=()=>row<H();
   restart();
-  return ()=>{o.stop();MS.el.remove();};
+  return ()=>{o.stop();R?.destroy();MS.el.remove();};
 }
