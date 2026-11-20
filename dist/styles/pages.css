@@ -926,6 +926,11 @@ details.source-course[open] { padding-bottom: 16px; }
 .exhibit-band { width:100%; max-width:min(100%, 880px, calc(64svh * var(--canvas-aspect, 1.5))); margin-inline:auto; box-sizing:border-box; display:flex; flex-direction:column; align-items:stretch; gap:6px; }
 .exhibit-band > .act-buttons { margin:0; }
 .exhibit-band > .feedback { margin:0; }
+.ph-slider { display:flex; flex-direction:column; gap:4px; flex:1 1 100%; font-weight:700; }
+.ph-slider input { width:100%; min-height:44px; }
+.ph-legend { margin:6px auto 0; }
+.ph-swatch { display:inline-block; width:1em; height:1em; border:2px solid var(--ink); vertical-align:-.15em; margin-inline:.6em .25em; }
+.ph-swatch:first-child { margin-inline-start:0; }
 .exhibit-metrics, .exhibit-plot { width:100%; max-width:min(100%, 880px, calc(64svh * var(--canvas-aspect, 1.5))); margin-inline:auto; box-sizing:border-box; }
 .exhibit-metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr)); margin-top:10px; margin-bottom:0; border-top:1px solid var(--line); border-left:1px solid var(--line); }
 .exhibit-metrics > div { background:var(--surface); padding:6px 10px; min-width:0; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }

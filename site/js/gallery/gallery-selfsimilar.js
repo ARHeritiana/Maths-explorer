@@ -1,7 +1,7 @@
 // Self-similar fractals built stage by stage (gallery exhibit, issue #36; maths in gallery-selfsimilar-model.js): Cantor set,
 // Koch snowflake, Sierpiński carpet, Menger sponge and Sierpiński tetrahedron. The learner predicts, adds one stage at a time,
 // reads exact counts and measures in the strip under the figure and follows the measure on a plot; the 3D ones turn by drag.
-import {exhibit,palette,orbitProject,dragOrbit} from './gallery-kit.js';
+import {exhibit,palette,dragOrbit,drawFaces} from './gallery-kit.js';
 import {illuminateFeedback} from '../motion.js';
 import {metricStrip,plotPanel} from './gallery-panels.js';
 import {FRACTALS,FRACTAL_IDS,stageFacts,cantorIntervals,kochSnowflake,carpetHoles,mengerFaces,tetrixPieces} from './gallery-selfsimilar-model.js';
@@ -98,16 +98,7 @@ export function selfSimilar(root,opts){
   o.on(o.cv,'keydown',e=>{if(e.key==='+'||e.key==='-'){e.preventDefault();n=Math.max(0,Math.min(FRACTALS[id].max,n+(e.key==='+'?1:-1)));sync();}});
   o.cv.setAttribute('aria-label',t('Fractale. Plus et moins changent d’étape ; pour les figures en 3D, glisser ou les flèches font tourner la vue.','Fractal. Plus and minus change the stage; for the 3D figures, drag or use the arrow keys to turn the view.'));
 
-  const depthOf=(v)=>orbitProject(v,view.yaw,view.pitch,1)[2]-orbitProject([0,0,0],view.yaw,view.pitch,1)[2];
-  function draw3D(C,polys,scale){
-    // polys: [{pts:[[x,y,z]...], normal:[x,y,z], shade}] ; back faces culled, the rest painted far to near
-    // light: faces turned towards the viewer are bright, grazing faces darker (a black veil of opacity 0 to 0.45)
-    const P=[];for(const q of polys){const len=Math.hypot(...q.normal),k=depthOf(q.normal)/len;if(k<=0)continue;const s=q.pts.map(v=>orbitProject(v,view.yaw,view.pitch,scale));P.push({s,d:s.reduce((a,b)=>a+b[2],0)/s.length,shade:q.shade,dark:.45*(1-k)});}
-    P.sort((a,b)=>a.d-b.d);
-    const edges=P.length<1500;g.lineWidth=P.length<300?1.2:.5;g.strokeStyle=C.ink;
-    for(const q of P){g.beginPath();q.s.forEach(([x,y],i)=>i?g.lineTo(x,y+8):g.moveTo(x,y+8));g.closePath();g.fillStyle=C.c[q.shade];g.fill();
-      if(q.dark>.01){g.globalAlpha=q.dark;g.fillStyle='#000';g.fill();g.globalAlpha=1;}if(edges)g.stroke();else{g.strokeStyle=C.c[q.shade];g.lineWidth=.6;g.stroke();g.strokeStyle=C.ink;}}
-  }
+  const draw3D=(C,polys,scale)=>drawFaces(g,C,polys,view,scale);
   o.animate(()=>{
     const C=palette();g.clearRect(0,0,o.W,o.H);g.fillStyle=C.sunken;g.fillRect(0,0,o.W,o.H);
     if(id==='cantor'){

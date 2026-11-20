@@ -37,7 +37,7 @@ const known=new Set(['monte-carlo','ferris-wheel','quadratic','probability','tri
  'double-pendulum','three-body','logistic','illumination','fair-division','fair-goods','hairy-ball',
  'nonorientable-surfaces','banach-tarski-model','gomboc','derivative','integral','vectors','statistics','complex',
  'line','exponential','cobweb','matrix','space-lines','sequences','fourier','circle-regions','buffon','bertrand',
- 'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','self-similar','life',
+ 'euler-primes','fermat','tiles','functions','limits','logarithm','reuleaux','platonic','chaos','self-similar','polyhedra','life',
  'voronoi','fastest-slide','einstein','square-packing','inscribed-square','soap-films','knots','moving-sofa',
  'opaque-square','equidecomposition','collisions','napkin-ring','hundred-boxes','morley','four-colours','mandelbrot','arithmetic','reals','algebra','percentages','conditioning',
  'random-variable','counting','polynomials','modular','bezout','primes','graphs','markov','logic','sets']);
@@ -192,6 +192,11 @@ export function modelPreview(kind) {
   for(let n=0;n<3;n++)triangles=triangles.flatMap(t=>t.map((p,i)=>[p,...t.filter((_,j)=>i!==j).map(q=>q.map((x,k)=>(x+p[k])/2))]));
   drawing=triangles.map(t=>path(t,true)).join('');
   caption=P('Triangle de Sierpiński : trois étapes','Sierpiński triangle: three steps');
+ } else if(kind==='polyhedra') {
+  const v=Array.from({length:8},(_,i)=>[i&1?1:-1,i&2?1:-1,i&4?1:-1]),m=[];
+  for(const p of v)for(const q of v)if(p.reduce((s,x,k)=>s+(x!==q[k]),0)===1&&String(p)<String(q))m.push(p.map((x,k)=>(x+q[k])/2));
+  drawing=m.flatMap((p,i)=>m.slice(i+1).filter(q=>Math.hypot(...p.map((x,k)=>x-q[k]))<1.5).map(q=>path([p,q].map(project)))).join('');
+  caption=P('Le cuboctaèdre : un cube coupé jusqu’au milieu des arêtes','The cuboctahedron: a cube cut to the midpoints of its edges');
  } else if(kind==='self-similar') {
   let squares=[[40,10,80]];
   for(let n=0;n<2;n++)squares=squares.flatMap(([x,y,s])=>{const t=s/3,o=[];for(let i=0;i<3;i++)for(let j=0;j<3;j++)if(i!==1||j!==1)o.push([x+i*t,y+j*t,t]);return o;});

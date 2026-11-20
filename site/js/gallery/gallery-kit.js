@@ -20,6 +20,20 @@ export function background(o){const C=palette();o.g.clearRect(0,0,o.W,o.H);o.g.f
 export function path(g,pts,{close=false,fill=null,stroke=null,width=2,alpha=1}={}){if(!pts.length)return;g.globalAlpha=alpha;g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));if(close)g.closePath();if(fill){g.fillStyle=fill;g.fill();}if(stroke){g.strokeStyle=stroke;g.lineWidth=width;g.stroke();}g.globalAlpha=1;}
 export function dot(g,p,color,r=7,label=''){g.fillStyle=color;g.beginPath();g.arc(p[0],p[1],r,0,TAU);g.fill();if(label){g.font='bold 14px system-ui';g.textAlign='center';g.fillText(label,p[0],p[1]-14);}}
 export function orbitProject([x,y,z],yaw=-.5,pitch=.65,scale=125){const a=x*Math.cos(yaw)-y*Math.sin(yaw),b=x*Math.sin(yaw)+y*Math.cos(yaw);return [320+a*scale,224+(b*Math.sin(pitch)-z*Math.cos(pitch))*scale,b*Math.cos(pitch)+z*Math.sin(pitch)];}
+// Convex 3D faces on a 2D canvas, turned by view {yaw, pitch}: back faces culled, the rest painted far to near, lit by a
+// veil that darkens faces turned away from the viewer. polys: [{pts:[[x,y,z]...], normal:[x,y,z], shade (index into C.c)}].
+export function drawFaces(g,C,polys,view,scale,{dy=8,ghost=false}={}){
+  const o0=orbitProject([0,0,0],view.yaw,view.pitch,1)[2],P=[];
+  for(const q of polys){const k=(orbitProject(q.normal,view.yaw,view.pitch,1)[2]-o0)/Math.hypot(...q.normal);if(k<=0)continue;
+    const s=q.pts.map(v=>orbitProject(v,view.yaw,view.pitch,scale));P.push({s,d:s.reduce((a,b)=>a+b[2],0)/s.length,shade:q.shade,dark:.45*(1-k)});}
+  P.sort((a,b)=>a.d-b.d);
+  const edges=P.length<1500;g.lineWidth=P.length<300?1.2:.5;g.strokeStyle=C.ink;
+  for(const q of P){g.beginPath();q.s.forEach(([x,y],i)=>i?g.lineTo(x,y+dy):g.moveTo(x,y+dy));g.closePath();
+    if(ghost){g.setLineDash([5,4]);g.stroke();g.setLineDash([]);continue;}
+    g.fillStyle=C.c[q.shade];g.fill();
+    if(q.dark>.01){g.globalAlpha=q.dark;g.fillStyle='#000';g.fill();g.globalAlpha=1;}
+    if(edges)g.stroke();else{g.strokeStyle=C.c[q.shade];g.lineWidth=.6;g.stroke();g.strokeStyle=C.ink;}}
+}
 export const button=(id,label,primary=false)=>`<button type="button" id="${id}" class="btn ${primary?'btn-primary':'btn-secondary'}">${label}</button>`;
 export function dragOrbit(o,state,hit=()=>null,moveHandle=()=>{}){
   let drag=null;

@@ -1,5 +1,15 @@
 # Handoff
 
+## Polyhedra by transformation, phase 1 (20 November 2026, issue #35)
+
+New exhibit `#gallery/polyhedra` ("Couper les coins d’un polyèdre"): one depth slider cuts the corners of any Platonic
+solid through the truncated solid, the rectified solid and the truncated dual to the dual (the cutting planes are the
+dual's faces); stop buttons at the exact Archimedean depths; strip with the solid's name, V, E, F, Euler, face types and
+whether the edges are equal; dual in dotted lines; a question on the end solid. Model `gallery-polyhedra-model.js`
+(half-space intersection), tests `tests/gallery-polyhedra.test.mjs`. The 3D painter is now shared (`gallery-kit.js`
+`drawFaces`). Still to do for #35: stellation and the Kepler-Poinsot solids, Catalan duals of the Archimedean solids,
+the snub and rhombi- solids (expansion), Johnson solids, a classification challenge, a link from #27.
+
 ## Fractal collection, phase 1 (20 November 2026, issue #36)
 
 New exhibit `#gallery/self-similar` ("Fractales, étape par étape"): Cantor set, Koch snowflake, Sierpiński carpet,
