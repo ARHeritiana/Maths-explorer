@@ -924,11 +924,13 @@ details.source-course[open] { padding-bottom: 16px; }
 .exhibit-readout { min-height:3em; font-variant-numeric:tabular-nums; }
 /* a band of controls lined up with the figure (same width, centred), one group per line */
 .exhibit-band { width:100%; max-width:min(100%, 880px, calc(64svh * var(--canvas-aspect, 1.5))); margin-inline:auto; box-sizing:border-box; display:flex; flex-direction:column; align-items:stretch; gap:6px; }
+.exhibit-band.act-controls { flex-direction:column; flex-wrap:nowrap; align-items:stretch; }   /* one group per line, even inside act-controls */
+.exhibit-band > .ph-slider { width:100%; }
 .exhibit-band > .act-buttons { margin:0; }
 .exhibit-band > .feedback { margin:0; }
 .ph-slider { display:flex; flex-direction:column; gap:4px; flex:1 1 100%; font-weight:700; }
 .ph-slider input { width:100%; min-height:44px; }
-.ph-legend { margin:6px auto 0; }
+.ph-legend, .exhibit-band.ph-legend { display:block; margin:6px auto 0; }   /* a line of text with swatches, not a column of groups */
 .ph-swatch { display:inline-block; width:1em; height:1em; border:2px solid var(--ink); vertical-align:-.15em; margin-inline:.6em .25em; }
 .ph-swatch:first-child { margin-inline-start:0; }
 /* braess challenge: the route cards under the town, one per route, the selected one pressed in */
