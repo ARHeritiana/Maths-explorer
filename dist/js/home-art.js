@@ -460,7 +460,18 @@ function polyhedraArt(cv, opts) {
     g.restore();
   }, { reduced: opts.reduced, still: 3 });
 }
-export const ART = { polyhedra: polyhedraArt, 'self-similar': selfSimilarArt, collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
+// Viviani: an equilateral triangle, a point that wanders inside, its three distances to the sides.
+import { facts as vivFacts, foot as vivFoot } from './gallery/gallery-viviani-model.js';
+function vivianiArt(cv, opts) {
+  return runner(cv, (g, W, H, t, C) => {
+    const s = Math.min(W, H) * 0.42, cx = W / 2, cy = H / 2 + s * 0.15, T = [[cx, cy - s], [cx - s * 0.866, cy + s * 0.5], [cx + s * 0.866, cy + s * 0.5]];
+    const P = [cx + s * 0.32 * Math.cos(t * 0.7), cy + s * 0.22 * Math.sin(t * 1.1)];
+    g.fillStyle = C.surface; g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); T.forEach((p, i) => (i ? g.lineTo(...p) : g.moveTo(...p))); g.closePath(); g.fill(); g.stroke();
+    [[T[1], T[2]], [T[2], T[0]], [T[0], T[1]]].forEach(([U, V], k) => { const F = vivFoot(P, U, V); g.strokeStyle = C.c[k]; g.lineWidth = 3; g.beginPath(); g.moveTo(...P); g.lineTo(...F); g.stroke(); });
+    g.fillStyle = C.object; g.beginPath(); g.arc(P[0], P[1], 5, 0, Math.PI * 2); g.fill(); void vivFacts;
+  }, { reduced: opts.reduced, still: 2 });
+}
+export const ART = { viviani: vivianiArt, polyhedra: polyhedraArt, 'self-similar': selfSimilarArt, collisions: collisionsArt, morley: morleyArt, 'hundred-boxes': boxesArt, 'napkin-ring': napkinArt, gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
   life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt, equidecomposition: equidecompositionArt,
   ...Object.fromEntries(['secretary-gallery','tank-gallery','benford-gallery','baker-gallery','birthdays-gallery','monty-gallery','fair-division-gallery','fair-goods-gallery','hairy-ball-gallery','nonorientable-surfaces-gallery','banach-tarski-gallery','double-pendulum-gallery','three-body-gallery','logistic-gallery','mirrored-rooms'].map(id => [id, (cv, o) => subjectArt(id, cv, o)])),
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
