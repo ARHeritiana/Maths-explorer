@@ -59,6 +59,8 @@ export const RELATIONS = [
    concepts: ['reasoning', 'induction', 'logic', 'invariants', 'proof'], routes: []},
   {id: 'rel.complex-numbers', title: ['Nombres complexes', 'Complex numbers'], synonyms: ['imaginaire', 'module', 'argument', 'imaginary', 'modulus'],
    concepts: ['complex', 'complex-algebra', 'complex-plane'], routes: ['#lab/complex']},
+  {id: 'rel.measuring-with-angles', title: ['Mesurer avec des angles et des proportions', 'Measuring with angles and proportions'], synonyms: ['Ératosthène', 'circonférence de la Terre', 'ombre', 'angle au centre', 'arc', 'Eratosthenes', 'circumference of the Earth', 'shadow', 'central angle'],
+   concepts: [], routes: ['#lab/eratosthenes', '#chapter/seconde-09', '#chapter/premiere-07', '#lab/trig']},
   {id: 'rel.constant-width', title: ['Cercles, arcs et largeur constante', 'Circles, arcs and constant width'], synonyms: ['triangle de Reuleaux', 'largeur constante', 'périmètre', 'arc de cercle', 'Reuleaux triangle', 'constant width', 'perimeter', 'arc length'],
    concepts: [], routes: ['#gallery/reuleaux', '#chapter/premiere-07', '#chapter/premiere-10', '#lab/trig']},
   {id: 'rel.polyhedra-and-solids', title: ['Solides et polyèdres', 'Solids and polyhedra'], synonyms: ['solides de Platon', 'polyèdre régulier', 'sommets arêtes faces', 'espace', 'Platonic solids', 'regular polyhedron', 'vertices edges faces', 'space geometry'],
