@@ -96,33 +96,33 @@ test('jug objects support tapping, keyboard, dragging and cancellation; fly scen
     let stop=jugActivity(root,{t,q:{jugs:'3,5,4'},reduced:true});const svg=root.querySelector('.jg-svg'),jug=i=>root.querySelector(`[data-jug="${i}"]`),tap=root.querySelector('[data-destination="tap"]'),sink=root.querySelector('[data-destination="sink"]');
     const click=el=>el.dispatchEvent(new w.MouseEvent('click',{bubbles:true}));
     assert.equal(root.querySelector('.jg-moves'),null);assert.equal(svg.dataset.state,'0,0');
-    pointer(jug(0),'pointerdown',25,40);pointer(svg,'pointerup',25,40);click(svg);
+    pointer(jug(0),'pointerdown',190,150);pointer(svg,'pointerup',190,150);click(svg);
     assert.equal(jug(0).getAttribute('aria-pressed'),'true','a captured tap activates its ORIGINAL jug');
     click(jug(0));
     click(jug(0));click(tap);assert.equal(svg.dataset.state,'3,0');
     click(jug(0));click(jug(1));assert.equal(svg.dataset.state,'0,3');
     key(jug(1),'Enter');key(tap,'Enter');assert.equal(svg.dataset.state,'0,5');
-    pointer(jug(1),'pointerdown',75,40);pointer(svg,'pointermove',25,40);pointer(svg,'pointerup',25,40);assert.equal(svg.dataset.state,'3,2');
+    pointer(jug(1),'pointerdown',282,150);pointer(svg,'pointermove',190,150);pointer(svg,'pointerup',190,150);assert.equal(svg.dataset.state,'3,2');
     // Captured drag generates a click on the SVG in a browser; it must not count twice.
     click(svg);assert.equal(svg.dataset.state,'3,2');
     click(jug(0));click(sink);assert.equal(svg.dataset.state,'0,2');
-    pointer(jug(1),'pointerdown',75,40);pointer(svg,'pointermove',50,80);svg.dispatchEvent(new w.Event('pointercancel'));pointer(svg,'pointerup',50,80);assert.equal(svg.dataset.state,'0,2');
+    pointer(jug(1),'pointerdown',282,150);pointer(svg,'pointermove',260,250);svg.dispatchEvent(new w.Event('pointercancel'));pointer(svg,'pointerup',260,250);assert.equal(svg.dataset.state,'0,2');
     root.querySelector('#jg-undo').click();assert.equal(svg.dataset.state,'3,2');
     root.querySelector('#jg-reset').click();assert.equal(svg.dataset.state,'0,0');
     // Off-scene drops are never interpreted as the tap or sink.
-    pointer(jug(0),'pointerdown',25,40);pointer(svg,'pointermove',50,-80);pointer(svg,'pointerup',50,-80);assert.equal(svg.dataset.state,'0,0');
+    pointer(jug(0),'pointerdown',190,150);pointer(svg,'pointermove',260,-80);pointer(svg,'pointerup',260,-80);assert.equal(svg.dataset.state,'0,0');
     click(svg);stop();
     stop=flyActivity(root,{t,lang,q:{trip:'200,50,50,500'},reduced:false});
     const scene=root.querySelector('svg'),fly=root.querySelector('.fl-fly');let now=performance.now();
-    pointer(scene,'pointerdown',50,15);pointer(scene,'pointerup',50,15);
+    pointer(scene,'pointerdown',260,78);pointer(scene,'pointerup',260,78);
     for(let i=0;i<320;i++){now+=16;const work=[...frames.values()];frames.clear();work.forEach(f=>f(now));}
     assert.equal(root.querySelector('.fl-fly'),fly,'movement never reconstructs the fly or train objects');
     assert.ok(Number(scene.dataset.legs)>=8,'visible rapid repeated bounces in the default scenario');
     key(scene,'Home');assert.equal(scene.dataset.time,'0');
     key(scene,'b');assert.ok(Math.abs(Number(scene.dataset.time)-200/550)<1e-9);
-    pointer(scene,'pointerdown',10,15);pointer(scene,'pointermove',52,15);pointer(scene,'pointerup',52,15);assert.ok(Number(scene.dataset.time)>meetTime(200,50,50)/2);
+    pointer(scene,'pointerdown',52,78);pointer(scene,'pointermove',270,78);pointer(scene,'pointerup',270,78);assert.ok(Number(scene.dataset.time)>meetTime(200,50,50)/2);
     const timeBefore=scene.dataset.time;
-    pointer(scene,'pointerdown',20,15,2);pointer(scene,'pointerdown',60,15,3);pointer(scene,'pointermove',90,15,2);pointer(scene,'pointerup',90,15,2);pointer(scene,'pointerup',60,15,3);
+    pointer(scene,'pointerdown',104,78,2);pointer(scene,'pointerdown',312,78,3);pointer(scene,'pointermove',468,78,2);pointer(scene,'pointerup',468,78,2);pointer(scene,'pointerup',312,78,3);
     assert.equal(scene.dataset.time,timeBefore,'a second pointer cancels scrubbing instead of owning another finger');assert.equal(frames.size,0);
     stop();assert.equal(frames.size,0);root.remove();
   }
@@ -159,10 +159,10 @@ test('challenge motion callbacks, contact, hidden answers and ordered nail drawi
     stop = mountActivity('fly',root,{lang,reduced:()=>false,params:defaults('fly')});
     const scene = root.querySelector('svg');key(scene,'b');
     const x = Number(root.querySelector('.fl-fly').getAttribute('transform').match(/translate\(([^ ]+)/)[1]);
-    const trains = [...scene.querySelectorAll('g')].filter(g=>g.querySelector('path[d^="M12"]'));
+    const trains = [...scene.querySelectorAll('.fl-train')].slice(1);
     const trainX = Number(trains[0].getAttribute('transform').match(/translate\(([^ ]+)/)[1]);
     assert.ok(Math.abs(x-trainX)<1e-8,'the first bounce touches the second front face');
-    assert.match(root.querySelector('.fl-fly').getAttribute('transform'),/19.5/);
+    assert.match(root.querySelector('.fl-fly').getAttribute('transform'),/ 176/);
     key(scene,'End');assert.doesNotMatch(root.querySelector('#fl-read').textContent,/1000|distance/);stop();
     stop = mountActivity('nails',root,{lang,reduced:()=>true,params:defaults('nails')});
     const svg = root.querySelector('svg');assert.equal(root.querySelector('.nl-tools details,details.nl-tools'),null,'no explanatory fold under the scene');

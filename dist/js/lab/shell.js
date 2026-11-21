@@ -351,13 +351,33 @@ export function createShell(host, exp, tpl, opts = {}) {
     card.append(open);
     card._open = open;
   }
-  let argumentEl = null;
+  let argumentEl = null, comicPlayer = null;
   if (full) {
     argumentEl = el("section", "lab2-argument");
     argumentEl.hidden = true;
     if (free) argumentEl.append(el("h2", "", t(["L’idée", "The idea"])));
     else argumentEl.append(el("h2", "", t(T("evidenceTitle"))), el("p", "lab2-evidence", t(exp.evidence || T("evidence"))));
     if (exp.conclusion) argumentEl.append(el("p", "lab2-conclusion", t(exp.conclusion)));
+    // the conclusion played as a short cartoon at the board (challenges/common/comic.js), built when first opened
+    if (exp.conclusion) {
+      const fold = el("div", "lab2-comic"), toggle = el("button", "btn-quiet lab2-comic-toggle", t(["Le voir en dessin animé", "Watch it as a cartoon"])), host = el("div", "sol-host comic-host");
+      toggle.type = "button"; toggle.setAttribute("aria-expanded", "false"); host.hidden = true;
+      fold.append(toggle, host);
+      fold.hidden = true;   // shown only when the conclusion has a formula to write on the board
+      import("../challenges/common/comic.js").then(({ hasFormulas }) => { if (alive && hasFormulas(exp.conclusion)) fold.hidden = false; }).catch(() => {});
+      toggle.addEventListener("click", async () => {
+        const open = host.hidden;
+        host.hidden = !open; toggle.setAttribute("aria-expanded", String(open));
+        if (!open) { comicPlayer?.stop(); return; }
+        if (!comicPlayer) {
+          const { mountComic } = await import("../challenges/common/comic.js");
+          if (!host.isConnected) return;
+          comicPlayer = mountComic(exp.conclusion, host, { lang: fmt.lang, reduced: () => stage.reduced() });
+        }
+        comicPlayer.start();
+      });
+      argumentEl.append(fold);
+    }
     root.append(argumentEl);
   }
 
@@ -666,6 +686,7 @@ export function createShell(host, exp, tpl, opts = {}) {
     },
     flush() { sync(); },
     destroy() {
+      comicPlayer?.stop();
       alive = false;
       clearTimeout(announceTimer);
       stopPlay();

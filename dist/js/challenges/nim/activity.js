@@ -1,6 +1,7 @@
 // Hands-on activity of the nim challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { clamp, goalLine } from "../common/kit.js";
 import { cartoonPress } from "../common/cartoon.js";
+import { mountBuddy } from "../common/buddy.js";
 
 /* -------------------------------------------------------------------- nim */
 export function activity(root, { t, reduced, q }) {
@@ -67,5 +68,7 @@ export function activity(root, { t, reduced, q }) {
   root.querySelectorAll('[name="nim-level"]').forEach((r) => r.addEventListener("change", () => { perfect = r.value === "perfect"; start(); }));
   render();
   const off = cartoonPress(root, reduced);
-  return () => { clearTimeout(timer); off(); };
+  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 2 }, { kind: "robot" }], backdrop: "games", watch: (s) => /il gagne|it wins/i.test(s) ? "lose" : /tu gagnes|you win/i.test(s) ? "win" : null });
+  const offActivity = () => { clearTimeout(timer); off(); };
+  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
 }

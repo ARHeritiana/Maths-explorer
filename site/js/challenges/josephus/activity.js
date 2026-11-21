@@ -28,7 +28,17 @@ export function activity(root, { t, reduced, q }) {
     for (let i = 1; i <= n; i++) {
       const [x, y] = pos(i), isDead = dead.has(i), win = finished && i === order.last;
       svgEl("circle", { cx: x, cy: y, r: win ? r + 5 : r, class: `js-p${isDead ? " dead" : ""}${win ? " win" : ""}` }, svg);
-      if (n <= 45 || win) svgEl("text", { x, y: y + 3.5, "text-anchor": "middle", class: `js-n${isDead ? " dead" : ""}` }, svg).textContent = i;
+      // a little face on each person while there is room: eyes (crossed out once eliminated) and a mouth; the last one grins
+      if (r >= 9) {
+        const ink = { stroke: "var(--ink)", "stroke-width": 0.9, fill: "none", "stroke-linecap": "round", "pointer-events": "none" };
+        for (const ex of [-r * 0.36, r * 0.36]) {
+          if (isDead) svgEl("path", { d: `M${x + ex - 1.6} ${y - r * 0.42} l3.2 3.2 m0 -3.2 l-3.2 3.2`, ...ink }, svg);
+          else svgEl("circle", { cx: x + ex, cy: y - r * 0.28, r: Math.max(1, r * 0.1), fill: "#1d1d1d", "pointer-events": "none" }, svg);
+        }
+        if (win) svgEl("path", { d: `M${x - r * 0.4} ${y + r * 0.42} q${r * 0.4} ${r * 0.45} ${r * 0.8} 0`, ...ink, "stroke-width": 1.3 }, svg);
+        if (win) svgEl("path", { d: `M${x - r * 0.6} ${y - r - 2} l${r * 0.3} ${-r * 0.6} l${r * 0.3} ${r * 0.4} l${r * 0.3} ${-r * 0.5} l${r * 0.3} ${r * 0.5} l${r * 0.3} ${-r * 0.4} l${r * 0.1} ${r * 0.6} Z`, fill: "#ffd34d", stroke: "var(--ink)", "stroke-width": 1, "pointer-events": "none" }, svg);
+      }
+      if (n <= 45 || win) svgEl("text", { x, y: y + (r >= 9 ? r * 0.62 : 3.5), "text-anchor": "middle", class: `js-n${isDead ? " dead" : ""}`, style: r >= 9 ? `font-size:${Math.max(7, r * 0.75)}px` : "" }, svg).textContent = i;
     }
     root.querySelector("#js-out").textContent = n;
     const left = n - killed;

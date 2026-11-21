@@ -1,3 +1,4 @@
+// Hands-on activity of the factorials challenge: the factors 1 to n as tiles; tapping a tile removes one factor p from it.
 import { goalLine } from "../common/kit.js";
 import { cartoonPress } from "../common/cartoon.js";
 import { primeFactors } from "./maths.js";
