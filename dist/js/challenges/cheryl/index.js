@@ -4,7 +4,7 @@ import { choice, P } from "../common/helpers.js";
 import { svg, dot } from "../common/icon.js";
 import { CHERYL_SETS, cherylSteps, cherylAnswer, uniqueDays, dateText, MONTHS } from "./maths.js";
 export { activity } from "./activity.js";
-export { diagram } from "./solution.js";
+export { diagram, scene } from "./solution.js";
 
 const list = (dates, lang) => dates.map((d) => dateText(d, lang)).join(", ");
 const months = (dates, lang) => [...new Set(dates.map((d) => d[0]))].map((m) => MONTHS[m][lang]).join(lang ? " and " : " et ");

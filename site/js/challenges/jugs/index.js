@@ -4,7 +4,7 @@ import { choice, int, P } from "../common/helpers.js";
 import { svg, dot } from "../common/icon.js";
 import { JUG_PRESETS, parseJugs, jugsSolve, jugsMin, gcd, moveText } from "./maths.js";
 export { activity } from "./activity.js";
-export { diagram } from "./solution.js";
+export { diagram, scene } from "./solution.js";
 
 export const card = {
   id: "jugs",

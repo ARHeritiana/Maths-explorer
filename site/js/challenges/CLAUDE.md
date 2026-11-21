@@ -81,3 +81,15 @@ Update of 20 November 2026: `braess/` (Braess's paradox, issue #34) has `art.js`
 B, cobbled streets, expressways, the new road with its barrier and ribbon, a car seen from above with its driver, the
 stopwatch); `maths.js` holds the route times, the equilibrium, one step of selfish switching and the map positions
 shared by the activity and the solution. Test: `tests/braess.test.mjs`.
+
+Update of 21 November 2026 (cartoon solutions): the five solutions that were still plain diagrams are now `scene`s in a
+cartoon world. `fly/art.js` (countryside, locomotives with a face, a driver and turning wheels, the fly, a stopwatch):
+flight arcs leg by leg, the stopwatch for the meeting time, then all the legs laid end to end in one ribbon the fly
+covers at constant speed. `jugs/art.js` (kitchen, tap, sink, chalkboard, glass cans with faces and one graduation per
+litre): the states as points of a table on the chalkboard, the reachable amounts, then the shortest sequence played by
+the jugs (hop to the tap or the sink, onto the other jug, pour) while the chalk traces the path. `cookies/` (children at
+a picnic table, cookies rolling into one row, chocolate sticks as separators that hop to make another sharing, the
+places numbered and ringed). `cheryl/` (Albert, Bernard and Cheryl beside a wall calendar, each sentence in a bubble,
+a red marker crossing out dates, a cake on the answer). `factorials/` (tiles 1 to n drop coins p onto one shelf per
+power of p, a counter with a clipboard; for trailing zeros the scarcest prime of the base, `shownPrime`, is the one
+shown, with a fourth step for the minimum).

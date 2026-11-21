@@ -1,8 +1,9 @@
+// Challenge "the hidden factors of n!": card, variations (prime exponent or trailing zeros in any base), original question and emblem.
 import { choice, int, P } from "../common/helpers.js";
 import { svg } from "../common/icon.js";
 import { factorialValuation, primeFactors, trailingZeros, valuationTerms } from "./maths.js";
 export { activity } from "./activity.js";
-export { diagram } from "./solution.js";
+export { diagram, scene } from "./solution.js";
 export const card = { id: "factorials", type: "olympiad", title: P("Les facteurs cachés de n!", "The hidden factors of n!"), topic: P("Arithmétique", "Number theory"), difficulty: 2, minutes: 10, extension: P("Quel est le plus petit n pour lequel n! est divisible par 10¹⁰ ? Et par 12¹⁰ ?", "What is the smallest n for which n! is divisible by 10¹⁰? What about 12¹⁰?") };
 export const variant = {
   params: [int("n", "Factorielle de", "Factorial of", 0, 200, 50), choice("kind", "Question", "Question", [["zeros", "Zéros finaux", "Trailing zeros"], ["valuation", "Exposant premier", "Prime exponent"]], "zeros"), choice("p", "Nombre premier", "Prime", [[2, "2", "2"], [3, "3", "3"], [5, "5", "5"], [7, "7", "7"], [11, "11", "11"]], 3), int("base", "Base", "Base", 2, 36, 10)],

@@ -4,7 +4,7 @@ import { choice, int, P } from "../common/helpers.js";
 import { svg, dot } from "../common/icon.js";
 import { FLY_PRESETS, parseFly, meetTime, flyDistance, legs, flyNumber } from "./maths.js";
 export { activity } from "./activity.js";
-export { diagram } from "./solution.js";
+export { diagram, scene } from "./solution.js";
 
 const num = flyNumber;
 
