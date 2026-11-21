@@ -1594,6 +1594,456 @@ __e.discoveryChapters = discoveryChapters;
 __e.primaryCourses = primaryCourses;
 __e.assetVersions = assetVersions;
 });
+__d("challenges/common/bubble.js", function (__e, __r) {
+// Shared speech bubble for the challenges: makeBubble once, then poseBubble every frame (pops in with an overshoot).
+const { svgEl } = __r("challenges/common/kit.js");
+const INK = "var(--ink)";
+
+// A speech bubble with a tail, anchored by its tail tip.
+function makeBubble(parent) {
+  const root = svgEl("g", { "pointer-events": "none" }, parent);
+  const box = svgEl("path", { fill: "var(--surface)", stroke: INK, "stroke-width": 1.3, "stroke-linejoin": "round" }, root);
+  const text = svgEl("text", { "text-anchor": "middle", "font-size": 11, "font-weight": 700, fill: INK }, root);
+  return { root, box, text };
+}
+
+// Pose a bubble: tail tip at (x, y), text, appear 0..1 (pops in with a small overshoot).
+function poseBubble(B, { x, y, text, appear = 1 }) {
+  const k = Math.max(0, Math.min(1, appear)), pop = k <= 0 ? 0 : 1 + 0.15 * Math.sin(Math.PI * k) * (1 - k);
+  B.root.setAttribute("opacity", k.toFixed(2));
+  B.root.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${pop.toFixed(3)})`);
+  const w = Math.max(40, text.length * 6.4 + 14), h = 20, top = -7 - h, L = -w / 2, R = w / 2, B0 = top + h;   // tail tip at (0, 0)
+  B.box.setAttribute("d", `M${L + 8} ${top} H${R - 8} Q${R} ${top} ${R} ${top + 8} V${B0 - 8} Q${R} ${B0} ${R - 8} ${B0} H6 L0 0 L-2 ${B0} H${L + 8} Q${L} ${B0} ${L} ${B0 - 8} V${top + 8} Q${L} ${top} ${L + 8} ${top} Z`);
+  B.text.setAttribute("x", 0); B.text.setAttribute("y", top + 14); B.text.textContent = text;
+}
+
+__e.makeBubble = makeBubble;
+__e.poseBubble = poseBubble;
+});
+__d("challenges/common/comic.js", function (__e, __r) {
+// A written explanation played as a short cartoon: a teacher at a chalkboard and a curious student. The text is cut into
+// sentences (one step each, shown as the player's caption); the teacher writes the formula or the numbers of each sentence
+// on the board in chalk (a sentence without any keeps the board as it is), points, talks; the student listens, wonders,
+// and lights up at the end. `comic(text, options)` returns a solution definition for the shared player
+// (common/player.js): { size, dur, steps, mount, update }, every frame a pure function of (step, p). Used by the written
+// version of the challenges, by the curiosities' "Comprendre la réponse" and by the laboratory's argument.
+const { svgEl } = __r("challenges/common/kit.js");
+const { makePerson, posePerson } = __r("challenges/common/person.js");
+const { makeBubble, poseBubble } = __r("challenges/common/bubble.js");
+const { playSolution } = __r("challenges/common/player.js");
+
+const W = 520, H = 300, FLOOR = 274, INK = "var(--ink)", CHALK = "#f4f1e6", CHALK_HOT = "#ffd34d";
+const BOARD = { x: 196, y: 22, w: 308, h: 176 };
+const cl = (x) => Math.max(0, Math.min(1, x)), seg = (p, a, b) => cl((p - a) / (b - a));
+const g = (p, a = {}) => svgEl("g", a, p);
+
+// Sentences of a text, merged so that there are at most `max` steps.
+function sentences(text, max = 7) {
+  const parts = String(text).replace(/<sup>(.*?)<\/sup>/g, "^$1").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim().split(/(?<=[.!?…])\s+(?=[A-ZÀ-ÝÉ«“"(0-9])/u).filter(Boolean);
+  while (parts.length > max) {
+    let k = 0;   // merge the shortest neighbouring pair
+    for (let i = 1; i < parts.length - 1; i++) if (parts[i].length + parts[i + 1].length < parts[k].length + parts[k + 1].length) k = i;
+    parts.splice(k, 2, `${parts[k]} ${parts[k + 1]}`);
+  }
+  return parts;
+}
+
+// The mathematical bits of a sentence: runs around a relation or an operator that hold a digit, written with short
+// tokens (no ordinary words), at most `max` characters each. "C(14, 4) = 1001", "√365 ≈ 19", "50 × 2".
+function mathBits(sentence, max = 34) {
+  const out = [], re = /[\p{L}\p{N}√π(⌊|\-−][^\s;:]*(?:\s*[=≈≤≥<>×÷+−·/]\s*[^\s;:]+)+/gu;
+  // keep "C(14, 4)" and "5 050" in one piece while matching (spaces after a comma inside brackets, digit groups)
+  const KEEP = "\uE000", plain = String(sentence).replace(/<sup>(.*?)<\/sup>/g, "^$1").replace(/<[^>]+>/g, "")
+    .replace(/\(([^()]*)\)/g, (m) => m.replace(/,\s+/g, `,${KEEP}`)).replace(/(\d)[\s\u00a0\u202f](?=\d{3}\b)/g, `$1${KEEP}`);
+  for (const m of plain.matchAll(re)) {
+    let s = m[0].replace(/[,.]+$/, "").replace(/\uE000/g, (c, i, all) => (all[i - 1] === "," ? " " : "\u202f"));
+    if (!/\d/.test(s) || !/[=≈≤≥<>×÷+−·]/.test(s)) continue;
+    s = s.replace(/^.*\p{L}{4,}\S*\s*/u, "");   // drop the words in front ("x-coordinate −b/(2a)")
+    if (!/\d/.test(s) || (s.match(/\p{L}{4,}/gu) || []).length) continue;   // ordinary words: not a formula
+    if (s.length > max) s = `${s.slice(0, max - 1)}…`;
+    if (!out.includes(s)) out.push(s);
+  }
+  const rel = out.filter((b) => /[=≈≤≥<>]/.test(b));
+  return (rel.length ? rel : out).slice(0, 2);
+}
+
+// what the teacher says to the student when a step starts (never addressed to the reader)
+const TALK = [["Bon…", "Right…"], ["Ensuite…", "Next…"], ["Donc…", "So…"], ["Et voilà !", "There it is!"]];
+
+// text: [fr, en] (or a string); icon: optional SVG markup drawn in the corner of the board (an emblem in currentColor);
+// picture: optional (canvas) => void that draws the subject on a sheet pinned to the board (a gallery card's art).
+function comic(text, { icon = "", max = 7, picture = null } = {}) {
+  const pair = Array.isArray(text) ? text : [text, text];
+  const parts = [sentences(pair[0], max), sentences(pair[1], max)];
+  const n = Math.max(parts[0].length, parts[1].length);
+  const at = (L, i) => parts[L][Math.min(i, parts[L].length - 1)] || "";
+  const steps = Array.from({ length: n }, (_, i) => [at(0, i), at(1, i)]);
+  return {
+    size: [W, H],
+    dur: (step) => Math.min(9000, Math.max(3600, 1800 + 48 * Math.max(at(0, step).length, at(1, step).length))),
+    steps: () => steps,
+    mount(c) {
+      const L = c.t(0, 1), svg = c.svg;
+      // the classroom: wall with a window, floor, the board with its ledge and chalk
+      svgEl("rect", { x: 0, y: 0, width: W, height: FLOOR, fill: "color-mix(in srgb, #f6e7c8 55%, var(--surface))" }, svg);
+      svgEl("rect", { x: 22, y: 30, width: 96, height: 70, rx: 4, fill: "color-mix(in srgb, #9fd3ff 55%, var(--surface))", stroke: INK, "stroke-width": 1.4 }, svg);
+      svgEl("path", { d: "M70 30 V100 M22 65 H118", stroke: INK, "stroke-width": 1.2 }, svg);
+      svgEl("rect", { x: 0, y: FLOOR, width: W, height: H - FLOOR, fill: "#b07a43" }, svg);
+      svgEl("rect", { x: 0, y: FLOOR - 3, width: W, height: 5, fill: "#8d5f2d", stroke: INK, "stroke-width": 1 }, svg);
+      svgEl("rect", { x: BOARD.x - 7, y: BOARD.y - 7, width: BOARD.w + 14, height: BOARD.h + 14, rx: 5, fill: "#8d5f2d", stroke: INK, "stroke-width": 1.6 }, svg);
+      svgEl("rect", { ...{ x: BOARD.x, y: BOARD.y, width: BOARD.w, height: BOARD.h }, rx: 2, fill: "#2f4a3c", stroke: INK, "stroke-width": 1 }, svg);
+      svgEl("rect", { x: BOARD.x + 20, y: BOARD.y + BOARD.h + 4, width: 22, height: 5, rx: 2, fill: "#fff" }, svg);
+      // a sheet pinned on the right of the board, with the subject drawn on it
+      const PW = picture ? 128 : 0;
+      if (picture) {
+        const px = BOARD.x + BOARD.w - PW - 12, py = BOARD.y + (BOARD.h - PW) / 2;
+        svgEl("rect", { x: px - 5, y: py - 5, width: PW + 10, height: PW + 10, fill: "#fffdf6", stroke: INK, "stroke-width": 1.2, transform: `rotate(-2 ${px + PW / 2} ${py + PW / 2})` }, svg);
+        const fo = svgEl("foreignObject", { x: px, y: py, width: PW, height: PW }, svg), doc = svg.ownerDocument;
+        const cv = doc.createElementNS("http://www.w3.org/1999/xhtml", "canvas");
+        cv.setAttribute("style", `display:block;width:${PW}px;height:${PW}px`); cv.setAttribute("aria-hidden", "true");
+        fo.append(cv);
+        try { picture(cv); } catch { /* a drawing that cannot start leaves the sheet blank */ }
+        svgEl("rect", { x: px + PW / 2 - 14, y: py - 10, width: 28, height: 10, fill: "#f4e1a0", opacity: 0.85, transform: `rotate(-6 ${px + PW / 2} ${py})` }, svg);
+      }
+      if (icon && !picture) { const e = g(svg, { transform: `translate(${BOARD.x + BOARD.w - 44} ${BOARD.y + 6}) scale(0.6)`, color: CHALK, opacity: 0.7 }); e.innerHTML = icon; }
+      // the board lines: one per step that has formulas, written one after the other
+      const lines = [];
+      for (let i = 0; i < n; i++) for (const bit of mathBits(at(L, i))) lines.push({ step: i, text: bit });
+      const fit = Math.min(18, Math.max(10, (BOARD.w - PW - 40) / Math.max(12, ...lines.map((l) => l.text.length)) * 1.75));
+      const clipId = `comic-${Math.random().toString(36).slice(2, 8)}`;
+      const cp = svgEl("clipPath", { id: clipId }, svg), cpRect = svgEl("rect", { x: BOARD.x, y: BOARD.y, width: 0, height: BOARD.h }, cp);
+      const texts = lines.map((l) => svgEl("text", { x: BOARD.x + 16, "font-size": fit, "font-weight": 700, fill: CHALK, "font-family": "var(--math, var(--body))" }, svg));
+      texts.forEach((T, i) => { T.textContent = lines[i].text; });
+      const marks = [g(svg), g(svg)];   // a big "?" at the start, a tick at the end when the board has nothing else
+      svgEl("text", { x: BOARD.x + (BOARD.w - PW) / 2, y: BOARD.y + BOARD.h / 2 + 24, "text-anchor": "middle", "font-size": 64, "font-weight": 700, fill: CHALK, opacity: 0.85 }, marks[0]).textContent = "?";
+      svgEl("path", { d: `M${BOARD.x + (BOARD.w - PW) / 2 - 30} ${BOARD.y + BOARD.h / 2} l22 24 l40 -50`, fill: "none", stroke: CHALK_HOT, "stroke-width": 7, "stroke-linecap": "round", "stroke-linejoin": "round" }, marks[1]);
+      // the teacher (pointing with a stick) and the student
+      const teacher = makePerson(svg, { fill: "color-mix(in srgb, var(--c6) 70%, var(--surface))", look: 5, size: 1.75 });
+      const student = makePerson(svg, { fill: "color-mix(in srgb, var(--c2) 70%, var(--surface))", look: 2, size: 1.45 });
+      const bulb = g(svg);
+      svgEl("circle", { cx: 0, cy: 0, r: 10, fill: CHALK_HOT, stroke: INK, "stroke-width": 1.3 }, bulb);
+      svgEl("rect", { x: -4.5, y: 9, width: 9, height: 6, rx: 1.5, fill: "#9a9a9a", stroke: INK, "stroke-width": 1 }, bulb);
+      for (let k = 0; k < 6; k++) svgEl("line", { x1: 0, y1: -14, x2: 0, y2: -19, stroke: CHALK_HOT, "stroke-width": 2, "stroke-linecap": "round", transform: `rotate(${k * 60 - 150})` }, bulb);
+      const bubble = makeBubble(svg);
+      return { L, lines, texts, cpRect, clipId, marks, teacher, student, bulb, bubble, fit, PW };
+    },
+    update(S, s, p) {
+      const { L, lines, texts, cpRect, clipId, marks, teacher, student, bulb, bubble, fit, PW } = S;
+      // lines written so far; the current one appears under the chalk as p grows; older ones scroll up when the board is full
+      const done = lines.filter((l) => l.step < s), now = lines.filter((l) => l.step === s), cur = now[0] || null, shown = [...done, ...now];
+      const rows = Math.max(1, Math.floor((BOARD.h - 28) / (fit * 1.7))), first = Math.max(0, shown.length - rows);
+      const write = cur ? seg(p, 0.08, 0.7) : 1;
+      texts.forEach((T, i) => {
+        const k = shown.indexOf(lines[i]);
+        if (k < first) { T.setAttribute("opacity", 0); return; }
+        T.setAttribute("y", (BOARD.y + 30 + (k - first) * fit * 1.7).toFixed(1));
+        T.setAttribute("opacity", 1);
+        T.setAttribute("fill", now.includes(lines[i]) || (s === n - 1 && i === lines.length - 1) ? CHALK_HOT : CHALK);
+        if (now.includes(lines[i])) T.setAttribute("clip-path", `url(#${clipId})`); else T.removeAttribute("clip-path");
+      });
+      cpRect.setAttribute("width", ((BOARD.w - PW) * write).toFixed(1));
+      marks[0].setAttribute("opacity", !shown.length && s < n - 1 ? 1 : 0);
+      marks[1].setAttribute("opacity", s === n - 1 && !cur ? seg(p, 0.3, 0.6) : 0);
+      // the teacher writes (arm up to the board), then turns to the student and talks
+      const writing = cur && p < 0.75, talk = Math.sin(p * 40) > 0 ? "grin" : "o";
+      const last = s === n - 1;
+      const pointing = PW && !cur && p > 0.15 && p < 0.7;
+      posePerson(teacher, { x: 168, y: FLOOR, facing: writing || pointing ? 1 : -1, gaze: [1, -0.3], reach: writing || pointing ? 1 : 0.4, reachAngle: writing ? -40 + 20 * Math.sin(p * 30) : pointing ? -30 : 10, breathe: 6 * p, blink: Math.abs(Math.sin(9 * p + s)) > 0.997 ? 1 : 0, mood: writing ? "smile" : talk });
+      const lit = last ? seg(p, 0.55, 0.75) : 0;
+      posePerson(student, { x: 62, y: FLOOR, facing: 1, gaze: [1, writing ? -0.6 : -0.1], breathe: 6 * p + 2, blink: Math.abs(Math.sin(7 * p + s * 2)) > 0.997 ? 1 : 0, mood: last && lit > 0 ? "grin" : writing ? "o" : "smile", hop: last ? seg(p, 0.7, 0.95) : 0, wave: last && p > 0.8 ? seg(p, 0.8, 1) : 0 });
+      bulb.setAttribute("transform", `translate(64 ${FLOOR - 150}) scale(${(0.3 + 0.7 * lit).toFixed(2)})`);
+      bulb.setAttribute("opacity", lit.toFixed(2));
+      const word = s === 0 ? TALK[0] : last ? TALK[3] : TALK[1 + (s % 2)];
+      const say = seg(p, 0.02, 0.1) * (1 - seg(p, 0.4, 0.5));
+      poseBubble(bubble, { x: 150, y: FLOOR - 128, text: word[L], appear: say });
+    },
+  };
+}
+
+// Mount a comic in `root` with the shared player; returns the player's handle ({ stop, start, seek, steps }).
+const mountComic = (text, root, { lang, reduced, icon = "", max = 7, picture = null } = {}) => playSolution(comic(text, { icon, max, picture }), root, { lang, reduced, params: {} });
+
+__e.sentences = sentences;
+__e.mathBits = mathBits;
+__e.comic = comic;
+__e.mountComic = mountComic;
+});
+__d("challenges/common/kit.js", function (__e, __r) {
+// Shared helpers for the challenge activities and the animated solutions.
+
+const { knightInner } = __r("challenges/common/knight-piece.js");
+const NS = "http://www.w3.org/2000/svg";
+
+const MINUS = "−";
+
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+
+function svgEl(name, attrs = {}, parent) {
+  const el = document.createElementNS(NS, name);
+  for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+  if (parent) parent.append(el);
+  return el;
+}
+
+function toLocal(svg, event) {
+  const p = svg.createSVGPoint();
+  p.x = event.clientX;
+  p.y = event.clientY;
+  return p.matrixTransform(svg.getScreenCTM().inverse());
+}
+
+// Eight colours that stay distinguishable in both themes (defined as --c1 .. --c8 in pages.css).
+const colour = (i) => `var(--c${(((i % 8) + 8) % 8) + 1})`;
+
+// touch-action is ignored on SVG child elements, so a finger dragging a piece would scroll the page.
+// Cancelling touchstart on the pieces (not on the empty board) keeps the page scrollable everywhere else.
+function lockTouch(svg, selector) {
+  svg.addEventListener("touchstart", (e) => { if (e.target.closest?.(selector)) e.preventDefault(); }, { passive: false });
+}
+
+// Drawing helpers bound to an SVG element (or group) for the animated solutions; t picks the language.
+function makeCtx(svg, lang) {
+  const t = (fr, en) => (lang === "fr" ? fr : en);
+  const line = (x1, y1, x2, y2, attrs = {}) => svgEl("line", { x1, y1, x2, y2, ...attrs }, svg);
+  const circ = (cx, cy, r, attrs = {}) => svgEl("circle", { cx, cy, r, ...attrs }, svg);
+  const rect = (x, y, width, height, attrs = {}) => svgEl("rect", { x, y, width, height, ...attrs }, svg);
+  const text = (x, y, s, attrs = {}) => { const el = svgEl("text", { x, y, ...attrs }, svg); el.textContent = s; return el; };
+  const path = (d, attrs = {}) => svgEl("path", { d, ...attrs }, svg);
+  // greedy word wrap into several <text> lines of at most `max` characters
+  const wrap = (x, y, str, max, attrs = {}, dy = 17) => { const words = String(str).split(" "); let ln = "", k = 0; for (const w of words) { if ((ln + " " + w).trim().length > max) { text(x, y + k++ * dy, ln, attrs); ln = w; } else ln = (ln + " " + w).trim(); } if (ln) text(x, y + k * dy, ln, attrs); };
+  // a drawn chess knight in a size x size square at (x, y)
+  const knight = (x, y, size, fill = "var(--object-ink)") => { const g = svgEl("g", { transform: `translate(${x} ${y}) scale(${size / 64})`, fill, stroke: "var(--ink)", "stroke-width": Math.max(1.6, 90 / size), "stroke-linejoin": "round", "stroke-linecap": "round" }, svg); g.innerHTML = knightInner; return g; };
+  return { svg, t, line, circ, rect, text, path, wrap, knight };
+}
+
+// The one-line goal at the top of an activity: a single sentence stating what to achieve, with no coaching, counter or result.
+// `operate` is an optional bilingual pair [fr, en] of how to operate it (gestures, keys), kept for screen readers only.
+function goalLine(t, fr, en, opFr, opEn) {
+  return `<p class="act-help goal">${t(fr, en)}${opFr ? `<span class="sr-only"> ${t(opFr, opEn)}</span>` : ""}</p>`;
+}
+
+__e.NS = NS;
+__e.MINUS = MINUS;
+__e.clamp = clamp;
+__e.svgEl = svgEl;
+__e.toLocal = toLocal;
+__e.colour = colour;
+__e.lockTouch = lockTouch;
+__e.makeCtx = makeCtx;
+__e.goalLine = goalLine;
+});
+__d("challenges/common/knight-piece.js", function (__e, __r) {
+// The chess knight silhouette (a horse's head on a base) shared by the knight's tour activity, its solution and its emblem.
+// Drawn in a 64 x 64 box facing left; `knightPiece` returns SVG markup of the piece scaled into a size x size square.
+const KNIGHT_BODY = "M18 52C17 43 21 37 27 32C24 32 20 34 16 38C13 40 9 39 9 36C9 32 14 27 18 23L21 12L27 18C31 15 36 14 40 15C49 18 54 30 52 52Z";
+const KNIGHT_BASE = "M15 52h40v6H15z";
+const knightInner = '<path d="' + KNIGHT_BODY + '"/><path d="' + KNIGHT_BASE + '"/><circle cx="22" cy="27" r="1.8" fill="var(--ink)" stroke="none"/><path d="M13 36.5l3-1" fill="none"/>';
+const knightPiece = (x, y, size, fill = "var(--object-ink)", extra = "") => `<g transform="translate(${x} ${y}) scale(${size / 64})" fill="${fill}" stroke="var(--ink)" stroke-width="${Math.max(1.6, 64 / size * 1.4)}" stroke-linejoin="round" stroke-linecap="round" ${extra}>${knightInner}</g>`;
+
+__e.KNIGHT_BODY = KNIGHT_BODY;
+__e.KNIGHT_BASE = KNIGHT_BASE;
+__e.knightInner = knightInner;
+__e.knightPiece = knightPiece;
+});
+__d("challenges/common/person.js", function (__e, __r) {
+// Shared cartoon person for the challenges (handshakes, hiker, ...): built once with makePerson, posed every frame
+// with posePerson. Every pose is a pure function of its arguments, so an animated solution stays pure.
+// Speech bubbles are in bubble.js.
+const { svgEl } = __r("challenges/common/kit.js");
+
+// Material colours are the person's own (skin, hair, trousers, shoes), not the theme's; outlines follow var(--ink).
+const SKINS = ["#f2c9a0", "#e0ac7e", "#c68b59", "#8d5a3b", "#f6d7bd", "#b97a50"];
+const HAIRS = ["#3b2a20", "#7a4a24", "#d9a441", "#1d1d1d", "#a0522d", "#5a5a5a"];
+const TROUSERS = "#3d4b6b", SHOES = "#3b2a20", INK = "var(--ink)";
+
+// One person, about 66 units tall, feet at (0, 0), facing +x. `look` picks the outfit: skin, hair, accessory.
+// gear: "hiker" adds a backpack and a sun hat (and drops the look's accessory).
+function makePerson(parent, { fill, look = 0, size = 1, gear = null }) {
+  const skin = SKINS[look % SKINS.length], hair = HAIRS[(look * 5 + 1) % HAIRS.length], extra = gear ? 0 : look % 4;   // 0 none, 1 cap, 2 glasses, 3 bow
+  const g = (p, attrs = {}) => svgEl("g", attrs, p);
+  const root = g(parent);
+  const shadow = svgEl("ellipse", { cx: 0, cy: 0, rx: 14, ry: 3.4, fill: INK, opacity: 0.16 }, root);
+  const fig = g(root), flip = g(fig);
+  // a limb: two segments, each a <g> turning about its joint, drawn as an outlined capsule
+  const limb = (p, x, y, len, colour, width, endPart) => {
+    const upper = g(p), lower = g(upper);
+    const seg = (q, x0) => { svgEl("line", { x1: x0, y1: y, x2: x0 + len, y2: y, stroke: INK, "stroke-width": width + 2, "stroke-linecap": "round" }, q); svgEl("line", { x1: x0, y1: y, x2: x0 + len, y2: y, stroke: colour, "stroke-width": width, "stroke-linecap": "round" }, q); };
+    seg(upper, x); seg(lower, x + len); endPart(lower, x + 2 * len, y);
+    return { upper, lower, x, y, len };
+  };
+  const hand = (q, x, y) => svgEl("circle", { cx: x, cy: y, r: 2.7, fill: skin, stroke: INK, "stroke-width": 1 }, q);
+  // the shin points down when posed, so the shoe is long along the local -y axis (world forward)
+  const shoe = (q, x, y) => svgEl("ellipse", { cx: x + 1.2, cy: y - 1.6, rx: 2.3, ry: 3.6, fill: SHOES, stroke: INK, "stroke-width": 1 }, q);
+  const shade = `color-mix(in srgb, ${fill} 75%, #000)`;
+  const backArm = limb(flip, -3, -41, 9, shade, 4.4, hand);
+  const backLeg = limb(flip, -2, -21, 10, `color-mix(in srgb, ${TROUSERS} 80%, #000)`, 5, shoe);
+  const frontLeg = limb(flip, 2, -21, 10, TROUSERS, 5, shoe);
+  const body = g(flip);   // torso and head breathe together
+  if (gear === "hiker") {   // backpack behind the torso, with a rolled mat on top
+    svgEl("rect", { x: -15, y: -43, width: 9, height: 20, rx: 3, fill: "#7a5230", stroke: INK, "stroke-width": 1.3 }, body);
+    svgEl("rect", { x: -14, y: -35, width: 7, height: 6, rx: 1.5, fill: "#5e3d22", stroke: INK, "stroke-width": 0.8 }, body);
+    svgEl("rect", { x: -16.5, y: -47, width: 12, height: 4.6, rx: 2.3, fill: "#c0392b", stroke: INK, "stroke-width": 1 }, body);
+  }
+  svgEl("path", { d: "M-9 -19 Q-10.5 -37 -6.5 -43 Q0 -46.5 6.5 -43 Q10.5 -37 9 -19 Z", fill, stroke: INK, "stroke-width": 1.4, "stroke-linejoin": "round" }, body);
+  svgEl("path", { d: "M-9 -19 Q-10.5 -37 -6.5 -43 Q-4 -44.6 -2 -45 Q-5 -33 -3 -19 Z", fill: shade, opacity: 0.55 }, body);   // shade on the back
+  svgEl("path", { d: "M-3 -44.5 L0.5 -40.5 L4 -44.5", fill: "none", stroke: INK, "stroke-width": 1, "stroke-linejoin": "round" }, body);   // collar
+  svgEl("rect", { x: -9.2, y: -22, width: 18.4, height: 3.2, rx: 1.2, fill: "#5b3a29", stroke: INK, "stroke-width": 0.8 }, body);   // belt
+  svgEl("rect", { x: -2.2, y: -49, width: 5, height: 6, fill: skin, stroke: INK, "stroke-width": 1 }, body);   // neck
+  const head = g(body);
+  svgEl("circle", { cx: 1, cy: -56, r: 9.6, fill: skin, stroke: INK, "stroke-width": 1.4 }, head);
+  svgEl("path", { d: "M-8.6 -55 Q-10 -67 1.5 -66.4 Q11.2 -66 10.8 -57.5 Q7 -62.5 2.5 -60.6 Q-1.5 -62.4 -3.6 -58 Q-6 -55.6 -8.6 -55 Z", fill: hair, stroke: INK, "stroke-width": 1.2, "stroke-linejoin": "round" }, head);
+  svgEl("ellipse", { cx: -3.4, cy: -54.5, rx: 2, ry: 2.8, fill: skin, stroke: INK, "stroke-width": 1 }, head);   // ear
+  svgEl("circle", { cx: 6.8, cy: -51.8, r: 1.9, fill: "#ff7b7b", opacity: 0.4 }, head);   // cheek
+  svgEl("path", { d: "M9.6 -55 q2.4 1.6 0.2 3", fill: "none", stroke: INK, "stroke-width": 1, "stroke-linecap": "round" }, head);   // nose
+  const eye = (cx, rx) => {
+    const e = g(head);
+    svgEl("ellipse", { cx, cy: -57, rx, ry: 2.9, fill: "#fff", stroke: INK, "stroke-width": 0.8 }, e);
+    const pupil = svgEl("circle", { cx, cy: -57, r: 1.35, fill: "#1d1d1d" }, e);
+    return { e, pupil, cx };
+  };
+  const eyes = [eye(1.6, 1.9), eye(6.2, 2.4)];
+  const brows = svgEl("path", { fill: "none", stroke: INK, "stroke-width": 1.1, "stroke-linecap": "round" }, head);
+  const mouth = svgEl("path", { stroke: INK, "stroke-width": 1, "stroke-linecap": "round", "stroke-linejoin": "round" }, head);
+  if (gear === "hiker") svgEl("path", { d: "M-12 -61.5 Q-11 -60 1 -60.4 Q13 -60 14.5 -61.5 Q12 -63.5 9 -63.4 Q8.5 -70.5 1 -70.6 Q-6.5 -70.5 -7 -63.4 Q-10 -63.5 -12 -61.5 Z", fill: "#d4b26a", stroke: INK, "stroke-width": 1.2, "stroke-linejoin": "round" }, head);
+  if (gear === "hiker") svgEl("path", { d: "M-6.8 -64 Q1 -65.6 8.8 -64", fill: "none", stroke: "#8b2c1f", "stroke-width": 1.6 }, head);
+  if (extra === 1) svgEl("path", { d: "M-8.8 -60 Q-8 -69 2 -68.5 Q10.5 -68 10.5 -61 L16 -60.4 Q15 -58.6 10 -59.2 Z", fill: `color-mix(in srgb, ${fill} 60%, #fff)`, stroke: INK, "stroke-width": 1.1, "stroke-linejoin": "round" }, head);
+  if (extra === 2) svgEl("path", { d: "M-0.6 -57 a2.5 2.5 0 1 0 5 0 a2.5 2.5 0 1 0 -5 0 M4.4 -57 h0.8 M5.2 -57 a2.8 2.8 0 1 0 5.6 0 a2.8 2.8 0 1 0 -5.6 0", fill: "none", stroke: INK, "stroke-width": 1 }, head);
+  if (extra === 3) svgEl("path", { d: "M-6 -64 l-3.5 -3 v6 Z M-6 -64 l3.5 -3 v6 Z", fill: "#e2557a", stroke: INK, "stroke-width": 0.9, "stroke-linejoin": "round" }, head);
+  const frontArm = limb(flip, 3, -41, 9, fill, 4.6, hand);
+  return { root, shadow, fig, flip, body, head, eyes, brows, mouth, backArm, frontArm, backLeg, frontLeg, size };
+}
+
+const turn = (part, deg, x, y) => part.setAttribute("transform", `rotate(${deg.toFixed(1)} ${x} ${y})`);
+const lerp = (a, b, k) => a + (b - a) * k;
+const MOUTHS = {
+  smile: ["M3.2 -51.2 q2.6 2.2 5.2 0", "none"],
+  grin: ["M2.8 -51.6 q3 4.6 6 0 Z", "#7a2e2e"],
+  o: ["M5.6 -51.6 a1.5 1.9 0 1 0 0.01 0 Z", "#7a2e2e"],
+  flat: ["M3.4 -50.6 h4.6", "none"],
+};
+
+// Pose a person. All arguments are plain numbers, so a frame depends only on them:
+//   x, y: feet; facing: 1 right, -1 left; gaze: [dx, dy] in -1..1 (where the pupils look, in screen directions);
+//   walk: { phase, amp } (phase from distance walked, amp 0..1); reach: 0..1 front arm out to `reachAngle` (degrees,
+//   0 = straight ahead, negative = up); wave: 0..1; hop: 0..1; breathe: phase in radians; blink: 0..1; mood: smile, grin, o, flat.
+function posePerson(P, { x, y, facing = 1, gaze = [0, 0], walk = { phase: 0, amp: 0 }, reach = 0, reachAngle = 0, wave = 0, hop = 0, breathe = 0, blink = 0, mood = "smile" }) {
+  const lift = 5 * Math.sin(Math.PI * Math.min(1, Math.max(0, hop)));
+  P.root.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${P.size})`);
+  P.shadow.setAttribute("rx", (14 - lift * 1.2).toFixed(1));
+  P.fig.setAttribute("transform", `translate(0 ${(-lift).toFixed(2)})`);
+  P.flip.setAttribute("transform", facing < 0 ? "scale(-1 1)" : "");
+  P.body.setAttribute("transform", `translate(0 ${(0.6 * Math.sin(breathe)).toFixed(2)})`);
+  // legs swing in opposite phase with a knee bend on the way forward; arms counter-swing
+  const s = Math.sin(walk.phase) * walk.amp;
+  const leg = (L, sign) => { turn(L.upper, 90 + 24 * s * sign, L.x, L.y); turn(L.lower, Math.max(0, 30 * Math.sin(walk.phase + (sign > 0 ? 0 : Math.PI))) * walk.amp, L.x + L.len, L.y); };
+  leg(P.frontLeg, 1); leg(P.backLeg, -1);
+  turn(P.backArm.upper, 88 + 20 * s, P.backArm.x, P.backArm.y); turn(P.backArm.lower, -14, P.backArm.x + P.backArm.len, P.backArm.y);
+  // front arm: hanging (88 deg), swinging, reaching out, or waving above the head
+  const hang = 88 - 20 * s, out = reachAngle, up = -70 + 18 * Math.sin(wave * Math.PI * 6);
+  const shoulder = wave > 0 ? lerp(hang, up, Math.min(1, wave * 4)) : lerp(hang, out, reach);
+  turn(P.frontArm.upper, shoulder, P.frontArm.x, P.frontArm.y);
+  turn(P.frontArm.lower, wave > 0 ? -40 : lerp(-16, 0, reach), P.frontArm.x + P.frontArm.len, P.frontArm.y);
+  // eyes: pupils follow the gaze (mirrored with the body), lids close with blink
+  const gx = Math.max(-1, Math.min(1, gaze[0])) * facing, gy = Math.max(-1, Math.min(1, gaze[1]));
+  for (const E of P.eyes) {
+    E.pupil.setAttribute("cx", (E.cx + 0.9 * gx).toFixed(2)); E.pupil.setAttribute("cy", (-57 + 1.1 * gy).toFixed(2));
+    E.e.setAttribute("transform", `translate(0 -57) scale(1 ${(1 - 0.92 * Math.min(1, blink)).toFixed(2)}) translate(0 57)`);
+  }
+  const raised = mood === "o" || mood === "grin" ? -1.4 : 0;
+  P.brows.setAttribute("d", `M0 ${-61.2 + raised} q1.6 -1 3.2 0 M5 ${-61.6 + raised} q1.8 -1.1 3.6 0`);
+  const [d, f] = MOUTHS[mood] || MOUTHS.smile;
+  P.mouth.setAttribute("d", d); P.mouth.setAttribute("fill", f);
+}
+
+__e.SKINS = SKINS;
+__e.HAIRS = HAIRS;
+__e.makePerson = makePerson;
+__e.posePerson = posePerson;
+});
+__d("challenges/common/player.js", function (__e, __r) {
+// Animated solutions: each challenge explains its answer as a short sequence of steps, drawn as SVG.
+// A solution is { size: [w, h], steps(q): [[fr, en], ...], draw(ctx, step, p, q) } where q holds the parameters of the
+// variation being solved, and draw is a pure function of the step index and the progress p in [0, 1] inside that step,
+// so any frame can be reproduced and scrubbed.
+// Controls: restart, previous, play or pause, next. With reduced motion nothing plays by itself: each step shows its
+// finished state. The caption of the current step is announced in a polite live region.
+const { makeCtx } = __r("challenges/common/kit.js");
+
+const ctxFor = makeCtx;
+
+/* ----------------------------------------------------------------- player */
+function playSolution(def, root, { lang, reduced: reducedPref, params = {} }) {
+  const reduced = () => (typeof reducedPref === "function" ? reducedPref() : !!reducedPref);   // the app passes a function
+  const t = (fr, en) => (lang === "fr" ? fr : en);
+  const [w, h] = def.size, HOLD = 900, steps = def.steps(params), nSteps = steps.length;
+  const durOf = () => (def.dur ? def.dur(step, params) : 2600);   // a solution may pace each step itself
+  let step = 0, p = reduced() ? 1 : 0, auto = false, raf = 0, started = false, scene = null;
+  root.innerHTML = `
+    <div class="sol-anim">
+      <svg class="sol-svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${t("Animation de la solution", "Solution animation")}"></svg>
+      <p class="sol-cap" role="status" aria-live="polite"></p>
+      <div class="sol-controls">
+        <button class="btn-quiet" data-a="restart" type="button" aria-label="${t("Revenir au début", "Back to the start")}">⏮</button>
+        <button class="btn btn-secondary" data-a="prev" type="button">${t("Précédent", "Previous")}</button>
+        <button class="btn btn-primary" data-a="play" type="button" aria-pressed="false">${t("Lecture", "Play")}</button>
+        <button class="btn btn-secondary" data-a="next" type="button">${t("Suivant", "Next")}</button>
+        <span class="sol-count"></span>
+      </div>
+    </div>`;
+  const svg = root.querySelector("svg"), cap = root.querySelector(".sol-cap"), count = root.querySelector(".sol-count");
+  const btn = (a) => root.querySelector(`[data-a="${a}"]`), playBtn = btn("play");
+  function paint() {
+    if (def.mount) { scene ||= (svg.replaceChildren(), def.mount(ctxFor(svg, lang), params)); def.update(scene, step, p, params); }   // built once, then posed
+    else { svg.replaceChildren(); def.draw(ctxFor(svg, lang), step, p, params); }
+    cap.textContent = steps[step][lang === "fr" ? 0 : 1];
+    count.textContent = `${t("Étape", "Step")} ${step + 1} / ${nSteps}`;
+    btn("prev").disabled = step === 0;
+    btn("next").disabled = step === nSteps - 1 && p >= 1;
+    playBtn.textContent = auto ? t("Pause", "Pause") : step === nSteps - 1 && p >= 1 ? t("Rejouer", "Replay") : t("Lecture", "Play");
+    playBtn.setAttribute("aria-pressed", String(auto));
+  }
+  const halt = () => { auto = false; cancelAnimationFrame(raf); raf = 0; };
+  // Animate the current step from its progress p to 1; with auto, carry on to the next steps.
+  function run() {
+    cancelAnimationFrame(raf);
+    let start = performance.now() - p * durOf();
+    const tick = (now) => {
+      const e = now - start, DUR = durOf();
+      p = Math.min(1, Math.max(0, e / DUR));   // a frame timestamp can predate the start by a few ms
+      paint();
+      if (p < 1) { raf = requestAnimationFrame(tick); return; }
+      if (auto && step < nSteps - 1) {
+        if (e < DUR + HOLD) { raf = requestAnimationFrame(tick); return; }
+        step += 1; p = 0; start = now; paint(); raf = requestAnimationFrame(tick); return;
+      }
+      auto = false; raf = 0; paint();
+    };
+    raf = requestAnimationFrame(tick);
+  }
+  const show = (k, animated) => { halt(); step = clamp(k, 0, nSteps - 1); p = animated && !reduced() ? 0 : 1; paint(); if (p < 1) run(); };
+  // These controls are replaced when variation data changes; discarded players must not receive new clicks.
+  root.querySelector(".sol-controls").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-a]");
+    if (!b) return;
+    const a = b.dataset.a;
+    if (a === "restart") show(0, true);
+    else if (a === "prev") show(step - 1, false);
+    else if (a === "next") { if (p < 1) { halt(); p = 1; paint(); } else show(step + 1, true); }
+    else if (auto) { halt(); paint(); }
+    else if (reduced()) show(step === nSteps - 1 ? 0 : step + 1, false);
+    else { if (step === nSteps - 1 && p >= 1) { step = 0; p = 0; } auto = true; paint(); run(); }
+  });
+  paint();
+  // seek: show the frame at (step, p) without playing; used by the browser tests and for scrubbing
+  return { stop: halt, seek: (k, pp = 1) => { halt(); step = clamp(k, 0, nSteps - 1); p = clamp(pp, 0, 1); paint(); }, steps: nSteps, start: () => { if (!started && !reduced()) { started = true; auto = true; paint(); run(); } } };
+}
+
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+
+__e.ctxFor = ctxFor;
+__e.playSolution = playSolution;
+__e.clamp = clamp;
+});
 __d("data-loader.js", function (__e, __r) {
 const { assetVersions } = __r("catalogue-data.js");
 
@@ -11924,13 +12374,28 @@ function createShell(host, exp, tpl, opts = {}) {
     card.append(open);
     card._open = open;
   }
-  let argumentEl = null;
+  let argumentEl = null, comicPlayer = null;
   if (full) {
     argumentEl = el("section", "lab2-argument");
     argumentEl.hidden = true;
     if (free) argumentEl.append(el("h2", "", t(["L’idée", "The idea"])));
     else argumentEl.append(el("h2", "", t(T("evidenceTitle"))), el("p", "lab2-evidence", t(exp.evidence || T("evidence"))));
     if (exp.conclusion) argumentEl.append(el("p", "lab2-conclusion", t(exp.conclusion)));
+    // the conclusion played as a short cartoon at the board (challenges/common/comic.js), built when first opened
+    if (exp.conclusion) {
+      const fold = el("details", "lab2-comic"), host = el("div", "sol-host comic-host");
+      fold.append(el("summary", "", t(["Le voir en dessin animé", "Watch it as a cartoon"])), host);
+      fold.addEventListener("toggle", async () => {
+        if (!fold.open) { comicPlayer?.stop(); return; }
+        if (!comicPlayer) {
+          const { mountComic } = await Promise.resolve(__r("challenges/common/comic.js"));
+          if (!host.isConnected) return;
+          comicPlayer = mountComic(exp.conclusion, host, { lang: fmt.lang, reduced: () => stage.reduced() });
+        }
+        comicPlayer.start();
+      });
+      argumentEl.append(fold);
+    }
     root.append(argumentEl);
   }
 
@@ -12239,6 +12704,7 @@ function createShell(host, exp, tpl, opts = {}) {
     },
     flush() { sync(); },
     destroy() {
+      comicPlayer?.stop();
       alive = false;
       clearTimeout(announceTimer);
       stopPlay();

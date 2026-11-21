@@ -56,6 +56,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `hiker.test.mjs` | hiker: the meeting minute against a minute-by-minute search; random walks with rests and backtracking always cross (the original question) |
 | `coffee.test.mjs` | coffee: exact fractions (BigInt) for the answer V v/(V + v) and for "milk in coffee = coffee in milk" after up to six round trips |
 | `challenges-variants.test.mjs` | every challenge has variant, original, activity, solution; answers recomputed |
+| `comic.test.mjs` | the cartoon explainer `site/js/challenges/common/comic.js`: sentences, formulas on the board, steps in both languages |
 | `cake-model.test.mjs`, `box-model.test.mjs` | cake and box sandboxes |
 | `control-policy.test.mjs` | `control-policy.js`, `content-language.js`, camera policy, slide widgets |
 | `player-controls.test.mjs`, `slide-format.test.mjs`, `slide-builder.test.mjs`, `expertes-widgets.test.mjs` | slide player, widget formatting, `scripts/build-slides.py`, Maths expertes widgets |
