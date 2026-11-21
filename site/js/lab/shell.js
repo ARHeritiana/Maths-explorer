@@ -360,10 +360,13 @@ export function createShell(host, exp, tpl, opts = {}) {
     if (exp.conclusion) argumentEl.append(el("p", "lab2-conclusion", t(exp.conclusion)));
     // the conclusion played as a short cartoon at the board (challenges/common/comic.js), built when first opened
     if (exp.conclusion) {
-      const fold = el("details", "lab2-comic"), host = el("div", "sol-host comic-host");
-      fold.append(el("summary", "", t(["Le voir en dessin animé", "Watch it as a cartoon"])), host);
-      fold.addEventListener("toggle", async () => {
-        if (!fold.open) { comicPlayer?.stop(); return; }
+      const fold = el("div", "lab2-comic"), toggle = el("button", "btn-quiet lab2-comic-toggle", t(["Le voir en dessin animé", "Watch it as a cartoon"])), host = el("div", "sol-host comic-host");
+      toggle.type = "button"; toggle.setAttribute("aria-expanded", "false"); host.hidden = true;
+      fold.append(toggle, host);
+      toggle.addEventListener("click", async () => {
+        const open = host.hidden;
+        host.hidden = !open; toggle.setAttribute("aria-expanded", String(open));
+        if (!open) { comicPlayer?.stop(); return; }
         if (!comicPlayer) {
           const { mountComic } = await import("../challenges/common/comic.js");
           if (!host.isConnected) return;
