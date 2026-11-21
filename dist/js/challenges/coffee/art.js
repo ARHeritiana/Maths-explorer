@@ -106,29 +106,31 @@ export function poseCard(K, { x, y, lines = [], appear = 1 }) {
 }
 
 /* ------------------------------------------------------------------ the beans (discrete version) */
-// Two open burlap sacks of beans on the kitchen counter and a wooden bowl for the handful. Beans are drawn as small
-// ellipses, white or red, in a jittered pile whose order comes from a seed (shaking a sack changes the seed).
+// Two clear bags of beans on the kitchen counter and a wooden bowl for the handful. The bags are see-through, so every
+// bean shows (as the liquid shows in the glass mugs): white or red ellipses piled from the bottom, in an order that comes
+// from a seed (shaking a bag changes the seed).
 export const WHITE = "#f4efe2", RED = "#c0392b", SACK_X = [140, 380];
 const shuffled = (n, seed) => { const a = Array.from({ length: n }, (_, i) => i); let s = (seed >>> 0) || 1; for (let i = n - 1; i > 0; i--) { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; const j = s % (i + 1); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const BAG = "M-66 -6 Q-70 -46 -58 -80 Q-40 -90 -14 -92 L-8 -104 L8 -104 L14 -92 Q40 -90 58 -80 Q70 -46 66 -6 Q60 2 0 2 Q-60 2 -66 -6 Z";
 export function makeSack(parent, { x }) {
   const root = g(parent, { transform: `translate(${x} ${TABLE})` });
-  svgEl("ellipse", { cx: 0, cy: 3, rx: 80, ry: 7, fill: INK, opacity: 0.14 }, root);
-  svgEl("path", { d: "M-70 0 Q-84 -60 -62 -118 L62 -118 Q84 -60 70 0 Z", fill: "#c9a46b", stroke: INK, "stroke-width": 1.8, "stroke-linejoin": "round" }, root);
-  for (let i = -3; i <= 3; i++) svgEl("path", { d: `M${i * 18} -112 q${i * 2} 56 ${i * 3} 108`, stroke: "#b08950", "stroke-width": 1, fill: "none", opacity: 0.6 }, root);   // weave
-  svgEl("ellipse", { cx: 0, cy: -118, rx: 62, ry: 12, fill: "#7a5a32", stroke: INK, "stroke-width": 1.6 }, root);   // the open mouth
+  svgEl("ellipse", { cx: 0, cy: 3, rx: 72, ry: 6, fill: INK, opacity: 0.14 }, root);
+  svgEl("path", { d: BAG, fill: "color-mix(in srgb, #dff1ff 30%, transparent)" }, root);   // the clear plastic, behind the beans
   const pile = g(root);
-  svgEl("path", { d: "M-66 -114 Q-74 -132 -50 -128 M66 -114 Q74 -132 50 -128", fill: "none", stroke: INK, "stroke-width": 1.6 }, root);   // the rolled rim
-  const tag = svgEl("text", { y: -26, "text-anchor": "middle", "font-size": 13, "font-weight": 700, fill: INK }, root);
+  svgEl("path", { d: BAG, fill: "none", stroke: INK, "stroke-width": 1.8, "stroke-linejoin": "round" }, root);
+  svgEl("path", { d: "M-52 -72 Q-60 -44 -56 -16", fill: "none", stroke: "#fff", "stroke-width": 4, "stroke-linecap": "round", opacity: 0.6 }, root);   // shine
+  svgEl("path", { d: "M-12 -100 h24", stroke: "#c0392b", "stroke-width": 4, "stroke-linecap": "round" }, root);   // the tie
+  const tag = svgEl("text", { y: 20, "text-anchor": "middle", "font-size": 12, "font-weight": 700, fill: INK }, root);
   return { root, pile, tag, x };
 }
-// Fill a sack with the beans of `bag` ({ w, r }), mixed by `seed`; beans are clickable when `pick` is given.
+// Fill a bag with the beans of `bag` ({ w, r }), mixed by `seed`, every bean visible; beans are clickable with `pick`.
 export function poseSack(S, bag, seed = 1, { pick = false } = {}) {
   S.pile.replaceChildren();
-  const n = bag.w + bag.r, order = shuffled(n, seed), cols = 9;
+  const n = bag.w + bag.r, order = shuffled(n, seed), cols = 10;
   order.forEach((idx, k) => {
     const white = idx < bag.w, row = Math.floor(k / cols), col = k % cols;
-    const x = -52 + col * 13 + (row % 2) * 6 + (((k * 37) % 7) - 3) * 0.6;
-    const by = -114 + row * 9 + ((k * 13) % 5) - 2;   // the pile shows in the open mouth and goes down into the sack
+    const x = -54 + col * 12 + (row % 2) * 5 + (((k * 37) % 5) - 2) * 0.5;
+    const by = -11 - row * 9 + (((k * 13) % 3) - 1);   // the pile rises from the bottom of the bag
     const e = svgEl("ellipse", { cx: x.toFixed(1), cy: by.toFixed(1), rx: 5.6, ry: 3.6, transform: `rotate(${(k * 47) % 60 - 30} ${x.toFixed(1)} ${by.toFixed(1)})`, fill: white ? WHITE : RED, stroke: INK, "stroke-width": 0.8 }, S.pile);
     if (pick) { e.setAttribute("class", "bean"); e.dataset.c = white ? "w" : "r"; e.style.cursor = "pointer"; }
   });

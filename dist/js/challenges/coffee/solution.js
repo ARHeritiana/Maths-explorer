@@ -123,19 +123,19 @@ const beanScene = {
     poseBowl(bowl, { x: st.x, y: st.y, hand: st.hand, tilt: st.tilt });
     bowl.root.setAttribute("opacity", s >= 3 ? 0 : 1);
     const lines = (bag) => [[WHITE, `${["blancs", "white"][L]} : ${bag.w}`], [RED, `${["rouges", "red"][L]} : ${bag.r}`]];
-    cards.forEach((K, i) => poseCard(K, { x: SACK_X[i], y: TABLE - 196, lines: s === 0 || s >= 3 ? lines(st.bags[i]) : [], appear: 1 }));
+    cards.forEach((K, i) => poseCard(K, { x: SACK_X[i], y: TABLE - 170, lines: s === 0 || s >= 3 ? lines(st.bags[i]) : [], appear: 1 }));
     // steps 3 and 4: the beans of the other colour rise out of each sack and pair up one for one
     pairs.replaceChildren();
     const rise = s === 3 ? seg(p, 0.1, 0.6) : s === 4 ? 1 : 0;
     if (rise > 0) for (let j = 0; j < r; j++) {
-      const y = TABLE - 136 - 10 * rise - (j % 2) * 4, xs = [SACK_X[0] - ((r - 1) * 12) / 2 + j * 12, SACK_X[1] - ((r - 1) * 12) / 2 + j * 12];
+      const y = TABLE - 112 - 10 * rise - (j % 2) * 4, xs = [SACK_X[0] - ((r - 1) * 12) / 2 + j * 12, SACK_X[1] - ((r - 1) * 12) / 2 + j * 12];
       xs.forEach((x, i) => svgEl("ellipse", { cx: x, cy: y, rx: 5.6, ry: 3.6, fill: i === 0 ? RED : WHITE, stroke: "var(--ink)", "stroke-width": 0.9 }, pairs));
       const link = s === 3 ? seg(p, 0.55 + (0.35 * j) / r, 0.62 + (0.35 * j) / r) : 1;
       if (link > 0) svgEl("path", { d: `M${xs[0]} ${y + 5} Q260 ${y + 50} ${xs[0] + (xs[1] - xs[0]) * link} ${y + 5 + (1 - link) * 20}`, fill: "none", stroke: "var(--object-ink)", "stroke-width": 1.4, "stroke-dasharray": "4 3" }, pairs);
     }
     eq.textContent = `${r} = ${r}`;
     eq.setAttribute("opacity", s === 4 ? seg(p, 0.2, 0.5) : 0);
-    eq.setAttribute("y", TABLE - 110);
+    eq.setAttribute("y", TABLE - 90);
   },
 };
 

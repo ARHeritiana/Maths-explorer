@@ -36,7 +36,7 @@ function beansActivity(root, { t, q }) {
       poseSack(S, bags[i], seeds[i], { pick: true });
       S.tag.textContent = names[i];
       handles[i].setAttribute("aria-label", `${names[i]}${counted ? ` : ${lines(bags[i]).map((l) => l[1]).join(", ")}` : `, ${count(bags[i])} ${t("haricots", "beans")}`}`);
-      poseCard(cards[i], { x: SACK_X[i], y: TABLE - 196, lines: counted ? lines(bags[i]) : [], appear: 1 });
+      poseCard(cards[i], { x: SACK_X[i], y: TABLE - 170, lines: counted ? lines(bags[i]) : [], appear: 1 });
     });
     poseBowl(bowl, { x: 260, y: 44, hand });
     read.textContent = note || (inHand() ? t(`Le bol contient ${inHand()} haricots sur ${k}.`, `The bowl holds ${inHand()} of ${k} beans.`) : t("Le bol est vide.", "The bowl is empty."));

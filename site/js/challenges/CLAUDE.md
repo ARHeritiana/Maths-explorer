@@ -111,6 +111,6 @@ Update of 21 November 2026 (owner notes): `hiker/` is seen from the side. `plan.
 profile (`makeProfile`, ups and downs, foot left, summit at the right end) drawn as the graph it is, irregular paces with
 rests and, with the toggle "Il revient parfois sur ses pas", stretches walked back (`makePace`), and the exact first
 crossing of the two days (`crossing`); no time on the way is ever shown, only the 8:00 start. `coffee/` has a discrete
-version in the same parameter list (ids `b<N>,<k>`): two sacks of white and red beans and a bowl (`art.js` `makeSack`,
+version in the same parameter list (ids `b<N>,<k>`): two clear bags of white and red beans (every bean visible) and a bowl (`art.js` `makeSack`,
 `makeBowl`; `maths.js` `bagsStart`, `move`, `grab`); the learner grabs or picks a handful, pours, shakes and counts, and
 the solution pairs the foreign beans one for one. Tests: `hiker.test.mjs`, `coffee.test.mjs`.
