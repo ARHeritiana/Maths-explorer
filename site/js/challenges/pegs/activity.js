@@ -2,6 +2,7 @@
 import { colour, svgEl, goalLine } from "../common/kit.js";
 import { PRESS, installCartoon } from "../common/cartoon.js";
 import { pegTarget, PEGS_START, pegLanding } from "./maths.js";
+import { mountBuddy } from "../common/buddy.js";
 
 /* ------------------------------------------------------------ three pegs */
 export function activity(root, { t, q, reduced: reducedPref }) {
@@ -70,5 +71,7 @@ export function activity(root, { t, q, reduced: reducedPref }) {
   root.querySelector("#pg-undo").addEventListener("click", () => { if (fly) return; const p = hist.pop(); if (p) { pos = p; sel = null; notice = ""; draw(); } });
   root.querySelector("#pg-reset").addEventListener("click", () => { cancelAnimationFrame(raf); fly = null; reset(); draw(); });
   reset(); draw();
-  return () => { cancelAnimationFrame(raf); };
+  const buddy = mountBuddy(root, { t, reduced: reducedPref, cast: [{ kind: "person", look: 4 }], backdrop: "park" });
+  const offActivity = () => { cancelAnimationFrame(raf); };
+  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
 }

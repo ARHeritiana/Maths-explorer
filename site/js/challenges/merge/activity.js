@@ -1,6 +1,7 @@
 // Hands-on activity of the merge challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { goalLine } from "../common/kit.js";
 import { PRESS, installCartoon, pop } from "../common/cartoon.js";
+import { mountBuddy } from "../common/buddy.js";
 
 /* ----------------------------------------------------------------- merge */
 export function activity(root, { t, q, reduced }) {
@@ -29,5 +30,7 @@ export function activity(root, { t, q, reduced }) {
   // The tokens are rebuilt on every draw: pop the fresh twin of the pressed button once the handlers above have redrawn.
   root.addEventListener("click", (e) => { const b = e.target.closest?.("button"); if (!b) return; const nb = b.id ? root.querySelector(`#${b.id}`) : root.querySelector(`.cl-tok[data-i="${b.dataset.i}"]`); if (nb && !nb.disabled) pop(nb, reduced); });
   reset(); draw();
-  return () => {};
+  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 5 }], backdrop: "classroom" });
+  const offActivity = () => {};
+  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
 }

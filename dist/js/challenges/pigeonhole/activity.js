@@ -2,6 +2,7 @@
 import { formatNumber } from "../../math.js";
 import { MINUS, goalLine } from "../common/kit.js";
 import { cartoonPress, PRESS } from "../common/cartoon.js";
+import { mountBuddy } from "../common/buddy.js";
 
 export const fmtFor = (lang) => (n, d = 2) => formatNumber(Math.abs(n) < 1e-12 ? 0 : n, lang, d).replace(/-/g, MINUS);
 
@@ -75,5 +76,7 @@ export function activity(root, { t, lang, reduced, q }) {
     root.querySelector("#pg-sim-read").textContent = `${t("Sur 1 000 tirages de", "Out of 1,000 draws of")} ${k} ${t("nombres", "numbers")} : ${free} ${t("sans aucune paire de ce type", "with no such pair")} (${fmt((free / 1000) * 100, 1)} %). ${t("Une simulation suggère, elle ne prouve pas.", "A simulation suggests; it does not prove.")}`;
   });
   render();
-  return cartoonPress(root, reduced, "button");
+  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "pigeon" }, { kind: "person", look: 1 }, { kind: "pigeon", fill: "#c9b8a6" }], backdrop: "dovecote" });
+  const offActivity = cartoonPress(root, reduced, "button");
+  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
 }

@@ -1,6 +1,7 @@
 // Hands-on activity of the fakecoins challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { MINUS, clamp, goalLine } from "../common/kit.js";
 import { cartoonPress, PRESS } from "../common/cartoon.js";
+import { mountBuddy } from "../common/buddy.js";
 
 /* ------------------------------------------------------------ fake coins */
 export function activity(root, { t, q, reduced }) {
@@ -34,5 +35,7 @@ export function activity(root, { t, q, reduced }) {
   root.querySelector("#fc-new").addEventListener("click", () => { fresh(); draw(); });
   const press = cartoonPress(root, reduced);
   fresh(); draw();
-  return press;
+  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 0 }], backdrop: "market" });
+  const offActivity = press;
+  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
 }

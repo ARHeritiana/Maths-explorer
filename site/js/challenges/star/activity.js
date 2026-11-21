@@ -3,6 +3,7 @@ import { f1 } from "../common/helpers.js";
 import { svgEl, colour, clamp, goalLine } from "../common/kit.js";
 import { PRESS, installCartoon, cartoonPress } from "../common/cartoon.js";
 import { starK, starSumDegrees } from "./maths.js";
+import { mountBuddy } from "../common/buddy.js";
 
 export const TAU = Math.PI * 2;
 
@@ -44,5 +45,7 @@ export function activity(root, { t, q, reduced }) {
   root.querySelector(".act-measurements").addEventListener("toggle", draw);
   void starSumDegrees;
   draw();
-  return cartoonPress(root, reduced);
+  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 0 }], backdrop: "night" });
+  const offActivity = cartoonPress(root, reduced);
+  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
 }

@@ -3,6 +3,7 @@
 // solution; the activity never states the pair.
 import { goalLine } from "../common/kit.js";
 import { spSteps, splitsOfSum, splitsOfProduct } from "./maths.js";
+import { mountBuddy } from "../common/buddy.js";
 
 export function activity(root, { t, q }) {
   const N = q.N, all = spSteps(N)[0];
@@ -33,5 +34,7 @@ export function activity(root, { t, q }) {
   const input = (id, set) => root.querySelector(id).addEventListener("input", (e) => { set(Math.round(Number(e.target.value))); draw(); });
   input("#sp-x", (v) => { x = v; }); input("#sp-y", (v) => { y = v; });
   draw();
-  return () => {};
+  const buddy = mountBuddy(root, { t, reduced: false, cast: [{ kind: "person", look: 1, name: "Sam" }, { kind: "person", look: 3, name: "Paula" }], backdrop: "classroom" });
+  const offActivity = () => {};
+  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
 }

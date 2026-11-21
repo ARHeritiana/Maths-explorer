@@ -2,6 +2,7 @@
 import { f1 } from "../common/helpers.js";
 import { svgEl, colour, goalLine } from "../common/kit.js";
 import { luneArea } from "./maths.js";
+import { mountBuddy } from "../common/buddy.js";
 
 /* ----------------------------------------------------------------- lunes */
 export function activity(root, { t, q }) {
@@ -35,5 +36,7 @@ export function activity(root, { t, q }) {
   root.querySelector("#ln-a").addEventListener("input", (e) => { a = Number(e.target.value); draw(); });
   root.querySelector("#ln-b").addEventListener("input", (e) => { b = Number(e.target.value); draw(); });
   draw();
-  return () => {};
+  const buddy = mountBuddy(root, { t, reduced: false, cast: [{ kind: "person", look: 3 }], backdrop: "lab" });
+  const offActivity = () => {};
+  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
 }

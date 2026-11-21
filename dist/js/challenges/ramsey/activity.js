@@ -1,6 +1,7 @@
 // Hands-on activity of the ramsey challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { svgEl, goalLine } from "../common/kit.js";
 import { cartoonPress } from "../common/cartoon.js";
+import { mountBuddy } from "../common/buddy.js";
 
 /* ---------------------------------------------------------------- ramsey */
 export function activity(root, { t, q, reduced }) {
@@ -53,5 +54,7 @@ export function activity(root, { t, q, reduced }) {
   root.querySelector("#rm-clear").addEventListener("click", () => { col.clear(); draw(); });
   const unpress = cartoonPress(root, reduced);
   draw();
-  return unpress;
+  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 1 }, { kind: "person", look: 2 }, { kind: "person", look: 4 }], backdrop: "park" });
+  const offActivity = unpress;
+  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
 }

@@ -1,6 +1,7 @@
 // Hands-on activity of the gridpaths challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { svgEl, colour, goalLine } from "../common/kit.js";
 import { cartoonPress } from "../common/cartoon.js";
+import { mountBuddy } from "../common/buddy.js";
 
 /* ------------------------------------------------------------ grid paths */
 export function activity(root, { t, q, reduced }) {
@@ -43,5 +44,7 @@ export function activity(root, { t, q, reduced }) {
   root.querySelector("#gp-rand").addEventListener("click", () => { const w = [...Array(m).fill("R"), ...Array(n).fill("U")]; for (let i = w.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [w[i], w[j]] = [w[j], w[i]]; } walk = w; found.add(word(w)); draw(); });
   svg.addEventListener("click", (e) => { const c = e.target.closest("circle"); if (!c) return; const [i, j] = pos(), ti = Number(c.dataset.i), tj = Number(c.dataset.j); if (ti === i + 1 && tj === j) step("R"); else if (ti === i && tj === j + 1) step("U"); });
   draw();
-  return cartoonPress(root, reduced);
+  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 2 }], backdrop: "grid" });
+  const offActivity = cartoonPress(root, reduced);
+  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
 }

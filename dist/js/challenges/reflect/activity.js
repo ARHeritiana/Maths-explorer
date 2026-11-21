@@ -2,6 +2,7 @@
 import { f1 } from "../common/helpers.js";
 import { lockTouch, svgEl, colour, toLocal, clamp, goalLine } from "../common/kit.js";
 import { reflectSet, pathLength } from "./maths.js";
+import { mountBuddy } from "../common/buddy.js";
 
 /* --------------------------------------------------- shortest path, mirror */
 export function activity(root, { t, q }) {
@@ -35,5 +36,7 @@ export function activity(root, { t, q }) {
   svg.addEventListener("keydown", (e) => { if (!e.target.closest?.(".toy-handle")) return; const dd = { ArrowRight: 1, ArrowUp: 1, ArrowLeft: -1, ArrowDown: -1 }[e.key]; if (!dd) return; e.preventDefault(); x = clamp(x + dd * (e.shiftKey ? 0.5 : 0.1), 0, d); draw(); svg.querySelector(".toy-handle")?.focus(); });
   slider.addEventListener("input", () => { x = Number(slider.value); draw(); });
   draw();
-  return () => {};
+  const buddy = mountBuddy(root, { t, reduced: false, cast: [{ kind: "person", look: 5 }], backdrop: "pond" });
+  const offActivity = () => {};
+  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
 }
