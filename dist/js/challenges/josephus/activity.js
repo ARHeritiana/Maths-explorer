@@ -2,7 +2,6 @@
 import { svgEl, goalLine } from "../common/kit.js";
 import { cartoonPress } from "../common/cartoon.js";
 import { josephusOrder } from "./maths.js";
-import { mountBuddy } from "../common/buddy.js";
 
 /* -------------------------------------------------------------- josephus */
 export function activity(root, { t, reduced, q }) {
@@ -57,7 +56,5 @@ export function activity(root, { t, reduced, q }) {
   root.querySelector("#js-reset").addEventListener("click", setup);
   const unpress = cartoonPress(root, reduced);
   setup();
-  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 0 }, { kind: "person", look: 4 }], backdrop: "camp" });
-  const offActivity = () => { stop(); unpress(); };
-  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
+  return () => { stop(); unpress(); };
 }

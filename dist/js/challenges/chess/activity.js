@@ -1,7 +1,6 @@
 // Hands-on activity of the chess challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { lockTouch, svgEl, toLocal, clamp, goalLine } from "../common/kit.js";
 import { cartoonPress } from "../common/cartoon.js";
-import { mountBuddy } from "../common/buddy.js";
 
 /* --------------------------------------------------------------- dominoes */
 export function activity(root, { t, reduced, q }) {
@@ -248,7 +247,5 @@ export function activity(root, { t, reduced, q }) {
   drawTray();
   redraw();
   summary();
-  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 1 }], backdrop: "chess" });
-  const offActivity = cartoonPress(root, reduced);
-  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
+  return cartoonPress(root, reduced);
 }

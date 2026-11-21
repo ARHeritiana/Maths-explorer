@@ -3,7 +3,6 @@
 import { goalLine } from "../common/kit.js";
 import { cartoonPress } from "../common/cartoon.js";
 import { CHERYL_SETS, MONTHS } from "./maths.js";
-import { mountBuddy } from "../common/buddy.js";
 
 export function activity(root, { t, q, lang, reduced }) {
   const D = CHERYL_SETS[q.set], L = lang === "fr" ? 0 : 1;
@@ -38,7 +37,5 @@ export function activity(root, { t, q, lang, reduced }) {
   grid.addEventListener("click", (e) => { const b = e.target.closest("[data-k]"); if (!b) return; const k = b.dataset.k; crossed.has(k) ? crossed.delete(k) : crossed.add(k); draw(); grid.querySelector(`[data-k="${k}"]`)?.focus(); });
   root.querySelector("#ch-reset").addEventListener("click", () => { crossed = new Set(); draw(); });
   draw();
-  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 2, name: "Albert" }, { kind: "person", look: 3, name: "Cheryl" }, { kind: "person", look: 1, name: "Bernard" }] });
-  const offActivity = cartoonPress(root, reduced);
-  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
+  return cartoonPress(root, reduced);
 }

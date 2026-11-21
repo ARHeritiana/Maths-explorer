@@ -2,7 +2,6 @@
 import { goalLine } from "../common/kit.js";
 import { PRESS, cartoonPress } from "../common/cartoon.js";
 import { queensK, unattacked } from "./maths.js";
-import { mountBuddy } from "../common/buddy.js";
 
 /* ---------------------------------------------------------------- queens */
 export function activity(root, { t, q, reduced }) {
@@ -23,7 +22,5 @@ export function activity(root, { t, q, reduced }) {
   board.addEventListener("click", (e) => { const b = e.target.closest(".qn-cell"); if (!b) return; const s = Number(b.dataset.s); if (queensSet.has(s)) queensSet.delete(s); else if (queensSet.size < k) queensSet.add(s); draw(); board.querySelector(`[data-s="${s}"]`)?.focus(); });
   root.querySelector("#qn-clear").addEventListener("click", () => { queensSet.clear(); draw(); });
   draw();
-  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 3 }], backdrop: "chess" });
-  const offActivity = cartoonPress(root, reduced, "#qn-clear");
-  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
+  return cartoonPress(root, reduced, "#qn-clear");
 }

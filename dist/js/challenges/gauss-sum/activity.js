@@ -3,7 +3,6 @@
 import { colour, svgEl, goalLine } from "../common/kit.js";
 import { PRESS, installCartoon, pop } from "../common/cartoon.js";
 import { parseSeries, term, lastTerm, groupDigits } from "./maths.js";
-import { mountBuddy } from "../common/buddy.js";
 
 const SHOWN = 8;   // terms shown at each end of a long series
 
@@ -62,7 +61,5 @@ export function activity(root, { t, q, lang, reduced }) {
   // The tiles are rebuilt on every draw: pop the fresh twin of the pressed button once the handlers above have redrawn.
   root.addEventListener("click", (e) => { const b = e.target.closest?.("button"); if (!b) return; const nb = b.id ? root.querySelector(`#${b.id}`) : root.querySelector(`.cl-tok[data-i="${b.dataset.i}"]`); if (nb && !nb.disabled) pop(nb, reduced); });
   drawTiles(); drawPairs(); drawRead(); drawStairs();
-  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 5 }], backdrop: "classroom" });
-  const offActivity = () => {};
-  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
+  return () => {};
 }

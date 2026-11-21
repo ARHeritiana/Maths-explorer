@@ -3,7 +3,8 @@
 // on the board in chalk (a sentence without any keeps the board as it is), points, talks; the student listens, wonders,
 // and lights up at the end. `comic(text, options)` returns a solution definition for the shared player
 // (common/player.js): { size, dur, steps, mount, update }, every frame a pure function of (step, p). Used by the written
-// version of the challenges, by the curiosities' "Comprendre la réponse" and by the laboratory's argument.
+// version of the challenges, by the curiosities' "Comprendre la réponse" and by the laboratory's argument, and only for
+// a text that has something to write on the board (`hasFormulas`).
 import { svgEl } from "./kit.js";
 import { makePerson, posePerson } from "./person.js";
 import { makeBubble, poseBubble } from "./bubble.js";
@@ -45,6 +46,10 @@ export function mathBits(sentence, max = 34) {
 }
 
 // what the teacher says to the student when a step starts (never addressed to the reader)
+// Whether a text is worth a cartoon: at least one equation or estimate (=, ≈, <...) for the board in one of its languages (owner, 21 November
+// 2026: characters only where they help; a board with nothing to write would be decoration).
+export const hasFormulas = (text) => (Array.isArray(text) ? text : [text]).some((x) => sentences(x, 99).some((sn) => mathBits(sn).some((b) => /[=≈≤≥<>]/.test(b))));
+
 const TALK = [["Bon…", "Right…"], ["Ensuite…", "Next…"], ["Donc…", "So…"], ["Et voilà !", "There it is!"]];
 
 // text: [fr, en] (or a string); icon: optional SVG markup drawn in the corner of the board (an emblem in currentColor);

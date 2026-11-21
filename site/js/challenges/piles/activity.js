@@ -2,7 +2,6 @@
 import { MINUS, clamp, goalLine } from "../common/kit.js";
 import { PRESS, installCartoon, pop } from "../common/cartoon.js";
 import { splitTotal } from "./maths.js";
-import { mountBuddy } from "../common/buddy.js";
 
 /* ----------------------------------------------------------------- piles */
 export function activity(root, { t, q, reduced }) {
@@ -39,7 +38,5 @@ export function activity(root, { t, q, reduced }) {
   root.addEventListener("click", (e) => { const b = e.target.closest?.("button"); if (!b) return; const nb = b.id ? root.querySelector(`#${b.id}`) : root.querySelector(`.cl-tok[data-i="${b.dataset.i}"]`); if (nb && !nb.disabled) pop(nb, reduced); });
   void MINUS;
   reset(); draw();
-  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 0 }], backdrop: "park" });
-  const offActivity = () => {};
-  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
+  return () => {};
 }

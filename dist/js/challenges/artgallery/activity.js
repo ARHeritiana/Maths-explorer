@@ -2,7 +2,6 @@
 import { pointInPolygon, visibility } from "./maths.js";
 import { lockTouch, svgEl, colour, toLocal, goalLine } from "../common/kit.js";
 import { cartoonPress } from "../common/cartoon.js";
-import { mountBuddy } from "../common/buddy.js";
 
 export const GW = 20, GH = 12;
 
@@ -171,7 +170,5 @@ export function activity(root, { t, reduced, q }) {
   root.querySelector("#ag-star").addEventListener("click", () => setPoly(starGallery(N)));
   root.querySelector("#ag-clear").addEventListener("click", () => { guards.length = 0; sel = -1; draw(); });
   sample(); draw();
-  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 2 }], backdrop: "gallery" });
-  const offActivity = cartoonPress(root, reduced);
-  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
+  return cartoonPress(root, reduced);
 }

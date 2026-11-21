@@ -37,8 +37,8 @@ scene-level tap/drag actions have keyboard equivalents, and camera gestures canc
 | `player.js` | `playSolution(def, root, options)`: the solution player (steps, play, captions, `seek`) |
 | `person.js` | the detailed cartoon person: `makePerson` (built once; `gear: "hiker"` adds a backpack and a sun hat), `posePerson` (pure pose: walk, facing, gaze, reach, wave, hop, breathe, blink, mood); used by handshakes and hiker |
 | `bubble.js` | the speech bubble: `makeBubble`, `poseBubble` (pops in with an overshoot) |
-| `buddy.js` | the cartoon cast of an activity: `mountBuddy(root, { t, reduced, cast, backdrop, watch })` puts a strip of characters (person, robot, pigeon) above the playing field, in one of the `SETTINGS` (temple, market, tower, hall, dovecote, classroom, night, camp, gallery, park, pond, chess, games, staircase, grid, lab); they look at what the learner touches, wince at a refused move and cheer at a line ending in "!" in the readout; `react(kind)`, `look(x)`, `destroy()`; never a word about the method |
-| `comic.js` | a written explanation played as a cartoon: `comic(text, { icon })` (a solution definition for the player: a teacher writes each sentence's formulas on a chalkboard, a student listens and lights up at the end), `mountComic(text, root, { lang, reduced, icon })`, pure `sentences`, `mathBits`; used by the written version of every challenge (`app.js` `bindChallenges`), the checked curiosities' "Comprendre la réponse" (`app.js`) and the laboratory's conclusion (`site/js/lab/shell.js`, toggle "Le voir en dessin animé") |
+| `buddy.js` | a cast strip above an activity: `mountBuddy(root, { t, cast, backdrop, watch })` (person, robot; setting `games`), CSS-animated, reacting to moves, refusals ("Oups !") and successes read from the readout; `react(kind)`, `look(x)`, `destroy()`. Only where a character is a party to the problem (today Nim, against a robot) |
+| `comic.js` | a written explanation played as a cartoon: `comic(text, { icon })` (a solution definition for the player: a teacher writes each sentence's formulas on a chalkboard, a student listens and lights up at the end), `mountComic(text, root, { lang, reduced, icon })`, pure `sentences`, `mathBits`; shown only when `hasFormulas(text)` (an equation or an estimate for the board); used by the written version of the challenges (`app.js` `bindChallenges`), the checked curiosities' "Comprendre la réponse" (`app.js`) and the laboratory's conclusion (`site/js/lab/shell.js`, toggle "Le voir en dessin animé") |
 | `knight-piece.js` | the chess knight silhouette (activity, solution `ctx.knight`, emblem) |
 | `scene-kit.js`, `scene-props.js` | cartoon characters and props used by several challenges (soldier, day scene, egg, balance) |
 | `scene-3d.js`, `view-3d.js` | helpers of the 3D solutions; the small orthographic 3D renderer (cake, box) |
@@ -96,8 +96,13 @@ a red marker crossing out dates, a cake on the answer). `factorials/` (tiles 1 t
 power of p, a counter with a clipboard; for trailing zeros the scarcest prime of the base, `shownPrime`, is the one
 shown, with a fourth step for the minimum).
 
-Update of 21 November 2026 (cartoon exploration): every activity that was still a plain board now has a cast
-(`common/buddy.js`) in a themed setting, mounted after the activity's own setup (the strip holds an `<svg>`, so it must not
-come first for activities that look up `root.querySelector("svg")`). Hanoi disks and Josephus people have faces (crossed
-eyes once out, a crown for the last one), the inversions row has faces, Nim is played against a robot. `fly/activity.js`
-and `jugs/activity.js` now play on the solution's art (locomotives and fly; kitchen, tap, sink and jugs with faces).
+Update of 21 November 2026 (cartoon exploration): the fly and jugs activities play on the solution's art (locomotives
+and fly; kitchen, tap, sink and jugs with faces); Nim has a cast strip (`common/buddy.js`, mounted after the activity's own
+setup, since the strip holds an `<svg>` and several activities look up `root.querySelector("svg")`).
+
+Update of 21 November 2026 (owner: characters only where they help): the cast strips were taken off again except Nim
+(the robot is the opponent); Hanoi disks lost their faces; the Josephus faces (eliminated or last) and the faces of the
+inversions row stay, since they say who is out and that the bars are people. A cartoon at the board is offered only
+when the text has an equation or an estimate to write (`hasFormulas`): 27 of the 43 written versions at their default
+parameters, 4 gallery articles (mandelbrot, basins, hundred-boxes, secretary-gallery) and the laboratory conclusions
+that have one.

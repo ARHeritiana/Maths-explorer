@@ -1626,7 +1626,8 @@ __d("challenges/common/comic.js", function (__e, __r) {
 // on the board in chalk (a sentence without any keeps the board as it is), points, talks; the student listens, wonders,
 // and lights up at the end. `comic(text, options)` returns a solution definition for the shared player
 // (common/player.js): { size, dur, steps, mount, update }, every frame a pure function of (step, p). Used by the written
-// version of the challenges, by the curiosities' "Comprendre la réponse" and by the laboratory's argument.
+// version of the challenges, by the curiosities' "Comprendre la réponse" and by the laboratory's argument, and only for
+// a text that has something to write on the board (`hasFormulas`).
 const { svgEl } = __r("challenges/common/kit.js");
 const { makePerson, posePerson } = __r("challenges/common/person.js");
 const { makeBubble, poseBubble } = __r("challenges/common/bubble.js");
@@ -1668,6 +1669,10 @@ function mathBits(sentence, max = 34) {
 }
 
 // what the teacher says to the student when a step starts (never addressed to the reader)
+// Whether a text is worth a cartoon: at least one equation or estimate (=, ≈, <...) for the board in one of its languages (owner, 21 November
+// 2026: characters only where they help; a board with nothing to write would be decoration).
+const hasFormulas = (text) => (Array.isArray(text) ? text : [text]).some((x) => sentences(x, 99).some((sn) => mathBits(sn).some((b) => /[=≈≤≥<>]/.test(b))));
+
 const TALK = [["Bon…", "Right…"], ["Ensuite…", "Next…"], ["Donc…", "So…"], ["Et voilà !", "There it is!"]];
 
 // text: [fr, en] (or a string); icon: optional SVG markup drawn in the corner of the board (an emblem in currentColor);
@@ -1765,6 +1770,7 @@ const mountComic = (text, root, { lang, reduced, icon = "", max = 7, picture = n
 
 __e.sentences = sentences;
 __e.mathBits = mathBits;
+__e.hasFormulas = hasFormulas;
 __e.comic = comic;
 __e.mountComic = mountComic;
 });
@@ -12386,6 +12392,8 @@ function createShell(host, exp, tpl, opts = {}) {
       const fold = el("div", "lab2-comic"), toggle = el("button", "btn-quiet lab2-comic-toggle", t(["Le voir en dessin animé", "Watch it as a cartoon"])), host = el("div", "sol-host comic-host");
       toggle.type = "button"; toggle.setAttribute("aria-expanded", "false"); host.hidden = true;
       fold.append(toggle, host);
+      fold.hidden = true;   // shown only when the conclusion has a formula to write on the board
+      Promise.resolve(__r("challenges/common/comic.js")).then(({ hasFormulas }) => { if (alive && hasFormulas(exp.conclusion)) fold.hidden = false; }).catch(() => {});
       toggle.addEventListener("click", async () => {
         const open = host.hidden;
         host.hidden = !open; toggle.setAttribute("aria-expanded", String(open));

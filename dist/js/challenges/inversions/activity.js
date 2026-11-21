@@ -2,7 +2,6 @@
 import { colour, goalLine } from "../common/kit.js";
 import { PRESS, installCartoon, pop } from "../common/cartoon.js";
 import { permOf, inversions } from "./maths.js";
-import { mountBuddy } from "../common/buddy.js";
 
 /* ------------------------------------------------------------ inversions */
 export function activity(root, { t, q, reduced }) {
@@ -31,7 +30,5 @@ export function activity(root, { t, q, reduced }) {
   // The bars are rebuilt on every draw: pop the fresh twin of the pressed button once the handlers above have redrawn.
   root.addEventListener("click", (e) => { const b = e.target.closest?.("button"); if (!b) return; const nb = b.id ? root.querySelector(`#${b.id}`) : root.querySelector(`.iv-bar[data-i="${b.dataset.i}"]`); if (nb && !nb.disabled) pop(nb, reduced); });
   reset(); draw();
-  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 1 }, { kind: "person", look: 3 }], backdrop: "park" });
-  const offActivity = () => {};
-  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
+  return () => {};
 }

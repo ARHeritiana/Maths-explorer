@@ -3,7 +3,6 @@
 
 import { goalLine } from "../common/kit.js";
 import { cartoonPress, PRESS } from "../common/cartoon.js";
-import { mountBuddy } from "../common/buddy.js";
 
 /* ------------------------------------------------------------------ eggs */
 export function activity(root, { t, q, reduced }) {
@@ -67,7 +66,5 @@ export function activity(root, { t, q, reduced }) {
   root.querySelector("#eg-new").addEventListener("click", () => { fresh(); root.querySelector("#eg-guess").value = ""; draw(); });
   fresh();
   draw();
-  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 4 }], backdrop: "tower" });
-  const offActivity = cartoonPress(root, reduced);
-  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
+  return cartoonPress(root, reduced);
 }

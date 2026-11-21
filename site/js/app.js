@@ -444,11 +444,14 @@ function bindGallery() {
   });
   // An article without an animated explanation shows its lead as a cartoon at the board (mounted, not started)
   const articleComic = $("[data-comic-article]");
-  if (articleComic) import("./challenges/common/comic.js").then(({ mountComic }) => {
+  if (articleComic) import("./challenges/common/comic.js").then(({ mountComic, hasFormulas }) => {
     const art = articleOf(lab.id);
     if (!articleComic.isConnected || !art) return;
+    const lead = [art.lead.map((x) => x[0]).join(" "), art.lead.map((x) => x[1]).join(" ")];
+    if (!hasFormulas(lead)) return;   // prose only: the section stays hidden
+    articleComic.closest(".art-cartoon").hidden = false;
     const picture = (cv) => import("./home-art.js").then(({ mountArt }) => { if (cv.isConnected) articleComic.__art = mountArt(cv, lab.id); });
-    articleComic.__solution = mountComic([art.lead.map((x) => x[0]).join(" "), art.lead.map((x) => x[1]).join(" ")], articleComic, { lang, reduced: reducedMotion, picture });
+    articleComic.__solution = mountComic(lead, articleComic, { lang, reduced: reducedMotion, picture });
   });
   // "Comprendre la réponse" of a checked curiosity: the written explanation played as a short cartoon at the board
   const comicHost = $("[data-comic-explain]");
@@ -456,8 +459,8 @@ function bindGallery() {
     if (!comicHost) return;
     if (!e.target.open) { comicHost.__solution?.stop(); return; }
     if (!comicHost.__solution) {
-      const { mountComic } = await import("./challenges/common/comic.js");
-      if (!comicHost.isConnected) return;
+      const { mountComic, hasFormulas } = await import("./challenges/common/comic.js");
+      if (!comicHost.isConnected || !hasFormulas(lab.explain)) return;
       comicHost.__solution = mountComic(lab.explain, comicHost, { lang, reduced: reducedMotion });
     }
     comicHost.__solution?.start();
@@ -564,9 +567,9 @@ function bindChallenges() {
   async function mountWrittenComic() {
     comicPlayer?.stop(); comicPlayer = null;
     if (!comicHost || !$("#written-solution")?.open) return;
-    const { mountComic } = await import("./challenges/common/comic.js");
+    const { mountComic, hasFormulas } = await import("./challenges/common/comic.js");
     const text = comicText();
-    if (!comicHost.isConnected || !text) return;
+    if (!comicHost.isConnected || !text || !hasFormulas(text)) return;
     comicPlayer = mountComic(text, comicHost, { lang, reduced: reducedMotion, icon: challengeIcon(cid) || "" });
     comicHost.__solution = comicPlayer;
     comicPlayer.start();

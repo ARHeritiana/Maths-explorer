@@ -1,7 +1,6 @@
 // Hands-on activity of the squares challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { svgEl, colour, clamp, goalLine } from "../common/kit.js";
 import { PRESS, installCartoon, cartoonPress } from "../common/cartoon.js";
-import { mountBuddy } from "../common/buddy.js";
 
 /* ---------------------------------------------------------------- squares */
 // Each border (an L of 1, 3, 5, … dots) has its own colour, an outline that wraps the whole L, and a matching line in
@@ -63,7 +62,5 @@ export function activity(root, { t, reduced }) {
   root.querySelector("#sq-minus").addEventListener("click", () => set(n - 1));
   root.querySelector("#sq-plus").addEventListener("click", () => set(n + 1));
   draw();
-  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 2 }], backdrop: "lab" });
-  const offActivity = cartoonPress(root, reduced);
-  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
+  return cartoonPress(root, reduced);
 }

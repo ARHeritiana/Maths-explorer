@@ -1,7 +1,6 @@
 // Hands-on activity of the doors challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { clamp, goalLine } from "../common/kit.js";
 import { cartoonPress } from "../common/cartoon.js";
-import { mountBuddy } from "../common/buddy.js";
 
 /* ------------------------------------------------------------------ doors */
 export function activity(root, { t, q, reduced }) {
@@ -86,7 +85,5 @@ export function activity(root, { t, q, reduced }) {
   });
   render();
   const press = cartoonPress(root, reduced);
-  const buddy = mountBuddy(root, { t, reduced: reduced, cast: [{ kind: "person", look: 3 }], backdrop: "hall" });
-  const offActivity = () => { stop(); press(); };
-  return () => { if (typeof offActivity === "function") offActivity(); buddy.destroy(); };
+  return () => { stop(); press(); };
 }

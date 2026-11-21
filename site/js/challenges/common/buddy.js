@@ -1,5 +1,6 @@
-// The cartoon cast of an activity: a strip above the playing field where one to three characters (a person, a robot, a
-// pigeon) live while the learner explores. They breathe (CSS, no animation frames), turn to look at what the learner touches, and react to
+// The cartoon cast of an activity: a strip above the playing field where one to three characters (a person, a robot)
+// live while the learner explores. Use it only where a character is a party to the problem and its reactions help (owner,
+// 21 November 2026: characters are there to help, never as decoration); today only Nim, played against a robot. They breathe (CSS, no animation frames), turn to look at what the learner touches, and react to
 // what happens: a nod for a move, an "o" and a bubble for a move the rules forbid, a hop and a grin for a goal reached.
 // They never comment on the method (owner rule): every word they say repeats what the readout already states, so the strip
 // is hidden from screen readers. `mountBuddy(root, options)` inserts the strip after the goal line and returns
@@ -42,31 +43,6 @@ function poseRobot(R, { x, y, facing = 1, gaze = 0, hop = 0, mood = "smile", bli
   R.bulb.setAttribute("fill", mood === "o" ? "#ff6b6b" : mood === "grin" ? "#5cf27a" : "#ffd34d");
 }
 
-// A pigeon, feet at (0, 0), facing +x, about 40 units tall.
-function makePigeon(parent, { fill = "#9aa7b8" } = {}) {
-  const root = g(parent), shadow = svgEl("ellipse", { rx: 12, ry: 2.6, fill: INK, opacity: 0.16 }, root), flip = g(root), fig = g(flip);
-  for (const x of [-3, 3]) svgEl("path", { d: `M${x} -8 v8 l3 0`, fill: "none", stroke: "#e07b39", "stroke-width": 1.6, "stroke-linecap": "round" }, fig);
-  svgEl("path", { d: "M-16 -16 q-4 -6 -10 -4 q4 2 6 6 Z", fill: `color-mix(in srgb, ${fill} 70%, #000)`, stroke: INK, "stroke-width": 1 }, fig);   // tail
-  svgEl("ellipse", { cx: -2, cy: -16, rx: 15, ry: 10, fill, stroke: INK, "stroke-width": 1.4 }, fig);
-  const wing = svgEl("path", { d: "M-10 -18 q8 -8 16 0 q-8 6 -16 0 Z", fill: `color-mix(in srgb, ${fill} 75%, #000)`, stroke: INK, "stroke-width": 1 }, fig);
-  const head = g(fig);
-  svgEl("circle", { cx: 10, cy: -28, r: 7, fill: `color-mix(in srgb, ${fill} 85%, #6a4c93)`, stroke: INK, "stroke-width": 1.3 }, head);
-  svgEl("path", { d: "M16 -28 l5 1.5 l-5 1.5 Z", fill: "#e0b13a", stroke: INK, "stroke-width": 0.8 }, head);
-  svgEl("circle", { cx: 12, cy: -30, r: 2.4, fill: "#fff", stroke: INK, "stroke-width": 0.7 }, head);
-  const eye = svgEl("circle", { cx: 12.6, cy: -30, r: 1.2, fill: "#1d1d1d" }, head);
-  return { kind: "pigeon", root, shadow, flip, fig, head, wing, eye };
-}
-function posePigeon(B, { x, y, facing = 1, hop = 0, mood = "smile", blink = 0, breathe = 0, wave = 0 }) {
-  const lift = 7 * Math.sin(Math.PI * clamp01(hop));
-  B.root.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
-  B.flip.setAttribute("transform", facing < 0 ? "scale(-1 1)" : "");
-  B.fig.setAttribute("transform", `translate(0 ${(-lift).toFixed(2)})`);
-  B.head.setAttribute("transform", `translate(${(1.2 * Math.sin(breathe * 2)).toFixed(2)} 0)${mood === "o" ? " rotate(-12 10 -24)" : ""}`);
-  B.wing.setAttribute("transform", hop > 0 || wave > 0 ? `rotate(${(-30 * Math.abs(Math.sin((hop + wave) * 20))).toFixed(1)} -10 -18)` : "");
-  B.eye.setAttribute("r", blink > 0.5 ? 0.3 : mood === "o" ? 1.6 : 1.2);
-}
-
-
 /* ------------------------------------------------------------------- style */
 // The cast moves with CSS only: a slow breath, and on a reaction a hop (goal), a shake (refusal) or a nod (move); the
 // bubble pops. All of it stops under prefers-reduced-motion.
@@ -90,25 +66,10 @@ function installBuddyStyle(doc) {
 }
 
 /* ---------------------------------------------------------------- settings */
-// Small themed settings drawn behind the cast (W x H strip, floor at FLOOR). Each one is a few outlined shapes.
+// Settings drawn behind the cast (W x H strip, floor at FLOOR): a few outlined shapes each.
 const L = (b, d, fill, w = 1.3) => svgEl("path", { d, fill, stroke: INK, "stroke-width": w, "stroke-linejoin": "round" }, b);
 export const SETTINGS = {
-  temple(b) { L(b, `M330 ${FLOOR} V40 L410 12 L490 40 V${FLOOR} Z`, "color-mix(in srgb, #e9c46a 35%, var(--surface))"); L(b, "M320 42 L410 6 L500 42 Z", "#c0392b"); for (const x of [350, 390, 430, 470]) L(b, `M${x - 3} 44 h6 V${FLOOR} h-6 Z`, "#8d5f2d", 0.8); },
-  market(b) { L(b, `M300 ${FLOOR} V44 H500 V${FLOOR}`, "color-mix(in srgb, #c58b52 55%, var(--surface))"); for (let i = 0; i < 5; i++) L(b, `M${300 + i * 40} 30 h40 v14 q-20 10 -40 0 Z`, i % 2 ? "#fff" : "#e63946", 1); L(b, "M380 70 h40 M400 70 V52 M386 70 l-8 14 h16 Z M414 70 l-8 14 h16 Z", "none", 1.4); },
-  tower(b) { L(b, `M380 ${FLOOR} V8 H470 V${FLOOR} Z`, "color-mix(in srgb, #a8dadc 45%, var(--surface))"); for (let y = 16; y < FLOOR - 8; y += 16) for (const x of [392, 418, 444]) L(b, `M${x} ${y} h14 v9 h-14 Z`, "#fff6d5", 0.8); },
-  hall(b) { for (let i = 0; i < 6; i++) { const x = 250 + i * 44; L(b, `M${x} ${FLOOR} V40 Q${x + 15} 30 ${x + 30} 40 V${FLOOR} Z`, i % 2 ? "#8d5f2d" : "#b07a43", 1.1); svgEl("circle", { cx: x + 24, cy: 70, r: 2, fill: "#ffd34d" }, b); } },
-  dovecote(b) { L(b, `M380 ${FLOOR} V40 H480 V${FLOOR} Z`, "color-mix(in srgb, #f4e1c1 60%, var(--surface))"); L(b, "M370 42 L430 10 L490 42 Z", "#8d5f2d"); for (let r = 0; r < 2; r++) for (let c = 0; c < 3; c++) L(b, `M${392 + c * 30} ${58 + r * 20} a8 8 0 0 1 16 0 v6 h-16 Z`, "#3b2a20", 1); },
-  classroom(b) { L(b, "M260 14 H500 V74 H260 Z", "#2f4a3c", 1.4); L(b, "M254 8 H506 V80 H254 Z", "none", 2); svgEl("rect", { x: 280, y: 76, width: 18, height: 4, rx: 1.5, fill: "#fff" }, b); },
-  night(b) { svgEl("rect", { x: 0, y: 0, width: W, height: FLOOR, rx: 12, fill: "#1d2b4a", opacity: 0.85 }, b); for (let i = 0; i < 22; i++) svgEl("circle", { cx: 130 + ((i * 97) % 380), cy: 10 + ((i * 53) % 70), r: i % 4 ? 1.1 : 2, fill: "#fff6c8" }, b); svgEl("circle", { cx: 470, cy: 26, r: 12, fill: "#fff3b0" }, b); },
-  camp(b) { L(b, `M330 ${FLOOR} L380 30 L430 ${FLOOR} Z`, "#2a9d8f"); L(b, `M420 ${FLOOR} L462 44 L504 ${FLOOR} Z`, "#e76f51"); L(b, `M240 ${FLOOR} q10 -26 20 0 Z M248 ${FLOOR} q6 -14 4 -22 q10 8 6 22 Z`, "#f4a261", 1); },
-  gallery(b) { for (const [x, w, c] of [[270, 50, "#e9c46a"], [340, 70, "#2a9d8f"], [430, 50, "#e76f51"]]) { L(b, `M${x} 18 h${w} v40 h${-w} Z`, "#8d5f2d", 1.4); L(b, `M${x + 5} 23 h${w - 10} v30 h${-(w - 10)} Z`, c, 0.8); } },
-  park(b) { for (const x of [300, 380, 460]) { L(b, `M${x - 3} ${FLOOR} V60 h6 V${FLOOR} Z`, "#7a4a24", 0.8); svgEl("circle", { cx: x, cy: 50, r: 18, fill: "#4f9a46", stroke: INK, "stroke-width": 1 }, b); } },
-  pond(b) { svgEl("ellipse", { cx: 400, cy: FLOOR - 4, rx: 100, ry: 12, fill: "color-mix(in srgb, #4aa3df 60%, var(--surface))", stroke: INK, "stroke-width": 1.2 }, b); L(b, `M330 ${FLOOR - 6} q4 -26 8 0 M470 ${FLOOR - 6} q4 -22 8 0`, "none", 1.6); },
-  chess(b) { L(b, "M300 70 H500 V82 H300 Z", "#8d5f2d"); for (let i = 0; i < 8; i++) L(b, `M${310 + i * 22} 58 h22 v12 h-22 Z`, i % 2 ? "#3b2a20" : "#f4e1c1", 0.6); L(b, `M320 82 V${FLOOR} M480 82 V${FLOOR}`, "none", 3); },
   games(b) { L(b, "M300 64 H500 V76 H300 Z", "#2a9d8f"); L(b, "M350 14 H450 V48 H350 Z", "#1d2b3a", 1.4); L(b, "M398 16 V46", "none", 1); svgEl("circle", { cx: 375, cy: 31, r: 6, fill: "#5cf27a" }, b); svgEl("circle", { cx: 425, cy: 31, r: 6, fill: "#ff6b6b" }, b); L(b, `M320 76 V${FLOOR} M480 76 V${FLOOR}`, "none", 3); },
-  staircase(b) { for (let i = 0; i < 8; i++) L(b, `M${300 + i * 25} ${FLOOR} V${FLOOR - 10 - i * 10} h25 V${FLOOR} Z`, `color-mix(in srgb, ${colour(i)} 50%, var(--surface))`, 1); },
-  grid(b) { for (let i = 0; i <= 6; i++) { L(b, `M${300 + i * 30} 10 V${FLOOR - 6}`, "none", 0.6); } for (let j = 0; j <= 3; j++) L(b, `M300 ${10 + j * 26.6} H480`, "none", 0.6); svgEl("circle", { cx: 300, cy: FLOOR - 6, r: 5, fill: "#2a9d8f" }, b); svgEl("circle", { cx: 480, cy: 10, r: 5, fill: "#e63946" }, b); },
-  lab(b) { L(b, "M300 70 H500 V80 H300 Z", "#9aa7b8"); L(b, "M330 70 V40 h14 V70 M326 40 h22", "color-mix(in srgb, #4aa3df 40%, var(--surface))"); L(b, "M380 70 q-14 0 -8 -16 l10 -16 V30 h10 v8 l10 16 q6 16 -8 16 Z", "color-mix(in srgb, #8ac926 40%, var(--surface))"); L(b, "M440 70 a16 16 0 1 1 32 0 Z", "color-mix(in srgb, #ffca3a 50%, var(--surface))"); },
 };
 
 /* ------------------------------------------------------------------- strip */
@@ -121,7 +82,7 @@ const WORDS = {
   lose: [["Zut !", "Drat!"]],
 };
 
-// cast: [{ kind: "person" | "robot" | "pigeon", look, fill, gear, x, facing, name? }]; backdrop(svg, W, H): optional drawing.
+// cast: [{ kind: "person" | "robot", look, fill, gear, x, facing, name? }]; backdrop(svg, W, H): optional drawing.
 // auto: a click or a change anywhere in the activity makes the cast look there and nod, unless the activity reacted itself.
 // watch: true (default) reads the activity's readout, a function (text) => kind, or false.
 export function mountBuddy(root, { t, cast = [{ kind: "person", look: 0 }], backdrop = null, auto = true, watch = true } = {}) {
@@ -143,7 +104,7 @@ export function mountBuddy(root, { t, cast = [{ kind: "person", look: 0 }], back
   const actors = cast.map((c, i) => {
     const x = c.x ?? slots[i], facing = c.facing ?? (x < W / 2 ? 1 : -1);
     const fill = c.fill || `color-mix(in srgb, ${colour(c.look ?? i)} 70%, var(--surface))`;
-    const A = c.kind === "robot" ? makeRobot(svg, { fill: c.fill || colour(3) }) : c.kind === "pigeon" ? makePigeon(svg, { fill: c.fill }) : makePerson(svg, { fill, look: c.look ?? i, size: c.size ?? 1.3, gear: c.gear || null });
+    const A = c.kind === "robot" ? makeRobot(svg, { fill: c.fill || colour(3) }) : makePerson(svg, { fill, look: c.look ?? i, size: c.size ?? 1.3, gear: c.gear || null });
     if (c.name) svgEl("text", { x, y: H - 1, "text-anchor": "middle", "font-size": 9, "font-weight": 700, fill: INK }, svg).textContent = c.name;
     return { A, kind: c.kind || "person", x, facing, gaze: 0, wrap: null, timer: 0 };
   });
@@ -158,7 +119,6 @@ export function mountBuddy(root, { t, cast = [{ kind: "person", look: 0 }], back
     const common = { x: a.x, y: FLOOR, facing: a.facing, breathe: 0, blink: 0 };
     const mood = kind === "oops" || kind === "lose" ? "o" : kind === "win" ? "grin" : kind === "think" ? "flat" : "smile";
     if (a.kind === "robot") poseRobot(a.A, { ...common, gaze: a.gaze, mood, wave: kind === "win" || kind === "wave" ? 0.3 : 0 });
-    else if (a.kind === "pigeon") posePigeon(a.A, { ...common, mood, wave: kind === "win" ? 0.3 : 0 });
     else posePerson(a.A, { ...common, gaze: [a.gaze * a.facing, kind === "think" ? -0.8 : 0.2], mood, wave: kind === "wave" || kind === "win" ? 0.12 : 0, reach: kind === "move" ? 0.7 : 0, reachAngle: 20 });
   };
   const play = (a, kind) => {

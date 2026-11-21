@@ -363,6 +363,8 @@ export function createShell(host, exp, tpl, opts = {}) {
       const fold = el("div", "lab2-comic"), toggle = el("button", "btn-quiet lab2-comic-toggle", t(["Le voir en dessin animé", "Watch it as a cartoon"])), host = el("div", "sol-host comic-host");
       toggle.type = "button"; toggle.setAttribute("aria-expanded", "false"); host.hidden = true;
       fold.append(toggle, host);
+      fold.hidden = true;   // shown only when the conclusion has a formula to write on the board
+      import("../challenges/common/comic.js").then(({ hasFormulas }) => { if (alive && hasFormulas(exp.conclusion)) fold.hidden = false; }).catch(() => {});
       toggle.addEventListener("click", async () => {
         const open = host.hidden;
         host.hidden = !open; toggle.setAttribute("aria-expanded", String(open));
