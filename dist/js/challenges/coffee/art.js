@@ -104,3 +104,46 @@ export function poseCard(K, { x, y, lines = [], appear = 1 }) {
   K.box.setAttribute("x", x0); K.box.setAttribute("y", y0); K.box.setAttribute("width", w); K.box.setAttribute("height", h);
   K.rows.forEach((r, i) => { const on = i < lines.length; r.sw.setAttribute("opacity", on ? 1 : 0); r.tx.setAttribute("opacity", on ? 1 : 0); if (!on) return; r.sw.setAttribute("x", x0 + 8); r.sw.setAttribute("y", y0 + 7 + i * 16); r.sw.setAttribute("fill", lines[i][0]); r.tx.setAttribute("x", x0 + 24); r.tx.setAttribute("y", y0 + 16 + i * 16); r.tx.textContent = lines[i][1]; });
 }
+
+/* ------------------------------------------------------------------ the beans (discrete version) */
+// Two open burlap sacks of beans on the kitchen counter and a wooden bowl for the handful. Beans are drawn as small
+// ellipses, white or red, in a jittered pile whose order comes from a seed (shaking a sack changes the seed).
+export const WHITE = "#f4efe2", RED = "#c0392b", SACK_X = [140, 380];
+const shuffled = (n, seed) => { const a = Array.from({ length: n }, (_, i) => i); let s = (seed >>> 0) || 1; for (let i = n - 1; i > 0; i--) { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; const j = s % (i + 1); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+export function makeSack(parent, { x }) {
+  const root = g(parent, { transform: `translate(${x} ${TABLE})` });
+  svgEl("ellipse", { cx: 0, cy: 3, rx: 80, ry: 7, fill: INK, opacity: 0.14 }, root);
+  svgEl("path", { d: "M-70 0 Q-84 -60 -62 -118 L62 -118 Q84 -60 70 0 Z", fill: "#c9a46b", stroke: INK, "stroke-width": 1.8, "stroke-linejoin": "round" }, root);
+  for (let i = -3; i <= 3; i++) svgEl("path", { d: `M${i * 18} -112 q${i * 2} 56 ${i * 3} 108`, stroke: "#b08950", "stroke-width": 1, fill: "none", opacity: 0.6 }, root);   // weave
+  svgEl("ellipse", { cx: 0, cy: -118, rx: 62, ry: 12, fill: "#7a5a32", stroke: INK, "stroke-width": 1.6 }, root);   // the open mouth
+  const pile = g(root);
+  svgEl("path", { d: "M-66 -114 Q-74 -132 -50 -128 M66 -114 Q74 -132 50 -128", fill: "none", stroke: INK, "stroke-width": 1.6 }, root);   // the rolled rim
+  const tag = svgEl("text", { y: -26, "text-anchor": "middle", "font-size": 13, "font-weight": 700, fill: INK }, root);
+  return { root, pile, tag, x };
+}
+// Fill a sack with the beans of `bag` ({ w, r }), mixed by `seed`; beans are clickable when `pick` is given.
+export function poseSack(S, bag, seed = 1, { pick = false } = {}) {
+  S.pile.replaceChildren();
+  const n = bag.w + bag.r, order = shuffled(n, seed), cols = 9;
+  order.forEach((idx, k) => {
+    const white = idx < bag.w, row = Math.floor(k / cols), col = k % cols;
+    const x = -52 + col * 13 + (row % 2) * 6 + (((k * 37) % 7) - 3) * 0.6;
+    const by = -114 + row * 9 + ((k * 13) % 5) - 2;   // the pile shows in the open mouth and goes down into the sack
+    const e = svgEl("ellipse", { cx: x.toFixed(1), cy: by.toFixed(1), rx: 5.6, ry: 3.6, transform: `rotate(${(k * 47) % 60 - 30} ${x.toFixed(1)} ${by.toFixed(1)})`, fill: white ? WHITE : RED, stroke: INK, "stroke-width": 0.8 }, S.pile);
+    if (pick) { e.setAttribute("class", "bean"); e.dataset.c = white ? "w" : "r"; e.style.cursor = "pointer"; }
+  });
+}
+// The bowl that holds the handful, at (x, y), with its beans.
+export function makeBowl(parent) {
+  const root = g(parent), beans = g(root);
+  svgEl("path", { d: "M-36 0 Q-34 26 0 28 Q34 26 36 0 Z", fill: "#a8743a", stroke: INK, "stroke-width": 1.6 }, root);
+  svgEl("ellipse", { cx: 0, cy: 0, rx: 36, ry: 7, fill: "#7a5230", stroke: INK, "stroke-width": 1.4 }, root);
+  root.append(beans);
+  return { root, beans };
+}
+export function poseBowl(B, { x, y, hand = { w: 0, r: 0 }, tilt = 0 }) {
+  B.root.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${tilt.toFixed(1)})`);
+  B.beans.replaceChildren();
+  const n = hand.w + hand.r;
+  for (let k = 0; k < n; k++) { const bx = -24 + (k % 6) * 9.5, by = -3 - Math.floor(k / 6) * 6; svgEl("ellipse", { cx: bx, cy: by, rx: 5, ry: 3.3, fill: k < hand.w ? WHITE : RED, stroke: INK, "stroke-width": 0.8 }, B.beans); }
+}

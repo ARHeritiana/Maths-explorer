@@ -41,3 +41,26 @@ test("coffee: after every round trip, milk in the coffee equals coffee in the mi
     }
   }
 });
+
+// The discrete version: sacks of white and red beans. Whatever the handfuls (drawn at random or chosen), after each
+// round trip both sacks hold N beans and the red beans in the white sack equal the white beans in the red sack.
+import { BEANS, beansOf, bagsStart, move, grab, count } from "../site/js/challenges/coffee/maths.js";
+test("coffee, beans: any handfuls keep both sacks at N and the two foreign counts equal", () => {
+  let seed = 3;
+  const rnd = () => (seed = (seed * 48271) % 2147483647) / 2147483647;
+  for (const id of BEANS) {
+    const [N, k] = beansOf(id);
+    assert.equal(variant.answer({ cups: id }), 0, id);
+    for (let trial = 0; trial < 200; trial++) {
+      let bags = bagsStart(N);
+      for (let trip = 0; trip < 5; trip++) {
+        const out = trial % 2 ? grab(bags[0], k, rnd) : { w: Math.min(k, bags[0].w), r: k - Math.min(k, bags[0].w) };   // random, or as white as possible
+        bags = move(bags, 0, out);
+        const back = grab(bags[1], k, rnd);
+        bags = move(bags, 1, back);
+        assert.equal(count(bags[0]), N); assert.equal(count(bags[1]), N);
+        assert.equal(bags[0].r, bags[1].w, `${id} trial ${trial}`);
+      }
+    }
+  }
+});

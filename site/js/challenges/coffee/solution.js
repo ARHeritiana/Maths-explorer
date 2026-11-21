@@ -1,16 +1,17 @@
 // Animated solution of the coffee challenge. `diagram` holds the captions; `scene` builds the kitchen, the mugs, the spoon,
-// the cards and the bars once (mount) and poses them as a pure function of (step, p) (update).
+// the cards and the bars once (mount) and poses them as a pure function of (step, p) (update). For the discrete version
+// (sacks of white and red beans) the same kitchen holds two sacks and a bowl, and the foreign beans pair up one for one.
 import { P, ez, mid } from "../common/helpers.js";
 import { svgEl } from "../common/kit.js";
 import { seg } from "../common/scene-kit.js";
 import { makeBubble, poseBubble } from "../common/bubble.js";
-import { cupsOf, start, scoop, pour, volume, ml, answerOf } from "./maths.js";
-import { W, H, TABLE, CUP_X, drawKitchen, makeCup, poseCup, makeSpoon, poseSpoon, mixColour, makeCard, poseCard } from "./art.js";
+import { cupsOf, start, scoop, pour, volume, ml, answerOf, isBeans, beansOf, bagsStart } from "./maths.js";
+import { W, H, TABLE, CUP_X, drawKitchen, makeCup, poseCup, makeSpoon, poseSpoon, mixColour, makeCard, poseCard, WHITE, RED, SACK_X, makeSack, poseSack, makeBowl, poseBowl } from "./art.js";
 
 const REST = { x: 260, y: 112 };
 const fr = (x) => String(Math.round(x * 100) / 100).replace(".", ",");
 
-export const diagram = {
+const mugDiagram = {
   size: [W, H],
   dur: (step) => [3600, 4600, 5200, 5600, 5600][step],
   steps: (q) => {
@@ -34,7 +35,7 @@ function stateAt(V, v, s, p) {
   return { cups: b2, spoon: null, back: r.spoon };
 }
 
-export const scene = {
+const mugScene = {
   mount(c, q) {
     const [V, v] = cupsOf(q.cups), lang = c.t("fr", "en");
     drawKitchen(c.svg);
@@ -80,4 +81,71 @@ export const scene = {
     poseBubble(same, { x: (milkMid + coffeeMid) / 2, y: TABLE - 12, text: tt(`Autant : ${fr(a)} mL !`, `The same: ${fr(a).replace(",", ".")} mL!`), appear: s === 3 ? seg(p, 0.55, 0.7) : s === 4 ? 1 : 0 });
     big.setAttribute("opacity", s === 4 ? seg(p, 0.5, 0.8) : 0);
   },
+};
+
+/* --------------------------------------------------------- the beans (discrete version) */
+// The handful that comes back holds `a` white beans and k − a red ones (a close to the average k² / (N + k)).
+const backWhite = (N, k) => Math.max(1, Math.min(k - 1, Math.round((k * k) / (N + k))));
+const beanSteps = ([N, k]) => { const a = backWhite(N, k), r = k - a; return [
+  P(`Un sac de ${N} haricots blancs, un sac de ${N} haricots rouges, une poignée de ${k} haricots.`, `A sack of ${N} white beans, a sack of ${N} red beans, a handful of ${k} beans.`),
+  P(`Une poignée de ${k} haricots blancs passe dans le sac des rouges, et on secoue.`, `A handful of ${k} white beans goes into the red sack, and we shake it.`),
+  P(`Une poignée de ${k} haricots revient : par exemple ${a} blanc${a > 1 ? "s" : ""} et ${r} rouge${r > 1 ? "s" : ""}.`, `A handful of ${k} beans comes back: for instance ${a} white and ${r} red.`),
+  P(`Chaque sac contient de nouveau ${N} haricots. Les ${r} rouges arrivés chez les blancs ont pris la place de ${r} blancs, et ces ${r} blancs sont restés chez les rouges : un pour un.`, `Each sack holds ${N} beans again. The ${r} red beans that came into the white sack took the place of ${r} white ones, and those ${r} white beans stayed in the red sack: one for one.`),
+  P(`Quelle que soit la poignée qui revient, au hasard ou choisie, il y a autant de rouges chez les blancs que de blancs chez les rouges. Le café et le lait, c’est la même chose avec des grains minuscules.`, `Whatever handful comes back, at random or chosen, there are as many red beans among the white as white beans among the red. Coffee and milk are the same thing with tiny grains.`),
+]; };
+// the sacks and the bowl at each step and progress: [white sack, red sack], the bowl's handful and where it is
+function beanState(N, k, s, p) {
+  const a = backWhite(N, k), r = k - a, B0 = bagsStart(N), go = { w: k, r: 0 }, back = { w: a, r };
+  const B1 = [{ w: N - k, r: 0 }, { w: k, r: N }], B2 = [{ w: N - k + a, r }, { w: k - a, r: N - r }];
+  const trip = (from, to, bagsBefore, bagsMid, bagsAfter, hand) => {   // fill over `from`, travel, pour over `to`
+    const x = SACK_X[from] + (SACK_X[to] - SACK_X[from]) * Math.min(1, Math.max(0, (p - 0.3) / 0.3)), tilt = seg(p, 0.6, 0.72) * (to > from ? 50 : -50) * (1 - seg(p, 0.82, 0.9));
+    if (p < 0.15) return { bags: bagsBefore, hand: { w: 0, r: 0 }, x: SACK_X[from], y: 44, tilt: 0 };
+    if (p < 0.72) return { bags: bagsMid, hand, x, y: 44 - 14 * Math.sin(Math.PI * Math.min(1, Math.max(0, (p - 0.3) / 0.3))), tilt };
+    return { bags: bagsAfter, hand: { w: 0, r: 0 }, x: SACK_X[to], y: 44, tilt };
+  };
+  if (s === 0) return { bags: B0, hand: { w: 0, r: 0 }, x: 260, y: 44, tilt: 0 };
+  if (s === 1) return { ...trip(0, 1, B0, [{ w: N - k, r: 0 }, B0[1]], B1, go), shaken: p > 0.82 ? 1 : 0 };
+  if (s === 2) return { ...trip(1, 0, B1, [B1[0], { w: k - a, r: N - r }], B2, back), shaken: p > 0.82 ? 2 : 1 };
+  return { bags: B2, hand: { w: 0, r: 0 }, x: 260, y: 44, tilt: 0, shaken: 2 };
+}
+const beanScene = {
+  mount(c, q) {
+    const [N, k] = beansOf(q.cups), L = c.t(0, 1);
+    drawKitchen(c.svg);
+    const sacks = SACK_X.map((x) => makeSack(c.svg, { x })), bowl = makeBowl(c.svg), cards = [makeCard(c.svg), makeCard(c.svg)];
+    sacks[0].tag.textContent = c.t("sac des blancs", "white sack"); sacks[1].tag.textContent = c.t("sac des rouges", "red sack");
+    const pairs = svgEl("g", {}, c.svg), eq = c.text(260, 150, "=", { ...mid, class: "sol-hot" });
+    return { N, k, L, sacks, bowl, cards, pairs, eq };
+  },
+  update(S, s, p) {
+    const { N, k, L, sacks, bowl, cards, pairs, eq } = S, st = beanState(N, k, s, p), r = k - backWhite(N, k);
+    st.bags.forEach((bag, i) => poseSack(sacks[i], bag, 1 + i + 7 * ((st.shaken || 0) > i ? 3 : 0) + (st.shaken === 2 ? 11 : 0)));
+    poseBowl(bowl, { x: st.x, y: st.y, hand: st.hand, tilt: st.tilt });
+    bowl.root.setAttribute("opacity", s >= 3 ? 0 : 1);
+    const lines = (bag) => [[WHITE, `${["blancs", "white"][L]} : ${bag.w}`], [RED, `${["rouges", "red"][L]} : ${bag.r}`]];
+    cards.forEach((K, i) => poseCard(K, { x: SACK_X[i], y: TABLE - 196, lines: s === 0 || s >= 3 ? lines(st.bags[i]) : [], appear: 1 }));
+    // steps 3 and 4: the beans of the other colour rise out of each sack and pair up one for one
+    pairs.replaceChildren();
+    const rise = s === 3 ? seg(p, 0.1, 0.6) : s === 4 ? 1 : 0;
+    if (rise > 0) for (let j = 0; j < r; j++) {
+      const y = TABLE - 136 - 10 * rise - (j % 2) * 4, xs = [SACK_X[0] - ((r - 1) * 12) / 2 + j * 12, SACK_X[1] - ((r - 1) * 12) / 2 + j * 12];
+      xs.forEach((x, i) => svgEl("ellipse", { cx: x, cy: y, rx: 5.6, ry: 3.6, fill: i === 0 ? RED : WHITE, stroke: "var(--ink)", "stroke-width": 0.9 }, pairs));
+      const link = s === 3 ? seg(p, 0.55 + (0.35 * j) / r, 0.62 + (0.35 * j) / r) : 1;
+      if (link > 0) svgEl("path", { d: `M${xs[0]} ${y + 5} Q260 ${y + 50} ${xs[0] + (xs[1] - xs[0]) * link} ${y + 5 + (1 - link) * 20}`, fill: "none", stroke: "var(--object-ink)", "stroke-width": 1.4, "stroke-dasharray": "4 3" }, pairs);
+    }
+    eq.textContent = `${r} = ${r}`;
+    eq.setAttribute("opacity", s === 4 ? seg(p, 0.2, 0.5) : 0);
+    eq.setAttribute("y", TABLE - 110);
+  },
+};
+
+// one challenge, two worlds: the mugs (liquid) and the sacks of beans (discrete), chosen by the parameter
+export const diagram = {
+  size: [W, H],
+  dur: (step, q) => (q && isBeans(q.cups) ? [3600, 5200, 5600, 6000, 5000][step] : mugDiagram.dur(step)),
+  steps: (q) => (isBeans(q.cups) ? beanSteps(beansOf(q.cups)) : mugDiagram.steps(q)),
+};
+export const scene = {
+  mount(c, q) { const beans = isBeans(q.cups); return { beans, S: (beans ? beanScene : mugScene).mount(c, q) }; },
+  update(X, s, p, q) { (X.beans ? beanScene : mugScene).update(X.S, s, p, q); },
 };
