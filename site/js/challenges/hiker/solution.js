@@ -38,7 +38,7 @@ export const scene = {
     const face = svgEl("g", {}, c.svg);
     svgEl("rect", { x: 10, y: 10, width: 112, height: 40, rx: 8, fill: "var(--surface)", stroke: "var(--ink)", "stroke-width": 1.6 }, face);
     const dayText = svgEl("text", { x: 66, y: 25, "text-anchor": "middle", "font-size": 10, "font-weight": 700 }, face);
-    const timeText = svgEl("text", { x: 66, y: 43, "text-anchor": "middle", "font-size": 16, "font-weight": 800, fill: "var(--ink)" }, face);
+    const timeText = svgEl("text", { x: 66, y: 42, "text-anchor": "middle", "font-size": 12, "font-weight": 700, fill: "var(--ink)" }, face);
     // the graph card of the last step: position (0 foot, 1 top) against the time of day
     const card = svgEl("g", { opacity: 0 }, c.svg), G = { x: 258, y: 34, w: 236, h: 170 }, hours = Math.max(T1, T2);
     svgEl("rect", { x: G.x - 34, y: G.y - 24, width: G.w + 50, height: G.h + 70, rx: 10, fill: "var(--surface)", stroke: "var(--ink)", "stroke-width": 1.6 }, card);
@@ -71,7 +71,7 @@ export const scene = {
     bubbles.forEach((B, d) => poseBubble(B, { x: meetPt.x + (d === 0 ? -14 : 14), y: meetPt.y - 32, text: hi[d], appear: metNow ? seg(p, 0.58 + d * 0.08, 0.7 + d * 0.08) : 0 }));
     dayText.textContent = s === 0 ? c2(lang, "Jour 1", "Day 1") : s === 1 ? c2(lang, "Jour 2", "Day 2") : c2(lang, "Jours 1 et 2", "Days 1 and 2");
     dayText.setAttribute("fill", s === 1 ? DAY[1] : s === 0 ? DAY[0] : "var(--ink)");
-    timeText.textContent = clock(minute, lang);
+    timeText.textContent = `${c2(lang, "départ", "start")} ${clock(0, lang)}`;   // only the known 8:00 start: never a time on the way
     // the graph: both positions against the time, drawn as p grows; the crossing is the meeting
     card.setAttribute("opacity", s === 4 ? seg(p, 0, 0.15) : 0);
     const X = (h) => G.x + (G.w * h) / hours, Y = (v) => G.y + G.h * (1 - v), upto = s === 4 ? hours * ez(seg(p, 0.1, 0.7)) : 0;

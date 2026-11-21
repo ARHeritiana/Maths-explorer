@@ -50,11 +50,10 @@ export function poseSky(S, min, phase = 0) {
   S.flag.setAttribute("d", `M0 -30 q8 ${-3 + w * 0.6} 16 0 q-3 4 0 9 q-8 ${3 - w * 0.6} -16 0 Z`);
 }
 
-// A signpost on the trail at fraction s, with room for two time tags (day 1 above, day 2 below).
-export function makePost(svg, s, { day1, day2 }) {
+// A signpost on the trail at fraction s: a landmark only, with no time written on it (the times on the way are unknown).
+export function makePost(svg, s) {
   const p = trailAt(s), g = svgEl("g", { transform: `translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})` }, svg);
   svgEl("line", { x1: 0, y1: 0, x2: 0, y2: -16, stroke: "#6b4420", "stroke-width": 2.4, "stroke-linecap": "round" }, g);
   svgEl("rect", { x: -5, y: -19, width: 10, height: 5, rx: 1, fill: "#c58b52", stroke: INK, "stroke-width": 0.8 }, g);
-  const tag = (dy, colour) => { const t = svgEl("g", { transform: `translate(${p.x > 300 ? 8 : -60} ${dy})`, opacity: 0 }, g); svgEl("rect", { x: 0, y: -8, width: 52, height: 11, rx: 3, fill: "var(--surface)", stroke: colour, "stroke-width": 1.4 }, t); const tx = svgEl("text", { x: 26, y: 0.5, "text-anchor": "middle", "font-size": 8, "font-weight": 700, fill: INK }, t); return { t, tx }; };
-  return { g, tags: [tag(-20, day1), tag(-7, day2)] };
+  return { g };
 }
