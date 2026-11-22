@@ -164,3 +164,24 @@
 /* narrow: one column; figure-layout.js puts plots and notes after the console ([data-fig-after]) */
 .fig-split > [data-fig-after] { min-width: 0; }
 @container fig (min-width: 860px) { .fig-split > [data-fig-after] { grid-column: 1; } }
+
+/* the Mandelbrot explorer: its own panel moved into the console, the image takes the figure column */
+.fig-layout .mb-explorer { grid-template-columns: minmax(0, 1fr); }
+.fig-console > .mb-controls { border: 0; border-radius: 0; background: none; box-shadow: none; display: grid; gap: 10px; }
+.fig-console > .mb-controls :is(h2, h3, h4) { margin: 0; font-size: 1.05rem; }
+.fig-console > .mb-controls :is(.btn, button) { width: 100%; min-height: 44px; box-shadow: none; transform: none; border-width: 2px; }
+.fig-console > .mb-controls :is(.btn, button):hover { background: var(--sunken); transform: none; box-shadow: none; }
+
+/* laboratory pages: scenes are examples, so one even list; the card stays on screen beside the figure */
+.lab2-card .lab2-scenes { display: flex; flex-direction: column; gap: 0; border: 2px solid var(--line-strong); }
+.lab2-card .lab2-dot.lab2-scene { width: 100%; min-height: 40px; margin: 0; padding: 6px 12px; border: 0; border-radius: 0; background: var(--surface); color: var(--ink); text-align: left; justify-content: flex-start; display: flex; align-items: center; font: 700 0.95rem/1.25 var(--ui); }
+.lab2-card .lab2-dot.lab2-scene + .lab2-dot.lab2-scene { border-top: 1px solid var(--line); }
+.lab2-card .lab2-dot.lab2-scene:hover { background: var(--sunken); }
+.lab2-card .lab2-dot.lab2-scene[aria-current] { background: var(--ink); color: var(--surface); }
+@media (min-width: 721px) {
+  .lab2-full .lab2-card { position: sticky; top: calc(var(--chrome, var(--header, 64px)) + 14px); max-height: calc(100svh - var(--chrome, var(--header, 64px)) - 28px); overflow-y: auto; overscroll-behavior: contain; }
+  .lab2-full .lab2-stage { max-height: calc(100svh - var(--chrome, var(--header, 64px)) - 200px); }
+}
+.lab2-card .lab2-scenes > li { margin: 0; }
+.lab2-card .lab2-scenes > li + li { border-top: 1px solid var(--line); }
+.lab2-card .lab2-segments { grid-template-columns: repeat(auto-fit, minmax(min(88px, 100%), 1fr)); }

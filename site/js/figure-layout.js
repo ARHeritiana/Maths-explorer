@@ -73,6 +73,8 @@ export function arrangeFigure(root) {
         (isConsole(n) ? side : main).append(n);
       }
     }
+    // a control panel nested inside a figure block (the Mandelbrot explorer's aside) joins the console
+    for (const n of main.querySelectorAll(".mb-controls")) side.append(n);
     // a band of choices above the figure (question, mode) joins the console when it sits beside the figure
     placeBands();
     classify();
