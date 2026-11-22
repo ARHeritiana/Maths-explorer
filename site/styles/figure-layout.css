@@ -42,7 +42,7 @@
   width: 100%; min-width: 0; min-height: 44px; margin: 0; padding: 6px 10px; white-space: normal; text-align: center; justify-content: center;
   font: 700 0.98rem/1.2 var(--ui); border: 2px solid var(--line-strong); box-shadow: none; transform: none;
   margin: 0 -2px -2px 0; position: relative; }
-.fig-console :is(.exhibit-actions, .act-buttons, .exhibit-subcontrols, .act-controls) > :is(.btn, button):hover { transform: none; box-shadow: none; background: var(--sunken); z-index: 1; }
+.fig-console :is(.exhibit-actions, .act-buttons, .exhibit-subcontrols, .act-controls) > :is(.btn, button):hover:not([aria-pressed="true"], .is-on, [aria-current], .btn-primary) { transform: none; box-shadow: none; background: var(--sunken); z-index: 1; }
 .fig-console :is(.exhibit-actions, .act-buttons, .exhibit-subcontrols, .act-controls) > :is(.btn, button):focus-visible { z-index: 2; }
 .fig-console :is(.exhibit-actions, .act-buttons, .exhibit-subcontrols, .act-controls) > :is(.btn, button)[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
 /* on/off toggles: after the actions, drawn as check boxes (state, not action) */
@@ -68,7 +68,7 @@
 .fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5)), .act-controls:not(:has(.act-field, select, input)):has(> button:nth-of-type(5))) > :is(.btn, button) {
   display: flex; justify-content: flex-start; text-align: left; min-height: 40px; margin: 0; padding: 6px 12px; border: 0; border-radius: 0; box-shadow: none; transform: none; background: var(--surface); color: var(--ink); font: 700 0.95rem/1.25 var(--ui); }
 .fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5)), .act-controls:not(:has(.act-field, select, input)):has(> button:nth-of-type(5))) > :is(.btn, button) + :is(.btn, button) { border-top: 1px solid var(--line); }
-.fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5))) > :is(.btn, button):hover { background: var(--sunken); }
+.fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5))) > :is(.btn, button):hover:not([aria-pressed="true"], .is-on, [aria-current], .btn-primary) { background: var(--sunken); }
 .fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5))) > :is(.btn, button)[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
 .fig-console .exhibit-presets::before { content: attr(aria-label); display: block; padding: 6px 12px; font-weight: 700; font-size: 0.9rem; color: var(--ink-2); background: var(--sunken); border-bottom: 1px solid var(--line); }
 
@@ -114,7 +114,7 @@
 .fig-console .fig-transport { display: grid; grid-template-columns: 56px minmax(0, 1fr) 56px; align-items: stretch; flex: none; }
 .fig-console .fig-transport > .btn { min-height: 52px; margin: 0; padding: 6px 8px; border: var(--stroke, 3px) solid var(--line-strong); box-shadow: none; transform: none; font: 700 1.05rem/1.2 var(--ui); }
 .fig-console .fig-transport > .btn + .btn { border-left-width: 0; }
-.fig-console .fig-transport > .btn-secondary:hover { background: var(--sunken); transform: none; box-shadow: none; }
+.fig-console .fig-transport > .btn-secondary:hover:not([aria-pressed="true"], .is-on, [aria-current]) { background: var(--sunken); transform: none; box-shadow: none; }
 .fig-console .fig-transport > .btn-primary:hover { background: var(--accent); transform: none; box-shadow: none; }
 .fig-console .fig-transport > .btn:active { transform: none; box-shadow: none; }
 .fig-console .fig-transport { box-shadow: 4px 4px 0 var(--shadow, var(--line-strong)); }
@@ -122,7 +122,7 @@
 /* a choice and its action on one line */
 .fig-console .fig-choice { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 8px; flex: none; }
 .fig-console .fig-choice > .btn { min-height: 44px; margin: 0; padding: 6px 14px; border: 2px solid var(--line-strong); box-shadow: none; transform: none; font: 700 0.98rem/1.2 var(--ui); }
-.fig-console .fig-choice > .btn:hover { background: var(--sunken); transform: none; box-shadow: none; }
+.fig-console .fig-choice > .btn:hover:not([aria-pressed="true"], .is-on, [aria-current]) { background: var(--sunken); transform: none; box-shadow: none; }
 .fig-console .fig-choice > .btn[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
 /* order of the figure column: what comes before the figure, the figure, its caption, then plots and notes */
 .fig-main > * { order: 3; }
@@ -147,7 +147,7 @@
 /* the laboratory card (gallery and laboratory pages): the same vocabulary as the console */
 .lab2-card .lab2-segments { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(120px, 100%), 1fr)); gap: 0; }
 .lab2-card .lab2-segment { min-height: 44px; margin: 0 -2px -2px 0; padding: 6px 10px; border: 2px solid var(--line-strong); border-radius: 0; background: var(--surface); color: var(--ink); box-shadow: none; transform: none; font: 700 0.98rem/1.2 var(--ui); text-align: center; position: relative; }
-.lab2-card .lab2-segment:hover:not(:disabled) { background: var(--sunken); z-index: 1; }
+.lab2-card .lab2-segment:hover:not([aria-pressed="true"], .is-on, [aria-current]):not(:disabled) { background: var(--sunken); z-index: 1; }
 .lab2-card .lab2-segment.is-on { background: var(--ink); color: var(--surface); border-color: var(--line-strong); }
 .lab2-card .lab2-segment:focus-visible { z-index: 2; }
 .lab2-card .lab2-play, .lab2-card .lab2-stream-toggle { justify-self: stretch; width: 100%; min-height: 52px; background: var(--shape); color: #fff; border: var(--stroke, 3px) solid var(--line-strong); box-shadow: 4px 4px 0 var(--shadow, var(--line-strong)); }
@@ -170,13 +170,13 @@
 .fig-console > .mb-controls { border: 0; border-radius: 0; background: none; box-shadow: none; display: grid; gap: 10px; }
 .fig-console > .mb-controls :is(h2, h3, h4) { margin: 0; font-size: 1.05rem; }
 .fig-console > .mb-controls :is(.btn, button) { width: 100%; min-height: 44px; box-shadow: none; transform: none; border-width: 2px; }
-.fig-console > .mb-controls :is(.btn, button):hover { background: var(--sunken); transform: none; box-shadow: none; }
+.fig-console > .mb-controls :is(.btn, button):hover:not([aria-pressed="true"], .is-on, [aria-current]) { background: var(--sunken); transform: none; box-shadow: none; }
 
 /* laboratory pages: scenes are examples, so one even list; the card stays on screen beside the figure */
 .lab2-card .lab2-scenes { display: flex; flex-direction: column; gap: 0; border: 2px solid var(--line-strong); }
 .lab2-card .lab2-dot.lab2-scene { width: 100%; min-height: 40px; margin: 0; padding: 6px 12px; border: 0; border-radius: 0; background: var(--surface); color: var(--ink); text-align: left; justify-content: flex-start; display: flex; align-items: center; font: 700 0.95rem/1.25 var(--ui); }
 .lab2-card .lab2-dot.lab2-scene + .lab2-dot.lab2-scene { border-top: 1px solid var(--line); }
-.lab2-card .lab2-dot.lab2-scene:hover { background: var(--sunken); }
+.lab2-card .lab2-dot.lab2-scene:hover:not([aria-pressed="true"], .is-on, [aria-current]) { background: var(--sunken); }
 .lab2-card .lab2-dot.lab2-scene[aria-current] { background: var(--ink); color: var(--surface); }
 @media (min-width: 721px) {
   .lab2-full .lab2-card { position: sticky; top: calc(var(--chrome, var(--header, 64px)) + 14px); max-height: calc(100svh - var(--chrome, var(--header, 64px)) - 28px); overflow-y: auto; overscroll-behavior: contain; }
