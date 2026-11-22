@@ -158,3 +158,9 @@
 .lab2-card .lab2-option[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
 .lab2-card .lab2-open { align-self: flex-start; min-height: 44px; padding: 0; border: 0; background: none; box-shadow: none; transform: none; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; font-weight: 700; }
 .lab2-card .lab2-open:hover { background: none; color: var(--accent); transform: none; box-shadow: none; }
+.fig-console .exhibit-controls > .fig-transport { order: -2; }
+.fig-console .exhibit-controls > .fig-transport + .act-field { order: -2; }
+
+/* narrow: one column; figure-layout.js puts plots and notes after the console ([data-fig-after]) */
+.fig-split > [data-fig-after] { min-width: 0; }
+@container fig (min-width: 860px) { .fig-split > [data-fig-after] { grid-column: 1; } }

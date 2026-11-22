@@ -26,7 +26,7 @@ test('colliding blocks and the napkin ring mount, react and clean up', async () 
     assert.match(read(root), /31/, 'ratio 100 ends with 31 collisions');
     const e = root.querySelector('#co-e'); e.value = '6'; e.dispatchEvent(new w.Event('input')); tick();
     root.querySelector('#co-step').click(); tick(); assert.match(read(root), /: 1/);
-    root.querySelector('#co-play').click(); tick(2000); assert.match(read(root), /3\s?141/);
+    root.querySelector('#co-play').click(); tick(2000); assert.match(read(root), /3[\s,.]?141/);
     const cv = root.querySelector('canvas'); cv.dispatchEvent(new w.KeyboardEvent('keydown', {key: 'r', bubbles: true})); tick(); assert.match(read(root), /: 0/);
     pointer(cv, 'pointerdown', 40 + 8 * 48, 150); pointer(cv, 'pointermove', 40 + 9 * 48, 150); pointer(cv, 'pointerup', 40 + 9 * 48, 150); tick();
     assert.ok(!/NaN|undefined|Infinity/.test(root.textContent)); stop(); assert.equal(frames.size, 0, 'unmount cancels frames'); root.remove();

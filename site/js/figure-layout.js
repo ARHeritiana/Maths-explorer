@@ -32,6 +32,10 @@ export function arrangeFigure(root) {
   side.setAttribute("role", "group");
   split.append(main, side);
   let sorting = false, wide = null;
+  // Wide: bands of choices (question, mode) join the console; plots and notes stay under the figure. Narrow: bands go back above
+  // the figure, and plots and notes move after the console, so the controls follow the figure and its caption in the page and
+  // in the keyboard order alike.
+  const AFTER = (n) => !n.matches("[data-fig-band], .obj-stage, .exhibit-stage, .mb-explorer, .act-readout") && !n.querySelector(":scope > canvas");
   const placeBands = () => {
     const nowWide = root.clientWidth >= WIDE;
     if (nowWide === wide && !sorting) return;
@@ -42,6 +46,9 @@ export function arrangeFigure(root) {
       if (wide) { if (b.parentNode !== side) side.insertBefore(b, side.querySelector(":scope > :not([data-fig-band])")); }
       else if (b.parentNode !== main) main.insertBefore(b, stage);
     }
+    const after = [...split.querySelectorAll(":scope > [data-fig-after]")];
+    if (wide) main.append(...after);
+    else { for (const n of [...main.children]) if (AFTER(n)) { n.dataset.figAfter = ""; after.push(n); } split.append(...after); }
   };
   // buttons with aria-pressed: one choice among several, or on/off toggles (drawn differently by the CSS)
   const classify = () => {
