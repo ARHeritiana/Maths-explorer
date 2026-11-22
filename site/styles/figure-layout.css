@@ -228,3 +228,8 @@
 .fig-layout .wy-quiz .act-choice { display: grid; gap: 2px; }
 .fig-layout .wy-quiz .act-choice legend { float: none; margin: 0 0 4px; }
 .fig-layout .wy-quiz .act-choice label { display: flex; align-items: center; gap: 10px; min-height: 36px; }
+/* a phone: three choices and the Wythoff points as one column, so no name is cut */
+@container fig (max-width: 520px) {
+  .fig-console :is(.act-buttons, .exhibit-actions, .act-controls):has(> button[data-fig="choice"]:nth-of-type(3):last-of-type) { grid-template-columns: minmax(0, 1fr); }
+  .fig-console #wy-stops { grid-template-columns: minmax(0, 1fr); }
+}
