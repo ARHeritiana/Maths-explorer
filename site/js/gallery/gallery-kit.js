@@ -10,7 +10,11 @@ export function exhibit(root,{t,reduced},help,controls='',notes=''){
   const o=canvasIn(root.querySelector('.exhibit-stage'),640/440),abort=new root.ownerDocument.defaultView.AbortController(),signal=abort.signal;
   o.cv.setAttribute('aria-label',t('Figure interactive. Tab pour les réglages. Pincement ou Ctrl + pincement ou Ctrl + molette pour zoomer ; Maj-glisser pour déplacer la vue ; 0 pour la réinitialiser.','Interactive figure. Tab for controls. Pinch or Ctrl + wheel to zoom; Shift-drag to pan; 0 to reset the view.'));
   const on=(el,type,fn)=>el.addEventListener(type,fn,{signal});let alive=true,draw=()=>{},lastRead='';
-  o.on=on;o.root=root;o.read=text=>{if(text!==lastRead){lastRead=text;root.querySelector('.exhibit-readout').textContent=text;}};
+  o.on=on;o.root=root;
+  // the live values: one fact per line (the exhibits write them joined by ' · ')
+  o.read=text=>{if(text===lastRead)return;lastRead=text;const el=root.querySelector('.exhibit-readout'),parts=String(text).split(' · ');
+    if(parts.length<2){el.textContent=text;return;}const ul=root.ownerDocument.createElement('ul');ul.className='readout-lines';
+    for(const x of parts){const li=root.ownerDocument.createElement('li');li.textContent=x;ul.append(li);}el.replaceChildren(ul);};
   let loop=null;o.wake=ms=>loop?.wake(ms);
   o.redraw=()=>{draw(0);loop?.wake(0);};o.animate=fn=>{draw=fn;draw(0);loop=animationLoop(root,(dt)=>{const r=draw(Math.min(dt,.04));return o.busy?.()?true:o.once?false:r;},{reduced});};
   o.stop=()=>{alive=false;loop?.stop();abort.abort();o.navigation?.destroy();o.disconnect?.();};
@@ -43,6 +47,10 @@ export function drawFaces(g,C,polys,view,scale,{dy=8,ghost=false}={}){
     g.globalAlpha=1;
     if(edges)g.stroke();else{g.strokeStyle=C.c[q.shade];g.lineWidth=.6;g.stroke();g.strokeStyle=C.ink;}}
 }
+// Groups of the console (styles/figure-layout.css): a transport (back, play, forward joined in one row, the timeline under
+// it) and a choice with the action that goes with it (a select and its button on one line).
+export const transport=(prev,play,next,timeline='')=>`<div class="fig-transport">${prev}${play}${next}</div>${timeline}`;
+export const choice=(fieldHtml,actionHtml)=>`<div class="fig-choice">${fieldHtml}${actionHtml}</div>`;
 export const button=(id,label,primary=false)=>`<button type="button" id="${id}" class="btn ${primary?'btn-primary':'btn-secondary'}">${label}</button>`;
 export function dragOrbit(o,state,hit=()=>null,moveHandle=()=>{}){
   let drag=null;
