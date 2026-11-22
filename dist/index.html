@@ -67,7 +67,7 @@
     </script>
     <link rel="preload" href="./fonts/stix-two-text-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="./styles/explorer.css?v=9fcda779f8" />
-    <link rel="stylesheet" href="./styles/pages.css?v=54f7089b38" />
+    <link rel="stylesheet" href="./styles/pages.css?v=8a02129887" />
     <link rel="stylesheet" href="./styles/ergonomics.css?v=4a6e199373" />
     <link rel="stylesheet" href="./styles/home.css?v=18e716a2da" />
     <link rel="stylesheet" href="./styles/history.css?v=7563185537" />
@@ -75,6 +75,7 @@
     <link rel="stylesheet" href="./styles/topics.css?v=1ec2f6ee25" />
     <link rel="stylesheet" href="./styles/teacher.css?v=9ddd66244e" />
     <link rel="stylesheet" href="./styles/review.css?v=9200017f1f" />
+    <link rel="stylesheet" href="./styles/figure-layout.css?v=7b8359b9ce" />
     <link rel="stylesheet" href="./styles/comic.css?v=c072e25ab0" />
     <!-- importmap:start -->
     <script type="importmap">
@@ -365,6 +366,7 @@
         "./js/exercises/ui-kit.js": "./js/exercises/ui-kit.js?v=a30d9e4b46",
         "./js/fair-division-content.js": "./js/fair-division-content.js?v=c28f52d8b6",
         "./js/figure-engine.js": "./js/figure-engine.js?v=d5b65644be",
+        "./js/figure-layout.js": "./js/figure-layout.js?v=8b37de5889",
         "./js/figure-scenes.js": "./js/figure-scenes.js?v=fc8bc5f067",
         "./js/fourier-links.js": "./js/fourier-links.js?v=1b59d3d3bf",
         "./js/fourier-model.js": "./js/fourier-model.js?v=9c50159b49",
@@ -394,14 +396,14 @@
         "./js/gallery/gallery-cavalieri-model.js": "./js/gallery/gallery-cavalieri-model.js?v=f509f4e228",
         "./js/gallery/gallery-cavalieri.js": "./js/gallery/gallery-cavalieri.js?v=aa150bb9c9",
         "./js/gallery/gallery-collisions-model.js": "./js/gallery/gallery-collisions-model.js?v=8eefc332ad",
-        "./js/gallery/gallery-collisions.js": "./js/gallery/gallery-collisions.js?v=a74238ed30",
+        "./js/gallery/gallery-collisions.js": "./js/gallery/gallery-collisions.js?v=38584b7680",
         "./js/gallery/gallery-context.js": "./js/gallery/gallery-context.js?v=992044c7b3",
         "./js/gallery/gallery-curiosities.js": "./js/gallery/gallery-curiosities.js?v=0b2e9824ce",
         "./js/gallery/gallery-dandelin-model.js": "./js/gallery/gallery-dandelin-model.js?v=d050f96ed5",
         "./js/gallery/gallery-dandelin.js": "./js/gallery/gallery-dandelin.js?v=175d1e13df",
         "./js/gallery/gallery-dynamics.js": "./js/gallery/gallery-dynamics.js?v=efa9fe0a01",
         "./js/gallery/gallery-equidecomposition-model.js": "./js/gallery/gallery-equidecomposition-model.js?v=f93ceeeaab",
-        "./js/gallery/gallery-equidecomposition.js": "./js/gallery/gallery-equidecomposition.js?v=8895be898b",
+        "./js/gallery/gallery-equidecomposition.js": "./js/gallery/gallery-equidecomposition.js?v=de07928b06",
         "./js/gallery/gallery-escape3d-model.js": "./js/gallery/gallery-escape3d-model.js?v=7754c1aa08",
         "./js/gallery/gallery-escape3d.js": "./js/gallery/gallery-escape3d.js?v=3ebe36ab1b",
         "./js/gallery/gallery-fair-division.js": "./js/gallery/gallery-fair-division.js?v=f367965ea7",
@@ -417,7 +419,7 @@
         "./js/gallery/gallery-inscribed-model.js": "./js/gallery/gallery-inscribed-model.js?v=d40be4a61d",
         "./js/gallery/gallery-inscribed.js": "./js/gallery/gallery-inscribed.js?v=8b0d3a673e",
         "./js/gallery/gallery-intuition.js": "./js/gallery/gallery-intuition.js?v=519401efc1",
-        "./js/gallery/gallery-kit.js": "./js/gallery/gallery-kit.js?v=351a53cf23",
+        "./js/gallery/gallery-kit.js": "./js/gallery/gallery-kit.js?v=db844828ad",
         "./js/gallery/gallery-knot-geometry.js": "./js/gallery/gallery-knot-geometry.js?v=bfe0d0f0d9",
         "./js/gallery/gallery-knot-model.js": "./js/gallery/gallery-knot-model.js?v=e6be1ef6ff",
         "./js/gallery/gallery-knot-render.js": "./js/gallery/gallery-knot-render.js?v=a5c195c793",
@@ -431,7 +433,7 @@
         "./js/gallery/gallery-napkin-gl.js": "./js/gallery/gallery-napkin-gl.js?v=88db08a7a3",
         "./js/gallery/gallery-napkin-model.js": "./js/gallery/gallery-napkin-model.js?v=916aeb3c15",
         "./js/gallery/gallery-napkin.js": "./js/gallery/gallery-napkin.js?v=d2152635dc",
-        "./js/gallery/gallery-objects.js": "./js/gallery/gallery-objects.js?v=d8aaece3ca",
+        "./js/gallery/gallery-objects.js": "./js/gallery/gallery-objects.js?v=58b8337c6e",
         "./js/gallery/gallery-opaque-model.js": "./js/gallery/gallery-opaque-model.js?v=41f4465914",
         "./js/gallery/gallery-opaque.js": "./js/gallery/gallery-opaque.js?v=2bcf704c64",
         "./js/gallery/gallery-panels.js": "./js/gallery/gallery-panels.js?v=9991aa6766",
@@ -457,7 +459,7 @@
         "./js/gallery/gallery-viviani.js": "./js/gallery/gallery-viviani.js?v=66b4c62899",
         "./js/gallery/gallery-voronoi.js": "./js/gallery/gallery-voronoi.js?v=dc7a0b4430",
         "./js/gallery/gallery-wythoff-model.js": "./js/gallery/gallery-wythoff-model.js?v=9ae646426e",
-        "./js/gallery/gallery-wythoff.js": "./js/gallery/gallery-wythoff.js?v=ff99050af4",
+        "./js/gallery/gallery-wythoff.js": "./js/gallery/gallery-wythoff.js?v=f58cfdcd03",
         "./js/gallery/gl-progressive.js": "./js/gallery/gl-progressive.js?v=55f8f879df",
         "./js/gallery/gl3d.js": "./js/gallery/gl3d.js?v=afffa73686",
         "./js/gomboc-body.js": "./js/gomboc-body.js?v=c7d71a715d",
@@ -486,7 +488,7 @@
         "./js/intuition-data.js": "./js/intuition-data.js?v=4900066dc8",
         "./js/intuition-page.js": "./js/intuition-page.js?v=a866600a7e",
         "./js/knot-catalogue.js": "./js/knot-catalogue.js?v=3350a9a9c6",
-        "./js/lab-objects.js": "./js/lab-objects.js?v=42c85153b7",
+        "./js/lab-objects.js": "./js/lab-objects.js?v=a956136825",
         "./js/lab/engine.js": "./js/lab/engine.js?v=17acdcb88c",
         "./js/lab/experiments/bertrand.js": "./js/lab/experiments/bertrand.js?v=19d3021f85",
         "./js/lab/experiments/buffon.js": "./js/lab/experiments/buffon.js?v=6c03fd4dd7",
@@ -586,7 +588,7 @@
         "./js/offline.js": "./js/offline.js?v=b7a9bc94b7",
         "./js/pack-builder.js": "./js/pack-builder.js?v=0f50bf79d6",
         "./js/page-ergonomics.js": "./js/page-ergonomics.js?v=1072a69f9d",
-        "./js/platonic-explorer.js": "./js/platonic-explorer.js?v=21a4ef1344",
+        "./js/platonic-explorer.js": "./js/platonic-explorer.js?v=00611ba002",
         "./js/platonic-fold.js": "./js/platonic-fold.js?v=5c1d7df0e6",
         "./js/prepare-model.js": "./js/prepare-model.js?v=2eefa87d1d",
         "./js/prepare-page.js": "./js/prepare-page.js?v=d841827d7f",

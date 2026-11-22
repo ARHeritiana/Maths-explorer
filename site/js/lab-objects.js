@@ -101,6 +101,7 @@ export const sierpinskiCount = (level) => 3 ** level;
 export const sierpinskiArea = (level) => 0.75 ** level;
 
 /* ================================================================= UI */
+import { arrangeFigure } from "./figure-layout.js";
 import { NS, css, palette, canvasIn, field, bind, loopFor, idleGuard } from "./object-kit.js";
 import { mountPlatonic } from "./platonic-explorer.js";
 import { GALLERY_OBJECTS } from "./gallery/gallery-objects.js";
@@ -475,6 +476,7 @@ export const isObject = (id) => Object.hasOwn(OBJECTS, id);
 export function mountObject(id, root, { lang, reduced, ...options }) {
   const t = (fr, en) => (lang === "fr" ? fr : en);
   const stop = OBJECTS[id](root, { ...options, t, reduced: typeof reduced === "function" ? reduced : () => !!reduced, lang });
-  return stop || (() => {});
+  const unarrange = arrangeFigure(root);   // figure and controls on one screen (figure-layout.js)
+  return () => { unarrange(); stop?.(); };
 }
 void NS;

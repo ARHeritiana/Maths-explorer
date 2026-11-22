@@ -64,6 +64,29 @@ Layout rules that came out of the first review:
   `scroll-padding-top` matches it and nothing focused or linked hides under it.
 - Every drag has a button or key alternative (for example "Turn the view" on the 3D figures).
 
+Figure and console (owner, 22 November 2026: "controls beside the figure on large horizontal screens, always on the same
+screen as the canvas"). The third design skill, Impeccable (Paul Bakaus, Apache 2.0; installed for the user, not in this
+repository), was used for the pass (its Operate, Layout and Craft-floor playbooks). The rules, in
+`site/js/figure-layout.js` and `site/styles/figure-layout.css`:
+- An exhibit is a strip of two panels: the figure, and the console of its controls. Wide figure area (860 px and more):
+  the console beside the figure, top-aligned and sticky, the figure never taller than the viewport under the header.
+  Narrow: figure, its caption, the console, then plots and notes, in the page and in the keyboard order.
+- Weight follows priority inside the console: the main action is the only raised red button, on its own row, first (a
+  transport joins back, play and forward, with the timeline under it); parameters next, label and value on one line with
+  the slider across; secondary actions are flat cells of equal size in one joined toolbar; a group of exactly one pressed
+  button is a choice (ink fill), other pressed buttons are on/off toggles drawn as check boxes; example lists are rows of one
+  list; live values are a table; the help line closes the panel.
+- The sentence that says what the figure shows is its caption, under it, one fact per line.
+- The laboratory card (`.lab2-card`) speaks the same language: scenes as one list, segments as joined cells.
+- A choice of three is one row of three cells; a choice of five or more is two columns, the odd last cell across. Only
+  on/off toggles carry the check box; a picked choice is shown by its ink fill alone. Hover never repaints a picked choice
+  or the main action (their text would lose its contrast).
+- An inset (`data-fig-inset`) is a small map that drives the figure (the Wythoff triangle): in the figure's top left
+  corner when the console is beside it, back in the console on a narrow screen.
+- Budget: at 1600 × 900 the console holds without scrolling inside. When it does not, move out what is not a control
+  (a question to answer goes under the figure, facts the caption already states leave the metrics), put a label beside
+  its list, join secondary actions in one row; never shrink text below 0.86 rem to make it fit.
+
 ## Structure
 
 Four sections, named after what the visitor came to do (`site/js/app.js` `SECTIONS`):
