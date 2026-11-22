@@ -74,7 +74,7 @@ export function collisions(root,opts){
     const {i,ev,pA,pB}=posAt(s),count=ev.block+ev.wall,fresh=count-lastCount;
     if(fresh>0&&playing){clack(fresh);const rate=fresh/Math.max(dt,1e-3);if(rate<25)hits.push({x:sim.events[i].kind==='wall'?X0:X0+(pA+hA)*UNIT,life:.25});}
     lastCount=count;hits=hits.filter(h=>(h.life-=dt)>0);
-    const C=palette(),ink=C.ink,small=(o.cv.clientWidth||640)<520,F=v=>Math.round(v*(small?1.75:1));   // phone: larger lettering, fewer words
+    const C=palette(),ink=C.ink,css=(n,f)=>(globalThis.getComputedStyle?.(root.ownerDocument.documentElement)?.getPropertyValue(n)||'').trim()||f,UI=css('--ui','system-ui'),DISPLAY=css('--display','Impact, sans-serif'),MATH=css('--math','serif'),small=(o.cv.clientWidth||640)<520,F=v=>Math.round(v*(small?1.75:1));   // phone: larger lettering, fewer words
     g.clearRect(0,0,o.W,o.H);g.fillStyle=C.surface;g.fillRect(0,0,o.W,o.H);
     // track: floor and wall
     g.fillStyle=ink;g.fillRect(X0-14,FLOOR,620,4);g.fillRect(X0-14,FLOOR-190,14,194);
@@ -82,16 +82,16 @@ export function collisions(root,opts){
     // blocks (the heavy one is clipped at the right edge as it leaves)
     const draw=(who,cx,h,col)=>{const w=2*h*UNIT,x=X0+(cx-h)*UNIT;if(x>o.W+10)return;g.fillStyle=col;g.strokeStyle=ink;g.lineWidth=3;g.beginPath();g.rect(x,FLOOR-w,w,w);g.fill();g.stroke();
       face(x+w/2,FLOOR-w*.55,Math.min(w,64)/2.2,who==='A',hits.length>0);
-      g.fillStyle=ink;g.font=`700 ${F(13)}px "Comic Neue", system-ui`;g.textAlign='center';g.fillText(who==='A'?'m = 1 kg':`M = ${int(ratio())} kg`,x+w/2,FLOOR-w-8);};
+      g.fillStyle=ink;g.font=`700 ${F(13)}px ${UI}`;g.textAlign='center';g.fillText(who==='A'?'m = 1 kg':`M = ${int(ratio())} kg`,x+w/2,FLOOR-w-8);};
     draw('B',pB,hB(),C.c?.[1]||C.object);draw('A',pA,hA,C.c?.[0]||C.obj2);
     for(const h of hits){const k=1-h.life/.25;g.strokeStyle=C.neg||'#e11d2e';g.lineWidth=3;for(let a=0;a<6;a++){const ang=-Math.PI/2+(a-2.5)*.45,r1=10+12*k,r2=22+14*k;g.beginPath();g.moveTo(h.x+Math.cos(ang)*r1,FLOOR-24+Math.sin(ang)*r1);g.lineTo(h.x+Math.cos(ang)*r2,FLOOR-24+Math.sin(ang)*r2);g.stroke();}}
     // the count, top left above the track: its digits turn red where they agree with pi (even powers of ten: the count is written
     // with pi's digits), and pi itself on the same line
     const digits=String(count),even=e%2===0,W=k=>g.measureText(k)?.width??20;
-    g.textAlign='left';g.font=`700 ${F(13)}px "Comic Neue", system-ui`;g.fillStyle=C.muted;g.fillText(t('CHOCS','COLLISIONS'),70,small?30:24);
-    g.font='60px Anton, Impact, sans-serif';let x=70;
+    g.textAlign='left';g.font=`700 ${F(13)}px ${UI}`;g.fillStyle=C.muted;g.fillText(t('CHOCS','COLLISIONS'),70,small?30:24);
+    g.font=`60px ${DISPLAY}`;let x=70;
     for(let k=0;k<digits.length;k++){g.fillStyle=even&&digits[k]===PI_DIGITS[k]?C.object:ink;g.fillText(digits[k],x,86);x+=W(digits[k])+2;}
-    x=Math.max(x+28,250);g.font=`${F(small?20:24)}px "STIX Two Text", serif`;
+    x=Math.max(x+28,250);g.font=`${F(small?20:24)}px ${MATH}`;
     if(even){const pi=['3',lang==='fr'?',':'.',...PI_DIGITS.slice(1,9),'…'];g.fillStyle=ink;g.fillText('π = ',x,84);x+=W('π = ');
       let d=0;for(const k of pi){const isDigit=/\d/.test(k),lit=isDigit&&d<digits.length&&digits[d]===PI_DIGITS[d];g.fillStyle=lit?C.object:ink;g.fillText(k,x,84);x+=W(k);if(isDigit)d++;}}
     else{g.fillStyle=ink;g.fillText(`π × √(M/m) ≈ ${num(Math.PI*Math.sqrt(ratio()),1)}`,x,84);}
@@ -99,17 +99,17 @@ export function collisions(root,opts){
     g.fillStyle=C.sunken;g.fillRect(0,FLOOR+18,o.W,o.H-FLOOR-18);g.fillStyle=ink;g.fillRect(0,FLOOR+18,o.W,2);
     const cx=120,cy=FLOOR+122,R=70,Q=([x,y])=>[cx+R*x,cy-R*y],th=theta(ratio());
     g.strokeStyle=C.line;g.lineWidth=1.5;g.beginPath();g.arc(cx,cy,R,0,TAU);g.stroke();
-    g.setLineDash([5,4]);g.strokeStyle=C.object;g.lineWidth=2;g.beginPath();g.moveTo(...Q([0,-1.12]));g.lineTo(...Q([0,1.12]));g.stroke();
-    const mx=Math.sin(th),my=Math.cos(th);g.strokeStyle=C.obj2;g.beginPath();g.moveTo(...Q([-mx*1.12,-my*1.12]));g.lineTo(...Q([mx*1.12,my*1.12]));g.stroke();g.setLineDash([]);
+    g.setLineDash([5,4]);g.strokeStyle=ink;g.lineWidth=2;g.beginPath();g.moveTo(...Q([0,-1.12]));g.lineTo(...Q([0,1.12]));g.stroke();
+    const mx=Math.sin(th),my=Math.cos(th);g.strokeStyle=C.object;g.beginPath();g.moveTo(...Q([-mx*1.12,-my*1.12]));g.lineTo(...Q([mx*1.12,my*1.12]));g.stroke();g.setLineDash([]);
     g.strokeStyle=ink;g.lineWidth=1.5;g.beginPath();const stride=Math.max(1,Math.floor(i/500));for(let k=0;k<=i;k+=stride){const q=Q(velocityPoint(sim.events[k],ratio()));k?g.lineTo(...q):g.moveTo(...q);}g.lineTo(...Q(velocityPoint(ev,ratio())));g.stroke();
     {const q=Q(velocityPoint(ev,ratio()));g.fillStyle=C.object;g.beginPath();g.arc(q[0],q[1],6,0,TAU);g.fill();g.strokeStyle=ink;g.lineWidth=2;g.stroke();}
     const tx=232,line=(y,col,text,dash)=>{g.setLineDash(dash?[5,4]:[]);g.strokeStyle=col;g.lineWidth=2;g.beginPath();g.moveTo(tx,y-5);g.lineTo(tx+26,y-5);g.stroke();g.setLineDash([]);g.fillStyle=ink;g.fillText(text,tx+36,y);};
-    g.textAlign='left';g.font='700 15px "Comic Neue", system-ui';g.fillStyle=ink;if(!small)g.fillText(t('Le même mouvement, vu dans les vitesses (√m·v, √M·V)','The same motion, seen in the velocities (√m·v, √M·V)'),tx,FLOOR+50);
-    g.font='15px "Comic Neue", system-ui';
-    if(!small){line(FLOOR+80,C.object,t('choc contre le mur : symétrie d’axe vertical','wall collision: reflection in the vertical axis'),true);
-    line(FLOOR+106,C.obj2,t('choc entre blocs : symétrie d’axe incliné de θ','block collision: reflection in an axis tilted by θ'),true);
+    g.textAlign='left';g.font=`700 15px ${UI}`;g.fillStyle=ink;if(!small)g.fillText(t('Le même mouvement, vu dans les vitesses (√m·v, √M·V)','The same motion, seen in the velocities (√m·v, √M·V)'),tx,FLOOR+50);
+    g.font=`15px ${UI}`;
+    if(!small){line(FLOOR+80,ink,t('choc contre le mur : symétrie d’axe vertical','wall collision: reflection in the vertical axis'),true);
+    line(FLOOR+106,C.object,t('choc entre blocs : symétrie d’axe incliné de θ','block collision: reflection in an axis tilted by θ'),true);
     g.fillStyle=C.muted;g.fillText(t('L’énergie reste la même : le point reste sur le cercle.','Energy is conserved: the point stays on the circle.'),tx,FLOOR+132);}
-    g.font=`700 ${F(16)}px "Comic Neue", system-ui`;const sy=small?FLOOR+110:FLOOR+170,wrap=(text,y)=>{if(!small){g.fillText(text,tx,y);return;}const words=text.split(' ');let lineText='',yy=y-30;for(const w of words){const tryText=lineText?lineText+' '+w:w;if(g.measureText(tryText)?.width>390&&lineText){g.fillText(lineText,tx,yy);yy+=32;lineText=w;}else lineText=tryText;}g.fillText(lineText,tx,yy);};
+    g.font=`700 ${F(16)}px ${UI}`;const sy=small?FLOOR+110:FLOOR+170,wrap=(text,y)=>{if(!small){g.fillText(text,tx,y);return;}const words=text.split(' ');let lineText='',yy=y-30;for(const w of words){const tryText=lineText?lineText+' '+w:w;if(g.measureText(tryText)?.width>390&&lineText){g.fillText(lineText,tx,yy);yy+=32;lineText=w;}else lineText=tryText;}g.fillText(lineText,tx,yy);};
     if(done()){g.fillStyle=even?C.object:ink;wrap(even?t(`${int(count)} chocs : les ${e/2+1} premiers chiffres de π.`,`${int(count)} collisions: the first ${e/2+1} digits of π.`):t(`${int(count)} chocs en tout.`,`${int(count)} collisions in all.`),sy);}
     else if(s>0){g.fillStyle=ink;wrap(playing?t('Les blocs se heurtent…','The blocks keep colliding…'):t('En pause.','Paused.'),sy);}
     else{g.fillStyle=ink;wrap(t('Devine le nombre de chocs, puis lance.','Guess the number of collisions, then run.'),sy);}
