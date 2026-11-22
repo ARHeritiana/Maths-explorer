@@ -1575,6 +1575,7 @@ input[type="range"]::-moz-range-thumb { background: var(--shape); border-color: 
 .mb-controls select, .mb-parameter input { width:100%; min-height:44px; padding:8px; color:var(--ink); background:var(--surface); border:1px solid var(--line-strong); border-radius:8px; font:inherit; }
 .mb-controls input[type=range], .mb-linked input[type=range] { width:100%; }
 .mb-controls button { width:100%; }
+.mb-field, .mb-range, .mb-actions { display:grid; gap:6px; }
 .mb-coordinates { font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
 .mb-linked { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin-top:24px; }
 .mb-linked section { padding:18px; border:1px solid var(--line); border-radius:12px; }

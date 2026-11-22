@@ -49,7 +49,7 @@
 .fig-console :is(.exhibit-actions, .act-buttons, .act-controls) > .btn-secondary[data-fig="toggle"] { order: 2; justify-content: flex-start; gap: 10px; text-align: left; background: var(--surface); color: var(--ink); }
 .fig-console .btn-secondary[data-fig]::before { content: none; }
 .fig-console :is(.exhibit-actions, .act-buttons, .act-controls) > .btn-secondary[data-fig="toggle"]::before { content: ""; flex: none; width: 18px; height: 18px; border: 2px solid var(--line-strong); background: var(--surface); }
-.fig-console :is(.exhibit-actions, .act-buttons, .act-controls) > .btn-secondary[aria-pressed="true"]::before { content: "\2713"; display: grid; place-items: center; background: var(--ink); color: var(--surface); font-size: 14px; line-height: 1; }
+.fig-console :is(.exhibit-actions, .act-buttons, .act-controls) > .btn-secondary[data-fig="toggle"][aria-pressed="true"]::before { content: "\2713"; display: grid; place-items: center; background: var(--ink); color: var(--surface); font-size: 14px; line-height: 1; }
 .fig-console :is(.exhibit-actions, .act-buttons, .act-controls) > .btn-secondary[data-fig="toggle"]:hover { background: var(--sunken); }
 .fig-console :is(.exhibit-actions, .act-buttons, .exhibit-subcontrols, .act-controls) > :is(.btn, button):disabled { color: var(--muted); border-style: solid; background: var(--surface); }
 /* the main action: the one raised red button, on its own row, first */
@@ -63,13 +63,13 @@
 .fig-console .exhibit-controls > :is(.exhibit-subcontrols, .exhibit-actions) { padding: 0; border: 0; }
 
 /* example lists (five buttons or more, or a group marked as presets): rows of one list, left aligned, equal height */
-.fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5)), .act-controls:not(:has(.act-field, select, input)):has(> button:nth-of-type(5))) {
+.fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5)):not(:has(> [data-fig="choice"])), .act-controls:not(:has(.act-field, select, input)):has(> button:nth-of-type(5))) {
   display: flex; flex-direction: column; gap: 0; border: 2px solid var(--line-strong); }
-.fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5)), .act-controls:not(:has(.act-field, select, input)):has(> button:nth-of-type(5))) > :is(.btn, button) {
+.fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5)):not(:has(> [data-fig="choice"])), .act-controls:not(:has(.act-field, select, input)):has(> button:nth-of-type(5))) > :is(.btn, button) {
   display: flex; justify-content: flex-start; text-align: left; min-height: 40px; margin: 0; padding: 6px 12px; border: 0; border-radius: 0; box-shadow: none; transform: none; background: var(--surface); color: var(--ink); font: 700 0.95rem/1.25 var(--ui); }
-.fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5)), .act-controls:not(:has(.act-field, select, input)):has(> button:nth-of-type(5))) > :is(.btn, button) + :is(.btn, button) { border-top: 1px solid var(--line); }
-.fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5))) > :is(.btn, button):hover:not([aria-pressed="true"], .is-on, [aria-current], .btn-primary) { background: var(--sunken); }
-.fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5))) > :is(.btn, button)[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+.fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5)):not(:has(> [data-fig="choice"])), .act-controls:not(:has(.act-field, select, input)):has(> button:nth-of-type(5))) > :is(.btn, button) + :is(.btn, button) { border-top: 1px solid var(--line); }
+.fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5)):not(:has(> [data-fig="choice"]))) > :is(.btn, button):hover:not([aria-pressed="true"], .is-on, [aria-current], .btn-primary) { background: var(--sunken); }
+.fig-console :is(.exhibit-presets, .act-buttons:has(> button:nth-of-type(5)):not(:has(> [data-fig="choice"]))) > :is(.btn, button)[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
 .fig-console .exhibit-presets::before { content: attr(aria-label); display: block; padding: 6px 12px; font-weight: 700; font-size: 0.9rem; color: var(--ink-2); background: var(--sunken); border-bottom: 1px solid var(--line); }
 
 /* the caption under the figure: what it shows now, one fact per line */
@@ -171,6 +171,15 @@
 .fig-console > .mb-controls :is(h2, h3, h4) { margin: 0; font-size: 1.05rem; }
 .fig-console > .mb-controls :is(.btn, button) { width: 100%; min-height: 44px; box-shadow: none; transform: none; border-width: 2px; }
 .fig-console > .mb-controls :is(.btn, button):hover:not([aria-pressed="true"], .is-on, [aria-current]) { background: var(--sunken); transform: none; box-shadow: none; }
+/* its settings: a choice on one line (label left, list right), a slider with its value on the label line, the two actions joined */
+.fig-console > .mb-controls .mb-field { display: grid; grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr); align-items: center; gap: 10px; font-weight: 700; }
+.fig-console > .mb-controls .mb-field select { min-height: 40px; padding: 6px 8px; }
+.fig-console > .mb-controls .mb-range { display: grid; gap: 4px; font-weight: 700; }
+.fig-console > .mb-controls .mb-range label { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.fig-console > .mb-controls .mb-range output { font: 600 1.05rem var(--math); color: var(--accent); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fig-console > .mb-controls .mb-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.fig-console > .mb-controls .mb-actions > .btn { margin: 0; padding: 6px 10px; border-radius: 0; font: 700 0.95rem/1.2 var(--ui); white-space: normal; }
+.fig-console > .mb-controls .mb-actions > .btn + .btn { border-left-width: 0; }
 
 /* laboratory pages: scenes are examples, so one even list; the card stays on screen beside the figure */
 .lab2-card .lab2-scenes { display: flex; flex-direction: column; gap: 0; border: 2px solid var(--line-strong); }
@@ -185,3 +194,37 @@
 .lab2-card .lab2-scenes > li { margin: 0; }
 .lab2-card .lab2-scenes > li + li { border-top: 1px solid var(--line); }
 .lab2-card .lab2-segments { grid-template-columns: repeat(auto-fit, minmax(min(88px, 100%), 1fr)); }
+
+/* a choice of three: one row of three cells; a choice of five or more: two columns, the odd last cell across */
+.fig-console :is(.act-buttons, .exhibit-actions, .act-controls):has(> button[data-fig="choice"]:nth-of-type(3):last-of-type) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.fig-console :is(.act-buttons, .exhibit-actions, .act-controls):has(> button[data-fig="choice"]:nth-of-type(3):last-of-type) > button { padding: 6px 6px; font-size: 0.92rem; overflow-wrap: anywhere; hyphens: auto; }
+.fig-console :is(.act-buttons, .exhibit-actions, .act-controls):has(> button[data-fig="choice"]:nth-of-type(5)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.fig-console :is(.act-buttons, .exhibit-actions, .act-controls):has(> button[data-fig="choice"]:nth-of-type(5)) > button:last-of-type:nth-of-type(odd) { grid-column: 1 / -1; }
+.fig-console :is(.act-buttons, .exhibit-actions, .act-controls):has(> button[data-fig="choice"]:nth-of-type(5)) > button { min-height: 40px; }
+/* on/off settings that go together: side by side, two to a row */
+.fig-console .act-checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 4px 12px; }
+.act-checks { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+
+/* an inset (data-fig-inset, placed by figure-layout.js): a small map that drives the figure, in its top left corner */
+.fig-main > :is(.obj-stage, .exhibit-stage):has(> [data-fig-inset]) { position: relative; }
+.fig-main [data-fig-inset] { position: absolute; top: 10px; left: 10px; z-index: 1; width: clamp(170px, 22%, 220px); margin: 0; padding: 6px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent); border: 2px solid var(--line-strong); }
+.fig-main [data-fig-inset] svg { width: 100%; }
+
+/* Wythoff: the seven points where every edge is equal, as one list in two columns, its name on top */
+.fig-console #wy-stops { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border: 2px solid var(--line-strong); }
+.fig-console #wy-stops::before { content: attr(aria-label); grid-column: 1 / -1; padding: 5px 10px; font-weight: 700; font-size: 0.88rem; color: var(--ink-2); background: var(--sunken); border-bottom: 1px solid var(--line); }
+.fig-console #wy-stops > button { min-height: 36px; margin: 0; padding: 4px 10px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; box-shadow: none; transform: none;
+  display: flex; align-items: center; justify-content: flex-start; text-align: left; font: 700 0.86rem/1.2 var(--ui); background: var(--surface); color: var(--ink); }
+.fig-console #wy-stops > button:nth-of-type(odd) { border-right: 1px solid var(--line); }
+.fig-console #wy-stops > button:last-of-type:nth-of-type(odd) { grid-column: 1 / -1; border-right: 0; }
+.fig-console #wy-stops > button:nth-last-of-type(-n+1) { border-bottom: 0; }
+.fig-console #wy-stops > button:hover { background: var(--sunken); }
+/* the question about the triangle: under the figure, its answers on one line where they fit */
+.fig-layout .wy-quiz { display: grid; gap: 8px; margin-top: 12px; }
+.fig-layout .wy-quiz .act-choice { margin: 0; }
+.fig-main [data-fig-inset] .wy-label { font-size: 13px; }
+.fig-console #wy-explore, .fig-console #wy-challenge { display: grid; gap: var(--fig-gap); }
+.fig-layout .wy-quiz .act-choice { display: grid; gap: 2px; }
+.fig-layout .wy-quiz .act-choice legend { float: none; margin: 0 0 4px; }
+.fig-layout .wy-quiz .act-choice label { display: flex; align-items: center; gap: 10px; min-height: 36px; }

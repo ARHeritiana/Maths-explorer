@@ -39,3 +39,22 @@ test('an exhibit is sorted into figure and console, and sorted again after a reb
   assert.ok(again.querySelector('.fig-split.fig-solo'), 'a figure with no controls takes the whole width');
   stop2();
 });
+
+test('an inset sits in the figure when wide and goes back to its place in the console when narrow', () => {
+  const {window: w} = new JSDOM('<section id="r"></section>');
+  const root = w.document.querySelector('#r');
+  root.innerHTML = '<div class="exhibit-stage"><canvas></canvas></div><div class="act-controls"><button>A</button><figure data-fig-inset>map</figure><button>B</button></div>';
+  let width = 1200;
+  Object.defineProperty(root, 'clientWidth', {get: () => width});
+  const stop = arrangeFigure(root);
+  const inset = root.querySelector('[data-fig-inset]');
+  assert.equal(inset.parentElement, root.querySelector('.exhibit-stage'), 'wide: in the corner of the figure');
+  // narrow: a rebuild of the markup is not needed, a resize places it back between its neighbours
+  width = 400;
+  root.append(w.document.createElement('p'));   // any new block triggers a sort, as a resize would
+  return new Promise((done) => setTimeout(() => {
+    assert.equal(inset.closest('.fig-console .act-controls') !== null, true, 'narrow: back in the console');
+    assert.equal(inset.previousElementSibling?.textContent, 'A');
+    stop(); done();
+  }, 0));
+});

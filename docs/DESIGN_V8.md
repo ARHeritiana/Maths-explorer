@@ -78,6 +78,14 @@ repository), was used for the pass (its Operate, Layout and Craft-floor playbook
   list; live values are a table; the help line closes the panel.
 - The sentence that says what the figure shows is its caption, under it, one fact per line.
 - The laboratory card (`.lab2-card`) speaks the same language: scenes as one list, segments as joined cells.
+- A choice of three is one row of three cells; a choice of five or more is two columns, the odd last cell across. Only
+  on/off toggles carry the check box; a picked choice is shown by its ink fill alone. Hover never repaints a picked choice
+  or the main action (their text would lose its contrast).
+- An inset (`data-fig-inset`) is a small map that drives the figure (the Wythoff triangle): in the figure's top left
+  corner when the console is beside it, back in the console on a narrow screen.
+- Budget: at 1600 × 900 the console holds without scrolling inside. When it does not, move out what is not a control
+  (a question to answer goes under the figure, facts the caption already states leave the metrics), put a label beside
+  its list, join secondary actions in one row; never shrink text below 0.86 rem to make it fit.
 
 ## Structure
 

@@ -23,7 +23,7 @@ export function wythoffTriangle(root,opts){
        <button type="button" class="btn btn-secondary" data-mode="challenge" aria-pressed="false">${t('Défi : classer un solide','Challenge: classify a solid')}</button></div>
      <div id="wy-explore">
        <div class="act-buttons" role="group" aria-label="${t('Symétrie','Symmetry')}">${Object.keys(FAMILIES).map(k=>`<button type="button" class="btn btn-secondary" data-fam="${k}" aria-pressed="${k===fam}">${t(...FAMILIES[k].names)}</button>`).join('')}</div>
-       <figure class="wy-tri"><svg viewBox="-10 -12 220 200" role="group" aria-label="${t('Triangle de Wythoff : glisse le point','Wythoff triangle: drag the point')}"></svg></figure>
+       <figure class="wy-tri" data-fig-inset><svg viewBox="-10 -12 220 200" role="group" aria-label="${t('Triangle de Wythoff : glisse le point','Wythoff triangle: drag the point')}"></svg></figure>
        <div class="act-buttons" id="wy-stops" role="group" aria-label="${t('Points où toutes les arêtes sont égales','Points where every edge is equal')}"></div>
        <div class="act-buttons"><button type="button" class="btn btn-secondary" id="wy-twist" aria-pressed="false">${t('Torsion : solide adouci','Twist: snub solid')}</button>
          <button type="button" class="btn btn-secondary" id="wy-turn">${t('Tourner la vue','Turn the view')}</button></div>
@@ -46,14 +46,16 @@ export function wythoffTriangle(root,opts){
     <p>${t('Voir aussi : ','See also: ')}<a href="#gallery/polyhedra">${t('couper les sommets','cutting the corners')}</a> · <a href="#gallery/star-polyhedra">${t('les solides étoilés','the star solids')}</a> · <a href="#gallery/rupert">${t('le cube du prince Rupert','Prince Rupert’s cube')}</a></p>`);
   const g=o.g,stage=root.querySelector('.exhibit-stage'),controls=root.querySelector('.exhibit-controls'),top=document.createElement('div');
   top.className='exhibit-band';controls.classList.add('exhibit-band');
-  top.append(...[...controls.children].filter(el=>el.matches('fieldset, .feedback, [role=group]:not(#wy-stops)')&&!el.closest('#wy-explore,#wy-challenge')));stage.before(top);stage.after(controls);
-  const MS=metricStrip(controls,t,[{id:'name',label:t('Solide','Solid')},{id:'vef',label:t('Sommets V, arêtes E, faces F','Vertices V, edges E, faces F'),kind:'exact'},{id:'faces',label:t('Faces','Faces'),kind:'exact'},
+  const quiz=document.createElement('div');quiz.className='exhibit-band wy-quiz';
+  quiz.append(...[...controls.children].filter(el=>el.matches('fieldset, .feedback')));
+  top.append(...[...controls.children].filter(el=>el.matches('[role=group]:not(#wy-stops)')&&!el.closest('#wy-explore,#wy-challenge')));stage.before(top);stage.after(controls,quiz);
+  const MS=metricStrip(controls,t,[{id:'faces',label:t('Faces','Faces'),kind:'exact'},
     {id:'cfg',label:t('Autour d’un sommet','Around a vertex'),kind:'exact'},{id:'edges',label:t('Arêtes','Edges'),kind:'approx'},{id:'dual',label:t('Dual','Dual')}]);
   const svg=root.querySelector('.wy-tri svg'),stopBox=root.querySelector('#wy-stops'),fb=root.querySelector('#wy-verdict'),cfb=root.querySelector('#wy-c-verdict');
   // the triangle drawn flat: corners A (top), B (bottom left), C (bottom right); d is used as barycentric weights
   const TP=[[100,8],[8,168],[192,168]],toXY=w=>{const s=w[0]+w[1]+w[2]||1;return [0,1].map(q=>(w[0]*TP[0][q]+w[1]*TP[1][q]+w[2]*TP[2][q])/s);};
   const fromXY=([x,y])=>{const [a,b,c]=TP,D=(b[1]-c[1])*(a[0]-c[0])+(c[0]-b[0])*(a[1]-c[1]),l1=((b[1]-c[1])*(x-c[0])+(c[0]-b[0])*(y-c[1]))/D,l2=((c[1]-a[1])*(x-c[0])+(a[0]-c[0])*(y-c[1]))/D;return [l1,l2,1-l1-l2].map(v=>Math.max(0,v));};
-  let S=null,D=null;
+  let S=null,D=null,label='';   // label: the name the caption gives (the panel does not repeat it)
   const POLY={3:['triangles','triangles'],4:['carrés','squares'],5:['pentagones','pentagons'],6:['hexagones','hexagons'],8:['octogones','octagons'],10:['décagones','decagons']};
   const faceWords=sig=>sig.split(',').map(p=>{const [k,c]=p.split(':');return `${c} ${POLY[k]?t(...POLY[k]):k+t('-gones','-gons')}`;}).join(', ');
   const nameOf=(sig,which=0)=>NAMES[sig]?t(...NAMES[sig][which]):null;
@@ -61,8 +63,7 @@ export function wythoffTriangle(root,opts){
     S=wythoff(fam,twist?snubPoint(fam):d,twist);D=dual(S);
     const sig=signature(S),uni=uniformEdges(S),L=edgeLengths(S),lo=Math.min(...L),hi=Math.max(...L);
     const nm=uni?nameOf(sig):null;
-    MS.set('name',nm||(nameOf(sig)?t(`mêmes faces que : ${nameOf(sig)}, arêtes inégales`,`same faces as: ${nameOf(sig)}, unequal edges`):t('non uniforme','not uniform')));
-    MS.set('vef',`${S.V} · ${S.E} · ${S.F}`);
+    label=(nm||(nameOf(sig)?t(`mêmes faces que : ${nameOf(sig)}, arêtes inégales`,`same faces as: ${nameOf(sig)}, unequal edges`):t('non uniforme','not uniform')));
     MS.set('faces',faceWords(sig));
     MS.set('cfg',vertexConfig(S,0));MS.set('edges',uni?t('toutes égales','all equal'):t(`de ${num(lo/hi)} à 1 (rapport)`,`from ${num(lo/hi)} to 1 (ratio)`));
     MS.set('dual',uni&&nameOf(sig,1)?nameOf(sig,1):t('dual d’un solide non uniforme','dual of a non-uniform solid'));
@@ -104,12 +105,12 @@ export function wythoffTriangle(root,opts){
     ...['small-stellated','great-dodecahedron','great-stellated','great-icosahedron'].map(id=>()=>{const T=stellation(id);return {...T,faces:T.faces.map(f=>({...f,d:1})),star:true};})];
   let last=-1;
   function next(){let k;do k=Math.floor(Math.random()*POOL.length);while(k===last);last=k;const s=POOL[k]();const c=classify(s);mystery={S:s,kind:s.star?'kepler':c.kind==='other'?'kepler':c.kind,props:c};view.yaw=Math.random()*6;view.pitch=.3+Math.random()*.4;
-    cfb.className='feedback';cfb.textContent='';MS.set('name','?');MS.set('vef',`${s.V} · ${s.E} · ${s.F}`);MS.set('faces','?');MS.set('cfg','?');MS.set('edges','?');MS.set('dual','?');o.redraw();}
+    cfb.className='feedback';cfb.textContent='';label='';MS.set('faces','?');MS.set('cfg','?');MS.set('edges','?');MS.set('dual','?');o.redraw();}
   root.querySelectorAll('[data-kind]').forEach(b=>o.on(b,'click',()=>{if(!mystery)return;const ok=b.dataset.kind===mystery.kind,p=mystery.props;score=[score[0]+(ok?1:0),score[1]+1];
     const yes=v=>v?t('oui','yes'):t('non','no');
     cfb.className='feedback '+(ok?'success':'error');cfb.textContent=(ok?t('Bien vu. ','Well spotted. '):t(`Non : ${t(...KINDS[mystery.kind])}. `,`No: ${t(...KINDS[mystery.kind])}. `))+t(`Convexe : ${yes(p.convex)} ; faces régulières : ${yes(p.regular)} ; sommets tous pareils : ${yes(p.sameVertices)} ; faces toutes identiques : ${yes(p.oneFace)}. Score : ${score[0]} sur ${score[1]}.`,`Convex: ${yes(p.convex)}; regular faces: ${yes(p.regular)}; all vertices alike: ${yes(p.sameVertices)}; all faces identical: ${yes(p.oneFace)}. Score: ${score[0]} out of ${score[1]}.`);
     illuminateFeedback(cfb,opts.reduced);
-    const sig=signature(mystery.S);MS.set('faces',faceWords(sig));MS.set('cfg',mystery.S.star?'–':vertexConfig(mystery.S,0));MS.set('name',nameOf(sig)&&!mystery.S.star&&mystery.kind!=='catalan'?nameOf(sig):mystery.S.names?t(...mystery.S.names):t(...KINDS[mystery.kind]));}));
+    const sig=signature(mystery.S);MS.set('faces',faceWords(sig));MS.set('cfg',mystery.S.star?'–':vertexConfig(mystery.S,0));label=(nameOf(sig)&&!mystery.S.star&&mystery.kind!=='catalan'?nameOf(sig):mystery.S.names?t(...mystery.S.names):t(...KINDS[mystery.kind]));o.redraw();}));
   o.on(root.querySelector('#wy-next'),'click',next);
   root.querySelectorAll('[data-mode]').forEach(b=>o.on(b,'click',()=>{mode=b.dataset.mode;root.querySelectorAll('[data-mode]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
     root.querySelector('#wy-explore').hidden=mode!=='explore';root.querySelector('#wy-challenge').hidden=mode!=='challenge';root.querySelector('#wy-q').hidden=mode!=='explore';fb.hidden=mode!=='explore';
@@ -126,7 +127,7 @@ export function wythoffTriangle(root,opts){
         pieces(X).map(q=>{const s=q.pts.map(v=>orbitProject(v,view.yaw,view.pitch,sc));return {q,s,dd:s.reduce((a,b)=>a+b[2],0)/s.length,k:orbitProject(q.normal,view.yaw,view.pitch,1)[2]-o0};}).sort((a,b)=>a.dd-b.dd)
           .forEach(({q,s,k})=>{g.beginPath();s.forEach(([x,y],i)=>i?g.lineTo(x,y+8):g.moveTo(x,y+8));g.closePath();g.fillStyle=C.c[q.face%4];g.fill();const dk=.5*(1-Math.abs(k));if(dk>.01){g.globalAlpha=dk;g.fillStyle='#000';g.fill();g.globalAlpha=1;}g.strokeStyle=C.c[q.face%4];g.lineWidth=.8;g.stroke();});}
       else drawFaces(g,C,shaded(X),view,sc);
-      g.restore();o.read(t('Solide mystère : choisis sa famille.','Mystery solid: choose its family.'));return false;}
+      g.restore();o.read(label?`${label} · V ${X.V}, E ${X.E}, F ${X.F}`:t(`Solide mystère (V ${X.V}, E ${X.E}, F ${X.F}) : choisis sa famille.`,`Mystery solid (V ${X.V}, E ${X.E}, F ${X.F}): choose its family.`));return false;}
     if(!S)return false;
     const R=Math.max(...S.verts.map(norm),...(show!=='solid'?D.verts.map(norm):[])),sc=Math.min(o.W,o.H)*.42/R;shift();
     if(show==='dual')drawFaces(g,C,shaded(D),view,sc);
@@ -135,7 +136,7 @@ export function wythoffTriangle(root,opts){
       const o0=orbitProject([0,0,0],view.yaw,view.pitch,1)[2];let best=0,bi=0;S.faces.forEach((f,i)=>{const k=orbitProject(f.normal,view.yaw,view.pitch,1)[2]-o0;if(k>best){best=k;bi=i;}});
       const v=orbitProject(D.verts[bi],view.yaw,view.pitch,sc);g.fillStyle=C.object;g.beginPath();g.arc(v[0],v[1]+8,6,0,2*Math.PI);g.fill();}}
     g.restore();
-    o.read(`${MS.el.querySelector('dd')?.textContent||''} · V ${S.V}, E ${S.E}, F ${S.F}`);
+    o.read(`${label} · V ${S.V}, E ${S.E}, F ${S.F}`);
     return false;
   });
   labelStops();rebuild();

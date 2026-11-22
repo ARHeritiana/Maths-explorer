@@ -9,7 +9,7 @@ export function mountPlatonic(root,{t,reduced},solids,names,schlafli,angle,verdi
   <div class="obj-stage" id="pl-stage"></div>
   <div class="act-buttons">${Object.keys(solids).map(id=>`<button type="button" class="btn btn-secondary" data-solid="${id}" aria-pressed="${id===name}">${t(...names[id])}</button>`).join('')}</div>
   <div class="act-controls">${field('pl-fold',t('Pliage : patron → solide','Fold: net → solid'),0,100,1,100)}<button class="btn btn-secondary" id="pl-open" type="button">${t('Ouvrir le patron','Open net')}</button><button class="btn btn-primary" id="pl-play" type="button">${t('Replier','Fold')}</button>
-    <label class="act-check"><input id="pl-spin" type="checkbox" ${spin?'checked':''}> ${t('Rotation automatique','Turn automatically')}</label><label class="act-check"><input id="pl-numbers" type="checkbox"> ${t('Numéroter les faces','Number the faces')}</label></div>
+    <div class="act-checks"><label class="act-check"><input id="pl-spin" type="checkbox" ${spin?'checked':''}> ${t('Rotation automatique','Turn automatically')}</label><label class="act-check"><input id="pl-numbers" type="checkbox"> ${t('Numéroter les faces','Number the faces')}</label></div></div>
   <p class="act-readout" id="pl-read" aria-live="polite"></p>
   <details class="platonic-proof" open><summary>${t('Pourquoi exactement cinq solides réguliers convexes ?','Why exactly five convex regular solids?')}</summary>
     <ol class="fold-reason"><li>${t('À un sommet, au moins trois faces se rejoignent. Si chaque face a p côtés, son angle vaut α = (p − 2) × 180° / p.','At least three faces meet at a vertex. If each face has p sides, its angle is α = (p − 2) × 180° / p.')}</li>

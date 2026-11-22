@@ -46,6 +46,14 @@ export function arrangeFigure(root) {
       if (wide) { if (b.parentNode !== side) side.insertBefore(b, side.querySelector(":scope > :not([data-fig-band])")); }
       else if (b.parentNode !== main) main.insertBefore(b, stage);
     }
+    // an inset (a small map that drives the figure, such as Wythoff's triangle) sits in a corner of the figure when the
+    // console is beside it, and goes back to its place in the console on a narrow screen
+    const stageNow = main.querySelector(":scope > :is(.obj-stage, .exhibit-stage)");
+    for (const n of root.querySelectorAll("[data-fig-inset]")) {
+      if (!n.figHome) { n.figHome = doc.createComment("fig-inset"); n.before(n.figHome); }
+      if (wide && stageNow) { if (n.parentNode !== stageNow) stageNow.append(n); }
+      else if (n.figHome.parentNode && n.previousSibling !== n.figHome) n.figHome.after(n);
+    }
     const after = [...split.querySelectorAll(":scope > [data-fig-after]")];
     if (wide) main.append(...after);
     else { for (const n of [...main.children]) if (AFTER(n)) { n.dataset.figAfter = ""; after.push(n); } split.append(...after); }
