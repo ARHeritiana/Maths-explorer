@@ -57,3 +57,44 @@ test('bestScale on squares: a unit square fits a square of side 2 at scale 2, an
   const sq=(h,a=0)=>[[-h,-h],[h,-h],[h,h],[-h,h]].map(([x,y])=>[x*Math.cos(a)-y*Math.sin(a),x*Math.sin(a)+y*Math.cos(a)]);
   assert.ok(Math.abs(bestScale(sq(0.5),sq(1)).s-2)<1e-12);assert.ok(Math.abs(bestScale(sq(0.5,Math.PI/4),sq(0.5)).s-Math.SQRT1_2)<1e-12);
 });
+
+// 3D scene helpers of gallery-rupert-gl.js
+import {mul3,axisRotation,orthonormalize,toQuat,fromQuat,slerp,shadowOf,passage,planesOf,clipConvex,tunnelWalls,rayConvex,searchStep} from '../site/js/gallery/gallery-rupert-model.js';
+const close=(A,B,e=1e-9)=>A.flat().every((v,i)=>Math.abs(v-B.flat()[i])<e);
+const orth=R=>close(mul3(R,R[0].map((_,j)=>R.map(r=>r[j]))),[[1,0,0],[0,1,0],[0,0,1]],1e-9);
+
+test('rotation helpers: axis rotations, quaternions both ways, slerp ends and midpoint, re-orthonormalisation', () => {
+  assert.ok(close(axisRotation([0,0,1],Math.PI/2),[[0,-1,0],[1,0,0],[0,0,1]],1e-12));
+  for(const a of [[0.3,1.1,2.2],[2,0.4,5],[0,Math.PI,0],[1,3.1,0.2]]){const R=rotation(a);assert.ok(close(fromQuat(toQuat(R)),R,1e-12));}
+  const A=rotation([0.2,0.7,1.4]),B=rotation([2.1,1.9,0.3]);
+  assert.ok(close(slerp(A,B,0),A,1e-9)&&close(slerp(A,B,1),B,1e-9));
+  const M=slerp(A,B,0.5);assert.ok(orth(M));assert.ok(close(slerp(A,M,1),M,1e-9));
+  // the midpoint is half-way: the turn from A to M equals the turn from M to B
+  const T=(X,Y)=>mul3(Y,X[0].map((_,j)=>X.map(r=>r[j])));assert.ok(close(T(A,M),T(M,B),1e-9));
+  const drift=[[1.001,0.002,0],[0,0.999,0.003],[0.001,0,1.002]];assert.ok(orth(orthonormalize(drift)));
+});
+
+test('the passage from matrices agrees with the angle form; the tunnel walls lie in the block and the tunnel stays inside its shadow', () => {
+  for(const [name,w] of Object.entries(WITNESSES)){const S=solid(name),Ro=rotation(w.outer),Ri=rotation(w.inner),ps=passage(S,Ro,Ri);
+    assert.ok(ps.ok&&Math.abs(ps.r.s-scaleFor(S,w.outer,w.inner).s)<1e-12,name);
+    assert.ok(inside(ps.tunnel,shadowOf(S,Ro),1e-6),name);
+    const planes=planesOf(S,Ro),walls=tunnelWalls(planes,ps.tunnel);assert.equal(walls.length,ps.tunnel.length,name);
+    for(const wl of walls)for(const p of wl.pts)assert.ok(planes.every(q=>q.n[0]*p[0]+q.n[1]*p[1]+q.n[2]*p[2]<=q.d+1e-9));}
+  // clipping a big square to the unit cube's slab |x| ≤ 1 keeps the strip
+  const sq=[[-3,-3,0],[3,-3,0],[3,3,0],[-3,3,0]],cl=clipConvex(sq,[{n:[1,0,0],d:1},{n:[-1,0,0],d:1}]);
+  assert.equal(cl.length,4);assert.ok(cl.every(p=>Math.abs(p[0])<=1+1e-12));
+});
+
+test('ray picking hits a solid at the right distance and misses beside it', () => {
+  const S=solid('cube'),pl=planesOf(S,rotation([0,0,0])),h=1/Math.sqrt(3);
+  assert.ok(Math.abs(rayConvex([0,0,5],[0,0,-1],pl)-(5-h))<1e-12);
+  assert.equal(rayConvex([3,0,5],[0,0,-1],pl),null);
+  assert.ok(Math.abs(rayConvex([0,0,5],[0,0,-1],pl,[0,0,2])-(3-h))<1e-12);
+});
+
+test('the live search never gets worse and finds a cube passage', () => {
+  const S=solid('cube');let seed=3;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  let st={Rout:rotation([0,0.35,0.5]),Rin:rotation([0.4,0.9,0.3])};st.s=passage(S,st.Rout,st.Rin).r.s;
+  for(let i=0;i<300;i++){const n=searchStep(S,st,rnd,10,0.35*(1-i/340)+0.01);assert.ok(n.s>=st.s);st=n;}
+  assert.ok(st.s>1&&st.s<=NIEUWLAND+1e-9,String(st.s));
+});
