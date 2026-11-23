@@ -121,7 +121,7 @@ export function rupertCubesGL(root, opts) {
   stage.draw = (f) => {
     const C = f.C, c = scene(), VP = new Float32Array(f.viewProj), shift = pieceAt();
     gl.useProgram(P); gl.uniformMatrix4fv(P.u('uVP'), false, VP); gl.uniform3fv(P.u('uEye'), f.eye);
-    const blockCol = rgb(C.c[1]), wallCol = blockCol.map((v) => v * 0.55), pieceCol = rgb(c.ps.ok ? C.object : C.c[3]), ink = rgb(C.ink);
+    const blockCol = rgb(C.c[0]), wallCol = blockCol.map((v) => v * 0.55), pieceCol = rgb(c.ps.ok ? C.object : C.c[3]), ink = rgb(C.ink);
     gl.uniform1i(P.u('uN'), c.ringN); if (c.ring) gl.uniform3fv(P.u('uRing'), c.ring);
     const draw = (m, mode, col, { hole = 0, flat = 0, alpha = 1, at = [0, 0, 0] } = {}) => {
       gl.uniform3fv(P.u('uCol'), col); gl.uniform1i(P.u('uHole'), hole); gl.uniform1i(P.u('uFlat'), flat); gl.uniform1f(P.u('uAlpha'), alpha); gl.uniform3fv(P.u('uShift'), at);
@@ -155,7 +155,7 @@ export function rupertCubesGL(root, opts) {
       const poly = (pts, fill, stroke, w, alpha = 1, dash = []) => { g.beginPath(); pts.map(X).forEach((p, i) => (i ? g.lineTo(...p) : g.moveTo(...p))); g.closePath();
         if (fill) { g.globalAlpha = alpha; g.fillStyle = fill; g.fill(); g.globalAlpha = 1; } if (stroke) { g.setLineDash(dash); g.strokeStyle = stroke; g.lineWidth = w; g.stroke(); g.setLineDash([]); } };
       const pc = ok ? C.object : C.c[3];
-      poly(Q, C.c[1], C.ink, 2, 0.35);
+      poly(Q, C.c[0], C.ink, 2, 0.3);
       poly(ok ? tunnel : Pp, pc, pc, 1.6, 0.5);
       if (r.s > 0) poly(Pp.map((p) => [r.s * p[0] + r.t[0], r.s * p[1] + r.t[1]]), null, pc, 1.2, 1, [5, 4]);
       g.font = `600 ${side < 130 ? 10 : Math.round(12 * k)}px system-ui, sans-serif`; g.textAlign = 'left'; g.fillStyle = C.ink;
