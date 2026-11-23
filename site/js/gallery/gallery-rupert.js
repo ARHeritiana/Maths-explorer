@@ -45,7 +45,7 @@ export function rupertCubes(root,opts){
     if(answer==null)text=t('Choisis une réponse, puis cherche un passage en tournant la pièce, ou demande un passage vérifié.','Choose an answer, then look for a passage by turning the piece, or ask for a verified passage.');
     else if(!seen)text=t('Réponse notée. Trouve une position du cube avec s > 1, ou regarde le passage vérifié jusqu’au bout.','Answer noted. Find a position of the cube with s > 1, or watch the verified passage to the end.');
     else{const ok=answer===2;cls=ok?'success':'error';text=(ok?t('Bien vu. ','Well spotted. '):t('Pas tout à fait. ','Not quite. '))+t(`Un cube passe, et même un cube agrandi jusqu’à 3√2/4 ≈ ${num(NIEUWLAND)} fois : son ombre tient dans celle du bloc avec de la place autour.`,`A cube passes, and even a cube enlarged up to 3√2/4 ≈ ${num(NIEUWLAND)} times: its shadow fits in the block’s with room all round.`);}
-    if(fb.textContent!==text){const was=fb.className;fb.className='feedback'+(cls?' '+cls:'');fb.textContent=text;if(cls&&was!==fb.className)illuminateFeedback(fb,opts.reduced);}
+    if(fb.textContent!==text){const was=fb.className;fb.className='feedback'+(cls?' '+cls:'');fb.textContent=text;if(cls&&was!==fb.className)illuminateFeedback(fb,typeof opts.reduced==='function'?opts.reduced:()=>!!opts.reduced);}
   }
   let cache=null;
   const state=()=>{const key=shape+outer+inner;if(cache?.key===key)return cache;
@@ -62,7 +62,7 @@ export function rupertCubes(root,opts){
   o.on(root.querySelector('#rp-witness'),'click',()=>{const w=WITNESSES[shape];
     if(!w){o.read(t('Aucun passage connu pour ce solide : il n’en a pas (prépublication de 2026).','No passage is known for this solid: it has none (2026 preprint).'));return;}
     outer=[...w.outer];inner=[...w.inner];cache=null;setView('passage');slide=0;slideIn.value='0';
-    if(opts.reduced){slide=1;slideIn.value='100';if(shape==='cube')seen=true;verdict();o.redraw();return;}
+    if(typeof opts.reduced==='function'?opts.reduced():opts.reduced){slide=1;slideIn.value='100';if(shape==='cube')seen=true;verdict();o.redraw();return;}
     const t0=performance.now(),run=()=>{slide=Math.min(1,(performance.now()-t0)/2600);slideIn.value=String(Math.round(slide*100));o.redraw();
       if(slide<1)requestAnimationFrame(run);else{if(shape==='cube')seen=true;verdict();}};requestAnimationFrame(run);});
   // dragging: in the shadows view it turns the piece (or the block); in the passage view it turns the camera

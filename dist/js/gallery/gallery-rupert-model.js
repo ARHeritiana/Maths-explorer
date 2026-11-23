@@ -86,3 +86,85 @@ export const WITNESSES = {
 };
 export const NIEUWLAND = 3 * Math.sqrt(2) / 4;   // the largest cube that passes through a unit cube
 export const SHAPES = ['cube', 'tetrahedron', 'octahedron', 'dodecahedron', 'icosahedron', 'rhombicosidodecahedron'];
+
+// ---- 3D scene helpers (gallery-rupert-gl.js), pure. Orientations are 3x3 rotation matrices (rows), the tunnel runs along z.
+export const mul3 = (A, B) => A.map((r) => [0, 1, 2].map((j) => r[0] * B[0][j] + r[1] * B[1][j] + r[2] * B[2][j]));
+export function axisRotation(axis, angle) {   // Rodrigues: rotation by `angle` about the unit vector along `axis`
+  const l = norm(axis) || 1, [x, y, z] = axis.map((v) => v / l), c = Math.cos(angle), s = Math.sin(angle), k = 1 - c;
+  return [[c + x * x * k, x * y * k - z * s, x * z * k + y * s], [y * x * k + z * s, c + y * y * k, y * z * k - x * s], [z * x * k - y * s, z * y * k + x * s, c + z * z * k]];
+}
+export function orthonormalize(R) {   // Gram-Schmidt on the rows, so that repeated small turns do not drift
+  const a = R[0].map((v) => v / norm(R[0])), b0 = sub(R[1], a.map((v) => v * dot(a, R[1]))), b = b0.map((v) => v / norm(b0));
+  return [a, b, cross(a, b)];
+}
+export function toQuat(R) {   // unit quaternion [w, x, y, z] of a rotation matrix (Shepperd's method)
+  const [[a, b, c], [d, e, f], [g, h, i]] = R, tr = a + e + i; let q;
+  if (tr > 0) { const s = 2 * Math.sqrt(tr + 1); q = [s / 4, (h - f) / s, (c - g) / s, (d - b) / s]; }
+  else if (a > e && a > i) { const s = 2 * Math.sqrt(1 + a - e - i); q = [(h - f) / s, s / 4, (b + d) / s, (c + g) / s]; }
+  else if (e > i) { const s = 2 * Math.sqrt(1 + e - a - i); q = [(c - g) / s, (b + d) / s, s / 4, (f + h) / s]; }
+  else { const s = 2 * Math.sqrt(1 + i - a - e); q = [(d - b) / s, (c + g) / s, (f + h) / s, s / 4]; }
+  const l = Math.hypot(...q); return q.map((v) => v / l);
+}
+export function fromQuat([w, x, y, z]) {
+  return [[1 - 2 * (y * y + z * z), 2 * (x * y - w * z), 2 * (x * z + w * y)], [2 * (x * y + w * z), 1 - 2 * (x * x + z * z), 2 * (y * z - w * x)], [2 * (x * z - w * y), 2 * (y * z + w * x), 1 - 2 * (x * x + y * y)]];
+}
+export function slerp(R0, R1, u) {   // the shortest turn from R0 to R1, a fraction u of the way
+  const p = toQuat(R0); let q = toQuat(R1), c = p.reduce((s, v, k) => s + v * q[k], 0);
+  if (c < 0) { q = q.map((v) => -v); c = -c; }
+  if (c > 0.9995) { const m = p.map((v, k) => v + u * (q[k] - v)), l = Math.hypot(...m); return fromQuat(m.map((v) => v / l)); }
+  const th = Math.acos(c), a = Math.sin((1 - u) * th) / Math.sin(th), b = Math.sin(u * th) / Math.sin(th);
+  return fromQuat(p.map((v, k) => a * v + b * q[k]));
+}
+export const shadowOf = (S, R) => hull(S.verts.map((v) => apply(R, v).slice(0, 2)));
+// The passage for two orientations: block shadow Q, piece shadow P, best enlargement r, and the tunnel (P moved by t/s).
+export function passage(S, Rout, Rin) {
+  const Q = shadowOf(S, Rout), P = shadowOf(S, Rin), r = bestScale(P, Q), ok = r.s > 1 + 1e-9;
+  const off = ok ? [r.t[0] / r.s, r.t[1] / r.s] : [0, 0];
+  return { Q, P, r, ok, off, tunnel: P.map((p) => [p[0] + off[0], p[1] + off[1]]) };
+}
+// Face planes {n, d} (n·x ≤ d inside) of the solid turned by R.
+export const planesOf = (S, R) => S.faces.map((f) => { const n = apply(R, f.n); return { n, d: dot(f.n, S.verts[f.verts[0]]) }; });
+// Sutherland-Hodgman: the part of a planar convex polygon (3D points) inside every half-space n·x ≤ d.
+export function clipConvex(poly, planes) {
+  let out = poly;
+  for (const { n, d } of planes) {
+    const next = [];
+    for (let i = 0; i < out.length; i++) {
+      const a = out[i], b = out[(i + 1) % out.length], fa = dot(n, a) - d, fb = dot(n, b) - d;
+      if (fa <= 0) next.push(a);
+      if ((fa < 0 && fb > 0) || (fa > 0 && fb < 0)) { const k = fa / (fa - fb); next.push([a[0] + k * (b[0] - a[0]), a[1] + k * (b[1] - a[1]), a[2] + k * (b[2] - a[2])]); }
+    }
+    out = next; if (out.length < 3) return [];
+  }
+  return out;
+}
+// The walls of a straight tunnel (counter-clockwise polygon `ring`, along z) inside the block: one convex polygon per side,
+// with its normal pointing into the tunnel.
+export function tunnelWalls(planes, ring, h = 3) {
+  return ring.map((a, k) => {
+    const b = ring[(k + 1) % ring.length], e = [b[0] - a[0], b[1] - a[1]], l = Math.hypot(...e) || 1;
+    return { n: [-e[1] / l, e[0] / l, 0], pts: clipConvex([[a[0], a[1], -h], [b[0], b[1], -h], [b[0], b[1], h], [a[0], a[1], h]], planes) };
+  }).filter((w) => w.pts.length >= 3);
+}
+// Distance along the ray o + s·d (d unit) to the convex solid {n·(x − c) ≤ d}, or null if it misses.
+export function rayConvex(o, d, planes, c = [0, 0, 0]) {
+  let lo = 0, hi = Infinity;
+  for (const p of planes) {
+    const den = dot(p.n, d), num = p.d - dot(p.n, sub(o, c));
+    if (Math.abs(den) < 1e-12) { if (num < 0) return null; continue; }
+    const s = num / den; if (den < 0) lo = Math.max(lo, s); else hi = Math.min(hi, s);
+    if (lo > hi) return null;
+  }
+  return Number.isFinite(hi) ? lo : null;
+}
+// One step of a random local search for a passage: `tries` small random turns of either orientation, the best one kept.
+// `rand` returns numbers in [0, 1). Returns the new state {Rout, Rin, s}; it never gets worse.
+export function searchStep(S, { Rout, Rin, s }, rand, tries = 12, size = 0.25) {
+  let best = { Rout, Rin, s };
+  const turn = (R) => mul3(axisRotation([rand() - 0.5, rand() - 0.5, rand() - 0.5], (rand() - 0.5) * 2 * size), R);
+  for (let k = 0; k < tries; k++) {
+    const which = rand() < 0.5, A = which ? turn(Rout) : Rout, B = which ? Rin : turn(Rin), v = bestScale(shadowOf(S, B), shadowOf(S, A)).s;
+    if (v > best.s) best = { Rout: A, Rin: B, s: v };
+  }
+  return best;
+}
